@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2129,10 +2129,6 @@ msgstr "Cài đặt bộ điều hợp"
 msgid "Add"
 msgstr "Thêm vào"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Thêm vThêm tự động trả lờiào"
 
@@ -2205,6 +2201,9 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
 
+msgid "Add current directory to bookmarks"
+msgstr "Thêm thư mục hiện tại vào bookmark"
+
 msgid "Add directory to play list"
 msgstr "Thêm thư mục vào danh sách phát"
 
@@ -2213,6 +2212,12 @@ msgstr "Thêm tập tin vào danh sách phát"
 
 msgid "Add files to play list"
 msgstr "Thêm tệp vào danh sách phát"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Thêm thư mục đã chọn vào bookmark"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3314,6 +3319,12 @@ msgid "Bonaire"
 msgstr ""
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5277,6 +5288,9 @@ msgid "Current Status:"
 msgstr "Tình trạng hiện tại:"
 
 msgid "Current crash log"
+msgstr ""
+
+msgid "Current directory"
 msgstr ""
 
 #, python-format
@@ -8992,6 +9006,9 @@ msgstr "Thông tin phân cấp"
 
 msgid "High bitrate support"
 msgstr "Hỗ trợ bitrate cao"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr ""
@@ -14286,10 +14303,6 @@ msgstr "Loại điều khiển từ xa"
 msgid "Remove"
 msgstr "Tẩy"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr "Xóa dấu trang"
 
@@ -14350,11 +14363,17 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr "Xóa bộ định thời đã hoàn thành sau (ngày)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Xóa thư mục hiện tại khỏi bookmark"
+
 msgid "Remove currently selected title"
 msgstr "Xóa tiêu đề hiện được chọn"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Xóa dòng VBI ẩn cho dịch vụ này"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Xóa thư mục đã chọn khỏi dấu trang"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Xóa văn bản cho người khiếm thính khỏi phụ đề bên ngoài (nhạc cụ hoặc âm thanh môi trường, ví dụ: khi nghe tiếng chuông cửa hoặc tiếng súng nổ)."
@@ -15335,6 +15354,9 @@ msgstr "Nếu được đặt thành 'có', bạn có thể xem trước các k�
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Nếu được đặt thành 'có', bạn có thể xem trước các kênh trong danh sách kênh. Nhấn 'OK' để xem trước kênh đã chọn, nhấn 'OK' thứ 2 để thoát và chuyển sang kênh đó, nhấn 'EXIT' để quay lại kênh bạn đã bắt đầu."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Nếu được đặt thành các kênh 'có' mà không có EPG sẽ không được hiển thị."
@@ -21060,6 +21082,9 @@ msgstr "Xem danh sách các phần mở rộng hệ thống có sẵn"
 msgid "View mode"
 msgstr "Chế độ xem sự kiện"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Xem hoặc chỉnh sửa tệp (nếu kích thước <1MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Xem hoặc chỉnh sửa tập lệnh % s này"
@@ -23760,17 +23785,11 @@ msgstr ""
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Kích hoạt danh sách tập tin bên phải dưới dạng nguồn"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Thêm thư mục hiện tại vào bookmark"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Thêm plugin vào menu Tiện ích mở rộng *"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Thêm plugin vào menu chính *"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Thêm thư mục đã chọn vào bookmark"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "CPU ưu tiên thực thi tập lệnh"
@@ -24191,12 +24210,6 @@ msgstr ""
 #~ msgid "Records"
 #~ msgstr "Hồ sơ"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Xóa thư mục hiện tại khỏi bookmark"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Xóa thư mục đã chọn khỏi dấu trang"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Đổi tên tập tin / thư mục"
 
@@ -24341,9 +24354,6 @@ msgstr ""
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Giải nén vào thư mục hiện tại"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Xem hoặc chỉnh sửa tệp (nếu kích thước <1MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "CẢNH BÁO!"

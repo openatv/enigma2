@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
+"PO-Revision-Date: 2022-12-09 08:00+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -925,16 +925,16 @@ msgstr "%d minutės"
 #, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d mėnuo"
+msgstr[1] "%d mėnesiai"
+msgstr[2] "%d mėnesių"
 
 #, python-format
 msgid "%d Pixel"
 msgid_plural "%d Pixels"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d pikselis"
+msgstr[1] "%d pikseliai"
+msgstr[2] "%d pikselių"
 
 #, fuzzy, python-format
 msgid "%d Pixel wide"
@@ -961,16 +961,16 @@ msgstr "%d sekundės"
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d savaitė"
+msgstr[1] "%d savaitės"
+msgstr[2] "%d savaičių"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Metai"
+msgstr[1] "%d Metai"
+msgstr[2] "%d Metų"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1847,15 +1847,15 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Fone vyksta atnaujinimų paieška, palaukite ir po kelių minučių bandykite dar kartą."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
-msgstr ""
+msgstr "Kableliais atskirtų plėtinių, kurie turi būti naudojami nustatant 'Mano plėtinys' 'Filtro plėtinys', sąrašas. Įveskite plėtinių pavadinimus be pagrindinio taško (.)."
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
-msgstr ""
+msgstr "Atlikta užduotis nori nustatyti %s %s budėjimo režimą. Ar tai dabar?"
 
 #, python-format
 msgid "A completed task wants to shut down your %s %s. Shutdown now?"
-msgstr ""
+msgstr "Atlikta užduotis nori išjungti jūsų %s %s. Išjungti dabar?"
 
 #, python-format
 msgid "A crash log was %s created in '%s'"
@@ -2076,7 +2076,7 @@ msgid "Access to geolocation information requires an Internet connection."
 msgstr "Prieigai prie geografinės vietos informacijos reikalingas interneto ryšys."
 
 msgid "Accessed"
-msgstr ""
+msgstr "Prieinama"
 
 msgid "Action"
 msgstr "Veiksmo"
@@ -2132,10 +2132,6 @@ msgstr "Adapterio parametrai"
 msgid "Add"
 msgstr "Pridėti"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Pridėti auto laikmatį"
 
@@ -2146,16 +2142,16 @@ msgid "Add Current"
 msgstr "Įtraukti dabartinį"
 
 msgid "Add File Commander to Extensions Menu"
-msgstr ""
+msgstr "Pridėkite failų valdytoją prie plėtinių meniu"
 
 msgid "Add File Commander to Main Menu"
-msgstr ""
+msgstr "Pridėkite failų valdytoją prie pagrindinio meniu"
 
 msgid "Add File Commander to the Extensions Menu list of options."
-msgstr ""
+msgstr "Pridėkite failų valdytoją prie plėtinių meniu parinkčių sąrašo."
 
 msgid "Add File Commander to the Main Menu list of options."
-msgstr ""
+msgstr "Pridėkite failų valdytoją prie pagrindinio meniu parinkčių sąrašo."
 
 msgid "Add New Quad Channel Entry"
 msgstr "Pridėti naują Quad kanalo įrašą"
@@ -2208,6 +2204,9 @@ msgstr "Įtraukti dabartinio įvykio laikmatį"
 msgid "Add an AutoTimer for the current event"
 msgstr "Pridėkite dabartinio įvykio automatinį laikmatį"
 
+msgid "Add current directory to bookmarks"
+msgstr "Įtraukite dabartinį aplanką į žymes"
+
 msgid "Add directory to play list"
 msgstr "Pridėti katalogą į grojaraštį"
 
@@ -2216,6 +2215,12 @@ msgstr "Pridėti failą į grojaraštį"
 
 msgid "Add files to play list"
 msgstr "Pridėti failus į grojaraštį"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Pridėti pasirinktą aplanką į žymes"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Pridėkite naują CCcam eilutę"
@@ -2245,7 +2250,7 @@ msgid "Add service"
 msgstr "Pridėti kanalą"
 
 msgid "Add the current directory as a bookmark"
-msgstr ""
+msgstr "Pridėkite dabartinį katalogą kaip žymelę"
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Įtraukti dabartinę paslaugą į garsumo poslinkių sąrašą"
@@ -2326,7 +2331,7 @@ msgid "Afrikaans"
 msgstr "Afrikiečių"
 
 msgid "After Event"
-msgstr ""
+msgstr "Po įvykio"
 
 msgid "After PowerLost"
 msgstr "Po įtampos dingimo"
@@ -2386,7 +2391,7 @@ msgid "All ages"
 msgstr "Visi amžiai"
 
 msgid "All files"
-msgstr ""
+msgstr "Visi failai"
 
 msgid "All resolutions"
 msgstr "Visos raiškos"
@@ -2589,7 +2594,7 @@ msgid "Any recordings"
 msgstr "bet kokie įrašai"
 
 msgid "Aperture F number"
-msgstr ""
+msgstr "Diafragmos F numeris"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Taikyti bet kokius pakeitimus aktyviai lokalei / kalbai ir išeiti"
@@ -3302,6 +3307,12 @@ msgid "Bonaire"
 msgstr "Bonairė"
 
 msgid "Bookmark Sequence Actions"
+msgstr "Žymelių sekos veiksmai"
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -3498,7 +3509,7 @@ msgid "CCCam Information"
 msgstr "CCCam informacija"
 
 msgid "CCD-Width"
-msgstr ""
+msgstr "CCD plotis"
 
 msgid "CCcam"
 msgstr "CCcam"
@@ -3642,7 +3653,7 @@ msgid "CPU brand"
 msgstr "Gamintojas"
 
 msgid "CPU priority for scripts"
-msgstr ""
+msgstr "CPU prioritetas scenarijams"
 
 msgid "CPU rating"
 msgstr "CPU įvertinimas"
@@ -3675,7 +3686,7 @@ msgid "Calculate"
 msgstr "Apskaičiuoti"
 
 msgid "Calculate file hashes/checksums"
-msgstr ""
+msgstr "Apskaičiuokite failų kontrolines sumas"
 
 msgid "Calculating benchmark..."
 msgstr "Skaičiuojamas etalonas..."
@@ -3684,7 +3695,7 @@ msgid "Calculating rating..."
 msgstr "Skaičiuojamas reitingas..."
 
 msgid "Calculating..."
-msgstr ""
+msgstr "Skaičiuojama..."
 
 msgid "Calculation complete"
 msgstr "Apskaičiavimas baigtas"
@@ -3696,7 +3707,7 @@ msgid "Cambodia"
 msgstr "Kambodža"
 
 msgid "Camera"
-msgstr ""
+msgstr "Fotoaparatas"
 
 msgid "Cameroon"
 msgstr "Kamerūnas"
@@ -3809,7 +3820,7 @@ msgid "Cancel / Close the software update screen"
 msgstr "Atšaukti / uždaryti programinės įrangos naujinimo ekraną"
 
 msgid "Cancel Task"
-msgstr ""
+msgstr "Atšaukti užduotį"
 
 msgid "Cancel any changed settings and exit"
 msgstr "Atšaukti visus pakeistus parametrus ir išeiti"
@@ -3836,7 +3847,7 @@ msgid "Cancel execution?"
 msgstr "Atšaukti vykdymą?"
 
 msgid "Cancel extraction"
-msgstr ""
+msgstr "Atšaukti išarchyvavimą"
 
 msgid "Cancel save time shift as movie"
 msgstr "Atšaukti laiko poslinkio, kaip filmo išsaugojimą"
@@ -3845,7 +3856,7 @@ msgid "Cancel selection"
 msgstr "Atšaukti pasirinkimą"
 
 msgid "Cancel selection and exit"
-msgstr ""
+msgstr "Atšaukti pasirinkimą ir išeiti"
 
 msgid "Cancel the flash process"
 msgstr "Atšaukti įdiegimą"
@@ -3869,7 +3880,7 @@ msgid "Cancel the slot selection and exit all menus"
 msgstr "Atšaukti lizdų pasirinkimą ir išeiti iš visų meniu"
 
 msgid "Cancel the task"
-msgstr ""
+msgstr "Užduoties atšaukimas"
 
 msgid "Cancel the update"
 msgstr "Atšaukti naujinimą"
@@ -4003,7 +4014,7 @@ msgid "Change to bouquet"
 msgstr "Keisti į paketą"
 
 msgid "Changed"
-msgstr ""
+msgstr "Pakeistas"
 
 #, python-format
 msgid ""
@@ -4246,7 +4257,7 @@ msgid "Choose the name of the file that holds the EPG data when the %s %s is shu
 msgstr "Pasirinkite failo, kuriame bus EPG duomenys, pavadinimą, kai %s %s išjungtas. Tai gali būti patogu atskirti, naudojant kelis imtuvus."
 
 msgid "Choose the option to correct invalid EPG data."
-msgstr ""
+msgstr "Pasirinkite parinktį kad ištaisyti neteisingus EPG duomenis."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Pasirinkite stilių / tvarką, kuria elementai rodomi žinyno languose."
@@ -4391,10 +4402,10 @@ msgid "Close PiP on exit"
 msgstr "Išeinant užverti PiP"
 
 msgid "Close Task List"
-msgstr ""
+msgstr "Uždaryti užduočių sąrašą"
 
 msgid "Close Task View"
-msgstr ""
+msgstr "Uždaryti užduočių rodinį"
 
 msgid "Close bouquet list"
 msgstr "Uždaryti paketų sąrašą"
@@ -4424,7 +4435,7 @@ msgid "Close the window"
 msgstr "Uždaryti langą"
 
 msgid "Close this screen"
-msgstr ""
+msgstr "Uždaryti ekraną"
 
 msgid "Close title selection"
 msgstr "Užverti pavadinimo pasirinkimą"
@@ -4476,7 +4487,7 @@ msgstr "Komedija"
 
 #, python-format
 msgid "Command '%s' is unknown"
-msgstr ""
+msgstr "Komanda '%s' nežinoma"
 
 msgid "Command execution..."
 msgstr "Vykdoma komanda..."
@@ -4536,7 +4547,7 @@ msgid "Composition of the recording filenames"
 msgstr "Įrašo failų sudėtis"
 
 msgid "Compressed bits/pixel"
-msgstr ""
+msgstr "Suglaudinti bitai / pikseliai"
 
 msgid "Config"
 msgstr "Konfigūravimas"
@@ -5007,7 +5018,7 @@ msgid "Continue playing"
 msgstr "Tęsti žiūrėjimą"
 
 msgid "Continue to run the task in the background"
-msgstr ""
+msgstr "Toliau vykdykite užduotį fone"
 
 msgid "Continue with the flash process"
 msgstr "Tęskite įdiegimo procesą"
@@ -5028,7 +5039,7 @@ msgid "Control LED can be turned on or off here."
 msgstr "LED valdymas gali būti įjungtas arba išjungtas čia."
 
 msgid "Control files:"
-msgstr ""
+msgstr "Valdymo failai:"
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Nustatykite pozicijas, kaip baigti laikmačiai bus rodomi laikmačių sąraše."
@@ -5253,6 +5264,9 @@ msgstr "Dabartinė būsena:"
 
 msgid "Current crash log"
 msgstr "Dabartinis gedimų žurnalas"
+
+msgid "Current directory"
+msgstr "Dabartinis katalogas"
 
 #, python-format
 msgid "Current directory (%s)"
@@ -7500,7 +7514,7 @@ msgstr "Katalogo pašalinimas %s klaidingas. (Galbūt ne tuščia.)"
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
-msgstr ""
+msgstr "Klaida: scenarijus \"%s\" turi turėti skaitymo leidimą, kad būtų galima paleisti!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Klaida: naujas slaptažodis negali būti tuščias!"
@@ -7510,16 +7524,16 @@ msgid "Error: The path '%s' already exists!"
 msgstr "Kelias %s jau egzistuoja."
 
 msgid "Error: The root file system can not be copied!"
-msgstr ""
+msgstr "Klaida: šakninės failų sistemos negalima nukopijuoti!"
 
 msgid "Error: The root file system can not be deleted!"
-msgstr ""
+msgstr "Klaida: šakninės failų sistemos negalima ištrinti!"
 
 msgid "Error: The root file system can not be moved!"
-msgstr ""
+msgstr "Klaida: šakninės failų sistemos negalima perkelti!"
 
 msgid "Error: The root file system can not be renamed!"
-msgstr ""
+msgstr "Klaida: šakninės failų sistemos negalima pervardyti!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -8909,6 +8923,9 @@ msgstr "Informacijos lygis"
 
 msgid "High bitrate support"
 msgstr "Aukštos bitų spartos palaikymas"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr "Hindi"
@@ -14078,10 +14095,6 @@ msgstr "Nuotolinio valdymo tipas"
 msgid "Remove"
 msgstr "Pašalinti"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr "Pašalinti žymę"
 
@@ -14142,11 +14155,17 @@ msgstr "Pašalinti visus vartotojo sąsajos duomenis"
 msgid "Remove completed timers after"
 msgstr "Pašalinti užbaigtus laikmačius po (dienų)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Pašalinti dabartinį aplanką iš žymių"
+
 msgid "Remove currently selected title"
 msgstr "Pašalinti dabartinį pasirinktą pavadinimą"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Pašalinti paslėptą VBI liniją šiam kanalui"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Pašalinkite pasirinktą aplanką iš žymių"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Pašalinti tekstus, skirtus turintiems klausos sutrikimų, iš išorinių subtitrų (instrumentinė muzika, ar aplinkos garsai, pvz., kai skamba durų skambutis, arba girdimas ginklo šūvis)."
@@ -15118,6 +15137,9 @@ msgstr "Pasirinkite, ar/kaip naudoti kanalų peržiūros režimą EPG sąraše."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Jei nustatyta 'taip', kanalų sąrašo lange jūs galite peržiūrėti kanalus. Paspauskite 'OK' ir peržiūrėkite pasirinktą kanalą, paspauskite 'OK' antrąkart, kad išeiti ir perjungti į kitą pasirinktą kanalą. Paspaudę 'EXIT', sugrįšite į pradinį kanalą."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Jei nustatyta 'taip', kanalai be EPG duomenų nebus rodomi."
@@ -20789,6 +20811,9 @@ msgstr "Peržiūrėti sąrašą galimam sistemos papildymui"
 msgid "View mode"
 msgstr "Peržiūros režimas"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Peržiūrėkite arba redaguokite failą (jei dydis <1MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Peržiūrėkite arba redaguokite šį %s scenarijų"
@@ -23461,17 +23486,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Aktyvuokite dešinįjį failų sąrašą kaip šaltinį"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Įtraukite dabartinį aplanką į žymes"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Pridėti priedą į išplėstinį meniu*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Pridėti priedą į pagrindinį meniu*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Pridėti pasirinktą aplanką į žymes"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "CPU prioritetas scenarijų vykdymui"
@@ -23527,9 +23546,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Sukurti vartotojo pavadintą simbolinę nuorodą"
-
-#~ msgid "Current directory"
-#~ msgstr "Dabartinis katalogas"
 
 #~ msgid "Date reverse"
 #~ msgstr "Atvirkštinė data"
@@ -23898,12 +23914,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Įrašai"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Pašalinti dabartinį aplanką iš žymių"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Pašalinkite pasirinktą aplanką iš žymių"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Pervardyti failą / katalogą"
 
@@ -24051,9 +24061,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Išpakuokite į dabartinį aplanką"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Peržiūrėkite arba redaguokite failą (jei dydis <1MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "ĮSPĖJIMAS!"

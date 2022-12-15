@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-12-03 05:04+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
+"PO-Revision-Date: 2022-12-09 18:02+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -2117,10 +2117,6 @@ msgstr "Nastavení adaptéru"
 msgid "Add"
 msgstr "Přidat"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr "Přidat '%s' do záložek"
-
 msgid "Add AutoTimer"
 msgstr "Přidat Aut. časovač"
 
@@ -2193,6 +2189,9 @@ msgstr "Přidat časovač pro aktuální událost"
 msgid "Add an AutoTimer for the current event"
 msgstr "Přidat automatický časovač k aktuálnímu pořadu"
 
+msgid "Add current directory to bookmarks"
+msgstr "Přidat aktuální složku do záložek"
+
 msgid "Add directory to play list"
 msgstr "Přidat adresář do seznamu přehrávání"
 
@@ -2201,6 +2200,12 @@ msgstr "Přidat soubor do seznamu přehrávání"
 
 msgid "Add files to play list"
 msgstr "Přidat soubory do seznamu přehrávání"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Přidat vybranou složku do záložek"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr "Přidat starší akce LEFT/RIGHT"
 
 msgid "Add new CCcam line"
 msgstr "Přidat novou řadu CCcam"
@@ -3286,6 +3291,12 @@ msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Záložkové sekvence akcí"
+
+msgid "Bookmark added."
+msgstr "Záložka byla přidána."
+
+msgid "Bookmark removed."
+msgstr "Záložka byla odstraněna."
 
 msgid "Bookmarks"
 msgstr "Záložky"
@@ -5229,6 +5240,9 @@ msgstr "Aktuální stav:"
 
 msgid "Current crash log"
 msgstr "Aktuální protokol o haváriích"
+
+msgid "Current directory"
+msgstr "Současný adresář"
 
 #, python-format
 msgid "Current directory (%s)"
@@ -8883,6 +8897,9 @@ msgstr "Hierarchické info"
 
 msgid "High bitrate support"
 msgstr "Podpora vysokého bitového toku dat"
+
+msgid "Highlighted item"
+msgstr "Zvýrazněná položka"
 
 msgid "Hindi"
 msgstr "Hindština"
@@ -14051,10 +14068,6 @@ msgstr "Typ dálkového ovládání"
 msgid "Remove"
 msgstr "Smazat"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr "Odebrat '%s' ze záložek"
-
 msgid "Remove Bookmark"
 msgstr "Smazat záložku"
 
@@ -14115,11 +14128,17 @@ msgstr "Odstranit všechna data uživatelského rozhraní"
 msgid "Remove completed timers after"
 msgstr "Dokončené časovače odstraňovat po (dnech)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Odstranit aktuální složku ze záložek"
+
 msgid "Remove currently selected title"
 msgstr "Odstranit vybraný titul"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Odstranit skrytou linku VBI pro tuto službu"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Odstranit vybranou složku ze záložek"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Odstranit text v externich titulcích pro sluchově postižené (instrumentální hudbě nebo v oblasti ruchových zvuků, např, když se ozve zvonek, nebo vystřelí zbraň)."
@@ -15091,6 +15110,9 @@ msgstr "Pokud nastavíte 'ano' můžete nahlédnout kanál v seznamu EPG."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Když je nastaveno na 'Ano',můžete zobrazit náhledy kanálů v seznamu kanálů.Stiskněte 'OK' k náhledu vybraného kanálu, podruhé 'OK' k ukončení a přepnutí na kanál, stiskem 'EXIT' k návratu na původní kanál."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr "Vyberte 'Ano', chcete-li povolit použití tlačítek VLEVO/VPRAVO k pohybu PageUp/PageDown, když tlačítka VLEVO/VPRAVO nejsou jinak definována. To poskytuje starší navigaci pro uživatele, kteří ji preferují."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Pokud nastavíte na 'ano' nezobrazí se kanály bez EPG."
@@ -20764,6 +20786,9 @@ msgstr "Prohlédnout seznam dostupných systémových rozšíření"
 msgid "View mode"
 msgstr "Režim zobrazení"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Zobrazit nebo upravit soubory menší než 1 MB"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Zobrazit nebo upravit tento %s skript"
@@ -23344,6 +23369,14 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Add '%s' to bookmarks"
+#~ msgstr "Přidat '%s' do záložek"
+
+#, python-format
+#~ msgid "Remove '%s' from bookmarks"
+#~ msgstr "Odebrat '%s' ze záložek"
+
+#, python-format
 #~ msgid "Select the directory sort order for the %s column:"
 #~ msgstr "Vyberte pořadí řazení adresářů pro sloupec %s:"
 
@@ -23440,17 +23473,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Aktivuje pravý seznam souborů jako zdroj"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Přidat aktuální složku do záložek"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Přidat plugin do nabídky Rozšíření*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Přidat plugin do hlavní nabídky*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Přidat vybranou složku do záložek"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Priorita CPU pro provádění skriptu"
@@ -23506,9 +23533,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Vytvořte symbolický odkaz pojmenovaný uživatelem"
-
-#~ msgid "Current directory"
-#~ msgstr "Současný adresář"
 
 #~ msgid "Date reverse"
 #~ msgstr "Datum obráceně"
@@ -23877,12 +23901,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Nahrávky"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Odstranit aktuální složku ze záložek"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Odstranit vybranou složku ze záložek"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Přejmenovat soubor/adresář"
 
@@ -24030,9 +24048,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Rozbalit do aktuální složky"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Zobrazit nebo upravit soubor (pokud je velikost < 1 MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "VÝSTRAHA!"

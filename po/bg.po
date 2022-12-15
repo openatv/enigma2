@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -2096,10 +2096,6 @@ msgstr "Настройки за адаптера"
 msgid "Add"
 msgstr "Добавяне на"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Добави AutoTimer"
 
@@ -2172,6 +2168,9 @@ msgstr "Добавяне на таймер за текущото събитие"
 msgid "Add an AutoTimer for the current event"
 msgstr "Добавете автоматичен таймер за текущото събитие"
 
+msgid "Add current directory to bookmarks"
+msgstr "Добавяне на текущата папка към отметки"
+
 msgid "Add directory to play list"
 msgstr "Добавяне на директория към плейлиста"
 
@@ -2180,6 +2179,12 @@ msgstr "Добавяне на файл към плейлиста"
 
 msgid "Add files to play list"
 msgstr "Добавяне на файлове към плейлиста"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Добавяне на избраната папка към отметки"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3264,6 +3269,12 @@ msgid "Bonaire"
 msgstr ""
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5206,6 +5217,9 @@ msgstr "Текущ статус:"
 
 msgid "Current crash log"
 msgstr "Текущ дневник на сривовете"
+
+msgid "Current directory"
+msgstr ""
 
 #, python-format
 msgid "Current directory (%s)"
@@ -8855,6 +8869,9 @@ msgstr "Информация за йерархията"
 
 msgid "High bitrate support"
 msgstr "Поддръжка на висока скорост"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr ""
@@ -14016,10 +14033,6 @@ msgstr "Тип дистанционно управление"
 msgid "Remove"
 msgstr "Премахване"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr "премахнете отметка"
 
@@ -14080,11 +14093,17 @@ msgstr "Премахване на всички данни за потребит�
 msgid "Remove completed timers after"
 msgstr "Премахване на завършените таймери след (дни)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Премахване на текущата папка от отметките"
+
 msgid "Remove currently selected title"
 msgstr "Премахване на текущото избрано заглавие"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Премахнете скритата VBI линия за този сервиз"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Премахване на избраната папка от отметките"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Премахване на текстовете за хора с увреден слух от външни субтитри(инструментална музика или звуци на околната среда, например)."
@@ -15055,6 +15074,9 @@ msgstr "Ако е зададено 'да', можете да прегледат�
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Ако е зададено 'да', можете да прегледате канали в списъка с канали. Натиснете \"OK\", за да прегледате избрания канал, натиснете 2-ро \"OK\", за да излезете и включите този канал, като натиснете \"EXIT\", за да се върнете към канала, в който сте започнали."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ако е зададено 'да', каналите без EPG няма да бъдат показвани."
@@ -20688,6 +20710,9 @@ msgstr "Преглед на списъка на наличните разшир�
 msgid "View mode"
 msgstr "Режим на преглед"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Преглед или редактиране на файл (ако размер < 1MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Преглед  или редактиране на този скрипт %s"
@@ -23334,17 +23359,11 @@ msgstr ""
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Активиране на десния списък с файлове като източник"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Добавяне на текущата папка към отметки"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Добавяне на плъгин към менюто за разширения*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Добавяне на плъгин в главното меню*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Добавяне на избраната папка към отметки"
 
 #~ msgid "Calculate file checksums"
 #~ msgstr "Изчислете контролните суми на файловете"
@@ -23726,12 +23745,6 @@ msgstr ""
 #~ msgid "Records"
 #~ msgstr "Записи"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Премахване на текущата папка от отметките"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Премахване на избраната папка от отметките"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Преименувайте файл/директория"
 
@@ -23873,9 +23886,6 @@ msgstr ""
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Разопаковайте в текущата папка"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Преглед или редактиране на файл (ако размер < 1MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "ВНИМАНИЕ!"

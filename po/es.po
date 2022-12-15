@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
 "PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: Juanjo-EA1CJ <juanjo.ea1cj@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -2191,10 +2191,6 @@ msgstr "Configuración del adaptador"
 msgid "Add"
 msgstr "Añadir"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Añadir autotemporizador"
 
@@ -2270,6 +2266,9 @@ msgstr "Añadir un temporizador para el evento actual"
 msgid "Add an AutoTimer for the current event"
 msgstr "Añadir autotemporizador para el programa actual"
 
+msgid "Add current directory to bookmarks"
+msgstr "Añadir carpeta actual a los marcadores"
+
 # Mediaplayer Filelist Menue
 msgid "Add directory to play list"
 msgstr "Añadir el directorio a la lista de reproducción"
@@ -2280,6 +2279,13 @@ msgstr "Añadir el archivo a la lista de reproducción"
 
 msgid "Add files to play list"
 msgstr "Añadir archivos a la lista de reproducción"
+
+#
+msgid "Add highlighted directory to bookmarks"
+msgstr "Agregar carpeta seleccionada a los marcadores"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Añadir una nueva línea CCcam"
@@ -3438,6 +3444,12 @@ msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Acciones de la secuencia de favoritos"
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
+msgstr ""
 
 #
 msgid "Bookmarks"
@@ -5469,6 +5481,9 @@ msgstr "Estado actual:"
 
 msgid "Current crash log"
 msgstr "Registro actual de bloqueos"
+
+msgid "Current directory"
+msgstr "Directorio actual"
 
 #, python-format
 msgid "Current directory (%s)"
@@ -9344,6 +9359,9 @@ msgstr "Información jerárquica"
 #
 msgid "High bitrate support"
 msgstr "Soporte de Bitrate alto"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr "Hindi"
@@ -14931,10 +14949,6 @@ msgstr "Tipo de mando"
 msgid "Remove"
 msgstr "Borrar"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 #
 msgid "Remove Bookmark"
 msgstr "Borrar marcador"
@@ -15001,12 +15015,18 @@ msgstr "Eliminar todos los datos de la interfaz de usuario"
 msgid "Remove completed timers after"
 msgstr "Eliminar temporizadores terminados después de (días)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Eliminar la carpeta actual de los favoritos"
+
 #
 msgid "Remove currently selected title"
 msgstr "Borrar el título seleccionado"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Eliminar la línea de ocultación del VBI para este servicio"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Eliminar la carpeta seleccionada de los marcadores"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Eliminar los textos para sordos de los subtítulos externos (música instrumental o sonidos ambientales, por ejemplo, cuando suena un timbre o se oye un disparo)."
@@ -16069,6 +16089,9 @@ msgstr "Si se ajusta a 'sí', podrás previsualizar canales en la lista de EPG."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Si se ajusta a 'sí', podrás previsualizar canales en la lista de canales. Pulsa 'OK' para previsualizar el canal escogido. Pulsa otra vez 'OK' para salir y pasar a ese canal. Pulsa 'EXIT' para volver al canal original."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Si se ajusta a ‘sí’, no se mostrarán los canales sin EPG."
@@ -22252,6 +22275,9 @@ msgstr "Muestra la lista de extensiones del sistema disponibles"
 msgid "View mode"
 msgstr "Mostrar modo"
 
+msgid "View or edit files less than 1MB in size"
+msgstr ""
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr ""
@@ -25223,18 +25249,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Activar la lista de archivos de la derecha como origen"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Añadir carpeta actual a los marcadores"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Añadir complemento al menú de extensiones*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Añadir plugin al menú principal*"
-
-#
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Agregar carpeta seleccionada a los marcadores"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Prioridad de la CPU para la ejecución de scripts"
@@ -25293,9 +25312,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Crear enlace simbólico con nombre de usuario"
-
-#~ msgid "Current directory"
-#~ msgstr "Directorio actual"
 
 #~ msgid "Date reverse"
 #~ msgstr "Fecha inversa"
@@ -25688,12 +25704,6 @@ msgstr "®"
 #
 #~ msgid "Records"
 #~ msgstr "Grabaciones"
-
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Eliminar la carpeta actual de los favoritos"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Eliminar la carpeta seleccionada de los marcadores"
 
 # MovieSelection.py
 #~ msgid "Rename file/directory"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -2275,10 +2275,6 @@ msgstr "Pengaturan adapter"
 msgid "Add"
 msgstr "Tambah"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Tambah PewaktuAuto"
 
@@ -2354,6 +2350,9 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Tambah pewaktu auto untuk acara saat ini"
 
+msgid "Add current directory to bookmarks"
+msgstr ""
+
 msgid "Add directory to play list"
 msgstr "Tambah direktori ke daftar putar"
 
@@ -2362,6 +2361,13 @@ msgstr "Tambah berkas ke daftar putar"
 
 msgid "Add files to play list"
 msgstr "Tambah berkas ke daftar putar"
+
+#, fuzzy
+msgid "Add highlighted directory to bookmarks"
+msgstr "Select files/folders to backup"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3481,6 +3487,12 @@ msgid "Bonaire"
 msgstr ""
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5458,6 +5470,9 @@ msgid "Current Status:"
 msgstr "Current Status:"
 
 msgid "Current crash log"
+msgstr ""
+
+msgid "Current directory"
 msgstr ""
 
 #, python-format
@@ -9192,6 +9207,9 @@ msgstr "Hierarchy info"
 
 msgid "High bitrate support"
 msgstr "High bitrate support"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr ""
@@ -14542,10 +14560,6 @@ msgstr "Remote control type"
 msgid "Remove"
 msgstr "Remove"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr ""
 
@@ -14607,11 +14621,17 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr "Remove completed timers after"
 
+msgid "Remove current directory from bookmarks"
+msgstr ""
+
 msgid "Remove currently selected title"
 msgstr "Remove currently selected title"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Remove hide VBI line for this service"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -15602,6 +15622,9 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Select 'Yes' to enable preview of channels while in the EPG list."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
+msgstr ""
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
@@ -21385,6 +21408,9 @@ msgstr "View list of available system extensions"
 msgid "View mode"
 msgstr "View mode"
 
+msgid "View or edit files less than 1MB in size"
+msgstr ""
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr ""
@@ -24046,10 +24072,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Accessed:"
 #~ msgstr "Poin akses:"
-
-#, fuzzy
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Select files/folders to backup"
 
 #, fuzzy
 #~ msgid "Channel button always changes sides"

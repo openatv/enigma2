@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-11-30 06:01+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
+"PO-Revision-Date: 2022-12-08 10:40+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -914,14 +914,14 @@ msgstr "%d Minuuttia"
 #, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Kuukausi"
+msgstr[1] "%d Kuukaudet"
 
 #, python-format
 msgid "%d Pixel"
 msgid_plural "%d Pixels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Pikseli"
+msgstr[1] "%d Pikselit"
 
 #, python-format
 msgid "%d Pixel wide"
@@ -946,14 +946,14 @@ msgstr "%d Sekuntia"
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Viikko"
+msgstr[1] "%d Viikot"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Vuosi"
+msgstr[1] "%d Vuodet"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2103,10 +2103,6 @@ msgstr "Sovittimen asetukset"
 msgid "Add"
 msgstr "Lisää"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr "Lisää '%s' kirjanmerkkeihin"
-
 msgid "Add AutoTimer"
 msgstr "Lisää aut. ajastus"
 
@@ -2179,6 +2175,9 @@ msgstr "Lisää ajastin nykyiselle ohjelmalle"
 msgid "Add an AutoTimer for the current event"
 msgstr "Lisää automaattiajastus tähän ohjelmaan"
 
+msgid "Add current directory to bookmarks"
+msgstr "Lisää nykyisen kansion kirjanmerkkeihin"
+
 msgid "Add directory to play list"
 msgstr "Lisää hakemisto soittolistalle"
 
@@ -2187,6 +2186,12 @@ msgstr "Lisää tiedosto soittolistalle"
 
 msgid "Add files to play list"
 msgstr "Lisää tiedostot soittolistalle"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Lisää valittu kansio kirjanmerkkeihin"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr "Lisää vanhat VASEN/OIKEA toiminnot"
 
 msgid "Add new CCcam line"
 msgstr "Lisää uusi CCcam rivi"
@@ -3276,6 +3281,12 @@ msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Kirjanmerkkisarjan toiminnot"
+
+msgid "Bookmark added."
+msgstr "Kirjanmerkki lisätty."
+
+msgid "Bookmark removed."
+msgstr "Kirjanmerkki poistettu."
 
 msgid "Bookmarks"
 msgstr "Kirjanmerkit"
@@ -5220,6 +5231,9 @@ msgstr "Nykyinen tila:"
 
 msgid "Current crash log"
 msgstr "Nykyinen kaatumisloki"
+
+msgid "Current directory"
+msgstr "Nykyinen hakemisto"
 
 #, python-format
 msgid "Current directory (%s)"
@@ -8003,7 +8017,7 @@ msgid "File Commander Move"
 msgstr "Tiedostonhallinta siirrä"
 
 msgid "File Commander Settings"
-msgstr ""
+msgstr "Tiedostonhallinnan asetukset"
 
 msgid "File Commander Text Editor"
 msgstr "Tiedostonhallinnan Tekstieditori"
@@ -8871,6 +8885,9 @@ msgstr "Hierarkia info"
 
 msgid "High bitrate support"
 msgstr "Suurten bittimäärien tuki"
+
+msgid "Highlighted item"
+msgstr "Korostettu kohde"
 
 msgid "Hindi"
 msgstr "Hindi"
@@ -10525,13 +10542,13 @@ msgid "Margin after recording"
 msgstr "Lisäaika tallenteen loppuun (minuuttia)"
 
 msgid "Margin after zap"
-msgstr ""
+msgstr "Marginaali vaihdoin jälkeen"
 
 msgid "Margin before recording"
 msgstr "Lisäaika tallenteen alkuun (minuuttia)"
 
 msgid "Margin before zap"
-msgstr ""
+msgstr "Marginaali ennen vaihtoa"
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Merkitse kanava 3D:ksi"
@@ -14051,10 +14068,6 @@ msgstr "Kaukosäätimen tyyppi"
 msgid "Remove"
 msgstr "Poista"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr "Poista '%s' kirjanmerkeistä"
-
 msgid "Remove Bookmark"
 msgstr "Poista kirjanmerkki"
 
@@ -14115,11 +14128,17 @@ msgstr "Poista kaikki käyttöliittymän tiedot"
 msgid "Remove completed timers after"
 msgstr "Poista tallennetut ajastukset päivän jälkeen"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Poista nykyinen kansio kirjanmerkeistä"
+
 msgid "Remove currently selected title"
 msgstr "Poista valittu otsikko"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Poista valittu kansio kirjanmerkeistä"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Kyllä poistaa kuulovammaisille tarkoitetut tekstit ulkoisista tekstityksistä (Esimerkkisi. Äänien kuvaukset)."
@@ -15091,6 +15110,9 @@ msgstr "'Kyllä' valinnalla voi esikatsella kanavia kanavalistassa."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "'Kyllä' valinnalla voit esikatsella kanavia kanavalistassa. Esikatsele valittua kanavaa painamalla 'OK', toinen 'OK' painallus vaihtaa kanavalle ja sulkee listan, EXIT palaa takaisin kanavalle jota aiemmin katselit."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr "Valitse 'Kyllä', jos haluat sallia VASEN/OIKEA painikkeiden käytön Sivu Ylös /Sivua Alas siirtymiseen, kun VASEN/OIKEA painikkeet ovat muuten määrittelemättömiä. Tämä tarjoaa perinteisen navigoinnin käyttäjille, jotka haluavat sitä."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "'Kyllä' valinnalla kanavia ilman EPG:tä ei näytetä."
@@ -18270,7 +18292,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 30.11.2022\n"
+"Suomenkielinen käännös: 08.12.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -20244,7 +20266,7 @@ msgid "Use Virgin EPG information when it is available."
 msgstr "Käytä Virgin-ohjelmaoppaan tietoja, jos saatavilla."
 
 msgid "Use Zap timer end time"
-msgstr ""
+msgstr "Käytä kanavan vaihdoin päättymis aikaa"
 
 msgid "Use a gateway"
 msgstr "Käytä yhdyskäytävää"
@@ -20783,6 +20805,9 @@ msgstr "Näytä saatavilla olevat järjestelmälaajennukset"
 msgid "View mode"
 msgstr "Näyttötila"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Tarkastele tai muokkaa tiedostoa (pienempi kuin 1 Mt)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Tarkastele tai muokkaa tätä %s scriptiä"
@@ -21149,7 +21174,7 @@ msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Kun se on käytössä, SDT, BAT tiedot sisällytetään http streameihin."
 
 msgid "When enabled, a new Zap timer will be created with activated end time."
-msgstr ""
+msgstr "Kun tämä on käytössä, uusi Kanavan vaihto ajastin luodaan aktivoidulla lopetus ajalla."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Kun päällä, näytetään viesti, kun tallenne loppuu ja seuraava alkaa."
@@ -21278,10 +21303,10 @@ msgid "When nonzero, a recording will stop the nominated period after the ending
 msgstr "Kun arvo ei ole nolla, tallennus päättyy myöhemmin kuin ohjelmaoppaassa oleva lopetusaika."
 
 msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
-msgstr ""
+msgstr "Kun arvo ei ole nolla, tallennus alkaa aiemmin kuin ohjelmaoppaassa oleva aloitusaika."
 
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
-msgstr ""
+msgstr "Kun arvo ei ole nolla, tallennus päättyy myöhemmin kuin ohjelmaoppaassa oleva lopetusaika."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Kun vastaanotin herää valmiustilasta, se käskee televisiota vaihtamaan HDMI tuloon, johon vastaanotin on liitetty."
@@ -23368,6 +23393,14 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Add '%s' to bookmarks"
+#~ msgstr "Lisää '%s' kirjanmerkkeihin"
+
+#, python-format
+#~ msgid "Remove '%s' from bookmarks"
+#~ msgstr "Poista '%s' kirjanmerkeistä"
+
+#, python-format
 #~ msgid ""
 #~ "\n"
 #~ "optional parameter:\n"
@@ -23460,17 +23493,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Aktivoi oikean puoleinen tiedostolista lähteenä"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Lisää nykyisen kansion kirjanmerkkeihin"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Lisää laajennus laajennusvalikkoon*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Lisää laajennus päävalikkoon"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Lisää valittu kansio kirjanmerkkeihin"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Prosessorin prioriteetti sciptin suorittamiselle"
@@ -23526,9 +23553,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Luo symbolinen linkki"
-
-#~ msgid "Current directory"
-#~ msgstr "Nykyinen hakemisto"
 
 #~ msgid "Date reverse"
 #~ msgstr "Päiväys käänteinen"
@@ -23897,12 +23921,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Tallenukset"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Poista nykyinen kansio kirjanmerkeistä"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Poista valittu kansio kirjanmerkeistä"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Uudelleen nimeä tiedosto / hakemisto"
 
@@ -24050,9 +24068,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Pura nykyiseen kansioon"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Tarkastele tai muokkaa tiedostoa (koot <1 Mt)"
 
 #~ msgid "WARNING!"
 #~ msgstr "VAROITUS!"

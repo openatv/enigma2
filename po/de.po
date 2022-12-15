@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-12-04 20:43+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
+"PO-Revision-Date: 2022-12-10 21:48+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2200,10 +2200,6 @@ msgstr "Adaptereinstellungen"
 msgid "Add"
 msgstr "Hinzufügen"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr "'%s' zu Lesezeichen hinzufügen"
-
 msgid "Add AutoTimer"
 msgstr "AutoTimer hinzufügen"
 
@@ -2279,6 +2275,9 @@ msgstr "Timer für die aktuelle Sendung hinzufügen"
 msgid "Add an AutoTimer for the current event"
 msgstr "AutoTimer für ausgewählte Sendung hinzufügen"
 
+msgid "Add current directory to bookmarks"
+msgstr "Aktuellen Ordner zu Lesezeichen hinzufügen"
+
 # Mediaplayer Filelist Menue
 msgid "Add directory to play list"
 msgstr "Verzeichnis zur Playlist hinzufügen"
@@ -2289,6 +2288,12 @@ msgstr "Datei zur Playlist hinzufügen"
 
 msgid "Add files to play list"
 msgstr "Zur Playlist hinzufügen"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Ausgewählten Ordner zu Lesezeichen hinzufügen"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr "Ursprüngliche LINKS/RECHTS Aktionen"
 
 msgid "Add new CCcam line"
 msgstr "Neue CCcam-Line hinzufügen"
@@ -3446,6 +3451,12 @@ msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Lesezeichen-Sequenzaktionen"
+
+msgid "Bookmark added."
+msgstr "Lesezeichen hinzugefügt."
+
+msgid "Bookmark removed."
+msgstr "Lesezeichen entfernt."
 
 #
 msgid "Bookmarks"
@@ -5514,6 +5525,9 @@ msgstr "Status:"
 msgid "Current crash log"
 msgstr "Aktuelles Crash-Log"
 
+msgid "Current directory"
+msgstr "Aktuelles Verzeichnis"
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr "Aktuelles Verzeichnis ('%s')"
@@ -6555,7 +6569,7 @@ msgid "Distribution build"
 msgstr "Distributions-Build"
 
 msgid "Distribution build date"
-msgstr "Distributions-Build Datum"
+msgstr "Distributions-Build-Datum"
 
 msgid "Distribution file system"
 msgstr "Distributionsdateisystem"
@@ -6875,9 +6889,11 @@ msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
 msgstr[0] "Beendet - %d Paket (%s) installiert, aktualisiert oder entfernt."
 msgstr[1] "Beendet - %d Pakete (%s) installiert, aktualisiert oder entfernt."
 
+#, fuzzy
 msgid "Down"
 msgstr "Runter"
 
+#, fuzzy
 msgid "Down / Inactive"
 msgstr "Unten / Inaktiv"
 
@@ -9380,6 +9396,9 @@ msgstr "Hierarchie-Info"
 #
 msgid "High bitrate support"
 msgstr "Unterstützung hoher Bitraten"
+
+msgid "Highlighted item"
+msgstr "Markierter Eintrag"
 
 msgid "Hindi"
 msgstr "Hindi"
@@ -14998,10 +15017,6 @@ msgstr "Fernbedienungstyp"
 msgid "Remove"
 msgstr "Entfernen"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr "'%s' aus Lesezeichen entfernen"
-
 #
 msgid "Remove Bookmark"
 msgstr "Lesezeichen entfernen"
@@ -15067,12 +15082,18 @@ msgstr "Lösche alle GUI Daten"
 msgid "Remove completed timers after"
 msgstr "Entferne fertige Timer nach x Tagen"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Aktuellen Ordner aus Lesezeichen entfernen"
+
 #
 msgid "Remove currently selected title"
 msgstr "Entferne aktuell ausgewählten Titel"
 
 msgid "Remove hide VBI line for this service"
 msgstr "VBI-Line für diesen Kanal wieder anzeigen"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Ausgewählten Ordner aus Lesezeichen entfernen"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "'Ja' entfernt Texte für Hörgeschädigte aus externen Untertiteln (z.B. Beschreibungen von Geräuschen)."
@@ -16132,6 +16153,9 @@ msgstr "Wenn aktiviert, wird mit OK im Hintergrund auf den markierten Sender ges
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Bei 'Ja' wird in der Senderliste mit OK im Hintergrund auf den markierten Sender geschaltet. Ein zweites OK beendet die Senderliste und zeigt diesen Sender, EXIT dagegen beendet die Senderliste und schaltet zum ursprünglichen Sender zurück."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr "Wählen Sie 'Ja', um mit LINKS/RECHTS eine Seite Auf/Ab zu schalten, allerdings nur, solange LINKS/RECHTS nicht auf andere Weise verwendet werden. Das ermöglicht herkömmliche Navigation, falls Sie es so gewohnt sind."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Bei 'Ja' werden Sender ohne EPG nicht angezeigt."
@@ -22212,6 +22236,9 @@ msgstr "Verfügbare System-Erweiterungen anzeigen."
 msgid "View mode"
 msgstr "Anzeigemodus"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Datei anzeigen oder bearbeiten (bei Größen <1 MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Skript (%s) anzeigen oder bearbeiten"
@@ -25052,6 +25079,14 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Add '%s' to bookmarks"
+#~ msgstr "'%s' zu Lesezeichen hinzufügen"
+
+#, python-format
+#~ msgid "Remove '%s' from bookmarks"
+#~ msgstr "'%s' aus Lesezeichen entfernen"
+
+#, python-format
 #~ msgid "Select the directory sort order for the %s column:"
 #~ msgstr "Sortierreihenfolge des Verzeichnisses für die %s Spalte wählen"
 
@@ -25148,17 +25183,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Rechte Dateiliste als Quelle aktivieren"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Aktuellen Ordner zu Lesezeichen hinzufügen"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Plugin zum Erweiterungsmenü hinzufügen *"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Plugin zum Hauptmenü hinzufügen *"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Ausgewählten Ordner zu Lesezeichen hinzufügen"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "CPU-Priorität für die Skriptausführung"
@@ -25214,9 +25243,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Symbolischen Link erstellen"
-
-#~ msgid "Current directory"
-#~ msgstr "Aktuelles Verzeichnis"
 
 #~ msgid "Date reverse"
 #~ msgstr "Datum absteigend"
@@ -25589,12 +25615,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Aufnahmen"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Aktuellen Ordner aus Lesezeichen entfernen"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Ausgewählten Ordner aus Lesezeichen entfernen"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Datei/Verzeichnis umbenennen"
 
@@ -25744,9 +25764,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "In den aktuellen Ordner entpacken"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Datei anzeigen oder bearbeiten (bei Größen <1 MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "WARNUNG!"

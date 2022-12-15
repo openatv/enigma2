@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
 "PO-Revision-Date: 2022-12-03 05:04+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2096,10 +2096,6 @@ msgstr "Ρυθμίσεις προσαρμογέα δικτύου"
 msgid "Add"
 msgstr "Προσθήκη"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr "Προσθήκη '%s' στους σελιδοδείκτες"
-
 msgid "Add AutoTimer"
 msgstr "Προσθήκη αυτόματου χρονοδιακόπτη"
 
@@ -2172,6 +2168,9 @@ msgstr "Προσθήκη χρονοδιακόπτη για το τρέχον π�
 msgid "Add an AutoTimer for the current event"
 msgstr "Προσθήκη αυτόματου χρονοδιακόπτη για το τρέχον πρόγραμμα"
 
+msgid "Add current directory to bookmarks"
+msgstr "Προσθήκη τρέχοντος φακέλου στους σελιδοδείκτες"
+
 msgid "Add directory to play list"
 msgstr "Προσθήκη φακέλου στη λίστα αναπαραγωγής"
 
@@ -2180,6 +2179,12 @@ msgstr "Προσθήκη αρχείου στη λίστα αναπαραγωγή
 
 msgid "Add files to play list"
 msgstr "Προσθήκη αρχείων στη λίστα αναπαραγωγής"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Προσθήκη επιλεγμένου φακέλου στους σελιδοδείκτες"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Προσθήκη νέας γραμμής CCcam"
@@ -3265,6 +3270,12 @@ msgstr "Μποναίρ"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Ενέργειες ακολουθίας σελιδοδεικτών"
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Σελιδοδείκτες"
@@ -5208,6 +5219,9 @@ msgstr "Τρέχουσα κατάσταση:"
 
 msgid "Current crash log"
 msgstr "Τρέχουσα καταγραφή κρασαρίσματος"
+
+msgid "Current directory"
+msgstr ""
 
 #, python-format
 msgid "Current directory (%s)"
@@ -8859,6 +8873,9 @@ msgstr "Πληροφορίες ιεραρχίας"
 
 msgid "High bitrate support"
 msgstr "Υποστήριξη υψηλού bitrate"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr "Χίντι"
@@ -14026,10 +14043,6 @@ msgstr "Τύπος τηλεχειριστηρίου"
 msgid "Remove"
 msgstr "Διαγραφή"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr "Αφαίρεση του '%s' από τους σελιδοδείκτες"
-
 msgid "Remove Bookmark"
 msgstr "Διαγραφή σελιδοδείκτη"
 
@@ -14090,11 +14103,17 @@ msgstr "Διαγραφή όλων των δεδομένων χρήστη"
 msgid "Remove completed timers after"
 msgstr "Διαγραφή ολοκληρωμένων χρονοδιακοπτών μετά από"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Αφαίρεση του επιλεγμένου φακέλου από τους σελιδοδείκτες"
+
 msgid "Remove currently selected title"
 msgstr "Διαγραφή επιλεγμένου τίτλου"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Επανεμφάνιση της γραμμής VBI για αυτή την υπηρεσία"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Αφαίρεση του επιλεγμένου φακέλου από τους σελιδοδείκτες"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Αφαιρεί τα κείμενα για τα Άτομα Με Προβλήματα Ακοής από τους εξωτερικούς υπότιτλους (ορχηστρική μουσική ή ήχοι περιβάλλοντος π.χ. κουδούνισμα ή πυροβολισμός)."
@@ -15064,6 +15083,9 @@ msgstr "Επιλέξτε 'ναι' για ενεργοποίηση της προ�
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Επιλέξτε 'ναι' για να γίνει προεπισκόπηση των καναλιών στη λίστα EPG. Πιέστε 'ΟΚ' για προεπισκόπηση του τρέχοντος καναλιού. Πιέστε 'ΟΚ' ξανά για έξοδο από το EPG και μετάβαση στο επιλεγμένο κανάλι. Πιέστε 'EXIT' για έξοδο από το EPG και επιστροφή στο προηγουμένως επιλεγμένο κανάλι."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Επιλέξτε 'ναι' για απόκρυψη των καναλιών χωρίς δεδομένα EPG."
@@ -20735,6 +20757,9 @@ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων σ
 msgid "View mode"
 msgstr "Λειτουργία επισκόπησης"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Προβολή ή επεξεργασία αρχείου (αν το μέγεθος < 1MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Προβολή η επεξεργασία αυτού του σεναρίου %s"
@@ -23314,6 +23339,14 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Add '%s' to bookmarks"
+#~ msgstr "Προσθήκη '%s' στους σελιδοδείκτες"
+
+#, python-format
+#~ msgid "Remove '%s' from bookmarks"
+#~ msgstr "Αφαίρεση του '%s' από τους σελιδοδείκτες"
+
+#, python-format
 #~ msgid ""
 #~ "\n"
 #~ "optional parameter:\n"
@@ -23406,17 +23439,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Ενεργοποίηση δεξιού αρχείου ως πηγή"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Προσθήκη τρέχοντος φακέλου στους σελιδοδείκτες"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Προσθήκη στο μενού επεκτάσεων*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Προσθήκη πρόσθετου στο κύριο μενού*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Προσθήκη επιλεγμένου φακέλου στους σελιδοδείκτες"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Προτεραιότητα CPU για εκτέλεση script"
@@ -23840,12 +23867,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Εγγραφές"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Αφαίρεση του επιλεγμένου φακέλου από τους σελιδοδείκτες"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Αφαίρεση του επιλεγμένου φακέλου από τους σελιδοδείκτες"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Μετονομασία αρχείου/φακέλου"
 
@@ -23993,9 +24014,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Αποσυμπίεση στον τρέχοντα φάκελο"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Προβολή ή επεξεργασία αρχείου (αν το μέγεθος < 1MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ!"
