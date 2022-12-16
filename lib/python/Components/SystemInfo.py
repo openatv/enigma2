@@ -263,10 +263,6 @@ def GetBoxName():
 		box = "ventonhdx"
 	elif box == "odinm6":
 		box = machinename
-	elif box == "inihde" and machinename == "xpeedlx":
-		box = "xpeedlx"
-	elif box in ('xpeedlx1', 'xpeedlx2'):
-		box = "xpeedlx"
 	elif box == "inihde" and machinename == "hd-1000":
 		box = "sezam-1000hd"
 	elif box == "ventonhdx" and machinename == "hd-5000":
