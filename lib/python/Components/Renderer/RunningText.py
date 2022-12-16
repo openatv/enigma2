@@ -115,10 +115,10 @@ class RunningText(Renderer):
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					self.txfont = parseFont(value, ((1, 1), (1, 1)))
+					self.txfont = parseFont(value, screen.scale)
 				elif attrib == "foregroundColor":
 					self.scroll_label.setForegroundColor(parseColor(value))
-				elif attrib in ("shadowColor", "borderColor"):	# fake for openpli-enigma2
+				elif attrib in ("shadowColor", "borderColor"):  # fake for openpli-enigma2
 					self.scroll_label.setShadowColor(parseColor(value))
 				elif attrib == "shadowOffset":
 					x, y = value.split(',')
@@ -244,7 +244,7 @@ class RunningText(Renderer):
 			return False
 
 		if self.direction in (LEFT, RIGHT) or not (self.txtflags & RT_WRAP):
-			self.scroll_label.resize(eSize(self.txfont.pointSize * len(self.txtext), self.H)) # stupid workaround, have no better idea right now...
+			self.scroll_label.resize(eSize(self.txfont.pointSize * len(self.txtext), self.H))  # stupid workaround, have no better idea right now...
 
 		text_size = self.scroll_label.calculateSize()
 		text_width = text_size.width()
@@ -285,14 +285,14 @@ class RunningText(Renderer):
 			elif self.type == SWIMMING:
 				if text_width < self.W:
 					self.A = self.X + 1			# incomprehensible indent '+ 1' ???
-					self.B = self.W - text_width - 1	# incomprehensible indent '- 1' ???
+					self.B = self.W - text_width - 1  # incomprehensible indent '- 1' ???
 					if self.halign == LEFT:
 						self.P = self.A
 						self.mStep = abs(self.mStep)
 					elif self.halign == RIGHT:
 						self.P = self.B
 						self.mStep = -abs(self.mStep)
-					else: # if self.halign in (CENTER, BLOCK):
+					else:  # if self.halign in (CENTER, BLOCK):
 						self.P = int(self.B / 2)
 						self.mStep = (self.direction == RIGHT) and abs(self.mStep) or -abs(self.mStep)
 				else:
@@ -306,7 +306,7 @@ class RunningText(Renderer):
 					elif self.halign == RIGHT:
 						self.P = self.A
 						self.mStep = abs(self.mStep)
-					else: # if self.halign in (CENTER, BLOCK):
+					else:  # if self.halign in (CENTER, BLOCK):
 						self.P = int(self.A / 2)
 						self.mStep = (self.direction == RIGHT) and abs(self.mStep) or -abs(self.mStep)
 			else:
@@ -366,7 +366,7 @@ class RunningText(Renderer):
 		if self.mStartDelay:
 			if self.direction in (LEFT, RIGHT):
 				self.moveLabel(self.P, self.Y)
-			else: # if self.direction in (TOP,BOTTOM):
+			else:  # if self.direction in (TOP,BOTTOM):
 				self.moveLabel(self.X, self.P)
 
 		self.mCount = self.mRepeat
@@ -377,7 +377,7 @@ class RunningText(Renderer):
 		if self.A <= self.P <= self.B:
 			if self.direction in (LEFT, RIGHT):
 				self.moveLabel(self.P, self.Y)
-			else: # if self.direction in (TOP,BOTTOM)
+			else:  # if self.direction in (TOP,BOTTOM)
 				self.moveLabel(self.X, self.P)
 			timeout = self.mStepTimeout
 			if (self.mStop is not None) and (self.mStop + abs(self.mStep) > self.P >= self.mStop):
