@@ -1362,7 +1362,7 @@ class ReceiverInformation(InformationBase):
 		if fpVersion and fpVersion != "unknown":
 			info.append(formatLine("P1", _("Front processor version"), fpVersion))
 		DemodVersion = getDemodVersion()
-		if DemodVersion:
+		if DemodVersion and DemodVersion != "unknown":
 			info.append(formatLine("P1", _("Demod firmware version"), DemodVersion))
 		transcoding = _("Yes") if BoxInfo.getItem("transcoding") else _("MultiTranscoding") if BoxInfo.getItem("multitranscoding") else _("No")
 		info.append(formatLine("P1", _("Transcoding"), transcoding))
