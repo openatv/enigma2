@@ -70,6 +70,13 @@ def getFPVersion():
 	return version
 
 
+def getDemodVersion():
+	version = None
+	if exists("/proc/stb/info/nim_firmware_version"):
+		version = open("/proc/stb/info/nim_firmware_version", "r").read()
+	return version.strip()
+
+
 def setFPWakeuptime(wutime):
 	if not fileWriteLine("/proc/stb/fp/wakeup_time", str(wutime), source=MODULE_NAME):
 		try:

@@ -37,7 +37,7 @@ from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, fileReadLine, fileRead
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
 from Tools.MultiBoot import MultiBoot
-from Tools.StbHardware import getFPVersion, getBoxProc, getHWSerial, getBoxRCType, getBoxProcType
+from Tools.StbHardware import getFPVersion, getBoxProc, getHWSerial, getBoxRCType, getBoxProcType, getDemodVersion
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -1361,6 +1361,9 @@ class ReceiverInformation(InformationBase):
 		fpVersion = getFPVersion()
 		if fpVersion and fpVersion != "unknown":
 			info.append(formatLine("P1", _("Front processor version"), fpVersion))
+		DemodVersion = getDemodVersion()
+		if DemodVersion:
+			info.append(formatLine("P1", _("Demod firmware version"), DemodVersion))
 		transcoding = _("Yes") if BoxInfo.getItem("transcoding") else _("MultiTranscoding") if BoxInfo.getItem("multitranscoding") else _("No")
 		info.append(formatLine("P1", _("Transcoding"), transcoding))
 		temp = about.getSystemTemperature()
