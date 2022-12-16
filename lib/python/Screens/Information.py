@@ -25,7 +25,7 @@ from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
 from Components.ScrollLabel import ScrollLabel
 # from Components.Storage import Harddisk, storageManager
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
@@ -37,7 +37,7 @@ from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, fileReadLine, fileRead
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
 from Tools.MultiBoot import MultiBoot
-from Tools.StbHardware import getFPVersion, getBoxProc, getHWSerial, getBoxRCType, getBoxProcType, getDemodVersion
+from Tools.StbHardware import getFPVersion, getBoxProc, getHWSerial, getBoxRCType, getBoxProcType
 
 MODULE_NAME = __name__.split(".")[-1]
 

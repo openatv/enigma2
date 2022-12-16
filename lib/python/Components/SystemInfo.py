@@ -178,6 +178,12 @@ def getBoxDisplayName():  # This function returns a tuple like ("BRANDNAME", "BO
 # cmdline = fileReadLine("/proc/cmdline", source=MODULE_NAME)
 # cmdline = {k: v.strip('"') for k, v in findall(r'(\S+)=(".*?"|\S+)', cmdline)}
 
+def getDemodVersion():
+	version = None
+	if exists("/proc/stb/info/nim_firmware_version"):
+		version = fileReadLine("/proc/stb/info/nim_firmware_version")
+	return version and version.strip()
+
 
 def getNumVideoDecoders():
 	numVideoDecoders = 0
