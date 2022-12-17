@@ -431,7 +431,6 @@ BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/p
 
 BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('alien5', 'osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'gbmv200', 'cc1', 'sfx6008', 'sx88v2', 'sx888'))
 BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "mixosf5", "mixosf7", "mixoslumi", "gi9196m", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
-BoxInfo.setItem("HDMIOut", BRAND in ('fulan', 'clap', 'dinobot') or MODEL in ('gbmv200', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'og2ott4k', 'sfx6008', 'sx88v2', 'sx888'))
 
 
 # dont't sort
