@@ -93,9 +93,9 @@ class Navigation:
 		print("[NAVIGATION] current time is %s -> it's fake-time suspected: %s" % (ctime(now), hasFakeTime))
 		print("-" * 100)
 
-		thisBox = BoxInfo.getItem("machinebuild")
-		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3', 'et8000') or BoxInfo.getItem("brand") in ('ebox', 'azbox', 'xp', 'ini', 'fulan', 'entwopia') or BoxInfo.getItem("model") in ('dags7335', 'dags7356', 'dags7362')):
-			print("[NAVIGATION] FORCED DEEPSTANDBY-WORKAROUND FOR THIS BOXTYPE (%s)" % thisBox)
+		timerwakeupmode = BoxInfo.getItem("timerwakeupmode")
+		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or timerwakeupmode == 1):
+			print("[NAVIGATION] FORCED DEEPSTANDBY-WORKAROUND")
 			print("-" * 100)
 			config.workaround.deeprecord.setValue(True)
 			config.workaround.deeprecord.save()
