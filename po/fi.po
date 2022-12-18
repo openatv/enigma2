@@ -1,13 +1,10 @@
-# openATV <openatv@gmail.com>, 2021.
-# Tommi Raami <tomzza89@gmail.com>, 2021.
-# tomppaa <tomzza89@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-06 19:33+0000\n"
-"PO-Revision-Date: 2022-12-08 10:40+0000\n"
-"Last-Translator: tomppaa <tomzza89@gmail.com>\n"
+"PO-Revision-Date: 2022-12-16 21:13+0200\n"
+"Last-Translator: tomppaa \n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -971,8 +968,8 @@ msgstr[1] "%d ydintä"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] "%d Syöttöluettelo paketti on päivitetty."
-msgstr[1] "%d Syöttöluettelo pakettit on päivitetty."
+msgstr[0] "%d Ohjelmisto jakelu lista päivitetty."
+msgstr[1] "%d Ohjelmisto valmistajat lista on päivitetty."
 
 #, python-format
 msgid "%d kB"
@@ -994,7 +991,7 @@ msgstr "%d ms"
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d paketti päivitetty."
-msgstr[1] "%d paketit päivitetty."
+msgstr[1] "%d pakettia päivitetty."
 
 #, python-format
 msgid "%d package was configured."
@@ -1024,19 +1021,19 @@ msgstr[1] "%d Tunnistettua pakettia päivitetty."
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
 msgstr[0] "%d paketti on asennettu."
-msgstr[1] "%d paketit on asennettu."
+msgstr[1] "%d pakettia on asennettu."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
 msgstr[0] "%d paketti poistettu."
-msgstr[1] "%d paketit poistettu."
+msgstr[1] "%d pakettia poistettu."
 
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paketti päivitetty."
-msgstr[1] "%d paketit päivitetty."
+msgstr[1] "%d pakettia päivitetty."
 
 #, python-format
 msgid "%d sec"
@@ -6206,7 +6203,7 @@ msgid "Distance"
 msgstr "Etäisyys"
 
 msgid "Distribution"
-msgstr "Ohjelmisto"
+msgstr "Jakelijat"
 
 #, python-format
 msgid "Distribution '%s' information for %s %s"
@@ -7417,9 +7414,10 @@ msgstr ""
 "Virhe: %s\n"
 "Yritä uudelleen?"
 
-#, python-format
 msgid "Error: %s %s not %s!  Please try again later."
-msgstr "Ei päivityksiä saatavilla. Yritä myöhemmin uudelleen."
+msgstr ""
+"Ei: %s %s päivityksiä %s!\n"
+"Yritä myöhemmin uudelleen."
 
 msgid "Error: A location to save the recording has not been selected!"
 msgstr "Virhe: Tallennuspaikkaa ei ole valittu!"
@@ -7932,7 +7930,7 @@ msgid "Feed disabled!"
 msgstr "Syöttö pois käytöstä!"
 
 msgid "Feed stable."
-msgstr "Stabiili."
+msgstr "Vakaa."
 
 msgid "Feed unstable!"
 msgstr "Epävakaa!"
@@ -8916,8 +8914,8 @@ msgstr "Historianäppäimien toiminto"
 msgid "History next"
 msgstr "Kanavanvaihtohistoria eteen"
 
-msgid "History zap..."
-msgstr "Kanavanvaihtohistoria..."
+msgid "History Zap..."
+msgstr "Kanavanvaihto Historia..."
 
 msgid "Hockey"
 msgstr "Jääkiekko"
@@ -11127,6 +11125,9 @@ msgstr "Liikutus"
 
 msgid "Movie"
 msgstr "Elokuva"
+
+msgid "Movie Center"
+msgstr "Tallennukset"
 
 msgid "Movie Event View Actions"
 msgstr "Tallennukset tapahtumat näkymät"
@@ -18292,7 +18293,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 08.12.2022\n"
+"Suomenkielinen käännös: 16.12.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -20142,7 +20143,7 @@ msgid "Updated version unknown"
 msgstr "Päivitetty versio tuntematon"
 
 msgid "Updates available:"
-msgstr "Päivitykset saatavilla:"
+msgstr "Päivityksiä saatavilla:"
 
 msgid "Updating"
 msgstr "Päivitetään"
