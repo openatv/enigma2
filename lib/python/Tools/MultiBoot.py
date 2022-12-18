@@ -373,7 +373,7 @@ class MultiBootClass():
 				info = self.readSlotInfo(infoFile)
 				compileDate = str(info.get("compiledate"))
 				revision = info.get("imgrevision")
-				revision = " %s" % revision
+				revision = ".%03d" % revision if info.get("distro") == "openvix" and isinstance(revision, int) else " %s" % revision
 				revision = "" if revision.strip() == compileDate else revision
 				compileDate = "%s-%s-%s" % (compileDate[0:4], compileDate[4:6], compileDate[6:8])
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
