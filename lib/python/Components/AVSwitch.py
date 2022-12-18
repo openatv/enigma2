@@ -696,10 +696,12 @@ def InitAVSwitch():
 		iAVSwitch.setAspectRatio(cmap[configElement.value])
 
 	iAVSwitch.setInput("ENCODER")  # init on startup
-	if (MACHINEBUILD in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'twinboxlcd')) or about.getModelString() == 'et6000':
-		detected = False
-	else:
-		detected = eAVSwitch.getInstance().haveScartSwitch()
+	detected = BoxInfo.getItem("scart")
+	if detected:
+		if MACHINEBUILD in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'twinboxlcd', 'et6000'):
+			detected = False
+		else:
+			detected = eAVSwitch.getInstance().haveScartSwitch()
 
 	BoxInfo.setItem("ScartSwitch", detected)
 

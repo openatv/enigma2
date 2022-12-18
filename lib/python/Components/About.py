@@ -21,11 +21,6 @@ socfamily = BoxInfo.getItem("socfamily")
 MODEL = BoxInfo.getItem("model")
 
 
-def getModelString():
-	model = BoxInfo.getItem("machinebuild")
-	return model
-
-
 def _ifinfo(sock, addr, ifname):
 	iface = pack('256s', bytes(ifname[:15], 'utf-8'))
 	info = ioctl(sock.fileno(), addr, iface)
