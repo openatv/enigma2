@@ -227,14 +227,14 @@ def getModuleLayout():
 	return None
 
 
-def Check_Softcam_Emu():
+def hasSoftcamEmu():
 	if isfile(NOEMU):
 		return False
 	else:
 		return len(glob("/etc/*.emu")) > 0
 
 
-def Check_Softcam():
+def hasSoftcam():
 	if not isfile(NOEMU):
 		for cam in listdir("/etc/init.d"):
 			if (cam.startswith('softcam.') or cam.startswith('cardserver.')) and not cam.endswith('None'):
@@ -242,7 +242,7 @@ def Check_Softcam():
 	return False
 
 
-def Check_SysSoftcam():
+def getSysSoftcam():
 	currentsyscam = ""
 	if isfile(SOFTCAM):
 		if (islink(SOFTCAM) and not readlink(SOFTCAM).lower().endswith("none")):
@@ -256,13 +256,13 @@ def Check_SysSoftcam():
 	return currentsyscam
 
 
-def Refresh_SysSoftCam():
-	BoxInfo.setItem("ShowOscamInfo", Check_SysSoftcam() in ("oscam", "ncam"), False)
-	BoxInfo.setItem("ShowCCCamInfo", Check_SysSoftcam() in ("cccam",), False)
-	BoxInfo.setItem("HasSoftcamEmu", Check_Softcam_Emu(), False)
+def updateSysSoftCam():
+	BoxInfo.setItem("ShowOscamInfo", getSysSoftcam() in ("oscam", "ncam"), False)
+	BoxInfo.setItem("ShowCCCamInfo", getSysSoftcam() in ("cccam",), False)
+	BoxInfo.setItem("HasSoftcamEmu", hasSoftcamEmu(), False)
 
 
-def GetBoxName():
+def getBoxName():
 	box = MACHINEBUILD
 	machinename = DISPLAYMODEL.lower()
 	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
@@ -354,7 +354,7 @@ BoxInfo.setItem("AmlogicFamily", SOC_FAMILY.startswith(("aml", "meson")) or exis
 BoxInfo.setItem("ArchIsARM64", ARCHITECTURE == "aarch64" or "64" in ARCHITECTURE)
 BoxInfo.setItem("ArchIsARM", ARCHITECTURE.startswith(("arm", "cortex")))
 BoxInfo.setItem("Blindscan", isPluginInstalled("Blindscan"))
-BoxInfo.setItem("BoxName", GetBoxName())
+BoxInfo.setItem("BoxName", getBoxName())
 canImageBackup = not MACHINEBUILD.startswith('az') and not BRAND.startswith('cube') and not BRAND.startswith('wetek') and not MACHINEBUILD.startswith('alien')
 BoxInfo.setItem("canImageBackup", canImageBackup)
 BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())
@@ -414,7 +414,7 @@ BoxInfo.setItem("PowerLed2", fileExists("/proc/stb/power/powerled2"))
 BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode"))
 BoxInfo.setItem("Satfinder", isPluginInstalled("Satfinder"))
 BoxInfo.setItem("SmallFlash", BoxInfo.getItem("smallflash"))
-BoxInfo.setItem("SoftCam", Check_Softcam())
+BoxInfo.setItem("SoftCam", hasSoftcam())
 BoxInfo.setItem("StandbyPowerLed", fileExists("/proc/stb/power/standbyled"))
 BoxInfo.setItem("STi", SOC_FAMILY.startswith("sti"))
 BoxInfo.setItem("SuspendPowerLed", fileExists("/proc/stb/power/suspendled"))
@@ -444,4 +444,4 @@ SystemInfo["StatePlayPause"] = False
 SystemInfo["StandbyState"] = False
 SystemInfo["FastChannelChange"] = False
 
-Refresh_SysSoftCam()
+updateSysSoftCam()

@@ -6,7 +6,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, config
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import Refresh_SysSoftCam
+from Components.SystemInfo import updateSysSoftCam
 from Screens.Setup import Setup
 from Tools.camcontrol import CamControl
 from Tools.Directories import isPluginInstalled
@@ -78,7 +78,7 @@ class SoftcamSetup(Setup):
 			self.restart(device="e%s" % device)
 		else:
 			self.saveAll()
-			Refresh_SysSoftCam()
+			updateSysSoftCam()
 			self.close()
 
 	def keyCancel(self):
@@ -164,5 +164,5 @@ class SoftcamSetup(Setup):
 			return
 		if "e" in self.device:
 			self.saveAll()
-			Refresh_SysSoftCam()
+			updateSysSoftCam()
 			self.close()
