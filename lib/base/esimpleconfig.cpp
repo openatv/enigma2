@@ -16,11 +16,9 @@ namespace eSimpleConfig
 	static std::map<std::string, std::string> configValues; // NOSONAR
 	static int lastModified = 0; // NOSONAR
 
-	static void load(int fnr)
+	static void load()
 	{
 		std::string file = eEnv::resolve("${sysconfdir}/enigma2/settings");
-		if(fnr==1)
-			file = eEnv::resolve("${libdir}/enigma.info");
 
 		struct stat settings_stat;
 		if (stat(file.c_str(), &settings_stat) == -1 || settings_stat.st_mtime <= lastModified)
@@ -49,38 +47,23 @@ namespace eSimpleConfig
 		lastModified = settings_stat.st_mtime;
 	}
 
-	std::string getInfoString(const char *key, const char* defaultvalue)
-	{
-		load(1);
-		auto it = configValues.find(key);
-		std::string value = it == configValues.end() ? std::string(defaultvalue) : it->second;
-		size_t len = value.size();
-		if(len>2) {
-			// remove quotes
-			if(value[0] == '\'' && value[0] == value[len-1]){
-				value = value.substr(1,len-2);
-			}
-		}
-		return value;
-	}
-
 	std::string getString(const char *key, const char* defaultvalue)
 	{
-		load(0);
+		load();
 		auto it = configValues.find(key);
 		return it == configValues.end() ? std::string(defaultvalue) : it->second;
 	}
 
 	int getInt(const char *key, int defaultvalue)
 	{
-		load(0);
+		load();
 		auto it = configValues.find(key);
 		return it == configValues.end() ? defaultvalue : atoi(it->second.c_str());
 	}
 
 	bool getBool(const char *key, bool defaultvalue)
 	{
-		load(0);
+		load();
 		auto it = configValues.find(key);
 		if (it == configValues.end())
 			return defaultvalue;

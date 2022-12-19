@@ -8,7 +8,6 @@
 // safe to use in non UI threads
 namespace eSimpleConfig
 {
-	std::string getInfoString(const char *key, const char* defaultvalue = "");
 	std::string getString(const char *key, const char* defaultvalue = "");
 	int getInt(const char *key, int defaultvalue = 0);
 	bool getBool(const char *key, bool defaultvalue = true);
