@@ -204,9 +204,10 @@ class ActionMap:
 					undefinedAction.remove(action)
 					break
 		if leftActionDefined and rightActionDefined and config.misc.actionLeftRightToPageUpPageDown.value:
-			print("[ActionMap] DEBUG: Creating legacy navigation action map.")
-			print(leftAction)
-			print(rightAction)
+			if config.crash.debugActionMaps.value:
+				print("[ActionMap] DEBUG: Creating legacy navigation action map.")
+				print(leftAction)
+				print(rightAction)
 			self.legacyActions = {
 				"left": leftAction,
 				"right": rightAction
