@@ -5,11 +5,10 @@ from Components.VariableText import VariableText
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Button import Button
-from Components.FileList import FileList
+from Components.FileList import FileList, MultiFileSelectList
 from Components.MenuList import MenuList
 from Components.ScrollLabel import ScrollLabel
 from Components.config import config, configfile
-from Components.FileList import MultiFileSelectList
 from Screens.MessageBox import MessageBox
 from os import path, remove, walk, stat, rmdir
 from time import time, ctime
@@ -36,6 +35,8 @@ else:
 
 _session = None
 
+CRASH_LOG_PATTERN = "^.*-enigma\d?-crash\.log$"
+DEBUG_LOG_PATTERN = "^.*-enigma\d?-debug\.log$"
 
 def get_size(start_path=None):
 	total_size = 0
@@ -226,7 +227,7 @@ class LogManager(Screen):
 		self.selectedFiles = config.logmanager.sentfiles.value
 		self.previouslySent = config.logmanager.sentfiles.value
 		self.defaultDir = config.crash.debug_path.value
-		self.matchingPattern = '(enigma2_crash_|enigma2-crash)'
+		self.matchingPattern = CRASH_LOG_PATTERN
 		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories=False, matchingPattern=self.matchingPattern)
 		self["list"] = self.filelist
 		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
@@ -294,11 +295,11 @@ class LogManager(Screen):
 		if self.logtype == 'crashlogs':
 			self["key_red"].setText(_("Crash Logs"))
 			self.logtype = 'debuglogs'
-			self.matchingPattern = '(Enigma2|enigma2-debug)'
+			self.matchingPattern = DEBUG_LOG_PATTERN
 		else:
 			self["key_red"].setText(_("Debug Logs"))
 			self.logtype = 'crashlogs'
-			self.matchingPattern = '(enigma2_crash_|enigma2-crash)'
+			self.matchingPattern = CRASH_LOG_PATTERN
 		self["list"].matchingPattern = re.compile(self.matchingPattern)
 		self["list"].changeDir(self.defaultDir)
 
@@ -565,7 +566,7 @@ class LogManagerFb(Screen):
 
 		Screen.__init__(self, session)
 
-		self["list"] = FileList(logpath, matchingPattern="^.*")
+		self["list"] = FileList(logpath, matchingPattern="^.*$")
 		self["red"] = Label(_("delete"))
 		self["green"] = Label(_("move"))
 		self["yellow"] = Label(_("copy"))
