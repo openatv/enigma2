@@ -122,14 +122,6 @@ PLAYLIST_EXTENSIONS = frozenset((".m3u", ".m3u8", ".e2pls", ".pls"))
 RECORDING_EXTENSIONS = frozenset((".ap", ".cuts", ".eit", ".meta", ".sc"))
 KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS)
 
-# RECORDING_EXTENSIONS = {  # DEBUG: Is this version of the definition used?
-# 	"cuts": "movieparts",
-# 	"meta": "movieparts",
-# 	"ap": "movieparts",
-# 	"sc": "movieparts",
-# 	"eit": "movieparts"
-# }
-
 
 class FileListBase(MenuList):
 	def __init__(self, selectedFiles, directory, showDirectories=True, showFiles=True, showMountPoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirectories="0.0", sortFiles="0.0", directoriesFirst=True, showCurrentDirectory=False):
@@ -139,7 +131,7 @@ class FileListBase(MenuList):
 		self.showDirectories = showDirectories
 		self.showFiles = showFiles
 		self.showMountPoints = showMountPoints
-		self.matchingPattern = compile(matchingPattern) if matchingPattern else None  # Example: To match .nfi and .ts files use "^.*\.(nfi|ts)".
+		self.matchingPattern = compile(matchingPattern) if matchingPattern else None  # Example: To match .nfi and .ts files use "^.*\.(nfi|ts)$".
 		self.useServiceRef = useServiceRef
 		self.inhibitDirs = inhibitDirs or []
 		self.inhibitMounts = inhibitMounts or []
@@ -151,7 +143,6 @@ class FileListBase(MenuList):
 		self.showCurrentDirectory = showCurrentDirectory
 		self.mountPoints = []
 		self.currentDirectory = None
-		# self.currentMountPoint = None
 		self.serviceHandler = eServiceCenter.getInstance()
 		self.refreshMountPoints()
 
@@ -209,13 +200,6 @@ class FileListBase(MenuList):
 	def changeDir(self, directory, select=None):
 		def buildDirectoryList():
 			if directory and not self.isTop:
-				# if self.showMountPoints and pathjoin(directory, "") == self.currentMountPoint:
-				# 	self.fileList.append(self.fileListComponent(name="<%s>" % _("List of Storage Devices"), path=None, isDir=True, isLink=False, selected=None))
-				# elif (directory != sep) and not (self.inhibitMounts and self.getMountPoint(directory) in self.inhibitMounts):
-				# 	if self.showCurrentDirectory:
-				# 		self.fileList.append(self.fileListComponent(name="<%s>" % _("Current Directory"), path=pathjoin(directory, ""), isDir=True, isLink=islink(directory), selected=None))
-				# 	parent = dirname(directory)
-				# 	self.fileList.append(self.fileListComponent(name="<%s>" % _("Parent Directory"), path=pathjoin(parent, ""), isDir=True, isLink=islink(parent), selected=None))
 				mountPoint = normpath(self.getMountPointLink(directory))
 				if self.showMountPoints and directory == mountPoint:
 					self.fileList.append(self.fileListComponent(name="<%s>" % _("List of Storage Devices"), path=None, isDir=True, isLink=False, selected=None))
@@ -233,22 +217,17 @@ class FileListBase(MenuList):
 		self.fileList = []
 		directories = []
 		files = []
-		# if self.currentDirectory is None:  # If we are just entering from the list of mount points.
-		# 	self.currentMountPoint = self.getMountPointLink(directory) if directory and self.showMountPoints else None
-		# 	print("[FileList] changeDir DEBUG: The current mount point is '%s'." % self.currentMountPoint)
 		self.currentDirectory = pathjoin(directory, "") if directory else directory
 		if directory:
 			directory = normpath(directory)
 		if directory is None and self.showMountPoints:  # Present available mount points.
 			seenMountPoints = []  # TO DO: Fix Hardisk.py to remove duplicated mount points!
 			for partition in harddiskmanager.getMountedPartitions():
-				# print("[FileList] DEBUG: Partition='%s'." % partition)
 				path = normpath(partition.mountpoint)
 				if path in seenMountPoints:  # TO DO: Fix Hardisk.py to remove duplicated mount points!
 					continue
 				seenMountPoints.append(path)
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
-					# print("[FileList] DEBUG: Path='%s'." % path)
 					selected = False if self.multiSelect else None
 					self.fileList.append(self.fileListComponent(name=partition.description, path=pathjoin(path, ""), isDir=True, isLink=False, selected=selected))
 		elif self.useServiceRef:
@@ -297,17 +276,14 @@ class FileListBase(MenuList):
 		if self.showDirectories and not self.directoriesFirst:
 			buildDirectoryList()
 		if self.showMountPoints and len(self.fileList) == 0:
-			self.fileList.append(self.fileListComponent(name=_("Nothing connected"), path=None, isDir=False, isLink=False, selected=None))
+			self.fileList.append(self.fileListComponent(name=_("Nothing connected and/or no files available!"), path=None, isDir=False, isLink=False, selected=None))
 		self.setList(self.fileList)
 		start = 0
 		if select:
-			# print("[FileList] changeDir DEBUG: Selecting '%s'." % select)
 			for index, entry in enumerate(self.fileList):
 				path = entry[0][FILE_PATH]
 				path = path.getPath() if isinstance(path, eServiceReference) else path
-				# print("[FileList] changeDir DEBUG: Trying '%s'." % path)
 				if path == select:
-					# print("[FileList] changeDir DEBUG: Found select='%s' as index %d." % (select, index))
 					start = index
 					break
 		self.moveToIndex(start)
@@ -332,7 +308,7 @@ class FileListBase(MenuList):
 		for mountPoint in self.mountPoints:
 			if path.startswith(mountPoint):
 				return mountPoint
-		return "/"  # Return root if path not in mountPoints to prevent crashes
+		return "/"  # Return root if path not in mountPoints to prevent crashes with software MultiBoot.
 
 	def getMountpoint(self, path):  # Legacy method name for external code.
 		self.getMountPoint(path)
@@ -379,6 +355,8 @@ class FileListBase(MenuList):
 			else:
 				icon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/%s.png" % ("back" if name == ".." else "directory")), cached=True)
 		else:
+			if path is None:
+				path = ""
 			extension = splitext(path.getPath())[1].lower() if isinstance(path, eServiceReference) else splitext(path)[1].lower()
 			icon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/%s.png" % EXTENSIONS.get(extension, "file")), cached=True)
 		if icon:
@@ -436,7 +414,6 @@ class FileListBase(MenuList):
 
 class FileList(FileListBase):
 	def __init__(self, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True, showCurrentDirectory=False, enableWrapAround=False):
-		# print("[FileList] FileList DEBUG: Initial directory='%s'." % directory)
 		self.multiSelect = False
 		selectedFiles = []
 		FileListBase.__init__(self, selectedFiles, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
@@ -452,7 +429,6 @@ class FileList(FileListBase):
 
 class FileListMultiSelect(FileListBase):
 	def __init__(self, selectedFiles, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True, showCurrentDirectory=False, enableWrapAround=False):
-		# print("[FileList] FileListMultiSelect DEBUG: Initial directory='%s'." % directory)
 		self.multiSelect = True
 		# self.onSelectionChanged = []
 		FileListBase.__init__(self, selectedFiles, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
