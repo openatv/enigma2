@@ -203,8 +203,7 @@ class ActionMap:
 				if queryKeyBinding(context, action):
 					undefinedAction.remove(action)
 					break
-		legacyMode = config.misc.actionLeftRightToPageUpPageDown.value
-		if legacyMode and leftActionDefined and rightActionDefined:
+		if leftActionDefined and rightActionDefined and config.misc.actionLeftRightToPageUpPageDown.value:
 			print("[ActionMap] DEBUG: Creating legacy navigation action map.")
 			print(leftAction)
 			print(rightAction)
