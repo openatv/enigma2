@@ -181,29 +181,23 @@ class ActionMap:
 		self.bound = False
 		self.execActive = False
 		self.enabled = True
-		leftActionDefined = False
-		rightActionDefined = False
 		self.legacyBound = False
 		undefinedAction = list(self.actions.keys())
+		leftActionDefined = "left" in undefinedAction
+		rightActionDefined = "right" in undefinedAction
+		leftAction = None
+		rightAction = None
 		for action in undefinedAction[:]:
 			for context in self.contexts:
 				if context == "NavigationActions":
 					if action == "pageUp" and not leftActionDefined:
 						leftAction = self.actions[action]
-						leftActionDefined = True
 					if action == "pageDown" and not rightActionDefined:
 						rightAction = self.actions[action]
-						rightActionDefined = True
-					if action == "left":
-						leftAction = self.actions[action]
-						leftActionDefined = True
-					if action == "right":
-						rightAction = self.actions[action]
-						rightActionDefined = True
 				if queryKeyBinding(context, action):
 					undefinedAction.remove(action)
 					break
-		if leftActionDefined and rightActionDefined and config.misc.actionLeftRightToPageUpPageDown.value:
+		if leftAction and rightAction and config.misc.actionLeftRightToPageUpPageDown.value:
 			if config.crash.debugActionMaps.value:
 				print("[ActionMap] DEBUG: Creating legacy navigation action map.")
 				print(leftAction)
