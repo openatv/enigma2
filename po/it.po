@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-12-03 09:46+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
+"PO-Revision-Date: 2022-12-07 17:55+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -2095,10 +2095,6 @@ msgstr "Configurazione interfaccia"
 msgid "Add"
 msgstr "Aggiungi"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr "Aggiungi '%s' ai segnalibri"
-
 msgid "Add AutoTimer"
 msgstr "Aggiungi AutoTimer"
 
@@ -2171,6 +2167,9 @@ msgstr "Aggiungi un timer per l'evento in corso"
 msgid "Add an AutoTimer for the current event"
 msgstr "Aggiungi un Timer automatico per l'evento in corso"
 
+msgid "Add current directory to bookmarks"
+msgstr "Aggiungi la cartella attuale ai segnalibri"
+
 msgid "Add directory to play list"
 msgstr "Aggiungi cartella alla playlist"
 
@@ -2179,6 +2178,12 @@ msgstr "Aggiungi file alla playlist"
 
 msgid "Add files to play list"
 msgstr "Aggiungi file alla playlist"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Aggiungi la cartella selezionata ai segnalibri"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr "Aggiungi azioni SIN/DES legacy"
 
 msgid "Add new CCcam line"
 msgstr "Aggiungi nuova linea CCcam"
@@ -3264,6 +3269,12 @@ msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Azioni sequenza di segnalibri"
+
+msgid "Bookmark added."
+msgstr "Segnalibro aggiunto."
+
+msgid "Bookmark removed."
+msgstr "Segnalibro rimosso."
 
 msgid "Bookmarks"
 msgstr "Segnalibri"
@@ -5207,6 +5218,9 @@ msgstr "Stato attuale:"
 
 msgid "Current crash log"
 msgstr "Registro di arresto anomalo attuale"
+
+msgid "Current directory"
+msgstr "Directory corrente"
 
 #, python-format
 msgid "Current directory (%s)"
@@ -8859,6 +8873,9 @@ msgstr "Info gerarchia"
 msgid "High bitrate support"
 msgstr "Supporto bitrate alti"
 
+msgid "Highlighted item"
+msgstr "Elemento evidenziato"
+
 msgid "Hindi"
 msgstr "Hindi"
 
@@ -11375,7 +11392,7 @@ msgid "Network Test:"
 msgstr "Test della rete: "
 
 msgid "Network Wizard"
-msgstr "Procedura guidata della rete"
+msgstr "Procedura guidata rete"
 
 msgid "Network address"
 msgstr "Indirizzo di rete"
@@ -11415,7 +11432,7 @@ msgid "Network:"
 msgstr "Rete:"
 
 msgid "NetworkWizard"
-msgstr "Procedura guidata di rete"
+msgstr "Procedura guidata rete"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.ntr)"
@@ -14025,10 +14042,6 @@ msgstr "Tipo di telecomando"
 msgid "Remove"
 msgstr "Rimuovi"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr "Rimuovi '%s' dai segnalibri"
-
 msgid "Remove Bookmark"
 msgstr "Rimuovi segnalibro"
 
@@ -14089,11 +14102,17 @@ msgstr "Rimuovi tutti i dati dell'interfaccia utente"
 msgid "Remove completed timers after"
 msgstr "Rimuovi timer conclusi dopo (giorni)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Rimuovi la cartella attuale dai segnalibri"
+
 msgid "Remove currently selected title"
 msgstr "Rimuovi titolo attualmente selezionato"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Rimuovi linea VBI nascosta per questo servizio"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Rimuovi la cartella selezionata dai segnalibri"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Rimuovi i testi per i non utenti dai sottotitoli (musica strumentale o suoni d'ambiente, per es., quando suona un campanello o si sente uno sparo di pistola)."
@@ -15063,6 +15082,9 @@ msgstr "Seleziona 'Sì' per abilitare l'anteprima dei canali mentre si è nell'e
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Seleziona 'Sì' per abilitare l'anteprima dei canali nell'elenco EPG. Premi 'OK' per visualizzare in anteprima il canale attualmente selezionato. Premi di nuovo 'OK' per uscire dall'EPG e fare zapping sul canale selezionato. Premi 'EXIT' per uscire dall'EPG e tornare al canale precedentemente selezionato."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr "Selezionare 'Sì' per abilitare l'uso dei pulsanti SINISTRA/DESTRA per spostarsi PaginaSu/PaginaGiù quando i pulsanti SINISTRA/DESTRA non sono altrimenti definiti. Ciò fornisce la navigazione legacy per gli utenti che la preferiscono."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Seleziona 'Sì' per nascondere i canali senza dati EPG."
@@ -20734,6 +20756,9 @@ msgstr "Visualizza l'elenco delle estensioni di sistema disponibili"
 msgid "View mode"
 msgstr "Modalità visualizzazione"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Visualizza o modifica file di dimensioni inferiori a 1 MB"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Mostra o modifica questo script %s"
@@ -23313,6 +23338,14 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Add '%s' to bookmarks"
+#~ msgstr "Aggiungi '%s' ai segnalibri"
+
+#, python-format
+#~ msgid "Remove '%s' from bookmarks"
+#~ msgstr "Rimuovi '%s' dai segnalibri"
+
+#, python-format
 #~ msgid "Select the directory sort order for the %s column:"
 #~ msgstr "Seleziona ordinamento della cartella per la colonna %s:"
 
@@ -23409,17 +23442,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Attiva l'elenco dei file di destra come sorgente"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Aggiungi la cartella attuale ai segnalibri"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Aggiungi plugin al menu estensioni*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Aggiungi plugin al menu principale*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Aggiungi la cartella selezionata ai segnalibri"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Priorità CPU per l'esecuzione dello script"
@@ -23475,9 +23502,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Crea un link simbolico con nome utente"
-
-#~ msgid "Current directory"
-#~ msgstr "Directory corrente"
 
 #~ msgid "Date reverse"
 #~ msgstr "Data inversa"
@@ -23846,12 +23870,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Registrazioni"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Rimuovi la cartella attuale dai segnalibri"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Rimuovi la cartella selezionata dai segnalibri"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Rinomina file/cartella"
 
@@ -23999,9 +24017,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Estrai nella cartella attuale"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Mostra o modifica il file (se di dimensione < 1 MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "AVVERTIMENTO!"

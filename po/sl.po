@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -2336,10 +2336,6 @@ msgstr "Nastavitve mrežnega vmesnika"
 msgid "Add"
 msgstr "Dodajanje"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 #
 msgid "Add AutoTimer"
 msgstr "Dodajanje AutoTimer"
@@ -2427,6 +2423,9 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr ""
 
+msgid "Add current directory to bookmarks"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Add directory to play list"
@@ -2441,6 +2440,14 @@ msgstr "dodajanje datoteke v seznam za predvajanje"
 #, fuzzy
 msgid "Add files to play list"
 msgstr "dodajanje datoteke v seznam za predvajanje"
+
+#
+#, fuzzy
+msgid "Add highlighted directory to bookmarks"
+msgstr "Izberite datoteke za varnostno kopijo"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3656,6 +3663,12 @@ msgid "Bonaire"
 msgstr ""
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 #
@@ -5773,6 +5786,9 @@ msgid "Current Status:"
 msgstr "Trenutno stanje:"
 
 msgid "Current crash log"
+msgstr ""
+
+msgid "Current directory"
 msgstr ""
 
 #, python-format
@@ -9769,6 +9785,9 @@ msgstr ""
 #
 msgid "High bitrate support"
 msgstr "Podpora visokim bitnim hitrostim"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr ""
@@ -15620,10 +15639,6 @@ msgstr ""
 msgid "Remove"
 msgstr "Odstrani"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Remove Bookmark"
@@ -15694,11 +15709,17 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr ""
 
+msgid "Remove current directory from bookmarks"
+msgstr ""
+
 #
 msgid "Remove currently selected title"
 msgstr "Odstrani izbrane naslove"
 
 msgid "Remove hide VBI line for this service"
+msgstr ""
+
+msgid "Remove highlighted directory from bookmarks"
 msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -16797,6 +16818,9 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr ""
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
+msgstr ""
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
@@ -22979,6 +23003,9 @@ msgstr "Ogeld seznama obstoječih sistemskih vtičnikov."
 msgid "View mode"
 msgstr ""
 
+msgid "View or edit files less than 1MB in size"
+msgstr ""
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr ""
@@ -25801,11 +25828,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Accessed:"
 #~ msgstr "Dostopna točka:"
-
-#
-#, fuzzy
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Izberite datoteke za varnostno kopijo"
 
 #, fuzzy
 #~ msgid "Copy file"

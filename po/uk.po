@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-12-04 20:43+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
+"PO-Revision-Date: 2022-12-13 10:30+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -2124,10 +2124,6 @@ msgstr "Налаштування адаптера"
 msgid "Add"
 msgstr "Додати"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr "Додати '%s' до закладок"
-
 msgid "Add AutoTimer"
 msgstr "Додати автотаймер"
 
@@ -2200,6 +2196,9 @@ msgstr "Додати таймер для поточної передачы"
 msgid "Add an AutoTimer for the current event"
 msgstr "Додати автотаймер для поточного події"
 
+msgid "Add current directory to bookmarks"
+msgstr "Додати поточну теку в закладки"
+
 msgid "Add directory to play list"
 msgstr "Додати каталог в плейлист"
 
@@ -2208,6 +2207,12 @@ msgstr "Додати файл в плейлист"
 
 msgid "Add files to play list"
 msgstr "Додати файли в плейлист"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Додати вибрану теку у закладки"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr "Додати застарілі дії ВЛІВО/ВПРАВО"
 
 msgid "Add new CCcam line"
 msgstr "Додати новий рядок CCcam"
@@ -3293,6 +3298,12 @@ msgstr "Бонайре"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Дії послідовності в закладках"
+
+msgid "Bookmark added."
+msgstr "Закладку додано."
+
+msgid "Bookmark removed."
+msgstr "Закладку видалено."
 
 msgid "Bookmarks"
 msgstr "Закладки"
@@ -5236,6 +5247,9 @@ msgstr "Поточний Статус:"
 
 msgid "Current crash log"
 msgstr "Поточний журнал збоїв"
+
+msgid "Current directory"
+msgstr "Поточний каталог"
 
 #, python-format
 msgid "Current directory (%s)"
@@ -8890,6 +8904,9 @@ msgstr "Інфо ієрархії"
 
 msgid "High bitrate support"
 msgstr "Підтримка високого бітрейту"
+
+msgid "Highlighted item"
+msgstr "Виділений елемент"
 
 msgid "Hindi"
 msgstr "Хінді"
@@ -14058,10 +14075,6 @@ msgstr "Тип пульта управління"
 msgid "Remove"
 msgstr "Видалити"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr "Видалити '%s' із закладок"
-
 msgid "Remove Bookmark"
 msgstr "Видалити закладку"
 
@@ -14122,11 +14135,17 @@ msgstr "Видалити усі дані інтерфейсу користува
 msgid "Remove completed timers after"
 msgstr "Видалення завершених таймерів через (в днях)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Видалити поточну теку зі закладок"
+
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Видалити приховану лінію VBI для цього каналу"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Видалити вибрану теку зі закладок"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Видалити тексти для слабочуючих із зовнішніх субтитрів (інструментальна музика чи звуки навколишнього середовища, наприклад, коли лунає дзвінок у дверіа бо постріл)."
@@ -15098,6 +15117,9 @@ msgstr "Якщо вибрано 'так', в телегід буде включ�
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Якщо вибрано 'так', у списку каналів буде включений перегляд каналів. Натискання ОК відкриє канал в PiG-вікні, друге натиснення ОК закриє селектор каналів і перемкне на даний канал, натискання кнопки 'EXIT' закриє селектор каналів з поверненням на старий канал."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr "Виберіть 'Так', щоб увімкнути використання кнопок ВЛІВО/ВПРАВО для переміщення PageUp/PageDown, коли кнопки ВЛІВО/ВПРАВО не визначено. Це забезпечує попередню навігацію для користувачів, які віддають перевагу цьому."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Якщо вибрано 'так', канали без ЕПГ не відображатимуться."
@@ -18266,7 +18288,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 04.12.2022"
+msgstr "Переклад: kvinto - 07.12.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20770,6 +20792,9 @@ msgstr "Перегляд списку доступних розширень си
 
 msgid "View mode"
 msgstr "Режим перегляду"
+
+msgid "View or edit files less than 1MB in size"
+msgstr "Перегляд, або редагування файлів розміром менше 1 МБ"
 
 #, python-format
 msgid "View or edit this %s script"
@@ -23351,6 +23376,14 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Add '%s' to bookmarks"
+#~ msgstr "Додати '%s' до закладок"
+
+#, python-format
+#~ msgid "Remove '%s' from bookmarks"
+#~ msgstr "Видалити '%s' із закладок"
+
+#, python-format
 #~ msgid ""
 #~ "\n"
 #~ "optional parameter:\n"
@@ -23443,17 +23476,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Активувати правий список файлів як джерело"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Додати поточну теку в закладки"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Додати Плагін в Розширене меню*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Додати плагін в Головне меню*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Додати вибрану теку у закладки"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Пріоритет СПУ для виконання скрипту"
@@ -23509,9 +23536,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Створити лінк користувач-назва"
-
-#~ msgid "Current directory"
-#~ msgstr "Поточний каталог"
 
 #~ msgid "Date reverse"
 #~ msgstr "Дата зворотньо"
@@ -23880,12 +23904,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Записи"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Видалити поточну теку зі закладок"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Видалити вибрану теку зі закладок"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Перейменувати файл/теку"
 
@@ -24033,9 +24051,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Розпакувати до поточної теки"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Перегляд або редагування файлу (якщо розмір <1 МБ)"
 
 #~ msgid "WARNING!"
 #~ msgstr "УВАГА!"

@@ -25,7 +25,7 @@ from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
 from Components.ScrollLabel import ScrollLabel
 # from Components.Storage import Harddisk, storageManager
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
@@ -1361,6 +1361,9 @@ class ReceiverInformation(InformationBase):
 		fpVersion = getFPVersion()
 		if fpVersion and fpVersion != "unknown":
 			info.append(formatLine("P1", _("Front processor version"), fpVersion))
+		DemodVersion = getDemodVersion()
+		if DemodVersion and DemodVersion != "unknown":
+			info.append(formatLine("P1", _("Demod firmware version"), DemodVersion))
 		transcoding = _("Yes") if BoxInfo.getItem("transcoding") else _("MultiTranscoding") if BoxInfo.getItem("multitranscoding") else _("No")
 		info.append(formatLine("P1", _("Transcoding"), transcoding))
 		temp = about.getSystemTemperature()

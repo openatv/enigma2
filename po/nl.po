@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
 "PO-Revision-Date: 2022-10-02 11:17+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2104,10 +2104,6 @@ msgstr "Adapter instellingen"
 msgid "Add"
 msgstr "Toevoegen"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "AutoTimer toevoegen"
 
@@ -2180,6 +2176,9 @@ msgstr "Timer toevoegen voor het huidige programma"
 msgid "Add an AutoTimer for the current event"
 msgstr "Een AutoTimer toevoegen voor het huidige programma"
 
+msgid "Add current directory to bookmarks"
+msgstr "Huidige map aan bookmarks toevoegen"
+
 msgid "Add directory to play list"
 msgstr "Map aan afspeellijst toevoegen"
 
@@ -2188,6 +2187,12 @@ msgstr "Bestand toevoegen aan de afspeellijst"
 
 msgid "Add files to play list"
 msgstr "Bestanden toevoegen aan de afspeellijst"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Geselecteerde map aan bookmarks toevoegen"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Een nieuwe CCcam line toevoegen"
@@ -3271,6 +3276,12 @@ msgid "Bonaire"
 msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5318,6 +5329,9 @@ msgstr "Status:"
 
 msgid "Current crash log"
 msgstr "Actuele crash log"
+
+msgid "Current directory"
+msgstr ""
 
 #, python-format
 msgid "Current directory (%s)"
@@ -8992,6 +9006,9 @@ msgstr "Hiërarchie info"
 
 msgid "High bitrate support"
 msgstr "Hoge bitrate ondersteuning"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr "Hindi"
@@ -14166,10 +14183,6 @@ msgstr "Type afstandsbediening"
 msgid "Remove"
 msgstr "Verwijderen"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr "Verwijder bookmark"
 
@@ -14230,11 +14243,17 @@ msgstr "Verwijder alle gebruikers interface data"
 msgid "Remove completed timers after"
 msgstr "Verwijder voltooide timers na (aantal) dagen"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Verwijder huidige map van bookmarks"
+
 msgid "Remove currently selected title"
 msgstr "De momenteel geselecteerde titel verwijderen"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Verwijder verberg VBI regel voor deze zender"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Verwijder geselecteerde map van bookmarks"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Verwijdert teksten bedoelt voor slechthorenden uit externe ondertitels. Denk aan teksten als 'Deurbel gaat', 'Muziek speelt', enz."
@@ -15210,6 +15229,9 @@ msgstr "Wanneer geactiveerd dan ziet u de zender als voorbeeld achter de EPG. Al
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Bij 'Ja' ziet u de zender als voorbeeld achter de zenderlijst. Als u op 'OK' drukt wordt de gekozen zender getoond; na een tweede keer op 'OK', gaat u naar die zender. Drukt u op 'Exit', dan gaat u terug naar de zender waar u vandaan kwam."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Bij 'ja' worden zenders zonder EPG niet getoond."
@@ -20951,6 +20973,9 @@ msgstr "Bekijk de lijst met beschikbare systeem Applicaties."
 msgid "View mode"
 msgstr "Weergave EPG"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Bekijk of bewerk bestand (als grootte <1MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Bekijk of bewerk dit %s script"
@@ -23643,17 +23668,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Activeer de rechter bestandslijst als bron"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Huidige map aan bookmarks toevoegen"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Plug-in toevoegen aan het Applicatiemenu*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Plug-in toevoegen aan extensies menu*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Geselecteerde map aan bookmarks toevoegen"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "CPU prioriteit voor uitvoeren van script"
@@ -24077,12 +24096,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Opnames"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Verwijder huidige map van bookmarks"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Verwijder geselecteerde map van bookmarks"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Hernoem bestand/map"
 
@@ -24230,9 +24243,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Uitpakken naar huidige map"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Bekijk of bewerk bestand (als grootte <1MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "WAARSCHUWING!"

@@ -21,11 +21,6 @@ socfamily = BoxInfo.getItem("socfamily")
 MODEL = BoxInfo.getItem("model")
 
 
-def getModelString():
-	model = BoxInfo.getItem("machinebuild")
-	return model
-
-
 def _ifinfo(sock, addr, ifname):
 	iface = pack('256s', bytes(ifname[:15], 'utf-8'))
 	info = ioctl(sock.fileno(), addr, iface)
@@ -132,28 +127,10 @@ def getCPUSerial():
 
 
 def _getCPUSpeedMhz():
-	if MODEL in ('u41', 'u42', 'u43', 'u45'):
-		return 1000
-	elif MODEL in ('hzero', 'h8', 'sfx6008', 'sfx6018', 'sx88v2', 'sx888'):
+	if MODEL in ('hzero', 'h8', 'sfx6008', 'sfx6018'):
 		return 1200
-	elif MODEL in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k', 'gb72604', 'vuduo4kse'):
-		return 1500
-	elif MODEL in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
-		return 1300
-	elif MODEL in ('dagsmv200', 'gbmv200', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u55', 'u56', 'u57', 'u571', 'u5', 'u5pvr', 'h9', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'cc1', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'multibox', 'multiboxse', 'multiboxpro'):
-		return 1600
-	elif MODEL in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
-		return 1700
-	elif MODEL in ('alien5',):
-		return 2000
 	elif MODEL in ('vuduo4k',):
 		return 2100
-	elif MODEL in ('hd51', 'hd52', 'sf4008', 'vs1500', 'et1x000', 'h7', 'et13000', 'sf5008', 'osmio4k', 'osmio4kplus', 'osmini4k'):
-		try:
-			return round(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 1000000, 1)
-		except:
-			print("[About] Read /sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency failed.")
-			return 1700
 	else:
 		return 0
 
@@ -179,7 +156,11 @@ def getCPUInfoString():
 			cpuSpeed = fileReadLine("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", source=MODULE_NAME)
 			if cpuSpeed:
 				cpuSpeedMhz = int(cpuSpeed) / 1000
-
+			else:
+				try:
+					cpuSpeedMhz = int(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 100000000) * 100
+				except:
+					cpuSpeedMhz = "1500"
 		temperature = None
 		if isfile("/proc/stb/fp/temp_sensor_avs"):
 			temperature = fileReadLine("/proc/stb/fp/temp_sensor_avs", source=MODULE_NAME)

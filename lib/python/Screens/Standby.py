@@ -115,7 +115,7 @@ class Standby2(Screen):
 		if os.path.exists("/usr/script/StandbyLeave.sh"):
 			Console().ePopen("/usr/script/StandbyLeave.sh &")
 
-		if BoxInfo.getItem("HDMIOut"):
+		if BoxInfo.getItem("hdmistandbymode") == 1:
 			try:
 				open("/proc/stb/hdmi/output", "w").write("on")
 			except OSError:
@@ -231,7 +231,7 @@ class Standby2(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
-		if BoxInfo.getItem("HDMIOut"):
+		if BoxInfo.getItem("hdmistandbymode") == 1:
 			try:
 				open("/proc/stb/hdmi/output", "w").write("off")
 			except OSError:

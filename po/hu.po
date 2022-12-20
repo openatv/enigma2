@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2141,10 +2141,6 @@ msgstr "Adapter beállításai"
 msgid "Add"
 msgstr "Hozzáadás"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "AutoTimer hozzáadása"
 
@@ -2217,6 +2213,9 @@ msgstr "Időzítés hozzáadása az aktuális eseményről"
 msgid "Add an AutoTimer for the current event"
 msgstr "AutoTimer időzítő hozzáadása az aktuális eseményhez"
 
+msgid "Add current directory to bookmarks"
+msgstr "Aktuális mappa hozzáadása könyvjelzőkhöz"
+
 msgid "Add directory to play list"
 msgstr "Mappa hozzáadása a lejátszási listához"
 
@@ -2225,6 +2224,12 @@ msgstr "Fájl hozzáadása a lejátszási listához"
 
 msgid "Add files to play list"
 msgstr "Fájlok hozzáadása a lejátszási listához"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Kijelölt mappa hozzáadása könyvjelzőkhöz"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3318,6 +3323,12 @@ msgid "Bonaire"
 msgstr ""
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5261,6 +5272,9 @@ msgid "Current Status:"
 msgstr "Jelenlegi állapot:"
 
 msgid "Current crash log"
+msgstr ""
+
+msgid "Current directory"
 msgstr ""
 
 #, python-format
@@ -8940,6 +8954,9 @@ msgstr "Hierarchikus mód"
 
 msgid "High bitrate support"
 msgstr "Magas bitráta támogatása"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr ""
@@ -14187,10 +14204,6 @@ msgstr "Távirányító típusa"
 msgid "Remove"
 msgstr "Eltávolítás"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr "Könyvjelző eltávolítása"
 
@@ -14251,11 +14264,17 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr "Lejárt időzítések törlése ennyi nap után"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Aktuális mappa eltávolítása könyvjelzőkből"
+
 msgid "Remove currently selected title"
 msgstr "Kijelölt címek eltávolítása"
 
 msgid "Remove hide VBI line for this service"
 msgstr "A kép tetején lévő villogó csík eltakarása ezen csatornánál"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Kijelölt mappa eltávolítása könyvjelzőkből"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Távolítsa el a halláskárosult szövegeket a külső feliratokból (hangszeres zenét vagy környezeti hangokat, például amikor csengő gyűrűt vagy fegyverlövést hallat)."
@@ -15235,6 +15254,9 @@ msgstr "Ha az 'igen'-t választja, megtekintheti az adott csatorna előnézeti k
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Ha az 'igen'-t választja, a csatornát előnézetben tekintheti meg. Nyomja meg az \"OK\" gombot a csatorna előnézetéhez, nyomja meg másodszor az \"OK\" gombot a csatornaváltáshoz és kilépéshez. Nyomja meg az \"EXIT\" gombot a visszatéréshez."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ha az 'igen'-t választja, akkor a műsor nélküli csatornák nem jelennek meg."
@@ -20939,6 +20961,9 @@ msgstr "Az elérhető rendszer bővítmények listázása"
 msgid "View mode"
 msgstr "Megjelenítési mód"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Fájl megtekintése vagy szerkesztése (ha méret < 1 MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "A(z) %s parancsfájl megtekintése vagy szerkesztése"
@@ -23619,17 +23644,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Jobb oldali fájllista aktiválása forrásként"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Aktuális mappa hozzáadása könyvjelzőkhöz"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Bővítmény hozzáadása a Bővítmények menühöz*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Bővítmény hozzáadása a főmenühöz*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Kijelölt mappa hozzáadása könyvjelzőkhöz"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Processzorprioritás a parancsfájlok végrehajtásához"
@@ -24050,12 +24069,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Rekordok"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Aktuális mappa eltávolítása könyvjelzőkből"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Kijelölt mappa eltávolítása könyvjelzőkből"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Fájl/könyvtár átnevezése"
 
@@ -24200,9 +24213,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Kicsomagolás az aktuális mappába"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Fájl megtekintése vagy szerkesztése (ha méret < 1 MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "FIGYELEM!"

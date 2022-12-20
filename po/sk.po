@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-06 19:33+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -2119,10 +2119,6 @@ msgstr "Nastavenia adaptéra"
 msgid "Add"
 msgstr "Pridať"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr "Pridať '%s' do záložiek"
-
 msgid "Add AutoTimer"
 msgstr "Pridať autom. časovač"
 
@@ -2195,6 +2191,9 @@ msgstr "Pridať časovač pre aktuálnu udalosť"
 msgid "Add an AutoTimer for the current event"
 msgstr "Pridať autom. časovač pre aktuálnu udalosť"
 
+msgid "Add current directory to bookmarks"
+msgstr "Pridať aktuálny priečinok do záložiek"
+
 msgid "Add directory to play list"
 msgstr "Pridať priečinok do playlistu"
 
@@ -2203,6 +2202,12 @@ msgstr "Pridať súbor do playlistu"
 
 msgid "Add files to play list"
 msgstr "Pridať súbory do playlistu"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Pridať vybraný priečinok do záložiek"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Pridať nový riadok CCcam"
@@ -3288,6 +3293,12 @@ msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Akcie pre sekvenciu záložiek"
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Záložky"
@@ -5231,6 +5242,9 @@ msgstr "Aktuálny stav:"
 
 msgid "Current crash log"
 msgstr "Aktuálny záznam o páde"
+
+msgid "Current directory"
+msgstr "Aktuálny priečinok"
 
 #, python-format
 msgid "Current directory (%s)"
@@ -8885,6 +8899,9 @@ msgstr "Informácie o hierarchii"
 
 msgid "High bitrate support"
 msgstr "Podpora vysokého dátového toku"
+
+msgid "Highlighted item"
+msgstr ""
 
 msgid "Hindi"
 msgstr "Hindčina"
@@ -14053,10 +14070,6 @@ msgstr "Typ diaľkového ovládania"
 msgid "Remove"
 msgstr "Odstrániť"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr "Odstrániť '%s' zo záložiek"
-
 msgid "Remove Bookmark"
 msgstr "Odstrániť záložku"
 
@@ -14117,11 +14130,17 @@ msgstr "Odstrániť všetky údaje použ. rozhrania"
 msgid "Remove completed timers after"
 msgstr "Dokončené časovače odstraňovať po"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Odstrániť aktuálny priečinok zo záložiek"
+
 msgid "Remove currently selected title"
 msgstr "Odstrániť aktuálne zvolený titul"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Odstrániť/skryť riadok VBI pre túto stanicu"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Odstrániť vybraný priečinok zo záložiek"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Odstránenie textov pre sluchovo postihnutých z externých titulkov (inštrumentálnej hudby alebo zvukov z prostredia, napríklad zvonenia zvončeka alebo výstrelu zo zbrane)."
@@ -15093,6 +15112,9 @@ msgstr "Ak je nastavené na 'áno', bude možný náhľad kanálov v zozname EPG
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Ak je nastavené na 'áno', môžete zobraziť náhľady kanálov v zozname kanálov. Prvým stlačením tlačidla 'OK' zobrazíte náhľad vybraného kanála a druhým stlačením 'OK' ukončíte prehľad a prepnete na daný kanál. Stlačením 'EXIT' sa vrátite na pôvodný kanál."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ak je nastavené na 'áno', nezobrazia sa kanály, pri ktorých nie je dostupné EPG."
@@ -20766,6 +20788,9 @@ msgstr "Zobraziť zoznam dostupných systémových rozšírení"
 msgid "View mode"
 msgstr "Režim zobrazenia"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Zobraziť alebo upraviť súbor (ak je veľkosť < 1 MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Zobraziť alebo upraviť tento skript pre %s"
@@ -23346,6 +23371,14 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Add '%s' to bookmarks"
+#~ msgstr "Pridať '%s' do záložiek"
+
+#, python-format
+#~ msgid "Remove '%s' from bookmarks"
+#~ msgstr "Odstrániť '%s' zo záložiek"
+
+#, python-format
 #~ msgid ""
 #~ "\n"
 #~ "optional parameter:\n"
@@ -23438,17 +23471,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Aktivovať pravý zoznam súborov ako zdroj"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Pridať aktuálny priečinok do záložiek"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Pridať plugin do menu Rozšírenia*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Pridať plugin do hlavného menu*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Pridať vybraný priečinok do záložiek"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Priorita CPU pre vykonávanie skriptu"
@@ -23504,9 +23531,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Vytvoriť používateľsky nazvaný symbolický odkaz"
-
-#~ msgid "Current directory"
-#~ msgstr "Aktuálny priečinok"
 
 #~ msgid "Date reverse"
 #~ msgstr "Opačne podľa dátumu"
@@ -23875,12 +23899,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Nahrávky"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Odstrániť aktuálny priečinok zo záložiek"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Odstrániť vybraný priečinok zo záložiek"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Premenovať súbor/priečinok"
 
@@ -24028,9 +24046,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Rozbaliť do aktuálneho priečinka"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Zobraziť alebo upraviť súbor (ak je veľkosť < 1 MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "VÝSTRAHA!"
