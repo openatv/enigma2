@@ -206,12 +206,12 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 
 	def deleteChar(self, pos):
 		if not self.maxSize:
-			format = "%s%s"
+			layout = "%s%s"
 		elif self.overwrite:
-			format = "%s %s"
+			layout = "%s %s"
 		else:
-			format = "%s%s "
-		self.textBuffer = format % (self.textBuffer[0:pos], self.textBuffer[pos + 1:])
+			layout = "%s%s "
+		self.textBuffer = layout % (self.textBuffer[0:pos], self.textBuffer[pos + 1:])
 
 	def toggleOverwrite(self):
 		if self.type == self.TEXT:
