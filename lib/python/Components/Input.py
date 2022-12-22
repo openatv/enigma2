@@ -1,12 +1,8 @@
-from six import PY2
-
 from enigma import eLabel
 
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 from Tools.NumericalTextInput import NumericalTextInput
-
-pyunichr = unichr if PY2 else chr
 
 
 class Input(VariableText, GUIComponent, NumericalTextInput):
@@ -27,50 +23,8 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		self.overwrite = maxSize
 		self.setText(text)
 
-	def __len__(self):
+	def __len__(self):  # NOTE: self.text is a property of VariableText!!!
 		return len(self.text)  #NOSONAR
-
-	def getText(self):
-		return self.textU.encode("UTF-8", "ignore") if PY2 else self.textU
-
-	def setText(self, text):
-		if len(text):
-			self.textU = text.decode("UTF-8", "ignore") if isinstance(text, bytes) else text
-		else:
-			self.currPos = 0
-			self.textU = u""
-		self.update()
-
-	def update(self):
-		if self.visibleWidth:
-			if self.currPos < self.offset:
-				self.offset = self.currPos
-			if self.currPos >= self.offset + self.visibleWidth:
-				self.offset = self.currPos - self.visibleWidth
-				if self.currPos != len(self.textU):
-					self.offset += 1
-			if self.offset > 0 and self.offset + self.visibleWidth > len(self.textU):
-				self.offset = max(0, len(self.textU) - self.visibleWidth)
-		if self.allMarked:
-			self.setMarkedPos(-2)
-		else:
-			self.setMarkedPos(self.currPos - self.offset)
-		# Use non-breaking spaces, as right alignment removes trailing spaces,
-		# causing the cursor to disappear at the end.
-		if self.visibleWidth:
-			if self.type == self.PIN:
-				self.text = ""
-				for x in self.textU[self.offset:self.offset + self.visibleWidth]:
-					self.text += (x == " " and u"\u00A0" or "*")
-			else:
-				self.text = self.textU[self.offset:self.offset + self.visibleWidth].encode("UTF-8", "ignore") + u"\u00A0" if PY2 else self.textU[self.offset:self.offset + self.visibleWidth] + u"\u00A0"
-		else:
-			if self.type == self.PIN:
-				self.text = ""
-				for x in self.textU:
-					self.text += (x == " " and u"\u00A0" or "*")
-			else:
-				self.text = self.textU.encode("UTF-8", "ignore") + u"\u00A0" if PY2 else self.textU + u"\u00A0"
 
 	def createWidget(self, parent):
 		if self.allMarked:
@@ -81,30 +35,55 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		size = self.instance.calculateSize()
 		return (size.width(), size.height())
 
+	def getText(self):
+		return self.textBuffer
+
+	def setText(self, text):
+		if text:
+			self.textBuffer = text.decode("UTF-8", "ignore") if isinstance(text, bytes) else text
+		else:
+			self.currPos = 0
+			self.textBuffer = ""
+		self.update()
+
+	def update(self):  # NOTE: self.text is a property of VariableText!!!
+		if self.visibleWidth:
+			if self.currPos < self.offset:
+				self.offset = self.currPos
+			if self.currPos >= self.offset + self.visibleWidth:
+				self.offset = self.currPos - self.visibleWidth
+				if self.currPos != len(self.textBuffer):
+					self.offset += 1
+			if self.offset > 0 and self.offset + self.visibleWidth > len(self.textBuffer):
+				self.offset = max(0, len(self.textBuffer) - self.visibleWidth)
+		if self.allMarked:
+			self.setMarkedPos(-2)
+		else:
+			self.setMarkedPos(self.currPos - self.offset)
+		# Use non-breaking spaces, as right alignment removes trailing spaces,
+		# causing the cursor to disappear at the end.
+		visibleText = self.textBuffer[self.offset:self.offset + self.visibleWidth] if self.visibleWidth else self.textBuffer
+		if self.type == self.PIN:
+			text = []
+			for character in visibleText:
+				text.append(character == " " and "\u00A0" or "*")
+			self.text = "".join(text)
+		else:
+			self.text = "%s\u00A0" % visibleText
+
 	def markAll(self):
 		self.allMarked = True
 		self.update()
-
-	def innerRight(self):
-		if self.allMarked:
-			self.currPos = 0
-			self.allMarked = False
-		elif self.maxSize:
-			if self.currPos < len(self.textU) - 1:
-				self.currPos += 1
-		else:
-			if self.currPos < len(self.textU):
-				self.currPos += 1
 
 	def up(self):
 		self.allMarked = False
 		if self.type == self.TEXT:
 			self.timeout()
-		if self.currPos == len(self.textU) or self.textU[self.currPos] == "9" or self.textU[self.currPos] == " ":
+		if self.currPos == len(self.textBuffer) or self.textBuffer[self.currPos] == "9" or self.textBuffer[self.currPos] == " ":
 			newNumber = "0"
 		else:
-			newNumber = str(int(self.textU[self.currPos]) + 1)
-		self.textU = self.textU[0:self.currPos] + newNumber + self.textU[self.currPos + 1:]
+			newNumber = str(int(self.textBuffer[self.currPos]) + 1)
+		self.textBuffer = self.textBuffer[0:self.currPos] + newNumber + self.textBuffer[self.currPos + 1:]
 		self.update()
 
 	def home(self):
@@ -118,7 +97,7 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		if self.type == self.TEXT:
 			self.timeout()
 		if self.allMarked:
-			self.currPos = len(self.textU) - 1 if self.maxSize else len(self.textU)
+			self.currPos = len(self.textBuffer) - 1 if self.maxSize else len(self.textBuffer)
 			self.allMarked = False
 		elif self.currPos > 0:
 			self.currPos -= 1
@@ -134,47 +113,29 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		self.allMarked = False
 		if self.type == self.TEXT:
 			self.timeout()
-		self.currPos = len(self.textU) - 1 if self.maxSize else len(self.textU)
+		self.currPos = len(self.textBuffer) - 1 if self.maxSize else len(self.textBuffer)
 		self.update()
 
 	def down(self):
 		self.allMarked = False
 		if self.type == self.TEXT:
 			self.timeout()
-		if self.currPos == len(self.textU) or self.textU[self.currPos] == "0" or self.textU[self.currPos] == " ":
+		if self.currPos == len(self.textBuffer) or self.textBuffer[self.currPos] == "0" or self.textBuffer[self.currPos] == " ":
 			newNumber = "9"
 		else:
-			newNumber = str(int(self.textU[self.currPos]) - 1)
-		self.textU = self.textU[0:self.currPos] + newNumber + self.textU[self.currPos + 1:]
+			newNumber = str(int(self.textBuffer[self.currPos]) - 1)
+		self.textBuffer = "%s%s%s" % (self.textBuffer[0:self.currPos], newNumber, self.textBuffer[self.currPos + 1:])
 		self.update()
 
-	def insertChar(self, ch, pos=False, owr=False, ins=False):
-		if isinstance(ch, bytes):
-			ch = ch.decode("UTF-8", "ignore")
-		n = len(ch)
-		if not pos:
-			pos = self.currPos
-		if ins and not self.maxSize:
-			self.textU = self.textU[0:pos] + ch + self.textU[pos:]
-		elif owr or self.overwrite:
-			self.textU = self.textU[0:pos] + ch + self.textU[pos + n:]
+	def innerRight(self):
+		if self.allMarked:
+			self.currPos = 0
+			self.allMarked = False
 		elif self.maxSize:
-			self.textU = self.textU[0:pos] + ch + self.textU[pos:-n]
-		else:
-			self.textU = self.textU[0:pos] + ch + self.textU[pos:]
-		self.currPos += n - 1
-
-	def deleteChar(self, pos):
-		if not self.maxSize:
-			self.textU = self.textU[0:pos] + self.textU[pos + 1:]
-		elif self.overwrite:
-			self.textU = self.textU[0:pos] + u" " + self.textU[pos + 1:]
-		else:
-			self.textU = self.textU[0:pos] + self.textU[pos + 1:] + u" "
-
-	def deleteAllChars(self):
-		self.textU = u" " * len(self.textU) if self.maxSize else u""
-		self.currPos = 0
+			if self.currPos < len(self.textBuffer) - 1:
+				self.currPos += 1
+		elif self.currPos < len(self.textBuffer):
+			self.currPos += 1
 
 	def tab(self):
 		if self.type == self.TEXT:
@@ -183,9 +144,26 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 			self.deleteAllChars()
 			self.allMarked = False
 		else:
-			self.insertChar(u" ", self.currPos, False, True)
+			self.insertChar(" ", self.currPos, False, True)
 			self.innerRight()
 		self.update()
+
+	def insertChar(self, character, pos=False, overwrite=False, ins=False):
+		if isinstance(character, bytes):
+			character = character.decode("UTF-8", "ignore")
+		length = len(character)
+		if not pos:
+			pos = self.currPos
+		if ins and not self.maxSize:
+			endText = self.textBuffer[pos:]
+		elif overwrite or self.overwrite:
+			endText = self.textBuffer[pos + length:]
+		elif self.maxSize:
+			endText = self.textBuffer[pos:-length]
+		else:
+			endText = self.textBuffer[pos:]
+		self.textBuffer = "%s%s%s" % (self.textBuffer[0:pos], character, endText)
+		self.currPos += length - 1
 
 	def delete(self):
 		if self.type == self.TEXT:
@@ -205,12 +183,11 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		if self.allMarked:
 			self.deleteAllChars()
 			self.allMarked = False
-		else:
-			if self.currPos > 0:
-				self.deleteChar(self.currPos - 1)
-				if not self.maxSize and self.offset > 0:
-					self.offset -= 1
-				self.currPos -= 1
+		elif self.currPos > 0:
+			self.deleteChar(self.currPos - 1)
+			if not self.maxSize and self.offset > 0:
+				self.offset -= 1
+			self.currPos -= 1
 		self.update()
 
 	def deleteForward(self):
@@ -223,41 +200,54 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 			self.deleteChar(self.currPos)
 		self.update()
 
+	def deleteAllChars(self):
+		self.textBuffer = " " * len(self.textBuffer) if self.maxSize else ""
+		self.currPos = 0
+
+	def deleteChar(self, pos):
+		if not self.maxSize:
+			format = "%s%s"
+		elif self.overwrite:
+			format = "%s %s"
+		else:
+			format = "%s%s "
+		self.textBuffer = format % (self.textBuffer[0:pos], self.textBuffer[pos + 1:])
+
 	def toggleOverwrite(self):
 		if self.type == self.TEXT:
 			self.timeout()
 		self.overwrite = not self.overwrite
 		self.update()
 
-	def handleAscii(self, code):
+	def handleAscii(self, asciiCode):
 		if self.type == self.TEXT:
 			self.timeout()
 		if self.allMarked:
 			self.deleteAllChars()
 			self.allMarked = False
-		self.insertChar(pyunichr(code), self.currPos, False, False)
+		self.insertChar(chr(asciiCode), self.currPos, False, False)
 		self.innerRight()
 		self.update()
 
-	def number(self, number):  #NOSONAR
-		if self.type == self.TEXT:
-			owr = self.lastKey == number
-			newChar = self.getKey(number)
-		elif self.type == self.PIN or self.type == self.NUMBER:
-			owr = False
-			newChar = str(number)
+	def char(self, character):
 		if self.allMarked:
 			self.deleteAllChars()
 			self.allMarked = False
-		self.insertChar(newChar, self.currPos, owr, False)
+		self.insertChar(character)
+		self.innerRight()
+		self.update()
+
+	def number(self, digit):
+		if self.type == self.TEXT:
+			overwrite = self.lastKey == digit
+			character = self.getKey(digit)
+		elif self.type == self.PIN or self.type == self.NUMBER:
+			overwrite = False
+			character = str(digit)
+		if self.allMarked:
+			self.deleteAllChars()
+			self.allMarked = False
+		self.insertChar(character, self.currPos, overwrite, False)
 		if self.type == self.PIN or self.type == self.NUMBER:
 			self.innerRight()
-		self.update()
-
-	def char(self, char):
-		if self.allMarked:
-			self.deleteAllChars()
-			self.allMarked = False
-		self.insertChar(char)
-		self.innerRight()
 		self.update()
