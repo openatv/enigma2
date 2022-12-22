@@ -134,7 +134,7 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		self.allMarked = False
 		if self.type == self.TEXT:
 			self.timeout()
-		self.currPos = len(self.text) - 1 if self.maxSize else len(self.text)
+		self.currPos = len(self.textU) - 1 if self.maxSize else len(self.textU)
 		self.update()
 
 	def down(self):
