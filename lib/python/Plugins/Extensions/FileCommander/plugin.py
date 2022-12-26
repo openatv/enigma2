@@ -756,6 +756,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				sortFiles, reverseFiles = [int(x) for x in config.plugins.FileCommander.sortFilesRight.value.split(".")]
 			sortText = "[D]%s%s[F]%s%s" % (("n", "d", "s")[sortDirs], ("+", "-")[reverseDirs], ("n", "d", "s")[sortFiles], ("+", "-")[reverseFiles])  # (name|date|size)(normal|reverse)
 			path = column.getPath()
+			currentDirectory = column.getCurrentDirectory()
+			currentDirectory = normpath(currentDirectory) if currentDirectory else ""
+			splitCurrentParent = _("Current: %s\nParent: %s") % (currentDirectory, dirname(currentDirectory)) if column.getName().startswith("<") else path  # 25
 			if path:
 				path = normpath(path)
 				try:
@@ -797,12 +800,14 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						NumberScaler().scale(size, style="Si", maxNumLen=3, decimals=3),  # 20
 						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Si", maxNumLen=3, decimals=3)),  # 21
 						NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3),  # 22
-						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3))  # 23
+						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3)),  # 23
+						currentDirectory,  # 24
+						splitCurrentParent  # 25
 					)
 				except OSError:
-					data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, path, dirname(path), basename(path), "", "", "", "")
+					data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, path, dirname(path), basename(path), "", "", "", "", currentDirectory, splitCurrentParent)
 			else:
-				data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, "", "", "", "")
+				data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, "", "", "", "", currentDirectory, "")
 			return [data]
 
 		headColumn = self["headleft"] if column in (self["listleft"], self["multileft"]) else self["headright"]
@@ -1951,11 +1956,14 @@ class FileCommanderArchiveInstall(FileCommanderArchiveBase):
 	def installArchive(self):
 		def displayData(data):
 			self["data"].setText(data)
+			self["data"].goBottom()
 
 		def processInstall(retVal):
 			self.processArguments(None, ["/usr/bin/opkg", "/usr/bin/opkg", "install", self.path], displayData, processPlugin)
 
 		def processPlugin(retVal):
+			self.textBuffer = "%s\n%s\n" % (self.textBuffer, _("Installation finished."))
+			displayData(self.textBuffer)
 			self["navigationActions"].setEnabled(self["data"].isNavigationNeeded())
 			if basename(self.path).startswith("enigma2-plugin-"):
 				plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
