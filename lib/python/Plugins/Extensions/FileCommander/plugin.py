@@ -169,7 +169,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				{
 				"template":
 					[
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text=17),  # Index 17 is the path.
+					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text = 24),  # Index 24 is the current directory.
 					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=1),  # Index 1 is the symbolic mode.
 					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=11),  # Index 11 is the scaled size.
 					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=13),  # Index 13 is the modification time.
@@ -188,7 +188,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				{
 				"template":
 					[
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text=17),  # Index 17 is the path.
+					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text = 24),  # Index 24 is the current directory.
 					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=1),  # Index 1 is the symbolic mode.
 					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=11),  # Index 11 is the scaled size.
 					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=13),  # Index 13 is the modification time.
