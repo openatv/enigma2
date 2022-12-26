@@ -1,9 +1,6 @@
-from __future__ import division
 from copy import copy, deepcopy
-from six import PY2
 
 from enigma import BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, eListboxPythonMultiContent, getPrevAsciiCode, gFont
-import six
 
 from skin import fonts, parameters
 from Components.ActionMap import HelpableNumberActionMap
@@ -11,7 +8,7 @@ from Components.Input import Input
 from Components.Label import Label
 from Components.International import international
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
@@ -19,8 +16,6 @@ from Screens.Screen import Screen
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-
-pyunichr = unichr if PY2 else chr
 
 VKB_DONE_ICON = 0
 VKB_ENTER_ICON = 1
@@ -33,7 +28,7 @@ VKB_OK_TEXT = 7
 VKB_SAVE_TEXT = 8
 VKB_SEARCH_TEXT = 9
 
-SPACE = u"SPACEICON"  # Symbol to be used for a SPACE on the keyboard.  Must be u"SPACE" (any case), u"SPACEICON" or u"SPACEICONALT".
+SPACE = "SPACEICON"  # Symbol to be used for a SPACE on the keyboard.  Must be "SPACE" (any case), "SPACEICON" or "SPACEICONALT".
 
 
 class VirtualKeyBoardList(MenuList):
@@ -41,35 +36,30 @@ class VirtualKeyBoardList(MenuList):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		font = fonts.get("VirtualKeyBoard", ("Regular", 28, 45))
 		self.l.setFont(0, gFont(font[0], font[1]))
-		self.l.setFont(1, gFont(font[0], int(font[1] * 5 // 9)))  # Smaller font is 56% the height of bigger font
+		self.l.setFont(1, gFont(font[0], int(font[1] * 5 // 9)))  # Smaller font is 56% the height of bigger font.
 		self.l.setItemHeight(font[2])
 
 
-class VirtualKeyBoardEntryComponent:
-	def __init__(self):
-		pass
-
-
-# For more information about using VirtualKeyBoard see /doc/VIRTUALKEYBOARD
+# For more information about using VirtualKeyBoard see /doc/VIRTUALKEYBOARD.
 #
 class VirtualKeyBoard(Screen, HelpableScreen):
 	def __init__(self, session, title=_("Virtual KeyBoard Text:"), text="", maxSize=False, visible_width=False, type=Input.TEXT, currPos=None, allMarked=False, style=VKB_ENTER_ICON, windowTitle=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		self.setTitle(_("Virtual keyboard") if windowTitle is None else windowTitle)
+		self.setTitle(_("Virtual KeyBoard") if windowTitle is None else windowTitle)
 		prompt = title  # Title should only be used for screen titles!
 		greenLabel, self.green = {
-			VKB_DONE_ICON: ("Done", u"ENTERICON"),
-			VKB_ENTER_ICON: ("Enter", u"ENTERICON"),
-			VKB_OK_ICON: ("OK", u"ENTERICON"),
-			VKB_SAVE_ICON: ("Save", u"ENTERICON"),
-			VKB_SEARCH_ICON: ("Search", u"ENTERICON"),
+			VKB_DONE_ICON: ("Done", "ENTERICON"),
+			VKB_ENTER_ICON: ("Enter", "ENTERICON"),
+			VKB_OK_ICON: ("OK", "ENTERICON"),
+			VKB_SAVE_ICON: ("Save", "ENTERICON"),
+			VKB_SEARCH_ICON: ("Search", "ENTERICON"),
 			VKB_DONE_TEXT: ("Done", _("Done")),
 			VKB_ENTER_TEXT: ("Done", _("Enter")),
 			VKB_OK_TEXT: ("OK", _("OK")),
 			VKB_SAVE_TEXT: ("Save", _("Save")),
 			VKB_SEARCH_TEXT: ("Search", _("Search"))
-		}.get(style, ("Enter", u"ENTERICON"))
+		}.get(style, ("Enter", "ENTERICON"))
 		self.bg = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_bg.png"))  # Legacy support only!
 		self.bg_l = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_bg_l.png"))
 		self.bg_m = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_bg_m.png"))
@@ -107,22 +97,22 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		key_space = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_space.png"))
 		key_space_alt = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_space_alt.png"))
 		self.keyHighlights = {  # This is a table of cell highlight components (left, middle and right)
-			u"EXIT": (key_red_l, key_red_m, key_red_r),
-			u"EXITICON": (key_red_l, key_red_m, key_red_r),
-			u"DONE": (key_green_l, key_green_m, key_green_r),
-			u"ENTER": (key_green_l, key_green_m, key_green_r),
-			u"ENTERICON": (key_green_l, key_green_m, key_green_r),
-			u"OK": (key_green_l, key_green_m, key_green_r),
-			u"SAVE": (key_green_l, key_green_m, key_green_r),
-			# u"LOC": (key_yellow_l, key_yellow_m, key_yellow_r),
-			# u"LOCALE": (key_yellow_l, key_yellow_m, key_yellow_r),
-			# u"LOCALEICON": (key_yellow_l, key_yellow_m, key_yellow_r),
-			u"SHIFT": (key_yellow_l, key_yellow_m, key_yellow_r),
-			u"SHIFTICON": (key_yellow_l, key_yellow_m, key_yellow_r),
-			u"CAPS": (key_blue_l, key_blue_m, key_blue_r),
-			u"LOCK": (key_blue_l, key_blue_m, key_blue_r),
-			u"CAPSLOCK": (key_blue_l, key_blue_m, key_blue_r),
-			u"CAPSLOCKICON": (key_blue_l, key_blue_m, key_blue_r)
+			"EXIT": (key_red_l, key_red_m, key_red_r),
+			"EXITICON": (key_red_l, key_red_m, key_red_r),
+			"DONE": (key_green_l, key_green_m, key_green_r),
+			"ENTER": (key_green_l, key_green_m, key_green_r),
+			"ENTERICON": (key_green_l, key_green_m, key_green_r),
+			"OK": (key_green_l, key_green_m, key_green_r),
+			"SAVE": (key_green_l, key_green_m, key_green_r),
+			# "LOC": (key_yellow_l, key_yellow_m, key_yellow_r),
+			# "LOCALE": (key_yellow_l, key_yellow_m, key_yellow_r),
+			# "LOCALEICON": (key_yellow_l, key_yellow_m, key_yellow_r),
+			"SHIFT": (key_yellow_l, key_yellow_m, key_yellow_r),
+			"SHIFTICON": (key_yellow_l, key_yellow_m, key_yellow_r),
+			"CAPS": (key_blue_l, key_blue_m, key_blue_r),
+			"LOCK": (key_blue_l, key_blue_m, key_blue_r),
+			"CAPSLOCK": (key_blue_l, key_blue_m, key_blue_r),
+			"CAPSLOCKICON": (key_blue_l, key_blue_m, key_blue_r)
 		}
 		self.shiftMsgs = [
 			_("Lower case"),
@@ -131,323 +121,327 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			_("Special 2")
 		]
 		self.keyImages = [{
-			u"BACKSPACEICON": key_backspace,
-			u"CAPSLOCKICON": key_shift0,
-			u"CLEARICON": key_clear,
-			u"DELETEICON": key_delete,
-			u"ENTERICON": key_enter,
-			u"EXITICON": key_exit,
-			u"FIRSTICON": key_first,
-			u"LASTICON": key_last,
-			u"LOCALEICON": key_locale,
-			u"LEFTICON": key_left,
-			u"RIGHTICON": key_right,
-			u"SHIFTICON": key_shift,
-			u"SPACEICON": key_space,
-			u"SPACEICONALT": key_space_alt
+			# "ALLICON": key_all,
+			"BACKSPACEICON": key_backspace,
+			"CAPSLOCKICON": key_shift0,
+			"CLEARICON": key_clear,
+			"DELETEICON": key_delete,
+			"ENTERICON": key_enter,
+			"EXITICON": key_exit,
+			"FIRSTICON": key_first,
+			"LASTICON": key_last,
+			"LOCALEICON": key_locale,
+			"LEFTICON": key_left,
+			"RIGHTICON": key_right,
+			"SHIFTICON": key_shift,
+			"SPACEICON": key_space,
+			"SPACEICONALT": key_space_alt
 		}, {
-			u"BACKSPACEICON": key_backspace,
-			u"CAPSLOCKICON": key_shift1,
-			u"CLEARICON": key_clear,
-			u"DELETEICON": key_delete,
-			u"ENTERICON": key_enter,
-			u"EXITICON": key_exit,
-			u"FIRSTICON": key_first,
-			u"LASTICON": key_last,
-			u"LEFTICON": key_left,
-			u"LOCALEICON": key_locale,
-			u"RIGHTICON": key_right,
-			u"SHIFTICON": key_shift,
-			u"SPACEICON": key_space,
-			u"SPACEICONALT": key_space_alt
+			# "ALLICON": key_all,
+			"BACKSPACEICON": key_backspace,
+			"CAPSLOCKICON": key_shift1,
+			"CLEARICON": key_clear,
+			"DELETEICON": key_delete,
+			"ENTERICON": key_enter,
+			"EXITICON": key_exit,
+			"FIRSTICON": key_first,
+			"LASTICON": key_last,
+			"LEFTICON": key_left,
+			"LOCALEICON": key_locale,
+			"RIGHTICON": key_right,
+			"SHIFTICON": key_shift,
+			"SPACEICON": key_space,
+			"SPACEICONALT": key_space_alt
 		}, {
-			u"BACKSPACEICON": key_backspace,
-			u"CAPSLOCKICON": key_shift2,
-			u"CLEARICON": key_clear,
-			u"DELETEICON": key_delete,
-			u"ENTERICON": key_enter,
-			u"EXITICON": key_exit,
-			u"FIRSTICON": key_first,
-			u"LASTICON": key_last,
-			u"LEFTICON": key_left,
-			u"LOCALEICON": key_locale,
-			u"RIGHTICON": key_right,
-			u"SHIFTICON": key_shift,
-			u"SPACEICON": key_space,
-			u"SPACEICONALT": key_space_alt
+			# "ALLICON": key_all,
+			"BACKSPACEICON": key_backspace,
+			"CAPSLOCKICON": key_shift2,
+			"CLEARICON": key_clear,
+			"DELETEICON": key_delete,
+			"ENTERICON": key_enter,
+			"EXITICON": key_exit,
+			"FIRSTICON": key_first,
+			"LASTICON": key_last,
+			"LEFTICON": key_left,
+			"LOCALEICON": key_locale,
+			"RIGHTICON": key_right,
+			"SHIFTICON": key_shift,
+			"SPACEICON": key_space,
+			"SPACEICONALT": key_space_alt
 		}, {
-			u"BACKSPACEICON": key_backspace,
-			u"CAPSLOCKICON": key_shift3,
-			u"CLEARICON": key_clear,
-			u"DELETEICON": key_delete,
-			u"ENTERICON": key_enter,
-			u"EXITICON": key_exit,
-			u"FIRSTICON": key_first,
-			u"LASTICON": key_last,
-			u"LEFTICON": key_left,
-			u"LOCALEICON": key_locale,
-			u"RIGHTICON": key_right,
-			u"SHIFTICON": key_shift,
-			u"SPACEICON": key_space,
-			u"SPACEICONALT": key_space_alt
+			# "ALLICON": key_all,
+			"BACKSPACEICON": key_backspace,
+			"CAPSLOCKICON": key_shift3,
+			"CLEARICON": key_clear,
+			"DELETEICON": key_delete,
+			"ENTERICON": key_enter,
+			"EXITICON": key_exit,
+			"FIRSTICON": key_first,
+			"LASTICON": key_last,
+			"LEFTICON": key_left,
+			"LOCALEICON": key_locale,
+			"RIGHTICON": key_right,
+			"SHIFTICON": key_shift,
+			"SPACEICON": key_space,
+			"SPACEICONALT": key_space_alt
 		}]
 		self.cmds = {
-			u"": "pass",
-			u"ALL": "self['text'].markAll()",
-			u"ALLICON": "self['text'].markAll()",
-			u"BACK": "self['text'].deleteBackward()",
-			u"BACKSPACE": "self['text'].deleteBackward()",
-			u"BACKSPACEICON": "self['text'].deleteBackward()",
-			u"BLANK": "pass",
-			u"CAPS": "self.capsLockSelected()",
-			u"CAPSLOCK": "self.capsLockSelected()",
-			u"CAPSLOCKICON": "self.capsLockSelected()",
-			u"CLEAR": "self['text'].deleteAllChars()\nself['text'].update()",
-			u"CLEARICON": "self['text'].deleteAllChars()\nself['text'].update()",
-			u"CLR": "self['text'].deleteAllChars()\nself['text'].update()",
-			u"DEL": "self['text'].deleteForward()",
-			u"DELETE": "self['text'].deleteForward()",
-			u"DELETEICON": "self['text'].deleteForward()",
-			u"DONE": "self.save()",
-			u"ENTER": "self.save()",
-			u"ENTERICON": "self.save()",
-			u"ESC": "self.cancel()",
-			u"EXIT": "self.cancel()",
-			u"EXITICON": "self.cancel()",
-			u"FIRST": "self['text'].home()",
-			u"FIRSTICON": "self['text'].home()",
-			u"LAST": "self['text'].end()",
-			u"LASTICON": "self['text'].end()",
-			u"LEFT": "self['text'].left()",
-			u"LEFTICON": "self['text'].left()",
-			u"LOC": "self.localeMenu()",
-			u"LOCALE": "self.localeMenu()",
-			u"LOCALEICON": "self.localeMenu()",
-			u"LOCK": "self.capsLockSelected()",
-			u"OK": "self.save()",
-			u"RIGHT": "self['text'].right()",
-			u"RIGHTICON": "self['text'].right()",
-			u"SAVE": "self.save()",
-			u"SHIFT": "self.shiftSelected()",
-			u"SHIFTICON": "self.shiftSelected()",
-			u"SPACE": "self.space()",
-			u"SPACEICON": "self.space()",
-			u"SPACEICONALT": "self.space()"
+			"": "pass",
+			"ALL": "self['text'].markAll()",
+			"ALLICON": "self['text'].markAll()",
+			"BACK": "self['text'].deleteBackward()",
+			"BACKSPACE": "self['text'].deleteBackward()",
+			"BACKSPACEICON": "self['text'].deleteBackward()",
+			"BLANK": "pass",
+			"CAPS": "self.capsLockSelected()",
+			"CAPSLOCK": "self.capsLockSelected()",
+			"CAPSLOCKICON": "self.capsLockSelected()",
+			"CLEAR": "self['text'].deleteAllChars()\nself['text'].update()",
+			"CLEARICON": "self['text'].deleteAllChars()\nself['text'].update()",
+			"CLR": "self['text'].deleteAllChars()\nself['text'].update()",
+			"DEL": "self['text'].deleteForward()",
+			"DELETE": "self['text'].deleteForward()",
+			"DELETEICON": "self['text'].deleteForward()",
+			"DONE": "self.save()",
+			"ENTER": "self.save()",
+			"ENTERICON": "self.save()",
+			"ESC": "self.cancel()",
+			"EXIT": "self.cancel()",
+			"EXITICON": "self.cancel()",
+			"FIRST": "self['text'].home()",
+			"FIRSTICON": "self['text'].home()",
+			"LAST": "self['text'].end()",
+			"LASTICON": "self['text'].end()",
+			"LEFT": "self['text'].left()",
+			"LEFTICON": "self['text'].left()",
+			"LOC": "self.localeMenu()",
+			"LOCALE": "self.localeMenu()",
+			"LOCALEICON": "self.localeMenu()",
+			"LOCK": "self.capsLockSelected()",
+			"OK": "self.save()",
+			"RIGHT": "self['text'].right()",
+			"RIGHTICON": "self['text'].right()",
+			"SAVE": "self.save()",
+			"SHIFT": "self.shiftSelected()",
+			"SHIFTICON": "self.shiftSelected()",
+			"SPACE": "self['text'].char(' ')",
+			"SPACEICON": "self['text'].char(' ')",
+			"SPACEICONALT": "self['text'].char(' ')"
 		}
-		self.footer = [u"EXITICON", u"LEFTICON", u"RIGHTICON", SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, u"SHIFTICON", u"LOCALEICON", u"CLEARICON", u"DELETEICON"]
+		self.footer = ["EXITICON", "LEFTICON", "RIGHTICON", SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, "SHIFTICON", "LOCALEICON", "CLEARICON", "DELETEICON"]
 		self.czech = [
 			[
-				[u";", u"+", u"\u011B", u"\u0161", u"\u010D", u"\u0159", u"\u017E", u"\u00FD", u"\u00E1", u"\u00ED", u"\u00E9", u"=", u"", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"\u00FA", u"(", u")"],
-				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u016F", u"\u00A7", self.green, self.green],
-				[u"CAPSLOCKICON", u"\\", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				[";", "+", "\u011B", "\u0161", "\u010D", "\u0159", "\u017E", "\u00FD", "\u00E1", "\u00ED", "\u00E9", "=", "", "BACKSPACEICON"],
+				["FIRSTICON", "q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "\u00FA", "(", ")"],
+				["LASTICON", "a", "s", "d", "f", "g", "h", "j", "k", "l", "\u016F", "\u00A7", self.green, self.green],
+				["CAPSLOCKICON", "\\", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u".", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"%", u"'", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"/", u"(", u")"],
-				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\"", u"!", self.green, self.green],
-				[u"CAPSLOCKICON", u"|", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u"?", u":", u"_", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				[".", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "%", "'", "BACKSPACEICON"],
+				["FIRSTICON", "Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "/", "(", ")"],
+				["LASTICON", "A", "S", "D", "F", "G", "H", "J", "K", "L", "\"", "!", self.green, self.green],
+				["CAPSLOCKICON", "|", "Y", "X", "C", "V", "B", "N", "M", "?", ":", "_", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"\u00B0", u"~", u"\u011A", u"\u0160", u"\u010C", u"\u0158", u"\u017D", u"\u00DD", u"\u00C1", u"\u00CD", u"\u00C9", u"`", u"'", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"\\", u"|", u"\u20AC", u"\u0165", u"\u0164", u"\u0148", u"\u0147", u"\u00F3", u"\u00D3", u"\u00DA", u"\u00F7", u"\u00D7", u"\u00A4"],
-				[u"LASTICON", u"", u"\u0111", u"\u00D0", u"[", u"]", u"\u010F", u"\u010E", u"\u0142", u"\u0141", u"\u016E", u"\u00DF", self.green, self.green],
-				[u"CAPSLOCKICON", u"", u"", u"#", u"&", u"@", u"{", u"}", u"$", u"<", u">", u"*", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["\u00B0", "~", "\u011A", "\u0160", "\u010C", "\u0158", "\u017D", "\u00DD", "\u00C1", "\u00CD", "\u00C9", "`", "'", "BACKSPACEICON"],
+				["FIRSTICON", "\\", "|", "\u20AC", "\u0165", "\u0164", "\u0148", "\u0147", "\u00F3", "\u00D3", "\u00DA", "\u00F7", "\u00D7", "\u00A4"],
+				["LASTICON", "", "\u0111", "\u00D0", "[", "]", "\u010F", "\u010E", "\u0142", "\u0141", "\u016E", "\u00DF", self.green, self.green],
+				["CAPSLOCKICON", "", "", "#", "&", "@", "{", "}", "$", "<", ">", "*", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
 		self.english = [
 			[
-				[u"`", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"-", u"=", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"[", u"]", u"\\"],
-				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u";", u"'", self.green, self.green],
-				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"/", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "BACKSPACEICON"],
+				["FIRSTICON", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\"],
+				["LASTICON", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", self.green, self.green],
+				["CAPSLOCKICON", "CAPSLOCKICON", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"~", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"*", u"(", u")", u"_", u"+", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"{", u"}", u"|"],
-				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u":", u"\"", self.green, self.green],
-				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"<", u">", u"?", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "BACKSPACEICON"],
+				["FIRSTICON", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{", "}", "|"],
+				["LASTICON", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "\"", self.green, self.green],
+				["CAPSLOCKICON", "CAPSLOCKICON", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
 		self.french = [
 			[
-				[u"\u00B2", u"&", u"\u00E9", u"\"", u"'", u"(", u"-", u"\u00E8", u"_", u"\u00E7", u"\u00E0", u")", u"=", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"a", u"z", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"^", u"$", u"*"],
-				[u"LASTICON", u"q", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"m", u"\u00F9", self.green, self.green],
-				[u"CAPSLOCKICON", u"<", u"w", u"x", u"c", u"v", u"b", u"n", u",", u";", u":", u"!", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["\u00B2", "&", "\u00E9", "\"", "'", "(", "-", "\u00E8", "_", "\u00E7", "\u00E0", ")", "=", "BACKSPACEICON"],
+				["FIRSTICON", "a", "z", "e", "r", "t", "y", "u", "i", "o", "p", "^", "$", "*"],
+				["LASTICON", "q", "s", "d", "f", "g", "h", "j", "k", "l", "m", "\u00F9", self.green, self.green],
+				["CAPSLOCKICON", "<", "w", "x", "c", "v", "b", "n", ",", ";", ":", "!", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"\u00B0", u"+", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"A", u"Z", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"\u00A8", u"\u00A3", u"\u00B5"],
-				[u"LASTICON", u"Q", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"M", u"%", self.green, self.green],
-				[u"CAPSLOCKICON", u">", u"W", u"X", u"C", u"V", u"B", u"N", u"?", u".", u"/", u"\u00A7", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "\u00B0", "+", "BACKSPACEICON"],
+				["FIRSTICON", "A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "\u00A8", "\u00A3", "\u00B5"],
+				["LASTICON", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "%", self.green, self.green],
+				["CAPSLOCKICON", ">", "W", "X", "C", "V", "B", "N", "?", ".", "/", "\u00A7", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"", u"~", u"#", u"{", u"[", u"|", u"`", u"\\", u"^", u"@", u"]", u"}", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"", u"", u"\u20AC", u"", u"", u"", u"", u"", u"", u"", u"", u"\u00A4", u""],
-				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", self.green, self.green],
-				[u"CAPSLOCKICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "", "~", "#", "{", "[", "|", "`", "\\", "^", "@", "]", "}", "BACKSPACEICON"],
+				["FIRSTICON", "", "", "\u20AC", "", "", "", "", "", "", "", "", "\u00A4", ""],
+				["LASTICON", "", "", "", "", "", "", "", "", "", "", "", self.green, self.green],
+				["CAPSLOCKICON", "", "", "", "", "", "", "", "", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"", u"\u00E2", u"\u00EA", u"\u00EE", u"\u00F4", u"\u00FB", u"\u00E4", u"\u00EB", u"\u00EF", u"\u00F6", u"\u00FC", u"", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"", u"\u00E0", u"\u00E8", u"\u00EC", u"\u00F2", u"\u00F9", u"\u00E1", u"\u00E9", u"\u00ED", u"\u00F3", u"\u00FA", u"", u""],
-				[u"LASTICON", u"", u"\u00C2", u"\u00CA", u"\u00CE", u"\u00D4", u"\u00DB", u"\u00C4", u"\u00CB", u"\u00CF", u"\u00D6", u"\u00DC", self.green, self.green],
-				[u"CAPSLOCKICON", u"", u"\u00C0", u"\u00C8", u"\u00CC", u"\u00D2", u"\u00D9", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "", "\u00E2", "\u00EA", "\u00EE", "\u00F4", "\u00FB", "\u00E4", "\u00EB", "\u00EF", "\u00F6", "\u00FC", "", "BACKSPACEICON"],
+				["FIRSTICON", "", "\u00E0", "\u00E8", "\u00EC", "\u00F2", "\u00F9", "\u00E1", "\u00E9", "\u00ED", "\u00F3", "\u00FA", "", ""],
+				["LASTICON", "", "\u00C2", "\u00CA", "\u00CE", "\u00D4", "\u00DB", "\u00C4", "\u00CB", "\u00CF", "\u00D6", "\u00DC", self.green, self.green],
+				["CAPSLOCKICON", "", "\u00C0", "\u00C8", "\u00CC", "\u00D2", "\u00D9", "\u00C1", "\u00C9", "\u00CD", "\u00D3", "\u00DA", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
 		self.german = [
 			[
-				[u"^", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"\u00DF", u"'", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"\u00FC", u"+", u"#"],
-				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u00F6", u"\u00E4", self.green, self.green],
-				[u"CAPSLOCKICON", u"<", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["^", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "\u00DF", "'", "BACKSPACEICON"],
+				["FIRSTICON", "q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "\u00FC", "+", "#"],
+				["LASTICON", "a", "s", "d", "f", "g", "h", "j", "k", "l", "\u00F6", "\u00E4", self.green, self.green],
+				["CAPSLOCKICON", "<", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"\u00B0", u"!", u"\"", u"\u00A7", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"?", u"`", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"\u00DC", u"*", u"'"],
-				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\u00D6", u"\u00C4", self.green, self.green],
-				[u"CAPSLOCKICON", u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CAPSLOCKICON", U"CAPSLOCKICON"],
+				["\u00B0", "!", "\"", "\u00A7", "$", "%", "&", "/", "(", ")", "=", "?", "`", "BACKSPACEICON"],
+				["FIRSTICON", "Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "\u00DC", "*", "'"],
+				["LASTICON", "A", "S", "D", "F", "G", "H", "J", "K", "L", "\u00D6", "\u00C4", self.green, self.green],
+				["CAPSLOCKICON", ">", "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"", u"\u00B2", u"\u00B3", u"", u"", u"", u"{", u"[", u"]", u"}", u"\\", u"\u1E9E", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"@", u"", u"\u20AC", u"", u"", u"", u"", u"", u"", u"", u"", u"~", u""],
-				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", self.green, self.green],
-				[u"CAPSLOCKICON", u"|", u"", u"", u"", u"", u"", u"", u"\u00B5", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "", "\u00B2", "\u00B3", "", "", "", "{", "[", "]", "}", "\\", "\u1E9E", "BACKSPACEICON"],
+				["FIRSTICON", "@", "", "\u20AC", "", "", "", "", "", "", "", "", "~", ""],
+				["LASTICON", "", "", "", "", "", "", "", "", "", "", "", self.green, self.green],
+				["CAPSLOCKICON", "|", "", "", "", "", "", "", "\u00B5", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
 		self.greek = [
 			[
-				[u"`", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"-", u"=", u"BACKSPACEICON"],
-				[u"FIRSTICON", u";", u"\u03C2", u"\u03B5", u"\u03C1", u"\u03C4", u"\u03C5", u"\u03B8", u"\u03B9", u"\u03BF", u"\u03C0", u"[", u"]", u"\\"],
-				[u"LASTICON", u"\u03B1", u"\u03C3", u"\u03B4", u"\u03C6", u"\u03B3", u"\u03B7", u"\u03BE", u"\u03BA", u"\u03BB", u"\u0384", u"'", self.green, self.green],
-				[u"CAPSLOCKICON", u"<", u"\u03B6", u"\u03C7", u"\u03C8", u"\u03C9", u"\u03B2", u"\u03BD", u"\u03BC", u",", ".", u"/", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "BACKSPACEICON"],
+				["FIRSTICON", ";", "\u03C2", "\u03B5", "\u03C1", "\u03C4", "\u03C5", "\u03B8", "\u03B9", "\u03BF", "\u03C0", "[", "]", "\\"],
+				["LASTICON", "\u03B1", "\u03C3", "\u03B4", "\u03C6", "\u03B3", "\u03B7", "\u03BE", "\u03BA", "\u03BB", "\u0384", "'", self.green, self.green],
+				["CAPSLOCKICON", "<", "\u03B6", "\u03C7", "\u03C8", "\u03C9", "\u03B2", "\u03BD", "\u03BC", ",", ".", "/", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"~", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"*", u"(", u")", u"_", u"+", u"BACKSPACEICON"],
-				[u"FIRSTICON", u":", u"\u0385", u"\u0395", u"\u03A1", u"\u03A4", u"\u03A5", u"\u0398", u"\u0399", u"\u039F", u"\u03A0", u"{", u"}", u"|"],
-				[u"LASTICON", u"\u0391", u"\u03A3", u"\u0394", u"\u03A6", u"\u0393", u"\u0397", u"\u039E", u"\u039A", u"\u039B", u"\u00A8", u"\"", self.green, self.green],
-				[u"CAPSLOCKICON", u">", u"\u0396", u"\u03A7", u"\u03A8", u"\u03A9", u"\u0392", u"\u039D", u"\u039C", u"<", u">", u"?", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "BACKSPACEICON"],
+				["FIRSTICON", ":", "\u0385", "\u0395", "\u03A1", "\u03A4", "\u03A5", "\u0398", "\u0399", "\u039F", "\u03A0", "{", "}", "|"],
+				["LASTICON", "\u0391", "\u03A3", "\u0394", "\u03A6", "\u0393", "\u0397", "\u039E", "\u039A", "\u039B", "\u00A8", "\"", self.green, self.green],
+				["CAPSLOCKICON", ">", "\u0396", "\u03A7", "\u03A8", "\u03A9", "\u0392", "\u039D", "\u039C", "<", ">", "?", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"", u"\u00B2", u"\u00B3", u"\u00A3", u"\u00A7", u"\u00B6", u"", u"\u00A4", u"\u00A6", u"\u00B0", u"\u00B1", u"\u00BD", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"", u"\u03AC", u"\u03AD", u"\u03AE", u"\u03AF", u"\u03CC", u"\u03CD", u"\u03CE", u"\u03CA", u"\u03CB", u"\u00AB", u"\u00BB", u"\u00AC"],
-				[u"LASTICON", u"", u"\u0386", u"\u0388", u"\u0389", u"\u038A", u"\u038C", u"\u038E", u"\u038F", u"\u03AA", u"\u03AB", u"\u0385", self.green, self.green],
-				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"", u"", u"", u"\u00A9", u"\u00AE", u"\u20AC", u"\u00A5", u"\u0390", u"\u03B0", u"\u0387", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "", "\u00B2", "\u00B3", "\u00A3", "\u00A7", "\u00B6", "", "\u00A4", "\u00A6", "\u00B0", "\u00B1", "\u00BD", "BACKSPACEICON"],
+				["FIRSTICON", "", "\u03AC", "\u03AD", "\u03AE", "\u03AF", "\u03CC", "\u03CD", "\u03CE", "\u03CA", "\u03CB", "\u00AB", "\u00BB", "\u00AC"],
+				["LASTICON", "", "\u0386", "\u0388", "\u0389", "\u038A", "\u038C", "\u038E", "\u038F", "\u03AA", "\u03AB", "\u0385", self.green, self.green],
+				["CAPSLOCKICON", "CAPSLOCKICON", "", "", "", "\u00A9", "\u00AE", "\u20AC", "\u00A5", "\u0390", "\u03B0", "\u0387", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
 		self.latvian = [
 			[
-				[u"", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"-", u"f", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"\u016B", u"g", u"j", u"r", u"m", u"v", u"n", u"z", u"\u0113", u"\u010D", u"\u017E", u"h", u"\u0137"],
-				[u"LASTICON", u"\u0161", u"u", u"s", u"i", u"l", u"d", u"a", u"t", u"e", u"c", u"\u00B4", self.green, self.green],
-				[u"CAPSLOCKICON", u"\u0123", u"\u0146", u"b", u"\u012B", u"k", u"p", u"o", u"\u0101", u",", u".", u"\u013C", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "f", "BACKSPACEICON"],
+				["FIRSTICON", "\u016B", "g", "j", "r", "m", "v", "n", "z", "\u0113", "\u010D", "\u017E", "h", "\u0137"],
+				["LASTICON", "\u0161", "u", "s", "i", "l", "d", "a", "t", "e", "c", "\u00B4", self.green, self.green],
+				["CAPSLOCKICON", "\u0123", "\u0146", "b", "\u012B", "k", "p", "o", "\u0101", ",", ".", "\u013C", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"?", u"!", u"\u00AB", u"\u00BB", u"$", u"%", u"/", u"&", u"\u00D7", u"(", u")", u"_", u"F", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"\u016A", u"G", u"J", u"R", u"M", u"V", u"N", u"Z", u"\u0112", u"\u010C", u"\u017D", u"H", u"\u0136"],
-				[u"LASTICON", u"\u0160", u"U", u"S", u"I", u"L", u"D", u"A", u"T", u"E", u"C", u"\u00B0", self.green, self.green],
-				[u"CAPSLOCKICON", u"\u0122", u"\u0145", u"B", u"\u012A", u"K", u"P", u"O", u"\u0100", u";", u":", u"\u013B", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["?", "!", "\u00AB", "\u00BB", "$", "%", "/", "&", "\u00D7", "(", ")", "_", "F", "BACKSPACEICON"],
+				["FIRSTICON", "\u016A", "G", "J", "R", "M", "V", "N", "Z", "\u0112", "\u010C", "\u017D", "H", "\u0136"],
+				["LASTICON", "\u0160", "U", "S", "I", "L", "D", "A", "T", "E", "C", "\u00B0", self.green, self.green],
+				["CAPSLOCKICON", "\u0122", "\u0145", "B", "\u012A", "K", "P", "O", "\u0100", ";", ":", "\u013B", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"\u00AB", u"", u"", u"\u20AC", u"\"", u"'", u"", u":", u"", u"", u"\u2013", u"=", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"q", u"\u0123", u"", u"\u0157", u"w", u"y", u"", u"", u"", u"", u"[", u"]", u""],
-				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"\u20AC", u"", u"\u00B4", self.green, self.green],
-				[u"CAPSLOCKICON", u"\\", u"", u"x", u"", u"\u0137", u"", u"\u00F5", u"", u"<", u">", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "\u00AB", "", "", "\u20AC", "\"", "'", "", ":", "", "", "\u2013", "=", "BACKSPACEICON"],
+				["FIRSTICON", "q", "\u0123", "", "\u0157", "w", "y", "", "", "", "", "[", "]", ""],
+				["LASTICON", "", "", "", "", "", "", "", "", "\u20AC", "", "\u00B4", self.green, self.green],
+				["CAPSLOCKICON", "\\", "", "x", "", "\u0137", "", "\u00F5", "", "<", ">", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"", u"@", u"#", u"$", u"~", u"^", u"\u00B1", u"", u"", u"", u"\u2014", u";", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"Q", u"\u0122", u"", u"\u0156", u"W", u"Y", u"", u"", u"", u"", u"{", u"}", u""],
-				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"\u00A8", self.green, self.green],
-				[u"CAPSLOCKICON", u"|", u"", u"X", u"", u"\u0136", u"", u"\u00D5", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "", "@", "#", "$", "~", "^", "\u00B1", "", "", "", "\u2014", ";", "BACKSPACEICON"],
+				["FIRSTICON", "Q", "\u0122", "", "\u0156", "W", "Y", "", "", "", "", "{", "}", ""],
+				["LASTICON", "", "", "", "", "", "", "", "", "", "", "\u00A8", self.green, self.green],
+				["CAPSLOCKICON", "|", "", "X", "", "\u0136", "", "\u00D5", "", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
 		self.russian = [
 			[
-				[u"\u0451", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"-", u"=", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"\u0439", u"\u0446", u"\u0443", u"\u043A", u"\u0435", u"\u043D", u"\u0433", u"\u0448", u"\u0449", u"\u0437", u"\u0445", u"\u044A", u"\\"],
-				[u"LASTICON", u"\u0444", u"\u044B", u"\u0432", u"\u0430", u"\u043F", u"\u0440", u"\u043E", u"\u043B", u"\u0434", u"\u0436", u"\u044D", self.green, self.green],
-				[u"CAPSLOCKICON", u"\\", u"\u044F", u"\u0447", u"\u0441", u"\u043C", u"\u0438", u"\u0442", u"\u044C", u"\u0431", u"\u044E", u".", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["\u0451", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "BACKSPACEICON"],
+				["FIRSTICON", "\u0439", "\u0446", "\u0443", "\u043A", "\u0435", "\u043D", "\u0433", "\u0448", "\u0449", "\u0437", "\u0445", "\u044A", "\\"],
+				["LASTICON", "\u0444", "\u044B", "\u0432", "\u0430", "\u043F", "\u0440", "\u043E", "\u043B", "\u0434", "\u0436", "\u044D", self.green, self.green],
+				["CAPSLOCKICON", "\\", "\u044F", "\u0447", "\u0441", "\u043C", "\u0438", "\u0442", "\u044C", "\u0431", "\u044E", ".", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"\u0401", u"!", u"\"", u"\u2116", u";", u"%", u":", u"?", u"*", u"(", u")", u"_", u"+", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"\u0419", u"\u0426", u"\u0423", u"\u041A", u"\u0415", u"\u041D", u"\u0413", u"\u0428", u"\u0429", u"\u0417", u"\u0425", u"\u042A", u"/"],
-				[u"LASTICON", u"\u0424", u"\u042B", u"\u0412", u"\u0410", u"\u041F", u"\u0420", u"\u041E", u"\u041B", u"\u0414", u"\u0416", u"\u042D", self.green, self.green],
-				[u"CAPSLOCKICON", u"/", u"\u042F", u"\u0427", u"\u0421", u"\u041C", u"\u0418", u"\u0422", u"\u042C", u"\u0411", u"\u042E", u",", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["\u0401", "!", "\"", "\u2116", ";", "%", ":", "?", "*", "(", ")", "_", "+", "BACKSPACEICON"],
+				["FIRSTICON", "\u0419", "\u0426", "\u0423", "\u041A", "\u0415", "\u041D", "\u0413", "\u0428", "\u0429", "\u0417", "\u0425", "\u042A", "/"],
+				["LASTICON", "\u0424", "\u042B", "\u0412", "\u0410", "\u041F", "\u0420", "\u041E", "\u041B", "\u0414", "\u0416", "\u042D", self.green, self.green],
+				["CAPSLOCKICON", "/", "\u042F", "\u0427", "\u0421", "\u041C", "\u0418", "\u0422", "\u042C", "\u0411", "\u042E", ",", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"", u"\u00A7", u"@", u"#", u"&", u"$", u"\u20BD", u"\u20AC", u"", u"", u"", u"", u""],
-				[u"LASTICON", u"", u"<", u">", u"[", u"]", u"{", u"}", u"", u"", u"", u"", self.green, self.green],
-				[u"CAPSLOCKICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "", "", "", "", "", "", "", "", "", "", "", "", "BACKSPACEICON"],
+				["FIRSTICON", "", "\u00A7", "@", "#", "&", "$", "\u20BD", "\u20AC", "", "", "", "", ""],
+				["LASTICON", "", "<", ">", "[", "]", "{", "}", "", "", "", "", self.green, self.green],
+				["CAPSLOCKICON", "", "", "", "", "", "", "", "", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
 		self.scandinavian = [
 			[
-				[u"\u00A7", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"+", u"\u00B4", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"\u00E5", u"\u00A8", u"'"],
-				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u00F6", u"\u00E4", self.green, self.green],
-				[u"CAPSLOCKICON", u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["\u00A7", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "+", "\u00B4", "BACKSPACEICON"],
+				["FIRSTICON", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "\u00E5", "\u00A8", "'"],
+				["LASTICON", "a", "s", "d", "f", "g", "h", "j", "k", "l", "\u00F6", "\u00E4", self.green, self.green],
+				["CAPSLOCKICON", "<", "z", "x", "c", "v", "b", "n", "m", ",", ".", "-", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"\u00BD", u"!", u"\"", u"#", u"\u00A4", u"%", u"&", u"/", u"(", u")", u"=", u"?", u"`", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"\u00C5", u"^", u"*"],
-				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\u00D6", u"\u00C4", self.green, self.green],
-				[u"CAPSLOCKICON", u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["\u00BD", "!", "\"", "#", "\u00A4", "%", "&", "/", "(", ")", "=", "?", "`", "BACKSPACEICON"],
+				["FIRSTICON", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "\u00C5", "^", "*"],
+				["LASTICON", "A", "S", "D", "F", "G", "H", "J", "K", "L", "\u00D6", "\u00C4", self.green, self.green],
+				["CAPSLOCKICON", ">", "Z", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"", u"@", u"\u00A3", u"$", u"\u20AC", u"", u"{", u"[", u"]", u"}", u"\\", u"", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"", u"", u"\u20AC", u"", u"", u"", u"", u"", u"", u"", u"", u"~", u""],
-				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", self.green, self.green],
-				[u"CAPSLOCKICON", u"|", u"", u"", u"", u"", u"", u"", u"\u00B5", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "", "@", "\u00A3", "$", "\u20AC", "", "{", "[", "]", "}", "\\", "", "BACKSPACEICON"],
+				["FIRSTICON", "", "", "\u20AC", "", "", "", "", "", "", "", "", "~", ""],
+				["LASTICON", "", "", "", "", "", "", "", "", "", "", "", self.green, self.green],
+				["CAPSLOCKICON", "|", "", "", "", "", "", "", "\u00B5", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"\u00E2", u"\u00EA", u"\u00EE", u"\u00F4", u"\u00FB", u"\u00E4", u"\u00EB", u"\u00EF", u"\u00F6", u"\u00FC", u"\u00E3", u"", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"\u00E0", u"\u00E8", u"\u00EC", u"\u00F2", u"\u00F9", u"\u00E1", u"\u00E9", u"\u00ED", u"\u00F3", u"\u00FA", u"\u00F5", u"", u""],
-				[u"LASTICON", u"\u00C2", u"\u00CA", u"\u00CE", u"\u00D4", u"\u00DB", u"\u00C4", u"\u00CB", u"\u00CF", u"\u00D6", u"\u00DC", u"\u00C3", self.green, self.green],
-				[u"CAPSLOCKICON", u"\u00C0", u"\u00C8", u"\u00CC", u"\u00D2", u"\u00D9", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"\u00D5", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "\u00E2", "\u00EA", "\u00EE", "\u00F4", "\u00FB", "\u00E4", "\u00EB", "\u00EF", "\u00F6", "\u00FC", "\u00E3", "", "BACKSPACEICON"],
+				["FIRSTICON", "\u00E0", "\u00E8", "\u00EC", "\u00F2", "\u00F9", "\u00E1", "\u00E9", "\u00ED", "\u00F3", "\u00FA", "\u00F5", "", ""],
+				["LASTICON", "\u00C2", "\u00CA", "\u00CE", "\u00D4", "\u00DB", "\u00C4", "\u00CB", "\u00CF", "\u00D6", "\u00DC", "\u00C3", self.green, self.green],
+				["CAPSLOCKICON", "\u00C0", "\u00C8", "\u00CC", "\u00D2", "\u00D9", "\u00C1", "\u00C9", "\u00CD", "\u00D3", "\u00DA", "\u00D5", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
 		self.spanish = [
 			[
-				[u"\u00BA", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"'", u"\u00A1", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"`", u"+", u"\u00E7"],
-				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u00F1", u"\u00B4", self.green, self.green],  # [, ]
-				[u"CAPSLOCKICON", u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["\u00BA", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "'", "\u00A1", "BACKSPACEICON"],
+				["FIRSTICON", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "`", "+", "\u00E7"],
+				["LASTICON", "a", "s", "d", "f", "g", "h", "j", "k", "l", "\u00F1", "\u00B4", self.green, self.green],  # [, ]
+				["CAPSLOCKICON", "<", "z", "x", "c", "v", "b", "n", "m", ",", ".", "-", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"\u00AA", u"!", u"\"", u"\u00B7", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"?", u"\u00BF", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"^", u"*", u"\u00C7"],
-				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\u00D1", u"\u00A8", self.green, self.green],  # {, }
-				[u"CAPSLOCKICON", u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["\u00AA", "!", "\"", "\u00B7", "$", "%", "&", "/", "(", ")", "=", "?", "\u00BF", "BACKSPACEICON"],
+				["FIRSTICON", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "^", "*", "\u00C7"],
+				["LASTICON", "A", "S", "D", "F", "G", "H", "J", "K", "L", "\u00D1", "\u00A8", self.green, self.green],  # {, }
+				["CAPSLOCKICON", ">", "Z", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"\\", u"|", u"@", u"#", u"~", u"\u20AC", u"\u00AC", u"", u"", u"", u"", u"", u"", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"", u"\u00E1", u"\u00E9", u"\u00ED", u"\u00F3", u"\u00FA", u"\u00FC", u"", u"", u"[", u"]", u"", u""],
-				[u"LASTICON", u"", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"\u00DC", u"", u"", u"{", u"}", self.green, self.green],
-				[u"CAPSLOCKICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["\\", "|", "@", "#", "~", "\u20AC", "\u00AC", "", "", "", "", "", "", "BACKSPACEICON"],
+				["FIRSTICON", "", "\u00E1", "\u00E9", "\u00ED", "\u00F3", "\u00FA", "\u00FC", "", "", "[", "]", "", ""],
+				["LASTICON", "", "\u00C1", "\u00C9", "\u00CD", "\u00D3", "\u00DA", "\u00DC", "", "", "{", "}", self.green, self.green],
+				["CAPSLOCKICON", "", "", "", "", "", "", "", "", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
 		self.thai = [
 			[
-				[u"", u"", u"\u0E45", u"\u0E20", u"\u0E16", u"\u0E38", u"\u0E36", u"\u0E04", u"\u0E15", u"\u0E08", u"\u0E02", u"\u0E0A", u"", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"\u0E46", u"\u0E44", u"\u0E33", u"\u0E1E", u"\u0E30", u"\u0E31", u"\u0E35", u"\u0E23", u"\u0E19", u"\u0E22", u"\u0E1A", u"\u0E25", u""],
-				[u"LASTICON", u"\u0E1F", u"\u0E2B", u"\u0E01", u"\u0E14", u"\u0E40", u"\u0E49", u"\u0E48", u"\u0E32", u"\u0E2A", u"\u0E27", u"\u0E07", u"\u0E03", self.green],
-				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"\u0E1C", u"\u0E1B", u"\u0E41", u"\u0E2D", u"\u0E34", u"\u0E37", u"\u0E17", u"\u0E21", u"\u0E43", u"\u0E1D", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "", "\u0E45", "\u0E20", "\u0E16", "\u0E38", "\u0E36", "\u0E04", "\u0E15", "\u0E08", "\u0E02", "\u0E0A", "", "BACKSPACEICON"],
+				["FIRSTICON", "\u0E46", "\u0E44", "\u0E33", "\u0E1E", "\u0E30", "\u0E31", "\u0E35", "\u0E23", "\u0E19", "\u0E22", "\u0E1A", "\u0E25", ""],
+				["LASTICON", "\u0E1F", "\u0E2B", "\u0E01", "\u0E14", "\u0E40", "\u0E49", "\u0E48", "\u0E32", "\u0E2A", "\u0E27", "\u0E07", "\u0E03", self.green],
+				["CAPSLOCKICON", "CAPSLOCKICON", "\u0E1C", "\u0E1B", "\u0E41", "\u0E2D", "\u0E34", "\u0E37", "\u0E17", "\u0E21", "\u0E43", "\u0E1D", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"", u"\u0E51", u"\u0E52", u"\u0E53", u"\u0E54", u"\u0E39", u"\u0E55", u"\u0E56", u"\u0E57", u"\u0E58", u"\u0E59", u"", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"\u0E50", u"", u"\u0E0E", u"\u0E11", u"\u0E18", u"\u0E4D", u"\u0E4A", u"\u0E13", u"\u0E2F", u"\u0E0D", u"\u0E10", u"\u0E05", u""],
-				[u"LASTICON", u"\u0E24", u"\u0E06", u"\u0E0F", u"\u0E42", u"\u0E0C", u"\u0E47", u"\u0E4B", u"\u0E29", u"\u0E28", u"\u0E0B", u"", u"\u0E3F", self.green],
-				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"", u"\u0E09", u"\u0E2E", u"\u0E3A", u"\u0E4C", u"", u"\u0E12", u"\u0E2C", u"\u0E26", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+				["", "", "\u0E51", "\u0E52", "\u0E53", "\u0E54", "\u0E39", "\u0E55", "\u0E56", "\u0E57", "\u0E58", "\u0E59", "", "BACKSPACEICON"],
+				["FIRSTICON", "\u0E50", "", "\u0E0E", "\u0E11", "\u0E18", "\u0E4D", "\u0E4A", "\u0E13", "\u0E2F", "\u0E0D", "\u0E10", "\u0E05", ""],
+				["LASTICON", "\u0E24", "\u0E06", "\u0E0F", "\u0E42", "\u0E0C", "\u0E47", "\u0E4B", "\u0E29", "\u0E28", "\u0E0B", "", "\u0E3F", self.green],
+				["CAPSLOCKICON", "CAPSLOCKICON", "", "\u0E09", "\u0E2E", "\u0E3A", "\u0E4C", "", "\u0E12", "\u0E2C", "\u0E26", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -524,10 +518,10 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"8": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"9": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"gotAsciiCode": (self.keyGotAscii, _("Keyboard data entry"))
-		}, -2, description=_("Virtual KeyBoard Functions"))
+		}, prio=0, description=_("Virtual KeyBoard Actions"))
 		self.lang = international.getLocale()
 		self["prompt"] = Label(prompt)
-		self["text"] = Input(text=text, maxSize=maxSize, visible_width=visible_width, type=type, currPos=len(six.ensure_text(text, errors='ignore')) if currPos is None else currPos, allMarked=allMarked)
+		self["text"] = Input(text=text, maxSize=maxSize, visible_width=visible_width, type=type, currPos=len(text) if currPos is None else currPos, allMarked=allMarked)
 		self["list"] = VirtualKeyBoardList([])
 		self["mode"] = Label(_("INS"))
 		self["locale"] = Label("%s: %s" % (_("Locale"), self.lang))
@@ -569,345 +563,349 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.smsChar = None
 		self.setLocale()
 		self.onExecBegin.append(self.setKeyboardModeAscii)
-		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self["list"].instance.enableAutoNavigation(False)
+		self.buildVirtualKeyBoard()
 
 	def arabic(self, base):
 		keyList = deepcopy(base)
-		keyList[1][0][8] = u"\u066D"
+		keyList[1][0][8] = "\u066D"
 		keyList.extend([[
-			[u"\u0630", u"\u0661", u"\u0662", u"\u0663", u"\u0664", u"\u0665", u"\u0666", u"\u0667", u"\u0668", u"\u0669", u"\u0660", u"-", u"=", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"\u0636", u"\u0635", u"\u062B", u"\u0642", u"\u0641", u"\u063A", u"\u0639", u"\u0647", u"\u062E", u"\u062D", u"\u062C", u"\u062F", u"\\"],
-			[u"LASTICON", u"\u0634", u"\u0633", u"\u064A", u"\u0628", u"\u0644", u"\u0627", u"\u062A", u"\u0646", u"\u0645", u"\u0643", u"\u0637", self.green, self.green],
-			[u"CAPSLOCKICON", u"CAPSLOCKICON", u"\u0626", u"\u0621", u"\u0624", u"\u0631", u"\uFEFB", u"\u0649", u"\u0629", u"\u0648", u"\u0632", u"\u0638", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["\u0630", "\u0661", "\u0662", "\u0663", "\u0664", "\u0665", "\u0666", "\u0667", "\u0668", "\u0669", "\u0660", "-", "=", "BACKSPACEICON"],
+			["FIRSTICON", "\u0636", "\u0635", "\u062B", "\u0642", "\u0641", "\u063A", "\u0639", "\u0647", "\u062E", "\u062D", "\u062C", "\u062F", "\\"],
+			["LASTICON", "\u0634", "\u0633", "\u064A", "\u0628", "\u0644", "\u0627", "\u062A", "\u0646", "\u0645", "\u0643", "\u0637", self.green, self.green],
+			["CAPSLOCKICON", "CAPSLOCKICON", "\u0626", "\u0621", "\u0624", "\u0631", "\uFEFB", "\u0649", "\u0629", "\u0648", "\u0632", "\u0638", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		], [
-			[u"\u0651", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"\u066D", u"(", u")", u"_", u"+", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"\u0636", u"\u0635", u"\u062B", u"\u0642", u"\u0641", u"\u063A", u"\u0639", u"\u00F7", u"\u00D7", u"\u061B", u">", u"<", u"|"],
-			[u"LASTICON", u"\u0634", u"\u0633", u"\u064A", u"\u0628", u"\u0644", u"\u0623", u"\u0640", u"\u060C", u"/", u":", u"\"", self.green, self.green],
-			[u"CAPSLOCKICON", u"CAPSLOCKICON", u"\u0626", u"\u0621", u"\u0624", u"\u0631", u"\uFEF5", u"\u0622", u"\u0629", u",", u".", u"\u061F", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["\u0651", "!", "@", "#", "$", "%", "^", "&", "\u066D", "(", ")", "_", "+", "BACKSPACEICON"],
+			["FIRSTICON", "\u0636", "\u0635", "\u062B", "\u0642", "\u0641", "\u063A", "\u0639", "\u00F7", "\u00D7", "\u061B", ">", "<", "|"],
+			["LASTICON", "\u0634", "\u0633", "\u064A", "\u0628", "\u0644", "\u0623", "\u0640", "\u060C", "/", ":", "\"", self.green, self.green],
+			["CAPSLOCKICON", "CAPSLOCKICON", "\u0626", "\u0621", "\u0624", "\u0631", "\uFEF5", "\u0622", "\u0629", ",", ".", "\u061F", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		]])
 		return keyList
 
 	def belgian(self, base):
 		keyList = deepcopy(base)
-		keyList[0][0][6] = u"\u00A7"
-		keyList[0][0][8] = u"!"
-		keyList[0][0][12] = u"-"
-		keyList[0][1][13] = u"\u00B5"
-		keyList[0][3][11] = u"="
-		keyList[1][0][0] = u"\u00B3"
-		keyList[1][0][12] = u"_"
-		keyList[1][1][11] = u"\u00A8"
-		keyList[1][1][12] = u"*"
-		keyList[1][1][13] = u"\u00A3"
-		keyList[1][3][11] = u"+"
-		keyList[2][0] = [u"", u"|", u"@", u"#", u"{", u"[", u"^", u"", u"", u"{", u"}", u"", u"", u"BACKSPACEICON"]
-		keyList[2][1][11] = u"["
-		keyList[2][1][12] = u"]"
-		keyList[2][1][13] = u"`"
-		keyList[2][2][11] = u"\u00B4"
-		keyList[2][3][1] = u"\\"
-		keyList[2][3][11] = u"~"
+		keyList[0][0][6] = "\u00A7"
+		keyList[0][0][8] = "!"
+		keyList[0][0][12] = "-"
+		keyList[0][1][13] = "\u00B5"
+		keyList[0][3][11] = "="
+		keyList[1][0][0] = "\u00B3"
+		keyList[1][0][12] = "_"
+		keyList[1][1][11] = "\u00A8"
+		keyList[1][1][12] = "*"
+		keyList[1][1][13] = "\u00A3"
+		keyList[1][3][11] = "+"
+		keyList[2][0] = ["", "|", "@", "#", "{", "[", "^", "", "", "{", "}", "", "", "BACKSPACEICON"]
+		keyList[2][1][11] = "["
+		keyList[2][1][12] = "]"
+		keyList[2][1][13] = "`"
+		keyList[2][2][11] = "\u00B4"
+		keyList[2][3][1] = "\\"
+		keyList[2][3][11] = "~"
 		return keyList
 
 	def dutch(self, base):
 		keyList = deepcopy(base)
-		keyList[0][0][0] = u"@"
-		keyList[0][0][11] = u"/"
-		keyList[0][0][12] = u"\u00B0"
-		keyList[0][1][11] = u"\u00A8"
-		keyList[0][1][12] = u"*"
-		keyList[0][1][13] = u"<"
-		keyList[0][2][10] = u"+"
-		keyList[0][2][11] = u"\u00B4"
-		keyList[0][3] = [u"CAPSLOCKICON", u"]", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"]
-		keyList[1][0] = [u"\u00A7", u"!", u"\"", u"#", u"$", u"%", u"&", u"_", u"(", u")", u"'", u"?", u"~", u"BACKSPACEICON"]
-		keyList[1][1][11] = u"^"
-		keyList[1][1][12] = u"|"
-		keyList[1][1][13] = u">"
-		keyList[1][2][10] = u"\u00B1"
-		keyList[1][2][11] = u"`"
-		keyList[1][3] = [u"CAPSLOCKICON", u"[", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"=", u"CAPSLOCKICON", u"CAPSLOCKICON"]
+		keyList[0][0][0] = "@"
+		keyList[0][0][11] = "/"
+		keyList[0][0][12] = "\u00B0"
+		keyList[0][1][11] = "\u00A8"
+		keyList[0][1][12] = "*"
+		keyList[0][1][13] = "<"
+		keyList[0][2][10] = "+"
+		keyList[0][2][11] = "\u00B4"
+		keyList[0][3] = ["CAPSLOCKICON", "]", "z", "x", "c", "v", "b", "n", "m", ",", ".", "-", "CAPSLOCKICON", "CAPSLOCKICON"]
+		keyList[1][0] = ["\u00A7", "!", "\"", "#", "$", "%", "&", "_", "(", ")", "'", "?", "~", "BACKSPACEICON"]
+		keyList[1][1][11] = "^"
+		keyList[1][1][12] = "|"
+		keyList[1][1][13] = ">"
+		keyList[1][2][10] = "\u00B1"
+		keyList[1][2][11] = "`"
+		keyList[1][3] = ["CAPSLOCKICON", "[", "Z", "X", "C", "V", "B", "N", "M", ";", ":", "=", "CAPSLOCKICON", "CAPSLOCKICON"]
 		keyList.append([
-			[u"\u00AC", u"\u00B9", u"\u00B2", u"\u00B3", u"\u00BC", u"\u00BD", u"\u00BE", u"\u00A3", u"{", u"}", u"", u"\\", u"\u00B8", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"", u"", u"\u20AC", u"\u00B6", u"", u"\u00E1", u"\u00E9", u"\u00ED", u"\u00F3", u"\u00FA", u"", u"", u""],
-			[u"LASTICON", u"", u"\u00DF", u"", u"", u"", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"", self.green, self.green],
-			[u"CAPSLOCKICON", u"\u00A6", u"\u00AB", u"\u00BB", u"\u00A2", u"", u"", u"", u"\u00B5", u"", u"\u00B7", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["\u00AC", "\u00B9", "\u00B2", "\u00B3", "\u00BC", "\u00BD", "\u00BE", "\u00A3", "{", "}", "", "\\", "\u00B8", "BACKSPACEICON"],
+			["FIRSTICON", "", "", "\u20AC", "\u00B6", "", "\u00E1", "\u00E9", "\u00ED", "\u00F3", "\u00FA", "", "", ""],
+			["LASTICON", "", "\u00DF", "", "", "", "\u00C1", "\u00C9", "\u00CD", "\u00D3", "\u00DA", "", self.green, self.green],
+			["CAPSLOCKICON", "\u00A6", "\u00AB", "\u00BB", "\u00A2", "", "", "", "\u00B5", "", "\u00B7", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
 
 	def estonian(self, base):
 		keyList = deepcopy(base)
-		keyList[0][0][0] = u"\u02C7"
-		keyList[0][1][11] = u"\u00FC"
-		keyList[0][1][12] = u"\u00F5"
-		keyList[1][0][0] = u"~"
-		keyList[1][1][11] = u"\u00DC"
-		keyList[1][1][12] = u"\u00D5"
-		keyList[2][1][12] = u"\u00A7"
-		keyList[2][1][13] = u"\u00BD"
-		keyList[2][2][2] = u"\u0161"
-		keyList[2][2][3] = u"\u0160"
-		keyList[2][2][11] = u"^"
-		keyList[2][3][2] = u"\u017E"
-		keyList[2][3][3] = u"\u017D"
-		keyList[2][3][8] = u""
+		keyList[0][0][0] = "\u02C7"
+		keyList[0][1][11] = "\u00FC"
+		keyList[0][1][12] = "\u00F5"
+		keyList[1][0][0] = "~"
+		keyList[1][1][11] = "\u00DC"
+		keyList[1][1][12] = "\u00D5"
+		keyList[2][1][12] = "\u00A7"
+		keyList[2][1][13] = "\u00BD"
+		keyList[2][2][2] = "\u0161"
+		keyList[2][2][3] = "\u0160"
+		keyList[2][2][11] = "^"
+		keyList[2][3][2] = "\u017E"
+		keyList[2][3][3] = "\u017D"
+		keyList[2][3][8] = ""
 		del keyList[3]
 		return keyList
 
 	def frenchSwiss(self, base):
 		keyList = self.germanSwiss(base)
-		keyList[0][0][11] = u"'"
-		keyList[0][0][12] = u"^"
-		keyList[0][1][11] = u"\u00E8"
-		keyList[0][2][10] = u"\u00E9"
-		keyList[0][2][11] = u"\u00E0"
-		keyList[1][1][11] = u"\u00FC"
-		keyList[1][2][10] = u"\u00F6"
-		keyList[1][2][11] = u"\u00E4"
+		keyList[0][0][11] = "'"
+		keyList[0][0][12] = "^"
+		keyList[0][1][11] = "\u00E8"
+		keyList[0][2][10] = "\u00E9"
+		keyList[0][2][11] = "\u00E0"
+		keyList[1][1][11] = "\u00FC"
+		keyList[1][2][10] = "\u00F6"
+		keyList[1][2][11] = "\u00E4"
 		return keyList
 
 	def germanSwiss(self, base):
 		keyList = deepcopy(base)
-		keyList[0][0][0] = u"\u00A7"
-		keyList[0][0][11] = u"'"
-		keyList[0][0][12] = u"^"
-		keyList[0][1][12] = u"\u00A8"
-		keyList[0][1][13] = u"$"
-		keyList[1][0][1] = u"+"
-		keyList[1][0][3] = u"*"
-		keyList[1][0][4] = u"\u00E7"
-		keyList[1][0][11] = u"?"
-		keyList[1][0][12] = u"`"
-		keyList[1][1][11] = u"\u00E8"
-		keyList[1][1][12] = u"!"
-		keyList[1][1][13] = u"\u00A3"
-		keyList[1][2][10] = u"\u00E9"
-		keyList[1][2][11] = u"\u00E0"
-		keyList[2][0] = [u"", u"\u00A6", u"@", u"#", u"\u00B0", u"\u00A7", u"\u00AC", u"|", u"\u00A2", u"", u"", u"\u00B4", u"~", u"BACKSPACEICON"]
-		keyList[2][1][1] = u""
-		keyList[2][1][9] = u"\u00DC"
-		keyList[2][1][10] = u"\u00C8"
-		keyList[2][1][11] = u"["
-		keyList[2][1][12] = u"]"
-		keyList[2][2][6] = u"\u00D6"
-		keyList[2][2][7] = u"\u00C9"
-		keyList[2][2][8] = u"\u00C4"
-		keyList[2][2][9] = u"\u00C0"
-		keyList[2][2][10] = u"{"
-		keyList[2][2][11] = u"}"
-		keyList[2][3][1] = u"\\"
-		keyList[2][3][8] = u""
+		keyList[0][0][0] = "\u00A7"
+		keyList[0][0][11] = "'"
+		keyList[0][0][12] = "^"
+		keyList[0][1][12] = "\u00A8"
+		keyList[0][1][13] = "$"
+		keyList[1][0][1] = "+"
+		keyList[1][0][3] = "*"
+		keyList[1][0][4] = "\u00E7"
+		keyList[1][0][11] = "?"
+		keyList[1][0][12] = "`"
+		keyList[1][1][11] = "\u00E8"
+		keyList[1][1][12] = "!"
+		keyList[1][1][13] = "\u00A3"
+		keyList[1][2][10] = "\u00E9"
+		keyList[1][2][11] = "\u00E0"
+		keyList[2][0] = ["", "\u00A6", "@", "#", "\u00B0", "\u00A7", "\u00AC", "|", "\u00A2", "", "", "\u00B4", "~", "BACKSPACEICON"]
+		keyList[2][1][1] = ""
+		keyList[2][1][9] = "\u00DC"
+		keyList[2][1][10] = "\u00C8"
+		keyList[2][1][11] = "["
+		keyList[2][1][12] = "]"
+		keyList[2][2][6] = "\u00D6"
+		keyList[2][2][7] = "\u00C9"
+		keyList[2][2][8] = "\u00C4"
+		keyList[2][2][9] = "\u00C0"
+		keyList[2][2][10] = "{"
+		keyList[2][2][11] = "}"
+		keyList[2][3][1] = "\\"
+		keyList[2][3][8] = ""
 		return keyList
 
 	def hungarian(self, base):
 		keyList = deepcopy(base)
-		keyList[0][0][0] = u"0"
-		keyList[0][0][10] = u"\u00F6"
-		keyList[0][0][11] = u"\u00FC"
-		keyList[0][0][12] = u"\u00F3"
-		keyList[0][1][11] = u"\u0151"
-		keyList[0][1][12] = u"\u00FA"
-		keyList[0][1][13] = u"\u0171"
-		keyList[0][2][10] = u"\u00E9"
-		keyList[0][2][11] = u"\u00E1"
-		keyList[0][3][1] = u"\u00ED"
-		keyList[1][0] = [u"\u00A7", u"'", u"\"", u"+", u"!", u"%", u"/", u"=", u"(", u")", u"\u00D6", u"\u00DC", u"\u00D3", u"BACSPACEICON"]
-		keyList[1][1][11] = u"\u0150"
-		keyList[1][1][12] = u"\u00DA"
-		keyList[1][1][13] = u"\u0170"
-		keyList[1][2][10] = u"\u00C9"
-		keyList[1][2][11] = u"\u00C1"
-		keyList[1][3][1] = u"\u00CD"
-		keyList[1][3][9] = u"?"
+		keyList[0][0][0] = "0"
+		keyList[0][0][10] = "\u00F6"
+		keyList[0][0][11] = "\u00FC"
+		keyList[0][0][12] = "\u00F3"
+		keyList[0][1][11] = "\u0151"
+		keyList[0][1][12] = "\u00FA"
+		keyList[0][1][13] = "\u0171"
+		keyList[0][2][10] = "\u00E9"
+		keyList[0][2][11] = "\u00E1"
+		keyList[0][3][1] = "\u00ED"
+		keyList[1][0] = ["\u00A7", "'", "\"", "+", "!", "%", "/", "=", "(", ")", "\u00D6", "\u00DC", "\u00D3", "BACKSPACEICON"]
+		keyList[1][1][11] = "\u0150"
+		keyList[1][1][12] = "\u00DA"
+		keyList[1][1][13] = "\u0170"
+		keyList[1][2][10] = "\u00C9"
+		keyList[1][2][11] = "\u00C1"
+		keyList[1][3][1] = "\u00CD"
+		keyList[1][3][9] = "?"
 		del keyList[2]
 		keyList.append([
-			[u"", u"~", u"\u02C7", u"^", u"\u02D8", u"\u00B0", u"\u02DB", u"`", u"\u02D9", u"\u00B4", u"\u02DD", u"\u00A8", u"\u00B8", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"\\", u"|", u"\u00C4", u"", u"", u"", u"\u20AC", u"\u00CD", u"", u"", u"\u00F7", u"\u00D7", u"\u00A4"],
-			[u"LASTICON", u"\u00E4", u"\u0111", u"\u0110", u"[", u"]", u"", u"\u00ED", u"\u0142", u"\u0141", u"$", u"\u00DF", self.green, self.green],
-			[u"CAPSLOCKICON", u"<", u">", u"#", u"&", u"@", u"{", u"}", u"<", u";", u">", u"*", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["", "~", "\u02C7", "^", "\u02D8", "\u00B0", "\u02DB", "`", "\u02D9", "\u00B4", "\u02DD", "\u00A8", "\u00B8", "BACKSPACEICON"],
+			["FIRSTICON", "\\", "|", "\u00C4", "", "", "", "\u20AC", "\u00CD", "", "", "\u00F7", "\u00D7", "\u00A4"],
+			["LASTICON", "\u00E4", "\u0111", "\u0110", "[", "]", "", "\u00ED", "\u0142", "\u0141", "$", "\u00DF", self.green, self.green],
+			["CAPSLOCKICON", "<", ">", "#", "&", "@", "{", "}", "<", ";", ">", "*", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
 
 	def latvianQWERTY(self, base):
 		keyList = self.latvianStandard(base)
-		keyList[0][1][13] = u"\u00B0"
-		keyList[2][1][9] = u"\u00F5"
-		keyList[3][1][9] = u"\u00D5"
+		keyList[0][1][13] = "\u00B0"
+		keyList[2][1][9] = "\u00F5"
+		keyList[3][1][9] = "\u00D5"
 		return keyList
 
 	def latvianStandard(self, base):
 		keyList = deepcopy(base)
-		keyList[0][3][1] = u"\\"
-		keyList[1][3][1] = u"|"
+		keyList[0][3][1] = "\\"
+		keyList[1][3][1] = "|"
 		keyList.append([
-			[u"", u"", u"\u00AB", u"\u00BB", u"\u20AC", u"", u"\u2019", u"", u"", u"", u"", u"\u2013", u"", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"", u"", u"\u0113", u"\u0157", u"", u"", u"\u016B", u"\u012B", u"\u014D", u"", u"", u"", u""],
-			[u"LASTICON", u"\u0101", u"\u0161", u"", u"", u"\u0123", u"", u"", u"\u0137", u"\u013C", u"", u"\u00B4", self.green, self.green],
-			[u"CAPSLOCKICON", u"", u"\u017E", u"", u"\u010D", u"", u"", u"\u0146", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["", "", "\u00AB", "\u00BB", "\u20AC", "", "\u2019", "", "", "", "", "\u2013", "", "BACKSPACEICON"],
+			["FIRSTICON", "", "", "\u0113", "\u0157", "", "", "\u016B", "\u012B", "\u014D", "", "", "", ""],
+			["LASTICON", "\u0101", "\u0161", "", "", "\u0123", "", "", "\u0137", "\u013C", "", "\u00B4", self.green, self.green],
+			["CAPSLOCKICON", "", "\u017E", "", "\u010D", "", "", "\u0146", "", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		keyList.append([
-			[u"", u"", u"", u"", u"\u00A7", u"\u00B0", u"", u"\u00B1", u"\u00D7", u"", u"", u"\u2014", u"", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"", u"", u"\u0112", u"\u0156", u"", u"", u"\u016A", u"\u012A", u"\u014C", u"", u"", u"", u""],
-			[u"LASTICON", u"\u0100", u"\u0160", u"", u"", u"\u0122", u"", u"", u"\u0136", u"\u013B", u"", u"\u00A8", self.green, self.green],
-			[u"CAPSLOCKICON", u"", u"\u017D", u"", u"\u010C", u"", u"", u"\u0145", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["", "", "", "", "\u00A7", "\u00B0", "", "\u00B1", "\u00D7", "", "", "\u2014", "", "BACKSPACEICON"],
+			["FIRSTICON", "", "", "\u0112", "\u0156", "", "", "\u016A", "\u012A", "\u014C", "", "", "", ""],
+			["LASTICON", "\u0100", "\u0160", "", "", "\u0122", "", "", "\u0136", "\u013B", "", "\u00A8", self.green, self.green],
+			["CAPSLOCKICON", "", "\u017D", "", "\u010C", "", "", "\u0145", "", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
 
 	def lithuanian(self, base):
 		keyList = deepcopy(base)
-		keyList[0][0] = [u"`", u"\u0105", u"\u010D", u"\u0119", u"\u0117", u"\u012F", u"\u0161", u"\u0173", u"\u016B", u"9", u"0", u"-", u"\u017E", u"BACKSPACEICON"]
-		keyList[0][3][1] = u"\\"
-		keyList[1][0] = [u"~", u"\u0104", u"\u010C", u"\u0118", u"\u0116", u"\u012E", u"\u0160", u"\u0172", u"\u016A", u"(", u")", u"_", u"\u017D", u"BACKSPACEICON"]
-		keyList[1][3][1] = u"|"
+		keyList[0][0] = ["`", "\u0105", "\u010D", "\u0119", "\u0117", "\u012F", "\u0161", "\u0173", "\u016B", "9", "0", "-", "\u017E", "BACKSPACEICON"]
+		keyList[0][3][1] = "\\"
+		keyList[1][0] = ["~", "\u0104", "\u010C", "\u0118", "\u0116", "\u012E", "\u0160", "\u0172", "\u016A", "(", ")", "_", "\u017D", "BACKSPACEICON"]
+		keyList[1][3][1] = "|"
 		keyList.append([
-			[u"", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"", u"=", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"*", u"", u"", u"", u"+", u""],
-			[u"LASTICON", u"", u"", u"\u20AC", u"", u"", u"", u"", u"", u"", u"", u"", self.green, self.green],
-			[u"CAPSLOCKICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "", "=", "BACKSPACEICON"],
+			["FIRSTICON", "!", "@", "#", "$", "%", "^", "&", "*", "", "", "", "+", ""],
+			["LASTICON", "", "", "\u20AC", "", "", "", "", "", "", "", "", self.green, self.green],
+			["CAPSLOCKICON", "", "", "", "", "", "", "", "", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
 
 	def norwegian(self, base):
 		keyList = deepcopy(base)
-		keyList[0][0][0] = u"|"
-		keyList[0][0][12] = u"\\"
-		keyList[0][2][10] = u"\u00F8"
-		keyList[0][2][11] = u"\u00E6"
-		keyList[1][0][0] = u"\u00A7"
-		keyList[1][2][10] = u"\u00D8"
-		keyList[1][2][11] = u"\u00C6"
-		keyList[2][0][11] = u""
-		keyList[2][0][12] = u"\u00B4"
-		keyList[2][3][1] = u""
+		keyList[0][0][0] = "|"
+		keyList[0][0][12] = "\\"
+		keyList[0][2][10] = "\u00F8"
+		keyList[0][2][11] = "\u00E6"
+		keyList[1][0][0] = "\u00A7"
+		keyList[1][2][10] = "\u00D8"
+		keyList[1][2][11] = "\u00C6"
+		keyList[2][0][11] = ""
+		keyList[2][0][12] = "\u00B4"
+		keyList[2][3][1] = ""
 		return keyList
 
 	def persian(self, base):
 		keyList = deepcopy(base)
 		keyList.append([
-			[u"\u00F7", u"\u06F1", u"\u06F2", u"\u06F3", u"\u06F4", u"\u06F5", u"\u06F6", u"\u06F7", u"\u06F8", u"\u06F9", u"\u06F0", u"-", u"=", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"\u0636", u"\u0635", u"\u062B", u"\u0642", u"\u0641", u"\u063A", u"\u0639", u"\u0647", u"\u062E", u"\u062D", u"\u062C", u"\u0686", u"\u067E"],
-			[u"LASTICON", u"\u0634", u"\u0633", u"\u06CC", u"\u0628", u"\u0644", u"\u0627", u"\u062A", u"\u0646", u"\u0645", u"\u06A9", u"\u06AF", self.green, self.green],
-			[u"CAPSLOCKICON", u"\u0649", u"\u0638", u"\u0637", u"\u0632", u"\u0631", u"\u0630", u"\u062F", u"\u0626", u"\u0648", u".", u"/", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["\u00F7", "\u06F1", "\u06F2", "\u06F3", "\u06F4", "\u06F5", "\u06F6", "\u06F7", "\u06F8", "\u06F9", "\u06F0", "-", "=", "BACKSPACEICON"],
+			["FIRSTICON", "\u0636", "\u0635", "\u062B", "\u0642", "\u0641", "\u063A", "\u0639", "\u0647", "\u062E", "\u062D", "\u062C", "\u0686", "\u067E"],
+			["LASTICON", "\u0634", "\u0633", "\u06CC", "\u0628", "\u0644", "\u0627", "\u062A", "\u0646", "\u0645", "\u06A9", "\u06AF", self.green, self.green],
+			["CAPSLOCKICON", "\u0649", "\u0638", "\u0637", "\u0632", "\u0631", "\u0630", "\u062F", "\u0626", "\u0648", ".", "/", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		keyList.append([
-			[u"\u00D7", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"*", u")", u"(", u"_", u"+", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"\u064B", u"\u064C", u"\u064D", u"\u0631", u"\u060C", u"\u061B", u",", u"]", u"[", u"\\", u"}", u"{", u"|"],
-			[u"LASTICON", u"\u064E", u"\u064F", u"\u0650", u"\u0651", u"\u06C0", u"\u0622", u"\u0640", u"\u00AB", u"\u00BB", u":", u"\"", self.green, self.green],
-			[u"CAPSLOCKICON", u"|", u"\u0629", u"\u064A", u"\u0698", u"\u0624", u"\u0625", u"\u0623", u"\u0621", u"<", u">", u"\u061F", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["\u00D7", "!", "@", "#", "$", "%", "^", "&", "*", ")", "(", "_", "+", "BACKSPACEICON"],
+			["FIRSTICON", "\u064B", "\u064C", "\u064D", "\u0631", "\u060C", "\u061B", ",", "]", "[", "\\", "}", "{", "|"],
+			["LASTICON", "\u064E", "\u064F", "\u0650", "\u0651", "\u06C0", "\u0622", "\u0640", "\u00AB", "\u00BB", ":", "\"", self.green, self.green],
+			["CAPSLOCKICON", "|", "\u0629", "\u064A", "\u0698", "\u0624", "\u0625", "\u0623", "\u0621", "<", ">", "\u061F", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
 
 	def polish(self, base):
 		keyList = deepcopy(base)
-		keyList[0][0][0] = u"\u02DB"
-		keyList[0][0][11] = u"+"
-		keyList[0][1][11] = u"\u017C"
-		keyList[0][1][12] = u"\u015B"
-		keyList[0][1][13] = u"\u00F3"
-		keyList[0][2][10] = u"\u0142"
-		keyList[0][2][11] = u"\u0105"
-		keyList[1][0][0] = u"\u00B7"
-		keyList[1][0][3] = u"#"
-		keyList[1][0][4] = u"\u00A4"
-		keyList[1][0][12] = u"*"
-		keyList[1][1][11] = u"\u0144"
-		keyList[1][1][12] = u"\u0107"
-		keyList[1][1][13] = u"\u017A"
-		keyList[1][2][10] = u"\u0141"
-		keyList[1][2][11] = u"\u0119"
+		keyList[0][0][0] = "\u02DB"
+		keyList[0][0][11] = "+"
+		keyList[0][1][11] = "\u017C"
+		keyList[0][1][12] = "\u015B"
+		keyList[0][1][13] = "\u00F3"
+		keyList[0][2][10] = "\u0142"
+		keyList[0][2][11] = "\u0105"
+		keyList[1][0][0] = "\u00B7"
+		keyList[1][0][3] = "#"
+		keyList[1][0][4] = "\u00A4"
+		keyList[1][0][12] = "*"
+		keyList[1][1][11] = "\u0144"
+		keyList[1][1][12] = "\u0107"
+		keyList[1][1][13] = "\u017A"
+		keyList[1][2][10] = "\u0141"
+		keyList[1][2][11] = "\u0119"
 		del keyList[2]
 		keyList.append([
-			[u"", u"~", u"\u02C7", u"^", u"\u02D8", u"\u00B0", u"\u02DB", u"`", u"\u00B7", u"\u00B4", u"\u02DD", u"\u00A8", u"\u00B8", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"\\", u"\u00A6", u"", u"\u017B", u"\u015A", u"\u00D3", u"\u20AC", u"\u0143", u"\u0106", u"\u0179", u"\u00F7", u"\u00D7", u""],
-			[u"LASTICON", u"", u"\u0111", u"\u0110", u"", u"", u"", u"", u"\u0104", u"\u0118", u"$", u"\u00DF", self.green, self.green],
-			[u"CAPSLOCKICON", u"", u"", u"", u"", u"@", u"{", u"}", u"\u00A7", u"<", u">", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["", "~", "\u02C7", "^", "\u02D8", "\u00B0", "\u02DB", "`", "\u00B7", "\u00B4", "\u02DD", "\u00A8", "\u00B8", "BACKSPACEICON"],
+			["FIRSTICON", "\\", "\u00A6", "", "\u017B", "\u015A", "\u00D3", "\u20AC", "\u0143", "\u0106", "\u0179", "\u00F7", "\u00D7", ""],
+			["LASTICON", "", "\u0111", "\u0110", "", "", "", "", "\u0104", "\u0118", "$", "\u00DF", self.green, self.green],
+			["CAPSLOCKICON", "", "", "", "", "@", "{", "}", "\u00A7", "<", ">", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
 
 	def polishProgrammers(self, base):
 		keyList = deepcopy(base)
-		keyList[0][3][1] = u"\\"
-		keyList[1][3][1] = u"|"
+		keyList[0][3][1] = "\\"
+		keyList[1][3][1] = "|"
 		keyList.append([
-			[u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"", u"", u"\u0119", u"\u0118", u"", u"", u"\u20AC", u"", u"\u00F3", u"\u00D3", u"", u"", u""],
-			[u"LASTICON", u"\u0105", u"\u0104", u"\u015B", u"\u015A", u"", u"", u"", u"", u"\u0142", u"\u0141", u"", self.green, self.green],
-			[u"CAPSLOCKICON", u"\u017C", u"\u017B", u"\u017A", u"\u0179", u"\u0107", u"\u0106", u"\u0144", u"\u0143", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["", "", "", "", "", "", "", "", "", "", "", "", "", "BACKSPACEICON"],
+			["FIRSTICON", "", "", "\u0119", "\u0118", "", "", "\u20AC", "", "\u00F3", "\u00D3", "", "", ""],
+			["LASTICON", "\u0105", "\u0104", "\u015B", "\u015A", "", "", "", "", "\u0142", "\u0141", "", self.green, self.green],
+			["CAPSLOCKICON", "\u017C", "\u017B", "\u017A", "\u0179", "\u0107", "\u0106", "\u0144", "\u0143", "", "", "", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
 
 	def slovak(self, base):
 		keyList = deepcopy(base)
-		keyList[0][0] = [u";", u"+", u"\u013E", u"\u0161", u"\u010D", u"\u0165", u"\u017E", u"\u00FD", u"\u00E1", u"\u00ED", u"\u00E9", u"=", u"\u00B4", u"BACKSPACEICON"]
-		keyList[0][1][11] = u"\u00FA"
-		keyList[0][1][12] = u"\u00E4"
-		keyList[0][1][13] = u"\u0148"
-		keyList[0][2][10] = u"\u00F4"
-		keyList[0][2][11] = u"\u00A7"
-		keyList[0][3][1] = u"&"
-		keyList[1][0] = [u"\u00B0", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"%", u"\u02C7", u"BACKSPACEICON"]
-		keyList[1][1][11] = u"/"
-		keyList[1][1][12] = u"("
-		keyList[1][1][13] = u")"
-		keyList[1][2][10] = u"\""
-		keyList[1][2][11] = u"!"
-		keyList[1][3][1] = u"*"
-		keyList[1][3][9] = u"?"
+		keyList[0][0] = [";", "+", "\u013E", "\u0161", "\u010D", "\u0165", "\u017E", "\u00FD", "\u00E1", "\u00ED", "\u00E9", "=", "\u00B4", "BACKSPACEICON"]
+		keyList[0][1][11] = "\u00FA"
+		keyList[0][1][12] = "\u00E4"
+		keyList[0][1][13] = "\u0148"
+		keyList[0][2][10] = "\u00F4"
+		keyList[0][2][11] = "\u00A7"
+		keyList[0][3][1] = "&"
+		keyList[1][0] = ["\u00B0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "%", "\u02C7", "BACKSPACEICON"]
+		keyList[1][1][11] = "/"
+		keyList[1][1][12] = "("
+		keyList[1][1][13] = ")"
+		keyList[1][2][10] = "\""
+		keyList[1][2][11] = "!"
+		keyList[1][3][1] = "*"
+		keyList[1][3][9] = "?"
 		del keyList[2]
 		keyList.append([
-			[u"", u"~", u"\u02C7", u"^", u"\u02D8", u"\u00B0", u"\u02DB", u"`", u"\u02D9", u"\u00B4", u"\u02DD", u"\u00A8", u"\u00B8", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"\\", u"|", u"\u20AC", u"", u"", u"", u"", u"", u"", u"'", u"\u00F7", u"\u00D7", u"\u00A4"],
-			[u"LASTICON", u"", u"\u0111", u"\u0110", u"[", u"]", u"", u"", u"\u0142", u"\u0141", u"$", u"\u00DF", self.green, self.green],
-			[u"CAPSLOCKICON", u"<", u">", u"#", u"&", u"@", u"{", u"}", u"", u"<", u">", u"*", u"CAPSLOCKICON", u"CAPSLOCKICON"],
+			["", "~", "\u02C7", "^", "\u02D8", "\u00B0", "\u02DB", "`", "\u02D9", "\u00B4", "\u02DD", "\u00A8", "\u00B8", "BACKSPACEICON"],
+			["FIRSTICON", "\\", "|", "\u20AC", "", "", "", "", "", "", "'", "\u00F7", "\u00D7", "\u00A4"],
+			["LASTICON", "", "\u0111", "\u0110", "[", "]", "", "", "\u0142", "\u0141", "$", "\u00DF", self.green, self.green],
+			["CAPSLOCKICON", "<", ">", "#", "&", "@", "{", "}", "", "<", ">", "*", "CAPSLOCKICON", "CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
 
 	def ukranian(self, base):
 		keyList = deepcopy(base)
-		keyList[0][1][12] = u"\u0457"
-		keyList[0][1][13] = u"\\"
-		keyList[0][2][11] = u"\u0454"
-		keyList[0][2][2] = u"\u0456"
-		keyList[0][3][1] = u"\u0491"
-		keyList[1][1][12] = u"\u0407"
-		keyList[1][1][13] = u"/"
-		keyList[1][2][11] = u"\u0404"
-		keyList[1][2][2] = u"\u0406"
-		keyList[1][3][1] = u"\u0490"
+		keyList[0][1][12] = "\u0457"
+		keyList[0][1][13] = "\\"
+		keyList[0][2][11] = "\u0454"
+		keyList[0][2][2] = "\u0456"
+		keyList[0][3][1] = "\u0491"
+		keyList[1][1][12] = "\u0407"
+		keyList[1][1][13] = "/"
+		keyList[1][2][11] = "\u0404"
+		keyList[1][2][2] = "\u0406"
+		keyList[1][3][1] = "\u0490"
 		return keyList
 
 	def ukranianEnhanced(self, base):
 		keyList = self.ukranian(base)
-		keyList[0][0][0] = u"\u0027"
-		keyList[1][0][0] = u"\u20B4"
+		keyList[0][0][0] = "\u0027"
+		keyList[1][0][0] = "\u20B4"
 		return keyList
 
 	def unitedKingdom(self, base):
 		keyList = deepcopy(base)
-		keyList[0][1][13] = u"#"
-		keyList[0][3] = [u"CAPSLOCKICON", u"\\", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"/", u"CAPSLOCKICON", u"CAPSLOCKICON"]
+		keyList[0][1][13] = "#"
+		keyList[0][3] = ["CAPSLOCKICON", "\\", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "CAPSLOCKICON", "CAPSLOCKICON"]
 		keyList[0][4] = copy(self.footer)
-		keyList[0][4][10] = u"\u00A6"
-		keyList[1][0][0] = u"\u00AC"
-		keyList[1][0][2] = u"\""
-		keyList[1][0][3] = u"\u00A3"
-		keyList[1][1][13] = u"~"
-		keyList[1][2][11] = u"@"
-		keyList[1][3] = [u"CAPSLOCKICON", u"|", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"<", u">", u"?", u"CAPSLOCKICON", u"CAPSLOCKICON"]
+		keyList[0][4][10] = "\u00A6"
+		keyList[1][0][0] = "\u00AC"
+		keyList[1][0][2] = "\""
+		keyList[1][0][3] = "\u00A3"
+		keyList[1][1][13] = "~"
+		keyList[1][2][11] = "@"
+		keyList[1][3] = ["CAPSLOCKICON", "|", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?", "CAPSLOCKICON", "CAPSLOCKICON"]
 		keyList[1][4] = copy(self.footer)
-		keyList[1][4][10] = u"\u20AC"
+		keyList[1][4][10] = "\u20AC"
 		return keyList
 
 	def smsGotChar(self):
@@ -958,26 +956,26 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 					x += self.width * width
 				else:
 					w = self.bg_l.size().width()
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.bg_l))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.bg_l))
 					x += w
 					w = self.bg_m.size().width() + (self.width * (width - 1))
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.bg_m, flags=BT_SCALE))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.bg_m, flags=BT_SCALE))
 					x += w
 					w = self.bg_r.size().width()
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.bg_r))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.bg_r))
 					x += w
 				highlight = self.keyHighlights.get(key.upper(), (None, None, None))  # Check if the cell needs to be highlighted.
 				if highlight[0] is None or highlight[1] is None or highlight[2] is None:  # If available display the cell highlight.
 					xHighlight += self.width * width
 				else:
 					w = highlight[0].size().width()
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(xHighlight, 0), size=(w, self.height), png=highlight[0]))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(xHighlight, 0), size=(w, self.height), png=highlight[0]))
 					xHighlight += w
 					w = highlight[1].size().width() + (self.width * (width - 1))
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(xHighlight, 0), size=(w, self.height), png=highlight[1], flags=BT_SCALE))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(xHighlight, 0), size=(w, self.height), png=highlight[1], flags=BT_SCALE))
 					xHighlight += w
 					w = highlight[2].size().width()
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(xHighlight, 0), size=(w, self.height), png=highlight[2]))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(xHighlight, 0), size=(w, self.height), png=highlight[2]))
 					xHighlight += w
 				if self.alignment[0] == 1:  # Determine the cell alignment.
 					alignH = RT_HALIGN_LEFT
@@ -1014,10 +1012,10 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 						top += (h - hImage) // 2
 					elif alignV == RT_VALIGN_BOTTOM:
 						top += h - hImage
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(left, top), size=(wImage, hImage), png=image))
-					# print "[VirtualKeyBoard] DEBUG: Left=%d, Top=%d, Width=%d, Height=%d, Image Width=%d, Image Height=%d" % (left, top, w, h, wImage, hImage)
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(left, top), size=(wImage, hImage), png=image))
+					# print("[VirtualKeyBoard] DEBUG: Left=%d, Top=%d, Width=%d, Height=%d, Image Width=%d, Image Height=%d" % (left, top, w, h, wImage, hImage))
 				else:  # Display the cell text.
-					skey = key.encode("UTF-8", "ignore") if PY2 else key
+					skey = key
 					if len(key) > 1:  # NOTE: UTF8 / Unicode glyphs only count as one character here.
 						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=1, flags=alignH | alignV, text=skey, color=self.shiftColors[self.shiftLevel]))
 					else:
@@ -1036,13 +1034,13 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		start, width = self.findStartAndWidth(self.selectedKey)
 		x = start * self.width
 		w = self.sel_l.size().width()
-		self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.sel_l))
+		self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.sel_l))
 		x += w
 		w = self.sel_m.size().width() + (self.width * (width - 1))
-		self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.sel_m, flags=BT_SCALE))
+		self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.sel_m, flags=BT_SCALE))
 		x += w
 		w = self.sel_r.size().width()
-		self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.sel_r))
+		self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.sel_r))
 		self.previousSelectedKey = self.selectedKey
 		self["list"].setList(self.list)
 
@@ -1062,20 +1060,18 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			if start + width >= max or self.keyList[self.shiftLevel][row][start + width] != self.keyList[self.shiftLevel][row][key]:
 				break
 			width += 1
-		# print "[VirtualKeyBoard] DEBUG: Key='%s', Position=%d, Start=%d, Width=%d" % (self.keyList[self.shiftLevel][row][key], key, start, width)
+		# print("[VirtualKeyBoard] DEBUG: Key='%s', Position=%d, Start=%d, Width=%d" % (self.keyList[self.shiftLevel][row][key], key, start, width))
 		return (start, width)
 
 	def processSelect(self):
 		self.smsChar = None
 		text = self.keyList[self.shiftLevel][self.selectedKey // self.keyboardWidth][self.selectedKey % self.keyboardWidth]
-		if PY2:
-			text = text.encode("UTF-8", "ignore")
 		cmd = self.cmds.get(text.upper(), None)
 		if cmd is None:
-			self["text"].char(text.encode("UTF-8", "ignore") if PY2 else text)
+			self["text"].char(text)
 		else:
 			exec(cmd)
-		if text not in (u"SHIFT", u"SHIFTICON") and self.shiftHold != -1:
+		if text not in ("SHIFT", "SHIFTICON") and self.shiftHold != -1:
 			self.shiftRestore()
 
 	def cancel(self):
@@ -1196,14 +1192,11 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def keyGotAscii(self):
 		self.smsChar = None
-		ch = str(pyunichr(getPrevAsciiCode()))
-		if PY2:
-			ch = ch.encode("UTF-8", "ignore")
-		if self.selectAsciiKey(ch):
+		if self.selectAsciiKey(chr(getPrevAsciiCode())):
 			self.processSelect()
 
 	def selectAsciiKey(self, char):
-		if char == u" ":
+		if char == " ":
 			char = SPACE
 		self.shiftLevel = -1
 		for keyList in (self.keyList):
@@ -1218,7 +1211,3 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 						return True
 					selkey += 1
 		return False
-	
-	def space(self):
-		self['text'].char(' '.encode('UTF-8', 'ignore') if PY2 else ' ')
-
