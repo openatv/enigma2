@@ -829,7 +829,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			else if (allow_hearingimpaired && autosub_dvb_hearing != -1)
 				program.defaultSubtitleStream = autosub_dvb_hearing;
 		}
-		if (program.defaultSubtitleStream != -1 && (equallanguagemask & (1<<(autosub_level-1))) == 0 && compareAudioSubtitleCode(program.subtitleStreams[program.defaultSubtitleStream].language_code, program.audioStreams[program.defaultAudioStream].language_code) == 0 )
+		if (program.defaultSubtitleStream != -1 && (program.audioStreams[program.defaultAudioStream].language_code.empty() || (equallanguagemask & (1<<(autosub_level-1))) == 0 && compareAudioSubtitleCode(program.subtitleStreams[program.defaultSubtitleStream].language_code, program.audioStreams[program.defaultAudioStream].language_code) == 0))
 			program.defaultSubtitleStream = -1;
 
 		ret = 0;
