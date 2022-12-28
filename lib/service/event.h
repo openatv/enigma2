@@ -159,6 +159,10 @@ public:
 	static void setEPGLanguage(const std::string& language) { m_language = language; }
 	static void setEPGLanguageAlternative(const std::string& language) { m_language_alternative = language; }
 	static void setUTF8CorrectMode (int mode) { m_UTF8CorrectMode = mode; }
+	void setExtendedDescription (const std::string& value) { m_extended_description = value; }
+	void setShortDescription (const std::string& value) { m_short_description = value; }
+	void setEventName (const std::string& value) { m_event_name = value; }
+	void setDuration (int value) { m_duration = value; }
 #endif
 	time_t getBeginTime() const { return m_begin; }
 	int getDuration() const { return m_duration; }
