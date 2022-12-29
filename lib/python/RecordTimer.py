@@ -1165,9 +1165,9 @@ class RecordTimerEntry(TimerEntry, object):
 				self.stopMountText(None, cmd)
 
 	def stopMountText(self, thread, cmd):
-		if thread and thread.isAlive():
+		if thread and thread.is_alive():
 			print("[RecordTimer] Timeout thread: '%s'." % cmd)
-			thread._Thread__stop()
+			thread.join(timeout=1)
 		if cmd == "writeable":
 			self.mountPathErrorNumber = 2
 		elif cmd == "freespace":
