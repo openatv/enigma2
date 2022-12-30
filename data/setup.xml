@@ -828,6 +828,7 @@
 		<item level="2" text="Enable cut file support for non *.ts files" description="Enable cut file support for non *.ts files. (e.g. mp4)">config.usage.useVideoCuesheet</item>
 		<item level="2" text="Enable cut file support for audio files" description="Enable cut file support for audio files. (e.g. mp3)">config.usage.useAudioCuesheet</item>
 		<item level="2" text="Enable chapter support for video files" description="Show chapter positions for supported video files. (gstreamer version must be greather than 1)">config.usage.useChapterInfo</item>
+		<item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item>
 	</setup>
 	<setup key="UserInterface" title="OSD Settings" showOpenWebif="1">
 		<item level="0" text="Menu style" description="Select the display design for menus.">config.usage.menuType</item>
