@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-06 19:33+0000\n"
-"PO-Revision-Date: 2022-12-07 17:55+0000\n"
+"PO-Revision-Date: 2022-12-30 09:59+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -1302,7 +1302,7 @@ msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' contiene %d file(s) e %d sub-directories.\n"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "'Buffer in ore' o 'numero di ultimi eventi'. Per eliminare i Timeshift più vecchi di, la prima condizione verificata ha la priorità."
+msgstr "'Buffer in ore' o 'numero di ultimi eventi'. Per eliminare i timeshift più vecchi di, la prima condizione verificata ha la priorità."
 
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Gestisci standby dalla TV' ha una priorità maggiore rispetto a 'Gestisci input dalla TV'."
@@ -2078,10 +2078,10 @@ msgid "Activate the configured network settings."
 msgstr "Attiva le impostazioni di rete configurate."
 
 msgid "Activate time shift End"
-msgstr "Attiva fine del Timeshift"
+msgstr "Attiva fine del timeshift"
 
 msgid "Activate time shift end and pause"
-msgstr "Attiva fine Timeshift e pausa"
+msgstr "Attiva fine timeshift e pausa"
 
 msgid "Active"
 msgstr "Attivo"
@@ -2895,7 +2895,7 @@ msgid "Automatically put the TV in standby whenever the receiver goes into stand
 msgstr "Metti automaticamente la TV in standby ogni volta che il ricevitore va in standby o spegnimento."
 
 msgid "Automatically start time shift after"
-msgstr "Avvio automaticamente Timeshift dopo"
+msgstr "Avvio automaticamente timeshift dopo"
 
 msgid "Automatically turn on external subtitles"
 msgstr "Attivare automaticamente i sottotitoli esterni"
@@ -3756,20 +3756,20 @@ msgid ""
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Non riesco a passare alla TV in diretta!\n"
-"Passo alla TV in diretta e riavvio Timeshift?"
+"Passo alla TV in diretta e riavvio timeshift?"
 
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
-"Impossibile riprodurre il prossimo file Timeshift!\n"
-"Passo alla TV in diretta e riavvio Timeshift?"
+"Impossibile riprodurre il prossimo file timeshift!\n"
+"Passo alla TV in diretta e riavvio timeshift?"
 
 msgid "Can't play the previous time shift file! You can try again."
-msgstr "Impossibile riprodurre il file Timeshift precedente! Puoi riprovare."
+msgstr "Impossibile riprodurre il file timeshift precedente! Puoi riprovare."
 
 msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
-msgstr "Impossibile smontare la partizione, assicurarsi che non venga utilizzata per lo swap, registrazione o Timeshift"
+msgstr "Impossibile smontare la partizione, assicurarsi che non venga utilizzata per lo swap, registrazione o timeshift"
 
 msgid "Canada"
 msgstr "Canada"
@@ -3811,7 +3811,7 @@ msgid "Cancel extraction"
 msgstr "Annulla estrazione"
 
 msgid "Cancel save time shift as movie"
-msgstr "Annullare salvataggio registrazione Timeshift"
+msgstr "Annullare salvataggio registrazione timeshift"
 
 msgid "Cancel selection"
 msgstr "Annulla selezione"
@@ -5876,7 +5876,7 @@ msgid "Delete the character under the text cursor"
 msgstr "Elimina carattere sotto il cursore del testo"
 
 msgid "Delete the current time shift buffer and restart time shift"
-msgstr "Elimina buffer Timeshift attuale e riavvia Timeshift"
+msgstr "Elimina buffer timeshift attuale e riavvia timeshift"
 
 msgid "Delete the currently displayed log file"
 msgstr "Elimina file di registro attualmente visualizzato"
@@ -8103,7 +8103,7 @@ msgid "Finnish"
 msgstr "Finlandese"
 
 msgid "First playable time shift file!"
-msgstr "Primo file Timeshift riproducibile!"
+msgstr "Primo file timeshift riproducibile!"
 
 msgid "Fishing"
 msgstr "Pesca"
@@ -8222,7 +8222,7 @@ msgid "Format HDD"
 msgstr "Formattazione HDD"
 
 msgid "Format your hard drive"
-msgstr "Formatta il tuo Hard Disk"
+msgstr "Formatta il tuo hard disk"
 
 msgid "Forward volume keys"
 msgstr "Tasto abbassamento volume"
@@ -8739,7 +8739,7 @@ msgid "Handle wake up from TV"
 msgstr "Gestisci il risveglio dalla TV"
 
 msgid "Hard Disk Settings"
-msgstr "Impostazioni Harddisk"
+msgstr "Impostazioni hard disk"
 
 msgid "Hard disk standby after"
 msgstr "Standby harddisk dopo"
@@ -8748,7 +8748,7 @@ msgid "Hard disk standby in box standby after"
 msgstr "Inattività harddisk in standby dopo"
 
 msgid "Harddisk"
-msgstr "Harddisk"
+msgstr "Hard Disk"
 
 msgid "Harddisk Setup"
 msgstr "Configurazione HDD"
@@ -9176,13 +9176,13 @@ msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby
 msgstr "Se impostato su \"Sì\", gli stessi comandi verranno inviati alla TV per gli eventi di spegnimento che vengono inviati durante i normali eventi di standby."
 
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
-msgstr "Se impostato su 'sì', consente di utilizzare il Timeshift con plugin audio alternativi."
+msgstr "Se impostato su 'sì', consente di utilizzare il timeshift con plugin audio alternativi."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Se è abilitata la soluzione di spegnimento attendere fino a quando l'ora di sistema non viene sincronizzata. A seconda delle esigenze, la riattivazione del dispositivo continuerà dopo un massimo di 2 minuti."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Se lo spazio libero è inferiore al valore impostato, verranno eliminati i vecchi file di Timeshift."
+msgstr "Se lo spazio libero è inferiore al valore impostato, verranno eliminati i vecchi file di timeshift."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Se il testo è troppo lungo per essere visualizzato sul pannello frontale, verrà ripetuto (numero di volte)."
@@ -10688,7 +10688,7 @@ msgid "Merge broadcast EPG with IceTV"
 msgstr "Unisci l'EPG trasmesso con IceTV"
 
 msgid "Merging time shift files"
-msgstr "Unione di file Timeshift"
+msgstr "Unione di file timeshift"
 
 msgid "Merlin EPG Center"
 msgstr "Merlin EPG Center"
@@ -11680,7 +11680,7 @@ msgid "No tags are set on these movies."
 msgstr "Nessuna etichetta configurata su queste registrazioni."
 
 msgid "No time shift found to save as recording!"
-msgstr "Nessun Timeshift trovato da salvare come registrazione!"
+msgstr "Nessun timeshift trovato da salvare come registrazione!"
 
 msgid "No timeout"
 msgstr "Nessun timeout"
@@ -11907,7 +11907,7 @@ msgid "Now building the Backup Image"
 msgstr "Ora costruisci l'immagine di backup"
 
 msgid "Now save time shift as movie and continues recording"
-msgstr "Salva il Timeshift come film e continua la registrazione"
+msgstr "Salva timeshift come film e continua la registrazione"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Ora, usa l'impostazione del contrasto per aumentare il più possibile la luminosità dello sfondo, ma assicurati di poter ancora vedere la differenza tra i due livelli di tonalità più luminosi. Se lo hai fatto, premi OK."
@@ -12006,7 +12006,7 @@ msgid "Ojibwa"
 msgstr "Ojibwa"
 
 msgid "Older files in the time shift directory are removed on every event change."
-msgstr "I vecchi Timeshift saranno rimossi dalla cartella ogni [ora selezionata]."
+msgstr "I vecchi timeshift saranno rimossi dalla cartella ogni [ora selezionata]."
 
 msgid "Olympics"
 msgstr "Olimpiadi"
@@ -12657,7 +12657,7 @@ msgid "Playback Settings"
 msgstr "Impostazioni riproduzione"
 
 msgid "Playback, Recording & Time Shift"
-msgstr "Riproduzione, registrazione e Timeshift"
+msgstr "Riproduzione, registrazione e timeshift"
 
 msgid "Playlist"
 msgstr "Playlist"
@@ -13800,7 +13800,7 @@ msgid "Record now"
 msgstr "Registra ora"
 
 msgid "Record started! Stopping time shift now ..."
-msgstr "Registrazione iniziata! Arresto Timeshift ora..."
+msgstr "Registrazione iniziata! Arresto timeshift ora..."
 
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
@@ -14791,10 +14791,10 @@ msgid "Save the right column directory location on exit."
 msgstr "Salva posizione della cartella della colonna di destra all'uscita."
 
 msgid "Save time shift as movie and continue recording"
-msgstr "Salva Timeshift come registrazione e continua a registrare"
+msgstr "Salva timeshift come registrazione e continua a registrare"
 
 msgid "Save time shift as movie and stop recording"
-msgstr "Salva Timeshift come registrazione e smetti di registrare"
+msgstr "Salva timeshift come registrazione e smetti di registrare"
 
 msgid "Saved lines in script messages"
 msgstr "Righe salvate nei messaggi di script"
@@ -14803,10 +14803,10 @@ msgid "Saving EPG Cache..."
 msgstr "Salvataggio cache EPG..."
 
 msgid "Saving time shift as movie now. This might take a while!"
-msgstr "Salvataggio Timeshift come film adesso. Questo potrebbe richiedere del tempo!"
+msgstr "Salvataggio timeshift come film adesso. Questo potrebbe richiedere del tempo!"
 
 msgid "Saving time shift files"
-msgstr "Salvataggio di file Timeshift"
+msgstr "Salvataggio di file timeshift"
 
 msgid "Scaler sharpness"
 msgstr "Nitidezza scaler"
@@ -15018,13 +15018,13 @@ msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select '
 msgstr "Seleziona 'A' o 'B' se il tuo sistema aereo lo richiede, altrimenti seleziona 'nessuno'. Se non sei sicuro, seleziona 'nessuno'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Seleziona 'No' per fare in modo che il Timeshift utilizzi un singolo file buffer. Utilizza \"Controllo Timeshift per file meno recenti [in minuti]\" e \"Controllo Timeshift per spazio libero?\" per controllare la dimensione del file buffer."
+msgstr "Seleziona 'No' per fare in modo che il timeshift utilizzi un singolo file buffer. Utilizza \"Controllo timeshift per file meno recenti [in minuti]\" e \"Controllo timeshift per spazio libero?\" per controllare la dimensione del file buffer."
 
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "Seleziona 'No' per scrivere solo un messaggio di registro nel file di registro di debug."
 
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Seleziona 'No' per salvare gli eventi meno recenti anche dopo lo zapping o l'interruzione del Timeshift."
+msgstr "Seleziona 'No' per salvare gli eventi meno recenti anche dopo lo zapping o l'interruzione del timeshift."
 
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Seleziona 'Sì' se è richiesta un'ora di fine per questo timer."
@@ -15228,7 +15228,7 @@ msgid "Select Software Update"
 msgstr "Seleziona aggiornamento software"
 
 msgid "Select Time Shift Location"
-msgstr "Seleziona posizione Timeshift"
+msgstr "Seleziona posizione timeshift"
 
 msgid "Select Upgrade Source"
 msgstr "Seleziona sorgente aggiornamenti"
@@ -15392,7 +15392,7 @@ msgid "Select if this timer is to be repeated."
 msgstr "Seleziona se questo timer deve essere ripetuto."
 
 msgid "Select if time shift must continue when set to record."
-msgstr "Seleziona se Timeshift deve continuare quando è impostato per registrare."
+msgstr "Seleziona se timeshift deve continuare quando è impostato per registrare."
 
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Seleziona se vuoi attivare la modalità Sottoservizio."
@@ -16070,7 +16070,7 @@ msgid "Set the default location for your instant recordings. Press 'OK' to add n
 msgstr "Imposta la posizione predefinita per le tue registrazioni istantanee. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
 
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Imposta la posizione predefinita per i tuoi file Timeshift. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
+msgstr "Imposta la posizione predefinita per i tuoi file timeshift. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
 
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Imposta la posizione predefinita per le tue registrazioni. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
@@ -16201,7 +16201,7 @@ msgid "Setup FTP"
 msgstr "Impostazioni FTP"
 
 msgid "Setup Harddisk"
-msgstr "Impostazioni Hard Disk"
+msgstr "Impostazioni hard disk"
 
 msgid "Setup Inadyn"
 msgstr "Impostazioni Inadyn"
@@ -16303,7 +16303,7 @@ msgid "Setup your EPG config"
 msgstr "Imposta la tua configurazione EPG"
 
 msgid "Setup your Harddisk"
-msgstr "Impostazioni Hard Disk"
+msgstr "Impostazioni hard disk"
 
 msgid "Setup your LCD"
 msgstr "Impostazioni LCD"
@@ -17031,7 +17031,7 @@ msgid "Show warning before restart"
 msgstr "Mostra avviso prima del riavvio"
 
 msgid "Show warning when time shift is stopped"
-msgstr "Mostra avviso quando il Timeshift viene interrotto"
+msgstr "Mostra avviso quando il timeshift viene interrotto"
 
 msgid "Show watch status"
 msgstr "Mostra stato dell'orologio"
@@ -17208,7 +17208,7 @@ msgid "Skip forward"
 msgstr "Salta avanti"
 
 msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "Salta alla Live TV durante il Timeshift con i plugin"
+msgstr "Salta alla Live TV durante il timeshift con i plugin"
 
 msgid "Sleep"
 msgstr "Spegnimento"
@@ -17698,7 +17698,7 @@ msgid "Start time"
 msgstr "Orario di avvio"
 
 msgid "Start time shift"
-msgstr "Avvio Timeshift"
+msgstr "Avvio timeshift"
 
 msgid "Start/stop slide show"
 msgstr "Avvia / arresta la presentazione"
@@ -17828,16 +17828,16 @@ msgid "Stop the update, if running, then exit"
 msgstr "Interrompi l'aggiornamento, se in esecuzione, quindi esci"
 
 msgid "Stop time shift"
-msgstr "Ferma Timeshift"
+msgstr "Ferma timeshift"
 
 msgid "Stop time shift and save time shift buffer as movie"
-msgstr "Arrestare Timeshift e salvare il buffer Timeshift come registrazione"
+msgstr "Arrestare timeshift e salvare il buffer timeshift come registrazione"
 
 msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
-msgstr "Ferma Timeshift, salva buffer del Timeshift come film e avvia registrazione dell'evento in corso"
+msgstr "Ferma timeshift, salva buffer del timeshift come film e avvia registrazione dell'evento in corso"
 
 msgid "Stop time shift while recording"
-msgstr "Ferma Timeshift durante la registrazione"
+msgstr "Ferma timeshift durante la registrazione"
 
 msgid "Stop timer recording"
 msgstr "Ferma registrazione con timer"
@@ -17849,7 +17849,7 @@ msgid "Stopping Softcam"
 msgstr "Ferma softcam"
 
 msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr "Ferma Timeshift se vi è una registrazione in corso (consigliato per chiavette USB)"
+msgstr "Ferma timeshift se vi è una registrazione in corso (consigliato per chiavette USB)"
 
 msgid "Storage / Disk Information"
 msgstr "Informazioni su memoria e disco"
@@ -18164,7 +18164,7 @@ msgid "Switchable tuner types:"
 msgstr "Tipi di sintonizzatore commutabile:"
 
 msgid "Switching to live TV - time shift is still active!"
-msgstr "Passaggio alla TV in diretta: il Timeshift è ancora attivo!"
+msgstr "Passaggio alla TV in diretta: il timeshift è ancora attivo!"
 
 msgid "Switzerland"
 msgstr "Svizzera"
@@ -18611,7 +18611,7 @@ msgid ""
 "The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
-"Lo spazio sul disco disponibile per il Timeshift è inferiore a quanto specificato nelle impostazioni.\n"
+"Lo spazio sul disco disponibile per il timeshift è inferiore a quanto specificato nelle impostazioni.\n"
 "Cosa vuoi fare?"
 
 msgid "The backup failed. Please choose a different backup location."
@@ -18624,7 +18624,7 @@ msgid ""
 "The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
-"La durata del buffer del Timeshift supera il limite specificato nelle impostazioni.\n"
+"La durata del buffer del timeshift supera il limite specificato nelle impostazioni.\n"
 "Cosa vuoi fare?"
 
 msgid ""
@@ -18675,7 +18675,7 @@ msgid ""
 "The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
-"Il file system del dispositivo utilizzato per il Timeshift non supporta gli hardlink.\n"
+"Il file system del dispositivo utilizzato per il timeshift non supporta gli hardlink.\n"
 "Assicurati che sia formattato in ext2, ext3 o ext4!"
 
 #, python-format
@@ -19252,7 +19252,7 @@ msgid "Time Setup Actions"
 msgstr "Azioni di impostazione dell'ora"
 
 msgid "Time Shift Settings"
-msgstr "Impostazioni Timeshift"
+msgstr "Impostazioni timeshift"
 
 msgid "Time Update in Minutes:"
 msgstr "Tempo di aggiornamento in minuti:"
@@ -19292,25 +19292,25 @@ msgid "Time required for this process: %s"
 msgstr "Tempo necessario per questo processo: %s"
 
 msgid "Time shift buffer delete after zap"
-msgstr "Eliminazione del buffer Timeshift dopo cambio canale"
+msgstr "Eliminazione del buffer timeshift dopo cambio canale"
 
 msgid "Time shift buffer limit"
-msgstr "Limite di buffer per il Timeshift (in ore)"
+msgstr "Limite di buffer per il timeshift (in ore)"
 
 msgid "Time shift buffer location"
-msgstr "Percorso Timeshift"
+msgstr "Percorso timeshift"
 
 msgid "Time shift checking for free space"
-msgstr "Controllo spazio libero per Timeshift"
+msgstr "Controllo spazio libero per timeshift"
 
 msgid "Time shift checking for older files"
-msgstr "Elimina vecchi Timeshift per durata (in minuti)"
+msgstr "Elimina vecchi timeshift per durata (in minuti)"
 
 msgid "Time shift event based file splitting"
-msgstr "Usare più file Timeshift"
+msgstr "Usare più file timeshift"
 
 msgid "Time shift event limit"
-msgstr "Elimina Timeshift più vecchi di (numero di eventi)"
+msgstr "Elimina timeshift più vecchi di (numero di eventi)"
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Il iTimeshift potrebbe non funzionare correttamente senza aver specificato una cartella."
@@ -19319,22 +19319,22 @@ msgid "Time shift not possible!"
 msgstr "Timeshift non possibile!"
 
 msgid "Time shift save action on zap"
-msgstr "Azione salvataggio Timeshift su zap"
+msgstr "Azione salvataggio timeshift su zap"
 
 msgid "Time shift save failed!"
-msgstr "Salvataggio Timeshift non riuscito!"
+msgstr "Salvataggio timeshift non riuscito!"
 
 msgid "Time shift save recording (Select event)"
 msgstr "Registrazione di salvataggio Time Shift (Seleziona evento)"
 
 msgid "Time shift save recording (stop after current event)"
-msgstr "Salva come Timeshift (stop dopo evento in corso)"
+msgstr "Salva come timeshift (stop dopo evento in corso)"
 
 msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift salvato sul tuo Harddisk!"
+msgstr "Timeshift salvato sul tuo hard disk!"
 
 msgid "Time shift will get saved at end of event!"
-msgstr "Il Timeshift verrà salvato a fine evento!"
+msgstr "Il timeshift verrà salvato a fine evento!"
 
 msgid "Time style"
 msgstr "Stile dell’orario"
@@ -19603,7 +19603,7 @@ msgid "Translation Information"
 msgstr "Informazioni traduzione"
 
 msgid "Translation information"
-msgstr "La traduzione in italiano viene aggiornata una volta alla settimana"
+msgstr "La traduzione in italiano viene aggiornata una volta al mese circa"
 
 #, python-format
 msgid "Translation information for %s %s"
@@ -20343,7 +20343,7 @@ msgid "Use time jumps for fast forward/backward"
 msgstr "Utilizza i salti temporali per andare avanti o indietro velocemente"
 
 msgid "Use time shift SeekBar while time shifting"
-msgstr "Usa la barra di ricerca del Timeshift durante il Timeshift"
+msgstr "Usa la barra di ricerca del timeshift durante il timeshift"
 
 msgid "Use viewer for unknown files"
 msgstr "Utilizza visualizzatore per i file sconosciuti"
@@ -20796,7 +20796,7 @@ msgstr "Funzioni della tastiera virtuale"
 msgid "Virtual KeyBoard Text:"
 msgstr "Testo della tastiera virtuale:"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "Tastiera virtuale"
 
 msgid "Visual impaired commentary"
@@ -21146,7 +21146,7 @@ msgid "When enabled, a recording is allowed to interrupt live TV, when there are
 msgstr "Se abilitato, una registrazione potrà interrompere la diretta TV se non ci sono sintonizzatori liberi."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Se abilitato, verrà visualizzato un messaggio di avviso e l'utente potrà interrompere o proseguire il Timeshift."
+msgstr "Se abilitato, verrà visualizzato un messaggio di avviso e l'utente potrà interrompere o proseguire il timeshift."
 
 msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Se abilitato, decodifica sempre la ricezione di flussi http. Ciò richiede più risorse (decodifica demuxer), abilita solo se necessario. I singoli flussi verranno sempre decodificati se viene aggiunto 0x100 al tipo di servizio, indipendentemente da questa impostazione."
@@ -21236,7 +21236,7 @@ msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Se abilitato, il ricevitore selezionerà una traccia AC3+ (se disponibile)."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Se abilitato, il Timeshift si avvierà automaticamente in background dopo l'ora specificata."
+msgstr "Se abilitato, il timeshift si avvierà automaticamente in background dopo l'ora specificata."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Se abilitato, verrà utilizzato DHCP per la configurazione IP."
@@ -21290,7 +21290,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Dove vuoi eseguire il backup delle tue impostazioni?"
 
 msgid "Where do you want to save temporary time shift recordings?"
-msgstr "Dove salvo le registrazioni Timeshift temporanee?"
+msgstr "Dove salvo le registrazioni timeshift temporanee?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Quale evento vuoi salvare in modo permanente?"
@@ -21468,7 +21468,7 @@ msgid "Yes, backup my settings!"
 msgstr "Sì, eseguire backup configurazione!"
 
 msgid "Yes, but don't save time shift as movie"
-msgstr "Sì, ma non salvare il Timeshift come registrazione"
+msgstr "Sì, ma non salvare il timeshift come registrazione"
 
 msgid "Yes, but if not available show the plugin browser"
 msgstr "Sì, ma se non disponibile, mostra lista plugin"
@@ -21477,10 +21477,10 @@ msgid "Yes, but if not available show the timer list"
 msgstr "Sì, ma se non disponibile mostra l'elenco timer"
 
 msgid "Yes, but save time shift as movie and continue recording"
-msgstr "Sì, ma salva il Timeshift come registrazione e continua"
+msgstr "Sì, ma salva il timeshift come registrazione e continua"
 
 msgid "Yes, but save time shift as movie and stop recording"
-msgstr "Sì, ma salva il Timeshift come registrazione e arrestala"
+msgstr "Sì, ma salva il timeshift come registrazione e arrestala"
 
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Sì, elimina questo film e torna all'elenco dei film"
@@ -21582,13 +21582,13 @@ msgid "You have chosen to restore your settings. Enigma2 will restart after rest
 msgstr "Hai scelto di ripristinare le tue impostazioni. Enigma2 si riavvierà dopo il ripristino. Premere OK per avviare il ripristino ora."
 
 msgid "You have chosen to save the current time shift"
-msgstr "Si è scelto di salvare il Timeshift attuale"
+msgstr "Si è scelto di salvare il timeshift attuale"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
-"Hai scelto di salvare l'evento Timeshift in corso, ma l'evento non è ancora terminato\n"
+"Hai scelto di salvare l'evento timeshift in corso, ma l'evento non è ancora terminato\n"
 "Cosa vuoi fare ?"
 
 msgid "You have no script to run."
@@ -21625,13 +21625,13 @@ msgstr ""
 "Il tuo %s %s a breve sarà arrestato. Dopo che avrai seguito le istruzioni di aggiornamento presenti sul sito, il nuovo firmware ti chiederà di ripristinare le tue impostazioni."
 
 msgid "You seem to be in time shift!"
-msgstr "Il Timeshift sembra essere attivo!"
+msgstr "Il timeshift sembra essere attivo!"
 
 msgid "You seem to be in time shift, Do you want to leave time shift ?"
-msgstr "Il Timeshift sembra essere attivo: interromperlo?"
+msgstr "Il timeshift sembra essere attivo: interromperlo?"
 
 msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
-msgstr "Sembri essere in Timeshift, il servizio si interromperà brevemente quando il Timeshift si interromperà."
+msgstr "Sembri essere in timeshift, il servizio si interromperà brevemente quando il timeshift si interromperà."
 
 msgid "You should flash a new image!"
 msgstr "Dovresti flashare una nuova immagine!"
@@ -21999,7 +21999,7 @@ msgid "[Timeshift] Merging records failed!"
 msgstr "Timeshift: unione registrazioni fallita!"
 
 msgid "[Timeshift] Restarting time shift!"
-msgstr "[TimeShift] Riavvio Timeshift!"
+msgstr "[TimeShift] Riavvio timeshift!"
 
 msgid "[alternative edit]"
 msgstr "[edit alternative]"
