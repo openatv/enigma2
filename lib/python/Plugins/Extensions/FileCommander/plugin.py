@@ -663,6 +663,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			print("[FileCommander] Job '%s' finished." % (job.name))
 			if "status" in self:
 				self.displayStatus(_("Delete job completed."))
+				startIndex = self.sourceColumn.getCurrentIndex()
 				self.sourceColumn.refresh()
 				if startIndex < self.sourceColumn.count():
 					self.sourceColumn.setCurrentIndex(startIndex)
@@ -681,7 +682,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 		windowTitle = "%s - %s" % (self.getTitle(), _("Delete"))
 		path = self.sourceColumn.getPath()
-		startIndex = self.sourceColumn.getCurrentIndex()
 		if path == sep:
 			self.session.open(MessageBox, _("Error: The root file system can not be deleted!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 			return
@@ -1052,6 +1052,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			print("[FileCommander] Job '%s' finished." % (job.name))
 			if "status" in self:
 				self.displayStatus(_("Move job completed."))
+				startIndex = self.sourceColumn.getCurrentIndex()
 				self.keyRefresh()
 				if startIndex < self.sourceColumn.count():
 					self.sourceColumn.setCurrentIndex(startIndex)
@@ -1070,7 +1071,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 		windowTitle = "%s - %s" % (self.getTitle(), _("Move"))
 		path = self.sourceColumn.getPath()
-		startIndex = self.sourceColumn.getCurrentIndex()
 		if path == sep:
 			self.session.open(MessageBox, _("Error: The root file system can not be moved!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 			return
@@ -1419,7 +1419,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						rename(file, pathjoin(directory, "%s%s" % (newName, file[baseLen:])))
 					except OSError as err:
 						self.session.open(MessageBox, _("Error %d: Unable to rename related file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+				startIndex = self.sourceColumn.getCurrentIndex()
 				self.sourceColumn.refresh()
+				self.sourceColumn.setCurrentIndex(startIndex)
 
 		def renameSelectedCallback(newName):
 			if newName:
@@ -1427,7 +1429,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					rename(path, pathjoin(directory, newName))
 				except OSError as err:
 					self.session.open(MessageBox, _("Error %d: Unable to rename file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-				self.sourceColumn.refresh()
+				self.sourceColumn.changeDir(self.sourceColumn.current_directory, pathjoin(directory, newName))
 
 		windowTitle = "%s - %s" % (self.getTitle(), _("Rename"))
 		path = self.sourceColumn.getPath()
