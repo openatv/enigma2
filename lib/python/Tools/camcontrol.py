@@ -1,6 +1,6 @@
 from enigma import eConsoleAppContainer
 from os import listdir, readlink, symlink, unlink
-from os.path import exists, split as pathsplit
+from os.path import exists, islink, split as pathsplit
 
 
 class CamControl:
@@ -11,11 +11,18 @@ class CamControl:
 		self.name = name
 		self.container = eConsoleAppContainer()
 		self.callback = callback
+		self.notFound = None
 		if callback:
 			self.container.appClosed.append(self.commandFinished)
 		self.link = '/etc/init.d/' + name
 		if not exists(self.link):
 			print("[CamControl] No softcam link: '%s'" % self.link)
+			if islink(self.link) and exists("/etc/init.d/softcam.None"):
+				target = self.current()
+				if target:
+					self.notFound = target
+					print("[CamControl] wrong target '%s' set to None" % target)
+					self.select("None")  # wrong link target set to None
 
 	def getList(self):
 		result = []
