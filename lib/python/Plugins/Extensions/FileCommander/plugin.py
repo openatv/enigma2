@@ -557,7 +557,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					JobManager.AddJob(FileCopyTask(srcPaths, directory, _("File Commander Copy")), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Copy job queued."))
 					if answer == "MULTI":
-						self.sourceColumn.clearSelection()
+						self.sourceColumn.clearAllSelections()
 
 			if answer:
 				if answer == "ALL":
@@ -615,7 +615,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			return
 		directory = self.targetColumn.getCurrentDirectory()
 		if self.multiSelect == self.sourceColumn:
-			selectedItems = self.sourceColumn.getSelectedList()
+			selectedItems = self.sourceColumn.getSelectedItems()
 			if selectedItems:
 				processCopy("MULTI")
 			else:
@@ -657,7 +657,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
 				self.displayStatus(_("Delete job queued."))
 				if answer == "MULTI":
-					self.sourceColumn.clearSelection()
+					self.sourceColumn.clearAllSelections()
 
 		def successCallback(job):
 			print("[FileCommander] Job '%s' finished." % (job.name))
@@ -686,7 +686,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self.session.open(MessageBox, _("Error: The root file system can not be deleted!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 			return
 		if self.multiSelect == self.sourceColumn:
-			selectedItems = self.sourceColumn.getSelectedList()
+			selectedItems = self.sourceColumn.getSelectedItems()
 			if selectedItems:
 				self.session.openWithCallback(processDeleteMulti, MessageBox, _("Delete the selected directories/files?"), windowTitle=windowTitle)
 			else:
@@ -1013,7 +1013,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					JobManager.AddJob(FileMoveTask(srcPaths, directory, _("File Commander Move")), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Move job queued."))
 					if answer == "MULTI":
-						self.sourceColumn.clearSelection()
+						self.sourceColumn.clearAllSelections()
 
 			if answer:
 				if answer == "ALL":
@@ -1076,7 +1076,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			return
 		directory = self.targetColumn.getCurrentDirectory()
 		if self.multiSelect == self.sourceColumn:
-			selectedItems = self.sourceColumn.getSelectedList()
+			selectedItems = self.sourceColumn.getSelectedItems()
 			if selectedItems:
 				processMove("MULTI")
 			else:
@@ -1262,14 +1262,14 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 							else:
 								self.sourceColumn.toggleSelection()
 					self.sourceColumn.setCurrentIndex(startIndex)
-				print("[FileCommander] selectedItems %s." % self.sourceColumn.getSelectedList())
+				print("[FileCommander] selectedItems %s." % self.sourceColumn.getSelectedItems())
 				self.keyGoLineDown()
 
 		windowTitle = self.getTitle()
 		if self.multiSelect == self.sourceColumn:
 			path = self.sourceColumn.getPath()
 			if path:
-				selectedItems = self.sourceColumn.getSelectedList()
+				selectedItems = self.sourceColumn.getSelectedItems()
 				relatedFiles = self.getRelatedFiles(path)
 				if relatedFiles:
 					msg = [_("The following files are related to '%s':") % path]
