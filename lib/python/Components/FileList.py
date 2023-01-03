@@ -124,10 +124,10 @@ KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAG
 
 
 class FileListBase(MenuList):
-	def __init__(self, selectedFiles, directory, showDirectories=True, showFiles=True, showMountPoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirectories="0.0", sortFiles="0.0", directoriesFirst=True, showCurrentDirectory=False):
+	def __init__(self, selectedItems, directory, showDirectories=True, showFiles=True, showMountPoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirectories="0.0", sortFiles="0.0", directoriesFirst=True, showCurrentDirectory=False):
 		self.fileList = []
 		MenuList.__init__(self, self.fileList, content=eListboxPythonMultiContent)
-		self.selectedFiles = selectedFiles
+		self.selectedItems = selectedItems
 		self.showDirectories = showDirectories
 		self.showFiles = showFiles
 		self.showMountPoints = showMountPoints
@@ -211,7 +211,7 @@ class FileListBase(MenuList):
 				# print("[FileList] changeDir DEBUG: mountPoint='%s', mountPointLink='%s', directory='%s', parent='%s'." % (normpath(self.getMountPointLink(directory)), mountPoint, directory, parent))
 			for name, path, isDir, isLink in directories:
 				if not (self.inhibitMounts and self.getMountPoint(path) in self.inhibitMounts) and not self.inParentDirs(path, self.inhibitDirs):
-					selected = (path in self.selectedFiles or normpath(path) in self.selectedFiles) if self.multiSelect else None
+					selected = (path in self.selectedItems or normpath(path) in self.selectedItems) if self.multiSelect else None
 					self.fileList.append(self.fileListComponent(name=name, path=path, isDir=isDir, isLink=isLink, selected=selected))
 
 		self.fileList = []
@@ -268,7 +268,7 @@ class FileListBase(MenuList):
 		if self.showFiles:
 			for name, path, isDir, isLink in files:
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
-					selected = path in self.selectedFiles if self.multiSelect else None
+					selected = path in self.selectedItems if self.multiSelect else None
 					if isinstance(name, eServiceReference):
 						self.fileList.append(self.fileListComponent(name=basename(path), path=name, isDir=isDir, isLink=isLink, selected=selected))
 					else:
@@ -415,8 +415,8 @@ class FileListBase(MenuList):
 class FileList(FileListBase):
 	def __init__(self, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True, showCurrentDirectory=False, enableWrapAround=False):
 		self.multiSelect = False
-		selectedFiles = []
-		FileListBase.__init__(self, selectedFiles, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
+		selectedItems = []
+		FileListBase.__init__(self, selectedItems, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
 		font = fonts.get("FileList", ("Regular", 20, 25))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
@@ -428,10 +428,10 @@ class FileList(FileListBase):
 
 
 class FileListMultiSelect(FileListBase):
-	def __init__(self, selectedFiles, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True, showCurrentDirectory=False, enableWrapAround=False):
+	def __init__(self, selectedItems, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True, showCurrentDirectory=False, enableWrapAround=False):
 		self.multiSelect = True
 		# self.onSelectionChanged = []
-		FileListBase.__init__(self, selectedFiles, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
+		FileListBase.__init__(self, selectedItems, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
 		font = fonts.get("FileListMulti", ("Regular", 20, 25))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
@@ -445,69 +445,73 @@ class FileListMultiSelect(FileListBase):
 	# 	for callback in self.onSelectionChanged:
 	# 		callback()
 
+	def assignSelection(self, entry, selected):
+		path = entry[0][FILE_PATH]
+		if path and not entry[0][FILE_NAME].startswith("<"):
+			path = path if entry[0][FILE_IS_DIR] else pathjoin(self.currentDirectory, path)
+			if selected and path not in self.selectedItems:
+				self.selectedItems.append(path)
+			elif not selected and path in self.selectedItems:
+				self.selectedItems.remove(path)
+			entry = self.fileListComponent(name=entry[0][FILE_NAME], path=entry[0][FILE_PATH], isDir=entry[0][FILE_IS_DIR], isLink=entry[0][FILE_IS_LINK], selected=selected)
+		else:
+			entry = self.fileListComponent(name=entry[0][FILE_NAME], path=entry[0][FILE_PATH], isDir=entry[0][FILE_IS_DIR], isLink=entry[0][FILE_IS_LINK], selected=None)
+		return entry
+
 	def setSelection(self):
 		if self.fileList:
 			index = self.getSelectionIndex()
-			entry = self.fileList[index]
-			if not entry[0][FILE_NAME].startswith("<"):
-				path = entry[0][FILE_PATH] if entry[0][FILE_IS_DIR] else pathjoin(self.currentDirectory, entry[0][FILE_PATH])
-				# normPath = normpath(path)
-				if not entry[0][FILE_SELECTED]:
-					# if (path not in self.selectedFiles) and (normPath not in self.selectedFiles):
-					if path not in self.selectedFiles:
-						self.selectedFiles.append(path)
-					self.fileList[index] = self.fileListComponent(name=entry[0][FILE_NAME], path=entry[0][FILE_PATH], isDir=entry[0][FILE_IS_DIR], isLink=entry[0][FILE_IS_LINK], selected=True)
-					self.setList(self.fileList)
+			self.fileList[index] = self.assignSelection(self.fileList[index], True)
+			self.setList(self.fileList)
+
+	def setAllSelections(self):
+		newFileList = []
+		for entry in self.fileList:
+			newFileList.append(self.assignSelection(entry, True))
+		self.fileList = newFileList
+		self.setList(self.fileList)
 
 	def clearSelection(self):
 		if self.fileList:
 			index = self.getSelectionIndex()
-			entry = self.fileList[index]
-			if not entry[0][FILE_NAME].startswith("<"):
-				path = entry[0][FILE_PATH] if entry[0][FILE_IS_DIR] else pathjoin(self.currentDirectory, entry[0][FILE_PATH])
-				# normPath = normpath(path)
-				if entry[0][FILE_SELECTED]:
-					if path in self.selectedFiles:
-						self.selectedFiles.remove(path)
-					# elif normPath in self.selectedFiles:
-					# 	self.selectedFiles.remove(normPath)
-					else:
-						print("[FileList] Error: Can't remove '%s'!" % path)
-					self.fileList[index] = self.fileListComponent(name=entry[0][FILE_NAME], path=entry[0][FILE_PATH], isDir=entry[0][FILE_IS_DIR], isLink=entry[0][FILE_IS_LINK], selected=False)
-					self.setList(self.fileList)
+			self.fileList[index] = self.assignSelection(self.fileList[index], False)
+			self.setList(self.fileList)
+
+	def clearAllSelections(self):
+		newFileList = []
+		for entry in self.fileList:
+			newFileList.append(self.assignSelection(entry, False))
+		self.fileList = newFileList
+		self.setList(self.fileList)
 
 	def toggleSelection(self):
 		if self.fileList:
 			index = self.getSelectionIndex()
 			entry = self.fileList[index]
-			if not entry[0][FILE_NAME].startswith("<"):
-				path = entry[0][FILE_PATH] if entry[0][FILE_IS_DIR] else pathjoin(self.currentDirectory, entry[0][FILE_PATH])
-				# normPath = normpath(path)
-				if entry[0][FILE_SELECTED]:
-					selectState = False
-					if path in self.selectedFiles:
-						self.selectedFiles.remove(path)
-					# elif normPath in self.selectedFiles:
-					# 	self.selectedFiles.remove(normPath)
-					else:
-						print("[FileList] Error: Can't remove '%s'!" % path)
-				else:
-					selectState = True
-					# if (path not in self.selectedFiles) and (normPath not in self.selectedFiles):
-					if path not in self.selectedFiles:
-						self.selectedFiles.append(path)
-				self.fileList[index] = self.fileListComponent(name=entry[0][FILE_NAME], path=entry[0][FILE_PATH], isDir=entry[0][FILE_IS_DIR], isLink=entry[0][FILE_IS_LINK], selected=selectState)
-				self.setList(self.fileList)
+			selected = not entry[0][FILE_SELECTED]
+			self.fileList[index] = self.assignSelection(entry, selected)
+			self.setList(self.fileList)
+
+	def toggleAllSelections(self):
+		newFileList = []
+		for entry in self.fileList:
+			selected = not entry[0][FILE_SELECTED]
+			newFileList.append(self.assignSelection(entry, selected))
+		self.fileList = newFileList
+		self.setList(self.fileList)
 
 	def changeSelectionState(self):
 		self.toggleSelection()
 
-	def getSelectedList(self):
-		selectedList = []
-		for file in self.selectedFiles:
-			if exists(file):
-				selectedList.append(file)
-		return selectedList
+	def getSelectedItems(self):
+		selectedItems = []
+		for item in self.selectedItems:
+			if exists(item):
+				selectedItems.append(item)
+		return selectedItems
+
+	def getSelectedList(self):  # This method name is deprecated, please use getSelectedItems() instead.
+		return self.selectedItems()
 
 
 class MultiFileSelectList(FileListMultiSelect):
