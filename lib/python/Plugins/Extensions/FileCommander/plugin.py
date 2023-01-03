@@ -802,12 +802,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3),  # 22
 						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3)),  # 23
 						currentDirectory,  # 24
-						splitCurrentParent  # 25
+						splitCurrentParent,  # 25
+						currentDirectory if column.getName().startswith("<") else "%s/\u2026/%s" % (currentDirectory, basename(path))  # 26
 					)
 				except OSError:
-					data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, path, dirname(path), basename(path), "", "", "", "", currentDirectory, splitCurrentParent)
+					data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, path, dirname(path), basename(path), "", "", "", "", currentDirectory, splitCurrentParent, currentDirectory)
 			else:
-				data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, "", "", "", "", currentDirectory, "")
+				data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, "", "", "", "", currentDirectory, "", currentDirectory)
 			return [data]
 
 		headColumn = self["headleft"] if column in (self["listleft"], self["multileft"]) else self["headright"]
@@ -2621,10 +2622,10 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 			# Add command to sort the file.
 		}, prio=0, description=_("File Commander Text Editor Actions"))
 		self["moveUpAction"] = HelpableActionMap(self, ["NavigationActions"], {
-			"left": (self.keyMoveLineUp, _("Move the current line up")),
+			"first": (self.keyMoveLineUp, _("Move the current line up")),
 		}, prio=0, description=_("File Commander Text Editor Actions"))
 		self["moveDownAction"] = HelpableActionMap(self, ["NavigationActions"], {
-			"right": (self.keyMoveLineDown, _("Move the current line down")),
+			"last": (self.keyMoveLineDown, _("Move the current line down")),
 		}, prio=0, description=_("File Commander Text Editor Actions"))
 		self.isChanged = False
 		self.onLayoutFinish.append(self.layoutFinished)
