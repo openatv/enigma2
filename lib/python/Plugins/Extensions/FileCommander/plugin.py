@@ -1250,6 +1250,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if answer:
 				if answer == "CURRENT":
 					self.sourceColumn.toggleSelection()
+					self.keyGoLineDown()
 				else:
 					startIndex = self.sourceColumn.getCurrentIndex()
 					for index in range(self.sourceColumn.count()):
@@ -1261,9 +1262,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 								self.sourceColumn.clearSelection()
 							else:
 								self.sourceColumn.toggleSelection()
-					self.sourceColumn.setCurrentIndex(startIndex)
+					for i in range(startIndex, self.sourceColumn.count()):
+						self.sourceColumn.setCurrentIndex(i)
+						if not self.sourceColumn.getPath() in relatedFiles[1:]:
+							break
 				print("[FileCommander] selectedItems %s." % self.sourceColumn.getSelectedList())
-				self.keyGoLineDown()
 
 		windowTitle = self.getTitle()
 		if self.multiSelect == self.sourceColumn:
