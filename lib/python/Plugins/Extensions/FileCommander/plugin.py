@@ -1250,7 +1250,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if answer:
 				if answer == "CURRENT":
 					self.sourceColumn.toggleSelection()
-					self.keyGoLineDown()
+					if not self.sourceColumn.getCurrentIndex() + 1 == self.sourceColumn.count():
+						self.keyGoLineDown()
 				else:
 					startIndex = self.sourceColumn.getCurrentIndex()
 					for index in range(self.sourceColumn.count()):
