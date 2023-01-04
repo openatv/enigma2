@@ -167,7 +167,7 @@ class EITFile():
                 shortDescriptor = DescriptorShort(lang, title, short)
                 descriptors.append(shortDescriptor)
                 if extended:
-                        maxlen = 240
+                        maxlen = 238
                         chunks = [extended[i:i + maxlen] for i in range(0, len(extended), maxlen)]
                         for chunk in chunks:
                             extendedDescriptor = DescriptorExtended(lang, chunk)
