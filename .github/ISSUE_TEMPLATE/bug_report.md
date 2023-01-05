@@ -28,8 +28,9 @@ Steps to reproduce the behavior:
 **Screenshots**
 Screenshots are incredibly helpful; if possible, please attach to help explain your problem.
 
-**Image (please complete the following information):**
+**Image/Box Model (please complete the following information):**
  - Version: [e.g. 7.2]
+ - BoxModel: [e.g. SF8008]
 
 **Additional context**
 Add any other context about the problem here.
