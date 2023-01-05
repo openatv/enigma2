@@ -226,6 +226,7 @@ public:
 	static void setDefaultPadding(const eRect &padding) { defaultPadding = padding; }
 
 	void setOrientation(int o);
+	void setTopIndex(int idx);
 
 	bool getWrapAround() { return m_enabled_wrap_around; }
 	int getScrollbarScroll() { return m_scrollbar_scroll; }
@@ -237,6 +238,7 @@ public:
 	int getItemHeight() { return m_itemheight; }
 	int getItemWidth() { return m_itemwidth; }
 	int getOrientation() { return m_list_orientation; }
+	int getTopIndex() { return m_top; }
 	bool getSelectionEnable() {return m_selection_enabled; }
 	gFont* getFont() {return m_style.m_font; }
 	gFont* getEntryFont() {return m_style.m_font; }
