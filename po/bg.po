@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-06 19:33+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -5257,6 +5257,12 @@ msgstr "Текущата версия не е известна"
 msgid "Current version:"
 msgstr "Текуща версия:"
 
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
+
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
 
@@ -5919,6 +5925,9 @@ msgid "Delivery system workaround"
 msgstr "Заобикаляне на система за доставка"
 
 msgid "Democratic Republic of the Congo"
+msgstr ""
+
+msgid "Demod firmware version"
 msgstr ""
 
 msgid "Denmark"
@@ -6958,6 +6967,9 @@ msgstr "Разрешаване на няколко букета"
 
 msgid "Enable network traffic check"
 msgstr "Разрешаване на проверка на трафика в мрежата"
+
+msgid "Enable new GStreamer playback"
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Разрешете или деактивирайте с помощта на HDMI-CEC."
@@ -9002,6 +9014,9 @@ msgstr ""
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
+msgid "ID"
+msgstr ""
+
 msgid "IMDb Details"
 msgstr "IMDb Детайли"
 
@@ -9153,6 +9168,9 @@ msgstr "Ако е разрешено, данните от AIT са включе�
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Ако е активирано, ще се съхранява дневник за трафика на CEC протокола. Регистрационните файлове се намират заедно с другите регистрационни файлове, но с име „Enigma2-hdmicec-[date].log“."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Ако е активирано, използване на времеви прозорец за откриване на събуждане от дълбока готовност чрез таймер. Настройката по подразбиране е деактивирана и използва специален сигнал от приемника. Но някои устройства задават грешен или никакъв сигнал и откриването на събуждане може да се провали."
@@ -11877,7 +11895,7 @@ msgstr "Не е тестван:"
 msgid "Nothing"
 msgstr "Нищо"
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr ""
 
 msgid ""
@@ -20744,8 +20762,11 @@ msgstr ""
 msgid "Virgin Islands (US)"
 msgstr ""
 
-msgid "Virtual KeyBoard Functions"
-msgstr "Функции на виртуалната клавиатура"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
+msgstr ""
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Текст на виртуалната клавиатура:"
@@ -23286,6 +23307,9 @@ msgstr "вашият %s %s може да бъде неизползваем се�
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Функции на виртуалната клавиатура"
 
 #, python-format
 #~ msgid ""

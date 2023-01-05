@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-06 19:33+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -5282,6 +5282,12 @@ msgstr "Aktuálna verzia nie je známa"
 msgid "Current version:"
 msgstr "Aktuálna verzia:"
 
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
+
 msgid "Currently Defined Volume Offsets:"
 msgstr "Aktuálne definované posuny hlasitosti:"
 
@@ -5945,6 +5951,9 @@ msgstr "Dočasné riešenie pre systém doručovania"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Demokratická republika Kongo"
+
+msgid "Demod firmware version"
+msgstr ""
 
 msgid "Denmark"
 msgstr "Dánsko"
@@ -6984,6 +6993,9 @@ msgstr "Zapnúť viacnásobné prehľady"
 
 msgid "Enable network traffic check"
 msgstr "Zapnúť kontrolu sieťového prenosu"
+
+msgid "Enable new GStreamer playback"
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Zapnúť alebo vypnúť pomocou HDMI-CEC."
@@ -9032,6 +9044,9 @@ msgstr "I/O priorita pre skripty"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
 
+msgid "ID"
+msgstr ""
+
 msgid "IMDb Details"
 msgstr "Detaily IMDb"
 
@@ -9186,6 +9201,9 @@ msgstr "Ak je povolené, zahrnú sa údaje AIT do nahrávok."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Ak je táto voľba aktivovaná, zachová sa záznam o prenose CEC. Súbory so záznamom sú umiestnené s ostatnými takýmito súbormi, ale majú názov 'Enigma2-hdmicec-[dátum].log'."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Ak je povolené, časovač používa časové okno na detekciu prebudenia z vypnutého stavu. Predvolené nastavenie je: vypnuté. Používa sa ako špeciálny signál z prijímača. Niektoré zariadenia však nastavujú nesprávny alebo nulový signál a detekcia prebudenia tak nemusí byť úspešná."
@@ -11911,7 +11929,7 @@ msgstr "Netestované:"
 msgid "Nothing"
 msgstr "Nič"
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr "Nič nie je pripojené"
 
 msgid ""
@@ -20822,8 +20840,11 @@ msgstr "Panenské ostrovy (britské)"
 msgid "Virgin Islands (US)"
 msgstr "Panenské ostrovy (US)"
 
-msgid "Virtual KeyBoard Functions"
-msgstr "Funkcie virtuálnej klávesnice"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
+msgstr ""
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Text virtuálnej klávesnice:"
@@ -23369,6 +23390,9 @@ msgstr "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s 
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Funkcie virtuálnej klávesnice"
 
 #, python-format
 #~ msgid "Add '%s' to bookmarks"

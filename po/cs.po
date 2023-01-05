@@ -1,10 +1,10 @@
-# Petr Turek <turekdesign99@gmail.com>, 2022.
+# Petr Turek <turekdesign99@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-06 19:33+0000\n"
-"PO-Revision-Date: 2022-12-09 18:02+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"PO-Revision-Date: 2023-01-03 10:12+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 msgid ""
 "\n"
@@ -5280,6 +5280,14 @@ msgstr "Aktuální verze neznámá"
 msgid "Current version:"
 msgstr "Aktuální verze:"
 
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
+"Aktuální: %s\n"
+"Rodič: %s"
+
 msgid "Currently Defined Volume Offsets:"
 msgstr "Aktuálně definované posuny hlasitosti:"
 
@@ -5943,6 +5951,9 @@ msgstr "Řešení doručovacího systému"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Kongo (Demokratická republika)"
+
+msgid "Demod firmware version"
+msgstr "Verze demodového firmwaru"
 
 msgid "Denmark"
 msgstr "Dánsko"
@@ -6982,6 +6993,9 @@ msgstr "Povolit vícenásobné přehledy"
 
 msgid "Enable network traffic check"
 msgstr "Povolit kontrolu síťového provozu"
+
+msgid "Enable new GStreamer playback"
+msgstr "Povolit nové přehrávání GStreamer"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Povolit nebo zakázat použití HDMI-CEC."
@@ -9030,6 +9044,9 @@ msgstr "Priorita I/O pro skripty"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "IMDb Details"
 msgstr "IMDb podrobnosti"
 
@@ -9184,6 +9201,9 @@ msgstr "Pokud je povoleno jsou AIT data vložena do nahrávek."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Pokud je povoleno, bude uchováván protokol o provozu CEC. Soubory protokolu jsou umístěny s ostatními soubory protokolu, ale pojmenované 'Enigma2-hdmicec-[datum].log'."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr "Pokud je povoleno, použije se nový engine pro přehrávání GStreamer."
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Je-li povoleno, pomocí časového okna detekovat probuzení z hlubokého spánku pomocí časovače. Výchozí nastavení je zakázáno a používá se speciální signál z přijímače. Některá zařízení však nastaví špatný nebo žádný signál a detekce probuzení může selhat."
@@ -11909,8 +11929,8 @@ msgstr "Netestováno:"
 msgid "Nothing"
 msgstr "Nic"
 
-msgid "Nothing connected"
-msgstr "Nic není připojeno"
+msgid "Nothing connected and/or no files available!"
+msgstr "Nic není připojeno a/nebo nejsou k dispozici žádné soubory!"
 
 msgid ""
 "Nothing to scan!\n"
@@ -20820,8 +20840,11 @@ msgstr "Panenské ostrovy (britské)"
 msgid "Virgin Islands (US)"
 msgstr "Panenské ostrovy (USA)"
 
-msgid "Virtual KeyBoard Functions"
-msgstr "Funkce virtuální klávesnice"
+msgid "Virtual KeyBoard"
+msgstr "Virtuální klávesnice"
+
+msgid "Virtual KeyBoard Actions"
+msgstr "Akce virtuální klávesnice"
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Text na virtuální klávesnici:"
@@ -23367,6 +23390,9 @@ msgstr "vaše %s %s je nyní možná nepoužitelné. Před restartováním vaše
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Funkce virtuální klávesnice"
 
 #, python-format
 #~ msgid "Add '%s' to bookmarks"
