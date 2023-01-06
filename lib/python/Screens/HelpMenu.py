@@ -160,7 +160,7 @@ class ShowRemoteControl:
 				pixmap.clearPath()
 				pixmap.addMovePoint(rcPos[0] + pos[0], rcPos[1] + pos[1], time=5)
 				pixmap.startMoving(startTimer)
-				self["label"].setText("%s: %s\n%s: %s" % (_("ID"), KEYIDNAMES.get(keyId, _("Unknown")), _("Label"), remoteControl.getRemoteControlKeyLabel(keyId)))
+				self["label"].setText("%s: %s\n%s: %s" % (_("Key"), KEYIDNAMES.get(keyId, _("Unknown")), _("Label"), remoteControl.getRemoteControlKeyLabel(keyId)))
 				pixmap.addMovePoint(rcPos[0] + pos[0], rcPos[1] + pos[1], time=15)
 				pixmap.startMoving(startTimer)
 			else:

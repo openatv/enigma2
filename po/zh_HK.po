@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-06 19:33+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -5526,6 +5526,12 @@ msgstr ""
 msgid "Current version:"
 msgstr "當前版本:"
 
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
+
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
 
@@ -6219,6 +6225,9 @@ msgid "Delivery system workaround"
 msgstr ""
 
 msgid "Democratic Republic of the Congo"
+msgstr ""
+
+msgid "Demod firmware version"
 msgstr ""
 
 #, fuzzy
@@ -7299,6 +7308,9 @@ msgid "Enable multiple bouquets"
 msgstr "啟用自定義組"
 
 msgid "Enable network traffic check"
+msgstr ""
+
+msgid "Enable new GStreamer playback"
 msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
@@ -9454,6 +9466,9 @@ msgstr ""
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
+msgid "ID"
+msgstr ""
+
 msgid "IMDb Details"
 msgstr ""
 
@@ -9617,6 +9632,9 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
@@ -12545,7 +12563,7 @@ msgstr "未啟用"
 msgid "Nothing"
 msgstr "什麼都不做"
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr ""
 
 msgid ""
@@ -22009,15 +22027,17 @@ msgstr ""
 msgid "Virgin Islands (US)"
 msgstr ""
 
-#, fuzzy
-msgid "Virtual KeyBoard Functions"
-msgstr "虛擬鍵盤"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Virtual KeyBoard Text:"
 msgstr "虛擬鍵盤"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr ""
 
 msgid "Visual impaired commentary"
@@ -24609,6 +24629,10 @@ msgstr "您的Dreambox現在可能無法使用.請參考手冊以獲得進一步
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "虛擬鍵盤"
 
 #, fuzzy, python-format
 #~ msgid " ('%s') ends successfully."

@@ -2,23 +2,23 @@
 #
 # openATV <openatv@gmail.com>, 2021.
 # kvinto <badsystem@ukr.net>, 2021, 2022.
-# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022.
+# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023.
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
 # Artem <artem@molotov.work>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-06 19:33+0000\n"
-"PO-Revision-Date: 2022-12-13 10:30+0000\n"
-"Last-Translator: kvinto <badsystem@ukr.net>\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"PO-Revision-Date: 2023-01-04 13:08+0000\n"
+"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -5287,6 +5287,14 @@ msgstr "Поточна версія невідома"
 msgid "Current version:"
 msgstr "Поточна версія:"
 
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
+"Поточний: %s\n"
+"Батьківський: %s"
+
 msgid "Currently Defined Volume Offsets:"
 msgstr "Поточні зміщення гучності:"
 
@@ -5950,6 +5958,9 @@ msgstr "Системний обхід доставки"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Демократична Республіка Конго"
+
+msgid "Demod firmware version"
+msgstr "Demod версія прошивки"
 
 msgid "Denmark"
 msgstr "Данія"
@@ -6989,6 +7000,9 @@ msgstr "Відображати фаворитні списки"
 
 msgid "Enable network traffic check"
 msgstr "Включити перевірку мережевого трафіку"
+
+msgid "Enable new GStreamer playback"
+msgstr "Увімкнути нове відтворення GStreamer"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Ввімкнути, або вимкнути за допомогою HDMI-CEC."
@@ -9037,6 +9051,9 @@ msgstr "Пріоритет введення/виведення для скрип
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 нові Моделі"
 
+msgid "ID"
+msgstr "ID"
+
 msgid "IMDb Details"
 msgstr "IMDb подробиці"
 
@@ -9191,6 +9208,9 @@ msgstr "Якщо включено, дані AIT будуть включені в
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Якщо ввімкнено, журнал трафіку протоколу CEC зберігатиметься. Файли журналів розташовані разом з іншими файлами журналів, але мають назву 'Enigma2-hdmicec-[date].log'."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr "Якщо ввімкнено, використовуватиметься новий механізм відтворення GStreamer."
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Якщо включено, буде використано вікно часу для включення приймача за допомогою таймера. За замовчуванням вимкнено та використовується спеціальний сигнал з приймача. Зверніть увагу, що деякі пристрої не завжди сприймають сигнал і включення може бути невдале."
@@ -11916,8 +11936,8 @@ msgstr "Не протестовано:"
 msgid "Nothing"
 msgstr "Нічого"
 
-msgid "Nothing connected"
-msgstr "Нічого не підключено"
+msgid "Nothing connected and/or no files available!"
+msgstr "Нічого не підключено та/або немає доступних файлів!"
 
 msgid ""
 "Nothing to scan!\n"
@@ -18288,7 +18308,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 07.12.2022"
+msgstr "Переклад: kvinto - 03.01.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20827,13 +20847,16 @@ msgstr "Віргінські острови (Велика Британія)"
 msgid "Virgin Islands (US)"
 msgstr "Віргінські острови (США)"
 
-msgid "Virtual KeyBoard Functions"
-msgstr "Функції Віртуального клавіатури"
+msgid "Virtual KeyBoard"
+msgstr "Віртуальна клавіатура"
+
+msgid "Virtual KeyBoard Actions"
+msgstr "Дії віртуальної клавіатури"
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Текст Віртуальної клавіатури:"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "Віртуальна Клавіатура"
 
 msgid "Visual impaired commentary"
@@ -23374,6 +23397,9 @@ msgstr "ваш %s %s може стати непридатним тепер. Пр
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Функції Віртуального клавіатури"
 
 #, python-format
 #~ msgid "Add '%s' to bookmarks"

@@ -31,6 +31,10 @@ class SoftcamSetup(Setup):
 			softcams = [("", _("None"))]
 			defaultsoftcam = ""
 		config.misc.softcams = ConfigSelection(default=defaultsoftcam, choices=softcams)
+		if self.softcam.notFound:
+			print("[SoftcamSetup] current: '%s' not found" % self.softcam.notFound)
+			config.misc.softcams.value = "None"
+			config.misc.softcams.save()
 		cardservers = self.cardserver.getList()
 		defaultcardserver = self.cardserver.current()
 		if len(cardservers) > 1:

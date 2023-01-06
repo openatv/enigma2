@@ -160,6 +160,18 @@ void eListbox::moveSelectionTo(int index)
 	}
 }
 
+void eListbox::setTopIndex(int index)
+{
+	if (m_content)
+	{
+		if (m_content->size() > index) {
+			m_top = index;
+			m_content_changed = true;
+			moveSelection(justCheck);
+		}
+	}
+}
+
 int eListbox::getCurrentIndex()
 {
 	if (m_content && m_content->cursorValid())

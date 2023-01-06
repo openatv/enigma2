@@ -42,6 +42,8 @@ def InitUsageConfig():
 	config.misc.opkgcleanmode = ConfigYesNo(default=False)
 	config.misc.actionLeftRightToPageUpPageDown = ConfigYesNo(default=True)
 
+	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
+
 	config.workaround = ConfigSubsection()
 	config.workaround.blueswitch = ConfigSelection(default="0", choices=[
 		("0", _("QuickMenu/Extensions")),
