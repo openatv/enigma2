@@ -511,7 +511,7 @@ class FileListMultiSelect(FileListBase):
 		return selectedItems
 
 	def getSelectedList(self):  # This method name is deprecated, please use getSelectedItems() instead.
-		return self.selectedItems()
+		return self.getSelectedItems()
 
 
 class MultiFileSelectList(FileListMultiSelect):
