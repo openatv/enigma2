@@ -162,7 +162,7 @@ class SoftcamSetup(Setup):
 			self.restart(device="c")
 
 	def commandFinished(self):
-		if not hasattr(self, "doStartCommand")
+		if not hasattr(self, "doStartCommand"):
 			if self.doStartCommand:
 				self.doStartCommand = False
 				self.doStart()
