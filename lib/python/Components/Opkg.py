@@ -108,6 +108,7 @@ class OpkgComponent:
 	CMD_UPGRADE = 4
 	CMD_UPGRADE_LIST = 5
 	CMD_LIST_INSTALLED = 6
+	CMD_INFO = 7
 	# NOTE: The following commands are internal use only and should NOT be used by external modules!
 	CMD_CLEAN = 100
 	CMD_CLEAN_UPDATE = 101
@@ -195,6 +196,8 @@ class OpkgComponent:
 			self.excludeList = []
 			packages = args["package"].split() if args and "package" in args else []
 			argv = extra + ["list-installed"] + packages
+		if cmd == self.CMD_INFO:
+			argv = ["info", ">", "/tmp/opkg.tmp"]
 		print("[Opkg] Executing '%s' with '%s'." % (self.opkg, " ".join(argv)))
 		self.cache = ""
 		self.cachePtr = -1
@@ -202,6 +205,10 @@ class OpkgComponent:
 		self.cmd.appClosed.append(self.cmdFinished)
 		# self.cmd.setBufferSize(50)
 		argv.insert(0, self.opkg)
+		if cmd == self.CMD_INFO:  # use shell for info
+			if self.cmd.execute(" ".join(argv)):
+				self.cmdFinished(-1)
+			return
 		if self.cmd.execute(self.opkg, *argv):
 			self.cmdFinished(-1)
 
@@ -285,7 +292,7 @@ class OpkgComponent:
 	def cmdFinished(self, retVal):
 		self.cmd.dataAvail.remove(self.cmdData)
 		self.cmd.appClosed.remove(self.cmdFinished)
-		if config.crash.debugOpkg.value:
+		if config.crash.debugOpkg.value and self.currentCommand != self.CMD_INFO:
 			print("[Opkg] Opkg command '%s' output:\n%s" % (self.getCommandText(self.currentCommand), self.cache))
 		if self.nextCommand:
 			cmd, args = self.nextCommand
@@ -360,3 +367,75 @@ class OpkgComponent:
 			11: "Error",
 			12: "Modified"
 		}.get(event, "None")
+
+	def parseInfo(self):
+		packageInfo = {}
+		lines = fileReadLines("/tmp/opkg.tmp")
+		for line in lines:
+			if line.startswith("Package:"):
+				package = line.split(":", 1)[1].strip()
+				description = ""
+				status = ""
+				section = ""
+				installed = "0"
+				architecture = ""
+				size = ""
+				maintainer = ""
+				continue
+			if package is None:
+				continue
+			if line.startswith("Status:"):
+				status = line.split(":", 1)[1].strip()
+				if " installed" in status.lower():
+					installed = "1"
+			elif line.startswith("Section:"):
+				section = line.split(":", 1)[1].strip()
+			elif line.startswith("Architecture:"):
+				architecture = line.split(":", 1)[1].strip()
+			elif line.startswith("Size:"):
+				size = line.split(":", 1)[1].strip()
+			elif line.startswith("Maintainer:"):
+				maintainer = line.split(":", 1)[1].strip()
+			elif line.startswith("Depends:"):
+				depends = line.split(":", 1)[1].strip()
+			elif line.startswith("Version:"):
+				version = line.split(":", 1)[1].strip()
+			# TDOD : check description
+			elif line.startswith("Description:"):
+				description = line.split(":", 1)[1].strip()
+			elif description and line.startswith(" "):
+				description += line[:-1]
+			elif len(line) <= 1:
+				d = description.split(" ", 3)
+				if len(d) > 3:
+					if d[1] == "version":
+						description = d[3]
+					# TDOD : check this
+					if description.startswith("gitAUTOINC"):
+						description = description.split(" ", 1)[1]
+				if package in packageInfo:
+					v = packageInfo[package][0]
+					packageInfo[package][3] = v
+					packageInfo[package][2] = "1"
+					packageInfo[package][0] = version
+				else:
+					packageInfo.update({package: [version, description.strip(), installed, "0", section, architecture, size, maintainer, depends]})
+				package = None
+
+		keys = sorted(packageInfo.keys())
+
+		ret = []
+		for name in keys:
+			ret.append({
+				"name": name,
+				"version": packageInfo[name][0],
+				"description": packageInfo[name][1],
+				"installed": packageInfo[name][2],
+				"update": packageInfo[name][3],
+				"section": packageInfo[name][4],
+				"architecture": packageInfo[name][5],
+				"size": packageInfo[name][6],
+				"maintainer": packageInfo[name][7],
+				"depends": packageInfo[name][8]
+			})
+		return ret

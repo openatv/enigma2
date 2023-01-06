@@ -9,8 +9,15 @@ from Tools.LoadPixmap import LoadPixmap
 import skin
 
 
+#DIVPNG = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
+INSTALLEDPNG = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
+INSTALLABLE = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
+UPGRADEABLE = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png"))
+PLUGINPNG = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "icons/plugin.png"))
+
+
 def PluginEntryComponent(plugin, width=440):
-	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/plugin.png"))
+	png = plugin.icon or PLUGINPNG
 	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
 	dx, dy, dh = skin.parameters.get("PluginBrowserDescr", (120, 26, 17))
 	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
@@ -23,7 +30,7 @@ def PluginEntryComponent(plugin, width=440):
 
 
 def PluginEntryComponentSelected(plugin, width=440):
-	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/plugin.png"))
+	png = plugin.icon or PLUGINPNG
 	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
 	dx, dy, dh = skin.parameters.get("PluginBrowserDescr", (120, 26, 17))
 	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
@@ -47,8 +54,8 @@ def PluginCategoryComponent(name, png, width=440):
 	]
 
 
-def PluginDownloadComponent(plugin, name, version=None, width=440):
-	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/plugin.png"))
+def PluginDownloadComponent(plugin, name, version=None, width=440, installstatus=None, updatestatus=None):
+	png = plugin.icon or PLUGINPNG
 	if version:
 		if "+git" in version:
 			# remove git "hash"
@@ -59,12 +66,27 @@ def PluginDownloadComponent(plugin, name, version=None, width=440):
 	x, y, h = skin.parameters.get("PluginBrowserDownloadName", (80, 5, 25))
 	dx, dy, dh = skin.parameters.get("PluginBrowserDownloadDescr", (80, 26, 17))
 	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
-	return [
-		plugin,
-		MultiContentEntryText(pos=(x, y), size=(width - x, h), font=0, text=name),
-		MultiContentEntryText(pos=(dx, dy), size=(width - dx, dh), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png)
-	]
+	if installstatus:
+		ipng = INSTALLABLE if installstatus == "0" else INSTALLEDPNG
+		if updatestatus and updatestatus != "0":
+			ipng = UPGRADEABLE
+		offset = iw
+		return [
+			plugin,
+			MultiContentEntryText(pos=(x + offset, y), size=(width - x, h), font=0, text=name),
+			MultiContentEntryText(pos=(dx + offset, dy), size=(width - dx, dh), font=1, text=plugin.description),
+			MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png),
+			MultiContentEntryPixmapAlphaBlend(pos=(ix + offset, iy), size=(iw, ih), png=ipng, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER),
+			installstatus,
+			updatestatus
+		]
+	else:
+		return [
+			plugin,
+			MultiContentEntryText(pos=(x, y), size=(width - x, h), font=0, text=name),
+			MultiContentEntryText(pos=(dx, dy), size=(width - dx, dh), font=1, text=plugin.description),
+			MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png)
+		]
 
 
 class PluginList(MenuList):
