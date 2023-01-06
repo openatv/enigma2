@@ -15,7 +15,6 @@ from Tools.GetEcmInfo import GetEcmInfo
 
 class SoftcamSetup(Setup):
 	def __init__(self, session):
-		self.doStartCommand = False
 		self.softcam = CamControl("softcam", self.commandFinished)
 		self.cardserver = CamControl("cardserver", self.commandFinished)
 		self.ecminfo = GetEcmInfo()
@@ -58,6 +57,7 @@ class SoftcamSetup(Setup):
 		self.EcmInfoPollTimer = eTimer()
 		self.EcmInfoPollTimer.callback.append(self.setEcmInfo)
 		self.EcmInfoPollTimer.start(1000)
+		self.doStartCommand = False
 		self.onShown.append(self.updateButtons)
 
 	def selectionChanged(self):
@@ -158,10 +158,11 @@ class SoftcamSetup(Setup):
 			self.restart(device="c")
 
 	def commandFinished(self):
-		if self.doStartCommand:
-			self.doStartCommand = False
-			self.doStart()
-			return
+		if not hasattr(self, "doStartCommand")
+			if self.doStartCommand:
+				self.doStartCommand = False
+				self.doStart()
+				return
 		if "e" in self.device:
 			self.saveAll()
 			updateSysSoftCam()
