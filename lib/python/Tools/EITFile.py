@@ -14,6 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with EITFile.py.  If not, see <http://www.gnu.org/licenses/>.
 
+# Changelog:
+# 1.0 Initial version
+# 1.1 Improve chunk calculation
+
+__version__ = "1.1"
 
 from datetime import datetime
 
@@ -73,18 +78,18 @@ class DescriptorShort(Descriptor):
     def __init__(self, lang: str, title: str, short: str):
         Descriptor.__init__(self, lang)
         tbytes = Bytes()
-        tlen = len(title.encode())
+        tlen = len(title)
         tbytes.append(tlen + 1)
         tbytes.append(0x15)  # UTF8
         if tlen > 0:
-            tbytes.appends(title.encode())
+            tbytes.appends(title)
 
         sbytes = Bytes()
-        slen = len(short.encode())
+        slen = len(short)
         sbytes.append(slen + 1)
         sbytes.append(0x15)  # UTF8
         if slen > 0:
-            sbytes.appends(short.encode())
+            sbytes.appends(short)
 
         self.addData(3 + sbytes.len() + tbytes.len())
         self.addlang()
@@ -100,10 +105,10 @@ class DescriptorExtended(Descriptor):
     def __init__(self, lang: str, text: str):
         Descriptor.__init__(self, lang)
         ebytes = Bytes()
-        elen = len(text.encode())
+        elen = len(text)
         ebytes.append(elen + 1)
         ebytes.append(0x15)  # UTF8
-        ebytes.appends(text.encode())
+        ebytes.appends(text)
         self.addData(7 + elen)
         self.addData(0)
         self.addlang()
@@ -162,12 +167,15 @@ class EITFile():
         self.Data = Bytes()
         self.filename = filename
         if title:
-            if (len(title) + len(short)) < 240:
+            title = title.encode()
+            short = short.encode()
+            if (len(title) + len(short)) < 248:
                 descriptors = []
                 shortDescriptor = DescriptorShort(lang, title, short)
                 descriptors.append(shortDescriptor)
                 if extended:
-                        maxlen = 238
+                        extended = extended.encode()
+                        maxlen = 248
                         chunks = [extended[i:i + maxlen] for i in range(0, len(extended), maxlen)]
                         for chunk in chunks:
                             extendedDescriptor = DescriptorExtended(lang, chunk)
