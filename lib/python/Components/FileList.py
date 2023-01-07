@@ -121,7 +121,7 @@ EXTENSION_ICONS = {}
 EXTENSION_ICONS["lock_off"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png"))
 EXTENSION_ICONS["lock_on"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 EXTENSION_ICONS["link-arrow"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link-arrow.png"))
-EXTENSION_ICONS["link-arrow"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link-arrow.png"))
+EXTENSION_ICONS["link"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link.png"))
 EXTENSION_ICONS["back"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/back.png"))
 EXTENSION_ICONS["directory"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 EXTENSION_ICONS["file"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/file.png"))
@@ -294,7 +294,7 @@ class FileListBase(MenuList):
 				if path == select:
 					start = index
 					break
-		# TODO: We may need to reset the top of the viewport before setting the index.
+		# We may need to reset the top of the viewport before setting the index.
 		self.moveToIndex(start)
 
 	def refresh(self):
