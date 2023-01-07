@@ -13,50 +13,48 @@ from Tools.Directories import createDir, fileReadLines
 from Tools.BoundFunction import boundFunction
 
 
-class FlashExpanderScreen(Setup):
+class FlashExpander(Setup):
 	def __init__(self, session):
 		choices = []
 		default = ""
-		self.devielist = []
+		self.devicelist = []
 		if self.ismounted("", "/usr"):
 			self.found = True
 			self["footnote"].setText((_("... is used, %dMB free") % self.getFreeSize("/usr")))
 			choices.append(("", _("Activated")))
 		else:
+			# Read block devices
 			for x in listdir("/sys/block"):
-				if x[0:2] == 'sd' or x[0:2] == 'hd':
+				if x[0:2] == "sd" or x[0:2] == "hd":
 					print("[FlashExpander] device %s" % x)
 					devices = Harddisk(x)
 					for y in range(devices.numPartitions()):
 						fstype = self.getPartitionType(devices.partitionPath(str(y + 1)))
 						if fstype is False:
 							fstype = self.getPartitionType(devices.partitionPath(str(y + 1)))
-						try:
-							bustype = devices.bus()
-						except:
-							bustype = _("unknown")
+						bustype = devices.bus()
 						if fstype in ("ext2", "ext3", "ext4", "xfs"):
-							self.devielist.append(("%s (%s) - Partition %d (%s)" % (devices.model(), bustype, y + 1, fstype), (devices, y + 1, fstype)))
+							self.devicelist.append(("%s (%s) - Partition %d (%s)" % (devices.model(), bustype, y + 1, fstype), (devices, y + 1, fstype)))
 
-			#Netzlaufwerke
+			# Read network devices
 			try:
 				for x in self.getMounts():
-					entry = x.split(' ')
+					entry = x.split(" ")
 					if len(entry) > 3 and entry[2] == "nfs":
-						server = entry[0].split(':')
+						server = entry[0].split(":")
 						if len(server) == 2:
 							print("[FlashExpander] server %s" % server)
-							self.devielist.append(("Server (%s) - Path (%s)" % (server[0], server[1]), server))
+							self.devicelist.append(("Server (%s) - Path (%s)" % (server[0], server[1]), server))
 			except Exception as error:
 				print("[FlashExpander] Error <getMountPoints>: %s" % str(error))
 
-			if len(self.devielist) == 0:
+			if len(self.devicelist) == 0:
 				self["footnote"].setText(_("No HDD-, SSD- or USB-Device found. Please first initialized."))
 				choices.append(("", _("No drive available")))
 			else:
 				self["footnote"].setText(_("FlashExpander is not installed, create?"))
 				choices.append(("", _("No drive available")))
-				for index, device in enumerate(self.devielist):
+				for index, device in enumerate(self.devicelist):
 					choices.append((str(index), device[0]))
 
 		self.selection = ConfigSelection(choices=choices, default=default)
@@ -66,16 +64,16 @@ class FlashExpanderScreen(Setup):
 	def getMounts(self):
 		return fileReadLines("/proc/mounts", [])
 
-	def ismounted(self, dev, mp):
-		for x in self.getMounts():
-			parts = x.strip().split(" ")
-			if len(parts) > 1 and (parts[0] == dev or parts[1] == mp):
+	def ismounted(self, device, mountpoint):
+		for mount in self.getMounts():
+			parts = mount.strip().split(" ")
+			if len(parts) > 1 and (parts[0] == device or parts[1] == mountpoint):
 				return parts[1]
 		return False
 
-	def getFreeSize(self, mp):
+	def getFreeSize(self, mountpoint):
 		try:
-			stat = statvfs(mp)
+			stat = statvfs(mountpoint)
 			return int(stat.f_bfree / 1000 * stat.f_bsize / 1000)
 		except OSError:
 			return 0
@@ -83,50 +81,37 @@ class FlashExpanderScreen(Setup):
 	def getPartitionType(self, device):
 		fstype = None
 		try:
-			if exists("/lib/udev/vol_id"):
-				val = os_popen("/lib/udev/vol_id --type " + device)
-				fstype = val.read().strip()
-			elif exists("/sbin/blkid"):
-				for line in os_popen("/sbin/blkid " + device).read().split('\n'):
-					if not line.startswith(device):
-						continue
-					fstobj = search(r' TYPE="((?:[^"\\]|\\.)*)"', line)
-					if fstobj:
-						fstype = fstobj.group(1)
-		except:
-			print("[FlashExpander] <error get fstype>")
+			for line in os_popen("/sbin/blkid %s" % device).read().split("\n"):
+				if not line.startswith(device):
+					continue
+				fstobj = search(r' TYPE="((?:[^"\\]|\\.)*)"', line)
+				if fstobj:
+					fstype = fstobj.group(1)
+		except Exception as error:
+			print("[FlashExpander] <error get fstype> : %s" % str(error))
 			return False
 		return fstype
 
 	def getPartitionUUID(self, device):
 		try:
-			if exists("/dev/disk/by-uuid"):
-				for uuid in listdir("/dev/disk/by-uuid/"):
-					uuidPath = join("/dev/disk/by-uuid", uuid)
-					if not exists(uuidPath):
-						return None
-					if realpath(uuidPath) == device:
-						return uuidPath
-			else:
-				#Topfi begin (use more reliable UUID mount on boxes without /dev/disk/by-uuid)
-				p = Popen(["blkid", "-o", "udev", device], stdout=PIPE, stderr=PIPE, stdin=PIPE)
-				txtUUID = p.stdout.read()
-				start = txtUUID.find(b"ID_FS_UUID=")
-				if start > -1:
-					txtUUID = txtUUID[start + 11:]
-					end = txtUUID.find(b"\n")
-					if end > -1:
-						txtUUID = txtUUID[:end]
-					return b"UUID=" + txtUUID
-				#Topfi end
-				return device
-		except:
-			print("[FlashExpander] <error get UUID>")
+			p = Popen(["blkid", "-o", "udev", device], stdout=PIPE, stderr=PIPE, stdin=PIPE)
+			txtUUID = p.stdout.read()
+			start = txtUUID.find(b"ID_FS_UUID=")
+			if start > -1:
+				txtUUID = txtUUID[start + 11:]
+				end = txtUUID.find(b"\n")
+				if end > -1:
+					txtUUID = txtUUID[:end]
+				return b"UUID=%s" % txtUUID
+			return device
+		except Exception as error:
+			print("[FlashExpander] <error get UUID>: %s" % str(error))
 		return None
 
-	def startFE_device(self, val, result):
+	def startCopyDisk(self, val, result):
 		if result:
 			partitionPath = val[0].partitionPath(str(val[1]))
+			# TODO: DO WE NEED THIS -> uuidPath
 			uuidPath = self.getPartitionUUID(partitionPath)
 			fstype = val[2]
 			print("[FlashExpander] %s %s %s" % (partitionPath, uuidPath, fstype))
@@ -143,7 +128,7 @@ class FlashExpanderScreen(Setup):
 
 			self.copyFlash(mountpoint, (partitionPath, uuidPath, fstype))
 
-	def startFE_server(self, val, result):
+	def startCopyServer(self, val, result):
 		if result:
 			serverPath = "%s:%s" % (val[0], val[1])
 			print("[FlashExpander] %s" % serverPath)
@@ -154,13 +139,13 @@ class FlashExpanderScreen(Setup):
 		if self.checkMountPoint(mp):
 			cmd = "cp -af /usr/* %s/" % (mp)
 			self.Console.ePopen(cmd, self.CopyFinished)
-			self.messageBox = self.session.openWithCallback(boundFunction(self.EndCB, data), MessageBox, _("Please wait, Flash memory will be copied."), MessageBox.TYPE_INFO, enable_input=False)
+			self.messageBox = self.session.openWithCallback(boundFunction(self.copyFlashCallback, data), MessageBox, _("Please wait, Flash memory will be copied."), MessageBox.TYPE_INFO, enable_input=False)
 
-	def mount(self, dev, mp):
-		if exists(mp) is False:
-			createDir(mp, True)
-		cmd = "mount " + dev + " " + mp
-		#print("[FlashExpander]",cmd)
+	def mount(self, device, mountpoint):
+		if exists(mountpoint) is False:
+			createDir(mountpoint, True)
+		cmd = "mount %s %s" % (device, mountpoint)
+		print("[FlashExpander] mount command : '%s'" % cmd)
 		res = system(cmd)
 		return (res >> 8)
 
@@ -179,33 +164,33 @@ class FlashExpanderScreen(Setup):
 		else:
 			self.messageBox.close(False)
 
-	def EndCB(self, val, retval):
+	def copyFlashCallback(self, val, retval):
 		if retval:
 			try:
 				devPath = val[0]
-				uuidPath = val[1].decode('utf-8')
+				uuidPath = val[1].decode("utf-8")
 				fstype = val[2]
 
 				#fstab editieren
 				fstabItems = []
-				with open('/etc/fstab') as fp:
-					fstabItems = fp.read().split('\n')
+				with open("/etc/fstab") as fp:
+					fstabItems = fp.read().split("\n")
 				newlines = []
 				for x in fstabItems:
 					if x.startswith(devPath) or x.startswith("/dev/hdc1"):  # /dev/hdc1 wegen 7025+
 						continue
 					if uuidPath and x.startswith(uuidPath):
 						continue
-					if len(x) > 1 and x[0] != '#':
+					if len(x) > 1 and x[0] != "#":
 						newlines.append(x)
 				if fstype == "nfs":
 					newlines.append("%s\t/usr\t%s\trw,nolock,timeo=14,intr\t0 0" % (devPath, fstype))
 				else:
 					newlines.append("%s\t/usr\tauto\tdefaults\t0 0" % (uuidPath))
-				with open("/etc/fstab", 'w') as fp:
+				with open("/etc/fstab", "w") as fp:
 					fp.write("#automatically edited by FlashExpander\n")
 					for x in newlines:
-						fp.write(x + "\n")
+						fp.write("%s\n" % x)
 				print("[FlashExpander] write new /etc/fstab")
 				self.session.openWithCallback(self.Exit, MessageBox, _("Do you want to reboot your STB_BOX?"))
 			except:
@@ -222,11 +207,11 @@ class FlashExpanderScreen(Setup):
 	def keySave(self):
 		if self.selection.value:
 			index = int(self.selection.value)
-			sel = self.devielist[index]
+			sel = self.devicelist[index]
 			if sel and sel[1]:
 				if len(sel[1]) == 3:  # Device
 					tstr = _("Are you sure want to create FlashExpander on\n%s\nPartition %d") % (sel[1][0].model(), sel[1][1])
-					self.session.openWithCallback(boundFunction(self.startFE_device, sel[1]), MessageBox, tstr)
+					self.session.openWithCallback(boundFunction(self.startCopyDisk, sel[1]), MessageBox, tstr)
 				if len(sel[1]) == 2:  # Server
 					tstr = _("Are you sure want to create FlashExpander on \nServer: %s\nPath: %s") % (sel[1][0], sel[1][1])
-					self.session.openWithCallback(boundFunction(self.startFE_server, sel[1]), MessageBox, tstr)
+					self.session.openWithCallback(boundFunction(self.startCopyServer, sel[1]), MessageBox, tstr)

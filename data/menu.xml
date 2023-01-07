@@ -197,6 +197,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="harddisk_convert" level="0" text="Convert EXT3 File System to EXT4" weight="15" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection" /></item>
 					<item key="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount" /></item>
 					<item key="swap_manager" level="2" text="Swap Manager" weight="30"><screen module="SwapManager" screen="Swap" /></item>
+					<item key="flash_expander" level="0" text="Flash Expander" weight="40"><screen module="FlashExpander" screen="FlashExpander" /></item>
 				</menu>
 				<!-- Menu / Setup / System / Network -->
 				<menu key="network" level="0" text="Network" weight="50">

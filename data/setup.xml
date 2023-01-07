@@ -320,7 +320,7 @@
 			<item level="0" text="Remove all other data" description="Select 'Yes' to remove all other files and directories not covered by the options above." conditional="len(self.others)">config.factory.resetOthers</item>
 		</if>
 	</setup>
-	<setup key="FlashExpander" title="FlashExpander">
+	<setup key="FlashExpander" title="Flash Expander">
 		<item level="0" text="Target Device" description="Choose the target device for the /usr directory.">self.selection</item>
 	</setup>
 	<setup key="HardDisk" title="Hard Disk Settings" showOpenWebif="1">
