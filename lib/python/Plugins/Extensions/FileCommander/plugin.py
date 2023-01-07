@@ -52,7 +52,7 @@ MODULE_NAME = __name__.split(".")[-1]
 
 PROGRAM_NAME = _("File Commander")
 PROGRAM_DESCRIPTION = _("Manage and explore directories and files.")
-PROGRAM_VERSION = "%s %s" % (_("Version"), "4.00")
+PROGRAM_VERSION = "%s %s" % (_("Version"), "4.10")
 
 STORAGE_DEVICES_NAME = "<%s>" % _("List of Storage Devices")
 
@@ -181,7 +181,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			</convert>
 		</widget>
 		<widget name="listleft" position="0,80" size="590,450" />
-		<widget name="multileft" position="0,80" size="590,450" />
 		<widget name="sortleft" position="0,530" size="590,20" font="Regular;17" foregroundColor="#00fff000" halign="center" />
 		<widget source="headright" render="Listbox" position="610,0" size="590,75" foregroundColor="#00fff000" selection="0">
 			<convert type="TemplatedMultiContent">
@@ -200,7 +199,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			</convert>
 		</widget>
 		<widget name="listright" position="610,80" size="590,450" />
-		<widget name="multiright" position="610,80" size="590,450" />
 		<widget name="sortright" position="610,530" size="590,20" font="Regular;17" foregroundColor="#00fff000" halign="center" />
 		<widget name="quickselect" position="0,80" size="590,450" font="Regular;100" foregroundColor="#00fff000" halign="center" transparent="1" valign="center" zPosition="+1" />
 		<widget name="status" position="0,515" size="1200,35" font="Regular;25" backgroundColor="#00fff000" borderColor="#00000000" borderWidth="2" foregroundColor="#00ffffff" halign="center" valign="center" zPosition="+1" />
@@ -251,7 +249,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		HelpableScreen.__init__(self)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
 		StatInfo.__init__(self)
-		if not self.getTitle():
+		self.baseTitle = self.getTitle()
+		if not self.baseTitle:
+			self.baseTitle = PROGRAM_NAME
 			self.setTitle(PROGRAM_NAME)
 		# For initialization pathLeft or pathRight set to "" means saved or default value, None means the device list.
 		if pathLeft == "":
@@ -284,16 +284,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self["headleft"] = List()
 		self["listleft"] = FileList(pathLeft, matchingPattern=fileFilter, sortDirs=self.sortDirectoriesLeft, sortFiles=self.sortFilesLeft, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
 		self["listleft"].onSelectionChanged.append(self.selectionChanged)
-		self["multileft"] = FileListMultiSelect(selectedItems, None, matchingPattern=fileFilter, sortDirs=self.sortDirectoriesLeft, sortFiles=self.sortFilesLeft, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
-		self["multileft"].onSelectionChanged.append(self.selectionChanged)
-		self["multileft"].visible = False
 		self["sortleft"] = Label()
 		self["headright"] = List()
 		self["listright"] = FileList(pathRight, matchingPattern=fileFilter, sortDirs=self.sortDirectoriesRight, sortFiles=self.sortFilesRight, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
 		self["listright"].onSelectionChanged.append(self.selectionChanged)
-		self["multiright"] = FileListMultiSelect(selectedItems, None, matchingPattern=fileFilter, sortDirs=self.sortDirectoriesRight, sortFiles=self.sortFilesRight, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
-		self["multiright"].onSelectionChanged.append(self.selectionChanged)
-		self["multiright"].visible = False
 		self["sortright"] = Label()
 		self["quickselect"] = Label()
 		self["quickselect"].visible = False
@@ -346,7 +340,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		}, prio=0, description=_("File Commander Actions"))
 		self["alwaysNumberActions"] = HelpableActionMap(self, ["NumberActions"], {
 			"5": (self.keySelectBookmark, _("Select a directory from the bookmarks")),
-			"8": (self.keyRefresh, _("Refresh screen")),
+			"8": (self.keyRefresh, _("Refresh screen"))
 			# "0": (self.keySelect, _("Toggle the selection"))
 			# "0": (self.keyJobTaskTesting, _("Debug code for job and task testing"))
 		}, prio=0, description=_("File Commander Actions"))
@@ -405,15 +399,101 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def layoutFinished(self):
 		self["listleft"].instance.enableAutoNavigation(False)
-		self["multileft"].instance.enableAutoNavigation(False)
 		self["listright"].instance.enableAutoNavigation(False)
-		self["multiright"].instance.enableAutoNavigation(False)
 		if self.leftActive:
 			self.keyGoLeftColumn()
 		else:
 			self.keyGoRightColumn()
 		self.updateHeading(self.targetColumn)
-		self.buildSortData()
+		self.updateSort()
+
+	def updateTitle(self):
+		filtered = "" if config.plugins.FileCommander.extension.value == config.plugins.FileCommander.extension.default else "  (*)"
+		selected = "  -  %d Selected" % len(self.multiSelect.getSelectedItems()) if self.multiSelect else ""
+		self.setTitle("%s%s%s" % (PROGRAM_NAME, filtered, selected))
+
+	def updateHeading(self, column):
+		def buildHeadingData(column):  # Numbers in trailing comments are the template text indexes.
+			if column == self["listleft"]:
+				sortDirs, reverseDirs = [int(x) for x in config.plugins.FileCommander.sortDirectoriesLeft.value.split(".")]
+				sortFiles, reverseFiles = [int(x) for x in config.plugins.FileCommander.sortFilesLeft.value.split(".")]
+			else:
+				sortDirs, reverseDirs = [int(x) for x in config.plugins.FileCommander.sortDirectoriesRight.value.split(".")]
+				sortFiles, reverseFiles = [int(x) for x in config.plugins.FileCommander.sortFilesRight.value.split(".")]
+			sortText = "[D]%s%s[F]%s%s" % (("n", "d", "s")[sortDirs], ("+", "-")[reverseDirs], ("n", "d", "s")[sortFiles], ("+", "-")[reverseFiles])  # (name|date|size)(normal|reverse)
+			path = column.getPath()
+			currentDirectory = column.getCurrentDirectory()
+			currentDirectory = normpath(currentDirectory) if currentDirectory else ""
+			splitCurrentParent = _("Current: %s\nParent: %s") % (currentDirectory, dirname(currentDirectory)) if column.getName().startswith("<") else path  # 25
+			if path:
+				path = normpath(path)
+				try:
+					pathStat = lstat(path)
+					symbolicMode = filemode(pathStat.st_mode)
+					octalMode = "%04o" % S_IMODE(pathStat.st_mode)
+					modes = (
+						octalMode,  # 0
+						symbolicMode,  # 1
+						_("%s (%s)") % (octalMode, symbolicMode)  # 2
+					)
+					size = pathStat.st_size
+					formattedSize = "{:n}".format(size)
+					if S_ISCHR(pathStat.st_mode) or S_ISBLK(pathStat.st_mode):
+						sizes = ("", "", "")
+					else:
+						scaledSize = NumberScaler().scale(size, maxNumLen=3, decimals=3)
+						sizes = (
+							formattedSize,  # 10
+							scaledSize,  # 11
+							"%s (%s)" % (formattedSize, scaledSize)  # 12
+						)
+					data = modes + (
+						"%d" % pathStat.st_ino,  # 3
+						"%d, %d" % ((pathStat.st_dev >> 8) & 0xff, pathStat.st_dev & 0xff),   # 4
+						"%d" % pathStat.st_nlink,  # 5
+						"%d" % pathStat.st_uid,  # 6
+						self.username(pathStat.st_uid),  # 7
+						"%d" % pathStat.st_gid,  # 8
+						self.groupname(pathStat.st_gid)  # 9
+					) + sizes + (
+						self.formatTime(pathStat.st_mtime),  # 13
+						self.formatTime(pathStat.st_atime),  # 14
+						self.formatTime(pathStat.st_ctime),  # 15
+						sortText,  # 16
+						path,  # 17
+						dirname(path),  # 18
+						basename(path),  # 19
+						NumberScaler().scale(size, style="Si", maxNumLen=3, decimals=3),  # 20
+						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Si", maxNumLen=3, decimals=3)),  # 21
+						NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3),  # 22
+						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3)),  # 23
+						currentDirectory,  # 24
+						splitCurrentParent,  # 25
+						currentDirectory if column.getName().startswith("<") else "%s/\u2026/%s" % (currentDirectory, basename(path))  # 26
+					)
+				except OSError:
+					data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, path, dirname(path), basename(path), "", "", "", "", currentDirectory, splitCurrentParent, currentDirectory)
+			else:
+				data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, "", "", "", "", currentDirectory, "", currentDirectory)
+			return [data]
+
+		self.updateTitle()
+		headColumn = self["headleft"] if column == self["listleft"] else self["headright"]
+		headColumn.updateList(buildHeadingData(column))
+
+	def updateSort(self):
+		def formatSort(columnSort):
+			sortDirs, sortFiles = columnSort.split(",")
+			sortDirs, reverseDirs = [int(x) for x in sortDirs.split(".")]
+			sortFiles, reverseFiles = [int(x) for x in sortFiles.split(".")]
+			sD = (_("name"), _("date"), _("size"))[sortDirs]  # name, date, size
+			sF = (_("name"), _("date"), _("size"))[sortFiles]
+			rD = ("\u25B2", "\u25BC")[reverseDirs]  # normal, reverse
+			rF = ("\u25B2", "\u25BC")[reverseFiles]
+			return _("Sort: Directories by %s %s; Files by %s %s.") % (sD, rD, sF, rF)
+
+		self["sortleft"].setText(formatSort(self["listleft"].getSortBy()))
+		self["sortright"].setText(formatSort(self["listright"].getSortBy()))
 
 	def updateButtons(self):
 		currentDirectory = self.sourceColumn.getCurrentDirectory()
@@ -522,17 +602,17 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				try:
 					chmod(path, answer)
 				except OSError as err:
-					self.session.open(MessageBox, _("Error %d: Unable to set access mode on '%s'!  (%s)") % (err.errno, path, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+					self.session.open(MessageBox, _("Error %d: Unable to set access mode on '%s'!  (%s)") % (err.errno, path, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
 				self.sourceColumn.refresh()
 
-		windowTitle = self.getTitle()
 		path = self.sourceColumn.getPath()
-		choiceList = [
-			(_("Cancel"), 0),
-			(_("Reset executable mode (644)"), 0o0644),
-			(_("Set executable mode (755)"), 0o0755)
-		]
-		self.session.openWithCallback(changeModeCallback, MessageBox, text=(_("Do you want change '%s' access mode?") % path), list=choiceList, windowTitle=windowTitle)
+		if self.checkStillExists(path):
+			choiceList = [
+				(_("Cancel"), 0),
+				(_("Reset executable mode (644)"), 0o0644),
+				(_("Set executable mode (755)"), 0o0755)
+			]
+			self.session.openWithCallback(changeModeCallback, MessageBox, text=(_("Do you want change '%s' access mode?") % path), list=choiceList, windowTitle=self.baseTitle)
 
 	def keyCopy(self):
 		def checkRelatedCopy():
@@ -608,22 +688,23 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Copy job failed!")), MessageBox.TYPE_ERROR)
 
-		windowTitle = "%s - %s" % (self.getTitle(), _("Copy"))
+		windowTitle = "%s - %s" % (self.baseTitle, _("Copy"))
 		path = self.sourceColumn.getPath()
-		if path == sep:
-			self.session.open(MessageBox, _("Error: The root file system can not be copied!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-			return
-		directory = self.targetColumn.getCurrentDirectory()
-		if self.multiSelect == self.sourceColumn:
-			selectedItems = self.sourceColumn.getSelectedItems()
-			if selectedItems:
-				processCopy("MULTI")
+		if self.checkStillExists(path):
+			if path == sep:
+				self.session.open(MessageBox, _("Error: The root file system can not be copied!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+				return
+			directory = self.targetColumn.getCurrentDirectory()
+			if self.multiSelect == self.sourceColumn:
+				selectedItems = self.sourceColumn.getSelectedItems()
+				if selectedItems:
+					processCopy("MULTI")
+				else:
+					relatedFiles = self.getRelatedFiles(path)
+					checkRelatedCopy()
 			else:
 				relatedFiles = self.getRelatedFiles(path)
 				checkRelatedCopy()
-		else:
-			relatedFiles = self.getRelatedFiles(path)
-			checkRelatedCopy()
 
 	def keyDelete(self):
 		def processDeleteMulti(answer):
@@ -679,22 +760,23 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Delete job failed!")), MessageBox.TYPE_ERROR)
 
-		windowTitle = "%s - %s" % (self.getTitle(), _("Delete"))
+		windowTitle = "%s - %s" % (self.baseTitle, _("Delete"))
 		path = self.sourceColumn.getPath()
-		startIndex = self.sourceColumn.getCurrentIndex()
-		if path == sep:
-			self.session.open(MessageBox, _("Error: The root file system can not be deleted!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-			return
-		if self.multiSelect == self.sourceColumn:
-			selectedItems = self.sourceColumn.getSelectedItems()
-			if selectedItems:
-				self.session.openWithCallback(processDeleteMulti, MessageBox, _("Delete the selected directories/files?"), windowTitle=windowTitle)
+		if self.checkStillExists(path):
+			startIndex = self.sourceColumn.getCurrentIndex()
+			if path == sep:
+				self.session.open(MessageBox, _("Error: The root file system can not be deleted!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+				return
+			if self.multiSelect == self.sourceColumn:
+				selectedItems = self.sourceColumn.getSelectedItems()
+				if selectedItems:
+					self.session.openWithCallback(processDeleteMulti, MessageBox, _("Delete the selected directories/files?"), windowTitle=windowTitle)
+				else:
+					relatedFiles = self.getRelatedFiles(path)
+					checkRelatedDelete()
 			else:
 				relatedFiles = self.getRelatedFiles(path)
 				checkRelatedDelete()
-		else:
-			relatedFiles = self.getRelatedFiles(path)
-			checkRelatedDelete()
 
 	def keyExit(self):
 		if config.plugins.FileCommander.savePathLeft.value:
@@ -730,14 +812,14 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def keyGoLeftColumn(self):
 		self.leftActive = True
-		self.sourceColumn = self.multiSelect if self.multiSelect == self["multileft"] else self["listleft"]
-		self.targetColumn = self.multiSelect if self.multiSelect == self["multiright"] else self["listright"]
+		self.sourceColumn = self["listleft"]
+		self.targetColumn = self["listright"]
 		self.goColumn()
 
 	def keyGoRightColumn(self):
 		self.leftActive = False
-		self.sourceColumn = self.multiSelect if self.multiSelect == self["multiright"] else self["listright"]
-		self.targetColumn = self.multiSelect if self.multiSelect == self["multileft"] else self["listleft"]
+		self.sourceColumn = self["listright"]
+		self.targetColumn = self["listleft"]
 		self.goColumn()
 
 	def goColumn(self):
@@ -745,74 +827,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.targetColumn.selectionEnabled(False)
 		self.updateHeading(self.sourceColumn)
 		self.updateButtons()
-
-	def updateHeading(self, column):
-		def buildHeadingData(column):  # Numbers in trailing comments are the template text indexes.
-			if column in (self["listleft"], self["multileft"]):
-				sortDirs, reverseDirs = [int(x) for x in config.plugins.FileCommander.sortDirectoriesLeft.value.split(".")]
-				sortFiles, reverseFiles = [int(x) for x in config.plugins.FileCommander.sortFilesLeft.value.split(".")]
-			else:
-				sortDirs, reverseDirs = [int(x) for x in config.plugins.FileCommander.sortDirectoriesRight.value.split(".")]
-				sortFiles, reverseFiles = [int(x) for x in config.plugins.FileCommander.sortFilesRight.value.split(".")]
-			sortText = "[D]%s%s[F]%s%s" % (("n", "d", "s")[sortDirs], ("+", "-")[reverseDirs], ("n", "d", "s")[sortFiles], ("+", "-")[reverseFiles])  # (name|date|size)(normal|reverse)
-			path = column.getPath()
-			currentDirectory = column.getCurrentDirectory()
-			currentDirectory = normpath(currentDirectory) if currentDirectory else ""
-			splitCurrentParent = _("Current: %s\nParent: %s") % (currentDirectory, dirname(currentDirectory)) if column.getName().startswith("<") else path  # 25
-			if path:
-				path = normpath(path)
-				try:
-					pathStat = lstat(path)
-					symbolicMode = filemode(pathStat.st_mode)
-					octalMode = "%04o" % S_IMODE(pathStat.st_mode)
-					modes = (
-						octalMode,  # 0
-						symbolicMode,  # 1
-						_("%s (%s)") % (octalMode, symbolicMode)  # 2
-					)
-					size = pathStat.st_size
-					formattedSize = "{:n}".format(size)
-					if S_ISCHR(pathStat.st_mode) or S_ISBLK(pathStat.st_mode):
-						sizes = ("", "", "")
-					else:
-						scaledSize = NumberScaler().scale(size, maxNumLen=3, decimals=3)
-						sizes = (
-							formattedSize,  # 10
-							scaledSize,  # 11
-							"%s (%s)" % (formattedSize, scaledSize)  # 12
-						)
-					data = modes + (
-						"%d" % pathStat.st_ino,  # 3
-						"%d, %d" % ((pathStat.st_dev >> 8) & 0xff, pathStat.st_dev & 0xff),   # 4
-						"%d" % pathStat.st_nlink,  # 5
-						"%d" % pathStat.st_uid,  # 6
-						self.username(pathStat.st_uid),  # 7
-						"%d" % pathStat.st_gid,  # 8
-						self.groupname(pathStat.st_gid)  # 9
-					) + sizes + (
-						self.formatTime(pathStat.st_mtime),  # 13
-						self.formatTime(pathStat.st_atime),  # 14
-						self.formatTime(pathStat.st_ctime),  # 15
-						sortText,  # 16
-						path,  # 17
-						dirname(path),  # 18
-						basename(path),  # 19
-						NumberScaler().scale(size, style="Si", maxNumLen=3, decimals=3),  # 20
-						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Si", maxNumLen=3, decimals=3)),  # 21
-						NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3),  # 22
-						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3)),  # 23
-						currentDirectory,  # 24
-						splitCurrentParent,  # 25
-						currentDirectory if column.getName().startswith("<") else "%s/\u2026/%s" % (currentDirectory, basename(path))  # 26
-					)
-				except OSError:
-					data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, path, dirname(path), basename(path), "", "", "", "", currentDirectory, splitCurrentParent, currentDirectory)
-			else:
-				data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, STORAGE_DEVICES_NAME, "", "", "", "", currentDirectory, "", currentDirectory)
-			return [data]
-
-		headColumn = self["headleft"] if column in (self["listleft"], self["multileft"]) else self["headright"]
-		headColumn.updateList(buildHeadingData(column))
 
 	def keyGoLineDown(self):
 		self.sourceColumn.goLineDown()
@@ -853,7 +867,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def keyInformation(self, path=None):
 		if path is None:
 			path = self.sourceColumn.getPath()
-		self.session.open(FileCommanderInformation, path, self.targetColumn)
+		if self.checkStillExists(path):
+			self.session.open(FileCommanderInformation, path, self.targetColumn)
 
 	def keyJobTaskTesting(self):
 		def successCallback(job):
@@ -871,7 +886,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Test job failed!")), MessageBox.TYPE_ERROR)
 
-		windowTitle = "%s - %s" % (self.getTitle(), _("Test"))
+		windowTitle = "%s - %s" % (self.baseTitle, _("Test"))
 		job = Job(_("Sleep test"))
 		task = Task(job, _("Sleep test"))
 		task.postconditions.append(TaskPostConditions())
@@ -888,7 +903,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					try:
 						mkdir(pathjoin(sourceDir, newName))
 					except OSError as err:
-						self.session.open(MessageBox, _("Error %d: Unable to create directory '%s'!  (%s)") % (err.errno, pathjoin(sourceDir, newName), err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+						self.session.open(MessageBox, _("Error %d: Unable to create directory '%s'!  (%s)") % (err.errno, pathjoin(sourceDir, newName), err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
 					self.sourceColumn.refresh()
 
 		if self.sourceColumn.getCurrentDirectory():
@@ -903,13 +918,14 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					try:
 						symlink(oldPath, newPath)
 					except OSError as err:
-						self.session.open(MessageBox, _("Error %d: Unable to link '%s' as '%s'!  (%s)") % (err.errno, oldPath, newPath, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+						self.session.open(MessageBox, _("Error %d: Unable to link '%s' as '%s'!  (%s)") % (err.errno, oldPath, newPath, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
 					self.keyRefresh()
 
 		path = self.sourceColumn.getPath()
-		if path and self.sourceColumn.getCurrentDirectory() and self.sourceColumn.getCurrentIndex():
-			path = basename(normpath(path))
-			self.session.openWithCallback(makeSymlinkCallback, VirtualKeyBoard, title=_("Please enter name of the new symbolic link:"), text=path)
+		if self.checkStillExists(path):
+			if path and self.sourceColumn.getCurrentDirectory() and self.sourceColumn.getCurrentIndex():
+				path = basename(normpath(path))
+				self.session.openWithCallback(makeSymlinkCallback, VirtualKeyBoard, title=_("Please enter name of the new symbolic link:"), text=path)
 
 	def keyManageBookmarks(self, current):
 		bookmarks = config.plugins.FileCommander.bookmarks.value
@@ -960,36 +976,37 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						actions[action]()
 
 		path = self.sourceColumn.getPath()
-		buttons = tuple(digits)  # + ("red", "green", "yellow", "blue")
-		# Map the listed button actions to their help texts and build a list of the contexts used by the selected buttons.
-		actionMaps = [self["alwaysNumberActions"]]
-		for enabledActionmaps in self.enabledMenuActionMaps:
-			actionMaps.append(self[enabledActionmaps])
-		actions = {}
-		haveContext = set()
-		haveContext.add("MenuActions")
-		haveContext.add("InfoActions")
-		contexts = ["MenuActions", "InfoActions"]
-		for actionMap in actionMaps:
-			for contextEntry in (x for x in self.helpList if x[0] is actionMap):
-				for actionEntry in contextEntry[2]:
-					button = actionEntry[0]
-					text = actionEntry[1]
-					if button in buttons and text:
-						context = contextEntry[1]
-						if context not in haveContext:
-							contexts.append(context)
-							haveContext.add(context)
-						actions[button] = text if isinstance(text, str) else text()
-		# Create the menu list with the buttons in the order of the "buttons" tuple.
-		menu = [("menu", _("File Commander settings")), ("info", _("Show task list"))]
-		menu += [(button, actions[button]) for button in buttons if button in actions]
-		directory = self.sourceColumn.getCurrentDirectory()
-		if directory:
-			menu.append(("bullet", _("Remove current directory from bookmarks") if directory in config.plugins.FileCommander.bookmarks.value else _("Add current directory to bookmarks"), "bookmark+current"))
-		if path and path != directory and isdir(path):
-			menu.append(("bullet", _("Remove highlighted directory from bookmarks") if path in config.plugins.FileCommander.bookmarks.value else _("Add highlighted directory to bookmarks"), "bookmark+selected"))
-		self.session.openWithCallback(keyMenuCallback, FileCommanderContextMenu, contexts, menu, directory, path)
+		if self.checkStillExists(path):
+			buttons = tuple(digits)  # + ("red", "green", "yellow", "blue")
+			# Map the listed button actions to their help texts and build a list of the contexts used by the selected buttons.
+			actionMaps = [self["alwaysNumberActions"]]
+			for enabledActionmaps in self.enabledMenuActionMaps:
+				actionMaps.append(self[enabledActionmaps])
+			actions = {}
+			haveContext = set()
+			haveContext.add("MenuActions")
+			haveContext.add("InfoActions")
+			contexts = ["MenuActions", "InfoActions"]
+			for actionMap in actionMaps:
+				for contextEntry in (x for x in self.helpList if x[0] is actionMap):
+					for actionEntry in contextEntry[2]:
+						button = actionEntry[0]
+						text = actionEntry[1]
+						if button in buttons and text:
+							context = contextEntry[1]
+							if context not in haveContext:
+								contexts.append(context)
+								haveContext.add(context)
+							actions[button] = text if isinstance(text, str) else text()
+			# Create the menu list with the buttons in the order of the "buttons" tuple.
+			menu = [("menu", _("File Commander settings")), ("info", _("Show task list"))]
+			menu += [(button, actions[button]) for button in buttons if button in actions]
+			directory = self.sourceColumn.getCurrentDirectory()
+			if directory:
+				menu.append(("bullet", _("Remove current directory from bookmarks") if directory in config.plugins.FileCommander.bookmarks.value else _("Add current directory to bookmarks"), "bookmark+current"))
+			if path and path != directory and isdir(path):
+				menu.append(("bullet", _("Remove highlighted directory from bookmarks") if path in config.plugins.FileCommander.bookmarks.value else _("Add highlighted directory to bookmarks"), "bookmark+selected"))
+			self.session.openWithCallback(keyMenuCallback, FileCommanderContextMenu, contexts, menu, directory, path)
 
 	def keyMove(self):
 		def checkRelatedMove():
@@ -1069,52 +1086,35 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Move job failed!")), MessageBox.TYPE_ERROR)
 
-		windowTitle = "%s - %s" % (self.getTitle(), _("Move"))
+		windowTitle = "%s - %s" % (self.baseTitle, _("Move"))
 		path = self.sourceColumn.getPath()
-		startIndex = self.sourceColumn.getCurrentIndex()
-		if path == sep:
-			self.session.open(MessageBox, _("Error: The root file system can not be moved!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-			return
-		directory = self.targetColumn.getCurrentDirectory()
-		if self.multiSelect == self.sourceColumn:
-			selectedItems = self.sourceColumn.getSelectedItems()
-			if selectedItems:
-				processMove("MULTI")
+		if self.checkStillExists(path):
+			startIndex = self.sourceColumn.getCurrentIndex()
+			if path == sep:
+				self.session.open(MessageBox, _("Error: The root file system can not be moved!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+				return
+			directory = self.targetColumn.getCurrentDirectory()
+			if self.multiSelect == self.sourceColumn:
+				selectedItems = self.sourceColumn.getSelectedItems()
+				if selectedItems:
+					processMove("MULTI")
+				else:
+					relatedFiles = self.getRelatedFiles(path)
+					checkRelatedMove()
 			else:
 				relatedFiles = self.getRelatedFiles(path)
 				checkRelatedMove()
-		else:
-			relatedFiles = self.getRelatedFiles(path)
-			checkRelatedMove()
 
 	def keyMultiSelect(self):
 		if self.multiSelect is None:
-			if self.leftActive:
-				self["listleft"].visible = False
-				self["multileft"].visible = True
-				self["multileft"].changeDir(self["listleft"].getCurrentDirectory())
-				self["multileft"].setCurrentIndex(self["listleft"].getCurrentIndex())
-				self.multiSelect = self["multileft"]
-			else:
-				self["listright"].visible = False
-				self["multiright"].visible = True
-				self["multiright"].changeDir(self["listright"].getCurrentDirectory())
-				self["multiright"].setCurrentIndex(self["listright"].getCurrentIndex())
-				self.multiSelect = self["multiright"]
-			self.sourceColumn = self.multiSelect
+			self.multiSelect = self["listleft"] if self.leftActive else self["listright"]
+			self.sourceColumn.setMultiSelectMode()
+			self.targetColumn.setSingleSelectMode()
 		else:
-			if self.multiSelect == self["multileft"]:
-				self["multileft"].visible = False
-				self["listleft"].visible = True
-				self["listleft"].changeDir(self["multileft"].getCurrentDirectory())
-				self["listleft"].setCurrentIndex(self["multileft"].getCurrentIndex())
-			else:
-				self["multiright"].visible = False
-				self["listright"].visible = True
-				self["listright"].changeDir(self["multiright"].getCurrentDirectory())
-				self["listright"].setCurrentIndex(self["multiright"].getCurrentIndex())
+			self.multiSelect.setSingleSelectMode()
+			self.multiSelect.clearAllSelections()  # Clearing the selection list should be removed when multi selection across directories is enabled.
 			self.multiSelect = None
-			self.sourceColumn = self["listleft"] if self.leftActive else self["listright"]
+		self.updateTitle()
 
 	def keyOk(self):
 		def archiveCallback(answer):
@@ -1220,7 +1220,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					try:
 						yfile = stat(path)
 					except OSError as err:
-						self.session.open(MessageBox, _("%s: %s") % (path, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+						self.session.open(MessageBox, _("%s: %s") % (path, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
 						return
 					if path:
 						if yfile.st_size < MAX_EDIT_SIZE:
@@ -1243,7 +1243,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						task.processStderr = taskProcessStderr
 						task.setCmdline(cmdline)
 						JobManager.AddJob(job, onSuccess=successCallback, onFail=failCallback)
-						self.buildTitleData()
+						self.updateTitle()
 					else:
 						self.session.open(Console, cmdlist=(cmdline,))
 
@@ -1262,137 +1262,139 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 								self.sourceColumn.clearSelection()
 							else:
 								self.sourceColumn.toggleSelection()
+							if [x.strip() for x in self.sourceColumn.getSortBy().split(",")][1].startswith("0"):
+								startIndex = index
 					self.sourceColumn.setCurrentIndex(startIndex)
+				if self.sourceColumn.getCurrentIndex() < self.sourceColumn.count() - 1:
+					self.keyGoLineDown()
 				print("[FileCommander] selectedItems %s." % self.sourceColumn.getSelectedItems())
-				self.keyGoLineDown()
 
-		windowTitle = self.getTitle()
-		if self.multiSelect == self.sourceColumn:
-			path = self.sourceColumn.getPath()
-			if path:
-				selectedItems = self.sourceColumn.getSelectedItems()
-				relatedFiles = self.getRelatedFiles(path)
-				if relatedFiles:
-					msg = [_("The following files are related to '%s':") % path]
-					for file in relatedFiles[2:]:
-						if file == path:
-							continue
-						msg.append("- '%s'" % basename(file))
-					choiceList = [
-						(_("Cancel selection"), ""),
-						(_("Toggle all related files"), "TOGGLEALL")
-					]
-					if path in selectedItems:
-						choiceList.extend((
-							(_("Deselect all related files"), "DESELECTALL"),
-							(_("Deselect only highlighted file"), "CURRENT")
-						))
+		path = self.sourceColumn.getPath()
+		if self.checkStillExists(path):
+			if self.multiSelect == self.sourceColumn:
+				if path:
+					selectedItems = self.sourceColumn.getSelectedItems()
+					relatedFiles = self.getRelatedFiles(path)
+					if relatedFiles:
+						msg = [_("The following files are related to '%s':") % path]
+						for file in relatedFiles[2:]:
+							if file == path:
+								continue
+							msg.append("- '%s'" % basename(file))
+						choiceList = [
+							(_("Cancel selection"), ""),
+							(_("Toggle all related files"), "TOGGLEALL")
+						]
+						if path in selectedItems:
+							choiceList.extend((
+								(_("Deselect all related files"), "DESELECTALL"),
+								(_("Deselect only highlighted file"), "CURRENT")
+							))
+						else:
+							choiceList.extend((
+								(_("Select all related files"), "SELECTALL"),
+								(_("Select only highlighted file"), "CURRENT")
+							))
+						self.session.openWithCallback(selectionCallback, MessageBox, "\n".join(msg), list=choiceList, default=3, windowTitle=self.baseTitle)
 					else:
-						choiceList.extend((
-							(_("Select all related files"), "SELECTALL"),
-							(_("Select only highlighted file"), "CURRENT")
-						))
-					self.session.openWithCallback(selectionCallback, MessageBox, "\n".join(msg), list=choiceList, default=3, windowTitle=windowTitle)
+						selectionCallback("CURRENT")
 				else:
-					selectionCallback("CURRENT")
+					InfoBar.instance.showUnhandledKey()
 			else:
-				InfoBar.instance.showUnhandledKey()
-		else:
-			if self.sourceColumn.canDescend():
-				self.sourceColumn.descend()
-			else:
-				path = self.sourceColumn.getPath()
-				# print("[FileCommander] keyOk DEBUG: path='%s', dir='%s', file='%s'." % (path, self.sourceColumn.getCurrentDirectory(), basename(path)))
-				if not path:
-					return
-				fileType = splitext(path)[1].lower()
-				try:
-					magicType = fromfile(path)
-				except PureError as err:
-					magicType = None
-					print("[FileCommander] Error: Unable to identify file via magic fingerprint!  (%s)" % err)
-				except OSError as err:
-					self.session.open(MessageBox, _("Error %d: File '%s' cannot be opened!  (%s)") % (err.errno, basename(path), err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-					return
-				except Exception as err:
-					self.session.open(MessageBox, _("Error: File '%s' cannot be opened!  (%s)") % (basename(path), str(err)), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-					return
-				if fileType and magicType and fileType != magicType:
-					# print("[FileCommander] DEBUG: File identified as extension='%s', magic='%s'." % (fileType, magicType))
-					if fileType == ".ipk" and magicType == ".lib":
-						magicType = ".ipk"
-					if fileType == ".py" and magicType == ".wsgi":
-						magicType = ".py"
-					if fileType == ".mvi" and magicType == ".mpg":
-						magicType = ".mvi"
-					fileType = magicType
-				if fileType == ".mvi" and not exists("/usr/bin/ffmpeg"):  # Disable .mvi viewer if ffmpeg is not available!
-					self.session.open(MessageBox, _("FFmpeg is not installed so '.mvi' file actions are not available!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-					fileType = None
-				if fileType in ARCHIVE_FILES:
-					if fileType == ".ipk":
-						viewMsg = _("View the package contents")
-						extractMsg = _("Extract the package contents")
-						promptMsg = _("What would you like to do with the package file:")
+				if self.sourceColumn.canDescend():
+					self.sourceColumn.descend()
+				else:
+					# print("[FileCommander] keyOk DEBUG: path='%s', dir='%s', file='%s'." % (path, self.sourceColumn.getCurrentDirectory(), basename(path)))
+					if not path:
+						return
+					fileType = splitext(path)[1].lower()
+					try:
+						magicType = fromfile(path)
+					except PureError as err:
+						magicType = None
+						print("[FileCommander] Error: Unable to identify file via magic fingerprint!  (%s)" % err)
+					except OSError as err:
+						self.session.open(MessageBox, _("Error %d: File '%s' cannot be opened!  (%s)") % (err.errno, basename(path), err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+						return
+					except Exception as err:
+						self.session.open(MessageBox, _("Error: File '%s' cannot be opened!  (%s)") % (basename(path), str(err)), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+						return
+					if fileType and magicType and fileType != magicType:
+						# print("[FileCommander] DEBUG: File identified as extension='%s', magic='%s'." % (fileType, magicType))
+						if fileType == ".ipk" and magicType == ".lib":
+							magicType = ".ipk"
+						if fileType == ".py" and magicType == ".wsgi":
+							magicType = ".py"
+						if fileType == ".mvi" and magicType == ".mpg":
+							magicType = ".mvi"
+						fileType = magicType
+					if fileType == ".mvi" and not exists("/usr/bin/ffmpeg"):  # Disable .mvi viewer if ffmpeg is not available!
+						self.session.open(MessageBox, _("FFmpeg is not installed so '.mvi' file actions are not available!"), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+						fileType = None
+					if fileType in ARCHIVE_FILES:
+						if fileType == ".ipk":
+							viewMsg = _("View the package contents")
+							extractMsg = _("Extract the package contents")
+							promptMsg = _("What would you like to do with the package file:")
+						else:
+							viewMsg = _("View the archive contents")
+							extractMsg = _("Extract the archive contents")
+							promptMsg = _("What would you like to do with the archive file:")
+						choiceList = [
+							(_("Cancel"), ""),
+							(viewMsg, "VIEW"),
+							(extractMsg, "EXTRACT")
+						]
+						if fileType == ".ipk":
+							choiceList.append((_("Install the package"), "INSTALL"))
+						self.session.openWithCallback(archiveCallback, MessageBox, text="%s\n\n%s" % (promptMsg, path), list=choiceList, windowTitle=self.baseTitle)
+					elif fileType == ".ts":
+						self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, path))
+					elif fileType in MOVIE_EXTENSIONS:
+						self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, path))
+					elif fileType in DVD_EXTENSIONS:
+						self.session.open(DVDPlayer, dvd_filelist=[path])
+					elif fileType in AUDIO_EXTENSIONS:
+						choiceList = [
+							(_("Cancel"), ""),
+							(_("Play the audio file"), "SINGLE"),
+							(_("Play all audio files in the directory"), "LIST")
+						]
+						self.session.openWithCallback(musicCallback, MessageBox, text="%s\n\n%s" % (_("What would you like to do with the audio file:"), path), list=choiceList, windowTitle=self.baseTitle)
+					elif fileType in IMAGE_EXTENSIONS:
+						self.session.openWithCallback(imageCallback, FileCommanderImageViewer, self.sourceColumn.getFileList(), self.sourceColumn.getCurrentIndex(), self.sourceColumn.getCurrentDirectory(), basename(path))  # DEBUG: path is not needed!
+					elif fileType in (".sh", ".py", ".pyc"):
+						choiceList = [
+							(_("Cancel"), ""),
+							(_("View or edit this %s script") % (_("shell") if path.endswith(".sh") else _("Python")), "VIEW"),
+							(_("Run script"), "YES"),
+							(_("Run script in background"), "YES_BG")
+						]
+						parameter = self.targetColumn.getPath() or ""
+						msg = ""
+						if parameter:
+							choiceList.append((_("Run script with optional parameter"), "PAR"))
+							choiceList.append((_("Run script with optional parameter in background"), "PAR_BG"))
+							msg = "\n\n%s: %s" % (_("Optional parameter"), parameter)
+						self.session.openWithCallback(scriptCallback, MessageBox, text="%s\n\n%s%s" % (_("What would you like to do with the script file:"), path, msg), list=choiceList, windowTitle=self.baseTitle)
+					elif fileType == ".mvi":
+						filename = "%s.jpg" % splitext(basename(path))[0]
+						choiceList = [
+							(_("Cancel"), ""),
+							(_("Show image"), "SHOW"),
+							(_("Save image as '%s'") % pathjoin(gettempdir(), filename), "SAVE"),
+							(_("Show image and save as '%s'") % pathjoin(gettempdir(), filename), "SAVESHOW")
+						]
+						target = self.targetColumn.getCurrentDirectory()
+						if target:
+							target = pathjoin(target, filename)
+							choiceList.append((_("Save image as '%s'") % target, "SAVETARGET"))
+							choiceList.append((_("Show image and save as '%s'") % target, "SAVESHOWTARGET"))
+						self.session.openWithCallback(mviCallback, MessageBox, "%s\n\n%s" % (_("What would you like to do with the background image file:"), path), list=choiceList, windowTitle=self.baseTitle)
+					elif fileType in TEXT_FILES or config.plugins.FileCommander.useViewerForUnknown.value:
+						self.keyViewEdit(path)
 					else:
-						viewMsg = _("View the archive contents")
-						extractMsg = _("Extract the archive contents")
-						promptMsg = _("What would you like to do with the archive file:")
-					choiceList = [
-						(_("Cancel"), ""),
-						(viewMsg, "VIEW"),
-						(extractMsg, "EXTRACT")
-					]
-					if fileType == ".ipk":
-						choiceList.append((_("Install the package"), "INSTALL"))
-					self.session.openWithCallback(archiveCallback, MessageBox, text="%s\n\n%s" % (promptMsg, path), list=choiceList, windowTitle=windowTitle)
-				elif fileType == ".ts":
-					self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, path))
-				elif fileType in MOVIE_EXTENSIONS:
-					self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, path))
-				elif fileType in DVD_EXTENSIONS:
-					self.session.open(DVDPlayer, dvd_filelist=[path])
-				elif fileType in AUDIO_EXTENSIONS:
-					choiceList = [
-						(_("Cancel"), ""),
-						(_("Play the audio file"), "SINGLE"),
-						(_("Play all audio files in the directory"), "LIST")
-					]
-					self.session.openWithCallback(musicCallback, MessageBox, text="%s\n\n%s" % (_("What would you like to do with the audio file:"), path), list=choiceList, windowTitle=windowTitle)
-				elif fileType in IMAGE_EXTENSIONS:
-					self.session.openWithCallback(imageCallback, FileCommanderImageViewer, self.sourceColumn.getFileList(), self.sourceColumn.getCurrentIndex(), self.sourceColumn.getCurrentDirectory(), basename(path))  # DEBUG: path is not needed!
-				elif fileType in (".sh", ".py", ".pyc"):
-					choiceList = [
-						(_("Cancel"), ""),
-						(_("View or edit this %s script") % (_("shell") if path.endswith(".sh") else _("Python")), "VIEW"),
-						(_("Run script"), "YES"),
-						(_("Run script in background"), "YES_BG")
-					]
-					parameter = self.targetColumn.getPath() or ""
-					msg = ""
-					if parameter:
-						choiceList.append((_("Run script with optional parameter"), "PAR"))
-						choiceList.append((_("Run script with optional parameter in background"), "PAR_BG"))
-						msg = "\n\n%s: %s" % (_("Optional parameter"), parameter)
-					self.session.openWithCallback(scriptCallback, MessageBox, text="%s\n\n%s%s" % (_("What would you like to do with the script file:"), path, msg), list=choiceList, windowTitle=windowTitle)
-				elif fileType == ".mvi":
-					filename = "%s.jpg" % splitext(basename(path))[0]
-					choiceList = [
-						(_("Cancel"), ""),
-						(_("Show image"), "SHOW"),
-						(_("Save image as '%s'") % pathjoin(gettempdir(), filename), "SAVE"),
-						(_("Show image and save as '%s'") % pathjoin(gettempdir(), filename), "SAVESHOW")
-					]
-					target = self.targetColumn.getCurrentDirectory()
-					if target:
-						target = pathjoin(target, filename)
-						choiceList.append((_("Save image as '%s'") % target, "SAVETARGET"))
-						choiceList.append((_("Show image and save as '%s'") % target, "SAVESHOWTARGET"))
-					self.session.openWithCallback(mviCallback, MessageBox, "%s\n\n%s" % (_("What would you like to do with the background image file:"), path), list=choiceList, windowTitle=windowTitle)
-				elif fileType in TEXT_FILES or config.plugins.FileCommander.useViewerForUnknown.value:
-					self.keyViewEdit(path)
-				else:
-					self.session.open(MessageBox, _("There are no actions available to process '%s'!") % path, MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=windowTitle)
+						self.session.open(MessageBox, _("There are no actions available to process '%s'!") % path, MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=self.baseTitle)
 
 	def keyParent(self):
 		parent = self.sourceColumn.getCurrentDirectory()
@@ -1430,27 +1432,28 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					self.session.open(MessageBox, _("Error %d: Unable to rename file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 				self.sourceColumn.refresh()
 
-		windowTitle = "%s - %s" % (self.getTitle(), _("Rename"))
+		windowTitle = "%s - %s" % (self.baseTitle, _("Rename"))
 		path = self.sourceColumn.getPath()
-		if path == sep:
-			self.session.open(MessageBox, _("Error: The root file system can not be renamed!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-			return
-		directory = dirname(normpath(path))
-		relatedFiles = self.getRelatedFiles(path)
-		if relatedFiles:
-			msg = [_("The following files are related to '%s':") % path]
-			for file in relatedFiles[2:]:
-				if file == path:
-					continue
-				msg.append("- '%s'" % basename(file))
-			choiceList = [
-				(_("Cancel"), ""),
-				(_("Rename all related files"), "ALL"),
-				(_("Rename only highlighted file"), "CURRENT")
-			]
-			self.session.openWithCallback(processRename, MessageBox, "\n".join(msg), list=choiceList, default=2, windowTitle=windowTitle)
-		else:
-			processRename("CURRENT")
+		if self.checkStillExists(path):
+			if path == sep:
+				self.session.open(MessageBox, _("Error: The root file system can not be renamed!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+				return
+			directory = dirname(normpath(path))
+			relatedFiles = self.getRelatedFiles(path)
+			if relatedFiles:
+				msg = [_("The following files are related to '%s':") % path]
+				for file in relatedFiles[2:]:
+					if file == path:
+						continue
+					msg.append("- '%s'" % basename(file))
+				choiceList = [
+					(_("Cancel"), ""),
+					(_("Rename all related files"), "ALL"),
+					(_("Rename only highlighted file"), "CURRENT")
+				]
+				self.session.openWithCallback(processRename, MessageBox, "\n".join(msg), list=choiceList, default=2, windowTitle=windowTitle)
+			else:
+				processRename("CURRENT")
 
 	def keySelectBookmark(self):
 		def selectBookmarkCallback(answer):
@@ -1472,25 +1475,17 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			fileFilter = self.buildFileFilter()
 			if fileFilter != self.oldFileFilter:
 				self["listleft"].matchingPattern = fileFilter
-				self["multileft"].matchingPattern = fileFilter
 				self["listright"].matchingPattern = fileFilter
-				self["multiright"].matchingPattern = fileFilter
-				self.buildTitleData()
+				self.updateTitle()
 			del self.oldFileFilter
-			self["listleft"].setSortBy(config.plugins.FileCommander.sortDirectoriesLeft.value, True)
-			self["multileft"].setSortBy(config.plugins.FileCommander.sortDirectoriesLeft.value, True)
-			self["listright"].setSortBy(config.plugins.FileCommander.sortDirectoriesRight.value, True)
-			self["multiright"].setSortBy(config.plugins.FileCommander.sortDirectoriesRight.value, True)
-			self["listleft"].setSortBy(config.plugins.FileCommander.sortFilesLeft.value)
-			self["multileft"].setSortBy(config.plugins.FileCommander.sortFilesLeft.value)
-			self["listright"].setSortBy(config.plugins.FileCommander.sortFilesRight.value)
-			self["multiright"].setSortBy(config.plugins.FileCommander.sortFilesRight.value)
+			self["listleft"].setSortBy("%s,%s" % (config.plugins.FileCommander.sortDirectoriesLeft.value, config.plugins.FileCommander.sortFilesLeft.value))
+			self["listright"].setSortBy("%s,%s" % (config.plugins.FileCommander.sortDirectoriesRight.value, config.plugins.FileCommander.sortFilesRight.value))
 			self["alwaysNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 			self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 			self["directoryFileNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 			self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 			self["quickSelectActions"].setEnabled(config.plugins.FileCommander.useQuickSelect.value)
-			self.buildSortData()
+			self.updateSort()
 			self.keyRefresh()
 
 		self.oldFileFilter = self.buildFileFilter()
@@ -1499,9 +1494,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def keySortDirectories(self):
 		def sortDirectoriesCallback(answer):
 			if answer:
-				self.sourceColumn.setSortBy(answer, True)
+				sort = self.sourceColumn.getSortBy().split(",")
+				sort[0] = answer
+				self.sourceColumn.setSortBy(",".join(sort))
 				self.sourceColumn.refresh()
-				self.buildSortData()
+				self.updateSort()
 
 		msg = _("Select the directory sort order for the left column:") if self.leftActive else _("Select the directory sort order for the right column:")
 		choiceList = [
@@ -1511,14 +1508,16 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			(_("Date ascending"), "1.0"),
 			(_("Date descending"), "1.1")
 		]
-		self.session.openWithCallback(sortDirectoriesCallback, MessageBox, text=msg, list=choiceList, windowTitle=self.getTitle())
+		self.session.openWithCallback(sortDirectoriesCallback, MessageBox, text=msg, list=choiceList, windowTitle=self.baseTitle)
 
 	def keySortFiles(self):
 		def sortFilesCallback(answer):
 			if answer:
-				self.sourceColumn.setSortBy(answer)
+				sort = self.sourceColumn.getSortBy().split(",")
+				sort[1] = answer
+				self.sourceColumn.setSortBy(",".join(sort))
 				self.sourceColumn.refresh()
-				self.buildSortData()
+				self.updateSort()
 
 		column = "left" if self.leftActive else "right"
 		choiceList = [
@@ -1530,7 +1529,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			(_("Size ascending"), "2.0"),
 			(_("Size descending"), "2.1")
 		]
-		self.session.openWithCallback(sortFilesCallback, MessageBox, text=(_("Select the file sort order for the %s column:") % column), list=choiceList, windowTitle=self.getTitle())
+		self.session.openWithCallback(sortFilesCallback, MessageBox, text=(_("Select the file sort order for the %s column:") % column), list=choiceList, windowTitle=self.baseTitle)
 
 	def keyTaskList(self):
 		self.taskList = []
@@ -1542,68 +1541,51 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def keyViewEdit(self, path=None):
 		if path is None:
 			path = self.sourceColumn.getPath()
-		if self.isFileText(path):
-			if stat(path).st_size < MAX_EDIT_SIZE:
-				modTime = stat(path).st_mtime
-				self.session.open(FileCommanderTextEditor, path)
-				if modTime != stat(path).st_mtime:
-					self.sourceColumn.refresh()
+		if self.checkStillExists(path):
+			if self.isFileText(path):
+				if stat(path).st_size < MAX_EDIT_SIZE:
+					modTime = stat(path).st_mtime
+					self.session.open(FileCommanderTextEditor, path)
+					if modTime != stat(path).st_mtime:
+						self.sourceColumn.refresh()
+				else:
+					self.fileTooBig()
 			else:
-				self.fileTooBig()
-		else:
-			if stat(path).st_size < MAX_HEXVIEW_SIZE:
-				self.session.open(FileCommanderFileViewer, path, isText=False, initialView="H")
-			else:
-				self.fileTooBig()
-
-	def buildTitleData(self):
-		filtered = "" if config.plugins.FileCommander.extension.value == config.plugins.FileCommander.extension.default else " (*)"
-		self.setTitle("%s%s" % (PROGRAM_NAME, filtered))
-
-	def buildSortData(self):
-		def formatSort(columnSort):
-			sortDirs, sortFiles = columnSort.split(",")
-			sortDirs, reverseDirs = [int(x) for x in sortDirs.split(".")]
-			sortFiles, reverseFiles = [int(x) for x in sortFiles.split(".")]
-			sD = (_("name"), _("date"), _("size"))[sortDirs]  # name, date, size
-			sF = (_("name"), _("date"), _("size"))[sortFiles]
-			rD = ("\u25B2", "\u25BC")[reverseDirs]  # normal, reverse
-			rF = ("\u25B2", "\u25BC")[reverseFiles]
-			return _("Sort: Directories by %s %s; Files by %s %s.") % (sD, rD, sF, rF)
-
-		self["sortleft"].setText(formatSort(self["listleft"].getSortBy()))
-		self["sortright"].setText(formatSort(self["listright"].getSortBy()))
+				if stat(path).st_size < MAX_HEXVIEW_SIZE:
+					self.session.open(FileCommanderFileViewer, path, isText=False, initialView="H")
+				else:
+					self.fileTooBig()
 
 	def shortcutAction(self, program):
 		def shortcutInstallCallback(answer):
 			if answer:
-				self.session.open(Console, title="%s - %s" % (windowTitle, _("Console")), cmdlist=(("/usr/bin/opkg", "update"), ("/usr/bin/opkg", "install", self.package)), finishedCallback=shortcutInstalledCallback)
+				self.session.open(Console, title="%s - %s" % (self.baseTitle, _("Console")), cmdlist=(("/usr/bin/opkg", "update"), ("/usr/bin/opkg", "install", self.package)), finishedCallback=shortcutInstalledCallback)
 
 		def shortcutInstalledCallback():
 			self.shortcutAction(program)
 
-		windowTitle = self.getTitle()
 		if self.isPackageInstalled(program):
 			path = self.sourceColumn.getPath()
-			if path is None:
-				self.session.open(MessageBox, _("Error: It is not possible to run '%s' on '%s'!") % (program, STORAGE_DEVICES_NAME), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-				return
-			path = normpath(path)
-			if isdir(path):
-				self.session.open(MessageBox, _("Error: You can't run '%s' on a directory!") % program, MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=windowTitle)
-			else:
-				fileType = splitext(path.lower())[1]
-				if fileType in MEDIA_FILES:
-					self.session.open(FileCommanderMediaInfo, path, program=program)
+			if self.checkStillExists(path):
+				if path is None:
+					self.session.open(MessageBox, _("Error: It is not possible to run '%s' on '%s'!") % (program, STORAGE_DEVICES_NAME), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+					return
+				path = normpath(path)
+				if isdir(path):
+					self.session.open(MessageBox, _("Error: You can't run '%s' on a directory!") % program, MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=self.baseTitle)
 				else:
-					self.session.open(MessageBox, _("Error: You can't run '%s' on '%s'!") % (program, basename(path)), MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=windowTitle)
+					fileType = splitext(path.lower())[1]
+					if fileType in MEDIA_FILES:
+						self.session.open(FileCommanderMediaInfo, path, program=program)
+					else:
+						self.session.open(MessageBox, _("Error: You can't run '%s' on '%s'!") % (program, basename(path)), MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=self.baseTitle)
 		else:
 			package = self.OPTIONAL_PACKAGES.get(program)
 			if package:
 				self.package = package
 				self.session.openWithCallback(shortcutInstallCallback, MessageBox, _("Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?") % (program, package), MessageBox.TYPE_YESNO, default=True, windowTitle=windowTitle)
 			else:
-				self.session.open(MessageBox, _("Error: Program '%s' not installed and the package containing this program is unknown!") % program, MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=windowTitle)
+				self.session.open(MessageBox, _("Error: Program '%s' not installed and the package containing this program is unknown!") % program, MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=self.baseTitle)
 
 	def shortcutHelp(self, program):
 		if self.isPackageInstalled(program):
@@ -1640,15 +1622,22 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					relatedFiles.append(related)
 			if len(relatedFiles) < 4:  # The file is a movie related file but has no related files.
 				relatedFiles = ""
-				# print("[FileCommander] DEBUG: No related files.")
+			# 	print("[FileCommander] DEBUG: No related files.")
 			# else:
 			# 	print("[FileCommander] DEBUG: Base path '%s'." % base)
 			# 	for file in relatedFiles[1:]:
 			# 		print("[FileCommander] DEBUG:     Related file: '%s'." % file)
 		return relatedFiles
 
+	def checkStillExists(self, path):
+		if path and not exists(path):
+			self.displayStatus(_("The directory/file no longer exists."))
+			self.sourceColumn.refresh()
+			return False
+		return True
+
 	def fileTooBig(self):
-		self.session.open(MessageBox, _("This function is not available as processing of large files may take too long to run on this hardware."), MessageBox.TYPE_WARNING, timeout=5, close_on_any_key=True, windowTitle=self.getTitle())
+		self.session.open(MessageBox, _("This function is not available as processing of large files may take too long to run on this hardware."), MessageBox.TYPE_WARNING, timeout=5, close_on_any_key=True, windowTitle=self.baseTitle)
 
 	def isFileText(self, path):
 		text = True
