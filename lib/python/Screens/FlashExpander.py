@@ -4,128 +4,83 @@ from re import search
 from subprocess import Popen, PIPE
 from enigma import quitMainloop
 
-from Components.ActionMap import ActionMap
+from Components.config import ConfigSelection
 from Components.Console import Console
-from Components.MenuList import MenuList
 from Components.Harddisk import harddiskmanager, Harddisk
-from Screens.Screen import Screen
+from Screens.Setup import Setup
 from Screens.MessageBox import MessageBox
 from Tools.Directories import createDir, fileReadLines
 from Tools.BoundFunction import boundFunction
 
 
-def getMounts():
-	return fileReadLines("/proc/mounts", [])
-
-
-def ismounted(dev, mp):
-	for x in getMounts():
-		parts = x.strip().split(" ")
-		if len(parts) > 1 and (parts[0] == dev or parts[1] == mp):
-			return parts[1]
-	return False
-
-
-def getFreeSize(mp):
-	try:
-		stat = statvfs(mp)
-		return int(stat.f_bfree / 1000 * stat.f_bsize / 1000)
-	except OSError:
-		return 0
-
-
-class FlashExpanderScreen(Screen):
-	skin = """<screen position="center,center" size="580,50" title="FlashExpander v0.33">
-			<widget name="list" position="5,5" size="570,40" />
-		</screen>"""
-
+class FlashExpanderScreen(Setup):
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.found = False
-		self["actions"] = ActionMap(["OkCancelActions"],
-		{
-			"cancel": self.close,
-			"ok": self.ok
-		}, -1)
-
-		if ismounted("", "/usr"):
+		choices = []
+		default = ""
+		self.devielist = []
+		if self.ismounted("", "/usr"):
 			self.found = True
-			_list = [(_("... is used, %dMB free") % getFreeSize("/usr"))]
+			self["footnote"].setText((_("... is used, %dMB free") % self.getFreeSize("/usr")))
+			choices.append(("", _("Activated")))
 		else:
-			_list = [(_("FlashExpander is not installed, create? Press Key OK."))]
+			for x in listdir("/sys/block"):
+				if x[0:2] == 'sd' or x[0:2] == 'hd':
+					print("[FlashExpander] device %s" % x)
+					devices = Harddisk(x)
+					for y in range(devices.numPartitions()):
+						fstype = self.getPartitionType(devices.partitionPath(str(y + 1)))
+						if fstype is False:
+							fstype = self.getPartitionType(devices.partitionPath(str(y + 1)))
+						try:
+							bustype = devices.bus()
+						except:
+							bustype = _("unknown")
+						if fstype in ("ext2", "ext3", "ext4", "xfs"):
+							self.devielist.append(("%s (%s) - Partition %d (%s)" % (devices.model(), bustype, y + 1, fstype), (devices, y + 1, fstype)))
 
-		self["list"] = MenuList(list=_list)
+			#Netzlaufwerke
+			try:
+				for x in self.getMounts():
+					entry = x.split(' ')
+					if len(entry) > 3 and entry[2] == "nfs":
+						server = entry[0].split(':')
+						if len(server) == 2:
+							print("[FlashExpander] server %s" % server)
+							self.devielist.append(("Server (%s) - Path (%s)" % (server[0], server[1]), server))
+			except Exception as error:
+				print("[FlashExpander] Error <getMountPoints>: %s" % str(error))
 
-	def ok(self):
-		if not self.found:
-			self.session.openWithCallback(self.configCallback, FlashExpanderConfigScreen)
+			if len(self.devielist) == 0:
+				self["footnote"].setText(_("No HDD-, SSD- or USB-Device found. Please first initialized."))
+				choices.append(("", _("No drive available")))
+			else:
+				self["footnote"].setText(_("FlashExpander is not installed, create?"))
+				choices.append(("", _("No drive available")))
+				for index, device in enumerate(self.devielist):
+					choices.append((str(index), device[0]))
 
-	def configCallback(self, data):
-		if data:
-			quitMainloop(2)
-		self.close()
-
-
-class FlashExpanderConfigScreen(Screen):
-	skin = """<screen position="center,center" size="640,160" title="%s">
-			<widget name="list" position="5,5" size="630,150" />
-		</screen>""" % (_("choose device to FlashExpander"))
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-
-		self["actions"] = ActionMap(["OkCancelActions"],
-		{
-			"cancel": self.Exit,
-			"ok": self.Ok
-		}, -1)
-
-		#Blocklaufwerke
-		_list = []
-		for x in listdir("/sys/block"):
-			if x[0:2] == 'sd' or x[0:2] == 'hd':
-				print("[FlashExpander] device %s" % x)
-				devices = Harddisk(x)
-				for y in range(devices.numPartitions()):
-					fstype = self.__getPartitionType(devices.partitionPath(str(y + 1)))
-					if fstype is False:
-						fstype = self.__getPartitionType(devices.partitionPath(str(y + 1)))
-					try:
-						bustype = devices.bus_type()
-					except:
-						bustype = _("unknown")
-					if fstype in ("ext2", "ext3", "ext4", "xfs"):
-						_list.append(("%s (%s) - Partition %d (%s)" % (devices.model(), bustype, y + 1, fstype), (devices, y + 1, fstype)))
-
-		#Netzlaufwerke
-		try:
-			for x in getMounts():
-				entry = x.split(' ')
-				if len(entry) > 3 and entry[2] == "nfs":
-					server = entry[0].split(':')
-					if len(server) == 2:
-						print("[FlashExpander] server %s" % server)
-						_list.append(("Server (%s) - Path (%s)" % (server[0], server[1]), server))
-		except Exception as error:
-			print("[FlashExpander] Error <getMountPoints>: %s" % str(error))
-
-		if len(_list) == 0:
-			_list.append((_("No HDD-, SSD- or USB-Device found. Please first initialized."), None))
-
-		self["list"] = MenuList(list=_list)
+		self.selection = ConfigSelection(choices=choices, default=default)
+		Setup.__init__(self, session=session, setup="FlashExpander")
 		self.Console = Console()
 
-	def Ok(self):
-		sel = self["list"].getCurrent()
-		if sel and sel[1]:
-			if len(sel[1]) == 3:  # Device
-				tstr = _("Are you sure want to create FlashExpander on\n%s\nPartition %d") % (sel[1][0].model(), sel[1][1])
-				self.session.openWithCallback(boundFunction(self.__startFE_device, sel[1]), MessageBox, tstr)
-			if len(sel[1]) == 2:  # Server
-				tstr = _("Are you sure want to create FlashExpander on \nServer: %s\nPath: %s") % (sel[1][0], sel[1][1])
-				self.session.openWithCallback(boundFunction(self.__startFE_server, sel[1]), MessageBox, tstr)
+	def getMounts(self):
+		return fileReadLines("/proc/mounts", [])
 
-	def __getPartitionType(self, device):
+	def ismounted(self, dev, mp):
+		for x in self.getMounts():
+			parts = x.strip().split(" ")
+			if len(parts) > 1 and (parts[0] == dev or parts[1] == mp):
+				return parts[1]
+		return False
+
+	def getFreeSize(self, mp):
+		try:
+			stat = statvfs(mp)
+			return int(stat.f_bfree / 1000 * stat.f_bsize / 1000)
+		except OSError:
+			return 0
+
+	def getPartitionType(self, device):
 		fstype = None
 		try:
 			if exists("/lib/udev/vol_id"):
@@ -143,7 +98,7 @@ class FlashExpanderConfigScreen(Screen):
 			return False
 		return fstype
 
-	def __getPartitionUUID(self, device):
+	def getPartitionUUID(self, device):
 		try:
 			if exists("/dev/disk/by-uuid"):
 				for uuid in listdir("/dev/disk/by-uuid/"):
@@ -169,10 +124,10 @@ class FlashExpanderConfigScreen(Screen):
 			print("[FlashExpander] <error get UUID>")
 		return None
 
-	def __startFE_device(self, val, result):
+	def startFE_device(self, val, result):
 		if result:
 			partitionPath = val[0].partitionPath(str(val[1]))
-			uuidPath = self.__getPartitionUUID(partitionPath)
+			uuidPath = self.getPartitionUUID(partitionPath)
 			fstype = val[2]
 			print("[FlashExpander] %s %s %s" % (partitionPath, uuidPath, fstype))
 
@@ -180,36 +135,28 @@ class FlashExpanderConfigScreen(Screen):
 				self.session.open(MessageBox, _("read UUID"), MessageBox.TYPE_ERROR, timeout=5)
 				return
 
-			mountpoint = ismounted(uuidPath, "")
+			mountpoint = self.ismounted(uuidPath, "")
 			if mountpoint is False:
-				mountpoint = ismounted(partitionPath, "")
-				if mountpoint is False and self.__mount(uuidPath, "/media/FEtmp") == 0:
+				mountpoint = self.ismounted(partitionPath, "")
+				if mountpoint is False and self.mount(uuidPath, "/media/FEtmp") == 0:
 					mountpoint = "/media/FEtmp"
 
-			self.__copyFlash(mountpoint, (partitionPath, uuidPath, fstype))
-			#if self.__checkMountPoint(mountpoint):
-			#	cmd = "rm -rf %s/* && cp -a /usr/* %s/" % (mountpoint, mountpoint)
-			#	self.Console.ePopen(cmd, self.__CopyFinished)
-			#	self.messageBox = self.session.openWithCallback(boundFunction(self.__EndCB,(partitionPath,uuidPath,fstype)), MessageBox, _("Please wait, Flash memory will be copied."), MessageBox.TYPE_INFO,enable_input=False)
+			self.copyFlash(mountpoint, (partitionPath, uuidPath, fstype))
 
-	def __startFE_server(self, val, result):
+	def startFE_server(self, val, result):
 		if result:
 			serverPath = "%s:%s" % (val[0], val[1])
 			print("[FlashExpander] %s" % serverPath)
-			mountpoint = ismounted(serverPath, "")
-			self.__copyFlash(mountpoint, (serverPath, None, "nfs"))
-			#if self.__checkMountPoint(mountpoint):
-			#	cmd = "rm -rf %s/* && cp -a /usr/* %s/" % (mountpoint, mountpoint)
-			#	self.Console.ePopen(cmd, self.__CopyFinished)
-			#	self.messageBox = self.session.openWithCallback(boundFunction(self.__EndCB,("%s:%s" %(server,path),None,"nfs")), MessageBox, _("Please wait, Flash memory will be copied."), MessageBox.TYPE_INFO,enable_input=False)
+			mountpoint = self.ismounted(serverPath, "")
+			self.copyFlash(mountpoint, (serverPath, None, "nfs"))
 
-	def __copyFlash(self, mp, data):
-		if self.__checkMountPoint(mp):
+	def copyFlash(self, mp, data):
+		if self.checkMountPoint(mp):
 			cmd = "cp -af /usr/* %s/" % (mp)
-			self.Console.ePopen(cmd, self.__CopyFinished)
-			self.messageBox = self.session.openWithCallback(boundFunction(self.__EndCB, data), MessageBox, _("Please wait, Flash memory will be copied."), MessageBox.TYPE_INFO, enable_input=False)
+			self.Console.ePopen(cmd, self.CopyFinished)
+			self.messageBox = self.session.openWithCallback(boundFunction(self.EndCB, data), MessageBox, _("Please wait, Flash memory will be copied."), MessageBox.TYPE_INFO, enable_input=False)
 
-	def __mount(self, dev, mp):
+	def mount(self, dev, mp):
 		if exists(mp) is False:
 			createDir(mp, True)
 		cmd = "mount " + dev + " " + mp
@@ -217,22 +164,22 @@ class FlashExpanderConfigScreen(Screen):
 		res = system(cmd)
 		return (res >> 8)
 
-	def __checkMountPoint(self, mp):
+	def checkMountPoint(self, mp):
 		if mp is False:
 			self.session.open(MessageBox, _("Mount failed (%s)") % mp, MessageBox.TYPE_ERROR, timeout=5)
 			return False
-		if getFreeSize(mp) < 180:
+		if self.getFreeSize(mp) < 180:
 			self.session.open(MessageBox, _("Too little free space < 180MB or wrong Filesystem!"), MessageBox.TYPE_ERROR, timeout=5)
 			return False
 		return True
 
-	def __CopyFinished(self, result, retval, extra_args=None):
+	def CopyFinished(self, result, retval, extra_args=None):
 		if retval == 0:
 			self.messageBox.close(True)
 		else:
 			self.messageBox.close(False)
 
-	def __EndCB(self, val, retval):
+	def EndCB(self, val, retval):
 		if retval:
 			try:
 				devPath = val[0]
@@ -268,4 +215,18 @@ class FlashExpanderConfigScreen(Screen):
 			self.session.open(MessageBox, _("error copy flash memory"), MessageBox.TYPE_ERROR, timeout=10)
 
 	def Exit(self, data=False):
-		self.close(data)
+		if data:
+			quitMainloop(2)
+		self.close()
+
+	def keySave(self):
+		if self.selection.value:
+			index = int(self.selection.value)
+			sel = self.devielist[index]
+			if sel and sel[1]:
+				if len(sel[1]) == 3:  # Device
+					tstr = _("Are you sure want to create FlashExpander on\n%s\nPartition %d") % (sel[1][0].model(), sel[1][1])
+					self.session.openWithCallback(boundFunction(self.startFE_device, sel[1]), MessageBox, tstr)
+				if len(sel[1]) == 2:  # Server
+					tstr = _("Are you sure want to create FlashExpander on \nServer: %s\nPath: %s") % (sel[1][0], sel[1][1])
+					self.session.openWithCallback(boundFunction(self.startFE_server, sel[1]), MessageBox, tstr)
