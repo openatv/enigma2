@@ -158,6 +158,7 @@ class FileListBase(MenuList):
 		self.showCurrentDirectory = showCurrentDirectory
 		self.mountPoints = []
 		self.currentDirectory = None
+		self.previousDirectory = None
 		self.serviceHandler = eServiceCenter.getInstance()
 		if self.multiSelect:
 			self.setMultiSelectMode()
@@ -284,7 +285,8 @@ class FileListBase(MenuList):
 		if self.showMountPoints and len(self.fileList) == 0:
 			self.fileList.append(self.fileListComponent(name=_("Nothing connected and/or no files available!"), path=None, isDir=False, isLink=False, selected=None))
 		self.setList(self.fileList)
-		start = self.getCurrentIndex()
+		start = self.getCurrentIndex() if self.previousDirectory == self.currentDirectory else 0
+		self.previousDirectory = self.currentDirectory
 		if start and start > self.count():
 			start = self.count() - 1
 		if select:
