@@ -280,7 +280,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.sortFilesRight = config.plugins.FileCommander.sortFilesRight.value
 		directoriesFirst = config.plugins.FileCommander.directoriesFirst.value
 		showCurrentDirectory = config.plugins.FileCommander.showCurrentDirectory.value
-		selectedItems = []
 		self["headleft"] = List()
 		self["listleft"] = FileList(pathLeft, matchingPattern=fileFilter, sortDirs=self.sortDirectoriesLeft, sortFiles=self.sortFilesLeft, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
 		self["listleft"].onSelectionChanged.append(self.selectionChanged)
@@ -707,10 +706,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				checkRelatedCopy()
 
 	def keyDelete(self):
-		def processDeleteMulti(answer):
-			if answer:
-				processDelete("MULTI")
-
 		def checkRelatedDelete():
 			if relatedFiles:
 				msg = [_("The following files are related to '%s':") % path]
@@ -728,6 +723,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				self.session.openWithCallback(processDelete, MessageBox, _("Delete '%s'?") % basename(normpath(path)), windowTitle=windowTitle)
 
 		def processDelete(answer):
+			def processCallback(result):
+				if result:
+					JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
+					self.displayStatus(_("Delete job queued."))
+					if answer == "MULTI":
+						self.sourceColumn.clearAllSelections()
+
 			if answer:
 				if answer == "ALL":
 					srcPaths = relatedFiles[2:]
@@ -735,10 +737,18 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					srcPaths = selectedItems
 				else:
 					srcPaths = [path]
-				JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
-				self.displayStatus(_("Delete job queued."))
-				if answer == "MULTI":
-					self.sourceColumn.clearAllSelections()
+				names = [basename(normpath(x)) for x in srcPaths]
+				count = len(names)
+				if count > FILES_TO_LIST:
+					names = names[:FILES_TO_LIST]
+					names.append("...")
+				if count == 1:
+					msg = [_("Delete the directory/file '%s'?") % names[0]]
+				else:
+					msg = [_("Delete these %d directories/files?") % count]
+					for name in names:
+						msg.append("- '%s'" % name)
+				self.session.openWithCallback(processCallback, MessageBox, "\n".join(msg), windowTitle=windowTitle)
 
 		def successCallback(job):
 			print("[FileCommander] Job '%s' finished." % (job.name))
@@ -770,7 +780,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if self.multiSelect == self.sourceColumn:
 				selectedItems = self.sourceColumn.getSelectedItems()
 				if selectedItems:
-					self.session.openWithCallback(processDeleteMulti, MessageBox, _("Delete the selected directories/files?"), windowTitle=windowTitle)
+					processDelete("MULTI")
 				else:
 					relatedFiles = self.getRelatedFiles(path)
 					checkRelatedDelete()
