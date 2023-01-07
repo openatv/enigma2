@@ -959,9 +959,11 @@ class RecordTimerEntry(TimerEntry, object):
 										serviceIterator = servicelist.getNext()
 										while serviceIterator.valid():
 											if self.service_ref.ref == serviceIterator:
+												found = True
 												break
 											serviceIterator = servicelist.getNext()
 										if self.service_ref.ref == serviceIterator:
+											found = True
 											break
 							if found:
 								ChannelSelectionInstance.enterPath(rootBouquet)
@@ -972,7 +974,11 @@ class RecordTimerEntry(TimerEntry, object):
 							ChannelSelectionInstance.addToHistory(self.service_ref.ref)
 					if notFound:
 						# Can we get a result for that?  See if you want to delete the running timer.
-						self.switchToAll()
+						if not config.usage.multibouquet.value:
+							ChannelSelectionInstance.servicelist.setCurrent(self.service_ref.ref, True)
+							ChannelSelectionInstance.zap()
+						else:
+							self.switchToAll()
 					else:
 						NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
@@ -1449,7 +1455,11 @@ class RecordTimerEntry(TimerEntry, object):
 					ChannelSelectionInstance.addToHistory(self.service_ref.ref)
 			if notFound:
 				# Can we get a result for that?  See if you want to delete the running timer.
-				self.switchToAll()
+				if not config.usage.multibouquet.value:
+					ChannelSelectionInstance.servicelist.setCurrent(self.service_ref.ref, True)
+					ChannelSelectionInstance.zap()
+				else:
+					self.switchToAll()
 			else:
 				NavigationInstance.instance.playService(self.service_ref.ref)
 			self.justTriedFreeingTuner = True
