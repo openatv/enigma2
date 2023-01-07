@@ -123,6 +123,8 @@ class SoftcamSetup(Setup):
 			msg.append(_("cardserver"))
 		msg = (" %s " % _("and")).join(msg)
 		self.mbox = self.session.open(MessageBox, _("Please wait, restarting %s.") % msg, MessageBox.TYPE_INFO)
+
+		# This can be optimized by "doRestartNEW" because you do not need to stop + start using two separate calls
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.doStop)
 		self.activityTimer.start(100, False)
@@ -135,6 +137,7 @@ class SoftcamSetup(Setup):
 		if "c" in self.device:
 			self.cardserver.command("stop")
 		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		# Do we really need to stop the current service?
 		self.session.nav.stopService()
 
 	def doStart(self):
@@ -145,6 +148,22 @@ class SoftcamSetup(Setup):
 		if "c" in self.device:
 			self.cardserver.select(config.misc.cardservers.value)
 			self.cardserver.command("start")
+		if self.mbox:
+			self.mbox.close()
+		self.session.nav.playService(self.oldref, adjust=False)
+
+	def doRestartNEW(self):
+		self.doStartCommand = False
+		del self.activityTimer
+		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		# Do we really need to stop the current service?
+		self.session.nav.stopService()
+		if "s" in self.device:
+			self.softcam.select(config.misc.softcams.value)
+			self.softcam.command("restart")
+		if "c" in self.device:
+			self.cardserver.select(config.misc.cardservers.value)
+			self.cardserver.command("restart")
 		if self.mbox:
 			self.mbox.close()
 		self.session.nav.playService(self.oldref, adjust=False)
@@ -162,12 +181,12 @@ class SoftcamSetup(Setup):
 			self.restart(device="c")
 
 	def commandFinished(self):
-		if not hasattr(self, "doStartCommand"):
-			if self.doStartCommand:
-				self.doStartCommand = False
-				self.doStart()
-				return
-		if "e" in self.device:
+		# This is a only a workaround to prevent crashes, we need to find the root cause
+		if hasattr(self, "doStartCommand") and self.doStartCommand:
+			self.doStartCommand = False
+			self.doStart()
+			return
+		if hasattr(self, "device") and "e" in self.device:
 			self.saveAll()
 			updateSysSoftCam()
 			self.close()
