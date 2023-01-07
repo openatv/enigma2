@@ -1,12 +1,11 @@
 from os import system, unlink
 from os.path import exists, normpath
 from enigma import eConsoleAppContainer, eDVBDB
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigText
 from Components.Harddisk import harddiskmanager
 from Components.Opkg import opkgAddDestination, opkgExtraDestinations, opkgDestinations, OpkgComponent
 from Components.Label import Label
-from Components.Language import language
 from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.Sources.StaticText import StaticText
@@ -24,7 +23,6 @@ config.pluginfilter = ConfigSubsection()
 config.pluginfilter.kernel = ConfigYesNo(default=False)
 config.pluginfilter.drivers = ConfigYesNo(default=True)
 config.pluginfilter.extensions = ConfigYesNo(default=True)
-#config.pluginfilter.po = ConfigYesNo(default=True)
 config.pluginfilter.m2k = ConfigYesNo(default=True)
 config.pluginfilter.picons = ConfigYesNo(default=True)
 config.pluginfilter.pli = ConfigYesNo(default=False)
@@ -37,11 +35,6 @@ config.pluginfilter.systemplugins = ConfigYesNo(default=True)
 config.pluginfilter.vix = ConfigYesNo(default=False)
 config.pluginfilter.weblinks = ConfigYesNo(default=True)
 config.pluginfilter.userfeed = ConfigText(default='http://', fixed_size=False)
-
-
-def languageChanged():
-	plugins.clearPluginList()
-	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 
 def CreateFeedConfig():
@@ -376,7 +369,6 @@ class PluginDownloadBrowser(Screen):
 		self.type = type
 		self.needupdate = needupdate
 		self.createPluginFilter()
-		self.LanguageList = language.getLanguageListSelection()
 
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
@@ -403,19 +395,30 @@ class PluginDownloadBrowser(Screen):
 		elif self.type == self.REMOVE:
 			self["text"] = Label(_("Getting plugin information. Please wait..."))
 
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText("")
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText(_("Refresh"))
+
 		self.run = 0
 		self.remainingdata = ""
-		self["actions"] = ActionMap(["WizardActions"],
-		{
-			"ok": self.go,
-			"back": self.requestClose,
-		})
+
+		self["actions"] = HelpableActionMap(self, ["ColorActions", "OkCancelActions"], {
+			"blue": (self.keyRefresh, _("Refresh the update-able package list")),
+			"cancel": (self.requestClose, _("Cancel / Close the screen")),
+			"ok": (self.go, _("Perform install/remove of the selected item"))
+		}, prio=0, description=_("Plugin Manager Actions"))
+
 		self.opkg = '/usr/bin/opkg'
 		self.opkg_install = self.opkg + ' install --force-overwrite'
 		self.opkg_remove = self.opkg + ' remove --autoremove --force-depends'
 
 		self.opkgObj = OpkgComponent()
 		self.opkgObj.addCallback(self.opkgCallback)
+
+	def keyRefresh(self):
+		if self.type == self.MANAGE:
+			self.startRun()
 
 	def opkgCallback(self, event, param):
 		if event == OpkgComponent.EVENT_DONE:
@@ -430,6 +433,7 @@ class PluginDownloadBrowser(Screen):
 	def fillPluginList(self, packages):
 		self.pluginlist = []
 		self.installedplugins = []
+		allcount, installcount, updatecount = (0, 0, 0)
 		for package in packages:
 			packagename = package["name"]
 			version = package["version"]
@@ -439,24 +443,27 @@ class PluginDownloadBrowser(Screen):
 				for s in self.PLUGIN_PREFIX2:
 					if packagename.startswith(s):
 						plugin = [packagename, version]
-#						if plugin[0].startswith('enigma2-locale-'):
-#							lang = plugin[0].split('-')
-#							if len(lang) > 3:
-#								plugin.append(lang[2] + '-' + lang[3])
-#							else:
-#								plugin.append(lang[2])
-#						else:
-#							plugin.append(description)
 						plugin.append(description)
 						plugin.append(plugin[0][15:])
 						if package["installed"] == "1":
 							self.installedplugins.append(packagename)
-						plugin.append(package["installed"])
-						plugin.append(package["update"])
+							plugin.append("1")
+							installcount += 1
+						else:
+							plugin.append("0")
+						if package["update"]:
+							plugin.append(package["update"])
+							updatecount += 1
+						else:
+							plugin.append("")
+						allcount += 1
 						self.pluginlist.append(plugin)
 		if self.pluginlist:
 			self.updateList()
 			self["list"].instance.show()
+			self["text"].setText(_("%d packages found, %d packages installed and %d packages has updates.") % (allcount, installcount, updatecount))
+		else:
+			self["text"].setText(_("No packages found."))
 
 	def createSummary(self):
 		return PluginBrowserSummary
@@ -484,8 +491,6 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'drivers')
 		if config.pluginfilter.extensions.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'extensions')
-#		if config.pluginfilter.po.value:
-#			self.PLUGIN_PREFIX2.append('enigma2-locale-')
 		if config.pluginfilter.m2k.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'm2k')
 		if config.pluginfilter.picons.value:
@@ -670,7 +675,7 @@ class PluginDownloadBrowser(Screen):
 			self.run = 1
 			self.startOpkgListInstalled()
 		elif self.type == self.MANAGE:
-			self.run = 3
+			self.run = 4
 			self.opkgObj.startCmd(OpkgComponent.CMD_UPDATE)
 
 	def installFinished(self):
@@ -715,23 +720,24 @@ class PluginDownloadBrowser(Screen):
 			self.startOpkgListAvailable()
 		else:
 			if len(self.pluginlist) > 0:
+				self["text"].setText(_("%s Packages found") % len(self.pluginlist))
 				self.updateList()
 				self["list"].instance.show()
 			else:
 				if self.type == self.DOWNLOAD:
 					self["text"].setText(_("Sorry feeds are down for maintenance."))
 
-	def dataAvail(self, str):
-		if isinstance(str, bytes):
-			str = str.decode()
-		if self.type == self.DOWNLOAD and str.find('404 Not Found') >= 0:
+	def dataAvail(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
+		if self.type == self.DOWNLOAD and data.find('404 Not Found') >= 0:
 			self["text"].setText(_("Sorry feeds are down for maintenance."))
 			self.run = 3
 			return
 		#prepend any remaining data from the previous call
-		str = self.remainingdata + str
+		data = "%s%s" % (self.remainingdata, data)
 		#split in lines
-		lines = str.split('\n')
+		lines = data.split('\n')
 		#'str' should end with '\n', so when splitting, the last line should be empty. If this is not the case, we received an incomplete line
 		if len(lines[-1]):
 			#remember this data for next time
@@ -742,13 +748,13 @@ class PluginDownloadBrowser(Screen):
 
 		if self.check_settings:
 			self.check_settings = False
-			self.remove_settings_name = str.split(' - ')[0].replace(self.PLUGIN_PREFIX, '')
+			self.remove_settings_name = data.split(' - ')[0].replace(self.PLUGIN_PREFIX, '')
 			self.session.openWithCallback(self.runSettingsRemove, MessageBox, _('You already have a channel list installed,\nwould you like to remove\n"%s"?') % self.remove_settings_name)
 			return
 
 		if self.check_bootlogo:
 			self.check_bootlogo = False
-			self.remove_bootlogo_name = str.split(' - ')[0].replace(self.PLUGIN_PREFIX, '')
+			self.remove_bootlogo_name = data.split(' - ')[0].replace(self.PLUGIN_PREFIX, '')
 			self.session.openWithCallback(self.runBootlogoRemove, MessageBox, _('You already have a bootlogo installed,\nwould you like to remove\n"%s"?') % self.remove_bootlogo_name)
 			return
 
@@ -766,15 +772,6 @@ class PluginDownloadBrowser(Screen):
 							else:
 								if plugin[0] not in self.installedplugins:
 									if len(plugin) == 2:
-										# 'opkg list_installed' does not return descriptions, append empty description
-#										if plugin[0].startswith('enigma2-locale-'):
-#											lang = plugin[0].split('-')
-#											if len(lang) > 3:
-#												plugin.append(lang[2] + '-' + lang[3])
-#											else:
-#												plugin.append(lang[2])
-#										else:
-#											plugin.append('')
 										plugin.append('')
 									plugin.append(plugin[0][15:])
 									plugin.append("")  # installed dummy
@@ -797,33 +794,12 @@ class PluginDownloadBrowser(Screen):
 			split = x[3].split('-', 1)
 			if x[0][0:14] == 'kernel-module-':
 				split[0] = "kernel modules"
-#			elif x[0][0:15] == 'enigma2-locale-':
-#				split[0] = "languages"
 
 			if split[0] not in self.plugins:
 				self.plugins[split[0]] = []
 
 			if split[0] == "kernel modules":
 				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][14:], x[1], x[4], x[5]))
-#			elif split[0] == "languages":
-#				for t in self.LanguageList:
-#					if len(x[2]) > 2:
-#						tmpT = t[0].lower()
-#						tmpT = tmpT.replace('_', '-')
-#						if tmpT == x[2]:
-#							countryIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/" + t[0] + ".png"))
-#							if countryIcon is None:
-#								countryIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
-#							self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=countryIcon), t[1], x[1], x[4], x[5]))
-#							break
-#					else:
-#						if t[0][:2] == x[2] and t[0][3:] != 'GB':
-#							countryIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/" + t[0] + ".png"))
-#							if countryIcon is None:
-#								countryIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
-#							self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=countryIcon), t[1], x[1], x[4], x[5]))
-#							break
-
 			else:
 				if len(split) < 2:
 					continue
@@ -859,6 +835,3 @@ class PluginDownloadManager(PluginDownloadBrowser):
 	def __init__(self, session):
 		PluginDownloadBrowser.__init__(self, session=session, type=self.MANAGE)
 		self.skinName = ["PluginDownloadBrowser"]
-
-
-language.addCallback(languageChanged)
