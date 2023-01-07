@@ -720,7 +720,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				]
 				self.session.openWithCallback(processDelete, MessageBox, "\n".join(msg), list=choiceList, default=2, windowTitle=windowTitle)
 			else:
-				self.session.openWithCallback(processDelete, MessageBox, _("Delete '%s'?") % basename(normpath(path)), windowTitle=windowTitle)
+				processDelete("CURRENT")
 
 		def processDelete(answer):
 			def processCallback(result):
@@ -1125,6 +1125,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self.multiSelect.clearAllSelections()  # Clearing the selection list should be removed when multi selection across directories is enabled.
 			self.multiSelect = None
 		self.updateTitle()
+		self.updateButtons()
 
 	def keyOk(self):
 		def archiveCallback(answer):
