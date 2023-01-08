@@ -21,6 +21,7 @@ from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.config import config, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigLocations, ConfigSelectionNumber, ConfigSubsection
 from Components.Console import Console as console
 from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, EXTENSIONS, FILE_PATH, FILE_IS_DIR, FileList, FileListMultiSelect, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, RECORDING_EXTENSIONS
+from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
@@ -66,6 +67,8 @@ FILES_TO_LIST = 7
 ARCHIVE_FILES = frozenset([x for x, y in EXTENSIONS.items() if y in ("7z", "bz2", "gz", "ipk", "rar", "tar", "xz", "zip")])
 MEDIA_FILES = frozenset([x for x, y in EXTENSIONS.items() if y in ("music", "picture", "movie")])
 TEXT_FILES = frozenset([x for x, y in EXTENSIONS.items() if y in ("cfg", "html", "log", "lst", "playlist", "py", "sh", "txt", "xml")])
+
+PROTECTED_DIRECTORIES = ("/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var")
 
 config.plugins.FileCommander = ConfigSubsection()
 config.plugins.FileCommander.addToMainMenu = ConfigYesNo(default=False)
@@ -2788,6 +2791,7 @@ class FileTransferTask(Task):
 			else:
 				print("[Directories] FileTransferTask Error: Unknown job type '%s' specified!" % jobType)
 				cmdLine = None
+			self.mountPoints = [normpath(x.mountpoint) for x in harddiskmanager.getMountedPartitions()]
 			self.initialSize = self.dirSize(target) if isdir(target) else 0
 			if cmdLine:
 				self.postconditions.append(TaskPostConditions())
@@ -2832,6 +2836,8 @@ class FileTransferTask(Task):
 		totalSize = getsize(directory)
 		for item in listdir(directory):
 			path = pathjoin(directory, item)
+			if path in ("/dev", "/proc", "/run", "/sys") or path in self.mountPoints or islink(path):  # Don't analyze system directories, mount points or links.
+				continue
 			if isfile(path):
 				totalSize += getsize(path)
 			elif isdir(path):
