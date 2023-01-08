@@ -40,6 +40,10 @@ self.selectKey("DOWN")
 		</step>
 
 		<step id="update">
+			<condition>
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash")
+			</condition>
 			<text value="Checking the Internet connection" />
 			<displaytext value="Checking the Internet connection" />
 			<config screen="InstallWizard" module="InstallWizard" args="0" type="ConfigList" />

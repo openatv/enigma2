@@ -31,6 +31,8 @@ class InstallWizard(Screen, ConfigListScreen):
 			config.misc.installwizard.ipkgloaded.value = False
 			modes = {0: " "}
 			self.enabled = ConfigSelection(choices=modes, default=0)
+			modes = {0: "Installing Please wait..."}
+			self.cfgupdate = ConfigSelection(choices=modes, default=0)
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 			is_found = False
 			for x in self.adapters:
@@ -72,12 +74,13 @@ class InstallWizard(Screen, ConfigListScreen):
 		except:
 			return
 		self.list = []
-		#if self.index == self.STATE_UPDATE:
-		#	if config.misc.installwizard.hasnetwork.value:
-		#		self.list.append(getConfigListEntry(_("Your Internet connection is working (ip: %s)") % (self.ipConfigEntry.getText()), self.enabled))
-		#	else:
-		#self.list.append(getConfigListEntry(_("Your receiver does not have an Internet connection"), self.enabled))
-		if self.index == self.STATE_CHOISE_CHANNELLIST:
+		if self.index == self.STATE_UPDATE:
+			if config.misc.installwizard.hasnetwork.value:
+				self.list.append(getConfigListEntry(_("Your Internet connection is working (ip: %s)") % (self.ipConfigEntry.getText()), self.enabled))
+				self.list.append(getConfigListEntry(_("There are pending tasks:"), self.cfgupdate))
+			else:
+				self.list.append(getConfigListEntry(_("Your receiver does not have an Internet connection"), self.enabled))
+		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 #			self.list.append(getConfigListEntry(_("Install channel list"), self.enabled))
 #			if self.enabled.value:
 			self.list.append(getConfigListEntry(_("Channel list type"), self.channellist_type))
@@ -101,7 +104,10 @@ class InstallWizard(Screen, ConfigListScreen):
 		self.createMenu()
 
 	def run(self):
-		if self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value and self.channellist_type.value == "default":
+		if self.index == self.STATE_UPDATE and config.misc.installwizard.hasnetwork.value:
+			os.system("opkg update && opkg install meta-small")
+			config.misc.installwizard.ipkgloaded.value = True
+		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value and self.channellist_type.value == "default":
 			config.misc.installwizard.channellistdownloaded.value = True
 			os.system("tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2")
 			eDVBDB.getInstance().reloadServicelist()
