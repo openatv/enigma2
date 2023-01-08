@@ -53,7 +53,7 @@ MODULE_NAME = __name__.split(".")[-1]
 
 PROGRAM_NAME = _("File Commander")
 PROGRAM_DESCRIPTION = _("Manage and explore directories and files.")
-PROGRAM_VERSION = "%s %s" % (_("Version"), "4.10")
+PROGRAM_VERSION = "%s %s" % (_("Version"), "4.11")
 
 STORAGE_DEVICES_NAME = "<%s>" % _("List of Storage Devices")
 
