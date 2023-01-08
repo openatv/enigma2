@@ -53,9 +53,10 @@ MODULE_NAME = __name__.split(".")[-1]
 
 PROGRAM_NAME = _("File Commander")
 PROGRAM_DESCRIPTION = _("Manage and explore directories and files.")
-PROGRAM_VERSION = "%s %s" % (_("Version"), "4.11")
+PROGRAM_VERSION = "%s %s" % (_("Version"), "4.12")
 
 STORAGE_DEVICES_NAME = "<%s>" % _("List of Storage Devices")
+PROTECTED_DIRECTORIES = ("/", "/bin/", "/boot/", "/dev/", "/etc/", "/home/", "/lib/", "/proc/", "/run/", "/sbin/", "/share/", "/sys/", "/tmp/", "/usr/", "/var/")
 
 HASH_CHECK_SIZE = 134217728
 MAX_EDIT_SIZE = 1048576
@@ -67,8 +68,6 @@ FILES_TO_LIST = 7
 ARCHIVE_FILES = frozenset([x for x, y in EXTENSIONS.items() if y in ("7z", "bz2", "gz", "ipk", "rar", "tar", "xz", "zip")])
 MEDIA_FILES = frozenset([x for x, y in EXTENSIONS.items() if y in ("music", "picture", "movie")])
 TEXT_FILES = frozenset([x for x, y in EXTENSIONS.items() if y in ("cfg", "html", "log", "lst", "playlist", "py", "sh", "txt", "xml")])
-
-PROTECTED_DIRECTORIES = ("/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var")
 
 config.plugins.FileCommander = ConfigSubsection()
 config.plugins.FileCommander.addToMainMenu = ConfigYesNo(default=False)
@@ -600,7 +599,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def keyChangeMode(self):
 		def changeModeCallback(answer):
 			if answer:
-				path = self.sourceColumn.getPath()
 				try:
 					chmod(path, answer)
 				except OSError as err:
@@ -659,6 +657,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					msg = [_("Copy these %d directories/files?") % count]
 					for name in names:
 						msg.append("- '%s'" % name)
+				directory = self.targetColumn.getCurrentDirectory()
 				targetNames = [x for x in names if exists(pathjoin(directory, x))]
 				count = len(targetNames)
 				if count > FILES_TO_LIST:
@@ -678,7 +677,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			print("[FileCommander] Job '%s' finished." % (job.name))
 			if "status" in self:
 				self.displayStatus(_("Copy job completed."))
-				self.targetColumn.refresh()
+				targetDirectory = self.targetColumn.getCurrentDirectory()
+				newPath = basename(normpath(path))
+				if isdir(newPath):
+					newPath = pathjoin(newPath, "")
+				self.targetColumn.changeDir(targetDirectory, pathjoin(targetDirectory, newPath))
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Copy job completed.")), MessageBox.TYPE_INFO)
 
@@ -686,17 +689,17 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			print("[FileCommander] Job '%s', task '%s' failed.\n%s" % (job.name, task.name, "\n".join([x.getErrorMessage(task) for x in problems])))
 			if "status" in self:
 				self.displayStatus(_("Copy job failed!"))
-				self.targetColumn.refresh()
+				targetDirectory = self.targetColumn.getCurrentDirectory()
+				newPath = basename(normpath(path))
+				if isdir(newPath):
+					newPath = pathjoin(newPath, "")
+				self.targetColumn.changeDir(targetDirectory, pathjoin(targetDirectory, newPath))
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Copy job failed!")), MessageBox.TYPE_ERROR)
 
 		windowTitle = "%s - %s" % (self.baseTitle, _("Copy"))
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
-			if path == sep:
-				self.session.open(MessageBox, _("Error: The root file system can not be copied!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-				return
-			directory = self.targetColumn.getCurrentDirectory()
 			if self.multiSelect == self.sourceColumn:
 				selectedItems = self.sourceColumn.getSelectedItems()
 				if selectedItems:
@@ -758,10 +761,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Delete job completed."))
 				self.sourceColumn.refresh()
-				if startIndex < self.sourceColumn.count():
-					self.sourceColumn.setCurrentIndex(startIndex)
-				else:
-					self.sourceColumn.goBottom()
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Delete job completed.")), MessageBox.TYPE_INFO)
 
@@ -776,9 +775,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		windowTitle = "%s - %s" % (self.baseTitle, _("Delete"))
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
-			startIndex = self.sourceColumn.getCurrentIndex()
-			if path == sep:
-				self.session.open(MessageBox, _("Error: The root file system can not be deleted!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+			if path in PROTECTED_DIRECTORIES:
+				self.session.open(MessageBox, _("Error: The root file system and system directories can't be deleted!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 				return
 			if self.multiSelect == self.sourceColumn:
 				selectedItems = self.sourceColumn.getSelectedItems()
@@ -911,13 +909,14 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def keyMakeDirectory(self):
 		def makeDirectoryCallback(newName):
 			if newName:
-				sourceDir = self.sourceColumn.getCurrentDirectory()
-				if sourceDir:
+				sourceDirectory = self.sourceColumn.getCurrentDirectory()
+				if sourceDirectory:
+					newDirectory = pathjoin(sourceDirectory, newName, "")
 					try:
-						mkdir(pathjoin(sourceDir, newName))
+						mkdir(newDirectory)
 					except OSError as err:
-						self.session.open(MessageBox, _("Error %d: Unable to create directory '%s'!  (%s)") % (err.errno, pathjoin(sourceDir, newName), err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
-					self.sourceColumn.refresh()
+						self.session.open(MessageBox, _("Error %d: Unable to create directory '%s'!  (%s)") % (err.errno, newDirectory, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+					self.sourceColumn.changeDir(sourceDirectory, newDirectory)
 
 		if self.sourceColumn.getCurrentDirectory():
 			self.session.openWithCallback(makeDirectoryCallback, VirtualKeyBoard, title=_("Please enter a name for the new directory:"), text=_("NewDirectory"))
@@ -925,20 +924,21 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def keyMakeSymlink(self):
 		def makeSymlinkCallback(newName):
 			if newName:
-				oldPath = self.sourceColumn.getPath()
-				if newName != basename(normpath(oldpath)):
-					newPath = pathjoin(self.sourceColumn.getCurrentDirectory(), newName)
-					try:
-						symlink(oldPath, newPath)
-					except OSError as err:
-						self.session.open(MessageBox, _("Error %d: Unable to link '%s' as '%s'!  (%s)") % (err.errno, oldPath, newPath, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
-					self.keyRefresh()
+				targetDirectory = self.targetColumn.getCurrentDirectory()
+				oldPath = path
+				newPath = pathjoin(targetDirectory, newName)
+				try:
+					symlink(oldPath, newPath)
+				except OSError as err:
+					self.session.open(MessageBox, _("Error %d: Unable to link '%s' as '%s'!  (%s)") % (err.errno, oldPath, newPath, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+				if isdir(path):
+					newPath = pathjoin(newPath, "")
+				self.targetColumn.changeDir(targetDirectory, newPath)
 
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
-			if path and self.sourceColumn.getCurrentDirectory() and self.sourceColumn.getCurrentIndex():
-				path = basename(normpath(path))
-				self.session.openWithCallback(makeSymlinkCallback, VirtualKeyBoard, title=_("Please enter name of the new symbolic link:"), text=path)
+			oldName = basename(normpath(path))
+			self.session.openWithCallback(makeSymlinkCallback, VirtualKeyBoard, title=_("Please enter name of the new symbolic link:"), text=oldName)
 
 	def keyManageBookmarks(self, current):
 		bookmarks = config.plugins.FileCommander.bookmarks.value
@@ -1083,11 +1083,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			print("[FileCommander] Job '%s' finished." % (job.name))
 			if "status" in self:
 				self.displayStatus(_("Move job completed."))
-				self.keyRefresh()
-				if startIndex < self.sourceColumn.count():
-					self.sourceColumn.setCurrentIndex(startIndex)
-				else:
-					self.sourceColumn.goBottom()
+				self.sourceColumn.refresh()
+				targetDirectory = self.targetColumn.getCurrentDirectory()
+				self.targetColumn.changeDir(targetDirectory, pathjoin(targetDirectory, basename(normpath(path))))
+				# if startIndex < self.sourceColumn.count():
+				# 	self.sourceColumn.setCurrentIndex(startIndex)
+				# else:
+				# 	self.sourceColumn.goBottom()
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Move job completed.")), MessageBox.TYPE_INFO)
 
@@ -1095,16 +1097,18 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			print("[FileCommander] Job '%s', task '%s' failed.\n%s" % (job.name, task.name, "\n".join([x.getErrorMessage(task) for x in problems])))
 			if "status" in self:
 				self.displayStatus(_("Move job failed!"))
-				self.keyRefresh()
+				self.sourceColumn.refresh()
+				targetDirectory = self.targetColumn.getCurrentDirectory()
+				self.targetColumn.changeDir(targetDirectory, pathjoin(targetDirectory, basename(normpath(path))))
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Move job failed!")), MessageBox.TYPE_ERROR)
 
 		windowTitle = "%s - %s" % (self.baseTitle, _("Move"))
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
-			startIndex = self.sourceColumn.getCurrentIndex()
-			if path == sep:
-				self.session.open(MessageBox, _("Error: The root file system can not be moved!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+			# startIndex = self.sourceColumn.getCurrentIndex()
+			if path in PROTECTED_DIRECTORIES:
+				self.session.open(MessageBox, _("Error: The root file system and system directories can't be moved!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 				return
 			directory = self.targetColumn.getCurrentDirectory()
 			if self.multiSelect == self.sourceColumn:
@@ -1430,29 +1434,32 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 		def renameAllCallback(newName):
 			if newName:
+				directory = dirname(normpath(path))
 				baseLen = len(relatedFiles[0])
 				for file in relatedFiles[2:]:
 					try:
 						rename(file, pathjoin(directory, "%s%s" % (newName, file[baseLen:])))
 					except OSError as err:
 						self.session.open(MessageBox, _("Error %d: Unable to rename related file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-				self.sourceColumn.refresh()
+				self.sourceColumn.changeDir(self.sourceColumn.getCurrentDirectory(), pathjoin(directory, "%s%s" % (newName, relatedFiles[2][baseLen:])))
 
 		def renameSelectedCallback(newName):
 			if newName:
+				newPath = pathjoin(dirname(normpath(path)), newName)
 				try:
-					rename(path, pathjoin(directory, newName))
+					rename(path, newPath)
 				except OSError as err:
 					self.session.open(MessageBox, _("Error %d: Unable to rename file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-				self.sourceColumn.refresh()
+				if isdir(newPath):
+					newPath = pathjoin(newPath, "")
+				self.sourceColumn.changeDir(self.sourceColumn.getCurrentDirectory(), newPath)
 
 		windowTitle = "%s - %s" % (self.baseTitle, _("Rename"))
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
-			if path == sep:
-				self.session.open(MessageBox, _("Error: The root file system can not be renamed!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+			if path in PROTECTED_DIRECTORIES:
+				self.session.open(MessageBox, _("Error: The root file system and system directories can't be renamed!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 				return
-			directory = dirname(normpath(path))
 			relatedFiles = self.getRelatedFiles(path)
 			if relatedFiles:
 				msg = [_("The following files are related to '%s':") % path]
