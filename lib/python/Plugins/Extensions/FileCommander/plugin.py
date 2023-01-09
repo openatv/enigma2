@@ -677,11 +677,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			print("[FileCommander] Job '%s' finished." % (job.name))
 			if "status" in self:
 				self.displayStatus(_("Copy job completed."))
-				targetDirectory = self.targetColumn.getCurrentDirectory()
 				newPath = basename(normpath(path))
 				if isdir(newPath):
 					newPath = pathjoin(newPath, "")
-				self.targetColumn.changeDir(targetDirectory, pathjoin(targetDirectory, newPath))
+				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), newPath))
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Copy job completed.")), MessageBox.TYPE_INFO)
 
@@ -689,11 +688,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			print("[FileCommander] Job '%s', task '%s' failed.\n%s" % (job.name, task.name, "\n".join([x.getErrorMessage(task) for x in problems])))
 			if "status" in self:
 				self.displayStatus(_("Copy job failed!"))
-				targetDirectory = self.targetColumn.getCurrentDirectory()
 				newPath = basename(normpath(path))
 				if isdir(newPath):
 					newPath = pathjoin(newPath, "")
-				self.targetColumn.changeDir(targetDirectory, pathjoin(targetDirectory, newPath))
+				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), newPath))
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Copy job failed!")), MessageBox.TYPE_ERROR)
 
@@ -916,7 +914,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						mkdir(newDirectory)
 					except OSError as err:
 						self.session.open(MessageBox, _("Error %d: Unable to create directory '%s'!  (%s)") % (err.errno, newDirectory, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
-					self.sourceColumn.changeDir(sourceDirectory, newDirectory)
+					self.sourceColumn.refresh(newDirectory)
 
 		if self.sourceColumn.getCurrentDirectory():
 			self.session.openWithCallback(makeDirectoryCallback, VirtualKeyBoard, title=_("Please enter a name for the new directory:"), text=_("NewDirectory"))
@@ -924,16 +922,15 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def keyMakeSymlink(self):
 		def makeSymlinkCallback(newName):
 			if newName:
-				targetDirectory = self.targetColumn.getCurrentDirectory()
 				oldPath = path
-				newPath = pathjoin(targetDirectory, newName)
+				newPath = pathjoin(self.targetColumn.getCurrentDirectory(), newName)
 				try:
 					symlink(oldPath, newPath)
 				except OSError as err:
 					self.session.open(MessageBox, _("Error %d: Unable to link '%s' as '%s'!  (%s)") % (err.errno, oldPath, newPath, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
 				if isdir(path):
 					newPath = pathjoin(newPath, "")
-				self.targetColumn.changeDir(targetDirectory, newPath)
+				self.targetColumn.refresh(newPath)
 
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
@@ -1084,8 +1081,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Move job completed."))
 				self.sourceColumn.refresh()
-				targetDirectory = self.targetColumn.getCurrentDirectory()
-				self.targetColumn.changeDir(targetDirectory, pathjoin(targetDirectory, basename(normpath(path))))
+				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), basename(normpath(path))))
 				# if startIndex < self.sourceColumn.count():
 				# 	self.sourceColumn.setCurrentIndex(startIndex)
 				# else:
@@ -1098,8 +1094,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Move job failed!"))
 				self.sourceColumn.refresh()
-				targetDirectory = self.targetColumn.getCurrentDirectory()
-				self.targetColumn.changeDir(targetDirectory, pathjoin(targetDirectory, basename(normpath(path))))
+				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), basename(normpath(path))))
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Move job failed!")), MessageBox.TYPE_ERROR)
 
@@ -1441,7 +1436,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						rename(file, pathjoin(directory, "%s%s" % (newName, file[baseLen:])))
 					except OSError as err:
 						self.session.open(MessageBox, _("Error %d: Unable to rename related file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-				self.sourceColumn.changeDir(self.sourceColumn.getCurrentDirectory(), pathjoin(directory, "%s%s" % (newName, relatedFiles[2][baseLen:])))
+				self.sourceColumn.refresh(pathjoin(directory, "%s%s" % (newName, relatedFiles[2][baseLen:])))
 
 		def renameSelectedCallback(newName):
 			if newName:
@@ -1452,7 +1447,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					self.session.open(MessageBox, _("Error %d: Unable to rename file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 				if isdir(newPath):
 					newPath = pathjoin(newPath, "")
-				self.sourceColumn.changeDir(self.sourceColumn.getCurrentDirectory(), newPath)
+				self.sourceColumn.refresh(newPath)
 
 		windowTitle = "%s - %s" % (self.baseTitle, _("Rename"))
 		path = self.sourceColumn.getPath()
