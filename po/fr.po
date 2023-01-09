@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
 "PO-Revision-Date: 2022-05-29 00:20+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -2102,10 +2102,6 @@ msgstr "Paramètres adaptateur"
 msgid "Add"
 msgstr "Ajouter"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Ajouter Timer Auto"
 
@@ -2178,6 +2174,9 @@ msgstr "Ajouter une minuterie pour l'événement en cours"
 msgid "Add an AutoTimer for the current event"
 msgstr "Ajouter un timer automatique pour l'évènement courant"
 
+msgid "Add current directory to bookmarks"
+msgstr "Ajouter le dossier actuel aux favoris"
+
 msgid "Add directory to play list"
 msgstr "Ajouter le répertoire à la liste de lecture"
 
@@ -2186,6 +2185,12 @@ msgstr "Ajouter le fichier à la liste de lecture"
 
 msgid "Add files to play list"
 msgstr "Ajouter les fichiers à la liste de lecture"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Ajouter le dossier sélectionné aux signets"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3270,6 +3275,12 @@ msgid "Bonaire"
 msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5220,6 +5231,9 @@ msgstr "Statut courant :"
 msgid "Current crash log"
 msgstr ""
 
+msgid "Current directory"
+msgstr ""
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr ""
@@ -5255,6 +5269,12 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Version actuelle :"
+
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
 
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
@@ -5919,6 +5939,9 @@ msgstr "Contournement sortie système"
 
 msgid "Democratic Republic of the Congo"
 msgstr "République Démocratique du Congo"
+
+msgid "Demod firmware version"
+msgstr ""
 
 msgid "Denmark"
 msgstr "Danemark"
@@ -6959,6 +6982,9 @@ msgstr "Activer bouquets multiples"
 
 msgid "Enable network traffic check"
 msgstr "Activer la vérification du trafic réseau"
+
+msgid "Enable new GStreamer playback"
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Activez ou désactivez l'utilisation de HDMI-CEC."
@@ -8875,6 +8901,9 @@ msgstr "Info hiérarchie"
 msgid "High bitrate support"
 msgstr "Support haut débit"
 
+msgid "Highlighted item"
+msgstr ""
+
 msgid "Hindi"
 msgstr "Hindi"
 
@@ -9003,6 +9032,9 @@ msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nouveau modèle"
+
+msgid "ID"
+msgstr ""
 
 msgid "IMDb Details"
 msgstr "Détails IMDb"
@@ -9158,6 +9190,9 @@ msgstr "Si activé, les données AIT seront incluses dans les enregistrements."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Si cette option est activée, un journal du trafic du protocole CEC sera conservé. Les fichiers journaux sont situés avec les autres fichiers journaux mais sont nommés 'Enigma2-hdmicec-[date].log' ;."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Si activé, utilisation d'une fenêtre de temps pour détecter un réveil à partir d'une veille profonde par une minuterie. Le réglage par défaut est désactivé et utilise un signal spécial du récepteur. Mais certains appareils définissent un signal erroné ou aucun signal et la détection de réveil peut échouer."
@@ -11885,7 +11920,7 @@ msgstr "Pas testé:"
 msgid "Nothing"
 msgstr "Ne rien faire"
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr ""
 
 msgid ""
@@ -14045,10 +14080,6 @@ msgstr "Type de la télécommande"
 msgid "Remove"
 msgstr "Supprimer"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr "Supprimer le signet"
 
@@ -14111,11 +14142,17 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr "Supprimer les programmations terminées après (jours)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Supprimer le dossier actuel des favoris"
+
 msgid "Remove currently selected title"
 msgstr "Supprimer le titre actuellement sélectionné"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Ne pas cacher ligne VBI pour ce service"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Supprimer le dossier sélectionné des favoris"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Enlever les textes pour les malentendants des sous-titres externes (musique instrumental ou bruit de l'environnement, par exemple, lorsqu'une sonnerie ou un coup de feu est entendu)."
@@ -15086,6 +15123,9 @@ msgstr "Si mis à 'oui' vous pouvez prévisualiser une chaîne depuis la liste E
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Si mis à 'oui' vous pouvez prévisualiser une chaîne depuis la liste des chaînes. En appuyant sur OK pour prévisualiser la chaîne, appuyer une deuxième fois sur OK pour quitter et zapper sur cette chaîne, en appuyant sur EXIT vous retournerez sur la chaîne de départ."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Si mis à 'oui' les chaînes sans EPG ne seront pas affichées."
@@ -20743,6 +20783,9 @@ msgstr "Voir liste extensions des systèmes disponibles"
 msgid "View mode"
 msgstr "Mode vue"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Afficher ou modifier le fichier (si taille < 1 Mo)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Afficher ou modifier ce script %s"
@@ -20774,13 +20817,16 @@ msgstr "Îles Vierges (britanniques)"
 msgid "Virgin Islands (US)"
 msgstr "Îles Vierges (US)"
 
-msgid "Virtual KeyBoard Functions"
-msgstr "Fonctions de keyboard virtuel"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
+msgstr ""
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Texte du clavier virtuel :"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "Clavier virtuel"
 
 msgid "Visual impaired commentary"
@@ -23323,6 +23369,9 @@ msgstr "Votre %s %s pourrait être inutilisable maintenant. Merci de consulter l
 msgid "®"
 msgstr "®"
 
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Fonctions de keyboard virtuel"
+
 #, python-format
 #~ msgid ""
 #~ "\n"
@@ -23416,17 +23465,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Activer la liste de fichiers de droite comme source"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Ajouter le dossier actuel aux favoris"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Ajouter un plugin au menu Extensions*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Ajouter un plugin au menu principal*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Ajouter le dossier sélectionné aux signets"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Priorité CPU pour l'exécution du script"
@@ -23851,12 +23894,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Enregistrements"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Supprimer le dossier actuel des favoris"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Supprimer le dossier sélectionné des favoris"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Renommer un fichier/répertoire"
 
@@ -24001,9 +24038,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Décompresser dans le dossier actif"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Afficher ou modifier le fichier (si taille < 1 Mo)"
 
 #~ msgid "WARNING!"
 #~ msgstr "ATTENTION !"

@@ -1,13 +1,13 @@
 # openATV <openatv@gmail.com>, 2021.
-# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022.
+# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023.
 # Artem <Localizer_in_Russian@protonmail.com>, 2021.
 # Вячеслав Диконов <sdiconov@mail.ru>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-11-29 22:44+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"PO-Revision-Date: 2023-01-08 08:48+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -924,16 +924,16 @@ msgstr "%d минут"
 #, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d месяц"
+msgstr[1] "%d месяцев"
+msgstr[2] "%d месяца"
 
 #, python-format
 msgid "%d Pixel"
 msgid_plural "%d Pixels"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пиксель"
+msgstr[1] "%d пикселей"
+msgstr[2] "%d пикселя"
 
 #, python-format
 msgid "%d Pixel wide"
@@ -960,16 +960,16 @@ msgstr "%d секунд"
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d неделя"
+msgstr[1] "%d недель"
+msgstr[2] "%d недели"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d год"
+msgstr[1] "%d лет"
+msgstr[2] "%d года"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1344,7 +1344,7 @@ msgstr "(Все ридеры)"
 
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
-msgstr "(Для доступа к логам фиксации %s требуется подключение к Интернету.)"
+msgstr "(Для доступа к журналу записей %s требуется подключение к Интернету.)"
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2121,10 +2121,6 @@ msgstr "Настройки адаптера"
 msgid "Add"
 msgstr "Добавить"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr "Добавить '%s' в закладки"
-
 msgid "Add AutoTimer"
 msgstr "Добавить автотаймер"
 
@@ -2197,6 +2193,9 @@ msgstr "Добавить таймер для текущего события"
 msgid "Add an AutoTimer for the current event"
 msgstr "Добавить автотаймер для текущей передачи"
 
+msgid "Add current directory to bookmarks"
+msgstr "Добавить текущую папку в закладки"
+
 msgid "Add directory to play list"
 msgstr "Добавить каталог в плейлист"
 
@@ -2205,6 +2204,12 @@ msgstr "Добавить файл в плейлист"
 
 msgid "Add files to play list"
 msgstr "Добавить файлы в плейлист"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Добавить выбранную папку в закладки"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr "Добавить устаревшие действия ВЛЕВО/ВПРАВО"
 
 msgid "Add new CCcam line"
 msgstr "Добавить новую строку CCcam"
@@ -3290,6 +3295,12 @@ msgstr "Бонэйр"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Последовательность действий в закладках"
+
+msgid "Bookmark added."
+msgstr "Добавлена закладка."
+
+msgid "Bookmark removed."
+msgstr "Закладка удалена."
 
 msgid "Bookmarks"
 msgstr "Закладки"
@@ -4481,13 +4492,13 @@ msgid "Commit Information Actions"
 msgstr "Совершение информационных действий"
 
 msgid "Commit Log"
-msgstr "Лог фиксации"
+msgstr "Журнал записей"
 
 msgid "Commit Log Information"
-msgstr "Информация лога фиксации"
+msgstr "Информация журнала записей"
 
 msgid "Commit Logs"
-msgstr "Логи фиксации"
+msgstr "Журнал записей"
 
 msgid "Common Information Actions"
 msgstr "Общие информационные действия"
@@ -5234,6 +5245,9 @@ msgstr "Текущий статус"
 msgid "Current crash log"
 msgstr "Текущий лог сбоев"
 
+msgid "Current directory"
+msgstr "Текущая директория"
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr "Текущий каталог (%s)"
@@ -5269,6 +5283,14 @@ msgstr "Текущая версия неизвестна"
 
 msgid "Current version:"
 msgstr "Текущая версия"
+
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
+"Текущее: %s\n"
+"Родительский элемент: %s"
 
 msgid "Currently Defined Volume Offsets:"
 msgstr "Текущие настройки отключения звука:"
@@ -5933,6 +5955,9 @@ msgstr "Альтернативная доставка сигнала"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Демократическая Республика Конго"
+
+msgid "Demod firmware version"
+msgstr "Версия прошивки демо"
 
 msgid "Denmark"
 msgstr "Дания"
@@ -6972,6 +6997,9 @@ msgstr "Включить несколько букетов"
 
 msgid "Enable network traffic check"
 msgstr "Включить проверку сетевого трафика"
+
+msgid "Enable new GStreamer playback"
+msgstr "Включить новое воспроизведение GStreamer"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Включение или отключение использования HDMI-CEC."
@@ -8019,7 +8047,7 @@ msgid "File Commander Move"
 msgstr "Перемещение файлового менеджера"
 
 msgid "File Commander Settings"
-msgstr ""
+msgstr "Настройки файлового менеджера"
 
 msgid "File Commander Text Editor"
 msgstr "Текстовый редактор File Commander"
@@ -8888,6 +8916,9 @@ msgstr "Информация иерархии"
 msgid "High bitrate support"
 msgstr "Поддержка высокого битрейта"
 
+msgid "Highlighted item"
+msgstr "Выделенный элемент"
+
 msgid "Hindi"
 msgstr "Хинди"
 
@@ -9016,6 +9047,9 @@ msgstr "Приоритет ввода-вывода для скриптов"
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 новая модель"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "IMDb Details"
 msgstr "Подробности IMDb"
@@ -9171,6 +9205,9 @@ msgstr "Если включено, данные AIT будут включены 
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Если этот параметр включен, будет вестись лог трафика протокола CEC. Файлы логов расположены вместе с другими файлами логов, но имеют имя 'Enigma2-hdmicec- [date] .log'."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr "Если этот параметр включён, будет использоваться новый механизм воспроизведения GStreamer."
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Если включено, использование временного окна для обнаружения пробуждения из глубокого режима ожидания по таймеру. По умолчанию настройка отключена и используется специальный сигнал от ресивера. Но некоторые устройства устанавливают неправильный сигнал или его нет, и обнаружение пробуждения может не работать."
@@ -10537,13 +10574,13 @@ msgid "Margin after recording"
 msgstr "Объединить после записи (Мин)"
 
 msgid "Margin after zap"
-msgstr ""
+msgstr "Поле послеr zap"
 
 msgid "Margin before recording"
 msgstr "Объединить перед записью (Мин)"
 
 msgid "Margin before zap"
-msgstr ""
+msgstr "Поле до zap"
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Режим 3D канала"
@@ -11896,8 +11933,8 @@ msgstr "Не испытано:"
 msgid "Nothing"
 msgstr "Ничего не делать"
 
-msgid "Nothing connected"
-msgstr "Ничего не подключено"
+msgid "Nothing connected and/or no files available!"
+msgstr "Ничего не подключено и/или нет доступных файлов!"
 
 msgid ""
 "Nothing to scan!\n"
@@ -14055,10 +14092,6 @@ msgstr "Тип пульта управления"
 msgid "Remove"
 msgstr "Удалить"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr "Удалить '%s' из закладок"
-
 msgid "Remove Bookmark"
 msgstr "Удалить закладку"
 
@@ -14119,11 +14152,17 @@ msgstr "Удалить все данные пользовательского и
 msgid "Remove completed timers after"
 msgstr "Удаление завершённых таймеров через (в днях)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Удалить текущую папку из закладок"
+
 msgid "Remove currently selected title"
 msgstr "Удалить выбранный заголовок"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Удалить линию VBI на этом канале"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Удалить выбранную папку из закладок"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Удалить тексты для слабослышащих из внешних субтитров (инструментальная музыка или звуки окружающей среды, например, когда раздаётся звонок в дверь или выстрел)."
@@ -15096,6 +15135,9 @@ msgstr "Если выберите 'Да', в ТВ-гиде будет включ
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Если выберите 'Да', в списке каналов будет включен предпросмотр каналов. Нажатие ОК откроет канал в PiG-окне, второе нажатие ОК закроет селектор каналов и переключить на данный канал, нажатие кнопки 'EXIT' закроет селектор каналов с возвратом на старый канал."
 
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr "Выберите 'Да', чтобы разрешить использование кнопок ВЛЕВО/ВПРАВО для перемещения по страницам вверх/вниз, когда кнопки ВЛЕВО/ВПРАВО в противном случае не определены. Это обеспечивает унаследованную навигацию для пользователей, которые предпочитают ее."
+
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Если установлено значение 'да', каналы без EPG не будут отображаться."
 
@@ -15278,7 +15320,7 @@ msgid "Select a network adapter"
 msgstr "Выбор сетевого адаптера"
 
 msgid "Select a repository commit log to view:"
-msgstr "Выберите лог фиксации репозитория для просмотра:"
+msgstr "Выберите журнал записей репозитория для просмотра:"
 
 msgid "Select a script to run:"
 msgstr "Выбор скрипта для запуска"
@@ -16653,7 +16695,7 @@ msgid "Show columns"
 msgstr "Выровнять название передачи"
 
 msgid "Show commit log information"
-msgstr "Показать информацию о логе фиксации"
+msgstr "Показать информацию о журнале записей"
 
 msgid "Show crash info on screen and write crash log for x times"
 msgstr "Показывать инфо о сбоях на экране и писать лог сбоев x раз"
@@ -16789,7 +16831,7 @@ msgid "Show network setup menu..."
 msgstr "Показать меню настроек сети..."
 
 msgid "Show next commit log"
-msgstr "Показать следующий лог фиксации"
+msgstr "Показать следующий журнал записей"
 
 msgid "Show next debug log file"
 msgstr "Показать следующий файл лога отладки"
@@ -16834,7 +16876,7 @@ msgid "Show preview of current mode (*)."
 msgstr "Показать предварительный просмотр текущего режима (*)."
 
 msgid "Show previous commit log"
-msgstr "Показать лог предыдущей фиксации"
+msgstr "Показать журнал предыдущей записи"
 
 msgid "Show previous debug log file"
 msgstr "Показать предыдущий файл лога отладки"
@@ -16882,7 +16924,7 @@ msgid "Show selection for system information screen"
 msgstr "Показать выбор для экрана информации о системе"
 
 msgid "Show selection menu for commit logs"
-msgstr "Показать меню выбора для логов фиксации"
+msgstr "Показать меню выбора для журнала записей"
 
 msgid "Show selection menu for debug log files"
 msgstr "Показать меню выбора для файлов лога отладки"
@@ -18263,7 +18305,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 29.11.2022"
+msgstr "Коррекция перевода Monja 07.01.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -18819,7 +18861,7 @@ msgid "There are no items currently available for this screen."
 msgstr "В настоящее время для этого экрана нет доступных элементов."
 
 msgid "There are no repositories defined so commit logs are unavailable!"
-msgstr "Нет определенных репозиториев, поэтому логи фиксации недоступны!"
+msgstr "Нет определенных репозиториев, поэтому журналы записей недоступны!"
 
 msgid "There are no updates available."
 msgstr "Нет доступных обновлений."
@@ -20229,7 +20271,7 @@ msgid "Use Virgin EPG information when it is available."
 msgstr "Используйте информацию Virgin EPG, когда она доступна."
 
 msgid "Use Zap timer end time"
-msgstr ""
+msgstr "Использовать время окончания Zap-таймера"
 
 msgid "Use a gateway"
 msgstr "Использовать шлюз"
@@ -20768,6 +20810,9 @@ msgstr "Просмотр доступных дополнений системы"
 msgid "View mode"
 msgstr "Режим просмотра"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Просмотр или редактирование файлов размером менее 1 МБ"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Просмотреть или отредактировать этот скрипт %s"
@@ -20799,13 +20844,16 @@ msgstr "Виргинские острова (англ.)"
 msgid "Virgin Islands (US)"
 msgstr "Виргинские острова (США)"
 
-msgid "Virtual KeyBoard Functions"
-msgstr "Функции виртуальной клавиатуры"
+msgid "Virtual KeyBoard"
+msgstr "Виртуальная клавиатура"
+
+msgid "Virtual KeyBoard Actions"
+msgstr "Действия виртуальной клавиатуры"
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Текст виртуальной клавиатуры:"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "Виртуальная клавиатура"
 
 msgid "Visual impaired commentary"
@@ -21134,7 +21182,7 @@ msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "При включении данные SDT, BAT будут включены в потоки http."
 
 msgid "When enabled, a new Zap timer will be created with activated end time."
-msgstr ""
+msgstr "Если этот параметр включён, будет создан новый Zap-таймер с активированным временем окончания."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Показать всплывающее окно, когда один фильм закончился, а следующий начинается."
@@ -21263,10 +21311,10 @@ msgid "When nonzero, a recording will stop the nominated period after the ending
 msgstr "Укажите на сколько минут позже, чем время окончания по ТВ-гиду закончить запись."
 
 msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
-msgstr ""
+msgstr "Если значение не равно нулю, zap-таймер запустит назначенный период до времени запуска, указанного в EPG."
 
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
-msgstr ""
+msgstr "Если значение не равно нулю, zap-таймер остановит назначенный период после времени окончания, указанного в EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Когда ресивер выходит из режима ожидания, он даёт команду телевизору переключиться на вход HDMI, к которому подключён ресивер."
@@ -23347,6 +23395,17 @@ msgstr "Ваш %s %s может стать непригодным теперь. 
 msgid "®"
 msgstr "®"
 
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Функции виртуальной клавиатуры"
+
+#, python-format
+#~ msgid "Add '%s' to bookmarks"
+#~ msgstr "Добавить '%s' в закладки"
+
+#, python-format
+#~ msgid "Remove '%s' from bookmarks"
+#~ msgstr "Удалить '%s' из закладок"
+
 #, python-format
 #~ msgid "Select the directory sort order for the %s column:"
 #~ msgstr "Выберите порядок сортировки каталога для столбца %s:"
@@ -23444,17 +23503,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Активировать правый список файлов как источник"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Добавить текущую папку в закладки"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Добавить плагин в меню Расширения*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Добавить плагин в главное меню*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Добавить выбранную папку в закладки"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Приоритет ЦП для выполнения скрипта"
@@ -23510,9 +23563,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Создание символической ссылки с именем пользователя"
-
-#~ msgid "Current directory"
-#~ msgstr "Текущая директория"
 
 #~ msgid "Date reverse"
 #~ msgstr "По обратной дате"
@@ -23881,12 +23931,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Записи"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Удалить текущую папку из закладок"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Удалить выбранную папку из закладок"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Переименовать файл/каталог"
 
@@ -24034,9 +24078,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Распаковать в текущую папку"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Просмотр или редактирование файла (если размер < 1MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "ВНИМАНИЕ!"

@@ -317,7 +317,7 @@ class SymbolsCheckPoller:
 		elif MODEL in ('dags7362', 'dags73625', 'dags5') or BOX_TYPE in ('tmtwin4k', 'revo4k', 'force3uhd') and exists("/proc/stb/lcd/symbol_rec"):
 			mode = 3
 			filename = "/proc/stb/lcd/symbol_rec"
-		elif MODEL in ('sf8008', 'sf8008m', 'sf8008opt', 'cc1', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'dagsmv200', 'sfx6008') and exists("/proc/stb/fp/ledpowercolor"):
+		elif MODEL in ('sf8008', 'sf8008m', 'sf8008opt', 'cc1', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'dagsmv200', 'sfx6008', 'sx88v2', 'sx888') and exists("/proc/stb/fp/ledpowercolor"):
 			mode = 6
 			filename = "/proc/stb/fp/ledpowercolor"
 		elif exists("/proc/stb/lcd/symbol_recording") and exists("/proc/stb/lcd/symbol_record_1") and exists("/proc/stb/lcd/symbol_record_2"):

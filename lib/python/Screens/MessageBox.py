@@ -66,8 +66,6 @@ class MessageBox(Screen, HelpableScreen):
 					"pageUp": (self.pageUp, _("Move up a page")),
 					"up": (self.up, _("Move up a line")),
 					# "first": (self.top, _("Move to first line")),
-					# "left": (self.pageUp, _("Move up a page")),
-					# "right": (self.pageDown, _("Move down a page")),
 					# "last": (self.bottom, _("Move to last line")),
 					"down": (self.down, _("Move down a line")),
 					"pageDown": (self.pageDown, _("Move down a page")),

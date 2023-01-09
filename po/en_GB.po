@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/en_GB/>\n"
@@ -2077,10 +2077,6 @@ msgstr ""
 msgid "Add"
 msgstr "Add"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Add AutoTimer"
 
@@ -2153,6 +2149,9 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr ""
 
+msgid "Add current directory to bookmarks"
+msgstr ""
+
 msgid "Add directory to play list"
 msgstr "Add directory to play list"
 
@@ -2161,6 +2160,12 @@ msgstr "Add file to play list"
 
 msgid "Add files to play list"
 msgstr "Add files to play list"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr ""
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3241,6 +3246,12 @@ msgid "Bonaire"
 msgstr ""
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5177,6 +5188,9 @@ msgstr "Current Status:"
 msgid "Current crash log"
 msgstr ""
 
+msgid "Current directory"
+msgstr ""
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr ""
@@ -5212,6 +5226,12 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Current version:"
+
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
 
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
@@ -5874,6 +5894,9 @@ msgid "Delivery system workaround"
 msgstr ""
 
 msgid "Democratic Republic of the Congo"
+msgstr ""
+
+msgid "Demod firmware version"
 msgstr ""
 
 msgid "Denmark"
@@ -6882,6 +6905,9 @@ msgid "Enable multiple bouquets"
 msgstr "Enable multiple bouquets"
 
 msgid "Enable network traffic check"
+msgstr ""
+
+msgid "Enable new GStreamer playback"
 msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
@@ -8766,6 +8792,9 @@ msgstr "Hierarchy info"
 msgid "High bitrate support"
 msgstr "High bitrate support"
 
+msgid "Highlighted item"
+msgstr ""
+
 msgid "Hindi"
 msgstr ""
 
@@ -8893,6 +8922,9 @@ msgid "I/O priority for scripts"
 msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
+msgid "ID"
 msgstr ""
 
 msgid "IMDb Details"
@@ -9045,6 +9077,9 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
@@ -11757,7 +11792,7 @@ msgstr ""
 msgid "Nothing"
 msgstr "Nothing"
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr ""
 
 msgid ""
@@ -13883,10 +13918,6 @@ msgstr "Remote control type"
 msgid "Remove"
 msgstr "Remove"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr ""
 
@@ -13947,10 +13978,16 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr ""
 
+msgid "Remove current directory from bookmarks"
+msgstr ""
+
 msgid "Remove currently selected title"
 msgstr "Remove currently selected title"
 
 msgid "Remove hide VBI line for this service"
+msgstr ""
+
+msgid "Remove highlighted directory from bookmarks"
 msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -14917,6 +14954,9 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Select 'Yes' to enable preview of channels while in the EPG list."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
+msgstr ""
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
@@ -20497,6 +20537,9 @@ msgstr "View list of available system extensions"
 msgid "View mode"
 msgstr "View mode"
 
+msgid "View or edit files less than 1MB in size"
+msgstr ""
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr ""
@@ -20528,13 +20571,16 @@ msgstr ""
 msgid "Virgin Islands (US)"
 msgstr ""
 
-msgid "Virtual KeyBoard Functions"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
 msgstr ""
 
 msgid "Virtual KeyBoard Text:"
 msgstr ""
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr ""
 
 msgid "Visual impaired commentary"

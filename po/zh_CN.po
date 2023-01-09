@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
 "PO-Revision-Date: 2022-11-22 18:20+0000\n"
 "Last-Translator: tzyy1970 <haotzyy1970@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2099,10 +2099,6 @@ msgstr "适配器设置"
 msgid "Add"
 msgstr "添加"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "添加自动定时器"
 
@@ -2175,6 +2171,9 @@ msgstr "为当前事件添加定时器"
 msgid "Add an AutoTimer for the current event"
 msgstr "为当前事件添加自动计时器"
 
+msgid "Add current directory to bookmarks"
+msgstr "将当前文件夹添加到书签"
+
 msgid "Add directory to play list"
 msgstr "将目录添加到播放列表"
 
@@ -2183,6 +2182,12 @@ msgstr "将文件添加到播放列表"
 
 msgid "Add files to play list"
 msgstr "将文件添加到播放列表"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "添加选中的文件夹到书签"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3267,6 +3272,12 @@ msgid "Bonaire"
 msgstr "博内尔岛"
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5214,6 +5225,9 @@ msgstr "当前状态:"
 msgid "Current crash log"
 msgstr "当前崩溃日志"
 
+msgid "Current directory"
+msgstr ""
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr ""
@@ -5249,6 +5263,12 @@ msgstr "当前版本未知"
 
 msgid "Current version:"
 msgstr "当前版本:"
+
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
 
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
@@ -5913,6 +5933,9 @@ msgstr "提交系统解决方案"
 
 msgid "Democratic Republic of the Congo"
 msgstr "刚果民主共和国"
+
+msgid "Demod firmware version"
+msgstr ""
 
 msgid "Denmark"
 msgstr "丹麦"
@@ -6951,6 +6974,9 @@ msgstr "启用多自定义组"
 
 msgid "Enable network traffic check"
 msgstr "启用网络流量检查"
+
+msgid "Enable new GStreamer playback"
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "启用或禁用使用HDMI-CEC."
@@ -8863,6 +8889,9 @@ msgstr "层次结构信息"
 msgid "High bitrate support"
 msgstr "高比特率支持"
 
+msgid "Highlighted item"
+msgstr ""
+
 msgid "Hindi"
 msgstr "印地语"
 
@@ -8991,6 +9020,9 @@ msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11新款"
+
+msgid "ID"
+msgstr ""
 
 msgid "IMDb Details"
 msgstr "IMDB详情"
@@ -9146,6 +9178,9 @@ msgstr "如果启用,AIT数据将包含在录制中."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "如果启用,将保留CEC协议流量的日志.日志文件位于其他日志文件中,但名为'Enigma2-hdmicec-[date].log'."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "如果启用,使用时间窗口检测定时器从深度待机 状态唤醒.默认设置是禁用的,并使用了 来自接收器 的特殊信号.但有些设备设置错误或没有信号,唤醒检测可能会失败."
@@ -11870,7 +11905,7 @@ msgstr "未测试:"
 msgid "Nothing"
 msgstr "无动作"
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr ""
 
 msgid ""
@@ -14026,10 +14061,6 @@ msgstr "遥控器类型"
 msgid "Remove"
 msgstr "移除"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr "删除书签"
 
@@ -14090,11 +14121,17 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr "保留已完成定时器的天数"
 
+msgid "Remove current directory from bookmarks"
+msgstr "从书签中删除当前文件夹"
+
 msgid "Remove currently selected title"
 msgstr "删除当前选择的标题"
 
 msgid "Remove hide VBI line for this service"
 msgstr "删除此服务的隐藏 VBI 行"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "从书签中删除选定的文件夹"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "从外部字幕(器乐或环境声音,例如,当门铃响或听到枪声)中删除听力受损者的文本."
@@ -15064,6 +15101,9 @@ msgstr "如果设置为'是',则可以预览EPG列表中的频道."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "如果设置为'是'您可以预览频道列表中的频道.请按'OK'键预览选定的频道,按第二次'OK'键将切换到此频道并退出菜单,按'EXIT'回到你开始的频道."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "如果设为'是',没有EPG的频道将不显示."
@@ -20695,6 +20735,9 @@ msgstr "查看可用的系统扩展列表"
 msgid "View mode"
 msgstr "查看模式"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "查看或编辑文件(如果大小<1MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "查看或编辑此 %s 脚本"
@@ -20726,13 +20769,16 @@ msgstr "维尔京群岛(英属)"
 msgid "Virgin Islands (US)"
 msgstr "维尔京群岛(美国)"
 
-msgid "Virtual KeyBoard Functions"
-msgstr "虚拟键盘功能"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
+msgstr ""
 
 msgid "Virtual KeyBoard Text:"
 msgstr "虚拟键盘文本:"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "虚拟键盘"
 
 msgid "Visual impaired commentary"
@@ -23269,6 +23315,9 @@ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参�
 msgid "®"
 msgstr "®"
 
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "虚拟键盘功能"
+
 #, python-format
 #~ msgid ""
 #~ "\n"
@@ -23362,17 +23411,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "激活右侧文件列表作为源"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "将当前文件夹添加到书签"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "将插件添加到扩展菜单*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "将插件添加到主菜单*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "添加选中的文件夹到书签"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "脚本执行的CPU优先级"
@@ -23793,12 +23836,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "录制"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "从书签中删除当前文件夹"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "从书签中删除选定的文件夹"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "重命名文件/目录"
 
@@ -23943,9 +23980,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "解压到当前文件夹"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "查看或编辑文件(如果大小<1MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "警告！"

@@ -6,7 +6,7 @@ from subprocess import PIPE, Popen
 
 from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl
 
-from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLines, resolveFilename, fileExists, fileHas, pathExists
+from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, pathExists
 from Tools.MultiBoot import MultiBoot
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -178,6 +178,12 @@ def getBoxDisplayName():  # This function returns a tuple like ("BRANDNAME", "BO
 # cmdline = fileReadLine("/proc/cmdline", source=MODULE_NAME)
 # cmdline = {k: v.strip('"') for k, v in findall(r'(\S+)=(".*?"|\S+)', cmdline)}
 
+def getDemodVersion():
+	version = None
+	if exists("/proc/stb/info/nim_firmware_version"):
+		version = fileReadLine("/proc/stb/info/nim_firmware_version")
+	return version and version.strip()
+
 
 def getNumVideoDecoders():
 	numVideoDecoders = 0
@@ -221,14 +227,14 @@ def getModuleLayout():
 	return None
 
 
-def Check_Softcam_Emu():
+def hasSoftcamEmu():
 	if isfile(NOEMU):
 		return False
 	else:
 		return len(glob("/etc/*.emu")) > 0
 
 
-def Check_Softcam():
+def hasSoftcam():
 	if not isfile(NOEMU):
 		for cam in listdir("/etc/init.d"):
 			if (cam.startswith('softcam.') or cam.startswith('cardserver.')) and not cam.endswith('None'):
@@ -236,7 +242,7 @@ def Check_Softcam():
 	return False
 
 
-def Check_SysSoftcam():
+def getSysSoftcam():
 	currentsyscam = ""
 	if isfile(SOFTCAM):
 		if (islink(SOFTCAM) and not readlink(SOFTCAM).lower().endswith("none")):
@@ -250,23 +256,19 @@ def Check_SysSoftcam():
 	return currentsyscam
 
 
-def Refresh_SysSoftCam():
-	BoxInfo.setItem("ShowOscamInfo", Check_SysSoftcam() in ("oscam", "ncam"), False)
-	BoxInfo.setItem("ShowCCCamInfo", Check_SysSoftcam() in ("cccam",), False)
-	BoxInfo.setItem("HasSoftcamEmu", Check_Softcam_Emu(), False)
+def updateSysSoftCam():
+	BoxInfo.setItem("ShowOscamInfo", getSysSoftcam() in ("oscam", "ncam"), False)
+	BoxInfo.setItem("ShowCCCamInfo", getSysSoftcam() in ("cccam",), False)
+	BoxInfo.setItem("HasSoftcamEmu", hasSoftcamEmu(), False)
 
 
-def GetBoxName():
+def getBoxName():
 	box = MACHINEBUILD
 	machinename = DISPLAYMODEL.lower()
 	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
 		box = "ventonhdx"
 	elif box == "odinm6":
 		box = machinename
-	elif box == "inihde" and machinename == "xpeedlx":
-		box = "xpeedlx"
-	elif box in ('xpeedlx1', 'xpeedlx2'):
-		box = "xpeedlx"
 	elif box == "inihde" and machinename == "hd-1000":
 		box = "sezam-1000hd"
 	elif box == "ventonhdx" and machinename == "hd-5000":
@@ -291,7 +293,17 @@ def GetBoxName():
 		box = "twinboxlcd"
 	elif box == "sfx6018":
 		box = "sfx6008"
+	elif box == "sx888":
+		box = "sx88v2"
 	return box
+
+
+def getWakeOnLANType(fileName):
+	value = ""
+	if fileName:
+		value = fileReadLine(fileName)
+	onOff = ("off", "on")
+	return onOff if value in onOff else ("disable", "enable")
 
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
@@ -342,13 +354,13 @@ BoxInfo.setItem("AmlogicFamily", SOC_FAMILY.startswith(("aml", "meson")) or exis
 BoxInfo.setItem("ArchIsARM64", ARCHITECTURE == "aarch64" or "64" in ARCHITECTURE)
 BoxInfo.setItem("ArchIsARM", ARCHITECTURE.startswith(("arm", "cortex")))
 BoxInfo.setItem("Blindscan", isPluginInstalled("Blindscan"))
-BoxInfo.setItem("BoxName", GetBoxName())
+BoxInfo.setItem("BoxName", getBoxName())
 canImageBackup = not MACHINEBUILD.startswith('az') and not BRAND.startswith('cube') and not BRAND.startswith('wetek') and not MACHINEBUILD.startswith('alien')
 BoxInfo.setItem("canImageBackup", canImageBackup)
 BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())
 BoxInfo.setItem("canMultiBoot", MultiBoot.getBootSlots())
 BoxInfo.setItem("CanNotDoSimultaneousTranscodeAndPIP", MODEL in ("vusolo4k", "gbquad4k", "gbue4k"))
-BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k", "og2ott4k") and ("usb_update.bin", "none"))
+BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k", "og2ott4k", "sx88v2", "sx888") and ("usb_update.bin", "none"))
 BoxInfo.setItem("CanUse3DModeChoices", fileExists("/proc/stb/fb/3dmode_choices") and True or False)
 BoxInfo.setItem("CIHelper", fileExists("/usr/bin/cihelper"))
 BoxInfo.setItem("DeepstandbySupport", MODEL != 'dm800')
@@ -402,7 +414,7 @@ BoxInfo.setItem("PowerLed2", fileExists("/proc/stb/power/powerled2"))
 BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode"))
 BoxInfo.setItem("Satfinder", isPluginInstalled("Satfinder"))
 BoxInfo.setItem("SmallFlash", BoxInfo.getItem("smallflash"))
-BoxInfo.setItem("SoftCam", Check_Softcam())
+BoxInfo.setItem("SoftCam", hasSoftcam())
 BoxInfo.setItem("StandbyPowerLed", fileExists("/proc/stb/power/standbyled"))
 BoxInfo.setItem("STi", SOC_FAMILY.startswith("sti"))
 BoxInfo.setItem("SuspendPowerLed", fileExists("/proc/stb/power/suspendled"))
@@ -413,12 +425,12 @@ BoxInfo.setItem("VFD_initial_scroll_delay", fileCheck("/proc/stb/lcd/initial_scr
 BoxInfo.setItem("VFD_final_scroll_delay", fileCheck("/proc/stb/lcd/final_scroll_delay"))
 BoxInfo.setItem("VideoDestinationConfigurable", fileExists("/proc/stb/vmpeg/0/dst_left"))
 BoxInfo.setItem("WakeOnLAN", fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol"))
+BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
 
-BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('alien5', 'osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'gbmv200', 'cc1', 'sfx6008'))
+BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('alien5', 'osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'gbmv200', 'cc1', 'sfx6008', 'sx88v2', 'sx888'))
 BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "mixosf5", "mixosf7", "mixoslumi", "gi9196m", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
-BoxInfo.setItem("HDMIOut", BRAND in ('fulan', 'clap', 'dinobot') or MODEL in ('gbmv200', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'og2ott4k', 'sfx6008'))
 
 
 # dont't sort
@@ -432,4 +444,4 @@ SystemInfo["StatePlayPause"] = False
 SystemInfo["StandbyState"] = False
 SystemInfo["FastChannelChange"] = False
 
-Refresh_SysSoftCam()
+updateSysSoftCam()

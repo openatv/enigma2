@@ -316,7 +316,7 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid, int sid)
 		return 0;
 	if (loadLanguage(evt, "---", tsidonid, sid))
 		return 0;
-	return 0;
+	return 0; //NOSONAR
 }
 
 RESULT eServiceEvent::parseFrom(ATSCEvent *evt)

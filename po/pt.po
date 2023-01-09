@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -2295,10 +2295,6 @@ msgstr "Opções de adaptador"
 msgid "Add"
 msgstr "Adicionar"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Adicionar Temporizador Automático"
 
@@ -2381,6 +2377,9 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Adicionar um temporizador para o programa actual"
 
+msgid "Add current directory to bookmarks"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Add directory to play list"
@@ -2395,6 +2394,14 @@ msgstr "Adicionar ficheiro à lista de reprodução"
 #, fuzzy
 msgid "Add files to play list"
 msgstr "Adicionar ficheiros à lista de reprodução"
+
+#
+#, fuzzy
+msgid "Add highlighted directory to bookmarks"
+msgstr "Selecione ficheiros/pastas para backup"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3600,6 +3607,12 @@ msgid "Bonaire"
 msgstr ""
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 #
@@ -5684,6 +5697,9 @@ msgstr "Estado actual:"
 msgid "Current crash log"
 msgstr ""
 
+msgid "Current directory"
+msgstr ""
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr ""
@@ -5725,6 +5741,12 @@ msgstr ""
 #
 msgid "Current version:"
 msgstr "Versão instalada"
+
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
 
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
@@ -6439,6 +6461,9 @@ msgid "Delivery system workaround"
 msgstr ""
 
 msgid "Democratic Republic of the Congo"
+msgstr ""
+
+msgid "Demod firmware version"
 msgstr ""
 
 msgid "Denmark"
@@ -7552,6 +7577,9 @@ msgstr "Activar Bouquets múltiplos"
 
 msgid "Enable network traffic check"
 msgstr "Activar verificação de tráfego da rede"
+
+msgid "Enable new GStreamer playback"
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr ""
@@ -9609,6 +9637,9 @@ msgstr "Informação de hierarquia"
 msgid "High bitrate support"
 msgstr "Suporte para alto bitrate"
 
+msgid "Highlighted item"
+msgstr ""
+
 msgid "Hindi"
 msgstr ""
 
@@ -9752,6 +9783,9 @@ msgid "I/O priority for scripts"
 msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
+msgid "ID"
 msgstr ""
 
 msgid "IMDb Details"
@@ -9920,6 +9954,9 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
@@ -12959,7 +12996,7 @@ msgstr "Teste de rede:"
 msgid "Nothing"
 msgstr "Nada"
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr ""
 
 #
@@ -15345,10 +15382,6 @@ msgstr "Tipo de controlo remoto"
 msgid "Remove"
 msgstr "Remover"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Remove Bookmark"
@@ -15418,11 +15451,17 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr "Remover temporizadores terminados após (dias)"
 
+msgid "Remove current directory from bookmarks"
+msgstr ""
+
 #
 msgid "Remove currently selected title"
 msgstr "Remover o título seleccionado"
 
 msgid "Remove hide VBI line for this service"
+msgstr ""
+
+msgid "Remove highlighted directory from bookmarks"
 msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -16501,6 +16540,9 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr ""
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
+msgstr ""
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
@@ -22616,6 +22658,9 @@ msgstr "Ver lista de extensões de sistema disponíveis"
 msgid "View mode"
 msgstr ""
 
+msgid "View or edit files less than 1MB in size"
+msgstr ""
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr ""
@@ -22652,15 +22697,17 @@ msgstr ""
 msgid "Virgin Islands (US)"
 msgstr ""
 
-#, fuzzy
-msgid "Virtual KeyBoard Functions"
-msgstr "Teclado virtual"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Virtual KeyBoard Text:"
 msgstr "Teclado virtual"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "Teclado virtual"
 
 msgid "Visual impaired commentary"
@@ -25421,6 +25468,10 @@ msgstr ""
 msgid "®"
 msgstr ""
 
+#, fuzzy
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Teclado virtual"
+
 #
 #, fuzzy, python-format
 #~ msgid "%s (%s"
@@ -25435,11 +25486,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Accessed:"
 #~ msgstr "Ponto de Acesso:"
-
-#
-#, fuzzy
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Selecione ficheiros/pastas para backup"
 
 #, fuzzy
 #~ msgid "Copy file"

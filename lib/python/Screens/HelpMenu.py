@@ -1,7 +1,10 @@
 from collections import defaultdict
+from functools import cmp_to_key
 from sys import maxsize
-from enigma import eActionMap
-from keyids import KEYIDS
+
+from enigma import eActionMap, eTimer
+
+from keyids import KEYIDNAMES, KEYIDS
 from Components.ActionMap import ActionMap, queryKeyBinding
 from Components.config import config
 from Components.InputDevice import remoteControl
@@ -12,7 +15,6 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Tools.LoadPixmap import LoadPixmap
-from functools import cmp_to_key
 
 
 class HelpableScreen:
@@ -39,6 +41,7 @@ class HelpableScreen:
 class ShowRemoteControl:
 	def __init__(self):
 		self["rc"] = Pixmap()
+		self["label"] = Label()
 		self.rcPosition = None
 		buttonImages = 16
 		rcHeights = (500,) * 2
@@ -150,18 +153,33 @@ class ShowRemoteControl:
 	# completes.
 	#
 	def testHighlights(self, callback=None):
+		def timeout():
+			if buttons:
+				keyId = buttons.pop(0)
+				pos = remoteControl.getRemoteControlKeyPos(keyId)
+				pixmap.clearPath()
+				pixmap.addMovePoint(rcPos[0] + pos[0], rcPos[1] + pos[1], time=5)
+				pixmap.startMoving(startTimer)
+				self["label"].setText("%s: %s\n%s: %s" % (_("Key"), KEYIDNAMES.get(keyId, _("Unknown")), _("Label"), remoteControl.getRemoteControlKeyLabel(keyId)))
+				pixmap.addMovePoint(rcPos[0] + pos[0], rcPos[1] + pos[1], time=15)
+				pixmap.startMoving(startTimer)
+			else:
+				self["label"].setText("")
+				callback()
+
+		def startTimer():
+			timer.start(0, True)
+
 		if not self.selectPics or not self.selectPics[0].pixmaps:
 			return
 		self.hideSelectPics()
 		pixmap = self.selectPics[0].pixmaps[0]
 		pixmap.show()
 		rcPos = self["rc"].getPosition()
-		pixmap.clearPath()
-		for keyId in remoteControl.getRemoteControlKeyList():
-			pos = remoteControl.getRemoteControlKeyPos(keyId)
-			pixmap.addMovePoint(rcPos[0] + pos[0], rcPos[1] + pos[1], time=5)
-			pixmap.addMovePoint(rcPos[0] + pos[0], rcPos[1] + pos[1], time=10)
-		pixmap.startMoving(callback)
+		buttons = remoteControl.getRemoteControlKeyList()[:]
+		timer = eTimer()
+		timer.callback.append(timeout)
+		timer.start(500, True)
 
 
 class HelpMenu(Screen, ShowRemoteControl):

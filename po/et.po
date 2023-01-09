@@ -1,19 +1,19 @@
-# rimasx <riks_12@hot.ee>, 2021.
+# rimasx <riks_12@hot.ee>, 2021, 2022.
 # openATV <openatv@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2021-08-21 11:46+0000\n"
-"Last-Translator: openATV <openatv@gmail.com>\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"PO-Revision-Date: 2022-12-04 20:43+0000\n"
+"Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid ""
 "\n"
@@ -323,18 +323,15 @@ msgstr "%A %-d-%B"
 msgid "%A %-d-%B-%Y"
 msgstr "%A %-d-%B-%Y"
 
-#, fuzzy
 msgid "%A %-d. %B"
 msgstr "%A %-d. %B"
 
 msgid "%A %-d. %B %Y"
 msgstr "%A %-d. %B %Y"
 
-#, fuzzy
 msgid "%A %-d.%-m"
 msgstr "%A %-d.%-m"
 
-#, fuzzy
 msgid "%A %-d.%-m.%Y"
 msgstr "%A %-d.%-m.%Y"
 
@@ -821,16 +818,16 @@ msgstr "%d %b %Y"
 #, python-format
 msgid "%d + %d + %d Minute"
 msgid_plural "%d + %d + %d Minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d + %d + %d minut"
+msgstr[1] "%d + %d + %d minutit"
 
 #, python-format
 msgid "%d DMIPS per core"
-msgstr ""
+msgstr "%d DMIPS tuuma kohta"
 
 #, python-format
 msgid "%d DMIPS with %d cores"
-msgstr ""
+msgstr "%d DMIPS %d tuumaga"
 
 #, python-format
 msgid "%d Day"
@@ -862,7 +859,7 @@ msgstr[1] "%d tundi"
 
 #, python-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d tundi"
 
 #, python-format
 msgid "%d KB"
@@ -874,11 +871,11 @@ msgstr "%d MB"
 
 #, python-format
 msgid "%d MB/s"
-msgstr ""
+msgstr "%d MB/s"
 
 #, python-format
 msgid "%d MHz"
-msgstr ""
+msgstr "%d MHz"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -911,13 +908,13 @@ msgstr[1] "%d Minutit"
 
 #, python-format
 msgid "%d Minutes"
-msgstr ""
+msgstr "%d minutit"
 
 #, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d kuu"
+msgstr[1] "%d kuud"
 
 #, python-format
 msgid "%d Pixel"
@@ -925,7 +922,7 @@ msgid_plural "%d Pixels"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] "Laius %d piksel"
@@ -933,7 +930,7 @@ msgstr[1] "laius %d pikslit"
 
 #, python-format
 msgid "%d Pixels"
-msgstr ""
+msgstr "%d pikslit"
 
 #, python-format
 msgid "%d Second"
@@ -943,19 +940,19 @@ msgstr[1] "%d sekundit"
 
 #, python-format
 msgid "%d Seconds"
-msgstr ""
+msgstr "%d sekundit"
 
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nädal"
+msgstr[1] "%d nädalat"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d aasta"
+msgstr[1] "%d aastat"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -967,14 +964,14 @@ msgstr[1] "%d kanalit leitud"
 #, python-format
 msgid "%d core"
 msgid_plural "%d cores"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d tuum"
+msgstr[1] "%d tuuma"
 
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d kataloogi pakett värskendati."
+msgstr[1] "%d kataloogi paketti värskendati."
 
 #, python-format
 msgid "%d kB"
@@ -995,8 +992,8 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pakett uuendati."
+msgstr[1] "%d paketti uuendati."
 
 #, python-format
 msgid "%d package was configured."
@@ -2122,10 +2119,6 @@ msgstr "Võrgukaardi seaded"
 msgid "Add"
 msgstr "Lisa"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Lisa autotaimer"
 
@@ -2198,6 +2191,9 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Lisa käesolevale saatele autotaimer"
 
+msgid "Add current directory to bookmarks"
+msgstr "Lisa kataloog järjehoidjatesse"
+
 msgid "Add directory to play list"
 msgstr "Lisa kataloog mängukavva"
 
@@ -2206,6 +2202,12 @@ msgstr "Lisa fail mängukavva"
 
 msgid "Add files to play list"
 msgstr "Lisa failid mängukavva"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Lisa kataloog järjehoidjatesse"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3320,6 +3322,12 @@ msgid "Bonaire"
 msgstr ""
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5302,6 +5310,9 @@ msgstr "Praegune olek:"
 msgid "Current crash log"
 msgstr ""
 
+msgid "Current directory"
+msgstr ""
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr ""
@@ -5337,6 +5348,12 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Praegune versioon:"
+
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
 
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
@@ -6020,6 +6037,9 @@ msgstr "Jaotussüsteemi erilahendus"
 #, fuzzy
 msgid "Democratic Republic of the Congo"
 msgstr "Kongo Demokraatlik Vabariik"
+
+msgid "Demod firmware version"
+msgstr ""
 
 msgid "Denmark"
 msgstr "Taani"
@@ -7090,6 +7110,9 @@ msgstr "Lemmiknimekirjad lubatud"
 # PowerTimerEntry.py
 msgid "Enable network traffic check"
 msgstr "Võrguliikluse kontroll lubatud"
+
+msgid "Enable new GStreamer playback"
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr ""
@@ -9050,6 +9073,9 @@ msgstr "Hierarhia teave"
 msgid "High bitrate support"
 msgstr "Kõrge bitikiiruse tugi"
 
+msgid "Highlighted item"
+msgstr ""
+
 msgid "Hindi"
 msgstr ""
 
@@ -9185,6 +9211,9 @@ msgid "I/O priority for scripts"
 msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
+msgid "ID"
 msgstr ""
 
 msgid "IMDb Details"
@@ -9346,6 +9375,9 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr "Kui lubatud, kaasatakse salvestistesse AIT andmed."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
@@ -12214,7 +12246,7 @@ msgstr "Pole testitud:"
 msgid "Nothing"
 msgstr "Mitte midagi"
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr ""
 
 msgid ""
@@ -14458,10 +14490,6 @@ msgstr "Puldi tüüp"
 msgid "Remove"
 msgstr "Eemalda"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr "Eemalda järjehoidja"
 
@@ -14523,11 +14551,17 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr "Aegunud taimerite eemaldamine pärast (päeva)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Eemalda praegune kataloog järjehoidjatest"
+
 msgid "Remove currently selected title"
 msgstr "Eemalda valitud nimetus"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Lõpeta punktiirjoone peitmine sellel kanalil"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Eemalda valitud kataloog järjehoidjatest"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Eemalda välistelt subtiitritelt vaegkuuljatele mõeldud tekst (instrumentaalmuusika või taustahelid, nt. ''uksekell heliseb'', ''püssipauk''.)"
@@ -15524,6 +15558,9 @@ msgstr "Kui lubatud, saab saatekavas kanaleid eelvaadelda."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Kui lubatud, saab kanalinimekirjas kanaleid eelvaadelda. Vajuta 'OK' valitud kanali eelvaatluseks, vajuta uuesti 'OK' nimekirja sulgemiseks ja antud kanalile minekuks. Vajutades 'EXIT' naased kanalile, millelt alustasid."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
@@ -21353,6 +21390,9 @@ msgstr "Näita saadaolevaid süsteemi laiendusi"
 msgid "View mode"
 msgstr "Vaate laad"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Vaata või muuda faili (suurusega < 1MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Vaata või muuda seda %s skripti"
@@ -21385,15 +21425,17 @@ msgstr "Briti Neitsisaared"
 msgid "Virgin Islands (US)"
 msgstr "USA Neitsisaared"
 
-#
-msgid "Virtual KeyBoard Functions"
-msgstr "Virtuaalklahvistiku funktsioonid"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
+msgstr ""
 
 #
 msgid "Virtual KeyBoard Text:"
 msgstr "Virtuaalklahvistiku tekst:"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "Virtuaalklahvistik"
 
 msgid "Visual impaired commentary"
@@ -24000,6 +24042,10 @@ msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi l
 msgid "®"
 msgstr ""
 
+#
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Virtuaalklahvistiku funktsioonid"
+
 #, python-format
 #~ msgid ""
 #~ "\n"
@@ -24090,17 +24136,11 @@ msgstr ""
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Aktiveeri parem pool allikana"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Lisa kataloog järjehoidjatesse"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Lisa plugin laienduste menüüsse*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Lisa plugin peamenüüsse*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Lisa kataloog järjehoidjatesse"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "CPU prioriteet skripti täitmisel"
@@ -24493,12 +24533,6 @@ msgstr ""
 #~ msgid "Records"
 #~ msgstr "Salvestised"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Eemalda praegune kataloog järjehoidjatest"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Eemalda valitud kataloog järjehoidjatest"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Nimeta fail/kataloog ümber"
 
@@ -24634,9 +24668,6 @@ msgstr ""
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Paki lahti käesolevasse kataloogi"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Vaata või muuda faili (suurusega < 1MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "HOIATUS!"

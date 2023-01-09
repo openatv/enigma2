@@ -369,7 +369,12 @@ void eDVBServicePMTHandler::AITready(int error)
 							for(; interactionit != nameDescriptor->getApplicationNames()->end(); ++interactionit)
 							{
 								applicationName = (*interactionit)->getApplicationName();
-								if(controlCode == 1) m_ApplicationName = applicationName;
+								if(applicationName.size() > 0 && !isUTF8(applicationName)) {
+									applicationName = convertLatin1UTF8(applicationName);
+								}
+								if(controlCode == 1) {
+									m_ApplicationName = applicationName;
+								}
 								break;
 							}
 							break;

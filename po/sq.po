@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
 "PO-Revision-Date: 2022-07-04 20:11+0000\n"
 "Last-Translator: BliNeR-KeY <blinerg@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -2104,10 +2104,6 @@ msgstr "Rregullimet e përshtatësve"
 msgid "Add"
 msgstr "Shto"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Shto AutoTimer"
 
@@ -2180,6 +2176,9 @@ msgstr "Shto një kohëmues për ngjarjen aktuale"
 msgid "Add an AutoTimer for the current event"
 msgstr "Shto një AutoTimer për ngjarjen aktuale"
 
+msgid "Add current directory to bookmarks"
+msgstr "Shto kartelën aktuale tek libërshënuesit"
+
 msgid "Add directory to play list"
 msgstr "Shto drejtori në listën e luajtjes"
 
@@ -2188,6 +2187,12 @@ msgstr "Shto file në playlist"
 
 msgid "Add files to play list"
 msgstr "Shto file në playlist"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Shto kartelën e zgjedhur tek libërshënuesit"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3272,6 +3277,12 @@ msgid "Bonaire"
 msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 msgid "Bookmarks"
@@ -5217,6 +5228,9 @@ msgstr "Statusi aktual:"
 msgid "Current crash log"
 msgstr "Regjistri aktual i aksidenteve"
 
+msgid "Current directory"
+msgstr ""
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr ""
@@ -5252,6 +5266,12 @@ msgstr "Versioni aktual i panjohur"
 
 msgid "Current version:"
 msgstr "Versioni aktual:"
+
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
 
 msgid "Currently Defined Volume Offsets:"
 msgstr "Kompensimet e volumit të përcaktuara aktualisht:"
@@ -5916,6 +5936,9 @@ msgstr "Zgjidhja e sistemit të dorëzimit"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Republika Demokratike e Kongos"
+
+msgid "Demod firmware version"
+msgstr ""
 
 msgid "Denmark"
 msgstr "Danimarka"
@@ -6954,6 +6977,9 @@ msgstr "Aktivizo buqeta të shumta"
 
 msgid "Enable network traffic check"
 msgstr "Aktivo kontrollin e trafikut të rrjetit"
+
+msgid "Enable new GStreamer playback"
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Aktivizo ose çaktivizo duke përdorur HDMI-CEC."
@@ -8868,6 +8894,9 @@ msgstr "Informacion mbi hierarkinë"
 msgid "High bitrate support"
 msgstr "Mbështetje me shpejtësi të lartë bit"
 
+msgid "Highlighted item"
+msgstr ""
+
 msgid "Hindi"
 msgstr "Indisht"
 
@@ -8996,6 +9025,9 @@ msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 Model i ri"
+
+msgid "ID"
+msgstr ""
 
 msgid "IMDb Details"
 msgstr "Detajet e IMDb"
@@ -9151,6 +9183,9 @@ msgstr "Nëse aktivizohet, të dhënat e AIT përfshihen në regjistrime."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Nëse aktivizohet, do të mbahet një regjistër i trafikut të protokollit të KQZ-së. Skedarët e regjistrit janë të vendosur me skedarët e tjerë të regjistrit, por të quajtur 'Enigma2-hdmicec-[date].log'."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Po të jetë e mundur, duke përdorur një dritare kohore për të zbuluar një zgjim nga një kohëmbulues i thellë. Prezgjedhur është çaktivizuar dhe përdorur një sinjal të veçantë nga marrësi. Por disa pajisje vendosin një sinjal të gabuar ose asnjë sinjal dhe zbulimi i zgjimit mund të dështojë."
@@ -11851,7 +11886,7 @@ msgstr ""
 msgid "Nothing"
 msgstr ""
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr ""
 
 msgid ""
@@ -13959,10 +13994,6 @@ msgstr "Lloji i telekomandës"
 msgid "Remove"
 msgstr "Hiq"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 msgid "Remove Bookmark"
 msgstr "Hiq faqerojtësin"
 
@@ -14023,10 +14054,16 @@ msgstr "Hiq të gjitha të dhënat e ndërfaqes së përdoruesit"
 msgid "Remove completed timers after"
 msgstr "Hiq kohëmatësit e përfunduar pas (ditësh)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Hiq dosjen aktuale nga faqeshënuesit"
+
 msgid "Remove currently selected title"
 msgstr "Hiq titullin e zgjedhur aktualisht"
 
 msgid "Remove hide VBI line for this service"
+msgstr ""
+
+msgid "Remove highlighted directory from bookmarks"
 msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -14993,6 +15030,9 @@ msgstr "Nëse caktohet në 'po', mund të shikoni paraprakisht kanalet në list�
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Nëse caktohet në 'po', mund të shikoni paraprakisht kanalet në listën e kanaleve. Shtypni 'OK' për të parë paraprakisht kanalin e zgjedhur, shtypni një 'OK' të dytë për të dalë dhe futeni në atë kanal, duke shtypur 'EXIT' për t'u kthyer në kanalin ku keni filluar."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Nëse vendoset në 'po', kanalet pa EPG nuk do të shfaqen."
@@ -20571,6 +20611,9 @@ msgstr "Shikoni listën e shtesave të disponueshme të sistemit"
 msgid "View mode"
 msgstr "Mënyra e shikimit"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Shikoni ose modifikoni skedarin (nëse madhësia < 1 MB)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Shikoni ose modifikoni këtë skript %s"
@@ -20602,13 +20645,16 @@ msgstr "Ishujt e Virgjër (Britani)"
 msgid "Virgin Islands (US)"
 msgstr "Ishujt e Virgjër (SHBA)"
 
-msgid "Virtual KeyBoard Functions"
-msgstr "Funksionet e tastierës virtuale"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
+msgstr ""
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Teksti i tastierës virtuale:"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "Tastierë virtuale"
 
 msgid "Visual impaired commentary"
@@ -23141,6 +23187,9 @@ msgstr "%s %s juaj mund të jetë i papërdorshëm tani. Ju lutemi, konsultohuni
 msgid "®"
 msgstr "®"
 
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Funksionet e tastierës virtuale"
+
 #, python-format
 #~ msgid ""
 #~ "\n"
@@ -23234,17 +23283,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Aktivo si burim listën e skedarëve të dorës së djathtë"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Shto kartelën aktuale tek libërshënuesit"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Shto shtojcën në menynë e Zgjerimeve*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Shto plugin në menunë kryesore*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Shto kartelën e zgjedhur tek libërshënuesit"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Prioriteti i CPU-së për ekzekutimin e skriptit"
@@ -23480,9 +23523,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Të dhënat"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Hiq dosjen aktuale nga faqeshënuesit"
-
 #~ msgid "Size reverse"
 #~ msgstr "Madhësia e kundërt"
 
@@ -23507,9 +23547,6 @@ msgstr "®"
 
 #~ msgid "The hash of a directory can't be calculated."
 #~ msgstr "Hash-i i një drejtorie nuk mund të llogaritet."
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Shikoni ose modifikoni skedarin (nëse madhësia < 1 MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "KUJDES!"

@@ -249,10 +249,6 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 				"pageUp": (self.keyPageUp, _("Move up a screen")),
 				"up": (self.keyUp, _("Move up a line")),
 				# "first": (self.keyFirst, _("Jump to first item in list or the start of text")),
-				# "left": (self.keyLeft, _("Select the previous item in list or move cursor left")),
-				"left": (self.keyPageUp, _("Move up a screen")),
-				"right": (self.keyPageDown, _("Move down a screen")),
-				# "right": (self.keyRight, _("Select the next item in list or move cursor right")),
 				# "last": (self.keyLast, _("Jump to last item in list or the end of text")),
 				"down": (self.keyDown, _("Move down a line")),
 				"pageDown": (self.keyPageDown, _("Move down a screen")),
@@ -533,7 +529,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 
 	def isProtected(self):
 		if config.ParentalControl.setuppinactive.value:
-			if config.ParentalControl.config_sections.main_menu.value and not(hasattr(self.session, "infobar") and self.session.infobar is None):
+			if config.ParentalControl.config_sections.main_menu.value and not (hasattr(self.session, "infobar") and self.session.infobar is None):
 				return self.menuID == "mainmenu"
 			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
 				return True

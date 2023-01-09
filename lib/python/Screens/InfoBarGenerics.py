@@ -293,7 +293,7 @@ class InfoBarUnhandledKey:
 	# 	3 = Long.
 	# 	4 = ASCII.
 	def processKeyA(self, key, flag):  # This function is called on every key press!
-		print("[InfoBarGenerics] Key: %s (%s) KeyID='%s'." % (key, KEYFLAGS.get(flag, _("Unknown")), KEYIDNAMES.get(key, _("Unknown"))))
+		print("[InfoBarGenerics] Key '%s' (%s) %s." % (KEYIDNAMES.get(key, _("Unknown")), key, KEYFLAGS.get(flag, _("Unknown"))))
 		for callback in keyPressCallback:
 			callback()
 		if self.closeSecondInfoBar(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -306,7 +306,6 @@ class InfoBarUnhandledKey:
 				self.flagBitmap = 0b0000
 				self.prevBitmap = 0b0000
 			self.flagBitmap |= (1 << flag)
-			# if flag == 1 or flag == 3:  # Break and Long.  # TODO: TEST.
 			if flag == 1:
 				self.checkUnusedTimer.start(0, True)
 		return 0

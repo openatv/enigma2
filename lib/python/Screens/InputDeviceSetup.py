@@ -265,7 +265,7 @@ class RemoteControlType(Setup):
 				("24", "Axas E4HD Ultra"),
 				("25", "Zgemma H8/H0/H9/I55Plus old Model"),
 				("26", "Protek 4K UHD/HD61"),
-				("27", "HD60/HD66SE/Multibox/Multiboxse"),
+				("27", "HD60/HD66SE/Multibox/Multiboxse/Multiboxpro"),
 				("28", _("I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"))
 				]
 		defaultRcList = [
@@ -315,6 +315,7 @@ class RemoteControlType(Setup):
 				("hd66se", 27),
 				("multibox", 27),
 				("multiboxse", 27),
+				("multiboxpro", 27),
 				("h7", 28),  # new model
 				("h9", 28),  # new model
 				("h9se", 28),  # new model

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2163,10 +2163,6 @@ msgstr ""
 msgid "Add"
 msgstr "Ekle"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Oto-zamanlayıcı ekle"
 
@@ -2242,6 +2238,9 @@ msgstr "Mevcut etkinlik için bir zamanlayıcı ekleyin"
 msgid "Add an AutoTimer for the current event"
 msgstr "Geçerli etkinliğe oto-zamanlayıcı ekle"
 
+msgid "Add current directory to bookmarks"
+msgstr "Yer işaretlerine geçerli klasör ekle"
+
 #
 msgid "Add directory to play list"
 msgstr "Oynatma listesine dizin ekle"
@@ -2253,6 +2252,13 @@ msgstr "Dosyayı oynatma listesine ekle"
 #
 msgid "Add files to play list"
 msgstr "Dosyaları oynatma listesine ekle"
+
+#
+msgid "Add highlighted directory to bookmarks"
+msgstr "Yer imlerine seçili klasör ekle"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr ""
@@ -3404,6 +3410,12 @@ msgid "Bonaire"
 msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
+msgstr ""
+
+msgid "Bookmark added."
+msgstr ""
+
+msgid "Bookmark removed."
 msgstr ""
 
 #
@@ -5440,6 +5452,9 @@ msgstr "Geçerli Durum:"
 msgid "Current crash log"
 msgstr "Mevcut kilitlenme günlüğü"
 
+msgid "Current directory"
+msgstr ""
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr ""
@@ -5479,6 +5494,12 @@ msgstr "Mevcut sürüm bilinmiyor"
 #
 msgid "Current version:"
 msgstr "Geçerli sürüm:"
+
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
 
 msgid "Currently Defined Volume Offsets:"
 msgstr "Halihazırda Tanımlanmış Hacim Ofsetleri:"
@@ -6178,6 +6199,9 @@ msgstr "Teslim sistemi geçici çözümü"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Kongo (Demokratik Cumhuriyeti)"
+
+msgid "Demod firmware version"
+msgstr ""
 
 msgid "Denmark"
 msgstr "Danimarka"
@@ -7277,6 +7301,9 @@ msgstr "Çoklu buket kullanımını etkinleştir"
 
 msgid "Enable network traffic check"
 msgstr "Ağ Trafiği kontrolünü etkinleştir"
+
+msgid "Enable new GStreamer playback"
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "HDMI-CEC kullanarak etkinleştirin veya devre dışı bırakın."
@@ -9289,6 +9316,9 @@ msgstr "Hiyerarşi bilgisi"
 msgid "High bitrate support"
 msgstr "Yüksek bit oranı desteği"
 
+msgid "Highlighted item"
+msgstr ""
+
 msgid "Hindi"
 msgstr "Hintçe"
 
@@ -9426,6 +9456,9 @@ msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 yeni model"
+
+msgid "ID"
+msgstr ""
 
 msgid "IMDb Details"
 msgstr "IMDb Ayrıntıları"
@@ -9586,6 +9619,9 @@ msgstr "Etkinse, AIT verileri kayıtlara dahil edilir."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Etkinleştirilirse, CEC protokol trafiğinin bir günlüğü tutulur. Günlük dosyaları, diğer günlük dosyalarıyla birlikte bulunur ancak 'Enigma2-hdmicec-[date].log' olarak adlandırılır."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr ""
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Etkinleştirildiğinde, bir zamanlayıcı tarafından derin bekleme modundan uyanmayı algılamak için bir zaman penceresi kullanın. Varsayılan ayar devre dışı bırakılır ve alıcıdan özel bir sinyal kullanılır. Ancak bazı cihazlar yanlış veya hiç sinyal vermiyor ve uyanma tespiti başarısız olabilir."
@@ -12503,7 +12539,7 @@ msgstr "Test edilmedi:"
 msgid "Nothing"
 msgstr "Yok"
 
-msgid "Nothing connected"
+msgid "Nothing connected and/or no files available!"
 msgstr ""
 
 #
@@ -14807,10 +14843,6 @@ msgstr "Uzaktan kumanda tipi"
 msgid "Remove"
 msgstr "Kaldır"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr ""
-
 #
 msgid "Remove Bookmark"
 msgstr "Yer işaretini kaldır"
@@ -14876,12 +14908,18 @@ msgstr "Tüm kullanıcı arayüzü verilerini kaldır"
 msgid "Remove completed timers after"
 msgstr "Biten zamanlayıcıları (gün) sonra kaldır"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Geçerli klasörü yer işaretlerinden kaldır"
+
 #
 msgid "Remove currently selected title"
 msgstr "Seçilen geçerli başlığı kaldır"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Bu hizmet için VBI hattını gizle"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Seçilen klasörü yer işaretlerinden kaldır"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Harici altyazılardan etkilenen işitme için metinleri (enstrümantal müzik veya çevresel sesler, örn., Kapı zili çaldığında veya silah sesi duyulduğunda) çıkarın."
@@ -15925,6 +15963,9 @@ msgstr "'evet' EPG listesinde kanal önizlemesi görüntülenir."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Eğer 'evet' ayarlanırsa kanal listesinde kanal önizlemesi görüntülenir. Seçilen kanalın önizlemesi için OK tuşuna basın, listeden çıkmak ve o kanalı izlemek için OK tuşuna bir daha basın. Kanalı değiştirmek istemiyorsanız EXIT' tuşuna basın."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "'evet' EPG bilgisi olmayan kanallar gösterilmez."
@@ -21853,6 +21894,9 @@ msgstr "Kullanılabilir sistem eklentileri listesi"
 msgid "View mode"
 msgstr "İzleme modu"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Dosyayı görüntüle veya düzenle (boyut <1 MB ise)"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Bu %s betiğini görüntüle veya düzenle"
@@ -21888,13 +21932,16 @@ msgstr "Virgin Adaları (İngiliz)"
 msgid "Virgin Islands (US)"
 msgstr "Virgin Adaları (ABD)"
 
-msgid "Virtual KeyBoard Functions"
-msgstr "Sanal KeyBoard İşlevleri"
+msgid "Virtual KeyBoard"
+msgstr ""
+
+msgid "Virtual KeyBoard Actions"
+msgstr ""
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Sanal Klavye Metni:"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "Sanal klavye"
 
 msgid "Visual impaired commentary"
@@ -24632,6 +24679,9 @@ msgstr "artık kullanılamaz olabilir. Lütfen% s% s’nizi yeniden başlatmadan
 msgid "®"
 msgstr ""
 
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Sanal KeyBoard İşlevleri"
+
 #, python-format
 #~ msgid ""
 #~ "\n"
@@ -24729,18 +24779,11 @@ msgstr ""
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Sağ dosya listesini kaynak olarak etkinleştir"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Yer işaretlerine geçerli klasör ekle"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Eklentiler menüsüne eklenti ekle *"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Ana menüye eklenti ekle *"
-
-#
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Yer imlerine seçili klasör ekle"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "CPU komut dosyası yürütme önceliği"
@@ -25190,12 +25233,6 @@ msgstr ""
 #~ msgid "Records"
 #~ msgstr "Kayıtlar"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Geçerli klasörü yer işaretlerinden kaldır"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Seçilen klasörü yer işaretlerinden kaldır"
-
 #
 #~ msgid "Rename file/directory"
 #~ msgstr "Dosyayı / dizini yeniden adlandır"
@@ -25348,9 +25385,6 @@ msgstr ""
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Geçerli klasöre ambalajını aç"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Dosyayı görüntüle veya düzenle (boyut <1 MB ise)"
 
 #~ msgid "WARNING!"
 #~ msgstr "UYARI!"

@@ -79,16 +79,6 @@ def load_cache(cache_file):  # Does a cPickle load.
 	return cache_data
 
 
-def Check_Softcam_Emu():
-	found = False
-	if not isfile("/etc/enigma2/noemu"):
-		for x in listdir("/etc"):
-			if x.find(".emu") > -1:
-				found = True
-				break
-	return found
-
-
 # Helper for menu.xml
 class ImageWizard(ImageWizard):
     pass
@@ -386,13 +376,13 @@ class PluginManager(Screen, PackageInfoHandler):
 		imagePath = resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % state)
 		statusPng = LoadPixmap(cached=True, path=imagePath)
 		if state == "installed":
-			return((name, details, description, packagename, state, statusPng, divpng, selected))
+			return ((name, details, description, packagename, state, statusPng, divpng, selected))
 		elif state == "installable":
-			return((name, details, description, packagename, state, statusPng, divpng, selected))
+			return ((name, details, description, packagename, state, statusPng, divpng, selected))
 		elif state == "remove":
-			return((name, details, description, packagename, state, statusPng, divpng, selected))
+			return ((name, details, description, packagename, state, statusPng, divpng, selected))
 		elif state == "install":
-			return((name, details, description, packagename, state, statusPng, divpng, selected))
+			return ((name, details, description, packagename, state, statusPng, divpng, selected))
 
 	def buildPacketList(self, categorytag=None):
 		if categorytag is not None:
@@ -454,31 +444,31 @@ class PluginManager(Screen, PackageInfoHandler):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 		if tag is not None:
 			if tag == "System":
-				return((_("System"), _("View list of available system extensions"), tag, divpng))
+				return ((_("System"), _("View list of available system extensions"), tag, divpng))
 			elif tag == "Skin":
-				return((_("Skins"), _("View list of available skins"), tag, divpng))
+				return ((_("Skins"), _("View list of available skins"), tag, divpng))
 			elif tag == "Recording":
-				return((_("Recordings"), _("View list of available recording extensions"), tag, divpng))
+				return ((_("Recordings"), _("View list of available recording extensions"), tag, divpng))
 			elif tag == "Network":
-				return((_("Network"), _("View list of available networking extensions"), tag, divpng))
+				return ((_("Network"), _("View list of available networking extensions"), tag, divpng))
 			elif tag == "CI":
-				return((_("Common Interface"), _("View list of available CommonInterface extensions"), tag, divpng))
+				return ((_("Common Interface"), _("View list of available CommonInterface extensions"), tag, divpng))
 			elif tag == "Default":
-				return((_("Default settings"), _("View list of available default settings"), tag, divpng))
+				return ((_("Default settings"), _("View list of available default settings"), tag, divpng))
 			elif tag == "SAT":
-				return((_("Satellite equipment"), _("View list of available Satellite equipment extensions."), tag, divpng))
+				return ((_("Satellite equipment"), _("View list of available Satellite equipment extensions."), tag, divpng))
 			elif tag == "Software":
-				return((_("Software"), _("View list of available software extensions"), tag, divpng))
+				return ((_("Software"), _("View list of available software extensions"), tag, divpng))
 			elif tag == "Multimedia":
-				return((_("Multimedia"), _("View list of available multimedia extensions."), tag, divpng))
+				return ((_("Multimedia"), _("View list of available multimedia extensions."), tag, divpng))
 			elif tag == "Display":
-				return((_("Display and user interface"), _("View list of available display and user interface extensions."), tag, divpng))
+				return ((_("Display and user interface"), _("View list of available display and user interface extensions."), tag, divpng))
 			elif tag == "EPG":
-				return((_("Electronic Program Guide"), _("View list of available EPG extensions."), tag, divpng))
+				return ((_("Electronic Program Guide"), _("View list of available EPG extensions."), tag, divpng))
 			elif tag == "Communication":
-				return((_("Communication"), _("View list of available communication extensions."), tag, divpng))
+				return ((_("Communication"), _("View list of available communication extensions."), tag, divpng))
 			else:  # Dynamically generate non existent tags.
-				return((str(tag), _("View list of available ") + str(tag) + " " + _("extensions."), tag, divpng))
+				return ((str(tag), _("View list of available ") + str(tag) + " " + _("extensions."), tag, divpng))
 
 	def prepareInstall(self):
 		self.cmdList = []
@@ -613,11 +603,11 @@ class PluginManagerInfo(Screen):
 		imagePath = resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % action)
 		statusPng = LoadPixmap(cached=True, path=imagePath)
 		if action == "install":
-			return((_("Installing"), info, statusPng, divpng))
+			return ((_("Installing"), info, statusPng, divpng))
 		elif action == "remove":
-			return((_("Removing"), info, statusPng, divpng))
+			return ((_("Removing"), info, statusPng, divpng))
 		else:
-			return((_("Upgrading"), info, statusPng, divpng))
+			return ((_("Upgrading"), info, statusPng, divpng))
 
 	def exit(self):
 		self.close()
@@ -684,13 +674,13 @@ class PluginManagerHelp(Screen):
 		imagePath = resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % state)
 		statusPng = LoadPixmap(cached=True, path=imagePath)
 		if state == "installed":
-			return((_("This plugin is installed."), _("You can remove this plugin."), statusPng, divpng))
+			return ((_("This plugin is installed."), _("You can remove this plugin."), statusPng, divpng))
 		elif state == "installable":
-			return((_("This plugin is not installed."), _("You can install this plugin."), statusPng, divpng))
+			return ((_("This plugin is not installed."), _("You can install this plugin."), statusPng, divpng))
 		elif state == "install":
-			return((_("This plugin will be installed."), _("You can cancel the installation."), statusPng, divpng))
+			return ((_("This plugin will be installed."), _("You can cancel the installation."), statusPng, divpng))
 		elif state == "remove":
-			return((_("This plugin will be removed."), _("You can cancel the removal."), statusPng, divpng))
+			return ((_("This plugin will be removed."), _("You can cancel the removal."), statusPng, divpng))
 
 	def exit(self):
 		self.close()
@@ -1561,7 +1551,7 @@ class PacketManager(Screen, NumericalTextInput):
 			description = "No description available."
 		imagePath = resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % state)
 		statusPng = LoadPixmap(cached=True, path=imagePath)
-		return((name, version, _(description), state, statusPng, divpng))
+		return ((name, version, _(description), state, statusPng, divpng))
 
 	def buildPacketList(self):
 		self.packageList = []

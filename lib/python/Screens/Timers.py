@@ -507,8 +507,6 @@ class TimerOverviewBase(Screen, HelpableScreen):
 			"pageUp": (self.keyGoPageUp, _("Move up a page / screen")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
 			# "first": (self.keyTop, _("Move to first line / screen")),
-			# "left": (self.keyPageUp, _("Move up a page / screen")),
-			# "right": (self.keyPageDown, _("Move down a page / screen")),
 			# "last": (self.keyBottom, _("Move to last line / screen")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a page / screen")),

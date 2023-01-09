@@ -9,7 +9,7 @@ from Components.ActionMap import ActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Harddisk import Freespace, getFolderSize
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import GetBoxName, BoxInfo
+from Components.SystemInfo import BoxInfo
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -155,7 +155,7 @@ class ImageBackup(Screen):
 				self.DISTROVERSION = DISTROVERSION
 				self.IMAGETYPE = BoxInfo.getItem("imagetype")
 				self.IMAGEDEVBUILD = "" if self.IMAGETYPE == "release" else BoxInfo.getItem("imagedevbuild")
-				self.MODEL = GetBoxName()
+				self.MODEL = BoxInfo.getItem("BoxName")
 				self.OEM = BoxInfo.getItem("brand")
 				self.MACHINEBUILD = BoxInfo.getItem("model")
 				self.IMAGEFOLDER = BoxInfo.getItem("imagedir")

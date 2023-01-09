@@ -813,9 +813,9 @@ class HarddiskManager:
 		error = False
 		removable = False
 		BLACKLIST = []
-		if MODEL in ('dagsmv200', 'gbmv200', 'multibox', 'multiboxse', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'hd66se', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'u571', 'u5', 'u5pvr', 'cc1', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'vuzero4k', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'dm7080', 'dm820', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s', 'et13000', 'sf5008', 'og2ott4k'):
+		if BoxInfo.getItem("mtdrootfs").startswith("mmcblk0p"):
 			BLACKLIST = ["mmcblk0"]
-		elif MODEL in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k'):
+		elif BoxInfo.getItem("mtdrootfs").startswith("mmcblk1p"):
 			BLACKLIST = ["mmcblk1"]
 
 		blacklisted = False

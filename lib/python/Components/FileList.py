@@ -16,6 +16,10 @@ FILE_IS_LINK = 2
 FILE_SELECTED = 3
 FILE_NAME = 4
 
+SELECT_DIRECTORIES = 0
+SELECT_FILES = 1
+SELECT_ALL = 2
+
 EXTENSIONS = {
 	# Music file types.
 	".aac": "music",
@@ -113,6 +117,17 @@ EXTENSIONS = {
 	".zip": "zip"
 }
 
+EXTENSION_ICONS = {}
+EXTENSION_ICONS["lock_off"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png"))
+EXTENSION_ICONS["lock_on"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
+EXTENSION_ICONS["link-arrow"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link-arrow.png"))
+EXTENSION_ICONS["link"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link.png"))
+EXTENSION_ICONS["back"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/back.png"))
+EXTENSION_ICONS["directory"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
+EXTENSION_ICONS["file"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/file.png"))
+for icon in set(EXTENSIONS.values()):
+	EXTENSION_ICONS[icon] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/%s.png" % icon))
+
 # Playable file extensions.
 AUDIO_EXTENSIONS = frozenset((".mp3", ".mp2", ".m4a", ".m2a", ".flac", ".ogg", ".dts", ".wav", ".3g2", ".3gp", ".wave", ".wma"))
 DVD_EXTENSIONS = frozenset((".iso", ".img"))
@@ -122,24 +137,16 @@ PLAYLIST_EXTENSIONS = frozenset((".m3u", ".m3u8", ".e2pls", ".pls"))
 RECORDING_EXTENSIONS = frozenset((".ap", ".cuts", ".eit", ".meta", ".sc"))
 KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS)
 
-# RECORDING_EXTENSIONS = {  # DEBUG: Is this version of the definition used?
-# 	"cuts": "movieparts",
-# 	"meta": "movieparts",
-# 	"ap": "movieparts",
-# 	"sc": "movieparts",
-# 	"eit": "movieparts"
-# }
-
 
 class FileListBase(MenuList):
-	def __init__(self, selectedFiles, directory, showDirectories=True, showFiles=True, showMountPoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirectories="0.0", sortFiles="0.0", directoriesFirst=True, showCurrentDirectory=False):
+	def __init__(self, selectedItems, directory, showDirectories=True, showFiles=True, showMountPoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirectories="0.0", sortFiles="0.0", directoriesFirst=True, showCurrentDirectory=False):
 		self.fileList = []
 		MenuList.__init__(self, self.fileList, content=eListboxPythonMultiContent)
-		self.selectedFiles = selectedFiles
+		self.selectedItems = selectedItems
 		self.showDirectories = showDirectories
 		self.showFiles = showFiles
 		self.showMountPoints = showMountPoints
-		self.matchingPattern = compile(matchingPattern) if matchingPattern else None  # Example: To match .nfi and .ts files use "^.*\.(nfi|ts)".
+		self.matchingPattern = compile(matchingPattern) if matchingPattern else None  # Example: To match .nfi and .ts files use "^.*\.(nfi|ts)$".
 		self.useServiceRef = useServiceRef
 		self.inhibitDirs = inhibitDirs or []
 		self.inhibitMounts = inhibitMounts or []
@@ -151,9 +158,14 @@ class FileListBase(MenuList):
 		self.showCurrentDirectory = showCurrentDirectory
 		self.mountPoints = []
 		self.currentDirectory = None
-		# self.currentMountPoint = None
+		self.previousDirectory = None
 		self.serviceHandler = eServiceCenter.getInstance()
+		if self.multiSelect:
+			self.setMultiSelectMode()
+		else:
+			self.setSingleSelectMode()
 		self.refreshMountPoints()
+		self.changeDir(directory, directory)
 
 	def execBegin(self):
 		harddiskmanager.on_partition_list_change.append(self.partitionListChanged)
@@ -170,52 +182,31 @@ class FileListBase(MenuList):
 		self.mountPoints = [pathjoin(x.mountpoint, "") for x in harddiskmanager.getMountedPartitions()]
 		self.mountPoints.sort(reverse=True)
 
-	def refresh(self):
-		self.changeDir(self.currentDirectory, self.getPath())
+	def setSingleSelectMode(self):
+		self.multiSelect = False
+		font = fonts.get("FileList", ("Regular", 20, 25))
+		self.l.setFont(0, gFont(font[0], font[1]))
+		self.l.setItemHeight(font[2])
+		self.itemHeight = font[2]
+		self.lockX, self.lockY, self.lockW, self.lockH = (0, 0, 0, 0)
+		self.iconX, self.iconY, self.iconW, self.iconH = parameters.get("FileListIcon", (15, 0, self.itemHeight, self.itemHeight - 4))
+		self.nameX, self.nameY, self.nameW, self.nameH = parameters.get("FileListName", (25 + self.iconW, 0, 900, self.itemHeight))
+		self.refresh()
 
-	def getServiceRef(self):
-		selection = self.getSelection()
-		return selection[FILE_PATH] if selection and isinstance(selection[FILE_PATH], eServiceReference) else None
-
-	def getPath(self):
-		selection = self.getSelection()
-		if selection:
-			return selection[FILE_PATH].getPath() if isinstance(selection[FILE_PATH], eServiceReference) else selection[FILE_PATH]
-		return None
-
-	def getName(self):
-		selection = self.getSelection()
-		return selection[FILE_NAME] if selection else None
-
-	def getIsDir(self):
-		selection = self.getSelection()
-		return selection[FILE_IS_DIR] if selection else None
-
-	def getIsLink(self):
-		selection = self.getSelection()
-		return selection[FILE_IS_LINK] if selection else None
-
-	def getIsSelected(self):
-		selection = self.getSelection()
-		return selection[FILE_SELECTED] if selection else None
-
-	def getFilename(self):  # Legacy method name for external code.
-		return self.getPath()
-
-	def getSelection(self):
-		selection = self.getCurrent()
-		return selection[0] if selection else None
+	def setMultiSelectMode(self):
+		self.multiSelect = True
+		font = fonts.get("FileListMulti", ("Regular", 20, 25))
+		self.l.setFont(0, gFont(font[0], font[1]))
+		self.l.setItemHeight(font[2])
+		self.itemHeight = font[2]
+		self.lockX, self.lockY, self.lockW, self.lockH = parameters.get("FileListMultiLock", (15, 0, self.itemHeight, self.itemHeight - 4))
+		self.iconX, self.iconY, self.iconW, self.iconH = parameters.get("FileListMultiIcon", (25 + self.lockW, 0, self.itemHeight, self.itemHeight - 4))
+		self.nameX, self.nameY, self.nameW, self.nameH = parameters.get("FileListMultiName", (35 + self.lockW + self.iconW, 0, 900, self.itemHeight))
+		self.refresh()
 
 	def changeDir(self, directory, select=None):
 		def buildDirectoryList():
 			if directory and not self.isTop:
-				# if self.showMountPoints and pathjoin(directory, "") == self.currentMountPoint:
-				# 	self.fileList.append(self.fileListComponent(name="<%s>" % _("List of Storage Devices"), path=None, isDir=True, isLink=False, selected=None))
-				# elif (directory != sep) and not (self.inhibitMounts and self.getMountPoint(directory) in self.inhibitMounts):
-				# 	if self.showCurrentDirectory:
-				# 		self.fileList.append(self.fileListComponent(name="<%s>" % _("Current Directory"), path=pathjoin(directory, ""), isDir=True, isLink=islink(directory), selected=None))
-				# 	parent = dirname(directory)
-				# 	self.fileList.append(self.fileListComponent(name="<%s>" % _("Parent Directory"), path=pathjoin(parent, ""), isDir=True, isLink=islink(parent), selected=None))
 				mountPoint = normpath(self.getMountPointLink(directory))
 				if self.showMountPoints and directory == mountPoint:
 					self.fileList.append(self.fileListComponent(name="<%s>" % _("List of Storage Devices"), path=None, isDir=True, isLink=False, selected=None))
@@ -227,28 +218,23 @@ class FileListBase(MenuList):
 				# print("[FileList] changeDir DEBUG: mountPoint='%s', mountPointLink='%s', directory='%s', parent='%s'." % (normpath(self.getMountPointLink(directory)), mountPoint, directory, parent))
 			for name, path, isDir, isLink in directories:
 				if not (self.inhibitMounts and self.getMountPoint(path) in self.inhibitMounts) and not self.inParentDirs(path, self.inhibitDirs):
-					selected = (path in self.selectedFiles or normpath(path) in self.selectedFiles) if self.multiSelect else None
+					selected = (path in self.selectedItems or normpath(path) in self.selectedItems) if self.multiSelect else None
 					self.fileList.append(self.fileListComponent(name=name, path=path, isDir=isDir, isLink=isLink, selected=selected))
 
 		self.fileList = []
 		directories = []
 		files = []
-		# if self.currentDirectory is None:  # If we are just entering from the list of mount points.
-		# 	self.currentMountPoint = self.getMountPointLink(directory) if directory and self.showMountPoints else None
-		# 	print("[FileList] changeDir DEBUG: The current mount point is '%s'." % self.currentMountPoint)
 		self.currentDirectory = pathjoin(directory, "") if directory else directory
 		if directory:
 			directory = normpath(directory)
 		if directory is None and self.showMountPoints:  # Present available mount points.
 			seenMountPoints = []  # TO DO: Fix Hardisk.py to remove duplicated mount points!
 			for partition in harddiskmanager.getMountedPartitions():
-				# print("[FileList] DEBUG: Partition='%s'." % partition)
 				path = normpath(partition.mountpoint)
 				if path in seenMountPoints:  # TO DO: Fix Hardisk.py to remove duplicated mount points!
 					continue
 				seenMountPoints.append(path)
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
-					# print("[FileList] DEBUG: Path='%s'." % path)
 					selected = False if self.multiSelect else None
 					self.fileList.append(self.fileListComponent(name=partition.description, path=pathjoin(path, ""), isDir=True, isLink=False, selected=selected))
 		elif self.useServiceRef:
@@ -289,7 +275,7 @@ class FileListBase(MenuList):
 		if self.showFiles:
 			for name, path, isDir, isLink in files:
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
-					selected = path in self.selectedFiles if self.multiSelect else None
+					selected = path in self.selectedItems if self.multiSelect else None
 					if isinstance(name, eServiceReference):
 						self.fileList.append(self.fileListComponent(name=basename(path), path=name, isDir=isDir, isLink=isLink, selected=selected))
 					else:
@@ -297,20 +283,143 @@ class FileListBase(MenuList):
 		if self.showDirectories and not self.directoriesFirst:
 			buildDirectoryList()
 		if self.showMountPoints and len(self.fileList) == 0:
-			self.fileList.append(self.fileListComponent(name=_("Nothing connected"), path=None, isDir=False, isLink=False, selected=None))
+			self.fileList.append(self.fileListComponent(name=_("Nothing connected and/or no files available!"), path=None, isDir=False, isLink=False, selected=None))
 		self.setList(self.fileList)
-		start = 0
+		start = self.getCurrentIndex() if self.previousDirectory == self.currentDirectory else 0
+		self.previousDirectory = self.currentDirectory
+		if start and start > self.count():
+			start = self.count() - 1
 		if select:
-			# print("[FileList] changeDir DEBUG: Selecting '%s'." % select)
 			for index, entry in enumerate(self.fileList):
 				path = entry[0][FILE_PATH]
 				path = path.getPath() if isinstance(path, eServiceReference) else path
-				# print("[FileList] changeDir DEBUG: Trying '%s'." % path)
 				if path == select:
-					# print("[FileList] changeDir DEBUG: Found select='%s' as index %d." % (select, index))
 					start = index
 					break
+		# We may need to reset the top of the viewport before setting the index.
 		self.moveToIndex(start)
+
+	def refresh(self, path=None):
+		if path is None:
+			path = self.getPath()
+		self.changeDir(self.currentDirectory, path)
+
+	def fileListComponent(self, name, path, isDir, isLink, selected):
+		# print("[FileList] fileListComponent DEBUG: Name='%s', Path='%s', isDir=%s, isLink=%s, selected=%s." % (name, path, isDir, isLink, selected))
+		res = [(path, isDir, isLink, selected, name)]
+		if selected is not None and not name.startswith("<"):
+			icon = EXTENSION_ICONS["lock_%s" % ("on" if selected else "off")]
+			if icon:
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.lockX, self.lockY, self.lockW, self.lockH, icon, None, None, BT_SCALE | BT_VALIGN_CENTER))
+		linkIcon = EXTENSION_ICONS["link-arrow"] if isLink else None
+		if isDir:
+			if isLink and linkIcon is None:
+				icon = EXTENSION_ICONS["link"]
+			else:
+				icon = EXTENSION_ICONS["back" if name == ".." else "directory"]
+		else:
+			if path is None:
+				path = ""
+			extension = splitext(path.getPath())[1].lower() if isinstance(path, eServiceReference) else splitext(path)[1].lower()
+			icon = EXTENSION_ICONS[EXTENSIONS.get(extension, "file")]
+		if icon:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconX, self.iconY, self.iconW, self.iconH, icon, None, None, BT_SCALE | BT_VALIGN_CENTER))
+			if linkIcon:
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconX, self.iconY, self.iconW, self.iconH, linkIcon, None, None, BT_SCALE | BT_VALIGN_CENTER))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.nameX, self.nameY, self.nameW, self.nameH, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, name))
+		return res
+
+	def assignSelection(self, entry, type, selected):
+		path = entry[0][FILE_PATH]
+		isDir = entry[0][FILE_IS_DIR]
+		if (isDir == False and type == SELECT_DIRECTORIES) or (isDir == True and type == SELECT_FILES):
+			selected = entry[0][FILE_SELECTED]
+		if path and not entry[0][FILE_NAME].startswith("<"):
+			path = path if isDir else pathjoin(self.currentDirectory, path)
+			if selected and path not in self.selectedItems:
+				self.selectedItems.append(path)
+			elif not selected and path in self.selectedItems:
+				self.selectedItems.remove(path)
+			entry = self.fileListComponent(name=entry[0][FILE_NAME], path=path, isDir=isDir, isLink=entry[0][FILE_IS_LINK], selected=selected)
+		else:
+			entry = self.fileListComponent(name=entry[0][FILE_NAME], path=path, isDir=isDir, isLink=entry[0][FILE_IS_LINK], selected=None)
+		return entry
+
+	def setSelection(self):
+		if self.fileList:
+			index = self.getSelectionIndex()
+			self.fileList[index] = self.assignSelection(self.fileList[index], SELECT_ALL, True)
+			self.setList(self.fileList)
+
+	def setAllSelections(self, type=SELECT_ALL):
+		newFileList = []
+		for entry in self.fileList:
+			newFileList.append(self.assignSelection(entry, type, True))
+		self.fileList = newFileList
+		self.setList(self.fileList)
+
+	def clearSelection(self):
+		if self.fileList:
+			index = self.getSelectionIndex()
+			self.fileList[index] = self.assignSelection(self.fileList[index], SELECT_ALL, False)
+			self.setList(self.fileList)
+
+	def clearAllSelections(self, type=SELECT_ALL):
+		newFileList = []
+		for entry in self.fileList:
+			newFileList.append(self.assignSelection(entry, type, False))
+		self.fileList = newFileList
+		self.setList(self.fileList)
+
+	def toggleSelection(self):
+		if self.fileList:
+			index = self.getSelectionIndex()
+			entry = self.fileList[index]
+			selected = not entry[0][FILE_SELECTED]
+			self.fileList[index] = self.assignSelection(entry, SELECT_ALL, selected)
+			self.setList(self.fileList)
+
+	def toggleAllSelections(self, type=SELECT_ALL):
+		newFileList = []
+		for entry in self.fileList:
+			selected = not entry[0][FILE_SELECTED]
+			newFileList.append(self.assignSelection(entry, type, selected))
+		self.fileList = newFileList
+		self.setList(self.fileList)
+
+	# Marker!
+	def getServiceRef(self):
+		selection = self.getSelection()
+		return selection[FILE_PATH] if selection and isinstance(selection[FILE_PATH], eServiceReference) else None
+
+	def getPath(self):
+		selection = self.getSelection()
+		if selection:
+			return selection[FILE_PATH].getPath() if isinstance(selection[FILE_PATH], eServiceReference) else selection[FILE_PATH]
+		return None
+
+	def getName(self):
+		selection = self.getSelection()
+		return selection[FILE_NAME] if selection else None
+
+	def getIsDir(self):
+		selection = self.getSelection()
+		return selection[FILE_IS_DIR] if selection else None
+
+	def getIsLink(self):
+		selection = self.getSelection()
+		return selection[FILE_IS_LINK] if selection else None
+
+	def getIsSelected(self):
+		selection = self.getSelection()
+		return selection[FILE_SELECTED] if selection else None
+
+	def getFilename(self):  # Legacy method name for external code.
+		return self.getPath()
+
+	def getSelection(self):
+		selection = self.getCurrent()
+		return selection[0] if selection else None
 
 	def getMountPointLink(self, path):
 		if realpath(path) == path:
@@ -332,7 +441,7 @@ class FileListBase(MenuList):
 		for mountPoint in self.mountPoints:
 			if path.startswith(mountPoint):
 				return mountPoint
-		return False
+		return "/"  # Return root if path not in mountPoints to prevent crashes with software MultiBoot.
 
 	def getMountpoint(self, path):  # Legacy method name for external code.
 		self.getMountPoint(path)
@@ -343,6 +452,19 @@ class FileListBase(MenuList):
 			if path.startswith(parent):
 				return True
 		return False
+
+	def setSortBy(self, sortBy):
+		# directory,files -> "0.0,0.0"
+		# 0.0
+		# | 0 - normal
+		# | 1 - reverse
+		# 0 - name
+		# 1 - date
+		# 2 - size (files only)
+		self.sortDirectories, self.sortFiles = sortBy.split(",")
+
+	def getSortBy(self):
+		return "%s,%s" % (self.sortDirectories, self.sortFiles)
 
 	def sortList(self, items, sortBy):
 		sort, reverse = [int(x) for x in sortBy.split(".")]
@@ -361,32 +483,6 @@ class FileListBase(MenuList):
 		for name, date, size, path, isDir, isLink in itemList:
 			items.append((name, path, isDir, isLink))
 		return items
-
-	def fileListComponent(self, name, path, isDir, isLink, selected):
-		# print("[FileList] fileListComponent DEBUG: Name='%s', Path='%s', isDir=%s, isLink=%s, selected=%s." % (name, path, isDir, isLink, selected))
-		if selected is None:
-			res = [(path, isDir, isLink, None, name)]
-		else:
-			res = [(path, isDir, isLink, selected, name)]
-			if not name.startswith("<"):
-				icon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_%s.png" % ("on" if selected else "off")), cached=True)
-				if icon:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.lockX, self.lockY, self.lockW, self.lockH, icon, None, None, BT_SCALE | BT_VALIGN_CENTER))
-		linkIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link-arrow.png"), cached=True) if isLink else None
-		if isDir:
-			if isLink and linkIcon is None:
-				icon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link.png"), cached=True)
-			else:
-				icon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/%s.png" % ("back" if name == ".." else "directory")), cached=True)
-		else:
-			extension = splitext(path.getPath())[1].lower() if isinstance(path, eServiceReference) else splitext(path)[1].lower()
-			icon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/%s.png" % EXTENSIONS.get(extension, "file")), cached=True)
-		if icon:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconX, self.iconY, self.iconW, self.iconH, icon, None, None, BT_SCALE | BT_VALIGN_CENTER))
-			if linkIcon:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconX, self.iconY, self.iconW, self.iconH, linkIcon, None, None, BT_SCALE | BT_VALIGN_CENTER))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.nameX, self.nameY, self.nameW, self.nameH, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, name))
-		return res
 
 	def getCurrentDirectory(self):
 		return self.currentDirectory
@@ -418,120 +514,31 @@ class FileListBase(MenuList):
 	def descent(self):  # Legacy method name for external code.
 		return self.descend()
 
-	def setSortBy(self, sortBy, setDir=False):
-		# 0.0
-		# | 0 - normal
-		# | 1 - reverse
-		# 0 - name
-		# 1 - date
-		# 2 - size (files only)
-		if setDir:
-			self.sortDirectories = sortBy
-		else:
-			self.sortFiles = sortBy
+	def changeSelectionState(self):
+		self.toggleSelection()
 
-	def getSortBy(self):
-		return "%s,%s" % (self.sortDirectories, self.sortFiles)
+	def getSelectedItems(self):
+		selectedItems = []
+		for item in self.selectedItems:
+			if exists(item):
+				selectedItems.append(item)
+		return selectedItems
+
+	def getSelectedList(self):  # This method name is deprecated, please use getSelectedItems() instead.
+		return self.getSelectedItems()
 
 
 class FileList(FileListBase):
 	def __init__(self, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True, showCurrentDirectory=False, enableWrapAround=False):
-		# print("[FileList] FileList DEBUG: Initial directory='%s'." % directory)
 		self.multiSelect = False
-		selectedFiles = []
-		FileListBase.__init__(self, selectedFiles, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
-		font = fonts.get("FileList", ("Regular", 20, 25))
-		self.l.setFont(0, gFont(font[0], font[1]))
-		self.l.setItemHeight(font[2])
-		self.itemHeight = font[2]
-		self.lockX, self.lockY, self.lockW, self.lockH = (0, 0, 0, 0)
-		self.iconX, self.iconY, self.iconW, self.iconH = parameters.get("FileListIcon", (15, 0, self.itemHeight, self.itemHeight - 4))
-		self.nameX, self.nameY, self.nameW, self.nameH = parameters.get("FileListName", (25 + self.iconW, 0, 900, self.itemHeight))
-		self.changeDir(directory, directory)
+		selectedItems = []
+		FileListBase.__init__(self, selectedItems, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
 
 
 class FileListMultiSelect(FileListBase):
-	def __init__(self, selectedFiles, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True, showCurrentDirectory=False, enableWrapAround=False):
-		# print("[FileList] FileListMultiSelect DEBUG: Initial directory='%s'." % directory)
+	def __init__(self, selectedItems, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True, showCurrentDirectory=False, enableWrapAround=False):
 		self.multiSelect = True
-		# self.onSelectionChanged = []
-		FileListBase.__init__(self, selectedFiles, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
-		font = fonts.get("FileListMulti", ("Regular", 20, 25))
-		self.l.setFont(0, gFont(font[0], font[1]))
-		self.l.setItemHeight(font[2])
-		self.itemHeight = font[2]
-		self.lockX, self.lockY, self.lockW, self.lockH = parameters.get("FileListMultiLock", (15, 0, self.itemHeight, self.itemHeight - 4))
-		self.iconX, self.iconY, self.iconW, self.iconH = parameters.get("FileListMultiIcon", (25 + self.lockW, 0, self.itemHeight, self.itemHeight - 4))
-		self.nameX, self.nameY, self.nameW, self.nameH = parameters.get("FileListMultiName", (35 + self.lockW + self.iconW, 0, 900, self.itemHeight))
-		self.changeDir(directory, directory)
-
-	# def selectionChanged(self):
-	# 	for callback in self.onSelectionChanged:
-	# 		callback()
-
-	def setSelection(self):
-		if self.fileList:
-			index = self.getSelectionIndex()
-			entry = self.fileList[index]
-			if not entry[0][FILE_NAME].startswith("<"):
-				path = entry[0][FILE_PATH] if entry[0][FILE_IS_DIR] else pathjoin(self.currentDirectory, entry[0][FILE_PATH])
-				# normPath = normpath(path)
-				if not entry[0][FILE_SELECTED]:
-					# if (path not in self.selectedFiles) and (normPath not in self.selectedFiles):
-					if path not in self.selectedFiles:
-						self.selectedFiles.append(path)
-					self.fileList[index] = self.fileListComponent(name=entry[0][FILE_NAME], path=entry[0][FILE_PATH], isDir=entry[0][FILE_IS_DIR], isLink=entry[0][FILE_IS_LINK], selected=True)
-					self.setList(self.fileList)
-
-	def clearSelection(self):
-		if self.fileList:
-			index = self.getSelectionIndex()
-			entry = self.fileList[index]
-			if not entry[0][FILE_NAME].startswith("<"):
-				path = entry[0][FILE_PATH] if entry[0][FILE_IS_DIR] else pathjoin(self.currentDirectory, entry[0][FILE_PATH])
-				# normPath = normpath(path)
-				if entry[0][FILE_SELECTED]:
-					if path in self.selectedFiles:
-						self.selectedFiles.remove(path)
-					# elif normPath in self.selectedFiles:
-					# 	self.selectedFiles.remove(normPath)
-					else:
-						print("[FileList] Error: Can't remove '%s'!" % path)
-					self.fileList[index] = self.fileListComponent(name=entry[0][FILE_NAME], path=entry[0][FILE_PATH], isDir=entry[0][FILE_IS_DIR], isLink=entry[0][FILE_IS_LINK], selected=False)
-					self.setList(self.fileList)
-
-	def toggleSelection(self):
-		if self.fileList:
-			index = self.getSelectionIndex()
-			entry = self.fileList[index]
-			if not entry[0][FILE_NAME].startswith("<"):
-				path = entry[0][FILE_PATH] if entry[0][FILE_IS_DIR] else pathjoin(self.currentDirectory, entry[0][FILE_PATH])
-				# normPath = normpath(path)
-				if entry[0][FILE_SELECTED]:
-					selectState = False
-					if path in self.selectedFiles:
-						self.selectedFiles.remove(path)
-					# elif normPath in self.selectedFiles:
-					# 	self.selectedFiles.remove(normPath)
-					else:
-						print("[FileList] Error: Can't remove '%s'!" % path)
-				else:
-					selectState = True
-					# if (path not in self.selectedFiles) and (normPath not in self.selectedFiles):
-					if path not in self.selectedFiles:
-						self.selectedFiles.append(path)
-				self.fileList[index] = self.fileListComponent(name=entry[0][FILE_NAME], path=entry[0][FILE_PATH], isDir=entry[0][FILE_IS_DIR], isLink=entry[0][FILE_IS_LINK], selected=selectState)
-				self.setList(self.fileList)
-
-	def changeSelectionState(self):
-		self.toggleSelection()
-
-	def getSelectedList(self):
-		selectedList = []
-		for file in self.selectedFiles:
-			if exists(file):
-				selectedList.append(file)
-		return selectedList
+		FileListBase.__init__(self, selectedItems, directory, showMountPoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, additionalExtensions=additionalExtensions, sortDirectories=sortDirs, sortFiles=sortFiles, directoriesFirst=firstDirs, showCurrentDirectory=showCurrentDirectory)
 
 
 class MultiFileSelectList(FileListMultiSelect):
@@ -543,10 +550,10 @@ def FileEntryComponent(name, absolute=None, isDir=False):  # This method is depr
 	x, y, w, h = parameters.get("FileListName", (35, 1, 470, 20))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
-		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
+		png = EXTENSION_ICONS["directory"]
 	else:
 		extension = splitext(name)[1].lower()
-		png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/%s.png" % EXTENSIONS[extension])) if extension in EXTENSIONS else None
+		png = EXTENSION_ICONS.get(EXTENSIONS.get(extension), None)
 	if png is not None:
 		x, y, w, h = parameters.get("FileListIcon", (10, 2, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))

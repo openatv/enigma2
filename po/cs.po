@@ -1,10 +1,10 @@
-# Petr Turek <turekdesign99@gmail.com>, 2022.
+# Petr Turek <turekdesign99@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-11-30 13:05+0000\n"
+"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"PO-Revision-Date: 2023-01-03 10:12+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 msgid ""
 "\n"
@@ -920,16 +920,16 @@ msgstr "%d Minut"
 #, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Měsíc"
+msgstr[1] "%d Měsíce"
+msgstr[2] "%d Měsíců"
 
 #, python-format
 msgid "%d Pixel"
 msgid_plural "%d Pixels"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Pixel"
+msgstr[1] "%d Pixely"
+msgstr[2] "%d Pixelů"
 
 #, python-format
 msgid "%d Pixel wide"
@@ -956,16 +956,16 @@ msgstr "%d Sekund"
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Týden"
+msgstr[1] "%d Týdny"
+msgstr[2] "%d Týdnů"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Rok"
+msgstr[1] "%d Roky"
+msgstr[2] "%d Roků"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2117,10 +2117,6 @@ msgstr "Nastavení adaptéru"
 msgid "Add"
 msgstr "Přidat"
 
-#, python-format
-msgid "Add '%s' to bookmarks"
-msgstr "Přidat '%s' do záložek"
-
 msgid "Add AutoTimer"
 msgstr "Přidat Aut. časovač"
 
@@ -2193,6 +2189,9 @@ msgstr "Přidat časovač pro aktuální událost"
 msgid "Add an AutoTimer for the current event"
 msgstr "Přidat automatický časovač k aktuálnímu pořadu"
 
+msgid "Add current directory to bookmarks"
+msgstr "Přidat aktuální složku do záložek"
+
 msgid "Add directory to play list"
 msgstr "Přidat adresář do seznamu přehrávání"
 
@@ -2201,6 +2200,12 @@ msgstr "Přidat soubor do seznamu přehrávání"
 
 msgid "Add files to play list"
 msgstr "Přidat soubory do seznamu přehrávání"
+
+msgid "Add highlighted directory to bookmarks"
+msgstr "Přidat vybranou složku do záložek"
+
+msgid "Add legacy LEFT/RIGHT actions"
+msgstr "Přidat starší akce LEFT/RIGHT"
 
 msgid "Add new CCcam line"
 msgstr "Přidat novou řadu CCcam"
@@ -3286,6 +3291,12 @@ msgstr "Bonaire"
 
 msgid "Bookmark Sequence Actions"
 msgstr "Záložkové sekvence akcí"
+
+msgid "Bookmark added."
+msgstr "Záložka byla přidána."
+
+msgid "Bookmark removed."
+msgstr "Záložka byla odstraněna."
 
 msgid "Bookmarks"
 msgstr "Záložky"
@@ -5230,6 +5241,9 @@ msgstr "Aktuální stav:"
 msgid "Current crash log"
 msgstr "Aktuální protokol o haváriích"
 
+msgid "Current directory"
+msgstr "Současný adresář"
+
 #, python-format
 msgid "Current directory (%s)"
 msgstr "Aktuální adresář (%s)"
@@ -5265,6 +5279,14 @@ msgstr "Aktuální verze neznámá"
 
 msgid "Current version:"
 msgstr "Aktuální verze:"
+
+#, python-format
+msgid ""
+"Current: %s\n"
+"Parent: %s"
+msgstr ""
+"Aktuální: %s\n"
+"Rodič: %s"
 
 msgid "Currently Defined Volume Offsets:"
 msgstr "Aktuálně definované posuny hlasitosti:"
@@ -5929,6 +5951,9 @@ msgstr "Řešení doručovacího systému"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Kongo (Demokratická republika)"
+
+msgid "Demod firmware version"
+msgstr "Verze demodového firmwaru"
 
 msgid "Denmark"
 msgstr "Dánsko"
@@ -6968,6 +6993,9 @@ msgstr "Povolit vícenásobné přehledy"
 
 msgid "Enable network traffic check"
 msgstr "Povolit kontrolu síťového provozu"
+
+msgid "Enable new GStreamer playback"
+msgstr "Povolit nové přehrávání GStreamer"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Povolit nebo zakázat použití HDMI-CEC."
@@ -8015,7 +8043,7 @@ msgid "File Commander Move"
 msgstr "File Commander přesunout"
 
 msgid "File Commander Settings"
-msgstr ""
+msgstr "Nastavení File Commander"
 
 msgid "File Commander Text Editor"
 msgstr "File Commander Textový editor"
@@ -8884,6 +8912,9 @@ msgstr "Hierarchické info"
 msgid "High bitrate support"
 msgstr "Podpora vysokého bitového toku dat"
 
+msgid "Highlighted item"
+msgstr "Zvýrazněná položka"
+
 msgid "Hindi"
 msgstr "Hindština"
 
@@ -9012,6 +9043,9 @@ msgstr "Priorita I/O pro skripty"
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "IMDb Details"
 msgstr "IMDb podrobnosti"
@@ -9167,6 +9201,9 @@ msgstr "Pokud je povoleno jsou AIT data vložena do nahrávek."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Pokud je povoleno, bude uchováván protokol o provozu CEC. Soubory protokolu jsou umístěny s ostatními soubory protokolu, ale pojmenované 'Enigma2-hdmicec-[datum].log'."
+
+msgid "If enabled, the new GStreamer playback engine will be used."
+msgstr "Pokud je povoleno, použije se nový engine pro přehrávání GStreamer."
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Je-li povoleno, pomocí časového okna detekovat probuzení z hlubokého spánku pomocí časovače. Výchozí nastavení je zakázáno a používá se speciální signál z přijímače. Některá zařízení však nastaví špatný nebo žádný signál a detekce probuzení může selhat."
@@ -10533,13 +10570,13 @@ msgid "Margin after recording"
 msgstr "Rezerva po nahrávání (minuty)"
 
 msgid "Margin after zap"
-msgstr ""
+msgstr "Rozpětí po zap"
 
 msgid "Margin before recording"
 msgstr "Rezerva před nahráváním (minuty)"
 
 msgid "Margin before zap"
-msgstr ""
+msgstr "Rozpětí před zap"
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Označit značkou 3D programu"
@@ -11892,8 +11929,8 @@ msgstr "Netestováno:"
 msgid "Nothing"
 msgstr "Nic"
 
-msgid "Nothing connected"
-msgstr "Nic není připojeno"
+msgid "Nothing connected and/or no files available!"
+msgstr "Nic není připojeno a/nebo nejsou k dispozici žádné soubory!"
 
 msgid ""
 "Nothing to scan!\n"
@@ -14051,10 +14088,6 @@ msgstr "Typ dálkového ovládání"
 msgid "Remove"
 msgstr "Smazat"
 
-#, python-format
-msgid "Remove '%s' from bookmarks"
-msgstr "Odebrat '%s' ze záložek"
-
 msgid "Remove Bookmark"
 msgstr "Smazat záložku"
 
@@ -14115,11 +14148,17 @@ msgstr "Odstranit všechna data uživatelského rozhraní"
 msgid "Remove completed timers after"
 msgstr "Dokončené časovače odstraňovat po (dnech)"
 
+msgid "Remove current directory from bookmarks"
+msgstr "Odstranit aktuální složku ze záložek"
+
 msgid "Remove currently selected title"
 msgstr "Odstranit vybraný titul"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Odstranit skrytou linku VBI pro tuto službu"
+
+msgid "Remove highlighted directory from bookmarks"
+msgstr "Odstranit vybranou složku ze záložek"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Odstranit text v externich titulcích pro sluchově postižené (instrumentální hudbě nebo v oblasti ruchových zvuků, např, když se ozve zvonek, nebo vystřelí zbraň)."
@@ -15091,6 +15130,9 @@ msgstr "Pokud nastavíte 'ano' můžete nahlédnout kanál v seznamu EPG."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Když je nastaveno na 'Ano',můžete zobrazit náhledy kanálů v seznamu kanálů.Stiskněte 'OK' k náhledu vybraného kanálu, podruhé 'OK' k ukončení a přepnutí na kanál, stiskem 'EXIT' k návratu na původní kanál."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr "Vyberte 'Ano', chcete-li povolit použití tlačítek VLEVO/VPRAVO k pohybu PageUp/PageDown, když tlačítka VLEVO/VPRAVO nejsou jinak definována. To poskytuje starší navigaci pro uživatele, kteří ji preferují."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Pokud nastavíte na 'ano' nezobrazí se kanály bez EPG."
@@ -20225,7 +20267,7 @@ msgid "Use Virgin EPG information when it is available."
 msgstr "Používat Virgin EPG informace, jestliže jsou dostupné."
 
 msgid "Use Zap timer end time"
-msgstr ""
+msgstr "Použít čas konce časovače Zap"
 
 msgid "Use a gateway"
 msgstr "Použít bránu (gateway)"
@@ -20764,6 +20806,9 @@ msgstr "Prohlédnout seznam dostupných systémových rozšíření"
 msgid "View mode"
 msgstr "Režim zobrazení"
 
+msgid "View or edit files less than 1MB in size"
+msgstr "Zobrazit nebo upravit soubory menší než 1 MB"
+
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Zobrazit nebo upravit tento %s skript"
@@ -20795,13 +20840,16 @@ msgstr "Panenské ostrovy (britské)"
 msgid "Virgin Islands (US)"
 msgstr "Panenské ostrovy (USA)"
 
-msgid "Virtual KeyBoard Functions"
-msgstr "Funkce virtuální klávesnice"
+msgid "Virtual KeyBoard"
+msgstr "Virtuální klávesnice"
+
+msgid "Virtual KeyBoard Actions"
+msgstr "Akce virtuální klávesnice"
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Text na virtuální klávesnici:"
 
-msgid "Virtual keyboard"
+msgid "Virtual Keyboard"
 msgstr "Virtuální klávesnice"
 
 msgid "Visual impaired commentary"
@@ -21130,7 +21178,7 @@ msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Pokud je tato funkce povolena, budou data SDT, BAT zahrnuta do toků http."
 
 msgid "When enabled, a new Zap timer will be created with activated end time."
-msgstr ""
+msgstr "Po aktivaci se vytvoří nový časovač Zap s aktivovaným časem ukončení."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Při povolení bude zobrazována zpráva po skončení přehrávání před začátkem nového přehrávání."
@@ -21259,10 +21307,10 @@ msgid "When nonzero, a recording will stop the nominated period after the ending
 msgstr "Při nenulové hodnotě nahrávání skončí později, než je čas konce uvedený v EPG."
 
 msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
-msgstr ""
+msgstr "Když je nenulová, časovač přepnutí spustí nominované období před časem zahájení uvedeným v EPG."
 
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
-msgstr ""
+msgstr "Když je nenulová, časovač přepnutí zastaví nominovanou periodu po ukončení času uvedeném v EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Když se přijímač probudí z pohotovostního režimu, dá televizoru příkaz k přepnutí na vstup HDMI, ke kterému je přijímač připojen."
@@ -23343,6 +23391,17 @@ msgstr "vaše %s %s je nyní možná nepoužitelné. Před restartováním vaše
 msgid "®"
 msgstr "®"
 
+#~ msgid "Virtual KeyBoard Functions"
+#~ msgstr "Funkce virtuální klávesnice"
+
+#, python-format
+#~ msgid "Add '%s' to bookmarks"
+#~ msgstr "Přidat '%s' do záložek"
+
+#, python-format
+#~ msgid "Remove '%s' from bookmarks"
+#~ msgstr "Odebrat '%s' ze záložek"
+
 #, python-format
 #~ msgid "Select the directory sort order for the %s column:"
 #~ msgstr "Vyberte pořadí řazení adresářů pro sloupec %s:"
@@ -23440,17 +23499,11 @@ msgstr "®"
 #~ msgid "Activate right-hand file list as source"
 #~ msgstr "Aktivuje pravý seznam souborů jako zdroj"
 
-#~ msgid "Add current folder to bookmarks"
-#~ msgstr "Přidat aktuální složku do záložek"
-
 #~ msgid "Add plugin to Extensions menu*"
 #~ msgstr "Přidat plugin do nabídky Rozšíření*"
 
 #~ msgid "Add plugin to main menu*"
 #~ msgstr "Přidat plugin do hlavní nabídky*"
-
-#~ msgid "Add selected folder to bookmarks"
-#~ msgstr "Přidat vybranou složku do záložek"
 
 #~ msgid "CPU priority for script execution"
 #~ msgstr "Priorita CPU pro provádění skriptu"
@@ -23506,9 +23559,6 @@ msgstr "®"
 
 #~ msgid "Create user-named symbolic link"
 #~ msgstr "Vytvořte symbolický odkaz pojmenovaný uživatelem"
-
-#~ msgid "Current directory"
-#~ msgstr "Současný adresář"
 
 #~ msgid "Date reverse"
 #~ msgstr "Datum obráceně"
@@ -23877,12 +23927,6 @@ msgstr "®"
 #~ msgid "Records"
 #~ msgstr "Nahrávky"
 
-#~ msgid "Remove current folder from bookmarks"
-#~ msgstr "Odstranit aktuální složku ze záložek"
-
-#~ msgid "Remove selected folder from bookmarks"
-#~ msgstr "Odstranit vybranou složku ze záložek"
-
 #~ msgid "Rename file/directory"
 #~ msgstr "Přejmenovat soubor/adresář"
 
@@ -24030,9 +24074,6 @@ msgstr "®"
 
 #~ msgid "Unpack to current folder"
 #~ msgstr "Rozbalit do aktuální složky"
-
-#~ msgid "View or edit file (if size < 1MB)"
-#~ msgstr "Zobrazit nebo upravit soubor (pokud je velikost < 1 MB)"
 
 #~ msgid "WARNING!"
 #~ msgstr "VÝSTRAHA!"

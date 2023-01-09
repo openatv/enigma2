@@ -1,4 +1,4 @@
-from enigma import loadPNG, loadJPG, loadSVG
+from enigma import loadPNG, loadJPG, loadSVG, loadGIF
 
 
 # If cached is not supplied, LoadPixmap defaults to caching PNGs and not caching JPGs
@@ -11,8 +11,11 @@ def LoadPixmap(path, desktop=None, cached=None, width=0, height=0):
 	elif path[-4:] == ".jpg":
 		# don't cache unless caller explicity requests caching
 		ptr = loadJPG(path, 1 if cached is True else 0)
+	elif path[-4:] == ".gif":
+		# don't cache unless caller explicity requests caching
+		ptr = loadGIF(path, 1 if cached is True else 0)
 	elif path[-4:] == ".svg":
-		from skin import getSkinFactor # imported here to avoid circular import
+		from skin import getSkinFactor  # imported here to avoid circular import
 		# autoscale = int(parameters.get("AutoscaleSVG", -1)) # skin_default only == -1, disabled == 0 or enabled == 1
 		autoscale = -1
 		scale = height == 0 and (autoscale == -1 and "/skin_default/" in path or autoscale == 1) and getSkinFactor() or 0

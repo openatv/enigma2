@@ -82,6 +82,13 @@ class MenuList(GUIComponent):
 		if self.instance:
 			self.instance.goBottom()
 
+	def getTopIndex(self):
+		return self.instance.getTopIndex() if self.instance else -1
+
+	def setTopIndex(self, index):
+		if self.instance:
+			self.instance.setTopIndex(index)
+
 	# Old navigation method names.
 	#
 	def top(self):

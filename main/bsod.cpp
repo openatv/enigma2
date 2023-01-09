@@ -3,6 +3,7 @@
 #include <csignal>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 #include <execinfo.h>
 #include <dlfcn.h>
 #include <lib/base/eenv.h>
@@ -73,8 +74,25 @@ static void stringFromFile(FILE* f, const char* context, const char* filename)
 		std::string line;
 		std::getline(in, line);
 		fprintf(f, "%s=%s\n", context, line.c_str());
+		in.close();
 	}
 }
+
+static void dumpFile(FILE* f, const char* filename)
+{
+	std::ifstream in(filename);
+	if (in.good()) {
+		do
+		{
+			std::string line;
+			std::getline(in, line);
+			fprintf(f, "%s\n", line.c_str());
+		}
+		while (in.good());
+		in.close();
+	}
+}
+
 
 static bool bsodhandled = false;
 static bool bsodrestart =  true;
@@ -148,7 +166,7 @@ void bsodFatal(const char *component)
 
 	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
 	os << dated;
-	os << "-enigma-crash.log";
+	os << "-enigma2-crash.log";
 	crashlog_name = os.str();
 	f = fopen(crashlog_name.c_str(), "wb");
 
@@ -196,15 +214,38 @@ void bsodFatal(const char *component)
 			E2REV,
 			component);
 
-		stringFromFile(f, "stbmodel", "/proc/stb/info/boxtype");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/vumodel");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/model");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/hwmodel");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/gbmodel");
+
+		std::ifstream in(eEnv::resolve("${libdir}/enigma.info").c_str());
+		const std::list<std::string> enigmainfovalues {
+			"model=",
+			"machinebuild=",
+			"imageversion=",
+			"imagebuild="
+		};
+
+		if (in.good()) {
+			do
+			{
+				std::string line;
+				std::getline(in, line);
+				for(std::list<std::string>::const_iterator i = enigmainfovalues.begin(); i != enigmainfovalues.end(); ++i)
+				{
+					if (line.find(i->c_str()) != std::string::npos) {
+						line.erase(std::remove( line.begin(), line.end(), '\"' ),line.end());
+						line.erase(std::remove( line.begin(), line.end(), '\'' ),line.end());
+						fprintf(f, "%s\n", line.c_str());
+						break;
+					}
+				}
+			}
+			while (in.good());
+			in.close();
+		}
+
+		fprintf(f, "\n");
 		stringFromFile(f, "kernelcmdline", "/proc/cmdline");
-		stringFromFile(f, "nimsockets", "/proc/bus/nim_sockets");
-		stringFromFile(f, "imageversion", "/etc/image-version");
-		stringFromFile(f, "imageissue", "/etc/issue.net");
+		fprintf(f, "\nnimsockets:\n");
+		dumpFile(f, "/proc/bus/nim_sockets");
 
 		/* dump the log ringbuffer */
 		fprintf(f, "\n\n");

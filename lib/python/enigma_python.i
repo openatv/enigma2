@@ -60,9 +60,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gdi/gmaindc.h>
 #include <lib/gui/ewidget.h>
 #include <lib/gui/elabel.h>
-#include <lib/gui/einput.h>
-#include <lib/gui/einputstring.h>
-#include <lib/gui/einputnumber.h>
 #include <lib/gui/epixmap.h>
 #include <lib/gui/ebutton.h>
 #include <lib/gui/ewindow.h>
@@ -217,9 +214,6 @@ typedef long time_t;
 %include <lib/gdi/esize.h>
 %include <lib/gui/ewidget.h>
 %include <lib/gui/elabel.h>
-%include <lib/gui/einput.h>
-%include <lib/gui/einputstring.h>
-%include <lib/gui/einputnumber.h>
 %include <lib/gui/epixmap.h>
 %include <lib/gui/ecanvas.h>
 %include <lib/gui/ebutton.h>
