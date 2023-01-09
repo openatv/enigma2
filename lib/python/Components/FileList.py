@@ -299,8 +299,10 @@ class FileListBase(MenuList):
 		# We may need to reset the top of the viewport before setting the index.
 		self.moveToIndex(start)
 
-	def refresh(self):
-		self.changeDir(self.currentDirectory, self.getPath())
+	def refresh(self, path=None):
+		if path is None:
+			path = self.getPath()
+		self.changeDir(self.currentDirectory, path)
 
 	def fileListComponent(self, name, path, isDir, isLink, selected):
 		# print("[FileList] fileListComponent DEBUG: Name='%s', Path='%s', isDir=%s, isLink=%s, selected=%s." % (name, path, isDir, isLink, selected))
