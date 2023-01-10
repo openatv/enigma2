@@ -2078,8 +2078,13 @@ void eDVBChannel::cueSheetEvent(int event)
 				eDebug("[eDVBChannel] skipmode ratio is %lld:90000, bitrate is %d bit/s", m_cue->m_skipmode_ratio, bitrate);
 						/* i agree that this might look a bit like black magic. */
 				m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
-				m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio / 8;
+// The / and * are done in order, resulting in a distinct integer
+// truncation after bitrate / 8 / 90000
+// I don't think that this is intended...
+// github.com/OpenViX/enigma2/commit/33d172b5a3ad1b22d69ce60c2102552537b77929
+//				m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio / 8;
 				m_skipmode_frames = m_cue->m_skipmode_ratio / 90000;
+				m_skipmode_m = (bitrate / 8) * (m_skipmode_frames / 8);
 				m_skipmode_frames_remainder = 0;
 
 				if (m_cue->m_skipmode_ratio < 0)
