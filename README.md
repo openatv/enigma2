@@ -1,4 +1,4 @@
-# openATV 7.1 (still in development!)
+# openATV 7.2
 
 ## Build status
 
@@ -91,22 +91,22 @@
     su - openatvbuilder
     ```
 
-1. Create folder openatv7.1
+1. Create folder openatv7.2
 
     ```sh
-    mkdir -p openatv7.1
+    mkdir -p openatv7.2
     ```
 
-1. Switch to folder openatv7.1
+1. Switch to folder openatv7.2
 
     ```sh
-    cd openatv7.1
+    cd openatv7.2
     ```
 
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.1
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.2
     ```
 
 1. Switch to folder build-enviroment
