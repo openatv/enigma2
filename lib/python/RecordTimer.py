@@ -1201,7 +1201,7 @@ class RecordTimerEntry(TimerEntry, object):
 		for cmd in ("writeable", "freespace"):
 			print("[RecordTimer] Starting thread: '%s'." % cmd)
 			processThread = Thread(target=self.mountTest, args=(dirname, cmd))
-			timerThread = ThreadTimer(3, self.stopMountText, args=(processThread, cmd))
+			timerThread = ThreadTimer(5, self.stopMountText, args=(processThread, cmd))
 			timerThread.start()
 			processThread.start()
 			processThread.join()
