@@ -1160,9 +1160,12 @@ class RecordTimerEntry(TimerEntry, object):
 			if not access(dirname, W_OK):
 				self.stopMountText(None, cmd)
 		elif cmd == "freespace":
-			s = statvfs(dirname)
-			if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
-				self.stopMountText(None, cmd)
+			try:
+				s = statvfs(dirname)
+				if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
+					self.stopMountText(None, cmd)
+			except FileNotFoundError:
+				self.stopMountText(None, "writeable")
 
 	def stopMountText(self, thread, cmd):
 		if thread and thread.is_alive():
