@@ -1,12 +1,9 @@
-from __future__ import absolute_import
-from Components.MenuList import MenuList
-
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-
 from enigma import eListboxPythonMultiContent, gFont, BT_SCALE, BT_KEEP_ASPECT_RATIO, BT_HALIGN_CENTER, BT_VALIGN_CENTER
+from Components.MenuList import MenuList
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
+from skin import fonts, parameters
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
-import skin
 
 
 #DIVPNG = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
@@ -18,9 +15,9 @@ PLUGINPNG = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "icons/
 
 def PluginEntryComponent(plugin, width=440):
 	png = plugin.icon or PLUGINPNG
-	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
-	dx, dy, dh = skin.parameters.get("PluginBrowserDescr", (120, 26, 17))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
+	nx, ny, nh = parameters.get("PluginBrowserName", (120, 5, 25))
+	dx, dy, dh = parameters.get("PluginBrowserDescr", (120, 26, 17))
+	ix, iy, iw, ih = parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
 	return [
 		plugin,
 		MultiContentEntryText(pos=(nx, ny), size=(width - nx, nh), font=0, text=plugin.name),
@@ -31,9 +28,9 @@ def PluginEntryComponent(plugin, width=440):
 
 def PluginEntryComponentSelected(plugin, width=440):
 	png = plugin.icon or PLUGINPNG
-	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
-	dx, dy, dh = skin.parameters.get("PluginBrowserDescr", (120, 26, 17))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
+	nx, ny, nh = parameters.get("PluginBrowserName", (120, 5, 25))
+	dx, dy, dh = parameters.get("PluginBrowserDescr", (120, 26, 17))
+	ix, iy, iw, ih = parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
 	return [
 		plugin,
 		MultiContentEntryText(pos=(nx, ny), size=(width - nx, nh), backcolor_sel=0xDC143C),
@@ -45,8 +42,8 @@ def PluginEntryComponentSelected(plugin, width=440):
 
 
 def PluginCategoryComponent(name, png, width=440):
-	x, y, h = skin.parameters.get("PluginBrowserDownloadName", (80, 5, 25))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
+	x, y, h = parameters.get("PluginBrowserDownloadName", (80, 5, 25))
+	ix, iy, iw, ih = parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
 	return [
 		name,
 		MultiContentEntryText(pos=(x, y), size=(width - x, h), font=0, text=name),
@@ -63,9 +60,9 @@ def PluginDownloadComponent(plugin, name, version=None, width=440, installstatus
 		elif version.startswith('experimental-'):
 			version = version[13:]
 		name += "  (" + version + ")"
-	x, y, h = skin.parameters.get("PluginBrowserDownloadName", (80, 5, 25))
-	dx, dy, dh = skin.parameters.get("PluginBrowserDownloadDescr", (80, 26, 17))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
+	x, y, h = parameters.get("PluginBrowserDownloadName", (80, 5, 25))
+	dx, dy, dh = parameters.get("PluginBrowserDownloadDescr", (80, 26, 17))
+	ix, iy, iw, ih = parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
 	if installstatus:
 		ipng = INSTALLABLE if installstatus == "0" else INSTALLEDPNG
 		if updatestatus and updatestatus != "0":
@@ -92,8 +89,8 @@ def PluginDownloadComponent(plugin, name, version=None, width=440, installstatus
 class PluginList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		font = skin.fonts.get("PluginBrowser0", ("Regular", 20, 50))
+		font = fonts.get("PluginBrowser0", ("Regular", 20, 50))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
-		font = skin.fonts.get("PluginBrowser1", ("Regular", 14))
+		font = fonts.get("PluginBrowser1", ("Regular", 14))
 		self.l.setFont(1, gFont(font[0], font[1]))
