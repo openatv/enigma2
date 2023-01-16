@@ -322,7 +322,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a screen")),
 			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
-		}, prio=0, description=_("File Commander Actions"))  # DEBUG: Something has stolen UP, DOWN, LEFT and RIGHT! :(
+		}, prio=0, description=_("File Commander Actions"))
 		self["multiSelectAction"] = HelpableActionMap(self, ["FileCommanderActions"], {
 			"multi": (self.keyMultiSelect, _("Toggle multi-selection mode"))
 		}, prio=0, description=_("File Commander Actions"))
