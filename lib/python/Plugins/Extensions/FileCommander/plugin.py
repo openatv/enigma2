@@ -1442,9 +1442,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if newName:
 				newPath = pathjoin(dirname(normpath(path)), newName)
 				try:
-					rename(path, newPath)
+					rename(normpath(path), newPath)
 				except OSError as err:
-					self.session.open(MessageBox, _("Error %d: Unable to rename file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+					self.session.open(MessageBox, _("Error %d: Unable to rename file/directory '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 				if isdir(newPath):
 					newPath = pathjoin(newPath, "")
 				self.sourceColumn.refresh(newPath)
