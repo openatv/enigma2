@@ -2611,7 +2611,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Delete Line"))
 		self["key_blue"] = StaticText(_("Insert Line"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions", "MenuActions"], {
 			"cancel": (self.keyCancel, _("Exit editor and discard any changes")),
 			"ok": (self.keyEdit, _("Edit current line")),
 			"red": (self.keyCancel, _("Exit editor and discard any changes")),
@@ -2623,8 +2623,8 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 			"up": (self["data"].goLineUp, _("Move up a line")),
 			"down": (self["data"].goLineDown, _("Move down a line")),
 			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
-			"bottom": (self["data"].goBottom, _("Move to last line / screen"))
-			# Add command to sort the file.
+			"bottom": (self["data"].goBottom, _("Move to last line / screen")),
+			"menu": (self.keyMenu, _("Open context menu with additional actions")),
 		}, prio=0, description=_("File Commander Text Editor Actions"))
 		self["moveUpAction"] = HelpableActionMap(self, ["NavigationActions"], {
 			"first": (self.keyMoveLineUp, _("Move the current line up")),
@@ -2662,6 +2662,29 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 	def keyCancelCallback(self, answer):
 		if answer:
 			self.close()
+
+	def keyMenu(self):
+		def keyMenuCallback(answer):
+			match answer:
+				case "CLONE":
+					self.data.insert(self["data"].getCurrentIndex(), self["data"].getCurrent())
+				case "SORTA":
+					self.data.sort()
+				case "SORTD":
+					self.data.sort(reverse=True)
+				case "":
+					return
+			self["data"].setList(self.data)
+			self.isChanged = True
+
+		msg = [_("Please select the action for line number %d.") % self["data"].getCurrentIndex() + 1]
+		choiceList = [
+			(_("Cancel"), ""),
+			(_("Clone the highlighted line"), "CLONE"),
+			(_("Sort all lines ascending"), "SORTA"),
+			(_("Sort all lines descending"), "SORTD")
+		]
+		self.session.openWithCallback(keyMenuCallback, MessageBox, "\n".join(msg), list=choiceList, default=0, windowTitle=self.getTitle())
 
 	def keySave(self):
 		if self.isChanged:
