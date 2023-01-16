@@ -249,7 +249,7 @@ class CronTimers(Screen):
 				myline = mysel[1]
 				open("/etc/cron/crontabs/root.tmp", "w").writelines([l for l in open("/etc/cron/crontabs/root").readlines() if myline not in l])
 				rename("/etc/cron/crontabs/root.tmp", "/etc/cron/crontabs/root")
-				Console.ePopen(["/usr/bin/crontab", "/usr/bin/crontab", "/etc/cron/crontabs/root", "-c", "/etc/cron/crontabs"], self.doDelCronResult)
+				Console().ePopen(["/usr/bin/crontab", "/usr/bin/crontab", "/etc/cron/crontabs/root", "-c", "/etc/cron/crontabs"], self.doDelCronResult)
 
 	def doDelCronResult(self, data=None, retVal=None, extraArgs=None):
 		self.updateList()
@@ -403,7 +403,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 			command = config.crontimers.user_command.value
 		with open("/etc/cron/crontabs/root", "a") as fd:
 			fd.write(newcron)
-		Console.ePopen(["/usr/bin/crontab", "/usr/bin/crontab", "/etc/cron/crontabs/root", "-c", "/etc/cron/crontabs"])
+		Console().ePopen(["/usr/bin/crontab", "/usr/bin/crontab", "/etc/cron/crontabs/root", "-c", "/etc/cron/crontabs"])
 		config.crontimers.predefined_command.value = "None"
 		config.crontimers.user_command.value = "None"
 		config.crontimers.runwhen.value = "Daily"
