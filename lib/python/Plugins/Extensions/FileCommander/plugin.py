@@ -317,12 +317,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"top": (self.keyGoTop, _("Move to first line / screen")),
 			"pageUp": (self.keyGoPageUp, _("Move up a screen")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
-			"left": (self.keyGoLeftColumn, _("Switch to the left column")),
-			"right": (self.keyGoRightColumn, _("Switch to the right column")),
+			"goleft": (self.keyGoLeftColumn, _("Switch to the left column")),
+			"goright": (self.keyGoRightColumn, _("Switch to the right column")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a screen")),
 			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
-		}, prio=-1, description=_("File Commander Actions"))  # DEBUG: Something has stolen UP, DOWN, LEFT and RIGHT! :(
+		}, prio=0, description=_("File Commander Actions"))  # DEBUG: Something has stolen UP, DOWN, LEFT and RIGHT! :(
 		self["multiSelectAction"] = HelpableActionMap(self, ["FileCommanderActions"], {
 			"multi": (self.keyMultiSelect, _("Toggle multi-selection mode"))
 		}, prio=0, description=_("File Commander Actions"))
@@ -399,6 +399,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.updateButtons()
 
 	def layoutFinished(self):
+		self["headleft"].master.master.instance.enableAutoNavigation(False)
+		self["headright"].master.master.instance.enableAutoNavigation(False)
 		self["listleft"].instance.enableAutoNavigation(False)
 		self["listright"].instance.enableAutoNavigation(False)
 		if self.leftActive:
