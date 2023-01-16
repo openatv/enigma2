@@ -415,12 +415,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def updateHeading(self, column):
 		def buildHeadingData(column):  # Numbers in trailing comments are the template text indexes.
-			if column == self["listleft"]:
-				sortDirs, reverseDirs = [int(x) for x in config.plugins.FileCommander.sortDirectoriesLeft.value.split(".")]
-				sortFiles, reverseFiles = [int(x) for x in config.plugins.FileCommander.sortFilesLeft.value.split(".")]
-			else:
-				sortDirs, reverseDirs = [int(x) for x in config.plugins.FileCommander.sortDirectoriesRight.value.split(".")]
-				sortFiles, reverseFiles = [int(x) for x in config.plugins.FileCommander.sortFilesRight.value.split(".")]
+			sort = column.getSortBy().split(",")
+			sortDirs, reverseDirs = [int(x) for x in sort[0].split(".")]
+			sortFiles, reverseFiles = [int(x) for x in sort[1].split(".")]
 			sortText = "[D]%s%s[F]%s%s" % (("n", "d", "s")[sortDirs], ("+", "-")[reverseDirs], ("n", "d", "s")[sortFiles], ("+", "-")[reverseFiles])  # (name|date|size)(normal|reverse)
 			path = column.getPath()
 			currentDirectory = column.getCurrentDirectory()
@@ -1515,6 +1512,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				self.sourceColumn.setSortBy(",".join(sort))
 				self.sourceColumn.refresh()
 				self.updateSort()
+				self.updateHeading(self.sourceColumn)
 
 		msg = _("Select the directory sort order for the left column:") if self.leftActive else _("Select the directory sort order for the right column:")
 		choiceList = [
@@ -1534,6 +1532,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				self.sourceColumn.setSortBy(",".join(sort))
 				self.sourceColumn.refresh()
 				self.updateSort()
+				self.updateHeading(self.sourceColumn)
 
 		column = "left" if self.leftActive else "right"
 		choiceList = [
