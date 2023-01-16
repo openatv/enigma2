@@ -1205,13 +1205,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				if InfoBar.instance and not inStandby:
 					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_ERROR, timeout=0)
 				else:
-					AddNotification(MessageBox, message, MessageBox.TYPE_ERROR, timeout=0, windowTitle=windowTitle)
+					AddNotification(MessageBox, message, MessageBox.TYPE_ERROR, timeout=0, windowTitle=self.baseTitle)
 				return False
 
 			if answer:
 				if answer in ("YES", "PAR", "YES_BG", "PAR_BG"):
 					if not access(path, R_OK):
-						self.session.open(MessageBox, _("Error: Script '%s' must have read permission to be able to run!") % path, MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=windowTitle)
+						self.session.open(MessageBox, _("Error: Script '%s' must have read permission to be able to run!") % path, MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=self.baseTitle)
 						return
 					nice = config.plugins.FileCommander.scriptPriorityNice.value or ""
 					ionice = config.plugins.FileCommander.scriptPriorityIONice.value or ""
@@ -1599,7 +1599,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			package = self.OPTIONAL_PACKAGES.get(program)
 			if package:
 				self.package = package
-				self.session.openWithCallback(shortcutInstallCallback, MessageBox, _("Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?") % (program, package), MessageBox.TYPE_YESNO, default=True, windowTitle=windowTitle)
+				self.session.openWithCallback(shortcutInstallCallback, MessageBox, _("Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?") % (program, package), MessageBox.TYPE_YESNO, default=True, windowTitle=self.baseTitle)
 			else:
 				self.session.open(MessageBox, _("Error: Program '%s' not installed and the package containing this program is unknown!") % program, MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=self.baseTitle)
 
