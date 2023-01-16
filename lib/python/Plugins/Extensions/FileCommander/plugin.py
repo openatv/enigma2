@@ -2677,7 +2677,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 			self["data"].setList(self.data)
 			self.isChanged = True
 
-		msg = [_("Please select the action for line number %d.") % self["data"].getCurrentIndex() + 1]
+		msg = [_("Please select the action for line number %d.") % (self["data"].getCurrentIndex() + 1)]
 		choiceList = [
 			(_("Cancel"), ""),
 			(_("Clone the highlighted line"), "CLONE"),
