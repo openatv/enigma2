@@ -1,9 +1,9 @@
 # Poland translations for Enigma2.
 #
-# pololoko111 <peciek83@gmail.com>, 2021, 2022.
+# pololoko111 <peciek83@gmail.com>, 2021, 2022, 2023.
 # openATV <openatv@gmail.com>, 2021.
 # Grzegorz <grzegorz914@icloud.com>, 2021, 2022.
-# drakulis <drakulis@interia.pl>, 2022.
+# drakulis <drakulis@interia.pl>, 2022, 2023.
 # lareq <lareq@o2.pl>, 2022.
 # Karol Sz <kaolsz@interia.pl>, 2022, 2023.
 # Tomasz X <wladyslaw.lam@gmail.com>, 2022.
@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2023-01-04 13:08+0000\n"
-"Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-15 15:46+0000\n"
+"Last-Translator: drakulis <drakulis@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -5825,10 +5825,6 @@ msgstr "Usuń"
 msgid "Delete %s?"
 msgstr "Czy na pewno usunąć %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "Usunąć '%s'?"
-
 msgid "Delete Confirmation"
 msgstr "Potwierdzenie Usuwania"
 
@@ -5931,11 +5927,16 @@ msgstr "Usuń aktualnie podświetlony kanał z listy Przesunięć głośności"
 msgid "Delete the currently selected timer"
 msgstr "Usuń aktualnie wybrany timer"
 
-msgid "Delete the selected directories/files?"
-msgstr "Usunąć wybrane katalogi/pliki?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr "Usuń katalog/plik '%s'?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Usuń wybrane przechowywane lokalnie obrazy"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr "Usunąć te katalogi/pliki %d?"
 
 msgid "Delete this tag"
 msgstr "Usuń ten znacznik"
@@ -7525,17 +7526,14 @@ msgstr "Błąd: nowe hasło nie może być puste!"
 msgid "Error: The path '%s' already exists!"
 msgstr "Błąd: Ścieżka '%s' już istnieje!"
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Błąd: System plików root nie może być skopiowany!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr "Błąd: System plików root i katalogi systemowe nie mogą być usunięte!"
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Błąd: System plików root nie może być usunięty!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr "Błąd: System plików root i katalogi systemowe nie mogą być przeniesione!"
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Błąd: System plików root nie może być przeniesiony!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Błąd: System plików root nie może mieć zmienionej nazwy!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr "Błąd: Nie można zmienić nazwy głównego systemu plików i katalogów systemowych!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9058,9 +9056,6 @@ msgstr "Priorytet I/O dla skryptów"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nowy Model"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "IMDb Details"
 msgstr "Szczegóły IMDb"
 
@@ -9885,6 +9880,9 @@ msgstr "Plik jądra"
 
 msgid "Kernel version"
 msgstr "Wersja jądra"
+
+msgid "Key"
+msgstr "Klucz"
 
 msgid "Keyboard"
 msgstr "Klawiatura"
@@ -17209,7 +17207,7 @@ msgid "Single Tuner"
 msgstr "Pojedynczy tuner"
 
 msgid "Single satellite"
-msgstr "Jedna satelita"
+msgstr "Jeden satelita"
 
 msgid "Single step (GOP)"
 msgstr "Pojedynczy krok (GOP)"
@@ -18719,6 +18717,9 @@ msgstr "Domyślne ustawienia to czas budzenia - 5 minut i czas rozpoczęcia time
 
 msgid "The detailed information is intended for developers only."
 msgstr "Szczegółowe informacje przeznaczone są wyłącznie dla deweloperów."
+
+msgid "The directory/file no longer exists."
+msgstr "Katalog/plik już nie istnieje."
 
 #, python-format
 msgid ""
@@ -23407,6 +23408,28 @@ msgstr "%s %s może być teraz bezużyteczny. Przed ponownym uruchomieniem %s %s
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "Usunąć '%s'?"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "Usunąć wybrane katalogi/pliki?"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Błąd: System plików root nie może być skopiowany!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Błąd: System plików root nie może być usunięty!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Błąd: System plików root nie może być przeniesiony!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Błąd: System plików root nie może mieć zmienionej nazwy!"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Funkcje wirtualnej klawiatury"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -5851,10 +5851,6 @@ msgstr "Törlés"
 msgid "Delete %s?"
 msgstr "Törlés %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr ""
-
 msgid "Delete Confirmation"
 msgstr "Törlés megerősítése"
 
@@ -5959,10 +5955,15 @@ msgstr ""
 msgid "Delete the currently selected timer"
 msgstr ""
 
-msgid "Delete the selected directories/files?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+#, python-format
+msgid "Delete these %d directories/files?"
 msgstr ""
 
 msgid "Delete this tag"
@@ -7549,16 +7550,13 @@ msgstr ""
 msgid "Error: The path '%s' already exists!"
 msgstr "A %s útvonal már létezik."
 
-msgid "Error: The root file system can not be copied!"
+msgid "Error: The root file system and system directories can't be deleted!"
 msgstr ""
 
-msgid "Error: The root file system can not be deleted!"
+msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
-msgid "Error: The root file system can not be moved!"
-msgstr ""
-
-msgid "Error: The root file system can not be renamed!"
+msgid "Error: The root file system and system directories can't be renamed!"
 msgstr ""
 
 #, python-format
@@ -9099,9 +9097,6 @@ msgstr ""
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 új modell"
 
-msgid "ID"
-msgstr ""
-
 msgid "IMDb Details"
 msgstr "IMDb részletek"
 
@@ -9938,6 +9933,9 @@ msgid "Kernel file"
 msgstr ""
 
 msgid "Kernel version"
+msgstr ""
+
+msgid "Key"
 msgstr ""
 
 msgid "Keyboard"
@@ -18888,6 +18886,9 @@ msgid "The default settings are wake up time - 5 minutes and timer begin time + 
 msgstr "Az alapértelmezett beállítás: az ébresztési idő - 5 perc és az időzítő kezdési ideje + 5 perc. Ez a beállítás megváltoztatja az felébresztési idő előtti idősávot."
 
 msgid "The detailed information is intended for developers only."
+msgstr ""
+
+msgid "The directory/file no longer exists."
 msgstr ""
 
 #, python-format

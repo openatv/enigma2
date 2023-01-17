@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2023-01-03 05:49+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-15 15:45+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -6118,10 +6118,6 @@ msgstr "Löschen"
 msgid "Delete %s?"
 msgstr "Lösche %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "Lösche '%s'?"
-
 msgid "Delete Confirmation"
 msgstr "Löschbestätigung"
 
@@ -6232,11 +6228,16 @@ msgstr "Löschen des aktuell markierten Senders aus der Liste der Lautstärke-Of
 msgid "Delete the currently selected timer"
 msgstr "Den aktuell ausgewählten Timer löschen"
 
-msgid "Delete the selected directories/files?"
-msgstr "Ausgewählte Verzeichnisse/Dateien löschen?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr "Verzeichnis/Datei '%s' löschen?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Das ausgewählte lokal gespeicherte Image löschen"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr "Diese %d Verzeichnisse/Dateien löschen?"
 
 msgid "Delete this tag"
 msgstr "Diesen Tag löschen"
@@ -7931,17 +7932,14 @@ msgstr "Fehler: Das neue Passwort darf nicht leer sein!"
 msgid "Error: The path '%s' already exists!"
 msgstr "Fehler: Der Pfad '%s' existiert bereits!"
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Fehler: Das Wurzelverzeichnis kann nicht kopiert werden!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr "Fehler: Das Root File System und Systemverzeichnisse können nicht gelöscht werden!"
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Fehler: Das Wurzelverzeichnis kann nicht gelöscht werden!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr "Fehler: Das Root File System und Systemverzeichnisse können nicht verschoben werden!"
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Fehler: Das Wurzelverzeichnis kann nicht verschoben werden!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Fehler: Das Wurzelverzeichnis kann nicht umbenannt werden!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr "Fehler: Das Root File System und Systemverzeichnisse können nicht umbenannt werden!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9547,9 +9545,6 @@ msgstr "I/O-Priorität für Skripte"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 neues Modell"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "IMDb Details"
 msgstr "IMDb-Details"
 
@@ -10422,6 +10417,9 @@ msgstr "Kernel-Datei"
 
 msgid "Kernel version"
 msgstr "Kernel-Version"
+
+msgid "Key"
+msgstr "Taste"
 
 #
 msgid "Keyboard"
@@ -19969,6 +19967,9 @@ msgstr "Die Standardeinstellungen sind Aufwachzeit -5 Minuten und Timerbeginn +5
 msgid "The detailed information is intended for developers only."
 msgstr "Die detaillierten Informationen sind nur für Entwickler bestimmt."
 
+msgid "The directory/file no longer exists."
+msgstr "Verzeichnis/Datei besteht nicht mehr!"
+
 #, python-format
 msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
@@ -25098,6 +25099,28 @@ msgstr ""
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "Lösche '%s'?"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "Ausgewählte Verzeichnisse/Dateien löschen?"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Fehler: Das Wurzelverzeichnis kann nicht kopiert werden!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Fehler: Das Wurzelverzeichnis kann nicht gelöscht werden!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Fehler: Das Wurzelverzeichnis kann nicht verschoben werden!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Fehler: Das Wurzelverzeichnis kann nicht umbenannt werden!"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Funktionen der virtuellen Tastatur"

@@ -1,7 +1,7 @@
 # Ukrainian translations for Enigma2.
 #
 # openATV <openatv@gmail.com>, 2021.
-# kvinto <badsystem@ukr.net>, 2021, 2022.
+# kvinto <badsystem@ukr.net>, 2021, 2022, 2023.
 # igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023.
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
 # Artem <artem@molotov.work>, 2022.
@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2023-01-04 13:08+0000\n"
-"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-11 17:36+0000\n"
+"Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -5818,10 +5818,6 @@ msgstr "Видалити"
 msgid "Delete %s?"
 msgstr "Видалити %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "Видалити '%s'?"
-
 msgid "Delete Confirmation"
 msgstr "Підтвердження видалення"
 
@@ -5924,11 +5920,16 @@ msgstr "Видалити поточний виділений канал зі с�
 msgid "Delete the currently selected timer"
 msgstr "Видалити поточний вибраний таймер"
 
-msgid "Delete the selected directories/files?"
-msgstr "Видалити вибрані каталоги/файли?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr "Видалити каталог/файл '%s'?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Видалити вибраний локально збереженей імідж"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr "Видалити ці %d каталоги/файли?"
 
 msgid "Delete this tag"
 msgstr "Видалити даний тег"
@@ -7518,17 +7519,14 @@ msgstr "Помилка: Новий пароль не може бути пуст�
 msgid "Error: The path '%s' already exists!"
 msgstr "Шлях %s вже існує!"
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Помилка: кореневу файлову систему неможливо скопіювати!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr "Помилка: кореневу файлову систему та системні каталоги не можна видалити!"
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Помилка: кореневу файлову систему неможливо видалити!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr "Помилка: кореневу файлову систему та системні каталоги не можна перемістити!"
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Помилка: кореневу файлову систему неможливо перемістити!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Помилка: кореневу файлову систему неможливо перейменувати!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr "Помилка: кореневу файлову систему та системні каталоги не можна перейменувати!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9051,9 +9049,6 @@ msgstr "Пріоритет введення/виведення для скрип
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 нові Моделі"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "IMDb Details"
 msgstr "IMDb подробиці"
 
@@ -9878,6 +9873,9 @@ msgstr "Файл ядра"
 
 msgid "Kernel version"
 msgstr "Версія ядра"
+
+msgid "Key"
+msgstr "Ключ"
 
 msgid "Keyboard"
 msgstr "Клавіатура"
@@ -18308,7 +18306,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 03.01.2023"
+msgstr "Переклад: kvinto - 11.01.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18709,6 +18707,9 @@ msgstr "Налаштування за замовчуванням часу вкл
 
 msgid "The detailed information is intended for developers only."
 msgstr "Детальна інформація призначена лише для розробників."
+
+msgid "The directory/file no longer exists."
+msgstr "Каталог/файл більше не існує."
 
 #, python-format
 msgid ""
@@ -23397,6 +23398,28 @@ msgstr "ваш %s %s може стати непридатним тепер. Пр
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "Видалити '%s'?"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "Видалити вибрані каталоги/файли?"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Помилка: кореневу файлову систему неможливо скопіювати!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Помилка: кореневу файлову систему неможливо видалити!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Помилка: кореневу файлову систему неможливо перемістити!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Помилка: кореневу файлову систему неможливо перейменувати!"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Функції Віртуального клавіатури"

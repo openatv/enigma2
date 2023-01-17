@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2023-01-01 18:05+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-15 15:46+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -5790,10 +5790,6 @@ msgstr "Διαγραφή"
 msgid "Delete %s?"
 msgstr "Διαγραφή του %s;"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "Διαγραφή του '%s';"
-
 msgid "Delete Confirmation"
 msgstr "Επιβεβαίωση διαγραφής"
 
@@ -5896,11 +5892,16 @@ msgstr "Διαγραφή της τρέχουσας επισημασμένης υ
 msgid "Delete the currently selected timer"
 msgstr "Διαγραφή του τρέχοντος επιλεγμένου χρονοδιακόπτη"
 
-msgid "Delete the selected directories/files?"
-msgstr "Διαγραφή των επιλεγμένων φακέλων/αρχείων;"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr "Διαγραφή του φακέλου/αρχείου '%s';"
 
 msgid "Delete the selected locally stored image"
 msgstr "Διαγραφή του επιλεγμένου τοπικά αποθηκευμένου image"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr "Διαγραφή αυτών των %d φακέλων/αρχείων;"
 
 msgid "Delete this tag"
 msgstr "Διαγραφή αυτής της ετικέτας"
@@ -7487,17 +7488,14 @@ msgstr "Σφάλμα: ο νέος κωδικός δεν μπορεί να είν
 msgid "Error: The path '%s' already exists!"
 msgstr "Σφάλμα: Η διαδρομή '%s' υπάρχει ήδη!"
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Σφάλμα: Το σύστημα αρχείων ρίζας δεν μπορεί να αντιγραφεί!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr "Σφάλμα: Το ριζικό σύστημα αρχείων και οι φάκελοι συστήματος δεν μπορούν να διαγραφούν!"
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Σφάλμα: Το σύστημα αρχείων ρίζας δεν μπορεί να διαγραφεί!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr "Σφάλμα: Το ριζικό σύστημα αρχείων και οι φάκελοι συστήματος δεν μπορούν να μετακινηθούν!"
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Σφάλμα: Το σύστημα αρχείων ρίζας δεν μπορεί να μετακινηθεί!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Σφάλμα: Αδύνατη η μετονομασία του συστήματος αρχείων ρίζας!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr "Σφάλμα: Το ριζικό σύστημα αρχείων και οι φάκελοι συστήματος δεν μπορούν να μετονομαστούν!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9020,9 +9018,6 @@ msgstr "Προτεραιότητα I/O για σενάρια ενεργειών"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 νέο μοντέλο"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "IMDb Details"
 msgstr "Λεπτομέρειες IMDb"
 
@@ -9847,6 +9842,9 @@ msgstr "Αρχείο kernel"
 
 msgid "Kernel version"
 msgstr "Έκδοση kernel"
+
+msgid "Key"
+msgstr "Κλειδί"
 
 msgid "Keyboard"
 msgstr "Πληκτρολόγιο"
@@ -18674,6 +18672,9 @@ msgstr "Η προεπιλεγμένες ρυθμίσεις είναι: χρόν�
 msgid "The detailed information is intended for developers only."
 msgstr "Οι λεπτομερείς πληροφορίες απευθύνονται μόνο σε προγραμματιστές."
 
+msgid "The directory/file no longer exists."
+msgstr "Ο φάκελος/αρχείο δεν υπάρχει πλέον."
+
 #, python-format
 msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
@@ -23360,6 +23361,28 @@ msgstr "ο %s %s σας ενδέχεται να μη μπορεί να χρησ�
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "Διαγραφή του '%s';"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "Διαγραφή των επιλεγμένων φακέλων/αρχείων;"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Σφάλμα: Το σύστημα αρχείων ρίζας δεν μπορεί να αντιγραφεί!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Σφάλμα: Το σύστημα αρχείων ρίζας δεν μπορεί να διαγραφεί!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Σφάλμα: Το σύστημα αρχείων ρίζας δεν μπορεί να μετακινηθεί!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Σφάλμα: Αδύνατη η μετονομασία του συστήματος αρχείων ρίζας!"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Λειτουργίες εικονικού πληκτρολογίου"

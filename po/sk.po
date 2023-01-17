@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -5811,10 +5811,6 @@ msgstr "Zmazať"
 msgid "Delete %s?"
 msgstr "Vymazať %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "Vymazať '%s'?"
-
 msgid "Delete Confirmation"
 msgstr "Vymazať potvrdenie"
 
@@ -5917,11 +5913,16 @@ msgstr "Vymazať aktuálne zvýraznenú stanicu zo zoznamu pre posun hlasitosti"
 msgid "Delete the currently selected timer"
 msgstr "Vymazať aktuálne vybraný časovač"
 
-msgid "Delete the selected directories/files?"
-msgstr "Vymazať všetky vybrané priečinky/súbory?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr ""
 
 msgid "Delete the selected locally stored image"
 msgstr "Vymazať vybraný lokálne uložený image"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr ""
 
 msgid "Delete this tag"
 msgstr "Vymazať tento tag"
@@ -7511,17 +7512,14 @@ msgstr "Chyba: nové heslo nemôže zostať prázdne!"
 msgid "Error: The path '%s' already exists!"
 msgstr "Chyba: cesta '%s' už existuje!"
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Chyba: koreňový súborový systém nie je možné kopírovať!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr ""
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Chyba: koreňový súborový systém nemožno vymazať!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr ""
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Chyba: koreňový súborový systém nemožno presunúť!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Chyba: koreňový súborový systém nemožno premenovať!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9044,9 +9042,6 @@ msgstr "I/O priorita pre skripty"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
 
-msgid "ID"
-msgstr ""
-
 msgid "IMDb Details"
 msgstr "Detaily IMDb"
 
@@ -9871,6 +9866,9 @@ msgstr "Súbor jadra"
 
 msgid "Kernel version"
 msgstr "Verzia jadra (kernel)"
+
+msgid "Key"
+msgstr ""
 
 msgid "Keyboard"
 msgstr "Klávesnica"
@@ -18703,6 +18701,9 @@ msgstr "Predvolené nastavenie je: čas prebudenia - 5 minút a časovač v čas
 msgid "The detailed information is intended for developers only."
 msgstr "Podrobná informácia je určená len pre vývojárov."
 
+msgid "The directory/file no longer exists."
+msgstr ""
+
 #, python-format
 msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
@@ -23390,6 +23391,25 @@ msgstr "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s 
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "Vymazať '%s'?"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "Vymazať všetky vybrané priečinky/súbory?"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Chyba: koreňový súborový systém nie je možné kopírovať!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Chyba: koreňový súborový systém nemožno vymazať!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Chyba: koreňový súborový systém nemožno presunúť!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Chyba: koreňový súborový systém nemožno premenovať!"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Funkcie virtuálnej klávesnice"

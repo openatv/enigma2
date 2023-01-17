@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2023-01-08 08:48+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-11 17:36+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -5815,10 +5815,6 @@ msgstr "Удалить"
 msgid "Delete %s?"
 msgstr "Удалить %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "Удалить '%s'?"
-
 msgid "Delete Confirmation"
 msgstr "Подтверждение удаления"
 
@@ -5921,11 +5917,16 @@ msgstr "Удалить текущую выделенный канал из сп�
 msgid "Delete the currently selected timer"
 msgstr "Удалить текущий выбранный таймер"
 
-msgid "Delete the selected directories/files?"
-msgstr "Удалить выбранные каталоги/файлы?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr "Удалить каталог/файл '%s'?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Удалить выбранный локально сохраненный имидж"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr "Удалить эти %d каталогов/файлов?"
 
 msgid "Delete this tag"
 msgstr "Удалить этот тег"
@@ -7515,17 +7516,14 @@ msgstr "Ошибка: Новый пароль не может быть пуст�
 msgid "Error: The path '%s' already exists!"
 msgstr "Ошибка: путь '%s' уже существует!"
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Ошибка: невозможно скопировать корневую файловую систему!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr "Ошибка: Корневая файловая система и системные каталоги не могут быть удалены!"
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Ошибка: корневая файловая система не может быть удалена!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr "Ошибка: Корневая файловая система и системные каталоги не могут быть перемещены!"
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Ошибка: Корневую файловую систему нельзя переместить!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Ошибка: нельзя переименовывать корневую файловую систему!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr "Ошибка: Корневая файловая система и системные каталоги не могут быть переименованы!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9048,9 +9046,6 @@ msgstr "Приоритет ввода-вывода для скриптов"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 новая модель"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "IMDb Details"
 msgstr "Подробности IMDb"
 
@@ -9875,6 +9870,9 @@ msgstr "Файл ядра"
 
 msgid "Kernel version"
 msgstr "Версия ядра"
+
+msgid "Key"
+msgstr "Ключ"
 
 msgid "Keyboard"
 msgstr "Клавиатура"
@@ -18305,7 +18303,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 07.01.2023"
+msgstr "Коррекция перевода Monja 10.01.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -18706,6 +18704,9 @@ msgstr "Настройки по умолчанию: 'время пробужде
 
 msgid "The detailed information is intended for developers only."
 msgstr "Подробная информация предназначена только для разработчиков."
+
+msgid "The directory/file no longer exists."
+msgstr "Каталог/файл больше не существует."
 
 #, python-format
 msgid ""
@@ -23394,6 +23395,28 @@ msgstr "Ваш %s %s может стать непригодным теперь. 
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "Удалить '%s'?"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "Удалить выбранные каталоги/файлы?"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Ошибка: невозможно скопировать корневую файловую систему!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Ошибка: корневая файловая система не может быть удалена!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Ошибка: Корневую файловую систему нельзя переместить!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Ошибка: нельзя переименовывать корневую файловую систему!"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Функции виртуальной клавиатуры"

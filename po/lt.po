@@ -1,14 +1,14 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
-# Adga56 <adga45@gmail.com>, 2021, 2022.
+# Adga56 <adga45@gmail.com>, 2021, 2022, 2023.
 # Gediminas Murauskas <muziejusinfo@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2022-12-09 08:00+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-15 15:46+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -5169,19 +5169,19 @@ msgid "Create DVD-ISO"
 msgstr "Sukurti DVD-ISO"
 
 msgid "Create Directory"
-msgstr ""
+msgstr "Sukurti katalogą"
 
 msgid "Create ISO"
 msgstr "Sukurti ISO"
 
 msgid "Create a directory"
-msgstr ""
+msgstr "Sukurkite katalogą"
 
 msgid "Create a randomly generated password"
 msgstr "Atsitiktinai sugeneruoto slaptažodžio kūrimas"
 
 msgid "Create a symbolic link"
-msgstr ""
+msgstr "Sukurkite simbolinę nuorodą"
 
 msgid "Create directory"
 msgstr "Kurti katalogą"
@@ -5254,7 +5254,7 @@ msgid "Current CEC address"
 msgstr "Dabartinis CEC adresas"
 
 msgid "Current Directory"
-msgstr ""
+msgstr "Dabartinis katalogas"
 
 msgid "Current Event:"
 msgstr "Dabartinis įvykis:"
@@ -5270,7 +5270,7 @@ msgstr "Dabartinis katalogas"
 
 #, python-format
 msgid "Current directory (%s)"
-msgstr ""
+msgstr "Dabartinis katalogas (%s)"
 
 msgid "Current installed"
 msgstr "Dabar įdiegtas atvaizdas"
@@ -5309,6 +5309,8 @@ msgid ""
 "Current: %s\n"
 "Parent: %s"
 msgstr ""
+"Dabartinis: %s\n"
+"Pagrindinis: %s"
 
 msgid "Currently Defined Volume Offsets:"
 msgstr "Šiuo metu nustatyti apimties poslinkiai:"
@@ -5471,13 +5473,13 @@ msgid "Date"
 msgstr "Data"
 
 msgid "Date / Time"
-msgstr ""
+msgstr "Data / laikas"
 
 msgid "Date ascending"
-msgstr ""
+msgstr "Data didėjimo tvarka"
 
 msgid "Date descending"
-msgstr ""
+msgstr "Data mažėjimo tvarka"
 
 msgid "Date style"
 msgstr "Datos stilius"
@@ -5634,7 +5636,7 @@ msgid "Deactivate"
 msgstr "Išjungti"
 
 msgid "Debug"
-msgstr ""
+msgstr "Derinti"
 
 #, python-format
 msgid "Debug %d/%d"
@@ -5833,10 +5835,6 @@ msgstr "Trinti"
 msgid "Delete %s?"
 msgstr "Trinti %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr ""
-
 msgid "Delete Confirmation"
 msgstr "Pašalinimo patvirtinimas"
 
@@ -5850,7 +5848,7 @@ msgid "Delete Image"
 msgstr "Ištrinti atvaizdą"
 
 msgid "Delete Line"
-msgstr ""
+msgstr "Pašalinti eilutę"
 
 msgid "Delete Plugins"
 msgstr "Ištrinti priedus"
@@ -5865,7 +5863,7 @@ msgid "Delete all logs"
 msgstr "Ištrinti visus žurnalus"
 
 msgid "Delete all related files"
-msgstr ""
+msgstr "Ištrinkite visus susijusius failus"
 
 msgid "Delete all tags"
 msgstr "Šalinti visas žymes"
@@ -5886,7 +5884,7 @@ msgid "Delete current line"
 msgstr "Ištrinti dabartinę eilutę"
 
 msgid "Delete directory or file"
-msgstr ""
+msgstr "Ištrinkite katalogą arba failą"
 
 msgid "Delete entry"
 msgstr "Trinti įrašą"
@@ -5939,11 +5937,16 @@ msgstr "Ištrinkite šiuo metu paryškintą paslaugą iš garsumo išjungimo rin
 msgid "Delete the currently selected timer"
 msgstr "Naikinti šiuo metu pasirinktą laikmatį"
 
-msgid "Delete the selected directories/files?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
 msgstr "Naikinti pasirinktą vietoje saugomą atvaizdą"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr ""
 
 msgid "Delete this tag"
 msgstr "Šalinti šią žymę"
@@ -7535,17 +7538,14 @@ msgstr "Klaida: naujas slaptažodis negali būti tuščias!"
 msgid "Error: The path '%s' already exists!"
 msgstr "Kelias %s jau egzistuoja."
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Klaida: šakninės failų sistemos negalima nukopijuoti!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr ""
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Klaida: šakninės failų sistemos negalima ištrinti!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr ""
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Klaida: šakninės failų sistemos negalima perkelti!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Klaida: šakninės failų sistemos negalima pervardyti!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9068,9 +9068,6 @@ msgstr ""
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 naujas modelis"
 
-msgid "ID"
-msgstr ""
-
 msgid "IMDb Details"
 msgstr "IMDb detaliau"
 
@@ -9896,6 +9893,9 @@ msgstr "Branduolio failas"
 
 msgid "Kernel version"
 msgstr "Branduolio versija"
+
+msgid "Key"
+msgstr ""
 
 msgid "Keyboard"
 msgstr "Klaviatūra"
@@ -14342,7 +14342,7 @@ msgid "Resolution"
 msgstr "Rezoliucija"
 
 msgid "Resolution unit"
-msgstr ""
+msgstr "Skiriamoji geba"
 
 msgid "Restart"
 msgstr "Paleisti iš naujo"
@@ -14506,13 +14506,13 @@ msgid "Right"
 msgstr "Dešinys"
 
 msgid "Right column"
-msgstr ""
+msgstr "Dešinysis stulpelis"
 
 msgid "Right column directory sort"
-msgstr ""
+msgstr "Dešiniojo stulpelio katalogo rūšiavimas"
 
 msgid "Right column file sort"
-msgstr ""
+msgstr "Dešiniojo stulpelio failo rūšiavimas"
 
 msgid "Right from service name"
 msgstr "Kanalo pavadinimo dešinėje"
@@ -14661,7 +14661,7 @@ msgid "SINGLE LAYER DVD"
 msgstr "VIENSLUOKSNIS DVD"
 
 msgid "SMS style QuickSelect entry selection"
-msgstr ""
+msgstr "SMS stilius QuickSelect įrašo pasirinkimas"
 
 msgid "SMS style QuickSelect location selection"
 msgstr "SMS stilius QuickSelect vietos pasirinkimas"
@@ -14827,7 +14827,7 @@ msgstr "Išsaugoti kiekvieną (valandomis)"
 
 #, python-format
 msgid "Save image as '%s'"
-msgstr ""
+msgstr "Išsaugokite atvaizdą kaip '%s'"
 
 msgid "Save left directory on exit"
 msgstr ""
@@ -15259,7 +15259,7 @@ msgid "Select Backup Location"
 msgstr "Pasirinkite atsarginės kopijos kūrimo vietą"
 
 msgid "Select Bookmark"
-msgstr ""
+msgstr "Pasirinkite žymę"
 
 msgid "Select CAId"
 msgstr "Pasirinkite CAId"
@@ -15289,7 +15289,7 @@ msgid "Select Location"
 msgstr "Pasirinkite vietą"
 
 msgid "Select Media Location"
-msgstr ""
+msgstr "Pasirinkite medijos vietą"
 
 msgid "Select Playback Location"
 msgstr "Pasirinkite atkūrimo vietą"
@@ -15322,17 +15322,17 @@ msgid "Select a debug log file to view:"
 msgstr "Pasirinkite derinimo žurnalo failą, kurį norite peržiūrėti:"
 
 msgid "Select a directory"
-msgstr ""
+msgstr "Pasirinkite katalogą"
 
 msgid "Select a directory from the bookmarks"
-msgstr ""
+msgstr "Pasirinkite katalogą iš žymių"
 
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Pasirinkite platintoją, iš kurio turi būti gaunami atvaizdai"
 
 #, python-format
 msgid "Select a location into which to extract '%s':"
-msgstr ""
+msgstr "Pasirinkite vietą, į kurią norite išskleisti \"%s\":"
 
 msgid "Select a movie"
 msgstr "Pasirinkite filmą"
@@ -15366,7 +15366,7 @@ msgid "Select additional files to backup"
 msgstr "Papildomi failai atsarginei kopijai"
 
 msgid "Select all related files"
-msgstr ""
+msgstr "Pasirinkite visus susijusius failus"
 
 msgid "Select an action to perform when the task has completed."
 msgstr "Pasirinkite veiksmą, kurį norite atlikti, kai užduotis bus baigta."
@@ -15387,7 +15387,7 @@ msgid "Select default EPG type..."
 msgstr "Pasirinkite numatytąjį EPG tipą..."
 
 msgid "Select default File Commander directory:"
-msgstr ""
+msgstr "Pasirinkite numatytąjį failų valdytojo katalogą:"
 
 msgid "Select destination for:"
 msgstr "Pasirinkite vietą:"
@@ -15399,7 +15399,7 @@ msgid "Select files/folders to backup"
 msgstr "Pasirinkite failus ir katalogus atsarginei kopijai"
 
 msgid "Select how long to display status messages."
-msgstr ""
+msgstr "Pasirinkite, kiek laiko rodyti būsenos pranešimus."
 
 msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
 msgstr "Pasirinkite, kiek laiko norite rodyti iššokantį mygtuko klaidos langą. Mygtuko įvestis vis tiek leidžiama, kol rodomas iššokantis langas."
@@ -18725,6 +18725,9 @@ msgstr "Numatytieji parametrai yra: budinimo laikas - 5 min ir laikmačio pradž
 
 msgid "The detailed information is intended for developers only."
 msgstr "Išsami informacija skirta tik kūrėjams."
+
+msgid "The directory/file no longer exists."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -23413,6 +23416,18 @@ msgstr "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo va
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Klaida: šakninės failų sistemos negalima nukopijuoti!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Klaida: šakninės failų sistemos negalima ištrinti!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Klaida: šakninės failų sistemos negalima perkelti!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Klaida: šakninės failų sistemos negalima pervardyti!"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Virtualios klaviatūros funkcijos"
