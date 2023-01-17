@@ -1495,7 +1495,7 @@ class RecordTimerEdit(Setup):
 			device = stat(self.timerLocation.value).st_dev
 			if device in DEFAULT_INHIBIT_DEVICES:
 				self.setFootnote(_("Warning: Recordings should not be stored on the Flash disk!"))
-			else:
+			elif config.recording.timerviewshowfreespace.value:
 				status = statvfs(self.timerLocation.value)
 				total = status.f_blocks * status.f_bsize
 				free = status.f_bavail * status.f_bsize
