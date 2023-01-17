@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2023-01-05 04:50+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-16 05:52+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -2895,13 +2895,13 @@ msgid "Automatically put the TV in standby whenever the receiver goes into stand
 msgstr "Metti automaticamente la TV in standby ogni volta che il ricevitore va in standby o spegnimento."
 
 msgid "Automatically start time shift after"
-msgstr "Avvio automaticamente timeshift dopo"
+msgstr "Avvia automaticamente il time shift dopo"
 
 msgid "Automatically turn on external subtitles"
-msgstr "Attivare automaticamente i sottotitoli esterni"
+msgstr "Attiva automaticamente i sottotitoli esterni"
 
 msgid "Automatically update Client/Server View"
-msgstr "Aggiorna automaticamente la visualizzazione client e server"
+msgstr "Aggiorna automaticamente la vista client/server"
 
 msgid "Autostart"
 msgstr "Avvio automatico"
@@ -2916,7 +2916,7 @@ msgid "Available locales are:"
 msgstr "Le impostazioni locali disponibili sono:"
 
 msgid "Available shares:"
-msgstr "Scambi disponibili:"
+msgstr "Condivisioni disponibili:"
 
 msgid "Avaric"
 msgstr "Avarico"
@@ -2959,10 +2959,10 @@ msgid "BLUE button"
 msgstr "Tasto BLU"
 
 msgid "BLUE long"
-msgstr "Blu lungo"
+msgstr "BLU lungo"
 
 msgid "BLUE switch: BLUE/BLUE long"
-msgstr "BluSwitch: Blu-Corto /Blu-lungo"
+msgstr "Interruttore BLU: BLU/BLU lungo"
 
 msgid "BT 2020 CL"
 msgstr "BT 2020 CL"
@@ -5789,10 +5789,6 @@ msgstr "Elimina"
 msgid "Delete %s?"
 msgstr "Eliminare %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "Eliminare '%s'?"
-
 msgid "Delete Confirmation"
 msgstr "Conferma eliminazione"
 
@@ -5895,11 +5891,16 @@ msgstr "Elimina servizio attualmente evidenziato dall'elenco Offset volume"
 msgid "Delete the currently selected timer"
 msgstr "Elimina timer attualmente selezionato"
 
-msgid "Delete the selected directories/files?"
-msgstr "Eliminare cartelle/file selezionati?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr "Eliminare la cartella/file '%s'?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Elimina immagine selezionata memorizzata localmente"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr "Eliminare queste cartelle/file %d?"
 
 msgid "Delete this tag"
 msgstr "Elimina questo tag"
@@ -7469,7 +7470,7 @@ msgstr "Errore: non è possibile eseguire '%s' su '%s'!"
 
 #, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
-msgstr "Errore: Programma '%s' non installato e il pacchetto contenente questo programma è sconosciuto!"
+msgstr "Errore: programma '%s' non installato e il pacchetto contenente questo programma è sconosciuto!"
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
@@ -7486,17 +7487,14 @@ msgstr "Errore: La nuova password non può essere vuota!"
 msgid "Error: The path '%s' already exists!"
 msgstr "Errore: il percorso '%s' esiste già!"
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Errore: il file system root non può essere copiato!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr "Errore: il file system root e le cartelle di sistema non possono essere cancellati!"
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Errore: il file system root non può essere eliminato!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr "Errore: il file system root e le cartelle di sistema non possono essere spostati!"
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Errore: il file system root non può essere spostato!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Errore: il file system root non può essere rinominato!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr "Errore: il file system root e le cartelle di sistema non possono essere rinominati!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9019,9 +9017,6 @@ msgstr "Priorità I/O per gli script"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nuovo modello"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "IMDb Details"
 msgstr "Dettagli IMDb"
 
@@ -9846,6 +9841,9 @@ msgstr "File del kernel"
 
 msgid "Kernel version"
 msgstr "Versione kernel"
+
+msgid "Key"
+msgstr "Chiave"
 
 msgid "Keyboard"
 msgstr "Tastiera"
@@ -11885,10 +11883,10 @@ msgid ""
 "Free Space: %sMB\n"
 "Path: %s"
 msgstr ""
-"Spazio libero insufficiente su hdd!\n"
+"Spazio libero su disco insufficiente!\n"
 "\n"
-"DimensioneFile: %sMB\n"
-"SpazioLibero: %sMB\n"
+"Dimensione file: %s MB\n"
+"Spazio libero: %s MB\n"
 "Percorso: %s"
 
 msgid "Not required"
@@ -17676,7 +17674,7 @@ msgid "Start"
 msgstr "Avvio"
 
 msgid "Start Auto Refresh"
-msgstr "Auto aggiorna On"
+msgstr "Auto aggiorna ON"
 
 msgid "Start Kodi"
 msgstr "Avvia Kodi"
@@ -17797,7 +17795,7 @@ msgid "Stop"
 msgstr "Stop"
 
 msgid "Stop Auto Refresh"
-msgstr "Auto aggiorna Off"
+msgstr "Auto aggiorna OFF"
 
 msgid "Stop PiP"
 msgstr "Chiudere PiP"
@@ -18271,7 +18269,7 @@ msgid "TEXT"
 msgstr "TESTO"
 
 msgid "TRANSLATOR_INFO"
-msgstr "per suggerimenti e correzioni contattami per mail"
+msgstr "per suggerimenti e correzioni mapi68@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "File TS troppo grande per ISO9660 livello 1!"
@@ -18673,6 +18671,9 @@ msgstr "Le impostazioni predefinite sono: tempo di risveglio 5 minuti prima e in
 msgid "The detailed information is intended for developers only."
 msgstr "Le informazioni dettagliate sono destinate esclusivamente agli sviluppatori."
 
+msgid "The directory/file no longer exists."
+msgstr "La cartella/file non esiste più."
+
 #, python-format
 msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
@@ -19013,7 +19014,7 @@ msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Questa opzione consente di abilitare il dejagging dello scaler verticale."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
-msgstr "Questa opzione consente di impostare la visualizzazione del layout (Testo o Grafica)."
+msgstr "Questa opzione consente di impostare la visualizzazione del layout (testo o grafica)."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Questa opzione consente di spegnere il display."
@@ -19499,7 +19500,7 @@ msgid "Toggle aspect ratio..."
 msgstr "Commuta proporzioni..."
 
 msgid "Toggle auto refresh On/Off"
-msgstr "Attiva o disattiva l'aggiornamento automatico"
+msgstr "Attiva/disattiva aggiornamento automatico"
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Alternare elenchi bouquet/EPG"
@@ -23359,6 +23360,28 @@ msgstr "il tuo %s %s potrebbe essere inutilizzabile ora. Consulta il manuale per
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "Eliminare '%s'?"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "Eliminare cartelle/file selezionati?"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Errore: il file system root non può essere copiato!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Errore: il file system root non può essere eliminato!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Errore: il file system root non può essere spostato!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Errore: il file system root non può essere rinominato!"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Funzioni della tastiera virtuale"

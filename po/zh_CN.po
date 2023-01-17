@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
 "PO-Revision-Date: 2022-11-22 18:20+0000\n"
 "Last-Translator: tzyy1970 <haotzyy1970@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -5793,10 +5793,6 @@ msgstr "删除"
 msgid "Delete %s?"
 msgstr "是否删除 %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr ""
-
 msgid "Delete Confirmation"
 msgstr "确认删除"
 
@@ -5899,10 +5895,15 @@ msgstr ""
 msgid "Delete the currently selected timer"
 msgstr ""
 
-msgid "Delete the selected directories/files?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+#, python-format
+msgid "Delete these %d directories/files?"
 msgstr ""
 
 msgid "Delete this tag"
@@ -7488,16 +7489,13 @@ msgstr ""
 msgid "Error: The path '%s' already exists!"
 msgstr "路径 %s 已存在."
 
-msgid "Error: The root file system can not be copied!"
+msgid "Error: The root file system and system directories can't be deleted!"
 msgstr ""
 
-msgid "Error: The root file system can not be deleted!"
+msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
-msgid "Error: The root file system can not be moved!"
-msgstr ""
-
-msgid "Error: The root file system can not be renamed!"
+msgid "Error: The root file system and system directories can't be renamed!"
 msgstr ""
 
 #, python-format
@@ -9021,9 +9019,6 @@ msgstr ""
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11新款"
 
-msgid "ID"
-msgstr ""
-
 msgid "IMDb Details"
 msgstr "IMDB详情"
 
@@ -9848,6 +9843,9 @@ msgstr "内核文件"
 
 msgid "Kernel version"
 msgstr "内核版本"
+
+msgid "Key"
+msgstr ""
 
 msgid "Keyboard"
 msgstr "键盘"
@@ -18665,6 +18663,9 @@ msgstr "默认设置为唤醒时间-5分钟和定时器开始时间+5分钟.此�
 
 msgid "The detailed information is intended for developers only."
 msgstr "详细信息仅供开发人员使用."
+
+msgid "The directory/file no longer exists."
+msgstr ""
 
 #, python-format
 msgid ""

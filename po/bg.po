@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -5786,10 +5786,6 @@ msgstr "Изтрий"
 msgid "Delete %s?"
 msgstr "Изтриване на% s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr ""
-
 msgid "Delete Confirmation"
 msgstr "Изтриване на потвърждението"
 
@@ -5892,10 +5888,15 @@ msgstr ""
 msgid "Delete the currently selected timer"
 msgstr ""
 
-msgid "Delete the selected directories/files?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+#, python-format
+msgid "Delete these %d directories/files?"
 msgstr ""
 
 msgid "Delete this tag"
@@ -7481,16 +7482,13 @@ msgstr "Грешка: Новата парола може да не е празн
 msgid "Error: The path '%s' already exists!"
 msgstr "Пътят %s вeче съществува."
 
-msgid "Error: The root file system can not be copied!"
+msgid "Error: The root file system and system directories can't be deleted!"
 msgstr ""
 
-msgid "Error: The root file system can not be deleted!"
+msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
-msgid "Error: The root file system can not be moved!"
-msgstr ""
-
-msgid "Error: The root file system can not be renamed!"
+msgid "Error: The root file system and system directories can't be renamed!"
 msgstr ""
 
 #, python-format
@@ -9014,9 +9012,6 @@ msgstr ""
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
-msgid "ID"
-msgstr ""
-
 msgid "IMDb Details"
 msgstr "IMDb Детайли"
 
@@ -9838,6 +9833,9 @@ msgstr "Файл на ядрото"
 
 msgid "Kernel version"
 msgstr "Версия на ядрото"
+
+msgid "Key"
+msgstr ""
 
 msgid "Keyboard"
 msgstr "Клавиатура"
@@ -18658,6 +18656,9 @@ msgstr "Настройките по подразбиране са времето
 
 msgid "The detailed information is intended for developers only."
 msgstr "Подробната информация е предназначена само за разработчици."
+
+msgid "The directory/file no longer exists."
+msgstr ""
 
 #, python-format
 msgid ""

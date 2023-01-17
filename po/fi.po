@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2023-01-01 18:05+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-15 15:46+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -5800,10 +5800,6 @@ msgstr "Poista"
 msgid "Delete %s?"
 msgstr "Poistetaanko %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "Poistetaanko %s?"
-
 msgid "Delete Confirmation"
 msgstr "Poistamisen vahvistuskysely"
 
@@ -5906,11 +5902,16 @@ msgstr "Poista nykyinen korostettu kanavan äänen voimakkuuden Offsets listasta
 msgid "Delete the currently selected timer"
 msgstr "Poistaaksesi vain valittu ajastus"
 
-msgid "Delete the selected directories/files?"
-msgstr "Poistetaanko valitut hakemistot/tiedostot?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr "Poistetaanko hakemisto/tiedosto '%s'?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Poista paikallisesti tallennettu ohjelmisto"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr "Poista nämä %d hakemistot/tiedostot?"
 
 msgid "Delete this tag"
 msgstr "Poista tämä tunniste"
@@ -7499,17 +7500,14 @@ msgstr "Virhe: Uusi salasana ei voi olla tyhjä!"
 msgid "Error: The path '%s' already exists!"
 msgstr "Hakemisto %s on jo olemassa."
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Virhe: Root tiedosto järjestelmää ei voi kopioida!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr "Virhe: Tiedostojärjestelmää ja järjestelmähakemistoja ei voi poistaa!"
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Virhe: Root tiedostojärjestelmää ei voi poistaa!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr "Virhe: Tiedostojärjestelmää ja järjestelmähakemistoja ei voi siirtää!"
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Virhe: Root tiedosto järjestelmää ei voi siirtää!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Virhe: Root tiedostojärjestelmää ei voi uudelleen nimetä!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr "Virhe: Tiedostojärjestelmää ja järjestelmähakemistoja ei voi nimetä uudelleen!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9032,9 +9030,6 @@ msgstr "I/O-prioriteetti skripteille"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 uusi malli"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "IMDb Details"
 msgstr "IMDb Lisätiedot"
 
@@ -9864,6 +9859,9 @@ msgstr "Kerneli tiedosto"
 
 msgid "Kernel version"
 msgstr "Kernel tiedot"
+
+msgid "Key"
+msgstr "Avain"
 
 msgid "Keyboard"
 msgstr "Näppäimistö"
@@ -18715,6 +18713,9 @@ msgstr "Vakioasetukset ovat herätysaika - 5 minuuttia ja ajastimen käynnistys 
 msgid "The detailed information is intended for developers only."
 msgstr "Yksityiskohtaiset tiedot on tarkoitettu vain kehittäjille."
 
+msgid "The directory/file no longer exists."
+msgstr "Hakemistoa/tiedostoa ei ole enää."
+
 #, python-format
 msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
@@ -23414,6 +23415,28 @@ msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita enne
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "Poistetaanko %s?"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "Poistetaanko valitut hakemistot/tiedostot?"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Virhe: Root tiedosto järjestelmää ei voi kopioida!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Virhe: Root tiedostojärjestelmää ei voi poistaa!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Virhe: Root tiedosto järjestelmää ei voi siirtää!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Virhe: Root tiedostojärjestelmää ei voi uudelleen nimetä!"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "History Zap..."
 #~ msgstr "Kanavanvaihto Historia..."

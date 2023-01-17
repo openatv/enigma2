@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2023-01-03 05:49+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-10 04:21+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -5906,10 +5906,6 @@ msgstr "Verwijderen"
 msgid "Delete %s?"
 msgstr "Verwijder %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "'%s' verwijderen?"
-
 msgid "Delete Confirmation"
 msgstr "Bevestig verwijderen"
 
@@ -6014,11 +6010,16 @@ msgstr "Verwijder de nu geselecteerde zender van de lijst met Volume Offsets "
 msgid "Delete the currently selected timer"
 msgstr "De geselecteerde timer verwijderen"
 
-msgid "Delete the selected directories/files?"
-msgstr "De geselecteerde mappen/bestanden verwijderen?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr "De map/het bestand '%s' verwijderen?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Verwijder het geselecteerde lokaal opgeslagen image"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr "Deze %d mappen/bestanden verwijderen?"
 
 msgid "Delete this tag"
 msgstr "Verwijder deze tag"
@@ -7617,17 +7618,14 @@ msgstr "Fout: Het nieuwe wachtwoord mag niet leeg zijn!"
 msgid "Error: The path '%s' already exists!"
 msgstr "Fout: Het pad %s bestaat al!"
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Fout: Het root-bestandssysteem kan niet worden gekopieerd!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr "Fout: Het root-bestandssysteem en de systeemmappen kunnen niet worden verwijderd!"
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Fout: Het root-bestandssysteem kan niet worden verwijderd!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr "Fout: Het root-bestandssysteem en de systeemmappen kunnen niet worden verplaatst!"
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Fout: Het root-bestandssysteem kan niet worden verplaatst!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Fout: het rootbestandssysteem kan niet worden hernoemd!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr "Fout: Het root-bestandssysteem en de systeemmappen kunnen niet worden hernoemd!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9153,9 +9151,6 @@ msgstr "I/O prioriteit voor scripts"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nieuw Model"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "IMDb Details"
 msgstr "IMDb details"
 
@@ -9984,6 +9979,9 @@ msgstr "Kernel bestand"
 
 msgid "Kernel version"
 msgstr "Kernel versie"
+
+msgid "Key"
+msgstr "Sleutel"
 
 msgid "Keyboard"
 msgstr "Toetsenbord"
@@ -18852,6 +18850,9 @@ msgstr "De standaard instelling is voor de ontwaaktijd - 5 minuten en timer star
 msgid "The detailed information is intended for developers only."
 msgstr "Deze gedetailleerde informatie is alleen voor developers bedoeld."
 
+msgid "The directory/file no longer exists."
+msgstr "De map/het bestand bestaat niet meer."
+
 #, python-format
 msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
@@ -23600,6 +23601,28 @@ msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voor
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "'%s' verwijderen?"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "De geselecteerde mappen/bestanden verwijderen?"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Fout: Het root-bestandssysteem kan niet worden gekopieerd!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Fout: Het root-bestandssysteem kan niet worden verwijderd!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Fout: Het root-bestandssysteem kan niet worden verplaatst!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Fout: het rootbestandssysteem kan niet worden hernoemd!"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Virtueel toetsenbord functies"

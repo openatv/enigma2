@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
-"PO-Revision-Date: 2023-01-03 10:12+0000\n"
+"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"PO-Revision-Date: 2023-01-11 17:36+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -5811,10 +5811,6 @@ msgstr "Smazat"
 msgid "Delete %s?"
 msgstr "Smazat %s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr "Smazat '%s'?"
-
 msgid "Delete Confirmation"
 msgstr "Smazat potvrzení"
 
@@ -5917,11 +5913,16 @@ msgstr "Smaže aktuálně zvýrazněnou službu ze seznamu Posunutí hlasitosti"
 msgid "Delete the currently selected timer"
 msgstr "Odstraní aktuálně vybraný časovač"
 
-msgid "Delete the selected directories/files?"
-msgstr "Smazat vybrané adresáře/soubory?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
+msgstr "Smazat adresář/soubor '%s'?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Odstraní vybraný lokálně uložený obrázek"
+
+#, python-format
+msgid "Delete these %d directories/files?"
+msgstr "Smazat těchto %d adresářů/souborů?"
 
 msgid "Delete this tag"
 msgstr "Smazat tuto značku"
@@ -7511,17 +7512,14 @@ msgstr "Chyba: Nové heslo nesmí být prázdné!"
 msgid "Error: The path '%s' already exists!"
 msgstr "Chyba: Cesta '%s' již existuje!"
 
-msgid "Error: The root file system can not be copied!"
-msgstr "Chyba: Kořenový souborový systém nelze zkopírovat!"
+msgid "Error: The root file system and system directories can't be deleted!"
+msgstr "Chyba: Kořenový souborový systém a systémové adresáře nelze odstranit!"
 
-msgid "Error: The root file system can not be deleted!"
-msgstr "Chyba: Kořenový souborový systém nelze odstranit!"
+msgid "Error: The root file system and system directories can't be moved!"
+msgstr "Chyba: Kořenový souborový systém a systémové adresáře nelze přesunout!"
 
-msgid "Error: The root file system can not be moved!"
-msgstr "Chyba: Kořenový souborový systém nelze přesunout!"
-
-msgid "Error: The root file system can not be renamed!"
-msgstr "Chyba: Kořenový souborový systém nelze přejmenovat!"
+msgid "Error: The root file system and system directories can't be renamed!"
+msgstr "Chyba: Kořenový souborový systém a systémové adresáře nelze přejmenovat!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9044,9 +9042,6 @@ msgstr "Priorita I/O pro skripty"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "IMDb Details"
 msgstr "IMDb podrobnosti"
 
@@ -9871,6 +9866,9 @@ msgstr "Soubor jádra"
 
 msgid "Kernel version"
 msgstr "Verze jádra"
+
+msgid "Key"
+msgstr "Klíč"
 
 msgid "Keyboard"
 msgstr "Klávesnice"
@@ -18703,6 +18701,9 @@ msgstr "Výchozí nastavení je čas buzení - 5 minut a čas začátku časova�
 msgid "The detailed information is intended for developers only."
 msgstr "Podrobné informace jsou určeny pouze pro vývojáře."
 
+msgid "The directory/file no longer exists."
+msgstr "Adresář/soubor již neexistuje."
+
 #, python-format
 msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
@@ -23390,6 +23391,28 @@ msgstr "vaše %s %s je nyní možná nepoužitelné. Před restartováním vaše
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Delete '%s'?"
+#~ msgstr "Smazat '%s'?"
+
+#~ msgid "Delete the selected directories/files?"
+#~ msgstr "Smazat vybrané adresáře/soubory?"
+
+#~ msgid "Error: The root file system can not be copied!"
+#~ msgstr "Chyba: Kořenový souborový systém nelze zkopírovat!"
+
+#~ msgid "Error: The root file system can not be deleted!"
+#~ msgstr "Chyba: Kořenový souborový systém nelze odstranit!"
+
+#~ msgid "Error: The root file system can not be moved!"
+#~ msgstr "Chyba: Kořenový souborový systém nelze přesunout!"
+
+#~ msgid "Error: The root file system can not be renamed!"
+#~ msgstr "Chyba: Kořenový souborový systém nelze přejmenovat!"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Funkce virtuální klávesnice"
