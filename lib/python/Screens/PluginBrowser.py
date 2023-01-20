@@ -415,7 +415,7 @@ class PluginDownloadBrowser(Screen):
 			if self.opkgObj.currentCommand == OpkgComponent.CMD_UPDATE:
 				self.opkgObj.startCmd(OpkgComponent.CMD_INFO)
 			elif self.opkgObj.currentCommand == OpkgComponent.CMD_INFO:
-				pluginlist = self.opkgObj.parseInfo()
+				pluginlist = param
 				self.fillPluginList(pluginlist)
 		elif event == OpkgComponent.EVENT_ERROR:
 			return
