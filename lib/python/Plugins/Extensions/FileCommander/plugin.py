@@ -317,8 +317,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"top": (self.keyGoTop, _("Move to first line / screen")),
 			"pageUp": (self.keyGoPageUp, _("Move up a screen")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
-			"goleft": (self.keyGoLeftColumn, _("Switch to the left column")),
-			"goright": (self.keyGoRightColumn, _("Switch to the right column")),
+			"panelLeft": (self.keyGoLeftColumn, _("Switch to the left column")),
+			"panelRight": (self.keyGoRightColumn, _("Switch to the right column")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a screen")),
 			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
@@ -1443,7 +1443,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				try:
 					rename(normpath(path), newPath)
 				except OSError as err:
-					self.session.open(MessageBox, _("Error %d: Unable to rename file/directory '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+					self.session.open(MessageBox, _("Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 				if isdir(newPath):
 					newPath = pathjoin(newPath, "")
 				self.sourceColumn.refresh(newPath)
@@ -2612,7 +2612,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Delete Line"))
 		self["key_blue"] = StaticText(_("Insert Line"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions", "MenuActions"], {
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions", "FileCommanderTextActions"], {
 			"cancel": (self.keyCancel, _("Exit editor and discard any changes")),
 			"ok": (self.keyEdit, _("Edit current line")),
 			"red": (self.keyCancel, _("Exit editor and discard any changes")),
@@ -2625,7 +2625,10 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 			"down": (self["data"].goLineDown, _("Move down a line")),
 			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
 			"bottom": (self["data"].goBottom, _("Move to last line / screen")),
-			"menu": (self.keyMenu, _("Open context menu with additional actions")),
+			"bluelong": (self.keyDuplicate, _("Duplicate the current line")),
+			"yellowlong": (self.keyRemoveDuplicateLines, _("Remove all duplicated lines like the selected")),
+			"greenlong": (self.keyRemoveEmptyLines, _("Remove empty lines")),
+			"text": (self.keyText, _("Open file sort action choices")),
 		}, prio=0, description=_("File Commander Text Editor Actions"))
 		self["moveUpAction"] = HelpableActionMap(self, ["NavigationActions"], {
 			"first": (self.keyMoveLineUp, _("Move the current line up")),
@@ -2664,28 +2667,39 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		if answer:
 			self.close()
 
-	def keyMenu(self):
-		def keyMenuCallback(answer):
-			match answer:
-				case "CLONE":
-					self.data.insert(self["data"].getCurrentIndex(), self["data"].getCurrent())
-				case "SORTA":
-					self.data.sort()
-				case "SORTD":
-					self.data.sort(reverse=True)
-				case "":
-					return
-			self["data"].setList(self.data)
-			self.isChanged = True
+	def keyDuplicate(self):
+		self.data.insert(self["data"].getCurrentIndex(), self["data"].getCurrent())
+		self["data"].setList(self.data)
+		self.isChanged = True
 
-		msg = [_("Please select the action for line number %d.") % (self["data"].getCurrentIndex() + 1)]
+	def keyRemoveDuplicateLines(self):
+		line = self["data"].getCurrent()
+		self.data = [x for x in self.data if x != line]
+		self.data.insert(self["data"].getCurrentIndex(), line)
+		self["data"].setList(self.data)
+		self.isChanged = True
+
+	def keyRemoveEmptyLines(self):
+		self.data = [x for x in self.data if x]
+		self["data"].setList(self.data)
+		self.isChanged = True
+
+	def keyText(self):
+		def keyTextCallback(answer):
+			if answer:
+				if answer == "SORTA":
+					self.data.sort()
+				elif answer == "SORTD":
+					self.data.sort(reverse=True)
+				self["data"].setList(self.data)
+				self.isChanged = True
+
+		msg = [_("Select the sort order for the file lines.")]
 		choiceList = [
-			(_("Cancel"), ""),
-			(_("Clone the highlighted line"), "CLONE"),
-			(_("Sort all lines ascending"), "SORTA"),
-			(_("Sort all lines descending"), "SORTD")
+			(_("Ascending"), "SORTA"),
+			(_("Descending"), "SORTD")
 		]
-		self.session.openWithCallback(keyMenuCallback, MessageBox, "\n".join(msg), list=choiceList, default=0, windowTitle=self.getTitle())
+		self.session.openWithCallback(keyTextCallback, MessageBox, "\n".join(msg), list=choiceList, default=0, windowTitle=self.getTitle())
 
 	def keySave(self):
 		if self.isChanged:
