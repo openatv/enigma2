@@ -92,7 +92,7 @@ class Dish(Screen):
 		self.rotor_pos = self.cur_orbpos
 		self.total_time = self.getTurnTime(prev_rotor_pos, self.rotor_pos, self.cur_polar)
 		self.turn_time = self.total_time
-		self.close_timeout = round(self.total_time * 1.25) # aded 25%
+		self.close_timeout = round(self.total_time * 1.25)  # aded 25%
 
 		self["posFrom"].setText(self.OrbToStr(prev_rotor_pos))
 		self["posGoto"].setText(self.OrbToStr(self.rotor_pos))
@@ -146,7 +146,7 @@ class Dish(Screen):
 		if self.pmt_timeout >= 0:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
-			pmt = info and info.getInfo(iServiceInformation.sPMTPID)
+			pmt = info and info.getInfo(iServiceInformation.sPMTPID) or -1
 			if pmt >= 0:
 				print("[Dish] tuned, closing...")
 				self.__toHide()
@@ -169,11 +169,11 @@ class Dish(Screen):
 	def DishpixmapVisibilityChanged(self, state):
 		if self.showdish == "flashing":
 			if state:
-				self["Dishpixmap"].show() # show dish picture
+				self["Dishpixmap"].show()  # show dish picture
 			else:
-				self["Dishpixmap"].hide() # hide dish picture
+				self["Dishpixmap"].hide()  # hide dish picture
 		else:
-			self["Dishpixmap"].show() # show dish picture
+			self["Dishpixmap"].show()  # show dish picture
 
 	def rotorPositionChanged(self, configElement=None):
 		if self.cur_orbpos != config.misc.lastrotorposition.value != INVALID_POSITION:
@@ -196,7 +196,7 @@ class Dish(Screen):
 			if nimConfig.configMode.value == "simple":
 				if "positioner" in nimConfig.diseqcMode.value:
 					nim = config.Nims[tuner].dvbs
-					if pol in (1, 3): # vertical
+					if pol in (1, 3):  # vertical
 						return nim.turningspeedV.float
 					return nim.turningspeedH.float
 			elif nimConfig.configMode.value == "advanced":
@@ -208,7 +208,7 @@ class Dish(Screen):
 						currLnb = lnbnum and nimConfig.advanced.lnb[lnbnum]
 						diseqcmode = currLnb and currLnb.diseqcMode.value or ""
 						if diseqcmode == "1_2":
-							if pol in (1, 3): # vertical
+							if pol in (1, 3):  # vertical
 								return currLnb.turningspeedV.float
 							return currLnb.turningspeedH.float
 		if pol in (1, 3):
@@ -342,7 +342,7 @@ class Dishpip(Dish, Screen):
 		self.rotor_pos = self.cur_orbpos
 		self.total_time = self.getTurnTime(prev_rotor_pos, self.rotor_pos, self.cur_polar)
 		self.turn_time = self.total_time
-		self.close_timeout = round(self.total_time * 1.25) # aded 25%
+		self.close_timeout = round(self.total_time * 1.25)  # aded 25%
 		self["posFrom"].setText(self.OrbToStr(prev_rotor_pos))
 		self["posGoto"].setText(self.OrbToStr(self.rotor_pos))
 		self["tunerName"].setText(self.getTunerName())
