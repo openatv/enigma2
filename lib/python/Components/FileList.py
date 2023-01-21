@@ -257,7 +257,7 @@ class FileListBase(MenuList):
 			directories = self.sortList(directories, self.sortDirectories)
 			files = self.sortList(files, self.sortFiles)
 		else:
-			if isdir(directory):
+			if directory and isdir(directory):
 				try:
 					items = listdir(directory)
 					for item in items:
