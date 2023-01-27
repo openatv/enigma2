@@ -2749,7 +2749,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def performZap(self, sref):
 		def getBqRoot(reference):
 			reference = reference.toString()
-			if reference.startswith("1:0:2:") or reference.startswith("1:0:A:"):
+			isTV = True
+			if (reference.startswith("1:0:2:") or reference.startswith("1:0:A:")) and config.usage.e1like_radio_mode.value:
+				isTV = False
 				if config.usage.multibouquet.value:
 					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
 				else:
@@ -2759,54 +2761,44 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
 				else:
 					return singlebouquet_tv_ref
-			return eServiceReference(bqRootStr)
+			return (eServiceReference(bqRootStr), isTV)
+
+		def finalZap(isTV, servicepath):
+			self.clearPath()
+			if isTV:
+				config.tv.lastservice.value = sref.toString()
+				config.tv.lastroot.value = servicepath
+			else:
+				config.radio.lastservice.value = sref.toString()
+				config.radio.lastroot.value = servicepath
+			config.servicelist.lastmode.value = "tv" if isTV else "radio"
+			self.__onCreate()
+			self.addToHistory(sref)
+			self.close(sref)
+
+		def walk(serviceHandler, bouquet, level=0):
+			servicelist = serviceHandler.list(bouquet)
+			if servicelist is not None:
+				service = servicelist.getNext()
+				while service.valid():
+					if service.flags & eServiceReference.isDirectory:
+						if level == 0 and "userbouquet.LastScanned.tv" in service.toString():  # don't search in LastScanned
+							service = servicelist.getNext()
+							continue
+						found = walk(serviceHandler, service, level + 1)
+						if found:
+							return "%s;%s" % (bouquet.toString(), found)
+					elif service == sref:
+						return "%s;" % bouquet.toString()
+					service = servicelist.getNext()
+			return None
 
 		serviceHandler = eServiceCenter.getInstance()
-		rootBouquet = getBqRoot(sref)
-		bouquet = getBqRoot(sref)
-		bouquetList = serviceHandler.list(bouquet)
-		# We need a way out of the loop, if channel is not in bouquets.
-		bouquetCount = 0
-		bouquets = []
-		found = False
-		if bouquetList is not None:
-			while True:
-				bouquet = bouquetList.getNext()
-				# Can we make it easier, or find a way to make another way?
-				if bouquets == []:
-					bouquets.append(bouquet)
-				else:
-					for item in bouquets:
-						if item != bouquet:
-							bouquets.append(bouquet)
-						else:
-							bouquetCount += 1
-				if bouquetCount >= 5:  # TODO
-					break
-				if bouquet.flags & eServiceReference.isDirectory:
-					self.clearPath()
-					self.setRoot(bouquet)
-					servicelist = serviceHandler.list(bouquet)
-					if servicelist is not None:
-						serviceIterator = servicelist.getNext()
-						while serviceIterator.valid():
-							if sref == serviceIterator:
-								found = True
-								break
-							serviceIterator = servicelist.getNext()
-						if sref == serviceIterator:
-							found = True
-							break
-			if found:
-				self.enterPath(rootBouquet)
-				self.enterPath(bouquet)
-				self.saveRoot()
-				self.saveChannel(sref)
-				self.addToHistory(sref)
-
-		if found and config.usage.multibouquet.value:
-			self.servicelist.setCurrent(sref, True)
-			self.zap()
+		rootBouquet, isTV = getBqRoot(sref)
+		bouquet = rootBouquet
+		found = walk(serviceHandler, bouquet)
+		if found:
+			finalZap(isTV, found)
 		else:
 			self.switchToAll(sref)
 
