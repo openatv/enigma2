@@ -2765,6 +2765,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 		def finalZap(isTV, servicepath):
 			if "current" in servicepath:
+				self.saveChannel(sref)
 				self.setCurrentSelection(sref)
 				self.zap(enable_pipzap=True)
 				return
