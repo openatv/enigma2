@@ -2764,6 +2764,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			return (eServiceReference(bqRootStr), isTV)
 
 		def finalZap(isTV, servicepath):
+			if "current" in servicepath:
+				self.setCurrentSelection(sref)
+				self.zap(enable_pipzap=True)
+				return
 			self.clearPath()
 			if isTV:
 				config.tv.lastservice.value = sref.toString()
@@ -2789,7 +2793,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 						if found:
 							return "%s;%s" % (bouquet.toString(), found)
 					elif service == sref:
-						return "%s;" % bouquet.toString()
+						if bouquet != self.getRoot():
+							return "%s;" % bouquet.toString()
+						else:
+							return "current"  # fast zap if channel found in current bouquet
 					service = servicelist.getNext()
 			return None
 
