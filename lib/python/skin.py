@@ -379,7 +379,7 @@ def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
 		if "h" in val:
 			val = val.replace("h", "*%s" % fonts[font][2])
 		if "f" in val:
-			val = val.replace("f", "*%s" % getSkinFactor())
+			val = val.replace("f", "%s" % getSkinFactor())
 		try:
 			result = int(val)  # For speed try a simple number first.
 		except ValueError:
