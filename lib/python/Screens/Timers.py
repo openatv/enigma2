@@ -1251,15 +1251,12 @@ class PowerTimerEdit(Setup):
 			(1000, "1000")
 		])
 		self.timerNetIP = ConfigYesNo(default=self.timer.netip)
-		self.timerIPAddress = [x.strip() for x in self.timer.ipadress.split(",")]
-		self.timerNetIPCount = ConfigSelection(default=len(self.timerIPAddress), choices=[(x, str(x)) for x in range(1, 6)])
-		while len(self.timerIPAddress) < 6:
-			self.timerIPAddress.append("0.0.0.0")
-		self.timerIPAddress[0] = ConfigIP(default=[int(x) for x in self.timerIPAddress[0].split(".")])
-		self.timerIPAddress[1] = ConfigIP(default=[int(x) for x in self.timerIPAddress[1].split(".")])
-		self.timerIPAddress[2] = ConfigIP(default=[int(x) for x in self.timerIPAddress[2].split(".")])
-		self.timerIPAddress[3] = ConfigIP(default=[int(x) for x in self.timerIPAddress[3].split(".")])
-		self.timerIPAddress[4] = ConfigIP(default=[int(x) for x in self.timerIPAddress[4].split(".")])
+		timerIPAddress = [x.strip() for x in self.timer.ipadress.split(",")]
+		self.timerNetIPCount = ConfigSelection(default=len(timerIPAddress), choices=[(x, str(x)) for x in range(1, 6)])
+		self.timerIPAddress = []
+		for i in range(5):
+			ipAddress = timerIPAddress[i] if (len(timerIPAddress) > i and len(timerIPAddress[i].split(".")) == 4) else "0.0.0.0"
+			self.timerIPAddress.append(ConfigIP(default=[int(x) for x in ipAddress.split(".")]))
 		self.timerRepeatPeriod = ConfigSelection(default=repeated, choices=REPEAT_OPTIONS)
 		self.timerRepeatStartDate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=86400)
 		self.timerWeekday = ConfigSelection(default=weekday, choices=DAY_NAMES)
@@ -1354,6 +1351,14 @@ class PowerTimerEdit(Setup):
 				self.timer.end = self.getTimeStamp(now, self.timerEndTime.value)
 			if self.timer.end < self.timer.begin:  # If end is less than start then add 1 day to the end time.
 				self.timer.end += 86400
+		self.timer.nettraffic = self.timerNetTraffic.value
+		self.timer.trafficlimit = self.timerNetTrafficLimit.value
+		self.timer.netip = self.timerNetIP.value
+		ipAdresses = []
+		for i in range(self.timerNetIPCount.value):
+			ipAdresses.append(".".join("%d" % d for d in self.timerIPAddress[i].value))
+		self.timer.ipadress = ",".join(ipAdresses)
+
 		self.session.nav.PowerTimer.saveTimers()
 		for notifier in self.onSave:
 			notifier()
