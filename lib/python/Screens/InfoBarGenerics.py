@@ -3714,10 +3714,15 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
+		if not limitEvent:
+			end = begin + (60 * 60 * 24)  # 24h
+
 		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredInstantRecordPath())
 		recording.marginBefore = 0
 		recording.marginAfter = 0
 		recording.dontSave = True
+		recording.eventEnd = recording.end
+		recording.eventBegin = recording.end
 
 		if event is None or limitEvent == False:
 			recording.autoincrease = True
@@ -3825,17 +3830,14 @@ class InfoBarInstantRecord:
 			dlg.setTitle(_("Please change recording endtime"))
 
 	def TimeDateInputClosed(self, ret):
-		if len(ret) > 1:
-			if ret[0]:
-#				print "stopping recording at", strftime("%F %T", localtime(ret[1]))
-				if self.recording[self.selectedEntry].end != ret[1]:
-					self.recording[self.selectedEntry].autoincrease = False
-				self.recording[self.selectedEntry].end = ret[1]
-		#else:
-		#	if self.recording[self.selectedEntry].end != int(time()):
-		#		self.recording[self.selectedEntry].autoincrease = False
-		#	self.recording[self.selectedEntry].end = int(time())
-				self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
+		if len(ret) > 1 and ret[0]:
+			print("stop recording at %s " % strftime("%F %T", localtime(ret[1])))
+			entry = self.recording[self.selectedEntry]
+			if entry.end != ret[1]:
+				entry.autoincrease = False
+			entry.end = ret[1]
+			entry.eventEnd = entry.end
+			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
 		if entry is not None and entry >= 0:
@@ -3843,7 +3845,7 @@ class InfoBarInstantRecord:
 			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
 
 	def inputCallback(self, value):
-#		print "stopping recording after", int(value), "minutes."
+		print("stop recording after %s minutes." % int(value))
 		entry = self.recording[self.selectedEntry]
 		if value is not None:
 			value = value.replace(" ", "")
@@ -3854,10 +3856,6 @@ class InfoBarInstantRecord:
 			entry.end = int(time()) + 60 * int(value)
 			entry.eventBegin = entry.begin
 			entry.eventEnd = entry.end
-		#else:
-		#	if entry.end != int(time()):
-		#		entry.autoincrease = False
-		#	entry.end = int(time())
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def isTimerRecordRunning(self):
