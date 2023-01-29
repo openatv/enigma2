@@ -3845,9 +3845,9 @@ class InfoBarInstantRecord:
 			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
 
 	def inputCallback(self, value):
-		print("stop recording after %s minutes." % int(value))
 		entry = self.recording[self.selectedEntry]
 		if value is not None:
+			print("stop recording after %s minutes." % int(value))
 			value = value.replace(" ", "")
 			if value == "":
 				value = "0"
