@@ -3722,7 +3722,7 @@ class InfoBarInstantRecord:
 		recording.marginAfter = 0
 		recording.dontSave = True
 		recording.eventEnd = recording.end
-		recording.eventBegin = recording.end
+		recording.eventBegin = recording.begin
 
 		if event is None or limitEvent == False:
 			recording.autoincrease = True
