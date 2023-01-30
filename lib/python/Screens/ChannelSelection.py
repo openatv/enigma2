@@ -2755,12 +2755,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if config.usage.multibouquet.value:
 					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
 				else:
-					return singlebouquet_radio_ref
+					return (singlebouquet_radio_ref, False)
 			else:
 				if config.usage.multibouquet.value:
 					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
 				else:
-					return singlebouquet_tv_ref
+					return (singlebouquet_tv_ref, True)
 			return (eServiceReference(bqRootStr), isTV)
 
 		def finalZap(isTV, servicepath):
@@ -2769,17 +2769,21 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setCurrentSelection(sref)
 				self.zap(enable_pipzap=True)
 				return
+			if isTV and self.mode != 0:
+				self.setModeTv()
+				self.radioTV = 0
+			if not isTV and self.mode != 1:
+				self.setModeRadio()
+				self.radioTV = 1
 			self.clearPath()
-			if isTV:
-				config.tv.lastservice.value = sref.toString()
-				config.tv.lastroot.value = servicepath
-			else:
-				config.radio.lastservice.value = sref.toString()
-				config.radio.lastroot.value = servicepath
-			config.servicelist.lastmode.value = "tv" if isTV else "radio"
-			self.__onCreate()
+			for bouquet in servicepath.split(";"):
+				if bouquet:
+					self.enterPath(eServiceReference(bouquet))
+			self.setCurrentSelection(sref)
+			self.zap(enable_pipzap=True)
+			self.correctChannelNumber()
+			self.startRoot = bouquet
 			self.addToHistory(sref)
-			self.close(sref)
 
 		def walk(serviceHandler, bouquet, level=0):
 			servicelist = serviceHandler.list(bouquet)
@@ -2795,15 +2799,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 							return "%s;%s" % (bouquet.toString(), found)
 					elif service == sref:
 						if bouquet != self.getRoot():
-							return "%s;" % bouquet.toString()
+							if config.usage.multibouquet.value:
+								return "%s;" % bouquet.toString()
+							else:
+								return bouquet.toString()
 						else:
 							return "current"  # fast zap if channel found in current bouquet
 					service = servicelist.getNext()
 			return None
 
 		serviceHandler = eServiceCenter.getInstance()
-		rootBouquet, isTV = getBqRoot(sref)
-		bouquet = rootBouquet
+		bouquet, isTV = getBqRoot(sref)
 		found = walk(serviceHandler, bouquet)
 		if found:
 			finalZap(isTV, found)

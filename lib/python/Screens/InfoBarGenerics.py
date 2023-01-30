@@ -1279,7 +1279,7 @@ class InfoBarNumberZap:
 			self.selectAndStartService(service, bouquet)
 
 	def searchNumberHelperRecursive(self, serviceHandler, num, bouquet):
-		print("searchNumberHelperRecursive %s" % bouquet.toString())
+		# print("searchNumberHelperRecursive %s" % bouquet.toString())
 		servicelist = serviceHandler.list(bouquet)
 		if servicelist:
 			serviceIterator = servicelist.getNext()
