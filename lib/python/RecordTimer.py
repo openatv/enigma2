@@ -207,13 +207,13 @@ class RecordTimer(Timer):
 		begin = int(timerDom.get("begin"))
 		end = int(timerDom.get("end"))
 		justplay = int(timerDom.get("justplay") or "0")
-		marginBefore = int(timerDom.get("marginBefore") or "0")
+		marginBefore = int(timerDom.get("marginBefore") or "-1")
 		eventBegin = int(timerDom.get("eventBegin") or "0")
 		eventEnd = int(timerDom.get("eventEnd") or "0")
-		marginAfter = int(timerDom.get("marginAfter") or "0")
-		if marginBefore == 0:
+		marginAfter = int(timerDom.get("marginAfter") or "-1")
+		if marginBefore == -1:
 			marginBefore = (getattr(config.recording, "zap_margin_before" if justplay else "margin_before").value * 60)
-		if marginAfter == 0:
+		if marginAfter == -1:
 			marginAfter = (getattr(config.recording, "zap_margin_after" if justplay else "margin_after").value * 60)
 		if eventBegin == 0:
 			eventBegin = begin + marginBefore
