@@ -900,10 +900,8 @@ class RecordTimerEntry(TimerEntry, object):
 				else:
 					self.log(11, "Zapping.")
 					NavigationInstance.instance.isMovieplayerActive()
-					from Screens.ChannelSelection import ChannelSelection
-					ChannelSelectionInstance = ChannelSelection.instance
-					if ChannelSelectionInstance:
-						ChannelSelectionInstance.performZap(self.service_ref.ref)
+					if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
+						InfoBar.instance.servicelist.performZap(self.service_ref.ref)
 					else:
 						NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
@@ -1332,10 +1330,8 @@ class RecordTimerEntry(TimerEntry, object):
 			self.messageString += _("The TV was switched to the recording service!\n")
 			self.messageStringShow = True
 			# NavigationInstance.instance.stopUserServices()
-			from Screens.ChannelSelection import ChannelSelection
-			ChannelSelectionInstance = ChannelSelection.instance
-			if ChannelSelectionInstance:
-				ChannelSelectionInstance.performZap(self.service_ref.ref)
+			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
+				InfoBar.instance.servicelist.performZap(self.service_ref.ref)
 			else:
 				NavigationInstance.instance.playService(self.service_ref.ref)
 			self.justTriedFreeingTuner = True
