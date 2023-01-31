@@ -2360,6 +2360,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.session.pip.inactive()
 
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
+		print("DEBUG zap enable_pipzap:%s / preview_zap:%s" % (enable_pipzap, preview_zap))
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
 		wrappererror = None
@@ -2375,6 +2376,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			Tools.Notifications.AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
+			print("DEBUG zap enable_pipzap and self.dopipzap")
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
 				nref = self.session.pip.resolveAlternatePipService(nref)
@@ -2388,10 +2390,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif ref is None or ref != nref:
 			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
 		elif not preview_zap:
+			print("DEBUG zap not preview_zap")
 			self.saveRoot()
 			self.saveChannel(nref)
 			config.servicelist.lastmode.save()
 			self.setCurrentSelection(nref)
+			if self.startServiceRef:
+				print("DEBUG zap self.startServiceRef: %s / nref: %s" % (self.startServiceRef.toString(), nref.toString()))
+			else:
+				print("DEBUG zap self.startServiceRef: %s" % self.startServiceRef)
 			if self.startServiceRef is None or nref != self.startServiceRef:
 				self.addToHistory(nref)
 			self.rootChanged = False
@@ -2440,6 +2447,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		return "\n".join(result)
 
 	def addToHistory(self, ref):
+		print("DEBUG addToHistory self:%s / history:%s" % (hex(id(self)), hex(id(self.history))))
 		print("DEBUG addToHistory: %s" % ref.toString())
 		print("DEBUG addToHistory old: %s\n" % self.dumpHistory())
 
@@ -2767,9 +2775,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				servicelist.zap(enable_pipzap=True)
 				servicelist.correctChannelNumber()
 				servicelist.startRoot = bouquet
-				servicelist.addToHistory(sref)
+				if servicelist.dopipzap:
+					servicelist.addToHistory(sref)
 
 	def performZap(self, sref):
+		print("DEBUG performZap:%s" % sref.toString())
+
 		def getBqRoot(reference):
 			reference = reference.toString()
 			isTV = True
@@ -2791,6 +2802,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.saveChannel(sref)
 				self.setCurrentSelection(sref)
 				self.zap(enable_pipzap=True)
+				if self.dopipzap:
+					self.addToHistory(sref)
 				return
 			if isTV and self.mode != 0:
 				self.setModeTv()
@@ -2806,7 +2819,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.zap(enable_pipzap=True)
 			self.correctChannelNumber()
 			self.startRoot = bouquet
-			self.addToHistory(sref)
+			if self.dopipzap:
+				self.addToHistory(sref)
 
 		def walk(serviceHandler, bouquet, level=0):
 			servicelist = serviceHandler.list(bouquet)
@@ -2833,10 +2847,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 		serviceHandler = eServiceCenter.getInstance()
 		bouquet, isTV = getBqRoot(sref)
+		print("DEBUG performZap bouquet:%s" % bouquet.toString())
 		found = walk(serviceHandler, bouquet)
+		print("DEBUG performZap found:%s" % found)
 		if found:
 			finalZap(isTV, found)
 		else:
+			print("DEBUG performZap switchToAll")
 			self.switchToAll(sref)
 
 
