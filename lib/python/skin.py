@@ -399,7 +399,7 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 			size = int(size)
 		except ValueError:
 			try:
-				val = size.replace("f", "*%s" % getSkinFactor())
+				val = size.replace("f", "%s" % getSkinFactor())
 				size = int(eval(val))
 			except Exception as err:
 				print("[Skin] Error (%s - %s): Font size in '%s', evaluated to '%s', can't be processed!" % (type(err).__name__, err, value, val))
