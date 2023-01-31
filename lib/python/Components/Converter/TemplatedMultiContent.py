@@ -1,5 +1,7 @@
 from Components.Converter.StringList import StringList
+import re
 
+pattern = re.compile(r"(\d+\*f)")
 
 class TemplatedMultiContent(StringList):
 	"""Turns a python tuple list into a multi-content list which can be used in a listbox renderer."""
@@ -14,6 +16,8 @@ class TemplatedMultiContent(StringList):
 		del loc["self"]  # Cleanup locals a bit.
 		del loc["args"]
 		self.active_style = None
+		for x in set(pattern.findall(args)):
+			args = args.replace(x, '%s'%int(eval(x.replace("f", '%s'%f))))
 		self.template = eval(args, {}, loc)
 		self.scale = None
 		assert "fonts" in self.template, "templates must include a 'fonts' entry"
@@ -66,6 +70,7 @@ class TemplatedMultiContent(StringList):
 		fonts = []
 		for font in self.template["fonts"]:
 			fonts.append(gFont(font.family, int(font.pointSize * scaleFactorVertical)))
+
 		for content in template:
 			elments = list(content)
 			elments[1] = int(elments[1] * scaleFactorVertical)
