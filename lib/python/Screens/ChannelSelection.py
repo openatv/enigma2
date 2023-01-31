@@ -2427,10 +2427,26 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.new_service_played = False
 		return ret
 
+	def dumpPath(self, path):
+		return ",".join([x.toString() for x in path])
+
+	def dumpHistory(self):
+		serviceHandler = eServiceCenter.getInstance()
+		result = []
+		for x in self.history:
+			info = serviceHandler.info(x[-1])
+			name = info and info.getName(x[-1])
+			result.append("%s -> %s" % (self.dumpPath(x), name))
+		return "\n".join(result)
+
 	def addToHistory(self, ref):
+		print("DEBUG addToHistory: %s" % ref.toString())
+		print("DEBUG addToHistory old: %s\n" % self.dumpHistory())
+
 		if self.delhistpoint is not None:
 			x = self.delhistpoint
 			while x <= len(self.history) - 1:
+				print("DEBUG addToHistory A remove index:%s" % x)
 				del self.history[x]
 		self.delhistpoint = None
 
@@ -2442,15 +2458,18 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			x = 0
 			while x < hlen - 1:
 				if self.history[x][-1] == ref:
+					print("DEBUG addToHistory B remove index:%s" % x)
 					del self.history[x]
 					hlen -= 1
 				else:
 					x += 1
 
 			if hlen > HISTORYSIZE:
+				print("DEBUG addToHistory remove index:0")
 				del self.history[0]
 				hlen -= 1
 			self.history_pos = hlen - 1
+		print("DEBUG addToHistory new: %s\n" % self.dumpHistory())
 
 	def historyBack(self):
 		hlen = len(self.history)
@@ -2471,7 +2490,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setHistoryPath()
 
 	def setHistoryPath(self, doZap=True):
+		print("DEBUG setHistoryPath / self.history_pos:%s" % self.history_pos)
 		path = self.history[self.history_pos][:]
+		print("DEBUG setHistoryPath path:%s" % self.dumpPath(path))
 		ref = path.pop()
 		del self.servicePath[:]
 		self.servicePath += path
@@ -2490,6 +2511,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.saveChannel(ref)
 
 	def historyClear(self):
+		print("DEBUG historyClear")
 		if self and self.servicelist:
 			for i in list(range(0, len(self.history) - 1)):
 				del self.history[0]
@@ -2509,6 +2531,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			selpos = hlen - 1
 		serviceHandler = eServiceCenter.getInstance()
 		historylist = []
+		print("DEBUG historyZap list: %s\n" % self.dumpHistory())
 		for x in self.history:
 			info = serviceHandler.info(x[-1])
 			if info:
