@@ -1,7 +1,8 @@
 from bisect import insort
 from datetime import datetime
-from os import fsync, remove, rename, system
+from os import fsync, remove, rename
 from os.path import exists
+from subprocess import call
 from sys import maxsize
 from time import ctime, localtime, mktime, strftime, time
 
@@ -1049,8 +1050,8 @@ class PowerTimerEntry(TimerEntry, object):
 		retVal = False
 		if self.netip:
 			try:
-				for ip in [x.strip() in self.ipadress.split(",")]:
-					if not system("ping -q -w1 -c1 " + ip):
+				for ip in [x.strip() for x in self.ipadress.split(",")]:
+					if call(("/bin/ping -q -w1 -c1 %s" % ip).split(" ")) == 0:
 						retVal = True
 						break
 			except Exception:
