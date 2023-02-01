@@ -713,29 +713,7 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s, bool lock) // lock only affects
 				content_time_tables.erase(it);
 			}
 #endif
-			// remove this service's channel from lastupdated map
-			{
-				singleLock l(eEPGTransponderDataReader::last_channel_update_lock);
-				for (updateMap::iterator it = eEPGTransponderDataReader::getInstance()->m_channelLastUpdated.begin(); it != eEPGTransponderDataReader::getInstance()->m_channelLastUpdated.end(); )
-				{
-					const eDVBChannelID &chid = it->first;
-					if(chid.original_network_id == s.onid && chid.transport_stream_id == s.tsid)
-						it = eEPGTransponderDataReader::getInstance()->m_channelLastUpdated.erase(it);
-					else
-						++it;
-				}
-			}
-
-			singleLock m(eEPGTransponderDataReader::known_channel_lock);
-			for (ChannelMap::const_iterator it(eEPGTransponderDataReader::getInstance()->m_knownChannels.begin()); it != eEPGTransponderDataReader::getInstance()->m_knownChannels.end(); ++it)
-			{
-				const eDVBChannelID chid = it->second->channel->getChannelID();
-				if(chid.original_network_id == s.onid && chid.transport_stream_id == s.tsid)
-				{
-					it->second->abortEPG();
-					it->second->startChannel();
-				}
-			}
+			// TODO .. search corresponding channel for removed service and remove this channel from lastupdated map
 		}
 	}
 	else // clear complete EPG Cache
