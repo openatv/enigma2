@@ -237,7 +237,7 @@ class FileListBase(MenuList):
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					selected = False if self.multiSelect else None
 					self.fileList.append(self.fileListComponent(name=partition.description, path=pathjoin(path, ""), isDir=True, isLink=False, selected=selected))
-		elif self.useServiceRef:
+		elif self.useServiceRef and directory:
 			# Don't use "eServiceReference(string)" constructor as it doesn't allow ":" in the directory name.
 			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 			root.setPath(pathjoin(directory, ""))
