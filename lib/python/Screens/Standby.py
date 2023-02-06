@@ -274,8 +274,10 @@ class Standby2(Screen):
 		return StandbySummary
 
 	def stopService(self):
-		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.session.nav.stopService()
+		prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if prev_running_service:
+			self.prev_running_service = prev_running_service
+			self.session.nav.stopService()
 
 
 class Standby(Standby2):
