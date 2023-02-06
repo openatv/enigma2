@@ -2712,31 +2712,25 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.revertMode = None
 
 	def switchToAll(self, sref):
-		refStr = sref.toString()
 		if Screens.InfoBar.InfoBar.instance:
 			servicelist = Screens.InfoBar.InfoBar.instance.servicelist
 			if servicelist:
-				if refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:"):
+				refStr = sref.toString()
+				if (refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:")) and config.usage.e1like_radio_mode.value:
+					typestr = "radio"
 					if servicelist.mode != 1:
 						servicelist.setModeRadio()
 						servicelist.radioTV = 1
-					servicelist.clearPath()
-					rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet")
-					if config.usage.multibouquet.value:
-						bouquet = eServiceReference("%s ORDER BY name" % service_types_radio)
-					else:
-						bouquet = singlebouquet_radio_ref
+					bouquet = eServiceReference("%s ORDER BY name" % service_types_radio)
 				else:
+					typestr = "tv"
 					if servicelist.mode != 0:
 						servicelist.setModeTv()
 						servicelist.radioTV = 0
-					servicelist.clearPath()
-					rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet")
-					if config.usage.multibouquet.value:
-						bouquet = eServiceReference("%s ORDER BY name" % service_types_tv)
-					else:
-						bouquet = singlebouquet_tv_ref
+					bouquet = eServiceReference("%s ORDER BY name" % service_types_tv)
+				servicelist.clearPath()
 				if config.usage.multibouquet.value:
+					rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.%s\" ORDER BY bouquet" % typestr)
 					if servicelist.bouquet_root != rootBouquet:
 						servicelist.bouquet_root = rootBouquet
 				servicelist.enterPath(bouquet)
