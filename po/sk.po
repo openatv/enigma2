@@ -1,12 +1,12 @@
 # NickerSK <nickersk@gmail.com>, 2021, 2022.
 # Marian-SK <podnety@mojepreklady.net>, 2021.
-# Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022.
+# Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-09 15:18+0000\n"
-"PO-Revision-Date: 2022-12-04 20:43+0000\n"
+"PO-Revision-Date: 2023-01-30 12:35+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 msgid ""
 "\n"
@@ -2207,7 +2207,7 @@ msgid "Add highlighted directory to bookmarks"
 msgstr "Pridať vybraný priečinok do záložiek"
 
 msgid "Add legacy LEFT/RIGHT actions"
-msgstr ""
+msgstr "Pridať staršie akcie pre DOĽAVA/DOPRAVA"
 
 msgid "Add new CCcam line"
 msgstr "Pridať nový riadok CCcam"
@@ -3295,10 +3295,10 @@ msgid "Bookmark Sequence Actions"
 msgstr "Akcie pre sekvenciu záložiek"
 
 msgid "Bookmark added."
-msgstr ""
+msgstr "Záložka bola pridaná."
 
 msgid "Bookmark removed."
-msgstr ""
+msgstr "Záložka bola odstránená."
 
 msgid "Bookmarks"
 msgstr "Záložky"
@@ -4191,7 +4191,7 @@ msgstr "Výber prijímača"
 
 #, python-format
 msgid "Choice where to put \"%s\""
-msgstr "Výber, kde chcete umiestniť '%s'"
+msgstr "Výber, kde chcete umiestniť \"%s\""
 
 msgid "Choose Bouquet"
 msgstr "Vyberte prehľad"
@@ -5287,6 +5287,8 @@ msgid ""
 "Current: %s\n"
 "Parent: %s"
 msgstr ""
+"Aktuálne: %s\n"
+"Rodič: %s"
 
 msgid "Currently Defined Volume Offsets:"
 msgstr "Aktuálne definované posuny hlasitosti:"
@@ -5915,14 +5917,14 @@ msgstr "Vymazať aktuálne vybraný časovač"
 
 #, python-format
 msgid "Delete the directory/file '%s'?"
-msgstr ""
+msgstr "Vymazať priečinok/súbor \"%s\"?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Vymazať vybraný lokálne uložený image"
 
 #, python-format
 msgid "Delete these %d directories/files?"
-msgstr ""
+msgstr "Vymazať tieto priečinky/súbory (počet: %d)?"
 
 msgid "Delete this tag"
 msgstr "Vymazať tento tag"
@@ -5954,7 +5956,7 @@ msgid "Democratic Republic of the Congo"
 msgstr "Demokratická republika Kongo"
 
 msgid "Demod firmware version"
-msgstr ""
+msgstr "Verzia demódového firmvéru"
 
 msgid "Denmark"
 msgstr "Dánsko"
@@ -6996,7 +6998,7 @@ msgid "Enable network traffic check"
 msgstr "Zapnúť kontrolu sieťového prenosu"
 
 msgid "Enable new GStreamer playback"
-msgstr ""
+msgstr "Zapnúť nové prehrávanie GStreamer"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Zapnúť alebo vypnúť pomocou HDMI-CEC."
@@ -7513,13 +7515,13 @@ msgid "Error: The path '%s' already exists!"
 msgstr "Chyba: cesta '%s' už existuje!"
 
 msgid "Error: The root file system and system directories can't be deleted!"
-msgstr ""
+msgstr "Chyba: Koreňový systém súborov a systémové priečinky nemožno vymazať!"
 
 msgid "Error: The root file system and system directories can't be moved!"
-msgstr ""
+msgstr "Chyba: Koreňový systém súborov a systémové priečinky nemožno presunúť!"
 
 msgid "Error: The root file system and system directories can't be renamed!"
-msgstr ""
+msgstr "Chyba: Koreňový systém súborov a systémové priečinky nemožno premenovať!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -8911,7 +8913,7 @@ msgid "High bitrate support"
 msgstr "Podpora vysokého dátového toku"
 
 msgid "Highlighted item"
-msgstr ""
+msgstr "Zvýraznená položka"
 
 msgid "Hindi"
 msgstr "Hindčina"
@@ -9198,7 +9200,7 @@ msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are
 msgstr "Ak je táto voľba aktivovaná, zachová sa záznam o prenose CEC. Súbory so záznamom sú umiestnené s ostatnými takýmito súbormi, ale majú názov 'Enigma2-hdmicec-[dátum].log'."
 
 msgid "If enabled, the new GStreamer playback engine will be used."
-msgstr ""
+msgstr "Ak je zapnuté, použije sa nový engine Gstreamer pre prehrávanie."
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Ak je povolené, časovač používa časové okno na detekciu prebudenia z vypnutého stavu. Predvolené nastavenie je: vypnuté. Používa sa ako špeciálny signál z prijímača. Niektoré zariadenia však nastavujú nesprávny alebo nulový signál a detekcia prebudenia tak nemusí byť úspešná."
@@ -9868,7 +9870,7 @@ msgid "Kernel version"
 msgstr "Verzia jadra (kernel)"
 
 msgid "Key"
-msgstr ""
+msgstr "Kľúč"
 
 msgid "Keyboard"
 msgstr "Klávesnica"
@@ -11928,7 +11930,7 @@ msgid "Nothing"
 msgstr "Nič"
 
 msgid "Nothing connected and/or no files available!"
-msgstr "Nič nie je pripojené"
+msgstr "Nič nie je pripojené a/alebo nie sú súbory dostupné!"
 
 msgid ""
 "Nothing to scan!\n"
@@ -15130,7 +15132,7 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press '
 msgstr "Ak je nastavené na 'áno', môžete zobraziť náhľady kanálov v zozname kanálov. Prvým stlačením tlačidla 'OK' zobrazíte náhľad vybraného kanála a druhým stlačením 'OK' ukončíte prehľad a prepnete na daný kanál. Stlačením 'EXIT' sa vrátite na pôvodný kanál."
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
-msgstr ""
+msgstr "Vyberte možnosť 'áno', ak chcete zapnúť použitie tlačidiel DOĽAVA/DOPRAVA na presun o stránku nahor/nadol a ak nie sú tlačidlá DOĽAVA/DOPRAVA definované inak."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ak je nastavené na 'áno', nezobrazia sa kanály, pri ktorých nie je dostupné EPG."
@@ -18702,7 +18704,7 @@ msgid "The detailed information is intended for developers only."
 msgstr "Podrobná informácia je určená len pre vývojárov."
 
 msgid "The directory/file no longer exists."
-msgstr ""
+msgstr "Priečinok/súbor už neexistuje."
 
 #, python-format
 msgid ""
@@ -20808,7 +20810,7 @@ msgid "View mode"
 msgstr "Režim zobrazenia"
 
 msgid "View or edit files less than 1MB in size"
-msgstr "Zobraziť alebo upraviť súbor (ak je veľkosť < 1 MB)"
+msgstr "Zobraziť alebo upraviť súbory (menšie ako 1 MB)"
 
 #, python-format
 msgid "View or edit this %s script"
@@ -20842,10 +20844,10 @@ msgid "Virgin Islands (US)"
 msgstr "Panenské ostrovy (US)"
 
 msgid "Virtual KeyBoard"
-msgstr ""
+msgstr "Virtuálna klávesnica"
 
 msgid "Virtual KeyBoard Actions"
-msgstr ""
+msgstr "Akcie virtuálnej klaávesnice"
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Text virtuálnej klávesnice:"
