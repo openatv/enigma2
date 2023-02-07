@@ -84,6 +84,11 @@ class EventViewBase:
 	def nextEvent(self):
 		self.callbackMethod(self.setEvent, self.setService, +1)
 
+	def getCurrentService(self):
+		return self.serviceRef
+
+	currentService = property(getCurrentService)  # currentService property to support 3rd party plugins
+
 	def setService(self, service):
 		self.serviceRef = service
 		self["Service"].newService(service.ref)
