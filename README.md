@@ -79,18 +79,6 @@
     sudo sysctl -n -w fs.inotify.max_user_watches=524288
     ```
 
-1. Add new user `openatvbuilder`
-
-    ```sh
-    sudo adduser openatvbuilder
-    ```
-
-1. Switch to new user `openatvbuilder`
-
-    ```sh
-    su - openatvbuilder
-    ```
-
 1. Create folder openatv7.2
 
     ```sh
