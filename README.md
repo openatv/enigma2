@@ -37,7 +37,7 @@
 ## Git repositories involved
 
 * [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.2 "OE Alliance Core") - Core framework
-* [openATV 7.1](https://github.com/openatv/enigma2/tree/7.2 "openATV 7.2") - openATV core
+* [openATV 7.2](https://github.com/openatv/enigma2/tree/7.2 "openATV 7.2") - openATV core
 * [MetrixHD](https://github.com/openatv/MetrixHD/tree/7.1 "openATV Skin") - Default openATV skin
 * ...
 
