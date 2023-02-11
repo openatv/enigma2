@@ -157,7 +157,7 @@ class OpkgComponent:
 			argv = extra + ["update"]
 		elif cmd == self.CMD_UPGRADE:
 			command = extra + ["upgrade"]
-			if args["testMode"]:
+			if "testMode" in args and args["testMode"]:
 				command.insert(0, "--noaction")
 			argv = command
 		elif cmd == self.CMD_SET_FLAG:
@@ -165,7 +165,7 @@ class OpkgComponent:
 			self.nextCommand = (self.CMD_UPGRADE_EXCLUDE, args)
 		elif cmd == self.CMD_UPGRADE_EXCLUDE:
 			command = extra + ["upgrade"]
-			if args["testMode"]:
+			if "testMode" in args and args["testMode"]:
 				command.insert(0, "--noaction")
 			argv = command
 			self.nextCommand = (self.CMD_RESET_FLAG, args)
