@@ -717,7 +717,7 @@ class AutoVideoMode(Screen):
 					if config_rate not in ("auto", "multi"):
 						new_rate = config_rate
 					new_mode = config_mode
-				new_rate = str(new_rate)
+				new_rate = str(int(new_rate))
 
 				if new_mode[-1:] == 'p':
 					new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_mode[:-1], config_res, config_rate)
@@ -756,7 +756,7 @@ class AutoVideoMode(Screen):
 						new_pol = config_pol
 					if config_rate not in ("auto", "multi") and int(config_rate) < new_rate:
 						new_rate = config_rate
-				new_rate = str(new_rate)
+				new_rate = str(int(new_rate))
 
 				if new_pol == 'p':
 					new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
