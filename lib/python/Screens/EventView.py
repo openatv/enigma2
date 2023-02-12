@@ -118,34 +118,11 @@ class EventViewBase:
 		self["epg_description"].setText(text)
 		self["FullDescription"].setText(extended)
 		self["summary_description"].setText(extended)
-		beginTimeString = event.getBeginTimeString()
-		if not beginTimeString:
+		beginTime = event.getBeginTime()
+		if not beginTime:
 			return
-		begintime = begindate = []
-		for x in beginTimeString.split(" "):
-			x = x.rstrip(",").rstrip(".")
-			if ":" in x:
-				begintime = x.split(":")
-			elif "." in x:
-				begindate = x.split(".")
-			elif "/" in x:
-				begindate = x.split("/")
-				begindate.reverse()
-		# Check!
-		fail = False
-		try:
-			if len(begintime) < 2 and len(begindate) < 2 or int(begintime[0]) > 23 or int(begintime[1]) > 59 or int(begindate[0]) > 31 or int(begindate[1]) > 12:
-				fail = True
-		except:
-			fail = True
-		if fail:
-			print("[EventView] Error: Wrong time stamp detected - source = %s, date = %s, time = %s!" % (beginTimeString, begindate, begintime))
-			return
-		# End of check!
-		nowt = time()
-		now = localtime(nowt)
-		begin = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))))
-		end = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration())
+		begin = localtime(beginTime)
+		end = localtime(beginTime + event.getDuration())
 		self["datetime"].setText("%s - %s" % (strftime("%s, %s" % (config.usage.date.short.value, config.usage.time.short.value), begin), strftime(config.usage.time.short.value, end)))
 		self["duration"].setText(_("%d min") % (event.getDuration() / 60))
 		if self.similarBroadcastTimer:
