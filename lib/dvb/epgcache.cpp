@@ -397,7 +397,8 @@ eEPGCache::eEPGCache()
 	onid_file.close();
 
 	m_debug = eConfigManager::getConfigBoolValue("config.crash.debugEPG");
-	
+	m_icetv_enabled = eConfigManager::getConfigBoolValue("config.plugins.icetv.configured") && eConfigManager::getConfigBoolValue("config.plugins.icetv.enable_epg");
+
 	instance = this;
 }
 
@@ -498,21 +499,24 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 	eventMap &eventmap = servicemap.byEvent;
 	timeMap &timemap = servicemap.byTime;
 
-	if (!(source & EPG_IMPORT) && (servicemap.sources & EPG_IMPORT))
-		return;
-	else if ((source & EPG_IMPORT) && !(servicemap.sources & EPG_IMPORT))
+	if(m_icetv_enabled) 
 	{
-		if (!eventmap.empty() || !timemap.empty())
+		if (!(source & EPG_IMPORT) && (servicemap.sources & EPG_IMPORT))
+			return;
+		else if ((source & EPG_IMPORT) && !(servicemap.sources & EPG_IMPORT))
 		{
-			flushEPG(service);
-			servicemap = eventDB[service];
-			eventmap = servicemap.byEvent;
-			timemap = servicemap.byTime;
+			if (!eventmap.empty() || !timemap.empty())
+			{
+				flushEPG(service);
+				servicemap = eventDB[service];
+				eventmap = servicemap.byEvent;
+				timemap = servicemap.byTime;
+			}
+			servicemap.sources = source;
 		}
-		servicemap.sources = source;
+		else
+			servicemap.sources |= source;
 	}
-	else
-		servicemap.sources |= source;
 
 	while (ptr<len)
 	{

@@ -155,6 +155,7 @@ private:
 	bool load_epg;
 	PSignal0<void> epgCacheStarted;
 	bool m_debug;
+	bool m_icetv_enabled;
 
 #ifdef ENABLE_PRIVATE_EPG
 	contentMaps content_time_tables;
