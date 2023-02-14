@@ -11,16 +11,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-09 15:18+0000\n"
-"PO-Revision-Date: 2023-01-15 15:46+0000\n"
-"Last-Translator: drakulis <drakulis@interia.pl>\n"
+"POT-Creation-Date: 2023-02-07 18:32+0000\n"
+"PO-Revision-Date: 2023-02-09 15:45+0000\n"
+"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3117,7 +3117,7 @@ msgid "Backup failed."
 msgstr "Tworzenie kopii nie udane."
 
 msgid "Backup images"
-msgstr "Obrazy kopii zapasowej"
+msgstr "Kopia zapasowa systemu"
 
 msgid "Backup is running..."
 msgstr "Tworzenie kopii zapasowej..."
@@ -8171,7 +8171,7 @@ msgstr "Zainstaluj"
 #. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
-msgstr "Menadżer instalowania - Obrazy %s"
+msgstr "Menadżer instalowania - Systemy %s"
 
 msgid "Flash Manager - Distributions"
 msgstr "Menedżer Flash - Dystrybucje"
@@ -16779,6 +16779,9 @@ msgstr "Domyślne pliki kopii zapasowej"
 msgid "Show first image"
 msgstr "Wyświetl pierwszy obraz"
 
+msgid "Show free space in timer view"
+msgstr "Pokaż wolne miejsce w widoku timera"
+
 msgid "Show graphical multi EPG"
 msgstr "Pokaż graficzne EPG kanałów"
 
@@ -21164,6 +21167,9 @@ msgstr "Co chciałbyś zrobić z plikiem skryptu:"
 
 msgid "What would you like to do?"
 msgstr "Co chcesz zrobić?"
+
+msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
+msgstr "Gdy opcja jest włączona, widok timera pokaże wolne miejsce na urządzeniu docelowym. Spowoduje to wybudzenie urządzenia z trybu uśpienia."
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Po włączeniu Enigma2 ładuje niepowiązane listy kanałów. Oznacza to, że 'listy kanałów', które są dostępne, ale nie są zawarte w plikach bouquets.tv lub bouquets.radio, nadal będą ładowane. Pozwala to na przykład zachować własne 'listy kanałów' podczas aktualizacji ustawień"
