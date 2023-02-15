@@ -245,7 +245,7 @@ class OpkgComponent:
 				self.callCallbacks(self.EVENT_UPGRADE, argv[1])
 			elif line.startswith("Installing "):
 				self.callCallbacks(self.EVENT_INSTALL, argv[1])
-			elif line.startswith("Removing "):
+			elif line.startswith("Removing ") and not line.startswith("Removing obsolete file "):
 				self.callCallbacks(self.EVENT_REMOVE, argv[1])
 			elif line.startswith("Configuring "):
 				self.callCallbacks(self.EVENT_CONFIGURING, argv[1])
