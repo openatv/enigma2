@@ -1641,11 +1641,7 @@ def InitUsageConfig():
 
 	config.logmanager = ConfigSubsection()
 	config.logmanager.showinextensions = ConfigYesNo(default=False)
-	config.logmanager.user = ConfigText(default="", fixed_size=False)
-	config.logmanager.useremail = ConfigText(default="", fixed_size=False)
-	config.logmanager.usersendcopy = ConfigYesNo(default=True)
 	config.logmanager.path = ConfigText(default="/")
-	config.logmanager.additionalinfo = NoSave(ConfigText(default=""))
 	config.logmanager.sentfiles = ConfigLocations(default=None)
 
 	config.plisettings = ConfigSubsection()
