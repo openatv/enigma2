@@ -602,7 +602,7 @@
 	</widget>
     <ePixmap pixmap="/usr/share/enigma2/display/progress-lcd1.png" zPosition="1" position="0,167" size="400,14" />
 	<widget source="parent.Service" render="Label" position="0,178" size="180,50" font="LCD1;52" halign="left" valign="top" foregroundColor="oled1" backgroundColor="#000000">
-		 <convert type="EMCServiceTime">Duration</convert>
+		 <convert type="ServiceTime">Duration</convert>
 		 <convert type="EMCClockToText">InMinutes</convert>
 	</widget>
     <widget source="parent.Service" render="Label" position="180,178" size="220,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
