@@ -519,15 +519,15 @@ class DebugInformation(InformationBase):
 			countLogs = len(paths)
 			for index, path in enumerate(reversed(paths)):
 				debugLogs.append((basename(path), _("Log %d/%d") % (index + 1, countLogs), path))
-		logpath = config.crash.debug_path.value
-		paths = [x for x in sorted(glob(join(logpath, "*-enigma2-crash.log")), key=lambda x: isfile(x) and getmtime(x))]
-		paths += [x for x in sorted(glob(join(logpath, "enigma2_crash*.log")), key=lambda x: isfile(x) and getmtime(x))]
+		logPath = config.crash.debug_path.value
+		paths = [x for x in sorted(glob(join(logPath, "*-enigma2-crash.log")), key=lambda x: isfile(x) and getmtime(x))]
+		paths += [x for x in sorted(glob(join(logPath, "enigma2_crash*.log")), key=lambda x: isfile(x) and getmtime(x))]
 		if paths:
 			countLogs = len(paths)
 			for index, path in enumerate(reversed(paths)):
 				debugLogs.append((basename(path), _("Crash %d/%d") % (index + 1, countLogs), path))
-		paths = [x for x in sorted(glob(join(logpath, "*-enigma2-debug.log")), key=lambda x: isfile(x) and getmtime(x))]
-		paths += [x for x in sorted(glob(join(logpath, "Enigma2-debug*.log")), key=lambda x: isfile(x) and getmtime(x))]
+		paths = [x for x in sorted(glob(join(logPath, "*-enigma2-debug.log")), key=lambda x: isfile(x) and getmtime(x))]
+		paths += [x for x in sorted(glob(join(logPath, "Enigma2-debug*.log")), key=lambda x: isfile(x) and getmtime(x))]
 		if paths:
 			countLogs = len(paths)
 			for index, path in enumerate(reversed(paths)):
