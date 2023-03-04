@@ -1632,7 +1632,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			base = splitext(base)[0]
 			relatedFiles.append(base)
 			relatedFiles.append("%s%s" % (base, extension))
-			relatedExtensions = (".eit", extension, "%s.ap" % extension, "%s.cuts" % extension, "%s.jpg" % extension, "%s.meta" % extension, "%s.sc" % extension, "%s.txt" % extension)
+			relatedExtensions = (".eit", ".jpg", ".log", ".txt", extension, "%s.ap" % extension, "%s.cuts" % extension, "%s.meta" % extension, "%s.sc" % extension)
 			for extension in relatedExtensions:
 				related = "%s%s" % (base, extension)
 				if isfile(related):
