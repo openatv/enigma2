@@ -17,6 +17,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Setup import Setup
+from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 
@@ -494,15 +495,15 @@ class PluginDownloadBrowser(Screen):
 				self.expanded.append(plugin)
 			self.updateList()
 		else:
-			install = self.type == self.DOWNLOAD
+			installed = self.type == self.REMOVE
 			if self.type == self.MANAGE:
-				install = sel[5] == "0"
-			if install:
-				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % plugin.name)
-				mbox.setTitle(_("Download Plugins"))
-			else:
-				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % plugin.name, default=False)
+				installed = self.pluginstatus[plugin.name][0] == "1"
+			if installed:
+				mbox = self.session.openWithCallback(boundFunction(self.runInstall, installed), MessageBox, _("Do you really want to remove the plugin \"%s\"?") % plugin.name, default=False)
 				mbox.setTitle(_("Remove Plugins"))
+			else:
+				mbox = self.session.openWithCallback(boundFunction(self.runInstall, installed), MessageBox, _("Do you really want to download the plugin \"%s\"?") % plugin.name)
+				mbox.setTitle(_("Download Plugins"))
 
 	def requestClose(self):
 		if self.plugins_changed:
@@ -536,9 +537,14 @@ class PluginDownloadBrowser(Screen):
 		else:
 			self.resetPostInstall()
 
-	def runInstall(self, val, installed=None):
+	def runInstall(self, installed=False, val=None):
 		if val:
-			if installed == "0" or self.type == self.DOWNLOAD:
+			if installed:
+				if self["list"].l.getCurrentSelection()[0].name.startswith("bootlogo-"):
+					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name + " --force-remove --force-depends")
+				else:
+					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
+			else:
 				if self["list"].l.getCurrentSelection()[0].name.startswith("picons-"):
 					supported_filesystems = frozenset(("vfat", "ext4", "ext3", "ext2", "reiser", "reiser4", "jffs2", "ubifs", "rootfs"))
 					candidates = []
@@ -575,11 +581,6 @@ class PluginDownloadBrowser(Screen):
 					self.startOpkgListInstalled(self.PLUGIN_PREFIX + "bootlogo-*")
 				else:
 					self.runSettingsInstall()
-			elif installed == "1" or self.type == self.REMOVE:
-				if self["list"].l.getCurrentSelection()[0].name.startswith("bootlogo-"):
-					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name + " --force-remove --force-depends")
-				else:
-					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
 
 	def doRemove(self, callback, pkgname):
 		prefix = "" if pkgname.startswith("kernel-module-") else self.PLUGIN_PREFIX
@@ -651,10 +652,22 @@ class PluginDownloadBrowser(Screen):
 			unlink("/tmp/opkg.conf")
 		except:
 			pass
-		for plugin in self.pluginlist:
+		newplugin = None
+		idx = -1
+		for idx, plugin in enumerate(self.pluginlist):
 			if plugin[3] == self["list"].l.getCurrentSelection()[0].name or plugin[0] == self["list"].l.getCurrentSelection()[0].name:
-				self.pluginlist.remove(plugin)
+				if self.type == self.MANAGE:
+					newplugin = plugin
+				else:
+					self.pluginlist.remove(plugin)
 				break
+		if newplugin and idx != -1:
+			if newplugin[4] == "1":
+				newplugin[4] = "0"
+			else:
+				newplugin[4] = "1"
+			newplugin[5] = "0"
+			self.pluginlist[idx] = newplugin
 		self.plugins_changed = True
 		if self["list"].l.getCurrentSelection()[0].name.startswith("settings-"):
 			self.reload_settings = True
@@ -748,6 +761,7 @@ class PluginDownloadBrowser(Screen):
 		expandedIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/expanded-plugins.png"))
 		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/verticalline-plugins.png"))
 		self.plugins = {}
+		self.pluginstatus = {}
 
 		if self.type == self.UPDATE:
 			self.list = _list
@@ -777,6 +791,8 @@ class PluginDownloadBrowser(Screen):
 		for x in temp:
 			if x in self.expanded:
 				_list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
+				for plugin in self.plugins[x]:
+					self.pluginstatus[plugin[0].name] = (plugin[3], plugin[4])
 				_list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth, plugin[3], plugin[4]) for plugin in self.plugins[x]])
 			else:
 				_list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
