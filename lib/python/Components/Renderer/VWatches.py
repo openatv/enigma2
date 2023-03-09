@@ -73,7 +73,7 @@ class VWatches(Renderer):
 		deltay = abs(y1 - y0)
 		error = -deltax / 2
 		y = y0
-		for x in range(x0, x1 + 1):
+		for x in range(int(x0), int(x1 + 1)):
 			if steep:
 				self.instance.fillRect(eRect(y, x, 1, 3), self.fColor)
 			else:
