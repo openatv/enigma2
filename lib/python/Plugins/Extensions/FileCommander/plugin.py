@@ -2269,7 +2269,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 			extension = splitext(imagePath)[1].lower() if imagePath and not fileData[0][FILE_IS_DIR] else None
 			if extension and extension in IMAGE_EXTENSIONS:
 				imageList.append(imagePath)
-				if imagePath.endswith(filename):
+				if basename(imagePath) == filename:
 					self.currentIndex = index
 				index += 1
 		return imageList
