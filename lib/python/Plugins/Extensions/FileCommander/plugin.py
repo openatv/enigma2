@@ -1632,7 +1632,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			base = splitext(base)[0]
 			relatedFiles.append(base)
 			relatedFiles.append("%s%s" % (base, extension))
-			relatedExtensions = (".eit", extension, "%s.ap" % extension, "%s.cuts" % extension, "%s.jpg" % extension, "%s.meta" % extension, "%s.sc" % extension, "%s.txt" % extension)
+			relatedExtensions = (".eit", ".jpg", ".log", ".txt", extension, "%s.ap" % extension, "%s.cuts" % extension, "%s.meta" % extension, "%s.sc" % extension)
 			for extension in relatedExtensions:
 				related = "%s%s" % (base, extension)
 				if isfile(related):
@@ -2269,7 +2269,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 			extension = splitext(imagePath)[1].lower() if imagePath and not fileData[0][FILE_IS_DIR] else None
 			if extension and extension in IMAGE_EXTENSIONS:
 				imageList.append(imagePath)
-				if imagePath.endswith(filename):
+				if basename(imagePath) == filename:
 					self.currentIndex = index
 				index += 1
 		return imageList
