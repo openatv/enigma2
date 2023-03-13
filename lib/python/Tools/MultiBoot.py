@@ -10,7 +10,7 @@ from tempfile import mkdtemp
 # used to populate BoxInfo / SystemInfo and will create a boot loop!
 #
 from Components.Console import Console
-from Tools.Directories import SCOPE_CONFIG, copyfile, fileReadLine, fileReadLines, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, copyfile, fileExists, fileHas, fileReadLine, fileReadLines, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -27,7 +27,8 @@ STARTUP_ANDROID = "STARTUP_ANDROID"
 STARTUP_ANDROID_LINUXSE = "STARTUP_ANDROID_LINUXSE"
 STARTUP_RECOVERY = "STARTUP_RECOVERY"
 STARTUP_BOXMODE = "BOXMODE"  # This is known as bootCode in this code.
-
+MbootList1 = ("/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2", "/dev/block/by-name/bootoptions")
+MbootList2 = ("/dev/mmcblk0p4", "/dev/mmcblk0p7", "/dev/mmcblk0p9")	# kexec kernel Vu+ multiboot
 
 # STARTUP
 # STARTUP_LINUX_1_BOXMODE_1
@@ -78,7 +79,8 @@ class MultiBootClass():
 		self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
 
 	def loadBootDevice(self):
-		for device in ("/dev/block/by-name/bootoptions", "/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2"):
+		MbootList = MbootList2 if fileHas("/proc/cmdline", "kexec=1") else MbootList1
+		for device in MbootList:
 			bootDevice = None
 			startupCmdLine = None
 			if exists(device):
