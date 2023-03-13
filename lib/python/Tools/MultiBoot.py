@@ -4,6 +4,7 @@ from hashlib import md5
 from os import mkdir, rename, rmdir, stat
 from os.path import basename, exists, isdir, isfile, ismount, join as pathjoin
 from struct import pack
+import subprocess
 from tempfile import mkdtemp
 
 # NOTE: This module must not import from SystemInfo.py as this module is
@@ -103,6 +104,16 @@ class MultiBootClass():
 
 	def getParam(self, line, param):
 		return line.replace("userdataroot", "rootuserdata").rsplit("%s=" % param, 1)[1].split(" ", 1)[0]
+		
+	def getUUIDtoSD(self, UUID): # returns None on failure
+		check = "/sbin/blkid"
+		if fileExists(check):
+			lines = subprocess.check_output([check]).decode(encoding="utf8", errors="ignore").split("\n")
+			for line in lines:
+				if UUID in line.replace('"', ''):
+					return line.split(":")[0].strip()
+		else:
+			return None			
 
 	def loadBootSlots(self):
 		def saveKernel(bootSlots, slotCode, kernel):
@@ -146,6 +157,11 @@ class MultiBootClass():
 					if "root=" in line:
 						# print("[MultiBoot] getBootSlots DEBUG: 'root=' found.")
 						device = self.getParam(line, "root")
+						if 	"UUID=" in device:
+							slotx = self.getUUIDtoSD(device)
+							# print("[MultiBoot] getBootSlots DEBUG: 'slotx' found.", slotx)
+							if slotx is not None:
+								device = slotx						
 						if exists(device) or device == "ubi0:ubifs":
 							if slotCode not in bootSlots:
 								bootSlots[slotCode] = {}
