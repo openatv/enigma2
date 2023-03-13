@@ -599,7 +599,10 @@ class FlashImage(Screen, HelpableScreen):
 			rootSubDir = None
 			bootSlots = MultiBoot.getBootSlots()
 			if bootSlots:
-				mtdKernel = bootSlots[self.slotCode]["kernel"].split(sep)[2]
+				if BoxInfo.getItem("HasKexecMultiboot"):
+					mtdKernel = bootSlots[self.slotCode]["kernel"]
+				else:
+					mtdKernel = bootSlots[self.slotCode]["kernel"].split(sep)[2]
 				mtdRootFS = bootSlots[self.slotCode]["device"] if bootSlots[self.slotCode].get("ubi") else bootSlots[self.slotCode]["device"].split(sep)[2]
 				if MultiBoot.hasRootSubdir(self.slotCode):
 					rootSubDir = bootSlots[self.slotCode]["rootsubdir"]
@@ -608,6 +611,8 @@ class FlashImage(Screen, HelpableScreen):
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
 			if MultiBoot.canMultiBoot():  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
+			elif BoxInfo.getItem("HasKexecMultiboot") and "mmcblk" not in mtdRootFS:
+				cmdArgs = ["-r%s" % mtdRootFS, "-kzImage", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-rmmcblk0p1"]
 			elif mtdKernel == mtdRootFS:  # Receiver with kernel and rootfs on one partition.
