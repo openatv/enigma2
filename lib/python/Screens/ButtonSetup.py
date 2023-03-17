@@ -182,7 +182,7 @@ def getButtonSetupFunctions():
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 			else:
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
-			ButtonSetupFunctions.append((plugin.name, "%s/%s" % (plugin.path[plugin.path.rfind("Plugins"):], str(twinPaths[plugin.path[plugin.path.rfind("Plugins"):]])), "EPG"))
+			ButtonSetupFunctions.append((plugin.name, "%s/%s" % (plugin.path[plugin.path.rfind("Plugins"):], str(twinPaths[plugin.path[plugin.path.rfind("Plugins"):]])), _("EPG")))
 			twinPlugins.append(plugin.name)
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO, PluginDescriptor.WHERE_BUTTONSETUP])
 	pluginlist.sort(key=lambda p: p.name)
@@ -192,102 +192,102 @@ def getButtonSetupFunctions():
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 			else:
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
-			ButtonSetupFunctions.append((plugin.name, "%s/%s" % (plugin.path[plugin.path.rfind("Plugins"):], str(twinPaths[plugin.path[plugin.path.rfind("Plugins"):]])), "Plugins"))
+			ButtonSetupFunctions.append((plugin.name, "%s/%s" % (plugin.path[plugin.path.rfind("Plugins"):], str(twinPaths[plugin.path[plugin.path.rfind("Plugins"):]])), _("Plugins")))
 			twinPlugins.append(plugin.name)
-	ButtonSetupFunctions.append((_("Show vertical Program Guide"), "Infobar/openVerticalEPG", "EPG"))
-	ButtonSetupFunctions.append((_("Show graphical multi EPG"), "Infobar/openGraphEPG", "EPG"))
-	ButtonSetupFunctions.append((_("Main Menu"), "Infobar/showMainMenu", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
-	ButtonSetupFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
-	ButtonSetupFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
-	ButtonSetupFunctions.append((_("Volume down"), "Infobar/volumeDown", "InfoBar"))
-	ButtonSetupFunctions.append((_("Volume up"), "Infobar/volumeUp", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show InfoBar"), "Infobar/toggleShow", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show favorites list"), "Infobar/openBouquets", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show satellites list"), "Infobar/openSatellites", "InfoBar"))
-	ButtonSetupFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
-	ButtonSetupFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
-	ButtonSetupFunctions.append((_("Show event details"), "Infobar/openEventView", "EPG"))
-	ButtonSetupFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
-	ButtonSetupFunctions.append((_("Show multi channel EPG"), "Infobar/openMultiServiceEPG", "EPG"))
-	ButtonSetupFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
-	ButtonSetupFunctions.append((_("Enable digital downmix"), "Infobar/audioDownmixOn", "InfoBar"))
-	ButtonSetupFunctions.append((_("Disable digital downmix"), "Infobar/audioDownmixOff", "InfoBar"))
-	ButtonSetupFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
-	ButtonSetupFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show servicelist or movies"), "Infobar/showServiceListOrMovies", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
-	ButtonSetupFunctions.append((_("Instant record"), "Infobar/instantRecord", "InfoBar"))
-	ButtonSetupFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", "InfoBar"))
-	ButtonSetupFunctions.append((_("Start recording current event"), "Infobar/startRecordingCurrentEvent", "InfoBar"))
-	ButtonSetupFunctions.append((_("Activate time shift End"), "Infobar/activateTimeshiftEnd", "InfoBar"))
-	ButtonSetupFunctions.append((_("Activate time shift end and pause"), "Infobar/activateTimeshiftEndAndPause", "InfoBar"))
-	ButtonSetupFunctions.append((_("Start time shift"), "Infobar/startTimeshift", "InfoBar"))
-	ButtonSetupFunctions.append((_("Stop time shift"), "Infobar/stopTimeshift", "InfoBar"))
-	ButtonSetupFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show subtitle quick menu"), "Infobar/subtitleQuickMenu", "InfoBar"))
-	ButtonSetupFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
-	ButtonSetupFunctions.append((_("Seekbar"), "Infobar/seekFwdVod", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show vertical Program Guide"), "Infobar/openVerticalEPG", _("EPG")))
+	ButtonSetupFunctions.append((_("Show graphical multi EPG"), "Infobar/openGraphEPG", _("EPG")))
+	ButtonSetupFunctions.append((_("Main Menu"), "Infobar/showMainMenu", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show help"), "Infobar/showHelp", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Zap down"), "Infobar/zapDown", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Zap up"), "Infobar/zapUp", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Volume down"), "Infobar/volumeDown", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Volume up"), "Infobar/volumeUp", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show InfoBar"), "Infobar/toggleShow", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show service list"), "Infobar/openServiceList", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show favorites list"), "Infobar/openBouquets", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show satellites list"), "Infobar/openSatellites", _("InfoBar")))
+	ButtonSetupFunctions.append((_("History back"), "Infobar/historyBack", _("InfoBar")))
+	ButtonSetupFunctions.append((_("History next"), "Infobar/historyNext", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", _("EPG")))
+	ButtonSetupFunctions.append((_("Show event details"), "Infobar/openEventView", _("EPG")))
+	ButtonSetupFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", _("EPG")))
+	ButtonSetupFunctions.append((_("Show multi channel EPG"), "Infobar/openMultiServiceEPG", _("EPG")))
+	ButtonSetupFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Enable digital downmix"), "Infobar/audioDownmixOn", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Disable digital downmix"), "Infobar/audioDownmixOff", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Switch to TV mode"), "Infobar/showTv", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show servicelist or movies"), "Infobar/showServiceListOrMovies", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show movies"), "Infobar/showMovies", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Instant record"), "Infobar/instantRecord", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Start recording current event"), "Infobar/startRecordingCurrentEvent", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Activate time shift End"), "Infobar/activateTimeshiftEnd", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Activate time shift end and pause"), "Infobar/activateTimeshiftEndAndPause", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Start time shift"), "Infobar/startTimeshift", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Stop time shift"), "Infobar/stopTimeshift", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Start teletext"), "Infobar/startTeletext", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show subservice selection"), "Infobar/subserviceSelection", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show subtitle selection"), "Infobar/subtitleSelection", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Show subtitle quick menu"), "Infobar/subtitleQuickMenu", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Seekbar"), "Infobar/seekFwdVod", _("InfoBar")))
 	if BoxInfo.getItem("PIPAvailable"):
-		ButtonSetupFunctions.append((_("Show PiP"), "Infobar/showPiP", "InfoBar"))
-		ButtonSetupFunctions.append((_("Swap PiP"), "Infobar/swapPiP", "InfoBar"))
-		ButtonSetupFunctions.append((_("Move PiP"), "Infobar/movePiP", "InfoBar"))
-		ButtonSetupFunctions.append((_("Toggle PiPzap"), "Infobar/togglePipzap", "InfoBar"))
-		ButtonSetupFunctions.append((_("Cycle PiP(zap)"), "Infobar/activePiP", "InfoBar"))
-	ButtonSetupFunctions.append((_("Activate HbbTV (RED button)"), "Infobar/activateRedButton", "InfoBar"))
+		ButtonSetupFunctions.append((_("Show PiP"), "Infobar/showPiP", _("InfoBar")))
+		ButtonSetupFunctions.append((_("Swap PiP"), "Infobar/swapPiP", _("InfoBar")))
+		ButtonSetupFunctions.append((_("Move PiP"), "Infobar/movePiP", _("InfoBar")))
+		ButtonSetupFunctions.append((_("Toggle PiPzap"), "Infobar/togglePipzap", _("InfoBar")))
+		ButtonSetupFunctions.append((_("Cycle PiP(zap)"), "Infobar/activePiP", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Activate HbbTV (RED button)"), "Infobar/activateRedButton", _("InfoBar")))
 	if BoxInfo.getItem("hdmihdin") or BoxInfo.getItem("hdmifhdin"):
-		ButtonSetupFunctions.append((_("Toggle HDMI-In full screen"), "Infobar/HDMIInFull", "InfoBar"))
-		ButtonSetupFunctions.append((_("Toggle HDMI-In PiP"), "Infobar/HDMIInPiP", "InfoBar"))
+		ButtonSetupFunctions.append((_("Toggle HDMI-In full screen"), "Infobar/HDMIInFull", _("InfoBar")))
+		ButtonSetupFunctions.append((_("Toggle HDMI-In PiP"), "Infobar/HDMIInPiP", _("InfoBar")))
 	if BoxInfo.getItem("LcdLiveTV"):
-		ButtonSetupFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
+		ButtonSetupFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", _("InfoBar")))
 	if BoxInfo.getItem("canMultiBoot"):
-		ButtonSetupFunctions.append((_("MultiBoot Manager"), "Module/Screens.MultiBootManager/MultiBootManager", "InfoBar"))
-	ButtonSetupFunctions.append((_("Hotkey Settings"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
-	ButtonSetupFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/SoftwareUpdate", "Setup"))
+		ButtonSetupFunctions.append((_("MultiBoot Manager"), "Module/Screens.MultiBootManager/MultiBootManager", _("InfoBar")))
+	ButtonSetupFunctions.append((_("Hotkey Settings"), "Module/Screens.ButtonSetup/ButtonSetup", _("Setup")))
+	ButtonSetupFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/SoftwareUpdate", _("Setup")))
 	if BoxInfo.getItem("ci"):
-		ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
+		ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", _("Setup")))
 	if BoxInfo.getItem("SoftCam"):
-		ButtonSetupFunctions.append((_("Softcam Setup"), "Module/Screens.SoftcamSetup/SoftcamSetup", "Setup"))
-	ButtonSetupFunctions.append((_("Videosetup"), "Module/Screens.VideoMode/VideoSetup", "Setup"))
-	ButtonSetupFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", "Scanning"))
-	ButtonSetupFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", "Scanning"))
-	ButtonSetupFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", "Scanning"))
+		ButtonSetupFunctions.append((_("Softcam Setup"), "Module/Screens.SoftcamSetup/SoftcamSetup", _("Setup")))
+	ButtonSetupFunctions.append((_("Videosetup"), "Module/Screens.VideoMode/VideoSetup", _("Setup")))
+	ButtonSetupFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", _("Scanning")))
+	ButtonSetupFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", _("Scanning")))
+	ButtonSetupFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", _("Scanning")))
 	for plugin in plugins.getPluginsForMenu("scan"):
-		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], "Scanning"))
-	ButtonSetupFunctions.append((_("Network Settings"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
-	ButtonSetupFunctions.append((_("Network menu"), "Infobar/showNetworkMenu", "Setup"))
-	ButtonSetupFunctions.append((_("VPN"), "Module/Screens.NetworkSetup/NetworkOpenvpn", "Setup"))
-	ButtonSetupFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
-	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
-	ButtonSetupFunctions.append((_("SkinSelector"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
+		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], _("Scanning")))
+	ButtonSetupFunctions.append((_("Network Settings"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", _("Setup")))
+	ButtonSetupFunctions.append((_("Network menu"), "Infobar/showNetworkMenu", _("Setup")))
+	ButtonSetupFunctions.append((_("VPN"), "Module/Screens.NetworkSetup/NetworkOpenvpn", _("Setup")))
+	ButtonSetupFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", _("Setup")))
+	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", _("Setup")))
+	ButtonSetupFunctions.append((_("SkinSelector"), "Module/Screens.SkinSelector/SkinSelector", _("Setup")))
 	if BoxInfo.getItem("LCDSKINSetup"):
-		ButtonSetupFunctions.append((_("LCD SkinSelector"), "Module/Screens.SkinSelector/LcdSkinSelector", "Setup"))
-	ButtonSetupFunctions.append((_("RecordTimer"), "Module/Screens.Timers/RecordTimerOverview", "Setup"))
-	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))
+		ButtonSetupFunctions.append((_("LCD SkinSelector"), "Module/Screens.SkinSelector/LcdSkinSelector", _("Setup")))
+	ButtonSetupFunctions.append((_("RecordTimer"), "Module/Screens.Timers/RecordTimerOverview", _("Setup")))
+	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", _("Setup")))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
-			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], "Setup"))
-	ButtonSetupFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", "Power"))
-	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
-	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
-	ButtonSetupFunctions.append((_("Deep Standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
-	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimer/SleepTimer", "Power"))
-	ButtonSetupFunctions.append((_("PowerTimer"), "Module/Screens.Timers/PowerTimerOverview", "Power"))
-	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/Usage", "Setup"))
-	ButtonSetupFunctions.append((_("User interface settings"), "Setup/UserInterface", "Setup"))
-	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/Recording", "Setup"))
-	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/HardDisk", "Setup"))
-	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/Subtitle", "Setup"))
-	ButtonSetupFunctions.append((_("Language"), "Module/Screens.LocaleSelection/LocaleSelection", "Setup"))
+			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], _("Setup")))
+	ButtonSetupFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", _("Power")))
+	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", _("Power")))
+	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", _("Power")))
+	ButtonSetupFunctions.append((_("Deep Standby"), "Module/Screens.Standby/TryQuitMainloop/1", _("Power")))
+	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimer/SleepTimer", _("Power")))
+	ButtonSetupFunctions.append((_("PowerTimer"), "Module/Screens.Timers/PowerTimerOverview", _("Power")))
+	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/Usage", _("Setup")))
+	ButtonSetupFunctions.append((_("User interface settings"), "Setup/UserInterface", _("Setup")))
+	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/Recording", _("Setup")))
+	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/HardDisk", _("Setup")))
+	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/Subtitle", _("Setup")))
+	ButtonSetupFunctions.append((_("Language"), "Module/Screens.LocaleSelection/LocaleSelection", _("Setup")))
 	if BoxInfo.getItem("SoftCam"):
-		ButtonSetupFunctions.append((_("OscamInfo Mainmenu"), "Module/Screens.OScamInfo/OscamInfoMenu", "Plugins"))
-		ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", "Plugins"))
-	ButtonSetupFunctions.append((_("Movieplayer"), "Infobar/showMoviePlayer", "Plugins"))
+		ButtonSetupFunctions.append((_("OscamInfo Mainmenu"), "Module/Screens.OScamInfo/OscamInfoMenu", _("Plugins")))
+		ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", _("Plugins")))
+	ButtonSetupFunctions.append((_("Movieplayer"), "Infobar/showMoviePlayer", _("Plugins")))
 	if isdir("/etc/ppanels"):
 		for file in [x for x in listdir("/etc/ppanels") if x.endswith(".xml")]:
 			file = file[:-4]
@@ -296,14 +296,14 @@ def getButtonSetupFunctions():
 		for file in [x for x in listdir("/usr/script") if x.endswith(".sh")]:
 			file = file[:-3]
 			ButtonSetupFunctions.append(("%s %s" % (_("Shellscript"), file), "Shellscript/%s" % file, "Shellscripts"))
-	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner/ScriptRunner", "Plugins"))
-	ButtonSetupFunctions.append((_("QuickMenu"), "Module/Screens.QuickMenu/QuickMenu", "Plugins"))
+	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner/ScriptRunner", _("Plugins")))
+	ButtonSetupFunctions.append((_("QuickMenu"), "Module/Screens.QuickMenu/QuickMenu", _("Plugins")))
 	if isPluginInstalled("Kodi"):
-		ButtonSetupFunctions.append((_("Kodi MediaCenter"), "Kodi/", "Plugins"))
+		ButtonSetupFunctions.append((_("Kodi MediaCenter"), "Kodi/", _("Plugins")))
 	if isPluginInstalled("BluetoothSetup"):
-		ButtonSetupFunctions.append((_("Bluetooth Setup"), "Bluetooth/", "Plugins"))
+		ButtonSetupFunctions.append((_("Bluetooth Setup"), "Bluetooth/", _("Plugins")))
 	if isPluginInstalled("Chromium"):
-		ButtonSetupFunctions.append((_("Youtube TV"), "YoutubeTV/", "Plugins"))
+		ButtonSetupFunctions.append((_("Youtube TV"), "YoutubeTV/", _("Plugins")))
 	return ButtonSetupFunctions
 
 
@@ -317,7 +317,7 @@ class ButtonSetup(Screen):
 		count = len(BUTTON_SETUP_KEYS) or 10
 		self.buttonList = []
 		for button in BUTTON_SETUP_KEYS:
-			self.buttonList.append(ChoiceEntryComponent("dummy", (_("%s long" % button[0]) if "_long" in button[1] else button[0], button[1])))
+			self.buttonList.append(ChoiceEntryComponent("dummy", ((_("%s long") % button[0]) if "_long" in button[1] else button[0], button[1])))
 		self["list"] = ChoiceList(list=self.buttonList[:config.misc.ButtonSetup.additional_keys.value and count], selection=0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
@@ -573,7 +573,7 @@ class InfoBarButtonSetup():
 		return selected
 
 	def getName(self, key):
-		return tuple([_("%s long" % x[0]) if "_long" in x[1] else x[0] for x in BUTTON_SETUP_KEYS if x[1] == key])[0]
+		return tuple([(_("%s long") % x[0]) if "_long" in x[1] else x[0] for x in BUTTON_SETUP_KEYS if x[1] == key])[0]
 
 	def getHelpText(self, key):
 		selected = self.getKeyFunctions(key)
@@ -581,7 +581,7 @@ class InfoBarButtonSetup():
 			return
 		if len(selected) == 1:
 			button = selected[0]
-			return _("%s long" % button[0]) if "_long" in button[1] else button[0]
+			return (_("%s long") % button[0]) if "_long" in button[1] else button[0]
 		else:
 			return "%s %s" % (_("ButtonSetup"), self.getName(key))
 
