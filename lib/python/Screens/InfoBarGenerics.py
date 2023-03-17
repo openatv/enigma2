@@ -411,7 +411,7 @@ class SecondInfoBar(Screen):
 			"nextEvent": (self.nextEvent, _("Switch to next EPG Event")),
 			"timerAdd": (self.timerAdd, _("Add Timer")),
 			"openSimilarList": (self.openSimilarList, _("Open Similar List Channel List")),
-		}, prio=0, description=_("2nd InfoBar Actions"))
+		}, prio=-1, description=_("2nd InfoBar Actions"))
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedEventInfo: self.getEvent
