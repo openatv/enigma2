@@ -3744,10 +3744,10 @@ class InfoBarInstantRecord:
 
 		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredInstantRecordPath())
 		recording.marginBefore = 0
-		recording.marginAfter = 0
 		recording.dontSave = True
-		recording.eventEnd = recording.end
 		recording.eventBegin = recording.begin
+		recording.marginAfter = (config.recording.margin_after.value * 60) if event and limitEvent else 0
+		recording.eventEnd = recording.end - recording.marginAfter
 
 		if event is None or limitEvent == False:
 			recording.autoincrease = True
