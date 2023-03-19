@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-14 18:17+0000\n"
+"POT-Creation-Date: 2023-02-19 09:08+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/en_GB/>\n"
@@ -2212,9 +2212,6 @@ msgstr "Add/Remove a timer for the current event"
 msgid "Adding schedule..."
 msgstr "Adding schedule..."
 
-msgid "Additional Info"
-msgstr ""
-
 msgid "Additional files/folders to backup"
 msgstr ""
 
@@ -2638,9 +2635,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Are you sure you want to save the EPG Cache to:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr ""
-
 msgid "Argentina"
 msgstr ""
 
@@ -2664,6 +2658,9 @@ msgstr ""
 
 msgid "As plugin in extended bar"
 msgstr "As plugin in extended bar"
+
+msgid "Ascending"
+msgstr ""
 
 msgid "Ask user"
 msgstr "Ask user"
@@ -2718,9 +2715,6 @@ msgid "At end: %s"
 msgstr ""
 
 msgid "Athletics"
-msgstr ""
-
-msgid "Attach a file"
 msgstr ""
 
 msgid "Audio"
@@ -5776,6 +5770,9 @@ msgstr ""
 msgid "Delete Timer"
 msgstr ""
 
+msgid "Delete all duplicated lines"
+msgstr ""
+
 msgid "Delete all log files"
 msgstr ""
 
@@ -5804,6 +5801,9 @@ msgid "Delete current line"
 msgstr ""
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 msgid "Delete entry"
@@ -5905,6 +5905,9 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Depth"
+
+msgid "Descending"
+msgstr ""
 
 msgid "Description"
 msgstr "Description"
@@ -6306,17 +6309,9 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want to add any additional information ?"
-msgstr ""
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
-msgstr ""
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 
 msgid ""
@@ -6390,11 +6385,6 @@ msgid "Do you want to restore your settings?"
 msgstr "Do you want to restore your settings?"
 
 msgid "Do you want to resume this playback?"
-msgstr ""
-
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
 msgstr ""
 
 msgid "Do you want to update your box?"
@@ -6521,6 +6511,9 @@ msgid "Drivers version"
 msgstr ""
 
 msgid "Duplex"
+msgstr ""
+
+msgid "Duplicate the current line"
 msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
@@ -7225,7 +7218,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7319,12 +7312,6 @@ msgid "Error unzipping image '%s'!"
 msgstr ""
 
 msgid "Error, unknown Result!"
-msgstr ""
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
 msgstr ""
 
 #, python-format
@@ -12015,6 +12002,9 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "Open favourites list"
 
+msgid "Open file sort menu"
+msgstr ""
+
 msgid "Open satellites list"
 msgstr ""
 
@@ -15494,6 +15484,9 @@ msgstr ""
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -15670,12 +15663,6 @@ msgid "Selecting satellites 2 (USALS)"
 msgstr "Selecting satellites 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
-msgstr ""
-
-msgid "Send"
-msgstr ""
-
-msgid "Send Confirmation"
 msgstr ""
 
 msgid "Send DiSEqC"
@@ -20020,7 +20007,7 @@ msgstr "Use Netmed EPG information when it is available."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr ""
 
-msgid "Use OpenTV EPG information when it is available."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
 msgid "Use QuickSelect"
@@ -21355,9 +21342,6 @@ msgstr ""
 msgid "You cannot delete this!"
 msgstr "You cannot delete this!"
 
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr ""
-
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "You have chosen to backup your settings. Please press OK to start the backup now."
 
@@ -21377,15 +21361,7 @@ msgstr ""
 msgid "You have no script to run."
 msgstr ""
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-
 msgid "You have selected no logs to delete."
-msgstr ""
-
-msgid "You have selected no logs to send."
 msgstr ""
 
 msgid "You have to create a Swap File before to activate the autostart."
@@ -22294,11 +22270,6 @@ msgstr "handicraft"
 msgid "handled"
 msgstr "handled"
 
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-
 msgid "hdr10"
 msgstr ""
 
@@ -22672,9 +22643,6 @@ msgstr ""
 msgid "remove this mark"
 msgstr "remove this mark"
 
-msgid "rename"
-msgstr "rename"
-
 msgid "rename entry"
 msgstr ""
 
@@ -23027,15 +22995,6 @@ msgstr "water sport"
 msgid "west"
 msgstr "west"
 
-msgid "when asking question about this log"
-msgstr ""
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-
 msgid "wide"
 msgstr "wide"
 
@@ -23078,6 +23037,9 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#~ msgid "rename"
+#~ msgstr "rename"
 
 # TRANSLATORS: override en_US (en.po)
 #~ msgid "File Commander - generalised archive handler"

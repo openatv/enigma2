@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-14 18:17+0000\n"
-"PO-Revision-Date: 2023-02-17 04:46+0000\n"
+"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"PO-Revision-Date: 2023-02-25 19:39+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -2256,9 +2256,6 @@ msgstr "Добавить/удалить таймер для идущей пер�
 msgid "Adding schedule..."
 msgstr "Добавление задания..."
 
-msgid "Additional Info"
-msgstr "Дополнительная информация"
-
 msgid "Additional files/folders to backup"
 msgstr "Добавить в резервную копию"
 
@@ -2684,9 +2681,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Хотите сохранить данные ТВ-гида здесь\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Хотите отправить этот лог:\n"
-
 msgid "Argentina"
 msgstr "Аргентина"
 
@@ -2710,6 +2704,9 @@ msgstr "Аруба"
 
 msgid "As plugin in extended bar"
 msgstr "Как плагин в меню расширений"
+
+msgid "Ascending"
+msgstr "По возрастанию"
 
 msgid "Ask user"
 msgstr "Спросить пользователя"
@@ -2765,9 +2762,6 @@ msgstr "В конце: %s"
 
 msgid "Athletics"
 msgstr "Легкая атлетика"
-
-msgid "Attach a file"
-msgstr "Прикрепить файл"
 
 msgid "Audio"
 msgstr "Аудио"
@@ -5836,6 +5830,9 @@ msgstr "Удалить плагины"
 msgid "Delete Timer"
 msgstr "Удалить таймер"
 
+msgid "Delete all duplicated lines"
+msgstr "Удалить все повторяющиеся строки"
+
 msgid "Delete all log files"
 msgstr "Удалить все файлы логов"
 
@@ -5865,6 +5862,9 @@ msgstr "Удалить текущую строку"
 
 msgid "Delete directory or file"
 msgstr "Удалить каталог или файл"
+
+msgid "Delete empty and white space only lines"
+msgstr "Удалить строки пустые и с пробелами"
 
 msgid "Delete entry"
 msgstr "Удалить выбранное"
@@ -5965,6 +5965,9 @@ msgstr "Дания"
 
 msgid "Depth"
 msgstr "Глубина"
+
+msgid "Descending"
+msgstr "По убыванию"
 
 msgid "Description"
 msgstr "Описание"
@@ -6376,22 +6379,12 @@ msgstr "Вы действительно хотите остановить и у�
 msgid "Do you want change '%s' access mode?"
 msgstr "Вы хотите изменить режим доступа '%s'?"
 
-msgid "Do you want to add any additional information ?"
-msgstr "Хотите добавить дополнительную информацию?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Вы хотите также установить клиент samba?\n"
 "Это позволит Вам монтировать общие ресурсы Windows на этом устройстве."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Хотите прикрепить текстовый файл к логу?\n"
-"(Выберите 'Нет' для создания сообщения с помощью виртуальной клавиатуры)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6469,13 +6462,6 @@ msgstr "Хотите восстановить Ваши настройки?"
 
 msgid "Do you want to resume this playback?"
 msgstr "Хотите продолжить воспроизведение?"
-
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Хотите отправить все выбранные файлы\n"
-"(Выберите 'Нет', чтобы отправить только выбранный файл) "
 
 msgid "Do you want to update your box?"
 msgstr "Хотите обновить Ваш ресивер?"
@@ -6605,6 +6591,9 @@ msgstr "Версия драйверов"
 
 msgid "Duplex"
 msgstr "Двойной"
+
+msgid "Duplicate the current line"
+msgstr "Дублировать текущую строку"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "В течение этого времени проверяется передатчик и место назначения записи. Если место назначения записи (например, NAS) не готово вовремя к записи, это время может быть увеличено."
@@ -7324,8 +7313,8 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Ошибка %d: невозможно связать '%s' как '%s'! (%s)"
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
-msgstr "Ошибка %d: невозможно переименовать файл '%s' в '%s'! (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
+msgstr "Ошибка %d: невозможно переименовать каталог/файл '%s' to '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename related file '%s' to '%s'!  (%s)"
@@ -7431,14 +7420,6 @@ msgstr "Ошибка при распаковке имиджа '%s'!"
 
 msgid "Error, unknown Result!"
 msgstr "Ошибка, неизвестный результат!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Ошибка\n"
-"%s"
 
 #, python-format
 msgid ""
@@ -12149,6 +12130,9 @@ msgstr "Открыть контекстное меню (содержит мен�
 msgid "Open favorites list"
 msgstr "Открыть список фаворитов"
 
+msgid "Open file sort menu"
+msgstr "Открыть меню сортировки файлов"
+
 msgid "Open satellites list"
 msgstr "Открыть список спутников"
 
@@ -15673,6 +15657,9 @@ msgstr "Выберите смещённый набор символов толь
 msgid "Select the softcam protocol."
 msgstr "Выберать протокол softcam."
 
+msgid "Select the sort order for the file lines:"
+msgstr "Выберите порядок сортировки строк файла:"
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Выберите порядок сортировки пунктов меню обозревателя подключаемых модулей. Определяемый пользователем также позволяет скрывать пункты меню."
 
@@ -15864,12 +15851,6 @@ msgstr "Выбор спутника 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Выбор этой опции позволяет настроить группу спутников в одном блоке."
-
-msgid "Send"
-msgstr "Отправить"
-
-msgid "Send Confirmation"
-msgstr "Отправление с подтверждением"
 
 msgid "Send DiSEqC"
 msgstr "Отправить DiSEqC"
@@ -18303,7 +18284,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 16.02.2023"
+msgstr "Коррекция перевода Monja 23.02.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -20259,8 +20240,8 @@ msgstr "Используйте информацию Netmed EPG, когда он�
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "Используйте OnlineFlash в SoftwareManager"
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Используйте информацию OpenTV EPG, когда она доступна."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr "Используйте OpenTV EPG. Требуется настройка на конкретный транспондер для приёма EPG."
 
 msgid "Use QuickSelect"
 msgstr "Использовать быстрый выбор"
@@ -21639,9 +21620,6 @@ msgstr "Кнопками ВЛЕВО/ВПРАВО можно переключат
 msgid "You cannot delete this!"
 msgstr "Не можете удалит это!"
 
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Этот лог уже был отправлен. Хотите ещё раз отправить этот лог:\n"
-
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Вы выбрали сохранение настроек. Пожалуйста нажмите ОК для начала копирования."
 
@@ -21661,18 +21639,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "Нет скрипта для запуска."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Нет настроек Вашего пользователя\n"
-"Нажмите кнопку 'МЕНЮ', и введите настройки Вашего пользователя, затем попробуйте снова"
-
 msgid "You have selected no logs to delete."
 msgstr "Логи для удаления не выбраны."
-
-msgid "You have selected no logs to send."
-msgstr "Лог для отправки не выбран."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "Перед активацией автозапуска сначала нужно создать файл подкачки."
@@ -22611,13 +22579,6 @@ msgstr "Ремесла"
 msgid "handled"
 msgstr "Удалось"
 
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"Отправлен в команду SVN\n"
-"Примите благодарность"
-
 msgid "hdr10"
 msgstr "HDR10"
 
@@ -22990,9 +22951,6 @@ msgstr "Удалить наземные каналы"
 msgid "remove this mark"
 msgstr "Удалить метку"
 
-msgid "rename"
-msgstr "Переименовать"
-
 msgid "rename entry"
 msgstr "Переименовать выбранное"
 
@@ -23349,18 +23307,6 @@ msgstr "Водный спорт"
 msgid "west"
 msgstr "Запад"
 
-msgid "when asking question about this log"
-msgstr "когда будет запрос насчёт данного лога"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"Когда будет запрос насчёт данного лога\n"
-"\n"
-"Копия будет отправлена."
-
 msgid "wide"
 msgstr "Широкоугольно"
 
@@ -23404,6 +23350,88 @@ msgstr "Ваш %s %s может стать непригодным теперь. 
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Additional Info"
+#~ msgstr "Дополнительная информация"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Хотите отправить этот лог:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Прикрепить файл"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "Хотите добавить дополнительную информацию?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "Хотите прикрепить текстовый файл к логу?\n"
+#~ "(Выберите 'Нет' для создания сообщения с помощью виртуальной клавиатуры)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "Хотите отправить все выбранные файлы\n"
+#~ "(Выберите 'Нет', чтобы отправить только выбранный файл) "
+
+#, python-format
+#~ msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+#~ msgstr "Ошибка %d: невозможно переименовать файл '%s' в '%s'! (%s)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ошибка\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "Отправить"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "Отправление с подтверждением"
+
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "Используйте информацию OpenTV EPG, когда она доступна."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "Этот лог уже был отправлен. Хотите ещё раз отправить этот лог:\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "Нет настроек Вашего пользователя\n"
+#~ "Нажмите кнопку 'МЕНЮ', и введите настройки Вашего пользователя, затем попробуйте снова"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "Лог для отправки не выбран."
+
+#~ msgid ""
+#~ "has been sent to the SVN team team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "Отправлен в команду SVN\n"
+#~ "Примите благодарность"
+
+#~ msgid "rename"
+#~ msgstr "Переименовать"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "когда будет запрос насчёт данного лога"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "Когда будет запрос насчёт данного лога\n"
+#~ "\n"
+#~ "Копия будет отправлена."
 
 #~ msgid "LOF"
 #~ msgstr "LOF"

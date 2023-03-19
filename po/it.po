@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-14 18:17+0000\n"
-"PO-Revision-Date: 2023-02-16 04:31+0000\n"
+"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"PO-Revision-Date: 2023-03-06 09:40+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -2230,9 +2230,6 @@ msgstr "Aggiungi o rimuovi un timer per l'evento in corso"
 msgid "Adding schedule..."
 msgstr "Aggiungi pianificazione..."
 
-msgid "Additional Info"
-msgstr "Informazioni addizionali"
-
 msgid "Additional files/folders to backup"
 msgstr "File o cartelle aggiuntive di cui eseguire il backup"
 
@@ -2658,9 +2655,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Sei sicuro di voler salvare la cache EPG in:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Sei sicuro di voler inviare questo registro:\n"
-
 msgid "Argentina"
 msgstr "Argentina"
 
@@ -2684,6 +2678,9 @@ msgstr "Aruba"
 
 msgid "As plugin in extended bar"
 msgstr "come plugin nella barra estesa"
+
+msgid "Ascending"
+msgstr "Ascendente"
 
 msgid "Ask user"
 msgstr "Chiedi all'utente"
@@ -2739,9 +2736,6 @@ msgstr "Alla fine: %s"
 
 msgid "Athletics"
 msgstr "Atletica"
-
-msgid "Attach a file"
-msgstr "Allegare un file"
 
 msgid "Audio"
 msgstr "Audio"
@@ -5810,6 +5804,9 @@ msgstr "Elimina plugin"
 msgid "Delete Timer"
 msgstr "Elimina timer"
 
+msgid "Delete all duplicated lines"
+msgstr "Elimina tutte le righe duplicate"
+
 msgid "Delete all log files"
 msgstr "Elimina tutti i file di registro"
 
@@ -5839,6 +5836,9 @@ msgstr "Elimina linea attuale"
 
 msgid "Delete directory or file"
 msgstr "Elimina cartella o file"
+
+msgid "Delete empty and white space only lines"
+msgstr "Elimina le righe vuote e solo le righe degli spazi bianchi"
 
 msgid "Delete entry"
 msgstr "Elimina voce"
@@ -5939,6 +5939,9 @@ msgstr "Danimarca"
 
 msgid "Depth"
 msgstr "Profondità"
+
+msgid "Descending"
+msgstr "Discendente"
 
 msgid "Description"
 msgstr "Descrizione"
@@ -6350,22 +6353,12 @@ msgstr "Vuoi davvero fermare ed eliminare il timer '%s'?"
 msgid "Do you want change '%s' access mode?"
 msgstr "Vuoi cambiare la modalità di accesso di '%s'?"
 
-msgid "Do you want to add any additional information ?"
-msgstr "Vuoi aggiungere qualche informazione aggiuntiva?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Vuoi installare anche il client samba?\n"
 "Ciò ti consente di montare le tue condivisioni Windows su questo dispositivo."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Vuoi allegare un file di testo per spiegare il registro?\n"
-"(scegli 'No' per digitare il messaggio utilizzando la tastiera virtuale.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6443,13 +6436,6 @@ msgstr "Vuoi ripristinare le tue impostazioni?"
 
 msgid "Do you want to resume this playback?"
 msgstr "Vuoi riprendere questa riproduzione?"
-
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Vuoi inviare tutti i file selezionati:\n"
-"(scegli 'No' per inviare solo il file attualmente selezionato.)"
 
 msgid "Do you want to update your box?"
 msgstr "Vuoi aggiornare il tuo ricevitore?"
@@ -6578,6 +6564,9 @@ msgstr "Versione driver"
 
 msgid "Duplex"
 msgstr "Duplex"
+
+msgid "Duplicate the current line"
+msgstr "Duplica la riga corrente"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "Durante questo periodo, viene effettuato il controllo del trasmettitore e della destinazione di registrazione. Se la destinazione della registrazione (ad es. NAS) non è pronta per la registrazione con questo tempo, esso può essere incrementato."
@@ -7295,8 +7284,8 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Errore %d: impossibile collegare '%s' come '%s'! (%s)"
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
-msgstr "Errore %d: impossibile rinominare il file '%s' in '%s'! (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
+msgstr "Errore %d: impossibile rinominare la cartella/file '%s' in '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename related file '%s' to '%s'!  (%s)"
@@ -7402,14 +7391,6 @@ msgstr "Errore durante la decompressione dell'immagine '%s'!"
 
 msgid "Error, unknown Result!"
 msgstr "Errore, risultato sconosciuto!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Errore:\n"
-"%s"
 
 #, python-format
 msgid ""
@@ -8025,7 +8006,7 @@ msgid "File Commander Text Editor Actions"
 msgstr "File Commander Azioni dell'editor di testo"
 
 msgid "File Commander settings"
-msgstr "File Commander Impostazioni"
+msgstr "Impostazioni File Commander"
 
 msgid "File System Check"
 msgstr "Controllo del file system"
@@ -12119,6 +12100,9 @@ msgstr "Apri menu contestuale (contiene il menu delle impostazioni)"
 msgid "Open favorites list"
 msgstr "Apri elenco preferiti"
 
+msgid "Open file sort menu"
+msgstr "Apri menu di ordinamento file"
+
 msgid "Open satellites list"
 msgstr "Apri elenco satelliti"
 
@@ -15641,6 +15625,9 @@ msgstr "Seleziona il set di caratteri maiuscoli solo per il carattere successivo
 msgid "Select the softcam protocol."
 msgstr "Seleziona il protocollo softcam."
 
+msgid "Select the sort order for the file lines:"
+msgstr "Seleziona l'ordinamento per le righe del file:"
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Seleziona ordinamento delle voci del menu Esplora Plugin. Definito dall'utente consente inoltre di nascondere le voci di menu."
 
@@ -15832,12 +15819,6 @@ msgstr "Selezione dei satelliti 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Selezionando questa opzione è possibile configurare un gruppo di satelliti in un blocco."
-
-msgid "Send"
-msgstr "Invia"
-
-msgid "Send Confirmation"
-msgstr "Conferma di invio"
 
 msgid "Send DiSEqC"
 msgstr "Inviare DiSEqC"
@@ -20225,8 +20206,8 @@ msgstr "Utilizza le informazioni EPG Netmed quando sono disponibili."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "Usa flash in linea in gestore software"
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Usa le informazioni EPG di OpenTV quando sono disponibili."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr "Usa OpenTV EPG. Richiede la sintonizzazione su un transponder specifico per scaricare l'EPG."
 
 msgid "Use QuickSelect"
 msgstr "Utilizza selezione rapida"
@@ -21605,9 +21586,6 @@ msgstr "È possibile alternare con sinistra e destra questo tipo di tuner %s"
 msgid "You cannot delete this!"
 msgstr "Non puoi eliminarlo!"
 
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Hai già inviato questo registro, sei sicuro di voler inviare nuovamente questo registro:\n"
-
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Hai scelto di eseguire il backup delle tue impostazioni. Si prega di premere OK per avviare il backup ora."
 
@@ -21627,18 +21605,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "Non ci sono script da avviare."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Non hai impostato le credenziali nella schermata di configurazione\n"
-"Premi MENU e immetti le tue informazioni, poi prova di nuovo"
-
 msgid "You have selected no logs to delete."
 msgstr "Non hai selezionato nessun registro da eliminare."
-
-msgid "You have selected no logs to send."
-msgstr "Non hai selezionato nessun registro da inviare."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "Devi creare il file di swap prima di attivare l'Avvio automatico."
@@ -22577,13 +22545,6 @@ msgstr "artigianato"
 msgid "handled"
 msgstr "gestito"
 
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"è stato inviato al team SVN.\n"
-"per favore riporta "
-
 msgid "hdr10"
 msgstr "hdr10"
 
@@ -22956,9 +22917,6 @@ msgstr "rimuovi servizi terrestri"
 msgid "remove this mark"
 msgstr "rimuovi contrassegno"
 
-msgid "rename"
-msgstr "rinomina"
-
 msgid "rename entry"
 msgstr "rinomina voce"
 
@@ -23315,18 +23273,6 @@ msgstr "sport acquatici"
 msgid "west"
 msgstr "ovest"
 
-msgid "when asking question about this log"
-msgstr "quando si pongono domande su questo registro"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"quando si pongono domande su questo registro\n"
-"\n"
-"Una copia è stata inviata a te stesso."
-
 msgid "wide"
 msgstr "largo"
 
@@ -23369,6 +23315,88 @@ msgstr "il tuo %s %s potrebbe essere inutilizzabile ora. Consulta il manuale per
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Additional Info"
+#~ msgstr "Informazioni addizionali"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Sei sicuro di voler inviare questo registro:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Allegare un file"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "Vuoi aggiungere qualche informazione aggiuntiva?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "Vuoi allegare un file di testo per spiegare il registro?\n"
+#~ "(scegli 'No' per digitare il messaggio utilizzando la tastiera virtuale.)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "Vuoi inviare tutti i file selezionati:\n"
+#~ "(scegli 'No' per inviare solo il file attualmente selezionato.)"
+
+#, python-format
+#~ msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+#~ msgstr "Errore %d: impossibile rinominare il file '%s' in '%s'! (%s)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Errore:\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "Invia"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "Conferma di invio"
+
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "Usa le informazioni EPG di OpenTV quando sono disponibili."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "Hai già inviato questo registro, sei sicuro di voler inviare nuovamente questo registro:\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "Non hai impostato le credenziali nella schermata di configurazione\n"
+#~ "Premi MENU e immetti le tue informazioni, poi prova di nuovo"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "Non hai selezionato nessun registro da inviare."
+
+#~ msgid ""
+#~ "has been sent to the SVN team team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "è stato inviato al team SVN.\n"
+#~ "per favore riporta "
+
+#~ msgid "rename"
+#~ msgstr "rinomina"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "quando si pongono domande su questo registro"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "quando si pongono domande su questo registro\n"
+#~ "\n"
+#~ "Una copia è stata inviata a te stesso."
 
 #~ msgid "LOF"
 #~ msgstr "LOF"

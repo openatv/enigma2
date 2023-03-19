@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-14 18:17+0000\n"
+"POT-Creation-Date: 2023-02-19 09:08+0000\n"
 "PO-Revision-Date: 2022-11-22 18:20+0000\n"
 "Last-Translator: tzyy1970 <haotzyy1970@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2234,9 +2234,6 @@ msgstr "添加/删除 当前事件定时器"
 msgid "Adding schedule..."
 msgstr "添加任务..."
 
-msgid "Additional Info"
-msgstr "附加信息"
-
 msgid "Additional files/folders to backup"
 msgstr "额外备份的 文件/文件夹"
 
@@ -2662,9 +2659,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "是否确实要将EPG缓存保存到:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "是否确实要发送此日志:\n"
-
 msgid "Argentina"
 msgstr "阿根廷"
 
@@ -2688,6 +2682,9 @@ msgstr "阿鲁巴岛"
 
 msgid "As plugin in extended bar"
 msgstr "作为扩展栏中的插件"
+
+msgid "Ascending"
+msgstr ""
 
 msgid "Ask user"
 msgstr "询问用户"
@@ -2743,9 +2740,6 @@ msgstr ""
 
 msgid "Athletics"
 msgstr "田径"
-
-msgid "Attach a file"
-msgstr "附加文件"
 
 msgid "Audio"
 msgstr "音频"
@@ -5814,6 +5808,9 @@ msgstr "删除插件"
 msgid "Delete Timer"
 msgstr "删除定时器"
 
+msgid "Delete all duplicated lines"
+msgstr ""
+
 msgid "Delete all log files"
 msgstr "删除所有日志文件"
 
@@ -5842,6 +5839,9 @@ msgid "Delete current line"
 msgstr "删除当前行"
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 msgid "Delete entry"
@@ -5943,6 +5943,9 @@ msgstr "丹麦"
 
 msgid "Depth"
 msgstr "深度"
+
+msgid "Descending"
+msgstr ""
 
 msgid "Description"
 msgstr "详情描述"
@@ -6354,22 +6357,12 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want to add any additional information ?"
-msgstr "是否添加任何额外的信息?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "是否同时安装Samba客户端?\n"
 "这允许您可以挂载Windows共享在此设备上."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"是否附加一个文本文件来解释日志?\n"
-"(选择'否'请使用虚拟键盘键入信息.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6447,13 +6440,6 @@ msgstr "是否要恢复你的设置？"
 
 msgid "Do you want to resume this playback?"
 msgstr "是否继续上次播放?"
-
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"是否要发送所有选定的文件:\n"
-"(选择'否'只发送当前选定的文件.)"
 
 msgid "Do you want to update your box?"
 msgstr "是否升级您的机顶盒？"
@@ -6582,6 +6568,9 @@ msgstr "驱动版本"
 
 msgid "Duplex"
 msgstr "双工模式"
+
+msgid "Duplicate the current line"
+msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "在此期间,将检查发射器和记录目的地.如果录制目的地(如NAS)未及时准备好进行录制,则可以增加此时间."
@@ -7299,7 +7288,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7404,14 +7393,6 @@ msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "错误,未知结果!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"错误:\n"
-"%s"
 
 #, python-format
 msgid ""
@@ -12121,6 +12102,9 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "打开收藏夹列表"
 
+msgid "Open file sort menu"
+msgstr ""
+
 msgid "Open satellites list"
 msgstr "打开卫星列表"
 
@@ -15640,6 +15624,9 @@ msgstr "仅为下一个字符选择移位字符集"
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -15828,12 +15815,6 @@ msgstr "选择卫星 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "选择此选项允许您集中配置一组卫星."
-
-msgid "Send"
-msgstr "发送"
-
-msgid "Send Confirmation"
-msgstr "发送确认"
 
 msgid "Send DiSEqC"
 msgstr "发送DiSEqC"
@@ -20210,8 +20191,8 @@ msgstr "网络EPG信息可用时使用."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "在软件管理器中使用在线刷写"
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "当OpenTV EPG信息可用时使用."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
 
 msgid "Use QuickSelect"
 msgstr ""
@@ -21564,9 +21545,6 @@ msgstr "您可以左右切换调谐器 %s"
 msgid "You cannot delete this!"
 msgstr "不能删除这个！"
 
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "你已发送过此日志,确定要重新发送这篇日志:\n"
-
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "你已选择备份设置.请按OK键马上开始."
 
@@ -21586,18 +21564,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "没有要运行的脚本."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"您尚未在设置屏幕中设置用户信息\n"
-"按MENU键,然后输入您的信息,然后重试"
-
 msgid "You have selected no logs to delete."
 msgstr "您没有选择要删除的日志."
-
-msgid "You have selected no logs to send."
-msgstr "您没有选择要发送的日志."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "激活自动开始前必须创建一个交换文件."
@@ -22532,13 +22500,6 @@ msgstr "手工艺品"
 msgid "handled"
 msgstr "处理"
 
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"已发送到SVN团队.\n"
-"请引用"
-
 msgid "hdr10"
 msgstr "hdr10"
 
@@ -22911,9 +22872,6 @@ msgstr "删除地面波频道"
 msgid "remove this mark"
 msgstr "删除此标记"
 
-msgid "rename"
-msgstr "重命名"
-
 msgid "rename entry"
 msgstr "重命名节目"
 
@@ -23270,18 +23228,6 @@ msgstr "水上运动"
 msgid "west"
 msgstr "西"
 
-msgid "when asking question about this log"
-msgstr "当询问关于此日志的问题时"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"在询问有关此日志的问题时\n"
-"\n"
-"副本已发送给您自己."
-
 msgid "wide"
 msgstr "宽"
 
@@ -23324,6 +23270,84 @@ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参�
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Additional Info"
+#~ msgstr "附加信息"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "是否确实要发送此日志:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "附加文件"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "是否添加任何额外的信息?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "是否附加一个文本文件来解释日志?\n"
+#~ "(选择'否'请使用虚拟键盘键入信息.)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "是否要发送所有选定的文件:\n"
+#~ "(选择'否'只发送当前选定的文件.)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "错误:\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "发送"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "发送确认"
+
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "当OpenTV EPG信息可用时使用."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "你已发送过此日志,确定要重新发送这篇日志:\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "您尚未在设置屏幕中设置用户信息\n"
+#~ "按MENU键,然后输入您的信息,然后重试"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "您没有选择要发送的日志."
+
+#~ msgid ""
+#~ "has been sent to the SVN team team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "已发送到SVN团队.\n"
+#~ "请引用"
+
+#~ msgid "rename"
+#~ msgstr "重命名"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "当询问关于此日志的问题时"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "在询问有关此日志的问题时\n"
+#~ "\n"
+#~ "副本已发送给您自己."
 
 #~ msgid "LOF"
 #~ msgstr "本振"

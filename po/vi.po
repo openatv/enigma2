@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-14 18:17+0000\n"
+"POT-Creation-Date: 2023-02-19 09:08+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2264,9 +2264,6 @@ msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện 
 msgid "Adding schedule..."
 msgstr "Thêm lịch trình ..."
 
-msgid "Additional Info"
-msgstr "Thông tin bổ sung"
-
 msgid "Additional files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
 
@@ -2698,9 +2695,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Bạn có chắc chắn muốn lưu Bộ nhớ cache EPG vào:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Bạn có chắc chắn muốn gửi nhật ký này:\n"
-
 msgid "Argentina"
 msgstr "Argentina"
 
@@ -2726,6 +2720,9 @@ msgstr "Argentina"
 
 msgid "As plugin in extended bar"
 msgstr "như plugin trong thanh mở rộng"
+
+msgid "Ascending"
+msgstr ""
 
 msgid "Ask user"
 msgstr "Hỏi người dùng"
@@ -2783,9 +2780,6 @@ msgstr ""
 #, fuzzy
 msgid "Athletics"
 msgstr "điền kinh"
-
-msgid "Attach a file"
-msgstr "Đính kèm một tập tin"
 
 msgid "Audio"
 msgstr "Âm thanh"
@@ -5889,6 +5883,9 @@ msgstr "Xóa plugin"
 msgid "Delete Timer"
 msgstr "Xóa bộ đếm thời gian"
 
+msgid "Delete all duplicated lines"
+msgstr ""
+
 msgid "Delete all log files"
 msgstr ""
 
@@ -5917,6 +5914,9 @@ msgid "Delete current line"
 msgstr "Xóa dòng hiện tại"
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 msgid "Delete entry"
@@ -6021,6 +6021,9 @@ msgstr "Đan mạch"
 
 msgid "Depth"
 msgstr "Độ sâu"
+
+msgid "Descending"
+msgstr ""
 
 msgid "Description"
 msgstr "Sự miêu tả"
@@ -6440,22 +6443,12 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want to add any additional information ?"
-msgstr "Bạn có muốn thêm bất kỳ thông tin bổ sung?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Bạn có muốn cài đặt samba client không?\n"
 "Điều này cho phép bạn gắn kết chia sẻ cửa sổ của mình trên thiết bị này."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Bạn có muốn đính kèm một tệp văn bản để giải thích nhật ký?\n"
-"(chọn 'Không' để nhập tin nhắn bằng bàn phím ảo.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6533,13 +6526,6 @@ msgstr "Bạn có muốn khôi phục cài đặt của bạn?"
 
 msgid "Do you want to resume this playback?"
 msgstr "Bạn có muốn tiếp tục phát lại này?"
-
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Bạn có muốn gửi tất cả các tệp đã chọn:\n"
-"(chọn 'Không' để chỉ gửi tệp hiện được chọn.)"
 
 msgid "Do you want to update your box?"
 msgstr "Bạn có muốn cập nhật đầu thu của bạn?"
@@ -6669,6 +6655,9 @@ msgid "Drivers version"
 msgstr ""
 
 msgid "Duplex"
+msgstr ""
+
+msgid "Duplicate the current line"
 msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
@@ -7400,7 +7389,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7510,14 +7499,6 @@ msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Lỗi, chưa biết kết quả!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Lỗi:\n"
-"%s"
 
 #, python-format
 msgid ""
@@ -12351,6 +12332,9 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "Mở danh sách yêu thích"
 
+msgid "Open file sort menu"
+msgstr ""
+
 msgid "Open satellites list"
 msgstr "Mở danh sách vệ tinh"
 
@@ -15915,6 +15899,9 @@ msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo cho chỉ ký tự 
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16106,12 +16093,6 @@ msgstr "Chọn vệ tinh 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Chọn tùy chọn này cho phép bạn định cấu hình một nhóm các vệ tinh trong một khối."
-
-msgid "Send"
-msgstr "Gửi"
-
-msgid "Send Confirmation"
-msgstr "Gửi xác nhận"
 
 msgid "Send DiSEqC"
 msgstr "Gửi DiSEqC"
@@ -20565,9 +20546,8 @@ msgstr "Sử dụng thông tin EPG Netmed khi có sẵn."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "Sử dụng Flash trực tuyến trong Trình quản lý phần mềm"
 
-#, fuzzy
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Sử dụng thông tin EIT EPG khi có sẵn."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
 
 msgid "Use QuickSelect"
 msgstr ""
@@ -21938,9 +21918,6 @@ msgstr "Bạn có thể chuyển đổi sang trái và phải bộ chỉnh này 
 msgid "You cannot delete this!"
 msgstr "Bạn không thể xóa cái này!"
 
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Bạn đã gửi nhật ký này, bạn có chắc chắn muốn gửi lại nhật ký này:\n"
-
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Bạn đã chọn sao lưu các thiết lập của bạn. Vui lòng nhấn OK để bắt đầu sao lưu ngay bây giờ."
 
@@ -21960,18 +21937,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "Bạn không có kịch bản để chạy."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Bạn chưa thiết lập thông tin người dùng của mình trong màn hình thiết lập\n"
-"Nhấn MENU và nhập thông tin của bạn, sau đó thử lại"
-
 msgid "You have selected no logs to delete."
 msgstr "Bạn đã chọn không có nhật ký để xóa."
-
-msgid "You have selected no logs to send."
-msgstr "Bạn đã chọn không có nhật ký để gửi."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "Bạn phải tạo một tập tin hoán đổi trước để kích hoạt tự động khởi động."
@@ -22920,13 +22887,6 @@ msgstr "thủ công"
 msgid "handled"
 msgstr "xử lý"
 
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"đã được gửi đến nhóm đội SVN.\n"
-"xin trích dẫn"
-
 msgid "hdr10"
 msgstr "hdr10"
 
@@ -23307,9 +23267,6 @@ msgstr "loại bỏ các dịch vụ trên mặt đất"
 msgid "remove this mark"
 msgstr "xóa dấu này"
 
-msgid "rename"
-msgstr "đổi tên"
-
 msgid "rename entry"
 msgstr "đổi tên mục nhập"
 
@@ -23669,18 +23626,6 @@ msgstr "thể thao dưới nước"
 msgid "west"
 msgstr "hướng Tây"
 
-msgid "when asking question about this log"
-msgstr "khi đặt câu hỏi về nhật ký này"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"khi đặt câu hỏi về nhật ký này\n"
-"\n"
-"Một bản sao đã được gửi cho chính bạn."
-
 msgid "wide"
 msgstr "rộng"
 
@@ -23722,6 +23667,85 @@ msgstr "bây giờ % s% s của bạn có thể không sử dụng được. Vui
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Additional Info"
+#~ msgstr "Thông tin bổ sung"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Bạn có chắc chắn muốn gửi nhật ký này:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Đính kèm một tập tin"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "Bạn có muốn thêm bất kỳ thông tin bổ sung?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "Bạn có muốn đính kèm một tệp văn bản để giải thích nhật ký?\n"
+#~ "(chọn 'Không' để nhập tin nhắn bằng bàn phím ảo.)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "Bạn có muốn gửi tất cả các tệp đã chọn:\n"
+#~ "(chọn 'Không' để chỉ gửi tệp hiện được chọn.)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lỗi:\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "Gửi"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "Gửi xác nhận"
+
+#, fuzzy
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "Sử dụng thông tin EIT EPG khi có sẵn."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "Bạn đã gửi nhật ký này, bạn có chắc chắn muốn gửi lại nhật ký này:\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "Bạn chưa thiết lập thông tin người dùng của mình trong màn hình thiết lập\n"
+#~ "Nhấn MENU và nhập thông tin của bạn, sau đó thử lại"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "Bạn đã chọn không có nhật ký để gửi."
+
+#~ msgid ""
+#~ "has been sent to the SVN team team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "đã được gửi đến nhóm đội SVN.\n"
+#~ "xin trích dẫn"
+
+#~ msgid "rename"
+#~ msgstr "đổi tên"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "khi đặt câu hỏi về nhật ký này"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "khi đặt câu hỏi về nhật ký này\n"
+#~ "\n"
+#~ "Một bản sao đã được gửi cho chính bạn."
 
 #~ msgid "LOF"
 #~ msgstr "LOF"

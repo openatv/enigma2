@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-14 18:17+0000\n"
+"POT-Creation-Date: 2023-02-19 09:08+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -2501,9 +2501,6 @@ msgstr "Legg til/fjern timer for aktuelle program"
 msgid "Adding schedule..."
 msgstr "Legg til planlagt oppgave..."
 
-msgid "Additional Info"
-msgstr "Tilleggsinfo"
-
 msgid "Additional files/folders to backup"
 msgstr ""
 
@@ -2963,9 +2960,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Er du sikker på at du vil lagre EPG Cache til:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Er du sikker på at du vil sende denne loggen:\n"
-
 msgid "Argentina"
 msgstr ""
 
@@ -2993,6 +2987,9 @@ msgstr ""
 
 msgid "As plugin in extended bar"
 msgstr "som plugin i utvidet bar"
+
+msgid "Ascending"
+msgstr ""
 
 #
 msgid "Ask user"
@@ -3052,9 +3049,6 @@ msgstr ""
 #, fuzzy
 msgid "Athletics"
 msgstr "friidrett"
-
-msgid "Attach a file"
-msgstr "Legg ved en fil"
 
 msgid "Audio"
 msgstr ""
@@ -6384,6 +6378,9 @@ msgstr ""
 msgid "Delete Timer"
 msgstr "Slett timer"
 
+msgid "Delete all duplicated lines"
+msgstr ""
+
 msgid "Delete all log files"
 msgstr ""
 
@@ -6414,6 +6411,9 @@ msgid "Delete current line"
 msgstr "Slett oppføring"
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 #
@@ -6522,6 +6522,9 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Dybde"
+
+msgid "Descending"
+msgstr ""
 
 #
 msgid "Description"
@@ -6972,22 +6975,12 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want to add any additional information ?"
-msgstr "Ønsker du å legge til tilleggsinformasjon?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Ønsker du å også installere samba klient?\n"
 "Dette gjør det mulig å tilkoble dine Windows delinger på denne enheten."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Ønsker du å legge ved en tekstfil for å forklare loggen?\n"
-"(velg 'Nei' for å skrive melding ved hjelp av det virtuelle tastaturet.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -7075,13 +7068,6 @@ msgstr "Vil du hente inn dine innstillinger?"
 #
 msgid "Do you want to resume this playback?"
 msgstr "Vil du gjenoppta avspillingen ?"
-
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Ønsker du å sende alle valgte filer:\n"
-"(velg 'Nei' for å bare sende den valgte filen.)"
 
 msgid "Do you want to update your box?"
 msgstr ""
@@ -7220,6 +7206,9 @@ msgid "Drivers version"
 msgstr ""
 
 msgid "Duplex"
+msgstr ""
+
+msgid "Duplicate the current line"
 msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
@@ -7984,7 +7973,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -8084,14 +8073,6 @@ msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr ""
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Feil:\n"
-"%s"
 
 #
 #, python-format
@@ -13306,6 +13287,9 @@ msgstr ""
 msgid "Open favorites list"
 msgstr ""
 
+msgid "Open file sort menu"
+msgstr ""
+
 msgid "Open satellites list"
 msgstr "Åpne satellitt liste"
 
@@ -17160,6 +17144,9 @@ msgstr ""
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -17346,12 +17333,6 @@ msgstr ""
 #, fuzzy
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Dette alternativet lar deg velge mellom to kanallister som er tilgjengelige."
-
-msgid "Send"
-msgstr "Send"
-
-msgid "Send Confirmation"
-msgstr "Send bekreftelse"
 
 msgid "Send DiSEqC"
 msgstr ""
@@ -22141,9 +22122,8 @@ msgstr "Bruk Netmed EPG informasjon når den er tilgjengelig."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr ""
 
-#, fuzzy
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Bruk EIT EPG informasjon når den er tilgjengelig."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
 
 msgid "Use QuickSelect"
 msgstr ""
@@ -23612,9 +23592,6 @@ msgstr ""
 msgid "You cannot delete this!"
 msgstr "Du kan ikke slette denne!."
 
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Du har allerede sendt denne loggen, er du sikker på at du vil sende denne på nytt:\n"
-
 #
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Du har valgt å lage sikkerhetskopi av dine innstillinger. Trykk OK for å ta sikkerhetskopi."
@@ -23636,18 +23613,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr ""
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Du har ikke satt opp din bruker info i oppsettet\n"
-"Trykk på MENU, og skriv inn din informasjon, så prøv igjen"
-
 msgid "You have selected no logs to delete."
 msgstr "Du har ikke valgt noen logger for å slette."
-
-msgid "You have selected no logs to send."
-msgstr "Du har ikke valgt noen logger for å sende."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr ""
@@ -24662,11 +24629,6 @@ msgstr "håndverk"
 msgid "handled"
 msgstr "håndteres"
 
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-
 msgid "hdr10"
 msgstr ""
 
@@ -25108,9 +25070,6 @@ msgstr ""
 msgid "remove this mark"
 msgstr "fjern denne markøren"
 
-msgid "rename"
-msgstr "gi nytt navn"
-
 #
 msgid "rename entry"
 msgstr "Endre navn på oppføring"
@@ -25510,18 +25469,6 @@ msgstr "vann sport"
 msgid "west"
 msgstr "vest"
 
-msgid "when asking question about this log"
-msgstr "når du spør spørsmålet om denne loggen"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"når du spør spørsmålet om denne loggen\n"
-"\n"
-"Vil en kopi bli sendt til deg."
-
 msgid "wide"
 msgstr ""
 
@@ -25569,6 +25516,78 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Additional Info"
+#~ msgstr "Tilleggsinfo"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Er du sikker på at du vil sende denne loggen:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Legg ved en fil"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "Ønsker du å legge til tilleggsinformasjon?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "Ønsker du å legge ved en tekstfil for å forklare loggen?\n"
+#~ "(velg 'Nei' for å skrive melding ved hjelp av det virtuelle tastaturet.)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "Ønsker du å sende alle valgte filer:\n"
+#~ "(velg 'Nei' for å bare sende den valgte filen.)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Feil:\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "Send"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "Send bekreftelse"
+
+#, fuzzy
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "Bruk EIT EPG informasjon når den er tilgjengelig."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "Du har allerede sendt denne loggen, er du sikker på at du vil sende denne på nytt:\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "Du har ikke satt opp din bruker info i oppsettet\n"
+#~ "Trykk på MENU, og skriv inn din informasjon, så prøv igjen"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "Du har ikke valgt noen logger for å sende."
+
+#~ msgid "rename"
+#~ msgstr "gi nytt navn"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "når du spør spørsmålet om denne loggen"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "når du spør spørsmålet om denne loggen\n"
+#~ "\n"
+#~ "Vil en kopi bli sendt til deg."
 
 #, fuzzy, python-format
 #~ msgid " ('%s') ends with error messages."

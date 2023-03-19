@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-14 18:17+0000\n"
-"PO-Revision-Date: 2023-01-15 15:46+0000\n"
+"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"PO-Revision-Date: 2023-02-27 12:38+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 msgid ""
 "\n"
@@ -2236,9 +2236,6 @@ msgstr "Lisää/poista ajastus tähän ohjelmaan"
 msgid "Adding schedule..."
 msgstr "Lisätään aikataulu..."
 
-msgid "Additional Info"
-msgstr "Lisätiedot"
-
 msgid "Additional files/folders to backup"
 msgstr "Lisää varmuuskopioon"
 
@@ -2668,9 +2665,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Haluatko varmasti tallentaa EPG:n välimuistin tänne:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Haluatko varmasti lähettää tämän lokin:\n"
-
 msgid "Argentina"
 msgstr "Argentina"
 
@@ -2694,6 +2688,9 @@ msgstr "Aruba"
 
 msgid "As plugin in extended bar"
 msgstr "lisäosana laajennuspalkissa"
+
+msgid "Ascending"
+msgstr "Nouseva"
 
 msgid "Ask user"
 msgstr "Kysy käyttäjältä"
@@ -2749,9 +2746,6 @@ msgstr "Lopussa: %s"
 
 msgid "Athletics"
 msgstr "Yleisurheilu"
-
-msgid "Attach a file"
-msgstr "Liitä tiedosto"
 
 msgid "Audio"
 msgstr "Ääni ja Tekstitys"
@@ -5821,6 +5815,9 @@ msgstr "Poista lisäosia"
 msgid "Delete Timer"
 msgstr "Poista ajastus"
 
+msgid "Delete all duplicated lines"
+msgstr "Poista kaikki päällekkäiset rivit"
+
 msgid "Delete all log files"
 msgstr "Poista kaikki lokitiedostot"
 
@@ -5850,6 +5847,9 @@ msgstr "Poista nykyinen linja"
 
 msgid "Delete directory or file"
 msgstr "Poista hakemisto tai tiedosto"
+
+msgid "Delete empty and white space only lines"
+msgstr "Poista tyhjät rivit ja vain tyhjät välilyönnit"
 
 msgid "Delete entry"
 msgstr "Poista valittu"
@@ -5950,6 +5950,9 @@ msgstr "Tanska"
 
 msgid "Depth"
 msgstr "Syvyys"
+
+msgid "Descending"
+msgstr "Laskeva"
 
 msgid "Description"
 msgstr "Kuvaus"
@@ -6361,22 +6364,12 @@ msgstr "Haluatko todella pysäyttää ja poistaa ajastuksen '%s'?"
 msgid "Do you want change '%s' access mode?"
 msgstr "Haluatko muuttaa '%s' käyttötilaa?"
 
-msgid "Do you want to add any additional information ?"
-msgstr "Haluatko lisätä lisätietoja?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Haluatko asentaa myös Samba asiakkaan?\n"
 "Se mahdollistaa Windows jakojen liittämisen tälle laitteelle."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Haluatko liittää tekstitiedoston jossa on lisätietoja lokista?\n"
-"(valitse 'Ei' jos haluat kirjoittaa viestin virtuaalinäppäimistöllä.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6454,13 +6447,6 @@ msgstr "Haluatko palauttaa asetukset?"
 
 msgid "Do you want to resume this playback?"
 msgstr "Jatketaanko kohdasta, johon katselu viimeksi jäi?"
-
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Haluatko lähettää kaikki valitut tiedostot:\n"
-"(valitse 'ei' lähettääksesi vain nykyinen valinta.)"
 
 msgid "Do you want to update your box?"
 msgstr "Haluatko päivittää vastaanottimesi?"
@@ -6558,7 +6544,7 @@ msgid "Downloading"
 msgstr "Ladataan"
 
 msgid "Downloading Image"
-msgstr "Ladatut Imaget"
+msgstr "Ladataan Ohjelmistoa"
 
 msgid "Downloading latest update list.  Please wait..."
 msgstr "Ladataan viimeisin päivityslistaa. Odota..."
@@ -6589,6 +6575,9 @@ msgstr "Ajurien versio"
 
 msgid "Duplex"
 msgstr "Duplex"
+
+msgid "Duplicate the current line"
+msgstr "Kopioi nykyinen rivi"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "Tänä aikana asema ja tallennuskohde tarkistetaan. Jos tallennuskohde (esim. NAS) ei ole valmis tallennukseen ajoissa, tätä aikaa voidaan pidentää."
@@ -7306,7 +7295,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Virhe %d: Ei voida yhdistää '%s' muotoon '%s'!  (%s)"
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr "Virhe %d: Tiedostoa '%s' ei voi nimetä uudelleen '%s'!  (%s)"
 
 #, python-format
@@ -7413,14 +7402,6 @@ msgstr "Virhe purettaessa ohjelmisto image %s!"
 
 msgid "Error, unknown Result!"
 msgstr "Virhe, tuntematon tulos!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Virhe:\n"
-"%s"
 
 #, python-format
 msgid ""
@@ -12145,6 +12126,9 @@ msgstr "Avaa kontekstivalikko (sisältää asetusvalikon)"
 msgid "Open favorites list"
 msgstr "Näytä Suosikkilista"
 
+msgid "Open file sort menu"
+msgstr "Avaa tiedostojen lajittelu valikko"
+
 msgid "Open satellites list"
 msgstr "Näytä satelliittilista"
 
@@ -15679,6 +15663,9 @@ msgstr "Käytä vaihtoa vain seuraavaan merkkiin"
 msgid "Select the softcam protocol."
 msgstr "Valitse softcam protokolla."
 
+msgid "Select the sort order for the file lines:"
+msgstr "Valitse tiedostorivien lajittelujärjestys:"
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Valitse Plugin selaimen valikko lajittelujärjestys. Käyttäjän määrittelemä mahdollistaa myös valikkomerkintöjen piilottamisen."
 
@@ -15870,12 +15857,6 @@ msgstr "Satelliittivalinta 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Valitsemalla tämän vaihtoehdon, voit määrittää ryhmän satelliitteja yhdessä listassa."
-
-msgid "Send"
-msgstr "Lähetä"
-
-msgid "Send Confirmation"
-msgstr "Lähetä vahvistus"
 
 msgid "Send DiSEqC"
 msgstr "Lähetä DiSEqC"
@@ -16773,7 +16754,7 @@ msgid "Show first image"
 msgstr "Näytä ensimmäinen kuva"
 
 msgid "Show free space in timer view"
-msgstr ""
+msgstr "Näytä vapaa tila ajastin näkymässä"
 
 msgid "Show graphical multi EPG"
 msgstr "Graafinen EPG"
@@ -18310,7 +18291,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 16.12.2022\n"
+"Suomenkielinen käännös: 23.2.2023\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19905,10 +19886,10 @@ msgid "Type / Model"
 msgstr "Tyyppi / Malli"
 
 msgid "Type of LNB/Device"
-msgstr ""
+msgstr "Mikropään/laitteen tyyppi"
 
 msgid "Type of device"
-msgstr ""
+msgstr "Laitteen tyyppi"
 
 msgid "Type of scan"
 msgstr "Hakutapa"
@@ -20105,7 +20086,7 @@ msgid "Unused 0xb2"
 msgstr "Käyttämätön 0xb2"
 
 msgid "Unzipping Image"
-msgstr "Puretaan Image"
+msgstr "Puretaan Ohjelmistoa"
 
 msgid "Up"
 msgstr "Ylös"
@@ -20274,8 +20255,8 @@ msgstr "Käytä Netmed-ohjelmaoppaan tietoja, jos saatavilla."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "Käytä Internet Päivitystä Ohjelmisto hallinnassa"
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Käytä ohjelmaoppaan EIT-tietoja, jos saatavilla."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr "Käytä OpenTV EPG:tä. Vaatii tietyn transponderin EPG:tä."
 
 msgid "Use QuickSelect"
 msgstr "Käytä Pikavalintaa"
@@ -21174,7 +21155,7 @@ msgid "What would you like to do?"
 msgstr "Mitä haluat tehdä?"
 
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
-msgstr ""
+msgstr "Kun 'Käytössä', ajastin näkymä näyttää laitteen vapaan tilan. Tämä herättää laitteen lepotilasta."
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Kun päällä, Enigma2 näyttää piilotetut suosikkilistat. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään"
@@ -21656,9 +21637,6 @@ msgstr ""
 msgid "You cannot delete this!"
 msgstr "Et voi poistaa tätä!"
 
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Olet jo lähettänyt tämän lokin, haluatko varmasti lähettää tämän uudelleen:\n"
-
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Valitsit asetusten varmuuskopioinnin. Aloita painamalla OK näppäintä."
 
@@ -21678,18 +21656,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "Skriptiä ei löytynyt!"
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Et ole määrittänyt käyttäjätietoja asetusvalikossa\n"
-"Paina MENU, syötä tiedot, ja yritä sitten uudelleen"
-
 msgid "You have selected no logs to delete."
 msgstr "Et ole valinnut poistettavia lokeja."
-
-msgid "You have selected no logs to send."
-msgstr "Et ole valinnut lähetettäviä lokeja."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "Swap tiedostoa ei löydy. Tiedosto täytyy luoda ennen aktivointia."
@@ -22632,13 +22600,6 @@ msgstr "käsityö"
 msgid "handled"
 msgstr "hoidettu"
 
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"On lähetetty SVN tiimille.\n"
-"lainaus"
-
 msgid "hdr10"
 msgstr "hdr10"
 
@@ -23011,9 +22972,6 @@ msgstr "poista antennikanavat"
 msgid "remove this mark"
 msgstr "poista tämä merkki"
 
-msgid "rename"
-msgstr "Uudelleen nimeä"
-
 msgid "rename entry"
 msgstr "Uudelleennimeä"
 
@@ -23370,18 +23328,6 @@ msgstr "vesiurheilu"
 msgid "west"
 msgstr "länteen"
 
-msgid "when asking question about this log"
-msgstr "kun kysymyksiä tästä lokista"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"kun kysymyksiä tästä lokista\n"
-"\n"
-"kopio on lähetetty sinulle."
-
 msgid "wide"
 msgstr "leveä"
 
@@ -23424,6 +23370,88 @@ msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita enne
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Additional Info"
+#~ msgstr "Lisätiedot"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Haluatko varmasti lähettää tämän lokin:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Liitä tiedosto"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "Haluatko lisätä lisätietoja?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "Haluatko liittää tekstitiedoston jossa on lisätietoja lokista?\n"
+#~ "(valitse 'Ei' jos haluat kirjoittaa viestin virtuaalinäppäimistöllä.)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "Haluatko lähettää kaikki valitut tiedostot:\n"
+#~ "(valitse 'ei' lähettääksesi vain nykyinen valinta.)"
+
+#, python-format
+#~ msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+#~ msgstr "Virhe %d: Tiedostoa '%s' ei voi nimetä uudelleen '%s'!  (%s)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Virhe:\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "Lähetä"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "Lähetä vahvistus"
+
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "Käytä ohjelmaoppaan EIT-tietoja, jos saatavilla."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "Olet jo lähettänyt tämän lokin, haluatko varmasti lähettää tämän uudelleen:\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "Et ole määrittänyt käyttäjätietoja asetusvalikossa\n"
+#~ "Paina MENU, syötä tiedot, ja yritä sitten uudelleen"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "Et ole valinnut lähetettäviä lokeja."
+
+#~ msgid ""
+#~ "has been sent to the SVN team team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "On lähetetty SVN tiimille.\n"
+#~ "lainaus"
+
+#~ msgid "rename"
+#~ msgstr "Uudelleen nimeä"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "kun kysymyksiä tästä lokista"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "kun kysymyksiä tästä lokista\n"
+#~ "\n"
+#~ "kopio on lähetetty sinulle."
 
 #~ msgid "LOF"
 #~ msgstr "LOF"
