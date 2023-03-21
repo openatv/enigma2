@@ -12,6 +12,13 @@ type_huffman_node huffman_root;
 bool huffman_read_dictionary (char *file)
 {
 	FILE *fd;
+	fd = fopen (file, "r");
+
+	if (!fd)
+		return false;
+	else
+		eDebug("[huffman] read.. '%s'", file);
+
 	char line[512];
 	char value[256];
 	char code[256];
@@ -23,15 +30,6 @@ bool huffman_read_dictionary (char *file)
 	huffman_root.value = NULL;
 	huffman_root.p0 = NULL;
 	huffman_root.p1 = NULL;
-
-	eDebug("[huffman] read.. '%s'", file);
-
-	fd = fopen (file, "r");
-	if (!fd)
-	{
-		//eDebug("[huffman] Cannot open dictionary file");
-		return false;
-	}
 
 	while (fgets (line, sizeof(line), fd))
 	{
