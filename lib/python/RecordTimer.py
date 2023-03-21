@@ -396,7 +396,8 @@ class RecordTimer(Timer):
 		timer.timeChanged()
 		print("[RecordTimer] Timer '%s'." % str(timer))
 		timer.Timer = self
-		timer.log(0, "Timer created")
+		if not timer.log_entries:
+			timer.log(0, "Timer created")
 		self.addTimerEntry(timer)
 		for callback in self.onTimerAdded:  # Trigger onTimerAdded callbacks.
 			callback(timer)
