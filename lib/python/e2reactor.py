@@ -150,7 +150,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		"""Poll the poller for new events."""
 
 		if timeout is not None:
-			timeout = int(timeout * 1000) # convert seconds to milliseconds
+			timeout = int(timeout * 1000)  # convert seconds to milliseconds
 
 		try:
 			l = poller.poll(timeout)
@@ -197,7 +197,7 @@ class PollReactor(posixbase.PosixReactorBase):
 					why = error.ConnectionFdescWentAway('Filedescriptor went away')
 					inRead = False
 			except AttributeError as ae:
-				if "'NoneType' object has no attribute 'writeHeaders'" not in six.text_type(ae):
+				if "'NoneType' object has no attribute 'writeHeaders'" not in str(ae):
 					log.deferr()
 					why = sys.exc_info()[1]
 				else:

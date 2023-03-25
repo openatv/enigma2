@@ -142,11 +142,11 @@ class Timezones:
 				name = commonTimezoneNames.get(tz, zone)  # Use the more common name if one is defined.
 				if name is None:
 					continue
-				if isinstance(name, six.text_type):
+				if isinstance(name, str):
 					name = six.ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
-				if isinstance(area, six.text_type):
+				if isinstance(area, str):
 					area = six.ensure_str(area.encode(encoding="UTF-8", errors="ignore"))
-				if isinstance(zone, six.text_type):
+				if isinstance(zone, str):
 					zone = six.ensure_str(zone.encode(encoding="UTF-8", errors="ignore"))
 				zones.append((zone, name.replace("_", " ")))
 			if area:
@@ -178,10 +178,10 @@ class Timezones:
 		if fileDom:
 			for zone in fileDom.findall("zone"):
 				name = zone.get("name", "")
-				if isinstance(name, six.text_type):
+				if isinstance(name, str):
 					name = six.ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
 				zonePath = zone.get("zone", "")
-				if isinstance(zonePath, six.text_type):
+				if isinstance(zonePath, str):
 					zonePath = six.ensure_str(zonePath.encode(encoding="UTF-8", errors="ignore"))
 				if exists(pathjoin(TIMEZONE_DATA, zonePath)):
 					zones.append((zonePath, name))
