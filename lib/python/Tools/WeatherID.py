@@ -5,9 +5,9 @@
 import re
 import json
 
-from six.moves.urllib.error import URLError
-from six.moves.urllib.parse import urlencode
-from six.moves.urllib.request import urlopen
+from urllib.error import URLError
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 
 WOEID_SEARCH_URL = 'http://query.yahooapis.com/v1/public/yql'
