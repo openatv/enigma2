@@ -774,17 +774,20 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.movePositionMap["up"] = [-1, 3, 4, 1, 2]
 		self.movePositionMap["down"] = [-1, 3, 4, 1, 2]
 
+		h18 = int(h / 18)
 		self.labelPositionMap = {}
-		self.labelPositionMap["ch1"] = (w / 8, h / 4 - h / 36, w / 4, h / 18)
-		self.labelPositionMap["ch2"] = (w / 8 + w / 2, h / 4 - h / 36, w / 4, h / 18)
-		self.labelPositionMap["ch3"] = (w / 8, h / 4 - h / 36 + h / 2, w / 4, h / 18)
-		self.labelPositionMap["ch4"] = (w / 8 + w / 2, h / 4 - h / 36 + h / 2, w / 4, h / 18)
+		self.labelPositionMap["ch1"] = (w / 8, h / 4 - h / 36, w / 4, h18)
+		self.labelPositionMap["ch2"] = (w / 8 + w / 2, h / 4 - h / 36, w / 4, h18)
+		self.labelPositionMap["ch3"] = (w / 8, h / 4 - h / 36 + h / 2, w / 4, h18)
+		self.labelPositionMap["ch4"] = (w / 8 + w / 2, h / 4 - h / 36 + h / 2, w / 4, h18)
 
 		self.decoderIdxMap = [None, 0, 1, 2, 3]
 
 		self.fontSize = {1080: 40, 720: 28, 576: 18}.get(h, 40)
-		self.text1Pos = (w - w / 3, h - h / 18 - h / 18, w / 3, h / 18)
-		self.text2Pos = (w - w / 3, h - h / 18, w / 3, h / 18)
+		ww = int(w / 2 - 10)
+		l = int(w / 2 + 5)
+		self.text1Pos = (l, h - h18 - h18, ww, h18)
+		self.text2Pos = (l, h - h18, ww, h18)
 
 	def moveFrame(self):
 		self.showFocus()
