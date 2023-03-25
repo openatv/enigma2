@@ -2004,7 +2004,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 
 			#assign nims
 			tag_dvbc_default = tag_dvbt_default = tag_dvbs_default = tag_atsc_default = True
-			for item in six.iteritems(networks):
+			for item in iter(networks.items()):
 				req_type = item[0]
 				for req_network in item[1]:
 					for nim in nimmanager.nim_slots:

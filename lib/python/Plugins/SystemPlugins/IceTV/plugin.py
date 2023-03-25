@@ -644,7 +644,7 @@ class EPGFetcher(object):
 
     def makeChanServMap(self, channels):
         res = defaultdict(list)
-        name_map = dict((n.upper(), t) for n, t in six.iteritems(self.getScanChanNameMap()))
+        name_map = dict((n.upper(), t) for n, t in iter(self.getScanChanNameMap().items()))
 
         ice_services = set()
         for channel in channels:
@@ -682,7 +682,7 @@ class EPGFetcher(object):
     def serviceToIceChannelId(self, serviceref):
         svc = str(serviceref).split(":")
         triplet = (int(svc[5], 16), int(svc[4], 16), int(svc[3], 16))
-        for channel_id, dvbt in six.iteritems(self.channel_service_map):
+        for channel_id, dvbt in iter(self.channel_service_map.items()):
             if triplet in dvbt:
                 return channel_id
 
@@ -767,7 +767,7 @@ class EPGFetcher(object):
 
     def triplesToChannels(self, triples):
         if triples:
-            return set(ch for ch, tl in self.channel_service_map.iteritems() for t in tl if t in triples)
+            return set(ch for ch, tl in iter(self.channel_service_map.items()) for t in tl if t in triples)
         else:
             return set()
 

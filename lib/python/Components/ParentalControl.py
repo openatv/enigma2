@@ -192,8 +192,7 @@ class ParentalControl:
 		#Replaces saveWhiteList and saveBlackList:
 		#I don't like to have two functions with identical code...
 		file = open(resolveFilename(SCOPE_CONFIG, sWhichList), 'w')
-		import six
-		for sService, sType in six.iteritems(vList):
+		for sService, sType in iter(vList.items()):
 			#Only Services that are selected directly and Bouqets are saved.
 			#Services that are added by a bouquet are not saved.
 			#This is the reason for the change in self.whitelist and self.blacklist
