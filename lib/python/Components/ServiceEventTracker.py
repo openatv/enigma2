@@ -125,7 +125,7 @@ class ServiceEventTracker:
 			screen.session.nav.event.append(ServiceEventTracker.event)
 			ServiceEventTracker.navcore = screen.session.nav
 		EventMap = EventMap.setdefault
-		for x in iter(eventmap.items())
+		for x in iter(eventmap.items()):
 			EventMap(x[0], []).append((self.__passall, screen, x[1]))
 		screen.onClose.append(self.__del_event)
 
