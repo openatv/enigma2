@@ -1,4 +1,3 @@
-from __future__ import division
 from enigma import eDVBDB, eDVBResourceManager, getLinkedSlotID, isFBCLink
 from Screens.Screen import Screen
 from Components.SystemInfo import BoxInfo

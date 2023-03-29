@@ -130,7 +130,6 @@
 		<widget name="list" position="100,100" size="480,375" conditional="list" />
 		<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
-from __future__ import division
 from enigma import eSize, ePoint
 
 orgwidth = self.instance.size().width()

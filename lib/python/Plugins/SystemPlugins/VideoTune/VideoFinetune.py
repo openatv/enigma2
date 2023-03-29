@@ -1,4 +1,3 @@
-from __future__ import division
 from Screens.Screen import Screen
 from Components.config import config
 from Components.Sources.CanvasSource import CanvasSource
