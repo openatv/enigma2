@@ -1,7 +1,6 @@
 from errno import ENOENT
 from os import environ, path, symlink, unlink, walk
 from os.path import exists, isfile, join as pathjoin, realpath
-import six
 from time import gmtime, localtime, strftime, time, tzset
 from xml.etree.cElementTree import ParseError, parse
 
@@ -143,11 +142,11 @@ class Timezones:
 				if name is None:
 					continue
 				if isinstance(name, str):
-					name = six.ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
+					name = name.encode(encoding="UTF-8", errors="ignore").decode()
 				if isinstance(area, str):
-					area = six.ensure_str(area.encode(encoding="UTF-8", errors="ignore"))
+					area = area.encode(encoding="UTF-8", errors="ignore").decode()
 				if isinstance(zone, str):
-					zone = six.ensure_str(zone.encode(encoding="UTF-8", errors="ignore"))
+					zone = zone.encode(encoding="UTF-8", errors="ignore").decode()
 				zones.append((zone, name.replace("_", " ")))
 			if area:
 				if area in self.timezones:
@@ -179,10 +178,10 @@ class Timezones:
 			for zone in fileDom.findall("zone"):
 				name = zone.get("name", "")
 				if isinstance(name, str):
-					name = six.ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
+					name = name.encode(encoding="UTF-8", errors="ignore").decode()
 				zonePath = zone.get("zone", "")
 				if isinstance(zonePath, str):
-					zonePath = six.ensure_str(zonePath.encode(encoding="UTF-8", errors="ignore"))
+					zonePath = zonePath.encode(encoding="UTF-8", errors="ignore").decode()
 				if exists(pathjoin(TIMEZONE_DATA, zonePath)):
 					zones.append((zonePath, name))
 				else:
