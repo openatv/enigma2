@@ -38,7 +38,7 @@ class NTPSyncPoller:
 			timeSource = config.misc.SyncTimeUsing.value
 			print("[NetworkTime] Setting time to '%s' (%s) from '%s'." % (ctime(nowTime), str(nowTime), config.misc.SyncTimeUsing.toDisplayString(timeSource)))
 			setRTCtime(nowTime)
-			eDVBLocalTimeHandler.getInstance().setUseDVBTime(timeSource == "0")
+			eDVBLocalTimeHandler.getInstance().setUseDVBTime(timeSource in ("0", "2"))
 			eEPGCache.getInstance().timeUpdated()
 			self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
 		else:

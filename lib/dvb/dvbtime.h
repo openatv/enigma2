@@ -85,6 +85,8 @@ class eDVBLocalTimeHandler: public sigc::trackable
 	bool m_time_ready;
 	int m_time_difference;
 	int m_last_tp_time_difference;
+	time_t m_current_transponder_time;
+	int m_SyncTimeUsing;
 	void DVBChannelAdded(eDVBChannel*);
 	void DVBChannelStateChanged(iDVBChannel*);
 	void readTimeOffsetData(const char*);
@@ -108,6 +110,7 @@ public:
 	time_t nowTime() const { return m_time_ready ? ::time(0)+m_time_difference : -1; }
 	bool ready() const { return m_time_ready; }
 	static eDVBLocalTimeHandler *getInstance() { return instance; }
+	time_t getTransponderTime() { return m_current_transponder_time; }
 };
 
 #endif // __LIB_DVB_DVBTIME_H_

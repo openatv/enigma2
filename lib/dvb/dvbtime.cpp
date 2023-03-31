@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <lib/base/nconfig.h>
 
 // Defines for DM7000 / DM7020.
 #define FP_IOCTL_SET_RTC 0x101
@@ -219,10 +220,12 @@ eDVBLocalTimeHandler *eDVBLocalTimeHandler::instance;
 DEFINE_REF(eDVBLocalTimeHandler);
 
 eDVBLocalTimeHandler::eDVBLocalTimeHandler()
-	:m_use_dvb_time(true), m_updateNonTunedTimer(eTimer::create(eApp)), m_time_ready(false)
+	:m_use_dvb_time(true), m_updateNonTunedTimer(eTimer::create(eApp)), m_time_ready(false), m_current_transponder_time(0)
 {
 	if (!instance)
 		instance = this;
+	m_SyncTimeUsing = eConfigManager::getConfigIntValue("config.misc.SyncTimeUsing");
+
 	ePtr<eDVBResourceManager> res_mgr;
 	eDVBResourceManager::getInstance(res_mgr);
 	if (!res_mgr)
@@ -365,6 +368,16 @@ void eDVBLocalTimeHandler::updateNonTuned()
 
 void eDVBLocalTimeHandler::updateTime(time_t tp_time, eDVBChannel *chan, int update_count)
 {
+
+	eDebug("[eDVBLocalTimerHandler] updateTime : %d" , tp_time);
+
+	if (m_SyncTimeUsing == 2)
+	{
+		if(tp_time != -1)
+			m_current_transponder_time = tp_time;
+		return;
+	}
+
 	int time_difference;
 	bool restart_tdt = false;
 	if (!tp_time)

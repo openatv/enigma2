@@ -34,6 +34,7 @@ include mmi/Makefile.inc
 include network/Makefile.inc
 include python/Makefile.inc
 include timeshift/Makefile.inc
+include fpclock/Makefile.inc
 
 # Build the subdirs without parallellism
 SUBDIRS = python
