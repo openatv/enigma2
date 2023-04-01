@@ -52,7 +52,7 @@ static FILE *log_stream;
 
 const char * APP = "FPClock";
 const char * app_name = "fpclock";
-const char * app_ver = "1.1";
+const char * app_ver = "1.2";
 
 
 #define FP_IOCTL_SET_RTC 0x101
@@ -108,12 +108,21 @@ time_t getRTC()
     }
     else
     {
+        if(verbose) {
+            fprintf(log_stream,"[%s] /proc/stb/fp/rtc not exists\n",APP);
+        }
+        
         int fd = open("/dev/dbox/fp0", O_RDWR);
         if (fd >= 0)
         {
             if (::ioctl(fd, FP_IOCTL_GET_RTC, (void*)&rtc_time) < 0)
                 fprintf(log_stream,"[%s] FP_IOCTL_GET_RTC failed: %m\n",APP);
             close(fd);
+        }
+        else {
+            if(verbose) {
+                fprintf(log_stream,"[%s] /dev/dbox/fp0 not exists\n",APP);
+            }
         }
     }
     return rtc_time;
@@ -271,18 +280,18 @@ static void daemonize()
 void print_help(void)
 {
     printf("%s: Version %s\n\n",APP,app_ver);
-    printf("\n Usage: %s [OPTIONS]\n\n", app_name);
+    printf("Usage: %s [OPTIONS]\n\n", app_name);
     printf("  Options:\n");
-    printf("   -h --help                 Print this help\n");
+    printf("\t-h --help                 Print this help\n");
 //    printf("   -c --conf_file filename   Read configuration from the file\n");
-    printf("   -t --timeout timeout      Set the loop timeout in seconds (default 1800)\n");
-    printf("   -l --log_file  filename   Write logs to the file\n");
-    printf("   -d --daemon               Daemonize this application\n");
-    printf("   -p --print                Print FP clock time\n");
-    printf("   -u --update               Update FP clock with the current system time\n");
-    printf("   -f --force epoch          Force FP clock to given epoch time\n");
-    printf("   -r --restore              Restore current system time from FP clock\n");
-    printf("   -v --verbose              Enable debugging output\n");
+    printf("\t-t --timeout timeout      Set the loop timeout in seconds (default 1800)\n");
+    printf("\t-l --log_file  filename   Write logs to the file\n");
+    printf("\t-d --daemon               Daemonize this application\n");
+    printf("\t-p --print                Print FP clock time\n");
+    printf("\t-u --update               Update FP clock with the current system time\n");
+    printf("\t-f --force epoch          Force FP clock to given epoch time\n");
+    printf("\t-r --restore              Restore current system time from FP clock\n");
+    printf("\t-v --verbose              Enable debugging output\n");
     printf("\n");
 }
 
@@ -295,8 +304,13 @@ int read_fp()
     if(verbose)
         fprintf(log_stream, "[%s] Read\n",APP);
     time_t time = getRTC();
-    char* dt = ctime(&time);
-    fprintf(log_stream, "[%s] Read result:%s\n",APP,dt);
+    if(time) {
+        char* dt = ctime(&time);
+        fprintf(log_stream, "[%s] Read result:%s\n",APP,dt);
+    }
+    else {
+        fprintf(log_stream, "[%s] Read RTC failed\n",APP);
+    }
     return 0;
 }
 
@@ -384,26 +398,26 @@ int main(int argc, char *argv[])
     };
     int value, option_index = 0, ret;
     char *log_file_name = NULL;
-    int start_daemonized = 0;
+    bool start_daemonized = false;
 
+    if(argc == 1)
+    {
+        print_help();
+        return EXIT_SUCCESS;
+    }
+
+    pid_file_name = new char(20);
     snprintf(pid_file_name, 20,"/tmp/%s.pid" , app_name );
 
-    /* Try to process all command line arguments */
-    while ((value = getopt_long(argc, argv, "l:t:f:pdhrudp", long_options, &option_index)) != -1) {
+    log_stream = stdout;
+    
+    int action = 0;
+    
+    while ((value = getopt_long(argc, argv, "l:t:f:pdhrudpv", long_options, &option_index)) != -1) {
         switch (value) {
             case 't':
                 sscanf(optarg, "%d", &delay);
                 break;
-            case 'f':
-                sscanf(optarg, "%d", &forcedate);
-                write_fp(forcedate);
-                return EXIT_SUCCESS;
-            case 'r':
-                sync_fp();
-                return EXIT_SUCCESS;
-            case 'u':
-                write_fp(-1);
-                return EXIT_SUCCESS;
 //            case 'c':
 //                conf_file_name = strdup(optarg);
 //                break;
@@ -411,30 +425,68 @@ int main(int argc, char *argv[])
                 log_file_name = strdup(optarg);
                 break;
             case 'd':
-                start_daemonized = 1;
+                start_daemonized = true;
                 break;
-            case 'h':
-                print_help();
-                return EXIT_SUCCESS;
             case 'v':
                 verbose = true;
                 break;
+            case 'f':
+                sscanf(optarg, "%d", &forcedate);
+                action = 2;
+                break;
+            case 'r':
+                action = 3;
+                break;
+            case 'u':
+                action = 2;
+                break;
+            case 'h':
+                print_help();
+                goto EXIT;
             case 'p':
-                read_fp();
-                return EXIT_SUCCESS;
+                action = 1;
+                break;
             case '?':
                 print_help();
-                return EXIT_FAILURE;
+                goto EXIT;
             default:
                 break;
         }
     }
 
+    if(verbose)
+    {
+        fprintf(log_stream,"%s: Version %s\n\n",APP,app_ver);
+        fprintf(log_stream,"[%s] Verbose logging\n",APP);
+        fprintf(log_stream,"[%s] Delay : %d\n",APP,delay);
+        if(forcedate!=-1)
+            fprintf(log_stream,"[%s] Force epoch : %d\n",APP,forcedate);
+    }
+
+    if(action) {
+        if(action == 1)
+        {
+            read_fp();
+        }
+        else if(action == 2)
+        {
+            write_fp(forcedate);
+        }
+        else if(action == 3)
+        {
+            sync_fp();
+        }
+        goto EXIT;
+    }
+
     /* When daemonizing is requested at command line. */
-    if (start_daemonized == 1) {
-        /* It is also possible to use glibc function daemon()
+    if (start_daemonized) {
+        /* It is also possible to use glibc function deamon()
          * at this point, but it is useful to customize your daemon. */
         daemonize();
+    }
+    else {
+        goto EXIT;
     }
 
     /* Open system log and write message to it */
@@ -492,10 +544,13 @@ int main(int argc, char *argv[])
         fclose(log_stream);
     }
 
+
     /* Write system log and close it. */
     syslog(LOG_INFO, "Stopped %s", app_name);
     closelog();
 
+EXIT:
+    
     /* Free allocated memory */
 //    if (conf_file_name != NULL) free(conf_file_name);
     if (log_file_name != NULL) free(log_file_name);
