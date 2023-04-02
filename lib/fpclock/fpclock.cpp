@@ -43,7 +43,7 @@ by Jiri Hnidek <jiri.hnidek@tul.cz>
 static bool verbose = false;
 static int forcedate = -1;
 static int running = 0;
-static int delay = 30;
+static int delay = 1800;
 static int counter = 0;
 static char *conf_file_name = NULL;
 static char *pid_file_name = NULL;
@@ -52,7 +52,7 @@ static FILE *log_stream;
 
 const char * APP = "FPClock";
 const char * app_name = "fpclock";
-const char * app_ver = "1.2";
+const char * app_ver = "1.3";
 
 
 #define FP_IOCTL_SET_RTC 0x101
@@ -285,7 +285,7 @@ void print_help(void)
     printf("\t-h --help                 Print this help\n");
 //    printf("   -c --conf_file filename   Read configuration from the file\n");
     printf("\t-t --timeout timeout      Set the loop timeout in seconds (default 1800)\n");
-    printf("\t-l --log_file  filename   Write logs to the file\n");
+    printf("\t-l --log_file  filename   Write logs to the file (only for daemon mode)\n");
     printf("\t-d --daemon               Daemonize this application\n");
     printf("\t-p --print                Print FP clock time\n");
     printf("\t-u --update               Update FP clock with the current system time\n");
@@ -406,8 +406,8 @@ int main(int argc, char *argv[])
         return EXIT_SUCCESS;
     }
 
-    pid_file_name = new char(20);
-    snprintf(pid_file_name, 20,"/tmp/%s.pid" , app_name );
+    pid_file_name = new char[256];
+    snprintf(pid_file_name, 256, "/var/run/%s.pid" , app_name );
 
     log_stream = stdout;
     
@@ -456,11 +456,11 @@ int main(int argc, char *argv[])
 
     if(verbose)
     {
-        fprintf(log_stream,"%s: Version %s\n\n",APP,app_ver);
-        fprintf(log_stream,"[%s] Verbose logging\n",APP);
-        fprintf(log_stream,"[%s] Delay : %d\n",APP,delay);
+        printf("%s: Version %s\n\n",APP,app_ver);
+        printf("[%s] Verbose logging\n",APP);
+        printf("[%s] Delay : %d\n",APP,delay);
         if(forcedate!=-1)
-            fprintf(log_stream,"[%s] Force epoch : %d\n",APP,forcedate);
+            printf("[%s] Force epoch : %d\n",APP,forcedate);
     }
 
     if(action) {
@@ -491,7 +491,7 @@ int main(int argc, char *argv[])
 
     /* Open system log and write message to it */
     openlog(argv[0], LOG_PID|LOG_CONS, LOG_DAEMON);
-    syslog(LOG_INFO, "Started %s", app_name);
+    syslog(LOG_INFO, "Started %s V:%s", app_name, app_ver);
 
     /* Daemon will handle two signals */
     signal(SIGINT, handle_signal);
@@ -505,8 +505,6 @@ int main(int argc, char *argv[])
                 log_file_name, strerror(errno));
             log_stream = stdout;
         }
-    } else {
-        log_stream = stdout;
     }
 
     /* Read configuration from config file */
@@ -518,18 +516,20 @@ int main(int argc, char *argv[])
     /* Never ending loop of server */
     while (running == 1) {
         /* Debug print */
-        ret = fprintf(log_stream, "Debug: %d\n", counter++);
-        if (ret < 0) {
-            syslog(LOG_ERR, "Can not write to log stream: %s, error: %s",
-                (log_stream == stdout) ? "stdout" : log_file_name, strerror(errno));
-            break;
-        }
-        ret = fflush(log_stream);
-        if (ret != 0) {
-            syslog(LOG_ERR, "Can not fflush() log stream: %s, error: %s",
-                (log_stream == stdout) ? "stdout" : log_file_name, strerror(errno));
-            break;
-        }
+		if(verbose) {
+	        ret = fprintf(log_stream, "Debug: %d\n", counter++);
+	        if (ret < 0) {
+	            syslog(LOG_ERR, "Can not write to log stream: %s, error: %s",
+	                (log_stream == stdout) ? "stdout" : log_file_name, strerror(errno));
+	            break;
+	        }
+	        ret = fflush(log_stream);
+	        if (ret != 0) {
+	            syslog(LOG_ERR, "Can not fflush() log stream: %s, error: %s",
+	                (log_stream == stdout) ? "stdout" : log_file_name, strerror(errno));
+	            break;
+	        }
+		}
 
         write_fp(-1);
 
