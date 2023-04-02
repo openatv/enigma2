@@ -1,2 +1,2 @@
-tools_PROGRAMS = fpclock/fpclock
+sbin_PROGRAMS = fpclock/fpclock
 fpclock_fpclock_SOURCES = fpclock/fpclock.cpp
