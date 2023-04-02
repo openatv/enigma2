@@ -7,20 +7,21 @@
 # lareq <lareq@o2.pl>, 2022.
 # Karol Sz <kaolsz@interia.pl>, 2022, 2023.
 # Tomasz X <wladyslaw.lam@gmail.com>, 2022.
+# sq9 <sq9hhc1@o2.pl>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-19 09:08+0000\n"
-"PO-Revision-Date: 2023-03-18 14:38+0000\n"
-"Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
+"PO-Revision-Date: 2023-04-02 06:42+0000\n"
+"Last-Translator: sq9 <sq9hhc1@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -30,7 +31,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"[Listy kanałów (TV)]\n"
+"[Bukiety użytkownika (TV)]\n"
 
 msgid ""
 "\n"
@@ -81,7 +82,7 @@ msgid ""
 "[User - bouquets (RADIO)]\n"
 msgstr ""
 "\n"
-"[Listy kanałów (RADIO)]\n"
+"[Bukiety użytkownika (RADIO)]\n"
 
 # DO NOT TRANSLATE!
 msgid " "
@@ -154,7 +155,7 @@ msgid ""
 "\n"
 "Do you want to install the new settings list?"
 msgstr ""
-" dostępna!\n"
+" dostępna!!\n"
 "\n"
 "Czy chcesz zainstalować nową listę kanałów?"
 
@@ -1412,10 +1413,10 @@ msgid "/sec]"
 msgstr "/sek]"
 
 msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 katalog"
+msgstr "katalog /usr/share/enigma2"
 
 msgid "/var directory"
-msgstr "'var/ katalog"
+msgstr "katalog /var"
 
 msgid "0"
 msgstr "0"
@@ -1872,7 +1873,7 @@ msgstr "Plik z nośnika jest w użyciu!"
 
 #, python-format
 msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
-msgstr "Wykonany timer zasilania chce ponownie uruchomić %s %s. Zrobić to teraz?"
+msgstr "Programator zasilania chce ponownie uruchomić %s %s. Zrobić to teraz?"
 
 msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr "Wykonany timer zasilania chce ponownie uruchomić interfejs użytkownika. Czy chcesz to zrobić teraz?"
@@ -2101,7 +2102,7 @@ msgid "Activate Picture in Picture"
 msgstr "Uruchom PiP"
 
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
-msgstr "Aktywuj możliwość wysyłania indywidualnych komend z linii poleceń."
+msgstr "Aktywuj możliwość wysyłania indywidualnych komend HDMI-CEC z linii poleceń."
 
 msgid "Activate network adapter configuration"
 msgstr "aktywuj konfigurację karty sieciowej"
@@ -3578,7 +3579,7 @@ msgid "CH%s"
 msgstr "CH%s"
 
 msgid "CHANGE BOUQUET"
-msgstr "ZMIEŃ LISTĘ KANAŁÓW"
+msgstr "ZMIEŃ BUKIET"
 
 msgid "CHANNEL +/-"
 msgstr "Kanał +/-"
@@ -3944,13 +3945,13 @@ msgid "Centered"
 msgstr "wyśrodkowany"
 
 msgid "Centered, wrapped"
-msgstr "wyśrodkowany, owinięty"
+msgstr "wyśrodkowany, wewnątrz"
 
 msgid "Central African Republic"
 msgstr "Republika Środkowoafrykańska"
 
 msgid "Central Khmer"
-msgstr "Środkowy Khmer"
+msgstr "Centralny Khmer"
 
 msgid "Chad"
 msgstr "Czad"
@@ -4173,7 +4174,7 @@ msgid "Children"
 msgstr "Dzieci"
 
 msgid "Children's"
-msgstr "Dzieci"
+msgstr "Dziecięce"
 
 msgid "Children/Youth"
 msgstr "Dzieci/Młodzież"
@@ -4334,7 +4335,7 @@ msgid "Clean up and remove all completed timers?"
 msgstr "Wyczyścić i usunąć wszystkie ukończone timery?"
 
 msgid "Cleaning Trashes"
-msgstr "Czyszczenie Kosza"
+msgstr "Czyszczenie Koszy"
 
 msgid "Cleanup"
 msgstr "Oczyszczanie"
@@ -5324,10 +5325,10 @@ msgid "Cut"
 msgstr "Wytnij"
 
 msgid "Cutlist Editor"
-msgstr "Edytor cięcia"
+msgstr "Edytor składni listy"
 
 msgid "Cutlist editor..."
-msgstr "Edytor cięcia..."
+msgstr "Edytor składni..."
 
 msgid "Cycle PiP(zap)"
 msgstr "Cykl PIP(przełącz)"
@@ -5633,7 +5634,7 @@ msgid "Debug Log Information"
 msgstr "Informacje dziennika debugowania"
 
 msgid "Debug Log Information Actions"
-msgstr "Akcje informacji log debugowania"
+msgstr "Akcje informacji o dzienniku debugowania"
 
 msgid "Debug Logs"
 msgstr "Logi Diagnostyczne"
@@ -6011,7 +6012,7 @@ msgid "Device id"
 msgstr "ID urządzenia"
 
 msgid "Device mounts"
-msgstr "Montowane Urządzenie"
+msgstr "Montowane urządzenie"
 
 msgid "Device name:"
 msgstr "Nazwa urządzenia:"
@@ -6190,7 +6191,7 @@ msgid "Display 4:3 content as"
 msgstr "Wyświetlaj zawartość 4:3 jako"
 
 msgid "Display >16:9 content as"
-msgstr "Wyświetlaj zawartość 16:9 jako"
+msgstr "Wyświetlaj zawartość >16:9 jako"
 
 msgid "Display Settings"
 msgstr "Ustawienia wyświetlania"
@@ -13200,28 +13201,28 @@ msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr "Próg mocy. Więcej informacji można znaleźć w instrukcji obsługi odbiornika."
 
 msgid "PowerTimer"
-msgstr "Timer zasilania"
+msgstr "Programator zasilania"
 
 msgid "PowerTimer Actions"
-msgstr "Akcje PowerTimer"
+msgstr "Akcje programatora zasilania"
 
 msgid "PowerTimer Overview"
-msgstr "Timery zasilania"
+msgstr "Programatory zasilania"
 
 msgid "PowerTimer Settings"
-msgstr "Ustawienia PowerTimera"
+msgstr "Ustawienia programatora zasilania"
 
 msgid "PowerTimer Standby"
-msgstr "Timer czuwania"
+msgstr "Programator czuwania"
 
 msgid "PowerTimer deep standby"
-msgstr "Timer wyłączenia"
+msgstr "Programator wyłączenia"
 
 msgid "PowerTimer log"
-msgstr "Logi timerów zasilania"
+msgstr "Logi programatorów zasilania"
 
 msgid "PowerTimers"
-msgstr "Timery zasilania"
+msgstr "Programatory zasilania"
 
 msgid "Predefined"
 msgstr "Zdefiniowany"
@@ -14832,10 +14833,10 @@ msgid "Save the right column directory location on exit."
 msgstr "Zapisz lokalizację katalogu w prawej kolumnie przy wyjściu."
 
 msgid "Save time shift as movie and continue recording"
-msgstr "Zapisz jako timeshift i wznów nagrywania filmu"
+msgstr "Zapisz jako time shift i wznów nagrywania filmu"
 
 msgid "Save time shift as movie and stop recording"
-msgstr "Zapisz timeshift i zatrzymaj nagrywanie"
+msgstr "Zapisz time shift i zatrzymaj nagrywanie"
 
 msgid "Saved lines in script messages"
 msgstr "Zapisane linie w wiadomościach skryptu"
@@ -14844,10 +14845,10 @@ msgid "Saving EPG Cache..."
 msgstr "Zapisywanie EPG w pamięci podręcznej..."
 
 msgid "Saving time shift as movie now. This might take a while!"
-msgstr "Zapisywanie TimeShift jako film. To może chwilę potrwać!"
+msgstr "Zapisywanie time shift jako film. To może chwilę potrwać!"
 
 msgid "Saving time shift files"
-msgstr "Zapisywanie plików timeshiftu"
+msgstr "Zapisywanie plików time shift"
 
 msgid "Scaler sharpness"
 msgstr "Skalowanie ostrości"
@@ -17639,7 +17640,7 @@ msgid "Space used:"
 msgstr "Miejsce używane:"
 
 msgid "Spain"
-msgstr "Chiszpania"
+msgstr "Hiszpania"
 
 msgid "Spanish"
 msgstr "Hiszpański"
