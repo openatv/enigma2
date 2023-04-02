@@ -111,6 +111,7 @@ public:
 	bool ready() const { return m_time_ready; }
 	static eDVBLocalTimeHandler *getInstance() { return instance; }
 	time_t getTransponderTime() { return m_current_transponder_time; }
+	void setSystemTime(time_t new_time);
 };
 
 #endif // __LIB_DVB_DVBTIME_H_
