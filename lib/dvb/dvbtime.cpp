@@ -360,46 +360,12 @@ void eDVBLocalTimeHandler::syncDVBTime()
 	}
 }
 
-void eDVBLocalTimeHandler::updateNonTuned()
+void eDVBLocalTimeHandler::updateNonTuned() // can be removed
 {
+	if (m_SyncTimeUsing == 2)
+		return;
 	updateTime(-1, 0, 0);
 	m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
-}
-
-void eDVBLocalTimeHandler::setSystemTime(time_t new_time)
-{
-	tm linux_dt;
-	tm new_dt;
-	localtime_r(&new_time, &new_dt);
-	time_t linuxTime = time(0);
-	localtime_r(&linuxTime, &linux_dt);
-	int time_difference = new_time - linuxTime;
-	eDebug("[eDVBLocalTimerHandler] Current Linux time is %02d:%02d:%02d / New Linux time will be %02d:%02d:%02d / Difference is : %d.",
-		linux_dt.tm_hour,
-		linux_dt.tm_min,
-		linux_dt.tm_sec,
-		new_dt.tm_hour,
-		new_dt.tm_min,
-		new_dt.tm_sec,
-		time_difference
-		);
-
-	if ((time_difference >= -15) && (time_difference <= 15))
-	{
-		timeval tdelta, tolddelta;
-		tdelta.tv_sec = time_difference;
-		int rc = adjtime(&tdelta, &tolddelta);
-		if(rc != 0)
-			eDebug("[eDVBLocalTimerHandler] Slewing Linux time by %d seconds FAILED!", time_difference);
-	}
-	else
-	{
-		timeval tnow;
-		gettimeofday(&tnow, 0);
-		tnow.tv_sec = t;
-		settimeofday(&tnow, 0);
-	}
-		
 }
 
 void eDVBLocalTimeHandler::updateTime(time_t tp_time, eDVBChannel *chan, int update_count)
@@ -407,9 +373,8 @@ void eDVBLocalTimeHandler::updateTime(time_t tp_time, eDVBChannel *chan, int upd
 
 	eDebug("[eDVBLocalTimerHandler] updateTime : %d" , tp_time);
 
-	if (m_SyncTimeUsing == 2)
-	{
-		if(tp_time != -1) {
+	if (m_SyncTimeUsing == 2) {
+		if(tp_time != 0 && tp_time != -1) { // -1 can be removed
 			tm tp_dt;
 			localtime_r(&tp_time, &tp_dt);
 			eDebug("[eDVBLocalTimerHandler] Transponder time is %02d/%02d/%04d %02d:%02d:%02d",
@@ -419,7 +384,40 @@ void eDVBLocalTimeHandler::updateTime(time_t tp_time, eDVBChannel *chan, int upd
 			tp_dt.tm_hour,
 			tp_dt.tm_min,
 			tp_dt.tm_sec);
-			m_current_transponder_time = tp_time;
+
+			// compare with system time
+			time_t linuxTime = time(0);
+			int time_difference = tp_time - linuxTime;
+			int atime_difference = abs(time_difference);
+
+			if (atime_difference > 30) { // diff higher than 30 seconds 
+				timeval tdelta, tolddelta;
+				tdelta.tv_sec = time_difference;
+				int rc = adjtime(&tdelta, &tolddelta);
+				if(rc != -1) {
+					if (errno == EINVAL) {
+						timeval tnow;
+						gettimeofday(&tnow, 0);
+						tnow.tv_sec = tp_time;
+						settimeofday(&tnow, 0);
+					}
+					else {
+						eDebug("[eDVBLocalTimerHandler] Slewing Linux time by %d seconds FAILED! (%d) %m", time_difference, errno);
+						return;
+					} 
+				}
+				/*emit*/ m_timeUpdated();
+
+				m_use_dvb_time = false;
+
+				std::map<iDVBChannel*, channel_data>::iterator it = m_knownChannels.begin();
+				for (; it != m_knownChannels.end(); ++it) {
+					if (it->second.m_prevChannelState == iDVBChannel::state_ok)
+						it->second.timetable = NULL;
+				}
+
+			}
+
 		}
 		return;
 	}
@@ -685,8 +683,10 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 				case iDVBChannel::state_release:
 					eDebug("[eDVBLocalTimerHandler] Remove channel %p.", chan);
 					m_knownChannels.erase(it);
-					if (m_knownChannels.empty())
-						m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
+					if (m_SyncTimeUsing != 2) {
+						if (m_knownChannels.empty()) // can be removed
+							m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true); // can be removed
+					}
 					return;
 				default: // Ignore all other events.
 					return;

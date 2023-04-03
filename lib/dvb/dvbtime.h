@@ -75,7 +75,7 @@ class eDVBLocalTimeHandler: public sigc::trackable
 		int m_prevChannelState;
 	};
 	bool m_use_dvb_time;
-	ePtr<eTimer> m_updateNonTunedTimer;
+	ePtr<eTimer> m_updateNonTunedTimer; // can be removed
 	friend class TDT;
 	friend class STT;
 	friend class TimeTable;
@@ -111,7 +111,6 @@ public:
 	bool ready() const { return m_time_ready; }
 	static eDVBLocalTimeHandler *getInstance() { return instance; }
 	time_t getTransponderTime() { return m_current_transponder_time; }
-	void setSystemTime(time_t new_time);
 };
 
 #endif // __LIB_DVB_DVBTIME_H_

@@ -18,7 +18,6 @@ nobase_install_PYTHON=
 installdir = $(pkglibdir)
 plugindir = $(libdir)/enigma2/python/Components
 pluginexecdir = $(libdir)/enigma2/python/Components
-toolsdir = $(libdir)/enigma2/python/Tools
 
 include actions/Makefile.inc
 include base/Makefile.inc
@@ -35,7 +34,6 @@ include mmi/Makefile.inc
 include network/Makefile.inc
 include python/Makefile.inc
 include timeshift/Makefile.inc
-include fpclock/Makefile.inc
 
 # Build the subdirs without parallellism
 SUBDIRS = python
