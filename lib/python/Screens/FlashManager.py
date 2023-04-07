@@ -205,7 +205,7 @@ class FlashManager(Screen, HelpableScreen):
 				self.expanded.append(currentSelection[0][0])
 			self.getImagesList()
 		elif currentSelection[0][1] != "Loading":
-			self.session.openWithCallback(self.getImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1])
+			self.session.openWithCallback(self.reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1])
 
 	def keyTop(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveTop)
@@ -254,7 +254,7 @@ class FlashManager(Screen, HelpableScreen):
 
 	def keyDeleteImage(self):
 		currentSelection = self["list"].getCurrent()[0][1]
-		if not("://" in currentSelection or currentSelection in ["Expanded", "Loading"]):
+		if not ("://" in currentSelection or currentSelection in ["Expanded", "Loading"]):
 			try:
 				unlink(currentSelection)
 				currentSelection = ".".join([currentSelection[:-4], "unzipped"])
@@ -265,6 +265,10 @@ class FlashManager(Screen, HelpableScreen):
 				self.getImagesList()
 			except OSError as err:
 				self.session.open(MessageBox, _("Error %d: Unable to delete downloaded image '%s'!  (%s)" % (err.errno, currentSelection, err.strerror)), MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
+
+	def reloadImagesList(self):
+		self.imagesList = {}
+		self.getImagesList()
 
 	def selectionChanged(self):
 		currentSelection = self["list"].getCurrent()[0]
