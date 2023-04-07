@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1020,6 +1020,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr ""
 
@@ -1144,10 +1148,6 @@ msgid "%s %s remote control (native)"
 msgstr ""
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr ""
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr ""
 
@@ -1189,6 +1189,10 @@ msgstr ""
 
 #, python-format
 msgid "%s MHz"
+msgstr ""
+
+#, python-format
+msgid "%s Packages found"
 msgstr ""
 
 #, python-format
@@ -1881,9 +1885,6 @@ msgid ""
 "Do you want to disable the second network interface?"
 msgstr ""
 
-msgid "A small overview of the available icon states and actions."
-msgstr ""
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -1969,9 +1970,6 @@ msgid "Aborted a pseudo recording.\n"
 msgstr ""
 
 msgid "Aborted a streaming service.\n"
-msgstr ""
-
-msgid "Aborting update progress"
 msgstr ""
 
 msgid "About"
@@ -2743,9 +2741,6 @@ msgid "Australian"
 msgstr ""
 
 msgid "Austria"
-msgstr ""
-
-msgid "Author: "
 msgstr ""
 
 msgid "Authoring mode"
@@ -3693,6 +3688,9 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
@@ -3813,9 +3811,6 @@ msgid "Cascade PiP"
 msgstr ""
 
 msgid "Catalan / Valencian"
-msgstr ""
-
-msgid "Caution update not yet tested !!"
 msgstr ""
 
 msgid "Cayman Islands"
@@ -4398,9 +4393,6 @@ msgstr ""
 msgid "Common Setup Actions"
 msgstr ""
 
-msgid "Communication"
-msgstr ""
-
 msgid "Comoros"
 msgstr ""
 
@@ -4869,9 +4861,6 @@ msgid "Context"
 msgstr ""
 
 msgid "Continent"
-msgstr ""
-
-msgid "Continue"
 msgstr ""
 
 msgid "Continue in background"
@@ -5574,9 +5563,6 @@ msgstr ""
 msgid "Default right column directory"
 msgstr ""
 
-msgid "Default settings"
-msgstr ""
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -6071,9 +6057,6 @@ msgstr ""
 msgid "Display Settings"
 msgstr ""
 
-msgid "Display and user interface"
-msgstr ""
-
 msgid "Display context menu"
 msgstr ""
 
@@ -6333,9 +6316,6 @@ msgstr ""
 msgid "Do you want to resume this playback?"
 msgstr ""
 
-msgid "Do you want to update your box?"
-msgstr ""
-
 msgid "Do you want to upgrade the package:\n"
 msgstr ""
 
@@ -6381,10 +6361,6 @@ msgid ""
 msgstr ""
 
 msgid "Done"
-msgstr ""
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
 msgstr ""
 
 #, python-format
@@ -7585,9 +7561,6 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-msgid "Extensions Management"
-msgstr ""
-
 msgid "Extensions/QuickMenu"
 msgstr ""
 
@@ -8029,9 +8002,6 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr ""
 
-msgid "Following tasks will be done after you press OK!"
-msgstr ""
-
 msgid "Font size"
 msgstr ""
 
@@ -8042,9 +8012,6 @@ msgid "Food/Wine"
 msgstr ""
 
 msgid "Football"
-msgstr ""
-
-msgid "For more information see https://www.opena.tv"
 msgstr ""
 
 msgid "Force LNB Power"
@@ -9370,9 +9337,6 @@ msgstr ""
 msgid "Install lcd picons on"
 msgstr ""
 
-msgid "Install or remove finished."
-msgstr ""
-
 msgid "Install picons on"
 msgstr ""
 
@@ -10316,6 +10280,9 @@ msgstr ""
 msgid "Manage Locale/Language Selection settings"
 msgstr ""
 
+msgid "Manage Plugins"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr ""
 
@@ -11023,9 +10990,6 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
-msgid "Multimedia"
-msgstr ""
-
 msgid "Multiple service support"
 msgstr ""
 
@@ -11423,9 +11387,6 @@ msgstr ""
 msgid "No demux available"
 msgstr ""
 
-msgid "No description available."
-msgstr ""
-
 msgid "No displayable files on this medium found!"
 msgstr ""
 
@@ -11456,9 +11417,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr ""
 
-msgid "No network connection available."
-msgstr ""
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -11468,7 +11426,7 @@ msgstr ""
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
+msgid "No packages found."
 msgstr ""
 
 msgid "No pictures available"
@@ -11851,9 +11809,6 @@ msgid "Online update of your %s %s software."
 msgstr ""
 
 msgid "Only Flash Backup Image"
-msgstr ""
-
-msgid "Only extensions."
 msgstr ""
 
 msgid "Only free scan"
@@ -12321,6 +12276,9 @@ msgid "Percentage/Progress bar right"
 msgstr ""
 
 msgid "Perform an on-line flash instead"
+msgstr ""
+
+msgid "Perform install/remove of the selected item"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -12812,20 +12770,10 @@ msgstr ""
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Details"
-msgstr ""
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr ""
 
-msgid "Plugin Manager Activity Information"
-msgstr ""
-
-msgid "Plugin Manager Help"
+msgid "Plugin Manager Actions"
 msgstr ""
 
 msgid "Plugins"
@@ -13131,9 +13079,6 @@ msgid "Proc model"
 msgstr ""
 
 msgid "Proceed with the update"
-msgstr ""
-
-msgid "Process"
 msgstr ""
 
 msgid "Processor information"
@@ -14456,9 +14401,6 @@ msgstr ""
 msgid "Satellite configuration mode"
 msgstr ""
 
-msgid "Satellite equipment"
-msgstr ""
-
 msgid "Satellite equipment setup"
 msgstr ""
 
@@ -14604,6 +14546,9 @@ msgstr ""
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr ""
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr ""
@@ -14700,12 +14645,6 @@ msgid "Searching"
 msgstr ""
 
 msgid "Searching east ..."
-msgstr ""
-
-msgid "Searching for available updates. Please wait..."
-msgstr ""
-
-msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
 msgid "Searching west ..."
@@ -16925,9 +16864,6 @@ msgstr ""
 msgid "SkinSelector"
 msgstr ""
 
-msgid "Skins"
-msgstr ""
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr ""
 
@@ -17131,9 +17067,6 @@ msgstr ""
 msgid "Softcams"
 msgstr ""
 
-msgid "Software"
-msgstr ""
-
 msgid "Software Management"
 msgstr ""
 
@@ -17225,9 +17158,6 @@ msgid "Sorry, %s has not been installed!"
 msgstr ""
 
 msgid "Sorry, no backups found!"
-msgstr ""
-
-msgid "Sorry, no details available!"
 msgstr ""
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
@@ -18415,14 +18345,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr ""
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
@@ -18462,12 +18384,6 @@ msgid "The wizard can backup your current settings. Do you want to do a backup n
 msgstr ""
 
 msgid "The wizard is finished now."
-msgstr ""
-
-msgid "There are at least "
-msgstr ""
-
-msgid "There are currently no outstanding actions."
 msgstr ""
 
 #, python-format
@@ -18544,9 +18460,6 @@ msgid "This allows you to show extensions modules in downloads"
 msgstr ""
 
 msgid "This allows you to show kernel modules in downloads"
-msgstr ""
-
-msgid "This allows you to show languages in downloads"
 msgstr ""
 
 msgid "This allows you to show lcd skins in downloads"
@@ -18799,18 +18712,6 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr ""
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr ""
-
-msgid "This plugin is installed."
-msgstr ""
-
-msgid "This plugin is not installed."
-msgstr ""
-
-msgid "This plugin will be installed."
-msgstr ""
-
-msgid "This plugin will be removed."
 msgstr ""
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
@@ -19551,12 +19452,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr ""
 
-msgid "Undo install"
-msgstr ""
-
-msgid "Undo uninstall"
-msgstr ""
-
 msgid "Unencrypted"
 msgstr ""
 
@@ -19576,9 +19471,6 @@ msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Matrix"
-msgstr ""
-
-msgid "Uninstall"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -19696,9 +19588,6 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-msgid "Update at your own risk"
-msgstr ""
-
 msgid "Update completed."
 msgstr ""
 
@@ -19711,16 +19600,10 @@ msgstr ""
 msgid "Update failed!"
 msgstr ""
 
-msgid "Update feed not available."
-msgstr ""
-
 msgid "Update finished!"
 msgstr ""
 
 msgid "Update interval (in seconds)"
-msgstr ""
-
-msgid "Update is reported as faulty !!"
 msgstr ""
 
 msgid ""
@@ -19749,9 +19632,6 @@ msgstr ""
 msgid "Updating mount locations."
 msgstr ""
 
-msgid "Updating software catalog"
-msgstr ""
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -19766,9 +19646,6 @@ msgid ""
 msgstr ""
 
 msgid "Upgrade with GUI"
-msgstr ""
-
-msgid "Upgrading"
 msgstr ""
 
 msgid "Uphops +"
@@ -20320,48 +20197,6 @@ msgid "View File"
 msgstr ""
 
 msgid "View Rass interactive..."
-msgstr ""
-
-msgid "View details"
-msgstr ""
-
-msgid "View list of available "
-msgstr ""
-
-msgid "View list of available CommonInterface extensions"
-msgstr ""
-
-msgid "View list of available EPG extensions."
-msgstr ""
-
-msgid "View list of available Satellite equipment extensions."
-msgstr ""
-
-msgid "View list of available communication extensions."
-msgstr ""
-
-msgid "View list of available default settings"
-msgstr ""
-
-msgid "View list of available display and user interface extensions."
-msgstr ""
-
-msgid "View list of available multimedia extensions."
-msgstr ""
-
-msgid "View list of available networking extensions"
-msgstr ""
-
-msgid "View list of available recording extensions"
-msgstr ""
-
-msgid "View list of available skins"
-msgstr ""
-
-msgid "View list of available software extensions"
-msgstr ""
-
-msgid "View list of available system extensions"
 msgstr ""
 
 msgid "View mode"
@@ -21132,25 +20967,13 @@ msgstr ""
 msgid "You can Display PiP with or without OSD Menu"
 msgstr ""
 
-msgid "You can cancel the installation."
-msgstr ""
-
-msgid "You can cancel the removal."
-msgstr ""
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr ""
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr ""
 
-msgid "You can install this plugin."
-msgstr ""
-
 msgid "You can only burn Dreambox recordings!"
-msgstr ""
-
-msgid "You can remove this plugin."
 msgstr ""
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
@@ -21263,10 +21086,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr ""
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr ""
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -21363,21 +21182,6 @@ msgstr ""
 msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
 msgstr ""
 
 msgid "Your network configuration has been activated."
@@ -21935,9 +21739,6 @@ msgstr ""
 msgid "experimental film/video"
 msgstr ""
 
-msgid "extensions."
-msgstr ""
-
 msgid "externally loopthrough to"
 msgstr ""
 
@@ -22341,9 +22142,6 @@ msgid "only HD"
 msgstr ""
 
 msgid "original language"
-msgstr ""
-
-msgid "packages selected."
 msgstr ""
 
 msgid "pass"
@@ -22755,9 +22553,6 @@ msgstr ""
 msgid "update"
 msgstr ""
 
-msgid "updates available."
-msgstr ""
-
 msgid "use best / controlled by HDMI"
 msgstr ""
 
@@ -22825,10 +22620,6 @@ msgid "yellow"
 msgstr ""
 
 msgid "yes (keep feeds)"
-msgstr ""
-
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
 msgid "®"
