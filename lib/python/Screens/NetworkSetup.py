@@ -241,6 +241,7 @@ class DNSSettings(Setup):
 			"dhcp-router": [list(x[1]) for x in self.getNetworkRoutes()],
 			"google": [[8, 8, 8, 8], [8, 8, 4, 4]],
 			"cloudflare": [[1, 1, 1, 1], [1, 0, 0, 1]],
+			"quad9": [[9, 9, 9, 9], [149, 112, 112, 10]],
 			"opendns-familyshield": [[208, 67, 222, 123], [208, 67, 220, 123]],
 			"opendns-home": [[208, 67, 222, 222], [208, 67, 220, 220]]
 		}
