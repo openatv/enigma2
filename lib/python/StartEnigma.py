@@ -430,12 +430,7 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 	if BOX_TYPE in ("sf8", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo"):
-		filename = "/dev/dbox/oled0"
-		try:
-			with open(filename, "w") as fd:
-				fd.write("-E2-")
-		except OSError as err:
-			print("[StartEnigma] Error %d: Unable to write a line to file '%s'!  (%s)" % (err.errno, filename, err.strerror))
+		fileUpdateLine("/dev/dbox/oled0", conditionValue=None, replacementValue="-E2-", create=True, source=MODULE_NAME)
 	print("[StartEnigma] Last shutdown=%s.  (True = last shutdown was OK.)" % config.usage.shutdownOK.value)
 	print("[StartEnigma] NOK shutdown action=%s." % config.usage.shutdownNOK_action.value)
 	print("[StartEnigma] Boot action=%s." % config.usage.boot_action.value)
@@ -699,14 +694,11 @@ from Components.International import international
 
 config.osd = ConfigSubsection()
 
-if DISPLAYBRAND == "Atto.TV":
-	defaultLocale = "pt_BR"
-elif DISPLAYBRAND == "Zgemma":
-	defaultLocale = "en_US"
-elif DISPLAYBRAND == "Beyonwiz":
-	defaultLocale = "en_AU"
-else:
-	defaultLocale = "de_DE"
+defaultLocale = {
+	"Atto.TV": "pt_BR",
+	"Zgemma": "en_US",
+	"Beyonwiz": "en_AU"
+}.get(DISPLAYBRAND, "de_DE")
 config.misc.locale = ConfigText(default=defaultLocale)
 config.misc.language = ConfigText(default=international.getLanguage(defaultLocale))
 config.misc.country = ConfigText(default=international.getCountry(defaultLocale))
