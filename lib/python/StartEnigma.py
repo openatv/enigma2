@@ -1,6 +1,7 @@
-from os import system
+from errno import ENOENT
+from os import remove
 from os.path import exists
-from sys import stderr, stdout
+import sys  # This is needed for the twisted redirection access to stderr and stdout.
 from time import time
 
 from Tools.Profile import profile, profile_final  # This facilitates the start up progress counter.
@@ -13,6 +14,8 @@ import eConsoleImpl
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
+
+MODULE_NAME = "StartEnigma"  # This is done here as "__name__.split(".")[-1]" returns "__main__" for this module.
 
 
 # Session.open:
@@ -334,26 +337,28 @@ class AutoScartControl:
 				self.scartDialog.switchToTV()
 
 
-def autorestoreLoop():
-	# Check if auto restore settings fails, just start the wizard (avoid a endless loop)
-	count = 0
-	if exists("/media/hdd/images/config/autorestore"):
-		f = open("/media/hdd/images/config/autorestore", "r")
-		try:
-			count = int(f.read())
-		except:
-			count = 0
-		f.close()
-		if count >= 3:
-			return False
-	count += 1
-	f = open("/media/hdd/images/config/autorestore", "w")
-	f.write(str(count))
-	f.close()
-	return True
-
-
 def runScreenTest():
+	def autorestoreLoop():  # Check if auto restore settings fails, just start the wizard (avoid a endless loop).
+		count = 0
+		filename = "/media/hdd/images/config/autorestore"
+		if exists(filename):
+			try:
+				with open(filename, "r") as fd:
+					line = fd.read().strip().replace("\0", "")
+					count = int(line) if isdecimal(line) else 0
+				if count >= 3:
+					return False
+			except OSError as err:
+				print("[StartEnigma] Error %d: Unable to read a line from file '%s'!  (%s)" % (err.errno, filename, err.strerror))
+		count += 1
+		try:
+			with open(filename, "w") as fd:
+				fd.write(str(count))
+		except OSError as err:
+			print("[StartEnigma] Error %d: Unable to write a line to file '%s'!  (%s)" % (err.errno, filename, err.strerror))
+			return False
+		return True
+
 	def runNextScreen(session, screensToRun, *result):
 		if result:
 			print("[StartEnigma] Exiting via quitMainloop #3.")
@@ -389,8 +394,12 @@ def runScreenTest():
 			screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 			screensToRun += wizardManager.getWizards()
 	else:
-		if exists("/media/hdd/images/config/autorestore"):
-			system("rm -f /media/hdd/images/config/autorestore")
+		filename = "/media/hdd/images/config/autorestore"
+		try:
+			remove(filename)
+		except IOError as err:
+			if err.errno != ENOENT:  # ENOENT - No such file or directory.
+				print("[StartEnigma] Error %d: Unable to delete file '%s'!  (%s)" % (err.errno, filename, err.strerror))
 		screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 		screensToRun += wizardManager.getWizards()
 	screensToRun.append((100, InfoBar.InfoBar))
@@ -421,9 +430,12 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 	if BOX_TYPE in ("sf8", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo"):
-		f = open("/dev/dbox/oled0", "w")
-		f.write("-E2-")
-		f.close()
+		filename = "/dev/dbox/oled0"
+		try:
+			with open(filename, "w") as fd:
+				fd.write("-E2-")
+		except OSError as err:
+			print("[StartEnigma] Error %d: Unable to write a line to file '%s'!  (%s)" % (err.errno, filename, err.strerror))
 	print("[StartEnigma] Last shutdown=%s.  (True = last shutdown was OK.)" % config.usage.shutdownOK.value)
 	print("[StartEnigma] NOK shutdown action=%s." % config.usage.shutdownNOK_action.value)
 	print("[StartEnigma] Boot action=%s." % config.usage.boot_action.value)
@@ -435,9 +447,6 @@ def runScreenTest():
 		config.usage.shutdownOK.setValue(False)
 		config.usage.shutdownOK.save()
 		configfile.save()
-	# Kill showiframe if it is running.  (sh4 hack...)
-	if MODEL in ("spark", "spark7162"):
-		system("killall -9 showiframe")
 	runReactor()
 	print("[StartEnigma] Normal shutdown.")
 	config.misc.startCounter.save()
@@ -600,9 +609,8 @@ def dump(dir, p=""):
 #                               #
 #################################
 
-MODULE_NAME = __name__.split(".")[-1]
-
 profile("Twisted")
+print("[StartEnigma] Initializing Twisted.")
 try:  # Configure the twisted processor.
 	from twisted.python.runtime import platform
 	platform.supportsThreads = lambda: True
@@ -647,13 +655,13 @@ try:  # Configure the twisted logging.
 		util.untilConcludes(self.write, msgStr)
 		util.untilConcludes(self.flush)
 
-	logger = log.FileLogObserver(stdout)
+	logger = log.FileLogObserver(sys.stdout)
 	log.FileLogObserver.emit = quietEmit
-	stdoutBackup = stdout  # Backup stdout and stderr redirections.
-	stderrBackup = stderr
+	stdoutBackup = sys.stdout  # Backup stdout and stderr redirections.
+	stderrBackup = sys.stderr
 	log.startLoggingWithObserver(logger.emit)
-	stdout = stdoutBackup  # Restore stdout and stderr redirections because of twisted redirections.
-	stderr = stderrBackup
+	sys.stdout = stdoutBackup  # Restore stdout and stderr redirections because of twisted redirections.
+	sys.stderr = stderrBackup
 
 except ImportError:
 	print("[StartEnigma] Error: Twisted not available!")
@@ -769,7 +777,7 @@ from skin import readSkin
 
 profile("LOAD:Tools")
 from Components.config import ConfigSubsection, NoSave, configfile
-from Tools.Directories import InitDefaultPaths, SCOPE_CONFIG, SCOPE_GUISKIN, SCOPE_PLUGINS, resolveFilename
+from Tools.Directories import InitDefaultPaths, SCOPE_CONFIG, SCOPE_GUISKIN, SCOPE_PLUGINS, fileUpdateLine, resolveFilename
 import Components.RecordingConfig
 InitDefaultPaths()
 
@@ -888,30 +896,11 @@ InitLcd()
 IconCheck()
 # Disable internal clock vfd for ini5000 until we can adjust it for standby.
 if BOX_TYPE in ("uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "beyonwizt3"):
-	try:
-		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
-		if f != "0":
-			f = open("/proc/stb/fp/enable_clock", "w")
-			f.write("0")
-			f.close()
-	except:
-		print("[StartEnigma] Error: Disable enable_clock for ini5000 boxes!")
+	fileUpdateLine("/proc/stb/fp/enable_clock", conditionValue="1", replacementValue="0", source=MODULE_NAME)
 
 if BOX_TYPE in ("dm7080", "dm820", "dm900", "dm920", "gb7252"):
-	f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
-	check = f.read()
-	f.close()
-	if check.startswith("on"):
-		f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
-		f.write("off")
-		f.close()
-	f = open("/proc/stb/audio/hdmi_rx_monitor", "r")
-	check = f.read()
-	f.close()
-	if check.startswith("on"):
-		f = open("/proc/stb/audio/hdmi_rx_monitor", "w")
-		f.write("off")
-		f.close()
+	fileUpdateLine("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", conditionValue="on", replacementValue="off", source=MODULE_NAME)
+	fileUpdateLine("/proc/stb/audio/hdmi_rx_monitor", conditionValue="on", replacementValue="off", source=MODULE_NAME)
 
 profile("UserInterface")
 from Screens.UserInterfacePositioner import InitOsd
@@ -952,7 +941,7 @@ try:
 except Exception:
 	print("Error: Exception in Python StartEnigma startup code:")
 	print("=" * 52)
-	print_exc(file=stdout)
+	print_exc(file=sys.stdout)
 	print("[StartEnigma] Exiting via quitMainloop #4.")
 	enigma.quitMainloop(5)  # QUIT_ERROR_RESTART
 	print("-" * 52)
