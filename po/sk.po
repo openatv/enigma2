@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
-"PO-Revision-Date: 2023-03-06 09:40+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
+"PO-Revision-Date: 2023-04-09 09:52+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 msgid ""
 "\n"
@@ -1064,6 +1064,10 @@ msgstr[1] "Boli aktualizované %d balíky."
 msgstr[2] "Bolo aktualizovaných %d balíkov."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr "Počet nájdených balíkov: %d, počet nainštalovaných balíkov: %d, počet balíkov s aktualizáciami: %d."
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sek."
 
@@ -1189,10 +1193,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s diaľkové ovládanie (pôvodné)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "Pre %s %s je k dispozícii softvér aj aktualizácie."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s (karty: %s)"
 
@@ -1235,6 +1235,10 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
+
+#, python-format
+msgid "%s Packages found"
+msgstr "Nájdené balíky: %s"
 
 #, python-format
 msgid "%s Setup"
@@ -1940,9 +1944,6 @@ msgstr ""
 "\n"
 "Chcete vypnúť druhé sieťové rozhranie?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "Malý prehľad dostupných ikon stavov a akcií."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2037,9 +2038,6 @@ msgstr "Prerušené pseudo-nahrávanie.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Streamovacia služba bola prerušená.\n"
-
-msgid "Aborting update progress"
-msgstr "Proces aktualizácie sa prerušuje"
 
 msgid "About"
 msgstr "O prijímači"
@@ -2821,9 +2819,6 @@ msgstr "Austrálsky"
 
 msgid "Austria"
 msgstr "Rakúsko"
-
-msgid "Author: "
-msgstr "Autor: "
 
 msgid "Authoring mode"
 msgstr "Režim autorizácie"
@@ -3795,6 +3790,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Zrušiť"
 
+msgid "Cancel / Close the screen"
+msgstr "Prerušiť/zavrieť obrazovku"
+
 msgid "Cancel / Close the software update screen"
 msgstr "Zrušiť/zatvoriť obrazovku pre aktualizovanie softvéru"
 
@@ -3916,9 +3914,6 @@ msgstr "Kaskádový PiP"
 
 msgid "Catalan / Valencian"
 msgstr "Katalánčina/Valencijčina"
-
-msgid "Caution update not yet tested !!"
-msgstr "Pozor, aktualizácia ešte nebola otestovaná!!"
 
 msgid "Cayman Islands"
 msgstr "Kajmanie ostrovy"
@@ -4504,9 +4499,6 @@ msgstr "Priradenie Common Interface"
 msgid "Common Setup Actions"
 msgstr "Bežné nastavenia"
 
-msgid "Communication"
-msgstr "Komunikácia"
-
 msgid "Comoros"
 msgstr "Komory"
 
@@ -4976,9 +4968,6 @@ msgstr "Kontext"
 
 msgid "Continent"
 msgstr "Kontinent"
-
-msgid "Continue"
-msgstr "Pokračovať"
 
 msgid "Continue in background"
 msgstr "Pokračovať na pozadí"
@@ -5684,9 +5673,6 @@ msgstr "Predvolený typ nahrávania"
 msgid "Default right column directory"
 msgstr "Predvolený priečinok v pravom stĺpci"
 
-msgid "Default settings"
-msgstr "Predvolené nastavenia"
-
 msgid "Default sort order for directories in the left column"
 msgstr "Predvolené poradie zoraďovania pre priečinky v ľavom stĺpci"
 
@@ -6183,9 +6169,6 @@ msgstr "Obsah >16:9 zobraziť ako"
 msgid "Display Settings"
 msgstr "Nastavenie displeja"
 
-msgid "Display and user interface"
-msgstr "Zobrazenie a používateľské rozhranie"
-
 msgid "Display context menu"
 msgstr "Zobraziť kontextové menu"
 
@@ -6461,9 +6444,6 @@ msgstr "Chcete obnoviť nastavenia?"
 msgid "Do you want to resume this playback?"
 msgstr "Chcete pokračovať v prehrávaní?"
 
-msgid "Do you want to update your box?"
-msgstr "Chcete aktualizovať Váš box?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Chcete aktualizovať balíček:\n"
 
@@ -6512,10 +6492,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Hotovo"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Hotovo - nainštalovaných alebo aktualizovaných balíčkov: %d"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -7753,9 +7729,6 @@ msgstr "Akcie pre rozšírenie"
 msgid "Extensions"
 msgstr "Rozšírenia"
 
-msgid "Extensions Management"
-msgstr "Správa rozšírení"
-
 msgid "Extensions/QuickMenu"
 msgstr "Rozšírenia/Rýchle menu"
 
@@ -8199,9 +8172,6 @@ msgstr "Priamo podľa skupiny kľúča na vzdialenom zariadení"
 msgid "Flat by position on remote"
 msgstr "Podľa pozície na vzdialenom zariadení"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Po stlačení OK sa vykonajú tieto úlohy!"
-
 msgid "Font size"
 msgstr "Veľkosť písma"
 
@@ -8213,9 +8183,6 @@ msgstr "Jedlo/víno"
 
 msgid "Football"
 msgstr "Futbal"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "Pre viac informácií choďte na https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Vynútiť energiu pre LNB"
@@ -9558,9 +9525,6 @@ msgstr "Inštalovať rozšírenia."
 msgid "Install lcd picons on"
 msgstr "Inštalovať prog. ikony lcd do"
 
-msgid "Install or remove finished."
-msgstr "Inštalácia alebo odstránenie dokončené."
-
 msgid "Install picons on"
 msgstr "Inštalovať prog. ikony do"
 
@@ -10505,6 +10469,9 @@ msgstr "Spravovať rozšírenia"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Spravovať nastavenia pre výber miestneho nastavenia/jazyka"
 
+msgid "Manage Plugins"
+msgstr "Spravovať pluginy"
+
 msgid "Manage and explore directories and files."
 msgstr "Manažment a preskúmanie adresárov a priečinkov."
 
@@ -11214,9 +11181,6 @@ msgstr "Multi-prekódovanie"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot Image vytvorený v: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "Multimédiá"
-
 msgid "Multiple service support"
 msgstr "Podpora viacerých staníc"
 
@@ -11619,9 +11583,6 @@ msgstr "Žiadne oneskorenie"
 msgid "No demux available"
 msgstr "Nie je dostupné žiadne demultiplexovanie"
 
-msgid "No description available."
-msgstr "Popis nie je k dispozícii."
-
 msgid "No displayable files on this medium found!"
 msgstr "Na tomto médiu sa nenašli žiadne zobraziteľné súbory!"
 
@@ -11652,9 +11613,6 @@ msgstr "Nenašli sa žiadne súbory so záznamom, takže nie sú dostupné ani z
 msgid "No matching place names found"
 msgstr "Nenašlo sa žiadne zodpovedajúce umiestnenie"
 
-msgid "No network connection available."
-msgstr "Nie je dostupné žiadne sieťové pripojenie."
-
 msgid "No network storage detected."
 msgstr "Neboli zistené žiadne sieťové úložisko."
 
@@ -11664,8 +11622,8 @@ msgstr "Nenašli sa žiadne siete"
 msgid "No of items switch (increase or reduced)"
 msgstr "Nie je čo prepnúť (zvýšiť alebo znížiť)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Nie sú aktualizované žiadne balíky. Skontrolujte sieť a skúste to znova."
+msgid "No packages found."
+msgstr "Nenašli sa žiadne balíky."
 
 msgid "No pictures available"
 msgstr "Nie sú dostupné žiadne obrázky"
@@ -12067,9 +12025,6 @@ msgstr "Online aktualizácia softvéru prijímača %s %s."
 
 msgid "Only Flash Backup Image"
 msgstr "Len flashovanie záložného image"
-
-msgid "Only extensions."
-msgstr "Len rozšírenia."
 
 msgid "Only free scan"
 msgstr "Hľadať iba nekódované"
@@ -12537,6 +12492,9 @@ msgstr "Percentá/ukazovateľ priebehu vpravo"
 
 msgid "Perform an on-line flash instead"
 msgstr "Namiesto toho vykonať on-line flashovanie"
+
+msgid "Perform install/remove of the selected item"
+msgstr "Nainštalovať/odstrániť vybranú položku"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Natrvalo vymazať všetky nahrávky z koša?"
@@ -13076,21 +13034,11 @@ msgstr "Prehliadač pluginov"
 msgid "Plugin Browser Settings"
 msgstr "Nastavenia prehliadača pluginov"
 
-msgid "Plugin Details"
-msgstr "Podrobnosti o pluginoch"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr "Podrobnosti o plugine: %s"
-
 msgid "Plugin Filter Settings"
 msgstr "Filter pluginov"
 
-msgid "Plugin Manager Activity Information"
-msgstr "Informácie o činnosti správcu pluginov"
-
-msgid "Plugin Manager Help"
-msgstr "Pomocník správcu pluginov"
+msgid "Plugin Manager Actions"
+msgstr "Akcie správcu pluginov"
 
 msgid "Plugins"
 msgstr "Pluginy"
@@ -13396,9 +13344,6 @@ msgstr "Model procesora"
 
 msgid "Proceed with the update"
 msgstr "Pokračovať s aktualizáciou"
-
-msgid "Process"
-msgstr "Proces"
 
 msgid "Processor information"
 msgstr "Informácia o procesore"
@@ -14727,9 +14672,6 @@ msgstr "Nastavenie paraboly"
 msgid "Satellite configuration mode"
 msgstr "Režim konfigurácie družíc"
 
-msgid "Satellite equipment"
-msgstr "Satelitná výbava"
-
 msgid "Satellite equipment setup"
 msgstr "Nastavenie satelitnej výbavy"
 
@@ -14877,6 +14819,9 @@ msgstr "Vyhľadať bezdrôtové siete"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Vyhľadať v sieti bezdrôtové prístupové body a pripojiť ich zvoleným bezdrôtovým zariadením."
 
+msgid "Scanning"
+msgstr "Prehľadávanie"
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Prehľadáva %s..."
@@ -14976,12 +14921,6 @@ msgstr "Hľadanie"
 
 msgid "Searching east ..."
 msgstr "Hľadanie na východe..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Hľadám dostupné aktualizácie. Čakajte..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Hľadám novo inštalované alebo odstránené balíčky. Čakajte..."
 
 msgid "Searching west ..."
 msgstr "Hľadanie na západe..."
@@ -17221,9 +17160,6 @@ msgstr "Nastavenie vzhľadu"
 msgid "SkinSelector"
 msgstr "Volič vzhľadu"
 
-msgid "Skins"
-msgstr "Súbory vzhľadu"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Preskočiť test internetového pripojenia (zakáže automatickú inštaláciu balíčkov)"
 
@@ -17429,9 +17365,6 @@ msgstr "Nastavenie softcamu"
 msgid "Softcams"
 msgstr "softcamy"
 
-msgid "Software"
-msgstr "Softvér"
-
 msgid "Software Management"
 msgstr "Správa softvéru"
 
@@ -17529,9 +17462,6 @@ msgstr "Prepáčte, %s nebol nainštalovaný!"
 
 msgid "Sorry, no backups found!"
 msgstr "Prepáčte, nenašli sa žiadne zálohy!"
-
-msgid "Sorry, no details available!"
-msgstr "Prepáčte, nenašli sa žiadne podrobnosti!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Prepáčte, nie sú pripojené žiadne zariadenia podporujúce SWAP. Súbor pre SWAP nemožno vytvárať na sieti alebo súborových systémoch FAT32"
@@ -18768,16 +18698,6 @@ msgstr ""
 "\n"
 "Vykonať teraz alebo rozšíriť časovač?"
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Rozšírenie pre správu softvéru nie je nainštalované!\n"
-"Prosím nainštalujte ho."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Stav tejto aktualizácie nie je možné overiť, pretože stránka https://www.opena.tv nie je z nejakého dôvodu dostupná"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Čas sa vynásobí aktuálnym počítadlom opakovania."
 
@@ -18826,12 +18746,6 @@ msgstr "Sprievodca môže zálohovať aktuálne nastavenia. Chcete teraz záloho
 
 msgid "The wizard is finished now."
 msgstr "Sprievodca teraz skončil."
-
-msgid "There are at least "
-msgstr "Je aspoň "
-
-msgid "There are currently no outstanding actions."
-msgstr "Žiadne činnosti na vykonanie."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -18908,9 +18822,6 @@ msgstr "Umožňuje zobrazovať moduly rozšírení v stiahnutých súboroch"
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Umožňuje zobrazovať moduly kernel v stiahnutých súboroch"
-
-msgid "This allows you to show languages in downloads"
-msgstr "Umožňuje zobrazovať jazyky v stiahnutých súboroch"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Umožňuje zobrazovať vzhľady pre LCD v stiahnutých súboroch"
@@ -19163,18 +19074,6 @@ msgstr "Táto voľba nastaví ostrosť obrazu, ktorý sa používa, keď je obra
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Tento plugin dokáže zistiť, či programy začínajú skôr alebo trvajú dlhšie. Kanál však musí poskytovať príslušné potrebné údaje."
-
-msgid "This plugin is installed."
-msgstr "Tento plugin je nainštalovaný."
-
-msgid "This plugin is not installed."
-msgstr "Tento plugin nie je nainštalovaný."
-
-msgid "This plugin will be installed."
-msgstr "Tento plugin sa nainštaluje."
-
-msgid "This plugin will be removed."
-msgstr "Tento plugin sa odstráni."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "Týmto nastavíte predponu pre každý riadok v zázname pre ladenie. 'Čas spúšťania' je počet sekúnd od posledného bootovania vášho zariadenia %s %s."
@@ -19939,12 +19838,6 @@ msgstr "Nedefinované"
 msgid "Undetermined"
 msgstr "Nezistené"
 
-msgid "Undo install"
-msgstr "Vrátiť inštaláciu"
-
-msgid "Undo uninstall"
-msgstr "Vrátiť odinštalovanie"
-
 msgid "Unencrypted"
 msgstr "Nekódované"
 
@@ -19965,9 +19858,6 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
-
-msgid "Uninstall"
-msgstr "Odinštalovať"
 
 msgid "United Arab Emirates"
 msgstr "Spojené arabské emiráty"
@@ -20086,9 +19976,6 @@ msgstr "Tlačidlá Nahor/Nadol aj pre 'všetko nahor/nadol'"
 msgid "Update"
 msgstr "Aktualizácia"
 
-msgid "Update at your own risk"
-msgstr "Aktualizácia na vlastné nebezpečenstvo"
-
 msgid "Update completed."
 msgstr "Aktualizácia bola kompletná."
 
@@ -20101,17 +19988,11 @@ msgstr "Aktualizácia oneskorenia pre udalosti v zozname. Rolovanie je rýchlej�
 msgid "Update failed!"
 msgstr "Aktualizácia neúspešná!"
 
-msgid "Update feed not available."
-msgstr "Zdroj pre aktualizácie nie je dostupný."
-
 msgid "Update finished!"
 msgstr "Aktualizácia dokončená!"
 
 msgid "Update interval (in seconds)"
 msgstr "Interval aktualizácie (v sek.)"
-
-msgid "Update is reported as faulty !!"
-msgstr "Aktualizácia je označená ako chybná!"
 
 msgid ""
 "Update succeeded!\n"
@@ -20141,9 +20022,6 @@ msgstr "Upgrade"
 msgid "Updating mount locations."
 msgstr "Aktualizácia lokalít pripojenia."
 
-msgid "Updating software catalog"
-msgstr "Aktualizácia katalógu softvéru"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr "Upgrade (flashovať a všetko obnoviť)"
 
@@ -20162,9 +20040,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Upgrade s GUI"
-
-msgid "Upgrading"
-msgstr "Aktualizovanie"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -20750,48 +20625,6 @@ msgstr "Zobraziť súbor"
 
 msgid "View Rass interactive..."
 msgstr "Zobraziť Rass interaktívne..."
-
-msgid "View details"
-msgstr "Zobraziť podrobnosti"
-
-msgid "View list of available "
-msgstr "Zobraziť zoznam dostupných "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Zobraziť zoznam dostupných rozšírení CI"
-
-msgid "View list of available EPG extensions."
-msgstr "Zobraziť zoznam dostupných rozšírení EPG."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Zobraziť zoznam dostupných rozšírení satelitnej výbavy."
-
-msgid "View list of available communication extensions."
-msgstr "Zobraziť zoznam dostupných komunikačných rozšírení."
-
-msgid "View list of available default settings"
-msgstr "Zobraziť zoznam dostupných predvolených nastavení"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Zobraziť zoznam dostupných rozšírení pre zobrazenie a použív. rozhranie."
-
-msgid "View list of available multimedia extensions."
-msgstr "Zobraziť zoznam dostupných multimediálnych rozšírení."
-
-msgid "View list of available networking extensions"
-msgstr "Zobraziť zoznam dostupných sieťových rozšírení"
-
-msgid "View list of available recording extensions"
-msgstr "Zobraziť zoznam dostupných rozšírení pre nahrávanie"
-
-msgid "View list of available skins"
-msgstr "Zobraziť zoznam dostupných súborov vzhľadu"
-
-msgid "View list of available software extensions"
-msgstr "Zobraziť zoznam dostupných SW rozšírení"
-
-msgid "View list of available system extensions"
-msgstr "Zobraziť zoznam dostupných systémových rozšírení"
 
 msgid "View mode"
 msgstr "Režim zobrazenia"
@@ -21587,26 +21420,14 @@ msgstr "Môžete si nechať zobraziť mini TV s alebo bez menu OSD"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Môžete si nechať zobraziť PIP s menu OSD alebo bez neho"
 
-msgid "You can cancel the installation."
-msgstr "Môžete zrušiť inštaláciu."
-
-msgid "You can cancel the removal."
-msgstr "Môžete zrušiť odstránenie."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Počas tejto akcie pokračovať v sledovaní TV atď."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Môžete mať zoznam zoradený podľa času alebo abecedy."
 
-msgid "You can install this plugin."
-msgstr "Môžete nainštalovať tento plugin."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Napaľovať môžete iba nahrávky prijímača Dreambox!"
-
-msgid "You can remove this plugin."
-msgstr "Tento plugin môžete odstrániť."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Túto funkciu môžete preskočiť a vypnúť TV, ak sa prijímač prebudí z pohotovostného režimu a ihneď prepne do pohotovostného režimu."
@@ -21731,10 +21552,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr "%s %s sa vypína. Prosím čakajte..."
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "%s %s nie je pripojený k internetu správne. Prosím skontrolujte to a skúste to znova."
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -21857,32 +21674,6 @@ msgid ""
 msgstr ""
 "Váš predný panel bude aktualizovaný.\n"
 "Môže to trvať niekoľko minút"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Používaný image je zastaraný!\n"
-"\n"
-"Po takej dlhej dobe je tu riziko, že %s %s nemusí po online-aktualizácii\n"
-"nabootovať, alebo sa objaví chyba vo fungovaní image.\n"
-"\n"
-"Nové flashovanie zvýši stabilitu!\n"
-"\n"
-"Pokiaľ sa rozhodnete pre online-aktualizáciu, urobíte tak na vlastnú zodpovednosť!\n"
-"\n"
-"\n"
-"Napriek tomu chcete aktualizovať?"
 
 msgid "Your network configuration has been activated."
 msgstr "Nastavenie siete bolo aktivované."
@@ -22445,9 +22236,6 @@ msgstr "zatvoriť menu nastavení sieťových rozhraní"
 msgid "experimental film/video"
 msgstr "experimentálny film/video"
 
-msgid "extensions."
-msgstr "rozšírenia."
-
 msgid "externally loopthrough to"
 msgstr "externá slučka na"
 
@@ -22852,9 +22640,6 @@ msgstr "len HD"
 
 msgid "original language"
 msgstr "pôvodný jazyk"
-
-msgid "packages selected."
-msgstr "balíčky vybrané."
 
 msgid "pass"
 msgstr "prechod"
@@ -23269,9 +23054,6 @@ msgstr "do pohotovostného režimu alebo reštartu"
 msgid "update"
 msgstr "aktualizovať"
 
-msgid "updates available."
-msgstr "aktualizácií je k dispozícii."
-
 msgid "use best / controlled by HDMI"
 msgstr "použiť najlepšie/ovládané HDMI"
 
@@ -23342,12 +23124,256 @@ msgstr "žlté"
 msgid "yes (keep feeds)"
 msgstr "áno (zachovať zdroje softvéru)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s %s si prečítajte návod, prosím."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "Pre %s %s je k dispozícii softvér aj aktualizácie."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "Malý prehľad dostupných ikon stavov a akcií."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Proces aktualizácie sa prerušuje"
+
+#~ msgid "Author: "
+#~ msgstr "Autor: "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "Pozor, aktualizácia ešte nebola otestovaná!!"
+
+#~ msgid "Communication"
+#~ msgstr "Komunikácia"
+
+#~ msgid "Continue"
+#~ msgstr "Pokračovať"
+
+#~ msgid "Default settings"
+#~ msgstr "Predvolené nastavenia"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Zobrazenie a používateľské rozhranie"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "Chcete aktualizovať Váš box?"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Hotovo - nainštalovaných alebo aktualizovaných balíčkov: %d"
+
+#~ msgid "Extensions Management"
+#~ msgstr "Správa rozšírení"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "Po stlačení OK sa vykonajú tieto úlohy!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "Pre viac informácií choďte na https://www.opena.tv"
+
+#~ msgid "Install or remove finished."
+#~ msgstr "Inštalácia alebo odstránenie dokončené."
+
+#~ msgid "Multimedia"
+#~ msgstr "Multimédiá"
+
+#~ msgid "No description available."
+#~ msgstr "Popis nie je k dispozícii."
+
+#~ msgid "No network connection available."
+#~ msgstr "Nie je dostupné žiadne sieťové pripojenie."
+
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Nie sú aktualizované žiadne balíky. Skontrolujte sieť a skúste to znova."
+
+#~ msgid "Only extensions."
+#~ msgstr "Len rozšírenia."
+
+#~ msgid "Plugin Details"
+#~ msgstr "Podrobnosti o pluginoch"
+
+#, python-format
+#~ msgid "Plugin Details: %s"
+#~ msgstr "Podrobnosti o plugine: %s"
+
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "Informácie o činnosti správcu pluginov"
+
+#~ msgid "Plugin Manager Help"
+#~ msgstr "Pomocník správcu pluginov"
+
+#~ msgid "Process"
+#~ msgstr "Proces"
+
+#~ msgid "Satellite equipment"
+#~ msgstr "Satelitná výbava"
+
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "Hľadám dostupné aktualizácie. Čakajte..."
+
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "Hľadám novo inštalované alebo odstránené balíčky. Čakajte..."
+
+#~ msgid "Skins"
+#~ msgstr "Súbory vzhľadu"
+
+#~ msgid "Software"
+#~ msgstr "Softvér"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "Prepáčte, nenašli sa žiadne podrobnosti!"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Rozšírenie pre správu softvéru nie je nainštalované!\n"
+#~ "Prosím nainštalujte ho."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "Stav tejto aktualizácie nie je možné overiť, pretože stránka https://www.opena.tv nie je z nejakého dôvodu dostupná"
+
+#~ msgid "There are at least "
+#~ msgstr "Je aspoň "
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "Žiadne činnosti na vykonanie."
+
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "Umožňuje zobrazovať jazyky v stiahnutých súboroch"
+
+#~ msgid "This plugin is installed."
+#~ msgstr "Tento plugin je nainštalovaný."
+
+#~ msgid "This plugin is not installed."
+#~ msgstr "Tento plugin nie je nainštalovaný."
+
+#~ msgid "This plugin will be installed."
+#~ msgstr "Tento plugin sa nainštaluje."
+
+#~ msgid "This plugin will be removed."
+#~ msgstr "Tento plugin sa odstráni."
+
+#~ msgid "Undo install"
+#~ msgstr "Vrátiť inštaláciu"
+
+#~ msgid "Undo uninstall"
+#~ msgstr "Vrátiť odinštalovanie"
+
+#~ msgid "Uninstall"
+#~ msgstr "Odinštalovať"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "Aktualizácia na vlastné nebezpečenstvo"
+
+#~ msgid "Update feed not available."
+#~ msgstr "Zdroj pre aktualizácie nie je dostupný."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "Aktualizácia je označená ako chybná!"
+
+#~ msgid "Updating software catalog"
+#~ msgstr "Aktualizácia katalógu softvéru"
+
+#~ msgid "Upgrading"
+#~ msgstr "Aktualizovanie"
+
+#~ msgid "View details"
+#~ msgstr "Zobraziť podrobnosti"
+
+#~ msgid "View list of available "
+#~ msgstr "Zobraziť zoznam dostupných "
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Zobraziť zoznam dostupných rozšírení CI"
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Zobraziť zoznam dostupných rozšírení EPG."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Zobraziť zoznam dostupných rozšírení satelitnej výbavy."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Zobraziť zoznam dostupných komunikačných rozšírení."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "Zobraziť zoznam dostupných predvolených nastavení"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Zobraziť zoznam dostupných rozšírení pre zobrazenie a použív. rozhranie."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Zobraziť zoznam dostupných multimediálnych rozšírení."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Zobraziť zoznam dostupných sieťových rozšírení"
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Zobraziť zoznam dostupných rozšírení pre nahrávanie"
+
+#~ msgid "View list of available skins"
+#~ msgstr "Zobraziť zoznam dostupných súborov vzhľadu"
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "Zobraziť zoznam dostupných SW rozšírení"
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "Zobraziť zoznam dostupných systémových rozšírení"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "Môžete zrušiť inštaláciu."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "Môžete zrušiť odstránenie."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "Môžete nainštalovať tento plugin."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "Tento plugin môžete odstrániť."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "%s %s nie je pripojený k internetu správne. Prosím skontrolujte to a skúste to znova."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "Používaný image je zastaraný!\n"
+#~ "\n"
+#~ "Po takej dlhej dobe je tu riziko, že %s %s nemusí po online-aktualizácii\n"
+#~ "nabootovať, alebo sa objaví chyba vo fungovaní image.\n"
+#~ "\n"
+#~ "Nové flashovanie zvýši stabilitu!\n"
+#~ "\n"
+#~ "Pokiaľ sa rozhodnete pre online-aktualizáciu, urobíte tak na vlastnú zodpovednosť!\n"
+#~ "\n"
+#~ "\n"
+#~ "Napriek tomu chcete aktualizovať?"
+
+#~ msgid "extensions."
+#~ msgstr "rozšírenia."
+
+#~ msgid "packages selected."
+#~ msgstr "balíčky vybrané."
+
+#~ msgid "updates available."
+#~ msgstr "aktualizácií je k dispozícii."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s %s si prečítajte návod, prosím."
 
 #~ msgid "Additional Info"
 #~ msgstr "Ďalšie info"

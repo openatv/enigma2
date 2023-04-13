@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2023-04-05 17:52+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1042,6 +1042,10 @@ msgstr[0] "%d πακέτο αναβαθμίστηκε."
 msgstr[1] "%d πακέτα αναβαθμίστηκαν."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d δευτ"
 
@@ -1166,10 +1170,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s τηλεχειριστήριο (αυθεντικό)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "Λογισμικό %s %s επειδή διατίθενται ενημερώσεις."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s Κάρτες )"
 
@@ -1212,6 +1212,10 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1917,9 +1921,6 @@ msgstr ""
 "\n"
 "Θέλετε να απενεργοποιήσετε τον δεύτερο προσαρμογέα δικτύου;"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "Επισκόπηση των διαθέσιμων εικονιδίων κατάστασης και ενεργειών."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2014,9 +2015,6 @@ msgstr "Ματαίωση ψευδοεγγραφής.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Ματαίωση υπηρεσίας ροής.\n"
-
-msgid "Aborting update progress"
-msgstr "Ματαίωση ενημέρωσης"
 
 msgid "About"
 msgstr "Περί"
@@ -2798,9 +2796,6 @@ msgstr "Αυστραλέζικα"
 
 msgid "Austria"
 msgstr "Αυστρία"
-
-msgid "Author: "
-msgstr "Δημιουργός: "
 
 msgid "Authoring mode"
 msgstr "Λειτουργία δημιουργίας ταινίας"
@@ -3772,6 +3767,9 @@ msgstr "Καναδάς"
 msgid "Cancel"
 msgstr "Ακύρωση"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr "Ακύρωση / κλείσιμο της οθόνης ενημέρωσης λογισμικού"
 
@@ -3893,9 +3891,6 @@ msgstr "Διαδοχικό PiP"
 
 msgid "Catalan / Valencian"
 msgstr "Καταλανικά / Βαλενσιακά"
-
-msgid "Caution update not yet tested !!"
-msgstr "Προσοχή, μη ελεγμένη ενημέρωση !!"
 
 msgid "Cayman Islands"
 msgstr "Κέιμαν Νήσοι"
@@ -4481,9 +4476,6 @@ msgstr "Ανάθεση Κοινής διεπαφής"
 msgid "Common Setup Actions"
 msgstr "Ενέργειες κοινών ρυθμίσεων"
 
-msgid "Communication"
-msgstr "Επικοινωνία"
-
 msgid "Comoros"
 msgstr "Κομόρες"
 
@@ -4953,9 +4945,6 @@ msgstr "Περιεχόμενα"
 
 msgid "Continent"
 msgstr "Ήπειρος"
-
-msgid "Continue"
-msgstr "Συνέχεια"
 
 msgid "Continue in background"
 msgstr "Συνέχεια στο παρασκήνιο"
@@ -5661,9 +5650,6 @@ msgstr "Προεπιλεγμένος τύπος εγγραφής"
 msgid "Default right column directory"
 msgstr "Προεπιλεγμένος φάκελος δεξιάς στήλης"
 
-msgid "Default settings"
-msgstr "Προεπιλεγμένες ρυθμίσεις"
-
 msgid "Default sort order for directories in the left column"
 msgstr "Προεπιλεγμένη ταξινόμηση για τους φακέλους της αριστερής στήλης"
 
@@ -6160,9 +6146,6 @@ msgstr "Εμφάνιση περιεχομένου >16:9 ως"
 msgid "Display Settings"
 msgstr "Ρυθμίσεις οθόνης ενδείξεων"
 
-msgid "Display and user interface"
-msgstr "Οθόνη και διεπαφή χρήστη"
-
 msgid "Display context menu"
 msgstr "Εμφάνιση μενού περιεχομένων"
 
@@ -6438,9 +6421,6 @@ msgstr "Θέλετε να γίνει επαναφορά των ρυθμίσεώ�
 msgid "Do you want to resume this playback?"
 msgstr "Θέλετε να επανασυνεχίσετε την αναπαραγωγή;"
 
-msgid "Do you want to update your box?"
-msgstr "Θέλετε να γίνει ενημέρωση του δέκτη σας;"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Θέλετε να αναβαθμίσετε το πακέτο:\n"
 
@@ -6489,10 +6469,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Ολοκληρώθηκε"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Ολοκληρώθηκε - Εγκαταστάθηκαν ή αναβαθμίστηκαν %d πακέτα"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -7727,9 +7703,6 @@ msgstr "Ενέργειες προεκτάσεων"
 msgid "Extensions"
 msgstr "Επεκτάσεις"
 
-msgid "Extensions Management"
-msgstr "Διαχείριση επεκτάσεων"
-
 msgid "Extensions/QuickMenu"
 msgstr "Επεκτάσεις/Γρήγορο μενού"
 
@@ -8173,9 +8146,6 @@ msgstr "Επιπεδοποίηση μέσω ομάδας πλήκτρων στο
 msgid "Flat by position on remote"
 msgstr "Επιπεδοποίηση μέσω θέσης στο τηλεχειριστήριο"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Οι ακόλουθες ενέργειες θα εκτελεστούν αφού πιέσετε ΟΚ!"
-
 msgid "Font size"
 msgstr "Μέγεθος γραμματοσειράς"
 
@@ -8187,9 +8157,6 @@ msgstr "Φαγητό/Κρασί"
 
 msgid "Football"
 msgstr "Ποδόσφαιρο"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "Για περισσότερες πληροφορίες επισκεφτείτε το https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Εξαναγκασμένη ισχύς LNB"
@@ -9532,9 +9499,6 @@ msgstr "Εγκατάσταση επεκτάσεων."
 msgid "Install lcd picons on"
 msgstr "Εγκατάσταση λογότυπων lcd σε"
 
-msgid "Install or remove finished."
-msgstr "Η εγκατάσταση ή αφαίρεση ολοκληρώθηκε."
-
 msgid "Install picons on"
 msgstr "Εγκατάσταση λογότυπων σε"
 
@@ -10478,6 +10442,9 @@ msgstr "Διαχείριση επεκτάσεων"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Διαχείριση ρυθμίσεων γλώσσας/διαλέκτου"
 
+msgid "Manage Plugins"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr "Διαχείριση και εξερεύνηση φακέλων και αρχείων."
 
@@ -11187,9 +11154,6 @@ msgstr "Πολλαπλή διακωδικοποίηση"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Το Image δημιουργήθηκε στο: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "Πολυμέσα"
-
 msgid "Multiple service support"
 msgstr "Υποστήριξη πολλαπλών υπηρεσιών"
 
@@ -11592,9 +11556,6 @@ msgstr "Χωρίς καθυστέρηση"
 msgid "No demux available"
 msgstr "Μη διαθέσιμη απόπλεξη"
 
-msgid "No description available."
-msgstr "Μη διαθέσιμη περιγραφή."
-
 msgid "No displayable files on this medium found!"
 msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυτό το μέσο!"
 
@@ -11625,9 +11586,6 @@ msgstr "Δεν βρέθηκαν αρχεία αποσφαλμάτωσης και
 msgid "No matching place names found"
 msgstr "Δεν βρέθηκαν συσχετισμένα ονόματα θέσεων"
 
-msgid "No network connection available."
-msgstr "Δεν υπάρχει διαθέσιμη σύνδεση δικτύου."
-
 msgid "No network storage detected."
 msgstr "Δεν εντοπίστηκε χώρος αποθήκευσης στο δίκτυο."
 
@@ -11637,8 +11595,8 @@ msgstr "Δεν βρέθηκαν δίκτυα"
 msgid "No of items switch (increase or reduced)"
 msgstr "Αριθμός αλλαγής στοιχείων (αύξηση ή μείωση)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Κανένα πακέτο δεν έχει αναβαθμιστεί ακόμα. Ελέγξτε το δίκτυό σας και προσπαθήστε ξανά."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "Μη διαθέσιμες εικόνες"
@@ -12040,9 +11998,6 @@ msgstr "Διαδικτυακή ενημέρωση λογισμικού του %s
 
 msgid "Only Flash Backup Image"
 msgstr "Φλασάρισμα μόνο του image εφεδρείας"
-
-msgid "Only extensions."
-msgstr "Μόνο επεκτάσεις."
 
 msgid "Only free scan"
 msgstr "Μόνο τα ελεύθερα"
@@ -12510,6 +12465,9 @@ msgstr "Ποσοστό/μπάρα προόδου δεξιά"
 
 msgid "Perform an on-line flash instead"
 msgstr "Να γίνει διαδικτυακό φλασάρισμα αντ' αυτού"
+
+msgid "Perform install/remove of the selected item"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Οριστική διαγραφή όλων των εγγραφών από τον κάδο;"
@@ -13049,21 +13007,11 @@ msgstr "Πλοηγός προσθέτων"
 msgid "Plugin Browser Settings"
 msgstr "Ρυθμίσεις πλοηγού προσθέτων"
 
-msgid "Plugin Details"
-msgstr "Πληροφορίες πρόσθετου"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr "Πληροφορίες πρόσθετου: %s"
-
 msgid "Plugin Filter Settings"
 msgstr "Ρυθμίσεις φίλτρου προσθέτων"
 
-msgid "Plugin Manager Activity Information"
-msgstr "Πληροφορίες ενεργειών διαχείρισης προσθέτων"
-
-msgid "Plugin Manager Help"
-msgstr "Βοήθεια διαχείρισης προσθέτων"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 msgid "Plugins"
 msgstr "Πρόσθετα"
@@ -13369,9 +13317,6 @@ msgstr "Μοντέλο επεξεργαστή"
 
 msgid "Proceed with the update"
 msgstr "Συνέχεια με την ενημέρωση"
-
-msgid "Process"
-msgstr "Επεξεργασία"
 
 msgid "Processor information"
 msgstr "Πληροφορίες επεξεργαστή"
@@ -14700,9 +14645,6 @@ msgstr "Ρυθμίσεις κατόπτρου"
 msgid "Satellite configuration mode"
 msgstr "Λειτουργία παραμετροποίησης δορυφόρου"
 
-msgid "Satellite equipment"
-msgstr "Δορυφορικός εξοπλισμός"
-
 msgid "Satellite equipment setup"
 msgstr "Ρύθμιση δορυφορικού εξοπλισμού"
 
@@ -14850,6 +14792,9 @@ msgstr "Ανίχνευση ασύρματων δικτύων"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Ανίχνευση του δικτύου για ασύρματα σημεία σύνδεσης και σύνδεση σε αυτά με την επιλεγμένη ασύρματη συσκευή."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Ανίχνευση %s..."
@@ -14947,12 +14892,6 @@ msgstr "Αναζήτηση"
 
 msgid "Searching east ..."
 msgstr "Αναζήτηση ανατολικά..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Αναζήτηση για διαθέσιμες ενημερώσεις. Παρακαλώ περιμένετε..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Αναζήτηση για νέα εγκατεστημένα ή διαγραμμένα πακέτα. Παρακαλώ περιμένετε..."
 
 msgid "Searching west ..."
 msgstr "Αναζήτηση δυτικά..."
@@ -17192,9 +17131,6 @@ msgstr "Ρυθμίσεις θέματος"
 msgid "SkinSelector"
 msgstr "Επιλογή θέματος"
 
-msgid "Skins"
-msgstr "Θέματα"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Παράλειψη ελέγχου σύνδεσης στο διαδίκτυο (απενεργοποιεί την αυτόματη εγκατάσταση πακέτων)"
 
@@ -17398,9 +17334,6 @@ msgstr "Ρυθμίσεις Softcam"
 msgid "Softcams"
 msgstr "Softcams"
 
-msgid "Software"
-msgstr "Λογισμικό"
-
 msgid "Software Management"
 msgstr "Διαχείριση λογισμικού"
 
@@ -17498,9 +17431,6 @@ msgstr "Λυπούμαστε, το %s δεν έχει εγκατασταθεί!"
 
 msgid "Sorry, no backups found!"
 msgstr "Λυπούμαστε, δεν βρέθηκαν αντίγραφα ασφαλείας!"
-
-msgid "Sorry, no details available!"
-msgstr "Λυπούμαστε, δεν υπάρχουν διαθέσιμες λεπτομέρειες!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Λυπούμαστε, δεν έχουν συνδεθεί συσκευές που υποστηρίζουν το SWAP. Αδυναμία δημιουργίας αρχείου swap στο δίκτυο ή σε συστήματα αρχείων fat32"
@@ -18737,16 +18667,6 @@ msgstr ""
 "\n"
 "Να γίνει τώρα ή να επεκταθεί ο χρονοδιακόπτης;"
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Το πρόσθετο διαχείρισης λογισμικού δεν είναι εγκατεστημένο!\n"
-"Παρακαλώ εγκαταστήστε το."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Αδυναμία ελέγχου της κατάστασης της τρέχουσας ενημέρωσης επειδή είναι αδύνατη η σύνδεση στο https://www.opena.tv για κάποιο λόγο"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Ο χρόνος πολλαπλασιάζεται με τον τρέχοντα μετρητή επανάληψης."
 
@@ -18795,12 +18715,6 @@ msgstr "Ο οδηγός μπορεί να κρατήσει αντίγραφο τ
 
 msgid "The wizard is finished now."
 msgstr "Ο οδηγός ολοκληρώθηκε."
-
-msgid "There are at least "
-msgstr "Υπάρχουν τουλάχιστον "
-
-msgid "There are currently no outstanding actions."
-msgstr "Δεν υπάρχουν ενέργειες σε εκκρεμότητα."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -18877,9 +18791,6 @@ msgstr "Αυτό επιτρέπει την εμφάνιση των επεκτά�
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Αυτό επιτρέπει την εμφάνιση των αρθρωμάτων kernel στις λήψεις"
-
-msgid "This allows you to show languages in downloads"
-msgstr "Αυτό επιτρέπει την εμφάνιση των γλωσσών στις λήψεις"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Αυτό επιτρέπει την εμφάνιση των θεμάτων lcd στις λήψεις"
@@ -19132,18 +19043,6 @@ msgstr "Αυτή η επιλογή ρυθμίζει την οξύτητα της
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Αυτό το πρόγραμμα καθορίζει αν ένα πρόγραμμα ξεκινά νωρίτερα ή διαρκεί περισσότερο. Το κανάλι πρέπει να παρέχει έγκυρα δεδομένα."
-
-msgid "This plugin is installed."
-msgstr "Αυτό το πρόσθετο είναι εγκατεστημένο."
-
-msgid "This plugin is not installed."
-msgstr "Αυτό το πρόσθετο δεν είναι εγκατεστημένο."
-
-msgid "This plugin will be installed."
-msgstr "Αυτό το πρόσθετο θα εγκατασταθεί."
-
-msgid "This plugin will be removed."
-msgstr "Αυτό το πρόσθετο θα διαγραφεί."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "Αυτό ορίζει την πρόθεση κάθε γραμμής στο αρχείο καταγραφής αποσφαλμάτωσης. Ο 'χρόνος εκκίνησης' είναι ο αριθμός δευτερολέπτων από την τελευταία εκκίνηση του %s %s σας."
@@ -19908,12 +19807,6 @@ msgstr "Απροσδιόριστο"
 msgid "Undetermined"
 msgstr "Μη καθορισμένο"
 
-msgid "Undo install"
-msgstr "Αναίρεση εγκατάστασης"
-
-msgid "Undo uninstall"
-msgstr "Αναίρεση απεγκατάστασης"
-
 msgid "Unencrypted"
 msgstr "Χωρίς κωδικοποίηση"
 
@@ -19934,9 +19827,6 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
-
-msgid "Uninstall"
-msgstr "Απεγκατάσταση"
 
 msgid "United Arab Emirates"
 msgstr "Ηνωμένα Αραβικά Εμιράτα"
@@ -20055,9 +19945,6 @@ msgstr "Πλήκτρα επάνω/κάτω επίσης για το 'όλο επ
 msgid "Update"
 msgstr "Ενημέρωση"
 
-msgid "Update at your own risk"
-msgstr "Ενημέρωση με δική σας ευθύνη"
-
 msgid "Update completed."
 msgstr "Η ενημέρωση ολοκληρώθηκε."
 
@@ -20070,17 +19957,11 @@ msgstr "Καθυστέρηση ενημέρωσης για προγράμματ�
 msgid "Update failed!"
 msgstr "Η ενημέρωση απέτυχε!"
 
-msgid "Update feed not available."
-msgstr "Η πηγή ενημερώσεων δεν είναι διαθέσιμη."
-
 msgid "Update finished!"
 msgstr "Η ενημέρωση ολοκληρώθηκε!"
 
 msgid "Update interval (in seconds)"
 msgstr "Μεσοδιάστημα ενημέρωσης (σε δευτερόλεπτα)"
-
-msgid "Update is reported as faulty !!"
-msgstr "Η ενημέρωση έχει αναφερθεί ως προβληματική !!"
 
 msgid ""
 "Update succeeded!\n"
@@ -20110,9 +19991,6 @@ msgstr "Εκτελείται ενημέρωση"
 msgid "Updating mount locations."
 msgstr "Ενημέρωση τοποθεσιών προσάρτησης."
 
-msgid "Updating software catalog"
-msgstr "Ενημέρωση καταλόγου λογισμικού"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr "Αναβάθμιση (φλασάρισμα & επαναφορά όλων)"
 
@@ -20131,9 +20009,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Αναβάθμιση με γραφικό περιβάλλον"
-
-msgid "Upgrading"
-msgstr "Εκτελείται αναβάθμιση"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -20719,48 +20594,6 @@ msgstr "Προβολή αρχείου"
 
 msgid "View Rass interactive..."
 msgstr "Προβολή διαδραστικού Rass..."
-
-msgid "View details"
-msgstr "Προβολή λεπτομερειών"
-
-msgid "View list of available "
-msgstr "Προβολή λίστας διαθέσιμων "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων κοινής διεπαφής"
-
-msgid "View list of available EPG extensions."
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων EPG."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων δορυφορικού εξοπλισμού."
-
-msgid "View list of available communication extensions."
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων επικοινωνίας."
-
-msgid "View list of available default settings"
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων προεπιλεγμένων ρυθμίσεων"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων οθόνης και διεπαφής χρήστη."
-
-msgid "View list of available multimedia extensions."
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων πολυμέσων."
-
-msgid "View list of available networking extensions"
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων δικτύωσης"
-
-msgid "View list of available recording extensions"
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων εγγραφών"
-
-msgid "View list of available skins"
-msgstr "Προβολή λίστας διαθέσιμων θεμάτων"
-
-msgid "View list of available software extensions"
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων λογισμικού"
-
-msgid "View list of available system extensions"
-msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων συστήματος"
 
 msgid "View mode"
 msgstr "Λειτουργία επισκόπησης"
@@ -21556,26 +21389,14 @@ msgstr "Εμφάνιση MiniTV με ή χωρίς μενού OSD"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Εμφάνιση PIP με ή χωρίς μενού OSD"
 
-msgid "You can cancel the installation."
-msgstr "Μπορείτε να ακυρώσετε την εγκατάσταση."
-
-msgid "You can cancel the removal."
-msgstr "Μπορείτε να ακυρώσετε την απεγκατάσταση."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Μπορείτε να συνεχίσετε να βλέπετε TV κλπ όσο αυτό εκτελείται."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Η λίστα μπορεί να ταξινομηθεί ανά χρόνο ή αλφαριθμητικά."
 
-msgid "You can install this plugin."
-msgstr "Μπορείτε να εγκαταστήσετε αυτό το πρόσθετο."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Μπορείτε μόνο να κάψετε τις εγγραφές Dreambox!"
-
-msgid "You can remove this plugin."
-msgstr "Μπορείτε να διαγράψετε το πρόσθετο."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Μπορείτε να παρακάμψετε αυτή τη λειτουργία και να σβήσετε την TV όταν γίνεται αφύπνιση του δέκτη από την αναμονή και να επιστρέψετε άμεσα στην αναμονή."
@@ -21700,10 +21521,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Η λειτουργία του %s %s σας τερματίζεται. Παρακαλώ περιμένετε..."
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "Ο %s %s σας δεν έχει συνδεθεί σωστά στο διαδίκτυο. Ελέγξτε το και προσπαθήστε ξανά."
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -21826,32 +21643,6 @@ msgid ""
 msgstr ""
 "Θα γίνει αναβάθμιση του υλικού\n"
 "Αυτό μπορεί να διαρκέσει μερικά λεπτά"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Το image σας είναι παρωχημένο!\n"
-"\n"
-"Μετά από τόσο καιρό, υπάρχει κίνδυνος ο %s %s σας να μη μπορεί να\n"
-"ξεκινήσει μετά από διαδικτυακή ενημέρωση ή να γίνει δυσλειτουργικό το τρέχον Image.\n"
-"\n"
-"Ένα νέο φλασάρισμα θα αυξήσει τη σταθερότητα\n"
-"\n"
-"Η διαδικτυακή ενημέρωση γίνεται με δικό σας ρίσκο !!\n"
-"\n"
-"\n"
-"Θέλετε ακόμη να γίνει ενημέρωση;"
 
 msgid "Your network configuration has been activated."
 msgstr "Η ρύθμιση του δικτύου σας ενεργοποιήθηκε."
@@ -22414,9 +22205,6 @@ msgstr "έξοδος από μενού ρυθμίσεων προσαρμογέα
 msgid "experimental film/video"
 msgstr "πειραματικές ταινίες/βίντεο"
 
-msgid "extensions."
-msgstr "επεκτάσεις."
-
 msgid "externally loopthrough to"
 msgstr "εξωτερικό loopthrough στο"
 
@@ -22821,9 +22609,6 @@ msgstr "μόνο HD"
 
 msgid "original language"
 msgstr "αρχική γλώσσα"
-
-msgid "packages selected."
-msgstr "επιλεγμένα πάκετα."
 
 msgid "pass"
 msgstr "πέρασμα"
@@ -23238,9 +23023,6 @@ msgstr "μέχρι την αναμονή/επανεκκίνηση"
 msgid "update"
 msgstr "ενημέρωση"
 
-msgid "updates available."
-msgstr "διαθέσιμες ενημερώσεις."
-
 msgid "use best / controlled by HDMI"
 msgstr "χρήση βέλτιστου/ έλεγχος από το HDMI"
 
@@ -23310,12 +23092,256 @@ msgstr "κίτρινο"
 msgid "yes (keep feeds)"
 msgstr "ναι (διατήρηση των feeds)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "ο %s %s σας ενδέχεται να μη μπορεί να χρησιμοποιηθεί τώρα. Παρακαλώ συμβουλευτείτε το εγχειρίδιο για περισσότερη βοήθεια πριν επανεκκινήσετε τον %s %s σας."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "Λογισμικό %s %s επειδή διατίθενται ενημερώσεις."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "Επισκόπηση των διαθέσιμων εικονιδίων κατάστασης και ενεργειών."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Ματαίωση ενημέρωσης"
+
+#~ msgid "Author: "
+#~ msgstr "Δημιουργός: "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "Προσοχή, μη ελεγμένη ενημέρωση !!"
+
+#~ msgid "Communication"
+#~ msgstr "Επικοινωνία"
+
+#~ msgid "Continue"
+#~ msgstr "Συνέχεια"
+
+#~ msgid "Default settings"
+#~ msgstr "Προεπιλεγμένες ρυθμίσεις"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Οθόνη και διεπαφή χρήστη"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "Θέλετε να γίνει ενημέρωση του δέκτη σας;"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Ολοκληρώθηκε - Εγκαταστάθηκαν ή αναβαθμίστηκαν %d πακέτα"
+
+#~ msgid "Extensions Management"
+#~ msgstr "Διαχείριση επεκτάσεων"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "Οι ακόλουθες ενέργειες θα εκτελεστούν αφού πιέσετε ΟΚ!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "Για περισσότερες πληροφορίες επισκεφτείτε το https://www.opena.tv"
+
+#~ msgid "Install or remove finished."
+#~ msgstr "Η εγκατάσταση ή αφαίρεση ολοκληρώθηκε."
+
+#~ msgid "Multimedia"
+#~ msgstr "Πολυμέσα"
+
+#~ msgid "No description available."
+#~ msgstr "Μη διαθέσιμη περιγραφή."
+
+#~ msgid "No network connection available."
+#~ msgstr "Δεν υπάρχει διαθέσιμη σύνδεση δικτύου."
+
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Κανένα πακέτο δεν έχει αναβαθμιστεί ακόμα. Ελέγξτε το δίκτυό σας και προσπαθήστε ξανά."
+
+#~ msgid "Only extensions."
+#~ msgstr "Μόνο επεκτάσεις."
+
+#~ msgid "Plugin Details"
+#~ msgstr "Πληροφορίες πρόσθετου"
+
+#, python-format
+#~ msgid "Plugin Details: %s"
+#~ msgstr "Πληροφορίες πρόσθετου: %s"
+
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "Πληροφορίες ενεργειών διαχείρισης προσθέτων"
+
+#~ msgid "Plugin Manager Help"
+#~ msgstr "Βοήθεια διαχείρισης προσθέτων"
+
+#~ msgid "Process"
+#~ msgstr "Επεξεργασία"
+
+#~ msgid "Satellite equipment"
+#~ msgstr "Δορυφορικός εξοπλισμός"
+
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "Αναζήτηση για διαθέσιμες ενημερώσεις. Παρακαλώ περιμένετε..."
+
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "Αναζήτηση για νέα εγκατεστημένα ή διαγραμμένα πακέτα. Παρακαλώ περιμένετε..."
+
+#~ msgid "Skins"
+#~ msgstr "Θέματα"
+
+#~ msgid "Software"
+#~ msgstr "Λογισμικό"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "Λυπούμαστε, δεν υπάρχουν διαθέσιμες λεπτομέρειες!"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Το πρόσθετο διαχείρισης λογισμικού δεν είναι εγκατεστημένο!\n"
+#~ "Παρακαλώ εγκαταστήστε το."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "Αδυναμία ελέγχου της κατάστασης της τρέχουσας ενημέρωσης επειδή είναι αδύνατη η σύνδεση στο https://www.opena.tv για κάποιο λόγο"
+
+#~ msgid "There are at least "
+#~ msgstr "Υπάρχουν τουλάχιστον "
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "Δεν υπάρχουν ενέργειες σε εκκρεμότητα."
+
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "Αυτό επιτρέπει την εμφάνιση των γλωσσών στις λήψεις"
+
+#~ msgid "This plugin is installed."
+#~ msgstr "Αυτό το πρόσθετο είναι εγκατεστημένο."
+
+#~ msgid "This plugin is not installed."
+#~ msgstr "Αυτό το πρόσθετο δεν είναι εγκατεστημένο."
+
+#~ msgid "This plugin will be installed."
+#~ msgstr "Αυτό το πρόσθετο θα εγκατασταθεί."
+
+#~ msgid "This plugin will be removed."
+#~ msgstr "Αυτό το πρόσθετο θα διαγραφεί."
+
+#~ msgid "Undo install"
+#~ msgstr "Αναίρεση εγκατάστασης"
+
+#~ msgid "Undo uninstall"
+#~ msgstr "Αναίρεση απεγκατάστασης"
+
+#~ msgid "Uninstall"
+#~ msgstr "Απεγκατάσταση"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "Ενημέρωση με δική σας ευθύνη"
+
+#~ msgid "Update feed not available."
+#~ msgstr "Η πηγή ενημερώσεων δεν είναι διαθέσιμη."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "Η ενημέρωση έχει αναφερθεί ως προβληματική !!"
+
+#~ msgid "Updating software catalog"
+#~ msgstr "Ενημέρωση καταλόγου λογισμικού"
+
+#~ msgid "Upgrading"
+#~ msgstr "Εκτελείται αναβάθμιση"
+
+#~ msgid "View details"
+#~ msgstr "Προβολή λεπτομερειών"
+
+#~ msgid "View list of available "
+#~ msgstr "Προβολή λίστας διαθέσιμων "
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων κοινής διεπαφής"
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων EPG."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων δορυφορικού εξοπλισμού."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων επικοινωνίας."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων προεπιλεγμένων ρυθμίσεων"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων οθόνης και διεπαφής χρήστη."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων πολυμέσων."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων δικτύωσης"
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων εγγραφών"
+
+#~ msgid "View list of available skins"
+#~ msgstr "Προβολή λίστας διαθέσιμων θεμάτων"
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων λογισμικού"
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "Προβολή λίστας διαθέσιμων επεκτάσεων συστήματος"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "Μπορείτε να ακυρώσετε την εγκατάσταση."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "Μπορείτε να ακυρώσετε την απεγκατάσταση."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "Μπορείτε να εγκαταστήσετε αυτό το πρόσθετο."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "Μπορείτε να διαγράψετε το πρόσθετο."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "Ο %s %s σας δεν έχει συνδεθεί σωστά στο διαδίκτυο. Ελέγξτε το και προσπαθήστε ξανά."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "Το image σας είναι παρωχημένο!\n"
+#~ "\n"
+#~ "Μετά από τόσο καιρό, υπάρχει κίνδυνος ο %s %s σας να μη μπορεί να\n"
+#~ "ξεκινήσει μετά από διαδικτυακή ενημέρωση ή να γίνει δυσλειτουργικό το τρέχον Image.\n"
+#~ "\n"
+#~ "Ένα νέο φλασάρισμα θα αυξήσει τη σταθερότητα\n"
+#~ "\n"
+#~ "Η διαδικτυακή ενημέρωση γίνεται με δικό σας ρίσκο !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Θέλετε ακόμη να γίνει ενημέρωση;"
+
+#~ msgid "extensions."
+#~ msgstr "επεκτάσεις."
+
+#~ msgid "packages selected."
+#~ msgstr "επιλεγμένα πάκετα."
+
+#~ msgid "updates available."
+#~ msgstr "διαθέσιμες ενημερώσεις."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "ο %s %s σας ενδέχεται να μη μπορεί να χρησιμοποιηθεί τώρα. Παρακαλώ συμβουλευτείτε το εγχειρίδιο για περισσότερη βοήθεια πριν επανεκκινήσετε τον %s %s σας."
 
 #~ msgid "Additional Info"
 #~ msgstr "Πρόσθετες πληροφορίες"

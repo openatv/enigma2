@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1163,6 +1163,10 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] ""
 msgstr[1] ""
 
+#, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%d sec"
 msgstr "%d sekund"
@@ -1302,10 +1306,6 @@ msgstr "%s %s ir mus"
 msgid "%s %s remote control (native)"
 msgstr "%s %s fjernkontroll (native)"
 
-#, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s programvare fordi oppdateringer er tilgjengelige."
-
 #
 #, fuzzy, python-format
 msgid "%s ( %s Cards )"
@@ -1353,6 +1353,10 @@ msgstr ""
 
 #, python-format
 msgid "%s MHz"
+msgstr ""
+
+#, python-format
+msgid "%s Packages found"
 msgstr ""
 
 #
@@ -2148,10 +2152,6 @@ msgstr ""
 "\n"
 "Ønsker du å deaktivere det andre nettverket?"
 
-#
-msgid "A small overview of the available icon states and actions."
-msgstr "En liten oversikt over de tilgjengelige ikon status og handlinger."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2251,9 +2251,6 @@ msgid "Aborted a pseudo recording.\n"
 msgstr ""
 
 msgid "Aborted a streaming service.\n"
-msgstr ""
-
-msgid "Aborting update progress"
 msgstr ""
 
 #
@@ -3119,10 +3116,6 @@ msgstr "Italiensk"
 #, fuzzy
 msgid "Austria"
 msgstr "rytter"
-
-#
-msgid "Author: "
-msgstr "Utvikler:"
 
 #
 msgid "Authoring mode"
@@ -4153,6 +4146,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Avbryte"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
@@ -4290,9 +4286,6 @@ msgid "Cascade PiP"
 msgstr ""
 
 msgid "Catalan / Valencian"
-msgstr ""
-
-msgid "Caution update not yet tested !!"
 msgstr ""
 
 msgid "Cayman Islands"
@@ -4944,10 +4937,6 @@ msgstr "Common Interface oppdrag"
 msgid "Common Setup Actions"
 msgstr "Kommunikasjon"
 
-#
-msgid "Communication"
-msgstr "Kommunikasjon"
-
 msgid "Comoros"
 msgstr ""
 
@@ -5454,9 +5443,6 @@ msgstr ""
 
 msgid "Continent"
 msgstr ""
-
-msgid "Continue"
-msgstr "Fortsett..."
 
 msgid "Continue in background"
 msgstr ""
@@ -6228,10 +6214,6 @@ msgstr "Standard opptakstype"
 msgid "Default right column directory"
 msgstr ""
 
-#
-msgid "Default settings"
-msgstr "Standard innstillinger"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -6771,9 +6753,6 @@ msgstr "Vis 16:9 som"
 msgid "Display Settings"
 msgstr ""
 
-msgid "Display and user interface"
-msgstr "Skjerm og brukergrensesnitt"
-
 msgid "Display context menu"
 msgstr ""
 
@@ -7069,9 +7048,6 @@ msgstr "Vil du hente inn dine innstillinger?"
 msgid "Do you want to resume this playback?"
 msgstr "Vil du gjenoppta avspillingen ?"
 
-msgid "Do you want to update your box?"
-msgstr ""
-
 #
 msgid "Do you want to upgrade the package:\n"
 msgstr "Vil du oppgradere pakken? \n"
@@ -7122,10 +7098,6 @@ msgid ""
 msgstr ""
 
 msgid "Done"
-msgstr ""
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
 msgstr ""
 
 #, python-format
@@ -8442,10 +8414,6 @@ msgstr "Tillegg"
 msgid "Extensions"
 msgstr "Tillegg"
 
-#
-msgid "Extensions Management"
-msgstr "Behandle utvidelser"
-
 msgid "Extensions/QuickMenu"
 msgstr ""
 
@@ -8922,10 +8890,6 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr "Endelig posisjon til"
 
-#
-msgid "Following tasks will be done after you press OK!"
-msgstr "Følgende oppgaver blir utført etter du trykker OK!"
-
 #, fuzzy
 msgid "Font size"
 msgstr "Skriftstørrelse"
@@ -8940,9 +8904,6 @@ msgstr ""
 #, fuzzy
 msgid "Football"
 msgstr "fotball/soccer"
-
-msgid "For more information see https://www.opena.tv"
-msgstr ""
 
 msgid "Force LNB Power"
 msgstr ""
@@ -10418,10 +10379,6 @@ msgstr "Installere utvidelser."
 msgid "Install lcd picons on"
 msgstr "Installer lcd picons på"
 
-#
-msgid "Install or remove finished."
-msgstr "Installering eller fjerning ferdig."
-
 msgid "Install picons on"
 msgstr "Installer picons på"
 
@@ -11479,6 +11436,9 @@ msgstr "Behandle utvidelser"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Kanalvalg innstillinger"
 
+msgid "Manage Plugins"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr ""
 
@@ -12267,10 +12227,6 @@ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
 #
-msgid "Multimedia"
-msgstr "Multimedia"
-
-#
 msgid "Multiple service support"
 msgstr "Multi kanal support"
 
@@ -12717,10 +12673,6 @@ msgid "No demux available"
 msgstr "Ingen gratis indekser tilgjengelig"
 
 #
-msgid "No description available."
-msgstr "Ingen beskrivelse tilgjengelig."
-
-#
 msgid "No displayable files on this medium found!"
 msgstr "Ingen visbare filer på dette medie funnet!"
 
@@ -12757,10 +12709,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Ingen nye plugins funnet"
 
-#
-msgid "No network connection available."
-msgstr "Ingen nettverks forbindelse tilgjengelig."
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -12771,7 +12719,7 @@ msgstr "Ingen nettverk funnet"
 msgid "No of items switch (increase or reduced)"
 msgstr "Ingen av elementene byttet (økt eller redusert)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
+msgid "No packages found."
 msgstr ""
 
 msgid "No pictures available"
@@ -13216,10 +13164,6 @@ msgstr "Online oppdatering av din %s %s programvare."
 
 msgid "Only Flash Backup Image"
 msgstr ""
-
-#
-msgid "Only extensions."
-msgstr "Kun utvidelser."
 
 #
 msgid "Only free scan"
@@ -13728,6 +13672,9 @@ msgid "Percentage/Progress bar right"
 msgstr "Fremskritt søyle høyre"
 
 msgid "Perform an on-line flash instead"
+msgstr ""
+
+msgid "Perform install/remove of the selected item"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -14304,23 +14251,11 @@ msgstr "Plugin Visning"
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Details"
-msgstr "Plugin detaljer"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr ""
 
-#
-msgid "Plugin Manager Activity Information"
-msgstr "Plugin behandling aktivitets info"
-
-#
-msgid "Plugin Manager Help"
-msgstr "Plugin behandlings hjelp"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 #
 msgid "Plugins"
@@ -14675,10 +14610,6 @@ msgstr ""
 
 msgid "Proceed with the update"
 msgstr ""
-
-#
-msgid "Process"
-msgstr "Prosess"
 
 msgid "Processor information"
 msgstr ""
@@ -16153,10 +16084,6 @@ msgid "Satellite configuration mode"
 msgstr "Konfigurasjonsmodus"
 
 #
-msgid "Satellite equipment"
-msgstr "Satellittutstyr"
-
-#
 msgid "Satellite equipment setup"
 msgstr "Satellittutstyr oppsett"
 
@@ -16321,6 +16248,9 @@ msgstr "Søk etter trådløse nettverk"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Søke ditt nettverk etter trådløst tilgangspunkt og koble til med valgte enhet."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Søking %s"
@@ -16425,14 +16355,6 @@ msgstr "Søking"
 #
 msgid "Searching east ..."
 msgstr "Søking øst..."
-
-#
-msgid "Searching for available updates. Please wait..."
-msgstr "Søker etter oppdateringer. Vennligst vent..."
-
-#
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Søker etter nylig installerte eller fjernede pakker. Vennligst vent..."
 
 #
 msgid "Searching west ..."
@@ -18857,10 +18779,6 @@ msgstr "Skin oppsett"
 msgid "SkinSelector"
 msgstr ""
 
-#
-msgid "Skins"
-msgstr "Skin"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Hoppe over sjekk av internettforbindelse (deaktiverer automatisk pakke installasjon)"
 
@@ -19078,10 +18996,6 @@ msgid "Softcams"
 msgstr ""
 
 #
-msgid "Software"
-msgstr "Programvare"
-
-#
 msgid "Software Management"
 msgstr "Programvareadministrasjon"
 
@@ -19178,9 +19092,6 @@ msgstr "Beklager, %s er ikke installert!"
 
 msgid "Sorry, no backups found!"
 msgstr "Beklager, ingen backup funnet!"
-
-msgid "Sorry, no details available!"
-msgstr "Beklager, ingen info tilgjengelig!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr ""
@@ -20504,16 +20415,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Programvaren behandleren er ikke installert!\n"
-"Vennligst installer den."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr ""
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
@@ -20564,14 +20465,6 @@ msgstr "Guiden kan ta backup av dine nåværende innstillinger. Vil du ta backup
 #
 msgid "The wizard is finished now."
 msgstr "Guiden er ferdig nå."
-
-#
-msgid "There are at least "
-msgstr "Det er minst"
-
-#
-msgid "There are currently no outstanding actions."
-msgstr "Nå er det ingen utestående hendelser."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -20654,10 +20547,6 @@ msgstr ""
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr ""
-
-#, fuzzy
-msgid "This allows you to show languages in downloads"
-msgstr "Dette lar deg endre antallet rader som vises."
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr ""
@@ -20926,22 +20815,6 @@ msgstr "Dette alternativet setter opp bildets skarphet, brukes når bildet blir 
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
-
-#
-msgid "This plugin is installed."
-msgstr "Denne plugin er installert."
-
-#
-msgid "This plugin is not installed."
-msgstr "Denne plugin er ikke installert."
-
-#
-msgid "This plugin will be installed."
-msgstr "Denne plugin blir installert."
-
-#
-msgid "This plugin will be removed."
-msgstr "Denne pluginl blir fjernet."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
@@ -21799,14 +21672,6 @@ msgstr "Brukerdefinert"
 msgid "Undetermined"
 msgstr "Ubestemt"
 
-#
-msgid "Undo install"
-msgstr "Angre installering"
-
-#
-msgid "Undo uninstall"
-msgstr "Angre avinstallering"
-
 msgid "Unencrypted"
 msgstr "Ukryptert"
 
@@ -21830,10 +21695,6 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
-
-#
-msgid "Uninstall"
-msgstr "Avinstallere"
 
 msgid "United Arab Emirates"
 msgstr ""
@@ -21961,9 +21822,6 @@ msgstr ""
 msgid "Update"
 msgstr "Oppdater"
 
-msgid "Update at your own risk"
-msgstr ""
-
 msgid "Update completed."
 msgstr ""
 
@@ -21979,19 +21837,12 @@ msgid "Update failed!"
 msgstr "Skriving feilet!"
 
 #
-msgid "Update feed not available."
-msgstr "Updatefeed ikke tilgjengelig"
-
-#
 #, fuzzy
 msgid "Update finished!"
 msgstr "Oppdatering ferdig."
 
 msgid "Update interval (in seconds)"
 msgstr "Oppdaterings intervallet (i sekunder)"
-
-msgid "Update is reported as faulty !!"
-msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -22020,10 +21871,6 @@ msgstr "Oppgraderer"
 msgid "Updating mount locations."
 msgstr ""
 
-#
-msgid "Updating software catalog"
-msgstr "Oppdaterer programvare katalog"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -22042,9 +21889,6 @@ msgstr ""
 "Dette kan ta noen minutter"
 
 msgid "Upgrade with GUI"
-msgstr ""
-
-msgid "Upgrading"
 msgstr ""
 
 msgid "Uphops +"
@@ -22655,61 +22499,6 @@ msgstr ""
 #
 msgid "View Rass interactive..."
 msgstr "Vis Rass interaktiv..."
-
-#
-msgid "View details"
-msgstr "Se detaljer"
-
-#
-msgid "View list of available "
-msgstr "Se liste med tilgjengelige"
-
-#
-msgid "View list of available CommonInterface extensions"
-msgstr "Se liste med tilgjengelige CommonInterface utvidelser"
-
-#
-msgid "View list of available EPG extensions."
-msgstr "Se liste med tilgjengelige EPG utvidelser"
-
-#
-msgid "View list of available Satellite equipment extensions."
-msgstr "Se liste med tilgjengelige Satellittutstyrs utvidelser"
-
-#
-msgid "View list of available communication extensions."
-msgstr "Se liste med tilgjengelige Kommunikasjons utvidelser."
-
-#
-msgid "View list of available default settings"
-msgstr "Se liste med tilgjengelige Standard innstillinger"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Se liste med tilgjengelige Skjerm og Brukeregrensesnitt utvidelser"
-
-#
-msgid "View list of available multimedia extensions."
-msgstr "Se liste med tilgjengelige multimedia utvidelser"
-
-#
-msgid "View list of available networking extensions"
-msgstr "Se liste med tilgjengelige nettverks utvidelser"
-
-#
-msgid "View list of available recording extensions"
-msgstr "Se liste med tilgjengelige opptaks utvidelser"
-
-#
-msgid "View list of available skins"
-msgstr "Se liste med tilgjengelige skins"
-
-#
-msgid "View list of available software extensions"
-msgstr "Se liste med tilgjengelige programvare utvidelser"
-
-#
-msgid "View list of available system extensions"
-msgstr "Se liste med tilgjengelige system utvidelser"
 
 msgid "View mode"
 msgstr "Vis modus"
@@ -23556,30 +23345,14 @@ msgstr ""
 msgid "You can Display PiP with or without OSD Menu"
 msgstr ""
 
-#
-msgid "You can cancel the installation."
-msgstr "Du kan avbryte installering."
-
-#
-msgid "You can cancel the removal."
-msgstr "Du kan avbryte fjerning."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Du kan fortsette å se TV etc. mens dette kjører."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Du kan ha en liste sortert etter tid eller alfanumerisk."
 
-#
-msgid "You can install this plugin."
-msgstr "Du kan installere denne plugin."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr ""
-
-#
-msgid "You can remove this plugin."
-msgstr "Du kan fjerne denne plugin."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr ""
@@ -23708,10 +23481,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Din %s %s slår seg av. Vennligst vent..."
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr ""
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -23827,21 +23596,6 @@ msgstr ""
 msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
 msgstr ""
 
 #
@@ -24482,9 +24236,6 @@ msgstr "avslutt nettverksadapter oppsetts meny"
 msgid "experimental film/video"
 msgstr "eksperimentell film/video"
 
-msgid "extensions."
-msgstr "utvidelser."
-
 msgid "externally loopthrough to"
 msgstr ""
 
@@ -24958,9 +24709,6 @@ msgstr "bare HD"
 msgid "original language"
 msgstr "originalspråket"
 
-msgid "packages selected."
-msgstr "pakker valgt."
-
 #
 msgid "pass"
 msgstr "klart"
@@ -25428,9 +25176,6 @@ msgstr "til dvalemodus/restart"
 msgid "update"
 msgstr "Oppdater"
 
-msgid "updates available."
-msgstr "oppdateringer er tilgjengelige."
-
 msgid "use best / controlled by HDMI"
 msgstr ""
 
@@ -25510,681 +25255,5 @@ msgstr "gul"
 msgid "yes (keep feeds)"
 msgstr "ja (behold feeds)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr ""
-
 msgid "®"
 msgstr ""
-
-#~ msgid "Additional Info"
-#~ msgstr "Tilleggsinfo"
-
-#~ msgid "Are you sure you want to send this log:\n"
-#~ msgstr "Er du sikker på at du vil sende denne loggen:\n"
-
-#~ msgid "Attach a file"
-#~ msgstr "Legg ved en fil"
-
-#~ msgid "Do you want to add any additional information ?"
-#~ msgstr "Ønsker du å legge til tilleggsinformasjon?"
-
-#~ msgid ""
-#~ "Do you want to attach a text file to explain the log ?\n"
-#~ "(choose 'No' to type message using virtual keyboard.)"
-#~ msgstr ""
-#~ "Ønsker du å legge ved en tekstfil for å forklare loggen?\n"
-#~ "(velg 'Nei' for å skrive melding ved hjelp av det virtuelle tastaturet.)"
-
-#~ msgid ""
-#~ "Do you want to send all selected files:\n"
-#~ "(choose 'No' to only send the currently selected file.)"
-#~ msgstr ""
-#~ "Ønsker du å sende alle valgte filer:\n"
-#~ "(velg 'Nei' for å bare sende den valgte filen.)"
-
-#, python-format
-#~ msgid ""
-#~ "Error:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Feil:\n"
-#~ "%s"
-
-#~ msgid "Send"
-#~ msgstr "Send"
-
-#~ msgid "Send Confirmation"
-#~ msgstr "Send bekreftelse"
-
-#, fuzzy
-#~ msgid "Use OpenTV EPG information when it is available."
-#~ msgstr "Bruk EIT EPG informasjon når den er tilgjengelig."
-
-#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
-#~ msgstr "Du har allerede sendt denne loggen, er du sikker på at du vil sende denne på nytt:\n"
-
-#~ msgid ""
-#~ "You have not setup your user info in the setup screen\n"
-#~ "Press MENU, and enter your info, then try again"
-#~ msgstr ""
-#~ "Du har ikke satt opp din bruker info i oppsettet\n"
-#~ "Trykk på MENU, og skriv inn din informasjon, så prøv igjen"
-
-#~ msgid "You have selected no logs to send."
-#~ msgstr "Du har ikke valgt noen logger for å sende."
-
-#~ msgid "rename"
-#~ msgstr "gi nytt navn"
-
-#~ msgid "when asking question about this log"
-#~ msgstr "når du spør spørsmålet om denne loggen"
-
-#~ msgid ""
-#~ "when asking question about this log\n"
-#~ "\n"
-#~ "A copy has been sent to yourself."
-#~ msgstr ""
-#~ "når du spør spørsmålet om denne loggen\n"
-#~ "\n"
-#~ "Vil en kopi bli sendt til deg."
-
-#, fuzzy, python-format
-#~ msgid " ('%s') ends with error messages."
-#~ msgstr "Skjul alle zap feilmeldinger."
-
-#, fuzzy, python-format
-#~ msgid "%s"
-#~ msgstr "bc%s"
-
-#
-#, fuzzy, python-format
-#~ msgid "%s (%s"
-#~ msgstr "%s (%s)\n"
-
-#
-#, fuzzy
-#~ msgid "(Selectmode)"
-#~ msgstr "Velg film"
-
-#
-#, fuzzy
-#~ msgid "?"
-#~ msgstr "??"
-
-#
-#, fuzzy
-#~ msgid "Accessed:"
-#~ msgstr "Tilgangspunkt:"
-
-#, fuzzy
-#~ msgid "Channel button always changes sides"
-#~ msgstr "Modusendring i kanallisten"
-
-#
-#, fuzzy
-#~ msgid "Copy file"
-#~ msgstr "Kopiering av filer"
-
-#, fuzzy
-#~ msgid "Copy file/directory to target directory"
-#~ msgstr "Kopier til annen katalog"
-
-#, fuzzy
-#~ msgid "Copy files/directories to target directory"
-#~ msgstr "Kopier til annen katalog"
-
-#
-#, fuzzy
-#~ msgid "Copy folder"
-#~ msgstr "Kopiering av filer"
-
-#, fuzzy
-#~ msgid "Create directory/folder"
-#~ msgstr "Lag katalog"
-
-#, fuzzy
-#~ msgid "Date reverse"
-#~ msgstr "alfabetisk bakover"
-
-#
-#, fuzzy
-#~ msgid "Default directory sorting"
-#~ msgstr "Standard innstillinger"
-
-#
-#, fuzzy
-#~ msgid "Default file sorting left"
-#~ msgstr "Standard opptakstype"
-
-#
-#, fuzzy
-#~ msgid "Default file sorting right"
-#~ msgstr "Standard opptakstype"
-
-#, fuzzy
-#~ msgid "Default folder"
-#~ msgstr "Velg mapper"
-
-#, fuzzy, python-format
-#~ msgid "Delete %d elements"
-#~ msgstr "Slettede elementer"
-
-#
-#, fuzzy
-#~ msgid "Delete 1 element"
-#~ msgstr "Slett oppføring"
-
-#
-#, fuzzy
-#~ msgid "Delete folder"
-#~ msgstr "Slett fil."
-
-#
-#, fuzzy
-#~ msgid "Do you want change rights?\n"
-#~ msgstr "Vil du fortsette?"
-
-#, fuzzy
-#~ msgid "Do you want to view or run the script?\n"
-#~ msgstr "Ønsker du å starte din mottaker på nytt?"
-
-#
-#, fuzzy
-#~ msgid "Edit line "
-#~ msgstr "Endre timer"
-
-#
-#, fuzzy
-#~ msgid "Edit position is the line end"
-#~ msgstr "Flyttet til posisjonen på indeksen"
-
-#
-#, fuzzy
-#~ msgid "Enter multi-file selection mode"
-#~ msgstr "Lukk tittel valg"
-
-#
-#, fuzzy, python-format
-#~ msgid ""
-#~ "Error creating directory %s:\n"
-#~ "%s"
-#~ msgstr "Laging av katalog %s feilet."
-
-#
-#, fuzzy
-#~ msgid "Error..."
-#~ msgstr "Feil"
-
-#, fuzzy
-#~ msgid "File Commander context menu"
-#~ msgstr "Kanallistens innholdsmenyen"
-
-#
-#, fuzzy, python-format
-#~ msgid "File not found: %s"
-#~ msgstr "Video modus: %s"
-
-#, fuzzy
-#~ msgid "File/Directory Status Information"
-#~ msgstr "Minneinformasjon"
-
-#
-#, fuzzy
-#~ msgid "Go to end of file"
-#~ msgstr "Hopp til slutten av listen"
-
-#
-#, fuzzy
-#~ msgid "Go to parent directory"
-#~ msgstr "Overordnet katalog"
-
-#
-#, fuzzy
-#~ msgid "Go to start of file"
-#~ msgstr "starter snart"
-
-#, fuzzy
-#~ msgid "Installing Plugin ..."
-#~ msgstr "Installer plugins"
-
-#
-#, fuzzy
-#~ msgid "Link target:"
-#~ msgstr "Link Kvalitet:"
-
-#
-#, fuzzy
-#~ msgid "Links:"
-#~ msgstr "Link:"
-
-#
-#, fuzzy, python-format
-#~ msgid "Mode %s (%04o)"
-#~ msgstr "Modell: %s %s\n"
-
-#
-#, fuzzy, python-format
-#~ msgid "Move %d elements"
-#~ msgstr "Bevegelse"
-
-#
-#, fuzzy
-#~ msgid "Move 1 element"
-#~ msgstr "Bevegelse"
-
-#, fuzzy
-#~ msgid "Move down list"
-#~ msgstr "Gå ned på listen"
-
-#, fuzzy
-#~ msgid "Move file"
-#~ msgstr "Flytter filer"
-
-#, fuzzy
-#~ msgid "Move file/directory to target directory"
-#~ msgstr "Flytt til annen katalog"
-
-#, fuzzy
-#~ msgid "Move files/directories to target directory"
-#~ msgstr "Flytt til annen katalog"
-
-#, fuzzy
-#~ msgid "Move folder"
-#~ msgstr "Velg mapper"
-
-#, fuzzy
-#~ msgid "Move up list"
-#~ msgstr "Gå opp på listen"
-
-#
-#, fuzzy
-#~ msgid "My extension"
-#~ msgstr "Kun utvidelser."
-
-#
-#, fuzzy
-#~ msgid "Name reverse"
-#~ msgstr "Navneserver"
-
-#, fuzzy
-#~ msgid "New folder"
-#~ msgstr "Velg mapper"
-
-#
-#, fuzzy
-#~ msgid "No files found."
-#~ msgstr "Ingen nettverk funnet"
-
-#
-#, fuzzy
-#~ msgid "No hash calculations configured"
-#~ msgstr "Ikke konfigurert"
-
-#, fuzzy
-#~ msgid "On device:"
-#~ msgstr "Inndata enheter"
-
-#, fuzzy
-#~ msgid "Page down list"
-#~ msgstr "Side ned"
-
-#, fuzzy
-#~ msgid "Page up list"
-#~ msgstr "Side opp"
-
-#
-#~ msgid "Parent directory"
-#~ msgstr "Overordnet katalog"
-
-#, fuzzy
-#~ msgid "Permissions:"
-#~ msgstr "Versjon:"
-
-#
-#, fuzzy
-#~ msgid "Play folder"
-#~ msgstr "Spill denne"
-
-#
-#, fuzzy
-#~ msgid "Play title"
-#~ msgstr "Forsinkelsestid"
-
-#
-#, fuzzy
-#~ msgid "Please enter name of the new symlink"
-#~ msgstr "Vennligst sett navn på den nye katalogen"
-
-#
-#, fuzzy
-#~ msgid "Please enter password"
-#~ msgstr "Vennligst skriv inn nytt navn:"
-
-#
-#, fuzzy
-#~ msgid "Please enter the new directory name"
-#~ msgstr "Vennligst sett navn på den nye katalogen"
-
-#
-#, fuzzy
-#~ msgid "Please enter the new file name"
-#~ msgstr "Vennligst skriv et nytt filnavn"
-
-#
-#, fuzzy
-#~ msgid "Please wait, Loading image."
-#~ msgstr "Vennligst vent... laster liste..."
-
-#
-#, fuzzy
-#~ msgid "Records"
-#~ msgstr "Spille inn"
-
-#, fuzzy
-#~ msgid "Rename file/directory"
-#~ msgstr "Lag katalog"
-
-#
-#, fuzzy
-#~ msgid "Save left folder on exit"
-#~ msgstr "lagre siste katalog ved avslutt"
-
-#
-#, fuzzy
-#~ msgid "Save right folder on exit"
-#~ msgstr "lagre siste katalog ved avslutt"
-
-#
-#, fuzzy
-#~ msgid "Select a path"
-#~ msgstr "Velg sti for lagring av film"
-
-#, fuzzy
-#~ msgid "Show image information"
-#~ msgstr "Programvareadministrasjons informasjon"
-
-#, fuzzy
-#~ msgid "Show unknown extension as text"
-#~ msgstr "Vis i utvidelser listen?"
-
-#, fuzzy
-#~ msgid "Size reverse"
-#~ msgstr "Server"
-
-#
-#, fuzzy
-#~ msgid "Skip selection"
-#~ msgstr "Film utvalg"
-
-#
-#, fuzzy
-#~ msgid "This line is not editable!"
-#~ msgstr "Denne plugin er ikke installert."
-
-#
-#, fuzzy
-#~ msgid "Time for Slideshow"
-#~ msgstr "Timer oversikt"
-
-#, fuzzy
-#~ msgid "Type:"
-#~ msgstr "Type: "
-
-#, fuzzy
-#~ msgid "Unpack to current folder"
-#~ msgstr "Gå til nåværende tidspunkt"
-
-#
-#, fuzzy
-#~ msgid "What do you want to play?\n"
-#~ msgstr "Hva vil du søke etter?"
-
-#, fuzzy
-#~ msgid "has been CHANGED! Do you want to save it?"
-#~ msgstr "Hvilket program du vil lagre permanent?"
-
-#
-#, fuzzy
-#~ msgid "move file"
-#~ msgstr "Fjern tittel"
-
-#
-#, fuzzy
-#~ msgid "move folder"
-#~ msgstr "[flytte modus]"
-
-#~ msgid "original"
-#~ msgstr "original"
-
-#
-#, fuzzy
-#~ msgid "play Files"
-#~ msgstr "Kopiering av filer"
-
-#, fuzzy
-#~ msgid "without"
-#~ msgstr "Uten popup"
-
-#
-#, python-format
-#~ msgid ""
-#~ "A sleep timer wants to set your\n"
-#~ "%s %s to standby. Do that now?"
-#~ msgstr ""
-#~ "En innsovingstimer ønsker å sette din\n"
-#~ "%s %s i dvalemodus. Skal det gjøres nå?"
-
-#
-#, python-format
-#~ msgid ""
-#~ "A sleep timer wants to shut down\n"
-#~ "your %s %s. Shutdown now?"
-#~ msgstr ""
-#~ "En innsovingstimer ønsker å slå av\n"
-#~ "din %s %s. Slå den av nå?"
-
-#
-#~ msgid "Job View"
-#~ msgstr "Job oversikt"
-
-#
-#~ msgid "Please enter a new filename:"
-#~ msgstr "Vennligst skriv et nytt filnavn"
-
-#
-#~ msgid "Remove directory"
-#~ msgstr "fjern katalog"
-
-#
-#~ msgid "Switch to bookmarks"
-#~ msgstr "bytt til bokmerker"
-
-#
-#, fuzzy
-#~ msgid "Task list"
-#~ msgstr "svartlist"
-
-#
-#, fuzzy
-#~ msgid "Please select the IceTV service that you wish to use."
-#~ msgstr "Vennligst velg sti for lagring av film..."
-
-#
-#~ msgid "Long key press"
-#~ msgstr "Langt tastetrykk"
-
-#~ msgid "Use these settings?"
-#~ msgstr "Bruk disse innstillingene?"
-
-#, fuzzy
-#~ msgid "Aspect long"
-#~ msgstr "Breddeforhold"
-
-#, fuzzy
-#~ msgid "Audio long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "End long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "F1 long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "History long"
-#~ msgstr "Historie knappe modus"
-
-#, fuzzy
-#~ msgid "Home long"
-#~ msgstr "Lang rød"
-
-#
-#, fuzzy
-#~ msgid "Keyboard long"
-#~ msgstr "Tastatur"
-
-#, fuzzy
-#~ msgid "LAN long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "Left long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "Magic long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "Nextsong long"
-#~ msgstr "Lang grønn"
-
-#, fuzzy
-#~ msgid "Option long"
-#~ msgstr "OK knappen (lang)"
-
-#, fuzzy
-#~ msgid "PC long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "PIP long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "PageDown long"
-#~ msgstr "Lang gul"
-
-#, fuzzy
-#~ msgid "PageUp long"
-#~ msgstr "Side ned"
-
-#, fuzzy
-#~ msgid "Prevsong long"
-#~ msgstr "Lang grønn"
-
-#, fuzzy
-#~ msgid "Rec long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "Right long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "Sleep long"
-#~ msgstr "Lang blå"
-
-#, fuzzy
-#~ msgid "Teletext long"
-#~ msgstr "Lang blå"
-
-#
-#, fuzzy
-#~ msgid "Time long"
-#~ msgstr "Timer logg"
-
-#, fuzzy
-#~ msgid "VOD long"
-#~ msgstr "Lang rød"
-
-#, fuzzy
-#~ msgid "24+ Hours"
-#~ msgstr "Time"
-
-#, fuzzy
-#~ msgid "24- Hours"
-#~ msgstr "Time"
-
-#, fuzzy
-#~ msgid "Auto Timer"
-#~ msgstr "Legg til AutoTimer"
-
-#~ msgid "Hour"
-#~ msgstr "Time"
-
-#~ msgid "Once per day"
-#~ msgstr "En gang per dag"
-
-#, fuzzy
-#~ msgid "alphabetical"
-#~ msgstr "alfabetisk"
-
-#
-#~ msgid "alternative"
-#~ msgstr "alternativer"
-
-#
-#~ msgid "user defined"
-#~ msgstr "Brukerdefinert"
-
-#~ msgid "white"
-#~ msgstr "hvit"
-
-#
-#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Timer-filen (pm_timers.xml) er korrupt og kunne ikke lastes."
-
-#
-#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Timer-filen (timers.xml) er korrupt og kunne ikke lastes."
-
-#~ msgid ""
-#~ "Timer overlap in pm_timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Timer overlapp i pm_timers.xml oppdaget!\n"
-#~ "Vennligst sjekk!"
-
-#
-#~ msgid ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Timer overlapp i timers.xml oppdaget!\n"
-#~ "Vennligst sjekk!"
-
-#
-#~ msgid "menu"
-#~ msgstr "Meny"
-
-#
-#~ msgid "select"
-#~ msgstr "velg"
-
-#
-#, fuzzy
-#~ msgid "start recording"
-#~ msgstr "Starte opptak?"
-
-#, fuzzy
-#~ msgid "stop recording"
-#~ msgstr "Stopp opptak"
-
-#
-#, fuzzy
-#~ msgid "zapping"
-#~ msgstr "Zapped"

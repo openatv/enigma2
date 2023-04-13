@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2022-11-22 18:20+0000\n"
 "Last-Translator: tzyy1970 <haotzyy1970@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1040,6 +1040,10 @@ msgstr[0] "已升级 %d 个软件包."
 msgstr[1] "已升级 %d 个软件包."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d 秒"
 
@@ -1164,10 +1168,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s 远程控制(本机)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s 有可供使用的软件更新."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s 张卡)"
 
@@ -1210,6 +1210,10 @@ msgstr "%s KSymb/秒"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1920,9 +1924,6 @@ msgstr ""
 "\n"
 "是否禁用第二个网卡?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "可用的图标状态和执行情况概述."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2017,9 +2018,6 @@ msgstr "已中止一个伪录制.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "已中止串流频道.\n"
-
-msgid "Aborting update progress"
-msgstr "正在中止升级进程"
 
 msgid "About"
 msgstr "关于"
@@ -2801,9 +2799,6 @@ msgstr "澳大利亚人"
 
 msgid "Austria"
 msgstr "奥地利"
-
-msgid "Author: "
-msgstr "作者: "
 
 msgid "Authoring mode"
 msgstr "编辑模式"
@@ -3775,6 +3770,9 @@ msgstr "加拿大"
 msgid "Cancel"
 msgstr "取消"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr "取消/关闭软件更新屏幕"
 
@@ -3896,9 +3894,6 @@ msgstr "层叠画中画"
 
 msgid "Catalan / Valencian"
 msgstr "加泰罗尼亚语/巴伦西亚语"
-
-msgid "Caution update not yet tested !!"
-msgstr "警告更新尚未测试!!"
 
 msgid "Cayman Islands"
 msgstr "开曼群岛"
@@ -4484,9 +4479,6 @@ msgstr "公共接口分配"
 msgid "Common Setup Actions"
 msgstr "常见设置操作"
 
-msgid "Communication"
-msgstr "通信"
-
 msgid "Comoros"
 msgstr "科摩罗"
 
@@ -4958,9 +4950,6 @@ msgstr "Context键"
 
 msgid "Continent"
 msgstr "洲别"
-
-msgid "Continue"
-msgstr "持续"
 
 msgid "Continue in background"
 msgstr "在后台继续"
@@ -5664,9 +5653,6 @@ msgstr "默认录制类型"
 msgid "Default right column directory"
 msgstr ""
 
-msgid "Default settings"
-msgstr "默认设置"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -6163,9 +6149,6 @@ msgstr "显示>16:9的内容为"
 msgid "Display Settings"
 msgstr "显示选项"
 
-msgid "Display and user interface"
-msgstr "显示和用户界面"
-
 msgid "Display context menu"
 msgstr ""
 
@@ -6441,9 +6424,6 @@ msgstr "是否要恢复你的设置？"
 msgid "Do you want to resume this playback?"
 msgstr "是否继续上次播放?"
 
-msgid "Do you want to update your box?"
-msgstr "是否升级您的机顶盒？"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "是否升级软件包:\n"
 
@@ -6492,10 +6472,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "完毕"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "完成-已安装或升级了 %d 个软件包"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -7728,9 +7704,6 @@ msgstr "扩展操作"
 msgid "Extensions"
 msgstr "扩展"
 
-msgid "Extensions Management"
-msgstr "扩展管理"
-
 msgid "Extensions/QuickMenu"
 msgstr "扩展/快捷菜单"
 
@@ -8174,9 +8147,6 @@ msgstr "按遥控器上按键排列"
 msgid "Flat by position on remote"
 msgstr "按遥控器上的位置排列"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "按OK键后将完成以下任务!"
-
 msgid "Font size"
 msgstr "字体大小"
 
@@ -8188,9 +8158,6 @@ msgstr "美食/美酒"
 
 msgid "Football"
 msgstr "足球"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "欲了解更多信息,请参阅https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "强制LNB电源"
@@ -9533,9 +9500,6 @@ msgstr "安装扩展."
 msgid "Install lcd picons on"
 msgstr "将lcd Picon安装到"
 
-msgid "Install or remove finished."
-msgstr "安装或删除完成."
-
 msgid "Install picons on"
 msgstr "将picons安装到"
 
@@ -10479,6 +10443,9 @@ msgstr "管理扩展"
 msgid "Manage Locale/Language Selection settings"
 msgstr "管理本地/语言选择设置"
 
+msgid "Manage Plugins"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr ""
 
@@ -11188,9 +11155,6 @@ msgstr "多重转码"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "多启动镜像创建于: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "多媒体"
-
 msgid "Multiple service support"
 msgstr "多频道支持"
 
@@ -11593,9 +11557,6 @@ msgstr "无延迟"
 msgid "No demux available"
 msgstr "没有可用的解析器"
 
-msgid "No description available."
-msgstr "无描述可用."
-
 msgid "No displayable files on this medium found!"
 msgstr "在此介质上没有发现可显示的文件！"
 
@@ -11626,9 +11587,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "未找到匹配的地名"
 
-msgid "No network connection available."
-msgstr "无可用的网络连接."
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -11638,8 +11596,8 @@ msgstr "没有发现网络"
 msgid "No of items switch (increase or reduced)"
 msgstr "没有项目开关(增加或减少)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "未找到升级包.您可以检查您的网络,然后再试一次."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -12041,9 +11999,6 @@ msgstr "在线更新您的 %s %s 软件."
 
 msgid "Only Flash Backup Image"
 msgstr ""
-
-msgid "Only extensions."
-msgstr "仅扩展."
 
 msgid "Only free scan"
 msgstr "仅扫描免费频道"
@@ -12511,6 +12466,9 @@ msgstr "百分比/进度条右侧"
 
 msgid "Perform an on-line flash instead"
 msgstr "改为执行在线刷机"
+
+msgid "Perform install/remove of the selected item"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "是否永久删除垃圾桶中的所有录制？"
@@ -13047,21 +13005,11 @@ msgstr "插件浏览器"
 msgid "Plugin Browser Settings"
 msgstr "插件浏览器设置"
 
-msgid "Plugin Details"
-msgstr "插件细节"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr "插件筛选"
 
-msgid "Plugin Manager Activity Information"
-msgstr "插件管理活动信息"
-
-msgid "Plugin Manager Help"
-msgstr "插件管理器帮助"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 msgid "Plugins"
 msgstr "插件"
@@ -13367,9 +13315,6 @@ msgstr "PROC模型"
 
 msgid "Proceed with the update"
 msgstr "继续更新"
-
-msgid "Process"
-msgstr "进程"
 
 msgid "Processor information"
 msgstr "处理器信息"
@@ -14698,9 +14643,6 @@ msgstr "卫星天线设置"
 msgid "Satellite configuration mode"
 msgstr "卫星配置模式"
 
-msgid "Satellite equipment"
-msgstr "卫星设备"
-
 msgid "Satellite equipment setup"
 msgstr "卫星设备设置"
 
@@ -14848,6 +14790,9 @@ msgstr "扫描无线网络"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "扫描你的网络接入点,使用您所选择的无线设备连接到它."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "正在扫描 %s..."
@@ -14945,12 +14890,6 @@ msgstr "搜索中"
 
 msgid "Searching east ..."
 msgstr "向东搜索..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "正在搜索可用更新.请稍候..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "正在搜索新安装或已移除的软件包.请稍等..."
 
 msgid "Searching west ..."
 msgstr "向西搜索..."
@@ -17187,9 +17126,6 @@ msgstr "皮肤设置"
 msgid "SkinSelector"
 msgstr "皮肤选择器"
 
-msgid "Skins"
-msgstr "皮肤"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "跳过互联网连接检查(禁用自动包安装)"
 
@@ -17393,9 +17329,6 @@ msgstr ""
 msgid "Softcams"
 msgstr "softcams共享设置"
 
-msgid "Software"
-msgstr "软件"
-
 msgid "Software Management"
 msgstr "软件管理"
 
@@ -17494,9 +17427,6 @@ msgstr "抱歉, %s 还未安装！"
 
 msgid "Sorry, no backups found!"
 msgstr "抱歉,没有找到备份！"
-
-msgid "Sorry, no details available!"
-msgstr "抱歉,没有可用的详细信息！"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "抱歉,没有支持SWAP的物理设备. 无法在网络或fat32文件系统上创建交换文件"
@@ -18721,16 +18651,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"软件管理器附件未安装!\n"
-"请安装它."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "无法检查当前更新的状态,因为某些原因无法访问 https://www.opena.tv"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "时间乘以当前重复计数器."
 
@@ -18779,12 +18699,6 @@ msgstr "该向导可以备份您的当前设置.是否现在备份?"
 
 msgid "The wizard is finished now."
 msgstr "向导现在已完成设置."
-
-msgid "There are at least "
-msgstr "至少有 "
-
-msgid "There are currently no outstanding actions."
-msgstr "目前没有任何突出的动作."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -18863,9 +18777,6 @@ msgstr "此配置选项允许你在下载中显示附件模块"
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "此配置选项允许你在下载中显示内核模块"
-
-msgid "This allows you to show languages in downloads"
-msgstr "这允许您在下载时显示语言"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "这允许你在下载中显示lcd皮肤"
@@ -19118,18 +19029,6 @@ msgstr "这个选项设置图片的清晰度,使用时的照片被放大."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
-
-msgid "This plugin is installed."
-msgstr "此插件已安装."
-
-msgid "This plugin is not installed."
-msgstr "此插件没有安装."
-
-msgid "This plugin will be installed."
-msgstr "准备安装此插件."
-
-msgid "This plugin will be removed."
-msgstr "准备删除此插件."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "这将为调试日志中的每一行设置前缀.'启动时间'是自上次启动%s%s以来的秒数."
@@ -19892,12 +19791,6 @@ msgstr "未定义"
 msgid "Undetermined"
 msgstr "待定"
 
-msgid "Undo install"
-msgstr "放弃安装"
-
-msgid "Undo uninstall"
-msgstr "撤消卸载"
-
 msgid "Unencrypted"
 msgstr "未加密"
 
@@ -19918,9 +19811,6 @@ msgstr "单一同轴电缆高频头"
 
 msgid "Unicable Matrix"
 msgstr "单一同轴电缆多输出"
-
-msgid "Uninstall"
-msgstr "撤销安装"
 
 msgid "United Arab Emirates"
 msgstr "阿拉伯联合酋长国"
@@ -20039,9 +19929,6 @@ msgstr "向上/向下键同时也用于 '所有上/下'?"
 msgid "Update"
 msgstr "更新"
 
-msgid "Update at your own risk"
-msgstr "更新自行承担风险"
-
 msgid "Update completed."
 msgstr "更新完成."
 
@@ -20054,17 +19941,11 @@ msgstr "更新列表中事件的延迟.在列表中滚动速度更快,延迟更�
 msgid "Update failed!"
 msgstr "更新失败！"
 
-msgid "Update feed not available."
-msgstr "没有可供更新的订阅源."
-
 msgid "Update finished!"
 msgstr "更新完成!"
 
 msgid "Update interval (in seconds)"
 msgstr "更新间隔(秒)"
-
-msgid "Update is reported as faulty !!"
-msgstr "软件升级报错！！"
 
 msgid ""
 "Update succeeded!\n"
@@ -20094,9 +19975,6 @@ msgstr "正在更新"
 msgid "Updating mount locations."
 msgstr "正在更新挂载位置."
 
-msgid "Updating software catalog"
-msgstr "更新软件目录"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -20115,9 +19993,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "通过GUI升级"
-
-msgid "Upgrading"
-msgstr "正在升级"
 
 msgid "Uphops +"
 msgstr "向上跳 +"
@@ -20677,48 +20552,6 @@ msgstr ""
 
 msgid "View Rass interactive..."
 msgstr "查看Rass互动..."
-
-msgid "View details"
-msgstr "查看详情"
-
-msgid "View list of available "
-msgstr "查看可用列表 "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "查看可用CI附件"
-
-msgid "View list of available EPG extensions."
-msgstr "查看可用EPG附件."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "查看可用卫星设备附件."
-
-msgid "View list of available communication extensions."
-msgstr "查看可用的通讯附件."
-
-msgid "View list of available default settings"
-msgstr "查看可用的默认设置"
-
-msgid "View list of available display and user interface extensions."
-msgstr "查看可用显示和用户界面扩展的列表."
-
-msgid "View list of available multimedia extensions."
-msgstr "查看可用有多媒体扩展列表."
-
-msgid "View list of available networking extensions"
-msgstr "查看可用的网络扩展列表"
-
-msgid "View list of available recording extensions"
-msgstr "查看可用录制扩展列表"
-
-msgid "View list of available skins"
-msgstr "查看可用的皮肤列表"
-
-msgid "View list of available software extensions"
-msgstr "查看可用的软件扩展列表"
-
-msgid "View list of available system extensions"
-msgstr "查看可用的系统扩展列表"
 
 msgid "View mode"
 msgstr "查看模式"
@@ -21514,26 +21347,14 @@ msgstr "您可以使用或不使用OSD菜单来显示MiniTV"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "您可以使用或不使用OSD菜单来显示画中画"
 
-msgid "You can cancel the installation."
-msgstr "你可以取消安装."
-
-msgid "You can cancel the removal."
-msgstr "你可以取消删除."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "在运行时,您可以继续观看电视等."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "你可以按时间或字母数字排序列表."
 
-msgid "You can install this plugin."
-msgstr "你可以安装这个插件."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "你只能刻录Dreambox的录像！"
-
-msgid "You can remove this plugin."
-msgstr "您可以删除这个插件."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "你可以跳过这个功能,关掉电视当你唤醒接收器待机,并立即切换回待机."
@@ -21658,10 +21479,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr "您的%s %s 正在关机.请稍等…"
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "您的%s %s 没有正确连接到互联网.请检查后再试一次."
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -21780,32 +21597,6 @@ msgid ""
 msgstr ""
 "即将升级您的前端面板\n"
 "这可能需要几分钟时间"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"固件已过时!\n"
-"\n"
-"运行这么长的时间后,你的 %s %s 可能无法\n"
-"在线更新后启动,或将在运行镜像中显示故障.\n"
-"\n"
-"一个新固件将会增加稳定性\n"
-"\n"
-"在线更新的风险由您自行承担!!\n"
-"\n"
-"\n"
-"是否还要更新?"
 
 msgid "Your network configuration has been activated."
 msgstr "您的网络配置已被激活."
@@ -22368,9 +22159,6 @@ msgstr "退出网卡设置菜单"
 msgid "experimental film/video"
 msgstr "探索实验电影/视频"
 
-msgid "extensions."
-msgstr "扩展."
-
 msgid "externally loopthrough to"
 msgstr "外部环路输出到"
 
@@ -22775,9 +22563,6 @@ msgstr "仅高清"
 
 msgid "original language"
 msgstr "原始语言"
-
-msgid "packages selected."
-msgstr "已选择软件包."
 
 msgid "pass"
 msgstr "通过"
@@ -23192,9 +22977,6 @@ msgstr "直到待机/重启"
 msgid "update"
 msgstr "更新"
 
-msgid "updates available."
-msgstr "更新可用."
-
 msgid "use best / controlled by HDMI"
 msgstr "最佳使用/由HDMI控制"
 
@@ -23264,12 +23046,252 @@ msgstr "黄色"
 msgid "yes (keep feeds)"
 msgstr "是(保持订阅源)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参阅手册以获得进一步帮助."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "%s %s 有可供使用的软件更新."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "可用的图标状态和执行情况概述."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "正在中止升级进程"
+
+#~ msgid "Author: "
+#~ msgstr "作者: "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "警告更新尚未测试!!"
+
+#~ msgid "Communication"
+#~ msgstr "通信"
+
+#~ msgid "Continue"
+#~ msgstr "持续"
+
+#~ msgid "Default settings"
+#~ msgstr "默认设置"
+
+#~ msgid "Display and user interface"
+#~ msgstr "显示和用户界面"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "是否升级您的机顶盒？"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "完成-已安装或升级了 %d 个软件包"
+
+#~ msgid "Extensions Management"
+#~ msgstr "扩展管理"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "按OK键后将完成以下任务!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "欲了解更多信息,请参阅https://www.opena.tv"
+
+#~ msgid "Install or remove finished."
+#~ msgstr "安装或删除完成."
+
+#~ msgid "Multimedia"
+#~ msgstr "多媒体"
+
+#~ msgid "No description available."
+#~ msgstr "无描述可用."
+
+#~ msgid "No network connection available."
+#~ msgstr "无可用的网络连接."
+
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "未找到升级包.您可以检查您的网络,然后再试一次."
+
+#~ msgid "Only extensions."
+#~ msgstr "仅扩展."
+
+#~ msgid "Plugin Details"
+#~ msgstr "插件细节"
+
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "插件管理活动信息"
+
+#~ msgid "Plugin Manager Help"
+#~ msgstr "插件管理器帮助"
+
+#~ msgid "Process"
+#~ msgstr "进程"
+
+#~ msgid "Satellite equipment"
+#~ msgstr "卫星设备"
+
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "正在搜索可用更新.请稍候..."
+
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "正在搜索新安装或已移除的软件包.请稍等..."
+
+#~ msgid "Skins"
+#~ msgstr "皮肤"
+
+#~ msgid "Software"
+#~ msgstr "软件"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "抱歉,没有可用的详细信息！"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "软件管理器附件未安装!\n"
+#~ "请安装它."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "无法检查当前更新的状态,因为某些原因无法访问 https://www.opena.tv"
+
+#~ msgid "There are at least "
+#~ msgstr "至少有 "
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "目前没有任何突出的动作."
+
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "这允许您在下载时显示语言"
+
+#~ msgid "This plugin is installed."
+#~ msgstr "此插件已安装."
+
+#~ msgid "This plugin is not installed."
+#~ msgstr "此插件没有安装."
+
+#~ msgid "This plugin will be installed."
+#~ msgstr "准备安装此插件."
+
+#~ msgid "This plugin will be removed."
+#~ msgstr "准备删除此插件."
+
+#~ msgid "Undo install"
+#~ msgstr "放弃安装"
+
+#~ msgid "Undo uninstall"
+#~ msgstr "撤消卸载"
+
+#~ msgid "Uninstall"
+#~ msgstr "撤销安装"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "更新自行承担风险"
+
+#~ msgid "Update feed not available."
+#~ msgstr "没有可供更新的订阅源."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "软件升级报错！！"
+
+#~ msgid "Updating software catalog"
+#~ msgstr "更新软件目录"
+
+#~ msgid "Upgrading"
+#~ msgstr "正在升级"
+
+#~ msgid "View details"
+#~ msgstr "查看详情"
+
+#~ msgid "View list of available "
+#~ msgstr "查看可用列表 "
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "查看可用CI附件"
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "查看可用EPG附件."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "查看可用卫星设备附件."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "查看可用的通讯附件."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "查看可用的默认设置"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "查看可用显示和用户界面扩展的列表."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "查看可用有多媒体扩展列表."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "查看可用的网络扩展列表"
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "查看可用录制扩展列表"
+
+#~ msgid "View list of available skins"
+#~ msgstr "查看可用的皮肤列表"
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "查看可用的软件扩展列表"
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "查看可用的系统扩展列表"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "你可以取消安装."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "你可以取消删除."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "你可以安装这个插件."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "您可以删除这个插件."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "您的%s %s 没有正确连接到互联网.请检查后再试一次."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "固件已过时!\n"
+#~ "\n"
+#~ "运行这么长的时间后,你的 %s %s 可能无法\n"
+#~ "在线更新后启动,或将在运行镜像中显示故障.\n"
+#~ "\n"
+#~ "一个新固件将会增加稳定性\n"
+#~ "\n"
+#~ "在线更新的风险由您自行承担!!\n"
+#~ "\n"
+#~ "\n"
+#~ "是否还要更新?"
+
+#~ msgid "extensions."
+#~ msgstr "扩展."
+
+#~ msgid "packages selected."
+#~ msgstr "已选择软件包."
+
+#~ msgid "updates available."
+#~ msgstr "更新可用."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参阅手册以获得进一步帮助."
 
 #~ msgid "Additional Info"
 #~ msgstr "附加信息"

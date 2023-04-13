@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2023-03-19 18:05+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1042,6 +1042,10 @@ msgstr[0] "%d pakket is bijgewerkt."
 msgstr[1] "%d pakketten zijn bijgewerkt."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sec"
 
@@ -1166,10 +1170,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s Afstandsbediening"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s software want er zijn updates beschikbaar."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s Kaarten )"
 
@@ -1212,6 +1212,10 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1925,9 +1929,6 @@ msgstr ""
 "\n"
 "Wilt u de tweede netwerkinterface uitschakelen?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "Een klein overzicht van gebruikte icon-statussen en acties."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2022,9 +2023,6 @@ msgstr "Een pseudo opname is geannuleerd.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Een streaming service gestopt.\n"
-
-msgid "Aborting update progress"
-msgstr "Update proces wordt gestopt"
 
 msgid "About"
 msgstr "openATV"
@@ -2805,9 +2803,6 @@ msgstr "Australisch"
 
 msgid "Austria"
 msgstr "Oostenrijk"
-
-msgid "Author: "
-msgstr "Auteur: "
 
 msgid "Authoring mode"
 msgstr "Bewerkingswijze"
@@ -3779,6 +3774,9 @@ msgstr "Canada"
 msgid "Cancel"
 msgstr "Annuleren"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr "De software-update annuleren"
 
@@ -3900,9 +3898,6 @@ msgstr "Waterval PiP"
 
 msgid "Catalan / Valencian"
 msgstr "Catalaans / Valenciaans"
-
-msgid "Caution update not yet tested !!"
-msgstr "!! Let op de update is nog niet getest !!"
 
 msgid "Cayman Islands"
 msgstr "Kaaiman Eilanden"
@@ -4491,9 +4486,6 @@ msgstr "Common interface taken"
 msgid "Common Setup Actions"
 msgstr "Algemene keuzes"
 
-msgid "Communication"
-msgstr "Communicatie"
-
 msgid "Comoros"
 msgstr "Comoren"
 
@@ -5063,9 +5055,6 @@ msgstr "Context"
 
 msgid "Continent"
 msgstr "Continent"
-
-msgid "Continue"
-msgstr "Doorgaan"
 
 msgid "Continue in background"
 msgstr "Verder op de achtergrond"
@@ -5771,9 +5760,6 @@ msgstr "Standaard opname type"
 msgid "Default right column directory"
 msgstr "Standaard map in de rechterkolom"
 
-msgid "Default settings"
-msgstr "Standaard instellingen"
-
 msgid "Default sort order for directories in the left column"
 msgstr "Standaard sorteervolgorde voor mappen in de linkerkolom"
 
@@ -6278,9 +6264,6 @@ msgstr "Toon >16:9 materiaal als"
 msgid "Display Settings"
 msgstr "LCD instellingen"
 
-msgid "Display and user interface"
-msgstr "Scherm- en gebruikersinterface"
-
 msgid "Display context menu"
 msgstr "Contextmenu weergeven"
 
@@ -6556,9 +6539,6 @@ msgstr "Wilt u uw instellingen nu terugzetten?"
 msgid "Do you want to resume this playback?"
 msgstr "Wilt u verder gaan met het afspelen van deze opname?"
 
-msgid "Do you want to update your box?"
-msgstr "Wilt u uw box updaten?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Wilt u een update van dit pakket:\n"
 
@@ -6607,10 +6587,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Gereed"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Klaar - %d bijgewerkte pakketten geïnstalleerd"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -7857,9 +7833,6 @@ msgstr "Extensie Acties"
 msgid "Extensions"
 msgstr "Applicaties"
 
-msgid "Extensions Management"
-msgstr "Applicatiebeheer"
-
 msgid "Extensions/QuickMenu"
 msgstr "Applicaties/QuickMenu"
 
@@ -8303,9 +8276,6 @@ msgstr "Een groep knoppen op de afstandsbediening"
 msgid "Flat by position on remote"
 msgstr "Eindpositie op de afstandsbediening"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Nadat u op OK drukt worden de volgende taken uitgevoerd!"
-
 msgid "Font size"
 msgstr "Letter grootte"
 
@@ -8317,9 +8287,6 @@ msgstr "Eten/Wijn"
 
 msgid "Football"
 msgstr "Voetbal"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "Voor meer informatie bezoek https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Forceer LNB Power"
@@ -9669,9 +9636,6 @@ msgstr "Installeer Applicaties."
 msgid "Install lcd picons on"
 msgstr "Installeer LCD-Picons in"
 
-msgid "Install or remove finished."
-msgstr "Installeren of verwijderen voltooid."
-
 msgid "Install picons on"
 msgstr "Installeer picons op"
 
@@ -10615,6 +10579,9 @@ msgstr "Beheer Applicaties"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Beheer taalselectie instellingen"
 
+msgid "Manage Plugins"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr "Mappen en bestanden verkennen en beheren."
 
@@ -11324,9 +11291,6 @@ msgstr "MultiTranscoding"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot Image gecreëerd: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "Multimedia"
-
 msgid "Multiple service support"
 msgstr "Geschikt voor meervoudig decoderen"
 
@@ -11729,9 +11693,6 @@ msgstr "Geen vertraging"
 msgid "No demux available"
 msgstr "Geen demux beschikbaar"
 
-msgid "No description available."
-msgstr "Geen beschrijving beschikbaar."
-
 msgid "No displayable files on this medium found!"
 msgstr "Geen weer te geven bestanden op dit medium gevonden!"
 
@@ -11762,9 +11723,6 @@ msgstr "Geen log-bestanden gevonden, daarom zijn er geen debug-logs beschikbaar!
 msgid "No matching place names found"
 msgstr "Geen overeenkomende locaties gevonden"
 
-msgid "No network connection available."
-msgstr "Geen netwerkverbinding beschikbaar."
-
 msgid "No network storage detected."
 msgstr "Geen netwerkopslag gevonden."
 
@@ -11774,8 +11732,8 @@ msgstr "Geen netwerken gevonden"
 msgid "No of items switch (increase or reduced)"
 msgstr "Aantal zenderregels (meer of minder)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Er zijn nog geen pakketten geüpdate. A.u.b. uw netwerk controleren en het opnieuw proberen."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "Geen foto's beschikbaar"
@@ -12180,9 +12138,6 @@ msgstr "Online updaten van uw %s %s software."
 
 msgid "Only Flash Backup Image"
 msgstr "Alleen een back-up image flashen"
-
-msgid "Only extensions."
-msgstr "Alleen Applicaties."
 
 msgid "Only free scan"
 msgstr "Alleen ongecodeerde zenders scannen"
@@ -12650,6 +12605,9 @@ msgstr "Percentage/Voortgangsbalk rechts"
 
 msgid "Perform an on-line flash instead"
 msgstr "In plaats daarvan een online flash uitvoeren"
+
+msgid "Perform install/remove of the selected item"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Alle bestanden in de prullenbak nu permanent verwijderen?"
@@ -13190,21 +13148,11 @@ msgstr "Plug-in browser"
 msgid "Plugin Browser Settings"
 msgstr "Plug-in browser instellingen"
 
-msgid "Plugin Details"
-msgstr "Plug-in informatie"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr "Plug-in Details: %s"
-
 msgid "Plugin Filter Settings"
 msgstr "Plug-in filter"
 
-msgid "Plugin Manager Activity Information"
-msgstr "Plug-in beheer status"
-
-msgid "Plugin Manager Help"
-msgstr "Plug-in beheer helpfunctie"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 msgid "Plugins"
 msgstr "Applicaties"
@@ -13512,9 +13460,6 @@ msgstr "Proc model"
 
 msgid "Proceed with the update"
 msgstr "Ga verder met de update"
-
-msgid "Process"
-msgstr "Proces"
 
 msgid "Processor information"
 msgstr "Processor informatie"
@@ -14843,9 +14788,6 @@ msgstr "Schotelinstellingen"
 msgid "Satellite configuration mode"
 msgstr "Satelliet configuratie-modus"
 
-msgid "Satellite equipment"
-msgstr "Satelliet apparatuur"
-
 msgid "Satellite equipment setup"
 msgstr "Apparatuurinstellingen"
 
@@ -14995,6 +14937,9 @@ msgstr "Zoek naar WiFi netwerken"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Scan in uw netwerk naar accesspoints en maak een verbinding met het door u geselecteerde draadloze apparaat."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Zoeken %s..."
@@ -15094,12 +15039,6 @@ msgstr "Zoeken"
 
 msgid "Searching east ..."
 msgstr "Oost zoeken ..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Zoekt naar beschikbare updates. Even wachten..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Zoeken naar nieuw geïnstalleerde of verwijderde pakketten. Een ogenblikje..."
 
 msgid "Searching west ..."
 msgstr "West zoeken ..."
@@ -17369,9 +17308,6 @@ msgstr "Skin selecteren"
 msgid "SkinSelector"
 msgstr "Skin selecteren"
 
-msgid "Skins"
-msgstr "Skins"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Controle op internetverbinding overslaan (schakelt automatische updates uit)"
 
@@ -17575,9 +17511,6 @@ msgstr "Softcam configuratie"
 msgid "Softcams"
 msgstr "Softcams"
 
-msgid "Software"
-msgstr "Software"
-
 msgid "Software Management"
 msgstr "Softwarebeheer"
 
@@ -17674,9 +17607,6 @@ msgstr "Sorry, %s is niet geïnstalleerd!"
 
 msgid "Sorry, no backups found!"
 msgstr "Sorry, er is geen back-up gevonden!"
-
-msgid "Sorry, no details available!"
-msgstr "Sorry, er is geen informatie beschikbaar!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Sorry, geen fysieke apparaten die SWAP ondersteuning bieden gevonden. Kan geen Swapfile op netwerk- of FAT32-bestandssystemen maken"
@@ -18915,16 +18845,6 @@ msgstr ""
 "\n"
 "Wilt u dat nu doen of de timer verlengen?"
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"De Softwarebeheer plug-in is niet geïnstalleerd!\n"
-"Installeer deze a.u.b."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "De status van de huidige update kan niet worden gecontroleerd omdat http://www.opena.tv niet bereikbaar is"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "De tijd wordt gemultipliceerd met de huidige repeat counter."
 
@@ -18973,12 +18893,6 @@ msgstr "De wizard kan uw huidige instellingen opslaan. Wilt u nu een back-up mak
 
 msgid "The wizard is finished now."
 msgstr "De wizard is nu gereed."
-
-msgid "There are at least "
-msgstr "Er zijn ten minste "
-
-msgid "There are currently no outstanding actions."
-msgstr "Er zijn geen uitstaande acties."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19062,9 +18976,6 @@ msgstr "Hiermee kunt u Applicaties tonen in downloads"
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Hiermee kunt u de kernel modules tonen in downloads"
-
-msgid "This allows you to show languages in downloads"
-msgstr "Hiermee kunt u de talen modules tonen in downloads"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Hiermee kunt u de lcd skins tonen in downloads"
@@ -19350,18 +19261,6 @@ msgstr ""
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "De plugin kon niet vaststellen of een programma eerder begint of langer duurt. Het kanaal heeft geen betrouwbare gegevens."
-
-msgid "This plugin is installed."
-msgstr "Deze plug-in is geïnstalleerd."
-
-msgid "This plugin is not installed."
-msgstr "Deze plug-in is niet geïnstalleerd."
-
-msgid "This plugin will be installed."
-msgstr "Deze plug-in wordt geïnstalleerd."
-
-msgid "This plugin will be removed."
-msgstr "Deze plug-in wordt verwijderd."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "Hiermee stel je de prefix in voor elke regel in het debug log. De 'opstarttijd' is het aantal seconden sinds jou %s %s voor het laatst is opgestart."
@@ -20126,12 +20025,6 @@ msgstr "Onbekend"
 msgid "Undetermined"
 msgstr "Onbekend"
 
-msgid "Undo install"
-msgstr "Installatie ongedaan maken"
-
-msgid "Undo uninstall"
-msgstr "Maak de-instaleren ongedaan"
-
 msgid "Unencrypted"
 msgstr "Ongecodeerd"
 
@@ -20152,9 +20045,6 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable matrix"
-
-msgid "Uninstall"
-msgstr "De-installeer"
 
 msgid "United Arab Emirates"
 msgstr "Verenigde Arabische Emiraten"
@@ -20273,9 +20163,6 @@ msgstr "Omhoog/Omlaag knoppen ook voor 'alle omhoog/omlaag' functies"
 msgid "Update"
 msgstr "Update"
 
-msgid "Update at your own risk"
-msgstr "Update op uw eigen risico"
-
 msgid "Update completed."
 msgstr "De update is gereed."
 
@@ -20288,17 +20175,11 @@ msgstr "Update vertraging voor programma's in lijst. Scrollen door de lijst is s
 msgid "Update failed!"
 msgstr "Update mislukt!"
 
-msgid "Update feed not available."
-msgstr "Updatefeed niet beschikbaar."
-
 msgid "Update finished!"
 msgstr "Update voltooid!"
 
 msgid "Update interval (in seconds)"
 msgstr "Updateinterval (in secondes)"
-
-msgid "Update is reported as faulty !!"
-msgstr "!! Deze update is gerapporteerd als defect !!"
 
 msgid ""
 "Update succeeded!\n"
@@ -20328,9 +20209,6 @@ msgstr "Bezig met update"
 msgid "Updating mount locations."
 msgstr "Mount locaties vernieuwen."
 
-msgid "Updating software catalog"
-msgstr "Software catalogus wordt geupdate"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr "Update (Flash en herstel alle instellingen)"
 
@@ -20349,9 +20227,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Update met GUI"
-
-msgid "Upgrading"
-msgstr "Bijwerken"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -20938,48 +20813,6 @@ msgstr "Bestand bekijken"
 
 msgid "View Rass interactive..."
 msgstr "Rass Interactive weergeven..."
-
-msgid "View details"
-msgstr "Bekijk informatie"
-
-msgid "View list of available "
-msgstr "Bekijk de lijst met beschikbare "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Bekijk de lijst met beschikbare Common-Interface plug-ins."
-
-msgid "View list of available EPG extensions."
-msgstr "Bekijk de lijst met beschikbare EPG Applicaties."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Bekijk de lijst met beschikbare satelliet apparatuur Applicaties."
-
-msgid "View list of available communication extensions."
-msgstr "Bekijk de lijst met beschikbare communicatie Applicaties."
-
-msgid "View list of available default settings"
-msgstr "Bekijk de lijst met beschikbare standaardinstellingen"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Bekijk een overzicht van de beschikbare display- en gebruikersinterface Applicaties."
-
-msgid "View list of available multimedia extensions."
-msgstr "Bekijk de lijst van beschikbare multimedia-Applicaties."
-
-msgid "View list of available networking extensions"
-msgstr "Bekijk de lijst met beschikbare netwerk-Applicaties."
-
-msgid "View list of available recording extensions"
-msgstr "Bekijk de lijst met beschikbare opname Applicaties."
-
-msgid "View list of available skins"
-msgstr "Bekijk de lijst met beschikbare skins."
-
-msgid "View list of available software extensions"
-msgstr "Bekijk de lijst met beschikbare software Applicaties."
-
-msgid "View list of available system extensions"
-msgstr "Bekijk de lijst met beschikbare systeem Applicaties."
 
 msgid "View mode"
 msgstr "Weergave EPG"
@@ -21793,12 +21626,6 @@ msgstr "U kunt de MiniTV laten zien met of zonder OSD-menu"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "U kunt PiP laten zien met of zonder OSD-menu"
 
-msgid "You can cancel the installation."
-msgstr "De installatie kan worden geannuleerd."
-
-msgid "You can cancel the removal."
-msgstr "Verwijderen kan worden geannuleerd."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "U kunt TV enz. blijven kijken terwijl deze actie loopt."
 
@@ -21808,14 +21635,8 @@ msgstr ""
 "Een Alfanumerieke volgorde is eerst de letters op\n"
 "volgorde van het alfabet en daarna de nummers van laag naar hoog."
 
-msgid "You can install this plugin."
-msgstr "Deze plug-in kunt u installeren."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "U kunt alleen opnames branden die zijn gemaakt met een Dreambox!"
-
-msgid "You can remove this plugin."
-msgstr "Deze plug-in kunt u verwijderen."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "U kunt deze instelling overslaan en de TV uitschakelen, wanneer u de ontvanger inschakelt en direct weer naar stand-by schakelt."
@@ -21940,10 +21761,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Uw %s %s wordt uitgeschakeld. Een ogenblik geduld..."
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "Uw %s %s is niet correct verbonden met het internet. Controleer het en probeer het opnieuw."
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -22066,32 +21883,6 @@ msgid ""
 msgstr ""
 "Uw frontpaneel zal worden geüpdate\n"
 "Dit kan enkele minuten duren"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Uw image is verouderd!\n"
-"\n"
-"Na zo'n lange tijd bestaat het risico dat uw %s %s niet \n"
-"zal opstarten na de online update, of mogelijk niet goed werkt.\n"
-"\n"
-"Een nieuwe flash zal de stabiliteit verhogen\n"
-"\n"
-"!! Een online update is op eigen risico !!\n"
-"\n"
-"\n"
-"Wilt u nog steeds updaten?"
 
 msgid "Your network configuration has been activated."
 msgstr "De configuratie van uw netwerk is geactiveerd."
@@ -22654,9 +22445,6 @@ msgstr "verlaat het netwerkadapter instellingenmenu"
 msgid "experimental film/video"
 msgstr "experimentele film/video"
 
-msgid "extensions."
-msgstr "Applicaties."
-
 msgid "externally loopthrough to"
 msgstr "Extern doorgelust naar"
 
@@ -23061,9 +22849,6 @@ msgstr "Alleen HD"
 
 msgid "original language"
 msgstr "orginele taal"
-
-msgid "packages selected."
-msgstr "Pakketten geselecteerd."
 
 msgid "pass"
 msgstr "Voortgang"
@@ -23476,9 +23261,6 @@ msgstr "tot stand-by / herstart"
 msgid "update"
 msgstr "update"
 
-msgid "updates available."
-msgstr "Updates beschikbaar."
-
 msgid "use best / controlled by HDMI"
 msgstr "gebruik beste / beheerd door HDMI"
 
@@ -23550,12 +23332,256 @@ msgstr "Geel"
 msgid "yes (keep feeds)"
 msgstr "ja (bewaar feeds)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voordat u uw %s %s herstart."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "%s %s software want er zijn updates beschikbaar."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "Een klein overzicht van gebruikte icon-statussen en acties."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Update proces wordt gestopt"
+
+#~ msgid "Author: "
+#~ msgstr "Auteur: "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "!! Let op de update is nog niet getest !!"
+
+#~ msgid "Communication"
+#~ msgstr "Communicatie"
+
+#~ msgid "Continue"
+#~ msgstr "Doorgaan"
+
+#~ msgid "Default settings"
+#~ msgstr "Standaard instellingen"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Scherm- en gebruikersinterface"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "Wilt u uw box updaten?"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Klaar - %d bijgewerkte pakketten geïnstalleerd"
+
+#~ msgid "Extensions Management"
+#~ msgstr "Applicatiebeheer"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "Nadat u op OK drukt worden de volgende taken uitgevoerd!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "Voor meer informatie bezoek https://www.opena.tv"
+
+#~ msgid "Install or remove finished."
+#~ msgstr "Installeren of verwijderen voltooid."
+
+#~ msgid "Multimedia"
+#~ msgstr "Multimedia"
+
+#~ msgid "No description available."
+#~ msgstr "Geen beschrijving beschikbaar."
+
+#~ msgid "No network connection available."
+#~ msgstr "Geen netwerkverbinding beschikbaar."
+
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Er zijn nog geen pakketten geüpdate. A.u.b. uw netwerk controleren en het opnieuw proberen."
+
+#~ msgid "Only extensions."
+#~ msgstr "Alleen Applicaties."
+
+#~ msgid "Plugin Details"
+#~ msgstr "Plug-in informatie"
+
+#, python-format
+#~ msgid "Plugin Details: %s"
+#~ msgstr "Plug-in Details: %s"
+
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "Plug-in beheer status"
+
+#~ msgid "Plugin Manager Help"
+#~ msgstr "Plug-in beheer helpfunctie"
+
+#~ msgid "Process"
+#~ msgstr "Proces"
+
+#~ msgid "Satellite equipment"
+#~ msgstr "Satelliet apparatuur"
+
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "Zoekt naar beschikbare updates. Even wachten..."
+
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "Zoeken naar nieuw geïnstalleerde of verwijderde pakketten. Een ogenblikje..."
+
+#~ msgid "Skins"
+#~ msgstr "Skins"
+
+#~ msgid "Software"
+#~ msgstr "Software"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "Sorry, er is geen informatie beschikbaar!"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "De Softwarebeheer plug-in is niet geïnstalleerd!\n"
+#~ "Installeer deze a.u.b."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "De status van de huidige update kan niet worden gecontroleerd omdat http://www.opena.tv niet bereikbaar is"
+
+#~ msgid "There are at least "
+#~ msgstr "Er zijn ten minste "
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "Er zijn geen uitstaande acties."
+
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "Hiermee kunt u de talen modules tonen in downloads"
+
+#~ msgid "This plugin is installed."
+#~ msgstr "Deze plug-in is geïnstalleerd."
+
+#~ msgid "This plugin is not installed."
+#~ msgstr "Deze plug-in is niet geïnstalleerd."
+
+#~ msgid "This plugin will be installed."
+#~ msgstr "Deze plug-in wordt geïnstalleerd."
+
+#~ msgid "This plugin will be removed."
+#~ msgstr "Deze plug-in wordt verwijderd."
+
+#~ msgid "Undo install"
+#~ msgstr "Installatie ongedaan maken"
+
+#~ msgid "Undo uninstall"
+#~ msgstr "Maak de-instaleren ongedaan"
+
+#~ msgid "Uninstall"
+#~ msgstr "De-installeer"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "Update op uw eigen risico"
+
+#~ msgid "Update feed not available."
+#~ msgstr "Updatefeed niet beschikbaar."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "!! Deze update is gerapporteerd als defect !!"
+
+#~ msgid "Updating software catalog"
+#~ msgstr "Software catalogus wordt geupdate"
+
+#~ msgid "Upgrading"
+#~ msgstr "Bijwerken"
+
+#~ msgid "View details"
+#~ msgstr "Bekijk informatie"
+
+#~ msgid "View list of available "
+#~ msgstr "Bekijk de lijst met beschikbare "
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Bekijk de lijst met beschikbare Common-Interface plug-ins."
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Bekijk de lijst met beschikbare EPG Applicaties."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Bekijk de lijst met beschikbare satelliet apparatuur Applicaties."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Bekijk de lijst met beschikbare communicatie Applicaties."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "Bekijk de lijst met beschikbare standaardinstellingen"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Bekijk een overzicht van de beschikbare display- en gebruikersinterface Applicaties."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Bekijk de lijst van beschikbare multimedia-Applicaties."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Bekijk de lijst met beschikbare netwerk-Applicaties."
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Bekijk de lijst met beschikbare opname Applicaties."
+
+#~ msgid "View list of available skins"
+#~ msgstr "Bekijk de lijst met beschikbare skins."
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "Bekijk de lijst met beschikbare software Applicaties."
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "Bekijk de lijst met beschikbare systeem Applicaties."
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "De installatie kan worden geannuleerd."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "Verwijderen kan worden geannuleerd."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "Deze plug-in kunt u installeren."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "Deze plug-in kunt u verwijderen."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "Uw %s %s is niet correct verbonden met het internet. Controleer het en probeer het opnieuw."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "Uw image is verouderd!\n"
+#~ "\n"
+#~ "Na zo'n lange tijd bestaat het risico dat uw %s %s niet \n"
+#~ "zal opstarten na de online update, of mogelijk niet goed werkt.\n"
+#~ "\n"
+#~ "Een nieuwe flash zal de stabiliteit verhogen\n"
+#~ "\n"
+#~ "!! Een online update is op eigen risico !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Wilt u nog steeds updaten?"
+
+#~ msgid "extensions."
+#~ msgstr "Applicaties."
+
+#~ msgid "packages selected."
+#~ msgstr "Pakketten geselecteerd."
+
+#~ msgid "updates available."
+#~ msgstr "Updates beschikbaar."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voordat u uw %s %s herstart."
 
 #~ msgid "Additional Info"
 #~ msgstr "Aanvullende info"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2022-07-04 20:11+0000\n"
 "Last-Translator: BliNeR-KeY <blinerg@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -1042,6 +1042,10 @@ msgstr[0] "%d Paketa u përmirësua."
 msgstr[1] "%d Paketat u përmirësuan."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sek"
 
@@ -1166,10 +1170,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s telekomandë (native)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s software sepse përditësimet janë në dispozicion."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s Karta )"
 
@@ -1212,6 +1212,10 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1925,9 +1929,6 @@ msgstr ""
 "\n"
 "Dëshiron të çaktivizosh ndërfaqen e dytë të rrjetit?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "Një përmbledhje e vogël e gjendjeve dhe veprimeve të disponueshme të ikonave."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2022,9 +2023,6 @@ msgstr "Ndërpreu një pseudo regjistrim.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Ndërpreu një shërbim transmetimi.\n"
-
-msgid "Aborting update progress"
-msgstr "Ndërprerja e progresit të përditësimit"
 
 msgid "About"
 msgstr "Rreth"
@@ -2806,9 +2804,6 @@ msgstr "Australia"
 
 msgid "Austria"
 msgstr "Austria"
-
-msgid "Author: "
-msgstr "Autori:"
 
 msgid "Authoring mode"
 msgstr "Modalitet autorisimi"
@@ -3780,6 +3775,9 @@ msgstr "Kanadaja"
 msgid "Cancel"
 msgstr "Anulo"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr "Anulo / Mbyll ekranin e përditësimit të softuerit"
 
@@ -3901,9 +3899,6 @@ msgstr "Cascade PiP"
 
 msgid "Catalan / Valencian"
 msgstr "Katalunase / valenciane"
-
-msgid "Caution update not yet tested !!"
-msgstr "Kujdes përditësimi nuk është testuar ende !!"
 
 msgid "Cayman Islands"
 msgstr "Ishujt Kajman"
@@ -4489,9 +4484,6 @@ msgstr "Caktim i Përbashkët i Ndërfaqes"
 msgid "Common Setup Actions"
 msgstr "Veprimet e zakonshme të konfigurimit"
 
-msgid "Communication"
-msgstr "Komunikimi"
-
 msgid "Comoros"
 msgstr "Komoret"
 
@@ -4961,9 +4953,6 @@ msgstr "Konteksti"
 
 msgid "Continent"
 msgstr "Kontinenti"
-
-msgid "Continue"
-msgstr "Vazhdoni"
 
 msgid "Continue in background"
 msgstr "Vazhdo në sfond"
@@ -5667,9 +5656,6 @@ msgstr "Lloji i prezgjedhur i regjistrimit"
 msgid "Default right column directory"
 msgstr ""
 
-msgid "Default settings"
-msgstr "Cilësimet e parazgjedhura"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -6166,9 +6152,6 @@ msgstr "Shfaq përmbajtjen >16:9 si"
 msgid "Display Settings"
 msgstr "Cilësimet e ekranit"
 
-msgid "Display and user interface"
-msgstr "Ekrani dhe ndërfaqja e përdoruesit"
-
 msgid "Display context menu"
 msgstr ""
 
@@ -6444,9 +6427,6 @@ msgstr "Dëshironi të rivendosni cilësimet tuaja?"
 msgid "Do you want to resume this playback?"
 msgstr "Dëshiron ta rifillosh këtë riprodhim?"
 
-msgid "Do you want to update your box?"
-msgstr "Dëshiron të përditësosh kutinë tënde?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Dëshiron të përmirësosh paketën:\n"
 
@@ -6495,10 +6475,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "U krye"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "U krye - Paketat %d të instaluara ose të përmirësuara"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -7733,9 +7709,6 @@ msgstr "Veprimet e Zgjerimit"
 msgid "Extensions"
 msgstr "Shtesat"
 
-msgid "Extensions Management"
-msgstr "Menaxhimi i Zgjerimeve"
-
 msgid "Extensions/QuickMenu"
 msgstr "Zgjerimet/Menuja e shpejtë"
 
@@ -8179,9 +8152,6 @@ msgstr "Grupi i sheshtë me çelës në telekomandë"
 msgid "Flat by position on remote"
 msgstr "E sheshtë sipas pozicionit në telekomandë"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Detyrat e mëposhtme do të kryhen pasi të shtypni OK!"
-
 msgid "Font size"
 msgstr "Madhësia e gërmave"
 
@@ -8193,9 +8163,6 @@ msgstr "Ushqim/Verë"
 
 msgid "Football"
 msgstr "Futboll"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "Për më shumë informacion shihni https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Forco fuqinë LNB"
@@ -9538,9 +9505,6 @@ msgstr ""
 msgid "Install lcd picons on"
 msgstr ""
 
-msgid "Install or remove finished."
-msgstr ""
-
 msgid "Install picons on"
 msgstr ""
 
@@ -10484,6 +10448,9 @@ msgstr ""
 msgid "Manage Locale/Language Selection settings"
 msgstr ""
 
+msgid "Manage Plugins"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr ""
 
@@ -11191,9 +11158,6 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
-msgid "Multimedia"
-msgstr ""
-
 msgid "Multiple service support"
 msgstr ""
 
@@ -11591,9 +11555,6 @@ msgstr ""
 msgid "No demux available"
 msgstr ""
 
-msgid "No description available."
-msgstr ""
-
 msgid "No displayable files on this medium found!"
 msgstr ""
 
@@ -11624,9 +11585,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr ""
 
-msgid "No network connection available."
-msgstr ""
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -11636,7 +11594,7 @@ msgstr ""
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
+msgid "No packages found."
 msgstr ""
 
 msgid "No pictures available"
@@ -12019,9 +11977,6 @@ msgid "Online update of your %s %s software."
 msgstr "Përditësim në-linjë për software-in e %s %s tuaj."
 
 msgid "Only Flash Backup Image"
-msgstr ""
-
-msgid "Only extensions."
 msgstr ""
 
 msgid "Only free scan"
@@ -12489,6 +12444,9 @@ msgid "Percentage/Progress bar right"
 msgstr ""
 
 msgid "Perform an on-line flash instead"
+msgstr ""
+
+msgid "Perform install/remove of the selected item"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -12980,20 +12938,10 @@ msgstr ""
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Details"
-msgstr ""
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr ""
 
-msgid "Plugin Manager Activity Information"
-msgstr ""
-
-msgid "Plugin Manager Help"
+msgid "Plugin Manager Actions"
 msgstr ""
 
 msgid "Plugins"
@@ -13299,9 +13247,6 @@ msgid "Proc model"
 msgstr ""
 
 msgid "Proceed with the update"
-msgstr ""
-
-msgid "Process"
 msgstr ""
 
 msgid "Processor information"
@@ -14629,9 +14574,6 @@ msgstr ""
 msgid "Satellite configuration mode"
 msgstr ""
 
-msgid "Satellite equipment"
-msgstr ""
-
 msgid "Satellite equipment setup"
 msgstr ""
 
@@ -14777,6 +14719,9 @@ msgstr ""
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr ""
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr ""
@@ -14873,12 +14818,6 @@ msgid "Searching"
 msgstr ""
 
 msgid "Searching east ..."
-msgstr ""
-
-msgid "Searching for available updates. Please wait..."
-msgstr ""
-
-msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
 msgid "Searching west ..."
@@ -17098,9 +17037,6 @@ msgstr "Rregullimi i lëkurës"
 msgid "SkinSelector"
 msgstr "Përzgjedhësi i lëkurës"
 
-msgid "Skins"
-msgstr "Lëkura"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Kapërce kontrollin e lidhjes në internet (çaktivizon instalimin automatik të paketave)"
 
@@ -17304,9 +17240,6 @@ msgstr ""
 msgid "Softcams"
 msgstr ""
 
-msgid "Software"
-msgstr ""
-
 msgid "Software Management"
 msgstr ""
 
@@ -17398,9 +17331,6 @@ msgid "Sorry, %s has not been installed!"
 msgstr ""
 
 msgid "Sorry, no backups found!"
-msgstr ""
-
-msgid "Sorry, no details available!"
 msgstr ""
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
@@ -18630,16 +18560,6 @@ msgstr ""
 "\n"
 "A e bën tani apo e zgjat kohën?"
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Shtesa e menaxhimit të softuerit nuk është instaluar!\n"
-"Ju lutemi instaloni atë."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Statusi i përditësimit aktual nuk mund të kontrollohej sepse https://www.opena.tv nuk mund të arrihet për ndonjë arsye"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Koha shumëzohet me numëruesin aktual të përsëritjes."
 
@@ -18688,12 +18608,6 @@ msgstr "Magjistari mund të rezervojë cilësimet tuaja aktuale. Dëshiron të b
 
 msgid "The wizard is finished now."
 msgstr "Magjistari ka përfunduar tani."
-
-msgid "There are at least "
-msgstr "Ka të paktën"
-
-msgid "There are currently no outstanding actions."
-msgstr "Aktualisht nuk ka veprime të pazgjidhura."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -18771,9 +18685,6 @@ msgid "This allows you to show extensions modules in downloads"
 msgstr "Kjo ju lejon të shfaqni module shtesë në shkarkime"
 
 msgid "This allows you to show kernel modules in downloads"
-msgstr ""
-
-msgid "This allows you to show languages in downloads"
 msgstr ""
 
 msgid "This allows you to show lcd skins in downloads"
@@ -19026,18 +18937,6 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr ""
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr ""
-
-msgid "This plugin is installed."
-msgstr ""
-
-msgid "This plugin is not installed."
-msgstr ""
-
-msgid "This plugin will be installed."
-msgstr ""
-
-msgid "This plugin will be removed."
 msgstr ""
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
@@ -19778,12 +19677,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr ""
 
-msgid "Undo install"
-msgstr ""
-
-msgid "Undo uninstall"
-msgstr ""
-
 msgid "Unencrypted"
 msgstr ""
 
@@ -19803,9 +19696,6 @@ msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Matrix"
-msgstr ""
-
-msgid "Uninstall"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -19923,9 +19813,6 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-msgid "Update at your own risk"
-msgstr ""
-
 msgid "Update completed."
 msgstr ""
 
@@ -19938,16 +19825,10 @@ msgstr ""
 msgid "Update failed!"
 msgstr ""
 
-msgid "Update feed not available."
-msgstr ""
-
 msgid "Update finished!"
 msgstr ""
 
 msgid "Update interval (in seconds)"
-msgstr ""
-
-msgid "Update is reported as faulty !!"
 msgstr ""
 
 msgid ""
@@ -19976,9 +19857,6 @@ msgstr ""
 msgid "Updating mount locations."
 msgstr ""
 
-msgid "Updating software catalog"
-msgstr ""
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -19993,9 +19871,6 @@ msgid ""
 msgstr ""
 
 msgid "Upgrade with GUI"
-msgstr ""
-
-msgid "Upgrading"
 msgstr ""
 
 msgid "Uphops +"
@@ -20553,48 +20428,6 @@ msgstr ""
 
 msgid "View Rass interactive..."
 msgstr "Shiko Rassin interaktiv..."
-
-msgid "View details"
-msgstr "Shiko detajet"
-
-msgid "View list of available "
-msgstr "Shikoni listën e disponueshme"
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Shikoni listën e shtesave të disponueshme të CommonInterface"
-
-msgid "View list of available EPG extensions."
-msgstr "Shikoni listën e shtesave të disponueshme EPG."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Shiko listën e pajisjeve satelitore në dispozicion."
-
-msgid "View list of available communication extensions."
-msgstr "Shikoni listën e shtesave të disponueshme të komunikimit."
-
-msgid "View list of available default settings"
-msgstr "Shikoni listën e cilësimeve të paracaktuara të disponueshme"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Shikoni listën e shtesave të disponueshme të ekranit dhe ndërfaqes së përdoruesit."
-
-msgid "View list of available multimedia extensions."
-msgstr "Shikoni listën e shtesave multimediale të disponueshme."
-
-msgid "View list of available networking extensions"
-msgstr "Shikoni listën e shtesave të disponueshme të rrjetit"
-
-msgid "View list of available recording extensions"
-msgstr "Shikoni listën e shtesave të disponueshme të regjistrimit"
-
-msgid "View list of available skins"
-msgstr "Shikoni listën e lëkurave të disponueshme"
-
-msgid "View list of available software extensions"
-msgstr "Shikoni listën e shtesave të softuerit të disponueshëm"
-
-msgid "View list of available system extensions"
-msgstr "Shikoni listën e shtesave të disponueshme të sistemit"
 
 msgid "View mode"
 msgstr "Mënyra e shikimit"
@@ -21390,26 +21223,14 @@ msgstr "Ju mund të shfaqni MiniTV me ose pa Menu OSD"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Mund të shfaqni PIP me ose pa menynë OSD"
 
-msgid "You can cancel the installation."
-msgstr "Mund ta anuloni instalimin."
-
-msgid "You can cancel the removal."
-msgstr "Mund ta anuloni heqjen."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Mund të vazhdoni të shikoni televizor etj. ndërsa ky është në punë."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Ju mund ta keni listën të renditur sipas kohës ose alfanumerike."
 
-msgid "You can install this plugin."
-msgstr "Mund ta instaloni këtë shtojcë."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Mund të digjni vetëm regjistrimet e Dreambox!"
-
-msgid "You can remove this plugin."
-msgstr "Mund ta hiqni këtë shtojcë."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Mund ta kapërceni këtë funksion dhe të fikni televizorin kur zgjoni marrësin nga gatishmëria dhe të kaloni menjëherë në gatishmëri."
@@ -21534,10 +21355,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr "%s %s juaj po fiket. Te lutem prit..."
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "%s juaj %s nuk është e lidhur me Internetin siç duhet. Ju lutem kontrolloni dhe provoni përsëri."
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -21660,32 +21477,6 @@ msgid ""
 msgstr ""
 "Paneli juaj i përparmë do të përmirësohet\n"
 "Kjo mund të zgjasë disa minuta"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Imazhi juaj është i vjetëruar!\n"
-"\n"
-"Pas një kohe kaq të gjatë, ekziston rreziku që %s %s juaj të mos e bëjë\n"
-"boot pas përditësimit në internet, ose do të shfaqë mosfunksionim në ekzekutimin e Image.\n"
-"\n"
-"Një blic i ri do të rrisë stabilitetin\n"
-"\n"
-"Një përditësim në internet bëhet me rrezikun tuaj !!\n"
-"\n"
-"\n"
-"Dëshiron ende të përditësosh?"
 
 msgid "Your network configuration has been activated."
 msgstr "Konfigurimi i rrjetit tuaj është aktivizuar."
@@ -22246,9 +22037,6 @@ msgstr ""
 msgid "experimental film/video"
 msgstr ""
 
-msgid "extensions."
-msgstr ""
-
 msgid "externally loopthrough to"
 msgstr ""
 
@@ -22652,9 +22440,6 @@ msgid "only HD"
 msgstr ""
 
 msgid "original language"
-msgstr ""
-
-msgid "packages selected."
 msgstr ""
 
 msgid "pass"
@@ -23066,9 +22851,6 @@ msgstr "deri në gatishmëri/rinisje"
 msgid "update"
 msgstr "rifresko"
 
-msgid "updates available."
-msgstr "përditësime të disponueshme."
-
 msgid "use best / controlled by HDMI"
 msgstr "përdorni më së miri / kontrolluar nga HDMI"
 
@@ -23138,12 +22920,162 @@ msgstr "e verdhë"
 msgid "yes (keep feeds)"
 msgstr "Po (mbani ushqim)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "%s %s juaj mund të jetë i papërdorshëm tani. Ju lutemi, konsultohuni me manualin për ndihmë të mëtejshme përpara se të rindizni %s %s tuaj."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "%s %s software sepse përditësimet janë në dispozicion."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "Një përmbledhje e vogël e gjendjeve dhe veprimeve të disponueshme të ikonave."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Ndërprerja e progresit të përditësimit"
+
+#~ msgid "Author: "
+#~ msgstr "Autori:"
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "Kujdes përditësimi nuk është testuar ende !!"
+
+#~ msgid "Communication"
+#~ msgstr "Komunikimi"
+
+#~ msgid "Continue"
+#~ msgstr "Vazhdoni"
+
+#~ msgid "Default settings"
+#~ msgstr "Cilësimet e parazgjedhura"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Ekrani dhe ndërfaqja e përdoruesit"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "Dëshiron të përditësosh kutinë tënde?"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "U krye - Paketat %d të instaluara ose të përmirësuara"
+
+#~ msgid "Extensions Management"
+#~ msgstr "Menaxhimi i Zgjerimeve"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "Detyrat e mëposhtme do të kryhen pasi të shtypni OK!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "Për më shumë informacion shihni https://www.opena.tv"
+
+#~ msgid "Skins"
+#~ msgstr "Lëkura"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Shtesa e menaxhimit të softuerit nuk është instaluar!\n"
+#~ "Ju lutemi instaloni atë."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "Statusi i përditësimit aktual nuk mund të kontrollohej sepse https://www.opena.tv nuk mund të arrihet për ndonjë arsye"
+
+#~ msgid "There are at least "
+#~ msgstr "Ka të paktën"
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "Aktualisht nuk ka veprime të pazgjidhura."
+
+#~ msgid "View details"
+#~ msgstr "Shiko detajet"
+
+#~ msgid "View list of available "
+#~ msgstr "Shikoni listën e disponueshme"
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Shikoni listën e shtesave të disponueshme të CommonInterface"
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Shikoni listën e shtesave të disponueshme EPG."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Shiko listën e pajisjeve satelitore në dispozicion."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Shikoni listën e shtesave të disponueshme të komunikimit."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "Shikoni listën e cilësimeve të paracaktuara të disponueshme"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Shikoni listën e shtesave të disponueshme të ekranit dhe ndërfaqes së përdoruesit."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Shikoni listën e shtesave multimediale të disponueshme."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Shikoni listën e shtesave të disponueshme të rrjetit"
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Shikoni listën e shtesave të disponueshme të regjistrimit"
+
+#~ msgid "View list of available skins"
+#~ msgstr "Shikoni listën e lëkurave të disponueshme"
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "Shikoni listën e shtesave të softuerit të disponueshëm"
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "Shikoni listën e shtesave të disponueshme të sistemit"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "Mund ta anuloni instalimin."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "Mund ta anuloni heqjen."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "Mund ta instaloni këtë shtojcë."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "Mund ta hiqni këtë shtojcë."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "%s juaj %s nuk është e lidhur me Internetin siç duhet. Ju lutem kontrolloni dhe provoni përsëri."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "Imazhi juaj është i vjetëruar!\n"
+#~ "\n"
+#~ "Pas një kohe kaq të gjatë, ekziston rreziku që %s %s juaj të mos e bëjë\n"
+#~ "boot pas përditësimit në internet, ose do të shfaqë mosfunksionim në ekzekutimin e Image.\n"
+#~ "\n"
+#~ "Një blic i ri do të rrisë stabilitetin\n"
+#~ "\n"
+#~ "Një përditësim në internet bëhet me rrezikun tuaj !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Dëshiron ende të përditësosh?"
+
+#~ msgid "updates available."
+#~ msgstr "përditësime të disponueshme."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "%s %s juaj mund të jetë i papërdorshëm tani. Ju lutemi, konsultohuni me manualin për ndihmë të mëtejshme përpara se të rindizni %s %s tuaj."
 
 #~ msgid "Additional Info"
 #~ msgstr "Informacione shtesë"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1038,6 +1038,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sek"
 
@@ -1162,10 +1166,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s fjernbetjening (oprindelig)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s software fordi opdateringer er tilgængelig."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s Kort )"
 
@@ -1208,6 +1208,10 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s Mhz"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1919,9 +1923,6 @@ msgstr ""
 "\n"
 "Vil du deaktivere den anden netværksgrænseflade ?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "En lille oversigt over tilgængelige ikon-tilstande og handlinger."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2016,9 +2017,6 @@ msgstr "Afbrød en pseudooptagelse.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Afbrød en streaming-tjeneste.\n"
-
-msgid "Aborting update progress"
-msgstr "Afbryder opdateringsfremgang"
 
 msgid "About"
 msgstr "Om"
@@ -2801,9 +2799,6 @@ msgstr "Australsk"
 
 msgid "Austria"
 msgstr "Østrig"
-
-msgid "Author: "
-msgstr "Forfatter: "
 
 msgid "Authoring mode"
 msgstr "Oprettelsestilstand"
@@ -3778,6 +3773,9 @@ msgstr "Canada"
 msgid "Cancel"
 msgstr "Afbryd"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
@@ -3899,9 +3897,6 @@ msgstr "Kaskade PiP"
 
 msgid "Catalan / Valencian"
 msgstr ""
-
-msgid "Caution update not yet tested !!"
-msgstr "Advarsel, updatering endnu ikke testet !!"
 
 msgid "Cayman Islands"
 msgstr "Caymanøerne"
@@ -4489,9 +4484,6 @@ msgstr "Common Interface tildeling"
 msgid "Common Setup Actions"
 msgstr "Fælles Opsætningshandlinger"
 
-msgid "Communication"
-msgstr "Kommunikation"
-
 msgid "Comoros"
 msgstr "Comorerne"
 
@@ -4963,9 +4955,6 @@ msgstr "Indhold"
 
 msgid "Continent"
 msgstr ""
-
-msgid "Continue"
-msgstr "Fortsæt"
 
 msgid "Continue in background"
 msgstr "Fortsæt i baggrunden"
@@ -5670,9 +5659,6 @@ msgstr "Standard optagelsestype"
 msgid "Default right column directory"
 msgstr ""
 
-msgid "Default settings"
-msgstr "Standardindstillinger"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -6169,9 +6155,6 @@ msgstr "Vis større end 16:9 indhold som"
 msgid "Display Settings"
 msgstr "Display-indstillinger"
 
-msgid "Display and user interface"
-msgstr "Skærm og brugergrænseflade"
-
 msgid "Display context menu"
 msgstr ""
 
@@ -6443,9 +6426,6 @@ msgstr "Ønsker du at genskabe dine indstillinger ?"
 msgid "Do you want to resume this playback?"
 msgstr "Vil du genoptage denne afspilning ?"
 
-msgid "Do you want to update your box?"
-msgstr "Vil du virkelig opdatere din boks ?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Vil du opgradere pakken:\n"
 
@@ -6494,10 +6474,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Færdig"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Udført - Installerede eller opgraderede %d pakker"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -7733,9 +7709,6 @@ msgstr "Udvidelser handlinger"
 msgid "Extensions"
 msgstr "Udvidelser"
 
-msgid "Extensions Management"
-msgstr "Håndtering af udvidelser"
-
 msgid "Extensions/QuickMenu"
 msgstr "Udvidelser/KvikMenu"
 
@@ -8184,9 +8157,6 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr "Flad efter placering på fjernbetjening"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Følgende opgaver vil blive udført efter tryk på OK!"
-
 msgid "Font size"
 msgstr "Skriftstørrelse"
 
@@ -8198,9 +8168,6 @@ msgstr "Mad/Vin"
 
 msgid "Football"
 msgstr "Fodboldt"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "For yderligere information se https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Gennemtving LNB strøm"
@@ -9555,9 +9522,6 @@ msgstr "Installer udvidelser."
 msgid "Install lcd picons on"
 msgstr "Installer LCD Pikoner på"
 
-msgid "Install or remove finished."
-msgstr "Installer og fjern gennemført."
-
 msgid "Install picons on"
 msgstr "Installer pikoner på"
 
@@ -10527,6 +10491,9 @@ msgstr "Administrer udvidelser"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Kanalvalg indstillinger"
 
+msgid "Manage Plugins"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr ""
 
@@ -11259,9 +11226,6 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot Image oprettet den: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "Multimedia"
-
 msgid "Multiple service support"
 msgstr "Multikanal understøttelse"
 
@@ -11669,9 +11633,6 @@ msgstr "Ingen fors."
 msgid "No demux available"
 msgstr "Ingen demux tilgængelig"
 
-msgid "No description available."
-msgstr "Ingen beskrivelse tilgængelig."
-
 msgid "No displayable files on this medium found!"
 msgstr "Der findes ingen synlige filer på dette medie!"
 
@@ -11702,9 +11663,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Ingen identiske stednavne fundet"
 
-msgid "No network connection available."
-msgstr "Ingen tilgængelig netværksforbindelse."
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -11714,8 +11672,8 @@ msgstr "Ingen netværk fundet"
 msgid "No of items switch (increase or reduced)"
 msgstr "Ændre antal elementer (øg eller reducer)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Ingen pakker opgraderet endnu. Tjek venligst dit netværk igen og prøv igen."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -12120,9 +12078,6 @@ msgstr "Online opdatering af din %s %s software."
 
 msgid "Only Flash Backup Image"
 msgstr ""
-
-msgid "Only extensions."
-msgstr "Kun udvidelser."
 
 msgid "Only free scan"
 msgstr "Kun gratis søgning"
@@ -12602,6 +12557,9 @@ msgid "Percentage/Progress bar right"
 msgstr "Procent/Fremgangsbjælke højre"
 
 msgid "Perform an on-line flash instead"
+msgstr ""
+
+msgid "Perform install/remove of the selected item"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -13142,21 +13100,11 @@ msgstr "Plugin-browser"
 msgid "Plugin Browser Settings"
 msgstr "Plugin browser indstillinger"
 
-msgid "Plugin Details"
-msgstr "Plugin detaljer"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr "Plugin filtre"
 
-msgid "Plugin Manager Activity Information"
-msgstr "Aktivitetsinformation for plugin styring"
-
-msgid "Plugin Manager Help"
-msgstr "Plugin-håndtering Hjælp"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 msgid "Plugins"
 msgstr "Plugins"
@@ -13464,9 +13412,6 @@ msgstr ""
 
 msgid "Proceed with the update"
 msgstr ""
-
-msgid "Process"
-msgstr "Bearbejdning"
 
 msgid "Processor information"
 msgstr ""
@@ -14806,9 +14751,6 @@ msgstr "Satellitskål opsætning"
 msgid "Satellite configuration mode"
 msgstr "Satellit konfigurationstilstand"
 
-msgid "Satellite equipment"
-msgstr "Satelitudstyr"
-
 msgid "Satellite equipment setup"
 msgstr "Satelitudstyr opsætning"
 
@@ -14957,6 +14899,9 @@ msgstr "Søg trådløse netværk"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Gennemsøger dit netværk efter trådløse access points og forbinder til dem ved hjælp af din valgte trådløse enhed."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Søger %s..."
@@ -15055,12 +15000,6 @@ msgstr "Søger"
 
 msgid "Searching east ..."
 msgstr "Søger øst..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Søger efter tilgængelige opdateringer. Vent venligst..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Søger efter nyinstallerede eller fjernede pakker. Vent venligst..."
 
 msgid "Searching west ..."
 msgstr "Søger vest..."
@@ -17335,9 +17274,6 @@ msgstr "Tema opsætning"
 msgid "SkinSelector"
 msgstr "TemaVælger"
 
-msgid "Skins"
-msgstr "Grafiske Temaer"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Hop internet forbindelseskontrol over (deaktivere automatisk pakkeinstallation)"
 
@@ -17542,9 +17478,6 @@ msgstr ""
 msgid "Softcams"
 msgstr "Softcams"
 
-msgid "Software"
-msgstr "Software"
-
 msgid "Software Management"
 msgstr "Softwarehåndtering"
 
@@ -17642,9 +17575,6 @@ msgstr "Desværre, %s er ikke installeret!"
 
 msgid "Sorry, no backups found!"
 msgstr "Desværre, ingen sikkerhedskopier fundet!"
-
-msgid "Sorry, no details available!"
-msgstr "Desværre, detaljer ikke tilgængelig!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Desværre, ingen tilsluttede fysiske enheder understøtter SWAP. Kan ikke oprette swap-fil på netværks- eller fat32-filsystemer."
@@ -18886,16 +18816,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Software-håndtering udvidelsen er ikke installeret!\n"
-"Installer den venligst."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Status af nuværende opdatering kunne ikke kontrolleres fordi http://www.opena.tv af en eller anden grund ikke var tilgængelig."
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Tiden bliver ganget med den aktuelle gentagelsestæller."
 
@@ -18944,12 +18864,6 @@ msgstr "Assistenten kan gemme dine nuværende indstillinger. Vil du gemme dine i
 
 msgid "The wizard is finished now."
 msgstr "Assistenten er nu gennemført."
-
-msgid "There are at least "
-msgstr "Der er mindst "
-
-msgid "There are currently no outstanding actions."
-msgstr "Der er i øjeblikket ingen udestående handlinger."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19028,9 +18942,6 @@ msgstr "Dette tillader dig at vise udvidelsesmoduler i downloads."
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Dette tillader dig at vise kernemoduler i downloads."
-
-msgid "This allows you to show languages in downloads"
-msgstr "Dette tillader dig at vise sprog i downloads."
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Dette tillader dig at vise LCD Temaer i downloads."
@@ -19283,18 +19194,6 @@ msgstr "Denne mulighed sætter den billedeskarphed op, der bruges når billedet 
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
-
-msgid "This plugin is installed."
-msgstr "Dette plugin er installeret."
-
-msgid "This plugin is not installed."
-msgstr "Dette Plugin er ikke installeret."
-
-msgid "This plugin will be installed."
-msgstr "Dette Plugin vil blive installeret."
-
-msgid "This plugin will be removed."
-msgstr "Dette Plugin vil blive fjernet."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "Dette sætter præfiks for hver linje i fejlsøgningsloggen. 'Boot time' er antal sekunder siden din %s %s sidst blev startet op."
@@ -20066,12 +19965,6 @@ msgstr "Udefineret"
 msgid "Undetermined"
 msgstr "Ubestemt"
 
-msgid "Undo install"
-msgstr "Fortryd afinstallering"
-
-msgid "Undo uninstall"
-msgstr "Fortryd afinstallering"
-
 msgid "Unencrypted"
 msgstr "Ukrypteret"
 
@@ -20092,9 +19985,6 @@ msgstr "Unicabel LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matriks"
-
-msgid "Uninstall"
-msgstr "Afinstaller"
 
 msgid "United Arab Emirates"
 msgstr "Forenede Arabiske Emirater"
@@ -20213,9 +20103,6 @@ msgstr "Op/Ned knapper også for 'helt op/net' ?"
 msgid "Update"
 msgstr "Opdater"
 
-msgid "Update at your own risk"
-msgstr "Opdater på eget ansvar"
-
 msgid "Update completed."
 msgstr ""
 
@@ -20228,17 +20115,11 @@ msgstr "Opdateringsforsinkelse for Begivenheder i liste. Rulning i liste er hurt
 msgid "Update failed!"
 msgstr "Opdatering mislykkedes!"
 
-msgid "Update feed not available."
-msgstr "Opdaterings-feed ikke tilgængelig."
-
 msgid "Update finished!"
 msgstr "Opdatering gennemført!"
 
 msgid "Update interval (in seconds)"
 msgstr "Opdateringsinterval (i sekunder)"
-
-msgid "Update is reported as faulty !!"
-msgstr "Opdatering er rapporteret som fejlbehæftet!!"
 
 msgid ""
 "Update succeeded!\n"
@@ -20268,9 +20149,6 @@ msgstr "Opdaterer"
 msgid "Updating mount locations."
 msgstr "Opdatere mount placering."
 
-msgid "Updating software catalog"
-msgstr "Opdaterer softwarekatalog"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -20289,9 +20167,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Opgrader med GUI"
-
-msgid "Upgrading"
-msgstr ""
 
 #, fuzzy
 msgid "Uphops +"
@@ -20857,48 +20732,6 @@ msgstr ""
 
 msgid "View Rass interactive..."
 msgstr "Se Rass interaktiv..."
-
-msgid "View details"
-msgstr "Se detaljer"
-
-msgid "View list of available "
-msgstr "Se liste over tilgængelige "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Se liste over alle tilgængelige Common Interface udvidelser"
-
-msgid "View list of available EPG extensions."
-msgstr "Se liste over tilgængelige EPG udvidelser."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Se liste over tilgængelige Satelitudstyrsudvidelser."
-
-msgid "View list of available communication extensions."
-msgstr "Se liste over tilgængelige kommunikationsudvidelser."
-
-msgid "View list of available default settings"
-msgstr "Se liste over tilgængelige standardopsætninger"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Se liste over tilgængelige skærm og brugergrænseflade udvidelser."
-
-msgid "View list of available multimedia extensions."
-msgstr "Se liste over tilgængelige multimedieudvidelser."
-
-msgid "View list of available networking extensions"
-msgstr "Se liste over tilgængelige netværksudvidelser"
-
-msgid "View list of available recording extensions"
-msgstr "Se liste over tilgængelige optagelsesudvidelser"
-
-msgid "View list of available skins"
-msgstr "Se liste over tilgængelige grafiske Temaer"
-
-msgid "View list of available software extensions"
-msgstr "Se liste over tilgængelige software-udvidelser"
-
-msgid "View list of available system extensions"
-msgstr "Se liste over tilgængelige system-udvidelser"
 
 msgid "View mode"
 msgstr "Visningstilstand"
@@ -21697,26 +21530,14 @@ msgstr "Du kan vise MiniTV med eller uden OSD Menu"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Du kan vise PiP med eller uden OSD Menu"
 
-msgid "You can cancel the installation."
-msgstr "Du kan afbryde installation."
-
-msgid "You can cancel the removal."
-msgstr "Du kan afbryde afinstallation."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Du kan fortsætte med at se TV mens dette kører."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Du kan få listen sorteret efter tid eller alfanumerisk."
 
-msgid "You can install this plugin."
-msgstr "Du kan installere dette plugin."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Du kan kun brænde Dreambox optagelser!"
-
-msgid "You can remove this plugin."
-msgstr "Du kan fjerne dette plugin."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Du kan springe denne funktion over og slukke TV'et når du vækker modtageren fra Standby og straks skifter tilbage til Standby."
@@ -21841,10 +21662,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Din %s %s slukker nu. Vent venligst..."
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "Din %s %s er ikke forbundet ordentlig til Internettet. Kontroller venligst og prøv igen."
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -21963,32 +21780,6 @@ msgid ""
 msgstr ""
 "Dit frontpanel vil blive opgraderet\n"
 "Dette kan tage nogle få minutter"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Dit Image er forældet!\n"
-"\n"
-"Efter så lang tid er der risiko for at din %s %s ikke vil starte op\n"
-"igen efter en online-opdatering, eller vil give fejl i kørende Image.\n"
-"\n"
-"En ny-flash vil øge stabiliteten\n"
-"\n"
-"En online-opdatering udføres på eget ansvar !!\n"
-"\n"
-"\n"
-"Ønsker du fortsat at opdatere ?"
 
 msgid "Your network configuration has been activated."
 msgstr "Din netværksopsætning er blevet aktiveret."
@@ -22554,9 +22345,6 @@ msgstr "Afslut netværksadapter opsætningsmenu"
 msgid "experimental film/video"
 msgstr "Eksperimentel film/video"
 
-msgid "extensions."
-msgstr "Udvidelser."
-
 msgid "externally loopthrough to"
 msgstr "ekstern løkke til"
 
@@ -22967,9 +22755,6 @@ msgstr "Kun HD"
 
 msgid "original language"
 msgstr "original sprog"
-
-msgid "packages selected."
-msgstr "pakke valgt."
 
 msgid "pass"
 msgstr "OK"
@@ -23394,9 +23179,6 @@ msgstr "Indtil standby/genstart"
 msgid "update"
 msgstr "opdater"
 
-msgid "updates available."
-msgstr "opdateringer tilgængelige."
-
 msgid "use best / controlled by HDMI"
 msgstr "Brug bedste / styret af HDMI"
 
@@ -23467,12 +23249,249 @@ msgstr "Gul"
 msgid "yes (keep feeds)"
 msgstr "ja (behold feeds)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "din %s %s er måske ubrugelig nu. Se venligst brugervejledningen for yderligere hjælp inden du genstarter din %s %s."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "%s %s software fordi opdateringer er tilgængelig."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "En lille oversigt over tilgængelige ikon-tilstande og handlinger."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Afbryder opdateringsfremgang"
+
+#~ msgid "Author: "
+#~ msgstr "Forfatter: "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "Advarsel, updatering endnu ikke testet !!"
+
+#~ msgid "Communication"
+#~ msgstr "Kommunikation"
+
+#~ msgid "Continue"
+#~ msgstr "Fortsæt"
+
+#~ msgid "Default settings"
+#~ msgstr "Standardindstillinger"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Skærm og brugergrænseflade"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "Vil du virkelig opdatere din boks ?"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Udført - Installerede eller opgraderede %d pakker"
+
+#~ msgid "Extensions Management"
+#~ msgstr "Håndtering af udvidelser"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "Følgende opgaver vil blive udført efter tryk på OK!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "For yderligere information se https://www.opena.tv"
+
+#~ msgid "Install or remove finished."
+#~ msgstr "Installer og fjern gennemført."
+
+#~ msgid "Multimedia"
+#~ msgstr "Multimedia"
+
+#~ msgid "No description available."
+#~ msgstr "Ingen beskrivelse tilgængelig."
+
+#~ msgid "No network connection available."
+#~ msgstr "Ingen tilgængelig netværksforbindelse."
+
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Ingen pakker opgraderet endnu. Tjek venligst dit netværk igen og prøv igen."
+
+#~ msgid "Only extensions."
+#~ msgstr "Kun udvidelser."
+
+#~ msgid "Plugin Details"
+#~ msgstr "Plugin detaljer"
+
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "Aktivitetsinformation for plugin styring"
+
+#~ msgid "Plugin Manager Help"
+#~ msgstr "Plugin-håndtering Hjælp"
+
+#~ msgid "Process"
+#~ msgstr "Bearbejdning"
+
+#~ msgid "Satellite equipment"
+#~ msgstr "Satelitudstyr"
+
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "Søger efter tilgængelige opdateringer. Vent venligst..."
+
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "Søger efter nyinstallerede eller fjernede pakker. Vent venligst..."
+
+#~ msgid "Skins"
+#~ msgstr "Grafiske Temaer"
+
+#~ msgid "Software"
+#~ msgstr "Software"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "Desværre, detaljer ikke tilgængelig!"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Software-håndtering udvidelsen er ikke installeret!\n"
+#~ "Installer den venligst."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "Status af nuværende opdatering kunne ikke kontrolleres fordi http://www.opena.tv af en eller anden grund ikke var tilgængelig."
+
+#~ msgid "There are at least "
+#~ msgstr "Der er mindst "
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "Der er i øjeblikket ingen udestående handlinger."
+
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "Dette tillader dig at vise sprog i downloads."
+
+#~ msgid "This plugin is installed."
+#~ msgstr "Dette plugin er installeret."
+
+#~ msgid "This plugin is not installed."
+#~ msgstr "Dette Plugin er ikke installeret."
+
+#~ msgid "This plugin will be installed."
+#~ msgstr "Dette Plugin vil blive installeret."
+
+#~ msgid "This plugin will be removed."
+#~ msgstr "Dette Plugin vil blive fjernet."
+
+#~ msgid "Undo install"
+#~ msgstr "Fortryd afinstallering"
+
+#~ msgid "Undo uninstall"
+#~ msgstr "Fortryd afinstallering"
+
+#~ msgid "Uninstall"
+#~ msgstr "Afinstaller"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "Opdater på eget ansvar"
+
+#~ msgid "Update feed not available."
+#~ msgstr "Opdaterings-feed ikke tilgængelig."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "Opdatering er rapporteret som fejlbehæftet!!"
+
+#~ msgid "Updating software catalog"
+#~ msgstr "Opdaterer softwarekatalog"
+
+#~ msgid "View details"
+#~ msgstr "Se detaljer"
+
+#~ msgid "View list of available "
+#~ msgstr "Se liste over tilgængelige "
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Se liste over alle tilgængelige Common Interface udvidelser"
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Se liste over tilgængelige EPG udvidelser."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Se liste over tilgængelige Satelitudstyrsudvidelser."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Se liste over tilgængelige kommunikationsudvidelser."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "Se liste over tilgængelige standardopsætninger"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Se liste over tilgængelige skærm og brugergrænseflade udvidelser."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Se liste over tilgængelige multimedieudvidelser."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Se liste over tilgængelige netværksudvidelser"
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Se liste over tilgængelige optagelsesudvidelser"
+
+#~ msgid "View list of available skins"
+#~ msgstr "Se liste over tilgængelige grafiske Temaer"
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "Se liste over tilgængelige software-udvidelser"
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "Se liste over tilgængelige system-udvidelser"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "Du kan afbryde installation."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "Du kan afbryde afinstallation."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "Du kan installere dette plugin."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "Du kan fjerne dette plugin."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "Din %s %s er ikke forbundet ordentlig til Internettet. Kontroller venligst og prøv igen."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "Dit Image er forældet!\n"
+#~ "\n"
+#~ "Efter så lang tid er der risiko for at din %s %s ikke vil starte op\n"
+#~ "igen efter en online-opdatering, eller vil give fejl i kørende Image.\n"
+#~ "\n"
+#~ "En ny-flash vil øge stabiliteten\n"
+#~ "\n"
+#~ "En online-opdatering udføres på eget ansvar !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Ønsker du fortsat at opdatere ?"
+
+#~ msgid "extensions."
+#~ msgstr "Udvidelser."
+
+#~ msgid "packages selected."
+#~ msgstr "pakke valgt."
+
+#~ msgid "updates available."
+#~ msgstr "opdateringer tilgængelige."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "din %s %s er måske ubrugelig nu. Se venligst brugervejledningen for yderligere hjælp inden du genstarter din %s %s."
 
 #~ msgid "Additional Info"
 #~ msgstr "Yderligere Info"

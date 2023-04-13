@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2023-02-27 12:38+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1037,6 +1037,10 @@ msgstr[0] "%d paketti päivitetty."
 msgstr[1] "%d pakettia päivitetty."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sekunti"
 
@@ -1161,10 +1165,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s kaukosäädin (natiivi)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s:n ohjelmistoa koska päivityksiä on saatavilla."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s Kortit )"
 
@@ -1207,6 +1207,10 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1920,9 +1924,6 @@ msgstr ""
 "\n"
 "Kytketäänkö se pois päältä?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "Kuvaus kuvakkeiden tiloista ja toiminnoista."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2019,9 +2020,6 @@ msgstr "Todellinen tai näennäistallennus\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Keskeytä streami palvelu.\n"
-
-msgid "Aborting update progress"
-msgstr "Keskeytetään päivitys"
 
 msgid "About"
 msgstr "Tietoja"
@@ -2807,9 +2805,6 @@ msgstr "Australia"
 
 msgid "Austria"
 msgstr "Itävalta"
-
-msgid "Author: "
-msgstr "Tekijä: "
 
 msgid "Authoring mode"
 msgstr "Toimintatapa"
@@ -3782,6 +3777,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Peruuta"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr "Peruuta / Sulje ohjelmiston päivitys ikkuna"
 
@@ -3903,9 +3901,6 @@ msgstr "Aktivoi PiP"
 
 msgid "Catalan / Valencian"
 msgstr "Catalan / Valencian"
-
-msgid "Caution update not yet tested !!"
-msgstr "!! Huomio: päivitystä ei ole vielä testattu !!"
 
 msgid "Cayman Islands"
 msgstr "Cayman saaret"
@@ -4491,9 +4486,6 @@ msgstr "CI-määritykset"
 msgid "Common Setup Actions"
 msgstr "Yleiset asetukset"
 
-msgid "Communication"
-msgstr "Kommunikointi"
-
 msgid "Comoros"
 msgstr "Comoros"
 
@@ -4963,9 +4955,6 @@ msgstr "Sisältö"
 
 msgid "Continent"
 msgstr "Maanosa"
-
-msgid "Continue"
-msgstr "Jatka"
 
 msgid "Continue in background"
 msgstr "Jatka taustalla"
@@ -5671,9 +5660,6 @@ msgstr "Oletus tallennustapa"
 msgid "Default right column directory"
 msgstr "Oikean sarakkeen oletus hakemisto"
 
-msgid "Default settings"
-msgstr "Oletusasetukset"
-
 msgid "Default sort order for directories in the left column"
 msgstr "Oletusjärjestys hakemistoille vasemmassa sarakkeessa"
 
@@ -6170,9 +6156,6 @@ msgstr "Näytä >16:9 sisältö näin"
 msgid "Display Settings"
 msgstr "Näyttö Asetukset"
 
-msgid "Display and user interface"
-msgstr "Näyttö ja käyttöliittymä"
-
 msgid "Display context menu"
 msgstr "Näytä konteksti valikko"
 
@@ -6448,9 +6431,6 @@ msgstr "Haluatko palauttaa asetukset?"
 msgid "Do you want to resume this playback?"
 msgstr "Jatketaanko kohdasta, johon katselu viimeksi jäi?"
 
-msgid "Do you want to update your box?"
-msgstr "Haluatko päivittää vastaanottimesi?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Haluatko päivittää ohjelmapaketin:\n"
 
@@ -6499,10 +6479,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Valmis"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Valmis - Asennettu tai päivitetty %d pakettia"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -7739,9 +7715,6 @@ msgstr "Laajennukset"
 msgid "Extensions"
 msgstr "Laajennukset"
 
-msgid "Extensions Management"
-msgstr "Laajennuksien hallinta"
-
 msgid "Extensions/QuickMenu"
 msgstr "Laajennukset/pikavalikko"
 
@@ -8185,9 +8158,6 @@ msgstr "Tasainen näppäin näkymä kaukosäätimessä"
 msgid "Flat by position on remote"
 msgstr "Tasainen näkymä kaukosäätimessä"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Seuraavat tehtävät suoritetaan, kun painat OK!"
-
 msgid "Font size"
 msgstr "Tekstikoko"
 
@@ -8199,9 +8169,6 @@ msgstr "Ruoka/Viini"
 
 msgid "Football"
 msgstr "Jalkapallo"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "Lisätietoja: http://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Pakota LNB virta"
@@ -9549,9 +9516,6 @@ msgstr "Asenna laajennukset."
 msgid "Install lcd picons on"
 msgstr "Asenna etupaneeliin piconit tänne"
 
-msgid "Install or remove finished."
-msgstr "Asennus/poisto suoritettu."
-
 msgid "Install picons on"
 msgstr "Asenna kanavalogot"
 
@@ -10495,6 +10459,9 @@ msgstr "Hallitse laajennuksia/lisäosia"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Hallitse Alue/Kieli valinta asetuksia"
 
+msgid "Manage Plugins"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr "Hallitse ja tutki hakemistoja ja tiedostoja."
 
@@ -11206,9 +11173,6 @@ msgstr "Monitranskoodaus"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot Image tehty: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "Multimedia"
-
 msgid "Multiple service support"
 msgstr "Usean kanavan tuki"
 
@@ -11611,9 +11575,6 @@ msgstr "Ei viivettä"
 msgid "No demux available"
 msgstr "Ei demux saatavilla"
 
-msgid "No description available."
-msgstr "Kuvausta ei ole saatavilla."
-
 msgid "No displayable files on this medium found!"
 msgstr "Tiedostoja ei löytynyt!"
 
@@ -11646,9 +11607,6 @@ msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käyt
 msgid "No matching place names found"
 msgstr "Ei vastaavuutta löytynyt nimistä"
 
-msgid "No network connection available."
-msgstr "Ei verkkoyhteyttä."
-
 msgid "No network storage detected."
 msgstr "Verkkotallennusta ei havaittu."
 
@@ -11658,8 +11616,8 @@ msgstr "Verkkoja ei löytynyt"
 msgid "No of items switch (increase or reduced)"
 msgstr "Vaihtojen määrä (lisää tai vähennä)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Yhtään pakettia ei ole vielä päivitetty. Tarkista verkko ja yritä uudelleen."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "Kuvia ei ole saatavilla"
@@ -12065,9 +12023,6 @@ msgstr "Päivitä %s %s:n ohjelmisto online-päivityksen kautta."
 
 msgid "Only Flash Backup Image"
 msgstr "Päivitä vain varmuuskopio Image"
-
-msgid "Only extensions."
-msgstr "Vain laajennukset."
 
 msgid "Only free scan"
 msgstr "Hae vain salaamattomat"
@@ -12535,6 +12490,9 @@ msgstr "Etenemispalkki oikealla"
 
 msgid "Perform an on-line flash instead"
 msgstr "Suorita sen sijaan uuden ohjelmiston lataus internetistä"
+
+msgid "Perform install/remove of the selected item"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Poista kaikki roskakorin tallenteet pysyvästi?"
@@ -13074,21 +13032,11 @@ msgstr "Lisäosien selaus"
 msgid "Plugin Browser Settings"
 msgstr "Plugin lisäosien asetukset"
 
-msgid "Plugin Details"
-msgstr "Lisäosan lisätietoja"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr "Lisäosan tiedot: %s"
-
 msgid "Plugin Filter Settings"
 msgstr "Lisäosin Suodatus"
 
-msgid "Plugin Manager Activity Information"
-msgstr "Lisäosien hallinnan asennustiedot"
-
-msgid "Plugin Manager Help"
-msgstr "Lisäosien hallinnan ohje"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 msgid "Plugins"
 msgstr "Plugin lisäosat"
@@ -13394,9 +13342,6 @@ msgstr "Proc malli"
 
 msgid "Proceed with the update"
 msgstr "Jatka päivitystä"
-
-msgid "Process"
-msgstr "Suorita"
 
 msgid "Processor information"
 msgstr "Prosessorin tiedot"
@@ -14725,9 +14670,6 @@ msgstr "Satelliittilautasen asetukset"
 msgid "Satellite configuration mode"
 msgstr "Satelliitin määritystila"
 
-msgid "Satellite equipment"
-msgstr "Satelliittilaitteet"
-
 msgid "Satellite equipment setup"
 msgstr "Satelliittilaitteiden asetukset"
 
@@ -14875,6 +14817,9 @@ msgstr "Hae langattomia verkkoja"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Hae WLAN-tukiasemia ja kytkeydy niihin valittua WLAN-laitetta käyttäen."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Haetaan %s..."
@@ -14972,12 +14917,6 @@ msgstr "Etsitään"
 
 msgid "Searching east ..."
 msgstr "Etsitään itään..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Haetaan saatavilla olevia päivityksiä. Odota..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Etsitään asennettuja tai poistettuja ohjelmapaketteja. Odota..."
 
 msgid "Searching west ..."
 msgstr "Etsitään länteen..."
@@ -17231,9 +17170,6 @@ msgstr "Teeman valinta"
 msgid "SkinSelector"
 msgstr "Teeman valinta"
 
-msgid "Skins"
-msgstr "Teemat"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Ohita internet yhteyden tarkistus (poistaa automaattisen pakettien asennuksen käytöstä)"
 
@@ -17437,9 +17373,6 @@ msgstr "Softcam Asetukset"
 msgid "Softcams"
 msgstr "softcammit"
 
-msgid "Software"
-msgstr "Valmistaja"
-
 msgid "Software Management"
 msgstr "Ohjelmiston hallinta"
 
@@ -17537,9 +17470,6 @@ msgstr "%s ei ole asennettu!"
 
 msgid "Sorry, no backups found!"
 msgstr "Varmuuskopioita ei löydy!"
-
-msgid "Sorry, no details available!"
-msgstr "Lisätietoja ei saatavilla!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Valitettavasti mitään fyysisiä laitteita, jotka tukevat SWAP liitäntää, ei ole liitetty. Swapfile tiedostoa ei voi luoda verkko- tai fat32-tiedostojärjestelmiin"
@@ -18778,16 +18708,6 @@ msgstr ""
 "\n"
 "Tehdäänkö se nyt vai jatketaanko ajastinta?"
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Ohjelmistohallinnan lisäosaa ei ole asennettu!\n"
-"Asenna se."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Päivitysten tilaa ei voida tarkistaa, koska sivulle http://www.opena.tv ei saada yhteyttä"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Aika kerrotaan nykyisellä toistolaskurilla."
 
@@ -18836,12 +18756,6 @@ msgstr "Avustaja voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida aset
 
 msgid "The wizard is finished now."
 msgstr "Avustaja on lopettanut. Paina OK."
-
-msgid "There are at least "
-msgstr "Vähintään "
-
-msgid "There are currently no outstanding actions."
-msgstr "Ei suorittamattomia tehtäviä."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -18920,9 +18834,6 @@ msgstr "Näytä valinta 'laajennukset' lisäosien latauksissa"
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Näytä valinta 'kernel modulit' lisäosien latauksissa"
-
-msgid "This allows you to show languages in downloads"
-msgstr "Näytä valinta 'kielet' lisäosien latauksissa"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Näytä valinta LCD näytön teemat lisäosien latauksissa"
@@ -19177,18 +19088,6 @@ msgstr "Tämä asetus määrittää kuvan terävyyden, käytetään kun kuva ska
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Tämä lisäosa voi määrittää, alkaako ohjelma aikaisemmin vai kestääkö se pidempään. Kanavan on toimitettava luotettavat tiedot."
-
-msgid "This plugin is installed."
-msgstr "Tämä lisäosa on asennettu."
-
-msgid "This plugin is not installed."
-msgstr "Tätä lisäosaa ei ole asennettu."
-
-msgid "This plugin will be installed."
-msgstr "Tämä lisäosa asennetaan."
-
-msgid "This plugin will be removed."
-msgstr "Tämä lisäosa poistetaan."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "Tämä asettaa etuliitteen jokaiselle debug lokin riville. Käynnistysaika on sekuntien määrä siitä, kun %s %s viimeksi käynnistettiin."
@@ -19956,12 +19855,6 @@ msgstr "Ei määritelty"
 msgid "Undetermined"
 msgstr "Määrittämätön"
 
-msgid "Undo install"
-msgstr "Kumoa asennus"
-
-msgid "Undo uninstall"
-msgstr "Kumoa as.poisto"
-
 msgid "Unencrypted"
 msgstr "Salaamaton"
 
@@ -19982,9 +19875,6 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable matriisi"
-
-msgid "Uninstall"
-msgstr "Poista asennus"
 
 msgid "United Arab Emirates"
 msgstr "United Arab Emirates"
@@ -20103,9 +19993,6 @@ msgstr "Ylös/Alas näppäimet myös 'kaikki ylös/alas'"
 msgid "Update"
 msgstr "Päivitä"
 
-msgid "Update at your own risk"
-msgstr "Päivitä omalla vastuullasi"
-
 msgid "Update completed."
 msgstr "Päivitys valmis."
 
@@ -20118,17 +20005,11 @@ msgstr "Päivitä luettelossa olevien tapahtumien viive. Vieritys käyttäytyy n
 msgid "Update failed!"
 msgstr "Päivitys epäonnistui!"
 
-msgid "Update feed not available."
-msgstr "Päivityslähde ei ole saatavilla."
-
 msgid "Update finished!"
 msgstr "Päivitys suoritettu!"
 
 msgid "Update interval (in seconds)"
 msgstr "Päivitysväli (sekuntia)"
-
-msgid "Update is reported as faulty !!"
-msgstr "Päivityksen ilmoitetaan olevan viallinen !!"
 
 msgid ""
 "Update succeeded!\n"
@@ -20158,9 +20039,6 @@ msgstr "Päivitetään"
 msgid "Updating mount locations."
 msgstr "Päivitetään Liitosten paikkaa."
 
-msgid "Updating software catalog"
-msgstr "Päivitetään laajennuksien/lisäosien luetteloa"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr "Päivitä Ohjelmisto & palauta kaikki"
 
@@ -20179,9 +20057,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Päivitä järjestelmä"
-
-msgid "Upgrading"
-msgstr "Päivittäminen"
 
 msgid "Uphops +"
 msgstr "Ylöshyppy +"
@@ -20767,48 +20642,6 @@ msgstr "Näytä tiedosto"
 
 msgid "View Rass interactive..."
 msgstr "Näytä Rass interactive..."
-
-msgid "View details"
-msgstr "Lisätiedot"
-
-msgid "View list of available "
-msgstr "Näytä saatavilla olevat "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Näytä saatavilla olevat CI-laajennukset"
-
-msgid "View list of available EPG extensions."
-msgstr "Näytä saatavilla olevat EPG-laajennukset."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Näytä saatavilla olevat Satelliittilaitteistojen laajennukset."
-
-msgid "View list of available communication extensions."
-msgstr "Näytä saatavilla olevat Tietoliikennelaajennukset."
-
-msgid "View list of available default settings"
-msgstr "Näytä saatavilla olevat oletusasetukset"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Näytä saatavilla olevat näyttö- ja käyttöliittymälaajennukset."
-
-msgid "View list of available multimedia extensions."
-msgstr "Näytä saatavilla olevat multimedia-laajennukset."
-
-msgid "View list of available networking extensions"
-msgstr "Näytä saatavilla olevat verkkolaajennukset"
-
-msgid "View list of available recording extensions"
-msgstr "Näytä saatavilla olevat tallennuslaajennukset"
-
-msgid "View list of available skins"
-msgstr "Näytä saatavilla olevat teemat"
-
-msgid "View list of available software extensions"
-msgstr "Näytä saatavilla olevat ohjelmistolaajennukset"
-
-msgid "View list of available system extensions"
-msgstr "Näytä saatavilla olevat järjestelmälaajennukset"
 
 msgid "View mode"
 msgstr "Näyttötila"
@@ -21604,26 +21437,14 @@ msgstr "Voit valita MiniTV:n kuvaruutunäytöllä tai ilman"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Voit valita PiP:n kuvaruutunäytöllä tai ilman"
 
-msgid "You can cancel the installation."
-msgstr "Voi keskeyttää asennuksen."
-
-msgid "You can cancel the removal."
-msgstr "Voit keskeyttää poiston."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Voit jatkaa TV:n katselua yms. kun tehtävää suoritetaan."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Voit valita listaan aika- tai aakkosjärjestyksen."
 
-msgid "You can install this plugin."
-msgstr "Voit asentaa tämän lisäosan."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Voit polttaa vain Dreambox-tallenteita!"
-
-msgid "You can remove this plugin."
-msgstr "Voit poistaa tämän lisäosan."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Voit ohittaa tämän toiminnon ja sammuttaa television, kun herätät vastaanottimen valmiustilasta ja vaihdat heti takaisin valmiustilaan."
@@ -21750,10 +21571,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr "%s %s sammutetaan. Odota..."
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "%s %s ei ole kytketty internettiin, tarkista verkkoasetukset ja yritä uudelleen."
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -21876,32 +21693,6 @@ msgid ""
 msgstr ""
 "Etupaneeli näytön ohjelmisto päivitetään\n"
 "Tämä saattaa kestää muutaman minuutin"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Ohjelmistosi on vanhentunut!\n"
-"\n"
-"Tällaisen pitkän ajan kuluttua on olemassa vaara, että %s %s ei käynnisty\n"
-"internet päivityksen jälkeen tai näyttää häiriöitä käynnissä ollessaan.\n"
-"\n"
-"Uusi päivitys lisää vastaanottimesi vakautta\n"
-"\n"
-"Internet päivitys tehdään omalla vastuullasi !!\n"
-"\n"
-"\n"
-"Haluatko silti päivittää?"
 
 msgid "Your network configuration has been activated."
 msgstr "Verkkoasetukset on aktivoitu."
@@ -22468,9 +22259,6 @@ msgstr "poistu verkkosovittimen asetusvalikosta"
 msgid "experimental film/video"
 msgstr "kokeellinen elokuva/video"
 
-msgid "extensions."
-msgstr "laajennusta."
-
 msgid "externally loopthrough to"
 msgstr "läpisyöttö"
 
@@ -22875,9 +22663,6 @@ msgstr "vain HD"
 
 msgid "original language"
 msgstr "alkuperäinen kieli"
-
-msgid "packages selected."
-msgstr "pakettia valittu."
 
 msgid "pass"
 msgstr "hyväksytty"
@@ -23292,9 +23077,6 @@ msgstr "valmiustilaan/uudelleenkäynnistykseen asti"
 msgid "update"
 msgstr "päivitä"
 
-msgid "updates available."
-msgstr "päivitystä saatavilla."
-
 msgid "use best / controlled by HDMI"
 msgstr "käytä parasta / HDMI:n hallinnoima"
 
@@ -23364,12 +23146,256 @@ msgstr "keltainen"
 msgid "yes (keep feeds)"
 msgstr "kyllä (pidä syötteet)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita ennen kuin uudelleen käynnistät %s %s:n."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "%s %s:n ohjelmistoa koska päivityksiä on saatavilla."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "Kuvaus kuvakkeiden tiloista ja toiminnoista."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Keskeytetään päivitys"
+
+#~ msgid "Author: "
+#~ msgstr "Tekijä: "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "!! Huomio: päivitystä ei ole vielä testattu !!"
+
+#~ msgid "Communication"
+#~ msgstr "Kommunikointi"
+
+#~ msgid "Continue"
+#~ msgstr "Jatka"
+
+#~ msgid "Default settings"
+#~ msgstr "Oletusasetukset"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Näyttö ja käyttöliittymä"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "Haluatko päivittää vastaanottimesi?"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Valmis - Asennettu tai päivitetty %d pakettia"
+
+#~ msgid "Extensions Management"
+#~ msgstr "Laajennuksien hallinta"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "Seuraavat tehtävät suoritetaan, kun painat OK!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "Lisätietoja: http://www.opena.tv"
+
+#~ msgid "Install or remove finished."
+#~ msgstr "Asennus/poisto suoritettu."
+
+#~ msgid "Multimedia"
+#~ msgstr "Multimedia"
+
+#~ msgid "No description available."
+#~ msgstr "Kuvausta ei ole saatavilla."
+
+#~ msgid "No network connection available."
+#~ msgstr "Ei verkkoyhteyttä."
+
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Yhtään pakettia ei ole vielä päivitetty. Tarkista verkko ja yritä uudelleen."
+
+#~ msgid "Only extensions."
+#~ msgstr "Vain laajennukset."
+
+#~ msgid "Plugin Details"
+#~ msgstr "Lisäosan lisätietoja"
+
+#, python-format
+#~ msgid "Plugin Details: %s"
+#~ msgstr "Lisäosan tiedot: %s"
+
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "Lisäosien hallinnan asennustiedot"
+
+#~ msgid "Plugin Manager Help"
+#~ msgstr "Lisäosien hallinnan ohje"
+
+#~ msgid "Process"
+#~ msgstr "Suorita"
+
+#~ msgid "Satellite equipment"
+#~ msgstr "Satelliittilaitteet"
+
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "Haetaan saatavilla olevia päivityksiä. Odota..."
+
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "Etsitään asennettuja tai poistettuja ohjelmapaketteja. Odota..."
+
+#~ msgid "Skins"
+#~ msgstr "Teemat"
+
+#~ msgid "Software"
+#~ msgstr "Valmistaja"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "Lisätietoja ei saatavilla!"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Ohjelmistohallinnan lisäosaa ei ole asennettu!\n"
+#~ "Asenna se."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "Päivitysten tilaa ei voida tarkistaa, koska sivulle http://www.opena.tv ei saada yhteyttä"
+
+#~ msgid "There are at least "
+#~ msgstr "Vähintään "
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "Ei suorittamattomia tehtäviä."
+
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "Näytä valinta 'kielet' lisäosien latauksissa"
+
+#~ msgid "This plugin is installed."
+#~ msgstr "Tämä lisäosa on asennettu."
+
+#~ msgid "This plugin is not installed."
+#~ msgstr "Tätä lisäosaa ei ole asennettu."
+
+#~ msgid "This plugin will be installed."
+#~ msgstr "Tämä lisäosa asennetaan."
+
+#~ msgid "This plugin will be removed."
+#~ msgstr "Tämä lisäosa poistetaan."
+
+#~ msgid "Undo install"
+#~ msgstr "Kumoa asennus"
+
+#~ msgid "Undo uninstall"
+#~ msgstr "Kumoa as.poisto"
+
+#~ msgid "Uninstall"
+#~ msgstr "Poista asennus"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "Päivitä omalla vastuullasi"
+
+#~ msgid "Update feed not available."
+#~ msgstr "Päivityslähde ei ole saatavilla."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "Päivityksen ilmoitetaan olevan viallinen !!"
+
+#~ msgid "Updating software catalog"
+#~ msgstr "Päivitetään laajennuksien/lisäosien luetteloa"
+
+#~ msgid "Upgrading"
+#~ msgstr "Päivittäminen"
+
+#~ msgid "View details"
+#~ msgstr "Lisätiedot"
+
+#~ msgid "View list of available "
+#~ msgstr "Näytä saatavilla olevat "
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Näytä saatavilla olevat CI-laajennukset"
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Näytä saatavilla olevat EPG-laajennukset."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Näytä saatavilla olevat Satelliittilaitteistojen laajennukset."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Näytä saatavilla olevat Tietoliikennelaajennukset."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "Näytä saatavilla olevat oletusasetukset"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Näytä saatavilla olevat näyttö- ja käyttöliittymälaajennukset."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Näytä saatavilla olevat multimedia-laajennukset."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Näytä saatavilla olevat verkkolaajennukset"
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Näytä saatavilla olevat tallennuslaajennukset"
+
+#~ msgid "View list of available skins"
+#~ msgstr "Näytä saatavilla olevat teemat"
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "Näytä saatavilla olevat ohjelmistolaajennukset"
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "Näytä saatavilla olevat järjestelmälaajennukset"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "Voi keskeyttää asennuksen."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "Voit keskeyttää poiston."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "Voit asentaa tämän lisäosan."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "Voit poistaa tämän lisäosan."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "%s %s ei ole kytketty internettiin, tarkista verkkoasetukset ja yritä uudelleen."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "Ohjelmistosi on vanhentunut!\n"
+#~ "\n"
+#~ "Tällaisen pitkän ajan kuluttua on olemassa vaara, että %s %s ei käynnisty\n"
+#~ "internet päivityksen jälkeen tai näyttää häiriöitä käynnissä ollessaan.\n"
+#~ "\n"
+#~ "Uusi päivitys lisää vastaanottimesi vakautta\n"
+#~ "\n"
+#~ "Internet päivitys tehdään omalla vastuullasi !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Haluatko silti päivittää?"
+
+#~ msgid "extensions."
+#~ msgstr "laajennusta."
+
+#~ msgid "packages selected."
+#~ msgstr "pakettia valittu."
+
+#~ msgid "updates available."
+#~ msgstr "päivitystä saatavilla."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita ennen kuin uudelleen käynnistät %s %s:n."
 
 #~ msgid "Additional Info"
 #~ msgstr "Lisätiedot"

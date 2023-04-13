@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 09:08+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -1155,6 +1155,10 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
+#, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "%d sec"
@@ -1297,11 +1301,6 @@ msgstr "Uporabite daljinski upravljalnik"
 
 #
 #, fuzzy, python-format
-msgid "%s %s software because updates are available."
-msgstr "Posodobitev ni na voljo."
-
-#
-#, fuzzy, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s (%s)\n"
 
@@ -1348,6 +1347,10 @@ msgstr ""
 
 #, python-format
 msgid "%s MHz"
+msgstr ""
+
+#, python-format
+msgid "%s Packages found"
 msgstr ""
 
 #
@@ -2132,10 +2135,6 @@ msgstr ""
 "Najden je bil še en vmesnik.\n"
 "Ga želite izključiti?"
 
-#
-msgid "A small overview of the available icon states and actions."
-msgstr ""
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2238,9 +2237,6 @@ msgid "Aborted a pseudo recording.\n"
 msgstr ""
 
 msgid "Aborted a streaming service.\n"
-msgstr ""
-
-msgid "Aborting update progress"
 msgstr ""
 
 #
@@ -3126,10 +3122,6 @@ msgstr "Italjansko"
 
 msgid "Austria"
 msgstr ""
-
-#
-msgid "Author: "
-msgstr "Avtor:"
 
 #
 msgid "Authoring mode"
@@ -4181,6 +4173,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Izhod"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
@@ -4318,9 +4313,6 @@ msgid "Cascade PiP"
 msgstr ""
 
 msgid "Catalan / Valencian"
-msgstr ""
-
-msgid "Caution update not yet tested !!"
 msgstr ""
 
 msgid "Cayman Islands"
@@ -4981,10 +4973,6 @@ msgstr ""
 msgid "Common Setup Actions"
 msgstr "Komunikacija"
 
-#
-msgid "Communication"
-msgstr "Komunikacija"
-
 msgid "Comoros"
 msgstr ""
 
@@ -5486,9 +5474,6 @@ msgstr ""
 
 msgid "Continent"
 msgstr ""
-
-msgid "Continue"
-msgstr "Naprej"
 
 msgid "Continue in background"
 msgstr ""
@@ -6282,11 +6267,6 @@ msgstr "Vrsta snemanja"
 msgid "Default right column directory"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Default settings"
-msgstr "Privzete nastavitve"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -6836,9 +6816,6 @@ msgstr "Prikaz >16:9 razmerja slike"
 msgid "Display Settings"
 msgstr ""
 
-msgid "Display and user interface"
-msgstr ""
-
 msgid "Display context menu"
 msgstr ""
 
@@ -7132,9 +7109,6 @@ msgstr "Želite povrniti vaše nastavitve?"
 msgid "Do you want to resume this playback?"
 msgstr "Želite nadaljevati s predvajanjem?"
 
-msgid "Do you want to update your box?"
-msgstr ""
-
 #
 msgid "Do you want to upgrade the package:\n"
 msgstr "Želite nadgraditi paket:\n"
@@ -7182,10 +7156,6 @@ msgid ""
 msgstr ""
 
 msgid "Done"
-msgstr ""
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
 msgstr ""
 
 #
@@ -8529,10 +8499,6 @@ msgstr "Dodatki"
 msgid "Extensions"
 msgstr "Dodatki"
 
-#
-msgid "Extensions Management"
-msgstr "Upravljanje vtičnikov"
-
 msgid "Extensions/QuickMenu"
 msgstr ""
 
@@ -9016,10 +8982,6 @@ msgid "Flat by position on remote"
 msgstr "Nadaljevanje iz položaja %s"
 
 #
-msgid "Following tasks will be done after you press OK!"
-msgstr "Sledeče naloge bodo opravljene, ko pritisnete OK!"
-
-#
 #, fuzzy
 msgid "Font size"
 msgstr "Informacije o kanalu"
@@ -9031,9 +8993,6 @@ msgid "Food/Wine"
 msgstr ""
 
 msgid "Football"
-msgstr ""
-
-msgid "For more information see https://www.opena.tv"
 msgstr ""
 
 msgid "Force LNB Power"
@@ -10517,10 +10476,6 @@ msgstr "Namestite razširitve."
 msgid "Install lcd picons on"
 msgstr ""
 
-#
-msgid "Install or remove finished."
-msgstr "Namestite ali odstranite dokončano."
-
 msgid "Install picons on"
 msgstr "Namestitev piconsev na"
 
@@ -11607,6 +11562,9 @@ msgstr "Upravljanje vtičnikov"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Nastavitve zbirke"
 
+msgid "Manage Plugins"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr ""
 
@@ -12422,10 +12380,6 @@ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
 #
-msgid "Multimedia"
-msgstr "Multimedija"
-
-#
 msgid "Multiple service support"
 msgstr "Podpora več storitvam"
 
@@ -12877,10 +12831,6 @@ msgid "No demux available"
 msgstr "Opis ni na voljo."
 
 #
-msgid "No description available."
-msgstr "Opis ni na voljo."
-
-#
 msgid "No displayable files on this medium found!"
 msgstr "Na pogonu ni datotek, ki jih lahko prikažem!"
 
@@ -12920,10 +12870,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Nobeno omrežje ni najdeno"
 
-#
-msgid "No network connection available."
-msgstr "Mrežna povezava ni na voljo."
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -12934,7 +12880,7 @@ msgstr "Nobeno omrežje ni najdeno"
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
+msgid "No packages found."
 msgstr ""
 
 msgid "No pictures available"
@@ -13387,10 +13333,6 @@ msgstr ""
 
 msgid "Only Flash Backup Image"
 msgstr ""
-
-#
-msgid "Only extensions."
-msgstr "Samo razširitve."
 
 #
 #, fuzzy
@@ -13907,6 +13849,9 @@ msgid "Percentage/Progress bar right"
 msgstr "Napredek - majhno"
 
 msgid "Perform an on-line flash instead"
+msgstr ""
+
+msgid "Perform install/remove of the selected item"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -14494,22 +14439,10 @@ msgstr "Seznam vtičnikov"
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Details"
-msgstr ""
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr ""
 
-#
-msgid "Plugin Manager Activity Information"
-msgstr ""
-
-#
-msgid "Plugin Manager Help"
+msgid "Plugin Manager Actions"
 msgstr ""
 
 #
@@ -14876,10 +14809,6 @@ msgstr ""
 
 msgid "Proceed with the update"
 msgstr ""
-
-#
-msgid "Process"
-msgstr "Proces"
 
 msgid "Processor information"
 msgstr ""
@@ -16386,10 +16315,6 @@ msgid "Satellite configuration mode"
 msgstr "Nastavljam..."
 
 #
-msgid "Satellite equipment"
-msgstr "Satelitska oprema"
-
-#
 #, fuzzy
 msgid "Satellite equipment setup"
 msgstr "Nastavitve satelitske opreme"
@@ -16562,6 +16487,9 @@ msgstr "Preverjanje brezžičnih omrežij"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "V vašem omrežju poiščite brezzične dostopne točke in se povežite na želeno točko."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Pregledovanje %s..."
@@ -16671,14 +16599,6 @@ msgstr "Iskanje"
 #, fuzzy
 msgid "Searching east ..."
 msgstr "Iskanje Vzhod-a"
-
-#
-msgid "Searching for available updates. Please wait..."
-msgstr "Iskanje posodobitev... Prosim počakajte!"
-
-#
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Iskanje na novo nameščenih ali odstranjenih paketkov... Prosim počakajte!"
 
 #
 #, fuzzy
@@ -19147,10 +19067,6 @@ msgstr ""
 msgid "SkinSelector"
 msgstr ""
 
-#
-msgid "Skins"
-msgstr "Predloge"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr ""
 
@@ -19375,10 +19291,6 @@ msgid "Softcams"
 msgstr ""
 
 #
-msgid "Software"
-msgstr "Program. oprema"
-
-#
 msgid "Software Management"
 msgstr "Posodobitev sprejemnika"
 
@@ -19475,9 +19387,6 @@ msgid "Sorry, %s has not been installed!"
 msgstr ""
 
 msgid "Sorry, no backups found!"
-msgstr ""
-
-msgid "Sorry, no details available!"
 msgstr ""
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
@@ -20818,16 +20727,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-#
-#, fuzzy
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr "Vtičnik Softwaremanagement ni nameščen. Prosim, da ga namestite!"
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr ""
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
@@ -20876,14 +20775,6 @@ msgstr "Čarovnik bo kreiral varnostno kopijo vaših trenutnih nastavitev. Želi
 #
 msgid "The wizard is finished now."
 msgstr "Čarovnik je končan."
-
-#
-msgid "There are at least "
-msgstr "Obstaja vsaj"
-
-#
-msgid "There are currently no outstanding actions."
-msgstr ""
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -20964,9 +20855,6 @@ msgid "This allows you to show extensions modules in downloads"
 msgstr ""
 
 msgid "This allows you to show kernel modules in downloads"
-msgstr ""
-
-msgid "This allows you to show languages in downloads"
 msgstr ""
 
 msgid "This allows you to show lcd skins in downloads"
@@ -21220,22 +21108,6 @@ msgstr ""
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
-
-#
-msgid "This plugin is installed."
-msgstr "Ta vtičnik je nameščen."
-
-#
-msgid "This plugin is not installed."
-msgstr "Ta vtičnik ni nameščen."
-
-#
-msgid "This plugin will be installed."
-msgstr "Ta vtičnik bo nameščen."
-
-#
-msgid "This plugin will be removed."
-msgstr "Ta vtičnik bo odstranjen."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
@@ -22104,14 +21976,6 @@ msgstr "Določeno s strani uporabnika"
 msgid "Undetermined"
 msgstr ""
 
-#
-msgid "Undo install"
-msgstr ""
-
-#
-msgid "Undo uninstall"
-msgstr ""
-
 msgid "Unencrypted"
 msgstr ""
 
@@ -22135,10 +21999,6 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr ""
-
-#
-msgid "Uninstall"
-msgstr "Odstranitev"
 
 msgid "United Arab Emirates"
 msgstr ""
@@ -22266,9 +22126,6 @@ msgstr ""
 msgid "Update"
 msgstr "Posodobi"
 
-msgid "Update at your own risk"
-msgstr ""
-
 msgid "Update completed."
 msgstr ""
 
@@ -22284,18 +22141,11 @@ msgid "Update failed!"
 msgstr "Zapisovanje neuspešno!"
 
 #
-msgid "Update feed not available."
-msgstr "Server je trenutno nedosegljiv."
-
-#
 #, fuzzy
 msgid "Update finished!"
 msgstr "Nadgradnja končana."
 
 msgid "Update interval (in seconds)"
-msgstr ""
-
-msgid "Update is reported as faulty !!"
 msgstr ""
 
 msgid ""
@@ -22325,10 +22175,6 @@ msgstr "Nadgrajujem"
 msgid "Updating mount locations."
 msgstr ""
 
-#
-msgid "Updating software catalog"
-msgstr "Posodabljanje kataloga programov..."
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -22347,9 +22193,6 @@ msgstr ""
 "Nadgradnja lahko traja več minut."
 
 msgid "Upgrade with GUI"
-msgstr ""
-
-msgid "Upgrading"
 msgstr ""
 
 msgid "Uphops +"
@@ -22953,63 +22796,6 @@ msgstr ""
 #
 msgid "View Rass interactive..."
 msgstr "Glejte Rass interaktivno"
-
-#
-msgid "View details"
-msgstr "Ogled podrobnosti"
-
-#
-msgid "View list of available "
-msgstr "Ogled seznama razpoložljivih"
-
-#
-msgid "View list of available CommonInterface extensions"
-msgstr "Seznam obstoječih CommonInterface vtičnikov."
-
-#
-msgid "View list of available EPG extensions."
-msgstr "Ogled seznama obstoječih EPG vtičnikov."
-
-#
-msgid "View list of available Satellite equipment extensions."
-msgstr "Ogled seznama obstoječih Satellite equipment vtičnikov."
-
-#
-msgid "View list of available communication extensions."
-msgstr "Ogled seznama obstoječih komunikacijskih vtičnikov."
-
-#
-msgid "View list of available default settings"
-msgstr "Ogled seznama obstoječih osnovnih nastavitev."
-
-#
-#, fuzzy
-msgid "View list of available display and user interface extensions."
-msgstr "Ogled seznama obstoječih Display in UserInterface vtičnikov."
-
-#
-msgid "View list of available multimedia extensions."
-msgstr "Ogled seznama obstoječih multimedijskih vtičnikov."
-
-#
-msgid "View list of available networking extensions"
-msgstr "Ogled seznama obstoječih mrežnih vtičnikov."
-
-#
-msgid "View list of available recording extensions"
-msgstr "Ogled seznama vtičnikov za snemanje."
-
-#
-msgid "View list of available skins"
-msgstr "Ogled seznama razpoložljivih predlog"
-
-#
-msgid "View list of available software extensions"
-msgstr "Ogled seznama software vtičnikov."
-
-#
-msgid "View list of available system extensions"
-msgstr "Ogeld seznama obstoječih sistemskih vtičnikov."
 
 msgid "View mode"
 msgstr ""
@@ -23856,30 +23642,14 @@ msgstr ""
 msgid "You can Display PiP with or without OSD Menu"
 msgstr ""
 
-#
-msgid "You can cancel the installation."
-msgstr "Lahko prekličete namestitev."
-
-#
-msgid "You can cancel the removal."
-msgstr "Lahko prekličete izbris."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Med izvajanjem trenutne naloge, lahko nadaljujete z gledanjem trenutnega dogodka."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr ""
 
-#
-msgid "You can install this plugin."
-msgstr "Izbrani vtičnik lahko izbrišete."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr ""
-
-#
-msgid "You can remove this plugin."
-msgstr "Ta vtičnik lahko izbrišete."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr ""
@@ -24005,10 +23775,6 @@ msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Poteka postopek ugašanja sprejemnika... Prosim počakajte!"
 
 #, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr ""
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -24117,21 +23883,6 @@ msgstr ""
 msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
 msgstr ""
 
 #
@@ -24762,9 +24513,6 @@ msgstr "izhod iz nastavitvenega menija mrežnega vmesnika"
 msgid "experimental film/video"
 msgstr ""
 
-msgid "extensions."
-msgstr "razšititve."
-
 msgid "externally loopthrough to"
 msgstr ""
 
@@ -25233,9 +24981,6 @@ msgstr ""
 
 msgid "original language"
 msgstr ""
-
-msgid "packages selected."
-msgstr "izbranih paketov."
 
 #
 msgid "pass"
@@ -25707,9 +25452,6 @@ msgstr "do stanja pripravljenosti/resetiranja"
 msgid "update"
 msgstr "Posodobi"
 
-msgid "updates available."
-msgstr "nadgradenj na voljo."
-
 msgid "use best / controlled by HDMI"
 msgstr ""
 
@@ -25791,489 +25533,5 @@ msgstr "rumena"
 msgid "yes (keep feeds)"
 msgstr "Da (obdrži feed-e)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr ""
-
 msgid "®"
 msgstr ""
-
-#
-#~ msgid "Send"
-#~ msgstr "Pošlji"
-
-#
-#, fuzzy, python-format
-#~ msgid "%s (%s"
-#~ msgstr "%s (%s)\n"
-
-#
-#, fuzzy
-#~ msgid "(Selectmode)"
-#~ msgstr "Izberite posnetek"
-
-#
-#, fuzzy
-#~ msgid "?"
-#~ msgstr "??"
-
-#
-#, fuzzy
-#~ msgid "Accessed:"
-#~ msgstr "Dostopna točka:"
-
-#, fuzzy
-#~ msgid "Copy file"
-#~ msgstr "Dolga imena datotek"
-
-#, fuzzy
-#~ msgid "Copy folder"
-#~ msgstr "Dolga imena datotek"
-
-#
-#, fuzzy
-#~ msgid "Create directory/folder"
-#~ msgstr "Ustvarite mapo"
-
-#
-#, fuzzy
-#~ msgid "Default directory sorting"
-#~ msgstr "Privzete nastavitve"
-
-#, fuzzy
-#~ msgid "Default file sorting left"
-#~ msgstr "Vrsta snemanja"
-
-#, fuzzy
-#~ msgid "Default file sorting right"
-#~ msgstr "Vrsta snemanja"
-
-#
-#, fuzzy
-#~ msgid "Default folder"
-#~ msgstr "Privzeto"
-
-#, fuzzy, python-format
-#~ msgid "Delete %d elements"
-#~ msgstr "Izbrisani"
-
-#
-#, fuzzy
-#~ msgid "Delete 1 element"
-#~ msgstr "Izbris vnosa"
-
-#
-#, fuzzy
-#~ msgid "Delete folder"
-#~ msgstr "izbris datoteke"
-
-#
-#, fuzzy
-#~ msgid "Do you want to view or run the script?\n"
-#~ msgstr "Želite odstraniti ta paket:\n"
-
-#
-#, fuzzy
-#~ msgid "Edit line "
-#~ msgstr "Spremenite naslov"
-
-#
-#, fuzzy
-#~ msgid "Edit position is the line end"
-#~ msgstr "Pojdi na"
-
-#
-#, fuzzy
-#~ msgid "Enter multi-file selection mode"
-#~ msgstr "Zapri izbirnik imena"
-
-#
-#, fuzzy, python-format
-#~ msgid ""
-#~ "Error creating directory %s:\n"
-#~ "%s"
-#~ msgstr "Ustvarjanje mape %s ni uspelo."
-
-#
-#, fuzzy
-#~ msgid "Error..."
-#~ msgstr "Napaka"
-
-#
-#, fuzzy, python-format
-#~ msgid "File not found: %s"
-#~ msgstr "Izbira video načina."
-
-#
-#, fuzzy
-#~ msgid "Go to end of file"
-#~ msgstr "skoči na konec seznama"
-
-#
-#, fuzzy
-#~ msgid "Go to parent directory"
-#~ msgstr "Prvotna mapa"
-
-#
-#, fuzzy
-#~ msgid "Go to start of file"
-#~ msgstr "se bo zagnalo"
-
-#
-#, fuzzy
-#~ msgid "Installing Plugin ..."
-#~ msgstr "Nameščam..."
-
-#
-#, fuzzy
-#~ msgid "Link target:"
-#~ msgstr "Kvaliteta povezave:"
-
-#
-#, fuzzy
-#~ msgid "Links:"
-#~ msgstr "Stanje:"
-
-#
-#, fuzzy, python-format
-#~ msgid "Move %d elements"
-#~ msgstr "Premikanje proti vzhodu"
-
-#
-#, fuzzy
-#~ msgid "Move 1 element"
-#~ msgstr "Premikanje proti vzhodu"
-
-#
-#, fuzzy
-#~ msgid "Move down list"
-#~ msgstr "Premikajte proti zahodu"
-
-#, fuzzy
-#~ msgid "Move file"
-#~ msgstr "Dolga imena datotek"
-
-#
-#, fuzzy
-#~ msgid "Move file/directory to target directory"
-#~ msgstr "Premaknite se v drugo mapo"
-
-#
-#, fuzzy
-#~ msgid "Move files/directories to target directory"
-#~ msgstr "Premaknite se v drugo mapo"
-
-#
-#, fuzzy
-#~ msgid "Move folder"
-#~ msgstr "[način premeščanja]"
-
-#
-#, fuzzy
-#~ msgid "Move up list"
-#~ msgstr "Premikanje proti vzhodu"
-
-#
-#, fuzzy
-#~ msgid "My extension"
-#~ msgstr "Samo razširitve."
-
-#
-#, fuzzy
-#~ msgid "Name reverse"
-#~ msgstr "Imenski strežnik"
-
-#
-#, fuzzy
-#~ msgid "No files found."
-#~ msgstr "Nobeno omrežje ni najdeno"
-
-#, fuzzy
-#~ msgid "On device:"
-#~ msgstr "Trenutna naprava:"
-
-#
-#, fuzzy
-#~ msgid "Page up list"
-#~ msgstr "shranitev seznama za predvajanje"
-
-#
-#, fuzzy
-#~ msgid "Parent directory"
-#~ msgstr "Prvotna mapa"
-
-#
-#, fuzzy
-#~ msgid "Permissions:"
-#~ msgstr "Nova verzija:"
-
-#
-#, fuzzy
-#~ msgid "Play folder"
-#~ msgstr "predvajanje vnosa"
-
-#
-#, fuzzy
-#~ msgid "Play title"
-#~ msgstr "Čas začetka"
-
-#
-#, fuzzy
-#~ msgid "Please enter name of the new symlink"
-#~ msgstr "Vnesite ime nove mape:"
-
-#
-#, fuzzy
-#~ msgid "Please enter password"
-#~ msgstr "Vnesite novo ime datoteke:"
-
-#
-#, fuzzy
-#~ msgid "Please enter the new directory name"
-#~ msgstr "Vnesite ime nove mape:"
-
-#
-#, fuzzy
-#~ msgid "Please enter the new file name"
-#~ msgstr "Vnesite novo ime datoteke:"
-
-#
-#, fuzzy
-#~ msgid "Please wait, Loading image."
-#~ msgstr "Poteka nalaganje seznama datotek..."
-
-#
-#, fuzzy
-#~ msgid "Records"
-#~ msgstr "Nastavitve snemanja"
-
-#
-#, fuzzy
-#~ msgid "Rename file/directory"
-#~ msgstr "Ustvarite mapo"
-
-#
-#, fuzzy
-#~ msgid "Save left folder on exit"
-#~ msgstr "ob izhodu se naj shrani zadnja mapa"
-
-#
-#, fuzzy
-#~ msgid "Save right folder on exit"
-#~ msgstr "ob izhodu se naj shrani zadnja mapa"
-
-#
-#, fuzzy
-#~ msgid "Select a path"
-#~ msgstr "Izberite pot do posnetka"
-
-#, fuzzy
-#~ msgid "Show image information"
-#~ msgstr "Softwaremanager informacije"
-
-#
-#, fuzzy
-#~ msgid "Show unknown extension as text"
-#~ msgstr "Poglejte oznake"
-
-#, fuzzy
-#~ msgid "Skip selection"
-#~ msgstr "Movie lokacija"
-
-#
-#, fuzzy
-#~ msgid "This line is not editable!"
-#~ msgstr "Ta vtičnik ni nameščen."
-
-#, fuzzy
-#~ msgid "Time for Slideshow"
-#~ msgstr "Pregled časovnikov"
-
-#
-#, fuzzy
-#~ msgid "Type:"
-#~ msgstr "Vrsta"
-
-#
-#, fuzzy
-#~ msgid "What do you want to play?\n"
-#~ msgstr "Kaj želite iskati?"
-
-#
-#, fuzzy
-#~ msgid "has been CHANGED! Do you want to save it?"
-#~ msgstr "Kaj želite iskati?"
-
-#
-#, fuzzy
-#~ msgid "move file"
-#~ msgstr "Odstrani naslov"
-
-#
-#, fuzzy
-#~ msgid "move folder"
-#~ msgstr "[način premeščanja]"
-
-#~ msgid "original"
-#~ msgstr "originalno"
-
-#, fuzzy
-#~ msgid "play Files"
-#~ msgstr "Dolga imena datotek"
-
-#
-#~ msgid "Job View"
-#~ msgstr "Ogled opravila"
-
-#
-#~ msgid "Please enter a new filename:"
-#~ msgstr "Vnesite novo ime datoteke:"
-
-#
-#~ msgid "Remove directory"
-#~ msgstr "odstranitev mape"
-
-#
-#~ msgid "Switch to bookmarks"
-#~ msgstr "preklop na zaznamke"
-
-#
-#, fuzzy
-#~ msgid "Task list"
-#~ msgstr "črni seznam"
-
-#
-#, fuzzy
-#~ msgid "Please select the IceTV service that you wish to use."
-#~ msgstr "Izberite pot do datotek:"
-
-#
-#, fuzzy
-#~ msgid "Long key press"
-#~ msgstr "Dolgi pritisk tipke"
-
-#
-#, fuzzy
-#~ msgid "History long"
-#~ msgstr "Način tipke TV"
-
-#, fuzzy
-#~ msgid "Home long"
-#~ msgstr "Domov"
-
-#
-#, fuzzy
-#~ msgid "Keyboard long"
-#~ msgstr "Jezik tipkovnice"
-
-#
-#, fuzzy
-#~ msgid "Left long"
-#~ msgstr "Levo"
-
-#
-#, fuzzy
-#~ msgid "Magic long"
-#~ msgstr "Dnevnik časovnika"
-
-#
-#, fuzzy
-#~ msgid "Option long"
-#~ msgstr "Način tipke TV"
-
-#
-#, fuzzy
-#~ msgid "PageDown long"
-#~ msgstr "Nalagam..."
-
-#
-#, fuzzy
-#~ msgid "Right long"
-#~ msgstr "Desno"
-
-#
-#, fuzzy
-#~ msgid "Sleep long"
-#~ msgstr "Časovnik spanja"
-
-#
-#, fuzzy
-#~ msgid "Teletext long"
-#~ msgstr "Časovnik spanja"
-
-#
-#, fuzzy
-#~ msgid "Time long"
-#~ msgstr "Dnevnik časovnika"
-
-#
-#, fuzzy
-#~ msgid "Auto Timer"
-#~ msgstr "Dodajanje AutoTimer"
-
-#
-#, fuzzy
-#~ msgid "alphabetical"
-#~ msgstr "Navpično"
-
-#
-#, fuzzy
-#~ msgid "alternative"
-#~ msgstr "Dodajanje alternativ"
-
-#
-#~ msgid "user defined"
-#~ msgstr "uporabniško določeno"
-
-#
-#~ msgid "white"
-#~ msgstr "bela"
-
-#
-#, fuzzy
-#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Datoteka s časovniki (timers.xml) je okvarjena in je ni možno namestiti."
-
-#
-#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Datoteka s časovniki (timers.xml) je okvarjena in je ni možno namestiti."
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "Timer overlap in pm_timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Zaznano je bilo prekrivanje časovnikov v timers.xml!\n"
-#~ "Prosim, ponovno preverite!"
-
-#
-#~ msgid ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Zaznano je bilo prekrivanje časovnikov v timers.xml!\n"
-#~ "Prosim, ponovno preverite!"
-
-#
-#~ msgid "menu"
-#~ msgstr "meni"
-
-#
-#~ msgid "select"
-#~ msgstr "izberite"
-
-#
-#, fuzzy
-#~ msgid "start recording"
-#~ msgstr "to snemanje"
-
-#
-#, fuzzy
-#~ msgid "stop recording"
-#~ msgstr "to snemanje"
-
-#
-#, fuzzy
-#~ msgid "zapping"
-#~ msgstr "preklopljen"
