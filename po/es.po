@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: Juanjo-EA1CJ <juanjo.ea1cj@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -1057,6 +1057,10 @@ msgstr[0] "%d paquete fue actualizado."
 msgstr[1] "%d paquetes fueron actualizados."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d seg"
 
@@ -1185,10 +1189,6 @@ msgid "%s %s remote control (native)"
 msgstr "Mando a distancia de %s %s (nativo)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "Hay actualizaciones disponibles del software de tu %s %s."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s Tarjetas )"
 
@@ -1231,6 +1231,10 @@ msgstr "%s KSímb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #
 #, python-format
@@ -1997,10 +2001,6 @@ msgstr ""
 "\n"
 "¿Quieres deshabilitar la segunda interfaz de red?"
 
-#
-msgid "A small overview of the available icon states and actions."
-msgstr "Un vistazo a los estados y acciones disponibles de los iconos."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2098,9 +2098,6 @@ msgstr "Anular la pseudo-grabación.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Abortar un servicio de retransmisión.\n"
-
-msgid "Aborting update progress"
-msgstr "Abortando proceso de actualización"
 
 #
 msgid "About"
@@ -2337,9 +2334,6 @@ msgstr "Añadir/eliminar temporizador para el programa actual"
 
 msgid "Adding schedule..."
 msgstr "Añadiendo calendario..."
-
-msgid "Additional Info"
-msgstr "Información adicional"
 
 msgid "Additional files/folders to backup"
 msgstr "Archivos/carpetas adicionales para respaldar"
@@ -2785,9 +2779,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "¿Seguro que quiere guardar la Caché EPG en…?\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "¿Seguro que quiere enviar este historial?\n"
-
 msgid "Argentina"
 msgstr "Argentina"
 
@@ -2812,6 +2803,9 @@ msgstr "Aruba"
 
 msgid "As plugin in extended bar"
 msgstr "Como complemento en la barra extendida"
+
+msgid "Ascending"
+msgstr ""
 
 #
 msgid "Ask user"
@@ -2871,9 +2865,6 @@ msgstr "Al finalizar: %s"
 
 msgid "Athletics"
 msgstr "Atletismo"
-
-msgid "Attach a file"
-msgstr "Adjuntar archivo"
 
 msgid "Audio"
 msgstr "Audio"
@@ -2942,10 +2933,6 @@ msgstr "Australiano"
 
 msgid "Austria"
 msgstr "Austria"
-
-#
-msgid "Author: "
-msgstr "Autor: "
 
 #
 msgid "Authoring mode"
@@ -3969,6 +3956,9 @@ msgstr "Canadá"
 msgid "Cancel"
 msgstr "Cancelar"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr "Cancelar / Cerrar la pantalla de actualización del software"
 
@@ -4092,9 +4082,6 @@ msgstr "PiP en cascada"
 
 msgid "Catalan / Valencian"
 msgstr "Catalán / Valenciano"
-
-msgid "Caution update not yet tested !!"
-msgstr "¡Cuidado, la actualización aún no ha sido probada!"
 
 msgid "Cayman Islands"
 msgstr "Islas Caimán"
@@ -4713,10 +4700,6 @@ msgstr "Asignación de interfaz común"
 msgid "Common Setup Actions"
 msgstr "Acciones comunes de ajustes"
 
-#
-msgid "Communication"
-msgstr "Comunicación"
-
 msgid "Comoros"
 msgstr "Comoras"
 
@@ -5213,9 +5196,6 @@ msgstr "Contexto"
 
 msgid "Continent"
 msgstr "Continente"
-
-msgid "Continue"
-msgstr "Continuar"
 
 #
 msgid "Continue in background"
@@ -5953,9 +5933,6 @@ msgstr "Tipo de grabación por defecto"
 msgid "Default right column directory"
 msgstr ""
 
-msgid "Default settings"
-msgstr "Ajustes por defecto"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -6099,6 +6076,9 @@ msgstr "Desinstalar complementos"
 msgid "Delete Timer"
 msgstr "Borrar temporizador"
 
+msgid "Delete all duplicated lines"
+msgstr ""
+
 msgid "Delete all log files"
 msgstr "Eliminar todos los archivos de registro"
 
@@ -6128,6 +6108,9 @@ msgid "Delete current line"
 msgstr "Eliminar línea actual"
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 #
@@ -6234,6 +6217,9 @@ msgstr "Dinamarca"
 
 msgid "Depth"
 msgstr "Profundidad"
+
+msgid "Descending"
+msgstr ""
 
 msgid "Description"
 msgstr "Descripción"
@@ -6474,9 +6460,6 @@ msgstr "Visualizar los contenidos >16:9 como"
 msgid "Display Settings"
 msgstr "Ajustes de LCD"
 
-msgid "Display and user interface"
-msgstr "Pantalla y interfaz de usuario"
-
 msgid "Display context menu"
 msgstr "Mostrar el menú contextual"
 
@@ -6680,22 +6663,12 @@ msgstr "¿Seguro que quiere parar y borrar el temporizador '%s'?"
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want to add any additional information ?"
-msgstr "¿Desea agregar información adicional?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "¿Desea instalar también el cliente de samba?\n"
 "Esto le permite montar sus recursos compartidos de Windows en este dispositivo."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"¿Quiere adjuntar un archivo de texto que explique el registro?\n"
-"(Elija ‘No’ para escribir el mensaje con el teclado virtual.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6785,16 +6758,6 @@ msgstr "¿Quieres restaurar la configuración?"
 msgid "Do you want to resume this playback?"
 msgstr "¿Quieres reanudar la reproducción?"
 
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"¿Desea enviar todos los archivos seleccionados?\n"
-"(elija 'No' para enviar sólo el archivo actualmente seleccionado.)"
-
-msgid "Do you want to update your box?"
-msgstr "¿Quieres actualizar tu receptor?"
-
 #
 msgid "Do you want to upgrade the package:\n"
 msgstr "¿Quieres actualizar el paquete?\n"
@@ -6846,11 +6809,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Hecho"
-
-#
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Hecho - Instalados o actualizados %d paquetes"
 
 # neu 04.01.13 husky
 #, python-format
@@ -6930,6 +6888,9 @@ msgstr "Versión de los controladores"
 
 msgid "Duplex"
 msgstr "Dúplex"
+
+msgid "Duplicate the current line"
+msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "Durante este tiempo, se verifica el transmisor y el destino de la grabación. Si el destino de la grabación (por ejemplo, el NAS) no está preparado para la grabación, este tiempo puede aumentar."
@@ -7686,7 +7647,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7795,14 +7756,6 @@ msgstr "¡Error al descomprimir la imagen '%s'!"
 
 msgid "Error, unknown Result!"
 msgstr "Error, ¡resultado desconocido!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Error:\n"
-"%s"
 
 #
 #, python-format
@@ -8163,10 +8116,6 @@ msgstr "Extensiones Acciones"
 #
 msgid "Extensions"
 msgstr "Extensiones"
-
-#
-msgid "Extensions Management"
-msgstr "Gestión de extensiones"
 
 msgid "Extensions/QuickMenu"
 msgstr "Extensiones / Menú Rápido"
@@ -8630,10 +8579,6 @@ msgstr "Plano por grupo de teclas en el mando"
 msgid "Flat by position on remote"
 msgstr "Plano por posición en el mando"
 
-#
-msgid "Following tasks will be done after you press OK!"
-msgstr "¡Las siguientes tareas se realizarán después de pulsar OK!"
-
 msgid "Font size"
 msgstr "Tamaño de letra"
 
@@ -8645,9 +8590,6 @@ msgstr "Comida/Vino"
 
 msgid "Football"
 msgstr "Fútbol"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "Para más información visita https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Forzar la alimentación del LNB"
@@ -10075,10 +10017,6 @@ msgstr "Instalar extensiones."
 msgid "Install lcd picons on"
 msgstr "Instalar picon de LCD en"
 
-#
-msgid "Install or remove finished."
-msgstr "Instalación o borrado terminado."
-
 msgid "Install picons on"
 msgstr "Instalar picon en"
 
@@ -10514,10 +10452,6 @@ msgstr "LNB"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "Tiempo de arranque del LNB/Switch [ms]"
-
-#
-msgid "LOF"
-msgstr "LOF"
 
 #
 msgid "LOF/H"
@@ -11107,6 +11041,9 @@ msgstr "Gestionar extensiones"
 #
 msgid "Manage Locale/Language Selection settings"
 msgstr "Gestionar los ajustes de selección del idioma regional"
+
+msgid "Manage Plugins"
+msgstr ""
 
 msgid "Manage and explore directories and files."
 msgstr ""
@@ -11857,10 +11794,6 @@ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Imagen de arranque múltiple creada en: %s/%s-%s-%s-backup-%s_usb.zip"
 
 #
-msgid "Multimedia"
-msgstr "Multimedia"
-
-#
 msgid "Multiple service support"
 msgstr "Soporte de canales múltiples"
 
@@ -12305,10 +12238,6 @@ msgid "No demux available"
 msgstr "No hay demux disponible"
 
 #
-msgid "No description available."
-msgstr "No hay descripción."
-
-#
 msgid "No displayable files on this medium found!"
 msgstr "¡En este recurso no hay archivos reproducibles!"
 
@@ -12343,10 +12272,6 @@ msgstr "No se han encontrado archivos de registro, por lo que los registros de d
 msgid "No matching place names found"
 msgstr "No se han encontrado topónimos que coincidan"
 
-#
-msgid "No network connection available."
-msgstr "No hay conexión de red disponible."
-
 msgid "No network storage detected."
 msgstr "No se ha detectado ningún almacenamiento en red."
 
@@ -12357,9 +12282,8 @@ msgstr "No se han encontrado redes"
 msgid "No of items switch (increase or reduced)"
 msgstr "Número de elementos para cambiar (aumentar o disminuir)"
 
-#
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Aún no hay paquetes de actualización. Comprueba tu conexión a internet y vuelve a intentarlo."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "No hay imágenes disponibles"
@@ -12796,9 +12720,6 @@ msgstr "Actualización en línea del software de tu %s %s."
 msgid "Only Flash Backup Image"
 msgstr "Solo la imagen flash de respaldo"
 
-msgid "Only extensions."
-msgstr "Sólo extensiones."
-
 #
 msgid "Only free scan"
 msgstr "Solo canales FTA"
@@ -12857,6 +12778,9 @@ msgstr ""
 
 msgid "Open favorites list"
 msgstr "Abrir lista de favoritos"
+
+msgid "Open file sort menu"
+msgstr ""
 
 msgid "Open satellites list"
 msgstr "Abrir lista de satélites"
@@ -13293,6 +13217,9 @@ msgstr "Porcentaje/Barra derecha de progreso"
 
 msgid "Perform an on-line flash instead"
 msgstr "Realizar un flash en línea en su lugar"
+
+msgid "Perform install/remove of the selected item"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "¿Borrar permanentemente todas las grabaciones de la papelera?"
@@ -13893,23 +13820,11 @@ msgstr "Buscador de complementos"
 msgid "Plugin Browser Settings"
 msgstr "Ajustes del buscador de complementos"
 
-msgid "Plugin Details"
-msgstr "Detalles del complemento"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr "Detalles del plugin: %s"
-
 msgid "Plugin Filter Settings"
 msgstr "Filtrar complementos"
 
-#
-msgid "Plugin Manager Activity Information"
-msgstr "Información de actividad del administrador de complementos"
-
-#
-msgid "Plugin Manager Help"
-msgstr "Ayuda del administrador de complementos"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 #
 msgid "Plugins"
@@ -14250,10 +14165,6 @@ msgstr "Modelo de Proc"
 
 msgid "Proceed with the update"
 msgstr "Proceda con la actualización"
-
-#
-msgid "Process"
-msgstr "Procesar"
 
 msgid "Processor information"
 msgstr "Información del procesador"
@@ -15686,10 +15597,6 @@ msgstr "Configuración de antena parabólica"
 msgid "Satellite configuration mode"
 msgstr "Modo de configuración del satélite"
 
-#
-msgid "Satellite equipment"
-msgstr "Equipo satélite"
-
 msgid "Satellite equipment setup"
 msgstr "Ajustes del equipo satélite"
 
@@ -15854,6 +15761,9 @@ msgstr "Buscar redes inalámbricas"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Buscar en la red puntos de acceso inalámbricos y conectarse a ellos mediante el dispositivo seleccionado."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Buscando %s..."
@@ -15954,14 +15864,6 @@ msgstr "Buscando"
 
 msgid "Searching east ..."
 msgstr "Buscando al este..."
-
-#
-msgid "Searching for available updates. Please wait..."
-msgstr "Buscando actualizaciones disponibles. Por favor, espera..."
-
-#
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Buscando nuevos paquetes instalados o borrados. Por favor, espera..."
 
 msgid "Searching west ..."
 msgstr "Buscando al oeste..."
@@ -16668,6 +16570,9 @@ msgstr ""
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16861,12 +16766,6 @@ msgstr "Selección de satélites 2 (USALS)"
 #, fuzzy
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Esta opción te permite deshabilitar el orden de la lista de extensiones."
-
-msgid "Send"
-msgstr "Enviar"
-
-msgid "Send Confirmation"
-msgstr "Enviar confirmación"
 
 #
 msgid "Send DiSEqC"
@@ -17863,6 +17762,9 @@ msgstr "Mostrar archivos predeterminados para copiar"
 msgid "Show first image"
 msgstr ""
 
+msgid "Show free space in timer view"
+msgstr ""
+
 msgid "Show graphical multi EPG"
 msgstr "Mostrar MultiEPG gráfica"
 
@@ -18384,10 +18286,6 @@ msgstr "Seleccionar tema"
 msgid "SkinSelector"
 msgstr "Selector de tema"
 
-#
-msgid "Skins"
-msgstr "Skins"
-
 # Erstassi
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Saltar comprobación de conexión a internet (deshabilita la instalación automática de paquetes)"
@@ -18607,10 +18505,6 @@ msgid "Softcams"
 msgstr "Softcams"
 
 #
-msgid "Software"
-msgstr "Software"
-
-#
 msgid "Software Management"
 msgstr "Administrar software"
 
@@ -18713,9 +18607,6 @@ msgstr "¡Lo sentimos, %s no se ha instalado!"
 
 msgid "Sorry, no backups found!"
 msgstr "¡Lo siento, no se han encontrado copias de seguridad!"
-
-msgid "Sorry, no details available!"
-msgstr "Lo sentimos, no hay detalles disponibles!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Lo sentimos, no hay dispositivos físicos que soporten SWAP. No se puede crear Swapfile en red o sistemas de archivos FAT32"
@@ -20064,16 +19955,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"¡La extensión de administración de software no está instalada!\n"
-"Por favor, instálelo."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "El estado de la actualización no se puede comprobar porque no hay conexión con https://www.opena.tv"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
@@ -20126,14 +20007,6 @@ msgstr "El asistente puede hacer una copia de seguridad de sus ajustes actuales.
 #
 msgid "The wizard is finished now."
 msgstr "El asistente ha terminado."
-
-#
-msgid "There are at least "
-msgstr "Hay al menos "
-
-#
-msgid "There are currently no outstanding actions."
-msgstr "Actualmente no hay ninguna acción en ejecución."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -20217,10 +20090,6 @@ msgstr "Esto le permite mostrar módulos de extensiones en descargas"
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Esto le permite mostrar los módulos del kernel en las descargas"
-
-#, fuzzy
-msgid "This allows you to show languages in downloads"
-msgstr "Esto le permite mostrar módulos idiomas en descargas"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Esto le permite mostrar skins lcd en descargas"
@@ -20489,22 +20358,6 @@ msgstr "Esta opción configura la nitidez de la imagen cuando se está ampliando
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
-
-#
-msgid "This plugin is installed."
-msgstr "Este complemento está instalado."
-
-#
-msgid "This plugin is not installed."
-msgstr "Este complemento no está instalado."
-
-#
-msgid "This plugin will be installed."
-msgstr "Se instalará este coplemento."
-
-#
-msgid "This plugin will be removed."
-msgstr "Se desinstalará este complemento."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
@@ -21289,6 +21142,12 @@ msgstr "Tipo"
 msgid "Type / Model"
 msgstr ""
 
+msgid "Type of LNB/Device"
+msgstr ""
+
+msgid "Type of device"
+msgstr ""
+
 #
 msgid "Type of scan"
 msgstr "Tipo de búsqueda"
@@ -21362,14 +21221,6 @@ msgstr "Definido por el usuario"
 msgid "Undetermined"
 msgstr "Indeterminado"
 
-#
-msgid "Undo install"
-msgstr "Deshacer instalación"
-
-#
-msgid "Undo uninstall"
-msgstr "Deshacer desinstalación"
-
 msgid "Unencrypted"
 msgstr "Sin cifrar"
 
@@ -21394,10 +21245,6 @@ msgstr "LNB Unicable"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
-
-#
-msgid "Uninstall"
-msgstr "Desinstalar"
 
 msgid "United Arab Emirates"
 msgstr ""
@@ -21525,9 +21372,6 @@ msgstr ""
 msgid "Update"
 msgstr "Actualizar"
 
-msgid "Update at your own risk"
-msgstr "Actualiza bajo tu responsabilidad"
-
 msgid "Update completed."
 msgstr ""
 
@@ -21541,18 +21385,11 @@ msgid "Update failed!"
 msgstr "¡La actualización falló!"
 
 #
-msgid "Update feed not available."
-msgstr "Fuente de actualizaciones no disponible."
-
-#
 msgid "Update finished!"
 msgstr "¡Actualización finalizada!"
 
 msgid "Update interval (in seconds)"
 msgstr "Intervalo de actualización (en segundos)"
-
-msgid "Update is reported as faulty !!"
-msgstr "¡La actualización no es segura!"
 
 msgid ""
 "Update succeeded!\n"
@@ -21582,10 +21419,6 @@ msgstr "Actualizando"
 msgid "Updating mount locations."
 msgstr "Actualizando ruta de montaje."
 
-#
-msgid "Updating software catalog"
-msgstr "Actualizando el catálogo de software"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -21606,9 +21439,6 @@ msgstr ""
 #
 msgid "Upgrade with GUI"
 msgstr "Actualizar con interfaz"
-
-msgid "Upgrading"
-msgstr ""
 
 msgid "Uphops +"
 msgstr "Saltos superiores +"
@@ -21688,9 +21518,8 @@ msgstr "Usar información EPG de Netmed cuando esté disponible."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "Administrar software"
 
-#, fuzzy
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Usar información EPG de EIT cuando esté disponible."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
 
 msgid "Use QuickSelect"
 msgstr ""
@@ -22236,61 +22065,6 @@ msgid "View Rass interactive..."
 msgstr "Mostrar Rass interactivo..."
 
 #
-msgid "View details"
-msgstr "Mostrar detalles"
-
-#
-msgid "View list of available "
-msgstr "Mostrar lista de disponibles "
-
-#
-msgid "View list of available CommonInterface extensions"
-msgstr "Mostrar lista de extensiones disponibles de la interfaz común"
-
-#
-msgid "View list of available EPG extensions."
-msgstr "Mostrar lista de extensiones disponibles de EPG."
-
-#
-msgid "View list of available Satellite equipment extensions."
-msgstr "Mostrar lista de extensiones disponibles del equipo satélite."
-
-#
-msgid "View list of available communication extensions."
-msgstr "Mostrar lista de extensiones de comunicación disponibles."
-
-#
-msgid "View list of available default settings"
-msgstr "Mostrar la lista de ajustes por defecto disponibles"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Mostrar lista de extensiones de pantalla e interfaz de usuario disponibles."
-
-#
-msgid "View list of available multimedia extensions."
-msgstr "Mostrar lista de extensiones multimedia disponibles."
-
-#
-msgid "View list of available networking extensions"
-msgstr "Mostrar lista de extensiones de red disponibles"
-
-#
-msgid "View list of available recording extensions"
-msgstr "Mostrar lista de extensiones de grabación disponibles"
-
-#
-msgid "View list of available skins"
-msgstr "Mostrar lista de temas disponibles"
-
-#
-msgid "View list of available software extensions"
-msgstr "Muestra la lista de extensiones de software disponibles"
-
-#
-msgid "View list of available system extensions"
-msgstr "Muestra la lista de extensiones del sistema disponibles"
-
-#
 msgid "View mode"
 msgstr "Mostrar modo"
 
@@ -22667,6 +22441,9 @@ msgid "What would you like to do with the script file:"
 msgstr ""
 
 msgid "What would you like to do?"
+msgstr ""
+
+msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
@@ -23145,13 +22922,6 @@ msgstr "Puedes ver la MiniTV con o sin OSD"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Puedes ver PiP con o sin OSD"
 
-msgid "You can cancel the installation."
-msgstr "Puedes cancelar la instalación."
-
-#
-msgid "You can cancel the removal."
-msgstr "Puedes cancelar la desinstalación."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Puedes seguir viendo la televisión mientras esto funciona."
 
@@ -23159,16 +22929,8 @@ msgstr "Puedes seguir viendo la televisión mientras esto funciona."
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Puedes ordenar la lista por orden horario o alfanumérico."
 
-#
-msgid "You can install this plugin."
-msgstr "Puedes instalar este complemento."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "¡Sólo puedes grabar grabaciones de Dreambox!"
-
-#
-msgid "You can remove this plugin."
-msgstr "Puedes desinstalar este complemento."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr ""
@@ -23180,9 +22942,6 @@ msgstr ""
 #
 msgid "You cannot delete this!"
 msgstr "¡No puede eliminar esto!"
-
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Ya has enviado este historial. ¿Seguro que quiere reenviarlo?\n"
 
 #
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
@@ -23205,18 +22964,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "No tiene ningún script para ejecutar."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"No has configurado tu usuario en la pantalla de configuración.\n"
-"Pulsa ‘Menú’ y escribe tu información. Después, vuelve a intentarlo"
-
 msgid "You have selected no logs to delete."
 msgstr "No has seleccionado ningún historial para borrar."
-
-msgid "You have selected no logs to send."
-msgstr "No has seleccionado ningún historial para enviar."
 
 #
 msgid "You have to create a Swap File before to activate the autostart."
@@ -23311,11 +23060,6 @@ msgstr "Su %s %s se esta apagando"
 
 msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Tu %s %s está apagándose. Espera por favor..."
-
-#
-#, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "Tu %s %s no está conectado a internet. Comprueba los ajustes de red y vuelve a intentarlo."
 
 # PowerLost
 #, python-format
@@ -23441,33 +23185,6 @@ msgid ""
 msgstr ""
 "El panel frontal se actualizará\n"
 "Esto puede tomar unos pocos minutos"
-
-# SoftwareManager
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Tu imagen está obsoleta.\n"
-"\n"
-"Tras un período largo de tiempo corres el riesgo que tu %s %s no\n"
-"arranque tras una actualización en línea o muestre un mal funcionamiento.\n"
-"\n"
-"Una imagen más nueva aumentará la estabilidad\n"
-"\n"
-"Puedes realizar una actualización en línea bajo tu responsabilidad.\n"
-"\n"
-"\n"
-"¿Quieres actualizar de todas formas?"
 
 #
 msgid "Your network configuration has been activated."
@@ -24108,9 +23825,6 @@ msgstr "Salir del menú de configuración de adaptador de red"
 msgid "experimental film/video"
 msgstr "cine/video experimental"
 
-msgid "extensions."
-msgstr "Extensiones."
-
 # NimManager.py
 msgid "externally loopthrough to"
 msgstr "Bucle externo a"
@@ -24258,13 +23972,6 @@ msgstr "artesanía"
 
 msgid "handled"
 msgstr "Gestionado"
-
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"Ha sido enviado al equipo del equipo SVN.\n"
-"cítese"
 
 msgid "hdr10"
 msgstr ""
@@ -24593,9 +24300,6 @@ msgstr "Solo HD"
 msgid "original language"
 msgstr "idioma original"
 
-msgid "packages selected."
-msgstr "paquetes seleccionados."
-
 #
 msgid "pass"
 msgstr "Contraseña"
@@ -24705,9 +24409,6 @@ msgstr "eliminar canales terrestres"
 #
 msgid "remove this mark"
 msgstr "Borrar esta marca"
-
-msgid "rename"
-msgstr "Renombrar"
 
 # /lib/python/Screens/ChannelSelection.py
 msgid "rename entry"
@@ -25070,10 +24771,6 @@ msgstr "Hasta el modo de espera/reinicio"
 msgid "update"
 msgstr "actualización"
 
-#
-msgid "updates available."
-msgstr "actualizaciones disponibles."
-
 msgid "use best / controlled by HDMI"
 msgstr "use el mejor / controlado por HDMI"
 
@@ -25109,18 +24806,6 @@ msgstr "deportes acuáticos"
 
 msgid "west"
 msgstr "oeste"
-
-msgid "when asking question about this log"
-msgstr "Al hacer preguntas acerca de este registro"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"Al hacer preguntas acerca de este registro\n"
-"\n"
-"Se le ha enviado una copia."
 
 msgid "wide"
 msgstr "Ancho"
@@ -25164,13 +24849,387 @@ msgstr "Amarillo"
 msgid "yes (keep feeds)"
 msgstr "Sí (conservar fuentes)"
 
-#
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "Tu %s %s podría estar inutilizable. Consulta el manual antes de reiniciar tu %s %s."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "Hay actualizaciones disponibles del software de tu %s %s."
+
+#
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "Un vistazo a los estados y acciones disponibles de los iconos."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Abortando proceso de actualización"
+
+#
+#~ msgid "Author: "
+#~ msgstr "Autor: "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "¡Cuidado, la actualización aún no ha sido probada!"
+
+#
+#~ msgid "Communication"
+#~ msgstr "Comunicación"
+
+#~ msgid "Continue"
+#~ msgstr "Continuar"
+
+#~ msgid "Default settings"
+#~ msgstr "Ajustes por defecto"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Pantalla y interfaz de usuario"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "¿Quieres actualizar tu receptor?"
+
+#
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Hecho - Instalados o actualizados %d paquetes"
+
+#
+#~ msgid "Extensions Management"
+#~ msgstr "Gestión de extensiones"
+
+#
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "¡Las siguientes tareas se realizarán después de pulsar OK!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "Para más información visita https://www.opena.tv"
+
+#
+#~ msgid "Install or remove finished."
+#~ msgstr "Instalación o borrado terminado."
+
+#
+#~ msgid "Multimedia"
+#~ msgstr "Multimedia"
+
+#
+#~ msgid "No description available."
+#~ msgstr "No hay descripción."
+
+#
+#~ msgid "No network connection available."
+#~ msgstr "No hay conexión de red disponible."
+
+#
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Aún no hay paquetes de actualización. Comprueba tu conexión a internet y vuelve a intentarlo."
+
+#~ msgid "Only extensions."
+#~ msgstr "Sólo extensiones."
+
+#~ msgid "Plugin Details"
+#~ msgstr "Detalles del complemento"
+
+#, python-format
+#~ msgid "Plugin Details: %s"
+#~ msgstr "Detalles del plugin: %s"
+
+#
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "Información de actividad del administrador de complementos"
+
+#
+#~ msgid "Plugin Manager Help"
+#~ msgstr "Ayuda del administrador de complementos"
+
+#
+#~ msgid "Process"
+#~ msgstr "Procesar"
+
+#
+#~ msgid "Satellite equipment"
+#~ msgstr "Equipo satélite"
+
+#
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "Buscando actualizaciones disponibles. Por favor, espera..."
+
+#
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "Buscando nuevos paquetes instalados o borrados. Por favor, espera..."
+
+#
+#~ msgid "Skins"
+#~ msgstr "Skins"
+
+#
+#~ msgid "Software"
+#~ msgstr "Software"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "Lo sentimos, no hay detalles disponibles!"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "¡La extensión de administración de software no está instalada!\n"
+#~ "Por favor, instálelo."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "El estado de la actualización no se puede comprobar porque no hay conexión con https://www.opena.tv"
+
+#
+#~ msgid "There are at least "
+#~ msgstr "Hay al menos "
+
+#
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "Actualmente no hay ninguna acción en ejecución."
+
+#, fuzzy
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "Esto le permite mostrar módulos idiomas en descargas"
+
+#
+#~ msgid "This plugin is installed."
+#~ msgstr "Este complemento está instalado."
+
+#
+#~ msgid "This plugin is not installed."
+#~ msgstr "Este complemento no está instalado."
+
+#
+#~ msgid "This plugin will be installed."
+#~ msgstr "Se instalará este coplemento."
+
+#
+#~ msgid "This plugin will be removed."
+#~ msgstr "Se desinstalará este complemento."
+
+#
+#~ msgid "Undo install"
+#~ msgstr "Deshacer instalación"
+
+#
+#~ msgid "Undo uninstall"
+#~ msgstr "Deshacer desinstalación"
+
+#
+#~ msgid "Uninstall"
+#~ msgstr "Desinstalar"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "Actualiza bajo tu responsabilidad"
+
+#
+#~ msgid "Update feed not available."
+#~ msgstr "Fuente de actualizaciones no disponible."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "¡La actualización no es segura!"
+
+#
+#~ msgid "Updating software catalog"
+#~ msgstr "Actualizando el catálogo de software"
+
+#
+#~ msgid "View details"
+#~ msgstr "Mostrar detalles"
+
+#
+#~ msgid "View list of available "
+#~ msgstr "Mostrar lista de disponibles "
+
+#
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Mostrar lista de extensiones disponibles de la interfaz común"
+
+#
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Mostrar lista de extensiones disponibles de EPG."
+
+#
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Mostrar lista de extensiones disponibles del equipo satélite."
+
+#
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Mostrar lista de extensiones de comunicación disponibles."
+
+#
+#~ msgid "View list of available default settings"
+#~ msgstr "Mostrar la lista de ajustes por defecto disponibles"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Mostrar lista de extensiones de pantalla e interfaz de usuario disponibles."
+
+#
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Mostrar lista de extensiones multimedia disponibles."
+
+#
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Mostrar lista de extensiones de red disponibles"
+
+#
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Mostrar lista de extensiones de grabación disponibles"
+
+#
+#~ msgid "View list of available skins"
+#~ msgstr "Mostrar lista de temas disponibles"
+
+#
+#~ msgid "View list of available software extensions"
+#~ msgstr "Muestra la lista de extensiones de software disponibles"
+
+#
+#~ msgid "View list of available system extensions"
+#~ msgstr "Muestra la lista de extensiones del sistema disponibles"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "Puedes cancelar la instalación."
+
+#
+#~ msgid "You can cancel the removal."
+#~ msgstr "Puedes cancelar la desinstalación."
+
+#
+#~ msgid "You can install this plugin."
+#~ msgstr "Puedes instalar este complemento."
+
+#
+#~ msgid "You can remove this plugin."
+#~ msgstr "Puedes desinstalar este complemento."
+
+#
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "Tu %s %s no está conectado a internet. Comprueba los ajustes de red y vuelve a intentarlo."
+
+# SoftwareManager
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "Tu imagen está obsoleta.\n"
+#~ "\n"
+#~ "Tras un período largo de tiempo corres el riesgo que tu %s %s no\n"
+#~ "arranque tras una actualización en línea o muestre un mal funcionamiento.\n"
+#~ "\n"
+#~ "Una imagen más nueva aumentará la estabilidad\n"
+#~ "\n"
+#~ "Puedes realizar una actualización en línea bajo tu responsabilidad.\n"
+#~ "\n"
+#~ "\n"
+#~ "¿Quieres actualizar de todas formas?"
+
+#~ msgid "extensions."
+#~ msgstr "Extensiones."
+
+#~ msgid "packages selected."
+#~ msgstr "paquetes seleccionados."
+
+#
+#~ msgid "updates available."
+#~ msgstr "actualizaciones disponibles."
+
+#
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "Tu %s %s podría estar inutilizable. Consulta el manual antes de reiniciar tu %s %s."
+
+#~ msgid "Additional Info"
+#~ msgstr "Información adicional"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "¿Seguro que quiere enviar este historial?\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Adjuntar archivo"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "¿Desea agregar información adicional?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "¿Quiere adjuntar un archivo de texto que explique el registro?\n"
+#~ "(Elija ‘No’ para escribir el mensaje con el teclado virtual.)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "¿Desea enviar todos los archivos seleccionados?\n"
+#~ "(elija 'No' para enviar sólo el archivo actualmente seleccionado.)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Error:\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "Enviar"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "Enviar confirmación"
+
+#, fuzzy
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "Usar información EPG de EIT cuando esté disponible."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "Ya has enviado este historial. ¿Seguro que quiere reenviarlo?\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "No has configurado tu usuario en la pantalla de configuración.\n"
+#~ "Pulsa ‘Menú’ y escribe tu información. Después, vuelve a intentarlo"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "No has seleccionado ningún historial para enviar."
+
+#~ msgid ""
+#~ "has been sent to the SVN team team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "Ha sido enviado al equipo del equipo SVN.\n"
+#~ "cítese"
+
+#~ msgid "rename"
+#~ msgstr "Renombrar"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "Al hacer preguntas acerca de este registro"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "Al hacer preguntas acerca de este registro\n"
+#~ "\n"
+#~ "Se le ha enviado una copia."
+
+#
+#~ msgid "LOF"
+#~ msgstr "LOF"
 
 #
 #, fuzzy

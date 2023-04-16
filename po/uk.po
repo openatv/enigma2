@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-09 15:18+0000\n"
-"PO-Revision-Date: 2023-01-11 17:36+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
+"PO-Revision-Date: 2023-03-06 09:40+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1069,6 +1069,10 @@ msgstr[1] "%d пакети оновлено."
 msgstr[2] "%d пакетів оновлено."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d сек"
 
@@ -1194,10 +1198,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s пульт ДУ (рідний)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s ПЗ, оновлення доступні."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s (%s Картки)"
 
@@ -1240,6 +1240,10 @@ msgstr "%s КБіт/с"
 #, python-format
 msgid "%s MHz"
 msgstr "%s МГц"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1945,9 +1949,6 @@ msgstr ""
 "\n"
 "Бажаєте відключити другий мережевий інтерфейс?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "Невеликий огляд доступного стану іконок і дій."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2042,9 +2043,6 @@ msgstr "Псевдо запис перервано.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Відтворення стрім-каналу перервано.\n"
-
-msgid "Aborting update progress"
-msgstr "Переривання процесу оновлення"
 
 msgid "About"
 msgstr "Система"
@@ -2258,9 +2256,6 @@ msgstr "Додати/Видалити таймер поточної події"
 
 msgid "Adding schedule..."
 msgstr "Додавання завдання..."
-
-msgid "Additional Info"
-msgstr "Додаткова інформація"
 
 msgid "Additional files/folders to backup"
 msgstr "Додати файли/теки для резервного копіювання"
@@ -2687,9 +2682,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Ви дійсно бажаєте зберегти кеш EPG до:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Ви дійсно бажаєте надіслати цей лог:\n"
-
 msgid "Argentina"
 msgstr "Аргентина"
 
@@ -2713,6 +2705,9 @@ msgstr "Аруба"
 
 msgid "As plugin in extended bar"
 msgstr "як плагін в розширеній панелі"
+
+msgid "Ascending"
+msgstr "Висхідний"
 
 msgid "Ask user"
 msgstr "Запитати користувача"
@@ -2768,9 +2763,6 @@ msgstr "Наприкінці: %s"
 
 msgid "Athletics"
 msgstr "Легка атлетика"
-
-msgid "Attach a file"
-msgstr "Прикріпити файл"
 
 msgid "Audio"
 msgstr "Аудіо"
@@ -2832,9 +2824,6 @@ msgstr "Австралійська"
 
 msgid "Austria"
 msgstr "Австрія"
-
-msgid "Author: "
-msgstr "Автор: "
 
 msgid "Authoring mode"
 msgstr "Режим авторизації"
@@ -3806,6 +3795,9 @@ msgstr "Канада"
 msgid "Cancel"
 msgstr "Скасувати"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr "Скасувати/Закрити вікно оновлення ПЗ"
 
@@ -3927,9 +3919,6 @@ msgstr "ПІП каскадом"
 
 msgid "Catalan / Valencian"
 msgstr "Каталонська / Валенсійська"
-
-msgid "Caution update not yet tested !!"
-msgstr "Застереження оновлення досі не перевірялося !!"
 
 msgid "Cayman Islands"
 msgstr "Кайманові острови"
@@ -4515,9 +4504,6 @@ msgstr "Призначення Модуля доступу"
 msgid "Common Setup Actions"
 msgstr "Загальні дії з налаштування"
 
-msgid "Communication"
-msgstr "З'єднання"
-
 msgid "Comoros"
 msgstr "Коморські острови"
 
@@ -4987,9 +4973,6 @@ msgstr "Контекст"
 
 msgid "Continent"
 msgstr "Континент"
-
-msgid "Continue"
-msgstr "Продовжити"
 
 msgid "Continue in background"
 msgstr "Фоновий режим"
@@ -5695,9 +5678,6 @@ msgstr "Тип запису за замовчуванням"
 msgid "Default right column directory"
 msgstr "Каталог правого стовпця по умовчуванні"
 
-msgid "Default settings"
-msgstr "Налаштування за замовчуванням"
-
 msgid "Default sort order for directories in the left column"
 msgstr "Порядок сортування за замовчуванням для каталогів у лівому стовпці"
 
@@ -5839,6 +5819,9 @@ msgstr "Видалити плагіни"
 msgid "Delete Timer"
 msgstr "Видалити таймер"
 
+msgid "Delete all duplicated lines"
+msgstr "Видалити усі рядки, що повторюються"
+
 msgid "Delete all log files"
 msgstr "Видалити всі файли журналу збоїв"
 
@@ -5868,6 +5851,9 @@ msgstr "Видалити цей рядок"
 
 msgid "Delete directory or file"
 msgstr "Видалити каталог, або файл"
+
+msgid "Delete empty and white space only lines"
+msgstr "Видалити порожні рядки та з пробілами"
 
 msgid "Delete entry"
 msgstr "Видалити запис"
@@ -5968,6 +5954,9 @@ msgstr "Данія"
 
 msgid "Depth"
 msgstr "Глибина"
+
+msgid "Descending"
+msgstr "По зменшуванню"
 
 msgid "Description"
 msgstr "Опис"
@@ -6185,9 +6174,6 @@ msgstr "Показувати >16:9 як"
 msgid "Display Settings"
 msgstr "Налаштування дисплея"
 
-msgid "Display and user interface"
-msgstr "Дисплей і графічний інтерфейс користувача"
-
 msgid "Display context menu"
 msgstr "Відобразити контекстне меню"
 
@@ -6379,22 +6365,12 @@ msgstr "Ви дійсно хочете зупинити та видалити т
 msgid "Do you want change '%s' access mode?"
 msgstr "Бажаєте змінити режим доступу '%s'?"
 
-msgid "Do you want to add any additional information ?"
-msgstr "Ви хочете додати додаткову інформацію?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Також потрібно встановити клієнт samba?\n"
 "Це дає змогу монтувати спільні ресурси Ваших вікон на цьому пристрої."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Хочете прикріпити текстовий файл для пояснень логу?\n"
-"(виберіть 'Ні' для створення повідомлення за допомогою віртуальної клавіатури.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6473,16 +6449,6 @@ msgstr "Ви хочете відновити свої налаштування?"
 msgid "Do you want to resume this playback?"
 msgstr "Ви хочете продовжити відтворення?"
 
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Хочете відправити всі вибрані файли:\n"
-"(виберіть 'Ні', щоб відправити тільки вибраний файл.)"
-
-msgid "Do you want to update your box?"
-msgstr "Ви хочете оновити свій приймач?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Ви хочете оновити пакет:\n"
 
@@ -6531,10 +6497,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Виконано"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Виконано - встановлено або оновлено %d пакетів"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -6608,6 +6570,9 @@ msgstr "Версія драйверів"
 
 msgid "Duplex"
 msgstr "Подвійний"
+
+msgid "Duplicate the current line"
+msgstr "Дублювати поточний рядок"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "Протягом даного часу йде перевірка передавача і пристрою запису. Якщо пристрій запису (наприклад, NAS) не готовий до запису, цей час можна збільшити."
@@ -7327,8 +7292,8 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Помилка %d: Неможливо пов’язати '%s' як '%s'! (%s)"
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
-msgstr "Помилка %d: Неможливо перейменувати файл '%s' на '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
+msgstr "Помилка %d: Неможливо перейменувати каталог/файл '%s' на '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename related file '%s' to '%s'!  (%s)"
@@ -7434,14 +7399,6 @@ msgstr "Помилка розархівування іміджу '%s'!"
 
 msgid "Error, unknown Result!"
 msgstr "Помилка, невідомий результат!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Помилка:\n"
-"%s"
 
 #, python-format
 msgid ""
@@ -7776,9 +7733,6 @@ msgstr "Розширенні Дії"
 
 msgid "Extensions"
 msgstr "Розширення"
-
-msgid "Extensions Management"
-msgstr "Керування розширеннями"
 
 msgid "Extensions/QuickMenu"
 msgstr "Розширене/Швидке меню"
@@ -8223,9 +8177,6 @@ msgstr "Плоский за ключовою групою на пульті ке
 msgid "Flat by position on remote"
 msgstr "Плоске положення на пульті"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Дані завдання будуть виконані після натиснення ОК!"
-
 msgid "Font size"
 msgstr "Розмір шрифта"
 
@@ -8237,9 +8188,6 @@ msgstr "Продукти харчування/Вино"
 
 msgid "Football"
 msgstr "Футбол"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "Для отримання додаткової інформації див https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Потужність LNB"
@@ -9582,9 +9530,6 @@ msgstr "Встановити розширення."
 msgid "Install lcd picons on"
 msgstr "Встановити lcd пікони на"
 
-msgid "Install or remove finished."
-msgstr "Встановлення чи видалення завершено."
-
 msgid "Install picons on"
 msgstr "Встановити пікони на"
 
@@ -9993,9 +9938,6 @@ msgstr "Конвертор"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "Час перемикання LNB/Switch [мс]"
-
-msgid "LOF"
-msgstr "Частота гетеродину"
 
 msgid "LOF/H"
 msgstr "Верхня частота гетеродину"
@@ -10531,6 +10473,9 @@ msgstr "Управління розширеннями"
 
 msgid "Manage Locale/Language Selection settings"
 msgstr "Керування налаштуваннями Вибору Регіону/Мови"
+
+msgid "Manage Plugins"
+msgstr ""
 
 msgid "Manage and explore directories and files."
 msgstr "Керуйте та досліджуйте каталоги і файли."
@@ -11241,9 +11186,6 @@ msgstr "Мульти-транскодування"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Імідж Multiboot створено: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "Мультимедіа"
-
 msgid "Multiple service support"
 msgstr "Підтримка багатоканальності"
 
@@ -11646,9 +11588,6 @@ msgstr "Без затримки"
 msgid "No demux available"
 msgstr "Немає демуксиплексу"
 
-msgid "No description available."
-msgstr "Опис відсутній."
-
 msgid "No displayable files on this medium found!"
 msgstr "Потрібних файлів на цьому носії не знайдено!"
 
@@ -11679,9 +11618,6 @@ msgstr "Файлів журналу не знайдено, тому журнал
 msgid "No matching place names found"
 msgstr "Не знайдено відповідних назв"
 
-msgid "No network connection available."
-msgstr "Немає доступного мережевого підключення."
-
 msgid "No network storage detected."
 msgstr "Мережеве сховище не виявлено."
 
@@ -11691,8 +11627,8 @@ msgstr "Мереж не знайдено"
 msgid "No of items switch (increase or reduced)"
 msgstr "Немає даних про перемикання (збільшення або зменшення)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Жодного пакета не було оновлено. Перевірте налаштування мережі і спробуйте знову."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "Немає зображень"
@@ -12095,9 +12031,6 @@ msgstr "Онлайн оновлення ПЗ Вашого %s %s."
 msgid "Only Flash Backup Image"
 msgstr "Тільки флеш-резервний імідж"
 
-msgid "Only extensions."
-msgstr "Тільки розширення."
-
 msgid "Only free scan"
 msgstr "Сканувати тільки відкриті"
 
@@ -12154,6 +12087,9 @@ msgstr "Відкрити контекстне меню (містить меню 
 
 msgid "Open favorites list"
 msgstr "Відкрити список фаворитів"
+
+msgid "Open file sort menu"
+msgstr "Відкрити меню сортування файлів"
 
 msgid "Open satellites list"
 msgstr "Відкрити список супутників"
@@ -12561,6 +12497,9 @@ msgstr "Відсоток/Смугжка поступу справа"
 
 msgid "Perform an on-line flash instead"
 msgstr "Замість цього виконайте онлайн-прошивку"
+
+msgid "Perform install/remove of the selected item"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Остаточно видалити всі записи в кошик для сміття?"
@@ -13100,21 +13039,11 @@ msgstr "Провідник плагінів"
 msgid "Plugin Browser Settings"
 msgstr "Налаштування Провідника плагінів"
 
-msgid "Plugin Details"
-msgstr "Подробиці плагіна"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr "Деталі плагіна: %s"
-
 msgid "Plugin Filter Settings"
 msgstr "Фільтр плагінів"
 
-msgid "Plugin Manager Activity Information"
-msgstr "Інформація активності плагінів"
-
-msgid "Plugin Manager Help"
-msgstr "Допомога в керуванні плагіном"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 msgid "Plugins"
 msgstr "Плагіни"
@@ -13420,9 +13349,6 @@ msgstr "Модель ЦП"
 
 msgid "Proceed with the update"
 msgstr "Продовжувати оновлення"
-
-msgid "Process"
-msgstr "Процес"
 
 msgid "Processor information"
 msgstr "Інформація про ЦП"
@@ -14751,9 +14677,6 @@ msgstr "Налаштування супутникової антени"
 msgid "Satellite configuration mode"
 msgstr "Режим конфігурації супутника"
 
-msgid "Satellite equipment"
-msgstr "Супутникове обладнання"
-
 msgid "Satellite equipment setup"
 msgstr "Налаштування супутникового обладнання"
 
@@ -14901,6 +14824,9 @@ msgstr "Пошук Wі-Fі мереж"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Сканувати мережу на наявність точок бездротового доступу та підключитись до них за допомогою вибраного бездротового пристрою."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Сканування %s..."
@@ -15000,12 +14926,6 @@ msgstr "Пошук"
 
 msgid "Searching east ..."
 msgstr "Пошук на схід..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Пошук доступних оновлень. Зачекайте..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Пошук нових встановлених або видалених пакетів. Зачекайте..."
 
 msgid "Searching west ..."
 msgstr "Пошук на захід..."
@@ -15679,6 +15599,9 @@ msgstr "Виберіть набір символів клавіатури лиш
 msgid "Select the softcam protocol."
 msgstr "Виберіть softcam протокол."
 
+msgid "Select the sort order for the file lines:"
+msgstr "Виберіть порядок сортування для рядків файлу:"
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Виберіть порядок сортування пунктів меню браузера плагінів. Визначено користувачем також дозволяє приховувати пункти меню."
 
@@ -15870,12 +15793,6 @@ msgstr "Вибір супутників 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Вибір цього параметра дозволяє налаштувати групу супутників в одному блоці."
-
-msgid "Send"
-msgstr "Надіслати"
-
-msgid "Send Confirmation"
-msgstr "Надіслати підтвердження"
 
 msgid "Send DiSEqC"
 msgstr "Надіслати DiSEqC"
@@ -16770,6 +16687,9 @@ msgstr "Файли резервної копії"
 msgid "Show first image"
 msgstr "Показати перше зображення"
 
+msgid "Show free space in timer view"
+msgstr "Показати вільний місце у вікні таймера"
+
 msgid "Show graphical multi EPG"
 msgstr "Показати графічний телегід"
 
@@ -17245,9 +17165,6 @@ msgstr "Налаштування скіну"
 msgid "SkinSelector"
 msgstr "Вибір Скіну"
 
-msgid "Skins"
-msgstr "Скіни"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Пропустити перевірку інтернет з'єднання (вимикає автоматичну установку пакетів)"
 
@@ -17453,9 +17370,6 @@ msgstr "Налаштування Softcam"
 msgid "Softcams"
 msgstr "емулятори"
 
-msgid "Software"
-msgstr "Програмне забезпечення"
-
 msgid "Software Management"
 msgstr "Управління ПЗ"
 
@@ -17553,9 +17467,6 @@ msgstr "Вибачте, %s не встановлено!"
 
 msgid "Sorry, no backups found!"
 msgstr "Вибачте, не знайдено жодного бекапу!"
-
-msgid "Sorry, no details available!"
-msgstr "Вибачте, деталей немає!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Вибачте, ніяких фізичних пристроїв, які підтримують SWAP не знайдено. Неможливо створити файл підкачки в мережі або файловій системі fat32"
@@ -18306,7 +18217,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 11.01.2023"
+msgstr "Переклад: kvinto - 04.03.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18792,16 +18703,6 @@ msgstr ""
 "\n"
 "Зробити це зараз чи подовжити таймер?"
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Програмне забезпечення для управління розширеннями не встановлено!\n"
-"Будь ласка, встановіть його."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Не вдалося перевірити статус поточного оновлення, оскільки підключення до https://www.opena.tv неможливе з якихось причин"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Час множиться на поточний лічильник повторів."
 
@@ -18850,12 +18751,6 @@ msgstr "Майстер може зберегти Ваші налаштуванн
 
 msgid "The wizard is finished now."
 msgstr "Майстер завершив роботу."
-
-msgid "There are at least "
-msgstr "Є принаймні "
-
-msgid "There are currently no outstanding actions."
-msgstr "В даний час немає невиконаних дій."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -18932,9 +18827,6 @@ msgstr "Тут можна вказати чи переглядати списо�
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Тут можна вказати чи переглядати список модулів ядра системи при завантаженні"
-
-msgid "This allows you to show languages in downloads"
-msgstr "Тут можна вказати чи переглядати мови в завантаженнях"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Тут можна вказати чи переглядати список lcd-скінів при завантаженні"
@@ -19187,18 +19079,6 @@ msgstr "Ця опція налаштовує різкість зображенн
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Цей плагін може визначити, чи програма починається раніше чи триває довше. Канал має надавати надійні дані."
-
-msgid "This plugin is installed."
-msgstr "Плагін встановлений."
-
-msgid "This plugin is not installed."
-msgstr "Цей плагін не встановлений."
-
-msgid "This plugin will be installed."
-msgstr "Цей плагін буде встановлений."
-
-msgid "This plugin will be removed."
-msgstr "Цей плагін буде видалено."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "Це встановлює префікс для кожного рядка в журналі налагодження. 'Час завантаження' — це кількість секунд, що пройшли з моменту останнього завантаження %s %s."
@@ -19894,6 +19774,12 @@ msgstr "Тип"
 msgid "Type / Model"
 msgstr "Тип / Модель"
 
+msgid "Type of LNB/Device"
+msgstr "Тип LNB/Пристрою"
+
+msgid "Type of device"
+msgstr "Тип пристрою"
+
 msgid "Type of scan"
 msgstr "Тип сканування"
 
@@ -19957,12 +19843,6 @@ msgstr "Не визначено"
 msgid "Undetermined"
 msgstr "Не визначено"
 
-msgid "Undo install"
-msgstr "Скасувати встановлення"
-
-msgid "Undo uninstall"
-msgstr "Скасувати видалення"
-
 msgid "Unencrypted"
 msgstr "Декодований"
 
@@ -19983,9 +19863,6 @@ msgstr "Unicable конвертор"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
-
-msgid "Uninstall"
-msgstr "Видалити"
 
 msgid "United Arab Emirates"
 msgstr "Об'єднані Арабські Емірати"
@@ -20104,9 +19981,6 @@ msgstr "Режим кнопок Вгору/Вниз також для 'all up/do
 msgid "Update"
 msgstr "Оновлення"
 
-msgid "Update at your own risk"
-msgstr "Оновлення на свій страх і ризик"
-
 msgid "Update completed."
 msgstr "Оновлення завершено."
 
@@ -20119,17 +19993,11 @@ msgstr "Оновлення затримки для подій в списку. �
 msgid "Update failed!"
 msgstr "Помилка оновлення!"
 
-msgid "Update feed not available."
-msgstr "Канал Оновленя не доступний."
-
 msgid "Update finished!"
 msgstr "Оновлення завершено!"
 
 msgid "Update interval (in seconds)"
 msgstr "Інтервал оновлення (в секундах)"
-
-msgid "Update is reported as faulty !!"
-msgstr "Оновлення повідомляється як несправне!"
 
 msgid ""
 "Update succeeded!\n"
@@ -20159,9 +20027,6 @@ msgstr "Оновлення"
 msgid "Updating mount locations."
 msgstr "Оновлення параметрів підключення."
 
-msgid "Updating software catalog"
-msgstr "Каталог оновлення ПЗ"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr "Оновити (перепрошити та відновити все)"
 
@@ -20180,9 +20045,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Показати оновлення"
-
-msgid "Upgrading"
-msgstr "Оновлення"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -20256,8 +20118,8 @@ msgstr "Використовувати інформацію Netmed ЕПГ, ко�
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "Використовуйте OnlineFlash у SoftwareManager"
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Використовувати інформацію OpenTV ЕПГ, коли вона доступна."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr "Використовуйте OpenTV EPG. Потрібне налаштування на певний транспондер для показу EPG."
 
 msgid "Use QuickSelect"
 msgstr "Використовувати QuickSelect"
@@ -20769,48 +20631,6 @@ msgstr "Переглянути Файл"
 msgid "View Rass interactive..."
 msgstr "Показати інтерактивний Rass..."
 
-msgid "View details"
-msgstr "Перегляд деталей"
-
-msgid "View list of available "
-msgstr "Перегляд списку доступних "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Перегляд списку доступних розширень CommonInterface"
-
-msgid "View list of available EPG extensions."
-msgstr "Перегляд списку доступних розширень EPG."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Перегляд списку доступних розширень супутникового обладнання."
-
-msgid "View list of available communication extensions."
-msgstr "Перегляд списку доступних розширень комунікації."
-
-msgid "View list of available default settings"
-msgstr "Перегляд списку налаштувань за замовчуванням"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Перегляд списку доступних розширень інтерфейсу користувача."
-
-msgid "View list of available multimedia extensions."
-msgstr "Перегляд списку доступних розширень мультимедіа."
-
-msgid "View list of available networking extensions"
-msgstr "Перегляд списку доступних розширень мережі"
-
-msgid "View list of available recording extensions"
-msgstr "Перегляд списку доступних розширень запису"
-
-msgid "View list of available skins"
-msgstr "Переглянути список доступних скінів"
-
-msgid "View list of available software extensions"
-msgstr "Перегляд списку доступних розширень ПЗ"
-
-msgid "View list of available system extensions"
-msgstr "Перегляд списку доступних розширень системи"
-
 msgid "View mode"
 msgstr "Режим перегляду"
 
@@ -21154,6 +20974,9 @@ msgstr "Що Ви хочете зробити з файлом скрипту:"
 
 msgid "What would you like to do?"
 msgstr "Що Ви хочете зробити?"
+
+msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
+msgstr "Якщо 'Увімкнено', у вікні перегляду таймера відображатиметься вільне місце на цільовому пристрої. Це виведе пристрій із режиму сну."
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Якщо включено, то будуть завантажуватися невибрані фаворити користувача. Це означає, фаворити існують, але не були включені у файли bouquets.tv або bouquets.radio. Це дозволить Вам тримати свій власний фаворит в існуючому списку фаворитів"
@@ -21602,26 +21425,14 @@ msgstr "Можна включати MiniTV за допомогою OSD Меню"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Можна включати PIP з меню OSD або без нього"
 
-msgid "You can cancel the installation."
-msgstr "Ви можете відмінити встановлення."
-
-msgid "You can cancel the removal."
-msgstr "Ви можете відмінити видалення."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Ви можете продовжувати дивитися телевізор тощо, поки це працює."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Можете сортувати список за часом або за алфавітом."
 
-msgid "You can install this plugin."
-msgstr "Ви можете встановити цей додаток."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Ви можете записувати тільки записи Dreambox!"
-
-msgid "You can remove this plugin."
-msgstr "Ви можете видалити цей додаток."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Ви можете пропустити цю функцію та вимкнути ТВ, коли Ви вмикаєте тюнер і зразу ж вимикаєте його в режим очікування."
@@ -21632,9 +21443,6 @@ msgstr "Ви можете перемикатися з лівого і право
 
 msgid "You cannot delete this!"
 msgstr "Ви не можете це видалити!"
-
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Цей лог вже був відправлений. Хочете ще раз відправити цей лог:\n"
 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Ви вибрали копіювання ваших налаштувань. Натисніть OK для початку копіювання."
@@ -21655,18 +21463,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "Відсутній скрипт для запуску."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Відсутні налаштування вашого користувача\n"
-"Натисніть кнопку Меню, і введіть налаштування вашого користувача, потім спробуйте знову"
-
 msgid "You have selected no logs to delete."
 msgstr "Лог для видалення не вибрано."
-
-msgid "You have selected no logs to send."
-msgstr "Лог для відправки не вибрано."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "Перед активацією автостарту, необхідно створити файл підкачки."
@@ -21757,10 +21555,6 @@ msgstr "Ваш %s %s буде вимкнено"
 
 msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Ваш %s %s буде вимкнено. Зачекайте..."
-
-#, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "Ваш %s %s неправельно під'єднано до Інтернету. Перевірте і повторіть спробу."
 
 #, python-format
 msgid ""
@@ -21885,32 +21679,6 @@ msgid ""
 msgstr ""
 "Ваша передня панель буде оновлена\n"
 "Це може зайняти кілька хвилин"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Ваш імідж застарів!\n"
-"\n"
-"Після такого довгого часу, є ризик, що Ваш %s %s НЕ\n"
-"завантажиться після онлайн-оновлення, або отримаєте непрацюючий імідж.\n"
-"\n"
-"рекомендується встановити імідж з нуля.\n"
-"\n"
-"Онлайн оновлення готове на Ваш ризик!\n"
-"\n"
-"\n"
-"Все ще хочете оновити імідж?"
 
 msgid "Your network configuration has been activated."
 msgstr "Конфігурація мережі активована."
@@ -22473,9 +22241,6 @@ msgstr "вийти з меню конфігурації мережевого а�
 msgid "experimental film/video"
 msgstr "експериментальний фільм/відео"
 
-msgid "extensions."
-msgstr "розширення."
-
 msgid "externally loopthrough to"
 msgstr "зовнішня петля до"
 
@@ -22604,13 +22369,6 @@ msgstr "ремесло"
 
 msgid "handled"
 msgstr "обробляються"
-
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"був відправлений в команду команди SVN.\n"
-"будь ласка, вкажіть"
 
 msgid "hdr10"
 msgstr "hdr10"
@@ -22888,9 +22646,6 @@ msgstr "тільки HD"
 msgid "original language"
 msgstr "мова оригіналу"
 
-msgid "packages selected."
-msgstr "виділені пакети."
-
 msgid "pass"
 msgstr "пароль"
 
@@ -22983,9 +22738,6 @@ msgstr "видалити наземні канали"
 
 msgid "remove this mark"
 msgstr "видалити цю закладку"
-
-msgid "rename"
-msgstr "перейменувати"
 
 msgid "rename entry"
 msgstr "перейменувати запис"
@@ -23307,9 +23059,6 @@ msgstr "до режиму очікування/перезавантаження"
 msgid "update"
 msgstr "оновлено"
 
-msgid "updates available."
-msgstr "оновлень доступно."
-
 msgid "use best / controlled by HDMI"
 msgstr "використовувати краще / контролюється HDMI"
 
@@ -23342,18 +23091,6 @@ msgstr "водяний вид спорту"
 
 msgid "west"
 msgstr "захід"
-
-msgid "when asking question about this log"
-msgstr "задаючи питання про цей журнал логів"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"задаючи питання про цей журнал логів\n"
-"\n"
-"Копія була відправлена."
 
 msgid "wide"
 msgstr "широкий"
@@ -23392,12 +23129,341 @@ msgstr "жовтий"
 msgid "yes (keep feeds)"
 msgstr "так (зберігати фіди)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "ваш %s %s може стати непридатним тепер. Прочитайте керівництво по використанню перш ніж перезавантажити Ваш %s %s."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "%s %s ПЗ, оновлення доступні."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "Невеликий огляд доступного стану іконок і дій."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Переривання процесу оновлення"
+
+#~ msgid "Author: "
+#~ msgstr "Автор: "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "Застереження оновлення досі не перевірялося !!"
+
+#~ msgid "Communication"
+#~ msgstr "З'єднання"
+
+#~ msgid "Continue"
+#~ msgstr "Продовжити"
+
+#~ msgid "Default settings"
+#~ msgstr "Налаштування за замовчуванням"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Дисплей і графічний інтерфейс користувача"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "Ви хочете оновити свій приймач?"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Виконано - встановлено або оновлено %d пакетів"
+
+#~ msgid "Extensions Management"
+#~ msgstr "Керування розширеннями"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "Дані завдання будуть виконані після натиснення ОК!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "Для отримання додаткової інформації див https://www.opena.tv"
+
+#~ msgid "Install or remove finished."
+#~ msgstr "Встановлення чи видалення завершено."
+
+#~ msgid "Multimedia"
+#~ msgstr "Мультимедіа"
+
+#~ msgid "No description available."
+#~ msgstr "Опис відсутній."
+
+#~ msgid "No network connection available."
+#~ msgstr "Немає доступного мережевого підключення."
+
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Жодного пакета не було оновлено. Перевірте налаштування мережі і спробуйте знову."
+
+#~ msgid "Only extensions."
+#~ msgstr "Тільки розширення."
+
+#~ msgid "Plugin Details"
+#~ msgstr "Подробиці плагіна"
+
+#, python-format
+#~ msgid "Plugin Details: %s"
+#~ msgstr "Деталі плагіна: %s"
+
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "Інформація активності плагінів"
+
+#~ msgid "Plugin Manager Help"
+#~ msgstr "Допомога в керуванні плагіном"
+
+#~ msgid "Process"
+#~ msgstr "Процес"
+
+#~ msgid "Satellite equipment"
+#~ msgstr "Супутникове обладнання"
+
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "Пошук доступних оновлень. Зачекайте..."
+
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "Пошук нових встановлених або видалених пакетів. Зачекайте..."
+
+#~ msgid "Skins"
+#~ msgstr "Скіни"
+
+#~ msgid "Software"
+#~ msgstr "Програмне забезпечення"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "Вибачте, деталей немає!"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Програмне забезпечення для управління розширеннями не встановлено!\n"
+#~ "Будь ласка, встановіть його."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "Не вдалося перевірити статус поточного оновлення, оскільки підключення до https://www.opena.tv неможливе з якихось причин"
+
+#~ msgid "There are at least "
+#~ msgstr "Є принаймні "
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "В даний час немає невиконаних дій."
+
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "Тут можна вказати чи переглядати мови в завантаженнях"
+
+#~ msgid "This plugin is installed."
+#~ msgstr "Плагін встановлений."
+
+#~ msgid "This plugin is not installed."
+#~ msgstr "Цей плагін не встановлений."
+
+#~ msgid "This plugin will be installed."
+#~ msgstr "Цей плагін буде встановлений."
+
+#~ msgid "This plugin will be removed."
+#~ msgstr "Цей плагін буде видалено."
+
+#~ msgid "Undo install"
+#~ msgstr "Скасувати встановлення"
+
+#~ msgid "Undo uninstall"
+#~ msgstr "Скасувати видалення"
+
+#~ msgid "Uninstall"
+#~ msgstr "Видалити"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "Оновлення на свій страх і ризик"
+
+#~ msgid "Update feed not available."
+#~ msgstr "Канал Оновленя не доступний."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "Оновлення повідомляється як несправне!"
+
+#~ msgid "Updating software catalog"
+#~ msgstr "Каталог оновлення ПЗ"
+
+#~ msgid "Upgrading"
+#~ msgstr "Оновлення"
+
+#~ msgid "View details"
+#~ msgstr "Перегляд деталей"
+
+#~ msgid "View list of available "
+#~ msgstr "Перегляд списку доступних "
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Перегляд списку доступних розширень CommonInterface"
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Перегляд списку доступних розширень EPG."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Перегляд списку доступних розширень супутникового обладнання."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Перегляд списку доступних розширень комунікації."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "Перегляд списку налаштувань за замовчуванням"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Перегляд списку доступних розширень інтерфейсу користувача."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Перегляд списку доступних розширень мультимедіа."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Перегляд списку доступних розширень мережі"
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Перегляд списку доступних розширень запису"
+
+#~ msgid "View list of available skins"
+#~ msgstr "Переглянути список доступних скінів"
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "Перегляд списку доступних розширень ПЗ"
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "Перегляд списку доступних розширень системи"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "Ви можете відмінити встановлення."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "Ви можете відмінити видалення."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "Ви можете встановити цей додаток."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "Ви можете видалити цей додаток."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "Ваш %s %s неправельно під'єднано до Інтернету. Перевірте і повторіть спробу."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "Ваш імідж застарів!\n"
+#~ "\n"
+#~ "Після такого довгого часу, є ризик, що Ваш %s %s НЕ\n"
+#~ "завантажиться після онлайн-оновлення, або отримаєте непрацюючий імідж.\n"
+#~ "\n"
+#~ "рекомендується встановити імідж з нуля.\n"
+#~ "\n"
+#~ "Онлайн оновлення готове на Ваш ризик!\n"
+#~ "\n"
+#~ "\n"
+#~ "Все ще хочете оновити імідж?"
+
+#~ msgid "extensions."
+#~ msgstr "розширення."
+
+#~ msgid "packages selected."
+#~ msgstr "виділені пакети."
+
+#~ msgid "updates available."
+#~ msgstr "оновлень доступно."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "ваш %s %s може стати непридатним тепер. Прочитайте керівництво по використанню перш ніж перезавантажити Ваш %s %s."
+
+#~ msgid "Additional Info"
+#~ msgstr "Додаткова інформація"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Ви дійсно бажаєте надіслати цей лог:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Прикріпити файл"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "Ви хочете додати додаткову інформацію?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "Хочете прикріпити текстовий файл для пояснень логу?\n"
+#~ "(виберіть 'Ні' для створення повідомлення за допомогою віртуальної клавіатури.)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "Хочете відправити всі вибрані файли:\n"
+#~ "(виберіть 'Ні', щоб відправити тільки вибраний файл.)"
+
+#, python-format
+#~ msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+#~ msgstr "Помилка %d: Неможливо перейменувати файл '%s' на '%s'!  (%s)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Помилка:\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "Надіслати"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "Надіслати підтвердження"
+
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "Використовувати інформацію OpenTV ЕПГ, коли вона доступна."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "Цей лог вже був відправлений. Хочете ще раз відправити цей лог:\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "Відсутні налаштування вашого користувача\n"
+#~ "Натисніть кнопку Меню, і введіть налаштування вашого користувача, потім спробуйте знову"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "Лог для відправки не вибрано."
+
+#~ msgid ""
+#~ "has been sent to the SVN team team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "був відправлений в команду команди SVN.\n"
+#~ "будь ласка, вкажіть"
+
+#~ msgid "rename"
+#~ msgstr "перейменувати"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "задаючи питання про цей журнал логів"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "задаючи питання про цей журнал логів\n"
+#~ "\n"
+#~ "Копія була відправлена."
+
+#~ msgid "LOF"
+#~ msgstr "Частота гетеродину"
 
 #, python-format
 #~ msgid "Delete '%s'?"
