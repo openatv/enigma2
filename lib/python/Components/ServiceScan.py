@@ -1,5 +1,4 @@
 from __future__ import print_function
-from __future__ import division
 from __future__ import absolute_import
 from enigma import eComponentScan, iDVBFrontend, eTimer
 from Components.NimManager import nimmanager as nimmgr
@@ -60,7 +59,7 @@ class ServiceScan:
 							sat_name = str(nimmgr.getSatDescription(orb_pos))
 						except KeyError:
 							sat_name = ""
-						if orb_pos > 1800: # west
+						if orb_pos > 1800:  # west
 							orb_pos = 3600 - orb_pos
 							h = _("W")
 						else:

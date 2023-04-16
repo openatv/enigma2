@@ -1,15 +1,14 @@
-import os
-import re
+from os import listdir
+from os.path import join, isdir, getsize, exists
+from re import sub
 import unicodedata
-from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad
-from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import pathExists, SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename
-from Components.Harddisk import harddiskmanager
-from ServiceReference import ServiceReference
 from Components.config import config
-import six
-import sys
+from Components.Harddisk import harddiskmanager
+from Components.Renderer.Renderer import Renderer
+from ServiceReference import ServiceReference
+from Tools.Alternatives import GetWithAlternative
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename
 
 searchPaths = []
 lastPiconPath = None
@@ -21,7 +20,7 @@ def initPiconPaths():
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
-		mp = path = os.path.join(part.mountpoint, 'usr/share/enigma2')
+		mp = join(part.mountpoint, 'usr/share/enigma2')
 		onMountpointAdded(part.mountpoint)
 		onMountpointAdded(mp)
 
@@ -29,9 +28,9 @@ def initPiconPaths():
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		path = os.path.join(mountpoint, 'picon') + '/'
-		if os.path.isdir(path) and path not in searchPaths:
-			for fn in os.listdir(path):
+		path = join(mountpoint, 'picon') + '/'
+		if isdir(path) and path not in searchPaths:
+			for fn in listdir(path):
 				if fn.endswith('.png'):
 					print("[Picon] adding path: %s" % path)
 					searchPaths.append(path)
@@ -42,7 +41,7 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	path = os.path.join(mountpoint, 'picon') + '/'
+	path = join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
 		print("[Picon] removed path: %s" % path)
@@ -61,28 +60,15 @@ def findPicon(serviceName):
 	global lastPiconPath
 	if lastPiconPath is not None:
 		pngname = lastPiconPath + serviceName + ".png"
-		if pathExists(pngname):
-			return pngname
-		else:
-			return ""
+		return pngname if exists(pngname) else ""
 	else:
-		global searchPaths
-		pngname = ""
 		for path in searchPaths:
-			if pathExists(path) and not path.startswith('/media/net'):
+			if exists(path) and not path.startswith('/media/net'):
 				pngname = path + serviceName + ".png"
-				if pathExists(pngname):
+				if exists(pngname):
 					lastPiconPath = path
-					break
-			elif pathExists(path):
-				pngname = path + serviceName + ".png"
-				if pathExists(pngname):
-					lastPiconPath = path
-					break
-		if pathExists(pngname):
-			return pngname
-		else:
-			return ""
+					return pngname
+		return ""
 
 
 def getPiconName(serviceName):
@@ -103,13 +89,10 @@ def getPiconName(serviceName):
 		#fallback to 1 for services with different service types
 		fields[2] = '1'
 		pngname = findPicon('_'.join(fields))
-	if not pngname: # picon by channel name
+	if not pngname:  # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
-		if sys.version_info[0] >= 3:
-			name = six.ensure_str(unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore'))
-		else:
-			name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
-		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
+		name = unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore').decode()
+		name = sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if len(name) > 0:
 			pngname = findPicon(name)
 			if not pngname and len(name) > 2 and name.endswith('hd'):
@@ -129,17 +112,17 @@ class Picon(Renderer):
 		self.defaultpngname = None
 		if not pngname:
 			tmp = resolveFilename(SCOPE_GUISKIN, "picon_default.png")
-			if pathExists(tmp):
+			if exists(tmp):
 				pngname = tmp
 			else:
 				pngname = resolveFilename(SCOPE_SKINS, "skin_default/picon_default.png")
 		self.nopicon = resolveFilename(SCOPE_SKINS, "skin_default/picon_default.png")
-		if os.path.getsize(pngname):
+		if getsize(pngname):
 			self.defaultpngname = pngname
 			self.nopicon = pngname
 
 	def addPath(self, value):
-		if pathExists(value):
+		if exists(value):
 			global searchPaths
 			if not value.endswith('/'):
 				value += '/'
@@ -173,7 +156,7 @@ class Picon(Renderer):
 			pngname = ""
 			if what[0] == 1 or what[0] == 3:
 				pngname = getPiconName(self.source.text)
-				if not pathExists(pngname): # no picon for service found
+				if not exists(pngname):  # no picon for service found
 					pngname = self.defaultpngname
 				if not config.usage.showpicon.value:
 					pngname = self.nopicon

@@ -645,6 +645,7 @@ class TimerOverviewSummary(ScreenSummary):
 
 	def addWatcher(self):
 		self.parent.onSelectionChanged.append(self.selectionChanged)
+		self.parent.selectionChanged()
 
 	def removeWatcher(self):
 		self.parent.onSelectionChanged.remove(self.selectionChanged)
@@ -707,7 +708,7 @@ class PowerTimerOverview(TimerOverviewBase):
 			time = "%s %s ... %s" % (fuzzyDate(timer.begin)[0], fuzzyDate(timer.begin)[1], fuzzyDate(timer.end)[1])
 			duration = int((timer.end - timer.begin) / 60.0)
 			for callback in self.onSelectionChanged:
-				callback("", "", time, ngettext("%d Min", "%d Mins", duration) % duration, TIMER_STATES.get(timer.state, UNKNOWN))
+				callback(POWERTIMER_TYPE_NAMES.get(timer.timerType, UNKNOWN), "", time, ngettext("%d Min", "%d Mins", duration) % duration, TIMER_STATES.get(timer.state, UNKNOWN))
 		else:
 			self["description"].setText("")
 			self["key_info"].setText("")
@@ -900,7 +901,7 @@ class RecordTimerOverview(TimerOverviewBase):
 			time = "%s %s ... %s" % (fuzzyDate(timer.begin)[0], fuzzyDate(timer.begin)[1], fuzzyDate(timer.end)[1])
 			duration = int((timer.end - timer.begin) / 60.0)
 			for callback in self.onSelectionChanged:
-				callback("", "", time, ngettext("%d Min", "%d Mins", duration) % duration, TIMER_STATES.get(timer.state, UNKNOWN))
+				callback(timer.name, timer.service_ref.getServiceName(), time, ngettext("%d Min", "%d Mins", duration) % duration, TIMER_STATES.get(timer.state, UNKNOWN))
 		else:
 			self["description"].setText("")
 			self["key_info"].setText("")
