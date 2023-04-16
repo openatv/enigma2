@@ -254,7 +254,7 @@ class ServiceInfo(Poll, Converter):
 			if info.getInfo(iServiceInformation.sGamma) > 0:
 				return False
 			else:
-				return video_width >= 721 and video_width < 1980
+				return video_width >= 721 and video_width < 2160
 		elif self.type == self.IS_1080:
 			return video_height > 1000 and video_height <= 1080
 		elif self.type == self.IS_720:
@@ -267,7 +267,7 @@ class ServiceInfo(Poll, Converter):
 			if info.getInfo(iServiceInformation.sGamma) > 0:
 				return False
 			else:
-				return video_width > 2160 and video_width <= 3840
+				return video_width >= 2160 and video_width <= 3840
 		elif self.type == self.IS_IPSTREAM:
 			return service.streamed() is not None
 		elif self.type == self.IS_SDR:
