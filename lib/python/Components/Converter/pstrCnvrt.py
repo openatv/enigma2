@@ -35,8 +35,8 @@ class pstrCnvrt(Converter):
 					ses_ep = self.sessionEpisode(event)
 					self.searchPoster("tv" if ses_ep != "" and len(ses_ep) > 0 else "multi")
 					return self.evntNm
-				except:
-					pass
+				except Exception:
+					return ""
 			else:
 				return ""
 	text = property(getText)
