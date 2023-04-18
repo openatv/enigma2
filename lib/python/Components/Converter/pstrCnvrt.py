@@ -26,7 +26,7 @@ class pstrCnvrt(Converter):
 			if self.type == "POSTER":
 				self.evnt = event.getEventName()
 				try:
-					p = r"((.*?)) \([T](\d+)\)"
+					p = r"((.*?)) \([T](\d+)\)"  # NOSONAR -> Make sure the regex used here, which is vulnerable to polynomial runtime due to backtracking, cannot lead to denial of service.
 					e1 = search(p, self.evnt)
 					jr = self.evnt
 					if e1:
