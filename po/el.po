@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-05 17:52+0000\n"
+"PO-Revision-Date: 2023-04-20 09:57+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -974,8 +974,8 @@ msgstr[1] "%d πυρήνες"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] "%d πακέτο από τον κατάλογο των πηγών αναβαθμίστηκε."
-msgstr[1] "%d πακέτα από τον κατάλογο των πηγών αναβαθμίστηκαν."
+msgstr[0] "Αναβαθμίστηκε %d πακέτο από τον κατάλογο των πηγών."
+msgstr[1] "Αναβαθμίστηκαν %d πακέτα από τον κατάλογο των πηγών."
 
 #, python-format
 msgid "%d kB"
@@ -996,20 +996,20 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] "%d πακέτο αναβαθμίστηκε."
-msgstr[1] "%d πακέτα αναβαθμίστηκαν."
+msgstr[0] "Αναβαθμίστηκε %d πακέτο."
+msgstr[1] "Αναβαθμίστηκαν %d πακέτα."
 
 #, python-format
 msgid "%d package was configured."
 msgid_plural "%d packages were configured."
-msgstr[0] "%d πακέτο ρυθμίστηκε."
-msgstr[1] "%d πακέτα ρυθμίστηκαν."
+msgstr[0] "Ρυθμίστηκε %d πακέτο."
+msgstr[1] "Ρυθμίστηκαν %d πακέτα."
 
 #, python-format
 msgid "%d package was deselected."
 msgid_plural "%d packages were deselected."
-msgstr[0] "%d πακέτο αποεπιλέχθηκε."
-msgstr[1] "%d πακέτα αποεπιλέχθηκαν."
+msgstr[0] "Αποεπιλέχθηκε %d πακέτο."
+msgstr[1] "Αποεπιλέχθηκαν %d πακέτα."
 
 #, python-format
 msgid "%d package was downloaded."
@@ -1020,30 +1020,30 @@ msgstr[1] "Έγινε λήψη %d πακέτων."
 #, python-format
 msgid "%d package was identified for upgrade."
 msgid_plural "%d packages were identified for upgrade."
-msgstr[0] "%d πακέτο για αναβάθμιση αναγνωρίστηκε."
-msgstr[1] "%d πακέτα για αναβάθμιση αναγνωρίστηκαν."
+msgstr[0] "Αναγνωρίστηκε %d πακέτο για αναβάθμιση."
+msgstr[1] "Αναγνωρίστηκαν %d πακέτα για αναβάθμιση."
 
 #, python-format
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
-msgstr[0] "%d πακέτο εγκαταστάθηκε."
-msgstr[1] "%d πακέτα εγκαταστάθηκαν."
+msgstr[0] "Εγκαταστάθηκε %d πακέτο."
+msgstr[1] "Εγκαταστάθηκαν %d πακέτα."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
-msgstr[0] "%d πακέτο αφαιρέθηκε."
-msgstr[1] "%d πακέτα αφαιρέθηκαν."
+msgstr[0] "Αφαιρέθηκε %d πακέτο."
+msgstr[1] "Αφαιρέθηκαν %d πακέτα."
 
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
-msgstr[0] "%d πακέτο αναβαθμίστηκε."
-msgstr[1] "%d πακέτα αναβαθμίστηκαν."
+msgstr[0] "Αναβαθμίστηκε %d πακέτο."
+msgstr[1] "Αναβαθμίστηκαν %d πακέτα."
 
 #, python-format
 msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr ""
+msgstr "Βρέθηκαν %d πακέτα, εγκαταστάθηκαν %d πακέτα και %d πακέτα έχουν ενημερώσεις."
 
 #, python-format
 msgid "%d sec"
@@ -1215,7 +1215,7 @@ msgstr "%s MHz"
 
 #, python-format
 msgid "%s Packages found"
-msgstr ""
+msgstr "Βρέθηκαν %s πακέτα"
 
 #, python-format
 msgid "%s Setup"
@@ -3768,7 +3768,7 @@ msgid "Cancel"
 msgstr "Ακύρωση"
 
 msgid "Cancel / Close the screen"
-msgstr ""
+msgstr "Ακύρωση / Κλείσιμο της οθόνης"
 
 msgid "Cancel / Close the software update screen"
 msgstr "Ακύρωση / κλείσιμο της οθόνης ενημέρωσης λογισμικού"
@@ -10443,7 +10443,7 @@ msgid "Manage Locale/Language Selection settings"
 msgstr "Διαχείριση ρυθμίσεων γλώσσας/διαλέκτου"
 
 msgid "Manage Plugins"
-msgstr ""
+msgstr "Διαχείριση προσθέτων"
 
 msgid "Manage and explore directories and files."
 msgstr "Διαχείριση και εξερεύνηση φακέλων και αρχείων."
@@ -11596,7 +11596,7 @@ msgid "No of items switch (increase or reduced)"
 msgstr "Αριθμός αλλαγής στοιχείων (αύξηση ή μείωση)"
 
 msgid "No packages found."
-msgstr ""
+msgstr "Δεν βρέθηκε κανένα πακέτο."
 
 msgid "No pictures available"
 msgstr "Μη διαθέσιμες εικόνες"
@@ -12467,7 +12467,7 @@ msgid "Perform an on-line flash instead"
 msgstr "Να γίνει διαδικτυακό φλασάρισμα αντ' αυτού"
 
 msgid "Perform install/remove of the selected item"
-msgstr ""
+msgstr "Εκτέλεση εγκατάστασης/αφαίρεσης του επιλεγμένου στοιχείου"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Οριστική διαγραφή όλων των εγγραφών από τον κάδο;"
@@ -13011,7 +13011,7 @@ msgid "Plugin Filter Settings"
 msgstr "Ρυθμίσεις φίλτρου προσθέτων"
 
 msgid "Plugin Manager Actions"
-msgstr ""
+msgstr "Ενέργειες διαχείρισης προσθέτων"
 
 msgid "Plugins"
 msgstr "Πρόσθετα"
@@ -14793,7 +14793,7 @@ msgid "Scan your network for wireless access points and connect to them using yo
 msgstr "Ανίχνευση του δικτύου για ασύρματα σημεία σύνδεσης και σύνδεση σε αυτά με την επιλεγμένη ασύρματη συσκευή."
 
 msgid "Scanning"
-msgstr ""
+msgstr "Ανίχνευση"
 
 #, python-format
 msgid "Scanning %s..."
