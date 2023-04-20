@@ -661,6 +661,11 @@ try:  # Configure the twisted logging.
 except ImportError:
 	print("[StartEnigma] Error: Twisted not available!")
 
+# Initialize the country, language and locale data.
+#
+profile("International")
+from Components.International import international
+
 profile("SystemInfo")
 from enigma import getE2Rev
 from Components.SystemInfo import BoxInfo
@@ -687,11 +692,6 @@ if BoxInfo.getItem("architecture") in ("aarch64"):
 from traceback import print_exc
 from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger, ConfigText, ConfigOnOff, ConfigSelection
 
-# Initialize the country, language and locale data.
-#
-profile("InternationalLocalization")
-from Components.International import international
-
 config.osd = ConfigSubsection()
 
 defaultLocale = {
@@ -710,6 +710,7 @@ config.osd.language.addNotifier(localeNotifier)
 # These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma.py.
 #
 config.crash = ConfigSubsection()
+config.crash.debugInternational = ConfigYesNo(default=False)
 config.crash.debugMultiBoot = ConfigYesNo(default=False)
 config.crash.debugActionMaps = ConfigYesNo(default=False)
 config.crash.debugKeyboards = ConfigYesNo(default=False)

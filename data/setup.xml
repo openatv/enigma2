@@ -390,6 +390,7 @@
 		<item level="2" text="Show crash info on screen and write crash log for x times" description="If 'never', will write crash log despite that for the first crash." requires="config.crash.bsodpython">config.crash.bsodhide</item>
 		<item level="2" text="Restart GUI after x crashes" description="If 'never', will force restart despite that after 100 crashes." requires="config.crash.bsodpython">config.crash.bsodmax</item>
 		<item level="2" text="Enable debug log *" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
+		<item level="2" text="Include international data *" description="Enable this option to add international language and country load information detected during system boot to the debug log file.">config.crash.debugInternational</item>
 		<item level="2" text="Include MultiBoot data *" description="Enable this option to add MultiBoot information detected during system boot to the debug log file.">config.crash.debugMultiBoot</item>
 		<item level="2" text="Include keyboard data" description="Enable this option to add keyboard keymap data to the debug log file.">config.crash.debugKeyboards</item>
 		<item level="2" text="Include remote control data" description="Enable this option to add remote control data to the debug log file.">config.crash.debugRemoteControls</item>
@@ -749,7 +750,7 @@
 	<setup key="Time" title="Time Settings" showOpenWebif="1">
 		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
 		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
-		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or Internet.">config.misc.SyncTimeUsing</item>
+		<item level="0" text="Sync time using" description="Synchronize system time using transponder or Internet.">config.misc.SyncTimeUsing</item>
 		<if conditional="config.misc.SyncTimeUsing.value == '1'">
 			<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 			<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval.">config.misc.useNTPminutes</item>
