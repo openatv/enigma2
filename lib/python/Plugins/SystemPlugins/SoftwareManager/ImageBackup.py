@@ -4,7 +4,7 @@ from os.path import exists, isdir, isfile, join as pathjoin
 from subprocess import getoutput
 from time import localtime, strftime, time
 
-from Components.About import getChipSetString, getCPUBrand, getCPUInfoString
+from Components.About import getCPUBrand, getCPUInfoString
 from Components.ActionMap import ActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Harddisk import Freespace, getFolderSize
@@ -718,7 +718,7 @@ class ImageBackup(Screen):
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
 
 		if exists("/proc/stb/info/chipset"):
-			AboutText += _("Chipset: BCM%s") % getChipSetString().lower().replace("\n", "").replace("bcm", "") + "\n"
+			AboutText += _("Chipset: BCM%s") % BoxInfo.getItem("ChipsetString") + "\n"
 
 		cpu = getCPUInfoString()
 		AboutText += "%s: %s\n" % (_("CPU"), cpu[0])
