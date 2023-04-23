@@ -220,7 +220,7 @@ def getSystemTemperature():
 
 
 def getChipSetString():
-	return str(BoxInfo.getItem("ChipsetString")
+	return str(BoxInfo.getItem("ChipsetString"))
 
 
 def getCPUBrand():
