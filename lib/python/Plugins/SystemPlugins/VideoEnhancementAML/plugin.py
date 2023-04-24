@@ -61,7 +61,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.oldColor_bottom = config.amvecm.color_bottom.value
 		self.oldColor_top = config.amvecm.color_top.value
 
-
 	def addToConfigList(self, description, configEntry, hinttext):
 		if isinstance(configEntry, ConfigNothing):
 			return None

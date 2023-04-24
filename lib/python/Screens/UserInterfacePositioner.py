@@ -27,6 +27,7 @@ def setPositionParameter(parameter, configElement):
 		f.write('1')
 		f.close()
 
+
 def setPositionParameterAML(configElement):
 	f = open("/sys/class/graphics/fb0/window_axis", "w")
 	f.write('%s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_top.value, config.osd.dst_width.value, config.osd.dst_height.value))
@@ -34,6 +35,7 @@ def setPositionParameterAML(configElement):
 	f = open("/sys/class/graphics/fb0/free_scale", "w")
 	f.write('0x10001')
 	f.close()
+
 
 def InitOsd():
 
@@ -318,7 +320,6 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Top"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface top")))
 			self.list.append(getConfigListEntry(_("Bottom"), config.osd.dst_height, _("Use the Left/Right buttons on your remote to move the user interface bottom")))
 
-
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -371,7 +372,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 			config.osd.dst_left.setValue(0)
 			config.osd.dst_top.setValue(0)
 		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			limits=iAVSwitch.getWindowsAxis().split()
+			limits = [int(x) for x in iAVSwitch.getWindowsAxis().split()]
 			config.osd.dst_left.setValue(limits[0])
 			config.osd.dst_top.setValue(limits[1])
 			config.osd.dst_width.setValue(limits[2])
@@ -517,7 +518,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			config.osd.dst_left.setValue(0)
 			config.osd.dst_top.setValue(0)
 		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			limits=iAVSwitch.getWindowsAxis().split()
+			limits = iAVSwitch.getWindowsAxis().split()
 			config.osd.dst_left.setValue(limits[0])
 			config.osd.dst_top.setValue(limits[1])
 			config.osd.dst_width.setValue(limits[2])

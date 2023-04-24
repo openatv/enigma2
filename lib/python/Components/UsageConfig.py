@@ -1181,19 +1181,11 @@ def InitUsageConfig():
 	config.epg.cachesavetimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
 
 	if BoxInfo.getItem("AmlogicFamily"):
-		limits=iAVSwitch.getWindowsAxis().split()
-		axismin0=int(limits[0])-255
-		axismax0=int(limits[0])+255
-		axismin1=int(limits[1])-255
-		axismax1=int(limits[1])+255
-		axismin2=int(limits[2])-255
-		axismax2=int(limits[2])+255
-		axismin3=int(limits[3])-255
-		axismax3=int(limits[3])+255
-		config.osd.dst_left = ConfigSelectionNumber(default=limits[0], stepwidth=1, min=axismin0, max=axismax0, wraparound=False)
-		config.osd.dst_top = ConfigSelectionNumber(default=limits[1], stepwidth=1, min=axismin1, max=axismax1, wraparound=False)
-		config.osd.dst_width = ConfigSelectionNumber(default=limits[2], stepwidth=1, min=axismin2, max=axismax2, wraparound=False)
-		config.osd.dst_height = ConfigSelectionNumber(default=limits[3], stepwidth=1, min=axismin3, max=axismax3, wraparound=False)
+		limits = [int(x) for x in iAVSwitch.getWindowsAxis().split()]
+		config.osd.dst_left = ConfigSelectionNumber(default=limits[0], stepwidth=1, min=limits[0] - 255, max=limits[0] + 255, wraparound=False)
+		config.osd.dst_top = ConfigSelectionNumber(default=limits[1], stepwidth=1, min=limits[1] - 255, max=limits[1] + 255, wraparound=False)
+		config.osd.dst_width = ConfigSelectionNumber(default=limits[2], stepwidth=1, min=limits[2] - 255, max=limits[2] + 255, wraparound=False)
+		config.osd.dst_height = ConfigSelectionNumber(default=limits[3], stepwidth=1, min=limits[3] - 255, max=limits[3] + 255, wraparound=False)
 	else:
 		config.osd.dst_left = ConfigSelectionNumber(default=0, stepwidth=1, min=0, max=720, wraparound=False)
 		config.osd.dst_width = ConfigSelectionNumber(default=720, stepwidth=1, min=0, max=720, wraparound=False)
