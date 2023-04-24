@@ -18,6 +18,7 @@ has_rca = BoxInfo.getItem("rca", False)
 has_jack = BoxInfo.getItem("avjack", False)
 has_dvi = BoxInfo.getItem("dvi", False)
 
+
 def sortkey(name):
 	if name[0] == "2160p":
 		return 1
@@ -166,7 +167,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 			#if mode[0] != "PC":
 				list.append((mode[0], mode[0]))
 		#print("modeslist:", list)
-		return sorted(list,key=sortkey)
+		return sorted(list, key=sortkey)
 
 	def modeSelectionMade(self, index):
 		#print("modeSelectionMade:", index)
@@ -203,7 +204,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 							list.insert(0, (rate, rate))
 							continue
 					list.append((rate, rate))
-		return sorted(list,key=sortkey)
+		return sorted(list, key=sortkey)
 
 	def rateSelectionMade(self, index):
 		#print("rateSelectionMade:", index)

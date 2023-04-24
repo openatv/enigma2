@@ -36,6 +36,7 @@ axis = {"480i": "0 0 719 479",
 		"2160p": "0 0 3839 2159",
 		"smpte": "0 0 4095 2159"}
 
+
 class AVSwitch:
 	hw_type = HardwareInfo().get_device_name()
 	rates = {}  # high-level, use selectable modes.
@@ -67,8 +68,8 @@ class AVSwitch:
 								"25Hz": {25: "1080p25hz"},
 								"24Hz": {24: "1080p24hz"},
 								"auto": {60: "1080p60hz"}}
-		rates["2160p"] = {"50Hz": {50: "2160p50hz"}, 
-								"60Hz": {60: "2160p60hz"}, 
+		rates["2160p"] = {"50Hz": {50: "2160p50hz"},
+								"60Hz": {60: "2160p60hz"},
 								"30Hz": {30: "2160p30hz"},
 								"25Hz": {25: "2160p25hz"},
 								"24Hz": {24: "2160p24hz"},
@@ -294,7 +295,7 @@ class AVSwitch:
 			f = open("/sys/class/display/mode", "w")
 			f.write(amlmode)
 			f.close()
-			print("[AVSwitch] Amlogic setting videomode to mode: %s" %amlmode)
+			print("[AVSwitch] Amlogic setting videomode to mode: %s" % amlmode)
 			f = open("/etc/u-boot.scr.d/000_hdmimode.scr", "w")
 			f.write("setenv hdmimode %s" % amlmode)
 			f.close()
@@ -308,26 +309,19 @@ class AVSwitch:
 			f = open("/sys/class/ppmgr/ppscaler", "w")
 			f.write("0")
 			f.close()
-			f = open("/sys/class/video/axis","w")
+			f = open("/sys/class/video/axis", "w")
 			f.write(axis[mode])
 			f.close()
-			f = open("/sys/class/graphics/fb0/stride","r")
+			f = open("/sys/class/graphics/fb0/stride", "r")
 			stride = f.read().strip()
 			f.close()
-			limits=axis[mode].split()
-			axismin0=int(limits[0])-255
-			axismax0=int(limits[0])+255
-			axismin1=int(limits[1])-255
-			axismax1=int(limits[1])+255
-			axismin2=int(limits[2])-255
-			axismax2=int(limits[2])+255
-			axismin3=int(limits[3])-255
-			axismax3=int(limits[3])+255
-			config.osd.dst_left = ConfigSelectionNumber(default=limits[0], stepwidth=1, min=axismin0, max=axismax0, wraparound=False)
-			config.osd.dst_top = ConfigSelectionNumber(default=limits[1], stepwidth=1, min=axismin1, max=axismax1, wraparound=False)
-			config.osd.dst_width = ConfigSelectionNumber(default=limits[2], stepwidth=1, min=axismin2, max=axismax2, wraparound=False)
-			config.osd.dst_height = ConfigSelectionNumber(default=limits[3], stepwidth=1, min=axismin3, max=axismax3, wraparound=False)
-			if oldamlmode != amlmode: 
+			limits = [int(x) for x in axis[mode].split()]
+			config.osd.dst_left = ConfigSelectionNumber(default=limits[0], stepwidth=1, min=limits[0] - 255, max=limits[0] + 255, wraparound=False)
+			config.osd.dst_top = ConfigSelectionNumber(default=limits[1], stepwidth=1, min=limits[1] - 255, max=limits[1] + 255, wraparound=False)
+			config.osd.dst_width = ConfigSelectionNumber(default=limits[2], stepwidth=1, min=limits[2] - 255, max=limits[2] + 255, wraparound=False)
+			config.osd.dst_height = ConfigSelectionNumber(default=limits[3], stepwidth=1, min=limits[3] - 255, max=limits[3] + 255, wraparound=False)
+
+			if oldamlmode != amlmode:
 				config.osd.dst_width.setValue(limits[0])
 				config.osd.dst_height.setValue(limits[1])
 				config.osd.dst_left.setValue(limits[2])
@@ -336,7 +330,7 @@ class AVSwitch:
 				config.osd.dst_width.save()
 				config.osd.dst_top.save()
 				config.osd.dst_height.save()
-			print("[AVSwitch] Framebuffer mode:%s  stride:%s axis:%s" % (getDesktop(0).size().width(),stride,axis[mode]))
+			print("[AVSwitch] Framebuffer mode:%s  stride:%s axis:%s" % (getDesktop(0).size().width(), stride, axis[mode]))
 			return
 
 		try:
@@ -389,7 +383,7 @@ class AVSwitch:
 			config.av.videorate[mode].save()
 
 	def getAMLMode(self):
-		f = open("/sys/class/display/mode","r")
+		f = open("/sys/class/display/mode", "r")
 		currentmode = f.read().strip()
 		f.close()
 		return currentmode[:-4]
@@ -1017,7 +1011,7 @@ def InitAVSwitch():
 				"slow": _("Slow Motion"),
 				"hold": _("Hold First Frame"),
 				"black": _("Black Screen")},
-				default = "slow")
+				default="slow")
 		config.av.sync_mode.addNotifier(setSyncMode)
 	else:
 		config.av.sync_mode = ConfigNothing()
@@ -1041,7 +1035,7 @@ def InitAVSwitch():
 				"hdr10-0": _("force enabled"),
 				"hdr10-1": _("force disabled"),
 				"hdr10-2": _("controlled by HDMI")},
-				default = "hdr10-2")
+				default="hdr10-2")
 		config.av.amlhdr10_support.addNotifier(setAMLHDR10)
 	else:
 		config.av.amlhdr10_support = ConfigNothing()
@@ -1058,7 +1052,7 @@ def InitAVSwitch():
 				"hlg-0": _("force enabled"),
 				"hlg-1": _("force disabled"),
 				"hlg-2": _("controlled by HDMI")},
-				default = "hlg-2")
+				default="hlg-2")
 		config.av.amlhlg_support.addNotifier(setAMLHLG)
 	else:
 		config.av.amlhlg_support = ConfigNothing()

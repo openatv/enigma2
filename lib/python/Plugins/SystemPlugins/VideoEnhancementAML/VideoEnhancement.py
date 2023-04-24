@@ -1,7 +1,6 @@
 from __future__ import print_function
 from os import path as os_path
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
-from Components.SystemInfo import BoxInfo
 
 # The "VideoEnhancement" is the interface to /sys/class/amvecm.
 
@@ -174,5 +173,6 @@ class VideoEnhancement:
 
 	def setConfiguredValues(self):
 		pass
+
 
 VideoEnhancement()

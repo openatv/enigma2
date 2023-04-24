@@ -2,18 +2,14 @@ from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
 from Components.Button import Button
 from Components.ActionMap import ActionMap
-from Components.ConfigList import ConfigList
-from Components.config import config, configfile, ConfigSubsection, getConfigListEntry, ConfigSelection, ConfigBoolean
+from Components.config import config, configfile, ConfigSubsection, getConfigListEntry, ConfigSelection
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-from boxbranding import getImageDistro, getMachineBuild
-import Screens.Standby
-from enigma import eTimer
-from os import path
+from enigma import eTimer, getDesktop
 
 config.plugins.aml = ConfigSubsection()
 config.plugins.aml.governor = ConfigSelection(default="performance", choices=[("interactive", "Interactive - responsive and savvy"), ("schedutil", "schedutil - scheduler-driven (suggested)"), ("performance", "Performance -max full time (default)")])
-config.plugins.aml.maxfrq = ConfigSelection(default="1800000",choices=[("500000", "500 MHz"),
+config.plugins.aml.maxfrq = ConfigSelection(default="1800000", choices=[("500000", "500 MHz"),
 	("667000", "667 MHz"),
 	("1000000", "1 GHz"),
 	("1200000", "1.2 GHz"),
@@ -21,7 +17,7 @@ config.plugins.aml.maxfrq = ConfigSelection(default="1800000",choices=[("500000"
 	("1512000", "1.5 GHz"),
 	("1608000", "1.6 GHz"),
 	("1704000", "1.7 GHz"),
-	("1800000", _("1.8 GHz (default)"))])
+	("1800000", "1.8 GHz (default)")])
 config.plugins.aml.minfrq = ConfigSelection(default="500000", choices=[("500000", "500 MHz (default)"),
 	("667000", "667 MHz"),
 	("1000000", "1 GHz"),
@@ -30,7 +26,7 @@ config.plugins.aml.minfrq = ConfigSelection(default="500000", choices=[("500000"
 	("1512000", "1.5 GHz"),
 	("1608000", "1.6 GHz"),
 	("1704000", "1.7 GHz"),
-	("1800000", _("1.8 GHz"))])
+	("1800000", "1.8 GHz")])
 config.plugins.aml.maxfrq2 = ConfigSelection(default="1704000", choices=[("500000", "500 MHz"),
 	("667000", "667 MHz"),
 	("1000000", "1 GHz"),
@@ -47,6 +43,7 @@ config.plugins.aml.minfrq2 = ConfigSelection(default="500000", choices=[("500000
 	("1512000", "1.5 GHz"),
 	("1608000", "1.6 GHz"),
 	("1704000", "1.7 GHz")])
+
 
 def leaveStandby():
     print("[AmlFRQ] Leave Standby")
@@ -100,8 +97,7 @@ def initStandbyBooster():
 
 class AmlFRQ(ConfigListScreen, Screen):
 
-	def __init__(self, session, args = None):
-		from enigma import getDesktop
+	def __init__(self, session, args=None):
 		DESKHEIGHT = getDesktop(0).size().height()
 		if DESKHEIGHT == 720:
 			self.skin = """
@@ -112,17 +108,17 @@ class AmlFRQ(ConfigListScreen, Screen):
 			<ePixmap pixmap="enigma2/icon/default.png" position="1044,189" size="60,46" zPosition="1" />
 			<eLabel name="" position="1028,290" size="96,33" font="Regular; 18" valign="center" halign="center" text="Exit" />
 			<ePixmap pixmap="MetrixHD/buttons/buttons.png" position="142,595" size="733,37" alphatest="blend" zPosition="100" />
-			
+
 			<widget name="key_red" position="156,595" size="236,37" zPosition="1" font="Regular; 18" halign="center" valign="center" backgroundColor="#9f1313" transparent="0" foregroundColor="#cccccc" />
 			<widget name="key_green" position="401,595" size="236,37" zPosition="1" font="Regular; 18" halign="center" valign="center" backgroundColor="#1f771f" transparent="0" foregroundColor="#cccccc" />
 			<widget name="key_yellow" position="646,595" size="236,37" zPosition="1" font="Regular; 18" halign="center" valign="center" backgroundColor="#a08500" transparent="0" foregroundColor="#cccccc" />
-			
+
 			<widget name="config" position="166,160" size="840,169" scrollbarMode="showOnDemand" font="Regular; 18" itemHeight="32" selectionPixmap="MetrixHD/SkinDesign/CoolNow.png" transparent="1" scrollbarSliderforegroundColor="#cccccc" scrollbarSliderBorderColor="#25062748" />
 			<widget name="tempc"  position="166,366"  size="486,33" font="Regular; 18" valign="center" halign="left" />
 			<widget name="voltc"  position="166,406"  size="486,33" font="Regular; 18" valign="center" halign="left" />
 			<widget name="frqc"   position="166,446"  size="486,33" font="Regular; 18" valign="center" halign="left" />
 			<widget name="frqc"   position="166,486"  size="486,33" font="Regular; 18" valign="center" halign="left" />
-			
+
 			<eLabel name="" position="1028,248" size="96,33" font="Regular; 18" valign="center" halign="center" text="OK" />
 			</screen>"""
 		else:
@@ -142,7 +138,7 @@ class AmlFRQ(ConfigListScreen, Screen):
 			<widget name="voltc"  position="250,610"  size="680,50" font="Regular; 28" valign="center" halign="left" />
 			<widget name="frqc"   position="250,670"  size="680,50" font="Regular; 28" valign="center" halign="left" />
 			<widget name="frqc2"   position="250,730"  size="680,50" font="Regular; 28" valign="center" halign="left" />
-			
+
 			<eLabel name="" position="1542,372" size="145,50" font="Regular; 28" valign="center" halign="center" text="OK" />
 			</screen>"""
 
@@ -164,10 +160,10 @@ class AmlFRQ(ConfigListScreen, Screen):
 		print("[AmlFRQ] createSetup initializing")
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Set MAX CPU frequency for cores  0 and 1"), config.plugins.aml.maxfrq))
-		self.list.append(getConfigListEntry(_("Set MIN CPU frequency for cores  0 and 1"), config.plugins.aml.minfrq))
-		self.list.append(getConfigListEntry(_("Set MAX CPU frequency for cores  2, 3, 4 and 5"), config.plugins.aml.maxfrq2))
-		self.list.append(getConfigListEntry(_("Set MIN CPU frequency for cores  2, 3, 4 and 5"), config.plugins.aml.minfrq2))
+		self.list.append(getConfigListEntry(_("Set MAX CPU frequency for cores 0 and 1"), config.plugins.aml.maxfrq))
+		self.list.append(getConfigListEntry(_("Set MIN CPU frequency for cores 0 and 1"), config.plugins.aml.minfrq))
+		self.list.append(getConfigListEntry(_("Set MAX CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.maxfrq2))
+		self.list.append(getConfigListEntry(_("Set MIN CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.minfrq2))
 		self.list.append(getConfigListEntry(_("Set Scaling governor"), config.plugins.aml.governor))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -213,7 +209,7 @@ class AmlFRQ(ConfigListScreen, Screen):
 		except:
 			pass
 
-		self["tempc"].setText(_("Current Temperature (SoC):  " + self.temp + " C"))
+		self["tempc"].setText(_("Current Temperature (SoC): %s °C") % self.temp)
 		self.icfrq = int(float(self.cfrq))
 		if self.icfrq >= 500 and self.icfrq <= 1200:
 			self.voltage = "0.731"
@@ -227,15 +223,14 @@ class AmlFRQ(ConfigListScreen, Screen):
 			self.voltage = "0.961"
 		elif self.icfrq == 1800:
 			self.voltage = "0.981"
-		self["voltc"].setText(_("Current CPU cores 0 and 1 Voltage:  " + self.voltage + " V"))
-		self["frqc"].setText(_("Current CPU Frequency cores 0 and 1:  " + self.cfrq + " MHz"))
-		self["frqc2"].setText(_("Current CPU Frequency other cores:  " + self.cfrq2 + " MHz"))
+		self["voltc"].setText(_("Current CPU cores 0 and 1 Voltage: %s V") % self.voltage)
+		self["frqc"].setText(_("Current CPU Frequency cores 0 and 1: %s MHz") % self.cfrq)
+		self["frqc2"].setText(_("Current CPU Frequency other cores: %s MHz") % self.cfrq2)
 		self.timer.start(1000, True)
 
 	def changedEntry(self):
 		for x in self.onChangedEntry:
- 			x()
-
+			x()
 		self.newConfig()
 
 	def newConfig(self):
@@ -276,7 +271,6 @@ class U5_Booster:
 		self.service = None
 		self.onClose = []
 		initBooster()
-		return
 
 	def shutdown(self):
 		self.abort()
@@ -294,10 +288,7 @@ def main(menuid):
 	if menuid != "system":
 		return []
 	else:
-		return [(_("CPU Control"),
-		startBooster,
-		"CPU Control",
-		None)]
+		return [(_("CPU Control"), startBooster, "CPU Control", None)]
 
 
 def startBooster(session, **kwargs):
@@ -307,6 +298,7 @@ def startBooster(session, **kwargs):
 wbooster = None
 gReason = -1
 mySession = None
+
 
 def dinobotbooster():
 	global wbooster
