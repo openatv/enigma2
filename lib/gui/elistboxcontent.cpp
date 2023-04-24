@@ -198,7 +198,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		style.getFont(eWindowStyle::fontListbox, fnt);
 	}
 
-	int orientation = (m_listbox) ? m_listbox->getOrientation() : 0;
+	int orientation = (m_listbox) ? m_listbox->getOrientation() : 1;
 
 	/* if we have no transparent background */
 	if (!local_style || !local_style->m_transparent_background)
@@ -443,7 +443,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	if (!fnt2)
 		style.getFont(eWindowStyle::fontValue, fnt2);
 
-	int orientation = (m_listbox) ? m_listbox->getOrientation() : 0;
+	int orientation = (m_listbox) ? m_listbox->getOrientation() : 1;
 
 	if (!local_style || !local_style->m_transparent_background)
 	/* if we have no transparent background */
