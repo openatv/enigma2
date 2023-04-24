@@ -4,6 +4,7 @@ from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Components.Element import cached
 from Components.Converter.Poll import Poll
 from Tools.Transponder import ConvertToHumanReadable
+from Components.SystemInfo import BoxInfo
 
 from os import path
 
@@ -153,22 +154,40 @@ class ServiceInfo(Poll, Converter):
 		return convert(val) if val is not None else self.getServiceInfoString(info, infoVal, convert)
 
 	def _getVideoHeight(self, info):
-		return self._getValInt("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16)
+		if BoxInfo.getItem("AmlogicFamily"):
+			return self._getValInt("/sys/class/video/frame_height", info, iServiceInformation.sVideoHeight)
+		else:
+			return self._getValInt("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16)
 
 	def _getVideoHeightStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
-		return self._getValStr("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16, convert=convert)
+		if BoxInfo.getItem("AmlogicFamily"):
+			return self._getValStr("/sys/class/video/frame_height", info, iServiceInformation.sVideoHeight, convert=convert)
+		else:
+			return self._getValStr("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16, convert=convert)
 
 	def _getVideoWidth(self, info):
-		return self._getValInt("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16)
+		if BoxInfo.getItem("AmlogicFamily"):
+			return self._getValInt("/sys/class/video/frame_width", info, iServiceInformation.sVideoWidth)
+		else:
+			return self._getValInt("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16)
 
 	def _getVideoWidthStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
-		return self._getValStr("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16, convert=convert)
+		if BoxInfo.getItem("AmlogicFamily"):
+			return self._getValStr("/sys/class/video/frame_width", info, iServiceInformation.sVideoWidth, convert=convert)
+		else:
+			return self._getValStr("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16, convert=convert)
 
 	def _getFrameRate(self, info):
-		return self._getValInt("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate)
+		if BoxInfo.getItem("AmlogicFamily"):
+			return self._getValInt("/proc/stb/vmpeg/0/frame_rate", info, iServiceInformation.sFrameRate)
+		else:
+			return self._getValInt("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate)
 
 	def _getFrameRateStr(self, info, convert=lambda x: "%d" % x if x > 0 else ""):
-		return self._getValStr("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate, convert=convert)
+		if BoxInfo.getItem("AmlogicFamily"):
+			return self._getValStr("/proc/stb/vmpeg/0/frame_rate", info, iServiceInformation.sFrameRate, convert=convert)
+		else:
+			return self._getValStr("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate, convert=convert)
 
 	def _getProgressive(self, info):
 		return self._getValInt("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive, default=0)
@@ -191,6 +210,9 @@ class ServiceInfo(Poll, Converter):
 
 		if path.exists("/proc/stb/vmpeg/0/aspect"):
 			f = open("/proc/stb/vmpeg/0/aspect", "r")
+		elif path.exists("/sys/class/video/screen_mode"):
+			f = open("/sys/class/video/screen_mode", "r")
+		if f:
 			try:
 				video_aspect = int(f.read())
 			except:
@@ -317,6 +339,9 @@ class ServiceInfo(Poll, Converter):
 			video_rate = None
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
+			elif path.exists("/proc/stb/vmpeg/0/frame_rate"):
+				f = open("/proc/stb/vmpeg/0/frame_rate", "r")
+			if f:
 				try:
 					video_rate = int(f.read())
 				except:
@@ -390,6 +415,13 @@ class ServiceInfo(Poll, Converter):
 				except:
 					video_width = None
 				f.close()
+			elif path.exists("/sys/class/video/frame_width"):
+				f = open("/sys/class/video/frame_width", "r")
+				try:
+					video_width = int(f.read())
+				except:
+					video_width = None
+				f.close()
 			if not video_width:
 				video_width = info.getInfo(iServiceInformation.sVideoWidth)
 			return str(video_width)
@@ -402,6 +434,13 @@ class ServiceInfo(Poll, Converter):
 				except:
 					video_height = None
 				f.close()
+			elif path.exists("/sys/class/video/frame_height"):
+				f = open("/sys/class/video/frame_height", "r")
+				try:
+					video_height = int(f.read())
+				except:
+					video_height = None
+				f.close()
 			if not video_height:
 				video_height = info.getInfo(iServiceInformation.sVideoHeight)
 			return str(video_height)
@@ -409,6 +448,9 @@ class ServiceInfo(Poll, Converter):
 			video_rate = None
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
+			elif path.exists("/proc/stb/vmpeg/0/frame_rate"):
+				f = open("/proc/stb/vmpeg/0/frame_rate", "r")
+			if f:
 				try:
 					video_rate = f.read()
 				except:

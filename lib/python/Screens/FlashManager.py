@@ -619,6 +619,8 @@ class FlashImage(Screen, HelpableScreen):
 				cmdArgs = ["-r%s" % mtdRootFS, "-kzImage", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-rmmcblk0p1"]
+			elif BoxInfo.getItem("model") in ("dreamone", "dreamtwo"):  # Temp solution ofgwrite auto detection not ready.
+				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel]
 			elif mtdKernel == mtdRootFS:  # Receiver with kernel and rootfs on one partition.
 				cmdArgs = ["-r"]
 			else:  # Normal non MultiBoot receiver.

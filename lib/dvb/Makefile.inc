@@ -90,6 +90,14 @@ dvbinclude_HEADERS = \
 	dvb/fcc.h \
 	dvb/fccdecoder.h
 
+if DREAMNEXTGEN
+dvbinclude_HEADERS += \
+	dvb/alsa.h \
+	dvb/decoders.h \
+	dvb/ringbuffer.h \
+	dvb/tsparser.h
+endif
+
 if HAVE_AMLOGIC
 dvbinclude_HEADERS += dvb/amldecoder.h
 endif

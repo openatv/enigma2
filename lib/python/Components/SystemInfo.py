@@ -226,6 +226,8 @@ def getChipsetString():
 		return "7251S"
 	elif MODEL == "alien5":
 		return "S905D"
+	elif MODEL in ('dreamone', 'dreamonetwo', 'dreamseven'):
+		return "S922X"
 	chipset = fileReadLine("/proc/stb/info/chipset", default=_("Undefined"), source=MODULE_NAME)
 	return str(chipset.lower().replace("\n", "").replace("bcm", "").replace("brcm", "").replace("sti", ""))
 
@@ -422,6 +424,7 @@ BoxInfo.setItem("MiniTV", fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/pro
 BoxInfo.setItem("need_dsw", MACHINEBUILD not in ("osminiplus", "osmega"))
 BoxInfo.setItem("NumFrontpanelLEDs", countFrontpanelLEDs())
 BoxInfo.setItem("NumVideoDecoders", getNumVideoDecoders())
+BoxInfo.setItem("FrontpanelLEDColorControl", fileExists("/proc/stb/fp/led_color"))
 BoxInfo.setItem("OledDisplay", fileExists("/dev/dbox/oled0") or MACHINEBUILD in ("osminiplus",))
 BoxInfo.setItem("PIPAvailable", BoxInfo.getItem("NumVideoDecoders", 1) > 1)
 BoxInfo.setItem("Power4x7On", fileExists("/proc/stb/fp/power4x7on"))
@@ -429,7 +432,7 @@ BoxInfo.setItem("Power4x7Standby", fileExists("/proc/stb/fp/power4x7standby"))
 BoxInfo.setItem("Power4x7Suspend", fileExists("/proc/stb/fp/power4x7suspend"))
 BoxInfo.setItem("PowerLed", fileExists("/proc/stb/power/powerled"))
 BoxInfo.setItem("PowerLed2", fileExists("/proc/stb/power/powerled2"))
-BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode"))
+BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode") or MODEL in ("dreamone", "dreamtwo"))
 BoxInfo.setItem("Satfinder", isPluginInstalled("Satfinder"))
 BoxInfo.setItem("SmallFlash", BoxInfo.getItem("smallflash"))
 BoxInfo.setItem("SoftCam", hasSoftcam())

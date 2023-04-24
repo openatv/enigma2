@@ -3,7 +3,7 @@ installdir = $(pkglibdir)/python/Plugins/SystemPlugins
 SUBDIRS = PositionerSetup Satfinder SoftwareManager \
 	VideoTune Hotplug CableScan \
 	DefaultServicesScanner CommonInterfaceAssignment \
-	VideoEnhancement WirelessLan NetworkWizard VideoClippingSetup \
+	WirelessLan NetworkWizard VideoClippingSetup \
 	SatelliteEquipmentControl DiseqcTester FastScan LCNScanner IceTV \
 	FastChannelChange vps
 
@@ -17,6 +17,12 @@ endif
 
 if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade
+endif
+
+if DREAMNEXTGEN
+SUBDIRS += AmlFRQ VideoEnhancementAML
+else
+SUBDIRS += VideoEnhancement
 endif
 
 if DM900

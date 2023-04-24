@@ -1,5 +1,3 @@
-# shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
-
 from os import path
 from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
@@ -8,7 +6,7 @@ from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Tools.GetEcmInfo import GetEcmInfo
 from Components.Converter.Poll import Poll
-
+from Components.SystemInfo import BoxInfo
 
 caid_data = (
 	("0x100", "0x1ff", "Seca", "S", True),
@@ -368,6 +366,13 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 			f.close()
+		elif path.exists("/sys/class/video/frame_height"):
+			f = open("/sys/class/video/frame_height", "r")
+			try:
+				video_height = int(f.read())
+			except:
+				pass
+			f.close()
 		if path.exists("/proc/stb/vmpeg/0/xres"):
 			f = open("/proc/stb/vmpeg/0/xres", "r")
 			try:
@@ -375,15 +380,28 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 			f.close()
+		elif path.exists("/sys/class/video/frame_width"):
+			f = open("/sys/class/video/frame_width", "r")
+			try:
+				video_width = int(f.read())
+			except:
+				pass
+			f.close()
 		if path.exists("/proc/stb/vmpeg/0/progressive"):
 			f = open("/proc/stb/vmpeg/0/progressive", "r")
 			try:
-				video_pol = "p" if int(f.read(), 16) else "i"
+				if BoxInfo.getItem("AmlogicFamily"):
+					video_pol = "p" if int(f.read()) else "i"
+				else:
+					video_pol = "p" if int(f.read(), 16) else "i"
 			except:
 				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/framerate"):
 			f = open("/proc/stb/vmpeg/0/framerate", "r")
+		elif path.exists("/proc/stb/vmpeg/0/frame_rate"):
+			f = open("/proc/stb/vmpeg/0/frame_rate", "r")
+		if f:
 			try:
 				video_rate = int(f.read())
 			except:

@@ -31,6 +31,11 @@
 #define VIDEO_GET_FRAME_RATE _IOR('o', 56, unsigned int)
 #endif
 
+#ifdef DREAMNEXTGEN
+#define ASPECT_4_3      ((3<<8)/4)
+#define ASPECT_16_9     ((9<<8)/16)
+#endif
+
 DEFINE_REF(eDVBAudio);
 
 eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
@@ -53,10 +58,14 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
 		m_fd_demux = -1;
 	}
 
+#ifndef DREAMNEXTGEN
 	if (m_fd >= 0)
 	{
 		::ioctl(m_fd, AUDIO_SELECT_SOURCE, demux ? AUDIO_SOURCE_DEMUX : AUDIO_SOURCE_HDMI);
 	}
+#else
+	m_TsPaser = new eTsParser();
+#endif
 }
 
 int eDVBAudio::startPid(int pid, int type)
@@ -68,7 +77,11 @@ int eDVBAudio::startPid(int pid, int type)
 
 		pes.pid      = pid;
 		pes.input    = DMX_IN_FRONTEND;
+#ifdef DREAMNEXTGEN
+		pes.output   = DMX_OUT_TSDEMUX_TAP;
+#else
 		pes.output   = DMX_OUT_DECODER;
+#endif
 		switch (m_dev)
 		{
 		case 0:
@@ -161,6 +174,12 @@ int eDVBAudio::startPid(int pid, int type)
 		else
 			eDebugNoNewLine("ok");
 	}
+#ifdef DREAMNEXTGEN
+	if (m_fd_demux >= 0)
+	{	
+		m_TsPaser->startPid(m_fd_demux);
+	}
+#endif
 	return 0;
 }
 
@@ -181,6 +200,9 @@ void eDVBAudio::stop()
 			eDebugNoNewLine("failed: %m");
 		else
 			eDebugNoNewLine("ok");
+#ifdef DREAMNEXTGEN
+		m_TsPaser->stop();
+#endif
 	}
 }
 
@@ -194,6 +216,12 @@ void eDVBAudio::flush()
 		else
 			eDebugNoNewLine("ok");
 	}
+#ifdef DREAMNEXTGEN
+	if (m_fd_demux >= 0)
+	{	
+		m_TsPaser->flush();
+	}
+#endif
 }
 
 void eDVBAudio::freeze()
@@ -206,6 +234,12 @@ void eDVBAudio::freeze()
 		else
 			eDebugNoNewLine("ok");
 	}
+#ifdef DREAMNEXTGEN
+	if (m_fd_demux >= 0)
+	{	
+		m_TsPaser->freeze();
+	}
+#endif
 }
 
 void eDVBAudio::unfreeze()
@@ -218,6 +252,12 @@ void eDVBAudio::unfreeze()
 		else
 			eDebugNoNewLine("ok");
 	}
+#ifdef DREAMNEXTGEN
+	if (m_fd_demux >= 0)
+	{	
+		m_TsPaser->unfreeze();
+	}
+#endif
 }
 
 void eDVBAudio::setChannel(int channel)
@@ -246,12 +286,23 @@ int eDVBAudio::getPTS(pts_t &now)
 		if (::ioctl(m_fd, AUDIO_GET_PTS, &now) < 0)
 			eDebug("[eDVBAudio%d] AUDIO_GET_PTS failed: %m", m_dev);
 	}
+#ifdef DREAMNEXTGEN
+	if (m_fd_demux >= 0)
+	{	
+		m_TsPaser->getPTS(now);
+	}
+#endif
 	return 0;
 }
 
 eDVBAudio::~eDVBAudio()
 {
 	unfreeze();  // why unfreeze here... but not unfreeze video in ~eDVBVideo ?!?
+#ifdef DREAMNEXTGEN
+	if(m_TsPaser)
+		delete m_TsPaser;
+	m_TsPaser = 0;
+#endif
 	if (m_fd >= 0)
 		::close(m_fd);
 	if (m_fd_demux >= 0)
@@ -292,10 +343,12 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 		m_fd_demux = -1;
 	}
 
+#ifndef DREAMNEXTGEN
 	if (m_fd >= 0)
 	{
 		::ioctl(m_fd, VIDEO_SELECT_SOURCE, demux ? VIDEO_SOURCE_DEMUX : VIDEO_SOURCE_HDMI);
 	}
+#endif
 
 	if (m_close_invalidates_attributes < 0)
 	{
@@ -611,11 +664,56 @@ void eDVBVideo::video_event(int)
 				eDebugNoNewLine("GAMMA_CHANGED %d\n", m_gamma);
 				/* emit */ m_event(event);
 			}
+#ifdef DREAMNEXTGEN
+			else if (evt.type == 32 /*PTS_VALID*/)
+			{
+				struct iTSMPEGDecoder::videoEvent event;
+				event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
+				m_progressive = event.progressive = evt.u.frame_rate;
+				eDebugNoNewLine("PTS_VALID %d\n", m_progressive);
+				/* emit */ m_event(event);
+			}
+			else if (evt.type == 64 /*VIDEO_DISCONTINUE_DETECTED*/)
+			{
+				struct iTSMPEGDecoder::videoEvent event;
+				event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
+				m_progressive = event.progressive = evt.u.frame_rate;
+				eDebugNoNewLine("VIDEO_DISCONTINUE_DETECTED %d\n", m_progressive);
+				if (m_fd >= 0)
+				{
+					flush();
+					eDebugNoNewLineStart("[eDVBVideo%d] VIDEO_PLAY ", m_dev);
+					if (::ioctl(m_fd, VIDEO_PLAY) < 0)
+						eDebugNoNewLine("failed: %m");
+					else
+						eDebugNoNewLine("ok");
+				}
+				/* emit */ m_event(event);
+			}
+#endif
 			else
 				eDebugNoNewLine("unhandled DVBAPI Video Event %d\n", evt.type);
 		}
 	}
 }
+
+#ifdef DREAMNEXTGEN
+static int64_t get_pts_video()
+{
+	int fd = open("/sys/class/tsync/pts_video", O_RDONLY);
+	if (fd >= 0)
+	{
+		char pts_str[16];
+		int size = read(fd, pts_str, sizeof(pts_str));
+		close(fd);
+		if (size > 0)
+		{
+			unsigned long pts = strtoul(pts_str, NULL, 16);
+			return pts;
+		}
+	}
+}
+#endif
 
 RESULT eDVBVideo::connectEvent(const sigc::slot1<void, struct iTSMPEGDecoder::videoEvent> &event, ePtr<eConnection> &conn)
 {
@@ -630,9 +728,25 @@ int eDVBVideo::readApiSize(int fd, int &xres, int &yres, int &aspect)
 	{
 		xres = size.w;
 		yres = size.h;
+#ifdef DREAMNEXTGEN
+		//eDebug("[eDVBVideo] readAPIsize xres - %d yres - %d", xres, yres);
+#endif
 		aspect = size.aspect_ratio == 0 ? 2 : 3;  // convert dvb api to etsi
 		return 0;
 	}
+#ifdef DREAMNEXTGEN
+	else
+	{
+		int w, h;
+		CFile::parseInt(&w, "/sys/class/video/frame_width");
+		CFile::parseInt(&h, "/sys/class/video/frame_height");
+		xres=w;
+		yres=h;
+		//eDebug("[eDVBVideo] ReadAPIsize xres - %d yres - %d", w, h);
+		aspect = 2;	
+		return 0;
+	}
+#endif
 	return -1;
 }
 
@@ -641,9 +755,17 @@ int eDVBVideo::getWidth()
 	/* when closing the video device invalidates the attributes, we can rely on VIDEO_EVENTs */
 	if (!m_close_invalidates_attributes)
 	{
+#ifdef DREAMNEXTGEN
+		int m_width = -1;
+		CFile::parseInt(&m_width, "/sys/class/video/frame_width");
+		//eDebug("[eTSMPEGDecoder] m_width - %d", m_width);
+#endif
 		if (m_width == -1)
 			readApiSize(m_fd, m_width, m_height, m_aspect);
 	}
+#ifdef DREAMNEXTGEN
+	eDebug("[eDVBVideo] m_width - %d", m_width);
+#endif
 	return m_width;
 }
 
@@ -652,9 +774,17 @@ int eDVBVideo::getHeight()
 	/* when closing the video device invalidates the attributes, we can rely on VIDEO_EVENTs */
 	if (!m_close_invalidates_attributes)
 	{
+#ifdef DREAMNEXTGEN
+		int m_height = -1;
+		CFile::parseInt(&m_height, "/sys/class/video/frame_height");
+		//eDebug("[eTSMPEGDecoder] m_height - %d", m_height);
+#endif
 		if (m_height == -1)
 			readApiSize(m_fd, m_width, m_height, m_aspect);
 	}
+#ifdef DREAMNEXTGEN
+	//eDebug("[eDVBVideo] m_height - %d", m_height);
+#endif
 	return m_height;
 }
 
@@ -663,9 +793,19 @@ int eDVBVideo::getAspect()
 	/* when closing the video device invalidates the attributes, we can rely on VIDEO_EVENTs */
 	if (!m_close_invalidates_attributes)
 	{
+#ifdef DREAMNEXTGEN
+		int m_aspect = -1;
+		CFile::parseIntHex(&m_aspect, "/sys/class/video/frame_aspect_ratio");
+#endif
 		if (m_aspect == -1)
 			readApiSize(m_fd, m_width, m_height, m_aspect);
+#ifdef DREAMNEXTGEN
+	m_aspect = 2;
+#endif
 	}
+#ifdef DREAMNEXTGEN
+	//eDebug("[eDVBVideo] m_aspect - %d", m_aspect);
+#endif
 	return m_aspect;
 }
 
@@ -678,7 +818,11 @@ int eDVBVideo::getProgressive()
 		{
 			char tmp[64];
 			sprintf(tmp, "/proc/stb/vmpeg/%d/progressive", m_dev);
+#ifdef DREAMNEXTGEN
+			CFile::parseInt(&m_progressive, tmp);
+#else
 			CFile::parseIntHex(&m_progressive, tmp);
+#endif
 		}
 	}
 	return m_progressive;
@@ -697,6 +841,9 @@ int eDVBVideo::getFrameRate()
 			}
 		}
 	}
+#ifdef DREAMNEXTGEN
+	//eDebug("[eDVBVideo] m_framerate - %d", m_framerate);
+#endif
 	return m_framerate;
 }
 
@@ -1404,6 +1551,47 @@ void eTSMPEGDecoder::finishShowSinglePic()
 	}
 }
 
+#ifdef DREAMNEXTGEN
+void eTSMPEGDecoder::parseVideoInfo()
+{
+	if (m_width == -1 && m_height == -1)
+	{
+		int x, y;
+		CFile::parseInt(&x, "/sys/class/video/frame_width");
+		CFile::parseInt(&y, "/sys/class/video/frame_height");
+
+		if ( x > 0 && y > 0) {
+			struct iTSMPEGDecoder::videoEvent event;
+			CFile::parseInt(&m_aspect, "/sys/class/video/screen_mode");
+			event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
+			m_aspect = event.aspect = m_aspect == 1 ? 2 : 3;  // convert dvb api to etsi
+			m_height = event.height = y;
+			m_width = event.width = x;
+			video_event(event);
+		}
+	}
+	else if (m_width > 0 && m_framerate == -1)
+	{
+		struct iTSMPEGDecoder::videoEvent event;
+		CFile::parseInt(&m_framerate, "/proc/stb/vmpeg/0/frame_rate");
+		event.type = iTSMPEGDecoder::videoEvent::eventFrameRateChanged;
+		event.framerate = m_framerate;
+		video_event(event);
+	}
+	else if (m_width > 0 && m_progressive == -1) 
+	{
+		CFile::parseInt(&m_progressive, "/proc/stb/vmpeg/0/progressive");
+		if (m_progressive != 2)
+		{
+			struct iTSMPEGDecoder::videoEvent event;
+			event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
+			event.progressive = m_progressive;
+			video_event(event);
+		}
+	}
+}
+#endif
+
 RESULT eTSMPEGDecoder::connectVideoEvent(const sigc::slot1<void, struct videoEvent> &event, ePtr<eConnection> &conn)
 {
 	conn = new eConnection(this, m_video_event.connect(event));
@@ -1417,43 +1605,86 @@ void eTSMPEGDecoder::video_event(struct videoEvent event)
 
 int eTSMPEGDecoder::getVideoWidth()
 {
+#ifdef DREAMNEXTGEN
+	int m_width = -1;
+	CFile::parseInt(&m_width, "/sys/class/video/frame_width");
+	//eDebug("[eTSMPEGDecoder] m_width - %d", m_width);
+	if (!m_width)
+		return -1;
+	return m_width;
+#else
 	if (m_video)
 		return m_video->getWidth();
 	return -1;
+#endif
 }
 
 int eTSMPEGDecoder::getVideoHeight()
 {
+#ifdef DREAMNEXTGEN
+	int m_height = -1;
+	CFile::parseInt(&m_height, "/sys/class/video/frame_height");
+	//eDebug("[eTSMPEGDecoder] m_height - %d", m_height);
+	if (!m_height)
+		return -1;
+	return m_height;
+#else
 	if (m_video)
 		return m_video->getHeight();
 	return -1;
+#endif
 }
 
 int eTSMPEGDecoder::getVideoProgressive()
 {
+#ifdef DREAMNEXTGEN
+	int m_progressive = -1;
+	CFile::parseInt(&m_progressive, "/proc/stb/vmpeg/0/progressive");
+	if (m_progressive == 2)
+		return -1;
+	return m_progressive;
+#else
 	if (m_video)
 		return m_video->getProgressive();
 	return -1;
+#endif
 }
 
 int eTSMPEGDecoder::getVideoFrameRate()
 {
+#ifdef DREAMNEXTGEN
+	int m_framerate = -1;
+	CFile::parseInt(&m_framerate, "/proc/stb/vmpeg/0/frame_rate");
+	return m_framerate;
+#else
 	if (m_video)
 		return m_video->getFrameRate();
 	return -1;
+#endif
 }
 
 int eTSMPEGDecoder::getVideoAspect()
 {
+#ifdef DREAMNEXTGEN
+	int m_aspect = -1;
+	CFile::parseIntHex(&m_aspect, "/sys/class/video/frame_aspect_ratio"); //0x90 (16:9) 
+	//eDebug("[eTSMPEGDecoder] m_aspect - %d", m_aspect);
+	if (!m_aspect)
+		return -1;
+	return m_aspect == 1 ? 2 : 3;
+#else
 	if (m_video)
 		return m_video->getAspect();
 	return -1;
+#endif
 }
 
 int eTSMPEGDecoder::getVideoGamma()
 {
+#ifndef DREAMNEXTGEN
 	if (m_video)
 		return m_video->getGamma();
+#endif
 	return -1;
 }
 

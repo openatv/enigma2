@@ -164,6 +164,13 @@
 		<item level="0" text="Date style" description="Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled_display">config.usage.date.display</item>
 		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 	</setup>
+	<setup key="Led" title="LED Settings" requires="FrontpanelLEDColorControl" showOpenWebif="1">
+		<item level="1" text="LED Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.default_color</item>
+		<item level="1" text="LED Brightness" description="LED brightness during normal operations.">config.fp.led.default_brightness</item>
+		<item level="1" text="LED Idle Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.standby_color</item>
+		<item level="1" text="LED Idle Brightness" description="LED brightness during deep standby.">config.fp.led.standby_brightness</item>
+		<item level="1" text="LED Shutdown Color" description="Power LED state during deep-standby.">config.fp.led.shutdown_color</item>
+	</setup>
 	<setup key="DNS" title="DNS Settings">
 		<item level="0" text="DNS data source" description="Select the source of the default DNS settings.">config.usage.dns</item>
 	</setup>

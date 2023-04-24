@@ -129,6 +129,8 @@ def getCPUSerial():
 def _getCPUSpeedMhz():
 	if MODEL in ('hzero', 'h8', 'sfx6008', 'sfx6018'):
 		return 1200
+	elif MODEL in ('dreamone', 'dreamtwo', 'dreamseven'):
+		return 1800
 	elif MODEL in ('vuduo4k',):
 		return 2100
 	else:
@@ -161,6 +163,7 @@ def getCPUInfoString():
 					cpuSpeedMhz = int(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 100000000) * 100
 				except:
 					cpuSpeedMhz = "1500"
+
 		temperature = None
 		if isfile("/proc/stb/fp/temp_sensor_avs"):
 			temperature = fileReadLine("/proc/stb/fp/temp_sensor_avs", source=MODULE_NAME)
