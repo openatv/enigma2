@@ -366,9 +366,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.autovolume.save()
 
 	def changeAC3Downmix(self, downmix):
-		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
-			config.av.downmix_ac3.setValue(downmix.value)
-		if BoxInfo.getItem("AmlogicFamily"):
+		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800', 'dreamone', 'dreamtwo'):
 			config.av.downmix_ac3.setValue(downmix.value)
 		else:
 			if downmix.value:
