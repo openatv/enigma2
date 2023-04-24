@@ -57,7 +57,6 @@ class AVSwitch:
 		rates["576p"] = {"50Hz": {50: "576p50hz"}}
 		rates["720p"] = {"50Hz": {50: "720p50hz"},
 								"60Hz": {60: "720p60hz"},
-								"auto": {60: "720p60hz"},
 								"auto": {60: "720p60hz"}}
 		rates["1080i"] = {"50Hz": {50: "1080i50hz"},
 								"60Hz": {60: "1080i60hz"},
@@ -276,8 +275,8 @@ class AVSwitch:
 
 		mode_50 = modes.get(50)
 		mode_60 = modes.get(60)
-		mode_30 = modes.get(30)
-		mode_25 = modes.get(25)
+		# mode_30 = modes.get(30)
+		# mode_25 = modes.get(25)
 		mode_24 = modes.get(24)
 
 		if mode_50 is None or force == 60:

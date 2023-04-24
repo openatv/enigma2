@@ -1,6 +1,5 @@
-from __future__ import print_function
-from os import path as os_path
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
+from os.path import exists
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSlider, ConfigSelection, ConfigNothing, NoSave
 
 # The "VideoEnhancement" is the interface to /sys/class/amvecm.
 
@@ -12,13 +11,13 @@ class VideoEnhancement:
 		self.last_modes_preferred = []
 		self.createConfig()
 
-	def createConfig(self, *args):
+	def createConfig(self):
 		config.amvecm = ConfigSubsection()
 		config.amvecm.configsteps = NoSave(ConfigSelection(choices=[1, 5, 10, 25], default=1))
 
-		if os_path.exists("/sys/class/amvecm/contrast1"):
-			def setContrast1(config):
-				myval = str(config.value)
+		if exists("/sys/class/amvecm/contrast1"):
+			def setContrast1(configItem):
+				myval = str(configItem.value)
 				try:
 					print("--> setting video contrast to:%s" % myval)
 					f = open("/sys/class/amvecm/contrast1", "w")
@@ -35,9 +34,9 @@ class VideoEnhancement:
 		else:
 			config.amvecm.contrast1 = NoSave(ConfigNothing())
 
-		if os_path.exists("/sys/class/amvecm/contrast2"):
-			def setContrast2(config):
-				myval = str(config.value)
+		if exists("/sys/class/amvecm/contrast2"):
+			def setContrast2(configItem):
+				myval = str(configItem.value)
 				try:
 					print("--> setting video & OSD contrast to:%s" % myval)
 					f = open("/sys/class/amvecm/contrast2", "w")
@@ -54,9 +53,9 @@ class VideoEnhancement:
 		else:
 			config.amvecm.contrast2 = NoSave(ConfigNothing())
 
-		if os_path.exists("/sys/class/amvecm/saturation_hue_post"):
-			def setSaturation(config):
-				myval = str(config.value)
+		if exists("/sys/class/amvecm/saturation_hue_post"):
+			def setSaturation(configItem):
+				myval = str(configItem.value)
 				try:
 					print("--> setting saturation to: %s" % myval)
 					f = open("/sys/class/amvecm/saturation_hue_post", "w")
@@ -73,9 +72,9 @@ class VideoEnhancement:
 		else:
 			config.amvecm.saturation = NoSave(ConfigNothing())
 
-		if os_path.exists("/sys/class/amvecm/saturation_hue"):
-			def setHue(config):
-				myval = int(config.value)
+		if exists("/sys/class/amvecm/saturation_hue"):
+			def setHue(configItem):
+				myval = int(configItem.value)
 				try:
 					print("--> setting hue to: %s" % myval)
 					f = open("/sys/class/amvecm/saturation_hue", "w")
@@ -92,9 +91,9 @@ class VideoEnhancement:
 		else:
 			config.amvecm.hue = NoSave(ConfigNothing())
 
-		if os_path.exists("/sys/class/amvecm/brightness1"):
-			def setBrightness1(config):
-				myval = str(config.value)
+		if exists("/sys/class/amvecm/brightness1"):
+			def setBrightness1(configItem):
+				myval = str(configItem.value)
 				try:
 					print("--> setting brightness Video to: %s" % myval)
 					f = open("/sys/class/amvecm/brightness1", "w")
@@ -110,9 +109,9 @@ class VideoEnhancement:
 		else:
 			config.amvecm.brightness1 = NoSave(ConfigNothing())
 
-		if os_path.exists("/sys/class/amvecm/brightness2"):
-			def setBrightness2(config):
-				myval = str(config.value)
+		if exists("/sys/class/amvecm/brightness2"):
+			def setBrightness2(configItem):
+				myval = str(configItem.value)
 				try:
 					print("--> setting brightness Video & OSD to: %s" % myval)
 					f = open("/sys/class/amvecm/brightness2", "w")
@@ -124,13 +123,13 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 			config.amvecm.brightness2 = ConfigSlider(default=0, limits=(-1022, 1022))
-			config.amvecm.brightness2.addNotifier(setBrightness1)
+			config.amvecm.brightness2.addNotifier(setBrightness2)
 		else:
 			config.amvecm.brightness2 = NoSave(ConfigNothing())
 
-		if os_path.exists("/sys/class/amvecm/color_bottom"):
-			def setColor_bottom(config):
-				myval = int(config.value)
+		if exists("/sys/class/amvecm/color_bottom"):
+			def setColor_bottom(configItem):
+				myval = int(configItem.value)
 				try:
 					print("--> setting color button to: %s" % myval)
 					f = open("/sys/class/amvecm/color_bottom", "w")
@@ -147,9 +146,9 @@ class VideoEnhancement:
 		else:
 			config.amvecm.color_bottom = NoSave(ConfigNothing())
 
-		if os_path.exists("/sys/class/amvecm/color_top"):
-			def setColor_top(config):
-				myval = int(config.value)
+		if exists("/sys/class/amvecm/color_top"):
+			def setColor_top(configItem):
+				myval = int(configItem.value)
 				try:
 					print("--> setting color top to: %s" % myval)
 					f = open("/sys/class/amvecm/color_top", "w")
@@ -172,6 +171,7 @@ class VideoEnhancement:
 		VideoEnhancement.firstRun = False
 
 	def setConfiguredValues(self):
+		# TODO is there something missing?
 		pass
 
 
