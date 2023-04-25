@@ -13,6 +13,7 @@ from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.TextBoundary import getTextBoundarySize
+from Tools.Trashcan import TRASHCAN
 from Screens.LocationBox import defaultInhibitDirs
 from ServiceReference import ServiceReference
 from Components.Renderer.Picon import getPiconName
@@ -364,7 +365,7 @@ class MovieList(GUIComponent):
 					# if path ends in '/', p is blank.
 					p = os.path.split(p[0])
 				txt = p[1]
-				if txt == ".Trash":
+				if txt == TRASHCAN:
 					dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Trashcan")).width()
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconTrash))
 					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Deleted items")))

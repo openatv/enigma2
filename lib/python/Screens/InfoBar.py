@@ -662,7 +662,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 				if config.usage.movielist_trashcan.value:
 					import Tools.Trashcan
 					try:
-						trash = Tools.Trashcan.createTrashFolder(ref.getPath())
+						trash = Tools.Trashcan.createTrashcan(ref.getPath())
 						Screens.MovieSelection.moveServiceFiles(ref, trash)
 						# Moved to trash, okay
 						if answer == "quitanddelete":

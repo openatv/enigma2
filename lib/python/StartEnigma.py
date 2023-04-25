@@ -419,8 +419,8 @@ def runScreenTest():
 	# We need session.scart to access it from within menu.xml.
 	session.scart = AutoScartControl(session)
 	profile("InitTrashcan")
-	from Tools.Trashcan import init
-	init(session)
+	from Tools.Trashcan import initTrashcan
+	initTrashcan(session)
 	profile("Init:AutoVideoMode")
 	from Screens.VideoMode import autostart
 	autostart(session)
