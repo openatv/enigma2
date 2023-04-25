@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1032,6 +1032,10 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paketi yükseltildi."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sec"
 
@@ -1162,11 +1166,6 @@ msgstr "%s %s uzaktan kumanda (yerel)"
 
 #
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s yazılım güncellemeleri var."
-
-#
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s kartları )"
 
@@ -1212,6 +1211,10 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #
 #, python-format
@@ -1972,9 +1975,6 @@ msgstr ""
 "\n"
 "İkinci ağ arayüzünü devre dışı bırakmak istiyor musunuz?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "İkonların durumları ve eylemleri hakkında küçük bir açıklama."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2073,9 +2073,6 @@ msgstr "Sözde bir kaydı iptal ettim.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Bir akış hizmeti iptal edildi.\n"
-
-msgid "Aborting update progress"
-msgstr "Güncelleme işleminin iptal edilmesi"
 
 #
 msgid "About"
@@ -2308,9 +2305,6 @@ msgstr "Geçerli etkinliğe zamanlama ekle/kaldır"
 
 msgid "Adding schedule..."
 msgstr "Zamanlama ekleniyor..."
-
-msgid "Additional Info"
-msgstr "Ek Bilgi"
 
 msgid "Additional files/folders to backup"
 msgstr "Yedeklenecek ek dosyalar / klasörler"
@@ -2758,9 +2752,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "EPG önbelleğini buraya saklamak istediğinizden emin misiniz:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Are you sure you want to send this log:\n"
-
 msgid "Argentina"
 msgstr "Arjantin"
 
@@ -2785,6 +2776,9 @@ msgstr "Aruba"
 
 msgid "As plugin in extended bar"
 msgstr "gelişmiş-çubukta eklenti olarak"
+
+msgid "Ascending"
+msgstr ""
 
 #
 msgid "Ask user"
@@ -2843,9 +2837,6 @@ msgstr ""
 
 msgid "Athletics"
 msgstr "Atletizm"
-
-msgid "Attach a file"
-msgstr "Bir dosya iliştir"
 
 msgid "Audio"
 msgstr "Ses"
@@ -2910,10 +2901,6 @@ msgstr "Avustralya"
 
 msgid "Austria"
 msgstr "Avusturya"
-
-#
-msgid "Author: "
-msgstr "Gönderen: "
 
 #
 msgid "Authoring mode"
@@ -3929,6 +3916,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "İptal"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr "Yazılım güncelleme ekranını iptal edin / kapatın"
 
@@ -4060,9 +4050,6 @@ msgstr "Cascade PiP"
 
 msgid "Catalan / Valencian"
 msgstr "Katalan / Valensiya"
-
-msgid "Caution update not yet tested !!"
-msgstr "Dikkat güncellemesi henüz test edilmemiştir!"
 
 msgid "Cayman Islands"
 msgstr "Cayman Adaları"
@@ -4684,10 +4671,6 @@ msgstr "Ortak Arayüz Ataması"
 msgid "Common Setup Actions"
 msgstr "CI (Ortak Arayüz) Kurulumu"
 
-#
-msgid "Communication"
-msgstr "İletişim"
-
 msgid "Comoros"
 msgstr "Komorlar"
 
@@ -5180,10 +5163,6 @@ msgstr "Bağlam"
 
 msgid "Continent"
 msgstr "Kıta"
-
-#
-msgid "Continue"
-msgstr "Devam"
 
 msgid "Continue in background"
 msgstr "Arkaplanda devam et"
@@ -5925,10 +5904,6 @@ msgstr "Varsayılan Kayıt tipi"
 msgid "Default right column directory"
 msgstr ""
 
-#
-msgid "Default settings"
-msgstr "Varsayılan ayarlar"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -6072,6 +6047,9 @@ msgstr "Eklentileri Sil"
 msgid "Delete Timer"
 msgstr "Zamanlayıcı sil"
 
+msgid "Delete all duplicated lines"
+msgstr ""
+
 msgid "Delete all log files"
 msgstr "Tüm günlük dosyalarını sil"
 
@@ -6101,6 +6079,9 @@ msgid "Delete current line"
 msgstr "Mevcut satırı sil"
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 #
@@ -6209,6 +6190,9 @@ msgstr "Danimarka"
 
 msgid "Depth"
 msgstr "Derinlik"
+
+msgid "Descending"
+msgstr ""
 
 #
 msgid "Description"
@@ -6446,10 +6430,6 @@ msgstr ">16:9 içeriği şu şekilde göster"
 msgid "Display Settings"
 msgstr "Görünüm Ayarları"
 
-#
-msgid "Display and user interface"
-msgstr "Görünüm ve kullanıcı arayüzü"
-
 msgid "Display context menu"
 msgstr ""
 
@@ -6649,22 +6629,12 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want to add any additional information ?"
-msgstr "Daha fazla bilgi eklemek istiyor musunuz?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Ayrıca samba istemci yüklemek istiyor musunuz?\n"
 "Yani bu cihazda windows paylaşımlarını bağlamak için izin verir."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Günlüğe açıklama olarak bir metin dosyası eklemek ister misiniz?\n"
-"(Sanal klavye ile mesaj yazmak için 'hayır' seçin.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6753,16 +6723,6 @@ msgstr "Ayarlarınızı geri yüklemek istiyor musunuz?"
 msgid "Do you want to resume this playback?"
 msgstr "Oynatmaya kaldığınız yerden devam etmek istiyor musunuz?"
 
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Seçilmiş dosyaların tümünü göndermek istiyor musunuz:\n"
-"(Sadece geçerli dosyayı göndermek için 'Hayır' seçin .)"
-
-msgid "Do you want to update your box?"
-msgstr "Alıcıyı güncellemek istiyor musunuz?"
-
 #
 msgid "Do you want to upgrade the package:\n"
 msgstr "Seçilen paketi yükseltmek istiyor musunuz?:\n"
@@ -6813,10 +6773,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Tamam"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Tamam - %d paket yükseltildi veya kuruldu"
 
 #
 #, python-format
@@ -6892,6 +6848,9 @@ msgstr "Sürücü sürümü"
 
 msgid "Duplex"
 msgstr "Dubleks"
+
+msgid "Duplicate the current line"
+msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "Bu süre zarfında verici ve kayıt hedefi kontrol edilir. Kayıt hedefi (örn. NAS) kayıt için zamanında hazır olmazsa, bu süre arttırılabilir."
@@ -7635,7 +7594,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7744,14 +7703,6 @@ msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Hata, bilinmeyen Sonuç!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Hata:\n"
-"%s"
 
 #
 #, python-format
@@ -8115,10 +8066,6 @@ msgstr "Uzantı Eylemleri"
 #
 msgid "Extensions"
 msgstr "Eklentiler"
-
-#
-msgid "Extensions Management"
-msgstr "Genişletme yönetimi"
 
 msgid "Extensions/QuickMenu"
 msgstr "Uzantılar / Hızlı Menü"
@@ -8580,10 +8527,6 @@ msgstr "Uzaktan kumandadaki tuş grubuna göre düz"
 msgid "Flat by position on remote"
 msgstr "Uzaktan kumandadaki konuma göre düz"
 
-#
-msgid "Following tasks will be done after you press OK!"
-msgstr "Belirtilen görevler OK tuşuna basmanızın ardından işleme alınacak!"
-
 msgid "Font size"
 msgstr "Yazı tipi boyutu"
 
@@ -8595,9 +8538,6 @@ msgstr "Yiyecek/Şarap"
 
 msgid "Football"
 msgstr "Futbol"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "Daha fazla bilgi için bkz. https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "LNB Gücünü Zorlamak"
@@ -10011,10 +9951,6 @@ msgstr "Eklentileri yükle."
 msgid "Install lcd picons on"
 msgstr "Lcd pikonlarını yükle"
 
-#
-msgid "Install or remove finished."
-msgstr "Yükleme veya kaldırma bitti."
-
 msgid "Install picons on"
 msgstr "Pikonları yükle"
 
@@ -10449,9 +10385,6 @@ msgstr "LNB"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "LNB / Anahtar Başlatma zamanı [ms]"
-
-msgid "LOF"
-msgstr "LOF"
 
 msgid "LOF/H"
 msgstr "LOF/H"
@@ -11025,6 +10958,9 @@ msgstr "Eklentileri yönet"
 #
 msgid "Manage Locale/Language Selection settings"
 msgstr "Yerel/Dil Seçimi ayarlarını yönetin"
+
+msgid "Manage Plugins"
+msgstr ""
 
 msgid "Manage and explore directories and files."
 msgstr ""
@@ -11784,10 +11720,6 @@ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Oluşturulan Multiboot Görüntüsü: %s /%s-%s-%s-backup-%s_usb.zip"
 
 #
-msgid "Multimedia"
-msgstr "Çoklu ortam"
-
-#
 msgid "Multiple service support"
 msgstr "Çoklu kanal desteği"
 
@@ -12217,10 +12149,6 @@ msgid "No demux available"
 msgstr "Demux yok"
 
 #
-msgid "No description available."
-msgstr "Açıklayıcı bilgi yok."
-
-#
 msgid "No displayable files on this medium found!"
 msgstr "Bu ortamda gösterilecek dosya bulunamadı!"
 
@@ -12257,10 +12185,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Eşleşen yer adı bulunamadı"
 
-#
-msgid "No network connection available."
-msgstr "Uygun ağ bağlantısı yok."
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -12271,8 +12195,8 @@ msgstr "Ağ bulunamadı"
 msgid "No of items switch (increase or reduced)"
 msgstr "Değişen öğeler (artan veya azalan)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Hiç bir paket henüz yükseltilmedi. Ağınızı kontrol ederek ve yeniden deneyin."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -12708,10 +12632,6 @@ msgid "Only Flash Backup Image"
 msgstr ""
 
 #
-msgid "Only extensions."
-msgstr "Yalnızca eklentiler."
-
-#
 msgid "Only free scan"
 msgstr "Yanlızca şifresiz arama"
 
@@ -12768,6 +12688,9 @@ msgstr ""
 
 msgid "Open favorites list"
 msgstr "Favoriler listesini aç"
+
+msgid "Open file sort menu"
+msgstr ""
 
 msgid "Open satellites list"
 msgstr "Uydu listesini aç"
@@ -13190,6 +13113,9 @@ msgstr "Sağ ilerleme çubuğu"
 
 msgid "Perform an on-line flash instead"
 msgstr "Bunun yerine bir çevrimiçi flaş gerçekleştirin"
+
+msgid "Perform install/remove of the selected item"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Çöp sepetindeki tüm kayıtlar kalıcı olarak silinsin mi?"
@@ -13779,23 +13705,11 @@ msgstr "Eklentiler Listesi"
 msgid "Plugin Browser Settings"
 msgstr "Pluginbrowser Ayarları"
 
-msgid "Plugin Details"
-msgstr "Eklenti ayrıntıları"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr "Eklenti Filtresi"
 
-#
-msgid "Plugin Manager Activity Information"
-msgstr "Eklenti yöneticisi etkinlik bilgisi"
-
-#
-msgid "Plugin Manager Help"
-msgstr "Eklenti yönetici yardımı"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 #
 msgid "Plugins"
@@ -14132,10 +14046,6 @@ msgstr "Işlem modeli"
 
 msgid "Proceed with the update"
 msgstr "Güncellemeye devam et"
-
-#
-msgid "Process"
-msgstr "İşlemler"
 
 msgid "Processor information"
 msgstr "Işlemci bilgisi"
@@ -15549,9 +15459,6 @@ msgstr "Uydu Çanak Kurulumu"
 msgid "Satellite configuration mode"
 msgstr "Uydu yapılandırma modu"
 
-msgid "Satellite equipment"
-msgstr "Uydu ekipmanı"
-
 #
 msgid "Satellite equipment setup"
 msgstr "Uydu Ekipmanı Kurulumu"
@@ -15718,6 +15625,9 @@ msgstr "Kablosuz Ağları Tara"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr ""
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Tarıyor %s..."
@@ -15818,14 +15728,6 @@ msgstr "Arama"
 #
 msgid "Searching east ..."
 msgstr "Doğu aranıyor ..."
-
-#
-msgid "Searching for available updates. Please wait..."
-msgstr "Güncellemeler kontrol ediliyor. Lütfen bekleyin..."
-
-#
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Yeni yüklenen veya kaldırılan paketler aranıyor. Lütfen bekleyin..."
 
 #
 msgid "Searching west ..."
@@ -16519,6 +16421,9 @@ msgstr "Yalnızca sonraki karakter için kaydırılmış karakter kümesini seç
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16715,12 +16620,6 @@ msgstr "Seçme uydular 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Bu seçeneği seçmek, bir grup uyduyu tek bir blokta yapılandırmanıza izin verir."
-
-msgid "Send"
-msgstr "Gönder"
-
-msgid "Send Confirmation"
-msgstr "Onay Gönder"
 
 #
 msgid "Send DiSEqC"
@@ -17652,6 +17551,9 @@ msgstr "Varsayılan olarak yedeklenen dosyaları göster"
 msgid "Show first image"
 msgstr ""
 
+msgid "Show free space in timer view"
+msgstr ""
+
 msgid "Show graphical multi EPG"
 msgstr "Grafiksel çoklu EPG'yi göster"
 
@@ -18158,10 +18060,6 @@ msgstr "Görsel arayüz kurulumu"
 msgid "SkinSelector"
 msgstr "SkinSelector"
 
-#
-msgid "Skins"
-msgstr "Görsel-arayüzler"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "İnternet bağlantısını atla (otomatik paket yüklemeyi engeller)"
 
@@ -18375,10 +18273,6 @@ msgid "Softcams"
 msgstr "Softcams"
 
 #
-msgid "Software"
-msgstr "Yazılım"
-
-#
 msgid "Software Management"
 msgstr "Yazılım yönetimi"
 
@@ -18479,9 +18373,6 @@ msgstr "Üzgünüz, %s yüklenmedi!"
 
 msgid "Sorry, no backups found!"
 msgstr "Üzgünüz, hiç yedek bulunamadı!"
-
-msgid "Sorry, no details available!"
-msgstr "Üzgünüz, hiçbir ayrıntı yok!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Üzgünüm, SWAP ekli destekleyen hiçbir fiziksel cihaz yok. Ağda veya fat32 dosya sistemlerinde Swapfile oluşturulamıyor"
@@ -19217,7 +19108,7 @@ msgstr "Senkron hatası kaynağa dönülüyor !"
 msgid "Sync time using"
 msgstr "Zamanı eşzamanla (kullanarak)"
 
-msgid "Synchronize systemtime using transponder or Internet."
+msgid "Synchronize system time using transponder or Internet."
 msgstr "İnternet veya transponder kullanarak sistem saatini senkronize et."
 
 msgid "Syrian Arab Republic"
@@ -19778,16 +19669,6 @@ msgstr ""
 "\n"
 "Bunu şimdi mi yap yoksa zamanlayıcıyı uzat mı?"
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Yazılım yöneticisi eklentisi yüklü değil!\n"
-"Lütfen yükleyin."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Mevcut güncellemenin durumu kontrol edilemedi çünkü https://www.opena.tv nedenine ulaşılamadı"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Zaman, geçerli tekrar sayıcı ile çarpılır."
 
@@ -19840,14 +19721,6 @@ msgstr "Bu sihirbaz geçerli ayarlarınızın yedeğini alacaktır. Yedeği şim
 #
 msgid "The wizard is finished now."
 msgstr "Sihirbaz tamamlandı."
-
-#
-msgid "There are at least "
-msgstr "En az "
-
-#
-msgid "There are currently no outstanding actions."
-msgstr "Göze çarpan bir görev yok."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19930,9 +19803,6 @@ msgstr "Bu, indirmelerdeki uzantı modüllerini göstermenizi sağlar"
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Bu, indirmelerde çekirdek modüllerini göstermenizi sağlar"
-
-msgid "This allows you to show languages in downloads"
-msgstr "Bu, indirilen dilleri göstermenizi sağlar"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Bu indirmelerde lcd skini göstermenizi sağlar"
@@ -20185,20 +20055,6 @@ msgstr "Bu seçenek resim keskinliğini ayarlar, resim çözünürlüğü arttı
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
-
-#
-msgid "This plugin is installed."
-msgstr "Bu eklenti yüklü."
-
-#
-msgid "This plugin is not installed."
-msgstr "Bu eklenti yüklü değil."
-
-msgid "This plugin will be installed."
-msgstr "Bu eklenti yüklenecek."
-
-msgid "This plugin will be removed."
-msgstr "Bu eklenti kaldırılacak."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "Bu, hata ayıklama günlüğündeki her satırın önekini ayarlar. 'Önyükleme süresi', %s %s cihazınızın en son başlatılmasından bu yana geçen saniye sayısıdır."
@@ -20942,6 +20798,12 @@ msgstr "Tip"
 msgid "Type / Model"
 msgstr ""
 
+msgid "Type of LNB/Device"
+msgstr ""
+
+msgid "Type of device"
+msgstr ""
+
 #
 msgid "Type of scan"
 msgstr "Tarama tipi"
@@ -21008,14 +20870,6 @@ msgstr "Tanımsız"
 msgid "Undetermined"
 msgstr "Belirsiz"
 
-#
-msgid "Undo install"
-msgstr "Yükle(me)"
-
-#
-msgid "Undo uninstall"
-msgstr "Kaldır(ma)"
-
 msgid "Unencrypted"
 msgstr "Şifrelenmemiş"
 
@@ -21038,10 +20892,6 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
-
-#
-msgid "Uninstall"
-msgstr "Kaldır"
 
 msgid "United Arab Emirates"
 msgstr "Birleşik Arap Emirlikleri"
@@ -21166,9 +21016,6 @@ msgstr "Yukarı / Aşağı düğmeleri de 'tümü yukarı / aşağı' için mi?"
 msgid "Update"
 msgstr "Güncelle"
 
-msgid "Update at your own risk"
-msgstr "Kendi riskinizde güncelleme yapın"
-
 msgid "Update completed."
 msgstr "Güncelleme tamamlandı, %d paket yüklendi."
 
@@ -21182,18 +21029,12 @@ msgstr "Listedeki Etkinlikler için gecikmeyi güncelle. Listede ilerlemek, büy
 msgid "Update failed!"
 msgstr "Güncelleme başarısız oldu!"
 
-msgid "Update feed not available."
-msgstr "Güncelleme beslemesi yok."
-
 #
 msgid "Update finished!"
 msgstr "Güncelleme bitti!"
 
 msgid "Update interval (in seconds)"
 msgstr "Güncelleme periyodu (saniye)"
-
-msgid "Update is reported as faulty !!"
-msgstr "Güncelleme hatalı olarak bildirildi!"
 
 msgid ""
 "Update succeeded!\n"
@@ -21224,10 +21065,6 @@ msgstr "Yükseltiliyor"
 msgid "Updating mount locations."
 msgstr "Montaj yerleri güncelleniyor."
 
-#
-msgid "Updating software catalog"
-msgstr "Yazılım kataloğu güncelleniyor"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -21247,9 +21084,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Grafiksel arayüz ile yükseltme"
-
-msgid "Upgrading"
-msgstr "Güncelleme"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -21325,8 +21159,8 @@ msgstr "Varsa Netmed EPG bilgisini kullan."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "SoftwareManager'da OnlineFlash kullanın"
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Mevcut olduğunda OpenTV EPG bilgilerini kullanın."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
 
 msgid "Use QuickSelect"
 msgstr ""
@@ -21837,61 +21671,6 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr "Etkileşimli Rass'ı (Radio acoustic sounding system) izle..."
 
-#
-msgid "View details"
-msgstr "Detayları izle"
-
-#
-msgid "View list of available "
-msgstr "Kullanılabilirlerin listesini görüntüleyin "
-
-#
-msgid "View list of available CommonInterface extensions"
-msgstr "Kullanılabilir OrtakArayüz genişletmeleri listesi"
-
-#
-msgid "View list of available EPG extensions."
-msgstr "Kullanılabilir EPG uzantılarının listesini görüntüleyin."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Kullanılabilir Uydu ekipmanı uzantılarının listesini görüntüleyin."
-
-#
-msgid "View list of available communication extensions."
-msgstr "Kullanılabilir iletişim uzantılarının listesini görüntüleyin."
-
-#
-msgid "View list of available default settings"
-msgstr "Kullanılabilir varsayılan ayarlar listesi"
-
-#
-msgid "View list of available display and user interface extensions."
-msgstr "Kullanılabilir ekranların ve kullanıcı arayüzü uzantılarının listesini görüntüleyin."
-
-#
-msgid "View list of available multimedia extensions."
-msgstr "Kullanılabilir multimedya uzantılarının listesini görüntüleyin."
-
-#
-msgid "View list of available networking extensions"
-msgstr "Kullanılabilir ağ eklentileri listesi"
-
-#
-msgid "View list of available recording extensions"
-msgstr "Kullanılabilir kayıt eklentileri listesi"
-
-#
-msgid "View list of available skins"
-msgstr "Kullanılabilir görsel-arayüzler listesi"
-
-#
-msgid "View list of available software extensions"
-msgstr "Kullanılabilir yazılım eklentileri listesi"
-
-#
-msgid "View list of available system extensions"
-msgstr "Kullanılabilir sistem eklentileri listesi"
-
 msgid "View mode"
 msgstr "İzleme modu"
 
@@ -22259,6 +22038,9 @@ msgstr ""
 
 msgid "What would you like to do?"
 msgstr "Ne yapmak istersin?"
+
+msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
+msgstr ""
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Etkinleştirildiğinde, enigma2, bağlantısız kullanıcı önyüklemelerini yükler. Bu, mevcut olan ancak buketler.tv veya buketler.radio dosyalarına dahil olmayan kullanıcı buketlerinin yükleneceği anlamına gelir. Bu, örneğin kurulu ayarlar yükseltilirken kendi kullanıcı buketinizi korumanıza izin verir"
@@ -22726,30 +22508,14 @@ msgstr "OSD Menüsü olan veya olmayan MiniTV'yi görüntüleyebilirsiniz"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "OSD Menüsü olan veya olmayan PIP Görüntüleyebilirsiniz"
 
-#
-msgid "You can cancel the installation."
-msgstr "Yüklemeyi iptal edebilirsiniz."
-
-#
-msgid "You can cancel the removal."
-msgstr "Kaldırmayı iptal edebilirsiniz."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Bu çalışırken TV izlemeye devam edebilirsiniz."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Lisyeyi zamana göre veya alfabetik sıralayabilirsiniz."
 
-#
-msgid "You can install this plugin."
-msgstr "Bu eklentiyi yükleyebilirsiniz."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Sadece Dreambox kayıtlarını yazabilirsiniz!"
-
-#
-msgid "You can remove this plugin."
-msgstr "Bu eklentiyi kaldırabilirsiniz."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Alıcıyı bekleme modundan çıkardıktan sonra hemen bekleme moduna geçtiğinizde bu işlevi atlayabilir ve TV'yi kapatabilirsiniz."
@@ -22761,9 +22527,6 @@ msgstr "Sol ve sağ ile %s 100 bu tuner türlerini değiştirebilirsiniz"
 #
 msgid "You cannot delete this!"
 msgstr "Bunu silemezsiniz!"
-
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Bu günlük gönderilmiş, tekrar gönderilsin mi?:\n"
 
 #
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
@@ -22786,18 +22549,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "Çalıştırılacak komut dosyanız yok."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Kullanıcı bilginizi kurulum ekranında ayarlamamışsınızdır\n"
-"MENÜ tuşuna basın ve bilgilerinizi girin, ardından tekrar deneyin"
-
 msgid "You have selected no logs to delete."
 msgstr "Silinecek günlük seçmediniz."
-
-msgid "You have selected no logs to send."
-msgstr "Gönderilecek günlük seçmediniz."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "Otomatik başlatmayı etkinleştirmek için önce bir Swap Dosyası oluşturmalısınız."
@@ -22892,10 +22645,6 @@ msgstr "%s %s kapanıyor"
 #
 msgid "Your %s %s is shutting down. Please wait..."
 msgstr "%s %s kapatılıyor. Lütfen bekleyin..."
-
-#, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "Internet’e uygun şekilde bağlı değil. Lütfen kontrol edip tekrar deneyin %s%s."
 
 #, python-format
 msgid ""
@@ -23019,32 +22768,6 @@ msgid ""
 msgstr ""
 "Ön paneliniz yükseltilecek\n"
 "Bu bir kaç dakika alabilir"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Görüntünüz güncel değil!\n"
-"\n"
-"Çok uzun bir süre sonra,%s %s 'inizin olmayacağı yönünde bir risk var.\n"
-"çevrimiçi güncellemeden sonra önyükleme veya görüntüyü çalıştırmadaki disfonksiyonu gösterecektir.\n"
-"\n"
-"Yeni bir flaş istikrarı artıracak\n"
-"\n"
-"Bir çevrimiçi güncelleme kendi sorumluluğunuzda yapılır!\n"
-"\n"
-"\n"
-"Hala güncellemek istiyor musun?"
 
 #
 msgid "Your network configuration has been activated."
@@ -23659,9 +23382,6 @@ msgstr "ağ donanımı kurulum menüsünden çık"
 msgid "experimental film/video"
 msgstr "deneysel film/video"
 
-msgid "extensions."
-msgstr "uzantılar."
-
 msgid "externally loopthrough to"
 msgstr "dışarıdan ilmek"
 
@@ -23799,13 +23519,6 @@ msgstr "elişi"
 
 msgid "handled"
 msgstr "kullanıldı"
-
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"svn takım ekibine gönderildi.\n"
-"lütfen alıntı yap"
 
 msgid "hdr10"
 msgstr "hdr10"
@@ -24119,9 +23832,6 @@ msgstr "sadece HD"
 msgid "original language"
 msgstr "özgün dil"
 
-msgid "packages selected."
-msgstr "paketler seçildi."
-
 #
 msgid "pass"
 msgstr "geç"
@@ -24228,9 +23938,6 @@ msgstr "karasal hizmetleri kaldırmak"
 #
 msgid "remove this mark"
 msgstr "bu işareti kaldır"
-
-msgid "rename"
-msgstr "ad değiştir"
 
 #
 msgid "rename entry"
@@ -24583,9 +24290,6 @@ msgstr "h.bekle/y.başlatana kadar"
 msgid "update"
 msgstr "güncelleştirme"
 
-msgid "updates available."
-msgstr "güncellemeler mevcut."
-
 msgid "use best / controlled by HDMI"
 msgstr "en iyi kullanım / HDMI tarafından kontrol edilen"
 
@@ -24622,18 +24326,6 @@ msgstr "su sporları"
 #
 msgid "west"
 msgstr "batı"
-
-msgid "when asking question about this log"
-msgstr "bu günlük hakkında soru sorarken"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"bu kayıt hakkında soru sorurken\n"
-"\n"
-"Bir kopya kendinize gönderildi."
 
 msgid "wide"
 msgstr "geniş"
@@ -24673,1203 +24365,5 @@ msgstr "sarı"
 msgid "yes (keep feeds)"
 msgstr "evet (beslemeleri tut)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "artık kullanılamaz olabilir. Lütfen% s% s’nizi yeniden başlatmadan önce daha fazla yardım almak için kılavuza bakın %s%s."
-
 msgid "®"
 msgstr ""
-
-#~ msgid "Virtual KeyBoard Functions"
-#~ msgstr "Sanal KeyBoard İşlevleri"
-
-#, python-format
-#~ msgid ""
-#~ "\n"
-#~ "optional parameter:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "\n"
-#~ "isteğe bağlı parametre:\n"
-#~ "%s"
-
-#, python-format
-#~ msgid " ('%s') ends successfully."
-#~ msgstr " ('%s') başarıyla biter."
-
-#, python-format
-#~ msgid " ('%s') ends with error messages."
-#~ msgstr " ('%s') hata mesajları ile sona erer."
-
-#, python-format
-#~ msgid " ('%s') ends with error number [%d]."
-#~ msgstr " ('%s') hata numarasıyla bitiyor [%d]."
-
-#, python-format
-#~ msgid " - %d elements exist! Overwrite"
-#~ msgstr " - %d elemanlar var! Üzerine Yaz"
-
-#~ msgid " - 1 element exist! Overwrite"
-#~ msgstr " - 1 element var! Üzerine Yaz"
-
-#~ msgid " - file exist! Overwrite"
-#~ msgstr " - dosya var! Üzerine Yaz"
-
-#~ msgid " - folder exist! Overwrite"
-#~ msgstr " - klasör var! Üzerine Yaz"
-
-#~ msgid " or save additional the picture to a file"
-#~ msgstr " veya ek resmi bir dosyaya kaydedin"
-
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#
-#, python-format
-#~ msgid "%s (%s"
-#~ msgstr "%s (%s"
-
-#, python-format
-#~ msgid "%s - extraction errors."
-#~ msgstr "%s - çıkarma hataları."
-
-#, python-format
-#~ msgid "%s is password protected."
-#~ msgstr "%s şifre korumalıdır."
-
-#, python-format
-#~ msgid "%s successfully extracted."
-#~ msgstr "%s başarıyla çıkarıldı."
-
-#, python-format
-#~ msgid "'%s' not installed and no known package"
-#~ msgstr "'%s' yüklü değil ve bilinen bir paket yok"
-
-#, python-format
-#~ msgid "(%d jobs)"
-#~ msgstr "(%d jobs)"
-
-#~ msgid "(1 job)"
-#~ msgstr "(1 job)"
-
-#
-#~ msgid "(Selectmode)"
-#~ msgstr "(Mod seç)"
-
-#~ msgid ": "
-#~ msgstr ": "
-
-#
-#~ msgid "?"
-#~ msgstr "?"
-
-#
-#~ msgid "Accessed:"
-#~ msgstr "Erişilen:"
-
-#~ msgid "Activate left-hand file list as multi-select source"
-#~ msgstr "Sol taraftaki dosya listesini çoklu seçim kaynağı olarak etkinleştir"
-
-#~ msgid "Activate left-hand file list as source"
-#~ msgstr "Sol taraftaki dosya listesini kaynak olarak etkinleştir"
-
-#~ msgid "Activate right-hand file list as multi-select source"
-#~ msgstr "Sağ taraftaki listeyi çoklu seçim kaynağı olarak etkinleştir"
-
-#~ msgid "Activate right-hand file list as source"
-#~ msgstr "Sağ dosya listesini kaynak olarak etkinleştir"
-
-#~ msgid "Add plugin to Extensions menu*"
-#~ msgstr "Eklentiler menüsüne eklenti ekle *"
-
-#~ msgid "Add plugin to main menu*"
-#~ msgstr "Ana menüye eklenti ekle *"
-
-#~ msgid "CPU priority for script execution"
-#~ msgstr "CPU komut dosyası yürütme önceliği"
-
-#~ msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
-#~ msgstr "Dizin boyutunu hesaplayın ve gösterin. Not: Bu, bir klasör seçiminde kullanıcı arayüzünü yavaşlatabilir!"
-
-#~ msgid "Calculate file checksums"
-#~ msgstr "Dosya sağlama toplamlarını hesapla"
-
-#, python-format
-#~ msgid ""
-#~ "Can not run %s: %s.\n"
-#~ "%s may be in a plugin that is not installed."
-#~ msgstr ""
-#~ "%s çalıştırılamıyor:%s.\n"
-#~ "%s yüklü olmayan bir eklentide olabilir."
-
-#, python-format
-#~ msgid "Can't read link contents: %s"
-#~ msgstr "Bağlantı içeriği okunamıyor: %s"
-
-#~ msgid "Change buttons for list navigation"
-#~ msgstr "Liste gezinti için düğmeleri değiştir"
-
-#~ msgid "Channel button always changes sides"
-#~ msgstr "Kanal düğmesi her zaman taraf değiştirir"
-
-#, python-format
-#~ msgid "Copy %d elements"
-#~ msgstr "%d öğelerini kopyala"
-
-#~ msgid "Copy 1 element"
-#~ msgstr "1 öğeyi kopyala"
-
-#~ msgid "Copy file"
-#~ msgstr "Dosya kopyalamak"
-
-#~ msgid "Copy file/directory to target directory"
-#~ msgstr "Dosyayı / dizini hedef dizine kopyala"
-
-#~ msgid "Copy files/directories to target directory"
-#~ msgstr "Dosyaları / dizinleri hedef dizine kopyala"
-
-#~ msgid "Copy folder"
-#~ msgstr "Kopya klasörü"
-
-#
-#~ msgid "Create directory/folder"
-#~ msgstr "Dizin / klasör oluştur"
-
-#~ msgid "Create symlink to file"
-#~ msgstr "Dosyaya sembolik bağlantı oluştur"
-
-#~ msgid "Create user-named symbolic link"
-#~ msgstr "Kullanıcının adlandırdığı sembolik bağlantı oluştur"
-
-#~ msgid "Date reverse"
-#~ msgstr "Tarih ters"
-
-#~ msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-#~ msgstr "Yürütülen komut dosyaları için varsayılan CPU önceliği (hoş). Bu, yükleri azaltabilir, böylece komut dosyaları sistemin geri kalanını etkilemez. (daha yüksek değerler = düşük öncelik)"
-
-#~ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-#~ msgstr "Yürütülen komut dosyaları için varsayılan I/O önceliği (iyon). Bu, yükleri azaltabilir, böylece komut dosyaları sistemin geri kalanını etkilemez. (daha yüksek değerler = düşük öncelik)"
-
-#
-#~ msgid "Default directory sorting"
-#~ msgstr "Varsayılan dizin sıralaması"
-
-#~ msgid "Default file sorting left"
-#~ msgstr "Varsayılan dosya sıralama solu"
-
-#~ msgid "Default file sorting right"
-#~ msgstr "Varsayılan dosya sıralama hakkı"
-
-#~ msgid "Default folder"
-#~ msgstr "Varsayılan klasör"
-
-#~ msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-#~ msgstr "Sol veya sağ klasör kaydedilmemişse varsayılan klasör ve düğme 5 için hedef klasör."
-
-#~ msgid "Default sorting method for directories on both sides."
-#~ msgstr "Her iki taraftaki dizinler için varsayılan sıralama yöntemi."
-
-#~ msgid "Default sorting method for files on the left side."
-#~ msgstr "Sol taraftaki dosyalar için varsayılan sıralama yöntemi."
-
-#~ msgid "Default sorting method for files on the right side."
-#~ msgstr "Sağ taraftaki dosyalar için varsayılan sıralama yöntemi."
-
-#, python-format
-#~ msgid "Delete %d elements"
-#~ msgstr "%d öğeyi sil"
-
-#
-#~ msgid "Delete 1 element"
-#~ msgstr "1 öğe sil"
-
-#~ msgid "Delete file or directory (and all its contents)"
-#~ msgstr "Dosya veya dizini sil (ve tüm içeriğini)"
-
-#
-#~ msgid "Delete folder"
-#~ msgstr "Klasörü sil"
-
-#~ msgid "Delete the selected files or directories"
-#~ msgstr "Seçilen dosyaları veya dizinleri silin"
-
-#~ msgid "Do you want change rights?\n"
-#~ msgstr "Değişiklik hakları istiyor musunuz?\n"
-
-#~ msgid "Do you want to view or run the script?\n"
-#~ msgstr ""
-#~ "Komut dosyasını görüntülemek veya çalıştırmak ister misiniz?\n"
-#~ "\n"
-
-#~ msgid "Edit line "
-#~ msgstr "Satırı düzenle "
-
-#
-#~ msgid "Edit position is the line end"
-#~ msgstr "Konumu düzenle satırın sonudur"
-
-#
-#~ msgid "Enter multi-file selection mode"
-#~ msgstr "Çok dosyalı seçim moduna girin"
-
-#
-#, python-format
-#~ msgid ""
-#~ "Error creating directory %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "%s dizini oluşturulurken hata oluştu:\n"
-#~ "%s"
-
-#, python-format
-#~ msgid ""
-#~ "Error linking %s to %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "%s%s öğesine bağlanırken hata oluştu:\n"
-#~ "%s"
-
-#, python-format
-#~ msgid ""
-#~ "Error renaming %s to %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "%solarak yeniden adlandırma hatası %s:\n"
-#~ "%s"
-
-#
-#~ msgid "Error..."
-#~ msgstr "Hata..."
-
-#~ msgid "Exit editor and write changes (if any)"
-#~ msgstr "Editörden çık ve değişiklikleri yaz (varsa)"
-
-#~ msgid "Exit picture viewer"
-#~ msgstr "Resim görüntüleyiciden çık"
-
-#~ msgid "File Commander - Addon File-Viewer"
-#~ msgstr "Dosya Komutu - Addon Dosya Görüntüleyici"
-
-#~ msgid "File Commander - Addon Mediaplayer"
-#~ msgstr "Dosya Komutu - Addon Mediaplayer"
-
-#~ msgid "File Commander - Addon Movieplayer"
-#~ msgstr "Dosya Komutu - Addon Movie Player"
-
-#~ msgid "File Commander - all Task's are completed!"
-#~ msgstr "Dosya Komutu - tüm görevler tamamlandı!"
-
-#~ msgid "File Commander - generalised archive handler"
-#~ msgstr "Dosya Komutu - genelleştirilmiş arşiv işleyicisi"
-
-#~ msgid "File Commander - gzip Addon"
-#~ msgstr "Dosya Komutu - gzip addon"
-
-#~ msgid "File Commander - ipk Addon"
-#~ msgstr "Dosya Komutu - ipk Addon"
-
-#~ msgid "File Commander - tar Addon"
-#~ msgstr "Dosya Komutu - tar addon"
-
-#~ msgid "File Commander - unrar Addon"
-#~ msgstr "Dosya Komutu - unrar addon"
-
-#~ msgid "File Commander - unzip Addon"
-#~ msgstr "Dosya Komutu - addon unzip"
-
-#~ msgid "File Commander context menu"
-#~ msgstr "Dosya Komutu bağlam menüsü"
-
-#~ msgid "File Commander menu"
-#~ msgstr "Dosya Komut menüsü"
-
-#~ msgid "File checksums to calculate for button 9"
-#~ msgstr "Düğme 9 için hesaplanacak dosya sağlama toplamları"
-
-#~ msgid "File checksums/hashes"
-#~ msgstr "Dosya sağlama toplamı / sağlama"
-
-#
-#, python-format
-#~ msgid "File not found: %s"
-#~ msgstr "Dosya bulunamadı: %s"
-
-#~ msgid "File/Directory Status Information"
-#~ msgstr "Dosya / Dizin Durum Bilgisi"
-
-#~ msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
-#~ msgstr "Filter Filtre uzantısı ’için My Uzantım’ ayarı için filtre uzantısı. '.' Olmadan uzantı adını kullanın '.'."
-
-#~ msgid "Filter extension, (*) appears in title"
-#~ msgstr "Filtre uzantısı, (*) başlığında görünüyor"
-
-#~ msgid "Filter visible file classes by extension."
-#~ msgstr "Görünür dosya sınıflarını uzantıya göre filtreleyin."
-
-#~ msgid "Go to bookmarked folder"
-#~ msgstr "İşaretlenmiş klasöre git"
-
-#~ msgid "Go to end of file"
-#~ msgstr "Dosyanın sonuna git"
-
-#
-#~ msgid "Go to parent directory"
-#~ msgstr "Üst dizine git"
-
-#~ msgid "Go to start of file"
-#~ msgstr "Dosyanın başına git"
-
-#~ msgid "Group:"
-#~ msgstr "Grup:"
-
-#~ msgid "I/O priority for script execution"
-#~ msgstr "Komut dosyası yürütme için I/O önceliği"
-
-#~ msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-#~ msgstr "Bir dosyayı düzenliyorsanız, imlecin başlangıç konumunu satırın sonunda veya başında ayarlayabilirsiniz."
-
-#~ msgid "Inode:"
-#~ msgstr "Düğüm:"
-
-#~ msgid "Insert"
-#~ msgstr "Ekle"
-
-#, python-format
-#~ msgid "Install '%s' and enable this operation"
-#~ msgstr "'%s' kur ve bu işlemi etkinleştir"
-
-#~ msgid "Installing Plugin ..."
-#~ msgstr "Eklenti yükleniyor ..."
-
-#~ msgid "It is not possible to calculate hashes on <List of Storage Devices>"
-#~ msgstr "<Depolama Aygıtları Listesi> öğesinde karma hesaplamak mümkün değildir"
-
-#~ msgid "It is not possible to change the file mode of <List of Storage Devices>"
-#~ msgstr "<Depolama Aygıtları Listesi> dosya modunu değiştirmek mümkün değildir"
-
-#~ msgid "It is not possible to get the file status of <List of Storage Devices>"
-#~ msgstr "<Depolama Aygıtları Listesi> 'nin dosya durumunu elde etmek mümkün değil"
-
-#, python-format
-#~ msgid "It is not possible to run '%s' on <List of Storage Devices>"
-#~ msgstr "'%s' öğesinin <Depolama Aygıtları Listesi> 'nde çalıştırılması mümkün değil"
-
-#~ msgid "It's not possible to rename the file system root."
-#~ msgstr "Dosya sistemi kökünü yeniden adlandırmak mümkün değildir."
-
-#~ msgid "Leave File Commander"
-#~ msgstr "Dosya Komutuı'ndan Ayrıl"
-
-#~ msgid "Leave multi-select mode"
-#~ msgstr "Çoklu seçim modundan çık"
-
-#
-#~ msgid "Link target:"
-#~ msgstr "Bağlantı hedefi:"
-
-#
-#~ msgid "Links:"
-#~ msgstr "Bağlantılar:"
-
-#~ msgid "Make File Commander accessible from the Extensions menu."
-#~ msgstr "Dosya Komutanı'nı Uzantılar menüsünden erişilebilir duruma getirin."
-
-#~ msgid "Make File Commander accessible from the main menu."
-#~ msgstr "Dosya Komutanı'na ana menüden erişilebilir olun."
-
-#~ msgid "Metadata changed:"
-#~ msgstr "Meta veriler değişti:"
-
-#, python-format
-#~ msgid "Mode %s (%04o)"
-#~ msgstr "Model %s (%04o)"
-
-#~ msgid "Modified:"
-#~ msgstr "Değiştirilmiş:"
-
-#
-#, python-format
-#~ msgid "Move %d elements"
-#~ msgstr "%d öğeyi taşı"
-
-#
-#~ msgid "Move 1 element"
-#~ msgstr "1 öğeyi taşı"
-
-#~ msgid "Move down list"
-#~ msgstr "Listeyi aşağı taşı"
-
-#~ msgid "Move file"
-#~ msgstr "Dosyayı taşı"
-
-#~ msgid "Move file/directory to target directory"
-#~ msgstr "Dosyayı / dizini hedef dizine taşı"
-
-#~ msgid "Move files/directories to target directory"
-#~ msgstr "Dosyaları / dizinleri hedef dizine taşı"
-
-#~ msgid "Move folder"
-#~ msgstr "Klasörü taşı"
-
-#~ msgid "Move up list"
-#~ msgstr "Yukarı taşı listesi"
-
-#~ msgid "My extension"
-#~ msgstr "Benim uzatma"
-
-#
-#~ msgid "Name reverse"
-#~ msgstr "İsim ters"
-
-#~ msgid "New folder"
-#~ msgstr "Yeni dosya"
-
-#
-#~ msgid "No files found."
-#~ msgstr "Dosya bulunamadı."
-
-#~ msgid "No hash calculations configured"
-#~ msgstr "Yapılandırılmış hesap yok"
-
-#, python-format
-#~ msgid "No viewer installed for this file type: %s"
-#~ msgstr "Bu dosya türü için yüklü bir görüntüleyici yok: %s"
-
-#, python-format
-#~ msgid "None of the hash programs for the hashes %s are available"
-#~ msgstr "%s hash için karma programların hiçbiri kullanılamıyor"
-
-#~ msgid "Not allowed with folders"
-#~ msgstr "Klasörlere izin verilmiyor"
-
-#~ msgid "Number of lines in script messages"
-#~ msgstr "Script iletilerindeki satır sayısı"
-
-#~ msgid "On device:"
-#~ msgstr "Cihazda:"
-
-#~ msgid "Open settings/actions menu"
-#~ msgstr "Ayarlar / işlemler menüsünü aç"
-
-#~ msgid "Owner:"
-#~ msgstr "Sahip:"
-
-#~ msgid "Page down list"
-#~ msgstr "Sayfa aşağı listesi"
-
-#~ msgid "Page up list"
-#~ msgstr "Sayfa yukarı listesi"
-
-#
-#~ msgid "Parent directory"
-#~ msgstr "Üst Klasör"
-
-#~ msgid "Permissions:"
-#~ msgstr "İzinler:"
-
-#
-#~ msgid "Play folder"
-#~ msgstr "Oyun klasörü"
-
-#~ msgid "Play title"
-#~ msgstr "Oyun başlığı"
-
-#~ msgid "Play/view/edit/install/extract/run file or enter directory"
-#~ msgstr "Oynat / görüntüle / düzenle / yükle / çıkar / dosyayı çalıştır veya dizine gir"
-
-#
-#~ msgid "Please enter name of the new symlink"
-#~ msgstr "Lütfen yeni bağlantının adını girin"
-
-#
-#~ msgid "Please enter password"
-#~ msgstr "Lütfen şifre giriniz"
-
-#
-#~ msgid "Please enter the new directory name"
-#~ msgstr "Lütfen yeni dizin adını girin"
-
-#
-#~ msgid "Please enter the new file name"
-#~ msgstr "Lütfen yeni dosya adını girin"
-
-#
-#~ msgid "Please wait, Loading image."
-#~ msgstr "Lütfen bekleyiniz, Image yükleniyor."
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' is installed.\n"
-#~ "The package containing this program isn't known, so it can't be uninstalled."
-#~ msgstr ""
-#~ "'%s' programı kuruldu.\n"
-#~ "Bu programı içeren paket bilinmiyor, bu nedenle kaldırılamıyor."
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' needs to be installed to run the '%s' action.\n"
-#~ "Uninstall the '%s' package to uninstall the program?"
-#~ msgstr ""
-#~ "'%s' programının çalışması için '%s' programının kurulması gerekiyor.\n"
-#~ "Programı kaldırmak için '%s' paketini kaldırın?"
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' needs to be installed to run this action.\n"
-#~ "Install the '%s' package to install the program?"
-#~ msgstr ""
-#~ "Bu işlemi çalıştırmak için '%s' programının kurulması gerekiyor.\n"
-#~ "Programı yüklemek için '%s' paketini yükleyin?"
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' not installed.\n"
-#~ "The package containing this program isn't known."
-#~ msgstr ""
-#~ "'%s' programı kurulu değil.\n"
-#~ "Bu programı içeren paket bilinmiyor."
-
-#
-#~ msgid "Records"
-#~ msgstr "Kayıtlar"
-
-#
-#~ msgid "Rename file/directory"
-#~ msgstr "Dosyayı / dizini yeniden adlandır"
-
-#~ msgid "Reverse left file sorting"
-#~ msgstr "Sol dosya sıralamasını ters çevir"
-
-#~ msgid "Reverse right file sorting"
-#~ msgstr "Sağ dosya sıralamasını ters çevir"
-
-#
-#~ msgid "Save left folder on exit"
-#~ msgstr "Çıkışta soldaki klasörü kaydet"
-
-#
-#~ msgid "Save right folder on exit"
-#~ msgstr "Çıkışta sağdaki klasörü kaydet"
-
-#~ msgid "Save the left folder list location on exit."
-#~ msgstr "Çıkışta soldaki klasör listesi konumunu kaydedin."
-
-#~ msgid "Save the right folder list location on exit."
-#~ msgstr "Çıkışta doğru klasör listesi konumunu kaydedin."
-
-#, python-format
-#~ msgid "Script '%s' must have read permission to be able to run it"
-#~ msgstr "'%s' komut dosyasının çalıştırılabilmesi için okuma iznine sahip olması gerekir"
-
-#~ msgid "Select (source list) or enter directory (target list)"
-#~ msgstr "Seçin (kaynak listesi) veya dizini girin (hedef listesi)"
-
-#~ msgid "Select a path"
-#~ msgstr "Bir yol seçin"
-
-#~ msgid "Set archive mode (644)"
-#~ msgstr "Arşiv modunu ayarla (644)"
-
-#~ msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
-#~ msgstr "'Stout' ve 'sterr' için komut dosyası bilgisi veya komut dosyası hata iletilerindeki satır sayısını ayarlayın."
-
-#, python-format
-#~ msgid ""
-#~ "Show '%s' as picture%s?\n"
-#~ "The current service must interrupted!"
-#~ msgstr ""
-#~ "'%s' ifadesini resim olarak göster%s?\n"
-#~ "Mevcut servis kesintiye uğradı!"
-
-#~ msgid "Show Directory size"
-#~ msgstr "Dizin boyutunu göster"
-
-#~ msgid "Show Script completed message"
-#~ msgstr "Komut Dosyası tamamlandı mesajını göster"
-
-#~ msgid "Show Task's completed message"
-#~ msgstr "Görev tamamlandı mesajını göster"
-
-#~ msgid "Show as Picture (press any key to close)"
-#~ msgstr "Resim olarak göster (kapatmak için herhangi bir tuşa basın)"
-
-#, python-format
-#~ msgid "Show as Picture and save as file ('%s')"
-#~ msgstr "Resim olarak göster ve dosya olarak kaydet ('%s')"
-
-#~ msgid "Show contents of ipk file"
-#~ msgstr "İpk dosyasının içeriğini göster"
-
-#~ msgid "Show contents of rar file"
-#~ msgstr "Rar dosyasının içeriğini göster"
-
-#~ msgid "Show contents of tar or compressed tar file"
-#~ msgstr "Tar veya sıkıştırılmış tar dosyasının içeriğini göster"
-
-#~ msgid "Show contents of zip file"
-#~ msgstr "Zip dosyasının içeriğini göster"
-
-#~ msgid "Show directories on first or last in list.(must restart File Commander)"
-#~ msgstr "Dizinleri listedeki ilk veya son listede göster. (Dosya Komutanını yeniden başlatmalı)"
-
-#~ msgid "Show image information"
-#~ msgstr "Resim bilgilerini göster"
-
-#~ msgid "Show message if File Commander is not running and all Task's are completed."
-#~ msgstr "Dosya Komutanı çalışmıyorsa ve tüm Görevler tamamlandıysa mesajı göster."
-
-#~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-#~ msgstr "Bir arka plan komut dosyası başarılı bir şekilde sona ererse mesajı göster. 'Stout' var, bu ek bilgi olarak gösterilir."
-
-#~ msgid "Show unknown extension as text"
-#~ msgstr "Bilinmeyen uzantıları metin olarak göster"
-
-#~ msgid "Show unknown file extensions with 'Addon File-Viewer'."
-#~ msgstr "'Addon File-Viewer' ile bilinmeyen dosya uzantılarını göster."
-
-#~ msgid "Size reverse"
-#~ msgstr "Boyut ters"
-
-#
-#~ msgid "Skip selection"
-#~ msgstr "Seçimi atla"
-
-#~ msgid "Sorting left files by name, date or size"
-#~ msgstr "Soldaki dosyaları ada, tarihe veya boyuta göre sıralama"
-
-#~ msgid "Sorting right files by name, date or size"
-#~ msgstr "Doğru dosyaları ada, tarihe veya boyuta göre sıralama"
-
-#~ msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-#~ msgstr "Kanal artı / eksi ile düğmeleri sağa / sola kaydırın veya kanal düğmesi her zaman yan tarafını değiştirdi."
-
-#~ msgid "Symlink to "
-#~ msgstr "İçin bağlantı "
-
-#~ msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
-#~ msgstr "Dosya Komutun Resim Görüntüleyici bileşeni, PicturePlayer uzantısını gerektirir. Bu işlemi etkinleştirmek için PicturePlayer'ı yükleyin."
-
-#~ msgid "The authors are NOT RESPONSIBLE"
-#~ msgstr "Yazarlar SORUMLU DEĞİLDİR"
-
-#~ msgid ""
-#~ "The function has interrupted.\n"
-#~ "Don't press in the next time any key until the picture from mvi-file is displayed!"
-#~ msgstr ""
-#~ "İşlev kesintiye uğradı.\n"
-#~ "Bir sonraki seferde mvi dosyasındaki resim görüntülenene kadar herhangi bir tuşa basmayın!"
-
-#~ msgid "The hash of a directory can't be calculated."
-#~ msgstr "Bir dizinin karma değeri hesaplanamaz."
-
-#
-#~ msgid "This line is not editable!"
-#~ msgstr "Bu satır düzenlenebilir değil!"
-
-#~ msgid "Time between slides in image viewer slideshow."
-#~ msgstr "Resim görüntüleyici slayt gösterisindeki slaytlar arasındaki süre."
-
-#~ msgid "Time for Slideshow"
-#~ msgstr "Slayt Gösterisi Zamanı"
-
-#~ msgid "Type:"
-#~ msgstr "Tür:"
-
-#, python-format
-#~ msgid "Uninstall '%s' package and disable '%s'"
-#~ msgstr "'%s' paketini kaldırın ve '%s' öğesini devre dışı bırakın"
-
-#, python-format
-#~ msgid "Unpack to %s"
-#~ msgstr "%s paketinden çıkarın"
-
-#~ msgid "Unpack to current folder"
-#~ msgstr "Geçerli klasöre ambalajını aç"
-
-#~ msgid "WARNING!"
-#~ msgstr "UYARI!"
-
-#
-#~ msgid "What do you want to play?\n"
-#~ msgstr "Ne oynamak istersin?\n"
-
-#, python-format
-#~ msgid "You can't usefully run '%s' on '%s'."
-#~ msgstr "'%s' öğesini '%s' ile faydalı bir şekilde çalıştıramazsınız."
-
-#, python-format
-#~ msgid "You can't usefully run '%s' on a directory."
-#~ msgstr "'%s' dizinini faydalı bir şekilde çalıştıramazsınız."
-
-#~ msgid "create symlink ..."
-#~ msgstr "sembolik link oluştur ..."
-
-#~ msgid "for DATA LOSS OR DAMAGE !!!"
-#~ msgstr "vERİ KAYBI VEYA HASARI İÇİN!"
-
-#~ msgid "from dir"
-#~ msgstr "yönden"
-
-#~ msgid "has been CHANGED! Do you want to save it?"
-#~ msgstr "değiştirildi! Kurtarmak ister misiniz?"
-
-#~ msgid "install/unpack ipk Files"
-#~ msgstr "yükleme / açma ipk Dosyaları"
-
-#~ msgid "manage local Files"
-#~ msgstr "yerel Dosyaları yönet"
-
-#
-#~ msgid "move file"
-#~ msgstr "dosyayı taşı"
-
-#
-#~ msgid "move folder"
-#~ msgstr "klasör taşı"
-
-#~ msgid "original"
-#~ msgstr "özgün"
-
-#~ msgid "play Files"
-#~ msgstr "dosyaları oynat"
-
-#~ msgid "play/show Files"
-#~ msgstr "dosyaları oynat / göster"
-
-#~ msgid "python"
-#~ msgstr "python"
-
-#~ msgid "script 'sterr':"
-#~ msgstr "script 'sterr':"
-
-#~ msgid "script 'stout':"
-#~ msgstr "script 'stout':"
-
-#~ msgid "to dir"
-#~ msgstr "ölmek"
-
-#~ msgid "unpack Rar Files"
-#~ msgstr "rar dosyalarını açmak"
-
-#~ msgid "unpack archives"
-#~ msgstr "arşivleri aç"
-
-#~ msgid "unpack gzip Files"
-#~ msgstr "gzip Dosyalarını Aç"
-
-#~ msgid "unpack tar/compressed tar Files"
-#~ msgstr "tar / sıkıştırılmış tar dosyalarını açmak"
-
-#~ msgid "unpack zip Files"
-#~ msgstr "zip dosyalarını açmak"
-
-#~ msgid "v"
-#~ msgstr "v"
-
-#~ msgid "without"
-#~ msgstr "olmaksızın"
-
-#
-#, python-format
-#~ msgid ""
-#~ "A sleep timer wants to set your\n"
-#~ "%s %s to standby. Do that now?"
-#~ msgstr ""
-#~ "Uyku zamanlayıcı %s %s'yu\n"
-#~ "bekleme kipine almak istiyor. Şimdi alınsın mı?"
-
-#
-#, python-format
-#~ msgid ""
-#~ "A sleep timer wants to shut down\n"
-#~ "your %s %s. Shutdown now?"
-#~ msgstr ""
-#~ "Uyku zamanlayıcı %s %s'yu\n"
-#~ "kapatmak istiyor. Şimdi kapatılsın mı?"
-
-#~ msgid "Enable screenshot of LCD in /tmp"
-#~ msgstr "LCD giriş / tmp ekran görüntüsünü etkinleştir"
-
-#
-#~ msgid "Job View"
-#~ msgstr "Görev İzle"
-
-#~ msgid "Jump to first item in list or the start of text"
-#~ msgstr "Listedeki ilk öğeye veya metnin başlangıcına atla"
-
-#~ msgid "Jump to last item in list or the end of text"
-#~ msgstr "Listedeki son öğeye veya metnin sonuna atla"
-
-#
-#~ msgid "Please enter a new filename:"
-#~ msgstr "Lütfen yeni bir dosya adını girin"
-
-#
-#~ msgid "Remove directory"
-#~ msgstr "klasörü kaldır"
-
-#~ msgid "Screenshot of LCD in /tmp"
-#~ msgstr "/tmp in LCD ekran görüntüsü"
-
-#~ msgid "Select the next item in list or move cursor right"
-#~ msgstr "Listedeki sonraki öğeyi seçin veya imleci sağa hareket ettirin"
-
-#~ msgid "Select the previous item in list or move cursor left"
-#~ msgstr "Listedeki önceki öğeyi seçin veya imleci sola hareket ettirin"
-
-#
-#~ msgid "Switch to bookmarks"
-#~ msgstr "yer imlerine geç"
-
-#~ msgid "Task list"
-#~ msgstr "Görev listesi"
-
-#
-#~ msgid "Please select the IceTV service that you wish to use."
-#~ msgstr "Lütfen kullanmak istediğiniz IceTV hizmetini seçin."
-
-#
-#~ msgid "Long key press"
-#~ msgstr "Tuşa uzun süre basıldığında"
-
-#~ msgid "Next Image"
-#~ msgstr "Sonraki Resim"
-
-#~ msgid "Receiver Image Actions"
-#~ msgstr "Hızlı İşlemler"
-
-#~ msgid "Use these settings?"
-#~ msgstr "Bu ayarlar kullanılsın mı?"
-
-#~ msgid "Please select an acceptable directory."
-#~ msgstr "Lütfen yeni kasör için bir ad girin."
-
-#~ msgid "Aspect long"
-#~ msgstr "Boy uzun"
-
-#~ msgid "Audio long"
-#~ msgstr "Uzun ses"
-
-#~ msgid "Context long"
-#~ msgstr "Bağlam uzun"
-
-#~ msgid "Directory long"
-#~ msgstr "Dizin uzun"
-
-#~ msgid "EJECTCD long"
-#~ msgstr "EJECTCD uzun"
-
-#~ msgid "End long"
-#~ msgstr "Uzun sona"
-
-#~ msgid "Epg/Guide long"
-#~ msgstr "Epg / Rehber uzun"
-
-#~ msgid "F1 long"
-#~ msgstr "F1 uzun"
-
-#~ msgid "F2 long"
-#~ msgstr "F2 uzun"
-
-#~ msgid "F3 long"
-#~ msgstr "F3 uzun"
-
-#~ msgid "F4 long"
-#~ msgstr "F4 uzun"
-
-#~ msgid "Favorites long"
-#~ msgstr "Sık Kullanılanlar"
-
-#~ msgid "File long"
-#~ msgstr "Uzun dosya"
-
-#~ msgid "Flash on the fly your %s %s."
-#~ msgstr "Alıcı yazılımı yanıp söner%s %s."
-
-#~ msgid "Help long"
-#~ msgstr "Uzun yardımcı"
-
-#~ msgid "History long"
-#~ msgstr "Tarihçe uzun"
-
-#~ msgid "Home long"
-#~ msgstr "Eve uzun"
-
-#~ msgid "Homepage long"
-#~ msgstr "Anasayfa uzun"
-
-#~ msgid "Info (EPG) Long"
-#~ msgstr "Bilgi (EPG) uzun"
-
-#
-#~ msgid "Keyboard long"
-#~ msgstr "Klavye uzun"
-
-#~ msgid "Kodi long"
-#~ msgstr "Uzun kodi"
-
-#~ msgid "LAN long"
-#~ msgstr "LAN uzun"
-
-#~ msgid "Left long"
-#~ msgstr "Uzun sol"
-
-#~ msgid "List/Fav long"
-#~ msgstr "Liste / Fav uzun"
-
-#~ msgid "MOUSE long"
-#~ msgstr "MOUSE uzun"
-
-#~ msgid "Magic long"
-#~ msgstr "Sihirli uzun"
-
-#~ msgid "Mark/Portal/Playlist long"
-#~ msgstr "İşaretle / Portal / Oynatma Listesi uzun"
-
-#~ msgid "Media long"
-#~ msgstr "Medya uzun"
-
-#~ msgid "Nextsong long"
-#~ msgstr "Uzun Nextsong"
-
-#~ msgid "OK long"
-#~ msgstr "OK tuşu uzun"
-
-#~ msgid "Open long"
-#~ msgstr "Uzun aç"
-
-#~ msgid "Option long"
-#~ msgstr "Seçenek uzun"
-
-#~ msgid "PC long"
-#~ msgstr "PC uzun"
-
-#~ msgid "PIP long"
-#~ msgstr "Pip uzun"
-
-#~ msgid "PVR long"
-#~ msgstr "PVR uzun"
-
-#~ msgid "PageDown long"
-#~ msgstr "Sayfa Aşağı uzun"
-
-#~ msgid "PageUp long"
-#~ msgstr "Sayfa çok uzun"
-
-#~ msgid "Playlist long"
-#~ msgstr "Oynatma listesi uzun"
-
-#~ msgid "Power long"
-#~ msgstr "Power long"
-
-#~ msgid "Prevsong long"
-#~ msgstr "Uzun süredir"
-
-#~ msgid "Program long"
-#~ msgstr "Program uzun"
-
-#~ msgid "Prov long"
-#~ msgstr "Prov uzun"
-
-#~ msgid "RADIO long"
-#~ msgstr "Radyo uzun"
-
-#~ msgid "Rec long"
-#~ msgstr "Rec uzun"
-
-#~ msgid "Right long"
-#~ msgstr "Sağ uzun"
-
-#~ msgid "SAT long"
-#~ msgstr "Uzun SAT"
-
-#~ msgid "Search/WEB long"
-#~ msgstr "Arama / WEB uzun"
-
-#~ msgid "Sleep long"
-#~ msgstr "Uzun uyu"
-
-#~ msgid "Subtitle long"
-#~ msgstr "Altyazı uzun"
-
-#~ msgid "Teletext long"
-#~ msgstr "Tteletekst uzun"
-
-#
-#~ msgid "Time long"
-#~ msgstr "Zaman uzun"
-
-#~ msgid "VOD long"
-#~ msgstr "VOD uzun"
-
-#~ msgid "Www long"
-#~ msgstr "Www uzun"
-
-#~ msgid "YouTube long"
-#~ msgstr "YouTube uzun"
-
-#~ msgid "ZOOM long"
-#~ msgstr "ZOOM uzun"
-
-#~ msgid "0.2s"
-#~ msgstr "0.2s"
-
-#~ msgid "0.3s"
-#~ msgstr "0.3s"
-
-#~ msgid "0.4s"
-#~ msgstr "0.4s"
-
-#~ msgid "0.5s"
-#~ msgstr "0.5s"
-
-#~ msgid "0.6s"
-#~ msgstr "0.6s"
-
-#~ msgid "0.7s"
-#~ msgstr "0.7s"
-
-#~ msgid "0.8s"
-#~ msgstr "0.8s"
-
-#~ msgid "0.9s"
-#~ msgstr "0.9s"
-
-#~ msgid "1 GB"
-#~ msgstr "1 GB"
-
-#~ msgid "1.2s"
-#~ msgstr "1.2s"
-
-#~ msgid "1.5s"
-#~ msgstr "1.5s"
-
-#~ msgid "1.7s"
-#~ msgstr "1.7s"
-
-#~ msgid "10 MB/s"
-#~ msgstr "10 MB/s"
-
-#~ msgid "100 MB/s"
-#~ msgstr "100 MB/s"
-
-#~ msgid "1s"
-#~ msgstr "1s"
-
-#~ msgid "2 GB"
-#~ msgstr "2 GB"
-
-#~ msgid "2.5s"
-#~ msgstr "2.5s"
-
-#~ msgid "20 MB/s"
-#~ msgstr "20 MB/s"
-
-#~ msgid "24+ Hours"
-#~ msgstr "24+ Saatler"
-
-#~ msgid "24- Hours"
-#~ msgstr "24- Saatler"
-
-#~ msgid "2s"
-#~ msgstr "2s"
-
-#~ msgid "3.5s"
-#~ msgstr "3.5s"
-
-#~ msgid "3s"
-#~ msgstr "3s"
-
-#~ msgid "4 GB"
-#~ msgstr "4 GB"
-
-#~ msgid "4s"
-#~ msgstr "4s"
-
-#~ msgid "50 MB/s"
-#~ msgstr "50 MB/s"
-
-#~ msgid "5s"
-#~ msgstr "5s"
-
-#~ msgid "8 GB"
-#~ msgstr "8 GB"
-
-#~ msgid "Auto Timer"
-#~ msgstr "Otomatik Zamanlayıcı"
-
-#~ msgid "Hour"
-#~ msgstr "Saat"
-
-#~ msgid "Once per day"
-#~ msgstr "Günde bir"
-
-#~ msgid "alphabetical"
-#~ msgstr "alfabetik"
-
-#
-#~ msgid "alternative"
-#~ msgstr "alternatif"
-
-#
-#~ msgid "user defined"
-#~ msgstr "kullanıcı tanımlı"
-
-#~ msgid "white"
-#~ msgstr "beyaz"
-
-#, python-format
-#~ msgid "Mount '%s' has not enough free space to record."
-#~ msgstr "'%s' dağı kaydetmek için yeterli boş alana sahip değil."
-
-#
-#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Zamanlayıcı dosyası (timers.xml) bozuk ve yüklenemiyor."
-
-#
-#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Zamanlayıcı dosyası (timers.xml) bozuk ve yüklenemiyor."
-
-#
-#~ msgid ""
-#~ "Timer overlap in pm_timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Pm_timers.xml dosyasında Timer çakışması tespit edildi!\n"
-#~ "Lütfen tekrar kontrol et!"
-
-#
-#~ msgid ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Timers.xml'de Timer çakışması tespit edildi!\n"
-#~ "Lütfen tekrar kontrol et!"
-
-#~ msgid "ask user"
-#~ msgstr "sor"
-
-#~ msgid "end zapping"
-#~ msgstr "zaplamayı bitir"
-
-#
-#~ msgid "menu"
-#~ msgstr "menü"
-
-#, python-format
-#~ msgid "record time changed, start prepare is now: %s"
-#~ msgstr "kayıt süresi değişti, hazırlığı başlat şimdi: %s"
-
-#
-#~ msgid "select"
-#~ msgstr "seç"
-
-#~ msgid "start recording"
-#~ msgstr "kayda başla"
-
-#~ msgid "stop recording"
-#~ msgstr "kaydetmeyi bırak"
-
-#~ msgid "zapping"
-#~ msgstr "zaplama"

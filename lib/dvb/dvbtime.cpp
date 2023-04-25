@@ -219,7 +219,7 @@ eDVBLocalTimeHandler *eDVBLocalTimeHandler::instance;
 DEFINE_REF(eDVBLocalTimeHandler);
 
 eDVBLocalTimeHandler::eDVBLocalTimeHandler()
-	:m_use_dvb_time(true), m_updateNonTunedTimer(eTimer::create(eApp)), m_time_ready(false)
+	:m_use_dvb_time(true), m_SyncTimeUsing(0), m_updateNonTunedTimer(eTimer::create(eApp)), m_time_ready(false)
 {
 	if (!instance)
 		instance = this;
@@ -282,6 +282,12 @@ void eDVBLocalTimeHandler::writeTimeOffsetData(const char* filename)
 				it->first.transport_stream_id.get(), it->first.original_network_id.get(), it->second);
 		fclose(f);
 	}
+}
+
+void eDVBLocalTimeHandler::setDVBTimeMode(int mode)
+{
+	m_SyncTimeUsing = (mode <= 2 && mode >= 0) ? mode : 0;
+	setUseDVBTime(mode != 1);
 }
 
 void eDVBLocalTimeHandler::setUseDVBTime(bool b)
@@ -359,12 +365,66 @@ void eDVBLocalTimeHandler::syncDVBTime()
 
 void eDVBLocalTimeHandler::updateNonTuned()
 {
+	if (m_SyncTimeUsing == 2)
+		return;
 	updateTime(-1, 0, 0);
 	m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
 }
 
 void eDVBLocalTimeHandler::updateTime(time_t tp_time, eDVBChannel *chan, int update_count)
 {
+
+	eDebug("[eDVBLocalTimerHandler] updateTime : %d" , tp_time);
+
+	if (m_SyncTimeUsing == 2) {
+		if(tp_time != 0 && tp_time != -1) { // -1 can be removed later
+			tm tp_dt;
+			localtime_r(&tp_time, &tp_dt);
+			eDebug("[eDVBLocalTimerHandler] Transponder time is %02d/%02d/%04d %02d:%02d:%02d",
+			tp_dt.tm_mday,
+			tp_dt.tm_mon + 1,
+			tp_dt.tm_year + 1900,
+			tp_dt.tm_hour,
+			tp_dt.tm_min,
+			tp_dt.tm_sec);
+
+			// compare with system time
+			time_t linuxTime = time(0);
+			int time_difference = tp_time - linuxTime;
+			int atime_difference = abs(time_difference);
+
+			if (atime_difference > 30) { // diff higher than 30 seconds 
+				timeval tdelta, tolddelta;
+				tdelta.tv_sec = time_difference;
+				int rc = adjtime(&tdelta, &tolddelta);
+				if(rc != -1) {
+					if (errno == EINVAL) {
+						timeval tnow;
+						gettimeofday(&tnow, 0);
+						tnow.tv_sec = tp_time;
+						settimeofday(&tnow, 0);
+					}
+					else {
+						eDebug("[eDVBLocalTimerHandler] Slewing Linux time by %d seconds FAILED! (%d) %m", time_difference, errno);
+						return;
+					} 
+				}
+				/*emit*/ m_timeUpdated();
+
+				m_use_dvb_time = false;
+
+				std::map<iDVBChannel*, channel_data>::iterator it = m_knownChannels.begin();
+				for (; it != m_knownChannels.end(); ++it) {
+					if (it->second.m_prevChannelState == iDVBChannel::state_ok)
+						it->second.timetable = NULL;
+				}
+
+			}
+
+		}
+		return;
+	}
+
 	int time_difference;
 	bool restart_tdt = false;
 	if (!tp_time)
@@ -626,8 +686,10 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 				case iDVBChannel::state_release:
 					eDebug("[eDVBLocalTimerHandler] Remove channel %p.", chan);
 					m_knownChannels.erase(it);
-					if (m_knownChannels.empty())
-						m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
+					if (m_SyncTimeUsing != 2) {
+						if (m_knownChannels.empty())
+							m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
+					}
 					return;
 				default: // Ignore all other events.
 					return;

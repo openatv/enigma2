@@ -215,6 +215,21 @@ def getRCFile(ext):
 	return filename
 
 
+def getChipsetString():
+	if MODEL in ("dm7080", "dm820"):
+		return "7435"
+	elif MODEL in ("dm520", "dm525"):
+		return "73625"
+	elif MODEL in ("dm900", "dm920", "et13000", "sf5008"):
+		return "7252S"
+	elif MODEL in ("hd51", "vs1500", "h7"):
+		return "7251S"
+	elif MODEL == "alien5":
+		return "S905D"
+	chipset = fileReadLine("/proc/stb/info/chipset", default=_("Undefined"), source=MODULE_NAME)
+	return str(chipset.lower().replace("\n", "").replace("bcm", "").replace("brcm", "").replace("sti", ""))
+
+
 def getModuleLayout():
 	modulePath = BoxInfo.getItem("enigmamodule")
 	if modulePath:
@@ -359,9 +374,12 @@ canImageBackup = not MACHINEBUILD.startswith('az') and not BRAND.startswith('cub
 BoxInfo.setItem("canImageBackup", canImageBackup)
 BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())
 BoxInfo.setItem("canMultiBoot", MultiBoot.getBootSlots())
+BoxInfo.setItem("HasKexecMultiboot", fileHas("/proc/cmdline", "kexec=1"))
+BoxInfo.setItem("cankexec", BoxInfo.getItem("kexecmb") and not BoxInfo.getItem("HasKexecMultiboot"))
 BoxInfo.setItem("CanNotDoSimultaneousTranscodeAndPIP", MODEL in ("vusolo4k", "gbquad4k", "gbue4k"))
 BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "ustym4ks2ottx", "beyonwizv2", "viper4k", "og2ott4k", "sx88v2", "sx888") and ("usb_update.bin", "none"))
 BoxInfo.setItem("CanUse3DModeChoices", fileExists("/proc/stb/fb/3dmode_choices") and True or False)
+BoxInfo.setItem("ChipsetString", getChipsetString(), immutable=True)
 BoxInfo.setItem("CIHelper", fileExists("/usr/bin/cihelper"))
 BoxInfo.setItem("DeepstandbySupport", MODEL != 'dm800')
 BoxInfo.setItem("DefaultDisplayBrightness", MACHINEBUILD in ("dm900", "dm920") and 8 or 5)

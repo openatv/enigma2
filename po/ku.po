@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -1137,6 +1137,10 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] ""
 msgstr[1] ""
 
+#, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%d sec"
 msgstr "%d second"
@@ -1268,10 +1272,6 @@ msgid "%s %s remote control (native)"
 msgstr "dreambox remote control (native)"
 
 #, fuzzy, python-format
-msgid "%s %s software because updates are available."
-msgstr "receiver software because updates are available."
-
-#, fuzzy, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s (%s)\n"
 
@@ -1313,6 +1313,10 @@ msgstr ""
 
 #, python-format
 msgid "%s MHz"
+msgstr ""
+
+#, python-format
+msgid "%s Packages found"
 msgstr ""
 
 #, fuzzy, python-format
@@ -2057,9 +2061,6 @@ msgstr ""
 "\n"
 "Do you want to disable the second network interface?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "A small overview of the available icon states and actions."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2153,9 +2154,6 @@ msgid "Aborted a pseudo recording.\n"
 msgstr ""
 
 msgid "Aborted a streaming service.\n"
-msgstr ""
-
-msgid "Aborting update progress"
 msgstr ""
 
 msgid "About"
@@ -2388,10 +2386,6 @@ msgstr "Add/remove timer for current event"
 
 msgid "Adding schedule..."
 msgstr ""
-
-#, fuzzy
-msgid "Additional Info"
-msgstr "Scan additional SR"
 
 msgid "Additional files/folders to backup"
 msgstr ""
@@ -2847,10 +2841,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Are you sure you want to exit this wizard?"
 
-#, fuzzy
-msgid "Are you sure you want to send this log:\n"
-msgstr "Are you sure you want to exit this wizard?"
-
 msgid "Argentina"
 msgstr ""
 
@@ -2875,6 +2865,9 @@ msgid "Aruba"
 msgstr ""
 
 msgid "As plugin in extended bar"
+msgstr ""
+
+msgid "Ascending"
 msgstr ""
 
 msgid "Ask user"
@@ -2936,9 +2929,6 @@ msgstr ""
 #, fuzzy
 msgid "Athletics"
 msgstr "athletics"
-
-msgid "Attach a file"
-msgstr ""
 
 msgid "Audio"
 msgstr "Deng"
@@ -3006,9 +2996,6 @@ msgstr "Italian"
 #, fuzzy
 msgid "Austria"
 msgstr "equestrian"
-
-msgid "Author: "
-msgstr "Niviskar: "
 
 msgid "Authoring mode"
 msgstr "modé Nivisi"
@@ -4004,6 +3991,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Berdi"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
@@ -4136,9 +4126,6 @@ msgid "Cascade PiP"
 msgstr ""
 
 msgid "Catalan / Valencian"
-msgstr ""
-
-msgid "Caution update not yet tested !!"
 msgstr ""
 
 msgid "Cayman Islands"
@@ -4770,9 +4757,6 @@ msgstr "Common Interface assignment"
 msgid "Common Setup Actions"
 msgstr "Hevra Girédayi"
 
-msgid "Communication"
-msgstr "Hevra Girédayi"
-
 msgid "Comoros"
 msgstr ""
 
@@ -5267,9 +5251,6 @@ msgstr ""
 
 msgid "Continent"
 msgstr ""
-
-msgid "Continue"
-msgstr "Dowmke"
 
 msgid "Continue in background"
 msgstr ""
@@ -6009,9 +5990,6 @@ msgstr "Recording type"
 msgid "Default right column directory"
 msgstr ""
 
-msgid "Default settings"
-msgstr "Default settings"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -6159,6 +6137,9 @@ msgstr ""
 msgid "Delete Timer"
 msgstr "Delete file"
 
+msgid "Delete all duplicated lines"
+msgstr ""
+
 msgid "Delete all log files"
 msgstr ""
 
@@ -6188,6 +6169,9 @@ msgid "Delete current line"
 msgstr "Delete entry"
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 msgid "Delete entry"
@@ -6290,6 +6274,9 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Depth"
+
+msgid "Descending"
+msgstr ""
 
 msgid "Description"
 msgstr "Description"
@@ -6512,9 +6499,6 @@ msgstr "Display >16:9 content as"
 msgid "Display Settings"
 msgstr ""
 
-msgid "Display and user interface"
-msgstr "Display and user interface"
-
 msgid "Display context menu"
 msgstr ""
 
@@ -6713,18 +6697,9 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-#, fuzzy
-msgid "Do you want to add any additional information ?"
-msgstr "Do you want to download the image to %s ?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
-msgstr ""
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 
 msgid ""
@@ -6800,14 +6775,6 @@ msgstr "Do you want to restore your settings?"
 msgid "Do you want to resume this playback?"
 msgstr "Do you want to resume this playback?"
 
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-
-msgid "Do you want to update your box?"
-msgstr ""
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Do you want to upgrade the package:\n"
 
@@ -6854,10 +6821,6 @@ msgid ""
 msgstr ""
 
 msgid "Done"
-msgstr ""
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
 msgstr ""
 
 #, fuzzy, python-format
@@ -6934,6 +6897,9 @@ msgid "Drivers version"
 msgstr ""
 
 msgid "Duplex"
+msgstr ""
+
+msgid "Duplicate the current line"
 msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
@@ -7667,7 +7633,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7764,12 +7730,6 @@ msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr "Error"
 
 #, python-format
 msgid ""
@@ -8112,9 +8072,6 @@ msgstr "Extensions"
 
 msgid "Extensions"
 msgstr "Extensions"
-
-msgid "Extensions Management"
-msgstr "Extensions Management"
 
 msgid "Extensions/QuickMenu"
 msgstr ""
@@ -8574,9 +8531,6 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr "Final position at"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Following tasks will be done after you press OK!"
-
 #, fuzzy
 msgid "Font size"
 msgstr "stepsize"
@@ -8591,9 +8545,6 @@ msgstr ""
 #, fuzzy
 msgid "Football"
 msgstr "football/soccer"
-
-msgid "For more information see https://www.opena.tv"
-msgstr ""
 
 msgid "Force LNB Power"
 msgstr ""
@@ -10000,10 +9951,6 @@ msgstr "Install extensions."
 msgid "Install lcd picons on"
 msgstr "Install picons on"
 
-#, fuzzy
-msgid "Install or remove finished."
-msgstr "Installation or removal has completed."
-
 msgid "Install picons on"
 msgstr "Install picons on"
 
@@ -10440,9 +10387,6 @@ msgid "LNB"
 msgstr "LNB"
 
 msgid "LNB/Switch Bootup time [ms]"
-msgstr ""
-
-msgid "LOF"
 msgstr ""
 
 msgid "LOF/H"
@@ -11007,6 +10951,9 @@ msgstr "Manage Extensions"
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Eyara Kolleksiyon"
+
+msgid "Manage Plugins"
+msgstr ""
 
 msgid "Manage and explore directories and files."
 msgstr ""
@@ -11756,9 +11703,6 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
-msgid "Multimedia"
-msgstr "Multimedia"
-
 msgid "Multiple service support"
 msgstr "Multiple service support"
 
@@ -12183,9 +12127,6 @@ msgstr "No delay"
 msgid "No demux available"
 msgstr "No free index available"
 
-msgid "No description available."
-msgstr "No description available."
-
 msgid "No displayable files on this medium found!"
 msgstr "No displayable files on this medium found!"
 
@@ -12218,9 +12159,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "No networks found"
 
-msgid "No network connection available."
-msgstr "No network connection available."
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -12230,7 +12168,7 @@ msgstr "No networks found"
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
+msgid "No packages found."
 msgstr ""
 
 msgid "No pictures available"
@@ -12644,9 +12582,6 @@ msgstr "Zindi Update bikin"
 msgid "Only Flash Backup Image"
 msgstr ""
 
-msgid "Only extensions."
-msgstr "Only extensions."
-
 msgid "Only free scan"
 msgstr "Only free scan"
 
@@ -12708,6 +12643,9 @@ msgid "Open context menu (contains settings menu)"
 msgstr ""
 
 msgid "Open favorites list"
+msgstr ""
+
+msgid "Open file sort menu"
 msgstr ""
 
 #, fuzzy
@@ -13135,6 +13073,9 @@ msgid "Percentage/Progress bar right"
 msgstr "Progress bar right"
 
 msgid "Perform an on-line flash instead"
+msgstr ""
+
+msgid "Perform install/remove of the selected item"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -13661,22 +13602,11 @@ msgstr "Plugin browser"
 msgid "Plugin Browser Settings"
 msgstr ""
 
-#, fuzzy
-msgid "Plugin Details"
-msgstr "View details"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr ""
 
-msgid "Plugin Manager Activity Information"
-msgstr "Plugin Manager Activity Information"
-
-msgid "Plugin Manager Help"
-msgstr "Plugin Manager Help"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 msgid "Plugins"
 msgstr "Girédayi"
@@ -14001,9 +13931,6 @@ msgstr ""
 
 msgid "Proceed with the update"
 msgstr ""
-
-msgid "Process"
-msgstr "Process"
 
 msgid "Processor information"
 msgstr ""
@@ -15404,9 +15331,6 @@ msgstr "Satellite Dish Settings"
 msgid "Satellite configuration mode"
 msgstr "Çékirina Ru"
 
-msgid "Satellite equipment"
-msgstr "Satellite equipment"
-
 msgid "Satellite equipment setup"
 msgstr "Satellite equipment setup"
 
@@ -15558,6 +15482,9 @@ msgstr "Scan wireless networks"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr ""
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Scanning %s..."
@@ -15658,12 +15585,6 @@ msgstr "Searching"
 
 msgid "Searching east ..."
 msgstr "Searching east ..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Searching for available updates. Please wait..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Searching for new installed or removed packages. Please wait..."
 
 msgid "Searching west ..."
 msgstr "Searching west ..."
@@ -16353,6 +16274,9 @@ msgstr ""
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16533,13 +16457,6 @@ msgstr ""
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr ""
-
-msgid "Send"
-msgstr ""
-
-#, fuzzy
-msgid "Send Confirmation"
-msgstr "Çékirin..."
 
 msgid "Send DiSEqC"
 msgstr "Send DiSEqC"
@@ -17504,6 +17421,9 @@ msgstr ""
 msgid "Show first image"
 msgstr ""
 
+msgid "Show free space in timer view"
+msgstr ""
+
 msgid "Show graphical multi EPG"
 msgstr ""
 
@@ -18020,9 +17940,6 @@ msgstr "PiP setup"
 msgid "SkinSelector"
 msgstr ""
 
-msgid "Skins"
-msgstr "Skins"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Skip Internet connection check (disables automatic package installation)"
 
@@ -18230,9 +18147,6 @@ msgstr ""
 msgid "Softcams"
 msgstr ""
 
-msgid "Software"
-msgstr "Software"
-
 msgid "Software Management"
 msgstr "Software Management"
 
@@ -18328,9 +18242,6 @@ msgstr "Sorry, %s has not been installed!"
 
 msgid "Sorry, no backups found!"
 msgstr "Sorry, no backups found!"
-
-msgid "Sorry, no details available!"
-msgstr "Sorry, no details available!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr ""
@@ -19052,7 +18963,7 @@ msgstr "Sync failure moving back to origin !"
 msgid "Sync time using"
 msgstr ""
 
-msgid "Synchronize systemtime using transponder or Internet."
+msgid "Synchronize system time using transponder or Internet."
 msgstr ""
 
 msgid "Syrian Arab Republic"
@@ -19592,16 +19503,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"The software management extension is not installed!\n"
-"Please install it."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr ""
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
@@ -19648,12 +19549,6 @@ msgstr "The wizard can backup your current settings. Do you want to do a backup 
 
 msgid "The wizard is finished now."
 msgstr "The wizard is finished now."
-
-msgid "There are at least "
-msgstr "There are at least "
-
-msgid "There are currently no outstanding actions."
-msgstr "There are currently no outstanding actions."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19731,9 +19626,6 @@ msgid "This allows you to show extensions modules in downloads"
 msgstr ""
 
 msgid "This allows you to show kernel modules in downloads"
-msgstr ""
-
-msgid "This allows you to show languages in downloads"
 msgstr ""
 
 msgid "This allows you to show lcd skins in downloads"
@@ -19993,18 +19885,6 @@ msgstr ""
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
-
-msgid "This plugin is installed."
-msgstr "This plugin is installed."
-
-msgid "This plugin is not installed."
-msgstr "This plugin is not installed."
-
-msgid "This plugin will be installed."
-msgstr "This plugin will be installed."
-
-msgid "This plugin will be removed."
-msgstr "This plugin will be removed."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
@@ -20742,6 +20622,12 @@ msgstr "Type"
 msgid "Type / Model"
 msgstr ""
 
+msgid "Type of LNB/Device"
+msgstr ""
+
+msgid "Type of device"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Type of scan"
 
@@ -20809,12 +20695,6 @@ msgstr "User defined"
 msgid "Undetermined"
 msgstr "Tişt çé nebu"
 
-msgid "Undo install"
-msgstr "Undo install"
-
-msgid "Undo uninstall"
-msgstr "Undo uninstall"
-
 msgid "Unencrypted"
 msgstr "Unencrypted"
 
@@ -20837,9 +20717,6 @@ msgstr "Unicable LNB"
 #, fuzzy
 msgid "Unicable Matrix"
 msgstr "Unicable Martix"
-
-msgid "Uninstall"
-msgstr "Uninstall"
 
 msgid "United Arab Emirates"
 msgstr ""
@@ -20959,9 +20836,6 @@ msgstr ""
 msgid "Update"
 msgstr "Update"
 
-msgid "Update at your own risk"
-msgstr ""
-
 msgid "Update completed."
 msgstr ""
 
@@ -20975,9 +20849,6 @@ msgstr ""
 msgid "Update failed!"
 msgstr "Write failed!"
 
-msgid "Update feed not available."
-msgstr "Update feed not available."
-
 #, fuzzy
 msgid "Update finished!"
 msgstr "Updating"
@@ -20985,9 +20856,6 @@ msgstr "Updating"
 #, fuzzy
 msgid "Update interval (in seconds)"
 msgstr "Slide show interval (sec.)"
-
-msgid "Update is reported as faulty !!"
-msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -21015,9 +20883,6 @@ msgstr "Updating"
 msgid "Updating mount locations."
 msgstr ""
 
-msgid "Updating software catalog"
-msgstr "Updating software catalog"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -21036,9 +20901,6 @@ msgstr ""
 "This may take a few minutes"
 
 msgid "Upgrade with GUI"
-msgstr ""
-
-msgid "Upgrading"
 msgstr ""
 
 msgid "Uphops +"
@@ -21113,9 +20975,8 @@ msgstr "Use Netmed EPG information when it is available."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr ""
 
-#, fuzzy
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Use EIT EPG information when it is available."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
 
 msgid "Use QuickSelect"
 msgstr ""
@@ -21623,48 +21484,6 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr "View Rass interactive..."
 
-msgid "View details"
-msgstr "View details"
-
-msgid "View list of available "
-msgstr "View list of available "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "View list of available CommonInterface extensions"
-
-msgid "View list of available EPG extensions."
-msgstr "View list of available EPG extensions."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "View list of available Satellite equipment extensions."
-
-msgid "View list of available communication extensions."
-msgstr "View list of available communication extensions."
-
-msgid "View list of available default settings"
-msgstr "View list of available default settings"
-
-msgid "View list of available display and user interface extensions."
-msgstr "View list of available display and user interface extensions."
-
-msgid "View list of available multimedia extensions."
-msgstr "View list of available multimedia extensions."
-
-msgid "View list of available networking extensions"
-msgstr "View list of available networking extensions"
-
-msgid "View list of available recording extensions"
-msgstr "View list of available recording extensions"
-
-msgid "View list of available skins"
-msgstr "View list of available skins"
-
-msgid "View list of available software extensions"
-msgstr "View list of available software extensions"
-
-msgid "View list of available system extensions"
-msgstr "View list of available system extensions"
-
 #, fuzzy
 msgid "View mode"
 msgstr "List mode"
@@ -22013,6 +21832,9 @@ msgid "What would you like to do with the script file:"
 msgstr ""
 
 msgid "What would you like to do?"
+msgstr ""
+
+msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
@@ -22472,26 +22294,14 @@ msgstr ""
 msgid "You can Display PiP with or without OSD Menu"
 msgstr ""
 
-msgid "You can cancel the installation."
-msgstr "You can cancel the installation."
-
-msgid "You can cancel the removal."
-msgstr "You can cancel the removal."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "You can continue watching TV etc. while this is running."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr ""
 
-msgid "You can install this plugin."
-msgstr "You can install this plugin."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr ""
-
-msgid "You can remove this plugin."
-msgstr "You can remove this plugin."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr ""
@@ -22502,9 +22312,6 @@ msgstr ""
 
 msgid "You cannot delete this!"
 msgstr "You cannot delete this!"
-
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr ""
 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "You have chosen to backup your settings. Please press OK to start the backup now."
@@ -22523,17 +22330,9 @@ msgstr ""
 msgid "You have no script to run."
 msgstr ""
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-
 #, fuzzy
 msgid "You have selected no logs to delete."
 msgstr "Please select a play list to delete..."
-
-msgid "You have selected no logs to send."
-msgstr ""
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr ""
@@ -22624,10 +22423,6 @@ msgstr "Your receiver is shutting down"
 #, fuzzy
 msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Your receiver is shutting down. Please stand by..."
-
-#, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr ""
 
 #, python-format
 msgid ""
@@ -22734,21 +22529,6 @@ msgstr ""
 msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
 msgstr ""
 
 msgid "Your network configuration has been activated."
@@ -23337,10 +23117,6 @@ msgstr "exit networkadapter setup menu"
 msgid "experimental film/video"
 msgstr "experimental film/video"
 
-#, fuzzy
-msgid "extensions."
-msgstr "Diréji"
-
 msgid "externally loopthrough to"
 msgstr ""
 
@@ -23477,11 +23253,6 @@ msgstr "handicraft"
 #, fuzzy
 msgid "handled"
 msgstr "UnhandledKey"
-
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
 
 msgid "hdr10"
 msgstr ""
@@ -23775,10 +23546,6 @@ msgstr ""
 msgid "original language"
 msgstr "original language"
 
-#, fuzzy
-msgid "packages selected."
-msgstr " paket binirxine"
-
 msgid "pass"
 msgstr "pass"
 
@@ -23875,10 +23642,6 @@ msgstr ""
 
 msgid "remove this mark"
 msgstr "remove this mark"
-
-#, fuzzy
-msgid "rename"
-msgstr "Rename"
 
 #, fuzzy
 msgid "rename entry"
@@ -24212,10 +23975,6 @@ msgstr "until standby/restart"
 msgid "update"
 msgstr "Update"
 
-#, fuzzy
-msgid "updates available."
-msgstr " updates tuneye"
-
 msgid "use best / controlled by HDMI"
 msgstr ""
 
@@ -24250,15 +24009,6 @@ msgstr "water sport"
 
 msgid "west"
 msgstr "west"
-
-msgid "when asking question about this log"
-msgstr ""
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
 
 msgid "wide"
 msgstr ""
@@ -24297,458 +24047,5 @@ msgstr "yellow"
 msgid "yes (keep feeds)"
 msgstr "yes (keep feeds)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr ""
-
 msgid "®"
 msgstr ""
-
-#, fuzzy, python-format
-#~ msgid " ('%s') ends with error messages."
-#~ msgstr "Hide zap errors"
-
-#, fuzzy, python-format
-#~ msgid "%s"
-#~ msgstr "bc%s"
-
-#, fuzzy, python-format
-#~ msgid "%s (%s"
-#~ msgstr "%s (%s)\n"
-
-#, fuzzy
-#~ msgid "(Selectmode)"
-#~ msgstr "Select movie"
-
-#, fuzzy
-#~ msgid "?"
-#~ msgstr "??"
-
-#, fuzzy
-#~ msgid "Accessed:"
-#~ msgstr "Bigehize (Access Point):"
-
-#, fuzzy
-#~ msgid "Channel button always changes sides"
-#~ msgstr "Menu Qenal Liste"
-
-#, fuzzy
-#~ msgid "Copy file"
-#~ msgstr "Long filenames"
-
-#, fuzzy
-#~ msgid "Copy folder"
-#~ msgstr "Long filenames"
-
-#, fuzzy
-#~ msgid "Create directory/folder"
-#~ msgstr "create directory"
-
-#, fuzzy
-#~ msgid "Date reverse"
-#~ msgstr "alphabetic reverse"
-
-#, fuzzy
-#~ msgid "Default directory sorting"
-#~ msgstr "Default settings"
-
-#, fuzzy
-#~ msgid "Default file sorting left"
-#~ msgstr "Recording type"
-
-#, fuzzy
-#~ msgid "Default file sorting right"
-#~ msgstr "Recording type"
-
-#, fuzzy
-#~ msgid "Default folder"
-#~ msgstr "Select target folder"
-
-#, fuzzy, python-format
-#~ msgid "Delete %d elements"
-#~ msgstr "Deleted items"
-
-#, fuzzy
-#~ msgid "Delete 1 element"
-#~ msgstr "Delete entry"
-
-#, fuzzy
-#~ msgid "Delete folder"
-#~ msgstr "Delete file"
-
-#, fuzzy
-#~ msgid "Do you want to view or run the script?\n"
-#~ msgstr "Do you want to reboot your receiver?"
-
-#, fuzzy
-#~ msgid "Edit line "
-#~ msgstr "Edit title"
-
-#, fuzzy
-#~ msgid "Edit position is the line end"
-#~ msgstr "Moved to position at index"
-
-#, fuzzy
-#~ msgid "Enter multi-file selection mode"
-#~ msgstr "Close title selection"
-
-#, fuzzy, python-format
-#~ msgid ""
-#~ "Error creating directory %s:\n"
-#~ "%s"
-#~ msgstr "Error: Creating directory '%s' failed!"
-
-#, fuzzy
-#~ msgid "Error..."
-#~ msgstr "Error"
-
-#, fuzzy
-#~ msgid "File Commander context menu"
-#~ msgstr "Menu Qenal Liste"
-
-#, fuzzy, python-format
-#~ msgid "File not found: %s"
-#~ msgstr "List mode"
-
-#, fuzzy
-#~ msgid "File/Directory Status Information"
-#~ msgstr "Hakké İmagéda"
-
-#, fuzzy
-#~ msgid "Go to end of file"
-#~ msgstr "Jump to end of list"
-
-#, fuzzy
-#~ msgid "Go to parent directory"
-#~ msgstr "Parent directory"
-
-#, fuzzy
-#~ msgid "Go to start of file"
-#~ msgstr "About to start"
-
-#, fuzzy
-#~ msgid "Installing Plugin ..."
-#~ msgstr "Install picons on"
-
-#, fuzzy
-#~ msgid "Link target:"
-#~ msgstr "Link quality:"
-
-#, fuzzy
-#~ msgid "Links:"
-#~ msgstr "Link:"
-
-#, fuzzy, python-format
-#~ msgid "Move %d elements"
-#~ msgstr "Movement"
-
-#, fuzzy
-#~ msgid "Move 1 element"
-#~ msgstr "Movement"
-
-#, fuzzy
-#~ msgid "Move down list"
-#~ msgstr "Go down the list"
-
-#, fuzzy
-#~ msgid "Move file"
-#~ msgstr "Long filenames"
-
-#, fuzzy
-#~ msgid "Move file/directory to target directory"
-#~ msgstr "Move to other directory"
-
-#, fuzzy
-#~ msgid "Move files/directories to target directory"
-#~ msgstr "Move to other directory"
-
-#, fuzzy
-#~ msgid "Move folder"
-#~ msgstr "Select target folder"
-
-#, fuzzy
-#~ msgid "Move up list"
-#~ msgstr "Go up the list"
-
-#, fuzzy
-#~ msgid "My extension"
-#~ msgstr "Only extensions."
-
-#, fuzzy
-#~ msgid "Name reverse"
-#~ msgstr "Nameserver"
-
-#, fuzzy
-#~ msgid "New folder"
-#~ msgstr "Select target folder"
-
-#, fuzzy
-#~ msgid "No files found."
-#~ msgstr "No networks found"
-
-#, fuzzy
-#~ msgid "On device:"
-#~ msgstr "device girédayi"
-
-#, fuzzy
-#~ msgid "Page down list"
-#~ msgstr "Go down the list"
-
-#, fuzzy
-#~ msgid "Page up list"
-#~ msgstr "Save play list"
-
-#~ msgid "Parent directory"
-#~ msgstr "Parent directory"
-
-#, fuzzy
-#~ msgid "Permissions:"
-#~ msgstr "New version:"
-
-#, fuzzy
-#~ msgid "Play folder"
-#~ msgstr "Play entry"
-
-#, fuzzy
-#~ msgid "Play title"
-#~ msgstr "zeman dest pédike"
-
-#, fuzzy
-#~ msgid "Please enter name of the new symlink"
-#~ msgstr "Please enter a name for the new directory:"
-
-#, fuzzy
-#~ msgid "Please enter password"
-#~ msgstr "Please enter a new filename:"
-
-#, fuzzy
-#~ msgid "Please enter the new directory name"
-#~ msgstr "Please enter a name for the new directory:"
-
-#, fuzzy
-#~ msgid "Please enter the new file name"
-#~ msgstr "Please enter a new filename:"
-
-#, fuzzy
-#~ msgid "Please wait, Loading image."
-#~ msgstr "Please wait... Loading list..."
-
-#, fuzzy
-#~ msgid "Records"
-#~ msgstr "Qeyd"
-
-#, fuzzy
-#~ msgid "Rename file/directory"
-#~ msgstr "create directory"
-
-#, fuzzy
-#~ msgid "Save left folder on exit"
-#~ msgstr "Save directory on EXIT"
-
-#, fuzzy
-#~ msgid "Save right folder on exit"
-#~ msgstr "Save directory on EXIT"
-
-#, fuzzy
-#~ msgid "Select a path"
-#~ msgstr "Select the movie path"
-
-#, fuzzy
-#~ msgid "Show image information"
-#~ msgstr "Software Manager Information"
-
-#, fuzzy
-#~ msgid "Show unknown extension as text"
-#~ msgstr "Show extensions..."
-
-#, fuzzy
-#~ msgid "Size reverse"
-#~ msgstr "Services"
-
-#, fuzzy
-#~ msgid "Skip selection"
-#~ msgstr "Movie selection"
-
-#, fuzzy
-#~ msgid "This line is not editable!"
-#~ msgstr "This plugin is not installed."
-
-#, fuzzy
-#~ msgid "Time for Slideshow"
-#~ msgstr "Timer Overview"
-
-#, fuzzy
-#~ msgid "Type:"
-#~ msgstr "Type"
-
-#, fuzzy
-#~ msgid "Unpack to current folder"
-#~ msgstr "Properties of current title"
-
-#, fuzzy
-#~ msgid "What do you want to play?\n"
-#~ msgstr "What do you want to scan?"
-
-#, fuzzy
-#~ msgid "has been CHANGED! Do you want to save it?"
-#~ msgstr "What do you want to scan?"
-
-#, fuzzy
-#~ msgid "move file"
-#~ msgstr "Remove title"
-
-#, fuzzy
-#~ msgid "move folder"
-#~ msgstr "[move mode]"
-
-#~ msgid "original"
-#~ msgstr "original"
-
-#, fuzzy
-#~ msgid "play Files"
-#~ msgstr "Long filenames"
-
-#, fuzzy, python-format
-#~ msgid ""
-#~ "A sleep timer wants to set your\n"
-#~ "%s %s to standby. Do that now?"
-#~ msgstr ""
-#~ "A sleep timer wants to set your\n"
-#~ "receiver to standby. Do that now?"
-
-#, fuzzy, python-format
-#~ msgid ""
-#~ "A sleep timer wants to shut down\n"
-#~ "your %s %s. Shutdown now?"
-#~ msgstr ""
-#~ "A sleep timer wants to shut down\n"
-#~ "your receiver. Shutdown now?"
-
-#, fuzzy
-#~ msgid "Job View"
-#~ msgstr "Job overview"
-
-#~ msgid "Please enter a new filename:"
-#~ msgstr "Please enter a new filename:"
-
-#~ msgid "Remove directory"
-#~ msgstr "Remove directory"
-
-#~ msgid "Switch to bookmarks"
-#~ msgstr "Switch to bookmarks"
-
-#, fuzzy
-#~ msgid "Task list"
-#~ msgstr "blacklist"
-
-#, fuzzy
-#~ msgid "Please select the IceTV service that you wish to use."
-#~ msgstr "Please select the movie path..."
-
-#~ msgid "Long key press"
-#~ msgstr "Long key press"
-
-#~ msgid "Use these settings?"
-#~ msgstr "Use these settings?"
-
-#, fuzzy
-#~ msgid "Aspect long"
-#~ msgstr "Aspect ratio"
-
-#, fuzzy
-#~ msgid "Audio long"
-#~ msgstr "Deng PID"
-
-#, fuzzy
-#~ msgid "Home long"
-#~ msgstr "Home"
-
-#, fuzzy
-#~ msgid "Keyboard long"
-#~ msgstr "Keyboard"
-
-#, fuzzy
-#~ msgid "Left long"
-#~ msgstr "Left"
-
-#, fuzzy
-#~ msgid "Magic long"
-#~ msgstr "Timer log"
-
-#, fuzzy
-#~ msgid "PageDown long"
-#~ msgstr "Girédya"
-
-#, fuzzy
-#~ msgid "Right long"
-#~ msgstr "Right"
-
-#, fuzzy
-#~ msgid "Sleep long"
-#~ msgstr "Sleep timer"
-
-#, fuzzy
-#~ msgid "Teletext long"
-#~ msgstr "Sleep timer"
-
-#, fuzzy
-#~ msgid "Time long"
-#~ msgstr "Timer log"
-
-#, fuzzy
-#~ msgid "Auto Timer"
-#~ msgstr "Add timer"
-
-#, fuzzy
-#~ msgid "alphabetical"
-#~ msgstr "alphabetic"
-
-#, fuzzy
-#~ msgid "alternative"
-#~ msgstr "Evé din"
-
-#~ msgid "user defined"
-#~ msgstr "user defined"
-
-#~ msgid "white"
-#~ msgstr "white"
-
-#, fuzzy
-#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-#~ msgstr "The timer file (timers.xml) is corrupt and could not be loaded."
-
-#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-#~ msgstr "The timer file (timers.xml) is corrupt and could not be loaded."
-
-#, fuzzy
-#~ msgid ""
-#~ "Timer overlap in pm_timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"
-
-#~ msgid ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"
-
-#~ msgid "menu"
-#~ msgstr "menu"
-
-#~ msgid "select"
-#~ msgstr "select"
-
-#, fuzzy
-#~ msgid "start recording"
-#~ msgstr "Start recording?"
-
-#, fuzzy
-#~ msgid "stop recording"
-#~ msgstr "Stop recording"
-
-#, fuzzy
-#~ msgid "zapping"
-#~ msgstr "Zapped"

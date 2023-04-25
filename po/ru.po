@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-09 15:18+0000\n"
-"PO-Revision-Date: 2023-01-11 17:36+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
+"PO-Revision-Date: 2023-04-13 15:51+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1066,6 +1066,10 @@ msgstr[1] "%d пакетов обновлено."
 msgstr[2] "%d пакетов обновлено."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr "Найдено %d пакетов, установлено %d пакетов и %d пакетов имеют обновления."
+
+#, python-format
 msgid "%d sec"
 msgstr "%d секунда"
 
@@ -1191,10 +1195,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s пульт ДУ (оригинальный)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s ПО, обновления доступны."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s Карты )"
 
@@ -1237,6 +1237,10 @@ msgstr "%s KSymb/с"
 #, python-format
 msgid "%s MHz"
 msgstr "%s МГц"
+
+#, python-format
+msgid "%s Packages found"
+msgstr "%s пакетов найдено"
 
 #, python-format
 msgid "%s Setup"
@@ -1942,9 +1946,6 @@ msgstr ""
 "\n"
 "Хотите отключить второй сетевой интерфейс?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "Небольшой обзор доступных состояний и действий значка."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2039,9 +2040,6 @@ msgstr "Псевдозапись отменена\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Поточное вещание прервано\n"
-
-msgid "Aborting update progress"
-msgstr "Обновление отменено"
 
 msgid "About"
 msgstr "О программе"
@@ -2255,9 +2253,6 @@ msgstr "Добавить/удалить таймер для идущей пер�
 
 msgid "Adding schedule..."
 msgstr "Добавление задания..."
-
-msgid "Additional Info"
-msgstr "Дополнительная информация"
 
 msgid "Additional files/folders to backup"
 msgstr "Добавить в резервную копию"
@@ -2684,9 +2679,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Хотите сохранить данные ТВ-гида здесь\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Хотите отправить этот лог:\n"
-
 msgid "Argentina"
 msgstr "Аргентина"
 
@@ -2710,6 +2702,9 @@ msgstr "Аруба"
 
 msgid "As plugin in extended bar"
 msgstr "Как плагин в меню расширений"
+
+msgid "Ascending"
+msgstr "По возрастанию"
 
 msgid "Ask user"
 msgstr "Спросить пользователя"
@@ -2765,9 +2760,6 @@ msgstr "В конце: %s"
 
 msgid "Athletics"
 msgstr "Легкая атлетика"
-
-msgid "Attach a file"
-msgstr "Прикрепить файл"
 
 msgid "Audio"
 msgstr "Аудио"
@@ -2829,9 +2821,6 @@ msgstr "Австралия"
 
 msgid "Austria"
 msgstr "Австрия"
-
-msgid "Author: "
-msgstr "Автор "
 
 msgid "Authoring mode"
 msgstr "Режиме разработки"
@@ -3803,6 +3792,9 @@ msgstr "Канада"
 msgid "Cancel"
 msgstr "Отмена"
 
+msgid "Cancel / Close the screen"
+msgstr "Отменить/закрыть экран"
+
 msgid "Cancel / Close the software update screen"
 msgstr "Отменить/закрыть экран обновления ПО"
 
@@ -3924,9 +3916,6 @@ msgstr "Каскад PiP"
 
 msgid "Catalan / Valencian"
 msgstr "Каталанский / Валенсийский"
-
-msgid "Caution update not yet tested !!"
-msgstr "Непроверенное обновление!"
 
 msgid "Cayman Islands"
 msgstr "Каймановы острова"
@@ -4512,9 +4501,6 @@ msgstr "Права доступа CI модулей"
 msgid "Common Setup Actions"
 msgstr "Общие действия по установке"
 
-msgid "Communication"
-msgstr "Связь"
-
 msgid "Comoros"
 msgstr "Коморские острова"
 
@@ -4984,9 +4970,6 @@ msgstr "Контекст"
 
 msgid "Continent"
 msgstr "Континент"
-
-msgid "Continue"
-msgstr "Продолжить"
 
 msgid "Continue in background"
 msgstr "Продолжить в фоновом режиме"
@@ -5692,9 +5675,6 @@ msgstr "Тип записи по умолчанию"
 msgid "Default right column directory"
 msgstr "Каталог правого столбца по умолчанию"
 
-msgid "Default settings"
-msgstr "Настройки по умолчанию"
-
 msgid "Default sort order for directories in the left column"
 msgstr "Порядок сортировки по умолчанию для каталогов в левом столбце"
 
@@ -5836,6 +5816,9 @@ msgstr "Удалить плагины"
 msgid "Delete Timer"
 msgstr "Удалить таймер"
 
+msgid "Delete all duplicated lines"
+msgstr "Удалить все повторяющиеся строки"
+
 msgid "Delete all log files"
 msgstr "Удалить все файлы логов"
 
@@ -5865,6 +5848,9 @@ msgstr "Удалить текущую строку"
 
 msgid "Delete directory or file"
 msgstr "Удалить каталог или файл"
+
+msgid "Delete empty and white space only lines"
+msgstr "Удалить строки пустые и с пробелами"
 
 msgid "Delete entry"
 msgstr "Удалить выбранное"
@@ -5965,6 +5951,9 @@ msgstr "Дания"
 
 msgid "Depth"
 msgstr "Глубина"
+
+msgid "Descending"
+msgstr "По убыванию"
 
 msgid "Description"
 msgstr "Описание"
@@ -6182,9 +6171,6 @@ msgstr "Показать >16:9 контент как"
 msgid "Display Settings"
 msgstr "Настройки дисплея ресивера"
 
-msgid "Display and user interface"
-msgstr "Дисплей и пользовательский интерфейс"
-
 msgid "Display context menu"
 msgstr "Показать контекстное меню"
 
@@ -6376,22 +6362,12 @@ msgstr "Вы действительно хотите остановить и у�
 msgid "Do you want change '%s' access mode?"
 msgstr "Вы хотите изменить режим доступа '%s'?"
 
-msgid "Do you want to add any additional information ?"
-msgstr "Хотите добавить дополнительную информацию?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Вы хотите также установить клиент samba?\n"
 "Это позволит Вам монтировать общие ресурсы Windows на этом устройстве."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Хотите прикрепить текстовый файл к логу?\n"
-"(Выберите 'Нет' для создания сообщения с помощью виртуальной клавиатуры)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6470,16 +6446,6 @@ msgstr "Хотите восстановить Ваши настройки?"
 msgid "Do you want to resume this playback?"
 msgstr "Хотите продолжить воспроизведение?"
 
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Хотите отправить все выбранные файлы\n"
-"(Выберите 'Нет', чтобы отправить только выбранный файл) "
-
-msgid "Do you want to update your box?"
-msgstr "Хотите обновить Ваш ресивер?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Хотите обновить пакет\n"
 
@@ -6528,10 +6494,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Готово"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Готово - Установлено или обновлено %d пакетов"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -6605,6 +6567,9 @@ msgstr "Версия драйверов"
 
 msgid "Duplex"
 msgstr "Двойной"
+
+msgid "Duplicate the current line"
+msgstr "Дублировать текущую строку"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "В течение этого времени проверяется передатчик и место назначения записи. Если место назначения записи (например, NAS) не готово вовремя к записи, это время может быть увеличено."
@@ -7324,8 +7289,8 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Ошибка %d: невозможно связать '%s' как '%s'! (%s)"
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
-msgstr "Ошибка %d: невозможно переименовать файл '%s' в '%s'! (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
+msgstr "Ошибка %d: невозможно переименовать каталог/файл '%s' to '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename related file '%s' to '%s'!  (%s)"
@@ -7431,14 +7396,6 @@ msgstr "Ошибка при распаковке имиджа '%s'!"
 
 msgid "Error, unknown Result!"
 msgstr "Ошибка, неизвестный результат!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Ошибка\n"
-"%s"
 
 #, python-format
 msgid ""
@@ -7773,9 +7730,6 @@ msgstr "Действия с расширением"
 
 msgid "Extensions"
 msgstr "Дополнения"
-
-msgid "Extensions Management"
-msgstr "Управление дополнениями"
 
 msgid "Extensions/QuickMenu"
 msgstr "Дополнения/Быстрое меню"
@@ -8220,9 +8174,6 @@ msgstr "По группе клавиш на пульте"
 msgid "Flat by position on remote"
 msgstr "По положению на пульте"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Данные задания будут выполнены после того, как нажмёте ОК!"
-
 msgid "Font size"
 msgstr "Размер шрифта"
 
@@ -8234,9 +8185,6 @@ msgstr "Еда/вино"
 
 msgid "Football"
 msgstr "Футбол"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "Больше информации на сайте https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Питание LNB принудительно"
@@ -9579,9 +9527,6 @@ msgstr "Установить дополнения."
 msgid "Install lcd picons on"
 msgstr "Установка пиконов дисплея на"
 
-msgid "Install or remove finished."
-msgstr "Установка или удаление завершены."
-
 msgid "Install picons on"
 msgstr "Установить пиконы на"
 
@@ -9990,9 +9935,6 @@ msgstr "LNB"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "Время работы LNB-коммутатора [мс]"
-
-msgid "LOF"
-msgstr "LOF"
 
 msgid "LOF/H"
 msgstr "LOF/H"
@@ -10528,6 +10470,9 @@ msgstr "Управление плагинами"
 
 msgid "Manage Locale/Language Selection settings"
 msgstr "Управление настройками выбора локали / языка"
+
+msgid "Manage Plugins"
+msgstr "Управление плагинами"
 
 msgid "Manage and explore directories and files."
 msgstr "Управляйте каталогами и файлами и исследуйте их."
@@ -11238,9 +11183,6 @@ msgstr "Мультитранскодирование"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Мультизагрузочный образ создан на: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "Мультимедиа"
-
 msgid "Multiple service support"
 msgstr "Поддержка нескольких каналов"
 
@@ -11643,9 +11585,6 @@ msgstr "Нет задержки"
 msgid "No demux available"
 msgstr "Нет доступных демультиплексоров"
 
-msgid "No description available."
-msgstr "Краткого описания нет."
-
 msgid "No displayable files on this medium found!"
 msgstr "Нет отображаемых файлов на этом носителе!"
 
@@ -11676,9 +11615,6 @@ msgstr "Файлы лога не найдены, поэтому логи отл�
 msgid "No matching place names found"
 msgstr "Не найдено совпадающих географических названий"
 
-msgid "No network connection available."
-msgstr "Нет доступного сетевого подключения."
-
 msgid "No network storage detected."
 msgstr "Сетевое хранилище не обнаружено."
 
@@ -11688,8 +11624,8 @@ msgstr "Сети не найдены"
 msgid "No of items switch (increase or reduced)"
 msgstr "Нет элементов переключения (Увеличение или уменьшение)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Пакеты не были обновлены. Проверьте настройки сети и попробуйте снова."
+msgid "No packages found."
+msgstr "Пакеты не найдены."
 
 msgid "No pictures available"
 msgstr "Нет доступных изображений"
@@ -12092,9 +12028,6 @@ msgstr "Онлайн обновление ПО Вашего %s %s ."
 msgid "Only Flash Backup Image"
 msgstr "Только флэш-имидж резервного копирования"
 
-msgid "Only extensions."
-msgstr "Только дополнения."
-
 msgid "Only free scan"
 msgstr "Искать только открытые"
 
@@ -12151,6 +12084,9 @@ msgstr "Открыть контекстное меню (содержит мен�
 
 msgid "Open favorites list"
 msgstr "Открыть список фаворитов"
+
+msgid "Open file sort menu"
+msgstr "Открыть меню сортировки файлов"
 
 msgid "Open satellites list"
 msgstr "Открыть список спутников"
@@ -12558,6 +12494,9 @@ msgstr "Прогресс-бар справа"
 
 msgid "Perform an on-line flash instead"
 msgstr "Вместо этого выполните онлайн-прошивку"
+
+msgid "Perform install/remove of the selected item"
+msgstr "Выполнить установку/удаление выбранного элемента"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Окончательное удаление всех записей в корзине?"
@@ -13097,21 +13036,11 @@ msgstr "Браузер плагинов"
 msgid "Plugin Browser Settings"
 msgstr "Настройки списка плагинов"
 
-msgid "Plugin Details"
-msgstr "Подробности о плагине"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr "Сведения о плагине: %s"
-
 msgid "Plugin Filter Settings"
 msgstr "Фильтр плагинов"
 
-msgid "Plugin Manager Activity Information"
-msgstr "Информация об активности менеджера плагинов"
-
-msgid "Plugin Manager Help"
-msgstr "Помощь по менеджеру плагинов"
+msgid "Plugin Manager Actions"
+msgstr "Действия менеджера плагинов"
 
 msgid "Plugins"
 msgstr "Плагины"
@@ -13417,9 +13346,6 @@ msgstr "Модель процесса"
 
 msgid "Proceed with the update"
 msgstr "Продолжить обновление"
-
-msgid "Process"
-msgstr "Процесс"
 
 msgid "Processor information"
 msgstr "Информация о процессоре"
@@ -14748,9 +14674,6 @@ msgstr "Настройки спутникового оборудования"
 msgid "Satellite configuration mode"
 msgstr "Режим настройки спутника"
 
-msgid "Satellite equipment"
-msgstr "Спутниковое оборудование"
-
 msgid "Satellite equipment setup"
 msgstr "Настройки спутникового оборудования"
 
@@ -14898,6 +14821,9 @@ msgstr "Поиск беспроводных сетей"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Поиск беспроводных точек доступа и подключение к выбранному устройству."
 
+msgid "Scanning"
+msgstr "Сканирование"
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Сканирование %s ..."
@@ -14997,12 +14923,6 @@ msgstr "Поиск"
 
 msgid "Searching east ..."
 msgstr "Поиск на востоке..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Поиск доступных обновлений. Пожалуйста, подождите..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Поиск новых установленных или удалённых пакетов. Пожалуйста, подождите..."
 
 msgid "Searching west ..."
 msgstr "Поиск на западе..."
@@ -15676,6 +15596,9 @@ msgstr "Выберите смещённый набор символов толь
 msgid "Select the softcam protocol."
 msgstr "Выберать протокол softcam."
 
+msgid "Select the sort order for the file lines:"
+msgstr "Выберите порядок сортировки строк файла:"
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Выберите порядок сортировки пунктов меню обозревателя подключаемых модулей. Определяемый пользователем также позволяет скрывать пункты меню."
 
@@ -15867,12 +15790,6 @@ msgstr "Выбор спутника 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Выбор этой опции позволяет настроить группу спутников в одном блоке."
-
-msgid "Send"
-msgstr "Отправить"
-
-msgid "Send Confirmation"
-msgstr "Отправление с подтверждением"
 
 msgid "Send DiSEqC"
 msgstr "Отправить DiSEqC"
@@ -16767,6 +16684,9 @@ msgstr "Просмотр файлов резервных копий"
 msgid "Show first image"
 msgstr "Показать первый имдж"
 
+msgid "Show free space in timer view"
+msgstr "Показать свободное место в режиме просмотра таймера"
+
 msgid "Show graphical multi EPG"
 msgstr "Показать графический ТВ-гид"
 
@@ -17242,9 +17162,6 @@ msgstr "Выбор скина"
 msgid "SkinSelector"
 msgstr "Плагин SkinSelector"
 
-msgid "Skins"
-msgstr "Скины"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Пропустить проверку Интернет-соединения (Отключает автоматическую установку пакетов)"
 
@@ -17450,9 +17367,6 @@ msgstr "Настройка Softcam"
 msgid "Softcams"
 msgstr "Эмуляторы"
 
-msgid "Software"
-msgstr "ПО"
-
 msgid "Software Management"
 msgstr "Управление ПО"
 
@@ -17550,9 +17464,6 @@ msgstr "Извините, %s не установлен!"
 
 msgid "Sorry, no backups found!"
 msgstr "Извините, не найдено ни одной копии!"
-
-msgid "Sorry, no details available!"
-msgstr "Извините, нет подробностей!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Извините, не найдено ни одно устройство для размещения файла подкачки. Файл подкачки не может быть создан"
@@ -18239,7 +18150,7 @@ msgstr "Сбой синхронизации, возврат к оригинал�
 msgid "Sync time using"
 msgstr "Синхронизировать время используя"
 
-msgid "Synchronize systemtime using transponder or Internet."
+msgid "Synchronize system time using transponder or Internet."
 msgstr "Синхронизация времени с транспондера или с Интернета."
 
 msgid "Syrian Arab Republic"
@@ -18303,7 +18214,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 10.01.2023"
+msgstr "Коррекция перевода Monja 12.04.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -18789,16 +18700,6 @@ msgstr ""
 "\n"
 "Сделать это сейчас или продлить таймер?"
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Дополнение управлением ПО не установлено!\n"
-"Пожалуйста, установите."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Текущий статус имиджа не может быть проверен, так как сайт https://www.opena.tv недоступен"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Время умножается на текущий счетчик повторов."
 
@@ -18847,12 +18748,6 @@ msgstr "Мастер может сохранить Ваши текущие на�
 
 msgid "The wizard is finished now."
 msgstr "Мастер закончил работу."
-
-msgid "There are at least "
-msgstr "Как минимум "
-
-msgid "There are currently no outstanding actions."
-msgstr "В данное время нет невыполненных действий."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -18929,9 +18824,6 @@ msgstr "Это позволит Вам просмотреть дополнени
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Это позволит Вам просмотреть модули ядра при загрузке"
-
-msgid "This allows you to show languages in downloads"
-msgstr "Это позволяет отображать языки в загрузках"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Это позволит Вам просмотреть скины дисплея при загрузке"
@@ -19184,18 +19076,6 @@ msgstr "Этот параметр устанавливает резкость и
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Этот плагин может определить, начинается ли программа раньше или длится дольше. Канал должен предоставлять надёжные данные."
-
-msgid "This plugin is installed."
-msgstr "Этот плагин установлен."
-
-msgid "This plugin is not installed."
-msgstr "Этот плагин не установлен."
-
-msgid "This plugin will be installed."
-msgstr "Этот плагин будет установлен."
-
-msgid "This plugin will be removed."
-msgstr "Этот плагин будет удален."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "Это устанавливает префикс для каждой строки в логе отладки. 'Время загрузки' - это количество секунд с момента последней загрузки %s %s."
@@ -19891,6 +19771,12 @@ msgstr "Тип"
 msgid "Type / Model"
 msgstr "Тип/модель"
 
+msgid "Type of LNB/Device"
+msgstr "Тип LNB/устройства"
+
+msgid "Type of device"
+msgstr "Тип устройства"
+
 msgid "Type of scan"
 msgstr "Тип поиска"
 
@@ -19954,12 +19840,6 @@ msgstr "Неопределенный"
 msgid "Undetermined"
 msgstr "Не определено"
 
-msgid "Undo install"
-msgstr "Отменить установку"
-
-msgid "Undo uninstall"
-msgstr "Отменить удаление"
-
 msgid "Unencrypted"
 msgstr "Декодирован"
 
@@ -19980,9 +19860,6 @@ msgstr "Unicable-LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
-
-msgid "Uninstall"
-msgstr "Удаление"
 
 msgid "United Arab Emirates"
 msgstr "ОАЭ"
@@ -20101,9 +19978,6 @@ msgstr "Кнопки ВВЕРХ/ВНИЗ также для 'всех ВВЕРХ/
 msgid "Update"
 msgstr "Обновление"
 
-msgid "Update at your own risk"
-msgstr "Обновляйте на свой страх и риск"
-
 msgid "Update completed."
 msgstr "Обновление завершено."
 
@@ -20116,17 +19990,11 @@ msgstr "Более высокая задержка в больших списк�
 msgid "Update failed!"
 msgstr "Обновление не удалось!"
 
-msgid "Update feed not available."
-msgstr "Фид обновлений не доступен."
-
 msgid "Update finished!"
 msgstr "Обновление завершено!"
 
 msgid "Update interval (in seconds)"
 msgstr "Интервал обновления (в секундах)"
-
-msgid "Update is reported as faulty !!"
-msgstr "Обновление отмечено как нестабильное!"
 
 msgid ""
 "Update succeeded!\n"
@@ -20156,9 +20024,6 @@ msgstr "Обновление"
 msgid "Updating mount locations."
 msgstr "Обновление параметров монтирования."
 
-msgid "Updating software catalog"
-msgstr "Каталог обновления ПО"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr "Обновление (прошить и восстановить всё)"
 
@@ -20177,9 +20042,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Показать ход обновления"
-
-msgid "Upgrading"
-msgstr "Обновление"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -20253,8 +20115,8 @@ msgstr "Используйте информацию Netmed EPG, когда он�
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "Используйте OnlineFlash в SoftwareManager"
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Используйте информацию OpenTV EPG, когда она доступна."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr "Используйте OpenTV EPG. Требуется настройка на конкретный транспондер для приёма EPG."
 
 msgid "Use QuickSelect"
 msgstr "Использовать быстрый выбор"
@@ -20766,48 +20628,6 @@ msgstr "Посмотреть файл"
 msgid "View Rass interactive..."
 msgstr "Интерактивный просмотр RASS..."
 
-msgid "View details"
-msgstr "Просмотр деталей"
-
-msgid "View list of available "
-msgstr "Просмотр списка доступных "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Просмотр доступных дополнений CAM-модуля"
-
-msgid "View list of available EPG extensions."
-msgstr "Просмотреть список доступных расширений EPG."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Просмотр списка доступных расширений спутникового оборудования."
-
-msgid "View list of available communication extensions."
-msgstr "Просмотрите список доступных расширений связи."
-
-msgid "View list of available default settings"
-msgstr "Просмотр доступных дополнений для сеттингов"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Просмотр списка доступных расширений дисплея и пользовательского интерфейса."
-
-msgid "View list of available multimedia extensions."
-msgstr "Просмотреть список доступных мультимедийных расширений."
-
-msgid "View list of available networking extensions"
-msgstr "Просмотр доступных дополнений"
-
-msgid "View list of available recording extensions"
-msgstr "Просмотр доступных дополнений для записи"
-
-msgid "View list of available skins"
-msgstr "Просмотр доступных дополнений скинов"
-
-msgid "View list of available software extensions"
-msgstr "Просмотр доступных дополнений ПО"
-
-msgid "View list of available system extensions"
-msgstr "Просмотр доступных дополнений системы"
-
 msgid "View mode"
 msgstr "Режим просмотра"
 
@@ -21151,6 +20971,9 @@ msgstr "Что бы Вы хотели сделать с файлом скрип�
 
 msgid "What would you like to do?"
 msgstr "Что бы Вы хотели сделать?"
+
+msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
+msgstr "Когда 'Включено', в представлении таймера будет отображаться свободное место на целевом устройстве. Это выведет устройство из спящего режима."
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов"
@@ -21599,26 +21422,14 @@ msgstr "Можно показать PiG-окно без меню OSD"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Можно включать PiP с меню OSD или без него"
 
-msgid "You can cancel the installation."
-msgstr "Вы можете отменить установку."
-
-msgid "You can cancel the removal."
-msgstr "Вы можете отменить удаление."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Пока идёт выполнение процесса, Вы можете продолжить просмотр ТВ."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Можете сортировать список по времени или по алфавиту."
 
-msgid "You can install this plugin."
-msgstr "Вы можете установить этот плагин."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Вы можете прожигать только записи, сделанные в Dreambox!"
-
-msgid "You can remove this plugin."
-msgstr "Вы можете удалить этот плагин."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Вы можете пропустить эту функцию и выключить телевизор, когда Вы выводите ресивер из режима ожидания, и сразу же переключитесь обратно в режим ожидания."
@@ -21629,9 +21440,6 @@ msgstr "Кнопками ВЛЕВО/ВПРАВО можно переключат
 
 msgid "You cannot delete this!"
 msgstr "Не можете удалит это!"
-
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Этот лог уже был отправлен. Хотите ещё раз отправить этот лог:\n"
 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Вы выбрали сохранение настроек. Пожалуйста нажмите ОК для начала копирования."
@@ -21652,18 +21460,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "Нет скрипта для запуска."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Нет настроек Вашего пользователя\n"
-"Нажмите кнопку 'МЕНЮ', и введите настройки Вашего пользователя, затем попробуйте снова"
-
 msgid "You have selected no logs to delete."
 msgstr "Логи для удаления не выбраны."
-
-msgid "You have selected no logs to send."
-msgstr "Лог для отправки не выбран."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "Перед активацией автозапуска сначала нужно создать файл подкачки."
@@ -21754,10 +21552,6 @@ msgstr "Ваш %s %s будет выключен"
 
 msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Ваш %s %s выключается. Пожалуйста, подождите..."
-
-#, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "Ваш %s %s не подключён к Интернету. Проверьте и попробуйте снова."
 
 #, python-format
 msgid ""
@@ -21882,32 +21676,6 @@ msgid ""
 msgstr ""
 "Передняя панель будет обновлена\n"
 "Это может занять несколько минут"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Ваш имидж устарел!\n"
-"\n"
-"После такого долгого времени есть риск, что Ваш %s %s не\n"
-"загрузится после онлайн-обновления, или получите неработающий имидж\n"
-"\n"
-"Рекомендуется установить имидж с нуля\n"
-"\n"
-"Онлайн обновление готово на Ваш риск!\n"
-"\n"
-"\n"
-"Все ещё хотите обновить имидж?"
 
 msgid "Your network configuration has been activated."
 msgstr "Ваши сетевые настройки активированы."
@@ -22470,9 +22238,6 @@ msgstr "Закрыть настройки сетевого адаптера"
 msgid "experimental film/video"
 msgstr "Экспериментальный фильм/видео"
 
-msgid "extensions."
-msgstr "Дополнения."
-
 msgid "externally loopthrough to"
 msgstr "Внешняя петля к"
 
@@ -22601,13 +22366,6 @@ msgstr "Ремесла"
 
 msgid "handled"
 msgstr "Удалось"
-
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"Отправлен в команду SVN\n"
-"Примите благодарность"
 
 msgid "hdr10"
 msgstr "HDR10"
@@ -22885,9 +22643,6 @@ msgstr "Только HD"
 msgid "original language"
 msgstr "Язык оригинала"
 
-msgid "packages selected."
-msgstr "Пакетов выбрано."
-
 msgid "pass"
 msgstr "Передать"
 
@@ -22980,9 +22735,6 @@ msgstr "Удалить наземные каналы"
 
 msgid "remove this mark"
 msgstr "Удалить метку"
-
-msgid "rename"
-msgstr "Переименовать"
 
 msgid "rename entry"
 msgstr "Переименовать выбранное"
@@ -23304,9 +23056,6 @@ msgstr "До режима ожидания/перезагрузки"
 msgid "update"
 msgstr "обновление"
 
-msgid "updates available."
-msgstr "обновлений доступно."
-
 msgid "use best / controlled by HDMI"
 msgstr "Использовать наилучшее/Управление по HDMI"
 
@@ -23339,18 +23088,6 @@ msgstr "Водный спорт"
 
 msgid "west"
 msgstr "Запад"
-
-msgid "when asking question about this log"
-msgstr "когда будет запрос насчёт данного лога"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"Когда будет запрос насчёт данного лога\n"
-"\n"
-"Копия будет отправлена."
 
 msgid "wide"
 msgstr "Широкоугольно"
@@ -23389,12 +23126,341 @@ msgstr "Жёлтый"
 msgid "yes (keep feeds)"
 msgstr "Да (оставить фиды)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "Ваш %s %s может стать непригодным теперь. Пожалуйста, почитайте руководство по использованию прежде, чем перезагрузить Ваш %s %s."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "%s %s ПО, обновления доступны."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "Небольшой обзор доступных состояний и действий значка."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Обновление отменено"
+
+#~ msgid "Author: "
+#~ msgstr "Автор "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "Непроверенное обновление!"
+
+#~ msgid "Communication"
+#~ msgstr "Связь"
+
+#~ msgid "Continue"
+#~ msgstr "Продолжить"
+
+#~ msgid "Default settings"
+#~ msgstr "Настройки по умолчанию"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Дисплей и пользовательский интерфейс"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "Хотите обновить Ваш ресивер?"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "Готово - Установлено или обновлено %d пакетов"
+
+#~ msgid "Extensions Management"
+#~ msgstr "Управление дополнениями"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "Данные задания будут выполнены после того, как нажмёте ОК!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "Больше информации на сайте https://www.opena.tv"
+
+#~ msgid "Install or remove finished."
+#~ msgstr "Установка или удаление завершены."
+
+#~ msgid "Multimedia"
+#~ msgstr "Мультимедиа"
+
+#~ msgid "No description available."
+#~ msgstr "Краткого описания нет."
+
+#~ msgid "No network connection available."
+#~ msgstr "Нет доступного сетевого подключения."
+
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Пакеты не были обновлены. Проверьте настройки сети и попробуйте снова."
+
+#~ msgid "Only extensions."
+#~ msgstr "Только дополнения."
+
+#~ msgid "Plugin Details"
+#~ msgstr "Подробности о плагине"
+
+#, python-format
+#~ msgid "Plugin Details: %s"
+#~ msgstr "Сведения о плагине: %s"
+
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "Информация об активности менеджера плагинов"
+
+#~ msgid "Plugin Manager Help"
+#~ msgstr "Помощь по менеджеру плагинов"
+
+#~ msgid "Process"
+#~ msgstr "Процесс"
+
+#~ msgid "Satellite equipment"
+#~ msgstr "Спутниковое оборудование"
+
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "Поиск доступных обновлений. Пожалуйста, подождите..."
+
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "Поиск новых установленных или удалённых пакетов. Пожалуйста, подождите..."
+
+#~ msgid "Skins"
+#~ msgstr "Скины"
+
+#~ msgid "Software"
+#~ msgstr "ПО"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "Извините, нет подробностей!"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Дополнение управлением ПО не установлено!\n"
+#~ "Пожалуйста, установите."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "Текущий статус имиджа не может быть проверен, так как сайт https://www.opena.tv недоступен"
+
+#~ msgid "There are at least "
+#~ msgstr "Как минимум "
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "В данное время нет невыполненных действий."
+
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "Это позволяет отображать языки в загрузках"
+
+#~ msgid "This plugin is installed."
+#~ msgstr "Этот плагин установлен."
+
+#~ msgid "This plugin is not installed."
+#~ msgstr "Этот плагин не установлен."
+
+#~ msgid "This plugin will be installed."
+#~ msgstr "Этот плагин будет установлен."
+
+#~ msgid "This plugin will be removed."
+#~ msgstr "Этот плагин будет удален."
+
+#~ msgid "Undo install"
+#~ msgstr "Отменить установку"
+
+#~ msgid "Undo uninstall"
+#~ msgstr "Отменить удаление"
+
+#~ msgid "Uninstall"
+#~ msgstr "Удаление"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "Обновляйте на свой страх и риск"
+
+#~ msgid "Update feed not available."
+#~ msgstr "Фид обновлений не доступен."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "Обновление отмечено как нестабильное!"
+
+#~ msgid "Updating software catalog"
+#~ msgstr "Каталог обновления ПО"
+
+#~ msgid "Upgrading"
+#~ msgstr "Обновление"
+
+#~ msgid "View details"
+#~ msgstr "Просмотр деталей"
+
+#~ msgid "View list of available "
+#~ msgstr "Просмотр списка доступных "
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Просмотр доступных дополнений CAM-модуля"
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Просмотреть список доступных расширений EPG."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Просмотр списка доступных расширений спутникового оборудования."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Просмотрите список доступных расширений связи."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "Просмотр доступных дополнений для сеттингов"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Просмотр списка доступных расширений дисплея и пользовательского интерфейса."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Просмотреть список доступных мультимедийных расширений."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Просмотр доступных дополнений"
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Просмотр доступных дополнений для записи"
+
+#~ msgid "View list of available skins"
+#~ msgstr "Просмотр доступных дополнений скинов"
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "Просмотр доступных дополнений ПО"
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "Просмотр доступных дополнений системы"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "Вы можете отменить установку."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "Вы можете отменить удаление."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "Вы можете установить этот плагин."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "Вы можете удалить этот плагин."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "Ваш %s %s не подключён к Интернету. Проверьте и попробуйте снова."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "Ваш имидж устарел!\n"
+#~ "\n"
+#~ "После такого долгого времени есть риск, что Ваш %s %s не\n"
+#~ "загрузится после онлайн-обновления, или получите неработающий имидж\n"
+#~ "\n"
+#~ "Рекомендуется установить имидж с нуля\n"
+#~ "\n"
+#~ "Онлайн обновление готово на Ваш риск!\n"
+#~ "\n"
+#~ "\n"
+#~ "Все ещё хотите обновить имидж?"
+
+#~ msgid "extensions."
+#~ msgstr "Дополнения."
+
+#~ msgid "packages selected."
+#~ msgstr "Пакетов выбрано."
+
+#~ msgid "updates available."
+#~ msgstr "обновлений доступно."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "Ваш %s %s может стать непригодным теперь. Пожалуйста, почитайте руководство по использованию прежде, чем перезагрузить Ваш %s %s."
+
+#~ msgid "Additional Info"
+#~ msgstr "Дополнительная информация"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Хотите отправить этот лог:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Прикрепить файл"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "Хотите добавить дополнительную информацию?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "Хотите прикрепить текстовый файл к логу?\n"
+#~ "(Выберите 'Нет' для создания сообщения с помощью виртуальной клавиатуры)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "Хотите отправить все выбранные файлы\n"
+#~ "(Выберите 'Нет', чтобы отправить только выбранный файл) "
+
+#, python-format
+#~ msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+#~ msgstr "Ошибка %d: невозможно переименовать файл '%s' в '%s'! (%s)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ошибка\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "Отправить"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "Отправление с подтверждением"
+
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "Используйте информацию OpenTV EPG, когда она доступна."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "Этот лог уже был отправлен. Хотите ещё раз отправить этот лог:\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "Нет настроек Вашего пользователя\n"
+#~ "Нажмите кнопку 'МЕНЮ', и введите настройки Вашего пользователя, затем попробуйте снова"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "Лог для отправки не выбран."
+
+#~ msgid ""
+#~ "has been sent to the SVN team team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "Отправлен в команду SVN\n"
+#~ "Примите благодарность"
+
+#~ msgid "rename"
+#~ msgstr "Переименовать"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "когда будет запрос насчёт данного лога"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "Когда будет запрос насчёт данного лога\n"
+#~ "\n"
+#~ "Копия будет отправлена."
+
+#~ msgid "LOF"
+#~ msgstr "LOF"
 
 #, python-format
 #~ msgid "Delete '%s'?"

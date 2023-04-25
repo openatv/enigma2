@@ -1,13 +1,15 @@
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+from Components.Console import Console
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
+from Components.SystemInfo import BoxInfo
+from Tools.Directories import fileExists, pathExists
 from Tools.MultiBoot import MultiBoot
-
 
 class MultiBootManager(Screen, HelpableScreen):
 	# NOTE: This embedded skin will be affected by the Choicelist parameters and ChoiceList font in the current skin!  This screen should be skinned.
@@ -225,3 +227,70 @@ class MultiBootManager(Screen, HelpableScreen):
 		while self["slotlist"].l.getCurrentSelection()[0][1] is None:
 			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveUp)
 		self.selectionChanged()
+
+class KexecInit(Screen):
+
+	model = BoxInfo.getItem("model")
+	modelMtdRootKernel = model in ("vuduo4k", "vuduo4kse") and ["mmcblk0p9", "mmcblk0p6"] or model in ("vusolo4k", "vuultimo4k", "vuuno4k", "vuuno4kse") and ["mmcblk0p4", "mmcblk0p1"] or model == "vuzero4k" and ["mmcblk0p7", "mmcblk0p4"] or ["", ""]
+
+	STARTUP = "kernel=/zImage root=/dev/%s rootsubdir=linuxrootfs0" % modelMtdRootKernel[0]                 # /STARTUP
+	STARTUP_RECOVERY = "kernel=/zImage root=/dev/%s rootsubdir=linuxrootfs0" % modelMtdRootKernel[0]        # /STARTUP_RECOVERY
+	STARTUP_1 = "kernel=/linuxrootfs1/zImage root=/dev/%s rootsubdir=linuxrootfs1" % modelMtdRootKernel[0]  # /STARTUP_1
+	STARTUP_2 = "kernel=/linuxrootfs2/zImage root=/dev/%s rootsubdir=linuxrootfs2" % modelMtdRootKernel[0]  # /STARTUP_2
+	STARTUP_3 = "kernel=/linuxrootfs3/zImage root=/dev/%s rootsubdir=linuxrootfs3" % modelMtdRootKernel[0]  # /STARTUP_3
+
+	def __init__(self, session, *args):
+		Screen.__init__(self, session)
+		self.skinName = ["KexecInit", "Setup"]
+		self.setTitle(_("Kexec MultiBoot Manager"))
+		self.kexec_files = fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz")
+		self["description"] = Label(_("Press Green key to enable MultiBoot!\n\nWill reboot within 10 seconds,\nunless you have eMMC slots to restore.\nRestoring eMMC slots can take from 1 -> 5 minutes per slot."))
+		self["key_red"] = StaticText(self.kexec_files and _("Remove forever") or "")
+		self["key_green"] = StaticText(_("Init"))
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"green": self.RootInit,
+			"ok": self.close,
+			"exit": self.close,
+			"red": self.removeFiles,
+		}, prio=-1, description=_("Kexec MultiBoot Actions"))
+
+	def RootInit(self):
+		self["actions"].setEnabled(False)  # This function takes time so disable the ActionMap to avoid responding to multiple button presses
+		if self.kexec_files:
+			self.setTitle(_("Kexec MultiBoot Initialisation - will reboot after 10 seconds."))
+			self["description"].setText(_("Kexec MultiBoot Initialisation in progress!\n\nWill reboot after restoring any eMMC slots.\nThis can take from 1 -> 5 minutes per slot."))
+			with open("/STARTUP", 'w') as f:
+				f.write(self.STARTUP)
+			with open("/STARTUP_RECOVERY", 'w') as f:
+				f.write(self.STARTUP_RECOVERY)
+			with open("/STARTUP_1", 'w') as f:
+				f.write(self.STARTUP_1)
+			with open("/STARTUP_2", 'w') as f:
+				f.write(self.STARTUP_2)
+			with open("/STARTUP_3", 'w') as f:
+				f.write(self.STARTUP_3)
+			cmdlist = []
+			cmdlist.append("dd if=/dev/%s of=/zImage" % self.modelMtdRootKernel[1])  # backup old kernel
+			cmdlist.append("dd if=/usr/bin/kernel_auto.bin of=/dev/%s" % self.modelMtdRootKernel[1])  # create new kernel
+			cmdlist.append("mv /usr/bin/STARTUP.cpio.gz /STARTUP.cpio.gz")  # copy userroot routine
+			Console().eBatch(cmdlist, self.RootInitEnd, debug=True)
+		else:
+			self.session.open(MessageBox, _("Unable to complete - Kexec Multiboot files missing!"), MessageBox.TYPE_INFO, timeout=10)
+			self.close()
+
+	def RootInitEnd(self, *args, **kwargs):
+		from Screens.Standby import TryQuitMainloop
+		for usbslot in range(1, 4):
+			if pathExists("/media/hdd/%s/linuxrootfs%s" % (self.model, usbslot)):
+				Console().ePopen("cp -R /media/hdd/%s/linuxrootfs%s . /" % (self.model, usbslot))
+		self.session.open(TryQuitMainloop, 2)
+
+	def removeFiles(self):
+		if self.kexec_files:
+			self.session.openWithCallback(self.removeFilesAnswer, MessageBox, _("Really permanently delete MultiBoot files?\n%s") % "(/usr/bin/kernel_auto.bin /usr/bin/STARTUP.cpio.gz)", simple=True)
+
+	def removeFilesAnswer(self, answer=None):
+		if answer:
+			Console().ePopen("rm -rf /usr/bin/kernel_auto.bin /usr/bin/STARTUP.cpio.gz")
+			self.close()
+

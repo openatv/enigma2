@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2022-08-01 08:46+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: English (Australia) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/en_AU/>\n"
@@ -1020,6 +1020,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr ""
 
@@ -1144,10 +1148,6 @@ msgid "%s %s remote control (native)"
 msgstr ""
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr ""
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr ""
 
@@ -1189,6 +1189,10 @@ msgstr ""
 
 #, python-format
 msgid "%s MHz"
+msgstr ""
+
+#, python-format
+msgid "%s Packages found"
 msgstr ""
 
 #, python-format
@@ -1898,9 +1902,6 @@ msgstr ""
 "\n"
 "Do you want to disable the second network interface?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr ""
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -1988,9 +1989,6 @@ msgid "Aborted a pseudo recording.\n"
 msgstr ""
 
 msgid "Aborted a streaming service.\n"
-msgstr ""
-
-msgid "Aborting update progress"
 msgstr ""
 
 msgid "About"
@@ -2204,9 +2202,6 @@ msgid "Add/Remove a timer for the current event"
 msgstr ""
 
 msgid "Adding schedule..."
-msgstr ""
-
-msgid "Additional Info"
 msgstr ""
 
 msgid "Additional files/folders to backup"
@@ -2632,9 +2627,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr ""
 
-msgid "Are you sure you want to send this log:\n"
-msgstr ""
-
 msgid "Argentina"
 msgstr ""
 
@@ -2657,6 +2649,9 @@ msgid "Aruba"
 msgstr ""
 
 msgid "As plugin in extended bar"
+msgstr ""
+
+msgid "Ascending"
 msgstr ""
 
 msgid "Ask user"
@@ -2712,9 +2707,6 @@ msgid "At end: %s"
 msgstr ""
 
 msgid "Athletics"
-msgstr ""
-
-msgid "Attach a file"
 msgstr ""
 
 msgid "Audio"
@@ -2776,9 +2768,6 @@ msgid "Australian"
 msgstr ""
 
 msgid "Austria"
-msgstr ""
-
-msgid "Author: "
 msgstr ""
 
 msgid "Authoring mode"
@@ -3741,6 +3730,9 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
@@ -3861,9 +3853,6 @@ msgid "Cascade PiP"
 msgstr ""
 
 msgid "Catalan / Valencian"
-msgstr ""
-
-msgid "Caution update not yet tested !!"
 msgstr ""
 
 msgid "Cayman Islands"
@@ -4446,9 +4435,6 @@ msgstr ""
 msgid "Common Setup Actions"
 msgstr ""
 
-msgid "Communication"
-msgstr ""
-
 msgid "Comoros"
 msgstr ""
 
@@ -4917,9 +4903,6 @@ msgid "Context"
 msgstr ""
 
 msgid "Continent"
-msgstr ""
-
-msgid "Continue"
 msgstr ""
 
 msgid "Continue in background"
@@ -5622,9 +5605,6 @@ msgstr ""
 msgid "Default right column directory"
 msgstr ""
 
-msgid "Default settings"
-msgstr ""
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -5766,6 +5746,9 @@ msgstr ""
 msgid "Delete Timer"
 msgstr ""
 
+msgid "Delete all duplicated lines"
+msgstr ""
+
 msgid "Delete all log files"
 msgstr ""
 
@@ -5794,6 +5777,9 @@ msgid "Delete current line"
 msgstr ""
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 msgid "Delete entry"
@@ -5894,6 +5880,9 @@ msgid "Denmark"
 msgstr ""
 
 msgid "Depth"
+msgstr ""
+
+msgid "Descending"
 msgstr ""
 
 msgid "Description"
@@ -6110,9 +6099,6 @@ msgstr ""
 msgid "Display Settings"
 msgstr ""
 
-msgid "Display and user interface"
-msgstr ""
-
 msgid "Display context menu"
 msgstr ""
 
@@ -6298,17 +6284,9 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want to add any additional information ?"
-msgstr ""
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
-msgstr ""
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 
 msgid ""
@@ -6384,14 +6362,6 @@ msgstr ""
 msgid "Do you want to resume this playback?"
 msgstr ""
 
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-
-msgid "Do you want to update your box?"
-msgstr ""
-
 msgid "Do you want to upgrade the package:\n"
 msgstr ""
 
@@ -6437,10 +6407,6 @@ msgid ""
 msgstr ""
 
 msgid "Done"
-msgstr ""
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
 msgstr ""
 
 #, python-format
@@ -6513,6 +6479,9 @@ msgid "Drivers version"
 msgstr ""
 
 msgid "Duplex"
+msgstr ""
+
+msgid "Duplicate the current line"
 msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
@@ -7217,7 +7186,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7311,12 +7280,6 @@ msgid "Error unzipping image '%s'!"
 msgstr ""
 
 msgid "Error, unknown Result!"
-msgstr ""
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
 msgstr ""
 
 #, python-format
@@ -7644,9 +7607,6 @@ msgid "Extension Actions"
 msgstr ""
 
 msgid "Extensions"
-msgstr ""
-
-msgid "Extensions Management"
 msgstr ""
 
 msgid "Extensions/QuickMenu"
@@ -8090,9 +8050,6 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr ""
 
-msgid "Following tasks will be done after you press OK!"
-msgstr ""
-
 msgid "Font size"
 msgstr ""
 
@@ -8103,9 +8060,6 @@ msgid "Food/Wine"
 msgstr ""
 
 msgid "Football"
-msgstr ""
-
-msgid "For more information see https://www.opena.tv"
 msgstr ""
 
 msgid "Force LNB Power"
@@ -9435,9 +9389,6 @@ msgstr ""
 msgid "Install lcd picons on"
 msgstr ""
 
-msgid "Install or remove finished."
-msgstr ""
-
 msgid "Install picons on"
 msgstr ""
 
@@ -9845,9 +9796,6 @@ msgid "LNB"
 msgstr ""
 
 msgid "LNB/Switch Bootup time [ms]"
-msgstr ""
-
-msgid "LOF"
 msgstr ""
 
 msgid "LOF/H"
@@ -10382,6 +10330,9 @@ msgid "Manage Extensions"
 msgstr ""
 
 msgid "Manage Locale/Language Selection settings"
+msgstr ""
+
+msgid "Manage Plugins"
 msgstr ""
 
 msgid "Manage and explore directories and files."
@@ -11091,9 +11042,6 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
-msgid "Multimedia"
-msgstr ""
-
 msgid "Multiple service support"
 msgstr ""
 
@@ -11493,9 +11441,6 @@ msgstr ""
 msgid "No demux available"
 msgstr ""
 
-msgid "No description available."
-msgstr ""
-
 msgid "No displayable files on this medium found!"
 msgstr ""
 
@@ -11526,9 +11471,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr ""
 
-msgid "No network connection available."
-msgstr ""
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -11538,7 +11480,7 @@ msgstr ""
 msgid "No of items switch (increase or reduced)"
 msgstr ""
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
+msgid "No packages found."
 msgstr ""
 
 msgid "No pictures available"
@@ -11938,9 +11880,6 @@ msgstr ""
 msgid "Only Flash Backup Image"
 msgstr ""
 
-msgid "Only extensions."
-msgstr ""
-
 msgid "Only free scan"
 msgstr ""
 
@@ -11996,6 +11935,9 @@ msgid "Open context menu (contains settings menu)"
 msgstr ""
 
 msgid "Open favorites list"
+msgstr ""
+
+msgid "Open file sort menu"
 msgstr ""
 
 msgid "Open satellites list"
@@ -12403,6 +12345,9 @@ msgid "Percentage/Progress bar right"
 msgstr ""
 
 msgid "Perform an on-line flash instead"
+msgstr ""
+
+msgid "Perform install/remove of the selected item"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -12904,20 +12849,10 @@ msgstr ""
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Details"
-msgstr ""
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr ""
 
-msgid "Plugin Manager Activity Information"
-msgstr ""
-
-msgid "Plugin Manager Help"
+msgid "Plugin Manager Actions"
 msgstr ""
 
 msgid "Plugins"
@@ -13223,9 +13158,6 @@ msgid "Proc model"
 msgstr ""
 
 msgid "Proceed with the update"
-msgstr ""
-
-msgid "Process"
 msgstr ""
 
 msgid "Processor information"
@@ -14551,9 +14483,6 @@ msgstr ""
 msgid "Satellite configuration mode"
 msgstr ""
 
-msgid "Satellite equipment"
-msgstr ""
-
 msgid "Satellite equipment setup"
 msgstr ""
 
@@ -14699,6 +14628,9 @@ msgstr ""
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr ""
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr ""
@@ -14795,12 +14727,6 @@ msgid "Searching"
 msgstr ""
 
 msgid "Searching east ..."
-msgstr ""
-
-msgid "Searching for available updates. Please wait..."
-msgstr ""
-
-msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
 msgid "Searching west ..."
@@ -15475,6 +15401,9 @@ msgstr ""
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -15650,12 +15579,6 @@ msgid "Selecting satellites 2 (USALS)"
 msgstr ""
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
-msgstr ""
-
-msgid "Send"
-msgstr ""
-
-msgid "Send Confirmation"
 msgstr ""
 
 msgid "Send DiSEqC"
@@ -16551,6 +16474,9 @@ msgstr ""
 msgid "Show first image"
 msgstr ""
 
+msgid "Show free space in timer view"
+msgstr ""
+
 msgid "Show graphical multi EPG"
 msgstr ""
 
@@ -17026,9 +16952,6 @@ msgstr ""
 msgid "SkinSelector"
 msgstr ""
 
-msgid "Skins"
-msgstr ""
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr ""
 
@@ -17232,9 +17155,6 @@ msgstr ""
 msgid "Softcams"
 msgstr ""
 
-msgid "Software"
-msgstr ""
-
 msgid "Software Management"
 msgstr ""
 
@@ -17326,9 +17246,6 @@ msgid "Sorry, %s has not been installed!"
 msgstr ""
 
 msgid "Sorry, no backups found!"
-msgstr ""
-
-msgid "Sorry, no details available!"
 msgstr ""
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
@@ -18016,7 +17933,7 @@ msgstr ""
 msgid "Sync time using"
 msgstr ""
 
-msgid "Synchronize systemtime using transponder or Internet."
+msgid "Synchronize system time using transponder or Internet."
 msgstr "Synchronise system time using transponder or Internet."
 
 msgid "Syrian Arab Republic"
@@ -18534,16 +18451,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"The software management extension is not installed!\n"
-"Please install it."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr ""
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
@@ -18587,12 +18494,6 @@ msgid "The wizard can backup your current settings. Do you want to do a backup n
 msgstr ""
 
 msgid "The wizard is finished now."
-msgstr ""
-
-msgid "There are at least "
-msgstr ""
-
-msgid "There are currently no outstanding actions."
 msgstr ""
 
 #, python-format
@@ -18671,9 +18572,6 @@ msgid "This allows you to show extensions modules in downloads"
 msgstr ""
 
 msgid "This allows you to show kernel modules in downloads"
-msgstr ""
-
-msgid "This allows you to show languages in downloads"
 msgstr ""
 
 msgid "This allows you to show lcd skins in downloads"
@@ -18926,18 +18824,6 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr ""
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr ""
-
-msgid "This plugin is installed."
-msgstr ""
-
-msgid "This plugin is not installed."
-msgstr ""
-
-msgid "This plugin will be installed."
-msgstr ""
-
-msgid "This plugin will be removed."
 msgstr ""
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
@@ -19617,6 +19503,12 @@ msgstr ""
 msgid "Type / Model"
 msgstr ""
 
+msgid "Type of LNB/Device"
+msgstr ""
+
+msgid "Type of device"
+msgstr ""
+
 msgid "Type of scan"
 msgstr ""
 
@@ -19680,12 +19572,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr ""
 
-msgid "Undo install"
-msgstr ""
-
-msgid "Undo uninstall"
-msgstr ""
-
 msgid "Unencrypted"
 msgstr ""
 
@@ -19705,9 +19591,6 @@ msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Matrix"
-msgstr ""
-
-msgid "Uninstall"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -19825,9 +19708,6 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-msgid "Update at your own risk"
-msgstr ""
-
 msgid "Update completed."
 msgstr ""
 
@@ -19840,16 +19720,10 @@ msgstr ""
 msgid "Update failed!"
 msgstr ""
 
-msgid "Update feed not available."
-msgstr ""
-
 msgid "Update finished!"
 msgstr ""
 
 msgid "Update interval (in seconds)"
-msgstr ""
-
-msgid "Update is reported as faulty !!"
 msgstr ""
 
 msgid ""
@@ -19878,9 +19752,6 @@ msgstr ""
 msgid "Updating mount locations."
 msgstr ""
 
-msgid "Updating software catalog"
-msgstr "Updating software catalogue"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -19898,9 +19769,6 @@ msgstr ""
 "This may take a few minutes"
 
 msgid "Upgrade with GUI"
-msgstr ""
-
-msgid "Upgrading"
 msgstr ""
 
 msgid "Uphops +"
@@ -19975,7 +19843,7 @@ msgstr ""
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr ""
 
-msgid "Use OpenTV EPG information when it is available."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
 msgid "Use QuickSelect"
@@ -20457,48 +20325,6 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr ""
 
-msgid "View details"
-msgstr ""
-
-msgid "View list of available "
-msgstr ""
-
-msgid "View list of available CommonInterface extensions"
-msgstr ""
-
-msgid "View list of available EPG extensions."
-msgstr ""
-
-msgid "View list of available Satellite equipment extensions."
-msgstr ""
-
-msgid "View list of available communication extensions."
-msgstr ""
-
-msgid "View list of available default settings"
-msgstr ""
-
-msgid "View list of available display and user interface extensions."
-msgstr ""
-
-msgid "View list of available multimedia extensions."
-msgstr ""
-
-msgid "View list of available networking extensions"
-msgstr ""
-
-msgid "View list of available recording extensions"
-msgstr ""
-
-msgid "View list of available skins"
-msgstr ""
-
-msgid "View list of available software extensions"
-msgstr ""
-
-msgid "View list of available system extensions"
-msgstr ""
-
 msgid "View mode"
 msgstr ""
 
@@ -20832,6 +20658,9 @@ msgid "What would you like to do with the script file:"
 msgstr ""
 
 msgid "What would you like to do?"
+msgstr ""
+
+msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
@@ -21279,25 +21108,13 @@ msgstr ""
 msgid "You can Display PiP with or without OSD Menu"
 msgstr ""
 
-msgid "You can cancel the installation."
-msgstr ""
-
-msgid "You can cancel the removal."
-msgstr ""
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr ""
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr ""
 
-msgid "You can install this plugin."
-msgstr ""
-
 msgid "You can only burn Dreambox recordings!"
-msgstr ""
-
-msgid "You can remove this plugin."
 msgstr ""
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
@@ -21308,9 +21125,6 @@ msgid "You can switch with left and right this tuner types %s"
 msgstr ""
 
 msgid "You cannot delete this!"
-msgstr ""
-
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr ""
 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
@@ -21332,15 +21146,7 @@ msgstr ""
 msgid "You have no script to run."
 msgstr ""
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-
 msgid "You have selected no logs to delete."
-msgstr ""
-
-msgid "You have selected no logs to send."
 msgstr ""
 
 msgid "You have to create a Swap File before to activate the autostart."
@@ -21424,10 +21230,6 @@ msgid "Your %s %s is shutting down"
 msgstr ""
 
 msgid "Your %s %s is shutting down. Please wait..."
-msgstr ""
-
-#, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
 msgstr ""
 
 #, python-format
@@ -21539,21 +21341,6 @@ msgstr ""
 msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
 msgstr ""
 
 msgid "Your network configuration has been activated."
@@ -22115,9 +21902,6 @@ msgstr ""
 msgid "experimental film/video"
 msgstr ""
 
-msgid "extensions."
-msgstr ""
-
 msgid "externally loopthrough to"
 msgstr ""
 
@@ -22245,11 +22029,6 @@ msgid "handicraft"
 msgstr ""
 
 msgid "handled"
-msgstr ""
-
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
 msgstr ""
 
 msgid "hdr10"
@@ -22528,9 +22307,6 @@ msgstr ""
 msgid "original language"
 msgstr ""
 
-msgid "packages selected."
-msgstr ""
-
 msgid "pass"
 msgstr ""
 
@@ -22622,9 +22398,6 @@ msgid "remove terrestrial services"
 msgstr ""
 
 msgid "remove this mark"
-msgstr ""
-
-msgid "rename"
 msgstr ""
 
 msgid "rename entry"
@@ -22943,9 +22716,6 @@ msgstr ""
 msgid "update"
 msgstr ""
 
-msgid "updates available."
-msgstr ""
-
 msgid "use best / controlled by HDMI"
 msgstr ""
 
@@ -22977,15 +22747,6 @@ msgid "water sport"
 msgstr ""
 
 msgid "west"
-msgstr ""
-
-msgid "when asking question about this log"
-msgstr ""
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
 msgstr ""
 
 msgid "wide"
@@ -23024,26 +22785,5 @@ msgstr ""
 msgid "yes (keep feeds)"
 msgstr ""
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr ""
-
 msgid "®"
 msgstr ""
-
-#~ msgid "Favorites long"
-#~ msgstr "Favourites long"
-
-#~ msgid ""
-#~ "Timer overlap in pm_timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Timer overlap in pm_timers.xml detected!\n"
-#~ "Please recheck it!"
-
-#~ msgid ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"

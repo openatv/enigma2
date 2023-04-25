@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-09 15:18+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1068,6 +1068,10 @@ msgstr[0] "%d csomag frissítve."
 msgstr[1] "%d csomag frissítve."
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d másodperc"
 
@@ -1197,10 +1201,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s távirányító (natív)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s szoftver, mert frissítések érhetők el."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s (%s kártyák)"
 
@@ -1243,6 +1243,10 @@ msgstr "%s KSymb/mp"
 #, python-format
 msgid "%s MHz"
 msgstr "(%s MHz)"
+
+#, python-format
+msgid "%s Packages found"
+msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1960,9 +1964,6 @@ msgstr ""
 "\n"
 "Le szeretné tiltani a második hálózati interfészt?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "Egy gyors áttekintés az elérhető ikonokról és állapotokról."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2059,9 +2060,6 @@ msgstr "Pszeudo felvétel megszakítása.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Streaming megszakítása.\n"
-
-msgid "Aborting update progress"
-msgstr "Frissítési folyamat megszakítása"
 
 msgid "About"
 msgstr "Névjegy"
@@ -2275,9 +2273,6 @@ msgstr "Időzítő Hozzáadása/Eltávolítása a jelenlegi eseménynél"
 
 msgid "Adding schedule..."
 msgstr "Felvétel ütemezése..."
-
-msgid "Additional Info"
-msgstr "További információ"
 
 msgid "Additional files/folders to backup"
 msgstr "További fájlok és mappák a biztonsági mentéshez"
@@ -2706,9 +2701,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Biztosan menteni szeretné az EPG gyorsítórbat:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Biztos benne, hogy elküldi ezt a naplót:\n"
-
 msgid "Argentina"
 msgstr "Argentína"
 
@@ -2733,6 +2725,9 @@ msgstr "Aruba"
 
 msgid "As plugin in extended bar"
 msgstr "bővítményként a kiterjesztett sávban"
+
+msgid "Ascending"
+msgstr ""
 
 msgid "Ask user"
 msgstr "Felhasználó kérdezése"
@@ -2789,9 +2784,6 @@ msgstr ""
 
 msgid "Athletics"
 msgstr "Atlétika"
-
-msgid "Attach a file"
-msgstr "Fájl csatolása"
 
 msgid "Audio"
 msgstr "Hang"
@@ -2854,9 +2846,6 @@ msgstr "Ausztrál"
 
 msgid "Austria"
 msgstr "Ausztria"
-
-msgid "Author: "
-msgstr "Szerző: "
 
 msgid "Authoring mode"
 msgstr "Authoring mód"
@@ -3815,6 +3804,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Mégse"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
@@ -3944,9 +3936,6 @@ msgstr "Kaszkád Kép-a-Képben"
 
 msgid "Catalan / Valencian"
 msgstr ""
-
-msgid "Caution update not yet tested !!"
-msgstr "Vigyázat, a frissítés nincs tesztelve !!"
 
 msgid "Cayman Islands"
 msgstr "Kajmán-szigetek"
@@ -4536,9 +4525,6 @@ msgstr "CI hozzárendelés"
 msgid "Common Setup Actions"
 msgstr "Indításkori művelet"
 
-msgid "Communication"
-msgstr "Kommunikáció"
-
 msgid "Comoros"
 msgstr "Comore-szigetek"
 
@@ -5010,9 +4996,6 @@ msgstr "Szövegkörnyezet"
 
 msgid "Continent"
 msgstr ""
-
-msgid "Continue"
-msgstr "Folytatás"
 
 msgid "Continue in background"
 msgstr "Folytatás a háttérben"
@@ -5728,9 +5711,6 @@ msgstr "Alapértelmezett felvétel típusa"
 msgid "Default right column directory"
 msgstr ""
 
-msgid "Default settings"
-msgstr "Alapértelmezett beállítások"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -5872,6 +5852,9 @@ msgstr "Bővítmények törlése"
 msgid "Delete Timer"
 msgstr "Időzítő törlése"
 
+msgid "Delete all duplicated lines"
+msgstr ""
+
 msgid "Delete all log files"
 msgstr ""
 
@@ -5900,6 +5883,9 @@ msgid "Delete current line"
 msgstr "Aktuális sor törlése"
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 msgid "Delete entry"
@@ -6004,6 +5990,9 @@ msgstr "Dánia"
 
 msgid "Depth"
 msgstr "Mélység"
+
+msgid "Descending"
+msgstr ""
 
 msgid "Description"
 msgstr "Leírás"
@@ -6222,9 +6211,6 @@ msgstr "16:9-nél szélesebb tartalom megjelenítése"
 msgid "Display Settings"
 msgstr "Kijelző beállítások"
 
-msgid "Display and user interface"
-msgstr "Kijelző és felhasználói felület"
-
 msgid "Display context menu"
 msgstr ""
 
@@ -6412,22 +6398,12 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want to add any additional information ?"
-msgstr "Szeretne további információkat megadni?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Szeretné telepíteni a samba klienst is?\n"
 "Ez lehetővé teszi a Windows megosztások csatolását az eszközön."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Szeretne egy szövegfájlt csatolni a naplóhoz?\n"
-"(válassza a 'Nem' lehetőséget a virtuális billentyűzet használatához.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6506,16 +6482,6 @@ msgstr "Szeretné visszaállítani a beállításait?"
 msgid "Do you want to resume this playback?"
 msgstr "Szeretné folytatni ezt a lejátszást?"
 
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Szeretné elküldeni az összes kiválasztott fájlt:\n"
-"(válassza a 'Nem' lehetőséget csak a kiválasztott fájl elküldéséhez.)"
-
-msgid "Do you want to update your box?"
-msgstr "Szeretné frissíteni a készülék szoftverét?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Biztos benne, hogy frissíteni szeretné ezt a csomagot:\n"
 
@@ -6564,10 +6530,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Kész"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "%d szoftvercsomag telepítése, frissítése elkészült"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -6639,6 +6601,9 @@ msgid "Drivers version"
 msgstr ""
 
 msgid "Duplex"
+msgstr ""
+
+msgid "Duplicate the current line"
 msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
@@ -7360,7 +7325,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7465,14 +7430,6 @@ msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Hiba, ismeretlen végeredmény!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Hiba:\n"
-"%s"
 
 #, python-format
 msgid ""
@@ -7806,9 +7763,6 @@ msgstr "Bővítmények"
 
 msgid "Extensions"
 msgstr "Bővítmények"
-
-msgid "Extensions Management"
-msgstr "Bővítmények kezelése"
 
 msgid "Extensions/QuickMenu"
 msgstr "Bővítmények/Gyors Menü"
@@ -8260,9 +8214,6 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr "Végleges pozíció"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Végrehajtás az OK gomb lenyomása után történik!"
-
 msgid "Font size"
 msgstr "Betűméret"
 
@@ -8274,9 +8225,6 @@ msgstr "Élelmiszer/Bor"
 
 msgid "Football"
 msgstr "Labdarúgás"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "További információ: https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Fej tápellátás kényszerítése"
@@ -9637,9 +9585,6 @@ msgstr "Bővítmények telepítése."
 msgid "Install lcd picons on"
 msgstr "LCD piconok telepítése ide"
 
-msgid "Install or remove finished."
-msgstr "A telepítés vagy eltávolítás befejeződött."
-
 msgid "Install picons on"
 msgstr "Pikonok telepítése ide"
 
@@ -10057,9 +10002,6 @@ msgstr "Fej"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "LNB/Switch indulási ideje [ms]"
-
-msgid "LOF"
-msgstr "LOF"
 
 msgid "LOF/H"
 msgstr "LOF/H"
@@ -10610,6 +10552,9 @@ msgstr "Bővítmények kezelése"
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Csatorna kiválasztás beállítása"
+
+msgid "Manage Plugins"
+msgstr ""
 
 msgid "Manage and explore directories and files."
 msgstr ""
@@ -11347,9 +11292,6 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot lemezkép létrehozva: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "Multimédia"
-
 msgid "Multiple service support"
 msgstr "Több csatorna támogatása"
 
@@ -11757,9 +11699,6 @@ msgstr "Nincs késleltetés"
 msgid "No demux available"
 msgstr "Nem áll rendelkezésre demux"
 
-msgid "No description available."
-msgstr "Nincs elérhető leírás."
-
 msgid "No displayable files on this medium found!"
 msgstr "A hordozón nem található lejátszható fájl!"
 
@@ -11790,9 +11729,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Nem található megfelelő helynév"
 
-msgid "No network connection available."
-msgstr "Nincs elérhető hálózati kapcsolat."
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -11802,8 +11738,8 @@ msgstr "Nem észlelhető hálózat"
 msgid "No of items switch (increase or reduced)"
 msgstr "Nincs kapcsoló (növelés vagy csökkentés)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Még nem lettek frissítve a csomagok. Ellenőrizze újra a hálózatot, és próbálja meg újra."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -12209,9 +12145,6 @@ msgstr "A(z) %s %s készülék szoftverének online frissítése."
 msgid "Only Flash Backup Image"
 msgstr ""
 
-msgid "Only extensions."
-msgstr "Csak bővítmények."
-
 msgid "Only free scan"
 msgstr "Csak szabad keresés"
 
@@ -12275,6 +12208,9 @@ msgstr ""
 
 msgid "Open favorites list"
 msgstr "Kedvencek lista mutatása"
+
+msgid "Open file sort menu"
+msgstr ""
 
 msgid "Open satellites list"
 msgstr "Műholdlista megnyitása"
@@ -12686,6 +12622,9 @@ msgid "Percentage/Progress bar right"
 msgstr "Százalék/folyamatjelző sáv jobbra"
 
 msgid "Perform an on-line flash instead"
+msgstr ""
+
+msgid "Perform install/remove of the selected item"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -13222,21 +13161,11 @@ msgstr "Bővítménykezelő"
 msgid "Plugin Browser Settings"
 msgstr "Plugin Browser Settings"
 
-msgid "Plugin Details"
-msgstr "Bővítmény részletei"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr "Bővítmények szűrése"
 
-msgid "Plugin Manager Activity Information"
-msgstr "Bővítménykezelő - végrehajtási információk"
-
-msgid "Plugin Manager Help"
-msgstr "Bővítménykezelő - súgó"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 msgid "Plugins"
 msgstr "Bővítmények"
@@ -13544,9 +13473,6 @@ msgstr ""
 
 msgid "Proceed with the update"
 msgstr ""
-
-msgid "Process"
-msgstr "Futtatás"
 
 msgid "Processor information"
 msgstr ""
@@ -14883,9 +14809,6 @@ msgstr "Műholdvevö antenna beállítása"
 msgid "Satellite configuration mode"
 msgstr "Műhold konfigurációs mód"
 
-msgid "Satellite equipment"
-msgstr "Műholdvevő eszköz"
-
 msgid "Satellite equipment setup"
 msgstr "Műholdvevö eszköz beállítása"
 
@@ -15034,6 +14957,9 @@ msgstr "Vezeték nélküli hálózat keresése"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Vezeték nélküli hálózatok keresése, és csatlakoztatása a kiválasztott vezeték nélküli adapter segítségével."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "%s keresés..."
@@ -15131,12 +15057,6 @@ msgstr "Keresés"
 
 msgid "Searching east ..."
 msgstr "Keresés keletre..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Elérhető frissítések keresése. Kérem, várjon..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Újonnan telepített, vagy eltávolított szoftvercsomagok keresése. Kérem, várjon..."
 
 msgid "Searching west ..."
 msgstr "Keresés nyugatra..."
@@ -15818,6 +15738,9 @@ msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletet csa
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16007,12 +15930,6 @@ msgstr "Műholdak kiválasztása 2. (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Ezzel a beállítással egy blokkban konfigurálhatja a műholdak egy csoportját."
-
-msgid "Send"
-msgstr "Küld"
-
-msgid "Send Confirmation"
-msgstr "A megerősítés elküldése"
 
 msgid "Send DiSEqC"
 msgstr "DiSEqC parancs küldése"
@@ -16922,6 +16839,9 @@ msgstr "Alapértelmezés szerint mentett fájlok megjelenítése"
 msgid "Show first image"
 msgstr ""
 
+msgid "Show free space in timer view"
+msgstr ""
+
 msgid "Show graphical multi EPG"
 msgstr "Grafikus multi EPG megjelenítése"
 
@@ -17407,9 +17327,6 @@ msgstr "Kijelző kinézet választás (Skin)"
 msgid "SkinSelector"
 msgstr "Kinézet választó (Skin)"
 
-msgid "Skins"
-msgstr "Kinézetek"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Internet-kapcsolat ellenőrzésének mellőzése (automatikus csomag-telepítés is tiltva lesz)"
 
@@ -17614,9 +17531,6 @@ msgstr ""
 msgid "Softcams"
 msgstr "Softcams"
 
-msgid "Software"
-msgstr "Szoftver"
-
 msgid "Software Management"
 msgstr "Szoftverkezelés"
 
@@ -17714,9 +17628,6 @@ msgstr "Sajnálom, a %s nincs feltelepítve!"
 
 msgid "Sorry, no backups found!"
 msgstr "Nincs rendszerbeállítás mentés!"
-
-msgid "Sorry, no details available!"
-msgstr "Sajnáljuk, de nincs elérhető információ!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "Sajnáljuk, nincs olyan fizikai eszköz, amely támogatja a SWAP csatolását. Nem hozható létre Swapfile a hálózati vagy fat32 fájlrendszereken"
@@ -18413,7 +18324,7 @@ msgstr "Szinkronhiba 0-hoz visszatérésk!"
 msgid "Sync time using"
 msgstr "Az idő szinkronizálás módja"
 
-msgid "Synchronize systemtime using transponder or Internet."
+msgid "Synchronize system time using transponder or Internet."
 msgstr "A rendszer idő szinkronizálása a Transzponder ideje alapján vagy az internetről (NTP szerver) történjen."
 
 msgid "Syrian Arab Republic"
@@ -18964,16 +18875,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"A szoftver menedzsment bővítmény nincs feltelepítve!\n"
-"Kérem, telepítse fel."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Az aktuális frissítés állapotát nem lehet ellenőrizni, mert a https://www.opena.tv valamilyen okból nem érhető el"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Az időt megszorozzuk az aktuális ismétlési számlálóval."
 
@@ -19022,12 +18923,6 @@ msgstr "A varázsló el tudja menteni a jelenlegi beállításait. szeretne most
 
 msgid "The wizard is finished now."
 msgstr "A varázsló befejezte feladatát."
-
-msgid "There are at least "
-msgstr "Legalább "
-
-msgid "There are currently no outstanding actions."
-msgstr "Semmilyen kiemelkedő esemény nem következik."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19106,9 +19001,6 @@ msgstr "Ez lehetővé teszi a bővítmények modulok megjelenítését a letölt
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Ez lehetővé teszi a kernel moduljainak megjelenítését a letöltések között"
-
-msgid "This allows you to show languages in downloads"
-msgstr "Ez lehetővé teszi a nyelvek megjelenítését a letöltések között"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Ez lehetővé teszi a lcd kinézetek megjelenítését a letöltések között"
@@ -19361,18 +19253,6 @@ msgstr "Ezzel beállítja a kép élességét, amelyet a kép felskálázásnál
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
-
-msgid "This plugin is installed."
-msgstr "A bővítmény telepítve van."
-
-msgid "This plugin is not installed."
-msgstr "A bővítmény nincs telepítve."
-
-msgid "This plugin will be installed."
-msgstr "A bővítmény telepítve lesz."
-
-msgid "This plugin will be removed."
-msgstr "A bővítmény el lesz távolítva."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
@@ -20078,6 +19958,12 @@ msgstr "Típus"
 msgid "Type / Model"
 msgstr ""
 
+msgid "Type of LNB/Device"
+msgstr ""
+
+msgid "Type of device"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Keresés típusa"
 
@@ -20142,12 +20028,6 @@ msgstr "Meghatározatlan"
 msgid "Undetermined"
 msgstr "Meghatározatlan"
 
-msgid "Undo install"
-msgstr "Telepítés visszavonása"
-
-msgid "Undo uninstall"
-msgstr "Eltávolítás visszavonása"
-
 msgid "Unencrypted"
 msgstr "Kódolatlan"
 
@@ -20168,9 +20048,6 @@ msgstr "Unicable fej"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Mátrix"
-
-msgid "Uninstall"
-msgstr "Eltávolítás"
 
 msgid "United Arab Emirates"
 msgstr "Egyesült Arab Emírségek"
@@ -20289,9 +20166,6 @@ msgstr "Fel/Le gombok is hasonlóan az 'összes Fel/Le' használatához?"
 msgid "Update"
 msgstr "Frissítés"
 
-msgid "Update at your own risk"
-msgstr "Mindenki a saját felelősségére frissítse"
-
 msgid "Update completed."
 msgstr ""
 
@@ -20304,17 +20178,11 @@ msgstr "Frissítési késleltetés az Eseményeknek a listában. A listában val
 msgid "Update failed!"
 msgstr "A frissítés sikertelen!"
 
-msgid "Update feed not available."
-msgstr "Frissítő szerver nem elérhető."
-
 msgid "Update finished!"
 msgstr "Frissítés befejezve!"
 
 msgid "Update interval (in seconds)"
 msgstr "Frissítési intervallum (másodpercben)"
-
-msgid "Update is reported as faulty !!"
-msgstr "A frissítés hibásnak bizonyult !!"
 
 msgid ""
 "Update succeeded!\n"
@@ -20344,9 +20212,6 @@ msgstr "Frissítés"
 msgid "Updating mount locations."
 msgstr "Csatlakozási helyek frissítése."
 
-msgid "Updating software catalog"
-msgstr "Szoftver katalógus frissítése"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -20365,9 +20230,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Frissítés kinézet frissítéssel együtt (GUI-val)"
-
-msgid "Upgrading"
-msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -20441,8 +20303,8 @@ msgstr "Netmed EPG információk beolvasása a jelforrásból."
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "OnlineFlash használva a Szoftver kezelőben"
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "OpenTV EPG információk beolvasása a jelforrásból."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
 
 msgid "Use QuickSelect"
 msgstr ""
@@ -20935,48 +20797,6 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr "Rass interaktív szolgáltatás használata..."
 
-msgid "View details"
-msgstr "Részletek megtekintése"
-
-msgid "View list of available "
-msgstr "Az elérhetők listázása: "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Az elérhető CI-bővítmények listázása"
-
-msgid "View list of available EPG extensions."
-msgstr "Az elérhető EPG-bővítmények listája."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Az elérhető műholdvevő berendezés bővítményeinek listázása."
-
-msgid "View list of available communication extensions."
-msgstr "Az elérhető kommunikációs bővítmények listázása."
-
-msgid "View list of available default settings"
-msgstr "Az elérhető csatornalisták listázása"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Az elérhető képernyő- és felhasználói felület bővítményeinek listázása."
-
-msgid "View list of available multimedia extensions."
-msgstr "Az elérhető multimédia bővítmények listázása."
-
-msgid "View list of available networking extensions"
-msgstr "Az elérhető hálózati bővítmények listázása"
-
-msgid "View list of available recording extensions"
-msgstr "Az elérhető felvételi bővítmények listázása"
-
-msgid "View list of available skins"
-msgstr "Az elérhető kinézetek (Skin) listázása"
-
-msgid "View list of available software extensions"
-msgstr "Az elérhető szoftveres bővítmények listázása"
-
-msgid "View list of available system extensions"
-msgstr "Az elérhető rendszer bővítmények listázása"
-
 msgid "View mode"
 msgstr "Megjelenítési mód"
 
@@ -21322,6 +21142,9 @@ msgid "What would you like to do with the script file:"
 msgstr ""
 
 msgid "What would you like to do?"
+msgstr ""
+
+msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
@@ -21772,26 +21595,14 @@ msgstr "Megjelenítheti a MiniTV-t OSD menüvel vagy anélkül"
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Megjelenítheti a Kép-a-Képben-t OSD menüvel vagy anélkül"
 
-msgid "You can cancel the installation."
-msgstr "A telepítés folyamata leállítható."
-
-msgid "You can cancel the removal."
-msgstr "Az eltávolítás folyamata leállítható."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "A készülék használatát folytathatja a megszokott módon."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "A listát az idő vagy az alfanumerikus sorrend szerint rendezheti."
 
-msgid "You can install this plugin."
-msgstr "A bővítmény telepíthető."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Csak Dreambox felvételeket lehet készíteni!"
-
-msgid "You can remove this plugin."
-msgstr "A bővítmény eltávolítható."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Ezt a funkciót kihagyhatja, és kikapcsolhatja a TV-készüléket, amikor készenléti állapotban felébreszti a vevőt, és azonnal visszatér készenléti állapotba."
@@ -21802,9 +21613,6 @@ msgstr "Ennél a %s tuner típusnál a ballal és jobbal tud váltani"
 
 msgid "You cannot delete this!"
 msgstr "Ez nem törölheti le!"
-
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Már elküldted ezt a naplót, biztos, hogy ezt a naplót újra szeretnéd küldeni:\n"
 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Ön azt választotta, hogy a beállításairól egy biztonsági másolatot készít. Kérem, nyomja le az OK gombot a folytatáshoz."
@@ -21825,18 +21633,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "Nincs parancsfájlod a futáshoz."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Nem állította be felhasználói információit a beállítási képernyőn\n"
-"Nyomja meg a MENU gombot, és írja be az adatait, majd próbálja újra"
-
 msgid "You have selected no logs to delete."
 msgstr "Nem választotta ki a törölni kívánt naplót."
-
-msgid "You have selected no logs to send."
-msgstr "Nem választotta ki a küldeni kívánt naplót."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "Az automatikus indítás aktiválásához létre kell hoznia egy Swap fájlt."
@@ -21927,10 +21725,6 @@ msgstr "A(z) %s %s készülék most kikapcsol"
 
 msgid "Your %s %s is shutting down. Please wait..."
 msgstr "A(z) %s %s készülék most kikapcsol. Kérem, várjon..."
-
-#, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "A(z) %s %s készülék nem kapcsolódik rendesen az internethez. Ellenőrizze és próbálja újra."
 
 #, python-format
 msgid ""
@@ -22051,32 +21845,6 @@ msgid ""
 msgstr ""
 "A előlapi kijelző frissülni fog.\n"
 "Ez eltarthat néhány percig"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"A Lemezkép elavult!\n"
-"\n"
-"Ilyen hosszú idő elteltével fennáll annak a veszélye, hogy a(z) %s %s készülék nem fog\n"
-"az online frissítés után elindulni, vagy megjeleníti a működésképtelenséget a Lemezkép futtatásakor.\n"
-"\n"
-"Egy új Flashelés növeli a stabilitást\n"
-"\n"
-"Az online frissítés a saját felelősségére történik!\n"
-"\n"
-"\n"
-"Még frissíteni szeretné?"
 
 msgid "Your network configuration has been activated."
 msgstr "A hálózati konfiguráció aktiválva lett."
@@ -22644,9 +22412,6 @@ msgstr "kliépés a hálózati adapter beállításaiból"
 msgid "experimental film/video"
 msgstr "kísérleti filmezés"
 
-msgid "extensions."
-msgstr "bővítmények."
-
 msgid "externally loopthrough to"
 msgstr "külsőleg átfűzés ide"
 
@@ -22775,13 +22540,6 @@ msgstr "kézművesség"
 
 msgid "handled"
 msgstr "kezelve"
-
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
-msgstr ""
-"elküldték az SVN csapatának.\n"
-"kérjük idézni"
 
 msgid "hdr10"
 msgstr "hdr10"
@@ -23062,9 +22820,6 @@ msgstr "csak HD"
 msgid "original language"
 msgstr "eredeti nyelv"
 
-msgid "packages selected."
-msgstr "csomag kiválasztva."
-
 msgid "pass"
 msgstr "művelet"
 
@@ -23157,9 +22912,6 @@ msgstr "földfelszíni szolgáltatás eltávolítása"
 
 msgid "remove this mark"
 msgstr "e jelzö eltávolítása"
-
-msgid "rename"
-msgstr "átnevez"
 
 msgid "rename entry"
 msgstr "átnevezés"
@@ -23482,9 +23234,6 @@ msgstr "kikapcsolásig/újra indításig"
 msgid "update"
 msgstr "frissítés"
 
-msgid "updates available."
-msgstr "frissítés elérhető."
-
 msgid "use best / controlled by HDMI"
 msgstr "a legjobb / a HDMI által vezérelt"
 
@@ -23517,18 +23266,6 @@ msgstr "vizi sport"
 
 msgid "west"
 msgstr "nyugat"
-
-msgid "when asking question about this log"
-msgstr "mikor kérdez a naplóról"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"mikor kérdez a naplóról\n"
-"\n"
-"Egy példányt elküldtek magának."
 
 msgid "wide"
 msgstr "széles"
@@ -23566,12 +23303,330 @@ msgstr "sárga"
 msgid "yes (keep feeds)"
 msgstr "igen (állapotok megtartása)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "a(z) %s %s készülék most lehet, hogy használhatatlanná válhat. A(z) %s %s készülék újraindítása előtt olvassa el a kézikönyvet további segítségért."
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s %s software because updates are available."
+#~ msgstr "%s %s szoftver, mert frissítések érhetők el."
+
+#~ msgid "A small overview of the available icon states and actions."
+#~ msgstr "Egy gyors áttekintés az elérhető ikonokról és állapotokról."
+
+#~ msgid "Aborting update progress"
+#~ msgstr "Frissítési folyamat megszakítása"
+
+#~ msgid "Author: "
+#~ msgstr "Szerző: "
+
+#~ msgid "Caution update not yet tested !!"
+#~ msgstr "Vigyázat, a frissítés nincs tesztelve !!"
+
+#~ msgid "Communication"
+#~ msgstr "Kommunikáció"
+
+#~ msgid "Continue"
+#~ msgstr "Folytatás"
+
+#~ msgid "Default settings"
+#~ msgstr "Alapértelmezett beállítások"
+
+#~ msgid "Display and user interface"
+#~ msgstr "Kijelző és felhasználói felület"
+
+#~ msgid "Do you want to update your box?"
+#~ msgstr "Szeretné frissíteni a készülék szoftverét?"
+
+#, python-format
+#~ msgid "Done - Installed or upgraded %d packages"
+#~ msgstr "%d szoftvercsomag telepítése, frissítése elkészült"
+
+#~ msgid "Extensions Management"
+#~ msgstr "Bővítmények kezelése"
+
+#~ msgid "Following tasks will be done after you press OK!"
+#~ msgstr "Végrehajtás az OK gomb lenyomása után történik!"
+
+#~ msgid "For more information see https://www.opena.tv"
+#~ msgstr "További információ: https://www.opena.tv"
+
+#~ msgid "Install or remove finished."
+#~ msgstr "A telepítés vagy eltávolítás befejeződött."
+
+#~ msgid "Multimedia"
+#~ msgstr "Multimédia"
+
+#~ msgid "No description available."
+#~ msgstr "Nincs elérhető leírás."
+
+#~ msgid "No network connection available."
+#~ msgstr "Nincs elérhető hálózati kapcsolat."
+
+#~ msgid "No packages were upgraded yet. So you can check your network and try again."
+#~ msgstr "Még nem lettek frissítve a csomagok. Ellenőrizze újra a hálózatot, és próbálja meg újra."
+
+#~ msgid "Only extensions."
+#~ msgstr "Csak bővítmények."
+
+#~ msgid "Plugin Details"
+#~ msgstr "Bővítmény részletei"
+
+#~ msgid "Plugin Manager Activity Information"
+#~ msgstr "Bővítménykezelő - végrehajtási információk"
+
+#~ msgid "Plugin Manager Help"
+#~ msgstr "Bővítménykezelő - súgó"
+
+#~ msgid "Process"
+#~ msgstr "Futtatás"
+
+#~ msgid "Satellite equipment"
+#~ msgstr "Műholdvevő eszköz"
+
+#~ msgid "Searching for available updates. Please wait..."
+#~ msgstr "Elérhető frissítések keresése. Kérem, várjon..."
+
+#~ msgid "Searching for new installed or removed packages. Please wait..."
+#~ msgstr "Újonnan telepített, vagy eltávolított szoftvercsomagok keresése. Kérem, várjon..."
+
+#~ msgid "Skins"
+#~ msgstr "Kinézetek"
+
+#~ msgid "Software"
+#~ msgstr "Szoftver"
+
+#~ msgid "Sorry, no details available!"
+#~ msgstr "Sajnáljuk, de nincs elérhető információ!"
+
+#~ msgid ""
+#~ "The software management extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "A szoftver menedzsment bővítmény nincs feltelepítve!\n"
+#~ "Kérem, telepítse fel."
+
+#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
+#~ msgstr "Az aktuális frissítés állapotát nem lehet ellenőrizni, mert a https://www.opena.tv valamilyen okból nem érhető el"
+
+#~ msgid "There are at least "
+#~ msgstr "Legalább "
+
+#~ msgid "There are currently no outstanding actions."
+#~ msgstr "Semmilyen kiemelkedő esemény nem következik."
+
+#~ msgid "This allows you to show languages in downloads"
+#~ msgstr "Ez lehetővé teszi a nyelvek megjelenítését a letöltések között"
+
+#~ msgid "This plugin is installed."
+#~ msgstr "A bővítmény telepítve van."
+
+#~ msgid "This plugin is not installed."
+#~ msgstr "A bővítmény nincs telepítve."
+
+#~ msgid "This plugin will be installed."
+#~ msgstr "A bővítmény telepítve lesz."
+
+#~ msgid "This plugin will be removed."
+#~ msgstr "A bővítmény el lesz távolítva."
+
+#~ msgid "Undo install"
+#~ msgstr "Telepítés visszavonása"
+
+#~ msgid "Undo uninstall"
+#~ msgstr "Eltávolítás visszavonása"
+
+#~ msgid "Uninstall"
+#~ msgstr "Eltávolítás"
+
+#~ msgid "Update at your own risk"
+#~ msgstr "Mindenki a saját felelősségére frissítse"
+
+#~ msgid "Update feed not available."
+#~ msgstr "Frissítő szerver nem elérhető."
+
+#~ msgid "Update is reported as faulty !!"
+#~ msgstr "A frissítés hibásnak bizonyult !!"
+
+#~ msgid "Updating software catalog"
+#~ msgstr "Szoftver katalógus frissítése"
+
+#~ msgid "View details"
+#~ msgstr "Részletek megtekintése"
+
+#~ msgid "View list of available "
+#~ msgstr "Az elérhetők listázása: "
+
+#~ msgid "View list of available CommonInterface extensions"
+#~ msgstr "Az elérhető CI-bővítmények listázása"
+
+#~ msgid "View list of available EPG extensions."
+#~ msgstr "Az elérhető EPG-bővítmények listája."
+
+#~ msgid "View list of available Satellite equipment extensions."
+#~ msgstr "Az elérhető műholdvevő berendezés bővítményeinek listázása."
+
+#~ msgid "View list of available communication extensions."
+#~ msgstr "Az elérhető kommunikációs bővítmények listázása."
+
+#~ msgid "View list of available default settings"
+#~ msgstr "Az elérhető csatornalisták listázása"
+
+#~ msgid "View list of available display and user interface extensions."
+#~ msgstr "Az elérhető képernyő- és felhasználói felület bővítményeinek listázása."
+
+#~ msgid "View list of available multimedia extensions."
+#~ msgstr "Az elérhető multimédia bővítmények listázása."
+
+#~ msgid "View list of available networking extensions"
+#~ msgstr "Az elérhető hálózati bővítmények listázása"
+
+#~ msgid "View list of available recording extensions"
+#~ msgstr "Az elérhető felvételi bővítmények listázása"
+
+#~ msgid "View list of available skins"
+#~ msgstr "Az elérhető kinézetek (Skin) listázása"
+
+#~ msgid "View list of available software extensions"
+#~ msgstr "Az elérhető szoftveres bővítmények listázása"
+
+#~ msgid "View list of available system extensions"
+#~ msgstr "Az elérhető rendszer bővítmények listázása"
+
+#~ msgid "You can cancel the installation."
+#~ msgstr "A telepítés folyamata leállítható."
+
+#~ msgid "You can cancel the removal."
+#~ msgstr "Az eltávolítás folyamata leállítható."
+
+#~ msgid "You can install this plugin."
+#~ msgstr "A bővítmény telepíthető."
+
+#~ msgid "You can remove this plugin."
+#~ msgstr "A bővítmény eltávolítható."
+
+#, python-format
+#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
+#~ msgstr "A(z) %s %s készülék nem kapcsolódik rendesen az internethez. Ellenőrizze és próbálja újra."
+
+#, python-format
+#~ msgid ""
+#~ "Your image is out of date!\n"
+#~ "\n"
+#~ "After such a long time, there is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "A new flash will increase the stability\n"
+#~ "\n"
+#~ "An online update is done at your own risk !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Do you still want to update?"
+#~ msgstr ""
+#~ "A Lemezkép elavult!\n"
+#~ "\n"
+#~ "Ilyen hosszú idő elteltével fennáll annak a veszélye, hogy a(z) %s %s készülék nem fog\n"
+#~ "az online frissítés után elindulni, vagy megjeleníti a működésképtelenséget a Lemezkép futtatásakor.\n"
+#~ "\n"
+#~ "Egy új Flashelés növeli a stabilitást\n"
+#~ "\n"
+#~ "Az online frissítés a saját felelősségére történik!\n"
+#~ "\n"
+#~ "\n"
+#~ "Még frissíteni szeretné?"
+
+#~ msgid "extensions."
+#~ msgstr "bővítmények."
+
+#~ msgid "packages selected."
+#~ msgstr "csomag kiválasztva."
+
+#~ msgid "updates available."
+#~ msgstr "frissítés elérhető."
+
+#, python-format
+#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+#~ msgstr "a(z) %s %s készülék most lehet, hogy használhatatlanná válhat. A(z) %s %s készülék újraindítása előtt olvassa el a kézikönyvet további segítségért."
+
+#~ msgid "Additional Info"
+#~ msgstr "További információ"
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Biztos benne, hogy elküldi ezt a naplót:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Fájl csatolása"
+
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "Szeretne további információkat megadni?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "Szeretne egy szövegfájlt csatolni a naplóhoz?\n"
+#~ "(válassza a 'Nem' lehetőséget a virtuális billentyűzet használatához.)"
+
+#~ msgid ""
+#~ "Do you want to send all selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "Szeretné elküldeni az összes kiválasztott fájlt:\n"
+#~ "(válassza a 'Nem' lehetőséget csak a kiválasztott fájl elküldéséhez.)"
+
+#, python-format
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Hiba:\n"
+#~ "%s"
+
+#~ msgid "Send"
+#~ msgstr "Küld"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "A megerősítés elküldése"
+
+#~ msgid "Use OpenTV EPG information when it is available."
+#~ msgstr "OpenTV EPG információk beolvasása a jelforrásból."
+
+#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
+#~ msgstr "Már elküldted ezt a naplót, biztos, hogy ezt a naplót újra szeretnéd küldeni:\n"
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, and enter your info, then try again"
+#~ msgstr ""
+#~ "Nem állította be felhasználói információit a beállítási képernyőn\n"
+#~ "Nyomja meg a MENU gombot, és írja be az adatait, majd próbálja újra"
+
+#~ msgid "You have selected no logs to send."
+#~ msgstr "Nem választotta ki a küldeni kívánt naplót."
+
+#~ msgid ""
+#~ "has been sent to the SVN team team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "elküldték az SVN csapatának.\n"
+#~ "kérjük idézni"
+
+#~ msgid "rename"
+#~ msgstr "átnevez"
+
+#~ msgid "when asking question about this log"
+#~ msgstr "mikor kérdez a naplóról"
+
+#~ msgid ""
+#~ "when asking question about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "mikor kérdez a naplóról\n"
+#~ "\n"
+#~ "Egy példányt elküldtek magának."
+
+#~ msgid "LOF"
+#~ msgstr "LOF"
 
 #~ msgid "Virtual KeyBoard Functions"
 #~ msgstr "Virtuális Billentyűzet Függvények"
