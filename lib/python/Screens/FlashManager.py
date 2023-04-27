@@ -254,7 +254,14 @@ class FlashManager(Screen, HelpableScreen):
 
 	def keyDeleteImage(self):
 		currentSelection = self["list"].getCurrent()[0][1]
+		currentSelectionImage = self["list"].getCurrent()[0][0]
 		if not ("://" in currentSelection or currentSelection in ["Expanded", "Loading"]):
+			self.session.openWithCallback(self.keyDeleteImageFile, MessageBox, _("Do you want to delete the '%s' ?") % currentSelectionImage, MessageBox.TYPE_YESNO, default=False)
+
+
+	def keyDeleteImageFile(self, result):
+		currentSelection = self["list"].getCurrent()[0][1]
+		if result:
 			try:
 				unlink(currentSelection)
 				currentSelection = ".".join([currentSelection[:-4], "unzipped"])
