@@ -976,9 +976,9 @@ void eListbox::moveSelection(int dir)
 	if (m_orientation == orVertical && m_native_keys_bound)
 	{
 		if (dir == moveLeft)
-			dir = movePageDown;
-		if (dir == moveRight)
 			dir = movePageUp;
+		if (dir == moveRight)
+			dir = movePageDown;
 	}
 
 	bool isGrid = m_orientation == orGrid;

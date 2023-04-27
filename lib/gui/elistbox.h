@@ -207,6 +207,11 @@ public:
 	void setForegroundColor(gRGB &col);
 	void setForegroundColorSelected(gRGB &col);
 
+	void clearBackgroundColor() { m_style.m_background_color_set = 0; }
+	void clearBackgroundColorSelected() { m_style.m_background_color_selected_set = 0; }
+	void clearForegroundColor() { m_style.m_foreground_color_set = 0; }
+	void clearForegroundColorSelected() { m_style.m_foreground_color_selected_set = 0; }
+
 	void setBorderColor(const gRGB &col) { m_style.m_border_color = col; }
 	void setBorderWidth(int size);
 
@@ -258,7 +263,7 @@ public:
 	int getScrollbarHeight() { return m_scrollbar_height; }
 	int getScrollbarOffset() { return m_scrollbar_offset; }
 	int getScrollbarBorderWidth() { return m_scrollbar_border_width; }
-	int getItemAlignment() {return m_item_alignment; }
+	int getItemAlignment() { return m_item_alignment; }
 	int getPageSize() { return m_page_size; }
 	int getItemHeight() { return m_itemheight; }
 	int getItemWidth() { return m_itemwidth; }

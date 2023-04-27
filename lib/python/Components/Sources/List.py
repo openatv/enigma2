@@ -3,7 +3,7 @@ from Components.Sources.Source import Source
 
 
 class List(Source):
-	"""The datasource of a listbox. Currently, the format depends on the used converter. So
+	"""The data source of a listbox. Currently, the format depends on the used converter. So
 if you put a simple string list in here, you need to use a StringList converter, if you are
 using a "multi content list styled"-list, you need to use the StaticMultiList converter, and
 setup the "fonts".
@@ -13,8 +13,8 @@ to generate HTML."""
 
 	# NOTE: The calling arguments enableWraparound, item_height and fonts are not
 	# used but remain here so that calling code does not need to be modified.
-	# The enableWrapAround function is correctly handles by the C++ code and the 
-	# use of the enableWrapAround="1" attribute in the skin. Similarly the 
+	# The enableWrapAround function is correctly handled by the C++ code and the
+	# use of the enableWrapAround="1" attribute in the skin. Similarly the
 	# itemHeight and font specifications are handled by the skin.
 	#
 	def __init__(self, list=[], enableWrapAround=None, item_height=0, fonts=[]):
@@ -39,13 +39,16 @@ to generate HTML."""
 		self.index = oldIndex
 		self.disableCallbacks = False
 
-	def entry_changed(self, index):
+	def entryChanged(self, index):
 		if not self.disableCallbacks:
 			self.downstream_elements.entry_changed(index)
 
+	def entry_changed(self, index):  # IanSav: Is this old name really required?
+		return self.entryChanged(index)
+
 	def modifyEntry(self, index, data):
 		self.listData[index] = data
-		self.entry_changed(index)
+		self.entryChanged(index)
 
 	def selectionChanged(self, index):
 		if self.disableCallbacks:
@@ -73,6 +76,8 @@ to generate HTML."""
 
 	index = property(getCurrentIndex, setCurrentIndex)
 
+	# Old index method names.
+	#
 	def getSelectedIndex(self):
 		return self.getCurrentIndex()
 
@@ -96,6 +101,27 @@ to generate HTML."""
 	def count(self):
 		return len(self.listData)
 
+	def enableAutoNavigation(self, value):
+		try:
+			instance = self.master.master.instance
+			instance.enableAutoNavigation(value)
+		except AttributeError:
+			return
+
+	def show(self):
+		try:
+			instance = self.master.master.instance
+			instance.show()
+		except AttributeError:
+			return
+
+	def hide(self):
+		try:
+			instance = self.master.master.instance
+			instance.hide()
+		except AttributeError:
+			return
+
 	def goTop(self):
 		try:
 			instance = self.master.master.instance
@@ -114,6 +140,20 @@ to generate HTML."""
 		try:
 			instance = self.master.master.instance
 			instance.goLineUp()
+		except AttributeError:
+			return
+
+	def goLeft(self):
+		try:
+			instance = self.master.master.instance
+			instance.goLeft()
+		except AttributeError:
+			return
+
+	def goRight(self):
+		try:
+			instance = self.master.master.instance
+			instance.goRight()
 		except AttributeError:
 			return
 
