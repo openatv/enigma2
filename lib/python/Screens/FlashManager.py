@@ -258,7 +258,6 @@ class FlashManager(Screen, HelpableScreen):
 		if not ("://" in currentSelection or currentSelection in ["Expanded", "Loading"]):
 			self.session.openWithCallback(self.keyDeleteImageFile, MessageBox, _("Do you really want to delete '%s'?") % currentSelectionImage, MessageBox.TYPE_YESNO, default=False)
 
-
 	def keyDeleteImageFile(self, result):
 		currentSelection = self["list"].getCurrent()[0][1]
 		if result:
