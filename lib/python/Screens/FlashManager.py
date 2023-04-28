@@ -1,15 +1,15 @@
 from json import load
 from os import W_OK, access, listdir, major, makedirs, minor, mkdir, sep, stat, statvfs, unlink, walk
-from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join as pathjoin
+from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join
 from shutil import rmtree
 from time import time
-from urllib.request import urlopen, Request
+from urllib.request import Request, urlopen
 from zipfile import ZipFile
 
 from enigma import eEPGCache, eTimer, fbClass
 
 from Components.ActionMap import HelpableActionMap
-from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.config import config
 from Components.Console import Console
 from Components.Label import Label
@@ -126,6 +126,10 @@ class FlashManager(Screen, HelpableScreen):
 				except Exception:
 					print("[FlashManager] getImagesList Error: Unable to extract file list from Zip file '%s'!" % file)
 
+		def getImagesListCallback(retVal=None):  # The retVal argument absorbs the unwanted return value from MessageBox.
+			if self.imageFeed != "openATV":
+				self.keyDistributionCallback("openATV")  # No images can be found for the selected distribution so go back to the openATV default.
+
 		if not self.imagesList:
 			index = findInList(self.imageFeed)
 			if index is None:
@@ -150,15 +154,15 @@ class FlashManager(Screen, HelpableScreen):
 			for media in ["/media/%s" % x for x in listdir("/media")] + (["/media/net/%s" % x for x in listdir("/media/net")] if isdir("/media/net") else []):
 				# print("[FlashManager] getImagesList DEBUG: media='%s'." % media)
 				if not (BoxInfo.getItem("HasMMC") and "/mmc" in media) and isdir(media):
-					getImages(media, [pathjoin(media, x) for x in listdir(media) if splitext(x)[1] == ".zip" and self.box in x])
+					getImages(media, [join(media, x) for x in listdir(media) if splitext(x)[1] == ".zip" and self.box in x])
 					for folder in ["images", "downloaded_images", "imagebackups"]:
 						if folder in listdir(media):
-							subFolder = pathjoin(media, folder)
+							subFolder = join(media, folder)
 							# print("[FlashManager] getImagesList DEBUG: subFolder='%s'." % subFolder)
 							if isdir(subFolder) and not islink(subFolder) and not ismount(subFolder):
 								# print("[FlashManager] getImagesList DEBUG: Next subFolder='%s'." % subFolder)
-								getImages(subFolder, [pathjoin(subFolder, x) for x in listdir(subFolder) if splitext(x)[1] == ".zip" and self.box in x])
-								for dir in [dir for dir in [pathjoin(subFolder, dir) for dir in listdir(subFolder)] if isdir(dir) and splitext(dir)[1] == ".unzipped"]:
+								getImages(subFolder, [join(subFolder, x) for x in listdir(subFolder) if splitext(x)[1] == ".zip" and self.box in x])
+								for dir in [dir for dir in [join(subFolder, dir) for dir in listdir(subFolder)] if isdir(dir) and splitext(dir)[1] == ".unzipped"]:
 									try:
 										rmtree(dir)
 									except OSError as err:
@@ -184,11 +188,7 @@ class FlashManager(Screen, HelpableScreen):
 				self.setIndex = 0
 			self.selectionChanged()
 		else:
-			self.session.openWithCallback(self.getImagesListCallback, MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
-
-	def getImagesListCallback(self, retVal=None):  # The retVal argument absorbs the unwanted return value from MessageBox.
-		if self.imageFeed != "openATV":
-			self.keyDistributionCallback("openATV")  # No images can be found for the selected distribution so go back to the openATV default.
+			self.session.openWithCallback(getImagesListCallback, MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
 
 	def keyCancel(self):
 		self.close()
@@ -197,6 +197,10 @@ class FlashManager(Screen, HelpableScreen):
 		self.close(True)
 
 	def keyOk(self):
+		def reloadImagesList():
+			self.imagesList = {}
+			self.getImagesList()
+
 		currentSelection = self["list"].getCurrent()
 		if currentSelection[0][1] == "Expanded":
 			if currentSelection[0][0] in self.expanded:
@@ -205,30 +209,30 @@ class FlashManager(Screen, HelpableScreen):
 				self.expanded.append(currentSelection[0][0])
 			self.getImagesList()
 		elif currentSelection[0][1] != "Loading":
-			self.session.openWithCallback(self.reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1])
+			self.session.openWithCallback(reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1])
 
 	def keyTop(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveTop)
+		self["list"].instance.goTop()
 		self.selectionChanged()
 
 	def keyPageUp(self):
-		self["list"].instance.moveSelection(self["list"].instance.pageUp)
+		self["list"].instance.goPageUp()
 		self.selectionChanged()
 
 	def keyUp(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveUp)
+		self["list"].instance.goLineUp()
 		self.selectionChanged()
 
 	def keyDown(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveDown)
+		self["list"].instance.goLineDown()
 		self.selectionChanged()
 
 	def keyPageDown(self):
-		self["list"].instance.moveSelection(self["list"].instance.pageDown)
+		self["list"].instance.goPageDown()
 		self.selectionChanged()
 
 	def keyBottom(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveEnd)
+		self["list"].instance.goBottom()
 		self.selectionChanged()
 
 	def keyDistribution(self):
@@ -253,22 +257,24 @@ class FlashManager(Screen, HelpableScreen):
 			self["list"].moveToIndex(self.setIndex)
 
 	def keyDeleteImage(self):
-		currentSelection = self["list"].getCurrent()[0][1]
-		if not ("://" in currentSelection or currentSelection in ["Expanded", "Loading"]):
-			try:
-				unlink(currentSelection)
-				currentSelection = ".".join([currentSelection[:-4], "unzipped"])
-				if isdir(currentSelection):
-					rmtree(currentSelection)
-				self.setIndex = self["list"].getSelectedIndex()
-				self.imagesList = {}
-				self.getImagesList()
-			except OSError as err:
-				self.session.open(MessageBox, _("Error %d: Unable to delete downloaded image '%s'!  (%s)" % (err.errno, currentSelection, err.strerror)), MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
+		def keyDeleteImageCallback(result):
+			currentSelection = self["list"].getCurrent()[0][1]
+			if result:
+				try:
+					unlink(currentSelection)
+					currentSelection = ".".join([currentSelection[:-4], "unzipped"])
+					if isdir(currentSelection):
+						rmtree(currentSelection)
+					self.setIndex = self["list"].getSelectedIndex()
+					self.imagesList = {}
+					self.getImagesList()
+				except OSError as err:
+					self.session.open(MessageBox, _("Error %d: Unable to delete downloaded image '%s'!  (%s)" % (err.errno, currentSelection, err.strerror)), MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
 
-	def reloadImagesList(self):
-		self.imagesList = {}
-		self.getImagesList()
+		currentSelection = self["list"].getCurrent()[0][1]
+		currentSelectionImage = self["list"].getCurrent()[0][0]
+		if not ("://" in currentSelection or currentSelection in ["Expanded", "Loading"]):
+			self.session.openWithCallback(keyDeleteImageCallback, MessageBox, _("Do you want to delete the '%s'?") % currentSelectionImage, MessageBox.TYPE_YESNO, default=False)
 
 	def selectionChanged(self):
 		currentSelection = self["list"].getCurrent()[0]
@@ -399,9 +405,9 @@ class FlashImage(Screen, HelpableScreen):
 				return
 			destination, isDevice = findMedia(["/media/hdd", "/media/usb"])
 			if destination:
-				destination = pathjoin(destination, "images")
-				self.zippedImage = "://" in self.source and pathjoin(destination, self.imageName) or self.source
-				self.unzippedImage = pathjoin(destination, "%s.unzipped" % self.imageName[:-4])
+				destination = join(destination, "images")
+				self.zippedImage = "://" in self.source and join(destination, self.imageName) or self.source
+				self.unzippedImage = join(destination, "%s.unzipped" % self.imageName[:-4])
 				try:
 					if isfile(destination):
 						unlink(destination)
@@ -505,7 +511,7 @@ class FlashImage(Screen, HelpableScreen):
 				if restoreSettingsnoPlugin:
 					filesToCreate.append("noplugins")
 				for fileName in ["settings", "plugins", "noplugins"]:
-					path = pathjoin(rootFolder, fileName)
+					path = join(rootFolder, fileName)
 					if fileName in filesToCreate:
 						try:
 							open(path, "w").close()
@@ -518,7 +524,7 @@ class FlashImage(Screen, HelpableScreen):
 					if config.plugins.softwaremanager.restoremode.value is not None:
 						try:
 							for fileName in ["slow", "fast", "turbo"]:
-								path = pathjoin(rootFolder, fileName)
+								path = join(rootFolder, fileName)
 								if fileName == config.plugins.softwaremanager.restoremode.value:
 									if not exists(path):
 										open(path, "w").close()
@@ -603,10 +609,7 @@ class FlashImage(Screen, HelpableScreen):
 			rootSubDir = None
 			bootSlots = MultiBoot.getBootSlots()
 			if bootSlots:
-				if BoxInfo.getItem("HasKexecMultiboot"):
-					mtdKernel = bootSlots[self.slotCode]["kernel"]
-				else:
-					mtdKernel = bootSlots[self.slotCode]["kernel"].split(sep)[2]
+				mtdKernel = bootSlots[self.slotCode]["kernel"] if BoxInfo.getItem("HasKexecMultiboot") else bootSlots[self.slotCode]["kernel"].split(sep)[2]
 				mtdRootFS = bootSlots[self.slotCode]["device"] if bootSlots[self.slotCode].get("ubi") else bootSlots[self.slotCode]["device"].split(sep)[2]
 				if MultiBoot.hasRootSubdir(self.slotCode):
 					rootSubDir = bootSlots[self.slotCode]["rootsubdir"]
