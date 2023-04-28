@@ -19,6 +19,12 @@
 #include <linux/dvb/video.h>
 #endif
 
+#ifdef DREAMNEXTGEN
+#ifdef HAVE_ALSA
+#undef HAVE_ALSA
+#endif
+#endif
+
 #ifdef HAVE_ALSA
 # ifndef ALSA_VOLUME_MIXER
 #  define ALSA_VOLUME_MIXER "Master"
@@ -45,9 +51,9 @@ eDVBVolumecontrol::eDVBVolumecontrol()
 	openMixer();
 #endif
 	volumeUnMute();
-#if not defined (__sh__) // dont reset volume on start
+#if not defined (__sh__) // dont reset volume on start	
 	setVolume(100, 100);
-#endif
+#endif	
 }
 
 int eDVBVolumecontrol::openMixer()
@@ -58,7 +64,7 @@ int eDVBVolumecontrol::openMixer()
 		int err;
 		char *card = ALSA_CARD;
 
-		eDebug("[eDVBVolumecontrol] Setup ALSA Mixer %s - %s", ALSA_CARD, ALSA_VOLUME_MIXER);
+		eDebug("[eDVBVolumecontrol] Setup ALSA Mixer hw:0:0 - Master", ALSA_CARD, ALSA_VOLUME_MIXER);
 		/* Perform the necessary pre-amble to start up ALSA Mixer */
 		err = snd_mixer_open(&alsaMixerHandle, 0);
 		if (err < 0)
@@ -69,7 +75,7 @@ int eDVBVolumecontrol::openMixer()
 		err = snd_mixer_attach(alsaMixerHandle, card);
 		if (err < 0)
 		{
-			eDebug("[eDVBVolumecontrol] Mixer attach %s error: %s", card, snd_strerror(err));
+			eDebug("[eDVBVolumecontrol] Mixer attach hw:0:0 error: No such device", card, snd_strerror(err));
 			snd_mixer_close(alsaMixerHandle);
 			alsaMixerHandle = NULL;
 			return err;

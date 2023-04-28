@@ -4311,12 +4311,20 @@ class InfoBarResolutionSelection:
 		pass
 
 	def resolutionSelection(self):
-		xRes = int(fileReadLine("/proc/stb/vmpeg/0/xres", 0, source=MODULE_NAME), 16)
-		yRes = int(fileReadLine("/proc/stb/vmpeg/0/yres", 0, source=MODULE_NAME), 16)
+		if BoxInfo.getItem("AmlogicFamily"):
+			xRes = int(fileReadLine("/sys/class/video/frame_width", 0, source=MODULE_NAME))
+			yRes = int(fileReadLine("/sys/class/video/frame_height", 0, source=MODULE_NAME))
+		else:
+			xRes = int(fileReadLine("/proc/stb/vmpeg/0/xres", 0, source=MODULE_NAME), 16)
+			yRes = int(fileReadLine("/proc/stb/vmpeg/0/yres", 0, source=MODULE_NAME), 16)
+
 		if BoxInfo.getItem("model").startswith('azbox'):
 			fps = 50.0
 		else:
-			fps = float(fileReadLine("/proc/stb/vmpeg/0/framerate", 50000, source=MODULE_NAME)) / 1000.0
+			if BoxInfo.getItem("AmlogicFamily"):
+				fps = float(fileReadLine("/proc/stb/vmpeg/0/frame_rate", 50000, source=MODULE_NAME)) / 1000.0
+			else:
+				fps = float(fileReadLine("/proc/stb/vmpeg/0/framerate", 50000, source=MODULE_NAME)) / 1000.0
 		resList = []
 		resList.append((_("Exit"), "exit"))
 		resList.append((_("Auto(not available)"), "auto"))
@@ -4333,7 +4341,10 @@ class InfoBarResolutionSelection:
 				if videoMode[-1].isdigit():
 					video = "%sHz" % videoMode
 				resList.append((video, videoMode))
-		videoMode = fileReadLine("/proc/stb/video/videomode", "Unknown", source=MODULE_NAME)
+		if BoxInfo.getItem("AmlogicFamily"):
+			videoMode = fileReadLine("/sys/class/display/mode", "Unknown", source=MODULE_NAME)
+		else:
+			videoMode = fileReadLine("/proc/stb/video/videomode", "Unknown", source=MODULE_NAME)
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		selection = 0
 		for item in range(len(resList)):
@@ -4349,10 +4360,16 @@ class InfoBarResolutionSelection:
 				if videoMode[1] == "exit" or videoMode[1] == "" or videoMode[1] == "auto":
 					self.ExGreen_toggleGreen()
 				if videoMode[1] != "auto":
-					if fileWriteLine("/proc/stb/video/videomode", videoMode[1], source=MODULE_NAME):
-						print("[InfoBarGenerics] New video mode is %s." % videoMode[1])
+					if BoxInfo.getItem("AmlogicFamily"):
+						if fileWriteLine("/sys/class/display/mode", videoMode[1], source=MODULE_NAME):
+							print("[InfoBarGenerics] New video mode is %s." % videoMode[1])
+						else:
+							print("[InfoBarGenerics] Error: Unable to set new video mode of %s!" % videoMode[1])
 					else:
-						print("[InfoBarGenerics] Error: Unable to set new video mode of %s!" % videoMode[1])
+						if fileWriteLine("/proc/stb/video/videomode", videoMode[1], source=MODULE_NAME):
+							print("[InfoBarGenerics] New video mode is %s." % videoMode[1])
+						else:
+							print("[InfoBarGenerics] Error: Unable to set new video mode of %s!" % videoMode[1])
 					# from enigma import gMainDC
 					# gMainDC.getInstance().setResolution(-1, -1)
 					self.ExGreen_doHide()

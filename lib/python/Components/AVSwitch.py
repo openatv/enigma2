@@ -25,6 +25,17 @@ if BRAND in ('azbox',):
 else:
 	config.av.edid_override = ConfigYesNo(default=False)
 
+axis = {"480i": "0 0 719 479",
+		"480p": "0 0 719 479",
+		"576i": "0 0 719 575",
+		"576p": "0 0 719 575",
+		"720p": "0 0 1279 719",
+		"1080i": "0 0 1919 1079",
+		"1080p": "0 0 1919 1079",
+		"2160p30": "0 0 3839 2159",
+		"2160p": "0 0 3839 2159",
+		"smpte": "0 0 4095 2159"}
+
 
 class AVSwitch:
 	hw_type = HardwareInfo().get_device_name()
@@ -39,44 +50,64 @@ class AVSwitch:
 
 	rates["Multi"] = {"multi": {50: "pal", 60: "ntsc"}}
 
-	rates["480i"] = {"60Hz": {60: "480i"}}
-
-	rates["576i"] = {"50Hz": {50: "576i"}}
-
-	rates["480p"] = {"60Hz": {60: "480p"}}
-
-	rates["576p"] = {"50Hz": {50: "576p"}}
-
-	rates["720p"] = {"50Hz": {50: "720p50"},
-							"60Hz": {60: "720p"},
-							"multi": {50: "720p50", 60: "720p"},
-							"auto": {50: "720p50", 60: "720p", 24: "720p24"}}
-
-	rates["1080i"] = {"50Hz": {50: "1080i50"},
-							"60Hz": {60: "1080i"},
-							"multi": {50: "1080i50", 60: "1080i"},
-							"auto": {50: "1080i50", 60: "1080i", 24: "1080p24"}}
-
-	rates["1080p"] = {"50Hz": {50: "1080p50"},
-							"60Hz": {60: "1080p"},
-							"multi": {50: "1080p50", 60: "1080p"},
-							"auto": {50: "1080p50", 60: "1080p", 24: "1080p24"}}
-
-	if MACHINEBUILD.startswith('dm9'):
-		rates["2160p"] = {"50Hz": {50: "2160p50"},
-								"60Hz": {60: "2160p60"},
-								"multi": {50: "2160p50", 60: "2160p60"},
-								"auto": {50: "2160p50", 60: "2160p60", 24: "2160p24"}}
+	if BoxInfo.getItem("AmlogicFamily"):
+		rates["480i"] = {"60Hz": {60: "480i60hz"}}
+		rates["576i"] = {"50Hz": {50: "576i50hz"}}
+		rates["480p"] = {"60Hz": {60: "480p60hz"}}
+		rates["576p"] = {"50Hz": {50: "576p50hz"}}
+		rates["720p"] = {"50Hz": {50: "720p50hz"},
+								"60Hz": {60: "720p60hz"},
+								"auto": {60: "720p60hz"}}
+		rates["1080i"] = {"50Hz": {50: "1080i50hz"},
+								"60Hz": {60: "1080i60hz"},
+								"auto": {60: "1080i60hz"}}
+		rates["1080p"] = {"50Hz": {50: "1080p50hz"},
+								"60Hz": {60: "1080p60hz"},
+								"30Hz": {30: "1080p30hz"},
+								"25Hz": {25: "1080p25hz"},
+								"24Hz": {24: "1080p24hz"},
+								"auto": {60: "1080p60hz"}}
+		rates["2160p"] = {"50Hz": {50: "2160p50hz"},
+								"60Hz": {60: "2160p60hz"},
+								"30Hz": {30: "2160p30hz"},
+								"25Hz": {25: "2160p25hz"},
+								"24Hz": {24: "2160p24hz"},
+								"auto": {60: "2160p60hz"}}
+		rates["2160p30"] = {"25Hz": {50: "2160p25hz"},
+								"30Hz": {60: "2160p30hz"},
+								"auto": {60: "2160p30hz"}}
 	else:
+		rates["480i"] = {"60Hz": {60: "480i"}}
+		rates["576i"] = {"50Hz": {50: "576i"}}
+		rates["480p"] = {"60Hz": {60: "480p"}}
+		rates["576p"] = {"50Hz": {50: "576p"}}
+		rates["720p"] = {"50Hz": {50: "720p50"},
+								"60Hz": {60: "720p"},
+								"multi": {50: "720p50", 60: "720p"},
+								"auto": {50: "720p50", 60: "720p", 24: "720p24"}}
+		rates["1080i"] = {"50Hz": {50: "1080i50"},
+								"60Hz": {60: "1080i"},
+								"multi": {50: "1080i50", 60: "1080i"},
+								"auto": {50: "1080i50", 60: "1080i", 24: "1080i24"}}
+		rates["1080p"] = {"50Hz": {50: "1080p50"},
+								"60Hz": {60: "1080p"},
+								"multi": {50: "1080p50", 60: "1080p"},
+								"auto": {50: "1080p50", 60: "1080p", 24: "1080p24"}}
 		rates["2160p"] = {"50Hz": {50: "2160p50"},
 								"60Hz": {60: "2160p"},
 								"multi": {50: "2160p50", 60: "2160p"},
 								"auto": {50: "2160p50", 60: "2160p", 24: "2160p24"}}
+		rates["2160p30"] = {"25Hz": {50: "2160p25"},
+								"30Hz": {60: "2160p30"},
+								"multi": {50: "2160p25", 60: "2160p30"},
+								"auto": {50: "2160p25", 60: "2160p30", 24: "2160p24"}}
 
-	rates["2160p30"] = {"25Hz": {50: "2160p25"},
-							"30Hz": {60: "2160p30"},
-							"multi": {50: "2160p25", 60: "2160p30"},
-							"auto": {50: "2160p25", 60: "2160p30", 24: "2160p24"}}
+	rates["smpte"] = {"50Hz": {50: "smpte50hz"},
+							"60Hz": {60: "smpte60hz"},
+							"30Hz": {30: "smpte30hz"},
+							"25Hz": {25: "smpte25hz"},
+							"24Hz": {24: "smpte24hz"},
+							"auto": {60: "smpte60hz"}}
 
 	rates["PC"] = {
 		"1024x768": {60: "1024x768"},  # not possible on DM7025
@@ -97,7 +128,10 @@ class AVSwitch:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
-	if (about.getChipSetString() in ('7366', '7376', '5272s', '7444', '7445', '7445s')):
+	if BoxInfo.getItem("AmlogicFamily"):
+		modes["HDMI"] = ["720p", "1080p", "smpte", "2160p30", "2160p", "1080i", "576p", "576i", "480p", "480i"]
+		widescreen_modes = {"720p", "1080p", "1080i", "2160p", "smpte"}
+	elif (about.getChipSetString() in ('7366', '7376', '5272s', '7444', '7445', '7445s')):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i", "2160p"}
 	elif (about.getChipSetString() in ('7252', '7251', '7251S', '7252S', '7251s', '7252s', '72604', '7278', '7444s', '3798mv200', '3798mv200h', '3798cv200', 'hi3798mv200', 'hi3798mv200h', 'hi3798cv200', 'hi3798mv300', '3798mv300')):
@@ -146,23 +180,36 @@ class AVSwitch:
 		self.createConfig()
 
 	def readAvailableModes(self):
-		try:
-			f = open("/proc/stb/video/videomode_choices")
-			modes = f.read()[:-1]
+		if BoxInfo.getItem("AmlogicFamily"):
+			f = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
+			modes = f.read()[:-1].replace('*', '')
 			f.close()
-		except OSError:
-			print("[AVSwitch] couldn't read available videomodes.")
-			modes = []
-			return modes
-		return modes.split(' ')
+			self.modes_preferred = modes.splitlines()
+			return modes.splitlines()
+		else:
+			try:
+				f = open("/proc/stb/video/videomode_choices")
+				modes = f.read()[:-1]
+				f.close()
+			except OSError:
+				print("[AVSwitch] couldn't read available videomodes.")
+				modes = []
+				return modes
+			return modes.split(' ')
 
 	def readPreferredModes(self):
 		if config.av.edid_override.value == False:
 			try:
-				f = open("/proc/stb/video/videomode_edid")
-				modes = f.read()[:-1]
-				f.close()
-				self.modes_preferred = modes.split(' ')
+				if BoxInfo.getItem("AmlogicFamily"):
+					f = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
+					modes = f.read()[:-1].replace('*', '')
+					f.close()
+					self.modes_preferred = modes.splitlines()
+				else:
+					f = open("/proc/stb/video/videomode_edid")
+					modes = f.read()[:-1]
+					f.close()
+					self.modes_preferred = modes.split(' ')
 				print("[AVSwitch] reading edid modes: ", self.modes_preferred)
 			except OSError:
 				print("[AVSwitch] reading edid modes failed, using all modes")
@@ -188,11 +235,14 @@ class AVSwitch:
 			self.on_hotplug("HDMI")  # must be HDMI
 
 	def is24hzAvailable(self):
-		try:
-			self.has24pAvailable = os.access("/proc/stb/video/videomode_24hz", os.W_OK) and True or False
-		except OSError:
-			print("[AVSwitch] failed to read video choices 24hz .")
-			self.has24pAvailable = False
+		if BoxInfo.getItem("AmlogicFamily"):
+			self.has24pAvailable = True
+		else:
+			try:
+				self.has24pAvailable = os.access("/proc/stb/video/videomode_24hz", os.W_OK) and True or False
+			except OSError:
+				print("[AVSwitch] failed to read video choices 24hz .")
+				self.has24pAvailable = False
 		BoxInfo.setItem("have24hz", self.has24pAvailable)
 
 	# check if a high-level mode with a given rate is available.
@@ -225,6 +275,8 @@ class AVSwitch:
 
 		mode_50 = modes.get(50)
 		mode_60 = modes.get(60)
+		# mode_30 = modes.get(30)
+		# mode_25 = modes.get(25)
 		mode_24 = modes.get(24)
 
 		if mode_50 is None or force == 60:
@@ -235,6 +287,50 @@ class AVSwitch:
 			mode_24 = mode_60
 			if force == 50:
 				mode_24 = mode_50
+
+		if BoxInfo.getItem("AmlogicFamily"):
+			amlmode = list(modes.values())[0]
+			oldamlmode = self.getAMLMode()
+			f = open("/sys/class/display/mode", "w")
+			f.write(amlmode)
+			f.close()
+			print("[AVSwitch] Amlogic setting videomode to mode: %s" % amlmode)
+			f = open("/etc/u-boot.scr.d/000_hdmimode.scr", "w")
+			f.write("setenv hdmimode %s" % amlmode)
+			f.close()
+			f = open("/etc/u-boot.scr.d/000_outputmode.scr", "w")
+			f.write("setenv outputmode %s" % amlmode)
+			f.close()
+			os.system("update-autoexec")
+			f = open("/sys/class/ppmgr/ppscaler", "w")
+			f.write("1")
+			f.close()
+			f = open("/sys/class/ppmgr/ppscaler", "w")
+			f.write("0")
+			f.close()
+			f = open("/sys/class/video/axis", "w")
+			f.write(axis[mode])
+			f.close()
+			f = open("/sys/class/graphics/fb0/stride", "r")
+			stride = f.read().strip()
+			f.close()
+			limits = [int(x) for x in axis[mode].split()]
+			config.osd.dst_left = ConfigSelectionNumber(default=limits[0], stepwidth=1, min=limits[0] - 255, max=limits[0] + 255, wraparound=False)
+			config.osd.dst_top = ConfigSelectionNumber(default=limits[1], stepwidth=1, min=limits[1] - 255, max=limits[1] + 255, wraparound=False)
+			config.osd.dst_width = ConfigSelectionNumber(default=limits[2], stepwidth=1, min=limits[2] - 255, max=limits[2] + 255, wraparound=False)
+			config.osd.dst_height = ConfigSelectionNumber(default=limits[3], stepwidth=1, min=limits[3] - 255, max=limits[3] + 255, wraparound=False)
+
+			if oldamlmode != amlmode:
+				config.osd.dst_width.setValue(limits[0])
+				config.osd.dst_height.setValue(limits[1])
+				config.osd.dst_left.setValue(limits[2])
+				config.osd.dst_top.setValue(limits[3])
+				config.osd.dst_left.save()
+				config.osd.dst_width.save()
+				config.osd.dst_top.save()
+				config.osd.dst_height.save()
+			print("[AVSwitch] Framebuffer mode:%s  stride:%s axis:%s" % (getDesktop(0).size().width(), stride, axis[mode]))
+			return
 
 		try:
 			f = open("/proc/stb/video/videomode_50hz", "w")
@@ -284,6 +380,17 @@ class AVSwitch:
 		if mode in config.av.videorate:
 			config.av.videorate[mode].setValue(rate)
 			config.av.videorate[mode].save()
+
+	def getAMLMode(self):
+		f = open("/sys/class/display/mode", "r")
+		currentmode = f.read().strip()
+		f.close()
+		return currentmode[:-4]
+
+	def getWindowsAxis(self):
+		port = config.av.videoport.value
+		mode = config.av.videomode[port].value
+		return axis[mode]
 
 	def isPortAvailable(self, port):
 		# fixme
@@ -408,11 +515,11 @@ class AVSwitch:
 		print("[AVSwitch] setting policy: %s" % cfgelement.value)
 		arw = "0"
 		try:
-			if about.getChipSetString() in ('meson-6', 'meson-64'):
+			if BoxInfo.getItem("AmlogicFamily"):
 				if cfgelement.value == "panscan":
-					arw = "11"
-				if cfgelement.value == "letterbox":
 					arw = "12"
+				if cfgelement.value == "letterbox":
+					arw = "11"
 				if cfgelement.value == "bestfit":
 					arw = "10"
 				open("/sys/class/video/screen_mode", "w").write(arw)
@@ -449,7 +556,10 @@ class AVSwitch:
 						ret = (16, 10)
 			elif is_auto:
 				try:
-					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
+					if BoxInfo.getItem("AmlogicFamily"):
+						aspect_str = open("/sys/class/video/screen_mode", "r").read()
+					else:
+						aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
 					if aspect_str == "1":  # 4:3
 						ret = (4, 3)
 				except OSError:
@@ -539,15 +649,26 @@ def InitAVSwitch():
 	config.av.autores_label_timeout = ConfigSelection(default="5", choices=[("0", _("Not Shown"))] + choicelist)
 	config.av.autores_delay = ConfigSelectionNumber(min=0, max=3000, stepwidth=50, default=400, wraparound=True)
 	config.av.autores_deinterlace = ConfigYesNo(default=False)
-	config.av.autores_sd = ConfigSelection(choices={"720p50": _("720p50"), "720p": _("720p"), "1080i50": _("1080i50"), "1080i": _("1080i")}, default="720p50")
-	config.av.autores_480p24 = ConfigSelection(choices={"480p24": _("480p 24Hz"), "720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz")}, default="1080p24")
-	config.av.autores_720p24 = ConfigSelection(choices={"720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz"), "1080i50": _("1080i 50Hz"), "1080i": _("1080i 60Hz")}, default="720p24")
-	config.av.autores_1080p24 = ConfigSelection(choices={"1080p24": _("1080p 24Hz"), "1080p25": _("1080p 25Hz"), "1080i50": _("1080p 50Hz"), "1080i": _("1080i 60Hz")}, default="1080p24")
-	config.av.autores_1080p25 = ConfigSelection(choices={"1080p25": _("1080p 25Hz"), "1080p50": _("1080p 50Hz"), "1080i50": _("1080i 50Hz")}, default="1080p25")
-	config.av.autores_1080p30 = ConfigSelection(choices={"1080p30": _("1080p 30Hz"), "1080p60": _("1080p 60Hz"), "1080i": _("1080i 60Hz")}, default="1080p30")
-	config.av.autores_2160p24 = ConfigSelection(choices={"2160p24": _("2160p 24Hz"), "2160p25": _("2160p 25Hz"), "2160p30": _("2160p 30Hz")}, default="2160p24")
-	config.av.autores_2160p25 = ConfigSelection(choices={"2160p25": _("2160p 25Hz"), "2160p50": _("2160p 50Hz")}, default="2160p25")
-	config.av.autores_2160p30 = ConfigSelection(choices={"2160p30": _("2160p 30Hz"), "2160p60": _("2160p 60Hz")}, default="2160p30")
+	if BoxInfo.getItem("AmlogicFamily"):
+		config.av.autores_sd = ConfigSelection(choices={"720p50hz": _("720p50Hz"), "720p": _("720p"), "1080i50hz": _("1080i50Hz"), "1080i": _("1080i")}, default="720p50hz")
+		config.av.autores_480p24 = ConfigSelection(choices={"480p24": _("480p 24Hz"), "720p24hz": _("720p 24Hz"), "1080p24hz": _("1080p 24Hz")}, default="1080p24hz")
+		config.av.autores_720p24 = ConfigSelection(choices={"720p24hz": _("720p 24Hz"), "1080p24hz": _("1080p 24Hz"), "1080i50hz": _("1080i 50Hz"), "1080i": _("1080i 60Hz")}, default="720p24hz")
+		config.av.autores_1080p24 = ConfigSelection(choices={"1080p24hz": _("1080p 24Hz"), "1080p25hz": _("1080p 25Hz"), "1080i50hz": _("1080p 50Hz"), "1080i": _("1080i 60Hz")}, default="1080p24hz")
+		config.av.autores_1080p25 = ConfigSelection(choices={"1080p25hz": _("1080p 25Hz"), "1080p50hz": _("1080p 50Hz"), "1080i50hz": _("1080i 50Hz")}, default="1080p25hz")
+		config.av.autores_1080p30 = ConfigSelection(choices={"1080p30hz": _("1080p 30Hz"), "1080p60hz": _("1080p 60Hz"), "1080i": _("1080i 60Hz")}, default="1080p30hz")
+		config.av.autores_2160p24 = ConfigSelection(choices={"2160p24hz": _("2160p 24Hz"), "2160p25hz": _("2160p 25Hz"), "2160p30hz": _("2160p 30Hz")}, default="2160p24hz")
+		config.av.autores_2160p25 = ConfigSelection(choices={"2160p25hz": _("2160p 25Hz"), "2160p50hz": _("2160p 50Hz")}, default="2160p25hz")
+		config.av.autores_2160p30 = ConfigSelection(choices={"2160p30hz": _("2160p 30Hz"), "2160p60hz": _("2160p 60Hz")}, default="2160p30hz")
+	else:
+		config.av.autores_sd = ConfigSelection(choices={"720p50": _("720p50"), "720p": _("720p"), "1080i50": _("1080i50"), "1080i": _("1080i")}, default="720p50")
+		config.av.autores_480p24 = ConfigSelection(choices={"480p24": _("480p 24Hz"), "720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz")}, default="1080p24")
+		config.av.autores_720p24 = ConfigSelection(choices={"720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz"), "1080i50": _("1080i 50Hz"), "1080i": _("1080i 60Hz")}, default="720p24")
+		config.av.autores_1080p24 = ConfigSelection(choices={"1080p24": _("1080p 24Hz"), "1080p25": _("1080p 25Hz"), "1080i50": _("1080p 50Hz"), "1080i": _("1080i 60Hz")}, default="1080p24")
+		config.av.autores_1080p25 = ConfigSelection(choices={"1080p25": _("1080p 25Hz"), "1080p50": _("1080p 50Hz"), "1080i50": _("1080i 50Hz")}, default="1080p25")
+		config.av.autores_1080p30 = ConfigSelection(choices={"1080p30": _("1080p 30Hz"), "1080p60": _("1080p 60Hz"), "1080i": _("1080i 60Hz")}, default="1080p30")
+		config.av.autores_2160p24 = ConfigSelection(choices={"2160p24": _("2160p 24Hz"), "2160p25": _("2160p 25Hz"), "2160p30": _("2160p 30Hz")}, default="2160p24")
+		config.av.autores_2160p25 = ConfigSelection(choices={"2160p25": _("2160p 25Hz"), "2160p50": _("2160p 50Hz")}, default="2160p25")
+		config.av.autores_2160p30 = ConfigSelection(choices={"2160p30": _("2160p 30Hz"), "2160p60": _("2160p 60Hz")}, default="2160p30")
 	config.av.smart1080p = ConfigSelection(choices={"false": _("Off"), "true": _("1080p50: 24p/50p/60p"), "2160p50": _("2160p50: 24p/50p/60p"), "1080i50": _("1080i50: 24p/50i/60i"), "720p50": _("720p50: 24p/50p/60p")}, default="false")
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
 	config.av.aspectratio = ConfigSelection(choices={
@@ -868,6 +989,73 @@ def InitAVSwitch():
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
 
+	if os.path.exists("/proc/stb/video/sync_mode_choices"):
+		f = open("/proc/stb/video/sync_mode_choices", "r")
+		have_SyncMode = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_SyncMode = False
+
+	BoxInfo.setItem("havesyncmode", have_SyncMode)
+
+	if have_SyncMode:
+		def setSyncMode(configElement):
+			try:
+				f = open("/proc/stb/video/sync_mode", "w")
+				f.write(configElement.value)
+				f.close()
+			except OSError:
+				pass
+		config.av.sync_mode = ConfigSelection(choices={
+				"slow": _("Slow Motion"),
+				"hold": _("Hold First Frame"),
+				"black": _("Black Screen")},
+				default="slow")
+		config.av.sync_mode.addNotifier(setSyncMode)
+	else:
+		config.av.sync_mode = ConfigNothing()
+
+	if os.path.exists("/sys/class/amhdmitx/amhdmitx0/config"):
+		have_AMLHDRSupport = True
+	else:
+		have_AMLHDRSupport = False
+
+	BoxInfo.setItem("haveamlhdrsupport", have_AMLHDRSupport)
+
+	if have_AMLHDRSupport:
+		def setAMLHDR10(configElement):
+			try:
+				f = open("/sys/class/amhdmitx/amhdmitx0/config", "w")
+				f.write(configElement.value)
+				f.close()
+			except OSError:
+				pass
+		config.av.amlhdr10_support = ConfigSelection(choices={
+				"hdr10-0": _("force enabled"),
+				"hdr10-1": _("force disabled"),
+				"hdr10-2": _("controlled by HDMI")},
+				default="hdr10-2")
+		config.av.amlhdr10_support.addNotifier(setAMLHDR10)
+	else:
+		config.av.amlhdr10_support = ConfigNothing()
+
+	if have_AMLHDRSupport:
+		def setAMLHLG(configElement):
+			try:
+				f = open("/sys/class/amhdmitx/amhdmitx0/config", "w")
+				f.write(configElement.value)
+				f.close()
+			except OSError:
+				pass
+		config.av.amlhlg_support = ConfigSelection(choices={
+				"hlg-0": _("force enabled"),
+				"hlg-1": _("force disabled"),
+				"hlg-2": _("controlled by HDMI")},
+				default="hlg-2")
+		config.av.amlhlg_support.addNotifier(setAMLHLG)
+	else:
+		config.av.amlhlg_support = ConfigNothing()
+
 	if os.path.exists("/proc/stb/video/hdmi_hdrtype"):
 		f = open("/proc/stb/video/hdmi_hdrtype", "r")
 		have_HdmiHdrType = f.read().strip().split(" ")
@@ -1041,17 +1229,26 @@ def InitAVSwitch():
 		f.close()
 		can_downmix_ac3 = "downmix" in file
 	except OSError:
-		can_downmix_ac3 = False
-		BoxInfo.setItem("CanPcmMultichannel", False)
+		if BoxInfo.getItem("AmlogicFamily"):
+			can_downmix_ac3 = True
+			BoxInfo.setItem("CanPcmMultichannel", True)
+		else:
+			can_downmix_ac3 = False
+			BoxInfo.setItem("CanPcmMultichannel", False)
 
 	BoxInfo.setItem("CanDownmixAC3", can_downmix_ac3)
 	if can_downmix_ac3:
 		def setAC3Downmix(configElement):
-			f = open("/proc/stb/audio/ac3", "w")
-			if MACHINEBUILD in ('dm900', 'dm920', 'dm7080', 'dm800'):
+			if BoxInfo.getItem("AmlogicFamily"):
+				f = open("/sys/class/audiodsp/digital_raw", "w")
 				f.write(configElement.value)
+				f.close()
 			else:
-				f.write(configElement.value and "downmix" or "passthrough")
+				f = open("/proc/stb/audio/ac3", "w")
+				if MACHINEBUILD in ('dm900', 'dm920', 'dm7080', 'dm800'):
+					f.write(configElement.value)
+				else:
+					f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
 			if BoxInfo.getItem("supportPcmMultichannel", False) and not configElement.value:
 				BoxInfo.setItem("CanPcmMultichannel", True)
@@ -1062,6 +1259,10 @@ def InitAVSwitch():
 		if MACHINEBUILD in ('dm900', 'dm920', 'dm7080', 'dm800'):
 			choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 			config.av.downmix_ac3 = ConfigSelection(choices=choice_list, default="downmix")
+		if MACHINEBUILD in ('dreamone', 'dreamtwo'):
+			choice_list = [("0", _("Downmix")), ("1", _("Passthrough")), ("2", _("use best / controlled by HDMI"))]
+			default = "0"
+			config.av.downmix_ac3 = ConfigSelection(choices=choice_list, default="0")
 		else:
 			config.av.downmix_ac3 = ConfigYesNo(default=True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)

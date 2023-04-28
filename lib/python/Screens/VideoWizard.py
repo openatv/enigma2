@@ -19,6 +19,27 @@ has_jack = BoxInfo.getItem("avjack", False)
 has_dvi = BoxInfo.getItem("dvi", False)
 
 
+def sortkey(name):
+	if name[0] == "2160p":
+		return 1
+	elif name[0] == "2160p30":
+		return 2
+	elif name[0] == "1080p":
+		return 3
+	elif name[0] == "720p":
+		return 4
+	elif name[0] == "1080i":
+		return 5
+	elif name[0] == "smpte":
+		return 20
+	elif name[0] == "multi":
+		return 1
+	elif name[0] == "auto":
+		return 2
+	else:
+		return 6
+
+
 class VideoWizardSummary(WizardSummary):
 	skin = (
 	"""<screen name="VideoWizardSummary" position="0,0" size="132,64">
@@ -108,17 +129,17 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 				if port != "DVI-PC":
 					list.append((descr, port))
 		list.sort(key=lambda x: x[0])
-		print("listInputChannels:", list)
+		#print("listInputChannels:", list)
 		return list
 
 	def inputSelectionMade(self, index):
-		print("inputSelectionMade:", index)
+		#print("inputSelectionMade:", index)
 		self.port = index
 		self.inputSelect(index)
 
 	def inputSelectionMoved(self):
 		hw_type = HardwareInfo().get_device_name()
-		print("input selection moved:", self.selection)
+		#print("input selection moved:", self.selection)
 		self.inputSelect(self.selection)
 		if self["portpic"].instance is not None:
 			picname = self.selection
@@ -131,9 +152,9 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_GUISKIN, "icons/" + picname + ".png"))
 
 	def inputSelect(self, port):
-		print("inputSelect:", port)
+		#print("inputSelect:", port)
 		modeList = self.hw.getModeList(self.selection)
-		print("modeList:", modeList)
+		#print("modeList:", modeList)
 		self.port = port
 		if len(modeList) > 0:
 			ratesList = self.listRates(modeList[0][0])
@@ -141,26 +162,26 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 
 	def listModes(self):
 		list = []
-		print("modes for port", self.port)
+		#print("modes for port", self.port)
 		for mode in self.hw.getModeList(self.port):
 			#if mode[0] != "PC":
 				list.append((mode[0], mode[0]))
-		print("modeslist:", list)
-		return list
+		#print("modeslist:", list)
+		return sorted(list, key=sortkey)
 
 	def modeSelectionMade(self, index):
-		print("modeSelectionMade:", index)
+		#print("modeSelectionMade:", index)
 		self.mode = index
 		self.modeSelect(index)
 
 	def modeSelectionMoved(self):
-		print("mode selection moved:", self.selection)
+		#print("mode selection moved:", self.selection)
 		self.modeSelect(self.selection)
 
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
-		print("ratesList:", ratesList)
-		if self.port == "HDMI" and mode in ("720p", "1080i", "1080p"):
+		#print("ratesList:", ratesList)
+		if self.port == "HDMI" and mode in ("720p", "1080i", "1080p") and not BoxInfo.getItem("AmlogicFamily"):
 			self.rate = "multi"
 			self.hw.setMode(port=self.port, mode=mode, rate="multi")
 		else:
@@ -170,7 +191,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 		if querymode is None:
 			querymode = self.mode
 		list = []
-		print("modes for port", self.port, "and mode", querymode)
+		#print("modes for port", self.port, "and mode", querymode)
 		for mode in self.hw.getModeList(self.port):
 			print(mode)
 			if mode[0] == querymode:
@@ -178,20 +199,20 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 					if rate in ("auto") and not BoxInfo.getItem("have24hz"):
 						continue
 					if self.port == "DVI-PC":
-						print("rate:", rate)
+						#print("rate:", rate)
 						if rate == "640x480":
 							list.insert(0, (rate, rate))
 							continue
 					list.append((rate, rate))
-		return list
+		return sorted(list, key=sortkey)
 
 	def rateSelectionMade(self, index):
-		print("rateSelectionMade:", index)
+		#print("rateSelectionMade:", index)
 		self.rate = index
 		self.rateSelect(index)
 
 	def rateSelectionMoved(self):
-		print("rate selection moved:", self.selection)
+		#print("rate selection moved:", self.selection)
 		self.rateSelect(self.selection)
 
 	def rateSelect(self, rate):
@@ -200,7 +221,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 	def showTestCard(self, selection=None):
 		if selection is None:
 			selection = self.selection
-		print("set config.misc.showtestcard to", {'yes': True, 'no': False}[selection])
+		#print("set config.misc.showtestcard to", {'yes': True, 'no': False}[selection])
 		if selection == "yes":
 			config.misc.showtestcard.value = True
 		else:

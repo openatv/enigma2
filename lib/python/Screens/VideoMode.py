@@ -256,6 +256,13 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Allow 12bit"), config.av.allow_12bit, _("This option allows you can enable or disable the 12 Bit Color Mode")))
 			self.list.append(getConfigListEntry(_("Allow 10bit"), config.av.allow_10bit, _("This option allows you can enable or disable the 10 Bit Color Mode")))
 
+		if BoxInfo.getItem("havesyncmode"):
+			self.list.append(getConfigListEntry(_("Sync mode"), config.av.sync_mode, _("Setup how to control the channel changing.")))
+
+		if BoxInfo.getItem("haveamlhdrsupport"):
+			self.list.append(getConfigListEntry(_("HLG Support"), config.av.amlhlg_support, _("This option allows you can force the HLG Modes for UHD")))
+			self.list.append(getConfigListEntry(_("HDR10 Support"), config.av.amlhdr10_support, _("This option allows you can force the HDR10 Modes for UHD")))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if config.usage.sort_settings.value:
@@ -305,7 +312,10 @@ class VideoSetup(Screen, ConfigListScreen):
 				try:
 					if not self.current_mode in iAVSwitch.readAvailableModes():
 						raise TypeError("No old video mode saved!")
-					f = open("/proc/stb/video/videomode", "w")
+					if BoxInfo.getItem("AmlogicFamily"):
+						f = open("/sys/class/display/mode", "w")
+					else:
+						f = open("/proc/stb/video/videomode", "w")
 					f.write(self.current_mode)
 					f.close()
 				except Exception as e:
@@ -402,10 +412,13 @@ class VideoSetup(Screen, ConfigListScreen):
 
 	def getCurrent_mode(self):
 		try:
-			f = open("/proc/stb/video/videomode")
+			if BoxInfo.getItem("AmlogicFamily"):
+				f = open("/sys/class/display/mode")
+			else:
+				f = open("/proc/stb/video/videomode")
 			mode = f.read()[:-1].replace('\n', '')
 			f.close()
-		except:
+		except Exception:
 			return None
 		return mode
 
@@ -492,7 +505,7 @@ def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDz
 						mode = "off"
 			open(BoxInfo.getItem("3DMode"), "w").write(mode)
 			open(BoxInfo.getItem("3DZNorm"), "w").write('%d' % znorm)
-		except:
+		except Exception:
 			return
 
 
@@ -574,8 +587,10 @@ class AutoVideoMode(Screen):
 		global resolutionlabel
 		config_port, config_mode, config_res, config_pol, config_rate = getConfig_videomode(config.av.videomode, config.av.videorate)
 		config_mode = config_mode.replace('p30', 'p')
-
-		f = open("/proc/stb/video/videomode")
+		if BoxInfo.getItem("AmlogicFamily"):
+			f = open("/sys/class/display/mode")
+		else:
+			f = open("/proc/stb/video/videomode")
 		current_mode = f.read()[:-1].replace('\n', '')
 		f.close()
 		if current_mode.upper() in ('PAL', 'NTSC'):
@@ -595,34 +610,57 @@ class AutoVideoMode(Screen):
 		video_width = None
 		video_pol = None
 		video_rate = None
-		if path.exists("/proc/stb/vmpeg/0/yres"):
-			try:
-				f = open("/proc/stb/vmpeg/0/yres", "r")
-				video_height = int(f.read(), 16)
+		if BoxInfo.getItem("AmlogicFamily"):
+			if path.exists("/sys/class/video/frame_height"):
+				try:
+					f = open("/sys/class/video/frame_height", "r")
+					video_height = int(f.read())
+					f.close()
+				except Exception:
+					video_height = 0
+			if path.exists("/sys/class/video/frame_width"):
+				try:
+					f = open("/sys/class/video/frame_width", "r")
+					video_width = int(f.read())
+					f.close()
+				except Exception:
+					video_width = 0
+			if path.exists("/proc/stb/vmpeg/0/progressive"):
+				try:
+					f = open("/proc/stb/vmpeg/0/progressive", "r")
+					video_pol = "p" if int(f.read()) else "i"
+					f.close()
+				except Exception:
+					video_pol = "i"
+			if path.exists("/proc/stb/vmpeg/0/frame_rate"):
+				f = open("/proc/stb/vmpeg/0/frame_rate", "r")
+				try:
+					video_rate = int(f.read())
+				except Exception:
+					video_rate = 50
 				f.close()
-			except:
-				video_height = 0
-		if path.exists("/proc/stb/vmpeg/0/xres"):
-			try:
-				f = open("/proc/stb/vmpeg/0/xres", "r")
-				video_width = int(f.read(), 16)
+		else:
+			if path.exists("/proc/stb/vmpeg/0/xres"):
+				try:
+					f = open("/proc/stb/vmpeg/0/xres", "r")
+					video_width = int(f.read(), 16)
+					f.close()
+				except Exception:
+					video_width = 0
+			if path.exists("/proc/stb/vmpeg/0/progressive"):
+				try:
+					f = open("/proc/stb/vmpeg/0/progressive", "r")
+					video_pol = "p" if int(f.read(), 16) else "i"
+					f.close()
+				except Exception:
+					video_pol = "i"
+			if path.exists("/proc/stb/vmpeg/0/framerate"):
+				f = open("/proc/stb/vmpeg/0/framerate", "r")
+				try:
+					video_rate = int(f.read())
+				except Exception:
+					video_rate = 50
 				f.close()
-			except:
-				video_width = 0
-		if path.exists("/proc/stb/vmpeg/0/progressive"):
-			try:
-				f = open("/proc/stb/vmpeg/0/progressive", "r")
-				video_pol = "p" if int(f.read(), 16) else "i"
-				f.close()
-			except:
-				video_pol = "i"
-		if path.exists("/proc/stb/vmpeg/0/framerate"):
-			f = open("/proc/stb/vmpeg/0/framerate", "r")
-			try:
-				video_rate = int(f.read())
-			except:
-				video_rate = 50
-			f.close()
 
 		if not video_height or not video_width or not video_pol or not video_rate:
 			service = self.session and self.session.nav.getCurrentService()
@@ -858,8 +896,11 @@ class AutoVideoMode(Screen):
 				write_mode = new_mode
 			else:
 				autorestyp = 'no match'
-				if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate in ("auto", "multi"):
+				if path.exists('/sys/class/display/mode') and config_rate in ("auto", "multi"):
+					f = open("/sys/class/display/mode", "r")
+				elif path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate in ("auto", "multi"):
 					f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
+				if f:
 					multi_videomode = f.read().replace('\n', '')
 					f.close()
 					if multi_videomode and (current_mode != multi_videomode):
@@ -876,7 +917,7 @@ class AutoVideoMode(Screen):
 				if ref is not None:
 					try:
 						mypath = ref.getPath()
-					except:
+					except Exception:
 						mypath = ''
 				else:
 					mypath = ''
@@ -932,7 +973,10 @@ class AutoVideoMode(Screen):
 						for x in values:
 							if x == write_mode:
 								try:
-									f = open("/proc/stb/video/videomode", "w")
+									if BoxInfo.getItem("AmlogicFamily"):
+										f = open("/sys/class/display/mode", "w")
+									else:
+										f = open("/proc/stb/video/videomode", "w")
 									f.write(write_mode)
 									f.close()
 									changeResolution = True
@@ -950,7 +994,10 @@ class AutoVideoMode(Screen):
 								for x in values:
 									if x == "1080p":
 										try:
-											f = open("/proc/stb/video/videomode", "w")
+											if BoxInfo.getItem("AmlogicFamily"):
+												f = open("/sys/class/display/mode", "w")
+											else:
+												f = open("/proc/stb/video/videomode", "w")
 											f.write(x)
 											f.close()
 											changeResolution = True
@@ -966,7 +1013,10 @@ class AutoVideoMode(Screen):
 								for x in values:
 									if x == "2160p":
 										try:
-											f = open("/proc/stb/video/videomode", "w")
+											if BoxInfo.getItem("AmlogicFamily"):
+												f = open("/sys/class/display/mode", "w")
+											else:
+												f = open("/proc/stb/video/videomode", "w")
 											f.write(x)
 											f.close()
 											changeResolution = True

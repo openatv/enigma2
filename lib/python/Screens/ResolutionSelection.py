@@ -2,20 +2,28 @@ from __future__ import print_function
 from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
-
+from Components.SystemInfo import BoxInfo
 
 class ResolutionSelection(Screen):
 	def __init__(self, session, infobar=None):
 		Screen.__init__(self, session)
 
-		xresString = open("/proc/stb/vmpeg/0/xres", "r").read()
-		yresString = open("/proc/stb/vmpeg/0/yres", "r").read()
-		fpsString = open("/proc/stb/vmpeg/0/framerate", "r").read()
-		xres = int(xresString, 16)
-		yres = int(yresString, 16)
-		fps = int(fpsString, 16)
-		fpsFloat = float(fps)
-		fpsFloat = fpsFloat / 1000
+		if BoxInfo.getItem("AmlogicFamily"):
+			xresString = open("/sys/class/video/frame_width", "r").read()
+			yresString = open("/sys/class/video/frame_height", "r").read()
+			fpsString = open("/proc/stb/vmpeg/0/frame_rate", "r").read()
+			xres = int(xresString)
+			yres = int(yresString)
+			fps = int(fpsString)
+		else:
+			xresString = open("/proc/stb/vmpeg/0/xres", "r").read()
+			yresString = open("/proc/stb/vmpeg/0/yres", "r").read()
+			fpsString = open("/proc/stb/vmpeg/0/framerate", "r").read()
+			xres = int(xresString, 16)
+			yres = int(yresString, 16)
+			fps = int(fpsString, 16)
+			fpsFloat = float(fps)
+			fpsFloat = fpsFloat / 1000
 
 		selection = 0
 		tlist = []
@@ -33,7 +41,10 @@ class ResolutionSelection(Screen):
 
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-		mode = open("/proc/stb/video/videomode").read()[:-1]
+		if BoxInfo.getItem("AmlogicFamily"):
+			mode = open("/sys/class/display/mode").read()[:-1]
+		else:
+			mode = open("/proc/stb/video/videomode").read()[:-1]
 		print(mode)
 		for x in list(range(len(tlist))):
 			if tlist[x][1] == mode:
@@ -48,7 +59,10 @@ class ResolutionSelection(Screen):
 				if Resolution[1] == "exit":
 					self.ExGreen_toggleGreen()
 				elif Resolution[1] != "auto":
-					open("/proc/stb/video/videomode", "w").write(Resolution[1])
+					if BoxInfo.getItem("AmlogicFamily"):
+						open("/sys/class/display/mode", "w").write(Resolution[1])
+					else:
+						open("/proc/stb/video/videomode", "w").write(Resolution[1])
 					from enigma import gFBDC
 					gFBDC.getInstance().setResolution(-1, -1)
 					self.ExGreen_toggleGreen()

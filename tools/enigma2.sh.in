@@ -107,6 +107,12 @@ if [ -e @libdir@/libpagecache.so ]; then
 	LIBS="$LIBS @libdir@/libpagecache.so"
 fi
 
+if [ -f /proc/stb/fp/nec_ir ]; then
+	/sbin/insmod /lib/modules/4.9/extra/lcd/lcd.ko
+	echo 1 > /proc/stb/fp/nec_ir
+	[ -f /sys/class/remote/amremote/protocol ] && echo 2 > /sys/class/remote/amremote/protocol
+fi
+
 #check for receiver specific passthrough helper lib
 #if [ -e @libdir@/libpassthrough.so ]; then
 #	LIBS="$LIBS @libdir@/libpassthrough.so"
@@ -245,6 +251,13 @@ case $ret in
 		/sbin/reboot
 		;;
 	16)
+		if [ -e /proc/stb/info/model ]; then
+			stbcheck=`cat /proc/stb/info/model`
+			if [[ $stbcheck == "one" || $stbcheck == "two" ]]; then
+				/usr/sbin/to-the-rescue
+			fi
+		fi
+
 		if [ -e /dev/block/by-name/flag ]; then
 			echo -n "0" > /dev/block/by-name/flag
 		elif [ -e /dev/block/by-name/bootoptions ]; then

@@ -1,5 +1,6 @@
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
+from Components.AVSwitch import iAVSwitch
 from Components.config import config, configfile, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import BoxInfo
@@ -14,29 +15,33 @@ BRAND = BoxInfo.getItem("brand")
 
 
 def getFilePath(setting):
-	if BRAND in ('dreambox',):
-		return "/proc/stb/vmpeg/0/dst_%s" % (setting)
-	else:
-		return "/proc/stb/fb/dst_%s" % (setting)
+	return "/proc/stb/fb/dst_%s" % (setting)
 
 
 def setPositionParameter(parameter, configElement):
-	f = open(getFilePath(parameter), "w")
-	f.write('%08X\n' % configElement.value)
-	f.close()
+	with open(getFilePath(parameter), "w") as fd:
+		fd.write('%08X\n' % configElement.value)
 	if fileExists(getFilePath("apply")):
-		f = open(getFilePath("apply"), "w")
-		f.write('1')
-		f.close()
+		with open(getFilePath("apply"), "w") as fd:
+			fd.write("1")
+
+
+def setPositionParameterAML():
+	with open("/sys/class/graphics/fb0/window_axis", "w") as fd:
+		fd.write('%s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_top.value, config.osd.dst_width.value, config.osd.dst_height.value))
+	with open("/sys/class/graphics/fb0/free_scale", "w") as fd:
+		fd.write("0x10001")
 
 
 def InitOsd():
 
 	BoxInfo.setItem("CanChange3DOsd", access('/proc/stb/fb/3dmode', R_OK) and True or False)
 	BoxInfo.setItem("CanChangeOsdAlpha", access('/proc/stb/video/alpha', R_OK) and True or False)
+	BoxInfo.setItem("CanChangeOsdPlaneAlpha", access('/sys/class/graphics/fb0/osd_plane_alpha', R_OK) and True or False)
 	BoxInfo.setItem("CanChangeOsdPosition", access('/proc/stb/fb/dst_left', R_OK) and True or False)
+	BoxInfo.setItem("CanChangeOsdPositionAML", access('/sys/class/graphics/fb0/free_scale', R_OK) and True or False)
 	BoxInfo.setItem("OsdSetup", BoxInfo.getItem("CanChangeOsdPosition"))
-	if BoxInfo.getItem("CanChangeOsdAlpha") == True or BoxInfo.getItem("CanChangeOsdPosition") == True:
+	if BoxInfo.getItem("CanChangeOsdAlpha") == True or BoxInfo.getItem("CanChangeOsdPosition") == True or BoxInfo.getItem("CanChangeOsdPositionAML") == True or BoxInfo.getItem("CanChangeOsdPlaneAlpha") == True:
 		BoxInfo.setItem("OsdMenu", True)
 	else:
 		BoxInfo.setItem("OsdMenu", False)
@@ -45,38 +50,51 @@ def InitOsd():
 		BoxInfo.setItem("CanChangeOsdPosition", False)
 		BoxInfo.setItem("CanChange3DOsd", False)
 
-	if BRAND in ('dreambox',):
-		BoxInfo.setItem("CanChangeOsdPosition", True)
-
 	def setOSDLeft(configElement):
 		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("left", configElement)
+		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
+			setPositionParameterAML()
 	config.osd.dst_left.addNotifier(setOSDLeft)
 
 	def setOSDWidth(configElement):
 		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("width", configElement)
+		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
+			setPositionParameterAML()
 	config.osd.dst_width.addNotifier(setOSDWidth)
 
 	def setOSDTop(configElement):
 		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("top", configElement)
+		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
+			setPositionParameterAML()
 	config.osd.dst_top.addNotifier(setOSDTop)
 
 	def setOSDHeight(configElement):
 		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("height", configElement)
+		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
+			setPositionParameterAML()
 	config.osd.dst_height.addNotifier(setOSDHeight)
+
 	print('[UserInterfacePositioner] Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value))
 
 	def setOSDAlpha(configElement):
 		if BoxInfo.getItem("CanChangeOsdAlpha"):
 			print('[UserInterfacePositioner] Setting OSD alpha:%s' % str(configElement.value))
 			config.av.osd_alpha.setValue(configElement.value)
-			f = open("/proc/stb/video/alpha", "w")
-			f.write(str(configElement.value))
-			f.close()
+			with open("/proc/stb/video/alpha", "w") as fd:
+				fd.write(str(configElement.value))
 	config.osd.alpha.addNotifier(setOSDAlpha)
+
+	def setOSDPlaneAlpha(configElement):
+		if BoxInfo.getItem("CanChangeOsdPlaneAlpha"):
+			print('[UserInterfacePositioner] Setting OSD plane alpha:%s' % str(configElement.value))
+			config.av.osd_alpha.setValue(configElement.value)
+			with open("/sys/class/graphics/fb0/osd_plane_alpha", "w") as fd:
+				fd.write(hex(configElement.value))
+	config.osd.alpha.addNotifier(setOSDPlaneAlpha)
 
 	def set3DMode(configElement):
 		if BoxInfo.getItem("CanChange3DOsd"):
@@ -281,7 +299,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
-		if BoxInfo.getItem("CanChangeOsdAlpha"):
+		if BoxInfo.getItem("CanChangeOsdAlpha") or BoxInfo.getItem("CanChangeOsdPlaneAlpha"):
 			self.list.append(getConfigListEntry(_("User interface visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the user interface")))
 			self.list.append(getConfigListEntry(_("Teletext base visibility"), config.osd.alpha_teletext, _("Base transparency for teletext, more options available within teletext screen.")))
 			self.list.append(getConfigListEntry(_("Web browser base visibility"), config.osd.alpha_webbrowser, _("Base transparency for OpenOpera web browser")))
@@ -290,6 +308,12 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
 			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface up/down")))
 			self.list.append(getConfigListEntry(_("Height"), config.osd.dst_height, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
+		if BoxInfo.getItem("CanChangeOsdPositionAML"):
+			self.list.append(getConfigListEntry(_("Left"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the user interface left")))
+			self.list.append(getConfigListEntry(_("Right"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to move the user interface right")))
+			self.list.append(getConfigListEntry(_("Top"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface top")))
+			self.list.append(getConfigListEntry(_("Bottom"), config.osd.dst_height, _("Use the Left/Right buttons on your remote to move the user interface bottom")))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -323,21 +347,30 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
-		self.setPreviewPosition()
+		if BoxInfo.getItem("CanChangeOsdPosition"):
+			self.setPreviewPosition()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
-		self.setPreviewPosition()
+		if BoxInfo.getItem("CanChangeOsdPosition"):
+			self.setPreviewPosition()
 
 	def keyDefault(self):
 		config.osd.alpha.setValue(255)
 		config.osd.alpha_teletext.setValue(255)
 		config.osd.alpha_webbrowser.setValue(255)
 
-		config.osd.dst_left.setValue(0)
-		config.osd.dst_width.setValue(720)
-		config.osd.dst_top.setValue(0)
-		config.osd.dst_height.setValue(576)
+		if BoxInfo.getItem("CanChangeOsdPosition"):
+			config.osd.dst_width.setValue(720)
+			config.osd.dst_height.setValue(576)
+			config.osd.dst_left.setValue(0)
+			config.osd.dst_top.setValue(0)
+		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
+			limits = [int(x) for x in iAVSwitch.getWindowsAxis().split()]
+			config.osd.dst_left.setValue(limits[0])
+			config.osd.dst_top.setValue(limits[1])
+			config.osd.dst_width.setValue(limits[2])
+			config.osd.dst_height.setValue(limits[3])
 		self["config"].l.setList(self.list)
 
 	def setPreviewPosition(self):
@@ -421,11 +454,12 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("User interface visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the user interface")))
 			self.list.append(getConfigListEntry(_("Teletext base visibility"), config.osd.alpha_teletext, _("Base transparency for teletext, more options available within teletext screen.")))
 			self.list.append(getConfigListEntry(_("Web browser base visibility"), config.osd.alpha_webbrowser, _("Base transparency for OpenOpera web browser")))
-		if BoxInfo.getItem("CanChangeOsdPosition") == True:
+		if BoxInfo.getItem("CanChangeOsdPosition") == True or BoxInfo.getItem("CanChangeOsdPositionAML") == True:
 			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the user interface left/right")))
 			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
 			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface up/down")))
 			self.list.append(getConfigListEntry(_("Height"), config.osd.dst_height, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -459,21 +493,30 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
-		self.setPreviewPosition()
+		if BoxInfo.getItem("CanChangeOsdPosition"):
+			self.setPreviewPosition()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
-		self.setPreviewPosition()
+		if BoxInfo.getItem("CanChangeOsdPosition"):
+			self.setPreviewPosition()
 
 	def keyDefault(self):
 		config.osd.alpha.setValue(255)
 		config.osd.alpha_teletext.setValue(255)
 		config.osd.alpha_webbrowser.setValue(255)
 
-		config.osd.dst_left.setValue(0)
-		config.osd.dst_width.setValue(720)
-		config.osd.dst_top.setValue(0)
-		config.osd.dst_height.setValue(576)
+		if BoxInfo.getItem("CanChangeOsdPosition"):
+			config.osd.dst_width.setValue(720)
+			config.osd.dst_height.setValue(576)
+			config.osd.dst_left.setValue(0)
+			config.osd.dst_top.setValue(0)
+		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
+			limits = iAVSwitch.getWindowsAxis().split()
+			config.osd.dst_left.setValue(limits[0])
+			config.osd.dst_top.setValue(limits[1])
+			config.osd.dst_width.setValue(limits[2])
+			config.osd.dst_height.setValue(limits[3])
 		self["config"].l.setList(self.list)
 
 	def setPreviewPosition(self):

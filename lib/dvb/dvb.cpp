@@ -142,6 +142,12 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM900;
 	else if (!strncmp(tmp, "dm920\n", rd))
 		m_boxtype = DM920;
+	else if (!strncmp(tmp, "one\n", rd))
+		m_boxtype = DREAMONE;
+	else if (!strncmp(tmp, "two\n", rd))
+		m_boxtype = DREAMTWO;
+	else if (!strncmp(tmp, "seven\n", rd))
+		m_boxtype = DREAMSEVEN;
 	else if (!strncmp(tmp, "Gigablue\n", rd))
 		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "gb800solo\n", rd))

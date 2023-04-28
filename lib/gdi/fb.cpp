@@ -221,8 +221,14 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 	if (lfb)
 		munmap(lfb, stride * screeninfo.yres_virtual);
 #endif
+
 	screeninfo.xres_virtual=screeninfo.xres=nxRes;
+#ifdef DREAMNEXTGEN
+	screeninfo.yres_virtual=(screeninfo.yres=nyRes)*3;
+	screeninfo.activate = FB_ACTIVATE_ALL;
+#else
 	screeninfo.yres_virtual=(screeninfo.yres=nyRes)*2;
+#endif
 	screeninfo.height=0;
 	screeninfo.width=0;
 	screeninfo.xoffset=screeninfo.yoffset=0;
@@ -265,7 +271,11 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 		}
 		eDebug("[fb] double buffering not available.");
 	} else
+#ifdef DREAMNEXTGEN
+		eDebug("[fb] triple buffering available!");
+#else
 		eDebug("[fb] double buffering available!");
+#endif
 
 	m_number_of_pages = screeninfo.yres_virtual / nyRes;
 	eDebug("[fb] %d page(s) available!", m_number_of_pages);
