@@ -441,6 +441,24 @@ def parseInteger(value, default=0):
 	return value
 
 
+def parseItemAlignment(value):
+	options = {
+		"default": eListbox.itemAlignDefault,
+		"center": eListbox.itemAlignCenter,
+		"justify": eListbox.itemAlignJustify,
+	}
+	return parseOptions(options, "scrollbarItemAlignment", value, eListbox.itemAlignDefault)
+
+
+def parseListOrientation(value):
+	options = {
+		"vertical": 0b01,
+		"horizontal": 0b10,
+		"grid": 0b11
+	}
+	return options.get(value, 0b01)
+
+
 def parseOrientation(value):
 	options = {
 		"orHorizontal": 0x00,
@@ -575,7 +593,9 @@ def parseScrollbarMode(value):
 		"showNever": eListbox.showNever,
 		"showLeft": eListbox.showLeftOnDemand,  # This value is deprecated to better allow option symmetry, use "showLeftOnDemand" instead.
 		"showLeftOnDemand": eListbox.showLeftOnDemand,
-		"showLeftAlways": eListbox.showLeftAlways
+		"showLeftAlways": eListbox.showLeftAlways,
+		"showTopOnDemand": eListbox.showTopOnDemand,
+		"showTopAlways": eListbox.showTopAlways
 	}
 	return parseOptions(options, "scrollbarMode", value, eListbox.showOnDemand)
 
@@ -771,6 +791,13 @@ class AttributeParser:
 		# print("[Skin] DEBUG: Scale itemHeight %d -> %d." % (int(value), self.applyVerticalScale(value)))
 		self.guiObject.setItemHeight(self.applyVerticalScale(value))
 
+	def itemWidth(self, value):
+		# print("[Skin] DEBUG: Scale itemWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
+		self.guiObject.setItemWidth(self.applyHorizontalScale(value))
+
+	def listOrientation(self, value):  # Used by eListBox.
+		self.guiObject.setOrientation(parseListOrientation(value))
+
 	def noWrap(self, value):
 		self.guiObject.setNoWrap(1 if parseBoolean("nowrap", value) else 0)
 		# attribDeprecationWarning("noWrap", "wrap")
@@ -819,6 +846,9 @@ class AttributeParser:
 	def scrollbarbackgroundPixmap(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBackgroundPixmap' instead!
 		self.scrollbarBackgroundPixmap(value)
 		attribDeprecationWarning("scrollbarbackgroundPixmap", "scrollbarBackgroundPixmap")
+
+	def scrollbarItemAlignment(self, value):
+		self.guiObject.setItemAlignment(parseItemAlignment(value))
 
 	def scrollbarMode(self, value):
 		self.guiObject.setScrollbarMode(parseScrollbarMode(value))
