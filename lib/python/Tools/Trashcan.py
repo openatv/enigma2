@@ -149,9 +149,7 @@ class CleanTrashTask(PythonTask):
 			parts = line.strip().split()
 			if parts[1] == "/media/autofs":
 				continue
-			if config.usage.movielist_trashcan_network_clean.value and parts[1].startswith("/media/net"):
-				mounts.append(parts[1])
-			elif config.usage.movielist_trashcan_network_clean.value and parts[1].startswith("/media/autofs"):
+			if config.usage.movielist_trashcan_network_clean.value and (parts[1].startswith("/media/net") or parts[1].startswith("/media/autofs")):
 				mounts.append(parts[1])
 			elif not parts[1].startswith("/media/net") and not parts[1].startswith("/media/autofs"):
 				mounts.append(parts[1])
@@ -208,7 +206,7 @@ class CleanTrashTask(PythonTask):
 					bytesToRemove -= pathSize
 					size -= pathSize
 				print("[Trashcan] Trashcan '%s' is now using %d bytes." % (trashcan, size))
-		else:
+		if not matches:
 			print("[Trashcan] No trashcans found!")
 
 
