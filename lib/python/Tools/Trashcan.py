@@ -1,56 +1,65 @@
-from __future__ import print_function
-import Components.Task
+from errno import ENOTEMPTY
+from os import W_OK, access, mkdir, rmdir, stat, statvfs, walk
+from os.path import getsize, isdir, join, realpath, split
+from time import time
+
+from enigma import eBackgroundFileEraser, eLabel, iRecordableService, pNavigation
+
 from Components.config import config
-from Components import Harddisk
 from Components.GUIComponent import GUIComponent
+from Components.Harddisk import findMountPoint
+from Components.Task import Job, PythonTask, job_manager as jobManager
 from Components.VariableText import VariableText
-import time
-import os
-import enigma
-from enigma import pNavigation
+from Tools.Conversions import scaleNumber
+from Tools.Directories import fileReadLines
+
+MODULE_NAME = __name__.split(".")[-1]
+TRASHCAN = ".Trash"  # This should this be ".Trashcan" to be consistent with the module.
 
 
-def getTrashFolder(path=None):
-	# Returns trash folder without symlinks
+def getTrashcan(path=None):  # Returns trashcan folder without symbolic links.
+	if path:
+		path = realpath(path)
 	try:
-		if path is None or os.path.realpath(path) == '/media/autofs':
-			print('path is none')
-			return ""
+		if path is None or path == "/media/autofs":
+			print("[Trashcan] Error: Trashcan path is None or invalid!")
+			trashcan = ""
 		else:
-			if '/movie' in path:
-				mountpoint = Harddisk.findMountPoint(os.path.realpath(path))
-				trashcan = os.path.join(mountpoint, 'movie')
-			else:
-				trashcan = Harddisk.findMountPoint(os.path.realpath(path))
-			return os.path.realpath(os.path.join(trashcan, ".Trash"))
-	except:
-		return None
+			trashcan = join(join(findMountPoint(path), "movie") if "/movie" in path else findMountPoint(path), TRASHCAN)
+	except OSError as err:
+		print("[Trashcan] Error %d: Unable to locate trashcan folder!  (%s)" % (err.errno, err.strerror))
+		trashcan = ""
+	return trashcan
+
+
+def createTrashcan(path=None):
+	trashcan = getTrashcan(path)
+	if trashcan and access(split(trashcan)[0], W_OK) and not isdir(trashcan):
+		try:
+			mkdir(trashcan)
+		except OSError as err:
+			print("[Trashcan] Error %d: Unable to create trashcan folder '%s'!  (%s)" % (err.errno, trashcan, err.strerror))
+			trashcan = None
+	else:
+		trashcan = None
+	return trashcan
 
 
 def createTrashFolder(path=None):
-	trash = getTrashFolder(path)
-	if trash and os.access(os.path.split(trash)[0], os.W_OK):
-		if not os.path.isdir(trash):
-			try:
-				os.mkdir(trash)
-			except:
-				return None
-		return trash
-	else:
-		return None
+	return createTrashcan(path=path)
 
 
-def get_size(start_path='.'):
-	total_size = 0
-	if start_path:
-		for dirpath, dirnames, filenames in os.walk(start_path):
-			for f in filenames:
+def getTrashcanSize(startPath="."):
+	trashcanSize = 0
+	if startPath:
+		for root, dirs, files in walk(startPath):
+			for file in files:
 				try:
-					fp = os.path.join(dirpath, f)
-					total_size += os.path.getsize(fp)
-				except:
-					pass
-	return total_size
+					path = join(root, file)
+					trashcanSize += getsize(path)
+				except OSError as err:
+					print("[Trashcan] Error %d: Unable to get directory size for '%s'!  (%s)" % (err.errno, path, err.strerror))
+	return trashcanSize
 
 
 class Trashcan:
@@ -59,9 +68,12 @@ class Trashcan:
 		session.nav.record_event.append(self.gotRecordEvent)
 		self.gotRecordEvent(None, None)
 
+	def __del__(self):
+		self.destroy()
+
 	def gotRecordEvent(self, service, event):
 		self.recordings = len(self.session.nav.getRecordings(False, pNavigation.isRealRecording))
-		if event == enigma.iRecordableService.evEnd:
+		if event == iRecordableService.evEnd:
 			self.cleanIfIdle()
 
 	def destroy(self):
@@ -69,167 +81,141 @@ class Trashcan:
 			self.session.nav.record_event.remove(self.gotRecordEvent)
 		self.session = None
 
-	def __del__(self):
-		self.destroy()
-
-	def cleanIfIdle(self):
-		# RecordTimer calls this when preparing a recording. That is a
-		# nice moment to clean up.
+	def cleanIfIdle(self):  # RecordTimer calls this when preparing a recording. That is a nice moment to clean up.
 		if self.recordings:
-			print("[Trashcan] Recording in progress", self.recordings)
+			print("[Trashcan] %d recording(s) are in progress." % self.recordings)
 			return
-		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
-		reserveBytes = 1024 * 1024 * 1024 * int(config.usage.movielist_trashcan_reserve.value)
-		clean(ctimeLimit, reserveBytes)
+		timeLimit = int(time()) - (config.usage.movielist_trashcan_days.value * 3600 * 24)
+		reserveBytes = 1024 * 1024 * 1024 * config.usage.movielist_trashcan_reserve.value
+		clean(timeLimit, reserveBytes)
 
 
-def clean(ctimeLimit, reserveBytes):
+def clean(timeLimit, reserveBytes):
 	isCleaning = False
-	for job in Components.Task.job_manager.getPendingJobs():
-		jobname = str(job.name)
-		if jobname.startswith(_("Cleaning Trashes")):
+	for job in jobManager.getPendingJobs():
+		jobName = str(job.name)
+		if jobName.startswith(_("Cleaning Trashcan")):
 			isCleaning = True
 			break
-
 	if config.usage.movielist_trashcan.value and not isCleaning:
-		name = _("Cleaning Trashes")
-		job = Components.Task.Job(name)
+		name = _("Cleaning Trashcan")
+		job = Job(name)
 		task = CleanTrashTask(job, name)
-		task.openFiles(ctimeLimit, reserveBytes)
-		Components.Task.job_manager.AddJob(job)
+		task.openFiles(timeLimit, reserveBytes)
+		jobManager.AddJob(job)
 	elif isCleaning:
-		print("[Trashcan] Cleanup already running")
+		print("[Trashcan] Trashcan cleanup is already running.")
 	else:
-		print("[Trashcan] Disabled skipping check.")
+		print("[Trashcan] Trashcan cleanup is disabled.")
 
 
 def cleanAll(path=None):
-	trash = getTrashFolder(path)
-	if not os.path.isdir(trash):
-		print("[Trashcan] No trash.", trash)
-		return 0
-	for root, dirs, files in os.walk(trash, topdown=False):
-		for name in files:
-			fn = os.path.join(root, name)
-			try:
-				enigma.eBackgroundFileEraser.getInstance().erase(fn)
-			except Exception as e:
-				print("[Trashcan] Failed to erase %s:" % name, e)
-		# Remove empty directories if possible
-		for name in dirs:
-			try:
-				os.rmdir(os.path.join(root, name))
-			except:
-				pass
+	trashcan = getTrashFolder(path)
+	if isdir(trashcan):
+		for root, dirs, files in walk(trashcan, topdown=False):
+			for file in files:
+				path = join(root, file)
+				try:
+					eBackgroundFileEraser.getInstance().erase(path)
+				except Exception as err:
+					print("[Trashcan] Error: Failed to erase '%s'!  (%s)" % (path, err))
+			for dir in dirs:  # Remove empty directories if possible.
+				path = join(root, dir)
+				try:
+					rmdir(path)
+				except OSError as err:
+					if err.errno != ENOTEMPTY:
+						print("[Trashcan] Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, path, err.strerror))
+	else:
+		print("[Trashcan] Trashcan '%s' is not a directory!" % trashcan)
 
 
-def init(session):
+def initTrashcan(session):
 	global instance
 	instance = Trashcan(session)
 
 
-class CleanTrashTask(Components.Task.PythonTask):
-	def openFiles(self, ctimeLimit, reserveBytes):
-		self.ctimeLimit = ctimeLimit
+class CleanTrashTask(PythonTask):
+	def openFiles(self, timeLimit, reserveBytes):
+		self.timeLimit = timeLimit
 		self.reserveBytes = reserveBytes
 
 	def work(self):
+		print("[Trashcan] Probing for trashcan folders.")
+		lines = []
+		lines = fileReadLines("/proc/mounts", default=lines, source=MODULE_NAME)
 		mounts = []
-		matches = []
-		print("[Trashcan] probing folders")
-		f = open('/proc/mounts', 'r')
-		for line in f.readlines():
+		for line in lines:
 			parts = line.strip().split()
-			if parts[1] == '/media/autofs':
+			if parts[1] == "/media/autofs":
 				continue
-			if config.usage.movielist_trashcan_network_clean.value and parts[1].startswith('/media/net'):
+			if config.usage.movielist_trashcan_network_clean.value and (parts[1].startswith("/media/net") or parts[1].startswith("/media/autofs")):
 				mounts.append(parts[1])
-			elif config.usage.movielist_trashcan_network_clean.value and parts[1].startswith('/media/autofs'):
+			elif not parts[1].startswith("/media/net") and not parts[1].startswith("/media/autofs"):
 				mounts.append(parts[1])
-			elif not parts[1].startswith('/media/net') and not parts[1].startswith('/media/autofs'):
-				mounts.append(parts[1])
-		f.close()
-
+		matches = []
 		for mount in mounts:
-			if os.path.isdir(os.path.join(mount, '.Trash')):
-				matches.append(os.path.join(mount, '.Trash'))
-			if os.path.isdir(os.path.join(mount, 'movie/.Trash')):
-				matches.append(os.path.join(mount, 'movie/.Trash'))
-
-		print("[Trashcan] found following trashcan's:", matches)
-		if len(matches):
-			for trashfolder in matches:
-				print("[Trashcan] looking in trashcan", trashfolder)
-				trashsize = get_size(trashfolder)
-				diskstat = os.statvfs(trashfolder)
-				free = diskstat.f_bfree * diskstat.f_bsize
-				bytesToRemove = self.reserveBytes - free
-				print("[Trashcan] " + str(trashfolder) + ": Size:", trashsize)
-				candidates = []
-				size = 0
-				for root, dirs, files in os.walk(trashfolder, topdown=False):
-					for name in files:
-						try:
-							fn = os.path.join(root, name)
-							st = os.stat(fn)
-							if st.st_ctime < self.ctimeLimit:
-								enigma.eBackgroundFileEraser.getInstance().erase(fn)
-								bytesToRemove -= st.st_size
-							else:
-								candidates.append((st.st_ctime, fn, st.st_size))
-								size += st.st_size
-						except Exception as e:
-							print("[Trashcan] Failed to stat %s:" % name, e)
-					# Remove empty directories if possible
-					for name in dirs:
-						try:
-							os.rmdir(os.path.join(root, name))
-						except:
-							pass
-					candidates.sort()
-					# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
-					for st_ctime, fn, st_size in candidates:
-						if bytesToRemove < 0:
-							break
-						try:
-							# somtimes the file does not exist, can happen if trashcan is on a network, the main box could also be emptying trash at same time.
-							enigma.eBackgroundFileEraser.getInstance().erase(fn)
-						except:
-							pass
-						bytesToRemove -= st_size
-						size -= st_size
-					print("[Trashcan] " + str(trashfolder) + ": Size now:", size)
+			if isdir(join(mount, TRASHCAN)):
+				matches.append(join(mount, TRASHCAN))
+			if isdir(join(mount, "movie", TRASHCAN)):
+				matches.append(join(mount, "movie", TRASHCAN))
+		print("[Trashcan] Found the following trashcans '%s'." % "', '".join(matches))
+		for trashcan in matches:
+			print("[Trashcan] Looking in trashcan '%s'." % trashcan)
+			trashcanSize = getTrashcanSize(trashcan)
+			try:
+				trashcanStatus = statvfs(trashcan)
+				freeSpace = trashcanStatus.f_bfree * trashcanStatus.f_bsize
+			except OSError as err:
+				print("[Trashcan] Error %d: Unable to get status for directory '%s'!  (%s)" % (err.errno, trashcan, err.strerror))
+				freeSpace = 0
+			bytesToRemove = self.reserveBytes - freeSpace
+			print("[Trashcan] Trashcan '%s' size is %d bytes." % (trashcan, trashcanSize))
+			candidates = []
+			size = 0
+			for root, dirs, files in walk(trashcan, topdown=False):
+				for file in files:
+					try:
+						path = join(root, file)
+						status = stat(path)
+						if status.st_ctime < self.timeLimit:
+							eBackgroundFileEraser.getInstance().erase(path)
+							bytesToRemove -= status.st_size
+						else:
+							candidates.append((status.st_ctime, path, status.st_size))
+							size += status.st_size
+					except OSError as err:
+						print("[Trashcan] Error %d: Unable to get status for '%s'!  (%s)" % (err.errno, path, err.strerror))
+					except Exception as err:
+						print("[Trashcan] Error: Failed to erase '%s'!  (%s)" % (file, err))
+				for dir in dirs:  # Remove empty directories if possible.
+					try:
+						path = join(root, dir)
+						rmdir(path)
+					except OSError as err:
+						if err.errno != ENOTEMPTY:
+							print("[Trashcan] Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, path, err.strerror))
+				candidates.sort()  # Now we have a list of ctime, candidates, size. Sorted by ctime (deletion time).
+				for pathTime, path, pathSize in candidates:
+					if bytesToRemove < 0:
+						break
+					try:  # Sometimes the path doesn't exist. This can happen if trashcan is on a network or other code is emptying the trashcan at same time.
+						eBackgroundFileEraser.getInstance().erase(path)
+					except Exception as err:
+						print("[Trashcan] Error: Failed to erase '%s'!  (%s)" % (path, err))  # Should we ignore any deletion errors?
+					bytesToRemove -= pathSize
+					size -= pathSize
+				print("[Trashcan] Trashcan '%s' is now using %d bytes." % (trashcan, size))
+		if not matches:
+			print("[Trashcan] No trashcans found!")
 
 
 class TrashInfo(VariableText, GUIComponent):
-	FREE = 0
-	USED = 1
-	SIZE = 2
+	GUI_WIDGET = eLabel
 
-	def __init__(self, path, type, update=True):
-		GUIComponent.__init__(self)
+	def __init__(self, path):
 		VariableText.__init__(self)
-		self.type = type
-		if update and path != '/media/autofs/':
-			self.update(path)
+		GUIComponent.__init__(self)
 
 	def update(self, path):
-		try:
-			total_size = get_size(getTrashFolder(path))
-		except OSError:
-			return -1
-
-		if self.type == self.USED:
-			try:
-				if total_size < 10000000:
-					total_size = _("%d KB") % (total_size >> 10)
-				elif total_size < 10000000000:
-					total_size = _("%d MB") % (total_size >> 20)
-				else:
-					total_size = _("%d GB") % (total_size >> 30)
-				self.setText(_("Trashcan:") + " " + total_size)
-			except:
-				# occurs when f_blocks is 0 or a similar error
-				self.setText("-?-")
-
-	GUI_WIDGET = enigma.eLabel
+		self.setText("%s: %s" % (_("Trashcan"), scaleNumber(getTrashcanSize(getTrashcan(path)))))
