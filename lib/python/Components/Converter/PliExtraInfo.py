@@ -125,7 +125,7 @@ class PliExtraInfo(Poll, Converter):
 					for caid in available_caids:
 						if int(caid_entry[0], 16) <= caid <= int(caid_entry[1], 16):
 							color = "\c00ffff00"
-				except:
+				except Exception:
 					pass
 
 			if color != "\c007f7f7f" or caid_entry[4]:
@@ -146,7 +146,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0x100', 16) <= caid <= int('0x1ff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'S'
 		res += "\c00ffffff"
@@ -162,7 +162,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0x500', 16) <= caid <= int('0x5ff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'V'
 		res += "\c00ffffff"
@@ -178,7 +178,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0x600', 16) <= caid <= int('0x6ff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'I'
 		res += "\c00ffffff"
@@ -194,7 +194,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0x900', 16) <= caid <= int('0x9ff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'NDS'
 		res += "\c00ffffff"
@@ -210,7 +210,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0xb00', 16) <= caid <= int('0xbff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'CO'
 		res += "\c00ffffff"
@@ -226,7 +226,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0xd00', 16) <= caid <= int('0xdff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'CW'
 		res += "\c00ffffff"
@@ -242,7 +242,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0xe00', 16) <= caid <= int('0xeff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'P'
 		res += "\c00ffffff"
@@ -258,7 +258,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0x1010', 16) <= caid <= int('0x1010', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'T'
 		res += "\c00ffffff"
@@ -274,7 +274,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0x1700', 16) <= caid <= int('0x17ff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'B'
 		res += "\c00ffffff"
@@ -290,7 +290,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0x1800', 16) <= caid <= int('0x18ff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'N'
 		res += "\c00ffffff"
@@ -306,7 +306,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0x2600', 16) <= caid <= int('0x26ff', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'BI'
 		res += "\c00ffffff"
@@ -322,7 +322,7 @@ class PliExtraInfo(Poll, Converter):
 				for caid in available_caids:
 					if int('0x4ae0', 16) <= caid <= int('0x4ae1', 16):
 						color = "\c00eeee00"
-			except:
+			except Exception:
 				pass
 		res = color + 'DC'
 		res += "\c00ffffff"
@@ -336,7 +336,7 @@ class PliExtraInfo(Poll, Converter):
 					caid_name = caid_entry[2]
 					break
 			return caid_name + ":%04x:%04x:%04x" % (int(self.current_caid, 16), int(self.current_provid, 16), info.getInfo(iServiceInformation.sSID))
-		except:
+		except Exception:
 			pass
 		return ""
 
@@ -350,7 +350,7 @@ class PliExtraInfo(Poll, Converter):
 					caid_name = caid_entry[2]
 					break
 			return caid_name + ":%04x" % (int(self.current_caid, 16))
-		except:
+		except Exception:
 			pass
 		return ""
 
@@ -363,28 +363,28 @@ class PliExtraInfo(Poll, Converter):
 			f = open("/proc/stb/vmpeg/0/yres", "r")
 			try:
 				video_height = int(f.read(), 16)
-			except:
+			except Exception:
 				pass
 			f.close()
 		elif path.exists("/sys/class/video/frame_height"):
 			f = open("/sys/class/video/frame_height", "r")
 			try:
 				video_height = int(f.read())
-			except:
+			except Exception:
 				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/xres"):
 			f = open("/proc/stb/vmpeg/0/xres", "r")
 			try:
 				video_width = int(f.read(), 16)
-			except:
+			except Exception:
 				pass
 			f.close()
 		elif path.exists("/sys/class/video/frame_width"):
 			f = open("/sys/class/video/frame_width", "r")
 			try:
 				video_width = int(f.read())
-			except:
+			except Exception:
 				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/progressive"):
@@ -394,7 +394,7 @@ class PliExtraInfo(Poll, Converter):
 					video_pol = "p" if int(f.read()) else "i"
 				else:
 					video_pol = "p" if int(f.read(), 16) else "i"
-			except:
+			except Exception:
 				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/framerate"):
@@ -404,7 +404,7 @@ class PliExtraInfo(Poll, Converter):
 		if f:
 			try:
 				video_rate = int(f.read())
-			except:
+			except Exception:
 				pass
 			f.close()
 
@@ -522,10 +522,10 @@ class PliExtraInfo(Poll, Converter):
 
 	def createTransponderName(self, feraw):
 		orbpos = feraw.get("orbital_position")
-		if orbpos is None: # Not satellite
+		if orbpos is None:  # Not satellite
 			return ""
 		freq = feraw.get("frequency")
-		if freq and freq < 10700000: # C-band
+		if freq and freq < 10700000:  # C-band
 			if orbpos > 1800:
 				orbpos += 1
 			else:
@@ -884,12 +884,12 @@ class PliExtraInfo(Poll, Converter):
 				if request_selected:
 					if int(caid_entry[0], 16) <= int(current_caid, 16) <= int(caid_entry[1], 16):
 						return True
-				else: # request available
+				else:  # request available
 					try:
 						for caid in available_caids:
 							if int(caid_entry[0], 16) <= caid <= int(caid_entry[1], 16):
 								return True
-					except:
+					except Exception:
 						pass
 
 		return False

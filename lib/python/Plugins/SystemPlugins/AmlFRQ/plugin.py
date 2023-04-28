@@ -60,38 +60,30 @@ def standbyCounterChanged(configElement):
 def initBooster():
 	print("[AmlFRQ] initBooster")
 	try:
-		f = open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq", "w")
-		f.write(config.plugins.aml.maxfrq.getValue())
-		f.close()
-		f = open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq", "w")
-		f.write(config.plugins.aml.minfrq.getValue())
-		f.close()
-		f = open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq", "w")
-		f.write(config.plugins.aml.maxfrq2.getValue())
-		f.close()
-		f = open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq", "w")
-		f.write(config.plugins.aml.minfrq2.getValue())
-		f.close()
-		f = open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor", "w")
-		f.write(config.plugins.aml.governor.getValue())
-		f.close()
-		f = open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor", "w")
-		f.write(config.plugins.aml.governor.getValue())
-		f.close()
-	except:
+		with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq", "w") as fd:
+			fd.write(config.plugins.aml.maxfrq.getValue())
+		with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq", "w") as fd:
+			fd.write(config.plugins.aml.minfrq.getValue())
+		with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq", "w") as fd:
+			fd.write(config.plugins.aml.maxfrq2.getValue())
+		with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq", "w") as fd:
+			fd.write(config.plugins.aml.minfrq2.getValue())
+		with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor", "w") as fd:
+			fd.write(config.plugins.aml.governor.getValue())
+		with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor", "w") as fd:
+			fd.write(config.plugins.aml.governor.getValue())
+	except OSError:
 		pass
 
 
 def initStandbyBooster():
 	print("[AmlFRQ] initStandbyBooster")
 	try:
-		f = open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq", "w")
-		f.write(config.plugins.aml.minfrq.getValue())
-		f.close()
-		f = open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq", "w")
-		f.write(config.plugins.aml.minfrq2.getValue())
-		f.close()
-	except:
+		with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq", "w") as fd:
+			fd.write(config.plugins.aml.minfrq.getValue())
+		with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq", "w") as fd:
+			fd.write(config.plugins.aml.minfrq2.getValue())
+	except OSError:
 		pass
 
 
@@ -176,7 +168,6 @@ class AmlFRQ(ConfigListScreen, Screen):
 			print("[AmlFRQ] createSetup in Timer")
 			self.timer.callback.append(self.getcurrentData)
 			self.timer.start(2000, True)
-		return
 
 	def getcurrentData(self):
 		self.temp = "N/A"
@@ -184,29 +175,21 @@ class AmlFRQ(ConfigListScreen, Screen):
 		self.cfrq = "N/A"
 		self.cfrq2 = "N/A"
 		try:
-			f = open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq", "r")
-			self.cfrq = f.read()
-			self.cfrq = self.cfrq.strip()
-			f.close()
-			f = open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq", "r")
-			self.cfrq2 = f.read()
-			self.cfrq2 = self.cfrq2.strip()
-			f.close()
-			f = open("/proc/stb/fp/temp_sensor_avs", "r")
-			self.temp = f.read()
-			self.temp = self.temp.strip()
-			f.close()
-			f = open("/sys/devices/system/cpu/cpufreq/policy0/brcm_avs_voltage", "r")
-			self.voltage = f.read()
-			self.voltage = self.voltage.strip()
-			f.close()
-		except:
+			with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq", "r") as fd:
+				self.cfrq = fd.read().strip()
+			with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq", "r") as fd:
+				self.cfrq2 = fd.read().strip()
+			with open("/proc/stb/fp/temp_sensor_avs", "r") as fd:
+				self.temp = fd.read().strip()
+			with open("/sys/devices/system/cpu/cpufreq/policy0/brcm_avs_voltage", "r") as fd:
+				self.voltage = fd.read().strip()
+		except Exception:
 			pass
 		try:
-			self.cfrq = str(int(self.cfrq.strip()) / 1000)
-			self.cfrq2 = str(int(self.cfrq2.strip()) / 1000)
+			self.cfrq = str(int(self.cfrq) / 1000)
+			self.cfrq2 = str(int(self.cfrq2) / 1000)
 			self.voltage = str(int(self.voltage, 16))
-		except:
+		except Exception:
 			pass
 
 		self["tempc"].setText(_("Current Temperature (SoC): %s °C") % self.temp)
@@ -285,10 +268,7 @@ class U5_Booster:
 
 
 def main(menuid):
-	if menuid != "system":
-		return []
-	else:
-		return [(_("CPU Control"), startBooster, "CPU Control", None)]
+	return [(_("CPU Control"), startBooster, "CPU Control", None)] if menuid == "system" else []
 
 
 def startBooster(session, **kwargs):
@@ -310,7 +290,6 @@ def dinobotbooster():
 	elif gReason == 1 and wbooster != None:
 		print("[AmlFRQ] booster Stopping !!")
 		wbooster = None
-	return
 
 
 def sessionstart(reason, **kwargs):

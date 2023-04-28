@@ -19,22 +19,18 @@ def getFilePath(setting):
 
 
 def setPositionParameter(parameter, configElement):
-	f = open(getFilePath(parameter), "w")
-	f.write('%08X\n' % configElement.value)
-	f.close()
+	with open(getFilePath(parameter), "w") as fd:
+		fd.write('%08X\n' % configElement.value)
 	if fileExists(getFilePath("apply")):
-		f = open(getFilePath("apply"), "w")
-		f.write('1')
-		f.close()
+		with open(getFilePath("apply"), "w") as fd:
+			fd.write("1")
 
 
-def setPositionParameterAML(configElement):
-	f = open("/sys/class/graphics/fb0/window_axis", "w")
-	f.write('%s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_top.value, config.osd.dst_width.value, config.osd.dst_height.value))
-	f.close()
-	f = open("/sys/class/graphics/fb0/free_scale", "w")
-	f.write('0x10001')
-	f.close()
+def setPositionParameterAML():
+	with open("/sys/class/graphics/fb0/window_axis", "w") as fd:
+		fd.write('%s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_top.value, config.osd.dst_width.value, config.osd.dst_height.value))
+	with open("/sys/class/graphics/fb0/free_scale", "w") as fd:
+		fd.write("0x10001")
 
 
 def InitOsd():
@@ -58,28 +54,28 @@ def InitOsd():
 		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("left", configElement)
 		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			setPositionParameterAML(configElement)
+			setPositionParameterAML()
 	config.osd.dst_left.addNotifier(setOSDLeft)
 
 	def setOSDWidth(configElement):
 		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("width", configElement)
 		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			setPositionParameterAML(configElement)
+			setPositionParameterAML()
 	config.osd.dst_width.addNotifier(setOSDWidth)
 
 	def setOSDTop(configElement):
 		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("top", configElement)
 		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			setPositionParameterAML(configElement)
+			setPositionParameterAML()
 	config.osd.dst_top.addNotifier(setOSDTop)
 
 	def setOSDHeight(configElement):
 		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("height", configElement)
 		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			setPositionParameterAML(configElement)
+			setPositionParameterAML()
 	config.osd.dst_height.addNotifier(setOSDHeight)
 
 	print('[UserInterfacePositioner] Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value))
@@ -88,18 +84,16 @@ def InitOsd():
 		if BoxInfo.getItem("CanChangeOsdAlpha"):
 			print('[UserInterfacePositioner] Setting OSD alpha:%s' % str(configElement.value))
 			config.av.osd_alpha.setValue(configElement.value)
-			f = open("/proc/stb/video/alpha", "w")
-			f.write(str(configElement.value))
-			f.close()
+			with open("/proc/stb/video/alpha", "w") as fd:
+				fd.write(str(configElement.value))
 	config.osd.alpha.addNotifier(setOSDAlpha)
 
 	def setOSDPlaneAlpha(configElement):
 		if BoxInfo.getItem("CanChangeOsdPlaneAlpha"):
 			print('[UserInterfacePositioner] Setting OSD plane alpha:%s' % str(configElement.value))
 			config.av.osd_alpha.setValue(configElement.value)
-			f = open("/sys/class/graphics/fb0/osd_plane_alpha", "w")
-			f.write(hex(configElement.value))
-			f.close()
+			with open("/sys/class/graphics/fb0/osd_plane_alpha", "w") as fd:
+				fd.write(hex(configElement.value))
 	config.osd.alpha.addNotifier(setOSDPlaneAlpha)
 
 	def set3DMode(configElement):

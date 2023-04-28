@@ -418,7 +418,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				f = open("/proc/stb/video/videomode")
 			mode = f.read()[:-1].replace('\n', '')
 			f.close()
-		except:
+		except Exception:
 			return None
 		return mode
 
@@ -505,7 +505,7 @@ def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDz
 						mode = "off"
 			open(BoxInfo.getItem("3DMode"), "w").write(mode)
 			open(BoxInfo.getItem("3DZNorm"), "w").write('%d' % znorm)
-		except:
+		except Exception:
 			return
 
 
@@ -616,27 +616,27 @@ class AutoVideoMode(Screen):
 					f = open("/sys/class/video/frame_height", "r")
 					video_height = int(f.read())
 					f.close()
-				except:
+				except Exception:
 					video_height = 0
 			if path.exists("/sys/class/video/frame_width"):
 				try:
 					f = open("/sys/class/video/frame_width", "r")
 					video_width = int(f.read())
 					f.close()
-				except:
+				except Exception:
 					video_width = 0
 			if path.exists("/proc/stb/vmpeg/0/progressive"):
 				try:
 					f = open("/proc/stb/vmpeg/0/progressive", "r")
 					video_pol = "p" if int(f.read()) else "i"
 					f.close()
-				except:
+				except Exception:
 					video_pol = "i"
 			if path.exists("/proc/stb/vmpeg/0/frame_rate"):
 				f = open("/proc/stb/vmpeg/0/frame_rate", "r")
 				try:
 					video_rate = int(f.read())
-				except:
+				except Exception:
 					video_rate = 50
 				f.close()
 		else:
@@ -645,20 +645,20 @@ class AutoVideoMode(Screen):
 					f = open("/proc/stb/vmpeg/0/xres", "r")
 					video_width = int(f.read(), 16)
 					f.close()
-				except:
+				except Exception:
 					video_width = 0
 			if path.exists("/proc/stb/vmpeg/0/progressive"):
 				try:
 					f = open("/proc/stb/vmpeg/0/progressive", "r")
 					video_pol = "p" if int(f.read(), 16) else "i"
 					f.close()
-				except:
+				except Exception:
 					video_pol = "i"
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
 				try:
 					video_rate = int(f.read())
-				except:
+				except Exception:
 					video_rate = 50
 				f.close()
 
@@ -917,7 +917,7 @@ class AutoVideoMode(Screen):
 				if ref is not None:
 					try:
 						mypath = ref.getPath()
-					except:
+					except Exception:
 						mypath = ''
 				else:
 					mypath = ''
