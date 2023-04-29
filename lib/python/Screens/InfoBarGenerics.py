@@ -4316,7 +4316,7 @@ class InfoBarResolutionSelection:
 		file = "/sys/class/video/frame_width" if amlogic else "/proc/stb/vmpeg/0/xres"
 		xRes = int(fileReadLine(file, 0, source=MODULE_NAME), base)
 		file = "/sys/class/video/frame_height" if amlogic else "/proc/stb/vmpeg/0/yres"
-		yRes = int(fileReadLine(file, 0, source=MODULE_NAME))
+		yRes = int(fileReadLine(file, 0, source=MODULE_NAME), base)
 		if BoxInfo.getItem("model").startswith('azbox'):
 			fps = 50.0
 		else:
