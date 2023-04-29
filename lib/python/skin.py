@@ -425,7 +425,6 @@ def parseHorizontalAlignment(value):
 	options = {
 		"left": 0,
 		"center": 1,
-		"centre": 1,
 		"right": 2,
 		"block": 3
 	}
@@ -546,40 +545,30 @@ def parseScaleFlags(value):
 		"scaleKeepAspect": BT_SCALE | BT_KEEP_ASPECT_RATIO,
 		"scaleLeftTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_TOP,
 		"scaleLeftCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-		"scaleLeftCentre": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 		"scaleLeftMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 		"scaleLeftBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
 		"scaleCenterTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
-		"scaleCentreTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
 		"scaleMiddleTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
 		"scaleCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-		"scaleCentre": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 		"scaleMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 		"scaleCenterBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-		"scaleCentreBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 		"scaleMiddleBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 		"scaleRightTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_TOP,
 		"scaleRightCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-		"scaleRightCentre": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"scaleRightMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"scaleRightBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
 		"moveLeftTop": BT_HALIGN_LEFT | BT_VALIGN_TOP,
 		"moveLeftCenter": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-		"moveLeftCentre": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 		"moveLeftMiddle": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 		"moveLeftBottom": BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
 		"moveCenterTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
-		"moveCentreTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
 		"moveMiddleTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
 		"moveCenter": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-		"moveCentre": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 		"moveMiddle": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 		"moveCenterBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-		"moveCentreBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 		"moveMiddleBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 		"moveRightTop": BT_HALIGN_RIGHT | BT_VALIGN_TOP,
 		"moveRightCenter": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-		"moveRightCentre": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"moveRightMiddle": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM
 	}
@@ -627,7 +616,6 @@ def parseVerticalAlignment(value):
 	options = {
 		"top": 0,
 		"center": 1,
-		"centre": 1,
 		"middle": 1,
 		"bottom": 2
 	}
