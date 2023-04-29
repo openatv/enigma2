@@ -163,7 +163,6 @@ def getCPUInfoString():
 					cpuSpeedMhz = int(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 100000000) * 100
 				except:
 					cpuSpeedMhz = "1500"
-
 		temperature = None
 		if isfile("/proc/stb/fp/temp_sensor_avs"):
 			temperature = fileReadLine("/proc/stb/fp/temp_sensor_avs", source=MODULE_NAME)
