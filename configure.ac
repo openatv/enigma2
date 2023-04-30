@@ -527,14 +527,6 @@ AC_ARG_WITH(amlogic,
 	[[with_amlogic=$withval]],
 	[[with_amlogic=no]]
 )
-AM_CONDITIONAL(HAVE_AMLOGIC, test x"$with_amlogic" = xyes)
-if test x"$with_amlogic" = xyes ; then
-	AC_DEFINE(HAVE_AMLOGIC, 1,[Enables AMLOGIC decoder support])
-	PKG_CHECK_MODULES(AMCODEC, libamcodec)
-	PKG_CHECK_MODULES(AMADEC, libamadec)
-	PKG_CHECK_MODULES(DVBCSA, libdvbcsa)
-	ALSA_CFLAGS="-lasound"
-fi
 
 FFMPEG_CFLAGS=" "
 

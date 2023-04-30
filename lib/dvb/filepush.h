@@ -70,11 +70,7 @@ private:
 class eFilePushThreadRecorder: public eThread, public sigc::trackable
 {
 public:
-#if HAVE_AMLOGIC
-	eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize=10*188*1024);
-#else
 	eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize=188*1024);
-#endif
 	void thread();
 	void stop();
 	void start(int sourcefd);
