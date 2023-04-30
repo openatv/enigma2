@@ -23,12 +23,6 @@
 
 #include <sys/time.h>
 
-#if HAVE_ALIEN5
-extern "C" {
-#include <codec.h>
-}
-#endif
-
 #define HTTP_TIMEOUT 10
 
 /*
@@ -743,9 +737,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			g_object_set(dvb_videosink, "e2-async", FALSE, NULL);
 			g_object_set(m_gst_playbin, "video-sink", dvb_videosink, NULL);
 		}
-#if HAVE_ALIEN5
-		aml_set_mediaplay_source((void *)m_gst_playbin,(int)m_sourceinfo.is_audio);
-#endif
 		/*
 		 * avoid video conversion, let the dvbmediasink handle that using native video flag
 		 * volume control is done by hardware, do not use soft volume flag

@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[7.1],[https://www.opena.tv])
+AC_INIT([enigma2],[7.3],[https://www.opena.tv])
 AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
@@ -215,7 +215,7 @@ AM_CONDITIONAL(VUDUO4KSE, test "$BOXTYPE" == vuduo4kse)
 AM_CONDITIONAL(VUZERO, test "$BOXTYPE" == vuzero)
 AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
-AM_CONDITIONAL(HAVE_KODI, test "$BOXTYPE" == wetekplay -o "$BOXTYPE" == wetekplay2 -o "$BOXTYPE" == alien5)
+AM_CONDITIONAL(HAVE_KODI, test "$BOXTYPE" == wetekplay -o "$BOXTYPE" == wetekplay2)
 AM_CONDITIONAL(HAVE_COLORLCD3, test "$BOXTYPE" == dm7080)
 AM_CONDITIONAL(HAVE_COLORLCD240, test "$BOXTYPE" == dreamtwo)
 AM_CONDITIONAL(HAVE_COLORLCD2, test "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm800sev2 -o "$BOXTYPE" == dm820)
@@ -616,10 +616,6 @@ if test "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m"
 	AC_DEFINE(HAVE_HISILICON, 1,[define add HISILICON chip])
 	AC_DEFINE(CONFIG_HISILICON_FB, 1,[define add HISILICON framebuffer blit])
 	AC_DEFINE(FORCE_ALPHABLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
-fi
-
-if test "$BOXTYPE" == "alien5"; then
-	AC_DEFINE(HAVE_ALIEN5, 1,[enable Alien5 Tuner Hack only for testing])
 fi
 
 if test "$BOXTYPE" == "wetekplay" -o "$BOXTYPE" == "wetekplay2" -o "$BOXTYPE" == "wetekhub"; then

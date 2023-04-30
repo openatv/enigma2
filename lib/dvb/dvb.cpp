@@ -1905,11 +1905,7 @@ class eDVBChannelFilePush: public eFilePushThread
 {
 public:
 	eDVBChannelFilePush(int packetsize = 188):
-#if HAVE_ALIEN5
-		eFilePushThread(IOPRIO_CLASS_BE, 0, packetsize, packetsize * 64),
-#else
 		eFilePushThread(IOPRIO_CLASS_BE, 0, packetsize, packetsize * 512),
-#endif
 		m_iframe_search(0),
 		m_iframe_state(0),
 		m_pid(0),

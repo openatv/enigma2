@@ -177,10 +177,6 @@ RESULT eAMLTSMPEGDecoder::setVideoPID(int vpid, int type)
 		}
 		eDebug("%s() vpid=%d, type=%d MPEG1 %d",__PRETTY_FUNCTION__, vpid, type,testv);
 		
-#if HAVE_ALIEN5
-
-		aml_change_vpid(vpid, m_codec.video_type);
-#endif
 	}
 	return 0;
 }

@@ -149,7 +149,7 @@ void eFilePushThread::thread()
 
 			if (buf_end == 0)
 			{
-#ifndef HAVE_ALIEN5				/* on EOF, try COMMITting once. */
+				/* on EOF, try COMMITting once. */
 				if (m_send_pvr_commit)
 				{
 					struct pollfd pfd;
@@ -183,7 +183,6 @@ void eFilePushThread::thread()
 						continue;
 					}
 				}
-#endif
 				if (m_stop)
 					break;
 
@@ -196,21 +195,13 @@ void eFilePushThread::thread()
 				if (m_stream_mode)
 				{
 					eDebug("[eFilePushThread] reached EOF, but we are in stream mode. delaying 1 second.");
-#if HAVE_ALIEN5
-				usleep(50000);
-#else
 					sleep(1);
-#endif
 					continue;
 				}
 				else if (++eofcount < 10)
 				{
 					eDebug("[eFilePushThread] reached EOF, but the file may grow. delaying 1 second.");
-#if HAVE_ALIEN5
-								usleep(50000);
-#else
 					sleep(1);
-#endif
 					continue;
 				}
 				break;
@@ -242,14 +233,8 @@ void eFilePushThread::thread()
 #if HAVE_HISILICON
 							usleep(100000);
 #endif
-#if HAVE_ALIEN5
-							usleep(100000);
-#endif
 							continue;
 						}
-#if HAVE_ALIEN5
-						usleep(50000);
-#endif
 						eDebug("[eFilePushThread] write: %m");
 						sendEvent(evtWriteError);
 						break;
@@ -266,9 +251,6 @@ void eFilePushThread::thread()
 				if (m_sg)
 					current_span_remaining -= buf_end;
 			}
-#if HAVE_ALIEN5
-			usleep(10);
-#endif
 		}
 #if defined(__sh__) // closes video device for the reverse playback workaround
 		close(fd_video);
