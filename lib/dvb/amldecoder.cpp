@@ -413,10 +413,6 @@ RESULT eAMLTSMPEGDecoder::showSinglePic(const char *filename)
 			int ret;
 			struct stat s;
 			fstat(f, &s);
-#if defined(__sh__) // our driver has a different behaviour for iframes
-			if (m_video_clip_fd >= 0)
-			finishShowSinglePic();
-#endif
 
 			m_codec.has_video = 1;	
 			m_codec.has_audio = 0;	
@@ -448,9 +444,7 @@ RESULT eAMLTSMPEGDecoder::showSinglePic(const char *filename)
 				if (!seq_end_avail)
 				write(m_codec.handle, seq_end, sizeof(seq_end));
 				writeAll(m_codec.handle, stuffing, 8192);
-#if not defined(__sh__)
 				m_showSinglePicTimer->start(150, true);
-#endif
 			}
 			close(f);
 		}

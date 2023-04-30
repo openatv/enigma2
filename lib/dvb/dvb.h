@@ -288,9 +288,6 @@ public:
 		/* RESULT != 0: failed */
 	RESULT setChannel(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &feparam);
 	eDVBChannelID getChannelID() { return m_channel_id; }
-#if defined(__sh__) //see filepush.h
-	int getSkipMode() { return m_skipmode_m; }
-#endif
 
 	RESULT connectStateChange(const sigc::slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection);
 	RESULT connectEvent(const sigc::slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection);

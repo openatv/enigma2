@@ -13,10 +13,6 @@ class iFilePushScatterGather
 public:
 	virtual void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size, int blocksize)=0;
 	virtual ~iFilePushScatterGather() {}
-#if defined(__sh__)
-	//Changes in this file are cause e2 doesnt tell the player to play reverse
-	virtual int getSkipMode() = 0;
-#endif
 };
 
 class eFilePushThread: public eThread, public sigc::trackable, public iObject
