@@ -73,7 +73,6 @@ AC_ARG_WITH(boxtype,
 AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
-AM_CONDITIONAL(WETEK, test `echo "$BOXTYPE" | cut -b 1-2` == "we")
 AM_CONDITIONAL(AZBOX, test `echo "$BOXTYPE" | cut -b 1-5` == "azbox")
 AM_CONDITIONAL(CUBE, test `echo "$BOXTYPE" | cut -b 1-4` == "cube")
 AM_CONDITIONAL(DAGS, test `echo "$BOXTYPE" | cut -b 1-4` == "dags")
@@ -96,9 +95,6 @@ AM_CONDITIONAL(SPARK, test `echo "$BOXTYPE" | cut -b 1-5` == "spark")
 AM_CONDITIONAL(UNIBOXHDE, test "$BOXTYPE" == uniboxhde)
 AM_CONDITIONAL(EVO, test `echo "$BOXTYPE" | cut -b 1-4` == "enfi")
 AM_CONDITIONAL(MIRACLEBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "mb")
-AM_CONDITIONAL(WETEKPLAY, test "$BOXTYPE" == wetekplay)
-AM_CONDITIONAL(WETEKPLAY2, test "$BOXTYPE" == wetekplay2)
-AM_CONDITIONAL(WETEKHUB, test "$BOXTYPE" == wetekhub)
 AM_CONDITIONAL(AZBOXME, test "$BOXTYPE" == azboxme)
 AM_CONDITIONAL(AZBOXMINIME, test "$BOXTYPE" == azboxminime)
 AM_CONDITIONAL(AZBOXHD, test "$BOXTYPE" == azboxhd)
@@ -215,7 +211,6 @@ AM_CONDITIONAL(VUDUO4KSE, test "$BOXTYPE" == vuduo4kse)
 AM_CONDITIONAL(VUZERO, test "$BOXTYPE" == vuzero)
 AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
-AM_CONDITIONAL(HAVE_KODI, test "$BOXTYPE" == wetekplay -o "$BOXTYPE" == wetekplay2)
 AM_CONDITIONAL(HAVE_COLORLCD3, test "$BOXTYPE" == dm7080)
 AM_CONDITIONAL(HAVE_COLORLCD240, test "$BOXTYPE" == dreamtwo)
 AM_CONDITIONAL(HAVE_COLORLCD2, test "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm800sev2 -o "$BOXTYPE" == dm820)
@@ -616,16 +611,6 @@ if test "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m"
 	AC_DEFINE(HAVE_HISILICON, 1,[define add HISILICON chip])
 	AC_DEFINE(CONFIG_HISILICON_FB, 1,[define add HISILICON framebuffer blit])
 	AC_DEFINE(FORCE_ALPHABLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
-fi
-
-if test "$BOXTYPE" == "wetekplay" -o "$BOXTYPE" == "wetekplay2" -o "$BOXTYPE" == "wetekhub"; then
-	AC_DEFINE(KEY_F7_TO_KEY_MENU, 1,[define when rc sends a KEY_F7 event for its KEY_MENU])
-	AC_DEFINE(KEY_F1_TO_KEY_MEDIA, 1,[define when rc sends a KEY_F1 event for its KEY_MEDIA])
-	AC_DEFINE(KEY_HOME_TO_KEY_INFO, 1,[define when rc sends a KEY_HOME event for its KEY_INFO])
-	AC_DEFINE(KEY_BACK_TO_KEY_EXIT, 1,[define when rc sends a KEY_BACK event for its KEY_EXIT])
-	AC_DEFINE(KEY_F2_TO_KEY_EPG, 1,[define when rc sends a KEY_F2 event for its KEY_EPG])
-	AC_DEFINE(KEY_ENTER_TO_KEY_OK, 1,[define when rc sends a KEY_ENTER event for its KEY_OK])
-	AC_DEFINE(WETEKRC, 1, [WetekPlay Remote-use BACKSPACE to toggle extended functions on numeric buttons])
 fi
 
 if test "$BOXTYPE" == "azboxme" -o "$BOXTYPE" == "azboxminime"; then

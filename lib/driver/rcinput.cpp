@@ -13,26 +13,9 @@
 #include <lib/base/init_num.h>
 #include <lib/driver/input_fake.h>
 
-#if WETEKRC
-static bool bflag;
-#endif
-
 void eRCDeviceInputDev::handleCode(long rccode)
 {
 	struct input_event *ev = (struct input_event *)rccode;
-
-#if WETEKRC
-/*
-	eDebug("[eRCDeviceInputDev] ==> BEFORE check for evtype: %x %x %x", ev->value, ev->code, ev->type);
-	eDebug("[eRCDeviceInputDev] ==> BEFORE check for evtype:-->BackspaceFLAG %d", bflag);
-*/
-	if (ev->code == KEY_BACKSPACE && ev->value == 1 ) {
-		bflag = !bflag;
-	}
-/*
-	eDebug("[eRCDeviceInputDev] ==> BEFORE check for evtype after check for evvalue:-->BackspaceFLAG %d", bflag);
-*/
-#endif
 
 	if (ev->type != EV_KEY)
 		return;
@@ -76,12 +59,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			case KEY_ESC:
 			case KEY_TAB:
 			case KEY_BACKSPACE:
-/*
-#if WETEKRC
-				bflag = !bflag;
-				eDebug("[eRCDeviceInputDev] --> AFTER flip BackspaceFLAG %d", bflag);
-#endif
-*/
 			case KEY_ENTER:
 			case KEY_INSERT:
 			case KEY_DELETE:
@@ -192,50 +169,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	else if (ev->code == KEY_TV) {
 		ev->code = KEY_VMODE;
 	}
-#endif
-
-#if WETEKRC
-/*
-	eDebug("[eRCDeviceInputDev] -->BackspaceFLAG %d", bflag);
-	eDebug("[eRCDeviceInputDev] -->before change %x %x %x", ev->value, ev->code, ev->type);
-*/
-/* default is with NO numerc keys !!!*/
-	if (bflag) {
-		if (ev->code == KEY_1) {
-			ev->code = KEY_RED;
-		}
-		if (ev->code == KEY_2) {
-			ev->code = KEY_GREEN;
-		}
-		if (ev->code == KEY_3) {
-			ev->code = KEY_YELLOW;
-		}
-		if (ev->code == KEY_4) {
-			ev->code = KEY_BLUE;
-		}
-		if (ev->code == KEY_5) {
-			ev->code = KEY_PREVIOUS;
-		}
-		if (ev->code == KEY_6) {
-			ev->code = KEY_NEXT;
-		}
-		if (ev->code == KEY_7) {
-			ev->code = KEY_REWIND;
-		}
-		if (ev->code == KEY_8) {
-			ev->code = KEY_STOP;
-		}
-		if (ev->code == KEY_9) {
-			ev->code = KEY_FASTFORWARD;
-		}
-		if (ev->code == KEY_0) {
-			ev->code = KEY_PLAYPAUSE;
-		}
-	}
-/*
-	eDebug("[eRCDeviceInputDev] -->BackspaceFLAG %d", bflag);
-	eDebug("[eRCDeviceInputDev] -->after change %x %x %x", ev->value, ev->code, ev->type);
-*/
 #endif
 
 #if KEY_F6_TO_KEY_FAVORITES

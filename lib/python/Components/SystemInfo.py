@@ -370,7 +370,7 @@ BoxInfo.setItem("ArchIsARM64", ARCHITECTURE == "aarch64" or "64" in ARCHITECTURE
 BoxInfo.setItem("ArchIsARM", ARCHITECTURE.startswith(("arm", "cortex")))
 BoxInfo.setItem("Blindscan", isPluginInstalled("Blindscan"))
 BoxInfo.setItem("BoxName", getBoxName())
-canImageBackup = not MACHINEBUILD.startswith('az') and not BRAND.startswith('cube') and not BRAND.startswith('wetek') and not MACHINEBUILD.startswith('alien')
+canImageBackup = not MACHINEBUILD.startswith('az') and not BRAND.startswith('cube') and not MACHINEBUILD.startswith('alien')
 BoxInfo.setItem("canImageBackup", canImageBackup)
 BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())
 BoxInfo.setItem("canMultiBoot", MultiBoot.getBootSlots())
@@ -448,7 +448,7 @@ BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
 
-BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'ustym4ks2ottx', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'gbmv200', 'cc1', 'sfx6008', 'sx88v2', 'sx888'))
+BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'ustym4ks2ottx', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'gbmv200', 'cc1', 'sfx6008', 'sx88v2', 'sx888'))
 BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "mixosf5", "mixosf7", "mixoslumi", "gi9196m", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
 
 

@@ -196,12 +196,6 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM800;
 	else if (!strncmp(tmp, "ebox7358\n", rd))
 		m_boxtype = DM800SE;
-	else if (!strncmp(tmp, "wetekplay\n", rd))
-		m_boxtype = WETEKPLAY;
-	else if (!strncmp(tmp, "wetekplay2\n", rd))
-		m_boxtype = WETEKPLAY2;
-	else if (!strncmp(tmp, "wetekhub\n", rd))
-		m_boxtype = WETEKHUB;
 	else {
 		eDebug("[eDVBResourceManager] boxtype detection via /proc/stb/info not possible... use fallback via demux count!");
 		if (m_demux.size() == 3)
@@ -1187,45 +1181,6 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 		}
 	}
-	else if (m_boxtype == WETEKPLAY || m_boxtype == WETEKPLAY2 || m_boxtype == WETEKHUB)
-	{	
-		unsigned int n=0;
-		iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin(); /* look for a demux on the same adapter as the frontend, or the first adapter for dvr playback */
-		int source = fe ? fe->m_frontend->getDVBID() : -1;
-		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
-		
-		for (; i != m_demux.end(); ++i, ++n)
-		{
-			if (fe)
-			{
-				if (!i->m_inuse && ((n == 0 && source == 0) ||
-					(n == 1 && source == 1)))
-				{
-					if (!unused) 
-					{
-						unused = i;
-						break;
-					}
-				}
-				else if(i->m_adapter == adapter && 
-					i->m_demux->getSource() == source)
-				{
-					demux = new eDVBAllocatedDemux(i);
-					return 0;
-				}
-		    }
-			else if (n == (m_demux.size() - 1)) // always use last demux for PVR 
-			{
-				if (i->m_inuse)
-				{
-					demux = new eDVBAllocatedDemux(i);
-					return 0;
-				}
-				unused = i;
-				break;
-			}  
-		}
-	}
 	else
 	{
 		iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin(); /* look for a demux on the same adapter as the frontend, or the first adapter for dvr playback */
@@ -1435,7 +1390,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 	if (!simulate && m_cached_channel)
 	{
 		eDVBChannel *cache_chan = (eDVBChannel*)&(*m_cached_channel);
-		if((m_boxtype != WETEKPLAY && m_boxtype != WETEKPLAY2 && m_boxtype != WETEKHUB) && (channelid==cache_chan->getChannelID()))
+		if(channelid==cache_chan->getChannelID())
 		{
 			ePtr<iDVBFrontend> fe;
 			m_cached_channel->getFrontend(fe);
