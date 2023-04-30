@@ -1,4 +1,6 @@
 #include <fstream>
+#include <algorithm>
+
 #include <lib/base/eenv.h>
 #include <lib/base/modelinformation.h>
 
