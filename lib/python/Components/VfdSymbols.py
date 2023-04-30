@@ -299,13 +299,13 @@ class SymbolsCheckPoller:
 		if exists("/proc/stb/lcd/symbol_circle"):
 			mode = 1
 			filename = "/proc/stb/lcd/symbol_circle"
-		elif BOX_TYPE in ('alphatriple', 'mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038') and exists("/proc/stb/lcd/symbol_recording"):
+		elif BOX_TYPE in ('alphatriple', 'sf3038') and exists("/proc/stb/lcd/symbol_recording"):
 			mode = 2
 			filename = "/proc/stb/lcd/symbol_recording"
 		elif MODEL == 'u41' and exists("/proc/stb/lcd/symbol_pvr2"):
 			mode = 2
 			filename = "/proc/stb/lcd/symbol_pvr2"
-		elif BOX_TYPE in ('alien5', 'osninopro', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and exists("/proc/stb/lcd/powerled"):
+		elif BOX_TYPE in ('osninopro', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and exists("/proc/stb/lcd/powerled"):
 			mode = 3
 			filename = "/proc/stb/lcd/powerled"
 		elif BOX_TYPE in ('mbmicrov2', 'mbmicro', 'e4hd', 'e4hdhybrid') and exists("/proc/stb/lcd/powerled"):
@@ -317,7 +317,7 @@ class SymbolsCheckPoller:
 		elif MODEL in ('dags7362', 'dags73625', 'dags5') or BOX_TYPE in ('tmtwin4k', 'revo4k', 'force3uhd') and exists("/proc/stb/lcd/symbol_rec"):
 			mode = 3
 			filename = "/proc/stb/lcd/symbol_rec"
-		elif MODEL in ('sf8008', 'sf8008m', 'sf8008opt', 'cc1', 'ustym4kpro', 'ustym4ks2ottx', 'beyonwizv2', 'viper4k', 'dagsmv200', 'sfx6008', 'sx88v2', 'sx888') and exists("/proc/stb/fp/ledpowercolor"):
+		elif MODEL in ('sf8008', 'sf8008m', 'ustym4kpro', 'ustym4ks2ottx', 'beyonwizv2', 'viper4k', 'dagsmv200', 'sfx6008', 'sx88v2', 'sx888') and exists("/proc/stb/fp/ledpowercolor"):
 			mode = 6
 			filename = "/proc/stb/fp/ledpowercolor"
 		elif exists("/proc/stb/lcd/symbol_recording") and exists("/proc/stb/lcd/symbol_record_1") and exists("/proc/stb/lcd/symbol_record_2"):

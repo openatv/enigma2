@@ -21,8 +21,7 @@ gdi_libenigma_gdi_a_SOURCES = \
 	gdi/picexif.cpp \
 	gdi/picload.cpp \
 	gdi/pixmapcache.cpp \
-	gdi/region.cpp \
-        gdi/stmfb.cpp
+	gdi/region.cpp
 
 gdiincludedir = $(pkgincludedir)/lib/gdi
 gdiinclude_HEADERS = \

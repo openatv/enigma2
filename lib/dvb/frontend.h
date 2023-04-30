@@ -105,9 +105,6 @@ private:
 	bool m_is_usbtuner;
 	eDVBFrontend *m_simulate_fe; // only used to set frontend type in dvb.cpp
 	int m_type;
-#if HAVE_ALIEN5
-	int m_looptimeout;
-#endif
 	int m_dvbid;
 	int m_slotid;
 	int m_fd;

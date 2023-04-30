@@ -552,8 +552,7 @@ def runScreenTest():
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d,%d" % (int(nowTime), wptime, startTime[0], startTime[1], setStandby, nextRecordTime, forceNextRecord)
 	else:
 		config.misc.nextWakeup.value = "%d,-1,-1,0,0,-1,0" % (int(nowTime))
-		if not BOX_TYPE.startswith("azboxm"):  # Skip for Azbox (mini)ME - setting wakeup time to past reboots box.
-			setFPWakeuptime(int(nowTime) - 3600)  # Minus one hour -> overwrite old wakeup time.
+		setFPWakeuptime(int(nowTime) - 3600)  # Minus one hour -> overwrite old wakeup time.
 		print("[StartEnigma] No next wakeup time set.")
 	config.misc.nextWakeup.save()
 	print("=" * 100)
