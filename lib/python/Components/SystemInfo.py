@@ -366,7 +366,6 @@ BoxInfo.setItem("ArchIsARM64", ARCHITECTURE == "aarch64" or "64" in ARCHITECTURE
 BoxInfo.setItem("ArchIsARM", ARCHITECTURE.startswith(("arm", "cortex")))
 BoxInfo.setItem("Blindscan", isPluginInstalled("Blindscan"))
 BoxInfo.setItem("BoxName", getBoxName())
-BoxInfo.setItem("canImageBackup", True)
 BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())
 BoxInfo.setItem("canMultiBoot", MultiBoot.getBootSlots())
 BoxInfo.setItem("HasKexecMultiboot", fileHas("/proc/cmdline", "kexec=1"))
@@ -449,9 +448,9 @@ BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u
 
 # dont't sort
 BoxInfo.setItem("ConfigDisplay", BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment",))
-BoxInfo.setItem("dFlash", canImageBackup and exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"))
-BoxInfo.setItem("dBackup", canImageBackup and not BoxInfo.getItem("dFlash") and exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"))
-BoxInfo.setItem("ImageBackup", canImageBackup and not BoxInfo.getItem("dFlash") and not BoxInfo.getItem("dBackup"))
+BoxInfo.setItem("dFlash", exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"))
+BoxInfo.setItem("dBackup", not BoxInfo.getItem("dFlash") and exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"))
+BoxInfo.setItem("ImageBackup", not BoxInfo.getItem("dFlash") and not BoxInfo.getItem("dBackup"))
 
 SystemInfo["SeekStatePlay"] = False
 SystemInfo["StatePlayPause"] = False
