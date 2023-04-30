@@ -1251,7 +1251,7 @@ def InitAVSwitch():
 		if MACHINEBUILD in ('dm900', 'dm920', 'dm7080', 'dm800'):
 			choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 			config.av.downmix_ac3 = ConfigSelection(choices=choice_list, default="downmix")
-		if MACHINEBUILD in ('dreamone', 'dreamtwo'):
+		elif MACHINEBUILD in ('dreamone', 'dreamtwo'):
 			choice_list = [("0", _("Downmix")), ("1", _("Passthrough")), ("2", _("use best / controlled by HDMI"))]
 			default = "0"
 			config.av.downmix_ac3 = ConfigSelection(choices=choice_list, default="0")
