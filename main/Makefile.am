@@ -44,9 +44,6 @@ enigma2_LDADD = \
 	@PYTHON_LIBS@ \
 	@LIBDDVD_LIBS@ \
 	@ALSA_LIBS@ \
-	@AMCODEC_LIBS@ \
-	@AMADEC_LIBS@ \
-	@DVBCSA_LIBS@ \
 	@AVAHI_LIBS@ \
 	@LIBHIACCEL_LIBS@ \
 	-ltuxtxt32bpp -lcrypt -lrt -ldl
