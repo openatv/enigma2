@@ -107,7 +107,7 @@ class AVSwitch:
 							"auto": {60: "smpte60hz"}}
 
 	rates["PC"] = {
-		"1024x768": {60: "1024x768"},  # not possible on DM7025
+		"1024x768": {60: "1024x768"},
 		"800x600": {60: "800x600"},  # also not possible
 		"720x480": {60: "720x480"},
 		"720x576": {60: "720x576"},

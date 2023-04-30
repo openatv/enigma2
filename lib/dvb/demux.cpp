@@ -54,7 +54,7 @@ static int determineBufferCount()
 	else if (megabytes > 100)
 		result = 16; // 256MB systems: Use 3MB demux buffers (dm8000, et5x00, vuduo)
 	else
-		result = 8; // Smaller boxes: Use 1.5MB buffer (dm7025)
+		result = 8; // Smaller boxes: Use 1.5MB buffer
 	return result;
 }
 

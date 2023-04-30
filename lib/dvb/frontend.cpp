@@ -2405,7 +2405,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					{
 						char dev[32];
 						int slotid = sec_fe->m_slotid;
-						// FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
+						// FIXMEEEEEE hardcoded i2c devices for dm8000
 						if (slotid < 2)
 							sprintf(dev, "/dev/i2c-%d", slotid);
 						else if (slotid == 2)
