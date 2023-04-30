@@ -550,7 +550,7 @@ def InitLcd():
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
-		if BoxInfo.getItem("VFD_scroll_repeats") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_repeats") and MACHINEBUILD and DISPLAYTYPE not in ('7segment',):
 			def scroll_repeats(el):
 				open(BoxInfo.getItem("VFD_scroll_repeats"), "w").write(el.value)
 			choicelist = [("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("500", _("Continues"))]
@@ -559,7 +559,7 @@ def InitLcd():
 		else:
 			config.usage.vfd_scroll_repeats = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_scroll_delay") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_delay") and MACHINEBUILD and DISPLAYTYPE not in ('7segment',):
 			def scroll_delay(el):
 				# add workaround for Boxes who need hex code
 				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
@@ -573,7 +573,7 @@ def InitLcd():
 			config.lcd.hdd = ConfigNothing()
 			config.usage.vfd_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_initial_scroll_delay") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_initial_scroll_delay") and DISPLAYTYPE not in ('7segment',):
 			def initial_scroll_delay(el):
 				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
@@ -593,7 +593,7 @@ def InitLcd():
 		else:
 			config.usage.vfd_initial_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_final_scroll_delay") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_final_scroll_delay") and DISPLAYTYPE not in ('7segment',):
 			def final_scroll_delay(el):
 				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code

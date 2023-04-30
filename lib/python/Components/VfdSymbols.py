@@ -305,7 +305,7 @@ class SymbolsCheckPoller:
 		elif MODEL == 'u41' and exists("/proc/stb/lcd/symbol_pvr2"):
 			mode = 2
 			filename = "/proc/stb/lcd/symbol_pvr2"
-		elif BOX_TYPE in ('osninopro', 'ixussone', 'ixusszero', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and exists("/proc/stb/lcd/powerled"):
+		elif BOX_TYPE in ('osninopro', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and exists("/proc/stb/lcd/powerled"):
 			mode = 3
 			filename = "/proc/stb/lcd/powerled"
 		elif BOX_TYPE in ('mbmicrov2', 'mbmicro', 'e4hd', 'e4hdhybrid') and exists("/proc/stb/lcd/powerled"):

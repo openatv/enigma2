@@ -591,7 +591,7 @@ iAVSwitch = AVSwitch()
 
 
 def InitAVSwitch():
-	if MACHINEBUILD == 'vuduo' or MACHINEBUILD.startswith('ixuss'):
+	if MACHINEBUILD == 'vuduo':
 		config.av.yuvenabled = ConfigBoolean(default=False)
 	else:
 		config.av.yuvenabled = ConfigBoolean(default=True)
@@ -811,7 +811,7 @@ def InitAVSwitch():
 	iAVSwitch.setInput("ENCODER")  # init on startup
 	detected = BoxInfo.getItem("scart")
 	if detected:
-		if MACHINEBUILD in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'twinboxlcd', 'et6000'):
+		if MACHINEBUILD in ('gbquad', 'gbquadplus', 'et5x00', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'twinboxlcd', 'et6000'):
 			detected = False
 		else:
 			detected = eAVSwitch.getInstance().haveScartSwitch()
