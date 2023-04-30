@@ -825,7 +825,6 @@ data/fonts/Makefile
 data/keymaps/Makefile
 data/7segment/Makefile
 data/displaytext/Makefile
-data/displaydualtext/Makefile
 data/display96/Makefile
 data/display128/Makefile
 data/display128dm/Makefile
