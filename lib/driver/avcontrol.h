@@ -5,11 +5,6 @@
 
 class eAVControl
 {
-	static eAVControl *instance;
-
-	std::string m_video_mode;
-	std::string m_video_mode_50;
-	std::string m_video_mode_60;
 
 #ifdef SWIG
 	eAVControl();
@@ -18,7 +13,12 @@ public:
 #ifndef SWIG
 	eAVControl();
 #endif
-	static eAVControl *getInstance();
+
+	static eAVControl &getInstance()
+	{
+		static eAVControl m_instance;
+		return m_instance;
+	}
 
 	int getFrameRate(int defaultVal=50, bool debug=false);
 	bool getProgressive(bool debug=false);
@@ -29,6 +29,12 @@ public:
 	void setVideoMode(std::string newMode, bool debug=false);
 	bool setHDMIInFull();
 	bool setHDMIInPiP();
+	void disableHDMIIn();
+
+private:
+	std::string m_video_mode;
+	std::string m_video_mode_50;
+	std::string m_video_mode_60;
 
 };
 

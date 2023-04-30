@@ -10,19 +10,6 @@
 #include <lib/base/ebase.h>
 #include <lib/driver/avcontrol.h>
 
-eAVControl *eAVControl::instance = 0;
-
-eAVControl::eAVControl()
-{
-	ASSERT(!instance);
-	instance = this;
-}
-
-eAVControl *eAVControl::getInstance()
-{
-	return instance;
-}
-
 bool eAVControl::getProgressive(bool debug)
 {
 	const char *proc = "/proc/stb/vmpeg/0/progressive";
@@ -152,7 +139,8 @@ void eAVControl::setVideoMode(std::string newMode, bool debug)
 	CFile::writeStr(proc, newMode);
 
 }
-
+/// @brief set HDMIInPip for 'dm7080', 'dm820', 'dm900', 'dm920'
+/// @return false if one of the models
 bool eAVControl::setHDMIInPiP()
 {
 	
@@ -171,14 +159,15 @@ bool eAVControl::setHDMIInPiP()
 		CFile::writeStr(proc, "off");
     }
 
-	return true;
+	return false;
 
 #else
-	return false;
+	return true;
 #endif
 
 }
-
+/// @brief set HDMIInFull for 'dm7080', 'dm820', 'dm900', 'dm920'
+/// @return false if one of the models
 bool eAVControl::setHDMIInFull()
 {
 	
@@ -215,11 +204,26 @@ bool eAVControl::setHDMIInFull()
 		CFile::writeStr(procV60, m_video_mode_60);
     }
 
-	return true;
+	return false;
 
 #else
-	return false;
+	return true;
 #endif
 
 }
 
+/// @brief disable HDMIIn / used in StartEnigma.py
+void eAVControl::disableHDMIIn()
+{
+
+	const char *proc = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor";
+	const char *procA = "/proc/stb/audio/hdmi_rx_monitor";
+
+	std::string check = CFile::read(proc);
+
+    if (check.rfind("on", 0) == 0) {
+		CFile::writeStr(procA, "off");
+		CFile::writeStr(proc, "off");
+    }
+
+}
