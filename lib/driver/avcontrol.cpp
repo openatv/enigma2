@@ -63,7 +63,7 @@ int eAVControl::getResolutionY(int defaultVal, bool debug)
 	const char *proc = "/sys/class/video/frame_height";
 	CFile::parseInt(&y, proc);
 #else
-	const char *yres = "/proc/stb/vmpeg/0/yres";
+	const char *proc = "/proc/stb/vmpeg/0/yres";
 	CFile::parseIntHex(&y, proc);
 #endif
 
