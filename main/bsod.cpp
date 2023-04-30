@@ -12,6 +12,8 @@
 #include <lib/base/nconfig.h>
 #include <lib/gdi/gmaindc.h>
 #include <asm/ptrace.h>
+#include <lib/base/modelinformation.h>
+
 #include "version_info.h"
 
 /************************************************/
@@ -214,32 +216,19 @@ void bsodFatal(const char *component)
 			E2REV,
 			component);
 
+		eModelInformation &modelinformation = eModelInformation::getInstance();
 
 		std::ifstream in(eEnv::resolve("${libdir}/enigma.info").c_str());
 		const std::list<std::string> enigmainfovalues {
-			"model=",
-			"machinebuild=",
-			"imageversion=",
-			"imagebuild="
+			"model",
+			"machinebuild",
+			"imageversion",
+			"imagebuild"
 		};
 
-		if (in.good()) {
-			do
-			{
-				std::string line;
-				std::getline(in, line);
-				for(std::list<std::string>::const_iterator i = enigmainfovalues.begin(); i != enigmainfovalues.end(); ++i)
-				{
-					if (line.find(i->c_str()) != std::string::npos) {
-						line.erase(std::remove( line.begin(), line.end(), '\"' ),line.end());
-						line.erase(std::remove( line.begin(), line.end(), '\'' ),line.end());
-						fprintf(f, "%s\n", line.c_str());
-						break;
-					}
-				}
-			}
-			while (in.good());
-			in.close();
+		for(std::list<std::string>::const_iterator i = enigmainfovalues.begin(); i != enigmainfovalues.end(); ++i)
+		{
+			fprintf(f, "%s=%s\n", i->c_str(), modelinformation.getValue(i->c_str()).c_str());
 		}
 
 		fprintf(f, "\n");
