@@ -10,6 +10,7 @@ class eModelInformation
 		eModelInformation();
 		static eModelInformation& getInstance() { static eModelInformation m_instance; return m_instance; }
 		std::string getValue(const std::string &key);
+		/*
 		std::string BoxType() { return getValue("box_type"); }
 		std::string BuildType() { return getValue("build_type"); }
 		std::string MachineBrand() { return getValue("machine_brand"); }
@@ -22,6 +23,7 @@ class eModelInformation
 		std::string Creator() { return getValue("creator"); }
 		std::string Url() { return getValue("url"); }
 		std::string Catalog() { return getValue("catalog"); }
+		*/
 	private:
 		std::map<std::string,std::string> m_modelinformation;
 };
