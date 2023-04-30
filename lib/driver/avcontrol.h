@@ -21,6 +21,8 @@ public:
 	int getResolutionY(int defaultVal=0, bool debug=false);
 	std::string getVideoMode(std::string defaultVal="", bool debug=false);
 
+	void setVideoMode(std::string newMode, bool debug=false);
+
 };
 
 #endif

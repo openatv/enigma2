@@ -106,7 +106,7 @@ std::string eAVControl::getVideoMode(std::string defaultVal, bool debug)
 #endif
 
 	FILE *fd;
-	str::string result = defaultVal;
+	std::string result = defaultVal;
 	char buffer[50];
 	if ((fd = fopen(proc, "r")) != NULL)
 	{
@@ -134,4 +134,21 @@ std::string eAVControl::getVideoMode(std::string defaultVal, bool debug)
 	}
 
 	return result;
+}
+
+
+void eAVControl::setVideoMode(std::string newMode, bool debug)
+{
+
+#ifdef DREAMNEXTGEN
+	const char *proc = "/sys/class/display/mode";
+#else
+	const char *proc = "/proc/stb/video/videomode";
+#endif
+
+	if (debug)
+		eDebug("[eAVControl] setVideoMode:%s", newMode.c_str());
+
+	CFile::writeStr(proc, newMode);
+
 }
