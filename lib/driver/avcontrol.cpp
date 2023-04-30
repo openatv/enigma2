@@ -152,3 +152,74 @@ void eAVControl::setVideoMode(std::string newMode, bool debug)
 	CFile::writeStr(proc, newMode);
 
 }
+
+bool eAVControl::setHDMIInPiP()
+{
+	
+#ifdef HAVE_HDMIIN_DM
+
+	const char *proc = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor";
+	const char *procA = "/proc/stb/audio/hdmi_rx_monitor";
+
+	std::string check = CFile::read(proc);
+
+    if (check.rfind("off", 0) == 0) {
+		CFile::writeStr(procA, "on");
+		CFile::writeStr(proc, "on");
+    } else {
+		CFile::writeStr(procA, "off");
+		CFile::writeStr(proc, "off");
+    }
+
+	return true;
+
+#else
+	return false;
+#endif
+
+}
+
+bool eAVControl::setHDMIInFull()
+{
+	
+#ifdef HAVE_HDMIIN_DM
+
+	const char *proc = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor";
+	const char *procA = "/proc/stb/audio/hdmi_rx_monitor";
+	const char *procV = "/proc/stb/video/videomode";
+	const char *procV50 = "/proc/stb/video/videomode_50hz";
+	const char *procV60 = "/proc/stb/video/videomode_60hz";
+
+	std::string check = CFile::read(proc);
+
+    if (check.rfind("off", 0) == 0) {
+
+		m_video_mode = CFile::read(procV);
+		m_video_mode_50 = CFile::read(procV50);
+		m_video_mode_60 = CFile::read(procV60);
+
+#ifdef HAVE_HDMIIN_DM900
+		CFile::writeStr(procV, "1080p");
+#else
+		CFile::writeStr(procV, "720p");
+#endif
+
+		CFile::writeStr(procA, "on");
+		CFile::writeStr(proc, "on");
+
+    } else {
+		CFile::writeStr(procA, "off");
+		CFile::writeStr(proc, "off");
+		CFile::writeStr(procV, m_video_mode);
+		CFile::writeStr(procV50, m_video_mode_50);
+		CFile::writeStr(procV60, m_video_mode_60);
+    }
+
+	return true;
+
+#else
+	return false;
+#endif
+
+}
+

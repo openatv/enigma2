@@ -6,6 +6,11 @@
 class eAVControl
 {
 	static eAVControl *instance;
+
+	std::string m_video_mode;
+	std::string m_video_mode_50;
+	std::string m_video_mode_60;
+
 #ifdef SWIG
 	eAVControl();
 #endif
@@ -22,6 +27,8 @@ public:
 	std::string getVideoMode(std::string defaultVal="", bool debug=false);
 
 	void setVideoMode(std::string newMode, bool debug=false);
+	bool setHDMIInFull();
+	bool setHDMIInPiP();
 
 };
 
