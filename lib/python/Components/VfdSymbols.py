@@ -299,7 +299,7 @@ class SymbolsCheckPoller:
 		if exists("/proc/stb/lcd/symbol_circle"):
 			mode = 1
 			filename = "/proc/stb/lcd/symbol_circle"
-		elif BOX_TYPE in ('alphatriple', 'mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038') and exists("/proc/stb/lcd/symbol_recording"):
+		elif BOX_TYPE in ('alphatriple', 'gi9196m', 'sf3038') and exists("/proc/stb/lcd/symbol_recording"):
 			mode = 2
 			filename = "/proc/stb/lcd/symbol_recording"
 		elif MODEL == 'u41' and exists("/proc/stb/lcd/symbol_pvr2"):
