@@ -1174,7 +1174,7 @@ void eRTSPStreamClient::notifier(int what)
 		ss << "<friendlyName>" << app_name << "</friendlyName>";
 		ss << "<manufacturer>" << modelinformation.getValue("displaybrand") << "</manufacturer>";
 		ss << "<manufacturerURL>http://www.opena.tv</manufacturerURL>";
-		ss << "<modelDescription>openATV</modelDescription>";
+		ss << "<modelDescription>" << modelinformation.getValue("displaydistro") << "</modelDescription>";
 		ss << "<modelName>" << modelinformation.getValue("displaymodel") << "</modelName>";
 		ss << "<modelNumber>1.1</modelNumber>";
 		ss << "<modelURL>http://www.opena.tv</modelURL>";
