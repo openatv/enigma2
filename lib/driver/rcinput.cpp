@@ -310,14 +310,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
-#if KEY_MODE_TO_KEY_AUDIO
-	if (ev->code == KEY_MODE)
-	{
-		/* ebox Remote rc has a AV key, which sends KEY_MODE events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_AUDIO;
-	}
-#endif
-
 #if KEY_VIDEO_IS_KEY_SCREEN
 	if (ev->code == KEY_VIDEO)
 	{
@@ -528,27 +520,11 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
-#if KEY_SCREEN_TO_KEY_ANGLE
-	if (ev->code == KEY_SCREEN)
-	{
-		/* MixOs , which sends KEY_SCREEN events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_ANGLE;
-	}
-#endif
-
 #if KEY_ZOOM_TO_KEY_SCREEN
 	if (ev->code == KEY_ZOOM)
 	{
 		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_SCREEN;
-	}
-#endif
-
-#if KEY_TIME_TO_KEY_SLEEP
-	if (ev->code == KEY_SLEEP)
-	{
-		/* MixOs , which sends KEY_SLEEP events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_PROGRAM;
 	}
 #endif
 
