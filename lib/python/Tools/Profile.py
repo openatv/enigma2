@@ -66,8 +66,6 @@ def profile(checkPoint):
 				fileWriteLine("/proc/progress", "%d" % percentage, source=MODULE_NAME)
 			elif model in ("xpeedlx3", "sezammarvel", "atemionemesis"):
 				fileWriteLine("/proc/vfd", "Loading %d%% " % percentage, source=MODULE_NAME)
-			elif model in ('amikomini', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'sabsolo', 'gis8120'):
-				fileWriteLine("/proc/vfd", "%d \n" % percentage, source=MODULE_NAME)
 			elif isfile("/proc/progress"):
 				fileWriteLine("/proc/progress", "%d \n" % percentage, source=MODULE_NAME)
 
