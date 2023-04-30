@@ -55,7 +55,7 @@ class ChapterZap(Screen):
 
 	def keyOK(self):
 		self.Timer.stop()
-		self.close(int(self["number"].getText()))
+		self.close(self["number"].getText() and int(self["number"].getText()))
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(3000, True)		#reset timer
@@ -299,7 +299,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def chapterZap(self):
 		if not self.in_menu:
-			self.session.openWithCallback(self.numberEntered, ChapterZap)
+			self.session.openWithCallback(self.numberEntered, ChapterZap, "")
 
 	def numberEntered(self, retval):
 		if retval:
