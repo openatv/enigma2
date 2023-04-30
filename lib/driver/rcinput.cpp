@@ -342,19 +342,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 	
-#if KEY_TEXT_TO_KEY_AUDIO
-	if (ev->code == KEY_AUDIO)
-	{
-		/* AZBOX rc has a KEY aux key, which sends KEY_TEXT events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_TEXT;
-	}
-	else if (ev->code == KEY_AUDIO)
-	{
-		/* AZBOX rc has a KEY Check key, which sends KEY_AUDIO events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_TEXT;
-	}
-#endif
-
 #if KEY_CONTEXT_MENU_TO_KEY_AUX
 	if (ev->code == KEY_CONTEXT_MENU)
 	{
@@ -390,54 +377,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Xtrend New Remote rc has a KEY_F3 key, which sends KEY_LIST events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_LIST;
-	}
-#endif
-
-#if KEY_TV_TO_KEY_MODE
-	if (ev->code == KEY_TV)
-	{
-		/* AZBOX rc has a KEY_MODE key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_MODE;
-	}
-#endif
-
-#if KEY_VIDEO_TO_KEY_EPG
-	if (ev->code == KEY_VIDEO)
-	{
-		/* AZBOX rc has a KEY_EPG key, which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_EPG;
-	}
-#endif
-
-#if KEY_VIDEO_TO_KEY_SUBTITLE
-	if (ev->code == KEY_VIDEO)
-	{
-		/* AZBOX rc has a KEY_SUBTITLE key, which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_SUBTITLE;
-	}
-#endif
-
-#if KEY_TV_TO_KEY_STOP
-	if (ev->code == KEY_TV)
-	{
-		/* AZBOX rc has a KEY_STOP key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_STOP;
-	}
-#endif
-
-#if KEY_RADIO_TO_KEY_RECORD
-	if (ev->code == KEY_RADIO)
-	{
-		/* AZBOX rc has a KEY_RECORD key, which sends KEY_RADIO events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_RECORD;
-	}
-#endif
-
-#if KEY_HOME_TO_KEY_OPEN
-	if (ev->code == KEY_HOME)
-	{
-		/* AZBOX rc has no radio/tv/pvr key, we use KEY_HOME which sends KEY_OPEN events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_OPEN;
 	}
 #endif
 

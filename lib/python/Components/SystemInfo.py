@@ -327,11 +327,9 @@ BoxInfo.setItem("ModuleLayout", getModuleLayout(), immutable=True)
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
-BoxInfo.setItem("RemoteEnable", MACHINEBUILD in ("dm800", "azboxhd"))
+BoxInfo.setItem("RemoteEnable", MACHINEBUILD in ("dm800",))
 if MACHINEBUILD in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
 	repeat = 400
-elif MACHINEBUILD == 'azboxhd':
-	repeat = 150
 else:
 	repeat = 100
 BoxInfo.setItem("RemoteRepeat", repeat)

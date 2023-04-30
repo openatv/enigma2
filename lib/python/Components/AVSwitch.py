@@ -20,10 +20,7 @@ BRAND = BoxInfo.getItem("brand")
 MACHINEBUILD = BoxInfo.getItem("machinebuild")
 
 config.av = ConfigSubsection()
-if BRAND in ('azbox',):
-	config.av.edid_override = ConfigYesNo(default=True)
-else:
-	config.av.edid_override = ConfigYesNo(default=False)
+config.av.edid_override = ConfigYesNo(default=False)
 
 axis = {"480i": "0 0 719 479",
 		"480p": "0 0 719 479",
@@ -137,7 +134,7 @@ class AVSwitch:
 	elif (about.getChipSetString() in ('7252', '7251', '7251S', '7252S', '7251s', '7252s', '72604', '7278', '7444s', '3798mv200', '3798mv200h', '3798cv200', 'hi3798mv200', 'hi3798mv200h', 'hi3798cv200', 'hi3798mv300', '3798mv300')):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "2160p30", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i", "2160p", "2160p30"}
-	elif (about.getChipSetString() in ('7241', '7358', '7362', '73625', '7346', '7356', '73565', '7424', '7425', '7435', '7552', '7581', '7584', '75845', '7585', 'pnx8493', '7162', '7111', '3716mv410', 'hi3716mv410', 'hi3716mv430', '3716mv430')) or (BRAND in ('azbox')):
+	elif (about.getChipSetString() in ('7241', '7358', '7362', '73625', '7346', '7356', '73565', '7424', '7425', '7435', '7552', '7581', '7584', '75845', '7585', 'pnx8493', '7162', '7111', '3716mv410', 'hi3716mv410', 'hi3716mv430', '3716mv430')):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	elif about.getChipSetString() in ('meson-6',):
@@ -249,11 +246,6 @@ class AVSwitch:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in list(rate.values()):
-			if port == "DVI":
-				if BRAND in ('azbox',):
-					if mode not in self.modes_preferred and not config.av.edid_override.value:
-						print("[AVSwitch] no, not preferred")
-						return False
 			if port != "HDMI":
 				if mode not in self.readAvailableModes():
 					return False

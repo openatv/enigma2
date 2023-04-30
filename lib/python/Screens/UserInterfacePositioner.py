@@ -323,8 +323,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
-		if not BoxInfo.getItem("machinebuild").startswith('azbox'):
-			self["status"].setText(self["config"].getCurrent()[2])
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
@@ -469,8 +468,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
-		if not BoxInfo.getItem("machinebuild").startswith('azbox'):
-			self["status"].setText(self["config"].getCurrent()[2])
+		self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
