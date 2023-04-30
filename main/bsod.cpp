@@ -228,7 +228,7 @@ void bsodFatal(const char *component)
 
 		for(std::list<std::string>::const_iterator i = enigmainfovalues.begin(); i != enigmainfovalues.end(); ++i)
 		{
-			fprintf(f, "%s=%s\n", i->c_str(), modelinformation.getValue(i).c_str());
+			fprintf(f, "%s=%s\n", i->c_str(), modelinformation.getValue(i->c_str()).c_str());
 		}
 
 		fprintf(f, "\n");
