@@ -272,7 +272,7 @@ def standbyCounterChanged(configElement):
 
 
 def InitLcd():
-	if MACHINEBUILD in ('gbx34k', 'force4', 'alien5', 'viperslim', 'lunix', 'lunix4k', 'purehdse', 'vipert2c', 'evoslimse', 'evoslimt2c', 'valalinux', 'tmtwin4k', 'tmnanom3', 'mbmicrov2', 'revo4k', 'force3uhd', 'force2nano', 'evoslim', 'wetekplay', 'wetekplay2', 'wetekhub', 'ultrabox', 'novaip', 'dm520', 'dm525', 'purehd', 'mutant11', 'xpeedlxpro', 'zgemmai55', 'sf98', 'et7x00mini', 'xpeedlxcs2', 'xpeedlxcc', 'e4hd', 'e4hdhybrid', 'mbmicro', 'beyonwizt2', 'amikomini', 'dynaspark', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'arguspinguluxplus', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120', 'gb800se', 'gb800solo', 'gb800seplus', 'gbultrase', 'gbipbox', 'tmsingle', 'tmnano2super', 'iqonios300hd', 'iqonios300hdv2', 'optimussos1plus', 'optimussos1', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'et7000', 'et7100', 'mixosf7', 'mixoslumi', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
+	if MACHINEBUILD in ('gbx34k', 'force4', 'viperslim', 'lunix', 'lunix4k', 'purehdse', 'vipert2c', 'evoslimse', 'evoslimt2c', 'valalinux', 'tmtwin4k', 'tmnanom3', 'mbmicrov2', 'revo4k', 'force3uhd', 'force2nano', 'evoslim', 'ultrabox', 'novaip', 'dm520', 'dm525', 'purehd', 'mutant11', 'xpeedlxpro', 'zgemmai55', 'sf98', 'et7x00mini', 'xpeedlxcs2', 'xpeedlxcc', 'e4hd', 'e4hdhybrid', 'mbmicro', 'beyonwizt2', 'dynaspark', 'gb800se', 'gb800solo', 'gb800seplus', 'gbultrase', 'gbipbox', 'tmsingle', 'tmnano2super', 'iqonios300hd', 'iqonios300hdv2', 'optimussos1plus', 'optimussos1', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'et7000', 'et7100', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
 		detected = False
 	elif MACHINEBUILD in ('pulse4kmini',):
 		detected = True
@@ -493,7 +493,7 @@ def InitLcd():
 		else:
 			config.lcd.contrast = ConfigNothing()
 
-		if MACHINEBUILD in ('novatwin', 'novacombo', 'mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite', 'zgemmas2s', 'zgemmash1', 'zgemmash2', 'zgemmass', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 'spycat'):
+		if MACHINEBUILD in ('novatwin', 'novacombo', 'zgemmas2s', 'zgemmash1', 'zgemmash2', 'zgemmass', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 'spycat'):
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.bright = ConfigSlider(default=4, limits=(0, 4))
@@ -550,7 +550,7 @@ def InitLcd():
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
-		if BoxInfo.getItem("VFD_scroll_repeats") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_repeats") and MACHINEBUILD and DISPLAYTYPE not in ('7segment',):
 			def scroll_repeats(el):
 				open(BoxInfo.getItem("VFD_scroll_repeats"), "w").write(el.value)
 			choicelist = [("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("500", _("Continues"))]
@@ -559,7 +559,7 @@ def InitLcd():
 		else:
 			config.usage.vfd_scroll_repeats = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_scroll_delay") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_delay") and MACHINEBUILD and DISPLAYTYPE not in ('7segment',):
 			def scroll_delay(el):
 				# add workaround for Boxes who need hex code
 				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
@@ -573,7 +573,7 @@ def InitLcd():
 			config.lcd.hdd = ConfigNothing()
 			config.usage.vfd_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_initial_scroll_delay") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_initial_scroll_delay") and DISPLAYTYPE not in ('7segment',):
 			def initial_scroll_delay(el):
 				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
@@ -593,7 +593,7 @@ def InitLcd():
 		else:
 			config.usage.vfd_initial_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_final_scroll_delay") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_final_scroll_delay") and DISPLAYTYPE not in ('7segment',):
 			def final_scroll_delay(el):
 				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code

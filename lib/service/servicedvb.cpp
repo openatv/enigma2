@@ -45,12 +45,6 @@ using namespace std;
 #include <sstream>
 #include <iomanip>
 
-#if HAVE_ALIEN5
-extern "C" {
-#include <codec.h>
-}
-#endif
-
 #ifndef SUBT_TXT_ABNORMAL_PTS_DIFFS
 #define SUBT_TXT_ABNORMAL_PTS_DIFFS 1800000
 #endif
@@ -1389,15 +1383,6 @@ RESULT eDVBServicePlay::start()
 
 		type = eDVBServicePMTHandler::streamclient;
 	}
-
-#if HAVE_ALIEN5
-	if(m_is_stream || m_is_pvr)
-	{
-			eDebug("[eDVBServicePlay] start m_is_pvr %d", m_is_pvr);
-			aml_set_demux2_source();
-	}
-#endif
-
 
 	m_first_program_info = 1;
 	ePtr<iTsSource> source = createTsSource(service, packetsize);
@@ -3072,14 +3057,10 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			selectAudioStream();
 		}
 
-#if HAVE_AMLOGIC
-		m_decoder->setSyncPCR(pcrpid);
-#else
 		if (!(m_is_pvr || m_is_stream || m_timeshift_active))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
-#endif
 
 		if (m_decoder_index == 0)
 		{

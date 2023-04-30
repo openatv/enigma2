@@ -162,7 +162,7 @@ class eDVBResourceManager: public iObject, public sigc::trackable
 	DECLARE_REF(eDVBResourceManager);
 	int avail, busy;
 
-	enum { DM7025, DM800, DM500HD, DM800SE, DM8000, DM7020HD, DM7080, DM820, DM520, DM525, DM900, DM920, DREAMONE, DREAMTWO, DREAMSEVEN, GIGABLUE, DM500HDV2, DM800SEV2, WETEKPLAY, WETEKPLAY2, WETEKHUB};
+	enum { DM800, DM500HD, DM800SE, DM8000, DM7020HD, DM7080, DM820, DM520, DM525, DM900, DM920, DREAMONE, DREAMTWO, DREAMSEVEN, GIGABLUE, DM500HDV2, DM800SEV2};
 
 	int m_boxtype;
 
@@ -288,9 +288,6 @@ public:
 		/* RESULT != 0: failed */
 	RESULT setChannel(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &feparam);
 	eDVBChannelID getChannelID() { return m_channel_id; }
-#if defined(__sh__) //see filepush.h
-	int getSkipMode() { return m_skipmode_m; }
-#endif
 
 	RESULT connectStateChange(const sigc::slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection);
 	RESULT connectEvent(const sigc::slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection);

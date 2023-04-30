@@ -162,7 +162,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="manage_extensions" level="0" text="Manage Extensions" description="Browse, install or remove extensions / plugins." weight="10"><screen module="PluginBrowser" screen="PluginDownloadManager"/></item>
 				<item key="software_update" level="0" text="Software Update" description="Online update of your %s %s software." weight="11"><screen module="SoftwareUpdate" screen="SoftwareUpdate" /></item>
 				<item key="software_restore" level="0" text="Software Restore" description="Restore your %s %s with a new firmware." weight="12"><plugin system="SoftwareManager" screen="ImageWizard" /></item>
-				<item key="flash_online" level="0" text="Flash Online" description="Download and flash images on your %s %s." weight="13" requires="canImageBackup"><screen module="FlashManager" screen="FlashManager" /></item>
+				<item key="flash_online" level="0" text="Flash Online" description="Download and flash images on your %s %s." weight="13"><screen module="FlashManager" screen="FlashManager" /></item>
 				<item key="backup_image_dflash" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dFlash"><plugin extensions="dFlash" screen="dFlash" /></item>
 				<item key="backup_image_dbackup" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dBackup"><plugin extensions="dBackup" screen="dBackup" /></item>
 				<item key="backup_image" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="ImageBackup"><plugin system="SoftwareManager" screen="ImageBackup" /></item>

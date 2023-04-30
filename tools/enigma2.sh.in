@@ -4,25 +4,6 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
-#wetek kodi start
-if [ -e /usr/bin/kodi ]; then
-	if [ -e /etc/.kodistart ]; then
-		rm -f /etc/.kodistart
-		echo 0 >  /sys/class/video/disable_video
-		/usr/bin/kodi
-		echo 1 > /sys/class/graphics/fb0/blank
-		if grep -q 1080 /etc/enigma2/settings; then
-			echo "0 0 1919 1079" > /sys/class/video/axis
-			echo 1080p50Hz > /sys/class/display/mode
-		else
-			echo "0 0 1279 719" > /sys/class/video/axis
-			echo 720p50Hz > /sys/class/display/mode
-		fi
-		echo 0 >  /sys/class/video/disable_video
-		echo 0 > /sys/class/graphics/fb0/blank
-	fi
-fi
-
 #check for /etc/enigma2 folder
 if [ ! -d /etc/enigma2 ] ; then
 	mkdir -p /etc/enigma2
@@ -36,7 +17,7 @@ fi
 
 if [ -e /proc/stb/info/boxtype ]; then
 	stbcheck=`cat /proc/stb/info/boxtype`
-	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sf8008opt" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "ustym4ks2ottx" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
+	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "ustym4ks2ottx" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
 		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
 		if [ 0 == $count ];then
 			libreader 720P_50
@@ -216,7 +197,7 @@ if [ "$ret" -ne "1" ]; then
 			killall -9 showiframe; sleep 5
 		fi
 		stbcheck=`cat /proc/stb/info/boxtype`
-		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sf8008opt" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "ustym4ks2ottx" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
+		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "ustym4ks2ottx" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
 			killall -9 libreader; sleep 5
 		fi
 	fi

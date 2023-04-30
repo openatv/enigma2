@@ -40,10 +40,6 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/fcc.cpp \
 	dvb/fccdecoder.cpp
 
-if HAVE_AMLOGIC
-dvb_libenigma_dvb_a_SOURCES += dvb/amldecoder.cpp
-endif
-
 dvbincludedir = $(pkgincludedir)/lib/dvb
 dvbinclude_HEADERS = \
 	dvb/cablescan.h \
@@ -96,8 +92,4 @@ dvbinclude_HEADERS += \
 	dvb/decoders.h \
 	dvb/ringbuffer.h \
 	dvb/tsparser.h
-endif
-
-if HAVE_AMLOGIC
-dvbinclude_HEADERS += dvb/amldecoder.h
 endif

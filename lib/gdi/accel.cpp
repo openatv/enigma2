@@ -17,11 +17,7 @@
 gAccel *gAccel::instance;
 
 #if not defined(HAVE_HISILICON_ACCEL)
-#if not defined(__sh__)
 #define BCM_ACCEL
-#else
-#define STMFB_ACCEL
-#endif
 #endif
 
 #ifdef HAVE_HISILICON_ACCEL 
@@ -38,33 +34,6 @@ extern void dinobot_accel_fill(
 		int x, int y, int width, int height,
 		unsigned long color);
 extern bool dinobot_accel_has_alphablending();
-#endif
-
-#ifdef STMFB_ACCEL
-extern int stmfb_accel_init(void);
-extern void stmfb_accel_close(void);
-extern void stmfb_accel_blit(
-		int src_addr, int src_width, int src_height, int src_stride, int src_format,
-		int dst_addr, int dst_width, int dst_height, int dst_stride,
-		int src_x, int src_y, int width, int height,
-		int dst_x, int dst_y, int dwidth, int dheight);
-extern void stmfb_accel_fill(
-		int dst_addr, int dst_width, int dst_height, int dst_stride,
-		int x, int y, int width, int height,
-		unsigned long color);
-#endif
-#ifdef ATI_ACCEL
-extern int ati_accel_init(void);
-extern void ati_accel_close(void);
-extern void ati_accel_blit(
-		int src_addr, int src_width, int src_height, int src_stride,
-		int dst_addr, int dst_width, int dst_height, int dst_stride,
-		int src_x, int src_y, int width, int height,
-		int dst_x, int dst_y);
-extern void ati_accel_fill(
-		int dst_addr, int dst_width, int dst_height, int dst_stride,
-		int x, int y, int width, int height,
-		unsigned long color);
 #endif
 
 #ifdef BCM_ACCEL
@@ -92,12 +61,6 @@ gAccel::gAccel():
 {
 	instance = this;
 
-#ifdef STMFB_ACCEL
-	stmfb_accel_init();
-#endif
-#ifdef ATI_ACCEL
-	ati_accel_init();
-#endif
 #ifdef BCM_ACCEL
 	m_bcm_accel_state = bcm_accel_init();
 #endif
@@ -108,12 +71,6 @@ gAccel::gAccel():
 
 gAccel::~gAccel()
 {
-#ifdef STMFB_ACCEL
-	stmfb_accel_close();
-#endif
-#ifdef ATI_ACCEL
-	ati_accel_close();
-#endif
 #ifdef BCM_ACCEL
 	bcm_accel_close();
 #endif
@@ -200,77 +157,6 @@ bool gAccel::hasAlphaBlendingSupport()
 
 int gAccel::blit(gUnmanagedSurface *dst, gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags)
 {
-#ifdef STMFB_ACCEL
-	int src_format = 0;
-	gUnmanagedSurface *surfaceTmp = new gUnmanagedSurface(area.width(), area.height(), dst->bpp);
-
-	if (src->bpp == 32)
-		src_format = 0;
-	else if ((src->bpp == 8) && (dst->bpp == 32))
-	{
-		src_format = 1;
-		if (accelAlloc(surfaceTmp))
-			return -1;
-
-		__u8 *srcptr=(__u8*)src->data;
-		__u8 *dstptr=(__u8*)surfaceTmp->data;
-		__u32 pal[256];
-
-		for (int i=0; i<256; ++i)
-		{
-			if (src->clut.data && (i<src->clut.colors))
-				pal[i]=(src->clut.data[i].a<<24)|(src->clut.data[i].r<<16)|(src->clut.data[i].g<<8)|(src->clut.data[i].b);
-			else
-				pal[i]=0x010101*i;
-			if ((pal[i]&0xFF000000) >= 0xE0000000)
-				pal[i] = 0xFF000000;
-			pal[i]^=0xFF000000;
-		}
-		srcptr+=area.left()*src->bypp+area.top()*src->stride;
-
-		for (int y=0; y<area.height(); y++)
-		{
-			int width=area.width();
-			unsigned char *psrc=(unsigned char*)srcptr;
-			__u32 *pdst=(__u32*)dstptr;
-
-			while (width--)
-				*pdst++=pal[*psrc++];
-
-			srcptr+=src->stride;
-			dstptr+=area.width() * 4;
-		}
-	} else {
-		if (surfaceTmp->data_phys)
-			accelFree(surfaceTmp);
-		return -1;
-	}
-
-	if (surfaceTmp->data_phys)
-	{
-		stmfb_accel_blit(
-			surfaceTmp->data_phys, 0, 0, area.width() * 4, src_format,
-			dst->data_phys, dst->x, dst->y, dst->stride,
-			0, 0, area.width(), area.height(),
-			p.x(), p.y(), p.width(), p.height());
-		accelFree(surfaceTmp);
-	} else {
-		stmfb_accel_blit(
-			src->data_phys, src->x, src->y, src->stride, src_format,
-			dst->data_phys, dst->x, dst->y, dst->stride,
-			area.left(), area.top(), area.width(), area.height(),
-			p.x(), p.y(), p.width(), p.height());
-	}
-	return 0;
-#endif
-#ifdef ATI_ACCEL
-	ati_accel_blit(
-		src->data_phys, src->x, src->y, src->stride,
-		dst->data_phys, dst->x, dst->y, dst->stride,
-		area.left(), area.top(), area.width(), area.height(),
-		p.x(), p.y());
-	return 0;
-#endif
 #ifdef BCM_ACCEL
 	if (!m_bcm_accel_state)
 	{
@@ -360,13 +246,6 @@ int gAccel::fill(gUnmanagedSurface *dst, const eRect &area, unsigned long col)
 {
 #ifdef FORCE_NO_FILL_ACCELERATION
 	return -1;
-#endif
-#ifdef ATI_ACCEL
-	ati_accel_fill(
-		dst->data_phys, dst->x, dst->y, dst->stride,
-		area.left(), area.top(), area.width(), area.height(),
-		col);
-	return 0;
 #endif
 #ifdef BCM_ACCEL
 	if (!m_bcm_accel_state) {
