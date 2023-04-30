@@ -184,7 +184,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.servicelist.showFavourites()
 
 	def showTvButton(self):
-		if boxtype.startswith('gb') or boxtype in ('classm', 'genius', 'evo', 'galaxym6', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'og2ott4k', 'sfx6008'):
+		if boxtype.startswith('gb') or boxtype in ('classm', 'genius', 'evo', 'galaxym6', 'sf8008', 'sf8008m', 'sx988', 'ip8', 'og2ott4k', 'sfx6008'):
 			self.toogleTvRadio()
 		elif boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin'):
 			self.showMovies()

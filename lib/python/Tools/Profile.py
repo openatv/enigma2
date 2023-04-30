@@ -62,9 +62,9 @@ def profile(checkPoint):
 				fileWriteLine("/dev/dbox/oled0", "%d" % percentage, source=MODULE_NAME)
 			elif model in ('gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'):
 				fileWriteLine("/dev/mcu", "%d  \n" % percentage, source=MODULE_NAME)
-			elif model in ("gi9196m", "osmini", "spycatmini", "osminiplus", "spycatminiplus"):
+			elif model in ("osmini", "spycatmini", "osminiplus", "spycatminiplus"):
 				fileWriteLine("/proc/progress", "%d" % percentage, source=MODULE_NAME)
-			elif model in ("xpeedlx3", "sezammarvel", "atemionemesis", "fegasusx3", "fegasusx5s", "fegasusx5t"):
+			elif model in ("xpeedlx3", "sezammarvel", "atemionemesis"):
 				fileWriteLine("/proc/vfd", "Loading %d%% " % percentage, source=MODULE_NAME)
 			elif model in ('amikomini', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'sabsolo', 'gis8120'):
 				fileWriteLine("/proc/vfd", "%d \n" % percentage, source=MODULE_NAME)

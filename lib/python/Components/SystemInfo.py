@@ -220,7 +220,7 @@ def getChipsetString():
 		return "7435"
 	elif MODEL in ("dm520", "dm525"):
 		return "73625"
-	elif MODEL in ("dm900", "dm920", "et13000", "sf5008"):
+	elif MODEL in ("dm900", "dm920", "et13000"):
 		return "7252S"
 	elif MODEL in ("hd51", "vs1500", "h7"):
 		return "7251S"
@@ -298,8 +298,6 @@ def getBoxName():
 		box = "maram9"
 	elif box.startswith('sf8008m'):
 		box = "sf8008m"
-	elif box.startswith('sf8008opt'):
-		box = "sf8008opt"
 	elif box.startswith('sf8008'):
 		box = "sf8008"
 	elif box.startswith('ustym4kpro'):
@@ -374,7 +372,7 @@ BoxInfo.setItem("canMultiBoot", MultiBoot.getBootSlots())
 BoxInfo.setItem("HasKexecMultiboot", fileHas("/proc/cmdline", "kexec=1"))
 BoxInfo.setItem("cankexec", BoxInfo.getItem("kexecmb") and not BoxInfo.getItem("HasKexecMultiboot"))
 BoxInfo.setItem("CanNotDoSimultaneousTranscodeAndPIP", MODEL in ("vusolo4k", "gbquad4k", "gbue4k"))
-BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "ustym4ks2ottx", "beyonwizv2", "viper4k", "og2ott4k", "sx88v2", "sx888") and ("usb_update.bin", "none"))
+BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "sf8008", "sf8008m", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "ustym4ks2ottx", "beyonwizv2", "viper4k", "og2ott4k", "sx88v2", "sx888") and ("usb_update.bin", "none"))
 BoxInfo.setItem("CanUse3DModeChoices", fileExists("/proc/stb/fb/3dmode_choices") and True or False)
 BoxInfo.setItem("ChipsetString", getChipsetString(), immutable=True)
 BoxInfo.setItem("CIHelper", fileExists("/usr/bin/cihelper"))
@@ -402,7 +400,7 @@ BoxInfo.setItem("HaveID", fileCheck("/etc/.id"))
 BoxInfo.setItem("HAVEINITCAM", haveInitCam())
 BoxInfo.setItem("HaveTouchSensor", MACHINEBUILD in ("dm520", "dm525", "dm900", "dm920"))
 BoxInfo.setItem("HDMICEC", fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0"))
-BoxInfo.setItem("HDMIin", MODEL in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "sf5008", "vuuno4kse", "vuduo4k", "vuduo4kse") or MACHINEBUILD in ("spycat4k", "spycat4kcombo", "gbquad4k"))
+BoxInfo.setItem("HDMIin", MODEL in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "vuuno4kse", "vuduo4k", "vuduo4kse") or MACHINEBUILD in ("spycat4k", "spycat4kcombo", "gbquad4k"))
 BoxInfo.setItem("HiSilicon", SOC_FAMILY.startswith("hisi") or exists("/proc/hisi") or exists("/usr/bin/hihalt") or exists("/usr/lib/hisilicon"))
 BoxInfo.setItem("LcdDisplay", fileExists("/dev/dbox/lcd0"))
 BoxInfo.setItem("LcdLiveTV", fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable"))
@@ -445,8 +443,8 @@ BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
 
-BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'ustym4ks2ottx', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'gbmv200', 'cc1', 'sfx6008', 'sx88v2', 'sx888'))
-BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "gi9196m", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
+BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'ustym4ks2ottx', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'gbmv200', 'sfx6008', 'sx88v2', 'sx888'))
+BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
 
 
 # dont't sort
