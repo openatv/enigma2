@@ -776,7 +776,7 @@ if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm900"
 fi
 
 if test "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920"; then
-	AC_DEFINE(HAVE_HDMIIN_DM900, 1,[has hdmi in dm])
+	AC_DEFINE(HAVE_HDMIIN_FHD, 1,[has hdmi in dm])
 fi
 
 AC_ARG_WITH(libsdl,

@@ -6,14 +6,8 @@
 class eAVControl
 {
 
-#ifdef SWIG
-	eAVControl();
-#endif
 public:
-#ifndef SWIG
-	eAVControl();
-#endif
-
+	eAVControl() {}
 	static eAVControl &getInstance()
 	{
 		static eAVControl m_instance;
