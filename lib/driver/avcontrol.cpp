@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <string.h>
+#include <algorithm>
 
 #include <lib/base/cfile.h>
 #include <lib/base/init.h>
@@ -10,6 +11,7 @@
 #include <lib/base/ebase.h>
 #include <lib/driver/avcontrol.h>
 
+const char *__MODULE__ = "eAVControl";
 
 const char *proc_hdmi_rx_monitor = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor";
 const char *proc_hdmi_rx_monitor_audio = "/proc/stb/audio/hdmi_rx_monitor";
@@ -21,154 +23,154 @@ const char *proc_videomode = "/proc/stb/video/videomode";
 const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz";
 const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz";
 
-bool eAVControl::getProgressive(bool debug)
+bool eAVControl::getProgressive(int flags)
 {
-	const char *proc = "/proc/stb/vmpeg/0/progressive";
-
-	int progressive = 0;
-	CFile::parseIntHex(&progressive, proc);
-	if (debug && progressive < 0)
-		eDebug("[eAVControl] error read %s: %m", proc);
-	return progressive == 1;
+	int value = 0;
+	CFile::parseIntHex(&value, "/proc/stb/vmpeg/0/progressive", __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %d", __MODULE__, "getProgressive", value);
+	return value == 1;
 }
 
-int eAVControl::getResolutionX(int defaultVal, bool debug)
+/// @brief Get screen resolution X
+/// @param defaultVal = 0
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+/// @return resolution value
+int eAVControl::getResolutionX(int defaultVal, int flags)
 {
-
-	int x;
+	int value;
 #ifdef DREAMNEXTGEN
-	const char *proc = "/sys/class/video/frame_width";
-	CFile::parseInt(&x, proc);
+	int ret = CFile::parseInt(&x, "/sys/class/video/frame_width", __MODULE__, flags);
 #else
-	const char *proc = "/proc/stb/vmpeg/0/xres";
-	CFile::parseIntHex(&x, proc);
+	int ret = CFile::parseIntHex(&value, "/proc/stb/vmpeg/0/xres", __MODULE__, flags);
 #endif
 
-	if (x < 0)
+	if (ret != 0)
 	{
-		if (debug)
-			eDebug("[eAVControl] error read %s: %m", proc);
-		x = defaultVal;
+		value = defaultVal;
 	}
-	return x;
+	else if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %d", __MODULE__, "getResolutionX", value);
+
+	return value;
 }
 
-int eAVControl::getResolutionY(int defaultVal, bool debug)
+/// @brief Get screen resolution Y
+/// @param defaultVal = 0
+/// @param flags bit (1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+/// @return resolution value
+int eAVControl::getResolutionY(int defaultVal, int flags)
 {
 
-	int y;
+	int value;
 #ifdef DREAMNEXTGEN
-	const char *proc = "/sys/class/video/frame_height";
-	CFile::parseInt(&y, proc);
+	int ret = CFile::parseInt(&value, "/sys/class/video/frame_height", __MODULE__, flags);
 #else
-	const char *proc = "/proc/stb/vmpeg/0/yres";
-	CFile::parseIntHex(&y, proc);
+	int ret = CFile::parseIntHex(&value, "/proc/stb/vmpeg/0/yres", __MODULE__, flags);
 #endif
 
-	if (y < 0)
+	if (ret != 0)
 	{
-		if (debug)
-			eDebug("[eAVControl] error read %s: %m", proc);
-		y = defaultVal;
+		value = defaultVal;
 	}
-	return y;
+	else if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %d", __MODULE__, "getResolutionY", value);
+	return value;
 }
 
-int eAVControl::getFrameRate(int defaultVal, bool debug)
+/// @brief Get FrameRate
+/// @param defaultVal 
+/// @param flags 
+/// @return 
+int eAVControl::getFrameRate(int defaultVal, int flags)
 {
 
 #ifdef DREAMNEXTGEN
-	const char *proc = "/proc/stb/vmpeg/0/frame_rate";
+	const char *fileName = "/proc/stb/vmpeg/0/frame_rate";
 #else
-	const char *proc = "/proc/stb/vmpeg/0/frame_rate";
+	const char *fileName = "/proc/stb/vmpeg/0/frame_rate";
 #endif
 
-	int framerate = 0;
-	CFile::parseInt(&framerate, proc);
-	if (framerate < 0)
+	int value = 0;
+	int ret = CFile::parseInt(&value, fileName, __MODULE__, flags);
+	if (ret != 0)
 	{
-		if (debug)
-			eDebug("[eAVControl] error read %s: %m", proc);
-		framerate = defaultVal;
+		value = defaultVal;
 	}
-	return framerate;
+	else if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %d", __MODULE__, "getFrameRate", value);
+
+	return value;
 }
 
-std::string eAVControl::getVideoMode(std::string defaultVal, bool debug)
+/// @brief Get VideoMode
+/// @param defaultVal 
+/// @param flags 
+/// @return 
+std::string eAVControl::getVideoMode(std::string defaultVal, int flags)
 {
 
 	FILE *fd;
-	std::string result = defaultVal;
-	char buffer[50];
-	if ((fd = fopen(proc_videomode, "r")) != NULL)
+	std::string result = CFile::read(proc_videomode, __MODULE__, flags);
+	if (!result.empty() && result[result.length() - 1] == '\n')
 	{
-		if (fgets(buffer, sizeof(buffer), fd))
-		{
-			int len = strlen(buffer);
-			if (len)
-			{
-				if (buffer[len - 1] == '\n')
-					buffer[len - 1] = '\0';
-				result = std::string(buffer);
-			}
-		}
-		else if(debug)
-		{
-			eDebug("[eAVControl] error read %s: %m", proc_videomode);
-		}
-		fclose(fd);
+		result.erase(result.length() - 1);
 	}
-	else if(debug)
-	{
-		eDebug("[eAVControl] error open %s: %m", proc_videomode);
-	}
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %d", __MODULE__, "getVideoMode", result.c_str());
 
 	return result;
 }
 
 
-void eAVControl::setVideoMode(std::string newMode, bool debug)
+/// @brief Set VideoMode
+/// @param newMode 
+/// @param flags 
+void eAVControl::setVideoMode(std::string newMode, int flags)
 {
-	if (debug)
-		eDebug("[eAVControl] setVideoMode:%s", newMode.c_str());
+	CFile::writeStr(proc_videomode, newMode, __MODULE__, flags);
 
-	CFile::writeStr(proc_videomode, newMode);
-
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setVideoMode", newMode.c_str());
 }
+
 /// @brief set HDMIInPip for 'dm7080', 'dm820', 'dm900', 'dm920'
 /// @return false if one of the models
-bool eAVControl::setHDMIInPiP()
+bool eAVControl::setHDMIInPiP(int flags)
 {
-	
+
 #ifdef HAVE_HDMIIN_DM
 
 	std::string check = CFile::read(hdmi_rx_monitor);
 
-    if (check.rfind("off", 0) == 0) {
+	if (check.rfind("off", 0) == 0)
+	{
 		CFile::writeStr(proc_hdmi_rx_monitor_audio, "on");
 		CFile::writeStr(proc_hdmi_rx_monitor, "on");
-    } else {
+	}
+	else
+	{
 		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off");
 		CFile::writeStr(proc_hdmi_rx_monitor, "off");
-    }
+	}
 
 	return false;
 
 #else
 	return true;
 #endif
-
 }
 /// @brief set HDMIInFull for 'dm7080', 'dm820', 'dm900', 'dm920'
 /// @return false if one of the models
-bool eAVControl::setHDMIInFull()
+bool eAVControl::setHDMIInFull(int flags)
 {
-	
+
 #ifdef HAVE_HDMIIN_DM
 
 	std::string check = CFile::read(proc_hdmi_rx_monitor);
 
-    if (check.rfind("off", 0) == 0) {
+	if (check.rfind("off", 0) == 0)
+	{
 
 		m_video_mode = CFile::read(proc_videomode);
 		m_video_mode_50 = CFile::read(proc_videomode_50);
@@ -182,32 +184,32 @@ bool eAVControl::setHDMIInFull()
 
 		CFile::writeStr(proc_hdmi_rx_monitor_audio, "on");
 		CFile::writeStr(proc_hdmi_rx_monitor, "on");
-
-    } else {
+	}
+	else
+	{
 		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off");
 		CFile::writeStr(proc_hdmi_rx_monitor, "off");
 		CFile::writeStr(proc_videomode, m_video_mode);
 		CFile::writeStr(proc_videomode_50, m_video_mode_50);
 		CFile::writeStr(proc_videomode_60, m_video_mode_60);
-    }
+	}
 
 	return false;
 
 #else
 	return true;
 #endif
-
 }
 
 /// @brief disable HDMIIn / used in StartEnigma.py
-void eAVControl::disableHDMIIn()
+void eAVControl::disableHDMIIn(int flags)
 {
 
 	std::string check = CFile::read(proc_hdmi_rx_monitor);
 
-    if (check.rfind("on", 0) == 0) {
+	if (check.rfind("on", 0) == 0)
+	{
 		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off");
 		CFile::writeStr(proc_hdmi_rx_monitor, "off");
-    }
-
+	}
 }
