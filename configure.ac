@@ -534,7 +534,7 @@ AM_CONDITIONAL(DREAMNEXTGEN, test "$BOXTYPE" == dreamone -o "$BOXTYPE" == dreamt
 if test "$BOXTYPE" == "dreamone" -o "$BOXTYPE" == "dreamtwo"; then
 	ALSA_CFLAGS="-lasound"
 	FFMPEG_CFLAGS=" -lavdevice -lavformat -lavcodec -lswresample -lswscale -lavutil -lm "
-	AC_DEFINE(DREAMNEXTGEN, 1, [Dreambox NexT Generation Hardware])
+	#AC_DEFINE(DREAMNEXTGEN, 1, [Dreambox NexT Generation Hardware])
 fi
 
 AC_ARG_WITH(fcc,
