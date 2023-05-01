@@ -4,9 +4,9 @@
 
 #include "cfile.h"
 
-#define eDebugErrorOpenFile(MODULE, FILENAME) eDebug("[%s] Error %d: Open file '%s'!  (%m)", MODULE, errno, FILENAME);
-#define eDebugErrorReadFile(MODULE, FILENAME) eDebug("[%s] Error %d: Read file '%s'!  (%m)", MODULE, errno, FILENAME);
-#define eDebugErrorWriteFile(MODULE, FILENAME) eDebug("[%s] Error %d: Write file '%s'!  (%m)", MODULE, errno, FILENAME);
+#define eDebugErrorOpenFile(MODULE, FILENAME) eDebug("[%s] Error %d: Unable to open file '%s'!  (%m)", MODULE, errno, FILENAME);
+#define eDebugErrorReadFile(MODULE, FILENAME) eDebug("[%s] Error %d: Unable to read from file '%s'!  (%m)", MODULE, errno, FILENAME);
+#define eDebugErrorWriteFile(MODULE, FILENAME) eDebug("[%s] Error %d: Unable to write to file '%s'!  (%m)", MODULE, errno, FILENAME);
 
 int CFile::parseIntHex(int *result, const char *filename)
 {
