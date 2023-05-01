@@ -12,10 +12,12 @@ struct CFile
 	FILE *handle;
 	CFile(const char *filename, const char *mode)
 		: handle(fopen(filename, mode))
-	{}
+	{
+	}
 	CFile(const std::string &filename, const char *mode)
 		: handle(fopen(filename.c_str(), mode))
-	{}
+	{
+	}
 	~CFile()
 	{
 		if (handle)
@@ -23,7 +25,7 @@ struct CFile
 	}
 	void sync() { fsync(fileno(handle)); }
 	operator bool() const { return handle != NULL; }
-	operator FILE*() const { return handle; }
+	operator FILE *() const { return handle; }
 
 	/* Fetch integer from /proc files and such */
 	static int parseIntHex(int *result, const char *filename);
@@ -35,6 +37,21 @@ struct CFile
 	static int write(const char *filename, const char *value);
 	static std::string read(const std::string &filename);
 	static bool contains_word(const std::string &filename, const std::string &word);
+
+	/* debug versions */
+	static int parseIntHex(int *result, const char *filename, const char *module, int flags = 0);
+	static int parseInt(int *result, const char *filename, const char *module, int flags = 0);
+	static int writeIntHex(const char *filename, int value, const char *module, int flags = 0);
+	static int writeInt(const char *filename, int value, const char *module, int flags = 0);
+	static int writeStr(const char *filename, std::string value, const char *module, int flags = 0);
+	static int write(const char *filename, const char *value, const char *module, int flags = 0);
+	static std::string read(const std::string &filename, const char *module, int flags = 0);
+
+	enum
+	{
+		CFILE_FLAGS_SUPPRESS_NOT_EXISTS = 2,
+		CFILE_FLAGS_SUPPRESS_READWRITE_ERROR = 4
+	};
 };
 
 #endif

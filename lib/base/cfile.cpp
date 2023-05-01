@@ -1,7 +1,12 @@
 #include <fstream>
 #include <sstream>
+#include <lib/base/eerror.h>
 
 #include "cfile.h"
+
+#define eDebugErrorOpenFile(MODULE, FILENAME) eDebug("[%s] Error %d: Open file '%s'!  (%m)", MODULE, errno, FILENAME);
+#define eDebugErrorReadFile(MODULE, FILENAME) eDebug("[%s] Error %d: Read file '%s'!  (%m)", MODULE, errno, FILENAME);
+#define eDebugErrorWriteFile(MODULE, FILENAME) eDebug("[%s] Error %d: Write file '%s'!  (%m)", MODULE, errno, FILENAME);
 
 int CFile::parseIntHex(int *result, const char *filename)
 {
@@ -83,9 +88,118 @@ bool CFile::contains_word(const std::string &filename, const std::string &word_t
 	if (!file.good())
 		return false;
 
-	while(file >> word)
-		if(word == word_to_match)
+	while (file >> word)
+		if (word == word_to_match)
 			return true;
 
 	return false;
+}
+
+int CFile::parseIntHex(int *result, const char *filename, const char *module, int flags)
+{
+	CFile f(filename, "r");
+	if (!f)
+	{
+		if (!(flags & CFILE_FLAGS_SUPPRESS_NOT_EXISTS))
+			eDebugErrorOpenFile(module, filename);
+		return -1;
+	}
+	if (fscanf(f, "%x", result) != 1)
+	{
+		if (!(flags & CFILE_FLAGS_SUPPRESS_READWRITE_ERROR))
+			eDebugErrorReadFile(module, filename);
+		return -2;
+	}
+	return 0;
+}
+
+int CFile::parseInt(int *result, const char *filename, const char *module, int flags)
+{
+	CFile f(filename, "r");
+	if (!f)
+	{
+		if (!(flags & CFILE_FLAGS_SUPPRESS_NOT_EXISTS))
+			eDebugErrorOpenFile(module, filename);
+		return -1;
+	}
+	if (fscanf(f, "%d", result) != 1)
+	{
+		if (!(flags & CFILE_FLAGS_SUPPRESS_READWRITE_ERROR))
+			eDebugErrorReadFile(module, filename);
+		return -2;
+	}
+	return 0;
+}
+
+int CFile::writeIntHex(const char *filename, int value, const char *module, int flags)
+{
+	CFile f(filename, "w");
+	if (!f)
+	{
+		if (!(flags & CFILE_FLAGS_SUPPRESS_NOT_EXISTS))
+			eDebugErrorOpenFile(module, filename);
+		return -1;
+	}
+	int ret = fprintf(f, "%x", value);
+	if (ret < 0 && !(flags & CFILE_FLAGS_SUPPRESS_READWRITE_ERROR))
+		eDebugErrorWriteFile(module, filename);
+	return ret;
+}
+
+int CFile::writeInt(const char *filename, int value, const char *module, int flags)
+{
+	CFile f(filename, "w");
+	if (!f)
+	{
+		if (!(flags & CFILE_FLAGS_SUPPRESS_NOT_EXISTS))
+			eDebugErrorOpenFile(module, filename);
+		return -1;
+	}
+	int ret = fprintf(f, "%d", value);
+	if (ret < 0 && !(flags & CFILE_FLAGS_SUPPRESS_READWRITE_ERROR))
+		eDebugErrorWriteFile(module, filename);
+	return ret;
+}
+
+int CFile::writeStr(const char *filename, std::string value, const char *module, int flags)
+{
+	CFile f(filename, "w");
+	if (f)
+	{
+		int ret = fprintf(f, "%s", value.c_str());
+		if (ret < 0 && !(flags & CFILE_FLAGS_SUPPRESS_READWRITE_ERROR))
+			eDebugErrorWriteFile(module, filename);
+	}
+	else if (!(flags & CFILE_FLAGS_SUPPRESS_NOT_EXISTS))
+		eDebugErrorOpenFile(module, filename);
+	return 0;
+}
+
+int CFile::write(const char *filename, const char *value, const char *module, int flags)
+{
+	CFile f(filename, "w");
+	if (!f)
+	{
+		if (module && !(flags & CFILE_FLAGS_SUPPRESS_NOT_EXISTS))
+			eDebugErrorOpenFile(module, filename);
+		return -1;
+	}
+	int ret = fprintf(f, "%s", value);
+	if (ret < 0 && !(flags & CFILE_FLAGS_SUPPRESS_READWRITE_ERROR))
+		eDebugErrorWriteFile(module, filename);
+	return ret;
+}
+
+std::string CFile::read(const std::string &filename, const char *module, int flags)
+{
+	std::ifstream file(filename.c_str());
+	if (!file.good())
+	{
+		if (!(flags & CFILE_FLAGS_SUPPRESS_NOT_EXISTS))
+			eDebugErrorOpenFile(module, filename.c_str());
+		return std::string();
+	}
+	std::stringstream ss;
+	ss << file.rdbuf();
+	return ss.str();
 }
