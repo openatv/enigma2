@@ -208,6 +208,7 @@ class ServiceInfo(Poll, Converter):
 		video_height = self._getVideoHeight(info)
 		video_width = self._getVideoWidth(info)
 
+		f = None
 		if path.exists("/proc/stb/vmpeg/0/aspect"):
 			f = open("/proc/stb/vmpeg/0/aspect", "r")
 		elif path.exists("/sys/class/video/screen_mode"):
@@ -337,6 +338,7 @@ class ServiceInfo(Poll, Converter):
 			return self.getServiceInfoHexString(info, iServiceInformation.sSID)
 		elif self.type == self.FRAMERATE:
 			video_rate = None
+			f = None
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
 			elif path.exists("/proc/stb/vmpeg/0/frame_rate"):
@@ -446,6 +448,7 @@ class ServiceInfo(Poll, Converter):
 			return str(video_height)
 		elif self.type == self.FRAMERATE:
 			video_rate = None
+			f = None
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
 			elif path.exists("/proc/stb/vmpeg/0/frame_rate"):
