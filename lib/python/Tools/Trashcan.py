@@ -34,12 +34,13 @@ def getTrashcan(path=None):  # Returns trashcan folder without symbolic links.
 
 def createTrashcan(path=None):
 	trashcan = getTrashcan(path)
-	if trashcan and access(split(trashcan)[0], W_OK) and not isdir(trashcan):
-		try:
-			mkdir(trashcan)
-		except OSError as err:
-			print("[Trashcan] Error %d: Unable to create trashcan folder '%s'!  (%s)" % (err.errno, trashcan, err.strerror))
-			trashcan = None
+	if trashcan and access(split(trashcan)[0], W_OK):
+		if not isdir(trashcan):
+			try:
+				mkdir(trashcan)
+			except OSError as err:
+				print("[Trashcan] Error %d: Unable to create trashcan folder '%s'!  (%s)" % (err.errno, trashcan, err.strerror))
+				trashcan = None
 	else:
 		trashcan = None
 	return trashcan
@@ -110,7 +111,7 @@ def clean(timeLimit, reserveBytes):
 
 
 def cleanAll(path=None):
-	trashcan = getTrashFolder(path)
+	trashcan = getTrashcan(path)
 	if isdir(trashcan):
 		for root, dirs, files in walk(trashcan, topdown=False):
 			for file in files:
