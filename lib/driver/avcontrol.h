@@ -7,7 +7,7 @@ class eAVControl
 {
 
 public:
-	eAVControl() {}
+	eAVControl() = default;
 	static eAVControl &getInstance()
 	{
 		static eAVControl m_instance;
@@ -18,9 +18,9 @@ public:
 	bool getProgressive(int flags = 0);
 	int getResolutionX(int defaultVal = 0, int flags = 0);
 	int getResolutionY(int defaultVal = 0, int flags = 0);
-	std::string getVideoMode(std::string defaultVal = "", int flags = 0);
+	std::string getVideoMode(const std::string &defaultVal = "", int flags = 0);
 
-	void setVideoMode(std::string newMode, int flags = 0);
+	void setVideoMode(const std::string &newMode, int flags = 0);
 	bool setHDMIInFull(int flags = 0);
 	bool setHDMIInPiP(int flags = 0);
 	void disableHDMIIn(int flags = 0);

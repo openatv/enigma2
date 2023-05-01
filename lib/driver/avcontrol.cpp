@@ -107,17 +107,15 @@ int eAVControl::getFrameRate(int defaultVal, int flags)
 /// @param defaultVal 
 /// @param flags 
 /// @return 
-std::string eAVControl::getVideoMode(std::string defaultVal, int flags)
+std::string eAVControl::getVideoMode(const std::string &defaultVal, int flags)
 {
-
-	FILE *fd;
 	std::string result = CFile::read(proc_videomode, __MODULE__, flags);
 	if (!result.empty() && result[result.length() - 1] == '\n')
 	{
 		result.erase(result.length() - 1);
 	}
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %d", __MODULE__, "getVideoMode", result.c_str());
+		eDebug("[%s] %s: %s", __MODULE__, "getVideoMode", result.c_str());
 
 	return result;
 }
@@ -126,7 +124,7 @@ std::string eAVControl::getVideoMode(std::string defaultVal, int flags)
 /// @brief Set VideoMode
 /// @param newMode 
 /// @param flags 
-void eAVControl::setVideoMode(std::string newMode, int flags)
+void eAVControl::setVideoMode(const std::string &newMode, int flags)
 {
 	CFile::writeStr(proc_videomode, newMode, __MODULE__, flags);
 
