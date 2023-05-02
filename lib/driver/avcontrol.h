@@ -32,10 +32,10 @@ public:
 	bool setHDMIInPiP(int flags = 0) const;
 	void disableHDMIIn(int flags = 0) const;
 
-	bool hasProcAspect() { return m_b_has_proc_aspect; }
-	bool hasProcHDMIRXMonitor() { return m_b_has_proc_hdmi_rx_monitor; }
-	bool hasProcVideoMode50() { return m_b_has_proc_videomode_50; }
-	bool hasProcVideoMode60() { return m_b_has_proc_videomode_60; }
+	bool hasProcAspect() const { return m_b_has_proc_aspect; }
+	bool hasProcHDMIRXMonitor() const { return m_b_has_proc_hdmi_rx_monitor; }
+	bool hasProcVideoMode50() const { return m_b_has_proc_videomode_50; }
+	bool hasProcVideoMode60() const { return m_b_has_proc_videomode_60; }
 
 	enum
 	{

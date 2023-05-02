@@ -11,21 +11,21 @@
 #include <lib/base/ebase.h>
 #include <lib/driver/avcontrol.h>
 
-const char *__MODULE__ = "eAVControl";
+const char *__MODULE__ = "eAVControl"; // NOSONAR
 
-const char *proc_hdmi_rx_monitor = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor";
-const char *proc_hdmi_rx_monitor_audio = "/proc/stb/audio/hdmi_rx_monitor";
+const char *proc_hdmi_rx_monitor = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor"; // NOSONAR
+const char *proc_hdmi_rx_monitor_audio = "/proc/stb/audio/hdmi_rx_monitor"; // NOSONAR
 #ifdef DREAMNEXTGEN
-const char *proc_videomode = "/sys/class/display/mode";
-const char *proc_videoaspect = "/sys/class/video/screen_mode";
+const char *proc_videomode = "/sys/class/display/mode"; // NOSONAR
+const char *proc_videoaspect = "/sys/class/video/screen_mode"; // NOSONAR
 #else
-const char *proc_videomode = "/proc/stb/video/videomode";
-const char *proc_videoaspect = "/proc/stb/vmpeg/0/aspect";
+const char *proc_videomode = "/proc/stb/video/videomode"; // NOSONAR
+const char *proc_videoaspect = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
 #endif
-const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz";
-const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz";
+const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz"; // NOSONAR
+const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz"; // NOSONAR
 
-eAVControl::eAVControl() : m_b_has_proc_aspect(false), m_b_has_proc_hdmi_rx_monitor(false), m_b_has_proc_videomode_50(false), m_b_has_proc_videomode_60(false)
+eAVControl::eAVControl()
 {
 	struct stat buffer;
 	m_b_has_proc_aspect = (stat(proc_videoaspect, &buffer) == 0);
@@ -165,10 +165,11 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 /// @return false if one of the models
 bool eAVControl::setHDMIInPiP(int flags) const
 {
-	if (!m_b_has_proc_hdmi_rx_monitor)
-		return true;
 
 #ifdef HAVE_HDMIIN_DM
+
+	if (!m_b_has_proc_hdmi_rx_monitor)
+		return true;
 
 	std::string check = CFile::read(hdmi_rx_monitor);
 
@@ -193,10 +194,11 @@ bool eAVControl::setHDMIInPiP(int flags) const
 /// @return false if one of the models
 bool eAVControl::setHDMIInFull(int flags) const
 {
-	if (!m_b_has_proc_hdmi_rx_monitor)
-		return true;
 
 #ifdef HAVE_HDMIIN_DM
+
+	if (!m_b_has_proc_hdmi_rx_monitor)
+		return true;
 
 	std::string check = CFile::read(proc_hdmi_rx_monitor);
 
