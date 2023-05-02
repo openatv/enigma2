@@ -122,7 +122,7 @@ EXTENSION_ICONS["lock_off"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/l
 EXTENSION_ICONS["lock_on"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 EXTENSION_ICONS["link-arrow"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link-arrow.png"))
 EXTENSION_ICONS["link"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link.png"))
-EXTENSION_ICONS["back"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/back.png"))
+EXTENSION_ICONS["parent"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/parent.png"))
 EXTENSION_ICONS["directory"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 EXTENSION_ICONS["file"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/file.png"))
 for icon in set(EXTENSIONS.values()):
@@ -316,7 +316,7 @@ class FileListBase(MenuList):
 			if isLink and linkIcon is None:
 				icon = EXTENSION_ICONS["link"]
 			else:
-				icon = EXTENSION_ICONS["back" if name == ".." else "directory"]
+				icon = EXTENSION_ICONS["parent" if name == ".." else "directory"]
 		else:
 			if path is None:
 				path = ""
