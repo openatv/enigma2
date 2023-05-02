@@ -20,6 +20,10 @@ SELECT_DIRECTORIES = 0
 SELECT_FILES = 1
 SELECT_ALL = 2
 
+TYPE_STORAGE = 0
+TYPE_PARENT = 1
+TYPE_CURRENT = 2
+
 EXTENSIONS = {
 	# Music file types.
 	".aac": "music",
@@ -122,11 +126,19 @@ EXTENSION_ICONS["lock_off"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/l
 EXTENSION_ICONS["lock_on"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 EXTENSION_ICONS["link-arrow"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link-arrow.png"))
 EXTENSION_ICONS["link"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link.png"))
-EXTENSION_ICONS["back"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/back.png"))
+EXTENSION_ICONS["storage"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/storage.png"))
+EXTENSION_ICONS["parent"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/parent.png"))
+EXTENSION_ICONS["current"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/current.png"))
 EXTENSION_ICONS["directory"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 EXTENSION_ICONS["file"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/file.png"))
 for icon in set(EXTENSIONS.values()):
 	EXTENSION_ICONS[icon] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/%s.png" % icon))
+if EXTENSION_ICONS["storage"] is None:
+	EXTENSION_ICONS["storage"] = EXTENSION_ICONS["directory"]
+if EXTENSION_ICONS["parent"] is None:
+	EXTENSION_ICONS["parent"] = EXTENSION_ICONS["directory"]
+if EXTENSION_ICONS["current"] is None:
+	EXTENSION_ICONS["current"] = EXTENSION_ICONS["directory"]
 
 # Playable file extensions.
 AUDIO_EXTENSIONS = frozenset((".mp3", ".mp2", ".m4a", ".m2a", ".flac", ".ogg", ".dts", ".wav", ".3g2", ".3gp", ".wave", ".wma"))
@@ -209,17 +221,17 @@ class FileListBase(MenuList):
 			if directory and not self.isTop:
 				mountPoint = normpath(self.getMountPointLink(directory))
 				if self.showMountPoints and directory == mountPoint:
-					self.fileList.append(self.fileListComponent(name="<%s>" % _("List of Storage Devices"), path=None, isDir=True, isLink=False, selected=None))
+					self.fileList.append(self.fileListComponent(name="<%s>" % _("List of Storage Devices"), path=None, isDir=True, isLink=False, selected=None, type=TYPE_STORAGE))
 				if self.showCurrentDirectory:
-					self.fileList.append(self.fileListComponent(name="<%s>" % _("Current Directory"), path=pathjoin(directory, ""), isDir=True, isLink=islink(directory), selected=None))
+					self.fileList.append(self.fileListComponent(name="<%s>" % _("Current Directory"), path=pathjoin(directory, ""), isDir=True, isLink=islink(directory), selected=None, type=TYPE_CURRENT))
 				parent = dirname(directory)
 				if directory != parent and parent.startswith(mountPoint) and not (self.inhibitMounts and self.getMountPoint(directory) in self.inhibitMounts):
-					self.fileList.append(self.fileListComponent(name="<%s>" % _("Parent Directory"), path=pathjoin(parent, ""), isDir=True, isLink=islink(parent), selected=None))
+					self.fileList.append(self.fileListComponent(name="<%s>" % _("Parent Directory"), path=pathjoin(parent, ""), isDir=True, isLink=islink(parent), selected=None, type=TYPE_PARENT))
 				# print("[FileList] changeDir DEBUG: mountPoint='%s', mountPointLink='%s', directory='%s', parent='%s'." % (normpath(self.getMountPointLink(directory)), mountPoint, directory, parent))
 			for name, path, isDir, isLink in directories:
 				if not (self.inhibitMounts and self.getMountPoint(path) in self.inhibitMounts) and not self.inParentDirs(path, self.inhibitDirs):
 					selected = (path in self.selectedItems or normpath(path) in self.selectedItems) if self.multiSelect else None
-					self.fileList.append(self.fileListComponent(name=name, path=path, isDir=isDir, isLink=isLink, selected=selected))
+					self.fileList.append(self.fileListComponent(name=name, path=path, isDir=isDir, isLink=isLink, selected=selected, type=None))
 
 		self.fileList = []
 		directories = []
@@ -236,7 +248,7 @@ class FileListBase(MenuList):
 				seenMountPoints.append(path)
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					selected = False if self.multiSelect else None
-					self.fileList.append(self.fileListComponent(name=partition.description, path=pathjoin(path, ""), isDir=True, isLink=False, selected=selected))
+					self.fileList.append(self.fileListComponent(name=partition.description, path=pathjoin(path, ""), isDir=True, isLink=False, selected=selected, type=None))
 		elif self.useServiceRef and directory:
 			# Don't use "eServiceReference(string)" constructor as it doesn't allow ":" in the directory name.
 			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
@@ -277,13 +289,13 @@ class FileListBase(MenuList):
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
 					selected = path in self.selectedItems if self.multiSelect else None
 					if isinstance(name, eServiceReference):
-						self.fileList.append(self.fileListComponent(name=basename(path), path=name, isDir=isDir, isLink=isLink, selected=selected))
+						self.fileList.append(self.fileListComponent(name=basename(path), path=name, isDir=isDir, isLink=isLink, selected=selected, type=None))
 					else:
-						self.fileList.append(self.fileListComponent(name=name, path=path, isDir=isDir, isLink=isLink, selected=selected))
+						self.fileList.append(self.fileListComponent(name=name, path=path, isDir=isDir, isLink=isLink, selected=selected, type=None))
 		if self.showDirectories and not self.directoriesFirst:
 			buildDirectoryList()
 		if self.showMountPoints and len(self.fileList) == 0:
-			self.fileList.append(self.fileListComponent(name=_("Nothing connected and/or no files available!"), path=None, isDir=False, isLink=False, selected=None))
+			self.fileList.append(self.fileListComponent(name=_("Nothing connected and/or no files available!"), path=None, isDir=False, isLink=False, selected=None, type=None))
 		self.setList(self.fileList)
 		start = self.getCurrentIndex() if self.previousDirectory == self.currentDirectory else 0
 		self.previousDirectory = self.currentDirectory
@@ -304,7 +316,7 @@ class FileListBase(MenuList):
 			path = self.getPath()
 		self.changeDir(self.currentDirectory, path)
 
-	def fileListComponent(self, name, path, isDir, isLink, selected):
+	def fileListComponent(self, name, path, isDir, isLink, selected, type):
 		# print("[FileList] fileListComponent DEBUG: Name='%s', Path='%s', isDir=%s, isLink=%s, selected=%s." % (name, path, isDir, isLink, selected))
 		res = [(path, isDir, isLink, selected, name)]
 		if selected is not None and not name.startswith("<"):
@@ -316,7 +328,11 @@ class FileListBase(MenuList):
 			if isLink and linkIcon is None:
 				icon = EXTENSION_ICONS["link"]
 			else:
-				icon = EXTENSION_ICONS["back" if name == ".." else "directory"]
+				icon = EXTENSION_ICONS[{
+					TYPE_STORAGE: "storage",
+					TYPE_PARENT: "parent",
+					TYPE_CURRENT: "current"
+				}.get(type, "directory")]
 		else:
 			if path is None:
 				path = ""
