@@ -83,48 +83,10 @@ eDBoxLCD::eDBoxLCD()
 	dump = false;
 	inverted = 0;
 	lcd_type = 0;
-	FILE *boxtype_file;
 	FILE *fp_file;
 	char fp_version[20];
 #ifndef NO_LCD
-	snprintf(boxtype_name, sizeof(boxtype_name), "unknown");
-	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
-	{
-		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
-		fclose(boxtype_file);
-	}
-	else if((boxtype_file = fopen("/proc/stb/info/model", "r")) != NULL)
-	{
-		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
-		fclose(boxtype_file);
-	}
-	if((strcmp(boxtype_name, "unknown") != 0))
-	{
-		if((strcmp(boxtype_name, "spark\n") == 0))
-		{
-				if((fp_file = fopen("/proc/stb/fp/version", "r")) != NULL)
-				{
-					fgets(fp_version, sizeof(fp_version), fp_file);
-					fclose(fp_file);
-				}
-				if(strcmp(fp_version, "4\n") == 0)
-				{
-					lcdfd = open("/dev/null", O_RDWR);
-				}
-				else
-				{
-					lcdfd = open("/dev/dbox/oled0", O_RDWR);
-				}
-		}		
-		else
-		{
-			lcdfd = open("/dev/dbox/oled0", O_RDWR);
-		}		
-	}	
-	else
-	{
-		lcdfd = open("/dev/dbox/oled0", O_RDWR);
-	}
+	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	
 	if (lcdfd < 0)
 	{
