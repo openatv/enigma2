@@ -13,8 +13,6 @@
 #endif
 #include <lib/gdi/glcddc.h>
 
-#define DM900_LCD_Y_OFFSET 4
-
 eLCD *eLCD::instance;
 
 eLCD::eLCD()
@@ -34,11 +32,12 @@ void eLCD::setSize(int xres, int yres, int bpp)
 {
 	_stride = xres * bpp / 8;
 	_buffer = new unsigned char[xres * yres * bpp/8];
-	if ((strcmp(boxtype_name, "dm900\n") == 0) || (strcmp(boxtype_name, "dm920\n") == 0))
-		xres -= DM900_LCD_Y_OFFSET;
+#ifdef LCD_DM900_Y_OFFSET
+	xres -= LCD_DM900_Y_OFFSET;
+#endif
 	res = eSize(xres, yres);
 	memset(_buffer, 0, xres * yres * bpp / 8);
-	eDebug("[eLCD] (%dx%dx%d) buffer %p %d bytes, stride %d, boxtype: %s", xres, yres, bpp, _buffer, xres * yres * bpp / 8, _stride, boxtype_name);
+	eDebug("[eLCD] (%dx%dx%d) buffer %p %d bytes, stride %d", xres, yres, bpp, _buffer, xres * yres * bpp / 8, _stride);
 }
 
 eLCD::~eLCD()
@@ -446,71 +445,41 @@ void eDBoxLCD::update()
 			}
 			else
 			{
-				FILE *file;
-/*
-				FILE *boxtype_file;
-				char boxtype_name[20];
-				if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
+#if defined(LCD_DM900_Y_OFFSET)
+				unsigned char gb_buffer[_stride * res.height()];
+				for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
 				{
-					fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
-					fclose(boxtype_file);
+					unsigned int src = 0;
+					if (offset%(_stride>>2) >= LCD_DM900_Y_OFFSET)
+						src = ((unsigned int*)_buffer)[offset - LCD_DM900_Y_OFFSET];
+					//                                             blue                         red                  green low                     green high
+					((unsigned int*)gb_buffer)[offset] = ((src >> 3) & 0x001F001F) | ((src << 3) & 0xF800F800) | ((src >> 8) & 0x00E000E0) | ((src << 8) & 0x07000700);
 				}
-				else if((boxtype_file = fopen("/proc/stb/info/model", "r")) != NULL)
-				{
-					fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
-					fclose(boxtype_file);
-				}
-*/
-				if ((strcmp(boxtype_name, "dm900\n") == 0) || (strcmp(boxtype_name, "dm920\n") == 0))
-				{
-					unsigned char gb_buffer[_stride * res.height()];
+				write(lcdfd, gb_buffer, _stride * res.height());
+#elif defined(LCD_COLOR_BITORDER_RGB565)
+				//gggrrrrrbbbbbggg bit order from memory
+				//gggbbbbbrrrrrggg bit order to LCD
+				unsigned char gb_buffer[_stride * res.height()];
+				if(! (0x03 & (_stride * res.height())))
+				{//fast
 					for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
 					{
-						unsigned int src = 0;
-						if (offset%(_stride>>2) >= DM900_LCD_Y_OFFSET)
-							src = ((unsigned int*)_buffer)[offset - DM900_LCD_Y_OFFSET];
-						//                                             blue                         red                  green low                     green high
-						((unsigned int*)gb_buffer)[offset] = ((src >> 3) & 0x001F001F) | ((src << 3) & 0xF800F800) | ((src >> 8) & 0x00E000E0) | ((src << 8) & 0x07000700);
-					}
-					write(lcdfd, gb_buffer, _stride * res.height());
-					if (file != NULL)
-					{
-						fclose(file);
+						unsigned int src = ((unsigned int*)_buffer)[offset];
+						((unsigned int*)gb_buffer)[offset] = src & 0xE007E007 | (src & 0x1F001F00) >>5 | (src & 0x00F800F8) << 5;
 					}
 				}
-#ifdef LCD_COLOR_BITORDER_RGB565
-				else if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0) || (strcmp(boxtype_name, "7215S\n") == 0) || (strcmp(boxtype_name, "7205S\n") == 0) || (strcmp(boxtype_name, "8100S\n") == 0))
-				{
-					//gggrrrrrbbbbbggg bit order from memory
-					//gggbbbbbrrrrrggg bit order to LCD
-					unsigned char gb_buffer[_stride * res.height()];
-					if(! (0x03 & (_stride * res.height())))
-					{//fast
-						for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
-						{
-							unsigned int src = ((unsigned int*)_buffer)[offset];
-							((unsigned int*)gb_buffer)[offset] = src & 0xE007E007 | (src & 0x1F001F00) >>5 | (src & 0x00F800F8) << 5;
-						}
-					}
-					else
-					{//slow
-						for (int offset = 0; offset < _stride * res.height(); offset += 2)
-						{
-							gb_buffer[offset] = (_buffer[offset] & 0x07) | ((_buffer[offset + 1] << 3) & 0xE8);
-							gb_buffer[offset + 1] = (_buffer[offset + 1] & 0xE0)| ((_buffer[offset] >> 3) & 0x1F);
-						}
-					}
-					write(lcdfd, gb_buffer, _stride * res.height());
-					if (file != NULL)
-					{
-						fclose(file);
-					}
-				}
-#endif
 				else
-				{
-					write(lcdfd, _buffer, _stride * res.height());
+				{//slow
+					for (int offset = 0; offset < _stride * res.height(); offset += 2)
+					{
+						gb_buffer[offset] = (_buffer[offset] & 0x07) | ((_buffer[offset + 1] << 3) & 0xE8);
+						gb_buffer[offset + 1] = (_buffer[offset + 1] & 0xE0)| ((_buffer[offset] >> 3) & 0x1F);
+					}
 				}
+				write(lcdfd, gb_buffer, _stride * res.height());
+#else
+				write(lcdfd, _buffer, _stride * res.height());
+#endif
 			}
 		}
 		else /* lcd_type == 1 */
