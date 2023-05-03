@@ -83,8 +83,6 @@ eDBoxLCD::eDBoxLCD()
 	dump = false;
 	inverted = 0;
 	lcd_type = 0;
-	FILE *fp_file;
-	char fp_version[20];
 #ifndef NO_LCD
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	
