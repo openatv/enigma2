@@ -11,7 +11,12 @@
 #define LCD_BRIGHTNESS_MIN 0
 #define LCD_BRIGHTNESS_MAX 255
 
-enum op { LED_BRIGHTNESS = 0, LED_DEEPSTANDBY, LED_BLINKINGTIME };
+enum op
+{
+	LED_BRIGHTNESS = 0,
+	LED_DEEPSTANDBY,
+	LED_BLINKINGTIME
+};
 
 #define LED_IOCTL_BRIGHTNESS_NORMAL 0X10
 #define LED_IOCTL_BRIGHTNESS_DEEPSTANDBY 0X11
@@ -33,7 +38,6 @@ protected:
 	int locked;
 	static eLCD *instance;
 	void setSize(int xres, int yres, int bpp);
-	char boxtype_name[20];
 #endif
 public:
 	static eLCD *getInstance();
@@ -41,34 +45,35 @@ public:
 	virtual void unlock();
 	virtual int islocked() { return locked; };
 	virtual bool detected() { return lcdfd >= 0; };
-	virtual int setLCDContrast(int contrast)=0;
-	virtual int setLCDBrightness(int brightness)=0;
-	virtual int setLED(int value, int option)=0;
-	virtual void setInverted( unsigned char )=0;
-	virtual void setFlipped(bool)=0;
-	virtual void setDump(bool)=0;
-	virtual int waitVSync()=0;
-	virtual bool isOled() const=0;
+	virtual int setLCDContrast(int contrast) = 0;
+	virtual int setLCDBrightness(int brightness) = 0;
+	virtual int setLED(int value, int option) = 0;
+	virtual void setInverted(unsigned char) = 0;
+	virtual void setFlipped(bool) = 0;
+	virtual void setDump(bool) = 0;
+	virtual int waitVSync() = 0;
+	virtual bool isOled() const = 0;
 	int getLcdType() { return lcd_type; };
-	virtual void setPalette(gUnmanagedSurface)=0;
+	virtual void setPalette(gUnmanagedSurface) = 0;
 #ifndef SWIG
 	eLCD();
 	virtual ~eLCD();
-	uint8_t *buffer() { return (uint8_t*)_buffer; };
+	uint8_t *buffer() { return (uint8_t *)_buffer; };
 	int stride() { return _stride; };
 	virtual eSize size() { return res; };
-	virtual void update()=0;
+	virtual void update() = 0;
 #if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
 	virtual void renderText(ePoint start, const char *text);
 #endif
 #endif
 };
 
-class eDBoxLCD: public eLCD
+class eDBoxLCD : public eLCD
 {
 	unsigned char inverted;
 	bool flipped;
 	bool dump;
+	int m_oled_brightness_proc;
 #ifdef SWIG
 	eDBoxLCD();
 	~eDBoxLCD();
@@ -81,11 +86,11 @@ public:
 	int setLCDContrast(int contrast);
 	int setLCDBrightness(int brightness);
 	int setLED(int value, int option);
-	void setInverted( unsigned char );
+	void setInverted(unsigned char);
 	void setFlipped(bool);
 	void setDump(bool);
 	bool isOled() const { return !!lcd_type; };
-	void setPalette(gUnmanagedSurface) {};
+	void setPalette(gUnmanagedSurface){};
 	void update();
 	int waitVSync() { return 0; };
 	void dumpLCD2PNG(void);
