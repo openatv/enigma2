@@ -86,17 +86,14 @@ eDBoxLCD::eDBoxLCD()
 	dump = false;
 	inverted = 0;
 	lcd_type = 0;
-	m_oled_brightness_proc = 0;
 #ifndef NO_LCD
 
 	if (access(OLED_PROC_1, W_OK))
-	{
 		m_oled_brightness_proc = 1;
-	}
 	else if (access(OLED_PROC_2, W_OK))
-	{
 		m_oled_brightness_proc = 2;
-	}
+	else
+		m_oled_brightness_proc = 0;
 
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 
@@ -214,7 +211,7 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 		return (0);
 
 	// eDebug("[eDboxLCD] setLCDBrightness %d", brightness);
-	FILE *f;
+	FILE *f = NULL;
 	if (m_oled_brightness_proc == 1)
 		f = fopen(OLED_PROC_1, "w");
 	else if (m_oled_brightness_proc == 2)

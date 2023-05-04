@@ -8,7 +8,7 @@
 
 gLCDDC *gLCDDC::instance;
 
-gLCDDC::gLCDDC() : update(1)
+gLCDDC::gLCDDC()
 {
 #ifdef LCD_FRAMEBUFFER_MODE
 	lcd = new eFbLCD();
