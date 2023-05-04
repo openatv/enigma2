@@ -1,6 +1,8 @@
 #include <lib/gdi/glcddc.h>
 #include <lib/gdi/lcd.h>
+#ifdef LCD_FRAMEBUFFER_MODE
 #include <lib/gdi/fblcd.h>
+#endif
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
@@ -8,15 +10,10 @@ gLCDDC *gLCDDC::instance;
 
 gLCDDC::gLCDDC()
 {
-#ifndef NO_LCD
+#ifdef LCD_FRAMEBUFFER_MODE
 	lcd = new eFbLCD();
-	if (!lcd->detected())
-	{
-		delete lcd;
-		lcd = new eDBoxLCD();
-	}
 #else
-		lcd = new eDBoxLCD();
+	lcd = new eDBoxLCD();
 #endif
 	instance = this;
 
