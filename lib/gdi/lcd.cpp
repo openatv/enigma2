@@ -181,7 +181,7 @@ int eDBoxLCD::setLCDContrast(int contrast)
 {
 #ifndef NO_LCD
 	if (lcdfd < 0)
-		return (0);
+		return 0;
 #ifndef LCD_IOCTL_SRV
 #define LCDSET 0x1000
 #define LCD_IOCTL_SRV (10 | LCDSET)
@@ -192,7 +192,7 @@ int eDBoxLCD::setLCDContrast(int contrast)
 	if ((fp = open("/dev/dbox/fp0", O_RDWR)) < 0)
 	{
 		eDebug("[DboxLCD] can't open /dev/dbox/fp0");
-		return (-1);
+		return -1;
 	}
 
 	if (ioctl(lcdfd, LCD_IOCTL_SRV, &contrast) < 0)
@@ -201,14 +201,14 @@ int eDBoxLCD::setLCDContrast(int contrast)
 	}
 	close(fp);
 #endif
-	return (0);
+	return 0;
 }
 
 int eDBoxLCD::setLCDBrightness(int brightness)
 {
 #ifndef NO_LCD
 	if (lcdfd < 0)
-		return (0);
+		return 0;
 
 	// eDebug("[eDboxLCD] setLCDBrightness %d", brightness);
 	FILE *f = NULL;
@@ -229,7 +229,7 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 		if ((fp = open("/dev/dbox/fp0", O_RDWR)) < 0)
 		{
 			eDebug("[eDboxLCD] can't open /dev/dbox/fp0");
-			return (-1);
+			return -1;
 		}
 #ifndef FP_IOCTL_LCD_DIMM
 #define FP_IOCTL_LCD_DIMM 3
@@ -239,7 +239,7 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 		close(fp);
 	}
 #endif
-	return (0);
+	return 0;
 }
 
 int eDBoxLCD::setLED(int value, int option)
@@ -262,7 +262,7 @@ int eDBoxLCD::setLED(int value, int option)
 			eDebug("[eDboxLCD] can't set led blinking time");
 		break;
 	}
-	return (0);
+	return 0;
 }
 
 eDBoxLCD::~eDBoxLCD()
@@ -327,7 +327,6 @@ void eDBoxLCD::dumpLCD2PNG(void)
 					pixel16 = bswap_16(*src++);
 #else
 					pixel16 = *src++;
-					;
 #endif
 					pixel32.a = 0xFF;
 					pixel32.r = (pixel16 << 3) & 0xF8;
