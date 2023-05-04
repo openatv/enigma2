@@ -91,11 +91,11 @@ eDBoxLCD::eDBoxLCD()
 
 	if (access(OLED_PROC_1, W_OK))
 	{
-		m_oled_brightness_proc = 1
+		m_oled_brightness_proc = 1;
 	}
 	else if (access(OLED_PROC_2, W_OK))
 	{
-		m_oled_brightness_proc = 2
+		m_oled_brightness_proc = 2;
 	}
 
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
