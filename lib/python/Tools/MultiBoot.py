@@ -3,10 +3,9 @@ from glob import glob
 from hashlib import md5
 from os import mkdir, rename, rmdir, stat
 from os.path import basename, exists, isdir, isfile, ismount, join as pathjoin
-from struct import pack
+from struct import calcsize, pack, unpack
 import subprocess
 from tempfile import mkdtemp
-import struct
 
 # NOTE: This module must not import from SystemInfo.py as this module is
 # used to populate BoxInfo / SystemInfo and will create a boot loop!
@@ -30,7 +29,7 @@ STARTUP_ANDROID_LINUXSE = "STARTUP_ANDROID_LINUXSE"
 STARTUP_RECOVERY = "STARTUP_RECOVERY"
 STARTUP_BOXMODE = "BOXMODE"  # This is known as bootCode in this code.
 MbootList1 = ("/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2", "/dev/block/by-name/bootoptions")
-MbootList2 = ("/dev/mmcblk0p4", "/dev/mmcblk0p7", "/dev/mmcblk0p9")	# kexec kernel Vu+ multiboot
+MbootList2 = ("/dev/mmcblk0p4", "/dev/mmcblk0p7", "/dev/mmcblk0p9")  # kexec kernel Vu+ multiboot
 
 # STARTUP
 # STARTUP_LINUX_1_BOXMODE_1
@@ -66,6 +65,8 @@ MbootList2 = ("/dev/mmcblk0p4", "/dev/mmcblk0p7", "/dev/mmcblk0p9")	# kexec kern
 #
 # root=/dev/mmcblk0p3 rootsubdir=linuxrootfs1 kernel=/dev/mmcblk0p2 rw rootwait h7_4.boxmode=1
 #
+
+
 class MultiBootClass():
 	def __init__(self):
 		print("[MultiBoot] MultiBoot is initializing.")
@@ -80,9 +81,9 @@ class MultiBootClass():
 		self.bootSlots, self.bootSlotsKeys = self.loadBootSlots()
 		if exists(DUAL_BOOT_FILE):
 			with open(DUAL_BOOT_FILE, 'rb') as f:
-				struct_fmt = "B"
-				flag = f.read(struct.calcsize(struct_fmt))
-				slot = struct.unpack(struct_fmt, flag)
+				structFormat = "B"
+				flag = f.read(calcsize(structFormat))
+				slot = unpack(structFormat, flag)
 				self.bootSlot = str(slot[0])
 				self.bootCode = ""
 		else:
@@ -113,8 +114,8 @@ class MultiBootClass():
 
 	def getParam(self, line, param):
 		return line.replace("userdataroot", "rootuserdata").rsplit("%s=" % param, 1)[1].split(" ", 1)[0]
-		
-	def getUUIDtoSD(self, UUID): # returns None on failure
+
+	def getUUIDtoSD(self, UUID):  # returns None on failure
 		check = "/sbin/blkid"
 		if fileExists(check):
 			lines = subprocess.check_output([check]).decode(encoding="utf8", errors="ignore").split("\n")
@@ -122,7 +123,7 @@ class MultiBootClass():
 				if UUID in line.replace('"', ''):
 					return line.split(":")[0].strip()
 		else:
-			return None			
+			return None
 
 	def loadBootSlots(self):
 		def saveKernel(bootSlots, slotCode, kernel):
@@ -166,11 +167,11 @@ class MultiBootClass():
 					if "root=" in line:
 						# print("[MultiBoot] getBootSlots DEBUG: 'root=' found.")
 						device = self.getParam(line, "root")
-						if 	"UUID=" in device:
+						if "UUID=" in device:
 							slotx = self.getUUIDtoSD(device)
 							# print("[MultiBoot] getBootSlots DEBUG: 'slotx' found.", slotx)
 							if slotx is not None:
-								device = slotx						
+								device = slotx
 						if exists(device) or device == "ubi0:ubifs":
 							if slotCode not in bootSlots:
 								bootSlots[slotCode] = {}
