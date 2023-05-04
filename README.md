@@ -1,10 +1,10 @@
-# openATV 7.2
+# openATV 7.3
 
 ## Build status
 
 [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
 
-[Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_72.html "Active Build Status") - shows which box is currently being built 
+[Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_73.html "Active Build Status") - shows which box is currently being built 
 
 ## SonarCloud status
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
@@ -36,9 +36,9 @@
 
 ## Git repositories involved
 
-* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.2 "OE Alliance Core") - Core framework
-* [openATV 7.2](https://github.com/openatv/enigma2/tree/7.2 "openATV 7.2") - openATV core
-* [MetrixHD](https://github.com/openatv/MetrixHD/tree/7.1 "openATV Skin") - Default openATV skin
+* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.3 "OE Alliance Core") - Core framework
+* [openATV 7.3](https://github.com/openatv/enigma2/tree/7.2 "openATV 7.3") - openATV core
+* [MetrixHD](https://github.com/openatv/MetrixHD/tree/master "openATV Skin") - Default openATV skin
 * ...
 
 ## DOXYGEN Documentation
@@ -91,22 +91,22 @@
     su - openatvbuilder
     ```
 
-1. Create folder openatv7.2
+1. Create folder openatv7.3
 
     ```sh
-    mkdir -p openatv7.2
+    mkdir -p openatv7.3
     ```
 
-1. Switch to folder openatv7.2
+1. Switch to folder openatv7.3
 
     ```sh
-    cd openatv7.2
+    cd openatv7.3
     ```
 
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.2
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.3
     ```
 
 1. Switch to folder build-enviroment
