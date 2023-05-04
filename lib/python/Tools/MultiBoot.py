@@ -6,6 +6,7 @@ from os.path import basename, exists, isdir, isfile, ismount, join as pathjoin
 from struct import pack
 import subprocess
 from tempfile import mkdtemp
+import struct
 
 # NOTE: This module must not import from SystemInfo.py as this module is
 # used to populate BoxInfo / SystemInfo and will create a boot loop!
@@ -77,7 +78,15 @@ class MultiBootClass():
 	def loadMultiBoot(self):
 		self.bootDevice, self.startupCmdLine = self.loadBootDevice()
 		self.bootSlots, self.bootSlotsKeys = self.loadBootSlots()
-		self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
+		if exists(DUAL_BOOT_FILE):
+			with open(DUAL_BOOT_FILE, 'rb') as f:
+				struct_fmt = "B"
+				flag = f.read(struct.calcsize(struct_fmt))
+				slot = struct.unpack(struct_fmt, flag)
+				self.bootSlot = str(slot[0])
+				self.bootCode = ""
+		else:
+			self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
 
 	def loadBootDevice(self):
 		MbootList = MbootList2 if fileHas("/proc/cmdline", "kexec=1") else MbootList1
