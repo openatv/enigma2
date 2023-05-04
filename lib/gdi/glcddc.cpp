@@ -8,7 +8,7 @@
 
 gLCDDC *gLCDDC::instance;
 
-gLCDDC::gLCDDC()
+gLCDDC::gLCDDC() : update(1)
 {
 #ifdef LCD_FRAMEBUFFER_MODE
 	lcd = new eFbLCD();
@@ -16,8 +16,6 @@ gLCDDC::gLCDDC()
 	lcd = new eDBoxLCD();
 #endif
 	instance = this;
-
-	update = 1;
 
 	surface.x = lcd->size().width();
 	surface.y = lcd->size().height();

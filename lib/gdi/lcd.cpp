@@ -13,8 +13,8 @@
 #endif
 #include <lib/gdi/glcddc.h>
 
-const char *OLED_PROC_1 = "/proc/stb/lcd/oled_brightness";
-const char *OLED_PROC_2 = "/proc/stb/fp/oled_brightness";
+const char *OLED_PROC_1 = "/proc/stb/lcd/oled_brightness"; //  NOSONAR
+const char *OLED_PROC_2 = "/proc/stb/fp/oled_brightness";  //  NOSONAR
 
 eLCD *eLCD::instance;
 
@@ -217,7 +217,7 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 	FILE *f;
 	if (m_oled_brightness_proc == 1)
 		f = fopen(OLED_PROC_1, "w");
-	if (m_oled_brightness_proc == 2)
+	else if (m_oled_brightness_proc == 2)
 		f = fopen(OLED_PROC_2, "w");
 
 	if (f)
@@ -303,7 +303,6 @@ void eDBoxLCD::dumpLCD2PNG(void)
 				while (x--)
 				{
 					pixval = *src++;
-					;
 					pixel32.a = 0xFF;
 					pixel32.r = pixval;
 					pixel32.g = pixval;
