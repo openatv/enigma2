@@ -310,7 +310,7 @@
 		<if conditional="not config.factory.resetFull.value">
 			<item level="0" text="Reset network configuration" description="Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted.">config.factory.resetNetwork</item>
 			<item level="0" text="Remove all bouquet/tuning data" description="Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned." conditional="self.bouquets">config.factory.resetBouquets</item>
-			<item level="0" text="Remove all user interface data" description="Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions." conditional="self.userInterfaces">config.factory.resetUserInterfaces</item>
+			<item level="0" text="Remove all user interface data" description="Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions." conditional="self.userInterfaces">config.factory.resetUserInterfaces</item>
 			<item level="0" text="Remove all network mount data" description="Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources." conditional="self.mounts">config.factory.resetMounts</item>
 			<item level="0" text="Remove all plugin setting data" description="Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured." conditional="self.plugins">config.factory.resetPlugins</item>
 			<item level="0" text="Remove all resume point data" description="Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected." conditional="self.resumePoints">config.factory.resetResumePoints</item>
@@ -392,7 +392,7 @@
 		<item level="2" text="Enable debug log *" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
 		<item level="2" text="Include international data *" description="Enable this option to add international language and country load information detected during system boot to the debug log file.">config.crash.debugInternational</item>
 		<item level="2" text="Include MultiBoot data *" description="Enable this option to add MultiBoot information detected during system boot to the debug log file.">config.crash.debugMultiBoot</item>
-		<item level="2" text="Include keyboard data" description="Enable this option to add keyboard keymap data to the debug log file.">config.crash.debugKeyboards</item>
+		<item level="2" text="Include keyboard data" description="Enable this option to add keyboard key map data to the debug log file.">config.crash.debugKeyboards</item>
 		<item level="2" text="Include remote control data" description="Enable this option to add remote control data to the debug log file.">config.crash.debugRemoteControls</item>
 		<item level="2" text="Include action map data" description="Enable this option to add action map / remote control mapping data to the debug log file.">config.crash.debugActionMaps</item>
 		<item level="2" text="Include screen load data" description="Enable this option to add screen names and resolution data to the debug log file.">config.crash.debugScreens</item>
@@ -670,7 +670,7 @@
 		</if>
 	</setup>
 	<setup key="RemoteButton" title="Remote Control Button Settings" showOpenWebif="1">
-		<item level="2" text="Use Keymap *" description="Configure the current keymap file.">config.usage.keymap</item>
+		<item level="2" text="Use key map *" description="Configure the current key map file.">config.usage.keymap</item>
 		<item level="1" text="Action on short POWER button press" description="Configure the function of a short press on the power button.">config.usage.on_short_powerpress</item>
 		<item level="1" text="Action on long POWER button press" description="Configure the function of a long press on the power button.">config.usage.on_long_powerpress</item>
 		<item level="0" text="EPG button mode" description="Select what you want the EPG button to activate.">config.plisettings.PLIEPG_mode</item>
