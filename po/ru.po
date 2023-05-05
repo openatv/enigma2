@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-13 15:51+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-04-30 11:49+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -6861,6 +6861,9 @@ msgstr "Включить IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Включить затухание инфобара"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Включить MultiBoot Kexec"
+
 msgid "Enable MHW EPG"
 msgstr "Включить ТВ-гид MHW"
 
@@ -6999,6 +7002,9 @@ msgstr "Включите этот параметр, чтобы добавить 
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить дополнительные данные EPG в файл лога отладки."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Включите этот параметр, чтобы добавить в файл журнала отладки информацию о загрузке на международном языке и стране, обнаруженную во время загрузки системы."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные раскладки клавиатуры в файл лога отладки."
@@ -9334,6 +9340,9 @@ msgstr "Включить SDT, BAT в потоки http"
 msgid "Include action map data"
 msgstr "Включить данные карты действий"
 
+msgid "Include international data *"
+msgstr "Включить международные данные *"
+
 msgid "Include keyboard data"
 msgstr "Настройки клавиатуры"
 
@@ -9815,6 +9824,26 @@ msgstr "Файл ядра"
 
 msgid "Kernel version"
 msgstr "Версия ядра"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Действия MultiBoot Kexec"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Инициализация Kexec MultiBoot — перезагрузится через 10 секунд."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Выполняется инициализация Kexec MultiBoot!\n"
+"\n"
+"Будет перезагружен после восстановления всех слотов eMMC.\n"
+"Это может занять от 1 до 5 минут на слот."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Kexec MultiBoot менеджер"
 
 msgid "Key"
 msgstr "Ключ"
@@ -13210,6 +13239,19 @@ msgstr "Нажмите EXIT для закрытия."
 msgid "Press EXIT to return to the help screen."
 msgstr "Нажмите EXIT, чтобы вернуться к экрану справки."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Нажмите зелёную кнопку, чтобы включить MultiBoot!\n"
+"\n"
+"Перезагрузится в течение 10 секунд,\n"
+"если у Вас нет слотов eMMC для восстановления.\n"
+"Восстановление слотов eMMC может занять от 1 до 5 минут на каждый слот."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Нажмите OK для выбора MultiBoot."
 
@@ -13525,6 +13567,9 @@ msgstr "Четырехканальный PiP-канал "
 msgid "Quad PiP is not available."
 msgstr "4X PiP не доступно."
 
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
+
 msgid "Quechua"
 msgstr "Кечуа"
 
@@ -13691,6 +13736,14 @@ msgstr "Действительно удалить эту запись?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Действительно выйти из быстрого перехода?"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Вы хотите безвозвратно удалить файлы MultiBoot?\n"
+"%s"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Действительно перезагрузиться в режим восстановления?"
@@ -14081,6 +14134,9 @@ msgstr "Удалить текущую папку из закладок"
 
 msgid "Remove currently selected title"
 msgstr "Удалить выбранный заголовок"
+
+msgid "Remove forever"
+msgstr "Удалить навсегда"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Удалить линию VBI на этом канале"
@@ -18214,7 +18270,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 12.04.2023"
+msgstr "Коррекция перевода Monja 29.04.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19830,6 +19886,9 @@ msgstr "Украина"
 
 msgid "Ukrainian"
 msgstr "Украинский"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Unable to complete - Kexec Multiboot files missing!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Обновление в фоновом режиме"

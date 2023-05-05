@@ -1,6 +1,6 @@
 # German translations for Enigma2.
 #
-# jbleyel <jbleyel@gmx.net>, 2021, 2022.
+# jbleyel <jbleyel@gmx.net>, 2021, 2022, 2023.
 # hd75hd <hd75hd.hd75hd@gmail.com>, 2021, 2022.
 # openATV <openatv@gmail.com>, 2021.
 # Holger <mrservo@gmx.de>, 2021.
@@ -15,16 +15,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-10 14:44+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-04-28 20:15+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3211,7 +3211,7 @@ msgid "Backup Location"
 msgstr "Speicherort für die Sicherung"
 
 msgid "Backup Log"
-msgstr "Sicherungs-Log"
+msgstr "Sicherungslog"
 
 msgid "Backup Mode"
 msgstr "Sicherungsmodus"
@@ -3694,7 +3694,7 @@ msgid "CCcam Line Editor"
 msgstr "CCcam Line Editor"
 
 msgid "CCcam Profile Settings"
-msgstr "CCcam Profileinstellungen"
+msgstr "CCcam-Profileinstellungen"
 
 msgid "CCcam Provider Info"
 msgstr "CCcam-Betreiberinformation"
@@ -4398,7 +4398,7 @@ msgid "Choose a country scheme for decoding genre information in EPG events."
 msgstr "Wählen Sie ein Länderschema zum Dekodieren von Genre-Informationen in EPG-Ereignissen."
 
 msgid "Choose a country scheme for decoding rating information in EPG events."
-msgstr "Wählen Sie ein Länderschema zum Dekodieren von Bewertungs-Informationen in EPG-Ereignissen."
+msgstr "Wählen Sie ein Länderschema zum Dekodieren von Bewertungsinformationen in EPG-Ereignissen."
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Wählen Sie eine Beschriftung, damit IceTV-Dienste das Gerät zuordnen können."
@@ -5209,7 +5209,7 @@ msgid "Connected: "
 msgstr "Verbunden: "
 
 msgid "Connection information"
-msgstr "Verbindungs-Informationen"
+msgstr "Verbindungsinformationen"
 
 msgid "Console"
 msgstr "Konsole"
@@ -5351,30 +5351,30 @@ msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Côte d'Ivoire / Elfenbeinküste"
 
 msgid "Could not connect to server"
-msgstr "Konnte nicht mit dem Server verbinden"
+msgstr "Keine Verbindung zum Server möglich!"
 
 msgid "Could not load Medium! No disc inserted?"
-msgstr "Konnte das Medium nicht laden! Keine Disc eingelegt?"
+msgstr "Das Medium konnte nicht geladen werden! Disc eingelegt?"
 
 #
 msgid "Could not open Picture in Picture"
-msgstr "Bild im Bild konnte nicht gestartet werden"
+msgstr "Bild im Bild konnte nicht gestartet werden!"
 
 #, python-format
 msgid "Could not open the file %s!"
-msgstr "Konnte Datei nicht öffnen %s!"
+msgstr "Die Datei '%s' konnte nicht geöffnet werden!"
 
 #, python-format
 msgid "Could not record due to conflicting timer %s"
-msgstr "Keine Aufnahme wegen Timerkonflikt mit Timer '%s'"
+msgstr "Aufnahme wegen Timerkonflikt mit Timer '%s' nicht möglich!"
 
 #, python-format
 msgid "Could not record due to invalid service %s"
-msgstr "Ungültiger Dienst %s konnte nicht aufgezeichnet werden"
+msgstr "Ungültiger Dienst '%s' konnte nicht aufgezeichnet werden!"
 
 #, python-format
 msgid "Could not save configuration file %s!"
-msgstr "Konnte Konfigurationsdatei '%s' nicht speichern!"
+msgstr "Konfigurationsdatei '%s' konnte nicht gespeichert werden!"
 
 msgid "Country"
 msgstr "Land"
@@ -6254,7 +6254,7 @@ msgid "Democratic Republic of the Congo"
 msgstr "Demokratische Republik Kongo"
 
 msgid "Demod firmware version"
-msgstr "Demod Firmware-Version"
+msgstr "Demod-Firmware-Version"
 
 msgid "Denmark"
 msgstr "Dänemark"
@@ -7242,6 +7242,9 @@ msgstr "IceTV aktivieren"
 msgid "Enable InfoBar fade-out"
 msgstr "Infoleiste langsam ausblenden"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Kexec MultiBoot einschalten"
+
 msgid "Enable MHW EPG"
 msgstr "MHW-EPG aktivieren"
 
@@ -7384,6 +7387,9 @@ msgstr "Aktivieren, um dem Debug-Log DVB-Scan-Daten hinzuzufügen."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log extra EPG-Daten hinzuzufügen."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Aktivieren, um dem Debug-Log internationale Sprach- und Länderinformationen hinzuzufügen, die während des Systemstarts erkannt wurden."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Tastaturdaten hinzuzufügen."
@@ -8123,7 +8129,7 @@ msgid "Exposure bias"
 msgstr "Belichtungskorrektur"
 
 msgid "Exposure program"
-msgstr "Belichtungs-Programm"
+msgstr "Belichtungsprogramm"
 
 msgid "Exposure time"
 msgstr "Belichtungszeit"
@@ -9840,6 +9846,9 @@ msgstr "SDT und BAT in HTTP-Stream integrieren"
 msgid "Include action map data"
 msgstr "Inklusive Action-Map-Daten"
 
+msgid "Include international data *"
+msgstr "Inklusive internationaler Daten *"
+
 msgid "Include keyboard data"
 msgstr "Inklusive Tastaturdaten"
 
@@ -10358,6 +10367,26 @@ msgstr "Kerneldatei"
 msgid "Kernel version"
 msgstr "Kernel-Version"
 
+msgid "Kexec MultiBoot Actions"
+msgstr "Kexec MultiBoot-Aktionen"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Kexec MultiBoot Initialisierung - Neustart nach 10 Sekunden."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Kexec MultiBoot Initialisierung aktiv!\n"
+"\n"
+"Neustart nachdem alle eMMC-Slots wiederhergestellt wurden.\n"
+"Dies kann zwischen 1 und 5 Minuten pro Slot dauern."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Kexec MultiBoot-Manager"
+
 msgid "Key"
 msgstr "Taste"
 
@@ -10694,10 +10723,10 @@ msgstr "Links"
 
 #
 msgid "List EPG functions..."
-msgstr "Liste EPG-Funktionen auf..."
+msgstr "EPG-Funktionen anzeigen..."
 
 msgid "List Navigation Actions"
-msgstr "Listennavigations-Aktionen"
+msgstr "Navigationsaktionen anzeigen"
 
 msgid "List available networks"
 msgstr "Verfügbare Netzwerke anzeigen"
@@ -11264,10 +11293,10 @@ msgid "Menu Actions"
 msgstr "Menüaktionen"
 
 msgid "Menu Common Actions"
-msgstr "Allgemeine Menü Aktionen"
+msgstr "Allgemeine Menüaktionen"
 
 msgid "Menu Edit Actions"
-msgstr "Menü Edit Aktionen"
+msgstr "Menü Bearbeitungsaktionen"
 
 msgid "Menu Navigation Actions"
 msgstr "Menü Navigationsaktionen"
@@ -11405,10 +11434,10 @@ msgid "Mode 1"
 msgstr "Modus 1"
 
 msgid "Mode 12: Supports PiP but Kodi may not work"
-msgstr "Modus 12: Unterstützt Bild im Bild, aber Kodi funktioniert möglicherweise nicht."
+msgstr "Modus 12: Bild im Bild ja, aber Kodi evtl. nicht"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
-msgstr "Modus 1: Unterstützt Kodi, aber Bild im Bild funktioniert möglicherweise nicht."
+msgstr "Modus 1: Kodi ja, aber Bild im Bild evtl. nicht"
 
 msgid "Mode 2"
 msgstr "Modus 2"
@@ -11716,7 +11745,7 @@ msgid "Move up one line"
 msgstr "Eine Zeile nach oben"
 
 msgid "Move up one line.  Move to the bottom of the previous screen if this is the first line of the screen.  Move to the last of the entry / list if this is the first line of the list."
-msgstr "Eine Zeile nach oben gehen. Geht an das Ende des vorherigen Bildschirms, wenn dies die erste Zeile des Bildschirms ist. An das Ende des Eintrags / der Liste gehen, wenn es sich um die erste Zeile der Liste handelt."
+msgstr "Eine Zeile nach oben gehen. Geht an das Ende des vorherigen Bildschirms, wenn dies die erste Zeile des Bildschirms ist. An das Ende des Eintrags oder der Liste gehen, wenn es sich um die erste Zeile der Liste handelt."
 
 #
 msgid "Move up one screen"
@@ -11943,7 +11972,7 @@ msgid "Nameserver setup"
 msgstr "Nameserver-Einstellung"
 
 msgid "Namespace & Orbital pos."
-msgstr "Namensraum & Orbital Position"
+msgstr "Namensraum und Orbitalposition"
 
 msgid "Namibia"
 msgstr "Namibia"
@@ -12865,10 +12894,10 @@ msgid "Open the movie list"
 msgstr "Filmauswahl öffnen"
 
 msgid "Open the multi service EPG view"
-msgstr "Öffnen der Multi-EPG-Ansicht"
+msgstr "Multi-EPG-Ansicht öffnen"
 
 msgid "Open the single service EPG view"
-msgstr "Öffnen Sie die Ereignis-EPG-Ansicht"
+msgstr "Ereignis-EPG-Ansicht öffnen"
 
 msgid "Open with File Commander"
 msgstr "Mit File Commander öffnen"
@@ -12930,7 +12959,7 @@ msgid "Optional parameter"
 msgstr "Optionaler Parameter"
 
 msgid "Orbital position"
-msgstr "Orbitposition"
+msgstr "Orbitalposition"
 
 msgid "Ordinary"
 msgstr "Gewöhnlich"
@@ -13006,7 +13035,7 @@ msgstr "Senderlogos (Picons) überschreiben?"
 
 #
 msgid "Overwrite Setting Files ?"
-msgstr "Settings-Dateien überschreiben?"
+msgstr "Einstellungsdateien überschreiben?"
 
 #
 msgid "Overwrite Spinner Files ?"
@@ -14072,6 +14101,19 @@ msgstr "Drücken Sie EXIT zum Schließen."
 msgid "Press EXIT to return to the help screen."
 msgstr "Drücken Sie EXIT, um zum Hilfebildschirm zurückzukehren."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Taste GRÜN um MultiBoot zu aktivieren!\n"
+"\n"
+"Der Neustart erfolgt innerhalb von 10 Sekunden,\n"
+"es sei denn, Sie haben eMMC-Slots zum Wiederherstellen.\n"
+"Die Wiederherstellung von eMMC-Slots kann zwischen 1 und 5 Minuten pro Slot dauern."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Drücken Sie OK für die Multiboot-Auswahl."
 
@@ -14420,6 +14462,9 @@ msgstr "Quad Bild im Bild Kanal "
 msgid "Quad PiP is not available."
 msgstr "Quad Bild im Bild ist nicht verfügbar."
 
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
+
 msgid "Quechua"
 msgstr "Quechua"
 
@@ -14598,6 +14643,14 @@ msgstr "Sendergruppe wirklich löschen?"
 #
 msgid "Really exit the subservices quickzap?"
 msgstr "Unterkanal-QuickZap wirklich beenden?"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"MultiBoot-Dateien wirklich dauerhaft löschen?\n"
+"%s"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Möchten Sie wirklich einen Neustart in den Wartungsmodus durchführen?"
@@ -15014,6 +15067,9 @@ msgstr "Aktuellen Ordner aus Lesezeichen entfernen"
 #
 msgid "Remove currently selected title"
 msgstr "Entferne aktuell ausgewählten Titel"
+
+msgid "Remove forever"
+msgstr "Für immer entfernen"
 
 msgid "Remove hide VBI line for this service"
 msgstr "VBI-Line für diesen Kanal wieder anzeigen"
@@ -17887,7 +17943,7 @@ msgid "Show next picture"
 msgstr "Nächstes Bild anzeigen"
 
 msgid "Show next system information screen"
-msgstr "Nächsten System-Informations-Bildschirm anzeigen"
+msgstr "Nächsten Systeminformationsbildschirm anzeigen"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Bei 'Ja' wird eine erweiterte Beschreibung angezeigt (abhängig vom Skin)."
@@ -17934,7 +17990,7 @@ msgid "Show previous picture"
 msgstr "Vorheriges Bild anzeigen"
 
 msgid "Show previous system information screen"
-msgstr "Vorherigen System-Informations-Bildschirm anzeigen"
+msgstr "Vorherigen Systeminformationsbildschirm anzeigen"
 
 # HelpMenu
 msgid "Show quickmenu..."
@@ -17964,7 +18020,7 @@ msgid "Show script messages if a background script ends. If the script has addit
 msgstr "Eine Nachricht anzeigen, wenn ein Hintergrundskript erfolgreich beendet wurde. Ist 'stout' vorhanden, wird es als Zusatzinformation angezeigt."
 
 msgid "Show selection for system information screen"
-msgstr "Auswahl für den System-Informations-Bildschirm anzeigen"
+msgstr "Auswahl für den Systeminformationsbildschirm anzeigen"
 
 msgid "Show selection menu for commit logs"
 msgstr "Auswahlmenü für Commit-Logs anzeigen"
@@ -18103,7 +18159,7 @@ msgid "Show time remaining/elapsed"
 msgstr "Verbleibende und verstrichene Zeit als"
 
 msgid "Show translation information"
-msgstr "Übersetzungs-Informationen anzeigen"
+msgstr "Übersetzungsinformationen anzeigen"
 
 msgid "Show translation packages"
 msgstr "Sprachpakete anzeigen"
@@ -19006,17 +19062,17 @@ msgid "Stops time shift being used if a recording is in progress. (Advisable for
 msgstr "Bei 'Ja' wird Timeshift beendet, wenn eine Aufnahme läuft. Ratsam bei Verwendung eines USB-Sticks."
 
 msgid "Storage / Disk Information"
-msgstr "Laufwerks-Informationen"
+msgstr "Laufwerksinformationen"
 
 #, python-format
 msgid "Storage / Disk information for %s %s"
-msgstr "Laufwerks-Informationen für %s %s"
+msgstr "Laufwerksinformationen für %s %s"
 
 msgid "Storage / Disks"
 msgstr "Laufwerke"
 
 msgid "Storage / Drive information"
-msgstr "Laufwerks-Informationen"
+msgstr "Laufwerksinformationen"
 
 #
 msgid "Storage Devices"
@@ -20850,14 +20906,14 @@ msgstr "Übersetzung"
 
 # About.py
 msgid "Translation Information"
-msgstr "Übersetzungs-Informationen"
+msgstr "Übersetzungsinformationen"
 
 msgid "Translation information"
-msgstr "Übersetzungs-Informationen"
+msgstr "Übersetzungsinformationen"
 
 #, python-format
 msgid "Translation information for %s %s"
-msgstr "Übersetzungs-Informationen für %s %s"
+msgstr "Übersetzungsinformationen für %s %s"
 
 #
 msgid "Transmission mode"
@@ -21174,6 +21230,9 @@ msgstr "Ukraine"
 
 msgid "Ukrainian"
 msgstr "Ukrainisch"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Abschließen nicht möglich - Kexec Multiboot-Dateien fehlen!"
 
 #
 msgid "Unattended upgrade without GUI"
@@ -22074,7 +22133,7 @@ msgid "Virtual KeyBoard"
 msgstr "Virtuelle Tastatur"
 
 msgid "Virtual KeyBoard Actions"
-msgstr "Aktionen der virtuellen Tastatur"
+msgstr "Virtuelle Tastatur Aktionen"
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Text der virtuellen Tastatur:"
@@ -23510,7 +23569,7 @@ msgid "black"
 msgstr "Schwarz"
 
 msgid "black & white"
-msgstr "s/w"
+msgstr "schwarz/weiß"
 
 #
 msgid "blacklist"
