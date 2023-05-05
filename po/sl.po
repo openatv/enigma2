@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -7570,6 +7570,9 @@ msgstr "EIT EPG sistem"
 msgid "Enable InfoBar fade-out"
 msgstr ""
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 #
 msgid "Enable MHW EPG"
 msgstr "MHW EPG sistem"
@@ -10817,6 +10820,22 @@ msgid "Kernel file"
 msgstr ""
 
 msgid "Kernel version"
+msgstr ""
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Key"
@@ -14658,6 +14677,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Za začetek iskanja pritisnite OK"
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -15211,6 +15238,12 @@ msgstr "Želite izbrisati končane časovnike?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Res želite zapustiti hitri preklop pod-storitev?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Really reboot into Recovery Mode?"
@@ -15656,6 +15689,9 @@ msgstr ""
 #
 msgid "Remove currently selected title"
 msgstr "Odstrani izbrane naslove"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
@@ -21972,6 +22008,9 @@ msgid "Ukraine"
 msgstr ""
 
 msgid "Ukrainian"
+msgstr ""
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"

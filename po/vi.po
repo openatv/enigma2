@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -6937,6 +6937,9 @@ msgstr "Kích hoạt MiniTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Cho phép tắt dần infobar"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "Kích hoạt MHW EPG"
 
@@ -9941,6 +9944,22 @@ msgid "Kernel file"
 msgstr ""
 
 msgid "Kernel version"
+msgstr ""
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Key"
@@ -13423,6 +13442,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Nhấn OK để bắt đầu quét"
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13918,6 +13945,12 @@ msgstr "Thực sự xóa mục này?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Thực sự thoát khỏi dịch vụ phụ quickzap?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Thực sự khởi động lại vào Chế độ khôi phục?"
 
@@ -14319,6 +14352,9 @@ msgstr "Xóa thư mục hiện tại khỏi bookmark"
 
 msgid "Remove currently selected title"
 msgstr "Xóa tiêu đề hiện được chọn"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr "Xóa dòng VBI ẩn cho dịch vụ này"
@@ -20141,6 +20177,9 @@ msgstr "Ukraine"
 
 msgid "Ukrainian"
 msgstr "Tiếng Ukraina"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "Nâng cấp không giám sát mà không cần GUI"

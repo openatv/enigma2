@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -7161,6 +7161,9 @@ msgstr "啟用計時器"
 msgid "Enable InfoBar fade-out"
 msgstr ""
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr ""
 
@@ -10293,6 +10296,22 @@ msgid "Kernel file"
 msgstr ""
 
 msgid "Kernel version"
+msgstr ""
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Key"
@@ -13925,6 +13944,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "按OK鍵開始掃描."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -14459,6 +14486,12 @@ msgstr "確實要刪除計時器?"
 msgid "Really exit the subservices quickzap?"
 msgstr "退出字幕快速切換?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 #, fuzzy
 msgid "Really reboot into Recovery Mode?"
 msgstr "立即重啟(Reboot)?"
@@ -14881,6 +14914,9 @@ msgstr ""
 
 msgid "Remove currently selected title"
 msgstr "移除當前選擇的標題"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
@@ -20992,6 +21028,9 @@ msgstr "烏克蘭"
 
 msgid "Ukrainian"
 msgstr "烏克蘭"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr ""

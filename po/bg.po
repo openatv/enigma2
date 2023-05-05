@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -6831,6 +6831,9 @@ msgstr "Разрешаване на IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Разрешаване на плавно затихване на инфобар"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "Разрешаване на MHW EPG"
 
@@ -9784,6 +9787,22 @@ msgstr "Файл на ядрото"
 
 msgid "Kernel version"
 msgstr "Версия на ядрото"
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Key"
 msgstr ""
@@ -13175,6 +13194,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Натиснете EXIT, за да се върнете към екрана за помощ."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13660,6 +13687,12 @@ msgstr "Наистина ли да изтрия този запис?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Наистина ли да изляза от subservices quickzap?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Наистина ли рестартирам в режим за възстановяване?"
 
@@ -14049,6 +14082,9 @@ msgstr "Премахване на текущата папка от отметк�
 
 msgid "Remove currently selected title"
 msgstr "Премахване на текущото избрано заглавие"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr "Премахнете скритата VBI линия за този сервиз"
@@ -19782,6 +19818,9 @@ msgid "Ukraine"
 msgstr ""
 
 msgid "Ukrainian"
+msgstr ""
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -7157,6 +7157,9 @@ msgstr "IceTV'yi etkinleştir"
 msgid "Enable InfoBar fade-out"
 msgstr "Bilgi çubuğu soldurmayı etkinleştir"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "MHW EPG etkinleştir"
 
@@ -10263,6 +10266,22 @@ msgstr "Çekirdek dosyası"
 
 msgid "Kernel version"
 msgstr "Çekirdek sürümü"
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Key"
 msgstr ""
@@ -13902,6 +13921,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Yardım ekranına dönmek için EXIT'e basın."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -14417,6 +14444,12 @@ msgstr "Bu girişi gerçekten sil?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Alt servis hızlı geçişinden çıkmak istiyor musunuz?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 #
 msgid "Really reboot into Recovery Mode?"
 msgstr "Kurtarma Moduna Gerçekten Yeniden Başladınız mı?"
@@ -14831,6 +14864,9 @@ msgstr "Geçerli klasörü yer işaretlerinden kaldır"
 #
 msgid "Remove currently selected title"
 msgstr "Seçilen geçerli başlığı kaldır"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr "Bu hizmet için VBI hattını gizle"
@@ -20868,6 +20904,9 @@ msgstr "Ukrayna"
 
 msgid "Ukrainian"
 msgstr "Ukraynaca"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "GUI olmadan katılımsız yükseltme"

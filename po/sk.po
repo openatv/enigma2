@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2023-04-09 09:52+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -6859,6 +6859,9 @@ msgstr "Zapnúť IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Zapnúť vytrácanie info-panela"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "Zapnúť MHW EPG"
 
@@ -9819,6 +9822,22 @@ msgstr "Súbor jadra"
 
 msgid "Kernel version"
 msgstr "Verzia jadra (kernel)"
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Key"
 msgstr "Kľúč"
@@ -13214,6 +13233,14 @@ msgstr "Stlačením tlačidla EXIT ponuku zatvoríte."
 msgid "Press EXIT to return to the help screen."
 msgstr "Stlačením EXIT sa vrátite na obrazovku pomocníka."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Pre výber MultiBoot stlačte OK."
 
@@ -13699,6 +13726,12 @@ msgstr "Naozaj vymazať tento záznam?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Naozaj ukončiť rýchle prepínanie podradených staníc?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Naozaj reštartovať do núdzového režimu?"
 
@@ -14088,6 +14121,9 @@ msgstr "Odstrániť aktuálny priečinok zo záložiek"
 
 msgid "Remove currently selected title"
 msgstr "Odstrániť aktuálne zvolený titul"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr "Odstrániť/skryť riadok VBI pre túto stanicu"
@@ -19837,6 +19873,9 @@ msgstr "Ukrajina"
 
 msgid "Ukrainian"
 msgstr "Ukrajinsky"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "Bezobslužný upgrade bez GUI"

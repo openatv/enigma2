@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
-"PO-Revision-Date: 2023-04-21 17:36+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-04-30 11:49+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -6861,6 +6861,9 @@ msgstr "Включить IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Включить затухание инфобара"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Включить MultiBoot Kexec"
+
 msgid "Enable MHW EPG"
 msgstr "Включить ТВ-гид MHW"
 
@@ -9821,6 +9824,26 @@ msgstr "Файл ядра"
 
 msgid "Kernel version"
 msgstr "Версия ядра"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Действия MultiBoot Kexec"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Инициализация Kexec MultiBoot — перезагрузится через 10 секунд."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Выполняется инициализация Kexec MultiBoot!\n"
+"\n"
+"Будет перезагружен после восстановления всех слотов eMMC.\n"
+"Это может занять от 1 до 5 минут на слот."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Kexec MultiBoot менеджер"
 
 msgid "Key"
 msgstr "Ключ"
@@ -13216,6 +13239,19 @@ msgstr "Нажмите EXIT для закрытия."
 msgid "Press EXIT to return to the help screen."
 msgstr "Нажмите EXIT, чтобы вернуться к экрану справки."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Нажмите зелёную кнопку, чтобы включить MultiBoot!\n"
+"\n"
+"Перезагрузится в течение 10 секунд,\n"
+"если у Вас нет слотов eMMC для восстановления.\n"
+"Восстановление слотов eMMC может занять от 1 до 5 минут на каждый слот."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Нажмите OK для выбора MultiBoot."
 
@@ -13701,6 +13737,14 @@ msgstr "Действительно удалить эту запись?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Действительно выйти из быстрого перехода?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Вы хотите безвозвратно удалить файлы MultiBoot?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Действительно перезагрузиться в режим восстановления?"
 
@@ -14090,6 +14134,9 @@ msgstr "Удалить текущую папку из закладок"
 
 msgid "Remove currently selected title"
 msgstr "Удалить выбранный заголовок"
+
+msgid "Remove forever"
+msgstr "Удалить навсегда"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Удалить линию VBI на этом канале"
@@ -18223,7 +18270,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 20.04.2023"
+msgstr "Коррекция перевода Monja 29.04.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19839,6 +19886,9 @@ msgstr "Украина"
 
 msgid "Ukrainian"
 msgstr "Украинский"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Unable to complete - Kexec Multiboot files missing!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Обновление в фоновом режиме"

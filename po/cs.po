@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
-"PO-Revision-Date: 2023-04-25 01:49+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-05-03 11:50+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -6857,6 +6857,9 @@ msgstr "Povolit IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Povolit zvolna mizíci Infobar"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Povolit Kexec MultiBoot"
+
 msgid "Enable MHW EPG"
 msgstr "Povolit MHW EPG"
 
@@ -9817,6 +9820,26 @@ msgstr "Soubor jádra"
 
 msgid "Kernel version"
 msgstr "Verze jádra"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Akce Kexec MultiBoot"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Inicializace Kexec MultiBoot – restartuje se po 10 sekundách."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Probíhá inicializace Kexec MultiBoot!\n"
+"\n"
+"Restartuje se po obnovení všech eMMC slotů.\n"
+"To může trvat 1 -> 5 minut na jeden slot."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Kexec MultiBoot Manager"
 
 msgid "Key"
 msgstr "Klíč"
@@ -13212,6 +13235,19 @@ msgstr "Stisknutím tlačítka EXIT zavřete."
 msgid "Press EXIT to return to the help screen."
 msgstr "Stiskněte EXIT pro návrat na obrazovku nápovědy."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Stisknutím zeleného tlačítka aktivujte funkci MultiBoot!\n"
+"\n"
+"Restartuje se do 10 sekund,\n"
+"pokud nemáte sloty eMMC k obnovení.\n"
+"Obnova eMMC slotů může trvat 1 -> 5 minut na slot."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Stiskněte tlačítko OK pro výběr MultiBoot."
 
@@ -13697,6 +13733,14 @@ msgstr "Opravdu smazat tento záznam?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Opravdu opustit rychlé přepínání podprogramů?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Opravdu trvale odstranit soubory MultiBoot?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Opravdu restartovat do režimu obnovení?"
 
@@ -14086,6 +14130,9 @@ msgstr "Odstranit aktuální složku ze záložek"
 
 msgid "Remove currently selected title"
 msgstr "Odstranit vybraný titul"
+
+msgid "Remove forever"
+msgstr "Trvale odstranit"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Odstranit skrytou linku VBI pro tuto službu"
@@ -19835,6 +19882,9 @@ msgstr "Ukrajina"
 
 msgid "Ukrainian"
 msgstr "Ukrajinština"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Nelze dokončit – chybí soubory Kexec Multiboot!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Bezobslužná aktualizace bez GUI"

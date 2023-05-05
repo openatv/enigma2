@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2023-02-25 19:39+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -6881,6 +6881,9 @@ msgstr "Įjungti IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Įjungti info juostos išnykimą"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "Įjungti MHW EPG"
 
@@ -9843,6 +9846,22 @@ msgstr "Branduolio failas"
 
 msgid "Kernel version"
 msgstr "Branduolio versija"
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Key"
 msgstr "Raktas"
@@ -13238,6 +13257,14 @@ msgstr "Paspauskite EXIT, kad uždarytumėte."
 msgid "Press EXIT to return to the help screen."
 msgstr "Paspauskite EXIT, kad grįžtumėte į žinyno ekraną."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Paspauskite OK, kad pasirinktumėte daugialypį paleidimą."
 
@@ -13723,6 +13750,12 @@ msgstr "Ar tikrai ištrinti šį įrašą?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Tikrai užverti greitą subkanalų perjungimą?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Tikrai iš naujo paleisti į atkūrimo režimą?"
 
@@ -14112,6 +14145,9 @@ msgstr "Pašalinti dabartinį aplanką iš žymių"
 
 msgid "Remove currently selected title"
 msgstr "Pašalinti dabartinį pasirinktą pavadinimą"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr "Pašalinti paslėptą VBI liniją šiam kanalui"
@@ -19859,6 +19895,9 @@ msgstr "Ukraina"
 
 msgid "Ukrainian"
 msgstr "Ukrainiečių"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "Automatinis atnaujinimas be grafinės aplinkos"

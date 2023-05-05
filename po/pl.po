@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
-"PO-Revision-Date: 2023-04-21 17:36+0000\n"
-"Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-04-28 18:36+0000\n"
+"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -6872,6 +6872,9 @@ msgstr "Włącz IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Włącz wygaszacz paska informacyjnego"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Włącz Kexec MultiBoot"
+
 msgid "Enable MHW EPG"
 msgstr "Włącz MHW EPG"
 
@@ -9832,6 +9835,26 @@ msgstr "Plik jądra"
 
 msgid "Kernel version"
 msgstr "Wersja jądra"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Akcje Kexec MultiBoot"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Inicjalizacja Kexec MultiBoot - uruchomi się ponownie po 10 sekundach."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Kexec MultiBoot Inicjalizacja w toku!\n"
+"\n"
+"Zostanie zrestartowany po przywróceniu wszystkich slotów eMMC.\n"
+"Może to zająć od 1 do 5 minut na slot."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Menadżer Kexec MultiBoot"
 
 msgid "Key"
 msgstr "Klucz"
@@ -13229,6 +13252,19 @@ msgstr "Naciśnij przycisk EXIT, aby zamknąć."
 msgid "Press EXIT to return to the help screen."
 msgstr "Naciśnij EXIT, aby powrócić do ekranu pomocy."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Naciśnij zielony przycisk, aby włączyć MultiBoot!\n"
+"\n"
+"Uruchomi się ponownie w ciągu 10 sekund,\n"
+"chyba że masz sloty eMMC do przywrócenia.\n"
+"Przywracanie slotów eMMC może zająć od 1 do 5 minut na slot."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Naciśnij OK, aby wybrać opcję MultiBoot."
 
@@ -13714,6 +13750,14 @@ msgstr "Czy na pewno usunąć ten wpis?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Naprawdę wyjść z szybkiego zapisu kanałów?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Naprawdę trwale usunąć pliki MultiBoot?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Czy naprawdę chcesz przejść do trybu awaryjnego?"
 
@@ -14103,6 +14147,9 @@ msgstr "Usuń bieżący folder z zakładek"
 
 msgid "Remove currently selected title"
 msgstr "Usuń aktualnie wybrany tytuł"
+
+msgid "Remove forever"
+msgstr "Usuń na zawsze"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Pokaż linię VBI dla tego kanału"
@@ -19853,6 +19900,9 @@ msgstr "Ukraina"
 
 msgid "Ukrainian"
 msgstr "Ukraiński"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Nie można ukończyć - Brak plików Kexec Multiboot!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Aktualizacja bez nadzoru poza GUI"

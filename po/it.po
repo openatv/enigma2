@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
-"PO-Revision-Date: 2023-04-25 01:49+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-04-30 11:49+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -6834,6 +6834,9 @@ msgstr "Abilita IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Attiva dissolvenza barra informazioni"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Abilita multiboot Kexec"
+
 msgid "Enable MHW EPG"
 msgstr "Abilita MHW EPG"
 
@@ -9792,6 +9795,26 @@ msgstr "File del kernel"
 
 msgid "Kernel version"
 msgstr "Versione kernel"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Azioni multiboot Kexec"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Inizializzazione multiboot Kexec - riavvio dopo 10 secondi."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Inizializzazione multiboot Kexec in corso!\n"
+"\n"
+"Riavvio dopo aver ripristinato tutti gli slot eMMC.\n"
+"Questo può richiedere da 1 -> 5 minuti per slot."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Gestore multiboot Kexec"
 
 msgid "Key"
 msgstr "Chiave"
@@ -13186,6 +13209,19 @@ msgstr "Premere ESCI per chiudere."
 msgid "Press EXIT to return to the help screen."
 msgstr "Premere ESCI per tornare alla schermata della Guida."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Premi il tasto VERDE per abilitare il multiboot!\n"
+"\n"
+"Riavvio entro 10 secondi,\n"
+"a meno che tu non abbia slot eMMC da ripristinare.\n"
+"Il ripristino degli slot eMMC può richiedere da 1 -> 5 minuti per slot."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Premi OK per la selezione multiboot."
 
@@ -13671,6 +13707,14 @@ msgstr "Eliminare davvero questa voce?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Uscire davvero dai sotto servizi con lo zapping veloce?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Eliminare davvero in modo permanente i file multiboot?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Riavviare davvero in modalità di ripristino?"
 
@@ -14060,6 +14104,9 @@ msgstr "Rimuovi la cartella attuale dai segnalibri"
 
 msgid "Remove currently selected title"
 msgstr "Rimuovi titolo attualmente selezionato"
+
+msgid "Remove forever"
+msgstr "Rimuovi per sempre"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Rimuovi linea VBI nascosta per questo servizio"
@@ -19805,6 +19852,9 @@ msgstr "Ucraina"
 
 msgid "Ukrainian"
 msgstr "Ucraino"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Impossibile completare - File multiboot Kexec mancanti!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Aggiornamento automatico senza GUI"

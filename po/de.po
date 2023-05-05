@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
-"PO-Revision-Date: 2023-04-25 07:42+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-04-28 20:15+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -7242,6 +7242,9 @@ msgstr "IceTV aktivieren"
 msgid "Enable InfoBar fade-out"
 msgstr "Infoleiste langsam ausblenden"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Kexec MultiBoot einschalten"
+
 msgid "Enable MHW EPG"
 msgstr "MHW-EPG aktivieren"
 
@@ -10363,6 +10366,26 @@ msgstr "Kerneldatei"
 
 msgid "Kernel version"
 msgstr "Kernel-Version"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Kexec MultiBoot-Aktionen"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Kexec MultiBoot Initialisierung - Neustart nach 10 Sekunden."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Kexec MultiBoot Initialisierung aktiv!\n"
+"\n"
+"Neustart nachdem alle eMMC-Slots wiederhergestellt wurden.\n"
+"Dies kann zwischen 1 und 5 Minuten pro Slot dauern."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Kexec MultiBoot-Manager"
 
 msgid "Key"
 msgstr "Taste"
@@ -14078,6 +14101,19 @@ msgstr "Drücken Sie EXIT zum Schließen."
 msgid "Press EXIT to return to the help screen."
 msgstr "Drücken Sie EXIT, um zum Hilfebildschirm zurückzukehren."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Taste GRÜN um MultiBoot zu aktivieren!\n"
+"\n"
+"Der Neustart erfolgt innerhalb von 10 Sekunden,\n"
+"es sei denn, Sie haben eMMC-Slots zum Wiederherstellen.\n"
+"Die Wiederherstellung von eMMC-Slots kann zwischen 1 und 5 Minuten pro Slot dauern."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Drücken Sie OK für die Multiboot-Auswahl."
 
@@ -14608,6 +14644,14 @@ msgstr "Sendergruppe wirklich löschen?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Unterkanal-QuickZap wirklich beenden?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"MultiBoot-Dateien wirklich dauerhaft löschen?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Möchten Sie wirklich einen Neustart in den Wartungsmodus durchführen?"
 
@@ -15023,6 +15067,9 @@ msgstr "Aktuellen Ordner aus Lesezeichen entfernen"
 #
 msgid "Remove currently selected title"
 msgstr "Entferne aktuell ausgewählten Titel"
+
+msgid "Remove forever"
+msgstr "Für immer entfernen"
 
 msgid "Remove hide VBI line for this service"
 msgstr "VBI-Line für diesen Kanal wieder anzeigen"
@@ -21183,6 +21230,9 @@ msgstr "Ukraine"
 
 msgid "Ukrainian"
 msgstr "Ukrainisch"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Abschließen nicht möglich - Kexec Multiboot-Dateien fehlen!"
 
 #
 msgid "Unattended upgrade without GUI"

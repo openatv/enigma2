@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: Juanjo-EA1CJ <juanjo.ea1cj@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -7202,6 +7202,9 @@ msgstr "Habilitar IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Activar atenuación de la barra de información"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "Habilitar EPG MHW"
 
@@ -10329,6 +10332,22 @@ msgstr "Fichero del núcleo"
 
 msgid "Kernel version"
 msgstr "Versión del núcleo"
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Key"
 msgstr ""
@@ -14018,6 +14037,14 @@ msgstr "Pulse EXIT para cerrar."
 msgid "Press EXIT to return to the help screen."
 msgstr "Pulse EXIT para volver a la pantalla de ayuda."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Pulse OK para la selección de MultiBoot."
 
@@ -14539,6 +14566,12 @@ msgstr "¿Estas seguro de borrar esta entrada?"
 msgid "Really exit the subservices quickzap?"
 msgstr "¿Seguro que quiere salir del zapeo rápido de subcanales?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 #
 msgid "Really reboot into Recovery Mode?"
 msgstr "¿Estas seguro de reiniciar en modo de recuperación?"
@@ -14957,6 +14990,9 @@ msgstr "Eliminar la carpeta actual de los favoritos"
 #
 msgid "Remove currently selected title"
 msgstr "Borrar el título seleccionado"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr "Eliminar la línea de ocultación del VBI para este servicio"
@@ -21217,6 +21253,9 @@ msgstr "Ucraniano"
 # Language
 msgid "Ukrainian"
 msgstr "Ucraniano"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 #
 msgid "Unattended upgrade without GUI"

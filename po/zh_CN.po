@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2022-11-22 18:20+0000\n"
 "Last-Translator: tzyy1970 <haotzyy1970@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -6838,6 +6838,9 @@ msgstr "启用IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "启用信息栏淡出"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "启用MHW公司EPG"
 
@@ -9794,6 +9797,22 @@ msgstr "内核文件"
 
 msgid "Kernel version"
 msgstr "内核版本"
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Key"
 msgstr ""
@@ -13185,6 +13204,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "按EXIT键返回帮助界面."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13670,6 +13697,12 @@ msgstr "是否删除这个条目？"
 msgid "Really exit the subservices quickzap?"
 msgstr "是否要退出子频道快速切换?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "是否重新启动进入恢复模式?"
 
@@ -14059,6 +14092,9 @@ msgstr "从书签中删除当前文件夹"
 
 msgid "Remove currently selected title"
 msgstr "删除当前选择的标题"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr "删除此服务的隐藏 VBI 行"
@@ -19790,6 +19826,9 @@ msgstr "乌克兰"
 
 msgid "Ukrainian"
 msgstr "乌克兰语"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "无人值守升级,没有图形用户界面"

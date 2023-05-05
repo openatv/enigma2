@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:47+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -6898,6 +6898,9 @@ msgstr "Az IceTV engedélyezése"
 msgid "Enable InfoBar fade-out"
 msgstr "Információs sáv elhalványodás engedélyezése"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "MHW EPG engedélyezése"
 
@@ -9884,6 +9887,22 @@ msgid "Kernel file"
 msgstr ""
 
 msgid "Kernel version"
+msgstr ""
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Key"
@@ -13343,6 +13362,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Az OK gombbal indíthatja a keresést"
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13830,6 +13857,12 @@ msgstr "Tényleg törli ezt a bejegyzést?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Biztos ki szeretne lépni az alcsatorna gyorsUGRÁS módból?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Biztos újra indítsam Recovery módban?"
 
@@ -14220,6 +14253,9 @@ msgstr "Aktuális mappa eltávolítása könyvjelzőkből"
 
 msgid "Remove currently selected title"
 msgstr "Kijelölt címek eltávolítása"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr "A kép tetején lévő villogó csík eltakarása ezen csatornánál"
@@ -20027,6 +20063,9 @@ msgstr "Ukrajna"
 
 msgid "Ukrainian"
 msgstr "Ukrán"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "Felügyelet nélküli frissítés GUI nélkül"
