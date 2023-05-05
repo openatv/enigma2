@@ -316,22 +316,22 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			self.tunerStopScan(False)
 			return
 		if dict["tuner_state"] == "TUNING":
-                        self["tunerstatusbar"].setText(_("Tuner status TUNING"))
+			self["tunerstatusbar"].setText(_("Tuner status TUNING"))
 
 		elif dict["tuner_state"] == "FAILED":
-                        self["tunerstatusbar"].setText(_("Tuner status FAILED"))
+			self["tunerstatusbar"].setText(_("Tuner status FAILED"))
 
 		elif dict["tuner_state"] == "LOSTLOCK":
-                        self["tunerstatusbar"].setText(_("Tuner status LOSTLOCK"))
+			self["tunerstatusbar"].setText(_("Tuner status LOSTLOCK"))
 
 		elif dict["tuner_state"] == "LOCKED":
-                        self["tunerstatusbar"].setText(_("Tuner status LOCKED"))
+			self["tunerstatusbar"].setText(_("Tuner status LOCKED"))
 
 		elif dict["tuner_state"] == "IDLE":
-                        self["tunerstatusbar"].setText(_("Tuner status IDLE"))
+			self["tunerstatusbar"].setText(_("Tuner status IDLE"))
 
 		elif dict["tuner_state"] == "UNKNOWN":
-                        self["tunerstatusbar"].setText(_("Tuner status UNKNOWN"))
+			self["tunerstatusbar"].setText(_("Tuner status UNKNOWN"))
 
 		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
 			self.tunerStopScan(False)

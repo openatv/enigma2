@@ -127,12 +127,12 @@ class ProjectSettings(Screen, ConfigListScreen):
 
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
-		    "green": self.exit,
-		    "red": self.cancel,
-		    "blue": self.saveProject,
-		    "yellow": self.loadProject,
-		    "cancel": self.cancel,
-		    "ok": self.ok,
+			"green": self.exit,
+			"red": self.cancel,
+			"blue": self.saveProject,
+			"yellow": self.loadProject,
+			"cancel": self.cancel,
+			"ok": self.ok,
 		}, -2)
 		self.onLayoutFinish.append(self.layoutFinished)
 

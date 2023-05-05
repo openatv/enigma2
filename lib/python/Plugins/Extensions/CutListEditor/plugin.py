@@ -482,4 +482,4 @@ def main(session, service, **kwargs):
 
 
 def Plugins(**kwargs):
- 	return PluginDescriptor(name=_("Cutlist Editor"), description=_("Cutlist editor..."), where=PluginDescriptor.WHERE_MOVIELIST, needsRestart=False, fnc=main)
+	return PluginDescriptor(name=_("Cutlist Editor"), description=_("Cutlist editor..."), where=PluginDescriptor.WHERE_MOVIELIST, needsRestart=False, fnc=main)

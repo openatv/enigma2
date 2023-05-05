@@ -44,9 +44,9 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
-		  "cancel": self.keyCancel,
-		  "save": self.keySave,
-		  "menu": self.closeRecursive,
+			"cancel": self.keyCancel,
+			"save": self.keySave,
+			"menu": self.closeRecursive,
 		}, -2)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))

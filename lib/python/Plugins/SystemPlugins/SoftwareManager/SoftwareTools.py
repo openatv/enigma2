@@ -113,7 +113,7 @@ class SoftwareTools(PackageInfoHandler):
 				else:
 					if self.UpdateConsole:
 						if len(self.UpdateConsole.appContainers) == 0:
-								callback(True)
+							callback(True)
 		else:
 			self.list_updating = False
 			if self.UpdateConsole:
@@ -142,7 +142,7 @@ class SoftwareTools(PackageInfoHandler):
 			else:
 				if self.UpdateConsole:
 					if len(self.UpdateConsole.appContainers) == 0:
-							callback(True)
+						callback(True)
 		else:
 			self.list_updating = False
 			if self.UpdateConsole:
@@ -183,7 +183,7 @@ class SoftwareTools(PackageInfoHandler):
 			else:
 				if self.UpdateConsole:
 					if len(self.UpdateConsole.appContainers) == 0:
-							callback(True)
+						callback(True)
 		else:
 			self.list_updating = False
 			if self.UpdateConsole:

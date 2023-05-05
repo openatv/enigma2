@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-19 16:52+0000\n"
-"Last-Translator: drakulis <drakulis@interia.pl>\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-04-28 18:36+0000\n"
+"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -6872,6 +6872,9 @@ msgstr "Włącz IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Włącz wygaszacz paska informacyjnego"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Włącz Kexec MultiBoot"
+
 msgid "Enable MHW EPG"
 msgstr "Włącz MHW EPG"
 
@@ -7010,6 +7013,9 @@ msgstr "Włącz tę opcję, aby dodać dodatkowe dane skanowania DVB do pliku dz
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dodatkowe dane EPG do pliku dziennika debugowania."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Włącz opcję, aby dodać język oraz państwo. Zapisz informacje wykryte podczas startu systemu do pliku logu debugowania."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dane mapy klawiatury do pliku dziennika debugowania."
@@ -9345,6 +9351,9 @@ msgstr "Uwzględnij SDT, BAT w strumieniach http"
 msgid "Include action map data"
 msgstr "Dołącz dane mapy działań"
 
+msgid "Include international data *"
+msgstr "Załącz dane międzynarodowe *"
+
 msgid "Include keyboard data"
 msgstr "Dołącz dane klawiatury"
 
@@ -9826,6 +9835,26 @@ msgstr "Plik jądra"
 
 msgid "Kernel version"
 msgstr "Wersja jądra"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Akcje Kexec MultiBoot"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Inicjalizacja Kexec MultiBoot - uruchomi się ponownie po 10 sekundach."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Kexec MultiBoot Inicjalizacja w toku!\n"
+"\n"
+"Zostanie zrestartowany po przywróceniu wszystkich slotów eMMC.\n"
+"Może to zająć od 1 do 5 minut na slot."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Menadżer Kexec MultiBoot"
 
 msgid "Key"
 msgstr "Klucz"
@@ -13223,6 +13252,19 @@ msgstr "Naciśnij przycisk EXIT, aby zamknąć."
 msgid "Press EXIT to return to the help screen."
 msgstr "Naciśnij EXIT, aby powrócić do ekranu pomocy."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Naciśnij zielony przycisk, aby włączyć MultiBoot!\n"
+"\n"
+"Uruchomi się ponownie w ciągu 10 sekund,\n"
+"chyba że masz sloty eMMC do przywrócenia.\n"
+"Przywracanie slotów eMMC może zająć od 1 do 5 minut na slot."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Naciśnij OK, aby wybrać opcję MultiBoot."
 
@@ -13538,6 +13580,9 @@ msgstr "Kanał Quad PiP "
 msgid "Quad PiP is not available."
 msgstr "Quad PiP niedostępny."
 
+msgid "Quad9 DNS"
+msgstr "DNS Quad9"
+
 msgid "Quechua"
 msgstr "Keczua"
 
@@ -13704,6 +13749,14 @@ msgstr "Czy na pewno usunąć ten wpis?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Naprawdę wyjść z szybkiego zapisu kanałów?"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Naprawdę trwale usunąć pliki MultiBoot?\n"
+"%s"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Czy naprawdę chcesz przejść do trybu awaryjnego?"
@@ -14094,6 +14147,9 @@ msgstr "Usuń bieżący folder z zakładek"
 
 msgid "Remove currently selected title"
 msgstr "Usuń aktualnie wybrany tytuł"
+
+msgid "Remove forever"
+msgstr "Usuń na zawsze"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Pokaż linię VBI dla tego kanału"
@@ -19844,6 +19900,9 @@ msgstr "Ukraina"
 
 msgid "Ukrainian"
 msgstr "Ukraiński"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Nie można ukończyć - Brak plików Kexec Multiboot!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Aktualizacja bez nadzoru poza GUI"

@@ -56,6 +56,7 @@ def getChannelNumber(frequency, nim):
 				return str(int(f - 526) // 7 + 28) + (d < 3 and "-" or d > 4 and "+" or "")
 	return ""
 
+
 def supportedChannels(nim):
 	descr = getTunerDescription(nim)
 	return "Europe" in descr and "DVB-T" in descr
@@ -69,10 +70,10 @@ def channel2frequency(channel, nim):
 		elif 21 <= channel <= 69:
 			return (474000 + 8000 * (channel - 21)) * 1000
 		else:
-			return None # FIXME
+			return None  # FIXME
 	elif "Zealand" in descr and 25 <= channel <= 50:
-			return (506000 + 8000 * (int(channel) - 25)) * 1000
-	else: # Australian rules
+		return (506000 + 8000 * (int(channel) - 25)) * 1000
+	else:  # Australian rules
 		res = 474000000
 		if channel != "9A":
 			ch = int(channel)

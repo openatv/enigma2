@@ -179,8 +179,8 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 						MultiContentEntryText(pos = (10, 0), size = (330, 25), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the index name,
 						MultiContentEntryText(pos = (330, 0), size = (150, 25), flags = RT_HALIGN_RIGHT, text = 2) # index 2 is the status,
 					],
-				 "fonts": [gFont("Regular", 20)],
-				 "itemHeight": 25
+					"fonts": [gFont("Regular", 20)],
+					"itemHeight": 25
 				}
 			</convert>
 		</widget>
@@ -297,9 +297,9 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 	def getIndexForTransponder(self, transponder):
 
 		if transponder[0] < 11700:
-			band = 1 # low
+			band = 1  # low
 		else:
-			band = 0 # high
+			band = 0  # high
 
 		polarisation = transponder[2]
 
@@ -360,7 +360,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex = 0
 			keys = list(self.indexlist.keys())
-			keys.sort(key=lambda a: a[2]) # sort by orbpos
+			keys.sort(key=lambda a: a[2])  # sort by orbpos
 			self["overall_progress"].setRange(len(keys))
 			self["overall_progress"].setValue(self.myindex)
 			return keys[0]
@@ -410,7 +410,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex += 1
 			keys = list(self.indexlist.keys())
-			keys.sort(key=lambda a: a[2]) # sort by orbpos
+			keys.sort(key=lambda a: a[2])  # sort by orbpos
 
 			self["overall_progress"].setValue(self.myindex)
 			if self.myindex < len(keys):
@@ -655,8 +655,8 @@ class DiseqcTesterNimSelection(NimSelection):
 						MultiContentEntryText(pos = (10, 5), size = (360, 30), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the nim name,
 						MultiContentEntryText(pos = (50, 30), size = (320, 30), font = 1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is a description of the nim settings,
 					],
-				 "fonts": [gFont("Regular", 20), gFont("Regular", 15)],
-				 "itemHeight": 70
+					"fonts": [gFont("Regular", 20), gFont("Regular", 15)],
+					"itemHeight": 70
 				}
 			</convert>
 		</widget>

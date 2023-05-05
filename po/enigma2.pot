@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6720,6 +6720,9 @@ msgstr ""
 msgid "Enable InfoBar fade-out"
 msgstr ""
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr ""
 
@@ -6857,6 +6860,9 @@ msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
@@ -9144,6 +9150,9 @@ msgstr ""
 msgid "Include action map data"
 msgstr ""
 
+msgid "Include international data *"
+msgstr ""
+
 msgid "Include keyboard data"
 msgstr ""
 
@@ -9624,6 +9633,22 @@ msgid "Kernel file"
 msgstr ""
 
 msgid "Kernel version"
+msgstr ""
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Key"
@@ -12944,6 +12969,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr ""
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13259,6 +13292,9 @@ msgstr ""
 msgid "Quad PiP is not available."
 msgstr ""
 
+msgid "Quad9 DNS"
+msgstr ""
+
 msgid "Quechua"
 msgstr ""
 
@@ -13424,6 +13460,12 @@ msgid "Really delete this entry?"
 msgstr ""
 
 msgid "Really exit the subservices quickzap?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
 msgstr ""
 
 msgid "Really reboot into Recovery Mode?"
@@ -13809,6 +13851,9 @@ msgid "Remove current directory from bookmarks"
 msgstr ""
 
 msgid "Remove currently selected title"
+msgstr ""
+
+msgid "Remove forever"
 msgstr ""
 
 msgid "Remove hide VBI line for this service"
@@ -19441,6 +19486,9 @@ msgid "Ukraine"
 msgstr ""
 
 msgid "Ukrainian"
+msgstr ""
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"

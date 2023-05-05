@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-03-06 09:40+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-05-03 11:50+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1070,7 +1070,7 @@ msgstr[2] "%d пакетів оновлено."
 
 #, python-format
 msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr ""
+msgstr "%d пакетів знайдено, %d пакетів встановлено і у %d пакетах є оновлення."
 
 #, python-format
 msgid "%d sec"
@@ -1243,7 +1243,7 @@ msgstr "%s МГц"
 
 #, python-format
 msgid "%s Packages found"
-msgstr ""
+msgstr "%s пакетів найдено"
 
 #, python-format
 msgid "%s Setup"
@@ -3796,7 +3796,7 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 msgid "Cancel / Close the screen"
-msgstr ""
+msgstr "Скасувати/Закрити екран"
 
 msgid "Cancel / Close the software update screen"
 msgstr "Скасувати/Закрити вікно оновлення ПЗ"
@@ -5070,7 +5070,7 @@ msgid "Cornish"
 msgstr "Корнуольска"
 
 msgid "Correct invalid EPG data"
-msgstr "Виправте невірні дані EPG"
+msgstr "Виправити невірні дані EPG"
 
 msgid "Corsican"
 msgstr "Корсіка"
@@ -6864,6 +6864,9 @@ msgstr "Включити IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Включити згасання Інфобару"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Включити Kexec MultiBoot"
+
 msgid "Enable MHW EPG"
 msgstr "Включити MHW EPG"
 
@@ -7002,6 +7005,9 @@ msgstr "Увімкніть цей параметр, щоб додати дода
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Увімкніть цей параметр, щоб додати додаткові дані EPG до файлу журналу налагодження."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Увімкніть цей параметр, щоб додати інформацію про завантаження міжнародної мови та країни, виявлену під час завантаження системи, до файлу журналу налагодження."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Увімкніть цю опцію, щоб додати дані розкладки клавіатури до файлу журналу налагодження."
@@ -9337,6 +9343,9 @@ msgstr "Долучити SDT, BAT у потоки HTTP"
 msgid "Include action map data"
 msgstr "Включити дані карти дій"
 
+msgid "Include international data *"
+msgstr "Включити міжнародні дані *"
+
 msgid "Include keyboard data"
 msgstr "Введення даних з клавіатури"
 
@@ -9818,6 +9827,26 @@ msgstr "Файл ядра"
 
 msgid "Kernel version"
 msgstr "Версія ядра"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Kexec MultiBoot Дії"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Ініціалізація Kexec MultiBoot - перезавантажиться через 10 секунд."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Триває ініціалізація Kexec MultiBoot!\n"
+"\n"
+"Перезавантажиться після відновлення будь-яких слотів eMMC.\n"
+"Це може зайняти від 1 до 5 хвилин на слот."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Менеджер Kexec MultiBoot"
 
 msgid "Key"
 msgstr "Ключ"
@@ -10475,7 +10504,7 @@ msgid "Manage Locale/Language Selection settings"
 msgstr "Керування налаштуваннями Вибору Регіону/Мови"
 
 msgid "Manage Plugins"
-msgstr ""
+msgstr "Управління Плагінами"
 
 msgid "Manage and explore directories and files."
 msgstr "Керуйте та досліджуйте каталоги і файли."
@@ -11628,7 +11657,7 @@ msgid "No of items switch (increase or reduced)"
 msgstr "Немає даних про перемикання (збільшення або зменшення)"
 
 msgid "No packages found."
-msgstr ""
+msgstr "Пакетів не знайдено."
 
 msgid "No pictures available"
 msgstr "Немає зображень"
@@ -12499,7 +12528,7 @@ msgid "Perform an on-line flash instead"
 msgstr "Замість цього виконайте онлайн-прошивку"
 
 msgid "Perform install/remove of the selected item"
-msgstr ""
+msgstr "Виконати встановлення/видалення вибраного елемента"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Остаточно видалити всі записи в кошик для сміття?"
@@ -13043,7 +13072,7 @@ msgid "Plugin Filter Settings"
 msgstr "Фільтр плагінів"
 
 msgid "Plugin Manager Actions"
-msgstr ""
+msgstr "Дії Менеджера Плагінів"
 
 msgid "Plugins"
 msgstr "Плагіни"
@@ -13212,6 +13241,19 @@ msgstr "Натисніть EXIT, щоб закрити."
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Натисніть EXIT, щоб повернутися до екрану довідки."
+
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Натисніть зелену кнопку, щоб увімкнути MultiBoot!\n"
+"\n"
+"Перезавантажиться протягом 10 секунд,\n"
+"якщо у вас немає слотів eMMC для відновлення.\n"
+"Відновлення слотів eMMC може тривати від 1 до 5 хвилин на кожен слот."
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Натисніть OK, щоб вибрати MultiBoot."
@@ -13528,6 +13570,9 @@ msgstr "Канал чотирьохекранного ПіП "
 msgid "Quad PiP is not available."
 msgstr "Чотирьохекранний ПіП недоступний."
 
+msgid "Quad9 DNS"
+msgstr "DNS Quad9"
+
 msgid "Quechua"
 msgstr "Кечуа"
 
@@ -13694,6 +13739,14 @@ msgstr "Видалити це завдання?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Вийти з підканалів?"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Дійсно видалити файли MultiBoot назавжди?\n"
+"%s"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Дійсно перезавантажити в режим відновлення?"
@@ -14084,6 +14137,9 @@ msgstr "Видалити поточну теку зі закладок"
 
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
+
+msgid "Remove forever"
+msgstr "Видалити назавжди"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Видалити приховану лінію VBI для цього каналу"
@@ -14825,7 +14881,7 @@ msgid "Scan your network for wireless access points and connect to them using yo
 msgstr "Сканувати мережу на наявність точок бездротового доступу та підключитись до них за допомогою вибраного бездротового пристрою."
 
 msgid "Scanning"
-msgstr ""
+msgstr "Сканування"
 
 #, python-format
 msgid "Scanning %s..."
@@ -18217,7 +18273,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 04.03.2023"
+msgstr "Переклад: kvinto - 02.05.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19833,6 +19889,9 @@ msgstr "Україна"
 
 msgid "Ukrainian"
 msgstr "Українська"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Неможливо завершити - файли Kexec Multiboot відсутні!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Оновлення у фоновому режимі"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-15 09:30+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-05-03 18:23+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -6955,6 +6955,9 @@ msgstr "IceTV inschakelen"
 msgid "Enable InfoBar fade-out"
 msgstr "Informatiebalk vervagen inschakelen"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Kexec MultiBoot inschakelen"
+
 msgid "Enable MHW EPG"
 msgstr "MHW EPG inschakelen"
 
@@ -7093,6 +7096,9 @@ msgstr "Activeer deze optie om extra DVB scan gegevens toe te voegen aan het deb
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Activeer deze optie om extra EPG gegevens toe te voegen aan het debug log-bestand."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Schakel deze optie in om informatie over de internationale taal- en landinformatie die tijdens het opstarten van het systeem wordt herkend, toe te voegen aan het Debug-log bestand."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Activeer deze optie om gebruik van het toetsenbord mee te nemen in het debug log bestand."
@@ -9443,6 +9449,9 @@ msgstr "SDT en BAT in http streams opnemen"
 msgid "Include action map data"
 msgstr "Inclusief action map data"
 
+msgid "Include international data *"
+msgstr "Inclusief internationale gegevens *"
+
 msgid "Include keyboard data"
 msgstr "Inclusief toetsenbord data"
 
@@ -9924,6 +9933,22 @@ msgstr "Kernel bestand"
 
 msgid "Kernel version"
 msgstr "Kernel versie"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Kexec MultiBoot Acties"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Kexec MultiBoot Initialisatie - herstart na 10 seconden."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Key"
 msgstr "Sleutel"
@@ -13322,6 +13347,14 @@ msgstr "Druk op EXIT om af te sluiten."
 msgid "Press EXIT to return to the help screen."
 msgstr "Druk op EXIT om terug te gaan naar het help scherm."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Druk op OK voor het MultiBoot keuzemenu."
 
@@ -13639,6 +13672,9 @@ msgstr "Quad PiP zender "
 msgid "Quad PiP is not available."
 msgstr "Quad PiP is niet beschikbaar."
 
+msgid "Quad9 DNS"
+msgstr ""
+
 msgid "Quechua"
 msgstr "Quechua"
 
@@ -13805,6 +13841,12 @@ msgstr "Wilt u deze invoer echt verwijderen?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Sub-zenders snelzap verlaten?"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Wilt u herstarten naar de Recovery modus?"
@@ -14195,6 +14237,9 @@ msgstr "Verwijder huidige map van bookmarks"
 
 msgid "Remove currently selected title"
 msgstr "De momenteel geselecteerde titel verwijderen"
+
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove hide VBI line for this service"
 msgstr "Verwijder verberg VBI regel voor deze zender"
@@ -20015,6 +20060,9 @@ msgstr "Oekraïne"
 
 msgid "Ukrainian"
 msgstr "Oekraïens"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "Update zonder toezicht en GUI"

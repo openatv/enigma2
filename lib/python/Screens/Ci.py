@@ -34,7 +34,7 @@ def setCIBitrate(configElement):
 
 
 def setCIEnabled(configElement):
-    eDVBCI_UI.getInstance().setEnabled(configElement.slotid, configElement.value)
+	eDVBCI_UI.getInstance().setEnabled(configElement.slotid, configElement.value)
 
 
 def setdvbCiDelay(configElement):

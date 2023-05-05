@@ -79,7 +79,7 @@ class VRunningText(Renderer):
 				else:
 					x = max(limit, int(val))
 			except:
-					x = default
+				x = default
 			return x
 
 		self.halign = valign = eLabel.alignLeft

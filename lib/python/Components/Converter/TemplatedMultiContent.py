@@ -50,8 +50,8 @@ class TemplatedMultiContent(StringList):
 					else:
 						tmp.append(src[x])
 			except Exception as error:
-					print("[TemplatedMultiContent] Error: %s." % error)
-					tmp = self.source.list
+				print("[TemplatedMultiContent] Error: %s." % error)
+				tmp = self.source.list
 			self.content.setList(tmp)
 		self.setTemplate()
 		self.downstream_elements.changed(what)

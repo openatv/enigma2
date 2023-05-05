@@ -395,10 +395,12 @@ class CreateMobjTask(Task):
 		instructions = []
 
 		for i in list(range(len(self.job.titles))):
-			instructions.append(  # load title number into register0 \
-				 [['\x50\x40\x00\x01', '\x00\x00\x00\x00', struct.pack('>L', i)],\
-						# PLAY_PL
-				  ['\x22\x00\x00\x00', '\x00\x00\x00\x00', '\x00\x00\x00\x00']])
+			# load title number into register0
+			instructions.append([
+				['\x50\x40\x00\x01', '\x00\x00\x00\x00', struct.pack('>L', i)],
+				# PLAY_PL
+				['\x22\x00\x00\x00', '\x00\x00\x00\x00', '\x00\x00\x00\x00']
+			])
 			if i < len(self.job.titles) - 1:  # on all except last title JUMP_TITLE i+2 (JUMP_TITLE is one-based)
 				instructions[-1].append(['\x21\x81\x00\x00', struct.pack('>L', i + 2), '\x00\x00\x00\x00'])
 
