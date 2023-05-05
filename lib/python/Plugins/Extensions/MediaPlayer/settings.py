@@ -62,7 +62,7 @@ class DirectoryBrowser(Screen, HelpableScreen):
 				self.filelist.descent()
 				self.close(self["filelist"].getCurrentDirectory())
 		else:
-				self.close(self["filelist"].getFilename())
+			self.close(self["filelist"].getFilename())
 
 	def exit(self):
 		self.close(False)

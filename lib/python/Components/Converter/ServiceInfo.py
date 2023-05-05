@@ -387,7 +387,7 @@ class ServiceInfo(Poll, Converter):
 			return out
 		elif self.type == self.VIDEO_INFO:
 			if self._isHDMIIn(info):
-					return ""
+				return ""
 			progressive = self._getProgressiveStr(info)
 			fieldrate = self._getFrameRate(info)
 			if fieldrate > 0:

@@ -100,7 +100,7 @@ class RunningText(Renderer):
 				else:
 					x = max(limit, int(val))
 			except:
-					x = default
+				x = default
 			return x
 
 		def setWrapFlag(attrib, value):

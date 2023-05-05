@@ -947,15 +947,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 			if cur == self.multiType:
 				self.TunerTypeChanged()
 			if cur in (
-				self.typeOfScanEntry,
-				self.typeOfInputEntry,
-				self.tunerEntry,
-				self.systemEntry,
-				self.preDefSatList,
-				self.TerrestrialRegionEntry,
-				self.multiType,
-				self.modulationEntry):
-					self.createSetup()
+					self.typeOfScanEntry,
+					self.typeOfInputEntry,
+					self.tunerEntry,
+					self.systemEntry,
+					self.preDefSatList,
+					self.TerrestrialRegionEntry,
+					self.multiType,
+					self.modulationEntry):
+				self.createSetup()
 			elif cur == self.is_id_boolEntry:
 				if self.is_id_boolEntry[1].value:
 					self.scan_sat.is_id.value = 0 if self.is_id_memory < 0 else self.is_id_memory

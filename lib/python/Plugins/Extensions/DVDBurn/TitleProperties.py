@@ -137,10 +137,10 @@ class TitleProperties(Screen, ConfigListScreen):
 			self.project.titles.insert(new_pos - 1, swaptitle)
 
 	def ok(self):
-		#key = self.keydict[self["config"].getCurrent()[1]]
-		#if key in self.project.filekeys:
-			#self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, key, self.settings)
 		pass
+		# key = self.keydict[self["config"].getCurrent()[1]]
+		# if key in self.project.filekeys:
+			# self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, key, self.settings)
 
 	def cancel(self):
 		self.close()

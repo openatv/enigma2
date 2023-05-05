@@ -16,11 +16,11 @@ MODEL = BoxInfo.getItem("model")
 
 
 def SymbolsCheck(session, **kwargs):
-		global symbolspoller, POLLTIME
-		if BoxInfo.getItem("VFDSymbolsPoll1"):
-			POLLTIME = 1
-		symbolspoller = SymbolsCheckPoller(session)
-		symbolspoller.start()
+	global symbolspoller, POLLTIME
+	if BoxInfo.getItem("VFDSymbolsPoll1"):
+		POLLTIME = 1
+	symbolspoller = SymbolsCheckPoller(session)
+	symbolspoller.start()
 
 
 class SymbolsCheckPoller:
