@@ -46,15 +46,15 @@ config.plugins.aml.minfrq2 = ConfigSelection(default="500000", choices=[("500000
 
 
 def leaveStandby():
-    print("[AmlFRQ] Leave Standby")
-    initBooster()
+	print("[AmlFRQ] Leave Standby")
+	initBooster()
 
 
 def standbyCounterChanged(configElement):
-    print("[AmlFRQ] In Standby")
-    initStandbyBooster()
-    from Screens.Standby import inStandby
-    inStandby.onClose.append(leaveStandby)
+	print("[AmlFRQ] In Standby")
+	initStandbyBooster()
+	from Screens.Standby import inStandby
+	inStandby.onClose.append(leaveStandby)
 
 
 def initBooster():

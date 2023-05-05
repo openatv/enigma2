@@ -145,7 +145,7 @@ class Project:
 							continue
 					self.error += "\n%s '%s' not found" % (key, val)
 		#except AttributeError:
-		  	#print "loadProject AttributeError", self.error
+			#print "loadProject AttributeError", self.error
 			#self.error += (" in project '%s'") % (filename)
 			#return False
 			return True

@@ -460,4 +460,4 @@ class TryQuitMainloop(MessageBox):
 		inTryQuitMainloop = False
 
 	def createSummary(self):  # Suppress the normal MessageBox ScreenSummary screen.
- 		return None
+		return None

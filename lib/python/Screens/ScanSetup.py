@@ -173,8 +173,8 @@ def getVtunerId(filter, nim_idx):
 
 
 def GetTerrestrial5VEnable(nim_idx):
-       nim = nimmanager.nim_slots[nim_idx]
-       return int(nim.config.dvbt.terrestrial_5V.value)
+	nim = nimmanager.nim_slots[nim_idx]
+	return int(nim.config.dvbt.terrestrial_5V.value)
 
 
 class CableTransponderSearchSupport:
@@ -1544,21 +1544,24 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 							fec = self.scan_sat.fec_s2.value
 						print("add sat transponder")
 
-						self.addSatTransponder(tlist, self.scan_sat.frequency.value,
-									self.scan_sat.symbolrate.value,
-									self.scan_sat.polarization.value,
-									fec,
-									self.scan_sat.inversion.value,
-									orbpos,
-									self.scan_sat.system.value,
-									self.scan_sat.modulation.value,
-									self.scan_sat.rolloff.value,
-									self.scan_sat.pilot.value,
-									self.scan_sat.is_id.value,
-									self.scan_sat.pls_mode.value,
-									self.scan_sat.pls_code.value,
-									self.scan_sat.t2mi_plp_id.value,
-									self.scan_sat.t2mi_pid.value)
+						self.addSatTransponder(
+							tlist,
+							self.scan_sat.frequency.value,
+							self.scan_sat.symbolrate.value,
+							self.scan_sat.polarization.value,
+							fec,
+							self.scan_sat.inversion.value,
+							orbpos,
+							self.scan_sat.system.value,
+							self.scan_sat.modulation.value,
+							self.scan_sat.rolloff.value,
+							self.scan_sat.pilot.value,
+							self.scan_sat.is_id.value,
+							self.scan_sat.pls_mode.value,
+							self.scan_sat.pls_code.value,
+							self.scan_sat.t2mi_plp_id.value,
+							self.scan_sat.t2mi_pid.value
+						)
 					elif self.scan_type.value == "predefined_transponder":
 						tps = nimmanager.getTransponders(orbpos)
 						if len(tps) and len(tps) > self.preDefTransponders.index:
@@ -1572,11 +1575,14 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 
 		elif nim.isCompatible("DVB-C"):
 			if self.scan_typecable.value == "single_transponder":
-				self.addCabTransponder(tlist, self.scan_cab.frequency.floatint,
-											  self.scan_cab.symbolrate.value * 1000,
-											  self.scan_cab.modulation.value,
-											  self.scan_cab.fec.value,
-											  self.scan_cab.inversion.value)
+				self.addCabTransponder(
+					tlist,
+					self.scan_cab.frequency.floatint,
+					self.scan_cab.symbolrate.value * 1000,
+					self.scan_cab.modulation.value,
+					self.scan_cab.fec.value,
+					self.scan_cab.inversion.value
+				)
 				removeAll = False
 			elif self.scan_typecable.value == "predefined_transponder":
 				tps = nimmanager.getTranspondersCable(index_to_scan)
@@ -1590,11 +1596,13 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 					getInitialCableTransponderList(tlist, index_to_scan)
 				elif nimmanager.nim_slots[index_to_scan].supportsBlindScan():
 					flags |= eComponentScan.scanBlindSearch
-					self.addCabTransponder(tlist, 73000,
-												  (866000 - 73000) // 1000,
-												  eDVBFrontendParametersCable.Modulation_Auto,
-												  eDVBFrontendParametersCable.FEC_Auto,
-												  eDVBFrontendParametersCable.Inversion_Unknown)
+					self.addCabTransponder(
+						tlist, 73000,
+						(866000 - 73000) // 1000,
+						eDVBFrontendParametersCable.Modulation_Auto,
+						eDVBFrontendParametersCable.FEC_Auto,
+						eDVBFrontendParametersCable.Inversion_Unknown
+					)
 					removeAll = False
 				else:
 					action = SEARCH_CABLE_TRANSPONDERS
