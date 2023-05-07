@@ -40,7 +40,8 @@ FEED_URLS = [
 	("Open8eIGHT", "http://openeight.de/json/%s", "machinebuild"),
 	("OpenDROID", "https://opendroid.org/json/%s", "machinebuild"),
 	("TeamBlue", "https://images.teamblue.tech/json/%s", "machinebuild"),
-	("EGAMI", "https://image.egami-image.com/json/%s", "machinebuild")
+	("EGAMI", "https://image.egami-image.com/json/%s", "machinebuild"),
+	("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s", "BoxName")
 ]
 
 
@@ -616,16 +617,17 @@ class FlashImage(Screen, HelpableScreen):
 			else:
 				mtdKernel = BoxInfo.getItem("mtdkernel")
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
-			if MultiBoot.canMultiBoot():  # Receiver with SD card MultiBoot if (rootSubDir) is None.
+			if MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
-			elif BoxInfo.getItem("HasKexecMultiboot") and "mmcblk" not in mtdRootFS:
-				cmdArgs = ["-r%s" % mtdRootFS, "-kzImage", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-rmmcblk0p1"]
 			elif BoxInfo.getItem("model") in ("dreamone", "dreamtwo"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel]
 			elif mtdKernel == mtdRootFS:  # Receiver with kernel and rootfs on one partition.
 				cmdArgs = ["-r"]
+			elif BoxInfo.getItem("HasKexecMultiboot") and self.slotCode == "R":  # Kexec Root Image.
+				cmdArgs = ["-r", "-k", "-f"]
+				Console().ePopen("umount /proc/cmdline")
 			else:  # Normal non MultiBoot receiver.
 				cmdArgs = ["-r", "-k"]
 			self.containerOFGWrite = Console()
