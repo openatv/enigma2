@@ -356,6 +356,12 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagelogname"] = "Android Linux SE"
 				self.imageList[self.slotCode]["status"] = "androidlinuxse"
 				self.findSlot()
+			elif self.slotCode == "R" and fileHas("/proc/cmdline", "kexec=1"):
+				self.imageList[self.slotCode]["detection"] = "Found a Root Image slot"
+				self.imageList[self.slotCode]["imagename"] = _("Root Image")
+				self.imageList[self.slotCode]["imagelogname"] = "Root Image"
+				self.imageList[self.slotCode]["status"] = "rootimage"
+				self.findSlot()
 			elif self.slotCode == "R":
 				self.imageList[self.slotCode]["detection"] = "Found a Recovery slot"
 				self.imageList[self.slotCode]["imagename"] = _("Recovery")
