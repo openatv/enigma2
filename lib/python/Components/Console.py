@@ -18,7 +18,7 @@ class ConsoleItem:
 		self.binary = binary
 		self.containers[name] = self
 		# If the caller isn't interested in our results, we don't need to store the output either.
-		if callback is not None:
+		if callback:
 			self.appResults = []
 			self.container.dataAvail.append(self.dataAvailCB)
 		self.container.appClosed.append(self.finishedCB)
@@ -29,9 +29,9 @@ class ConsoleItem:
 		retVal = self.container.execute(*cmd)
 		if retVal:
 			self.finishedCB(retVal)
-		if callback is None:
+		if not callback:
+			pid = self.container.getPID()
 			try:
-				pid = self.container.getPID()
 				# print("[Console] Waiting for command (PID %d) to finish." % pid)
 				waitpid(pid, 0)
 				# print("[Console] Command on PID %d finished." % pid)
@@ -48,7 +48,7 @@ class ConsoleItem:
 		del self.container.appClosed[:]
 		del self.container
 		callback = self.callback
-		if callback is not None:
+		if callback:
 			data = b"".join(self.appResults)
 			data = data if self.binary else data.decode()
 			callback(data, retVal, self.extraArgs)
@@ -65,7 +65,6 @@ class Console(object):
 		# and WirelessLan/Wlan.py accesses it to know if there's still
 		# stuff running.
 		self.appContainers = {}
-		self.appResults = {}  # FIXME : Do we need this?
 		self.binary = binary
 
 	def ePopen(self, cmd, callback=None, extra_args=None):
