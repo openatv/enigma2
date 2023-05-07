@@ -1800,7 +1800,7 @@ class TimerLog(Screen, HelpableScreen):
 		self.timer = timer
 		self["log"] = ScrollLabel()
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Save"))
+		self["key_green"] = StaticText("")
 		self["key_yellow"] = StaticText(_("Refresh"))
 		self["key_blue"] = StaticText(_("Clear Log"))
 		self["actions"] = HelpableActionMap(self, ["CancelSaveActions", "OkActions", "ColorActions", "NavigationActions"], {
@@ -1823,6 +1823,11 @@ class TimerLog(Screen, HelpableScreen):
 	def refreshLog(self):
 		self.timerLog = self.timer.log_entries[:]
 		self["log"].setText("\n".join(["%s: %s" % (strftime("%s %s" % (config.usage.date.long.value, config.usage.time.short.value), localtime(x[0])), x[2]) for x in self.timerLog]))
+		self.refreshButtons()
+
+	def refreshButtons(self):
+		self["key_blue"].setText(_("Clear Log") if self.timerLog else "")
+		self["key_green"].setText(_("Save") if self.timerLog != self.timer.log_entries else "")
 
 	def keyCancel(self):
 		self.close((False,))
@@ -1837,6 +1842,7 @@ class TimerLog(Screen, HelpableScreen):
 	def keyClearLog(self):
 		self.timerLog = []
 		self["log"].setText("")
+		self.refreshButtons()
 
 	def createSummary(self):
 		return TimerLogSummary
