@@ -885,19 +885,20 @@ class RecordTimerOverview(TimerOverviewBase):
 			self["key_red"].setText(_("Stop") if timer.state == TimerEntry.StateRunning else _("Delete"))
 			self["deleteActions"].setEnabled(True)
 			stateRunning = timer.state in (TimerEntry.StatePrepared, TimerEntry.StateRunning)
+			yellowText = ""
 			if timer.disabled:
 				if stateRunning and timer.repeated and not timer.justplay:
-					self["key_yellow"].setText("")
-					self["toggleActions"].setEnabled(False)
+					yellowText = ""
 				else:
-					self["key_yellow"].setText(_("Enable"))
-					self["toggleActions"].setEnabled(True)
+					yellowText = _("Enable")
 			elif stateRunning and (not timer.repeated or timer.state == TimerEntry.StatePrepared):
-				self["key_yellow"].setText("")
-				self["toggleActions"].setEnabled(False)
+				yellowText = ""
 			elif (not stateRunning or timer.repeated and timer.isRunning()) and not timer.disabled:
-				self["key_yellow"].setText(_("Disable"))
-				self["toggleActions"].setEnabled(True)
+				yellowText = _("Disable")
+			if not timer.repeated and timer.state == TimerEntry.StateEnded:
+				yellowText = ""
+			self["key_yellow"].setText(yellowText)
+			self["toggleActions"].setEnabled(yellowText != "")
 			time = "%s %s ... %s" % (fuzzyDate(timer.begin)[0], fuzzyDate(timer.begin)[1], fuzzyDate(timer.end)[1])
 			duration = int((timer.end - timer.begin) / 60.0)
 			for callback in self.onSelectionChanged:
