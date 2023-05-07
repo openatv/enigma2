@@ -1,23 +1,22 @@
 from os import waitpid
 
 from enigma import eConsoleAppContainer
-import six
 
 
 class ConsoleItem:
 	def __init__(self, containers, cmd, callback, extraArgs, binary=False):
 		self.containers = containers
-		if isinstance(cmd, str):  # Until .execute supports a better api.
+		if isinstance(cmd, str):  # Until .execute supports a better API.
 			cmd = [cmd]
 		name = cmd[0]
 		if name in self.containers:  # Create a unique name.
 			name = "%s@%s" % (str(cmd), hex(id(self)))
 		self.name = name
 		self.callback = callback
-		self.extraArgs = extraArgs
+		self.extraArgs = extraArgs if extraArgs else []
 		self.container = eConsoleAppContainer()
-		self.containers[name] = self
 		self.binary = binary
+		self.containers[name] = self
 		# If the caller isn't interested in our results, we don't need to store the output either.
 		if callback is not None:
 			self.appResults = []
@@ -32,9 +31,12 @@ class ConsoleItem:
 			self.finishedCB(retVal)
 		if callback is None:
 			try:
-				waitpid(self.container.getPID(), 0)
-			except OSError:
-				pass
+				pid = self.container.getPID()
+				# print("[Console] Waiting for command (PID %d) to finish." % pid)
+				waitpid(pid, 0)
+				# print("[Console] Command on PID %d finished." % pid)
+			except OSError as err:
+				print("[Console] Error %s: Wait for command on PID %d to terminate failed!  (%s)" % (err.errno, pid, err.strerror))
 
 	def dataAvailCB(self, data):
 		self.appResults.append(data)
@@ -57,22 +59,19 @@ class Console(object):
 		Console by default will work with strings on callback.
 		If binary data required class shoud be initialized with Console(binary=True)
 	"""
+
 	def __init__(self, binary=False):
 		# Still called appContainers because Network.py, SoftwareTools.py
 		# and WirelessLan/Wlan.py accesses it to know if there's still
 		# stuff running.
 		self.appContainers = {}
-		self.appResults = {} # FIXME : Do ee need this
+		self.appResults = {}  # FIXME : Do we need this?
 		self.binary = binary
 
 	def ePopen(self, cmd, callback=None, extra_args=None):
-		if not extra_args:
-			extra_args = []
 		return ConsoleItem(self.appContainers, cmd, callback, extra_args, self.binary)
 
 	def eBatch(self, cmds, callback, extra_args=None, debug=False):
-		if not extra_args:
-			extra_args = []
 		self.debug = debug
 		cmd = cmds.pop(0)
 		self.ePopen(cmd, self.eBatchCB, [cmds, callback, extra_args])
@@ -80,7 +79,8 @@ class Console(object):
 	def eBatchCB(self, data, retVal, extraArg):
 		(cmds, callback, extraArgs) = extraArg
 		if self.debug:
-			data = six.ensure_str(data)
+			if isinstance(data, bytes):
+				data = data.decode("UTF-8", "ignore")
 			print("[Console] eBatch DEBUG: retVal=%s, cmds left=%d, data:\n%s" % (retVal, len(cmds), data))
 		if cmds:
 			cmd = cmds.pop(0)
@@ -94,6 +94,6 @@ class Console(object):
 			self.appContainers[name].container.kill()
 
 	def killAll(self):
-		for name, item in list(self.appContainers.items()):  # FIXME : Do ee need list
+		for name, item in self.appContainers.items():
 			print("[Console] Killing all commands '%s'." % name)
 			item.container.kill()
