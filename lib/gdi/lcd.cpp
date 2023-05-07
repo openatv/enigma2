@@ -12,9 +12,15 @@
 #include <lib/base/estring.h>
 #endif
 #include <lib/gdi/glcddc.h>
+#include <lib/base/cfile.h>
 
 const char *OLED_PROC_1 = "/proc/stb/lcd/oled_brightness"; //  NOSONAR
 const char *OLED_PROC_2 = "/proc/stb/fp/oled_brightness";  //  NOSONAR
+
+const char *VFD_scroll_delay_proc = "/proc/stb/lcd/scroll_delay"; //  NOSONAR
+const char *VFD_initial_scroll_delay_proc = "/proc/stb/lcd/initial_scroll_delay"; //  NOSONAR
+const char *VFD_final_scroll_delay_proc = "/proc/stb/lcd/final_scroll_delay"; //  NOSONAR
+const char *VFD_scroll_repeats_proc = "/proc/stb/lcd/scroll_repeats"; //  NOSONAR
 
 eLCD *eLCD::instance;
 
@@ -62,6 +68,70 @@ int eLCD::lock()
 void eLCD::unlock()
 {
 	locked = 0;
+}
+
+const char *eLCD::get_VFD_scroll_delay()
+{
+#if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
+	return "";
+#else
+	return (access(VFD_scroll_delay_proc, W_OK) == 0) ? VFD_scroll_delay_proc : "";
+#endif
+}
+
+const char *eLCD::get_VFD_initial_scroll_delay()
+{
+#if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
+	return "";
+#else
+	return (access(VFD_initial_scroll_delay_proc, W_OK) == 0) ? VFD_initial_scroll_delay_proc : "";
+#endif
+}
+
+const char *eLCD::get_VFD_final_scroll_delay()
+{
+#if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
+	return "";
+#else
+	return (access(VFD_final_scroll_delay_proc, W_OK) == 0) ? VFD_final_scroll_delay_proc : "";
+#endif
+}
+
+const char *eLCD::get_VFD_scroll_repeats()
+{
+	return (access(VFD_scroll_repeats_proc, W_OK) == 0) ? VFD_scroll_repeats_proc : "";
+}
+
+void eLCD::set_VFD_scroll_delay(int delay)
+{
+#ifdef LCD_SCROLL_HEX
+	CFile::writeIntHex(VFD_scroll_delay_proc, delay);
+#else
+	CFile::writeInt(VFD_scroll_delay_proc, delay);
+#endif
+}
+
+void eLCD::set_VFD_initial_scroll_delay(int delay)
+{
+#ifdef LCD_SCROLL_HEX
+	CFile::writeIntHex(VFD_initial_scroll_delay_proc, delay);
+#else
+	CFile::writeInt(VFD_initial_scroll_delay_proc, delay);
+#endif
+}
+
+void eLCD::set_VFD_final_scroll_delay(int delay)
+{
+#ifdef LCD_SCROLL_HEX
+	CFile::writeIntHex(VFD_final_scroll_delay_proc, delay);
+#else
+	CFile::writeInt(VFD_final_scroll_delay_proc, delay);
+#endif
+}
+
+void eLCD::set_VFD_scroll_repeats(int delay)
+{
+	CFile::writeInt(VFD_scroll_repeats_proc, delay);
 }
 
 #if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)

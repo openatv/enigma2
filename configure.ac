@@ -777,6 +777,10 @@ if test "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920"; then
 	AC_DEFINE(LCD_DM900_Y_OFFSET, 4,[define LCD Y offset for dm900 and dm920])
 fi
 
+if test "$BOXTYPE" == "sf4008" -o "$BOXTYPE" == "beyonwizu4"; then
+	AC_DEFINE(LCD_SCROLL_HEX, 1,[define LCD scroll values in hex])
+fi
+
 AC_ARG_WITH(libsdl,
 	AS_HELP_STRING([--with-libsdl],[use libsdl, yes or no]),
 	[with_libsdl=$withval],[with_libsdl=no])

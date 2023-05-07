@@ -541,22 +541,18 @@ def InitLcd():
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
-		if BoxInfo.getItem("VFD_scroll_repeats") and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_repeats"):
 			def scroll_repeats(el):
-				open(BoxInfo.getItem("VFD_scroll_repeats"), "w").write(el.value)
+				eDBoxLCD.getInstance().set_VFD_scroll_repeats(int(el.value))
 			choicelist = [("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("500", _("Continues"))]
 			config.usage.vfd_scroll_repeats = ConfigSelection(default="3", choices=choicelist)
 			config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback=False)
 		else:
 			config.usage.vfd_scroll_repeats = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_scroll_delay") and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_delay"):
 			def scroll_delay(el):
-				# add workaround for Boxes who need hex code
-				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
-					open(BoxInfo.getItem("VFD_scroll_delay"), "w").write(hex(int(el.value)))
-				else:
-					open(BoxInfo.getItem("VFD_scroll_delay"), "w").write(str(el.value))
+				eDBoxLCD.getInstance().set_VFD_scroll_delay(int(el.value))
 			config.usage.vfd_scroll_delay = ConfigSlider(default=150, increment=10, limits=(0, 500))
 			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback=False)
 			config.lcd.hdd = ConfigYesNo(default=True)
@@ -564,13 +560,9 @@ def InitLcd():
 			config.lcd.hdd = ConfigNothing()
 			config.usage.vfd_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_initial_scroll_delay") and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_initial_scroll_delay"):
 			def initial_scroll_delay(el):
-				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
-					# add workaround for Boxes who need hex code
-					open(BoxInfo.getItem("VFD_initial_scroll_delay"), "w").write(hex(int(el.value)))
-				else:
-					open(BoxInfo.getItem("VFD_initial_scroll_delay"), "w").write(el.value)
+				eDBoxLCD.getInstance().set_VFD_initial_scroll_delay(int(el.value))
 
 			config.usage.vfd_initial_scroll_delay = ConfigSelection(choices=[
 				("3000", "3 %s" % _("Seconds")),
@@ -584,13 +576,9 @@ def InitLcd():
 		else:
 			config.usage.vfd_initial_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_final_scroll_delay") and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_final_scroll_delay"):
 			def final_scroll_delay(el):
-				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
-					# add workaround for Boxes who need hex code
-					open(BoxInfo.getItem("VFD_final_scroll_delay"), "w").write(hex(int(el.value)))
-				else:
-					open(BoxInfo.getItem("VFD_final_scroll_delay"), "w").write(el.value)
+				eDBoxLCD.getInstance().set_VFD_final_scroll_delay(int(el.value))
 
 			config.usage.vfd_final_scroll_delay = ConfigSelection(choices=[
 				("3000", "3 %s" % _("Seconds")),
