@@ -2,11 +2,10 @@ from bisect import insort
 from datetime import datetime
 from os import access, fsync, makedirs, remove, rename, statvfs, W_OK
 from os.path import exists, isdir, realpath, ismount
-from sys import maxsize
 from threading import Thread, Timer as ThreadTimer
 from time import ctime, localtime, strftime, time
 
-from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eServiceEventEnums, eServiceReference, iRecordableService, quitMainloop, eActionMap, setPreferredTuner, eServiceCenter, pNavigation
+from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eServiceEventEnums, eServiceReference, iRecordableService, quitMainloop, eActionMap, setPreferredTuner, pNavigation
 
 import NavigationInstance
 from timer import Timer, TimerEntry
@@ -23,7 +22,6 @@ from ServiceReference import ServiceReference
 from Tools.ASCIItranslit import legacyEncode
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename
 from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
-from Tools.ServiceReference import service_types_tv_ref, service_types_radio_ref
 from Tools import Trashcan
 from Tools.XMLTools import stringToXML
 
@@ -36,8 +34,6 @@ from Tools.XMLTools import stringToXML
 InfoBar = False
 
 MODULE_NAME = __name__.split(".")[-1]
-SERVICE_TYPES_TV = service_types_tv_ref.toString()
-SERVICE_TYPES_RADIO = service_types_radio_ref.toString()
 DEBUG = config.crash.debugTimers.value
 
 TIMER_XML_FILE = resolveFilename(SCOPE_CONFIG, "timers.xml")
@@ -207,13 +203,13 @@ class RecordTimer(Timer):
 		begin = int(timerDom.get("begin"))
 		end = int(timerDom.get("end"))
 		justplay = int(timerDom.get("justplay") or "0")
-		marginBefore = int(timerDom.get("marginBefore") or "0")
+		marginBefore = int(timerDom.get("marginBefore") or "-1")
 		eventBegin = int(timerDom.get("eventBegin") or "0")
 		eventEnd = int(timerDom.get("eventEnd") or "0")
-		marginAfter = int(timerDom.get("marginAfter") or "0")
-		if marginBefore == 0:
+		marginAfter = int(timerDom.get("marginAfter") or "-1")
+		if marginBefore == -1:
 			marginBefore = (getattr(config.recording, "zap_margin_before" if justplay else "margin_before").value * 60)
-		if marginAfter == 0:
+		if marginAfter == -1:
 			marginAfter = (getattr(config.recording, "zap_margin_after" if justplay else "margin_after").value * 60)
 		if eventBegin == 0:
 			eventBegin = begin + marginBefore
@@ -396,6 +392,8 @@ class RecordTimer(Timer):
 		timer.timeChanged()
 		print("[RecordTimer] Timer '%s'." % str(timer))
 		timer.Timer = self
+		if not timer.log_entries:
+			timer.log(0, "Timer created")
 		self.addTimerEntry(timer)
 		for callback in self.onTimerAdded:  # Trigger onTimerAdded callbacks.
 			callback(timer)
@@ -591,24 +589,6 @@ def findSafeRecordPath(dirname):  # Also called from InfoBarGenerics.
 	return dirname
 
 
-def getBqRootStr(reference):
-	reference = reference.toString()
-	if reference.startswith("1:0:2:") or reference.startswith("1:0:A:"):
-		serviceTypes = SERVICE_TYPES_RADIO
-		if config.usage.multibouquet.value:
-			bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
-		else:
-			bqRootStr = "%s FROM BOUQUET \"userbouquet.favourites.radio\" ORDER BY bouquet" % serviceTypes
-	else:
-		serviceTypes = SERVICE_TYPES_TV
-		if config.usage.multibouquet.value:
-			bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
-		else:
-			bqRootStr = "%s FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet" % serviceTypes
-
-	return bqRootStr
-
-
 def createRecordTimerEntry(timer):
 	return RecordTimerEntry(
 		timer.service_ref, timer.begin, timer.end, timer.name, timer.description, timer.eit, timer.disabled,
@@ -765,7 +745,6 @@ class RecordTimerEntry(TimerEntry, object):
 				Screens.Standby.TVinStandby.skipHdmiCecNow("zapandrecordtimer")
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
-					# eActionMap.getInstance().bindAction("", -sys.maxsize - 1, self.keypress)
 					# Set service to zap after standby.
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
 					Screens.Standby.inStandby.paused_service = None
@@ -922,57 +901,9 @@ class RecordTimerEntry(TimerEntry, object):
 					Screens.Standby.inStandby.Power()
 				else:
 					self.log(11, "Zapping.")
-					found = False
-					notFound = False
 					NavigationInstance.instance.isMovieplayerActive()
-					from Screens.ChannelSelection import ChannelSelection
-					ChannelSelectionInstance = ChannelSelection.instance
-					if ChannelSelectionInstance:
-						bqRootStr = getBqRootStr(self.service_ref.ref)
-						serviceHandler = eServiceCenter.getInstance()
-						rootBouquet = eServiceReference(bqRootStr)
-						bouquet = eServiceReference(bqRootStr)
-						bouquetList = serviceHandler.list(bouquet)
-						# We need a way out of the loop, if channel is not in bouquets.
-						bouquetCount = 0
-						bouquets = []
-						if bouquetList is not None:
-							while True:
-								bouquet = bouquetList.getNext()
-								# Can we make it easier, or find a way to make another way?
-								if bouquets == []:
-									bouquets.append(bouquet)
-								else:
-									for item in bouquets:
-										if item != bouquet:
-											bouquets.append(bouquet)
-										else:
-											bouquetCount += 1
-								if bouquetCount >= 5:
-									notFound = True
-									break
-								if bouquet.flags & eServiceReference.isDirectory:
-									ChannelSelectionInstance.clearPath()
-									ChannelSelectionInstance.setRoot(bouquet)
-									servicelist = serviceHandler.list(bouquet)
-									if servicelist is not None:
-										serviceIterator = servicelist.getNext()
-										while serviceIterator.valid():
-											if self.service_ref.ref == serviceIterator:
-												break
-											serviceIterator = servicelist.getNext()
-										if self.service_ref.ref == serviceIterator:
-											break
-							if found:
-								ChannelSelectionInstance.enterPath(rootBouquet)
-								ChannelSelectionInstance.enterPath(bouquet)
-								ChannelSelectionInstance.saveRoot()
-								ChannelSelectionInstance.saveChannel(self.service_ref.ref)
-						if found:
-							ChannelSelectionInstance.addToHistory(self.service_ref.ref)
-					if notFound:
-						# Can we get a result for that?  See if you want to delete the running timer.
-						self.switchToAll()
+					if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
+						InfoBar.instance.servicelist.performZap(self.service_ref.ref)
 					else:
 						NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
@@ -1160,9 +1091,12 @@ class RecordTimerEntry(TimerEntry, object):
 			if not access(dirname, W_OK):
 				self.stopMountText(None, cmd)
 		elif cmd == "freespace":
-			s = statvfs(dirname)
-			if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
-				self.stopMountText(None, cmd)
+			try:
+				s = statvfs(dirname)
+				if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
+					self.stopMountText(None, cmd)
+			except FileNotFoundError:
+				self.stopMountText(None, "writeable")
 
 	def stopMountText(self, thread, cmd):
 		if thread and thread.is_alive():
@@ -1198,7 +1132,7 @@ class RecordTimerEntry(TimerEntry, object):
 		for cmd in ("writeable", "freespace"):
 			print("[RecordTimer] Starting thread: '%s'." % cmd)
 			processThread = Thread(target=self.mountTest, args=(dirname, cmd))
-			timerThread = ThreadTimer(3, self.stopMountText, args=(processThread, cmd))
+			timerThread = ThreadTimer(5, self.stopMountText, args=(processThread, cmd))
 			timerThread.start()
 			processThread.start()
 			processThread.join()
@@ -1397,93 +1331,15 @@ class RecordTimerEntry(TimerEntry, object):
 			self.log(13, "Okay, zapped away.")
 			self.messageString += _("The TV was switched to the recording service!\n")
 			self.messageStringShow = True
-			found = False
-			notFound = False
 			# NavigationInstance.instance.stopUserServices()
-			from Screens.ChannelSelection import ChannelSelection
-			ChannelSelectionInstance = ChannelSelection.instance
-			if ChannelSelectionInstance:
-				bqRootStr = getBqRootStr(self.service_ref.ref)
-				serviceHandler = eServiceCenter.getInstance()
-				rootBouquet = eServiceReference(bqRootStr)
-				bouquet = eServiceReference(bqRootStr)
-				bouquetList = serviceHandler.list(bouquet)
-				# We need a way out of the loop, if channel is not in bouquets.
-				bouquetCount = 0
-				bouquets = []
-				if bouquetList is not None:
-					while True:
-						bouquet = bouquetList.getNext()
-						# Can we make it easier, or find a way to make another way?
-						if bouquets == []:
-							bouquets.append(bouquet)
-						else:
-							for item in bouquets:
-								if item != bouquet:
-									bouquets.append(bouquet)
-								else:
-									bouquetCount += 1
-						if bouquetCount >= 5:
-							notFound = True
-							break
-						if bouquet.flags & eServiceReference.isDirectory:
-							ChannelSelectionInstance.clearPath()
-							ChannelSelectionInstance.setRoot(bouquet)
-							servicelist = serviceHandler.list(bouquet)
-							if servicelist is not None:
-								serviceIterator = servicelist.getNext()
-								while serviceIterator.valid():
-									if self.service_ref.ref == serviceIterator:
-										found = True
-										break
-									serviceIterator = servicelist.getNext()
-								if self.service_ref.ref == serviceIterator:
-									found = True
-									break
-					if found:
-						ChannelSelectionInstance.enterPath(rootBouquet)
-						ChannelSelectionInstance.enterPath(bouquet)
-						ChannelSelectionInstance.saveRoot()
-						ChannelSelectionInstance.saveChannel(self.service_ref.ref)
-				if found:
-					ChannelSelectionInstance.addToHistory(self.service_ref.ref)
-			if notFound:
-				# Can we get a result for that?  See if you want to delete the running timer.
-				self.switchToAll()
+			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
+				InfoBar.instance.servicelist.performZap(self.service_ref.ref)
 			else:
 				NavigationInstance.instance.playService(self.service_ref.ref)
 			self.justTriedFreeingTuner = True
 		else:
 			self.log(14, "User didn't want to zap away, recording will probably fail!")
 		self.messageBoxAnswerPending = False
-
-	def switchToAll(self):
-		refStr = self.service_ref.ref.toString()
-		global InfoBar
-		if not InfoBar:
-			from Screens.InfoBar import InfoBar
-		if refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:"):
-			if InfoBar.instance.servicelist.mode != 1:
-				InfoBar.instance.servicelist.setModeRadio()
-				InfoBar.instance.servicelist.radioTV = 1
-			InfoBar.instance.servicelist.clearPath()
-			rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet")
-			bouquet = eServiceReference("%s ORDER BY name" % SERVICE_TYPES_RADIO)
-		else:
-			if InfoBar.instance.servicelist.mode != 0:
-				InfoBar.instance.servicelist.setModeTv()
-				InfoBar.instance.servicelist.radioTV = 0
-			InfoBar.instance.servicelist.clearPath()
-			rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet")
-			bouquet = eServiceReference("%s ORDER BY name" % SERVICE_TYPES_TV)
-		if InfoBar.instance.servicelist.bouquet_root != rootBouquet:
-			InfoBar.instance.servicelist.bouquet_root = rootBouquet
-		InfoBar.instance.servicelist.enterPath(bouquet)
-		InfoBar.instance.servicelist.setCurrentSelection(self.service_ref.ref)
-		InfoBar.instance.servicelist.zap(enable_pipzap=True)
-		InfoBar.instance.servicelist.correctChannelNumber()
-		InfoBar.instance.servicelist.startRoot = bouquet
-		InfoBar.instance.servicelist.addToHistory(self.service_ref.ref)
 
 	def check_justplay(self):
 		if self.justplay:

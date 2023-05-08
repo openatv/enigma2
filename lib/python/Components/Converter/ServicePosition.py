@@ -183,7 +183,7 @@ class ServicePosition(Poll, Converter):
 						return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 			elif config.usage.swap_media_time_display_on_osd.value == "2":  # Mins Secs
 				if self.type == self.TYPE_LENGTH:
-						return sign_l + "%d:%02d" % (l / 60, l % 60)
+					return sign_l + "%d:%02d" % (l / 60, l % 60)
 				elif self.type == self.TYPE_POSITION:
 					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 60, p % 60)
@@ -381,7 +381,7 @@ class ServicePosition(Poll, Converter):
 						return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 			elif config.usage.swap_media_time_display_on_vfd.value == "2":  # Mins Secs
 				if self.type == self.TYPE_VFD_LENGTH:
-						return sign_l + "%d:%02d" % (l / 60, l % 60)
+					return sign_l + "%d:%02d" % (l / 60, l % 60)
 				elif self.type == self.TYPE_VFD_POSITION:
 					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 60, p % 60)

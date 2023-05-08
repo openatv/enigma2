@@ -126,9 +126,9 @@
 		<item level="0" text="Turn on the control LED" description="Control LED can be turned on or off here." requires="PowerLed2">config.usage.lcd_powerled2</item>
 		<item level="0" text="Power LED State in Standby" description="Power LED state during standby." requires="StandbyPowerLed">config.usage.lcd_standbypowerled</item>
 		<item level="0" text="Power LED State in Deep-Standby" description="Power LED state during deep-standby." requires="SuspendPowerLed">config.usage.lcd_deepstandbypowerled</item>
-		<item level="0" text="Operating LED status while running" description="With this option you can switch the LED color or deactivate the LED." requires="LedPowerColor">config.usage.lcd_ledpowercolor</item>
-		<item level="0" text="Operating LED status in standby mode" description="With this option you can switch the LED color or deactivate the LED." requires="LedStandbyColor">config.usage.lcd_ledstandbycolor</item>
-		<item level="0" text="Operating LED status in deep standby mode" description="With this option you can switch the LED color or deactivate the LED." requires="LedSuspendColor">config.usage.lcd_ledsuspendcolor</item>
+		<item level="0" text="Operating LED status while running" description="With this option you can switch the LED color or deactivate the LED." requires="LEDPowerColor">config.usage.lcd_ledpowercolor</item>
+		<item level="0" text="Operating LED status in standby mode" description="With this option you can switch the LED color or deactivate the LED." requires="LEDStandbyColor">config.usage.lcd_ledstandbycolor</item>
+		<item level="0" text="Operating LED status in deep standby mode" description="With this option you can switch the LED color or deactivate the LED." requires="LEDSuspendColor">config.usage.lcd_ledsuspendcolor</item>
 		<item level="0" text="Status of the display during operation" description="With this option you can switch off the display during operation." requires="Power4x7On">config.usage.lcd_power4x7on</item>
 		<item level="0" text="Status of the display in standby mode" description="With this option you can switch off the display in Standby Mode." requires="Power4x7Standby">config.usage.lcd_power4x7standby</item>
 		<item level="0" text="Status of the display in deep standby" description="With this option you can switch off the display in Deep Standby Mode." requires="Power4x7Suspend">config.usage.lcd_power4x7suspend</item>
@@ -182,7 +182,7 @@
 		<item level="2" text="Enable ViaSat EPG" description="Use ViaSat EPG information when it is available.">config.epg.viasat</item>
 		<item level="2" text="Enable Netmed EPG" description="Use Netmed EPG information when it is available.">config.epg.netmed</item>
 		<item level="2" text="Enable Virgin EPG" description="Use Virgin EPG information when it is available.">config.epg.virgin</item>
-		<item level="2" text="Enable OpenTV EPG" description="Use OpenTV EPG information when it is available.">config.epg.opentv</item>
+		<item level="2" text="Enable OpenTV EPG" description="Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG.">config.epg.opentv</item>
 		<item level="2" text="Maximum number of days in EPG" description="Use for load only x days in EPG">config.epg.maxdays</item>
 		<item level="2" text="Keep EPG history (in minutes)" description="Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished.">config.epg.histminutes</item>
 		<item level="2" text="Include EIT in http streams" description="When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG.">config.streaming.stream_eit</item>
@@ -310,7 +310,7 @@
 		<if conditional="not config.factory.resetFull.value">
 			<item level="0" text="Reset network configuration" description="Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted.">config.factory.resetNetwork</item>
 			<item level="0" text="Remove all bouquet/tuning data" description="Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned." conditional="self.bouquets">config.factory.resetBouquets</item>
-			<item level="0" text="Remove all user interface data" description="Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions." conditional="self.userInterfaces">config.factory.resetUserInterfaces</item>
+			<item level="0" text="Remove all user interface data" description="Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions." conditional="self.userInterfaces">config.factory.resetUserInterfaces</item>
 			<item level="0" text="Remove all network mount data" description="Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources." conditional="self.mounts">config.factory.resetMounts</item>
 			<item level="0" text="Remove all plugin setting data" description="Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured." conditional="self.plugins">config.factory.resetPlugins</item>
 			<item level="0" text="Remove all resume point data" description="Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected." conditional="self.resumePoints">config.factory.resetResumePoints</item>
@@ -319,6 +319,9 @@
 			<item level="0" text="Remove all timer data" description="Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers." conditional="len(self.timers)">config.factory.resetTimers</item>
 			<item level="0" text="Remove all other data" description="Select 'Yes' to remove all other files and directories not covered by the options above." conditional="len(self.others)">config.factory.resetOthers</item>
 		</if>
+	</setup>
+	<setup key="FlashExpander" title="Flash Expander">
+		<item level="0" text="Target location" description="Choose the target location for the expanded '/usr' directory.">config.flashexpander.location</item>
 	</setup>
 	<setup key="HardDisk" title="Hard Disk Settings" showOpenWebif="1">
 		<item level="0" text="Hard disk standby after" description="Configure the hard disk drive to go to standby after the specified idle time.">config.usage.hdd_standby</item>
@@ -378,7 +381,14 @@
 		<!-- This is just a placeholder. -->
 	</setup>
 	<setup key="Keyboard" title="Keyboard Settings" showOpenWebif="1">
-		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
+		<item level="0" text="Keyboard" description="Select the type of keyboard connected to the %s %s.">config.keyboard.keymap</item>
+	</setup>
+	<setup key="LEDs" title="LED Settings" requires="LEDColorControl" showOpenWebif="1">
+		<item level="1" text="LED Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.default_color</item>
+		<item level="1" text="LED Brightness" description="LED brightness during normal operations.">config.fp.led.default_brightness</item>
+		<item level="1" text="LED Idle Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.standby_color</item>
+		<item level="1" text="LED Idle Brightness" description="LED brightness during deep standby.">config.fp.led.standby_brightness</item>
+		<item level="1" text="LED Shutdown Color" description="Power LED state during deep-standby.">config.fp.led.shutdown_color</item>
 	</setup>
 	<setup key="Locale" title="Locale Selection Settings" menuTitle="Locale">
 		<item level="0" text="Locales to be displayed" description="Display the base locales or all locales for a language.">config.locales.packageLocales</item>
@@ -390,8 +400,9 @@
 		<item level="2" text="Show crash info on screen and write crash log for x times" description="If 'never', will write crash log despite that for the first crash." requires="config.crash.bsodpython">config.crash.bsodhide</item>
 		<item level="2" text="Restart GUI after x crashes" description="If 'never', will force restart despite that after 100 crashes." requires="config.crash.bsodpython">config.crash.bsodmax</item>
 		<item level="2" text="Enable debug log *" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
+		<item level="2" text="Include international data *" description="Enable this option to add international language and country load information detected during system boot to the debug log file.">config.crash.debugInternational</item>
 		<item level="2" text="Include MultiBoot data *" description="Enable this option to add MultiBoot information detected during system boot to the debug log file.">config.crash.debugMultiBoot</item>
-		<item level="2" text="Include keyboard data" description="Enable this option to add keyboard keymap data to the debug log file.">config.crash.debugKeyboards</item>
+		<item level="2" text="Include keyboard data" description="Enable this option to add keyboard key map data to the debug log file.">config.crash.debugKeyboards</item>
 		<item level="2" text="Include remote control data" description="Enable this option to add remote control data to the debug log file.">config.crash.debugRemoteControls</item>
 		<item level="2" text="Include action map data" description="Enable this option to add action map / remote control mapping data to the debug log file.">config.crash.debugActionMaps</item>
 		<item level="2" text="Include screen load data" description="Enable this option to add screen names and resolution data to the debug log file.">config.crash.debugScreens</item>
@@ -401,9 +412,6 @@
 		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file.">config.crash.debugDVBScan</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in extensions list" description="Allows you to show/hide Log Manager in extensions (BLUE button).">config.logmanager.showinextensions</item>
-		<!--item level="2" text="User name" description="Enter your forum user name, to make it easier trace logs.">config.logmanager.user</item-->
-		<!--item level="2" text="e-Mail address" description="Enter your email address to send a copy of the log to.">config.logmanager.useremail</item-->
-		<!--item level="2" text="Send yourself a copy" description="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item-->
 		<item level="2" text="Maximum no of days" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB)" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 		<item level="2" text="Crash at skin error for debug reasons" description="Select 'No' to only write a log message to the debug log file.">config.crash.skin_error_crash</item>
@@ -524,7 +532,6 @@
 		<item level="0" text="OPKG clean mode" description="When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online.">config.misc.opkgcleanmode</item>
 		<item level="0" text="Drivers" description="This allows you to show drivers modules in downloads">config.pluginfilter.drivers</item>
 		<item level="0" text="Extensions" description="This allows you to show extensions modules in downloads">config.pluginfilter.extensions</item>
-		<item level="0" text="Languages" description="This allows you to show languages in downloads">config.pluginfilter.po</item>
 		<item level="0" text="System Plugins" description="This allows you to show system plugin modules in downloads">config.pluginfilter.systemplugins</item>
 		<item level="0" text="Softcams" description="This allows you to show softcams modules in downloads" requires="SoftCam">config.pluginfilter.softcams</item>
 		<item level="0" text="Skin" description="This allows you to show skin modules in downloads">config.pluginfilter.skin</item>
@@ -606,8 +613,8 @@
 		<item level="0" text="Preparation time for recording" description="During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased.">config.recording.prepare_time</item>
 		<item level="0" text="Margin before recording" description="When nonzero, a recording will start the nominated period before the starting time indicated in the EPG.">config.recording.margin_before</item>
 		<item level="0" text="Margin after recording" description="When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG.">config.recording.margin_after</item>
+		<item level="0" text="Use Zap timer end times" description="Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default.">config.recording.zap_has_endtime</item>
 		<item level="0" text="Margin before zap" description="When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG.">config.recording.zap_margin_before</item>
-		<item level="0" text="Use Zap timer end time" description="When enabled, a new Zap timer will be created with activated end time.">config.recording.zap_has_endtime</item>
 		<item level="0" text="Margin after zap" description="When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG." conditional="config.recording.zap_has_endtime.value">config.recording.zap_margin_after</item>
 		<item level="2" text="Show message when recording starts" description="When enabled, a pop up message will be shown when a recording starts.">config.usage.show_message_when_recording_starts</item>
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
@@ -627,6 +634,7 @@
 		<item level="2" text="Include AIT in recordings" description="If enabled, AIT data is included in recordings.">config.recording.include_ait</item>
 		<item level="2" text="Show recording symbol" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
 		<item level="2" text="Show warning before restart" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI.">config.recording.warn_box_restart_rec_types</item>
+		<item level="2" text="Show free space in timer view" description="When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode.">config.recording.timerviewshowfreespace</item>
 	</setup>
 	<setup key="RecordTimer" title="RecordTimer Settings">
 		<item level="0" text="Timer type" description="Select the type of this timer.">self.timerType</item>
@@ -672,7 +680,7 @@
 		</if>
 	</setup>
 	<setup key="RemoteButton" title="Remote Control Button Settings" showOpenWebif="1">
-		<item level="2" text="Use Keymap *" description="Configure the current keymap file.">config.usage.keymap</item>
+		<item level="2" text="Use key map *" description="Configure the current key map file.">config.usage.keymap</item>
 		<item level="1" text="Action on short POWER button press" description="Configure the function of a short press on the power button.">config.usage.on_short_powerpress</item>
 		<item level="1" text="Action on long POWER button press" description="Configure the function of a long press on the power button.">config.usage.on_long_powerpress</item>
 		<item level="0" text="EPG button mode" description="Select what you want the EPG button to activate.">config.plisettings.PLIEPG_mode</item>
@@ -752,7 +760,7 @@
 	<setup key="Time" title="Time Settings" showOpenWebif="1">
 		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
 		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
-		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or Internet.">config.misc.SyncTimeUsing</item>
+		<item level="0" text="Sync time using" description="Synchronize system time using transponder or Internet.">config.misc.SyncTimeUsing</item>
 		<if conditional="config.misc.SyncTimeUsing.value == '1'">
 			<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 			<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval.">config.misc.useNTPminutes</item>

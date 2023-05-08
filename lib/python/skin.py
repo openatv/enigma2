@@ -379,7 +379,7 @@ def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
 		if "h" in val:
 			val = val.replace("h", "*%s" % fonts[font][2])
 		if "f" in val:
-			val = val.replace("f", "*%s" % getSkinFactor())
+			val = val.replace("f", "%s" % getSkinFactor())
 		try:
 			result = int(val)  # For speed try a simple number first.
 		except ValueError:
@@ -399,7 +399,7 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 			size = int(size)
 		except ValueError:
 			try:
-				val = size.replace("f", "*%s" % getSkinFactor())
+				val = size.replace("f", "%s" % getSkinFactor())
 				size = int(eval(val))
 			except Exception as err:
 				print("[Skin] Error (%s - %s): Font size in '%s', evaluated to '%s', can't be processed!" % (type(err).__name__, err, value, val))
@@ -425,7 +425,6 @@ def parseHorizontalAlignment(value):
 	options = {
 		"left": 0,
 		"center": 1,
-		"centre": 1,
 		"right": 2,
 		"block": 3
 	}
@@ -439,6 +438,24 @@ def parseInteger(value, default=0):
 		skinError("The value '%s' is not a valid integer" % value)
 		value = default
 	return value
+
+
+def parseItemAlignment(value):
+	options = {
+		"default": eListbox.itemAlignDefault,
+		"center": eListbox.itemAlignCenter,
+		"justify": eListbox.itemAlignJustify,
+	}
+	return parseOptions(options, "scrollbarItemAlignment", value, eListbox.itemAlignDefault)
+
+
+def parseListOrientation(value):
+	options = {
+		"vertical": 0b01,
+		"horizontal": 0b10,
+		"grid": 0b11
+	}
+	return options.get(value, 0b01)
 
 
 def parseOrientation(value):
@@ -528,40 +545,30 @@ def parseScaleFlags(value):
 		"scaleKeepAspect": BT_SCALE | BT_KEEP_ASPECT_RATIO,
 		"scaleLeftTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_TOP,
 		"scaleLeftCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-		"scaleLeftCentre": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 		"scaleLeftMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 		"scaleLeftBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
 		"scaleCenterTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
-		"scaleCentreTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
 		"scaleMiddleTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
 		"scaleCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-		"scaleCentre": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 		"scaleMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 		"scaleCenterBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-		"scaleCentreBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 		"scaleMiddleBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 		"scaleRightTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_TOP,
 		"scaleRightCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-		"scaleRightCentre": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"scaleRightMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"scaleRightBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
 		"moveLeftTop": BT_HALIGN_LEFT | BT_VALIGN_TOP,
 		"moveLeftCenter": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-		"moveLeftCentre": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 		"moveLeftMiddle": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 		"moveLeftBottom": BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
 		"moveCenterTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
-		"moveCentreTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
 		"moveMiddleTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
 		"moveCenter": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-		"moveCentre": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 		"moveMiddle": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 		"moveCenterBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-		"moveCentreBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 		"moveMiddleBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 		"moveRightTop": BT_HALIGN_RIGHT | BT_VALIGN_TOP,
 		"moveRightCenter": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-		"moveRightCentre": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"moveRightMiddle": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM
 	}
@@ -575,7 +582,9 @@ def parseScrollbarMode(value):
 		"showNever": eListbox.showNever,
 		"showLeft": eListbox.showLeftOnDemand,  # This value is deprecated to better allow option symmetry, use "showLeftOnDemand" instead.
 		"showLeftOnDemand": eListbox.showLeftOnDemand,
-		"showLeftAlways": eListbox.showLeftAlways
+		"showLeftAlways": eListbox.showLeftAlways,
+		"showTopOnDemand": eListbox.showTopOnDemand,
+		"showTopAlways": eListbox.showTopAlways
 	}
 	return parseOptions(options, "scrollbarMode", value, eListbox.showOnDemand)
 
@@ -607,7 +616,6 @@ def parseVerticalAlignment(value):
 	options = {
 		"top": 0,
 		"center": 1,
-		"centre": 1,
 		"middle": 1,
 		"bottom": 2
 	}
@@ -771,6 +779,13 @@ class AttributeParser:
 		# print("[Skin] DEBUG: Scale itemHeight %d -> %d." % (int(value), self.applyVerticalScale(value)))
 		self.guiObject.setItemHeight(self.applyVerticalScale(value))
 
+	def itemWidth(self, value):
+		# print("[Skin] DEBUG: Scale itemWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
+		self.guiObject.setItemWidth(self.applyHorizontalScale(value))
+
+	def listOrientation(self, value):  # Used by eListBox.
+		self.guiObject.setOrientation(parseListOrientation(value))
+
 	def noWrap(self, value):
 		self.guiObject.setNoWrap(1 if parseBoolean("nowrap", value) else 0)
 		# attribDeprecationWarning("noWrap", "wrap")
@@ -819,6 +834,9 @@ class AttributeParser:
 	def scrollbarbackgroundPixmap(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBackgroundPixmap' instead!
 		self.scrollbarBackgroundPixmap(value)
 		attribDeprecationWarning("scrollbarbackgroundPixmap", "scrollbarBackgroundPixmap")
+
+	def scrollbarItemAlignment(self, value):
+		self.guiObject.setItemAlignment(parseItemAlignment(value))
 
 	def scrollbarMode(self, value):
 		self.guiObject.setScrollbarMode(parseScrollbarMode(value))

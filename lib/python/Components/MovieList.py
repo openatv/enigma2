@@ -1,4 +1,3 @@
-from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
 import os
@@ -14,6 +13,7 @@ from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.TextBoundary import getTextBoundarySize
+from Tools.Trashcan import TRASHCAN
 from Screens.LocationBox import defaultInhibitDirs
 from ServiceReference import ServiceReference
 from Components.Renderer.Picon import getPiconName
@@ -27,7 +27,7 @@ MOVIE_EXTENSIONS = frozenset((".mpg", ".vob", ".wav", ".m4v", ".mkv", ".avi", ".
 KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDIO_EXTENSIONS)
 RECORD_EXTENSIONS = (".ts")
 
-cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
+cutsParser = struct.Struct('>QI')  # big-endian, 64-bit PTS and 32-bit type
 
 
 class MovieListData:
@@ -89,7 +89,7 @@ def moviePlayState(cutsFileName, ref, length):
 			if len(data) < cutsParser.size:
 				break
 			cut, cutType = cutsParser.unpack(data)
-			if cutType == 3: # undocumented, but 3 appears to be the stop
+			if cutType == 3:  # undocumented, but 3 appears to be the stop
 				cutPTS = cut
 			else:
 				lastCut = cut
@@ -298,7 +298,7 @@ class MovieList(GUIComponent):
 			else:
 				itemHeight = self.listHeight // config.movielist.itemsperpage.value
 		else:
-			itemHeight = 30 # some default (270/5)
+			itemHeight = 30  # some default (270/5)
 		self.itemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
 		self.instance.resize(eSize(self.listWidth, self.listHeight // itemHeight * itemHeight))
@@ -365,7 +365,7 @@ class MovieList(GUIComponent):
 					# if path ends in '/', p is blank.
 					p = os.path.split(p[0])
 				txt = p[1]
-				if txt == ".Trash":
+				if txt == TRASHCAN:
 					dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Trashcan")).width()
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconTrash))
 					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Deleted items")))
@@ -381,9 +381,9 @@ class MovieList(GUIComponent):
 		if (data == -1) or (data is None):
 			data = MovieListData()
 			cur_idx = self.l.getCurrentSelectionIndex()
-			x = self.list[cur_idx] # x = ref,info,begin,...
-			data.len = 0 #dont recalc movielist to speedup loading the list
-			self.list[cur_idx] = (x[0], x[1], x[2], data) #update entry in list... so next time we don't need to recalc
+			x = self.list[cur_idx]  # x = ref,info,begin,...
+			data.len = 0  # dont recalc movielist to speedup loading the list
+			self.list[cur_idx] = (x[0], x[1], x[2], data)  # update entry in list... so next time we don't need to recalc
 			if config.movielist.show_underscores.value:
 				data.txt = info.getName(serviceref)
 			else:
@@ -732,7 +732,7 @@ class MovieList(GUIComponent):
 		rtags = {}
 		for tag, movies in list(tags.items()):
 			if (len(movies) > 1) or (tag in realtags):
-				movies = tuple(movies) # a tuple can be hashed, but a list not
+				movies = tuple(movies)  # a tuple can be hashed, but a list not
 				item = rtags.get(movies, [])
 				if not item:
 					rtags[movies] = item
@@ -763,7 +763,7 @@ class MovieList(GUIComponent):
 				continue
 			else:
 				match = ' '.join(tags)
-				if len(match) > 2: #Omit small words
+				if len(match) > 2:  # Omit small words
 					self.tags[match] = set(tags)
 
 	def buildAlphaNumericSortKey(self, x):
@@ -833,7 +833,7 @@ class MovieList(GUIComponent):
 			lbl.visible = True
 		self.moveToCharTimer = eTimer()
 		self.moveToCharTimer.callback.append(self._moveToChrStr)
-		self.moveToCharTimer.start(1000, True) #time to wait for next key press to decide which letter to use...
+		self.moveToCharTimer.start(1000, True)  # time to wait for next key press to decide which letter to use...
 
 	def moveToString(self, char, lbl=None):
 		self._char = self._char + char.upper()
@@ -843,7 +843,7 @@ class MovieList(GUIComponent):
 			lbl.visible = True
 		self.moveToCharTimer = eTimer()
 		self.moveToCharTimer.callback.append(self._moveToChrStr)
-		self.moveToCharTimer.start(1000, True) #time to wait for next key press to decide which letter to use...
+		self.moveToCharTimer.start(1000, True)  # time to wait for next key press to decide which letter to use...
 
 	def _moveToChrStr(self):
 		currentIndex = self.instance.getCurrentIndex()
@@ -865,7 +865,7 @@ class MovieList(GUIComponent):
 					self.instance.moveSelectionTo(index + currentIndex + 1)
 					break
 		if found == False and currentIndex > 0:
-			itemsAbove = self.list[1:currentIndex] #first item (0) points parent folder - no point to include
+			itemsAbove = self.list[1:currentIndex]  # first item (0) points parent folder - no point to include
 			for index, item in enumerate(itemsAbove):
 				if item[1] == None:
 					continue
@@ -886,10 +886,10 @@ class MovieList(GUIComponent):
 
 
 def getShortName(name, serviceref):
-	if serviceref.flags & eServiceReference.mustDescent: #Directory
+	if serviceref.flags & eServiceReference.mustDescent:  # Directory
 		pathName = serviceref.getPath()
 		p = os.path.split(pathName)
-		if not p[1]: #if path ends in '/', p is blank.
+		if not p[1]:  # if path ends in '/', p is blank.
 			p = os.path.split(p[0])
 		return p[1].upper()
 	else:

@@ -15,21 +15,23 @@ class VAudioInfo(Poll, Converter):
 		self.poll_interval = 1000
 		self.poll_enabled = True
 		self.lang_strings = ("ger", "german", "deu")
-		self.codecs = {"01_dolbydigitalplus": ("digital+", "digitalplus", "ac3+", "e-ac-3"),
-				   "02_dolbydigital": ("ac3", "ac-3", "dolbydigital"),
-				   "03_mp3": ("mp3", ),
-				   "04_wma": ("wma", ),
-				   "05_flac": ("flac", ),
-				   "06_mpeg": ("mpeg", ),
-				   "07_lpcm": ("lpcm", ),
-				   "08_dts-hd": ("dts-hd", ),
-				   "09_dts": ("dts", ),
-				   "10_pcm": ("pcm", ),
-				}
-		self.codec_info = {"dolbydigitalplus": ("51", "20", "71"),
-				    "dolbydigital": ("51", "20", "71"),
-				    "wma": ("8", "9"),
-				  }
+		self.codecs = {
+			"01_dolbydigitalplus": ("digital+", "digitalplus", "ac3+", "e-ac-3"),
+			"02_dolbydigital": ("ac3", "ac-3", "dolbydigital"),
+			"03_mp3": ("mp3", ),
+			"04_wma": ("wma", ),
+			"05_flac": ("flac", ),
+			"06_mpeg": ("mpeg", ),
+			"07_lpcm": ("lpcm", ),
+			"08_dts-hd": ("dts-hd", ),
+			"09_dts": ("dts", ),
+			"10_pcm": ("pcm", ),
+		}
+		self.codec_info = {
+			"dolbydigitalplus": ("51", "20", "71"),
+			"dolbydigital": ("51", "20", "71"),
+			"wma": ("8", "9"),
+		}
 		self.type, self.interesting_events = {
 				"AudioIcon": (self.GET_AUDIO_ICON, (iPlayableService.evUpdatedInfo,)),
 				"AudioCodec": (self.GET_AUDIO_CODEC, (iPlayableService.evUpdatedInfo,)),
@@ -73,8 +75,7 @@ class VAudioInfo(Poll, Converter):
 		return description_str
 
 	def get_short(self, audioName):
-		import six
-		for return_codec, codecs in sorted(six.iteritems(self.codecs)):
+		for return_codec, codecs in sorted(iter(self.codecs.items())):
 			for codec in codecs:
 				if codec in audioName:
 					codec = return_codec.split('_')[1]

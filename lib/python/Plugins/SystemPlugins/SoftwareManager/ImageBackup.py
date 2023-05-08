@@ -4,7 +4,7 @@ from os.path import exists, isdir, isfile, join as pathjoin
 from subprocess import getoutput
 from time import localtime, strftime, time
 
-from Components.About import getChipSetString, getCPUBrand, getCPUInfoString
+from Components.About import getCPUBrand, getCPUInfoString
 from Components.ActionMap import ActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Harddisk import Freespace, getFolderSize
@@ -170,6 +170,7 @@ class ImageBackup(Screen):
 				self.IMGREVISION = BoxInfo.getItem("imgrevision")
 				self.IMGVERSION = BoxInfo.getItem("imgversion")
 				self.KERNEL = BoxInfo.getItem("kernel")
+				self.HasKexecMultiboot = BoxInfo.getItem("HasKexecMultiboot")
 
 				if BoxInfo.getItem("canRecovery"):
 					self.EMMCIMG = BoxInfo.getItem("canRecovery")[0]
@@ -213,8 +214,12 @@ class ImageBackup(Screen):
 				print("[Image Backup] USB RECOVERY = >%s< " % self.RECOVERY)
 				print("[Image Backup] DESTINATION = >%s< " % self.DIRECTORY)
 				print("[Image Backup] SLOT = >%s< " % self.SLOT)
+				print("[Image Backup] HasKexecMultiboot = >%s< " % self.HasKexecMultiboot)
+				print("[Image Backup] canMultiBoot = >%s< " %MultiBoot.canMultiBoot())
 
 				isNotCurrent = MultiBoot.getCurrentSlotCode() != answer[1]
+
+				print("[Image Backup] isNotCurrent = >%s< " %isNotCurrent)
 
 				if self.RECOVERY and not isNotCurrent:
 					print("[Image Backup] IMAGEDISTRO = >%s<" % self.DISTRO)
@@ -232,7 +237,7 @@ class ImageBackup(Screen):
 				self.DATE = strftime("%Y%m%d_%H%M", localtime(self.START))
 				self.MKFS_UBI = "/usr/sbin/mkfs.ubifs"
 				self.MKFS_TAR = "/bin/tar"
-				self.BZIP2 = "/usr/bin/bzip2"
+				self.BZIP2 = "/usr/bin/pbzip2"
 				self.MKFS_JFFS2 = "/usr/sbin/mkfs.jffs2"
 				self.UBINIZE = "/usr/sbin/ubinize"
 				self.NANDDUMP = "/usr/sbin/nanddump"
@@ -422,7 +427,10 @@ class ImageBackup(Screen):
 
 				cmdlist.append(self.makeEchoCreate("kerneldump"))
 				if MultiBoot.canMultiBoot() or self.MTDKERNEL.startswith("mmcblk0") or self.MACHINEBUILD in ("h8", "hzero"):
-					cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
+					if BoxInfo.getItem("HasKexecMultiboot"):
+						cmdlist.append("cp /%s %s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
+					else:
+						cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
 				else:
 					cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 
@@ -718,7 +726,7 @@ class ImageBackup(Screen):
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
 
 		if exists("/proc/stb/info/chipset"):
-			AboutText += _("Chipset: BCM%s") % getChipSetString().lower().replace("\n", "").replace("bcm", "") + "\n"
+			AboutText += _("Chipset: BCM%s") % BoxInfo.getItem("ChipsetString") + "\n"
 
 		cpu = getCPUInfoString()
 		AboutText += "%s: %s\n" % (_("CPU"), cpu[0])

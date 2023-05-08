@@ -1,4 +1,3 @@
-from __future__ import division
 from enigma import eDVBDB, eDVBResourceManager, getLinkedSlotID, isFBCLink
 from Screens.Screen import Screen
 from Components.SystemInfo import BoxInfo
@@ -374,12 +373,14 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def newConfig(self):
 		self.setTextKeyBlue()
-		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry,
-					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
-					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
-					 self.advancedType, self.advancedSCR, self.advancedDiction, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected, self.advancedUnicableTuningAlgo,
-					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.singleSatEntry,
-					 self.commandOrder, self.showAdditionalMotorOptions, self.cableScanType, self.terrestrialCountriesEntry, self.cableCountriesEntry, self.multiType)
+		checkList = (
+			self.configMode, self.diseqcModeEntry, self.advancedSatsEntry,
+			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
+			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
+			self.advancedType, self.advancedSCR, self.advancedDiction, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected, self.advancedUnicableTuningAlgo,
+			self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.singleSatEntry,
+			self.commandOrder, self.showAdditionalMotorOptions, self.cableScanType, self.terrestrialCountriesEntry, self.cableCountriesEntry, self.multiType
+		)
 		if self["config"].getCurrent() == self.multiType and self.multiType:
 			update_slots = [self.slotid]
 			from Components.NimManager import InitNimManager
@@ -452,7 +453,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				if currLnb.lof.value != "unicable":
 					currLnb.lof.value = "unicable"
 			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio, _("This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services.")))
-			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof, _("Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."))
+			self.advancedLof = getConfigListEntry(_("Type of LNB/Device"), currLnb.lof, _("Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."))
 			self.list.append(self.advancedLof)
 			if currLnb.lof.value == "user_defined":
 				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl, _("Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB.")))
@@ -460,7 +461,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold, _("Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB.")))
 
 			if currLnb.lof.value == "unicable":
-				self.advancedUnicable = getConfigListEntry(_("Unicable ") + _("Configuration mode"), currLnb.unicable, _("Select the type of Single Cable Reception device you are using."))
+				self.advancedUnicable = getConfigListEntry(_("Unicable ") + _("Type of device"), currLnb.unicable, _("Select the type of Single Cable Reception device you are using."))
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
 					self.advancedDiction = getConfigListEntry(_("Diction"), currLnb.dictionuser, _("Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."))
@@ -487,7 +488,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(self.advancedManufacturer)
 					if product_name in manufacturer.scr:
 						diction = manufacturer.diction[product_name].value
-						self.advancedType = getConfigListEntry(_("Type"), manufacturer.product, _("Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
+						self.advancedType = getConfigListEntry(_("Model"), manufacturer.product, _("Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
 						self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name], _("Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."))
 						self.list.append(self.advancedType)
 						self.list.append(self.advancedSCR)
@@ -501,7 +502,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(self.advancedManufacturer)
 					if product_name in manufacturer.scr:
 						diction = manufacturer.diction[product_name].value
-						self.advancedType = getConfigListEntry(_("Type"), manufacturer.product, _("Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
+						self.advancedType = getConfigListEntry(_("Model"), manufacturer.product, _("Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
 						self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name], _("Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR LNB uses to pass the requested transponder to the tuner."))
 						self.list.append(self.advancedType)
 						self.list.append(self.advancedSCR)
@@ -1027,9 +1028,11 @@ class NimSelection(Screen):
 					nimConfig = nimmanager.getNimConfig(x.slot).dvbs
 					text = nimConfig.configMode.value
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
-						text = {"loopthrough": _("Loop through to"),
-								 "equal": _("Equal to"),
-								 "satposdepends": _("Second cable of motorized LNB")}[nimConfig.configMode.value]
+						text = {
+								"loopthrough": _("Loop through to"),
+								"equal": _("Equal to"),
+								"satposdepends": _("Second cable of motorized LNB")
+							}[nimConfig.configMode.value]
 						if len(x.input_name) > 1:
 							text += " " + _("Tuner") + " " + ["A1", "A2", "B", "C"][int(nimConfig.connectedTo.value)]
 						else:

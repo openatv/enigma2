@@ -35,9 +35,9 @@ class HddMount(Screen):
 		<widget source="list" render="Listbox" position="10,50" size="620,450" scrollbarMode="showOnDemand" >
 			<convert type="TemplatedMultiContent">
 				{"template": [
-				 MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
-				 MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
-				 MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
+					MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
+					MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
+					MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
 				],
 				"fonts": [gFont("Regular", 24),gFont("Regular", 20)],
 				"itemHeight": 85

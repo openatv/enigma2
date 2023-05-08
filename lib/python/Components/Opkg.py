@@ -108,6 +108,7 @@ class OpkgComponent:
 	CMD_UPGRADE = 4
 	CMD_UPGRADE_LIST = 5
 	CMD_LIST_INSTALLED = 6
+	CMD_INFO = 7
 	# NOTE: The following commands are internal use only and should NOT be used by external modules!
 	CMD_CLEAN = 100
 	CMD_CLEAN_UPDATE = 101
@@ -140,6 +141,7 @@ class OpkgComponent:
 
 	def startCmd(self, cmd, args=None):
 		extra = []
+		consoleBuffer = 2048
 		for destination in opkgDestinations:
 			extra.append("--add-dest")
 			extra.append("%s:%s" % (destination, destination))
@@ -155,7 +157,7 @@ class OpkgComponent:
 			argv = extra + ["update"]
 		elif cmd == self.CMD_UPGRADE:
 			command = extra + ["upgrade"]
-			if args["testMode"]:
+			if "testMode" in args and args["testMode"]:
 				command.insert(0, "--noaction")
 			argv = command
 		elif cmd == self.CMD_SET_FLAG:
@@ -163,7 +165,7 @@ class OpkgComponent:
 			self.nextCommand = (self.CMD_UPGRADE_EXCLUDE, args)
 		elif cmd == self.CMD_UPGRADE_EXCLUDE:
 			command = extra + ["upgrade"]
-			if args["testMode"]:
+			if "testMode" in args and args["testMode"]:
 				command.insert(0, "--noaction")
 			argv = command
 			self.nextCommand = (self.CMD_RESET_FLAG, args)
@@ -195,12 +197,17 @@ class OpkgComponent:
 			self.excludeList = []
 			packages = args["package"].split() if args and "package" in args else []
 			argv = extra + ["list-installed"] + packages
+		if cmd == self.CMD_INFO:
+			argv = ["info"]
+			consoleBuffer = 131072
+			self.cmd.setBufferSize(128 * 1024)
+
 		print("[Opkg] Executing '%s' with '%s'." % (self.opkg, " ".join(argv)))
 		self.cache = ""
 		self.cachePtr = -1
+		self.cmd.setBufferSize(consoleBuffer)
 		self.cmd.dataAvail.append(self.cmdData)
 		self.cmd.appClosed.append(self.cmdFinished)
-		# self.cmd.setBufferSize(50)
 		argv.insert(0, self.opkg)
 		if self.cmd.execute(self.opkg, *argv):
 			self.cmdFinished(-1)
@@ -209,6 +216,8 @@ class OpkgComponent:
 		if PY3:
 			data = data.decode()
 		self.cache = "%s%s" % (self.cache, data)
+		if self.currentCommand == self.CMD_INFO:
+			return
 		while True:
 			linePtr = self.cache.find("\n", self.cachePtr + 1)
 			if linePtr == -1:
@@ -245,7 +254,7 @@ class OpkgComponent:
 				self.callCallbacks(self.EVENT_UPGRADE, argv[1])
 			elif line.startswith("Installing "):
 				self.callCallbacks(self.EVENT_INSTALL, argv[1])
-			elif line.startswith("Removing "):
+			elif line.startswith("Removing ") and not line.startswith("Removing obsolete file "):
 				self.callCallbacks(self.EVENT_REMOVE, argv[1])
 			elif line.startswith("Configuring "):
 				self.callCallbacks(self.EVENT_CONFIGURING, argv[1])
@@ -285,13 +294,16 @@ class OpkgComponent:
 	def cmdFinished(self, retVal):
 		self.cmd.dataAvail.remove(self.cmdData)
 		self.cmd.appClosed.remove(self.cmdFinished)
-		if config.crash.debugOpkg.value:
+		if config.crash.debugOpkg.value and self.currentCommand != self.CMD_INFO:
 			print("[Opkg] Opkg command '%s' output:\n%s" % (self.getCommandText(self.currentCommand), self.cache))
 		if self.nextCommand:
 			cmd, args = self.nextCommand
 			self.nextCommand = None
 			self.startCmd(cmd, args)
 		else:
+			if self.currentCommand == self.CMD_INFO and retVal == 0:
+				self.parseInfo(self.cache)
+				return
 			self.callCallbacks(self.EVENT_DONE if retVal == 0 else self.EVENT_ERROR)
 
 	def callCallbacks(self, event, parameter=None):
@@ -360,3 +372,79 @@ class OpkgComponent:
 			11: "Error",
 			12: "Modified"
 		}.get(event, "None")
+
+	def parseInfo(self, data=None):
+		ret = []
+		try:
+			packageInfo = {}
+			if data:
+				lines = data.splitlines()
+			for line in lines:
+				if line.startswith("Package:"):
+					package = line.split(":", 1)[1].strip()
+					description = ""
+					depends = ""
+					status = ""
+					section = ""
+					installed = "0"
+					architecture = ""
+					size = ""
+					maintainer = ""
+					version = ""
+					continue
+				if package is None:
+					continue
+				if line.startswith("Status:"):
+					status = line.split(":", 1)[1].strip()
+					if " installed" in status.lower():
+						installed = "1"
+				elif line.startswith("Section:"):
+					section = line.split(":", 1)[1].strip()
+				elif line.startswith("Architecture:"):
+					architecture = line.split(":", 1)[1].strip()
+				elif line.startswith("Size:"):
+					size = line.split(":", 1)[1].strip()
+				elif line.startswith("Maintainer:"):
+					maintainer = line.split(":", 1)[1].strip()
+				elif line.startswith("Depends:"):
+					depends = line.split(":", 1)[1].strip()
+				elif line.startswith("Version:"):
+					version = line.split(":", 1)[1].strip()
+				# TDOD : check description
+				elif line.startswith("Description:"):
+					description = line.split(":", 1)[1].strip()
+				elif description and line.startswith(" "):
+					description += line[:-1]
+				elif len(line) <= 1:
+					d = description.split(" ", 3)
+					if len(d) > 3:
+						if d[1] == "version":
+							description = d[3]
+						# TDOD : check this
+						if description.startswith("gitAUTOINC"):
+							description = description.split(" ", 1)[1]
+					if package in packageInfo:
+						v = packageInfo[package][0]
+						packageInfo[package][3] = v
+						packageInfo[package][2] = "1"
+						packageInfo[package][0] = version
+					else:
+						packageInfo.update({package: [version, description.strip(), installed, "0", section, architecture, size, maintainer, depends]})
+					package = None
+			keys = sorted(packageInfo.keys())
+			for name in keys:
+				ret.append({
+					"name": name,
+					"version": packageInfo[name][0],
+					"description": packageInfo[name][1],
+					"installed": packageInfo[name][2],
+					"update": packageInfo[name][3],
+					"section": packageInfo[name][4],
+					"architecture": packageInfo[name][5],
+					"size": packageInfo[name][6],
+					"maintainer": packageInfo[name][7],
+					"depends": packageInfo[name][8]
+				})
+		except IndexError as err:
+			print("[Opkg] parseInfo error: '%s'." % str(err))
+		self.callCallbacks(self.EVENT_DONE if ret else self.EVENT_ERROR, ret)

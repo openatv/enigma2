@@ -2711,6 +2711,109 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setCurrentSelection(tmp_ref)
 		self.revertMode = None
 
+	def switchToAll(self, sref):
+		if Screens.InfoBar.InfoBar.instance:
+			servicelist = Screens.InfoBar.InfoBar.instance.servicelist
+			if servicelist:
+				refStr = sref.toString()
+				if (refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:")) and config.usage.e1like_radio_mode.value:
+					typestr = "radio"
+					if servicelist.mode != 1:
+						servicelist.setModeRadio()
+						servicelist.radioTV = 1
+					bouquet = eServiceReference("%s ORDER BY name" % service_types_radio)
+				else:
+					typestr = "tv"
+					if servicelist.mode != 0:
+						servicelist.setModeTv()
+						servicelist.radioTV = 0
+					bouquet = eServiceReference("%s ORDER BY name" % service_types_tv)
+				servicelist.clearPath()
+				if config.usage.multibouquet.value:
+					rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.%s\" ORDER BY bouquet" % typestr)
+					if servicelist.bouquet_root != rootBouquet:
+						servicelist.bouquet_root = rootBouquet
+				servicelist.enterPath(bouquet)
+				servicelist.setCurrentSelection(sref)
+				servicelist.zap(enable_pipzap=True)
+				servicelist.correctChannelNumber()
+				servicelist.startRoot = bouquet
+				if servicelist.dopipzap:
+					servicelist.addToHistory(sref)
+
+	def performZap(self, sref):
+		def getBqRoot(reference):
+			reference = reference.toString()
+			isTV = True
+			if (reference.startswith("1:0:2:") or reference.startswith("1:0:A:")) and config.usage.e1like_radio_mode.value:
+				isTV = False
+				if config.usage.multibouquet.value:
+					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
+				else:
+					return (singlebouquet_radio_ref, False)
+			else:
+				if config.usage.multibouquet.value:
+					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
+				else:
+					return (singlebouquet_tv_ref, True)
+			return (eServiceReference(bqRootStr), isTV)
+
+		def finalZap(isTV, servicepath):
+			if "current" in servicepath:
+				self.saveChannel(sref)
+				self.setCurrentSelection(sref)
+				self.zap(enable_pipzap=True)
+				if self.dopipzap:
+					self.addToHistory(sref)
+				return
+			if isTV and self.mode != 0:
+				self.setModeTv()
+				self.radioTV = 0
+			if not isTV and self.mode != 1:
+				self.setModeRadio()
+				self.radioTV = 1
+			self.clearPath()
+			for bouquet in servicepath.split(";"):
+				if bouquet:
+					self.enterPath(eServiceReference(bouquet))
+			self.setCurrentSelection(sref)
+			self.zap(enable_pipzap=True)
+			self.correctChannelNumber()
+			self.startRoot = bouquet
+			if self.dopipzap:
+				self.addToHistory(sref)
+
+		def walk(serviceHandler, bouquet, level=0):
+			servicelist = serviceHandler.list(bouquet)
+			if servicelist is not None:
+				service = servicelist.getNext()
+				while service.valid():
+					if service.flags & eServiceReference.isDirectory:
+						if level == 0 and "userbouquet.LastScanned.tv" in service.toString():  # don't search in LastScanned
+							service = servicelist.getNext()
+							continue
+						found = walk(serviceHandler, service, level + 1)
+						if found:
+							return "%s;%s" % (bouquet.toString(), found)
+					elif service == sref:
+						if bouquet != self.getRoot():
+							if config.usage.multibouquet.value:
+								return "%s;" % bouquet.toString()
+							else:
+								return bouquet.toString()
+						else:
+							return "current"  # fast zap if channel found in current bouquet
+					service = servicelist.getNext()
+			return None
+
+		serviceHandler = eServiceCenter.getInstance()
+		bouquet, isTV = getBqRoot(sref)
+		found = walk(serviceHandler, bouquet)
+		if found:
+			finalZap(isTV, found)
+		else:
+			self.switchToAll(sref)
+
 
 class PiPZapSelection(ChannelSelection):
 	def __init__(self, session):

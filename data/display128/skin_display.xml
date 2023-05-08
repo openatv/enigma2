@@ -215,19 +215,19 @@
 	<screen name="EMCSelection_summary" position="fill">
 		<!-- Channel name -->
 		<widget source="parent.Service" render="Label" position="top" size="*,16" font="FdLcD;16" halign="center" noWrap="1">
-			<convert type="EMCMovieInfo">RecordServiceName</convert>
+			<convert type="MovieInfo">RecordServiceName</convert>
 		</widget>
 		<!-- Movie name -->
 		<widget source="parent.Service" render="Label" position="top" size="*,30" font="FdLcD;14" halign="center" valign="center">
-			<convert type="EMCEventName">Name</convert>
+			<convert type="EventName">Name</convert>
 		</widget>
 		<!-- Movie info -->
 		<panel position="bottom" size="*,16">
 			<widget source="parent.Service" render="Label" position="right" size="49,*" font="FdLcD;14" halign="right" noWrap="1">
-				<convert type="EMCMovieInfo">FileSize</convert>
+				<convert type="MovieInfo">FileSize</convert>
 			</widget>
 			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;14" halign="left" transparent="1">
-				<convert type="EMCServiceTime">Duration</convert>
+				<convert type="ServiceTime">Duration</convert>
 				<convert type="EMCClockToText">InMinutes</convert>
 			</widget>
 		</panel>

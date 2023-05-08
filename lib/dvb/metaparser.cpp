@@ -210,8 +210,10 @@ int eDVBMetaParser::updateMeta(const std::string &tsname)
 	ref.path = "";
 
 	CFile f(filename.c_str(), "w");
-	if (!f)
+	if (!f) {
+		eDebug("[eDVBMetaParser] error updateMeta, couldn't open '%s' for writing: %m", filename.c_str());
 		return -ENOENT;
+	}
 
 	if (ref.getName().empty())
 	{

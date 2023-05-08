@@ -3,7 +3,8 @@ from Plugins.Plugin import PluginDescriptor
 try:
 	from youtube_dl import YoutubeDL
 except ImportError:
-    YoutubeDL = None
+	YoutubeDL = None
+
 
 def zap(session, service, **kwargs):
 	errormsg = None
@@ -21,7 +22,7 @@ def zap(session, service, **kwargs):
 					if result and hasattr(result, "url"):
 						url = result['url']
 						print("[ChannelSelection] zap / YoutubeDL result url %s" % url)
-						return (url,errormsg)
+						return (url, errormsg)
 					else:
 						errormsg = "No Link found!"
 						print("[ChannelSelection] zap / YoutubeDL no streams")
@@ -34,6 +35,6 @@ def zap(session, service, **kwargs):
 
 def Plugins(**kwargs):
 	if YoutubeDL:
-		return [PluginDescriptor(name="YTDLWrapper", description="YTDLWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart = False, fnc=zap)]
+		return [PluginDescriptor(name="YTDLWrapper", description="YTDLWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart=False, fnc=zap)]
 	else:
 		return []

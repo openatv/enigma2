@@ -3,7 +3,7 @@ from Plugins.Plugin import PluginDescriptor
 try:
 	from yt_dlp import YoutubeDL
 except ImportError:
-    YoutubeDL = None
+	YoutubeDL = None
 
 
 def zap(session, service, **kwargs):

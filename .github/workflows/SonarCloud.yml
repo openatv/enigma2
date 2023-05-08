@@ -1,7 +1,7 @@
 name: SonarCloud
 on:
   push:
-    branches: [ 7.1 ]
+    branches: [ 7.2, master ]
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -45,9 +45,9 @@ jobs:
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v1
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           
       - name: Build enigma2 dependencies
         env:

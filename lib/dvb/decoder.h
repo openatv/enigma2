@@ -3,6 +3,9 @@
 
 #include <lib/base/object.h>
 #include <lib/dvb/demux.h>
+#ifdef DREAMNEXTGEN
+#include <lib/dvb/tsparser.h>
+#endif
 
 class eSocketNotifier;
 
@@ -12,6 +15,9 @@ class eDVBAudio: public iObject
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux, m_dev, m_is_freezed;
+#ifdef DREAMNEXTGEN
+	eTsParser *m_TsPaser;
+#endif
 public:
 	enum { aMPEG, aAC3, aDTS, aAAC, aAACHE, aLPCM, aDTSHD, aDDP, aDRA, aAC4 };
 	eDVBAudio(eDVBDemux *demux, int dev);
@@ -101,6 +107,9 @@ private:
 	ePtr<eDVBPCR> m_pcr;
 	ePtr<eDVBTText> m_text;
 	int m_vpid, m_vtype, m_apid, m_atype, m_pcrpid, m_textpid;
+#ifdef DREAMNEXTGEN
+	int m_width, m_height, m_framerate, m_aspect, m_progressive;
+#endif
 	enum
 	{
 		changeVideo = 1,
@@ -122,6 +131,9 @@ private:
 	sigc::signal1<void, struct videoEvent> m_video_event;
 	int m_video_clip_fd;
 	ePtr<eTimer> m_showSinglePicTimer;
+#ifdef DREAMNEXTGEN
+	void parseVideoInfo(); // called by timer
+#endif
 	int m_fcc_fd;
 	bool m_fcc_enable;
 	int m_fcc_state;
@@ -131,6 +143,9 @@ private:
 	int m_fcc_pcrpid;
 	void finishShowSinglePic(); // called by timer
 public:
+#ifdef DREAMNEXTGEN
+	enum { aMPEG, aAC3, aDTS, aAAC, aAACHE, aLPCM, aDTSHD, aDDP,UNKNOWN = -1, MPEG2=0, MPEG4_H264, VC1 = 3, MPEG4_Part2, VC1_SM, MPEG1, H265_HEVC, AVS = 16, AVS2 = 40 };
+#endif
 	enum { pidNone = -1 };
 	eTSMPEGDecoder(eDVBDemux *demux, int decoder);
 	virtual ~eTSMPEGDecoder();

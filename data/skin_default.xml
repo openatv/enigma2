@@ -130,7 +130,6 @@
 		<widget name="list" position="100,100" size="480,375" conditional="list" />
 		<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
-from __future__ import division
 from enigma import eSize, ePoint
 
 orgwidth = self.instance.size().width()
@@ -1406,14 +1405,6 @@ self.autoResize()
 	</screen>
 	<screen name="LogManagerViewLog" position="center,center" size="700,460" title="Log Manager" >
 		<widget name="list" position="5,10" size="690,450" font="Console;14" />
-	</screen>
-	<screen name="LogManagerFb" position="center,center" size="265,430" flags="wfNoBorder" title="">
-		<widget name="list" position="0,0" size="265,430" scrollbarMode="showOnDemand" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/logos/logo.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="AutoDiseqc" position="center,center" size="500,250" title="">
 		<widget source="statusbar" render="Label" position="10,5" zPosition="10" size="e-10,60" halign="center" valign="center" font="Regular;22" transparent="1" />

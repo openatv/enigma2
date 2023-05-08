@@ -8,7 +8,7 @@ import time
 
 from enigma import eConsoleAppContainer, eTimer
 
-from Components.About import about, getVersionString
+from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import ConfigIP, ConfigLocations, ConfigMacText, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
@@ -36,7 +36,7 @@ from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, fileExists, fileRead
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
-BASE_GROUP = "packagegroup-base" if float(getVersionString()) >= 4.0 else "task-base"
+BASE_GROUP = "packagegroup-base"
 
 
 class NetworkAdapterSelection(Screen, HelpableScreen):
@@ -241,6 +241,7 @@ class DNSSettings(Setup):
 			"dhcp-router": [list(x[1]) for x in self.getNetworkRoutes()],
 			"google": [[8, 8, 8, 8], [8, 8, 4, 4]],
 			"cloudflare": [[1, 1, 1, 1], [1, 0, 0, 1]],
+			"quad9": [[9, 9, 9, 9], [149, 112, 112, 10]],
 			"opendns-familyshield": [[208, 67, 222, 123], [208, 67, 220, 123]],
 			"opendns-home": [[208, 67, 222, 222], [208, 67, 220, 220]]
 		}
@@ -1888,7 +1889,7 @@ class NetworkSABnzbd(NetworkBaseScreen):
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def checkNetworkStateFinished(self, result, retval, extra_args=None):
-		if (float(getVersionString()) < 3.0 and result.find("mipsel/Packages.gz, wget returned 1") != -1) or (float(getVersionString()) >= 3.0 and result.find("mips32el/Packages.gz, wget returned 1") != -1):
+		if result.find("mips32el/Packages.gz, wget returned 1") != -1:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find("bad address") != -1:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -3541,7 +3542,7 @@ class NetworkSATPI(NetworkBaseScreen):
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def checkNetworkStateFinished(self, result, retval, extra_args=None):
-		if (float(getVersionString()) < 3.0 and result.find("mipsel/Packages.gz, wget returned 1") != -1) or (float(getVersionString()) >= 3.0 and result.find("mips32el/Packages.gz, wget returned 1") != -1):
+		if result.find("mips32el/Packages.gz, wget returned 1") != -1:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find("bad address") != -1:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)

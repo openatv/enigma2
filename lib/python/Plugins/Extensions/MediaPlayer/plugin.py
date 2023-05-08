@@ -886,15 +886,15 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		# check if MerlinMusicPlayer is installed and merlinmp3player.so is running
 		# so we need the right id to play now the mp3-file
 		elif self.filelist.getServiceRef().type == 4116:
-				if self.filelist.getSelection() is not None:
-					inst = self.filelist.getSelection()[0]
-					if isinstance(inst, eServiceReference):
-						path = inst.getPath()
-						service = eServiceReference(4097, 0, path)
-						self.playlist.addFile(service)
-						self.playlist.updateList()
-						if len(self.playlist) == 1:
-							self.changeEntry(0)
+			if self.filelist.getSelection() is not None:
+				inst = self.filelist.getSelection()[0]
+				if isinstance(inst, eServiceReference):
+					path = inst.getPath()
+					service = eServiceReference(4097, 0, path)
+					self.playlist.addFile(service)
+					self.playlist.updateList()
+					if len(self.playlist) == 1:
+						self.changeEntry(0)
 		else:
 			self.playlist.addFile(self.filelist.getServiceRef())
 			self.playlist.updateList()

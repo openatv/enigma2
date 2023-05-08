@@ -8,18 +8,23 @@ from subprocess import Popen, PIPE
 from time import localtime, strftime, time
 
 from Tools.CountryCodes import setISO3166
-from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, fileReadLines, resolveFilename
 
+# In this code the following meanings are used:
+# 	Country: An official country as recognized by ISO, eg "AU" for Australia.
+# 	Language: An official language as recognized by ISO, eg "en" for English.
+# 	Locale: An official language as spoken in a country, eg "en_AU" for English (Australian).
+
+MODULE_NAME = __name__.split(".")[-1]
 PACKAGER = "/usr/bin/opkg"
 PACKAGE_TEMPLATE = "enigma2-locale-%s"
-
 PERMANENT_LOCALES = ["de_DE", "en_US", "fr_FR"]
 
 languagePath = resolveFilename(SCOPE_LANGUAGE)
 try:
 	install("enigma2", languagePath, names=("ngettext", "pgettext"))
 except UnicodeDecodeError:
-	print("[International] Error: The language translation data in '%s' has failed to initialise!  Translations are not possible." % languagePath)
+	print("[International] Error: The language translation data in '%s' has failed to initialize!  Translations are not possible." % languagePath)
 	install("enigma2", "/", names=("ngettext", "pgettext"))
 bindtextdomain("enigma2", languagePath)
 textdomain("enigma2")
@@ -31,18 +36,13 @@ LANG_ENCODING = 3
 LANG_COUNTRYCODES = 4
 LANG_MAX = 4
 
-# In this code the following meanings are used:
-# 	Country: An official country as recognised by ISO, eg "AU" for Australia.
-# 	Language: An official language as recognised by ISO, eg "en" for English.
-# 	Locale: An official language as spoken in a country, eg "en_AU" for English (Australian).
-
 LANGUAGE_DATA = {
 	# DEVELOPER NOTE:
 	#
 	# Should this language table include the ISO three letter code for use in the subtitle code?
 	# Perhaps also have a flag to indicate that the language should be listed in the subtitle list?
 	#
-	# Fields: English Name, Translated Name, Localised Name, Encoding
+	# Fields: English Name, Translated Name, Localized Name, Encoding
 	# 	Character Set, (Tuple of ISO-3166 Alpha2 Country Codes).
 	#		NOTE: The first item of the tuple should be the
 	# 		default or commonly known country for the language.
@@ -55,7 +55,7 @@ LANGUAGE_DATA = {
 	# by Gstreamer.
 	#
 	# As noted above, if a language is used in more than one country then
-	# the default locale contry should be listed first.
+	# the default locale country should be listed first.
 	#
 	# https://www.loc.gov/standards/iso639-2/php/code_list.php
 	# https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
@@ -359,7 +359,7 @@ COUNTRY_DATA = {
 	"HM": ("HMD", "334", "Heard Island and McDonald Islands", _("Heard Island and McDonald Islands"), "Heard Island and McDonald Islands"),
 	"HN": ("HND", "340", "Honduras", _("Honduras"), "Honduras"),
 	"HR": ("HRV", "191", "Croatia", _("Croatia"), "Hrvatska"),
-	"HT": ("hti", "332", "Haiti", _("Haiti"), "Haïti"),
+	"HT": ("HTI", "332", "Haiti", _("Haiti"), "Haïti"),
 	"HU": ("HUN", "348", "Hungary", _("Hungary"), "Magyarország"),
 	"ID": ("IDN", "360", "Indonesia", _("Indonesia"), "Indonesia"),
 	"IE": ("IRL", "372", "Ireland", _("Ireland"), "Éire"),
@@ -535,6 +535,10 @@ CATEGORIES = [
 
 class International:
 	def __init__(self):
+		print("[International] International is initializing.")
+		lines = []
+		lines = fileReadLines(resolveFilename(SCOPE_CONFIG, "settings"), default=lines, source=MODULE_NAME)
+		self.debugMode = "config.crash.debugInternational=True" in lines
 		self.availablePackages = []
 		self.installedPackages = []
 		self.installedDirectories = []
@@ -582,7 +586,8 @@ class International:
 			if language not in self.languageList:
 				self.languageList.append(language)
 			count = len(packageLocales)
-			print("[International] Package '%s' supports %d locale%s '%s'." % (package, count, "" if count == 1 else "s", "', '".join(packageLocales)))
+			if self.debugMode:
+				print("[International] Package '%s' supports %d locale%s '%s'." % (package, count, "" if count == 1 else "s", "', '".join(packageLocales)))
 		self.localeList.sort()
 		self.languageList.sort()
 
@@ -602,7 +607,7 @@ class International:
 			try:
 				self.catalog = translation("enigma2", languagePath, languages=[locale], fallback=True)
 			except UnicodeDecodeError:
-				print("[International] Error: The language translation data in '%s' for '%s' ('%s') has failed to initialise!" % (languagePath, self.getLanguage(locale), locale))
+				print("[International] Error: The language translation data in '%s' for '%s' ('%s') has failed to initialize!" % (languagePath, self.getLanguage(locale), locale))
 				self.catalog = translation("enigma2", "/", fallback=True)
 			self.catalog.install(names=("ngettext", "pgettext"))
 			for category in CATEGORIES:
@@ -661,7 +666,8 @@ class International:
 			except OSError as err:
 				print("[International] getLanguagePackages Error %d: %s ('%s')" % (err.errno, err.strerror, command[0]))
 				availablePackages = []
-			print("[International] There are %d available locale/language packages in the repository '%s'." % (len(availablePackages), "', '".join(availablePackages)))
+			if self.debugMode:
+				print("[International] There are %d available locale/language packages in the repository '%s'." % (len(availablePackages), "', '".join(availablePackages)))
 		else:
 			availablePackages = self.availablePackages
 		return availablePackages
@@ -687,7 +693,8 @@ class International:
 					installedPackages = sorted(installedPackages)
 			except OSError as err:
 				print("[International] getInstalledPackages Error %d: %s ('%s')" % (err.errno, err.strerror, command[0]))
-			print("[International] There are %d installed locale/language packages '%s'." % (len(installedPackages), "', '".join(installedPackages)))
+			if self.debugMode:
+				print("[International] There are %d installed locale/language packages '%s'." % (len(installedPackages), "', '".join(installedPackages)))
 		else:
 			installedPackages = self.installedPackages
 		return installedPackages
@@ -696,7 +703,8 @@ class International:
 		if update:
 			global languagePath
 			installedDirectories = sorted(listdir(languagePath)) if isdir(languagePath) else []
-			print("[International] There are %d installed locale/language directories '%s'." % (len(installedDirectories), "', '".join(installedDirectories)))
+			if self.debugMode:
+				print("[International] There are %d installed locale/language directories '%s'." % (len(installedDirectories), "', '".join(installedDirectories)))
 		else:
 			installedDirectories = self.installedDirectories
 		return installedDirectories

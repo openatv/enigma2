@@ -293,9 +293,8 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qsoftware(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working Internet connection)")))
-		if BoxInfo.getItem("canImageBackup"):
-			self.sublist.append(QuickSubMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
-			self.sublist.append(QuickSubMenuEntryComponent("Complete Backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
+		self.sublist.append(QuickSubMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Complete Backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings", _("Backup your current settings"), _("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings", _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Show Default Backup Files", _("Show files backed up by default"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).")))
@@ -653,9 +652,9 @@ class QuickMenuDevices(Screen):
 		<widget source="devicelist" render="Listbox" position="30,46" size="780,450" font="Regular;16" scrollbarMode="showOnDemand" transparent="1" backgroundColorSelected="grey" foregroundColorSelected="black">
 		<convert type="TemplatedMultiContent">
 				{"template": [
-				 MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
-				 MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
-				 MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
+					MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
+					MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
+					MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
 				],
 				"fonts": [gFont("Regular", 24),gFont("Regular", 20)],
 				"itemHeight": 85

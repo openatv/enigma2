@@ -4,15 +4,18 @@
 #include <lib/python/python.h>
 #include <lib/gui/elistbox.h>
 
-class eListboxPythonStringContent: public virtual iListboxContent
+class eListboxPythonStringContent : public virtual iListboxContent
 {
 	DECLARE_REF(eListboxPythonStringContent);
+
 public:
 	eListboxPythonStringContent();
 	~eListboxPythonStringContent();
 
 	void setList(SWIG_PYOBJECT(ePyObject) list);
+	void setOrientation(int orientation);
 	void setItemHeight(int height);
+	void setItemWidth(int width);
 	PyObject *getCurrentSelection();
 	int getCurrentSelectionIndex() { return m_cursor; }
 	void invalidateEntry(int index);
@@ -22,7 +25,7 @@ public:
 protected:
 	void cursorHome();
 	void cursorEnd();
-	int cursorMove(int count=1);
+	int cursorMove(int count = 1);
 	int cursorValid();
 	int cursorSet(int n);
 	int cursorGet();
@@ -39,10 +42,12 @@ protected:
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
 	void setSize(const eSize &size);
 
-		/* the following functions always refer to the selected item */
+	/* the following functions always refer to the selected item */
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 
 	int getItemHeight() { return m_itemheight; }
+	int getItemWidth() { return m_itemwidth; }
+	int getOrientation() { return m_orientation; }
 
 private:
 	int m_cursor;
@@ -53,46 +58,62 @@ protected:
 	ePyObject m_list;
 	eSize m_itemsize;
 	int m_itemheight;
+	int m_itemwidth;
+	int m_orientation;
 #endif
 };
 
-class eListboxPythonConfigContent: public eListboxPythonStringContent
+class eListboxPythonConfigContent : public eListboxPythonStringContent
 {
 public:
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	void setSeperation(int sep) { m_seperation = sep; }
 	int currentCursorSelectable();
-	void setSlider(int height, int space) { m_slider_height = height; m_slider_space = space; }
+	void setSlider(int height, int space)
+	{
+		m_slider_height = height;
+		m_slider_space = space;
+	}
+
 private:
 	int m_seperation, m_slider_height, m_slider_space;
 	std::map<int, int> m_text_offset;
 };
 
-class eListboxPythonMultiContent: public eListboxPythonStringContent
+class eListboxPythonMultiContent : public eListboxPythonStringContent
 {
 	ePyObject m_buildFunc;
 	ePyObject m_selectableFunc;
 	ePyObject m_template;
 	eRect m_selection_clip;
 	gRegion m_clip, m_old_clip;
+
 public:
 	eListboxPythonMultiContent();
 	~eListboxPythonMultiContent();
-	enum { TYPE_TEXT, TYPE_PROGRESS, TYPE_PIXMAP, TYPE_PIXMAP_ALPHATEST, TYPE_PIXMAP_ALPHABLEND, TYPE_PROGRESS_PIXMAP };
+	enum
+	{
+		TYPE_TEXT,
+		TYPE_PROGRESS,
+		TYPE_PIXMAP,
+		TYPE_PIXMAP_ALPHATEST,
+		TYPE_PIXMAP_ALPHABLEND,
+		TYPE_PROGRESS_PIXMAP
+	};
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	int currentCursorSelectable();
 	void setList(SWIG_PYOBJECT(ePyObject) list);
 	void setFont(int fnt, gFont *font);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
 	void setSelectableFunc(SWIG_PYOBJECT(ePyObject) func);
-	void setItemHeight(int height);
-	void setSelectionClip(eRect &rect, bool update=false);
+	void setSelectionClip(eRect &rect, bool update = false);
 	void updateClip(gRegion &);
 	void resetClip();
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
+
 private:
-	std::map<int, ePtr<gFont> > m_fonts;
+	std::map<int, ePtr<gFont>> m_fonts;
 };
 
 #ifdef SWIG

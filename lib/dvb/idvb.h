@@ -834,7 +834,13 @@ public:
 			eventSizeChanged = VIDEO_EVENT_SIZE_CHANGED,
 			eventFrameRateChanged = VIDEO_EVENT_FRAME_RATE_CHANGED,
 			eventProgressiveChanged = 16,
+#ifdef DREAMNEXTGEN
+			eventGammaChanged = 17,
+			eventPtsValid = 32,
+			eventVideoDiscontDetected = 64
+#else
 			eventGammaChanged = 17
+#endif
 		} type;
 		unsigned char aspect;
 		unsigned short height;

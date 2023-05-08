@@ -129,6 +129,8 @@ def getCPUSerial():
 def _getCPUSpeedMhz():
 	if MODEL in ('hzero', 'h8', 'sfx6008', 'sfx6018'):
 		return 1200
+	elif MODEL in ('dreamone', 'dreamtwo', 'dreamseven'):
+		return 1800
 	elif MODEL in ('vuduo4k',):
 		return 2100
 	else:
@@ -161,6 +163,7 @@ def getCPUInfoString():
 					cpuSpeedMhz = int(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 100000000) * 100
 				except:
 					cpuSpeedMhz = "1500"
+
 		temperature = None
 		if isfile("/proc/stb/fp/temp_sensor_avs"):
 			temperature = fileReadLine("/proc/stb/fp/temp_sensor_avs", source=MODULE_NAME)
@@ -220,21 +223,7 @@ def getSystemTemperature():
 
 
 def getChipSetString():
-	if MODEL in ('dm7080', 'dm820'):
-		return "7435"
-	elif MODEL in ('dm520', 'dm525'):
-		return "73625"
-	elif MODEL in ('dm900', 'dm920', 'et13000', 'sf5008'):
-		return "7252S"
-	elif MODEL in ('hd51', 'vs1500', 'h7'):
-		return "7251S"
-	elif MODEL in ('alien5',):
-		return "S905D"
-	else:
-		chipset = fileReadLine("/proc/stb/info/chipset", source=MODULE_NAME)
-		if chipset is None:
-			return _("Undefined")
-		return str(chipset.lower().replace('\n', '').replace('bcm', '').replace('brcm', '').replace('sti', ''))
+	return str(BoxInfo.getItem("ChipsetString"))
 
 
 def getCPUBrand():

@@ -31,11 +31,7 @@ SUBDIRS += 7segment
 endif
 
 if HAVE_TEXTLCD
-if SPARK
-SUBDIRS += displaydualtext
-else
 SUBDIRS += displaytext
-endif
 endif
 
 if HAVE_COLORLCD3
@@ -52,6 +48,10 @@ endif
 
 if HAVE_COLORLCD220
 SUBDIRS += display220
+endif
+
+if HAVE_COLORLCD240
+SUBDIRS += display240
 endif
 
 if HAVE_COLORLCD390

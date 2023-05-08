@@ -18,11 +18,7 @@ extern "C" void tuxtxt_handlePressedKey(int key);
 eAutoInitP0<eTuxtxtApp> init_eTuxtxtApp(eAutoInitNumbers::lowlevel, "Tuxtxt");
 eTuxtxtApp *eTuxtxtApp::instance = NULL;
 
-#if HAVE_AMLOGIC
-eTuxtxtApp::eTuxtxtApp() : pid(0), demux(0), enableTtCaching(false), uiRunning(false), messagePump(eApp, 0, "eTuxtxtApp")
-#else
 eTuxtxtApp::eTuxtxtApp() : pid(0), enableTtCaching(false), uiRunning(false), messagePump(eApp, 0, "eTuxtxtApp")
-#endif
 {
 	CONNECT(messagePump.recv_msg, eTuxtxtApp::recvEvent);
 	pthread_mutex_init( &cacheChangeLock, 0 );

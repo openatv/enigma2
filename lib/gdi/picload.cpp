@@ -520,16 +520,15 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 
 			unsigned char *src = pic_buffer;
 			unsigned char *dst = pic_buffer24;
-			int a, r, g, b;
 			int bg_r = (background >> 16) & 0xFF;
 			int bg_g = (background >> 8) & 0xFF;
 			int bg_b = background & 0xFF;
 			for(int i = 0; i < pixel_cnt; i++)
 			{
-				r = (int)*src++;
-				g = (int)*src++;
-				b = (int)*src++;
-				a = (int)*src++;
+				int r = (int)*src++;
+				int g = (int)*src++;
+				int b = (int)*src++;
+				int a = (int)*src++;
 
 				*dst++ = ((r-bg_r)*a)/255 + bg_r;
 				*dst++ = ((g-bg_g)*a)/255 + bg_g;

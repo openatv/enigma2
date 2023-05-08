@@ -40,10 +40,6 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/fcc.cpp \
 	dvb/fccdecoder.cpp
 
-if HAVE_AMLOGIC
-dvb_libenigma_dvb_a_SOURCES += dvb/amldecoder.cpp
-endif
-
 dvbincludedir = $(pkgincludedir)/lib/dvb
 dvbinclude_HEADERS = \
 	dvb/cablescan.h \
@@ -90,6 +86,10 @@ dvbinclude_HEADERS = \
 	dvb/fcc.h \
 	dvb/fccdecoder.h
 
-if HAVE_AMLOGIC
-dvbinclude_HEADERS += dvb/amldecoder.h
+if DREAMNEXTGEN
+dvbinclude_HEADERS += \
+	dvb/alsa.h \
+	dvb/decoders.h \
+	dvb/ringbuffer.h \
+	dvb/tsparser.h
 endif

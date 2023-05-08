@@ -49,7 +49,7 @@
 			<!-- Menu / Setup / Video Menu -->
 			<menu key="video_menu" level="0" text="Video" weight="0">
 				<item key="video_setup" level="0" text="Video Settings" weight="0"><screen module="VideoMode" screen="VideoSetup" /></item>
-				<item key="osdsetup" level="1" text="OSD Position Settings" weight="50" requires="CanChangeOsdPosition"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2" /></item>
+				<item key="osdsetup" level="1" text="OSD Position Settings" weight="50" requires="OsdMenu"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2" /></item>
 				<item key="setup_osd3d" level="2" text="OSD 3D Settings" weight="60" requires="CanChange3DOsd"><setup setupKey="OSD3D" /></item>
 			</menu>
 			<!-- Menu / Setup / Audio Menu -->
@@ -75,23 +75,19 @@
 				<item key="usage_setup" level="0" text="Customize System Settings" weight="15"><setup setupKey="Usage" /></item>
 				<!--item key="specialfeatures_menu" level="0" text="Special Features Settings" weight="20"><setup setupKey="SpecialFeatures" /></item-->
 				<item key="skin_setup" level="0" text="Skin Settings" weight="25"><screen module="SkinSelector" screen="SkinSelector" /></item>
-				<menu key="display" level="0" text="STB Display" weight="30" requires="Display">
-					<item key="display_setup" level="0" text="Display Settings" weight="0"><setup setupKey="Display" /></item>
-					<item key="lcd_skin_setup" level="0" text="LCD Skin Settings" weight="5" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector" /></item>
-				</menu>
-				<item key="buttonsetup_setup" level="2" text="Hotkey Settings" weight="35"><screen module="ButtonSetup" screen="ButtonSetup" /></item>
-				<!-- Menu / Setup / System / Extended System / OSD settings -->
-				<menu key="osd_menu" level="1" text="Extended GUI" weight="40">
-					<item key="input_device_setup" level="1" text="Input Devices Settings" weight="20"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
-					<item key="remotecode" level="1" text="Remote Control Code Settings" weight="30" requires="RemoteCode">
-						<code>
+				<item key="display_setup" level="0" text="Display Settings" weight="30"><setup setupKey="Display" /></item>
+				<item key="led_setup" level="1" text="Configure front panel LEDs" weight="35" requires="LEDColorControl"><setup setupKey="LEDs" /></item>
+				<item key="lcd_skin_setup" level="0" text="LCD Skin Settings" weight="40" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector" /></item>
+				<item key="buttonsetup_setup" level="2" text="Hotkey Settings" weight="45"><screen module="ButtonSetup" screen="ButtonSetup" /></item>
+				<item key="input_device_setup" level="1" text="Input Devices Settings" weight="50"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
+				<item key="remotecode" level="1" text="Remote Control Code Settings" weight="55" requires="RemoteCode">
+					<code>
 from Plugins.SystemPlugins.RemoteControlCode.plugin import RemoteControlCode
 self.session.open(RemoteControlCode)
-						</code>
-					</item>
-					<item key="keyboard" level="1" text="Keyboard Settings" weight="40"><setup setupKey="Keyboard" /></item>
-				</menu>
-				<item key="locale_setup" level="0" text="Language" weight="70"><screen module="LocaleSelection" /></item>
+					</code>
+				</item>
+				<item key="keyboard" level="1" text="Keyboard Settings" weight="60"><setup setupKey="Keyboard" /></item>
+				<item key="locale_setup" level="0" text="Locale / Language Settings" weight="65"><screen module="LocaleSelection" /></item>
 			</menu>
 			<!-- Menu / Setup / EPG -->
 			<menu key="epg" level="2" text="EPG" weight="20">
@@ -102,9 +98,8 @@ self.session.open(RemoteControlCode)
 				<item key="setup_epginfobargraphical" level="2" text="Graphical InfoBar EPG Settings" weight="125"><setup setupKey="EPGInfobarGraphical" /></item>
 				<item key="setup_epggraphical" level="2" text="GraphicalEPG Settings" weight="130"><setup setupKey="EPGGraphical" /></item>
 				<item key="setup_epgvertical" level="2" text="VerticalEPG Settings" weight="135"><setup setupKey="EPGVertical" /></item>
-				<menu key="epgloadsave_menu" level="2" text="Load/Save/Delete" weight="200">
-					<item key="loadepgcache" level="0" text="Load EPG" weight="0">
-						<code>
+				<item key="loadepgcache" level="0" text="Load EPG Cache" weight="200">
+					<code>
 def msgClosed(ret):
 	if ret:
 		from enigma import eEPGCache
@@ -113,10 +108,10 @@ def msgClosed(ret):
 
 from Components.EpgLoadSave import EpgLoadMsg
 self.session.openWithCallback(msgClosed, EpgLoadMsg)
-						</code>
-					</item>
-					<item key="saveepgcache" level="0" text="Save EPG" weight="50">
-						<code>
+					</code>
+				</item>
+				<item key="saveepgcache" level="0" text="Save EPG Cache" weight="210">
+					<code>
 def msgClosed(ret):
 	if ret:
 		from enigma import eEPGCache
@@ -125,10 +120,10 @@ def msgClosed(ret):
 
 from Components.EpgLoadSave import EpgSaveMsg
 self.session.openWithCallback(msgClosed, EpgSaveMsg)
-						</code>
-					</item>
-					<item key="deleteepgcache" level="0" text="Delete EPG" weight="60">
-						<code>
+					</code>
+				</item>
+				<item key="deleteepgcache" level="0" text="Delete EPG Cache" weight="220">
+					<code>
 def msgClosed(ret):
 	if ret:
 		from os import remove
@@ -142,13 +137,12 @@ def msgClosed(ret):
 
 from Components.EpgLoadSave import EpgDeleteMsg
 self.session.openWithCallback(msgClosed, EpgDeleteMsg)
-						</code>
-					</item>
-				</menu>
+					</code>
+				</item>
 			</menu>
 			<!-- Menu / Setup / Service Searching -->
 			<menu key="scan" level="0" text="Reception" weight="25">
-				<item key="tuner_basic_settings" level="1" text="Basic settings" weight="0" requires="USETunersetup"><setup setupKey="Tuner" /></item>
+				<item key="tuner_basic_settings" level="1" text="Tuner Settings" weight="0" requires="USETunersetup"><setup setupKey="Tuner" /></item>
 				<item key="tuner_setup" level="0" text="Tuner Configuration" weight="1"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item key="auto_scan" level="0" text="Automatic Scan" weight="5"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item key="manual_scan" level="0" text="Manual Scan" weight="10"><screen module="ScanSetup" /></item>
@@ -160,15 +154,15 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="cccam_info" level="0" text="CCCam Information" weight="70" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
 				<item key="ci_settings" level="1" text="CI Basic Settings" weight="80" requires="CommonInterface"><setup setupKey="CISettings" /></item> 
 				<item key="ci_setup" level="1" text="CI Helper Settings" weight="90" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
-				<item key="ci_selection" level="1" text="Common Interface" weight="100" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
-				<item key="parental_setup" level="0" text="Parental control" weight="200"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
+				<item key="ci_selection" level="1" text="Common Interface Settings" weight="100" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
+				<item key="parental_setup" level="0" text="Parental Control Settings" weight="200"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			</menu>
 			<!-- Menu / Setup / Software Management -->
 			<menu key="software_manager" level="0" text="Software Management" description="This menu offers options related managing the software on the %s %s." weight="50">
-				<item key="manage_extensions" level="0" text="Manage Extensions" description="Browse, install or remove extensions / plugins." weight="10"><plugin system="SoftwareManager" screen="PluginManager" /></item>
+				<item key="manage_extensions" level="0" text="Manage Extensions" description="Browse, install or remove extensions / plugins." weight="10"><screen module="PluginBrowser" screen="PluginDownloadManager"/></item>
 				<item key="software_update" level="0" text="Software Update" description="Online update of your %s %s software." weight="11"><screen module="SoftwareUpdate" screen="SoftwareUpdate" /></item>
 				<item key="software_restore" level="0" text="Software Restore" description="Restore your %s %s with a new firmware." weight="12"><plugin system="SoftwareManager" screen="ImageWizard" /></item>
-				<item key="flash_online" level="0" text="Flash Online" description="Download and flash images on your %s %s." weight="13" requires="canImageBackup"><screen module="FlashManager" screen="FlashManager" /></item>
+				<item key="flash_online" level="0" text="Flash Online" description="Download and flash images on your %s %s." weight="13"><screen module="FlashManager" screen="FlashManager" /></item>
 				<item key="backup_image_dflash" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dFlash"><plugin extensions="dFlash" screen="dFlash" /></item>
 				<item key="backup_image_dbackup" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dBackup"><plugin extensions="dBackup" screen="dBackup" /></item>
 				<item key="backup_image" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="ImageBackup"><plugin system="SoftwareManager" screen="ImageBackup" /></item>
@@ -197,6 +191,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="harddisk_convert" level="0" text="Convert EXT3 File System to EXT4" weight="15" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection" /></item>
 					<item key="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount" /></item>
 					<item key="swap_manager" level="2" text="Swap Manager" weight="30"><screen module="SwapManager" screen="Swap" /></item>
+					<!-- item key="flash_expander" level="0" text="Flash Expander" weight="40"><screen module="FlashExpander" screen="FlashExpander" /></item -->
 				</menu>
 				<!-- Menu / Setup / System / Network -->
 				<menu key="network" level="0" text="Network" weight="50">
@@ -238,6 +233,7 @@ else:
 			</item>
 			<item key="shutdown" level="0" text="Shutdown" weight="5" requires="!DeepstandbySupport"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 			<item key="multiboot" level="0" text="MultiBoot Manager" weight="6" requires="canMultiBoot"><screen module="MultiBootManager" screen="MultiBootManager" /></item>
+			<item key="kexec_multiboot" level="2" text="Enable Kexec MultiBoot" weight="6" requires="cankexec"><screen module="MultiBootManager" screen="KexecInit">1</screen></item>
 			<!--item key="SDswap" level="0" text="SDroot" weight="7" requires="HasSDswap"><screen module="SDswap" screen="SDswap">1</screen></item-->
 			<item key="wol_standby" level="0" text="WOL Standby" weight="10" requires="GBWOL">
 				<code>

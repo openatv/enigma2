@@ -3,14 +3,15 @@ from glob import glob
 from hashlib import md5
 from os import mkdir, rename, rmdir, stat
 from os.path import basename, exists, isdir, isfile, ismount, join as pathjoin
-from struct import pack
+from struct import calcsize, pack, unpack
+from subprocess import check_output
 from tempfile import mkdtemp
 
 # NOTE: This module must not import from SystemInfo.py as this module is
 # used to populate BoxInfo / SystemInfo and will create a boot loop!
 #
 from Components.Console import Console
-from Tools.Directories import SCOPE_CONFIG, copyfile, fileReadLine, fileReadLines, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, copyfile, fileHas, fileReadLine, fileReadLines, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -27,6 +28,8 @@ STARTUP_ANDROID = "STARTUP_ANDROID"
 STARTUP_ANDROID_LINUXSE = "STARTUP_ANDROID_LINUXSE"
 STARTUP_RECOVERY = "STARTUP_RECOVERY"
 STARTUP_BOXMODE = "BOXMODE"  # This is known as bootCode in this code.
+BOOT_DEVICE_LIST = ("/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2", "/dev/block/by-name/bootoptions")
+BOOT_DEVICE_LIST_VUPLUS = ("/dev/mmcblk0p4", "/dev/mmcblk0p7", "/dev/mmcblk0p9")  # Kexec kernel Vu+ MultiBoot.
 
 
 # STARTUP
@@ -70,27 +73,44 @@ class MultiBootClass():
 		lines = fileReadLines(resolveFilename(SCOPE_CONFIG, "settings"), default=lines, source=MODULE_NAME)
 		self.debugMode = "config.crash.debugMultiBoot=True" in lines
 		self.bootArgs = fileReadLine("/sys/firmware/devicetree/base/chosen/bootargs", default="", source=MODULE_NAME)
+		self.console = Console()
 		self.loadMultiBoot()
 
 	def loadMultiBoot(self):
 		self.bootDevice, self.startupCmdLine = self.loadBootDevice()
 		self.bootSlots, self.bootSlotsKeys = self.loadBootSlots()
-		self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
+		if exists(DUAL_BOOT_FILE):
+			try:
+				with open(DUAL_BOOT_FILE, "rb") as fd:
+					structFormat = "B"
+					flag = fd.read(calcsize(structFormat))
+					slot = unpack(structFormat, flag)
+					self.bootSlot = str(slot[0])
+					self.bootCode = ""
+			except OSError as err:
+				print("MultiBoot] Error %d: Unable to read dual boot file '%s'!  (%s)" % (err.errno, DUAL_BOOT_FILE, err.strerror))
+				self.bootSlot = None
+				self.bootCode = ""
+			except struct.error as err:
+				print("MultiBoot] Unable to interpret dual boot file '%s' data!  (%s)" % (DUAL_BOOT_FILE, err))
+		else:
+			self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
 
 	def loadBootDevice(self):
-		for device in ("/dev/block/by-name/bootoptions", "/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2"):
+		bootDeviceList = BOOT_DEVICE_LIST_VUPLUS if fileHas("/proc/cmdline", "kexec=1") else BOOT_DEVICE_LIST
+		for device in bootDeviceList:
 			bootDevice = None
 			startupCmdLine = None
 			if exists(device):
 				tempDir = mkdtemp(prefix=PREFIX)
-				Console().ePopen([MOUNT, MOUNT, device, tempDir])
+				self.console.ePopen([MOUNT, MOUNT, device, tempDir])
 				cmdFile = pathjoin(tempDir, COMMAND_FILE)
 				startupFile = pathjoin(tempDir, STARTUP_FILE)
 				if isfile(cmdFile) or isfile(startupFile):
 					file = cmdFile if isfile(cmdFile) else startupFile
 					startupCmdLine = " ".join(x.strip() for x in fileReadLines(file, default=[], source=MODULE_NAME) if x.strip())
 					bootDevice = device
-				Console().ePopen([UMOUNT, UMOUNT, tempDir])
+				self.console.ePopen([UMOUNT, UMOUNT, tempDir])
 				rmdir(tempDir)
 			if bootDevice:
 				print("[MultiBoot] Startup device identified as '%s'." % device)
@@ -98,9 +118,6 @@ class MultiBootClass():
 				print("[MultiBoot] Startup command line '%s'." % startupCmdLine)
 				break
 		return bootDevice, startupCmdLine
-
-	def getParam(self, line, param):
-		return line.replace("userdataroot", "rootuserdata").rsplit("%s=" % param, 1)[1].split(" ", 1)[0]
 
 	def loadBootSlots(self):
 		def saveKernel(bootSlots, slotCode, kernel):
@@ -114,7 +131,7 @@ class MultiBootClass():
 		bootSlotsKeys = []
 		if self.bootDevice:
 			tempDir = mkdtemp(prefix=PREFIX)
-			Console().ePopen([MOUNT, MOUNT, self.bootDevice, tempDir])
+			self.console.ePopen([MOUNT, MOUNT, self.bootDevice, tempDir])
 			for path in sorted(glob(pathjoin(tempDir, STARTUP_TEMPLATE))):
 				file = basename(path)
 				if "DISABLE" in file:
@@ -142,8 +159,13 @@ class MultiBootClass():
 				if slotCode:
 					line = " ".join(x.strip() for x in fileReadLines(path, default=[], source=MODULE_NAME) if x.strip())
 					if "root=" in line:
-						# print("[MultiBoot] getBootSlots DEBUG: 'root=' found.")
+						# print("[MultiBoot] loadBootSlots DEBUG: 'root=' found.")
 						device = self.getParam(line, "root")
+						if "UUID=" in device:
+							uuidDevice = self.getUUIDtoDevice(device)
+							# print("[MultiBoot] loadBootSlots DEBUG: 'UUID=' found for device '%s'.", uuidDevice)
+							if uuidDevice:
+								device = uuidDevice
 						if exists(device) or device == "ubi0:ubifs":
 							if slotCode not in bootSlots:
 								bootSlots[slotCode] = {}
@@ -177,7 +199,7 @@ class MultiBootClass():
 								parts = device.split("p")
 								saveKernel(bootSlots, slotCode, "%sp%s" % (parts[0], int(parts[1]) - 1))
 					elif "bootcmd=" in line or " recovery " in line:
-						# print("[MultiBoot] getBootSlots DEBUG: 'bootcmd=' or ' recovery ' text found.")
+						# print("[MultiBoot] loadBootSlots DEBUG: 'bootcmd=' or ' recovery ' text found.")
 						if slotCode not in bootSlots:
 							bootSlots[slotCode] = {}
 							# print("[MultiBoot] Boot Command/Recovery dictionary entry in slot '%s' created." % slotCode)
@@ -198,12 +220,12 @@ class MultiBootClass():
 						print("[MultiBoot] Error: Slot can't be identified.  (%s)" % line)
 				else:
 					print("[MultiBoot] Error: Slot code can not be determined from '%s'!" % file)
-			Console().ePopen([UMOUNT, UMOUNT, tempDir])
+			self.console.ePopen([UMOUNT, UMOUNT, tempDir])
 			rmdir(tempDir)
 			bootSlotsKeys = sorted(bootSlots.keys())
 			if self.debugMode:
 				for slotCode in bootSlotsKeys:
-					# print("[MultiBoot] getBootSlots DEBUG: Boot slot '%s': %s" % (slotCode, bootSlots[slotCode]))
+					# print("[MultiBoot] loadBootSlots DEBUG: Boot slot '%s': %s" % (slotCode, bootSlots[slotCode]))
 					print("[MultiBoot] Slot '%s':" % slotCode)
 					modes = bootSlots[slotCode].get("bootCodes")
 					if modes and modes != [""]:
@@ -236,6 +258,17 @@ class MultiBootClass():
 					print("[MultiBoot]     UBI device: '%s'." % ("Yes" if bootSlots[slotCode].get("ubi", False) else "No"))
 				print("[MultiBoot] %d boot slots detected." % len(bootSlots))
 		return bootSlots, bootSlotsKeys
+
+	def getParam(self, line, param):
+		return line.replace("userdataroot", "rootuserdata").rsplit("%s=" % param, 1)[1].split(" ", 1)[0]
+
+	def getUUIDtoDevice(self, UUID):  # Returns None on failure.
+		lines = check_output(["/sbin/blkid"]).decode(encoding="UTF-8", errors="ignore").split("\n")
+		targetUUID = "UUID=\"%s\"" % UUID
+		for line in lines:
+			if targetUUID in line:
+				return line.split(":")[0].strip()
+		return None
 
 	def loadCurrentSlotAndBootCodes(self):
 		if self.bootSlots and self.bootSlotsKeys:
@@ -323,6 +356,12 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagelogname"] = "Android Linux SE"
 				self.imageList[self.slotCode]["status"] = "androidlinuxse"
 				self.findSlot()
+			elif self.slotCode == "R" and fileHas("/proc/cmdline", "kexec=1"):
+				self.imageList[self.slotCode]["detection"] = "Found a Root Image slot"
+				self.imageList[self.slotCode]["imagename"] = _("Root Image")
+				self.imageList[self.slotCode]["imagelogname"] = "Root Image"
+				self.imageList[self.slotCode]["status"] = "rootimage"
+				self.findSlot()
 			elif self.slotCode == "R":
 				self.imageList[self.slotCode]["detection"] = "Found a Recovery slot"
 				self.imageList[self.slotCode]["imagename"] = _("Recovery")
@@ -333,9 +372,9 @@ class MultiBootClass():
 				self.device = self.bootSlots[self.slotCode]["device"]
 				# print("[MultiBoot] DEBUG: Analyzing slot='%s' (%s)." % (self.slotCode, self.device))
 				if hasMultiBootMTD:
-					Console().ePopen([MOUNT, MOUNT, "-t", "ubifs", self.device, self.tempDir], self.analyzeSlot)
+					self.console.ePopen([MOUNT, MOUNT, "-t", "ubifs", self.device, self.tempDir], self.analyzeSlot)
 				else:
-					Console().ePopen([MOUNT, MOUNT, self.device, self.tempDir], self.analyzeSlot)
+					self.console.ePopen([MOUNT, MOUNT, self.device, self.tempDir], self.analyzeSlot)
 			else:
 				self.imageList[self.slotCode]["detection"] = "Found an unexpected/ill-defined slot"
 				self.imageList[self.slotCode]["imagename"] = _("Unknown")
@@ -394,7 +433,7 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagelogname"] = "Empty"
 				self.imageList[self.slotCode]["status"] = "empty"
 		if ismount(self.tempDir):
-			Console().ePopen([UMOUNT, UMOUNT, self.tempDir], self.finishSlot)
+			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.finishSlot)
 		else:
 			self.findSlot()
 
@@ -464,7 +503,7 @@ class MultiBootClass():
 			value = False
 		elif valueTest in ("TRUE", "YES", "ON", "ENABLED"):
 			value = True
-		elif value.isdigit() or ((value[0:1] == "-" or value[0:1] == "+") and value[1:].isdigit()):
+		elif value.isdigit() or (value[0:1] in ("-", "+") and value[1:].isdigit()):
 			value = int(value)
 		elif valueTest.startswith("0X"):
 			try:
@@ -532,7 +571,7 @@ class MultiBootClass():
 		self.bootCode = bootCode
 		self.callback = callback
 		self.tempDir = mkdtemp(prefix=PREFIX)
-		Console().ePopen([MOUNT, MOUNT, self.bootDevice, self.tempDir], self.bootDeviceMounted)
+		self.console.ePopen([MOUNT, MOUNT, self.bootDevice, self.tempDir], self.bootDeviceMounted)
 
 	def bootDeviceMounted(self, data, retVal, extraArgs):  # Part of activateSlot().
 		if retVal:
@@ -549,7 +588,7 @@ class MultiBootClass():
 					fd.write(pack("B", int(slot)))
 			if self.debugMode:
 				print("[MultiBoot] Installing '%s' as '%s'." % (startup, target))
-			Console().ePopen([UMOUNT, UMOUNT, self.tempDir], self.bootDeviceUnmounted)
+			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.bootDeviceUnmounted)
 
 	def bootDeviceUnmounted(self, data, retVal, extraArgs):  # Part of activateSlot().
 		if retVal:
@@ -572,9 +611,9 @@ class MultiBootClass():
 			self.device = self.bootSlots[self.slotCode]["device"]
 			self.tempDir = mkdtemp(prefix=PREFIX)
 			if self.bootSlots[self.slotCode].get("ubi", False):
-				Console().ePopen([MOUNT, MOUNT, "-t", "ubifs", self.device, self.tempDir], method)
+				self.console.ePopen([MOUNT, MOUNT, "-t", "ubifs", self.device, self.tempDir], method)
 			else:
-				Console().ePopen([MOUNT, MOUNT, self.device, self.tempDir], method)
+				self.console.ePopen([MOUNT, MOUNT, self.device, self.tempDir], method)
 		else:
 			self.callback(1)
 
@@ -585,10 +624,10 @@ class MultiBootClass():
 		else:
 			rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
 			imageDir = pathjoin(self.tempDir, rootDir) if rootDir else self.tempDir
-			if self.bootSlots[self.slotCode].get("ubi", False):
+			if self.bootSlots[self.slotCode].get("ubi", False) or fileHas("/proc/cmdline", "kexec=1"):
 				try:
 					if isfile(pathjoin(imageDir, "usr/bin/enigma2")):
-						Console().ePopen([REMOVE, REMOVE, "-rf", imageDir])
+						self.console.ePopen([REMOVE, REMOVE, "-rf", imageDir])
 					mkdir(imageDir)
 				except OSError as err:
 					print("[MultiBoot] hideSlot Error %d: Unable to wipe all files in slot '%s' (%s)!  (%s)" % (err.errno, self.slotCode, self.device, err.strerror))
@@ -606,7 +645,7 @@ class MultiBootClass():
 						rename(enigmaFile, "%sx" % enigmaFile)
 				except OSError as err:
 					print("[MultiBoot] hideSlot Error %d: Unable to hide item '%s' in slot '%s' (%s)!  (%s)" % (err.errno, enigmaFile, self.slotCode, self.device, err.strerror))
-			Console().ePopen([UMOUNT, UMOUNT, self.tempDir], self.cleanUpSlot)
+			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.cleanUpSlot)
 
 	def revealSlot(self, data, retVal, extraArgs):  # Part of restoreSlot().
 		if retVal:
@@ -631,7 +670,7 @@ class MultiBootClass():
 					rename(hiddenFile, enigmaFile)
 			except OSError as err:
 				print("[MultiBoot] revealSlot Error %d: Unable to reveal item '%s' in slot '%s' (%s)!  (%s)" % (err.errno, enigmaFile, self.slotCode, self.device, err.strerror))
-			Console().ePopen([UMOUNT, UMOUNT, self.tempDir], self.cleanUpSlot)
+			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.cleanUpSlot)
 
 	def cleanUpSlot(self, data, retVal, extraArgs):  # Part of emptySlot() and restoreSlot().
 		if retVal:

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-30 13:33+0000\n"
+"POT-Creation-Date: 2023-04-07 09:20+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -1037,6 +1037,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d packages found, %d packages installed and %d packages has updates."
+msgstr ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d сек"
 
@@ -1161,10 +1165,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s  дистанционно (местно)"
 
 #, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s актуализации на софтуера са на разположение."
-
-#, python-format
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s карти )"
 
@@ -1206,6 +1206,10 @@ msgstr ""
 
 #, python-format
 msgid "%s MHz"
+msgstr ""
+
+#, python-format
+msgid "%s Packages found"
 msgstr ""
 
 #, python-format
@@ -1917,9 +1921,6 @@ msgstr ""
 "\n"
 "Искате ли да деактивирате втория мрежов интерфейс?"
 
-msgid "A small overview of the available icon states and actions."
-msgstr "Малък преглед на наличните състояния и действия на иконите."
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -2014,9 +2015,6 @@ msgstr "Прекратен псевдозапис.\n"
 
 msgid "Aborted a streaming service.\n"
 msgstr "Прекратена услуга за стрийминг.\n"
-
-msgid "Aborting update progress"
-msgstr "Прекратяване на актуализацията"
 
 msgid "About"
 msgstr "Относно"
@@ -2230,9 +2228,6 @@ msgstr "Добавяне /премахване на таймер за текущ
 
 msgid "Adding schedule..."
 msgstr "Добавяне на график ..."
-
-msgid "Additional Info"
-msgstr "Допълнително инфо"
 
 msgid "Additional files/folders to backup"
 msgstr "Допълнителни файлове/папки за архивиране"
@@ -2659,9 +2654,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Сигурен ли си че искаш да запазиш EPG кеша на:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Сигурен ли си че искаш да изпратиш този дневник:\n"
-
 msgid "Argentina"
 msgstr ""
 
@@ -2685,6 +2677,9 @@ msgstr ""
 
 msgid "As plugin in extended bar"
 msgstr "като плъгин в разширен бар"
+
+msgid "Ascending"
+msgstr ""
 
 msgid "Ask user"
 msgstr "Попитай потребителя"
@@ -2740,9 +2735,6 @@ msgstr ""
 
 msgid "Athletics"
 msgstr "Атлетика"
-
-msgid "Attach a file"
-msgstr "Прикачване на файл"
 
 msgid "Audio"
 msgstr "Аудио"
@@ -2804,9 +2796,6 @@ msgstr ""
 
 msgid "Austria"
 msgstr ""
-
-msgid "Author: "
-msgstr "Автор: "
 
 msgid "Authoring mode"
 msgstr "Авторски режим"
@@ -3774,6 +3763,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Отказ"
 
+msgid "Cancel / Close the screen"
+msgstr ""
+
 msgid "Cancel / Close the software update screen"
 msgstr "Отказ / Затворете екрана за актуализиране на софтуера"
 
@@ -3895,9 +3887,6 @@ msgstr "Каскаден PiP"
 
 msgid "Catalan / Valencian"
 msgstr ""
-
-msgid "Caution update not yet tested !!"
-msgstr "Внимание актуализацията не е тествана !!"
 
 msgid "Cayman Islands"
 msgstr ""
@@ -4483,9 +4472,6 @@ msgstr ""
 msgid "Common Setup Actions"
 msgstr "Общи действия за настройка"
 
-msgid "Communication"
-msgstr "Комуникация"
-
 msgid "Comoros"
 msgstr ""
 
@@ -4638,7 +4624,7 @@ msgstr "Конфигуриране на цвета на субтитрите н�
 msgid "Configure the contrast level of the front panel display."
 msgstr "Конфигуриране на нивото на контраста на дисплея на предния панел."
 
-msgid "Configure the current keymap file."
+msgid "Configure the current key map file."
 msgstr "Конфигуриране на текущия файл на клавиатурата."
 
 msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
@@ -4957,9 +4943,6 @@ msgstr "Контекст"
 
 msgid "Continent"
 msgstr "Континент"
-
-msgid "Continue"
-msgstr "Продължи"
 
 msgid "Continue in background"
 msgstr "Продължи във фонов"
@@ -5663,9 +5646,6 @@ msgstr "Тип на запис по подразбиране"
 msgid "Default right column directory"
 msgstr ""
 
-msgid "Default settings"
-msgstr "Настройки по подразразбиране"
-
 msgid "Default sort order for directories in the left column"
 msgstr ""
 
@@ -5786,10 +5766,6 @@ msgstr "Изтрий"
 msgid "Delete %s?"
 msgstr "Изтриване на% s?"
 
-#, python-format
-msgid "Delete '%s'?"
-msgstr ""
-
 msgid "Delete Confirmation"
 msgstr "Изтриване на потвърждението"
 
@@ -5810,6 +5786,9 @@ msgstr "Изтриване на плъгините"
 
 msgid "Delete Timer"
 msgstr "Изтриване на таймера"
+
+msgid "Delete all duplicated lines"
+msgstr ""
 
 msgid "Delete all log files"
 msgstr "Изтриване на всички лог файлове"
@@ -5839,6 +5818,9 @@ msgid "Delete current line"
 msgstr "Изтриване на текущия ред"
 
 msgid "Delete directory or file"
+msgstr ""
+
+msgid "Delete empty and white space only lines"
 msgstr ""
 
 msgid "Delete entry"
@@ -5892,10 +5874,15 @@ msgstr ""
 msgid "Delete the currently selected timer"
 msgstr ""
 
-msgid "Delete the selected directories/files?"
+#, python-format
+msgid "Delete the directory/file '%s'?"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+#, python-format
+msgid "Delete these %d directories/files?"
 msgstr ""
 
 msgid "Delete this tag"
@@ -5935,6 +5922,9 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Дълбочина"
+
+msgid "Descending"
+msgstr ""
 
 msgid "Description"
 msgstr "Описание"
@@ -6152,9 +6142,6 @@ msgstr "Показване на съдържание> 16:9 като"
 msgid "Display Settings"
 msgstr "Дисплей настройки"
 
-msgid "Display and user interface"
-msgstr "Дисплей и потребителски интерфейс"
-
 msgid "Display context menu"
 msgstr ""
 
@@ -6346,22 +6333,12 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want to add any additional information ?"
-msgstr "Искате ли да добавите всяка допълнителна информация?"
-
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 "Искате ли да инсталирате самба клиент?\n"
 "Това ви позволява да монтирате вашите споделени прозорци на това устройство."
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Искате ли да прикачите текстов файл, за да обясните дневника?\n"
-"(Изберете \"Не\", за да въведете съобщение чрез виртуална клавиатура.)"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6440,16 +6417,6 @@ msgstr "Искате ли да възстановите настройките �
 msgid "Do you want to resume this playback?"
 msgstr "Искате ли да възобновите това възпроизвеждане?"
 
-msgid ""
-"Do you want to send all selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Искате ли да изпратите всички избрани файлове:\n"
-"(Изберете \"Не\", за да изпратите само избрания понастоящем файл.)"
-
-msgid "Do you want to update your box?"
-msgstr "Искате ли да актуализирате вашия приемник?"
-
 msgid "Do you want to upgrade the package:\n"
 msgstr "Искате ли да надстроите пакета:\n"
 
@@ -6498,10 +6465,6 @@ msgstr ""
 
 msgid "Done"
 msgstr "Готово"
-
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
-msgstr "Готово - инсталирани или обновени %d пакети"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
@@ -6573,6 +6536,9 @@ msgid "Drivers version"
 msgstr "Версия на драйвери"
 
 msgid "Duplex"
+msgstr ""
+
+msgid "Duplicate the current line"
 msgstr ""
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
@@ -7004,7 +6970,7 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
-msgid "Enable this option to add keyboard keymap data to the debug log file."
+msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Разрешете тази опция, за да добавите данни за клавиатурата към регистрационния файл за отстраняване на грешки."
 
 msgid "Enable this option to add opkg output data to the debug log file."
@@ -7291,7 +7257,7 @@ msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7399,14 +7365,6 @@ msgstr "Грешка, неизвестен резултат!"
 
 #, python-format
 msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Грешка:\n"
-"%s"
-
-#, python-format
-msgid ""
 "Error: %s\n"
 "Retry?"
 msgstr ""
@@ -7481,16 +7439,13 @@ msgstr "Грешка: Новата парола може да не е празн
 msgid "Error: The path '%s' already exists!"
 msgstr "Пътят %s вeче съществува."
 
-msgid "Error: The root file system can not be copied!"
+msgid "Error: The root file system and system directories can't be deleted!"
 msgstr ""
 
-msgid "Error: The root file system can not be deleted!"
+msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
-msgid "Error: The root file system can not be moved!"
-msgstr ""
-
-msgid "Error: The root file system can not be renamed!"
+msgid "Error: The root file system and system directories can't be renamed!"
 msgstr ""
 
 #, python-format
@@ -7741,9 +7696,6 @@ msgstr "Действия за разширение"
 
 msgid "Extensions"
 msgstr "Разширения"
-
-msgid "Extensions Management"
-msgstr "Управление на разширенията"
 
 msgid "Extensions/QuickMenu"
 msgstr "Разширения/Бързo mеню"
@@ -8188,9 +8140,6 @@ msgstr "Плоска по група ключове на дистанционн�
 msgid "Flat by position on remote"
 msgstr "Плоска по позиция на дистанционно"
 
-msgid "Following tasks will be done after you press OK!"
-msgstr "Следните задачи ще бъдат изпълнени, след като натиснете OK!"
-
 msgid "Font size"
 msgstr "Размер на шрифта"
 
@@ -8202,9 +8151,6 @@ msgstr "Храна/Вино"
 
 msgid "Football"
 msgstr "Футбол"
-
-msgid "For more information see https://www.opena.tv"
-msgstr "За повече информация вижте https://www.opena.tv"
 
 msgid "Force LNB Power"
 msgstr "Принудително захранване на LNB"
@@ -9014,9 +8960,6 @@ msgstr ""
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
-msgid "ID"
-msgstr ""
-
 msgid "IMDb Details"
 msgstr "IMDb Детайли"
 
@@ -9547,9 +9490,6 @@ msgstr "Инсталиране на разширения."
 msgid "Install lcd picons on"
 msgstr "Инсталиране на LCD пикони на"
 
-msgid "Install or remove finished."
-msgstr "Инсталиране или премахване завършено."
-
 msgid "Install picons on"
 msgstr "Инсталиране на пикони на"
 
@@ -9839,6 +9779,9 @@ msgstr "Файл на ядрото"
 msgid "Kernel version"
 msgstr "Версия на ядрото"
 
+msgid "Key"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "Клавиатура"
 
@@ -9955,9 +9898,6 @@ msgstr ""
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "LNB/превключвател време за зареждане [ms]"
-
-msgid "LOF"
-msgstr ""
 
 msgid "LOF/H"
 msgstr ""
@@ -10492,6 +10432,9 @@ msgstr "Управление на разширенията"
 
 msgid "Manage Locale/Language Selection settings"
 msgstr "Управлявайте Местно/Настройки за избор на език"
+
+msgid "Manage Plugins"
+msgstr ""
 
 msgid "Manage and explore directories and files."
 msgstr ""
@@ -11202,9 +11145,6 @@ msgstr "Многократно транскодиране"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Изображение за множествено зареждане, създадено на: %s/%s-%s-%s-backup-%s_usb.zip"
 
-msgid "Multimedia"
-msgstr "Мултимедиа"
-
 msgid "Multiple service support"
 msgstr "Поддръжка на множество сервизи"
 
@@ -11607,9 +11547,6 @@ msgstr "Без закъснение"
 msgid "No demux available"
 msgstr "Няма наличен демукс"
 
-msgid "No description available."
-msgstr "Няма налично описание."
-
 msgid "No displayable files on this medium found!"
 msgstr "Няма намерени файлове на този носител!"
 
@@ -11640,9 +11577,6 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Няма намерени съответстващи имена на места"
 
-msgid "No network connection available."
-msgstr "Няма налична мрежова връзка."
-
 msgid "No network storage detected."
 msgstr ""
 
@@ -11652,8 +11586,8 @@ msgstr "Няма намерени мрежи"
 msgid "No of items switch (increase or reduced)"
 msgstr "Няма превключвател на елементите (увеличаване или намаляване)"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
-msgstr "Няма обновени все още пакети.Проверите вашата мрежа и опитайте отново."
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -12056,9 +11990,6 @@ msgstr "Онлайн актуализация на вашия софтуер %s 
 msgid "Only Flash Backup Image"
 msgstr ""
 
-msgid "Only extensions."
-msgstr "Само разширения."
-
 msgid "Only free scan"
 msgstr "Сканиране само на свободни"
 
@@ -12115,6 +12046,9 @@ msgstr ""
 
 msgid "Open favorites list"
 msgstr "Отворете списъка с любими"
+
+msgid "Open file sort menu"
+msgstr ""
 
 msgid "Open satellites list"
 msgstr "Отворете сателитния списък"
@@ -12522,6 +12456,9 @@ msgstr "Процент/Лента за напредък вдясно"
 
 msgid "Perform an on-line flash instead"
 msgstr "Вместо това извършете онлайн флаш"
+
+msgid "Perform install/remove of the selected item"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Окончателно изтриване на всички записи в кошчето за боклук?"
@@ -13058,21 +12995,11 @@ msgstr "Браузър на приставки"
 msgid "Plugin Browser Settings"
 msgstr "Настройки на браузъра на приставки"
 
-msgid "Plugin Details"
-msgstr "Подробности за приставката"
-
-#, python-format
-msgid "Plugin Details: %s"
-msgstr ""
-
 msgid "Plugin Filter Settings"
 msgstr "Настройки на филтъра на приставките"
 
-msgid "Plugin Manager Activity Information"
-msgstr "Информация за дейността на мениджъра на приставки"
-
-msgid "Plugin Manager Help"
-msgstr "Помощ за мениджъра на приставки"
+msgid "Plugin Manager Actions"
+msgstr ""
 
 msgid "Plugins"
 msgstr "Приставки"
@@ -13378,9 +13305,6 @@ msgstr ""
 
 msgid "Proceed with the update"
 msgstr "Продължете с актуализацията"
-
-msgid "Process"
-msgstr "Процес"
 
 msgid "Processor information"
 msgstr "Информация за процесора"
@@ -14709,9 +14633,6 @@ msgstr "Настройка на сателитна антена"
 msgid "Satellite configuration mode"
 msgstr "Режим на спътникова конфигурация"
 
-msgid "Satellite equipment"
-msgstr "Сателитно оборудване"
-
 msgid "Satellite equipment setup"
 msgstr "Настройка на сателитно оборудване"
 
@@ -14859,6 +14780,9 @@ msgstr "Сканиране на безжични мрежи"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Сканиране на вашата мрежа за безжични точки за достъп, за да се свържете с тях с помощта на избраното от вас безжично устройство."
 
+msgid "Scanning"
+msgstr ""
+
 #, python-format
 msgid "Scanning %s..."
 msgstr "Сканиране на %s..."
@@ -14956,12 +14880,6 @@ msgstr "Търсене на"
 
 msgid "Searching east ..."
 msgstr "Търсене на изток ..."
-
-msgid "Searching for available updates. Please wait..."
-msgstr "Търсене за налични актуализации. Моля изчакай..."
-
-msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Търсене на нови инсталирани или премахнати пакети. Моля изчакайте..."
 
 msgid "Searching west ..."
 msgstr "Търсене на запад..."
@@ -15126,7 +15044,7 @@ msgstr "Изберете „Да“, за да премахнете всички
 msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
 msgstr "Изберете „Да“, за да премахнете всички потребителски персонализации на данните за кожата. Избирането на тази опция ще премахне всички потребителски персонализации на кожата. Всички засегнати кожи ще се върнат към стандартните си настройки. Това също така ще изчисти всички персонализирани лога и фонове за зареждане."
 
-msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Изберете „Да“, за да премахнете всички данни от потребителския интерфейс. Избирането на тази опция ще премахне всички данни за отмяна на клавиатурата, менюто и настройките и ще възстанови дефинициите по подразбиране."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
@@ -15636,6 +15554,9 @@ msgstr "Изберете изместения набор от знаци сам�
 msgid "Select the softcam protocol."
 msgstr ""
 
+msgid "Select the sort order for the file lines:"
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -15827,12 +15748,6 @@ msgstr "Избор на сателити 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Избирането на тази опция ви позволява да конфигурирате група от сателити в един блок."
-
-msgid "Send"
-msgstr "Изпрати"
-
-msgid "Send Confirmation"
-msgstr "Изпрати потвърждение"
 
 msgid "Send DiSEqC"
 msgstr "Изпрати DiSEqC"
@@ -16727,6 +16642,9 @@ msgstr "Показване на файловете, архивирани по п
 msgid "Show first image"
 msgstr ""
 
+msgid "Show free space in timer view"
+msgstr ""
+
 msgid "Show graphical multi EPG"
 msgstr "Показване на графично мулти EPG"
 
@@ -17202,9 +17120,6 @@ msgstr "Настройка на кожа"
 msgid "SkinSelector"
 msgstr "Селектор на кожа"
 
-msgid "Skins"
-msgstr "Кожи"
-
 msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Пропуснете проверката на интернет връзката (деактивира автоматичната инсталация на пакета)"
 
@@ -17408,9 +17323,6 @@ msgstr ""
 msgid "Softcams"
 msgstr "софткамове"
 
-msgid "Software"
-msgstr "Софтуер"
-
 msgid "Software Management"
 msgstr "Управление на софтуер"
 
@@ -17508,9 +17420,6 @@ msgstr "За съжаление, %s не е инсталиран!"
 
 msgid "Sorry, no backups found!"
 msgstr "За съжаление не са намерени резервни копия!"
-
-msgid "Sorry, no details available!"
-msgstr "Съжаляваме, няма налични данни!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr "За съжаление няма прилежащи физически устройства, поддържащи SWAP. Не може да се създаде Swapfile в мрежови или fat32 файлови системи"
@@ -18197,7 +18106,7 @@ msgstr "Синхронизацията е неуспешна, връщане о�
 msgid "Sync time using"
 msgstr "Използване на времето за синхронизиране"
 
-msgid "Synchronize systemtime using transponder or Internet."
+msgid "Synchronize system time using transponder or Internet."
 msgstr "Синхронизирайте системното време с помощта на транспондер или интернет."
 
 msgid "Syrian Arab Republic"
@@ -18659,6 +18568,9 @@ msgstr "Настройките по подразбиране са времето
 msgid "The detailed information is intended for developers only."
 msgstr "Подробната информация е предназначена само за разработчици."
 
+msgid "The directory/file no longer exists."
+msgstr ""
+
 #, python-format
 msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
@@ -18732,16 +18644,6 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Разширението за управление на софтуера не е инсталирано!\n"
-"Моля, инсталирайте го."
-
-msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-msgstr "Състоянието на текущата актуализация не можа да бъде проверено, защото https://www.opena.tv не може да бъде достигнато по някаква причина"
-
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Времето се умножава по текущия брояч на повторения."
 
@@ -18790,12 +18692,6 @@ msgstr "Съветникът може да архивира текущите в�
 
 msgid "The wizard is finished now."
 msgstr "Съветникът приключи сега.."
-
-msgid "There are at least "
-msgstr "Има най-малко "
-
-msgid "There are currently no outstanding actions."
-msgstr "Понастоящем няма неизпълнени действия."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -18874,9 +18770,6 @@ msgstr "Това ви позволява да се покажат extensions mod
 
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Това ви позволява да се покажат kernel modules в изтеглянията"
-
-msgid "This allows you to show languages in downloads"
-msgstr "Това ви позволява да показвате езици в изтеглянията"
 
 msgid "This allows you to show lcd skins in downloads"
 msgstr "Това ви позволява да се покажат lcd skins в изтеглянията"
@@ -19129,18 +19022,6 @@ msgstr "Тази опция задава остротата на картина�
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
-
-msgid "This plugin is installed."
-msgstr "Този плъгин е инсталиран."
-
-msgid "This plugin is not installed."
-msgstr "Този плъгин не е инсталиран."
-
-msgid "This plugin will be installed."
-msgstr "Този плъгин ще бъде инсталиран."
-
-msgid "This plugin will be removed."
-msgstr "Този плъгин ще бъде премахнат."
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "Това задава префикса за всеки ред в дневника за отстраняване на грешки. „Време за зареждане“ е броят секунди от последното зареждане на %s %s."
@@ -19834,6 +19715,12 @@ msgstr "Тип"
 msgid "Type / Model"
 msgstr ""
 
+msgid "Type of LNB/Device"
+msgstr ""
+
+msgid "Type of device"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Тип на сканиране"
 
@@ -19897,12 +19784,6 @@ msgstr "Недефиниран"
 msgid "Undetermined"
 msgstr "Неопределен"
 
-msgid "Undo install"
-msgstr "Отмяна инсталиране"
-
-msgid "Undo uninstall"
-msgstr "Отмяна деинсталиране"
-
 msgid "Unencrypted"
 msgstr "Нешифрован"
 
@@ -19923,9 +19804,6 @@ msgstr ""
 
 msgid "Unicable Matrix"
 msgstr ""
-
-msgid "Uninstall"
-msgstr "Деинсталирай"
 
 msgid "United Arab Emirates"
 msgstr ""
@@ -20044,9 +19922,6 @@ msgstr "Бутони нагоре/надолу също за „всички н�
 msgid "Update"
 msgstr "Актуализация"
 
-msgid "Update at your own risk"
-msgstr "Актуализиране на свой собствен риск"
-
 msgid "Update completed."
 msgstr "Актуализацията завършена."
 
@@ -20059,17 +19934,11 @@ msgstr "Забавяне на актуализацията за събития �
 msgid "Update failed!"
 msgstr "Актуализацията не бе успешна!"
 
-msgid "Update feed not available."
-msgstr "Емисията за актуализиране не е налична."
-
 msgid "Update finished!"
 msgstr "Актуализацията завърши!"
 
 msgid "Update interval (in seconds)"
 msgstr "Интервал за актуализиране(в секунди)"
-
-msgid "Update is reported as faulty !!"
-msgstr "Актуализацията се отчита като дефектна !!"
 
 msgid ""
 "Update succeeded!\n"
@@ -20099,9 +19968,6 @@ msgstr "Надграждам"
 msgid "Updating mount locations."
 msgstr "Актуализиране на местата за монтиране."
 
-msgid "Updating software catalog"
-msgstr "Актуализиране на каталога на софтуера"
-
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
@@ -20120,9 +19986,6 @@ msgstr ""
 
 msgid "Upgrade with GUI"
 msgstr "Надстройване с графичния интерфейс"
-
-msgid "Upgrading"
-msgstr "Надграждане"
 
 msgid "Uphops +"
 msgstr ""
@@ -20184,7 +20047,7 @@ msgstr "Използване на HDMI-preemphasis"
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Използвайте таймер за готовност на хардуера на твърдия диск"
 
-msgid "Use Keymap *"
+msgid "Use key map *"
 msgstr "Използване на клавиатура *"
 
 msgid "Use MHW EPG information when it is available."
@@ -20196,8 +20059,8 @@ msgstr "Използване на Netmed EPG информация когато �
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "Използвайте онлайн флаш в Мениджъра на софтуер"
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Използвайте OpenTV EPG информация, когато е налична."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
 
 msgid "Use QuickSelect"
 msgstr ""
@@ -20683,48 +20546,6 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr "Преглед на Rass интерактивна..."
 
-msgid "View details"
-msgstr "Преглед детайли"
-
-msgid "View list of available "
-msgstr "Преглед на наличния списък "
-
-msgid "View list of available CommonInterface extensions"
-msgstr "Преглед на списъка на наличние Common Interface разширения"
-
-msgid "View list of available EPG extensions."
-msgstr "Преглед на списъка на наличните разширения за EPG."
-
-msgid "View list of available Satellite equipment extensions."
-msgstr "Преглед на списъка на наличните разширения за Сателитно оборудване."
-
-msgid "View list of available communication extensions."
-msgstr "Преглед на списъка на наличните разширения за комуникация."
-
-msgid "View list of available default settings"
-msgstr "Преглед на списъка на наличните настройки по подразбиране"
-
-msgid "View list of available display and user interface extensions."
-msgstr "Преглед на списъка с наличните разширения на дисплея и потребителския интерфейс."
-
-msgid "View list of available multimedia extensions."
-msgstr "Преглед на списъка на наличните разширения за мултимедия."
-
-msgid "View list of available networking extensions"
-msgstr "Преглед на списъка на наличните разширения за мрежа"
-
-msgid "View list of available recording extensions"
-msgstr "Преглед на списъка на наличните разширения за запис"
-
-msgid "View list of available skins"
-msgstr "Преглед на списъка на наличните кожи"
-
-msgid "View list of available software extensions"
-msgstr "Преглед на списъка на наличните разширения за софтуер"
-
-msgid "View list of available system extensions"
-msgstr "Преглед на списъка на наличните разширения за системата"
-
 msgid "View mode"
 msgstr "Режим на преглед"
 
@@ -21068,6 +20889,9 @@ msgstr ""
 
 msgid "What would you like to do?"
 msgstr "Какво искаш да правиш?"
+
+msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
+msgstr ""
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Когато е разрешено, enigma2 ще зареди несвързаните потребителски букети. Това означава, че потребителските букети, които са налични, но не са включени в bouquets.tv или bouquets.radio, пак ще бъдат заредени. Това ви позволява например да запазите собствения си потребителски букет, докато инсталираните настройки са надстроени"
@@ -21516,26 +21340,14 @@ msgstr "Вие можете да покажете MiniTV с или без OSD м
 msgid "You can Display PiP with or without OSD Menu"
 msgstr "Вие можете да покажете PIP с или без OSD меню"
 
-msgid "You can cancel the installation."
-msgstr "Вие можете да отмените инсталацията."
-
-msgid "You can cancel the removal."
-msgstr "Вие можете да отмените премахването."
-
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Вие можете да продължите да гледате ТВ и т.н., докато това работи."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Вие можете да имате списъка подреден по време или буквено-цифров."
 
-msgid "You can install this plugin."
-msgstr "Вие можете да инсталирате този плъгин."
-
 msgid "You can only burn Dreambox recordings!"
 msgstr "Вие можете да запишете само записи!"
-
-msgid "You can remove this plugin."
-msgstr "Вие можете да премахнете този плъгин."
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "Можете да пропуснете тази функция и да изключите телевизора, когато събудите приемника от режим на готовност и незабавно да се върнете обратно в режим на готовност."
@@ -21546,9 +21358,6 @@ msgstr "Можете да превключвате с ляво и дясно, т
 
 msgid "You cannot delete this!"
 msgstr "Вие не може да изтриете това!"
-
-msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Вие вече сте изпратили този дневник, сигурни ли сте, че искате да изпратите отново този дневник:\n"
 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Вие сте избрали да архивирате настройките си. Моля, натиснете OK, за да стартирате архивирането сега."
@@ -21569,18 +21378,8 @@ msgstr ""
 msgid "You have no script to run."
 msgstr "Вие нямате скрипт за изпълнение."
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, and enter your info, then try again"
-msgstr ""
-"Вие не сте настроили информацията за потребителя в екрана за настройка \n"
-"Натиснете MENU, и въведете информацията си, след което опитайте отново"
-
 msgid "You have selected no logs to delete."
 msgstr "Вие не сте избрали дневници за изтриване."
-
-msgid "You have selected no logs to send."
-msgstr "Вие не сте избрали дневници за изпращане."
 
 msgid "You have to create a Swap File before to activate the autostart."
 msgstr "Вие имате да създавате Swap File, преди да се активира автостартиране."
@@ -21671,10 +21470,6 @@ msgstr "Вашият %s %s се изключва"
 
 msgid "Your %s %s is shutting down. Please wait..."
 msgstr "Вашият %s %s се изключва. Моля, изчакайте..."
-
-#, python-format
-msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "Вашият %s %s не е свързан с интернет правилно. Моля, проверете го и опитайте отново."
 
 #, python-format
 msgid ""
@@ -21795,32 +21590,6 @@ msgid ""
 msgstr ""
 "Вашият преден панел ще бъде надстроен\n"
 "Това може да отнеме няколко минути"
-
-#, python-format
-msgid ""
-"Your image is out of date!\n"
-"\n"
-"After such a long time, there is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"A new flash will increase the stability\n"
-"\n"
-"An online update is done at your own risk !!\n"
-"\n"
-"\n"
-"Do you still want to update?"
-msgstr ""
-"Вашият имидж е остарял!\n"
-"\n"
-"След толкова дълго време, съществува риск, че вашият %s %s няма да\n"
-"бутва след онлайн актуализиране или ще покаже дисфункция на работен имидж.\n"
-"\n"
-"Нов флаш ще повиши стабилността\n"
-"\n"
-"Онлайн актуализацията се извършва на свой собствен риск !\n"
-"\n"
-"\n"
-"Все още ли искате да актуализирате?"
 
 msgid "Your network configuration has been activated."
 msgstr "Вашата мрежова конфигурация е активирана."
@@ -22385,9 +22154,6 @@ msgstr "изход от менюто за настройка на мрежови
 msgid "experimental film/video"
 msgstr "експериментален филм/видео"
 
-msgid "extensions."
-msgstr "разширения."
-
 msgid "externally loopthrough to"
 msgstr "външно преминаване към"
 
@@ -22515,11 +22281,6 @@ msgid "handicraft"
 msgstr ""
 
 msgid "handled"
-msgstr ""
-
-msgid ""
-"has been sent to the SVN team team.\n"
-"please quote"
 msgstr ""
 
 msgid "hdr10"
@@ -22798,9 +22559,6 @@ msgstr "само HD"
 msgid "original language"
 msgstr "оригинален език"
 
-msgid "packages selected."
-msgstr "избрани пакети."
-
 msgid "pass"
 msgstr ""
 
@@ -22893,9 +22651,6 @@ msgstr "премахнете наземните сервизи"
 
 msgid "remove this mark"
 msgstr "премахнете този знак"
-
-msgid "rename"
-msgstr "преименувай"
 
 msgid "rename entry"
 msgstr "преименувайте запис"
@@ -23217,9 +22972,6 @@ msgstr "до режим на готовност/рестартиране"
 msgid "update"
 msgstr "актуализация"
 
-msgid "updates available."
-msgstr "актуализацията е на разположение."
-
 msgid "use best / controlled by HDMI"
 msgstr "използвайте най-добрия / контролиран от HDMI"
 
@@ -23252,18 +23004,6 @@ msgstr "водни спортове"
 
 msgid "west"
 msgstr "запад"
-
-msgid "when asking question about this log"
-msgstr "когато има запитване към този дневник"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"когато има запитване към този дневник\n"
-"\n"
-"Копие бе изпратено до теб."
 
 msgid "wide"
 msgstr "широк"
@@ -23301,934 +23041,5 @@ msgstr "жълт"
 msgid "yes (keep feeds)"
 msgstr "да (запази фийдове)"
 
-#, python-format
-msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "вашият %s %s може да бъде неизползваем сега. Моля, консултирайте се с ръководството за допълнителна помощ преди рестартиране на вашият %s %s."
-
 msgid "®"
 msgstr ""
-
-#~ msgid "Virtual KeyBoard Functions"
-#~ msgstr "Функции на виртуалната клавиатура"
-
-#, python-format
-#~ msgid ""
-#~ "\n"
-#~ "optional parameter:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "\n"
-#~ "незадължителен параметър:\n"
-#~ "%s"
-
-#, python-format
-#~ msgid " ('%s') ends successfully."
-#~ msgstr " ('%s') завършва успешно."
-
-#, python-format
-#~ msgid " ('%s') ends with error messages."
-#~ msgstr " ('%s') завършва със съобщения за грешка."
-
-#, python-format
-#~ msgid " ('%s') ends with error number [%d]."
-#~ msgstr " ('%s') завършва с номер на грешка [%d]."
-
-#, python-format
-#~ msgid " - %d elements exist! Overwrite"
-#~ msgstr " - %d елементи съществуват! Презаписване"
-
-#~ msgid " - 1 element exist! Overwrite"
-#~ msgstr " - 1 елемент съществува! Презаписване"
-
-#~ msgid " - file exist! Overwrite"
-#~ msgstr " - файл съществува! Презаписване"
-
-#~ msgid " - folder exist! Overwrite"
-#~ msgstr " - папката съществува! Презаписване"
-
-#~ msgid " or save additional the picture to a file"
-#~ msgstr " или запишете допълнителна картина във файл"
-
-#, python-format
-#~ msgid "%s - extraction errors."
-#~ msgstr "%s - грешки при извличане."
-
-#, python-format
-#~ msgid "%s is password protected."
-#~ msgstr "%s е защитен с парола."
-
-#, python-format
-#~ msgid "%s successfully extracted."
-#~ msgstr "%s е извлечено успешно."
-
-#, python-format
-#~ msgid "'%s' not installed and no known package"
-#~ msgstr "„%s“ не е инсталиран и няма известен пакет"
-
-#~ msgid "(Selectmode)"
-#~ msgstr "(Избор на режим)"
-
-#~ msgid "Accessed:"
-#~ msgstr "Достъп:"
-
-#~ msgid "Activate left-hand file list as multi-select source"
-#~ msgstr "Активиране на списъка с файлове отляво като източник за избор на множество"
-
-#~ msgid "Activate left-hand file list as source"
-#~ msgstr "Активиране на списъка с файлове отляво като източник"
-
-#~ msgid "Activate right-hand file list as multi-select source"
-#~ msgstr "Активиране на десния списък с файлове като източник за избор на множество"
-
-#~ msgid "Activate right-hand file list as source"
-#~ msgstr "Активиране на десния списък с файлове като източник"
-
-#~ msgid "Add plugin to Extensions menu*"
-#~ msgstr "Добавяне на плъгин към менюто за разширения*"
-
-#~ msgid "Add plugin to main menu*"
-#~ msgstr "Добавяне на плъгин в главното меню*"
-
-#~ msgid "Calculate file checksums"
-#~ msgstr "Изчислете контролните суми на файловете"
-
-#, python-format
-#~ msgid ""
-#~ "Can not run %s: %s.\n"
-#~ "%s may be in a plugin that is not installed."
-#~ msgstr ""
-#~ "Не може да се стартира %s: %s.\n"
-#~ "%s може да е в плъгин, който не е инсталиран."
-
-#, python-format
-#~ msgid "Can't read link contents: %s"
-#~ msgstr "Не мога да прочета съдържанието на връзката: %s"
-
-#~ msgid "Change buttons for list navigation"
-#~ msgstr "Промяна на бутоните за навигация в списъка"
-
-#~ msgid "Channel button always changes sides"
-#~ msgstr "Бутонът за канал винаги сменя страните"
-
-#, python-format
-#~ msgid "Copy %d elements"
-#~ msgstr "Копиране на %d елемента"
-
-#~ msgid "Copy 1 element"
-#~ msgstr "Копиране на 1 елемент"
-
-#~ msgid "Copy file"
-#~ msgstr "Копиране на файл"
-
-#~ msgid "Copy file/directory to target directory"
-#~ msgstr "Копиране на файл/директория в целевата директория"
-
-#~ msgid "Copy files/directories to target directory"
-#~ msgstr "Копиране на файлове/директории в целевата директория"
-
-#~ msgid "Copy folder"
-#~ msgstr "Копиране на папка"
-
-#~ msgid "Create directory/folder"
-#~ msgstr "Създайте директория / папка"
-
-#~ msgid "Create symlink to file"
-#~ msgstr "Създайте символна връзка към файл"
-
-#~ msgid "Create user-named symbolic link"
-#~ msgstr "Създайте символна връзка с име на потребител"
-
-#~ msgid "Date reverse"
-#~ msgstr "Обратна дата"
-
-#~ msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-#~ msgstr "Приоритет на процесора по подразбиране (хубав) за изпълнени скриптове. Това може да намали натоварването, така че скриптовете да не пречат на останалата част от системата. (по-високи стойности = по-нисък приоритет)"
-
-#~ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-#~ msgstr "I/O приоритет по подразбиране (ionice) за изпълнени скриптове. Това може да намали натоварването, така че скриптовете да не пречат на останалата част от системата. (по-високи стойности = по-нисък приоритет)"
-
-#~ msgid "Default directory sorting"
-#~ msgstr "Сортиране на директория по подразбиране"
-
-#~ msgid "Default file sorting left"
-#~ msgstr "Сортиране на файлове по подразбиране вляво"
-
-#~ msgid "Default file sorting right"
-#~ msgstr "Правилно сортиране на файлове по подразбиране"
-
-#~ msgid "Default folder"
-#~ msgstr "Папка по подразбиране"
-
-#~ msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-#~ msgstr "Папка по подразбиране, ако лявата или дясната папка не е запазена, и целева папка за бутон 5."
-
-#~ msgid "Default sorting method for directories on both sides."
-#~ msgstr "Метод за сортиране по подразбиране за директории от двете страни."
-
-#~ msgid "Default sorting method for files on the left side."
-#~ msgstr "Метод за сортиране по подразбиране за файлове от лявата страна."
-
-#~ msgid "Default sorting method for files on the right side."
-#~ msgstr "Метод за сортиране по подразбиране за файлове от дясната страна."
-
-#, python-format
-#~ msgid "Delete %d elements"
-#~ msgstr "Изтриване на %d елемент"
-
-#~ msgid "Delete 1 element"
-#~ msgstr "Изтриване на 1 елемент"
-
-#~ msgid "Delete file or directory (and all its contents)"
-#~ msgstr "Изтриване на файл или директория (и цялото й съдържание)"
-
-#~ msgid "Delete folder"
-#~ msgstr "Изтриване на папка"
-
-#~ msgid "Delete the selected files or directories"
-#~ msgstr "Изтрийте избраните файлове или директории"
-
-#~ msgid "Do you want change rights?\n"
-#~ msgstr "Искате ли да промените правата?\n"
-
-#~ msgid "Do you want to view or run the script?\n"
-#~ msgstr "Искате ли да видите или изпълните скрипта?\n"
-
-#~ msgid "Edit line "
-#~ msgstr "Редактиране на реда "
-
-#~ msgid "Edit position is the line end"
-#~ msgstr "Редактиране на позицията в краят на линията"
-
-#~ msgid "Enter multi-file selection mode"
-#~ msgstr "Влезте в режим на избор на множество файлове"
-
-#, python-format
-#~ msgid ""
-#~ "Error creating directory %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Грешка при създаването на директория %s:\n"
-#~ "%s"
-
-#, python-format
-#~ msgid ""
-#~ "Error linking %s to %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Грешка при свързването на %s към %s:\n"
-#~ "%s"
-
-#, python-format
-#~ msgid ""
-#~ "Error renaming %s to %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Грешка при преименуването на %s на %s:\n"
-#~ "%s"
-
-#~ msgid "Error..."
-#~ msgstr "Грешка ..."
-
-#~ msgid "Exit editor and write changes (if any)"
-#~ msgstr "Излезте от редактора и напишете промените (ако има такива)"
-
-#~ msgid "Exit picture viewer"
-#~ msgstr "Излезте от прегледа на снимки"
-
-#~ msgid "File Commander context menu"
-#~ msgstr "Контекстно меню на File Commander"
-
-#~ msgid "File Commander menu"
-#~ msgstr "Меню File Commander"
-
-#~ msgid "File checksums to calculate for button 9"
-#~ msgstr "Файлови контролни суми за изчисляване за бутон 9"
-
-#~ msgid "File checksums/hashes"
-#~ msgstr "Файлови контролни суми/хешове"
-
-#, python-format
-#~ msgid "File not found: %s"
-#~ msgstr "Файлът не е намерен: %s"
-
-#~ msgid "File/Directory Status Information"
-#~ msgstr "Информация за състоянието на файла/директорията"
-
-#~ msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
-#~ msgstr "Разширение на филтъра за настройката „Моето разширение“ на „Разширение на филтъра“. Използвайте името на разширението без „.“."
-
-#~ msgid "Filter extension, (*) appears in title"
-#~ msgstr "Разширението на филтъра, (*) се появява в заглавието"
-
-#~ msgid "Filter visible file classes by extension."
-#~ msgstr "Филтриране на видими файлови класове по разширение."
-
-#~ msgid "Go to bookmarked folder"
-#~ msgstr "Отиди до папката с отметки"
-
-#~ msgid "Go to end of file"
-#~ msgstr "Отиди до края на файла"
-
-#~ msgid "Go to parent directory"
-#~ msgstr "Отиди в родителската директория"
-
-#~ msgid "Go to start of file"
-#~ msgstr "Отиди в началото на файла"
-
-#~ msgid "Group:"
-#~ msgstr "Група:"
-
-#~ msgid "I/O priority for script execution"
-#~ msgstr "I/O приоритет за изпълнение на скрипт"
-
-#~ msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-#~ msgstr "Ако редактирате файл, можете ли да зададете началната позиция на курсора в края или началото на реда."
-
-#~ msgid "Insert"
-#~ msgstr "Вмъкване"
-
-#, python-format
-#~ msgid "Install '%s' and enable this operation"
-#~ msgstr "Инсталирайте '%s' и активирайте тази операция"
-
-#~ msgid "Installing Plugin ..."
-#~ msgstr "Инсталиране на плъгин..."
-
-#~ msgid "It is not possible to calculate hashes on <List of Storage Devices>"
-#~ msgstr "Не е възможно да се изчислят хешове в <Списък с устройства за съхранение>"
-
-#~ msgid "It is not possible to change the file mode of <List of Storage Devices>"
-#~ msgstr "Не е възможно да промените файловия режим на <Списък с устройства за съхранение>"
-
-#~ msgid "It is not possible to get the file status of <List of Storage Devices>"
-#~ msgstr "Не е възможно да се получи състоянието на файла <Списък с устройства за съхранение>"
-
-#, python-format
-#~ msgid "It is not possible to run '%s' on <List of Storage Devices>"
-#~ msgstr "Не е възможно да се стартира '%s' на <Списък с устройства за съхранение>"
-
-#~ msgid "It's not possible to rename the file system root."
-#~ msgstr "Не е възможно да се преименува корен на файловата система."
-
-#~ msgid "Leave File Commander"
-#~ msgstr "Оставете File Commander"
-
-#~ msgid "Leave multi-select mode"
-#~ msgstr "Оставете режим на множествен избор"
-
-#~ msgid "Link target:"
-#~ msgstr "Линк мишена:"
-
-#~ msgid "Links:"
-#~ msgstr "Линкове:"
-
-#~ msgid "Make File Commander accessible from the Extensions menu."
-#~ msgstr "Направете File Commander достъпен от менюто Разширения."
-
-#~ msgid "Metadata changed:"
-#~ msgstr "Метаданните са променени:"
-
-#, python-format
-#~ msgid "Mode %s (%04o)"
-#~ msgstr "Режим %s (%04o)"
-
-#~ msgid "Modified:"
-#~ msgstr "Променено:"
-
-#, python-format
-#~ msgid "Move %d elements"
-#~ msgstr "Премести %d елемента"
-
-#~ msgid "Move 1 element"
-#~ msgstr "Премести 1 елемент"
-
-#~ msgid "Move down list"
-#~ msgstr "Премести в списъка надолу"
-
-#~ msgid "Move file"
-#~ msgstr "Преместване на файла"
-
-#~ msgid "Move file/directory to target directory"
-#~ msgstr "Преместване на файл/директория в целева директория"
-
-#~ msgid "Move files/directories to target directory"
-#~ msgstr "Преместване на файлове/директории в целева директория"
-
-#~ msgid "Move folder"
-#~ msgstr "Преместване на папка"
-
-#~ msgid "Move up list"
-#~ msgstr "Премести нагоре в списъка"
-
-#~ msgid "My extension"
-#~ msgstr "Моето разширение"
-
-#~ msgid "Name reverse"
-#~ msgstr "Обратно име"
-
-#~ msgid "New folder"
-#~ msgstr "Нова папка"
-
-#~ msgid "No files found."
-#~ msgstr "Няма намерени файлове."
-
-#~ msgid "No hash calculations configured"
-#~ msgstr "Няма конфигурирани хеш изчисления"
-
-#, python-format
-#~ msgid "No viewer installed for this file type: %s"
-#~ msgstr "Няма инсталиран визуализатор за този тип файл: %s"
-
-#, python-format
-#~ msgid "None of the hash programs for the hashes %s are available"
-#~ msgstr "Нито една от хеш програмите за хешовете %s не е налична"
-
-#~ msgid "Not allowed with folders"
-#~ msgstr "Не се допуска с папки"
-
-#~ msgid "Number of lines in script messages"
-#~ msgstr "Брой редове в скриптовите съобщения"
-
-#~ msgid "On device:"
-#~ msgstr "На устройството:"
-
-#~ msgid "Open settings/actions menu"
-#~ msgstr "Отворете менюто с настройки/действия"
-
-#~ msgid "Owner:"
-#~ msgstr "Собственик:"
-
-#~ msgid "Page down list"
-#~ msgstr "Страница надолу в списък"
-
-#~ msgid "Page up list"
-#~ msgstr "Страница нагоре в списък"
-
-#~ msgid "Parent directory"
-#~ msgstr "Родителска директория"
-
-#~ msgid "Permissions:"
-#~ msgstr "Разрешения:"
-
-#~ msgid "Play folder"
-#~ msgstr "Възпроизвеждане на папка"
-
-#~ msgid "Play title"
-#~ msgstr "Пуснете заглавие"
-
-#~ msgid "Play/view/edit/install/extract/run file or enter directory"
-#~ msgstr "Пуснете/прегледайте/редактирайте/инсталирайте/извлечете/изпълнете файл или въведете директория"
-
-#~ msgid "Please enter name of the new symlink"
-#~ msgstr "Моля, въведете името на новия символен линк"
-
-#~ msgid "Please enter password"
-#~ msgstr "Моля, въведете парола"
-
-#~ msgid "Please enter the new directory name"
-#~ msgstr "Моля, въведете името на новата директория"
-
-#~ msgid "Please enter the new file name"
-#~ msgstr "Моля, въведете новото име на файла"
-
-#~ msgid "Please wait, Loading image."
-#~ msgstr "Моля, изчакайте. Изображението се зарежда."
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' is installed.\n"
-#~ "The package containing this program isn't known, so it can't be uninstalled."
-#~ msgstr ""
-#~ "Програмата '%s' е инсталирана.\n"
-#~ "Пакетът, съдържащ тази програма, не е известен, така че не може да бъде деинсталиран."
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' needs to be installed to run the '%s' action.\n"
-#~ "Uninstall the '%s' package to uninstall the program?"
-#~ msgstr ""
-#~ "Програмата '%s' трябва да бъде инсталирана, за да се изпълни действието '%s'.\n"
-#~ "Деинсталирате ли пакета '%s', за да деинсталирате програмата?"
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' needs to be installed to run this action.\n"
-#~ "Install the '%s' package to install the program?"
-#~ msgstr ""
-#~ "Програмата „%s“ трябва да бъде инсталирана, за да изпълни това действие.\n"
-#~ "Инсталирайте пакета '%s', за да инсталирате програмата?"
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' not installed.\n"
-#~ "The package containing this program isn't known."
-#~ msgstr ""
-#~ "Програмата '%s' не е инсталирана.\n"
-#~ "Пакетът, съдържащ тази програма, не е известен."
-
-#~ msgid "Records"
-#~ msgstr "Записи"
-
-#~ msgid "Rename file/directory"
-#~ msgstr "Преименувайте файл/директория"
-
-#~ msgid "Reverse left file sorting"
-#~ msgstr "Обратно на ляво сортиране на файлове"
-
-#~ msgid "Reverse right file sorting"
-#~ msgstr "Обратно на дясно сортиране на файлове"
-
-#~ msgid "Save left folder on exit"
-#~ msgstr "Запазете лявата папка при изход"
-
-#~ msgid "Save right folder on exit"
-#~ msgstr "Запазете дясната папка при изход"
-
-#~ msgid "Save the left folder list location on exit."
-#~ msgstr "Запазете местоположението на списъка с лявата папка при изход."
-
-#~ msgid "Save the right folder list location on exit."
-#~ msgstr "Запазете правилното местоположение на списъка с папки при изход."
-
-#, python-format
-#~ msgid "Script '%s' must have read permission to be able to run it"
-#~ msgstr "Скриптът '%s' трябва да има разрешение за четене, за да може да го стартира"
-
-#~ msgid "Select (source list) or enter directory (target list)"
-#~ msgstr "Изберете (списък с източници) или въведете директория (целеви списък)"
-
-#~ msgid "Select a path"
-#~ msgstr "Изберете път"
-
-#~ msgid "Set archive mode (644)"
-#~ msgstr "Задайте режим на архивиране (644)"
-
-#~ msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
-#~ msgstr "Задайте за 'stout' и 'sterr' броя на редовете в информацията за скрипта или съобщенията за грешка в скрипта."
-
-#, python-format
-#~ msgid ""
-#~ "Show '%s' as picture%s?\n"
-#~ "The current service must interrupted!"
-#~ msgstr ""
-#~ "Показване на „%s“ като снимка%s?\n"
-#~ "Текущата услуга трябва да бъде прекъсната!"
-
-#~ msgid "Show Script completed message"
-#~ msgstr "Показване на съобщението за завършен скрипт"
-
-#~ msgid "Show Task's completed message"
-#~ msgstr "Показване на съобщението за завършени задачи"
-
-#~ msgid "Show as Picture (press any key to close)"
-#~ msgstr "Показване като картина (натиснете произволен клавиш, за да затворите)"
-
-#, python-format
-#~ msgid "Show as Picture and save as file ('%s')"
-#~ msgstr "Показване като картина и запазване като файл ('%s')"
-
-#~ msgid "Show contents of ipk file"
-#~ msgstr "Показване на съдържанието на ipk файла"
-
-#~ msgid "Show contents of rar file"
-#~ msgstr "Показване на съдържанието на rar файл"
-
-#~ msgid "Show contents of tar or compressed tar file"
-#~ msgstr "Показване на съдържанието на tar или компресиран tar файл"
-
-#~ msgid "Show contents of zip file"
-#~ msgstr "Показване на съдържанието на zip файл"
-
-#~ msgid "Show directories on first or last in list.(must restart File Commander)"
-#~ msgstr "Показване на директории на първа или последна в списъка. (трябва да рестартирате File Commander)"
-
-#~ msgid "Show image information"
-#~ msgstr "Показване на информация за изображението"
-
-#~ msgid "Show message if File Commander is not running and all Task's are completed."
-#~ msgstr "Показване на съобщение, ако File Commander не работи и всички задачи са завършени."
-
-#~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-#~ msgstr "Показване на съобщение, ако фонов скрипт завърши успешно. Има „здрав“, тогава това се показва като допълнителна информация."
-
-#~ msgid "Show unknown extension as text"
-#~ msgstr "Показване на неизвестно разширение като текст"
-
-#~ msgid "Show unknown file extensions with 'Addon File-Viewer'."
-#~ msgstr "Показване на неизвестни разширения на файлове с „Addon File-Viewer“."
-
-#~ msgid "Size reverse"
-#~ msgstr "Обратен размер"
-
-#~ msgid "Skip selection"
-#~ msgstr "Пропуснете селекцията"
-
-#~ msgid "Sorting left files by name, date or size"
-#~ msgstr "Сортиране на левите файлове по име, дата или размер"
-
-#~ msgid "Sorting right files by name, date or size"
-#~ msgstr "Сортиране на правилните файлове по име, дата или размер"
-
-#~ msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-#~ msgstr "Разменете бутоните надясно/наляво с канал плюс/минус или бутонът за канал винаги се сменя отстрани."
-
-#~ msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
-#~ msgstr "Компонентът Image Viewer на File Commander изисква разширението PicturePlayer. Инсталирайте PicturePlayer, за да активирате тази операция."
-
-#~ msgid "The authors are NOT RESPONSIBLE"
-#~ msgstr "Авторите НЕ НОСЯТ ОТГОВОРНОСТ"
-
-#~ msgid ""
-#~ "The function has interrupted.\n"
-#~ "Don't press in the next time any key until the picture from mvi-file is displayed!"
-#~ msgstr ""
-#~ "Функцията е прекъсната.\n"
-#~ "Не натискайте следващия път нито един клавиш, докато не се покаже картината от mvi-файл!"
-
-#~ msgid "The hash of a directory can't be calculated."
-#~ msgstr "Хешът на директория не може да бъде изчислен."
-
-#~ msgid "This line is not editable!"
-#~ msgstr "Този ред не може да се редактира!"
-
-#~ msgid "Time between slides in image viewer slideshow."
-#~ msgstr "Време между слайдовете в слайдшоуто за преглед на изображения."
-
-#~ msgid "Time for Slideshow"
-#~ msgstr "Време е за слайдшоу"
-
-#~ msgid "Type:"
-#~ msgstr "Тип:"
-
-#, python-format
-#~ msgid "Uninstall '%s' package and disable '%s'"
-#~ msgstr "Деинсталирайте пакета '%s' и деактивирайте '%s'"
-
-#, python-format
-#~ msgid "Unpack to %s"
-#~ msgstr "Разопаковайте в %s"
-
-#~ msgid "Unpack to current folder"
-#~ msgstr "Разопаковайте в текущата папка"
-
-#~ msgid "WARNING!"
-#~ msgstr "ВНИМАНИЕ!"
-
-#~ msgid "What do you want to play?\n"
-#~ msgstr "Какво искате да сканирате?\n"
-
-#, python-format
-#~ msgid "You can't usefully run '%s' on '%s'."
-#~ msgstr "Не можете полезно да стартирате '%s' на '%s'."
-
-#, python-format
-#~ msgid "You can't usefully run '%s' on a directory."
-#~ msgstr "Не можете да стартирате полезно '%s' в директория."
-
-#~ msgid "has been CHANGED! Do you want to save it?"
-#~ msgstr "е променен! Искате ли да го запазите?"
-
-#~ msgid "manage local Files"
-#~ msgstr "управление на локални файлове"
-
-#~ msgid "move file"
-#~ msgstr "преместете файл"
-
-#~ msgid "move folder"
-#~ msgstr "преместване на папка"
-
-#~ msgid "original"
-#~ msgstr "оригинален"
-
-#~ msgid "play Files"
-#~ msgstr "възпроизвеждане на файлове"
-
-#~ msgid "python"
-#~ msgstr "питон"
-
-#~ msgid "without"
-#~ msgstr "без заявки"
-
-#, python-format
-#~ msgid ""
-#~ "A sleep timer wants to set your\n"
-#~ "%s %s to standby. Do that now?"
-#~ msgstr ""
-#~ "Таймерът за сън иска да настрои вашия\n"
-#~ "%s %s в standby. Да го направи ли сега?"
-
-#, python-format
-#~ msgid ""
-#~ "A sleep timer wants to shut down\n"
-#~ "your %s %s. Shutdown now?"
-#~ msgstr ""
-#~ "Таймерът за сън иска да изключи вашия \n"
-#~ "%s %s. Да изключи ли сега?"
-
-#~ msgid "Enable screenshot of LCD in /tmp"
-#~ msgstr "Разрешаване на екранна снимка на LCD в /tmp"
-
-#~ msgid "Job View"
-#~ msgstr "Работен изглед"
-
-#~ msgid "Jump to first item in list or the start of text"
-#~ msgstr "Скок до първия елемент в списъка или началото на текста"
-
-#~ msgid "Jump to last item in list or the end of text"
-#~ msgstr "Скок до последния елемент в списъка или края на текста"
-
-#~ msgid "Please enter a new filename:"
-#~ msgstr "Моля ,въведете ново име на файла"
-
-#~ msgid "Remove directory"
-#~ msgstr "премахнете директорията"
-
-#~ msgid "Screenshot of LCD in /tmp"
-#~ msgstr "Screenshot of LCD in /tmp"
-
-#~ msgid "Select the next item in list or move cursor right"
-#~ msgstr "Изберете следващия елемент в списъка или преместете курсора надясно"
-
-#~ msgid "Select the previous item in list or move cursor left"
-#~ msgstr "Изберете предишния елемент в списъка или преместете курсора наляво"
-
-#~ msgid "Switch to bookmarks"
-#~ msgstr "превключете към отметки"
-
-#~ msgid "Task list"
-#~ msgstr "Списък със задачи"
-
-#~ msgid "Please select the IceTV service that you wish to use."
-#~ msgstr "Моля, изберете услугата IceTV, която искате да използвате."
-
-#~ msgid "Long key press"
-#~ msgstr "Дълго натискане на клавиш"
-
-#~ msgid "Next Image"
-#~ msgstr "Следващо изображение"
-
-#~ msgid "Receiver Image Actions"
-#~ msgstr "Действия за изображение на приемника"
-
-#~ msgid "Use these settings?"
-#~ msgstr "Използване на тези настройки?"
-
-#~ msgid "Please select an acceptable directory."
-#~ msgstr "Моля, изберете приемлива директория."
-
-#~ msgid "Aspect long"
-#~ msgstr "Дълъг гледна точка"
-
-#~ msgid "Audio long"
-#~ msgstr "Аудио дълго"
-
-#~ msgid "Context long"
-#~ msgstr "Контекстно дълго"
-
-#~ msgid "Directory long"
-#~ msgstr "Дълга директория"
-
-#~ msgid "End long"
-#~ msgstr "Край на дълго"
-
-#~ msgid "Epg/Guide long"
-#~ msgstr "EPG/Дълго ръководство"
-
-#~ msgid "Favorites long"
-#~ msgstr "Любими дълго"
-
-#~ msgid "File long"
-#~ msgstr "Дълъг файл"
-
-#~ msgid "Flash on the fly your %s %s."
-#~ msgstr "Flash в движение на вашия %s %s."
-
-#~ msgid "Help long"
-#~ msgstr "Продължителна помощ"
-
-#~ msgid "History long"
-#~ msgstr "Дълга история"
-
-#~ msgid "Home long"
-#~ msgstr "Дълго вкъщи"
-
-#~ msgid "Homepage long"
-#~ msgstr "Дълга начална страница"
-
-#~ msgid "Info (EPG) Long"
-#~ msgstr "Информация (EPG) дълго"
-
-#~ msgid "Keyboard long"
-#~ msgstr "Дълга клавиатура"
-
-#~ msgid "LAN long"
-#~ msgstr "Дълга LAN"
-
-#~ msgid "Left long"
-#~ msgstr "Дълго оставен"
-
-#~ msgid "List/Fav long"
-#~ msgstr "Дълъг списък/любими"
-
-#~ msgid "Nextsong long"
-#~ msgstr "Следващата дълга песен"
-
-#~ msgid "OK long"
-#~ msgstr "OK дълго"
-
-#~ msgid "Open long"
-#~ msgstr "Дълго отваряне"
-
-#~ msgid "Option long"
-#~ msgstr "Опция дълга"
-
-#~ msgid "PageDown long"
-#~ msgstr "Дълга страница надолу"
-
-#~ msgid "PageUp long"
-#~ msgstr "Дълга страница нагоре"
-
-#~ msgid "Playlist long"
-#~ msgstr "Дълъг плейлист"
-
-#~ msgid "Program long"
-#~ msgstr "Дълга програма"
-
-#~ msgid "Rec long"
-#~ msgstr "Продължителен запис"
-
-#~ msgid "Right long"
-#~ msgstr "Дълго точно"
-
-#~ msgid "Search/WEB long"
-#~ msgstr "Търсене/WEB дълго"
-
-#~ msgid "Sleep long"
-#~ msgstr "Дълго заспиване"
-
-#~ msgid "Subtitle long"
-#~ msgstr "Дълги субтитри"
-
-#~ msgid "Teletext long"
-#~ msgstr "Дълъг телетекст"
-
-#~ msgid "Time long"
-#~ msgstr "Дълго време"
-
-#~ msgid "ZOOM long"
-#~ msgstr "Мащабиране дълго"
-
-#~ msgid "0.2s"
-#~ msgstr "0.2сек"
-
-#~ msgid "0.3s"
-#~ msgstr "0.3сек"
-
-#~ msgid "0.4s"
-#~ msgstr "0.4сек"
-
-#~ msgid "0.5s"
-#~ msgstr "0.5сек"
-
-#~ msgid "0.6s"
-#~ msgstr "0.6сек"
-
-#~ msgid "0.7s"
-#~ msgstr "0.7сек"
-
-#~ msgid "0.8s"
-#~ msgstr "0.8сек"
-
-#~ msgid "0.9s"
-#~ msgstr "0.9сек"
-
-#~ msgid "1 GB"
-#~ msgstr "1 ГБ"
-
-#~ msgid "1.2s"
-#~ msgstr "1.2сек"
-
-#~ msgid "1.5s"
-#~ msgstr "1.5сек"
-
-#~ msgid "1.7s"
-#~ msgstr "1.7сек"
-
-#~ msgid "1s"
-#~ msgstr "1сек"
-
-#~ msgid "2.5s"
-#~ msgstr "2.5сек"
-
-#~ msgid "3s"
-#~ msgstr "3сек"
-
-#~ msgid "5s"
-#~ msgstr "5сек"
-
-#~ msgid "Auto Timer"
-#~ msgstr "Автоматичен таймер"
-
-#~ msgid "Hour"
-#~ msgstr "Час"
-
-#~ msgid "Once per day"
-#~ msgstr "Веднъж на ден"
-
-#~ msgid "alphabetical"
-#~ msgstr "по азбучен ред"
-
-#~ msgid "alternative"
-#~ msgstr "алтернативен"
-
-#~ msgid "user defined"
-#~ msgstr "потребителски дефиниран"
-
-#~ msgid "white"
-#~ msgstr "бял"
-
-#, python-format
-#~ msgid "Mount '%s' has not enough free space to record."
-#~ msgstr "Монтирането „%s“ няма достатъчно свободно място за запис."
-
-#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Файлът с таймер (pm_timers.xml) е повреден и не може да бъде зареден."
-
-#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Файлът с таймер (timers.xml) е повреден и не може да бъде зареден."
-
-#~ msgid ""
-#~ "Timer overlap in pm_timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Открит таймер припокриване в pm_timers.xml!\n"
-#~ "Моля, проверете го отново!"
-
-#~ msgid ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Открит таймер припокриване в timers.xml!\n"
-#~ "Моля, проверете го отново!"
-
-#~ msgid "ask user"
-#~ msgstr "попитай потребителя"
-
-#~ msgid "menu"
-#~ msgstr "меню"
-
-#, python-format
-#~ msgid "record time changed, start prepare is now: %s"
-#~ msgstr "времето за запис се промени, стартирайте подготовката сега: %s"
-
-#~ msgid "select"
-#~ msgstr "изберете"
-
-#~ msgid "start recording"
-#~ msgstr "старт на записване"
-
-#~ msgid "stop recording"
-#~ msgstr "стоп на запис"
-
-#~ msgid "zapping"
-#~ msgstr "превключено на"
