@@ -24,11 +24,14 @@ to generate HTML."""
 		self.onSelectionChanged = []
 		self.disableCallbacks = False
 
+	def getList(self):
+		return self.listData
+
 	def setList(self, listData):
 		self.listData = listData
 		self.changed((self.CHANGED_ALL,))
 
-	list = property(lambda self: self.listData, setList)
+	list = property(getList, setList)
 
 	def updateList(self, listData):
 		"""Changes the list without changing the selection or emitting changed Events"""
