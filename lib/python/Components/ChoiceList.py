@@ -1,21 +1,22 @@
-from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, gFont
+from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 
-from skin import fonts, parameters
+from skin import fonts, parameters, parseVerticalAlignment
 from Components.MenuList import MenuList
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 
 def ChoiceEntryComponent(key=None, text=None):
+	verticalAlignment = parseVerticalAlignment(parameters.get("ChoicelistVerticalAlignment", "top")) << 4  # This is a hack until other images fix their code.
 	text = ["--"] if text is None else text
 	res = [text]
 	if text[0] == "--":
 		x, y, w, h = parameters.get("ChoicelistDash", (0, 0, 1280, 25))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "\u2014" * 200))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT | verticalAlignment, "\u2014" * 200))
 	else:
 		if key:
 			x, y, w, h = parameters.get("ChoicelistName", (45, 0, 1235, 25))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, text[0]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT | verticalAlignment, text[0]))
 			if key in ("dummy", "none"):
 				png = None
 			elif key == "expandable":
@@ -37,7 +38,7 @@ def ChoiceEntryComponent(key=None, text=None):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 		else:
 			x, y, w, h = parameters.get("ChoicelistNameSingle", (5, 0, 1275, 25))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, text[0]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT | verticalAlignment, text[0]))
 	return res
 
 
