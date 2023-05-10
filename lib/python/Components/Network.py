@@ -11,7 +11,6 @@ from Components.Harddisk import harddiskmanager
 from Components.PluginComponent import plugins
 from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
-from six import PY3
 
 DEFAULT_MODULE_NAME = __name__.split(".")[-1]
 
@@ -52,7 +51,7 @@ class Network:
 		return self.remoteRootFS
 
 	def isBlacklisted(self, iface):
-		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tap0', 'tun0', 'sys0', 'p2p0', 'tunl0', 'ip6tnl0', 'ip_vti0', 'ip6_vti0')
+		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tap0', 'tun0', 'wg0', 'sys0', 'p2p0', 'tunl0', 'ip6tnl0', 'ip_vti0', 'ip6_vti0')
 
 	def getInterfaces(self, callback=None):
 		self.configuredInterfaces = []
@@ -472,7 +471,7 @@ class Network:
 
 	def getLinkStateFinished(self, result, retval, extra_args):
 		(callback) = extra_args
-		if PY3 and isinstance(result, bytes):
+		if isinstance(result, bytes):
 			result = result.decode()
 
 		if self.LinkConsole is not None:

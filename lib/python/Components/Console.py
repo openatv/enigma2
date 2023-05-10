@@ -65,6 +65,7 @@ class Console(object):
 		# and WirelessLan/Wlan.py accesses it to know if there's still
 		# stuff running.
 		self.appContainers = {}
+		self.appResults = {}
 		self.binary = binary
 
 	def ePopen(self, cmd, callback=None, extra_args=None):
