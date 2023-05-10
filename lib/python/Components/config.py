@@ -879,7 +879,10 @@ class ConfigSelection(ConfigElement):
 	def getDescriptions(self):
 		return self.description.__list__()
 
-	def setChoices(self, choices, default=None):
+	def getSelectionList(self):
+		return list(zip(self.choices.__list__(), self.description.__list__()))
+
+	def setSelectionList(self, choices, default=None):
 		value = self.value
 		self.choices = choicesList(choices)
 		if default is None:
@@ -889,6 +892,9 @@ class ConfigSelection(ConfigElement):
 			self.value = default
 		if self.value != value:
 			self.changed()
+
+	def setChoices(self, choices, default=None):
+		return self.setSelectionList(choices, default=default)
 
 	def getValue(self):
 		return self._value
