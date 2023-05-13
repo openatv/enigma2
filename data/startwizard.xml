@@ -14,7 +14,7 @@ self.selectKey("OK")
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<displaytext value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
-				<listentry caption="Use the wizard to set up basic features" step="timezone" />
+				<listentry caption="Use the wizard to set up basic features" step="network" />
 				<listentry caption="Exit the wizard" step="end" />
 			</list>
 			<code>
@@ -55,7 +55,8 @@ self.selectKey("OK")
 
 		<step id="networkfailed" >
 			<condition>
-self.condition = not config.misc.installwizard.ipkgloaded.value
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash") and not config.misc.installwizard.ipkgloaded.value
 			</condition>
 			<text value="Your %s %s does not have an Internet connection" />
 			<displaytext value="Your %s %s is not connected to the Internet" />

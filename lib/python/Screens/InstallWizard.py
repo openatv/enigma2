@@ -1,10 +1,8 @@
-import os
+from os import system
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
-from Components.Sources.StaticText import StaticText
 from Components.config import config, ConfigSubsection, ConfigBoolean, getConfigListEntry, ConfigSelection, ConfigYesNo, ConfigIP
 from Components.Network import iNetwork
-from Components.Opkg import OpkgComponent
 from enigma import eDVBDB
 
 config.misc.installwizard = ConfigSubsection()
@@ -36,11 +34,11 @@ class InstallWizard(Screen, ConfigListScreen):
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 			is_found = False
 			for x in self.adapters:
-				if x[1] == 'eth0' or x[1] == 'eth1':
-					if iNetwork.getAdapterAttribute(x[1], 'up'):
+				if x[1] in ("eth0", "eth1"):
+					if iNetwork.getAdapterAttribute(x[1], "up"):
 						self.ipConfigEntry = ConfigIP(default=iNetwork.getAdapterAttribute(x[1], "ip"))
 						iNetwork.checkNetworkState(self.checkNetworkCB)
-						if_found = True
+						is_found = True
 					else:
 						iNetwork.restartNetwork(self.checkNetworkLinkCB)
 					break
@@ -71,7 +69,7 @@ class InstallWizard(Screen, ConfigListScreen):
 	def createMenu(self):
 		try:
 			test = self.index
-		except:
+		except Exception:
 			return
 		self.list = []
 		if self.index == self.STATE_UPDATE:
@@ -105,11 +103,10 @@ class InstallWizard(Screen, ConfigListScreen):
 
 	def run(self):
 		if self.index == self.STATE_UPDATE and config.misc.installwizard.hasnetwork.value:
-			os.system("opkg update && opkg install meta-small")
+			system("opkg update ; opkg install packagegroup-openatv-small")
 			config.misc.installwizard.ipkgloaded.value = True
 		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value and self.channellist_type.value == "default":
 			config.misc.installwizard.channellistdownloaded.value = True
-			os.system("tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2")
+			system("tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2")
 			eDVBDB.getInstance().reloadServicelist()
 			eDVBDB.getInstance().reloadBouquets()
-		return

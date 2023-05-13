@@ -44,6 +44,6 @@ wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, 
 #wizardManager.registerWizard(LocaleWizard, config.misc.languageselected.value, priority=2)
 # FrontprocessorUpgrade FPUpgrade priority = 8
 # FrontprocessorUpgrade SystemMessage priority = 9
-wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority=20)
+wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority=30)
 # StartWizard calls InstallWizard
 # NetworkWizard priority = 25
