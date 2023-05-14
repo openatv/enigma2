@@ -1,8 +1,11 @@
 from os import system
 from Screens.Screen import Screen
+from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigBoolean, getConfigListEntry, ConfigSelection, ConfigYesNo, ConfigIP
 from Components.Network import iNetwork
+from Components.Opkg import OpkgComponent
+from Components.Sources.StaticText import StaticText
 from enigma import eDVBDB
 
 config.misc.installwizard = ConfigSubsection()
@@ -29,7 +32,7 @@ class InstallWizard(Screen, ConfigListScreen):
 			config.misc.installwizard.ipkgloaded.value = False
 			modes = {0: " "}
 			self.enabled = ConfigSelection(choices=modes, default=0)
-			modes = {0: "Installing Please wait..."}
+			modes = {0: "Press OK to install"}
 			self.cfgupdate = ConfigSelection(choices=modes, default=0)
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 			is_found = False
@@ -103,10 +106,53 @@ class InstallWizard(Screen, ConfigListScreen):
 
 	def run(self):
 		if self.index == self.STATE_UPDATE and config.misc.installwizard.hasnetwork.value:
-			system("opkg update ; opkg install packagegroup-openatv-small")
-			config.misc.installwizard.ipkgloaded.value = True
-		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value and self.channellist_type.value == "default":
+			self.session.open(InstallWizardSmallBox)
+		if self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value and self.channellist_type.value == "default":
 			config.misc.installwizard.channellistdownloaded.value = True
 			system("tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2")
 			eDVBDB.getInstance().reloadServicelist()
 			eDVBDB.getInstance().reloadBouquets()
+
+
+class InstallWizardSmallBox(Screen):
+	skin = """
+	<screen name="InstallWizardSmallBox" position="center,center" size="520,225" resolution="1280,720">
+		<widget source="Title" render="Label" position="65,8" size="520,0" font="Regular;22" transparent="1"/>
+		<widget source="statusbar" render="Label" position="75,10" size="435,55" font="Regular;22" transparent="1"/>
+	</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.setTitle(_("Small Box Preparation"))
+		self["statusbar"] = StaticText(_("Installing Please wait..."))
+		self.opkg = OpkgComponent()
+		self.opkg.addCallback(self.opkgCallback)
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		{
+			"cancel": self.close,
+			"red": self.close,
+			"green": self.close,
+			"ok": self.close
+		})
+
+		self["actions"].setEnabled(False)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
+
+	def opkgCallback(self, event, parameter):
+		print("InstallWizard opkgCallback event:%s parameter:%s" % (event, parameter))
+		if event == OpkgComponent.EVENT_ERROR:
+			self["statusbar"].setText(_("Package installation failed"))
+			self["actions"].setEnabled(True)
+		elif event == OpkgComponent.EVENT_INSTALL:
+			self["statusbar"].setText(_("Installing : %s") % parameter)
+		elif event == OpkgComponent.EVENT_DONE:
+			if self.opkg.currentCommand == OpkgComponent.CMD_UPDATE:
+				self.opkg.startCmd(OpkgComponent.CMD_INSTALL, {"package": "packagegroup-openatv-small"})
+			else:
+				config.misc.installwizard.ipkgloaded.value = True
+				self.opkg.removeCallback(self.opkgCallback)
+				self.close()
