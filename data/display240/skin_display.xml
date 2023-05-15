@@ -149,12 +149,6 @@
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
-		<widget source="parent.list" render="Label" position="fill" font="FdLcD;45" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
 
 <!-- standby-->
 	<screen name="StandbySummary" position="0,0" size="240,80">
@@ -303,12 +297,6 @@
 		<widget source="parent.summarytext" render="Label" position="0,0" size="240,30" font="FdLcD;24" halign="center" />
 		<widget source="parent.summarylangname" render="Label" position="0,39" size="240,30" font="FdLcD;24" halign="center" />
 <!-- 		<widget source="parent.flag" render="Pixmap" position="0,0" size="110,40" backgroundColor="#ff000000" /> -->
-	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<widget source="text" render="Label" position="0,0" size="240,35" font="FdLcD;24" halign="center" />
-		<widget source="parent.list" render="Label" position="0,35" size="240,45" font="FdLcD;24" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
 	</screen>
 
 <!-- DVD -->

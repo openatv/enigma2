@@ -365,14 +365,6 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 
-	<screen name="VideoWizardSummary" position="0,0" size="720,576"> 
-		<widget source="text" render="Label" position="10,20" foregroundColor="#e5b243" size="670,120" font="FdLcD;70" halign="center" valign="center" />
-		<widget source="parent.list" render="Label" position="20,190" size="670,200" font="FdLcD;60" halign="center" valign="top" foregroundColor="#02c6ff">
-			<convert type="StringListSelection" />
-		</widget>
-		<panel name="SummaryClockPanel" />
-	</screen>
-	
 <!-- standby -->
 <!--"Analog Clock" -->
 	<screen name="StandbySummary" position="0,0" size="720,576">
