@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-20 09:57+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-05-09 21:48+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -6835,6 +6835,9 @@ msgstr "Ενεργοποίηση IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Ενεργοποίηση ξεθωριάσματος της μπάρας πληροφοριών"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Ενεργοποίηση της πολλαπλής εκκίνησης Kexec"
+
 msgid "Enable MHW EPG"
 msgstr "Ενεργοποίηση MHW EPG"
 
@@ -6973,6 +6976,9 @@ msgstr "Ενεργοποιήστε αυτή την επιλογή για την 
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για την προσθήκη πρόσθετων δεδομένων EPG στο αρχείο καταγραφής αποσφαλμάτωσης."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Ενεργοποιήστε αυτήν την επιλογή για να προσθέσετε πληροφορίες για τη διεθνή γλώσσα και τον φόρτο χώρας που ανιχνεύονται κατά την εκκίνηση του συστήματος στο αρχείο καταγραφής αποσφαλμάτωσης."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για την προσθήκη δεδομένων χάρτη πληκτρολογίου στο αρχείο καταγραφής αποσφαλμάτωσης."
@@ -9306,6 +9312,9 @@ msgstr "Συμπερίληψη των SDT, BAT στις ροές http"
 msgid "Include action map data"
 msgstr "Συμπερίληψη των δεδομένων χάρτη εντολών"
 
+msgid "Include international data *"
+msgstr "Συμπερίληψη διεθνών δεδομένων *"
+
 msgid "Include keyboard data"
 msgstr "Συμπερίληψη των δεδομένων πληκτρολογίου"
 
@@ -9787,6 +9796,26 @@ msgstr "Αρχείο kernel"
 
 msgid "Kernel version"
 msgstr "Έκδοση kernel"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Ενέργειες πολλαπλής εκκίνησης Kexec"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Αρχικοποίηση πολλαπλής εκκίνησης Kexec - θα γίνει επανεκκίνηση μετά από 10 δευτερόλεπτα."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Αρχικοποίηση πολλαπλής εκκίνησης Kexec σε εξέλιξη!\n"
+"\n"
+"Θα γίνει επανεκκίνηση μετά την επαναφορά οποιασδήποτε υποδοχής eMMC.\n"
+"Αυτό μπορεί να διαρκέσει από 1 -> 5 λεπτά ανά υποδοχή."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Διαχείριση πολλαπλής εκκίνησης Kexec"
 
 msgid "Key"
 msgstr "Κλειδί"
@@ -12000,13 +12029,13 @@ msgid "Only Flash Backup Image"
 msgstr "Φλασάρισμα μόνο του image εφεδρείας"
 
 msgid "Only free scan"
-msgstr "Μόνο τα ελεύθερα"
+msgstr "Ανίχνευση μόνο των ελεύθερων"
 
 msgid "Only in standby"
 msgstr "Μόνο στην αναμονή"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
-msgstr "Καταγραφή μόνο των πληροφοριών αποσφαλμάτωσης στην κατηγορία GStreamer. To * σημαίνει όλες τις κατηγορίες."
+msgstr "Καταγραφή μόνο των πληροφοριών αποσφαλμάτωσης στην κατηγορία GStreamer. Το * σημαίνει όλες τις κατηγορίες."
 
 msgid "Only move the dish quickly after this hour."
 msgstr "Γρήγορη κίνηση του κατόπτρου μόνο μετά από αυτό το χρονικό διάστημα."
@@ -13181,6 +13210,19 @@ msgstr "Πιέστε EXIT για κλείσιμο."
 msgid "Press EXIT to return to the help screen."
 msgstr "Πιέστε EXIT για επιστροφή στην οθόνη βοήθειας."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Πιέστε το πράσινο πλήκτρο για να ενεργοποιηθεί η πολλαπλή εκκίνηση!\n"
+"\n"
+"Θα γίνει επανεκκίνηση εντός 10 δευτερολέπτων,\n"
+"εκτός αν υπάρχουν υποδοχές eMMC για επαναφορά.\n"
+"Η επαναφορά των υποδοχών eMMC μπορεί να διαρκέσει από 1 έως 5 λεπτά ανά υποδοχή."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Πιέστε ΟΚ για επιλογή πολλαπλής εκκίνησης."
 
@@ -13496,6 +13538,9 @@ msgstr "Κανάλι τετραπλού PiP "
 msgid "Quad PiP is not available."
 msgstr "Το τετραπλό PiP δεν είναι διαθέσιμο."
 
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
+
 msgid "Quechua"
 msgstr "Κέτσουα"
 
@@ -13662,6 +13707,14 @@ msgstr "Να διαγραφεί σίγουρα αυτό το στοιχείο;"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Θέλετε να γίνει έξοδος από γρήγορο ζάπινγκ των υπό-υπηρεσιών;"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Να γίνει σίγουρα μόνιμη διαγραφή των αρχείων πολλαπλής εκκίνησης;\n"
+"%s"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Να γίνει σίγουρα επανεκκίνηση σε λειτουργία αποκατάστασης;"
@@ -14052,6 +14105,9 @@ msgstr "Αφαίρεση του επιλεγμένου φακέλου από τ�
 
 msgid "Remove currently selected title"
 msgstr "Διαγραφή επιλεγμένου τίτλου"
+
+msgid "Remove forever"
+msgstr "Μόνιμη κατάργηση"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Επανεμφάνιση της γραμμής VBI για αυτή την υπηρεσία"
@@ -19797,6 +19853,9 @@ msgstr "Ουκρανία"
 
 msgid "Ukrainian"
 msgstr "Ουκρανικά"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Αδυναμία ολοκλήρωσης - λείπουν τα αρχεία πολλαπλής εκκίνησης Kexec!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Ανεπιτήρητη αναβάθμιση χωρίς γραφικό περιβάλλον"
