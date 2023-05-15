@@ -14,7 +14,7 @@ self.selectKey("OK")
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<displaytext value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
-				<listentry caption="Use the wizard to set up basic features" step="network" />
+				<listentry caption="Use the wizard to set up basic features" step="flashexpander" />
 				<listentry caption="Exit the wizard" step="end" />
 			</list>
 			<code>
@@ -22,6 +22,23 @@ self.clearSelectedKeys()
 self.selectKey("UP")
 self.selectKey("DOWN")
 self["key_yellow"].text = ""
+			</code>
+		</step>
+
+		<step id="flashexpander" nextstep="network">
+			<condition>
+from os import statvfs
+flashSize = statvfs('/')
+flashSize = (flashSize.f_frsize * flashSize.f_blocks) // 2**20
+from Components.SystemInfo import BoxInfo
+self.condition = True #BoxInfo.getItem("SmallFlash") and flashSize &lt; 511
+			</condition>
+			<text value="Your Box has a small flash size and you need to use FlashExpander to increase your available space. Otherwise your Box will have only a very limited features."/>
+			<displaytext value="" />
+			<config screen="InstallWizard" module="InstallWizard" args="2" type="ConfigList" />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
 			</code>
 		</step>
 
@@ -70,6 +87,7 @@ self.selectKey("UP")
 self.selectKey("DOWN")
 			</code>
 		</step>
+
 		<step id="timezone">
 			<text value="Please set your time options.\n\nPress YELLOW to set the time zone via geolocation."/>
 			<displaytext value="Please set your time options"/>
