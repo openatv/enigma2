@@ -34,7 +34,7 @@ from Components.SystemInfo import BoxInfo
 self.condition = True #BoxInfo.getItem("SmallFlash") and flashSize &lt; 511
 			</condition>
 			<text value="Your Box has a small flash size and you need to use FlashExpander to increase your available space. Otherwise your Box will have only a very limited features."/>
-			<displaytext value="" />
+			<displaytext value="Your Box has a small flash size and you need to use FlashExpander to increase your available space. Otherwise your Box will have only a very limited features." />
 			<config screen="InstallWizard" module="InstallWizard" args="2" type="ConfigList" />
 			<code>
 self.clearSelectedKeys()
@@ -58,8 +58,11 @@ self.selectKey("DOWN")
 
 		<step id="update">
 			<condition>
+from os import statvfs
+flashSize = statvfs('/')
+flashSize = (flashSize.f_frsize * flashSize.f_blocks) // 2**20
 from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash")
+self.condition = BoxInfo.getItem("SmallFlash") and flashSize &gt; 512
 			</condition>
 			<text value="Checking the Internet connection" />
 			<displaytext value="Checking the Internet connection" />
@@ -307,13 +310,13 @@ from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 			</condition>
 			<list>
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="reboot" />
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
 			</list>
 		</step>
 
-		<step id="scan" nextstep="end">
+		<step id="scan" nextstep="reboot">
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
@@ -341,7 +344,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			<text value="Do you want to do another manual service scan?" />
 			<displaytext value="Do you want to do another manual service scan?" />
 			<list>
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="reboot" />
 				<listentry caption="Yes, do another manual scan now" step="manualscan" />
 			</list>
 		</step>
@@ -351,7 +354,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			<text value="Do you want to enable the parental control feature on your %s %s?" />
 			<displaytext value="Do you want to enable the parental control feature on your %s %s?" />
 			<list>
-				<listentry caption="No" step="end" />
+				<listentry caption="No" step="reboot" />
 				<listentry caption="Yes" step="parentalsetup" />
 			</list>
 			<code pos="after">
@@ -395,6 +398,19 @@ config.ParentalControl.setuppin.save()
 			<displaytext value="After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that." />
 		</step>
 -->
+		<step id="reboot" nextstep="end">
+			<condition>
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash")
+			</condition>
+			<text value="Thank you for using the wizard. Your %s %s needs to restart.\nPlease press OK to restart your %s %s." />
+			<displaytext value="Thank you for using the wizard. Your %s %s needs to restart.\nPlease press OK to restart your %s %s." />
+			<code>
+self.markDone()
+from enigma import quitMainloop
+quitMainloop(3)
+			</code>
+		</step>
 
 		<step id="end" laststep="true">
 			<condition>
