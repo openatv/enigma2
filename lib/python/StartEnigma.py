@@ -766,7 +766,7 @@ config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 enigma.eDVBDB.getInstance().reloadBouquets()
 
 profile("ParentalControl")
-from Components.ParentalControl import InitParentalControl, parentalControl
+from Components.ParentalControl import InitParentalControl
 InitParentalControl()
 
 profile("LOAD:Navigation")
@@ -937,6 +937,7 @@ migrateSettings()
 try:
 	runScreenTest()  # Start running the first screen.
 	plugins.shutdown()  # Shutdown all plugins.
+	from Components.ParentalControl import parentalControl
 	parentalControl.save()  # Save parental control settings.
 except Exception:
 	print("Error: Exception in Python StartEnigma startup code:")
