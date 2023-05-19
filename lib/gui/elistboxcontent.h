@@ -126,6 +126,7 @@ private:
 #define RT_VALIGN_CENTER 16
 #define RT_VALIGN_BOTTOM 32
 #define RT_WRAP 64
+#define RT_ELLIPSIS 128
 #define BT_ALPHATEST 1
 #define BT_ALPHABLEND 2
 #define BT_SCALE 4

@@ -560,22 +560,6 @@ def parseScale(value):
 		"rightMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"rightBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
 		#
-		# Deprecated scaling names.
-		"scaleKeepAspect": BT_SCALE | BT_KEEP_ASPECT_RATIO,
-		"scaleLeftTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_TOP,
-		"scaleLeftCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-		"scaleLeftMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-		"scaleLeftBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
-		"scaleCenterTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
-		"scaleMiddleTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
-		"scaleCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-		"scaleMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-		"scaleCenterBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-		"scaleMiddleBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-		"scaleRightTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_TOP,
-		"scaleRightCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-		"scaleRightMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-		"scaleRightBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
 		#
 		"moveLeftTop": BT_HALIGN_LEFT | BT_VALIGN_TOP,
 		"moveLeftCenter": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
@@ -650,6 +634,19 @@ def parseVerticalAlignment(value):
 		"bottom": 2
 	}
 	return parseOptions(options, "verticalAlignment", value, 1)
+
+
+def parseWrap(value):
+	options = {
+		"noWrap": 0,
+		"off": 0,
+		"0": 0,
+		"wrap": 1,
+		"on": 1,
+		"1": 1,
+		"ellipsis": 2
+	}
+	return parseOptions(options, "wrap", value, 0)
 
 
 def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seekPointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarBackgroundPixmap", "scrollbarForegroundPixmap", "scrollbarbackgroundPixmap", "scrollbarBackgroundPicture", "scrollbarSliderPicture"))):
@@ -817,7 +814,7 @@ class AttributeParser:
 		self.guiObject.setOrientation(parseListOrientation(value))
 
 	def noWrap(self, value):
-		self.guiObject.setNoWrap(1 if parseBoolean("nowrap", value) else 0)
+		self.wrap("0" if parseBoolean("noWrap", value) else "1")
 		# attribDeprecationWarning("noWrap", "wrap")
 
 	def objectTypes(self, value):
@@ -847,9 +844,6 @@ class AttributeParser:
 
 	def resolution(self, value):
 		pass
-
-	# def scale(self, value):  TODO: To be deleted!!!  Remove when C++ is cleaned up.
-	# 	self.guiObject.setScale(1 if parseBoolean("scale", value) else 0)
 
 	def scale(self, value):
 		self.guiObject.setPixmapScale(parseScale(value))
@@ -996,7 +990,7 @@ class AttributeParser:
 		self.guiObject.setVAlign(parseVerticalAlignment(value))
 
 	def wrap(self, value):
-		self.guiObject.setNoWrap(0 if parseBoolean("wrap", value) else 1)
+		self.guiObject.setWrap(parseWrap(value))
 
 	def zPosition(self, value):
 		self.guiObject.setZPosition(parseInteger(value))
