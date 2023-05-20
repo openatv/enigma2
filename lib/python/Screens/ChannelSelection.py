@@ -1123,7 +1123,7 @@ class ChannelSelectionBase(Screen):
 		return False
 
 	def showAllServices(self):
-		self["key_green"].setText(_("Reception lists"))
+		self["key_green"].setText(_("Reception Lists"))
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, "ORDER BY name")
 			if not self.preEnterPath(ref.toString()):
@@ -1234,7 +1234,7 @@ class ChannelSelectionBase(Screen):
 								self.setCurrentSelectionAlternative(ref)
 
 	def showProviders(self):
-		self["key_green"].setText(_("Reception lists"))
+		self["key_green"].setText(_("Reception Lists"))
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, " FROM PROVIDERS ORDER BY name")
 			if not self.preEnterPath(ref.toString()):
@@ -1313,7 +1313,7 @@ class ChannelSelectionBase(Screen):
 				self.servicelist.moveDown()
 
 	def showFavourites(self):
-		self["key_green"].setText(_("Reception lists"))
+		self["key_green"].setText(_("Reception Lists"))
 		if not self.pathChangeDisabled:
 			if not self.preEnterPath(self.bouquet_root.toString()):
 				if self.isBasePathEqual(self.bouquet_root):
@@ -1487,7 +1487,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			"0": (self.reloadServices, _("Reload all services from disk")),
 			"1": (self.showBouquetInputBox, _("Add a bouquet")),
 			"2": (self.renameEntry, _("Rename selected service")),
-			"3": (self.findCurrentlyPlayed, _("Find currently playing service")),
+			"3": (self.findCurrentlyPlayed, _("Find Currently Playing Service")),
 			# "4": Available for use.
 			"5": (self.addServiceToBouquetOrAlternative, _("Add selected service to bouquet or alternative")),
 			"6": (self.toggleMoveModeSelect, _("Toggle move mode selection")),
@@ -2266,7 +2266,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.movemode and self.toggleMoveMode()
 					self.editMode = False
 					self.protectContextMenu = True
-					self["key_green"].setText(_("Reception lists"))
+					self["key_green"].setText(_("Reception Lists"))
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):

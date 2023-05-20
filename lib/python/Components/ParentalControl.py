@@ -183,7 +183,7 @@ class ParentalControl:
 		else:
 			#This is the new function of caching cancelling of service pin
 			if result is not None:
-				messageText = _("The pin code you entered is wrong.")
+				messageText = _("The PIN code entered is incorrect!")
 				if self.session:
 					self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=3)
 				else:
