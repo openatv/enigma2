@@ -77,7 +77,7 @@ class HarddiskSetup(Screen):
 class HarddiskSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Initialization"))
+		Screen.setTitle(self, _("Format"))
 		self.skinName = "HarddiskSelection"  # For derived classes
 		if harddiskmanager.HDDCount() == 0:
 			tlist = [(_("no storage devices found"), 0)]
@@ -94,8 +94,8 @@ class HarddiskSelection(Screen):
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			action=selection.createInitializeJob,
-			text=_("Initialize"),
-			question=_("Do you really want to initialize the device?\nAll data on the disk will be lost!"))
+			text=_("Format"),
+			question=_("Do you really want to format the device in the Linux file system?\nAll data on the device will be lost!"))
 
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
