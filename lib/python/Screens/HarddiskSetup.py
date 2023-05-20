@@ -1,12 +1,11 @@
-from __future__ import print_function
-from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
+from Components.Label import Label
 from Components.Harddisk import harddiskmanager
 from Components.MenuList import MenuList
-from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Task import job_manager
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 import Screens.InfoBar
 
 
@@ -17,8 +16,8 @@ class HarddiskSetup(Screen):
 		self.action = action
 		self.question = question
 		self.curentservice = None
-		self["model"] = Label(_("Model: ") + hdd.model())
-		self["capacity"] = Label(_("Capacity: ") + hdd.capacity())
+		self["model"] = Label("%s: %s" % (_("Model"), hdd.model()))
+		self["capacity"] = Label("%s: %s" % (_("Capacity"), hdd.capacity()))
 		self["bus"] = Label(_("Bus: ") + hdd.bus())
 		self["initialize"] = Pixmap()
 		self["initializetext"] = Label(text)
@@ -33,13 +32,13 @@ class HarddiskSetup(Screen):
 		})
 
 	def hddQuestion(self, answer=False):
-		print('answer:', answer)
-		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
-			message = self.question + "\n\n" + _("You seem to be in time shift, the service will briefly stop as time shift stops.")
-			message += '\n' + _("Do you want to continue?")
+		print("answer: %s" % answer)
+		if Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
+			message = "%s\n\n%s" % (self.question, _("You seem to be in time shift, the service will briefly stop as time shift stops."))
+			message = "%s\n%s" % (message, _("Do you want to continue?"))
 			self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
 		else:
-			message = self.question + "\n" + _("You can continue watching TV etc. while this is running.")
+			message = "%s\n%s" % (self.question, _("You can continue watching TV etc. while this is running."))
 			self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
 
 	def stopTimeshift(self, confirmed):
@@ -77,7 +76,7 @@ class HarddiskSetup(Screen):
 class HarddiskSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Initialization"))
+		self.setTitle(_("Initialization"))
 		self.skinName = "HarddiskSelection"  # For derived classes
 		if harddiskmanager.HDDCount() == 0:
 			tlist = [(_("no storage devices found"), 0)]
@@ -109,7 +108,7 @@ class HarddiskSelection(Screen):
 class HarddiskFsckSelection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
-		Screen.setTitle(self, _("File System Check"))
+		self.setTitle(_("File System Check"))
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):
@@ -122,7 +121,7 @@ class HarddiskFsckSelection(HarddiskSelection):
 class HarddiskConvertExt4Selection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
-		Screen.setTitle(self, _("Convert file system ext3 to ext4"))
+		self.setTitle(_("Convert file system ext3 to ext4"))
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):

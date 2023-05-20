@@ -11,11 +11,12 @@ from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
 import time
 
-
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
 TYPE_BOUQUET = "BOUQUET"
 LIST_BLACKLIST = "blacklist"
+
+parentalControl = None
 
 
 def InitParentalControl():
