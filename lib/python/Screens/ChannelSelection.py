@@ -710,20 +710,20 @@ class ChannelSelectionEdit:
 				if currentIndex != self.servicelist.getCurrentIndex():
 					self.servicelist.instance.moveSelection(self.servicelist.instance.moveEnd)
 
-	def startMarkedEdit(self, function):  # Multiple marked entry stuff (edit mode, later multiEPG selection).
+	def startMarkedEdit(self, functionType):  # Multiple marked entry stuff (edit mode, later multiEPG selection).
 		self.savedPath = self.servicePath[:]
-		if function == EDIT_ALTERNATIVES:
+		if functionType == EDIT_ALTERNATIVES:
 			self.current_ref = self.getCurrentSelection()
 			self.enterPath(self.current_ref)
 		self.mutableList = self.getMutableList()
 		# Add all services from the current list to internal marked set in listboxServiceContent.
 		self.clearMarks()  # This clears the internal marked set in the listboxServiceContent.
-		if function == EDIT_ALTERNATIVES:
+		if functionType == EDIT_ALTERNATIVES:
 			self.bouquet_mark_edit = EDIT_ALTERNATIVES
 		else:
 			self.bouquet_mark_edit = EDIT_BOUQUET
-			function = EDIT_BOUQUET if config.usage.multibouquet.value else EDIT_FAVORITE
-		self.function = function
+			functionType = EDIT_BOUQUET if config.usage.multibouquet.value else EDIT_FAVORITE
+		self.function = functionType
 		self.buildTitle()
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:
@@ -1009,16 +1009,16 @@ class ChannelSelectionBase(Screen):
 				reference = self.servicePath[length - 1]
 				if reference:
 					title = getServiceName(reference)
-		function = {
+		functionType = {
 			EDIT_ALTERNATIVES: _("Alternative Edit"),
 			EDIT_BOUQUET: _("Bouquet Edit"),
 			EDIT_FAVORITE: _("Favorite Edit"),
 			EDIT_MOVE: _("Move Mode"),
 			EDIT_PIP: _("PiP")
 		}.get(self.function)
-		function = " [%s]" % function if function else ""
-		# self.setTitle("%s: %s%s" % (mode, title, function))
-		self.setTitle("%s (%s)%s" % (title, mode, function))
+		functionType = " [%s]" % functionType if functionType else ""
+		# self.setTitle("%s: %s%s" % (mode, title, functionType))
+		self.setTitle("%s (%s)%s" % (title, mode, functionType))
 		print("[ChannelSelection] buildTitle DEBUG: Setting title='%s'." % self.getTitle())
 
 	def getServiceName(self, serviceReference):
