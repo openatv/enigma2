@@ -1,4 +1,4 @@
-from os import W_OK, access, listdir, major, makedirs, minor, stat, statvfs, system
+from os import W_OK, access, makedirs, stat, system
 from os.path import exists, isdir, join
 from shlex import split
 
@@ -6,7 +6,6 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
-from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.HarddiskSetup import HarddiskSelection
 from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES
@@ -88,6 +87,10 @@ class FlashExpander(Setup):
 		self.mountData = None
 		self.green = ACTION_SELECT
 
+	def layoutFinished(self):
+		Setup.layoutFinished(self)
+		self.readDevices()
+
 	def selectionChanged(self):
 		Setup.selectionChanged(self)
 		self.updateStatus()
@@ -95,6 +98,18 @@ class FlashExpander(Setup):
 	def changedEntry(self):
 		Setup.changedEntry(self)
 		self.updateStatus()
+
+	def keyCancel(self):
+		config.flashExpander.location.setSelectionList(default=None, choices=[config.flashExpander.location.getSelectionList()[0]])
+		config.flashExpander.location.value = None
+		config.flashExpander.device.value = ""
+		Setup.keyCancel(self)
+
+	def closeRecursive(self):
+		config.flashExpander.location.setSelectionList(default=None, choices=[config.flashExpander.location.getSelectionList()[0]])
+		config.flashExpander.location.value = None
+		config.flashExpander.device.value = ""
+		Setup.closeRecursive(self)
 
 	def updateStatus(self, footnote=None):
 		def fstabCheck():
@@ -130,7 +145,7 @@ class FlashExpander(Setup):
 			footnote = _("FlashExpander on boot is '%s'.  FlashExpander status is '%s'.") % (enabled, activeMsg)
 		self.setFootnote(footnote)
 		if config.flashExpander.device.value:
-			if isdir(join("/%s" % EXPANDER_MOUNT, "bin")):
+			if isdir(join("/%s/%s" % (EXPANDER_MOUNT, EXPANDER_MOUNT), "bin")):
 				self.green = ACTION_DEACTIVATE if self.active else ACTION_DELETE
 			else:
 				self.green = ACTION_CREATE
@@ -165,7 +180,7 @@ class FlashExpander(Setup):
 			print("[FlashExpander] keySelectCallback DEBUG: deviceId=%s." % deviceId)
 			config.flashExpander.device.value = deviceId
 			locations = config.flashExpander.location.getSelectionList()
-			path = self.deviceData[deviceId]
+			path = self.deviceData[deviceId][0]
 			self.mountData = getPathMountData(path)
 			if self.mountData:
 				mountPoint = self.mountData[0]
@@ -194,48 +209,31 @@ class FlashExpander(Setup):
 			self.updateStatus(footnote)
 
 	def showDeviceSelection(self):
-		def getBlockIdDataCallback(output=None, retVal=None, extraArgs=None):
-			def getDeviceID(deviceInfo):
-				mode = "%s=" % config.flashExpander.mountType.value
-				for token in data:
-					if token.startswith(mode):
-						return token[len(mode):]
-				return None
-
-			print("[FlashExpander] getBlockIdDataCallback DEBUG: retVal=%s, output='%s'." % (retVal, output))
-			lines = output.splitlines()
-			mountTypemode = " %s=" % config.flashExpander.mountType.value
-			lines = [line for line in lines if mountTypemode in line and ("/dev/sd" in line or "/dev/cf" in line) and "TYPE=\"ext" in line]
+		def readDevicesCallback():
 			choiceList = [
 				(_("Cancel"), "")
 			]
+			for deviceID, deviceData in self.deviceData.items():
+				choiceList.append(("%s (%s)" % (deviceData[1], deviceData[0]), deviceID))
+			if self.active:
+				message = _("Please select the device where the flash expander '/usr' directory should disabled.")
+			else:
+				message = _("Please select the device where the flash expander '/usr' directory should created.")
 
-			self.deviceData = {}
+			self.session.openWithCallback(self.keySelectCallback, MessageBox, text=message, list=choiceList, windowTitle=self.getTitle())
 
-			for (name, hdd) in harddiskmanager.HDDList():
-				for line in lines:
-					data = split(line.strip())
-					if data and data[0][:-1].startswith(hdd.dev_path):
-						deviceID = getDeviceID(data)
-						if deviceID:
-							self.deviceData[deviceID] = data[0][:-1]
-							choiceList.append(("%s (%s)" % (name, data[0][:-1]), deviceID))
-
-			self.session.openWithCallback(self.keySelectCallback, MessageBox, text=_("Please select the device where the flash expander '/usr' directory should created."), list=choiceList, windowTitle=self.getTitle())
-
-		# Get possible devices
-		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=getBlockIdDataCallback)
+		self.readDevices(readDevicesCallback)
 
 	def keyGreen(self):
 		def activateCallback(output, retVal, extraArgs):
 			def mountCallback(output, retVal, extraArgs):
-				print("[FlashExpander] DEBUG: mount retVal=%s, output='%s'." % (retVal, output))
-				if retVal:
-					self.session.open(MessageBox, _("Error: mount returned a status of %d!") % retVal, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
-					print("[FlashExpander] Error: mount returned a status of %d!\n%s" % (retVal, output))
-				else:
+				system("sync")
+				if isdir(join("/%s/%s" % (EXPANDER_MOUNT, EXPANDER_MOUNT), "bin")):
 					config.flashExpander.device.save()
+					config.flashExpander.location.save()
 					Setup.keySave(self)
+				else:
+					self.session.open(MessageBox, _("Error: mount not successful!"), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 			self.messageBox.close(retVal == 0)
 			if retVal:
@@ -316,3 +314,31 @@ class FlashExpander(Setup):
 		fstabnew.append("")
 		fileWriteLines("/etc/fstab", "\n".join(fstabnew), source=MODULE_NAME)
 		print("[FlashExpander] fstabUpdate DEBUG: Ending fstab:\n%s" % "\n".join(fstab))
+
+	def readDevices(self, callback=None):
+		def getBlockIdDataCallback(output=None, retVal=None, extraArgs=None):
+			def getDeviceID(deviceInfo):
+				mode = "%s=" % config.flashExpander.mountType.value
+				for token in deviceInfo:
+					if token.startswith(mode):
+						return token[len(mode):]
+				return None
+
+			print("[FlashExpander] getBlockIdDataCallback DEBUG: retVal=%s, output='%s'." % (retVal, output))
+			lines = output.splitlines()
+			mountTypemode = " %s=" % config.flashExpander.mountType.value
+			lines = [line for line in lines if mountTypemode in line and ("/dev/sd" in line or "/dev/cf" in line) and "TYPE=\"ext" in line]
+			self.deviceData = {}
+
+			for (name, hdd) in harddiskmanager.HDDList():
+				for line in lines:
+					data = split(line.strip())
+					if data and data[0][:-1].startswith(hdd.dev_path):
+						deviceID = getDeviceID(data)
+						if deviceID:
+							self.deviceData[deviceID] = (data[0][:-1], name)
+			self.updateStatus()
+			if callback:
+				callback()
+
+		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=getBlockIdDataCallback)
