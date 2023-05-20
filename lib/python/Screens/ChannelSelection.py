@@ -367,12 +367,12 @@ class ChannelContextMenu(Screen):
 		ref = self.csel.servicelist.getCurrent()
 		if self.removeFunction and ref and ref.valid():
 			if self.csel.confirmRemove:
-				list = [
+				choiceList = [
 					(_("Yes"), True),
 					(_("No"), False),
 					(_("Yes, and never ask again this session again"), "never")
 				]
-				self.session.openWithCallback(self.removeFunction, MessageBox, "%s\n%s" % (_("Are you sure to remove this entry?"), self.getCurrentSelectionName()), list=list)
+				self.session.openWithCallback(self.removeFunction, MessageBox, "%s\n%s" % (_("Are you sure to remove this entry?"), self.getCurrentSelectionName()), list=choiceList)
 			else:
 				self.removeFunction(True)
 		else:
@@ -1245,8 +1245,8 @@ class ChannelSelectionEdit:
 			self.servicelist.moveUp()
 
 	def removeBouquet(self):
-		refstr = self.getCurrentSelection().toString()
-		pos = refstr.find("FROM BOUQUET \"")
+		# refstr = self.getCurrentSelection().toString()  # DEBUG NOTE: This doesn't appear to be used.
+		# pos = refstr.find("FROM BOUQUET \"")  # DEBUG NOTE: This doesn't appear to be used.
 		filename = None
 		self.removeCurrentService(bouquet=True)
 
@@ -1368,12 +1368,12 @@ class ChannelSelectionEdit:
 
 	def removeCurrentEntry(self, bouquet=False):
 		if self.confirmRemove:
-			list = [
+			choiceList = [
 				(_("Yes"), True),
 				(_("No"), False),
 				(_("Yes, and never ask again this session again"), "never")
 			]
-			self.session.openWithCallback(boundFunction(self.removeCurrentEntryCallback, bouquet), MessageBox, _("Are you sure to remove this entry?"), list=list)
+			self.session.openWithCallback(boundFunction(self.removeCurrentEntryCallback, bouquet), MessageBox, _("Are you sure to remove this entry?"), list=choiceList)
 		else:
 			self.removeCurrentEntryCallback(bouquet, True)
 
@@ -1829,7 +1829,7 @@ class ChannelSelectionBase(Screen):
 						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
 						self.servicelist.l.sort()
 						if cur_ref:
-							pos = self.service_types.rfind(":")
+							# pos = self.service_types.rfind(":")  # DEBUG NOTE: This doesn't appear to be used.
 							ref = eServiceReference(self.service_types_ref)
 							path = "(channelID == %08x%04x%04x) && %s ORDER BY name" % (
 								cur_ref.getUnsignedData(4),  # Name space.
