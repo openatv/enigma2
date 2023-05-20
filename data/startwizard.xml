@@ -31,7 +31,7 @@ from os import statvfs
 flashSize = statvfs('/')
 flashSize = (flashSize.f_frsize * flashSize.f_blocks) // 2**20
 from Components.SystemInfo import BoxInfo
-self.condition = True #BoxInfo.getItem("SmallFlash") and flashSize &lt; 511
+self.condition = BoxInfo.getItem("SmallFlash") and flashSize &lt; 511
 			</condition>
 			<text value="Your Box has a small flash size and you need to use FlashExpander to increase your available space. Otherwise your Box will have only a very limited features."/>
 			<displaytext value="Your Box has a small flash size and you need to use FlashExpander to increase your available space. Otherwise your Box will have only a very limited features." />
@@ -62,7 +62,7 @@ from os import statvfs
 flashSize = statvfs('/')
 flashSize = (flashSize.f_frsize * flashSize.f_blocks) // 2**20
 from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash") and flashSize &gt; 512
+self.condition = BoxInfo.getItem("SmallFlash") and (flashSize &gt; 512 or config.flashExpander.device.value != "")
 			</condition>
 			<text value="Checking the Internet connection" />
 			<displaytext value="Checking the Internet connection" />
