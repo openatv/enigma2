@@ -34,8 +34,8 @@ public:
 	void setWrap(int wrap);
 	void setNoWrap(int nowrap) { setWrap((nowrap == 1) ? 0 : 1); } // DEPRECATED
 	void clearForegroundColor();
-	int getWrap() { return m_wrap; }
-	int getNoWrap() { return (m_wrap == 0) ? 1 : 0; } // DEPRECATED
+	int getWrap() const { return m_wrap; }
+	int getNoWrap() const { return (m_wrap == 0) ? 1 : 0; } // DEPRECATED
 	void setTextPadding(const eRect &padding) { m_padding = padding; }
 
 	eSize calculateSize();

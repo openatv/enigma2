@@ -27,7 +27,7 @@ gRC::gRC() : rp(0), wp(0)
 			 m_notify_pump(eApp, 1, "gRC")
 #endif
 			 ,
-			 m_spinner_enabled(0), m_spinneronoff(1), m_prev_idle_count(0)
+			 m_spinner_enabled(0), m_spinneronoff(1), m_prev_idle_count(0) // NOSONAR
 {
 	ASSERT(!instance);
 	instance = this;
@@ -798,7 +798,8 @@ void gDC::exec(const gOpcode *o)
 					text.resize(ns);
 					text += u8"…";
 				}
-				free(o->parm.renderText->text);
+				if (o->parm.renderText->text)
+					free(o->parm.renderText->text);
 				o->parm.renderText->text = strdup(text.c_str());
 			}
 		}
