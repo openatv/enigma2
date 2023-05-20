@@ -246,6 +246,7 @@ class Network:
 		ipPattern = compile(ipRegexp)
 		fileName = self.resolvFile if config.usage.dns.value.lower() in ("dhcp-router") else "/etc/enigma2/nameserversdns.conf"
 		resolv = fileReadLines(fileName, default=[], source=MODULE_NAME)
+		self.nameservers = []
 		for line in resolv:
 			if self.regExpMatch(nameserverPattern, line) is not None:
 				ip = self.regExpMatch(ipPattern, line)

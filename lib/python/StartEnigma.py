@@ -937,7 +937,8 @@ migrateSettings()
 try:
 	runScreenTest()  # Start running the first screen.
 	plugins.shutdown()  # Shutdown all plugins.
-	Components.ParentalControl.parentalControl.save()  # Save parental control settings.
+	from Components.ParentalControl import parentalControl
+	parentalControl.save()  # Save parental control settings.
 except Exception:
 	print("Error: Exception in Python StartEnigma startup code:")
 	print("=" * 52)
