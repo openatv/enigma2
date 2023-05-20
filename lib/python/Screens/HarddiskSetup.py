@@ -93,9 +93,9 @@ class HarddiskSelection(Screen):
 
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
-			 action=selection.createInitializeJob,
-			 text=_("Initialize"),
-			 question=_("Do you really want to initialize the device?\nAll data on the disk will be lost!"))
+			action=selection.createInitializeJob,
+			text=_("Initialize"),
+			question=_("Do you really want to initialize the device?\nAll data on the disk will be lost!"))
 
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
@@ -114,9 +114,9 @@ class HarddiskFsckSelection(HarddiskSelection):
 
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
-			 action=selection.createCheckJob,
-			 text=_("Check"),
-			 question=_("Do you really want to check the file system?\nThis could take a long time!"))
+			action=selection.createCheckJob,
+			text=_("Check"),
+			question=_("Do you really want to check the file system?\nThis could take a long time!"))
 
 
 class HarddiskConvertExt4Selection(HarddiskSelection):
@@ -127,6 +127,6 @@ class HarddiskConvertExt4Selection(HarddiskSelection):
 
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
-			 action=selection.createExt4ConversionJob,
-			 text=_("Convert ext3 to ext4"),
-			 question=_("Do you really want to convert the file system?\nYou cannot go back!"))
+			action=selection.createExt4ConversionJob,
+			text=_("Convert ext3 to ext4"),
+			question=_("Do you really want to convert the file system?\nYou cannot go back!"))
