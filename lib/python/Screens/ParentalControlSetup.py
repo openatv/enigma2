@@ -23,7 +23,7 @@ class ProtectedScreen:
 		if result is None:
 			self.closeProtectedScreen()
 		elif not result:
-			self.session.openWithCallback(self.closeProtectedScreen, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+			self.session.openWithCallback(self.closeProtectedScreen, MessageBox, _("The PIN code entered is incorrect!"), MessageBox.TYPE_ERROR)
 
 	def closeProtectedScreen(self, result=None):
 		self.close(None)

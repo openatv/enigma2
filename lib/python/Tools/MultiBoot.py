@@ -624,7 +624,7 @@ class MultiBootClass():
 		else:
 			rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
 			imageDir = pathjoin(self.tempDir, rootDir) if rootDir else self.tempDir
-			if self.bootSlots[self.slotCode].get("ubi", False):
+			if self.bootSlots[self.slotCode].get("ubi", False) or fileHas("/proc/cmdline", "kexec=1"):
 				try:
 					if isfile(pathjoin(imageDir, "usr/bin/enigma2")):
 						self.console.ePopen([REMOVE, REMOVE, "-rf", imageDir])

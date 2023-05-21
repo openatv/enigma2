@@ -298,9 +298,8 @@ class Harddisk:
 		return res >> 8
 
 	def createPartition(self):
-		cmd = 'printf "8,\n;0,0\n;0,0\n;0,0\ny\n" | sfdisk -f -uS ' + self.disk_path
-		res = os.system(cmd)
-		return res >> 8
+		# No longer supported, use createInitializeJob instead
+		return 1
 
 	def mkfs(self):
 		# No longer supported, use createInitializeJob instead
@@ -378,42 +377,20 @@ class Harddisk:
 		task.check = lambda: not os.path.exists(self.partitionPath("1"))
 		task.weighting = 1
 
-		if os.path.exists('/usr/sbin/parted'):
-			use_parted = True
-		else:
-			if size > 2097151:
-				addInstallTask(job, 'parted')
-				use_parted = True
-			else:
-				use_parted = False
-
 		task = Components.Task.LoggingTask(job, _("Creating partition"))
 		task.weighting = 5
-		if use_parted:
-			task.setTool('parted')
-			if size < 1024:
-				# On very small devices, align to block only
-				alignment = 'min'
-			else:
-				# Prefer optimal alignment for performance
-				alignment = 'opt'
-			if size > 2097151:
-				parttype = 'gpt'
-			else:
-				parttype = 'msdos'
-			task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', parttype, 'mkpart', 'primary', '0%', '100%']
+		task.setTool('parted')
+		if size < 1024:
+			# On very small devices, align to block only
+			alignment = 'min'
 		else:
-			task.setTool('sfdisk')
-			task.args.append('-f')
-			task.args.append('-uS')
-			task.args.append(self.disk_path)
-			if size > 128000:
-				# Start at sector 8 to better support 4k aligned disks
-				print("[Harddisk][HD] Detected >128GB disk, using 4k alignment")
-				task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
-			else:
-				# Smaller disks (CF cards, sticks etc) don't need that
-				task.initial_input = "0,\n;\n;\n;\ny\n"
+			# Prefer optimal alignment for performance
+			alignment = 'opt'
+		if size > 2097151:
+			parttype = 'gpt'
+		else:
+			parttype = 'msdos'
+		task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', parttype, 'mkpart', 'primary', '0%', '100%']
 
 		task = Components.Task.ConditionTask(job, _("Waiting for partition"))
 		task.check = lambda: os.path.exists(self.partitionPath("1"))

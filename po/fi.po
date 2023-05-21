@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-02-27 12:38+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-05-10 20:40+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 msgid ""
 "\n"
@@ -103,14 +103,14 @@ msgstr " (Kanava %s)"
 msgid " (Partition %d)"
 msgstr " (Osio %d)"
 
-msgid " (PiP)"
-msgstr " (PiP)"
+msgid "(PiP)"
+msgstr "(PiP)"
 
-msgid " (Radio)"
-msgstr " (Radio)"
+msgid "(Radio)"
+msgstr "(Radio)"
 
-msgid " (TV)"
-msgstr " (TV)"
+msgid "(TV)"
+msgstr "(TV)"
 
 msgid " (current channel)"
 msgstr " (nykyinen kanava)"
@@ -1038,7 +1038,7 @@ msgstr[1] "%d pakettia päivitetty."
 
 #, python-format
 msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr ""
+msgstr "%d ohjelmapakettia löydetty, %d pakettia asennettu ja %d päivitetty."
 
 #, python-format
 msgid "%d sec"
@@ -1210,7 +1210,7 @@ msgstr "%s MHz"
 
 #, python-format
 msgid "%s Packages found"
-msgstr ""
+msgstr "%s Ohjelma pakettia löydetty"
 
 #, python-format
 msgid "%s Setup"
@@ -3778,7 +3778,7 @@ msgid "Cancel"
 msgstr "Peruuta"
 
 msgid "Cancel / Close the screen"
-msgstr ""
+msgstr "Peruuta / Sulje näyttö"
 
 msgid "Cancel / Close the software update screen"
 msgstr "Peruuta / Sulje ohjelmiston päivitys ikkuna"
@@ -4021,7 +4021,7 @@ msgstr "Kanavanäppäimien (+/-) toiminto"
 msgid "Channel down"
 msgstr "Kanava alas"
 
-msgid "Channel list context menu"
+msgid "Channel List Context Menu"
 msgstr "Kanavalistan valikko"
 
 msgid "Channel list cursor behavior"
@@ -4051,7 +4051,7 @@ msgstr "Kanavan nimi"
 msgid "Channel preview mode"
 msgstr "Kanavien esikatselutila"
 
-msgid "Channel selection"
+msgid "Channel Selection"
 msgstr "Kanavan valinta"
 
 msgid "Channel selection configuration"
@@ -6238,10 +6238,10 @@ msgstr "Divehin kieli (Maldivian Kieli)"
 msgid "Djibouti"
 msgstr "Djibouti"
 
-msgid "Do center DVB subs on this service"
+msgid "Center DVB Subs On This Service"
 msgstr "Keskitä DVB tekstitykset tällä kanavalla"
 
-msgid "Do not center DVB subs on this service"
+msgid "Don't Center DVB Subs On This Service"
 msgstr "Älä keskitä DVB tekstityksiä tässä palvelussa"
 
 msgid "Do not change"
@@ -6845,6 +6845,9 @@ msgstr "Aktivoi IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Ota käyttöön tietopalkin häivytys"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Ota Kexec MultiBoot käyttöön"
+
 msgid "Enable MHW EPG"
 msgstr "Ota käyttöön MHW EPG"
 
@@ -6983,6 +6986,9 @@ msgstr "Ota tämä asetus käyttöön, jos haluat lisätä ylimääräisiä DVB 
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä ylimääräisiä EPG tietoja vianmäärityslokitiedostoon."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Ota tämä asetus käyttöön, jos haluat lisätä järjestelmän käynnistyksen aikana havaitut kansainväliset kieli- ja maa tiedot virheen korjauksen lokitiedostoon."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näppäimistön tietoja virheenkorjauksen lokitiedostoon."
@@ -8813,7 +8819,7 @@ msgstr "Piilota"
 msgid "Hide InfoBar"
 msgstr "Piilota tietopalkki aina"
 
-msgid "Hide VBI line for this service"
+msgid "Hide VBI Line For This Service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
 
 msgid "Hide any zap error messages."
@@ -9323,6 +9329,9 @@ msgstr "Sisällytä SDT, BAT http striimeihin"
 msgid "Include action map data"
 msgstr "Sisällytä ohjelmiston toiminta tiedot"
 
+msgid "Include international data *"
+msgstr "Sisällytä kansainväliset tiedot *"
+
 msgid "Include keyboard data"
 msgstr "Sisällytä näppäimistö tiedot"
 
@@ -9804,6 +9813,26 @@ msgstr "Kerneli tiedosto"
 
 msgid "Kernel version"
 msgstr "Kernel tiedot"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Kexec MultiBoot Toiminnot"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Kexec MultiBoot asennus - käynnistyy 10 sekunnin kuluttua."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Kexec MultiBootin alustaminen käynnissä!\n"
+"\n"
+"Käynnistyy uudelleen kaikkien eMMC-paikkojen palauttamisen jälkeen.\n"
+"Tämä voi kestää 1- 5 minuuttia per paikka."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Kexec MultiBoot Hallinta"
 
 msgid "Key"
 msgstr "Avain"
@@ -10460,7 +10489,7 @@ msgid "Manage Locale/Language Selection settings"
 msgstr "Hallitse Alue/Kieli valinta asetuksia"
 
 msgid "Manage Plugins"
-msgstr ""
+msgstr "Hallitse lisäosia"
 
 msgid "Manage and explore directories and files."
 msgstr "Hallitse ja tutki hakemistoja ja tiedostoja."
@@ -10513,7 +10542,7 @@ msgstr "Lisäaika tallenteen alkuun (minuuttia)"
 msgid "Margin before zap"
 msgstr "Marginaali ennen vaihtoa"
 
-msgid "Mark service as dedicated 3D service"
+msgid "Mark As Dedicated 3D Service"
 msgstr "Merkitse kanava 3D:ksi"
 
 msgid "Mark/Portal/Playlist"
@@ -11617,7 +11646,7 @@ msgid "No of items switch (increase or reduced)"
 msgstr "Vaihtojen määrä (lisää tai vähennä)"
 
 msgid "No packages found."
-msgstr ""
+msgstr "Ei löytynyt yhtään ohjelma pakettia."
 
 msgid "No pictures available"
 msgstr "Kuvia ei ole saatavilla"
@@ -12413,7 +12442,7 @@ msgstr "Päähakemisto"
 msgid "Parental Guidance Recommended"
 msgstr "Vanhempien ohjausta suositellaan"
 
-msgid "Parental control"
+msgid "Parental Control"
 msgstr "Lapsilukon Asetukset"
 
 msgid "Parental control services editor"
@@ -12492,7 +12521,7 @@ msgid "Perform an on-line flash instead"
 msgstr "Suorita sen sijaan uuden ohjelmiston lataus internetistä"
 
 msgid "Perform install/remove of the selected item"
-msgstr ""
+msgstr "Suorita valitun kohteen asennus/poisto"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Poista kaikki roskakorin tallenteet pysyvästi?"
@@ -13036,7 +13065,7 @@ msgid "Plugin Filter Settings"
 msgstr "Lisäosin Suodatus"
 
 msgid "Plugin Manager Actions"
-msgstr ""
+msgstr "Lisäosin hallinta työkalu"
 
 msgid "Plugins"
 msgstr "Plugin lisäosat"
@@ -13205,6 +13234,19 @@ msgstr "Sulje painamalla EXIT näppäintä."
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Palaa ohje näyttöön painamalla EXIT."
+
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Ota MultiBoot käyttöön vihreällä näppäimellä!\n"
+"\n"
+"Käynnistyy uudelleen 10 sekunnin kuluessa,\n"
+"ellei sinulla ole eMMC paikkoja palautettavaksi.\n"
+"eMMC paikkojen palauttaminen voi kestää 1 - 5 minuuttia per paikka."
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Valitse MultiBoot painamalla OK."
@@ -13521,6 +13563,9 @@ msgstr "Neljä PIP Kanava "
 msgid "Quad PiP is not available."
 msgstr "Neljä PIP ei saatavilla."
 
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
+
 msgid "Quechua"
 msgstr "Quechua"
 
@@ -13688,6 +13733,14 @@ msgstr "Haluatko varmasti poistaa merkinnän?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Poistu alipalveluiden pikavaihdosta?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Poista MultiBoot tiedostot pysyvästi?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Käynnistetäänkö todella palautustilaan?"
 
@@ -13751,7 +13804,7 @@ msgstr "Virittimien asetukset"
 msgid "Reception Settings"
 msgstr "Virittimen asetukset"
 
-msgid "Reception lists"
+msgid "Reception Lists"
 msgstr "Kanavalistat"
 
 msgid "Record"
@@ -14078,7 +14131,10 @@ msgstr "Poista nykyinen kansio kirjanmerkeistä"
 msgid "Remove currently selected title"
 msgstr "Poista valittu otsikko"
 
-msgid "Remove hide VBI line for this service"
+msgid "Remove forever"
+msgstr "Poista ikuisesti"
+
+msgid "Show VBI Line For This Service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
 
 msgid "Remove highlighted directory from bookmarks"
@@ -14818,7 +14874,7 @@ msgid "Scan your network for wireless access points and connect to them using yo
 msgstr "Hae WLAN-tukiasemia ja kytkeydy niihin valittua WLAN-laitetta käyttäen."
 
 msgid "Scanning"
-msgstr ""
+msgstr "Skannaus"
 
 #, python-format
 msgid "Scanning %s..."
@@ -18675,7 +18731,7 @@ msgstr ""
 "Verkkoavustajaa ei ole asennettu!\n"
 "Asenna se."
 
-msgid "The pin code you entered is wrong."
+msgid "The PIN code entered is incorrect!"
 msgstr "Syötit virheellisen tunnusluvun."
 
 #, python-format
@@ -19846,6 +19902,9 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraina"
 
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Ei voida suorittaa - Kexec Multiboot tiedostoja puuttuu!"
+
 msgid "Unattended upgrade without GUI"
 msgstr "Päivitä järjestelmä taustalla ilman käyttäjän ohjausta"
 
@@ -19861,7 +19920,7 @@ msgstr "Salaamaton"
 msgid "UnhandledKey"
 msgstr "Käsittelemätön avain"
 
-msgid "Unhide parental control services"
+msgid "Unhide Parental Control Services"
 msgstr "Näytä lapsilukolla suojatut kanavat"
 
 msgid "Unicable "
@@ -19930,7 +19989,7 @@ msgstr "Tuntematon!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "'Kyllä' valinnalla EPG-listassa voi esikatsella kanavia."
 
-msgid "Unmark service as dedicated 3D service"
+msgid "Unmark As Dedicated 3D Service"
 msgstr "Poista kanavan 3D merkintä"
 
 msgid "Unmount"
@@ -20298,7 +20357,7 @@ msgstr "Käytetty:"
 msgid "User  (keymap.usr)"
 msgstr "Käyttäjä  (keymap.usr)"
 
-msgid "User - bouquets"
+msgid "User - Bouquets"
 msgstr "Käyttäjä - Suosikit"
 
 msgid "User Feed URL"
@@ -21836,7 +21895,7 @@ msgstr "Zulu"
 msgid "[Enigma2 Settings]\n"
 msgstr "Järjestelmä Asetukset\n"
 
-msgid "[Favorite Edit]"
+msgid "Favorite Edit"
 msgstr "[Suosikkien lisäys ja poisto]"
 
 msgid "[Image Info]\n"
@@ -21848,13 +21907,13 @@ msgstr "[Ajansiirto] Tallenteiden yhdistäminen epäonnistui!"
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Ajansiirto] Käynnistetään ajansiirto uudelleen!"
 
-msgid "[alternative edit]"
+msgid "Alternative Edit"
 msgstr "[Vaihtoehtojen lisäys ja poisto]"
 
-msgid "[bouquet edit]"
+msgid "Bouquet Edit"
 msgstr "[Kanavalistojen lisäys ja poisto]"
 
-msgid "[move mode]"
+msgid "Move Mode"
 msgstr "[Suosikkien järjestely]"
 
 msgid "a gui to assign services/providers to common interface modules"
@@ -21863,13 +21922,13 @@ msgstr "käyttöliittymä kanavien/palvelutarjoajien määrittämiseen CI-moduul
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "käyttöliittymä kanavien/palvelutarjoajien/CAId:en määrittämiseen CI-moduuleille"
 
-msgid "abort alternatives edit"
+msgid "Abort Alternatives Edit"
 msgstr "peruuta muutokset ja poistu"
 
-msgid "abort bouquet edit"
+msgid "Abort Bouquet Edit"
 msgstr "peruuta muutokset ja poistu"
 
-msgid "abort favorites edit"
+msgid "Abort Favorites Edit"
 msgstr "peruuta muutokset ja poistu"
 
 msgid "ac3"
@@ -21881,25 +21940,25 @@ msgstr "aktivoi PiP"
 msgid "active"
 msgstr "aktivoi"
 
-msgid "add alternatives"
+msgid "Add Alternatives"
 msgstr "Vaihtoehtojen lisäys ja poisto"
 
-msgid "add bouquet"
+msgid "Add Bouquet"
 msgstr "Lisää uusi suosikkilista"
 
-msgid "add bouquet to parental protection"
+msgid "Add Bouquet To Parental Protection"
 msgstr "Suojaa kanava lapsilukolla"
 
-msgid "add marker"
+msgid "Add Marker"
 msgstr "Lisää väliotsikko"
 
-msgid "add service to bouquet"
+msgid "Add Service To Bouquet"
 msgstr "Lisää kanava suosikkilistalle"
 
-msgid "add service to favorites"
+msgid "Add Service To Favorites"
 msgstr "Lisää kanava suosikkeihin"
 
-msgid "add to parental protection"
+msgid "Add To Parental Protection"
 msgstr "Suojaa kanava lapsilukolla"
 
 msgid "address:"
@@ -22096,7 +22155,7 @@ msgstr "kokkaus"
 msgid "copy"
 msgstr "kopioi"
 
-msgid "copy to bouquets"
+msgid "Copy To Bouquets"
 msgstr "kopioi suosikkilistalle"
 
 msgid "current affairs (general)"
@@ -22129,7 +22188,7 @@ msgstr "poistettu"
 msgid "detective/thriller"
 msgstr "etsivä/trilleri"
 
-msgid "disable move mode"
+msgid "Disable Move Mode"
 msgstr "Poistu siirtotilasta"
 
 msgid "disabled"
@@ -22178,7 +22237,7 @@ msgstr "ecm.tiedot"
 msgid "economics/social advisory"
 msgstr "talous/sosiaalinen neuvonta"
 
-msgid "edit alternatives"
+msgid "Edit Alternatives"
 msgstr "Vaihtoehtojen lisäys ja poisto"
 
 msgid "education/information (general)"
@@ -22196,28 +22255,28 @@ msgstr "tyhjä"
 msgid "enable PiP no HDR"
 msgstr "Aktivoi PIP ilman HDR:ää"
 
-msgid "enable bouquet edit"
+msgid "Enable Bouquet Edit"
 msgstr "Kanavalistojen lisäys ja poisto"
 
-msgid "enable favorite edit"
+msgid "Enable Favorite Edit"
 msgstr "Suosikkien lisäys ja poisto"
 
-msgid "enable move mode"
+msgid "Enable Move Mode"
 msgstr "Suosikkien järjestely"
 
 msgid "enabled"
 msgstr "päällä"
 
-msgid "end alternatives edit"
+msgid "End Alternatives Edit"
 msgstr "Tallenna muutokset ja poistu"
 
-msgid "end bouquet edit"
+msgid "End Bouquet Edit"
 msgstr "Tallenna muutokset ja poistu"
 
 msgid "end cut here"
 msgstr "Lopeta leikkaus tähän"
 
-msgid "end favorites edit"
+msgid "End Favorites Edit"
 msgstr "Tallenna muutokset ja poistu"
 
 msgid "enigma2 and network"
@@ -22289,7 +22348,7 @@ msgstr "tiedostonimi"
 msgid "film/cinema"
 msgstr "elokuva"
 
-msgid "find currently played service"
+msgid "Find Currently Playing Service"
 msgstr "Etsi nykyinen kanava kanavalistasta"
 
 msgid "fine arts"
@@ -22673,10 +22732,10 @@ msgstr "esittävä taide"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "play as picture in picture"
+msgid "Play As Picture in Picture window"
 msgstr "Näytä kanava PiP-kuvassa"
 
-msgid "play in mainwindow"
+msgid "Play In Main window"
 msgstr "toista pääikkunassa"
 
 msgid "please press OK when ready"
@@ -22703,7 +22762,7 @@ msgstr "p.tarj:"
 msgid "provider:"
 msgstr "palveluntarjoaja:"
 
-msgid "purge deleted user bouquets"
+msgid "Purge Deleted User Bouquets"
 msgstr "tyhjennä poistetut suosikkilistat"
 
 msgid "red"
@@ -22724,43 +22783,43 @@ msgstr "merkittäviä ihmisiä"
 msgid "remove after this position"
 msgstr "Poista tämän kohdan jälkeen"
 
-msgid "remove all alternatives"
+msgid "Remove All Alternatives"
 msgstr "poista vaihtoehtoiset kanavat"
 
-msgid "remove all new found flags"
+msgid "Remove All New Found Flags"
 msgstr "poista kaikki uusi kanava-liput"
 
 msgid "remove before this position"
 msgstr "Poista kaikki ennen tätä kohtaa"
 
-msgid "remove bouquet from parental protection"
+msgid "Remove Bouquet From Parental Protection"
 msgstr "poista kanavan lapsilukkosuojaus"
 
-msgid "remove cable services"
+msgid "Remove Cable Services"
 msgstr "poista kaapelikanavat"
 
-msgid "remove entry"
+msgid "Remove Entry"
 msgstr "Poista"
 
-msgid "remove from parental protection"
+msgid "Remove From Parental Protection"
 msgstr "poista kanavan lapsilukkosuojaus"
 
-msgid "remove new found flag"
+msgid "Remove New Found Flag"
 msgstr "poista uusi kanava-lippu"
 
-msgid "remove selected satellite"
+msgid "Remove Satellite Services"
 msgstr "poista valittu satelliitti"
 
-msgid "remove terrestrial services"
+msgid "Remove Terrestrial Services"
 msgstr "poista antennikanavat"
 
 msgid "remove this mark"
 msgstr "poista tämä merkki"
 
-msgid "rename entry"
+msgid "Rename Entry"
 msgstr "Uudelleennimeä"
 
-msgid "restore deleted user bouquets"
+msgid "Restore Deleted User Bouquets"
 msgstr "palauta poistetut suosikkilistat"
 
 msgid "restoring satellites.xml not possible!"
@@ -22822,7 +22881,7 @@ msgstr "vakava/klassinen/uskonnollinen/historiallinen elokuva/draama"
 msgid "service PIN"
 msgstr "kanavan PIN"
 
-msgid "set as startup service"
+msgid "Set As Startup Service"
 msgstr "Valitse käynnistyskanavaksi"
 
 msgid "share:"
@@ -22843,7 +22902,7 @@ msgstr "näytä kaikki kortit"
 msgid "show all tags"
 msgstr "näytä kaikki avainsanat"
 
-msgid "show alternatives"
+msgid "Show Alternatives"
 msgstr "näytä vaihtoehtoiset kanavat"
 
 msgid "show cards with uphop 0"
@@ -22957,7 +23016,7 @@ msgstr "askelkoko"
 msgid "stereo"
 msgstr "stereo"
 
-msgid "stop using as startup service"
+msgid "Unset As Startup Service"
 msgstr "Poista käynnistyskanava määritys"
 
 msgid "successful"
@@ -23002,13 +23061,13 @@ msgstr "tennis/squash"
 msgid "text"
 msgstr "teksti"
 
-msgid "this bouquet is protected by a parental control pin"
+msgid "This bouquet is protected by a parental control PIN!"
 msgstr "tämä kanava on suojattu lapsilukolla"
 
 msgid "this recording"
 msgstr "tämä tallennus"
 
-msgid "this service is protected by a parental control pin"
+msgid "This service is protected by a parental control PIN!"
 msgstr "tämä kanava on suojattu lapsilukolla"
 
 msgid "toggle time, chapter, audio, subtitle info"
@@ -23071,7 +23130,7 @@ msgstr "julkaisematon"
 msgid "untestable"
 msgstr "testipalkki"
 
-msgid "until standby/restart"
+msgid "Until standby/restart"
 msgstr "valmiustilaan/uudelleenkäynnistykseen asti"
 
 msgid "update"
