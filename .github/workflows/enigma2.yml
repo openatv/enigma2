@@ -1,10 +1,7 @@
 name: enigma2 build
 
 on:
-  push:
-    branches: [ 7.2, master ]
-  pull_request:
-    branches: [ 7.2, master ]
+  workflow_dispatch:
 
 jobs:
   build:
