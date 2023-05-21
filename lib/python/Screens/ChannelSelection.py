@@ -2244,7 +2244,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.movemode and (self.isBasePathEqual(self.bouquet_root) or "userbouquet." in ref.toString()):
 			self.toggleMoveMarked()
 		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
-			if ParentalControl.parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
+			if parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
 				self.enterPath(ref)
 				self.gotoCurrentServiceOrProvider(ref)
 		elif self.bouquet_mark_edit != EDIT_OFF:
@@ -2336,7 +2336,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
 				nref = self.session.pip.resolveAlternatePipService(nref)
-				if nref and (not checkParentalControl or ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
+				if nref and (not checkParentalControl or parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
 					self.session.pip.playService(nref)
 					self.__evServiceStart()
 					self.showPipzapMessage()
