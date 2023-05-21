@@ -1,15 +1,5 @@
 <!--suppress XmlUnboundNsPrefix -->
 <wizard>
-
-		<step id="start" nextstep="introduction">
-			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
-			<displaytext value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-			</code>
-		</step>
-
 		<step id="introduction" >
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<displaytext value="Use the up/down keys on your remote control to select an option. After that, press OK." />
@@ -65,11 +55,8 @@ self.selectKey("DOWN")
 
 		<step id="update">
 			<condition>
-from os import statvfs
-flashSize = statvfs('/')
-flashSize = (flashSize.f_frsize * flashSize.f_blocks) // 2**20
 from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash") and (flashSize &gt; 512 or config.flashExpander.device.value != "")
+self.condition = BoxInfo.getItem("SmallFlash")
 			</condition>
 			<text value="Checking the Internet connection" />
 			<displaytext value="Checking the Internet connection" />

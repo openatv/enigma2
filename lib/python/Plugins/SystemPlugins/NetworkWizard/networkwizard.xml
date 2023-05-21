@@ -1,17 +1,5 @@
 <!--suppress XmlUnboundNsPrefix -->
 <wizard>
-        <step id="welcome">
-                <text value="Welcome.\n\nIf you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n\nPress OK to start configuring your network" />
-                <displaytext value="Network Wizard" />
-	        <code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-                </code>
-		<code pos="after" async="yes">
-self.selectInterface()
-		</code>
-        </step>
-
         <step id="selectinterface">
                 <text value="Please select the network interface that you want to use for your Internet connection.\n\nPlease press OK to continue." />
                 <displaytext value="Select interface" />
