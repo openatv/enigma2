@@ -538,10 +538,29 @@ def parseValuePair(value, scale, object=None, desktop=None, size=None):
 	return (xValue, yValue)
 
 
-def parseScaleFlags(value):
+def parseScale(value):
 	options = {
 		"none": 0,
+		"0": 0,  # Legacy scale option.
 		"scale": BT_SCALE,
+		"1": BT_SCALE,  # Legacy scale option.
+		"keepAspect": BT_SCALE | BT_KEEP_ASPECT_RATIO,
+		"leftTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_TOP,
+		"leftCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+		"leftMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+		"leftBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
+		"centerTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
+		"middleTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
+		"centerScaled": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+		"middleScaled": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+		"centerBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+		"middleBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+		"rightTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_TOP,
+		"rightCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+		"rightMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+		"rightBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
+		#
+		# Deprecated scaling names.
 		"scaleKeepAspect": BT_SCALE | BT_KEEP_ASPECT_RATIO,
 		"scaleLeftTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_TOP,
 		"scaleLeftCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
@@ -557,6 +576,7 @@ def parseScaleFlags(value):
 		"scaleRightCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"scaleRightMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"scaleRightBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
+		#
 		"moveLeftTop": BT_HALIGN_LEFT | BT_VALIGN_TOP,
 		"moveLeftCenter": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 		"moveLeftMiddle": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
@@ -570,9 +590,19 @@ def parseScaleFlags(value):
 		"moveRightTop": BT_HALIGN_RIGHT | BT_VALIGN_TOP,
 		"moveRightCenter": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"moveRightMiddle": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-		"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM
+		"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
+		#
+		# For compatibility with DreamOS and VTi skins:
+		"off": 0,  # Do not scale.
+		"on": BT_SCALE | BT_KEEP_ASPECT_RATIO,  # Scale but keep aspect ratio.
+		"aspect": BT_SCALE | BT_KEEP_ASPECT_RATIO,  # Scale but keep aspect ratio.
+		"center": BT_HALIGN_CENTER | BT_VALIGN_CENTER,  # Do not scale but center on target.
+		"width": BT_SCALE | BT_VALIGN_CENTER,  # Adjust the width to the target, the height can be too big or too small.
+		"height": BT_SCALE | BT_HALIGN_CENTER,  # Adjust height to target, width can be too big or too small.
+		"stretch": BT_SCALE,  # Adjust height and width to the target, aspect may break.
+		"fill": BT_SCALE | BT_HALIGN_CENTER | BT_VALIGN_CENTER  # Scaled so large that the target is completely filled, may be too wide OR too high, "width" or "height" is only automatically selected depending on which side is "too small".
 	}
-	return parseOptions(options, "scaleFlags", value, 0)
+	return parseOptions(options, "scale", value, 0)
 
 
 def parseScrollbarMode(value):
@@ -620,6 +650,19 @@ def parseVerticalAlignment(value):
 		"bottom": 2
 	}
 	return parseOptions(options, "verticalAlignment", value, 1)
+
+
+def parseWrap(value):
+	options = {
+		"noWrap": 0,
+		"off": 0,
+		"0": 0,
+		"wrap": 1,
+		"on": 1,
+		"1": 1,
+		"ellipsis": 2
+	}
+	return parseOptions(options, "wrap", value, 0)
 
 
 def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seekPointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarBackgroundPixmap", "scrollbarForegroundPixmap", "scrollbarbackgroundPixmap", "scrollbarBackgroundPicture", "scrollbarSliderPicture"))):
@@ -787,7 +830,7 @@ class AttributeParser:
 		self.guiObject.setOrientation(parseListOrientation(value))
 
 	def noWrap(self, value):
-		self.guiObject.setNoWrap(1 if parseBoolean("nowrap", value) else 0)
+		self.wrap("0" if parseBoolean("noWrap", value) else "1")
 		# attribDeprecationWarning("noWrap", "wrap")
 
 	def objectTypes(self, value):
@@ -819,10 +862,10 @@ class AttributeParser:
 		pass
 
 	def scale(self, value):
-		self.guiObject.setScale(1 if parseBoolean("scale", value) else 0)
+		self.guiObject.setPixmapScale(parseScale(value))
 
-	def scaleFlags(self, value):
-		self.guiObject.setPixmapScaleFlags(parseScaleFlags(value))
+	def scaleFlags(self, value):  # This is a temporary patch until the code and skins using this attribute is updated.
+		self.scale(value)
 
 	def scrollbarBackgroundPixmap(self, value):
 		self.guiObject.setScrollbarBackgroundPixmap(parsePixmap(value, self.desktop))
@@ -963,7 +1006,7 @@ class AttributeParser:
 		self.guiObject.setVAlign(parseVerticalAlignment(value))
 
 	def wrap(self, value):
-		self.guiObject.setNoWrap(0 if parseBoolean("wrap", value) else 1)
+		self.guiObject.setWrap(parseWrap(value))
 
 	def zPosition(self, value):
 		self.guiObject.setZPosition(parseInteger(value))

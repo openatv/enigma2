@@ -231,6 +231,32 @@
 		<key id="KEY_F6" mapto="save" flags="m" />
 	</map>
 
+	<map context="SelectCancelActions">
+		<key id="KEY_OK" mapto="select" flags="m" />
+		<key id="KEY_OK" mapto="SELECT" flags="b" />
+		<key id="KEY_OK" mapto="SELECTLong" flags="l" />
+		<key id="KEY_GREEN" mapto="select" flags="m" />
+		<key id="KEY_GREEN" mapto="SELECT" flags="b" />
+		<key id="KEY_GREEN" mapto="SELECTLong" flags="l" />
+		<key id="KEY_EXIT" mapto="cancel" flags="b" />
+		<key id="KEY_RED" mapto="cancel" flags="b" />
+		<key id="KEY_EXIT" mapto="close" flags="l" />
+		<key id="KEY_RED" mapto="close" flags="l" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_ENTER" mapto="select" flags="m" />
+		<key id="KEY_ENTER" mapto="SELECT" flags="b" />
+		<key id="KEY_ENTER" mapto="SELECTLong" flags="l" />
+		<key id="KEY_F5" mapto="select" flags="m" />
+		<key id="KEY_F5" mapto="SELECT" flags="b" />
+		<key id="KEY_F5" mapto="SELECTLong" flags="l" />
+		<key id="KEY_ESC" mapto="cancel" flags="b" />
+		<key id="KEY_F6" mapto="cancel" flags="b" />
+		<key id="KEY_ESC" mapto="close" flags="l" />
+		<key id="KEY_F6" mapto="close" flags="l" />
+		<key id="\x0a" mapto="select" flags="m" />
+		<key id="\x1b" mapto="cancel" flags="m" />
+	</map>
+
 	<map context="TextEditActions">
 		<key id="KEY_BACK" mapto="backspace" flags="mr" />
 		<key id="KEY_LAST" mapto="backspace" flags="mr" />
