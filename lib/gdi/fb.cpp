@@ -194,6 +194,7 @@ int fbClass::showConsole(int state)
 
 int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 {
+	if (fbFd < 0) return -1;
 #ifdef CONFIG_ION
 	/* unmap old framebuffer with old size */
 	if (lfb)
@@ -260,7 +261,8 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 
 	ioctl(fbFd, FBIOGET_VSCREENINFO, &screeninfo);
 
-	if ((screeninfo.xres!=nxRes) || (screeninfo.yres!=nyRes) || (screeninfo.bits_per_pixel!=nbpp))
+	if ((screeninfo.xres != (unsigned int)nxRes) || (screeninfo.yres != (unsigned int)nyRes) ||
+		(screeninfo.bits_per_pixel != (unsigned int)nbpp))
 	{
 		eDebug("[fb] SetMode failed: wanted: %dx%dx%d, got %dx%dx%d",
 			nxRes, nyRes, nbpp,
@@ -297,6 +299,7 @@ void fbClass::getMode(int &xres, int &yres, int &bpp)
 
 int fbClass::setOffset(int off)
 {
+	if (fbFd < 0) return -1;
 	screeninfo.xoffset = 0;
 	screeninfo.yoffset = off;
 	return ioctl(fbFd, FBIOPAN_DISPLAY, &screeninfo);
@@ -305,11 +308,13 @@ int fbClass::setOffset(int off)
 int fbClass::waitVSync()
 {
 	int c = 0;
+	if (fbFd < 0) return -1;
 	return ioctl(fbFd, FBIO_WAITFORVSYNC, &c);
 }
 
 void fbClass::blit()
 {
+	if (fbFd < 0) return;
 #if !defined(CONFIG_ION)
 	if (m_manual_blit == 1) {
 		if (ioctl(fbFd, FBIO_BLIT) < 0)
@@ -340,6 +345,7 @@ fbClass::~fbClass()
 
 int fbClass::PutCMAP()
 {
+	if (fbFd < 0) return -1;
 	return ioctl(fbFd, FBIOPUTCMAP, &cmap);
 }
 
@@ -371,6 +377,7 @@ void fbClass::unlock()
 
 void fbClass::enableManualBlit()
 {
+	if (fbFd < 0) return;
 #ifndef CONFIG_ION
 	unsigned char tmp = 1;
 	if (ioctl(fbFd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
@@ -384,6 +391,7 @@ void fbClass::disableManualBlit()
 {
 #ifndef CONFIG_ION
 	unsigned char tmp = 0;
+	if (fbFd < 0) return;
 	if (ioctl(fbFd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
 		eDebug("[fb] FBIO_SET_MANUAL_BLIT %m");
 	else

@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-19 16:52+0000\n"
-"Last-Translator: drakulis <drakulis@interia.pl>\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-04-28 18:36+0000\n"
+"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -114,14 +114,14 @@ msgstr " (Kanał %s)"
 msgid " (Partition %d)"
 msgstr " (Partycja %d)"
 
-msgid " (PiP)"
-msgstr " (PiP)"
+msgid "(PiP)"
+msgstr "(PiP)"
 
-msgid " (Radio)"
-msgstr " (Radio)"
+msgid "(Radio)"
+msgstr "(Radio)"
 
-msgid " (TV)"
-msgstr " (TV)"
+msgid "(TV)"
+msgstr "(TV)"
 
 msgid " (current channel)"
 msgstr " (aktualny kanał)"
@@ -4046,7 +4046,7 @@ msgstr "Odwróć przyciski kanałów"
 msgid "Channel down"
 msgstr "Kanał niżej"
 
-msgid "Channel list context menu"
+msgid "Channel List Context Menu"
 msgstr "Kontekstowe menu listy kanałów"
 
 msgid "Channel list cursor behavior"
@@ -4076,7 +4076,7 @@ msgstr "Nazwa kanału"
 msgid "Channel preview mode"
 msgstr "Tryb podglądu kanału"
 
-msgid "Channel selection"
+msgid "Channel Selection"
 msgstr "Wybór kanału"
 
 msgid "Channel selection configuration"
@@ -6264,10 +6264,10 @@ msgstr "Divehi / Dhivehi / Malediwski"
 msgid "Djibouti"
 msgstr "Dżibuti"
 
-msgid "Do center DVB subs on this service"
+msgid "Center DVB Subs On This Service"
 msgstr "Wyśrodkuj napisy DVB dla tego kanału"
 
-msgid "Do not center DVB subs on this service"
+msgid "Don't Center DVB Subs On This Service"
 msgstr "Nie środkuj napisów DVB dla tego kanału"
 
 msgid "Do not change"
@@ -6872,6 +6872,9 @@ msgstr "Włącz IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Włącz wygaszacz paska informacyjnego"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Włącz Kexec MultiBoot"
+
 msgid "Enable MHW EPG"
 msgstr "Włącz MHW EPG"
 
@@ -7010,6 +7013,9 @@ msgstr "Włącz tę opcję, aby dodać dodatkowe dane skanowania DVB do pliku dz
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dodatkowe dane EPG do pliku dziennika debugowania."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Włącz opcję, aby dodać język oraz państwo. Zapisz informacje wykryte podczas startu systemu do pliku logu debugowania."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dane mapy klawiatury do pliku dziennika debugowania."
@@ -8840,7 +8846,7 @@ msgstr "Ukryj"
 msgid "Hide InfoBar"
 msgstr "Zawsze ukryć pasek informacyjny"
 
-msgid "Hide VBI line for this service"
+msgid "Hide VBI Line For This Service"
 msgstr "Ukryj linię VBI dla tego kanału"
 
 msgid "Hide any zap error messages."
@@ -9345,6 +9351,9 @@ msgstr "Uwzględnij SDT, BAT w strumieniach http"
 msgid "Include action map data"
 msgstr "Dołącz dane mapy działań"
 
+msgid "Include international data *"
+msgstr "Załącz dane międzynarodowe *"
+
 msgid "Include keyboard data"
 msgstr "Dołącz dane klawiatury"
 
@@ -9826,6 +9835,26 @@ msgstr "Plik jądra"
 
 msgid "Kernel version"
 msgstr "Wersja jądra"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Akcje Kexec MultiBoot"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Inicjalizacja Kexec MultiBoot - uruchomi się ponownie po 10 sekundach."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Kexec MultiBoot Inicjalizacja w toku!\n"
+"\n"
+"Zostanie zrestartowany po przywróceniu wszystkich slotów eMMC.\n"
+"Może to zająć od 1 do 5 minut na slot."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Menadżer Kexec MultiBoot"
 
 msgid "Key"
 msgstr "Klucz"
@@ -10537,7 +10566,7 @@ msgstr "Margines przed nagraniem (w min)"
 msgid "Margin before zap"
 msgstr "Margines przed zap"
 
-msgid "Mark service as dedicated 3D service"
+msgid "Mark As Dedicated 3D Service"
 msgstr "Oznacz jako kanał 3D"
 
 msgid "Mark/Portal/Playlist"
@@ -12430,7 +12459,7 @@ msgstr "Katalog nadrzędny"
 msgid "Parental Guidance Recommended"
 msgstr "Zaleca się poradnictwo rodzicielskie"
 
-msgid "Parental control"
+msgid "Parental Control"
 msgstr "Kontrola rodzicielska"
 
 msgid "Parental control services editor"
@@ -13223,6 +13252,19 @@ msgstr "Naciśnij przycisk EXIT, aby zamknąć."
 msgid "Press EXIT to return to the help screen."
 msgstr "Naciśnij EXIT, aby powrócić do ekranu pomocy."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Naciśnij zielony przycisk, aby włączyć MultiBoot!\n"
+"\n"
+"Uruchomi się ponownie w ciągu 10 sekund,\n"
+"chyba że masz sloty eMMC do przywrócenia.\n"
+"Przywracanie slotów eMMC może zająć od 1 do 5 minut na slot."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Naciśnij OK, aby wybrać opcję MultiBoot."
 
@@ -13538,6 +13580,9 @@ msgstr "Kanał Quad PiP "
 msgid "Quad PiP is not available."
 msgstr "Quad PiP niedostępny."
 
+msgid "Quad9 DNS"
+msgstr "DNS Quad9"
+
 msgid "Quechua"
 msgstr "Keczua"
 
@@ -13705,6 +13750,14 @@ msgstr "Czy na pewno usunąć ten wpis?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Naprawdę wyjść z szybkiego zapisu kanałów?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Naprawdę trwale usunąć pliki MultiBoot?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Czy naprawdę chcesz przejść do trybu awaryjnego?"
 
@@ -13768,7 +13821,7 @@ msgstr "Tuner i wyszukiwanie kanałów"
 msgid "Reception Settings"
 msgstr "Ustawienia odbioru"
 
-msgid "Reception lists"
+msgid "Reception Lists"
 msgstr "Satelity"
 
 msgid "Record"
@@ -14095,7 +14148,10 @@ msgstr "Usuń bieżący folder z zakładek"
 msgid "Remove currently selected title"
 msgstr "Usuń aktualnie wybrany tytuł"
 
-msgid "Remove hide VBI line for this service"
+msgid "Remove forever"
+msgstr "Usuń na zawsze"
+
+msgid "Show VBI Line For This Service"
 msgstr "Pokaż linię VBI dla tego kanału"
 
 msgid "Remove highlighted directory from bookmarks"
@@ -18681,7 +18737,7 @@ msgstr ""
 "Kreator sieci nie jest zainstalowany!\n"
 "Zainstaluj go najpierw."
 
-msgid "The pin code you entered is wrong."
+msgid "The PIN code entered is incorrect!"
 msgstr "Wpisany kod PIN jest niepoprawny."
 
 #, python-format
@@ -19845,6 +19901,9 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraiński"
 
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Nie można ukończyć - Brak plików Kexec Multiboot!"
+
 msgid "Unattended upgrade without GUI"
 msgstr "Aktualizacja bez nadzoru poza GUI"
 
@@ -19860,7 +19919,7 @@ msgstr "Nieszyfrowane"
 msgid "UnhandledKey"
 msgstr "Klawisz nieobsługiwany"
 
-msgid "Unhide parental control services"
+msgid "Unhide Parental Control Services"
 msgstr "Pokaż usługi kontroli rodzicielskiej"
 
 msgid "Unicable "
@@ -19929,7 +19988,7 @@ msgstr "Nieznany!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Jeśli nie ustawiono opcji „wyłączona”, otrzymasz podgląd kanałów znajdujących się na liście EPG."
 
-msgid "Unmark service as dedicated 3D service"
+msgid "Unmark As Dedicated 3D Service"
 msgstr "Odznacz jako kanał 3D"
 
 msgid "Unmount"
@@ -20297,7 +20356,7 @@ msgstr "Używany:"
 msgid "User  (keymap.usr)"
 msgstr "Użytkownika(keymap.usr)"
 
-msgid "User - bouquets"
+msgid "User - Bouquets"
 msgstr "Listy kanałów"
 
 msgid "User Feed URL"
@@ -21829,7 +21888,7 @@ msgstr "Zulu"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Ustawienia Enigma2]\n"
 
-msgid "[Favorite Edit]"
+msgid "Favorite Edit"
 msgstr "[edycja ulubionych]"
 
 msgid "[Image Info]\n"
@@ -21841,13 +21900,13 @@ msgstr "[Timeshift] Zapis nie powiódł się!"
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Uruchamianie ponowne timeshiftu!"
 
-msgid "[alternative edit]"
+msgid "Alternative Edit"
 msgstr "[edycja alternatywnych]"
 
-msgid "[bouquet edit]"
+msgid "Bouquet Edit"
 msgstr "[edycja listy kanałów]"
 
-msgid "[move mode]"
+msgid "Move Mode"
 msgstr "[tryb przenoszenia]"
 
 msgid "a gui to assign services/providers to common interface modules"
@@ -21856,13 +21915,13 @@ msgstr "menu do przyporządkowywania kanałów/dostawców do modułów CI"
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "menu do przyporządkowywania kanałów/dostawców/CAIDów do modułów CI"
 
-msgid "abort alternatives edit"
+msgid "Abort Alternatives Edit"
 msgstr "Przerwij edycję alternatywnych"
 
-msgid "abort bouquet edit"
+msgid "Abort Bouquet Edit"
 msgstr "Przerwij edycję listy kanałów"
 
-msgid "abort favorites edit"
+msgid "Abort Favorites Edit"
 msgstr "Przerwij edycję ulubionych"
 
 msgid "ac3"
@@ -21874,25 +21933,25 @@ msgstr "Włącz PiP"
 msgid "active"
 msgstr "aktywny"
 
-msgid "add alternatives"
+msgid "Add Alternatives"
 msgstr "Dodaj alternatywy"
 
-msgid "add bouquet"
+msgid "Add Bouquet"
 msgstr "Dodaj listę kanałów"
 
-msgid "add bouquet to parental protection"
+msgid "Add Bouquet To Parental Protection"
 msgstr "dodaj listę kanałów do ochrony rodzicielskiej"
 
-msgid "add marker"
+msgid "Add Marker"
 msgstr "Dodaj znacznik"
 
-msgid "add service to bouquet"
+msgid "Add Service To Bouquet"
 msgstr "Dodaj kanał do listy ulubionych"
 
-msgid "add service to favorites"
+msgid "Add Service To Favorites"
 msgstr "dodaj kanał do ulubionych"
 
-msgid "add to parental protection"
+msgid "Add To Parental Protection"
 msgstr "dodaj do ochrony rodzicielskiej"
 
 msgid "address:"
@@ -22089,7 +22148,7 @@ msgstr "gotowanie"
 msgid "copy"
 msgstr "kopiuj"
 
-msgid "copy to bouquets"
+msgid "Copy To Bouquets"
 msgstr "Kopiuj do list kanałów"
 
 msgid "current affairs (general)"
@@ -22122,7 +22181,7 @@ msgstr "usunięty"
 msgid "detective/thriller"
 msgstr "kryminał/thriller"
 
-msgid "disable move mode"
+msgid "Disable Move Mode"
 msgstr "Zakończ przenoszenie"
 
 msgid "disabled"
@@ -22171,7 +22230,7 @@ msgstr "ecm.info"
 msgid "economics/social advisory"
 msgstr "porady ekonomiczne/społeczne"
 
-msgid "edit alternatives"
+msgid "Edit Alternatives"
 msgstr "Edytuj alternatywne"
 
 msgid "education/information (general)"
@@ -22189,28 +22248,28 @@ msgstr "pusty"
 msgid "enable PiP no HDR"
 msgstr "włącz PIP bez HDR"
 
-msgid "enable bouquet edit"
+msgid "Enable Bouquet Edit"
 msgstr "Włącz edycję listy kanałów"
 
-msgid "enable favorite edit"
+msgid "Enable Favorite Edit"
 msgstr "włącz edycję ulubionych"
 
-msgid "enable move mode"
+msgid "Enable Move Mode"
 msgstr "Przenieś"
 
 msgid "enabled"
 msgstr "włączony"
 
-msgid "end alternatives edit"
+msgid "End Alternatives Edit"
 msgstr "koniec edycji alternatywnych"
 
-msgid "end bouquet edit"
+msgid "End Bouquet Edit"
 msgstr "Zakończ edycji listy kanałów"
 
 msgid "end cut here"
 msgstr "koniec cięcia tutaj"
 
-msgid "end favorites edit"
+msgid "End Favorites Edit"
 msgstr "Zakończ edycję"
 
 msgid "enigma2 and network"
@@ -22282,7 +22341,7 @@ msgstr "nazwa pliku"
 msgid "film/cinema"
 msgstr "film/kino"
 
-msgid "find currently played service"
+msgid "Find Currently Playing Service"
 msgstr "Znajdź aktualnie uruchomiony kanał"
 
 msgid "fine arts"
@@ -22666,10 +22725,10 @@ msgstr "sztuka"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "play as picture in picture"
+msgid "Play As Picture in Picture window"
 msgstr "Odtwórz w podglądzie"
 
-msgid "play in mainwindow"
+msgid "Play In Main window"
 msgstr "odtwórz w ekranie głównym"
 
 msgid "please press OK when ready"
@@ -22696,7 +22755,7 @@ msgstr "dost.:"
 msgid "provider:"
 msgstr "nadawca:"
 
-msgid "purge deleted user bouquets"
+msgid "Purge Deleted User Bouquets"
 msgstr "Wyczyść usunięte listy kanałów"
 
 msgid "red"
@@ -22717,43 +22776,43 @@ msgstr "nadzwyczajne osoby"
 msgid "remove after this position"
 msgstr "usuń po tej pozycji"
 
-msgid "remove all alternatives"
+msgid "Remove All Alternatives"
 msgstr "Usuń wszystkie alternatywne"
 
-msgid "remove all new found flags"
+msgid "Remove All New Found Flags"
 msgstr "Usuń wszystkie nowo znalezione flagi"
 
 msgid "remove before this position"
 msgstr "usuń przed tą pozycją"
 
-msgid "remove bouquet from parental protection"
+msgid "Remove Bouquet From Parental Protection"
 msgstr "usuń listę kanałów z ochrony rodzicielskiej"
 
-msgid "remove cable services"
+msgid "Remove Cable Services"
 msgstr "Usuń kanały telewizji kablowej"
 
-msgid "remove entry"
+msgid "Remove Entry"
 msgstr "Usuń kanał"
 
-msgid "remove from parental protection"
+msgid "Remove From Parental Protection"
 msgstr "usuń z kontroli rodzicielskiej"
 
-msgid "remove new found flag"
+msgid "Remove New Found Flag"
 msgstr "usuń nowo znalezioną flagę"
 
-msgid "remove selected satellite"
+msgid "Remove Satellite Services"
 msgstr "Usuń wybranego satelitę"
 
-msgid "remove terrestrial services"
+msgid "Remove Terrestrial Services"
 msgstr "Usuń kanały naziemne"
 
 msgid "remove this mark"
 msgstr "usuń ten znacznik"
 
-msgid "rename entry"
+msgid "Rename Entry"
 msgstr "Zmień nazwę"
 
-msgid "restore deleted user bouquets"
+msgid "Restore Deleted User Bouquets"
 msgstr "Przywróć usunięte listy kanałów"
 
 msgid "restoring satellites.xml not possible!"
@@ -22815,7 +22874,7 @@ msgstr "film klasyka/historia/religia/dramat"
 msgid "service PIN"
 msgstr "PIN kanału"
 
-msgid "set as startup service"
+msgid "Set As Startup Service"
 msgstr "Użyj jako kanał startowy"
 
 msgid "share:"
@@ -22836,7 +22895,7 @@ msgstr "pokaż wszystkie karty"
 msgid "show all tags"
 msgstr "pokaż wszystkie znaczniki"
 
-msgid "show alternatives"
+msgid "Show Alternatives"
 msgstr "Pokaż zamienniki"
 
 msgid "show cards with uphop 0"
@@ -22950,7 +23009,7 @@ msgstr "rozmiar kroku"
 msgid "stereo"
 msgstr "stereo"
 
-msgid "stop using as startup service"
+msgid "Unset As Startup Service"
 msgstr "Nie używaj jako kanał startowy"
 
 msgid "successful"
@@ -22995,13 +23054,13 @@ msgstr "tenis/squash"
 msgid "text"
 msgstr "tekst"
 
-msgid "this bouquet is protected by a parental control pin"
+msgid "This bouquet is protected by a parental control PIN!"
 msgstr "ta lista kanałów jest chroniona PINem kontroli rodzicielskiej"
 
 msgid "this recording"
 msgstr "to nagranie"
 
-msgid "this service is protected by a parental control pin"
+msgid "This service is protected by a parental control PIN!"
 msgstr "ten kanał jest chroniony kodem PIN"
 
 msgid "toggle time, chapter, audio, subtitle info"
@@ -23064,7 +23123,7 @@ msgstr "niepublikowane"
 msgid "untestable"
 msgstr "nietestowalny"
 
-msgid "until standby/restart"
+msgid "Until standby/restart"
 msgstr "do czuwania/restartu"
 
 msgid "update"

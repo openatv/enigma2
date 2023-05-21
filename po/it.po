@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-07 20:28+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-05-09 21:48+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -107,14 +107,14 @@ msgstr " (Canale %s)"
 msgid " (Partition %d)"
 msgstr " (Partizione %d)"
 
-msgid " (PiP)"
-msgstr " (PiP)"
+msgid "(PiP)"
+msgstr "(PiP)"
 
-msgid " (Radio)"
-msgstr " (Radio)"
+msgid "(Radio)"
+msgstr "(Radio)"
 
-msgid " (TV)"
-msgstr " (TV)"
+msgid "(TV)"
+msgstr "(TV)"
 
 msgid " (current channel)"
 msgstr " (canale attuale)"
@@ -928,8 +928,8 @@ msgstr[1] "%d pixel"
 #, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
-msgstr[0] "%d larghezza pixel"
-msgstr[1] "%d larghezza pixel"
+msgstr[0] "Largo %d pixel"
+msgstr[1] "Largo %d pixel"
 
 #, python-format
 msgid "%d Pixels"
@@ -1995,7 +1995,7 @@ msgid "ATSC"
 msgstr "ATSC"
 
 msgid "ATSC provider"
-msgstr "provider ATSC"
+msgstr "Fornitore ATSC"
 
 msgid "AV Setup"
 msgstr "Configurazione AV"
@@ -2193,7 +2193,7 @@ msgid "Add new tag"
 msgstr "Aggiungi nuovo tag"
 
 msgid "Add provider"
-msgstr "Aggiungi provider"
+msgstr "Aggiungi fornitore"
 
 msgid "Add recording (enter recording duration)"
 msgstr "Aggiungi registrazione (inserisci la durata della registrazione)"
@@ -3507,7 +3507,7 @@ msgid "CCcam Profile Settings"
 msgstr "Impostazioni del profilo CCcam"
 
 msgid "CCcam Provider Info"
-msgstr "Info CCcam Provider"
+msgstr "CCcam Provider Info"
 
 msgid "CCcam Remote Info"
 msgstr "Info CCcam remota"
@@ -4010,7 +4010,7 @@ msgstr "Inverti i tasti canale"
 msgid "Channel down"
 msgstr "Canale giù"
 
-msgid "Channel list context menu"
+msgid "Channel List Context Menu"
 msgstr "Menu contestuale elenco canali"
 
 msgid "Channel list cursor behavior"
@@ -4040,7 +4040,7 @@ msgstr "Channel name"
 msgid "Channel preview mode"
 msgstr "Modalità anteprima canale"
 
-msgid "Channel selection"
+msgid "Channel Selection"
 msgstr "Elenco canali"
 
 msgid "Channel selection configuration"
@@ -6227,10 +6227,10 @@ msgstr "Divehi / Dhivehi / Maldiviano"
 msgid "Djibouti"
 msgstr "Gibuti"
 
-msgid "Do center DVB subs on this service"
+msgid "Center DVB Subs On This Service"
 msgstr "Centra i sottotitoli DVB su questo servizio"
 
-msgid "Do not center DVB subs on this service"
+msgid "Don't Center DVB Subs On This Service"
 msgstr "Non centrare i sottotitoli DVB su questo servizio"
 
 msgid "Do not change"
@@ -6834,6 +6834,9 @@ msgstr "Abilita IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Attiva dissolvenza barra informazioni"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Abilita multiboot Kexec"
+
 msgid "Enable MHW EPG"
 msgstr "Abilita MHW EPG"
 
@@ -6972,6 +6975,9 @@ msgstr "Abilita questa opzione per aggiungere dati di scansione DVB extra al fil
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati EPG extra al file di registro di debug."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Abilita questa opzione per aggiungere al file di registro di debug le informazioni sul caricamento della lingua internazionale e del paese rilevate durante l'avvio del sistema."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere i dati della mappa dei tasti della tastiera al file di registro di debug."
@@ -7170,7 +7176,7 @@ msgid "Enter the frequency at which you LNB switches between low band and high b
 msgstr "Inserisci la frequenza alla quale il tuo LNB passa da banda bassa ad alta. Per maggiori informazioni consulta le specifiche tecniche del tuo LNB."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
-msgstr "Immetti la dimensione del passo di frequenza che il tuner deve utilizzare durante la ricerca di multiplex via cavo. Per ulteriori informazioni, consulta la documentazione del provider di servizi via cavo."
+msgstr "Immetti la dimensione del passo di frequenza che il tuner deve utilizzare durante la ricerca di multiplex via cavo. Per ulteriori informazioni, consulta la documentazione del tuo fornitore di servizi via cavo."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Inserisci il numero registrato nel posizionatore che corrisponde a questo satellite."
@@ -8800,7 +8806,7 @@ msgstr "Nascondi"
 msgid "Hide InfoBar"
 msgstr "Nascondi barra informazioni"
 
-msgid "Hide VBI line for this service"
+msgid "Hide VBI Line For This Service"
 msgstr "Nascondi la linea VBI per questo servizio"
 
 msgid "Hide any zap error messages."
@@ -9305,6 +9311,9 @@ msgstr "Includi SDT, BAT nei flussi http"
 msgid "Include action map data"
 msgstr "Includi i dati della mappa delle azioni"
 
+msgid "Include international data *"
+msgstr "Includi dati internazionali *"
+
 msgid "Include keyboard data"
 msgstr "Includi i dati della tastiera"
 
@@ -9786,6 +9795,26 @@ msgstr "File del kernel"
 
 msgid "Kernel version"
 msgstr "Versione kernel"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Azioni multiboot Kexec"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Inizializzazione multiboot Kexec - riavvio dopo 10 secondi."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Inizializzazione multiboot Kexec in corso!\n"
+"\n"
+"Riavvio dopo aver ripristinato tutti gli slot eMMC.\n"
+"Questo può richiedere da 1 -> 5 minuti per slot."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Gestore multiboot Kexec"
 
 msgid "Key"
 msgstr "Chiave"
@@ -10495,7 +10524,7 @@ msgstr "Margine prima della registrazione (minuti)"
 msgid "Margin before zap"
 msgstr "Margine prima dello zap"
 
-msgid "Mark service as dedicated 3D service"
+msgid "Mark As Dedicated 3D Service"
 msgstr "Contrassegna come servizio 3D dedicato"
 
 msgid "Mark/Portal/Playlist"
@@ -12017,7 +12046,7 @@ msgid "Only on startup"
 msgstr "Solo in avvio"
 
 msgid "Only provider"
-msgstr "Unico fornitore"
+msgstr "Solo fornitore"
 
 msgid "Open"
 msgstr "Apri"
@@ -12387,7 +12416,7 @@ msgstr "Cartella superiore"
 msgid "Parental Guidance Recommended"
 msgstr "Consigliata la guida dei genitori"
 
-msgid "Parental control"
+msgid "Parental Control"
 msgstr "Controllo parentale"
 
 msgid "Parental control services editor"
@@ -13180,6 +13209,19 @@ msgstr "Premere ESCI per chiudere."
 msgid "Press EXIT to return to the help screen."
 msgstr "Premere ESCI per tornare alla schermata della Guida."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Premi il tasto VERDE per abilitare il multiboot!\n"
+"\n"
+"Riavvio entro 10 secondi,\n"
+"a meno che tu non abbia slot eMMC da ripristinare.\n"
+"Il ripristino degli slot eMMC può richiedere da 1 -> 5 minuti per slot."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Premi OK per la selezione multiboot."
 
@@ -13217,7 +13259,7 @@ msgid "Press OK to select a group of satellites to configure in one block."
 msgstr "OK -> per selezionare un gruppo di satelliti da configurare insieme."
 
 msgid "Press OK to select a provider."
-msgstr "Premere OK per selezionare un provider."
+msgstr "Premi OK per selezionare un fornitore."
 
 msgid "Press OK to select a service."
 msgstr "Premere OK per selezionare un servizio."
@@ -13421,22 +13463,22 @@ msgid "Prov"
 msgstr "Prov"
 
 msgid "Provider"
-msgstr "Provider"
+msgstr "Fornitore"
 
 msgid "Provider Name: "
-msgstr "Nome Provider: "
+msgstr "Nome fornitore: "
 
 msgid "Provider: "
-msgstr "Provider: "
+msgstr "Fornitore: "
 
 msgid "Providers"
-msgstr "Provider"
+msgstr "Fornitori"
 
 msgid "Providers:"
-msgstr "Provider:"
+msgstr "Fornitori:"
 
 msgid "Providers: "
-msgstr "Provider: "
+msgstr "Fornitori: "
 
 msgid "Proxy detected"
 msgstr "Proxy rilevato"
@@ -13494,6 +13536,9 @@ msgstr "Canale PiP quadruplo "
 
 msgid "Quad PiP is not available."
 msgstr "Il PiP quadruplo non è disponibile."
+
+msgid "Quad9 DNS"
+msgstr "DNS Quad9"
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -13662,6 +13707,14 @@ msgstr "Eliminare davvero questa voce?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Uscire davvero dai sotto servizi con lo zapping veloce?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Eliminare davvero in modo permanente i file multiboot?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Riavviare davvero in modalità di ripristino?"
 
@@ -13725,7 +13778,7 @@ msgstr "Ricezione servizi"
 msgid "Reception Settings"
 msgstr "Impostazioni di ricezione"
 
-msgid "Reception lists"
+msgid "Reception Lists"
 msgstr "Elenchi di ricezione"
 
 msgid "Record"
@@ -14052,7 +14105,10 @@ msgstr "Rimuovi la cartella attuale dai segnalibri"
 msgid "Remove currently selected title"
 msgstr "Rimuovi titolo attualmente selezionato"
 
-msgid "Remove hide VBI line for this service"
+msgid "Remove forever"
+msgstr "Rimuovi per sempre"
+
+msgid "Show VBI Line For This Service"
 msgstr "Rimuovi linea VBI nascosta per questo servizio"
 
 msgid "Remove highlighted directory from bookmarks"
@@ -15097,7 +15153,7 @@ msgid "Select 'polarisation' if using a 'universal' LNB, otherwise consult your 
 msgstr "Seleziona 'polarizzazione' se utilizzi un LNB universale; altrimenti consulta le specifiche del tuo LNB."
 
 msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Seleziona 'provider' per eseguire la scansione dall'elenco predefinito di cavi multiplex. Seleziona 'bande' per scansionare solo alcune parti dello spettro. Seleziona 'passi' per eseguire la scansione in passi di una particolare larghezza di banda di frequenza."
+msgstr "Seleziona 'fornitore' per eseguire la scansione dall'elenco predefinito dei multiplex via cavo. Seleziona 'bande' per scansionare solo alcune parti dello spettro. Seleziona 'passi' per eseguire la scansione in passi di una particolare larghezza di banda di frequenza."
 
 msgid "Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."
 msgstr "Seleziona 'Sì' se questo tuner è collegato al dispositivo SCR tramite un altro tuner, altrimenti seleziona 'No'."
@@ -15354,7 +15410,7 @@ msgid "Select only highlighted file"
 msgstr "Seleziona solo il file evidenziato"
 
 msgid "Select provider to add..."
-msgstr "Seleziona provider da aggiungere..."
+msgstr "Seleziona fornitore da aggiungere..."
 
 msgid "Select refresh rate"
 msgstr "Seleziona frequenza di aggiornamento"
@@ -15688,10 +15744,10 @@ msgid "Select your country. If not available select 'all'."
 msgstr "Seleziona paese. Se non disponibile seleziona 'tutti'."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
-msgstr "Seleziona provider e regione. Se non presente in questo elenco sarà necessario selezionare uno degli altri 'tipi di scansione del servizio'."
+msgstr "Seleziona provider e regione. Se non presente in questo elenco sarà necessario selezionare una delle altre 'modalità scansione servizi'."
 
 msgid "Select your provider, and press OK to start the scan"
-msgstr "Seleziona provider e premi OK per avviare la scansione"
+msgstr "Seleziona fornitore e premi OK per avviare la scansione"
 
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr "Seleziona regione. Se non disponibile, cambia 'Paese' in 'tutti' e seleziona una delle alternative predefinite."
@@ -18633,7 +18689,7 @@ msgstr ""
 "L'estensione NetworkWizard non è installata!\n"
 "Provvedere a installarla."
 
-msgid "The pin code you entered is wrong."
+msgid "The PIN code entered is incorrect!"
 msgstr "Il codice PIN che hai inserito è sbagliato."
 
 #, python-format
@@ -19050,7 +19106,7 @@ msgid "This setting allows the tuner configuration to be a duplication of how an
 msgstr "Questa impostazione consente di duplicare la configurazione del tuner rispetto a quella di un altro tuner già configurato."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
-msgstr "Questa impostazione dipende dal provider del cavo e dalla posizione. Se non si conosce l'impostazione corretta, fare riferimento al menu nel ricevitore via cavo ufficiale, o ottenerlo dal proprio fornitore di servizi via cavo, o chiedere aiuto tramite il forum Internet."
+msgstr "Questa impostazione dipende dal fornitore di servizi via cavo e dalla posizione. Se non conosci l'impostazione corretta, fai riferimento al menu nel ricevitore via cavo ufficiale, oppure chiedilo al tuo fornitore di servizi via cavo o chiedi aiuto tramite il forum Internet."
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
 msgstr "Questa impostazione è solo per configurazioni speciali. Dai a questo LNB una priorità maggiore rispetto ad altri LNB con valori inferiori. L'LNB libero con la priorità più alta sarà il primo LNB selezionato per i servizi di sintonizzare."
@@ -19797,6 +19853,9 @@ msgstr "Ucraina"
 msgid "Ukrainian"
 msgstr "Ucraino"
 
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Impossibile completare - File multiboot Kexec mancanti!"
+
 msgid "Unattended upgrade without GUI"
 msgstr "Aggiornamento automatico senza GUI"
 
@@ -19812,7 +19871,7 @@ msgstr "In chiaro"
 msgid "UnhandledKey"
 msgstr "Tasto non gestito"
 
-msgid "Unhide parental control services"
+msgid "Unhide Parental Control Services"
 msgstr "Scopri i servizi di controllo parentale"
 
 msgid "Unicable "
@@ -19881,7 +19940,7 @@ msgstr "Sconosciuto!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Se non impostato a 'disabilitato', un'anteprima dei canali viene mostrata nell'elenco EPG."
 
-msgid "Unmark service as dedicated 3D service"
+msgid "Unmark As Dedicated 3D Service"
 msgstr "Annulla contrassegna il servizio come servizio 3D dedicato"
 
 msgid "Unmount"
@@ -20241,7 +20300,7 @@ msgid "Used flash"
 msgstr "Flash usata"
 
 msgid "Used service scan type"
-msgstr "Tipo di scansione del servizio utilizzato"
+msgstr "Modalità scansione servizi"
 
 msgid "Used:"
 msgstr "Usato: "
@@ -20249,7 +20308,7 @@ msgstr "Usato: "
 msgid "User  (keymap.usr)"
 msgstr "Utente (keymap.usr)"
 
-msgid "User - bouquets"
+msgid "User - Bouquets"
 msgstr "Bouquet - Utente"
 
 msgid "User Feed URL"
@@ -21781,7 +21840,7 @@ msgstr "Zulù"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Impostazioni Enigma2]\n"
 
-msgid "[Favorite Edit]"
+msgid "Favorite Edit"
 msgstr "[edit preferiti]"
 
 msgid "[Image Info]\n"
@@ -21793,13 +21852,13 @@ msgstr "Timeshift: unione registrazioni fallita!"
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Riavvio timeshift!"
 
-msgid "[alternative edit]"
+msgid "Alternative Edit"
 msgstr "[edit alternative]"
 
-msgid "[bouquet edit]"
+msgid "Bouquet Edit"
 msgstr "[edit bouquet]"
 
-msgid "[move mode]"
+msgid "Move Mode"
 msgstr "[modalità spostamento]"
 
 msgid "a gui to assign services/providers to common interface modules"
@@ -21808,13 +21867,13 @@ msgstr "una GUI per assegnare servizi e fornitori a moduli CI"
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "una GUI per assegnare servizi, fornitori e caid a moduli CI"
 
-msgid "abort alternatives edit"
+msgid "Abort Alternatives Edit"
 msgstr "annullare modifica alternative"
 
-msgid "abort bouquet edit"
+msgid "Abort Bouquet Edit"
 msgstr "annullare modifica bouquet"
 
-msgid "abort favorites edit"
+msgid "Abort Favorites Edit"
 msgstr "annullare modifica preferiti"
 
 msgid "ac3"
@@ -21826,25 +21885,25 @@ msgstr "attivare PiP"
 msgid "active"
 msgstr "attivo"
 
-msgid "add alternatives"
+msgid "Add Alternatives"
 msgstr "aggiungere alternative"
 
-msgid "add bouquet"
+msgid "Add Bouquet"
 msgstr "aggiungi bouquet"
 
-msgid "add bouquet to parental protection"
+msgid "Add Bouquet To Parental Protection"
 msgstr "Aggiungi bouquet alla protezione genitori"
 
-msgid "add marker"
+msgid "Add Marker"
 msgstr "aggiungere contrassegno"
 
-msgid "add service to bouquet"
+msgid "Add Service To Bouquet"
 msgstr "aggiungi servizio al bouquet"
 
-msgid "add service to favorites"
+msgid "Add Service To Favorites"
 msgstr "aggiungi servizio ai preferiti"
 
-msgid "add to parental protection"
+msgid "Add To Parental Protection"
 msgstr "aggiungere al controllo genitori"
 
 msgid "address:"
@@ -22041,7 +22100,7 @@ msgstr "cucina"
 msgid "copy"
 msgstr "copia"
 
-msgid "copy to bouquets"
+msgid "Copy To Bouquets"
 msgstr "copiare nei bouquet"
 
 msgid "current affairs (general)"
@@ -22074,7 +22133,7 @@ msgstr "eliminato"
 msgid "detective/thriller"
 msgstr "detective/thriller"
 
-msgid "disable move mode"
+msgid "Disable Move Mode"
 msgstr "disabilita modalità spostamento"
 
 msgid "disabled"
@@ -22123,7 +22182,7 @@ msgstr "info ecm:"
 msgid "economics/social advisory"
 msgstr "economia/consulenza sociale"
 
-msgid "edit alternatives"
+msgid "Edit Alternatives"
 msgstr "modifica alternative"
 
 msgid "education/information (general)"
@@ -22141,28 +22200,28 @@ msgstr "vuoto"
 msgid "enable PiP no HDR"
 msgstr "abilita PIP no HDR"
 
-msgid "enable bouquet edit"
+msgid "Enable Bouquet Edit"
 msgstr "abilita modifica bouquet"
 
-msgid "enable favorite edit"
+msgid "Enable Favorite Edit"
 msgstr "abilita modifica preferiti"
 
-msgid "enable move mode"
+msgid "Enable Move Mode"
 msgstr "abilita modalità spostamento"
 
 msgid "enabled"
 msgstr "abilitato"
 
-msgid "end alternatives edit"
+msgid "End Alternatives Edit"
 msgstr "fine modifica alternative"
 
-msgid "end bouquet edit"
+msgid "End Bouquet Edit"
 msgstr "fine modica bouquet"
 
 msgid "end cut here"
 msgstr "Fine taglio"
 
-msgid "end favorites edit"
+msgid "End Favorites Edit"
 msgstr "fine modifica preferiti"
 
 msgid "enigma2 and network"
@@ -22234,7 +22293,7 @@ msgstr "Nome file"
 msgid "film/cinema"
 msgstr "film/cinema"
 
-msgid "find currently played service"
+msgid "Find Currently Playing Service"
 msgstr "trova il servizio attualmente riprodotto"
 
 msgid "fine arts"
@@ -22618,10 +22677,10 @@ msgstr "arti dello spettacolo"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "play as picture in picture"
+msgid "Play As Picture in Picture window"
 msgstr "riprodurre come PIP"
 
-msgid "play in mainwindow"
+msgid "Play In Main window"
 msgstr "riprodurre in schermo principale"
 
 msgid "please press OK when ready"
@@ -22646,9 +22705,9 @@ msgid "provid:"
 msgstr "provid:"
 
 msgid "provider:"
-msgstr "provider:"
+msgstr "fornitore:"
 
-msgid "purge deleted user bouquets"
+msgid "Purge Deleted User Bouquets"
 msgstr "rimuove i bouquet utente eliminati"
 
 msgid "red"
@@ -22669,43 +22728,43 @@ msgstr "persone straordinarie"
 msgid "remove after this position"
 msgstr "rimuovi dopo questa posizione"
 
-msgid "remove all alternatives"
+msgid "Remove All Alternatives"
 msgstr "rimuovi tutte le alternative"
 
-msgid "remove all new found flags"
+msgid "Remove All New Found Flags"
 msgstr "rimuovi tutti i nuovi flag trovati"
 
 msgid "remove before this position"
 msgstr "rimuovi prima di questa posizione"
 
-msgid "remove bouquet from parental protection"
+msgid "Remove Bouquet From Parental Protection"
 msgstr "togli un bouquet dal controllo genitori"
 
-msgid "remove cable services"
+msgid "Remove Cable Services"
 msgstr "rimuovi servizi via cavo"
 
-msgid "remove entry"
+msgid "Remove Entry"
 msgstr "rimuovi voce"
 
-msgid "remove from parental protection"
+msgid "Remove From Parental Protection"
 msgstr "rimuovi dal controllo genitori"
 
-msgid "remove new found flag"
+msgid "Remove New Found Flag"
 msgstr "rimuovi nuovo flag trovato"
 
-msgid "remove selected satellite"
+msgid "Remove Satellite Services"
 msgstr "rimuovi satellite selezionato"
 
-msgid "remove terrestrial services"
+msgid "Remove Terrestrial Services"
 msgstr "rimuovi servizi terrestri"
 
 msgid "remove this mark"
 msgstr "rimuovi contrassegno"
 
-msgid "rename entry"
+msgid "Rename Entry"
 msgstr "rinomina voce"
 
-msgid "restore deleted user bouquets"
+msgid "Restore Deleted User Bouquets"
 msgstr "ripristina i bouquet utente eliminati"
 
 msgid "restoring satellites.xml not possible!"
@@ -22767,7 +22826,7 @@ msgstr "Impegnata/Classica/Religiosa/Film storici/Teatro"
 msgid "service PIN"
 msgstr "PIN servizio"
 
-msgid "set as startup service"
+msgid "Set As Startup Service"
 msgstr "imposta come servizio di avvio"
 
 msgid "share:"
@@ -22788,7 +22847,7 @@ msgstr "mostra tutte le schede"
 msgid "show all tags"
 msgstr "mostra tutte le etichette"
 
-msgid "show alternatives"
+msgid "Show Alternatives"
 msgstr "mostrare alternative"
 
 msgid "show cards with uphop 0"
@@ -22902,7 +22961,7 @@ msgstr "dimensione passo"
 msgid "stereo"
 msgstr "stereo"
 
-msgid "stop using as startup service"
+msgid "Unset As Startup Service"
 msgstr "smettere di usare come servizio di avvio"
 
 msgid "successful"
@@ -22947,13 +23006,13 @@ msgstr "tennis/squash"
 msgid "text"
 msgstr "testo"
 
-msgid "this bouquet is protected by a parental control pin"
+msgid "This bouquet is protected by a parental control PIN!"
 msgstr "questo bouquet è protetto dal controllo genitori"
 
 msgid "this recording"
 msgstr "questa registrazione"
 
-msgid "this service is protected by a parental control pin"
+msgid "This service is protected by a parental control PIN!"
 msgstr "questo servizio è protetto da un pin di controllo parentale"
 
 msgid "toggle time, chapter, audio, subtitle info"
@@ -23016,7 +23075,7 @@ msgstr "non pubblicato"
 msgid "untestable"
 msgstr "non verificabile"
 
-msgid "until standby/restart"
+msgid "Until standby/restart"
 msgstr "fino allo standby o riavvio"
 
 msgid "update"

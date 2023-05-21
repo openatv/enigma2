@@ -152,7 +152,7 @@ class TitleList(Screen, HelpableScreen):
 
 	def titleProperties(self):
 		#if self.getCurrentTitle():
-			self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
+		self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
 
 	def selectImage(self):
 		self.session.openWithCallback(self.burnISO, ProjectSettings.FileBrowser, "image", self.project.settings)

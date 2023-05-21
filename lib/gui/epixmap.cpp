@@ -4,7 +4,7 @@
 #include <lib/gui/ewidgetdesktop.h>
 
 ePixmap::ePixmap(eWidget *parent)
-        :eWidget(parent), m_alphatest(0), m_scale(0), m_have_border_color(false), m_border_width(0)
+	: eWidget(parent), m_alphatest(0), m_scale(0), m_have_border_color(false), m_border_width(0)
 {
 }
 
@@ -26,7 +26,7 @@ void ePixmap::setScale(int scale)
 	}
 }
 
-void ePixmap::setPixmapScaleFlags(int flags)
+void ePixmap::setPixmapScale(int flags)
 {
 	if (m_scale != flags)
 	{
@@ -57,21 +57,21 @@ void ePixmap::setPixmapFromFile(const char *filename)
 		return;
 	}
 
-		// TODO: This only works for desktop 0
+	// TODO: This only works for desktop 0
 	getDesktop(0)->makeCompatiblePixmap(*m_pixmap);
 	event(evtChangedPixmap);
 }
 
 void ePixmap::setBorderWidth(int pixel)
 {
-	m_border_width=pixel;
+	m_border_width = pixel;
 	invalidate();
 }
 
 void ePixmap::setBorderColor(const gRGB &color)
 {
-	m_border_color=color;
-	m_have_border_color=true;
+	m_border_color = color;
+	m_have_border_color = true;
 	invalidate();
 }
 
@@ -83,7 +83,7 @@ void ePixmap::checkSize()
 		setTransparent(0);
 	else
 		setTransparent(1);
-		/* fall trough. */
+	/* fall trough. */
 }
 
 int ePixmap::event(int event, void *data, void *data2)
@@ -97,12 +97,12 @@ int ePixmap::event(int event, void *data, void *data2)
 		eSize s(size());
 		getStyle(style);
 
-//	we don't clear the background before because of performance reasons.
-//	when the pixmap is too small to fit the whole widget area, the widget is
-//	transparent anyway, so the background is already painted.
-//		eWidget::event(event, data, data2);
+		//	we don't clear the background before because of performance reasons.
+		//	when the pixmap is too small to fit the whole widget area, the widget is
+		//	transparent anyway, so the background is already painted.
+		//		eWidget::event(event, data, data2);
 
-		gPainter &painter = *(gPainter*)data2;
+		gPainter &painter = *(gPainter *)data2;
 		if (m_pixmap)
 		{
 			int flags = 0;
@@ -118,11 +118,12 @@ int ePixmap::event(int event, void *data, void *data2)
 		if (m_have_border_color)
 			painter.setForegroundColor(m_border_color);
 
-		if (m_border_width) {
+		if (m_border_width)
+		{
 			painter.fill(eRect(0, 0, s.width(), m_border_width));
-			painter.fill(eRect(0, m_border_width, m_border_width, s.height()-m_border_width));
-			painter.fill(eRect(m_border_width, s.height()-m_border_width, s.width()-m_border_width, m_border_width));
-			painter.fill(eRect(s.width()-m_border_width, m_border_width, m_border_width, s.height()-m_border_width));
+			painter.fill(eRect(0, m_border_width, m_border_width, s.height() - m_border_width));
+			painter.fill(eRect(m_border_width, s.height() - m_border_width, s.width() - m_border_width, m_border_width));
+			painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
 		}
 
 		return 0;

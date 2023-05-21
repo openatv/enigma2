@@ -2,20 +2,21 @@
 # igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023.
 # Artem <Localizer_in_Russian@protonmail.com>, 2021.
 # Вячеслав Диконов <sdiconov@mail.ru>, 2022.
+# jbleyel <jbleyel@gmx.net>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-13 15:51+0000\n"
-"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-05-11 21:50+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -107,13 +108,13 @@ msgstr " (Канал %s)"
 msgid " (Partition %d)"
 msgstr " (Раздел %d)"
 
-msgid " (PiP)"
+msgid "(PiP)"
 msgstr " (Картинка в картинке)"
 
-msgid " (Radio)"
+msgid "(Radio)"
 msgstr " (Радио)"
 
-msgid " (TV)"
+msgid "(TV)"
 msgstr " (ТВ)"
 
 msgid " (current channel)"
@@ -4036,7 +4037,7 @@ msgstr "Инвертирование кнопок каналов"
 msgid "Channel down"
 msgstr "Канал вниз"
 
-msgid "Channel list context menu"
+msgid "Channel List Context Menu"
 msgstr "Меню списка каналов"
 
 msgid "Channel list cursor behavior"
@@ -4066,7 +4067,7 @@ msgstr "Имя канала"
 msgid "Channel preview mode"
 msgstr "Режим предпросмотра канала"
 
-msgid "Channel selection"
+msgid "Channel Selection"
 msgstr "Выбор канала"
 
 msgid "Channel selection configuration"
@@ -6253,10 +6254,10 @@ msgstr "Дивехи / Дхивехи / Мальдивский"
 msgid "Djibouti"
 msgstr "Джибути"
 
-msgid "Do center DVB subs on this service"
+msgid "Center DVB Subs On This Service"
 msgstr "Центрировать субтитры на этом канале"
 
-msgid "Do not center DVB subs on this service"
+msgid "Don't Center DVB Subs On This Service"
 msgstr "Не центрировать субтитры на этом канале"
 
 msgid "Do not change"
@@ -6861,6 +6862,9 @@ msgstr "Включить IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Включить затухание инфобара"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Включить MultiBoot Kexec"
+
 msgid "Enable MHW EPG"
 msgstr "Включить ТВ-гид MHW"
 
@@ -6999,6 +7003,9 @@ msgstr "Включите этот параметр, чтобы добавить 
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить дополнительные данные EPG в файл лога отладки."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Включите этот параметр, чтобы добавить в файл журнала отладки информацию о загрузке на международном языке и стране, обнаруженную во время загрузки системы."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные раскладки клавиатуры в файл лога отладки."
@@ -8829,7 +8836,7 @@ msgstr "Скрыть"
 msgid "Hide InfoBar"
 msgstr "Всегда скрывать инфобар"
 
-msgid "Hide VBI line for this service"
+msgid "Hide VBI Line For This Service"
 msgstr "Скрыть строку VBI на этом канале"
 
 msgid "Hide any zap error messages."
@@ -9334,6 +9341,9 @@ msgstr "Включить SDT, BAT в потоки http"
 msgid "Include action map data"
 msgstr "Включить данные карты действий"
 
+msgid "Include international data *"
+msgstr "Включить международные данные *"
+
 msgid "Include keyboard data"
 msgstr "Настройки клавиатуры"
 
@@ -9815,6 +9825,26 @@ msgstr "Файл ядра"
 
 msgid "Kernel version"
 msgstr "Версия ядра"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Действия MultiBoot Kexec"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Инициализация Kexec MultiBoot — перезагрузится через 10 секунд."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Выполняется инициализация Kexec MultiBoot!\n"
+"\n"
+"Будет перезагружен после восстановления всех слотов eMMC.\n"
+"Это может занять от 1 до 5 минут на слот."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Kexec MultiBoot менеджер"
 
 msgid "Key"
 msgstr "Ключ"
@@ -10525,7 +10555,7 @@ msgstr "Объединить перед записью (Мин)"
 msgid "Margin before zap"
 msgstr "Поле до zap"
 
-msgid "Mark service as dedicated 3D service"
+msgid "Mark As Dedicated 3D Service"
 msgstr "Режим 3D канала"
 
 msgid "Mark/Portal/Playlist"
@@ -12417,7 +12447,7 @@ msgstr "Родительский каталог"
 msgid "Parental Guidance Recommended"
 msgstr "Рекомендуется родительский контроль"
 
-msgid "Parental control"
+msgid "Parental Control"
 msgstr "Родительский контроль"
 
 msgid "Parental control services editor"
@@ -13210,6 +13240,19 @@ msgstr "Нажмите EXIT для закрытия."
 msgid "Press EXIT to return to the help screen."
 msgstr "Нажмите EXIT, чтобы вернуться к экрану справки."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Нажмите зелёную кнопку, чтобы включить MultiBoot!\n"
+"\n"
+"Перезагрузится в течение 10 секунд,\n"
+"если у Вас нет слотов eMMC для восстановления.\n"
+"Восстановление слотов eMMC может занять от 1 до 5 минут на каждый слот."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Нажмите OK для выбора MultiBoot."
 
@@ -13525,6 +13568,9 @@ msgstr "Четырехканальный PiP-канал "
 msgid "Quad PiP is not available."
 msgstr "4X PiP не доступно."
 
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
+
 msgid "Quechua"
 msgstr "Кечуа"
 
@@ -13692,6 +13738,14 @@ msgstr "Действительно удалить эту запись?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Действительно выйти из быстрого перехода?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Вы хотите безвозвратно удалить файлы MultiBoot?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Действительно перезагрузиться в режим восстановления?"
 
@@ -13755,7 +13809,7 @@ msgstr "Настройки приёма"
 msgid "Reception Settings"
 msgstr "Параметры приёма"
 
-msgid "Reception lists"
+msgid "Reception Lists"
 msgstr "Вид списка"
 
 msgid "Record"
@@ -14082,7 +14136,10 @@ msgstr "Удалить текущую папку из закладок"
 msgid "Remove currently selected title"
 msgstr "Удалить выбранный заголовок"
 
-msgid "Remove hide VBI line for this service"
+msgid "Remove forever"
+msgstr "Удалить навсегда"
+
+msgid "Show VBI Line For This Service"
 msgstr "Удалить линию VBI на этом канале"
 
 msgid "Remove highlighted directory from bookmarks"
@@ -16385,13 +16442,13 @@ msgid "Show 1080p 30fps as"
 msgstr "Показать 1080p 30fps как"
 
 msgid "Show 2160p 24fps as"
-msgstr "Показать 720p 24fps как"
+msgstr "Показать 2160p 24fps как"
 
 msgid "Show 2160p 25fps as"
-msgstr "Показать 1080p 25fps как"
+msgstr "Показать 2160p 25fps как"
 
 msgid "Show 2160p 30fps as"
-msgstr "Показать 1080p 30fps как"
+msgstr "Показать 2160p 30fps как"
 
 msgid "Show 24p up to 720p / higher than 720p as"
 msgstr "Показать 24p до 720p / выше 720p как"
@@ -18214,7 +18271,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 12.04.2023"
+msgstr "Коррекция перевода Monja 29.04.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -18667,7 +18724,7 @@ msgstr ""
 "Мастер сети не установлен!\n"
 "Пожалуйста, сначала установите его."
 
-msgid "The pin code you entered is wrong."
+msgid "The PIN code entered is incorrect!"
 msgstr "Введён неверный пин-код."
 
 #, python-format
@@ -19831,6 +19888,9 @@ msgstr "Украина"
 msgid "Ukrainian"
 msgstr "Украинский"
 
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Unable to complete - Kexec Multiboot files missing!"
+
 msgid "Unattended upgrade without GUI"
 msgstr "Обновление в фоновом режиме"
 
@@ -19846,7 +19906,7 @@ msgstr "Декодирован"
 msgid "UnhandledKey"
 msgstr "Неиспользуемая кнопка"
 
-msgid "Unhide parental control services"
+msgid "Unhide Parental Control Services"
 msgstr "Показать защищенные каналы"
 
 msgid "Unicable "
@@ -19915,7 +19975,7 @@ msgstr "Неизвестно!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Если выберите 'Да', в ТВ-гиде будет включен предпросмотр каналов."
 
-msgid "Unmark service as dedicated 3D service"
+msgid "Unmark As Dedicated 3D Service"
 msgstr "Убрать режим 3D канала"
 
 msgid "Unmount"
@@ -20283,7 +20343,7 @@ msgstr "Занято"
 msgid "User  (keymap.usr)"
 msgstr "Пользователь (keymap.usr)"
 
-msgid "User - bouquets"
+msgid "User - Bouquets"
 msgstr "Фавориты"
 
 msgid "User Feed URL"
@@ -21815,7 +21875,7 @@ msgstr "Зулусский"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Настройки Enigma2]\n"
 
-msgid "[Favorite Edit]"
+msgid "Favorite Edit"
 msgstr "[Редактирование избранного]"
 
 msgid "[Image Info]\n"
@@ -21827,13 +21887,13 @@ msgstr "[Таймшифт] Не удалось соединить записи!"
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Таймшифт] Перезапуск таймшифта!"
 
-msgid "[alternative edit]"
+msgid "Alternative Edit"
 msgstr "[Альтернативное редактирование]"
 
-msgid "[bouquet edit]"
+msgid "Bouquet Edit"
 msgstr "[Редактирование букетов]"
 
-msgid "[move mode]"
+msgid "Move Mode"
 msgstr "[Режим перемещения]"
 
 msgid "a gui to assign services/providers to common interface modules"
@@ -21842,13 +21902,13 @@ msgstr "Интерфейс для назначения каналов/прова
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "Интерфейс для назначения каналов/провайдеров/идентов на CAM-модули"
 
-msgid "abort alternatives edit"
+msgid "Abort Alternatives Edit"
 msgstr "Отменить редактирование"
 
-msgid "abort bouquet edit"
+msgid "Abort Bouquet Edit"
 msgstr "Отменить редактирование"
 
-msgid "abort favorites edit"
+msgid "Abort Favorites Edit"
 msgstr "Отменить редактирование"
 
 msgid "ac3"
@@ -21860,25 +21920,25 @@ msgstr "Включение PIP"
 msgid "active"
 msgstr "активный"
 
-msgid "add alternatives"
+msgid "Add Alternatives"
 msgstr "Режим альтернативы"
 
-msgid "add bouquet"
+msgid "Add Bouquet"
 msgstr "Добавить фаворит пользователя "
 
-msgid "add bouquet to parental protection"
+msgid "Add Bouquet To Parental Protection"
 msgstr "Добавить фаворит в родительский контроль"
 
-msgid "add marker"
+msgid "Add Marker"
 msgstr "Добавить маркер"
 
-msgid "add service to bouquet"
+msgid "Add Service To Bouquet"
 msgstr "Добавить канал к пакету"
 
-msgid "add service to favorites"
+msgid "Add Service To Favorites"
 msgstr "Добавить канал к избранному"
 
-msgid "add to parental protection"
+msgid "Add To Parental Protection"
 msgstr "Добавить в родительский контроль"
 
 msgid "address:"
@@ -22075,7 +22135,7 @@ msgstr "Кулинария"
 msgid "copy"
 msgstr "Копировать"
 
-msgid "copy to bouquets"
+msgid "Copy To Bouquets"
 msgstr "Копировать в букет"
 
 msgid "current affairs (general)"
@@ -22108,7 +22168,7 @@ msgstr "удалено"
 msgid "detective/thriller"
 msgstr "Детектив/Триллер"
 
-msgid "disable move mode"
+msgid "Disable Move Mode"
 msgstr "Отключить режим перемещения"
 
 msgid "disabled"
@@ -22157,7 +22217,7 @@ msgstr "ecm.info"
 msgid "economics/social advisory"
 msgstr "Экономика/Социология"
 
-msgid "edit alternatives"
+msgid "Edit Alternatives"
 msgstr "Редактировать альтернативы"
 
 msgid "education/information (general)"
@@ -22175,28 +22235,28 @@ msgstr "Пустой"
 msgid "enable PiP no HDR"
 msgstr "включить PIP без HDR"
 
-msgid "enable bouquet edit"
+msgid "Enable Bouquet Edit"
 msgstr "Редактирование пакета"
 
-msgid "enable favorite edit"
+msgid "Enable Favorite Edit"
 msgstr "Редактирование избранного"
 
-msgid "enable move mode"
+msgid "Enable Move Mode"
 msgstr "Включить режим перемещения"
 
 msgid "enabled"
 msgstr "Включено"
 
-msgid "end alternatives edit"
+msgid "End Alternatives Edit"
 msgstr "Конец редактирования"
 
-msgid "end bouquet edit"
+msgid "End Bouquet Edit"
 msgstr "Конец редактирования"
 
 msgid "end cut here"
 msgstr "Конец редактирования"
 
-msgid "end favorites edit"
+msgid "End Favorites Edit"
 msgstr "Конец редактирования"
 
 msgid "enigma2 and network"
@@ -22268,7 +22328,7 @@ msgstr "Имя файла"
 msgid "film/cinema"
 msgstr "Фильм/Кино"
 
-msgid "find currently played service"
+msgid "Find Currently Playing Service"
 msgstr "Вернуться к текущему каналу"
 
 msgid "fine arts"
@@ -22652,10 +22712,10 @@ msgstr "Авторское исскуство"
 msgid "pid:"
 msgstr "PID:"
 
-msgid "play as picture in picture"
+msgid "Play As Picture in Picture window"
 msgstr "Показать как картинку в картинке"
 
-msgid "play in mainwindow"
+msgid "Play In Main window"
 msgstr "В главном экране"
 
 msgid "please press OK when ready"
@@ -22682,7 +22742,7 @@ msgstr "Провайдер:"
 msgid "provider:"
 msgstr "Провайдер"
 
-msgid "purge deleted user bouquets"
+msgid "Purge Deleted User Bouquets"
 msgstr "Очистить удаленные фавориты"
 
 msgid "red"
@@ -22703,43 +22763,43 @@ msgstr "Замечательные люди"
 msgid "remove after this position"
 msgstr "Удалить после этой позиции"
 
-msgid "remove all alternatives"
+msgid "Remove All Alternatives"
 msgstr "Удалить все альтернативы"
 
-msgid "remove all new found flags"
+msgid "Remove All New Found Flags"
 msgstr "Удалить все найденные флаги"
 
 msgid "remove before this position"
 msgstr "Удалить перед этой позицией"
 
-msgid "remove bouquet from parental protection"
+msgid "Remove Bouquet From Parental Protection"
 msgstr "Удалить фаворит из родительского контроля"
 
-msgid "remove cable services"
+msgid "Remove Cable Services"
 msgstr "Удалить кабельные каналы"
 
-msgid "remove entry"
+msgid "Remove Entry"
 msgstr "Удалить выбранное"
 
-msgid "remove from parental protection"
+msgid "Remove From Parental Protection"
 msgstr "Удалить из родительского контроля"
 
-msgid "remove new found flag"
+msgid "Remove New Found Flag"
 msgstr "Удалить найденный новый флаг"
 
-msgid "remove selected satellite"
+msgid "Remove Satellite Services"
 msgstr "Удалить выбранный спутник"
 
-msgid "remove terrestrial services"
+msgid "Remove Terrestrial Services"
 msgstr "Удалить наземные каналы"
 
 msgid "remove this mark"
 msgstr "Удалить метку"
 
-msgid "rename entry"
+msgid "Rename Entry"
 msgstr "Переименовать выбранное"
 
-msgid "restore deleted user bouquets"
+msgid "Restore Deleted User Bouquets"
 msgstr "Восстановление удалённых фаворитов"
 
 msgid "restoring satellites.xml not possible!"
@@ -22801,7 +22861,7 @@ msgstr "Серьёзное/Классическое/Религиозное/Ис�
 msgid "service PIN"
 msgstr "Пин канала"
 
-msgid "set as startup service"
+msgid "Set As Startup Service"
 msgstr "Стартовый канал"
 
 msgid "share:"
@@ -22822,7 +22882,7 @@ msgstr "Показать все карточки"
 msgid "show all tags"
 msgstr "Показать все теги"
 
-msgid "show alternatives"
+msgid "Show Alternatives"
 msgstr "Показать альтернативы"
 
 msgid "show cards with uphop 0"
@@ -22936,7 +22996,7 @@ msgstr "Размер шага"
 msgid "stereo"
 msgstr "Стерео"
 
-msgid "stop using as startup service"
+msgid "Unset As Startup Service"
 msgstr "Убрать канал из старта"
 
 msgid "successful"
@@ -22981,13 +23041,13 @@ msgstr "Теннис/Сквош"
 msgid "text"
 msgstr "текст"
 
-msgid "this bouquet is protected by a parental control pin"
+msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Этот фаворит защищен родительским контролем"
 
 msgid "this recording"
 msgstr "Данная запись"
 
-msgid "this service is protected by a parental control pin"
+msgid "This service is protected by a parental control PIN!"
 msgstr "Этот канал защищен пин-кодом"
 
 msgid "toggle time, chapter, audio, subtitle info"
@@ -23050,7 +23110,7 @@ msgstr "Неопубликованное"
 msgid "untestable"
 msgstr "не подлежит тестированию"
 
-msgid "until standby/restart"
+msgid "Until standby/restart"
 msgstr "До режима ожидания/перезагрузки"
 
 msgid "update"

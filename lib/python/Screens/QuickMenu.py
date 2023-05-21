@@ -209,7 +209,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if BoxInfo.getItem("LCDSKINSetup"):
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Settings", _("Select LCD Skin"), _("Setup your LCD Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Skin Settings", _("Select Enigma2 Skin"), _("Setup your Skin")))
-		self.sublist.append(QuickSubMenuEntryComponent("Channel selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
+		self.sublist.append(QuickSubMenuEntryComponent("Channel Selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording Settings", _("Recording Setup"), _("Setup your recording config")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG Settings", _("EPG Setup"), _("Setup your EPG config")))
 		self["sublist"].l.setList(self.sublist)
@@ -423,7 +423,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(SkinSelector)
 		elif item[0] == _("OSD Settings"):
 			self.openSetup("UserInterface")
-		elif item[0] == _("Channel selection"):
+		elif item[0] == _("Channel Selection"):
 			self.openSetup("ChannelSelection")
 		elif item[0] == _("Recording Settings"):
 			self.openSetup("Recording")
@@ -652,9 +652,9 @@ class QuickMenuDevices(Screen):
 		<widget source="devicelist" render="Listbox" position="30,46" size="780,450" font="Regular;16" scrollbarMode="showOnDemand" transparent="1" backgroundColorSelected="grey" foregroundColorSelected="black">
 		<convert type="TemplatedMultiContent">
 				{"template": [
-				 MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
-				 MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
-				 MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
+					MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
+					MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
+					MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
 				],
 				"fonts": [gFont("Regular", 24),gFont("Regular", 20)],
 				"itemHeight": 85

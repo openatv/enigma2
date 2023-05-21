@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-02-25 19:39+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-05-09 21:48+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -108,13 +108,13 @@ msgstr " (Kanalas %s)"
 msgid " (Partition %d)"
 msgstr " (Skaidinys %d)"
 
-msgid " (PiP)"
-msgstr " (PiP)"
+msgid "(PiP)"
+msgstr "(PiP)"
 
-msgid " (Radio)"
+msgid "(Radio)"
 msgstr " (Radijas)"
 
-msgid " (TV)"
+msgid "(TV)"
 msgstr " (Televizija)"
 
 msgid " (current channel)"
@@ -1068,7 +1068,7 @@ msgstr[2] "%d paketų buvo atnaujinta."
 
 #, python-format
 msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr ""
+msgstr "%d rasti paketai, įdiegti %d paketai ir %d paketai turi atnaujinimus."
 
 #, python-format
 msgid "%d sec"
@@ -4049,7 +4049,7 @@ msgstr "Kanalų mygtukai invertuoti"
 msgid "Channel down"
 msgstr "Kanalą žemyn"
 
-msgid "Channel list context menu"
+msgid "Channel List Context Menu"
 msgstr "Kanalų sąrašo kontekstinis meniu"
 
 msgid "Channel list cursor behavior"
@@ -4079,7 +4079,7 @@ msgstr "Kanalo pavadinimas"
 msgid "Channel preview mode"
 msgstr "Kanalo peržiūros režimas"
 
-msgid "Channel selection"
+msgid "Channel Selection"
 msgstr "Kanalo pasirinkimas"
 
 msgid "Channel selection configuration"
@@ -6273,10 +6273,10 @@ msgstr "Divehi / Dhivehi / Maldyvų"
 msgid "Djibouti"
 msgstr "Džibutis"
 
-msgid "Do center DVB subs on this service"
+msgid "Center DVB Subs On This Service"
 msgstr "Šiam kanalui centruoti DVB subtitrus"
 
-msgid "Do not center DVB subs on this service"
+msgid "Don't Center DVB Subs On This Service"
 msgstr "Šiam kanalui necentruoti DVB subtitrų"
 
 msgid "Do not change"
@@ -6881,6 +6881,9 @@ msgstr "Įjungti IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Įjungti info juostos išnykimą"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "Įjungti MHW EPG"
 
@@ -7019,6 +7022,9 @@ msgstr "Įjunkite šią parinktį, kad pridėtumėte papildomų DVB nuskaitymo d
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Įjunkite šią parinktį, kad pridėtumėte papildomų EPG duomenų prie derinimo žurnalo failo."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Įjunkite šią parinktį, jei į derinimo žurnalo failą norite įtraukti klaviatūros klavišų plano duomenis."
@@ -8851,7 +8857,7 @@ msgstr "Paslėpti"
 msgid "Hide InfoBar"
 msgstr "Slėpti informacijos juostą"
 
-msgid "Hide VBI line for this service"
+msgid "Hide VBI Line For This Service"
 msgstr "Slėpti VBI liniją šiam kanalui"
 
 msgid "Hide any zap error messages."
@@ -9356,6 +9362,9 @@ msgstr "Įtraukite SDT, BAT į http srautus"
 msgid "Include action map data"
 msgstr "Įtraukti veiksmų struktūros duomenis"
 
+msgid "Include international data *"
+msgstr ""
+
 msgid "Include keyboard data"
 msgstr "Įtraukti klaviatūros duomenis"
 
@@ -9837,6 +9846,26 @@ msgstr "Branduolio failas"
 
 msgid "Kernel version"
 msgstr "Branduolio versija"
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "\"Kexec MultiBoot\" inicijavimas - bus paleistas iš naujo po 10 sekundžių."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Kexec MultiBoot Inicijavimas vyksta!\n"
+"\n"
+"Bus paleistas iš naujo atkūrus visus eMMC lizdus.\n"
+"Tai gali užtrukti nuo 1 iki > 5 minučių vienam lizdui."
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Key"
 msgstr "Raktas"
@@ -10547,7 +10576,7 @@ msgstr "Intarpas prieš įrašymą (min.)"
 msgid "Margin before zap"
 msgstr "Marža prieš zap"
 
-msgid "Mark service as dedicated 3D service"
+msgid "Mark As Dedicated 3D Service"
 msgstr "Pažymėti, kaip 'grynai 3D' kanalą"
 
 msgid "Mark/Portal/Playlist"
@@ -10949,7 +10978,7 @@ msgid "Move down a line"
 msgstr "Judėkite linija žemyn"
 
 msgid "Move down a line in the panel"
-msgstr ""
+msgstr "Pereiti žemyn linija skydelyje"
 
 msgid "Move down a page"
 msgstr "Perkelti žemyn puslapį"
@@ -10961,7 +10990,7 @@ msgid "Move down a screen"
 msgstr "Pereiti vienu ekranu žemyn"
 
 msgid "Move down a screen in the panel"
-msgstr ""
+msgstr "Pereiti žemyn skydelio ekranu"
 
 msgid "Move down one line"
 msgstr "Pereiti viena eilute žemyn"
@@ -10985,16 +11014,16 @@ msgid "Move east"
 msgstr "Sukti į rytus"
 
 msgid "Move job completed."
-msgstr ""
+msgstr "Perkėlimas atliktas."
 
 msgid "Move job failed!"
-msgstr ""
+msgstr "Perkelti nepavyko!"
 
 msgid "Move job queued."
-msgstr ""
+msgstr "Perkelti užduotį į eilę."
 
 msgid "Move only highlighted file"
-msgstr ""
+msgstr "Perkelti tik paryškintą failą"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Perkelti dabartinį DNS įrašą viena eilute žemyn"
@@ -11003,20 +11032,20 @@ msgid "Move the current DNS entry up one line"
 msgstr "Perkelti dabartinį DNS įrašą į vieną eilutę aukštyn"
 
 msgid "Move the current bookmark down"
-msgstr ""
+msgstr "Perkelti dabartinę žymelę žemyn"
 
 msgid "Move the current bookmark up"
-msgstr ""
+msgstr "Perkelti dabartinę žymelę aukštyn"
 
 msgid "Move the current line down"
-msgstr ""
+msgstr "Perkelti dabartinę eilutę žemyn"
 
 msgid "Move the current line up"
-msgstr ""
+msgstr "Perkelti dabartinę eilutę aukštyn"
 
 #, python-format
 msgid "Move the directory/file '%s'?"
-msgstr ""
+msgstr "Perkelti katalogą / failą \"%s\"?"
 
 msgid "Move the keyboard cursor down"
 msgstr "Perkelkite klaviatūros žymeklį žemyn"
@@ -11043,7 +11072,7 @@ msgid "Move the text cursor to the last character"
 msgstr "Perkelkite teksto žymeklį į paskutinį simbolį"
 
 msgid "Move these directories/files?"
-msgstr ""
+msgstr "Perkelti šiuos katalogus / failus?"
 
 msgid "Move to first line"
 msgstr "Pereiti į pirmąją eilutę"
@@ -11052,7 +11081,7 @@ msgid "Move to first line / screen"
 msgstr "Pereiti į pirmąją eilutę / ekraną"
 
 msgid "Move to first line / screen in the panel"
-msgstr ""
+msgstr "Pereiti į pirmąją eilutę / ekraną skydelyje"
 
 msgid "Move to home of list"
 msgstr "Perkelti į titulinį sąrašą"
@@ -11064,19 +11093,19 @@ msgid "Move to last line / screen"
 msgstr "Pereiti į paskutinę eilutę / ekraną"
 
 msgid "Move to last line / screen in the panel"
-msgstr ""
+msgstr "Pereiti į paskutinę eilutę / ekraną skydelyje"
 
 msgid "Move to the first line / screen"
-msgstr ""
+msgstr "Pereiti į pirmą eilutę / ekraną"
 
 msgid "Move to the last line / screen"
-msgstr ""
+msgstr "Pereiti į paskutinę eilutę / ekraną"
 
 msgid "Move up a line"
 msgstr "Judėkite linija aukštyn"
 
 msgid "Move up a line in the panel"
-msgstr ""
+msgstr "Pereiti linija aukštyn skydelyje"
 
 msgid "Move up a page"
 msgstr "Perkelti aukštyn puslapį"
@@ -11088,7 +11117,7 @@ msgid "Move up a screen"
 msgstr "Pereiti vienu ekranu aukštyn"
 
 msgid "Move up a screen in the panel"
-msgstr ""
+msgstr "Perkelti ekraną aukštyn skydelyje"
 
 msgid "Move up one line"
 msgstr "Pereiti viena eilute aukštyn"
@@ -11151,7 +11180,7 @@ msgid "Movieplayer"
 msgstr "Filmų grotuvas"
 
 msgid "Movies"
-msgstr ""
+msgstr "Filmai"
 
 msgid "Moving"
 msgstr "Sukama"
@@ -11233,7 +11262,7 @@ msgid "Mute"
 msgstr "Išjungti garsą"
 
 msgid "My extensions"
-msgstr ""
+msgstr "Mano plėtiniai"
 
 msgid "Myanmar"
 msgstr "Mianmaras"
@@ -11261,11 +11290,11 @@ msgstr "IMTUVAS IR TIPAS"
 
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
-msgstr ""
+msgstr "PASTABA: Katalogas / failas \"%s\" egzistuoja ir bus perrašytas!"
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
-msgstr ""
+msgstr "PASTABA: Šie %d katalogai / failai egzistuoja ir bus perrašyti!"
 
 msgid "NOW"
 msgstr "DABAR"
@@ -11283,10 +11312,10 @@ msgid "Name"
 msgstr "Pavadinimas"
 
 msgid "Name ascending"
-msgstr ""
+msgstr "Pavadinimas didėjančia tvarka"
 
 msgid "Name descending"
-msgstr ""
+msgstr "Pavadinimas mažėjančia tvarka"
 
 #, python-format
 msgid "Name server %d"
@@ -11326,7 +11355,7 @@ msgid "Navajo / Navaho"
 msgstr "Navajo / Navaho"
 
 msgid "Navigate to the selected directory"
-msgstr ""
+msgstr "Pereiti į pasirinktą katalogą"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Naršykite aukštyn / žemyn naudodami mygtukus AUKŠTYN / ŽEMYN ir puslapį aukštyn / žemyn naudodami kairę / dešinę. Gerai, kad atliktumėte veiksmą, aprašytą šiuo metu paryškintame žinyne."
@@ -11501,7 +11530,7 @@ msgid "NewCamd DES Key"
 msgstr "Redaguokite NewCamd DES raktą."
 
 msgid "NewDirectory"
-msgstr ""
+msgstr "Naujas katalogas"
 
 msgid "News"
 msgstr "Naujienos"
@@ -11878,7 +11907,7 @@ msgstr ""
 "Kelias: %s"
 
 msgid "Not required"
-msgstr ""
+msgstr "Nereikia"
 
 msgid "Not running"
 msgstr "Neveikia"
@@ -12000,7 +12029,7 @@ msgid "Occitan"
 msgstr "Oksitanė"
 
 msgid "Octal"
-msgstr ""
+msgstr "Aštuntainį"
 
 msgid "Off"
 msgstr "Išjungta"
@@ -12102,7 +12131,7 @@ msgid "Open context menu"
 msgstr "Atidaryti kontekstinį meniu"
 
 msgid "Open context menu (contains settings menu)"
-msgstr ""
+msgstr "Atidarykite kontekstinį meniu (jame yra nustatymų meniu)"
 
 msgid "Open favorites list"
 msgstr "Atverti mėgstamiausių sąrašą"
@@ -12195,7 +12224,7 @@ msgid "Option to enable the Hardware Standby Timer"
 msgstr "Ši parinktis leidžia įjungti įrenginio budėjimo režimo laikmatį"
 
 msgid "Optional parameter"
-msgstr ""
+msgstr "Neprivalomas parametras"
 
 msgid "Orbital position"
 msgstr "Padėtis orbitoje"
@@ -12204,7 +12233,7 @@ msgid "Ordinary"
 msgstr "Paprastieji"
 
 msgid "Orientation"
-msgstr ""
+msgstr "Orentacija"
 
 msgid "Original"
 msgstr "Originali"
@@ -12245,10 +12274,10 @@ msgstr "Kiti mygtukai pereis prie to mygtuko žinyno informacijos, jei yra pagal
 
 #, python-format
 msgid "Other panel directory (%s)"
-msgstr ""
+msgstr "Kitas skydelio katalogas (%s)"
 
 msgid "Output text:"
-msgstr ""
+msgstr "Išvesties tekstas:"
 
 msgid "Overall progress:"
 msgstr "Bendra eiga:"
@@ -12299,7 +12328,7 @@ msgid "Overwrite spinner files during software upgrade?"
 msgstr "Perrašyti suktuko failus, atnaujinant programinę įrangą?"
 
 msgid "Owner"
-msgstr ""
+msgstr "Savininkas"
 
 msgid "PAGE UP/DOWN"
 msgstr "PUSLAPIS AUKŠTYN/ŽEMYN"
@@ -12360,7 +12389,7 @@ msgid "Package Manager"
 msgstr "Paketų tvarkyklė"
 
 msgid "Package files:"
-msgstr ""
+msgstr "Paketo failai:"
 
 msgid "Package information currently not available!"
 msgstr "Paketo informacija šiuo metu nepasiekiama!"
@@ -12434,12 +12463,12 @@ msgid "Paraguay"
 msgstr "Paragvajus"
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "Pagrindinis aplankas"
 
 msgid "Parental Guidance Recommended"
 msgstr "Rekomenduota tėvų priežiūra"
 
-msgid "Parental control"
+msgid "Parental Control"
 msgstr "Tėvų kontrolė"
 
 msgid "Parental control services editor"
@@ -12527,7 +12556,7 @@ msgid "Permanently remove all deleted items"
 msgstr "Negrįžtamai pašalinti visus ištrintus elementus"
 
 msgid "Permissions"
-msgstr ""
+msgstr "Prieigos teisės"
 
 msgid "Persian"
 msgstr "Persų"
@@ -12621,7 +12650,7 @@ msgid "Play DVDs"
 msgstr "Leisti DVD"
 
 msgid "Play all audio files in the directory"
-msgstr ""
+msgstr "Leiskite visus garso failus kataloge"
 
 msgid "Play audio in background"
 msgstr "Leisti garso įrašą fone"
@@ -12660,7 +12689,7 @@ msgid "Play recorded movies"
 msgstr "Rodyti įrašytus filmus"
 
 msgid "Play the audio file"
-msgstr ""
+msgstr "Garso failo leidimas"
 
 msgid "Playback Settings"
 msgstr "Atkūrimo nustatymai"
@@ -12728,13 +12757,13 @@ msgid "Please enter a name for the new marker"
 msgstr "Įrašykite naujo žymeklio pavadinimą"
 
 msgid "Please enter a new filename, the extension may not be changed:"
-msgstr ""
+msgstr "Įveskite naują failo pavadinimą, plėtinys gali būti nepakeistas:"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Įrašykite failo pavadinimą (tuščias = šios dienos data)"
 
 msgid "Please enter name of the new symbolic link:"
-msgstr ""
+msgstr "Įveskite naujos simbolinės nuorodos pavadinimą:"
 
 msgid "Please enter new name:"
 msgstr "Įrašykite naują pavadinimą:"
@@ -12746,10 +12775,10 @@ msgid "Please enter the correct pin code"
 msgstr "Įrašykite teisingą PIN kodą"
 
 msgid "Please enter the new directory name:"
-msgstr ""
+msgstr "Įveskite naują katalogo pavadinimą:"
 
 msgid "Please enter the new file name:"
-msgstr ""
+msgstr "Įveskite naują failo pavadinimą:"
 
 msgid "Please enter the new tag:"
 msgstr "Įveskite naują žymę:"
@@ -13007,7 +13036,7 @@ msgid "Please wait while scanning is in progress..."
 msgstr "Prašome laukti kol vyksta paieška..."
 
 msgid "Please wait while the data is extracted..."
-msgstr ""
+msgstr "Palaukite, kol duomenys bus išgauti..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Palaukite, kol sąrašas atsisiunčiamas..."
@@ -13034,7 +13063,7 @@ msgid "Please wait whilst feeds state is checked."
 msgstr "Palaukite, kol tikrinama šaltinių būklė."
 
 msgid "Please wait, loading image..."
-msgstr ""
+msgstr "Palaukite, įkeliamas atvaizdas..."
 
 #, python-format
 msgid "Please wait, restarting %s."
@@ -13232,6 +13261,19 @@ msgstr "Paspauskite EXIT, kad uždarytumėte."
 msgid "Press EXIT to return to the help screen."
 msgstr "Paspauskite EXIT, kad grįžtumėte į žinyno ekraną."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Paspauskite žalią klavišą, kad įjungtumėte \"MultiBoot\"!\n"
+"\n"
+"Bus paleistas iš naujo per 10 sekundžių,\n"
+"nebent turite eMMC lizdus, kuriuos norite atkurti.\n"
+"eMMC lizdų atkūrimas gali užtrukti nuo 1 iki > 5 minučių vienam lizdui."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Paspauskite OK, kad pasirinktumėte daugialypį paleidimą."
 
@@ -13383,7 +13425,7 @@ msgstr "Programa"
 
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
-msgstr ""
+msgstr "Norint atlikti šį veiksmą, reikia įdiegti programą \"%s\". Ar norite įdiegti \"%s\" paketą, kad įdiegtumėte programą?"
 
 msgid "Programmlisten History"
 msgstr "Programų sąrašo istorija"
@@ -13524,7 +13566,7 @@ msgid "Put your AV Receiver in standby"
 msgstr "Išjungti imtuvą į budėjimo būseną"
 
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python išorinės sąsajos dėl /tmp/mmi.socket"
@@ -13546,6 +13588,9 @@ msgstr "Keturių PiP kanalų, kanalas "
 
 msgid "Quad PiP is not available."
 msgstr "Quad PiP nėra."
+
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
 
 msgid "Quechua"
 msgstr "Kečua"
@@ -13714,6 +13759,14 @@ msgstr "Ar tikrai ištrinti šį įrašą?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Tikrai užverti greitą subkanalų perjungimą?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Ar tikrai visam laikui ištrinate \"MultiBoot\" failus?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Tikrai iš naujo paleisti į atkūrimo režimą?"
 
@@ -13777,7 +13830,7 @@ msgstr "Priėmimas"
 msgid "Reception Settings"
 msgstr "Priėmimo nustatymai"
 
-msgid "Reception lists"
+msgid "Reception Lists"
 msgstr "Priėmimo sąrašai"
 
 msgid "Record"
@@ -13979,7 +14032,7 @@ msgid "Reload"
 msgstr "Užkrauti"
 
 msgid "Reload Bookmarks"
-msgstr ""
+msgstr "Iš naujo įkelti žymes"
 
 msgid "Reload Services"
 msgstr "Įkelti kanalus iš naujo"
@@ -14104,7 +14157,10 @@ msgstr "Pašalinti dabartinį aplanką iš žymių"
 msgid "Remove currently selected title"
 msgstr "Pašalinti dabartinį pasirinktą pavadinimą"
 
-msgid "Remove hide VBI line for this service"
+msgid "Remove forever"
+msgstr ""
+
+msgid "Show VBI Line For This Service"
 msgstr "Pašalinti paslėptą VBI liniją šiam kanalui"
 
 msgid "Remove highlighted directory from bookmarks"
@@ -14117,7 +14173,7 @@ msgid "Remove the Line from CCcam.cfg"
 msgstr "Pašalinkite liniją iš CCcam.cfg"
 
 msgid "Remove the current bookmark"
-msgstr ""
+msgstr "Dabartinės žymelės pašalinimas"
 
 msgid "Remove timer"
 msgstr "Pašalinti laikmatį"
@@ -14138,13 +14194,13 @@ msgid "Rename"
 msgstr "Pervardinti"
 
 msgid "Rename Directory"
-msgstr ""
+msgstr "Pervardyti katalogą"
 
 msgid "Rename all related files"
-msgstr ""
+msgstr "Pervardykite visus susijusius failus"
 
 msgid "Rename directory/file"
-msgstr ""
+msgstr "Pervardyti katalogą / failą"
 
 msgid "Rename failed!"
 msgstr "Pervadinti nepavyko!"
@@ -14153,7 +14209,7 @@ msgid "Rename name and description for new events"
 msgstr "Naujų įvykių pervardijimo pavadinimas ir apibūdinimas"
 
 msgid "Rename only highlighted file"
-msgstr ""
+msgstr "Pervardyti tik paryškintą failą"
 
 msgid "Rename the proposed file to be created"
 msgstr "Pervardykite siūlomą sukurti failą"
@@ -14237,7 +14293,7 @@ msgid "Reset and renumerate title names"
 msgstr "Nustatyti iš naujo ir pernumeruoti antraščių pavadinimus"
 
 msgid "Reset executable mode (644)"
-msgstr ""
+msgstr "Iš naujo nustatykite vykdomąjį režimą (644)"
 
 msgid "Reset network configuration"
 msgstr "Iš naujo nustatyti tinklo konfigūraciją"
@@ -14752,7 +14808,7 @@ msgid "Save image as '%s'"
 msgstr "Išsaugokite atvaizdą kaip '%s'"
 
 msgid "Save left directory on exit"
-msgstr ""
+msgstr "Išsaugokite kairįjį katalogą išeidami"
 
 msgid "Save play list"
 msgstr "Išsaugoti grojaraštį"
@@ -14761,7 +14817,7 @@ msgid "Save play list on EXIT"
 msgstr "Įrašyti grojaraštį išeinant"
 
 msgid "Save right directory on exit"
-msgstr ""
+msgstr "Išsaugokite dešinįjį katalogą išeidami"
 
 msgid "Save settings and EPG data."
 msgstr "Įrašykite parametrus ir EPG duomenis."
@@ -14775,13 +14831,13 @@ msgstr ""
 "('%s')"
 
 msgid "Save the left column directory location on exit."
-msgstr ""
+msgstr "Išsaugokite kairiojo stulpelio katalogo vietą išeidami."
 
 msgid "Save the log changes and exit"
 msgstr "Išsaugokite žurnalo pakeitimus ir išeikite"
 
 msgid "Save the right column directory location on exit."
-msgstr ""
+msgstr "Išsaugokite dešiniojo stulpelio katalogo vietą išeidami."
 
 msgid "Save time shift as movie and continue recording"
 msgstr "Išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą"
@@ -14790,7 +14846,7 @@ msgid "Save time shift as movie and stop recording"
 msgstr "Išsaugoti laiko poslinkį, kaip filmą ir nutraukti įrašymą"
 
 msgid "Saved lines in script messages"
-msgstr ""
+msgstr "Išsaugotos eilutės scenarijaus pranešimuose"
 
 msgid "Saving EPG Cache..."
 msgstr "Išsaugoma EPG talpykla..."
@@ -15043,7 +15099,7 @@ msgid "Select 'Yes' to check if network connections are coming from nominated IP
 msgstr "Pasirinkite 'Taip', kad patikrintumėte, ar tinklo ryšiai gaunami iš paskirtų IP adresų laikmačio aktyvinimo metu. Jei taip, laikmatis bus išjungtas."
 
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
-msgstr ""
+msgstr "Pasirinkite \"Taip\", jei norite, kad visi vaizdai būtų nuolat rodomi cikle, arba pasirinkite \"Ne\", jei norite, kad visi vaizdai būtų rodomi vieną kartą ir tada sustotumėte."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Jei nustatyta 'taip', EPG lange rodys mažą TV ekraną su esamu įvykiu."
@@ -15064,7 +15120,7 @@ msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr "Jei nustatyta 'taip', info juostoje bus rodomas kanalo numeris."
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
-msgstr ""
+msgstr "Pasirinkite \"Taip\", kad nežinomi failai būtų rodomi \"File Commander\" failų peržiūros priemonėje, pasirinkite \"Ne\", kad neapdorotumėte nežinomų failų."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Pasirinkite 'Taip', kad įgalintumėte šio įrenginio nustatymų redagavimą. Pasirinkus 'Ne', įrenginių nustatymai iš naujo nustato numatytąsias reikšmes."
@@ -15076,7 +15132,7 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press '
 msgstr "Jei nustatyta 'taip', kanalų sąrašo lange jūs galite peržiūrėti kanalus. Paspauskite 'OK' ir peržiūrėkite pasirinktą kanalą, paspauskite 'OK' antrąkart, kad išeiti ir perjungti į kitą pasirinktą kanalą. Paspaudę 'EXIT', sugrįšite į pradinį kanalą."
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
-msgstr ""
+msgstr "Pasirinkite \"Taip\", kad įgalintumėte mygtukų KAIRĖ/DEŠINĖ naudojimą, kad perkeltumėte PageUp/PageDown, kai mygtukai KAIRĖ/DEŠINĖN yra kitaip neapibrėžti. Tai suteikia seną naršymą vartotojams, kurie to pageidauja."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Jei nustatyta 'taip', kanalai be EPG duomenų nebus rodomi."
@@ -15115,10 +15171,10 @@ msgid "Select 'Yes' to reset network configuration to the default. This will ena
 msgstr "Pasirinkite 'Taip', kad iš naujo nustatytumėte numatytąją tinklo konfigūraciją. Tai leis Ethernet prievadui, jei jis yra, ir nustatys imtuvą naudoti DHCP. Visos kitos tinklo sąsajos bus panaikintos."
 
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
-msgstr ""
+msgstr "Pasirinkite \"Taip\", kad redaguodami tekstinį failą nustatytumėte žymeklio padėtį eilutės pabaigoje.  Pasirinkite \"Ne\", kad nustatytumėte žymeklį į eilutės pradžią."
 
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
-msgstr ""
+msgstr "Pasirinkite \"Taip\", jei norite, kad katalogai būtų rodomi sąrašo viršuje / pradžioje, arba pasirinkite \"Ne\", kad pirmiausia būtų rodomi failai."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Pasirinkite 'Taip', kad būtų rodomos išplėstinės nustatymų parinktys."
@@ -15130,13 +15186,13 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Jei nustatyta 'taip', po perjungimo tarp radijo ir TV režimų bus rodomas kanalų sąrašas."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
-msgstr ""
+msgstr "Pasirinkite \"Taip\", kad katalogų sąraše būtų rodomas dabartinis katalogas. Atminkite, kad failų vadas turi būti paleistas iš naujo, kad šis pakeitimas įsigaliotų."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jei nustatyta \"taip\", signalo reikšmės (SNR ir t.t.) bus apskaičiuotos pagal API V3. Tai senoji API versija, kuri dabar buvo pakeista."
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
-msgstr ""
+msgstr "Pasirinkite \"Taip\", jei norite naudoti skaičių klavišus greitam failų / katalogų pasirinkimui, pasirinkite \"Ne\", jei norite naudoti skaičių klavišus MENU parinkčių spartiesiems klavišams."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Jei nustatyta 'taip', jungiant greitą persukimą, arba atsukimą medijos failų atkūrimo metu, bus rodoma info juosta."
@@ -15324,7 +15380,7 @@ msgid "Select how long to display the button error pop up. Button input is still
 msgstr "Pasirinkite, kiek laiko norite rodyti iššokantį mygtuko klaidos langą. Mygtuko įvestis vis tiek leidžiama, kol rodomas iššokantis langas."
 
 msgid "Select how long to display the task and script message pop up."
-msgstr ""
+msgstr "Pasirinkite, kiek laiko bus rodomas užduoties ir scenarijaus pranešimas."
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr "Pasirinkite, kiek laiko (sekundėmis) bus rodomas garsumo ekranas, kol jis automatiškai pasislėps."
@@ -15381,7 +15437,7 @@ msgid "Select if this timer activates on a Wednesday."
 msgstr "Pasirinkite, ar šis laikmatis aktyvuojamas trečiadienį."
 
 msgid "Select if this timer is to be repeated."
-msgstr ""
+msgstr "Pasirinkite, ar šį laikmatį reikia kartoti."
 
 msgid "Select if time shift must continue when set to record."
 msgstr "Pasirinkite, ar laiko poslinkis bus tęsiamas, kai nustatytas įrašymas."
@@ -15405,7 +15461,7 @@ msgid "Select movie"
 msgstr "Pasirinkti filmą"
 
 msgid "Select only highlighted file"
-msgstr ""
+msgstr "Pasirinkite tik paryškintą failą"
 
 msgid "Select provider to add..."
 msgstr "Pasirinkite teikėją, kurį norite pridėti..."
@@ -15429,13 +15485,13 @@ msgid "Select sort method:"
 msgstr "Pasirinkite rūšiavimo būdą:"
 
 msgid "Select system information to view:"
-msgstr ""
+msgstr "Pasirinkite sistemos informaciją, kurią norite peržiūrėti:"
 
 msgid "Select temporary directory sort order for the current column"
-msgstr ""
+msgstr "Pasirinkite dabartinio stulpelio laikiną katalogų rūšiavimo tvarką"
 
 msgid "Select temporary file sort order for the current column"
-msgstr ""
+msgstr "Pasirinkite dabartinio stulpelio laikiną failų rikiavimo tvarką"
 
 msgid "Select the No / False response"
 msgstr "Pasirinkite atsakymą Nr. / Klaidingas"
@@ -15465,22 +15521,22 @@ msgid "Select the Yes / True response"
 msgstr "Pasirinkite taip / Teisingą atsakymą"
 
 msgid "Select the action to perform when the timer ends."
-msgstr ""
+msgstr "Pasirinkite veiksmą, kurį atliksite pasibaigus laikmačiui."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Žinyno ekranuose pasirinkite mygtukų indikatorių animacijos greitį. \"Išjungta\" išjungia animaciją, kad indikatoriai šokinėtų tarp mygtukų."
 
 msgid "Select the channel from which to record:"
-msgstr ""
+msgstr "Pasirinkite kanalą, iš kurio norite įrašyti:"
 
 msgid "Select the channel or service to be used for this timer."
-msgstr ""
+msgstr "Pasirinkite kanalą arba paslaugą, kurią norite naudoti šiam laikmačiui."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Pasirinkite simbolį arba veiksmą po klaviatūros žymekliu"
 
 msgid "Select the current bookmarked location and exit"
-msgstr ""
+msgstr "Pasirinkite dabartinę pažymėtą vietą ir išeikite"
 
 msgid "Select the current menu item"
 msgstr "Pasirinkti dabartinę meniu komandą"
@@ -15492,13 +15548,13 @@ msgid "Select the currently highlighted service"
 msgstr "Pasirinkite šiuo metu pažymėtą paslaugą"
 
 msgid "Select the date from which this timer will become active."
-msgstr ""
+msgstr "Pasirinkite datą, nuo kurios šis laikmatis taps aktyvus."
 
 msgid "Select the date when this timer will activate."
-msgstr ""
+msgstr "Pasirinkite datą, kada šis laikmatis bus suaktyvintas."
 
 msgid "Select the date when this timer will start."
-msgstr ""
+msgstr "Pasirinkite datą, kada šis laikmatis prasidės."
 
 msgid "Select the day of the week that this timer will activate."
 msgstr ""
@@ -18687,7 +18743,7 @@ msgstr ""
 "Tinklo vedlio plėtinys neįdiegtas!\n"
 "Prašome įdiegti."
 
-msgid "The pin code you entered is wrong."
+msgid "The PIN code entered is incorrect!"
 msgstr "Įvedėte neteisingą PIN kodą."
 
 #, python-format
@@ -19851,6 +19907,9 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukrainiečių"
 
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
+
 msgid "Unattended upgrade without GUI"
 msgstr "Automatinis atnaujinimas be grafinės aplinkos"
 
@@ -19866,7 +19925,7 @@ msgstr "Nekoduotas"
 msgid "UnhandledKey"
 msgstr "Nepalaikomas mygtukas"
 
-msgid "Unhide parental control services"
+msgid "Unhide Parental Control Services"
 msgstr "Nebeslėpti tėvų kontrolės kanalų"
 
 msgid "Unicable "
@@ -19935,7 +19994,7 @@ msgstr ""
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Jei nenustatyta 'išjungta', galite gauti EPG sąraše esančių kanalų peržiūrą."
 
-msgid "Unmark service as dedicated 3D service"
+msgid "Unmark As Dedicated 3D Service"
 msgstr "Nuimti kaip 'grynai 3D' kanalo žymę"
 
 msgid "Unmount"
@@ -20303,7 +20362,7 @@ msgstr "Naudojama:"
 msgid "User  (keymap.usr)"
 msgstr "Vartotojas (keymap.usr)"
 
-msgid "User - bouquets"
+msgid "User - Bouquets"
 msgstr "Vartotojas - paketai"
 
 msgid "User Feed URL"
@@ -21835,7 +21894,7 @@ msgstr "Zulu"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2 nustatymai]\n"
 
-msgid "[Favorite Edit]"
+msgid "Favorite Edit"
 msgstr "[mėgstamiausių redagavimas]"
 
 msgid "[Image Info]\n"
@@ -21847,13 +21906,13 @@ msgstr "[Laiko poslinkis] įrašų sujungti nepavyko!"
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Laiko poslinkis] Laiko poslinkis paleidžiamas iš naujo!"
 
-msgid "[alternative edit]"
+msgid "Alternative Edit"
 msgstr "[alternatyvus redagavimas]"
 
-msgid "[bouquet edit]"
+msgid "Bouquet Edit"
 msgstr "[paketo redagavimas]"
 
-msgid "[move mode]"
+msgid "Move Mode"
 msgstr "[perkėlimo režimas]"
 
 msgid "a gui to assign services/providers to common interface modules"
@@ -21862,13 +21921,13 @@ msgstr "pasirinkite kanalus/teikėjus, kuriuos norite įtraukti į CI modulius"
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "pasirinkite kanalus/teikėjus/programas, kurias norite įtraukti į CI modulius"
 
-msgid "abort alternatives edit"
+msgid "Abort Alternatives Edit"
 msgstr "nutraukti kitų redagavimą"
 
-msgid "abort bouquet edit"
+msgid "Abort Bouquet Edit"
 msgstr "nutraukti paketo redagavimą"
 
-msgid "abort favorites edit"
+msgid "Abort Favorites Edit"
 msgstr "nutraukti mėgstamiausių redagavimą"
 
 msgid "ac3"
@@ -21880,25 +21939,25 @@ msgstr "aktyvuoti PiP"
 msgid "active"
 msgstr "aktyvus"
 
-msgid "add alternatives"
+msgid "Add Alternatives"
 msgstr "pridėti alternatyvas"
 
-msgid "add bouquet"
+msgid "Add Bouquet"
 msgstr "pridėti paketą"
 
-msgid "add bouquet to parental protection"
+msgid "Add Bouquet To Parental Protection"
 msgstr "pridėti paketą į tėvų kontrolę"
 
-msgid "add marker"
+msgid "Add Marker"
 msgstr "pridėti žymeklį"
 
-msgid "add service to bouquet"
+msgid "Add Service To Bouquet"
 msgstr "pridėti kanalą į paketą"
 
-msgid "add service to favorites"
+msgid "Add Service To Favorites"
 msgstr "pridėti kanalą į mėgstamiausius"
 
-msgid "add to parental protection"
+msgid "Add To Parental Protection"
 msgstr "pridėti į tėvų kontrolę"
 
 msgid "address:"
@@ -22095,7 +22154,7 @@ msgstr "maisto gaminimas"
 msgid "copy"
 msgstr "kopijuoti"
 
-msgid "copy to bouquets"
+msgid "Copy To Bouquets"
 msgstr "kopijuoti į paketus"
 
 msgid "current affairs (general)"
@@ -22128,7 +22187,7 @@ msgstr "ištrinta"
 msgid "detective/thriller"
 msgstr "detektyvas/trileris"
 
-msgid "disable move mode"
+msgid "Disable Move Mode"
 msgstr "išjungti perkėlimą"
 
 msgid "disabled"
@@ -22177,7 +22236,7 @@ msgstr "ecm.info"
 msgid "economics/social advisory"
 msgstr "ekonomika/socialinis patariamasis"
 
-msgid "edit alternatives"
+msgid "Edit Alternatives"
 msgstr "redaguoti alternatyvas"
 
 msgid "education/information (general)"
@@ -22195,28 +22254,28 @@ msgstr "tuščias"
 msgid "enable PiP no HDR"
 msgstr "įjungti PIP be HDR"
 
-msgid "enable bouquet edit"
+msgid "Enable Bouquet Edit"
 msgstr "įjungti paketo redagavimą"
 
-msgid "enable favorite edit"
+msgid "Enable Favorite Edit"
 msgstr "įjungti mėgstamiausių redagavimą"
 
-msgid "enable move mode"
+msgid "Enable Move Mode"
 msgstr "įjungti perkėlimą"
 
 msgid "enabled"
 msgstr "įjungta"
 
-msgid "end alternatives edit"
+msgid "End Alternatives Edit"
 msgstr "baigti kitų redagavimą"
 
-msgid "end bouquet edit"
+msgid "End Bouquet Edit"
 msgstr "baigti paketo redagavimą"
 
 msgid "end cut here"
 msgstr "iškirpimo pabaiga"
 
-msgid "end favorites edit"
+msgid "End Favorites Edit"
 msgstr "baigti mėgstamiausių redagavimą"
 
 msgid "enigma2 and network"
@@ -22288,7 +22347,7 @@ msgstr "failo pavadinimas"
 msgid "film/cinema"
 msgstr "filmas/kinas"
 
-msgid "find currently played service"
+msgid "Find Currently Playing Service"
 msgstr "surasti dabar žiūrėtą kanalą"
 
 msgid "fine arts"
@@ -22672,10 +22731,10 @@ msgstr "scenos menas"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "play as picture in picture"
+msgid "Play As Picture in Picture window"
 msgstr "rodyti, kaip vaizdą vaizde"
 
-msgid "play in mainwindow"
+msgid "Play In Main window"
 msgstr "atkurti pagrindiniame lange"
 
 msgid "please press OK when ready"
@@ -22702,7 +22761,7 @@ msgstr "tiekėjas:"
 msgid "provider:"
 msgstr "teikėjas:"
 
-msgid "purge deleted user bouquets"
+msgid "Purge Deleted User Bouquets"
 msgstr "išvalyti ištrintus paketus"
 
 msgid "red"
@@ -22723,43 +22782,43 @@ msgstr "puikūs žmonės"
 msgid "remove after this position"
 msgstr "pašalinti po šios vietos"
 
-msgid "remove all alternatives"
+msgid "Remove All Alternatives"
 msgstr "pašalinti visus kitus"
 
-msgid "remove all new found flags"
+msgid "Remove All New Found Flags"
 msgstr "pašalinti visus naujai rastus žymeklius"
 
 msgid "remove before this position"
 msgstr "pašalinti po šios vietos"
 
-msgid "remove bouquet from parental protection"
+msgid "Remove Bouquet From Parental Protection"
 msgstr "pašalinti paketą iš tėvų apsaugos"
 
-msgid "remove cable services"
+msgid "Remove Cable Services"
 msgstr "pašalinti kabelinius kanalus"
 
-msgid "remove entry"
+msgid "Remove Entry"
 msgstr "pašalinti"
 
-msgid "remove from parental protection"
+msgid "Remove From Parental Protection"
 msgstr "pašalinti iš tėvų kontrolės"
 
-msgid "remove new found flag"
+msgid "Remove New Found Flag"
 msgstr "pašalinti naujai rastą žymeklį"
 
-msgid "remove selected satellite"
+msgid "Remove Satellite Services"
 msgstr "pašalinti pasirinktą palydovą"
 
-msgid "remove terrestrial services"
+msgid "Remove Terrestrial Services"
 msgstr "pašalinti antžeminius kanalus"
 
 msgid "remove this mark"
 msgstr "pašalinti šią žymę"
 
-msgid "rename entry"
+msgid "Rename Entry"
 msgstr "pervardinti įrašą"
 
-msgid "restore deleted user bouquets"
+msgid "Restore Deleted User Bouquets"
 msgstr "atkurti ištrintus mėgiamų kanalų paketus"
 
 msgid "restoring satellites.xml not possible!"
@@ -22821,7 +22880,7 @@ msgstr "rimtas/klasikinis/religinis/istorinis filmas/drama"
 msgid "service PIN"
 msgstr "kanalo PIN"
 
-msgid "set as startup service"
+msgid "Set As Startup Service"
 msgstr "nustatyti, kaip pradinį kanalą"
 
 msgid "share:"
@@ -22842,7 +22901,7 @@ msgstr "rodyti visas korteles"
 msgid "show all tags"
 msgstr "rodyti visas žymas"
 
-msgid "show alternatives"
+msgid "Show Alternatives"
 msgstr "rodyti alternatyvas"
 
 msgid "show cards with uphop 0"
@@ -22956,7 +23015,7 @@ msgstr "žingsnio dydis"
 msgid "stereo"
 msgstr "stereo"
 
-msgid "stop using as startup service"
+msgid "Unset As Startup Service"
 msgstr "nustoti naudoti, kaip pradinį kanalą"
 
 msgid "successful"
@@ -23001,13 +23060,13 @@ msgstr "tenisas/skvošas"
 msgid "text"
 msgstr ""
 
-msgid "this bouquet is protected by a parental control pin"
+msgid "This bouquet is protected by a parental control PIN!"
 msgstr "šis paketas apsaugotas tėvų kontrolės PIN kodu"
 
 msgid "this recording"
 msgstr "šis įrašas"
 
-msgid "this service is protected by a parental control pin"
+msgid "This service is protected by a parental control PIN!"
 msgstr "šis kanalas apsaugotas tėvų kontrolės pin kodu"
 
 msgid "toggle time, chapter, audio, subtitle info"
@@ -23070,7 +23129,7 @@ msgstr "nepublikuotos"
 msgid "untestable"
 msgstr "neišbandytas"
 
-msgid "until standby/restart"
+msgid "Until standby/restart"
 msgstr "iki budėjimo/paleisti iš naujo"
 
 msgid "update"

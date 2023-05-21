@@ -269,6 +269,11 @@ class Standby2(Screen):
 		inStandby = self
 		self.session.screen["Standby"].boolean = True
 		config.misc.standbyCounter.value += 1
+		if BoxInfo.getItem("AmlogicFamily"):
+			try:
+				open("/proc/stb/lcd/oled_brightness", "w").write("0")
+			except OSError:
+				pass
 
 	def createSummary(self):
 		return StandbySummary
@@ -460,4 +465,4 @@ class TryQuitMainloop(MessageBox):
 		inTryQuitMainloop = False
 
 	def createSummary(self):  # Suppress the normal MessageBox ScreenSummary screen.
- 		return None
+		return None

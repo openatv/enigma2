@@ -100,12 +100,11 @@ class RunningText(Renderer):
 				else:
 					x = max(limit, int(val))
 			except:
-					x = default
+				x = default
 			return x
 
 		def setWrapFlag(attrib, value):
-			if (attrib.lower() == "wrap" and value == "0") or \
-			   (attrib.lower() == "nowrap" and value != "0"):
+			if (attrib.lower() == "wrap" and value == "0") or (attrib.lower() == "nowrap" and value != "0"):
 				self.txtflags &= ~RT_WRAP
 			else:
 				self.txtflags |= RT_WRAP
@@ -189,7 +188,7 @@ class RunningText(Renderer):
 
 		self.scroll_label.setFont(self.txfont)
 		if not (self.txtflags & RT_WRAP):
-			self.scroll_label.setNoWrap(1)
+			self.scroll_label.setWrap(0)
 		self.scroll_label.setVAlign(valign)
 		self.scroll_label.setHAlign(self.halign)
 		self.scroll_label.move(ePoint(0, 0))

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
-"PO-Revision-Date: 2023-04-13 15:51+0000\n"
+"POT-Creation-Date: 2023-04-28 14:58+0000\n"
+"PO-Revision-Date: 2023-05-03 11:50+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 msgid ""
 "\n"
@@ -103,14 +103,14 @@ msgstr " (Kanál %s)"
 msgid " (Partition %d)"
 msgstr " (Oddíl %d)"
 
-msgid " (PiP)"
-msgstr " (PiP)"
+msgid "(PiP)"
+msgstr "(PiP)"
 
-msgid " (Radio)"
+msgid "(Radio)"
 msgstr " (Rádio)"
 
-msgid " (TV)"
-msgstr " (TV)"
+msgid "(TV)"
+msgstr "(TV)"
 
 msgid " (current channel)"
 msgstr " (Aktuální kanál)"
@@ -4032,7 +4032,7 @@ msgstr "Tlačítka kanálů jsou invertována"
 msgid "Channel down"
 msgstr "Kanál dolu"
 
-msgid "Channel list context menu"
+msgid "Channel List Context Menu"
 msgstr "Související nabídka k seznamu kanálů"
 
 msgid "Channel list cursor behavior"
@@ -4062,7 +4062,7 @@ msgstr "Název kanálu"
 msgid "Channel preview mode"
 msgstr "Režim náhledu kanálu"
 
-msgid "Channel selection"
+msgid "Channel Selection"
 msgstr "Výběr kanálú"
 
 msgid "Channel selection configuration"
@@ -6249,10 +6249,10 @@ msgstr "Divehi / Dhivehi / Maledivy"
 msgid "Djibouti"
 msgstr "Džibutsko"
 
-msgid "Do center DVB subs on this service"
+msgid "Center DVB Subs On This Service"
 msgstr "Vycentrovat titulky DVB na tomto programu"
 
-msgid "Do not center DVB subs on this service"
+msgid "Don't Center DVB Subs On This Service"
 msgstr "Necentrovat titulky DVB na tomto programu"
 
 msgid "Do not change"
@@ -6857,6 +6857,9 @@ msgstr "Povolit IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Povolit zvolna mizíci Infobar"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Povolit Kexec MultiBoot"
+
 msgid "Enable MHW EPG"
 msgstr "Povolit MHW EPG"
 
@@ -6995,6 +6998,9 @@ msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat d
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Povolením této možnosti přidáte do souboru protokolu ladění další data EPG."
+
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr "Povolením této možnosti přidáte do souboru protokolu ladění informace o mezinárodním jazyce a zatížení země zjištěné během spouštění systému."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat data mapy klávesnice."
@@ -8825,7 +8831,7 @@ msgstr "Skrýt"
 msgid "Hide InfoBar"
 msgstr "Vždy skrýt informační panel"
 
-msgid "Hide VBI line for this service"
+msgid "Hide VBI Line For This Service"
 msgstr "Skrýt linku VBI pro tuto službu"
 
 msgid "Hide any zap error messages."
@@ -9330,6 +9336,9 @@ msgstr "Zahrnout SDT, BAT do http streamů"
 msgid "Include action map data"
 msgstr "Zahrnout data mapy akcí"
 
+msgid "Include international data *"
+msgstr "Zahrnout mezinárodní údaje *"
+
 msgid "Include keyboard data"
 msgstr "Zahrnout data klávesnice"
 
@@ -9811,6 +9820,26 @@ msgstr "Soubor jádra"
 
 msgid "Kernel version"
 msgstr "Verze jádra"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "Akce Kexec MultiBoot"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Inicializace Kexec MultiBoot – restartuje se po 10 sekundách."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Probíhá inicializace Kexec MultiBoot!\n"
+"\n"
+"Restartuje se po obnovení všech eMMC slotů.\n"
+"To může trvat 1 -> 5 minut na jeden slot."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Kexec MultiBoot Manager"
 
 msgid "Key"
 msgstr "Klíč"
@@ -10521,7 +10550,7 @@ msgstr "Rezerva před nahráváním (minuty)"
 msgid "Margin before zap"
 msgstr "Rozpětí před zap"
 
-msgid "Mark service as dedicated 3D service"
+msgid "Mark As Dedicated 3D Service"
 msgstr "Označit značkou 3D programu"
 
 msgid "Mark/Portal/Playlist"
@@ -12413,7 +12442,7 @@ msgstr "Nadřazený adresář"
 msgid "Parental Guidance Recommended"
 msgstr "Doporučuje se vedení rodičů"
 
-msgid "Parental control"
+msgid "Parental Control"
 msgstr "Rodičovský zámek"
 
 msgid "Parental control services editor"
@@ -13206,6 +13235,19 @@ msgstr "Stisknutím tlačítka EXIT zavřete."
 msgid "Press EXIT to return to the help screen."
 msgstr "Stiskněte EXIT pro návrat na obrazovku nápovědy."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Stisknutím zeleného tlačítka aktivujte funkci MultiBoot!\n"
+"\n"
+"Restartuje se do 10 sekund,\n"
+"pokud nemáte sloty eMMC k obnovení.\n"
+"Obnova eMMC slotů může trvat 1 -> 5 minut na slot."
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Stiskněte tlačítko OK pro výběr MultiBoot."
 
@@ -13521,6 +13563,9 @@ msgstr "Quad PiP kanál "
 msgid "Quad PiP is not available."
 msgstr "Quad PiP není k dispozici."
 
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
+
 msgid "Quechua"
 msgstr "Kečuánština"
 
@@ -13688,6 +13733,14 @@ msgstr "Opravdu smazat tento záznam?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Opravdu opustit rychlé přepínání podprogramů?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Opravdu trvale odstranit soubory MultiBoot?\n"
+"%s"
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "Opravdu restartovat do režimu obnovení?"
 
@@ -13751,7 +13804,7 @@ msgstr "Nastavení příjmu"
 msgid "Reception Settings"
 msgstr "Nastavení příjmu"
 
-msgid "Reception lists"
+msgid "Reception Lists"
 msgstr "Satelity"
 
 msgid "Record"
@@ -14078,7 +14131,10 @@ msgstr "Odstranit aktuální složku ze záložek"
 msgid "Remove currently selected title"
 msgstr "Odstranit vybraný titul"
 
-msgid "Remove hide VBI line for this service"
+msgid "Remove forever"
+msgstr "Trvale odstranit"
+
+msgid "Show VBI Line For This Service"
 msgstr "Odstranit skrytou linku VBI pro tuto službu"
 
 msgid "Remove highlighted directory from bookmarks"
@@ -18663,7 +18719,7 @@ msgstr ""
 "Rozšířený síťový průvodce není nainstalován!\n"
 "Nainstalujte ho."
 
-msgid "The pin code you entered is wrong."
+msgid "The PIN code entered is incorrect!"
 msgstr "Zadaný PIN kód je chybný."
 
 #, python-format
@@ -19827,6 +19883,9 @@ msgstr "Ukrajina"
 msgid "Ukrainian"
 msgstr "Ukrajinština"
 
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "Nelze dokončit – chybí soubory Kexec Multiboot!"
+
 msgid "Unattended upgrade without GUI"
 msgstr "Bezobslužná aktualizace bez GUI"
 
@@ -19842,7 +19901,7 @@ msgstr "Nešifrováno"
 msgid "UnhandledKey"
 msgstr "Neošetřené tlačítko"
 
-msgid "Unhide parental control services"
+msgid "Unhide Parental Control Services"
 msgstr "Zrušit skrytí programů s rodičovskou kontrolou"
 
 msgid "Unicable "
@@ -19911,7 +19970,7 @@ msgstr "Neznámý!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Pokud není nastaveno na 'deaktivováno', získáte náhled kanálů v seznamu EPG."
 
-msgid "Unmark service as dedicated 3D service"
+msgid "Unmark As Dedicated 3D Service"
 msgstr "Odebrat značku 3D programu"
 
 msgid "Unmount"
@@ -20279,7 +20338,7 @@ msgstr "Použ.:"
 msgid "User  (keymap.usr)"
 msgstr "Použít (keymap.usr)"
 
-msgid "User - bouquets"
+msgid "User - Bouquets"
 msgstr "Uživatelské přehledy"
 
 msgid "User Feed URL"
@@ -21811,7 +21870,7 @@ msgstr "Zulu"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Nastavení Enigma2]\n"
 
-msgid "[Favorite Edit]"
+msgid "Favorite Edit"
 msgstr "[Úprava oblíbených položek]"
 
 msgid "[Image Info]\n"
@@ -21823,13 +21882,13 @@ msgstr "[Timeshift] Spojení záznamů selhalo!"
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Timeshift] Restart timeshiftu!"
 
-msgid "[alternative edit]"
+msgid "Alternative Edit"
 msgstr "[ÚPRAVA ALTERNATIV]"
 
-msgid "[bouquet edit]"
+msgid "Bouquet Edit"
 msgstr "[upravit přehled]"
 
-msgid "[move mode]"
+msgid "Move Mode"
 msgstr "[PŘESUN]"
 
 msgid "a gui to assign services/providers to common interface modules"
@@ -21838,13 +21897,13 @@ msgstr "gui přidělené poskytovateli/kanálu v CI modulu"
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "gui přidělené poskytovateli/kanálu/caidu v CI modulu"
 
-msgid "abort alternatives edit"
+msgid "Abort Alternatives Edit"
 msgstr "přerušit úpravy alternativ"
 
-msgid "abort bouquet edit"
+msgid "Abort Bouquet Edit"
 msgstr "přerušit úpravy přehledu"
 
-msgid "abort favorites edit"
+msgid "Abort Favorites Edit"
 msgstr "zrušit úpravy oblíbených položek"
 
 msgid "ac3"
@@ -21856,25 +21915,25 @@ msgstr "aktivovat PiP"
 msgid "active"
 msgstr "aktivní"
 
-msgid "add alternatives"
+msgid "Add Alternatives"
 msgstr "Přidat alternativy"
 
-msgid "add bouquet"
+msgid "Add Bouquet"
 msgstr "přidat přehled"
 
-msgid "add bouquet to parental protection"
+msgid "Add Bouquet To Parental Protection"
 msgstr "přidat přehled do rodičovské kontroly"
 
-msgid "add marker"
+msgid "Add Marker"
 msgstr "Přidat značku"
 
-msgid "add service to bouquet"
+msgid "Add Service To Bouquet"
 msgstr "Přidat program do přehledu"
 
-msgid "add service to favorites"
+msgid "Add Service To Favorites"
 msgstr "přidat službu mezi oblíbené"
 
-msgid "add to parental protection"
+msgid "Add To Parental Protection"
 msgstr "Přidat do rodičovské ochrany"
 
 msgid "address:"
@@ -22071,7 +22130,7 @@ msgstr "vaření"
 msgid "copy"
 msgstr "kopie"
 
-msgid "copy to bouquets"
+msgid "Copy To Bouquets"
 msgstr "zkopírovat do přehledů"
 
 msgid "current affairs (general)"
@@ -22104,7 +22163,7 @@ msgstr "odstraněno"
 msgid "detective/thriller"
 msgstr "detektivka/thriller"
 
-msgid "disable move mode"
+msgid "Disable Move Mode"
 msgstr "zakázat přesun"
 
 msgid "disabled"
@@ -22153,7 +22212,7 @@ msgstr "info ecm"
 msgid "economics/social advisory"
 msgstr "ekonomika/sociální poradenství"
 
-msgid "edit alternatives"
+msgid "Edit Alternatives"
 msgstr "upravit alternativy"
 
 msgid "education/information (general)"
@@ -22171,28 +22230,28 @@ msgstr "prázdné"
 msgid "enable PiP no HDR"
 msgstr "povolit PiP bez HDR"
 
-msgid "enable bouquet edit"
+msgid "Enable Bouquet Edit"
 msgstr "Povolit úpravu přehledu"
 
-msgid "enable favorite edit"
+msgid "Enable Favorite Edit"
 msgstr "povolit úpravu oblíbených položek"
 
-msgid "enable move mode"
+msgid "Enable Move Mode"
 msgstr "Povolit přesun"
 
 msgid "enabled"
 msgstr "povoleno"
 
-msgid "end alternatives edit"
+msgid "End Alternatives Edit"
 msgstr "ukončit úpravu alternativ"
 
-msgid "end bouquet edit"
+msgid "End Bouquet Edit"
 msgstr "ukončit úpravu přehledu"
 
 msgid "end cut here"
 msgstr "konec střihu zde"
 
-msgid "end favorites edit"
+msgid "End Favorites Edit"
 msgstr "ukončit úpravu oblíbených položek"
 
 msgid "enigma2 and network"
@@ -22264,7 +22323,7 @@ msgstr "název souboru"
 msgid "film/cinema"
 msgstr "film/kino"
 
-msgid "find currently played service"
+msgid "Find Currently Playing Service"
 msgstr "Najít aktuálně přehrávaný kanál"
 
 msgid "fine arts"
@@ -22648,10 +22707,10 @@ msgstr "scénické umění"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "play as picture in picture"
+msgid "Play As Picture in Picture window"
 msgstr "Aktivovat program jako obraz v obraze"
 
-msgid "play in mainwindow"
+msgid "Play In Main window"
 msgstr "přehrát v hlavním okně"
 
 msgid "please press OK when ready"
@@ -22678,7 +22737,7 @@ msgstr "posk.:"
 msgid "provider:"
 msgstr "poskyt.:"
 
-msgid "purge deleted user bouquets"
+msgid "Purge Deleted User Bouquets"
 msgstr "odstranit smazané uživatelské přehledy"
 
 msgid "red"
@@ -22699,43 +22758,43 @@ msgstr "pozoruhodní lidé"
 msgid "remove after this position"
 msgstr "odebrat po této pozici"
 
-msgid "remove all alternatives"
+msgid "Remove All Alternatives"
 msgstr "odebrat všechny alternativy"
 
-msgid "remove all new found flags"
+msgid "Remove All New Found Flags"
 msgstr "odstranit všechny nově nalezené příznaky"
 
 msgid "remove before this position"
 msgstr "odebrat před touto pozicí"
 
-msgid "remove bouquet from parental protection"
+msgid "Remove Bouquet From Parental Protection"
 msgstr "odstranit přehled z rodičovské kontroly"
 
-msgid "remove cable services"
+msgid "Remove Cable Services"
 msgstr "odstranit kabelové programy"
 
-msgid "remove entry"
+msgid "Remove Entry"
 msgstr "Odstranit položku"
 
-msgid "remove from parental protection"
+msgid "Remove From Parental Protection"
 msgstr "odebrat z rodičovské ochrany"
 
-msgid "remove new found flag"
+msgid "Remove New Found Flag"
 msgstr "odebrat z \"nově nalezeno\""
 
-msgid "remove selected satellite"
+msgid "Remove Satellite Services"
 msgstr "odstranit vybraný satelit"
 
-msgid "remove terrestrial services"
+msgid "Remove Terrestrial Services"
 msgstr "odstranit pozemní vysílání"
 
 msgid "remove this mark"
 msgstr "odebrat tuto značku"
 
-msgid "rename entry"
+msgid "Rename Entry"
 msgstr "Přejmenovat položku"
 
-msgid "restore deleted user bouquets"
+msgid "Restore Deleted User Bouquets"
 msgstr "obnovit smazané uživatelské přehledy"
 
 msgid "restoring satellites.xml not possible!"
@@ -22797,7 +22856,7 @@ msgstr "závažný/klasický/náboženský/historický film/drama"
 msgid "service PIN"
 msgstr "programový PIN"
 
-msgid "set as startup service"
+msgid "Set As Startup Service"
 msgstr "Nastavit jako spouštěcí službu"
 
 msgid "share:"
@@ -22818,7 +22877,7 @@ msgstr "zobrazit všechny karty"
 msgid "show all tags"
 msgstr "zobrazit všechny značky"
 
-msgid "show alternatives"
+msgid "Show Alternatives"
 msgstr "zobrazit alternativy"
 
 msgid "show cards with uphop 0"
@@ -22932,7 +22991,7 @@ msgstr "velikost kroku"
 msgid "stereo"
 msgstr "stereo"
 
-msgid "stop using as startup service"
+msgid "Unset As Startup Service"
 msgstr "přestat používat jako spouštěcí službu"
 
 msgid "successful"
@@ -22977,13 +23036,13 @@ msgstr "tenis/skvoš"
 msgid "text"
 msgstr "text"
 
-msgid "this bouquet is protected by a parental control pin"
+msgid "This bouquet is protected by a parental control PIN!"
 msgstr "tento přehled je chráněný rodičovským zámkem"
 
 msgid "this recording"
 msgstr "tento záznam"
 
-msgid "this service is protected by a parental control pin"
+msgid "This service is protected by a parental control PIN!"
 msgstr "tento program je chráněný rodičovským zámkem"
 
 msgid "toggle time, chapter, audio, subtitle info"
@@ -23046,7 +23105,7 @@ msgstr "nepublikováno"
 msgid "untestable"
 msgstr "netestovatelné"
 
-msgid "until standby/restart"
+msgid "Until standby/restart"
 msgstr "do Vypnutí/Restartu"
 
 msgid "update"

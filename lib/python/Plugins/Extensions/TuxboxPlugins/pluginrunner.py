@@ -6,8 +6,9 @@ from Screens.MessageBox import MessageBox
 
 class PluginRunner(Screen):
 	skin = """
-		<screen position="1,1" size="1,1" title="Plugin" >
-        </screen>"""
+			<screen position="1,1" size="1,1" title="Plugin" >
+			</screen>
+		"""
 
 	def __init__(self, session, pluginname, args=None):
 		self.skin = PluginRunner.skin

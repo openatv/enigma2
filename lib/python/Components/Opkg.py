@@ -383,12 +383,14 @@ class OpkgComponent:
 				if line.startswith("Package:"):
 					package = line.split(":", 1)[1].strip()
 					description = ""
+					depends = ""
 					status = ""
 					section = ""
 					installed = "0"
 					architecture = ""
 					size = ""
 					maintainer = ""
+					version = ""
 					continue
 				if package is None:
 					continue

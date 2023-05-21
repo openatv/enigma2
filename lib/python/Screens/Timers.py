@@ -885,19 +885,20 @@ class RecordTimerOverview(TimerOverviewBase):
 			self["key_red"].setText(_("Stop") if timer.state == TimerEntry.StateRunning else _("Delete"))
 			self["deleteActions"].setEnabled(True)
 			stateRunning = timer.state in (TimerEntry.StatePrepared, TimerEntry.StateRunning)
+			yellowText = ""
 			if timer.disabled:
 				if stateRunning and timer.repeated and not timer.justplay:
-					self["key_yellow"].setText("")
-					self["toggleActions"].setEnabled(False)
+					yellowText = ""
 				else:
-					self["key_yellow"].setText(_("Enable"))
-					self["toggleActions"].setEnabled(True)
+					yellowText = _("Enable")
 			elif stateRunning and (not timer.repeated or timer.state == TimerEntry.StatePrepared):
-				self["key_yellow"].setText("")
-				self["toggleActions"].setEnabled(False)
+				yellowText = ""
 			elif (not stateRunning or timer.repeated and timer.isRunning()) and not timer.disabled:
-				self["key_yellow"].setText(_("Disable"))
-				self["toggleActions"].setEnabled(True)
+				yellowText = _("Disable")
+			if not timer.repeated and timer.state == TimerEntry.StateEnded:
+				yellowText = ""
+			self["key_yellow"].setText(yellowText)
+			self["toggleActions"].setEnabled(yellowText != "")
 			time = "%s %s ... %s" % (fuzzyDate(timer.begin)[0], fuzzyDate(timer.begin)[1], fuzzyDate(timer.end)[1])
 			duration = int((timer.end - timer.begin) / 60.0)
 			for callback in self.onSelectionChanged:
@@ -1800,7 +1801,7 @@ class TimerLog(Screen, HelpableScreen):
 		self.timer = timer
 		self["log"] = ScrollLabel()
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Save"))
+		self["key_green"] = StaticText("")
 		self["key_yellow"] = StaticText(_("Refresh"))
 		self["key_blue"] = StaticText(_("Clear Log"))
 		self["actions"] = HelpableActionMap(self, ["CancelSaveActions", "OkActions", "ColorActions", "NavigationActions"], {
@@ -1823,6 +1824,11 @@ class TimerLog(Screen, HelpableScreen):
 	def refreshLog(self):
 		self.timerLog = self.timer.log_entries[:]
 		self["log"].setText("\n".join(["%s: %s" % (strftime("%s %s" % (config.usage.date.long.value, config.usage.time.short.value), localtime(x[0])), x[2]) for x in self.timerLog]))
+		self.refreshButtons()
+
+	def refreshButtons(self):
+		self["key_blue"].setText(_("Clear Log") if self.timerLog else "")
+		self["key_green"].setText(_("Save") if self.timerLog != self.timer.log_entries else "")
 
 	def keyCancel(self):
 		self.close((False,))
@@ -1837,6 +1843,7 @@ class TimerLog(Screen, HelpableScreen):
 	def keyClearLog(self):
 		self.timerLog = []
 		self["log"].setText("")
+		self.refreshButtons()
 
 	def createSummary(self):
 		return TimerLogSummary
