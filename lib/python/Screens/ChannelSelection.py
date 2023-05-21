@@ -14,7 +14,7 @@ from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config,
 from Components.Input import Input
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
-from Components.ParentalControl import ParentalControl
+from Components.ParentalControl import parentalControl
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.ServiceList import ServiceList, refreshServiceList
@@ -813,7 +813,7 @@ class ChannelSelectionEdit:
 					if self.movemode and (self.isBasePathEqual(self.bouquet_root) or "userbouquet." in ref.toString()):
 						self.toggleMoveMarked()
 					elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
-						if ParentalControl.parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
+						if parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
 							self.enterPath(ref)
 							self.gotoCurrentServiceOrProvider(ref)
 					elif self.bouquet_mark_edit != EDIT_OFF:
@@ -1470,8 +1470,6 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 		self.setTitle(_("Channel List Context Menu"))
 		# raise Exception("[ChannelSelection] We need a better summary screen here!")
-		from Components.ParentalControl import parentalControl  # This needs to be here as parentalControl has not been initialized when this module was loaded!
-		self.parentalControl = parentalControl
 		self.csel = csel
 		self.bsel = None
 		if self.isProtected():
@@ -1487,7 +1485,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			"0": (self.reloadServices, _("Reload all services from disk")),
 			"1": (self.showBouquetInputBox, _("Add a bouquet")),
 			"2": (self.renameEntry, _("Rename selected service")),
-			"3": (self.findCurrentlyPlayed, _("Find Currently Playing Service")),
+			"3": (self.findCurrentlyPlayed, _("Find the service currently playing")),
 			# "4": Available for use.
 			"5": (self.addServiceToBouquetOrAlternative, _("Add selected service to bouquet or alternative")),
 			"6": (self.toggleMoveModeSelect, _("Toggle move mode selection")),
@@ -1538,7 +1536,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					else:
 						appendWhenValid(current, menu, (_("Set As Startup Service"), self.setStartupService))
 					if self.parentalControlEnabled:
-						if self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
+						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							appendWhenValid(current, menu, (_("Add To Parental Protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
 						else:
 							appendWhenValid(current, menu, (_("Remove From Parental Protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())))
@@ -1574,7 +1572,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 							appendWhenValid(current, menu, (_("Add Service To Favorites"), self.addServiceToBouquetSelected), key="5")
 							self.addFunction = self.addServiceToBouquetSelected
 					if BoxInfo.getItem("PIPAvailable"):
-						if not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
+						if not self.parentalControlEnabled or parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							if self.csel.dopipzap:
 								appendWhenValid(current, menu, (_("Play In Main window"), self.playMain), key="yellow")
 								self["key_yellow"].setText(_("Play in Main"))
@@ -1611,7 +1609,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					appendWhenValid(current, menu, (_("Remove New Found Flag"), self.removeNewFoundFlag))
 			else:
 					if self.parentalControlEnabled:
-						if self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
+						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							appendWhenValid(current, menu, (_("Add Bouquet To Parental Protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
 						else:
 							appendWhenValid(current, menu, (_("Remove Bouquet From Parental Protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())))
@@ -1818,7 +1816,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 
 	def playMain(self):
 		sel = self.csel.getCurrentSelection()
-		if sel and sel.valid() and self.csel.dopipzap and (not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
+		if sel and sel.valid() and self.csel.dopipzap and (not self.parentalControlEnabled or parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
 			self.csel.zap()
 			self.csel.setCurrentSelection(sel)
 			self.close(True)
@@ -1875,8 +1873,8 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		self.close()
 
 	def addParentalProtection(self, service):
-		self.parentalControl.protectService(service.toCompareString())
-		if config.ParentalControl.hideBlacklist.value and not self.parentalControl.sessionPinCached:
+		parentalControl.protectService(service.toCompareString())
+		if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached:
 			self.csel.servicelist.resetRoot()
 		self.close()
 
@@ -1885,7 +1883,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 
 	def pinEntered(self, service, answer):
 		if answer:
-			self.parentalControl.unProtectService(service)
+			parentalControl.unProtectService(service)
 			self.close()
 		elif answer is not None:
 			self.session.openWithCallback(self.close, MessageBox, _("The PIN code entered is incorrect!"), MessageBox.TYPE_ERROR)
@@ -1901,8 +1899,8 @@ class ChannelContextMenu(Screen, HelpableScreen):
 	def unhideParentalServicesCallback(self, answer):
 		if answer:
 			service = self.csel.servicelist.getCurrent()
-			self.parentalControl.setSessionPinCached()
-			self.parentalControl.hideBlacklist()
+			parentalControl.setSessionPinCached()
+			parentalControl.hideBlacklist()
 			self.csel.servicelist.resetRoot()
 			self.csel.servicelist.setCurrent(service)
 			self.close()
@@ -1912,7 +1910,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			self.close()
 
 	def showServiceInPiP(self):
-		if self.csel.dopipzap or (self.parentalControlEnabled and not self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
+		if self.csel.dopipzap or (self.parentalControlEnabled and not parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
 			return 0
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
