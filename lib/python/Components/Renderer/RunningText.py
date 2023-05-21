@@ -188,7 +188,7 @@ class RunningText(Renderer):
 
 		self.scroll_label.setFont(self.txfont)
 		if not (self.txtflags & RT_WRAP):
-			self.scroll_label.setNoWrap(1)
+			self.scroll_label.setWrap(0)
 		self.scroll_label.setVAlign(valign)
 		self.scroll_label.setHAlign(self.halign)
 		self.scroll_label.move(ePoint(0, 0))
