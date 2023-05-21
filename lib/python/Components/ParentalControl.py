@@ -193,7 +193,7 @@ class ParentalControl:
 	# to have two functions with identical code.)
 	#
 	def saveListToFile(self, sWhichList, vList):
-		line = []
+		lines = []
 		for sService, sType in vList.items():
 			# Only Services that are selected directly and bouquets are saved. Services that are added by a
 			# bouquet are not saved. This is the reason for the change in self.whitelist and self.blacklist.
