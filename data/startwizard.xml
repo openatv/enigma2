@@ -43,6 +43,13 @@ self.selectKey("OK")
 		</step>
 
 		<step id="network" >
+			<condition>
+from os import statvfs
+flashSize = statvfs('/')
+flashSize = (flashSize.f_frsize * flashSize.f_blocks) // 2**20
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash") and (flashSize &gt; 512 or config.flashExpander.device.value != "")
+			</condition>
 			<text value="Please connect your %s %s to the Internet" />
 			<displaytext value="Please connect your %s %s to the Internet" />
 			<list>
