@@ -209,7 +209,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if BoxInfo.getItem("LCDSKINSetup"):
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Settings", _("Select LCD Skin"), _("Setup your LCD Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Skin Settings", _("Select Enigma2 Skin"), _("Setup your Skin")))
-		self.sublist.append(QuickSubMenuEntryComponent("Channel selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
+		self.sublist.append(QuickSubMenuEntryComponent("Channel Selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording Settings", _("Recording Setup"), _("Setup your recording config")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG Settings", _("EPG Setup"), _("Setup your EPG config")))
 		self["sublist"].l.setList(self.sublist)
@@ -423,7 +423,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(SkinSelector)
 		elif item[0] == _("OSD Settings"):
 			self.openSetup("UserInterface")
-		elif item[0] == _("Channel selection"):
+		elif item[0] == _("Channel Selection"):
 			self.openSetup("ChannelSelection")
 		elif item[0] == _("Recording Settings"):
 			self.openSetup("Recording")
