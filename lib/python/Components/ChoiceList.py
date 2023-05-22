@@ -25,8 +25,6 @@ def ChoiceEntryComponent(key=None, text=None):
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/expanded.png"))
 			elif key == "verticalline":
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/verticalline.png"))
-			elif key == "bullet":
-				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "buttons/key_bullet.png"))
 			else:
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % key))
 			if png:
