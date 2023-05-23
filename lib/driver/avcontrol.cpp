@@ -118,7 +118,7 @@ int eAVControl::getFrameRate(int defaultVal, int flags) const
 #ifdef DREAMNEXTGEN
 	const char *fileName = "/proc/stb/vmpeg/0/frame_rate";
 #else
-	const char *fileName = "/proc/stb/vmpeg/0/frame_rate";
+	const char *fileName = "/proc/stb/vmpeg/0/framerate";
 #endif
 
 	int value = 0;
