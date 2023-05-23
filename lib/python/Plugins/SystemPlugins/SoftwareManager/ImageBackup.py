@@ -237,7 +237,7 @@ class ImageBackup(Screen):
 				self.DATE = strftime("%Y%m%d_%H%M", localtime(self.START))
 				self.MKFS_UBI = "/usr/sbin/mkfs.ubifs"
 				self.MKFS_TAR = "/bin/tar"
-				self.BZIP2 = "/usr/bin/pbzip2"
+				self.BZIP2 = "/usr/bin/bzip2"
 				self.MKFS_JFFS2 = "/usr/sbin/mkfs.jffs2"
 				self.UBINIZE = "/usr/sbin/ubinize"
 				self.NANDDUMP = "/usr/sbin/nanddump"
