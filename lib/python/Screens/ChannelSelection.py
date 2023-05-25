@@ -395,7 +395,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 					epglist.append(ptr)
 				if epglist:
 					self.epglist = epglist
-					self.session.open(EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback)
+					self.session.open(EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, similarEPGCB=self.eventViewSimilarCallback)
 
 	def eventViewCallback(self, setEvent, setService, val):
 		epglist = self.epglist
@@ -404,6 +404,9 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			epglist[0] = epglist[1]
 			epglist[1] = tmp
 			setEvent(epglist[0])
+
+	def eventViewSimilarCallback(self, eventid, refstr):
+		self.session.open(EPGSelection, refstr, None, eventid)
 
 	def SingleServiceEPGClosed(self, ret=False):
 		if ret:
