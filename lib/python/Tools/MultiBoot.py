@@ -538,7 +538,7 @@ class MultiBootClass():
 			date = "00000000"
 		info["compiledate"] = date
 		lines = fileReadLines(pathjoin(path, "etc/issue"), source=MODULE_NAME)
-		if lines:
+		if lines and "vuplus" not in lines[0]:
 			data = lines[-2].strip()[:-6].split()
 			info["distro"] = " ".join(data[:-1])
 			info["displaydistro"] = {
