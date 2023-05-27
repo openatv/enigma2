@@ -247,11 +247,11 @@
 	</screen>
 <!-- setup-->
 	<screen name="SetupSummary" position="fill">
-		<widget source="SetupTitle" render="Label" position="top" size="*,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center"  valign="center" />
+		<widget source="Title" render="Label" position="top" size="*,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center"  valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="SetupEntry" render="Label" position="top" size="*,95" font="FdLcD;25" halign="center" valign="center" />
+		<widget source="entry" render="Label" position="top" size="*,95" font="FdLcD;25" halign="center" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="SetupValue" render="Label" position="top" size="*,65" font="FdLcD;25" foregroundColor="#F4FA58" halign="center" valign="center" />
+		<widget source="value" render="Label" position="top" size="*,65" font="FdLcD;25" foregroundColor="#F4FA58" halign="center" valign="center" />
 	</screen>		
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="5,0" size="471,320">

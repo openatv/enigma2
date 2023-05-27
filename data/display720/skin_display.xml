@@ -247,9 +247,9 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="720,576"> 
-		<widget source="SetupTitle" render="Label" position="10,20" foregroundColor="#e5b243" size="670,120" font="FdLcD;60" halign="center" valign="center" />
-		<widget source="SetupEntry" render="Label" position="22,154" size="670,200" font="FdLcD;60" halign="center" valign="top" />
-		<widget source="SetupValue" render="Label" position="22,360" foregroundColor="#65e543" size="670,128" font="FdLcDLight;50" halign="center" valign="top" />
+		<widget source="Title" render="Label" position="10,20" foregroundColor="#e5b243" size="670,120" font="FdLcD;60" halign="center" valign="center" />
+		<widget source="entry" render="Label" position="22,154" size="670,200" font="FdLcD;60" halign="center" valign="top" />
+		<widget source="value" render="Label" position="22,360" foregroundColor="#65e543" size="670,128" font="FdLcDLight;50" halign="center" valign="top" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 

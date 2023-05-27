@@ -187,9 +187,9 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="140,32">
-		<!-- <widget source="SetupTitle" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1"  /> -->
-		<widget source="SetupEntry" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
-		<widget source="SetupValue" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" noWrap="1" />
+		<!-- <widget source="Title" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1"  /> -->
+		<widget source="entry" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="value" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" noWrap="1" />
 	</screen>
 
 

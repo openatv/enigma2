@@ -132,9 +132,9 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="fill">
-		<widget source="SetupTitle" render="Label" position="top" size="*,12" font="FdLcD;12" halign="left" />
-		<widget source="SetupEntry" render="Label" position="top" size="*,40" font="FdLcD;12" halign="left" />
-		<widget source="SetupValue" render="Label" position="top" size="*,12" font="FdLcD;12" halign="left" />
+		<widget source="Title" render="Label" position="top" size="*,12" font="FdLcD;12" halign="left" />
+		<widget source="entry" render="Label" position="top" size="*,40" font="FdLcD;12" halign="left" />
+		<widget source="value" render="Label" position="top" size="*,12" font="FdLcD;12" halign="left" />
 	</screen>
 
 <!-- misc-->

@@ -124,9 +124,9 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="240,80"> 
-		<widget source="SetupTitle" render="Label" position="0,0" foregroundColor="#FFFF00" size="240,25" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupEntry" render="Label" position="0,26" size="240,25" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupValue" render="Label" position="0,55" size="240,25" font="FdLcD;22" halign="center" valign="top" />
+		<widget source="Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="240,25" font="FdLcD;24" halign="center" valign="center" />
+		<widget source="entry" render="Label" position="0,26" size="240,25" font="FdLcD;24" halign="center" valign="center" />
+		<widget source="value" render="Label" position="0,55" size="240,25" font="FdLcD;22" halign="center" valign="top" />
 	</screen>
 
 <!-- Blindscan-->
