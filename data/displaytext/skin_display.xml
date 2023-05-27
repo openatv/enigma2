@@ -119,11 +119,6 @@
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<widget source="parent.list" render="Label" position="fill" font="Regular;12">
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
 
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="132,64">
@@ -218,9 +213,6 @@
 	</screen>
 <!-- Wizard -->
 	<screen name="WizardSummary" position="0,0" size="132,64">
-		<widget source="entry" render="Label" position="fill" size="120,20" font="Regular;18" />
-	</screen>
-	<screen name="VideoWizardSummary" position="0,0" size="132,64">
 		<widget source="entry" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 	<screen name="CrossEPG_MenuSummary" position="0,0" size="132,64">

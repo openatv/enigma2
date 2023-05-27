@@ -332,12 +332,6 @@
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
-	<screen name="VideoWizardSummary" position="0,0" size="140,32">
-		<widget source="text" render="Label" position="0,0" size="140,32" font="FdLcD;12" halign="center" />
-		<widget source="parent.list" render="Label" position="0,50" size="140,14" font="FdLcD;12" halign="center" noWrap="1"  >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
 
 <!-- DVD -->
 	<screen name="DVDSummary" position="fill">
