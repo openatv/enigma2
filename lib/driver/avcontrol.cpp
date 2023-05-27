@@ -171,7 +171,7 @@ bool eAVControl::setHDMIInPiP(int flags) const
 	if (!m_b_has_proc_hdmi_rx_monitor)
 		return true;
 
-	std::string check = CFile::read(hdmi_rx_monitor);
+	std::string check = CFile::read(proc_hdmi_rx_monitor);
 
 	if (check.rfind("off", 0) == 0)
 	{
