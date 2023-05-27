@@ -1071,4 +1071,4 @@ class MenuSummary(ScreenSummary):
 			self.parent["menu"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		self["entry"].text = self.parent["menu"].getCurrent()[WIDGET_NUMBER_TEXT]
+		self["entry"].setText(self.parent["menu"].getCurrent()[WIDGET_NUMBER_TEXT])
