@@ -197,9 +197,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="255,64">
 		<widget source="Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="parent.menu" render="Label" position="0,21" size="255,50" font="FdLcD;16" halign="left">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="0,21" size="255,50" font="FdLcD;16" halign="left"/>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />

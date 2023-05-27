@@ -141,9 +141,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="Title" render="Label" position="top" size="*,61" font="FdLcD;50" halign="center" valign="top" />
-		<widget source="parent.menu" render="Label" position="top" size="*,53" font="FdLcD;26" halign="left" valign="center">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="top" size="*,53" font="FdLcD;26" halign="left" valign="center"/>
 	</screen>
 
 <!-- setup-->

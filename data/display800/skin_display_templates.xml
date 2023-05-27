@@ -372,9 +372,7 @@
 	<!-- MENU-->
 	<screen name="MenuSummary" position="0,0" size="800,480"> 
 		<widget source="Title" render="Label" position="40,50" size="720,110" foregroundColor="white" font="FdLcD;85" halign="center" valign="center" zPosition="2" />
-		<widget source="parent.menu" render="Label" position="40,200" size="720,160" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="top" zPosition="2">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="40,200" size="720,160" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="top" zPosition="2"/>
 	</screen>
 
 	<!-- MESSAGEBOX -->

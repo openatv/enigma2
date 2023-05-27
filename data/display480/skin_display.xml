@@ -30,9 +30,7 @@
 	<!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="480,320">
 		<widget source="Title" render="Label" position="0,5" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="#FFFF00" />
-		<widget source="parent.menu" render="Label" position="0,90" size="480,90" font="FdLcD;40" halign="center" valign="center">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="0,90" size="480,90" font="FdLcD;40" halign="center" valign="center"/>
 	</screen>
 
 <!-- setup-->

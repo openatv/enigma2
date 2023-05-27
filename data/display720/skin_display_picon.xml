@@ -198,9 +198,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="720,576"> 
 		<widget source="Title" render="Label" position="20,50" foregroundColor="#e5b243" size="670,120" font="FdLcD;90" halign="center" valign="top" noWrap="1" />
-		<widget source="parent.menu" render="Label" position="20,180" size="670,300" font="FdLcD;70" halign="center" valign="top" foregroundColor="#02c6ff" >
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="20,180" size="670,300" font="FdLcD;70" halign="center" valign="top" foregroundColor="#02c6ff"/>
 		<panel name="SummaryClockPanel" />
 	</screen>
 

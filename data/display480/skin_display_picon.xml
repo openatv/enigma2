@@ -226,9 +226,7 @@
 	<screen name="MenuSummary" position="fill">
 		<widget source="Title" render="Label" position="top" size="*,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="parent.menu" render="Label" position="top" size="*,115" font="FdLcD;38" halign="center" valign="center">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="top" size="*,115" font="FdLcD;38" halign="center" valign="center"/>
 	</screen>
 <!-- Schnellstartmenue -->
 	<screen name="QuickMenu_summary" position="5,0" size="471,320">
