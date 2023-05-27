@@ -259,11 +259,11 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 class SetupSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
-		self["entry"] = StaticText("")  # DEBUG: Proposed for new summary screens.
-		self["value"] = StaticText("")  # DEBUG: Proposed for new summary screens.
-		self["SetupTitle"] = StaticText(parent.getTitle())
-		self["SetupEntry"] = StaticText("")
-		self["SetupValue"] = StaticText("")
+		self["entry"] = StaticText("")
+		self["value"] = StaticText("")
+		self["SetupTitle"] = StaticText(parent.getTitle())  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["SetupEntry"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["SetupValue"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:
@@ -283,10 +283,10 @@ class SetupSummary(ScreenSummary):
 			self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		self["entry"].text = self.parent.getCurrentEntry()  # DEBUG: Proposed for new summary screens.
-		self["value"].text = self.parent.getCurrentValue()  # DEBUG: Proposed for new summary screens.
-		self["SetupEntry"].text = self.parent.getCurrentEntry()
-		self["SetupValue"].text = self.parent.getCurrentValue()
+		self["entry"].text = self.parent.getCurrentEntry()
+		self["value"].text = self.parent.getCurrentValue()
+		self["SetupEntry"].text = self.parent.getCurrentEntry()  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["SetupValue"].text = self.parent.getCurrentValue()  # DEBUG: Deprecated widget name, this will be removed soon.
 
 
 # Read the setup XML file.
