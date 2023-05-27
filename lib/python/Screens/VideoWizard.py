@@ -37,7 +37,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 				if port != "DVI-PC":
 					ports.append((descr, port))
 		ports.sort(key=lambda x: x[0])
-		print("[WizardVideo] listPorts DEBUG: Ports=%s." % ports)
+		# print("[WizardVideo] listPorts DEBUG: Ports=%s." % ports)
 		return ports
 
 	def listModes(self):  # Called by wizardvideo.xml.
@@ -53,7 +53,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 
 		modes = [(mode[0], mode[0]) for mode in self.avSwitch.getModeList(self.port)]
 		modes.sort(key=sortKey)
-		print("[WizardVideo] listModes DEBUG: port='%s', modes=%s." % (self.port, modes))
+		# print("[WizardVideo] listModes DEBUG: port='%s', modes=%s." % (self.port, modes))
 		return modes
 
 	def listRates(self, mode=None):  # Called by wizardvideo.xml.
@@ -78,7 +78,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 							continue
 					rates.append((rate, rate))
 		rates.sort(key=sortKey)
-		print("[WizardVideo] listRates DEBUG: port='%s', mode='%s', rates=%s." % (self.port, mode, rates))
+		# print("[WizardVideo] listRates DEBUG: port='%s', mode='%s', rates=%s." % (self.port, mode, rates))
 		return rates
 
 	def portSelectionMade(self, index):  # Called by wizardvideo.xml.
