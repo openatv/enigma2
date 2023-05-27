@@ -1,6 +1,5 @@
 from Components.AVSwitch import iAVSwitch as avSwitch
 from Components.config import ConfigBoolean, config, configfile
-from Components.Pixmap import Pixmap
 from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import ShowRemoteControl
 from Screens.Wizard import WizardSummary
@@ -14,10 +13,6 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
 		self.setTitle(_("Video Wizard"))
-		self["wizard"] = Pixmap()  # Is this needed?
-		self["HelpWindow"] = Pixmap()  # Is this needed?
-		self["HelpWindow"].hide()  # Is this needed?
-		self["portpic"] = Pixmap()
 		self.avSwitch = avSwitch
 		self.hasDVI = BoxInfo.getItem("dvi", False)
 		self.hasJack = BoxInfo.getItem("avjack", False)
@@ -42,32 +37,49 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 				if port != "DVI-PC":
 					ports.append((descr, port))
 		ports.sort(key=lambda x: x[0])
-		# print("[WizardVideo] listPorts DEBUG: Ports=%s." % ports)
+		print("[WizardVideo] listPorts DEBUG: Ports=%s." % ports)
 		return ports
 
 	def listModes(self):  # Called by wizardvideo.xml.
+		def sortKey(name):
+			return {
+				"2160p": 1,
+				"2160p30": 2,
+				"1080p": 3,
+				"720p": 4,
+				"1080i": 5,
+				"smpte": 20
+			}.get(name[0], 6)
+
 		modes = [(mode[0], mode[0]) for mode in self.avSwitch.getModeList(self.port)]
-		# print("[WizardVideo] listModes DEBUG: port='%s', modes=%s." % (self.port, modes))
-		return sorted(modes, key=self.sortkey)
+		modes.sort(key=sortKey)
+		print("[WizardVideo] listModes DEBUG: port='%s', modes=%s." % (self.port, modes))
+		return modes
 
 	def listRates(self, mode=None):  # Called by wizardvideo.xml.
+		def sortKey(name):
+			return {
+				"multi": 1,
+				"auto": 2
+			}.get(name[0], 3)
+
 		if mode is None:
 			mode = self.mode
 		rates = []
-		# print("rates for port %s and mode %s" % (self.port, mode))
 		for modes in self.avSwitch.getModeList(self.port):
-			print(modes)
 			if modes[0] == mode:
 				for rate in modes[1]:
 					if rate == "auto" and not BoxInfo.getItem("have24hz"):
 						continue
 					if self.port == "DVI-PC":
-						# print("rate: %s" % rate)
+						# print("[WizardVideo] listModes DEBUG: rate='%s'." % rate)
 						if rate == "640x480":
 							rates.insert(0, (rate, rate))
 							continue
 					rates.append((rate, rate))
-		return sorted(rates, key=sortkey)
+		rates.sort(key=sortKey)
+		print("[WizardVideo] listRates DEBUG: port='%s', mode='%s', rates=%s." % (self.port, mode, rates))
+		return rates
 
 	def portSelectionMade(self, index):  # Called by wizardvideo.xml.
 		# print("[WizardVideo] inputSelectionMade DEBUG: index='%s'." % index)
@@ -79,15 +91,6 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 		self.portSelect(self.selection)
 
 	def portSelect(self, port):
-		if self["portpic"].instance:
-			picName = self.selection
-			if picName == "HDMI" and self.hasDVI:
-				picName = "DVI"
-			if picName == "Scart" and self.hasRCA:
-				picName = "RCA"
-			if picName == "Scart" and self.hasJack:
-				picName = "JACK"
-			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % picName))
 		modeList = self.avSwitch.getModeList(self.selection)
 		# print("[WizardVideo] inputSelect DEBUG: port='%s', modeList=%s." % (port, modeList))
 		self.port = port
@@ -124,18 +127,6 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 
 	def rateSelect(self, rate):
 		self.avSwitch.setMode(port=self.port, mode=self.mode, rate=rate)
-
-	def sortkey(self, name):
-		return {
-			"multi": 1,
-			"2160p": 1,
-			"auto": 2
-			"2160p30": 2,
-			"1080p": 3,
-			"720p": 4,
-			"1080i": 5,
-			"smpte": 20,
-		}.get(name[0], 6)
 
 	def keyNumberGlobal(self, number):
 		if number in (1, 2, 3):
