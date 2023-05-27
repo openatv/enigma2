@@ -213,9 +213,9 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 	def selectionChanged(self):
 		if self["config"]:
 			self.setFootnote(None)
-			self["description"].text = self.getCurrentDescription()
+			self["description"].setText(self.getCurrentDescription())
 		else:
-			self["description"].text = _("There are no items currently available for this screen.")
+			self["description"].setText(_("There are no items currently available for this screen."))
 
 	def layoutFinished(self):
 		if self.setupImage:
@@ -226,13 +226,13 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 	def setFootnote(self, footnote):
 		if footnote is None:
 			if self.getCurrentEntry().endswith("*"):
-				self["footnote"].text = _("* = Restart Required")
+				self["footnote"].setText(_("* = Restart Required"))
 				self["footnote"].show()
 			else:
-				self["footnote"].text = ""
+				self["footnote"].setText("")
 				self["footnote"].hide()
 		else:
-			self["footnote"].text = footnote
+			self["footnote"].setText(footnote)
 			self["footnote"].show()
 
 	def getFootnote(self):
@@ -283,10 +283,10 @@ class SetupSummary(ScreenSummary):
 			self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		self["entry"].text = self.parent.getCurrentEntry()
-		self["value"].text = self.parent.getCurrentValue()
-		self["SetupEntry"].text = self.parent.getCurrentEntry()  # DEBUG: Deprecated widget name, this will be removed soon.
-		self["SetupValue"].text = self.parent.getCurrentValue()  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["entry"].setText(self.parent.getCurrentEntry())
+		self["value"].setText(self.parent.getCurrentValue())
+		self["SetupEntry"].setText(self.parent.getCurrentEntry())  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["SetupValue"].setText(self.parent.getCurrentValue())  # DEBUG: Deprecated widget name, this will be removed soon.
 
 
 # Read the setup XML file.
