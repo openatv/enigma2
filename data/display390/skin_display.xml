@@ -242,10 +242,6 @@
 		<panel name="MessageBoxSummary" />
 	</screen>
 
-	<screen name="AboutSummary" position="0,0" size="390,240">
-		<widget source="AboutText" render="Label" position="0,0" size="390,240" font="FdLcD;11" />
-	</screen>
-
 	<screen name="TimerEditListSummary" position="0,0" size="390,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="390,26" font="FdLcD;24" halign="center" noWrap="1" />
 		<widget source="service" render="Label" position="0,40" size="390,30" font="FdLcD;28" halign="center" noWrap="1" />

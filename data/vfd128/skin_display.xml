@@ -332,10 +332,6 @@
 		<panel name="MessageBoxSummary" />
 	</screen>
 
-	<screen name="AboutSummary" position="0,0" size="128,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="128,32" font="FdLcD;16" halign="center" valign="center" />
-	</screen>
-
 	<screen name="TimerEditListSummary" position="0,0" size="128,32">
 		<widget source="service" render="Label" position="0,0" size="128,16" font="FdLcD;15" halign="left" valign="bottom" transparent="1" />
 		<widget source="name" render="Label" position="0,10" size="128,18" font="FdLcD;12" halign="left" noWrap="1" transparent="1" />

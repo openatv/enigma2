@@ -314,10 +314,6 @@
 		<panel name="MessageBoxSummary" />
 	</screen>
 
-	<screen name="AboutSummary" position="0,0" size="140,32">
-		<widget source="AboutText" render="Label" position="0,0" size="140,32" font="FdLcD;11" />
-	</screen>
-
 	<screen name="TimerEditListSummary" position="0,0" size="140,32">
 		<widget source="service" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="left" valign="bottom" />
 		<widget source="name" render="Label" position="0,11" size="140,18" font="FdLcD;15" halign="left" noWrap="1" />
