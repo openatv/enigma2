@@ -269,14 +269,6 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 
-	<screen name="VideoWizardSummary" position="0,0" size="720,576"> 
-		<widget source="text" render="Label" position="10,20" foregroundColor="#e5b243" size="670,120" font="FdLcD;60" halign="center" valign="center" />
-		<widget source="parent.list" render="Label" position="20,190" size="670,200" font="FdLcD;60" halign="center" valign="top">
-			<convert type="StringListSelection" />
-		</widget>
-		<panel name="SummaryClockPanel" />
-	</screen>
-	
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="720,576"> 
 		<widget source="global.CurrentTime" render="Label" position="20,107" size="670,182" foregroundColor="#e5b243" font="FdLcD;100" valign="center" halign="center" zPosition="14">
