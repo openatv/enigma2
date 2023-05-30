@@ -226,9 +226,7 @@
 	<screen name="MenuSummary" position="fill">
 		<widget source="Title" render="Label" position="top" size="*,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="parent.menu" render="Label" position="top" size="*,115" font="FdLcD;38" halign="center" valign="center">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="top" size="*,115" font="FdLcD;38" halign="center" valign="center"/>
 	</screen>
 <!-- Schnellstartmenue -->
 	<screen name="QuickMenu_summary" position="5,0" size="471,320">
@@ -249,11 +247,11 @@
 	</screen>
 <!-- setup-->
 	<screen name="SetupSummary" position="fill">
-		<widget source="SetupTitle" render="Label" position="top" size="*,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center"  valign="center" />
+		<widget source="Title" render="Label" position="top" size="*,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center"  valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="SetupEntry" render="Label" position="top" size="*,95" font="FdLcD;25" halign="center" valign="center" />
+		<widget source="entry" render="Label" position="top" size="*,95" font="FdLcD;25" halign="center" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="SetupValue" render="Label" position="top" size="*,65" font="FdLcD;25" foregroundColor="#F4FA58" halign="center" valign="center" />
+		<widget source="value" render="Label" position="top" size="*,65" font="FdLcD;25" foregroundColor="#F4FA58" halign="center" valign="center" />
 	</screen>		
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="5,0" size="471,320">
@@ -371,9 +369,6 @@
 	</screen>
 	<screen name="MessageBoxSimpleSummary" position="5,0" size="471,320">
 		<panel name="MessageBoxSummary" />
-	</screen>
-	<screen name="AboutSummary" position="5,0" size="471,320">
-		<widget source="parent.Title" render="Label" position="0,0" size="471,320" font="FdLcD;34" foregroundColor="#F4FA58" halign="center" valign="center" />
 	</screen>
 <!-- LocationBox_summary -->
 	<screen name="LocationBox_summary" position="5,0" size="471,320">
