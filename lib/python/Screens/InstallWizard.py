@@ -1,6 +1,5 @@
 from os import system
 from Screens.Screen import Screen
-from Screens.FlashExpander import FlashExpander
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigBoolean, getConfigListEntry, ConfigSelection, ConfigYesNo, ConfigIP
@@ -19,7 +18,6 @@ class InstallWizard(Screen, ConfigListScreen):
 
 	STATE_UPDATE = 0
 	STATE_CHOISE_CHANNELLIST = 1
-	STATE_CHOISE_FLASHEXPANDER = 2
 
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
@@ -28,11 +26,7 @@ class InstallWizard(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 
-		if self.index == self.STATE_CHOISE_FLASHEXPANDER:
-			modes = {0: "Start FlashExpander"}
-			self.cfgFlashExpander = ConfigSelection(choices=modes, default=0)
-			self.createMenu()
-		elif self.index == self.STATE_UPDATE:
+		if self.index == self.STATE_UPDATE:
 			config.misc.installwizard.hasnetwork.value = False
 			config.misc.installwizard.ipkgloaded.value = False
 			modes = {0: " "}
@@ -80,9 +74,7 @@ class InstallWizard(Screen, ConfigListScreen):
 		except Exception:
 			return
 		self.list = []
-		if self.index == self.STATE_CHOISE_FLASHEXPANDER:
-			self.list.append(getConfigListEntry(_("Small Flash Size"), self.cfgFlashExpander))
-		elif self.index == self.STATE_UPDATE:
+		if self.index == self.STATE_UPDATE:
 			if config.misc.installwizard.hasnetwork.value:
 				self.list.append(getConfigListEntry(_("Your Internet connection is working (ip: %s)") % (self.ipConfigEntry.getText()), self.enabled))
 				self.list.append(getConfigListEntry(_("There are pending tasks:"), self.cfgupdate))
@@ -112,8 +104,6 @@ class InstallWizard(Screen, ConfigListScreen):
 		self.createMenu()
 
 	def run(self):
-		if self.index == self.STATE_CHOISE_FLASHEXPANDER:
-			self.session.open(FlashExpander)
 		if self.index == self.STATE_UPDATE and config.misc.installwizard.hasnetwork.value:
 			self.session.open(InstallWizardSmallBox)
 		if self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value and self.channellist_type.value == "default":

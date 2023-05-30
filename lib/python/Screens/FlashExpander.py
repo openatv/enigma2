@@ -313,7 +313,7 @@ class FlashExpander(Setup):
 			fstabnew.append("/%s/%s %s none  bind 0 0" % (EXPANDER_MOUNT, EXPANDER_MOUNT, EXPANDER_DIRECTORY))
 		fstabnew.append("")
 		fileWriteLines("/etc/fstab", "\n".join(fstabnew), source=MODULE_NAME)
-		print("[FlashExpander] fstabUpdate DEBUG: Ending fstab:\n%s" % "\n".join(fstab))
+		print("[FlashExpander] fstabUpdate DEBUG: Ending fstab:\n%s" % "\n".join(fstabnew))
 
 	def readDevices(self, callback=None):
 		def getBlockIdDataCallback(output=None, retVal=None, extraArgs=None):
