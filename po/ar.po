@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
+"POT-Creation-Date: 2023-05-21 12:38+0000\n"
 "PO-Revision-Date: 2022-05-23 16:27+0000\n"
 "Last-Translator: Bader <fentanyl100@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -28,29 +28,6 @@ msgstr ""
 "\n"
 "\n"
 "[المستخدم- الباقات (TV)]\n"
-
-msgid ""
-"\n"
-"   Please press OK to start Kodi..."
-msgstr ""
-"\n"
-"   ...من فضلك اضغط موافق لتشغيل كودي"
-
-msgid ""
-"\n"
-"  WARNING: \n"
-"  There is not enough space to install Kodi!"
-msgstr ""
-"\n"
-"  ..تحذير\n"
-"..لا توجد هناك مساحة كافية لتركيب كودي"
-
-msgid ""
-"\n"
-" Kodi not present. Proceed with install?"
-msgstr ""
-"\n"
-" ..كودي غير موجود. هل تريد الاستمرار؟"
 
 msgid ""
 "\n"
@@ -108,15 +85,6 @@ msgstr " (قناة %s)"
 #, python-format
 msgid " (Partition %d)"
 msgstr " (التقسيم %d)"
-
-msgid "(PiP)"
-msgstr " ( قناة داخل قناة)"
-
-msgid "(Radio)"
-msgstr " (القنوات الإذاعية)"
-
-msgid "(TV)"
-msgstr " (القنوات التلفزيونية)"
 
 msgid " (current channel)"
 msgstr " (القناة الحالية)"
@@ -894,10 +862,6 @@ msgid "%d Hours"
 msgstr ""
 
 #, python-format
-msgid "%d KB"
-msgstr "%d KB"
-
-#, python-format
 msgid "%d MB"
 msgstr "%d ميقابايت"
 
@@ -1264,6 +1228,10 @@ msgid "%s  (%s)"
 msgstr "%s (%s) \n"
 
 #, python-format
+msgid "%s  -  %s    (%s%d Min)"
+msgstr ""
+
+#, python-format
 msgid "%s %02d.%02d."
 msgstr ""
 
@@ -1304,11 +1272,6 @@ msgstr "%s (%s) \n"
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
-
-#
-#, fuzzy, python-format
-msgid "%s - %s (%s%d min)"
-msgstr "%d دقيقه"
 
 #
 #, fuzzy, python-format
@@ -1461,8 +1424,20 @@ msgstr ""
 msgid "(FTA Service)"
 msgstr "القنوات/الخدمات"
 
+msgid "(PiP)"
+msgstr " ( قناة داخل قناة)"
+
+msgid "(Pip)"
+msgstr ""
+
+msgid "(Radio)"
+msgstr " (القنوات الإذاعية)"
+
 msgid "(Show only reader:"
 msgstr ""
+
+msgid "(TV)"
+msgstr " (القنوات التلفزيونية)"
 
 msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
 msgstr ""
@@ -1556,6 +1531,9 @@ msgid "1080i50"
 msgstr ""
 
 msgid "1080i50: 24p/50i/60i"
+msgstr ""
+
+msgid "1080i50Hz"
 msgstr ""
 
 msgid "1080p 24Hz"
@@ -1887,9 +1865,6 @@ msgstr ""
 msgid "6 hours"
 msgstr ""
 
-msgid "60 minutes"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1927,6 +1902,9 @@ msgid "720p50"
 msgstr ""
 
 msgid "720p50: 24p/50p/60p"
+msgstr ""
+
+msgid "720p50Hz"
 msgstr ""
 
 msgid "8"
@@ -2173,6 +2151,17 @@ msgstr ""
 msgid "Abort"
 msgstr "الغاء"
 
+msgid "Abort Alternatives Edit"
+msgstr "إلغاء تحرير البدائل"
+
+#
+msgid "Abort Bouquet Edit"
+msgstr "الغاء تحرير الباقه"
+
+#
+msgid "Abort Favorites Edit"
+msgstr "الغاء تحرير المفضله"
+
 msgid "Aborted a pseudo recording.\n"
 msgstr ""
 
@@ -2268,11 +2257,20 @@ msgstr "إعدادات المحول"
 msgid "Add"
 msgstr "إضافة"
 
+msgid "Add Alternatives"
+msgstr "إضافة بدائل"
+
 msgid "Add AutoTimer"
 msgstr ""
 
 msgid "Add Bookmark"
 msgstr "إضافة علامة مرجعية"
+
+msgid "Add Bouquet"
+msgstr "إضافة باقه"
+
+msgid "Add Bouquet To Parental Protection"
+msgstr ""
 
 msgid "Add Current"
 msgstr ""
@@ -2289,6 +2287,9 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
+msgid "Add Marker"
+msgstr "إضافة علامه"
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
@@ -2297,8 +2298,19 @@ msgstr ""
 msgid "Add RecordTimer"
 msgstr "أضف مؤقت"
 
+#
+msgid "Add Service To Bouquet"
+msgstr "إضافه القناه الى الباقه"
+
+#
+msgid "Add Service To Favorites"
+msgstr "إضافه القناه الى المفضله"
+
 msgid "Add Timer"
 msgstr ""
+
+msgid "Add To Parental Protection"
+msgstr "أضف حمايه أبويه"
 
 #
 #, fuzzy
@@ -2328,9 +2340,15 @@ msgstr ""
 msgid "Add a ZapTimer for next event"
 msgstr "الانتقال لاسفل الى البند التالى"
 
+msgid "Add a bouquet"
+msgstr ""
+
 #
 msgid "Add a mark"
 msgstr "أضف علامه"
+
+msgid "Add a marker"
+msgstr ""
 
 msgid "Add a new tag"
 msgstr ""
@@ -2393,6 +2411,9 @@ msgstr "أضف تسجيل (غير محدد المده)"
 
 msgid "Add recording (stop after current event)"
 msgstr "أضف تسجيل (وإيقاف بعد انتهاء البرنامج الحالى)"
+
+msgid "Add selected service to bouquet or alternative"
+msgstr ""
 
 msgid "Add service"
 msgstr "إضافة خدمة"
@@ -2674,6 +2695,9 @@ msgstr "إضافة بدائل"
 msgid "Alternative 2"
 msgstr "إضافة بدائل"
 
+msgid "Alternative Edit"
+msgstr "[تحرير البديل]"
+
 msgid "Alternative numbering mode"
 msgstr "وضع الأرقام البديلة"
 
@@ -2729,6 +2753,9 @@ msgid "Android"
 msgstr ""
 
 msgid "Android Linux SE"
+msgstr ""
+
+msgid "Angle"
 msgstr ""
 
 msgid "Angola"
@@ -3384,9 +3411,6 @@ msgstr ""
 msgid "Basic PID info"
 msgstr ""
 
-msgid "Basic settings"
-msgstr ""
-
 msgid "Basketball"
 msgstr ""
 
@@ -3473,11 +3497,17 @@ msgstr "معدل البت:"
 msgid "Black"
 msgstr ""
 
+msgid "Black Screen"
+msgstr ""
+
 msgid "Black screen"
 msgstr "شاشة سوداء"
 
 msgid "Black screen till locked"
 msgstr "شاشة سوداء مقفلة"
+
+msgid "Blacklist"
+msgstr ""
 
 msgid "Blinking REC"
 msgstr ""
@@ -3563,7 +3593,19 @@ msgstr "بوتسوانا"
 msgid "Bottom"
 msgstr "أسفل"
 
+msgid "Bouquet Edit"
+msgstr "[تحرير الباقه]"
+
 msgid "Bouquet List"
+msgstr ""
+
+msgid "Bouquet Selector"
+msgstr ""
+
+msgid "Bouquet Selector Actions"
+msgstr ""
+
+msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
 #, fuzzy
@@ -3596,6 +3638,12 @@ msgid "Brightness (Normal)"
 msgstr ""
 
 msgid "Brightness (Standby)"
+msgstr ""
+
+msgid "Brightness Video"
+msgstr ""
+
+msgid "Brightness Video & OSD"
 msgstr ""
 
 msgid "British Indian Ocean Territory"
@@ -3851,6 +3899,9 @@ msgstr ""
 msgid "CPU / Core %d type"
 msgstr ""
 
+msgid "CPU Control"
+msgstr ""
+
 msgid "CPU architecture"
 msgstr ""
 
@@ -4028,6 +4079,9 @@ msgstr ""
 msgid "Cancel Task"
 msgstr ""
 
+msgid "Cancel and exit the context menu"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cancel any changed settings and exit"
@@ -4074,6 +4128,9 @@ msgstr "إختيار القناه"
 msgid "Cancel selection and exit"
 msgstr ""
 
+msgid "Cancel the bouquet selection"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -4091,6 +4148,9 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "إختيار القناه"
 
 msgid "Cancel the service selection"
+msgstr ""
+
+msgid "Cancel the service zap"
 msgstr ""
 
 msgid "Cancel the slot selection and exit"
@@ -4129,10 +4189,6 @@ msgstr ""
 msgid "Capacity"
 msgstr ""
 
-#
-msgid "Capacity: "
-msgstr "السعه: "
-
 msgid "Cape Verde"
 msgstr ""
 
@@ -4168,6 +4224,9 @@ msgstr ""
 
 msgid "Center"
 msgstr "وسط"
+
+msgid "Center DVB Subs On This Service"
+msgstr ""
 
 msgid "Centered"
 msgstr "في المنتصف"
@@ -4277,8 +4336,21 @@ msgstr "معلومات القناة"
 msgid "Channel List"
 msgstr ""
 
+msgid "Channel List Context Menu"
+msgstr ""
+
+msgid "Channel List Context Menu Actions"
+msgstr ""
+
+msgid "Channel List Context Menu Navigation Actions"
+msgstr ""
+
 msgid "Channel List Menu"
 msgstr ""
+
+#
+msgid "Channel Selection"
+msgstr "إختيار القناة"
 
 #, fuzzy
 msgid "Channel Selection Settings"
@@ -4295,9 +4367,6 @@ msgid "Channel buttons invert"
 msgstr "قناه غير موجوده فى قائمة الخدمات"
 
 msgid "Channel down"
-msgstr ""
-
-msgid "Channel List Context Menu"
 msgstr ""
 
 msgid "Channel list cursor behavior"
@@ -4326,10 +4395,6 @@ msgstr ""
 
 msgid "Channel preview mode"
 msgstr ""
-
-#
-msgid "Channel Selection"
-msgstr "إختيار القناة"
 
 msgid "Channel selection configuration"
 msgstr ""
@@ -4452,9 +4517,6 @@ msgstr ""
 msgid "Choice where to put \"%s\""
 msgstr ""
 
-msgid "Choose Bouquet"
-msgstr ""
-
 msgid "Choose Tuner"
 msgstr ""
 
@@ -4504,6 +4566,9 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 msgid "Choose the style/order in which items are displayed in help windows."
+msgstr ""
+
+msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4588,7 +4653,7 @@ msgstr ""
 msgid "Clean up and remove all completed timers?"
 msgstr ""
 
-msgid "Cleaning Trashes"
+msgid "Cleaning Trashcan"
 msgstr ""
 
 msgid "Cleanup"
@@ -4721,6 +4786,12 @@ msgstr "كولومبيا"
 msgid "Color"
 msgstr "نسق الالـوان"
 
+msgid "Color Bottom"
+msgstr ""
+
+msgid "Color Top"
+msgstr ""
+
 msgid "Color format"
 msgstr "تهئية الألوان"
 
@@ -4775,6 +4846,9 @@ msgstr "وحده النفاذ المشروط"
 
 msgid "Common Interface Assignment"
 msgstr "تحديد وحدة النفاذ المشروط"
+
+msgid "Common Interface Settings"
+msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -4839,6 +4913,9 @@ msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr ""
 
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
+msgstr ""
+
+msgid "Configure front panel LEDs"
 msgstr ""
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info"
@@ -5287,6 +5364,12 @@ msgstr "مواصلة التشغيل (حلقة)"
 msgid "Contrast"
 msgstr "التباين"
 
+msgid "Contrast Video"
+msgstr ""
+
+msgid "Contrast Video & OSD"
+msgstr ""
+
 msgid "Control LED can be turned on or off here."
 msgstr ""
 
@@ -5324,6 +5407,9 @@ msgstr "يعمل"
 msgid "Copy"
 msgstr "نسخ"
 
+msgid "Copy To Bouquets"
+msgstr "نسخ الى الباقات"
+
 msgid "Copy all related files"
 msgstr ""
 
@@ -5353,6 +5439,9 @@ msgstr ""
 #, fuzzy
 msgid "Copying files"
 msgstr "فحص ملفات النظام...."
+
+msgid "Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location."
+msgstr ""
 
 #, fuzzy
 msgid "Cornish"
@@ -5517,6 +5606,18 @@ msgstr "الاصدار الحالى:"
 msgid "Current CEC address"
 msgstr "التحكم في عناوين الإلكترونيات الاستهلاكية الحالية"
 
+#, python-format
+msgid "Current CPU Frequency cores 0 and 1: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current CPU Frequency other cores: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current CPU cores 0 and 1 Voltage: %s V"
+msgstr ""
+
 msgid "Current Directory"
 msgstr ""
 
@@ -5524,6 +5625,10 @@ msgid "Current Event:"
 msgstr ""
 
 msgid "Current Status:"
+msgstr ""
+
+#, python-format
+msgid "Current Temperature (SoC): %s °C"
 msgstr ""
 
 msgid "Current crash log"
@@ -6123,10 +6228,8 @@ msgstr ""
 msgid "Delete Directory"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Delete EPG"
-msgstr "أمسح"
+msgid "Delete EPG Cache"
+msgstr ""
 
 msgid "Delete Image"
 msgstr ""
@@ -6449,6 +6552,9 @@ msgstr "تعطيل"
 msgid "Disable MiniTV"
 msgstr ""
 
+msgid "Disable Move Mode"
+msgstr "تعطيل وضع التحريك"
+
 #
 msgid "Disable Picture in Picture"
 msgstr "تعطيل صوره داخل صوره"
@@ -6594,12 +6700,6 @@ msgstr ""
 msgid "Djibouti"
 msgstr "جيبوتي"
 
-msgid "Center DVB Subs On This Service"
-msgstr ""
-
-msgid "Don't Center DVB Subs On This Service"
-msgstr "لا تجعل الترجمة النصية للقنوات في المنتصف"
-
 msgid "Do not change"
 msgstr "لا تقم بتغيير"
 
@@ -6658,8 +6758,8 @@ msgid "Do you really want to exit?"
 msgstr "هل تريد فعلا الخروج ؟"
 
 msgid ""
-"Do you really want to initialize the device?\n"
-"All data on the disk will be lost!"
+"Do you really want to format the device in the Linux file system?\n"
+"All data on the device will be lost!"
 msgstr ""
 
 msgid "Do you really want to move to trashcan ?"
@@ -6797,6 +6897,9 @@ msgstr "دومينيكا"
 
 msgid "Dominican Republic"
 msgstr "جمهورية الدومينيكان"
+
+msgid "Don't Center DVB Subs On This Service"
+msgstr "لا تجعل الترجمة النصية للقنوات في المنتصف"
 
 msgid "Don't add this recording"
 msgstr ""
@@ -7049,6 +7152,9 @@ msgstr "الإكوادور"
 msgid "Edit"
 msgstr "تعديل"
 
+msgid "Edit Alternatives"
+msgstr "تحرير البدائل"
+
 #, fuzzy
 msgid "Edit Mode Off"
 msgstr "تحرير العنوان"
@@ -7181,6 +7287,10 @@ msgstr "تفعيل بقوة خمسة فولت للهوائي النشط"
 msgid "Enable BT Audio"
 msgstr "تم التفعيل"
 
+#
+msgid "Enable Bouquet Edit"
+msgstr "تفعيل تحرير الباقه"
+
 msgid "Enable CIHelper for SLOT CI0"
 msgstr ""
 
@@ -7195,6 +7305,10 @@ msgstr "تمكين جدول معلومات الحدث في دليل البرام
 
 msgid "Enable Fast Channel Change"
 msgstr ""
+
+#
+msgid "Enable Favorite Edit"
+msgstr "تفعيل تحرير المفضله"
 
 msgid "Enable Focus Animation"
 msgstr ""
@@ -7213,11 +7327,18 @@ msgstr "تفعيل"
 msgid "Enable InfoBar fade-out"
 msgstr ""
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "تمكين الطريقة السريعة لعرض الوسائط لدليل البرامج الإلكترونية"
 
 msgid "Enable MiniTV"
 msgstr ""
+
+#
+msgid "Enable Move Mode"
+msgstr "تفعيل وضع التحريك"
 
 msgid "Enable Netmed EPG"
 msgstr "تمكين وسائط الإنترنت في دليل البرامج الإلكترونية"
@@ -7280,6 +7401,9 @@ msgid "Enable chapter support for video files"
 msgstr ""
 
 msgid "Enable command line function"
+msgstr ""
+
+msgid "Enable core dumps *"
 msgstr ""
 
 msgid "Enable cut file support for audio files"
@@ -7357,6 +7481,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr ""
 
@@ -7425,6 +7552,17 @@ msgstr "التشفير:"
 
 msgid "End"
 msgstr ""
+
+msgid "End Alternatives Edit"
+msgstr "إنهاء تحرير البدائل"
+
+#
+msgid "End Bouquet Edit"
+msgstr "إنتهاء تحرير الباقه"
+
+#
+msgid "End Favorites Edit"
+msgstr "إنتهاء تحرير المفضله"
 
 #
 msgid "End time"
@@ -8066,9 +8204,6 @@ msgstr ""
 msgid "Extended"
 msgstr "تفاصيل الأقمار"
 
-msgid "Extended GUI"
-msgstr ""
-
 msgid "Extended Networksetup Plugin..."
 msgstr "بلج إن إعدادات الشبكه المتقدمه"
 
@@ -8268,6 +8403,9 @@ msgstr ""
 msgid "Fast forward speeds"
 msgstr "سرعة التسريع للامام"
 
+msgid "Favorite Edit"
+msgstr "[تحرير المفضله]"
+
 msgid "Favorites"
 msgstr ""
 
@@ -8431,11 +8569,17 @@ msgstr "تأخير الدوران النهائي"
 msgid "Finance"
 msgstr "إلغاء"
 
+msgid "Find Currently Playing Service"
+msgstr ""
+
 #, python-format
 msgid "Find out more at %s"
 msgstr ""
 
 msgid "Find similar events in the EPG"
+msgstr ""
+
+msgid "Find the service currently playing"
 msgstr ""
 
 msgid "Finding available log files, please wait..."
@@ -8473,6 +8617,9 @@ msgid "Fixed"
 msgstr "ثابت"
 
 msgid "Fixed X11 font (SD)"
+msgstr ""
+
+msgid "Flash Expander"
 msgstr ""
 
 #, fuzzy
@@ -8583,6 +8730,9 @@ msgid "Format"
 msgstr "تهئية"
 
 msgid "Format HDD"
+msgstr ""
+
+msgid "Format Storage Device"
 msgstr ""
 
 msgid "Format your hard drive"
@@ -9292,6 +9442,15 @@ msgstr ""
 msgid "History Prev/Next"
 msgstr ""
 
+msgid "History Zap"
+msgstr ""
+
+msgid "History Zap Actions"
+msgstr ""
+
+msgid "History Zap Navigation Actions"
+msgstr ""
+
 msgid "History back"
 msgstr "التحكم في القناة السابقة في سجل التنقلات"
 
@@ -9307,6 +9466,9 @@ msgstr ""
 #, fuzzy
 msgid "Hockey"
 msgstr "مغلق"
+
+msgid "Hold First Frame"
+msgstr ""
 
 msgid "Hold screen"
 msgstr "تجميد الشاشة"
@@ -9407,6 +9569,9 @@ msgid "I/O priority for scripts"
 msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
+msgid "IMDB Search"
 msgstr ""
 
 msgid "IMDb Details"
@@ -9753,6 +9918,9 @@ msgstr ""
 msgid "Include action map data"
 msgstr ""
 
+msgid "Include international data *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Include keyboard data"
@@ -9881,10 +10049,6 @@ msgstr "تاخير التمرير الاولي"
 
 msgid "Initialization"
 msgstr "تهيئه"
-
-#
-msgid "Initialize"
-msgstr "تفعيل البدأ"
 
 msgid "Initializing storage device..."
 msgstr ""
@@ -10273,6 +10437,22 @@ msgstr ""
 msgid "Kernel version"
 msgstr ""
 
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
+
 msgid "Key"
 msgstr ""
 
@@ -10286,10 +10466,6 @@ msgstr ""
 #, fuzzy
 msgid "Keyboard data entry"
 msgstr "خريطه لوحه المفاتيح"
-
-#
-msgid "Keyboard map"
-msgstr "خريطة لوحة المفاتيح"
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -10307,17 +10483,6 @@ msgid "Kodi"
 msgstr ""
 
 msgid "Kodi MediaCenter"
-msgstr ""
-
-#, fuzzy
-msgid "Kodi installed:"
-msgstr "تراجع عن التثبيت"
-
-#, fuzzy
-msgid "Kodi media player"
-msgstr "الخروج من مشغل الوسائط"
-
-msgid "Kodi/extra partition free space:"
 msgstr ""
 
 msgid "Komi"
@@ -10372,10 +10537,28 @@ msgstr ""
 msgid "LCN rules:"
 msgstr ""
 
+msgid "LED Brightness"
+msgstr ""
+
+msgid "LED Color"
+msgstr ""
+
 msgid "LED Deep Standby"
 msgstr ""
 
+msgid "LED Idle Brightness"
+msgstr ""
+
+msgid "LED Idle Color"
+msgstr ""
+
 msgid "LED Normal"
+msgstr ""
+
+msgid "LED Settings"
+msgstr ""
+
+msgid "LED Shutdown Color"
 msgstr ""
 
 msgid "LED Standby"
@@ -10667,7 +10850,7 @@ msgstr ""
 msgid "Load"
 msgstr "تحميل"
 
-msgid "Load EPG"
+msgid "Load EPG Cache"
 msgstr ""
 
 msgid "Load play list"
@@ -10677,9 +10860,6 @@ msgid "Load tags from the timer and recordings"
 msgstr ""
 
 msgid "Load unlinked user bouquets"
-msgstr ""
-
-msgid "Load/Save/Delete"
 msgstr ""
 
 msgid "Loading information, please wait..."
@@ -10719,6 +10899,9 @@ msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale / Language Settings"
 msgstr ""
 
 #, fuzzy
@@ -11338,10 +11521,6 @@ msgstr "إستعادة البرنامج التشغيلى"
 msgid "Model"
 msgstr ""
 
-#
-msgid "Model: "
-msgstr "الموديل : "
-
 msgid "Modified"
 msgstr ""
 
@@ -11444,6 +11623,10 @@ msgstr "تحريك"
 
 msgid "Move Left/Right"
 msgstr ""
+
+#
+msgid "Move Mode"
+msgstr "[وضع التحريك]"
 
 #
 #, fuzzy
@@ -12739,6 +12922,9 @@ msgstr ""
 msgid "Open service list and select previous channel for PiP"
 msgstr ""
 
+msgid "Open the Channel Selection Settings screen"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr ""
 
@@ -13056,12 +13242,15 @@ msgstr "باراغواي"
 msgid "Parent Directory"
 msgstr ""
 
-msgid "Parental Guidance Recommended"
-msgstr ""
-
 #
 msgid "Parental Control"
 msgstr "الرقابة الأبوية"
+
+msgid "Parental Control Settings"
+msgstr ""
+
+msgid "Parental Guidance Recommended"
+msgstr ""
 
 msgid "Parental control services editor"
 msgstr ""
@@ -13247,6 +13436,9 @@ msgstr ""
 msgid "Play"
 msgstr "تشغيل"
 
+msgid "Play As Picture in Picture window"
+msgstr ""
+
 #
 msgid "Play DVD"
 msgstr "تشغيل ديفيدي"
@@ -13255,6 +13447,9 @@ msgstr "تشغيل ديفيدي"
 #, fuzzy
 msgid "Play DVDs"
 msgstr "تشغيل دى فى دى"
+
+msgid "Play In Main window"
+msgstr ""
 
 msgid "Play all audio files in the directory"
 msgstr ""
@@ -13280,6 +13475,12 @@ msgstr "تشغيل العلامة التالية أو قائمة التشغيل 
 msgid "Play from previous mark or play list entry"
 msgstr "تشغيل العلامة السابقة أو قائمة التشغيل المدخلة"
 
+msgid "Play in Main"
+msgstr ""
+
+msgid "Play in PiP"
+msgstr ""
+
 #
 msgid "Play music..."
 msgstr "تشغيل الموسيقى..."
@@ -13300,6 +13501,12 @@ msgstr "تشغيل السابق"
 #, fuzzy
 msgid "Play recorded movies"
 msgstr "عرض الافلام المسجله"
+
+msgid "Play selected service in a PiP window"
+msgstr ""
+
+msgid "Play selected service on the main screen"
+msgstr ""
 
 msgid "Play the audio file"
 msgstr ""
@@ -13420,10 +13627,6 @@ msgstr ""
 
 msgid "Please press OK to continue."
 msgstr "من فضلك أضغط موافق للاستمرار."
-
-#, fuzzy
-msgid "Please press OK to start Kodi..."
-msgstr "من فضلك أضغط موافق للاستمرار"
 
 #, fuzzy
 msgid "Please select a backup destination"
@@ -13869,6 +14072,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "اضغط موافق لبدأ البحث"
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -14156,6 +14367,9 @@ msgstr ""
 msgid "Purge 'Trash' after (days)"
 msgstr "إزالة العناصر من سلة المهملات بعد (أيام)"
 
+msgid "Purge Deleted User Bouquets"
+msgstr ""
+
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
 
@@ -14204,6 +14418,9 @@ msgstr "%d تم العثور على"
 #, fuzzy
 msgid "Quad PiP is not available."
 msgstr "تغذية التحديث غير متاحه"
+
+msgid "Quad9 DNS"
+msgstr ""
 
 msgid "Quechua"
 msgstr ""
@@ -14306,6 +14523,9 @@ msgstr "مخرج RF"
 msgid "RGB"
 msgstr "أحمر أخضر أزرق"
 
+msgid "Radio"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Radio Channel Selection"
@@ -14378,6 +14598,12 @@ msgstr "هل تريد فعلا مسح المؤقتات المعموله ؟"
 msgid "Really exit the subservices quickzap?"
 msgstr "هل تريد فعلا الخروج السريع من مقدم الخدمات؟"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 #, fuzzy
 msgid "Really reboot into Recovery Mode?"
 msgstr "هل تريد فعلا إعادة التشغيل الان ؟"
@@ -14441,10 +14667,10 @@ msgstr ""
 msgid "Reception"
 msgstr "الوصـف"
 
-msgid "Reception Settings"
+msgid "Reception Lists"
 msgstr ""
 
-msgid "Reception Lists"
+msgid "Reception Settings"
 msgstr ""
 
 #
@@ -14670,6 +14896,9 @@ msgstr ""
 msgid "Reload Services"
 msgstr ""
 
+msgid "Reload all services from disk"
+msgstr ""
+
 msgid "Reload blacklists"
 msgstr "إعادة تحميل القوائم السوداء"
 
@@ -14724,19 +14953,41 @@ msgstr "نوع جهاز التحكم عن بعد"
 msgid "Remove"
 msgstr "حذف"
 
+msgid "Remove All Alternatives"
+msgstr "حذف كل البدائل"
+
+msgid "Remove All New Found Flags"
+msgstr "أحذف كل علامات وجد حديثا"
+
 #
 msgid "Remove Bookmark"
 msgstr "حذف المرجعيه"
 
+msgid "Remove Bouquet From Parental Protection"
+msgstr ""
+
+msgid "Remove Cable Services"
+msgstr ""
+
 #, fuzzy
 msgid "Remove Confirmation"
 msgstr "تهيئة الموالف"
+
+msgid "Remove Entry"
+msgstr "حذف"
 
 msgid "Remove Failed !!"
 msgstr ""
 
 msgid "Remove Finished."
 msgstr "إنتهاء الحذف"
+
+msgid "Remove From Parental Protection"
+msgstr "حذف من الحمايه الابويه"
+
+#
+msgid "Remove New Found Flag"
+msgstr "حذف الاعلام التى وجدت حديثا"
 
 msgid "Remove Plugins"
 msgstr ""
@@ -14746,7 +14997,13 @@ msgstr ""
 msgid "Remove Quad Channel Entry"
 msgstr "حذف مدخلأسم الخادم"
 
+msgid "Remove Satellite Services"
+msgstr "حذف القمر المختار"
+
 msgid "Remove Service"
+msgstr ""
+
+msgid "Remove Terrestrial Services"
 msgstr ""
 
 msgid "Remove a DNS entry"
@@ -14795,10 +15052,13 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr "حذف العنوان الحالي المختار"
 
-msgid "Show VBI Line For This Service"
+msgid "Remove forever"
 msgstr ""
 
 msgid "Remove highlighted directory from bookmarks"
+msgstr ""
+
+msgid "Remove selected service"
 msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -14831,6 +15091,10 @@ msgstr "إعادة التسميه"
 msgid "Rename Directory"
 msgstr ""
 
+#, fuzzy
+msgid "Rename Entry"
+msgstr "حذف"
+
 msgid "Rename all related files"
 msgstr ""
 
@@ -14844,6 +15108,9 @@ msgid "Rename name and description for new events"
 msgstr "إعادة التسمية والوصف للأحداث الجديدة"
 
 msgid "Rename only highlighted file"
+msgstr ""
+
+msgid "Rename selected service"
 msgstr ""
 
 msgid "Rename the proposed file to be created"
@@ -14973,9 +15240,6 @@ msgstr "إعادة التشغيل"
 msgid "Restart %s %s."
 msgstr ""
 
-msgid "Restart Enigma2 to apply the changes?"
-msgstr ""
-
 #, fuzzy
 msgid "Restart GUI"
 msgstr "هل تريد إعادة تشغيل الاينجما2 الان ؟"
@@ -15025,6 +15289,9 @@ msgstr "إعادة تشغيل إتصال الشبكة والواجهة."
 
 msgid "Restore"
 msgstr "إستعادة"
+
+msgid "Restore Deleted User Bouquets"
+msgstr ""
 
 msgid "Restore MetrixHD Settings"
 msgstr ""
@@ -15174,6 +15441,9 @@ msgstr "إلغاء"
 
 msgid "Root"
 msgstr "الجذر"
+
+msgid "Root Image"
+msgstr ""
 
 msgid "Root directory"
 msgstr "دليل الملفات"
@@ -15329,9 +15599,6 @@ msgstr ""
 msgid "SSID:"
 msgstr "معرف مجموعة القنوات :"
 
-msgid "STB Display"
-msgstr ""
-
 #, fuzzy
 msgid "Sailing"
 msgstr "جاري الاتصال:"
@@ -15454,7 +15721,7 @@ msgstr "حفظ"
 msgid "Save / Enter text and exit"
 msgstr "حفظ الدليل عند الخروج"
 
-msgid "Save EPG"
+msgid "Save EPG Cache"
 msgstr ""
 
 msgid "Save EPG data"
@@ -15816,6 +16083,9 @@ msgid "Select 'Yes' to display unknown files in the File Commander file viewer, 
 msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
+msgstr ""
+
+msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
 msgstr ""
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
@@ -16240,6 +16510,12 @@ msgstr ""
 msgid "Select the current menu item"
 msgstr ""
 
+msgid "Select the currently highlighted action"
+msgstr ""
+
+msgid "Select the currently highlighted bouquet"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
@@ -16427,6 +16703,9 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr "حدد نوع اللاقط / الجهاز المستخدم (عادةً 'العالمي'). إذا كان نوع الاقط غير متاح ، فحدد 'يعرفه المستخدم'."
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the type of keyboard connected to the %s %s."
 msgstr ""
 
 msgid "Select the type of shutdown desired when the EnergySaver timer activates."
@@ -16768,6 +17047,9 @@ msgstr "القنوات"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr ""
 
+msgid "Set As Startup Service"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Set Base time"
@@ -16777,6 +17059,21 @@ msgid "Set CI assignment for detection of available services."
 msgstr ""
 
 msgid "Set Framerate for MiniTV"
+msgstr ""
+
+msgid "Set MAX CPU frequency for cores 0 and 1"
+msgstr ""
+
+msgid "Set MAX CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+msgid "Set MIN CPU frequency for cores 0 and 1"
+msgstr ""
+
+msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+msgid "Set Scaling governor"
 msgstr ""
 
 #, fuzzy
@@ -17223,6 +17520,9 @@ msgstr ""
 msgid "Show 720p 24fps as"
 msgstr ""
 
+msgid "Show Alternatives"
+msgstr "إظهار البدائل"
+
 msgid "Show Audioselection"
 msgstr ""
 
@@ -17373,8 +17673,14 @@ msgstr ""
 msgid "Show Timer List"
 msgstr ""
 
+msgid "Show Transponder Information"
+msgstr ""
+
 msgid "Show True/False as graphical switch"
 msgstr "عرض الصح/خطأ كتبديل المخطط البياني"
+
+msgid "Show VBI Line For This Service"
+msgstr ""
 
 #
 msgid "Show VCR SCART on main menu"
@@ -18193,6 +18499,9 @@ msgstr "السلوفينيّة"
 msgid "Slow"
 msgstr "بطيئ"
 
+msgid "Slow Motion"
+msgstr ""
+
 msgid "Slow motion speeds"
 msgstr "سرعات العرض البطئ"
 
@@ -18518,10 +18827,8 @@ msgstr "أبـدأ"
 msgid "Start Auto Refresh"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Start Kodi"
-msgstr "وقت البـدأ"
+msgid "Start Boot Frequency"
+msgstr ""
 
 msgid "Start RDS interactive"
 msgstr ""
@@ -19093,6 +19400,9 @@ msgstr ""
 msgid "Sync failure moving back to origin !"
 msgstr "فشل المزامنة الانتقال مره أخرى إلى الأصل !"
 
+msgid "Sync mode"
+msgstr ""
+
 msgid "Sync time using"
 msgstr ""
 
@@ -19130,9 +19440,6 @@ msgid "System Setup"
 msgstr ""
 
 msgid "System information"
-msgstr ""
-
-msgid "System partition free space:"
 msgstr ""
 
 msgid "System temperature"
@@ -19228,6 +19535,9 @@ msgstr ""
 
 msgid "Tanzania, United Republic of"
 msgstr "جمهورية تنزانيا, المتحدة"
+
+msgid "Target location"
+msgstr ""
 
 #, python-format
 msgid "Task '%s' ended successfully."
@@ -19470,6 +19780,10 @@ msgid ""
 "Please install it."
 msgstr ""
 
+#
+msgid "The PIN code entered is incorrect!"
+msgstr "الرقم السري الذي قمت بإدخاله غير صحيح."
+
 msgid "The PIN code has been changed successfully."
 msgstr "تم تغيير الرقم السري بنجاح."
 
@@ -19590,10 +19904,6 @@ msgid ""
 msgstr ""
 "لم يتم تثبيت ملحقات معالج الشبكة!\n"
 "الرجاء منك تثبيتها."
-
-#
-msgid "The PIN code entered is incorrect!"
-msgstr "الرقم السري الذي قمت بإدخاله غير صحيح."
 
 #
 #, python-format
@@ -19777,6 +20087,9 @@ msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN!"
+msgstr "هذه القناه محميه برقم سري بواسطه الرقابة الأبوية"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -19997,11 +20310,26 @@ msgstr "هذا الخيار يحدد أبعاد الصورة، ويستخدم ع
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "يحدد هذا الخيار قمع القيم الرقمية الخاطئة، وهي نتيجة لعدد محدود من القيم المنفصلة."
 
+msgid "This option sets the video & osd picture brightness."
+msgstr ""
+
+msgid "This option sets the video & osd picture contrast."
+msgstr ""
+
+msgid "This option sets the video picture brightness."
+msgstr ""
+
+msgid "This option sets the video picture contrast."
+msgstr ""
+
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "هذا الخيار لتوضيح وضوح الصورة، وتستخدم عندما يتم نشرا الصورة."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
+
+msgid "This service is protected by a parental control PIN!"
+msgstr "هذه القناه محميه برقم سري بواسطه التحكم الأبوي"
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
@@ -20400,6 +20728,9 @@ msgstr ""
 msgid "Toggle item move mode on/off"
 msgstr ""
 
+msgid "Toggle move mode selection"
+msgstr ""
+
 msgid "Toggle multi-selection mode"
 msgstr ""
 
@@ -20532,9 +20863,6 @@ msgid "Transport Stream Type"
 msgstr "نوع تردد نقل التدفق"
 
 msgid "Trashcan"
-msgstr ""
-
-msgid "Trashcan:"
 msgstr ""
 
 msgid "Travel"
@@ -20800,6 +21128,12 @@ msgstr "نظام مواقع الاقمار الصناعية العالمية"
 msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr "يقوم نظام الأقمار العالمي تلقائيا بتحريك الطبق المتحرك إلى القمر الصناعي الصحيح استنادا إلى الإحداثيات التي ادخلها المستخدم. بدون نظام الأقمار العالمي كل الأقمار الصناعية ونحن بحاجه إلى ان يكون إعدادها وحفظها بشكل فردي."
 
+msgid "USB 2.0 (Back, inner)"
+msgstr ""
+
+msgid "USB 3.0 (Back, outer)"
+msgstr ""
+
 msgid "USB Stick"
 msgstr ""
 
@@ -20823,6 +21157,9 @@ msgstr "أوكرانيا"
 
 msgid "Ukrainian"
 msgstr "الأوكرانية"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr ""
@@ -20934,8 +21271,15 @@ msgstr ""
 msgid "Unscramble receiving http streams"
 msgstr "فتح تشفير إستقبال رابط التدفق"
 
+msgid "Unset As Startup Service"
+msgstr ""
+
 msgid "Unsupported"
 msgstr "غير مدعم"
+
+#
+msgid "Until standby/restart"
+msgstr "حتى وضع الانتظار/إعادة التشغيل"
 
 msgid "Unused 0x22"
 msgstr ""
@@ -21105,9 +21449,6 @@ msgstr ""
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr ""
 
-msgid "Use key map *"
-msgstr ""
-
 msgid "Use MHW EPG information when it is available."
 msgstr "إستخدام معلومات دليل البرامج الإلكترونية للوسائط السريعة عندما تكون متوفرة."
 
@@ -21135,7 +21476,7 @@ msgstr "إستخدام معلومات دليل البرامج الإلكترون
 msgid "Use Virgin EPG information when it is available."
 msgstr "إستخدام معلومات دليل البرامج الإلكترونية الأولية عندما تكون متوفرة."
 
-msgid "Use Zap timer end time"
+msgid "Use Zap timer end times"
 msgstr ""
 
 #
@@ -21184,6 +21525,9 @@ msgstr ""
 msgid "Use interface"
 msgstr "استخدم واجهة المستخدم"
 
+msgid "Use key map *"
+msgstr ""
+
 msgid "Use logarithmic steps"
 msgstr ""
 
@@ -21211,7 +21555,19 @@ msgstr ""
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr ""
 
+msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgstr ""
+
 msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface top"
 msgstr ""
 
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
@@ -22008,9 +22364,6 @@ msgstr ""
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
-msgid "When enabled, a new Zap timer will be created with activated end time."
-msgstr ""
-
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "عند التمكين، سيتم عرض رسالة منبثقة عند انتهاء الفيلم وسيبدأ عرض الفيلم التالي."
 
@@ -22350,6 +22703,9 @@ msgstr "نعم, دائمآ"
 
 msgid "Yes, and delete this movie"
 msgstr "نعم، وامسح هذا الفيلم"
+
+msgid "Yes, and don't ask again for this session"
+msgstr ""
 
 #
 msgid "Yes, backup my settings!"
@@ -22803,9 +23159,6 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr ""
 
-msgid "Favorite Edit"
-msgstr "[تحرير المفضله]"
-
 msgid "[Image Info]\n"
 msgstr ""
 
@@ -22815,16 +23168,6 @@ msgstr ""
 msgid "[Timeshift] Restarting time shift!"
 msgstr ""
 
-msgid "Alternative Edit"
-msgstr "[تحرير البديل]"
-
-msgid "Bouquet Edit"
-msgstr "[تحرير الباقه]"
-
-#
-msgid "Move Mode"
-msgstr "[وضع التحريك]"
-
 #
 msgid "a gui to assign services/providers to common interface modules"
 msgstr "واجهة الانجما قنوات/مزودين في في وحدات واجهة المستخدم"
@@ -22832,17 +23175,6 @@ msgstr "واجهة الانجما قنوات/مزودين في في وحدات �
 #
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "واجهة الانجما قنوات/مزودين/كايدات في وحدات واجهة المستخدم"
-
-msgid "Abort Alternatives Edit"
-msgstr "إلغاء تحرير البدائل"
-
-#
-msgid "Abort Bouquet Edit"
-msgstr "الغاء تحرير الباقه"
-
-#
-msgid "Abort Favorites Edit"
-msgstr "الغاء تحرير المفضله"
 
 msgid "ac3"
 msgstr ""
@@ -22854,29 +23186,6 @@ msgstr ""
 #, fuzzy
 msgid "active"
 msgstr "نشط"
-
-msgid "Add Alternatives"
-msgstr "إضافة بدائل"
-
-msgid "Add Bouquet"
-msgstr "إضافة باقه"
-
-msgid "Add Bouquet To Parental Protection"
-msgstr ""
-
-msgid "Add Marker"
-msgstr "إضافة علامه"
-
-#
-msgid "Add Service To Bouquet"
-msgstr "إضافه القناه الى الباقه"
-
-#
-msgid "Add Service To Favorites"
-msgstr "إضافه القناه الى المفضله"
-
-msgid "Add To Parental Protection"
-msgstr "أضف حمايه أبويه"
 
 msgid "address:"
 msgstr ""
@@ -22920,7 +23229,7 @@ msgstr ""
 msgid "and"
 msgstr ""
 
-msgid "and never ask again this session again"
+msgid "aqua"
 msgstr ""
 
 msgid ""
@@ -22958,6 +23267,9 @@ msgstr "تلقائي"
 msgid "automatic"
 msgstr "تلقائي"
 
+msgid "azure"
+msgstr ""
+
 #
 msgid "back"
 msgstr "للخلف"
@@ -22983,9 +23295,6 @@ msgstr "أسود"
 
 msgid "black & white"
 msgstr "أسود و أبيض"
-
-msgid "blacklist"
-msgstr "القائمه السوداء"
 
 msgid "blue"
 msgstr "أزرق"
@@ -23073,9 +23382,6 @@ msgstr "الطبخ"
 msgid "copy"
 msgstr ""
 
-msgid "Copy To Bouquets"
-msgstr "نسخ الى الباقات"
-
 msgid "current affairs (general)"
 msgstr ""
 
@@ -23107,9 +23413,6 @@ msgstr "مسح"
 
 msgid "detective/thriller"
 msgstr "تحقيق/مثير"
-
-msgid "Disable Move Mode"
-msgstr "تعطيل وضع التحريك"
 
 msgid "disabled"
 msgstr "تم التعطيل"
@@ -23157,9 +23460,6 @@ msgstr ""
 msgid "economics/social advisory"
 msgstr "الاقتصاد/الاستشارات الاجتماعية"
 
-msgid "Edit Alternatives"
-msgstr "تحرير البدائل"
-
 msgid "education/information (general)"
 msgstr ""
 
@@ -23175,34 +23475,11 @@ msgstr "فارغ"
 msgid "enable PiP no HDR"
 msgstr ""
 
-#
-msgid "Enable Bouquet Edit"
-msgstr "تفعيل تحرير الباقه"
-
-#
-msgid "Enable Favorite Edit"
-msgstr "تفعيل تحرير المفضله"
-
-#
-msgid "Enable Move Mode"
-msgstr "تفعيل وضع التحريك"
-
 msgid "enabled"
 msgstr "تم التفعيل"
 
-msgid "End Alternatives Edit"
-msgstr "إنهاء تحرير البدائل"
-
-#
-msgid "End Bouquet Edit"
-msgstr "إنتهاء تحرير الباقه"
-
 msgid "end cut here"
 msgstr "إنتهاء القطع هنا"
-
-#
-msgid "End Favorites Edit"
-msgstr "إنتهاء تحرير المفضله"
 
 msgid "enigma2 and network"
 msgstr ""
@@ -23273,9 +23550,6 @@ msgstr "اسم الملف"
 
 msgid "film/cinema"
 msgstr "فيلم/سينما"
-
-msgid "Find Currently Playing Service"
-msgstr ""
 
 msgid "fine arts"
 msgstr "الفنون الجميلة"
@@ -23480,6 +23754,9 @@ msgstr "هوايات الترفيه (عام)"
 msgid "length"
 msgstr "طول"
 
+msgid "lime"
+msgstr ""
+
 msgid "literature"
 msgstr "الادب"
 
@@ -23663,6 +23940,9 @@ msgstr "إغلاق أو تشغيل الدخول المحمي لشبكة الوا
 msgid "offset is"
 msgstr "يوازن هو"
 
+msgid "olympic blue"
+msgstr ""
+
 msgid "on READ ONLY medium."
 msgstr "قراءة الوسيط فقط."
 
@@ -23671,6 +23951,9 @@ msgid "on how to restore the image"
 msgstr "هل تريد فعلا حذف الرزمه:\n"
 
 msgid "only HD"
+msgstr ""
+
+msgid "orange"
 msgstr ""
 
 msgid "original language"
@@ -23685,10 +23968,7 @@ msgstr "الفنون التمثيلية"
 msgid "pid:"
 msgstr ""
 
-msgid "Play As Picture in Picture window"
-msgstr ""
-
-msgid "Play In Main window"
+msgid "pink"
 msgstr ""
 
 msgid "please press OK when ready"
@@ -23715,7 +23995,7 @@ msgstr ""
 msgid "provider:"
 msgstr ""
 
-msgid "Purge Deleted User Bouquets"
+msgid "purple"
 msgstr ""
 
 msgid "red"
@@ -23738,47 +24018,12 @@ msgstr "ملحوظة الناس"
 msgid "remove after this position"
 msgstr "حذف بعد هذا المكان"
 
-msgid "Remove All Alternatives"
-msgstr "حذف كل البدائل"
-
-msgid "Remove All New Found Flags"
-msgstr "أحذف كل علامات وجد حديثا"
-
 #
 msgid "remove before this position"
 msgstr "حذف قبل هذا المكان"
 
-msgid "Remove Bouquet From Parental Protection"
-msgstr ""
-
-msgid "Remove Cable Services"
-msgstr ""
-
-msgid "Remove Entry"
-msgstr "حذف"
-
-msgid "Remove From Parental Protection"
-msgstr "حذف من الحمايه الابويه"
-
-#
-msgid "Remove New Found Flag"
-msgstr "حذف الاعلام التى وجدت حديثا"
-
-msgid "Remove Satellite Services"
-msgstr "حذف القمر المختار"
-
-msgid "Remove Terrestrial Services"
-msgstr ""
-
 msgid "remove this mark"
 msgstr "حذف هذه العلامة"
-
-#, fuzzy
-msgid "Rename Entry"
-msgstr "حذف"
-
-msgid "Restore Deleted User Bouquets"
-msgstr ""
 
 msgid "restoring satellites.xml not possible!"
 msgstr ""
@@ -23800,6 +24045,9 @@ msgstr "موسيقى الروك/البوب"
 
 msgid "romance"
 msgstr "رومانسي"
+
+msgid "rose"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -23838,9 +24086,6 @@ msgstr "هادئه/الكلاسيكية/الدينية/التاريخية الف
 msgid "service PIN"
 msgstr ""
 
-msgid "Set As Startup Service"
-msgstr ""
-
 msgid "share:"
 msgstr ""
 
@@ -23859,9 +24104,6 @@ msgstr ""
 
 msgid "show all tags"
 msgstr "عرض كافة العلامات"
-
-msgid "Show Alternatives"
-msgstr "إظهار البدائل"
 
 msgid "show cards with uphop 0"
 msgstr ""
@@ -23908,9 +24150,6 @@ msgstr "قناه غير موجوده فى قائمة الخدمات"
 
 msgid "show program information..."
 msgstr ""
-
-msgid "show transponder info"
-msgstr "إظهار بيانات التردد"
 
 msgid "show/game show (general)"
 msgstr "عرض المسلسل/اللعبة (عام)"
@@ -23978,9 +24217,6 @@ msgstr "حجم الخطوة"
 msgid "stereo"
 msgstr "ستيريو"
 
-msgid "Unset As Startup Service"
-msgstr ""
-
 msgid "successful"
 msgstr ""
 
@@ -24025,14 +24261,8 @@ msgstr "التنس/الاسكواش"
 msgid "text"
 msgstr ""
 
-msgid "This bouquet is protected by a parental control PIN!"
-msgstr "هذه القناه محميه برقم سري بواسطه الرقابة الأبوية"
-
 msgid "this recording"
 msgstr "هذا التسجيل"
-
-msgid "This service is protected by a parental control PIN!"
-msgstr "هذه القناه محميه برقم سري بواسطه التحكم الأبوي"
 
 #
 msgid "toggle time, chapter, audio, subtitle info"
@@ -24100,10 +24330,6 @@ msgid "untestable"
 msgstr "تفعيل"
 
 #
-msgid "Until standby/restart"
-msgstr "حتى وضع الانتظار/إعادة التشغيل"
-
-#
 #, fuzzy
 msgid "update"
 msgstr "تحديث"
@@ -24143,6 +24369,9 @@ msgstr "الرياضة المائية"
 
 msgid "west"
 msgstr "غرب"
+
+msgid "white"
+msgstr ""
 
 msgid "wide"
 msgstr "عريض"
@@ -24187,3 +24416,79 @@ msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "   Please press OK to start Kodi..."
+#~ msgstr ""
+#~ "\n"
+#~ "   ...من فضلك اضغط موافق لتشغيل كودي"
+
+#~ msgid ""
+#~ "\n"
+#~ "  WARNING: \n"
+#~ "  There is not enough space to install Kodi!"
+#~ msgstr ""
+#~ "\n"
+#~ "  ..تحذير\n"
+#~ "..لا توجد هناك مساحة كافية لتركيب كودي"
+
+#~ msgid ""
+#~ "\n"
+#~ " Kodi not present. Proceed with install?"
+#~ msgstr ""
+#~ "\n"
+#~ " ..كودي غير موجود. هل تريد الاستمرار؟"
+
+#, python-format
+#~ msgid "%d KB"
+#~ msgstr "%d KB"
+
+#
+#, fuzzy, python-format
+#~ msgid "%s - %s (%s%d min)"
+#~ msgstr "%d دقيقه"
+
+#
+#~ msgid "Capacity: "
+#~ msgstr "السعه: "
+
+#
+#, fuzzy
+#~ msgid "Delete EPG"
+#~ msgstr "أمسح"
+
+#
+#~ msgid "Initialize"
+#~ msgstr "تفعيل البدأ"
+
+#
+#~ msgid "Keyboard map"
+#~ msgstr "خريطة لوحة المفاتيح"
+
+#, fuzzy
+#~ msgid "Kodi installed:"
+#~ msgstr "تراجع عن التثبيت"
+
+#, fuzzy
+#~ msgid "Kodi media player"
+#~ msgstr "الخروج من مشغل الوسائط"
+
+#
+#~ msgid "Model: "
+#~ msgstr "الموديل : "
+
+#, fuzzy
+#~ msgid "Please press OK to start Kodi..."
+#~ msgstr "من فضلك أضغط موافق للاستمرار"
+
+#
+#, fuzzy
+#~ msgid "Start Kodi"
+#~ msgstr "وقت البـدأ"
+
+#~ msgid "blacklist"
+#~ msgstr "القائمه السوداء"
+
+#~ msgid "show transponder info"
+#~ msgstr "إظهار بيانات التردد"

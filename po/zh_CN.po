@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
+"POT-Creation-Date: 2023-05-21 12:38+0000\n"
 "PO-Revision-Date: 2022-11-22 18:20+0000\n"
 "Last-Translator: tzyy1970 <haotzyy1970@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -25,29 +25,6 @@ msgstr ""
 "\n"
 "\n"
 "[用户- 自定义组(电视)]\n"
-
-msgid ""
-"\n"
-"   Please press OK to start Kodi..."
-msgstr ""
-"\n"
-"   请按OK键启动Kodi..."
-
-msgid ""
-"\n"
-"  WARNING: \n"
-"  There is not enough space to install Kodi!"
-msgstr ""
-"\n"
-"   警告: \n"
-"  没有足够的空间来安装Kodi!"
-
-msgid ""
-"\n"
-" Kodi not present. Proceed with install?"
-msgstr ""
-"\n"
-" Kodi不存在.是否继续安装？"
 
 msgid ""
 "\n"
@@ -105,15 +82,6 @@ msgstr " (频道 %s)"
 #, python-format
 msgid " (Partition %d)"
 msgstr " (分区 %d)"
-
-msgid "(PiP)"
-msgstr " (画中画)"
-
-msgid "(Radio)"
-msgstr " (广播)"
-
-msgid "(TV)"
-msgstr " (电视)"
 
 msgid " (current channel)"
 msgstr " (当前频道)"
@@ -864,10 +832,6 @@ msgid "%d Hours"
 msgstr "%d 小时"
 
 #, python-format
-msgid "%d KB"
-msgstr "%d KB"
-
-#, python-format
 msgid "%d MB"
 msgstr "%d MB"
 
@@ -1144,6 +1108,10 @@ msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
 #, python-format
+msgid "%s  -  %s    (%s%d Min)"
+msgstr ""
+
+#, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
@@ -1182,10 +1150,6 @@ msgstr "%s (%s)"
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
-
-#, python-format
-msgid "%s - %s (%s%d min)"
-msgstr "%s - %s (%s%d 分钟)"
 
 #, python-format
 msgid "%s - Setup"
@@ -1330,8 +1294,20 @@ msgstr "(注意: 将在 %d 次崩溃后重新启动.)"
 msgid "(FTA Service)"
 msgstr "(免费频道)"
 
+msgid "(PiP)"
+msgstr " (画中画)"
+
+msgid "(Pip)"
+msgstr ""
+
+msgid "(Radio)"
+msgstr " (广播)"
+
 msgid "(Show only reader:"
 msgstr "(仅显示读卡器:"
+
+msgid "(TV)"
+msgstr " (电视)"
 
 msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
 msgstr ""
@@ -1423,6 +1399,9 @@ msgstr "1080i50"
 
 msgid "1080i50: 24p/50i/60i"
 msgstr "1080i50: 24p/50i/60i"
+
+msgid "1080i50Hz"
+msgstr ""
 
 msgid "1080p 24Hz"
 msgstr "1080p 24Hz"
@@ -1733,9 +1712,6 @@ msgstr "6"
 msgid "6 hours"
 msgstr "6小时"
 
-msgid "60 minutes"
-msgstr "60 秒"
-
 msgid "60p/24p"
 msgstr "60p/24p"
 
@@ -1774,6 +1750,9 @@ msgstr "720p50"
 
 msgid "720p50: 24p/50p/60p"
 msgstr "720p50: 24p/50p/60p"
+
+msgid "720p50Hz"
+msgstr ""
 
 msgid "8"
 msgstr "8"
@@ -2013,6 +1992,15 @@ msgstr "阿布哈兹语"
 msgid "Abort"
 msgstr "中止"
 
+msgid "Abort Alternatives Edit"
+msgstr "取消备选项目编辑"
+
+msgid "Abort Bouquet Edit"
+msgstr "取消自定义组编辑"
+
+msgid "Abort Favorites Edit"
+msgstr "取消喜爱频道编辑"
+
 msgid "Aborted a pseudo recording.\n"
 msgstr "已中止一个伪录制.\n"
 
@@ -2097,11 +2085,20 @@ msgstr "适配器设置"
 msgid "Add"
 msgstr "添加"
 
+msgid "Add Alternatives"
+msgstr "添加备选"
+
 msgid "Add AutoTimer"
 msgstr "添加自动定时器"
 
 msgid "Add Bookmark"
 msgstr "添加书签"
+
+msgid "Add Bouquet"
+msgstr "添加自定义组"
+
+msgid "Add Bouquet To Parental Protection"
+msgstr "为父母保护添加自定义组"
 
 msgid "Add Current"
 msgstr "添加当前"
@@ -2118,14 +2115,26 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
+msgid "Add Marker"
+msgstr "添加标记"
+
 msgid "Add New Quad Channel Entry"
 msgstr "添加新的四画面频道条目"
 
 msgid "Add RecordTimer"
 msgstr "添加录制定时器"
 
+msgid "Add Service To Bouquet"
+msgstr "添加频道到自定义组"
+
+msgid "Add Service To Favorites"
+msgstr "频道添加到收藏夹"
+
 msgid "Add Timer"
 msgstr "添加定时器"
+
+msgid "Add To Parental Protection"
+msgstr "添加到家长控制"
 
 msgid "Add Zap+RecordTimer"
 msgstr "添加快速定时器+录制定时器"
@@ -2148,8 +2157,14 @@ msgstr "为当前事件添加换台定时器"
 msgid "Add a ZapTimer for next event"
 msgstr "添加下个事件切换定时器"
 
+msgid "Add a bouquet"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "添加一个标记"
+
+msgid "Add a marker"
+msgstr ""
 
 msgid "Add a new tag"
 msgstr "增加新标签"
@@ -2210,6 +2225,9 @@ msgstr "添加录制(不限时)"
 
 msgid "Add recording (stop after current event)"
 msgstr "添加录制(当前事件后停止)"
+
+msgid "Add selected service to bouquet or alternative"
+msgstr ""
 
 msgid "Add service"
 msgstr "添加频道"
@@ -2466,6 +2484,9 @@ msgstr "备选方案 1"
 msgid "Alternative 2"
 msgstr "备选方案 2"
 
+msgid "Alternative Edit"
+msgstr "[编辑替代项目]"
+
 msgid "Alternative numbering mode"
 msgstr "可选编号模式"
 
@@ -2521,6 +2542,9 @@ msgid "Android"
 msgstr ""
 
 msgid "Android Linux SE"
+msgstr ""
+
+msgid "Angle"
 msgstr ""
 
 msgid "Angola"
@@ -3148,9 +3172,6 @@ msgstr "巴什基尔语"
 msgid "Basic PID info"
 msgstr "基本PID信息"
 
-msgid "Basic settings"
-msgstr "基本设置"
-
 msgid "Basketball"
 msgstr "篮球"
 
@@ -3230,11 +3251,17 @@ msgstr "比特率:"
 msgid "Black"
 msgstr "黑色"
 
+msgid "Black Screen"
+msgstr ""
+
 msgid "Black screen"
 msgstr "黑屏"
 
 msgid "Black screen till locked"
 msgstr "黑屏直到锁定"
+
+msgid "Blacklist"
+msgstr ""
 
 msgid "Blinking REC"
 msgstr "REC符号闪烁"
@@ -3315,8 +3342,20 @@ msgstr "博茨瓦纳"
 msgid "Bottom"
 msgstr "底部"
 
+msgid "Bouquet Edit"
+msgstr "[编辑自定义组]"
+
 msgid "Bouquet List"
 msgstr "自定义列表"
+
+msgid "Bouquet Selector"
+msgstr ""
+
+msgid "Bouquet Selector Actions"
+msgstr ""
+
+msgid "Bouquet Selector Navigation Actions"
+msgstr ""
 
 msgid "BouquetList"
 msgstr "自定义列表"
@@ -3347,6 +3386,12 @@ msgstr "亮度(正常)"
 
 msgid "Brightness (Standby)"
 msgstr "亮度(待机状态)"
+
+msgid "Brightness Video"
+msgstr ""
+
+msgid "Brightness Video & OSD"
+msgstr ""
 
 msgid "British Indian Ocean Territory"
 msgstr "英属印度洋领地"
@@ -3597,6 +3642,9 @@ msgstr "处理器"
 msgid "CPU / Core %d type"
 msgstr ""
 
+msgid "CPU Control"
+msgstr ""
+
 msgid "CPU architecture"
 msgstr "处理器架构"
 
@@ -3779,6 +3827,9 @@ msgstr "取消/关闭软件更新屏幕"
 msgid "Cancel Task"
 msgstr ""
 
+msgid "Cancel and exit the context menu"
+msgstr ""
+
 msgid "Cancel any changed settings and exit"
 msgstr "取消所有更改并退出"
 
@@ -3815,6 +3866,9 @@ msgstr "取消选择"
 msgid "Cancel selection and exit"
 msgstr ""
 
+msgid "Cancel the bouquet selection"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -3828,6 +3882,9 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "取消镜像选择并退出所有菜单"
 
 msgid "Cancel the service selection"
+msgstr ""
+
+msgid "Cancel the service zap"
 msgstr ""
 
 msgid "Cancel the slot selection and exit"
@@ -3865,9 +3922,6 @@ msgstr "不能移动到回收站"
 msgid "Capacity"
 msgstr "容量"
 
-msgid "Capacity: "
-msgstr "容量: "
-
 msgid "Cape Verde"
 msgstr "佛得角"
 
@@ -3903,6 +3957,9 @@ msgstr "摄氏度"
 
 msgid "Center"
 msgstr "中心"
+
+msgid "Center DVB Subs On This Service"
+msgstr "为该频道居中DVB字幕"
 
 msgid "Centered"
 msgstr "居中"
@@ -3999,8 +4056,20 @@ msgstr "频道信息"
 msgid "Channel List"
 msgstr "频道列表"
 
+msgid "Channel List Context Menu"
+msgstr "频道列表上下文菜单"
+
+msgid "Channel List Context Menu Actions"
+msgstr ""
+
+msgid "Channel List Context Menu Navigation Actions"
+msgstr ""
+
 msgid "Channel List Menu"
 msgstr "频道列表菜单"
+
+msgid "Channel Selection"
+msgstr "频道选择"
 
 msgid "Channel Selection Settings"
 msgstr "频道选择设置"
@@ -4013,9 +4082,6 @@ msgstr "频道按键反转"
 
 msgid "Channel down"
 msgstr "频道向下"
-
-msgid "Channel List Context Menu"
-msgstr "频道列表上下文菜单"
 
 msgid "Channel list cursor behavior"
 msgstr "频道列表光标行为"
@@ -4043,9 +4109,6 @@ msgstr "频道名称"
 
 msgid "Channel preview mode"
 msgstr "频道预览模式"
-
-msgid "Channel Selection"
-msgstr "频道选择"
 
 msgid "Channel selection configuration"
 msgstr "频道选择配置"
@@ -4162,9 +4225,6 @@ msgstr "选择机顶盒"
 msgid "Choice where to put \"%s\""
 msgstr "选择存放\"%s\"的位置"
 
-msgid "Choose Bouquet"
-msgstr "选择自定义组"
-
 msgid "Choose Tuner"
 msgstr "选择调谐器"
 
@@ -4214,6 +4274,9 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 msgid "Choose the style/order in which items are displayed in help windows."
+msgstr ""
+
+msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4297,8 +4360,8 @@ msgstr ""
 msgid "Clean up and remove all completed timers?"
 msgstr ""
 
-msgid "Cleaning Trashes"
-msgstr "清理垃圾"
+msgid "Cleaning Trashcan"
+msgstr ""
 
 msgid "Cleanup"
 msgstr "清理"
@@ -4424,6 +4487,12 @@ msgstr "哥伦比亚"
 msgid "Color"
 msgstr "颜色"
 
+msgid "Color Bottom"
+msgstr ""
+
+msgid "Color Top"
+msgstr ""
+
 msgid "Color format"
 msgstr "色彩格式"
 
@@ -4475,6 +4544,9 @@ msgstr "通用接口"
 
 msgid "Common Interface Assignment"
 msgstr "公共接口分配"
+
+msgid "Common Interface Settings"
+msgstr ""
 
 msgid "Common Setup Actions"
 msgstr "常见设置操作"
@@ -4537,6 +4609,9 @@ msgstr "配置新定时器的默认设置.更改后需要重新启动."
 
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "配置在尝试重新启动设备或GUI时,针对哪些类型的录制显示有关活动录制的警告."
+
+msgid "Configure front panel LEDs"
+msgstr ""
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info"
 msgstr "配置录制文件名的构造方式.标准:日期时间-频道-标题非常短:标题很短:标题-日期时间短的时间:日期时间-标题短:日期-标题长:日期时间-频道-标题-信息"
@@ -4978,6 +5053,12 @@ msgstr "继续播放(循环)"
 msgid "Contrast"
 msgstr "对比度"
 
+msgid "Contrast Video"
+msgstr ""
+
+msgid "Contrast Video & OSD"
+msgstr ""
+
 msgid "Control LED can be turned on or off here."
 msgstr "控制LED可在此处打开或关闭."
 
@@ -5014,6 +5095,9 @@ msgstr "烹饪"
 msgid "Copy"
 msgstr "复制"
 
+msgid "Copy To Bouquets"
+msgstr "复制到自定义组"
+
 msgid "Copy all related files"
 msgstr ""
 
@@ -5042,6 +5126,9 @@ msgstr ""
 
 msgid "Copying files"
 msgstr "复制文件"
+
+msgid "Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location."
+msgstr ""
 
 msgid "Cornish"
 msgstr "康沃尔语"
@@ -5196,6 +5283,18 @@ msgstr "时事"
 msgid "Current CEC address"
 msgstr "当前CEC地址"
 
+#, python-format
+msgid "Current CPU Frequency cores 0 and 1: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current CPU Frequency other cores: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current CPU cores 0 and 1 Voltage: %s V"
+msgstr ""
+
 msgid "Current Directory"
 msgstr ""
 
@@ -5204,6 +5303,10 @@ msgstr "当前事件:"
 
 msgid "Current Status:"
 msgstr "当前状态:"
+
+#, python-format
+msgid "Current Temperature (SoC): %s °C"
+msgstr ""
 
 msgid "Current crash log"
 msgstr "当前崩溃日志"
@@ -5779,8 +5882,8 @@ msgstr "确认删除"
 msgid "Delete Directory"
 msgstr ""
 
-msgid "Delete EPG"
-msgstr "删除EPG"
+msgid "Delete EPG Cache"
+msgstr ""
 
 msgid "Delete Image"
 msgstr "删除镜像"
@@ -6092,6 +6195,9 @@ msgstr "禁用IceTV"
 msgid "Disable MiniTV"
 msgstr "禁用MiniTV"
 
+msgid "Disable Move Mode"
+msgstr "禁用移动模式"
+
 msgid "Disable Picture in Picture"
 msgstr "禁用画中画"
 
@@ -6231,12 +6337,6 @@ msgstr "迪维希 / 迪维希 / 马尔代夫"
 msgid "Djibouti"
 msgstr "吉布提"
 
-msgid "Center DVB Subs On This Service"
-msgstr "为该频道居中DVB字幕"
-
-msgid "Don't Center DVB Subs On This Service"
-msgstr "不将DVB字幕置于该频道的中心"
-
 msgid "Do not change"
 msgstr "不更改"
 
@@ -6300,11 +6400,9 @@ msgid "Do you really want to exit?"
 msgstr "是否确定退出?"
 
 msgid ""
-"Do you really want to initialize the device?\n"
-"All data on the disk will be lost!"
+"Do you really want to format the device in the Linux file system?\n"
+"All data on the device will be lost!"
 msgstr ""
-"是否要初始化这个设备?\n"
-"磁盘上的所有数据将丢失!"
 
 msgid "Do you really want to move to trashcan ?"
 msgstr "是否确定移动到回收站？"
@@ -6441,6 +6539,9 @@ msgstr "多米尼加"
 
 msgid "Dominican Republic"
 msgstr "多米尼加共和国"
+
+msgid "Don't Center DVB Subs On This Service"
+msgstr "不将DVB字幕置于该频道的中心"
 
 msgid "Don't add this recording"
 msgstr "不添加此录像"
@@ -6691,6 +6792,9 @@ msgstr "厄瓜多尔"
 msgid "Edit"
 msgstr "编辑"
 
+msgid "Edit Alternatives"
+msgstr "编辑备选"
+
 msgid "Edit Mode Off"
 msgstr "关闭编辑模式"
 
@@ -6808,6 +6912,9 @@ msgstr "启用5V有源天线"
 msgid "Enable BT Audio"
 msgstr "启用蓝牙音频"
 
+msgid "Enable Bouquet Edit"
+msgstr "启用自定义组编辑"
+
 msgid "Enable CIHelper for SLOT CI0"
 msgstr "为CI0插槽启用CI帮助程序"
 
@@ -6822,6 +6929,9 @@ msgstr "启用 EIT EPG"
 
 msgid "Enable Fast Channel Change"
 msgstr ""
+
+msgid "Enable Favorite Edit"
+msgstr "启用收藏夹编辑"
 
 msgid "Enable Focus Animation"
 msgstr "启用聚焦动画"
@@ -6838,11 +6948,17 @@ msgstr "启用IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "启用信息栏淡出"
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "启用MHW公司EPG"
 
 msgid "Enable MiniTV"
 msgstr "启用MiniTV"
+
+msgid "Enable Move Mode"
+msgstr "启用移动模式"
 
 msgid "Enable Netmed EPG"
 msgstr "启用网络中的EPG"
@@ -6904,6 +7020,9 @@ msgstr "为视频文件启用章节支持"
 
 msgid "Enable command line function"
 msgstr "启用命令行功能"
+
+msgid "Enable core dumps *"
+msgstr ""
 
 msgid "Enable cut file support for audio files"
 msgstr "为音频文件启用剪切文件支持"
@@ -6977,6 +7096,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "启用此选项可将键盘键映射数据添加到调试日志文件."
 
@@ -7042,6 +7164,15 @@ msgstr "加密系统:"
 
 msgid "End"
 msgstr "结束"
+
+msgid "End Alternatives Edit"
+msgstr "结束备选编辑"
+
+msgid "End Bouquet Edit"
+msgstr "结束自定义组编辑"
+
+msgid "End Favorites Edit"
+msgstr "结束收藏编辑"
 
 msgid "End time"
 msgstr "结束时间"
@@ -7683,9 +7814,6 @@ msgstr "扩展"
 msgid "Extended"
 msgstr "扩展"
 
-msgid "Extended GUI"
-msgstr "扩展GUI界面"
-
 msgid "Extended Networksetup Plugin..."
 msgstr "扩展网络设置插件..."
 
@@ -7877,6 +8005,9 @@ msgstr "快进"
 msgid "Fast forward speeds"
 msgstr "快进速度"
 
+msgid "Favorite Edit"
+msgstr "[喜爱频道编辑]"
+
 msgid "Favorites"
 msgstr "Favorites键"
 
@@ -8039,12 +8170,18 @@ msgstr "最终滚动延迟"
 msgid "Finance"
 msgstr "金融"
 
+msgid "Find Currently Playing Service"
+msgstr "查找当前播放的频道"
+
 #, python-format
 msgid "Find out more at %s"
 msgstr "更多信息请访问%s"
 
 msgid "Find similar events in the EPG"
 msgstr "在EPG中查找类似事件"
+
+msgid "Find the service currently playing"
+msgstr ""
 
 msgid "Finding available log files, please wait..."
 msgstr ""
@@ -8081,6 +8218,9 @@ msgstr "固定"
 
 msgid "Fixed X11 font (SD)"
 msgstr "固定的X11字体(标清)"
+
+msgid "Flash Expander"
+msgstr ""
 
 msgid "Flash Image"
 msgstr "刷写镜像"
@@ -8182,6 +8322,9 @@ msgstr "格式化"
 
 msgid "Format HDD"
 msgstr "格式化硬盘"
+
+msgid "Format Storage Device"
+msgstr ""
 
 msgid "Format your hard drive"
 msgstr "格式化你的硬盘"
@@ -8856,6 +8999,15 @@ msgstr "历史"
 msgid "History Prev/Next"
 msgstr ""
 
+msgid "History Zap"
+msgstr ""
+
+msgid "History Zap Actions"
+msgstr ""
+
+msgid "History Zap Navigation Actions"
+msgstr ""
+
 msgid "History back"
 msgstr "历史回溯"
 
@@ -8870,6 +9022,9 @@ msgstr "历史换台 ..."
 
 msgid "Hockey"
 msgstr "曲棍球"
+
+msgid "Hold First Frame"
+msgstr ""
 
 msgid "Hold screen"
 msgstr "保持屏幕"
@@ -8966,6 +9121,9 @@ msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11新款"
+
+msgid "IMDB Search"
+msgstr ""
 
 msgid "IMDb Details"
 msgstr "IMDB详情"
@@ -9307,6 +9465,9 @@ msgstr ""
 msgid "Include action map data"
 msgstr "包含动作映射信息"
 
+msgid "Include international data *"
+msgstr ""
+
 msgid "Include keyboard data"
 msgstr "包含键盘操作信息"
 
@@ -9416,9 +9577,6 @@ msgid "Initial scroll delay"
 msgstr "初始的滚动延迟"
 
 msgid "Initialization"
-msgstr "初始化"
-
-msgid "Initialize"
 msgstr "初始化"
 
 msgid "Initializing storage device..."
@@ -9789,6 +9947,22 @@ msgstr "内核文件"
 msgid "Kernel version"
 msgstr "内核版本"
 
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
+
 msgid "Key"
 msgstr ""
 
@@ -9800,9 +9974,6 @@ msgstr "键盘设置"
 
 msgid "Keyboard data entry"
 msgstr "键盘数据输入"
-
-msgid "Keyboard map"
-msgstr "键盘映射"
 
 msgid "Kikuyu / Gikuyu"
 msgstr "基库尤"
@@ -9821,15 +9992,6 @@ msgstr "Kodi"
 
 msgid "Kodi MediaCenter"
 msgstr "科迪媒体中心"
-
-msgid "Kodi installed:"
-msgstr "Kodi已安装:"
-
-msgid "Kodi media player"
-msgstr "科迪媒体播放器"
-
-msgid "Kodi/extra partition free space:"
-msgstr "Kodi/额外分区可用空间："
 
 msgid "Komi"
 msgstr "科米-兹梁语"
@@ -9882,11 +10044,29 @@ msgstr "用于DVB-T/T2频道的LCN插件"
 msgid "LCN rules:"
 msgstr "LCN规则:"
 
+msgid "LED Brightness"
+msgstr ""
+
+msgid "LED Color"
+msgstr ""
+
 msgid "LED Deep Standby"
 msgstr "LED深度待机"
 
+msgid "LED Idle Brightness"
+msgstr ""
+
+msgid "LED Idle Color"
+msgstr ""
+
 msgid "LED Normal"
 msgstr "LED正常"
+
+msgid "LED Settings"
+msgstr ""
+
+msgid "LED Shutdown Color"
+msgstr ""
 
 msgid "LED Standby"
 msgstr "LED待机"
@@ -10145,8 +10325,8 @@ msgstr "直播电视操作"
 msgid "Load"
 msgstr "加载"
 
-msgid "Load EPG"
-msgstr "加载EPG"
+msgid "Load EPG Cache"
+msgstr ""
 
 msgid "Load play list"
 msgstr "加载播放列表"
@@ -10156,9 +10336,6 @@ msgstr "从定时器和录像中加载标签"
 
 msgid "Load unlinked user bouquets"
 msgstr "载入未链接的用户自定义频道组"
-
-msgid "Load/Save/Delete"
-msgstr "加载/保存/删除"
 
 msgid "Loading information, please wait..."
 msgstr "正在加载信息,请稍候..."
@@ -10197,6 +10374,9 @@ msgstr "本地(升序)"
 
 msgid "Locale (Descending)"
 msgstr "本地(降序)"
+
+msgid "Locale / Language Settings"
+msgstr ""
 
 msgid "Locale Selection Settings"
 msgstr "本地设置"
@@ -10775,9 +10955,6 @@ msgstr "自动存储模式"
 msgid "Model"
 msgstr "型号"
 
-msgid "Model: "
-msgstr "型号: "
-
 msgid "Modified"
 msgstr ""
 
@@ -10873,6 +11050,9 @@ msgstr "移动"
 
 msgid "Move Left/Right"
 msgstr "左/右 移动"
+
+msgid "Move Mode"
+msgstr "[移动模式]"
 
 msgid "Move Mode Off"
 msgstr "关闭移动模式"
@@ -12078,6 +12258,9 @@ msgstr "打开频道列表并选择上一个频道"
 msgid "Open service list and select previous channel for PiP"
 msgstr "打开频道列表并选择上一频道为画中画"
 
+msgid "Open the Channel Selection Settings screen"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr "打开插件浏览器"
 
@@ -12386,11 +12569,14 @@ msgstr "巴拉圭"
 msgid "Parent Directory"
 msgstr ""
 
-msgid "Parental Guidance Recommended"
-msgstr "建议家长指导"
-
 msgid "Parental Control"
 msgstr "家长控制"
+
+msgid "Parental Control Settings"
+msgstr ""
+
+msgid "Parental Guidance Recommended"
+msgstr "建议家长指导"
 
 msgid "Parental control services editor"
 msgstr "家长控制频道编辑"
@@ -12564,11 +12750,17 @@ msgstr "系统平台"
 msgid "Play"
 msgstr "播放"
 
+msgid "Play As Picture in Picture window"
+msgstr "以画中画播放"
+
 msgid "Play DVD"
 msgstr "播放DVD"
 
 msgid "Play DVDs"
 msgstr "播放DVD光盘"
+
+msgid "Play In Main window"
+msgstr "在主窗口播放"
 
 msgid "Play all audio files in the directory"
 msgstr ""
@@ -12591,6 +12783,12 @@ msgstr "从下一个标记或播放列表条目播放"
 msgid "Play from previous mark or play list entry"
 msgstr "从上一个标记或播放列表条目播放"
 
+msgid "Play in Main"
+msgstr ""
+
+msgid "Play in PiP"
+msgstr ""
+
 msgid "Play music..."
 msgstr "播放音乐..."
 
@@ -12608,6 +12806,12 @@ msgstr "播放上一个"
 
 msgid "Play recorded movies"
 msgstr "播放录制的影片"
+
+msgid "Play selected service in a PiP window"
+msgstr ""
+
+msgid "Play selected service on the main screen"
+msgstr ""
 
 msgid "Play the audio file"
 msgstr ""
@@ -12728,9 +12932,6 @@ msgstr "请先打开画中画"
 
 msgid "Please press OK to continue."
 msgstr "请按OK键继续."
-
-msgid "Please press OK to start Kodi..."
-msgstr "请按OK键启动Kodi..."
 
 msgid "Please select a backup destination"
 msgstr "请选择备份目的地"
@@ -13179,6 +13380,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "按EXIT键返回帮助界面."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13452,6 +13661,9 @@ msgstr "清除"
 msgid "Purge 'Trash' after (days)"
 msgstr "设置从垃圾桶删除项目的时间（天）"
 
+msgid "Purge Deleted User Bouquets"
+msgstr "清除已删除的用户频道组"
+
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "清除除/添加/删除当前突出显示的语言环境/语言之外的所有内容"
 
@@ -13493,6 +13705,9 @@ msgstr "四画面PIP频道 "
 
 msgid "Quad PiP is not available."
 msgstr "四画面PiP不可用."
+
+msgid "Quad9 DNS"
+msgstr ""
 
 msgid "Quechua"
 msgstr "克丘亚语"
@@ -13593,6 +13808,9 @@ msgstr "RF输出"
 msgid "RGB"
 msgstr "RGB颜色"
 
+msgid "Radio"
+msgstr ""
+
 msgid "Radio Channel Selection"
 msgstr "电台频道选择"
 
@@ -13661,6 +13879,12 @@ msgstr "是否删除这个条目？"
 msgid "Really exit the subservices quickzap?"
 msgstr "是否要退出子频道快速切换?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 msgid "Really reboot into Recovery Mode?"
 msgstr "是否重新启动进入恢复模式?"
 
@@ -13721,11 +13945,11 @@ msgstr "接收器名称"
 msgid "Reception"
 msgstr "接收器"
 
-msgid "Reception Settings"
-msgstr "接收设置"
-
 msgid "Reception Lists"
 msgstr "接收列表"
+
+msgid "Reception Settings"
+msgstr "接收设置"
 
 msgid "Record"
 msgstr "录制"
@@ -13931,6 +14155,9 @@ msgstr ""
 msgid "Reload Services"
 msgstr "重新加载频道"
 
+msgid "Reload all services from disk"
+msgstr ""
+
 msgid "Reload blacklists"
 msgstr "重新加载黑名单"
 
@@ -13985,11 +14212,26 @@ msgstr "遥控器类型"
 msgid "Remove"
 msgstr "移除"
 
+msgid "Remove All Alternatives"
+msgstr "移除所有备选"
+
+msgid "Remove All New Found Flags"
+msgstr "删除所有新发现标记"
+
 msgid "Remove Bookmark"
 msgstr "删除书签"
 
+msgid "Remove Bouquet From Parental Protection"
+msgstr "频道组取消家长控制"
+
+msgid "Remove Cable Services"
+msgstr "删除有线节目"
+
 msgid "Remove Confirmation"
 msgstr "删除确认"
+
+msgid "Remove Entry"
+msgstr "删除节目"
 
 msgid "Remove Failed !!"
 msgstr "删除失败!!"
@@ -13997,14 +14239,26 @@ msgstr "删除失败!!"
 msgid "Remove Finished."
 msgstr "删除完成."
 
+msgid "Remove From Parental Protection"
+msgstr "取消家长控制"
+
+msgid "Remove New Found Flag"
+msgstr "删除新发现标记"
+
 msgid "Remove Plugins"
 msgstr "删除插件"
 
 msgid "Remove Quad Channel Entry"
 msgstr "删除四画面频道条目"
 
+msgid "Remove Satellite Services"
+msgstr "删除所选的卫星"
+
 msgid "Remove Service"
 msgstr "删除频道"
+
+msgid "Remove Terrestrial Services"
+msgstr "删除地面波频道"
 
 msgid "Remove a DNS entry"
 msgstr ""
@@ -14051,11 +14305,14 @@ msgstr "从书签中删除当前文件夹"
 msgid "Remove currently selected title"
 msgstr "删除当前选择的标题"
 
-msgid "Show VBI Line For This Service"
-msgstr "删除此服务的隐藏 VBI 行"
+msgid "Remove forever"
+msgstr ""
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "从书签中删除选定的文件夹"
+
+msgid "Remove selected service"
+msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "从外部字幕(器乐或环境声音,例如,当门铃响或听到枪声)中删除听力受损者的文本."
@@ -14087,6 +14344,9 @@ msgstr "重命名"
 msgid "Rename Directory"
 msgstr ""
 
+msgid "Rename Entry"
+msgstr "重命名节目"
+
 msgid "Rename all related files"
 msgstr ""
 
@@ -14100,6 +14360,9 @@ msgid "Rename name and description for new events"
 msgstr "重命名新事件的名称和描述"
 
 msgid "Rename only highlighted file"
+msgstr ""
+
+msgid "Rename selected service"
 msgstr ""
 
 msgid "Rename the proposed file to be created"
@@ -14223,9 +14486,6 @@ msgstr "重新启动"
 msgid "Restart %s %s."
 msgstr "重新启动 %s %s."
 
-msgid "Restart Enigma2 to apply the changes?"
-msgstr "是否重新启动Enigma2以应用更改?"
-
 msgid "Restart GUI"
 msgstr "重启GUI"
 
@@ -14270,6 +14530,9 @@ msgstr "重新启动您的网络连接"
 
 msgid "Restore"
 msgstr "恢复"
+
+msgid "Restore Deleted User Bouquets"
+msgstr "恢复已删除的用户自定义组"
 
 msgid "Restore MetrixHD Settings"
 msgstr "恢复MetrixHD设置"
@@ -14409,6 +14672,9 @@ msgstr "罗曼什语"
 
 msgid "Root"
 msgstr "根"
+
+msgid "Root Image"
+msgstr ""
 
 msgid "Root directory"
 msgstr "根目录"
@@ -14556,9 +14822,6 @@ msgstr "SSID"
 msgid "SSID:"
 msgstr "SSID:"
 
-msgid "STB Display"
-msgstr "机顶盒显示屏"
-
 msgid "Sailing"
 msgstr "帆船"
 
@@ -14670,8 +14933,8 @@ msgstr "保存"
 msgid "Save / Enter text and exit"
 msgstr "保存/输入文本并退出"
 
-msgid "Save EPG"
-msgstr "保存EPG"
+msgid "Save EPG Cache"
+msgstr ""
 
 msgid "Save EPG data"
 msgstr "保存EPG数据"
@@ -15013,6 +15276,9 @@ msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "选择'是'可编辑此设备的设置.选择'否'会将设备设置重置为默认值."
+
+msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
+msgstr ""
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "如果设置为'是',则可以预览EPG列表中的频道."
@@ -15430,6 +15696,12 @@ msgstr ""
 msgid "Select the current menu item"
 msgstr "选择当前菜单项"
 
+msgid "Select the currently highlighted action"
+msgstr ""
+
+msgid "Select the currently highlighted bouquet"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "为用户界面选择当前突出显示的区域设置/语言"
 
@@ -15616,6 +15888,9 @@ msgstr "选择要使用的LNB/设备类型(通常为'通用').如果您的LNB类
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "选择正在使用的单电缆接收设备的类型."
+
+msgid "Select the type of keyboard connected to the %s %s."
+msgstr ""
 
 msgid "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr ""
@@ -15942,6 +16217,9 @@ msgstr "频道"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "频道可在频道组中分组.启用后,可使一个频道属于多个频道组."
 
+msgid "Set As Startup Service"
+msgstr "设为开机频道"
+
 msgid "Set Base time"
 msgstr "设置基准时间"
 
@@ -15950,6 +16228,21 @@ msgstr "设置CI分配检测可用的频道."
 
 msgid "Set Framerate for MiniTV"
 msgstr "设置MiniTV帧率"
+
+msgid "Set MAX CPU frequency for cores 0 and 1"
+msgstr ""
+
+msgid "Set MAX CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+msgid "Set MIN CPU frequency for cores 0 and 1"
+msgstr ""
+
+msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+msgid "Set Scaling governor"
+msgstr ""
 
 msgid "Set action for 'Info' key"
 msgstr "为'Info'键设置动作"
@@ -16381,6 +16674,9 @@ msgstr "将480/576p 24fps显示为"
 msgid "Show 720p 24fps as"
 msgstr "将720p 24fps显示为"
 
+msgid "Show Alternatives"
+msgstr "显示备选"
+
 msgid "Show Audioselection"
 msgstr "显示音频选择"
 
@@ -16522,8 +16818,14 @@ msgstr "显示单个EPG"
 msgid "Show Timer List"
 msgstr "显示定时器列表"
 
+msgid "Show Transponder Information"
+msgstr ""
+
 msgid "Show True/False as graphical switch"
 msgstr "将是/否显示为图形开关"
+
+msgid "Show VBI Line For This Service"
+msgstr "删除此服务的隐藏 VBI 行"
 
 msgid "Show VCR SCART on main menu"
 msgstr "在主菜单上显示VCR SCART"
@@ -17269,6 +17571,9 @@ msgstr "斯洛文尼亚语"
 msgid "Slow"
 msgstr "慢"
 
+msgid "Slow Motion"
+msgstr ""
+
 msgid "Slow motion speeds"
 msgstr "慢动作"
 
@@ -17584,8 +17889,8 @@ msgstr "开始"
 msgid "Start Auto Refresh"
 msgstr ""
 
-msgid "Start Kodi"
-msgstr "启动Kodi"
+msgid "Start Boot Frequency"
+msgstr ""
 
 msgid "Start RDS interactive"
 msgstr "启动RDS交互"
@@ -18110,6 +18415,9 @@ msgstr "同步NTP间隔(分钟)"
 msgid "Sync failure moving back to origin !"
 msgstr "同步失败回到原点！"
 
+msgid "Sync mode"
+msgstr ""
+
 msgid "Sync time using"
 msgstr "时间同步方式"
 
@@ -18145,9 +18453,6 @@ msgstr "系统设置"
 
 msgid "System information"
 msgstr ""
-
-msgid "System partition free space:"
-msgstr "系统分区可用空间:"
 
 msgid "System temperature"
 msgstr "系统温度"
@@ -18238,6 +18543,9 @@ msgstr "泰米尔语"
 
 msgid "Tanzania, United Republic of"
 msgstr "坦桑尼亚联合共和国"
+
+msgid "Target location"
+msgstr ""
 
 #, python-format
 msgid "Task '%s' ended successfully."
@@ -18494,6 +18802,9 @@ msgstr ""
 "Merlin EPG中心插件未安装 ！\n"
 "请先安装."
 
+msgid "The PIN code entered is incorrect!"
+msgstr "PIN码输入错误."
+
 msgid "The PIN code has been changed successfully."
 msgstr "PIN码已成功修改."
 
@@ -18622,9 +18933,6 @@ msgid ""
 msgstr ""
 "未安装网络向导扩展!\n"
 "请安装它."
-
-msgid "The PIN code entered is incorrect!"
-msgstr "PIN码输入错误."
 
 #, python-format
 msgid "The results have been written to %s."
@@ -18804,6 +19112,9 @@ msgstr "此配置选项允许你在下载中显示系统插件模块"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "此配置选项允许你在下载中显示网页链接模块"
+
+msgid "This bouquet is protected by a parental control PIN!"
+msgstr "此频道受家长控制密码保护"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -19024,11 +19335,26 @@ msgstr "此选项允许在4:3到16:9的图像拉伸时启用缩放清晰度."
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "这个选项设置的虚假数字轮廓的抑制,这是一个数量有限的离散值的结果."
 
+msgid "This option sets the video & osd picture brightness."
+msgstr ""
+
+msgid "This option sets the video & osd picture contrast."
+msgstr ""
+
+msgid "This option sets the video picture brightness."
+msgstr ""
+
+msgid "This option sets the video picture contrast."
+msgstr ""
+
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "这个选项设置图片的清晰度,使用时的照片被放大."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
+
+msgid "This service is protected by a parental control PIN!"
+msgstr "此频道受家长控制密码保护"
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "这将为调试日志中的每一行设置前缀.'启动时间'是自上次启动%s%s以来的秒数."
@@ -19394,6 +19720,9 @@ msgstr ""
 msgid "Toggle item move mode on/off"
 msgstr ""
 
+msgid "Toggle move mode selection"
+msgstr ""
+
 msgid "Toggle multi-selection mode"
 msgstr ""
 
@@ -19512,9 +19841,6 @@ msgstr "传输流类型"
 
 msgid "Trashcan"
 msgstr "垃圾桶"
-
-msgid "Trashcan:"
-msgstr "垃圾桶:"
 
 msgid "Travel"
 msgstr "旅行"
@@ -19758,6 +20084,12 @@ msgstr "极轴"
 msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr "USALS会根据用户输入的坐标自动将机动天线移至正确的卫星.如果没有USALS,则需要分别设置和保存每个卫星."
 
+msgid "USB 2.0 (Back, inner)"
+msgstr ""
+
+msgid "USB 3.0 (Back, outer)"
+msgstr ""
+
 msgid "USB Stick"
 msgstr "U盘"
 
@@ -19781,6 +20113,9 @@ msgstr "乌克兰"
 
 msgid "Ukrainian"
 msgstr "乌克兰语"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "无人值守升级,没有图形用户界面"
@@ -19884,8 +20219,14 @@ msgstr "解扰http串流"
 msgid "Unscramble receiving http streams"
 msgstr "解扰http串流"
 
+msgid "Unset As Startup Service"
+msgstr "取消该频道作为开机频道"
+
 msgid "Unsupported"
 msgstr "不支持"
+
+msgid "Until standby/restart"
+msgstr "直到待机/重启"
 
 msgid "Unused 0x22"
 msgstr "未使用的 0x22"
@@ -20054,9 +20395,6 @@ msgstr "使用HDMI预处理"
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "使用硬盘硬件待机定时器"
 
-msgid "Use key map *"
-msgstr "使用键盘映射 *"
-
 msgid "Use MHW EPG information when it is available."
 msgstr "MHW公司EPG信息可用时使用."
 
@@ -20084,7 +20422,7 @@ msgstr "Viasat公司EPG信息可用时使用."
 msgid "Use Virgin EPG information when it is available."
 msgstr "原始EPG信息可用时使用."
 
-msgid "Use Zap timer end time"
+msgid "Use Zap timer end times"
 msgstr ""
 
 msgid "Use a gateway"
@@ -20135,6 +20473,9 @@ msgstr "使用定位设置当前时区位置"
 msgid "Use interface"
 msgstr "使用界面"
 
+msgid "Use key map *"
+msgstr "使用键盘映射 *"
+
 msgid "Use logarithmic steps"
 msgstr ""
 
@@ -20162,8 +20503,20 @@ msgstr "使用超薄屏幕"
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr "使用遥控器上的左/右键来调整用户界面的大小.左键减小大小,右键增加大小."
 
+msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgstr ""
+
 msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
 msgstr "使用遥控器上的左/右键移动用户界面左/右键"
+
+msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface top"
+msgstr ""
 
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
 msgstr "使用遥控器上的左/右按钮来将用户界面向上/向下移动"
@@ -20930,9 +21283,6 @@ msgstr "启用后,Enigma2将加载未链接的频道列表.这意味着频道列
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
-msgid "When enabled, a new Zap timer will be created with activated end time."
-msgstr ""
-
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "启用时,将在电影播放完毕,下一个电影开始时显示弹出消息."
 
@@ -21269,6 +21619,9 @@ msgstr "是,总是"
 
 msgid "Yes, and delete this movie"
 msgstr "是,删除这部电影"
+
+msgid "Yes, and don't ask again for this session"
+msgstr ""
 
 msgid "Yes, backup my settings!"
 msgstr "是,备份我的设置!"
@@ -21736,9 +22089,6 @@ msgstr "祖鲁语"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2设置]\n"
 
-msgid "Favorite Edit"
-msgstr "[喜爱频道编辑]"
-
 msgid "[Image Info]\n"
 msgstr "[镜像信息]\n"
 
@@ -21748,29 +22098,11 @@ msgstr "[时移]合并录像失败!"
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[时移]重启时移!"
 
-msgid "Alternative Edit"
-msgstr "[编辑替代项目]"
-
-msgid "Bouquet Edit"
-msgstr "[编辑自定义组]"
-
-msgid "Move Mode"
-msgstr "[移动模式]"
-
 msgid "a gui to assign services/providers to common interface modules"
 msgstr "为CI模块分配频道/供应商图形界面"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "为CI模块分配频道/供应商/CAID图形界面"
-
-msgid "Abort Alternatives Edit"
-msgstr "取消备选项目编辑"
-
-msgid "Abort Bouquet Edit"
-msgstr "取消自定义组编辑"
-
-msgid "Abort Favorites Edit"
-msgstr "取消喜爱频道编辑"
 
 msgid "ac3"
 msgstr "ac3"
@@ -21780,27 +22112,6 @@ msgstr "激活画中画"
 
 msgid "active"
 msgstr "激活"
-
-msgid "Add Alternatives"
-msgstr "添加备选"
-
-msgid "Add Bouquet"
-msgstr "添加自定义组"
-
-msgid "Add Bouquet To Parental Protection"
-msgstr "为父母保护添加自定义组"
-
-msgid "Add Marker"
-msgstr "添加标记"
-
-msgid "Add Service To Bouquet"
-msgstr "添加频道到自定义组"
-
-msgid "Add Service To Favorites"
-msgstr "频道添加到收藏夹"
-
-msgid "Add To Parental Protection"
-msgstr "添加到家长控制"
 
 msgid "address:"
 msgstr "地址:"
@@ -21844,8 +22155,8 @@ msgstr "上午"
 msgid "and"
 msgstr "和"
 
-msgid "and never ask again this session again"
-msgstr "以后不再询问该会话"
+msgid "aqua"
+msgstr ""
 
 msgid ""
 "are you sure you want to restore\n"
@@ -21883,6 +22194,9 @@ msgstr "自动"
 msgid "automatic"
 msgstr "自动"
 
+msgid "azure"
+msgstr ""
+
 msgid "back"
 msgstr "返回"
 
@@ -21907,9 +22221,6 @@ msgstr "黑色"
 
 msgid "black & white"
 msgstr "黑名单与白名单"
-
-msgid "blacklist"
-msgstr "黑名单"
 
 msgid "blue"
 msgstr "蓝色"
@@ -21996,9 +22307,6 @@ msgstr "烹饪"
 msgid "copy"
 msgstr "复制"
 
-msgid "Copy To Bouquets"
-msgstr "复制到自定义组"
-
 msgid "current affairs (general)"
 msgstr "新闻/时事(一般)"
 
@@ -22028,9 +22336,6 @@ msgstr "删除"
 
 msgid "detective/thriller"
 msgstr "侦探/悬疑"
-
-msgid "Disable Move Mode"
-msgstr "禁用移动模式"
 
 msgid "disabled"
 msgstr "禁用"
@@ -22078,9 +22383,6 @@ msgstr "ecm.信息"
 msgid "economics/social advisory"
 msgstr "经济/社会报告"
 
-msgid "Edit Alternatives"
-msgstr "编辑备选"
-
 msgid "education/information (general)"
 msgstr "教育/信息(一般)"
 
@@ -22096,29 +22398,11 @@ msgstr "空白"
 msgid "enable PiP no HDR"
 msgstr "启用PIP无HDR"
 
-msgid "Enable Bouquet Edit"
-msgstr "启用自定义组编辑"
-
-msgid "Enable Favorite Edit"
-msgstr "启用收藏夹编辑"
-
-msgid "Enable Move Mode"
-msgstr "启用移动模式"
-
 msgid "enabled"
 msgstr "启用"
 
-msgid "End Alternatives Edit"
-msgstr "结束备选编辑"
-
-msgid "End Bouquet Edit"
-msgstr "结束自定义组编辑"
-
 msgid "end cut here"
 msgstr "结束剪切"
-
-msgid "End Favorites Edit"
-msgstr "结束收藏编辑"
 
 msgid "enigma2 and network"
 msgstr "enigma2和网络"
@@ -22188,9 +22472,6 @@ msgstr "文件名"
 
 msgid "film/cinema"
 msgstr "电影/看电影"
-
-msgid "Find Currently Playing Service"
-msgstr "查找当前播放的频道"
 
 msgid "fine arts"
 msgstr "美术"
@@ -22381,6 +22662,9 @@ msgstr "休闲业余爱好(一般)"
 msgid "length"
 msgstr "长度"
 
+msgid "lime"
+msgstr ""
+
 msgid "literature"
 msgstr "文学"
 
@@ -22552,6 +22836,9 @@ msgstr "关闭或打开wpa2"
 msgid "offset is"
 msgstr "偏移为"
 
+msgid "olympic blue"
+msgstr ""
+
 msgid "on READ ONLY medium."
 msgstr "只读介质."
 
@@ -22560,6 +22847,9 @@ msgstr "关于如何恢复镜像"
 
 msgid "only HD"
 msgstr "仅高清"
+
+msgid "orange"
+msgstr ""
 
 msgid "original language"
 msgstr "原始语言"
@@ -22573,11 +22863,8 @@ msgstr "表演艺术"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "Play As Picture in Picture window"
-msgstr "以画中画播放"
-
-msgid "Play In Main window"
-msgstr "在主窗口播放"
+msgid "pink"
+msgstr ""
 
 msgid "please press OK when ready"
 msgstr "准备好后,按OK键"
@@ -22603,8 +22890,8 @@ msgstr "提供:"
 msgid "provider:"
 msgstr "供应商:"
 
-msgid "Purge Deleted User Bouquets"
-msgstr "清除已删除的用户频道组"
+msgid "purple"
+msgstr ""
 
 msgid "red"
 msgstr "红色"
@@ -22624,44 +22911,11 @@ msgstr "杰出的人物"
 msgid "remove after this position"
 msgstr "删除这个位置之后的"
 
-msgid "Remove All Alternatives"
-msgstr "移除所有备选"
-
-msgid "Remove All New Found Flags"
-msgstr "删除所有新发现标记"
-
 msgid "remove before this position"
 msgstr "删除这个位置之前的"
 
-msgid "Remove Bouquet From Parental Protection"
-msgstr "频道组取消家长控制"
-
-msgid "Remove Cable Services"
-msgstr "删除有线节目"
-
-msgid "Remove Entry"
-msgstr "删除节目"
-
-msgid "Remove From Parental Protection"
-msgstr "取消家长控制"
-
-msgid "Remove New Found Flag"
-msgstr "删除新发现标记"
-
-msgid "Remove Satellite Services"
-msgstr "删除所选的卫星"
-
-msgid "Remove Terrestrial Services"
-msgstr "删除地面波频道"
-
 msgid "remove this mark"
 msgstr "删除此标记"
-
-msgid "Rename Entry"
-msgstr "重命名节目"
-
-msgid "Restore Deleted User Bouquets"
-msgstr "恢复已删除的用户自定义组"
 
 msgid "restoring satellites.xml not possible!"
 msgstr "无法恢复satellites.xml！"
@@ -22683,6 +22937,9 @@ msgstr "摇滚/流行"
 
 msgid "romance"
 msgstr "浪漫"
+
+msgid "rose"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -22722,9 +22979,6 @@ msgstr "严肃/古典/宗教/历史电影/电视剧"
 msgid "service PIN"
 msgstr "频道密码"
 
-msgid "Set As Startup Service"
-msgstr "设为开机频道"
-
 msgid "share:"
 msgstr "共享:"
 
@@ -22742,9 +22996,6 @@ msgstr "显示所有卡"
 
 msgid "show all tags"
 msgstr "显示所有标签"
-
-msgid "Show Alternatives"
-msgstr "显示备选"
 
 msgid "show cards with uphop 0"
 msgstr "使用UPHOP 0显示卡片"
@@ -22787,9 +23038,6 @@ msgstr "在频道列表上显示台标"
 
 msgid "show program information..."
 msgstr "显示程序信息..."
-
-msgid "show transponder info"
-msgstr "显示转发器信息"
 
 msgid "show/game show (general)"
 msgstr "表演/游戏节目(一般)"
@@ -22857,9 +23105,6 @@ msgstr "步长"
 msgid "stereo"
 msgstr "立体声"
 
-msgid "Unset As Startup Service"
-msgstr "取消该频道作为开机频道"
-
 msgid "successful"
 msgstr "成功"
 
@@ -22902,14 +23147,8 @@ msgstr "网球/壁球"
 msgid "text"
 msgstr ""
 
-msgid "This bouquet is protected by a parental control PIN!"
-msgstr "此频道受家长控制密码保护"
-
 msgid "this recording"
 msgstr "这段录像"
-
-msgid "This service is protected by a parental control PIN!"
-msgstr "此频道受家长控制密码保护"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "切换 时间.章节.音频.字幕 信息"
@@ -22971,9 +23210,6 @@ msgstr "未发布"
 msgid "untestable"
 msgstr "无法测试"
 
-msgid "Until standby/restart"
-msgstr "直到待机/重启"
-
 msgid "update"
 msgstr "更新"
 
@@ -23009,6 +23245,9 @@ msgstr "水上运动"
 
 msgid "west"
 msgstr "西"
+
+msgid "white"
+msgstr "白色"
 
 msgid "wide"
 msgstr "宽"
@@ -23048,6 +23287,119 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "   Please press OK to start Kodi..."
+#~ msgstr ""
+#~ "\n"
+#~ "   请按OK键启动Kodi..."
+
+#~ msgid ""
+#~ "\n"
+#~ "  WARNING: \n"
+#~ "  There is not enough space to install Kodi!"
+#~ msgstr ""
+#~ "\n"
+#~ "   警告: \n"
+#~ "  没有足够的空间来安装Kodi!"
+
+#~ msgid ""
+#~ "\n"
+#~ " Kodi not present. Proceed with install?"
+#~ msgstr ""
+#~ "\n"
+#~ " Kodi不存在.是否继续安装？"
+
+#, python-format
+#~ msgid "%d KB"
+#~ msgstr "%d KB"
+
+#, python-format
+#~ msgid "%s - %s (%s%d min)"
+#~ msgstr "%s - %s (%s%d 分钟)"
+
+#~ msgid "60 minutes"
+#~ msgstr "60 秒"
+
+#~ msgid "Basic settings"
+#~ msgstr "基本设置"
+
+#~ msgid "Capacity: "
+#~ msgstr "容量: "
+
+#~ msgid "Choose Bouquet"
+#~ msgstr "选择自定义组"
+
+#~ msgid "Cleaning Trashes"
+#~ msgstr "清理垃圾"
+
+#~ msgid "Delete EPG"
+#~ msgstr "删除EPG"
+
+#~ msgid ""
+#~ "Do you really want to initialize the device?\n"
+#~ "All data on the disk will be lost!"
+#~ msgstr ""
+#~ "是否要初始化这个设备?\n"
+#~ "磁盘上的所有数据将丢失!"
+
+#~ msgid "Extended GUI"
+#~ msgstr "扩展GUI界面"
+
+#~ msgid "Initialize"
+#~ msgstr "初始化"
+
+#~ msgid "Keyboard map"
+#~ msgstr "键盘映射"
+
+#~ msgid "Kodi installed:"
+#~ msgstr "Kodi已安装:"
+
+#~ msgid "Kodi media player"
+#~ msgstr "科迪媒体播放器"
+
+#~ msgid "Kodi/extra partition free space:"
+#~ msgstr "Kodi/额外分区可用空间："
+
+#~ msgid "Load EPG"
+#~ msgstr "加载EPG"
+
+#~ msgid "Load/Save/Delete"
+#~ msgstr "加载/保存/删除"
+
+#~ msgid "Model: "
+#~ msgstr "型号: "
+
+#~ msgid "Please press OK to start Kodi..."
+#~ msgstr "请按OK键启动Kodi..."
+
+#~ msgid "Restart Enigma2 to apply the changes?"
+#~ msgstr "是否重新启动Enigma2以应用更改?"
+
+#~ msgid "STB Display"
+#~ msgstr "机顶盒显示屏"
+
+#~ msgid "Save EPG"
+#~ msgstr "保存EPG"
+
+#~ msgid "Start Kodi"
+#~ msgstr "启动Kodi"
+
+#~ msgid "System partition free space:"
+#~ msgstr "系统分区可用空间:"
+
+#~ msgid "Trashcan:"
+#~ msgstr "垃圾桶:"
+
+#~ msgid "and never ask again this session again"
+#~ msgstr "以后不再询问该会话"
+
+#~ msgid "blacklist"
+#~ msgstr "黑名单"
+
+#~ msgid "show transponder info"
+#~ msgstr "显示转发器信息"
 
 #, python-format
 #~ msgid "%s %s software because updates are available."
@@ -24453,9 +24805,6 @@ msgstr "®"
 
 #~ msgid "user defined"
 #~ msgstr "用户自定义"
-
-#~ msgid "white"
-#~ msgstr "白色"
 
 #, python-format
 #~ msgid "Mount '%s' has not enough free space to record."

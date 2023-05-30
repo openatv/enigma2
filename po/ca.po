@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
+"POT-Creation-Date: 2023-05-21 12:38+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -27,27 +27,6 @@ msgstr ""
 "\n"
 "\n"
 "[Usuari - rams (TV)]\n"
-
-msgid ""
-"\n"
-"   Please press OK to start Kodi..."
-msgstr ""
-"\n"
-"   Premeu Bé per començar Kodi..."
-
-msgid ""
-"\n"
-"  WARNING: \n"
-"  There is not enough space to install Kodi!"
-msgstr ""
-"\n"
-"  AVÍS:\n"
-"  No hi ha prou espai per instal·lar Kodi."
-
-msgid ""
-"\n"
-" Kodi not present. Proceed with install?"
-msgstr ""
 
 msgid ""
 "\n"
@@ -99,15 +78,6 @@ msgstr " (Canal %s)"
 #, python-format
 msgid " (Partition %d)"
 msgstr " (Partició %d)"
-
-msgid "(PiP)"
-msgstr "(PiP)"
-
-msgid "(Radio)"
-msgstr " (Ràdio)"
-
-msgid "(TV)"
-msgstr "(TV)"
 
 msgid " (current channel)"
 msgstr ""
@@ -948,10 +918,6 @@ msgid "%d Hours"
 msgstr ""
 
 #, python-format
-msgid "%d KB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr "%d MB"
 
@@ -1242,6 +1208,10 @@ msgid "%s  (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
+msgid "%s  -  %s    (%s%d Min)"
+msgstr ""
+
+#, python-format
 msgid "%s %02d.%02d."
 msgstr ""
 
@@ -1284,11 +1254,6 @@ msgstr "%s (%s)\n"
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
-
-#
-#, fuzzy, python-format
-msgid "%s - %s (%s%d min)"
-msgstr "%d min"
 
 #
 #, fuzzy, python-format
@@ -1440,8 +1405,20 @@ msgstr ""
 msgid "(FTA Service)"
 msgstr "Canals"
 
+msgid "(PiP)"
+msgstr "(PiP)"
+
+msgid "(Pip)"
+msgstr ""
+
+msgid "(Radio)"
+msgstr " (Ràdio)"
+
 msgid "(Show only reader:"
 msgstr ""
+
+msgid "(TV)"
+msgstr "(TV)"
 
 msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
 msgstr ""
@@ -1544,6 +1521,9 @@ msgid "1080i50"
 msgstr ""
 
 msgid "1080i50: 24p/50i/60i"
+msgstr ""
+
+msgid "1080i50Hz"
 msgstr ""
 
 msgid "1080p 24Hz"
@@ -1886,9 +1866,6 @@ msgstr "6"
 msgid "6 hours"
 msgstr ""
 
-msgid "60 minutes"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1926,6 +1903,9 @@ msgid "720p50"
 msgstr ""
 
 msgid "720p50: 24p/50p/60p"
+msgstr ""
+
+msgid "720p50Hz"
 msgstr ""
 
 msgid "8"
@@ -2181,6 +2161,18 @@ msgstr ""
 msgid "Abort"
 msgstr "Cancela"
 
+#
+msgid "Abort Alternatives Edit"
+msgstr "abortar l'edició d'alternatives"
+
+#
+msgid "Abort Bouquet Edit"
+msgstr "cancel·lar l'edició de llistes"
+
+#
+msgid "Abort Favorites Edit"
+msgstr "cancel·lar l'edició de preferits"
+
 msgid "Aborted a pseudo recording.\n"
 msgstr ""
 
@@ -2279,12 +2271,23 @@ msgstr "Configuració de l'adaptador"
 msgid "Add"
 msgstr "Afegeix"
 
+#
+msgid "Add Alternatives"
+msgstr "afegir alternatives"
+
 msgid "Add AutoTimer"
 msgstr ""
 
 #
 msgid "Add Bookmark"
 msgstr "Afegeix un marcador"
+
+#
+msgid "Add Bouquet"
+msgstr "afegir llista"
+
+msgid "Add Bouquet To Parental Protection"
+msgstr ""
 
 msgid "Add Current"
 msgstr ""
@@ -2301,6 +2304,10 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
+#
+msgid "Add Marker"
+msgstr "afegir marcador"
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
@@ -2309,8 +2316,20 @@ msgstr ""
 msgid "Add RecordTimer"
 msgstr "Gravar"
 
+#
+msgid "Add Service To Bouquet"
+msgstr "afegir el canal a la llista"
+
+#
+msgid "Add Service To Favorites"
+msgstr "afegir el canal als preferits"
+
 msgid "Add Timer"
 msgstr ""
+
+#
+msgid "Add To Parental Protection"
+msgstr "afegir a la protecció parental"
 
 #
 #, fuzzy
@@ -2339,9 +2358,15 @@ msgstr ""
 msgid "Add a ZapTimer for next event"
 msgstr ""
 
+msgid "Add a bouquet"
+msgstr ""
+
 #
 msgid "Add a mark"
 msgstr "Afegeix una marca"
+
+msgid "Add a marker"
+msgstr ""
 
 msgid "Add a new tag"
 msgstr ""
@@ -2407,6 +2432,9 @@ msgstr "Afegeix gravació (indefinidament)"
 
 msgid "Add recording (stop after current event)"
 msgstr "Afegeix gravació (aturar-se després de l'esdeveniment actual)"
+
+msgid "Add selected service to bouquet or alternative"
+msgstr ""
 
 #
 msgid "Add service"
@@ -2693,6 +2721,10 @@ msgstr "afegir alternatives"
 msgid "Alternative 2"
 msgstr "afegir alternatives"
 
+#
+msgid "Alternative Edit"
+msgstr "[edició alternatives]"
+
 msgid "Alternative numbering mode"
 msgstr "Modalitat de numeració alternativa"
 
@@ -2749,6 +2781,9 @@ msgid "Android"
 msgstr ""
 
 msgid "Android Linux SE"
+msgstr ""
+
+msgid "Angle"
 msgstr ""
 
 msgid "Angola"
@@ -3425,9 +3460,6 @@ msgstr ""
 msgid "Basic PID info"
 msgstr "Informació bàsica PID"
 
-msgid "Basic settings"
-msgstr ""
-
 msgid "Basketball"
 msgstr ""
 
@@ -3514,11 +3546,17 @@ msgstr "Bitrate:"
 msgid "Black"
 msgstr ""
 
+msgid "Black Screen"
+msgstr ""
+
 msgid "Black screen"
 msgstr "Pantalla negra"
 
 msgid "Black screen till locked"
 msgstr "Pantalla negra bloquejada"
+
+msgid "Blacklist"
+msgstr ""
 
 msgid "Blinking REC"
 msgstr ""
@@ -3605,7 +3643,20 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "boto"
 
+#
+msgid "Bouquet Edit"
+msgstr "[editar llista]"
+
 msgid "Bouquet List"
+msgstr ""
+
+msgid "Bouquet Selector"
+msgstr ""
+
+msgid "Bouquet Selector Actions"
+msgstr ""
+
+msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
 #
@@ -3639,6 +3690,12 @@ msgid "Brightness (Normal)"
 msgstr ""
 
 msgid "Brightness (Standby)"
+msgstr ""
+
+msgid "Brightness Video"
+msgstr ""
+
+msgid "Brightness Video & OSD"
 msgstr ""
 
 msgid "British Indian Ocean Territory"
@@ -3895,6 +3952,9 @@ msgstr ""
 msgid "CPU / Core %d type"
 msgstr ""
 
+msgid "CPU Control"
+msgstr ""
+
 msgid "CPU architecture"
 msgstr ""
 
@@ -4091,6 +4151,9 @@ msgstr ""
 msgid "Cancel Task"
 msgstr ""
 
+msgid "Cancel and exit the context menu"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cancel any changed settings and exit"
@@ -4136,6 +4199,9 @@ msgstr "Selecció de canal"
 msgid "Cancel selection and exit"
 msgstr ""
 
+msgid "Cancel the bouquet selection"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -4153,6 +4219,9 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "Selecció de canal"
 
 msgid "Cancel the service selection"
+msgstr ""
+
+msgid "Cancel the service zap"
 msgstr ""
 
 msgid "Cancel the slot selection and exit"
@@ -4192,10 +4261,6 @@ msgstr "No es pot moure a la paperera"
 msgid "Capacity"
 msgstr ""
 
-#
-msgid "Capacity: "
-msgstr "Capacitat: "
-
 msgid "Cape Verde"
 msgstr ""
 
@@ -4231,6 +4296,9 @@ msgstr ""
 
 msgid "Center"
 msgstr "centre"
+
+msgid "Center DVB Subs On This Service"
+msgstr "Feu servir el servei DVB de centre d’aquest servei"
 
 msgid "Centered"
 msgstr "centrada"
@@ -4339,8 +4407,21 @@ msgstr "Informació del canal"
 msgid "Channel List"
 msgstr ""
 
+msgid "Channel List Context Menu"
+msgstr ""
+
+msgid "Channel List Context Menu Actions"
+msgstr ""
+
+msgid "Channel List Context Menu Navigation Actions"
+msgstr ""
+
 msgid "Channel List Menu"
 msgstr "Menú de llista de canals"
+
+#
+msgid "Channel Selection"
+msgstr "Selecció de canals"
 
 #
 #, fuzzy
@@ -4356,9 +4437,6 @@ msgid "Channel buttons invert"
 msgstr ""
 
 msgid "Channel down"
-msgstr ""
-
-msgid "Channel List Context Menu"
 msgstr ""
 
 msgid "Channel list cursor behavior"
@@ -4387,10 +4465,6 @@ msgstr ""
 
 msgid "Channel preview mode"
 msgstr ""
-
-#
-msgid "Channel Selection"
-msgstr "Selecció de canals"
 
 msgid "Channel selection configuration"
 msgstr ""
@@ -4516,9 +4590,6 @@ msgstr ""
 msgid "Choice where to put \"%s\""
 msgstr ""
 
-msgid "Choose Bouquet"
-msgstr ""
-
 msgid "Choose Tuner"
 msgstr "Trieu Sintonitzador"
 
@@ -4568,6 +4639,9 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 msgid "Choose the style/order in which items are displayed in help windows."
+msgstr ""
+
+msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4655,7 +4729,7 @@ msgstr ""
 msgid "Clean up and remove all completed timers?"
 msgstr ""
 
-msgid "Cleaning Trashes"
+msgid "Cleaning Trashcan"
 msgstr ""
 
 #
@@ -4796,6 +4870,12 @@ msgstr "Colombia"
 msgid "Color"
 msgstr "Color"
 
+msgid "Color Bottom"
+msgstr ""
+
+msgid "Color Top"
+msgstr ""
+
 msgid "Color format"
 msgstr "Format  color"
 
@@ -4853,6 +4933,9 @@ msgstr "Interfície comuna"
 
 #
 msgid "Common Interface Assignment"
+msgstr ""
+
+msgid "Common Interface Settings"
 msgstr ""
 
 msgid "Common Setup Actions"
@@ -4922,6 +5005,9 @@ msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr ""
 
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
+msgstr ""
+
+msgid "Configure front panel LEDs"
 msgstr ""
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info"
@@ -5377,6 +5463,12 @@ msgstr "Continua la reproducció (bucle)"
 msgid "Contrast"
 msgstr "Contrast"
 
+msgid "Contrast Video"
+msgstr ""
+
+msgid "Contrast Video & OSD"
+msgstr ""
+
 msgid "Control LED can be turned on or off here."
 msgstr ""
 
@@ -5413,6 +5505,10 @@ msgstr ""
 msgid "Copy"
 msgstr "Copiar"
 
+#
+msgid "Copy To Bouquets"
+msgstr "copiar a les llistes"
+
 msgid "Copy all related files"
 msgstr ""
 
@@ -5440,6 +5536,9 @@ msgid "Copy these %d directories/files?"
 msgstr ""
 
 msgid "Copying files"
+msgstr ""
+
+msgid "Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location."
 msgstr ""
 
 #
@@ -5607,6 +5706,18 @@ msgstr "Versió actual:"
 msgid "Current CEC address"
 msgstr "Adreça actual del CEC"
 
+#, python-format
+msgid "Current CPU Frequency cores 0 and 1: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current CPU Frequency other cores: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current CPU cores 0 and 1 Voltage: %s V"
+msgstr ""
+
 msgid "Current Directory"
 msgstr ""
 
@@ -5614,6 +5725,10 @@ msgid "Current Event:"
 msgstr ""
 
 msgid "Current Status:"
+msgstr ""
+
+#, python-format
+msgid "Current Temperature (SoC): %s °C"
 msgstr ""
 
 msgid "Current crash log"
@@ -6232,10 +6347,8 @@ msgstr ""
 msgid "Delete Directory"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Delete EPG"
-msgstr "Esborrar"
+msgid "Delete EPG Cache"
+msgstr ""
 
 #
 msgid "Delete Image"
@@ -6573,6 +6686,10 @@ msgid "Disable MiniTV"
 msgstr ""
 
 #
+msgid "Disable Move Mode"
+msgstr "desactivar mode moviment"
+
+#
 msgid "Disable Picture in Picture"
 msgstr "Desactivar PiP"
 
@@ -6720,12 +6837,6 @@ msgstr ""
 msgid "Djibouti"
 msgstr "Djibouti"
 
-msgid "Center DVB Subs On This Service"
-msgstr "Feu servir el servei DVB de centre d’aquest servei"
-
-msgid "Don't Center DVB Subs On This Service"
-msgstr "No centre els subseccions DVB en aquest servei"
-
 #
 msgid "Do not change"
 msgstr "No canviar"
@@ -6790,11 +6901,9 @@ msgid "Do you really want to exit?"
 msgstr "Segur que vols sortir?"
 
 msgid ""
-"Do you really want to initialize the device?\n"
-"All data on the disk will be lost!"
+"Do you really want to format the device in the Linux file system?\n"
+"All data on the device will be lost!"
 msgstr ""
-"Realment voleu inicialitzar el dispositiu?\n"
-"Es perdran totes les dades del disc."
 
 msgid "Do you really want to move to trashcan ?"
 msgstr ""
@@ -6940,6 +7049,9 @@ msgstr "Dominica"
 
 msgid "Dominican Republic"
 msgstr "Dominicana Republica"
+
+msgid "Don't Center DVB Subs On This Service"
+msgstr "No centre els subseccions DVB en aquest servei"
 
 msgid "Don't add this recording"
 msgstr ""
@@ -7197,6 +7309,10 @@ msgid "Edit"
 msgstr "Edita"
 
 #
+msgid "Edit Alternatives"
+msgstr "editar alternatives"
+
+#
 #, fuzzy
 msgid "Edit Mode Off"
 msgstr "Hora final"
@@ -7332,6 +7448,10 @@ msgstr "Activar 5V per a antena activa"
 msgid "Enable BT Audio"
 msgstr "Activat"
 
+#
+msgid "Enable Bouquet Edit"
+msgstr "activar l'edició de la llista"
+
 msgid "Enable CIHelper for SLOT CI0"
 msgstr ""
 
@@ -7346,6 +7466,10 @@ msgstr "Activa EIT EPG"
 
 msgid "Enable Fast Channel Change"
 msgstr ""
+
+#
+msgid "Enable Favorite Edit"
+msgstr "activar l'edició dels preferits"
 
 msgid "Enable Focus Animation"
 msgstr ""
@@ -7364,11 +7488,18 @@ msgstr "Activar"
 msgid "Enable InfoBar fade-out"
 msgstr ""
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr "Activa  MHW EPG"
 
 msgid "Enable MiniTV"
 msgstr ""
+
+#
+msgid "Enable Move Mode"
+msgstr "activar mode moviment"
 
 msgid "Enable Netmed EPG"
 msgstr "Activa EPG Netmed"
@@ -7431,6 +7562,9 @@ msgid "Enable chapter support for video files"
 msgstr ""
 
 msgid "Enable command line function"
+msgstr ""
+
+msgid "Enable core dumps *"
 msgstr ""
 
 msgid "Enable cut file support for audio files"
@@ -7508,6 +7642,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr ""
 
@@ -7577,6 +7714,18 @@ msgstr "Xifrat"
 
 msgid "End"
 msgstr ""
+
+#
+msgid "End Alternatives Edit"
+msgstr "fi de l'edició d'alternatives"
+
+#
+msgid "End Bouquet Edit"
+msgstr "fi de l'edició de llistes"
+
+#
+msgid "End Favorites Edit"
+msgstr "fi de l'edició de preferits"
 
 #
 msgid "End time"
@@ -8237,9 +8386,6 @@ msgstr ""
 msgid "Extended"
 msgstr "Estès"
 
-msgid "Extended GUI"
-msgstr ""
-
 #
 msgid "Extended Networksetup Plugin..."
 msgstr ""
@@ -8444,6 +8590,10 @@ msgstr ""
 msgid "Fast forward speeds"
 msgstr "Velocitats d’avanç ràpides"
 
+#
+msgid "Favorite Edit"
+msgstr "[editar preferits]"
+
 msgid "Favorites"
 msgstr ""
 
@@ -8610,11 +8760,17 @@ msgstr "Retard final de desplaçament"
 msgid "Finance"
 msgstr "Cancel·lar"
 
+msgid "Find Currently Playing Service"
+msgstr ""
+
 #, python-format
 msgid "Find out more at %s"
 msgstr ""
 
 msgid "Find similar events in the EPG"
+msgstr ""
+
+msgid "Find the service currently playing"
 msgstr ""
 
 msgid "Finding available log files, please wait..."
@@ -8657,6 +8813,9 @@ msgid "Fixed"
 msgstr "Arreglat"
 
 msgid "Fixed X11 font (SD)"
+msgstr ""
+
+msgid "Flash Expander"
 msgstr ""
 
 msgid "Flash Image"
@@ -8769,6 +8928,9 @@ msgid "Format"
 msgstr "Format"
 
 msgid "Format HDD"
+msgstr ""
+
+msgid "Format Storage Device"
 msgstr ""
 
 msgid "Format your hard drive"
@@ -9488,6 +9650,15 @@ msgstr ""
 msgid "History Prev/Next"
 msgstr ""
 
+msgid "History Zap"
+msgstr ""
+
+msgid "History Zap Actions"
+msgstr ""
+
+msgid "History Zap Navigation Actions"
+msgstr ""
+
 msgid "History back"
 msgstr "Història de tornada"
 
@@ -9504,6 +9675,9 @@ msgstr ""
 #, fuzzy
 msgid "Hockey"
 msgstr "bloquejat"
+
+msgid "Hold First Frame"
+msgstr ""
 
 msgid "Hold screen"
 msgstr "Mantenir la pantalla en pantalla"
@@ -9610,6 +9784,9 @@ msgid "I/O priority for scripts"
 msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
+msgid "IMDB Search"
 msgstr ""
 
 msgid "IMDb Details"
@@ -9962,6 +10139,9 @@ msgstr ""
 msgid "Include action map data"
 msgstr ""
 
+msgid "Include international data *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Include keyboard data"
@@ -10087,10 +10267,6 @@ msgstr "Retard de desplaçament inicial"
 #
 msgid "Initialization"
 msgstr "Inicialització"
-
-#
-msgid "Initialize"
-msgstr "Inicialitzar"
 
 msgid "Initializing storage device..."
 msgstr "Inicialitzant el dispositiu d’emmagatzematge …"
@@ -10499,6 +10675,22 @@ msgstr ""
 msgid "Kernel version"
 msgstr ""
 
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
+
 msgid "Key"
 msgstr ""
 
@@ -10512,10 +10704,6 @@ msgstr ""
 #
 msgid "Keyboard data entry"
 msgstr "Entrada de dades del teclat"
-
-#
-msgid "Keyboard map"
-msgstr "Mapa del teclat"
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -10533,17 +10721,6 @@ msgid "Kodi"
 msgstr ""
 
 msgid "Kodi MediaCenter"
-msgstr ""
-
-msgid "Kodi installed:"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Kodi media player"
-msgstr "sortir del reproductor"
-
-msgid "Kodi/extra partition free space:"
 msgstr ""
 
 msgid "Komi"
@@ -10600,10 +10777,28 @@ msgstr ""
 msgid "LCN rules:"
 msgstr ""
 
+msgid "LED Brightness"
+msgstr ""
+
+msgid "LED Color"
+msgstr ""
+
 msgid "LED Deep Standby"
 msgstr ""
 
+msgid "LED Idle Brightness"
+msgstr ""
+
+msgid "LED Idle Color"
+msgstr ""
+
 msgid "LED Normal"
+msgstr ""
+
+msgid "LED Settings"
+msgstr ""
+
+msgid "LED Shutdown Color"
 msgstr ""
 
 msgid "LED Standby"
@@ -10895,7 +11090,7 @@ msgstr ""
 msgid "Load"
 msgstr "Càrrega"
 
-msgid "Load EPG"
+msgid "Load EPG Cache"
 msgstr ""
 
 #
@@ -10906,9 +11101,6 @@ msgid "Load tags from the timer and recordings"
 msgstr ""
 
 msgid "Load unlinked user bouquets"
-msgstr ""
-
-msgid "Load/Save/Delete"
 msgstr ""
 
 msgid "Loading information, please wait..."
@@ -10947,6 +11139,9 @@ msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale / Language Settings"
 msgstr ""
 
 #
@@ -11582,10 +11777,6 @@ msgstr ""
 msgid "Model"
 msgstr ""
 
-#
-msgid "Model: "
-msgstr "Model: "
-
 msgid "Modified"
 msgstr ""
 
@@ -11687,6 +11878,10 @@ msgstr "Moure"
 
 msgid "Move Left/Right"
 msgstr ""
+
+#
+msgid "Move Mode"
+msgstr "[mode moure]"
 
 #
 #, fuzzy
@@ -13027,6 +13222,9 @@ msgstr ""
 msgid "Open service list and select previous channel for PiP"
 msgstr ""
 
+msgid "Open the Channel Selection Settings screen"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr ""
 
@@ -13347,12 +13545,15 @@ msgstr "Paraguai"
 msgid "Parent Directory"
 msgstr ""
 
-msgid "Parental Guidance Recommended"
-msgstr ""
-
 #
 msgid "Parental Control"
 msgstr "Control parental"
+
+msgid "Parental Control Settings"
+msgstr ""
+
+msgid "Parental Guidance Recommended"
+msgstr ""
 
 msgid "Parental control services editor"
 msgstr "Editor de serveis de control parental"
@@ -13549,12 +13750,18 @@ msgstr ""
 msgid "Play"
 msgstr "Auto"
 
+msgid "Play As Picture in Picture window"
+msgstr ""
+
 #
 msgid "Play DVD"
 msgstr "Reprodueix un DVD"
 
 msgid "Play DVDs"
 msgstr "Reprodueix un DVDs"
+
+msgid "Play In Main window"
+msgstr ""
 
 msgid "Play all audio files in the directory"
 msgstr ""
@@ -13579,6 +13786,12 @@ msgstr "Esborrar entrada de la llista"
 msgid "Play from previous mark or play list entry"
 msgstr "Reprodueix des de l’entrada anterior o la llista de reproducció"
 
+msgid "Play in Main"
+msgstr ""
+
+msgid "Play in PiP"
+msgstr ""
+
 msgid "Play music..."
 msgstr "Reprodueix música…"
 
@@ -13598,6 +13811,12 @@ msgstr "Reprodueix al següent (torna al servei anterior)"
 #, fuzzy
 msgid "Play recorded movies"
 msgstr "Reproduir pel·lícules gravades..."
+
+msgid "Play selected service in a PiP window"
+msgstr ""
+
+msgid "Play selected service on the main screen"
+msgstr ""
 
 msgid "Play the audio file"
 msgstr ""
@@ -13733,11 +13952,6 @@ msgstr ""
 #
 msgid "Please press OK to continue."
 msgstr "Premeu OK per continuar."
-
-#
-#, fuzzy
-msgid "Please press OK to start Kodi..."
-msgstr "Prem OK per a començar la recerca"
 
 #
 #, fuzzy
@@ -14214,6 +14428,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Prem OK per a començar la recerca"
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -14514,6 +14736,9 @@ msgstr ""
 msgid "Purge 'Trash' after (days)"
 msgstr "Elimineu els elements de la paperera després de (dies)"
 
+msgid "Purge Deleted User Bouquets"
+msgstr ""
+
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
 
@@ -14557,6 +14782,9 @@ msgid "Quad PiP channel "
 msgstr ""
 
 msgid "Quad PiP is not available."
+msgstr ""
+
+msgid "Quad9 DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -14665,6 +14893,9 @@ msgstr "Sortida RF"
 msgid "RGB"
 msgstr "RGB"
 
+msgid "Radio"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Radio Channel Selection"
@@ -14740,6 +14971,12 @@ msgstr "Vols esborrar les programacions ja finalitzades?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Sortir del zappeig ràpid dels subserveis?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 msgid "Really reboot into Recovery Mode?"
 msgstr ""
 
@@ -14806,10 +15043,10 @@ msgstr ""
 msgid "Reception"
 msgstr "Descripció"
 
-msgid "Reception Settings"
+msgid "Reception Lists"
 msgstr ""
 
-msgid "Reception Lists"
+msgid "Reception Settings"
 msgstr ""
 
 #
@@ -15043,6 +15280,9 @@ msgstr ""
 msgid "Reload Services"
 msgstr ""
 
+msgid "Reload all services from disk"
+msgstr ""
+
 msgid "Reload blacklists"
 msgstr "Recarregar llistes negres"
 
@@ -15099,13 +15339,31 @@ msgid "Remove"
 msgstr "Esborrar"
 
 #
+msgid "Remove All Alternatives"
+msgstr "esborrar totes les alternatives"
+
+#
+msgid "Remove All New Found Flags"
+msgstr "esborrar totes les marques trobades"
+
+#
 msgid "Remove Bookmark"
 msgstr "Esborrar marca"
+
+msgid "Remove Bouquet From Parental Protection"
+msgstr ""
+
+msgid "Remove Cable Services"
+msgstr ""
 
 #
 #, fuzzy
 msgid "Remove Confirmation"
 msgstr "Configuració del sintonitzador"
+
+#
+msgid "Remove Entry"
+msgstr "eliminar entrada"
 
 msgid "Remove Failed !!"
 msgstr ""
@@ -15114,13 +15372,28 @@ msgstr ""
 msgid "Remove Finished."
 msgstr ""
 
+#
+msgid "Remove From Parental Protection"
+msgstr "esborrar de la protecció parental"
+
+#
+msgid "Remove New Found Flag"
+msgstr "esborrar nova marca trobada"
+
 msgid "Remove Plugins"
 msgstr ""
 
 msgid "Remove Quad Channel Entry"
 msgstr ""
 
+#
+msgid "Remove Satellite Services"
+msgstr ""
+
 msgid "Remove Service"
+msgstr ""
+
+msgid "Remove Terrestrial Services"
 msgstr ""
 
 msgid "Remove a DNS entry"
@@ -15172,10 +15445,13 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr "Esborra el títol seleccionat"
 
-msgid "Show VBI Line For This Service"
+msgid "Remove forever"
 msgstr ""
 
 msgid "Remove highlighted directory from bookmarks"
+msgstr ""
+
+msgid "Remove selected service"
 msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -15213,6 +15489,11 @@ msgstr "Canviar el nom"
 msgid "Rename Directory"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Rename Entry"
+msgstr "eliminar entrada"
+
 msgid "Rename all related files"
 msgstr ""
 
@@ -15226,6 +15507,9 @@ msgid "Rename name and description for new events"
 msgstr "Canvia el nom del nom i la descripció dels nous esdeveniments"
 
 msgid "Rename only highlighted file"
+msgstr ""
+
+msgid "Rename selected service"
 msgstr ""
 
 msgid "Rename the proposed file to be created"
@@ -15362,9 +15646,6 @@ msgstr "Reiniciar"
 msgid "Restart %s %s."
 msgstr ""
 
-msgid "Restart Enigma2 to apply the changes?"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Restart GUI"
@@ -15420,6 +15701,9 @@ msgstr "Reinicieu la connexió de xarxa i les interfícies."
 #
 msgid "Restore"
 msgstr "Restaurar"
+
+msgid "Restore Deleted User Bouquets"
+msgstr ""
 
 msgid "Restore MetrixHD Settings"
 msgstr ""
@@ -15577,6 +15861,9 @@ msgstr "Cancel·lar"
 msgid "Root"
 msgstr "Root"
 
+msgid "Root Image"
+msgstr ""
+
 msgid "Root directory"
 msgstr "Root directory"
 
@@ -15731,9 +16018,6 @@ msgstr ""
 msgid "SSID:"
 msgstr "SSID:"
 
-msgid "STB Display"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Sailing"
@@ -15860,7 +16144,7 @@ msgstr "Guardar"
 msgid "Save / Enter text and exit"
 msgstr "Guardar / Introduir text i sortir"
 
-msgid "Save EPG"
+msgid "Save EPG Cache"
 msgstr ""
 
 msgid "Save EPG data"
@@ -16228,6 +16512,9 @@ msgid "Select 'Yes' to display unknown files in the File Commander file viewer, 
 msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
+msgstr ""
+
+msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
 msgstr ""
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
@@ -16667,6 +16954,12 @@ msgstr ""
 msgid "Select the current menu item"
 msgstr ""
 
+msgid "Select the currently highlighted action"
+msgstr ""
+
+msgid "Select the currently highlighted bouquet"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
@@ -16856,6 +17149,9 @@ msgstr "Seleccioneu el tipus de LNB / dispositiu que s’utilitza (normalment �
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Seleccioneu el tipus de dispositiu de recepció d’un cable únic que feu servir."
+
+msgid "Select the type of keyboard connected to the %s %s."
+msgstr ""
 
 msgid "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr ""
@@ -17204,6 +17500,9 @@ msgstr "Canals"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr ""
 
+msgid "Set As Startup Service"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Set Base time"
@@ -17213,6 +17512,21 @@ msgid "Set CI assignment for detection of available services."
 msgstr "Estableix l’assignació de CI per a la detecció dels serveis disponibles."
 
 msgid "Set Framerate for MiniTV"
+msgstr ""
+
+msgid "Set MAX CPU frequency for cores 0 and 1"
+msgstr ""
+
+msgid "Set MAX CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+msgid "Set MIN CPU frequency for cores 0 and 1"
+msgstr ""
+
+msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+msgid "Set Scaling governor"
 msgstr ""
 
 #
@@ -17662,6 +17976,10 @@ msgstr ""
 msgid "Show 720p 24fps as"
 msgstr ""
 
+#
+msgid "Show Alternatives"
+msgstr "mostrar alternatives"
+
 msgid "Show Audioselection"
 msgstr "Mostrar audioselecció"
 
@@ -17812,8 +18130,14 @@ msgstr ""
 msgid "Show Timer List"
 msgstr ""
 
+msgid "Show Transponder Information"
+msgstr ""
+
 msgid "Show True/False as graphical switch"
 msgstr "Mostra True / False com a commutador gràfic"
+
+msgid "Show VBI Line For This Service"
+msgstr ""
 
 #
 msgid "Show VCR SCART on main menu"
@@ -18631,6 +18955,9 @@ msgstr "Eslovè"
 msgid "Slow"
 msgstr "Lent"
 
+msgid "Slow Motion"
+msgstr ""
+
 msgid "Slow motion speeds"
 msgstr "Velocitats de moviment lent"
 
@@ -18956,10 +19283,8 @@ msgstr ""
 msgid "Start Auto Refresh"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Start Kodi"
-msgstr "Hora inici"
+msgid "Start Boot Frequency"
+msgstr ""
 
 #
 #, fuzzy
@@ -19542,6 +19867,9 @@ msgstr ""
 msgid "Sync failure moving back to origin !"
 msgstr "Error de sincronització en tornar a l’origen"
 
+msgid "Sync mode"
+msgstr ""
+
 msgid "Sync time using"
 msgstr ""
 
@@ -19578,9 +19906,6 @@ msgid "System Setup"
 msgstr ""
 
 msgid "System information"
-msgstr ""
-
-msgid "System partition free space:"
 msgstr ""
 
 msgid "System temperature"
@@ -19679,6 +20004,9 @@ msgstr ""
 
 msgid "Tanzania, United Republic of"
 msgstr "Tanzània, República Unida de"
+
+msgid "Target location"
+msgstr ""
 
 #, python-format
 msgid "Task '%s' ended successfully."
@@ -19925,6 +20253,10 @@ msgid ""
 "Please install it."
 msgstr ""
 
+#
+msgid "The PIN code entered is incorrect!"
+msgstr "El pin és incorrecte"
+
 msgid "The PIN code has been changed successfully."
 msgstr "El codi PIN s’ha canviat correctament"
 
@@ -20043,10 +20375,6 @@ msgid ""
 msgstr ""
 "L’extensió de l’assistent de xarxa no està instal·lada.\n"
 "Instal·leu-lo."
-
-#
-msgid "The PIN code entered is incorrect!"
-msgstr "El pin és incorrecte"
 
 #
 #, python-format
@@ -20228,6 +20556,9 @@ msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN!"
+msgstr "aquest ram està protegit per un passador de control parental"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -20448,11 +20779,27 @@ msgstr "Aquesta opció estableix la nitidesa de l’escalaire que s’utilitza p
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Aquesta opció estableix la supressió de falsos contorns digitals, que són el resultat d’un nombre limitat de valors discrets."
 
+msgid "This option sets the video & osd picture brightness."
+msgstr ""
+
+msgid "This option sets the video & osd picture contrast."
+msgstr ""
+
+msgid "This option sets the video picture brightness."
+msgstr ""
+
+msgid "This option sets the video picture contrast."
+msgstr ""
+
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Aquesta opció configura la nitidesa de la imatge, que s’utilitza quan s’implica la imatge."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
+
+#
+msgid "This service is protected by a parental control PIN!"
+msgstr "aquest canal està protegit per un pin de control parental"
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
@@ -20847,6 +21194,9 @@ msgstr ""
 msgid "Toggle item move mode on/off"
 msgstr ""
 
+msgid "Toggle move mode selection"
+msgstr ""
+
 msgid "Toggle multi-selection mode"
 msgstr ""
 
@@ -20979,9 +21329,6 @@ msgid "Transport Stream Type"
 msgstr "Tipus de stream de transport"
 
 msgid "Trashcan"
-msgstr ""
-
-msgid "Trashcan:"
 msgstr ""
 
 msgid "Travel"
@@ -21265,6 +21612,12 @@ msgstr "USALS"
 msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr "USALS trasllada automàticament un plat motoritzat al satèl·lit correcte en funció de les coordenades introduïdes per l’usuari. Sense USALS, cada satèl·lit haurà de configurar-se i desar-los individualment."
 
+msgid "USB 2.0 (Back, inner)"
+msgstr ""
+
+msgid "USB 3.0 (Back, outer)"
+msgstr ""
+
 msgid "USB Stick"
 msgstr ""
 
@@ -21288,6 +21641,9 @@ msgstr "Ukraine"
 
 msgid "Ukrainian"
 msgstr "Ukrainian"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr ""
@@ -21400,9 +21756,16 @@ msgstr ""
 msgid "Unscramble receiving http streams"
 msgstr "Descramble rebent streams http"
 
+msgid "Unset As Startup Service"
+msgstr ""
+
 #
 msgid "Unsupported"
 msgstr "No és compatible"
+
+#
+msgid "Until standby/restart"
+msgstr "fins que s’iniciï el mode d’espera / reinici"
 
 msgid "Unused 0x22"
 msgstr ""
@@ -21575,9 +21938,6 @@ msgstr ""
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr ""
 
-msgid "Use key map *"
-msgstr ""
-
 msgid "Use MHW EPG information when it is available."
 msgstr "Utilitzeu la informació EPG de MHW quan estigui disponible."
 
@@ -21605,7 +21965,7 @@ msgstr "Utilitzeu la informació ViaSat EPG quan estigui disponible."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Utilitzeu la informació Virgin EPG quan estigui disponible"
 
-msgid "Use Zap timer end time"
+msgid "Use Zap timer end times"
 msgstr ""
 
 #
@@ -21655,6 +22015,9 @@ msgstr ""
 msgid "Use interface"
 msgstr "Interfície comunaUtilitzeu la interfície"
 
+msgid "Use key map *"
+msgstr ""
+
 msgid "Use logarithmic steps"
 msgstr ""
 
@@ -21683,7 +22046,19 @@ msgstr ""
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr ""
 
+msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgstr ""
+
 msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface top"
 msgstr ""
 
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
@@ -22496,9 +22871,6 @@ msgstr ""
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
-msgid "When enabled, a new Zap timer will be created with activated end time."
-msgstr ""
-
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Quan estigui activat, HDMI-CEC està habilitat i està configurat estàndard"
 
@@ -22848,6 +23220,9 @@ msgstr "Sí, sempre"
 #
 msgid "Yes, and delete this movie"
 msgstr "Sí, i suprimeix aquesta pel·lícula"
+
+msgid "Yes, and don't ask again for this session"
+msgstr ""
 
 #
 msgid "Yes, backup my settings!"
@@ -23312,10 +23687,6 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr ""
 
-#
-msgid "Favorite Edit"
-msgstr "[editar preferits]"
-
 msgid "[Image Info]\n"
 msgstr ""
 
@@ -23326,36 +23697,12 @@ msgid "[Timeshift] Restarting time shift!"
 msgstr ""
 
 #
-msgid "Alternative Edit"
-msgstr "[edició alternatives]"
-
-#
-msgid "Bouquet Edit"
-msgstr "[editar llista]"
-
-#
-msgid "Move Mode"
-msgstr "[mode moure]"
-
-#
 msgid "a gui to assign services/providers to common interface modules"
 msgstr "un gui per assignar serveis / proveïdors a mòduls d’interfície comuns"
 
 #
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "un gui per assignar serveis / proveïdors / caids a mòduls d’interfície comuns"
-
-#
-msgid "Abort Alternatives Edit"
-msgstr "abortar l'edició d'alternatives"
-
-#
-msgid "Abort Bouquet Edit"
-msgstr "cancel·lar l'edició de llistes"
-
-#
-msgid "Abort Favorites Edit"
-msgstr "cancel·lar l'edició de preferits"
 
 msgid "ac3"
 msgstr ""
@@ -23365,33 +23712,6 @@ msgstr ""
 
 msgid "active"
 msgstr "actiu"
-
-#
-msgid "Add Alternatives"
-msgstr "afegir alternatives"
-
-#
-msgid "Add Bouquet"
-msgstr "afegir llista"
-
-msgid "Add Bouquet To Parental Protection"
-msgstr ""
-
-#
-msgid "Add Marker"
-msgstr "afegir marcador"
-
-#
-msgid "Add Service To Bouquet"
-msgstr "afegir el canal a la llista"
-
-#
-msgid "Add Service To Favorites"
-msgstr "afegir el canal als preferits"
-
-#
-msgid "Add To Parental Protection"
-msgstr "afegir a la protecció parental"
 
 msgid "address:"
 msgstr ""
@@ -23436,7 +23756,7 @@ msgstr ""
 msgid "and"
 msgstr ""
 
-msgid "and never ask again this session again"
+msgid "aqua"
 msgstr ""
 
 msgid ""
@@ -23475,6 +23795,9 @@ msgstr "auto"
 msgid "automatic"
 msgstr "automatic"
 
+msgid "azure"
+msgstr ""
+
 #
 msgid "back"
 msgstr "enrere"
@@ -23503,10 +23826,6 @@ msgstr "negre"
 
 msgid "black & white"
 msgstr "negre & blanc"
-
-#
-msgid "blacklist"
-msgstr "llista negra"
 
 #
 msgid "blue"
@@ -23597,10 +23916,6 @@ msgstr "cuina"
 msgid "copy"
 msgstr ""
 
-#
-msgid "Copy To Bouquets"
-msgstr "copiar a les llistes"
-
 msgid "current affairs (general)"
 msgstr ""
 
@@ -23634,10 +23949,6 @@ msgstr "Esborrar"
 
 msgid "detective/thriller"
 msgstr "detectiu / thriller"
-
-#
-msgid "Disable Move Mode"
-msgstr "desactivar mode moviment"
 
 #
 msgid "disabled"
@@ -23688,10 +23999,6 @@ msgstr ""
 msgid "economics/social advisory"
 msgstr "economia / assessorament social"
 
-#
-msgid "Edit Alternatives"
-msgstr "editar alternatives"
-
 msgid "education/information (general)"
 msgstr ""
 
@@ -23709,36 +24016,12 @@ msgid "enable PiP no HDR"
 msgstr ""
 
 #
-msgid "Enable Bouquet Edit"
-msgstr "activar l'edició de la llista"
-
-#
-msgid "Enable Favorite Edit"
-msgstr "activar l'edició dels preferits"
-
-#
-msgid "Enable Move Mode"
-msgstr "activar mode moviment"
-
-#
 msgid "enabled"
 msgstr "activat"
 
 #
-msgid "End Alternatives Edit"
-msgstr "fi de l'edició d'alternatives"
-
-#
-msgid "End Bouquet Edit"
-msgstr "fi de l'edició de llistes"
-
-#
 msgid "end cut here"
 msgstr "acabar el tall aquí"
-
-#
-msgid "End Favorites Edit"
-msgstr "fi de l'edició de preferits"
 
 msgid "enigma2 and network"
 msgstr ""
@@ -23813,9 +24096,6 @@ msgstr "nom de l’arxiu"
 
 msgid "film/cinema"
 msgstr "pel·lícula / cinema"
-
-msgid "Find Currently Playing Service"
-msgstr ""
 
 msgid "fine arts"
 msgstr "belles Arts"
@@ -24032,6 +24312,9 @@ msgstr "aficions de lleure (general)"
 msgid "length"
 msgstr "llargada"
 
+msgid "lime"
+msgstr ""
+
 msgid "literature"
 msgstr "literatura"
 
@@ -24231,6 +24514,9 @@ msgstr "desactivat o wpa2 activat"
 msgid "offset is"
 msgstr "desactivat està"
 
+msgid "olympic blue"
+msgstr ""
+
 #
 msgid "on READ ONLY medium."
 msgstr "a LLEGIR NOMÉS el mitjà."
@@ -24239,6 +24525,9 @@ msgid "on how to restore the image"
 msgstr ""
 
 msgid "only HD"
+msgstr ""
+
+msgid "orange"
 msgstr ""
 
 msgid "original language"
@@ -24254,10 +24543,7 @@ msgstr "les Arts escèniques"
 msgid "pid:"
 msgstr ""
 
-msgid "Play As Picture in Picture window"
-msgstr ""
-
-msgid "Play In Main window"
+msgid "pink"
 msgstr ""
 
 #
@@ -24286,7 +24572,7 @@ msgstr ""
 msgid "provider:"
 msgstr ""
 
-msgid "Purge Deleted User Bouquets"
+msgid "purple"
 msgstr ""
 
 #
@@ -24312,53 +24598,12 @@ msgid "remove after this position"
 msgstr "esborra després d'aquesta posició"
 
 #
-msgid "Remove All Alternatives"
-msgstr "esborrar totes les alternatives"
-
-#
-msgid "Remove All New Found Flags"
-msgstr "esborrar totes les marques trobades"
-
-#
 msgid "remove before this position"
 msgstr "esborra abans d'aquesta posició"
-
-msgid "Remove Bouquet From Parental Protection"
-msgstr ""
-
-msgid "Remove Cable Services"
-msgstr ""
-
-#
-msgid "Remove Entry"
-msgstr "eliminar entrada"
-
-#
-msgid "Remove From Parental Protection"
-msgstr "esborrar de la protecció parental"
-
-#
-msgid "Remove New Found Flag"
-msgstr "esborrar nova marca trobada"
-
-#
-msgid "Remove Satellite Services"
-msgstr ""
-
-msgid "Remove Terrestrial Services"
-msgstr ""
 
 #
 msgid "remove this mark"
 msgstr "esborrar aquesta marca"
-
-#
-#, fuzzy
-msgid "Rename Entry"
-msgstr "eliminar entrada"
-
-msgid "Restore Deleted User Bouquets"
-msgstr ""
 
 msgid "restoring satellites.xml not possible!"
 msgstr ""
@@ -24382,6 +24627,9 @@ msgstr "rock/pop"
 
 msgid "romance"
 msgstr "romanç"
+
+msgid "rose"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24420,9 +24668,6 @@ msgstr "pel·lícula / drama seriós / clàssic / religiós / històric"
 msgid "service PIN"
 msgstr ""
 
-msgid "Set As Startup Service"
-msgstr ""
-
 msgid "share:"
 msgstr ""
 
@@ -24441,10 +24686,6 @@ msgstr ""
 
 msgid "show all tags"
 msgstr "mostra totes les etiquetes"
-
-#
-msgid "Show Alternatives"
-msgstr "mostrar alternatives"
 
 msgid "show cards with uphop 0"
 msgstr ""
@@ -24492,10 +24733,6 @@ msgstr "Canviar al subservei anterior"
 
 msgid "show program information..."
 msgstr ""
-
-#
-msgid "show transponder info"
-msgstr "mostrar info del transponedor"
 
 msgid "show/game show (general)"
 msgstr "espectacle / espectacle de joc (general)"
@@ -24571,9 +24808,6 @@ msgstr "mida reduïda"
 msgid "stereo"
 msgstr "stèreo"
 
-msgid "Unset As Startup Service"
-msgstr ""
-
 msgid "successful"
 msgstr "reeixit"
 
@@ -24622,16 +24856,9 @@ msgstr "tennis / esquaix"
 msgid "text"
 msgstr ""
 
-msgid "This bouquet is protected by a parental control PIN!"
-msgstr "aquest ram està protegit per un passador de control parental"
-
 #
 msgid "this recording"
 msgstr "aquesta gravació"
-
-#
-msgid "This service is protected by a parental control PIN!"
-msgstr "aquest canal està protegit per un pin de control parental"
 
 #
 msgid "toggle time, chapter, audio, subtitle info"
@@ -24697,10 +24924,6 @@ msgstr "inèdit"
 msgid "untestable"
 msgstr "indestable"
 
-#
-msgid "Until standby/restart"
-msgstr "fins que s’iniciï el mode d’espera / reinici"
-
 msgid "update"
 msgstr ""
 
@@ -24741,6 +24964,9 @@ msgstr "esport d’aigua"
 #
 msgid "west"
 msgstr "oest"
+
+msgid "white"
+msgstr ""
 
 msgid "wide"
 msgstr "ample"
@@ -24783,3 +25009,75 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "   Please press OK to start Kodi..."
+#~ msgstr ""
+#~ "\n"
+#~ "   Premeu Bé per començar Kodi..."
+
+#~ msgid ""
+#~ "\n"
+#~ "  WARNING: \n"
+#~ "  There is not enough space to install Kodi!"
+#~ msgstr ""
+#~ "\n"
+#~ "  AVÍS:\n"
+#~ "  No hi ha prou espai per instal·lar Kodi."
+
+#
+#, fuzzy, python-format
+#~ msgid "%s - %s (%s%d min)"
+#~ msgstr "%d min"
+
+#
+#~ msgid "Capacity: "
+#~ msgstr "Capacitat: "
+
+#
+#, fuzzy
+#~ msgid "Delete EPG"
+#~ msgstr "Esborrar"
+
+#~ msgid ""
+#~ "Do you really want to initialize the device?\n"
+#~ "All data on the disk will be lost!"
+#~ msgstr ""
+#~ "Realment voleu inicialitzar el dispositiu?\n"
+#~ "Es perdran totes les dades del disc."
+
+#
+#~ msgid "Initialize"
+#~ msgstr "Inicialitzar"
+
+#
+#~ msgid "Keyboard map"
+#~ msgstr "Mapa del teclat"
+
+#
+#, fuzzy
+#~ msgid "Kodi media player"
+#~ msgstr "sortir del reproductor"
+
+#
+#~ msgid "Model: "
+#~ msgstr "Model: "
+
+#
+#, fuzzy
+#~ msgid "Please press OK to start Kodi..."
+#~ msgstr "Prem OK per a començar la recerca"
+
+#
+#, fuzzy
+#~ msgid "Start Kodi"
+#~ msgstr "Hora inici"
+
+#
+#~ msgid "blacklist"
+#~ msgstr "llista negra"
+
+#
+#~ msgid "show transponder info"
+#~ msgstr "mostrar info del transponedor"
