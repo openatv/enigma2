@@ -1,72 +1,52 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-from __future__ import print_function
-import sys
-import os
-import six
-import re
+from sys import argv
+from os import listdir
+from os.path import isdir, join
+from re import compile
 from xml.sax import make_parser
-from xml.sax.handler import ContentHandler, property_lexical_handler
-try:
-	from _xmlplus.sax.saxlib import LexicalHandler
-	no_comments = False
-except ImportError:
-	class LexicalHandler:
-		def __init__(self):
-			pass
-	no_comments = True
+from xml.sax.handler import ContentHandler, LexicalHandler, property_lexical_handler
 
 
 class parseXML(ContentHandler, LexicalHandler):
-	def __init__(self, attrlist):
-		self.isPointsElement, self.isReboundsElement = 0, 0
-		self.attrlist = attrlist
-		self.last_comment = None
-		self.ishex = re.compile('#[0-9a-fA-F]+\Z')
+	def __init__(self, attributes):
+		self.attributes = attributes
+		self.lastComment = None
+		self.isHex = compile('#[0-9a-fA-F]+\Z')
 
 	def comment(self, comment):
 		if "TRANSLATORS:" in comment:
-			self.last_comment = comment
+			self.lastComment = comment
 
-	def startElement(self, name, attrs):
-		for x in ["text", "title", "value", "caption", "description"]:
+	def startElement(self, tag, attribs):
+		for attribute in ["text", "title", "value", "caption", "description", "red", "green", "yellow", "blue"]:
 			try:
-				k = six.ensure_str(attrs[x])
-				if k.strip() != "" and not self.ishex.match(k):
-					attrlist.add((k, self.last_comment))
-					self.last_comment = None
+				value = attribs[attribute]
+				if value.strip() != "" and not self.isHex.match(value):
+					attributes.add((value, self.lastComment))
+					self.lastComment = None
 			except KeyError:
 				pass
 
 
 parser = make_parser()
-
-attrlist = set()
-
-contentHandler = parseXML(attrlist)
+attributes = set()
+contentHandler = parseXML(attributes)
 parser.setContentHandler(contentHandler)
-if not no_comments:
-	parser.setProperty(property_lexical_handler, contentHandler)
-
-for arg in sys.argv[1:]:
-	if os.path.isdir(arg):
-		for file in os.listdir(arg):
+parser.setProperty(property_lexical_handler, contentHandler)
+for arg in argv[1:]:
+	if isdir(arg):
+		for file in listdir(arg):
 			if file.endswith(".xml"):
-				parser.parse(os.path.join(arg, file))
+				parser.parse(join(arg, file))
 	else:
 		parser.parse(arg)
-
-	attrlist = list(attrlist)
-	attrlist.sort(key=lambda a: a[0])
-
-	for (k, c) in attrlist:
-		print()
-		print('#: ' + arg)
-		k.replace("\\n", "\"\n\"")
-		if c:
-			for l in c.split('\n'):
-				print("#. ", l)
-		print('msgid "' + six.ensure_str(k) + '"')
-		print('msgstr ""')
-
-	attrlist = set()
+	attributes = list(attributes)
+	attributes.sort(key=lambda x: x[0])
+	for (key, value) in attributes:
+		print("\n#: %s" % arg)
+		key.replace("\\n", "\"\n\"")
+		if value:
+			for line in value.split("\n"):
+				print("#. %s" % line)
+		print("msgid \"%s\"" % key)
+		print("msgstr \"\"")
+	attributes = set()
