@@ -17,7 +17,7 @@ class parseXML(ContentHandler, LexicalHandler):
 			self.lastComment = comment
 
 	def startElement(self, tag, attribs):
-		for attribute in ["text", "title", "value", "caption", "description", "red", "green", "yellow", "blue"]:
+		for attribute in ["text", "title", "value", "caption", "description", "red", "green", "yellow", "blue"]:  # Attributes that need to be translated.
 			try:
 				value = attribs[attribute]
 				if value.strip() != "" and not self.isHex.match(value):
