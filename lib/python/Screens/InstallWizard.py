@@ -115,7 +115,7 @@ class InstallWizard(Screen, ConfigListScreen):
 
 class InstallWizardSmallBox(Screen):
 	skin = """
-	<screen name="InstallWizardSmallBox" position="center,center" size="520,225" resolution="1280,720">
+	<screen name="InstallWizardSmallBox" position="center,center" size="520,185" resolution="1280,720">
 		<widget source="Title" render="Label" position="65,8" size="520,0" font="Regular;22" transparent="1"/>
 		<widget source="statusbar" render="Label" position="75,10" size="435,55" font="Regular;22" transparent="1"/>
 	</screen>"""
@@ -123,7 +123,7 @@ class InstallWizardSmallBox(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_("Small Box Preparation"))
-		self["statusbar"] = StaticText(_("Installing Please wait..."))
+		self["statusbar"] = StaticText(_("Update package list please wait..."))
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
 
@@ -147,9 +147,14 @@ class InstallWizardSmallBox(Screen):
 			self["statusbar"].setText(_("Package installation failed"))
 			self["actions"].setEnabled(True)
 		elif event == OpkgComponent.EVENT_INSTALL:
-			self["statusbar"].setText(_("Installing : %s") % parameter)
+			self["statusbar"].setText("%s: '%s'.\n" % (_("Installing"), parameter))
+		elif event == OpkgComponent.EVENT_DOWNLOAD:
+			self["statusbar"].setText("%s: '%s'.\n" % (_("Downloading"), parameter))
+		elif event == OpkgComponent.EVENT_CONFIGURING:
+			self["statusbar"].setText("%s: '%s'.\n" % (_("Configuring"), parameter))
 		elif event == OpkgComponent.EVENT_DONE:
 			if self.opkg.currentCommand == OpkgComponent.CMD_UPDATE:
+				self["statusbar"].setText(_("Installing Please wait..."))
 				self.opkg.startCmd(OpkgComponent.CMD_INSTALL, {"package": "packagegroup-openatv-small"})
 			else:
 				config.misc.installwizard.ipkgloaded.value = True
