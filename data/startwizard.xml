@@ -82,7 +82,7 @@ self.condition = BoxInfo.getItem("SmallFlash") and not config.misc.installwizard
 		<displaytext value="No Internet connection" />
 		<list>
 			<listentry caption="Check the Internet connection again" step="update" />
-			<listentry caption="Skip Internet connection check (disables automatic package installation)" step="timezone" />
+			<listentry caption="Skip package installation, only core packages will be available" step="timezone" />
 		</list>
 	</step>
 
