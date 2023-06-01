@@ -99,7 +99,11 @@ const char *eLCD::get_VFD_final_scroll_delay()
 
 const char *eLCD::get_VFD_scroll_repeats()
 {
+#if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
+	return "";
+#else
 	return (access(VFD_scroll_repeats_proc, W_OK) == 0) ? VFD_scroll_repeats_proc : "";
+#endif
 }
 
 void eLCD::set_VFD_scroll_delay(int delay)
