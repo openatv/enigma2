@@ -241,9 +241,7 @@ class Wizard(Screen, HelpableScreen):
 					self.wizard[self.step]["lastStep"] = attributes.get("laststep")
 			elif tag == "text":
 				self.wizard[self.step]["text"] = attributes.get("value", "").replace("\\n", "\n")
-			elif tag == "displaytext":
-				self.wizard[self.step]["display"] = attributes.get("value", "").replace("\\n", "\n")
-			elif tag == "display":
+			elif tag in ("display", "displaytext"):
 				self.wizard[self.step]["display"] = attributes.get("value", "").replace("\\n", "\n")
 			elif tag == "list":
 				self.wizard[self.step]["type"] = "List"
@@ -252,9 +250,11 @@ class Wizard(Screen, HelpableScreen):
 						self.wizard[self.step]["dynamicList"] = attributes.get("source")
 				if "evaluation" in attributes:
 					self.wizard[self.step]["listEvaluation"] = attributes.get("evaluation")
+				if "onSelect" in attributes:
+					self.wizard[self.step]["onSelect"] = attributes.get("onSelect")
 				if "onselect" in attributes:
 					self.wizard[self.step]["onSelect"] = attributes.get("onselect")
-			elif tag == "listentry":
+			elif tag in ("item", "listentry"):
 				self.wizard[self.step]["list"].append((attributes.get("caption", ""), attributes.get("step", "")))
 			elif tag == "config":
 				self.wizard[self.step]["type"] = "Config"
