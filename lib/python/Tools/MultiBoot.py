@@ -264,9 +264,8 @@ class MultiBootClass():
 
 	def getUUIDtoDevice(self, UUID):  # Returns None on failure.
 		lines = check_output(["/sbin/blkid"]).decode(encoding="UTF-8", errors="ignore").split("\n")
-		targetUUID = "UUID=\"%s\"" % UUID
 		for line in lines:
-			if targetUUID in line:
+			if UUID in line.replace('"', ''):
 				return line.split(":")[0].strip()
 		return None
 
