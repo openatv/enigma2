@@ -617,7 +617,12 @@ class FlashImage(Screen, HelpableScreen):
 			else:
 				mtdKernel = BoxInfo.getItem("mtdkernel")
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
-			if MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
+			if BoxInfo.getItem("HasKexecMultiboot"):
+				if bootSlots[self.slotCode]["uuid"] and "mmcblk" not in mtdRootFS:
+					cmdArgs = ["-r", "-k", "-s%s/linuxrootfs" % BoxInfo.getItem("model")[2:], "-m%s" % self.slotCode]
+				else:
+					cmdArgs = ["-r%s" % mtdRootFS, "-k", "-m%s" % self.slotCode]
+			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-rmmcblk0p1"]
