@@ -190,6 +190,10 @@ class MultiBootClass():
 							bootSlots[slotCode]["cmdline"][bootCode] = line
 							if "ubi.mtd=" in line:
 								bootSlots[slotCode]["ubi"] = True
+							if "UUID=" in line:
+								bootSlots[slotCode]["uuid"] = True
+							else:
+								bootSlots[slotCode]["uuid"] = False
 							if "rootsubdir" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
 								bootSlots[slotCode]["rootsubdir"] = self.getParam(line, "rootsubdir")
@@ -256,6 +260,7 @@ class MultiBootClass():
 					print("[MultiBoot]     Root device: '%s'." % bootSlots[slotCode].get("device", "Unknown"))
 					print("[MultiBoot]     Root directory: '%s'." % bootSlots[slotCode].get("rootsubdir", "Unknown"))
 					print("[MultiBoot]     UBI device: '%s'." % ("Yes" if bootSlots[slotCode].get("ubi", False) else "No"))
+					print("[MultiBoot]     UUID device: '%s'." % ("Yes" if bootSlots[slotCode].get("uuid", False) else "No"))
 				print("[MultiBoot] %d boot slots detected." % len(bootSlots))
 		return bootSlots, bootSlotsKeys
 
@@ -394,6 +399,7 @@ class MultiBootClass():
 					if modes and modes != [""]:
 						print("[MultiBoot]     Boot modes: '%s'." % "', '".join(modes))
 					print("[MultiBoot]     UBI device: '%s'." % ("Yes" if self.imageList[slotCode].get("ubi", False) else "No"))
+					print("[MultiBoot]     UUID device: '%s'." % ("Yes" if self.imageList[slotCode].get("uuid", False) else "No"))
 				print("[MultiBoot] %d boot slots detected." % len(self.imageList))
 			self.callback(self.imageList)
 
