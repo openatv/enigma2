@@ -118,24 +118,15 @@
 
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
-		<widget source="parent.title" render="Label" foregroundColor="#FFFF00" position="top" size="*,30" font="FdLcD;30" halign="center" valign="top" />
-		<widget source="parent.menu" render="Label" position="top" size="*,35" font="FdLcD;26" halign="center" valign="center">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="Title" render="Label" foregroundColor="#FFFF00" position="top" size="*,30" font="FdLcD;30" halign="center" valign="top" />
+		<widget source="entry" render="Label" position="top" size="*,35" font="FdLcD;26" halign="center" valign="center"/>
 	</screen>
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="240,80"> 
-		<widget source="SetupTitle" render="Label" position="0,0" foregroundColor="#FFFF00" size="240,25" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupEntry" render="Label" position="0,26" size="240,25" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupValue" render="Label" position="0,55" size="240,25" font="FdLcD;22" halign="center" valign="top" />
-	</screen>
-
-<!-- Blindscan-->
-	<screen name="SetupSummary2" position="0,0" size="240,80"> 
-		<widget source="SetupTitle" render="Label" position="0,0" foregroundColor="#FFFF00" size="240,25" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupEntry" render="Label" position="0,26" size="240,25" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupValue" render="Label" position="0,55" size="240,25" font="FdLcD;22" halign="center" valign="top" />
+		<widget source="Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="240,25" font="FdLcD;24" halign="center" valign="center" />
+		<widget source="entry" render="Label" position="0,26" size="240,25" font="FdLcD;24" halign="center" valign="center" />
+		<widget source="value" render="Label" position="0,55" size="240,25" font="FdLcD;22" halign="center" valign="top" />
 	</screen>
 
 <!-- misc-->
@@ -146,12 +137,6 @@
 	<screen name="WizardSummary" position="fill">
 		<widget source="text" render="Label" position="top" size="*,35" font="FdLcD;35" halign="center" />
 		<widget source="parent.list" render="Label" position="fill" font="FdLcD;25" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
-		<widget source="parent.list" render="Label" position="fill" font="FdLcD;45" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -278,11 +263,6 @@
 		<widget source="parent.selectedChoice" render="Label" position="0,40" size="240,28" font="FdLcD;26" halign="center" noWrap="1" />
 	</screen>
 
-	<screen name="AboutSummary" position="0,0" size="240,80">
-		<widget source="parent.Title" render="Label" position="top" size="*,80" font="FdLcD;30" halign="center" valign="center" />
-		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
-	</screen>
-
 	<screen name="TimerEditListSummary" position="0,0" size="240,80">
 		<widget source="service" render="Label" position="0,0" size="240,20" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="name" render="Label" position="0,20" size="240,15" font="FdLcD;19" halign="left" noWrap="1" />
@@ -303,12 +283,6 @@
 		<widget source="parent.summarytext" render="Label" position="0,0" size="240,30" font="FdLcD;24" halign="center" />
 		<widget source="parent.summarylangname" render="Label" position="0,39" size="240,30" font="FdLcD;24" halign="center" />
 <!-- 		<widget source="parent.flag" render="Pixmap" position="0,0" size="110,40" backgroundColor="#ff000000" /> -->
-	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<widget source="text" render="Label" position="0,0" size="240,35" font="FdLcD;24" halign="center" />
-		<widget source="parent.list" render="Label" position="0,35" size="240,45" font="FdLcD;24" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
 	</screen>
 
 <!-- DVD -->
