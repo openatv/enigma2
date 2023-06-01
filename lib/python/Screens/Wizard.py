@@ -95,31 +95,6 @@ class Wizard(Screen, HelpableScreen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.defaultButtons = ["HELP"]  # Should we also add "OK" to the default button list?
-		# self["actions"] = HelpableNumberActionMap(self, ["WizardActions", "ColorActions", "NavigationActions", "NumberActions", "SetupActions", "InputAsciiActions", "KeyboardInputActions"], {
-		# 	"ok": (self.keySelect, _("Select the currently highlighted option and move to the next step")),
-		# 	"back": (self.keyStepBack, _("Go back to the previous step")),
-		# 	"red": (self.keyRed, _("Select the action associated with the RED button")),
-		# 	"green": (self.keyGreen, _("Select the action associated with the GREEN button")),
-		# 	"yellow": (self.keyYellow, _("Select the action associated with the YELLOW button")),
-		# 	"blue": (self.keyBlue, _("Select the action associated with the BLUE button")),
-		# 	"up": (self.keyUp, _("Select the previous list item")),
-		# 	"left": (self.keyLeft, _("Select previous option item in the option list")),
-		# 	"right": (self.keyRight, _("Select next option item in the option list")),
-		# 	"down": (self.keyDown, _("Select the next list item")),
-		# 	"deleteBackward": (self.keyBackspace, _("BACKSPACE button")),
-		# 	"deleteForward": (self.keyDelete, _("DELETE button")),
-		# 	"1": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"2": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"3": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"4": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"5": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"6": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"7": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"8": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"9": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"0": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"gotAsciiCode": (self.keyGotAscii, _("ASCII button"))
-		# }, prio=-1, description=_("Wizard Actions"))
 		self["wizardActions"] = HelpableActionMap(self, ["WizardActions", "InputAsciiActions"], {
 			"ok": (self.keySelect, _("Proceed to the next step")),
 			"back": (self.keyStepBack, _("Go back to the previous step")),
@@ -194,8 +169,6 @@ class Wizard(Screen, HelpableScreen):
 
 	class parseWizard(ContentHandler):
 		def __init__(self, wizard):
-			# self.isPointsElement = 0
-			# self.isReboundsElement = 0
 			self.wizard = wizard
 			self.tag = None
 			self.step = 0
@@ -203,16 +176,6 @@ class Wizard(Screen, HelpableScreen):
 		def startElement(self, tag, attributes):  # Process and initialize tags.
 			# print("[Wizard] startElement '%s'." % tag)
 			self.tag = tag
-			# if tag == "wizard":
-			# 	self.wizard[0] = {}
-			# 	self.wizard[0]["type"] = "Wizard"
-			# 	self.wizard[0]["name"] = "WizardMain"
-			# 	self.wizard[0]["id"] = "WizardMain"
-			# 	# self.createString("name", None, attributes, "WizardMain")
-			# 	# self.createString("title", None, attributes)
-			# 	# self.createBoolean("forceTitle", None, attributes, "False")
-			# 	# self.createBoolean("showSteps", None, attributes, "False")
-			# 	# self.createBoolean("debug", None, attributes, "False")
 			if tag == "step":
 				self.step += 1
 				self.wizard[self.step] = {}
@@ -372,7 +335,7 @@ class Wizard(Screen, HelpableScreen):
 				self.screenInstance.run()
 		self.finished()
 
-	def back(self):  # temporary fix for Satconfig.py
+	def back(self):  # Temporary fix for Satconfig.py.
 		self.keyStepBack()
 
 	def keyStepBack(self):
@@ -557,10 +520,10 @@ class Wizard(Screen, HelpableScreen):
 		self.timerCount -= 1
 		# print("[Wizard] Timeout timer is %d." % self.timerCount)
 		if self.timerCount == 0:
-			if self.wizard[self.currStep]["timeoutAction"] == "selectnext":
+			if self.wizard[self.currStep]["timeoutAction"] in ("selectNext", "selectnext"):
 				# print("[Wizard] Timeout fired, moving to next item.")
 				self.keyDown()
-			elif self.wizard[self.currStep]["timeoutAction"] == "changestep":
+			elif self.wizard[self.currStep]["timeoutAction"] in ("changeStep", "changestep"):
 				self.finished(gotoStep=self.wizard[self.currStep]["timeoutStep"])
 		self.updateText()
 
@@ -625,7 +588,7 @@ class Wizard(Screen, HelpableScreen):
 			actions.add(Wizard.buttonMap[button])
 		for action in actions:
 			self[action].setEnabled(default)
-		if buttonList is not None:
+		if buttonList:
 			if not isinstance(buttonList, list):
 				buttonList = [buttonList]
 			print("[Wizard] Allowed buttons are %s." % ", ".join(buttonList + self.defaultButtons))
