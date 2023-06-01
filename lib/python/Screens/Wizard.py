@@ -223,8 +223,8 @@ class Wizard(Screen, HelpableScreen):
 					"condition": "",
 					"text": "",
 					"timeout": int(attributes.get("timeout", 0)),
-					"timeoutAction": attributes.get("timeoutaction", "nextpage"),
-					"timeoutStep": attributes.get("timeoutstep", ""),
+					"timeoutAction": attributes.get("timeoutAction", attributes.get("timeoutaction", "nextPage")),
+					"timeoutStep": attributes.get("timeoutStep", attributes.get("timeoutstep", "")),
 					"list": [],
 					"config": {
 						"screen": None,
@@ -235,10 +235,10 @@ class Wizard(Screen, HelpableScreen):
 					"codeAfter": "",
 					"codeAsync": "",
 					"codeAfterAsync": "",
-					"nextStep": attributes.get("nextstep", None)
+					"nextStep": attributes.get("nextStep", attributes.get("nextstep", None))
 				}
 				if "laststep" in attributes:
-					self.wizard[self.step]["lastStep"] = attributes.get("laststep")
+					self.wizard[self.step]["lastStep"] = attributes.get("lastStep", attributes.get("laststep", None))
 			elif tag == "text":
 				self.wizard[self.step]["text"] = attributes.get("value", "").replace("\\n", "\n")
 			elif tag in ("display", "displaytext"):
