@@ -355,7 +355,7 @@ class FlashImage(Screen, HelpableScreen):
 		print("[FlashManager] Current image slot is '%s'." % currentSlotCode)
 		choices = []
 		default = 0
-		for index, slotCode in enumerate(sorted(imageDictionary.keys())):
+		for index, slotCode in enumerate(sorted(imageDictionary.keys(), key=lambda ele: (not ele.isnumeric(), int(ele) if ele.isnumeric() else ele))):
 			print("[FlashManager] Image Slot '%s': %s." % (slotCode, str(imageDictionary[slotCode])))
 			if slotCode == currentSlotCode:
 				choices.append((_("Slot '%s':  %s  -  Current") % (slotCode, imageDictionary[slotCode]["imagename"]), (slotCode, True)))
@@ -619,7 +619,7 @@ class FlashImage(Screen, HelpableScreen):
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
 			if BoxInfo.getItem("HasKexecMultiboot"):
 				if bootSlots[self.slotCode]["uuid"] and "mmcblk" not in mtdRootFS:
-					cmdArgs = ["-r", "-k", "-s%s/linuxrootfs" % BoxInfo.getItem("model")[2:], "-m%s" % self.slotCode]
+					cmdArgs = ["-r%s" % mtdRootFS, "-k", "-s%s/linuxrootfs" % BoxInfo.getItem("model")[2:], "-m%s" % self.slotCode]
 				else:
 					cmdArgs = ["-r%s" % mtdRootFS, "-k", "-m%s" % self.slotCode]
 			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
