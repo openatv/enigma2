@@ -161,16 +161,18 @@ def parseTrans(filename, actionmap, device, keys):  # FIME Remove keytranslation
 		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)
 
 
-def loadKeymap(filename, overwrite=False):
+def loadKeymap(filename, replace=False):
 	actionMapInstance = eActionMap.getInstance()
 	domKeymap = fileReadXML(filename, source=MODULE_NAME)
 	if domKeymap:
+		if not replace:
+			replace = domKeymap.get("load", "") == "replace"
 		for domMap in domKeymap.findall("map"):
 			context = domMap.attrib.get("context")
 			if context is None:
 				print("ActionMap] Error: All key map action maps in '%s' must have a context!" % filename)
 			else:
-				if overwrite and keyBindings:  # Remove all entries for an existing context.
+				if replace and keyBindings:  # Remove all entries for an existing context.
 					removeContext(context)
 				parseKeymap(filename, context, actionMapInstance, "generic", domMap)
 				for domDevice in domMap.findall("device"):
