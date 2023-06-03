@@ -37,7 +37,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.CopyFiles import copyFiles, deleteFiles, moveFiles
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.NumericalTextInput import MAP_SEARCH_UPCASE, NumericalTextInput
-from Tools.Trashcan import TrashInfo, cleanAll, createTrashFolder, getTrashFolder
+from Tools.Trashcan import TRASHCAN, TrashInfo, cleanAll, createTrashcan, getTrashcan
 
 
 config.movielist = ConfigSubsection()
@@ -53,7 +53,7 @@ config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
-config.movielist.settings_per_directory = ConfigYesNo(default=True)
+config.movielist.settings_per_directory = ConfigYesNo(default=False)
 config.movielist.root = ConfigSelection(default="/media", choices=["/", "/media", "/media/hdd", "/media/hdd/movie", "/media/usb", "/media/usb/movie"])
 config.movielist.hide_extensions = ConfigYesNo(default=False)
 config.movielist.stop_service = ConfigYesNo(default=True)
@@ -106,14 +106,14 @@ def getPreferredTagEditor():
 def isTrashFolder(ref):
 	if not config.usage.movielist_trashcan.value or not ref.flags & eServiceReference.mustDescent:
 		return False
-	return realpath(ref.getPath()).endswith(".Trash") or realpath(ref.getPath()).endswith(".Trash/")
+	return realpath(ref.getPath()).endswith(TRASHCAN) or realpath(ref.getPath()).endswith("%s/" % TRASHCAN)
 
 
 def isInTrashFolder(ref):
 	if not config.usage.movielist_trashcan.value or not ref.flags & eServiceReference.mustDescent:
 		return False
 	path = realpath(ref.getPath())
-	return path.startswith(getTrashFolder(path))
+	return path.startswith(getTrashcan(path))
 
 
 def isSimpleFile(item):
@@ -334,7 +334,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self["movie_sort"].hide()
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
-		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value, TrashInfo.USED, update=False)
+		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value)
 
 		self["InfobarActions"] = HelpableActionMap(self, ["InfobarActions"], {
 			"showMovies": (self.doPathSelect, _("Select the movie path")),
@@ -1214,7 +1214,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if self.reload_sel is None:
 			self.reload_sel = self.getCurrent()
 		if config.usage.movielist_trashcan.value and access(config.movielist.last_videodir.value, W_OK):
-			trash = createTrashFolder(config.movielist.last_videodir.value)
+			trash = createTrashcan(config.movielist.last_videodir.value)
 		self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
@@ -1672,13 +1672,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if current.flags & eServiceReference.mustDescent:
 			files = 0
 			subdirs = 0
-			if ".Trash" not in cur_path and config.usage.movielist_trashcan.value:
+			if TRASHCAN not in cur_path and config.usage.movielist_trashcan.value:
 				if isFolder(item):
 					are_you_sure = _("Do you really want to move to trashcan ?")
 				else:
 					args = True
 				if args:
-					trash = createTrashFolder(cur_path)
+					trash = createTrashcan(cur_path)
 					if trash:
 						moveServiceFiles(current, trash, name, allowCopy=True)
 						self["list"].removeService(current)
@@ -1700,7 +1700,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					mbox.setTitle(self.getTitle())
 					return
 			else:
-				if ".Trash" in cur_path:
+				if TRASHCAN in cur_path:
 					are_you_sure = _("Do you really want to permanently remove from trash can ?")
 				else:
 					are_you_sure = _("Do you really want to delete ?")
@@ -1755,8 +1755,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						mbox = self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
 						mbox.setTitle(self.getTitle())
 						return
-			if ".Trash" not in cur_path and config.usage.movielist_trashcan.value:
-				trash = createTrashFolder(cur_path)
+			if TRASHCAN not in cur_path and config.usage.movielist_trashcan.value:
+				trash = createTrashcan(cur_path)
 				if trash:
 					moveServiceFiles(current, trash, name, allowCopy=True)
 					self["list"].removeService(current)
@@ -1769,7 +1769,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					msg = "%s\n" % _("Cannot move to trash can")
 					are_you_sure = _("Do you really want to delete %s ?") % name
 			else:
-				if ".Trash" in cur_path:
+				if TRASHCAN in cur_path:
 					are_you_sure = _("Do you really want to permanently remove '%s' from trash can ?") % name
 				else:
 					are_you_sure = _("Do you really want to delete %s ?") % name

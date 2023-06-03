@@ -34,7 +34,8 @@ class PluginComponent:
 			self.restartRequired = True
 
 	def removePlugin(self, plugin):
-		self.pluginList.remove(plugin)
+		if plugin in self.pluginList:
+			self.pluginList.remove(plugin)
 		for x in plugin.where:
 			self.plugins[x].remove(plugin)
 			if x == PluginDescriptor.WHERE_AUTOSTART:
@@ -52,42 +53,42 @@ class PluginComponent:
 					continue
 				path = os.path.join(directory_category, pluginname)
 				if os.path.isdir(path):
-						profile('plugin ' + pluginname)
-						try:
-							plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
-							plugins = plugin.Plugins(path=path)
-						except Exception as exc:
-							print("Plugin ", c + "/" + pluginname, "failed to load:", exc)
-							# supress errors due to missing plugin.py* files (badly removed plugin)
-							for fn in ('plugin.py', 'plugin.pyc', 'plugin.pyo'):
-								if os.path.exists(os.path.join(path, fn)):
-									self.warnings.append((c + "/" + pluginname, str(exc)))
-									from traceback import print_exc
-									print_exc()
-									break
-							else:
-								if not pluginname == "WebInterface":
-									print("Plugin probably removed, but not cleanly in", path)
-									print("trying to remove:", path)
-									rmtree(path)
-							continue
-
-						# allow single entry not to be a list
-						if not isinstance(plugins, list):
-							plugins = [plugins]
-
-						for p in plugins:
-							p.path = path
-							p.updateIcon(path)
-							new_plugins.append(p)
-
-						keymap = os.path.join(path, "keymap.xml")
-						if fileExists(keymap):
-							try:
-								keymapparser.readKeymap(keymap)
-							except Exception as exc:
-								print("keymap for plugin %s/%s failed to load: " % (c, pluginname), exc)
+					profile('plugin ' + pluginname)
+					try:
+						plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
+						plugins = plugin.Plugins(path=path)
+					except Exception as exc:
+						print("Plugin ", c + "/" + pluginname, "failed to load:", exc)
+						# supress errors due to missing plugin.py* files (badly removed plugin)
+						for fn in ('plugin.py', 'plugin.pyc', 'plugin.pyo'):
+							if os.path.exists(os.path.join(path, fn)):
 								self.warnings.append((c + "/" + pluginname, str(exc)))
+								from traceback import print_exc
+								print_exc()
+								break
+						else:
+							if not pluginname == "WebInterface":
+								print("Plugin probably removed, but not cleanly in", path)
+								print("trying to remove:", path)
+								rmtree(path)
+						continue
+
+					# allow single entry not to be a list
+					if not isinstance(plugins, list):
+						plugins = [plugins]
+
+					for p in plugins:
+						p.path = path
+						p.updateIcon(path)
+						new_plugins.append(p)
+
+					keymap = os.path.join(path, "keymap.xml")
+					if fileExists(keymap):
+						try:
+							keymapparser.readKeymap(keymap)
+						except Exception as exc:
+							print("keymap for plugin %s/%s failed to load: " % (c, pluginname), exc)
+							self.warnings.append((c + "/" + pluginname, str(exc)))
 
 		# build a diff between the old list of plugins and the new one
 		# internally, the "fnc" argument will be compared with __eq__

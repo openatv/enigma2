@@ -80,8 +80,8 @@ class CutlistReader(TitleCutter):
 						MultiContentEntryText(text = 1),
 						MultiContentEntryText(text = 2)
 					],
-				 "fonts": [gFont("Regular", 18)],
-				 "itemHeight": 20
+					"fonts": [gFont("Regular", 18)],
+					"itemHeight": 20
 				}
 			</convert>
 		</widget>

@@ -73,9 +73,7 @@ def PluginDownloadComponent(plugin, name, version=None, width=440, installstatus
 			MultiContentEntryText(pos=(x + offset, y), size=(width - x, h), font=0, text=name),
 			MultiContentEntryText(pos=(dx + offset, dy), size=(width - dx, dh), font=1, text=plugin.description),
 			MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png),
-			MultiContentEntryPixmapAlphaBlend(pos=(ix + offset, iy), size=(iw, ih), png=ipng, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER),
-			installstatus,
-			updatestatus
+			MultiContentEntryPixmapAlphaBlend(pos=(ix + offset, iy), size=(iw, ih), png=ipng, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER)
 		]
 	else:
 		return [

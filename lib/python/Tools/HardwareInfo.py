@@ -36,9 +36,6 @@ class HardwareInfo:
 				elif "Brcm7401 V0.0" in rd:
 					HardwareInfo.device_name = "dm800"
 					print("dm800 detected!")
-				elif "MIPS 4KEc V4.8" in rd:
-					HardwareInfo.device_name = "dm7025"
-					print("dm7025 detected!")
 			except:
 				pass
 

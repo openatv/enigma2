@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
 
@@ -411,7 +409,7 @@ class SecondInfoBar(Screen):
 			"nextEvent": (self.nextEvent, _("Switch to next EPG Event")),
 			"timerAdd": (self.timerAdd, _("Add Timer")),
 			"openSimilarList": (self.openSimilarList, _("Open Similar List Channel List")),
-		}, prio=0, description=_("2nd InfoBar Actions"))
+		}, prio=-1, description=_("2nd InfoBar Actions"))
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedEventInfo: self.getEvent
@@ -1075,7 +1073,7 @@ class NumberZap(Screen):
 
 	def handleServiceName(self):
 		if self.searchNumber:
-			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
+			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), recursive=True)
 			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 			if not self.startBouquet:
 				self.startBouquet = self.bouquet
@@ -1278,6 +1276,21 @@ class InfoBarNumberZap:
 		if service:
 			self.selectAndStartService(service, bouquet)
 
+	def searchNumberHelperRecursive(self, serviceHandler, num, bouquet):
+		# print("searchNumberHelperRecursive %s" % bouquet.toString())
+		servicelist = serviceHandler.list(bouquet)
+		if servicelist:
+			serviceIterator = servicelist.getNext()
+			while serviceIterator.valid():
+				if num == serviceIterator.getChannelNum():
+					return (serviceIterator, "%s;" % bouquet.toString())
+				if serviceIterator.flags & eServiceReference.isDirectory:
+					result = self.searchNumberHelperRecursive(serviceHandler, num, serviceIterator)
+					if result[0]:
+						return (result[0], "%s;%s" % (bouquet.toString(), result[1]))
+				serviceIterator = servicelist.getNext()
+		return (None, None)
+
 	def searchNumberHelper(self, serviceHandler, num, bouquet):
 		servicelist = serviceHandler.list(bouquet)
 		if servicelist:
@@ -1288,7 +1301,8 @@ class InfoBarNumberZap:
 				serviceIterator = servicelist.getNext()
 		return None
 
-	def searchNumber(self, number, firstBouquetOnly=False, bouquet=None):
+	def searchNumber(self, number, firstBouquetOnly=False, bouquet=None, recursive=False):
+		servicepath = None
 		bouquet = bouquet or self.servicelist.getRoot()
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
@@ -1301,7 +1315,10 @@ class InfoBarNumberZap:
 				bouquet = bouquetlist.getNext()
 				while bouquet.valid():
 					if bouquet.flags & eServiceReference.isDirectory:
-						service = self.searchNumberHelper(serviceHandler, number, bouquet)
+						if recursive:
+							service, servicepath = self.searchNumberHelperRecursive(serviceHandler, number, bouquet)
+						else:
+							service = self.searchNumberHelper(serviceHandler, number, bouquet)
 						if service:
 							playable = not (service.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
 							if not playable:
@@ -1310,11 +1327,17 @@ class InfoBarNumberZap:
 						if config.usage.alternative_number_mode.value or firstBouquetOnly:
 							break
 					bouquet = bouquetlist.getNext()
-		return service, bouquet
+		if servicepath:
+			return service, "%s;%s" % (self.servicelist.bouquet_root.toString(), servicepath)
+		else:
+			return service, bouquet
 
 	def selectAndStartService(self, service, bouquet):
 		if service:
-			if self.servicelist.getRoot() != bouquet:  # already in correct bouquet?
+			if isinstance(bouquet, str):
+				self.servicelist.lastroot.value = bouquet
+				self.servicelist.restoreRoot()
+			elif self.servicelist.getRoot() != bouquet:  # already in correct bouquet?
 				self.servicelist.clearPath()
 				if self.servicelist.bouquet_root != bouquet:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
@@ -3714,10 +3737,15 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
+		if not limitEvent:
+			end = begin + (60 * 60 * 24)  # 24h
+
 		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredInstantRecordPath())
 		recording.marginBefore = 0
-		recording.marginAfter = 0
 		recording.dontSave = True
+		recording.eventBegin = recording.begin
+		recording.marginAfter = (config.recording.margin_after.value * 60) if event and limitEvent else 0
+		recording.eventEnd = recording.end - recording.marginAfter
 
 		if event is None or limitEvent == False:
 			recording.autoincrease = True
@@ -3787,8 +3815,7 @@ class InfoBarInstantRecord:
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
-			from Components.About import about
-			if len(list) >= 2 and about.getChipSetString() in ('meson-6', 'meson-64'):
+			if len(list) >= 2 and BoxInfo.getItem("ChipsetString") in ('meson-6', 'meson-64'):
 				Notifications.AddNotification(MessageBox, _("Sorry only possible to record 2 channels at once"), MessageBox.TYPE_ERROR, timeout=5)
 				return
 			self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime") or False)
@@ -3825,17 +3852,14 @@ class InfoBarInstantRecord:
 			dlg.setTitle(_("Please change recording endtime"))
 
 	def TimeDateInputClosed(self, ret):
-		if len(ret) > 1:
-			if ret[0]:
-#				print "stopping recording at", strftime("%F %T", localtime(ret[1]))
-				if self.recording[self.selectedEntry].end != ret[1]:
-					self.recording[self.selectedEntry].autoincrease = False
-				self.recording[self.selectedEntry].end = ret[1]
-		#else:
-		#	if self.recording[self.selectedEntry].end != int(time()):
-		#		self.recording[self.selectedEntry].autoincrease = False
-		#	self.recording[self.selectedEntry].end = int(time())
-				self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
+		if len(ret) > 1 and ret[0]:
+			print("stop recording at %s " % strftime("%F %T", localtime(ret[1])))
+			entry = self.recording[self.selectedEntry]
+			if entry.end != ret[1]:
+				entry.autoincrease = False
+			entry.end = ret[1]
+			entry.eventEnd = entry.end
+			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
 		if entry is not None and entry >= 0:
@@ -3843,9 +3867,9 @@ class InfoBarInstantRecord:
 			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
 
 	def inputCallback(self, value):
-#		print "stopping recording after", int(value), "minutes."
 		entry = self.recording[self.selectedEntry]
 		if value is not None:
+			print("stop recording after %s minutes." % int(value))
 			value = value.replace(" ", "")
 			if value == "":
 				value = "0"
@@ -3854,10 +3878,6 @@ class InfoBarInstantRecord:
 			entry.end = int(time()) + 60 * int(value)
 			entry.eventBegin = entry.begin
 			entry.eventEnd = entry.end
-		#else:
-		#	if entry.end != int(time()):
-		#		entry.autoincrease = False
-		#	entry.end = int(time())
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def isTimerRecordRunning(self):
@@ -3877,8 +3897,7 @@ class InfoBarInstantRecord:
 		if not findSafeRecordPath(pirr) and not findSafeRecordPath(defaultMoviePath()):
 			if not pirr:
 				pirr = ""
-			self.session.open(MessageBox, _("Missing ") + "\n" + pirr +
-						 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, "%s\n%s\n%s" % (_("Missing "), pirr, _("No HDD found or HDD not initialized!")), MessageBox.TYPE_ERROR)
 			return
 
 		if isStandardInfoBar(self):
@@ -4291,12 +4310,14 @@ class InfoBarResolutionSelection:
 		pass
 
 	def resolutionSelection(self):
-		xRes = int(fileReadLine("/proc/stb/vmpeg/0/xres", 0, source=MODULE_NAME), 16)
-		yRes = int(fileReadLine("/proc/stb/vmpeg/0/yres", 0, source=MODULE_NAME), 16)
-		if BoxInfo.getItem("model").startswith('azbox'):
-			fps = 50.0
-		else:
-			fps = float(fileReadLine("/proc/stb/vmpeg/0/framerate", 50000, source=MODULE_NAME)) / 1000.0
+		amlogic = BoxInfo.getItem("AmlogicFamily")
+		base = 10 if amlogic else 16
+		file = "/sys/class/video/frame_width" if amlogic else "/proc/stb/vmpeg/0/xres"
+		xRes = int(fileReadLine(file, 0, source=MODULE_NAME), base)
+		file = "/sys/class/video/frame_height" if amlogic else "/proc/stb/vmpeg/0/yres"
+		yRes = int(fileReadLine(file, 0, source=MODULE_NAME), base)
+		file = "/proc/stb/vmpeg/0/frame_rate" if amlogic else "/proc/stb/vmpeg/0/framerate"
+		fps = float(fileReadLine(file, default=50000, source=MODULE_NAME)) / 1000.0
 		resList = []
 		resList.append((_("Exit"), "exit"))
 		resList.append((_("Auto(not available)"), "auto"))
@@ -4313,7 +4334,8 @@ class InfoBarResolutionSelection:
 				if videoMode[-1].isdigit():
 					video = "%sHz" % videoMode
 				resList.append((video, videoMode))
-		videoMode = fileReadLine("/proc/stb/video/videomode", "Unknown", source=MODULE_NAME)
+		file = "/sys/class/display/mode" if amlogic else "/proc/stb/video/videomode"
+		videoMode = fileReadLine(file, default="Unknown", source=MODULE_NAME)
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		selection = 0
 		for item in range(len(resList)):
@@ -4329,10 +4351,11 @@ class InfoBarResolutionSelection:
 				if videoMode[1] == "exit" or videoMode[1] == "" or videoMode[1] == "auto":
 					self.ExGreen_toggleGreen()
 				if videoMode[1] != "auto":
-					if fileWriteLine("/proc/stb/video/videomode", videoMode[1], source=MODULE_NAME):
-						print("[InfoBarGenerics] New video mode is %s." % videoMode[1])
+					file = "/sys/class/display/mode" if BoxInfo.getItem("AmlogicFamily") else "/proc/stb/video/videomode"
+					if fileWriteLine(file, videoMode[1], source=MODULE_NAME):
+						print("[InfoBarGenerics] New video mode is '%s'." % videoMode[1])
 					else:
-						print("[InfoBarGenerics] Error: Unable to set new video mode of %s!" % videoMode[1])
+						print("[InfoBarGenerics] Error: Unable to set new video mode of '%s'!" % videoMode[1])
 					# from enigma import gMainDC
 					# gMainDC.getInstance().setResolution(-1, -1)
 					self.ExGreen_doHide()

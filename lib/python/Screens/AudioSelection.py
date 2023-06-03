@@ -111,6 +111,9 @@ class AudioSelection(Screen, ConfigListScreen):
 				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 					self.settings.downmix_ac3 = ConfigSelection(choices=choice_list, default=config.av.downmix_ac3.value)
+				elif BoxInfo.getItem("machinebuild") in ('dreamone', 'dreamtwo'):
+					choice_list = [("0", _("Downmix")), ("1", _("Passthrough")), ("2", _("use best / controlled by HDMI"))]
+					self.settings.downmix_ac3 = ConfigSelection(choices=choice_list, default=config.av.downmix_ac3.value)
 				else:
 					self.settings.downmix_ac3 = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix_ac3.addNotifier(self.changeAC3Downmix, initial_call=False)
@@ -363,7 +366,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.autovolume.save()
 
 	def changeAC3Downmix(self, downmix):
-		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800', 'dreamone', 'dreamtwo'):
 			config.av.downmix_ac3.setValue(downmix.value)
 		else:
 			if downmix.value:
@@ -564,7 +567,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.session.open(Setup, "AutoLanguage")
 			self.protectContextMenu = False
 		elif answer is not None:
-			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+			self.session.openWithCallback(self.close, MessageBox, _("The PIN code entered is incorrect!"), MessageBox.TYPE_ERROR)
 
 	def cancel(self):
 		self.close(0)

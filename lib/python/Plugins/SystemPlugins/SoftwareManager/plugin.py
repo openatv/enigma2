@@ -67,15 +67,15 @@ def load_cache(cache_file):  # Does a cPickle load.
 
 # Helper for menu.xml
 class ImageWizard(ImageWizard):
-    pass
+	pass
 
 
 class ImageBackup(ImageBackup):
-    pass
+	pass
 
 
 class RestoreMenu(RestoreMenu):
-    pass
+	pass
 
 
 class SoftwareManagerSetup(Setup):

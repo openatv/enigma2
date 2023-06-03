@@ -215,6 +215,21 @@ def getRCFile(ext):
 	return filename
 
 
+def getChipsetString():
+	if MODEL in ("dm7080", "dm820"):
+		return "7435"
+	elif MODEL in ("dm520", "dm525"):
+		return "73625"
+	elif MODEL in ("dm900", "dm920", "et13000"):
+		return "7252S"
+	elif MODEL in ("hd51", "vs1500", "h7"):
+		return "7251S"
+	elif MODEL in ('dreamone', 'dreamonetwo', 'dreamseven'):
+		return "S922X"
+	chipset = fileReadLine("/proc/stb/info/chipset", default=_("Undefined"), source=MODULE_NAME)
+	return str(chipset.lower().replace("\n", "").replace("bcm", "").replace("brcm", "").replace("sti", ""))
+
+
 def getModuleLayout():
 	modulePath = BoxInfo.getItem("enigmamodule")
 	if modulePath:
@@ -283,8 +298,6 @@ def getBoxName():
 		box = "maram9"
 	elif box.startswith('sf8008m'):
 		box = "sf8008m"
-	elif box.startswith('sf8008opt'):
-		box = "sf8008opt"
 	elif box.startswith('sf8008'):
 		box = "sf8008"
 	elif box.startswith('ustym4kpro'):
@@ -312,11 +325,9 @@ BoxInfo.setItem("ModuleLayout", getModuleLayout(), immutable=True)
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
-BoxInfo.setItem("RemoteEnable", MACHINEBUILD in ("dm800", "azboxhd"))
+BoxInfo.setItem("RemoteEnable", MACHINEBUILD in ("dm800",))
 if MACHINEBUILD in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
 	repeat = 400
-elif MACHINEBUILD == 'azboxhd':
-	repeat = 150
 else:
 	repeat = 100
 BoxInfo.setItem("RemoteRepeat", repeat)
@@ -355,13 +366,14 @@ BoxInfo.setItem("ArchIsARM64", ARCHITECTURE == "aarch64" or "64" in ARCHITECTURE
 BoxInfo.setItem("ArchIsARM", ARCHITECTURE.startswith(("arm", "cortex")))
 BoxInfo.setItem("Blindscan", isPluginInstalled("Blindscan"))
 BoxInfo.setItem("BoxName", getBoxName())
-canImageBackup = not MACHINEBUILD.startswith('az') and not BRAND.startswith('cube') and not BRAND.startswith('wetek') and not MACHINEBUILD.startswith('alien')
-BoxInfo.setItem("canImageBackup", canImageBackup)
 BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())
 BoxInfo.setItem("canMultiBoot", MultiBoot.getBootSlots())
+BoxInfo.setItem("HasKexecMultiboot", fileHas("/proc/cmdline", "kexec=1"))
+BoxInfo.setItem("cankexec", BoxInfo.getItem("kexecmb") and fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz") and not BoxInfo.getItem("HasKexecMultiboot"))
 BoxInfo.setItem("CanNotDoSimultaneousTranscodeAndPIP", MODEL in ("vusolo4k", "gbquad4k", "gbue4k"))
-BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k", "og2ott4k", "sx88v2", "sx888") and ("usb_update.bin", "none"))
+BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "sf8008", "sf8008m", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "ustym4ks2ottx", "beyonwizv2", "viper4k", "og2ott4k", "sx88v2", "sx888") and ("usb_update.bin", "none"))
 BoxInfo.setItem("CanUse3DModeChoices", fileExists("/proc/stb/fb/3dmode_choices") and True or False)
+BoxInfo.setItem("ChipsetString", getChipsetString(), immutable=True)
 BoxInfo.setItem("CIHelper", fileExists("/usr/bin/cihelper"))
 BoxInfo.setItem("DeepstandbySupport", MODEL != 'dm800')
 BoxInfo.setItem("DefaultDisplayBrightness", MACHINEBUILD in ("dm900", "dm920") and 8 or 5)
@@ -387,7 +399,7 @@ BoxInfo.setItem("HaveID", fileCheck("/etc/.id"))
 BoxInfo.setItem("HAVEINITCAM", haveInitCam())
 BoxInfo.setItem("HaveTouchSensor", MACHINEBUILD in ("dm520", "dm525", "dm900", "dm920"))
 BoxInfo.setItem("HDMICEC", fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0"))
-BoxInfo.setItem("HDMIin", MODEL in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "sf5008", "vuuno4kse", "vuduo4k", "vuduo4kse") or MACHINEBUILD in ("spycat4k", "spycat4kcombo", "gbquad4k"))
+BoxInfo.setItem("HDMIin", MODEL in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "vuuno4kse", "vuduo4k", "vuduo4kse") or MACHINEBUILD in ("spycat4k", "spycat4kcombo", "gbquad4k"))
 BoxInfo.setItem("HiSilicon", SOC_FAMILY.startswith("hisi") or exists("/proc/hisi") or exists("/usr/bin/hihalt") or exists("/usr/lib/hisilicon"))
 BoxInfo.setItem("LcdDisplay", fileExists("/dev/dbox/lcd0"))
 BoxInfo.setItem("LcdLiveTV", fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable"))
@@ -396,9 +408,10 @@ BoxInfo.setItem("LCDMiniTV", fileExists("/proc/stb/lcd/mode"))
 BoxInfo.setItem("LCDMiniTVPiP", BoxInfo.getItem("LCDMiniTV") and MACHINEBUILD not in ("gb800ueplus", "gbquad4k", "gbue4k"))
 BoxInfo.setItem("LCDSKINSetup", fileExists("/usr/share/enigma2/display"))
 BoxInfo.setItem("LEDButtons", MACHINEBUILD == "vuultimo")
-BoxInfo.setItem("LedPowerColor", fileExists("/proc/stb/fp/ledpowercolor"))
-BoxInfo.setItem("LedStandbyColor", fileExists("/proc/stb/fp/ledstandbycolor"))
-BoxInfo.setItem("LedSuspendColor", fileExists("/proc/stb/fp/ledsuspendledcolor"))
+BoxInfo.setItem("LEDColorControl", fileExists("/proc/stb/fp/led_color"))
+BoxInfo.setItem("LEDPowerColor", fileExists("/proc/stb/fp/ledpowercolor"))
+BoxInfo.setItem("LEDStandbyColor", fileExists("/proc/stb/fp/ledstandbycolor"))
+BoxInfo.setItem("LEDSuspendColor", fileExists("/proc/stb/fp/ledsuspendledcolor"))
 BoxInfo.setItem("MiddleFlash", BoxInfo.getItem("middleflash") and not BoxInfo.getItem("smallflash"))
 BoxInfo.setItem("MiniTV", fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable"))
 BoxInfo.setItem("need_dsw", MACHINEBUILD not in ("osminiplus", "osmega"))
@@ -411,7 +424,7 @@ BoxInfo.setItem("Power4x7Standby", fileExists("/proc/stb/fp/power4x7standby"))
 BoxInfo.setItem("Power4x7Suspend", fileExists("/proc/stb/fp/power4x7suspend"))
 BoxInfo.setItem("PowerLed", fileExists("/proc/stb/power/powerled"))
 BoxInfo.setItem("PowerLed2", fileExists("/proc/stb/power/powerled2"))
-BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode"))
+BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode") or MODEL in ("dreamone", "dreamtwo"))
 BoxInfo.setItem("Satfinder", isPluginInstalled("Satfinder"))
 BoxInfo.setItem("SmallFlash", BoxInfo.getItem("smallflash"))
 BoxInfo.setItem("SoftCam", hasSoftcam())
@@ -429,15 +442,15 @@ BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
 
-BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('alien5', 'osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'gbmv200', 'cc1', 'sfx6008', 'sx88v2', 'sx888'))
-BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "mixosf5", "mixosf7", "mixoslumi", "gi9196m", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
+BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'ustym4ks2ottx', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'gbmv200', 'sfx6008', 'sx88v2', 'sx888'))
+BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
 
 
 # dont't sort
 BoxInfo.setItem("ConfigDisplay", BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment",))
-BoxInfo.setItem("dFlash", canImageBackup and exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"))
-BoxInfo.setItem("dBackup", canImageBackup and not BoxInfo.getItem("dFlash") and exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"))
-BoxInfo.setItem("ImageBackup", canImageBackup and not BoxInfo.getItem("dFlash") and not BoxInfo.getItem("dBackup"))
+BoxInfo.setItem("dFlash", exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"))
+BoxInfo.setItem("dBackup", not BoxInfo.getItem("dFlash") and exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"))
+BoxInfo.setItem("ImageBackup", not BoxInfo.getItem("dFlash") and not BoxInfo.getItem("dBackup"))
 
 SystemInfo["SeekStatePlay"] = False
 SystemInfo["StatePlayPause"] = False

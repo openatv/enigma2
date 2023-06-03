@@ -32,7 +32,7 @@ class Screen(dict):
 		self.onHide = []
 		self.execing = False
 		self.shown = True
-		# DEBUG: Variable already_shown used in CutListEditor/ui.py and StartKodi/plugin.py...
+		# DEBUG: Variable already_shown used in CutListEditor/ui.py...
 		# DEBUG: self.alreadyShown = False  # Already shown is false until the screen is really shown (after creation).
 		self.already_shown = False  # Already shown is false until the screen is really shown (after creation).
 		self.renderer = []

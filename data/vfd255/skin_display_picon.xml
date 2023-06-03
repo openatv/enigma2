@@ -197,9 +197,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="255,64">
 		<widget source="Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="parent.menu" render="Label" position="0,21" size="255,50" font="FdLcD;16" halign="left">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="0,21" size="255,50" font="FdLcD;16" halign="left"/>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
@@ -207,9 +205,9 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="255,64">
-		<widget source="SetupTitle" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1"  />
-		<widget source="SetupEntry" render="Label" position="0,16" size="255,32" font="FdLcD;14" halign="left" valign="top" />
-		<widget source="SetupValue" render="Label" position="0,47" size="190,18" font="FdLcD;15" halign="left" valign="bottom" />
+		<widget source="Title" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1"  />
+		<widget source="entry" render="Label" position="0,16" size="255,32" font="FdLcD;14" halign="left" valign="top" />
+		<widget source="value" render="Label" position="0,47" size="190,18" font="FdLcD;15" halign="left" valign="bottom" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
@@ -330,10 +328,6 @@
 		<panel name="MessageBoxSummary" />
 	</screen>
 
-	<screen name="AboutSummary" position="0,0" size="255,64">
-		<widget source="AboutText" render="Label" position="0,0" size="255,64" font="FdLcD;22" halign="center" />
-	</screen>
-
 	<screen name="TimerEditListSummary" position="0,0" size="255,64">
 		<widget source="service" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
 		<widget source="name" render="Label" position="0,21" size="255,18" font="FdLcD;17" halign="left" noWrap="1" />
@@ -345,12 +339,6 @@
 	</screen>
 
 	<screen name="WizardSummary" position="0,0" size="255,64">
-		<widget source="text" render="Label" position="0,0" size="255,64" font="FdLcD;12" halign="center" />
-		<widget source="parent.list" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1"  >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-	<screen name="VideoWizardSummary" position="0,0" size="255,64">
 		<widget source="text" render="Label" position="0,0" size="255,64" font="FdLcD;12" halign="center" />
 		<widget source="parent.list" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1"  >
 			<convert type="StringListSelection" />
@@ -532,9 +520,6 @@
 	<screen name="RestorePlugins_summary" position="0,0" size="256,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valign="center" />
 		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
-	</screen>
-		<screen name="AboutSummary" position="0,0" size="256,64">
-		<widget source="AboutText" render="RunningText" options="movetype=running,direction=top,startpoint=0,startdelay=1500,wrap=1,always=0,oneshot=1" position="0,0" size="256,64" font="FdLcD;26" />
 	</screen>
 	<screen name="SoftwareUpdateChanges_summary" position="0,0" size="256,64">
 		<widget source="parent.title_summary" render="Label" position="120,0" size="136,40" font="FdLcD;17" halign="center" valign="bottom" />

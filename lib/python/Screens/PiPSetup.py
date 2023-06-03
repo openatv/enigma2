@@ -1,4 +1,3 @@
-from __future__ import division
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.SystemInfo import BoxInfo
@@ -83,7 +82,7 @@ class PiPSetup(Screen):
 		self.pip.move(self.pos[0], self.pos[1])
 
 	def resizePiP(self, resize):
-		resize += 100 # resize is in percent, so resize=+20 means: 120%
+		resize += 100  # resize is in percent, so resize=+20 means: 120%
 
 		oldsize = self.size
 		if self.mode != "split":

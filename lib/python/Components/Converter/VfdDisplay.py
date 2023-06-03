@@ -1,3 +1,5 @@
+from enigma import iPlayableService
+
 from datetime import datetime
 from Components.Converter.Poll import Poll
 from Components.Converter.Converter import Converter
@@ -74,7 +76,7 @@ class VfdDisplay(Poll, Converter):
 	text = property(getText)
 
 	def changed(self, what):
-		if what[0] is self.CHANGED_SPECIFIC and self.delay >= 0:
+		if what[0] is self.CHANGED_SPECIFIC and (what[1] in (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evNewProgramInfo)) and self.delay >= 0:
 			self.showclock = 0
 			if self.loop != -1:
 				self.loop = self.delay

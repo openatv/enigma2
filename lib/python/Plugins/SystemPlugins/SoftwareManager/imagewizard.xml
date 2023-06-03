@@ -1,4 +1,3 @@
-<!--suppress XmlUnboundNsPrefix -->
 <wizard>
 	<step id="restorequestion">
 		<condition>
@@ -7,6 +6,7 @@ self.backuppath = checkConfigBackup()
 self.condition = (self.backuppath is not None and config.misc.firstrun.value)
 		</condition>
 		<text value="Do you want to restore your settings?" />
+		<displaytext value="Do you want to restore your settings?" />
 		<list>
 			<listentry caption="Yes, restore the settings now" step="restore" />
 			<listentry caption="No, just start my %s %s" step="end" />
@@ -14,33 +14,65 @@ self.condition = (self.backuppath is not None and config.misc.firstrun.value)
 		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
 		</code>
 	</step>
 
 	<step id="welcome">
-		<text value="Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware." />
+		<text value="Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware." />
+		<displaytext value="Do you want the upgrade guide?" />
 		<list>
 			<listentry caption="OK, guide me through the upgrade process" step="backupquestion" />
 			<listentry caption="Exit the wizard" step="end" />
 		</list>
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+		</code>
 	</step>
 
 	<step id="backupquestion">
-		<text value="The wizard can backup your current settings. Do you want to do a backup now?" />
+		<text value="The wizard can backup your current settings. Do you want to start a backup now?" />
+		<displaytext value="Do you want to start a backup now?" />
 		<list>
 			<listentry caption="Yes, backup my settings!" step="backupwhere" />
 			<listentry caption="No backup needed" step="upgrade" />
 		</list>
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+		</code>
 	</step>
 
 	<step id="backupwhere" nextstep="backup">
 		<text value="Where do you want to backup your settings?" />
+		<displaytext value="Where do you want to backup your settings?" />
 		<list type="dynamic" source="listDevices" evaluation="deviceSelectionMade" onselect="deviceSelectionMoved" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+		</code>
 	</step>
 
 	<step id="backup" nextstep="backupresult">
-		<text value="You have chosen to backup your settings. Please press OK to start the backup now." />
+		<text value="You have chosen to backup your settings. Press OK to start the backup now." />
+		<displaytext value="Press OK to start the backup now" />
 		<config screen="BackupScreen" module="Plugins.SystemPlugins.SoftwareManager.BackupRestore" type="ConfigList" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
+		</code>
 		<code pos="after" async="yes">
 self.currStep = self.getStepWithID('backupresult')
 self.afterAsyncCode()
@@ -53,7 +85,12 @@ from Plugins.SystemPlugins.SoftwareManager.ImageWizard import checkBackupFile
 self.backuppath = checkBackupFile()
 self.condition = (self.backuppath is True)
 		</condition>
-		<text value="Your backup succeeded. We will now continue to explain the further upgrade process." />
+		<text value="The backup succeeded. We will now continue to explain the upgrade process." />
+		<displaytext value="The backup succeeded" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+		</code>
 	</step>
 
 	<step id="backupresult" nextstep="backupwhere">
@@ -62,42 +99,77 @@ from Plugins.SystemPlugins.SoftwareManager.ImageWizard import checkBackupFile
 self.backuppath = checkBackupFile()
 self.condition = (self.backuppath is False)
 		</condition>
-		<text value="The backup failed. Please choose a different backup location." />
+		<text value="The backup failed! Choose a different backup location." />
+		<displaytext value="The backup failed" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+		</code>
 	</step>
 
 	<step id="restore" nextstep="backupresult">
-		<text value="You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now." />
+		<text value="You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now." />
+		<displaytext value="Restore settings now" />
 		<config screen="RestoreScreen" module="Plugins.SystemPlugins.SoftwareManager.BackupRestore" type="ConfigList" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
+		</code>
 	</step>
 
 	<step id="upgradehow">
-		<text value="The wizard can backup your current settings. Do you want to do a backup now?" />
+		<text value="Select the source location from where to obtain the upgrade files." />
+		<displaytext value="Select update source location" />
 		<list>
 			<listentry caption="Install a new image with your web browser" step="upgrade" />
 			<listentry caption="Install a new image with a USB stick" step="upgradeUSB" />
 		</list>
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+		</code>
 	</step>
 
 	<step id="upgrade">
-		<text value="You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\nYour %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings." />
+		<text value="You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\nThe %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings." />
+		<displaytext value="Perform the upgrade?" />
 		<list>
 			<listentry caption="Yes, shut down now." step="shutdown" />
 			<listentry caption="No, do nothing." step="end" />
 		</list>
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+		</code>
 	</step>
 
 	<step id="shutdown" nextstep="shutdown">
 		<code>
 from enigma import quitMainloop
-quitMainloop(1)
+from Screens.Standby import QUIT_SHUTDOWN
+quitMainloop(QUIT_SHUTDOWN)
 		</code>
-		<text value="Your %s %s is shutting down. Please wait..." />
+		<text value="The %s %s is shutting down. Please wait..." />
+		<displaytext value="Shutting down. Please wait..." />
 	</step>
 
 	<step id="end" laststep="true">
 		<condition>
 self.condition = self.isLastWizard
 		</condition>
-		<text value="The wizard is finished now." />
+		<text value="This wizard has finished." />
+		<displaytext value="This wizard has finished" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+		</code>
 	</step>
 </wizard>

@@ -1,7 +1,7 @@
 from json import loads
 
-from six.moves.urllib.request import urlopen
-from six.moves.urllib.error import URLError
+from urllib.request import urlopen
+from urllib.error import URLError
 
 # Data available from http://ip-api.com/json/:
 #

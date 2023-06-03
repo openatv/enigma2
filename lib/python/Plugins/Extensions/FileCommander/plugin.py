@@ -317,12 +317,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"top": (self.keyGoTop, _("Move to first line / screen")),
 			"pageUp": (self.keyGoPageUp, _("Move up a screen")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
-			"left": (self.keyGoLeftColumn, _("Switch to the left column")),
-			"right": (self.keyGoRightColumn, _("Switch to the right column")),
+			"panelLeft": (self.keyGoLeftColumn, _("Switch to the left column")),
+			"panelRight": (self.keyGoRightColumn, _("Switch to the right column")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a screen")),
 			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
-		}, prio=-1, description=_("File Commander Actions"))  # DEBUG: Something has stolen UP, DOWN, LEFT and RIGHT! :(
+		}, prio=0, description=_("File Commander Actions"))
 		self["multiSelectAction"] = HelpableActionMap(self, ["FileCommanderActions"], {
 			"multi": (self.keyMultiSelect, _("Toggle multi-selection mode"))
 		}, prio=0, description=_("File Commander Actions"))
@@ -399,8 +399,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.updateButtons()
 
 	def layoutFinished(self):
-		self["listleft"].instance.enableAutoNavigation(False)
-		self["listright"].instance.enableAutoNavigation(False)
+		self["headleft"].master.master.instance.enableAutoNavigation(False)  # Override listbox navigation.
+		self["headright"].master.master.instance.enableAutoNavigation(False)  # Override listbox navigation.
+		self["listleft"].instance.enableAutoNavigation(False)  # Override listbox navigation.
+		self["listright"].instance.enableAutoNavigation(False)  # Override listbox navigation.
 		if self.leftActive:
 			self.keyGoLeftColumn()
 		else:
@@ -415,12 +417,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def updateHeading(self, column):
 		def buildHeadingData(column):  # Numbers in trailing comments are the template text indexes.
-			if column == self["listleft"]:
-				sortDirs, reverseDirs = [int(x) for x in config.plugins.FileCommander.sortDirectoriesLeft.value.split(".")]
-				sortFiles, reverseFiles = [int(x) for x in config.plugins.FileCommander.sortFilesLeft.value.split(".")]
-			else:
-				sortDirs, reverseDirs = [int(x) for x in config.plugins.FileCommander.sortDirectoriesRight.value.split(".")]
-				sortFiles, reverseFiles = [int(x) for x in config.plugins.FileCommander.sortFilesRight.value.split(".")]
+			sort = column.getSortBy().split(",")
+			sortDirs, reverseDirs = [int(x) for x in sort[0].split(".")]
+			sortFiles, reverseFiles = [int(x) for x in sort[1].split(".")]
 			sortText = "[D]%s%s[F]%s%s" % (("n", "d", "s")[sortDirs], ("+", "-")[reverseDirs], ("n", "d", "s")[sortFiles], ("+", "-")[reverseFiles])  # (name|date|size)(normal|reverse)
 			path = column.getPath()
 			currentDirectory = column.getCurrentDirectory()
@@ -1442,9 +1441,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if newName:
 				newPath = pathjoin(dirname(normpath(path)), newName)
 				try:
-					rename(path, newPath)
+					rename(normpath(path), newPath)
 				except OSError as err:
-					self.session.open(MessageBox, _("Error %d: Unable to rename file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+					self.session.open(MessageBox, _("Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 				if isdir(newPath):
 					newPath = pathjoin(newPath, "")
 				self.sourceColumn.refresh(newPath)
@@ -1514,6 +1513,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				sort[0] = answer
 				self.sourceColumn.setSortBy(",".join(sort))
 				self.sourceColumn.refresh()
+				self.updateHeading(self.sourceColumn)
 				self.updateSort()
 
 		msg = _("Select the directory sort order for the left column:") if self.leftActive else _("Select the directory sort order for the right column:")
@@ -1533,6 +1533,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				sort[1] = answer
 				self.sourceColumn.setSortBy(",".join(sort))
 				self.sourceColumn.refresh()
+				self.updateHeading(self.sourceColumn)
 				self.updateSort()
 
 		column = "left" if self.leftActive else "right"
@@ -1631,7 +1632,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			base = splitext(base)[0]
 			relatedFiles.append(base)
 			relatedFiles.append("%s%s" % (base, extension))
-			relatedExtensions = (".eit", extension, "%s.ap" % extension, "%s.cuts" % extension, "%s.jpg" % extension, "%s.meta" % extension, "%s.sc" % extension, "%s.txt" % extension)
+			relatedExtensions = (".eit", ".jpg", ".log", ".txt", extension, "%s.ap" % extension, "%s.cuts" % extension, "%s.meta" % extension, "%s.sc" % extension)
 			for extension in relatedExtensions:
 				related = "%s%s" % (base, extension)
 				if isfile(related):
@@ -2268,7 +2269,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 			extension = splitext(imagePath)[1].lower() if imagePath and not fileData[0][FILE_IS_DIR] else None
 			if extension and extension in IMAGE_EXTENSIONS:
 				imageList.append(imagePath)
-				if imagePath.endswith(filename):
+				if basename(imagePath) == filename:
 					self.currentIndex = index
 				index += 1
 		return imageList
@@ -2611,20 +2612,24 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Delete Line"))
 		self["key_blue"] = StaticText(_("Insert Line"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+		self["key_text"] = StaticText(_("TEXT"))
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions", "FileCommanderActions"], {
 			"cancel": (self.keyCancel, _("Exit editor and discard any changes")),
 			"ok": (self.keyEdit, _("Edit current line")),
 			"red": (self.keyCancel, _("Exit editor and discard any changes")),
 			"green": (self.keySave, _("Exit editor and save any changes")),
 			"yellow": (self.keyDelete, _("Delete current line")),
 			"blue": (self.keyInsert, _("Insert line before current line")),
+			"greenlong": (self.keyDeleteEmptyLines, _("Delete empty and white space only lines")),
+			"yellowlong": (self.keyDeleteDuplicateLines, _("Delete all duplicated lines")),
+			"bluelong": (self.keyDuplicateCurrentLine, _("Duplicate the current line")),
+			"text": (self.keySortTextMenu, _("Open file sort menu")),
 			"top": (self["data"].goTop, _("Move to first line / screen")),
 			"pageUp": (self["data"].goPageUp, _("Move up a screen")),
 			"up": (self["data"].goLineUp, _("Move up a line")),
 			"down": (self["data"].goLineDown, _("Move down a line")),
 			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
 			"bottom": (self["data"].goBottom, _("Move to last line / screen"))
-			# Add command to sort the file.
 		}, prio=0, description=_("File Commander Text Editor Actions"))
 		self["moveUpAction"] = HelpableActionMap(self, ["NavigationActions"], {
 			"first": (self.keyMoveLineUp, _("Move the current line up")),
@@ -2639,10 +2644,10 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		self["data"].instance.enableAutoNavigation(False)  # Override listbox navigation.
 		self.data = fileReadLines(self.path, default=[], source=MODULE_NAME)
 		self["data"].setList(self.data)
-		self["data"].onSelectionChanged.append(self.updateLine)
-		self.updateLine()
+		self["data"].onSelectionChanged.append(self.updateStatus)
+		self.updateStatus()
 
-	def updateLine(self):
+	def updateStatus(self):
 		count = self["data"].count()
 		index = self["data"].getCurrentIndex()
 		if count:
@@ -2653,54 +2658,59 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		self["moveDownAction"].setEnabled(index < count - 1)
 
 	def keyCancel(self):
+		def keyCancelCallback(answer):
+			if answer:
+				self.close()
+
 		if self.isChanged:
-			msg = _("The file '%s' has been changed. Do you want to discard the changes?" % self.path)
-			self.session.openWithCallback(self.keyCancelCallback, MessageBox, msg, MessageBox.TYPE_YESNO, default=False, windowTitle=self.getTitle())
+			self.session.openWithCallback(keyCancelCallback, MessageBox, _("The file '%s' has been changed. Do you want to discard the changes?") % self.path, MessageBox.TYPE_YESNO, default=False, windowTitle=self.getTitle())
 		else:
 			self.close()
-
-	def keyCancelCallback(self, answer):
-		if answer:
-			self.close()
-
-	def keySave(self):
-		if self.isChanged:
-			msg = [_("The file '%s' has been changed. Do you want to save it?") % self.path]
-			msg.append("")
-			msg.append(_("WARNING:"))
-			msg.append(_("The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"))
-			self.session.openWithCallback(self.keySaveCallback, MessageBox, "\n".join(msg), MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
-		else:
-			self.close()
-
-	def keySaveCallback(self, answer):
-		if answer:
-			if isfile(self.path):
-				copyFile(self.path, "%s.bak" % self.path)
-			if fileWriteLines(self.path, "\n".join(self.data), source=MODULE_NAME) == 0:
-				self.session.open(MessageBox, _("Error: There was a problem writing '%s'!") % self.path, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
-		self.close()
-
-	def keyEdit(self):
-		line = self["data"].getCurrent()
-		# Find and replace TABs with a special single character.  This could also be helpful for NEWLINE as well.
-		# line = line.replace("\t", "<TAB>") # Find and replace TABs.  This could also be helpful for NEWLINE as well.
-		currPos = None if config.plugins.FileCommander.editLineEnd.value == True else 0
-		self.session.openWithCallback(self.keyEditCallback, VirtualKeyBoard, title="%s: %s" % (_("Original"), line), text=line, currPos=currPos, allMarked=False, windowTitle=self.getTitle())
-
-	def keyEditCallback(self, line):
-		if line is not None:
-			# Find and restore TABs from a special single character.  This could also be helpful for NEWLINE as well.
-			# line = line.replace("<TAB>", "\t") # Find and restore TABs.  This could also be helpful for NEWLINE as well.
-			self.data[self["data"].getCurrentIndex()] = line
-			self["data"].setList(self.data)
-			self.isChanged = True
 
 	def keyDelete(self):
 		if self.data:
 			del self.data[self["data"].getCurrentIndex()]
 			self["data"].setList(self.data)
 			self.isChanged = True
+
+	def keyDeleteDuplicateLines(self):
+		length = len(self.data)
+		unique = []
+		for line in self.data:
+			if line not in unique:
+				unique.append(line)
+		self.data = unique
+		self["data"].setList(unique)
+		if len(self.data) != length:
+			self.isChanged = True
+
+	def keyDeleteEmptyLines(self):
+		length = len(self.data)
+		# self.data = [x for x in self.data if x]
+		self.data = [x for x in self.data if x.strip()]
+		self["data"].setList(self.data)
+		if len(self.data) != length:
+			self.isChanged = True
+
+	def keyDuplicateCurrentLine(self):
+		self.data.insert(self["data"].getCurrentIndex(), self["data"].getCurrent())
+		self["data"].setList(self.data)
+		self.isChanged = True
+
+	def keyEdit(self):
+		def keyEditCallback(line):
+			if line is not None:
+				# Find and restore TABs from a special single character.  This could also be helpful for NEWLINE as well.
+				# line = line.replace("<TAB>", "\t") # Find and restore TABs.  This could also be helpful for NEWLINE as well.
+				self.data[self["data"].getCurrentIndex()] = line
+				self["data"].setList(self.data)
+				self.isChanged = True
+
+		line = self["data"].getCurrent()
+		# Find and replace TABs with a special single character.  This could also be helpful for NEWLINE as well.
+		# line = line.replace("\t", "<TAB>") # Find and replace TABs.  This could also be helpful for NEWLINE as well.
+		currPos = None if config.plugins.FileCommander.editLineEnd.value == True else 0
+		self.session.openWithCallback(keyEditCallback, VirtualKeyBoard, title="%s: %s" % (_("Original"), line), text=line, currPos=currPos, allMarked=False, windowTitle=self.getTitle())
 
 	def keyInsert(self):
 		self.data.insert(self["data"].getCurrentIndex(), "")
@@ -2719,6 +2729,40 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		self["data"].setList(self.data)
 		self["data"].setCurrentIndex(index)
 		self.isChanged = True
+
+	def keySave(self):
+		def keySaveCallback(answer):
+			if answer:
+				if isfile(self.path):
+					copyFile(self.path, "%s.bak" % self.path)
+				if fileWriteLines(self.path, "\n".join(self.data), source=MODULE_NAME) == 0:
+					self.session.open(MessageBox, _("Error: There was a problem writing '%s'!") % self.path, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+			self.close()
+
+		if self.isChanged:
+			msg = [_("The file '%s' has been changed. Do you want to save it?") % self.path]
+			msg.append("")
+			msg.append(_("WARNING:"))
+			msg.append(_("The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"))
+			self.session.openWithCallback(keySaveCallback, MessageBox, "\n".join(msg), MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
+		else:
+			self.close()
+
+	def keySortTextMenu(self):
+		def keySortTextMenuCallback(answer):
+			if answer:
+				if answer == "SORTA":
+					self.data.sort()
+				elif answer == "SORTD":
+					self.data.sort(reverse=True)
+				self["data"].setList(self.data)
+				self.isChanged = True
+
+		choiceList = [
+			(_("Ascending"), "SORTA"),
+			(_("Descending"), "SORTD")
+		]
+		self.session.openWithCallback(keySortTextMenuCallback, MessageBox, _("Select the sort order for the file lines:"), list=choiceList, default=0, windowTitle=self.getTitle())
 
 
 class FileCopyTask(Job):

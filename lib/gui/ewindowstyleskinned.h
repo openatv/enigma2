@@ -105,7 +105,7 @@ private:
 	eSize m_title_offset;
 	ePtr<gFont> m_fnt, m_labelfnt, m_listboxfnt, m_entryfnt, m_valuefnt;
 
-	void drawBorder(gPainter &painter, const eRect &size, struct borderSet &border, int where);
+	void drawBorder(gPainter &painter, const eRect &size, struct borderSet &border, int where, int flags);
 };
 
 #endif

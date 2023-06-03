@@ -43,9 +43,7 @@
 
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="16,1">
-		<widget source="parent.menu" render="Label" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top"/>
 	</screen>
 
 <!-- movieplayer-->
@@ -74,11 +72,11 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="132,64">
-		<widget source="SetupTitle" render="Label" position="0,0" size="120,16" font="Regular;12" />
+		<widget source="Title" render="Label" position="0,0" size="120,16" font="Regular;12" />
 <!--
-		<widget source="SetupEntry" render="Label" position="0,0" size="120,32" font="Regular;12" />
+		<widget source="entry" render="Label" position="0,0" size="120,32" font="Regular;12" />
  -->
-		<widget source="SetupValue" render="Label" position="0,0" size="120,32" font="Regular;12" />
+		<widget source="value" render="Label" position="0,0" size="120,32" font="Regular;12" />
 	</screen>
 
 <!-- misc-->
@@ -111,9 +109,6 @@
 		<widget source="parent.list" render="Label" position="fill" font="Regular;12">
 			<convert type="StringListSelection" />
 		</widget>
-	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<panel name="WizardSummary" />
 	</screen>
 
 <!-- standby -->

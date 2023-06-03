@@ -1,18 +1,14 @@
-# -*- coding: utf-8 -*-
 # by digiteng...12-2019
 # v1.1a 01-2020
+from json import load
+from os.path import isdir
+from os import mkdir
+from re import search, sub
+from urllib.parse import quote
+from urllib.request import urlopen
+
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-import json
-import re
-import os
-
-from six.moves import urllib
-from six.moves.urllib.parse import quote
-
-
-if not os.path.isdir('/tmp/poster'):
-	os.mkdir('/tmp/poster')
 
 
 class pstrCnvrt(Converter):
@@ -25,54 +21,48 @@ class pstrCnvrt(Converter):
 	def getText(self):
 		event = self.source.event
 		if event is None:
-			return ''
-
-		if not event is None:
-			if self.type == 'POSTER':
+			return ""
+		else:
+			if self.type == "POSTER":
 				self.evnt = event.getEventName()
 				try:
-					p = '((.*?)) \([T](\d+)\)'
-					e1 = re.search(p, self.evnt)
+					p = r"((.*?)) \([T](\d+)\)"  # NOSONAR -> Make sure the regex used here, which is vulnerable to polynomial runtime due to backtracking, cannot lead to denial of service.
+					e1 = search(p, self.evnt)
+					jr = self.evnt
 					if e1:
 						jr = e1.group(1)
-						self.evntNm = re.sub('\s+', '+', jr)
-					else:
-						self.evntNm = re.sub('\s+', '+', self.evnt)
-
+					self.evntNm = sub(r"\s+", "+", jr)
 					ses_ep = self.sessionEpisode(event)
-					if ses_ep != '' and len(ses_ep) > 0:
-						self.srch = 'tv'
-						self.searchPoster()
-					else:
-						self.srch = 'multi'
-						self.searchPoster()
+					self.searchPoster("tv" if ses_ep != "" and len(ses_ep) > 0 else "multi")
 					return self.evntNm
-				except:
-					pass
-		else:
-			return ''
+				except Exception:
+					return ""
+			else:
+				return ""
 	text = property(getText)
 
-	def searchPoster(self):
-		url_json = 'https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s' % (self.srch, quote(self.evnt))
-		jp = json.load(urllib.request.urlopen(url_json))
-		imgP = (jp['results'][0]['poster_path'])
-		url_poster = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2%s' % (imgP)
-		dwn_poster = '/tmp/poster/poster.jpg'
-
-		with open(dwn_poster, 'wb') as f:
-			f.write(urllib.request.urlopen(url_poster).read())
-			f.close()
-			return self.evntNm
+	def searchPoster(self, searchMode):
+		url_json = "https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s" % (searchMode, quote(self.evnt))
+		jp = load(urlopen(url_json))
+		imgP = (jp["results"][0]["poster_path"])
+		url_poster = "https://image.tmdb.org/t/p/w185_and_h278_bestv2%s" % (imgP)
+		try:
+			if not isdir("/tmp/poster"):
+				mkdir("/tmp/poster")
+			with open("/tmp/poster/poster.jpg", "wb") as f:
+				f.write(urlopen(url_poster).read())
+				# return self.evntNm
+		except:
+			pass
 
 	def sessionEpisode(self, event):
-		fd = event.getShortDescription() + '\n' + event.getExtendedDescription()
-		pattern = ['(\d+). Staffel, Folge (\d+)', 'T(\d+) Ep.(\d+)', '"Episodio (\d+)" T(\d+)']
+		fd = "%s\n%s" % (event.getShortDescription(), event.getExtendedDescription())
+		pattern = [r'(\d+). Staffel, Folge (\d+)', r'T(\d+) Ep.(\d+)', r'"Episodio (\d+)" T(\d+)']
 		for i in pattern:
-			seg = re.search(i, fd)
+			seg = search(i, fd)
 			if seg:
-				if re.search('Episodio', i):
-					return 'S' + seg.group(2).zfill(2) + 'E' + seg.group(1).zfill(2)
+				if search("Episodio", i):
+					return "S%sE%s" % (seg.group(2).zfill(2), seg.group(1).zfill(2))
 				else:
-					return 'S' + seg.group(1).zfill(2) + 'E' + seg.group(2).zfill(2)
-		return ''
+					return "S%sE%s" % (seg.group(1).zfill(2), seg.group(2).zfill(2))
+		return ""

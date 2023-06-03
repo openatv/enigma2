@@ -73,9 +73,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="2,0" size="128,64">
 		<widget source="Title" render="Label" position="top" size="*,16" font="FdLcD;14" halign="center" valign="top" noWrap="1" />
-		<widget source="parent.menu" render="Label" position="top" size="*,48" font="FdLcD;16" valign="top">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="top" size="*,48" font="FdLcD;16" valign="top"/>
 	</screen>
 
 <!-- movieplayer-->
@@ -134,9 +132,9 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="2,0" size="128,64">
-		<widget source="SetupTitle" render="Label" position="top" size="*,12" font="FdLcD;12" />
-		<widget source="SetupEntry" render="Label" position="top" size="*,40" font="FdLcD;12" />
-		<widget source="SetupValue" render="Label" position="top" size="*,12" font="FdLcD;12" />
+		<widget source="Title" render="Label" position="top" size="*,12" font="FdLcD;12" />
+		<widget source="entry" render="Label" position="top" size="*,40" font="FdLcD;12" />
+		<widget source="value" render="Label" position="top" size="*,12" font="FdLcD;12" />
 	</screen>
 
 <!-- misc-->
@@ -148,13 +146,6 @@
 	<screen name="WizardSummary" position="2,0" size="128,64">
 		<widget source="text" render="Label" position="top" size="*,16" font="FdLcD;16"/>
 		<widget source="parent.list" render="Label" position="fill" font="FdLcD;12">
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-
-	<screen name="VideoWizardSummary" position="2,0" size="128,64">
-		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
-		<widget source="parent.list" render="Label" position="fill" font="FdLcD;14">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -215,19 +206,19 @@
 	<screen name="EMCSelection_summary" position="3,0" size="128,64">
 		<!-- Channel name -->
 		<widget source="parent.Service" render="Label" position="top" size="*,16" font="FdLcD;16" halign="center" noWrap="1">
-			<convert type="EMCMovieInfo">RecordServiceName</convert>
+			<convert type="MovieInfo">RecordServiceName</convert>
 		</widget>
 		<!-- Movie name -->
 		<widget source="parent.Service" render="Label" position="top" size="*,30" font="FdLcD;14" halign="center" valign="center">
-			<convert type="EMCEventName">Name</convert>
+			<convert type="EventName">Name</convert>
 		</widget>
 		<!-- Movie info -->
 		<panel position="bottom" size="*,16">
 			<widget source="parent.Service" render="Label" position="right" size="49,*" font="FdLcD;14" halign="right" noWrap="1">
-				<convert type="EMCMovieInfo">FileSize</convert>
+				<convert type="MovieInfo">FileSize</convert>
 			</widget>
 			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;14" halign="left" transparent="1">
-				<convert type="EMCServiceTime">Duration</convert>
+				<convert type="ServiceTime">Duration</convert>
 				<convert type="EMCClockToText">InMinutes</convert>
 			</widget>
 		</panel>

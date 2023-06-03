@@ -397,7 +397,8 @@ eEPGCache::eEPGCache()
 	onid_file.close();
 
 	m_debug = eConfigManager::getConfigBoolValue("config.crash.debugEPG");
-	
+	m_icetv_enabled = eConfigManager::getConfigBoolValue("config.plugins.icetv.configured") && eConfigManager::getConfigBoolValue("config.plugins.icetv.enable_epg");
+
 	instance = this;
 }
 
@@ -498,21 +499,24 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 	eventMap &eventmap = servicemap.byEvent;
 	timeMap &timemap = servicemap.byTime;
 
-	if (!(source & EPG_IMPORT) && (servicemap.sources & EPG_IMPORT))
-		return;
-	else if ((source & EPG_IMPORT) && !(servicemap.sources & EPG_IMPORT))
+	if(m_icetv_enabled) 
 	{
-		if (!eventmap.empty() || !timemap.empty())
+		if (!(source & EPG_IMPORT) && (servicemap.sources & EPG_IMPORT))
+			return;
+		else if ((source & EPG_IMPORT) && !(servicemap.sources & EPG_IMPORT))
 		{
-			flushEPG(service);
-			servicemap = eventDB[service];
-			eventmap = servicemap.byEvent;
-			timemap = servicemap.byTime;
+			if (!eventmap.empty() || !timemap.empty())
+			{
+				flushEPG(service);
+				servicemap = eventDB[service];
+				eventmap = servicemap.byEvent;
+				timemap = servicemap.byTime;
+			}
+			servicemap.sources = source;
 		}
-		servicemap.sources = source;
+		else
+			servicemap.sources |= source;
 	}
-	else
-		servicemap.sources |= source;
 
 	while (ptr<len)
 	{
@@ -713,29 +717,7 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s, bool lock) // lock only affects
 				content_time_tables.erase(it);
 			}
 #endif
-			// remove this service's channel from lastupdated map
-			{
-				singleLock l(eEPGTransponderDataReader::last_channel_update_lock);
-				for (updateMap::iterator it = eEPGTransponderDataReader::getInstance()->m_channelLastUpdated.begin(); it != eEPGTransponderDataReader::getInstance()->m_channelLastUpdated.end(); )
-				{
-					const eDVBChannelID &chid = it->first;
-					if(chid.original_network_id == s.onid && chid.transport_stream_id == s.tsid)
-						it = eEPGTransponderDataReader::getInstance()->m_channelLastUpdated.erase(it);
-					else
-						++it;
-				}
-			}
-
-			singleLock m(eEPGTransponderDataReader::known_channel_lock);
-			for (ChannelMap::const_iterator it(eEPGTransponderDataReader::getInstance()->m_knownChannels.begin()); it != eEPGTransponderDataReader::getInstance()->m_knownChannels.end(); ++it)
-			{
-				const eDVBChannelID chid = it->second->channel->getChannelID();
-				if(chid.original_network_id == s.onid && chid.transport_stream_id == s.tsid)
-				{
-					it->second->abortEPG();
-					it->second->startChannel();
-				}
-			}
+			// TODO .. search corresponding channel for removed service and remove this channel from lastupdated map
 		}
 	}
 	else // clear complete EPG Cache

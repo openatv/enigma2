@@ -79,7 +79,7 @@ class VRunningText(Renderer):
 				else:
 					x = max(limit, int(val))
 			except:
-					x = default
+				x = default
 			return x
 
 		self.halign = valign = eLabel.alignLeft
@@ -166,7 +166,7 @@ class VRunningText(Renderer):
 		#	self.test_label.setShadowColor(self.scolor)
 		#	self.test_label.setShadowOffset(ePoint(self.soffset[0], self.soffset[1]))
 		if not (self.txtflags & RT_WRAP):
-			self.test_label.setNoWrap(1)
+			self.test_label.setWrap(0)
 		self.test_label.setVAlign(valign)
 		self.test_label.setHAlign(self.halign)
 		self.test_label.move(ePoint(self.W, self.H))

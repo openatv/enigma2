@@ -209,7 +209,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if BoxInfo.getItem("LCDSKINSetup"):
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Settings", _("Select LCD Skin"), _("Setup your LCD Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Skin Settings", _("Select Enigma2 Skin"), _("Setup your Skin")))
-		self.sublist.append(QuickSubMenuEntryComponent("Channel selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
+		self.sublist.append(QuickSubMenuEntryComponent("Channel Selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording Settings", _("Recording Setup"), _("Setup your recording config")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG Settings", _("EPG Setup"), _("Setup your EPG config")))
 		self["sublist"].l.setList(self.sublist)
@@ -293,9 +293,8 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qsoftware(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working Internet connection)")))
-		if BoxInfo.getItem("canImageBackup"):
-			self.sublist.append(QuickSubMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
-			self.sublist.append(QuickSubMenuEntryComponent("Complete Backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
+		self.sublist.append(QuickSubMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Complete Backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings", _("Backup your current settings"), _("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings", _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Show Default Backup Files", _("Show files backed up by default"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).")))
@@ -424,7 +423,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(SkinSelector)
 		elif item[0] == _("OSD Settings"):
 			self.openSetup("UserInterface")
-		elif item[0] == _("Channel selection"):
+		elif item[0] == _("Channel Selection"):
 			self.openSetup("ChannelSelection")
 		elif item[0] == _("Recording Settings"):
 			self.openSetup("Recording")
@@ -653,9 +652,9 @@ class QuickMenuDevices(Screen):
 		<widget source="devicelist" render="Listbox" position="30,46" size="780,450" font="Regular;16" scrollbarMode="showOnDemand" transparent="1" backgroundColorSelected="grey" foregroundColorSelected="black">
 		<convert type="TemplatedMultiContent">
 				{"template": [
-				 MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
-				 MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
-				 MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
+					MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
+					MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
+					MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
 				],
 				"fonts": [gFont("Regular", 24),gFont("Regular", 20)],
 				"itemHeight": 85

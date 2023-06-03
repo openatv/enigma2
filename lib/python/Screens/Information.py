@@ -3,7 +3,7 @@ from glob import glob
 from json import loads
 from locale import format_string
 from os import listdir, remove, statvfs
-from os.path import basename, getmtime, isdir, isfile, join as pathjoin
+from os.path import basename, getmtime, isdir, isfile, join
 from select import select
 from subprocess import PIPE, Popen
 from time import localtime, strftime, strptime
@@ -519,14 +519,15 @@ class DebugInformation(InformationBase):
 			countLogs = len(paths)
 			for index, path in enumerate(reversed(paths)):
 				debugLogs.append((basename(path), _("Log %d/%d") % (index + 1, countLogs), path))
-		paths = [x for x in sorted(glob("/home/root/logs/*-enigma2-crash.log"), key=lambda x: isfile(x) and getmtime(x))]
-		paths += [x for x in sorted(glob("/home/root/logs/enigma2_crash*.log"), key=lambda x: isfile(x) and getmtime(x))]
+		logPath = config.crash.debug_path.value
+		paths = [x for x in sorted(glob(join(logPath, "*-enigma2-crash.log")), key=lambda x: isfile(x) and getmtime(x))]
+		paths += [x for x in sorted(glob(join(logPath, "enigma2_crash*.log")), key=lambda x: isfile(x) and getmtime(x))]
 		if paths:
 			countLogs = len(paths)
 			for index, path in enumerate(reversed(paths)):
 				debugLogs.append((basename(path), _("Crash %d/%d") % (index + 1, countLogs), path))
-		paths = [x for x in sorted(glob("/home/root/logs/*-enigma2-debug.log"), key=lambda x: isfile(x) and getmtime(x))]
-		paths += [x for x in sorted(glob("/home/root/logs/Enigma2-debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
+		paths = [x for x in sorted(glob(join(logPath, "*-enigma2-debug.log")), key=lambda x: isfile(x) and getmtime(x))]
+		paths += [x for x in sorted(glob(join(logPath, "Enigma2-debug*.log")), key=lambda x: isfile(x) and getmtime(x))]
 		if paths:
 			countLogs = len(paths)
 			for index, path in enumerate(reversed(paths)):
@@ -1533,7 +1534,7 @@ class StorageInformation(InformationBase):
 				self.mountInfo.append(data)
 		if isdir("/media/autofs"):
 			for entry in sorted(listdir("/media/autofs")):
-				path = pathjoin("/media/autofs", entry)
+				path = join("/media/autofs", entry)
 				keep = True
 				for data in self.mountInfo:
 					if data[5] == path:
@@ -1573,7 +1574,7 @@ class StorageInformation(InformationBase):
 				info.append(formatLine("P2", _("Capacity"), "%s  (%s)" % (scaleNumber(diskSize), scaleNumber(diskSize, "Iec"))))
 				info.append(formatLine("P2", _("Sleeping"), (_("Yes") if hdd.isSleeping() else _("No"))))
 				for partition in partitions:
-					if partition.device and pathjoin("/dev", partition.device).startswith(hdd.getDeviceName()):
+					if partition.device and join("/dev", partition.device).startswith(hdd.getDeviceName()):
 						info.append(formatLine("P2", _("Partition"), partition.device))
 						stat = statvfs(partition.mountpoint)
 						diskSize = stat.f_blocks * stat.f_frsize

@@ -1,6 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from __future__ import division
 import os
 import time
 from Tools.CList import CList
@@ -299,9 +298,8 @@ class Harddisk:
 		return res >> 8
 
 	def createPartition(self):
-		cmd = 'printf "8,\n;0,0\n;0,0\n;0,0\ny\n" | sfdisk -f -uS ' + self.disk_path
-		res = os.system(cmd)
-		return res >> 8
+		# No longer supported, use createInitializeJob instead
+		return 1
 
 	def mkfs(self):
 		# No longer supported, use createInitializeJob instead
@@ -379,42 +377,20 @@ class Harddisk:
 		task.check = lambda: not os.path.exists(self.partitionPath("1"))
 		task.weighting = 1
 
-		if os.path.exists('/usr/sbin/parted'):
-			use_parted = True
-		else:
-			if size > 2097151:
-				addInstallTask(job, 'parted')
-				use_parted = True
-			else:
-				use_parted = False
-
 		task = Components.Task.LoggingTask(job, _("Creating partition"))
 		task.weighting = 5
-		if use_parted:
-			task.setTool('parted')
-			if size < 1024:
-				# On very small devices, align to block only
-				alignment = 'min'
-			else:
-				# Prefer optimal alignment for performance
-				alignment = 'opt'
-			if size > 2097151:
-				parttype = 'gpt'
-			else:
-				parttype = 'msdos'
-			task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', parttype, 'mkpart', 'primary', '0%', '100%']
+		task.setTool('parted')
+		if size < 1024:
+			# On very small devices, align to block only
+			alignment = 'min'
 		else:
-			task.setTool('sfdisk')
-			task.args.append('-f')
-			task.args.append('-uS')
-			task.args.append(self.disk_path)
-			if size > 128000:
-				# Start at sector 8 to better support 4k aligned disks
-				print("[Harddisk][HD] Detected >128GB disk, using 4k alignment")
-				task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
-			else:
-				# Smaller disks (CF cards, sticks etc) don't need that
-				task.initial_input = "0,\n;\n;\n;\ny\n"
+			# Prefer optimal alignment for performance
+			alignment = 'opt'
+		if size > 2097151:
+			parttype = 'gpt'
+		else:
+			parttype = 'msdos'
+		task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', parttype, 'mkpart', 'primary', '0%', '100%']
 
 		task = Components.Task.ConditionTask(job, _("Waiting for partition"))
 		task.check = lambda: os.path.exists(self.partitionPath("1"))
@@ -658,7 +634,17 @@ class Partition:
 
 
 DEVICEDB = \
-	{"dm8000":
+	{"one":
+		{
+			"/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb1": _("USB 2.0 (Back, inner)"),
+			"/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb2": _("USB 3.0 (Back, outer)"),
+		},
+	"two":
+		{
+			"/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb1": _("USB 2.0 (Back, inner)"),
+			"/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb2": _("USB 3.0 (Back, outer)"),
+		},
+	"dm8000":
 		{
 			"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("SATA"),
 			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": _("Front USB"),
@@ -774,11 +760,6 @@ DEVICEDB = \
 	{
 		"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("eSATA"),
 		"/devices/pci0000:01/0000:01:00.0/host0/target0:0:0/0:0:0:0": _("eSATA"),
-	},
-	"dm7025":
-	{
-		"/devices/pci0000:00/0000:00:14.1/ide1/1.0": "Compact Flash",  # hdc
-		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk"
 	}
 	}
 

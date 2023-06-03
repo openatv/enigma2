@@ -1167,7 +1167,7 @@ class InfoBarTimeshift:
 	def ptsCreateEITFile(self, filename):
 		if self.pts_curevent_eventid is not None:
 			try:
-				serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()).ref.toString()
+				serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()).ref
 				eEPGCache.getInstance().saveEventToFile(filename + ".eit", serviceref, self.pts_curevent_eventid, -1, -1)
 			except Exception as err:
 				print("[Timeshift] Error: %s" % str(err))

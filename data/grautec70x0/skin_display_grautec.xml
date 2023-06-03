@@ -152,9 +152,7 @@
 <screen name="MenuSummary" position="0,0" size="400,240">
 	<widget source="Title" render="Label" position="2,15" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000"/>
 	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,80" size="396,3" />
-    <widget source="parent.menu" render="Label" position="2,95" size="396,100" font="LCD1;52" halign="center">
-		  <convert type="StringListSelection"/>
-	</widget>
+    <widget source="entry" render="Label" position="2,95" size="396,100" font="LCD1;52" halign="center"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
@@ -402,10 +400,10 @@
 
 <!--SetupSummary-->
 <screen name="SetupSummary" position="0,0" size="400,240">
-	<widget source="SetupTitle" render="Label" position="2,15" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000"/>
+	<widget source="Title" render="Label" position="2,15" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000"/>
     <ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,80" size="396,3" />
-	<widget source="SetupEntry" render="Label" position="18,95" size="384,52" font="LCD1;52" halign="center"/>
-	<widget source="SetupValue" render="Label" position="18,155" size="384,52" font="LCD1;52" halign="center"/>
+	<widget source="entry" render="Label" position="18,95" size="384,52" font="LCD1;52" halign="center"/>
+	<widget source="value" render="Label" position="18,155" size="384,52" font="LCD1;52" halign="center"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
@@ -602,7 +600,7 @@
 	</widget>
     <ePixmap pixmap="/usr/share/enigma2/display/progress-lcd1.png" zPosition="1" position="0,167" size="400,14" />
 	<widget source="parent.Service" render="Label" position="0,178" size="180,50" font="LCD1;52" halign="left" valign="top" foregroundColor="oled1" backgroundColor="#000000">
-		 <convert type="EMCServiceTime">Duration</convert>
+		 <convert type="ServiceTime">Duration</convert>
 		 <convert type="EMCClockToText">InMinutes</convert>
 	</widget>
     <widget source="parent.Service" render="Label" position="180,178" size="220,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
