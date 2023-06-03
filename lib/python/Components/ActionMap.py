@@ -165,8 +165,7 @@ def loadKeymap(filename, replace=False):
 	actionMapInstance = eActionMap.getInstance()
 	domKeymap = fileReadXML(filename, source=MODULE_NAME)
 	if domKeymap:
-		if not replace:
-			replace = domKeymap.get("load", "") == "replace"
+		replace = replace or (domKeymap.get("load", "") == "replace")
 		for domMap in domKeymap.findall("map"):
 			context = domMap.attrib.get("context")
 			if context is None:
