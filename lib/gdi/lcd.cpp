@@ -72,7 +72,7 @@ void eLCD::unlock()
 
 const char *eLCD::get_VFD_scroll_delay() const
 {
-#if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
+#if defined(HAVE_7SEGMENT)
 	return "";
 #else
 	return (access(VFD_scroll_delay_proc, W_OK) == 0) ? VFD_scroll_delay_proc : "";
@@ -81,7 +81,7 @@ const char *eLCD::get_VFD_scroll_delay() const
 
 const char *eLCD::get_VFD_initial_scroll_delay() const
 {
-#if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
+#if defined(HAVE_7SEGMENT)
 	return "";
 #else
 	return (access(VFD_initial_scroll_delay_proc, W_OK) == 0) ? VFD_initial_scroll_delay_proc : "";
@@ -90,7 +90,7 @@ const char *eLCD::get_VFD_initial_scroll_delay() const
 
 const char *eLCD::get_VFD_final_scroll_delay() const
 {
-#if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
+#if defined(HAVE_7SEGMENT)
 	return "";
 #else
 	return (access(VFD_final_scroll_delay_proc, W_OK) == 0) ? VFD_final_scroll_delay_proc : "";
@@ -99,7 +99,7 @@ const char *eLCD::get_VFD_final_scroll_delay() const
 
 const char *eLCD::get_VFD_scroll_repeats() const
 {
-#if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
+#if defined(HAVE_7SEGMENT)
 	return "";
 #else
 	return (access(VFD_scroll_repeats_proc, W_OK) == 0) ? VFD_scroll_repeats_proc : "";
