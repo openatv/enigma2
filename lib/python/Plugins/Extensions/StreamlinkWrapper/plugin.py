@@ -6,6 +6,7 @@ try:
 except ImportError:
 	Streamlink = False
 
+
 def zap(session, service, **kwargs):
 	errormsg = None
 	if service and "http" in service.toString():

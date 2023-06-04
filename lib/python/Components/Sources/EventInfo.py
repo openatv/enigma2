@@ -82,6 +82,7 @@ class pServiceEvent(object):
 	def getExtraEventData(self):
 		return None
 
+
 class EventInfo(PerServiceBase, Source):
 	NOW = 0
 	NEXT = 1

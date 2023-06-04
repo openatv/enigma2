@@ -11,6 +11,7 @@
 
 ISO3166 = []
 
+
 def setISO3166(data):
 	global ISO3166
 	ISO3166 = data
