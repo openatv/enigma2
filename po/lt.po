@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-21 12:38+0000\n"
-"PO-Revision-Date: 2023-05-09 21:48+0000\n"
+"POT-Creation-Date: 2023-05-31 20:48+0200\n"
+"PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -1328,7 +1328,7 @@ msgid "(PiP)"
 msgstr "(PiP)"
 
 msgid "(Pip)"
-msgstr ""
+msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr " (Radijas)"
@@ -1431,7 +1431,7 @@ msgid "1080i50: 24p/50i/60i"
 msgstr "1080i50: 24p/50i/60i"
 
 msgid "1080i50Hz"
-msgstr ""
+msgstr "1080i50Hz"
 
 msgid "1080p 24Hz"
 msgstr "1080p 24Hz"
@@ -1782,7 +1782,7 @@ msgid "720p50: 24p/50p/60p"
 msgstr "720p50: 24p/50p/60p"
 
 msgid "720p50Hz"
-msgstr ""
+msgstr "720p50Hz"
 
 msgid "8"
 msgstr "8"
@@ -1819,6 +1819,9 @@ msgstr "<Dabartinė filmų sąrašo vieta>"
 
 msgid "<Default movie location>"
 msgstr "<Numatyta filmų vieta>"
+
+msgid "<Flash expander inactive>"
+msgstr ""
 
 msgid "<Last timer location>"
 msgstr "<Paskutinio laikmačio vieta>"
@@ -2079,6 +2082,9 @@ msgstr "Veiksmas trumpu POWER mygtuko paspaudimu"
 msgid "Activate"
 msgstr "Aktyvuoti"
 
+msgid "Activate Expander"
+msgstr ""
+
 msgid "Activate HbbTV (RED button)"
 msgstr "Aktyvuokite HbbTV (raudonas mygtukas)"
 
@@ -2099,6 +2105,9 @@ msgstr "Aktyvuoti tinklo nustatymus"
 
 msgid "Activate the configured network settings."
 msgstr "Aktyvuoti tinklo nustatymų konfigūraciją."
+
+msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
 
 msgid "Activate time shift End"
 msgstr "Aktyvuoti laiko poslinkio pabaigą"
@@ -2191,13 +2200,13 @@ msgid "Add a ZapTimer for next event"
 msgstr "Pridėti perjungimo laikmatį sekančiam įvykiui"
 
 msgid "Add a bouquet"
-msgstr ""
+msgstr "Pridėti į paketą"
 
 msgid "Add a mark"
 msgstr "Pridėti žymą"
 
 msgid "Add a marker"
-msgstr ""
+msgstr "Pridėti žymeklį"
 
 msgid "Add a new tag"
 msgstr "Įtraukti naują žymę"
@@ -2260,7 +2269,7 @@ msgid "Add recording (stop after current event)"
 msgstr "Pradėti įrašymą (stabdyti po šio įvykio)"
 
 msgid "Add selected service to bouquet or alternative"
-msgstr ""
+msgstr "pridėti kanalą į paketą"
 
 msgid "Add service"
 msgstr "Pridėti kanalą"
@@ -2877,9 +2886,6 @@ msgstr "Automatinis kalbos pasirinkimas"
 msgid "Auto Language Settings"
 msgstr "Automatinės kalbos parametrai"
 
-msgid "Auto Modes Selected."
-msgstr "Pasirinkti automatiniai režimai."
-
 msgid "Auto SCART switching"
 msgstr "Automatinis skarto perjungimas"
 
@@ -2912,6 +2918,12 @@ msgstr "Automatinis išjungimas"
 
 msgid "Auto standby"
 msgstr "Automatinis budėjimo režimas"
+
+msgid "Auto video mode selected"
+msgstr ""
+
+msgid "Auto video mode selected for the TV."
+msgstr ""
 
 msgid "Auto(not available)"
 msgstr "Automatinis (negalimas)"
@@ -3514,6 +3526,12 @@ msgstr "Mygtuko klaidos skirtasis laikas"
 
 msgid "ButtonSetup"
 msgstr "Mygtukų sąranka"
+
+msgid "By disk UUID"
+msgstr ""
+
+msgid "By disk label"
+msgstr ""
 
 msgid "By openATV Image Team"
 msgstr "OpenATV atvaizdo komanda"
@@ -4199,9 +4217,6 @@ msgstr "Patikrinkite, ar kiekvienoje paslaugoje nėra PDC prieinamumo"
 msgid "Check power and input state from TV"
 msgstr "Patikrinti maitinimo ir įvesties būseną iš TV"
 
-msgid "Check the Internet connection"
-msgstr "Tikrinkite interneto ryšį"
-
 msgid "Check the Internet connection again"
 msgstr "Tikrinkite interneto ryšį dar kartą"
 
@@ -4216,9 +4231,6 @@ msgstr "Tikrinami žurnalai..."
 
 msgid "Checking file system..."
 msgstr "Failų sistemos tikrinimas..."
-
-msgid "Checking the Internet connection"
-msgstr "Tikrinamas interneto ryšys"
 
 #, python-format
 msgid ""
@@ -4631,6 +4643,9 @@ msgstr "Konfigūracijos režimas"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "Ekrano konfigūravimo pagalbos parinktis galima rasti \"MENIU > Sąranka > Naudojimas ir vartotojo sąsajos > Nustatymai\"."
 
+msgid "Configure DNS (name servers)"
+msgstr ""
+
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Konfigūruokite papildomą delsą, kad pagerintumėte išorinių subtitrų sinchronizavimą."
 
@@ -4686,11 +4701,14 @@ msgstr "Konfigūruokite jei subtitrai turėtų persijungti tarp normalaus, pasvi
 msgid "Configure interface"
 msgstr "Konfigūruokite sąsają"
 
-msgid "Configure nameservers"
-msgstr "Konfigūruokite serverių pavadinimus"
-
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Konfigūruokite kuriuose įrenginiuose bus galimas šalinimas fone."
+
+msgid ""
+"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
+msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Konfigūruokite nuotolinio valdymo tipą"
@@ -4700,6 +4718,12 @@ msgstr "Konfigūruokite šio LNB DiSEqC režimą."
 
 msgid "Configure the IP address."
 msgstr "Konfigūruokite IP adresą."
+
+msgid ""
+"Configure the Internet connection by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
+msgstr ""
 
 msgid "Configure the alignment of events."
 msgstr "Konfigūruokite įvykių lygiavimą."
@@ -4845,6 +4869,9 @@ msgstr "Konfigūruokite serverio vardą (DNS)."
 msgid "Configure the netmask."
 msgstr "Konfigūruokite potinklio kaukę."
 
+msgid "Configure the network again"
+msgstr "Konfigūruokite savo tinklą dar kartą"
+
 msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr "Konfigūruokite dienų skaičių, po kurių elementai bus automatiškai pašalinti iš šiukšlinės."
 
@@ -4986,9 +5013,6 @@ msgstr "Konfigūruokite savo tinklą"
 msgid "Configure your internal LAN"
 msgstr "Konfigūruokite vidinį tinklą"
 
-msgid "Configure the network again"
-msgstr "Konfigūruokite savo tinklą dar kartą"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Konfigūruokite tinklo nustatymus ir spauskite OK skenavimui pradėti"
 
@@ -5022,6 +5046,9 @@ msgstr "Prisijunkite prie IceTV serverio kas"
 
 msgid "Connect to a wireless network"
 msgstr "Jungtis prie belaidžio tinklo"
+
+msgid "Connect to the Internet"
+msgstr ""
 
 msgid "Connected clients"
 msgstr "Prisijungę klientai"
@@ -5077,6 +5104,9 @@ msgstr "Tęsti žiūrėjimą"
 
 msgid "Continue to run the task in the background"
 msgstr "Toliau vykdykite užduotį fone"
+
+msgid "Continue with package download and installation"
+msgstr ""
 
 msgid "Continue with the flash process"
 msgstr "Tęskite įdiegimo procesą"
@@ -5241,6 +5271,9 @@ msgstr "Sukurti DVD-ISO"
 msgid "Create Directory"
 msgstr "Sukurti katalogą"
 
+msgid "Create Expander"
+msgstr ""
+
 msgid "Create ISO"
 msgstr "Sukurti ISO"
 
@@ -5258,6 +5291,12 @@ msgstr "Kurti katalogą"
 
 msgid "Create separate radio user bouquet"
 msgstr "Sukurti atskirą vartotojo radijo paketą"
+
+msgid "Create swap"
+msgstr ""
+
+msgid "Create the flash expander in the selected device"
+msgstr ""
 
 msgid "Create:"
 msgstr "Sukurti:"
@@ -5721,6 +5760,12 @@ msgstr "Metai/MM/DD SavDiena"
 msgid "Deactivate"
 msgstr "Išjungti"
 
+msgid "Deactivate Expander"
+msgstr ""
+
+msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
 msgid "Debug"
 msgstr "Derinti"
 
@@ -5773,9 +5818,6 @@ msgstr "Numatytasis Dolby Digital / Dolby AC-3 poslinkis"
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Numatytasis įvesties / išvesties prioritetas (ionice) vykdomiems scenarijams. Tai gali sumažinti sistemos apkrovą, kad scenarijai netrukdytų likusiai sistemos daliai. (didesnės vertės = mažesnis prioritetas)"
 
-msgid "Default Modes Selected."
-msgstr "Pasirinkti numatytieji režimai."
-
 msgid "Default Services Scanner"
 msgstr "Numatytoji kanalų paieška"
 
@@ -5809,6 +5851,12 @@ msgstr "Numatytoji kairiajame stulpelyje esančių failų rikiavimo tvarka."
 
 msgid "Default sort order for files in the right column."
 msgstr "Numatytoji dešiniajame stulpelyje esančių failų rikiavimo tvarka."
+
+msgid "Default video mode selected"
+msgstr ""
+
+msgid "Default video mode selected for the TV."
+msgstr ""
 
 msgid "Default volume offset"
 msgstr "Numatytasis garsumo poslinkis"
@@ -5927,6 +5975,9 @@ msgstr "Ištrinti katalogą"
 msgid "Delete EPG Cache"
 msgstr ""
 
+msgid "Delete Expander"
+msgstr ""
+
 msgid "Delete Image"
 msgstr "Ištrinti atvaizdą"
 
@@ -6011,6 +6062,12 @@ msgstr "Trinti išsaugotą grojaraštį"
 msgid "Delete the character to the left of text cursor"
 msgstr "Trinti simbolį teksto žymeklio kairėje"
 
+msgid "Delete the character to the left of the cursor"
+msgstr ""
+
+msgid "Delete the character under the cursor"
+msgstr ""
+
 msgid "Delete the character under the text cursor"
 msgstr "Trinti po teksto žymekliu esantį simbolį"
 
@@ -6029,6 +6086,9 @@ msgstr "Naikinti šiuo metu pasirinktą laikmatį"
 #, python-format
 msgid "Delete the directory/file '%s'?"
 msgstr "Ištrinti katalogą / failą \"%s\"?"
+
+msgid "Delete the flash expander in the selected device"
+msgstr ""
 
 msgid "Delete the selected locally stored image"
 msgstr "Naikinti pasirinktą vietoje saugomą atvaizdą"
@@ -6379,6 +6439,9 @@ msgstr "Divehi / Dhivehi / Maldyvų"
 msgid "Djibouti"
 msgstr "Džibutis"
 
+msgid "Do another manual service scan?"
+msgstr ""
+
 msgid "Do not change"
 msgstr "Nieko nekeisti"
 
@@ -6480,6 +6543,9 @@ msgstr "Ar tikrai norite sustabdyti ir ištrinti laikmatį \"%s\"?"
 msgid "Do you want change '%s' access mode?"
 msgstr "Ar norite pakeisti \"%s\" prieigos režimą?"
 
+msgid "Do you want the upgrade guide?"
+msgstr ""
+
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
@@ -6503,6 +6569,9 @@ msgstr "Jūs norite įrašyti šį rinkinį į DVD laikmeną?"
 msgid "Do you want to continue?"
 msgstr "Ar norite tęsti?"
 
+msgid "Do you want to deactivate this flash expander?"
+msgstr ""
+
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
@@ -6515,6 +6584,9 @@ msgstr "Ar norite panaikinti visus žurnalo failus?"
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Gal pirmiausiai norite panaikinti senus nustatymus iš /etc/enigma2?"
+
+msgid "Do you want to delete this flash expander directory?"
+msgstr ""
 
 msgid "Do you want to delete this log file?"
 msgstr "Ar norite panaikinti šį žurnalo failą?"
@@ -6563,6 +6635,9 @@ msgstr "Ar norite atkurti savo nustatymus?"
 
 msgid "Do you want to resume this playback?"
 msgstr "Ar norite pratęsti šio įrašo peržiūrą?"
+
+msgid "Do you want to start a backup now?"
+msgstr ""
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Ar norite atnaujinti paketą:\n"
@@ -7346,6 +7421,9 @@ msgstr "Įrašykite pastovų PIN kodą"
 msgid "Enter pin code"
 msgstr "Įrašykite pin kodą"
 
+msgid "Enter text via an attached keyboard"
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr "Įrašykite dažnį, kuriuo jūs LNB perjungiate tarp žemos ir aukščiausios juostos. Daugiau informacijos rasite LNB specifikacijų lape."
 
@@ -7619,6 +7697,12 @@ msgstr "Katalogo pašalinimas %s klaidingas. (Galbūt ne tuščia.)"
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Klaida: scenarijus \"%s\" turi turėti skaitymo leidimą, kad būtų galima paleisti!"
 
+msgid "Error: The copy was unsuccessful!"
+msgstr ""
+
+msgid "Error: The delete was unsuccessful!"
+msgstr ""
+
 msgid "Error: The new password may not be blank!"
 msgstr "Klaida: naujas slaptažodis negali būti tuščias!"
 
@@ -7656,6 +7740,9 @@ msgstr "Klaida: negalite paleisti \"%s\" naudodami \"%s\"!"
 #, python-format
 msgid "Error: You can't run '%s' on a directory!"
 msgstr "Klaida: negalite paleisti \"%s\" kataloge!"
+
+msgid "Error: mount not successful!"
+msgstr ""
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -8271,6 +8358,9 @@ msgstr "Fiksuotas X11 šriftas (SD)"
 msgid "Flash Expander"
 msgstr ""
 
+msgid "Flash Expander Actions"
+msgstr ""
+
 msgid "Flash Image"
 msgstr "Įdiegti atvaizdą"
 
@@ -8314,6 +8404,10 @@ msgstr "Naudotas įdiegimas"
 msgid "Flash your %s %s and reboot now?"
 msgstr "Įdiegti %s %s ir paleisti iš naujo dabar?"
 
+#, python-format
+msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
+msgstr ""
+
 msgid "Flashing"
 msgstr "Įdiegimas"
 
@@ -8335,6 +8429,9 @@ msgstr "Plokščia pagal raktų grupę nuotoliniu būdu"
 
 msgid "Flat by position on remote"
 msgstr "Plokščia pagal padėtį nuotolinio valdymo pulte"
+
+msgid "Follow instructions on TV"
+msgstr ""
 
 msgid "Font size"
 msgstr "Šrifto dydis"
@@ -8368,6 +8465,9 @@ msgstr "Priverstinis vaizdo eilučių suliejimas"
 
 msgid "Format"
 msgstr "Formatuoti"
+
+msgid "Format Disk"
+msgstr ""
 
 msgid "Format HDD"
 msgstr "Formatuoti HDD"
@@ -8636,6 +8736,9 @@ msgstr "Pateiktas įrenginio ID"
 
 msgid "Glibc version"
 msgstr "Glibc versija"
+
+msgid "Go back to the previous step"
+msgstr ""
 
 msgid "Go down the list"
 msgstr "Sąrašu žemyn"
@@ -9426,6 +9529,9 @@ msgstr "Atvaizdo vedlys"
 msgid "Immediate shut down"
 msgstr "Nedelsiant išjungti"
 
+msgid "Immediately exit the wizard (Debug mode only)"
+msgstr ""
+
 msgid "Immediately restart selected devices."
 msgstr "Nedelsdami iš naujo paleiskite pasirinktus įrenginius."
 
@@ -9725,6 +9831,9 @@ msgstr "Įdiegiama"
 #, python-format
 msgid "Installing %s (%s)..."
 msgstr "Diegiama %s (%s)..."
+
+msgid "Installing Please wait..."
+msgstr ""
 
 msgid "Installing Service"
 msgstr "Įdiegiama paslauga"
@@ -10295,6 +10404,9 @@ msgstr "Apriboti simbolius, kurie gali būti naudojami failų pavadinimuose į (
 
 msgid "Limit west"
 msgstr "Vakarų riba"
+
+msgid "Limited memory size, swap file required"
+msgstr ""
 
 msgid "Limits cancelled"
 msgstr "Ribos pašalintos"
@@ -11624,6 +11736,12 @@ msgstr "Tinklo testavimas"
 msgid "Network test..."
 msgstr "Tinklo testas..."
 
+msgid ""
+"Network wizard completed.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Network:"
 msgstr "Tinklas:"
 
@@ -11747,6 +11865,9 @@ msgstr "ECMPids nėra"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kietas diskas nerastas arba neinicializuotas!"
+
+msgid "No Internet connection"
+msgstr ""
 
 msgid ""
 "No Settings loaded !!\n"
@@ -11916,6 +12037,13 @@ msgstr "Atnaujinimų nėra"
 
 msgid "No updates were available.  Please try again later."
 msgstr "Atnaujinimų nėra.  Bandykite patikrinti vėliau."
+
+msgid "No valid device detected - Press OK"
+msgstr ""
+
+#, python-format
+msgid "No valid mount for '%s' found!"
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr "Nerasta tinkamos informacijos apie regioną"
@@ -12318,6 +12446,9 @@ msgstr ""
 msgid "Open the Plugin Browser"
 msgstr "Atverti priedų tvarkyklę"
 
+msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
 msgid "Open the movie list"
 msgstr "Atverti filmų sąrašą"
 
@@ -12552,6 +12683,9 @@ msgstr "Paketo failai:"
 msgid "Package information currently not available!"
 msgstr "Paketo informacija šiuo metu nepasiekiama!"
 
+msgid "Package installation failed"
+msgstr ""
+
 msgid "Package list"
 msgstr "Paketų sąrašas"
 
@@ -12708,6 +12842,9 @@ msgid "Perform an on-line flash instead"
 msgstr "Vietoj to atlikite internetinį įdiegimą"
 
 msgid "Perform install/remove of the selected item"
+msgstr ""
+
+msgid "Perform the upgrade?"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -12903,23 +13040,6 @@ msgstr "Pasirinkite plėtinį..."
 msgid "Please choose reader"
 msgstr "Pasirinkite skaitytuvą"
 
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Sukonfigūruokite serverius, užpildydami reikiamas reikšmes. \n"
-"Tai atlikę, spauskite 'OK', kad tęsti."
-
-msgid ""
-"Please configure your Internet connection by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Sukonfigūruokite savo interneto prisijungimą, užpildydami reikiamas reikšmes.\n"
-"Tai atlikę, spauskite 'OK', kad tęsti."
-
-msgid "Please connect your %s %s to the Internet"
-msgstr "Prijunkite %s %s prie interneto"
-
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Nekeiskite jokių reikšmių, jeigu tiksliai nežinote, kam jos skirtos ir koks bus rezultatas!"
 
@@ -13038,17 +13158,14 @@ msgstr ""
 "\n"
 "IceTV yra prenumeratos paslauga, kuri teikiama tik išvardytose šalyse."
 
+msgid "Please select the device where the flash expander '/usr' directory should created."
+msgstr ""
+
+msgid "Please select the device where the flash expander '/usr' directory should disabled."
+msgstr ""
+
 msgid "Please select the movie path..."
 msgstr "Prašome išsirinkti filmo kelią..."
-
-msgid ""
-"Please select the network interface that you want to use for your Internet connection.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Išsirinkite tinklo sąsają, kurią naudosite interneto ryšiui.\n"
-"\n"
-"Spauskite 'OK', kad tęsti."
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr "Pasirinkite regioną, kuris labiausiai atitinka jūsų fizinę vietą. Šis regionas reikalingas tam, kad galėtume pateikti teisingą informaciją apie kanalus, kuriuos galite gauti."
@@ -13056,125 +13173,8 @@ msgstr "Pasirinkite regioną, kuris labiausiai atitinka jūsų fizinę vietą. �
 msgid "Please select the sub-service to record:"
 msgstr "Pasirinkite subkanalą įrašymui..."
 
-msgid ""
-"Please select the wireless network that you want to connect to.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Išsirinkite belaidį tinklą, prie kurio norite prisijungti.\n"
-"\n"
-"Spauskite 'OK', kad tęsti."
-
 msgid "Please select what to do after flash of the following image:"
 msgstr "Pasirinkite, ką daryti po šio atvaizdo įdiegimo:"
-
-msgid "Please set up tuner A"
-msgstr "Sukonfigūruokite A imtuvą"
-
-msgid ""
-"Please set up tuner A\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą A\n"
-"Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid "Please set up tuner B"
-msgstr "Sukonfigūruokite B imtuvą"
-
-msgid ""
-"Please set up tuner B\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą B\n"
-"Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid "Please set up tuner C"
-msgstr "Sukonfigūruokite C imtuvą"
-
-msgid ""
-"Please set up tuner C\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą C\n"
-"Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid "Please set up tuner D"
-msgstr "Sukonfigūruokite D imtuvą"
-
-msgid ""
-"Please set up tuner D\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą D\n"
-"Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid ""
-"Please set up tuner E\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą E\n"
-"Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid ""
-"Please set up tuner F\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą F\n"
-"Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid ""
-"Please set up tuner G\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą G\n"
-"Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid ""
-"Please set up tuner H\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą H\n"
-"Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid ""
-"Please set up tuner I\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą I\n"
-"Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid ""
-"Please set up tuner J\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą J\n"
-"Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-msgid ""
-"Please set up tuner Q\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą Q\n"
-"Hibridinio imtuvo modelio tipą perjunkite su mygtukais kairėn ir dešinėn"
-
-msgid ""
-"Please set up tuner R\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Prašome nustatyti imtuvą R\n"
-"Hibridinio imtuvo modelio tipą perjunkite su mygtukais kairėn ir dešinėn"
-
-msgid "Please set your time options"
-msgstr "Nustatykite laiko parinktis"
-
-msgid ""
-"Please set your time options.\n"
-"\n"
-"Press YELLOW to set the time zone via geolocation."
-msgstr ""
-"Nustatykite laiko parinktis.\n"
-"\n"
-"Paspauskite GELTONA, kad nustatytumėte laiko juostą per geografinę vietą."
 
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
@@ -13238,12 +13238,21 @@ msgstr "Palaukite, kol atkuriami jūsų temos nustatymai..."
 msgid "Please wait whilst feeds state is checked."
 msgstr "Palaukite, kol tikrinama šaltinių būklė."
 
+msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
+msgstr ""
+
 msgid "Please wait, loading image..."
 msgstr "Palaukite, įkeliamas atvaizdas..."
 
 #, python-format
 msgid "Please wait, restarting %s."
 msgstr "Palaukite, paleidžiama iš naujo %s."
+
+msgid "Please wait, swap is is being created. This could take a few minutes to complete."
+msgstr ""
 
 msgid "Please wait."
 msgstr "Palaukite..."
@@ -13256,6 +13265,12 @@ msgstr "Palaukite... užkraunamas sąrašas..."
 
 msgid "Please wait...almost ready! "
 msgstr "Palaukite... Beveik baigta! "
+
+msgid "Plug in USB device"
+msgstr ""
+
+msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
+msgstr ""
 
 msgid "Plugin Browser"
 msgstr "Priedų naršyklė"
@@ -13501,8 +13516,14 @@ msgstr "Paspauskite OK, kad pasirinkti/nepasirinkti CAId."
 msgid "Press OK to set the MAC address."
 msgstr "Paspauskite OK, kad nustatytumėte MAC adresą."
 
+msgid "Press OK to start the backup now"
+msgstr ""
+
 msgid "Press OK to start the scan"
 msgstr "Kad pradėti paiešką, spauskite OK"
+
+msgid "Press OK to start using %s %s"
+msgstr ""
 
 msgid "Press OK to toggle the selection"
 msgstr "Paspauskite OK, kad atlikti pasirinkimą"
@@ -13584,8 +13605,23 @@ msgstr "Tikėtinos priežastys gali būti"
 msgid "Proc model"
 msgstr "Proc modelis"
 
+msgid "Proceed to the next step"
+msgstr ""
+
 msgid "Proceed with the update"
 msgstr "Tęskite naujinimą"
+
+msgid "Process BLUE button action"
+msgstr ""
+
+msgid "Process GREEN button action"
+msgstr ""
+
+msgid "Process RED button action"
+msgstr ""
+
+msgid "Process YELLOW button action"
+msgstr ""
 
 msgid "Processor information"
 msgstr "Procesoriaus informacija"
@@ -14177,9 +14213,6 @@ msgstr "Atnaujinimo dažnis"
 msgid "Refresh rate for 'Lowest Mode'"
 msgstr "Atnaujinimo norma 'Mažiausiam režimui'"
 
-msgid "Refresh rate selection."
-msgstr "Atnaujinimo dažnio pasirinkimas."
-
 msgid "Refresh screen"
 msgstr "Atnaujinti vaizdą ekrane"
 
@@ -14577,6 +14610,9 @@ msgstr "Paleisti iš naujo Enigma2"
 msgid "Restart necessary, restart GUI now?"
 msgstr "Paleisti grafinę aplinką iš naujo dabar?"
 
+msgid "Restart needed, press OK to restart"
+msgstr ""
+
 msgid "Restart network and remount connections"
 msgstr "Paleisti tinklą ir pajungimus iš naujo"
 
@@ -14615,6 +14651,9 @@ msgstr "Atkurti atsargines kopijas"
 
 msgid "Restore settings from a backup"
 msgstr "Atkurti nustatymus iš atsarginės kopijos"
+
+msgid "Restore settings now"
+msgstr ""
 
 msgid "Restore the highlighted slot"
 msgstr "Atkurti paryškintą lizdą"
@@ -14676,6 +14715,9 @@ msgstr "Gaunami atvaizdo siužetai - prašome laukti..."
 
 msgid "Retrieving network server information, please wait..."
 msgstr "Nuskaitoma tinklo informacija, palaukite..."
+
+msgid "Retry"
+msgstr ""
 
 msgid "Return the current selection response"
 msgstr "Grąžinti dabartinį pasirinkimo atsakymą"
@@ -15460,6 +15502,9 @@ msgstr "Pasirinkite žymę"
 msgid "Select CAId"
 msgstr "Pasirinkite CAId"
 
+msgid "Select Device"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Pasirinkite Enigma2 temą"
 
@@ -15517,6 +15562,9 @@ msgstr "Iš galimų sąrašų pasirinkite kortelių serverį."
 msgid "Select a debug log file to view:"
 msgstr "Pasirinkite derinimo žurnalo failą, kurį norite peržiūrėti:"
 
+msgid "Select a device to use as the flash expander"
+msgstr ""
+
 msgid "Select a directory"
 msgstr "Pasirinkite katalogą"
 
@@ -15529,6 +15577,9 @@ msgstr "Pasirinkite platintoją, iš kurio turi būti gaunami atvaizdai"
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Pasirinkite vietą, į kurią norite išskleisti \"%s\":"
+
+msgid "Select a menu item"
+msgstr ""
 
 msgid "Select a movie"
 msgstr "Pasirinkite filmą"
@@ -15859,6 +15910,12 @@ msgstr "Pasirinkite filmo kelią"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
+msgid ""
+"Select the network interface to be used for the Internet connection.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
@@ -15873,6 +15930,9 @@ msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Pasirinkite protokolą, kurį naudoja jūsų SCR įrenginys. Pasirinkimai yra 'SCR Unicable' (Unicable) arba 'SCR JESS' (JESS, taip pat žinomas kaip Unicable II)."
+
+msgid "Select the refresh rate to be used on the TV."
+msgstr ""
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
 msgstr "Pasirinkite palydovą, kuris yra prijungtas prie A-jungties. Jei nesate tikri, pasirinkite 'automatinis' ir imtuvas bandys tai nustatyti pats. Jei nieko nėra prijungta prie šios jungties, pasirinkite 'niekas neprijungta'."
@@ -15909,6 +15969,9 @@ msgstr "Pasirinkite papildinių naršyklės meniu įrašų rūšiavimo tvarką. 
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Pasirinkite meniu įrašų rūšiavimo tvarką.  Vartotojo apibrėžtas taip pat leidžia paslėpti meniu įrašus."
+
+msgid "Select the source location from where to obtain the upgrade files."
+msgstr ""
 
 msgid "Select the source of the default DNS settings."
 msgstr "Pasirinkite numatytųjų DNS parametrų šaltinį."
@@ -15967,14 +16030,26 @@ msgstr "Pasirinkite norimo išjungimo tipą, kai įjungiamas kietas laikmatis."
 msgid "Select the type of this timer."
 msgstr ""
 
+msgid "Select the video mode to be used on the TV."
+msgstr ""
+
+msgid ""
+"Select the wireless network to which you want to connect.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
-msgid "Select video input with up/down buttons"
-msgstr "Mygtukais aukštyn/žemyn pasirinkite vaizdo įvestį"
+msgid "Select update source location"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Pasirinkite vaizdo režimą"
+
+msgid "Select video output port with UP/DOWN buttons"
+msgstr ""
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Pasirinkite, kokį veiksmą atlikti, kai atkūrimo metu pasiekiate medijos failo pabaigą."
@@ -16398,6 +16473,12 @@ msgstr "Nustatykite teksto slinkties greitį priekiniame monitoriuje."
 msgid "Set the time before checking video source for resolution information."
 msgstr "Nustatykite laiką prieš tikrindami vaizdo šaltinį, skirtą raiškos informacijai."
 
+msgid ""
+"Set the time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
+
 msgid "Set the time to hide the infobar."
 msgstr "Nustatykite laiką, kad paslėpti info juostą."
 
@@ -16432,6 +16513,9 @@ msgstr "Nustatykite tai į 'Taip', kad įrašytumėte dabartinį grojaraštį i�
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr "Nustatykite tai kaip 'Taip', kad surūšiuotumėte grojaraščius abėcėlės tvarka."
 
+msgid "Set time options"
+msgstr ""
+
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Nustatykite į 'Išjungta', kad failų ir katalogų pavadinimuose pabraukimo simbolius \"_\" pakeistumėte tarpais."
 
@@ -16446,6 +16530,15 @@ msgstr "Nustatykite, ką norite daryti su mygtuku."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Nustatykite taip, kad būtų pašalinta pagrindinė sukimosi priežastis."
+
+msgid "Set up tuner [TUNER]"
+msgstr ""
+
+msgid ""
+"Set up tuner [TUNER].\n"
+"\n"
+"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+msgstr ""
 
 msgid "Set voltage and 22KHz"
 msgstr "Nustatykite įtampą ir 22 KHz"
@@ -17380,6 +17473,9 @@ msgstr "Išjungti"
 msgid "Shutdown"
 msgstr "Išjungti"
 
+msgid "Shutting down. Please wait..."
+msgstr ""
+
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sičuanas Yi / Nuosu"
 
@@ -17497,9 +17593,6 @@ msgstr "Pasirinkite temą"
 msgid "SkinSelector"
 msgstr "Temos parinkėjas"
 
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Praleisti interneto ryšio tikrinimą (išjungs automatinį paketų diegimą)"
-
 msgid "Skip back"
 msgstr "Praleisti atgal"
 
@@ -17510,6 +17603,9 @@ msgid "Skip forward"
 msgstr "Praleisti į priekį"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip package installation, only core packages will be available"
 msgstr ""
 
 msgid "Sleep"
@@ -17653,6 +17749,9 @@ msgstr "Mažas"
 
 msgid "Small - Tiny image"
 msgstr "Nedidelis - Mažasis atvaizdas"
+
+msgid "Small Box Preparation"
+msgstr ""
 
 msgid "Small Test"
 msgstr "Mažas testas"
@@ -17965,6 +18064,9 @@ msgstr ""
 msgid "Start RDS interactive"
 msgstr "Paleisti interaktyvų RDS"
 
+msgid "Start Wizard"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18009,9 +18111,6 @@ msgstr "Pradėti/stabdyti/pasirinkti emu"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Pasirinkti/stabdyti/paleisti emuliatorių. Pirmiausiai reikia įdiegti emuliatorių"
-
-msgid "StartWizard"
-msgstr "Paleiskite vedlį"
 
 msgid "Starting Softcam"
 msgstr "Paleidžiamas emuliatorius"
@@ -18058,6 +18157,9 @@ msgstr "Būsena nepasiekiama!"
 
 msgid "Status:"
 msgstr "Būsena:"
+
+msgid "Step"
+msgstr ""
 
 msgid "Step east"
 msgstr "Žingsnis į rytus"
@@ -18552,7 +18654,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2023-02-24 adga45@gmail.com"
+msgstr "2023-06-04 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -18770,18 +18872,25 @@ msgid "Thailand"
 msgstr "Tailandas"
 
 msgid ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
+"Thank you for using and completing the wizard. The %s %s is now ready to use.\n"
+"\n"
+"Please press OK to start using the %s %s."
 msgstr ""
-"Ačiū, kad naudojatės vedliu.\n"
-"Spauskite OK, kad tęsti."
 
 msgid ""
-"Thank you for using the wizard. Your %s %s is now ready to use.\n"
-"Please press OK to start using your %s %s."
+"Thank you for using and completing the wizard. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
 msgstr ""
-"Ačiū, kad naudojatės vedliu. Jūsų %s %s paruoštas naudojimui.\n"
-"Spauskite OK ir pradėkite naudotis savo %s %s."
+
+msgid "The %s %s does not have an Internet connection."
+msgstr ""
+
+msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
+msgstr ""
+
+msgid "The %s %s is shutting down. Please wait..."
+msgstr ""
 
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "%s %s skaito saugomus EPG duomenis kas (valandos)."
@@ -18841,6 +18950,18 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "IceTV serveris paprašė slaptažodžio %s."
+
+msgid ""
+"The Internet connection appears to be working.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
+msgid ""
+"The Internet connection appears to not be working!\n"
+"\n"
+"Choose what to do next."
+msgstr ""
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -18919,8 +19040,17 @@ msgstr ""
 "Laisvos vietos, skirtos laiko poslinkiui, diske mažiau, nei nurodyta nustatymuose.\n"
 "Ką jūs norite daryti ?"
 
-msgid "The backup failed. Please choose a different backup location."
-msgstr "Išsaugoti nepavyko. Pasirinkite kitą vietą išsaugojimui."
+msgid "The backup failed"
+msgstr ""
+
+msgid "The backup failed! Choose a different backup location."
+msgstr ""
+
+msgid "The backup succeeded"
+msgstr ""
+
+msgid "The backup succeeded. We will now continue to explain the upgrade process."
+msgstr ""
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr "Vaizdo kodavimo duomenų srautas. Didesnė reikšmė pagerina kokybę ir padidina failo dydį."
@@ -19069,11 +19199,17 @@ msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Vaizdo plotis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
 
 msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it and choose what you want to do next."
+"The wireless LAN Internet connection could not be started!\n"
+"Is the wireless LAN device connected?\n"
+"\n"
+"Choose what to do next."
 msgstr ""
-"Belaidžio tinklo priedas neįdiegtas!\n"
-"Prašome įdiegti tai ir pasirinkite ką jūs norite daryti vėliau."
+
+msgid ""
+"The wireless LAN plugin code is not installed!\n"
+"\n"
+"Install it and choose what to do next."
+msgstr ""
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -19082,11 +19218,8 @@ msgstr ""
 "Belaidžio tinklo priedas neįdiegtas!\n"
 "Prašome įdiegti tai."
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "Nustatymų vedlys gali išsaugoti Jūsų dabartinius nustatymus. Jūs norite tai padaryti dabar?"
-
-msgid "The wizard is finished now."
-msgstr "Vedlys baigė darbą."
+msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+msgstr ""
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19100,6 +19233,9 @@ msgstr ""
 
 msgid "There are no updates available."
 msgstr "Galimų atnaujinimų nėra."
+
+msgid "There are pending tasks:"
+msgstr ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -19509,6 +19645,12 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr "Tai leis pereiti greitai pirmyn/atgal su laiko momentais, x secs"
 
+msgid "This wizard has finished"
+msgstr ""
+
+msgid "This wizard has finished."
+msgstr ""
+
 msgid "Three"
 msgstr "Trys"
 
@@ -19729,6 +19871,9 @@ msgstr "Antraštės ypatybės"
 
 msgid "Titleset mode"
 msgstr "Pavadinimo nustatymo būdas"
+
+msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
+msgstr ""
 
 msgid "To restore the image:"
 msgstr "Kad atkurti atvaizdą:"
@@ -20368,6 +20513,9 @@ msgstr "Atnaujinimas baigtas!"
 msgid "Update interval (in seconds)"
 msgstr "Atnaujinimo intervalas (sekundėmis)"
 
+msgid "Update package list please wait..."
+msgstr ""
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -20493,6 +20641,9 @@ msgstr ""
 msgid "Use TV remote control"
 msgstr "Naudoti TV nuotolinio valdymo pultelį"
 
+msgid "Use UP/DOWN buttons to select option then press OK"
+msgstr ""
+
 msgid "Use USALS for this sat"
 msgstr "Naudoti USALS šiam palydovui"
 
@@ -20514,14 +20665,14 @@ msgstr "Naudokite alternatyvų mažesnį ekraną."
 msgid "Use as HDD"
 msgstr "Naudoti kaip HDD"
 
-msgid ""
-"Use automatic mode detection.\n"
-" This option reads all supported modes from your TV.\n"
-" Please disable it only if you want to customize the preferred configuration."
+msgid "Use automatic mode detection"
 msgstr ""
-"Naudokite automatinį režimo aptikimą.\n"
-" Ši parinktis parodo visus jūsų televizoriaus palaikomus režimus.\n"
-" Prašome jį išjungti tik tada, jei norite pritaikyti pageidaujamą konfigūraciją."
+
+msgid ""
+"Use automatic mode detection?\n"
+"\n"
+"This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
+msgstr ""
 
 msgid "Use circular LNB"
 msgstr "Naudoti apskritiminę LNB"
@@ -20627,9 +20778,6 @@ msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
 
 msgid "Use the network wizard to configure your Network."
 msgstr "Norėdami konfigūruoti tinklą, naudokite tinklo vedlį."
-
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "Naudokitės mygtukais aukštyn/žemyn valdymo pulte, nustatymų pasirinkimui. Po to spauskite OK."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Naudoti vedlį pagrindiniams nustatymams"
@@ -20899,6 +21047,9 @@ msgstr "Vaizdo PID"
 msgid "Video Settings"
 msgstr "Vaizdo nustatymai"
 
+msgid "Video Wizard"
+msgstr ""
+
 msgid "Video clipping"
 msgstr "Vaizdo karpymas"
 
@@ -20914,22 +21065,6 @@ msgstr "Vaizdo gerinimo peržiūra"
 
 msgid "Video enhancement setup"
 msgstr "Vaizdo gerinimo valdymas"
-
-msgid ""
-"Video input selection\n"
-"\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
-"\n"
-"The next input port will be automatically probed in 10 seconds."
-msgstr ""
-"Vaizdo įėjimo pasirinkimas\n"
-"\n"
-" Prašome spausti OK, jei jūs galite matyti šį puslapį savo televizoriuje (ar išrinkti skirtingą įėjimo jungtį).\n"
-"\n"
-"Kita įėjimo jungtis bus automatiškai išbandyta po 10 sekundžių."
-
-msgid "Video mode selection."
-msgstr "Vaizdo režimo pasirinkimas."
 
 #, python-format
 msgid "Video mode: %s"
@@ -20969,6 +21104,14 @@ msgstr "SD vaizdo išvesties režimas"
 msgid "Video output mode for UHD"
 msgstr "UHD vaizdo išvesties režimas"
 
+msgid ""
+"Video output port selection.\n"
+"\n"
+"Make sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n"
+"\n"
+"The next output port will be automatically tried in 10 seconds."
+msgstr ""
+
 msgid "Video: "
 msgstr "Vaizdas: "
 
@@ -20987,9 +21130,6 @@ msgstr "Vaizdo gerinimo peržiūra"
 
 msgid "VideoFinetune"
 msgstr "Tikslesnis vaizdo suderinimas"
-
-msgid "VideoWizard"
-msgstr "Vaizdo vedlys"
 
 msgid "Videocodec, size & format"
 msgstr "Vaizdo kodavimas, dydis ir formatas"
@@ -21031,7 +21171,13 @@ msgstr "Peržiūrėti teletekstą..."
 msgid "View the archive contents"
 msgstr ""
 
+msgid "View the next item in a list"
+msgstr ""
+
 msgid "View the package contents"
+msgstr ""
+
+msgid "View the previous item in a list"
 msgstr ""
 
 msgid "View video CD..."
@@ -21258,12 +21404,21 @@ msgstr ""
 msgid "Weekly"
 msgstr "Kas savaitę"
 
+msgid "Welcome Wizard"
+msgstr ""
+
 #, python-format
 msgid "Welcome to %s"
 msgstr ""
 
 msgid "Welcome to IceTV"
 msgstr "Sveiki apsilankę IceTV"
+
+msgid ""
+"Welcome to openATV.\n"
+"\n"
+"Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
+msgstr ""
 
 msgid ""
 "Welcome to the Cutlist editor.\n"
@@ -21278,32 +21433,8 @@ msgstr ""
 "\n"
 "Tada ieškokite pabaigos, spauskite 'OK', pasirinkite 'iškirpimo pabaiga'. Štai ir viskas."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Sveiki atvykę į atvaizdo atnaujinimo vedlį. Šis vedlys padės jums atnaujinti Jūsų %s %s programinę įrangą su galimybe išsaugoti dabartinius nustatymus ir trumpai patars, kaip visa tai atlikti."
-
-msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-"\n"
-"Press OK to start configuring your network"
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
 msgstr ""
-"Sveiki atvykę.\n"
-"\n"
-"Jei jūs norėsite prijungti savo imtuvą prie interneto, šis vedlys ves jus per pagrindinę tinklo sąranką jūsų imtuve.\n"
-"\n"
-"Spauskite OK mygtuką, kad pradėti tinklo konfigūravimą"
-
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your %s %s.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Sveiki.\n"
-"\n"
-"Šis pradinis vedlys padės nustatyti pagrindinius jūsų  %s %s parametrus.\n"
-"Kad pereiti į sekantį žingsnį, spauskite 'OK'."
 
 msgid "Welcome..."
 msgstr "Sveiki atvykę..."
@@ -21584,11 +21715,14 @@ msgstr "Belaidis tinklas"
 msgid "Wireless network configuration..."
 msgstr "Belaidžio tinklo konfigūravimas..."
 
-msgid "Wireless network connection setup"
-msgstr "Belaidžio tinklo prisijungimo valdymas"
+msgid ""
+"Wireless network connection setup.\n"
+"\n"
+"Choose what to do next."
+msgstr ""
 
-msgid "Wireless network connection setup."
-msgstr "Belaidžio tinklo prisijungimo valdymas."
+msgid "Wireless network setup"
+msgstr ""
 
 msgid "Wireless network state"
 msgstr "Belaidžio tinklo būklė"
@@ -21634,6 +21768,9 @@ msgstr "Be Iššokančio teksto"
 
 msgid "Without query"
 msgstr "be užklausos"
+
+msgid "Wizard Actions"
+msgstr ""
 
 msgid "Wolof"
 msgstr "Volofų"
@@ -21825,11 +21962,11 @@ msgstr "Galite perjungti su 'kairėn' ir 'dešinėn' šio imtuvo tipus %s"
 msgid "You cannot delete this!"
 msgstr "Jūs negalite to ištrinti!"
 
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr "Jūs nusprendėte padaryti atsarginę kopiją savo nustatymų. Prašome spausti OK, kad pradėtumėte atsarginę kopiją dabar."
+msgid "You have chosen to backup your settings. Press OK to start the backup now."
+msgstr ""
 
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "Jūs nusprendėte atkurti savo nustatymus. Enigma2 iš naujo pasileis po atkūrimo. Prašome spausti OK, kad pradėtumėte atkūrimą dabar."
+msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift"
 msgstr "Jūs pasirinkote išsaugoti esamą laiko poslinkį"
@@ -21858,11 +21995,9 @@ msgid "You must set at least one command!"
 msgstr "Turite nustatyti bent vieną komandą!"
 
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
-"Jums reikia kompiuterio, pajungto prie jūsų %s %s. Išsamesnių instrukcijų ieškokite https://www.opena.tv.\n"
-"Jūsų %s %s dabar bus sustabdytas. Kai atliksite šio internetinio puslapio atnaujinimo instrukcijas, naujoji programinė įranga paklaus, ar atkurti jūsų nustatymus."
 
 msgid "You seem to be in time shift!"
 msgstr "Panašu, kad naudojamas laiko poslinkis!"
@@ -21879,9 +22014,6 @@ msgstr "Turėtumėte įdiegti naują vaizdą!"
 msgid "YouTube"
 msgstr "YouTube"
 
-msgid "Your %s %s does not have an Internet connection"
-msgstr "Jūsų %s %s neturi interneto ryšio"
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "Jūsų %s %s nepalaiko PiP HD"
@@ -21889,9 +22021,6 @@ msgstr "Jūsų %s %s nepalaiko PiP HD"
 #, python-format
 msgid "Your %s %s goes to WOL"
 msgstr "Jūsų %s %s eina į WOL"
-
-msgid "Your %s %s is not connected to the Internet"
-msgstr "Jūsų %s %s neprijungtas prie interneto"
 
 #, python-format
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
@@ -21908,19 +22037,6 @@ msgstr ""
 "\n"
 "Jūsų interneto ryšys dabar veikia.\n"
 
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Jūsų %s %s dabar paruoštas naudoti.\n"
-"\n"
-"Jūsų interneto ryšys dabar veikia.\n"
-"\n"
-"Spauskite 'OK', kad tęsti."
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Jūsų %s %s yra paleidžiamas iš naujo"
@@ -21932,9 +22048,6 @@ msgstr "Jūsų %s %s paleidžiamas iš naujo į atkūrimo režimą"
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr "Jūsų %s %s išsijungia"
-
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Jūsų %s%s išsijungia. Palaukite..."
 
 #, python-format
 msgid ""
@@ -22008,14 +22121,15 @@ msgstr ""
 "Pasirinkite, ką norite daryti toliau."
 
 #, python-format
+msgid "Your Internet connection is working (ip: %s)"
+msgstr ""
+
+#, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Jūsų imtuve aptikta programinės įrangos problema. Nuo paskutinio perkrovimo tai įvyko %d kartus.\n"
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Paspaudus 'OK', jūsų imtuvas bus paleistas iš naujo."
-
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "Atsarginė kopija sukurta. Dabar išaiškinsime tolimesnius atnaujinimo proceso veiksmus."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Jūsų rinkinys viršija vieno sluoksnio DVD disko dydį, jums reikės tuščio dvisluoksnio DVD!"
@@ -22073,20 +22187,12 @@ msgstr "Jūsų imtuvas gali priimti SCPC optimizuotą ieškos diapazoną. Daugia
 msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
 msgstr "Jūsų imtuvas gali naudoti tono amplitudę. Jei reikia daugiau informacijos, ieškokite imtuvo naudojimo instrukcijoje."
 
+msgid "Your receiver does not have an Internet connection"
+msgstr ""
+
 #, python-format
 msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Jūsų imtuvas gali būti nenaudojamas dabar.  Prieš perkraudami %s %s, pasikonsultuokite su vadovu dėl tolesnės pagalbos."
-
-msgid ""
-"Your wireless LAN Internet connection could not be started!\n"
-"Have you attached your USB WLAN Stick?\n"
-"\n"
-"Please choose what you want to do next."
-msgstr ""
-"Belaidis interneto ryšys neveikia!\n"
-"Ar prijungėte USB belaidžio tinklo įrenginį?\n"
-"\n"
-"Pasirinkite, ką jūs norėsite daryti toliau."
 
 msgid "Youth"
 msgstr "Jaunimui"
@@ -22421,7 +22527,7 @@ msgid "current affairs (general)"
 msgstr "aktualijos (bendrai)"
 
 msgid "date"
-msgstr ""
+msgstr "data"
 
 msgid "day"
 msgstr "diena"
@@ -22715,6 +22821,9 @@ msgstr "hlg"
 msgid "hops:"
 msgstr "žingsniai:"
 
+msgid "inactive"
+msgstr ""
+
 msgid "increase uphop by 1"
 msgstr "padidinti uphop 1"
 
@@ -22773,7 +22882,7 @@ msgid "length"
 msgstr "ilgis"
 
 msgid "lime"
-msgstr ""
+msgstr "laimo žalia"
 
 msgid "literature"
 msgstr "literatūra"
@@ -22854,7 +22963,7 @@ msgid "n/a"
 msgstr "nėra duomenų"
 
 msgid "name"
-msgstr ""
+msgstr "pavadinimas"
 
 msgid "nature/animals/environment"
 msgstr "gamta/gyvūnai/aplinka"
@@ -22947,7 +23056,7 @@ msgid "offset is"
 msgstr "kompensuoti, yra"
 
 msgid "olympic blue"
-msgstr ""
+msgstr "olimpinė mėlyna"
 
 msgid "on READ ONLY medium."
 msgstr "diskas TIK SKAITYMUI."
@@ -22959,7 +23068,7 @@ msgid "only HD"
 msgstr "tik HD"
 
 msgid "orange"
-msgstr ""
+msgstr "oranžinė"
 
 msgid "original language"
 msgstr "originalo kalba"
@@ -22974,7 +23083,7 @@ msgid "pid:"
 msgstr "pid:"
 
 msgid "pink"
-msgstr ""
+msgstr "rožinė"
 
 msgid "please press OK when ready"
 msgstr "kai būsite pasiruošę, spauskite OK"
@@ -23001,7 +23110,7 @@ msgid "provider:"
 msgstr "teikėjas:"
 
 msgid "purple"
-msgstr ""
+msgstr "violetinė"
 
 msgid "red"
 msgstr "raudonas"
@@ -23049,7 +23158,7 @@ msgid "romance"
 msgstr "romansas"
 
 msgid "rose"
-msgstr ""
+msgstr "rožinė"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -23159,7 +23268,7 @@ msgid "simple"
 msgstr "paprastas"
 
 msgid "size"
-msgstr ""
+msgstr "Dydis"
 
 msgid "skip backward"
 msgstr "praleisti atgal"
@@ -23255,7 +23364,7 @@ msgid "tennis/squash"
 msgstr "tenisas/skvošas"
 
 msgid "text"
-msgstr ""
+msgstr "tekstas"
 
 msgid "this recording"
 msgstr "šis įrašas"
@@ -23273,7 +23382,7 @@ msgid "traditional (fast), retune"
 msgstr "tradicinis (greitas), sureguliuokite"
 
 msgid "tree delete"
-msgstr ""
+msgstr "trinti"
 
 msgid "turbo"
 msgstr "turbo"
@@ -23400,6 +23509,319 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Auto Modes Selected."
+#~ msgstr "Pasirinkti automatiniai režimai."
+
+#~ msgid "Check the Internet connection"
+#~ msgstr "Tikrinkite interneto ryšį"
+
+#~ msgid "Checking the Internet connection"
+#~ msgstr "Tikrinamas interneto ryšys"
+
+#~ msgid "Configure nameservers"
+#~ msgstr "Konfigūruokite serverių pavadinimus"
+
+#~ msgid "Default Modes Selected."
+#~ msgstr "Pasirinkti numatytieji režimai."
+
+#~ msgid ""
+#~ "Please configure or verify your Nameservers by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Sukonfigūruokite serverius, užpildydami reikiamas reikšmes. \n"
+#~ "Tai atlikę, spauskite 'OK', kad tęsti."
+
+#~ msgid ""
+#~ "Please configure your Internet connection by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Sukonfigūruokite savo interneto prisijungimą, užpildydami reikiamas reikšmes.\n"
+#~ "Tai atlikę, spauskite 'OK', kad tęsti."
+
+#~ msgid "Please connect your %s %s to the Internet"
+#~ msgstr "Prijunkite %s %s prie interneto"
+
+#~ msgid ""
+#~ "Please select the network interface that you want to use for your Internet connection.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Išsirinkite tinklo sąsają, kurią naudosite interneto ryšiui.\n"
+#~ "\n"
+#~ "Spauskite 'OK', kad tęsti."
+
+#~ msgid ""
+#~ "Please select the wireless network that you want to connect to.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Išsirinkite belaidį tinklą, prie kurio norite prisijungti.\n"
+#~ "\n"
+#~ "Spauskite 'OK', kad tęsti."
+
+#~ msgid "Please set up tuner A"
+#~ msgstr "Sukonfigūruokite A imtuvą"
+
+#~ msgid ""
+#~ "Please set up tuner A\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą A\n"
+#~ "Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid "Please set up tuner B"
+#~ msgstr "Sukonfigūruokite B imtuvą"
+
+#~ msgid ""
+#~ "Please set up tuner B\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą B\n"
+#~ "Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid "Please set up tuner C"
+#~ msgstr "Sukonfigūruokite C imtuvą"
+
+#~ msgid ""
+#~ "Please set up tuner C\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą C\n"
+#~ "Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid "Please set up tuner D"
+#~ msgstr "Sukonfigūruokite D imtuvą"
+
+#~ msgid ""
+#~ "Please set up tuner D\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą D\n"
+#~ "Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid ""
+#~ "Please set up tuner E\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą E\n"
+#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid ""
+#~ "Please set up tuner F\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą F\n"
+#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid ""
+#~ "Please set up tuner G\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą G\n"
+#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid ""
+#~ "Please set up tuner H\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą H\n"
+#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid ""
+#~ "Please set up tuner I\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą I\n"
+#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid ""
+#~ "Please set up tuner J\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą J\n"
+#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
+
+#~ msgid ""
+#~ "Please set up tuner Q\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą Q\n"
+#~ "Hibridinio imtuvo modelio tipą perjunkite su mygtukais kairėn ir dešinėn"
+
+#~ msgid ""
+#~ "Please set up tuner R\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Prašome nustatyti imtuvą R\n"
+#~ "Hibridinio imtuvo modelio tipą perjunkite su mygtukais kairėn ir dešinėn"
+
+#~ msgid "Please set your time options"
+#~ msgstr "Nustatykite laiko parinktis"
+
+#~ msgid ""
+#~ "Please set your time options.\n"
+#~ "\n"
+#~ "Press YELLOW to set the time zone via geolocation."
+#~ msgstr ""
+#~ "Nustatykite laiko parinktis.\n"
+#~ "\n"
+#~ "Paspauskite GELTONA, kad nustatytumėte laiko juostą per geografinę vietą."
+
+#~ msgid "Refresh rate selection."
+#~ msgstr "Atnaujinimo dažnio pasirinkimas."
+
+#~ msgid "Select video input with up/down buttons"
+#~ msgstr "Mygtukais aukštyn/žemyn pasirinkite vaizdo įvestį"
+
+#~ msgid "Skip Internet connection check (disables automatic package installation)"
+#~ msgstr "Praleisti interneto ryšio tikrinimą (išjungs automatinį paketų diegimą)"
+
+#~ msgid "StartWizard"
+#~ msgstr "Paleiskite vedlį"
+
+#~ msgid ""
+#~ "Thank you for using the wizard.\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Ačiū, kad naudojatės vedliu.\n"
+#~ "Spauskite OK, kad tęsti."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your %s %s is now ready to use.\n"
+#~ "Please press OK to start using your %s %s."
+#~ msgstr ""
+#~ "Ačiū, kad naudojatės vedliu. Jūsų %s %s paruoštas naudojimui.\n"
+#~ "Spauskite OK ir pradėkite naudotis savo %s %s."
+
+#~ msgid "The backup failed. Please choose a different backup location."
+#~ msgstr "Išsaugoti nepavyko. Pasirinkite kitą vietą išsaugojimui."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it and choose what you want to do next."
+#~ msgstr ""
+#~ "Belaidžio tinklo priedas neįdiegtas!\n"
+#~ "Prašome įdiegti tai ir pasirinkite ką jūs norite daryti vėliau."
+
+#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+#~ msgstr "Nustatymų vedlys gali išsaugoti Jūsų dabartinius nustatymus. Jūs norite tai padaryti dabar?"
+
+#~ msgid "The wizard is finished now."
+#~ msgstr "Vedlys baigė darbą."
+
+#~ msgid ""
+#~ "Use automatic mode detection.\n"
+#~ " This option reads all supported modes from your TV.\n"
+#~ " Please disable it only if you want to customize the preferred configuration."
+#~ msgstr ""
+#~ "Naudokite automatinį režimo aptikimą.\n"
+#~ " Ši parinktis parodo visus jūsų televizoriaus palaikomus režimus.\n"
+#~ " Prašome jį išjungti tik tada, jei norite pritaikyti pageidaujamą konfigūraciją."
+
+#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#~ msgstr "Naudokitės mygtukais aukštyn/žemyn valdymo pulte, nustatymų pasirinkimui. Po to spauskite OK."
+
+#~ msgid ""
+#~ "Video input selection\n"
+#~ "\n"
+#~ "Please press OK if you can see this page on your TV (or select a different input port).\n"
+#~ "\n"
+#~ "The next input port will be automatically probed in 10 seconds."
+#~ msgstr ""
+#~ "Vaizdo įėjimo pasirinkimas\n"
+#~ "\n"
+#~ " Prašome spausti OK, jei jūs galite matyti šį puslapį savo televizoriuje (ar išrinkti skirtingą įėjimo jungtį).\n"
+#~ "\n"
+#~ "Kita įėjimo jungtis bus automatiškai išbandyta po 10 sekundžių."
+
+#~ msgid "Video mode selection."
+#~ msgstr "Vaizdo režimo pasirinkimas."
+
+#~ msgid "VideoWizard"
+#~ msgstr "Vaizdo vedlys"
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+#~ msgstr "Sveiki atvykę į atvaizdo atnaujinimo vedlį. Šis vedlys padės jums atnaujinti Jūsų %s %s programinę įrangą su galimybe išsaugoti dabartinius nustatymus ir trumpai patars, kaip visa tai atlikti."
+
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
+#~ "\n"
+#~ "Press OK to start configuring your network"
+#~ msgstr ""
+#~ "Sveiki atvykę.\n"
+#~ "\n"
+#~ "Jei jūs norėsite prijungti savo imtuvą prie interneto, šis vedlys ves jus per pagrindinę tinklo sąranką jūsų imtuve.\n"
+#~ "\n"
+#~ "Spauskite OK mygtuką, kad pradėti tinklo konfigūravimą"
+
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "This start wizard will guide you through the basic setup of your %s %s.\n"
+#~ "Press the OK button on your remote control to move to the next step."
+#~ msgstr ""
+#~ "Sveiki.\n"
+#~ "\n"
+#~ "Šis pradinis vedlys padės nustatyti pagrindinius jūsų  %s %s parametrus.\n"
+#~ "Kad pereiti į sekantį žingsnį, spauskite 'OK'."
+
+#~ msgid "Wireless network connection setup"
+#~ msgstr "Belaidžio tinklo prisijungimo valdymas"
+
+#~ msgid "Wireless network connection setup."
+#~ msgstr "Belaidžio tinklo prisijungimo valdymas."
+
+#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+#~ msgstr "Jūs nusprendėte padaryti atsarginę kopiją savo nustatymų. Prašome spausti OK, kad pradėtumėte atsarginę kopiją dabar."
+
+#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+#~ msgstr "Jūs nusprendėte atkurti savo nustatymus. Enigma2 iš naujo pasileis po atkūrimo. Prašome spausti OK, kad pradėtumėte atkūrimą dabar."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
+#~ "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+#~ msgstr ""
+#~ "Jums reikia kompiuterio, pajungto prie jūsų %s %s. Išsamesnių instrukcijų ieškokite https://www.opena.tv.\n"
+#~ "Jūsų %s %s dabar bus sustabdytas. Kai atliksite šio internetinio puslapio atnaujinimo instrukcijas, naujoji programinė įranga paklaus, ar atkurti jūsų nustatymus."
+
+#~ msgid "Your %s %s does not have an Internet connection"
+#~ msgstr "Jūsų %s %s neturi interneto ryšio"
+
+#~ msgid "Your %s %s is not connected to the Internet"
+#~ msgstr "Jūsų %s %s neprijungtas prie interneto"
+
+#~ msgid ""
+#~ "Your %s %s is now ready to use.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Jūsų %s %s dabar paruoštas naudoti.\n"
+#~ "\n"
+#~ "Jūsų interneto ryšys dabar veikia.\n"
+#~ "\n"
+#~ "Spauskite 'OK', kad tęsti."
+
+#~ msgid "Your %s %s is shutting down. Please wait..."
+#~ msgstr "Jūsų %s%s išsijungia. Palaukite..."
+
+#~ msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+#~ msgstr "Atsarginė kopija sukurta. Dabar išaiškinsime tolimesnius atnaujinimo proceso veiksmus."
+
+#~ msgid ""
+#~ "Your wireless LAN Internet connection could not be started!\n"
+#~ "Have you attached your USB WLAN Stick?\n"
+#~ "\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Belaidis interneto ryšys neveikia!\n"
+#~ "Ar prijungėte USB belaidžio tinklo įrenginį?\n"
+#~ "\n"
+#~ "Pasirinkite, ką jūs norėsite daryti toliau."
 
 #~ msgid ""
 #~ "\n"

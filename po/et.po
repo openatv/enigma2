@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-21 12:38+0000\n"
+"POT-Creation-Date: 2023-05-31 20:48+0200\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1805,6 +1805,9 @@ msgstr "<Filmilisti praegune asukoht >"
 msgid "<Default movie location>"
 msgstr "<Salvestuste tavaasukoht >"
 
+msgid "<Flash expander inactive>"
+msgstr ""
+
 msgid "<Last timer location>"
 msgstr "<Viimase taimeri asukoht>"
 
@@ -2065,6 +2068,9 @@ msgstr "Toitenupu vajutus"
 msgid "Activate"
 msgstr "Käivita"
 
+msgid "Activate Expander"
+msgstr ""
+
 msgid "Activate HbbTV (RED button)"
 msgstr "Käivita HbbTV (punane nupp)"
 
@@ -2085,6 +2091,9 @@ msgstr "Aktiveeri võrguseaded"
 
 msgid "Activate the configured network settings."
 msgstr "Jõusta määratud võrguseaded."
+
+msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
 
 msgid "Activate time shift End"
 msgstr "Määra ajanihke lõpp"
@@ -2879,9 +2888,6 @@ msgstr "Automaatsed keelevalikud"
 msgid "Auto Language Settings"
 msgstr "Automaatsed keelevalikud"
 
-msgid "Auto Modes Selected."
-msgstr "Automaatsed režiimid valitud."
-
 msgid "Auto SCART switching"
 msgstr "Autom. SCART ümberlülitus"
 
@@ -2914,6 +2920,12 @@ msgstr ""
 
 msgid "Auto standby"
 msgstr "Automaatne ooteseisund"
+
+msgid "Auto video mode selected"
+msgstr ""
+
+msgid "Auto video mode selected for the TV."
+msgstr ""
 
 #
 msgid "Auto(not available)"
@@ -3531,6 +3543,12 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "Nuppude seadistus"
+
+msgid "By disk UUID"
+msgstr ""
+
+msgid "By disk label"
+msgstr ""
 
 msgid "By openATV Image Team"
 msgstr "openATV tiimilt"
@@ -4221,9 +4239,6 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr "Kontrolli teleri toidet ja sisendit"
 
-msgid "Check the Internet connection"
-msgstr "Kontrolli internetiühendust"
-
 msgid "Check the Internet connection again"
 msgstr "Kontrolli uuesti internetiühendust"
 
@@ -4238,9 +4253,6 @@ msgstr "Logide uurimine."
 
 msgid "Checking file system..."
 msgstr "Failisüsteemi kontroll."
-
-msgid "Checking the Internet connection"
-msgstr "Internetiühenduse kontroll"
 
 #, python-format
 msgid ""
@@ -4665,6 +4677,9 @@ msgstr "Häälestamine"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
+msgid "Configure DNS (name servers)"
+msgstr ""
+
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Määra väliste subtiitrite täpsemaks ajastamiseks viiteaeg."
 
@@ -4716,11 +4731,14 @@ msgstr "Määra, kas subtiitrite kirjapilti vahetatakse tavalise, kaldkirja, ras
 msgid "Configure interface"
 msgstr "Seadista võrguliides"
 
-msgid "Configure nameservers"
-msgstr "Seadista nimeserverid"
-
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Määra, millisel andmekandjal taustal kustutamise võimalust kasutatakse."
+
+msgid ""
+"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
+msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Määra puldi tüüp"
@@ -4730,6 +4748,12 @@ msgstr "Määra selle LNB DiSEqC režiim."
 
 msgid "Configure the IP address."
 msgstr "Määra IP aadress."
+
+msgid ""
+"Configure the Internet connection by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
+msgstr ""
 
 msgid "Configure the alignment of events."
 msgstr "Määra saate nime asukoht."
@@ -4875,6 +4899,9 @@ msgstr "Seadista nimeserver (DNS)."
 msgid "Configure the netmask."
 msgstr "Seadista võrgumask."
 
+msgid "Configure the network again"
+msgstr "Seadista võrk uuesti"
+
 msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr "Määra päevade arv, pärast mida salvestised kustutatakse automaatselt prügikastist."
 
@@ -5018,9 +5045,6 @@ msgstr "Seadista oma võrk"
 msgid "Configure your internal LAN"
 msgstr "Seadista sisemine LAN võrk"
 
-msgid "Configure the network again"
-msgstr "Seadista võrk uuesti"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Seadista võrk ja vajuta otsingu alustamiseks OK"
 
@@ -5055,6 +5079,9 @@ msgstr "Ühenduse loomine serveriga nurjus"
 
 msgid "Connect to a wireless network"
 msgstr "Ühenda traadita võrguga"
+
+msgid "Connect to the Internet"
+msgstr ""
 
 msgid "Connected clients"
 msgstr "Ühendatud kliendid"
@@ -5111,6 +5138,9 @@ msgid "Continue playing"
 msgstr "Jätka taasesitust"
 
 msgid "Continue to run the task in the background"
+msgstr ""
+
+msgid "Continue with package download and installation"
 msgstr ""
 
 msgid "Continue with the flash process"
@@ -5283,6 +5313,9 @@ msgstr "Loo DVD-ISO"
 msgid "Create Directory"
 msgstr ""
 
+msgid "Create Expander"
+msgstr ""
+
 msgid "Create ISO"
 msgstr "Loo ISO"
 
@@ -5300,6 +5333,12 @@ msgstr "Loo kataloog"
 
 msgid "Create separate radio user bouquet"
 msgstr "Loo eraldi lemmiknimekiri raadiokanalitele"
+
+msgid "Create swap"
+msgstr ""
+
+msgid "Create the flash expander in the selected device"
+msgstr ""
 
 msgid "Create:"
 msgstr "Loo:"
@@ -5776,6 +5815,12 @@ msgstr "Nädalapäev Aasta/KK/PP"
 msgid "Deactivate"
 msgstr "Lülita välja"
 
+msgid "Deactivate Expander"
+msgstr ""
+
+msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
 msgid "Debug"
 msgstr ""
 
@@ -5829,9 +5874,6 @@ msgstr ""
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
 
-msgid "Default Modes Selected."
-msgstr ""
-
 msgid "Default Services Scanner"
 msgstr "Vaikimisi teenuste otsija"
 
@@ -5864,6 +5906,12 @@ msgid "Default sort order for files in the left column."
 msgstr ""
 
 msgid "Default sort order for files in the right column."
+msgstr ""
+
+msgid "Default video mode selected"
+msgstr ""
+
+msgid "Default video mode selected for the TV."
 msgstr ""
 
 msgid "Default volume offset"
@@ -5985,6 +6033,9 @@ msgstr ""
 msgid "Delete EPG Cache"
 msgstr ""
 
+msgid "Delete Expander"
+msgstr ""
+
 msgid "Delete Image"
 msgstr "Kustuta püsivara"
 
@@ -6070,6 +6121,12 @@ msgstr "Kustuta talletud pleilist"
 msgid "Delete the character to the left of text cursor"
 msgstr "Kustuta teksti puhvri kursorist vasakule jääv tähemärk"
 
+msgid "Delete the character to the left of the cursor"
+msgstr ""
+
+msgid "Delete the character under the cursor"
+msgstr ""
+
 #, fuzzy
 msgid "Delete the character under the text cursor"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
@@ -6088,6 +6145,9 @@ msgstr ""
 
 #, python-format
 msgid "Delete the directory/file '%s'?"
+msgstr ""
+
+msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
@@ -6452,6 +6512,9 @@ msgstr ""
 msgid "Djibouti"
 msgstr "Djibouti"
 
+msgid "Do another manual service scan?"
+msgstr ""
+
 msgid "Do not change"
 msgstr "Ära muuda"
 
@@ -6549,6 +6612,9 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
+msgid "Do you want the upgrade guide?"
+msgstr ""
+
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
@@ -6572,6 +6638,9 @@ msgstr "Kas kirjutada see valik DVD-le?"
 msgid "Do you want to continue?"
 msgstr "Kas jätkata?"
 
+msgid "Do you want to deactivate this flash expander?"
+msgstr ""
+
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
@@ -6584,6 +6653,9 @@ msgstr ""
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Kas kustutada esmalt vanad sätted rajalt /etc/enigma2?"
+
+msgid "Do you want to delete this flash expander directory?"
+msgstr ""
 
 msgid "Do you want to delete this log file?"
 msgstr ""
@@ -6633,6 +6705,9 @@ msgstr "Kas taastada vastuvõtja seadistused?"
 
 msgid "Do you want to resume this playback?"
 msgstr "Kas jätkata vaatamist katkestatud kohalt?"
+
+msgid "Do you want to start a backup now?"
+msgstr ""
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Kas uuendada pakett:\n"
@@ -7438,6 +7513,9 @@ msgstr "Sisesta püsiv PIN kood"
 msgid "Enter pin code"
 msgstr "Sisesta PIN"
 
+msgid "Enter text via an attached keyboard"
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr "Sisesta sagedus, millel LNB lülitub kõrgsagedusriba ja madalsagedusriba vahel. Enamat infot vaata LNB spetsifikatsioonist."
 
@@ -7714,6 +7792,12 @@ msgstr "Kataloogi eemaldamine %s nurjus. (Ehk ei ole tühi?)"
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr ""
 
+msgid "Error: The copy was unsuccessful!"
+msgstr ""
+
+msgid "Error: The delete was unsuccessful!"
+msgstr ""
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
 
@@ -7751,6 +7835,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: You can't run '%s' on a directory!"
+msgstr ""
+
+msgid "Error: mount not successful!"
 msgstr ""
 
 msgid "Esperanto"
@@ -8378,6 +8465,9 @@ msgstr "Määratud X11 kirjatüüp (SD)"
 msgid "Flash Expander"
 msgstr ""
 
+msgid "Flash Expander Actions"
+msgstr ""
+
 msgid "Flash Image"
 msgstr "Püsivara paigaldus"
 
@@ -8422,6 +8512,10 @@ msgstr ""
 msgid "Flash your %s %s and reboot now?"
 msgstr ""
 
+#, python-format
+msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
+msgstr ""
+
 msgid "Flashing"
 msgstr "Vilkuv"
 
@@ -8445,6 +8539,9 @@ msgstr ""
 #, fuzzy
 msgid "Flat by position on remote"
 msgstr "Lõplik asukoht"
+
+msgid "Follow instructions on TV"
+msgstr ""
 
 msgid "Font size"
 msgstr "Tähesuurus"
@@ -8479,6 +8576,9 @@ msgstr "Sunnitud ülerealaotuse eemaldamine (deinterlace)"
 
 msgid "Format"
 msgstr "Vorming"
+
+msgid "Format Disk"
+msgstr ""
 
 msgid "Format HDD"
 msgstr "Vorminda kõvaketas"
@@ -8760,6 +8860,9 @@ msgid "Given device id"
 msgstr ""
 
 msgid "Glibc version"
+msgstr ""
+
+msgid "Go back to the previous step"
 msgstr ""
 
 msgid "Go down the list"
@@ -9574,6 +9677,9 @@ msgstr "Püsivara abiline"
 msgid "Immediate shut down"
 msgstr "Kohene seiskamine"
 
+msgid "Immediately exit the wizard (Debug mode only)"
+msgstr ""
+
 msgid "Immediately restart selected devices."
 msgstr ""
 
@@ -9881,6 +9987,9 @@ msgstr "Paigaldamine"
 #, fuzzy, python-format
 msgid "Installing %s (%s)..."
 msgstr "Plugina paigaldamine..."
+
+msgid "Installing Please wait..."
+msgstr ""
 
 msgid "Installing Service"
 msgstr "Teenuse paigaldamine"
@@ -10469,6 +10578,9 @@ msgstr "Kasuta failinimedes ainult (7 bit) ascii tähemärke. See tagab failide 
 
 msgid "Limit west"
 msgstr "Lääne piir"
+
+msgid "Limited memory size, swap file required"
+msgstr ""
 
 msgid "Limits cancelled"
 msgstr "Piirid tühistatud"
@@ -11885,6 +11997,12 @@ msgstr "Võrgu testimine"
 msgid "Network test..."
 msgstr "Võrgu testimine."
 
+msgid ""
+"Network wizard completed.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Network:"
 msgstr "Võrk:"
 
@@ -12018,6 +12136,9 @@ msgstr "Vaba indeks puudub"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kõvaketas puudub või on vormindamata!"
+
+msgid "No Internet connection"
+msgstr ""
 
 msgid ""
 "No Settings loaded !!\n"
@@ -12193,6 +12314,13 @@ msgid "No updates available."
 msgstr ""
 
 msgid "No updates were available.  Please try again later."
+msgstr ""
+
+msgid "No valid device detected - Press OK"
+msgstr ""
+
+#, python-format
+msgid "No valid mount for '%s' found!"
 msgstr ""
 
 msgid "No valid region details were found"
@@ -12614,6 +12742,9 @@ msgstr ""
 msgid "Open the Plugin Browser"
 msgstr "Pluginate menüü"
 
+msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
 msgid "Open the movie list"
 msgstr "Filmilist"
 
@@ -12868,6 +12999,9 @@ msgstr ""
 msgid "Package information currently not available!"
 msgstr ""
 
+msgid "Package installation failed"
+msgstr ""
+
 msgid "Package list"
 msgstr "Tarkvaraloend"
 
@@ -13029,6 +13163,9 @@ msgid "Perform an on-line flash instead"
 msgstr ""
 
 msgid "Perform install/remove of the selected item"
+msgstr ""
+
+msgid "Perform the upgrade?"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -13233,24 +13370,6 @@ msgstr "Vali laiendus"
 msgid "Please choose reader"
 msgstr "Vali kaardipesa"
 
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Kontrolli ja täida nimeserveri nõutavad väljad.\n"
-"Kui oled valmis, vajuta jätkamiseks OK."
-
-msgid ""
-"Please configure your Internet connection by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Täida võrguühenduse seadistamiseks nõutavad väljad.\n"
-"Kui oled valmis, vajuta jätkamiseks OK."
-
-# Erstassi
-msgid "Please connect your %s %s to the Internet"
-msgstr "Ühenda %s %s internetti"
-
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Ära muuda ühtegi väärtust, kui sa pole kindel selles, mida teed!"
 
@@ -13368,17 +13487,14 @@ msgid ""
 "IceTV is a subscription service that is only available in the listed countries."
 msgstr ""
 
+msgid "Please select the device where the flash expander '/usr' directory should created."
+msgstr ""
+
+msgid "Please select the device where the flash expander '/usr' directory should disabled."
+msgstr ""
+
 msgid "Please select the movie path..."
 msgstr "Vali salvestuskataloog"
-
-msgid ""
-"Please select the network interface that you want to use for your Internet connection.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Vali internetiühenduseks kasutatav võrguliides.\n"
-"\n"
-"Jätkamiseks vajuta OK."
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr ""
@@ -13386,121 +13502,7 @@ msgstr ""
 msgid "Please select the sub-service to record:"
 msgstr "Vali salvestatav alamkanal"
 
-msgid ""
-"Please select the wireless network that you want to connect to.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Vali traadita võrk, millega tahad ühenduda.\n"
-"\n"
-"Jätkamiseks vajuta OK."
-
 msgid "Please select what to do after flash of the following image:"
-msgstr ""
-
-msgid "Please set up tuner A"
-msgstr "Seadista tuuner A"
-
-msgid ""
-"Please set up tuner A\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner A\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid "Please set up tuner B"
-msgstr "Seadista tuuner B"
-
-msgid ""
-"Please set up tuner B\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner B\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid "Please set up tuner C"
-msgstr "Seadista tuuner C"
-
-msgid ""
-"Please set up tuner C\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner C\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid "Please set up tuner D"
-msgstr "Seadista tuuner D"
-
-msgid ""
-"Please set up tuner D\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner D\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid ""
-"Please set up tuner E\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner E\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid ""
-"Please set up tuner F\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner F\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid ""
-"Please set up tuner G\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner G\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid ""
-"Please set up tuner H\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner H\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid ""
-"Please set up tuner I\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner I\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid ""
-"Please set up tuner J\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner J\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid ""
-"Please set up tuner Q\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner Q\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid ""
-"Please set up tuner R\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Seadista tuuner R\n"
-"Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
-
-msgid "Please set your time options"
-msgstr ""
-
-msgid ""
-"Please set your time options.\n"
-"\n"
-"Press YELLOW to set the time zone via geolocation."
 msgstr ""
 
 #
@@ -13570,11 +13572,20 @@ msgstr "Kujunduse sätete taastamine."
 msgid "Please wait whilst feeds state is checked."
 msgstr "Hoidlate oleku kontrollimine."
 
+msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
+msgstr ""
+
 msgid "Please wait, loading image..."
 msgstr ""
 
 #, python-format
 msgid "Please wait, restarting %s."
+msgstr ""
+
+msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
 msgid "Please wait."
@@ -13588,6 +13599,12 @@ msgstr "Nimekirja laadimine..."
 
 msgid "Please wait...almost ready! "
 msgstr "Oota... peaaegu tehtud! "
+
+msgid "Plug in USB device"
+msgstr ""
+
+msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
+msgstr ""
 
 msgid "Plugin Browser"
 msgstr "Pluginad"
@@ -13833,8 +13850,14 @@ msgstr "CAId valiku muutmiseks vajuta 'OK'."
 msgid "Press OK to set the MAC address."
 msgstr "MAC-aadressi määramiseks vajuta OK."
 
+msgid "Press OK to start the backup now"
+msgstr ""
+
 msgid "Press OK to start the scan"
 msgstr "Otsingu alustamiseks vajuta OK"
+
+msgid "Press OK to start using %s %s"
+msgstr ""
 
 msgid "Press OK to toggle the selection"
 msgstr "Valiku muutmiseks vajuta OK"
@@ -13919,7 +13942,22 @@ msgstr "Tõenäoliselt on põhjuseks"
 msgid "Proc model"
 msgstr ""
 
+msgid "Proceed to the next step"
+msgstr ""
+
 msgid "Proceed with the update"
+msgstr ""
+
+msgid "Process BLUE button action"
+msgstr ""
+
+msgid "Process GREEN button action"
+msgstr ""
+
+msgid "Process RED button action"
+msgstr ""
+
+msgid "Process YELLOW button action"
 msgstr ""
 
 msgid "Processor information"
@@ -14534,9 +14572,6 @@ msgstr "Värskendussagedus"
 msgid "Refresh rate for 'Lowest Mode'"
 msgstr "'Madalaima režiimi' värskendussagedus"
 
-msgid "Refresh rate selection."
-msgstr "Värskendussageduse valik."
-
 msgid "Refresh screen"
 msgstr "Värskenda vaadet"
 
@@ -14942,6 +14977,9 @@ msgstr "Enigma2 taaskäivitus"
 msgid "Restart necessary, restart GUI now?"
 msgstr "Vajalik on taaskäivitus. Kas teha seda kohe?"
 
+msgid "Restart needed, press OK to restart"
+msgstr ""
+
 msgid "Restart network and remount connections"
 msgstr "Võrgu taaskäivitus ja ühenduste uuesti haakimine"
 
@@ -14982,6 +15020,9 @@ msgstr "Taasta varukoopiaid"
 
 msgid "Restore settings from a backup"
 msgstr "Taasta seadistused varukoopiast"
+
+msgid "Restore settings now"
+msgstr ""
 
 msgid "Restore the highlighted slot"
 msgstr ""
@@ -15043,6 +15084,9 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Püsivara pesade hankimine. Oota."
 
 msgid "Retrieving network server information, please wait..."
+msgstr ""
+
+msgid "Retry"
 msgstr ""
 
 msgid "Return the current selection response"
@@ -15851,6 +15895,9 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Vali CAId"
 
+msgid "Select Device"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Vali Enigma2 kujundus"
 
@@ -15910,6 +15957,9 @@ msgstr ""
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a device to use as the flash expander"
+msgstr ""
+
 msgid "Select a directory"
 msgstr ""
 
@@ -15921,6 +15971,9 @@ msgstr ""
 
 #, python-format
 msgid "Select a location into which to extract '%s':"
+msgstr ""
+
+msgid "Select a menu item"
 msgstr ""
 
 #
@@ -16258,6 +16311,12 @@ msgstr "Vali salvestuskataloog"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
+msgid ""
+"Select the network interface to be used for the Internet connection.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
@@ -16272,6 +16331,9 @@ msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Vali SCR seadme vorming. Valikud on 'SCR Unicable' (Unicable I vorming) või 'SCR JESS' (Unicable II vorming)."
+
+msgid "Select the refresh rate to be used on the TV."
+msgstr ""
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
 msgstr "Vali satelliit, mis on ühendatud lüliti porti A. Kui pole kindel, vali 'automaatne' ja vastuvõtja üritab seda teha ise. Kui see port on ühendamata, vali 'pole ühendatud'."
@@ -16309,6 +16371,9 @@ msgid "Select the sort order of the Plugin Browser menu entries. User defined al
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
@@ -16369,14 +16434,26 @@ msgstr ""
 msgid "Select the type of this timer."
 msgstr ""
 
+msgid "Select the video mode to be used on the TV."
+msgstr ""
+
+msgid ""
+"Select the wireless network to which you want to connect.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
-msgid "Select video input with up/down buttons"
-msgstr "Vali video sisend ÜLES/ALLA nuppudega"
+msgid "Select update source location"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Vali videorežiim"
+
+msgid "Select video output port with UP/DOWN buttons"
+msgstr ""
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Saad määrata vastuvõtja käitumise taasesituse lõppemisel."
@@ -16814,6 +16891,12 @@ msgstr "Määra esipaneeli teksti kerimise kiirus."
 msgid "Set the time before checking video source for resolution information."
 msgstr "Määra ooteaeg enne video lahutuse/värskendussageduse kontrollimist."
 
+msgid ""
+"Set the time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
+
 msgid "Set the time to hide the infobar."
 msgstr "Määra aeg inforiba peitmiseks."
 
@@ -16848,6 +16931,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set time options"
+msgstr ""
+
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
@@ -16862,6 +16948,15 @@ msgstr "Määra nupu toiming."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Määra 'jah' silumiseks, et leida hangumise animatsiooni algpõhjus."
+
+msgid "Set up tuner [TUNER]"
+msgstr ""
+
+msgid ""
+"Set up tuner [TUNER].\n"
+"\n"
+"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+msgstr ""
 
 msgid "Set voltage and 22KHz"
 msgstr "Määra pinge ja 22KHz"
@@ -17835,6 +17930,9 @@ msgstr "Lülita välja"
 msgid "Shutdown"
 msgstr "Lülita välja"
 
+msgid "Shutting down. Please wait..."
+msgstr ""
+
 msgid "Sichuan Yi / Nuosu"
 msgstr ""
 
@@ -17955,9 +18053,6 @@ msgstr "Kujunduse valik"
 msgid "SkinSelector"
 msgstr "Kujunduse valik"
 
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Jäta netiühenduse kontroll vahele (automaatne pakettide paigaldamine keelatakse)"
-
 msgid "Skip back"
 msgstr "Tagasihüpe"
 
@@ -17968,6 +18063,9 @@ msgid "Skip forward"
 msgstr "Edasihüpe"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip package installation, only core packages will be available"
 msgstr ""
 
 msgid "Sleep"
@@ -18112,6 +18210,9 @@ msgid "Small"
 msgstr "Väike test"
 
 msgid "Small - Tiny image"
+msgstr ""
+
+msgid "Small Box Preparation"
 msgstr ""
 
 #, fuzzy
@@ -18435,6 +18536,9 @@ msgstr ""
 msgid "Start RDS interactive"
 msgstr "Võrdne seiskamisajaga"
 
+msgid "Start Wizard"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18479,10 +18583,6 @@ msgstr "Vali, käivita või peata emulaator"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Käivita, peata ja vali emulaator. Esmalt tuleb see paigaldada"
-
-#
-msgid "StartWizard"
-msgstr "Käivitusabiline"
 
 msgid "Starting Softcam"
 msgstr "EMU käivitamine"
@@ -18530,6 +18630,9 @@ msgstr ""
 
 msgid "Status:"
 msgstr "Olek:"
+
+msgid "Step"
+msgstr ""
 
 msgid "Step east"
 msgstr "Samm itta"
@@ -19272,18 +19375,25 @@ msgid "Thailand"
 msgstr "Tai"
 
 msgid ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
+"Thank you for using and completing the wizard. The %s %s is now ready to use.\n"
+"\n"
+"Please press OK to start using the %s %s."
 msgstr ""
-"Täname, et kasutasid abilist.\n"
-"Jätkamiseks vajuta OK."
 
 msgid ""
-"Thank you for using the wizard. Your %s %s is now ready to use.\n"
-"Please press OK to start using your %s %s."
+"Thank you for using and completing the wizard. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
 msgstr ""
-"Täname, et kasutasid abilist. %s %s on nüüd kasutamiseks valmis.\n"
-"%s %s käikuvõtmiseks vajuta OK."
+
+msgid "The %s %s does not have an Internet connection."
+msgstr ""
+
+msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
+msgstr ""
+
+msgid "The %s %s is shutting down. Please wait..."
+msgstr ""
 
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "%s %s loeb salvestatud EPG andmeid iga (tund)."
@@ -19342,6 +19452,18 @@ msgstr ""
 
 #, python-format
 msgid "The IceTV server has requested password for %s."
+msgstr ""
+
+msgid ""
+"The Internet connection appears to be working.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
+msgid ""
+"The Internet connection appears to not be working!\n"
+"\n"
+"Choose what to do next."
 msgstr ""
 
 msgid ""
@@ -19420,8 +19542,17 @@ msgstr ""
 "Ajanihke kasutuses on kettaruumi vähem kui seadistustes määratud.\n"
 "Mida soovid teha?"
 
-msgid "The backup failed. Please choose a different backup location."
-msgstr "Varundamine nurjus. Vali varukoopiale uus asukoht."
+msgid "The backup failed"
+msgstr ""
+
+msgid "The backup failed! Choose a different backup location."
+msgstr ""
+
+msgid "The backup succeeded"
+msgstr ""
+
+msgid "The backup succeeded. We will now continue to explain the upgrade process."
+msgstr ""
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr "Videokooderi bitikiirus. Suurema väärtusega tuleb parema kvaliteediga suurem fail."
@@ -19561,11 +19692,17 @@ msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Pildi laius. Sisend skaleeritakse selle väärtuse järgi."
 
 msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it and choose what you want to do next."
+"The wireless LAN Internet connection could not be started!\n"
+"Is the wireless LAN device connected?\n"
+"\n"
+"Choose what to do next."
 msgstr ""
-"WLAN plugin on paigaldamata!\n"
-"Paigalda see ja vali mida soovid teha järgmiseks."
+
+msgid ""
+"The wireless LAN plugin code is not installed!\n"
+"\n"
+"Install it and choose what to do next."
+msgstr ""
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -19574,11 +19711,8 @@ msgstr ""
 "WLAN plugin ei ole paigaldatud!\n"
 "Paigalda see."
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "Praegustest seadistustest saab teha varukoopia. Kas teha seda nüüd?"
-
-msgid "The wizard is finished now."
-msgstr "Abiline on nüüd läbitud."
+msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+msgstr ""
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19592,6 +19726,9 @@ msgstr ""
 
 msgid "There are no updates available."
 msgstr "Uuendusi ei ole saadaval."
+
+msgid "There are pending tasks:"
+msgstr ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -20021,6 +20158,12 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr "Edasi/tagasi kerimine toimub x sek hüpetena"
 
+msgid "This wizard has finished"
+msgstr ""
+
+msgid "This wizard has finished."
+msgstr ""
+
 msgid "Three"
 msgstr "Kolm"
 
@@ -20255,6 +20398,9 @@ msgstr "Omadused"
 
 msgid "Titleset mode"
 msgstr "Pealkirja seadmine"
+
+msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
+msgstr ""
 
 msgid "To restore the image:"
 msgstr "Püsivara taastamiseks:"
@@ -20918,6 +21064,9 @@ msgstr "Uuendamine tehtud!"
 msgid "Update interval (in seconds)"
 msgstr "Uuendamise vahemik (sekundites)"
 
+msgid "Update package list please wait..."
+msgstr ""
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -21046,6 +21195,9 @@ msgstr ""
 msgid "Use TV remote control"
 msgstr "Kasuta teleri pulti"
 
+msgid "Use UP/DOWN buttons to select option then press OK"
+msgstr ""
+
 #
 msgid "Use USALS for this sat"
 msgstr "USALS kasutamine selle satelliidi jaoks"
@@ -21068,14 +21220,14 @@ msgstr "Kasuta alternatiivset vaadet"
 msgid "Use as HDD"
 msgstr "Kasuta kõvakettana"
 
-msgid ""
-"Use automatic mode detection.\n"
-" This option reads all supported modes from your TV.\n"
-" Please disable it only if you want to customize the preferred configuration."
+msgid "Use automatic mode detection"
 msgstr ""
-"Kasuta automaatset režiimi tuvastamist.\n"
-"See valik loeb telerist kõik toetatud režiimid.\n"
-"Keela see ainult juhul, kui tahad kasutada oma kohandatud seadistusi."
+
+msgid ""
+"Use automatic mode detection?\n"
+"\n"
+"This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
+msgstr ""
 
 msgid "Use circular LNB"
 msgstr "Ringpolar LNB kasutamine"
@@ -21184,9 +21336,6 @@ msgstr "Kasuta võrguabilist valitud võrguliidese seadistamiseks"
 
 msgid "Use the network wizard to configure your Network."
 msgstr ""
-
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "Kasuta valimiseks üles/alla nuppu puldil, siis vajuta OK."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Kasuta abilist põhiomaduste seadmiseks"
@@ -21442,6 +21591,9 @@ msgstr "Video PID"
 msgid "Video Settings"
 msgstr "Pildi seaded"
 
+msgid "Video Wizard"
+msgstr ""
+
 msgid "Video clipping"
 msgstr "Pildi lõikamine"
 
@@ -21457,23 +21609,6 @@ msgstr "Pildi paranduste eelvaade"
 
 msgid "Video enhancement setup"
 msgstr "Pildi paranduste seaded"
-
-#
-msgid ""
-"Video input selection\n"
-"\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
-"\n"
-"The next input port will be automatically probed in 10 seconds."
-msgstr ""
-"Videosisendi valik\n"
-"\n"
-"Vajuta OK, kui näed seda lehekülge TV ekraanil(või vali teine sisend).\n"
-"\n"
-"Järgmist sisendit proovitakse automaatselt 10 sekundi möödudes."
-
-msgid "Video mode selection."
-msgstr "Videorežiimi valik."
 
 #, python-format
 msgid "Video mode: %s"
@@ -21513,6 +21648,14 @@ msgstr "SD videoväljundi režiim"
 msgid "Video output mode for UHD"
 msgstr "UHD videoväljundi režiim"
 
+msgid ""
+"Video output port selection.\n"
+"\n"
+"Make sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n"
+"\n"
+"The next output port will be automatically tried in 10 seconds."
+msgstr ""
+
 msgid "Video: "
 msgstr "Video: "
 
@@ -21532,10 +21675,6 @@ msgstr "Pildiparanduse eelvaade"
 
 msgid "VideoFinetune"
 msgstr "Pildihäälestus"
-
-#
-msgid "VideoWizard"
-msgstr "Videoabiline"
 
 #, fuzzy
 msgid "Videocodec, size & format"
@@ -21579,7 +21718,13 @@ msgstr "Kuva teletekst"
 msgid "View the archive contents"
 msgstr ""
 
+msgid "View the next item in a list"
+msgstr ""
+
 msgid "View the package contents"
+msgstr ""
+
+msgid "View the previous item in a list"
 msgstr ""
 
 msgid "View video CD..."
@@ -21814,6 +21959,9 @@ msgstr ""
 msgid "Weekly"
 msgstr "Iga nädal"
 
+msgid "Welcome Wizard"
+msgstr ""
+
 #, python-format
 msgid "Welcome to %s"
 msgstr ""
@@ -21821,6 +21969,12 @@ msgstr ""
 #, fuzzy
 msgid "Welcome to IceTV"
 msgstr "CCcam"
+
+msgid ""
+"Welcome to openATV.\n"
+"\n"
+"Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
+msgstr ""
 
 #
 msgid ""
@@ -21836,32 +21990,8 @@ msgstr ""
 "\n"
 "Edasi otsi lõike lõpp, vajuta OK, vali 'lõike lõpp'. Tehtud."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Tere tulemast püsivara uuendamise abilisse. Seadistusabiline aitab %s %s seadete varundamisel ja püsivara uuendamisel."
-
-msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-"\n"
-"Press OK to start configuring your network"
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
 msgstr ""
-"Tere tulemast.\n"
-"\n"
-"See abiline juhendab võrgu seadistamisel, et ühendada %s %s internetti.\n"
-"\n"
-"Võrgu seadistamise alustamiseks vajuta OK"
-
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your %s %s.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Tere.\n"
-"\n"
-"See abiline juhendab %s %s põhiseadete määramisel.\n"
-"Järgmise sammu juurde minekuks vajuta puldil OK nuppu."
 
 #
 msgid "Welcome..."
@@ -22153,11 +22283,14 @@ msgstr "Traadita võrk"
 msgid "Wireless network configuration..."
 msgstr "Traadita võrgu seadistus."
 
-msgid "Wireless network connection setup"
-msgstr "Traadita võrgu seadistus"
+msgid ""
+"Wireless network connection setup.\n"
+"\n"
+"Choose what to do next."
+msgstr ""
 
-msgid "Wireless network connection setup."
-msgstr "Traadita võrgu seadistus."
+msgid "Wireless network setup"
+msgstr ""
 
 msgid "Wireless network state"
 msgstr "Traadita võrgu olek"
@@ -22203,6 +22336,9 @@ msgstr "Hüpikaknata"
 
 msgid "Without query"
 msgstr "Päringuta"
+
+msgid "Wizard Actions"
+msgstr ""
 
 msgid "Wolof"
 msgstr ""
@@ -22397,11 +22533,11 @@ msgstr "<  ja > nuppudega saab vahetada selle tuuneri tüüpe %s"
 msgid "You cannot delete this!"
 msgstr "Seda ei või kustutada!"
 
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr "Otsustasid luua varukoopia kõvakettale. Vajuta OK alustamiseks nüüd."
+msgid "You have chosen to backup your settings. Press OK to start the backup now."
+msgstr ""
 
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "Oled otsustanud seadistused taastada. Selle lõpetuseks vastuvõtja taaskäivitub. Taastamise alustamiseks vajuta OK."
+msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift"
 msgstr "Oled valinud ajanihke faili talletamise"
@@ -22431,13 +22567,10 @@ msgstr "Tuleb oodata %s!"
 msgid "You must set at least one command!"
 msgstr ""
 
-#
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
-"Nüüd on vaja ühendada %s %s arvutiga. Kui on vaja abi, siis vaata : https://www.opena.tv.\n"
-"%s %s peatatakse. Kui on täidetud uuendamise juhised veebilehelt, siis uus püsivara pakub seadistuste taastamist."
 
 msgid "You seem to be in time shift!"
 msgstr "Ajanihe on kasutusel!"
@@ -22454,9 +22587,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "Your %s %s does not have an Internet connection"
-msgstr "Vastuvõtjal puudub internetiühendus"
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "PiP HD ei ole %s %s poolt toetatud"
@@ -22464,9 +22594,6 @@ msgstr "PiP HD ei ole %s %s poolt toetatud"
 #, python-format
 msgid "Your %s %s goes to WOL"
 msgstr "%s %s läheb WOL"
-
-msgid "Your %s %s is not connected to the Internet"
-msgstr "%s %s ei ole internetiga ühendatud"
 
 #, python-format
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
@@ -22485,19 +22612,6 @@ msgstr ""
 "Internetiühendus töötab.\n"
 "\n"
 
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"%s %s on kasutamiseks valmis.\n"
-"\n"
-"Internetiühendus töötab.\n"
-"\n"
-"Jätkamiseks vajuta OK."
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr "%s %s taaskäivitub"
@@ -22509,9 +22623,6 @@ msgstr "%s %s taaskäivitub taasterežiimis"
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr "%s %s lülitub välja"
-
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr "%s %s lülitub välja. Oota..."
 
 # PowerLost
 #, python-format
@@ -22581,14 +22692,15 @@ msgstr ""
 "Otsusta, mida soovid teha edasi."
 
 #, python-format
+msgid "Your Internet connection is working (ip: %s)"
+msgstr ""
+
+#, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Vastuvõtjal tuvastati tarkvaraline probleem. Pärast taaskäivitust on see juhtunud %d korda.\n"
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Vastuvõtja taaskäivitub pärast puldil OK vajutamist."
-
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "Varukoopia valmis. Jätkame selgitamist edasisest uuenduse käigust."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "See valimik ei mahu ühekihilisele plaadile, vajalik on tühi kahekihiline DVD plaat!"
@@ -22646,20 +22758,12 @@ msgstr "See vastuvõtja oskab kasutada SCPC optimeeritud otsinguvahemikku. Enama
 msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
 msgstr "See vastuvõtja oskab kasutada 22KHz-helitugevust. Enamat infot otsi vastuvõtja käsiraamatust."
 
+msgid "Your receiver does not have an Internet connection"
+msgstr ""
+
 #, python-format
 msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
-
-msgid ""
-"Your wireless LAN Internet connection could not be started!\n"
-"Have you attached your USB WLAN Stick?\n"
-"\n"
-"Please choose what you want to do next."
-msgstr ""
-"Taadita ühendust ei saa tööle!\n"
-"Kas WLAN USB pulk on ühendatud?\n"
-"\n"
-"Otsusta, mida soovid teha edasi."
 
 #, fuzzy
 msgid "Youth"
@@ -23313,6 +23417,9 @@ msgstr "hlg"
 
 msgid "hops:"
 msgstr "hops:"
+
+msgid "inactive"
+msgstr ""
 
 msgid "increase uphop by 1"
 msgstr "suurenda uphop 1"
@@ -24008,6 +24115,309 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Auto Modes Selected."
+#~ msgstr "Automaatsed režiimid valitud."
+
+#~ msgid "Check the Internet connection"
+#~ msgstr "Kontrolli internetiühendust"
+
+#~ msgid "Checking the Internet connection"
+#~ msgstr "Internetiühenduse kontroll"
+
+#~ msgid "Configure nameservers"
+#~ msgstr "Seadista nimeserverid"
+
+#~ msgid ""
+#~ "Please configure or verify your Nameservers by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Kontrolli ja täida nimeserveri nõutavad väljad.\n"
+#~ "Kui oled valmis, vajuta jätkamiseks OK."
+
+#~ msgid ""
+#~ "Please configure your Internet connection by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Täida võrguühenduse seadistamiseks nõutavad väljad.\n"
+#~ "Kui oled valmis, vajuta jätkamiseks OK."
+
+# Erstassi
+#~ msgid "Please connect your %s %s to the Internet"
+#~ msgstr "Ühenda %s %s internetti"
+
+#~ msgid ""
+#~ "Please select the network interface that you want to use for your Internet connection.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Vali internetiühenduseks kasutatav võrguliides.\n"
+#~ "\n"
+#~ "Jätkamiseks vajuta OK."
+
+#~ msgid ""
+#~ "Please select the wireless network that you want to connect to.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Vali traadita võrk, millega tahad ühenduda.\n"
+#~ "\n"
+#~ "Jätkamiseks vajuta OK."
+
+#~ msgid "Please set up tuner A"
+#~ msgstr "Seadista tuuner A"
+
+#~ msgid ""
+#~ "Please set up tuner A\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner A\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid "Please set up tuner B"
+#~ msgstr "Seadista tuuner B"
+
+#~ msgid ""
+#~ "Please set up tuner B\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner B\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid "Please set up tuner C"
+#~ msgstr "Seadista tuuner C"
+
+#~ msgid ""
+#~ "Please set up tuner C\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner C\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid "Please set up tuner D"
+#~ msgstr "Seadista tuuner D"
+
+#~ msgid ""
+#~ "Please set up tuner D\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner D\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid ""
+#~ "Please set up tuner E\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner E\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid ""
+#~ "Please set up tuner F\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner F\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid ""
+#~ "Please set up tuner G\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner G\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid ""
+#~ "Please set up tuner H\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner H\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid ""
+#~ "Please set up tuner I\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner I\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid ""
+#~ "Please set up tuner J\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner J\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid ""
+#~ "Please set up tuner Q\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner Q\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid ""
+#~ "Please set up tuner R\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Seadista tuuner R\n"
+#~ "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
+
+#~ msgid "Refresh rate selection."
+#~ msgstr "Värskendussageduse valik."
+
+#~ msgid "Select video input with up/down buttons"
+#~ msgstr "Vali video sisend ÜLES/ALLA nuppudega"
+
+#~ msgid "Skip Internet connection check (disables automatic package installation)"
+#~ msgstr "Jäta netiühenduse kontroll vahele (automaatne pakettide paigaldamine keelatakse)"
+
+#
+#~ msgid "StartWizard"
+#~ msgstr "Käivitusabiline"
+
+#~ msgid ""
+#~ "Thank you for using the wizard.\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Täname, et kasutasid abilist.\n"
+#~ "Jätkamiseks vajuta OK."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your %s %s is now ready to use.\n"
+#~ "Please press OK to start using your %s %s."
+#~ msgstr ""
+#~ "Täname, et kasutasid abilist. %s %s on nüüd kasutamiseks valmis.\n"
+#~ "%s %s käikuvõtmiseks vajuta OK."
+
+#~ msgid "The backup failed. Please choose a different backup location."
+#~ msgstr "Varundamine nurjus. Vali varukoopiale uus asukoht."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it and choose what you want to do next."
+#~ msgstr ""
+#~ "WLAN plugin on paigaldamata!\n"
+#~ "Paigalda see ja vali mida soovid teha järgmiseks."
+
+#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+#~ msgstr "Praegustest seadistustest saab teha varukoopia. Kas teha seda nüüd?"
+
+#~ msgid "The wizard is finished now."
+#~ msgstr "Abiline on nüüd läbitud."
+
+#~ msgid ""
+#~ "Use automatic mode detection.\n"
+#~ " This option reads all supported modes from your TV.\n"
+#~ " Please disable it only if you want to customize the preferred configuration."
+#~ msgstr ""
+#~ "Kasuta automaatset režiimi tuvastamist.\n"
+#~ "See valik loeb telerist kõik toetatud režiimid.\n"
+#~ "Keela see ainult juhul, kui tahad kasutada oma kohandatud seadistusi."
+
+#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#~ msgstr "Kasuta valimiseks üles/alla nuppu puldil, siis vajuta OK."
+
+#
+#~ msgid ""
+#~ "Video input selection\n"
+#~ "\n"
+#~ "Please press OK if you can see this page on your TV (or select a different input port).\n"
+#~ "\n"
+#~ "The next input port will be automatically probed in 10 seconds."
+#~ msgstr ""
+#~ "Videosisendi valik\n"
+#~ "\n"
+#~ "Vajuta OK, kui näed seda lehekülge TV ekraanil(või vali teine sisend).\n"
+#~ "\n"
+#~ "Järgmist sisendit proovitakse automaatselt 10 sekundi möödudes."
+
+#~ msgid "Video mode selection."
+#~ msgstr "Videorežiimi valik."
+
+#
+#~ msgid "VideoWizard"
+#~ msgstr "Videoabiline"
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+#~ msgstr "Tere tulemast püsivara uuendamise abilisse. Seadistusabiline aitab %s %s seadete varundamisel ja püsivara uuendamisel."
+
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
+#~ "\n"
+#~ "Press OK to start configuring your network"
+#~ msgstr ""
+#~ "Tere tulemast.\n"
+#~ "\n"
+#~ "See abiline juhendab võrgu seadistamisel, et ühendada %s %s internetti.\n"
+#~ "\n"
+#~ "Võrgu seadistamise alustamiseks vajuta OK"
+
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "This start wizard will guide you through the basic setup of your %s %s.\n"
+#~ "Press the OK button on your remote control to move to the next step."
+#~ msgstr ""
+#~ "Tere.\n"
+#~ "\n"
+#~ "See abiline juhendab %s %s põhiseadete määramisel.\n"
+#~ "Järgmise sammu juurde minekuks vajuta puldil OK nuppu."
+
+#~ msgid "Wireless network connection setup"
+#~ msgstr "Traadita võrgu seadistus"
+
+#~ msgid "Wireless network connection setup."
+#~ msgstr "Traadita võrgu seadistus."
+
+#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+#~ msgstr "Otsustasid luua varukoopia kõvakettale. Vajuta OK alustamiseks nüüd."
+
+#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+#~ msgstr "Oled otsustanud seadistused taastada. Selle lõpetuseks vastuvõtja taaskäivitub. Taastamise alustamiseks vajuta OK."
+
+#
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
+#~ "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+#~ msgstr ""
+#~ "Nüüd on vaja ühendada %s %s arvutiga. Kui on vaja abi, siis vaata : https://www.opena.tv.\n"
+#~ "%s %s peatatakse. Kui on täidetud uuendamise juhised veebilehelt, siis uus püsivara pakub seadistuste taastamist."
+
+#~ msgid "Your %s %s does not have an Internet connection"
+#~ msgstr "Vastuvõtjal puudub internetiühendus"
+
+#~ msgid "Your %s %s is not connected to the Internet"
+#~ msgstr "%s %s ei ole internetiga ühendatud"
+
+#~ msgid ""
+#~ "Your %s %s is now ready to use.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "%s %s on kasutamiseks valmis.\n"
+#~ "\n"
+#~ "Internetiühendus töötab.\n"
+#~ "\n"
+#~ "Jätkamiseks vajuta OK."
+
+#~ msgid "Your %s %s is shutting down. Please wait..."
+#~ msgstr "%s %s lülitub välja. Oota..."
+
+#~ msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+#~ msgstr "Varukoopia valmis. Jätkame selgitamist edasisest uuenduse käigust."
+
+#~ msgid ""
+#~ "Your wireless LAN Internet connection could not be started!\n"
+#~ "Have you attached your USB WLAN Stick?\n"
+#~ "\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Taadita ühendust ei saa tööle!\n"
+#~ "Kas WLAN USB pulk on ühendatud?\n"
+#~ "\n"
+#~ "Otsusta, mida soovid teha edasi."
 
 #~ msgid ""
 #~ "\n"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-21 12:38+0000\n"
-"PO-Revision-Date: 2023-05-27 03:52+0000\n"
+"POT-Creation-Date: 2023-05-31 20:48+0200\n"
+"PO-Revision-Date: 2023-06-04 19:29+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1820,6 +1820,9 @@ msgstr "<Розташування поточного списку фільмів
 msgid "<Default movie location>"
 msgstr "<Розташування запису за замовчуванням>"
 
+msgid "<Flash expander inactive>"
+msgstr "<Флеш-розширювач неактивний>"
+
 msgid "<Last timer location>"
 msgstr "<Розташування останнього таймера>"
 
@@ -2071,6 +2074,9 @@ msgstr "Дія при короткому натисканні кнопки ви�
 msgid "Activate"
 msgstr "Активувати"
 
+msgid "Activate Expander"
+msgstr "Активувати Розширювач"
+
 msgid "Activate HbbTV (RED button)"
 msgstr "Запуск HbbTV (червона кнопка)"
 
@@ -2091,6 +2097,9 @@ msgstr "Активувати налаштування мережі"
 
 msgid "Activate the configured network settings."
 msgstr "Активуйте налаштовані параметри мережі."
+
+msgid "Activate the flash expander, save all changed settings and exit"
+msgstr "Активуйте флеш-розширювач, збережіть усі змінені налаштування та вийдіть"
 
 msgid "Activate time shift End"
 msgstr "Вказати закінчення таймшифта"
@@ -2867,9 +2876,6 @@ msgstr "Автоматичний вибір мови"
 msgid "Auto Language Settings"
 msgstr "Автовибір мови"
 
-msgid "Auto Modes Selected."
-msgstr "Вибрано автоматичні Режими."
-
 msgid "Auto SCART switching"
 msgstr "Авто переключення на скарт"
 
@@ -2902,6 +2908,12 @@ msgstr "Автоматичне відключення"
 
 msgid "Auto standby"
 msgstr "Авто перехід в режим очікування"
+
+msgid "Auto video mode selected"
+msgstr "Вибрано автоматичний режим відео"
+
+msgid "Auto video mode selected for the TV."
+msgstr "Для телевізора вибрано автоматичний режим відео."
 
 msgid "Auto(not available)"
 msgstr "Авто(не доступний)"
@@ -3504,6 +3516,12 @@ msgstr "Час очікування помилки кнопки"
 
 msgid "ButtonSetup"
 msgstr "Налаштування кнопок"
+
+msgid "By disk UUID"
+msgstr "За UUID диску"
+
+msgid "By disk label"
+msgstr "За міткою диска"
 
 msgid "By openATV Image Team"
 msgstr "Від команди openATV"
@@ -4189,9 +4207,6 @@ msgstr "Перевірте доступність PDC для кожного ка
 msgid "Check power and input state from TV"
 msgstr "Перевірити живлення та стан входу від телевізора"
 
-msgid "Check the Internet connection"
-msgstr "Перевірка інтернет-з'єднання"
-
 msgid "Check the Internet connection again"
 msgstr "Перевірити підключення до Інтернету ще раз"
 
@@ -4206,9 +4221,6 @@ msgstr "Перевірка Логів ..."
 
 msgid "Checking file system..."
 msgstr "Перевірка файлової системи..."
-
-msgid "Checking the Internet connection"
-msgstr "Перевірка інтернет-з'єднання"
 
 #, python-format
 msgid ""
@@ -4621,6 +4633,9 @@ msgstr "Режим конфігурації"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "Параметри конфігурації довідки HELP можна знайти в 'Меню > Налаштування > Використання та інтерфейс > Settings'."
 
+msgid "Configure DNS (name servers)"
+msgstr "Налаштувати DNS (сервери імен)"
+
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Налаштування додаткової затримки для поліпшення синхронізації зовнішніх субтитрів."
 
@@ -4669,11 +4684,17 @@ msgstr "Налаштування шрифтів для зовнішніх суб
 msgid "Configure interface"
 msgstr "Налаштування інтерфейсу"
 
-msgid "Configure nameservers"
-msgstr "Налаштувати DNS"
-
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Вкажіть, на яких пристроях слід використовувати опцію фонового видалення."
+
+msgid ""
+"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
+msgstr ""
+"Налаштуйте або перевірте свій DNS (сервери імен), налаштувавши показані значення.\n"
+"\n"
+"Коли налаштування правильні, натисніть OK, щоб продовжити."
 
 msgid "Configure remote control type"
 msgstr "Налаштування типу пульта керування"
@@ -4683,6 +4704,15 @@ msgstr "Налаштування DiSEqC режиму для цього конв�
 
 msgid "Configure the IP address."
 msgstr "Налаштування АП адресу."
+
+msgid ""
+"Configure the Internet connection by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
+msgstr ""
+"Налаштуйте підключення до Інтернету, ввівши показані значення.\n"
+"\n"
+"Коли налаштування правильні, натисніть OK, щоб продовжити."
 
 msgid "Configure the alignment of events."
 msgstr "Налаштування вирівнювання інформації про передачу."
@@ -4828,6 +4858,9 @@ msgstr "Налаштування імені сервера (DNS)."
 msgid "Configure the netmask."
 msgstr "Налаштування маски мережі."
 
+msgid "Configure the network again"
+msgstr "Повторити налаштування мережі"
+
 msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr "Вкажіть через скільки днів файли з кошика будуть остаточно видалені."
 
@@ -4969,9 +5002,6 @@ msgstr "Налаштування Вашої мережі"
 msgid "Configure your internal LAN"
 msgstr "Налаштувати Вашого LAN інтерфейсу"
 
-msgid "Configure the network again"
-msgstr "Повторити налаштування мережі"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Налаштуйте параметри мережі, а потім натисніть OK, щоб почати пошук"
 
@@ -5005,6 +5035,9 @@ msgstr "Підключення до сервера IceTV кожен"
 
 msgid "Connect to a wireless network"
 msgstr "Під'єднано до бездротової мережі"
+
+msgid "Connect to the Internet"
+msgstr "Підключитися до Інтернету"
 
 msgid "Connected clients"
 msgstr "Підключені клієнти"
@@ -5060,6 +5093,9 @@ msgstr "Продовжити перегляд"
 
 msgid "Continue to run the task in the background"
 msgstr "Продовжити виконання завдання у фоновому режимі"
+
+msgid "Continue with package download and installation"
+msgstr "Продовжити завантаження та встановлення пакета"
 
 msgid "Continue with the flash process"
 msgstr "Продовжити процес прошивки"
@@ -5224,6 +5260,9 @@ msgstr "Створити образ DVD-ISO"
 msgid "Create Directory"
 msgstr "Створити каталог"
 
+msgid "Create Expander"
+msgstr "Створити розширювач флеш-пам’яті"
+
 msgid "Create ISO"
 msgstr "Створити ISO"
 
@@ -5241,6 +5280,12 @@ msgstr "Створити теку"
 
 msgid "Create separate radio user bouquet"
 msgstr "Створити окремий фаворитний радіо-список"
+
+msgid "Create swap"
+msgstr "Створити swap"
+
+msgid "Create the flash expander in the selected device"
+msgstr "Створити флеш-розширювач у вибраному пристрої"
 
 msgid "Create:"
 msgstr "Створення:"
@@ -5704,6 +5749,12 @@ msgstr "Субота 2020/02/01"
 msgid "Deactivate"
 msgstr "Зупинити"
 
+msgid "Deactivate Expander"
+msgstr "Деактивувати Розширювач"
+
+msgid "Deactivate the flash expander in the selected device"
+msgstr "Вимкніть розширювач флеш-пам'яті у вибраному пристрої"
+
 msgid "Debug"
 msgstr "Налагодження"
 
@@ -5756,9 +5807,6 @@ msgstr "Зміщення Dolby Digital / Dolby AC-3 за замовчуванн�
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Пріоритет вводу/виводу за замовчуванням (inice) для виконуваних сценаріїв. Це може зменшити навантаження на систему, щоб сценарії не заважали роботі системи. (вищі значення = нижчий пріоритет)"
 
-msgid "Default Modes Selected."
-msgstr "Вибрані режими за замовчуванням."
-
 msgid "Default Services Scanner"
 msgstr "Сканування каналів за замовчуванням"
 
@@ -5792,6 +5840,12 @@ msgstr "Порядок сортування за замовчуванням дл
 
 msgid "Default sort order for files in the right column."
 msgstr "Порядок сортування за замовчуванням для файлів у правому стовпці."
+
+msgid "Default video mode selected"
+msgstr "Вибрано режим відео за замовчуванням"
+
+msgid "Default video mode selected for the TV."
+msgstr "Для телевізора вибрано режим відео за замовчуванням."
 
 msgid "Default volume offset"
 msgstr "Зміщення гучності за замовчуванням"
@@ -5910,6 +5964,9 @@ msgstr "Видалити каталог"
 msgid "Delete EPG Cache"
 msgstr "Видалити кеш EPG"
 
+msgid "Delete Expander"
+msgstr "Видалити розширювач флеш-пам’яті"
+
 msgid "Delete Image"
 msgstr "Видалення іміджу"
 
@@ -5994,6 +6051,12 @@ msgstr "Видалити збережений список відтворенн�
 msgid "Delete the character to the left of text cursor"
 msgstr "Видалити символ ліворуч від текстового курсору"
 
+msgid "Delete the character to the left of the cursor"
+msgstr "Видалити символ ліворуч від курсору"
+
+msgid "Delete the character under the cursor"
+msgstr "Видалити символ під курсором"
+
 msgid "Delete the character under the text cursor"
 msgstr "Видалити символ під текстовим курсором"
 
@@ -6012,6 +6075,9 @@ msgstr "Видалити поточний вибраний таймер"
 #, python-format
 msgid "Delete the directory/file '%s'?"
 msgstr "Видалити каталог/файл '%s'?"
+
+msgid "Delete the flash expander in the selected device"
+msgstr "Видалити флеш-розширювач у вибраному пристрої"
 
 msgid "Delete the selected locally stored image"
 msgstr "Видалити вибраний локально збереженей імідж"
@@ -6362,6 +6428,9 @@ msgstr "Діверхі / Дхівехі / Мальдівська"
 msgid "Djibouti"
 msgstr "Джібутті"
 
+msgid "Do another manual service scan?"
+msgstr "Зробити ще одне ручне сканування каналів?"
+
 msgid "Do not change"
 msgstr "Не змінювати"
 
@@ -6465,6 +6534,9 @@ msgstr "Ви дійсно хочете зупинити та видалити т
 msgid "Do you want change '%s' access mode?"
 msgstr "Бажаєте змінити режим доступу '%s'?"
 
+msgid "Do you want the upgrade guide?"
+msgstr "Хочете отримати посібник з оновлення?"
+
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
@@ -6488,6 +6560,9 @@ msgstr "Ви хочете записати цю колекцію на DVD дис
 msgid "Do you want to continue?"
 msgstr "Ви хочете продовжити?"
 
+msgid "Do you want to deactivate this flash expander?"
+msgstr "Ви бажаєте вимкнути цей розширювач флеш-пам’яті?"
+
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
@@ -6500,6 +6575,9 @@ msgstr "Ви хочете видалити всі файли журналу по
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Хочете спочатку видалити старі налаштування з /etc/enigma2?"
+
+msgid "Do you want to delete this flash expander directory?"
+msgstr "Ви бажаєте видалити цей каталог розширювача флеш-пам’яті?"
 
 msgid "Do you want to delete this log file?"
 msgstr "Ви хочете видалити даний файл журналу помилок?"
@@ -6548,6 +6626,9 @@ msgstr "Ви хочете відновити свої налаштування?"
 
 msgid "Do you want to resume this playback?"
 msgstr "Ви хочете продовжити відтворення?"
+
+msgid "Do you want to start a backup now?"
+msgstr "Ви хочете почати резервне копіювання зараз?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Ви хочете оновити пакет:\n"
@@ -7331,6 +7412,9 @@ msgstr "Введіть надійний пін-код"
 msgid "Enter pin code"
 msgstr "Введіть пін-код"
 
+msgid "Enter text via an attached keyboard"
+msgstr "Введіть текст за допомогою підключеної клавіатури"
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr "Введіть частоту порогу перемикання нижнього і верхнього піддіапазону частот LNB. Для отримання додаткової інформації зверніться до специфікації вашого LNB."
 
@@ -7602,6 +7686,12 @@ msgstr "Видалення директорії %s невдале. (Можлив
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Помилка: скрипт '%s' повинен мати дозвіл на читання, щоб його можна було запустити!"
 
+msgid "Error: The copy was unsuccessful!"
+msgstr "Помилка: копіювання не вдалось!"
+
+msgid "Error: The delete was unsuccessful!"
+msgstr "Помилка: видалення не вдалось!"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Помилка: Новий пароль не може бути пустим!"
 
@@ -7639,6 +7729,9 @@ msgstr "Помилка: Ви не можете запустити '%s' на '%s'
 #, python-format
 msgid "Error: You can't run '%s' on a directory!"
 msgstr "Помилка: Ви не можете запустити '%s' у каталозі!"
+
+msgid "Error: mount not successful!"
+msgstr "Помилка: монтування не вдалося!"
 
 msgid "Esperanto"
 msgstr "Есперанто"
@@ -8254,6 +8347,9 @@ msgstr "Фіксований шрифт Х11 (SD)"
 msgid "Flash Expander"
 msgstr "Розширення Flash"
 
+msgid "Flash Expander Actions"
+msgstr "Дії розширювача флеш-пам’яті"
+
 msgid "Flash Image"
 msgstr "Запис Іміджа"
 
@@ -8297,6 +8393,10 @@ msgstr "Використовується Flash"
 msgid "Flash your %s %s and reboot now?"
 msgstr "Прошити Ваш %s %s і перезавантажити зараз?"
 
+#, python-format
+msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
+msgstr "Розширювач Flash при завантаженні '%s'.  Статус '%s'."
+
 msgid "Flashing"
 msgstr "Іконка"
 
@@ -8318,6 +8418,9 @@ msgstr "Плоский за ключовою групою на пульті ке
 
 msgid "Flat by position on remote"
 msgstr "Плоске положення на пульті"
+
+msgid "Follow instructions on TV"
+msgstr "Дотримуйтесь інструкцій на телевізорі"
 
 msgid "Font size"
 msgstr "Розмір шрифта"
@@ -8351,6 +8454,9 @@ msgstr "Завжди використовувати деінтерлейсінг
 
 msgid "Format"
 msgstr "Форматування"
+
+msgid "Format Disk"
+msgstr "Форматувати диск"
 
 msgid "Format HDD"
 msgstr "Форматувати HDD"
@@ -8619,6 +8725,9 @@ msgstr "ID пристрою"
 
 msgid "Glibc version"
 msgstr "Версія Glibc"
+
+msgid "Go back to the previous step"
+msgstr "Повернутися до попереднього кроку"
 
 msgid "Go down the list"
 msgstr "Перейти вниз списку"
@@ -9409,6 +9518,9 @@ msgstr "Майстер іміджу"
 msgid "Immediate shut down"
 msgstr "Негайне вимкнення"
 
+msgid "Immediately exit the wizard (Debug mode only)"
+msgstr "Негайно вийти з майстра (тільки в режимі налагодження)"
+
 msgid "Immediately restart selected devices."
 msgstr "Негайно перезавантажте вибрані пристрої."
 
@@ -9708,6 +9820,9 @@ msgstr "Встановлення"
 #, python-format
 msgid "Installing %s (%s)..."
 msgstr "Встановлення %s (%s)..."
+
+msgid "Installing Please wait..."
+msgstr "Встановлення. Будь ласка, зачекайте..."
 
 msgid "Installing Service"
 msgstr "Встановлення каналів"
@@ -10278,6 +10393,9 @@ msgstr "Обмежте знаки, які можуть використовув�
 
 msgid "Limit west"
 msgstr "Обмеження на захід"
+
+msgid "Limited memory size, swap file required"
+msgstr "Обмежений обсяг пам'яті, потрібен файл підкачки"
 
 msgid "Limits cancelled"
 msgstr "Обмеження скасовані"
@@ -11607,6 +11725,15 @@ msgstr "Тест мережевого з'єднання"
 msgid "Network test..."
 msgstr "Тест мережевого з'єднання..."
 
+msgid ""
+"Network wizard completed.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+"Майстер мережі завершено.\n"
+"\n"
+"Натисніть OK, щоб продовжити."
+
 msgid "Network:"
 msgstr "Мережа:"
 
@@ -11730,6 +11857,9 @@ msgstr "ECM PIDи відсутні"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Не знайдено жодного HDD, або HDD не ініціалізовано!"
+
+msgid "No Internet connection"
+msgstr "Немає підключення до Інтернету"
 
 msgid ""
 "No Settings loaded !!\n"
@@ -11899,6 +12029,13 @@ msgstr "Немає доступних оновлень."
 
 msgid "No updates were available.  Please try again later."
 msgstr "Немає доступних оновлень. Будь-ласка, спробуйте пізніше."
+
+msgid "No valid device detected - Press OK"
+msgstr "Не виявлено жодного дійсного пристрою - натисніть OK"
+
+#, python-format
+msgid "No valid mount for '%s' found!"
+msgstr "Не знайдено дійсного монтування для '%s'!"
 
 msgid "No valid region details were found"
 msgstr "Не знайдено достовірних даних для регіону"
@@ -12301,6 +12438,9 @@ msgstr "Відкрити екран налаштувань Списку кана
 msgid "Open the Plugin Browser"
 msgstr "Відкрити Провідник додатків"
 
+msgid "Open the VirtualKeyBoard for text entry"
+msgstr "Відкрийте віртуальну клавіатуру для введення тексту"
+
 msgid "Open the movie list"
 msgstr "Відкрити список фільмів"
 
@@ -12535,6 +12675,9 @@ msgstr "Файли пакету:"
 msgid "Package information currently not available!"
 msgstr "Інформація про пакет на даний момент недоступна!"
 
+msgid "Package installation failed"
+msgstr "Не вдалося встановити пакет"
+
 msgid "Package list"
 msgstr "Список пакетів"
 
@@ -12692,6 +12835,9 @@ msgstr "Замість цього виконайте онлайн-прошивк
 
 msgid "Perform install/remove of the selected item"
 msgstr "Виконати встановлення/видалення вибраного елемента"
+
+msgid "Perform the upgrade?"
+msgstr "Виконати оновлення?"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Остаточно видалити всі записи в кошик для сміття?"
@@ -12886,23 +13032,6 @@ msgstr "Будь ласка, виберіть розширення..."
 msgid "Please choose reader"
 msgstr "Будь ласка, виберіть рідер"
 
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Будь ласка, налаштуйте, або перевірте Ваш DNS, заповнивши необхідні значення.\n"
-"Коли буде готово, натисніть ОК для продовження."
-
-msgid ""
-"Please configure your Internet connection by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Будь ласка, налаштуйте Ваше інтернет з'єднання, заповнивши необхідні значення.\n"
-"Коли буде готово, натисніть ОК для продовження."
-
-msgid "Please connect your %s %s to the Internet"
-msgstr "Будь ласка, з'єднайте Ваш %s %s з інтернетом"
-
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Будь ласка, не міняйте ніякі значення, якщо не розумієте що робите!"
 
@@ -13021,17 +13150,14 @@ msgstr ""
 "\n"
 "IceTV — це послуга передплати, яка доступна лише в перелічених країнах."
 
+msgid "Please select the device where the flash expander '/usr' directory should created."
+msgstr "Будь ласка, виберіть пристрій, на якому має бути створений каталог розширювача флеш-пам’яті '/usr'."
+
+msgid "Please select the device where the flash expander '/usr' directory should disabled."
+msgstr "Будь ласка, виберіть пристрій, на якому має бути вимкнено каталог розширювача флеш-пам’яті '/usr'."
+
 msgid "Please select the movie path..."
 msgstr "Будь ласка, виберіть шлях до фільму..."
-
-msgid ""
-"Please select the network interface that you want to use for your Internet connection.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Будь-ласка, виберіть мережевий інтерфейс, через який виконуватиметься інтернет з'єднання.\n"
-"\n"
-"Натисніть OK для продовження."
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr "Виберіть регіон, який найбільш відповідає до вашого місцезнаходженню. Регіон необхідний для того, щоб ми могли надати правильну інформацію про канали, які ви можете отримати."
@@ -13039,125 +13165,8 @@ msgstr "Виберіть регіон, який найбільш відпові�
 msgid "Please select the sub-service to record:"
 msgstr "Будь ласка, виберіть підканал для запису:"
 
-msgid ""
-"Please select the wireless network that you want to connect to.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Будь-ласка, виберіть бездротову мережу, через яку виконуватиметься інтернет з'єднання.\n"
-"\n"
-"Натисніть OK для продовження."
-
 msgid "Please select what to do after flash of the following image:"
 msgstr "Будь ласка, виберіть, що робити після прошивки наступного іміджу:"
-
-msgid "Please set up tuner A"
-msgstr "Будь ласка, налаштуйте тюнер A"
-
-msgid ""
-"Please set up tuner A\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер A\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid "Please set up tuner B"
-msgstr "Будь ласка, налаштуйте тюнер B"
-
-msgid ""
-"Please set up tuner B\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер B\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid "Please set up tuner C"
-msgstr "Будь ласка, налаштуйте тюнер C"
-
-msgid ""
-"Please set up tuner C\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер С\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid "Please set up tuner D"
-msgstr "Будь ласка, налаштуйте тюнер D"
-
-msgid ""
-"Please set up tuner D\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер D\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid ""
-"Please set up tuner E\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер E\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid ""
-"Please set up tuner F\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер F\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid ""
-"Please set up tuner G\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер G\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid ""
-"Please set up tuner H\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер H\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid ""
-"Please set up tuner I\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер I\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid ""
-"Please set up tuner J\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер J\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid ""
-"Please set up tuner Q\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер Q\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid ""
-"Please set up tuner R\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-"Будь ласка, налаштуйте тюнер R\n"
-"Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
-
-msgid "Please set your time options"
-msgstr "Будь ласка, встановіть параметри часу"
-
-msgid ""
-"Please set your time options.\n"
-"\n"
-"Press YELLOW to set the time zone via geolocation."
-msgstr ""
-"Будь ласка, встановіть параметри часу.\n"
-"\n"
-"Натисніть ЖОВТУ кнопку, щоб встановити часовий пояс за допомогою геолокації."
 
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
@@ -13221,12 +13230,21 @@ msgstr "Будь ласка, почекайте поки відновлятьс�
 msgid "Please wait whilst feeds state is checked."
 msgstr "Будь ласка, почекайте, перевіряється підключення до фіду."
 
+msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
+msgstr "Зачекайте, копія флеш-пам'яті видаляється. Це може зайняти декілька хвилин."
+
+msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
+msgstr "Будь ласка, зачекайте, флеш-пам'ять копіюється на цей флеш-розширювач. Це може зайняти декілька хвилин."
+
 msgid "Please wait, loading image..."
 msgstr "Зачекайте, завантажується імідж..."
 
 #, python-format
 msgid "Please wait, restarting %s."
 msgstr "Зачекайте, перезавантаження %s."
+
+msgid "Please wait, swap is is being created. This could take a few minutes to complete."
+msgstr "Будь ласка, зачекайте, swap створюється. Це може зайняти декілька хвилин."
 
 msgid "Please wait."
 msgstr "Будь ласка, почекайте."
@@ -13239,6 +13257,12 @@ msgstr "Будь ласка, почекайте... Завантаження сп
 
 msgid "Please wait...almost ready! "
 msgstr "Будь-ласка, почекайте...майже зроблено! "
+
+msgid "Plug in USB device"
+msgstr "Підключіть USB-пристрій"
+
+msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
+msgstr "Підключіть USB-пристрій, який можна використовувати як пристрій для обміну. Зауважте, що цей пристрій не можна видаляти, поки працює %s %s!"
 
 msgid "Plugin Browser"
 msgstr "Провідник плагінів"
@@ -13484,8 +13508,14 @@ msgstr "Натисніть ОК щоб вибрати/зняти CAId."
 msgid "Press OK to set the MAC address."
 msgstr "Натисніть OK, щоб встановити MAC-адресу."
 
+msgid "Press OK to start the backup now"
+msgstr "Натисніть OK, щоб почати резервне копіювання зараз"
+
 msgid "Press OK to start the scan"
 msgstr "Натисніть ОК, щоб почати пошук"
+
+msgid "Press OK to start using %s %s"
+msgstr "Натисніть OK, щоб почати використовувати %s %s"
 
 msgid "Press OK to toggle the selection"
 msgstr "Натисніть OK для зміни вибору"
@@ -13567,8 +13597,23 @@ msgstr "Можливі причини можуть бути"
 msgid "Proc model"
 msgstr "Модель ЦП"
 
+msgid "Proceed to the next step"
+msgstr "Перейти до наступного кроку"
+
 msgid "Proceed with the update"
 msgstr "Продовжувати оновлення"
+
+msgid "Process BLUE button action"
+msgstr "Встановити дію СИНЬОЇ кнопки"
+
+msgid "Process GREEN button action"
+msgstr "Встановити дію ЗЕЛЕНОЇ кнопки"
+
+msgid "Process RED button action"
+msgstr "Встановити дію ЧЕРВОНОЇ кнопки"
+
+msgid "Process YELLOW button action"
+msgstr "Встановити дію ЖОВТОЇ кнопки"
 
 msgid "Processor information"
 msgstr "Інформація про ЦП"
@@ -14160,9 +14205,6 @@ msgstr "Частота оновлення"
 msgid "Refresh rate for 'Lowest Mode'"
 msgstr "Частота оновлення для 'Найнижчий Режим'"
 
-msgid "Refresh rate selection."
-msgstr "Вибір частоти оновлення."
-
 msgid "Refresh screen"
 msgstr "Оновити екран"
 
@@ -14560,6 +14602,9 @@ msgstr "Перезавантаження Enigma"
 msgid "Restart necessary, restart GUI now?"
 msgstr "Необхідне перезавантаження, перезавантажити інтерфейс зараз?"
 
+msgid "Restart needed, press OK to restart"
+msgstr "Потрібен перезапуск, натисніть OK, щоб перезапустити"
+
 msgid "Restart network and remount connections"
 msgstr "Перезапуск мережі і перемонтуваня підключення"
 
@@ -14598,6 +14643,9 @@ msgstr "Відновлення резервних копій"
 
 msgid "Restore settings from a backup"
 msgstr "Відновити налаштування з резервної копії"
+
+msgid "Restore settings now"
+msgstr "Відновити налаштування зараз"
 
 msgid "Restore the highlighted slot"
 msgstr "Відновити виділений слот"
@@ -14659,6 +14707,9 @@ msgstr "Отримання списку слотів. Прохання заче�
 
 msgid "Retrieving network server information, please wait..."
 msgstr "Отримання інформації про мережевий сервер, зачекайте..."
+
+msgid "Retry"
+msgstr "Повторити спробу"
 
 msgid "Return the current selection response"
 msgstr "Повернути поточну відповідь вибору"
@@ -15443,6 +15494,9 @@ msgstr "Вибрати Закладку"
 msgid "Select CAId"
 msgstr "Вибрати CAID"
 
+msgid "Select Device"
+msgstr "Виберіть Пристрій"
+
 msgid "Select Enigma2 Skin"
 msgstr "Вибір Enigma2 скіну"
 
@@ -15500,6 +15554,9 @@ msgstr "Виберіть cardserver з наявного списку."
 msgid "Select a debug log file to view:"
 msgstr "Виберіть файл журналу налагодження для перегляду:"
 
+msgid "Select a device to use as the flash expander"
+msgstr "Виберіть пристрій, який буду використовувати, як розширювач флеш-пам’яті"
+
 msgid "Select a directory"
 msgstr "Вибрати каталог"
 
@@ -15512,6 +15569,9 @@ msgstr "Виберіть дистрибутив, з якого потрібно 
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Виберіть розташування, куди потрібно витягти '%s':"
+
+msgid "Select a menu item"
+msgstr "Виберіть пункт меню"
 
 msgid "Select a movie"
 msgstr "Вибір фільму"
@@ -15842,6 +15902,15 @@ msgstr "Виберіть теку для фільмів"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Виберіть швидкість передачі даних мережі, нижче якої має активуватися таймер, як зазначено. Трафік вище цієї норми з відключенням таймера."
 
+msgid ""
+"Select the network interface to be used for the Internet connection.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+"Виберіть мережевий інтерфейс, який буде використовуватися для підключення до Інтернету.\n"
+"\n"
+"Натисніть OK, щоб продовжити."
+
 msgid "Select the next item in list or move the cursor right"
 msgstr "Виберіть наступний елемент у списку, або перемістіть курсор праворуч"
 
@@ -15856,6 +15925,9 @@ msgstr "Виберіть попередній елемент у списку"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Виберіть протокол, який використовується Вашим пристроєм SCR. Виберіть 'SCR Unicable' (Unicable), або 'SCR JESS' (JESS, також відомий як Unicable II)."
+
+msgid "Select the refresh rate to be used on the TV."
+msgstr "Виберіть частоту оновлення, яка буде використовуватися на телевізорі."
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
 msgstr "Виберіть супутник, який підключений до Порт-A вашого комутатора. Якщо ви не впевнені, виберіть 'автоматично' і приймач спробує визначити це сам. Якщо до цього порту не підключено нічого, виберіть 'нічого не підключено'."
@@ -15892,6 +15964,9 @@ msgstr "Виберіть порядок сортування пунктів ме
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Виберіть порядок сортування пунктів меню. Визначено користувачем також дозволяє приховувати пункти меню."
+
+msgid "Select the source location from where to obtain the upgrade files."
+msgstr "Виберіть джерело, звідки отримати файли оновлення."
 
 msgid "Select the source of the default DNS settings."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
@@ -15950,14 +16025,29 @@ msgstr "Виберіть потрібний тип вимкнення, коли 
 msgid "Select the type of this timer."
 msgstr "Виберіть тип цього таймера."
 
+msgid "Select the video mode to be used on the TV."
+msgstr "Виберіть режим відео для використання на телевізорі."
+
+msgid ""
+"Select the wireless network to which you want to connect.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+"Виберіть бездротову мережу, до якої потрібно підключитися.\n"
+"\n"
+"Натисніть OK, щоб продовжити."
+
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr "Виберіть використання логарифмічного розміру кроку з більшою кількістю кроків на нижчих рівнях гучності."
 
-msgid "Select video input with up/down buttons"
-msgstr "Виберіть відео вхід кнопками вверх/вниз"
+msgid "Select update source location"
+msgstr "Виберіть розташування джерела оновлення"
 
 msgid "Select video mode"
 msgstr "Виберіть режим відео"
+
+msgid "Select video output port with UP/DOWN buttons"
+msgstr "Виберіть порт відео-виходу за допомогою кнопок ВГОРУ/ВНИЗ"
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Досягнувши кінця файлу під час відтворення, можна вибрати дію пристрою."
@@ -16381,6 +16471,15 @@ msgstr "Вкажіть швидкість прокрутки тексту на �
 msgid "Set the time before checking video source for resolution information."
 msgstr "Вкажіть затримку до перевірки роздільності екрану з джерел відео."
 
+msgid ""
+"Set the time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
+"Встановіть параметри часу.\n"
+"\n"
+"Натиснути ЖОВТУ кнопку, щоб встановити часовий пояс через геолокацію."
+
 msgid "Set the time to hide the infobar."
 msgstr "Встановіть час показу Інфобару."
 
@@ -16415,6 +16514,9 @@ msgstr "Встановіть для цього значення 'Так', щоб
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr "Встановіть для цього значення 'Так', щоб відсортувати списки відтворення за алфавітом."
 
+msgid "Set time options"
+msgstr "Встановити параметри часу"
+
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Якщо вимкнено, символи підкреслення в назвах файлів і каталогів не відображаються і замінюються пробілами."
 
@@ -16429,6 +16531,18 @@ msgstr "Виберіть дію для кнопки."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Встановіть значення 'Так' для визначенн основної причини появи спінера."
+
+msgid "Set up tuner [TUNER]"
+msgstr "Налаштувати тюнер [TUNER]"
+
+msgid ""
+"Set up tuner [TUNER].\n"
+"\n"
+"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+msgstr ""
+"Налаштуйте тюнер [TUNER].\n"
+"\n"
+"Для моделей з гібридним тюнером перемикайте тип тюнера кнопками ВЛІВО та ВПРАВО."
 
 msgid "Set voltage and 22KHz"
 msgstr "Встановити напругу і 22KГц"
@@ -17363,6 +17477,9 @@ msgstr "вимкнути"
 msgid "Shutdown"
 msgstr "Вимкнути"
 
+msgid "Shutting down. Please wait..."
+msgstr "Вимкнення. Будь ласка, зачекайте..."
+
 msgid "Sichuan Yi / Nuosu"
 msgstr "Сичуань І / Нуосу"
 
@@ -17480,9 +17597,6 @@ msgstr "Налаштування скіну"
 msgid "SkinSelector"
 msgstr "Вибір Скіну"
 
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Пропустити перевірку інтернет з'єднання (вимикає автоматичну установку пакетів)"
-
 msgid "Skip back"
 msgstr "Перейти назад"
 
@@ -17494,6 +17608,9 @@ msgstr "Перейти вперед"
 
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Пропустіть перехід до прямого ефіру під час зміщення часу за допомогою плагінів"
+
+msgid "Skip package installation, only core packages will be available"
+msgstr "Пропустити встановлення пакетів, будуть доступні лише базові пакети"
 
 msgid "Sleep"
 msgstr "Очікування"
@@ -17636,6 +17753,9 @@ msgstr "Малий"
 
 msgid "Small - Tiny image"
 msgstr "Маленьке - Крихітне зображення"
+
+msgid "Small Box Preparation"
+msgstr "Підготовка Small Box"
 
 msgid "Small Test"
 msgstr "Малий Тест"
@@ -17948,6 +18068,9 @@ msgstr "Початкова частота завантаження"
 msgid "Start RDS interactive"
 msgstr "Запуск інтерактивного RDS"
 
+msgid "Start Wizard"
+msgstr "Майстер Запуску"
+
 msgid "Start date"
 msgstr "Дата початку"
 
@@ -17992,9 +18115,6 @@ msgstr "Запуск/Зупинка/Вибір емулятора"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Запуск/Зупинка/Вибір емулятора, спочатку потрібно встановити емулятор"
-
-msgid "StartWizard"
-msgstr "Майстер запуску"
 
 msgid "Starting Softcam"
 msgstr "Запуск Softcam"
@@ -18041,6 +18161,9 @@ msgstr "Статус недоступний!"
 
 msgid "Status:"
 msgstr "Статус:"
+
+msgid "Step"
+msgstr "Крок"
 
 msgid "Step east"
 msgstr "Крок на схід"
@@ -18535,7 +18658,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 25.05.2023"
+msgstr "Переклад: kvinto - 04.06.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18753,18 +18876,31 @@ msgid "Thailand"
 msgstr "Тайланд"
 
 msgid ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
+"Thank you for using and completing the wizard. The %s %s is now ready to use.\n"
+"\n"
+"Please press OK to start using the %s %s."
 msgstr ""
-"Дякуємо за використання помічника.\n"
-"Натисніть OK для продовження."
+"Дякуємо за використання та завершення майстра. %s %s тепер готовий до використання.\n"
+"\n"
+"Натисніть OK, щоб почати використовувати %s %s."
 
 msgid ""
-"Thank you for using the wizard. Your %s %s is now ready to use.\n"
-"Please press OK to start using your %s %s."
+"Thank you for using and completing the wizard. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
 msgstr ""
-"Спасибі, що скористалися майстром настройки. Ваш %s %s тепер готовий для використання.\n"
-"Щоб почати користуватися вашим %s %s натисніть ОК."
+"Дякуємо за використання та завершення майстра. %s %s потрібне перезавантаження.\n"
+"\n"
+"Натисніть OK, щоб перезавантажити %s %s."
+
+msgid "The %s %s does not have an Internet connection."
+msgstr "%s %s не має підключення до Інтернету."
+
+msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
+msgstr "%s %s має обмежений обсяг пам'яті. Для збільшення обсягу доступної пам’яті потрібен файл підкачки, інакше %s %s може не працювати належним чином. Виберіть цільовий пристрій для зберігання файлу підкачки."
+
+msgid "The %s %s is shutting down. Please wait..."
+msgstr "%s %s вимикається. Будь ласка, зачекайте..."
 
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "Ваш %s %s зчитує дані ЕПГ кожні (годин)."
@@ -18826,6 +18962,24 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "Сервер IceTV запитує пароль для %s."
+
+msgid ""
+"The Internet connection appears to be working.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+"Здається, підключення до Інтернету працює.\n"
+"\n"
+"Натисніть OK, щоб продовжити."
+
+msgid ""
+"The Internet connection appears to not be working!\n"
+"\n"
+"Choose what to do next."
+msgstr ""
+"Здається, підключення до Інтернету не працює!\n"
+"\n"
+"Виберіть, що робити далі."
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -18904,8 +19058,17 @@ msgstr ""
 "Вільне місце на диску менше ніж вказано в налаштуваннях.\n"
 "Що ви хочете зробити?"
 
-msgid "The backup failed. Please choose a different backup location."
-msgstr "Резервне копіювання не вдалося. Виберіть інше місце для розташування копії."
+msgid "The backup failed"
+msgstr "Помилка резервного копіювання"
+
+msgid "The backup failed! Choose a different backup location."
+msgstr "Помилка резервного копіювання! Виберіть інше місце резервного копіювання."
+
+msgid "The backup succeeded"
+msgstr "Резервне копіювання виконано успішно"
+
+msgid "The backup succeeded. We will now continue to explain the upgrade process."
+msgstr "Резервне копіювання виконано успішно. Тепер ми продовжимо пояснювати процес оновлення."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr "Бітрейт відеокодера. Велике значення покращує якість і збільшує розмір файлу."
@@ -19054,11 +19217,24 @@ msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Ширина зображення. Вхід буде змінено, щоб відповідати цьому значенню."
 
 msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it and choose what you want to do next."
+"The wireless LAN Internet connection could not be started!\n"
+"Is the wireless LAN device connected?\n"
+"\n"
+"Choose what to do next."
 msgstr ""
-"Плагін Wі-Fі і LAN мережі не встановлений!\n"
-"Установіть його та виберіть те, що ви хочете зробити далі."
+"Не вдалося запустити підключення до Інтернету через бездротову локальну мережу!\n"
+"Чи під’єднано пристрій бездротової локальної мережі?\n"
+"\n"
+"Виберіть, що робити далі."
+
+msgid ""
+"The wireless LAN plugin code is not installed!\n"
+"\n"
+"Install it and choose what to do next."
+msgstr ""
+"Код плагіна бездротової локальної мережі не встановлено!\n"
+"\n"
+"Встановіть його та виберіть, що робити далі."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -19067,11 +19243,8 @@ msgstr ""
 "Додаток Wі-Fі мережі не встановлений!\n"
 "Будь ласка, встановіть його."
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "Майстер може зберегти Ваші налаштування. Бажаєте зробити копію зараз?"
-
-msgid "The wizard is finished now."
-msgstr "Майстер завершив роботу."
+msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+msgstr "Майстер може створити резервну копію поточних налаштувань. Ви хочете почати резервне копіювання зараз?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19085,6 +19258,9 @@ msgstr "Немає визначених репозиторіїв, тому жу�
 
 msgid "There are no updates available."
 msgstr "Немає доступних оновлень."
+
+msgid "There are pending tasks:"
+msgstr "Є незавершені завдання:"
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -19492,6 +19668,12 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr "Тут задаєте час x для швидкого перемотування вперед і назад"
 
+msgid "This wizard has finished"
+msgstr "Цей майстер завершив роботу"
+
+msgid "This wizard has finished."
+msgstr "Цей майстер завершив роботу."
+
 msgid "Three"
 msgstr "Три"
 
@@ -19714,6 +19896,9 @@ msgstr "Властивості заголовка"
 
 msgid "Titleset mode"
 msgstr "Режим встановлення заголовку"
+
+msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
+msgstr "Щоб завершити налаштування, %s %s має підключитися до Інтернету. Підключіть %s %s до Інтернету зараз."
 
 msgid "To restore the image:"
 msgstr "Щоб відновити імідж:"
@@ -20353,6 +20538,9 @@ msgstr "Оновлення завершено!"
 msgid "Update interval (in seconds)"
 msgstr "Інтервал оновлення (в секундах)"
 
+msgid "Update package list please wait..."
+msgstr "Оновлення списку пакетів, будь ласка, зачекайте..."
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -20478,6 +20666,9 @@ msgstr "Використовувати QuickSelect"
 msgid "Use TV remote control"
 msgstr "Використовувати пульт телевізора"
 
+msgid "Use UP/DOWN buttons to select option then press OK"
+msgstr "Використовуйте кнопки ВГОРУ/ВНИЗ, щоб вибрати опцію, а потім натисніть OK"
+
 msgid "Use USALS for this sat"
 msgstr "Використовувати USALS для цього супутника"
 
@@ -20499,14 +20690,17 @@ msgstr "Використовувати альтернативне вікно."
 msgid "Use as HDD"
 msgstr "Використовувати як HDD"
 
+msgid "Use automatic mode detection"
+msgstr "Використовувати автоматичне визначення режиму"
+
 msgid ""
-"Use automatic mode detection.\n"
-" This option reads all supported modes from your TV.\n"
-" Please disable it only if you want to customize the preferred configuration."
+"Use automatic mode detection?\n"
+"\n"
+"This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
 msgstr ""
-"Використовуйте автоматичний режим виявлення.\n"
-" Цей параметр зчитує всі підтримувані режими з телевізора.\n"
-" Вимкніть його, лише якщо потрібно налаштувати бажану конфігурацію."
+"Використовувати автоматичне визначення режиму?\n"
+"\n"
+"Ця опція читає всі підтримувані режими з вашого телевізора. Вимкніть його, лише якщо ви хочете налаштувати потрібну конфігурацію."
 
 msgid "Use circular LNB"
 msgstr "Використовувати круговий LNB"
@@ -20612,9 +20806,6 @@ msgstr "Використати Майстер мережі для налашту
 
 msgid "Use the network wizard to configure your Network."
 msgstr "Використовуйте мережевий майстер, щоб налаштувати мережу."
-
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "Для зміни параметрів використовуйте кнопки вверх/вниз. Після цього, натисніть OK."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Використати Майстра для налаштування основних параметрів"
@@ -20884,6 +21075,9 @@ msgstr "Відео PID"
 msgid "Video Settings"
 msgstr "Налаштування відео"
 
+msgid "Video Wizard"
+msgstr "Майстер відео"
+
 msgid "Video clipping"
 msgstr "Редагування відео"
 
@@ -20899,22 +21093,6 @@ msgstr "Перегляд покращення відео"
 
 msgid "Video enhancement setup"
 msgstr "Розширене налаштування відео"
-
-msgid ""
-"Video input selection\n"
-"\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
-"\n"
-"The next input port will be automatically probed in 10 seconds."
-msgstr ""
-"Вибір відео виходу\n"
-"\n"
-"Якщо Ви бачити цю сторінку на екрані TV то натисніть ОК (або виберіть інший вхідний порт).\n"
-"\n"
-"Наступний вхідний порт буде автоматично випробувано через 10 сек.."
-
-msgid "Video mode selection."
-msgstr "Вибір Відео режиму."
 
 #, python-format
 msgid "Video mode: %s"
@@ -20954,6 +21132,19 @@ msgstr "Режим виведення відео для SD"
 msgid "Video output mode for UHD"
 msgstr "Режим виведення відео для UHD"
 
+msgid ""
+"Video output port selection.\n"
+"\n"
+"Make sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n"
+"\n"
+"The next output port will be automatically tried in 10 seconds."
+msgstr ""
+"Вибір порту відео-виходу.\n"
+"\n"
+"Переконайтеся, що на телевізорі вибрано правильний вхід. Натисніть OK, якщо ви бачите цю сторінку на своєму телевізорі.\n"
+"\n"
+"Наступний вихідний порт буде автоматично змінений через 10 секунд."
+
 msgid "Video: "
 msgstr "Відео: "
 
@@ -20972,9 +21163,6 @@ msgstr "Попередній перегляд покращення відео"
 
 msgid "VideoFinetune"
 msgstr "Точна настройка відео"
-
-msgid "VideoWizard"
-msgstr "Майстер налаштувань відео"
 
 msgid "Videocodec, size & format"
 msgstr "Відеокодек, розмір і формат"
@@ -21016,8 +21204,14 @@ msgstr "Перегляд телетексту..."
 msgid "View the archive contents"
 msgstr "Переглянути вміст архіву"
 
+msgid "View the next item in a list"
+msgstr "Переглянути наступний елемент у списку"
+
 msgid "View the package contents"
 msgstr "Переглянути вміст пакету"
+
+msgid "View the previous item in a list"
+msgstr "Переглянути попередній елемент у списку"
 
 msgid "View video CD..."
 msgstr "Перегляд відео СД..."
@@ -21243,12 +21437,24 @@ msgstr "Вихідні дні"
 msgid "Weekly"
 msgstr "Щотижня"
 
+msgid "Welcome Wizard"
+msgstr "Ласкаво просимо до Майстра"
+
 #, python-format
 msgid "Welcome to %s"
 msgstr "Ласкаво просимо до %s"
 
 msgid "Welcome to IceTV"
 msgstr "Ласкаво просимо до IceTV"
+
+msgid ""
+"Welcome to openATV.\n"
+"\n"
+"Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
+msgstr ""
+"Ласкаво просимо до openATV.\n"
+"\n"
+"Використовуйте кнопки ВГОРУ/ВНИЗ на пульті дистанційного керування, щоб вибрати параметр. Використовуйте кнопки ВЛІВО/ВПРАВО, щоб змінити значення настроюваного параметра. Після цього натисніть OK, щоб перейти до наступного кроку."
 
 msgid ""
 "Welcome to the Cutlist editor.\n"
@@ -21263,32 +21469,8 @@ msgstr ""
 "\n"
 "Перейдіть до місця, котре слугуватиме кінцем файлу. Натисніть ОК,вибравши 'кінець вирізання'. Це все."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Ласкаво просимо в майстер оновлення іміджу. Майстер допоможе Вам оновити Ваш %s %s із збереженням Ваших поточних налаштувань і дасть короткі інструкції, як оновити Ваш приймач."
-
-msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-"\n"
-"Press OK to start configuring your network"
-msgstr ""
-"Ласкаво просимо.\n"
-"\n"
-"Якщо ви хочете підключити Ваш %s %s до мережі інтернет, цей майстер проведе Вас через основні налаштування мережі %s %s.\n"
-"\n"
-"Натисніть ОК для початку налаштування мережі"
-
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your %s %s.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Ласкаво просимо.\n"
-"\n"
-"Майстер запуску проведе вас через основні налаштування вашого %s %s.\n"
-"Натисніть кнопку ОК, щоб перейти до наступного кроку."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+msgstr "Ласкаво просимо до майстра оновлення іміджу. Майстер допоможе вам оновити імідж %s %s, надаючи резервну копію поточних налаштувань і коротке пояснення того, як йог оновити."
 
 msgid "Welcome..."
 msgstr "Ласкаво просимо..."
@@ -21569,11 +21751,17 @@ msgstr "Безпровідна мережа"
 msgid "Wireless network configuration..."
 msgstr "Конфігурація безпровідної мережі..."
 
-msgid "Wireless network connection setup"
-msgstr "Налаштування з'єднання бездротової мережі"
+msgid ""
+"Wireless network connection setup.\n"
+"\n"
+"Choose what to do next."
+msgstr ""
+"Налаштування підключення до бездротової мережі.\n"
+"\n"
+"Виберіть, що робити далі."
 
-msgid "Wireless network connection setup."
-msgstr "Налаштування з'єднання бездротової мережі."
+msgid "Wireless network setup"
+msgstr "Налаштування бездротової мережі"
 
 msgid "Wireless network state"
 msgstr "Статус бездротової мережі"
@@ -21619,6 +21807,9 @@ msgstr "Без спливаючих вікон"
 
 msgid "Without query"
 msgstr "без Запиту"
+
+msgid "Wizard Actions"
+msgstr "Дії майстра"
 
 msgid "Wolof"
 msgstr "Wolof"
@@ -21810,11 +22001,11 @@ msgstr "Ви можете перемикатися з лівого і право
 msgid "You cannot delete this!"
 msgstr "Ви не можете це видалити!"
 
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr "Ви вибрали копіювання ваших налаштувань. Натисніть OK для початку копіювання."
+msgid "You have chosen to backup your settings. Press OK to start the backup now."
+msgstr "Ви вирішили створити резервну копію налаштувань. Натисніть OK, щоб почати резервне копіювання зараз."
 
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "Ви вибрали відновлення налаштувань. Enigma2 буде перезавантажена відразу після відновлення. Натисніть ОК для відновлення."
+msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+msgstr "Ви вибрали відновлення налаштувань. Enigma2 перезапуститься після відновлення. Натисніть OK, щоб почати відновлення зараз."
 
 msgid "You have chosen to save the current time shift"
 msgstr "Ви вибрали збереження поточного таймшифту"
@@ -21843,11 +22034,11 @@ msgid "You must set at least one command!"
 msgstr "Ви повинні встановити хоча б одну команду!"
 
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
-"Необхідно з'єднання вашого %s %s з комп'ютером. Якщо потрібні докладні інструкції, будь ласка відвідайте сайт https://www.opena.tv.\n"
-"Ваш %s %s зараз буде вимкнений. Після того, як ви виконаєте інструкції по оновленню від веб-сайту, Ваш новий імідж попросить, щоб Ви відновили ваші налаштування."
+"Вам потрібен ПК, підключений до %s %s. Відвідайте веб-сайт https://www.opena.tv/ для отримання подальших інструкцій.\n"
+"%s %s тепер буде зупинено. Після того, як ви виконаєте інструкції з оновлення на веб-сайті, новий імідж попросить вас відновити налаштування."
 
 msgid "You seem to be in time shift!"
 msgstr "Спочатку завершіть таймшифт!"
@@ -21864,9 +22055,6 @@ msgstr "Вам слід встановити новий імідж!"
 msgid "YouTube"
 msgstr "You Tube"
 
-msgid "Your %s %s does not have an Internet connection"
-msgstr "У Вашому %s %s немає працюючого інтернет-з'єднання"
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "Ваш %s %s не підтримує ПІП HD"
@@ -21874,9 +22062,6 @@ msgstr "Ваш %s %s не підтримує ПІП HD"
 #, python-format
 msgid "Your %s %s goes to WOL"
 msgstr "Ваш %s %s йде в WOL"
-
-msgid "Your %s %s is not connected to the Internet"
-msgstr "Ваш %s %s не підключений до Інтернету"
 
 #, python-format
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
@@ -21894,19 +22079,6 @@ msgstr ""
 "Інтернет з'єднання вже працює.\n"
 "\n"
 
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Ваш %s %s тепер готовий для використання.\n"
-"\n"
-"Ваше інтернет з'єднання працює.\n"
-"\n"
-"Натисніть ОК для продовження."
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Ваш %s %s перезавантажується"
@@ -21918,9 +22090,6 @@ msgstr "Ваш %s %s перезавантажується в режимі від
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr "Ваш %s %s буде вимкнено"
-
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Ваш %s %s буде вимкнено. Зачекайте..."
 
 #, python-format
 msgid ""
@@ -21993,14 +22162,15 @@ msgstr ""
 "Виберіть наступну дію."
 
 #, python-format
+msgid "Your Internet connection is working (ip: %s)"
+msgstr "Ваше підключення до Інтернету працює (АП: %s)"
+
+#, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "У Вашому приймачі виявлено проблему з ПЗ. Після останнього перезавантаження воно пройшло %d разів.\n"
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Приймач буде перезавантажено після натиснення ОК на пульті ДУ."
-
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "Копію зроблено успішно. Зараз ми продовжимо пояснення подальшого процесу оновлення."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Ваша колекція перевищує розмір стандартного диску, вам буде потрібно чистий двошаровий DVD диск!"
@@ -22058,20 +22228,12 @@ msgstr "Ваш приймач може використовувати оптим
 msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
 msgstr "Ваш приймач може використовувати тоновий сигнал. Для отримання додаткової інформації зверніться до посібника користувача."
 
+msgid "Your receiver does not have an Internet connection"
+msgstr "Ваш приймач не має підключення до Інтернету"
+
 #, python-format
 msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Зараз Ваш приймач може бути непридатним. Будь ласка, зверніться до посібника для отримання додаткової допомоги перед перезавантаженням %s %s."
-
-msgid ""
-"Your wireless LAN Internet connection could not be started!\n"
-"Have you attached your USB WLAN Stick?\n"
-"\n"
-"Please choose what you want to do next."
-msgstr ""
-"Ваше мережеве інтернет з'єднання не може бути розпочатим!\n"
-"Чи під'єднали ви USB WLAN пристрій?\n"
-"\n"
-"Будь-ласка виберіть наступну дію."
 
 msgid "Youth"
 msgstr "Молодь"
@@ -22699,6 +22861,9 @@ msgstr "hlg"
 
 msgid "hops:"
 msgstr "hops:"
+
+msgid "inactive"
+msgstr "неактивний"
 
 msgid "increase uphop by 1"
 msgstr "збільшити вгору на 1"
@@ -23383,6 +23548,319 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Auto Modes Selected."
+#~ msgstr "Вибрано автоматичні Режими."
+
+#~ msgid "Check the Internet connection"
+#~ msgstr "Перевірка інтернет-з'єднання"
+
+#~ msgid "Checking the Internet connection"
+#~ msgstr "Перевірка інтернет-з'єднання"
+
+#~ msgid "Configure nameservers"
+#~ msgstr "Налаштувати DNS"
+
+#~ msgid "Default Modes Selected."
+#~ msgstr "Вибрані режими за замовчуванням."
+
+#~ msgid ""
+#~ "Please configure or verify your Nameservers by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте, або перевірте Ваш DNS, заповнивши необхідні значення.\n"
+#~ "Коли буде готово, натисніть ОК для продовження."
+
+#~ msgid ""
+#~ "Please configure your Internet connection by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте Ваше інтернет з'єднання, заповнивши необхідні значення.\n"
+#~ "Коли буде готово, натисніть ОК для продовження."
+
+#~ msgid "Please connect your %s %s to the Internet"
+#~ msgstr "Будь ласка, з'єднайте Ваш %s %s з інтернетом"
+
+#~ msgid ""
+#~ "Please select the network interface that you want to use for your Internet connection.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Будь-ласка, виберіть мережевий інтерфейс, через який виконуватиметься інтернет з'єднання.\n"
+#~ "\n"
+#~ "Натисніть OK для продовження."
+
+#~ msgid ""
+#~ "Please select the wireless network that you want to connect to.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Будь-ласка, виберіть бездротову мережу, через яку виконуватиметься інтернет з'єднання.\n"
+#~ "\n"
+#~ "Натисніть OK для продовження."
+
+#~ msgid "Please set up tuner A"
+#~ msgstr "Будь ласка, налаштуйте тюнер A"
+
+#~ msgid ""
+#~ "Please set up tuner A\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер A\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid "Please set up tuner B"
+#~ msgstr "Будь ласка, налаштуйте тюнер B"
+
+#~ msgid ""
+#~ "Please set up tuner B\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер B\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid "Please set up tuner C"
+#~ msgstr "Будь ласка, налаштуйте тюнер C"
+
+#~ msgid ""
+#~ "Please set up tuner C\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер С\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid "Please set up tuner D"
+#~ msgstr "Будь ласка, налаштуйте тюнер D"
+
+#~ msgid ""
+#~ "Please set up tuner D\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер D\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid ""
+#~ "Please set up tuner E\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер E\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid ""
+#~ "Please set up tuner F\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер F\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid ""
+#~ "Please set up tuner G\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер G\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid ""
+#~ "Please set up tuner H\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер H\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid ""
+#~ "Please set up tuner I\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер I\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid ""
+#~ "Please set up tuner J\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер J\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid ""
+#~ "Please set up tuner Q\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер Q\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid ""
+#~ "Please set up tuner R\n"
+#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
+#~ msgstr ""
+#~ "Будь ласка, налаштуйте тюнер R\n"
+#~ "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
+
+#~ msgid "Please set your time options"
+#~ msgstr "Будь ласка, встановіть параметри часу"
+
+#~ msgid ""
+#~ "Please set your time options.\n"
+#~ "\n"
+#~ "Press YELLOW to set the time zone via geolocation."
+#~ msgstr ""
+#~ "Будь ласка, встановіть параметри часу.\n"
+#~ "\n"
+#~ "Натисніть ЖОВТУ кнопку, щоб встановити часовий пояс за допомогою геолокації."
+
+#~ msgid "Refresh rate selection."
+#~ msgstr "Вибір частоти оновлення."
+
+#~ msgid "Select video input with up/down buttons"
+#~ msgstr "Виберіть відео вхід кнопками вверх/вниз"
+
+#~ msgid "Skip Internet connection check (disables automatic package installation)"
+#~ msgstr "Пропустити перевірку інтернет з'єднання (вимикає автоматичну установку пакетів)"
+
+#~ msgid "StartWizard"
+#~ msgstr "Майстер запуску"
+
+#~ msgid ""
+#~ "Thank you for using the wizard.\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Дякуємо за використання помічника.\n"
+#~ "Натисніть OK для продовження."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your %s %s is now ready to use.\n"
+#~ "Please press OK to start using your %s %s."
+#~ msgstr ""
+#~ "Спасибі, що скористалися майстром настройки. Ваш %s %s тепер готовий для використання.\n"
+#~ "Щоб почати користуватися вашим %s %s натисніть ОК."
+
+#~ msgid "The backup failed. Please choose a different backup location."
+#~ msgstr "Резервне копіювання не вдалося. Виберіть інше місце для розташування копії."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it and choose what you want to do next."
+#~ msgstr ""
+#~ "Плагін Wі-Fі і LAN мережі не встановлений!\n"
+#~ "Установіть його та виберіть те, що ви хочете зробити далі."
+
+#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+#~ msgstr "Майстер може зберегти Ваші налаштування. Бажаєте зробити копію зараз?"
+
+#~ msgid "The wizard is finished now."
+#~ msgstr "Майстер завершив роботу."
+
+#~ msgid ""
+#~ "Use automatic mode detection.\n"
+#~ " This option reads all supported modes from your TV.\n"
+#~ " Please disable it only if you want to customize the preferred configuration."
+#~ msgstr ""
+#~ "Використовуйте автоматичний режим виявлення.\n"
+#~ " Цей параметр зчитує всі підтримувані режими з телевізора.\n"
+#~ " Вимкніть його, лише якщо потрібно налаштувати бажану конфігурацію."
+
+#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#~ msgstr "Для зміни параметрів використовуйте кнопки вверх/вниз. Після цього, натисніть OK."
+
+#~ msgid ""
+#~ "Video input selection\n"
+#~ "\n"
+#~ "Please press OK if you can see this page on your TV (or select a different input port).\n"
+#~ "\n"
+#~ "The next input port will be automatically probed in 10 seconds."
+#~ msgstr ""
+#~ "Вибір відео виходу\n"
+#~ "\n"
+#~ "Якщо Ви бачити цю сторінку на екрані TV то натисніть ОК (або виберіть інший вхідний порт).\n"
+#~ "\n"
+#~ "Наступний вхідний порт буде автоматично випробувано через 10 сек.."
+
+#~ msgid "Video mode selection."
+#~ msgstr "Вибір Відео режиму."
+
+#~ msgid "VideoWizard"
+#~ msgstr "Майстер налаштувань відео"
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+#~ msgstr "Ласкаво просимо в майстер оновлення іміджу. Майстер допоможе Вам оновити Ваш %s %s із збереженням Ваших поточних налаштувань і дасть короткі інструкції, як оновити Ваш приймач."
+
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
+#~ "\n"
+#~ "Press OK to start configuring your network"
+#~ msgstr ""
+#~ "Ласкаво просимо.\n"
+#~ "\n"
+#~ "Якщо ви хочете підключити Ваш %s %s до мережі інтернет, цей майстер проведе Вас через основні налаштування мережі %s %s.\n"
+#~ "\n"
+#~ "Натисніть ОК для початку налаштування мережі"
+
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "This start wizard will guide you through the basic setup of your %s %s.\n"
+#~ "Press the OK button on your remote control to move to the next step."
+#~ msgstr ""
+#~ "Ласкаво просимо.\n"
+#~ "\n"
+#~ "Майстер запуску проведе вас через основні налаштування вашого %s %s.\n"
+#~ "Натисніть кнопку ОК, щоб перейти до наступного кроку."
+
+#~ msgid "Wireless network connection setup"
+#~ msgstr "Налаштування з'єднання бездротової мережі"
+
+#~ msgid "Wireless network connection setup."
+#~ msgstr "Налаштування з'єднання бездротової мережі."
+
+#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+#~ msgstr "Ви вибрали копіювання ваших налаштувань. Натисніть OK для початку копіювання."
+
+#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+#~ msgstr "Ви вибрали відновлення налаштувань. Enigma2 буде перезавантажена відразу після відновлення. Натисніть ОК для відновлення."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
+#~ "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+#~ msgstr ""
+#~ "Необхідно з'єднання вашого %s %s з комп'ютером. Якщо потрібні докладні інструкції, будь ласка відвідайте сайт https://www.opena.tv.\n"
+#~ "Ваш %s %s зараз буде вимкнений. Після того, як ви виконаєте інструкції по оновленню від веб-сайту, Ваш новий імідж попросить, щоб Ви відновили ваші налаштування."
+
+#~ msgid "Your %s %s does not have an Internet connection"
+#~ msgstr "У Вашому %s %s немає працюючого інтернет-з'єднання"
+
+#~ msgid "Your %s %s is not connected to the Internet"
+#~ msgstr "Ваш %s %s не підключений до Інтернету"
+
+#~ msgid ""
+#~ "Your %s %s is now ready to use.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Ваш %s %s тепер готовий для використання.\n"
+#~ "\n"
+#~ "Ваше інтернет з'єднання працює.\n"
+#~ "\n"
+#~ "Натисніть ОК для продовження."
+
+#~ msgid "Your %s %s is shutting down. Please wait..."
+#~ msgstr "Ваш %s %s буде вимкнено. Зачекайте..."
+
+#~ msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+#~ msgstr "Копію зроблено успішно. Зараз ми продовжимо пояснення подальшого процесу оновлення."
+
+#~ msgid ""
+#~ "Your wireless LAN Internet connection could not be started!\n"
+#~ "Have you attached your USB WLAN Stick?\n"
+#~ "\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Ваше мережеве інтернет з'єднання не може бути розпочатим!\n"
+#~ "Чи під'єднали ви USB WLAN пристрій?\n"
+#~ "\n"
+#~ "Будь-ласка виберіть наступну дію."
 
 #~ msgid ""
 #~ "\n"
