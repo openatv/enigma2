@@ -1,10 +1,10 @@
-from os import W_OK, access, makedirs, remove, stat, system, statvfs
-from os.path import exists, isdir, join
+from os import W_OK, access, remove, stat, statvfs
+from os.path import exists, isdir
 from shlex import split
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
-from Components.config import ConfigInteger, ConfigSelection, ConfigSubsection, ConfigText, config
+from Components.config import ConfigInteger, ConfigSelection
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
 from Components.Label import Label
@@ -197,7 +197,7 @@ class MultiBootManager(Screen, HelpableScreen):
 		slot = currentSelected[1][0]
 		status = currentSelected[1][2]
 		ubi = currentSelected[1][3]
-		current = currentSelected[1][4]
+		# current = currentSelected[1][4]
 		if slot == slotCode or status in ("android", "androidlinuxse", "recovery"):
 			self["key_green"].setText(_("Reboot"))
 			self["key_yellow"].setText("")
@@ -333,12 +333,11 @@ class KexecInit(Screen, HelpableScreen):
 					try:
 						remove(file)
 					except OSError as err:
-						print("[MultiBootManager] Error %d: Unable to delete MultiBoot file '%s'." % (err.errno, file, err.strerror))
-				remove()
+						print("[MultiBootManager] Error %d: Unable to delete MultiBoot file '%s'.  (%s)" % (err.errno, file, err.strerror))
 				self.close()
 
 		files = ("/usr/bin/kernel_auto.bin", "/usr/bin/STARTUP.cpio.gz")
-		self.session.openWithCallback(self.removeFilesCallback, MessageBox, "%s\n\n%s" % (_("Permanently remove the MultiBoot files?"), "\n".join(files)), simple=True)
+		self.session.openWithCallback(removeFilesCallback, MessageBox, "%s\n\n%s" % (_("Permanently remove the MultiBoot files?"), "\n".join(files)), simple=True)
 
 
 class KexecSlotManager(Setup):
