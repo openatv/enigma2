@@ -34,6 +34,6 @@ def zap(session, service, **kwargs):
 
 def Plugins(**kwargs):
 	if Streamlink:
-		return [PluginDescriptor(name="StreamlinkWrapper", description="StreamlinkWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart = False, fnc=zap)]
+		return [PluginDescriptor(name="StreamlinkWrapper", description="StreamlinkWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart=False, fnc=zap)]
 	else:
 		return []
