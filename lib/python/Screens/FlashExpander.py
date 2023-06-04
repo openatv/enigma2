@@ -70,7 +70,7 @@ class FlashExpander(Setup):
 		}, prio=0, description=_("Common Setup Actions"))  # Override the ConfigList "fullUIActions" action map so that we can control the GREEN button here.
 		self["actions"] = HelpableActionMap(self, ["ColorActions"], {
 			"green": (self.keyGreen, getGreenHelpText),
-			"yellow": (self.keyFormat, _("Formal a disk"))
+			"yellow": (self.keyFormat, _("Format Disk"))
 		}, prio=-1, description=_("Flash Expander Actions"))
 		choiceList = [config.flashExpander.location.getSelectionList()[0]]
 		if config.flashExpander.location.saved_value:

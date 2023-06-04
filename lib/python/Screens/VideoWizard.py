@@ -42,16 +42,31 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 
 	def listModes(self):  # Called by wizardvideo.xml.
 		def sortKey(name):
-			return {
-				"2160p": 1,
-				"2160p30": 2,
-				"1080p": 3,
-				"720p": 4,
-				"1080i": 5,
-				"smpte": 20
-			}.get(name[0], 6)
+			return sortKeys.get(name[0], 6)
 
 		modes = [(mode[0], mode[0]) for mode in self.avSwitch.getModeList(self.port)]
+
+		sortKeys = {
+			"720p": 1,
+			"1080i": 2,
+			"1080p": 3,
+			"2160p": 4,
+			"2160p30": 5,
+			"smpte": 20
+		}
+
+		with open("/proc/stb/video/videomode_preferred") as fd:
+			preferred = fd.read()[:-1]
+			if "2160p" in preferred:
+				sortKeys["2160p"] = 1
+				sortKeys["2160p30"] = 2
+				sortKeys["1080p"] = 3
+				sortKeys["1080i"] = 4
+				sortKeys["720p"] = 5
+			elif "1080p" in preferred:
+				sortKeys["1080p"] = 1
+				sortKeys["720p"] = 3
+
 		modes.sort(key=sortKey)
 		# print("[WizardVideo] listModes DEBUG: port='%s', modes=%s." % (self.port, modes))
 		return modes

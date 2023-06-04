@@ -14,7 +14,7 @@ class Label(VariableText, Renderer):
 	GUI_WIDGET = eLabel
 
 	def connect(self, source):
-		if(source):
+		if (source):
 			Renderer.connect(self, source)
 			self.changed((self.CHANGED_DEFAULT,))
 		else:

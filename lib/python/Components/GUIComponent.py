@@ -110,7 +110,7 @@ class GUIComponent(object):
 	def getHeight(self):
 		return self.height
 
-	position = property(getPosition) 
+	position = property(getPosition)
 
 	# default implementation for only one widget per component
 	# feel free to override!

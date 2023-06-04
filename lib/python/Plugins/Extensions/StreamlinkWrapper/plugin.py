@@ -6,6 +6,7 @@ try:
 except ImportError:
 	Streamlink = False
 
+
 def zap(session, service, **kwargs):
 	errormsg = None
 	if service and "http" in service.toString():
@@ -34,6 +35,6 @@ def zap(session, service, **kwargs):
 
 def Plugins(**kwargs):
 	if Streamlink:
-		return [PluginDescriptor(name="StreamlinkWrapper", description="StreamlinkWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart = False, fnc=zap)]
+		return [PluginDescriptor(name="StreamlinkWrapper", description="StreamlinkWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart=False, fnc=zap)]
 	else:
 		return []

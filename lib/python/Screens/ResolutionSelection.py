@@ -4,6 +4,7 @@ from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Components.SystemInfo import BoxInfo
 
+
 class ResolutionSelection(Screen):
 	def __init__(self, session, infobar=None):
 		Screen.__init__(self, session)
