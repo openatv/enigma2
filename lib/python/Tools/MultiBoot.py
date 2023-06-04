@@ -192,8 +192,6 @@ class MultiBootClass():
 								bootSlots[slotCode]["ubi"] = True
 							if "UUID=" in line:
 								bootSlots[slotCode]["uuid"] = True
-							else:
-								bootSlots[slotCode]["uuid"] = False
 							if "rootsubdir" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
 								bootSlots[slotCode]["rootsubdir"] = self.getParam(line, "rootsubdir")
@@ -268,9 +266,12 @@ class MultiBootClass():
 		return line.replace("userdataroot", "rootuserdata").rsplit("%s=" % param, 1)[1].split(" ", 1)[0]
 
 	def getUUIDtoDevice(self, UUID):  # Returns None on failure.
+		if UUID.startswith("UUID="):  # Remove the "UUID=" from startup files that have it.
+			UUID = UUID[5:]
+		targetUUID = "UUID=\"%s\"" % UUID
 		lines = check_output(["/sbin/blkid"]).decode(encoding="UTF-8", errors="ignore").split("\n")
 		for line in lines:
-			if UUID in line.replace('"', ''):
+			if targetUUID in line:
 				return line.split(":")[0].strip()
 		return None
 
