@@ -186,6 +186,7 @@ class TagEditor(Screen, HelpableScreen, TagManager):
 		for tag in newTags:
 			if tag not in tagList:
 				tagList.append(tag)
+
 	def showMenu(self):
 		menu = [(_("Add new tag"), self.addNewTag)]
 		if self["taglist"].count():

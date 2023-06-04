@@ -7,7 +7,6 @@ from Components.Element import cached
 from Components.Converter.Poll import Poll
 
 
-
 class VtiInfo(Poll, Converter):
     ECMINFO = 1
     ONLINETEST = 21

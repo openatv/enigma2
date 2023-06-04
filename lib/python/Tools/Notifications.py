@@ -65,8 +65,6 @@ def RemovePopup(id):
 			x[1].close()
 
 
-
-
 def AddPopup(text, type, timeout, id=None):
 	if id is not None:
 		RemovePopup(id)

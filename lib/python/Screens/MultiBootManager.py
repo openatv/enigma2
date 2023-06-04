@@ -11,6 +11,7 @@ from Components.SystemInfo import BoxInfo
 from Tools.Directories import fileExists, pathExists
 from Tools.MultiBoot import MultiBoot
 
+
 class MultiBootManager(Screen, HelpableScreen):
 	# NOTE: This embedded skin will be affected by the Choicelist parameters and ChoiceList font in the current skin!  This screen should be skinned.
 	# 	See Components/ChoiceList.py to see the hard coded defaults for which this embedded screen has been designed.
@@ -228,6 +229,7 @@ class MultiBootManager(Screen, HelpableScreen):
 			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveUp)
 		self.selectionChanged()
 
+
 class KexecInit(Screen):
 
 	model = BoxInfo.getItem("model")
@@ -293,4 +295,3 @@ class KexecInit(Screen):
 		if answer:
 			Console().ePopen("rm -rf /usr/bin/kernel_auto.bin /usr/bin/STARTUP.cpio.gz")
 			self.close()
-
