@@ -23,7 +23,7 @@ class pServiceEvent(object):
 		self.m_ExtendedDescriptionNext = ""
 		self.m_Begin = time()
 		self.m_Duration = 0
-		
+
 		sTagTitle = info.getInfoString(iServiceInformation.sTagTitle)
 		if sTagTitle:
 			sTagTitleList = sTagTitle.split(" - ")
