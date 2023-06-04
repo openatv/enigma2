@@ -1666,7 +1666,7 @@ def InitUsageConfig():
 		("3", _("Yes, but if not available show the plugin browser"))
 	])
 	config.plisettings.ColouredButtons = ConfigYesNo(default=False)
-	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="3", choices=[
+	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="0", choices=[
 		("0", _("As plugin in extended bar")),
 		("1", _("With long OK press")),
 		("2", _("With EXIT button")),
