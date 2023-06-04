@@ -34,6 +34,6 @@ class Streaming2(Converter):
 
 		retval += "\n"
 
-		return(retval)
+		return (retval)
 
 	text = property(getText)
