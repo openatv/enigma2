@@ -951,7 +951,7 @@ class ChannelSelectionBase(Screen):
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
-		})
+		}, prio=-1)  # This prio is needed to overwrite the left/right action for neutrino keymap
 		self.mode = MODE_TV
 		self.baseTitle = _("Channel Selection")
 		self.function = EDIT_OFF
