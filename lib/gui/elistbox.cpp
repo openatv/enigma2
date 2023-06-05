@@ -410,11 +410,8 @@ int eListbox::event(int event, void *data, void *data2)
 		int itemOffset = 0;
 		if (m_orientation == orGrid)
 		{
-			if (!m_scrollbar || !m_scrollbar->isVisible() || m_item_alignment != itemAlignDefault)
-			{
-				style->setStyle(painter, eWindowStyle::styleListboxNormal);
-				painter.clear();
-			}
+			style->setStyle(painter, eWindowStyle::styleListboxNormal);
+			painter.clear();
 
 			if (m_item_alignment != itemAlignDefault)
 			{
