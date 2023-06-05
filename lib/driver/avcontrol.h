@@ -26,6 +26,7 @@ public:
 	int getResolutionX(int defaultVal = 0, int flags = 0) const;
 	int getResolutionY(int defaultVal = 0, int flags = 0) const;
 	std::string getVideoMode(const std::string &defaultVal = "", int flags = 0) const;
+	std::string getPreferredModes(int flags = 0) const;
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	bool setHDMIInFull(int flags = 0) const;

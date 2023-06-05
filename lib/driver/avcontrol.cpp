@@ -3,6 +3,7 @@
 #include <sys/ioctl.h>
 #include <string.h>
 #include <algorithm>
+#include <regex>
 
 #include <lib/base/cfile.h>
 #include <lib/base/init.h>
@@ -247,4 +248,49 @@ void eAVControl::disableHDMIIn(int flags) const
 		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off");
 		CFile::writeStr(proc_hdmi_rx_monitor, "off");
 	}
+}
+
+/// @brief read the preferred video modes
+void eAVControl::getPreferredModes(int flags) const
+{
+
+#ifdef DREAMNEXTGEN
+	const char *fileName = "/sys/class/amhdmitx/amhdmitx0/disp_cap";
+#else
+	const char *fileName = "/proc/stb/video/videomode_edid";
+	const char *fileName2 = "/proc/stb/video/videomode_preferred";
+#endif
+
+	std::string result = "";
+	
+	if (access(fileName, R_OK) == 0)
+	{
+		result = CFile::read(fileName, __MODULE__, flags);
+	}
+
+	if (!result.empty() && result[result.length() - 1] == '\n')
+	{
+		result.erase(result.length() - 1);
+	}
+
+#ifdef DREAMNEXTGEN
+	result = std::regex_replace(result, std::regex("\\*"), "");
+	result = std::regex_replace(result, std::regex("\n+"), " ");
+#else
+
+	if(result.empty())
+	{
+		if (access(fileName2, R_OK) == 0)
+		{
+			result = CFile::read(fileName2, __MODULE__, flags);
+			if (!result.empty() && result[result.length() - 1] == '\n')
+			{
+				result.erase(result.length() - 1);
+			}
+		}
+	}
+
+#endif
+
+	return result;
 }
