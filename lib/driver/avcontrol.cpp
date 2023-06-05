@@ -173,17 +173,17 @@ bool eAVControl::setHDMIInPiP(int flags) const
 	if (!m_b_has_proc_hdmi_rx_monitor)
 		return true;
 
-	std::string check = CFile::read(proc_hdmi_rx_monitor);
+	std::string check = CFile::read(proc_hdmi_rx_monitor, __MODULE__, flags);
 
 	if (check.rfind("off", 0) == 0)
 	{
-		CFile::writeStr(proc_hdmi_rx_monitor_audio, "on");
-		CFile::writeStr(proc_hdmi_rx_monitor, "on");
+		CFile::writeStr(proc_hdmi_rx_monitor_audio, "on", __MODULE__, flags);
+		CFile::writeStr(proc_hdmi_rx_monitor, "on", __MODULE__, flags);
 	}
 	else
 	{
-		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off");
-		CFile::writeStr(proc_hdmi_rx_monitor, "off");
+		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off", __MODULE__, flags);
+		CFile::writeStr(proc_hdmi_rx_monitor, "off", __MODULE__, flags);
 	}
 
 	return false;
@@ -202,31 +202,31 @@ bool eAVControl::setHDMIInFull(int flags) const
 	if (!m_b_has_proc_hdmi_rx_monitor)
 		return true;
 
-	std::string check = CFile::read(proc_hdmi_rx_monitor);
+	std::string check = CFile::read(proc_hdmi_rx_monitor, __MODULE__, flags);
 
 	if (check.rfind("off", 0) == 0)
 	{
 
-		m_video_mode = CFile::read(proc_videomode);
-		m_video_mode_50 = CFile::read(proc_videomode_50);
-		m_video_mode_60 = CFile::read(proc_videomode_60);
+		m_video_mode = CFile::read(proc_videomode, __MODULE__, flags);
+		m_video_mode_50 = CFile::read(proc_videomode_50, __MODULE__, flags);
+		m_video_mode_60 = CFile::read(proc_videomode_60, __MODULE__, flags);
 
 #ifdef HAVE_HDMIIN_FHD
-		CFile::writeStr(proc_videomode, "1080p");
+		CFile::writeStr(proc_videomode, "1080p", __MODULE__, flags);
 #else
-		CFile::writeStr(proc_videomode, "720p");
+		CFile::writeStr(proc_videomode, "720p", __MODULE__, flags);
 #endif
 
-		CFile::writeStr(proc_hdmi_rx_monitor_audio, "on");
-		CFile::writeStr(proc_hdmi_rx_monitor, "on");
+		CFile::writeStr(proc_hdmi_rx_monitor_audio, "on", __MODULE__, flags);
+		CFile::writeStr(proc_hdmi_rx_monitor, "on", __MODULE__, flags);
 	}
 	else
 	{
-		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off");
-		CFile::writeStr(proc_hdmi_rx_monitor, "off");
-		CFile::writeStr(proc_videomode, m_video_mode);
-		CFile::writeStr(proc_videomode_50, m_video_mode_50);
-		CFile::writeStr(proc_videomode_60, m_video_mode_60);
+		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off", __MODULE__, flags);
+		CFile::writeStr(proc_hdmi_rx_monitor, "off", __MODULE__, flags);
+		CFile::writeStr(proc_videomode, m_video_mode, __MODULE__, flags);
+		CFile::writeStr(proc_videomode_50, m_video_mode_50, __MODULE__, flags);
+		CFile::writeStr(proc_videomode_60, m_video_mode_60, __MODULE__, flags);
 	}
 
 	return false;
@@ -242,12 +242,12 @@ void eAVControl::disableHDMIIn(int flags) const
 	if (!m_b_has_proc_hdmi_rx_monitor)
 		return;
 
-	std::string check = CFile::read(proc_hdmi_rx_monitor);
+	std::string check = CFile::read(proc_hdmi_rx_monitor, __MODULE__, flags);
 
 	if (check.rfind("on", 0) == 0)
 	{
-		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off");
-		CFile::writeStr(proc_hdmi_rx_monitor, "off");
+		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off", __MODULE__, flags);
+		CFile::writeStr(proc_hdmi_rx_monitor, "off", __MODULE__, flags);
 	}
 }
 
@@ -267,11 +267,10 @@ std::string eAVControl::getPreferredModes(int flags) const
 	if (access(fileName, R_OK) == 0)
 	{
 		result = CFile::read(fileName, __MODULE__, flags);
-	}
-
-	if (!result.empty() && result[result.length() - 1] == '\n')
-	{
-		result.erase(result.length() - 1);
+		if (!result.empty() && result[result.length() - 1] == '\n')
+		{
+			result.erase(result.length() - 1);
+		}
 	}
 
 #ifdef DREAMNEXTGEN
@@ -279,15 +278,12 @@ std::string eAVControl::getPreferredModes(int flags) const
 	result = std::regex_replace(result, std::regex("\n+"), " ");
 #else
 
-	if (result.empty())
+	if (result.empty() && access(fileName2, R_OK) == 0)
 	{
-		if (access(fileName2, R_OK) == 0)
+		result = CFile::read(fileName2, __MODULE__, flags);
+		if (!result.empty() && result[result.length() - 1] == '\n')
 		{
-			result = CFile::read(fileName2, __MODULE__, flags);
-			if (!result.empty() && result[result.length() - 1] == '\n')
-			{
-				result.erase(result.length() - 1);
-			}
+			result.erase(result.length() - 1);
 		}
 	}
 
@@ -315,12 +311,14 @@ std::string eAVControl::readAvailableModes(int flags) const
 	{
 		result.erase(result.length() - 1);
 	}
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "readAvailableModes", result.c_str());
 	return result;
 #endif
 }
 
 /// @brief get the available video modes
-std::string eAVControl::getAvailableModes(int flags) const
+std::string eAVControl::getAvailableModes() const
 {
 	return m_videomode_choices;
 }

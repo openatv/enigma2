@@ -27,7 +27,7 @@ public:
 	int getResolutionY(int defaultVal = 0, int flags = 0) const;
 	std::string getVideoMode(const std::string &defaultVal = "", int flags = 0) const;
 	std::string getPreferredModes(int flags = 0) const;
-	std::string getAvailableModes(int flags = 0) const;
+	std::string getAvailableModes() const;
 
 	void setAspectRatio(int ratio, int flags = 0) const;
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
