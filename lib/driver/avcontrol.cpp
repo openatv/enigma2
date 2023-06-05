@@ -251,7 +251,7 @@ void eAVControl::disableHDMIIn(int flags) const
 }
 
 /// @brief read the preferred video modes
-str::string eAVControl::getPreferredModes(int flags) const
+std::string eAVControl::getPreferredModes(int flags) const
 {
 
 #ifdef DREAMNEXTGEN
