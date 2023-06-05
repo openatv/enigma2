@@ -40,8 +40,8 @@ config.pluginfilter.vix = ConfigYesNo(default=False)
 config.pluginfilter.weblinks = ConfigYesNo(default=True)
 config.pluginfilter.userfeed = ConfigText(default="http://", fixed_size=False)
 config.usage.pluginlistlayout = ConfigSelection(default=1, choices=[
-	(0, _("List")),
-	(1, _("Grid"))
+	(0, _("View as list")),
+	(1, _("View as grid"))
 ])
 
 
@@ -76,7 +76,7 @@ class PluginBrowserSummary(Screen):
 class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 	skin = """
 	<screen name="PluginBrowser" position="center,center" size="1000,570" resolution="1280,720">
-		<widget source="plugingrid" render="Listbox" position="10,10" size="990,400" scrollbarMode="showAlways" listOrientation="grid">
+		<widget source="plugingrid" render="Listbox" position="10,10" size="990,400" scrollbarMode="showOnDemand" listOrientation="grid">
 			<convert type="TemplatedMultiContent">
 				{
 					"template": [
@@ -91,7 +91,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 				}
 			</convert>
 		</widget>
-		<widget source="pluginlist" render="Listbox" position="10,10" size="e-20,400" scrollbarMode="showAlways" listOrientation="vertical">
+		<widget source="pluginlist" render="Listbox" position="10,10" size="e-20,400" scrollbarMode="showOnDemand" listOrientation="vertical">
 			<convert type="TemplatedMultiContent">
 				{
 					"template": [
@@ -134,7 +134,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 	def __init__(self, session):
 		self.layout = "plugingrid" if config.usage.pluginlistlayout.value == 1 else "pluginlist"
 		Screen.__init__(self, session, mandatoryWidgets=[self.layout])
-		self.skinName = "PluginBrowserList" if config.usage.pluginlistlayout.value == 1 else "PluginBrowserGrid"
+		self.skinName = "PluginBrowserGrid" if config.usage.pluginlistlayout.value == 1 else "PluginBrowserList"
 
 #		if config.ParentalControl.configured.value: # TODO
 #			ProtectedScreen.__init__(self)
