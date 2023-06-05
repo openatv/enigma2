@@ -55,17 +55,33 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 			"smpte": 20
 		}
 
-		with open("/proc/stb/video/videomode_preferred") as fd:
-			preferred = fd.read()[:-1]
-			if "2160p" in preferred:
-				sortKeys["2160p"] = 1
-				sortKeys["2160p30"] = 2
-				sortKeys["1080p"] = 3
-				sortKeys["1080i"] = 4
-				sortKeys["720p"] = 5
-			elif "1080p" in preferred:
-				sortKeys["1080p"] = 1
-				sortKeys["720p"] = 3
+		preferred = ""
+		try:
+			if BoxInfo.getItem("AmlogicFamily"):
+				fd =open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
+				preferred = fd.read()[:-1].replace('*', '')
+				fd.close()
+			else:
+				fd = open("/proc/stb/video/videomode_edid")
+				preferred = fd.read()[:-1]
+				fd.close()
+		except OSError:
+			try:
+				fd = open("/proc/stb/video/videomode_preferred")
+				preferred = fd.read()[:-1]
+				fd.close()
+			except OSError:
+				pass
+
+		if "2160p" in preferred:
+			sortKeys["2160p"] = 1
+			sortKeys["2160p30"] = 2
+			sortKeys["1080p"] = 3
+			sortKeys["1080i"] = 4
+			sortKeys["720p"] = 5
+		elif "1080p" in preferred:
+			sortKeys["1080p"] = 1
+			sortKeys["720p"] = 3
 
 		modes.sort(key=sortKey)
 		# print("[WizardVideo] listModes DEBUG: port='%s', modes=%s." % (self.port, modes))
