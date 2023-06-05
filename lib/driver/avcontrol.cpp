@@ -33,6 +33,7 @@ eAVControl::eAVControl()
 	m_b_has_proc_hdmi_rx_monitor = (stat(proc_hdmi_rx_monitor, &buffer) == 0);
 	m_b_has_proc_videomode_50 = (stat(proc_videomode_50, &buffer) == 0);
 	m_b_has_proc_videomode_60 = (stat(proc_videomode_60, &buffer) == 0);
+	m_videomode_choices = readAvailableModes();
 }
 
 /// @brief Get video aspect
@@ -293,4 +294,34 @@ std::string eAVControl::getPreferredModes(int flags) const
 #endif
 
 	return result;
+}
+
+/// @brief read the available video modes
+/// It's for internal use only because it will be static.
+std::string eAVControl::readAvailableModes(int flags) const
+{
+
+#ifdef DREAMNEXTGEN
+	return std::string("480i60hz 576i50hz 480p60hz 576p50hz 720p60hz 1080i60hz 1080p60hz 720p50hz 1080i50hz 1080p30hz 1080p50hz 1080p25hz 1080p24hz 2160p30hz 2160p25hz 2160p24hz smpte24hz smpte25hz smpte30hz smpte50hz smpte60hz 2160p50hz 2160p60hz");
+#else
+	const char *fileName ="/proc/stb/video/videomode_choices";
+	std::string result = "";
+	if (access(fileName, R_OK) == 0)
+	{
+		result = CFile::read(fileName, __MODULE__, flags);
+	}
+
+	if (!result.empty() && result[result.length() - 1] == '\n')
+	{
+		result.erase(result.length() - 1);
+	}
+	return result;
+#endif
+
+}
+
+/// @brief get the available video modes
+std::string eAVControl::getAvailableModes(int flags) const
+{
+	return m_videomode_choices;
 }
