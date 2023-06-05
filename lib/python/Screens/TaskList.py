@@ -75,7 +75,7 @@ class TaskList(Screen, HelpableScreen):
 		self.timerFire()
 
 	def layoutFinished(self):
-		self["tasklist"].downstream_elements.downstream_elements.instance.enableAutoNavigation(False)
+		self["tasklist"].enableAutoNavigation(False)
 
 	def keyCancel(self):
 		self.timer.stop()

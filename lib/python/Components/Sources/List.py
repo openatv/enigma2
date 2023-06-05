@@ -104,10 +104,10 @@ to generate HTML."""
 	def count(self):
 		return len(self.listData)
 
-	def enableAutoNavigation(self, value):
+	def enableAutoNavigation(self, enabled):
 		try:
 			instance = self.master.master.instance
-			instance.enableAutoNavigation(value)
+			instance.enableAutoNavigation(enabled)
 		except AttributeError:
 			return
 

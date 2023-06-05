@@ -399,10 +399,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.updateButtons()
 
 	def layoutFinished(self):
-		self["headleft"].master.master.instance.enableAutoNavigation(False)  # Override listbox navigation.
-		self["headright"].master.master.instance.enableAutoNavigation(False)  # Override listbox navigation.
-		self["listleft"].instance.enableAutoNavigation(False)  # Override listbox navigation.
-		self["listright"].instance.enableAutoNavigation(False)  # Override listbox navigation.
+		self["headleft"].enableAutoNavigation(False)  # Override listbox navigation.
+		self["headright"].enableAutoNavigation(False)  # Override listbox navigation.
+		self["listleft"].enableAutoNavigation(False)  # Override listbox navigation.
+		self["listright"].enableAutoNavigation(False)  # Override listbox navigation.
 		if self.leftActive:
 			self.keyGoLeftColumn()
 		else:
@@ -2641,7 +2641,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["data"].instance.enableAutoNavigation(False)  # Override listbox navigation.
+		self["data"].enableAutoNavigation(False)  # Override listbox navigation.
 		self.data = fileReadLines(self.path, default=[], source=MODULE_NAME)
 		self["data"].setList(self.data)
 		self["data"].onSelectionChanged.append(self.updateStatus)
