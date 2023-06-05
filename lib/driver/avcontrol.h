@@ -29,6 +29,7 @@ public:
 	std::string getPreferredModes(int flags = 0) const;
 	std::string getAvailableModes(int flags = 0) const;
 
+	void setAspectRatio(int ratio, int flags = 0) const;
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	bool setHDMIInFull(int flags = 0) const;
 	bool setHDMIInPiP(int flags = 0) const;
@@ -58,7 +59,6 @@ private:
 	bool m_b_has_proc_videomode_60;
 
 	std::string readAvailableModes(int flags = 0) const;
-
 };
 
 #endif

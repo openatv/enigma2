@@ -14,13 +14,13 @@
 
 const char *__MODULE__ = "eAVControl"; // NOSONAR
 
-const char *proc_hdmi_rx_monitor = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor"; // NOSONAR
+const char *proc_hdmi_rx_monitor = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor";	// NOSONAR
 const char *proc_hdmi_rx_monitor_audio = "/proc/stb/audio/hdmi_rx_monitor"; // NOSONAR
 #ifdef DREAMNEXTGEN
-const char *proc_videomode = "/sys/class/display/mode"; // NOSONAR
+const char *proc_videomode = "/sys/class/display/mode";		   // NOSONAR
 const char *proc_videoaspect = "/sys/class/video/screen_mode"; // NOSONAR
 #else
-const char *proc_videomode = "/proc/stb/video/videomode"; // NOSONAR
+const char *proc_videomode = "/proc/stb/video/videomode";  // NOSONAR
 const char *proc_videoaspect = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
 #endif
 const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz"; // NOSONAR
@@ -263,7 +263,7 @@ std::string eAVControl::getPreferredModes(int flags) const
 #endif
 
 	std::string result = "";
-	
+
 	if (access(fileName, R_OK) == 0)
 	{
 		result = CFile::read(fileName, __MODULE__, flags);
@@ -279,7 +279,7 @@ std::string eAVControl::getPreferredModes(int flags) const
 	result = std::regex_replace(result, std::regex("\n+"), " ");
 #else
 
-	if(result.empty())
+	if (result.empty())
 	{
 		if (access(fileName2, R_OK) == 0)
 		{
@@ -304,7 +304,7 @@ std::string eAVControl::readAvailableModes(int flags) const
 #ifdef DREAMNEXTGEN
 	return std::string("480i60hz 576i50hz 480p60hz 576p50hz 720p60hz 1080i60hz 1080p60hz 720p50hz 1080i50hz 1080p30hz 1080p50hz 1080p25hz 1080p24hz 2160p30hz 2160p25hz 2160p24hz smpte24hz smpte25hz smpte30hz smpte50hz smpte60hz 2160p50hz 2160p60hz");
 #else
-	const char *fileName ="/proc/stb/video/videomode_choices";
+	const char *fileName = "/proc/stb/video/videomode_choices";
 	std::string result = "";
 	if (access(fileName, R_OK) == 0)
 	{
@@ -317,11 +317,50 @@ std::string eAVControl::readAvailableModes(int flags) const
 	}
 	return result;
 #endif
-
 }
 
 /// @brief get the available video modes
 std::string eAVControl::getAvailableModes(int flags) const
 {
 	return m_videomode_choices;
+}
+
+/// @brief set the aspect ratio
+void eAVControl::setAspectRatio(int ratio, int flags) const
+{
+	/*
+	0-4:3 Letterbox
+	1-4:3 PanScan
+	2-16:9
+	3-16:9 forced ("panscan")
+	4-16:10 Letterbox
+	5-16:10 PanScan
+	6-16:9 forced ("letterbox")
+	*/
+	const char *aspect[] = {"4:3", "4:3", "any", "16:9", "16:10", "16:10", "16:9"};
+	const char *policy[] = {"letterbox", "panscan", "bestfit", "panscan", "letterbox", "panscan", "letterbox"};
+
+	if (ratio < 0 || ratio > 7)
+	{
+		eDebug("[%s] %s: invalid value %d", __MODULE__, "setAspectRatio", ratio);
+		return;
+	}
+
+	std::string newAspect = aspect[ratio];
+	std::string newPolicy = policy[ratio];
+
+#ifdef DREAMNEXTGEN
+	CFile::writeInt("/sys/class/video/screen_mode", newAspect, __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/aspect", newAspect);
+#else
+	CFile::writeInt("/proc/stb/video/aspect", ratio, __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/aspect", newAspect);
+
+	CFile::writeStr("/proc/stb/video/policy", newPolicy, __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/policy", newAspect);
+
+#endif
 }
