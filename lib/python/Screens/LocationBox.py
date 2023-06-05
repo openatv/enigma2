@@ -176,8 +176,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		return "%s(%s)" % (type(self), self.text)
 
 	def layoutFinished(self):
-		self["filelist"].instance.enableAutoNavigation(False)  # Override listbox navigation.
-		self["bookmarklist"].instance.enableAutoNavigation(False)  # Override listbox navigation.
+		self["filelist"].enableAutoNavigation(False)  # Override listbox navigation.
+		self["bookmarklist"].enableAutoNavigation(False)  # Override listbox navigation.
 		if self.bookmarksList:
 			self.switchToBookmarkList()
 			directory = self["filelist"].getCurrentDirectory()
