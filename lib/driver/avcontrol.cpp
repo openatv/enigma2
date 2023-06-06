@@ -393,7 +393,7 @@ void eAVControl::enableVideoOutput(bool active, int flags)
 
 	m_video_output_active = active;
 
-	int mode = active ? 0 : m_b_has_scartswitch = 1 : 2;
+	int mode = active ? 0 : (m_b_has_scartswitch ? 1 : 2);
 
 	CFile::writeStr("/proc/stb/avs/0/input", input[mode], __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
