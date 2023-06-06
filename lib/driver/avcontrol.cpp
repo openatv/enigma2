@@ -419,8 +419,23 @@ bool eAVControl::checkScartSwitch(int flags) const
 }
 
 /// @brief get the scart switch info
-/// @return 
+/// @return
 bool eAVControl::hasScartSwitch() const
 {
 	return m_b_has_scartswitch;
+}
+
+/// @brief sets the color format
+/// @param newFormat (cvbs, rgb, svideo, yuv)
+/// @param flags
+void eAVControl::setColorFormat(const std::string &newFormat, int flags) const
+{
+
+	if (access("/proc/stb/avs/0/colorformat", W_OK))
+		return;
+
+	CFile::writeStr("/proc/stb/avs/0/colorformat", newFormat, __MODULE__, flags);
+
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setColorFormat/policy", newFormat.c_str());
 }

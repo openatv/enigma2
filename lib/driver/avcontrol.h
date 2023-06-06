@@ -31,6 +31,8 @@ public:
 	bool isVideoOutputActive() const;
 
 	void setAspectRatio(int ratio, int flags = 0) const;
+	void setColorFormat(const std::string &newFormat, int flags) const;
+
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	bool setHDMIInFull(int flags = 0) const;
 	bool setHDMIInPiP(int flags = 0) const;
