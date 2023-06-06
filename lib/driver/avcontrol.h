@@ -30,7 +30,7 @@ public:
 	std::string getAvailableModes() const;
 	bool isVideoOutputActive() const;
 
-	void setAspectRatio(int ratio, int flags = 0) const;
+	void setAspectRatio(int ratio, bool setPolicy = true, int flags = 0) const;
 	void setColorFormat(const std::string &newFormat, int flags) const;
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;

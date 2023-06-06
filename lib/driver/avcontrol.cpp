@@ -342,7 +342,7 @@ std::string eAVControl::getAvailableModes() const
 /// @brief set the aspect ratio
 /// @param ratio
 /// @param flags
-void eAVControl::setAspectRatio(int ratio, int flags) const
+void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
 {
 	/*
 	0-4:3 Letterbox
@@ -372,11 +372,14 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 #else
 	CFile::writeInt("/proc/stb/video/aspect", ratio, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/aspect", newAspect);
+		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/aspect", newAspect.c_str());
+
+	if (!setPolicy)
+		return;
 
 	CFile::writeStr("/proc/stb/video/policy", newPolicy, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/policy", newAspect);
+		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/policy", newAspect.c_str());
 
 #endif
 }
