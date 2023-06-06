@@ -41,16 +41,16 @@
 	</map>
 
 	<map context="InfobarChannelSelection">
-		<key id="KEY_LEFT" mapto="zapUp" flags="b" />
-		<key id="KEY_RIGHT" mapto="zapDown" flags="b" />
+		<key id="KEY_LEFT" mapto="historyBack" flags="b" />
+		<key id="KEY_RIGHT" mapto="historyNext" flags="b" />
 		<key id="KEY_UP" mapto="zapDown" flags="mr" />
 		<key id="KEY_DOWN" mapto="zapUp" flags="mr" />
 		<key id="KEY_OK" mapto="openServiceList" flags="mr" />
-		<key id="KEY_PREVIOUS" mapto="zapUp" flags="mr" />
-		<key id="KEY_NEXT" mapto="zapDown" flags="mr" />
-		<key id="KEY_BACK" mapto="zapUp" flags="b" />
-		<key id="KEY_FORWARD" mapto="zapDown" flags="mr" />
-		<key id="KEY_ARCHIVE" mapto="zapUp" flags="b" />
+		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
+		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
+		<key id="KEY_BACK" mapto="historyBack" flags="b" />
+		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" />
+		<key id="KEY_ARCHIVE" mapto="historyBack" flags="b" />
 		<key id="KEY_CHANNELUP" mapto="openServiceList" flags="b" />
 		<key id="KEY_CHANNELDOWN" mapto="openServiceList" flags="b" />
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
