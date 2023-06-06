@@ -125,6 +125,21 @@ to generate HTML."""
 		except AttributeError:
 			return
 
+	def setVisible(self, visble):
+		if visble:
+			self.show()
+		else:
+			self.hide()
+
+	def getVisible(self):
+		try:
+			instance = self.master.master.instance
+			return instance.isVisible()
+		except AttributeError:
+			return False
+
+	visible = property(getVisible, setVisible)
+
 	def goTop(self):
 		try:
 			instance = self.master.master.instance
