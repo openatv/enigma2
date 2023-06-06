@@ -82,12 +82,20 @@ scopeLCDSkin = defaultPaths[SCOPE_LCDSKIN][0]
 scopeFonts = defaultPaths[SCOPE_FONTS][0]
 scopePlugins = defaultPaths[SCOPE_PLUGINS][0]
 
+cachedSkinFilenames = {}  # Dictionary of skin filenames already resolved.
 
 def InitDefaultPaths():
 	resolveFilename(SCOPE_CONFIG)
 
 
 def resolveFilename(scope, base="", path_prefix=None):
+	cached_filename_key = ""
+	if scope == SCOPE_GUISKIN:
+		cached_filename_key = str(path_prefix) + ":" + str(base)
+		cached_filename = cachedSkinFilenames.get(cached_filename_key)
+		if cached_filename is not None:
+			return cached_filename
+
 	if str(base).startswith("~%s" % sep):  # You can only use the ~/ if we have a prefix directory.
 		if path_prefix:
 			base = pathjoin(path_prefix, base[2:])
@@ -216,6 +224,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 		path = path[len(plugins) + 1:]
 	if suffix is not None:  # If a suffix was supplier restore it.
 		path = "%s:%s" % (path, suffix)
+	if scope == SCOPE_GUISKIN:
+		cachedSkinFilenames[cached_filename_key] = path
 	return path
 
 
