@@ -10,6 +10,7 @@
 #include <lib/base/init_num.h>
 #include <lib/base/eerror.h>
 #include <lib/base/ebase.h>
+#include <lib/base/modelinformation.h>
 #include <lib/driver/avcontrol.h>
 
 const char *__MODULE__ = "eAVControl"; // NOSONAR
@@ -34,6 +35,11 @@ eAVControl::eAVControl()
 	m_b_has_proc_videomode_50 = (stat(proc_videomode_50, &buffer) == 0);
 	m_b_has_proc_videomode_60 = (stat(proc_videomode_60, &buffer) == 0);
 	m_videomode_choices = readAvailableModes();
+	m_video_output_active = false;
+
+	eModelInformation &modelinformation = eModelInformation::getInstance();
+	m_b_has_scartswitch = modelinformation.getValue("scartswitch") == "True";
+
 }
 
 /// @brief Get video aspect
@@ -237,6 +243,7 @@ bool eAVControl::setHDMIInFull(int flags) const
 }
 
 /// @brief disable HDMIIn / used in StartEnigma.py
+/// @param flags 
 void eAVControl::disableHDMIIn(int flags) const
 {
 	if (!m_b_has_proc_hdmi_rx_monitor)
@@ -252,6 +259,8 @@ void eAVControl::disableHDMIIn(int flags) const
 }
 
 /// @brief read the preferred video modes
+/// @param flags 
+/// @return 
 std::string eAVControl::getPreferredModes(int flags) const
 {
 
@@ -292,8 +301,9 @@ std::string eAVControl::getPreferredModes(int flags) const
 	return result;
 }
 
-/// @brief read the available video modes
-/// It's for internal use only because it will be static.
+/// @brief read the available video modes It's for internal use only because it will be static.
+/// @param flags 
+/// @return 
 std::string eAVControl::readAvailableModes(int flags) const
 {
 
@@ -318,12 +328,15 @@ std::string eAVControl::readAvailableModes(int flags) const
 }
 
 /// @brief get the available video modes
+/// @return 
 std::string eAVControl::getAvailableModes() const
 {
 	return m_videomode_choices;
 }
 
 /// @brief set the aspect ratio
+/// @param ratio 
+/// @param flags 
 void eAVControl::setAspectRatio(int ratio, int flags) const
 {
 	/*
@@ -361,4 +374,28 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/policy", newAspect);
 
 #endif
+}
+
+/// @brief enable video output depending if scart is available
+/// @param active 
+/// @param flags 
+void eAVControl::enableVideoOutput(bool active, int flags)
+{
+	const char *input[] = {"encoder", "scart", "aux"};
+
+	m_video_output_active = active;
+
+	int mode = active ? 0 : m_b_has_scartswitch = 1 : 2;
+
+	CFile::writeStr("/proc/stb/avs/0/input", input[mode] , __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "enableVideoOut", input[mode]);
+
+}
+
+/// @brief get video output active state
+/// @return true/false
+bool eAVControl::isVideoOutputActive() const
+{
+	return m_video_output_active;
 }

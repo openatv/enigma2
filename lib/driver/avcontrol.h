@@ -28,12 +28,14 @@ public:
 	std::string getVideoMode(const std::string &defaultVal = "", int flags = 0) const;
 	std::string getPreferredModes(int flags = 0) const;
 	std::string getAvailableModes() const;
+	bool isVideoOutputActive() const;
 
 	void setAspectRatio(int ratio, int flags = 0) const;
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	bool setHDMIInFull(int flags = 0) const;
 	bool setHDMIInPiP(int flags = 0) const;
 	void disableHDMIIn(int flags = 0) const;
+	void enableVideoOutput(bool active, int flags = 0);
 
 	bool hasProcAspect() const { return m_b_has_proc_aspect; }
 	bool hasProcHDMIRXMonitor() const { return m_b_has_proc_hdmi_rx_monitor; }
@@ -57,6 +59,8 @@ private:
 	bool m_b_has_proc_hdmi_rx_monitor;
 	bool m_b_has_proc_videomode_50;
 	bool m_b_has_proc_videomode_60;
+	bool m_video_output_active;
+	bool m_b_has_scartswitch;
 
 	std::string readAvailableModes(int flags = 0) const;
 };
