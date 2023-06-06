@@ -79,7 +79,7 @@ class ImageBackup(Screen):
 		self.callLater(self.startit)
 
 	def layoutFinished(self):
-		self["config"].instance.enableAutoNavigation(False)
+		self["config"].enableAutoNavigation(False)
 		self.setTitle(self.title)
 
 	def startit(self):

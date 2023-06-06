@@ -36,6 +36,10 @@ class MenuList(GUIComponent):
 		if self.instance:
 			self.instance.setSelectionEnable(enabled)
 
+	def enableAutoNavigation(self, enabled):
+		if self.instance:
+			self.instance.enableAutoNavigation(enabled)
+
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
 

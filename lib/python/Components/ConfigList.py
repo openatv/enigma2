@@ -107,6 +107,10 @@ class ConfigList(GUIComponent):
 		if self.instance:
 			self.instance.setSelectionEnable(enabled)
 
+	def enableAutoNavigation(self, enabled):
+		if self.instance:
+			self.instance.enableAutoNavigation(enabled)
+
 	def getList(self):
 		return self.__list
 
@@ -271,7 +275,7 @@ class ConfigListScreen:
 			callback()
 
 	def noNativeKeys(self):
-		self["config"].instance.enableAutoNavigation(False)
+		self["config"].enableAutoNavigation(False)
 
 	def handleInputHelpers(self):
 		currConfig = self["config"].getCurrent()

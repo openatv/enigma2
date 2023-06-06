@@ -102,7 +102,7 @@ class MultiBootManager(Screen, HelpableScreen):
 		self.callLater(self.getImagesList)
 
 	def layoutFinished(self):
-		self["slotlist"].instance.enableAutoNavigation(False)
+		self["slotlist"].enableAutoNavigation(False)
 
 	def getImagesList(self):
 		MultiBoot.getSlotImageList(self.getSlotImageListCallback)
