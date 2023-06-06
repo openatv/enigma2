@@ -41,6 +41,7 @@ public:
 	bool hasProcHDMIRXMonitor() const { return m_b_has_proc_hdmi_rx_monitor; }
 	bool hasProcVideoMode50() const { return m_b_has_proc_videomode_50; }
 	bool hasProcVideoMode60() const { return m_b_has_proc_videomode_60; }
+	bool hasScartSwitch() const;
 
 	enum
 	{
@@ -63,6 +64,7 @@ private:
 	bool m_b_has_scartswitch;
 
 	std::string readAvailableModes(int flags = 0) const;
+	bool checkScartSwitch(int flags = 0) const;
 };
 
 #endif

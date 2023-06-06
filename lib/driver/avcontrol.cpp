@@ -38,8 +38,13 @@ eAVControl::eAVControl()
 	m_video_output_active = false;
 
 	eModelInformation &modelinformation = eModelInformation::getInstance();
-	m_b_has_scartswitch = modelinformation.getValue("scartswitch") == "True";
-
+	m_b_has_scartswitch = modelinformation.getValue("scart") == "True";
+	if (m_b_has_scartswitch)
+	{
+		m_b_has_scartswitch = modelinformation.getValue("noscartswitch") != "True";
+		if (m_b_has_scartswitch)
+			m_b_has_scartswitch = checkScartSwitch();
+	}
 }
 
 /// @brief Get video aspect
@@ -243,7 +248,7 @@ bool eAVControl::setHDMIInFull(int flags) const
 }
 
 /// @brief disable HDMIIn / used in StartEnigma.py
-/// @param flags 
+/// @param flags
 void eAVControl::disableHDMIIn(int flags) const
 {
 	if (!m_b_has_proc_hdmi_rx_monitor)
@@ -259,8 +264,8 @@ void eAVControl::disableHDMIIn(int flags) const
 }
 
 /// @brief read the preferred video modes
-/// @param flags 
-/// @return 
+/// @param flags
+/// @return
 std::string eAVControl::getPreferredModes(int flags) const
 {
 
@@ -302,8 +307,8 @@ std::string eAVControl::getPreferredModes(int flags) const
 }
 
 /// @brief read the available video modes It's for internal use only because it will be static.
-/// @param flags 
-/// @return 
+/// @param flags
+/// @return
 std::string eAVControl::readAvailableModes(int flags) const
 {
 
@@ -328,15 +333,15 @@ std::string eAVControl::readAvailableModes(int flags) const
 }
 
 /// @brief get the available video modes
-/// @return 
+/// @return
 std::string eAVControl::getAvailableModes() const
 {
 	return m_videomode_choices;
 }
 
 /// @brief set the aspect ratio
-/// @param ratio 
-/// @param flags 
+/// @param ratio
+/// @param flags
 void eAVControl::setAspectRatio(int ratio, int flags) const
 {
 	/*
@@ -377,8 +382,8 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 }
 
 /// @brief enable video output depending if scart is available
-/// @param active 
-/// @param flags 
+/// @param active
+/// @param flags
 void eAVControl::enableVideoOutput(bool active, int flags)
 {
 	const char *input[] = {"encoder", "scart", "aux"};
@@ -387,10 +392,9 @@ void eAVControl::enableVideoOutput(bool active, int flags)
 
 	int mode = active ? 0 : m_b_has_scartswitch = 1 : 2;
 
-	CFile::writeStr("/proc/stb/avs/0/input", input[mode] , __MODULE__, flags);
+	CFile::writeStr("/proc/stb/avs/0/input", input[mode], __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "enableVideoOut", input[mode]);
-
 }
 
 /// @brief get video output active state
@@ -398,4 +402,25 @@ void eAVControl::enableVideoOutput(bool active, int flags)
 bool eAVControl::isVideoOutputActive() const
 {
 	return m_video_output_active;
+}
+
+/// @brief read input choices and check for scart / it's for internal use only
+/// @param flags
+/// @return
+bool eAVControl::checkScartSwitch(int flags) const
+{
+	if (m_b_has_scartswitch)
+	{
+		std::string check = CFile::read("/proc/stb/avs/0/input_choices", __MODULE__, flags);
+		return !!strstr(check.c_str(), "scart");
+	}
+	else
+		return false;
+}
+
+/// @brief get the scart switch info
+/// @return 
+bool eAVControl::hasScartSwitch() const
+{
+	return m_b_has_scartswitch;
 }
