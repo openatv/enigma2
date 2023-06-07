@@ -44,6 +44,7 @@ public:
 	bool hasProcVideoMode50() const { return m_b_has_proc_videomode_50; }
 	bool hasProcVideoMode60() const { return m_b_has_proc_videomode_60; }
 	bool hasScartSwitch() const;
+	bool has24hz() const { return m_b_has_proc_videomode_24; }
 
 	enum
 	{
@@ -62,6 +63,7 @@ private:
 	bool m_b_has_proc_hdmi_rx_monitor;
 	bool m_b_has_proc_videomode_50;
 	bool m_b_has_proc_videomode_60;
+	bool m_b_has_proc_videomode_24;
 	bool m_video_output_active;
 	bool m_b_has_scartswitch;
 

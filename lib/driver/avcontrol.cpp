@@ -26,6 +26,7 @@ const char *proc_videoaspect = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
 #endif
 const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz"; // NOSONAR
 const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz"; // NOSONAR
+const char *proc_videomode_24 = "/proc/stb/video/videomode_24hz"; // NOSONAR
 
 eAVControl::eAVControl()
 {
@@ -34,6 +35,11 @@ eAVControl::eAVControl()
 	m_b_has_proc_hdmi_rx_monitor = (stat(proc_hdmi_rx_monitor, &buffer) == 0);
 	m_b_has_proc_videomode_50 = (stat(proc_videomode_50, &buffer) == 0);
 	m_b_has_proc_videomode_60 = (stat(proc_videomode_60, &buffer) == 0);
+#ifdef DREAMNEXTGEN
+	m_b_has_proc_videomode_24 = true;
+#else
+	m_b_has_proc_videomode_24 = (access(proc_videomode_24, R_OK) == 0);
+#endif
 	m_videomode_choices = readAvailableModes();
 	m_video_output_active = false;
 
