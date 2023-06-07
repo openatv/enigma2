@@ -104,10 +104,10 @@ to generate HTML."""
 	def count(self):
 		return len(self.listData)
 
-	def enableAutoNavigation(self, value):
+	def enableAutoNavigation(self, enabled):
 		try:
 			instance = self.master.master.instance
-			instance.enableAutoNavigation(value)
+			instance.enableAutoNavigation(enabled)
 		except AttributeError:
 			return
 
@@ -124,6 +124,21 @@ to generate HTML."""
 			instance.hide()
 		except AttributeError:
 			return
+
+	def setVisible(self, visble):
+		if visble:
+			self.show()
+		else:
+			self.hide()
+
+	def getVisible(self):
+		try:
+			instance = self.master.master.instance
+			return instance.isVisible()
+		except AttributeError:
+			return False
+
+	visible = property(getVisible, setVisible)
 
 	def goTop(self):
 		try:

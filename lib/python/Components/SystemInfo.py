@@ -4,7 +4,7 @@ from os import listdir, readlink
 from os.path import exists, isfile, join as pathjoin, islink
 from subprocess import PIPE, Popen
 
-from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl
+from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl, eDBoxLCD
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, pathExists
 from Tools.MultiBoot import MultiBoot
@@ -432,10 +432,10 @@ BoxInfo.setItem("StandbyPowerLed", fileExists("/proc/stb/power/standbyled"))
 BoxInfo.setItem("STi", SOC_FAMILY.startswith("sti"))
 BoxInfo.setItem("SuspendPowerLed", fileExists("/proc/stb/power/suspendled"))
 BoxInfo.setItem("USETunersetup", BoxInfo.getItem("ForceLNBPowerChanged") or BoxInfo.getItem("ForceToneBurstChanged"))
-BoxInfo.setItem("VFD_scroll_repeats", fileCheck("/proc/stb/lcd/scroll_repeats"))
-BoxInfo.setItem("VFD_scroll_delay", fileCheck("/proc/stb/lcd/scroll_delay"))
-BoxInfo.setItem("VFD_initial_scroll_delay", fileCheck("/proc/stb/lcd/initial_scroll_delay"))
-BoxInfo.setItem("VFD_final_scroll_delay", fileCheck("/proc/stb/lcd/final_scroll_delay"))
+BoxInfo.setItem("VFD_scroll_repeats", eDBoxLCD.getInstance().get_VFD_scroll_repeats())
+BoxInfo.setItem("VFD_scroll_delay", eDBoxLCD.getInstance().get_VFD_scroll_delay())
+BoxInfo.setItem("VFD_initial_scroll_delay", eDBoxLCD.getInstance().get_VFD_initial_scroll_delay())
+BoxInfo.setItem("VFD_final_scroll_delay", eDBoxLCD.getInstance().get_VFD_final_scroll_delay())
 BoxInfo.setItem("VideoDestinationConfigurable", fileExists("/proc/stb/vmpeg/0/dst_left"))
 BoxInfo.setItem("WakeOnLAN", fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol"))
 BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))

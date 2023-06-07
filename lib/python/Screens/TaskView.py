@@ -114,7 +114,7 @@ class TaskView(Screen, HelpableScreen, ConfigListScreen, InfoBarNotifications):
 		self.stateChanged()
 
 	def layoutFinished(self):
-		self["config"].instance.enableAutoNavigation(False)
+		self["config"].enableAutoNavigation(False)
 
 	def closed(self):
 		self.job.state_changed.remove(self.stateChanged)

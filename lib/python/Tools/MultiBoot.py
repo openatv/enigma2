@@ -190,6 +190,8 @@ class MultiBootClass():
 							bootSlots[slotCode]["cmdline"][bootCode] = line
 							if "ubi.mtd=" in line:
 								bootSlots[slotCode]["ubi"] = True
+							if "UUID=" in line:
+								bootSlots[slotCode]["uuid"] = True
 							if "rootsubdir" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
 								bootSlots[slotCode]["rootsubdir"] = self.getParam(line, "rootsubdir")
@@ -256,6 +258,7 @@ class MultiBootClass():
 					print("[MultiBoot]     Root device: '%s'." % bootSlots[slotCode].get("device", "Unknown"))
 					print("[MultiBoot]     Root directory: '%s'." % bootSlots[slotCode].get("rootsubdir", "Unknown"))
 					print("[MultiBoot]     UBI device: '%s'." % ("Yes" if bootSlots[slotCode].get("ubi", False) else "No"))
+					print("[MultiBoot]     UUID device: '%s'." % ("Yes" if bootSlots[slotCode].get("uuid", False) else "No"))
 				print("[MultiBoot] %d boot slots detected." % len(bootSlots))
 		return bootSlots, bootSlotsKeys
 
@@ -263,8 +266,10 @@ class MultiBootClass():
 		return line.replace("userdataroot", "rootuserdata").rsplit("%s=" % param, 1)[1].split(" ", 1)[0]
 
 	def getUUIDtoDevice(self, UUID):  # Returns None on failure.
-		lines = check_output(["/sbin/blkid"]).decode(encoding="UTF-8", errors="ignore").split("\n")
+		if UUID.startswith("UUID="):  # Remove the "UUID=" from startup files that have it.
+			UUID = UUID[5:]
 		targetUUID = "UUID=\"%s\"" % UUID
+		lines = check_output(["/sbin/blkid"]).decode(encoding="UTF-8", errors="ignore").split("\n")
 		for line in lines:
 			if targetUUID in line:
 				return line.split(":")[0].strip()
@@ -395,6 +400,7 @@ class MultiBootClass():
 					if modes and modes != [""]:
 						print("[MultiBoot]     Boot modes: '%s'." % "', '".join(modes))
 					print("[MultiBoot]     UBI device: '%s'." % ("Yes" if self.imageList[slotCode].get("ubi", False) else "No"))
+					print("[MultiBoot]     UUID device: '%s'." % ("Yes" if self.imageList[slotCode].get("uuid", False) else "No"))
 				print("[MultiBoot] %d boot slots detected." % len(self.imageList))
 			self.callback(self.imageList)
 
@@ -538,7 +544,7 @@ class MultiBootClass():
 			date = "00000000"
 		info["compiledate"] = date
 		lines = fileReadLines(pathjoin(path, "etc/issue"), source=MODULE_NAME)
-		if lines:
+		if lines and "vuplus" not in lines[0]:
 			data = lines[-2].strip()[:-6].split()
 			info["distro"] = " ".join(data[:-1])
 			info["displaydistro"] = {

@@ -298,6 +298,10 @@ class TimerListBase(GUIComponent):
 	def invalidate(self):
 		self.timerListWidget.invalidate()
 
+	def enableAutoNavigation(self, enabled):
+		if self.instance:
+			self.instance.enableAutoNavigation(enabled)
+
 
 # Widget item layout:
 #
@@ -573,7 +577,7 @@ class TimerOverviewBase(Screen, HelpableScreen):
 		self.selectionChanged()
 
 	def layoutFinished(self):
-		self["timerlist"].instance.enableAutoNavigation(False)
+		self["timerlist"].enableAutoNavigation(False)
 		self.selectionChanged()
 
 	def selectionChanged(self):
@@ -858,27 +862,31 @@ class RecordTimerOverview(TimerOverviewBase):
 			timerList.sort(key=lambda x: x[0].begin)
 		self["timerlist"].setList(timerList)
 
+	def getEventDescription(self, timer):
+		description = timer.description
+		event = eEPGCache.getInstance().lookupEventId(timer.service_ref.ref, timer.eit) if timer.eit else None
+		if event:
+			self["Event"].newEvent(event)
+			#
+			# This is not in openATV but could be helpful to update the timer description with the actual recording details!
+			#
+			# shortDescription = event.getShortDescription()
+			# if shortDescription and description != shortDescription:
+			# 	if description and shortDescription:
+			# 		description = "%s %s\n\n%s %s" % (_("Timer:"), description, _("EPG:"), shortDescription)
+			# 	elif shortDescription:
+			# 		description = shortDescription
+			# 		timer.description = shortDescription
+			# extendDescription = event.getExtendedDescription()
+			# if extendDescription and description != extendDescription:
+			# 	description = "%s\n%s" % (description, extendDescription) if description else extendDescription
+		return description
+
 	def selectionChanged(self):
 		timer = self["timerlist"].getCurrent()
 		if timer:
 			self["Service"].newService(timer.service_ref.ref)
-			description = timer.description
-			event = eEPGCache.getInstance().lookupEventId(timer.service_ref.ref, timer.eit) if timer.eit else None
-			if event:
-				self["Event"].newEvent(event)
-				#
-				# This is not in openATV but could be helpful to update the timer description with the actual recording details!
-				#
-				# shortDescription = event.getShortDescription()
-				# if shortDescription and description != shortDescription:
-				# 	if description and shortDescription:
-				# 		description = "%s %s\n\n%s %s" % (_("Timer:"), description, _("EPG:"), shortDescription)
-				# 	elif shortDescription:
-				# 		description = shortDescription
-				# 		timer.description = shortDescription
-				# extendDescription = event.getExtendedDescription()
-				# if extendDescription and description != extendDescription:
-				# 	description = "%s\n%s" % (description, extendDescription) if description else extendDescription
+			description = self.getEventDescription(timer)
 			self["description"].setText(description)
 			self["key_info"].setText(_("INFO"))
 			self["editActions"].setEnabled(True)
@@ -1436,10 +1444,7 @@ class RecordTimerEdit(Setup):
 		# self.timerEndTime = ConfigClock(default=self.timer.end)
 		self.timerEndTime = ConfigClock(default=self.timer.eventEnd)
 		self.timerMarginAfter = ConfigSelection(default=self.timer.marginAfter // 60, choices=marginChoices)
-		try:  # No current service available?  (FIXME: Some service-chooser needed here!)
-			serviceName = self.timer.service_ref.getServiceName()
-		except Exception:
-			serviceName = _("N/A")
+		serviceName = self.getServiceName(self.timer.service_ref)
 		self.timerService = ConfigSelection([(serviceName, serviceName)])
 		self.timerServiceReference = self.timer.service_ref
 		if self.timer.record_ecm and self.timer.descramble:
@@ -1453,8 +1458,7 @@ class RecordTimerEdit(Setup):
 			("descrambled+ecm", _("Unscramble and record ECM")),
 			("scrambled+ecm", _("Don't unscramble, record ECM"))
 		])
-		default = self.timer.dirname or defaultMoviePath()
-		locations = config.movielist.videodirs.value
+		default, locations = self.getLocationInfo()
 		if default not in locations:
 			locations.append(default)
 		self.timerLocation = ConfigSelection(default=default, choices=locations)
@@ -1516,34 +1520,11 @@ class RecordTimerEdit(Setup):
 		if current == self.timerLocation:
 			self.getLocation()
 		elif current == self.timerService:
-			from Screens.ChannelSelection import SimpleChannelSelection  # This must be here to avoid a boot loop!
-			self.session.openWithCallback(self.channelCallback, SimpleChannelSelection, _("Select the channel from which to record:"), currentBouquet=True)
+			self.getChannels()
 		elif current == self.timerTags:
-			self.session.openWithCallback(self.tagsCallback, TagEditor, tags=self.tags)
+			self.getTags()
 		else:
 			Setup.keySelect(self)
-
-	def getLocation(self):
-		self.session.openWithCallback(self.getLocationCallback, MovieLocationBox, _("Select the location in which to store the recording:"), self.timerLocation.value, minFree=100)  # We require at least 100MB free space.
-
-	def getLocationCallback(self, result):
-		if result:
-			if config.movielist.videodirs.value != self.timerLocation.choices:
-				self.timerLocation.setChoices(config.movielist.videodirs.value, default=result)
-			self.timerLocation.value = result
-		self.getSpace()
-
-	def channelCallback(self, *result):
-		if result:
-			self.timerServiceReference = ServiceReference(result[0])
-			self.timerService.setCurrentText(self.timerServiceReference.getServiceName())
-			for callback in onRecordTimerChannelChange:
-				callback(self)
-
-	def tagsCallback(self, result):
-		if result is not None:
-			self.tags = result
-			self.timerTags.setChoices([not result and "None" or " ".join(result)])
 
 	def keyCancel(self):
 		if self["config"].isChanged():
@@ -1636,31 +1617,12 @@ class RecordTimerEdit(Setup):
 			"descrambled+ecm": True,
 			"scrambled+ecm": True,
 		}[self.timerRecordingType.value]
-		if self.timer.dirname or self.timerLocation.value != defaultMoviePath():
-			self.timer.dirname = self.timerLocation.value
-			config.movielist.last_timer_videodir.value = self.timer.dirname
-			config.movielist.last_timer_videodir.save()
+		self.saveMovieDir()
 		self.timer.tags = self.tags
 		self.timer.afterEvent = RECORDTIMER_AFTER_VALUES[self.timerAfterEvent.value]
-		if self.timer.eit is not None:
-			event = eEPGCache.getInstance().lookupEventId(self.timer.service_ref.ref, self.timer.eit)
-			if event:
-				parent = self.timer.service_ref.ref
-				linkServices = event.getNumOfLinkageServices()
-				if linkServices > 1:
-					subServiceList = []
-					ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-					selection = 0
-					for linkService in range(linkServices):
-						service = event.getLinkageService(parent, linkService)
-						if service.toString() == ref.toString():
-							selection = linkService
-						subServiceList.append((service.getName(), service))
-					self.session.openWithCallback(self.subServiceCallback, ChoiceBox, title=_("Please select the sub-service to record:"), list=subServiceList, selection=selection)
-					return
-				elif linkServices > 0:
-					self.timer.service_ref = ServiceReference(event.getLinkageService(parent, 0))
-		self.session.nav.RecordTimer.saveTimers()
+		if self.timer.eit is not None and not self.lookupEvent():
+			return
+		self.saveTimers()
 		for notifier in self.onSave:
 			notifier()
 		self.close((True, self.timer))
@@ -1672,10 +1634,97 @@ class RecordTimerEdit(Setup):
 	def subServiceCallback(self, subService):
 		if subService is not None:
 			self.timer.service_ref = ServiceReference(subService[1])
-		self.session.nav.RecordTimer.saveTimers()
+		self.saveTimers()
 		for notifier in self.onSave:
 			notifier()
 		self.close((True, self.timer))
+
+	# These functions have been separated from the main code so that they can be overridden in sub-classes.
+	#
+	def getTags(self):
+		def getTagsCallback(result):
+			if result is not None:
+				self.tags = result
+				self.timerTags.setChoices([not result and "None" or " ".join(result)])
+
+		self.session.openWithCallback(getTagsCallback, TagEditor, tags=self.tags)
+
+	def getChannels(self):
+		def getChannelsCallback(*result):
+			if result:
+				self.timerServiceReference = ServiceReference(result[0])
+				self.timerService.setCurrentText(self.timerServiceReference.getServiceName())
+				for callback in onRecordTimerChannelChange:
+					callback(self)
+
+		from Screens.ChannelSelection import SimpleChannelSelection  # This must be here to avoid a boot loop!
+		self.session.openWithCallback(getChannelsCallback, SimpleChannelSelection, _("Select the channel from which to record:"), currentBouquet=True)
+
+	def saveMovieDir(self):
+		if self.timer.dirname or self.timerLocation.value != defaultMoviePath():
+			self.timer.dirname = self.timerLocation.value
+			config.movielist.last_timer_videodir.value = self.timer.dirname
+			config.movielist.last_timer_videodir.save()
+
+	def lookupEvent(self):
+		event = eEPGCache.getInstance().lookupEventId(self.timer.service_ref.ref, self.timer.eit)
+		if event:
+			parent = self.timer.service_ref.ref
+			linkServices = event.getNumOfLinkageServices()
+			if linkServices > 1:
+				subServiceList = []
+				ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+				selection = 0
+				for linkService in range(linkServices):
+					service = event.getLinkageService(parent, linkService)
+					if service.toString() == ref.toString():
+						selection = linkService
+					subServiceList.append((service.getName(), service))
+				self.session.openWithCallback(self.subServiceCallback, ChoiceBox, title=_("Please select the sub-service to record:"), list=subServiceList, selection=selection)
+				return False
+			elif linkServices > 0:
+				self.timer.service_ref = ServiceReference(event.getLinkageService(parent, 0))
+		return True
+
+	def saveTimers(self):
+		self.session.nav.RecordTimer.saveTimers()
+
+	def getServiceName(self, service_ref):
+		try:  # No current service available?  (FIXME: Some service-chooser needed here!)
+			serviceName = service_ref.getServiceName()
+		except Exception:
+			serviceName = _("N/A")
+		return serviceName
+
+	def getLocationInfo(self):
+		default = self.timer.dirname or defaultMoviePath()
+		locations = config.movielist.videodirs.value
+		return (default, locations)
+
+	def getLocation(self):
+		def getLocationCallback(result):
+			if result:
+				if config.movielist.videodirs.value != self.timerLocation.choices:
+					self.timerLocation.setChoices(config.movielist.videodirs.value, default=result)
+				self.timerLocation.value = result
+			self.getSpace()
+
+		self.session.openWithCallback(getLocationCallback, MovieLocationBox, _("Select the location in which to store the recording:"), self.timerLocation.value, minFree=100)  # We require at least 100MB free space.
+
+	def getSpace(self):
+		try:
+			device = stat(self.timerLocation.value).st_dev
+			if device in DEFAULT_INHIBIT_DEVICES:
+				self.setFootnote(_("Warning: Recordings should not be stored on the Flash disk!"))
+			else:
+				status = statvfs(self.timerLocation.value)
+				total = status.f_blocks * status.f_bsize
+				free = status.f_bavail * status.f_bsize
+				self.setFootnote(_("Space total %s, used %s, free %s (%0.f%%).") % (scaleNumber(total), scaleNumber(total - free), scaleNumber(free), 100.0 * free / total))
+		except OSError as err:
+			self.setFootnote(_("Error %d: Unable to check space!  (%s)") % (err.errno, err.strerror))
+	#
+	# Do not rename the methods above as they are designed to be overwritten in sub-classes.
 
 
 class InstantRecordTimerEdit(RecordTimerEdit):

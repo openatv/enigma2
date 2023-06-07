@@ -198,9 +198,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="720,576"> 
 		<widget source="Title" render="Label" position="20,50" foregroundColor="#e5b243" size="670,120" font="FdLcD;90" halign="center" valign="top" noWrap="1" />
-		<widget source="parent.menu" render="Label" position="20,180" size="670,300" font="FdLcD;70" halign="center" valign="top" foregroundColor="#02c6ff" >
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="20,180" size="670,300" font="FdLcD;70" halign="center" valign="top" foregroundColor="#02c6ff"/>
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -322,9 +320,9 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="720,576"> 
-		<widget source="SetupTitle" render="Label" position="10,20" foregroundColor="#e5b243" size="670,220" font="FdLcD;70" halign="center" valign="center" />
-		<widget source="SetupEntry" render="Label" position="22,260" size="670,200" font="FdLcD;60" halign="center" valign="top" foregroundColor="#02c6ff" />
-		<widget source="SetupValue" render="Label" position="22,480" size="670,100" font="FdLcDLight;50" halign="center" valign="top" />
+		<widget source="Title" render="Label" position="10,20" foregroundColor="#e5b243" size="670,220" font="FdLcD;70" halign="center" valign="center" />
+		<widget source="entry" render="Label" position="22,260" size="670,200" font="FdLcD;60" halign="center" valign="top" foregroundColor="#02c6ff" />
+		<widget source="value" render="Label" position="22,480" size="670,100" font="FdLcDLight;50" halign="center" valign="top" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	
@@ -365,14 +363,6 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 
-	<screen name="VideoWizardSummary" position="0,0" size="720,576"> 
-		<widget source="text" render="Label" position="10,20" foregroundColor="#e5b243" size="670,120" font="FdLcD;70" halign="center" valign="center" />
-		<widget source="parent.list" render="Label" position="20,190" size="670,200" font="FdLcD;60" halign="center" valign="top" foregroundColor="#02c6ff">
-			<convert type="StringListSelection" />
-		</widget>
-		<panel name="SummaryClockPanel" />
-	</screen>
-	
 <!-- standby -->
 <!--"Analog Clock" -->
 	<screen name="StandbySummary" position="0,0" size="720,576">

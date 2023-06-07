@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-07 09:20+0000\n"
+"POT-Creation-Date: 2023-05-31 20:48+0200\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/he/>\n"
@@ -23,23 +23,6 @@ msgid ""
 "\n"
 "\n"
 "[User - bouquets (TV)]\n"
-msgstr ""
-
-#, fuzzy
-msgid ""
-"\n"
-"   Please press OK to start Kodi..."
-msgstr ".אנא לחץ אשר על מנת להמשיך"
-
-msgid ""
-"\n"
-"  WARNING: \n"
-"  There is not enough space to install Kodi!"
-msgstr ""
-
-msgid ""
-"\n"
-" Kodi not present. Proceed with install?"
 msgstr ""
 
 msgid ""
@@ -89,15 +72,6 @@ msgstr ""
 
 #, python-format
 msgid " (Partition %d)"
-msgstr ""
-
-msgid "(PiP)"
-msgstr ""
-
-msgid "(Radio)"
-msgstr ""
-
-msgid "(TV)"
 msgstr ""
 
 msgid " (current channel)"
@@ -895,10 +869,6 @@ msgid "%d Hours"
 msgstr ""
 
 #, python-format
-msgid "%d KB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -1185,6 +1155,10 @@ msgid "%s  (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
+msgid "%s  -  %s    (%s%d Min)"
+msgstr ""
+
+#, python-format
 msgid "%s %02d.%02d."
 msgstr ""
 
@@ -1225,11 +1199,6 @@ msgstr "%s (%s)\n"
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
-
-#
-#, fuzzy, python-format
-msgid "%s - %s (%s%d min)"
-msgstr "דקות %d"
 
 #
 #, fuzzy, python-format
@@ -1382,7 +1351,19 @@ msgstr ""
 msgid "(FTA Service)"
 msgstr "שירותים"
 
+msgid "(PiP)"
+msgstr ""
+
+msgid "(Pip)"
+msgstr ""
+
+msgid "(Radio)"
+msgstr ""
+
 msgid "(Show only reader:"
+msgstr ""
+
+msgid "(TV)"
 msgstr ""
 
 msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
@@ -1477,6 +1458,9 @@ msgid "1080i50"
 msgstr ""
 
 msgid "1080i50: 24p/50i/60i"
+msgstr ""
+
+msgid "1080i50Hz"
 msgstr ""
 
 msgid "1080p 24Hz"
@@ -1811,9 +1795,6 @@ msgstr "6"
 msgid "6 hours"
 msgstr ""
 
-msgid "60 minutes"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1851,6 +1832,9 @@ msgid "720p50"
 msgstr ""
 
 msgid "720p50: 24p/50p/60p"
+msgstr ""
+
+msgid "720p50Hz"
 msgstr ""
 
 msgid "8"
@@ -1892,6 +1876,9 @@ msgstr "<מיקום רשימת סרטים בפועל>"
 #
 msgid "<Default movie location>"
 msgstr "<מיקום רשימת סרטים ברירת מחדל>"
+
+msgid "<Flash expander inactive>"
+msgstr ""
 
 #
 msgid "<Last timer location>"
@@ -2098,6 +2085,17 @@ msgstr ""
 msgid "Abort"
 msgstr "חדל"
 
+msgid "Abort Alternatives Edit"
+msgstr "Abort Alternatives Edit"
+
+#
+msgid "Abort Bouquet Edit"
+msgstr "Abort Bouquet Edit"
+
+#
+msgid "Abort Favorites Edit"
+msgstr "Abort Favorites Edit"
+
 msgid "Aborted a pseudo recording.\n"
 msgstr ""
 
@@ -2148,6 +2146,9 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
+msgid "Activate Expander"
+msgstr ""
+
 msgid "Activate HbbTV (RED button)"
 msgstr ""
 
@@ -2172,6 +2173,9 @@ msgstr "הפעל הגדרות רשת"
 msgid "Activate the configured network settings."
 msgstr ""
 
+msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
 msgid "Activate time shift End"
 msgstr ""
 
@@ -2193,12 +2197,21 @@ msgstr "הגדרת מתאם"
 msgid "Add"
 msgstr "הוסף"
 
+msgid "Add Alternatives"
+msgstr "Add Alternatives"
+
 msgid "Add AutoTimer"
 msgstr ""
 
 #, fuzzy
 msgid "Add Bookmark"
 msgstr "Add Bookmark"
+
+msgid "Add Bouquet"
+msgstr "Add Bouquet"
+
+msgid "Add Bouquet To Parental Protection"
+msgstr ""
 
 msgid "Add Current"
 msgstr ""
@@ -2215,6 +2228,9 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
+msgid "Add Marker"
+msgstr "הוסף סמן"
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
@@ -2223,8 +2239,19 @@ msgstr ""
 msgid "Add RecordTimer"
 msgstr "הוסף טיימר"
 
+#
+msgid "Add Service To Bouquet"
+msgstr "הוסף את הערוץ לתיקית הערוצים"
+
+#
+msgid "Add Service To Favorites"
+msgstr "הוסף את הערוץ למועדפים"
+
 msgid "Add Timer"
 msgstr ""
+
+msgid "Add To Parental Protection"
+msgstr "הוסף לבקרת הורים"
 
 #
 #, fuzzy
@@ -2254,9 +2281,15 @@ msgstr ""
 msgid "Add a ZapTimer for next event"
 msgstr "move down to next entry"
 
+msgid "Add a bouquet"
+msgstr ""
+
 #
 msgid "Add a mark"
 msgstr "הוסף סמן"
+
+msgid "Add a marker"
+msgstr ""
 
 msgid "Add a new tag"
 msgstr ""
@@ -2322,6 +2355,9 @@ msgid "Add recording (indefinitely)"
 msgstr ""
 
 msgid "Add recording (stop after current event)"
+msgstr ""
+
+msgid "Add selected service to bouquet or alternative"
 msgstr ""
 
 #, fuzzy
@@ -2609,6 +2645,9 @@ msgstr "Add Alternatives"
 msgid "Alternative 2"
 msgstr "Add Alternatives"
 
+msgid "Alternative Edit"
+msgstr "Alternative Edit"
+
 msgid "Alternative numbering mode"
 msgstr ""
 
@@ -2664,6 +2703,9 @@ msgid "Android"
 msgstr ""
 
 msgid "Android Linux SE"
+msgstr ""
+
+msgid "Angle"
 msgstr ""
 
 msgid "Angola"
@@ -2965,9 +3007,6 @@ msgstr ""
 msgid "Auto Language Settings"
 msgstr ""
 
-msgid "Auto Modes Selected."
-msgstr ""
-
 msgid "Auto SCART switching"
 msgstr "Auto SCART switching"
 
@@ -3006,6 +3045,12 @@ msgstr ""
 #, fuzzy
 msgid "Auto standby"
 msgstr "המתנה"
+
+msgid "Auto video mode selected"
+msgstr ""
+
+msgid "Auto video mode selected for the TV."
+msgstr ""
 
 msgid "Auto(not available)"
 msgstr ""
@@ -3316,9 +3361,6 @@ msgstr ""
 msgid "Basic PID info"
 msgstr ""
 
-msgid "Basic settings"
-msgstr ""
-
 msgid "Basketball"
 msgstr ""
 
@@ -3405,10 +3447,16 @@ msgstr ""
 msgid "Black"
 msgstr ""
 
+msgid "Black Screen"
+msgstr ""
+
 msgid "Black screen"
 msgstr ""
 
 msgid "Black screen till locked"
+msgstr ""
+
+msgid "Blacklist"
 msgstr ""
 
 msgid "Blinking REC"
@@ -3495,7 +3543,19 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet Edit"
+msgstr "Bouquet Edit"
+
 msgid "Bouquet List"
+msgstr ""
+
+msgid "Bouquet Selector"
+msgstr ""
+
+msgid "Bouquet Selector Actions"
+msgstr ""
+
+msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
 #, fuzzy
@@ -3528,6 +3588,12 @@ msgid "Brightness (Normal)"
 msgstr ""
 
 msgid "Brightness (Standby)"
+msgstr ""
+
+msgid "Brightness Video"
+msgstr ""
+
+msgid "Brightness Video & OSD"
 msgstr ""
 
 msgid "British Indian Ocean Territory"
@@ -3618,6 +3684,12 @@ msgid "Button error timeout"
 msgstr ""
 
 msgid "ButtonSetup"
+msgstr ""
+
+msgid "By disk UUID"
+msgstr ""
+
+msgid "By disk label"
 msgstr ""
 
 msgid "By openATV Image Team"
@@ -3781,6 +3853,9 @@ msgstr ""
 
 #, python-format
 msgid "CPU / Core %d type"
+msgstr ""
+
+msgid "CPU Control"
 msgstr ""
 
 msgid "CPU architecture"
@@ -3960,6 +4035,9 @@ msgstr ""
 msgid "Cancel Task"
 msgstr ""
 
+msgid "Cancel and exit the context menu"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cancel any changed settings and exit"
@@ -4006,6 +4084,9 @@ msgstr "בחירת ערוץ"
 msgid "Cancel selection and exit"
 msgstr ""
 
+msgid "Cancel the bouquet selection"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -4023,6 +4104,9 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "בחירת ערוץ"
 
 msgid "Cancel the service selection"
+msgstr ""
+
+msgid "Cancel the service zap"
 msgstr ""
 
 msgid "Cancel the slot selection and exit"
@@ -4061,10 +4145,6 @@ msgstr ""
 msgid "Capacity"
 msgstr ""
 
-#
-msgid "Capacity: "
-msgstr ":נפח"
-
 msgid "Cape Verde"
 msgstr ""
 
@@ -4099,6 +4179,9 @@ msgid "Celsius"
 msgstr ""
 
 msgid "Center"
+msgstr ""
+
+msgid "Center DVB Subs On This Service"
 msgstr ""
 
 msgid "Centered"
@@ -4210,8 +4293,22 @@ msgstr ""
 msgid "Channel List"
 msgstr ""
 
+msgid "Channel List Context Menu"
+msgstr ""
+
+msgid "Channel List Context Menu Actions"
+msgstr ""
+
+msgid "Channel List Context Menu Navigation Actions"
+msgstr ""
+
 msgid "Channel List Menu"
 msgstr "תפריט רשימת הערוצים"
+
+#
+#, fuzzy
+msgid "Channel Selection"
+msgstr "בחירת ערוץ"
 
 #, fuzzy
 msgid "Channel Selection Settings"
@@ -4228,9 +4325,6 @@ msgid "Channel buttons invert"
 msgstr "הערוץ לא ברשימת השירותים"
 
 msgid "Channel down"
-msgstr ""
-
-msgid "Channel List Context Menu"
 msgstr ""
 
 msgid "Channel list cursor behavior"
@@ -4259,11 +4353,6 @@ msgstr ""
 
 msgid "Channel preview mode"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Channel Selection"
-msgstr "בחירת ערוץ"
 
 msgid "Channel selection configuration"
 msgstr ""
@@ -4327,9 +4416,6 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr ""
 
-msgid "Check the Internet connection"
-msgstr ""
-
 msgid "Check the Internet connection again"
 msgstr ""
 
@@ -4345,9 +4431,6 @@ msgstr ""
 #, fuzzy
 msgid "Checking file system..."
 msgstr "...בודק קבצי מערכת"
-
-msgid "Checking the Internet connection"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -4385,9 +4468,6 @@ msgstr ""
 
 #, python-format
 msgid "Choice where to put \"%s\""
-msgstr ""
-
-msgid "Choose Bouquet"
 msgstr ""
 
 msgid "Choose Tuner"
@@ -4439,6 +4519,9 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 msgid "Choose the style/order in which items are displayed in help windows."
+msgstr ""
+
+msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4523,7 +4606,7 @@ msgstr ""
 msgid "Clean up and remove all completed timers?"
 msgstr ""
 
-msgid "Cleaning Trashes"
+msgid "Cleaning Trashcan"
 msgstr ""
 
 msgid "Cleanup"
@@ -4658,6 +4741,12 @@ msgstr ""
 msgid "Color"
 msgstr "תבנית צבע"
 
+msgid "Color Bottom"
+msgstr ""
+
+msgid "Color Top"
+msgstr ""
+
 msgid "Color format"
 msgstr ""
 
@@ -4713,6 +4802,9 @@ msgstr "ממשק משותף"
 msgid "Common Interface Assignment"
 msgstr "הקצאת ממשק משותף"
 
+msgid "Common Interface Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "תקשורת"
@@ -4766,6 +4858,9 @@ msgstr ""
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
+msgid "Configure DNS (name servers)"
+msgstr ""
+
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr ""
 
@@ -4776,6 +4871,9 @@ msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr ""
 
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
+msgstr ""
+
+msgid "Configure front panel LEDs"
 msgstr ""
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info"
@@ -4811,10 +4909,13 @@ msgstr ""
 msgid "Configure interface"
 msgstr "הגדרת ממשק"
 
-msgid "Configure nameservers"
-msgstr "Configure nameservers"
-
 msgid "Configure on which devices the background delete option should be used."
+msgstr ""
+
+msgid ""
+"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
 msgstr ""
 
 msgid "Configure remote control type"
@@ -4824,6 +4925,12 @@ msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
 msgid "Configure the IP address."
+msgstr ""
+
+msgid ""
+"Configure the Internet connection by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
 msgstr ""
 
 #, fuzzy
@@ -4972,6 +5079,9 @@ msgstr ""
 msgid "Configure the netmask."
 msgstr ""
 
+msgid "Configure the network again"
+msgstr "הגדרת הרשת שלך שוב"
+
 msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr ""
 
@@ -5114,9 +5224,6 @@ msgstr ""
 msgid "Configure your internal LAN"
 msgstr "הגדרת הרשת הפנימית שלך"
 
-msgid "Configure your network again"
-msgstr "הגדרת הרשת שלך שוב"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr ""
 
@@ -5153,6 +5260,9 @@ msgstr "Could not connect to %s %s .NFI Image Feed Server:"
 #, fuzzy
 msgid "Connect to a wireless network"
 msgstr "התחבר לרשת אלחוטית"
+
+msgid "Connect to the Internet"
+msgstr ""
 
 msgid "Connected clients"
 msgstr ""
@@ -5210,6 +5320,9 @@ msgstr "המשך לנגן"
 msgid "Continue to run the task in the background"
 msgstr ""
 
+msgid "Continue with package download and installation"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr ""
 
@@ -5224,6 +5337,12 @@ msgstr ""
 
 msgid "Contrast"
 msgstr "ניגודיות"
+
+msgid "Contrast Video"
+msgstr ""
+
+msgid "Contrast Video & OSD"
+msgstr ""
 
 msgid "Control LED can be turned on or off here."
 msgstr ""
@@ -5262,6 +5381,9 @@ msgstr "עובד"
 msgid "Copy"
 msgstr ""
 
+msgid "Copy To Bouquets"
+msgstr "העתק לתיקית ערוצים"
+
 msgid "Copy all related files"
 msgstr ""
 
@@ -5291,6 +5413,9 @@ msgstr ""
 #, fuzzy
 msgid "Copying files"
 msgstr "...בודק קבצי מערכת"
+
+msgid "Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location."
+msgstr ""
 
 #, fuzzy
 msgid "Cornish"
@@ -5367,6 +5492,9 @@ msgstr "DVD-ISO צור "
 msgid "Create Directory"
 msgstr ""
 
+msgid "Create Expander"
+msgstr ""
+
 msgid "Create ISO"
 msgstr ""
 
@@ -5383,6 +5511,12 @@ msgid "Create directory"
 msgstr "צור תיקיה"
 
 msgid "Create separate radio user bouquet"
+msgstr ""
+
+msgid "Create swap"
+msgstr ""
+
+msgid "Create the flash expander in the selected device"
 msgstr ""
 
 #
@@ -5457,6 +5591,18 @@ msgstr "Current version:"
 msgid "Current CEC address"
 msgstr ""
 
+#, python-format
+msgid "Current CPU Frequency cores 0 and 1: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current CPU Frequency other cores: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current CPU cores 0 and 1 Voltage: %s V"
+msgstr ""
+
 msgid "Current Directory"
 msgstr ""
 
@@ -5464,6 +5610,10 @@ msgid "Current Event:"
 msgstr ""
 
 msgid "Current Status:"
+msgstr ""
+
+#, python-format
+msgid "Current Temperature (SoC): %s °C"
 msgstr ""
 
 msgid "Current crash log"
@@ -5852,6 +6002,12 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
+msgid "Deactivate Expander"
+msgstr ""
+
+msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
 msgid "Debug"
 msgstr ""
 
@@ -5910,10 +6066,6 @@ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the s
 msgstr ""
 
 #, fuzzy
-msgid "Default Modes Selected."
-msgstr "ברירת מחדל למיקום סרטים"
-
-#, fuzzy
 msgid "Default Services Scanner"
 msgstr "ברירת מחדל למיקום סרטים"
 
@@ -5947,6 +6099,12 @@ msgid "Default sort order for files in the left column."
 msgstr ""
 
 msgid "Default sort order for files in the right column."
+msgstr ""
+
+msgid "Default video mode selected"
+msgstr ""
+
+msgid "Default video mode selected for the TV."
 msgstr ""
 
 msgid "Default volume offset"
@@ -6066,10 +6224,11 @@ msgstr ""
 msgid "Delete Directory"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Delete EPG"
-msgstr "מחק"
+msgid "Delete EPG Cache"
+msgstr ""
+
+msgid "Delete Expander"
+msgstr ""
 
 msgid "Delete Image"
 msgstr ""
@@ -6162,6 +6321,12 @@ msgstr "delete saved play list"
 msgid "Delete the character to the left of text cursor"
 msgstr ""
 
+msgid "Delete the character to the left of the cursor"
+msgstr ""
+
+msgid "Delete the character under the cursor"
+msgstr ""
+
 msgid "Delete the character under the text cursor"
 msgstr ""
 
@@ -6179,6 +6344,9 @@ msgstr ""
 
 #, python-format
 msgid "Delete the directory/file '%s'?"
+msgstr ""
+
+msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
@@ -6397,6 +6565,9 @@ msgstr "השבת"
 msgid "Disable MiniTV"
 msgstr ""
 
+msgid "Disable Move Mode"
+msgstr "Disable Move Mode"
+
 #
 msgid "Disable Picture in Picture"
 msgstr "השבת תמונה בתוך תמונה"
@@ -6544,10 +6715,7 @@ msgstr ""
 msgid "Djibouti"
 msgstr "אודות"
 
-msgid "Center DVB Subs On This Service"
-msgstr ""
-
-msgid "Don't Center DVB Subs On This Service"
+msgid "Do another manual service scan?"
 msgstr ""
 
 #, fuzzy
@@ -6610,8 +6778,8 @@ msgid "Do you really want to exit?"
 msgstr "? האם ברצונך לצאת"
 
 msgid ""
-"Do you really want to initialize the device?\n"
-"All data on the disk will be lost!"
+"Do you really want to format the device in the Linux file system?\n"
+"All data on the device will be lost!"
 msgstr ""
 
 msgid "Do you really want to move to trashcan ?"
@@ -6648,6 +6816,9 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
+msgid "Do you want the upgrade guide?"
+msgstr ""
+
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
@@ -6668,6 +6839,9 @@ msgstr "האם ברצונך לצרוב את התוכן לדי.וי.די"
 msgid "Do you want to continue?"
 msgstr ""
 
+msgid "Do you want to deactivate this flash expander?"
+msgstr ""
+
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
@@ -6677,6 +6851,9 @@ msgid "Do you want to delete all the log files?"
 msgstr ""
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr ""
+
+msgid "Do you want to delete this flash expander directory?"
 msgstr ""
 
 msgid "Do you want to delete this log file?"
@@ -6732,6 +6909,9 @@ msgstr "? האם ברצונך לשחזר את ההגדרות"
 msgid "Do you want to resume this playback?"
 msgstr "?האם ברצונך להמשיך ולנגן את זה"
 
+msgid "Do you want to start a backup now?"
+msgstr ""
+
 msgid "Do you want to upgrade the package:\n"
 msgstr "?האם ברצונך לשדרג את החבילה\n"
 
@@ -6748,6 +6928,9 @@ msgid "Dominica"
 msgstr ""
 
 msgid "Dominican Republic"
+msgstr ""
+
+msgid "Don't Center DVB Subs On This Service"
 msgstr ""
 
 msgid "Don't add this recording"
@@ -6999,6 +7182,9 @@ msgstr ""
 msgid "Edit"
 msgstr "ערוך"
 
+msgid "Edit Alternatives"
+msgstr "Edit Alternatives"
+
 #, fuzzy
 msgid "Edit Mode Off"
 msgstr "ערוך כותרת"
@@ -7132,6 +7318,10 @@ msgstr "Enable 5V for active antenna"
 msgid "Enable BT Audio"
 msgstr "אפשר"
 
+#
+msgid "Enable Bouquet Edit"
+msgstr "Enable Bouquet Edit"
+
 msgid "Enable CIHelper for SLOT CI0"
 msgstr ""
 
@@ -7146,6 +7336,10 @@ msgstr ""
 
 msgid "Enable Fast Channel Change"
 msgstr ""
+
+#
+msgid "Enable Favorite Edit"
+msgstr "Enable Favorite Edit"
 
 msgid "Enable Focus Animation"
 msgstr ""
@@ -7164,11 +7358,18 @@ msgstr "אפשר"
 msgid "Enable InfoBar fade-out"
 msgstr ""
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr ""
 
 msgid "Enable MiniTV"
 msgstr ""
+
+#
+msgid "Enable Move Mode"
+msgstr "Enable Move Mode"
 
 msgid "Enable Netmed EPG"
 msgstr ""
@@ -7231,6 +7432,9 @@ msgid "Enable chapter support for video files"
 msgstr ""
 
 msgid "Enable command line function"
+msgstr ""
+
+msgid "Enable core dumps *"
 msgstr ""
 
 msgid "Enable cut file support for audio files"
@@ -7308,6 +7512,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr ""
 
@@ -7378,6 +7585,17 @@ msgstr ":קידוד"
 
 msgid "End"
 msgstr ""
+
+msgid "End Alternatives Edit"
+msgstr "End Alternatives Edit"
+
+#
+msgid "End Bouquet Edit"
+msgstr "End Bouquet Edit"
+
+#
+msgid "End Favorites Edit"
+msgstr "End Favorites Edit"
 
 #
 msgid "End time"
@@ -7503,6 +7721,9 @@ msgstr ""
 
 msgid "Enter pin code"
 msgstr ":הכנס קוד אבטחה"
+
+msgid "Enter text via an attached keyboard"
+msgstr ""
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
@@ -7767,6 +7988,12 @@ msgstr "Error: Removing directory '%s' failed! (Maybe the directory is not empty
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr ""
 
+msgid "Error: The copy was unsuccessful!"
+msgstr ""
+
+msgid "Error: The delete was unsuccessful!"
+msgstr ""
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
 
@@ -7803,6 +8030,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: You can't run '%s' on a directory!"
+msgstr ""
+
+msgid "Error: mount not successful!"
 msgstr ""
 
 msgid "Esperanto"
@@ -8018,9 +8248,6 @@ msgstr ""
 msgid "Extended"
 msgstr ""
 
-msgid "Extended GUI"
-msgstr ""
-
 msgid "Extended Networksetup Plugin..."
 msgstr "...פלאגין הגדרת רשת נרחב"
 
@@ -8220,6 +8447,9 @@ msgstr ""
 msgid "Fast forward speeds"
 msgstr ""
 
+msgid "Favorite Edit"
+msgstr "Favorite Edit"
+
 msgid "Favorites"
 msgstr ""
 
@@ -8385,11 +8615,17 @@ msgstr ""
 msgid "Finance"
 msgstr "בטל"
 
+msgid "Find Currently Playing Service"
+msgstr ""
+
 #, python-format
 msgid "Find out more at %s"
 msgstr ""
 
 msgid "Find similar events in the EPG"
+msgstr ""
+
+msgid "Find the service currently playing"
 msgstr ""
 
 msgid "Finding available log files, please wait..."
@@ -8428,6 +8664,12 @@ msgid "Fixed"
 msgstr ""
 
 msgid "Fixed X11 font (SD)"
+msgstr ""
+
+msgid "Flash Expander"
+msgstr ""
+
+msgid "Flash Expander Actions"
 msgstr ""
 
 #, fuzzy
@@ -8474,6 +8716,10 @@ msgstr ""
 msgid "Flash your %s %s and reboot now?"
 msgstr ""
 
+#, python-format
+msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
+msgstr ""
+
 msgid "Flashing"
 msgstr ""
 
@@ -8498,6 +8744,9 @@ msgstr ""
 #, fuzzy
 msgid "Flat by position on remote"
 msgstr "Resume position at %s"
+
+msgid "Follow instructions on TV"
+msgstr ""
 
 #
 #, fuzzy
@@ -8537,7 +8786,13 @@ msgstr "הגדרת ממשק"
 msgid "Format"
 msgstr "פורמט"
 
+msgid "Format Disk"
+msgstr ""
+
 msgid "Format HDD"
+msgstr ""
+
+msgid "Format Storage Device"
 msgstr ""
 
 msgid "Format your hard drive"
@@ -8829,6 +9084,9 @@ msgid "Given device id"
 msgstr ""
 
 msgid "Glibc version"
+msgstr ""
+
+msgid "Go back to the previous step"
 msgstr ""
 
 msgid "Go down the list"
@@ -9260,6 +9518,15 @@ msgstr ""
 msgid "History Prev/Next"
 msgstr ""
 
+msgid "History Zap"
+msgstr ""
+
+msgid "History Zap Actions"
+msgstr ""
+
+msgid "History Zap Navigation Actions"
+msgstr ""
+
 msgid "History back"
 msgstr ""
 
@@ -9275,6 +9542,9 @@ msgstr ""
 #, fuzzy
 msgid "Hockey"
 msgstr "locked"
+
+msgid "Hold First Frame"
+msgstr ""
 
 msgid "Hold screen"
 msgstr ""
@@ -9376,6 +9646,9 @@ msgid "I/O priority for scripts"
 msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
+msgid "IMDB Search"
 msgstr ""
 
 msgid "IMDb Details"
@@ -9639,6 +9912,9 @@ msgstr ""
 msgid "Immediate shut down"
 msgstr "כיבוי מיידי"
 
+msgid "Immediately exit the wizard (Debug mode only)"
+msgstr ""
+
 msgid "Immediately restart selected devices."
 msgstr ""
 
@@ -9722,6 +9998,9 @@ msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 msgid "Include action map data"
+msgstr ""
+
+msgid "Include international data *"
 msgstr ""
 
 #
@@ -9853,10 +10132,6 @@ msgstr ""
 msgid "Initialization"
 msgstr ""
 
-#
-msgid "Initialize"
-msgstr "מאתחל"
-
 msgid "Initializing storage device..."
 msgstr ""
 
@@ -9958,6 +10233,9 @@ msgstr "מתקין"
 #, fuzzy, python-format
 msgid "Installing %s (%s)..."
 msgstr "מתקין"
+
+msgid "Installing Please wait..."
+msgstr ""
 
 msgid "Installing Service"
 msgstr ""
@@ -10255,6 +10533,22 @@ msgstr ""
 msgid "Kernel version"
 msgstr ""
 
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
+
 msgid "Key"
 msgstr ""
 
@@ -10267,11 +10561,6 @@ msgstr ""
 #
 #, fuzzy
 msgid "Keyboard data entry"
-msgstr "מיפוי מקלדת"
-
-#
-#, fuzzy
-msgid "Keyboard map"
 msgstr "מיפוי מקלדת"
 
 msgid "Kikuyu / Gikuyu"
@@ -10290,17 +10579,6 @@ msgid "Kodi"
 msgstr ""
 
 msgid "Kodi MediaCenter"
-msgstr ""
-
-#, fuzzy
-msgid "Kodi installed:"
-msgstr "Undo install"
-
-#, fuzzy
-msgid "Kodi media player"
-msgstr "exit mediaplayer"
-
-msgid "Kodi/extra partition free space:"
 msgstr ""
 
 msgid "Komi"
@@ -10357,10 +10635,28 @@ msgstr ""
 msgid "LCN rules:"
 msgstr ""
 
+msgid "LED Brightness"
+msgstr ""
+
+msgid "LED Color"
+msgstr ""
+
 msgid "LED Deep Standby"
 msgstr ""
 
+msgid "LED Idle Brightness"
+msgstr ""
+
+msgid "LED Idle Color"
+msgstr ""
+
 msgid "LED Normal"
+msgstr ""
+
+msgid "LED Settings"
+msgstr ""
+
+msgid "LED Shutdown Color"
 msgstr ""
 
 msgid "LED Standby"
@@ -10561,6 +10857,9 @@ msgstr ""
 msgid "Limit west"
 msgstr "הגבל מערב"
 
+msgid "Limited memory size, swap file required"
+msgstr ""
+
 msgid "Limits cancelled"
 msgstr ""
 
@@ -10655,7 +10954,7 @@ msgstr ""
 msgid "Load"
 msgstr "טען"
 
-msgid "Load EPG"
+msgid "Load EPG Cache"
 msgstr ""
 
 #, fuzzy
@@ -10666,9 +10965,6 @@ msgid "Load tags from the timer and recordings"
 msgstr ""
 
 msgid "Load unlinked user bouquets"
-msgstr ""
-
-msgid "Load/Save/Delete"
 msgstr ""
 
 msgid "Loading information, please wait..."
@@ -10709,6 +11005,9 @@ msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale / Language Settings"
 msgstr ""
 
 #, fuzzy
@@ -11334,10 +11633,6 @@ msgstr "שחזור תוכנה"
 msgid "Model"
 msgstr ""
 
-#
-msgid "Model: "
-msgstr ":דגם"
-
 msgid "Modified"
 msgstr ""
 
@@ -11440,6 +11735,10 @@ msgstr ""
 
 msgid "Move Left/Right"
 msgstr ""
+
+#
+msgid "Move Mode"
+msgstr "Move Mode"
 
 #
 #, fuzzy
@@ -12000,6 +12299,12 @@ msgstr "Network test"
 msgid "Network test..."
 msgstr "Network test..."
 
+msgid ""
+"Network wizard completed.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Network:"
 msgstr ":רשת"
 
@@ -12138,6 +12443,9 @@ msgstr "אין מידע נוסף"
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "! לא נמצא כונן קשיח או לא אותחל"
+
+msgid "No Internet connection"
+msgstr ""
 
 msgid ""
 "No Settings loaded !!\n"
@@ -12320,6 +12628,13 @@ msgid "No updates available."
 msgstr ""
 
 msgid "No updates were available.  Please try again later."
+msgstr ""
+
+msgid "No valid device detected - Press OK"
+msgstr ""
+
+#, python-format
+msgid "No valid mount for '%s' found!"
 msgstr ""
 
 msgid "No valid region details were found"
@@ -12750,7 +13065,13 @@ msgstr ""
 msgid "Open service list and select previous channel for PiP"
 msgstr ""
 
+msgid "Open the Channel Selection Settings screen"
+msgstr ""
+
 msgid "Open the Plugin Browser"
+msgstr ""
+
+msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
 msgid "Open the movie list"
@@ -12996,6 +13317,9 @@ msgstr ""
 msgid "Package information currently not available!"
 msgstr ""
 
+msgid "Package installation failed"
+msgstr ""
+
 msgid "Package list"
 msgstr ""
 
@@ -13068,12 +13392,15 @@ msgstr ""
 msgid "Parent Directory"
 msgstr ""
 
-msgid "Parental Guidance Recommended"
-msgstr ""
-
 #
 msgid "Parental Control"
 msgstr "בקרת הורים"
+
+msgid "Parental Control Settings"
+msgstr ""
+
+msgid "Parental Guidance Recommended"
+msgstr ""
 
 msgid "Parental control services editor"
 msgstr ""
@@ -13159,6 +13486,9 @@ msgid "Perform an on-line flash instead"
 msgstr ""
 
 msgid "Perform install/remove of the selected item"
+msgstr ""
+
+msgid "Perform the upgrade?"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -13262,6 +13592,9 @@ msgstr ""
 msgid "Play"
 msgstr "נגן"
 
+msgid "Play As Picture in Picture window"
+msgstr ""
+
 #
 msgid "Play DVD"
 msgstr "Play DVD"
@@ -13270,6 +13603,9 @@ msgstr "Play DVD"
 #, fuzzy
 msgid "Play DVDs"
 msgstr "Play DVD"
+
+msgid "Play In Main window"
+msgstr ""
 
 msgid "Play all audio files in the directory"
 msgstr ""
@@ -13299,6 +13635,12 @@ msgstr "play from next mark or play list entry"
 msgid "Play from previous mark or play list entry"
 msgstr "play from previous mark or play list entry"
 
+msgid "Play in Main"
+msgstr ""
+
+msgid "Play in PiP"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Play music..."
@@ -13320,6 +13662,12 @@ msgstr ""
 #, fuzzy
 msgid "Play recorded movies"
 msgstr "...נגן סרטים שהוקלטו"
+
+msgid "Play selected service in a PiP window"
+msgstr ""
+
+msgid "Play selected service on the main screen"
+msgstr ""
 
 msgid "Play the audio file"
 msgstr ""
@@ -13356,23 +13704,6 @@ msgid "Please choose an extension..."
 msgstr "Please choose an extension..."
 
 msgid "Please choose reader"
-msgstr ""
-
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-
-msgid ""
-"Please configure your Internet connection by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Please configure your Internet connection by filling out the required values.\n"
-"When you are ready press OK to continue."
-
-msgid "Please connect your %s %s to the Internet"
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -13443,10 +13774,6 @@ msgid "Please press OK to continue."
 msgstr ".אנא לחץ אשר על מנת להמשיך"
 
 #, fuzzy
-msgid "Please press OK to start Kodi..."
-msgstr ".אנא לחץ אשר על מנת להמשיך"
-
-#, fuzzy
 msgid "Please select a backup destination"
 msgstr "Please select medium to use as backup location"
 
@@ -13500,17 +13827,14 @@ msgid ""
 "IceTV is a subscription service that is only available in the listed countries."
 msgstr ""
 
+msgid "Please select the device where the flash expander '/usr' directory should created."
+msgstr ""
+
+msgid "Please select the device where the flash expander '/usr' directory should disabled."
+msgstr ""
+
 msgid "Please select the movie path..."
 msgstr "Please select the movie path..."
-
-msgid ""
-"Please select the network interface that you want to use for your Internet connection.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Please select the network interface that you want to use for your Internet connection.\n"
-"\n"
-"Please press OK to continue."
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr ""
@@ -13518,97 +13842,7 @@ msgstr ""
 msgid "Please select the sub-service to record:"
 msgstr "Please select the sub-service to record:"
 
-msgid ""
-"Please select the wireless network that you want to connect to.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Please select the wireless network that you want to connect to.\n"
-"\n"
-"Please press OK to continue."
-
 msgid "Please select what to do after flash of the following image:"
-msgstr ""
-
-msgid "Please set up tuner A"
-msgstr ""
-
-msgid ""
-"Please set up tuner A\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set up tuner B"
-msgstr "Please set up tuner B"
-
-msgid ""
-"Please set up tuner B\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set up tuner C"
-msgstr "Please set up tuner C"
-
-msgid ""
-"Please set up tuner C\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set up tuner D"
-msgstr "Please set up tuner D"
-
-msgid ""
-"Please set up tuner D\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner E\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner F\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner G\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner H\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner I\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner J\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner Q\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner R\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set your time options"
-msgstr ""
-
-msgid ""
-"Please set your time options.\n"
-"\n"
-"Press YELLOW to set the time zone via geolocation."
 msgstr ""
 
 msgid ""
@@ -13672,11 +13906,20 @@ msgstr ""
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
 
+msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
+msgstr ""
+
 msgid "Please wait, loading image..."
 msgstr ""
 
 #, python-format
 msgid "Please wait, restarting %s."
+msgstr ""
+
+msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
 msgid "Please wait."
@@ -13691,6 +13934,12 @@ msgstr "...נא המתן...טוען רשימה"
 #, fuzzy
 msgid "Please wait...almost ready! "
 msgstr "...נא המתן"
+
+msgid "Plug in USB device"
+msgstr ""
+
+msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
+msgstr ""
 
 msgid "Plugin Browser"
 msgstr ""
@@ -13895,6 +14144,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "לחץ אשר לתחילת הסריקה"
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13951,9 +14208,15 @@ msgstr "Press OK to select/deselect a CAId."
 msgid "Press OK to set the MAC address."
 msgstr "Press OK to edit the settings."
 
+msgid "Press OK to start the backup now"
+msgstr ""
+
 #
 msgid "Press OK to start the scan"
 msgstr "לחץ אשר לתחילת הסריקה"
+
+msgid "Press OK to start using %s %s"
+msgstr ""
 
 msgid "Press OK to toggle the selection"
 msgstr ""
@@ -14038,7 +14301,22 @@ msgstr ""
 msgid "Proc model"
 msgstr ""
 
+msgid "Proceed to the next step"
+msgstr ""
+
 msgid "Proceed with the update"
+msgstr ""
+
+msgid "Process BLUE button action"
+msgstr ""
+
+msgid "Process GREEN button action"
+msgstr ""
+
+msgid "Process RED button action"
+msgstr ""
+
+msgid "Process YELLOW button action"
 msgstr ""
 
 msgid "Processor information"
@@ -14183,6 +14461,9 @@ msgstr ""
 msgid "Purge 'Trash' after (days)"
 msgstr ""
 
+msgid "Purge Deleted User Bouquets"
+msgstr ""
+
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
 
@@ -14231,6 +14512,9 @@ msgstr "!שירותים נמצאו %d"
 #, fuzzy
 msgid "Quad PiP is not available."
 msgstr "Update feed not available."
+
+msgid "Quad9 DNS"
+msgstr ""
 
 msgid "Quechua"
 msgstr ""
@@ -14334,6 +14618,9 @@ msgstr "RF Output Settings"
 msgid "RGB"
 msgstr "RGB"
 
+msgid "Radio"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Radio Channel Selection"
@@ -14406,6 +14693,12 @@ msgstr "?האם למחוק טיימרים שבוצעו"
 msgid "Really exit the subservices quickzap?"
 msgstr ""
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 #, fuzzy
 msgid "Really reboot into Recovery Mode?"
 msgstr "?לבצע איתחול עכשיו"
@@ -14469,10 +14762,10 @@ msgstr ""
 msgid "Reception"
 msgstr "תאור"
 
-msgid "Reception Settings"
+msgid "Reception Lists"
 msgstr ""
 
-msgid "Reception Lists"
+msgid "Reception Settings"
 msgstr ""
 
 #
@@ -14654,9 +14947,6 @@ msgstr ""
 msgid "Refresh rate for 'Lowest Mode'"
 msgstr "Refresh rate selection."
 
-msgid "Refresh rate selection."
-msgstr "Refresh rate selection."
-
 #, fuzzy
 msgid "Refresh screen"
 msgstr "Refresh rate selection."
@@ -14696,6 +14986,9 @@ msgid "Reload Bookmarks"
 msgstr ""
 
 msgid "Reload Services"
+msgstr ""
+
+msgid "Reload all services from disk"
 msgstr ""
 
 msgid "Reload blacklists"
@@ -14752,19 +15045,41 @@ msgstr ""
 msgid "Remove"
 msgstr "הסר"
 
+msgid "Remove All Alternatives"
+msgstr "Remove All Alternatives"
+
+msgid "Remove All New Found Flags"
+msgstr "Remove All New Found Flags"
+
 #
 msgid "Remove Bookmark"
+msgstr ""
+
+msgid "Remove Bouquet From Parental Protection"
+msgstr ""
+
+msgid "Remove Cable Services"
 msgstr ""
 
 #, fuzzy
 msgid "Remove Confirmation"
 msgstr "Tuner הגדרת"
 
+msgid "Remove Entry"
+msgstr "Remove Entry"
+
 msgid "Remove Failed !!"
 msgstr ""
 
 msgid "Remove Finished."
 msgstr ".הסרה הסתיימה"
+
+msgid "Remove From Parental Protection"
+msgstr "Remove From Parental Protection"
+
+#
+msgid "Remove New Found Flag"
+msgstr "Remove New Found Flag"
 
 msgid "Remove Plugins"
 msgstr ""
@@ -14774,7 +15089,13 @@ msgstr ""
 msgid "Remove Quad Channel Entry"
 msgstr "remove a nameserver entry"
 
+msgid "Remove Satellite Services"
+msgstr "Remove Satellite Services"
+
 msgid "Remove Service"
+msgstr ""
+
+msgid "Remove Terrestrial Services"
 msgstr ""
 
 msgid "Remove a DNS entry"
@@ -14823,10 +15144,13 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr "Remove currently selected title"
 
-msgid "Show VBI Line For This Service"
+msgid "Remove forever"
 msgstr ""
 
 msgid "Remove highlighted directory from bookmarks"
+msgstr ""
+
+msgid "Remove selected service"
 msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -14860,6 +15184,10 @@ msgstr "שנה שם"
 msgid "Rename Directory"
 msgstr ""
 
+#, fuzzy
+msgid "Rename Entry"
+msgstr "Remove Entry"
+
 msgid "Rename all related files"
 msgstr ""
 
@@ -14873,6 +15201,9 @@ msgid "Rename name and description for new events"
 msgstr ""
 
 msgid "Rename only highlighted file"
+msgstr ""
+
+msgid "Rename selected service"
 msgstr ""
 
 msgid "Rename the proposed file to be created"
@@ -15004,9 +15335,6 @@ msgstr "איתחול"
 msgid "Restart %s %s."
 msgstr ""
 
-msgid "Restart Enigma2 to apply the changes?"
-msgstr ""
-
 #, fuzzy
 msgid "Restart GUI"
 msgstr "GUI ?איתחול עכשיו"
@@ -15038,6 +15366,9 @@ msgstr ""
 msgid "Restart necessary, restart GUI now?"
 msgstr "?לבצע איתחול עכשיו"
 
+msgid "Restart needed, press OK to restart"
+msgstr ""
+
 msgid "Restart network and remount connections"
 msgstr ""
 
@@ -15057,6 +15388,9 @@ msgstr ".איתחול חיבורי רשת וממשקים"
 msgid "Restore"
 msgstr "שחזור"
 
+msgid "Restore Deleted User Bouquets"
+msgstr ""
+
 msgid "Restore MetrixHD Settings"
 msgstr ""
 
@@ -15073,6 +15407,9 @@ msgid "Restore backups"
 msgstr "שחזור גיבויים"
 
 msgid "Restore settings from a backup"
+msgstr ""
+
+msgid "Restore settings now"
 msgstr ""
 
 msgid "Restore the highlighted slot"
@@ -15143,6 +15480,9 @@ msgstr "Searching for available updates. Please wait..."
 msgid "Retrieving network server information, please wait..."
 msgstr ""
 
+msgid "Retry"
+msgstr ""
+
 msgid "Return the current selection response"
 msgstr ""
 
@@ -15205,6 +15545,9 @@ msgid "Romansh"
 msgstr "בטל"
 
 msgid "Root"
+msgstr ""
+
+msgid "Root Image"
 msgstr ""
 
 msgid "Root directory"
@@ -15362,9 +15705,6 @@ msgstr ""
 msgid "SSID:"
 msgstr "SSID:"
 
-msgid "STB Display"
-msgstr ""
-
 #, fuzzy
 msgid "Sailing"
 msgstr ":מחייג"
@@ -15488,7 +15828,7 @@ msgstr "שמור"
 msgid "Save / Enter text and exit"
 msgstr "Save directory on EXIT"
 
-msgid "Save EPG"
+msgid "Save EPG Cache"
 msgstr ""
 
 msgid "Save EPG data"
@@ -15851,6 +16191,9 @@ msgstr ""
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
+msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
+msgstr ""
+
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr ""
 
@@ -15967,6 +16310,9 @@ msgstr ""
 msgid "Select CAId"
 msgstr "בחר"
 
+msgid "Select Device"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr ""
 
@@ -16027,6 +16373,9 @@ msgstr ""
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a device to use as the flash expander"
+msgstr ""
+
 msgid "Select a directory"
 msgstr ""
 
@@ -16038,6 +16387,9 @@ msgstr ""
 
 #, python-format
 msgid "Select a location into which to extract '%s':"
+msgstr ""
+
+msgid "Select a menu item"
 msgstr ""
 
 msgid "Select a movie"
@@ -16278,6 +16630,12 @@ msgstr ""
 msgid "Select the current menu item"
 msgstr ""
 
+msgid "Select the currently highlighted action"
+msgstr ""
+
+msgid "Select the currently highlighted bouquet"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
@@ -16371,6 +16729,12 @@ msgstr "select the movie path"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
+msgid ""
+"Select the network interface to be used for the Internet connection.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
@@ -16384,6 +16748,9 @@ msgid "Select the previous item in the list"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
+msgstr ""
+
+msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
@@ -16421,6 +16788,9 @@ msgid "Select the sort order of the Plugin Browser menu entries. User defined al
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
@@ -16468,6 +16838,9 @@ msgstr ""
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr ""
 
+msgid "Select the type of keyboard connected to the %s %s."
+msgstr ""
+
 msgid "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr ""
 
@@ -16477,15 +16850,26 @@ msgstr ""
 msgid "Select the type of this timer."
 msgstr ""
 
+msgid "Select the video mode to be used on the TV."
+msgstr ""
+
+msgid ""
+"Select the wireless network to which you want to connect.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
-#
-msgid "Select video input with up/down buttons"
-msgstr "Select video input with up/down buttons"
+msgid "Select update source location"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Select video mode"
+
+msgid "Select video output port with UP/DOWN buttons"
+msgstr ""
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr ""
@@ -16807,6 +17191,9 @@ msgstr "שירותים"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr ""
 
+msgid "Set As Startup Service"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Set Base time"
@@ -16816,6 +17203,21 @@ msgid "Set CI assignment for detection of available services."
 msgstr ""
 
 msgid "Set Framerate for MiniTV"
+msgstr ""
+
+msgid "Set MAX CPU frequency for cores 0 and 1"
+msgstr ""
+
+msgid "Set MAX CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+msgid "Set MIN CPU frequency for cores 0 and 1"
+msgstr ""
+
+msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+msgid "Set Scaling governor"
 msgstr ""
 
 #, fuzzy
@@ -16908,6 +17310,12 @@ msgstr ""
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
 
+msgid ""
+"Set the time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
+
 msgid "Set the time to hide the infobar."
 msgstr ""
 
@@ -16942,6 +17350,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set time options"
+msgstr ""
+
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
@@ -16955,6 +17366,15 @@ msgid "Set to what you want the button to do."
 msgstr ""
 
 msgid "Set to yes for debugging the root cause of a spinner."
+msgstr ""
+
+msgid "Set up tuner [TUNER]"
+msgstr ""
+
+msgid ""
+"Set up tuner [TUNER].\n"
+"\n"
+"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -17265,6 +17685,9 @@ msgstr ""
 msgid "Show 720p 24fps as"
 msgstr ""
 
+msgid "Show Alternatives"
+msgstr "הראה אלטרנטיבות"
+
 msgid "Show Audioselection"
 msgstr ""
 
@@ -17415,7 +17838,13 @@ msgstr ""
 msgid "Show Timer List"
 msgstr ""
 
+msgid "Show Transponder Information"
+msgstr ""
+
 msgid "Show True/False as graphical switch"
+msgstr ""
+
+msgid "Show VBI Line For This Service"
 msgstr ""
 
 #
@@ -17957,6 +18386,9 @@ msgstr "כיבוי"
 msgid "Shutdown"
 msgstr "כיבוי"
 
+msgid "Shutting down. Please wait..."
+msgstr ""
+
 msgid "Sichuan Yi / Nuosu"
 msgstr ""
 
@@ -18094,9 +18526,6 @@ msgstr ""
 msgid "SkinSelector"
 msgstr ""
 
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr ""
-
 msgid "Skip back"
 msgstr ""
 
@@ -18108,6 +18537,9 @@ msgid "Skip forward"
 msgstr ""
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip package installation, only core packages will be available"
 msgstr ""
 
 msgid "Sleep"
@@ -18245,6 +18677,9 @@ msgstr "סלובנית"
 msgid "Slow"
 msgstr "Slow"
 
+msgid "Slow Motion"
+msgstr ""
+
 msgid "Slow motion speeds"
 msgstr ""
 
@@ -18252,6 +18687,9 @@ msgid "Small"
 msgstr ""
 
 msgid "Small - Tiny image"
+msgstr ""
+
+msgid "Small Box Preparation"
 msgstr ""
 
 #
@@ -18569,12 +19007,13 @@ msgstr ""
 msgid "Start Auto Refresh"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Start Kodi"
-msgstr "זמן התחלה"
+msgid "Start Boot Frequency"
+msgstr ""
 
 msgid "Start RDS interactive"
+msgstr ""
+
+msgid "Start Wizard"
 msgstr ""
 
 msgid "Start date"
@@ -18628,9 +19067,6 @@ msgstr ""
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr ""
 
-msgid "StartWizard"
-msgstr ""
-
 msgid "Starting Softcam"
 msgstr ""
 
@@ -18675,6 +19111,9 @@ msgid "Status unavailable!"
 msgstr ""
 
 msgid "Status:"
+msgstr ""
+
+msgid "Step"
 msgstr ""
 
 #
@@ -19157,6 +19596,9 @@ msgstr ""
 msgid "Sync failure moving back to origin !"
 msgstr ""
 
+msgid "Sync mode"
+msgstr ""
+
 msgid "Sync time using"
 msgstr ""
 
@@ -19194,9 +19636,6 @@ msgid "System Setup"
 msgstr ""
 
 msgid "System information"
-msgstr ""
-
-msgid "System partition free space:"
 msgstr ""
 
 msgid "System temperature"
@@ -19291,6 +19730,9 @@ msgid "Tamil"
 msgstr ""
 
 msgid "Tanzania, United Republic of"
+msgstr ""
+
+msgid "Target location"
 msgstr ""
 
 #, python-format
@@ -19454,15 +19896,24 @@ msgid "Thailand"
 msgstr ""
 
 msgid ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
+"Thank you for using and completing the wizard. The %s %s is now ready to use.\n"
+"\n"
+"Please press OK to start using the %s %s."
 msgstr ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
 
 msgid ""
-"Thank you for using the wizard. Your %s %s is now ready to use.\n"
-"Please press OK to start using your %s %s."
+"Thank you for using and completing the wizard. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
+msgid "The %s %s does not have an Internet connection."
+msgstr ""
+
+msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
+msgstr ""
+
+msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
 msgid "The %s %s reads the stored EPG data every (hours)."
@@ -19517,6 +19968,18 @@ msgid "The IceTV server has requested password for %s."
 msgstr ""
 
 msgid ""
+"The Internet connection appears to be working.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
+msgid ""
+"The Internet connection appears to not be working!\n"
+"\n"
+"Choose what to do next."
+msgstr ""
+
+msgid ""
 "The MediaCenter plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -19535,6 +19998,10 @@ msgid ""
 "The Merlin EPG Center plugin is not installed!\n"
 "Please install it."
 msgstr ""
+
+#
+msgid "The PIN code entered is incorrect!"
+msgstr ".הקוד שהכנסת שגוי"
 
 msgid "The PIN code has been changed successfully."
 msgstr ""
@@ -19577,8 +20044,17 @@ msgid ""
 "What do you want to do ?"
 msgstr ""
 
-msgid "The backup failed. Please choose a different backup location."
-msgstr "The backup failed. Please choose a different backup location."
+msgid "The backup failed"
+msgstr ""
+
+msgid "The backup failed! Choose a different backup location."
+msgstr ""
+
+msgid "The backup succeeded"
+msgstr ""
+
+msgid "The backup succeeded. We will now continue to explain the upgrade process."
+msgstr ""
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr ""
@@ -19659,10 +20135,6 @@ msgstr ""
 "Please install it."
 
 #
-msgid "The PIN code entered is incorrect!"
-msgstr ".הקוד שהכנסת שגוי"
-
-#
 #, python-format
 msgid "The results have been written to %s."
 msgstr ""
@@ -19720,11 +20192,17 @@ msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
 msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it and choose what you want to do next."
+"The wireless LAN Internet connection could not be started!\n"
+"Is the wireless LAN device connected?\n"
+"\n"
+"Choose what to do next."
 msgstr ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it and choose what you want to do next."
+
+msgid ""
+"The wireless LAN plugin code is not installed!\n"
+"\n"
+"Install it and choose what to do next."
+msgstr ""
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -19733,11 +20211,8 @@ msgstr ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it."
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "?האשף יכול לבצע גיבוי להגדרות. האם אתה מעוניין לעשות זאת עכשיו"
-
-msgid "The wizard is finished now."
-msgstr "The wizard is finished now."
+msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+msgstr ""
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19751,6 +20226,9 @@ msgstr ""
 
 msgid "There are no updates available."
 msgstr ".אין עדכונים זמינים"
+
+msgid "There are pending tasks:"
+msgstr ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -19843,6 +20321,9 @@ msgid "This allows you to show system plugin modules in downloads"
 msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
+msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN!"
 msgstr ""
 
 #, python-format
@@ -20064,11 +20545,26 @@ msgstr ""
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr ""
 
+msgid "This option sets the video & osd picture brightness."
+msgstr ""
+
+msgid "This option sets the video & osd picture contrast."
+msgstr ""
+
+msgid "This option sets the video picture brightness."
+msgstr ""
+
+msgid "This option sets the video picture contrast."
+msgstr ""
+
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr ""
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
+
+msgid "This service is protected by a parental control PIN!"
+msgstr "שירות זה מוגן על ידי בקרת הורים"
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
@@ -20137,6 +20633,12 @@ msgid ""
 msgstr ""
 
 msgid "This will go fast forward/backward with time frames of x secs"
+msgstr ""
+
+msgid "This wizard has finished"
+msgstr ""
+
+msgid "This wizard has finished."
 msgstr ""
 
 #
@@ -20397,6 +20899,9 @@ msgstr "מאפייני הכותרת"
 msgid "Titleset mode"
 msgstr ""
 
+msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
+msgstr ""
+
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Yes, restore the settings now"
@@ -20467,6 +20972,9 @@ msgid "Toggle item edit mode on/off"
 msgstr ""
 
 msgid "Toggle item move mode on/off"
+msgstr ""
+
+msgid "Toggle move mode selection"
 msgstr ""
 
 msgid "Toggle multi-selection mode"
@@ -20602,9 +21110,6 @@ msgid "Transport Stream Type"
 msgstr "Transponder"
 
 msgid "Trashcan"
-msgstr ""
-
-msgid "Trashcan:"
 msgstr ""
 
 msgid "Travel"
@@ -20874,6 +21379,12 @@ msgstr "USALS"
 msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
 
+msgid "USB 2.0 (Back, inner)"
+msgstr ""
+
+msgid "USB 3.0 (Back, outer)"
+msgstr ""
+
 msgid "USB Stick"
 msgstr ""
 
@@ -20896,6 +21407,9 @@ msgid "Ukraine"
 msgstr ""
 
 msgid "Ukrainian"
+msgstr ""
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -21009,8 +21523,15 @@ msgstr ""
 msgid "Unscramble receiving http streams"
 msgstr ""
 
+msgid "Unset As Startup Service"
+msgstr ""
+
 msgid "Unsupported"
 msgstr "לא נתמך"
+
+#
+msgid "Until standby/restart"
+msgstr "Until standby/restart"
 
 msgid "Unused 0x22"
 msgstr ""
@@ -21073,6 +21594,9 @@ msgid "Update finished!"
 msgstr ".שדרוג הסתיים"
 
 msgid "Update interval (in seconds)"
+msgstr ""
+
+msgid "Update package list please wait..."
 msgstr ""
 
 msgid ""
@@ -21180,9 +21704,6 @@ msgstr ""
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr ""
 
-msgid "Use key map *"
-msgstr ""
-
 msgid "Use MHW EPG information when it is available."
 msgstr ""
 
@@ -21201,6 +21722,9 @@ msgstr ""
 msgid "Use TV remote control"
 msgstr ""
 
+msgid "Use UP/DOWN buttons to select option then press OK"
+msgstr ""
+
 msgid "Use USALS for this sat"
 msgstr ""
 
@@ -21210,7 +21734,7 @@ msgstr ""
 msgid "Use Virgin EPG information when it is available."
 msgstr ""
 
-msgid "Use Zap timer end time"
+msgid "Use Zap timer end times"
 msgstr ""
 
 #
@@ -21223,10 +21747,13 @@ msgstr ""
 msgid "Use as HDD"
 msgstr ""
 
+msgid "Use automatic mode detection"
+msgstr ""
+
 msgid ""
-"Use automatic mode detection.\n"
-" This option reads all supported modes from your TV.\n"
-" Please disable it only if you want to customize the preferred configuration."
+"Use automatic mode detection?\n"
+"\n"
+"This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
 msgstr ""
 
 msgid "Use circular LNB"
@@ -21260,6 +21787,9 @@ msgstr ""
 msgid "Use interface"
 msgstr "Use Interface"
 
+msgid "Use key map *"
+msgstr ""
+
 msgid "Use logarithmic steps"
 msgstr ""
 
@@ -21287,7 +21817,19 @@ msgstr ""
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr ""
 
+msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgstr ""
+
 msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgstr ""
+
+msgid "Use the Left/Right buttons on your remote to move the user interface top"
 msgstr ""
 
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
@@ -21320,9 +21862,6 @@ msgstr "Use the Networkwizard to configure selected network adapter"
 
 msgid "Use the network wizard to configure your Network."
 msgstr ""
-
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr ".השתמש במקשי השלט על מנת לבחור באפשרות. בסוף, לחץ אשר"
 
 msgid "Use the wizard to set up basic features"
 msgstr ""
@@ -21583,6 +22122,9 @@ msgstr ""
 msgid "Video Settings"
 msgstr ""
 
+msgid "Video Wizard"
+msgstr ""
+
 msgid "Video clipping"
 msgstr ""
 
@@ -21598,17 +22140,6 @@ msgstr "Video enhancement preview"
 
 msgid "Video enhancement setup"
 msgstr "Video enhancement setup"
-
-msgid ""
-"Video input selection\n"
-"\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
-"\n"
-"The next input port will be automatically probed in 10 seconds."
-msgstr ""
-
-msgid "Video mode selection."
-msgstr "Video mode selection."
 
 #, fuzzy, python-format
 msgid "Video mode: %s"
@@ -21651,6 +22182,14 @@ msgstr ""
 msgid "Video output mode for UHD"
 msgstr ""
 
+msgid ""
+"Video output port selection.\n"
+"\n"
+"Make sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n"
+"\n"
+"The next output port will be automatically tried in 10 seconds."
+msgstr ""
+
 #, fuzzy
 msgid "Video: "
 msgstr "S-Video"
@@ -21672,9 +22211,6 @@ msgstr ""
 #, fuzzy
 msgid "VideoFinetune"
 msgstr "כיוונון עדין"
-
-msgid "VideoWizard"
-msgstr ""
 
 msgid "Videocodec, size & format"
 msgstr ""
@@ -21722,7 +22258,13 @@ msgstr ""
 msgid "View the archive contents"
 msgstr ""
 
+msgid "View the next item in a list"
+msgstr ""
+
 msgid "View the package contents"
+msgstr ""
+
+msgid "View the previous item in a list"
 msgstr ""
 
 #
@@ -21964,11 +22506,20 @@ msgstr ""
 msgid "Weekly"
 msgstr "שבועי"
 
+msgid "Welcome Wizard"
+msgstr ""
+
 #, python-format
 msgid "Welcome to %s"
 msgstr ""
 
 msgid "Welcome to IceTV"
+msgstr ""
+
+msgid ""
+"Welcome to openATV.\n"
+"\n"
+"Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
 msgstr ""
 
 msgid ""
@@ -21979,24 +22530,7 @@ msgid ""
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 
-#, fuzzy
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-
-#
-msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-"\n"
-"Press OK to start configuring your network"
-msgstr ""
-
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your %s %s.\n"
-"Press the OK button on your remote control to move to the next step."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
 msgstr ""
 
 msgid "Welcome..."
@@ -22089,9 +22623,6 @@ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouque
 msgstr ""
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
-msgstr ""
-
-msgid "When enabled, a new Zap timer will be created with activated end time."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -22294,10 +22825,13 @@ msgstr "Wireless Network"
 msgid "Wireless network configuration..."
 msgstr "...הגדרת רשת"
 
-msgid "Wireless network connection setup"
+msgid ""
+"Wireless network connection setup.\n"
+"\n"
+"Choose what to do next."
 msgstr ""
 
-msgid "Wireless network connection setup."
+msgid "Wireless network setup"
 msgstr ""
 
 msgid "Wireless network state"
@@ -22343,6 +22877,9 @@ msgid "Without pop up"
 msgstr ""
 
 msgid "Without query"
+msgstr ""
+
+msgid "Wizard Actions"
 msgstr ""
 
 msgid "Wolof"
@@ -22437,6 +22974,9 @@ msgstr ""
 msgid "Yes, and delete this movie"
 msgstr "כן, ומחק את הסרט הזה"
 
+msgid "Yes, and don't ask again for this session"
+msgstr ""
+
 #
 msgid "Yes, backup my settings!"
 msgstr "!כן, גבה את ההגדרות"
@@ -22530,11 +23070,11 @@ msgstr ""
 msgid "You cannot delete this!"
 msgstr "!אין אפשרות למחוק את הקובץ הזה"
 
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr "You have chosen to backup your settings. Please press OK to start the backup now."
+msgid "You have chosen to backup your settings. Press OK to start the backup now."
+msgstr ""
 
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift"
 msgstr ""
@@ -22561,8 +23101,8 @@ msgid "You must set at least one command!"
 msgstr ""
 
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
 
 msgid "You seem to be in time shift!"
@@ -22580,18 +23120,12 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "Your %s %s does not have an Internet connection"
-msgstr ""
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr ""
 
 #, python-format
 msgid "Your %s %s goes to WOL"
-msgstr ""
-
-msgid "Your %s %s is not connected to the Internet"
 msgstr ""
 
 #, python-format
@@ -22610,19 +23144,6 @@ msgstr ""
 "Your Internet connection is working now.\n"
 "\n"
 
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr ""
@@ -22634,9 +23155,6 @@ msgstr ""
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr ""
-
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Your %s %s is shutting down. Please wait..."
 
 #, python-format
 msgid ""
@@ -22695,14 +23213,15 @@ msgstr ""
 "Please choose what you want to do next."
 
 #, python-format
+msgid "Your Internet connection is working (ip: %s)"
+msgstr ""
+
+#, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
-
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "Your backup succeeded. We will now continue to explain the further upgrade process."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
@@ -22754,16 +23273,11 @@ msgstr ""
 msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
 msgstr ""
 
-#, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver does not have an Internet connection"
 msgstr ""
 
-#
-msgid ""
-"Your wireless LAN Internet connection could not be started!\n"
-"Have you attached your USB WLAN Stick?\n"
-"\n"
-"Please choose what you want to do next."
+#, python-format
+msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
 #
@@ -22886,9 +23400,6 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr ""
 
-msgid "Favorite Edit"
-msgstr "Favorite Edit"
-
 msgid "[Image Info]\n"
 msgstr ""
 
@@ -22898,16 +23409,6 @@ msgstr ""
 msgid "[Timeshift] Restarting time shift!"
 msgstr ""
 
-msgid "Alternative Edit"
-msgstr "Alternative Edit"
-
-msgid "Bouquet Edit"
-msgstr "Bouquet Edit"
-
-#
-msgid "Move Mode"
-msgstr "Move Mode"
-
 #
 msgid "a gui to assign services/providers to common interface modules"
 msgstr ""
@@ -22915,17 +23416,6 @@ msgstr ""
 #
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr ""
-
-msgid "Abort Alternatives Edit"
-msgstr "Abort Alternatives Edit"
-
-#
-msgid "Abort Bouquet Edit"
-msgstr "Abort Bouquet Edit"
-
-#
-msgid "Abort Favorites Edit"
-msgstr "Abort Favorites Edit"
 
 msgid "ac3"
 msgstr ""
@@ -22937,29 +23427,6 @@ msgstr ""
 #, fuzzy
 msgid "active"
 msgstr "פעיל"
-
-msgid "Add Alternatives"
-msgstr "Add Alternatives"
-
-msgid "Add Bouquet"
-msgstr "Add Bouquet"
-
-msgid "Add Bouquet To Parental Protection"
-msgstr ""
-
-msgid "Add Marker"
-msgstr "הוסף סמן"
-
-#
-msgid "Add Service To Bouquet"
-msgstr "הוסף את הערוץ לתיקית הערוצים"
-
-#
-msgid "Add Service To Favorites"
-msgstr "הוסף את הערוץ למועדפים"
-
-msgid "Add To Parental Protection"
-msgstr "הוסף לבקרת הורים"
 
 msgid "address:"
 msgstr ""
@@ -23003,7 +23470,7 @@ msgstr ""
 msgid "and"
 msgstr ""
 
-msgid "and never ask again this session again"
+msgid "aqua"
 msgstr ""
 
 msgid ""
@@ -23041,6 +23508,9 @@ msgstr "אוטומטי"
 msgid "automatic"
 msgstr ""
 
+msgid "azure"
+msgstr ""
+
 #
 msgid "back"
 msgstr "אחורנית"
@@ -23066,9 +23536,6 @@ msgstr "black"
 
 msgid "black & white"
 msgstr ""
-
-msgid "blacklist"
-msgstr "blacklist"
 
 msgid "blue"
 msgstr "blue"
@@ -23156,9 +23623,6 @@ msgstr ""
 msgid "copy"
 msgstr ""
 
-msgid "Copy To Bouquets"
-msgstr "העתק לתיקית ערוצים"
-
 msgid "current affairs (general)"
 msgstr ""
 
@@ -23190,9 +23654,6 @@ msgstr "מחק"
 
 msgid "detective/thriller"
 msgstr ""
-
-msgid "Disable Move Mode"
-msgstr "Disable Move Mode"
 
 msgid "disabled"
 msgstr "disabled"
@@ -23241,9 +23702,6 @@ msgstr ""
 msgid "economics/social advisory"
 msgstr ""
 
-msgid "Edit Alternatives"
-msgstr "Edit Alternatives"
-
 msgid "education/information (general)"
 msgstr ""
 
@@ -23259,34 +23717,11 @@ msgstr "ריק"
 msgid "enable PiP no HDR"
 msgstr ""
 
-#
-msgid "Enable Bouquet Edit"
-msgstr "Enable Bouquet Edit"
-
-#
-msgid "Enable Favorite Edit"
-msgstr "Enable Favorite Edit"
-
-#
-msgid "Enable Move Mode"
-msgstr "Enable Move Mode"
-
 msgid "enabled"
 msgstr "אופשר"
 
-msgid "End Alternatives Edit"
-msgstr "End Alternatives Edit"
-
-#
-msgid "End Bouquet Edit"
-msgstr "End Bouquet Edit"
-
 msgid "end cut here"
 msgstr "end cut here"
-
-#
-msgid "End Favorites Edit"
-msgstr "End Favorites Edit"
 
 msgid "enigma2 and network"
 msgstr ""
@@ -23356,9 +23791,6 @@ msgid "filename"
 msgstr "filename"
 
 msgid "film/cinema"
-msgstr ""
-
-msgid "Find Currently Playing Service"
 msgstr ""
 
 msgid "fine arts"
@@ -23501,6 +23933,9 @@ msgstr ""
 msgid "hops:"
 msgstr ""
 
+msgid "inactive"
+msgstr ""
+
 msgid "increase uphop by 1"
 msgstr ""
 
@@ -23563,6 +23998,9 @@ msgstr ""
 
 msgid "length"
 msgstr "length"
+
+msgid "lime"
+msgstr ""
 
 msgid "literature"
 msgstr ""
@@ -23747,6 +24185,9 @@ msgstr ""
 msgid "offset is"
 msgstr ""
 
+msgid "olympic blue"
+msgstr ""
+
 msgid "on READ ONLY medium."
 msgstr "on READ ONLY medium."
 
@@ -23755,6 +24196,9 @@ msgid "on how to restore the image"
 msgstr "האם ברצונך להסיר את החבילה\n"
 
 msgid "only HD"
+msgstr ""
+
+msgid "orange"
 msgstr ""
 
 msgid "original language"
@@ -23769,10 +24213,7 @@ msgstr ""
 msgid "pid:"
 msgstr ""
 
-msgid "Play As Picture in Picture window"
-msgstr ""
-
-msgid "Play In Main window"
+msgid "pink"
 msgstr ""
 
 msgid "please press OK when ready"
@@ -23799,7 +24240,7 @@ msgstr ""
 msgid "provider:"
 msgstr ""
 
-msgid "Purge Deleted User Bouquets"
+msgid "purple"
 msgstr ""
 
 msgid "red"
@@ -23822,47 +24263,12 @@ msgstr ""
 msgid "remove after this position"
 msgstr "remove after this position"
 
-msgid "Remove All Alternatives"
-msgstr "Remove All Alternatives"
-
-msgid "Remove All New Found Flags"
-msgstr "Remove All New Found Flags"
-
 #
 msgid "remove before this position"
 msgstr "remove before this position"
 
-msgid "Remove Bouquet From Parental Protection"
-msgstr ""
-
-msgid "Remove Cable Services"
-msgstr ""
-
-msgid "Remove Entry"
-msgstr "Remove Entry"
-
-msgid "Remove From Parental Protection"
-msgstr "Remove From Parental Protection"
-
-#
-msgid "Remove New Found Flag"
-msgstr "Remove New Found Flag"
-
-msgid "Remove Satellite Services"
-msgstr "Remove Satellite Services"
-
-msgid "Remove Terrestrial Services"
-msgstr ""
-
 msgid "remove this mark"
 msgstr "remove this mark"
-
-#, fuzzy
-msgid "Rename Entry"
-msgstr "Remove Entry"
-
-msgid "Restore Deleted User Bouquets"
-msgstr ""
 
 msgid "restoring satellites.xml not possible!"
 msgstr ""
@@ -23883,6 +24289,9 @@ msgid "rock/pop"
 msgstr ""
 
 msgid "romance"
+msgstr ""
+
+msgid "rose"
 msgstr ""
 
 msgid ""
@@ -23922,9 +24331,6 @@ msgstr ""
 msgid "service PIN"
 msgstr ""
 
-msgid "Set As Startup Service"
-msgstr ""
-
 msgid "share:"
 msgstr ""
 
@@ -23943,9 +24349,6 @@ msgstr ""
 
 msgid "show all tags"
 msgstr ""
-
-msgid "Show Alternatives"
-msgstr "הראה אלטרנטיבות"
 
 msgid "show cards with uphop 0"
 msgstr ""
@@ -23992,9 +24395,6 @@ msgstr "הערוץ לא ברשימת השירותים"
 
 msgid "show program information..."
 msgstr ""
-
-msgid "show transponder info"
-msgstr "transponder  הראה מידע על ה"
 
 msgid "show/game show (general)"
 msgstr ""
@@ -24062,9 +24462,6 @@ msgstr ""
 msgid "stereo"
 msgstr "סטריאו"
 
-msgid "Unset As Startup Service"
-msgstr ""
-
 msgid "successful"
 msgstr ""
 
@@ -24109,14 +24506,8 @@ msgstr ""
 msgid "text"
 msgstr ""
 
-msgid "This bouquet is protected by a parental control PIN!"
-msgstr ""
-
 msgid "this recording"
 msgstr "ההקלטה הזו"
-
-msgid "This service is protected by a parental control PIN!"
-msgstr "שירות זה מוגן על ידי בקרת הורים"
 
 #
 msgid "toggle time, chapter, audio, subtitle info"
@@ -24184,10 +24575,6 @@ msgid "untestable"
 msgstr "אפשר"
 
 #
-msgid "Until standby/restart"
-msgstr "Until standby/restart"
-
-#
 #, fuzzy
 msgid "update"
 msgstr "עדכן"
@@ -24229,6 +24616,9 @@ msgstr ""
 msgid "west"
 msgstr "Move west"
 
+msgid "white"
+msgstr ""
+
 msgid "wide"
 msgstr ""
 
@@ -24267,3 +24657,172 @@ msgstr "כן (שמור פידים)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Configure nameservers"
+#~ msgstr "Configure nameservers"
+
+#, fuzzy
+#~ msgid "Default Modes Selected."
+#~ msgstr "ברירת מחדל למיקום סרטים"
+
+#~ msgid ""
+#~ "Please configure or verify your Nameservers by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Please configure or verify your Nameservers by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+
+#~ msgid ""
+#~ "Please configure your Internet connection by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Please configure your Internet connection by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+
+#~ msgid ""
+#~ "Please select the network interface that you want to use for your Internet connection.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Please select the network interface that you want to use for your Internet connection.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+
+#~ msgid ""
+#~ "Please select the wireless network that you want to connect to.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Please select the wireless network that you want to connect to.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+
+#~ msgid "Please set up tuner B"
+#~ msgstr "Please set up tuner B"
+
+#~ msgid "Please set up tuner C"
+#~ msgstr "Please set up tuner C"
+
+#~ msgid "Please set up tuner D"
+#~ msgstr "Please set up tuner D"
+
+#~ msgid "Refresh rate selection."
+#~ msgstr "Refresh rate selection."
+
+#
+#~ msgid "Select video input with up/down buttons"
+#~ msgstr "Select video input with up/down buttons"
+
+#~ msgid ""
+#~ "Thank you for using the wizard.\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Thank you for using the wizard.\n"
+#~ "Please press OK to continue."
+
+#~ msgid "The backup failed. Please choose a different backup location."
+#~ msgstr "The backup failed. Please choose a different backup location."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it and choose what you want to do next."
+#~ msgstr ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it and choose what you want to do next."
+
+#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+#~ msgstr "?האשף יכול לבצע גיבוי להגדרות. האם אתה מעוניין לעשות זאת עכשיו"
+
+#~ msgid "The wizard is finished now."
+#~ msgstr "The wizard is finished now."
+
+#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#~ msgstr ".השתמש במקשי השלט על מנת לבחור באפשרות. בסוף, לחץ אשר"
+
+#~ msgid "Video mode selection."
+#~ msgstr "Video mode selection."
+
+#, fuzzy
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+#~ msgstr "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+
+#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+#~ msgstr "You have chosen to backup your settings. Please press OK to start the backup now."
+
+#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+#~ msgstr "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+
+#~ msgid ""
+#~ "Your %s %s is now ready to use.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Your %s %s is now ready to use.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+
+#~ msgid "Your %s %s is shutting down. Please wait..."
+#~ msgstr "Your %s %s is shutting down. Please wait..."
+
+#~ msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+#~ msgstr "Your backup succeeded. We will now continue to explain the further upgrade process."
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "   Please press OK to start Kodi..."
+#~ msgstr ".אנא לחץ אשר על מנת להמשיך"
+
+#
+#, fuzzy, python-format
+#~ msgid "%s - %s (%s%d min)"
+#~ msgstr "דקות %d"
+
+#
+#~ msgid "Capacity: "
+#~ msgstr ":נפח"
+
+#
+#, fuzzy
+#~ msgid "Delete EPG"
+#~ msgstr "מחק"
+
+#
+#~ msgid "Initialize"
+#~ msgstr "מאתחל"
+
+#
+#, fuzzy
+#~ msgid "Keyboard map"
+#~ msgstr "מיפוי מקלדת"
+
+#, fuzzy
+#~ msgid "Kodi installed:"
+#~ msgstr "Undo install"
+
+#, fuzzy
+#~ msgid "Kodi media player"
+#~ msgstr "exit mediaplayer"
+
+#
+#~ msgid "Model: "
+#~ msgstr ":דגם"
+
+#, fuzzy
+#~ msgid "Please press OK to start Kodi..."
+#~ msgstr ".אנא לחץ אשר על מנת להמשיך"
+
+#
+#, fuzzy
+#~ msgid "Start Kodi"
+#~ msgstr "זמן התחלה"
+
+#~ msgid "blacklist"
+#~ msgstr "blacklist"
+
+#~ msgid "show transponder info"
+#~ msgstr "transponder  הראה מידע על ה"

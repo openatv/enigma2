@@ -395,7 +395,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 					epglist.append(ptr)
 				if epglist:
 					self.epglist = epglist
-					self.session.open(EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback)
+					self.session.open(EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, similarEPGCB=self.eventViewSimilarCallback)
 
 	def eventViewCallback(self, setEvent, setService, val):
 		epglist = self.epglist
@@ -404,6 +404,9 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			epglist[0] = epglist[1]
 			epglist[1] = tmp
 			setEvent(epglist[0])
+
+	def eventViewSimilarCallback(self, eventid, refstr):
+		self.session.open(EPGSelection, refstr, None, eventid)
 
 	def SingleServiceEPGClosed(self, ret=False):
 		if ret:
@@ -777,7 +780,7 @@ class ChannelSelectionEdit:
 			choiceList = [
 				(_("Yes"), True),
 				(_("No"), False),
-				(_("Yes, and never ask again this session again"), "never")
+				(_("Yes, and don't ask again for this session"), "never")
 			]
 			self.session.openWithCallback(boundFunction(self.removeCurrentEntryCallback, bouquet), MessageBox, _("Are you sure to remove this entry?"), list=choiceList)
 		else:
@@ -948,7 +951,7 @@ class ChannelSelectionBase(Screen):
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
-		})
+		}, prio=-1)  # This prio is needed to overwrite the left/right action for neutrino keymap
 		self.mode = MODE_TV
 		self.baseTitle = _("Channel Selection")
 		self.function = EDIT_OFF
@@ -1671,7 +1674,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			self.close()
 
 	def layoutFinished(self):
-		self["menu"].instance.enableAutoNavigation(False)
+		self["menu"].enableAutoNavigation(False)
 
 	def keyCancel(self, dummy=False):
 		self.close(False)
@@ -1760,7 +1763,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 				choiceList = [
 					(_("Yes"), True),
 					(_("No"), False),
-					(_("Yes, and never ask again this session again"), "never")
+					(_("Yes, and don't ask again for this session"), "never")
 				]
 				self.session.openWithCallback(self.removeFunction, MessageBox, "%s\n%s" % (_("Are you sure to remove this entry?"), self.getCurrentSelectionName()), list=choiceList)
 			else:
@@ -3092,7 +3095,7 @@ class BouquetSelector(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["menu"].instance.enableAutoNavigation(False)
+		self["menu"].enableAutoNavigation(False)
 
 	def keyCancel(self):
 		self.close(False)
@@ -3192,7 +3195,7 @@ class HistoryZapSelector(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["menu"].downstream_elements[0].downstream_elements[0].instance.enableAutoNavigation(False)
+		self["menu"].enableAutoNavigation(False)
 		self["menu"].setIndex(self.selectedItem)
 
 	def keyCancel(self):

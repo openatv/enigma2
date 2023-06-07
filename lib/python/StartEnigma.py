@@ -860,7 +860,7 @@ from Components.RecordingConfig import InitRecordingConfig
 InitRecordingConfig()
 
 profile("UsageConfig")
-from Components.UsageConfig import InitUsageConfig
+from Components.UsageConfig import InitUsageConfig, DEFAULTKEYMAP
 InitUsageConfig()
 
 profile("TimeZones")
@@ -876,11 +876,14 @@ from Components.NetworkTime import ntpSyncPoller
 ntpSyncPoller.startTimer()
 
 profile("keymapparser")
-from keymapparser import readKeymap
-readKeymap(config.usage.keymap.value)
-readKeymap(config.usage.keytrans.value)
+from Components.ActionMap import loadKeymap
+loadKeymap(DEFAULTKEYMAP)
+if config.usage.keymap.value != DEFAULTKEYMAP:
+	if exists(config.usage.keymap.value):
+		loadKeymap(config.usage.keymap.value, replace=True)
+loadKeymap(config.usage.keytrans.value)
 if exists(config.usage.keymap_usermod.value):
-	readKeymap(config.usage.keymap_usermod.value)
+	loadKeymap(config.usage.keymap_usermod.value)
 
 profile("Network")
 from Components.Network import InitNetwork
