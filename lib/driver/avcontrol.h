@@ -34,10 +34,10 @@ public:
 	void setColorFormat(const std::string &newFormat, int flags) const;
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
-	bool setHDMIInFull(int flags = 0) const;
+	void setVideoOutput(std::string newMode, int flags = 0);
+	bool setHDMIInFull(int flags = 0);
 	bool setHDMIInPiP(int flags = 0) const;
 	void disableHDMIIn(int flags = 0) const;
-	void enableVideoOutput(bool active, int flags = 0);
 
 	bool hasProcAspect() const { return m_b_has_proc_aspect; }
 	bool hasProcHDMIRXMonitor() const { return m_b_has_proc_hdmi_rx_monitor; }

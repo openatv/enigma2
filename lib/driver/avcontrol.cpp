@@ -205,7 +205,7 @@ bool eAVControl::setHDMIInPiP(int flags) const
 }
 /// @brief set HDMIInFull for 'dm7080', 'dm820', 'dm900', 'dm920'
 /// @return false if one of the models
-bool eAVControl::setHDMIInFull(int flags) const
+bool eAVControl::setHDMIInFull(int flags)
 {
 
 #ifdef HAVE_HDMIIN_DM
@@ -384,20 +384,26 @@ void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
 #endif
 }
 
-/// @brief enable video output depending if scart is available
-/// @param active
+/// @brief set video output
+/// @param newMode (scart, aux, encoder, off)
 /// @param flags
-void eAVControl::enableVideoOutput(bool active, int flags)
+void eAVControl::setVideoOutput(std::string newMode, int flags)
 {
-	const char *input[] = {"encoder", "scart", "aux"};
 
-	m_video_output_active = active;
+	if (newMode == "off") // off = aux or scart based on scartswitch used for standby
+	{
+		newMode = m_b_has_scartswitch ? "scart" : "aux";
+	}
+	else if (newMode != "scart" && newMode != "aux" && newMode != "encoder")
+	{
+		newMode = "encoder"; // set to encoder if not valid
+	}
 
-	int mode = active ? 0 : (m_b_has_scartswitch ? 1 : 2);
+	m_video_output_active = newMode == "encoder";
 
-	CFile::writeStr("/proc/stb/avs/0/input", input[mode], __MODULE__, flags);
+	CFile::writeStr("/proc/stb/avs/0/input", newMode, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "enableVideoOut", input[mode]);
+		eDebug("[%s] %s: %s", __MODULE__, "enableVideoOut", newMode.c_str());
 }
 
 /// @brief get video output active state
