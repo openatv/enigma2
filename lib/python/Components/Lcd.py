@@ -374,32 +374,25 @@ def InitLcd():
 			ilcd.setLEDBlinkingTime(configElement.value)
 
 		def setPowerLEDstate(configElement):
-			if exists("/proc/stb/power/powerled"):
-				fileWriteLine("/proc/stb/power/powerled", "on" if configElement.value else "off")
+			fileWriteLine("/proc/stb/power/powerled", "on" if configElement.value else "off")
 
 		def setPowerLEDstate2(configElement):
-			if exists("/proc/stb/power/powerled2"):
-				fileWriteLine("/proc/stb/power/powerled2", "on" if configElement.value else "off")
+			fileWriteLine("/proc/stb/power/powerled2", "on" if configElement.value else "off")
 
 		def setPowerLEDstanbystate(configElement):
-			if exists("/proc/stb/power/standbyled"):
-				fileWriteLine("/proc/stb/power/standbyled", "on" if configElement.value else "off")
+			fileWriteLine("/proc/stb/power/standbyled", "on" if configElement.value else "off")
 
 		def setPowerLEDdeepstanbystate(configElement):
-			if exists("/proc/stb/power/suspendled"):
-				fileWriteLine("/proc/stb/power/suspendled", "on" if configElement.value else "off")
+			fileWriteLine("/proc/stb/power/suspendled", "on" if configElement.value else "off")
 
 		def setLedPowerColor(configElement):
-			if exists("/proc/stb/fp/ledpowercolor"):
-				fileWriteLine("/proc/stb/fp/ledpowercolor", configElement.value)
+			fileWriteLine("/proc/stb/fp/ledpowercolor", configElement.value)
 
 		def setLedStandbyColor(configElement):
-			if exists("/proc/stb/fp/ledstandbycolor"):
-				fileWriteLine("/proc/stb/fp/ledstandbycolor", configElement.value)
+			fileWriteLine("/proc/stb/fp/ledstandbycolor", configElement.value)
 
 		def setLedSuspendColor(configElement):
-			if exists("/proc/stb/fp/ledsuspendledcolor"):
-				fileWriteLine("/proc/stb/fp/ledsuspendledcolor", configElement.value)
+			fileWriteLine("/proc/stb/fp/ledsuspendledcolor", configElement.value)
 
 		def setLedBlinkControlColor(configElement):
 			if exists("/proc/stb/fp/led_blink"):
@@ -418,16 +411,13 @@ def InitLcd():
 				fileWriteLine("/proc/stb/fp/led_fade", configElement.value)
 
 		def setPower4x7On(configElement):
-			if exists("/proc/stb/fp/power4x7on"):
-				fileWriteLine("/proc/stb/fp/power4x7on", "on" if configElement.value else "off")
+			fileWriteLine("/proc/stb/fp/power4x7on", "on" if configElement.value else "off")
 
 		def setPower4x7Standby(configElement):
-			if exists("/proc/stb/fp/power4x7standby"):
-				fileWriteLine("/proc/stb/fp/power4x7standby", "on" if configElement.value else "off")
+			fileWriteLine("/proc/stb/fp/power4x7standby", "on" if configElement.value else "off")
 
 		def setPower4x7Suspend(configElement):
-			if exists("/proc/stb/fp/power4x7suspend"):
-				fileWriteLine("/proc/stb/fp/power4x7suspend", "on" if configElement.value else "off")
+			fileWriteLine("/proc/stb/fp/power4x7suspend", "on" if configElement.value else "off")
 
 		def setXcoreVFD(configElement):
 			if exists("/sys/module/brcmstb_osmega/parameters/pt6302_cgram"):
@@ -445,41 +435,41 @@ def InitLcd():
 		], default="0")
 		config.usage.vfd_xcorevfd.addNotifier(setXcoreVFD)
 		config.usage.lcd_powerled = ConfigOnOff(default=True)
-		config.usage.lcd_powerled.addNotifier(setPowerLEDstate)
+		if exists("/proc/stb/power/powerled"):
+			config.usage.lcd_powerled.addNotifier(setPowerLEDstate)
 		config.usage.lcd_powerled2 = ConfigOnOff(default=True)
-		config.usage.lcd_powerled2.addNotifier(setPowerLEDstate2)
+		if exists("/proc/stb/power/powerled2"):
+			config.usage.lcd_powerled2.addNotifier(setPowerLEDstate2)
 		config.usage.lcd_standbypowerled = ConfigOnOff(default=True)
-		config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
+		if exists("/proc/stb/power/standbyled"):
+			config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
 		config.usage.lcd_deepstandbypowerled = ConfigOnOff(default=True)
-		config.usage.lcd_deepstandbypowerled.addNotifier(setPowerLEDdeepstanbystate)
+		if exists("/proc/stb/power/suspendled"):
+			config.usage.lcd_deepstandbypowerled.addNotifier(setPowerLEDdeepstanbystate)
 
-		if MACHINEBUILD in ('dual',):
-			config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=[("0", _("off")), ("1", _("blue"))])
+		choices = [("0", _("off")), ("1", _("blue"))] if MACHINEBUILD == "dual" else [("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))]
+
+		config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=choices)
+		if exists("/proc/stb/fp/ledpowercolor"):
 			config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
-
-			config.usage.lcd_ledstandbycolor = ConfigSelection(default="1", choices=[("0", _("off")), ("1", _("blue"))])
+		config.usage.lcd_ledstandbycolor = ConfigSelection(default="1" if MACHINEBUILD == "dual" else "3", choices=choices)
+		if exists("/proc/stb/fp/ledstandbycolor"):
 			config.usage.lcd_ledstandbycolor.addNotifier(setLedStandbyColor)
-
-			config.usage.lcd_ledsuspendcolor = ConfigSelection(default="1", choices=[("0", _("off")), ("1", _("blue"))])
-			config.usage.lcd_ledsuspendcolor.addNotifier(setLedSuspendColor)
-		else:
-			config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=[("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
-			config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
-
-			config.usage.lcd_ledstandbycolor = ConfigSelection(default="3", choices=[("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
-			config.usage.lcd_ledstandbycolor.addNotifier(setLedStandbyColor)
-
-			config.usage.lcd_ledsuspendcolor = ConfigSelection(default="2", choices=[("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.usage.lcd_ledsuspendcolor = ConfigSelection(default="1" if MACHINEBUILD == "dual" else "2", choices=choices)
+		if exists("/proc/stb/fp/ledsuspendledcolor"):
 			config.usage.lcd_ledsuspendcolor.addNotifier(setLedSuspendColor)
 
 		config.usage.lcd_power4x7on = ConfigOnOff(default=True)
-		config.usage.lcd_power4x7on.addNotifier(setPower4x7On)
+		if exists("/proc/stb/fp/power4x7on"):
+			config.usage.lcd_power4x7on.addNotifier(setPower4x7On)
 
 		config.usage.lcd_power4x7standby = ConfigOnOff(default=True)
-		config.usage.lcd_power4x7standby.addNotifier(setPower4x7Standby)
+		if exists("/proc/stb/fp/power4x7standby"):
+			config.usage.lcd_power4x7standby.addNotifier(setPower4x7Standby)
 
 		config.usage.lcd_power4x7suspend = ConfigOnOff(default=True)
-		config.usage.lcd_power4x7suspend.addNotifier(setPower4x7Suspend)
+		if exists("/proc/stb/fp/power4x7suspend"):
+			config.usage.lcd_power4x7suspend.addNotifier(setPower4x7Suspend)
 
 		if MACHINEBUILD in ('dm900', 'dm920', 'e4hdultra', 'protek4k'):
 			standby_default = 4
@@ -493,18 +483,19 @@ def InitLcd():
 		else:
 			config.lcd.contrast = ConfigNothing()
 
+		max_limit = 10
+		default_bright = 10
+
 		if MACHINEBUILD in ('novatwin', 'novacombo', 'zgemmas2s', 'zgemmash1', 'zgemmash2', 'zgemmass', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 'spycat'):
-			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 4))
-			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 4))
-			config.lcd.bright = ConfigSlider(default=4, limits=(0, 4))
-		elif MACHINEBUILD in ("spycat4kmini", "osmega"):
-			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
-			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
-			config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
-		else:
-			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
-			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
-			config.lcd.bright = ConfigSlider(default=BoxInfo.getItem("DefaultDisplayBrightness"), limits=(0, 10))
+			max_limit = 4
+			default_bright = 4
+		elif MACHINEBUILD not in ("spycat4kmini", "osmega"):
+			default_bright = BoxInfo.getItem("DefaultDisplayBrightness")
+
+		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, max_limit))
+		config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, max_limit))
+		config.lcd.bright = ConfigSlider(default=default_bright, limits=(0, max_limit))
+
 		config.lcd.dimbright.addNotifier(setLCDdimbright)
 		config.lcd.dimbright.apply = lambda: setLCDdimbright(config.lcd.dimbright)
 		config.lcd.dimdelay = ConfigSelection(choices=[
@@ -550,22 +541,18 @@ def InitLcd():
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
-		if BoxInfo.getItem("VFD_scroll_repeats") and MACHINEBUILD and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_repeats"):
 			def scroll_repeats(el):
-				open(BoxInfo.getItem("VFD_scroll_repeats"), "w").write(el.value)
+				eDBoxLCD.getInstance().set_VFD_scroll_repeats(int(el.value))
 			choicelist = [("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("500", _("Continues"))]
 			config.usage.vfd_scroll_repeats = ConfigSelection(default="3", choices=choicelist)
 			config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback=False)
 		else:
 			config.usage.vfd_scroll_repeats = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_scroll_delay") and MACHINEBUILD and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_delay"):
 			def scroll_delay(el):
-				# add workaround for Boxes who need hex code
-				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
-					open(BoxInfo.getItem("VFD_scroll_delay"), "w").write(hex(int(el.value)))
-				else:
-					open(BoxInfo.getItem("VFD_scroll_delay"), "w").write(str(el.value))
+				eDBoxLCD.getInstance().set_VFD_scroll_delay(int(el.value))
 			config.usage.vfd_scroll_delay = ConfigSlider(default=150, increment=10, limits=(0, 500))
 			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback=False)
 			config.lcd.hdd = ConfigYesNo(default=True)
@@ -573,13 +560,9 @@ def InitLcd():
 			config.lcd.hdd = ConfigNothing()
 			config.usage.vfd_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_initial_scroll_delay") and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_initial_scroll_delay"):
 			def initial_scroll_delay(el):
-				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
-					# add workaround for Boxes who need hex code
-					open(BoxInfo.getItem("VFD_initial_scroll_delay"), "w").write(hex(int(el.value)))
-				else:
-					open(BoxInfo.getItem("VFD_initial_scroll_delay"), "w").write(el.value)
+				eDBoxLCD.getInstance().set_VFD_initial_scroll_delay(int(el.value))
 
 			config.usage.vfd_initial_scroll_delay = ConfigSelection(choices=[
 				("3000", "3 %s" % _("Seconds")),
@@ -593,13 +576,9 @@ def InitLcd():
 		else:
 			config.usage.vfd_initial_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_final_scroll_delay") and DISPLAYTYPE not in ('7segment',):
+		if BoxInfo.getItem("VFD_final_scroll_delay"):
 			def final_scroll_delay(el):
-				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
-					# add workaround for Boxes who need hex code
-					open(BoxInfo.getItem("VFD_final_scroll_delay"), "w").write(hex(int(el.value)))
-				else:
-					open(BoxInfo.getItem("VFD_final_scroll_delay"), "w").write(el.value)
+				eDBoxLCD.getInstance().set_VFD_final_scroll_delay(int(el.value))
 
 			config.usage.vfd_final_scroll_delay = ConfigSelection(choices=[
 				("3000", "3 %s" % _("Seconds")),

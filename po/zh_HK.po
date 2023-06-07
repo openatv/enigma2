@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-21 12:38+0000\n"
+"POT-Creation-Date: 2023-05-31 20:48+0200\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1844,6 +1844,9 @@ msgstr "<當前電影列表位置>"
 msgid "<Default movie location>"
 msgstr "<預設錄影位置>"
 
+msgid "<Flash expander inactive>"
+msgstr ""
+
 msgid "<Last timer location>"
 msgstr "<最近一次定時錄影位置>"
 
@@ -2114,6 +2117,9 @@ msgstr "短按電源按鈕"
 msgid "Activate"
 msgstr "啟動"
 
+msgid "Activate Expander"
+msgstr ""
+
 msgid "Activate HbbTV (RED button)"
 msgstr ""
 
@@ -2134,6 +2140,9 @@ msgid "Activate network settings"
 msgstr "啟用網路設定"
 
 msgid "Activate the configured network settings."
+msgstr ""
+
+msgid "Activate the flash expander, save all changed settings and exit"
 msgstr ""
 
 #, fuzzy
@@ -2972,10 +2981,6 @@ msgstr "語言選擇"
 msgid "Auto Language Settings"
 msgstr ""
 
-#, fuzzy
-msgid "Auto Modes Selected."
-msgstr "節目包選擇."
-
 msgid "Auto SCART switching"
 msgstr "自動切換錄影機"
 
@@ -3011,6 +3016,12 @@ msgstr ""
 #, fuzzy
 msgid "Auto standby"
 msgstr "待機"
+
+msgid "Auto video mode selected"
+msgstr ""
+
+msgid "Auto video mode selected for the TV."
+msgstr ""
 
 #, fuzzy
 msgid "Auto(not available)"
@@ -3657,6 +3668,12 @@ msgstr ""
 #, fuzzy
 msgid "ButtonSetup"
 msgstr "設定"
+
+msgid "By disk UUID"
+msgstr ""
+
+msgid "By disk label"
+msgstr ""
 
 msgid "By openATV Image Team"
 msgstr ""
@@ -4384,9 +4401,6 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr ""
 
-msgid "Check the Internet connection"
-msgstr ""
-
 msgid "Check the Internet connection again"
 msgstr ""
 
@@ -4402,9 +4416,6 @@ msgid "Checking Logs..."
 msgstr "檢視檔系統..."
 
 msgid "Checking file system..."
-msgstr ""
-
-msgid "Checking the Internet connection"
 msgstr ""
 
 #, python-format
@@ -4830,6 +4841,9 @@ msgstr ""
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
+msgid "Configure DNS (name servers)"
+msgstr ""
+
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr ""
 
@@ -4878,10 +4892,13 @@ msgstr ""
 msgid "Configure interface"
 msgstr "配置網卡"
 
-msgid "Configure nameservers"
-msgstr "配置功能變數名稱伺服器"
-
 msgid "Configure on which devices the background delete option should be used."
+msgstr ""
+
+msgid ""
+"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
 msgstr ""
 
 msgid "Configure remote control type"
@@ -4891,6 +4908,12 @@ msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
 msgid "Configure the IP address."
+msgstr ""
+
+msgid ""
+"Configure the Internet connection by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
 msgstr ""
 
 #, fuzzy
@@ -5039,6 +5062,9 @@ msgstr ""
 msgid "Configure the netmask."
 msgstr ""
 
+msgid "Configure the network again"
+msgstr "重新配置網路"
+
 msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr ""
 
@@ -5182,9 +5208,6 @@ msgstr "重新配置網路"
 msgid "Configure your internal LAN"
 msgstr "配置無線網路"
 
-msgid "Configure the network again"
-msgstr "重新配置網路"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr ""
 
@@ -5218,6 +5241,9 @@ msgid "Connect to IceTV server every"
 msgstr "不能連接到Dreambox .NFI檔從伺服器:"
 
 msgid "Connect to a wireless network"
+msgstr ""
+
+msgid "Connect to the Internet"
 msgstr ""
 
 #, fuzzy
@@ -5279,6 +5305,9 @@ msgid "Continue playing"
 msgstr "繼續播放"
 
 msgid "Continue to run the task in the background"
+msgstr ""
+
+msgid "Continue with package download and installation"
 msgstr ""
 
 msgid "Continue with the flash process"
@@ -5449,6 +5478,9 @@ msgstr "創建DVD-ISO"
 msgid "Create Directory"
 msgstr ""
 
+msgid "Create Expander"
+msgstr ""
+
 #, fuzzy
 msgid "Create ISO"
 msgstr "創建DVD-ISO"
@@ -5466,6 +5498,12 @@ msgid "Create directory"
 msgstr "創建目錄"
 
 msgid "Create separate radio user bouquet"
+msgstr ""
+
+msgid "Create swap"
+msgstr ""
+
+msgid "Create the flash expander in the selected device"
 msgstr ""
 
 #, fuzzy
@@ -5954,6 +5992,12 @@ msgstr ""
 msgid "Deactivate"
 msgstr "啟動交換檔"
 
+msgid "Deactivate Expander"
+msgstr ""
+
+msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
 msgid "Debug"
 msgstr ""
 
@@ -6010,10 +6054,6 @@ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the s
 msgstr ""
 
 #, fuzzy
-msgid "Default Modes Selected."
-msgstr "預設錄影位置"
-
-#, fuzzy
 msgid "Default Services Scanner"
 msgstr "預設頻道列表"
 
@@ -6048,6 +6088,12 @@ msgid "Default sort order for files in the left column."
 msgstr ""
 
 msgid "Default sort order for files in the right column."
+msgstr ""
+
+msgid "Default video mode selected"
+msgstr ""
+
+msgid "Default video mode selected for the TV."
 msgstr ""
 
 msgid "Default volume offset"
@@ -6172,6 +6218,9 @@ msgstr ""
 msgid "Delete EPG Cache"
 msgstr ""
 
+msgid "Delete Expander"
+msgstr ""
+
 msgid "Delete Image"
 msgstr ""
 
@@ -6259,6 +6308,12 @@ msgstr ""
 msgid "Delete the character to the left of text cursor"
 msgstr ""
 
+msgid "Delete the character to the left of the cursor"
+msgstr ""
+
+msgid "Delete the character under the cursor"
+msgstr ""
+
 msgid "Delete the character under the text cursor"
 msgstr ""
 
@@ -6276,6 +6331,9 @@ msgstr ""
 
 #, python-format
 msgid "Delete the directory/file '%s'?"
+msgstr ""
+
+msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
@@ -6645,6 +6703,9 @@ msgstr ""
 msgid "Djibouti"
 msgstr "關於"
 
+msgid "Do another manual service scan?"
+msgstr ""
+
 msgid "Do not change"
 msgstr ""
 
@@ -6746,6 +6807,9 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
+msgid "Do you want the upgrade guide?"
+msgstr ""
+
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
@@ -6768,6 +6832,9 @@ msgstr " 是否燒錄這個收藏到DVD光碟?"
 msgid "Do you want to continue?"
 msgstr " 是否檢視更多專案?"
 
+msgid "Do you want to deactivate this flash expander?"
+msgstr ""
+
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
@@ -6779,6 +6846,9 @@ msgstr ""
 #, fuzzy
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr " 是否恢復您的設定?"
+
+msgid "Do you want to delete this flash expander directory?"
+msgstr ""
 
 msgid "Do you want to delete this log file?"
 msgstr ""
@@ -6828,6 +6898,9 @@ msgstr " 是否恢復您的設定?"
 
 msgid "Do you want to resume this playback?"
 msgstr " 是否繼續上次播放?"
+
+msgid "Do you want to start a backup now?"
+msgstr ""
 
 msgid "Do you want to upgrade the package:\n"
 msgstr " 是否升級套裝軟體:\n"
@@ -7642,6 +7715,9 @@ msgstr ""
 msgid "Enter pin code"
 msgstr ""
 
+msgid "Enter text via an attached keyboard"
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
 
@@ -7905,6 +7981,12 @@ msgstr "刪除 %s 目錄失敗. (很可能不是空目錄.)"
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr ""
 
+msgid "Error: The copy was unsuccessful!"
+msgstr ""
+
+msgid "Error: The delete was unsuccessful!"
+msgstr ""
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
 
@@ -7941,6 +8023,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: You can't run '%s' on a directory!"
+msgstr ""
+
+msgid "Error: mount not successful!"
 msgstr ""
 
 msgid "Esperanto"
@@ -8592,6 +8677,9 @@ msgstr ""
 msgid "Flash Expander"
 msgstr ""
 
+msgid "Flash Expander Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Flash Image"
 msgstr "安裝失敗"
@@ -8639,6 +8727,10 @@ msgstr ""
 msgid "Flash your %s %s and reboot now?"
 msgstr ""
 
+#, python-format
+msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
+msgstr ""
+
 #, fuzzy
 msgid "Flashing"
 msgstr "安裝失敗"
@@ -8663,6 +8755,9 @@ msgid "Flat by key group on remote"
 msgstr ""
 
 msgid "Flat by position on remote"
+msgstr ""
+
+msgid "Follow instructions on TV"
 msgstr ""
 
 #, fuzzy
@@ -8700,6 +8795,9 @@ msgstr "配置網卡"
 
 msgid "Format"
 msgstr "格式化"
+
+msgid "Format Disk"
+msgstr ""
 
 #, fuzzy
 msgid "Format HDD"
@@ -8987,6 +9085,9 @@ msgid "Given device id"
 msgstr ""
 
 msgid "Glibc version"
+msgstr ""
+
+msgid "Go back to the previous step"
 msgstr ""
 
 msgid "Go down the list"
@@ -9833,6 +9934,9 @@ msgstr "嚮導"
 msgid "Immediate shut down"
 msgstr ""
 
+msgid "Immediately exit the wizard (Debug mode only)"
+msgstr ""
+
 msgid "Immediately restart selected devices."
 msgstr ""
 
@@ -10154,6 +10258,9 @@ msgstr "正在安裝"
 #, fuzzy, python-format
 msgid "Installing %s (%s)..."
 msgstr "正在安裝..."
+
+msgid "Installing Please wait..."
+msgstr ""
 
 #, fuzzy
 msgid "Installing Service"
@@ -10767,6 +10874,9 @@ msgstr ""
 
 msgid "Limit west"
 msgstr "西極限位置"
+
+msgid "Limited memory size, swap file required"
+msgstr ""
 
 msgid "Limits cancelled"
 msgstr ""
@@ -12200,6 +12310,12 @@ msgstr "網路測驗"
 msgid "Network test..."
 msgstr "網路測驗..."
 
+msgid ""
+"Network wizard completed.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Network:"
 msgstr "網路:"
 
@@ -12336,6 +12452,9 @@ msgstr "無可用資訊"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "未找到硬碟或硬碟未初始化！"
+
+msgid "No Internet connection"
+msgstr ""
 
 msgid ""
 "No Settings loaded !!\n"
@@ -12508,6 +12627,13 @@ msgid "No updates available."
 msgstr ""
 
 msgid "No updates were available.  Please try again later."
+msgstr ""
+
+msgid "No valid device detected - Press OK"
+msgstr ""
+
+#, python-format
+msgid "No valid mount for '%s' found!"
 msgstr ""
 
 msgid "No valid region details were found"
@@ -12945,6 +13071,9 @@ msgstr ""
 msgid "Open the Plugin Browser"
 msgstr "流覽插件"
 
+msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
 msgid "Open the movie list"
 msgstr ""
 
@@ -13199,6 +13328,9 @@ msgstr ""
 msgid "Package information currently not available!"
 msgstr ""
 
+msgid "Package installation failed"
+msgstr ""
+
 #, fuzzy
 msgid "Package list"
 msgstr "升級軟體列表"
@@ -13368,6 +13500,9 @@ msgid "Perform an on-line flash instead"
 msgstr ""
 
 msgid "Perform install/remove of the selected item"
+msgstr ""
+
+msgid "Perform the upgrade?"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -13578,23 +13713,6 @@ msgstr "請選擇增加部分..."
 msgid "Please choose reader"
 msgstr "請選擇套裝軟體..."
 
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"請設定或核實填寫您的功能變數名稱伺服器.\n"
-"準備好後按OK繼續."
-
-msgid ""
-"Please configure your Internet connection by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"下列數值必須設定正確才能連接到Internet.\n"
-"當您準備好後按OK鍵確認."
-
-msgid "Please connect your %s %s to the Internet"
-msgstr ""
-
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "不要做任何改變,除非您知道您在幹什麼!"
 
@@ -13717,17 +13835,14 @@ msgid ""
 "IceTV is a subscription service that is only available in the listed countries."
 msgstr ""
 
+msgid "Please select the device where the flash expander '/usr' directory should created."
+msgstr ""
+
+msgid "Please select the device where the flash expander '/usr' directory should disabled."
+msgstr ""
+
 msgid "Please select the movie path..."
 msgstr "請選擇電影路徑..."
-
-msgid ""
-"Please select the network interface that you want to use for your Internet connection.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"請選擇連接Internet的網路裝置.\n"
-"\n"
-"按OK鍵確認."
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr ""
@@ -13735,97 +13850,7 @@ msgstr ""
 msgid "Please select the sub-service to record:"
 msgstr "請選擇要錄製的字幕..."
 
-msgid ""
-"Please select the wireless network that you want to connect to.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"請選擇您要接入的無線網路.\n"
-"\n"
-"按OK鍵確認"
-
 msgid "Please select what to do after flash of the following image:"
-msgstr ""
-
-msgid "Please set up tuner A"
-msgstr ""
-
-msgid ""
-"Please set up tuner A\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set up tuner B"
-msgstr "請選擇調諧器 B."
-
-msgid ""
-"Please set up tuner B\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set up tuner C"
-msgstr "請選擇調諧器 C."
-
-msgid ""
-"Please set up tuner C\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set up tuner D"
-msgstr "請選擇調諧器 D."
-
-msgid ""
-"Please set up tuner D\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner E\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner F\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner G\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner H\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner I\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner J\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner Q\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner R\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set your time options"
-msgstr ""
-
-msgid ""
-"Please set your time options.\n"
-"\n"
-"Press YELLOW to set the time zone via geolocation."
 msgstr ""
 
 #, fuzzy
@@ -13898,11 +13923,20 @@ msgstr "正在重啟網路...請稍候..."
 msgid "Please wait whilst feeds state is checked."
 msgstr "請稍候,我們正在測驗您的網路..."
 
+msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
+msgstr ""
+
 msgid "Please wait, loading image..."
 msgstr ""
 
 #, python-format
 msgid "Please wait, restarting %s."
+msgstr ""
+
+msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
 #, fuzzy
@@ -13918,6 +13952,12 @@ msgstr "正在載入列表... 請稍候..."
 #, fuzzy
 msgid "Please wait...almost ready! "
 msgstr "請稍候..."
+
+msgid "Plug in USB device"
+msgstr ""
+
+msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
+msgstr ""
 
 msgid "Plugin Browser"
 msgstr "流覽插件"
@@ -14183,8 +14223,14 @@ msgstr "按 OK 選擇/取消 CAId."
 msgid "Press OK to set the MAC address."
 msgstr "按OK鍵修改設定"
 
+msgid "Press OK to start the backup now"
+msgstr ""
+
 msgid "Press OK to start the scan"
 msgstr "按OK鍵開始掃描."
+
+msgid "Press OK to start using %s %s"
+msgstr ""
 
 #, fuzzy
 msgid "Press OK to toggle the selection"
@@ -14277,7 +14323,22 @@ msgstr ""
 msgid "Proc model"
 msgstr ""
 
+msgid "Proceed to the next step"
+msgstr ""
+
 msgid "Proceed with the update"
+msgstr ""
+
+msgid "Process BLUE button action"
+msgstr ""
+
+msgid "Process GREEN button action"
+msgstr ""
+
+msgid "Process RED button action"
+msgstr ""
+
+msgid "Process YELLOW button action"
 msgstr ""
 
 msgid "Processor information"
@@ -14921,9 +14982,6 @@ msgstr ""
 msgid "Refresh rate for 'Lowest Mode'"
 msgstr "選擇刷新率."
 
-msgid "Refresh rate selection."
-msgstr "選擇刷新率."
-
 #, fuzzy
 msgid "Refresh screen"
 msgstr "刷新頻率"
@@ -15353,6 +15411,9 @@ msgstr ""
 msgid "Restart necessary, restart GUI now?"
 msgstr "立即重啟(Restart)?"
 
+msgid "Restart needed, press OK to restart"
+msgstr ""
+
 #, fuzzy
 msgid "Restart network and remount connections"
 msgstr "重啟 Dreambox網路連接.\n"
@@ -15397,6 +15458,9 @@ msgstr "恢復備份"
 #, fuzzy
 msgid "Restore settings from a backup"
 msgstr "恢復備份"
+
+msgid "Restore settings now"
+msgstr ""
 
 msgid "Restore the highlighted slot"
 msgstr ""
@@ -15462,6 +15526,9 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "正在安裝... 請稍候..."
 
 msgid "Retrieving network server information, please wait..."
+msgstr ""
+
+msgid "Retry"
 msgstr ""
 
 msgid "Return the current selection response"
@@ -16288,6 +16355,9 @@ msgstr ""
 msgid "Select CAId"
 msgstr ""
 
+msgid "Select Device"
+msgstr ""
+
 #, fuzzy
 msgid "Select Enigma2 Skin"
 msgstr "選擇皮膚"
@@ -16353,6 +16423,9 @@ msgstr ""
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a device to use as the flash expander"
+msgstr ""
+
 msgid "Select a directory"
 msgstr ""
 
@@ -16364,6 +16437,9 @@ msgstr ""
 
 #, python-format
 msgid "Select a location into which to extract '%s':"
+msgstr ""
+
+msgid "Select a menu item"
 msgstr ""
 
 msgid "Select a movie"
@@ -16706,6 +16782,12 @@ msgstr ""
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
+msgid ""
+"Select the network interface to be used for the Internet connection.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
@@ -16719,6 +16801,9 @@ msgid "Select the previous item in the list"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
+msgstr ""
+
+msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
@@ -16756,6 +16841,9 @@ msgid "Select the sort order of the Plugin Browser menu entries. User defined al
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
@@ -16816,14 +16904,26 @@ msgstr ""
 msgid "Select the type of this timer."
 msgstr ""
 
+msgid "Select the video mode to be used on the TV."
+msgstr ""
+
+msgid ""
+"Select the wireless network to which you want to connect.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
-msgid "Select video input with up/down buttons"
-msgstr "選擇視頻輸入(上/下 鍵)"
+msgid "Select update source location"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "設定視頻模式"
+
+msgid "Select video output port with UP/DOWN buttons"
+msgstr ""
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr ""
@@ -17274,6 +17374,12 @@ msgstr ""
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
 
+msgid ""
+"Set the time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
+
 #, fuzzy
 msgid "Set the time to hide the infobar."
 msgstr "選擇位置來保存錄影."
@@ -17309,6 +17415,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set time options"
+msgstr ""
+
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
@@ -17322,6 +17431,15 @@ msgid "Set to what you want the button to do."
 msgstr ""
 
 msgid "Set to yes for debugging the root cause of a spinner."
+msgstr ""
+
+msgid "Set up tuner [TUNER]"
+msgstr ""
+
+msgid ""
+"Set up tuner [TUNER].\n"
+"\n"
+"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -18386,6 +18504,9 @@ msgstr "關機"
 msgid "Shutdown"
 msgstr "關機"
 
+msgid "Shutting down. Please wait..."
+msgstr ""
+
 msgid "Sichuan Yi / Nuosu"
 msgstr ""
 
@@ -18514,9 +18635,6 @@ msgstr "設定"
 msgid "SkinSelector"
 msgstr "皮膚選擇"
 
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr ""
-
 #, fuzzy
 msgid "Skip back"
 msgstr "快倒"
@@ -18529,6 +18647,9 @@ msgid "Skip forward"
 msgstr "快進"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip package installation, only core packages will be available"
 msgstr ""
 
 #, fuzzy
@@ -18672,6 +18793,9 @@ msgid "Small"
 msgstr ""
 
 msgid "Small - Tiny image"
+msgstr ""
+
+msgid "Small Box Preparation"
 msgstr ""
 
 msgid "Small Test"
@@ -19004,6 +19128,9 @@ msgstr ""
 msgid "Start RDS interactive"
 msgstr "View Rass interactive..."
 
+msgid "Start Wizard"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -19054,10 +19181,6 @@ msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr ""
 
 #, fuzzy
-msgid "StartWizard"
-msgstr "嚮導"
-
-#, fuzzy
 msgid "Starting Softcam"
 msgstr "開始"
 
@@ -19105,6 +19228,9 @@ msgstr ""
 
 msgid "Status:"
 msgstr "狀態:"
+
+msgid "Step"
+msgstr ""
 
 msgid "Step east"
 msgstr "向東步進"
@@ -19868,19 +19994,25 @@ msgid "Thailand"
 msgstr ""
 
 msgid ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
+"Thank you for using and completing the wizard. The %s %s is now ready to use.\n"
+"\n"
+"Please press OK to start using the %s %s."
 msgstr ""
-"感謝您使用設定嚮導.\n"
-"按OK鍵確認."
 
-#, fuzzy
 msgid ""
-"Thank you for using the wizard. Your %s %s is now ready to use.\n"
-"Please press OK to start using your %s %s."
+"Thank you for using and completing the wizard. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
 msgstr ""
-"感謝您使用該嚮導.Dreambox已經可以使用了.\n"
-"按OK開始使用您的Dreambox."
+
+msgid "The %s %s does not have an Internet connection."
+msgstr ""
+
+msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
+msgstr ""
+
+msgid "The %s %s is shutting down. Please wait..."
+msgstr ""
 
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr ""
@@ -19943,6 +20075,18 @@ msgstr ""
 
 #, python-format
 msgid "The IceTV server has requested password for %s."
+msgstr ""
+
+msgid ""
+"The Internet connection appears to be working.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
+msgid ""
+"The Internet connection appears to not be working!\n"
+"\n"
+"Choose what to do next."
 msgstr ""
 
 #, fuzzy
@@ -20027,8 +20171,17 @@ msgid ""
 "What do you want to do ?"
 msgstr ""
 
-msgid "The backup failed. Please choose a different backup location."
-msgstr "備份操作失敗！請選擇不同的備份位置。"
+msgid "The backup failed"
+msgstr ""
+
+msgid "The backup failed! Choose a different backup location."
+msgstr ""
+
+msgid "The backup succeeded"
+msgstr ""
+
+msgid "The backup succeeded. We will now continue to explain the upgrade process."
+msgstr ""
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr ""
@@ -20155,11 +20308,17 @@ msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
 msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it and choose what you want to do next."
+"The wireless LAN Internet connection could not be started!\n"
+"Is the wireless LAN device connected?\n"
+"\n"
+"Choose what to do next."
 msgstr ""
-"無線網路插件未安裝!\n"
-"請安裝並選擇下一步做什麼."
+
+msgid ""
+"The wireless LAN plugin code is not installed!\n"
+"\n"
+"Install it and choose what to do next."
+msgstr ""
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -20168,11 +20327,8 @@ msgstr ""
 "WLAN插件未安裝!\n"
 "請先安裝."
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "該嚮導可以備份您當前的設定.您想要做的一個備份嗎？"
-
-msgid "The wizard is finished now."
-msgstr "嚮導已完成設定."
+msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+msgstr ""
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -20186,6 +20342,9 @@ msgstr ""
 
 msgid "There are no updates available."
 msgstr "這裏沒有可用更新."
+
+msgid "There are pending tasks:"
+msgstr ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -20588,6 +20747,12 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr ""
 
+msgid "This wizard has finished"
+msgstr ""
+
+msgid "This wizard has finished."
+msgstr ""
+
 msgid "Three"
 msgstr "3"
 
@@ -20826,6 +20991,9 @@ msgstr "標題屬性"
 
 msgid "Titleset mode"
 msgstr "標題設定模式"
+
+msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
+msgstr ""
 
 #, fuzzy
 msgid "To restore the image:"
@@ -21505,6 +21673,9 @@ msgstr "升級完成."
 msgid "Update interval (in seconds)"
 msgstr "超時(秒)"
 
+msgid "Update package list please wait..."
+msgstr ""
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -21634,6 +21805,9 @@ msgstr ""
 msgid "Use TV remote control"
 msgstr ""
 
+msgid "Use UP/DOWN buttons to select option then press OK"
+msgstr ""
+
 msgid "Use USALS for this sat"
 msgstr ""
 
@@ -21656,10 +21830,13 @@ msgstr "編輯選項"
 msgid "Use as HDD"
 msgstr ""
 
+msgid "Use automatic mode detection"
+msgstr ""
+
 msgid ""
-"Use automatic mode detection.\n"
-" This option reads all supported modes from your TV.\n"
-" Please disable it only if you want to customize the preferred configuration."
+"Use automatic mode detection?\n"
+"\n"
+"This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
 msgstr ""
 
 #, fuzzy
@@ -21772,9 +21949,6 @@ msgstr ""
 
 msgid "Use the network wizard to configure your Network."
 msgstr ""
-
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "使用遙控 上/下 鍵選擇一個選項。在此之後按下 OK 。"
 
 msgid "Use the wizard to set up basic features"
 msgstr ""
@@ -22034,6 +22208,9 @@ msgstr ""
 msgid "Video Settings"
 msgstr "編輯設定"
 
+msgid "Video Wizard"
+msgstr ""
+
 #, fuzzy
 msgid "Video clipping"
 msgstr "視頻微調"
@@ -22051,22 +22228,6 @@ msgstr "視頻增強預覽"
 
 msgid "Video enhancement setup"
 msgstr "視頻增強設定"
-
-msgid ""
-"Video input selection\n"
-"\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
-"\n"
-"The next input port will be automatically probed in 10 seconds."
-msgstr ""
-"選擇視頻輸入\n"
-"\n"
-"請按OK時,在電視上可以看到這個頁面(或選擇不同的輸入).\n"
-"\n"
-"下一個視頻輸入10秒鐘後自動測驗"
-
-msgid "Video mode selection."
-msgstr "選擇視頻模式."
 
 #, fuzzy, python-format
 msgid "Video mode: %s"
@@ -22111,6 +22272,14 @@ msgstr "視頻輸出"
 msgid "Video output mode for UHD"
 msgstr ""
 
+msgid ""
+"Video output port selection.\n"
+"\n"
+"Make sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n"
+"\n"
+"The next output port will be automatically tried in 10 seconds."
+msgstr ""
+
 #, fuzzy
 msgid "Video: "
 msgstr "S-Video"
@@ -22134,10 +22303,6 @@ msgstr "視頻增強預覽"
 #, fuzzy
 msgid "VideoFinetune"
 msgstr "調整"
-
-#, fuzzy
-msgid "VideoWizard"
-msgstr "視頻設定嚮導"
 
 msgid "Videocodec, size & format"
 msgstr ""
@@ -22183,7 +22348,13 @@ msgstr "檢視電傳視訊..."
 msgid "View the archive contents"
 msgstr ""
 
+msgid "View the next item in a list"
+msgstr ""
+
 msgid "View the package contents"
+msgstr ""
+
+msgid "View the previous item in a list"
 msgstr ""
 
 msgid "View video CD..."
@@ -22423,11 +22594,20 @@ msgstr ""
 msgid "Weekly"
 msgstr "每週"
 
+msgid "Welcome Wizard"
+msgstr ""
+
 #, python-format
 msgid "Welcome to %s"
 msgstr ""
 
 msgid "Welcome to IceTV"
+msgstr ""
+
+msgid ""
+"Welcome to openATV.\n"
+"\n"
+"Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
 msgstr ""
 
 msgid ""
@@ -22438,35 +22618,8 @@ msgid ""
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 
-#, fuzzy
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "歡迎使用韧體升級嚮導.該嚮導將幫助您在升級Dreambox韧體之前備份當前設定及簡短的說明如何升級您的韧體。"
-
-#, fuzzy
-msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-"\n"
-"Press OK to start configuring your network"
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
 msgstr ""
-"歡迎.\n"
-"\n"
-"如果您想連接Dreambox到Internet, 該嚮導將引導您完成網路設定.\n"
-"\n"
-"按OK鍵開始配置您的網路"
-
-#, fuzzy
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your %s %s.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"歡迎.\n"
-"\n"
-"啟動嚮導將引導您完成Dreambox的基本設定.\n"
-"按OK鍵進入下一步設定."
 
 msgid "Welcome..."
 msgstr "歡迎..."
@@ -22752,10 +22905,13 @@ msgstr ""
 msgid "Wireless network configuration..."
 msgstr ""
 
-msgid "Wireless network connection setup"
+msgid ""
+"Wireless network connection setup.\n"
+"\n"
+"Choose what to do next."
 msgstr ""
 
-msgid "Wireless network connection setup."
+msgid "Wireless network setup"
 msgstr ""
 
 msgid "Wireless network state"
@@ -22803,6 +22959,9 @@ msgid "Without pop up"
 msgstr ""
 
 msgid "Without query"
+msgstr ""
+
+msgid "Wizard Actions"
 msgstr ""
 
 msgid "Wolof"
@@ -22992,11 +23151,11 @@ msgstr ""
 msgid "You cannot delete this!"
 msgstr "這個檔不能刪除!"
 
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr "您已選擇要備份您的設定。請按OK鍵開始備份。"
+msgid "You have chosen to backup your settings. Press OK to start the backup now."
+msgstr ""
 
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "您已經選擇恢復備份設定.恢復後將重啟Enigma2.請按OK開始恢復備份."
+msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift"
 msgstr ""
@@ -23024,13 +23183,10 @@ msgstr "您必須等待 %s !"
 msgid "You must set at least one command!"
 msgstr ""
 
-#, fuzzy
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
-"您需要一台PC連接到您的dreambox.通過電腦更新dreambox的韧體.\n"
-"如果您需要進一步的說明請訪問網站http://www.dm7025.de."
 
 #, fuzzy
 msgid "You seem to be in time shift!"
@@ -23048,18 +23204,12 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "Your %s %s does not have an Internet connection"
-msgstr ""
-
 #, fuzzy, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "您的皮膚不支援第二資訊條顯示 !!!"
 
 #, python-format
 msgid "Your %s %s goes to WOL"
-msgstr ""
-
-msgid "Your %s %s is not connected to the Internet"
 msgstr ""
 
 #, fuzzy, python-format
@@ -23078,20 +23228,6 @@ msgstr ""
 "網路配置完成,已連接到Internet.\n"
 "\n"
 
-#, fuzzy
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"現在,Dreambox已經可以正常使用了.\n"
-"\n"
-"網路配置完成,已連接到Internet.\n"
-"\n"
-"按OK鍵確認."
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr ""
@@ -23103,10 +23239,6 @@ msgstr ""
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr ""
-
-#, fuzzy
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr "您的Dreambox正在關閉. 請稍等..."
 
 #, python-format
 msgid ""
@@ -23165,15 +23297,16 @@ msgstr ""
 "請選擇下一步做什麼"
 
 #, python-format
+msgid "Your Internet connection is working (ip: %s)"
+msgstr ""
+
+#, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
 
 #, fuzzy
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "按下OK鍵重新啟動Dreambox."
-
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "備份成功.現在將繼續說明下一步的升級過程."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "您的收藏超過單層DVD大小,您將需要一個空白雙層DVD！！！"
@@ -23226,20 +23359,12 @@ msgstr ""
 msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
 msgstr ""
 
+msgid "Your receiver does not have an Internet connection"
+msgstr ""
+
 #, python-format
 msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
-
-msgid ""
-"Your wireless LAN Internet connection could not be started!\n"
-"Have you attached your USB WLAN Stick?\n"
-"\n"
-"Please choose what you want to do next."
-msgstr ""
-"無線網路不能連接！\n"
-"是否連接了USB無線網卡?\n"
-"\n"
-"請選擇下一步做什麼."
 
 #, fuzzy
 msgid "Youth"
@@ -23893,6 +24018,9 @@ msgid "hlg"
 msgstr ""
 
 msgid "hops:"
+msgstr ""
+
+msgid "inactive"
 msgstr ""
 
 msgid "increase uphop by 1"
@@ -24610,6 +24738,198 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Auto Modes Selected."
+#~ msgstr "節目包選擇."
+
+#~ msgid "Configure nameservers"
+#~ msgstr "配置功能變數名稱伺服器"
+
+#, fuzzy
+#~ msgid "Default Modes Selected."
+#~ msgstr "預設錄影位置"
+
+#~ msgid ""
+#~ "Please configure or verify your Nameservers by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "請設定或核實填寫您的功能變數名稱伺服器.\n"
+#~ "準備好後按OK繼續."
+
+#~ msgid ""
+#~ "Please configure your Internet connection by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "下列數值必須設定正確才能連接到Internet.\n"
+#~ "當您準備好後按OK鍵確認."
+
+#~ msgid ""
+#~ "Please select the network interface that you want to use for your Internet connection.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "請選擇連接Internet的網路裝置.\n"
+#~ "\n"
+#~ "按OK鍵確認."
+
+#~ msgid ""
+#~ "Please select the wireless network that you want to connect to.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "請選擇您要接入的無線網路.\n"
+#~ "\n"
+#~ "按OK鍵確認"
+
+#~ msgid "Please set up tuner B"
+#~ msgstr "請選擇調諧器 B."
+
+#~ msgid "Please set up tuner C"
+#~ msgstr "請選擇調諧器 C."
+
+#~ msgid "Please set up tuner D"
+#~ msgstr "請選擇調諧器 D."
+
+#~ msgid "Refresh rate selection."
+#~ msgstr "選擇刷新率."
+
+#~ msgid "Select video input with up/down buttons"
+#~ msgstr "選擇視頻輸入(上/下 鍵)"
+
+#, fuzzy
+#~ msgid "StartWizard"
+#~ msgstr "嚮導"
+
+#~ msgid ""
+#~ "Thank you for using the wizard.\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "感謝您使用設定嚮導.\n"
+#~ "按OK鍵確認."
+
+#, fuzzy
+#~ msgid ""
+#~ "Thank you for using the wizard. Your %s %s is now ready to use.\n"
+#~ "Please press OK to start using your %s %s."
+#~ msgstr ""
+#~ "感謝您使用該嚮導.Dreambox已經可以使用了.\n"
+#~ "按OK開始使用您的Dreambox."
+
+#~ msgid "The backup failed. Please choose a different backup location."
+#~ msgstr "備份操作失敗！請選擇不同的備份位置。"
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it and choose what you want to do next."
+#~ msgstr ""
+#~ "無線網路插件未安裝!\n"
+#~ "請安裝並選擇下一步做什麼."
+
+#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+#~ msgstr "該嚮導可以備份您當前的設定.您想要做的一個備份嗎？"
+
+#~ msgid "The wizard is finished now."
+#~ msgstr "嚮導已完成設定."
+
+#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#~ msgstr "使用遙控 上/下 鍵選擇一個選項。在此之後按下 OK 。"
+
+#~ msgid ""
+#~ "Video input selection\n"
+#~ "\n"
+#~ "Please press OK if you can see this page on your TV (or select a different input port).\n"
+#~ "\n"
+#~ "The next input port will be automatically probed in 10 seconds."
+#~ msgstr ""
+#~ "選擇視頻輸入\n"
+#~ "\n"
+#~ "請按OK時,在電視上可以看到這個頁面(或選擇不同的輸入).\n"
+#~ "\n"
+#~ "下一個視頻輸入10秒鐘後自動測驗"
+
+#~ msgid "Video mode selection."
+#~ msgstr "選擇視頻模式."
+
+#, fuzzy
+#~ msgid "VideoWizard"
+#~ msgstr "視頻設定嚮導"
+
+#, fuzzy
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+#~ msgstr "歡迎使用韧體升級嚮導.該嚮導將幫助您在升級Dreambox韧體之前備份當前設定及簡短的說明如何升級您的韧體。"
+
+#, fuzzy
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
+#~ "\n"
+#~ "Press OK to start configuring your network"
+#~ msgstr ""
+#~ "歡迎.\n"
+#~ "\n"
+#~ "如果您想連接Dreambox到Internet, 該嚮導將引導您完成網路設定.\n"
+#~ "\n"
+#~ "按OK鍵開始配置您的網路"
+
+#, fuzzy
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "This start wizard will guide you through the basic setup of your %s %s.\n"
+#~ "Press the OK button on your remote control to move to the next step."
+#~ msgstr ""
+#~ "歡迎.\n"
+#~ "\n"
+#~ "啟動嚮導將引導您完成Dreambox的基本設定.\n"
+#~ "按OK鍵進入下一步設定."
+
+#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+#~ msgstr "您已選擇要備份您的設定。請按OK鍵開始備份。"
+
+#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+#~ msgstr "您已經選擇恢復備份設定.恢復後將重啟Enigma2.請按OK開始恢復備份."
+
+#, fuzzy
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
+#~ "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+#~ msgstr ""
+#~ "您需要一台PC連接到您的dreambox.通過電腦更新dreambox的韧體.\n"
+#~ "如果您需要進一步的說明請訪問網站http://www.dm7025.de."
+
+#, fuzzy
+#~ msgid ""
+#~ "Your %s %s is now ready to use.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "現在,Dreambox已經可以正常使用了.\n"
+#~ "\n"
+#~ "網路配置完成,已連接到Internet.\n"
+#~ "\n"
+#~ "按OK鍵確認."
+
+#, fuzzy
+#~ msgid "Your %s %s is shutting down. Please wait..."
+#~ msgstr "您的Dreambox正在關閉. 請稍等..."
+
+#~ msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+#~ msgstr "備份成功.現在將繼續說明下一步的升級過程."
+
+#~ msgid ""
+#~ "Your wireless LAN Internet connection could not be started!\n"
+#~ "Have you attached your USB WLAN Stick?\n"
+#~ "\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "無線網路不能連接！\n"
+#~ "是否連接了USB無線網卡?\n"
+#~ "\n"
+#~ "請選擇下一步做什麼."
 
 #, fuzzy
 #~ msgid ""

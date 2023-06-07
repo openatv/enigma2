@@ -200,7 +200,7 @@ AM_CONDITIONAL(HAVE_COLORLCD2, test "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm800
 AM_CONDITIONAL(HAVE_COLORLCD1, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm7020hd -o "$BOXTYPE" == dm7020hdv2)
 AM_CONDITIONAL(HAVE_GRAUTEC8000, test "$BOXTYPE" == dm8000)
 AM_CONDITIONAL(HAVE_GRAUTEC70X0, test "$BOXTYPE" == dm7020hd -o "$BOXTYPE" == dm7020hdv2 -o "$BOXTYPE" == dm7080)
-AM_CONDITIONAL(LCD_FRAMEBUFFER_MODE, test "$BOXTYPE" == et8500 -o "$BOXTYPE" == et8500s)
+AM_CONDITIONAL(LCD_FRAMEBUFFER_MODE, test "$BOXTYPE" == et8500 -o "$BOXTYPE" == et8500s -o "$BOXTYPE" == 8100s)
 
 AC_ARG_WITH(accelerationthreshold,
 	AC_HELP_STRING([--with-accelerationthreshold=n], [use acceleration threshold of n bytes]),
@@ -668,6 +668,7 @@ fi
 
 if test "$BOXTYPE" == "8100s"; then
 	AC_DEFINE(KEY_VIDEO_TO_KEY_BOOKMARKS, 1,[define when rc sends a KEY_VIDEO event for its KEY_BOOKMARKS])
+	AC_DEFINE(LCD_FRAMEBUFFER_MODE, 1,[define the framebuffer LCD mode])
 fi
 
 if test "$MACHINEBUILD" == "e4hd" -o "$MACHINEBUILD" == "e4hdhybrid"; then
@@ -775,6 +776,10 @@ fi
 
 if test "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920"; then
 	AC_DEFINE(LCD_DM900_Y_OFFSET, 4,[define LCD Y offset for dm900 and dm920])
+fi
+
+if test "$BOXTYPE" == "sf4008" -o "$BOXTYPE" == "beyonwizu4"; then
+	AC_DEFINE(LCD_SCROLL_HEX, 1,[define LCD scroll values in hex])
 fi
 
 AC_ARG_WITH(libsdl,

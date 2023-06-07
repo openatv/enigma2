@@ -951,7 +951,7 @@ class ChannelSelectionBase(Screen):
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
-		})
+		}, prio=-1)  # This prio is needed to overwrite the left/right action for neutrino keymap
 		self.mode = MODE_TV
 		self.baseTitle = _("Channel Selection")
 		self.function = EDIT_OFF
@@ -1674,7 +1674,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			self.close()
 
 	def layoutFinished(self):
-		self["menu"].instance.enableAutoNavigation(False)
+		self["menu"].enableAutoNavigation(False)
 
 	def keyCancel(self, dummy=False):
 		self.close(False)
@@ -3095,7 +3095,7 @@ class BouquetSelector(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["menu"].instance.enableAutoNavigation(False)
+		self["menu"].enableAutoNavigation(False)
 
 	def keyCancel(self):
 		self.close(False)
@@ -3195,7 +3195,7 @@ class HistoryZapSelector(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["menu"].downstream_elements[0].downstream_elements[0].instance.enableAutoNavigation(False)
+		self["menu"].enableAutoNavigation(False)
 		self["menu"].setIndex(self.selectedItem)
 
 	def keyCancel(self):

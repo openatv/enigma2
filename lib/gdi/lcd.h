@@ -51,10 +51,25 @@ public:
 	virtual void setInverted(unsigned char) = 0;
 	virtual void setFlipped(bool) = 0;
 	virtual void setDump(bool) = 0;
+	virtual void dumpLCD(bool) = 0;
 	virtual int waitVSync() = 0;
 	virtual bool isOled() const = 0;
 	int getLcdType() { return lcd_type; };
 	virtual void setPalette(gUnmanagedSurface) = 0;
+
+	const char *get_VFD_scroll_delay() const;
+	void set_VFD_scroll_delay(int delay) const;
+
+	const char *get_VFD_initial_scroll_delay() const;
+	void set_VFD_initial_scroll_delay(int delay) const;
+
+	const char *get_VFD_final_scroll_delay() const;
+	void set_VFD_final_scroll_delay(int delay) const;
+
+	const char *get_VFD_scroll_repeats() const;
+	void set_VFD_scroll_repeats(int delay) const;
+
+
 #ifndef SWIG
 	eLCD();
 	virtual ~eLCD();
@@ -72,7 +87,6 @@ class eDBoxLCD : public eLCD
 {
 	unsigned char inverted;
 	bool flipped;
-	bool dump;
 	int m_oled_brightness_proc;
 #ifdef SWIG
 	eDBoxLCD();
@@ -89,11 +103,11 @@ public:
 	void setInverted(unsigned char);
 	void setFlipped(bool);
 	void setDump(bool);
+	void dumpLCD(bool);
 	bool isOled() const { return !!lcd_type; };
 	void setPalette(gUnmanagedSurface){};
 	void update();
 	int waitVSync() { return 0; };
-	void dumpLCD2PNG(void);
 };
 
 #endif

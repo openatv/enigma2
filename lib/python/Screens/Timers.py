@@ -298,6 +298,10 @@ class TimerListBase(GUIComponent):
 	def invalidate(self):
 		self.timerListWidget.invalidate()
 
+	def enableAutoNavigation(self, enabled):
+		if self.instance:
+			self.instance.enableAutoNavigation(enabled)
+
 
 # Widget item layout:
 #
@@ -573,7 +577,7 @@ class TimerOverviewBase(Screen, HelpableScreen):
 		self.selectionChanged()
 
 	def layoutFinished(self):
-		self["timerlist"].instance.enableAutoNavigation(False)
+		self["timerlist"].enableAutoNavigation(False)
 		self.selectionChanged()
 
 	def selectionChanged(self):

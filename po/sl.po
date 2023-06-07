@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-21 12:38+0000\n"
+"POT-Creation-Date: 2023-05-31 20:48+0200\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -2008,6 +2008,9 @@ msgstr "<Trenutna \"movielist\" lokacija>"
 msgid "<Default movie location>"
 msgstr "<Privzeta \"movie\" lokacija>"
 
+msgid "<Flash expander inactive>"
+msgstr ""
+
 #
 msgid "<Last timer location>"
 msgstr "<Prejšnja \"timer\" lokacija>"
@@ -2281,6 +2284,9 @@ msgstr ""
 msgid "Activate"
 msgstr "Aktivacija"
 
+msgid "Activate Expander"
+msgstr ""
+
 msgid "Activate HbbTV (RED button)"
 msgstr ""
 
@@ -2305,6 +2311,9 @@ msgid "Activate network settings"
 msgstr "Aktiviranje omrežnih nastavitev"
 
 msgid "Activate the configured network settings."
+msgstr ""
+
+msgid "Activate the flash expander, save all changed settings and exit"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3184,11 +3193,6 @@ msgid "Auto Language Settings"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Auto Modes Selected."
-msgstr "ni izbran nobeden CAId"
-
-#
 msgid "Auto SCART switching"
 msgstr "Samodejno preklapljanje SCART"
 
@@ -3229,6 +3233,12 @@ msgstr ""
 #, fuzzy
 msgid "Auto standby"
 msgstr "Stanje pripravljenosti"
+
+msgid "Auto video mode selected"
+msgstr ""
+
+msgid "Auto video mode selected for the TV."
+msgstr ""
 
 msgid "Auto(not available)"
 msgstr ""
@@ -3893,6 +3903,12 @@ msgid "Button error timeout"
 msgstr ""
 
 msgid "ButtonSetup"
+msgstr ""
+
+msgid "By disk UUID"
+msgstr ""
+
+msgid "By disk label"
 msgstr ""
 
 msgid "By openATV Image Team"
@@ -4640,9 +4656,6 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr ""
 
-msgid "Check the Internet connection"
-msgstr ""
-
 msgid "Check the Internet connection again"
 msgstr ""
 
@@ -4659,9 +4672,6 @@ msgstr ""
 #, fuzzy
 msgid "Checking file system..."
 msgstr "Poteka preverjanje datotečnega sistema..."
-
-msgid "Checking the Internet connection"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5114,6 +5124,9 @@ msgstr ""
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
+msgid "Configure DNS (name servers)"
+msgstr ""
+
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr ""
 
@@ -5163,11 +5176,13 @@ msgstr ""
 msgid "Configure interface"
 msgstr "Nastavi vmesnik"
 
-#
-msgid "Configure nameservers"
-msgstr "Nastavite imenske strežnike"
-
 msgid "Configure on which devices the background delete option should be used."
+msgstr ""
+
+msgid ""
+"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
 msgstr ""
 
 msgid "Configure remote control type"
@@ -5177,6 +5192,12 @@ msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
 msgid "Configure the IP address."
+msgstr ""
+
+msgid ""
+"Configure the Internet connection by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
 msgstr ""
 
 #
@@ -5327,6 +5348,10 @@ msgstr ""
 msgid "Configure the netmask."
 msgstr ""
 
+#
+msgid "Configure the network again"
+msgstr "Ponovno nastavite omrežje"
+
 msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr ""
 
@@ -5471,10 +5496,6 @@ msgstr ""
 msgid "Configure your internal LAN"
 msgstr "Nastavite LAN omrežje"
 
-#
-msgid "Configure the network again"
-msgstr "Ponovno nastavite omrežje"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Nastavite mrežne nastavitve in za pričetek skeniranja, pritisnite tipko OK."
 
@@ -5516,6 +5537,9 @@ msgstr "Ne morem odpreti Slike v Sliki"
 #, fuzzy
 msgid "Connect to a wireless network"
 msgstr "Poveži se z brezzičnim omrežjem"
+
+msgid "Connect to the Internet"
+msgstr ""
 
 msgid "Connected clients"
 msgstr ""
@@ -5575,6 +5599,9 @@ msgid "Continue playing"
 msgstr "Nadaljuj predvajanje"
 
 msgid "Continue to run the task in the background"
+msgstr ""
+
+msgid "Continue with package download and installation"
 msgstr ""
 
 msgid "Continue with the flash process"
@@ -5759,6 +5786,9 @@ msgstr "Kreiraj DVD-ISO"
 msgid "Create Directory"
 msgstr ""
 
+msgid "Create Expander"
+msgstr ""
+
 msgid "Create ISO"
 msgstr ""
 
@@ -5777,6 +5807,12 @@ msgid "Create directory"
 msgstr "Ustvarite mapo"
 
 msgid "Create separate radio user bouquet"
+msgstr ""
+
+msgid "Create swap"
+msgstr ""
+
+msgid "Create the flash expander in the selected device"
 msgstr ""
 
 #
@@ -6294,6 +6330,12 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
+msgid "Deactivate Expander"
+msgstr ""
+
+msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
 msgid "Debug"
 msgstr ""
 
@@ -6356,11 +6398,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Default Modes Selected."
-msgstr "Privzeta \"movie\" lokacija"
-
-#
-#, fuzzy
 msgid "Default Services Scanner"
 msgstr "Privzeta \"movie\" lokacija"
 
@@ -6395,6 +6432,12 @@ msgid "Default sort order for files in the left column."
 msgstr ""
 
 msgid "Default sort order for files in the right column."
+msgstr ""
+
+msgid "Default video mode selected"
+msgstr ""
+
+msgid "Default video mode selected for the TV."
 msgstr ""
 
 msgid "Default volume offset"
@@ -6520,6 +6563,9 @@ msgstr ""
 msgid "Delete EPG Cache"
 msgstr ""
 
+msgid "Delete Expander"
+msgstr ""
+
 msgid "Delete Image"
 msgstr ""
 
@@ -6616,6 +6662,12 @@ msgstr "Izbris shranjenega seznama predvajanja"
 msgid "Delete the character to the left of text cursor"
 msgstr ""
 
+msgid "Delete the character to the left of the cursor"
+msgstr ""
+
+msgid "Delete the character under the cursor"
+msgstr ""
+
 msgid "Delete the character under the text cursor"
 msgstr ""
 
@@ -6633,6 +6685,9 @@ msgstr ""
 
 #, python-format
 msgid "Delete the directory/file '%s'?"
+msgstr ""
+
+msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
@@ -7020,6 +7075,9 @@ msgstr ""
 msgid "Djibouti"
 msgstr "Informacije o OpenPLi sliki"
 
+msgid "Do another manual service scan?"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Do not change"
@@ -7132,6 +7190,9 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
+msgid "Do you want the upgrade guide?"
+msgstr ""
+
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
@@ -7152,6 +7213,9 @@ msgstr "Ali želite posneti izbrano zbirko na DVD medij?"
 msgid "Do you want to continue?"
 msgstr ""
 
+msgid "Do you want to deactivate this flash expander?"
+msgstr ""
+
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
@@ -7161,6 +7225,9 @@ msgid "Do you want to delete all the log files?"
 msgstr ""
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr ""
+
+msgid "Do you want to delete this flash expander directory?"
 msgstr ""
 
 msgid "Do you want to delete this log file?"
@@ -7220,6 +7287,9 @@ msgstr "Želite povrniti vaše nastavitve?"
 #
 msgid "Do you want to resume this playback?"
 msgstr "Želite nadaljevati s predvajanjem?"
+
+msgid "Do you want to start a backup now?"
+msgstr ""
 
 #
 msgid "Do you want to upgrade the package:\n"
@@ -8082,6 +8152,9 @@ msgstr ""
 msgid "Enter pin code"
 msgstr "Vnesite PIN kodo"
 
+msgid "Enter text via an attached keyboard"
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
 
@@ -8355,6 +8428,12 @@ msgstr "Odstranjevanje mape %s ni uspelo. (Obstaja možnost, da ni prazna.)"
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr ""
 
+msgid "Error: The copy was unsuccessful!"
+msgstr ""
+
+msgid "Error: The delete was unsuccessful!"
+msgstr ""
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
 
@@ -8392,6 +8471,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: You can't run '%s' on a directory!"
+msgstr ""
+
+msgid "Error: mount not successful!"
 msgstr ""
 
 msgid "Esperanto"
@@ -9070,6 +9152,9 @@ msgstr ""
 msgid "Flash Expander"
 msgstr ""
 
+msgid "Flash Expander Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Flash Image"
@@ -9115,6 +9200,10 @@ msgstr ""
 msgid "Flash your %s %s and reboot now?"
 msgstr ""
 
+#, python-format
+msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
+msgstr ""
+
 msgid "Flashing"
 msgstr ""
 
@@ -9142,6 +9231,9 @@ msgstr ""
 #, fuzzy
 msgid "Flat by position on remote"
 msgstr "Nadaljevanje iz položaja %s"
+
+msgid "Follow instructions on TV"
+msgstr ""
 
 #
 #, fuzzy
@@ -9182,6 +9274,9 @@ msgstr "Nastavi vmesnik"
 #
 msgid "Format"
 msgstr "Formatiraj"
+
+msgid "Format Disk"
+msgstr ""
 
 msgid "Format HDD"
 msgstr ""
@@ -9483,6 +9578,9 @@ msgid "Given device id"
 msgstr ""
 
 msgid "Glibc version"
+msgstr ""
+
+msgid "Go back to the previous step"
 msgstr ""
 
 msgid "Go down the list"
@@ -10342,6 +10440,9 @@ msgstr ""
 msgid "Immediate shut down"
 msgstr "Takojšen izklop"
 
+msgid "Immediately exit the wizard (Debug mode only)"
+msgstr ""
+
 msgid "Immediately restart selected devices."
 msgstr ""
 
@@ -10676,6 +10777,9 @@ msgstr "Nameščam..."
 #, fuzzy, python-format
 msgid "Installing %s (%s)..."
 msgstr "Nameščam..."
+
+msgid "Installing Please wait..."
+msgstr ""
 
 msgid "Installing Service"
 msgstr ""
@@ -11322,6 +11426,9 @@ msgstr ""
 #
 msgid "Limit west"
 msgstr "Omejitev zahod"
+
+msgid "Limited memory size, swap file required"
+msgstr ""
 
 #
 #, fuzzy
@@ -12830,6 +12937,12 @@ msgstr "Omrežni test"
 msgid "Network test..."
 msgstr ""
 
+msgid ""
+"Network wizard completed.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 #
 msgid "Network:"
 msgstr "Omrežje:"
@@ -12974,6 +13087,9 @@ msgstr "Opis ni na voljo."
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "Trdega diska ni mogoče dodati!"
+
+msgid "No Internet connection"
+msgstr ""
 
 msgid ""
 "No Settings loaded !!\n"
@@ -13171,6 +13287,13 @@ msgid "No updates available."
 msgstr ""
 
 msgid "No updates were available.  Please try again later."
+msgstr ""
+
+msgid "No valid device detected - Press OK"
+msgstr ""
+
+#, python-format
+msgid "No valid mount for '%s' found!"
 msgstr ""
 
 msgid "No valid region details were found"
@@ -13626,6 +13749,9 @@ msgstr ""
 msgid "Open the Plugin Browser"
 msgstr ""
 
+msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
 msgid "Open the movie list"
 msgstr ""
 
@@ -13876,6 +14002,9 @@ msgstr ""
 msgid "Package information currently not available!"
 msgstr ""
 
+msgid "Package installation failed"
+msgstr ""
+
 msgid "Package list"
 msgstr ""
 
@@ -14052,6 +14181,9 @@ msgid "Perform an on-line flash instead"
 msgstr ""
 
 msgid "Perform install/remove of the selected item"
+msgstr ""
+
+msgid "Perform the upgrade?"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -14283,23 +14415,6 @@ msgid "Please choose reader"
 msgstr ""
 
 #
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Preverite vaše imenske strežnike.\n"
-"Ko boste pripravljeni, pritisnite tipko OK."
-
-#
-msgid ""
-"Please configure your Internet connection by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-
-msgid "Please connect your %s %s to the Internet"
-msgstr ""
-
-#
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Ne spreminjajte vrednosti če niste prepričani o rezultatu!"
 
@@ -14436,19 +14551,15 @@ msgid ""
 "IceTV is a subscription service that is only available in the listed countries."
 msgstr ""
 
+msgid "Please select the device where the flash expander '/usr' directory should created."
+msgstr ""
+
+msgid "Please select the device where the flash expander '/usr' directory should disabled."
+msgstr ""
+
 #
 msgid "Please select the movie path..."
 msgstr "Izberite pot do datotek:"
-
-#
-msgid ""
-"Please select the network interface that you want to use for your Internet connection.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Izberite mrežni vmesnik, ki ga želite uporabiti za internetno povezavo.\n"
-"\n"
-"Za nadaljevanje pritisnite OK."
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr ""
@@ -14457,101 +14568,7 @@ msgstr ""
 msgid "Please select the sub-service to record:"
 msgstr "Izberite snemanje pod-storitve."
 
-#
-msgid ""
-"Please select the wireless network that you want to connect to.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Izberite brezzično mrežo, kamor se želite povezati.\n"
-"\n"
-"Za nadaljevanje pritisnite OK."
-
 msgid "Please select what to do after flash of the following image:"
-msgstr ""
-
-msgid "Please set up tuner A"
-msgstr ""
-
-msgid ""
-"Please set up tuner A\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-#
-msgid "Please set up tuner B"
-msgstr "Nastavite kanalnik B"
-
-msgid ""
-"Please set up tuner B\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-#
-msgid "Please set up tuner C"
-msgstr "Nastavite kanalnik C"
-
-msgid ""
-"Please set up tuner C\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-#
-msgid "Please set up tuner D"
-msgstr "Nastavite kanalnik D"
-
-msgid ""
-"Please set up tuner D\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner E\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner F\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner G\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner H\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner I\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner J\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner Q\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner R\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set your time options"
-msgstr ""
-
-msgid ""
-"Please set your time options.\n"
-"\n"
-"Press YELLOW to set the time zone via geolocation."
 msgstr ""
 
 msgid ""
@@ -14623,11 +14640,20 @@ msgstr ""
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
 
+msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
+msgstr ""
+
 msgid "Please wait, loading image..."
 msgstr ""
 
 #, python-format
 msgid "Please wait, restarting %s."
+msgstr ""
+
+msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
 msgid "Please wait."
@@ -14645,6 +14671,12 @@ msgstr "Poteka nalaganje seznama datotek..."
 #, fuzzy
 msgid "Please wait...almost ready! "
 msgstr "Prosim počakajte..."
+
+msgid "Plug in USB device"
+msgstr ""
+
+msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
+msgstr ""
 
 #
 msgid "Plugin Browser"
@@ -14936,9 +14968,15 @@ msgstr "Za izbiro/opustitev CAId pritisnite tipko OK."
 msgid "Press OK to set the MAC address."
 msgstr "Za spreminjanje nastavitev pritisnite OK."
 
+msgid "Press OK to start the backup now"
+msgstr ""
+
 #
 msgid "Press OK to start the scan"
 msgstr "Za začetek iskanja pritisnite OK"
+
+msgid "Press OK to start using %s %s"
+msgstr ""
 
 msgid "Press OK to toggle the selection"
 msgstr ""
@@ -15029,7 +15067,22 @@ msgstr ""
 msgid "Proc model"
 msgstr ""
 
+msgid "Proceed to the next step"
+msgstr ""
+
 msgid "Proceed with the update"
+msgstr ""
+
+msgid "Process BLUE button action"
+msgstr ""
+
+msgid "Process GREEN button action"
+msgstr ""
+
+msgid "Process RED button action"
+msgstr ""
+
+msgid "Process YELLOW button action"
 msgstr ""
 
 msgid "Processor information"
@@ -15702,10 +15755,6 @@ msgid "Refresh rate for 'Lowest Mode'"
 msgstr "Izbira osveževanja."
 
 #
-msgid "Refresh rate selection."
-msgstr "Izbira osveževanja."
-
-#
 #, fuzzy
 msgid "Refresh screen"
 msgstr "Izbira osveževanja."
@@ -16163,6 +16212,9 @@ msgstr "Ponovni zagon Enigme"
 msgid "Restart necessary, restart GUI now?"
 msgstr "Res želite ponovno zagnati sprejemnik?"
 
+msgid "Restart needed, press OK to restart"
+msgstr ""
+
 msgid "Restart network and remount connections"
 msgstr ""
 
@@ -16207,6 +16259,9 @@ msgid "Restore backups"
 msgstr "Povrnitev varnostne kopije"
 
 msgid "Restore settings from a backup"
+msgstr ""
+
+msgid "Restore settings now"
 msgstr ""
 
 msgid "Restore the highlighted slot"
@@ -16276,6 +16331,9 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Iskanje posodobitev... Prosim počakajte!"
 
 msgid "Retrieving network server information, please wait..."
+msgstr ""
+
+msgid "Retry"
 msgstr ""
 
 msgid "Return the current selection response"
@@ -17141,6 +17199,9 @@ msgstr ""
 msgid "Select CAId"
 msgstr "izberite CAId"
 
+msgid "Select Device"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr ""
 
@@ -17205,6 +17266,9 @@ msgstr ""
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a device to use as the flash expander"
+msgstr ""
+
 msgid "Select a directory"
 msgstr ""
 
@@ -17216,6 +17280,9 @@ msgstr ""
 
 #, python-format
 msgid "Select a location into which to extract '%s':"
+msgstr ""
+
+msgid "Select a menu item"
 msgstr ""
 
 msgid "Select a movie"
@@ -17569,6 +17636,12 @@ msgstr "Izberite pot do posnetka"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
+msgid ""
+"Select the network interface to be used for the Internet connection.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
@@ -17582,6 +17655,9 @@ msgid "Select the previous item in the list"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
+msgstr ""
+
+msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
@@ -17620,6 +17696,9 @@ msgid "Select the sort order of the Plugin Browser menu entries. User defined al
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
@@ -17681,16 +17760,27 @@ msgstr ""
 msgid "Select the type of this timer."
 msgstr ""
 
+msgid "Select the video mode to be used on the TV."
+msgstr ""
+
+msgid ""
+"Select the wireless network to which you want to connect.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
-#
-msgid "Select video input with up/down buttons"
-msgstr "Z gor in dol tipkami izberite video vhod"
+msgid "Select update source location"
+msgstr ""
 
 #
 msgid "Select video mode"
 msgstr "Izberite video način"
+
+msgid "Select video output port with UP/DOWN buttons"
+msgstr ""
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr ""
@@ -18150,6 +18240,12 @@ msgstr ""
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
 
+msgid ""
+"Set the time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
+
 msgid "Set the time to hide the infobar."
 msgstr ""
 
@@ -18184,6 +18280,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set time options"
+msgstr ""
+
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
@@ -18197,6 +18296,15 @@ msgid "Set to what you want the button to do."
 msgstr ""
 
 msgid "Set to yes for debugging the root cause of a spinner."
+msgstr ""
+
+msgid "Set up tuner [TUNER]"
+msgstr ""
+
+msgid ""
+"Set up tuner [TUNER].\n"
+"\n"
+"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -19252,6 +19360,9 @@ msgstr "izklop"
 msgid "Shutdown"
 msgstr "Izklop"
 
+msgid "Shutting down. Please wait..."
+msgstr ""
+
 msgid "Sichuan Yi / Nuosu"
 msgstr ""
 
@@ -19391,9 +19502,6 @@ msgstr ""
 msgid "SkinSelector"
 msgstr ""
 
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr ""
-
 msgid "Skip back"
 msgstr ""
 
@@ -19405,6 +19513,9 @@ msgid "Skip forward"
 msgstr ""
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip package installation, only core packages will be available"
 msgstr ""
 
 msgid "Sleep"
@@ -19558,6 +19669,9 @@ msgid "Small"
 msgstr ""
 
 msgid "Small - Tiny image"
+msgstr ""
+
+msgid "Small Box Preparation"
 msgstr ""
 
 #
@@ -19892,6 +20006,9 @@ msgstr ""
 msgid "Start RDS interactive"
 msgstr "Glejte Rass interaktivno"
 
+msgid "Start Wizard"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -19945,9 +20062,6 @@ msgstr ""
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr ""
 
-msgid "StartWizard"
-msgstr ""
-
 msgid "Starting Softcam"
 msgstr ""
 
@@ -19993,6 +20107,9 @@ msgid "Status unavailable!"
 msgstr ""
 
 msgid "Status:"
+msgstr ""
+
+msgid "Step"
 msgstr ""
 
 #
@@ -20818,15 +20935,25 @@ msgstr ""
 msgid "Thailand"
 msgstr ""
 
-#
 msgid ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
-msgstr "Hvala, da ste uporabili čarovnik. Za nadaljevanje pritisnite OK!"
+"Thank you for using and completing the wizard. The %s %s is now ready to use.\n"
+"\n"
+"Please press OK to start using the %s %s."
+msgstr ""
 
 msgid ""
-"Thank you for using the wizard. Your %s %s is now ready to use.\n"
-"Please press OK to start using your %s %s."
+"Thank you for using and completing the wizard. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
+msgid "The %s %s does not have an Internet connection."
+msgstr ""
+
+msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
+msgstr ""
+
+msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
 msgid "The %s %s reads the stored EPG data every (hours)."
@@ -20878,6 +21005,18 @@ msgstr ""
 
 #, python-format
 msgid "The IceTV server has requested password for %s."
+msgstr ""
+
+msgid ""
+"The Internet connection appears to be working.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
+msgid ""
+"The Internet connection appears to not be working!\n"
+"\n"
+"Choose what to do next."
 msgstr ""
 
 msgid ""
@@ -20948,9 +21087,17 @@ msgid ""
 "What do you want to do ?"
 msgstr ""
 
-#
-msgid "The backup failed. Please choose a different backup location."
-msgstr "Izdelava varnostne kopije ni uspela. Prosim, da izberite drugo lokacijo."
+msgid "The backup failed"
+msgstr ""
+
+msgid "The backup failed! Choose a different backup location."
+msgstr ""
+
+msgid "The backup succeeded"
+msgstr ""
+
+msgid "The backup succeeded. We will now continue to explain the upgrade process."
+msgstr ""
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr ""
@@ -21082,11 +21229,18 @@ msgstr ""
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
-#
 msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it and choose what you want to do next."
-msgstr "Vtičnik za brezzično mrežo ni nameščen! Prosim, da ga namestite!"
+"The wireless LAN Internet connection could not be started!\n"
+"Is the wireless LAN device connected?\n"
+"\n"
+"Choose what to do next."
+msgstr ""
+
+msgid ""
+"The wireless LAN plugin code is not installed!\n"
+"\n"
+"Install it and choose what to do next."
+msgstr ""
 
 #
 msgid ""
@@ -21096,13 +21250,8 @@ msgstr ""
 "Vtičnik za brezžično mrežo ni nameščen!\n"
 "Prosim, da ga namestite."
 
-#
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "Čarovnik bo kreiral varnostno kopijo vaših trenutnih nastavitev. Želite to storiti sedaj?"
-
-#
-msgid "The wizard is finished now."
-msgstr "Čarovnik je končan."
+msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+msgstr ""
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21117,6 +21266,9 @@ msgstr ""
 #
 msgid "There are no updates available."
 msgstr "Posodobitev ni na voljo."
+
+msgid "There are pending tasks:"
+msgstr ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -21529,6 +21681,12 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr ""
 
+msgid "This wizard has finished"
+msgstr ""
+
+msgid "This wizard has finished."
+msgstr ""
+
 #
 msgid "Three"
 msgstr "Tri"
@@ -21789,6 +21947,9 @@ msgstr "Lastnosti naslova"
 #
 msgid "Titleset mode"
 msgstr "Način za določanje naslovov"
+
+msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
+msgstr ""
 
 #
 #, fuzzy
@@ -22512,6 +22673,9 @@ msgstr "Nadgradnja končana."
 msgid "Update interval (in seconds)"
 msgstr ""
 
+msgid "Update package list please wait..."
+msgstr ""
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -22639,6 +22803,9 @@ msgstr ""
 msgid "Use TV remote control"
 msgstr "Uporabite daljinski upravljalnik"
 
+msgid "Use UP/DOWN buttons to select option then press OK"
+msgstr ""
+
 msgid "Use USALS for this sat"
 msgstr ""
 
@@ -22661,10 +22828,13 @@ msgstr ""
 msgid "Use as HDD"
 msgstr ""
 
+msgid "Use automatic mode detection"
+msgstr ""
+
 msgid ""
-"Use automatic mode detection.\n"
-" This option reads all supported modes from your TV.\n"
-" Please disable it only if you want to customize the preferred configuration."
+"Use automatic mode detection?\n"
+"\n"
+"This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
 msgstr ""
 
 msgid "Use circular LNB"
@@ -22777,10 +22947,6 @@ msgstr "Za nastavljanje izbranega mrežnega vmesnika, izberite omrežni čarovni
 
 msgid "Use the network wizard to configure your Network."
 msgstr ""
-
-#
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "Za izbiranje uporabite tipke gor/dol na vašem upravljalniku. Nato pritisnite OK."
 
 msgid "Use the wizard to set up basic features"
 msgstr ""
@@ -23046,6 +23212,9 @@ msgstr "Video PID"
 msgid "Video Settings"
 msgstr ""
 
+msgid "Video Wizard"
+msgstr ""
+
 msgid "Video clipping"
 msgstr ""
 
@@ -23063,18 +23232,6 @@ msgstr ""
 #
 msgid "Video enhancement setup"
 msgstr "Nastavitve slike"
-
-msgid ""
-"Video input selection\n"
-"\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
-"\n"
-"The next input port will be automatically probed in 10 seconds."
-msgstr ""
-
-#
-msgid "Video mode selection."
-msgstr "Izbira video načina."
 
 #
 #, fuzzy, python-format
@@ -23121,6 +23278,14 @@ msgstr ""
 msgid "Video output mode for UHD"
 msgstr ""
 
+msgid ""
+"Video output port selection.\n"
+"\n"
+"Make sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n"
+"\n"
+"The next output port will be automatically tried in 10 seconds."
+msgstr ""
+
 #, fuzzy
 msgid "Video: "
 msgstr "Video PID"
@@ -23142,9 +23307,6 @@ msgstr ""
 #, fuzzy
 msgid "VideoFinetune"
 msgstr "Podrobne nastavitve"
-
-msgid "VideoWizard"
-msgstr ""
 
 #, fuzzy
 msgid "Videocodec, size & format"
@@ -23195,7 +23357,13 @@ msgstr "Ogled teleteksta"
 msgid "View the archive contents"
 msgstr ""
 
+msgid "View the next item in a list"
+msgstr ""
+
 msgid "View the package contents"
+msgstr ""
+
+msgid "View the previous item in a list"
 msgstr ""
 
 #
@@ -23446,11 +23614,20 @@ msgstr ""
 msgid "Weekly"
 msgstr "vsak teden"
 
+msgid "Welcome Wizard"
+msgstr ""
+
 #, python-format
 msgid "Welcome to %s"
 msgstr ""
 
 msgid "Welcome to IceTV"
+msgstr ""
+
+msgid ""
+"Welcome to openATV.\n"
+"\n"
+"Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
 msgstr ""
 
 msgid ""
@@ -23461,24 +23638,7 @@ msgid ""
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Dobrodošli v čarovniku za nadgradnjo. Čarovnik vam bo pomagal pri nadgradnji sprejemnika in nudil varno hrambo vaših trenutnih nastavitev ter kratko razlago postopka nadgradnje vašega firmware-a."
-
-msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-"\n"
-"Press OK to start configuring your network"
-msgstr ""
-
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your %s %s.\n"
-"Press the OK button on your remote control to move to the next step."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
 msgstr ""
 
 msgid "Welcome..."
@@ -23775,11 +23935,14 @@ msgstr "Brezžično omrežje"
 msgid "Wireless network configuration..."
 msgstr "Nastavitve brezzične povezave."
 
-msgid "Wireless network connection setup"
-msgstr "Nastavitve brezzične povezave"
+msgid ""
+"Wireless network connection setup.\n"
+"\n"
+"Choose what to do next."
+msgstr ""
 
-msgid "Wireless network connection setup."
-msgstr "Nastavitve brezzične povezave."
+msgid "Wireless network setup"
+msgstr ""
 
 msgid "Wireless network state"
 msgstr "Stanje brezzičnega omrežja"
@@ -23827,6 +23990,9 @@ msgid "Without pop up"
 msgstr ""
 
 msgid "Without query"
+msgstr ""
+
+msgid "Wizard Actions"
 msgstr ""
 
 msgid "Wolof"
@@ -24038,13 +24204,11 @@ msgstr ""
 msgid "You cannot delete this!"
 msgstr "Tega ne morete izbrisati!"
 
-#
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr "Izbrali ste si opcijo shranitve vaših nastavitev. Za začetek procesa pritisnite OK!"
+msgid "You have chosen to backup your settings. Press OK to start the backup now."
+msgstr ""
 
-#
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "Izbrali ste si opcijo obnove vaših nastavitev. Enigma 2 se bo po opravljenem procesu ponovno zagnala. Za začetek procesa pritisnite OK!"
+msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift"
 msgstr ""
@@ -24072,8 +24236,8 @@ msgid "You must set at least one command!"
 msgstr ""
 
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
 
 msgid "You seem to be in time shift!"
@@ -24091,18 +24255,12 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "Your %s %s does not have an Internet connection"
-msgstr ""
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr ""
 
 #, python-format
 msgid "Your %s %s goes to WOL"
-msgstr ""
-
-msgid "Your %s %s is not connected to the Internet"
 msgstr ""
 
 #, python-format
@@ -24121,19 +24279,6 @@ msgstr ""
 "Vaša internetna povezava zdaj deluje.\n"
 "\n"
 
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Vaš sprejemnik je zdaj pripravljen na uporabo.\n"
-"\n"
-"Vaša internetna povezava zdaj deluje.\n"
-"\n"
-"Za nadaljevanje pritisnite OK."
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr ""
@@ -24145,10 +24290,6 @@ msgstr ""
 #, python-format
 msgid "Your %s %s is shutting down"
 msgstr ""
-
-#
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Poteka postopek ugašanja sprejemnika... Prosim počakajte!"
 
 #, python-format
 msgid ""
@@ -24208,14 +24349,14 @@ msgstr ""
 "Prosim, da izberete kaj želite storiti v nadaljevanju."
 
 #, python-format
+msgid "Your Internet connection is working (ip: %s)"
+msgstr ""
+
+#, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
 
 msgid "Your STB will restart after pressing OK on your remote control."
-msgstr ""
-
-#
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr ""
 
 #
@@ -24274,21 +24415,12 @@ msgstr ""
 msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
 msgstr ""
 
+msgid "Your receiver does not have an Internet connection"
+msgstr ""
+
 #, python-format
 msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
-
-#
-msgid ""
-"Your wireless LAN Internet connection could not be started!\n"
-"Have you attached your USB WLAN Stick?\n"
-"\n"
-"Please choose what you want to do next."
-msgstr ""
-"Vaše brezzične internet povezave ni mogoče omogočiti!\n"
-"Ste priključili vaš brezzični USB vmesnik?\n"
-"\n"
-"Izberite, kaj želite storiti v nadaljevanju."
 
 #
 #, fuzzy
@@ -24973,6 +25105,9 @@ msgid "hlg"
 msgstr ""
 
 msgid "hops:"
+msgstr ""
+
+msgid "inactive"
 msgstr ""
 
 msgid "increase uphop by 1"
@@ -25759,6 +25894,148 @@ msgstr "Da (obdrži feed-e)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Auto Modes Selected."
+#~ msgstr "ni izbran nobeden CAId"
+
+#
+#~ msgid "Configure nameservers"
+#~ msgstr "Nastavite imenske strežnike"
+
+#
+#, fuzzy
+#~ msgid "Default Modes Selected."
+#~ msgstr "Privzeta \"movie\" lokacija"
+
+#
+#~ msgid ""
+#~ "Please configure or verify your Nameservers by filling out the required values.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Preverite vaše imenske strežnike.\n"
+#~ "Ko boste pripravljeni, pritisnite tipko OK."
+
+#
+#~ msgid ""
+#~ "Please select the network interface that you want to use for your Internet connection.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Izberite mrežni vmesnik, ki ga želite uporabiti za internetno povezavo.\n"
+#~ "\n"
+#~ "Za nadaljevanje pritisnite OK."
+
+#
+#~ msgid ""
+#~ "Please select the wireless network that you want to connect to.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Izberite brezzično mrežo, kamor se želite povezati.\n"
+#~ "\n"
+#~ "Za nadaljevanje pritisnite OK."
+
+#
+#~ msgid "Please set up tuner B"
+#~ msgstr "Nastavite kanalnik B"
+
+#
+#~ msgid "Please set up tuner C"
+#~ msgstr "Nastavite kanalnik C"
+
+#
+#~ msgid "Please set up tuner D"
+#~ msgstr "Nastavite kanalnik D"
+
+#
+#~ msgid "Refresh rate selection."
+#~ msgstr "Izbira osveževanja."
+
+#
+#~ msgid "Select video input with up/down buttons"
+#~ msgstr "Z gor in dol tipkami izberite video vhod"
+
+#
+#~ msgid ""
+#~ "Thank you for using the wizard.\n"
+#~ "Please press OK to continue."
+#~ msgstr "Hvala, da ste uporabili čarovnik. Za nadaljevanje pritisnite OK!"
+
+#
+#~ msgid "The backup failed. Please choose a different backup location."
+#~ msgstr "Izdelava varnostne kopije ni uspela. Prosim, da izberite drugo lokacijo."
+
+#
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it and choose what you want to do next."
+#~ msgstr "Vtičnik za brezzično mrežo ni nameščen! Prosim, da ga namestite!"
+
+#
+#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+#~ msgstr "Čarovnik bo kreiral varnostno kopijo vaših trenutnih nastavitev. Želite to storiti sedaj?"
+
+#
+#~ msgid "The wizard is finished now."
+#~ msgstr "Čarovnik je končan."
+
+#
+#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#~ msgstr "Za izbiranje uporabite tipke gor/dol na vašem upravljalniku. Nato pritisnite OK."
+
+#
+#~ msgid "Video mode selection."
+#~ msgstr "Izbira video načina."
+
+#
+#, fuzzy
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+#~ msgstr "Dobrodošli v čarovniku za nadgradnjo. Čarovnik vam bo pomagal pri nadgradnji sprejemnika in nudil varno hrambo vaših trenutnih nastavitev ter kratko razlago postopka nadgradnje vašega firmware-a."
+
+#~ msgid "Wireless network connection setup"
+#~ msgstr "Nastavitve brezzične povezave"
+
+#~ msgid "Wireless network connection setup."
+#~ msgstr "Nastavitve brezzične povezave."
+
+#
+#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+#~ msgstr "Izbrali ste si opcijo shranitve vaših nastavitev. Za začetek procesa pritisnite OK!"
+
+#
+#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+#~ msgstr "Izbrali ste si opcijo obnove vaših nastavitev. Enigma 2 se bo po opravljenem procesu ponovno zagnala. Za začetek procesa pritisnite OK!"
+
+#~ msgid ""
+#~ "Your %s %s is now ready to use.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Vaš sprejemnik je zdaj pripravljen na uporabo.\n"
+#~ "\n"
+#~ "Vaša internetna povezava zdaj deluje.\n"
+#~ "\n"
+#~ "Za nadaljevanje pritisnite OK."
+
+#
+#~ msgid "Your %s %s is shutting down. Please wait..."
+#~ msgstr "Poteka postopek ugašanja sprejemnika... Prosim počakajte!"
+
+#
+#~ msgid ""
+#~ "Your wireless LAN Internet connection could not be started!\n"
+#~ "Have you attached your USB WLAN Stick?\n"
+#~ "\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Vaše brezzične internet povezave ni mogoče omogočiti!\n"
+#~ "Ste priključili vaš brezzični USB vmesnik?\n"
+#~ "\n"
+#~ "Izberite, kaj želite storiti v nadaljevanju."
 
 #
 #, fuzzy

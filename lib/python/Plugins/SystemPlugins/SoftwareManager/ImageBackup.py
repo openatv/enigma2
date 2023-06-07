@@ -79,7 +79,7 @@ class ImageBackup(Screen):
 		self.callLater(self.startit)
 
 	def layoutFinished(self):
-		self["config"].instance.enableAutoNavigation(False)
+		self["config"].enableAutoNavigation(False)
 		self.setTitle(self.title)
 
 	def startit(self):
@@ -215,11 +215,11 @@ class ImageBackup(Screen):
 				print("[Image Backup] DESTINATION = >%s< " % self.DIRECTORY)
 				print("[Image Backup] SLOT = >%s< " % self.SLOT)
 				print("[Image Backup] HasKexecMultiboot = >%s< " % self.HasKexecMultiboot)
-				print("[Image Backup] canMultiBoot = >%s< " %MultiBoot.canMultiBoot())
+				print("[Image Backup] canMultiBoot = >%s< " % MultiBoot.canMultiBoot())
 
 				isNotCurrent = MultiBoot.getCurrentSlotCode() != answer[1]
 
-				print("[Image Backup] isNotCurrent = >%s< " %isNotCurrent)
+				print("[Image Backup] isNotCurrent = >%s< " % isNotCurrent)
 
 				if self.RECOVERY and not isNotCurrent:
 					print("[Image Backup] IMAGEDISTRO = >%s<" % self.DISTRO)
