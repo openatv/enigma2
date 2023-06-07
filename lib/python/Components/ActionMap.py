@@ -26,7 +26,7 @@ def getKeyBindingKeys(filterFunction=lambda key: True):
 	return filter(filterFunction, keyBindings)
 
 
-def removeContext(context):  # Remove all entries for a context.
+def removeContext(context, actionMapInstance):  # Remove all entries for a context.
 	removeActions = []
 	for contxt, mapto in keyBindings:
 		if contxt == context:
@@ -34,6 +34,8 @@ def removeContext(context):  # Remove all entries for a context.
 			removeActions.append(contextAction)
 	for contextAction in removeActions:
 		if contextAction in keyBindings:
+			binding = keyBindings[contextAction]
+			actionMapInstance.unbindPythonKey(context, binding[0][0], contextAction[1])
 			del keyBindings[contextAction]
 
 
@@ -172,7 +174,7 @@ def loadKeymap(filename, replace=False):
 				print("ActionMap] Error: All key map action maps in '%s' must have a context!" % filename)
 			else:
 				if replace and keyBindings:  # Remove all entries for an existing context.
-					removeContext(context)
+					removeContext(context, actionMapInstance)
 				parseKeymap(filename, context, actionMapInstance, "generic", domMap)
 				for domDevice in domMap.findall("device"):
 					parseKeymap(filename, context, actionMapInstance, domDevice.attrib.get("name"), domDevice)
