@@ -14,7 +14,7 @@ class eDVBRegisteredFrontend;
 typedef struct fbc_tuner
 {
 	int fbcSetID;
-	int fbcIndex;
+	unsigned int fbcIndex;
 	bool isRoot;
 	int initFbcId;
 }FBC_TUNER;

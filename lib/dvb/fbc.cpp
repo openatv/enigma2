@@ -116,7 +116,7 @@ eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
 				memset(connect_choices, 0, sizeof(connect_choices));
 				snprintf(procFileName, sizeof(procFileName), "/proc/stb/frontend/%d/fbc_connect_choices", fe_id);
 				loadConnectChoices(procFileName, connect_choices);
-				fbcIndex =0; // reset
+				fbcIndex = 0; // reset
 			}
 
 			isRoot = false;
