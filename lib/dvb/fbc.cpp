@@ -639,8 +639,8 @@ void eFBCTunerManager::PrintLinks(eDVBRegisteredFrontend *fe) const
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = m_res_mgr->m_frontend;
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
 	{
-		int prev = -1;
-		int next = -1;
+		[[maybe_unused]] int prev = -1;
+		[[maybe_unused]] int next = -1;
 		long prev_ptr = -1;
 		long next_ptr = -1;
 		it->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, prev_ptr);
@@ -663,8 +663,8 @@ void eFBCTunerManager::PrintLinks(eDVBRegisteredFrontend *fe) const
 	eSmartPtrList<eDVBRegisteredFrontend> &simulate_frontends = m_res_mgr->m_simulate_frontend;
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(simulate_frontends.begin()); it != simulate_frontends.end(); ++it)
 	{
-		int prev = -1;
-		int next = -1;
+		[[maybe_unused]] int prev = -1;
+		[[maybe_unused]] int next = -1;
 		long prev_ptr = -1;
 		long next_ptr = -1;
 		it->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, prev_ptr);

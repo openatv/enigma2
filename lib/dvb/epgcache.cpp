@@ -2706,6 +2706,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 										{
 											descr.push_back(it->first);
 											#ifdef DEBUG
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-security"
 											eDebug("[eEPGCache] IC Debug: Content length %x, Content %s\n",content_len,contentptr);
 											char buff[1000]={0};
 											eDebug("[eEPGCache] EIT data:\n");
@@ -2718,6 +2720,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 												z++;
 											}
 											if (z>1) { eDebug(buff);}
+#pragma GCC diagnostic pop
 											#endif
 											break;
 										}
@@ -2733,6 +2736,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 										{
 											descr.push_back(it->first);
 											#ifdef DEBUG
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-security"
 											eDebug("[eEPGCache] CC Debug: Content length %x, Content %s\n",content_len,contentptr);
 											char buff[1000]={0};
 											eDebug("[eEPGCache] EIT data:\n");
@@ -2745,6 +2750,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 												z++;
 											}
 											if (z>1) { eDebug(buff);}
+#pragma GCC diagnostic pop
 											#endif
 											break;
 										}

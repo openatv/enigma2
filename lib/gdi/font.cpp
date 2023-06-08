@@ -949,6 +949,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 		eDebug("[eTextPara] FTC_Manager_Lookup_Size failed!");
 		return;
 	}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wregister"
 
 	ePtr<gPixmap> target;
 	dc.getPixmap(target);
@@ -1220,6 +1222,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			}
 		}
 	}
+#pragma GCC diagnostic pop
 }
 
 void eTextPara::realign(int dir, int markedpos, int scrollpos)	// der code hier ist ein wenig merkwuerdig.

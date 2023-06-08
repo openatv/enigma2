@@ -111,6 +111,9 @@ eServiceTS::~eServiceTS()
 
 DEFINE_REF(eServiceTS);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+
 static size_t crop(char *buf)
 {
 	size_t len = strlen(buf) - 1;
@@ -119,6 +122,8 @@ static size_t crop(char *buf)
 	}
 	return len;
 }
+
+#pragma GCC diagnostic pop
 
 static int getline(char** pbuffer, size_t* pbufsize, int fd)
 {
