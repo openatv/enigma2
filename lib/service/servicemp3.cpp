@@ -1618,8 +1618,11 @@ std::string eServiceMP3::getInfoString(int w)
 		GstDateTime *date_time;
 		if (gst_tag_list_get_date(m_stream_tags, GST_TAG_DATE, &date))
 		{
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-truncation"
 			gchar res[5];
 			snprintf(res, sizeof(res), "%04d", g_date_get_year(date));
+#pragma GCC diagnostic pop
 			g_date_free(date);
 			return (std::string)res;
 		}

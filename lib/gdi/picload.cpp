@@ -972,7 +972,10 @@ void ePicLoad::decodeThumb()
 
 			fclose(f);
 			crc32 = ~crc32;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-truncation"
 			snprintf(crcstr, 16, "%08lX", crc32);
+#pragma GCC diagnostic pop
 
 			cachedir = m_filepara->file;
 			size_t pos = cachedir.find_last_of("/");
