@@ -350,6 +350,7 @@ eDBoxLCD::~eDBoxLCD()
 
 void eDBoxLCD::dumpLCD(bool png)
 {
+	[[maybe_unused]] size_t ret; /* dummy value to store write return values */
 	int bpp = (_stride * 8) / res.width();
 	int lcd_width = res.width();
 	int lcd_hight = res.height();
@@ -460,7 +461,7 @@ void eDBoxLCD::update()
 					}
 				}
 			}
-			write(lcdfd, raw, 132 * 8);
+			ret = write(lcdfd, raw, 132 * 8);
 		}
 		else if (lcd_type == 3)
 		{
@@ -485,7 +486,7 @@ void eDBoxLCD::update()
 						}
 					}
 				}
-				write(lcdfd, raw, _stride * height);
+				ret = write(lcdfd, raw, _stride * height);
 			}
 			else
 			{
@@ -499,7 +500,7 @@ void eDBoxLCD::update()
 					//                                             blue                         red                  green low                     green high
 					((unsigned int *)gb_buffer)[offset] = ((src >> 3) & 0x001F001F) | ((src << 3) & 0xF800F800) | ((src >> 8) & 0x00E000E0) | ((src << 8) & 0x07000700);
 				}
-				write(lcdfd, gb_buffer, _stride * res.height());
+				ret = write(lcdfd, gb_buffer, _stride * res.height());
 #elif defined(LCD_COLOR_BITORDER_RGB565)
 				// gggrrrrrbbbbbggg bit order from memory
 				// gggbbbbbrrrrrggg bit order to LCD
@@ -520,9 +521,9 @@ void eDBoxLCD::update()
 						gb_buffer[offset + 1] = (_buffer[offset + 1] & 0xE0) | ((_buffer[offset] >> 3) & 0x1F);
 					}
 				}
-				write(lcdfd, gb_buffer, _stride * res.height());
+				ret = write(lcdfd, gb_buffer, _stride * res.height());
 #else
-				write(lcdfd, _buffer, _stride * res.height());
+				ret = write(lcdfd, _buffer, _stride * res.height());
 #endif
 			}
 		}
@@ -553,7 +554,7 @@ void eDBoxLCD::update()
 					}
 				}
 			}
-			write(lcdfd, raw, 64 * 64);
+			ret = write(lcdfd, raw, 64 * 64);
 		}
 	}
 #endif
