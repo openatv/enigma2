@@ -21,7 +21,8 @@ static int getProcData(const char* filename)
 	FILE *fp = fopen(filename,"r");
 	if(fp)
 	{
-		fscanf(fp, "%d", &res);
+		if(fscanf(fp, "%d", &res) != 1)
+			eFecDebug("[*][eFBCTunerManager::getProcData] read failed, %s: %m", filename);
 		fclose(fp);
 	}
 	else

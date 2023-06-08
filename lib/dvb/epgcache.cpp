@@ -313,7 +313,7 @@ void eventData::load(FILE *f)
 	int id=0;
 	DescriptorPair p;
 	uint8_t header[2];
-	size_t ret; /* dummy value to store fread return values */
+	[[maybe_unused]] size_t ret; /* dummy value to store fread return values */
 	ret = fread(&size, sizeof(int), 1, f);
 	descriptors.rehash(size);
 	while(size)
@@ -335,7 +335,6 @@ void eventData::load(FILE *f)
 		descriptors[id] = p;
 		--size;
 	}
-	(void)ret;
 }
 
 void eventData::save(FILE *f)
@@ -874,7 +873,7 @@ void eEPGCache::load()
 
 	FILE *f = fopen(EPGDAT, "rb");
 	int renameResult;
-	size_t ret; /* dummy value to store fread return values */
+	[[maybe_unused]] size_t ret; /* dummy value to store fread return values */
 	if (f == NULL)
 	{
 		/* No EPG on harddisk, so try internal flash */
@@ -1048,7 +1047,6 @@ void eEPGCache::load()
 			if (renameResult) eDebug("[eEPGCache] failed to rename epg.dat back");
 		}
 	}
-	(void)ret;
 	if(m_debug)
 		eDebug("[eEPGCache] load() - finished");
 }
@@ -3189,7 +3187,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 	char aliases_file[dbroot.length()+21];
 	int channels_count, events_count = 0, aliases_groups_count;
 	unsigned char revision;
-	size_t ret; /* dummy value to store fread return values */
+	[[maybe_unused]] size_t ret; /* dummy value to store fread return values */
 
 	eDebug("[eEPGCache] start crossepg import");
 

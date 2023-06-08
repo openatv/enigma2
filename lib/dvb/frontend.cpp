@@ -657,7 +657,7 @@ int eDVBFrontend::initModeList()
 
 	while ((buf_pos = strstr(buf_pos, "Mode ")) != NULL)
 	{
-		int num_fe_tmp;
+		// int num_fe_tmp;
 		if (sscanf(buf_pos, "Mode %d:%s", &mode, system) == 2)
 		{
 			if(buf_pos2 && buf_pos >= buf_pos2)
@@ -927,7 +927,7 @@ int eDVBFrontend::openFrontend()
 
 int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 {
-	bool isLinked = false;
+	[[maybe_unused]] bool isLinked = false;
 	bool isUnicable = (m_type == feSatellite) && (m_data[SATCR] != -1);
 	eDebugNoSimulate("[eDVBFrontend] try to close frontend %d", m_dvbid);
 
