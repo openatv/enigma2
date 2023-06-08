@@ -435,7 +435,7 @@ void eDBoxLCD::update()
 #if !defined(HAVE_TEXTLCD) && !defined(HAVE_7SEGMENT)
 	if (lcdfd >= 0)
 	{
-		[[maybe_unused]] size_t ret; /* dummy value to store write return values */
+		[[maybe_unused]] ssize_t ret; /* dummy value to store write return values */
 		if (lcd_type == 0 || lcd_type == 2)
 		{
 			unsigned char raw[132 * 8];

@@ -27,8 +27,8 @@ static std::string getSize(const char* file)
 	struct stat64 s;
 	if (stat64(file, &s) < 0)
 		return "";
-	char tmp[20];
-	snprintf(tmp, 20, "%ld kB", (long)s.st_size / 1024);
+	char tmp[21];
+	snprintf(tmp, 21, "%ld kB", (long)s.st_size / 1024);
 	return tmp;
 }
 
@@ -962,7 +962,7 @@ void ePicLoad::decodeThumb()
 			int c;
 			int count = 1024*100;
 			unsigned long crc32 = 0;
-			char crcstr[9];*crcstr=0;
+			char crcstr[16];*crcstr=0;
 
 			while ((c=getc(f))!=EOF)
 			{
@@ -972,7 +972,7 @@ void ePicLoad::decodeThumb()
 
 			fclose(f);
 			crc32 = ~crc32;
-			sprintf(crcstr, "%08lX", crc32);
+			snprintf(crcstr, 16, "%08lX", crc32);
 
 			cachedir = m_filepara->file;
 			size_t pos = cachedir.find_last_of("/");

@@ -131,7 +131,8 @@ void eSocket::notifier(int what)
 						readbuffer.clear();
 						writebuffer.clear();
 						rsn->setRequested(rsn->getRequested()&~eSocketNotifier::Write);
-						write(getDescriptor(), "BREAK!", 6);
+						ssize_t ret = write(getDescriptor(), "BREAK!", 6);
+						if (ret < 0) eDebug("[eSocket] write failed: %m");
 						hangup();
 						return;
 					}
