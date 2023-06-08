@@ -91,7 +91,7 @@ eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
 	bool isRoot;
 	int fe_id = -1;
 	int fbcSetID = -2;
-	int fbcIndex = 0;
+	unsigned int fbcIndex = 0;
 	int initFbcId = -1;
 	int prevFbcSetID = -1;
 	char procFileName[128];
