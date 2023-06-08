@@ -371,8 +371,8 @@ int eDVBPMTParser::getProgramInfo(program &program)
 								break;
 							case EXTENSION_DESCRIPTOR:
 							{
-								ExtensionDescriptor &d = (ExtensionDescriptor&)*desc;
-								switch (d.getExtensionTag())
+								ExtensionDescriptor *d = (ExtensionDescriptor*)(*desc);
+								switch (d->getExtensionTag())
 								{
 								case 0x15: /* AC-4 descriptor */
 									if (!isvideo && !isaudio)
@@ -382,7 +382,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 									}
 									break;
 								default:
-									eDebug("[eDVBPMTParser] TODO: Fix parsing for Extension descriptor with tag: %d", d.getExtensionTag());
+									eDebug("[eDVBPMTParser] TODO: Fix parsing for Extension descriptor with tag: %d", d->getExtensionTag());
 									break;
 								}
 								break;
