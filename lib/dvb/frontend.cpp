@@ -718,7 +718,7 @@ int eDVBFrontend::openFrontend()
 		char boxtype_name[20];
 		if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 		{
-			fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
+			[[maybe_unused]] char* ret = fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 			fclose(boxtype_file);
 
 			if(!strcmp(boxtype_name, "osminiplus\n") || !strcmp(boxtype_name, "osmega") || !strcmp(boxtype_name, "spycat4kmini"))
@@ -2968,7 +2968,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 					oparm.getDVBS(parm);
 					uint32_t value = parm.pls_code | (parm.pls_mode & 0x3 << 18);
 					uint8_t seq[6];
-					if ((parm.is_id != NO_STREAM_ID_FILTER) && (parm.system == eDVBFrontendParametersSatellite::System_DVB_S2))
+					if ((static_cast<unsigned int>(parm.is_id) != NO_STREAM_ID_FILTER) && (parm.system == eDVBFrontendParametersSatellite::System_DVB_S2))
 					{
 						seq[0] = (value >> 16) & 0xFF;
 						seq[1] = (value >> 8) & 0xFF;

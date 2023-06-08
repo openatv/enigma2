@@ -134,7 +134,7 @@ public:
 	{
 		return secSequence.end();
 	}
-	int size() const
+	size_t size() const
 	{
 		return secSequence.size();
 	}
