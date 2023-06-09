@@ -2092,11 +2092,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					m_paused = true;
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_READY:
-				{
-				}	break;
 				case GST_STATE_CHANGE_READY_TO_NULL:
-				{
-				}	break;
+				case GST_STATE_CHANGE_NULL_TO_NULL:
+				case GST_STATE_CHANGE_READY_TO_READY:
+				case GST_STATE_CHANGE_PAUSED_TO_PAUSED:
+				case GST_STATE_CHANGE_PLAYING_TO_PLAYING:
+					break;
 			}
 			break;
 		}
@@ -2839,7 +2840,7 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 				int delay_ms = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay") / 90;
 				int subtitle_fps = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_fps");
 
-				double convert_fps = 1.0;
+				[[maybe_unused]] double convert_fps = 1.0;
 				if (subtitle_fps > 1 && m_framerate > 0)
 					convert_fps = subtitle_fps / (double)m_framerate;
 
