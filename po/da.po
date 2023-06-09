@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1795,6 +1795,9 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr "<Sidste timerplacering>"
 
+msgid "<Select a device>"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -2208,6 +2211,9 @@ msgid "Add highlighted directory to bookmarks"
 msgstr "Tilføj valgte mappe til bogmærker"
 
 msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
+
+msgid "Add more slots"
 msgstr ""
 
 msgid "Add new CCcam line"
@@ -4265,6 +4271,9 @@ msgstr "Vælg hvor ofte der forbindes til IceTV serveren for at se efter opdater
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Vælg CI-protokollens funktionstilstand for standard CI eller CI-plus."
 
+msgid "Choose the amount of additional slots."
+msgstr ""
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vælg displayets formateringsstil af datoer. 'D' / 'DD' er datoen og 'M' / 'MM' er måneden i cifre.  ('DD' og 'MM' har foranstillet nuller for enkelt ciffer værdier). Skærmdisplayet vil blive baseret på dit valg, men kan blive påvirket af Temaet."
 
@@ -4293,6 +4302,9 @@ msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose the target location for the expanded '/usr' directory."
+msgstr ""
+
+msgid "Choose the target location for the slots."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4450,6 +4462,9 @@ msgid "Close dialog"
 msgstr "Lukker vindue"
 
 msgid "Close screen"
+msgstr ""
+
+msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5243,6 +5258,9 @@ msgstr ""
 msgid "Create ISO"
 msgstr "Opret ISO"
 
+msgid "Create Slots"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5259,6 +5277,9 @@ msgid "Create separate radio user bouquet"
 msgstr "Opret separat radio brugerbuket"
 
 msgid "Create swap"
+msgstr ""
+
+msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
@@ -9705,6 +9726,9 @@ msgstr "Indlendende rulleforsinkelse"
 msgid "Initialization"
 msgstr "Initialisering"
 
+msgid "Initialize"
+msgstr "Initialiser"
+
 msgid "Initializing storage device..."
 msgstr "Initialiserer lagerenhed..."
 
@@ -10088,17 +10112,13 @@ msgstr ""
 msgid "Kexec MultiBoot Actions"
 msgstr ""
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr ""
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
+msgid "Kexec MultiBoot Initialization in progress!"
 msgstr ""
 
 msgid "Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Kexec MultiBoot files are missing."
 msgstr ""
 
 msgid "Key"
@@ -11573,6 +11593,9 @@ msgstr "NFS opsætning"
 msgid "NIM & Type"
 msgstr "HDMI HDR Type"
 
+msgid "NOTE"
+msgstr ""
+
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
 msgstr ""
@@ -12891,6 +12914,9 @@ msgstr "Slet alle optagelser i papirkurven permanent ?"
 msgid "Permanently remove all deleted items"
 msgstr "Fjerne alle slettede filer permanent"
 
+msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
 msgid "Permissions"
 msgstr ""
 
@@ -13196,6 +13222,9 @@ msgid ""
 "IceTV is a subscription service that is only available in the listed countries."
 msgstr ""
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr ""
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr ""
 
@@ -13492,12 +13521,7 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Tryk OK for at starte søgningen"
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgid "Press GREEN to enable MultiBoot!"
 msgstr ""
 
 msgid "Press OK for MultiBoot selection."
@@ -14015,12 +14039,6 @@ msgstr "Slet virkelig denne post ?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Vil du afslutte underkanal KvikZap ?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-
 msgid "Really reboot into Recovery Mode?"
 msgstr "Genstart virkelig i Genoprettelsestilstand ?"
 
@@ -14371,6 +14389,9 @@ msgstr "Fjern post"
 msgid "Remove Failed !!"
 msgstr ""
 
+msgid "Remove Files"
+msgstr ""
+
 msgid "Remove Finished."
 msgstr "Sletning gennemført."
 
@@ -14440,9 +14461,6 @@ msgstr "Fjern nuværende mappe fra bogmærker"
 msgid "Remove currently selected title"
 msgstr "Fjern nuværende valgte titel"
 
-msgid "Remove forever"
-msgstr ""
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Fjern valgte mappe fra bogmærker"
 
@@ -14453,6 +14471,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr "Fjerner tekst for hørehæmmede fra eksterne undertekster (instrumental musik eller omgivelsesstøj, f.eks nå en dørklokke ringere eller et geværskud høres)."
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the MultiBoot files"
 msgstr ""
 
 msgid "Remove the current bookmark"
@@ -15611,6 +15632,9 @@ msgid "Select a debug log file to view:"
 msgstr ""
 
 msgid "Select a device to use as the flash expander"
+msgstr ""
+
+msgid "Select a device to use for the additional slots"
 msgstr ""
 
 msgid "Select a directory"
@@ -17800,6 +17824,12 @@ msgstr "slot%s - %s (aktuelt Image)"
 msgid "Slot '%s': %s%s"
 msgstr ""
 
+msgid "Slot Manager"
+msgstr ""
+
+msgid "Slot count"
+msgstr ""
+
 msgid "Slovak"
 msgstr "Slovakisk"
 
@@ -18177,6 +18207,9 @@ msgstr "Start Tekst-TV"
 
 msgid "Start test"
 msgstr "Start test"
+
+msgid "Start the Kexec initialization"
+msgstr ""
 
 msgid "Start time"
 msgstr "Starttid"
@@ -18992,6 +19025,10 @@ msgstr "%s %s læser gemte EPG data hver (timer)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s gemmer EPG dataene hver (timer)."
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr ""
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -20433,7 +20470,7 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Ukrainsk"
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
+msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23971,9 +24008,6 @@ msgstr "®"
 
 #~ msgid "Extended GUI"
 #~ msgstr "Udvidet GUI"
-
-#~ msgid "Initialize"
-#~ msgstr "Initialiser"
 
 #~ msgid "Keyboard map"
 #~ msgstr "Tastatur afbildning"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1826,6 +1826,9 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr "<Paskutinio laikmačio vieta>"
 
+msgid "<Select a device>"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -2243,6 +2246,9 @@ msgstr "Pridėti pasirinktą aplanką į žymes"
 
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Senstelėjusių LEFT/RIGHT veiksmų įtraukimas"
+
+msgid "Add more slots"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Pridėkite naują CCcam eilutę"
@@ -4296,6 +4302,9 @@ msgstr "Pasirinkite, kaip dažnai prisijungti prie IceTV serverio, kad patikrint
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Pasirinkite CI protokolo darbo režimą standartiniam CI arba CIplus."
 
+msgid "Choose the amount of additional slots."
+msgstr ""
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Pasirinkite rodomą datos formavimo stilių. 'D' / 'DD' yra data ir 'M' / 'MM' yra mėnuo skaitmenimis.  ('DD' ir 'MM' prieš vieno skaitmens skaičius įrašomi nuliai.) Bus rodoma taip, kaip pasirinksite, bet gali būti įtakojamas ir naudojamos aplinkos temos."
 
@@ -4324,6 +4333,9 @@ msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Pasirinkite stilių / tvarką, kuria elementai rodomi žinyno languose."
 
 msgid "Choose the target location for the expanded '/usr' directory."
+msgstr ""
+
+msgid "Choose the target location for the slots."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4482,6 +4494,9 @@ msgstr "Baigti dialogą"
 
 msgid "Close screen"
 msgstr "Uždaryti ekraną"
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Close the current screen"
 msgstr "Uždaryti dabartinį ekraną"
@@ -5277,6 +5292,9 @@ msgstr ""
 msgid "Create ISO"
 msgstr "Sukurti ISO"
 
+msgid "Create Slots"
+msgstr ""
+
 msgid "Create a directory"
 msgstr "Sukurkite katalogą"
 
@@ -5293,6 +5311,9 @@ msgid "Create separate radio user bouquet"
 msgstr "Sukurti atskirą vartotojo radijo paketą"
 
 msgid "Create swap"
+msgstr ""
+
+msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
@@ -9734,6 +9755,9 @@ msgstr "Pradinė slinkties delsa"
 msgid "Initialization"
 msgstr "Inicializavimas"
 
+msgid "Initialize"
+msgstr "Inicializuoti"
+
 msgid "Initializing storage device..."
 msgstr "Saugojimo įrenginio inicializavimas..."
 
@@ -10108,21 +10132,13 @@ msgstr "Branduolio versija"
 msgid "Kexec MultiBoot Actions"
 msgstr ""
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr "\"Kexec MultiBoot\" inicijavimas - bus paleistas iš naujo po 10 sekundžių."
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
+msgid "Kexec MultiBoot Initialization in progress!"
 msgstr ""
-"Kexec MultiBoot Inicijavimas vyksta!\n"
-"\n"
-"Bus paleistas iš naujo atkūrus visus eMMC lizdus.\n"
-"Tai gali užtrukti nuo 1 iki > 5 minučių vienam lizdui."
 
 msgid "Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Kexec MultiBoot files are missing."
 msgstr ""
 
 msgid "Key"
@@ -11555,6 +11571,9 @@ msgstr "NFS parametrai"
 msgid "NIM & Type"
 msgstr "IMTUVAS IR TIPAS"
 
+msgid "NOTE"
+msgstr ""
+
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
 msgstr "PASTABA: Katalogas / failas \"%s\" egzistuoja ir bus perrašytas!"
@@ -12853,6 +12872,9 @@ msgstr "Negrįžtamai pašalinti visus įrašus iš šiukšlinės?"
 msgid "Permanently remove all deleted items"
 msgstr "Negrįžtamai pašalinti visus ištrintus elementus"
 
+msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
 msgid "Permissions"
 msgstr "Prieigos teisės"
 
@@ -13158,6 +13180,9 @@ msgstr ""
 "\n"
 "IceTV yra prenumeratos paslauga, kuri teikiama tik išvardytose šalyse."
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr ""
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr ""
 
@@ -13452,18 +13477,8 @@ msgstr "Paspauskite EXIT, kad uždarytumėte."
 msgid "Press EXIT to return to the help screen."
 msgstr "Paspauskite EXIT, kad grįžtumėte į žinyno ekraną."
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgid "Press GREEN to enable MultiBoot!"
 msgstr ""
-"Paspauskite žalią klavišą, kad įjungtumėte \"MultiBoot\"!\n"
-"\n"
-"Bus paleistas iš naujo per 10 sekundžių,\n"
-"nebent turite eMMC lizdus, kuriuos norite atkurti.\n"
-"eMMC lizdų atkūrimas gali užtrukti nuo 1 iki > 5 minučių vienam lizdui."
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Paspauskite OK, kad pasirinktumėte daugialypį paleidimą."
@@ -13977,14 +13992,6 @@ msgstr "Ar tikrai ištrinti šį įrašą?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Tikrai užverti greitą subkanalų perjungimą?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-"Ar tikrai visam laikui ištrinate \"MultiBoot\" failus?\n"
-"%s"
-
 msgid "Really reboot into Recovery Mode?"
 msgstr "Tikrai iš naujo paleisti į atkūrimo režimą?"
 
@@ -14333,6 +14340,9 @@ msgstr "pašalinti"
 msgid "Remove Failed !!"
 msgstr "Pašalinti nepavyko !!"
 
+msgid "Remove Files"
+msgstr ""
+
 msgid "Remove Finished."
 msgstr "Pašalinimas baigtas."
 
@@ -14402,9 +14412,6 @@ msgstr "Pašalinti dabartinį aplanką iš žymių"
 msgid "Remove currently selected title"
 msgstr "Pašalinti dabartinį pasirinktą pavadinimą"
 
-msgid "Remove forever"
-msgstr ""
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Pašalinkite pasirinktą aplanką iš žymių"
 
@@ -14416,6 +14423,9 @@ msgstr "Pašalinti tekstus, skirtus turintiems klausos sutrikimų, iš išorini�
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Pašalinkite liniją iš CCcam.cfg"
+
+msgid "Remove the MultiBoot files"
+msgstr ""
 
 msgid "Remove the current bookmark"
 msgstr "Dabartinės žymelės pašalinimas"
@@ -15563,6 +15573,9 @@ msgid "Select a debug log file to view:"
 msgstr "Pasirinkite derinimo žurnalo failą, kurį norite peržiūrėti:"
 
 msgid "Select a device to use as the flash expander"
+msgstr ""
+
+msgid "Select a device to use for the additional slots"
 msgstr ""
 
 msgid "Select a directory"
@@ -17723,6 +17736,12 @@ msgstr "Lizdas '%s':  %s  -  dabartinis"
 msgid "Slot '%s': %s%s"
 msgstr "Lizdas '%s': %s%s"
 
+msgid "Slot Manager"
+msgstr ""
+
+msgid "Slot count"
+msgstr ""
+
 msgid "Slovak"
 msgstr "Slovakų"
 
@@ -18096,6 +18115,9 @@ msgstr "Įjungti teletekstą"
 
 msgid "Start test"
 msgstr "Pradėti testą"
+
+msgid "Start the Kexec initialization"
+msgstr ""
 
 msgid "Start time"
 msgstr "Pradžios laikas"
@@ -18897,6 +18919,10 @@ msgstr "%s %s skaito saugomus EPG duomenis kas (valandos)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s išsaugo EPG duomenis kas (val.)."
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr ""
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -20339,7 +20365,7 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukrainiečių"
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
+msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23510,6 +23536,41 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+#~ msgstr "\"Kexec MultiBoot\" inicijavimas - bus paleistas iš naujo po 10 sekundžių."
+
+#~ msgid ""
+#~ "Kexec MultiBoot Initialisation in progress!\n"
+#~ "\n"
+#~ "Will reboot after restoring any eMMC slots.\n"
+#~ "This can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Kexec MultiBoot Inicijavimas vyksta!\n"
+#~ "\n"
+#~ "Bus paleistas iš naujo atkūrus visus eMMC lizdus.\n"
+#~ "Tai gali užtrukti nuo 1 iki > 5 minučių vienam lizdui."
+
+#~ msgid ""
+#~ "Press Green key to enable MultiBoot!\n"
+#~ "\n"
+#~ "Will reboot within 10 seconds,\n"
+#~ "unless you have eMMC slots to restore.\n"
+#~ "Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Paspauskite žalią klavišą, kad įjungtumėte \"MultiBoot\"!\n"
+#~ "\n"
+#~ "Bus paleistas iš naujo per 10 sekundžių,\n"
+#~ "nebent turite eMMC lizdus, kuriuos norite atkurti.\n"
+#~ "eMMC lizdų atkūrimas gali užtrukti nuo 1 iki > 5 minučių vienam lizdui."
+
+#, python-format
+#~ msgid ""
+#~ "Really permanently delete MultiBoot files?\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ar tikrai visam laikui ištrinate \"MultiBoot\" failus?\n"
+#~ "%s"
+
 #~ msgid "Auto Modes Selected."
 #~ msgstr "Pasirinkti automatiniai režimai."
 
@@ -23881,9 +23942,6 @@ msgstr "®"
 
 #~ msgid "Extended GUI"
 #~ msgstr "Išplėstinė grafinė aplinka"
-
-#~ msgid "Initialize"
-#~ msgstr "Inicializuoti"
 
 #~ msgid "Keyboard map"
 #~ msgstr "Klaviatūros išdėstymas"

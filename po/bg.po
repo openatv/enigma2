@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -1793,6 +1793,9 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr "<Местоположение на последния таймер>"
 
+msgid "<Select a device>"
+msgstr ""
+
 msgid "A"
 msgstr ""
 
@@ -2206,6 +2209,9 @@ msgid "Add highlighted directory to bookmarks"
 msgstr "Добавяне на избраната папка към отметки"
 
 msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
+
+msgid "Add more slots"
 msgstr ""
 
 msgid "Add new CCcam line"
@@ -4254,6 +4260,9 @@ msgstr "Изберете колко често да се свързвате съ
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Избиране на режим на работа на CI протокол за CI стандарт или CI плюс."
 
+msgid "Choose the amount of additional slots."
+msgstr ""
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Избиране на стила на форматиране на дисплея за датите. „D“ / „DD“ е датата, а „M“ / „MM“ е месецът с цифри. („DD“ и „MM“ имат водещи нули за едноцифрени стойности.) Екранният дисплей ще се основава на вашия избор, но може да бъде повлиян от кожата."
 
@@ -4282,6 +4291,9 @@ msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose the target location for the expanded '/usr' directory."
+msgstr ""
+
+msgid "Choose the target location for the slots."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4440,6 +4452,9 @@ msgstr "Затвори диалога"
 
 msgid "Close screen"
 msgstr "Затваряне на екрана"
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Close the current screen"
 msgstr "Затворете текущия екран"
@@ -5230,6 +5245,9 @@ msgstr ""
 msgid "Create ISO"
 msgstr "Създай ISO"
 
+msgid "Create Slots"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5246,6 +5264,9 @@ msgid "Create separate radio user bouquet"
 msgstr "Създайте отделен потребителски букет за радио"
 
 msgid "Create swap"
+msgstr ""
+
+msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
@@ -9675,6 +9696,9 @@ msgstr "Забавяне на първоначалното превъртане"
 msgid "Initialization"
 msgstr "Инициализация"
 
+msgid "Initialize"
+msgstr "Инициализиране"
+
 msgid "Initializing storage device..."
 msgstr "Устройството за съхранение се инициализира..."
 
@@ -10049,17 +10073,13 @@ msgstr "Версия на ядрото"
 msgid "Kexec MultiBoot Actions"
 msgstr ""
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr ""
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
+msgid "Kexec MultiBoot Initialization in progress!"
 msgstr ""
 
 msgid "Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Kexec MultiBoot files are missing."
 msgstr ""
 
 msgid "Key"
@@ -11491,6 +11511,9 @@ msgstr "NFS настройка"
 msgid "NIM & Type"
 msgstr ""
 
+msgid "NOTE"
+msgstr ""
+
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
 msgstr ""
@@ -12789,6 +12812,9 @@ msgstr "Окончателно изтриване на всички записи
 msgid "Permanently remove all deleted items"
 msgstr "Окончателно премахване на всички изтрити елементи"
 
+msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
 msgid "Permissions"
 msgstr ""
 
@@ -13091,6 +13117,9 @@ msgid ""
 "IceTV is a subscription service that is only available in the listed countries."
 msgstr ""
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr ""
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr ""
 
@@ -13385,12 +13414,7 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Натиснете EXIT, за да се върнете към екрана за помощ."
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgid "Press GREEN to enable MultiBoot!"
 msgstr ""
 
 msgid "Press OK for MultiBoot selection."
@@ -13905,12 +13929,6 @@ msgstr "Наистина ли да изтрия този запис?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Наистина ли да изляза от subservices quickzap?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-
 msgid "Really reboot into Recovery Mode?"
 msgstr "Наистина ли рестартирам в режим за възстановяване?"
 
@@ -14259,6 +14277,9 @@ msgstr "премахнете  вписването"
 msgid "Remove Failed !!"
 msgstr "Премахването не бе успешно!!"
 
+msgid "Remove Files"
+msgstr ""
+
 msgid "Remove Finished."
 msgstr "Премахване на завършените."
 
@@ -14328,9 +14349,6 @@ msgstr "Премахване на текущата папка от отметк�
 msgid "Remove currently selected title"
 msgstr "Премахване на текущото избрано заглавие"
 
-msgid "Remove forever"
-msgstr ""
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Премахване на избраната папка от отметките"
 
@@ -14341,6 +14359,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr "Премахване на текстовете за хора с увреден слух от външни субтитри(инструментална музика или звуци на околната среда, например)."
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the MultiBoot files"
 msgstr ""
 
 msgid "Remove the current bookmark"
@@ -15488,6 +15509,9 @@ msgid "Select a debug log file to view:"
 msgstr ""
 
 msgid "Select a device to use as the flash expander"
+msgstr ""
+
+msgid "Select a device to use for the additional slots"
 msgstr ""
 
 msgid "Select a directory"
@@ -17646,6 +17670,12 @@ msgstr ""
 msgid "Slot '%s': %s%s"
 msgstr ""
 
+msgid "Slot Manager"
+msgstr ""
+
+msgid "Slot count"
+msgstr ""
+
 msgid "Slovak"
 msgstr ""
 
@@ -18019,6 +18049,9 @@ msgstr "Старт на телетекс"
 
 msgid "Start test"
 msgstr "Старт на тест"
+
+msgid "Start the Kexec initialization"
+msgstr ""
 
 msgid "Start time"
 msgstr "Начално време"
@@ -18820,6 +18853,10 @@ msgstr "Вашият %s %s чете EPG съхранените данни на �
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Вашият %s %s съхранява данните EPG на всеки (часове)."
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr ""
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -20252,7 +20289,7 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
+msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23755,9 +23792,6 @@ msgstr ""
 
 #~ msgid "Extended GUI"
 #~ msgstr "Разширен графичен интерфейс"
-
-#~ msgid "Initialize"
-#~ msgstr "Инициализиране"
 
 #~ msgid "Keyboard map"
 #~ msgstr "Карта клавиатура"

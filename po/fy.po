@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Frisian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fy/>\n"
@@ -1960,6 +1960,9 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr ""
 
+msgid "<Select a device>"
+msgstr ""
+
 #
 msgid "A"
 msgstr "A"
@@ -2426,6 +2429,9 @@ msgid "Add highlighted directory to bookmarks"
 msgstr ""
 
 msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
+
+msgid "Add more slots"
 msgstr ""
 
 msgid "Add new CCcam line"
@@ -4646,6 +4652,9 @@ msgstr ""
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr ""
 
+msgid "Choose the amount of additional slots."
+msgstr ""
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr ""
 
@@ -4674,6 +4683,9 @@ msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose the target location for the expanded '/usr' directory."
+msgstr ""
+
+msgid "Choose the target location for the slots."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4849,6 +4861,9 @@ msgid "Close dialog"
 msgstr ""
 
 msgid "Close screen"
+msgstr ""
+
+msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5685,6 +5700,9 @@ msgstr ""
 msgid "Create ISO"
 msgstr ""
 
+msgid "Create Slots"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5702,6 +5720,9 @@ msgid "Create separate radio user bouquet"
 msgstr ""
 
 msgid "Create swap"
+msgstr ""
+
+msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
@@ -10491,6 +10512,10 @@ msgstr ""
 msgid "Initialization"
 msgstr ""
 
+#
+msgid "Initialize"
+msgstr "Formattearje HDD"
+
 msgid "Initializing storage device..."
 msgstr ""
 
@@ -10923,17 +10948,13 @@ msgstr ""
 msgid "Kexec MultiBoot Actions"
 msgstr ""
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr ""
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
+msgid "Kexec MultiBoot Initialization in progress!"
 msgstr ""
 
 msgid "Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Kexec MultiBoot files are missing."
 msgstr ""
 
 msgid "Key"
@@ -12548,6 +12569,9 @@ msgstr ""
 msgid "NIM & Type"
 msgstr ""
 
+msgid "NOTE"
+msgstr ""
+
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
 msgstr ""
@@ -13978,6 +14002,9 @@ msgstr ""
 msgid "Permanently remove all deleted items"
 msgstr ""
 
+msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
 msgid "Permissions"
 msgstr ""
 
@@ -14335,6 +14362,9 @@ msgid ""
 "IceTV is a subscription service that is only available in the listed countries."
 msgstr ""
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr ""
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr ""
 
@@ -14672,12 +14702,7 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Druk Ok om sykjen te starten"
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgid "Press GREEN to enable MultiBoot!"
 msgstr ""
 
 msgid "Press OK for MultiBoot selection."
@@ -15244,12 +15269,6 @@ msgstr "Ferwiderje diene tiidsbarren?"
 msgid "Really exit the subservices quickzap?"
 msgstr "De undersender rapzap ôfslúte?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Really reboot into Recovery Mode?"
@@ -15644,6 +15663,9 @@ msgstr "ferwiderje yngong"
 msgid "Remove Failed !!"
 msgstr ""
 
+msgid "Remove Files"
+msgstr ""
+
 #
 msgid "Remove Finished."
 msgstr ""
@@ -15723,9 +15745,6 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr "Ferwiderje it selektearre bestan"
 
-msgid "Remove forever"
-msgstr ""
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr ""
 
@@ -15736,6 +15755,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr ""
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the MultiBoot files"
 msgstr ""
 
 msgid "Remove the current bookmark"
@@ -17011,6 +17033,9 @@ msgid "Select a debug log file to view:"
 msgstr ""
 
 msgid "Select a device to use as the flash expander"
+msgstr ""
+
+msgid "Select a device to use for the additional slots"
 msgstr ""
 
 msgid "Select a directory"
@@ -19348,6 +19373,12 @@ msgstr ""
 msgid "Slot '%s': %s%s"
 msgstr ""
 
+msgid "Slot Manager"
+msgstr ""
+
+msgid "Slot count"
+msgstr ""
+
 msgid "Slovak"
 msgstr ""
 
@@ -19744,6 +19775,9 @@ msgstr ""
 #
 msgid "Start test"
 msgstr "Start test"
+
+msgid "Start the Kexec initialization"
+msgstr ""
 
 #
 #, fuzzy
@@ -20632,6 +20666,10 @@ msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr ""
 
 msgid "The %s %s stores the EPG data every (hours)."
+msgstr ""
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
 msgstr ""
 
 #, python-format
@@ -22146,7 +22184,7 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
+msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -25583,10 +25621,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Delete EPG"
 #~ msgstr "Ferwiderje"
-
-#
-#~ msgid "Initialize"
-#~ msgstr "Formattearje HDD"
 
 #
 #, fuzzy

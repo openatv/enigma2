@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
-"PO-Revision-Date: 2023-05-22 13:48+0000\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
+"PO-Revision-Date: 2023-06-05 10:33+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -1814,10 +1814,13 @@ msgid "<Default movie location>"
 msgstr "<Výchozí umístění>"
 
 msgid "<Flash expander inactive>"
-msgstr ""
+msgstr "<Flash expander neaktivní>"
 
 msgid "<Last timer location>"
 msgstr "<Poslední umístění časovače>"
+
+msgid "<Select a device>"
+msgstr "<Vyberte zařízení>"
 
 msgid "A"
 msgstr "A"
@@ -2068,7 +2071,7 @@ msgid "Activate"
 msgstr "Aktivovat"
 
 msgid "Activate Expander"
-msgstr ""
+msgstr "Aktivovat expandér"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Aktivace HbbTV (ČERVENÉ tlačítko)"
@@ -2092,7 +2095,7 @@ msgid "Activate the configured network settings."
 msgstr "Aktivovat konfiguraci nastavení sítě."
 
 msgid "Activate the flash expander, save all changed settings and exit"
-msgstr ""
+msgstr "Aktivovat flash expandér, uložit všechna změněná nastavení a ukončit"
 
 msgid "Activate time shift End"
 msgstr "Aktivace konce časového posunu"
@@ -2228,6 +2231,9 @@ msgstr "Přidat vybranou složku do záložek"
 
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Přidat starší akce LEFT/RIGHT"
+
+msgid "Add more slots"
+msgstr "Přidat více slotů"
 
 msgid "Add new CCcam line"
 msgstr "Přidat novou řadu CCcam"
@@ -2903,10 +2909,10 @@ msgid "Auto standby"
 msgstr "Automatcké vypnutí"
 
 msgid "Auto video mode selected"
-msgstr ""
+msgstr "Je vybrán automatický režim videa"
 
 msgid "Auto video mode selected for the TV."
-msgstr ""
+msgstr "Automatický režim videa zvolený pro televizor."
 
 msgid "Auto(not available)"
 msgstr "Auto (není dostupné)"
@@ -3511,10 +3517,10 @@ msgid "ButtonSetup"
 msgstr "Funkce dálkového ovládání"
 
 msgid "By disk UUID"
-msgstr ""
+msgstr "Podle UUID disku"
 
 msgid "By disk label"
-msgstr ""
+msgstr "Podle štítku disku"
 
 msgid "By openATV Image Team"
 msgstr "Od openATV Image Teamu"
@@ -4279,6 +4285,9 @@ msgstr "Zvolte, jak často se chcete připojovat k serveru IceTV pro kontrolu ak
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Zvolte provozní režim protokolu CI pro standardní CI nebo CIplus."
 
+msgid "Choose the amount of additional slots."
+msgstr "Zvolte počet dalších slotů."
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vyberte styl formátování zobrazení pro data. 'D' / 'DD' je den a 'M' / 'MM' je měsíc v číslicích. („DD“ a „MM“ mají úvodní nuly pro jednociferné hodnoty.) Zobrazení na obrazovce bude založeno na vaší volbě, ale může být ovlivněno vzhledem."
 
@@ -4308,6 +4317,9 @@ msgstr "Vyberte styl/pořadí, ve kterém se položky zobrazí v oknech nápově
 
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Vyberte cílové umístění pro rozšířený adresář '/usr'."
+
+msgid "Choose the target location for the slots."
+msgstr "Vyberte cílové umístění pro sloty."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Zvolte časový interval, po kterém bude grafika zaokrouhlena."
@@ -4465,6 +4477,9 @@ msgstr "Zavřít dialog"
 
 msgid "Close screen"
 msgstr "Zavřít obrazovku"
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr "Zavřít Správce multibootů Kexec"
 
 msgid "Close the current screen"
 msgstr "Zavřít aktuální obrazovku"
@@ -4627,7 +4642,7 @@ msgid "Configuration options for the HELP screen can be found in 'MENU > Setup >
 msgstr "Možnosti konfigurace pro obrazovku NÁPOVĚDA lze nalézt v 'MENU > Nastavení > Použití a uživatelské rozhraní > Nastavení'."
 
 msgid "Configure DNS (name servers)"
-msgstr ""
+msgstr "Konfigurace DNS (názvové servery)"
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Nastavení zpoždění pro lepší synchronizaci externích titulků."
@@ -4685,6 +4700,9 @@ msgid ""
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
+"Nakonfigurujte nebo ověřte své DNS (názvové servery) úpravou uvedených hodnot.\n"
+"\n"
+"Pokud jsou nastavení správná, pokračujte stisknutím tlačítka OK."
 
 msgid "Configure remote control type"
 msgstr "Nastavit typ dálkového ovládání"
@@ -4700,6 +4718,9 @@ msgid ""
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
+"Nakonfigurujte připojení k internetu úpravou zobrazených hodnot.\n"
+"\n"
+"Pokud jsou nastavení správná, pokračujte stisknutím tlačítka OK."
 
 msgid "Configure the alignment of events."
 msgstr "Nastavit zarovnání událostí."
@@ -5024,7 +5045,7 @@ msgid "Connect to a wireless network"
 msgstr "Připojit k bezdrátové síti"
 
 msgid "Connect to the Internet"
-msgstr ""
+msgstr "Připojit k internetu"
 
 msgid "Connected clients"
 msgstr "Připojení klienti"
@@ -5082,7 +5103,7 @@ msgid "Continue to run the task in the background"
 msgstr "Pokračovat ve spuštění úlohy na pozadí"
 
 msgid "Continue with package download and installation"
-msgstr ""
+msgstr "Pokračujte ve stahování a instalaci balíčku"
 
 msgid "Continue with the flash process"
 msgstr "Pokračujte v procesu flashání"
@@ -5248,10 +5269,13 @@ msgid "Create Directory"
 msgstr "Vytvořit adresář"
 
 msgid "Create Expander"
-msgstr ""
+msgstr "Vytvořit expandér"
 
 msgid "Create ISO"
 msgstr "Vytvořte ISO"
+
+msgid "Create Slots"
+msgstr "Vytvořit sloty"
 
 msgid "Create a directory"
 msgstr "Vytvořte adresář"
@@ -5269,10 +5293,13 @@ msgid "Create separate radio user bouquet"
 msgstr "Vytvořit samostatný uživatelský přehled rádií"
 
 msgid "Create swap"
-msgstr ""
+msgstr "Vytvořit swap"
+
+msgid "Create the additional slots on the selected device"
+msgstr "Vytvořit další sloty na vybraném zařízení"
 
 msgid "Create the flash expander in the selected device"
-msgstr ""
+msgstr "Vytvořit flash expandér ve vybraném zařízení"
 
 msgid "Create:"
 msgstr "Vytvořit:"
@@ -5737,10 +5764,10 @@ msgid "Deactivate"
 msgstr "Deaktivovat"
 
 msgid "Deactivate Expander"
-msgstr ""
+msgstr "Deaktivovat expandér"
 
 msgid "Deactivate the flash expander in the selected device"
-msgstr ""
+msgstr "Deaktivovat flash expandér ve vybraném zařízení"
 
 msgid "Debug"
 msgstr "Ladit"
@@ -5829,10 +5856,10 @@ msgid "Default sort order for files in the right column."
 msgstr "Výchozí pořadí řazení souborů v pravém sloupci."
 
 msgid "Default video mode selected"
-msgstr ""
+msgstr "Je vybrán výchozí režim videa"
 
 msgid "Default video mode selected for the TV."
-msgstr ""
+msgstr "Pro televizor je vybrán výchozí režim videa."
 
 msgid "Default volume offset"
 msgstr "Výchozí posun hlasitosti"
@@ -5952,7 +5979,7 @@ msgid "Delete EPG Cache"
 msgstr "Smazat mezipaměť EPG"
 
 msgid "Delete Expander"
-msgstr ""
+msgstr "Smazat expandér"
 
 msgid "Delete Image"
 msgstr "Smazat image"
@@ -6039,10 +6066,10 @@ msgid "Delete the character to the left of text cursor"
 msgstr "Smažte znak vlevo od textového kurzoru"
 
 msgid "Delete the character to the left of the cursor"
-msgstr ""
+msgstr "Odstranit znak nalevo od kurzoru"
 
 msgid "Delete the character under the cursor"
-msgstr ""
+msgstr "Odstranit znak pod kurzorem"
 
 msgid "Delete the character under the text cursor"
 msgstr "Smažte znak pod textovým kurzorem"
@@ -6064,7 +6091,7 @@ msgid "Delete the directory/file '%s'?"
 msgstr "Smazat adresář/soubor '%s'?"
 
 msgid "Delete the flash expander in the selected device"
-msgstr ""
+msgstr "Odstranit flash expandér ve zvoleném zařízení"
 
 msgid "Delete the selected locally stored image"
 msgstr "Odstraní vybraný lokálně uložený obrázek"
@@ -6416,7 +6443,7 @@ msgid "Djibouti"
 msgstr "Džibutsko"
 
 msgid "Do another manual service scan?"
-msgstr ""
+msgstr "Provést další ruční servisní sken?"
 
 msgid "Do not change"
 msgstr "Neměnit"
@@ -6522,7 +6549,7 @@ msgid "Do you want change '%s' access mode?"
 msgstr "Přejete si změnit přístupový režim '%s'?"
 
 msgid "Do you want the upgrade guide?"
-msgstr ""
+msgstr "Chcete průvodce aktualizací?"
 
 msgid ""
 "Do you want to also install samba client ?\n"
@@ -6548,7 +6575,7 @@ msgid "Do you want to continue?"
 msgstr "Chcete pokračovat?"
 
 msgid "Do you want to deactivate this flash expander?"
-msgstr ""
+msgstr "Chcete deaktivovat tento flash expandér?"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -6564,7 +6591,7 @@ msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Chcete nejprve smazat stará nastavení v /etc/enigma2?"
 
 msgid "Do you want to delete this flash expander directory?"
-msgstr ""
+msgstr "Chcete smazat tento adresář flash expandéru?"
 
 msgid "Do you want to delete this log file?"
 msgstr "Chcete tento soubor protokolu smazat?"
@@ -6615,7 +6642,7 @@ msgid "Do you want to resume this playback?"
 msgstr "Chcete obnovit přehrávání?"
 
 msgid "Do you want to start a backup now?"
-msgstr ""
+msgstr "Chcete nyní spustit zálohování?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Chcete aktualizovat balíček:\n"
@@ -7400,7 +7427,7 @@ msgid "Enter pin code"
 msgstr "Zadejte pin kód"
 
 msgid "Enter text via an attached keyboard"
-msgstr ""
+msgstr "Zadávání textu pomocí připojené klávesnice"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr "Zadejte frekvenci, na které LNB přepíná mezi nízkým a vysokým pásmem. Další informace naleznete v technickém listu vašeho LNB."
@@ -7674,10 +7701,10 @@ msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Chyba: Skript '%s' musí mít oprávnění ke čtení, aby mohl být spuštěn!"
 
 msgid "Error: The copy was unsuccessful!"
-msgstr ""
+msgstr "Chyba: Kopírování se nezdařilo!"
 
 msgid "Error: The delete was unsuccessful!"
-msgstr ""
+msgstr "Chyba: Smazání se nezdařilo!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Chyba: Nové heslo nesmí být prázdné!"
@@ -7718,7 +7745,7 @@ msgid "Error: You can't run '%s' on a directory!"
 msgstr "Chyba: Nelze spustit '%s' v adresáři!"
 
 msgid "Error: mount not successful!"
-msgstr ""
+msgstr "Chyba: připojení nebylo úspěšné!"
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -8335,7 +8362,7 @@ msgid "Flash Expander"
 msgstr "Flash Expander"
 
 msgid "Flash Expander Actions"
-msgstr ""
+msgstr "Akce flash expandéru"
 
 msgid "Flash Image"
 msgstr "Flash image"
@@ -8382,7 +8409,7 @@ msgstr "Provést flash %s %s a ihned restartovat?"
 
 #, python-format
 msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
-msgstr ""
+msgstr "FlashExpander při spouštění je '%s'. Stav aplikace FlashExpander je '%s'."
 
 msgid "Flashing"
 msgstr "Blikat"
@@ -8407,7 +8434,7 @@ msgid "Flat by position on remote"
 msgstr "Pozice podle polohy na dálkovém ovladači"
 
 msgid "Follow instructions on TV"
-msgstr ""
+msgstr "Postupujte podle pokynů na TV"
 
 msgid "Font size"
 msgstr "Velikost písma"
@@ -8443,7 +8470,7 @@ msgid "Format"
 msgstr "Formát"
 
 msgid "Format Disk"
-msgstr ""
+msgstr "Formátovat disk"
 
 msgid "Format HDD"
 msgstr "Formátování a inicializace disků"
@@ -8714,7 +8741,7 @@ msgid "Glibc version"
 msgstr "Verze Glibc"
 
 msgid "Go back to the previous step"
-msgstr ""
+msgstr "Vrátit se k předchozímu kroku"
 
 msgid "Go down the list"
 msgstr "V seznamu dolů"
@@ -9506,7 +9533,7 @@ msgid "Immediate shut down"
 msgstr "Vypnout přijímač"
 
 msgid "Immediately exit the wizard (Debug mode only)"
-msgstr ""
+msgstr "Okamžitě ukončit průvodce (pouze režim ladění)"
 
 msgid "Immediately restart selected devices."
 msgstr "Okamžitě restartujte vybraná zařízení."
@@ -9710,6 +9737,9 @@ msgstr "Počáteční zpoždění rolování"
 msgid "Initialization"
 msgstr "Inicializace disku"
 
+msgid "Initialize"
+msgstr "Inicializovat"
+
 msgid "Initializing storage device..."
 msgstr "Inicializovat zařízení pro ukládání..."
 
@@ -9809,7 +9839,7 @@ msgid "Installing %s (%s)..."
 msgstr "Instalace %s (%s)..."
 
 msgid "Installing Please wait..."
-msgstr ""
+msgstr "Instaluji Prosím čekejte..."
 
 msgid "Installing Service"
 msgstr "Instalace služby"
@@ -10084,22 +10114,14 @@ msgstr "Verze jádra"
 msgid "Kexec MultiBoot Actions"
 msgstr "Akce Kexec MultiBoot"
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr "Inicializace Kexec MultiBoot – restartuje se po 10 sekundách."
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
-msgstr ""
-"Probíhá inicializace Kexec MultiBoot!\n"
-"\n"
-"Restartuje se po obnovení všech eMMC slotů.\n"
-"To může trvat 1 -> 5 minut na jeden slot."
+msgid "Kexec MultiBoot Initialization in progress!"
+msgstr "Probíhá inicializace Kexec MultiBoot!"
 
 msgid "Kexec MultiBoot Manager"
 msgstr "Kexec MultiBoot Manager"
+
+msgid "Kexec MultiBoot files are missing."
+msgstr "Chybí soubory Kexec MultiBoot."
 
 msgid "Key"
 msgstr "Klíč"
@@ -10382,7 +10404,7 @@ msgid "Limit west"
 msgstr "Západní limit"
 
 msgid "Limited memory size, swap file required"
-msgstr ""
+msgstr "Omezená velikost paměti, nutný odkládací soubor"
 
 msgid "Limits cancelled"
 msgstr "Omezení zrušena"
@@ -11531,6 +11553,9 @@ msgstr "Nastavení NFS"
 msgid "NIM & Type"
 msgstr "NIM a typ"
 
+msgid "NOTE"
+msgstr "POZNÁMKA"
+
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
 msgstr "POZNÁMKA: Adresář/soubor '%s' existuje a bude přepsán!"
@@ -11717,6 +11742,9 @@ msgid ""
 "\n"
 "Press OK to continue."
 msgstr ""
+"Průvodce sítí byl dokončen.\n"
+"\n"
+"Pokračujte stisknutím OK."
 
 msgid "Network:"
 msgstr "Síť:"
@@ -11843,7 +11871,7 @@ msgid "No HDD found or HDD not initialized!"
 msgstr "Žádný HDD nenalezen nebo není inicializován!"
 
 msgid "No Internet connection"
-msgstr ""
+msgstr "Žádné připojení k internetu"
 
 msgid ""
 "No Settings loaded !!\n"
@@ -12015,11 +12043,11 @@ msgid "No updates were available.  Please try again later."
 msgstr "Nebyly k dispozici žádné aktualizace. Prosím zkuste to znovu později."
 
 msgid "No valid device detected - Press OK"
-msgstr ""
+msgstr "Nebylo zjištěno žádné platné zařízení – Stiskněte tlačítko OK"
 
 #, python-format
 msgid "No valid mount for '%s' found!"
-msgstr ""
+msgstr "Pro '%s' nebylo nalezeno žádné platné připojení!"
 
 msgid "No valid region details were found"
 msgstr "Nebyly nalezeny žádné platné údaje o regionu"
@@ -12423,7 +12451,7 @@ msgid "Open the Plugin Browser"
 msgstr "Prohlížeč pluginů"
 
 msgid "Open the VirtualKeyBoard for text entry"
-msgstr ""
+msgstr "Otevřete VirtualKeyBoard a zadejte text"
 
 msgid "Open the movie list"
 msgstr "Otevřít seznam filmů"
@@ -12660,7 +12688,7 @@ msgid "Package information currently not available!"
 msgstr "Informace o balíčku nejsou v současné době k dispozici!"
 
 msgid "Package installation failed"
-msgstr ""
+msgstr "Instalace balíčku se nezdařila"
 
 msgid "Package list"
 msgstr "Seznam balíčků"
@@ -12821,13 +12849,16 @@ msgid "Perform install/remove of the selected item"
 msgstr "Proveďte instalaci/odstranění vybrané položky"
 
 msgid "Perform the upgrade?"
-msgstr ""
+msgstr "Provést aktualizaci?"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Trvale odstranit všechny záznamy z koše?"
 
 msgid "Permanently remove all deleted items"
 msgstr "Trvale odstranit veškeré smazané položky"
+
+msgid "Permanently remove the MultiBoot files?"
+msgstr "Chcete trvale odebrat soubory MultiBoot?"
 
 msgid "Permissions"
 msgstr "Oprávnění"
@@ -13134,11 +13165,14 @@ msgstr ""
 " \n"
 "IceTV je předplacená služba, která je dostupná pouze v uvedených zemích."
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr "Vyberte zařízení nebo zrušte výběr Zrušit."
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
-msgstr ""
+msgstr "Vyberte zařízení, na kterém se má vytvořit adresář flash expandéru '/usr'."
 
 msgid "Please select the device where the flash expander '/usr' directory should disabled."
-msgstr ""
+msgstr "Vyberte zařízení, kde má být adresář '/usr' deaktivován."
 
 msgid "Please select the movie path..."
 msgstr "Vyberte cestu k filmům..."
@@ -13215,10 +13249,10 @@ msgid "Please wait whilst feeds state is checked."
 msgstr "Počkejte prosím, dokud nezkontroluji stav zdrojů."
 
 msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
-msgstr ""
+msgstr "Čekejte prosím, kopie flash paměti se maže. Dokončení může trvat několik minut."
 
 msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
-msgstr ""
+msgstr "Čekejte prosím, paměť flash se kopíruje do tohoto expandéru flash. Dokončení může trvat několik minut."
 
 msgid "Please wait, loading image..."
 msgstr "Čekejte prosím, načítá se obrázek..."
@@ -13228,7 +13262,7 @@ msgid "Please wait, restarting %s."
 msgstr "Počkejte prosím, restartuji %s."
 
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
-msgstr ""
+msgstr "Čekejte prosím, právě se vytváří swap. Dokončení může trvat několik minut."
 
 msgid "Please wait."
 msgstr "Prosím, čekejte."
@@ -13243,10 +13277,10 @@ msgid "Please wait...almost ready! "
 msgstr "Čekejte prosím... už to bude brzy! "
 
 msgid "Plug in USB device"
-msgstr ""
+msgstr "Připojte zařízení USB"
 
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
-msgstr ""
+msgstr "Zapojte USB zařízení, které lze použít jako odkládací zařízení. Pamatujte, že toto zařízení nesmí být odstraněno, když je %s %s spuštěno!"
 
 msgid "Plugin Browser"
 msgstr "Prohlížeč pluginů"
@@ -13428,18 +13462,8 @@ msgstr "Stisknutím tlačítka EXIT zavřete."
 msgid "Press EXIT to return to the help screen."
 msgstr "Stiskněte EXIT pro návrat na obrazovku nápovědy."
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
-msgstr ""
-"Stisknutím zeleného tlačítka aktivujte funkci MultiBoot!\n"
-"\n"
-"Restartuje se do 10 sekund,\n"
-"pokud nemáte sloty eMMC k obnovení.\n"
-"Obnova eMMC slotů může trvat 1 -> 5 minut na slot."
+msgid "Press GREEN to enable MultiBoot!"
+msgstr "Stiskněte ZELENÉ tlačítko pro aktivaci funkce MultiBoot!"
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Stiskněte tlačítko OK pro výběr MultiBoot."
@@ -13493,13 +13517,13 @@ msgid "Press OK to set the MAC address."
 msgstr "Stiskněte tlačítko OK pro nastavení MAC-Adresy."
 
 msgid "Press OK to start the backup now"
-msgstr ""
+msgstr "Stisknutím tlačítka OK nyní spustíte zálohování"
 
 msgid "Press OK to start the scan"
 msgstr "Stiskněte OK pro spuštění prohledávání"
 
 msgid "Press OK to start using %s %s"
-msgstr ""
+msgstr "Stiskněte OK pro zahájení používání %s %s"
 
 msgid "Press OK to toggle the selection"
 msgstr "Stiskněte OK pro přepnutí vybrané položky"
@@ -13582,22 +13606,22 @@ msgid "Proc model"
 msgstr "Model Proc"
 
 msgid "Proceed to the next step"
-msgstr ""
+msgstr "Pokračujte dalším krokem"
 
 msgid "Proceed with the update"
 msgstr "Pokračujte v aktualizaci"
 
 msgid "Process BLUE button action"
-msgstr ""
+msgstr "Zpracovat akci MODRÉHO tlačítka"
 
 msgid "Process GREEN button action"
-msgstr ""
+msgstr "Zpracovat akci ZELENÉHO tlačítka"
 
 msgid "Process RED button action"
-msgstr ""
+msgstr "Zpracovat akci ČERVENÉHO tlačítka"
 
 msgid "Process YELLOW button action"
-msgstr ""
+msgstr "Zpracovat akci ŽLUTÉHO tlačítka"
 
 msgid "Processor information"
 msgstr "Informace o procesoru"
@@ -13953,14 +13977,6 @@ msgstr "Opravdu smazat tento záznam?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Opravdu opustit rychlé přepínání podprogramů?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-"Opravdu trvale odstranit soubory MultiBoot?\n"
-"%s"
-
 msgid "Really reboot into Recovery Mode?"
 msgstr "Opravdu restartovat do režimu obnovení?"
 
@@ -14309,6 +14325,9 @@ msgstr "Odstranit položku"
 msgid "Remove Failed !!"
 msgstr "Odebrání se nezdařilo!!"
 
+msgid "Remove Files"
+msgstr "Odebrat soubory"
+
 msgid "Remove Finished."
 msgstr "Mazání dokončeno."
 
@@ -14378,9 +14397,6 @@ msgstr "Odstranit aktuální složku ze záložek"
 msgid "Remove currently selected title"
 msgstr "Odstranit vybraný titul"
 
-msgid "Remove forever"
-msgstr "Trvale odstranit"
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Odstranit vybranou složku ze záložek"
 
@@ -14392,6 +14408,9 @@ msgstr "Odstranit text v externich titulcích pro sluchově postižené (instrum
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Odstranit řádek z CCcam.cfg"
+
+msgid "Remove the MultiBoot files"
+msgstr "Odstranit soubory MultiBoot"
 
 msgid "Remove the current bookmark"
 msgstr "Odebrat aktuální záložku"
@@ -14587,7 +14606,7 @@ msgid "Restart necessary, restart GUI now?"
 msgstr "Je nutný restart, restartovat GUI nyní?"
 
 msgid "Restart needed, press OK to restart"
-msgstr ""
+msgstr "Je třeba restartovat, stisknutím tlačítka OK restartujte"
 
 msgid "Restart network and remount connections"
 msgstr "Restartujte síť a obnoví připojení s aktuálním nastavením"
@@ -14629,7 +14648,7 @@ msgid "Restore settings from a backup"
 msgstr "Obnova nastavení ze zálohy"
 
 msgid "Restore settings now"
-msgstr ""
+msgstr "Obnovit nastavení nyní"
 
 msgid "Restore the highlighted slot"
 msgstr "Obnovit označenou pozici"
@@ -14693,7 +14712,7 @@ msgid "Retrieving network server information, please wait..."
 msgstr "Načítání informací o síťovém serveru, čekejte prosím..."
 
 msgid "Retry"
-msgstr ""
+msgstr "Opakovat"
 
 msgid "Return the current selection response"
 msgstr "Vrátit aktuální odpověď na výběr"
@@ -15479,7 +15498,7 @@ msgid "Select CAId"
 msgstr "Vybrat CAId(y)"
 
 msgid "Select Device"
-msgstr ""
+msgstr "Vyberte Zařízení"
 
 msgid "Select Enigma2 Skin"
 msgstr "Vyberte vzhled Enigma2"
@@ -15539,7 +15558,10 @@ msgid "Select a debug log file to view:"
 msgstr "Vyberte soubor protokolu ladění, který chcete zobrazit:"
 
 msgid "Select a device to use as the flash expander"
-msgstr ""
+msgstr "Vyberte zařízení, které chcete použít jako expandér flash"
+
+msgid "Select a device to use for the additional slots"
+msgstr "Vyberte zařízení, které chcete použít pro další sloty"
 
 msgid "Select a directory"
 msgstr "Vyberte adresář"
@@ -15555,7 +15577,7 @@ msgid "Select a location into which to extract '%s':"
 msgstr "Vyberte umístění, do kterého chcete extrahovat '%s':"
 
 msgid "Select a menu item"
-msgstr ""
+msgstr "Vyberte položku nabídky"
 
 msgid "Select a movie"
 msgstr "Vyberte film"
@@ -15891,6 +15913,9 @@ msgid ""
 "\n"
 "Press OK to continue."
 msgstr ""
+"Vyberte síťové rozhraní, které chcete použít pro připojení k internetu.\n"
+"\n"
+"Pokračujte stisknutím OK."
 
 msgid "Select the next item in list or move the cursor right"
 msgstr "Vyberte další položku v seznamu nebo posuňte kurzor vpravo"
@@ -15908,7 +15933,7 @@ msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (
 msgstr "Vyberte protokol používaný vaším zařízením SCR. Možnosti jsou „SCR Unicable“ (Unicable) nebo „SCR JESS“ (JESS, také známý jako Unicable II)."
 
 msgid "Select the refresh rate to be used on the TV."
-msgstr ""
+msgstr "Vyberte obnovovací frekvenci, která se má použít na televizoru."
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
 msgstr "Vyberte satelit, který je připojen k portu-A vašeho přepínače. Pokud si nejste jisti, vyberte „automaticky“ a přijímač se to pokusí určit za vás. Pokud k tomuto portu není nic připojeno, vyberte „nic připojeno“."
@@ -15947,7 +15972,7 @@ msgid "Select the sort order of the menu entries. User defined also allows the m
 msgstr "Vyberte pořadí řazení položek nabídky. Uživatelsky definované také umožňuje skrýt položky nabídky."
 
 msgid "Select the source location from where to obtain the upgrade files."
-msgstr ""
+msgstr "Vyberte zdrojové umístění, odkud chcete získat soubory upgradu."
 
 msgid "Select the source of the default DNS settings."
 msgstr "Zvolte zdroj výchozích nastavení DNS."
@@ -16007,25 +16032,28 @@ msgid "Select the type of this timer."
 msgstr "Vyberte typ tohoto časovače."
 
 msgid "Select the video mode to be used on the TV."
-msgstr ""
+msgstr "Vyberte režim videa, který chcete použít na televizoru."
 
 msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
 msgstr ""
+"Vyberte bezdrátovou síť, ke které se chcete připojit.\n"
+"\n"
+"Pokračujte stisknutím OK."
 
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr "Vyberte, chcete-li použít logaritmickou velikost kroku s více kroky při nižších úrovních hlasitosti."
 
 msgid "Select update source location"
-msgstr ""
+msgstr "Vyberte zdroj aktualizace"
 
 msgid "Select video mode"
 msgstr "Zvolte režim videa"
 
 msgid "Select video output port with UP/DOWN buttons"
-msgstr ""
+msgstr "Pomocí tlačítek NAHORU/DOLŮ vyberte výstupní port videa"
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Po dosažení konce souboru během přehrávání, si můžete zvolit chování boxu."
@@ -16454,6 +16482,9 @@ msgid ""
 "\n"
 "Press YELLOW to set the time zone via geolocation."
 msgstr ""
+"Nastavte možnosti času.\n"
+"\n"
+"Stisknutím ŽLUTÉHO tlačítka nastavíte časové pásmo pomocí geolokace."
 
 msgid "Set the time to hide the infobar."
 msgstr "Nastavte čas skrývání info lišty."
@@ -16490,7 +16521,7 @@ msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr "Chcete-li seznamy skladeb seřadit podle abecedy, nastavte toto na „Ano“."
 
 msgid "Set time options"
-msgstr ""
+msgstr "Nastavit možnosti času"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Chcete-li nahradit znaky podtržení, '_', v názvech souborů a adresářů mezerami, nastavte na 'Zakázáno'."
@@ -16508,13 +16539,16 @@ msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Nastavte na ano pro ladění hlavní příčiny spinneru."
 
 msgid "Set up tuner [TUNER]"
-msgstr ""
+msgstr "Nastavit tuner [TUNER]"
 
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
 "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
 msgstr ""
+"Nastavení tuneru [TUNER].\n"
+"\n"
+"U modelů s hybridním tunerem přepněte typ tuneru pomocí tlačítek VLEVO a VPRAVO."
 
 msgid "Set voltage and 22KHz"
 msgstr "Nastavte napětí a 22KHz"
@@ -17450,7 +17484,7 @@ msgid "Shutdown"
 msgstr "Vypnout"
 
 msgid "Shutting down. Please wait..."
-msgstr ""
+msgstr "Vypínání. Prosím, čekejte..."
 
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
@@ -17582,7 +17616,7 @@ msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Vynechat živé přeskakování při timeshiftu pomocí pluginů"
 
 msgid "Skip package installation, only core packages will be available"
-msgstr ""
+msgstr "Přeskočit instalaci balíčku, k dispozici budou pouze základní balíčky"
 
 msgid "Sleep"
 msgstr "Spánek"
@@ -17699,6 +17733,12 @@ msgstr "Slot '%s': %s – Aktuální"
 msgid "Slot '%s': %s%s"
 msgstr "Slot '%s': %s%s"
 
+msgid "Slot Manager"
+msgstr "Správce slotů"
+
+msgid "Slot count"
+msgstr "Počet slotů"
+
 msgid "Slovak"
 msgstr "Slovensky"
 
@@ -17727,7 +17767,7 @@ msgid "Small - Tiny image"
 msgstr "Malý - Malý obrázek"
 
 msgid "Small Box Preparation"
-msgstr ""
+msgstr "Příprava malého boxu"
 
 msgid "Small Test"
 msgstr "Malý test"
@@ -18041,7 +18081,7 @@ msgid "Start RDS interactive"
 msgstr "Spustit interaktivní RDS"
 
 msgid "Start Wizard"
-msgstr ""
+msgstr "Spustit průvodce"
 
 msgid "Start date"
 msgstr "Počáteční datum"
@@ -18072,6 +18112,9 @@ msgstr "Spustit teletext"
 
 msgid "Start test"
 msgstr "Otestovat"
+
+msgid "Start the Kexec initialization"
+msgstr "Spustit inicializaci Kexec"
 
 msgid "Start time"
 msgstr "Čas začátku"
@@ -18135,7 +18178,7 @@ msgid "Status:"
 msgstr "Kraj:"
 
 msgid "Step"
-msgstr ""
+msgstr "Krok"
 
 msgid "Step east"
 msgstr "Krok východně"
@@ -18852,27 +18895,37 @@ msgid ""
 "\n"
 "Please press OK to start using the %s %s."
 msgstr ""
+"Děkujeme vám, že jste průvodce použili a dokončili. %s %s je nyní připraveno k použití.\n"
+"\n"
+"Stisknutím tlačítka OK začněte používat %s %s."
 
 msgid ""
 "Thank you for using and completing the wizard. The %s %s needs to restart.\n"
 "\n"
 "Please press OK to restart the %s %s."
 msgstr ""
+"Děkujeme vám, že jste průvodce použili a dokončili. %s %s se musí restartovat.\n"
+"\n"
+"Stisknutím OK restartujte %s %s."
 
 msgid "The %s %s does not have an Internet connection."
-msgstr ""
+msgstr "%s %s nemá připojení k internetu."
 
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
-msgstr ""
+msgstr "%s %s má omezenou kapacitu paměti. Pro zvýšení množství dostupné paměti je vyžadován odkládací soubor, jinak %s %s nemusí fungovat správně. Vyberte cílové zařízení pro uložení odkládacího souboru."
 
 msgid "The %s %s is shutting down. Please wait..."
-msgstr ""
+msgstr "%s %s se vypíná. Prosím, čekejte..."
 
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "%s %s načte uložená data EPG každých (hodin)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s uloží data EPG každých (hodin)."
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr "%s %s se do 10 sekund restartuje, pokud nejsou k dispozici sloty eMMC k obnovení. Obnova eMMC slotů může trvat 1 až 5 minut na slot."
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -18934,12 +18987,18 @@ msgid ""
 "\n"
 "Press OK to continue."
 msgstr ""
+"Zdá se, že internetové připojení funguje.\n"
+"\n"
+"Pokračujte stisknutím OK."
 
 msgid ""
 "The Internet connection appears to not be working!\n"
 "\n"
 "Choose what to do next."
 msgstr ""
+"Zdá se, že internetové připojení nefunguje!\n"
+"\n"
+"Vyberte, co dělat dál."
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -19019,16 +19078,16 @@ msgstr ""
 "Co chceš dělat ?"
 
 msgid "The backup failed"
-msgstr ""
+msgstr "Zálohování se nezdařilo"
 
 msgid "The backup failed! Choose a different backup location."
-msgstr ""
+msgstr "Zálohování se nezdařilo! Vyberte jiné umístění zálohy."
 
 msgid "The backup succeeded"
-msgstr ""
+msgstr "Záloha se zdařila"
 
 msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr ""
+msgstr "Zálohování proběhlo úspěšně. Nyní budeme pokračovat ve vysvětlování procesu upgradu."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr "Datový tok kodéru videa. Vyšší hodnota zlepšuje kvalitu a zvětšuje velikost souboru."
@@ -19182,12 +19241,19 @@ msgid ""
 "\n"
 "Choose what to do next."
 msgstr ""
+"Bezdrátové připojení k internetu LAN nelze spustit!\n"
+"Je připojeno zařízení bezdrátové sítě LAN?\n"
+"\n"
+"Vyberte, co dělat dál."
 
 msgid ""
 "The wireless LAN plugin code is not installed!\n"
 "\n"
 "Install it and choose what to do next."
 msgstr ""
+"Není nainstalován kód modulu plug-in bezdrátové sítě LAN!\n"
+"\n"
+"Nainstalujte jej a vyberte, co dělat dál."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -19197,7 +19263,7 @@ msgstr ""
 "Nainstalujte ho."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr ""
+msgstr "Průvodce může zálohovat vaše aktuální nastavení. Chcete nyní spustit zálohování?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -19213,7 +19279,7 @@ msgid "There are no updates available."
 msgstr "Nejsou žádné dostupné aktualizace."
 
 msgid "There are pending tasks:"
-msgstr ""
+msgstr "Jsou zde čekající úkoly:"
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -19622,10 +19688,10 @@ msgid "This will go fast forward/backward with time frames of x secs"
 msgstr "Přeskočí rychle vpřed/vzad o časový index x sekund"
 
 msgid "This wizard has finished"
-msgstr ""
+msgstr "Tento průvodce byl dokončen"
 
 msgid "This wizard has finished."
-msgstr ""
+msgstr "Tento průvodce byl dokončen."
 
 msgid "Three"
 msgstr "Tři"
@@ -19851,7 +19917,7 @@ msgid "Titleset mode"
 msgstr "Nastavování titulu"
 
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
-msgstr ""
+msgstr "Chcete-li dokončit nastavení, %s %s se musí připojit k internetu. Nyní připojte %s %s k internetu."
 
 msgid "To restore the image:"
 msgstr "Chcete-li obnovit obraz (image):"
@@ -20317,8 +20383,8 @@ msgstr "Ukrajina"
 msgid "Ukrainian"
 msgstr "Ukrajinština"
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
-msgstr "Nelze dokončit – chybí soubory Kexec Multiboot!"
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "Nelze inicializovat Kexec MultiBoot!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Bezobslužná aktualizace bez GUI"
@@ -20492,7 +20558,7 @@ msgid "Update interval (in seconds)"
 msgstr "Interval aktualizace (v sek)"
 
 msgid "Update package list please wait..."
-msgstr ""
+msgstr "Aktualizuji seznam balíčků, prosím čekejte..."
 
 msgid ""
 "Update succeeded!\n"
@@ -20620,7 +20686,7 @@ msgid "Use TV remote control"
 msgstr "Používat dálkové ovládání TV"
 
 msgid "Use UP/DOWN buttons to select option then press OK"
-msgstr ""
+msgstr "Použijte tlačítka NAHORU/DOLŮ pro výběr možnosti a poté stiskněte OK"
 
 msgid "Use USALS for this sat"
 msgstr "Použít USALS pro tento satelit"
@@ -20644,13 +20710,16 @@ msgid "Use as HDD"
 msgstr "Jako HDD"
 
 msgid "Use automatic mode detection"
-msgstr ""
+msgstr "Použít automatické rozpoznání režimu"
 
 msgid ""
 "Use automatic mode detection?\n"
 "\n"
 "This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
 msgstr ""
+"Použít automatickou detekci režimu?\n"
+"\n"
+"Tato možnost přečte všechny podporované režimy z vašeho televizoru. Deaktivujte ji pouze v případě, že chcete upravit preferovanou konfiguraci."
 
 msgid "Use circular LNB"
 msgstr "Použít kruhové LNB"
@@ -21026,7 +21095,7 @@ msgid "Video Settings"
 msgstr "Základní nastavení obrazu"
 
 msgid "Video Wizard"
-msgstr ""
+msgstr "Video průvodce"
 
 msgid "Video clipping"
 msgstr "Ořezávání videa"
@@ -21089,6 +21158,11 @@ msgid ""
 "\n"
 "The next output port will be automatically tried in 10 seconds."
 msgstr ""
+"Výběr portu video výstupu.\n"
+"\n"
+"Ujistěte se, že je na televizoru vybrán správný vstup. Pokud tuto stránku vidíte na televizoru, stiskněte tlačítko OK.\n"
+"\n"
+"Další výstupní port bude automaticky vyzkoušen za 10 sekund."
 
 msgid "Video: "
 msgstr "Video: "
@@ -21150,13 +21224,13 @@ msgid "View the archive contents"
 msgstr "Zobrazit obsah archivu"
 
 msgid "View the next item in a list"
-msgstr ""
+msgstr "Zobrazení další položky v seznamu"
 
 msgid "View the package contents"
 msgstr "Zobrazit obsah balíčku"
 
 msgid "View the previous item in a list"
-msgstr ""
+msgstr "Zobrazit předchozí položku v seznamu"
 
 msgid "View video CD..."
 msgstr "Zobrazit video CD..."
@@ -21383,7 +21457,7 @@ msgid "Weekly"
 msgstr "Týdně"
 
 msgid "Welcome Wizard"
-msgstr ""
+msgstr "Vítejte Průvodce"
 
 #, python-format
 msgid "Welcome to %s"
@@ -21397,6 +21471,9 @@ msgid ""
 "\n"
 "Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
 msgstr ""
+"Vítejte v openATV.\n"
+"\n"
+"Pomocí tlačítek NAHORU/DOLŮ na dálkovém ovladači vyberte požadovanou možnost. Pomocí tlačítek VLEVO/VPRAVO změňte hodnoty konfigurovatelné možnosti. Poté stiskněte OK pro přechod na další obrazovku."
 
 msgid ""
 "Welcome to the Cutlist editor.\n"
@@ -21412,7 +21489,7 @@ msgstr ""
 "Potom najděte konec, stiskněte OK a zvolte 'konec střihu'. To je vše."
 
 msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr ""
+msgstr "Vítejte v průvodci aktualizací obrázku. Průvodce vám pomůže s aktualizací firmwaru %s %s poskytnutím možnosti zálohování aktuálního nastavení a krátkým vysvětlením, jak upgradovat firmware."
 
 msgid "Welcome..."
 msgstr "Vítám Vás..."
@@ -21698,9 +21775,12 @@ msgid ""
 "\n"
 "Choose what to do next."
 msgstr ""
+"Nastavení bezdrátového připojení k síti.\n"
+"\n"
+"Vyberte, co dělat dál."
 
 msgid "Wireless network setup"
-msgstr ""
+msgstr "Nastavení bezdrátové sítě"
 
 msgid "Wireless network state"
 msgstr "Stav WiFi"
@@ -21748,7 +21828,7 @@ msgid "Without query"
 msgstr "Bez dotazu"
 
 msgid "Wizard Actions"
-msgstr ""
+msgstr "Akce průvodce"
 
 msgid "Wolof"
 msgstr "Wolof"
@@ -21941,10 +22021,10 @@ msgid "You cannot delete this!"
 msgstr "Nemůžete toto smazat!"
 
 msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr ""
+msgstr "Rozhodli jste se zálohovat svá nastavení. Stiskněte OK pro spuštění zálohování nyní."
 
 msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr ""
+msgstr "Rozhodli jste se obnovit nastavení. Enigma2 se po obnovení restartuje. Stisknutím tlačítka OK nyní zahájíte obnovu."
 
 msgid "You have chosen to save the current time shift"
 msgstr "Rozhodli jste se uložit aktuální časový posun"
@@ -21976,6 +22056,8 @@ msgid ""
 "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
 "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
+"Potřebujete počítač připojený k vašemu %s %s. Navštivte web https://www.opena.tv/ pro další pokyny.\n"
+"%s %s bude nyní zastaveno. Po provedení pokynů k aktualizaci z webu vás nový firmware požádá o obnovení nastavení."
 
 msgid "You seem to be in time shift!"
 msgstr "Zdá se, že jste v časovém posunu!"
@@ -22100,7 +22182,7 @@ msgstr ""
 
 #, python-format
 msgid "Your Internet connection is working (ip: %s)"
-msgstr ""
+msgstr "Vaše internetové připojení funguje (ip: %s)"
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
@@ -22166,7 +22248,7 @@ msgid "Your receiver can use tone amplitude. Consult your receiver's manual for 
 msgstr "Váš přijímač může používat amplitudu tónu. Další informace naleznete v příručce k přijímači."
 
 msgid "Your receiver does not have an Internet connection"
-msgstr ""
+msgstr "Váš přijímač nemá připojení k internetu"
 
 #, python-format
 msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
@@ -22800,7 +22882,7 @@ msgid "hops:"
 msgstr "hops:"
 
 msgid "inactive"
-msgstr ""
+msgstr "neaktivní"
 
 msgid "increase uphop by 1"
 msgstr "zvýšit nárůst o 1"
@@ -23486,6 +23568,47 @@ msgstr "ano (uchovat zdroje)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+#~ msgstr "Inicializace Kexec MultiBoot – restartuje se po 10 sekundách."
+
+#~ msgid ""
+#~ "Kexec MultiBoot Initialisation in progress!\n"
+#~ "\n"
+#~ "Will reboot after restoring any eMMC slots.\n"
+#~ "This can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Probíhá inicializace Kexec MultiBoot!\n"
+#~ "\n"
+#~ "Restartuje se po obnovení všech eMMC slotů.\n"
+#~ "To může trvat 1 -> 5 minut na jeden slot."
+
+#~ msgid ""
+#~ "Press Green key to enable MultiBoot!\n"
+#~ "\n"
+#~ "Will reboot within 10 seconds,\n"
+#~ "unless you have eMMC slots to restore.\n"
+#~ "Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Stisknutím zeleného tlačítka aktivujte funkci MultiBoot!\n"
+#~ "\n"
+#~ "Restartuje se do 10 sekund,\n"
+#~ "pokud nemáte sloty eMMC k obnovení.\n"
+#~ "Obnova eMMC slotů může trvat 1 -> 5 minut na slot."
+
+#, python-format
+#~ msgid ""
+#~ "Really permanently delete MultiBoot files?\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Opravdu trvale odstranit soubory MultiBoot?\n"
+#~ "%s"
+
+#~ msgid "Remove forever"
+#~ msgstr "Trvale odstranit"
+
+#~ msgid "Unable to complete - Kexec Multiboot files missing!"
+#~ msgstr "Nelze dokončit – chybí soubory Kexec Multiboot!"
+
 #~ msgid "Auto Modes Selected."
 #~ msgstr "Vybrány automatické režimy."
 
@@ -23857,9 +23980,6 @@ msgstr "®"
 
 #~ msgid "Extended GUI"
 #~ msgstr "Nastavení GUI"
-
-#~ msgid "Initialize"
-#~ msgstr "Inicializovat"
 
 #~ msgid "Keyboard map"
 #~ msgstr "Rozložení kláves"

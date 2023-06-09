@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
 "PO-Revision-Date: 2023-04-09 09:52+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1821,6 +1821,9 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr "<Umiestnenie posledného časovača>"
 
+msgid "<Select a device>"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -2230,6 +2233,9 @@ msgstr "Pridať vybraný priečinok do záložiek"
 
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Pridať staršie akcie pre DOĽAVA/DOPRAVA"
+
+msgid "Add more slots"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Pridať nový riadok CCcam"
@@ -4281,6 +4287,9 @@ msgstr "Vyberte ako často sa má vykonať kontrola aktualizácií a pripojenie 
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Vyberte režim fungovania protokolu CI pre štandardné CI alebo CI PLUS."
 
+msgid "Choose the amount of additional slots."
+msgstr ""
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vyberte si štýl formátovania pri zobrazení dátumov na displeji. 'D' / 'DD' označuje dátum a 'M' / 'MM' označuje mesiac v číselnom vyjadrení.  ('DD' a 'MM' obsahujú počiatočné nuly pri jednociferných číslach.) Zobrazenie na displeji bude nastavené podľa vašej voľby, môže však byť ovplyvnené aj nastaveným vzhľadom (skinom)."
 
@@ -4309,6 +4318,9 @@ msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Vyberte štýl/poradie, v ktorom sa zobrazia položky v oknách pomocníka."
 
 msgid "Choose the target location for the expanded '/usr' directory."
+msgstr ""
+
+msgid "Choose the target location for the slots."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4467,6 +4479,9 @@ msgstr "Zatvoriť dialóg"
 
 msgid "Close screen"
 msgstr "Zatvoriť obrazovku"
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Close the current screen"
 msgstr "Zatvoriť aktuálnu obrazovku"
@@ -5255,6 +5270,9 @@ msgstr ""
 msgid "Create ISO"
 msgstr "Vytvoriť ISO"
 
+msgid "Create Slots"
+msgstr ""
+
 msgid "Create a directory"
 msgstr "Vytvoriť priečinok"
 
@@ -5271,6 +5289,9 @@ msgid "Create separate radio user bouquet"
 msgstr "Vytvoriť oddelený používateľský prehľad rádií"
 
 msgid "Create swap"
+msgstr ""
+
+msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
@@ -9710,6 +9731,9 @@ msgstr "Počiatočné oneskorenie rolovania"
 msgid "Initialization"
 msgstr "Inicializácia"
 
+msgid "Initialize"
+msgstr "Inicializovať"
+
 msgid "Initializing storage device..."
 msgstr "Inicializácia úložného zariadenia..."
 
@@ -10084,17 +10108,13 @@ msgstr "Verzia jadra (kernel)"
 msgid "Kexec MultiBoot Actions"
 msgstr ""
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr ""
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
+msgid "Kexec MultiBoot Initialization in progress!"
 msgstr ""
 
 msgid "Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Kexec MultiBoot files are missing."
 msgstr ""
 
 msgid "Key"
@@ -11527,6 +11547,9 @@ msgstr "Nastavenie NFS"
 msgid "NIM & Type"
 msgstr "NIM a typ"
 
+msgid "NOTE"
+msgstr ""
+
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
 msgstr "POZNÁMKA: Priečinok/súbor '%s' už existuje a dôjde k jeho prepísaniu!"
@@ -12825,6 +12848,9 @@ msgstr "Natrvalo vymazať všetky nahrávky z koša?"
 msgid "Permanently remove all deleted items"
 msgstr "Trvalo odstrániť všetky vymazané položky"
 
+msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
 msgid "Permissions"
 msgstr "Oprávnenia"
 
@@ -13130,6 +13156,9 @@ msgstr ""
 "\n"
 "IceTV je predplatená služba, ktorá je dostupná iba v krajinách uvedených v zozname."
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr ""
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr ""
 
@@ -13424,12 +13453,7 @@ msgstr "Stlačením tlačidla EXIT ponuku zatvoríte."
 msgid "Press EXIT to return to the help screen."
 msgstr "Stlačením EXIT sa vrátite na obrazovku pomocníka."
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgid "Press GREEN to enable MultiBoot!"
 msgstr ""
 
 msgid "Press OK for MultiBoot selection."
@@ -13944,12 +13968,6 @@ msgstr "Naozaj vymazať tento záznam?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Naozaj ukončiť rýchle prepínanie podradených staníc?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-
 msgid "Really reboot into Recovery Mode?"
 msgstr "Naozaj reštartovať do núdzového režimu?"
 
@@ -14298,6 +14316,9 @@ msgstr "odstrániť položku"
 msgid "Remove Failed !!"
 msgstr "Odstraňovanie bolo neúspešné!!"
 
+msgid "Remove Files"
+msgstr ""
+
 msgid "Remove Finished."
 msgstr "Odstránenie dokončené."
 
@@ -14367,9 +14388,6 @@ msgstr "Odstrániť aktuálny priečinok zo záložiek"
 msgid "Remove currently selected title"
 msgstr "Odstrániť aktuálne zvolený titul"
 
-msgid "Remove forever"
-msgstr ""
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Odstrániť vybraný priečinok zo záložiek"
 
@@ -14381,6 +14399,9 @@ msgstr "Odstránenie textov pre sluchovo postihnutých z externých titulkov (in
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Odstráňte riadok z CCcam.cfg"
+
+msgid "Remove the MultiBoot files"
+msgstr ""
 
 msgid "Remove the current bookmark"
 msgstr "Odstrániť aktuálnu záložku"
@@ -15528,6 +15549,9 @@ msgid "Select a debug log file to view:"
 msgstr "Vyberte súbor so záznamom pre ladenie, ktorý chcete zobraziť:"
 
 msgid "Select a device to use as the flash expander"
+msgstr ""
+
+msgid "Select a device to use for the additional slots"
 msgstr ""
 
 msgid "Select a directory"
@@ -17688,6 +17712,12 @@ msgstr "slot%s - %s (aktuálny image)"
 msgid "Slot '%s': %s%s"
 msgstr "Slot '%s': %s%s"
 
+msgid "Slot Manager"
+msgstr ""
+
+msgid "Slot count"
+msgstr ""
+
 msgid "Slovak"
 msgstr "Slovensky"
 
@@ -18061,6 +18091,9 @@ msgstr "Spustiť teletext"
 
 msgid "Start test"
 msgstr "Spustiť test"
+
+msgid "Start the Kexec initialization"
+msgstr ""
 
 msgid "Start time"
 msgstr "Čas začiatku"
@@ -18862,6 +18895,10 @@ msgstr "Váš %s %s načíta uložené dáta EPG každých (hodín)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Váš %s %s uloží EPG údaje každých (hodín)."
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr ""
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -20306,7 +20343,7 @@ msgstr "Ukrajina"
 msgid "Ukrainian"
 msgstr "Ukrajinsky"
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
+msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23846,9 +23883,6 @@ msgstr "®"
 
 #~ msgid "Extended GUI"
 #~ msgstr "Rozšírené GUI"
-
-#~ msgid "Initialize"
-#~ msgstr "Inicializovať"
 
 #~ msgid "Keyboard map"
 #~ msgstr "Rozloženie klávesnice"

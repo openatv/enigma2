@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
-"PO-Revision-Date: 2023-06-04 19:16+0000\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
+"PO-Revision-Date: 2023-06-09 06:49+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -1798,6 +1798,9 @@ msgstr "<Flash-Expander uitgeschakeld>"
 msgid "<Last timer location>"
 msgstr "<Laatste timer locatie>"
 
+msgid "<Select a device>"
+msgstr "<Selecteer een apparaat>"
+
 msgid "A"
 msgstr "A"
 
@@ -2215,6 +2218,9 @@ msgstr "Geselecteerde map aan bookmarks toevoegen"
 
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Oorspronkelijke LINKS/RECHTS acties"
+
+msgid "Add more slots"
+msgstr "Meer slots toevoegen"
 
 msgid "Add new CCcam line"
 msgstr "Een nieuwe CCcam line toevoegen"
@@ -4265,6 +4271,9 @@ msgstr "Hoe vaak moet bij de IceTV server gecontroleerd worden op updates."
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Selecteer het CI protocol voor standaard CI of CI+."
 
+msgid "Choose the amount of additional slots."
+msgstr "Kies het aantal extra slots."
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Selecteer hoe datums moeten worden weergegeven. 'D' / 'DD' is de datum en 'M' / 'MM' is de maand in cijfers. ('DD' en 'MM' hebben een voorloop nul indien die bestaat uit een enkel getal). Het resultaat zal gebaseerd zijn op uw keuze, maar kan beïnvloed worden door de gebruikte skin."
 
@@ -4297,6 +4306,9 @@ msgstr "Kies de stijl en volgorde van de items in de help schermen."
 
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Kies de opslaglocatie voor de uitgebreide map '/usr'."
+
+msgid "Choose the target location for the slots."
+msgstr "Kies de locatie voor de slots."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies de tijdsinterval waarop de grafische indeling wordt afgerond."
@@ -4454,6 +4466,9 @@ msgstr "Sluit dialoog"
 
 msgid "Close screen"
 msgstr "Sluit het scherm"
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr "Sluit de Kexec MultiBoot Manager"
 
 msgid "Close the current screen"
 msgstr "Sluit het huidige scherm"
@@ -5348,6 +5363,9 @@ msgstr "Expander maken"
 msgid "Create ISO"
 msgstr "Maak ISO"
 
+msgid "Create Slots"
+msgstr "Slots aanmaken"
+
 msgid "Create a directory"
 msgstr "Een map aanmaken"
 
@@ -5365,6 +5383,9 @@ msgstr "Maak een extra favorietenlijst voor radio"
 
 msgid "Create swap"
 msgstr "Een Swapfile maken"
+
+msgid "Create the additional slots on the selected device"
+msgstr "Maak extra slots op het geselecteerde apparaat"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Maak de flash-Expander in het geselecteerde apparaat"
@@ -9829,6 +9850,9 @@ msgstr "Initiële scrollvertraging"
 msgid "Initialization"
 msgstr "Initialiseren"
 
+msgid "Initialize"
+msgstr "Initialiseer"
+
 msgid "Initializing storage device..."
 msgstr "Opslagapparaat initialiseren..."
 
@@ -10203,22 +10227,14 @@ msgstr "Kernel versie"
 msgid "Kexec MultiBoot Actions"
 msgstr "Kexec MultiBoot Acties"
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr "Kexec MultiBoot Initialisatie - herstart na 10 seconden."
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
-msgstr ""
-"Kexec MultiBoot Initialisatie in uitvoering!\n"
-"\n"
-"De ontvanger zal opnieuw starten na het herstellen van alle eMMC-slots.\n"
-"Dit kan 1 tot 5 minuten duren per slot."
+msgid "Kexec MultiBoot Initialization in progress!"
+msgstr "Kexec MultiBoot initialisatie bezig!"
 
 msgid "Kexec MultiBoot Manager"
 msgstr "Kexec MultiBoot Manager"
+
+msgid "Kexec MultiBoot files are missing."
+msgstr "Kexec MultiBoot-bestanden niet gevonden."
 
 msgid "Key"
 msgstr "Sleutel"
@@ -11649,6 +11665,9 @@ msgstr "NFS-Bestandsserver"
 msgid "NIM & Type"
 msgstr "NIM & Type"
 
+msgid "NOTE"
+msgstr "OPMERKING"
+
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
 msgstr "LET OP: De map/het bestand '%s' bestaat al en wordt overschreven!"
@@ -12953,6 +12972,9 @@ msgstr "Alle bestanden in de prullenbak nu permanent verwijderen?"
 msgid "Permanently remove all deleted items"
 msgstr "Prullenbak leegmaken"
 
+msgid "Permanently remove the MultiBoot files?"
+msgstr "De MultiBoot-bestanden definitief verwijderen?"
+
 msgid "Permissions"
 msgstr "Machtigingen"
 
@@ -13259,6 +13281,9 @@ msgstr ""
 "\n"
 "IceTV is een abonnementsdienst die alleen beschikbaar is in de vermelde landen."
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr "Selecteer het apparaat of annuleer de selectie."
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr "Selecteer het apparaat waar de map '/usr' voor Flash-Expander moet worden gemaakt."
 
@@ -13553,18 +13578,8 @@ msgstr "Druk op EXIT om af te sluiten."
 msgid "Press EXIT to return to the help screen."
 msgstr "Druk op EXIT om terug te gaan naar het help scherm."
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
-msgstr ""
-"Druk op de GROENE toets om MultiBoot in te schakelen!\n"
-"\n"
-"De ontvanger zal binnen 10 seconden herstarten,\n"
-"tenzij je eMMC slots hebt om te herstellen.\n"
-"Het herstellen van eMMC slots kan 1 tot 5 minuten duren per slot."
+msgid "Press GREEN to enable MultiBoot!"
+msgstr "Druk op de GROENE knop om MultiBoot in te schakelen!"
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Druk op OK voor het MultiBoot keuzemenu."
@@ -14080,14 +14095,6 @@ msgstr "Wilt u deze invoer echt verwijderen?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Sub-zenders snelzap verlaten?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-"MultiBoot bestanden echt permanent verwijderen?\n"
-"%s"
-
 msgid "Really reboot into Recovery Mode?"
 msgstr "Wilt u herstarten naar de Recovery modus?"
 
@@ -14436,6 +14443,9 @@ msgstr "Zender verwijderen"
 msgid "Remove Failed !!"
 msgstr "Verwijderen mislukt!!"
 
+msgid "Remove Files"
+msgstr "Bestanden verwijderen"
+
 msgid "Remove Finished."
 msgstr "Verwijderen voltooid."
 
@@ -14505,9 +14515,6 @@ msgstr "Verwijder huidige map van bookmarks"
 msgid "Remove currently selected title"
 msgstr "De momenteel geselecteerde titel verwijderen"
 
-msgid "Remove forever"
-msgstr "Definitief verwijderen"
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Verwijder geselecteerde map van bookmarks"
 
@@ -14519,6 +14526,9 @@ msgstr "Verwijdert teksten bedoelt voor slechthorenden uit externe ondertitels. 
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Deze Line verwijderen uit CCcam.cfg"
+
+msgid "Remove the MultiBoot files"
+msgstr "De MultiBoot-bestanden verwijderen"
 
 msgid "Remove the current bookmark"
 msgstr "De huidige bladwijzer verwijderen"
@@ -15673,6 +15683,9 @@ msgstr "Selecteer een debug log-bestand:"
 
 msgid "Select a device to use as the flash expander"
 msgstr "Selecteer een apparaat dat u wilt gebruiken als Flash-Expander"
+
+msgid "Select a device to use for the additional slots"
+msgstr "Selecteer een apparaat dat u wilt gebruiken voor de extra slots"
 
 msgid "Select a directory"
 msgstr "Selecteer een map"
@@ -17868,6 +17881,12 @@ msgstr "slot%s - %s (huidige image)"
 msgid "Slot '%s': %s%s"
 msgstr "Slot '%s': %s%s"
 
+msgid "Slot Manager"
+msgstr "Slot Manager"
+
+msgid "Slot count"
+msgstr "Aantal slots"
+
 msgid "Slovak"
 msgstr "Slovaaks"
 
@@ -18240,6 +18259,9 @@ msgstr "Start Teletekst"
 
 msgid "Start test"
 msgstr "Start test"
+
+msgid "Start the Kexec initialization"
+msgstr "De Kexec-initialisatie starten"
 
 msgid "Start time"
 msgstr "Starttijd"
@@ -19049,6 +19071,10 @@ msgstr "Uw %s %s leest de opgelsagen EPG-data elke (uur)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Uw %s %s slaat de EPG-data elke (uur) op."
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr "Uw %s %s zal binnen 10 seconden opnieuw starten, tenzij er eMMC-slots zijn om te herstellen. Het herstellen van eMMC-slots kan 1 tot 5 minuten per slot duren."
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -20546,8 +20572,8 @@ msgstr "Oekraïne"
 msgid "Ukrainian"
 msgstr "Oekraïens"
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
-msgstr "Voltooien is niet mogelijk - er ontbreken Kexec Multiboot-bestanden!"
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "Kan Kexec MultiBoot niet initialiseren!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Update zonder toezicht en GUI"
@@ -23753,6 +23779,47 @@ msgstr "ja (bewaar feeds)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+#~ msgstr "Kexec MultiBoot Initialisatie - herstart na 10 seconden."
+
+#~ msgid ""
+#~ "Kexec MultiBoot Initialisation in progress!\n"
+#~ "\n"
+#~ "Will reboot after restoring any eMMC slots.\n"
+#~ "This can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Kexec MultiBoot Initialisatie in uitvoering!\n"
+#~ "\n"
+#~ "De ontvanger zal opnieuw starten na het herstellen van alle eMMC-slots.\n"
+#~ "Dit kan 1 tot 5 minuten duren per slot."
+
+#~ msgid ""
+#~ "Press Green key to enable MultiBoot!\n"
+#~ "\n"
+#~ "Will reboot within 10 seconds,\n"
+#~ "unless you have eMMC slots to restore.\n"
+#~ "Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Druk op de GROENE toets om MultiBoot in te schakelen!\n"
+#~ "\n"
+#~ "De ontvanger zal binnen 10 seconden herstarten,\n"
+#~ "tenzij je eMMC slots hebt om te herstellen.\n"
+#~ "Het herstellen van eMMC slots kan 1 tot 5 minuten duren per slot."
+
+#, python-format
+#~ msgid ""
+#~ "Really permanently delete MultiBoot files?\n"
+#~ "%s"
+#~ msgstr ""
+#~ "MultiBoot bestanden echt permanent verwijderen?\n"
+#~ "%s"
+
+#~ msgid "Remove forever"
+#~ msgstr "Definitief verwijderen"
+
+#~ msgid "Unable to complete - Kexec Multiboot files missing!"
+#~ msgstr "Voltooien is niet mogelijk - er ontbreken Kexec Multiboot-bestanden!"
+
 #~ msgid "Auto Modes Selected."
 #~ msgstr "Automatisch geselecteerde resoluties."
 
@@ -24123,9 +24190,6 @@ msgstr "®"
 
 #~ msgid "Extended GUI"
 #~ msgstr "Overige GUI instellingen"
-
-#~ msgid "Initialize"
-#~ msgstr "Initialiseer"
 
 #~ msgid "Keyboard map"
 #~ msgstr "Toetsenbord indeling"

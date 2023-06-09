@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
-"PO-Revision-Date: 2023-06-04 19:16+0000\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
+"PO-Revision-Date: 2023-06-09 06:48+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1793,6 +1793,9 @@ msgstr "<Muistin laajennus ei käytössä>"
 msgid "<Last timer location>"
 msgstr "<Viimeisin ajastushakemisto>"
 
+msgid "<Select a device>"
+msgstr "<Valitse laite>"
+
 msgid "A"
 msgstr "A"
 
@@ -2212,6 +2215,9 @@ msgstr "Lisää valittu kansio kirjanmerkkeihin"
 
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Lisää vanhat VASEN/OIKEA toiminnot"
+
+msgid "Add more slots"
+msgstr "Lisää paikkoja"
 
 msgid "Add new CCcam line"
 msgstr "Lisää uusi CCcam rivi"
@@ -4268,6 +4274,9 @@ msgstr "Valitse, kuinka usein yhteys muodostetaan IceTV palvelimeen päivitysten
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Valitse CI protokolla CI Normaali tai CI Plus -moduuleille."
 
+msgid "Choose the amount of additional slots."
+msgstr "Valitse lisä paikkojen määrä."
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Valitse päivämäärien näyttömuoto . P ja PP ovat päiviä, K ja KK tarkoittavat kuukautta. (PP ja KK sisältävät etunollat) Näyttömuoto perustuu omaan valintaasi mutta voi muuttua riippuen teemasta."
 
@@ -4297,6 +4306,9 @@ msgstr "Valitse järjestys, jossa kohteet näytetään ohje ikkunoissa."
 
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Valitse kohteen sijainti laajennetulle \"/usr\" hakemistolle."
+
+msgid "Choose the target location for the slots."
+msgstr "Valitse kohde sijainti paikalle."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Valitse aikaväli, johon grafiikat pyöristetään."
@@ -4454,6 +4466,9 @@ msgstr "Sulje valinta"
 
 msgid "Close screen"
 msgstr "Sulje näyttö"
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr "Sulje Kexec MultiBoot Manageri"
 
 msgid "Close the current screen"
 msgstr "Sulje nykyinen näyttö"
@@ -5248,6 +5263,9 @@ msgstr "Luo laajennus"
 msgid "Create ISO"
 msgstr "Luo ISO-tiedosto"
 
+msgid "Create Slots"
+msgstr "Lisää Paikka"
+
 msgid "Create a directory"
 msgstr "Luo hakemisto"
 
@@ -5265,6 +5283,9 @@ msgstr "Luo erillinen radio suosikkilista"
 
 msgid "Create swap"
 msgstr "Luo vaihto"
+
+msgid "Create the additional slots on the selected device"
+msgstr "Lisää lisäpaikat valittuun laitteeseen"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Luo muistin laajennus valittuun laitteeseen"
@@ -9709,6 +9730,9 @@ msgstr "Rullausviive alussa"
 msgid "Initialization"
 msgstr "Alusta kiintolevy"
 
+msgid "Initialize"
+msgstr "Alusta"
+
 msgid "Initializing storage device..."
 msgstr "Alustetaan tallennuslaitetta..."
 
@@ -10083,22 +10107,14 @@ msgstr "Kernel tiedot"
 msgid "Kexec MultiBoot Actions"
 msgstr "Kexec MultiBoot Toiminnot"
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr "Kexec MultiBoot asennus - käynnistyy 10 sekunnin kuluttua."
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
-msgstr ""
-"Kexec MultiBootin alustaminen käynnissä!\n"
-"\n"
-"Käynnistyy uudelleen kaikkien eMMC-paikkojen palauttamisen jälkeen.\n"
-"Tämä voi kestää 1- 5 minuuttia per paikka."
+msgid "Kexec MultiBoot Initialization in progress!"
+msgstr "Kexec MultiBootin alustaminen käynnissä!"
 
 msgid "Kexec MultiBoot Manager"
 msgstr "Kexec MultiBoot Hallinta"
+
+msgid "Kexec MultiBoot files are missing."
+msgstr "Kexec MultiBoot tiedostot puuttuvat."
 
 msgid "Key"
 msgstr "Avain"
@@ -10516,7 +10532,7 @@ msgid "Locale (Descending)"
 msgstr "Alue (Laskeva)"
 
 msgid "Locale / Language Settings"
-msgstr "Sijainti / Kieliasetukset"
+msgstr "Kielivalinta"
 
 msgid "Locale Selection Settings"
 msgstr "Alue Valinta Asetukset"
@@ -11530,6 +11546,9 @@ msgstr "NFS asetukset"
 
 msgid "NIM & Type"
 msgstr "NIM & Tyyppi"
+
+msgid "NOTE"
+msgstr "HUOMAUTUS"
 
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
@@ -12838,6 +12857,9 @@ msgstr "Poista kaikki roskakorin tallenteet pysyvästi?"
 msgid "Permanently remove all deleted items"
 msgstr "Poista poistetut pysyvästi"
 
+msgid "Permanently remove the MultiBoot files?"
+msgstr "Poistaa pysyvästi MultiBoot tiedostot?"
+
 msgid "Permissions"
 msgstr "Luvat"
 
@@ -13143,6 +13165,9 @@ msgstr ""
 "\n"
 "IceTV on tilauspalvelu, joka on käytettävissä vain luetelluissa maissa."
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr "Valitse laite tai Peruuta peruuttaaksesi valinnan."
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr "Valitse laite, johon muistin laajennuksen hakemisto '/usr' luodaan."
 
@@ -13437,18 +13462,8 @@ msgstr "Sulje painamalla EXIT näppäintä."
 msgid "Press EXIT to return to the help screen."
 msgstr "Palaa ohje näyttöön painamalla EXIT."
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
-msgstr ""
-"Ota MultiBoot käyttöön vihreällä näppäimellä!\n"
-"\n"
-"Käynnistyy uudelleen 10 sekunnin kuluessa,\n"
-"ellei sinulla ole eMMC paikkoja palautettavaksi.\n"
-"eMMC paikkojen palauttaminen voi kestää 1 - 5 minuuttia per paikka."
+msgid "Press GREEN to enable MultiBoot!"
+msgstr "Ota MultiBoot käyttöön painamalla VIHREÄÄ!"
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Valitse MultiBoot painamalla OK."
@@ -13962,14 +13977,6 @@ msgstr "Haluatko varmasti poistaa merkinnän?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Poistu alipalveluiden pikavaihdosta?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-"Poista MultiBoot tiedostot pysyvästi?\n"
-"%s"
-
 msgid "Really reboot into Recovery Mode?"
 msgstr "Käynnistetäänkö todella palautustilaan?"
 
@@ -14318,6 +14325,9 @@ msgstr "Poista"
 msgid "Remove Failed !!"
 msgstr "Poista epäonnistui !!"
 
+msgid "Remove Files"
+msgstr "Poista tiedostot"
+
 msgid "Remove Finished."
 msgstr "Poista suoritetut."
 
@@ -14387,9 +14397,6 @@ msgstr "Poista nykyinen kansio kirjanmerkeistä"
 msgid "Remove currently selected title"
 msgstr "Poista valittu otsikko"
 
-msgid "Remove forever"
-msgstr "Poista ikuisesti"
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Poista valittu kansio kirjanmerkeistä"
 
@@ -14401,6 +14408,9 @@ msgstr "Kyllä poistaa kuulovammaisille tarkoitetut tekstit ulkoisista tekstityk
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Poista rivi CCcam.cfg-tiedostosta"
+
+msgid "Remove the MultiBoot files"
+msgstr "Poista MultiBoot tiedostot"
 
 msgid "Remove the current bookmark"
 msgstr "Poista nykyinen kirjanmerkki"
@@ -15557,6 +15567,9 @@ msgstr "Valitse tarkasteltava vianmäärityslokitiedosto:"
 
 msgid "Select a device to use as the flash expander"
 msgstr "Valitse laite, jota käytetään muistin laajentimena"
+
+msgid "Select a device to use for the additional slots"
+msgstr "Valitse laite, jota käytetään lisä paikkoja varten"
 
 msgid "Select a directory"
 msgstr "Valitse hakemisto"
@@ -17730,6 +17743,12 @@ msgstr "Paikka %s - %s (Nykyinen image)"
 msgid "Slot '%s': %s%s"
 msgstr "Paikka %s : %s%s"
 
+msgid "Slot Manager"
+msgstr "Paikkojen Hallinta"
+
+msgid "Slot count"
+msgstr "Paikkojen määrä"
+
 msgid "Slovak"
 msgstr "Slovakia"
 
@@ -18103,6 +18122,9 @@ msgstr "Teksti-TV"
 
 msgid "Start test"
 msgstr "Aloita testi"
+
+msgid "Start the Kexec initialization"
+msgstr "Aloita Kexec alustus"
 
 msgid "Start time"
 msgstr "Aloitusaika"
@@ -18912,6 +18934,10 @@ msgstr "%s %s lukee tallennetun EPG-tiedon joka (tuntia)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s tallentaa EPG-tiedon joka (tuntia)."
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr "%s %s käynnistyy uudelleen 10 sekunnin kuluessa, ellei palautettavia eMMC-paikkoja ole. eMMC-paikkojen palauttaminen voi kestää 1-5 minuuttia per paikka."
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -20376,8 +20402,8 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraina"
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
-msgstr "Ei voida suorittaa - Kexec Multiboot tiedostoja puuttuu!"
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "Kexec MultiBootin alustaminen ei onnistu!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Päivitä järjestelmä taustalla ilman käyttäjän ohjausta"
@@ -23566,6 +23592,47 @@ msgstr "kyllä (pidä syötteet)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+#~ msgstr "Kexec MultiBoot asennus - käynnistyy 10 sekunnin kuluttua."
+
+#~ msgid ""
+#~ "Kexec MultiBoot Initialisation in progress!\n"
+#~ "\n"
+#~ "Will reboot after restoring any eMMC slots.\n"
+#~ "This can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Kexec MultiBootin alustaminen käynnissä!\n"
+#~ "\n"
+#~ "Käynnistyy uudelleen kaikkien eMMC-paikkojen palauttamisen jälkeen.\n"
+#~ "Tämä voi kestää 1- 5 minuuttia per paikka."
+
+#~ msgid ""
+#~ "Press Green key to enable MultiBoot!\n"
+#~ "\n"
+#~ "Will reboot within 10 seconds,\n"
+#~ "unless you have eMMC slots to restore.\n"
+#~ "Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Ota MultiBoot käyttöön vihreällä näppäimellä!\n"
+#~ "\n"
+#~ "Käynnistyy uudelleen 10 sekunnin kuluessa,\n"
+#~ "ellei sinulla ole eMMC paikkoja palautettavaksi.\n"
+#~ "eMMC paikkojen palauttaminen voi kestää 1 - 5 minuuttia per paikka."
+
+#, python-format
+#~ msgid ""
+#~ "Really permanently delete MultiBoot files?\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Poista MultiBoot tiedostot pysyvästi?\n"
+#~ "%s"
+
+#~ msgid "Remove forever"
+#~ msgstr "Poista ikuisesti"
+
+#~ msgid "Unable to complete - Kexec Multiboot files missing!"
+#~ msgstr "Ei voida suorittaa - Kexec Multiboot tiedostoja puuttuu!"
+
 #~ msgid "Auto Modes Selected."
 #~ msgstr "Automaatti tila valittu."
 
@@ -23937,9 +24004,6 @@ msgstr "®"
 
 #~ msgid "Extended GUI"
 #~ msgstr "Laajennettu Käyttöliittymä"
-
-#~ msgid "Initialize"
-#~ msgstr "Alusta"
 
 #~ msgid "Keyboard map"
 #~ msgstr "Näppäimistökartta"

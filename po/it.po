@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
-"PO-Revision-Date: 2023-06-02 02:31+0000\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
+"PO-Revision-Date: 2023-06-09 12:37+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1797,6 +1797,9 @@ msgstr "<Espansore flash non attivo>"
 msgid "<Last timer location>"
 msgstr "<Ultimo percorso timer>"
 
+msgid "<Select a device>"
+msgstr "<Seleziona dispositivo>"
+
 msgid "A"
 msgstr "A"
 
@@ -2206,6 +2209,9 @@ msgstr "Aggiungi cartella selezionata ai segnalibri"
 
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Aggiungi azioni SIN/DES legacy"
+
+msgid "Add more slots"
+msgstr "Aggiungi più slot"
 
 msgid "Add new CCcam line"
 msgstr "Aggiungi nuova linea CCcam"
@@ -2680,7 +2686,7 @@ msgid ""
 "Are you sure you want to restore your %s %s backup?\n"
 "STB will restart after the restore"
 msgstr ""
-"Sei sicuro di voler ripristinare il backup %s %s ?\n"
+"Sei sicuro di voler ripristinare il backup del %s %s ?\n"
 "Il ricevitore sarà riavviato dopo il ripristino"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
@@ -3092,7 +3098,7 @@ msgid "Backup Mode: USB Recovery\n"
 msgstr "Modalità backup: ripristino USB\n"
 
 msgid "Backup Settings"
-msgstr "Impostazioni backup"
+msgstr "Backup configurazione"
 
 msgid "Backup System Settings"
 msgstr "Backup impostazioni di sistema"
@@ -3133,7 +3139,7 @@ msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of you
 msgstr "Backup immagine attuale su HDD o USB. Verrà creata una copia 1:1 del ricevitore"
 
 msgid "Backup your current settings"
-msgstr "Backup impostazioni attuali"
+msgstr "Backup configurazione attuale"
 
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Backup impostazioni attuali. Include le impostazioni E2, i canali, la rete e tutti i file selezionati"
@@ -4257,6 +4263,9 @@ msgstr "Scegli la frequenza con cui connetterti al server IceTV per verificare l
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Scegli la modalità del protocollo CI: Standard o CIplus."
 
+msgid "Choose the amount of additional slots."
+msgstr "Scegli il numero di slot aggiuntivi."
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Scegli il formato di visualizzazione delle date per lo schermo. 'D' / 'DD' identifica il giorno e 'M' / 'MM' il mese in cifre ('DD' e 'MM' mostrano lo zero iniziale per numeri ad una cifra). La visualizzazione a schermo sarà basata sulla tua scelta, a meno di impostazioni diverse della skin."
 
@@ -4286,6 +4295,9 @@ msgstr "Scegli lo stile/l'ordine in cui gli elementi vengono visualizzati nelle 
 
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Scegli la posizione di destinazione per la cartella \"/usr\" espansa."
+
+msgid "Choose the target location for the slots."
+msgstr "Scegli la posizione di destinazione per gli slot."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Scegli l'intervallo di tempo secondo cui gli orari verranno approssimati nella grafica."
@@ -4443,6 +4455,9 @@ msgstr "Chiudi finestra"
 
 msgid "Close screen"
 msgstr "Chiudi schermata"
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr "Chiudi Kexec MultiBoot Manager"
 
 msgid "Close the current screen"
 msgstr "Chiudi schermata attuale"
@@ -5237,6 +5252,9 @@ msgstr "Create espansore"
 msgid "Create ISO"
 msgstr "Crea ISO"
 
+msgid "Create Slots"
+msgstr "Crea slot"
+
 msgid "Create a directory"
 msgstr "Crea una cartella"
 
@@ -5254,6 +5272,9 @@ msgstr "Crea bouquet separato per le radio"
 
 msgid "Create swap"
 msgstr "Crea swap"
+
+msgid "Create the additional slots on the selected device"
+msgstr "Crea gli slot aggiuntivi sul dispositivo selezionato"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Crea espansione flash nel dispositivo selezionato"
@@ -7028,7 +7049,7 @@ msgid "Enable InfoBar fade-out"
 msgstr "Attiva dissolvenza barra informazioni"
 
 msgid "Enable Kexec MultiBoot"
-msgstr "Abilita multiboot Kexec"
+msgstr "Abilita MultiBoot Kexec"
 
 msgid "Enable MHW EPG"
 msgstr "Abilita MHW EPG"
@@ -7164,7 +7185,7 @@ msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Abilita opzioni avanzate di impostazione HDMI-CEC."
 
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
-msgstr "Abilita questa opzione per aggiungere le informazioni multiboot rilevate durante l'avvio del sistema al file di registro di debug."
+msgstr "Abilita questa opzione per aggiungere le informazioni MultiBoot rilevate durante l'avvio del sistema al file di registro di debug."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di mappatura delle azioni/controllo remoto al file di registro di debug."
@@ -8196,7 +8217,7 @@ msgid "File Commander Move"
 msgstr "File Comandante Sposta"
 
 msgid "File Commander Settings"
-msgstr "Impostazioni di File Commander"
+msgstr "Impostazioni File Commander"
 
 msgid "File Commander Text Editor"
 msgstr "File Commander Editor di testo"
@@ -8968,7 +8989,7 @@ msgid "Harddisk Setup"
 msgstr "Configurazione HDD"
 
 msgid "Hardware MultiBoot device"
-msgstr "Dispositivo multiboot"
+msgstr "Dispositivo MultiBoot"
 
 msgid "Hardware information"
 msgstr "Informazioni sull'hardware"
@@ -9569,7 +9590,7 @@ msgid "Include EPG data"
 msgstr "Includi dati EPG"
 
 msgid "Include MultiBoot data *"
-msgstr "Includi dati multiboot *"
+msgstr "Includi dati MultiBoot *"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Includi SDT, BAT nei flussi http"
@@ -9690,6 +9711,9 @@ msgstr "Ritardo iniziale scorrimento"
 
 msgid "Initialization"
 msgstr "Inizializzazione"
+
+msgid "Initialize"
+msgstr "Inizializza"
 
 msgid "Initializing storage device..."
 msgstr "Inizializzazione dispositivo di archiviazione..."
@@ -10063,24 +10087,16 @@ msgid "Kernel version"
 msgstr "Versione del kernel"
 
 msgid "Kexec MultiBoot Actions"
-msgstr "Azioni multiboot Kexec"
+msgstr "Azioni MultiBoot Kexec"
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr "Inizializzazione multiboot Kexec - riavvio dopo 10 secondi."
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
-msgstr ""
-"Inizializzazione multiboot Kexec in corso!\n"
-"\n"
-"Riavvio dopo aver ripristinato tutti gli slot eMMC.\n"
-"Questo può richiedere da 1 -> 5 minuti per slot."
+msgid "Kexec MultiBoot Initialization in progress!"
+msgstr "Inizializzazione Kexec MultiBoot in corso!"
 
 msgid "Kexec MultiBoot Manager"
-msgstr "Gestore multiboot Kexec"
+msgstr "Gestore MultiBoot Kexec"
+
+msgid "Kexec MultiBoot files are missing."
+msgstr "Mancano i file Kexec MultiBoot."
 
 msgid "Key"
 msgstr "Chiave"
@@ -10698,7 +10714,7 @@ msgid "Main Menu"
 msgstr "Menu principale"
 
 msgid "Maintain your multi boot device."
-msgstr "Mantieni dispositivo multiboot."
+msgstr "Mantieni dispositivo MultiBoot."
 
 msgid "Make"
 msgstr "Contrassegna"
@@ -11430,19 +11446,19 @@ msgid "MultiBoot"
 msgstr "Multiboot"
 
 msgid "MultiBoot Information"
-msgstr "Informazioni multiboot"
+msgstr "Informazioni MultiBoot"
 
 msgid "MultiBoot Manager"
-msgstr "Gestore multiboot"
+msgstr "Gestore MultiBoot"
 
 msgid "MultiBoot Manager Actions"
-msgstr "Azioni gestore multiboot"
+msgstr "Azioni gestore MultiBoot"
 
 msgid "MultiBoot boot mode"
-msgstr "Modalità di avvio di multiboot"
+msgstr "Modalità di avvio di MultiBoot"
 
 msgid "MultiBoot startup file"
-msgstr "File di avvio di multiboot"
+msgstr "File di avvio di MultiBoot"
 
 msgid "MultiEPG Settings"
 msgstr "Configurazione EPG multiplo"
@@ -11455,7 +11471,7 @@ msgstr "Transcodifica multipla"
 
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Immagine multiboot creata in: %s/%s-%s-%s-backup-%s_usb.zip"
+msgstr "Immagine MultiBoot creata in: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multiple service support"
 msgstr "Supporto per più servizi"
@@ -11510,6 +11526,9 @@ msgstr "Impostazioni NFS"
 
 msgid "NIM & Type"
 msgstr "NIM e tipo"
+
+msgid "NOTE"
+msgstr "NOTA"
 
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
@@ -12812,6 +12831,9 @@ msgstr "Eliminare definitivamente tutte le registrazioni nel cestino?"
 msgid "Permanently remove all deleted items"
 msgstr "Rimuovi definitivamente tutti gli elementi eliminati"
 
+msgid "Permanently remove the MultiBoot files?"
+msgstr "Rimuovere definitivamente i file MultiBoot?"
+
 msgid "Permissions"
 msgstr "Autorizzazioni"
 
@@ -13117,6 +13139,9 @@ msgstr ""
 "\n"
 "IceTV è un servizio in abbonamento disponibile solo nei paesi elencati."
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr "Seleziona il dispositivo o Annulla per annullare la selezione."
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr "Seleziona il dispositivo in cui deve essere creata la cartella '/usr' dell'espansore flash."
 
@@ -13411,21 +13436,11 @@ msgstr "Premi ESCI per chiudere."
 msgid "Press EXIT to return to the help screen."
 msgstr "Premi ESCI per tornare alla schermata della guida."
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
-msgstr ""
-"Premi il tasto VERDE per abilitare il multiboot!\n"
-"\n"
-"Riavvio automatico entro 10 secondi,\n"
-"a meno che tu non abbia slot eMMC da ripristinare.\n"
-"Il ripristino degli slot eMMC può richiedere da 1 -> 5 minuti per slot."
+msgid "Press GREEN to enable MultiBoot!"
+msgstr "Premi VERDE per abilitare MultiBoot!"
 
 msgid "Press OK for MultiBoot selection."
-msgstr "Premi OK per la selezione multiboot."
+msgstr "Premi OK per la selezione MultiBoot."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Premi OK sul telecomando per continuare."
@@ -13936,14 +13951,6 @@ msgstr "Eliminare davvero questa voce?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Uscire davvero dallo zap veloce dei sottoservizi?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-"Eliminare davvero in modo permanente i file multiboot?\n"
-"%s"
-
 msgid "Really reboot into Recovery Mode?"
 msgstr "Riavviare davvero in modalità di ripristino?"
 
@@ -14081,22 +14088,22 @@ msgid "Recording location"
 msgstr "Posizione registrazione"
 
 msgid "Recording running"
-msgstr "Registrazione in corso"
+msgstr "Registrazione in esecuzione"
 
 msgid "Recording started"
-msgstr "La registrazione è iniziata"
+msgstr "Registrazione avviata"
 
 msgid "Recording stopped"
 msgstr "Registrazione interrotta"
 
 msgid "Recording tuning failed"
-msgstr "Regolazione della registrazione non riuscita"
+msgstr "Errore di sintonizzazione della registrazione"
 
 msgid "Recording type"
 msgstr "Tipo registrazione"
 
 msgid "Recording(s) are in progress or coming up in few seconds!"
-msgstr "Registrazioni in corso o in avvio a breve!"
+msgstr "Registrazione in corso o in arrivo tra pochi secondi!"
 
 msgid ""
 "Recording(s) are in progress or coming up in few seconds!\n"
@@ -14109,19 +14116,19 @@ msgid "Recordings"
 msgstr "Registrazioni"
 
 msgid "Recordings abort PiP"
-msgstr "Registrazioni interrompono il PIP"
+msgstr "Registrazioni interrompono PIP"
 
 msgid "Recordings abort pseudo recordings"
 msgstr "Registrazioni interrompono pseudo registrazioni"
 
 msgid "Recordings abort streaming"
-msgstr "Registrazioni interrompono lo streaming"
+msgstr "Registrazioni interrompono streaming"
 
 msgid "Recordings always have priority"
 msgstr "Registrazioni hanno sempre la priorità"
 
 msgid "Recordings may not work correctly without an acceptable directory."
-msgstr "Le registrazioni potrebbero non funzionare correttamente senza una cartella accettabile."
+msgstr "Le registrazioni potrebbero non funzionare correttamente senza una cartella di destinazione appropriata."
 
 msgid "Recovery"
 msgstr "Recupero"
@@ -14292,6 +14299,9 @@ msgstr "Rimuovi voce"
 msgid "Remove Failed !!"
 msgstr "Rimozione non riuscita!"
 
+msgid "Remove Files"
+msgstr "Rimuovi file"
+
 msgid "Remove Finished."
 msgstr "Rimozione terminata."
 
@@ -14361,9 +14371,6 @@ msgstr "Rimuovi attuale cartella dai segnalibri"
 msgid "Remove currently selected title"
 msgstr "Rimuovi titolo attualmente selezionato"
 
-msgid "Remove forever"
-msgstr "Rimuovi per sempre"
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Rimuovi cartella evidenziata dai segnalibri"
 
@@ -14375,6 +14382,9 @@ msgstr "Rimuovi testi per non udenti dai sottotitoli esterni (musica strumentale
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Rimuovi linea da CCcam.cfg"
+
+msgid "Remove the MultiBoot files"
+msgstr "Rimuovi file MultiBoot"
 
 msgid "Remove the current bookmark"
 msgstr "Rimuovi attuale segnalibro"
@@ -15522,6 +15532,9 @@ msgstr "Seleziona file di registro di debug da visualizzare:"
 msgid "Select a device to use as the flash expander"
 msgstr "Seleziona un dispositivo da utilizzare come espansore flash"
 
+msgid "Select a device to use for the additional slots"
+msgstr "Seleziona un dispositivo da utilizzare per gli slot aggiuntivi"
+
 msgid "Select a directory"
 msgstr "Seleziona cartella"
 
@@ -16535,7 +16548,7 @@ msgstr "Impostazioni"
 
 #, python-format
 msgid "Setup - %s"
-msgstr "Imposta - %s"
+msgstr "Impostazioni - %s"
 
 msgid "Setup AFP"
 msgstr "Imposta AFP"
@@ -16550,7 +16563,7 @@ msgid "Setup Audiomode"
 msgstr "Imposta modalità audio"
 
 msgid "Setup Enigma2"
-msgstr "imposta Enigma2"
+msgstr "Imposta Enigma2"
 
 msgid "Setup FTP"
 msgstr "Imposta FTP"
@@ -17690,6 +17703,12 @@ msgstr "posizione%s - %s (immagine attuale)"
 msgid "Slot '%s': %s%s"
 msgstr "Slot '%s': %s%s"
 
+msgid "Slot Manager"
+msgstr "Gestore slot"
+
+msgid "Slot count"
+msgstr "Numero di slot"
+
 msgid "Slovak"
 msgstr "Slovacco"
 
@@ -17784,7 +17803,7 @@ msgid "Software Manager Settings"
 msgstr "Impostazioni del gestore software"
 
 msgid "Software MultiBoot"
-msgstr "Software multiboot"
+msgstr "Software MultiBoot"
 
 msgid "Software Restore"
 msgstr "Ripristino software"
@@ -18063,6 +18082,9 @@ msgstr "Avvio il televideo"
 
 msgid "Start test"
 msgstr "Avvio il test"
+
+msgid "Start the Kexec initialization"
+msgstr "Avvia l'inizializzazione di Kexec"
 
 msgid "Start time"
 msgstr "Orario di avvio"
@@ -18588,7 +18610,7 @@ msgid "System Plugins"
 msgstr "plugin di sistema"
 
 msgid "System Setup"
-msgstr "Configurazione del sistema"
+msgstr "Configurazione sistema"
 
 msgid "System information"
 msgstr "Informazioni di sistema"
@@ -18870,6 +18892,10 @@ msgstr "Il %s %s legge i dati memorizzati dell'EPG ogni (ore)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Il %s %s salva i dati dell'EPG ogni (ore)."
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr "%s %s si riavvierà entro 10 secondi, a meno che non ci siano slot eMMC da ripristinare. Il ripristino degli slot eMMC può richiedere da 1 a 5 minuti per slot."
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -20327,8 +20353,8 @@ msgstr "Ucraina"
 msgid "Ukrainian"
 msgstr "Ucraino"
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
-msgstr "Impossibile completare - File multiboot Kexec mancanti!"
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "Impossibile inizializzare Kexec MultiBoot!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Aggiornamento automatico senza GUI"
@@ -21869,7 +21895,7 @@ msgid "Yes, and don't ask again for this session"
 msgstr "Sì, e non chiedere mai più questa sessione"
 
 msgid "Yes, backup my settings!"
-msgstr "Sì, fai il backup delle mie impostazioni!"
+msgstr "Sì, fai il backup delle impostazioni!"
 
 msgid "Yes, but don't save time shift as movie"
 msgstr "Sì, ma non salvare il timeshift come registrazione"
@@ -21965,7 +21991,7 @@ msgid "You cannot delete this!"
 msgstr "Non puoi eliminarlo!"
 
 msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "Hai scelto di eseguire il backup delle tue impostazioni. Premi OK per avviare subito il backup."
+msgstr "Hai scelto di eseguire il backup delle impostazioni. Premi OK per avviare subito il backup."
 
 msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
 msgstr "Hai scelto di ripristinare le impostazioni. Enigma2 si riavvierà dopo il ripristino. Premi OK per avviare subito il ripristino."
@@ -23511,6 +23537,47 @@ msgstr "sì (mantieni feed)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+#~ msgstr "Inizializzazione multiboot Kexec - riavvio dopo 10 secondi."
+
+#~ msgid ""
+#~ "Kexec MultiBoot Initialisation in progress!\n"
+#~ "\n"
+#~ "Will reboot after restoring any eMMC slots.\n"
+#~ "This can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Inizializzazione multiboot Kexec in corso!\n"
+#~ "\n"
+#~ "Riavvio dopo aver ripristinato tutti gli slot eMMC.\n"
+#~ "Questo può richiedere da 1 -> 5 minuti per slot."
+
+#~ msgid ""
+#~ "Press Green key to enable MultiBoot!\n"
+#~ "\n"
+#~ "Will reboot within 10 seconds,\n"
+#~ "unless you have eMMC slots to restore.\n"
+#~ "Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+#~ msgstr ""
+#~ "Premi il tasto VERDE per abilitare il multiboot!\n"
+#~ "\n"
+#~ "Riavvio automatico entro 10 secondi,\n"
+#~ "a meno che tu non abbia slot eMMC da ripristinare.\n"
+#~ "Il ripristino degli slot eMMC può richiedere da 1 -> 5 minuti per slot."
+
+#, python-format
+#~ msgid ""
+#~ "Really permanently delete MultiBoot files?\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Eliminare davvero in modo permanente i file multiboot?\n"
+#~ "%s"
+
+#~ msgid "Remove forever"
+#~ msgstr "Rimuovi per sempre"
+
+#~ msgid "Unable to complete - Kexec Multiboot files missing!"
+#~ msgstr "Impossibile completare - File multiboot Kexec mancanti!"
+
 #~ msgid "Auto Modes Selected."
 #~ msgstr "Modalità automatiche selezionate."
 
@@ -23882,9 +23949,6 @@ msgstr "®"
 
 #~ msgid "Extended GUI"
 #~ msgstr "Configurazione avanzata"
-
-#~ msgid "Initialize"
-#~ msgstr "Inizializza"
 
 #~ msgid "Keyboard map"
 #~ msgstr "Mappa tastiera"

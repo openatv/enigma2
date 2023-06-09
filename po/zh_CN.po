@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 20:48+0200\n"
+"POT-Creation-Date: 2023-06-04 19:44+0000\n"
 "PO-Revision-Date: 2022-11-22 18:20+0000\n"
 "Last-Translator: tzyy1970 <haotzyy1970@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1796,6 +1796,9 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr "<最后一个定时器位置>"
 
+msgid "<Select a device>"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -2209,6 +2212,9 @@ msgid "Add highlighted directory to bookmarks"
 msgstr "添加选中的文件夹到书签"
 
 msgid "Add legacy LEFT/RIGHT actions"
+msgstr ""
+
+msgid "Add more slots"
 msgstr ""
 
 msgid "Add new CCcam line"
@@ -4261,6 +4267,9 @@ msgstr "选择连接到ICETV服务器以检查更新的频率."
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "选择标准CI或高级CI的CI协议的运行模式."
 
+msgid "Choose the amount of additional slots."
+msgstr ""
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "选择日期的显示格式样式.'D'/'DD'是日期,'M'/'MM'是月份的数字.（'DD'和'MM'有前 导零表示单个数字值.）屏幕显示将根据您的选择而定,但可能受皮肤的影响."
 
@@ -4289,6 +4298,9 @@ msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose the target location for the expanded '/usr' directory."
+msgstr ""
+
+msgid "Choose the target location for the slots."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -4447,6 +4459,9 @@ msgstr "关闭对话框"
 
 msgid "Close screen"
 msgstr "关闭屏幕"
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
 
 msgid "Close the current screen"
 msgstr "关闭当前屏幕"
@@ -5237,6 +5252,9 @@ msgstr ""
 msgid "Create ISO"
 msgstr "创建ISO"
 
+msgid "Create Slots"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5253,6 +5271,9 @@ msgid "Create separate radio user bouquet"
 msgstr "创建单独的广播用户自定义组"
 
 msgid "Create swap"
+msgstr ""
+
+msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
@@ -9685,6 +9706,9 @@ msgstr "初始的滚动延迟"
 msgid "Initialization"
 msgstr "初始化"
 
+msgid "Initialize"
+msgstr "初始化"
+
 msgid "Initializing storage device..."
 msgstr "正在初始化存储设备..."
 
@@ -10059,17 +10083,13 @@ msgstr "内核版本"
 msgid "Kexec MultiBoot Actions"
 msgstr ""
 
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr ""
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
+msgid "Kexec MultiBoot Initialization in progress!"
 msgstr ""
 
 msgid "Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Kexec MultiBoot files are missing."
 msgstr ""
 
 msgid "Key"
@@ -11501,6 +11521,9 @@ msgstr "NFS设置"
 msgid "NIM & Type"
 msgstr "NIM模块类型"
 
+msgid "NOTE"
+msgstr ""
+
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
 msgstr ""
@@ -12799,6 +12822,9 @@ msgstr "是否永久删除垃圾桶中的所有录制？"
 msgid "Permanently remove all deleted items"
 msgstr "永久删除所有已删除的项目"
 
+msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
 msgid "Permissions"
 msgstr ""
 
@@ -13101,6 +13127,9 @@ msgid ""
 "IceTV is a subscription service that is only available in the listed countries."
 msgstr ""
 
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr ""
+
 msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr ""
 
@@ -13395,12 +13424,7 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "按EXIT键返回帮助界面."
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgid "Press GREEN to enable MultiBoot!"
 msgstr ""
 
 msgid "Press OK for MultiBoot selection."
@@ -13915,12 +13939,6 @@ msgstr "是否删除这个条目？"
 msgid "Really exit the subservices quickzap?"
 msgstr "是否要退出子频道快速切换?"
 
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-
 msgid "Really reboot into Recovery Mode?"
 msgstr "是否重新启动进入恢复模式?"
 
@@ -14269,6 +14287,9 @@ msgstr "删除节目"
 msgid "Remove Failed !!"
 msgstr "删除失败!!"
 
+msgid "Remove Files"
+msgstr ""
+
 msgid "Remove Finished."
 msgstr "删除完成."
 
@@ -14338,9 +14359,6 @@ msgstr "从书签中删除当前文件夹"
 msgid "Remove currently selected title"
 msgstr "删除当前选择的标题"
 
-msgid "Remove forever"
-msgstr ""
-
 msgid "Remove highlighted directory from bookmarks"
 msgstr "从书签中删除选定的文件夹"
 
@@ -14351,6 +14369,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr "从外部字幕(器乐或环境声音,例如,当门铃响或听到枪声)中删除听力受损者的文本."
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the MultiBoot files"
 msgstr ""
 
 msgid "Remove the current bookmark"
@@ -15497,6 +15518,9 @@ msgid "Select a debug log file to view:"
 msgstr ""
 
 msgid "Select a device to use as the flash expander"
+msgstr ""
+
+msgid "Select a device to use for the additional slots"
 msgstr ""
 
 msgid "Select a directory"
@@ -17652,6 +17676,12 @@ msgstr "分区%s - %s(当前镜像)"
 msgid "Slot '%s': %s%s"
 msgstr ""
 
+msgid "Slot Manager"
+msgstr ""
+
+msgid "Slot count"
+msgstr ""
+
 msgid "Slovak"
 msgstr "斯洛伐克语"
 
@@ -18026,6 +18056,9 @@ msgstr "启动图文电视"
 
 msgid "Start test"
 msgstr "开始测试"
+
+msgid "Start the Kexec initialization"
+msgstr ""
 
 msgid "Start time"
 msgstr "开始时间"
@@ -18827,6 +18860,10 @@ msgstr "%s %s每隔(小时)读取一次存储的EPG数据."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "这个%s %s 每隔(小时)存储一次EPG数据."
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr ""
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -20259,7 +20296,7 @@ msgstr "乌克兰"
 msgid "Ukrainian"
 msgstr "乌克兰语"
 
-msgid "Unable to complete - Kexec Multiboot files missing!"
+msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23768,9 +23805,6 @@ msgstr "®"
 
 #~ msgid "Extended GUI"
 #~ msgstr "扩展GUI界面"
-
-#~ msgid "Initialize"
-#~ msgstr "初始化"
 
 #~ msgid "Keyboard map"
 #~ msgstr "键盘映射"
