@@ -2991,7 +2991,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 						seq[4] = 0xff;
 						seq[5] = 0x00;
 					}
-#pragma GCC diagnostic push
+#pragma GCC diagnostic pop
 					int pnp_offset = 0;
 					int fd = open("/proc/stb/info/model", O_RDONLY);
 					char tmp[16];
