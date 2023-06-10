@@ -24,6 +24,7 @@ from Screens.Screen import Screen
 from Tools.Downloader import DownloadWithProgress
 from Tools.MultiBoot import MultiBoot
 
+UMOUNT = "/bin/umount"
 OFGWRITE = "/usr/bin/ofgwrite"
 
 FEED_DISTRIBUTION = 0
@@ -620,7 +621,7 @@ class FlashImage(Screen, HelpableScreen):
 			if BoxInfo.getItem("HasKexecMultiboot"):
 				if self.slotCode == "R":
 					cmdArgs = ["-r", "-k", "-f"]
-					Console().ePopen("umount /proc/cmdline")
+					Console().ePopen([UMOUNT, UMOUNT, "/proc/cmdline"])
 				else:
 					cmdArgs = ["-r%s" % mtdRootFS, "-k", "-m%s" % self.slotCode]
 					if "uuid" in bootSlots[self.slotCode] and "mmcblk" not in mtdRootFS:
