@@ -1,4 +1,4 @@
-from os.path import join as pathjoin
+from os.path import join
 
 from Components.config import ConfigSubsection, config
 from Tools.LoadPixmap import LoadPixmap
@@ -6,7 +6,6 @@ from Tools.LoadPixmap import LoadPixmap
 
 class PluginDescriptor(object):
 	"""An object to describe a plugin."""
-
 	# Where to list the plugin. Note that there are different call arguments,
 	# so you might not be able to combine them.
 	# Common arguments are:
@@ -63,7 +62,6 @@ class PluginDescriptor(object):
 	WHERE_CHANNEL_ZAP = 23
 	# Arguments: reason, session, instance, type.
 	WHERE_INFOBARLOADED = 24
-
 	# Argument: session
 	WHERE_BUTTONSETUP = 25
 
@@ -74,12 +72,12 @@ class PluginDescriptor(object):
 		self.where = where if isinstance(where, list) else [where]
 		self.description = description
 		if icon is None or isinstance(icon, str):
-			self.iconstr = icon
-			self._icon = None
+			self.iconString = icon
+			self.iconData = None
 		else:
-			self.iconstr = None
-			self._icon = icon
-		self._fnc = fnc
+			self.iconString = None
+			self.iconData = icon
+		self.function = fnc
 		self.wakeupfnc = wakeupfnc
 		self.needsRestart = needsRestart
 		self.internal = internal
@@ -87,15 +85,15 @@ class PluginDescriptor(object):
 		self.path = None
 
 	def __call__(self, *args, **kwargs):
-		if callable(self._fnc):
-			return self._fnc(*args, **kwargs)
+		if callable(self.function):
+			return self.function(*args, **kwargs)
 		else:
 			print("[Plugin] Error: PluginDescriptor called without a function!")
 			return []
 
 	def __getattribute__(self, name):
 		if name == '__call__':
-			return self._fnc is not None and self._fnc or {}
+			return self.function is not None and self.function or {}
 		return object.__getattribute__(self, name)
 
 	def updateIcon(self, path):
@@ -106,13 +104,13 @@ class PluginDescriptor(object):
 
 	@property
 	def icon(self):
-		return LoadPixmap(pathjoin(self.path, self.iconstr)) if self.iconstr and self.path else self._icon
+		return LoadPixmap(join(self.path, self.iconString)) if self.iconString and self.path else self.iconData
 
 	def __eq__(self, other):
-		return self._fnc == other._fnc
+		return self.function == other.function
 
 	def __ne__(self, other):
-		return self._fnc != other._fnc
+		return self.function != other.function
 
 	def __lt__(self, other):
 		if self.weight < other.weight:
