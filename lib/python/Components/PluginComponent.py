@@ -1,11 +1,17 @@
-import os
-from shutil import rmtree
 from bisect import insort
+from os import listdir
+from os.path import exists, isdir, join
+from shutil import rmtree
+from traceback import print_exc
+
 from Components.ActionMap import loadKeymap
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import SCOPE_PLUGINS, fileExists, resolveFilename
 from Tools.Import import my_import
 from Tools.Profile import profile
+
+REASON_START = 0
+REASON_STOP = 1
 
 
 class PluginComponent:
@@ -25,123 +31,107 @@ class PluginComponent:
 	def addPlugin(self, plugin):
 		if self.firstRun or not plugin.needsRestart:
 			self.pluginList.append(plugin)
-			for x in plugin.where:
-				insort(self.plugins.setdefault(x, []), plugin)
-				if x == PluginDescriptor.WHERE_AUTOSTART:
-					plugin(reason=0)
+			for where in plugin.where:
+				insort(self.plugins.setdefault(where, []), plugin)
+				if where == PluginDescriptor.WHERE_AUTOSTART:
+					plugin(reason=REASON_START)
 		else:
 			self.restartRequired = True
 
 	def removePlugin(self, plugin):
 		if plugin in self.pluginList:
 			self.pluginList.remove(plugin)
-		for x in plugin.where:
-			self.plugins[x].remove(plugin)
-			if x == PluginDescriptor.WHERE_AUTOSTART:
-				plugin(reason=1)
+		for where in plugin.where:
+			self.plugins[where].remove(plugin)
+			if where == PluginDescriptor.WHERE_AUTOSTART:
+				plugin(reason=REASON_STOP)
 
 	def readPluginList(self, directory):
-		"""enumerates plugins"""
-		new_plugins = []
-		for c in os.listdir(directory):
-			directory_category = os.path.join(directory, c)
-			if not os.path.isdir(directory_category):
+		"""Enumerates plugins."""
+		newPlugins = []
+		for pluginDirectory in listdir(directory):
+			pluginPath = join(directory, pluginDirectory)
+			if not isdir(pluginPath):
 				continue
-			for pluginname in os.listdir(directory_category):
-				if pluginname == "__pycache__":
+			for pluginName in listdir(pluginPath):
+				if pluginName == "__pycache__":
 					continue
-				path = os.path.join(directory_category, pluginname)
-				if os.path.isdir(path):
-					profile('plugin ' + pluginname)
+				path = join(pluginPath, pluginName)
+				if isdir(path):
+					profile("Plugin %s" % pluginName)
 					try:
-						plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
+						plugin = my_import(".".join(["Plugins", pluginDirectory, pluginName, "plugin"]))
 						plugins = plugin.Plugins(path=path)
-					except Exception as exc:
-						print("Plugin ", c + "/" + pluginname, "failed to load:", exc)
-						# supress errors due to missing plugin.py* files (badly removed plugin)
-						for fn in ('plugin.py', 'plugin.pyc', 'plugin.pyo'):
-							if os.path.exists(os.path.join(path, fn)):
-								self.warnings.append((c + "/" + pluginname, str(exc)))
-								from traceback import print_exc
+					except Exception as err:
+						print("[PluginComponent] Error: Plugin '%s/%s' failed to load!  (%s)" % (pluginDirectory, pluginName, str(err)))
+						for filename in ("plugin.py", "plugin.pyc", "plugin.pyo"):  # Suppress errors due to missing plugin.py* files (badly removed plugin).
+							if exists(join(path, filename)):
+								self.warnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
 								print_exc()
 								break
 						else:
-							if not pluginname == "WebInterface":
-								print("Plugin probably removed, but not cleanly in", path)
-								print("trying to remove:", path)
-								rmtree(path)
+							if not pluginName == "WebInterface":
+								print("[PluginComponent] Plugin probably removed, but not cleanly, in '%s'; trying to remove it." % path)
+								try:
+									rmtree(path)
+								except OSError as err:
+									print("[PluginComponent] Error %d: Unable to remove directory tree '%s'!  (%s)" % (err.errno, path, err.strerror))
 						continue
-
-					# allow single entry not to be a list
 					if not isinstance(plugins, list):
 						plugins = [plugins]
-
-					for p in plugins:
-						p.path = path
-						p.updateIcon(path)
-						new_plugins.append(p)
-
-					keymap = os.path.join(path, "keymap.xml")
-					if fileExists(keymap):
+					for plugin in plugins:
+						plugin.path = path
+						plugin.updateIcon(path)
+						newPlugins.append(plugin)
+					keymap = join(path, "keymap.xml")
+					if exists(keymap):
 						try:
 							loadKeymap(keymap)
-						except Exception as exc:
-							print("keymap for plugin %s/%s failed to load: " % (c, pluginname), exc)
-							self.warnings.append((c + "/" + pluginname, str(exc)))
-
-		# build a diff between the old list of plugins and the new one
-		# internally, the "fnc" argument will be compared with __eq__
-		plugins_added = [p for p in new_plugins if p not in self.pluginList]
-		plugins_removed = [p for p in self.pluginList if not p.internal and p not in new_plugins]
-
-		#ignore already installed but reloaded plugins
-		for p in plugins_removed:
-			for pa in plugins_added:
-				if pa.path == p.path and pa.where == p.where:
-					pa.needsRestart = False
-
-		for p in plugins_removed:
-			self.removePlugin(p)
-
-		for p in plugins_added:
-			if self.firstRun or p.needsRestart is False:
-				self.addPlugin(p)
+						except Exception as err:
+							print("[PluginComponent] Error: The keymap file for plugin '%s/%s' failed to load!  (%s)" % (pluginDirectory, pluginName, str(err)))
+							self.warnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
+		# Build a diff between the old list of plugins and the new one internally, the "fnc" argument will be compared with "__eq__".
+		pluginsAdded = [x for x in newPlugins if x not in self.pluginList]
+		pluginsRemoved = [x for x in self.pluginList if not x.internal and x not in newPlugins]
+		for pluginRemoved in pluginsRemoved:  # Ignore already installed but reloaded plugins.
+			for pluginAdded in pluginsAdded:
+				if pluginAdded.path == pluginRemoved.path and pluginAdded.where == pluginRemoved.where:
+					pluginAdded.needsRestart = False
+		for plugin in pluginsRemoved:
+			self.removePlugin(plugin)
+		for plugin in pluginsAdded:
+			if self.firstRun or not plugin.needsRestart:
+				self.addPlugin(plugin)
 			else:
-				for installed_plugin in self.installedPluginList:
-					if installed_plugin.path == p.path:
-						if installed_plugin.where == p.where:
-							p.needsRestart = False
-				self.addPlugin(p)
-
+				for installedPlugin in self.installedPluginList:
+					if installedPlugin.path == plugin.path and installedPlugin.where == plugin.where:
+						plugin.needsRestart = False
+				self.addPlugin(plugin)
 		if self.firstRun:
 			self.firstRun = False
 			self.installedPluginList = self.pluginList
 
 	def getPlugins(self, where):
-		"""Get list of plugins in a specific category"""
+		"""Get list of plugins in a specific category."""
 		if not isinstance(where, list):
-			# if not a list, we're done quickly, because the
-			# lists are already sorted
-			return self.plugins.get(where, [])
-		res = []
-		# Efficiently merge two sorted lists together, though this
-		# appears to never be used in code anywhere...
-		for x in where:
-			for p in self.plugins.get(x, []):
-				insort(res, p)
-		return res
+			return self.plugins.get(where, [])  # If not a list, we're done quickly, because the lists are already sorted.
+		result = []
+		for location in where:  # Efficiently merge two sorted lists together, though this appears to never be used in code anywhere.
+			for plugin in self.plugins.get(location, []):
+				insort(result, plugin)
+		return result
 
-	def getPluginsForMenu(self, menuid):
-		res = []
-		for p in self.getPlugins(PluginDescriptor.WHERE_MENU):
-			res += p(menuid)
-		return res
+	def getPluginsForMenu(self, menuID):
+		result = []
+		for plugin in self.getPlugins(PluginDescriptor.WHERE_MENU):
+			result += plugin(menuID)
+		return result
 
-	def getDescriptionForMenuEntryID(self, menuid, entryid):
-		for p in self.getPlugins(PluginDescriptor.WHERE_MENU):
-			if p(menuid) and isinstance(p(menuid), (list, tuple)):
-				if p(menuid)[0][2] == entryid:
-					return p.description
+	def getDescriptionForMenuEntryID(self, menuID, entryID):
+		for plugin in self.getPlugins(PluginDescriptor.WHERE_MENU):
+			if plugin(menuID) and isinstance(plugin(menuID), (list, tuple)):
+				if plugin(menuID)[0][2] == entryID:
+					return plugin.description
 
 	def clearPluginList(self):
 		self.pluginList = []
@@ -152,23 +142,23 @@ class PluginComponent:
 		self.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	def shutdown(self):
-		for p in self.pluginList[:]:
-			self.removePlugin(p)
+		for plugin in self.pluginList[:]:
+			self.removePlugin(plugin)
 
 	def resetWarnings(self):
 		self.warnings = []
 
 	def getNextWakeupTime(self, getPluginIdent=False):
-		wakeup = -1
-		pident = ""
-		for p in self.pluginList:
-			current = p.getWakeupTime()
-			if current > -1 and (wakeup > current or wakeup == -1):
-				wakeup = current
-				pident = str(p.name) + " | " + str(p.path and p.path.split('/')[-1])
+		wakeUp = -1
+		pluginIdentity = ""
+		for plugin in self.pluginList:
+			current = int(plugin.getWakeupTime())
+			if current > -1 and (wakeUp > current or wakeUp == -1):
+				wakeUp = current
+				pluginIdentity = "%s | %s" % (plugin.name, plugin.path and plugin.path.split("/")[-1])
 		if getPluginIdent:
-			return int(wakeup), pident
-		return int(wakeup)
+			return wakeUp, pluginIdentity
+		return wakeUp
 
 
 plugins = PluginComponent()
