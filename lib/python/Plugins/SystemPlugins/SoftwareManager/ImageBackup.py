@@ -88,15 +88,23 @@ class ImageBackup(Screen):
 	def ImageList(self, imagedict):
 		self.saveImageList = imagedict
 		imageList = []
+		rootslot = False
 		currentimageslot = MultiBoot.getCurrentSlotCode()
+		if BoxInfo.getItem("HasKexecMultiboot") and currentimageslot == "R":
+			rootslot = True
 		currentimageslot = int(currentimageslot) if currentimageslot and currentimageslot.isdecimal() else 1
 		print("[Image Backup] Current Image Slot %s, Imagelist %s" % (currentimageslot, imagedict))
 		if imagedict:
 			for slotCode in sorted(imagedict.keys()):
 				if imagedict[slotCode]["status"] == "active":
-					if slotCode == "1" and currentimageslot == 1 and BoxInfo.getItem("canRecovery"):
+					if slotCode == "1" and currentimageslot == 1 and BoxInfo.getItem("canRecovery") :
 						imageList.append(ChoiceEntryComponent("", (_("Slot %s: %s as USB Recovery") % (slotCode, imagedict[slotCode]["imagename"]), slotCode, True)))
-					imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s (Current image)") if slotCode == str(currentimageslot) else _("Slot %s: %s")) % (slotCode, imagedict[slotCode]["imagename"]), slotCode, False)))
+					if rootslot:
+						imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s")) % (slotCode, imagedict[slotCode]["imagename"]), slotCode, False)))
+					else:
+						imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s (Current image)") if slotCode == str(currentimageslot) else _("Slot %s: %s")) % (slotCode, imagedict[slotCode]["imagename"]), slotCode, False)))
+			if rootslot:
+				imageList.append(ChoiceEntryComponent("", (_("Slot R: Root Slot Full Backup (Current image)"), "R", False)))
 		else:
 			if BoxInfo.getItem("canRecovery"):
 				imageList.append(ChoiceEntryComponent("", (_("Internal flash: %s %s as USB Recovery") % (DISTRO, DISTROVERSION), "slotCode", True)))
@@ -184,7 +192,11 @@ class ImageBackup(Screen):
 					bootSlots = MultiBoot.getBootSlots()
 					self.hasMultiBootMDT = bootSlots[self.SLOT].get("ubi", False)
 					self.ROOTFSSUBDIR = bootSlots[self.SLOT].get("rootsubdir", "none")
-					self.MTDKERNEL = bootSlots[self.SLOT]["kernel"].split("/")[2]
+					if BoxInfo.getItem("HasKexecMultiboot") and self.SLOT == "R":
+						self.MTDKERNEL = bootSlots[self.SLOT]["kernel"]
+						self.ROOTFSSUBDIR = "none"
+					else:
+						self.MTDKERNEL = bootSlots[self.SLOT]["kernel"].split("/")[2]
 					if self.hasMultiBootMDT:
 						self.MTDROOTFS = bootSlots[self.SLOT]["device"]
 					else:
