@@ -6,6 +6,9 @@ from Tools.LoadPixmap import LoadPixmap
 
 class PluginDescriptor(object):
 	"""An object to describe a plugin."""
+	# Rather than using magic numbers plugins can use these definitions to signify the Enigma2 starting or stopping status.
+	REASON_START = 0
+	REASON_STOP = 1
 	# Where to list the plugin. Note that there are different call arguments,
 	# so you might not be able to combine them.
 	# Common arguments are:

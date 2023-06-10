@@ -10,9 +10,6 @@ from Tools.Directories import SCOPE_PLUGINS, fileExists, resolveFilename
 from Tools.Import import my_import
 from Tools.Profile import profile
 
-REASON_START = 0
-REASON_STOP = 1
-
 
 class PluginComponent:
 	firstRun = True
@@ -34,7 +31,7 @@ class PluginComponent:
 			for where in plugin.where:
 				insort(self.plugins.setdefault(where, []), plugin)
 				if where == PluginDescriptor.WHERE_AUTOSTART:
-					plugin(reason=REASON_START)
+					plugin(reason=PluginDescriptor.REASON_START)
 		else:
 			self.restartRequired = True
 
@@ -44,7 +41,7 @@ class PluginComponent:
 		for where in plugin.where:
 			self.plugins[where].remove(plugin)
 			if where == PluginDescriptor.WHERE_AUTOSTART:
-				plugin(reason=REASON_STOP)
+				plugin(reason=PluginDescriptor.REASON_STOP)
 
 	def readPluginList(self, directory):
 		"""Enumerates plugins."""
