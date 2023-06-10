@@ -359,7 +359,7 @@ class KexecSlotManager(Setup):
 		}, prio=0, description=_("Common Setup Actions"))  # Override the ConfigList "fullUIActions" action map so that we can control the GREEN button here.
 		self["actions"] = HelpableActionMap(self, ["ColorActions"], {
 			"green": (self.keyGreen, getGreenHelpText)
-		}, prio=-1, description=_("Kexec SlotManager Actions"))
+		}, prio=-1, description=_("Slot Manager Actions"))
 		self.console = Console()
 		self.freespace = 0
 		self.deviceData = {}
