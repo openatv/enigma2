@@ -987,8 +987,8 @@ void eListbox::moveSelection(int dir)
 	int prevSel = oldSel;
 	int newSel;
 	int pageOffset = (m_page_size > 0 && m_scrollbar_scroll == byLine) ? m_page_size : maxItems;
-	int oldRow = oldSel / m_max_columns;
-	int oldColumn = oldSel % m_max_columns;
+	int oldRow = (isGrid && m_max_columns != 0) ? oldSel / m_max_columns : 0;
+	int oldColumn = (isGrid && m_max_columns != 0) ? oldSel % m_max_columns : 0;
 
 	bool indexChanged = dir > 100;
 	if (indexChanged)
