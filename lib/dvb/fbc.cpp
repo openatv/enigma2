@@ -21,7 +21,8 @@ static int getProcData(const char* filename)
 	FILE *fp = fopen(filename,"r");
 	if(fp)
 	{
-		fscanf(fp, "%d", &res);
+		if(fscanf(fp, "%d", &res) != 1)
+			eFecDebug("[*][eFBCTunerManager::getProcData] read failed, %s: %m", filename);
 		fclose(fp);
 	}
 	else
@@ -91,7 +92,7 @@ eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
 	bool isRoot;
 	int fe_id = -1;
 	int fbcSetID = -2;
-	int fbcIndex = 0;
+	unsigned int fbcIndex = 0;
 	int initFbcId = -1;
 	int prevFbcSetID = -1;
 	char procFileName[128];
@@ -115,7 +116,7 @@ eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
 				memset(connect_choices, 0, sizeof(connect_choices));
 				snprintf(procFileName, sizeof(procFileName), "/proc/stb/frontend/%d/fbc_connect_choices", fe_id);
 				loadConnectChoices(procFileName, connect_choices);
-				fbcIndex =0; // reset
+				fbcIndex = 0; // reset
 			}
 
 			isRoot = false;
@@ -638,8 +639,8 @@ void eFBCTunerManager::PrintLinks(eDVBRegisteredFrontend *fe) const
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = m_res_mgr->m_frontend;
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
 	{
-		int prev = -1;
-		int next = -1;
+		[[maybe_unused]] int prev = -1;
+		[[maybe_unused]] int next = -1;
 		long prev_ptr = -1;
 		long next_ptr = -1;
 		it->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, prev_ptr);
@@ -662,8 +663,8 @@ void eFBCTunerManager::PrintLinks(eDVBRegisteredFrontend *fe) const
 	eSmartPtrList<eDVBRegisteredFrontend> &simulate_frontends = m_res_mgr->m_simulate_frontend;
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(simulate_frontends.begin()); it != simulate_frontends.end(); ++it)
 	{
-		int prev = -1;
-		int next = -1;
+		[[maybe_unused]] int prev = -1;
+		[[maybe_unused]] int next = -1;
 		long prev_ptr = -1;
 		long next_ptr = -1;
 		it->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, prev_ptr);

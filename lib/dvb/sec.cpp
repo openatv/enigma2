@@ -245,10 +245,10 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					{
 						int lof = sat.frequency > lnb_param.m_lof_threshold ?
 							lnb_param.m_lof_hi : lnb_param.m_lof_lo;
-						int tuner_freq = abs(sat.frequency - lof);
+						const unsigned int tuner_freq = (unsigned int)abs(sat.frequency - lof);
 						if (tuner_freq < fe_info.frequency_min || tuner_freq > fe_info.frequency_max)
 						{
-							eSecDebugNoSimulate("[eDVBSatelliteEquipmentControl] can't tune! tuner frequency %d not in range: frequency_min %d frequency_max %d", tuner_freq, fe_info.frequency_min, fe_info.frequency_max);
+							eSecDebugNoSimulate("[eDVBSatelliteEquipmentControl] can't tune! tuner frequency %u not in range: frequency_min %u frequency_max %u", tuner_freq, fe_info.frequency_min, fe_info.frequency_max);
 							ret = 0;
 						}
 					}
@@ -339,7 +339,7 @@ RESULT eDVBSatelliteEquipmentControl::prepareRFmagicCSS(iDVBFrontend &frontend, 
 	bool simulate = ((eDVBFrontend*)&frontend)-> is_simulate();
 	int vco = roundMulti(lnb_param.SatCRvco + guard_offset + ifreq, 1000);
 	tunerfreq = heterodyne(frontend, ifreq, vco);
-	unsigned int positions = lnb_param.SatCR_positions ? lnb_param.SatCR_positions : 1;
+	[[maybe_unused]] unsigned int positions = lnb_param.SatCR_positions ? lnb_param.SatCR_positions : 1;
 	unsigned int posnum = (lnb_param.SatCR_positionnumber > 0)										// position == 0 -> use first position
 				&& (lnb_param.SatCR_positionnumber <= MAX_EN50607_POSITIONS) ?  lnb_param.SatCR_positionnumber - 1 : 0;
 

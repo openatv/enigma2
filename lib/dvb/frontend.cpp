@@ -657,7 +657,7 @@ int eDVBFrontend::initModeList()
 
 	while ((buf_pos = strstr(buf_pos, "Mode ")) != NULL)
 	{
-		int num_fe_tmp;
+		// int num_fe_tmp;
 		if (sscanf(buf_pos, "Mode %d:%s", &mode, system) == 2)
 		{
 			if(buf_pos2 && buf_pos >= buf_pos2)
@@ -718,7 +718,7 @@ int eDVBFrontend::openFrontend()
 		char boxtype_name[20];
 		if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 		{
-			fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
+			[[maybe_unused]] char* ret = fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 			fclose(boxtype_file);
 
 			if(!strcmp(boxtype_name, "osminiplus\n") || !strcmp(boxtype_name, "osmega") || !strcmp(boxtype_name, "spycat4kmini"))
@@ -769,7 +769,10 @@ int eDVBFrontend::openFrontend()
 				m_fd = -1;
 				return -1;
 			}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
 			strncpy(m_description, fe_info.name, sizeof(m_description));
+#pragma GCC diagnostic pop
 #if defined DTV_ENUM_DELSYS
 			struct dtv_property p[1];
 			memset(p, 0, sizeof(p));
@@ -927,7 +930,7 @@ int eDVBFrontend::openFrontend()
 
 int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 {
-	bool isLinked = false;
+	[[maybe_unused]] bool isLinked = false;
 	bool isUnicable = (m_type == feSatellite) && (m_data[SATCR] != -1);
 	eDebugNoSimulate("[eDVBFrontend] try to close frontend %d", m_dvbid);
 
@@ -1445,7 +1448,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (!strcmp(m_description, "CXD1981"))
 	{
-		eDVBFrontendParametersCable parm = {0};
+//		eDVBFrontendParametersCable parm = {0};
 		int mse = (~snr) & 0xFF;
 		int type = -1;
 		oparm.getSystem(type);
@@ -2698,7 +2701,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 #endif
 				}
 				/* FIXME HACK ALERT use unused by enigma2 ISDBT SEGMENT IDX to pass T2MI PLP ID and T2MI PID */
-				p[cmdseq.num].cmd = DTV_ISDBT_SB_SEGMENT_IDX, p[cmdseq.num].u.data = (parm.t2mi_plp_id == eDVBFrontendParametersSatellite::No_T2MI_PLP_Id ? 0 : (0x80000000 | (parm.t2mi_pid << 16) | parm.t2mi_plp_id)), cmdseq.num++;
+				p[cmdseq.num].cmd = DTV_ISDBT_SB_SEGMENT_IDX, p[cmdseq.num].u.data = (static_cast<unsigned int>(parm.t2mi_plp_id) == eDVBFrontendParametersSatellite::No_T2MI_PLP_Id ? 0 : (0x80000000 | (parm.t2mi_pid << 16) | parm.t2mi_plp_id)), cmdseq.num++;
 			}
 		}
 		else if (type == iDVBFrontend::feCable)
@@ -2966,9 +2969,11 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 					_ioctl_stream d;
 					eDVBFrontendParametersSatellite parm;
 					oparm.getDVBS(parm);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 					uint32_t value = parm.pls_code | (parm.pls_mode & 0x3 << 18);
 					uint8_t seq[6];
-					if ((parm.is_id != NO_STREAM_ID_FILTER) && (parm.system == eDVBFrontendParametersSatellite::System_DVB_S2))
+					if ((static_cast<unsigned int>(parm.is_id) != NO_STREAM_ID_FILTER) && (parm.system == eDVBFrontendParametersSatellite::System_DVB_S2))
 					{
 						seq[0] = (value >> 16) & 0xFF;
 						seq[1] = (value >> 8) & 0xFF;
@@ -2986,6 +2991,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 						seq[4] = 0xff;
 						seq[5] = 0x00;
 					}
+#pragma GCC diagnostic pop
 					int pnp_offset = 0;
 					int fd = open("/proc/stb/info/model", O_RDONLY);
 					char tmp[16];
@@ -3877,7 +3883,10 @@ bool eDVBFrontend::setSlotInfo(int id, const char *descr, bool enabled, bool isD
 	}
 	m_slotid = id;
 	m_enabled = enabled;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
 	strncpy(m_description, descr, sizeof(m_description));
+#pragma GCC diagnostic pop
 
 	// HACK.. the rotor workaround is neede for all NIMs with LNBP21 voltage regulator...
 	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") ||
@@ -3959,7 +3968,7 @@ void eDVBFrontend::getTop(iDVBFrontend &fe, eDVBFrontend* &top_fe)
 
 void eDVBFrontend::getTop(iDVBFrontend &fe, eDVBRegisteredFrontend* &top_fe)
 {
-	eDVBRegisteredFrontend *_top_fe;
+	[[maybe_unused]] eDVBRegisteredFrontend *_top_fe;
 	getTop((eDVBFrontend*)&fe, top_fe);
 }
 

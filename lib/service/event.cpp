@@ -368,10 +368,13 @@ std::string eServiceEvent::getBeginTimeString() const
 {
 	tm t;
 	localtime_r(&m_begin, &t);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-truncation"
 	char tmp[13];
 	snprintf(tmp, 13, "%02d.%02d, %02d:%02d",
 		t.tm_mday, t.tm_mon+1,
 		t.tm_hour, t.tm_min);
+#pragma GCC diagnostic pop
 	return std::string(tmp, 12);
 }
 

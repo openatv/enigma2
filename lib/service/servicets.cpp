@@ -111,6 +111,9 @@ eServiceTS::~eServiceTS()
 
 DEFINE_REF(eServiceTS);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+
 static size_t crop(char *buf)
 {
 	size_t len = strlen(buf) - 1;
@@ -119,6 +122,8 @@ static size_t crop(char *buf)
 	}
 	return len;
 }
+
+#pragma GCC diagnostic pop
 
 static int getline(char** pbuffer, size_t* pbufsize, int fd)
 {
@@ -280,9 +285,9 @@ RESULT eServiceTS::stop()
 		m_destfd = -1;
 	}
 	printf("TS: %s stop\n", m_filename.c_str());
-	if (m_streamthread != NULL)
+	if (m_streamthread != 0)
 		m_streamthread->stop();
-	if (m_decodedemux != NULL)
+	if (m_decodedemux != 0)
 		m_decodedemux->flush();
 	m_audioInfo = 0;
 	return 0;
