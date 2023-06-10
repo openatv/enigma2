@@ -618,9 +618,13 @@ class FlashImage(Screen, HelpableScreen):
 				mtdKernel = BoxInfo.getItem("mtdkernel")
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
 			if BoxInfo.getItem("HasKexecMultiboot"):
-				cmdArgs = ["-r%s" % mtdRootFS, "-k", "-m%s" % self.slotCode]
-				if "uuid" in bootSlots[self.slotCode] and "mmcblk" not in mtdRootFS:
-					cmdArgs.insert(2, "-s%s/linuxrootfs" % BoxInfo.getItem("model")[2:])
+				if self.slotCode == "R":
+					cmdArgs = ["-r", "-k", "-f"]
+					Console().ePopen("umount /proc/cmdline")
+				else:
+					cmdArgs = ["-r%s" % mtdRootFS, "-k", "-m%s" % self.slotCode]
+					if "uuid" in bootSlots[self.slotCode] and "mmcblk" not in mtdRootFS:
+						cmdArgs.insert(2, "-s%s/linuxrootfs" % BoxInfo.getItem("model")[2:])
 			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
@@ -629,9 +633,6 @@ class FlashImage(Screen, HelpableScreen):
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel]
 			elif mtdKernel == mtdRootFS:  # Receiver with kernel and rootfs on one partition.
 				cmdArgs = ["-r"]
-			elif BoxInfo.getItem("HasKexecMultiboot") and self.slotCode == "R":  # Kexec Root Image.
-				cmdArgs = ["-r", "-k", "-f"]
-				Console().ePopen("umount /proc/cmdline")
 			else:  # Normal non MultiBoot receiver.
 				cmdArgs = ["-r", "-k"]
 			self.containerOFGWrite = Console()
