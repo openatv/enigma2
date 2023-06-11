@@ -17,9 +17,9 @@ to generate HTML."""
 	# use of the enableWrapAround="1" attribute in the skin. Similarly the
 	# itemHeight and font specifications are handled by the skin.
 	#
-	def __init__(self, list=[], enableWrapAround=None, item_height=0, fonts=[]):
+	def __init__(self, list=None, enableWrapAround=None, item_height=0, fonts=None):
 		Source.__init__(self)
-		self.listData = list
+		self.listData = list or []
 		self.listStyle = "default"  # Style might be an optional string which can be used to define different visualizations in the skin.
 		self.onSelectionChanged = []
 		self.disableCallbacks = False
@@ -65,9 +65,6 @@ to generate HTML."""
 		if not self.disableCallbacks:
 			self.downstream_elements.entry_changed(index)
 
-	def entry_changed(self, index):  # IanSav: Is this old name really required?
-		return self.entryChanged(index)
-
 	def modifyEntry(self, index, data):
 		self.listData[index] = data
 		self.entryChanged(index)
@@ -81,12 +78,6 @@ to generate HTML."""
 	@cached
 	def getCurrentIndex(self):
 		return self.master.index if self.master is not None else 0  # None - The 0 is a hack to avoid badly written code from crashing!
-
-	def getSelectedIndex(self):  # This method should be found and removed from all code.
-		return self.getCurrentIndex()
-
-	def getIndex(self):  # This method should be found and removed from all code.
-		return self.getCurrentIndex()
 
 	def setCurrentIndex(self, index):
 		if self.master is not None:
@@ -108,9 +99,9 @@ to generate HTML."""
 	def setTopIndex(self, index):
 		try:
 			instance = self.master.master.instance
-			return instance.setTopIndex(index)
+			instance.setTopIndex(index)
 		except AttributeError:
-			return -1
+			return
 
 	@cached
 	def getStyle(self):
@@ -222,7 +213,7 @@ to generate HTML."""
 		except AttributeError:
 			return
 
-	# These hacks protect code that was modified to use the previous up/down hack!
+	# These hacks protect code that was modified to use the previous up/down hack!   This methods should be found and removed from all code.
 	#
 	def selectPrevious(self):
 		self.goLineUp()
@@ -230,8 +221,14 @@ to generate HTML."""
 	def selectNext(self):
 		self.goLineDown()
 
-	# Old navigation method names.
+	# Old method names. This methods should be found and removed from all code.
 	#
+	def getSelectedIndex(self):
+		return self.getCurrentIndex()
+
+	def getIndex(self):
+		return self.getCurrentIndex()
+
 	def top(self):
 		self.goTop()
 

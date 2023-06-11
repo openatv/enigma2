@@ -53,18 +53,9 @@ class MenuList(GUIComponent):
 	def getCurrentIndex(self):
 		return self.l.getCurrentSelectionIndex()
 
-	def getSelectionIndex(self):  # This method should be found and removed from all code.
-		return self.getCurrentIndex()
-
-	def getSelectedIndex(self):  # This method should be found and removed from all code.
-		return self.getCurrentIndex()
-
 	def setCurrentIndex(self, index):
 		if self.instance:
 			self.instance.moveSelectionTo(index)
-
-	def moveToIndex(self, index):  # This method should be found and removed from all code.
-		self.setCurrentIndex(index)
 
 	index = property(getCurrentIndex, setCurrentIndex)
 
@@ -115,22 +106,31 @@ class MenuList(GUIComponent):
 		if self.instance:
 			self.instance.goBottom()
 
-	# Old navigation method names.
+	# Old method names. This methods should be found and removed from all code.
 	#
-	def top(self):  # This method should be found and removed from all code.
+	def getSelectionIndex(self):
+		return self.getCurrentIndex()
+
+	def getSelectedIndex(self):
+		return self.getCurrentIndex()
+
+	def moveToIndex(self, index):
+		self.setCurrentIndex(index)
+
+	def top(self):
 		self.goTop()
 
-	def pageUp(self):  # This method should be found and removed from all code.
+	def pageUp(self):
 		self.goPageUp()
 
-	def up(self):  # This method should be found and removed from all code.
+	def up(self):
 		self.goLineUp()
 
-	def down(self):  # This method should be found and removed from all code.
+	def down(self):
 		self.goLineDown()
 
-	def pageDown(self):  # This method should be found and removed from all code.
+	def pageDown(self):
 		self.goPageDown()
 
-	def bottom(self):  # This method should be found and removed from all code.
+	def bottom(self):
 		self.goBottom()
