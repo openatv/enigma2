@@ -2025,9 +2025,91 @@ RESULT eDVBSatelliteEquipmentControl::setTunerDepends(int tu1, int tu2)
 	return -1;
 }
 
+bool eDVBSatelliteEquipmentControl::tunerLinkedInUse(int root)
+{
+	long linked_root = -1;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->is_FBCTuner())
+		{
+			it->m_frontend->getData(eDVBFrontend::ADVANCED_LINKED_ROOT, linked_root);
+			if (linked_root != -1 && linked_root == root && it->m_inuse)
+				return true;
+		}
+	}
+	return false;
+}
+
+bool eDVBSatelliteEquipmentControl::tunerAdvancedsatposdependsInUse(int root)
+{
+	long advanced_satposdepends_link = -1;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		it->m_frontend->getData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_LINK, advanced_satposdepends_link);
+		if (advanced_satposdepends_link != -1 && advanced_satposdepends_link == root && it->m_inuse)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+int eDVBSatelliteEquipmentControl::getRotorAdvancedsatposdependsPosition(int advanced_satposdepends)
+{
+	long rotor_pos = -1;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->getSlotID() == advanced_satposdepends)
+		{
+			it->m_frontend->getData(eDVBFrontend::ROTOR_POS, rotor_pos);
+			return rotor_pos;
+		}
+	}
+	return rotor_pos;
+}
+
+bool eDVBSatelliteEquipmentControl::setAdvancedsatposdependsRoot(int advanced_satposdepends)
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->getSlotID() == advanced_satposdepends)
+		{
+			it->m_frontend->setData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_ROOT, advanced_satposdepends);
+			return true;
+		}
+	}
+	return false;
+}
+
+RESULT eDVBSatelliteEquipmentControl::resetAdvancedsatposdependsRoot(int link)
+{
+	eDVBRegisteredFrontend *root=NULL;
+	long advanced_satposdepends = -1;
+	bool in_use = false;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->getSlotID() == link)
+			root = *it;
+		it->m_frontend->getData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_LINK, advanced_satposdepends);
+		if (advanced_satposdepends == link)
+			in_use = true;
+	}
+
+	if (root && !in_use)
+	{
+		root->m_frontend->setData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_ROOT, -1);
+		return 0;
+	}
+	return -1;
+}
+
 void eDVBSatelliteEquipmentControl::setSlotNotLinked(int slot_no)
 {
-	eSecDebug("[eDVBSatelliteEquipmentControl] eDVBSatelliteEquipmentControl::setSlotNotLinked(%d)", slot_no);
+	eSecDebug("[eDVBSatelliteEquipmentControl::setSlotNotLinked] slot=%d", slot_no);
 	m_not_linked_slot_mask |= (1 << slot_no);
 }
 
