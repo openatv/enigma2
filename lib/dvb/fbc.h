@@ -75,10 +75,10 @@ public:
 	int getLinkedSlotID(int feid) const;
 	void SetDefaultFBCID(eDVBRegisteredFrontend *) const;
 	void UpdateFBCID(eDVBRegisteredFrontend *, eDVBRegisteredFrontend *) const;
-	int IsCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *&fbc_fe, bool simulate) const;
-	bool CanLink(eDVBRegisteredFrontend *fe) const;
-	void AddLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *top_fe, bool simulate);
-	void Unlink(eDVBRegisteredFrontend *link_fe);
+	int IsCompatibleWith(ePtr<iDVBFrontendParameters> &, eDVBRegisteredFrontend *, eDVBRegisteredFrontend *&, bool) const;
+	bool CanLink(eDVBRegisteredFrontend *) const;
+	void AddLink(eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, bool) const;
+	void Unlink(eDVBRegisteredFrontend *) const;
 	bool IsFBCLink(int fe_id) const;
 };
 

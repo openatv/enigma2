@@ -112,9 +112,8 @@ eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
 
 	tuner.id = 0;
 
-	int fe_id = -1;
-	int fbcSetID = -2;
-	int fbc_prev_set_id = -1;
+	fe_id = -1;
+	fbc_prev_set_id = -1;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
 	{
@@ -414,7 +413,7 @@ void eFBCTunerManager::DisconnectLink(eDVBRegisteredFrontend *link_fe, eDVBRegis
 		FrontendSetLinkPtr(next_fe, link_prev, prev_fe);
 }
 
-int eFBCTunerManager::IsCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *&fbc_fe, bool simulate)
+int eFBCTunerManager::IsCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *&fbc_fe, bool simulate) const
 {
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_res_mgr->m_simulate_frontend : m_res_mgr->m_frontend;
 	eDVBRegisteredFrontend *fe_insert_point;
@@ -486,7 +485,7 @@ int eFBCTunerManager::IsCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDV
 }
 
 /* attach link_fe to tail of fe linked list */
-void eFBCTunerManager::AddLink(eDVBRegisteredFrontend *leaf, eDVBRegisteredFrontend *root, bool simulate)
+void eFBCTunerManager::AddLink(eDVBRegisteredFrontend *leaf, eDVBRegisteredFrontend *root, bool simulate) const
 {
 	eDVBRegisteredFrontend *leaf_insert_after, *leaf_insert_before, *leaf_current, *leaf_next;
 
@@ -570,7 +569,7 @@ void eFBCTunerManager::AddLink(eDVBRegisteredFrontend *leaf, eDVBRegisteredFront
 
 /* if fe, fe_simulated is unused, unlink current frontend from linked things. */
 /* all unused linked fbc fe must be unlinked! */
-void eFBCTunerManager::Unlink(eDVBRegisteredFrontend *fe)
+void eFBCTunerManager::Unlink(eDVBRegisteredFrontend *fe) const
 {
 	eDVBRegisteredFrontend *simul_fe;
 	bool simulate = fe->m_frontend->is_simulate();
