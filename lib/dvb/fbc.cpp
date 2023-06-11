@@ -466,7 +466,7 @@ int eFBCTunerManager::IsCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDV
 			fbc_fe = *it;
 		}
 
-		eFecDebug("[*][eFBCTunerManager::isCompatibleWith] score : %d (%d->%d)", c, FESlotID(it), FESlotID(link_fe));
+		eFecDebug("[*][eFBCTunerManager::isCompatibleWith] score : %d (%d->%d)", new_score, FESlotID(it), FESlotID(link_fe));
 
 
 		/* disconnect link */
@@ -727,7 +727,7 @@ void eFBCTunerManager::PrintLinks(eDVBRegisteredFrontend *fe) const
 		else
 			next = -1;
 
-		eFecDebug(, " [*][eFBCTunerManager::printLinks] fe_id : %2d, inuse : %d, enabled : %d, fbc : %d, prev : %2d, cur : %2d, next : %2d (simulate)", FESlotID(it), it->m_inuse, it->m_frontend->getEnabled(), it->m_frontend->is_FBCTuner(), prev, FESlotID(it), next);
+		eFecDebug(" [*][eFBCTunerManager::printLinks] fe_id : %2d, inuse : %d, enabled : %d, fbc : %d, prev : %2d, cur : %2d, next : %2d (simulate)", FESlotID(it), it->m_inuse, it->m_frontend->getEnabled(), it->m_frontend->is_FBCTuner(), prev, FESlotID(it), next);
 	}
 }
 
