@@ -6,11 +6,11 @@ from Components.GUIComponent import GUIComponent
 class MenuList(GUIComponent):
 	GUI_WIDGET = eListbox
 
-	def __init__(self, list, enableWrapAround=None, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
+	def __init__(self, menuList, enableWrapAround=None, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
 		GUIComponent.__init__(self)
-		self.list = list
+		self.menuList = menuList
 		self.l = content()
-		self.l.setList(self.list)
+		self.l.setList(self.menuList)
 		self.onSelectionChanged = []
 
 	def postWidgetCreate(self, instance):
@@ -21,46 +21,59 @@ class MenuList(GUIComponent):
 		instance.setContent(None)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
-	def selectionChanged(self):
-		for callback in self.onSelectionChanged:
-			callback()
-
-	def getList(self):
-		return self.list
-
-	def setList(self, list):
-		self.list = list
-		self.l.setList(self.list)
+	def enableAutoNavigation(self, enabled):
+		if self.instance:
+			self.instance.enableAutoNavigation(enabled)
 
 	def selectionEnabled(self, enabled):
 		if self.instance:
 			self.instance.setSelectionEnable(enabled)
 
-	def enableAutoNavigation(self, enabled):
-		if self.instance:
-			self.instance.enableAutoNavigation(enabled)
+	def getList(self):
+		return self.menuList
+
+	def setList(self, menuList):
+		self.menuList = menuList
+		self.l.setList(self.menuList)
+
+	list = property(getList, setList)
+
+	def count(self):
+		return len(self.menuList)
+
+	def selectionChanged(self):
+		for callback in self.onSelectionChanged:
+			callback()
 
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
 
+	current = property(getCurrent)
+
 	def getCurrentIndex(self):
 		return self.l.getCurrentSelectionIndex()
 
-	def getSelectionIndex(self):
+	def getSelectionIndex(self):  # This method should be found and removed from all code.
 		return self.getCurrentIndex()
 
-	def getSelectedIndex(self):
+	def getSelectedIndex(self):  # This method should be found and removed from all code.
 		return self.getCurrentIndex()
-
-	def count(self):
-		return len(self.list)
 
 	def setCurrentIndex(self, index):
 		if self.instance:
 			self.instance.moveSelectionTo(index)
 
-	def moveToIndex(self, index):
+	def moveToIndex(self, index):  # This method should be found and removed from all code.
 		self.setCurrentIndex(index)
+
+	index = property(getCurrentIndex, setCurrentIndex)
+
+	def getTopIndex(self):
+		return self.instance.getTopIndex() if self.instance else -1
+
+	def setTopIndex(self, index):
+		if self.instance:
+			self.instance.setTopIndex(index)
 
 	def goTop(self):
 		if self.instance:
@@ -74,6 +87,22 @@ class MenuList(GUIComponent):
 		if self.instance:
 			self.instance.goLineUp()
 
+	def goFirst(self):
+		if self.instance:
+			self.instance.goFirst()
+
+	def goLeft(self):
+		if self.instance:
+			self.instance.goLeft()
+
+	def goRight(self):
+		if self.instance:
+			self.instance.goRight()
+
+	def goLast(self):
+		if self.instance:
+			self.instance.goLast()
+
 	def goLineDown(self):
 		if self.instance:
 			self.instance.goLineDown()
@@ -86,29 +115,22 @@ class MenuList(GUIComponent):
 		if self.instance:
 			self.instance.goBottom()
 
-	def getTopIndex(self):
-		return self.instance.getTopIndex() if self.instance else -1
-
-	def setTopIndex(self, index):
-		if self.instance:
-			self.instance.setTopIndex(index)
-
 	# Old navigation method names.
 	#
-	def top(self):
+	def top(self):  # This method should be found and removed from all code.
 		self.goTop()
 
-	def pageUp(self):
+	def pageUp(self):  # This method should be found and removed from all code.
 		self.goPageUp()
 
-	def up(self):
+	def up(self):  # This method should be found and removed from all code.
 		self.goLineUp()
 
-	def down(self):
+	def down(self):  # This method should be found and removed from all code.
 		self.goLineDown()
 
-	def pageDown(self):
+	def pageDown(self):  # This method should be found and removed from all code.
 		self.goPageDown()
 
-	def bottom(self):
+	def bottom(self):  # This method should be found and removed from all code.
 		self.goBottom()

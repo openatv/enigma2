@@ -24,6 +24,13 @@ to generate HTML."""
 		self.onSelectionChanged = []
 		self.disableCallbacks = False
 
+	def enableAutoNavigation(self, enabled):
+		try:
+			instance = self.master.master.instance
+			instance.enableAutoNavigation(enabled)
+		except AttributeError:
+			return
+
 	def getList(self):
 		return self.listData
 
@@ -42,6 +49,18 @@ to generate HTML."""
 		self.index = oldIndex
 		self.disableCallbacks = False
 
+	def count(self):
+		return len(self.listData)
+
+	def selectionChanged(self, index):
+		if self.disableCallbacks:
+			return
+		for element in self.downstream_elements:  # Update all non-master targets.
+			if element is not self.master:
+				element.index = index
+		for callback in self.onSelectionChanged:
+			callback()
+
 	def entryChanged(self, index):
 		if not self.disableCallbacks:
 			self.downstream_elements.entry_changed(index)
@@ -53,15 +72,6 @@ to generate HTML."""
 		self.listData[index] = data
 		self.entryChanged(index)
 
-	def selectionChanged(self, index):
-		if self.disableCallbacks:
-			return
-		for element in self.downstream_elements:  # Update all non-master targets.
-			if element is not self.master:
-				element.index = index
-		for callback in self.onSelectionChanged:
-			callback()
-
 	@cached
 	def getCurrent(self):
 		return self.master is not None and self.master.current
@@ -72,23 +82,35 @@ to generate HTML."""
 	def getCurrentIndex(self):
 		return self.master.index if self.master is not None else 0  # None - The 0 is a hack to avoid badly written code from crashing!
 
+	def getSelectedIndex(self):  # This method should be found and removed from all code.
+		return self.getCurrentIndex()
+
+	def getIndex(self):  # This method should be found and removed from all code.
+		return self.getCurrentIndex()
+
 	def setCurrentIndex(self, index):
 		if self.master is not None:
 			self.master.index = index
 			self.selectionChanged(index)
 
+	def setIndex(self, index):  # This method should be found and removed from all code.
+		return self.setCurrentIndex(index)
+
 	index = property(getCurrentIndex, setCurrentIndex)
 
-	# Old index method names.
-	#
-	def getSelectedIndex(self):
-		return self.getCurrentIndex()
+	def getTopIndex(self):
+		try:
+			instance = self.master.master.instance
+			return instance.getTopIndex()
+		except AttributeError:
+			return -1
 
-	def getIndex(self):
-		return self.getCurrentIndex()
-
-	def setIndex(self, index):
-		return self.setCurrentIndex(index)
+	def setTopIndex(self, index):
+		try:
+			instance = self.master.master.instance
+			return instance.setTopIndex(index)
+		except AttributeError:
+			return -1
 
 	@cached
 	def getStyle(self):
@@ -100,16 +122,6 @@ to generate HTML."""
 			self.changed((self.CHANGED_SPECIFIC, "style"))
 
 	style = property(getStyle, setStyle)
-
-	def count(self):
-		return len(self.listData)
-
-	def enableAutoNavigation(self, enabled):
-		try:
-			instance = self.master.master.instance
-			instance.enableAutoNavigation(enabled)
-		except AttributeError:
-			return
 
 	def show(self):
 		try:
@@ -161,6 +173,13 @@ to generate HTML."""
 		except AttributeError:
 			return
 
+	def goFirst(self):
+		try:
+			instance = self.master.master.instance
+			instance.goFirst()
+		except AttributeError:
+			return
+
 	def goLeft(self):
 		try:
 			instance = self.master.master.instance
@@ -172,6 +191,13 @@ to generate HTML."""
 		try:
 			instance = self.master.master.instance
 			instance.goRight()
+		except AttributeError:
+			return
+
+	def goLast(self):
+		try:
+			instance = self.master.master.instance
+			instance.goLast()
 		except AttributeError:
 			return
 
