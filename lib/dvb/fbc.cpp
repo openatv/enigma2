@@ -11,7 +11,7 @@
 #include <sstream>
 #include <iomanip>
 
-//#define FBC_DEBUG
+#define FBC_DEBUG
 
 #ifdef FBC_DEBUG
 #define eFecDebug(arg...) eDebug(arg)
