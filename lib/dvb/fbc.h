@@ -9,6 +9,7 @@
 #include <map>
 
 class eDVBResourceManager;
+class eDVBFrontend;
 class eDVBRegisteredFrontend;
 
 typedef struct fbc_tuner
