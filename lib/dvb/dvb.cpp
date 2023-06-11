@@ -4,6 +4,7 @@
 
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
+#include <lib/base/estring.h>
 #include <lib/base/wrappers.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/idvb.h>
@@ -30,22 +31,24 @@ DEFINE_REF(eDVBRegisteredDemux);
 
 DEFINE_REF(eDVBAllocatedFrontend);
 
-eDVBAllocatedFrontend::eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe): m_fe(fe)
+void eDVBRegisteredFrontend::closeFrontend()
+{
+	if (!m_inuse && m_frontend->closeFrontend()) // frontend busy
+		disable->start(60000, true);  // retry close in 60secs
+}
+
+eDVBAllocatedFrontend::eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe, eFBCTunerManager *fbcmng)
+	: m_fe(fe), m_fbcmng(fbcmng)
 {
 	m_fe->inc_use();
-	if (m_fe->m_frontend->is_FBCTuner())
-	{
-		eFBCTunerManager* fbcmng = eFBCTunerManager::getInstance();
-		if (fbcmng)
-		{
-			fbcmng->Unlink(m_fe);
-		}
-	}
 }
 
 eDVBAllocatedFrontend::~eDVBAllocatedFrontend()
 {
 	m_fe->dec_use();
+
+	if (m_fe->m_frontend->is_FBCTuner() && m_fbcmng)
+		m_fbcmng->Unlink(m_fe);
 }
 
 DEFINE_REF(eDVBAllocatedDemux);
@@ -197,8 +200,8 @@ eDVBResourceManager::eDVBResourceManager()
 	eDebug("[eDVBResourceManager] found %zd adapter, %zd frontends(%zd sim) and %zd demux, boxtype %d",
 		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size(), m_boxtype);
 
-	m_fbc_mng = new eFBCTunerManager(this);
-	
+	m_fbcmng = new eFBCTunerManager(instance);
+
 	CONNECT(m_releaseCachedChannelTimer->timeout, eDVBResourceManager::releaseCachedChannel);
 }
 
@@ -281,6 +284,7 @@ int eDVBAdapterLinux::getNumDemux()
 RESULT eDVBAdapterLinux::getDemux(ePtr<eDVBDemux> &demux, int nr)
 {
 	eDebug("[eDVBAdapterLinux] get demux %d", nr);
+
 	eSmartPtrList<eDVBDemux>::iterator i(m_demux.begin());
 	while (nr && (i != m_demux.end()))
 	{
@@ -996,27 +1000,40 @@ void eDVBResourceManager::setFrontendType(int index, const char *type, bool appe
 RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm, bool simulate, bool returnScoreOnly)
 {
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
-//	ePtr<eDVBRegisteredFrontend> best;
-	eDVBRegisteredFrontend *best = NULL;
-	int bestval = 0;
-	int foundone = 0;
+	eDVBRegisteredFrontend *best, *fbc_fe, *best_fbc_fe;
+	int bestval, foundone, current_fbc_setid, c;
+	bool check_fbc_leaf_linkable, is_configured_sat;
+	long link;
 
-	int check_fbc_linked = 0;
-	eDVBRegisteredFrontend *fbc_fe = NULL;
-	eDVBRegisteredFrontend *best_fbc_fe = NULL;
-	eFBCTunerManager* fbcmng = m_fbc_mng;
+	fbc_fe  = NULL;
+	best_fbc_fe = NULL;
+	best = NULL;
+	bestval = 0;
+	foundone = 0;
+	check_fbc_leaf_linkable = false;
+	current_fbc_setid = -1;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 	{
-		int c = 0;
+		c = 0;
+		is_configured_sat = false;
 		fbc_fe = NULL;
-		if (!check_fbc_linked && i->m_frontend->is_FBCTuner() && fbcmng && fbcmng->CanLink(*i))
+		if (i->m_frontend->is_FBCTuner() && m_fbcmng->CanLink(*i))
 		{
-			check_fbc_linked = 1;
-			c = fbcmng->IsCompatibleWith(feparm, *i, fbc_fe, simulate);
+			int fbc_setid = m_fbcmng->GetFBCSetID(i->m_frontend->getSlotID());
 
+			if (fbc_setid != current_fbc_setid)
+			{
+				current_fbc_setid = fbc_setid;
+				check_fbc_leaf_linkable = false;
+			}
 
-//			eDebug("[eDVBResourceManager::allocateFrontend] fbcmng->isCompatibleWith slotid : %p (%d), fbc_fe : %p (%d), score : %d", (eDVBRegisteredFrontend *)*i,  i->m_frontend->getSlotID(), fbc_fe, fbc_fe?fbc_fe->m_frontend->getSlotID():-1, c);			
+			if (!check_fbc_leaf_linkable)
+			{
+				c = m_fbcmng->IsCompatibleWith(feparm, *i, fbc_fe, simulate);
+				check_fbc_leaf_linkable = true;
+				//eDebug("[eDVBResourceManager::allocateFrontend] m_fbcmng->isCompatibleWith slotid : %p (%d), fbc_fe : %p (%d), score : %d", (eDVBRegisteredFrontend *)*i, i->m_frontend->ge);
+			}
 		}
 		else
 		{
@@ -1052,17 +1069,14 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 	
 	if (best)
 	{
-		if (fbcmng && best_fbc_fe)
-		{
-			fbcmng->AddLink(best, best_fbc_fe, simulate);
-		}
+		if (best_fbc_fe)
+			m_fbcmng->AddLink(best, best_fbc_fe, simulate);
 
-		fe = new eDVBAllocatedFrontend(best);
+		fe = new eDVBAllocatedFrontend(best, m_fbcmng);
 		return 0;
 	}
 
 	fe = 0;
-
 	if (foundone)
 		return errAllSourcesBusy;
 	else
@@ -1115,7 +1129,7 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 					prev->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, tmp);
 				}
 			}
-			fe = new eDVBAllocatedFrontend(i);
+			fe = new eDVBAllocatedFrontend(i, m_fbcmng);
 			return 0;
 		}
 alloc_fe_by_id_not_possible:
@@ -1127,9 +1141,8 @@ alloc_fe_by_id_not_possible:
 
 RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int &cap)
 {
-		/* find first unused demux which is on same adapter as frontend (or any, if PVR)
-		   never use the first one unless we need a decoding demux. */
-	uint8_t d, a;
+	/* find first unused demux which is on same adapter as frontend (or any, if PVR)
+		never use the first one unless we need a decoding demux. */
 
 	eDebug("[eDVBResourceManager] allocate demux cap=%02X", cap);
 	eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin());
@@ -1137,35 +1150,41 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	if (i == m_demux.end())
 		return -1;
 
-	ePtr<eDVBRegisteredDemux> unused;
 
 	iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin(); /* look for a demux on the same adapter as the frontend, or the first adapter for dvr playback */
-	int source = fe ? fe->m_frontend->getDVBID() : -1;
-	cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
-	if (!fe)
+	int fesource = fe ? fe->m_frontend->getDVBID() : -1;
+	ePtr<eDVBRegisteredDemux> unused;
+	uint8_t d, a;
+
+	/*
+	 * For pvr playback, start with the last demux.
+	 * On some hardware, there are less ca devices than demuxes, so try to leave
+	 * the first demuxes for live tv, and start with the last for pvr playback
+	 */
+
+//	cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
+	bool use_decode_demux = (fe || (cap & iDVBChannel::capDecode));
+
+	if (!use_decode_demux)
 	{
-		/*
-			* For pvr playback, start with the last demux.
-			* On some hardware, we have less ca devices than demuxes,
-			* so we should try to leave the first demuxes for live tv,
-			* and start with the last for pvr playback
-			*/
 		i = m_demux.end();
 		--i;
 	}
+
 	while (i != m_demux.end())
 	{
 		if (i->m_adapter == adapter)
 		{
 			if (!i->m_inuse)
 			{
-				/* mark the first unused demux, we'll use that when we do not find a better match */
-				if (!unused) unused = i;
+				// mark the first unused demux and use that when no better match is found
+				if (!unused)
+					unused = i;
 			}
 			else
 			{
-				/* demux is in use, see if we can share it */
-				if (source >= 0 && i->m_demux->getSource() == source)
+				// demux is in use, see if it can be shared
+				if (fesource >= 0 && i->m_demux->getSource() == fesource)
 				{
 					i->m_demux->getCAAdapterID(a);
 					i->m_demux->getCADemuxID(d);
@@ -1175,12 +1194,14 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 				}
 			}
 		}
-		if (fe)
+		if (use_decode_demux)
 		{
 			++i;
 		}
 		else
 		{
+			if (i == m_demux.begin())
+				break;
 			--i;
 		}
 	}
@@ -1189,10 +1210,10 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	{
 		unused->m_demux->getCAAdapterID(a);
 		unused->m_demux->getCADemuxID(d);
-		eDebug("[eDVBResourceManager] allocating demux adapter=%d, demux=%d, source=%d", a, d, unused->m_demux->getSource());
+		eDebug("[eDVBResourceManager] allocating demux adapter=%d, demux=%d, source=%d fesource=%d", a, d, unused->m_demux->getSource(), fesource);
 		demux = new eDVBAllocatedDemux(unused);
 		if (fe)
-			demux->get().setSourceFrontend(fe->m_frontend->getDVBID());
+			demux->get().setSourceFrontend(fesource);
 		else
 			demux->get().setSourcePVR(0);
 		return 0;
@@ -1521,32 +1542,40 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 {
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 	ePtr<eDVBRegisteredFrontend> best;
-	int bestval = 0;
-	int check_fbc_linked = 0;
-	eDVBRegisteredFrontend *fbc_fe = NULL;
-//	eDVBRegisteredFrontend *best_fbc_fe = NULL;
-	eFBCTunerManager *fbcmng = m_fbc_mng;
+	int bestval, current_fbc_setid, c;
+	bool check_fbc_leaf_linkable;
+
+	bestval = 0;
+	check_fbc_leaf_linkable = false;
+	current_fbc_setid = -1;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 	{
 		if (!i->m_inuse)
 		{
-			int c = 0;
-			fbc_fe = NULL;
-			if (!check_fbc_linked && i->m_frontend->is_FBCTuner() && fbcmng && fbcmng->CanLink(*i))
+			c = 0;
+			if(i->m_frontend->is_FBCTuner() && m_fbcmng->CanLink(*i))
 			{
-				check_fbc_linked = 1;
-				c = fbcmng->IsCompatibleWith(feparm, *i, fbc_fe, simulate);
+				int fbc_setid = m_fbcmng->GetFBCSetID(i->m_frontend->getSlotID());
+
+				if (fbc_setid != current_fbc_setid)
+				{
+					current_fbc_setid = fbc_setid;
+					check_fbc_leaf_linkable = false;
+				}
+
+				if (!check_fbc_leaf_linkable)
+				{
+					eDVBRegisteredFrontend *dummy;
+					c = m_fbcmng->IsCompatibleWith(feparm, *i, dummy, simulate);
+					check_fbc_leaf_linkable = true;
+				}
 			}
 			else
-			{
 				c = i->m_frontend->isCompatibleWith(feparm);
-			}
+
 			if (c > bestval)
-			{
 				bestval = c;
-//				best_fbc_fe = fbc_fe;
-			}
 		}
 	}
 	return bestval;
