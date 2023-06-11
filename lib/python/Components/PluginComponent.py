@@ -20,7 +20,7 @@ class PluginComponent:
 		self.pluginList = []
 		self.installedPluginList = []
 		self.setPluginPrefix("Plugins.")
-		self.warnings = []
+		self.pluginWarnings = []
 
 	def setPluginPrefix(self, prefix):
 		self.prefix = prefix
@@ -63,7 +63,7 @@ class PluginComponent:
 						print("[PluginComponent] Error: Plugin '%s/%s' failed to load!  (%s)" % (pluginDirectory, pluginName, str(err)))
 						for filename in ("plugin.py", "plugin.pyc", "plugin.pyo"):  # Suppress errors due to missing plugin.py* files (badly removed plugin).
 							if exists(join(path, filename)):
-								self.warnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
+								self.pluginWarnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
 								print_exc()
 								break
 						else:
@@ -86,7 +86,7 @@ class PluginComponent:
 							loadKeymap(keymap)
 						except Exception as err:
 							print("[PluginComponent] Error: The keymap file for plugin '%s/%s' failed to load!  (%s)" % (pluginDirectory, pluginName, str(err)))
-							self.warnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
+							self.pluginWarnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
 		# Build a diff between the old list of plugins and the new one internally, the "fnc" argument will be compared with "__eq__".
 		pluginsAdded = [x for x in newPlugins if x not in self.pluginList]
 		pluginsRemoved = [x for x in self.pluginList if not x.internal and x not in newPlugins]
@@ -143,12 +143,12 @@ class PluginComponent:
 			self.removePlugin(plugin)
 
 	def getWarnings(self):
-		return self.warnings
+		return self.pluginWarnings
 
 	warnings = property(getWarnings)
 	
 	def resetWarnings(self):
-		self.warnings = []
+		self.pluginWarnings = []
 
 	def getNextWakeupTime(self, getPluginIdent=False):
 		wakeUp = -1
