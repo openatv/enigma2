@@ -195,7 +195,7 @@ void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descr
 		modulation = Modulation_Auto;
 	inversion = Inversion_Unknown;
 	system = System_DVB_C_ANNEX_A;
-	eDebug("[eDVBFrontendParametersSatellite] Cable freq %d, mod %d, sr %d, fec %d",
+	eDebug("[eDVBFrontendParametersCable] Cable freq %d, mod %d, sr %d, fec %d",
 		frequency,
 		modulation, symbol_rate, fec_inner);
 }
@@ -3078,7 +3078,7 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 		return -ENOENT;
 	}
 	m_data[FREQ_OFFSET] = 0;
-	eDebugNoSimulate("frontend %d tuning dvb-c to %d khz, sr %d, fec %d, modulation %d, inversion %d",
+	eDebugNoSimulate("[eDVBFrontend%d] tuning dvb-c to %d khz, sr %d, fec %d, modulation %d, inversion %d",
 		m_dvbid,
 		feparm.frequency,
 		feparm.symbol_rate,
@@ -3138,7 +3138,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 {
 	unsigned int timeout = 5000;
 	int type;
-	eDebugNoSimulate("tune tuner %d", m_dvbid);
+	eDebugNoSimulate("[eDVBFrontend%d] tune", m_dvbid);
 
 	m_timeout->stop();
 
@@ -3152,7 +3152,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 
 	if (!m_sn && !m_simulate)
 	{
-		eDebug("no frontend device opened... do not try to tune !!!");
+		eDebug("[eDVBFrontend] no frontend device opened... do not try to tune !!!");
 		res = -ENODEV;
 		goto tune_error;
 	}
@@ -3272,7 +3272,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 		eDVBFrontendParametersSatellite feparm;
 		if (where.getDVBS(feparm))
 		{
-			eDebug("no dvbs data!");
+			eDebug("[eDVBFrontend%d] no dvbs data!", m_dvbid);
 			res = -EINVAL;
 			goto tune_error;
 		}
@@ -3286,7 +3286,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 				sec_fe = linked_fe->m_frontend;
 				sec_fe->getData(LINKED_NEXT_PTR, tmp);
 			}
-			eDebug("(fe%d) reset diseqc after leave rotor mode!", m_dvbid);
+			eDebug("[eDVBFrontend%d] reset diseqc after leave rotor mode!", m_dvbid);
 			sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = sec_fe->m_data[ROTOR_CMD] = sec_fe->m_data[ROTOR_POS] = -1; // reset diseqc
 		}
 		m_rotor_mode = feparm.no_rotor_command_on_tune;
@@ -3445,13 +3445,13 @@ RESULT eDVBFrontend::getState(int &state)
 RESULT eDVBFrontend::setTone(int t)
 {
 	fe_sec_tone_mode_t tone;
-	if (m_type != feSatellite)
-	{
-		eWarning("[eDVBFrontend] dvb-s mode not aktive!");
-		return 0;
-	}
 	if (m_simulate)
 		return 0;
+	if (m_type != feSatellite)
+	{
+		eDebug("[eDVBFrontend%d] sendTone allowed only in feSatellite (%d)", m_dvbid, m_type);
+		return 0;
+	}
 	m_data[CUR_TONE]=t;
 	switch (t)
 	{
@@ -3469,14 +3469,14 @@ RESULT eDVBFrontend::setTone(int t)
 
 RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 {
-	struct dvb_diseqc_master_cmd cmd;
-	if (m_type != feSatellite)
-	{
-		eWarning("[eDVBFrontend] dvb-s mode not aktive!");
-		return 0;
-	}
+	struct dvb_diseqc_master_cmd cmd = {};
 	if (m_simulate)
 		return 0;
+	if (m_type != feSatellite)
+	{
+		eDebug("[eDVBFrontend%d] sendDiseqc allowed only in feSatellite (%d)", m_dvbid, m_type);
+		return 0;
+	}
 	memcpy(cmd.msg, diseqc.data, diseqc.len);
 	cmd.msg_len = diseqc.len;
 	if (::ioctl(m_fd, FE_DISEQC_SEND_MASTER_CMD, &cmd))
@@ -3487,13 +3487,13 @@ RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 RESULT eDVBFrontend::sendToneburst(int burst)
 {
 	fe_sec_mini_cmd_t cmd;
-	if (m_type != feSatellite)
-	{
-		eWarning("[eDVBFrontend] dvb-s mode not aktive!");
-		return 0;
-	}
 	if (m_simulate)
 		return 0;
+	if (m_type != feSatellite)
+	{
+		eDebug("[eDVBFrontend%d] sendToneburst allowed only in feSatellite (%d)", m_dvbid, m_type);
+		return 0;
+	}
 	if (burst == eDVBSatelliteDiseqcParameters::B)
 		cmd = SEC_MINI_B;
 	else
@@ -3562,7 +3562,7 @@ bool eDVBFrontend::isPreferred(int preferredFrontend, int slotid)
 		return (preferredFrontend >= 0 && slotid == preferredFrontend);
 }
 
-int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
+int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, bool is_configured_sat)
 {
 	int type;
 	int types;
@@ -3606,9 +3606,20 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 				return 0;
 		}
 		score = m_sec ? m_sec->canTune(parm, this, 1 << m_slotid) : 0;
+
+		/* additional check is orbital position configured for busy tuner use type SATPOS_DEPENDS_PTR/ADVANCED_SATPOSDEPENDS_ROOT(LINK) */
+		if (is_configured_sat && !score && m_sec && m_sec->isOrbitalPositionConfigured(parm.orbital_position))
+			score = 1;
+
 		if (score > 1 && parm.system == eDVBFrontendParametersSatellite::System_DVB_S && can_handle_dvbs2)
 		{
 			/* prefer to use an S tuner, try to keep S2 free for S2 transponders */
+			score--;
+		}
+		if (score > 1 && is_multistream() && !multistream)
+		{
+			eDebug("[eDVBFrontend] isCompatibleWith NON MULTISTREAM CHANNEL!!!!");
+			/* prefer to use a non multistream tuner, try to keep multistream tuners free for multistream transponders */
 			score--;
 		}
 	}

@@ -54,24 +54,24 @@ private:
 	static long GetFELink(eDVBRegisteredFrontend *ptr);
 	static eDVBRegisteredFrontend *GetHead(eDVBRegisteredFrontend *);
 	static eDVBRegisteredFrontend *GetTail(eDVBRegisteredFrontend *);
+	static void UpdateLNBSlotMask(int, int, bool);
 	bool IsSameFBCSet(int, int) const;
 	bool IsRootFE(eDVBRegisteredFrontend *) const;
  	bool IsFEUsed(eDVBRegisteredFrontend *, bool) const;
 	int GetFBCID(int) const;
 	int GetDefaultFBCID(int) const;
 
-	eDVBRegisteredFrontend *GetSimulFE(eDVBRegisteredFrontend *fe) const;
+	eDVBRegisteredFrontend *GetSimulFE(eDVBRegisteredFrontend *) const;
 
-	void ConnectLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *prev_fe, eDVBRegisteredFrontend *next_fe, bool simulate) const;
-	void DisconnectLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *prev_fe, eDVBRegisteredFrontend *next_fe, bool simulate) const;
-	void UpdateLNBSlotMask(int dest_slot, int src_slot, bool remove);
+	void ConnectLink(eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, bool) const;
+	void DisconnectLink(eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, bool) const;
 	void PrintLinks(eDVBRegisteredFrontend *fe) const;
 
 public:
 	static eFBCTunerManager* getInstance();
 	eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr);
 	virtual ~eFBCTunerManager();
-	int GetFBCSetID(int fe_id) const;
+	int GetFBCSetID(int) const;
 	int getLinkedSlotID(int feid) const;
 	void SetDefaultFBCID(eDVBRegisteredFrontend *) const;
 	void UpdateFBCID(eDVBRegisteredFrontend *, eDVBRegisteredFrontend *) const;

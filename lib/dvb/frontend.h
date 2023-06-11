@@ -70,9 +70,13 @@ public:
 		NEW_ROTOR_POS,        // new rotor position (not validated)
 		ROTOR_CMD,            // completed rotor cmd (finalized)
 		ROTOR_POS,            // current rotor position
+		SAT_POSITION,                // current frontend satellite position
+		ADVANCED_LINKED_ROOT,        // number slot connected frontend
 		LINKED_PREV_PTR,      // prev double linked list (for linked FEs)
 		LINKED_NEXT_PTR,      // next double linked list (for linked FEs)
 		SATPOS_DEPENDS_PTR,   // pointer to FE with configured rotor (with twin/quattro lnb)
+		ADVANCED_SATPOSDEPENDS_ROOT, // root frontend with rotor (advanced satpos depending)
+		ADVANCED_SATPOSDEPENDS_LINK, // link to FE with configured rotor (with twin/quattro lnb, advanced satpos depending)
 		CUR_FREQ,             // current frequency
 		CUR_SYM,              // current symbolrate
 		CUR_LOF,              // current local oszillator frequency
@@ -191,7 +195,7 @@ public:
 	void getFrontendData(ePtr<iDVBFrontendData> &dest);
 
 	bool isPreferred(int preferredFrontend, int slotid);
-	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
+	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, bool is_configured_sat = false);
 	int getDVBID() { return m_dvbid; }
 	int getSlotID() { return m_slotid; }
 	bool setSlotInfo(int id, const char *descr, bool enabled, bool isDVBS2, int frontendid);
@@ -214,9 +218,9 @@ public:
 	int openFrontend();
 	int closeFrontend(bool force=false, bool no_delayed=false);
 	const char *getDescription() const { return m_description; }
-	bool is_simulate() const { return m_simulate; }
 	const dvb_frontend_info getFrontendInfo() const { return fe_info; }
 	const dvb_frontend_info getFrontendInfo(fe_delivery_system_t delsys)  { return m_fe_info[delsys]; }
+	bool is_simulate() const { return m_simulate; }
 	bool is_FBCTuner() { return m_fbc; }
 	void setFBCTuner(bool enable) { m_fbc = enable; }
 	bool getEnabled() { return m_enabled; }

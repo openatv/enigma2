@@ -171,8 +171,8 @@ eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
 
 eFBCTunerManager::~eFBCTunerManager()
 {
-	if (m_instance == this)
-		m_instance = 0;
+	if(m_instance == this)
+		m_instance = (eFBCTunerManager*)0;
 }
 
 void eFBCTunerManager::SetProcFBCID(int fe_id, int fbc_connect, bool fbc_is_linked)
@@ -185,7 +185,6 @@ void eFBCTunerManager::SetProcFBCID(int fe_id, int fbc_connect, bool fbc_is_link
 	/* set linked */
 	WriteProcInt(fe_id, "fbc_link", fbc_is_linked ? 1 : 0);
 }
-
 
 int eFBCTunerManager::FESlotID(eDVBRegisteredFrontend *fe)
 {
@@ -614,21 +613,22 @@ void eFBCTunerManager::Unlink(eDVBRegisteredFrontend *fe) const
 void eFBCTunerManager::UpdateLNBSlotMask(int dest_slot, int src_slot, bool remove)
 {
 	ePtr<eDVBSatelliteEquipmentControl> sec = eDVBSatelliteEquipmentControl::getInstance();
+	int idx, sec_lnbidx;
 
-	int sec_lnbidx = sec->m_lnbidx;
+	sec_lnbidx = sec->m_lnbidx;
 
 	int found = 0;
-	for (int idx=0; idx <= sec_lnbidx; ++idx )
+	for (idx=0; idx <= sec_lnbidx; ++idx )
 	{
 		eDVBSatelliteLNBParameters &lnb_param = sec->m_lnbs[idx];
 		if ( lnb_param.m_slot_mask & (1 << src_slot) )
 		{
 			eFecDebug("[*][eFBCTunerManager::UpdateLNBSlotMask] m_slot_mask : %d", lnb_param.m_slot_mask);
 
-			if (!remove)
-				lnb_param.m_slot_mask |= (1 << dest_slot);
-			else
+			if (remove)
 				lnb_param.m_slot_mask &= ~(1 << dest_slot);
+			else
+				lnb_param.m_slot_mask |= (1 << dest_slot);
 
 			eFecDebug("[*][eFBCTunerManager::UpdateLNBSlotMask] changed m_slot_mask : %d", lnb_param.m_slot_mask);
 			found = 1;
