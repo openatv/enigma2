@@ -23,6 +23,12 @@ typedef struct fbc_tuner
 class eFBCTunerManager: public iObject, public sigc::trackable
 {
 private:
+	typedef enum
+	{
+		link_prev,
+		link_next
+	} link_ptr_t;
+
 	DECLARE_REF(eFBCTunerManager);
 	ePtr<eDVBResourceManager> m_res_mgr;
 	static eFBCTunerManager *m_instance;
@@ -32,6 +38,11 @@ private:
 	int FESlotID(const eDVBRegisteredFrontend *fe) const;
 	bool IsLinked(eDVBRegisteredFrontend *fe) const;
  	bool isUnicable(eDVBRegisteredFrontend *fe) const;
+	static eDVBRegisteredFrontend* FrontendGetLinkPtr(eDVBFrontend *, link_ptr_t);
+	static eDVBRegisteredFrontend* FrontendGetLinkPtr(eDVBRegisteredFrontend *, link_ptr_t);
+	static void FrontendSetLinkPtr(eDVBRegisteredFrontend *, link_ptr_t, eDVBRegisteredFrontend *);
+	static eDVBRegisteredFrontend *GetFEPtr(long);
+	static long GetFELink(eDVBRegisteredFrontend *ptr);
  	bool IsFEUsed(eDVBRegisteredFrontend *fe, bool a_simulate) const;
 	bool IsSameFBCSet(int fe_id_a, int fe_id_b);
 	bool IsRootFE(eDVBRegisteredFrontend *fe);
@@ -44,8 +55,8 @@ private:
 	eDVBRegisteredFrontend *GetTail(eDVBRegisteredFrontend *fe) const;
 	eDVBRegisteredFrontend *GetSimulFE(eDVBRegisteredFrontend *fe) const;
 
-	void ConnectLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *prev_fe, eDVBRegisteredFrontend *next_fe, bool simulate);
-	void DisconnectLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *prev_fe, eDVBRegisteredFrontend *next_fe, bool simulate);
+	void ConnectLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *prev_fe, eDVBRegisteredFrontend *next_fe, bool simulate) const;
+	void DisconnectLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *prev_fe, eDVBRegisteredFrontend *next_fe, bool simulate) const;
 	int UpdateLNBSlotMask(int dest_slot, int src_slot, bool remove);
 	void PrintLinks(eDVBRegisteredFrontend *fe) const;
 
