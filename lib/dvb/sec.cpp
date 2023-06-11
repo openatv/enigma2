@@ -2140,6 +2140,26 @@ bool eDVBSatelliteEquipmentControl::isOrbitalPositionConfigured(int orbital_posi
 	return false;
 }
 
+int eDVBSatelliteEquipmentControl::frontendLastRotorOrbitalPosition(int slot)
+{
+	long last_rotor_pos = -1;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->getSlotID() == slot)
+		{
+			it->m_frontend->getData(eDVBFrontend::ROTOR_POS, last_rotor_pos);
+			return last_rotor_pos;
+		}
+	}
+	return last_rotor_pos;
+}
+
+void eDVBSatelliteEquipmentControl::forceUpdateRotorPos(int slot, int orbital_position)
+{
+	slotRotorSatPosChanged(slot, orbital_position); // emit python
+}
+
 PyObject *eDVBSatelliteEquipmentControl::getBandCutOffFrequency(int slot_no, int orbital_position)
 {
 	PyObject *pyList = PyList_New(0);
