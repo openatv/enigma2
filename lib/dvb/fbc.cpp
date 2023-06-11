@@ -163,7 +163,7 @@ eFBCTunerManager::~eFBCTunerManager()
 		m_instance = 0;
 }
 
-int eFBCTunerManager::SetProcFBCID(int fe_id, int fbc_connect, bool is_linked)
+eFBCTunerManager::SetProcFBCID(int fe_id, int fbc_connect, bool is_linked)
 {
 	eFecDebug("[*][eFBCTunerManager::SetProcFBCID] %d -> %d", fe_id, fbc_connect);
 	char filename[128];
@@ -175,8 +175,6 @@ int eFBCTunerManager::SetProcFBCID(int fe_id, int fbc_connect, bool is_linked)
 	/* set linked */
 	sprintf(filename, "/proc/stb/frontend/%d/fbc_link", fe_id);
 	setProcData(filename, (int)is_linked);
-
-	return 0;
 }
 
 

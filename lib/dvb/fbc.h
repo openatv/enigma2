@@ -34,7 +34,7 @@ private:
 	static eFBCTunerManager *m_instance;
 	std::map<int, FBC_TUNER> m_fbc_tuners;
 
-	int SetProcFBCID(int fe_id, int root_idx, bool is_linked);
+	void SetProcFBCID(int fe_id, int root_idx, bool is_linked);
 	int FESlotID(const eDVBRegisteredFrontend *fe) const;
 	bool IsLinked(eDVBRegisteredFrontend *fe) const;
  	bool isUnicable(eDVBRegisteredFrontend *fe) const;
