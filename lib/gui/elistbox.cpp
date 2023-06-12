@@ -1401,7 +1401,7 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 		m_content->cursorSet(m_selected);
 	}
 
-	if (doDown || (customPageSize && dir == movePageDown))
+	if (doDown || dir == movePageDown)
 	{
 
 		int newline = oldLine + (m_selected - oldSel);
@@ -1459,7 +1459,7 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 			topLeft = m_selected - (maxItems / 2);
 		}
 	}
-	else if (doUp || (customPageSize && dir == movePageUp))
+	else if (doUp || dir == movePageUp)
 	{
 		if (m_first_selectable_item > 0 && m_selected == m_first_selectable_item)
 		{
