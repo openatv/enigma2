@@ -421,6 +421,18 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 	return gFont(name, int(size * scale[1][0] / scale[1][1]))
 
 
+def parseGradient(value):
+	values = value.split(',')
+	if len(values) == 3:
+		direction = {
+			"horizontal": ePixmap.GRADIENT_HORIZONTAL,
+			"vertical": ePixmap.GRADIENT_VERTICAL,
+		}.get(values[2], ePixmap.GRADIENT_VERTICAL)
+		return (parseColor(values[0]), parseColor(values[1]), direction)
+	else:
+		return None
+
+
 def parseHorizontalAlignment(value):
 	options = {
 		"left": 0,
@@ -754,6 +766,11 @@ class AttributeParser:
 
 	def backgroundPixmap(self, value):
 		self.guiObject.setBackgroundPixmap(parsePixmap(value, self.desktop))
+
+	def gradient(self, value):
+		value = parseGradient(value)
+		if value:
+			self.guiObject.setGradient(value[0], value[1], value[2])
 
 	def borderColor(self, value):
 		self.guiObject.setBorderColor(parseColor(value, 0x00FFFFFF))
