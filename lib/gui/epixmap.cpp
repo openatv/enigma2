@@ -4,7 +4,7 @@
 #include <lib/gui/ewidgetdesktop.h>
 
 ePixmap::ePixmap(eWidget *parent)
-	: eWidget(parent), m_alphatest(0), m_scale(0), m_have_border_color(false), m_border_width(0), m_gradient_direction(0), m_gradient_set(false)
+	: eWidget(parent), m_alphatest(0), m_scale(0), m_have_border_color(false), m_gradient_set(false), m_border_width(0), m_gradient_direction(0)
 {
 }
 

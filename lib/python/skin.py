@@ -303,12 +303,12 @@ def parseColor(value, default=0x00FFFFFF):
 		try:
 			value = gRGB(int(value[1:], 0x10))
 		except ValueError:
-			skinError("The color code '%s' must be #aarrggbb, using #00ffffff (White)" % value)
+			skinError("The color code '%s' must be #aarrggbb, using #00FFFFFF (White)" % value)
 			value = gRGB(default)
 	elif value in colors:
 		value = colors[value]
 	else:
-		skinError("The color '%s' must be #aarrggbb or valid named color, using #00ffffff (White)" % value)
+		skinError("The color '%s' must be #aarrggbb or valid named color, using #00FFFFFF (White)" % value)
 		value = gRGB(default)
 	return value
 
@@ -422,15 +422,17 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 
 
 def parseGradient(value):
-	values = value.split(',')
-	if len(values) == 3:
-		direction = {
+	data = [x.strip() for x in value.split(",")]
+	if len(data) == 3:
+		options = {
 			"horizontal": ePixmap.GRADIENT_HORIZONTAL,
 			"vertical": ePixmap.GRADIENT_VERTICAL,
-		}.get(values[2], ePixmap.GRADIENT_VERTICAL)
-		return (parseColor(values[0]), parseColor(values[1]), direction)
+		}
+		direction = parseOptions(options, "gradient", data[2], ePixmap.GRADIENT_VERTICAL)
+		return (parseColor(data[0], default=0x00000000), parseColor(data[1], 0x00FFFFFF), direction)
 	else:
-		return None
+		skinError("The gradient '%s' must be 'startColor,endColor,direction', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)" % value)
+		return (0x000000, 0x00FFFFFF, ePixmap.GRADIENT_VERTICAL)
 
 
 def parseHorizontalAlignment(value):
@@ -768,9 +770,7 @@ class AttributeParser:
 		self.guiObject.setBackgroundPixmap(parsePixmap(value, self.desktop))
 
 	def gradient(self, value):
-		value = parseGradient(value)
-		if value:
-			self.guiObject.setGradient(value[0], value[1], value[2])
+		self.guiObject.setGradient(*parseGradient(value))
 
 	def borderColor(self, value):
 		self.guiObject.setBorderColor(parseColor(value, 0x00FFFFFF))

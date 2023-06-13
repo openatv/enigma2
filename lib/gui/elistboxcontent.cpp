@@ -1350,8 +1350,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				x += offset.x();
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
 				y += offset.y();
-				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
-				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
+				//int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
+				//int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 				int direction = PyLong_AsLong(ppdirection);
 
 				eRect rect(x, y, m_itemsize.width(), m_itemsize.height());
