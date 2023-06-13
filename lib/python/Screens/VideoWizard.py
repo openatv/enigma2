@@ -180,6 +180,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 		configfile.save()
 
 	def keyRed(self):  # Thats is only a temporary workaround for language selection
+		self.timeoutTimer.stop()
 		self.red()
 
 	def createSummary(self):
