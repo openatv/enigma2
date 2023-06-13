@@ -58,7 +58,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 		preferred = ""
 		try:
 			if BoxInfo.getItem("AmlogicFamily"):
-				fd =open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
+				fd = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
 				preferred = fd.read()[:-1].replace('*', '')
 				fd.close()
 			else:
@@ -178,6 +178,9 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 		config.misc.videowizardenabled.value = 0
 		config.misc.videowizardenabled.save()
 		configfile.save()
+
+	def keyRed(self):  # Thats is only a temporary workaround for language selection
+		self.red()
 
 	def createSummary(self):
 		return WizardSummary
