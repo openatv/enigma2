@@ -3,7 +3,7 @@ from os.path import dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
 from xml.etree.cElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eSize, eSlider, eSubtitleWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
@@ -1570,6 +1570,13 @@ def readSkin(screen, skin, names, desktop):
 		collectAttributes(w.skinAttributes, widget, context, skinPath, ignore=("name",))
 		screen.additionalWidgets.append(w)
 
+	def processRectangle(widget, context):
+		w = additionalWidget()
+		w.widget = eRectangle
+		w.skinAttributes = []
+		collectAttributes(w.skinAttributes, widget, context, skinPath, ignore=("name",))
+		screen.additionalWidgets.append(w)
+
 	def processScreen(widget, context):
 		widgets = widget
 		for w in widgets.findall('constant-widget'):
@@ -1617,6 +1624,7 @@ def readSkin(screen, skin, names, desktop):
 		"applet": processApplet,
 		"eLabel": processLabel,
 		"ePixmap": processPixmap,
+		"eRectangle": processRectangle,
 		"panel": processPanel
 	}
 
