@@ -5,6 +5,11 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <ifaddrs.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <net/if.h>
 #include <libsig_comp.h>
 #include <linux/dvb/version.h>
 
@@ -134,7 +139,7 @@ void keyEvent(const eRCKey &key)
 
 /* Defined in eerror.cpp */
 void setDebugTime(int level);
-class eMain: public eApplication, public sigc::trackable
+class eMain : public eApplication, public sigc::trackable
 {
 	eInit init;
 	ePythonConfigQuery config;
@@ -169,46 +174,46 @@ public:
 	}
 };
 
-bool replace(std::string& str, const std::string& from, const std::string& to) 
+bool replace(std::string &str, const std::string &from, const std::string &to)
 {
 	size_t start_pos = str.find(from);
-	if(start_pos == std::string::npos)
+	if (start_pos == std::string::npos)
 		return false;
 	str.replace(start_pos, from.length(), to);
 	return true;
 }
 
-static const std::string getConfigCurrentSpinner(const char* key)
+static const std::string getConfigCurrentSpinner(const char *key)
 {
 	auto value = eSimpleConfig::getString(key);
 
 	// if value is not empty, means config.skin.primary_skin exist in settings file
 
-	if (!value.empty()) 
+	if (!value.empty())
 	{
 		replace(value, "skin.xml", "spinner");
 		std::string png_location = eEnv::resolve("${datadir}/enigma2/" + value + "/wait1.png");
 		std::ifstream png(png_location.c_str());
-		if (png.good()) {
+		if (png.good())
+		{
 			png.close();
 			return value; // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_GUISKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png exist )
 		}
-
 	}
 
-	// try to find spinner in skin_default/spinner subfolder 
+	// try to find spinner in skin_default/spinner subfolder
 	value = "skin_default/spinner";
 
 	// check /usr/share/enigma2/skin_default/spinner/wait1.png
 	std::string png_location = eEnv::resolve("${datadir}/enigma2/" + value + "/wait1.png");
 	std::ifstream png(png_location.c_str());
-	if (png.good()) {
+	if (png.good())
+	{
 		png.close();
 		return value; // ( /usr/share/enigma2/skin_default/spinner/wait1.png exist )
 	}
 	else
-		return "spinner";  // ( /usr/share/enigma2/skin_default/spinner/wait1.png DOES NOT exist )
-
+		return "spinner"; // ( /usr/share/enigma2/skin_default/spinner/wait1.png DOES NOT exist )
 }
 
 int exit_code;
@@ -298,11 +303,10 @@ int main(int argc, char **argv)
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
 
-	//int double_buffer = my_dc->haveDoubleBuffering();
+	// int double_buffer = my_dc->haveDoubleBuffering();
 
 	ePtr<gLCDDC> my_lcd_dc;
 	gLCDDC::getInstance(my_lcd_dc);
-
 
 	/* ok, this is currently hardcoded for arabic. */
 	/* some characters are wrong in the regular font, force them to use the replacement font */
@@ -318,11 +322,11 @@ int main(int argc, char **argv)
 	dsk.setStyleID(0);
 	dsk_lcd.setStyleID(my_lcd_dc->size().width() == 96 ? 2 : 1);
 
-/*	if (double_buffer)
-	{
-		eDebug("[Enigma] Double buffering found, enable buffered graphics mode.");
-		dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
-	} */
+	/*	if (double_buffer)
+		{
+			eDebug("[Enigma] Double buffering found, enable buffered graphics mode.");
+			dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
+		} */
 
 	wdsk = &dsk;
 	lcddsk = &dsk_lcd;
@@ -330,16 +334,16 @@ int main(int argc, char **argv)
 	dsk.setDC(my_dc);
 	dsk_lcd.setDC(my_lcd_dc);
 
-	dsk.setBackgroundColor(gRGB(0,0,0,0xFF));
+	dsk.setBackgroundColor(gRGB(0, 0, 0, 0xFF));
 #endif
 
-		/* redrawing is done in an idle-timer, so we have to set the context */
+	/* redrawing is done in an idle-timer, so we have to set the context */
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
 
 	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
 	std::string spinnerPostion = eSimpleConfig::getString("config.misc.spinnerPosition", "100,100");
-	int spinnerPostionX,spinnerPostionY;
+	int spinnerPostionX, spinnerPostionY;
 	if (sscanf(spinnerPostion.c_str(), "%d,%d", &spinnerPostionX, &spinnerPostionY) != 2)
 	{
 		spinnerPostionX = spinnerPostionY = 100;
@@ -360,13 +364,14 @@ int main(int argc, char **argv)
 		rfilename = eEnv::resolve(filename);
 
 		struct stat st;
-		if (::stat(rfilename.c_str(), &st) == 0) {
+		if (::stat(rfilename.c_str(), &st) == 0)
+		{
 			def = true;
 			skinpath = userpath;
 		}
 
 		ePtr<gPixmap> wait[MAX_SPINNER];
-		while(i < MAX_SPINNER)
+		while (i < MAX_SPINNER)
 		{
 			snprintf(filename, sizeof(filename), "%s/wait%d.png", skinpath.c_str(), i + 1);
 			rfilename = eEnv::resolve(filename);
@@ -375,10 +380,10 @@ int main(int argc, char **argv)
 			if (::stat(rfilename.c_str(), &st) == 0)
 				loadPNG(wait[i], rfilename.c_str());
 
-			if (!wait[i]) 
+			if (!wait[i])
 			{
 				// spinner failed
-				if (i==0)
+				if (i == 0)
 				{
 					// retry default spinner only once
 					if (!def)
@@ -394,7 +399,7 @@ int main(int argc, char **argv)
 			i++;
 		}
 		eDebug("[Enigma] Found %d spinners.", i);
-		if (i==0)
+		if (i == 0)
 			my_dc->setSpinner(eRect(spinnerPostionX, spinnerPostionY, 0, 0), wait, 1);
 		else
 			my_dc->setSpinner(eRect(ePoint(spinnerPostionX, spinnerPostionY), wait[0]->size()), wait, i);
@@ -500,8 +505,136 @@ void setAnimation_current_listbox(int a)
 }
 #else
 #ifndef HAVE_OSDANIMATION
-void setAnimation_current(int a) {}
+void setAnimation_current(int a)
+{
+}
 void setAnimation_speed(int speed) {}
 void setAnimation_current_listbox(int a) {}
 #endif
 #endif
+
+std::string getActiveAdapter()
+{
+	std::string ret = "";
+	struct ifaddrs *ifaddr, *ifa;
+	int family, status;
+	// Get the list of network interfaces
+	status = getifaddrs(&ifaddr);
+	if (status != 0)
+	{
+		eDebug("[Enigma] getActiveAdapter Failed to get network interfaces.");
+		return "";
+	}
+	// Iterate through the network interfaces
+	for (ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next)
+	{
+		if (ifa->ifa_addr == nullptr)
+			continue;
+		// Check if the interface is active and has an IP address
+		if ((ifa->ifa_flags & IFF_UP) && (ifa->ifa_addr->sa_family == AF_INET ||
+										  ifa->ifa_addr->sa_family == AF_INET6))
+		{
+			eDebug("[Enigma] getActiveAdapter Active network interface: %s.", ifa->ifa_name);
+			ret = ifa->ifa_name;
+			break;
+		}
+	}
+	freeifaddrs(ifaddr);
+	return ret;
+}
+
+int checkLinkStatus()
+{
+
+	std::string interface = getActiveAdapter();
+	if (interface.empty())
+		return 0;
+
+	int sock;
+	struct ifreq ifr;
+	// Create a socket
+	sock = socket(AF_INET, SOCK_DGRAM, 0);
+	if (sock < 0)
+	{
+		eDebug("[Enigma] checkLinkStatus Failed to create socket.");
+		return 0;
+	}
+	// Set the interface name
+	strncpy(ifr.ifr_name, interface.c_str(), IFNAMSIZ);
+	// Get the interface flags
+	if (ioctl(sock, SIOCGIFFLAGS, &ifr) < 0)
+	{
+		eDebug("[Enigma] checkLinkStatus Failed to get interface flags.");
+		close(sock);
+		return 0;
+	}
+	int ret = (ifr.ifr_flags & IFF_RUNNING) ? 1 : 0;
+	close(sock);
+	return ret;
+}
+
+int checkInternetAccess(int timeout = 3)
+{
+
+	int link = checkLinkStatus();
+	if (link == 0)
+		return 0;
+
+	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+	if (sockfd == -1)
+	{
+		eDebug("[Enigma] checkInternetAccess Failed to create socket.");
+		return 1;
+	}
+	// Set the socket to non-blocking mode
+	int flags = fcntl(sockfd, F_GETFL, 0);
+	if (flags == -1 || fcntl(sockfd, F_SETFL, flags | O_NONBLOCK) == -1)
+	{
+		eDebug("[Enigma] checkInternetAccess Failed to set socket to non-blocking mode.");
+		close(sockfd);
+		return 1;
+	}
+
+	struct sockaddr_in serverAddress;
+	serverAddress.sin_family = AF_INET;
+	serverAddress.sin_port = htons(443);
+	inet_pton(AF_INET, "8.8.8.8", &(serverAddress.sin_addr));
+	int connectResult = connect(sockfd, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
+	if (connectResult == -1 && errno != EINPROGRESS)
+	{
+		eDebug("[Enigma] checkInternetAccess Internet access is not working. (%d)", errno);
+		close(sockfd);
+		return 1;
+	}
+
+	fd_set writeSet;
+	FD_ZERO(&writeSet);
+	FD_SET(sockfd, &writeSet);
+	struct timeval ttimeout;
+	ttimeout.tv_sec = timeout;
+	ttimeout.tv_usec = 0;
+	int selectResult = select(sockfd + 1, nullptr, &writeSet, nullptr, &ttimeout);
+	if (selectResult == -1)
+	{
+		eDebug("[Enigma] checkInternetAccess Error occurred during select().");
+		close(sockfd);
+		return 1;
+	}
+	else if (selectResult == 0)
+	{
+		eDebug("[Enigma] checkInternetAccess Internet access is not working (timeout).");
+		close(sockfd);
+		return 1;
+	}
+	int error = 0;
+	socklen_t errorLength = sizeof(error);
+	if (getsockopt(sockfd, SOL_SOCKET, SO_ERROR, &error, &errorLength) < 0 || error != 0)
+	{
+		eDebug("[Enigma] checkInternetAccess Internet access is not working.");
+		close(sockfd);
+		return 1;
+	}
+	close(sockfd);
+	eDebug("[Enigma] checkInternetAccess Internet access is working.");
+	return 2;
+}
