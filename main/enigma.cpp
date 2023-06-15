@@ -128,7 +128,6 @@ void keyEvent(const eRCKey &key)
 }
 
 /************************************************/
-#include <unistd.h>
 #include <lib/components/scan.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
@@ -322,11 +321,13 @@ int main(int argc, char **argv)
 	dsk.setStyleID(0);
 	dsk_lcd.setStyleID(my_lcd_dc->size().width() == 96 ? 2 : 1);
 
-	/*	if (double_buffer)
-		{
-			eDebug("[Enigma] Double buffering found, enable buffered graphics mode.");
-			dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
-		} */
+	/*
+	if (double_buffer)
+	{
+		eDebug("[Enigma] Double buffering found, enable buffered graphics mode.");
+		dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
+	}
+	*/
 
 	wdsk = &dsk;
 	lcddsk = &dsk_lcd;
@@ -488,7 +489,6 @@ void dump_malloc_stats(void)
 
 #ifdef USE_LIBVUGLES2
 #include <vuplus_gles.h>
-
 void setAnimation_current(int a)
 {
 	gles_set_animation_func(a);
@@ -505,9 +505,7 @@ void setAnimation_current_listbox(int a)
 }
 #else
 #ifndef HAVE_OSDANIMATION
-void setAnimation_current(int a)
-{
-}
+void setAnimation_current(int a) {}
 void setAnimation_speed(int speed) {}
 void setAnimation_current_listbox(int a) {}
 #endif
@@ -517,7 +515,7 @@ std::string getActiveAdapter()
 {
 	std::string ret = "";
 	struct ifaddrs *ifaddr, *ifa;
-	int family, status;
+	int status;
 	// Get the list of network interfaces
 	status = getifaddrs(&ifaddr);
 	if (status != 0)
@@ -598,7 +596,8 @@ int checkInternetAccess(int timeout = 3)
 	struct sockaddr_in serverAddress;
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_port = htons(443);
-	inet_pton(AF_INET, "8.8.8.8", &(serverAddress.sin_addr));
+	const char* GOOGLE = "8.8.8.8"; // NOSONAR
+	inet_pton(AF_INET, GOOGLE, &(serverAddress.sin_addr));
 	int connectResult = connect(sockfd, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
 	if (connectResult == -1 && errno != EINPROGRESS)
 	{
