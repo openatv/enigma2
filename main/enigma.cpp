@@ -5,6 +5,11 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <ifaddrs.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <net/if.h>
 #include <libsig_comp.h>
 #include <linux/dvb/version.h>
 
@@ -123,7 +128,6 @@ void keyEvent(const eRCKey &key)
 }
 
 /************************************************/
-#include <unistd.h>
 #include <lib/components/scan.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
@@ -134,7 +138,7 @@ void keyEvent(const eRCKey &key)
 
 /* Defined in eerror.cpp */
 void setDebugTime(int level);
-class eMain: public eApplication, public sigc::trackable
+class eMain : public eApplication, public sigc::trackable
 {
 	eInit init;
 	ePythonConfigQuery config;
@@ -169,46 +173,46 @@ public:
 	}
 };
 
-bool replace(std::string& str, const std::string& from, const std::string& to) 
+bool replace(std::string &str, const std::string &from, const std::string &to)
 {
 	size_t start_pos = str.find(from);
-	if(start_pos == std::string::npos)
+	if (start_pos == std::string::npos)
 		return false;
 	str.replace(start_pos, from.length(), to);
 	return true;
 }
 
-static const std::string getConfigCurrentSpinner(const char* key)
+static const std::string getConfigCurrentSpinner(const char *key)
 {
 	auto value = eSimpleConfig::getString(key);
 
 	// if value is not empty, means config.skin.primary_skin exist in settings file
 
-	if (!value.empty()) 
+	if (!value.empty())
 	{
 		replace(value, "skin.xml", "spinner");
 		std::string png_location = eEnv::resolve("${datadir}/enigma2/" + value + "/wait1.png");
 		std::ifstream png(png_location.c_str());
-		if (png.good()) {
+		if (png.good())
+		{
 			png.close();
 			return value; // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_GUISKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png exist )
 		}
-
 	}
 
-	// try to find spinner in skin_default/spinner subfolder 
+	// try to find spinner in skin_default/spinner subfolder
 	value = "skin_default/spinner";
 
 	// check /usr/share/enigma2/skin_default/spinner/wait1.png
 	std::string png_location = eEnv::resolve("${datadir}/enigma2/" + value + "/wait1.png");
 	std::ifstream png(png_location.c_str());
-	if (png.good()) {
+	if (png.good())
+	{
 		png.close();
 		return value; // ( /usr/share/enigma2/skin_default/spinner/wait1.png exist )
 	}
 	else
-		return "spinner";  // ( /usr/share/enigma2/skin_default/spinner/wait1.png DOES NOT exist )
-
+		return "spinner"; // ( /usr/share/enigma2/skin_default/spinner/wait1.png DOES NOT exist )
 }
 
 int exit_code;
@@ -298,11 +302,10 @@ int main(int argc, char **argv)
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
 
-	//int double_buffer = my_dc->haveDoubleBuffering();
+	// int double_buffer = my_dc->haveDoubleBuffering();
 
 	ePtr<gLCDDC> my_lcd_dc;
 	gLCDDC::getInstance(my_lcd_dc);
-
 
 	/* ok, this is currently hardcoded for arabic. */
 	/* some characters are wrong in the regular font, force them to use the replacement font */
@@ -318,11 +321,13 @@ int main(int argc, char **argv)
 	dsk.setStyleID(0);
 	dsk_lcd.setStyleID(my_lcd_dc->size().width() == 96 ? 2 : 1);
 
-/*	if (double_buffer)
+	/*
+	if (double_buffer)
 	{
 		eDebug("[Enigma] Double buffering found, enable buffered graphics mode.");
 		dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
-	} */
+	}
+	*/
 
 	wdsk = &dsk;
 	lcddsk = &dsk_lcd;
@@ -330,16 +335,16 @@ int main(int argc, char **argv)
 	dsk.setDC(my_dc);
 	dsk_lcd.setDC(my_lcd_dc);
 
-	dsk.setBackgroundColor(gRGB(0,0,0,0xFF));
+	dsk.setBackgroundColor(gRGB(0, 0, 0, 0xFF));
 #endif
 
-		/* redrawing is done in an idle-timer, so we have to set the context */
+	/* redrawing is done in an idle-timer, so we have to set the context */
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
 
 	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
 	std::string spinnerPostion = eSimpleConfig::getString("config.misc.spinnerPosition", "100,100");
-	int spinnerPostionX,spinnerPostionY;
+	int spinnerPostionX, spinnerPostionY;
 	if (sscanf(spinnerPostion.c_str(), "%d,%d", &spinnerPostionX, &spinnerPostionY) != 2)
 	{
 		spinnerPostionX = spinnerPostionY = 100;
@@ -360,13 +365,14 @@ int main(int argc, char **argv)
 		rfilename = eEnv::resolve(filename);
 
 		struct stat st;
-		if (::stat(rfilename.c_str(), &st) == 0) {
+		if (::stat(rfilename.c_str(), &st) == 0)
+		{
 			def = true;
 			skinpath = userpath;
 		}
 
 		ePtr<gPixmap> wait[MAX_SPINNER];
-		while(i < MAX_SPINNER)
+		while (i < MAX_SPINNER)
 		{
 			snprintf(filename, sizeof(filename), "%s/wait%d.png", skinpath.c_str(), i + 1);
 			rfilename = eEnv::resolve(filename);
@@ -375,10 +381,10 @@ int main(int argc, char **argv)
 			if (::stat(rfilename.c_str(), &st) == 0)
 				loadPNG(wait[i], rfilename.c_str());
 
-			if (!wait[i]) 
+			if (!wait[i])
 			{
 				// spinner failed
-				if (i==0)
+				if (i == 0)
 				{
 					// retry default spinner only once
 					if (!def)
@@ -394,7 +400,7 @@ int main(int argc, char **argv)
 			i++;
 		}
 		eDebug("[Enigma] Found %d spinners.", i);
-		if (i==0)
+		if (i == 0)
 			my_dc->setSpinner(eRect(spinnerPostionX, spinnerPostionY, 0, 0), wait, 1);
 		else
 			my_dc->setSpinner(eRect(ePoint(spinnerPostionX, spinnerPostionY), wait[0]->size()), wait, i);
@@ -483,7 +489,6 @@ void dump_malloc_stats(void)
 
 #ifdef USE_LIBVUGLES2
 #include <vuplus_gles.h>
-
 void setAnimation_current(int a)
 {
 	gles_set_animation_func(a);
@@ -505,3 +510,133 @@ void setAnimation_speed(int speed) {}
 void setAnimation_current_listbox(int a) {}
 #endif
 #endif
+
+std::string getActiveAdapter()
+{
+	std::string ret = "";
+	struct ifaddrs *ifaddr, *ifa;
+	int status;
+	// Get the list of network interfaces
+	status = getifaddrs(&ifaddr);
+	if (status != 0)
+	{
+		eDebug("[Enigma] getActiveAdapter: Failed to get network interfaces.");
+		return "";
+	}
+	// Iterate through the network interfaces
+	for (ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next)
+	{
+		if (ifa->ifa_addr == nullptr)
+			continue;
+		if (ifa->ifa_flags & IFF_LOOPBACK) // ignore loopback
+			continue;
+		// Check if the interface is active and has an IP address
+		if ((ifa->ifa_flags & IFF_UP) && (ifa->ifa_addr->sa_family == AF_INET ||
+										  ifa->ifa_addr->sa_family == AF_INET6))
+		{
+
+			if (strstr(ifa->ifa_name, "eth") || strstr(ifa->ifa_name, "wlan"))
+			{
+				eDebug("[Enigma] getActiveAdapter: Active network interface: %s.", ifa->ifa_name);
+				ret = ifa->ifa_name;
+				break;
+			}
+		}
+	}
+	freeifaddrs(ifaddr);
+	return ret;
+}
+
+int checkLinkStatus()
+{
+	std::string interface = getActiveAdapter();
+	if (interface.empty())
+	{
+		eDebug("[Enigma] checkLinkStatus: No valid active network adapter.");
+		return 0;
+	}
+
+	int sock;
+	struct ifreq ifr;
+	// Create a socket
+	sock = socket(AF_INET, SOCK_DGRAM, 0);
+	if (sock < 0)
+	{
+		eDebug("[Enigma] checkLinkStatus: Failed to create socket.");
+		return 0;
+	}
+	// Set the interface name
+	strncpy(ifr.ifr_name, interface.c_str(), IFNAMSIZ);
+	// Get the interface flags
+	if (ioctl(sock, SIOCGIFFLAGS, &ifr) < 0)
+	{
+		eDebug("[Enigma] checkLinkStatus: Failed to get interface flags.");
+		close(sock);
+		return 0;
+	}
+	int ret = (ifr.ifr_flags & IFF_RUNNING) ? 1 : 0;
+	close(sock);
+	return ret;
+}
+
+#include <curl/curl.h>
+#include <curl/easy.h>
+
+size_t curl_ignore_output(void *ptr, size_t size, size_t nmemb, void *stream) // NOSONAR
+{
+	(void)ptr;
+	(void)stream;
+	return size * nmemb;
+}
+
+int checkInternetAccess(const char *host, int timeout = 3)
+{
+
+	int link = checkLinkStatus();
+	if (link == 0)
+	{
+		eDebug("[Enigma] checkInternetAccess: No Active link.");
+		return 0;
+	}
+
+	CURL *curl;
+	CURLcode res;
+	int ret = 2;
+	curl = curl_easy_init();
+	if (curl)
+	{
+		eDebug("[Enigma] checkInternetAccess: Check host:'%s' with timeout:%d.", host, timeout);
+		curl_easy_setopt(curl, CURLOPT_URL, host);
+		curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+		curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
+		curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, timeout);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &curl_ignore_output);
+		while ((res = curl_easy_perform(curl)) != CURLE_OK)
+		{
+			switch (res)
+			{
+			case CURLE_COULDNT_CONNECT:
+			case CURLE_COULDNT_RESOLVE_HOST:
+			case CURLE_COULDNT_RESOLVE_PROXY:
+				eDebug("[Enigma] checkInternetAccess: Failed.");
+				ret = 1;
+				break;
+			default:
+				eDebug("[Enigma] checkInternetAccess: Failed with error (%s).", curl_easy_strerror(res));
+				ret = 1;
+				break;
+			}
+			if (ret == 1)
+				break;
+		}
+		curl_easy_cleanup(curl);
+	}
+	else
+	{
+		eDebug("[Enigma] checkInternetAccess: Failed to init curl.");
+		return 1;
+	}
+	if (ret == 2)
+		eDebug("[Enigma] checkInternetAccess: Success.");
+	return ret;
+}
