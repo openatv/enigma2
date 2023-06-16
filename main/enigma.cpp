@@ -528,13 +528,19 @@ std::string getActiveAdapter()
 	{
 		if (ifa->ifa_addr == nullptr)
 			continue;
+		if (ifa->ifa_flags & IFF_LOOPBACK) // ignore loopback
+			continue;
 		// Check if the interface is active and has an IP address
 		if ((ifa->ifa_flags & IFF_UP) && (ifa->ifa_addr->sa_family == AF_INET ||
 										  ifa->ifa_addr->sa_family == AF_INET6))
 		{
-			eDebug("[Enigma] getActiveAdapter Active network interface: %s.", ifa->ifa_name);
-			ret = ifa->ifa_name;
-			break;
+
+			if (strstr(ifa->ifa_name, "en") || strstr(ifa->ifa_name, "wlan"))
+			{
+				eDebug("[Enigma] getActiveAdapter Active network interface: %s.", ifa->ifa_name);
+				ret = ifa->ifa_name;
+				break;
+			}
 		}
 	}
 	freeifaddrs(ifaddr);
@@ -574,14 +580,14 @@ int checkLinkStatus()
 #include <curl/curl.h>
 #include <curl/easy.h>
 
-size_t curl_ignore_output( void *ptr, size_t size, size_t nmemb, void *stream) // NOSONAR
+size_t curl_ignore_output(void *ptr, size_t size, size_t nmemb, void *stream) // NOSONAR
 {
-    (void) ptr;
-    (void) stream;
-    return size * nmemb;
+	(void)ptr;
+	(void)stream;
+	return size * nmemb;
 }
 
-int checkInternetAccess(const char* host, int timeout = 3)
+int checkInternetAccess(const char *host, int timeout = 3)
 {
 
 	int link = checkLinkStatus();
@@ -615,7 +621,7 @@ int checkInternetAccess(const char* host, int timeout = 3)
 				ret = 1;
 				break;
 			}
-			if(ret == 1)
+			if (ret == 1)
 				break;
 		}
 		curl_easy_cleanup(curl);
