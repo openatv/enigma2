@@ -535,7 +535,7 @@ std::string getActiveAdapter()
 										  ifa->ifa_addr->sa_family == AF_INET6))
 		{
 
-			if (strstr(ifa->ifa_name, "en") || strstr(ifa->ifa_name, "wlan"))
+			if (strstr(ifa->ifa_name, "eth") || strstr(ifa->ifa_name, "wlan"))
 			{
 				eDebug("[Enigma] getActiveAdapter Active network interface: %s.", ifa->ifa_name);
 				ret = ifa->ifa_name;
