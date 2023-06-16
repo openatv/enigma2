@@ -574,7 +574,7 @@ int checkLinkStatus()
 #include <curl/curl.h>
 #include <curl/easy.h>
 
-size_t curl_ignore_output( void *ptr, size_t size, size_t nmemb, void *stream)
+size_t curl_ignore_output( void *ptr, size_t size, size_t nmemb, void *stream) // NOSONAR
 {
     (void) ptr;
     (void) stream;
