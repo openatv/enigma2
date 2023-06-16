@@ -596,6 +596,7 @@ int checkInternetAccess(const char* host, int timeout = 3)
 	{
 		eDebug("[Enigma] checkInternetAccess with host '%s' and timeout:%d.", host, timeout);
 		curl_easy_setopt(curl, CURLOPT_URL, host);
+		curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
 		curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
 		curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, timeout);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &curl_ignore_output);
