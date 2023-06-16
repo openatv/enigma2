@@ -520,7 +520,7 @@ std::string getActiveAdapter()
 	status = getifaddrs(&ifaddr);
 	if (status != 0)
 	{
-		eDebug("[Enigma] getActiveAdapter Failed to get network interfaces.");
+		eDebug("[Enigma] getActiveAdapter: Failed to get network interfaces.");
 		return "";
 	}
 	// Iterate through the network interfaces
@@ -537,7 +537,7 @@ std::string getActiveAdapter()
 
 			if (strstr(ifa->ifa_name, "eth") || strstr(ifa->ifa_name, "wlan"))
 			{
-				eDebug("[Enigma] getActiveAdapter Active network interface: %s.", ifa->ifa_name);
+				eDebug("[Enigma] getActiveAdapter: Active network interface: %s.", ifa->ifa_name);
 				ret = ifa->ifa_name;
 				break;
 			}
@@ -549,10 +549,12 @@ std::string getActiveAdapter()
 
 int checkLinkStatus()
 {
-
 	std::string interface = getActiveAdapter();
 	if (interface.empty())
+	{
+		eDebug("[Enigma] checkLinkStatus: No valid active network adapter.");
 		return 0;
+	}
 
 	int sock;
 	struct ifreq ifr;
@@ -560,7 +562,7 @@ int checkLinkStatus()
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
 	if (sock < 0)
 	{
-		eDebug("[Enigma] checkLinkStatus Failed to create socket.");
+		eDebug("[Enigma] checkLinkStatus: Failed to create socket.");
 		return 0;
 	}
 	// Set the interface name
@@ -568,7 +570,7 @@ int checkLinkStatus()
 	// Get the interface flags
 	if (ioctl(sock, SIOCGIFFLAGS, &ifr) < 0)
 	{
-		eDebug("[Enigma] checkLinkStatus Failed to get interface flags.");
+		eDebug("[Enigma] checkLinkStatus: Failed to get interface flags.");
 		close(sock);
 		return 0;
 	}
@@ -592,7 +594,10 @@ int checkInternetAccess(const char *host, int timeout = 3)
 
 	int link = checkLinkStatus();
 	if (link == 0)
+	{
+		eDebug("[Enigma] checkInternetAccess: No Active link.");
 		return 0;
+	}
 
 	CURL *curl;
 	CURLcode res;
@@ -600,7 +605,7 @@ int checkInternetAccess(const char *host, int timeout = 3)
 	curl = curl_easy_init();
 	if (curl)
 	{
-		eDebug("[Enigma] checkInternetAccess with host '%s' and timeout:%d.", host, timeout);
+		eDebug("[Enigma] checkInternetAccess: Check host:'%s' with timeout:%d.", host, timeout);
 		curl_easy_setopt(curl, CURLOPT_URL, host);
 		curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
 		curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
@@ -613,11 +618,11 @@ int checkInternetAccess(const char *host, int timeout = 3)
 			case CURLE_COULDNT_CONNECT:
 			case CURLE_COULDNT_RESOLVE_HOST:
 			case CURLE_COULDNT_RESOLVE_PROXY:
-				eDebug("[Enigma] checkInternetAccess Failed");
+				eDebug("[Enigma] checkInternetAccess: Failed.");
 				ret = 1;
 				break;
 			default:
-				eDebug("[Enigma] checkInternetAccess Failed: (%s).", curl_easy_strerror(res));
+				eDebug("[Enigma] checkInternetAccess: Failed with error (%s).", curl_easy_strerror(res));
 				ret = 1;
 				break;
 			}
@@ -628,10 +633,10 @@ int checkInternetAccess(const char *host, int timeout = 3)
 	}
 	else
 	{
-		eDebug("[Enigma] checkInternetAccess Failed to init curl");
+		eDebug("[Enigma] checkInternetAccess: Failed to init curl.");
 		return 1;
 	}
 	if (ret == 2)
-		eDebug("[Enigma] checkInternetAccess success");
+		eDebug("[Enigma] checkInternetAccess: Success.");
 	return ret;
 }
