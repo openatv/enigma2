@@ -571,69 +571,60 @@ int checkLinkStatus()
 	return ret;
 }
 
-int checkInternetAccess(int timeout = 3)
+#include <curl/curl.h>
+#include <curl/easy.h>
+
+size_t curl_ignore_output( void *ptr, size_t size, size_t nmemb, void *stream)
+{
+    (void) ptr;
+    (void) stream;
+    return size * nmemb;
+}
+
+int checkInternetAccess(const char* host, int timeout = 3)
 {
 
 	int link = checkLinkStatus();
 	if (link == 0)
 		return 0;
 
-	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
-	if (sockfd == -1)
+	CURL *curl;
+	CURLcode res;
+	int ret = 2;
+	curl = curl_easy_init();
+	if (curl)
 	{
-		eDebug("[Enigma] checkInternetAccess Failed to create socket.");
+		eDebug("[Enigma] checkInternetAccess with host '%s' and timeout:%d.", host, timeout);
+		curl_easy_setopt(curl, CURLOPT_URL, host);
+		curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
+		curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, timeout);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &curl_ignore_output);
+		while ((res = curl_easy_perform(curl)) != CURLE_OK)
+		{
+			switch (res)
+			{
+			case CURLE_COULDNT_CONNECT:
+			case CURLE_COULDNT_RESOLVE_HOST:
+			case CURLE_COULDNT_RESOLVE_PROXY:
+				eDebug("[Enigma] checkInternetAccess Failed");
+				ret = 1;
+				break;
+			default:
+				eDebug("[Enigma] checkInternetAccess Failed: (%s).", curl_easy_strerror(res));
+				ret = 1;
+				break;
+			}
+			if(ret == 1)
+				break;
+		}
+		curl_easy_cleanup(curl);
+	}
+	else
+	{
+		eDebug("[Enigma] checkInternetAccess Failed to init curl");
 		return 1;
 	}
-	// Set the socket to non-blocking mode
-	int flags = fcntl(sockfd, F_GETFL, 0);
-	if (flags == -1 || fcntl(sockfd, F_SETFL, flags | O_NONBLOCK) == -1)
-	{
-		eDebug("[Enigma] checkInternetAccess Failed to set socket to non-blocking mode.");
-		close(sockfd);
-		return 1;
-	}
-
-	struct sockaddr_in serverAddress;
-	serverAddress.sin_family = AF_INET;
-	serverAddress.sin_port = htons(443);
-	const char* GOOGLE = "8.8.8.8"; // NOSONAR
-	inet_pton(AF_INET, GOOGLE, &(serverAddress.sin_addr));
-	int connectResult = connect(sockfd, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
-	if (connectResult == -1 && errno != EINPROGRESS)
-	{
-		eDebug("[Enigma] checkInternetAccess Internet access is not working. (%d)", errno);
-		close(sockfd);
-		return 1;
-	}
-
-	fd_set writeSet;
-	FD_ZERO(&writeSet);
-	FD_SET(sockfd, &writeSet);
-	struct timeval ttimeout;
-	ttimeout.tv_sec = timeout;
-	ttimeout.tv_usec = 0;
-	int selectResult = select(sockfd + 1, nullptr, &writeSet, nullptr, &ttimeout);
-	if (selectResult == -1)
-	{
-		eDebug("[Enigma] checkInternetAccess Error occurred during select().");
-		close(sockfd);
-		return 1;
-	}
-	else if (selectResult == 0)
-	{
-		eDebug("[Enigma] checkInternetAccess Internet access is not working (timeout).");
-		close(sockfd);
-		return 1;
-	}
-	int error = 0;
-	socklen_t errorLength = sizeof(error);
-	if (getsockopt(sockfd, SOL_SOCKET, SO_ERROR, &error, &errorLength) < 0 || error != 0)
-	{
-		eDebug("[Enigma] checkInternetAccess Internet access is not working.");
-		close(sockfd);
-		return 1;
-	}
-	close(sockfd);
-	eDebug("[Enigma] checkInternetAccess Internet access is working.");
-	return 2;
+	if (ret == 2)
+		eDebug("[Enigma] checkInternetAccess success");
+	return ret;
 }
