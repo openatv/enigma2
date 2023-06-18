@@ -111,7 +111,7 @@ struct eListboxStyle
 		alignBlock
 	};
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
-	ePtr<gFont> m_font, m_valuefont;
+	ePtr<gFont> m_font, m_font_zoomed, m_valuefont;
 	eRect m_text_padding;
 	bool m_use_vti_workaround;
 };
@@ -279,7 +279,7 @@ public:
 	void setScrollbarHeight(int size) { m_scrollbar_height = size; }
 	void setScrollbarOffset(int size) { m_scrollbar_offset = size; }
 
-	void setFont(gFont *font) { m_style.m_font = font; }
+	void setFont(gFont *font);
 	void setEntryFont(gFont *font) { m_style.m_font = font; }
 	void setValueFont(gFont *font) { m_style.m_valuefont = font; }
 	void setVAlign(int align) { m_style.m_valign = align; }

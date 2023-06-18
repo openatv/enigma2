@@ -948,11 +948,20 @@ void eListbox::setItemSpacing(const ePoint &spacing, bool innerOnly)
 	}
 }
 
+void eListbox::setFont(gFont *font)
+{
+	m_style.m_font = font; 
+	if (m_style.m_selection_zoom >= 1.0)
+		m_style.m_font_zoomed = new gFont(m_style.m_font->family, m_style.m_font->pointSize * m_style.m_selection_zoom);
+}
+
 void eListbox::setSelectionZoom(float zoom)
 {
 	if (zoom >= 1.0)
 	{
 		m_style.m_selection_zoom = zoom;
+		if (m_style.m_font)
+			m_style.m_font_zoomed = new gFont(m_style.m_font->family, m_style.m_font->pointSize * zoom);
 		recalcSize();
 		invalidate();
 	}
