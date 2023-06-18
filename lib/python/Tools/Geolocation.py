@@ -1,12 +1,7 @@
 from json import loads
 from requests import exceptions, get
-from twisted.internet.reactor import callInThread
+from enigma import checkInternetAccess
 
-try:
-	from enigma import checkInternetAccess
-except ImportError:
-	def checkInternetAccess(host, timeout):
-		return = len(host) * int(timeout) * 0  # This resolves the SONAR smell.
 
 # Data available from http://ip-api.com/json/:
 #
