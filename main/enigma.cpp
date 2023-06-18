@@ -553,7 +553,7 @@ int checkLinkStatus()
 	if (interface.empty())
 	{
 		eDebug("[Enigma] checkLinkStatus: No valid active network adapter.");
-		return 0;
+		return 4;
 	}
 
 	int sock;
@@ -563,7 +563,7 @@ int checkLinkStatus()
 	if (sock < 0)
 	{
 		eDebug("[Enigma] checkLinkStatus: Failed to create socket.");
-		return 0;
+		return 3;
 	}
 	// Set the interface name
 	strncpy(ifr.ifr_name, interface.c_str(), IFNAMSIZ);
@@ -572,9 +572,9 @@ int checkLinkStatus()
 	{
 		eDebug("[Enigma] checkLinkStatus: Failed to get interface flags.");
 		close(sock);
-		return 0;
+		return 3;
 	}
-	int ret = (ifr.ifr_flags & IFF_RUNNING) ? 1 : 0;
+	int ret = (ifr.ifr_flags & IFF_RUNNING) ? 0 : 3;
 	close(sock);
 	return ret;
 }
@@ -593,15 +593,15 @@ int checkInternetAccess(const char *host, int timeout = 3)
 {
 
 	int link = checkLinkStatus();
-	if (link == 0)
+	if (link != 0)
 	{
 		eDebug("[Enigma] checkInternetAccess: No Active link.");
-		return 0;
+		return link;
 	}
 
 	CURL *curl;
 	CURLcode res;
-	int ret = 2;
+	int ret = 0; // SUCCESS
 	curl = curl_easy_init();
 	if (curl)
 	{
@@ -615,18 +615,21 @@ int checkInternetAccess(const char *host, int timeout = 3)
 		{
 			switch (res)
 			{
-			case CURLE_COULDNT_CONNECT:
 			case CURLE_COULDNT_RESOLVE_HOST:
+				eDebug("[Enigma] checkInternetAccess: Failed to resolve host.");
+				ret = 1;
+				break;
+			case CURLE_COULDNT_CONNECT:
 			case CURLE_COULDNT_RESOLVE_PROXY:
 				eDebug("[Enigma] checkInternetAccess: Failed.");
-				ret = 1;
+				ret = 2;
 				break;
 			default:
 				eDebug("[Enigma] checkInternetAccess: Failed with error (%s).", curl_easy_strerror(res));
-				ret = 1;
+				ret = 2;
 				break;
 			}
-			if (ret == 1)
+			if (ret > 0)
 				break;
 		}
 		curl_easy_cleanup(curl);
@@ -634,9 +637,9 @@ int checkInternetAccess(const char *host, int timeout = 3)
 	else
 	{
 		eDebug("[Enigma] checkInternetAccess: Failed to init curl.");
-		return 1;
+		return 2;
 	}
-	if (ret == 2)
+	if (ret == 0)
 		eDebug("[Enigma] checkInternetAccess: Success.");
 	return ret;
 }
