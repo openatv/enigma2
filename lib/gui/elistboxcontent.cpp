@@ -43,9 +43,9 @@ iListboxContent::iListboxContent() : m_listbox(0)
 void iListboxContent::setListbox(eListbox *lb)
 {
 	m_listbox = lb;
+//	m_listbox->setOrientation(getOrientation());
 	m_listbox->setItemHeight(getItemHeight());
 	m_listbox->setItemWidth(getItemWidth());
-	m_listbox->setOrientation(getOrientation());
 }
 
 int iListboxContent::currentCursorSelectable()
@@ -872,7 +872,7 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	gRegion itemregion(eRect(offset, m_itemsize));
+	
 	eListboxStyle *local_style = 0;
 	eRect sel_clip(m_selection_clip);
 	bool cursorValid = this->cursorValid();
@@ -892,11 +892,28 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		orientation = m_listbox->getOrientation();
 	}
 
+	ePoint offs = offset;
+	eRect itemRect = eRect(offset, m_itemsize);
+	gRegion itemregion(itemRect);
+	bool itemZoomed = local_style->m_selection_zoom > 1.0;
+
+	if (selected && itemZoomed)
+	{
+		itemRect = eRect(offs, eSize(m_itemsize.width() * local_style->m_selection_zoom, m_itemsize.height() * local_style->m_selection_zoom));
+		itemregion = itemRect;
+	}
+	else if (!selected && itemZoomed)
+	{
+		offs = ePoint(offset.x() + (((m_itemsize.width() * local_style->m_selection_zoom) - m_itemsize.width()) / 2), offset.y() + (((m_itemsize.height() * local_style->m_selection_zoom) - m_itemsize.height()) / 2));
+		itemRect = eRect(offs, m_itemsize);
+		itemregion = itemRect;
+	}
+
 	painter.clip(itemregion);
-	clearRegion(painter, style, local_style, ePyObject(), ePyObject(), ePyObject(), ePyObject(), selected, itemregion, sel_clip, offset, m_itemsize, cursorValid, true, orientation);
+	clearRegion(painter, style, local_style, ePyObject(), ePyObject(), ePyObject(), ePyObject(), selected, itemregion, sel_clip, offs, itemRect.size(), cursorValid, true, orientation);
 	// Draw frame here so to be under the content
 	if (selected && !sel_clip.valid() && (!local_style || !local_style->m_selection) && (!local_style || !local_style->m_border_set))
-		style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
+		style.drawFrame(painter, eRect(offs, itemRect.size()), eWindowStyle::frameListboxEntry);
 
 	ePyObject items, buildfunc_ret;
 
@@ -1028,23 +1045,30 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
-				x += offset.x();
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
-				y += offset.y();
 				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 0;
 
-				eRect rect;
-				if (!selected)
-					rect = eRect(x, y, width, height);
+				if(selected && itemZoomed)
+				{
+					x = (x * local_style->m_selection_zoom) + offs.x();
+					y = (y * local_style->m_selection_zoom) + offs.y();
+					width *= local_style->m_selection_zoom;
+					height *= local_style->m_selection_zoom;
+				}
 				else
-					rect = eRect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
+				{
+					x += offs.x();
+					y += offs.y();
+				}
+
+				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
 				painter.clip(rect);
 				{
 					gRegion rc(rect);
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
-					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, m_itemsize, cursorValid, mustClear, orientation);
+					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip, offs, itemRect.size(), cursorValid, mustClear, orientation);
 				}
 				painter.clippop();
 
@@ -1126,10 +1150,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				const char *string = (PyUnicode_Check(pstring)) ? PyUnicode_AsUTF8(pstring) : "<not-a-string>";
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
-				x += offset.x();
 
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
-				y += offset.y();
 
 				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth);
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
@@ -1144,16 +1166,36 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					goto error_out;
 				}
 
+				if(selected && itemZoomed)
+				{
+					x = (x * local_style->m_selection_zoom) + offs.x();
+					y = (y * local_style->m_selection_zoom) + offs.y();
+					width *= local_style->m_selection_zoom;
+					height *= local_style->m_selection_zoom;
+				}
+				else
+				{
+					x += offs.x();
+					y += offs.y();
+				}
+
 				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
 				painter.clip(rect);
 
 				{
 					gRegion rc(rect);
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
-					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, m_itemsize, cursorValid, mustClear, orientation);
+					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip, offs, itemRect.size(), cursorValid, mustClear, orientation);
 				}
 
-				painter.setFont(m_fonts[fnt]);
+				if (selected && itemZoomed) {
+					// find and set zoomed font
+				    if(m_fonts_zoomed.find(fnt) == m_fonts_zoomed.end())
+						m_fonts_zoomed[fnt] = new gFont(m_fonts[fnt]->family, m_fonts[fnt]->pointSize * local_style->m_selection_zoom);
+					painter.setFont(m_fonts_zoomed[fnt]);
+				}
+				else
+					painter.setFont(m_fonts[fnt]);
 				painter.renderText(rect, string, flags, border_color, border_size);
 				painter.clippop();
 
@@ -1252,10 +1294,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
-				x += offset.x();
 
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
-				y += offset.y();
 
 				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth);
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
@@ -1270,13 +1310,26 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 2;
 
+				if(selected && itemZoomed)
+				{
+					x = (x * local_style->m_selection_zoom) + offs.x();
+					y = (y * local_style->m_selection_zoom) + offs.y();
+					width *= local_style->m_selection_zoom;
+					height *= local_style->m_selection_zoom;
+				}
+				else
+				{
+					x += offs.x();
+					y += offs.y();
+				}
+
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
 
 				{
 					gRegion rc(rect);
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
-					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, m_itemsize, cursorValid, mustClear, orientation);
+					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip, offs, itemRect.size(), cursorValid, mustClear, orientation);
 				}
 
 				// border
@@ -1347,19 +1400,19 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					pendColorSelected = lookupColor(PyTuple_GET_ITEM(item, 9), data);
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
-				x += offset.x();
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
-				y += offset.y();
-				//int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
-				//int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
+				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
+				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 				int direction = PyLong_AsLong(ppdirection);
 
-				eRect rect(x, y, m_itemsize.width(), m_itemsize.height());
+				eRect rect(x + offs.x(), y + offs.y(), width, height);
+				if (selected && itemZoomed)
+					rect = eRect((x * local_style->m_selection_zoom) + offs.x(), (y * local_style->m_selection_zoom) + offs.y(), width * local_style->m_selection_zoom, height * local_style->m_selection_zoom);
 				painter.clip(rect);
 				{
 					gRegion rc(rect);
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
-					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, m_itemsize, cursorValid, mustClear, orientation);
+					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, rc, sel_clip, offs, itemRect.size(), cursorValid, mustClear, orientation);
 				}
 
 				int flag = type == TYPE_LINEAR_GRADIENT_ALPHABLEND ? gPainter::BT_ALPHABLEND : 0;
@@ -1410,10 +1463,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					continue;
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
-				x += offset.x();
 
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
-				y += offset.y();
 
 				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth);
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
@@ -1435,16 +1486,19 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 8)
 					flags = PyLong_AsLong(PyTuple_GET_ITEM(item, 8));
 
-				eRect rect(x, y, width, height);
+				eRect rect(x + offs.x(), y + offs.y(), width, height);
+				if (selected && itemZoomed)
+					rect = eRect((x * local_style->m_selection_zoom) + offs.x(), (y * local_style->m_selection_zoom) + offs.y(), width * local_style->m_selection_zoom, height * local_style->m_selection_zoom);
 				painter.clip(rect);
 
 				{
 					gRegion rc(rect);
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
-					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, m_itemsize, cursorValid, mustClear, orientation);
+					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, rc, sel_clip, offs, itemRect.size(), cursorValid, mustClear, orientation);
 				}
 
-				flags |= (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : 0;
+				flags |= (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND
+																													 : 0;
 				painter.blit(pixmap, rect, rect, flags);
 				painter.clippop();
 				break;
@@ -1523,10 +1577,13 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 
 void eListboxPythonMultiContent::setFont(int fnt, gFont *font)
 {
-	if (font)
+	if (font) {
 		m_fonts[fnt] = font;
-	else
+	}
+	else {
 		m_fonts.erase(fnt);
+		m_fonts_zoomed.erase(fnt);
+	}
 }
 
 void eListboxPythonMultiContent::setList(ePyObject list)

@@ -839,6 +839,11 @@ class AttributeParser:
 		# print("[Skin] DEBUG: Scale itemHeight %d -> %d." % (int(value), self.applyVerticalScale(value)))
 		self.guiObject.setItemHeight(self.applyVerticalScale(value))
 
+	def itemSpacing(self, value):
+		if len(value.split(",")) == 1:
+			value = "%s,%s" % (value, value)
+		self.guiObject.setItemSpacing(parsePosition(value, self.scaleTuple, self.guiObject, self.desktop))
+
 	def itemWidth(self, value):
 		# print("[Skin] DEBUG: Scale itemWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
 		self.guiObject.setItemWidth(self.applyHorizontalScale(value))
@@ -969,6 +974,13 @@ class AttributeParser:
 
 	def selectionPixmap(self, value):
 		self.guiObject.setSelectionPixmap(parsePixmap(value, self.desktop))
+
+	def selectionZoom(self, value):
+		try:
+			value = float(value)
+		except ValueError:
+			value = 1.0
+		self.guiObject.setSelectionZoom(value)
 
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value, 0x00000000))

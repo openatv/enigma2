@@ -117,6 +117,7 @@ public:
 
 private:
 	std::map<int, ePtr<gFont>> m_fonts;
+	std::map<int, ePtr<gFont>> m_fonts_zoomed;
 };
 
 #ifdef SWIG
