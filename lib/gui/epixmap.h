@@ -20,7 +20,7 @@ public:
 	void setPixmapScaleFlags(int flags) { setPixmapScale(flags); } // DEPRECATED
 	void setBorderWidth(int pixel);
 	void setBorderColor(const gRGB &color);
-	void setGradient(const gRGB &startcolor, const gRGB &endcolor, int direction);
+	void setGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
 
 	enum
 	{

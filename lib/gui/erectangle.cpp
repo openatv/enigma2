@@ -20,11 +20,12 @@ void eRectangle::setBorderColor(const gRGB &color)
 	invalidate();
 }
 
-void eRectangle::setGradient(const gRGB &startcolor, const gRGB &endcolor, int direction)
+void eRectangle::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
 {
 	m_gradient_startcolor = startcolor;
 	m_gradient_endcolor = endcolor;
 	m_gradient_direction = direction;
+	m_gradient_blend = blend;
 	m_gradient_set = true;
 	invalidate();
 }
@@ -56,7 +57,7 @@ int eRectangle::event(int event, void *data, void *data2)
 		}
 
 		if (m_gradient_set)
-			painter.drawGradient(eRect(ePoint(0, 0), s), m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction, gPainter::BT_ALPHABLEND);
+			painter.drawGradient(eRect(ePoint(0, 0), s), m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction, m_gradient_blend);
 
 		return 0;
 	}

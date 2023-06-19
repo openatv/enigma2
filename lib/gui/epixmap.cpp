@@ -75,7 +75,7 @@ void ePixmap::setBorderColor(const gRGB &color)
 	invalidate();
 }
 
-void ePixmap::setGradient(const gRGB &startcolor, const gRGB &endcolor, int direction)
+void ePixmap::setGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
 {
 	m_gradient_startcolor = startcolor;
 	m_gradient_endcolor = endcolor;

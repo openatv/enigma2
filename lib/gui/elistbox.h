@@ -73,6 +73,7 @@ struct eListboxStyleSetted
 	bool scrollbarbackground_color : 1;
 	bool scollbarborder_color : 1;
 	bool scrollbarborder_width : 1;
+	bool spacer_color : 1;
 	bool overlay : 1;
 	bool max_rows : 1;
 	bool max_columns : 1;
@@ -84,8 +85,8 @@ struct eListboxStyle
 	ePtr<gPixmap> m_background, m_selection, m_overlay;
 	int m_transparent_background;
 	int m_border_set;
-	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color;
-	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set, m_scrollbarforeground_color_set, m_scrollbarbackground_color_set, m_scollbarborder_color_set, m_scrollbarborder_width_set;
+	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacer_color;
+	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set;
 	int m_max_columns;
 	int m_max_rows;
 	float m_selection_zoom;
@@ -259,6 +260,9 @@ public:
 	void setForegroundColor(gRGB &col);
 	void setForegroundColorSelected(gRGB &col);
 
+	void setSpacerColor(gRGB &col);
+	void clearSpacerColor() { m_style.is_set.spacer_color = 0; }
+
 	void clearBackgroundColor() { m_style.m_background_color_set = 0; }
 	void clearBackgroundColorSelected() { m_style.m_background_color_selected_set = 0; }
 	void clearForegroundColor() { m_style.m_foreground_color_set = 0; }
@@ -355,6 +359,8 @@ protected:
 private:
 	ePoint getItemPostion(int index);
 	int moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int maxItems, bool indexChanged, int pageOffset, int topLeft);
+	void recalcSizeAlignment(bool scrollbarVisible);
+
 	static int defaultScrollBarWidth;
 	static int defaultScrollBarOffset;
 	static int defaultScrollBarBorderWidth;

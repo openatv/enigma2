@@ -53,6 +53,7 @@ private:
 	int m_cursor;
 	int m_saved_cursor;
 	int m_saved_cursor_line;
+	ePtr<gFont> m_font_zoomed;
 
 protected:
 	ePyObject m_list;

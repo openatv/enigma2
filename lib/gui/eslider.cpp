@@ -102,8 +102,12 @@ int eSlider::event(int event, void *data, void *data2)
 				painter.setForegroundColor(m_foreground_color);
 			painter.fill(m_currently_filled);
 		}
-		else
-			painter.blit(m_pixmap, ePoint(0, 0), m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
+		else {
+			if(m_pixmap->size().width() != m_currently_filled.extends.width() || m_pixmap->size().height() != m_currently_filled.extends.height())
+				painter.blitScale(m_pixmap, eRect(ePoint(0,0),s),m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
+			else
+				painter.blit(m_pixmap, ePoint(0, 0), m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
+		}
 
 		// Border
 		if(m_border_width>0) {

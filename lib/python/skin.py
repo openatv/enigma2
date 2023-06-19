@@ -423,16 +423,18 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 
 def parseGradient(value):
 	data = [x.strip() for x in value.split(",")]
-	if len(data) == 3:
+	if len(data) > 2:
 		options = {
 			"horizontal": ePixmap.GRADIENT_HORIZONTAL,
 			"vertical": ePixmap.GRADIENT_VERTICAL,
 		}
 		direction = parseOptions(options, "gradient", data[2], ePixmap.GRADIENT_VERTICAL)
-		return (parseColor(data[0], default=0x00000000), parseColor(data[1], 0x00FFFFFF), direction)
+		if len(data) == 3:
+			alphaBend = BT_ALPHABLEND if data[3] == '1' else 0
+		return (parseColor(data[0], default=0x00000000), parseColor(data[1], 0x00FFFFFF), direction, alphaBend)
 	else:
-		skinError("The gradient '%s' must be 'startColor,endColor,direction', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)" % value)
-		return (0x000000, 0x00FFFFFF, ePixmap.GRADIENT_VERTICAL)
+		skinError("The gradient '%s' must be 'startColor,endColor,direction[,blend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)" % value)
+		return (0x000000, 0x00FFFFFF, ePixmap.GRADIENT_VERTICAL, 0)
 
 
 def parseHorizontalAlignment(value):
@@ -460,7 +462,7 @@ def parseItemAlignment(value):
 		"center": eListbox.itemAlignCenter,
 		"justify": eListbox.itemAlignJustify,
 	}
-	return parseOptions(options, "scrollbarItemAlignment", value, eListbox.itemAlignDefault)
+	return parseOptions(options, "itemAlignment", value, eListbox.itemAlignDefault)
 
 
 def parseListOrientation(value):
@@ -757,6 +759,12 @@ class AttributeParser:
 	def backgroundColorSelected(self, value):
 		self.guiObject.setBackgroundColorSelected(parseColor(value, 0x00000000))
 
+	def setBackgroundGradient(self, value):
+		self.guiObject.setBackgroundGradient(*parseGradient(value))
+
+	def setBackgroundGradientSeleced(self, value):
+		self.guiObject.setBackgroundGradientSeleced(*parseGradient(value))
+
 	def backgroundCrypted(self, value):
 		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
 
@@ -768,9 +776,6 @@ class AttributeParser:
 
 	def backgroundPixmap(self, value):
 		self.guiObject.setBackgroundPixmap(parsePixmap(value, self.desktop))
-
-	def gradient(self, value):
-		self.guiObject.setGradient(*parseGradient(value))
 
 	def borderColor(self, value):
 		self.guiObject.setBorderColor(parseColor(value, 0x00FFFFFF))
@@ -821,6 +826,9 @@ class AttributeParser:
 	def foregroundNotCrypted(self, value):
 		self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
 
+	def gradient(self, value):
+		self.guiObject.setGradient(*parseGradient(value))
+
 	def halign(self, value):  # This legacy definition uses an inconsistent name, use 'horizontalAlignment' instead!
 		self.horizontalAlignment(value)
 		# attribDeprecationWarning("halign", "horizontalAlignment")
@@ -834,6 +842,9 @@ class AttributeParser:
 
 	def includes(self, value):  # Same as conditional.  Created to partner new "excludes" attribute.
 		pass
+
+	def itemAlignment(self, value):
+		self.guiObject.setItemAlignment(parseItemAlignment(value))
 
 	def itemHeight(self, value):
 		# print("[Skin] DEBUG: Scale itemHeight %d -> %d." % (int(value), self.applyVerticalScale(value)))
@@ -899,9 +910,6 @@ class AttributeParser:
 	def scrollbarbackgroundPixmap(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBackgroundPixmap' instead!
 		self.scrollbarBackgroundPixmap(value)
 		attribDeprecationWarning("scrollbarbackgroundPixmap", "scrollbarBackgroundPixmap")
-
-	def scrollbarItemAlignment(self, value):
-		self.guiObject.setItemAlignment(parseItemAlignment(value))
 
 	def scrollbarMode(self, value):
 		self.guiObject.setScrollbarMode(parseScrollbarMode(value))
@@ -994,6 +1002,9 @@ class AttributeParser:
 	def sliderPixmap(self, value):  # For compatibility same as 'scrollbarSliderPixmap', use 'scrollbarForegroundPixmap' instead.
 		self.scrollbarForegroundPixmap(value)
 		attribDeprecationWarning("sliderPixmap", "scrollbarForegroundPixmap")
+
+	def spacerColor(self, value):
+		self.guiObject.setSpacerColor(parseColor(value, 0x00000000))
 
 	def text(self, value):
 		if value:

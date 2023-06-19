@@ -73,11 +73,11 @@ void eListbox::setScrollbarMode(int mode)
 			m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);
 		if (m_scrollbarpixmap)
 			m_scrollbar->setPixmap(m_scrollbarpixmap);
-		if (m_style.m_scollbarborder_color_set)
+		if (m_style.is_set.scollbarborder_color)
 			m_scrollbar->setBorderColor(m_style.m_scollbarborder_color);
-		if (m_style.m_scrollbarforeground_color_set)
+		if (m_style.is_set.scrollbarforeground_color)
 			m_scrollbar->setForegroundColor(m_style.m_scrollbarforeground_color);
-		if (m_style.m_scrollbarbackground_color_set)
+		if (m_style.is_set.scrollbarbackground_color)
 			m_scrollbar->setBackgroundColor(m_style.m_scrollbarbackground_color);
 	}
 }
@@ -202,6 +202,7 @@ void eListbox::updateScrollBar()
 		return;
 	int entries = (m_orientation == orGrid) ? (m_content->size() + m_max_columns - 1) / m_max_columns : m_content->size();
 	bool scrollbarvisible = m_scrollbar->isVisible();
+	bool scrollbarvisibleOld = m_scrollbar->isVisible();
 	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
 
 	if (m_content_changed)
@@ -344,6 +345,9 @@ void eListbox::updateScrollBar()
 			m_scrollbar->setStartEnd(start, start + vis);
 		}
 	}
+	if(scrollbarvisible != scrollbarvisibleOld)
+		recalcSizeAlignment(scrollbarvisible);
+
 }
 
 int eListbox::getEntryTop()
@@ -394,57 +398,17 @@ int eListbox::event(int event, void *data, void *data2)
 		{
 			painter.clip(paint_region);
 			style->setStyle(painter, eWindowStyle::styleListboxNormal);
-			if (m_style.m_background_color_set)
-				painter.setBackgroundColor(m_style.m_background_color);
+			if (m_style.is_set.spacer_color)
+				painter.setBackgroundColor(m_style.m_spacer_color)
+			else
+			{
+				if (m_style.m_background_color_set)
+					painter.setBackgroundColor(m_style.m_background_color);
+			}
 			painter.clear();
 			painter.clippop();
 		}
 
-		if (m_scrollbar)
-		{
-			if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
-			{
-				xOffset = m_scrollbar->size().width() + m_scrollbar_offset;
-			}
-
-			if (m_scrollbar_mode == showTopOnDemand || m_scrollbar_mode == showTopAlways)
-			{
-				yOffset = m_scrollbar->size().height() + m_scrollbar_offset;
-			}
-		}
-
-		int itemOffset = 0;
-		if (m_orientation == orGrid)
-		{
-			if (m_item_alignment != itemAlignDefault)
-			{
-				int fullSpace = size().width() - ((m_scrollbar) ? m_scrollbar->size().width() + m_scrollbar_offset : 0);
-				int itemSpace = m_max_columns * m_itemwidth;
-				if (fullSpace > itemSpace)
-				{
-					if (m_item_alignment == itemAlignCenter)
-					{
-						xOffset = (fullSpace - itemSpace) / 2;
-					}
-					else if (m_item_alignment == itemAlignJustify && m_max_columns > 1)
-					{
-						itemOffset = (fullSpace - itemSpace) / (m_max_columns - 1);
-					}
-				}
-			}
-		}
-		else if (m_orientation == orHorizontal)
-		{
-			if (m_item_alignment == itemAlignCenter)
-			{
-				int xSpace = (size().width() - (m_max_columns * (m_itemwidth + m_spacing.x()) - m_spacing.x())) / 2;
-				int ySpace = (size().height() - m_itemheight) / 2;
-				if (xSpace > 0)
-					xOffset = xSpace;
-				if (ySpace > 0)
-					yOffset = ySpace;
-			}
-		}
 
 		int line = 0;
 		int m_max_items = m_orientation == orGrid ? m_max_columns * m_max_rows : m_orientation == orHorizontal ? m_max_columns
@@ -548,8 +512,13 @@ int eListbox::event(int event, void *data, void *data2)
 				{
 					painter.clip(eRect(m_scrollbar->position() - ePoint(m_scrollbar_offset, 0), eSize(m_scrollbar_offset, m_scrollbar->size().height())));
 				}
-				if (m_style.m_background_color_set)
-					painter.setBackgroundColor(m_style.m_background_color);
+				if (m_style.is_set.spacer_color)
+					painter.setBackgroundColor(m_style.m_spacer_color)
+				else
+				{
+					if (m_style.m_background_color_set)
+						painter.setBackgroundColor(m_style.m_background_color);
+				}
 				painter.clear();
 				painter.clippop();
 			}
@@ -631,8 +600,59 @@ void eListbox::recalcSize()
 	if (m_max_rows < 0)
 		m_max_rows = 0;
 
+	if (m_content) {
+		bool scrollbarVisible = m_scrollbar && m_scrollbar->isVisible();
+		recalcSizeAlignment(scrollbarVisible);
+	}
+
+
 	moveSelection(justCheck);
 }
+
+void eListbox::recalcSizeAlignment(bool scrollbarVisible)
+{
+
+	if(m_orientation != orVertical && m_item_alignment != itemAlignDefault) {
+
+		int xscrollBar = (m_orientation == orGrid) ? ((scrollbarVisible) ? m_scrollbar->size().width() + m_scrollbar_offset : 0) : 0;
+		int yscrollBar = (m_orientation == orHorizontal) ? ((scrollbarVisible) ? m_scrollbar->size().height() + m_scrollbar_offset : 0) : 0;
+		int xfullSpace = size().width() - xscrollBar;
+		int yfullSpace = size().height() - yscrollBar;
+		int xitemSpace = (m_max_columns > 1) ? ((m_max_columns - 1) * (m_itemwidth + m_spacing.x()) + m_itemwidth * m_style.m_selection_zoom) : (m_itemwidth * m_style.m_selection_zoom) + m_spacing.x();
+		int yitemSpace = (m_max_rows > 1) ? ((m_max_rows - 1) * (m_itemheight + m_spacing.y()) + m_itemheight * m_style.m_selection_zoom) : (m_itemheight * m_style.m_selection_zoom) + m_spacing.y();
+
+
+		int scrollbarLeftSpace = (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways) ? xscrollBar : 0;
+		int scrollbarTopSpace = (m_scrollbar_mode == showTopOnDemand || m_scrollbar_mode == showTopAlways) ? yscrollBar : 0;
+
+		if (xfullSpace > xitemSpace)
+		{
+			if(m_item_alignment & itemHorizontalAlignCenter)
+				xOffset = ((xfullSpace - xitemSpace) / 2) + scrollbarLeftSpace;
+		}
+		if (yfullSpace > yitemSpace)
+		{
+			if(m_item_alignment & itemVertialAlignMiddle)
+				yOffset = ((yfullSpace - yitemSpace) / 2) + scrollbarTopSpace;
+		}
+
+	}
+
+	if (m_scrollbar && m_orientation == orVertical)
+	{
+		if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
+		{
+			xOffset = m_scrollbar->size().width() + m_scrollbar_offset;
+		}
+
+		if (m_scrollbar_mode == showTopOnDemand || m_scrollbar_mode == showTopAlways)
+		{
+			yOffset = m_scrollbar->size().height() + m_scrollbar_offset;
+		}
+	}
+
+}
+
 
 void eListbox::setItemHeight(int h)
 {
@@ -815,6 +835,12 @@ void eListbox::entryReset(bool selectionHome)
 	invalidate();
 }
 
+void eListbox::setSpacerColor(gRGB &col)
+{
+	m_style.m_spacer_color = col;
+	m_style.is_set.spacer_color = 1;
+}
+
 void eListbox::setBackgroundColor(gRGB &col)
 {
 	m_style.m_background_color = col;
@@ -849,7 +875,7 @@ void eListbox::setBorderWidth(int size)
 void eListbox::setScrollbarBorderWidth(int width)
 {
 	m_style.m_scrollbarborder_width = width;
-	m_style.m_scrollbarborder_width_set = 1;
+	m_style.is_set.scrollbarborder_width = 1;
 	if (m_scrollbar)
 		m_scrollbar->setBorderWidth(width);
 }
@@ -864,7 +890,7 @@ void eListbox::setScrollbarForegroundPixmap(ePtr<gPixmap> &pm)
 void eListbox::setScrollbarBackgroundColor(gRGB &col)
 {
 	m_style.m_scrollbarbackground_color = col;
-	m_style.m_scrollbarbackground_color_set = 1;
+	m_style.is_set.scrollbarbackground_color = 1;
 	if (m_scrollbar)
 		m_scrollbar->setBackgroundColor(col);
 }
@@ -872,7 +898,7 @@ void eListbox::setScrollbarBackgroundColor(gRGB &col)
 void eListbox::setScrollbarForegroundColor(gRGB &col)
 {
 	m_style.m_scrollbarforeground_color = col;
-	m_style.m_scrollbarforeground_color_set = 1;
+	m_style.is_set.scrollbarforeground_color = 1;
 	if (m_scrollbar)
 		m_scrollbar->setForegroundColor(col);
 }
@@ -880,7 +906,7 @@ void eListbox::setScrollbarForegroundColor(gRGB &col)
 void eListbox::setScrollbarBorderColor(const gRGB &col)
 {
 	m_style.m_scollbarborder_color = col;
-	m_style.m_scollbarborder_color_set = 1;
+	m_style.is_set.scollbarborder_color = 1;
 	if (m_scrollbar)
 		m_scrollbar->setBorderColor(col);
 }
@@ -951,13 +977,13 @@ void eListbox::setItemSpacing(const ePoint &spacing, bool innerOnly)
 void eListbox::setFont(gFont *font)
 {
 	m_style.m_font = font; 
-	if (m_style.m_selection_zoom >= 1.0)
+	if (m_style.m_selection_zoom > 1.0)
 		m_style.m_font_zoomed = new gFont(m_style.m_font->family, m_style.m_font->pointSize * m_style.m_selection_zoom);
 }
 
 void eListbox::setSelectionZoom(float zoom)
 {
-	if (zoom >= 1.0)
+	if (zoom > 1.0)
 	{
 		m_style.m_selection_zoom = zoom;
 		if (m_style.m_font)

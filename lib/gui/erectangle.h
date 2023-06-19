@@ -10,7 +10,7 @@ public:
 
 	void setBorderWidth(int pixel);
 	void setBorderColor(const gRGB &color);
-	void setGradient(const gRGB &startcolor, const gRGB &endcolor, int direction);
+	void setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
 
 	enum
 	{
@@ -23,7 +23,7 @@ protected:
 
 private:
 	bool m_have_border_color, m_gradient_set;
-	int m_border_width, m_gradient_direction;
+	int m_border_width, m_gradient_direction, m_gradient_blend;
 	gRGB m_border_color, m_gradient_startcolor, m_gradient_endcolor;
 };
 
