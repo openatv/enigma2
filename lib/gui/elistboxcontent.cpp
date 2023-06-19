@@ -194,19 +194,19 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		if (selected)
 		{
 			/* if we have a local background color set, use that. */
-			if (local_style->m_background_color_selected_set)
+			if (local_style->is_set.background_color_selected)
 				painter.setBackgroundColor(local_style->m_background_color_selected);
 			/* same for foreground */
-			if (local_style->m_foreground_color_selected_set)
+			if (local_style->is_set.foreground_color_selected)
 				painter.setForegroundColor(local_style->m_foreground_color_selected);
 		}
 		else
 		{
 			/* if we have a local background color set, use that. */
-			if (local_style->m_background_color_set)
+			if (local_style->is_set.background_color)
 				painter.setBackgroundColor(local_style->m_background_color);
 			/* same for foreground */
-			if (local_style->m_foreground_color_set)
+			if (local_style->is_set.foreground_color)
 				painter.setForegroundColor(local_style->m_foreground_color);
 		}
 	}
@@ -230,7 +230,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	int orientation = (m_listbox) ? m_listbox->getOrientation() : 1;
 
 	/* if we have no transparent background */
-	if (!local_style || !local_style->m_transparent_background)
+	if (!local_style || !local_style->is_set.transparent_background)
 	{
 		/* blit background picture, if available (otherwise, clear only) */
 		if (local_style && local_style->m_background && cursorValid)
@@ -264,7 +264,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			painter.clear();
 	}
 	// Draw frame here so to be under the content
-	if (selected && (!local_style || !local_style->m_selection) && (!local_style || !local_style->m_border_set))
+	if (selected && (!local_style || !local_style->m_selection) && (!local_style || !local_style->is_set.border))
 		style.drawFrame(painter, eRect(offs, itemRect.size()), eWindowStyle::frameListboxEntry);
 
 	if (validitem)
@@ -313,7 +313,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			{
 				text_offset += local_style->m_text_padding.topLeft();
 				// HACK VTI hat hier scheinbar einen Fehler und addiert den Textoffset zweimal auf, also machen wir das hier auch so
-				if (local_style->m_use_vti_workaround)
+				if (local_style->is_set.use_vti_workaround)
 					text_offset += local_style->m_text_padding.topLeft();
 
 				if (local_style->m_valign == eListboxStyle::alignTop)
@@ -449,19 +449,19 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		if (selected)
 		{
 			/* if we have a local background color set, use that. */
-			if (local_style->m_background_color_selected_set)
+			if (local_style->is_set.background_color_selected)
 				painter.setBackgroundColor(local_style->m_background_color_selected);
 			/* same for foreground */
-			if (local_style->m_foreground_color_selected_set)
+			if (local_style->is_set.foreground_color_selected)
 				painter.setForegroundColor(local_style->m_foreground_color_selected);
 		}
 		else
 		{
 			/* if we have a local background color set, use that. */
-			if (local_style->m_background_color_set)
+			if (local_style->is_set.background_color)
 				painter.setBackgroundColor(local_style->m_background_color);
 			/* same for foreground */
-			if (local_style->m_foreground_color_set)
+			if (local_style->is_set.foreground_color)
 				painter.setForegroundColor(local_style->m_foreground_color);
 		}
 	}
@@ -474,7 +474,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 	int orientation = (m_listbox) ? m_listbox->getOrientation() : 1;
 
-	if (!local_style || !local_style->m_transparent_background)
+	if (!local_style || !local_style->is_set.transparent_background)
 	/* if we have no transparent background */
 	{
 		/* blit background picture, if available (otherwise, clear only) */
@@ -504,7 +504,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	}
 
 	// Draw frame here so to be drawn under icons
-	if (selected && (!local_style || !local_style->m_selection) && (!local_style || !local_style->m_border_set))
+	if (selected && (!local_style || !local_style->m_selection) && (!local_style || !local_style->is_set.border))
 		style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 	if (m_list && cursorValid)
 	{
@@ -765,7 +765,7 @@ static void clearRegionHelper(gPainter &painter, eListboxStyle *local_style, con
 	}
 	else if (local_style)
 	{
-		if (local_style->m_background_color_set)
+		if (local_style->is_set.background_color)
 			painter.setBackgroundColor(local_style->m_background_color);
 		if (local_style->m_background && cursorValid)
 		{
@@ -773,10 +773,10 @@ static void clearRegionHelper(gPainter &painter, eListboxStyle *local_style, con
 			int y = offset.y();
 			x += (orientation & 2) ? (size.width() - local_style->m_background->size().width()) / 2 : 0;   // vertical
 			y += (orientation & 1) ? (size.height() - local_style->m_background->size().height()) / 2 : 0; // horizontal
-			painter.blit(local_style->m_background, ePoint(x, y), eRect(), local_style->m_transparent_background ? gPainter::BT_ALPHATEST : 0);
+			painter.blit(local_style->m_background, ePoint(x, y), eRect(), local_style->is_set.transparent_background ? gPainter::BT_ALPHATEST : 0);
 			return;
 		}
-		else if (local_style->m_transparent_background)
+		else if (local_style->is_set.transparent_background)
 			return;
 	}
 	if (clear)
@@ -792,7 +792,7 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 	}
 	else if (local_style)
 	{
-		if (local_style->m_background_color_selected_set)
+		if (local_style->is_set.background_color_selected)
 			painter.setBackgroundColor(local_style->m_background_color_selected);
 		if (local_style->m_background && cursorValid)
 		{
@@ -800,7 +800,7 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 			int y = offset.y();
 			x += (orientation & 2) ? (size.width() - local_style->m_background->size().width()) / 2 : 0;   // vertical
 			y += (orientation & 1) ? (size.height() - local_style->m_background->size().height()) / 2 : 0; // horizontal
-			painter.blit(local_style->m_background, ePoint(x, y), eRect(), local_style->m_transparent_background ? gPainter::BT_ALPHATEST : 0);
+			painter.blit(local_style->m_background, ePoint(x, y), eRect(), local_style->is_set.transparent_background ? gPainter::BT_ALPHATEST : 0);
 			return;
 		}
 	}
@@ -858,7 +858,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
-		else if (local_style && local_style->m_foreground_color_selected_set)
+		else if (local_style && local_style->is_set.foreground_color_selected)
 			painter.setForegroundColor(local_style->m_foreground_color_selected);
 	}
 	else
@@ -869,7 +869,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
-		else if (local_style && local_style->m_foreground_color_set)
+		else if (local_style && local_style->is_set.foreground_color)
 			painter.setForegroundColor(local_style->m_foreground_color);
 	}
 }
@@ -941,7 +941,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	painter.clip(itemregion);
 	clearRegion(painter, style, local_style, ePyObject(), ePyObject(), ePyObject(), ePyObject(), selected, itemregion, sel_clip, offs, itemRect.size(), cursorValid, true, orientation);
 	// Draw frame here so to be under the content
-	if (selected && !sel_clip.valid() && (!local_style || !local_style->m_selection) && (!local_style || !local_style->m_border_set))
+	if (selected && !sel_clip.valid() && (!local_style || !local_style->m_selection) && (!local_style || !local_style->is_set.border))
 		style.drawFrame(painter, eRect(offs, itemRect.size()), eWindowStyle::frameListboxEntry);
 
 	ePyObject items, buildfunc_ret;

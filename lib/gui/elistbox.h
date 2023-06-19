@@ -83,10 +83,7 @@ struct eListboxStyleSetted
 struct eListboxStyle
 {
 	ePtr<gPixmap> m_background, m_selection, m_overlay;
-	int m_transparent_background;
-	int m_border_set;
 	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacer_color;
-	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set;
 	int m_max_columns;
 	int m_max_rows;
 	float m_selection_zoom;
@@ -94,7 +91,7 @@ struct eListboxStyle
 	eListboxStyleSetted is_set;
 
 	/*
-		{m_transparent_background m_background_color_set m_background}
+		{transparent_background background_color background}
 		{0 0 0} use global background color
 		{0 1 x} use background color
 		{0 0 p} use background picture
@@ -114,7 +111,6 @@ struct eListboxStyle
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
 	ePtr<gFont> m_font, m_font_zoomed, m_valuefont;
 	eRect m_text_padding;
-	bool m_use_vti_workaround;
 };
 #endif
 
@@ -263,17 +259,17 @@ public:
 	void setSpacerColor(gRGB &col);
 	void clearSpacerColor() { m_style.is_set.spacer_color = 0; }
 
-	void clearBackgroundColor() { m_style.m_background_color_set = 0; }
-	void clearBackgroundColorSelected() { m_style.m_background_color_selected_set = 0; }
-	void clearForegroundColor() { m_style.m_foreground_color_set = 0; }
-	void clearForegroundColorSelected() { m_style.m_foreground_color_selected_set = 0; }
+	void clearBackgroundColor() { m_style.is_set.background_color = 0; }
+	void clearBackgroundColorSelected() { m_style.is_set.background_color_selected = 0; }
+	void clearForegroundColor() { m_style.is_set.foreground_color = 0; }
+	void clearForegroundColorSelected() { m_style.is_set.foreground_color_selected = 0; }
 
 	void setBorderColor(const gRGB &col) { m_style.m_border_color = col; }
 	void setBorderWidth(int size);
 
 	void setBackgroundPixmap(ePtr<gPixmap> &pm) { m_style.m_background = pm; }
 	void setSelectionPixmap(ePtr<gPixmap> &pm) { m_style.m_selection = pm; }
-	void setSelectionBorderHidden() { m_style.m_border_set = 1; }
+	void setSelectionBorderHidden() { m_style.is_set.border = 1; }
 
 	void setScrollbarForegroundPixmap(ePtr<gPixmap> &pm);
 	void setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm);
@@ -282,6 +278,7 @@ public:
 	void setScrollbarWidth(int size) { m_scrollbar_width = size; }
 	void setScrollbarHeight(int size) { m_scrollbar_height = size; }
 	void setScrollbarOffset(int size) { m_scrollbar_offset = size; }
+	void setScrollbarLength(int size) { m_scrollbar_length = size; }
 
 	void setFont(gFont *font);
 	void setEntryFont(gFont *font) { m_style.m_font = font; }
@@ -289,7 +286,7 @@ public:
 	void setVAlign(int align) { m_style.m_valign = align; }
 	void setHAlign(int align) { m_style.m_halign = align; }
 	void setTextPadding(const eRect &padding) { m_style.m_text_padding = padding; }
-	void setUseVTIWorkaround(void) { m_style.m_use_vti_workaround = 1; }
+	void setUseVTIWorkaround(void) { m_style.is_set.use_vti_workaround = 1; }
 
 	void setScrollbarBorderColor(const gRGB &col);
 	void setScrollbarForegroundColor(gRGB &col);
@@ -360,6 +357,7 @@ private:
 	ePoint getItemPostion(int index);
 	int moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int maxItems, bool indexChanged, int pageOffset, int topLeft);
 	void recalcSizeAlignment(bool scrollbarVisible);
+	int setScrollbarPosition();
 
 	static int defaultScrollBarWidth;
 	static int defaultScrollBarOffset;
@@ -378,6 +376,7 @@ private:
 
 	int m_scrollbar_width;
 	int m_scrollbar_height;
+	int m_scrollbar_length;
 	int m_scrollbar_offset;
 	int m_scrollbar_border_width;
 	int m_top, m_left, m_selected;
@@ -395,6 +394,7 @@ private:
 	bool m_native_keys_bound;
 	int m_first_selectable_item;
 	int m_last_selectable_item;
+	int m_scrollbar_calcsize;
 
 	ePoint m_spacing;
 	bool m_spacing_innerOnly;
