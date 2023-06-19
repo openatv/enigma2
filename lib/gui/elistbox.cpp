@@ -547,8 +547,14 @@ int eListbox::event(int event, void *data, void *data2)
 				{
 					painter.clip(eRect(m_scrollbar->position(), eSize(m_scrollbar->size().width() + m_scrollbar_offset, m_scrollbar->size().height())));
 				}
-				if (m_style.is_set.background_color)
-					painter.setBackgroundColor(m_style.m_background_color);
+
+				if (m_style.is_set.spacer_color)
+					painter.setBackgroundColor(m_style.m_spacer_color);
+				else
+				{
+					if (m_style.is_set.background_color)
+						painter.setBackgroundColor(m_style.m_background_color);
+				}
 				painter.clear();
 				painter.clippop();
 			}
@@ -563,8 +569,13 @@ int eListbox::event(int event, void *data, void *data2)
 				{
 					painter.clip(eRect(m_scrollbar->position(), eSize(m_scrollbar->size().width(), m_scrollbar->size().height() + m_scrollbar_offset)));
 				}
-				if (m_style.is_set.background_color)
-					painter.setBackgroundColor(m_style.m_background_color);
+				if (m_style.is_set.spacer_color)
+					painter.setBackgroundColor(m_style.m_spacer_color);
+				else
+				{
+					if (m_style.is_set.background_color)
+						painter.setBackgroundColor(m_style.m_background_color);
+				}
 				painter.clear();
 				painter.clippop();
 			}
