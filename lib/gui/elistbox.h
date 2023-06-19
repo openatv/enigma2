@@ -61,16 +61,37 @@ protected:
 };
 
 #ifndef SWIG
+struct eListboxStyleSetted
+{
+	bool transparent_background : 1;
+	bool border : 1;
+	bool background_color : 1;
+	bool foreground_color : 1;
+	bool background_color_selected : 1;
+	bool foreground_color_selected : 1;
+	bool scrollbarforeground_color : 1;
+	bool scrollbarbackground_color : 1;
+	bool scollbarborder_color : 1;
+	bool scrollbarborder_width : 1;
+	bool spacer_color : 1;
+	bool overlay : 1;
+	bool max_rows : 1;
+	bool max_columns : 1;
+	bool use_vti_workaround : 1;
+};
+
 struct eListboxStyle
 {
-	ePtr<gPixmap> m_background, m_selection;
-	int m_transparent_background;
-	int m_border_set;
-	gRGB m_background_color, m_background_color_selected,
-		m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color;
-	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set, m_scrollbarforeground_color_set, m_scrollbarbackground_color_set, m_scollbarborder_color_set, m_scrollbarborder_width_set;
+	ePtr<gPixmap> m_background, m_selection, m_overlay;
+	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacer_color;
+	int m_max_columns;
+	int m_max_rows;
+	float m_selection_zoom;
+
+	eListboxStyleSetted is_set;
+
 	/*
-		{m_transparent_background m_background_color_set m_background}
+		{transparent_background background_color background}
 		{0 0 0} use global background color
 		{0 1 x} use background color
 		{0 0 p} use background picture
@@ -88,9 +109,8 @@ struct eListboxStyle
 		alignBlock
 	};
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
-	ePtr<gFont> m_font, m_valuefont;
+	ePtr<gFont> m_font, m_font_zoomed, m_valuefont;
 	eRect m_text_padding;
-	bool m_use_vti_workaround;
 };
 #endif
 
@@ -137,11 +157,40 @@ public:
 		orHorizontal = 2,
 		orGrid = 3
 	};
+
 	enum
 	{
-		itemAlignDefault,
-		itemAlignCenter,
-		itemAlignJustify
+		itemVertialAlignTop = 1 << 0,
+		itemVertialAlignMiddle = 1 << 1,
+		itemVertialAlignBottom = 1 << 2,
+		itemVertialAlignJustify = 1 << 3,
+		itemHorizontalAlignLeft = 1 << 4,
+		itemHorizontalAlignCenter = 1 << 5,
+		itemHorizontalAlignRight = 1 << 6,
+		itemHorizontalAlignJustify = 1 << 7,
+	};
+
+	enum
+	{
+		itemAlignLeftTop = itemVertialAlignTop + itemHorizontalAlignLeft,
+		itemAlignLeftMiddle = itemVertialAlignMiddle + itemHorizontalAlignLeft,
+		itemAlignLeftBottom = itemVertialAlignBottom + itemHorizontalAlignLeft,
+		itemAlignRightTop = itemVertialAlignTop + itemHorizontalAlignRight,
+		itemAlignRightMiddle = itemVertialAlignMiddle + itemHorizontalAlignRight,
+		itemAlignRightBottom = itemVertialAlignBottom + itemHorizontalAlignRight,
+		itemAlignCenterTop = itemVertialAlignTop + itemHorizontalAlignCenter,
+		itemAlignCenterMiddle = itemVertialAlignMiddle + itemHorizontalAlignCenter,
+		itemAlignCenterBottom = itemVertialAlignBottom + itemHorizontalAlignCenter,
+		itemAlignJustifyTop = itemVertialAlignTop + itemHorizontalAlignJustify,
+		itemAlignJustifyMiddle = itemVertialAlignMiddle + itemHorizontalAlignJustify,
+		itemAlignJustifyBottom = itemVertialAlignBottom + itemHorizontalAlignJustify,
+		itemAlignJustifyLeft = itemVertialAlignJustify + itemHorizontalAlignLeft,
+		itemAlignJustifyRight = itemVertialAlignJustify + itemHorizontalAlignRight,
+		itemAlignJustifyFull =  itemVertialAlignJustify + itemHorizontalAlignJustify,
+
+		itemAlignDefault = itemAlignLeftTop,
+		itemAlignCenter = itemAlignCenterMiddle,
+		itemAlignJustify = itemAlignJustifyFull
 	};
 
 	void setItemAlignment(int align);
@@ -207,17 +256,20 @@ public:
 	void setForegroundColor(gRGB &col);
 	void setForegroundColorSelected(gRGB &col);
 
-	void clearBackgroundColor() { m_style.m_background_color_set = 0; }
-	void clearBackgroundColorSelected() { m_style.m_background_color_selected_set = 0; }
-	void clearForegroundColor() { m_style.m_foreground_color_set = 0; }
-	void clearForegroundColorSelected() { m_style.m_foreground_color_selected_set = 0; }
+	void setSpacerColor(gRGB &col);
+	void clearSpacerColor() { m_style.is_set.spacer_color = 0; }
+
+	void clearBackgroundColor() { m_style.is_set.background_color = 0; }
+	void clearBackgroundColorSelected() { m_style.is_set.background_color_selected = 0; }
+	void clearForegroundColor() { m_style.is_set.foreground_color = 0; }
+	void clearForegroundColorSelected() { m_style.is_set.foreground_color_selected = 0; }
 
 	void setBorderColor(const gRGB &col) { m_style.m_border_color = col; }
 	void setBorderWidth(int size);
 
 	void setBackgroundPixmap(ePtr<gPixmap> &pm) { m_style.m_background = pm; }
 	void setSelectionPixmap(ePtr<gPixmap> &pm) { m_style.m_selection = pm; }
-	void setSelectionBorderHidden() { m_style.m_border_set = 1; }
+	void setSelectionBorderHidden() { m_style.is_set.border = 1; }
 
 	void setScrollbarForegroundPixmap(ePtr<gPixmap> &pm);
 	void setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm);
@@ -226,18 +278,26 @@ public:
 	void setScrollbarWidth(int size) { m_scrollbar_width = size; }
 	void setScrollbarHeight(int size) { m_scrollbar_height = size; }
 	void setScrollbarOffset(int size) { m_scrollbar_offset = size; }
+	void setScrollbarLength(int size) { m_scrollbar_length = size; }
 
-	void setFont(gFont *font) { m_style.m_font = font; }
+	void setFont(gFont *font);
 	void setEntryFont(gFont *font) { m_style.m_font = font; }
 	void setValueFont(gFont *font) { m_style.m_valuefont = font; }
 	void setVAlign(int align) { m_style.m_valign = align; }
 	void setHAlign(int align) { m_style.m_halign = align; }
 	void setTextPadding(const eRect &padding) { m_style.m_text_padding = padding; }
-	void setUseVTIWorkaround(void) { m_style.m_use_vti_workaround = 1; }
+	void setUseVTIWorkaround(void) { m_style.is_set.use_vti_workaround = 1; }
 
 	void setScrollbarBorderColor(const gRGB &col);
 	void setScrollbarForegroundColor(gRGB &col);
 	void setScrollbarBackgroundColor(gRGB &col);
+
+	void setMaxRows(int rows) {m_style.m_max_rows = rows; m_style.is_set.max_rows = 1;};
+	void setMaxColumns(int columns) {m_style.m_max_columns = columns; m_style.is_set.max_columns = 1;};
+	void setItemSpacing(const ePoint &spacing, bool innerOnly=false);
+	void setSelectionZoom(float zoom);
+
+	void setOverlay(ePtr<gPixmap> &pm) { m_style.m_overlay = pm; m_style.is_set.overlay = 1; }
 
 	void setPageSize(int size) { m_page_size = size; }
 
@@ -294,7 +354,11 @@ protected:
 	void recalcSize();
 
 private:
+	ePoint getItemPostion(int index);
 	int moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int maxItems, bool indexChanged, int pageOffset, int topLeft);
+	void recalcSizeAlignment(bool scrollbarVisible);
+	int setScrollbarPosition();
+
 	static int defaultScrollBarWidth;
 	static int defaultScrollBarOffset;
 	static int defaultScrollBarBorderWidth;
@@ -307,9 +371,12 @@ private:
 	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;
 	bool m_enabled_wrap_around;
+	bool m_itemwidth_set;
+	bool m_itemheight_set;
 
 	int m_scrollbar_width;
 	int m_scrollbar_height;
+	int m_scrollbar_length;
 	int m_scrollbar_offset;
 	int m_scrollbar_border_width;
 	int m_top, m_left, m_selected;
@@ -321,11 +388,16 @@ private:
 	int m_selection_enabled;
 	int m_page_size;
 	int m_item_alignment;
+	int xOffset;
+	int yOffset;
 
 	bool m_native_keys_bound;
 	int m_first_selectable_item;
 	int m_last_selectable_item;
+	int m_scrollbar_calcsize;
 
+	ePoint m_spacing;
+	bool m_spacing_innerOnly;
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;
 	eListboxStyle m_style;
