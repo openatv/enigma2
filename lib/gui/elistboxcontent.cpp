@@ -219,7 +219,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	if (!fnt)
 	{
 		style.getFont(eWindowStyle::fontListbox, fnt);
-		if (selected && local_style->m_selection_zoom > 1.0)
+		if (selected && local_style && local_style->m_selection_zoom > 1.0)
 		{
 		 	if(fnt)
 				m_font_zoomed = new gFont(fnt->family, fnt->pointSize * local_style->m_selection_zoom);
@@ -908,6 +908,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	gRGB border_color;
 	int border_size = 0;
 	int orientation = 0;
+	bool itemZoomed = false;
 
 	if (sel_clip.valid())
 		sel_clip.moveBy(offset);
@@ -919,12 +920,12 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		border_size = local_style->m_border_size;
 		border_color = local_style->m_border_color;
 		orientation = m_listbox->getOrientation();
+		itemZoomed = local_style->m_selection_zoom > 1.0;
 	}
 
 	ePoint offs = offset;
 	eRect itemRect = eRect(offset, m_itemsize);
 	gRegion itemregion(itemRect);
-	bool itemZoomed = local_style->m_selection_zoom > 1.0;
 
 	if (selected && itemZoomed)
 	{
