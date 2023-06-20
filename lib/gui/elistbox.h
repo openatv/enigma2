@@ -73,7 +73,7 @@ struct eListboxStyleSetted
 	bool scrollbarbackground_color : 1;
 	bool scollbarborder_color : 1;
 	bool scrollbarborder_width : 1;
-	bool spacer_color : 1;
+	bool spacing_color : 1;
 	bool overlay : 1;
 	bool max_rows : 1;
 	bool max_columns : 1;
@@ -83,7 +83,7 @@ struct eListboxStyleSetted
 struct eListboxStyle
 {
 	ePtr<gPixmap> m_background, m_selection, m_overlay;
-	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacer_color;
+	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacing_color;
 	int m_max_columns;
 	int m_max_rows;
 	float m_selection_zoom;
@@ -256,8 +256,8 @@ public:
 	void setForegroundColor(gRGB &col);
 	void setForegroundColorSelected(gRGB &col);
 
-	void setSpacerColor(gRGB &col);
-	void clearSpacerColor() { m_style.is_set.spacer_color = 0; }
+	void setSpacingColor(gRGB &col);
+	void clearSpacingColor() { m_style.is_set.spacing_color = 0; }
 
 	void clearBackgroundColor() { m_style.is_set.background_color = 0; }
 	void clearBackgroundColorSelected() { m_style.is_set.background_color_selected = 0; }

@@ -455,8 +455,8 @@ int eListbox::event(int event, void *data, void *data2)
 		{
 			painter.clip(paint_region);
 			style->setStyle(painter, eWindowStyle::styleListboxNormal);
-			if (m_style.is_set.spacer_color)
-				painter.setBackgroundColor(m_style.m_spacer_color);
+			if (m_style.is_set.spacing_color)
+				painter.setBackgroundColor(m_style.m_spacing_color);
 			else
 			{
 				if (m_style.is_set.background_color)
@@ -548,8 +548,8 @@ int eListbox::event(int event, void *data, void *data2)
 					painter.clip(eRect(m_scrollbar->position(), eSize(m_scrollbar->size().width() + m_scrollbar_offset, m_scrollbar->size().height())));
 				}
 
-				if (m_style.is_set.spacer_color)
-					painter.setBackgroundColor(m_style.m_spacer_color);
+				if (m_style.is_set.spacing_color)
+					painter.setBackgroundColor(m_style.m_spacing_color);
 				else
 				{
 					if (m_style.is_set.background_color)
@@ -569,8 +569,8 @@ int eListbox::event(int event, void *data, void *data2)
 				{
 					painter.clip(eRect(m_scrollbar->position(), eSize(m_scrollbar->size().width(), m_scrollbar->size().height() + m_scrollbar_offset)));
 				}
-				if (m_style.is_set.spacer_color)
-					painter.setBackgroundColor(m_style.m_spacer_color);
+				if (m_style.is_set.spacing_color)
+					painter.setBackgroundColor(m_style.m_spacing_color);
 				else
 				{
 					if (m_style.is_set.background_color)
@@ -590,8 +590,8 @@ int eListbox::event(int event, void *data, void *data2)
 				{
 					painter.clip(eRect(m_scrollbar->position() - ePoint(m_scrollbar_offset, 0), eSize(m_scrollbar_offset, m_scrollbar->size().height())));
 				}
-				if (m_style.is_set.spacer_color)
-					painter.setBackgroundColor(m_style.m_spacer_color);
+				if (m_style.is_set.spacing_color)
+					painter.setBackgroundColor(m_style.m_spacing_color);
 				else
 				{
 					if (m_style.is_set.background_color)
@@ -925,10 +925,10 @@ void eListbox::entryReset(bool selectionHome)
 	invalidate();
 }
 
-void eListbox::setSpacerColor(gRGB &col)
+void eListbox::setSpacingColor(gRGB &col)
 {
-	m_style.m_spacer_color = col;
-	m_style.is_set.spacer_color = 1;
+	m_style.m_spacing_color = col;
+	m_style.is_set.spacing_color = 1;
 }
 
 void eListbox::setBackgroundColor(gRGB &col)

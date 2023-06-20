@@ -465,6 +465,16 @@ def parseItemAlignment(value):
 	return parseOptions(options, "itemAlignment", value, eListbox.itemAlignDefault)
 
 
+def parseScrollbarLength(value, default):
+	if value and value.isdigit():
+		return int(value)
+	options = {
+		"full": 0,
+		"auto": -1
+	}
+	return options.get(value, default)
+
+
 def parseListOrientation(value):
 	options = {
 		"vertical": 0b01,
@@ -923,6 +933,9 @@ class AttributeParser:
 	def scrollbarBorderColor(self, value):
 		self.guiObject.setScrollbarBorderColor(parseColor(value, 0x00FFFFFF))
 
+	def scrollbarLength(self, value):
+		self.guiObject.setScrollbarLength(parseScrollbarLength(value, 0))
+
 	def scrollbarSliderBorderColor(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBorderColor' instead!
 		self.scrollbarBorderColor(value)
 		attribDeprecationWarning("scrollbarSliderBorderColor", "scrollbarBorderColor")
@@ -1003,8 +1016,8 @@ class AttributeParser:
 		self.scrollbarForegroundPixmap(value)
 		attribDeprecationWarning("sliderPixmap", "scrollbarForegroundPixmap")
 
-	def spacerColor(self, value):
-		self.guiObject.setSpacerColor(parseColor(value, 0x00000000))
+	def spacingColor(self, value):
+		self.guiObject.setSpacingColor(parseColor(value, 0x00000000))
 
 	def text(self, value):
 		if value:
