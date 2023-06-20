@@ -429,8 +429,8 @@ def parseGradient(value):
 			"vertical": ePixmap.GRADIENT_VERTICAL,
 		}
 		direction = parseOptions(options, "gradient", data[2], ePixmap.GRADIENT_VERTICAL)
-		if len(data) == 3:
-			alphaBend = BT_ALPHABLEND if data[3] == '1' else 0
+		if len(data) == 4:
+			alphaBend = BT_ALPHABLEND if parseBoolean("1", data[3]) else 0
 		return (parseColor(data[0], default=0x00000000), parseColor(data[1], 0x00FFFFFF), direction, alphaBend)
 	else:
 		skinError("The gradient '%s' must be 'startColor,endColor,direction[,blend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)" % value)
@@ -772,8 +772,8 @@ class AttributeParser:
 	def setBackgroundGradient(self, value):
 		self.guiObject.setBackgroundGradient(*parseGradient(value))
 
-	def setBackgroundGradientSeleced(self, value):
-		self.guiObject.setBackgroundGradientSeleced(*parseGradient(value))
+	def setBackgroundGradientSelected(self, value):
+		self.guiObject.setBackgroundGradientSelected(*parseGradient(value))
 
 	def backgroundCrypted(self, value):
 		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
@@ -861,7 +861,7 @@ class AttributeParser:
 		self.guiObject.setItemHeight(self.applyVerticalScale(value))
 
 	def itemSpacing(self, value):
-		if len(value.split(",")) == 1:
+		if len(value.split(",")) == 1:  # These values will be stripped in parseCoordinate().
 			value = "%s,%s" % (value, value)
 		self.guiObject.setItemSpacing(parsePosition(value, self.scaleTuple, self.guiObject, self.desktop))
 
@@ -997,11 +997,10 @@ class AttributeParser:
 		self.guiObject.setSelectionPixmap(parsePixmap(value, self.desktop))
 
 	def selectionZoom(self, value):
-		try:
-			value = float(value)
-		except ValueError:
-			value = 1.0
-		self.guiObject.setSelectionZoom(value)
+		value = parseInteger(value, 0)
+		if value > 500:
+			value = 500
+		self.guiObject.setSelectionZoom(float("%d.%s" % ((value // 100) + 1, value % 100)))
 
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value, 0x00000000))
