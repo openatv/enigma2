@@ -1,4 +1,3 @@
-from __future__ import print_function
 from enigma import GRADIENT_VERTICAL, RT_HALIGN_LEFT, RT_VALIGN_TOP, eListboxPythonMultiContent
 
 from skin import parseColor
