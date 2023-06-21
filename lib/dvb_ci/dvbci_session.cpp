@@ -7,6 +7,12 @@
 #include <lib/dvb_ci/dvbci_camgr.h>
 #include <lib/dvb_ci/dvbci_datetimemgr.h>
 #include <lib/dvb_ci/dvbci_mmi.h>
+#include <lib/dvb_ci/dvbci_ccmgr.h>
+#include <lib/dvb_ci/dvbci_hlcmgr.h>
+#include <lib/dvb_ci/dvbci_host_ctrl.h>
+#include <lib/dvb_ci/dvbci_cam_upgrade.h>
+#include <lib/dvb_ci/dvbci_app_mmi.h>
+#include <lib/dvb_ci/dvbci_operatorprofile.h>
 
 DEFINE_REF(eDVBCISession);
 
@@ -31,7 +37,7 @@ int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 		return 3;
 	} else
 	{
-		eDebug("[CI SESS] too big length");
+		eWarning("[CI SESS] too big length");
 		exit(0);
 	}
 }
@@ -144,16 +150,22 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 	switch (tag)
 	{
 	case 0x00010041:
-		session=new eDVBCIResourceManagerSession;
+		session=new eDVBCIResourceManagerSession(slot->getVersion());
 		eDebug("[CI SESS] RESOURCE MANAGER");
 		break;
 	case 0x00020041:
+	case 0x00020043:
 		session=new eDVBCIApplicationManagerSession(slot);
 		eDebug("[CI SESS] APPLICATION MANAGER");
 		break;
 	case 0x00030041:
 		session = new eDVBCICAManagerSession(slot);
 		eDebug("[CI SESS] CA MANAGER");
+		break;
+	case 0x00200041:
+	case 0x00200042:
+		session = new eDVBCIHostControlSession;
+		eDebug("[CI SESS] Host Control");
 		break;
 	case 0x00240041:
 		session=new eDVBCIDateTimeSession;
@@ -163,11 +175,37 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 		session = new eDVBCIMMISession(slot);
 		eDebug("[CI SESS] MMI - create session");
 		break;
+	case 0x00410041:
+	case 0x00410042:
+		session = new eDVBCIApplicationMMISession;
+		eDebug("[CI SESS] Application MMI");
+		break;
+	case 0x008C1001:
+		eDVBCIInterfaces::getInstance()->setCIPlusRouting(slot->getSlotID());
+		session = new eDVBCICcSession(slot, 1);
+		eDebug("[CI SESS] Content Control v1");
+		break;
+	case 0x008C1002:
+		eDVBCIInterfaces::getInstance()->setCIPlusRouting(slot->getSlotID());
+		session = new eDVBCICcSession(slot, 2);
+		eDebug("[CI SESS] Content Control v2");
+		break;
+	case 0x008D1001:
+		session = new eDVBCIHostLanguageAndCountrySession;
+		eDebug("[CI SESS] Host Language & Country");
+		break;
+	case 0x008E1001:
+		session = new eDVBCICAMUpgradeSession;
+		eDebug("[CI SESS] CAM Upgrade");
+		break;
+	case 0x008F1001:
+		session = new eDVBCIOperatorProfileSession;
+		eDebug("[CI SESS] Operator Profile");
+		break;
 	case 0x00100041:
 //		session=new eDVBCIAuthSession;
 		eDebug("[CI SESS] AuthSession");
-//		break;
-	case 0x00200041:
+		[[fallthrough]];
 	default:
 		eDebug("[CI SESS] unknown resource type %02x %02x %02x %02x", resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
 		session=0;
@@ -176,7 +214,7 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 
 	if (!session)
 	{
-		eDebug("[CI SESS] unknown session.. expect crash");
+		eWarning("[CI SESS] unknown session.. expect crash");
 		return;
 	}
 
@@ -225,12 +263,12 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 	unsigned char tag = *pkt++;
 	int llen, hlen;
 
-	eDebugNoNewLineStart("[CI SESS] slot: %p ",slot);
+	eDebug("[CI SESS] slot: %p",slot);
 
-	eDebugNoNewLineStart("[CI SESS]: ");
-
+	eTraceNoNewLineStart("[CI SESS]: ");
 	for(unsigned int i=0;i<len;i++)
-		eDebugNoNewLine("%02x ",ptr[i]);
+		eTraceNoNewLineStart("%02x ",ptr[i]);
+	eTraceNoNewLineStart("\n");
 
 	llen = parseLengthField(pkt, hlen);
 	pkt += llen;
@@ -257,14 +295,14 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 
 		if ((!session_nb) || (session_nb >= SLMS))
 		{
-			eDebug("[CI SESS] PROTOCOL: illegal session number %x", session_nb);
+			eWarning("[CI SESS] PROTOCOL: illegal session number %x", session_nb);
 			return;
 		}
 
 		session=sessions[session_nb-1];
 		if (!session)
 		{
-			eDebug("[CI SESS] PROTOCOL: data on closed session %x", session_nb);
+			eWarning("[CI SESS] PROTOCOL: data on closed session %x", session_nb);
 			return;
 		}
 
@@ -316,11 +354,11 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 		}
 
 	if (len)
-		eDebug("[CI SESS] PROTOCOL: warning, TL-Data has invalid length");
+		eWarning("[CI SESS] PROTOCOL: warning, TL-Data has invalid length");
 }
 
 eDVBCISession::~eDVBCISession()
 {
-//	eDebug("destroy %p", this);
+//	eDebug("[CI SESS] destroy %p", this);
 }
 
