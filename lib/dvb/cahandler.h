@@ -137,13 +137,11 @@ typedef std::map<eServiceReferenceDVB, eDVBCAService*> CAServiceMap;
 SWIG_IGNORE(iCryptoInfo);
 class iCryptoInfo : public iObject
 {
-#ifdef SWIG
 public:
+#ifdef SWIG
 	iCryptoInfo();
 	~iCryptoInfo();
-private:
 #endif
-public:
 	PSignal1<void, const char*> clientname;
 	PSignal1<void, const char*> clientinfo;
 	PSignal1<void, const char*> verboseinfo;
