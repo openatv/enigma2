@@ -15,22 +15,22 @@ from Components.config import config
 class FIFOList(MenuList):
 	def __init__(self, len=10):
 		self.len = len
-		self.list = []
-		MenuList.__init__(self, self.list)
+		self.menuList = []
+		MenuList.__init__(self, self.menuList)
 
 	def addItem(self, item):
-		self.list.append(item)
-		self.l.setList(self.list[-self.len:])
+		self.menuList.append(item)
+		self.l.setList(self.menuList[-self.len:])
 
 	def clear(self):
-		del self.list[:]
-		self.l.setList(self.list)
+		del self.menuList[:]
+		self.l.setList(self.menuList)
 
 	def getCurrentSelection(self):
-		return self.list and self.getCurrent() or None
+		return self.menuList and self.getCurrent() or None
 
 	def listAll(self):
-		self.l.setList(self.list)
+		self.l.setList(self.menuList)
 		self.selectionEnabled(True)
 
 
