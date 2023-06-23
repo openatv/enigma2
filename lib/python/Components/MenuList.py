@@ -8,9 +8,9 @@ class MenuList(GUIComponent):
 
 	def __init__(self, menuList, enableWrapAround=None, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
 		GUIComponent.__init__(self)
-		self.menuList = menuList
+		self.list = menuList
 		self.l = content()
-		self.l.setList(self.menuList)
+		self.l.setList(self.list)
 		self.onSelectionChanged = []
 
 	def postWidgetCreate(self, instance):
@@ -30,16 +30,14 @@ class MenuList(GUIComponent):
 			self.instance.setSelectionEnable(enabled)
 
 	def getList(self):
-		return self.menuList
+		return self.list
 
 	def setList(self, menuList):
-		self.menuList = menuList
-		self.l.setList(self.menuList)
-
-	list = property(getList, setList)
+		self.list = menuList
+		self.l.setList(self.list)
 
 	def count(self):
-		return len(self.menuList)
+		return len(self.list)
 
 	def selectionChanged(self):
 		for callback in self.onSelectionChanged:
