@@ -61,6 +61,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/ewidget.h>
 #include <lib/gui/elabel.h>
 #include <lib/gui/epixmap.h>
+#include <lib/gui/erectangle.h>
 #include <lib/gui/ebutton.h>
 #include <lib/gui/ewindow.h>
 #include <lib/gui/ewidgetdesktop.h>
@@ -215,6 +216,7 @@ typedef long time_t;
 %include <lib/gui/ewidget.h>
 %include <lib/gui/elabel.h>
 %include <lib/gui/epixmap.h>
+%include <lib/gui/erectangle.h>
 %include <lib/gui/ecanvas.h>
 %include <lib/gui/ebutton.h>
 %include <lib/gui/ewindow.h>
@@ -485,6 +487,7 @@ extern void setAnimation_current_listbox(int a);
 #endif
 extern void pauseInit(void);
 extern void resumeInit(void);
+extern int checkInternetAccess(const char* host, int timeout = 3);
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
@@ -506,6 +509,7 @@ extern void setAnimation_current_listbox(int a);
 #endif
 extern void pauseInit(void);
 extern void resumeInit(void);
+extern int checkInternetAccess(const char* host, int timeout = 3);
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>

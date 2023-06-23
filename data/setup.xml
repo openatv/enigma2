@@ -104,14 +104,6 @@
 		<item level="2" text="Number of digits in channel number" description="This allows you to set the number of digits to 5, if you have more than 9999 channels.">config.usage.maxchannelnumlen</item>
 		<item level="0" text="Set action for 'Info' key" description="Here you can set what is called when pressing the 'Info' key.">config.usage.servicelist_infokey</item>
 	</setup>
-	<setup key="CISettings" title="CI Basic Settings" requires="CommonInterface" showOpenWebif="1">
-		<item level="1" text="DVB CI Delay" description="Choose dvb wait delay for ci response." requires="CommonInterfaceCIDelay">config.cimisc.dvbCiDelay</item>
-		<if requires="HaveCISSL">
-			<item level="1" text="CI Operation Mode" description="Choose the CI protocol operation mode for standard ci or ciplus.">config.cimisc.civersion</item>
-		<else />
-			<item level="1" text="CI Operation Mode" description="Your Hardware can detect ci mode self or work only in legacy mode.">config.cimisc.civersion</item>
-		</if>
-	</setup>
 	<setup key="Display" title="Display Settings" requires="FrontpanelDisplay" showOpenWebif="1">
 		<item level="0" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD." requires="FBLCDDisplay">config.lcd.fblcddisplay</item>
 		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel display for normal operation.">config.lcd.bright</item>
@@ -887,6 +879,7 @@
 		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_osd</item>
 		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
 		<item level="2" text="Hide zap errors" description="Hide any zap error messages.">config.usage.hide_zap_errors</item>
+		<item level="2" text="Hide CI messages" description="Hide error messages from the Common Interface module.">config.usage.hide_ci_messages</item>
 		<item level="2" text="Show crypto info in InfoBar" description="Show encryption information in the InfoBar (when supported by the skin).">config.usage.show_cryptoinfo</item>
 		<item level="2" text="InfoBar front end data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>

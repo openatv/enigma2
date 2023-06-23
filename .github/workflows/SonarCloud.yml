@@ -37,6 +37,7 @@ jobs:
           sudo apt-get install libavahi-client-dev
           sudo apt-get install libjpeg-turbo8-dev
           sudo apt-get install libgif-dev
+          sudo apt-get install libcurl4-openssl-dev
 
       - uses: actions/checkout@v3
         with:
