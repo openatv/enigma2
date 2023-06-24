@@ -314,13 +314,20 @@ class Navigation:
 				if not playref:
 					alternativeref = getBestPlayableServiceReference(ref, eServiceReference(), True)
 					self.stopService()
-					if alternativeref and self.pnav and self.pnav.playService(alternativeref):
-						print("[Navigation] Failed to start", alternativeref)
-						if oldref and "://" in oldref.getPath():
-							print("[Navigation] Streaming was active -> try again")  # use timer to give the streamserver the time to deallocate the tuner
-							self.retryServicePlayTimer = eTimer()
-							self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
-							self.retryServicePlayTimer.start(500, True)
+					if alternativeref and self.pnav:
+						self.currentlyPlayingServiceReference = alternativeref
+						self.currentlyPlayingServiceOrGroup = ref
+						if self.pnav.playService(alternativeref):
+							print("[Navigation] Failed to start: ", alternativeref.toString())
+							self.currentlyPlayingServiceReference = None
+							self.currentlyPlayingServiceOrGroup = None
+							if oldref and "://" in oldref.getPath():
+								print("[Navigation] Streaming was active -> try again")  # use timer to give the streamserver the time to deallocate the tuner
+								self.retryServicePlayTimer = eTimer()
+								self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
+								self.retryServicePlayTimer.start(500, True)
+						else:
+							print("[Navigation] alternative ref as simulate: ", alternativeref.toString())
 					return 0
 				elif checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl=False)):
 					if self.currentlyPlayingServiceOrGroup and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(self.currentlyPlayingServiceOrGroup, adjust):
@@ -329,11 +336,15 @@ class Navigation:
 			else:
 				playref = ref
 			if self.pnav:
+				if not BoxInfo.getItem("FCCactive"):
+					self.pnav.stopService()
+				else:
+					self.skipServiceReferenceReset = True
 				self.currentlyPlayingServiceReference = playref
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
-				self.skipServiceReferenceReset = True
+				#self.skipServiceReferenceReset = True
 				if self.pnav.playService(playref):
 					print("[Navigation] Failed to start", playref.toString())
 					self.currentlyPlayingServiceReference = None

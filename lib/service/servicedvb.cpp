@@ -2720,7 +2720,7 @@ PyObject *eDVBServicePlay::getCutList()
 	{
 		ePyObject tuple = PyTuple_New(2);
 		PyTuple_SET_ITEM(tuple, 0, PyLong_FromLongLong(i->where));
-		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(i->what));
+		PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(i->what));
 		PyList_Append(list, tuple);
 		Py_DECREF(tuple);
 	}

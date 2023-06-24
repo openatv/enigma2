@@ -2025,9 +2025,91 @@ RESULT eDVBSatelliteEquipmentControl::setTunerDepends(int tu1, int tu2)
 	return -1;
 }
 
+bool eDVBSatelliteEquipmentControl::tunerLinkedInUse(int root)
+{
+	long linked_root = -1;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->is_FBCTuner())
+		{
+			it->m_frontend->getData(eDVBFrontend::ADVANCED_LINKED_ROOT, linked_root);
+			if (linked_root != -1 && linked_root == root && it->m_inuse)
+				return true;
+		}
+	}
+	return false;
+}
+
+bool eDVBSatelliteEquipmentControl::tunerAdvancedsatposdependsInUse(int root)
+{
+	long advanced_satposdepends_link = -1;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		it->m_frontend->getData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_LINK, advanced_satposdepends_link);
+		if (advanced_satposdepends_link != -1 && advanced_satposdepends_link == root && it->m_inuse)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+int eDVBSatelliteEquipmentControl::getRotorAdvancedsatposdependsPosition(int advanced_satposdepends)
+{
+	long rotor_pos = -1;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->getSlotID() == advanced_satposdepends)
+		{
+			it->m_frontend->getData(eDVBFrontend::ROTOR_POS, rotor_pos);
+			return rotor_pos;
+		}
+	}
+	return rotor_pos;
+}
+
+bool eDVBSatelliteEquipmentControl::setAdvancedsatposdependsRoot(int advanced_satposdepends)
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->getSlotID() == advanced_satposdepends)
+		{
+			it->m_frontend->setData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_ROOT, advanced_satposdepends);
+			return true;
+		}
+	}
+	return false;
+}
+
+RESULT eDVBSatelliteEquipmentControl::resetAdvancedsatposdependsRoot(int link)
+{
+	eDVBRegisteredFrontend *root=NULL;
+	long advanced_satposdepends = -1;
+	bool in_use = false;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->getSlotID() == link)
+			root = *it;
+		it->m_frontend->getData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_LINK, advanced_satposdepends);
+		if (advanced_satposdepends == link)
+			in_use = true;
+	}
+
+	if (root && !in_use)
+	{
+		root->m_frontend->setData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_ROOT, -1);
+		return 0;
+	}
+	return -1;
+}
+
 void eDVBSatelliteEquipmentControl::setSlotNotLinked(int slot_no)
 {
-	eSecDebug("[eDVBSatelliteEquipmentControl] eDVBSatelliteEquipmentControl::setSlotNotLinked(%d)", slot_no);
+	eSecDebug("[eDVBSatelliteEquipmentControl::setSlotNotLinked] slot=%d", slot_no);
 	m_not_linked_slot_mask |= (1 << slot_no);
 }
 
@@ -2058,6 +2140,26 @@ bool eDVBSatelliteEquipmentControl::isOrbitalPositionConfigured(int orbital_posi
 	return false;
 }
 
+int eDVBSatelliteEquipmentControl::frontendLastRotorOrbitalPosition(int slot)
+{
+	long last_rotor_pos = -1;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	{
+		if (it->m_frontend->getSlotID() == slot)
+		{
+			it->m_frontend->getData(eDVBFrontend::ROTOR_POS, last_rotor_pos);
+			return last_rotor_pos;
+		}
+	}
+	return last_rotor_pos;
+}
+
+void eDVBSatelliteEquipmentControl::forceUpdateRotorPos(int slot, int orbital_position)
+{
+	slotRotorSatPosChanged(slot, orbital_position); // emit python
+}
+
 PyObject *eDVBSatelliteEquipmentControl::getBandCutOffFrequency(int slot_no, int orbital_position)
 {
 	PyObject *pyList = PyList_New(0);
@@ -2068,7 +2170,7 @@ PyObject *eDVBSatelliteEquipmentControl::getBandCutOffFrequency(int slot_no, int
 		{
 			std::map<int, eDVBSatelliteSwitchParameters>::iterator sit = lnb_param.m_satellites.find(orbital_position);
 			if ( sit != lnb_param.m_satellites.end())
-				PyList_Append(pyList, PyInt_FromLong(lnb_param.m_lof_threshold));
+				PyList_Append(pyList, PyLong_FromLong(lnb_param.m_lof_threshold));
 		}
 	}
 	return pyList;
@@ -2097,8 +2199,8 @@ PyObject *eDVBSatelliteEquipmentControl::getFrequencyRangeList(int slot_no, int 
 			if ( sit != lnb_param.m_satellites.end())
 			{
 				PyObject *pyTuple = PyTuple_New(2);
-				PyTuple_SET_ITEM(pyTuple, 0, PyInt_FromLong(lnb_param.m_lof_lo + fe_info.frequency_min));
-				PyTuple_SET_ITEM(pyTuple, 1, PyInt_FromLong(lnb_param.m_lof_hi + fe_info.frequency_max));
+				PyTuple_SET_ITEM(pyTuple, 0, PyLong_FromLong(lnb_param.m_lof_lo + fe_info.frequency_min));
+				PyTuple_SET_ITEM(pyTuple, 1, PyLong_FromLong(lnb_param.m_lof_hi + fe_info.frequency_max));
 				PyList_Append(pyList, pyTuple);
 			}
 		}

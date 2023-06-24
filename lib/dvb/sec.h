@@ -2,9 +2,16 @@
 #define __dvb_sec_h
 
 #include <lib/dvb/idvb.h>
+#include <lib/dvb/fbc.h>
+#include <lib/python/connections.h>
 #include <list>
 
-#include <lib/dvb/fbc.h>
+typedef enum
+{
+	SatCR_format_none = 0,
+	SatCR_format_unicable = 1,
+	SatCR_format_jess = 2
+} SatCR_format_t;
 
 #ifndef SWIG
 class eSecCommand
@@ -264,6 +271,8 @@ public:
 	eDVBSatelliteRotorParameters m_rotor_parameters;
 
 	int m_prio; // to override automatic tuner management ... -1 is Auto
+	int LNBNum;
+	int m_advanced_satposdepends;
 #endif
 public:
 #define MAX_SATCR 32
@@ -313,6 +322,9 @@ public:
 		DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS, // delay after change voltage before transmit toneburst/diseqc
 		DELAY_AFTER_DISEQC_RESET_CMD,
 		DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD,
+		UNICABLE_DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS,
+		UNICABLE_DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS,
+		UNICABLE_DELAY_AFTER_LAST_DISEQC_CMD,
 		MAX_PARAMS
 	};
 private:
@@ -325,6 +337,7 @@ private:
 	int m_rotorMoving;
 	int m_not_linked_slot_mask;
 	bool m_canMeasureInputPower;
+	int m_target_orbital_position = -1;
 #endif
 #ifdef SWIG
 	eDVBSatelliteEquipmentControl();
@@ -392,12 +405,21 @@ public:
 /* Tuner Specific Parameters */
 	RESULT setTunerLinked(int from, int to);
 	RESULT setTunerDepends(int from, int to);
+	RESULT resetAdvancedsatposdependsRoot(int link);
+	int getRotorAdvancedsatposdependsPosition(int advanced_satposdepends);
+	bool setAdvancedsatposdependsRoot(int advanced_satposdepends);
+	bool tunerAdvancedsatposdependsInUse(int root);
+	bool tunerLinkedInUse(int root);
 	void setSlotNotLinked(int tuner_no);
 
 	void setRotorMoving(int, bool); // called from the frontend's
 	bool isRotorMoving();
 	bool canMeasureInputPower() { return m_canMeasureInputPower; }
+	int getTargetOrbitalPosition() { return m_target_orbital_position; }
 	bool isOrbitalPositionConfigured(int orbital_position);
+	int frontendLastRotorOrbitalPosition(int slot);
+	PSignal2<void, int, int> slotRotorSatPosChanged;
+	void forceUpdateRotorPos(int slot, int orbital_position); // called from the frontend's
 
 	PyObject *getBandCutOffFrequency(int slot_no, int orbital_position);
 	PyObject *getFrequencyRangeList(int slot_no, int orbital_position);

@@ -534,12 +534,12 @@ PyObject *eDVBServicePMTHandler::getHbbTVApplications()
 		for(HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin() ; infoiter != m_HbbTVApplications.end() ; ++infoiter)
 		{
 			ePyObject tuple = PyTuple_New(6);
-			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong((*infoiter)->m_ControlCode));
+			PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong((*infoiter)->m_ControlCode));
 			PyTuple_SET_ITEM(tuple, 1, PyString_FromString((*infoiter)->m_ApplicationName.c_str()));
 			PyTuple_SET_ITEM(tuple, 2, PyString_FromString((*infoiter)->m_HbbTVUrl.c_str()));
-			PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong((*infoiter)->m_OrgId));
-			PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong((*infoiter)->m_AppId));
-			PyTuple_SET_ITEM(tuple, 5, PyInt_FromLong((*infoiter)->m_ProfileCode));
+			PyTuple_SET_ITEM(tuple, 3, PyLong_FromLong((*infoiter)->m_OrgId));
+			PyTuple_SET_ITEM(tuple, 4, PyLong_FromLong((*infoiter)->m_AppId));
+			PyTuple_SET_ITEM(tuple, 5, PyLong_FromLong((*infoiter)->m_ProfileCode));
 			PyList_Append(ret, tuple);
 			Py_DECREF(tuple);
 		}
@@ -1194,7 +1194,7 @@ void eDVBServicePMTHandler::free()
 			demuxes[1]=demuxes[0];
 		ePtr<eTable<ProgramMapSection> > ptr;
 		m_PMT.getCurrent(ptr);
-		eDVBCAHandler::getInstance()->unregisterService(m_reference, adapterid, demuxes, ptr);
+		eDVBCAHandler::getInstance()->unregisterService(m_reference, adapterid, demuxes, (int)m_service_type, ptr);
 		m_ca_servicePtr = 0;
 	}
 

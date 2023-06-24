@@ -281,8 +281,8 @@ int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject addi
 				if (!*res)  // NOSONAR
 					*res = PyList_New(0);
 				ePyObject it = PyTuple_New(2);
-				PyTuple_SET_ITEM(it, 0, PyInt_FromLong(pfd[i].fd));
-				PyTuple_SET_ITEM(it, 1, PyInt_FromLong(pfd[i].revents));
+				PyTuple_SET_ITEM(it, 0, PyLong_FromLong(pfd[i].fd));
+				PyTuple_SET_ITEM(it, 1, PyLong_FromLong(pfd[i].revents));
 				PyList_Append(*res, it);
 				Py_DECREF(it);
 			}

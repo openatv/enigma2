@@ -343,7 +343,7 @@ extern "C" {
 		int slot;
 		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
 			return NULL;
-		return PyInt_FromLong(eSocket_UI::getInstance()->availableMMI(slot));
+		return PyLong_FromLong(eSocket_UI::getInstance()->availableMMI(slot));
 	}
 
 	static PyObject *
@@ -361,7 +361,7 @@ extern "C" {
 		int slot;
 		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
 			return NULL;
-		return PyInt_FromLong(eSocket_UI::getInstance()->startMMI(slot));
+		return PyLong_FromLong(eSocket_UI::getInstance()->startMMI(slot));
 	}
 
 	static PyObject *
@@ -370,7 +370,7 @@ extern "C" {
 		int slot;
 		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
 			return NULL;
-		return PyInt_FromLong(eSocket_UI::getInstance()->stopMMI(slot));
+		return PyLong_FromLong(eSocket_UI::getInstance()->stopMMI(slot));
 	}
 
 	static PyObject *
@@ -379,7 +379,7 @@ extern "C" {
 		int slot, answer;
 		if (PyTuple_Size(args) != 2 || !PyArg_ParseTuple(args, "ii", &slot, &answer))
 			return NULL;
-		return PyInt_FromLong(eSocket_UI::getInstance()->answerMenu(slot, answer));
+		return PyLong_FromLong(eSocket_UI::getInstance()->answerMenu(slot, answer));
 	}
 
 	static PyObject *
@@ -389,7 +389,7 @@ extern "C" {
 		char *answer;
 		if (PyTuple_Size(args) != 2 || !PyArg_ParseTuple(args, "is", &slot, &answer))
 			return NULL;
-		return PyInt_FromLong(eSocket_UI::getInstance()->answerEnq(slot, answer));
+		return PyLong_FromLong(eSocket_UI::getInstance()->answerEnq(slot, answer));
 	}
 
 	static PyObject *
@@ -398,7 +398,7 @@ extern "C" {
 		int slot;
 		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
 			return NULL;
-		return PyInt_FromLong(eSocket_UI::getInstance()->cancelEnq(slot));
+		return PyLong_FromLong(eSocket_UI::getInstance()->cancelEnq(slot));
 	}
 
 	static PyObject *
@@ -407,7 +407,7 @@ extern "C" {
 		int slot;
 		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
 			return NULL;
-		return PyInt_FromLong(eSocket_UI::getInstance()->getState(slot));
+		return PyLong_FromLong(eSocket_UI::getInstance()->getState(slot));
 	}
 
 	static PyObject *
@@ -416,7 +416,7 @@ extern "C" {
 		int slot;
 		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
 			return NULL;
-		return PyInt_FromLong(eSocket_UI::getInstance()->getMMIState(slot));
+		return PyLong_FromLong(eSocket_UI::getInstance()->getMMIState(slot));
 	}
 
 	static PyObject *
