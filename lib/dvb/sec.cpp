@@ -2170,7 +2170,7 @@ PyObject *eDVBSatelliteEquipmentControl::getBandCutOffFrequency(int slot_no, int
 		{
 			std::map<int, eDVBSatelliteSwitchParameters>::iterator sit = lnb_param.m_satellites.find(orbital_position);
 			if ( sit != lnb_param.m_satellites.end())
-				PyList_Append(pyList, PyInt_FromLong(lnb_param.m_lof_threshold));
+				PyList_Append(pyList, PyLong_FromLong(lnb_param.m_lof_threshold));
 		}
 	}
 	return pyList;
@@ -2199,8 +2199,8 @@ PyObject *eDVBSatelliteEquipmentControl::getFrequencyRangeList(int slot_no, int 
 			if ( sit != lnb_param.m_satellites.end())
 			{
 				PyObject *pyTuple = PyTuple_New(2);
-				PyTuple_SET_ITEM(pyTuple, 0, PyInt_FromLong(lnb_param.m_lof_lo + fe_info.frequency_min));
-				PyTuple_SET_ITEM(pyTuple, 1, PyInt_FromLong(lnb_param.m_lof_hi + fe_info.frequency_max));
+				PyTuple_SET_ITEM(pyTuple, 0, PyLong_FromLong(lnb_param.m_lof_lo + fe_info.frequency_min));
+				PyTuple_SET_ITEM(pyTuple, 1, PyLong_FromLong(lnb_param.m_lof_hi + fe_info.frequency_max));
 				PyList_Append(pyList, pyTuple);
 			}
 		}

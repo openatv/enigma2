@@ -14,14 +14,14 @@ PyObject *eDVBServicePMTHandler::getCaIds(bool pair)
 		if (pair)
 		{
 			ePyObject tuple = PyTuple_New(3);
-			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(caids[i]));
-			PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(ecmpids[i]));
+			PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong(caids[i]));
+			PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(ecmpids[i]));
 			PyTuple_SET_ITEM(tuple, 2, PyString_FromString(databytes[i].c_str()));
 			PyList_SET_ITEM(ret, i, tuple);
 		}
 		else
 		{
-			PyList_SET_ITEM(ret, i, PyInt_FromLong(caids[i]));
+			PyList_SET_ITEM(ret, i, PyLong_FromLong(caids[i]));
 		}
 	}
 

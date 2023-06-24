@@ -204,9 +204,9 @@ int eMMI_UI::mmiScreenEnq(int slot, int blind, int answerLen, char *text)
 
 	tuple = PyTuple_New(4);
 	PyTuple_SET_ITEM(tuple, 0, PyString_FromString("PIN"));
-	PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(answerLen));
+	PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(answerLen));
 	PyTuple_SET_ITEM(tuple, 2, PyString_FromString(text));
-	PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(blind));
+	PyTuple_SET_ITEM(tuple, 3, PyLong_FromLong(blind));
 
 	PyList_SET_ITEM(data.mmiScreen, 1, tuple);
 
@@ -271,9 +271,9 @@ int eMMI_UI::mmiScreenAddText(int slot, int type, char *value)
 	PyTuple_SET_ITEM(tuple, 1, PyString_FromString(value));
 
 	if (type > 2)
-		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(type-2));
+		PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(type-2));
 	else
-		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(-1));
+		PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(-1));
 
 	PyList_Append(data.mmiScreen, tuple);
 	Py_DECREF(tuple);
