@@ -932,9 +932,6 @@ class ConfigNothing(ConfigSelection):
 	def __init__(self):
 		ConfigSelection.__init__(self, choices=[("", "")])
 
-class ConfigDescription(ConfigSelection):
-    def __init__(self):
-        ConfigSelection.__init__(self, choices=[('', '<DUMMYENTRY>')])
 
 class ConfigSatellite(ConfigSelection):
 	def __init__(self, choices, default=None):

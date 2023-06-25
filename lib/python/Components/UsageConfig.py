@@ -261,7 +261,6 @@ def InitUsageConfig():
 
 	# ########  Workaround for VTI Skins   ##############
 	config.usage.picon_dir = ConfigDirectory(default="/usr/share/enigma2/picon")
-	config.usage.servicelist_picon_dir = ConfigDirectory(default="/usr/share/enigma2/picon")
 	config.usage.movielist_show_picon = ConfigYesNo(default=False)
 	config.usage.use_extended_pig = ConfigYesNo(default=False)
 	config.usage.use_extended_pig_channelselection = ConfigYesNo(default=False)
