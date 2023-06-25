@@ -9,9 +9,9 @@ class Processing(Screen):
 
 	skin = """
 		<screen name="Processing" title="" position="center,center" size="400,160" backgroundColor="#000000" flags="wfNoBorder" zPosition="+99">
-			<widget source="Title" render="Label" position="10,5" size="380,20" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" halign="center" transparent="1" />
-			<widget name="Progress" position="20,35" size="360,30" backgroundColor="#000000" foregroundColor="#FFFFFF" transparent="0" />
-			<widget name="ProgressText" position="20,90" size="360,60" backgroundColor="#000000" font="Regular;18" foregroundColor="#FFFFFF" halign="center" transparent="1" valign="center" zPosition="+2" />
+			<widget source="Title" render="Label" position="10,5" size="380,28" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" halign="center" transparent="1" />
+			<widget name="Progress" position="20,45" size="360,20" backgroundColor="#000000" foregroundColor="#FFFFFF" transparent="0" />
+			<widget name="ProgressText" position="20,80" size="360,60" backgroundColor="#000000" font="Regular;18" foregroundColor="#FFFFFF" halign="center" transparent="1" valign="center" zPosition="+2" />
 		</screen>
 	"""
 
@@ -59,12 +59,12 @@ class ProcessingControl:
 	def __init__(self, session):
 		assert not ProcessingControl.instance, "[ProcessingControl] Error: Only one ProcessingControl instance is allowed!"
 		ProcessingControl.instance = self
-		self.ProgressDialog = session.instantiateDialog(ProcessingControl)
+		self.ProgressDialog = session.instantiateDialog(Processing)
 		self.ProgressDialog.setAnimationMode(0)
 		self.progressBarTimer = eTimer()
 		self.progressBarTimer.callback.append(self.updateProgress)
 		self.progressValue = 0
-		self.repeat = 100
+		self.repeat = 200
 
 	def showProgress(self, title="", endless=False):
 		self.ProgressDialog.setTitle(title)
@@ -83,7 +83,7 @@ class ProcessingControl:
 		self.ProgressDialog.hide()
 
 	def updateProgress(self):
-		self.progressValue += 1
+		self.progressValue += 2
 		if self.progressValue > 100:
-			self.progressValue = 1
+			self.progressValue = 2
 		self.ProgressDialog.setProgressValue(self.progressValue)
