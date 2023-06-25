@@ -415,8 +415,8 @@ def runScreenTest():
 		runNextScreen(session, screensToRun)
 	profile("InitVolumeControl")
 	vol = VolumeControl(session)
-	profile("InitGlobalProgressControl")
-	progress = GlobalProgressControl(session)
+	profile("InitProcessingControl")
+	progress = ProcessingControl(session)
 	profile("InitPowerKey")
 	power = PowerKey(session)
 	if BoxInfo.getItem("VFDSymbols"):
@@ -833,7 +833,7 @@ profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
 
 profile("Load:ProgressControl")
-from Screens.GlobalProgress import GlobalProgressControl
+from Screens.Processing import ProcessingControl
 
 profile("Load:StackTracePrinter")
 from Components.StackTrace import StackTracePrinter

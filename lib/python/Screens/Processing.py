@@ -5,12 +5,13 @@ from Components.ProgressBar import ProgressBar
 from Screens.Screen import Screen
 
 
-class GlobalProgress(Screen):
+class Processing(Screen):
 
 	skin = """
-		<screen name="GlobalProgress" title="" position="center,center" size="400,160" backgroundColor="black" flags="wfNoBorder" zPosition="+99">
-			<widget name="Progress" position="20,25" size="360,30" backgroundColor="black" foregroundColor="white" transparent="0" />
-			<widget name="ProgressText" position="20,80" size="360,60" backgroundColor="black" font="Regular;20" foregroundColor="white" halign="center" transparent="1" valign="center" zPosition="+2" />
+		<screen name="Processing" title="" position="center,center" size="400,160" backgroundColor="#000000" flags="wfNoBorder" zPosition="+99">
+			<widget source="Title" render="Label" position="10,5" size="380,20" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" halign="center" transparent="1" />
+			<widget name="Progress" position="20,35" size="360,30" backgroundColor="#000000" foregroundColor="#FFFFFF" transparent="0" />
+			<widget name="ProgressText" position="20,90" size="360,60" backgroundColor="#000000" font="Regular;18" foregroundColor="#FFFFFF" halign="center" transparent="1" valign="center" zPosition="+2" />
 		</screen>
 	"""
 
@@ -52,13 +53,13 @@ class GlobalProgress(Screen):
 		self.instance.move(ePoint(int(self.deskSize.width() - wsize[0]) // 2, int(self.deskSize.height() - wsize[1]) // 2))
 
 
-class GlobalProgressControl:
+class ProcessingControl:
 	instance = None
 
 	def __init__(self, session):
-		assert not GlobalProgressControl.instance, "[GlobalProgressControl] Error: Only one GlobalProgressControl instance is allowed!"
-		GlobalProgressControl.instance = self
-		self.ProgressDialog = session.instantiateDialog(GlobalProgress)
+		assert not ProcessingControl.instance, "[ProcessingControl] Error: Only one ProcessingControl instance is allowed!"
+		ProcessingControl.instance = self
+		self.ProgressDialog = session.instantiateDialog(ProcessingControl)
 		self.ProgressDialog.setAnimationMode(0)
 		self.progressBarTimer = eTimer()
 		self.progressBarTimer.callback.append(self.updateProgress)
