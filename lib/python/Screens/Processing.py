@@ -1,4 +1,4 @@
-from enigma import eLabel, ePoint, eSize, eTimer
+from enigma import eLabel, ePoint, eSize, eTimer, getDesktop
 
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
@@ -7,7 +7,7 @@ from Screens.Screen import Screen
 
 class ProcessingScreen(Screen):
 	skin = """
-	<screen name="Processing" title="Processing" position="center,center" size="600,60" backgroundColor="#00000000" zPosition="+99">
+	<screen name="Processing" title="Processing" position="center,center" size="600,60" zPosition="+99">
 		<widget name="progress" position="0,0" size="e,25" />
 		<widget name="description" position="0,35" size="e,25" font="Regular;20" halign="center" />
 	</screen>"""
@@ -23,13 +23,9 @@ class ProcessingScreen(Screen):
 
 	def setDescription(self, description):
 		def resize(description):
-			position = self.instance.position()
 			size = self.instance.csize()
 			width = size.width()
 			height = size.height()
-			# textPosition = self["description"].instance.position()
-			# textPositionX = textPosition.x()
-			# textPositionY = textPosition.y()
 			textSize = self["description"].instance.size()
 			textWidth = textSize.width()
 			textHeight = textSize.height()
@@ -38,7 +34,7 @@ class ProcessingScreen(Screen):
 			self["description"].instance.resize(eSize(textWidth, newHeight))
 			delta = newHeight - textHeight
 			self.instance.resize(eSize(width, height + delta))
-			self.instance.move(ePoint(position.x(), position.y() - (delta / 2)))
+			self.instance.move(ePoint((getDesktop(0).size().width() - width) // 2, (getDesktop(0).size().height() - height + delta) // 2))
 
 		if description != self.description:
 			resize(description)
