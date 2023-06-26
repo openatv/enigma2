@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-04 19:44+0000\n"
-"PO-Revision-Date: 2023-06-09 06:48+0000\n"
+"PO-Revision-Date: 2023-06-19 16:49+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 
 msgid ""
 "\n"
@@ -934,7 +934,7 @@ msgstr[1] "%d ydintä"
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d Ohjelmisto jakelu lista päivitetty."
-msgstr[1] "%d Ohjelmisto valmistajat lista on päivitetty."
+msgstr[1] "%d Ohjelmisto valmistaja listat on päivitetty."
 
 #, python-format
 msgid "%d kB"
@@ -955,14 +955,14 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] "%d paketti päivitetty."
-msgstr[1] "%d pakettia päivitetty."
+msgstr[0] "%d Paketti päivitetty."
+msgstr[1] "%d Pakettia päivitetty."
 
 #, python-format
 msgid "%d package was configured."
 msgid_plural "%d packages were configured."
-msgstr[0] "%d paketti on määritetty."
-msgstr[1] "%d pakettia on määritetty."
+msgstr[0] "%d Paketti on määritetty."
+msgstr[1] "%d Pakettia on määritetty."
 
 #, python-format
 msgid "%d package was deselected."
@@ -973,32 +973,32 @@ msgstr[1] "%d paketitien valinta poistettu."
 #, python-format
 msgid "%d package was downloaded."
 msgid_plural "%d packages were downloaded."
-msgstr[0] "%d paketti ladattiin."
-msgstr[1] "%d pakettia ladattiin."
+msgstr[0] "%d Paketti ladattiin."
+msgstr[1] "%d Pakettia ladattiin."
 
 #, python-format
 msgid "%d package was identified for upgrade."
 msgid_plural "%d packages were identified for upgrade."
-msgstr[0] "%d Tunnistettua paketti päivitetty."
-msgstr[1] "%d Tunnistettua pakettia päivitetty."
+msgstr[0] "%d Päivitetty paketti."
+msgstr[1] "%d Päivitetty pakettia."
 
 #, python-format
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
-msgstr[0] "%d paketti on asennettu."
-msgstr[1] "%d pakettia on asennettu."
+msgstr[0] "%d Paketti on asennettu."
+msgstr[1] "%d Pakettia on asennettu."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
-msgstr[0] "%d paketti poistettu."
-msgstr[1] "%d pakettia poistettu."
+msgstr[0] "%d Paketti poistettu."
+msgstr[1] "%d Pakettia poistettu."
 
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
-msgstr[0] "%d paketti päivitetty."
-msgstr[1] "%d pakettia päivitetty."
+msgstr[0] "%d Paketti päivitetty."
+msgstr[1] "%d Pakettia päivitetty."
 
 #, python-format
 msgid "%d packages found, %d packages installed and %d packages has updates."
@@ -4589,7 +4589,7 @@ msgid "Comoros"
 msgstr "Comoros"
 
 msgid "Compiled by"
-msgstr "Luonut"
+msgstr "Tehnyt"
 
 msgid "Complete"
 msgstr "Täysi"
@@ -6395,7 +6395,7 @@ msgid "Distance"
 msgstr "Etäisyys"
 
 msgid "Distribution"
-msgstr "Jakelijat"
+msgstr "Jakelija"
 
 #, python-format
 msgid "Distribution '%s' information for %s %s"
@@ -6728,7 +6728,7 @@ msgid "Downloading Image"
 msgstr "Ladataan Ohjelmistoa"
 
 msgid "Downloading latest update list.  Please wait..."
-msgstr "Ladataan viimeisin päivityslistaa. Odota..."
+msgstr "Ladataan viimeisin päivitys listaa Odota..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ladataan listaa lisäosista. Odota..."
@@ -8690,7 +8690,7 @@ msgstr "Maantieteellisen sijainnin tietoja ei voi noutaa, yritä myöhemmin uude
 
 #, python-format
 msgid "Geolocation information for %s %s"
-msgstr "Paikannustiedot seuraaville: %s %s"
+msgstr "Paikannustiedot: %s %s"
 
 msgid "Geolocation is not available."
 msgstr "Maantieteellinen sijainti ei ole käytettävissä."
@@ -11190,7 +11190,7 @@ msgid "Mount: "
 msgstr "Liitos: "
 
 msgid "Mountpoint"
-msgstr "Liitäntäpiste"
+msgstr "Liitäntä"
 
 msgid "Mounts"
 msgstr "Liitokset"
@@ -11478,7 +11478,7 @@ msgid "MultiBoot boot mode"
 msgstr "MultiBoot bootti tila"
 
 msgid "MultiBoot startup file"
-msgstr "MultiBoot käynnistystiedosto"
+msgstr "MultiBoot paikka"
 
 msgid "MultiEPG Settings"
 msgstr "Ohjelmaopas"
@@ -11708,7 +11708,7 @@ msgstr "Verkon tiedot"
 
 #, python-format
 msgid "Network information for %s %s"
-msgstr "Verkkotiedot, %s %s"
+msgstr "Verkon tiedot %s %s"
 
 msgid "Network menu"
 msgstr "Lähiverkon asetukset"
@@ -18161,7 +18161,7 @@ msgstr "Alkaa 5 sekunnissa"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
-msgstr "Osavaltio"
+msgstr "Lääni"
 
 msgid "Static IP / Custom"
 msgstr "Staattinen IP / Mukautettu"
@@ -18284,11 +18284,11 @@ msgid "Stops time shift being used if a recording is in progress. (Advisable for
 msgstr "Keskeytä ajansiirto, jos tallennus on käynnissä (suositellaan USB-muistitikuille)"
 
 msgid "Storage / Disk Information"
-msgstr "Tallennustila / levyn tiedot"
+msgstr "Tallennuslaitteet"
 
 #, python-format
 msgid "Storage / Disk information for %s %s"
-msgstr "Tallennustilan / levyn tiedot %s %s"
+msgstr "Tallennustilan tiedot %s %s"
 
 msgid "Storage / Disks"
 msgstr "Tallennustila / Asemat"
@@ -18684,7 +18684,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 4.6.2023\n"
+"Suomenkielinen käännös: 18.6.2023\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -20064,7 +20064,7 @@ msgid "Total clients streaming: %d ( %s )"
 msgstr "Etäasiakkaita: %d %s"
 
 msgid "Total flash"
-msgstr "Koko flash"
+msgstr "Kokonaismuisti"
 
 msgid "Total handled client ecm's"
 msgstr "Käsitellyt asiakas-ECM:t"

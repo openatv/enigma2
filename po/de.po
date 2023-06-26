@@ -16,15 +16,15 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-04 19:44+0000\n"
-"PO-Revision-Date: 2023-06-05 10:33+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"PO-Revision-Date: 2023-06-21 15:51+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1926,7 +1926,7 @@ msgstr ""
 "Jetzt herunterfahren?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
-msgstr "Die Hervorhebung auf dem Fernbedienungsbild zeigt an, auf welche Tasten sich die Hilfe bezieht. Wenn mehr als eine Taste die angegebene Funktion ausführt, werden mehr als eine Markierung angezeigt. Der Text unterhalb der Liste listet die aktiven Tasten auf und gibt an, ob die Funktion ein langes Drücken oder SHIFT der Taste(n) erfordert."
+msgstr "Die Hervorhebung auf dem Fernbedienungsbild zeigt an, auf welche Tasten sich die Hilfe bezieht. Wenn mehr als eine Taste die angegebene Funktion ausführt, werden mehrere Markierungen angezeigt. Der Text unterhalb der Liste listet die aktiven Tasten auf und gibt an, ob die Funktion ein langes Drücken oder SHIFT der Taste(n) erfordert."
 
 #
 #, python-format
@@ -2756,7 +2756,7 @@ msgstr "Möchten Sie wirklich alle Markierungen und Schnitte entfernen?"
 
 # ChannelSelection.py
 msgid "Are you sure to purge all deleted user bouquets?"
-msgstr "Möchten Sie wirklich alle gelöschten Benutzerbouquets entfernen?"
+msgstr "Möchten Sie wirklich alle gelöschten Benutzerfavoriten entfernen?"
 
 #, python-format
 msgid "Are you sure to remove all %d.%d%s%s services?"
@@ -2953,7 +2953,7 @@ msgid "Audio PID%s, codec & lang"
 msgstr "Audio-PID%s, Codec und Sprache"
 
 msgid "Audio PID, codec & lang"
-msgstr "Audio-PID, Codec und Sprache"
+msgstr "Audio-PID - Codec - Sprache"
 
 #
 msgid "Audio Settings"
@@ -3557,15 +3557,12 @@ msgstr "Bouquet-Editor"
 msgid "Bouquet List"
 msgstr "Bouquetliste"
 
-#, fuzzy
 msgid "Bouquet Selector"
 msgstr "Favoritenauswahl"
 
-#, fuzzy
 msgid "Bouquet Selector Actions"
 msgstr "Favoritenauswahl Aktionen"
 
-#, fuzzy
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Favoritenauswahl Navigationsaktionen"
 
@@ -5451,7 +5448,7 @@ msgstr "Kopieren"
 
 #
 msgid "Copy To Bouquets"
-msgstr "In Bouquets kopieren"
+msgstr "In Favoriten kopieren"
 
 msgid "Copy all related files"
 msgstr "Alle zugehörigen Dateien kopieren"
@@ -5852,7 +5849,7 @@ msgid "DVB CI Delay"
 msgstr "DVB-CI-Verzögerung"
 
 msgid "DVB Subtitles PID & lang"
-msgstr "DVB-Untertitel-PID & Sprache"
+msgstr "DVB-Untertitel-PID - Sprache"
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparenz für DVB-Untertitel"
@@ -9015,7 +9012,7 @@ msgid "Frequency & Channel"
 msgstr "Frequenz & Kanal"
 
 msgid "Frequency & Polarization"
-msgstr "Frequenz & Polarisation"
+msgstr "Frequenz - Polarisation"
 
 #
 msgid "Frequency Norm:"
@@ -9200,7 +9197,9 @@ msgid "Geolocation has been used to set the time zone."
 msgstr "Die Zeitzone wurde anhand der Standortbestimmung festgelegt."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
-msgstr "Standortinformationen können nicht abgerufen werden! Bitte versuchen Sie es später erneut."
+msgstr ""
+"Standortinformationen können nicht abgerufen werden!\n"
+"Bitte versuchen Sie es später erneut."
 
 #, python-format
 msgid "Geolocation information for %s %s"
@@ -10500,7 +10499,7 @@ msgid "Inversion & Bandwidth"
 msgstr "Inversion & Bandbreite"
 
 msgid "Inversion, Pilot & Roll-off"
-msgstr "Inversion, Pilot & Roll-off"
+msgstr "Inversion - Pilot - Roll-off"
 
 msgid "Invert"
 msgstr "Invertieren"
@@ -11094,7 +11093,7 @@ msgstr "Tags von Timern und Aufnahmen laden"
 
 # Customize neu 5.1
 msgid "Load unlinked user bouquets"
-msgstr "Nicht eingebundene Bouquets laden"
+msgstr "Nicht eingebundene Favoritenlisten laden"
 
 msgid "Loading information, please wait..."
 msgstr "Informationen werden geladen. Bitte warten..."
@@ -11136,10 +11135,10 @@ msgid "Locale (Descending)"
 msgstr "Sprachregion (absteigend)"
 
 msgid "Locale / Language Settings"
-msgstr "Sprachauswahl einstellen"
+msgstr "Sprachauswahl"
 
 msgid "Locale Selection Settings"
-msgstr "Einrichtung der Sprachauswahl"
+msgstr "Anzeige der Sprachregion"
 
 msgid "Locale already selected."
 msgstr "Sprachregion bereits ausgewählt."
@@ -12232,7 +12231,7 @@ msgid "NFS Settings"
 msgstr "NFS-Dateiserver"
 
 msgid "NIM & Type"
-msgstr "NIM & Typ"
+msgstr "NIM - Typ"
 
 msgid "NOTE"
 msgstr "NOTIZ"
@@ -12286,7 +12285,7 @@ msgid "Nameserver setup"
 msgstr "Nameserver-Einstellung"
 
 msgid "Namespace & Orbital pos."
-msgstr "Namensraum und Orbitalposition"
+msgstr "Namensraum - Orbitalposition"
 
 msgid "Namibia"
 msgstr "Namibia"
@@ -13454,7 +13453,7 @@ msgid "PLS Code"
 msgstr "PLS-Code"
 
 msgid "PLS Mode"
-msgstr "PLS-Mode"
+msgstr "PLS-Modus"
 
 msgid "PMT PID"
 msgstr "PMT-PID"
@@ -13960,7 +13959,7 @@ msgid "Please select a distribution from which you would like to flash an image:
 msgstr "Wählen Sie eine Distribution, von der Sie ein Image flashen möchten:"
 
 msgid "Please select a line to edit or select add to create new line."
-msgstr "Wählen Sie eine Line, die Sie bearbeiten möchten, oder wählen Sie 'Hinzufügen', um eine neue Line zu erstellen."
+msgstr "Wählen Sie die Zeile, die Sie bearbeiten möchten, oder 'Hinzufügen', um eine neue Zeile zu erstellen."
 
 #
 msgid "Please select a play list to delete..."
@@ -14362,7 +14361,7 @@ msgstr "Drücken Sie OK, um fortzufahren."
 
 #
 msgid "Press OK to edit the settings."
-msgstr "Drücken Sie OK zum Editieren der Einstellungen."
+msgstr "Drücken Sie OK, um die Einstellungen zu bearbeiten."
 
 #
 #, python-format
@@ -14446,7 +14445,7 @@ msgid "Press yellow to set this interface as the default interface."
 msgstr "Drücken Sie die Taste GELB, um diese Schnittstelle als Standardschnittstelle festzulegen."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "Die Sendernummer (in Ihrer ersten Favoritenliste) einstellen, zu der beim Drücken der Taste umgeschaltet wird, die als PANIK Taste definiert ist."
+msgstr "Die Sendernummer (in der ersten Favoritenliste) einstellen, zu der beim Drücken der Taste umgeschaltet wird, die als PANIK Taste definiert ist."
 
 msgid "Prev quad PiP channel"
 msgstr "Auf die vorherige Sendergruppe schalten"
@@ -14477,10 +14476,10 @@ msgid "Previous page"
 msgstr "Seite zurück"
 
 msgid "Previous/Next bouquet"
-msgstr "vorheriges/nächstes Bouquet"
+msgstr "Vorherige/Nächste Favoriten"
 
 msgid "Previous/Next page"
-msgstr "vorherige/nächste Seite"
+msgstr "Vorherige/Nächste Seite"
 
 msgid "Prevsong"
 msgstr "Vorheriges Lied"
@@ -14670,7 +14669,7 @@ msgstr "Papierkorb nach x Tagen leeren"
 
 # ChannelSelection.py
 msgid "Purge Deleted User Bouquets"
-msgstr "Gelöschte Benutzerbouquets entfernen"
+msgstr "Gelöschte Benutzerfavoriten entfernen"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "Alle löschen außer / Hinzufügen / Löschen der aktuell markierten Sprachregion"
@@ -14777,22 +14776,22 @@ msgid "RC custom code"
 msgstr "Fernbedienungscode"
 
 msgid "RC default name"
-msgstr "RC-Standardname"
+msgstr "FB Standardname"
 
 msgid "RC default type"
-msgstr "RC-Standardtyp"
+msgstr "FB Standardtyp"
 
 msgid "RC detected type"
-msgstr "Erkannter RC-Typ"
+msgstr "Erkannter FB Typ"
 
 msgid "RC identification"
-msgstr "RC-Identifikation"
+msgstr "FB Identifikation"
 
 msgid "RC selected name"
-msgstr "RC ausgewählter Name"
+msgstr "FB ausgewählter Name"
 
 msgid "RC selected type"
-msgstr "RC ausgewählter Typ"
+msgstr "FB ausgewählter Typ"
 
 msgid "REC"
 msgstr "REC"
@@ -15194,7 +15193,7 @@ msgid "Reloading EPG Cache..."
 msgstr "EPG-Cache neu laden..."
 
 msgid "Reloading bouquets and services..."
-msgstr "Bouquets und Dienste neu laden..."
+msgstr "Favoriten und Dienste neu laden..."
 
 msgid "Remaining"
 msgstr "Verbleibende"
@@ -15607,7 +15606,7 @@ msgstr "Wiederherstellen"
 
 # ChannelSelection.py
 msgid "Restore Deleted User Bouquets"
-msgstr "Gelöschte Benutzerbouquets wiederherstellen"
+msgstr "Gelöschte Benutzerfavoriten wiederherstellen"
 
 msgid "Restore MetrixHD Settings"
 msgstr "Wiederherstellen MetrixHD-Skin"
@@ -17190,7 +17189,7 @@ msgid "Select your time zone area or region."
 msgstr "Wählen Sie Ihr Zeitzonengebiet."
 
 msgid "Select, toggle, process or edit the current entry"
-msgstr "Auswählen, umschalten, bearbeiten oder editieren des aktuellen Eintrags"
+msgstr "Auswählen, umschalten oder bearbeiten des aktuellen Eintrags"
 
 msgid "Select/Zap to selected service"
 msgstr "Zum ausgewählten Sender umschalten"
@@ -17455,7 +17454,7 @@ msgstr "Sender"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr ""
-"Sender können in Favoriten gruppiert werden.\n"
+"Sender können in Favoriten eingeordnet werden.\n"
 "Bei 'Ja' kann mehr als eine Favoritenliste verwendet werden."
 
 msgid "Set As Startup Service"
@@ -19835,7 +19834,7 @@ msgid "Symbol rate"
 msgstr "Symbolrate"
 
 msgid "Symbol rate & FEC"
-msgstr "Symbolrate & FEC"
+msgstr "Symbolrate - FEC"
 
 msgid "Symbolic link"
 msgstr "Symbolischer Link"
@@ -22263,7 +22262,7 @@ msgid "User  (keymap.usr)"
 msgstr "Benutzer ('keymap.usr')"
 
 msgid "User - Bouquets"
-msgstr "Benutzerbouquets"
+msgstr "Benutzerfavoriten"
 
 msgid "User Feed URL"
 msgstr "Eigene Feed-URL"
@@ -22592,7 +22591,7 @@ msgid "VideoFinetune"
 msgstr "Bild Feinabstimmung"
 
 msgid "Videocodec, size & format"
-msgstr "Codec, Auflösung und Format"
+msgstr "Codec - Auflösung - Format"
 
 msgid "Videosetup"
 msgstr "Videoeinstellungen"
@@ -23060,9 +23059,7 @@ msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fi
 msgstr "Wenn aktiviert, werden Videoinhalte mit einem Seitenverhältnis von 4:3 gestreckt dargestellt, um den Bildschirm zu füllen."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
-msgstr ""
-"Sender können in Favoriten gruppiert werden.\n"
-"Bei 'Ja' kann beim Umschalten die Favoritenliste gewechselt werden."
+msgstr "Bei 'Ja' wird beim Senderweiterschalten, wenn der letzte Sender einer Favoritenliste erreicht ist, in die nächste gewechselt."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Bei 'Ja' werden gelöschte Aufnahmen in den Papierkorb verschoben, bei 'Nein' sofort und unwiderruflich gelöscht."
