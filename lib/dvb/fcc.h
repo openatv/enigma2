@@ -25,23 +25,25 @@ typedef struct _tagFccElem
 	ePtr<eConnection> m_service_event_conn;
 	int m_state;
 	bool m_useNormalDecode;
-}FCCServiceElem;
+} FCCServiceElem;
 
-class eFCCServiceManager: public iObject, public sigc::trackable
+class eFCCServiceManager : public iObject, public sigc::trackable
 {
 	DECLARE_REF(eFCCServiceManager);
+
 private:
 	eNavigation *m_core;
-	static eFCCServiceManager* m_instance;
-	std::map<ePtr<iPlayableService>, FCCServiceElem, std::less<iPlayableService*> > m_FCCServices;
+	static eFCCServiceManager *m_instance;
+	std::map<ePtr<iPlayableService>, FCCServiceElem, std::less<iPlayableService *>> m_FCCServices;
 	FCCServiceChannels m_fccServiceChannels;
 
 	bool m_fcc_enable;
 
-	void FCCEvent(iPlayableService* service, int event);
+	void FCCEvent(iPlayableService *service, int event);
+
 public:
 	PSignal1<void, int> m_fcc_event;
-	static eFCCServiceManager* getInstance();
+	static eFCCServiceManager *getInstance();
 	eFCCServiceManager(eNavigation *navptr);
 	~eFCCServiceManager();
 
@@ -51,7 +53,8 @@ public:
 		fcc_state_decoding,
 		fcc_state_failed
 	};
-	SWIG_VOID(RESULT)  playFCCService(const eServiceReference &ref, ePtr<iPlayableService> &SWIG_OUTPUT);
+	SWIG_VOID(RESULT)
+	playFCCService(const eServiceReference &ref, ePtr<iPlayableService> &SWIG_OUTPUT);
 	RESULT stopFCCService(const eServiceReference &sref);
 	RESULT stopFCCService();
 	RESULT cleanupFCCService();
@@ -63,8 +66,9 @@ public:
 	static bool checkAvailable(const eServiceReference &ref);
 	void setFCCEnable(int enable) { m_fcc_enable = (enable != 0); }
 	bool isEnable() { return m_fcc_enable; }
-	bool isStateDecoding(iPlayableService* service);
-	void setNormalDecoding(iPlayableService* service);
+	bool isStateDecoding(iPlayableService *service);
+	void setNormalDecoding(iPlayableService *service);
+	void setNav(eNavigation *navptr) { m_core = navptr; }
 };
 
 #endif /* __dvb_fcc_h */
