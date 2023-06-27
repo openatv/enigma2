@@ -3,9 +3,7 @@
 #include <lib/python/python.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
-#if defined(HAVE_FCC)
 #include <lib/dvb/fcc.h>
-#endif
 
 eNavigation *eNavigation::instance;
 
