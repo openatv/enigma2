@@ -65,6 +65,7 @@ public:
 	bool isEnable() { return m_fcc_enable; }
 	bool isStateDecoding(iPlayableService* service);
 	void setNormalDecoding(iPlayableService* service);
+    void setNav(eNavigation *navptr) { m_core = navptr; }
 };
 
 #endif /* __dvb_fcc_h */
