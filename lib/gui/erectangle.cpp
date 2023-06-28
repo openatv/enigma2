@@ -3,7 +3,7 @@
 #include <lib/gui/ewidgetdesktop.h>
 
 eRectangle::eRectangle(eWidget *parent)
-	: eWidget(parent), m_have_border_color(false), m_gradient_set(false), m_border_width(0), m_gradient_direction(0)
+	: eWidget(parent), m_have_border_color(false), m_border_width(0)
 {
 }
 
@@ -17,16 +17,6 @@ void eRectangle::setBorderColor(const gRGB &color)
 {
 	m_border_color = color;
 	m_have_border_color = true;
-	invalidate();
-}
-
-void eRectangle::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
-{
-	m_gradient_startcolor = startcolor;
-	m_gradient_endcolor = endcolor;
-	m_gradient_direction = direction;
-	m_gradient_blend = blend;
-	m_gradient_set = true;
 	invalidate();
 }
 
@@ -56,8 +46,6 @@ int eRectangle::event(int event, void *data, void *data2)
 			painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
 		}
 
-		if (m_gradient_set)
-			painter.drawGradient(eRect(ePoint(0, 0), s), m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction, m_gradient_blend);
 
 		return 0;
 	}

@@ -429,8 +429,7 @@ def parseGradient(value):
 			"vertical": ePixmap.GRADIENT_VERTICAL,
 		}
 		direction = parseOptions(options, "gradient", data[2], ePixmap.GRADIENT_VERTICAL)
-		if len(data) == 4:
-			alphaBend = BT_ALPHABLEND if parseBoolean("1", data[3]) else 0
+		alphaBend = BT_ALPHABLEND if len(data) == 4 and parseBoolean("1", data[3]) else 0
 		return (parseColor(data[0], default=0x00000000), parseColor(data[1], 0x00FFFFFF), direction, alphaBend)
 	else:
 		skinError("The gradient '%s' must be 'startColor,endColor,direction[,blend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)" % value)
@@ -769,10 +768,10 @@ class AttributeParser:
 	def backgroundColorSelected(self, value):
 		self.guiObject.setBackgroundColorSelected(parseColor(value, 0x00000000))
 
-	def setBackgroundGradient(self, value):
+	def backgroundGradient(self, value):
 		self.guiObject.setBackgroundGradient(*parseGradient(value))
 
-	def setBackgroundGradientSelected(self, value):
+	def backgroundGradientSelected(self, value):
 		self.guiObject.setBackgroundGradientSelected(*parseGradient(value))
 
 	def backgroundCrypted(self, value):
