@@ -441,6 +441,8 @@ class ImageBackup(Screen):
 						cmdlist.append("cp /%s %s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
 					else:
 						cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
+				elif self.MACHINEBUILD in ("dm800se", "dm500hd"):
+						cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
 				else:
 					cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 
