@@ -602,7 +602,7 @@ class ImageBackup(Screen):
 					system("mv %s/root.ubifs %s/%s" % (self.WORKDIR, self.MAINDEST, self.ROOTFSBIN))
 				if MultiBoot.canMultiBoot() or self.MTDKERNEL.startswith("mmcblk0") or self.MACHINEBUILD in ("h8", "hzero"):
 					system("mv %s/%s %s/%s" % (self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
-				elif.MACHINEBUILD in ("dm800se", "dm500hd"):
+				elif self.MACHINEBUILD in ("dm800se", "dm500hd"):
 					system("touch %s/%s" % (self.MAINDEST, self.KERNELBIN))
 				else:
 					system("mv %s/vmlinux.gz %s/%s" % (self.WORKDIR, self.MAINDEST, self.KERNELBIN))
