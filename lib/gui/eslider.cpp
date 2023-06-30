@@ -5,7 +5,7 @@ int eSlider::defaultSliderBorderWidth = eSlider::DefaultBorderWidth;
 eSlider::eSlider(eWidget *parent)
 	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_have_background_color(false), m_scrollbar(false), m_pixel_mode(false),
 	m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
-	m_border_width(0)
+	m_border_width(0), m_scale(0)
 {
 	m_border_width = eSlider::defaultSliderBorderWidth;
 }
@@ -35,6 +35,15 @@ void eSlider::setBackgroundPixmap(gPixmap *pixmap)
 {
 	m_backgroundpixmap = pixmap;
 	invalidate();
+}
+
+void eSlider::setPixmapScale(int flags)
+{
+	if (m_scale != flags)
+	{
+		m_scale = flags;
+		invalidate();
+	}
 }
 
 void eSlider::setBorderWidth(int width)
@@ -103,7 +112,7 @@ int eSlider::event(int event, void *data, void *data2)
 			painter.fill(m_currently_filled);
 		}
 		else {
-			if(m_pixmap->size().width() != m_currently_filled.extends.width() || m_pixmap->size().height() != m_currently_filled.extends.height())
+			if(m_scale && (m_pixmap->size().width() != m_currently_filled.extends.width() || m_pixmap->size().height() != m_currently_filled.extends.height()))
 				painter.blitScale(m_pixmap, eRect(ePoint(0,0),s),m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
 			else
 				painter.blit(m_pixmap, ePoint(0, 0), m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
