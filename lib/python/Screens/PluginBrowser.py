@@ -359,6 +359,9 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 					self.pluginList.insert(index, (plugin[0], plugin[0].name, plugin[0].description, plugin[0].icon or self.pluginIcon))
 					self.selectedPlugin = None
 			config.usage.plugin_sort_weight.save()
+			self.currentList.master.master.instance.clearBackgroundColorSelected()
+			if self.moveFontColor:
+				self.currentList.master.master.instance.clearForegroundColorSelected()
 		else:
 			self.sortMode = True
 		self.updatePluginList()
