@@ -5,6 +5,8 @@ extern void dumpRegion(const gRegion &region);
 
 eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->child() : 0)
 {
+	m_gradient_set = false;
+	m_gradient_direction = 0;
 	m_vis = 0;
 	m_layer = 0;
 	m_desktop = 0;
@@ -364,17 +366,21 @@ int eWidget::event(int event, void *data, void *data2)
 //		dumpRegion(*(gRegion*)data);
 		if (!isTransparent())
 		{
-			if (!m_have_background_color)
+			if (m_gradient_set)
+				painter.drawGradient(eRect(ePoint(0, 0), size()), m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction, m_gradient_blend);
+			else if (!m_have_background_color)
 			{
 				ePtr<eWindowStyle> style;
 				if (!getStyle(style))
 					style->paintBackground(painter, ePoint(0, 0), size());
-			} else
+			} 
+			else
 			{
 				painter.setBackgroundColor(m_background_color);
 				painter.clear();
 			}
-		} else
+		} 
+		else
 		{
 			eWidget *w = this;
 			while (w && !w->m_have_background_color)
@@ -424,4 +430,14 @@ void eWidget::notifyShowHide()
 	event(evtParentVisibilityChanged);
 	for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
 		i->notifyShowHide();
+}
+
+void eWidget::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+{
+	m_gradient_startcolor = startcolor;
+	m_gradient_endcolor = endcolor;
+	m_gradient_direction = direction;
+	m_gradient_blend = blend;
+	m_gradient_set = true;
+	invalidate();
 }
