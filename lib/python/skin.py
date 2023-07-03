@@ -999,7 +999,7 @@ class AttributeParser:
 		value = parseInteger(value, 0)
 		if value > 500:
 			value = 500
-		self.guiObject.setSelectionZoom(float("%d.%s" % ((value // 100) + 1, value % 100)))
+		self.guiObject.setSelectionZoom(float("%d.%02d" % ((value // 100) + 1, value % 100)))
 
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value, 0x00000000))
