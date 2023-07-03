@@ -520,28 +520,29 @@
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 	</setup>
-	<setup key="PluginBrowser" title="Plugin Browser Settings" level="2" showOpenWebif="1">
-		<item level="2" text="Show translation packages" description="Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen.">config.pluginbrowser.po</item>
-		<item level="2" text="Show source packages" description="Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen.">config.pluginbrowser.src</item>
-	</setup>
-	<setup key="PluginFilter" title="Plugin Filter Settings" showOpenWebif="1">
-		<item level="0" text="Show development packages in opkg" description="When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list.">config.misc.extraopkgpackages</item>
-		<item level="0" text="OPKG clean mode" description="When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online.">config.misc.opkgcleanmode</item>
-		<item level="0" text="Drivers" description="This allows you to show drivers modules in downloads">config.pluginfilter.drivers</item>
-		<item level="0" text="Extensions" description="This allows you to show extensions modules in downloads">config.pluginfilter.extensions</item>
-		<item level="0" text="System Plugins" description="This allows you to show system plugin modules in downloads">config.pluginfilter.systemplugins</item>
-		<item level="0" text="Softcams" description="This allows you to show softcams modules in downloads" requires="SoftCam">config.pluginfilter.softcams</item>
-		<item level="0" text="Skin" description="This allows you to show skin modules in downloads">config.pluginfilter.skin</item>
-		<item level="0" text="Display" description="This allows you to show lcd skins in downloads">config.pluginfilter.display</item>
-		<item level="0" text="Picons" description="This allows you to show picons modules in downloads">config.pluginfilter.picons</item>
-		<item level="0" text="Settings" description="This allows you to show settings modules in downloads">config.pluginfilter.settings</item>
-		<item level="0" text="M2k" description="This allows you to show m2k modules in downloads">config.pluginfilter.m2k</item>
-		<item level="0" text="Web Links" description="This allows you to show weblinks modules in downloads">config.pluginfilter.weblinks</item>
-		<item level="0" text="OpenPLi" description="This allows you to show OpenPLi modules in downloads">config.pluginfilter.pli</item>
-		<item level="0" text="OpenViX" description="This allows you to show OpenViX modules in downloads">config.pluginfilter.vix</item>
-		<item level="0" text="Security" description="This allows you to show security modules in downloads">config.pluginfilter.security</item>
-		<item level="0" text="Kernel Modules" description="This allows you to show kernel modules in downloads">config.pluginfilter.kernel</item>
-		<item level="0" text="User Feed URL" description="Please enter your personal feed URL">config.pluginfilter.userfeed</item>
+	<setup key="PluginBrowser" title="Plugin Browser Settings" showOpenWebif="1">
+		<item level="0" text="Plugin Browser layout" description="Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!">config.usage.pluginListLayout</item>
+		<item level="0" text="Sort Plugin Browser entries" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden.">config.usage.plugins_sort_mode</item>
+		<item level="0" text="Force OPKG clean mode" description="Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line.">config.misc.opkgcleanmode</item>
+		<item level="0" text="Show Driver packages" description="Select 'Yes' to show driver packages in the Download Plugins screen.">config.pluginfilter.drivers</item>
+		<item level="0" text="Show Extension packages" description="Select 'Yes' to show extensions packages in the Download Plugins screen.">config.pluginfilter.extensions</item>
+		<item level="0" text="Show System Plugin packages" description="Select 'Yes' to show system plugin packages in the Download Plugins screen.">config.pluginfilter.systemplugins</item>
+		<item level="0" text="Show Softcam packages" description="Select 'Yes' to show softcam packages in the Download Plugins screen." requires="SoftCam">config.pluginfilter.softcams</item>
+		<item level="0" text="Show Skin packages" description="Select 'Yes' to show skin packages in the Download Plugins screen.">config.pluginfilter.skins</item>
+		<item level="0" text="Show Skin Component packages" description="Select 'Yes' to show skin component packages in the Download Plugins screen.">config.pluginfilter.skincomponents</item>
+		<item level="0" text="Show Plugin Skin packages" description="Select 'Yes' to show plugin skin packages in the Download Plugins screen.">config.pluginfilter.skinpacks</item>
+		<item level="0" text="Show Display packages" description="Select 'Yes' to show LCD skin packages in the Download Plugins screen.">config.pluginfilter.display</item>
+		<item level="0" text="Show Picon packages" description="Select 'Yes' to show picon packages in the Download Plugins screen.">config.pluginfilter.picons</item>
+		<item level="0" text="Show Setting packages" description="Select 'Yes' to show settings packages in the Download Plugins screen.">config.pluginfilter.settings</item>
+		<item level="0" text="Show M2k packages" description="Select 'Yes' to show m2k packages in the Download Plugins screen.">config.pluginfilter.m2k</item>
+		<item level="0" text="Show Web Link packages" description="Select 'Yes' to show web link packages in the Download Plugins screen.">config.pluginfilter.weblinks</item>
+		<item level="0" text="Show OpenPLi packages" description="Select 'Yes' to show OpenPLi packages in the Download Plugins screen.">config.pluginfilter.pli</item>
+		<item level="0" text="Show OpenViX packages" description="Select 'Yes' to show OpenViX packages in the Download Plugins screen.">config.pluginfilter.vix</item>
+		<item level="0" text="Show Security packages" description="Select 'Yes' to show security packages in the Download Plugins screen.">config.pluginfilter.security</item>
+		<item level="0" text="Show Kernel packages" description="Select 'Yes' to show kernel packages in the Download Plugins screen.">config.pluginfilter.kernel</item>
+		<item level="2" text="Show Source packages" description="Select 'Yes' to show source 'src' packages in the Download Plugins screen.">config.pluginfilter.src</item>
+		<item level="2" text="Show Development packages" description="Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen.">config.pluginfilter.extraopkgpackages</item>
+		<item level="0" text="User Feed URL" description="Enter your personal feed URL to allow you to select packages from your personal feed.">config.pluginfilter.userfeed</item>
 	</setup>
 	<setup key="PowerTimer" title="PowerTimer Settings">
 		<item level="0" text="Timer type" description="Select the type of this timer.">self.timerType</item>
