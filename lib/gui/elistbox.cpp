@@ -711,7 +711,7 @@ void eListbox::recalcSize()
 void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 {
 
-	if (m_orientation != orVertical && m_item_alignment != itemAlignDefault)
+	if (m_orientation != orVertical && m_item_alignment != itemAlignLeftTop)
 	{
 
 		int xscrollBar = (m_orientation == orGrid) ? ((scrollbarVisible) ? m_scrollbar->size().width() + m_scrollbar_offset : 0) : 0;
@@ -725,9 +725,6 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 		int yitemSpace = m_style.m_selection_height + m_defined_spacing.y();
 		if(m_max_rows > 1)
 			yitemSpace += ((m_max_rows - 1) * (m_itemheight + m_defined_spacing.y()));
-		int xitemSpace = (m_max_columns > 1) ? ((m_max_columns - 1) * (m_itemwidth + m_spacing.x()) + m_itemwidth * m_style.m_selection_zoom) : (m_itemwidth * m_style.m_selection_zoom) + m_spacing.x();
-		int yitemSpace = (m_max_rows > 1) ? ((m_max_rows - 1) * (m_itemheight + m_spacing.y()) + m_itemheight * m_style.m_selection_zoom) : (m_itemheight * m_style.m_selection_zoom) + m_spacing.y();
-
 
 		int scrollbarLeftSpace = (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways) ? xscrollBar : 0;
 		int scrollbarTopSpace = (m_scrollbar_mode == showTopOnDemand || m_scrollbar_mode == showTopAlways) ? yscrollBar : 0;
