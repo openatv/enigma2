@@ -624,6 +624,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 	PLUGIN_DISPLAY_CATEGORY = 8  # This is the same as PLUGIN_FORMATTED_CATEGORY but is always available for the summary screen.
 	PLUGIN_INSTALLED = 9  # This is only defined for management screens and is not intended for display.
 	PLUGIN_UPGRADABLE = 10  # This is only defined for management screens and is not intended for display.
+	PLUGIN_NANE_VERSION = 11  # This is the name and the version and only defined for plugin details and management.
 
 	INFO_PACKAGE = 0
 	INFO_CATEGORY = 1
@@ -1014,7 +1015,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		plugins = []
 		for category in sorted(categories.keys()):
 			if category in self.expanded:
-				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandedIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None))
+				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandedIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None, None))
 				for info in sorted(categories[category], key=lambda x: x[self.INFO_PACKAGE]):
 					installed = info[self.INFO_INSTALLED]
 					icon = self.installedIcon if installed else self.installableIcon
@@ -1030,9 +1031,9 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 						if part.startswith("git"):
 							parts.remove(part)
 					version = "+".join(parts)
-					plugins.append((info[self.INFO_PACKAGE], None, None, info[self.INFO_NAME], info[self.INFO_DESCRIPTION], version, self.verticalIcon, icon, PACKAGE_CATEGORIES.get(category, category), info[self.INFO_INSTALLED], info[self.INFO_UPGRADE]))
+					plugins.append((info[self.INFO_PACKAGE], None, None, info[self.INFO_NAME], info[self.INFO_DESCRIPTION], version, self.verticalIcon, icon, PACKAGE_CATEGORIES.get(category, category), info[self.INFO_INSTALLED], info[self.INFO_UPGRADE], "%s (%s)" % (info[self.INFO_NAME], version)))
 			else:
-				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandableIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None))
+				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandableIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None, None))
 		self["plugins"].setList(plugins)
 
 	def setWaiting(self, text):
