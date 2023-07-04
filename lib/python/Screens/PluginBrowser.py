@@ -637,7 +637,6 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
-		self.skinName = ["PluginAction", "PluginDownloadBrowser"]
 		self.type = type
 		self.setTitle({
 			self.REMOVE: _("Remove Plugins"),
