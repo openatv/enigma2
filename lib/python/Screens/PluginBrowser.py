@@ -400,11 +400,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 			self.checkWarnings()
 			self.updatePluginList()
 
-		self.session.openWithCallback(self.childScreenClosedCallback, PluginBrowserSetup)
-
-	def childScreenClosedCallback(self):
-		self.checkWarnings()
-		self.updatePluginList()
+		self.session.openWithCallback(keyMenuCallback, PluginBrowserSetup)
 
 	def keyRed(self):
 		if self.sortMode:
@@ -434,6 +430,10 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 				self["key_yellow"].setText(_("Show"))
 		else:
 			self.session.openWithCallback(self.childScreenClosedCallback, PluginAction, PluginAction.UPDATE)
+
+	def childScreenClosedCallback(self):
+		self.checkWarnings()
+		self.updatePluginList()
 
 	def keyBlue(self):
 		if config.usage.plugins_sort_mode.value == "user":
@@ -945,7 +945,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			case OpkgComponent.EVENT_ERROR:
 				print("[PluginBrowser] Opkg command '%s' error!  (%s)" % (parameter[1], self.opkgComponent.getCommandText(parameter[0])))
 			case _:
-				pass
+				print("[PluginBrowser] Opkg command '%s' returned event '%s'." % (self.opkgComponent.getCommandText(OpkgComponent.currentCommand), self.opkgComponent.getEventText(event)))
 		haveLogs = self.logData != ""
 		self["logAction"].setEnabled(haveLogs)
 		self["key_yellow"].setText(_("Show Log") if haveLogs else "")
