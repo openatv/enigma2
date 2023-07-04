@@ -944,7 +944,9 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			case OpkgComponent.EVENT_ERROR:
 				print("[PluginBrowser] Opkg command '%s' error!  (%s)" % (parameter[1], self.opkgComponent.getCommandText(parameter[0])))
 			case _:
-				print("[PluginBrowser] Opkg command '%s' returned event '%s'." % (self.opkgComponent.getCommandText(OpkgComponent.currentCommand), self.opkgComponent.getEventText(event)))
+				# Unhandled events, no action required.
+				pass
+
 		haveLogs = self.logData != ""
 		self["logAction"].setEnabled(haveLogs)
 		self["key_yellow"].setText(_("Show Log") if haveLogs else "")
