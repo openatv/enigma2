@@ -1,15 +1,15 @@
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Tools.BoundFunction import boundFunction
-from Components.Sources.StaticText import StaticText
-from Components.ActionMap import ActionMap
-from Components.ActionMap import NumberActionMap
+from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
+
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Label import Label
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.SystemInfo import SystemInfo
-from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
+from Components.Sources.StaticText import StaticText
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 import Screens.Standby
+from Tools.BoundFunction import boundFunction
 
 forceNotShowCiMessages = False
 
@@ -40,7 +40,7 @@ def InitCiConfig():
 			config.ci[slot].enabled = ConfigYesNo(default=True)
 			config.ci[slot].enabled.slotid = slot
 			config.ci[slot].enabled.addNotifier(setCIEnabled)
-			config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices=[("auto", _("auto")), ("no", _("no")), ("yes", _("yes"))], default="auto")
+			config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices=[("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default="auto")
 			config.ci[slot].use_static_pin = ConfigYesNo(default=True)
 			config.ci[slot].static_pin = ConfigPIN(default=0)
 			config.ci[slot].show_ci_messages = ConfigYesNo(default=True)
@@ -61,7 +61,7 @@ class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler=eDVBCI_UI.getInstance(), wait_text="", screen_data=None):
 		Screen.__init__(self, session)
 
-		print("[CI] MMIDialog with action" + str(action))
+		print("[CI] MMIDialog with action %s" % str(action))
 
 		self.mmiclosed = False
 		self.tag = None
@@ -155,7 +155,7 @@ class MMIDialog(Screen):
 			answer = str(cur[1].value)
 			length = len(answer)
 			while length < cur[1].getLength():
-				answer = '0' + answer
+				answer = "0%s" % answer
 				length += 1
 			self.answer = answer
 			if config.ci[self.slotid].use_static_pin.value:
@@ -206,7 +206,7 @@ class MMIDialog(Screen):
 			self["entries"].handleKey(key)
 			if self.is_pin_list == 4:
 				self.okbuttonClick()
-		except:
+		except Exception:
 			pass
 
 	def keyNumberGlobal(self, number):
@@ -231,7 +231,7 @@ class MMIDialog(Screen):
 		List = self["entries"]
 		try:
 			List.instance.moveSelectionTo(0)
-		except:
+		except Exception:
 			pass
 		List.l.setList(list)
 
@@ -270,7 +270,7 @@ class MMIDialog(Screen):
 						answer = str(config.ci[self.slotid].static_pin.value)
 						length = len(answer)
 						while length < config.ci[self.slotid].static_pin.getLength():
-							answer = '0' + answer
+							answer = "0%s" % answer
 							length += 1
 						self.handler.answerEnq(self.slotid, answer)
 						self.showWait()
@@ -330,35 +330,34 @@ class CiMessageHandler:
 			handler = eDVBCI_UI.getInstance()
 			if slot in self.dlgs:
 				self.dlgs[slot].ciStateChanged()
-			elif handler.availableMMI(slot) == 1:
-				if self.session:
-					show_ui = False
-					if config.ci[slot].show_ci_messages.value:
-						show_ui = True
-					screen_data = handler.getMMIScreen(slot)
-					if config.ci[slot].use_static_pin.value:
-						if screen_data is not None and len(screen_data):
-							ci_tag = screen_data[0][0]
-							if ci_tag == 'ENQ' and len(screen_data) >= 2 and screen_data[1][0] == 'PIN':
-								if str(config.ci[slot].static_pin.value) == "0":
-									show_ui = True
-								else:
-									answer = str(config.ci[slot].static_pin.value)
-									length = len(answer)
-									while length < config.ci[slot].static_pin.getLength():
-										answer = '0' + answer
-										length += 1
-									handler.answerEnq(slot, answer)
-									show_ui = False
-									self.auto_close = True
-							elif ci_tag == 'CLOSE' and self.auto_close:
+			elif handler.availableMMI(slot) == 1 and self.session:
+				show_ui = False
+				if config.ci[slot].show_ci_messages.value:
+					show_ui = True
+				screen_data = handler.getMMIScreen(slot)
+				if config.ci[slot].use_static_pin.value:
+					if screen_data is not None and len(screen_data):
+						ci_tag = screen_data[0][0]
+						if ci_tag == "ENQ" and len(screen_data) >= 2 and screen_data[1][0] == "PIN":
+							if str(config.ci[slot].static_pin.value) == "0":
+								show_ui = True
+							else:
+								answer = str(config.ci[slot].static_pin.value)
+								length = len(answer)
+								while length < config.ci[slot].static_pin.getLength():
+									answer = "0%s" % answer
+									length += 1
+								handler.answerEnq(slot, answer)
 								show_ui = False
-								self.auto_close = False
-					if show_ui and not forceNotShowCiMessages and not Screens.Standby.inStandby:
-						try:
-							self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3, screen_data=screen_data)
-						except:
-							pass
+								self.auto_close = True
+						elif ci_tag == "CLOSE" and self.auto_close:
+							show_ui = False
+							self.auto_close = False
+				if show_ui and not forceNotShowCiMessages and not Screens.Standby.inStandby:
+					try:
+						self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3, screen_data=screen_data)
+					except Exception:
+						pass
 
 	def dlgClosed(self, slot):
 		if slot in self.dlgs:
@@ -427,7 +426,7 @@ class CiSelection(Screen):
 		try:
 			self["entries"].handleKey(key)
 			self["entries"].getCurrent()[1].save()
-		except:
+		except Exception:
 			pass
 
 	def keyLeft(self):
@@ -514,9 +513,9 @@ class CiSelection(Screen):
 		if cur and len(cur) > 2:
 			action = cur[2]
 			slot = cur[3]
-			if action == 3:
-				pass
-			elif action == 0:  # reset
+			# if action == 3:
+			#	pass
+			if action == 0:  # reset
 				eDVBCI_UI.getInstance().setReset(slot)
 			elif action == 1:  # init
 				eDVBCI_UI.getInstance().setInit(slot)
