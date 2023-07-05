@@ -27,7 +27,7 @@ from Tools.NumericalTextInput import NumericalTextInput
 
 MODULE_NAME = __name__.split(".")[-1]
 
-INTERNET_TIMEOUT = 1
+INTERNET_TIMEOUT = 2
 FEED_SERVER = "feeds2.mynonpublic.com"
 ENIGMA_PREFIX = "enigma2-plugin-%s"
 KERNEL_PREFIX = "kernel-module-%s"
@@ -945,9 +945,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			case OpkgComponent.EVENT_ERROR:
 				print("[PluginBrowser] Opkg command '%s' error!  (%s)" % (parameter[1], self.opkgComponent.getCommandText(parameter[0])))
 			case _:
-				# print("[PluginBrowser] Opkg command '%s' returned event '%s'." % (self.opkgComponent.getCommandText(OpkgComponent.currentCommand), self.opkgComponent.getEventText(event)))
-				# Unhandled events, no action required.
-				pass
+				print("[PluginBrowser] Opkg command '%s' returned event '%s'." % (self.opkgComponent.getCommandText(self.opkgComponent.currentCommand), self.opkgComponent.getEventText(event)))
 
 		haveLogs = self.logData != ""
 		self["logAction"].setEnabled(haveLogs)
