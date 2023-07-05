@@ -624,7 +624,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 	PLUGIN_DISPLAY_CATEGORY = 8  # This is the same as PLUGIN_FORMATTED_CATEGORY but is always available for the summary screen.
 	PLUGIN_INSTALLED = 9  # This is only defined for management screens and is not intended for display.
 	PLUGIN_UPGRADABLE = 10  # This is only defined for management screens and is not intended for display.
-	PLUGIN_NANE_VERSION = 11  # This is the name and the version and only defined for plugin details and management.
+	PLUGIN_NAME_VERSION = 11  # This is the name and the version and only defined for plugin details and management.
 
 	INFO_PACKAGE = 0
 	INFO_CATEGORY = 1
@@ -945,6 +945,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			case OpkgComponent.EVENT_ERROR:
 				print("[PluginBrowser] Opkg command '%s' error!  (%s)" % (parameter[1], self.opkgComponent.getCommandText(parameter[0])))
 			case _:
+				# print("[PluginBrowser] Opkg command '%s' returned event '%s'." % (self.opkgComponent.getCommandText(OpkgComponent.currentCommand), self.opkgComponent.getEventText(event)))
 				# Unhandled events, no action required.
 				pass
 
