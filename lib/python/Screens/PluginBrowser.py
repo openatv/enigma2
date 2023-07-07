@@ -322,7 +322,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 		elif config.usage.plugins_sort_mode.value == "user":
 			self.pluginList.sort(key=lambda x: x[0].listWeight)
 		if self.sortMode:
-			self["key_red"].setText("Reset Order")
+			self["key_red"].setText(_("Reset Order"))
 			self["key_green"].setText(_("Move Mode Off") if self.selectedPlugin else _("Move Mode On"))
 			self["key_blue"].setText(_("Edit Mode Off"))
 			self["pluginRemoveActions"].setEnabled(False)
