@@ -71,8 +71,8 @@ class PluginComponent:
 								print("[PluginComponent] Plugin probably removed, but not cleanly, in '%s'; trying to remove it." % path)
 								try:
 									rmtree(path)
-								except OSError as oserr:
-									print("[PluginComponent] Error %d: Unable to remove directory tree '%s'!  (%s)" % (oserr.errno, path, oserr.strerror))
+								except OSError as err:
+									print("[PluginComponent] Error %d: Unable to remove directory tree '%s'!  (%s)" % (err.errno, path, err.strerror))
 						continue
 					if not isinstance(plugins, list):
 						plugins = [plugins]
