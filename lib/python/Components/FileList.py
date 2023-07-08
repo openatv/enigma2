@@ -78,6 +78,7 @@ EXTENSIONS = {
 	".pva": "movie",
 	".rm": "movie",
 	".rmvb": "movie",
+	".stream": "movie",
 	".ts": "movie",
 	".vob": "movie",
 	".webm": "movie",
@@ -86,6 +87,7 @@ EXTENSIONS = {
 	# DVD image file types.
 	".img": "iso",
 	".iso": "iso",
+	".nrg": "iso",
 	# Playlist file types.
 	".e2pls": "playlist",
 	".m3u": "playlist",
@@ -142,10 +144,10 @@ if EXTENSION_ICONS["current"] is None:
 	EXTENSION_ICONS["current"] = EXTENSION_ICONS["directory"]
 
 # Playable file extensions.
-AUDIO_EXTENSIONS = frozenset((".mp3", ".mp2", ".m4a", ".m2a", ".flac", ".ogg", ".dts", ".wav", ".3g2", ".3gp", ".wave", ".wma"))
-DVD_EXTENSIONS = frozenset((".iso", ".img"))
-IMAGE_EXTENSIONS = frozenset((".png", ".jpg", ".jpeg", ".bmp", ".gif", ".jpe"))
-MOVIE_EXTENSIONS = frozenset((".ts", ".mp4", ".mkv", ".mpg", ".avi", ".vob", ".asf", ".dat", ".divx", ".flv", ".m2ts", ".m4v", ".mov", ".mts", ".trp", ".webm", ".wmv"))
+AUDIO_EXTENSIONS = frozenset((".mp3", ".mp2", ".m4a", ".m2a", ".mka", ".flac", ".ogg", ".oga", ".dts", ".wav", ".wave", ".wma", ".wv", ".ac3", ".aac", ".ape", ".alac", ".amr", ".au", ".mid"))
+DVD_EXTENSIONS = frozenset((".iso", ".img", ".nrg"))
+IMAGE_EXTENSIONS = frozenset((".png", ".jpg", ".jpeg", ".bmp", ".gif", ".jpe", ".svg"))
+MOVIE_EXTENSIONS = frozenset((".ts", ".stream", ".mp4", ".mkv", ".mpg", ".mpeg", ".mpe", ".avi", ".vob", ".ogv", ".ogm", ".asf", ".dat", ".divx", ".flv", ".m2ts", ".m4v", ".mov", ".mts", ".trp", ".webm", ".wmv", ".wtv", ".pva", ".rm", ".rmvb", ".3gp", ".3g2"))
 PLAYLIST_EXTENSIONS = frozenset((".m3u", ".m3u8", ".e2pls", ".pls"))
 RECORDING_EXTENSIONS = frozenset((".ap", ".cuts", ".eit", ".meta", ".sc"))
 KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS)
