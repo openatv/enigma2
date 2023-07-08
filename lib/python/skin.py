@@ -475,7 +475,7 @@ def parseItemAlignment(value):
 		"justifyLeft": eListbox.itemAlignJustifyLeft,
 		"justifyRight": eListbox.itemAlignJustifyRight
 	}
-	return parseOptions(options, "itemAlignment", value, eListbox.itemAlignDefault)
+	return parseOptions(options, "itemAlignment", value, eListbox.itemAlignLeftTop)
 
 
 def parseScrollbarLength(value, default):

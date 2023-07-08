@@ -196,7 +196,14 @@ public:
 		itemAlignJustifyBottom = itemVertialAlignBottom + itemHorizontalAlignJustify,
 		itemAlignJustifyLeft = itemVertialAlignJustify + itemHorizontalAlignLeft,
 		itemAlignJustifyRight = itemVertialAlignJustify + itemHorizontalAlignRight,
-		itemAlignJustifyFull =  itemVertialAlignJustify + itemHorizontalAlignJustify
+		itemAlignJustifyFull = itemVertialAlignJustify + itemHorizontalAlignJustify
+	};
+
+	enum
+	{
+		zoomContentZoom, // zoom all the content based on zoom level
+		zoomContentMove, // don't zoom the content and move the left/top position of the content
+		zoomContentOff	 // don't zoom the content and leave the left/top position of the content
 	};
 
 	void setItemAlignment(int align);
@@ -300,13 +307,25 @@ public:
 	void setScrollbarForegroundColor(gRGB &col);
 	void setScrollbarBackgroundColor(gRGB &col);
 
-	void setMaxRows(int rows) {m_style.m_max_rows = rows; m_style.is_set.max_rows = 1;};
-	void setMaxColumns(int columns) {m_style.m_max_columns = columns; m_style.is_set.max_columns = 1;};
-	void setItemSpacing(const ePoint &spacing, bool innerOnly=false);
-	void setSelectionZoom(float zoom);
-	void setSelectionZoomSize(int width, int height, int zoomContentMode = 1);
+	void setMaxRows(int rows)
+	{
+		m_style.m_max_rows = rows;
+		m_style.is_set.max_rows = 1;
+	};
+	void setMaxColumns(int columns)
+	{
+		m_style.m_max_columns = columns;
+		m_style.is_set.max_columns = 1;
+	};
+	void setItemSpacing(const ePoint &spacing, bool innerOnly = false);
+	void setSelectionZoom(float zoom, int zoomContentMode = 0);
+	void setSelectionZoomSize(int width, int height, int zoomContentMode = 0);
 
-	void setOverlay(ePtr<gPixmap> &pm) { m_style.m_overlay = pm; m_style.is_set.overlay = 1; }
+	void setOverlay(ePtr<gPixmap> &pm)
+	{
+		m_style.m_overlay = pm;
+		m_style.is_set.overlay = 1;
+	}
 
 	void setPageSize(int size) { m_page_size = size; }
 

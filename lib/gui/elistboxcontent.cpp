@@ -58,7 +58,7 @@ int iListboxContent::currentCursorSelectable()
 DEFINE_REF(eListboxPythonStringContent);
 
 eListboxPythonStringContent::eListboxPythonStringContent()
-	: m_cursor(0), m_saved_cursor(0), m_saved_cursor_line(0), m_itemheight(25), m_itemwidth(25), m_orientation(1)
+	: m_saved_cursor_line(0), m_cursor(0), m_saved_cursor(0), m_itemheight(25), m_itemwidth(25), m_orientation(1)
 {
 }
 
@@ -164,6 +164,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	gRGB border_color;
 	int border_size = 0;
 	ePoint offs = offset;
+	ePoint zoomoffs = offset;
 	eRect itemRect(offset, m_itemsize);
 
 	/* get local listbox style, if present */
@@ -176,16 +177,23 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		border_color = local_style->m_border_color;
 		itemZoomed = local_style->m_selection_zoom > 1.0;
 
-		if (selected && itemZoomed)
+		if (selected && itemZoomed && local_style->is_set.zoom_content)
 			fnt = local_style->m_font_zoomed;
 		else
 			fnt = local_style->m_font;
 
 		if (selected && itemZoomed)
-			itemRect = eRect(offs, eSize(m_itemsize.width() * local_style->m_selection_zoom, m_itemsize.height() * local_style->m_selection_zoom));
+		{
+			itemRect = eRect(offs, eSize(local_style->m_selection_width, local_style->m_selection_height));
+			if (local_style->is_set.zoom_move_content)
+			{
+				zoomoffs = ePoint(offset.x() - (((local_style->m_selection_width) - m_itemsize.width()) / 4), offset.y() - (((local_style->m_selection_height) - m_itemsize.height()) / 4));
+			}
+		}
 		else if (!selected && itemZoomed)
 		{
-			offs = ePoint(offset.x() + (((m_itemsize.width() * local_style->m_selection_zoom) - m_itemsize.width()) / 2), offset.y() + (((m_itemsize.height() * local_style->m_selection_zoom) - m_itemsize.height()) / 2));
+			offs = ePoint(offset.x() + (((local_style->m_selection_width) - m_itemsize.width()) / 2), offset.y() + (((local_style->m_selection_height) - m_itemsize.height()) / 2));
+			zoomoffs = offs;
 			itemRect = eRect(offs, m_itemsize);
 		}
 		painter.clip(itemRect);
@@ -219,9 +227,9 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	if (!fnt)
 	{
 		style.getFont(eWindowStyle::fontListbox, fnt);
-		if (selected && local_style && local_style->m_selection_zoom > 1.0)
+		if (selected && local_style && local_style->is_set.zoom_content)
 		{
-		 	if(fnt)
+			if (fnt)
 				m_font_zoomed = new gFont(fnt->family, fnt->pointSize * local_style->m_selection_zoom);
 			fnt = m_font_zoomed;
 		}
@@ -239,11 +247,13 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			{
 				int x = offs.x();
 				int y = offs.y();
-				x += (orientation & 2) ? (itemRect.width() - local_style->m_background->size().width()) / 2 : 0;	 // vertical
+				x += (orientation & 2) ? (itemRect.width() - local_style->m_background->size().width()) / 2 : 0;   // vertical
 				y += (orientation & 1) ? (itemRect.height() - local_style->m_background->size().height()) / 2 : 0; // horizontal
 				painter.blit(local_style->m_background, ePoint(x, y), eRect(), 0);
 			}
 		}
+		else if (local_style->is_set.background_gradient_color && !local_style->m_background && cursorValid)
+			painter.drawGradient(itemRect, local_style->m_background_gradient_color_start, local_style->m_background_gradient_color_end, local_style->m_background_color_gradient_direction, local_style->m_background_color_gradient_flag);
 		else
 			painter.clear();
 	}
@@ -255,11 +265,13 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			{
 				int x = offs.x();
 				int y = offs.y();
-				x += (orientation & 2) ? (itemRect.width() - local_style->m_background->size().width()) / 2 : 0;	 // vertical
+				x += (orientation & 2) ? (itemRect.width() - local_style->m_background->size().width()) / 2 : 0;   // vertical
 				y += (orientation & 1) ? (itemRect.height() - local_style->m_background->size().height()) / 2 : 0; // horizontal
 				painter.blit(local_style->m_background, ePoint(x, y), eRect(), gPainter::BT_ALPHATEST);
 			}
 		}
+		else if (local_style->is_set.background_gradient_color && !local_style->m_background && cursorValid)
+			painter.drawGradient(itemRect, local_style->m_background_gradient_color_start, local_style->m_background_gradient_color_end, local_style->m_background_color_gradient_direction, local_style->m_background_color_gradient_flag);
 		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
@@ -285,10 +297,12 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		{
 			int x = offs.x();
 			int y = offs.y();
-			x += (orientation & 2) ? (itemRect.width() - local_style->m_selection->size().width()) / 2 : 0;	// vertical
+			x += (orientation & 2) ? (itemRect.width() - local_style->m_selection->size().width()) / 2 : 0;	  // vertical
 			y += (orientation & 1) ? (itemRect.height() - local_style->m_selection->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_selection, ePoint(x, y), eRect(), gPainter::BT_ALPHATEST);
 		}
+		else if (selected && local_style->is_set.background_gradient_selected_color && !local_style->m_selection)
+			painter.drawGradient(itemRect, local_style->m_background_gradient_color_selected_start, local_style->m_background_gradient_color_selected_end, local_style->m_background_color_gradient_selected_direction, local_style->m_background_color_gradient_selected_flag);
 
 		if (!item || item == Py_None)
 		{
@@ -304,7 +318,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		else
 		{
 			const char *string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
-			ePoint text_offset = offs;
+			ePoint text_offset = zoomoffs;
 			if (gray)
 				painter.setForegroundColor(gRGB(0x808080));
 
@@ -486,6 +500,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			y += (orientation & 1) ? (m_itemsize.height() - local_style->m_background->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_background, ePoint(x, y), eRect(), 0);
 		}
+		else if (local_style && local_style->is_set.background_gradient_color && !local_style->m_background && cursorValid)
+			painter.drawGradient(itemrect, local_style->m_background_gradient_color_start, local_style->m_background_gradient_color_end, local_style->m_background_color_gradient_direction, local_style->m_background_color_gradient_flag);
 		else
 			painter.clear();
 	}
@@ -499,6 +515,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			y += (orientation & 1) ? (m_itemsize.height() - local_style->m_background->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_background, ePoint(x, y), eRect(), gPainter::BT_ALPHATEST);
 		}
+		else if (local_style && local_style->is_set.background_gradient_color && !local_style->m_background && cursorValid)
+			painter.drawGradient(itemrect, local_style->m_background_gradient_color_start, local_style->m_background_gradient_color_end, local_style->m_background_color_gradient_direction, local_style->m_background_color_gradient_flag);
 		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
@@ -521,6 +539,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			y += (orientation & 1) ? (m_itemsize.height() - local_style->m_selection->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_selection, ePoint(x, y), eRect(), gPainter::BT_ALPHATEST);
 		}
+		else if (selected && local_style->is_set.background_gradient_selected_color && !local_style->m_selection)
+			painter.drawGradient(itemrect, local_style->m_background_gradient_color_selected_start, local_style->m_background_gradient_color_selected_end, local_style->m_background_color_gradient_selected_direction, local_style->m_background_color_gradient_selected_flag);
 
 		/* the first tuple element is a string for the left side.
 		   the second one will be called, and the result shall be an tuple.
@@ -767,6 +787,11 @@ static void clearRegionHelper(gPainter &painter, eListboxStyle *local_style, con
 	{
 		if (local_style->is_set.background_color)
 			painter.setBackgroundColor(local_style->m_background_color);
+		if (local_style->is_set.background_gradient_color && cursorValid)
+		{
+			painter.drawGradient(eRect(offset, size), local_style->m_background_gradient_color_start, local_style->m_background_gradient_color_end, local_style->m_background_color_gradient_direction, local_style->m_background_color_gradient_flag);
+			return;
+		}
 		if (local_style->m_background && cursorValid)
 		{
 			int x = offset.x();
@@ -801,6 +826,11 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 			x += (orientation & 2) ? (size.width() - local_style->m_background->size().width()) / 2 : 0;   // vertical
 			y += (orientation & 1) ? (size.height() - local_style->m_background->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_background, ePoint(x, y), eRect(), local_style->is_set.transparent_background ? gPainter::BT_ALPHATEST : 0);
+			return;
+		}
+		else if (local_style->is_set.background_gradient_selected_color && cursorValid)
+		{
+			painter.drawGradient(eRect(offset, size), local_style->m_background_gradient_color_selected_start, local_style->m_background_gradient_color_selected_end, local_style->m_background_color_gradient_selected_direction, local_style->m_background_color_gradient_selected_flag);
 			return;
 		}
 	}
@@ -901,7 +931,7 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	
+
 	eListboxStyle *local_style = 0;
 	eRect sel_clip(m_selection_clip);
 	bool cursorValid = this->cursorValid();
@@ -909,6 +939,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	int border_size = 0;
 	int orientation = 0;
 	bool itemZoomed = false;
+	bool itemZoomContent = false;
 
 	if (sel_clip.valid())
 		sel_clip.moveBy(offset);
@@ -921,20 +952,27 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		border_color = local_style->m_border_color;
 		orientation = m_listbox->getOrientation();
 		itemZoomed = local_style->m_selection_zoom > 1.0;
+		itemZoomContent = itemZoomed && local_style->is_set.zoom_content;
 	}
 
 	ePoint offs = offset;
+	ePoint zoomoffs = offset;
 	eRect itemRect = eRect(offset, m_itemsize);
 	gRegion itemregion(itemRect);
 
 	if (selected && itemZoomed)
 	{
-		itemRect = eRect(offs, eSize(m_itemsize.width() * local_style->m_selection_zoom, m_itemsize.height() * local_style->m_selection_zoom));
+		itemRect = eRect(offs, eSize(local_style->m_selection_width, local_style->m_selection_height));
 		itemregion = itemRect;
+		if (local_style->is_set.zoom_move_content)
+		{
+			zoomoffs = ePoint(offset.x() - (((local_style->m_selection_width) - m_itemsize.width()) / 4), offset.y() - (((local_style->m_selection_height) - m_itemsize.height()) / 4));
+		}
 	}
 	else if (!selected && itemZoomed)
 	{
-		offs = ePoint(offset.x() + (((m_itemsize.width() * local_style->m_selection_zoom) - m_itemsize.width()) / 2), offset.y() + (((m_itemsize.height() * local_style->m_selection_zoom) - m_itemsize.height()) / 2));
+		offs = ePoint(offset.x() + (((local_style->m_selection_width) - m_itemsize.width()) / 2), offset.y() + (((local_style->m_selection_height) - m_itemsize.height()) / 2));
+		zoomoffs = offs;
 		itemRect = eRect(offs, m_itemsize);
 		itemregion = itemRect;
 	}
@@ -1059,7 +1097,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						pborderWidth = ePyObject();
 				}
 
-				if (size > 8) {
+				if (size > 8)
+				{
 					pborderColor = lookupColor(PyTuple_GET_ITEM(item, 8), data);
 
 					if (size > 9)
@@ -1076,11 +1115,11 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
-				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
+				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth);
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 0;
 
-				if(selected && itemZoomed)
+				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
 					y = (y * local_style->m_selection_zoom) + offs.y();
@@ -1089,8 +1128,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				else
 				{
-					x += offs.x();
-					y += offs.y();
+					x += zoomoffs.x();
+					y += zoomoffs.y();
 				}
 
 				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
@@ -1107,7 +1146,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					eRect rect(eRect(x, y, width, height));
 					painter.clip(rect);
 
-					if(pborderColor) {
+					if (pborderColor)
+					{
 						unsigned int color = PyLong_AsUnsignedLongMask(selected ? pborderColorSelected : pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
@@ -1196,7 +1236,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					goto error_out;
 				}
 
-				if(selected && itemZoomed)
+				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
 					y = (y * local_style->m_selection_zoom) + offs.y();
@@ -1205,8 +1245,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				else
 				{
-					x += offs.x();
-					y += offs.y();
+					x += zoomoffs.x();
+					y += zoomoffs.y();
 				}
 
 				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
@@ -1218,9 +1258,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip, offs, itemRect.size(), cursorValid, mustClear, orientation);
 				}
 
-				if (selected && itemZoomed) {
+				if (selected && itemZoomContent)
+				{
 					// find and set zoomed font
-				    if(m_fonts_zoomed.find(fnt) == m_fonts_zoomed.end())
+					if (m_fonts_zoomed.find(fnt) == m_fonts_zoomed.end())
 						m_fonts_zoomed[fnt] = new gFont(m_fonts[fnt]->family, m_fonts[fnt]->pointSize * local_style->m_selection_zoom);
 					painter.setFont(m_fonts_zoomed[fnt]);
 				}
@@ -1340,7 +1381,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 2;
 
-				if(selected && itemZoomed)
+				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
 					y = (y * local_style->m_selection_zoom) + offs.y();
@@ -1349,8 +1390,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				else
 				{
-					x += offs.x();
-					y += offs.y();
+					x += zoomoffs.x();
+					y += zoomoffs.y();
 				}
 
 				eRect rect(x, y, width, height);
@@ -1393,8 +1434,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						painter.clippop();
 						continue;
 					}
-					if(pixmap->size().width() != width || pixmap->size().height() != height)
-						painter.blitScale(pixmap ,eRect(rect.left(), rect.top(), width, height) ,rect);
+					if (pixmap->size().width() != width || pixmap->size().height() != height)
+						painter.blitScale(pixmap, eRect(rect.left(), rect.top(), width, height), rect);
 					else
 						painter.blit(pixmap, rect.topLeft(), rect, 0);
 				}
@@ -1408,11 +1449,11 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			case TYPE_LINEAR_GRADIENT:
 			{
 				ePyObject px = PyTuple_GET_ITEM(item, 1),
-						py = PyTuple_GET_ITEM(item, 2), 
-						pwidth = PyTuple_GET_ITEM(item, 3),
-						pheight = PyTuple_GET_ITEM(item, 4), 
-						ppdirection = PyTuple_GET_ITEM(item, 5),
-						pbackColor, pbackColorSelected, ppstartColor, pendColor, pstartColorSelected, pendColorSelected;
+						  py = PyTuple_GET_ITEM(item, 2),
+						  pwidth = PyTuple_GET_ITEM(item, 3),
+						  pheight = PyTuple_GET_ITEM(item, 4),
+						  ppdirection = PyTuple_GET_ITEM(item, 5),
+						  pbackColor, pbackColorSelected, ppstartColor, pendColor, pstartColorSelected, pendColorSelected;
 
 				if (!(px && py && pwidth && pheight && ppdirection))
 				{
@@ -1434,11 +1475,11 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
-				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
+				int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth);
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 				int direction = PyLong_AsLong(ppdirection);
 
-				if(selected && itemZoomed)
+				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
 					y = (y * local_style->m_selection_zoom) + offs.y();
@@ -1447,8 +1488,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				else
 				{
-					x += offs.x();
-					y += offs.y();
+					x += zoomoffs.x();
+					y += zoomoffs.y();
 				}
 
 				eRect rect(x, y, width, height);
@@ -1530,7 +1571,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 8)
 					flags = PyLong_AsLong(PyTuple_GET_ITEM(item, 8));
 
-				if(selected && itemZoomed)
+				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
 					y = (y * local_style->m_selection_zoom) + offs.y();
@@ -1539,8 +1580,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				else
 				{
-					x += offs.x();
-					y += offs.y();
+					x += zoomoffs.x();
+					y += zoomoffs.y();
 				}
 
 				eRect rect(x, y, width, height);
@@ -1631,10 +1672,12 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 
 void eListboxPythonMultiContent::setFont(int fnt, gFont *font)
 {
-	if (font) {
+	if (font)
+	{
 		m_fonts[fnt] = font;
 	}
-	else {
+	else
+	{
 		m_fonts.erase(fnt);
 		m_fonts_zoomed.erase(fnt);
 	}
