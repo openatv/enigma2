@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-04 19:44+0000\n"
+"POT-Creation-Date: 2023-07-03 21:13+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -955,6 +955,26 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package has an update"
+msgid_plural "%d packages have updates."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package installable."
+msgid_plural "%d packages installable."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package installed."
+msgid_plural "%d packages installed."
+msgstr[0] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d paket yükseltildi."
@@ -993,10 +1013,6 @@ msgstr[0] "%d paketi kaldırıldı."
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paketi yükseltildi."
-
-#, python-format
-msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr ""
 
 #, python-format
 msgid "%d sec"
@@ -1146,11 +1162,6 @@ msgstr "%s (%04o)"
 msgid "%s (%s)"
 msgstr "%s (%s)"
 
-#
-#, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
 #, python-format
 msgid "%s - Setup"
 msgstr "%s - kurmak"
@@ -1174,10 +1185,6 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
-
-#, python-format
-msgid "%s Packages found"
-msgstr ""
 
 #
 #, python-format
@@ -1446,10 +1453,6 @@ msgstr "12 saat"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "Şekil 12'de Yunanca ve Kiril hariç latin-1 karakterleri gösteriliyor, gerekirse 8'e geçiliyor."
 
-#
-msgid "128"
-msgstr "128"
-
 msgid "128 Mb"
 msgstr "128 Mb"
 
@@ -1476,9 +1479,6 @@ msgstr "15 dakika"
 
 msgid "1536 Mb"
 msgstr "1536 Mb"
-
-msgid "16"
-msgstr "16"
 
 #
 msgid "16:10"
@@ -1576,10 +1576,6 @@ msgstr "24p/60p"
 msgid "25"
 msgstr "25"
 
-#
-msgid "256"
-msgstr "256"
-
 msgid "256 Mb"
 msgstr "256 Mb"
 
@@ -1655,9 +1651,6 @@ msgstr "30p/50p"
 
 msgid "30p/60p"
 msgstr "30p/60p"
-
-msgid "32"
-msgstr "32"
 
 msgid "32 Mb"
 msgstr "32 Mb"
@@ -1758,9 +1751,6 @@ msgstr "60p/50p"
 
 msgid "60p/60p"
 msgstr "60p/60p"
-
-msgid "64"
-msgstr "64"
 
 msgid "64 Mb"
 msgstr "64 Mb"
@@ -2041,10 +2031,6 @@ msgstr "ATSC provider"
 msgid "AV Setup"
 msgstr "AV Kurulumu"
 
-#
-msgid "AZPlay"
-msgstr "AZPlay"
-
 msgid "Abkhazian"
 msgstr "Abhazca"
 
@@ -2270,6 +2256,9 @@ msgstr "Mevcut etkinlik için bir zamanlayıcı ekleyin"
 msgid "Add an AutoTimer for the current event"
 msgstr "Geçerli etkinliğe oto-zamanlayıcı ekle"
 
+msgid "Add bouquet"
+msgstr ""
+
 msgid "Add current directory to bookmarks"
 msgstr "Yer işaretlerine geçerli klasör ekle"
 
@@ -2326,6 +2315,9 @@ msgstr ""
 #
 msgid "Add service"
 msgstr "Kanal ekle"
+
+msgid "Add services to this bouquet?"
+msgstr ""
 
 msgid "Add the current directory as a bookmark"
 msgstr ""
@@ -2499,6 +2491,9 @@ msgstr "Tüm uydular 4 (USALS)"
 #
 msgid "All services provider"
 msgstr "Tüm servis sağlayıcı"
+
+msgid "All slots"
+msgstr ""
 
 msgid "All supported"
 msgstr "Tüm desteklenen"
@@ -3242,6 +3237,9 @@ msgstr "Yedekleme tamamlandı."
 msgid "Backup done."
 msgstr "Yedekleme bitti."
 
+msgid "Backup failed!"
+msgstr ""
+
 #
 msgid "Backup failed."
 msgstr "Yedekleme başarısız."
@@ -3528,7 +3526,7 @@ msgstr "Buket Listesi"
 msgid "Bouvet Island"
 msgstr "Bouvet Adası"
 
-msgid "Box or driver is not support Quad PiP."
+msgid "Receiver does not support Quad PiP."
 msgstr "Box veya sürücü Quad PiP'i desteklemiyor."
 
 msgid "Boxing"
@@ -3571,7 +3569,7 @@ msgstr ""
 msgid "Broadcom"
 msgstr "Broadcom"
 
-msgid "Browse, install or remove extensions / plugins."
+msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -3774,23 +3772,8 @@ msgstr "CI %s etkin"
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Ortak Arayüz) Kurulumu"
 
-msgid "CI Basic Settings"
-msgstr "CI Temel ayarlar"
-
 msgid "CI Helper Settings"
 msgstr "CI Yardımcısı Kurulumu"
-
-msgid "CI Legacy"
-msgstr "CI Legacy"
-
-msgid "CI Operation Mode"
-msgstr "CI Çalışma Modu"
-
-msgid "CI Plus 1.2"
-msgstr "CI Plus 1.2"
-
-msgid "CI Plus 1.3"
-msgstr "CI Plus 1.3"
 
 #
 msgid "CI assignment"
@@ -3801,15 +3784,6 @@ msgstr "CI yuvası: "
 
 msgid "CIFS/Samba Settings"
 msgstr "Samba Kurulumu"
-
-msgid "CIHelper for SLOT CI0"
-msgstr "CIHelper for SLOT CI0"
-
-msgid "CIHelper for SLOT CI1"
-msgstr "CIHelper for SLOT CI1"
-
-msgid "CIconfigMenu"
-msgstr "CI Ana Menüyü seçin"
 
 msgid "CPU"
 msgstr "CPU"
@@ -3996,9 +3970,6 @@ msgstr "Kanada"
 #
 msgid "Cancel"
 msgstr "İptal"
-
-msgid "Cancel / Close the screen"
-msgstr ""
 
 msgid "Cancel / Close the software update screen"
 msgstr "Yazılım güncelleme ekranını iptal edin / kapatın"
@@ -4437,17 +4408,11 @@ msgstr "EPG olaylarında derecelendirme bilgilerinin kodunu çözmek için bir �
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "IceTV hizmetlerinde bu cihazı tanımlayacak bir etiket seçin."
 
-msgid "Choose dvb wait delay for ci response."
-msgstr "Ci yanıtı için dvb bekleme gecikmesini seçin."
-
 msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Güncellemeleri kontrol etmek için IceTV sunucusuna ne sıklıkla bağlanacağınızı seçin."
-
-msgid "Choose the CI protocol operation mode for standard ci or ciplus."
-msgstr "Standart ci veya ciplus için CI protokolü çalışma modunu seçin."
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4652,6 +4617,9 @@ msgid "Close screen"
 msgstr "Ekranı kapat"
 
 msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Close the Plugin Browser screen"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5247,6 +5215,9 @@ msgstr "Bağlı istemciler"
 
 msgid "Connected satellites"
 msgstr "Bağlı uydular"
+
+msgid "Connected through another tuner"
+msgstr ""
 
 #
 msgid "Connected to"
@@ -6408,6 +6379,9 @@ msgstr "GStreamer günlüğünün ayrıntısı"
 msgid "Details"
 msgstr ""
 
+msgid "Development Packages"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Aygıt Yöneticisi"
 
@@ -6606,9 +6580,6 @@ msgstr "Disk yazılabilir değil!"
 msgid "Disk was not found!"
 msgstr "Disk bulunamadı!"
 
-msgid "Display"
-msgstr "Ekran"
-
 #
 msgid "Display 16:9 content as"
 msgstr "16:9 içeriği şu şekilde göster"
@@ -6623,6 +6594,9 @@ msgstr ">16:9 içeriği şu şekilde göster"
 
 msgid "Display Settings"
 msgstr "Görünüm Ayarları"
+
+msgid "Display Skin Packages"
+msgstr ""
 
 msgid "Display context menu"
 msgstr ""
@@ -6769,10 +6743,6 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Bu zamanlayıcıyı gerçekten silmek istiyor musunuz?"
 
-#, python-format
-msgid "Do you really want to download the plugin \"%s\"?"
-msgstr "Eklenti \"%s\" gerçekten indirmek istiyor musunuz?"
-
 #
 msgid "Do you really want to exit?"
 msgstr "Çıkmak istediğinizden emin misiniz?"
@@ -6796,10 +6766,6 @@ msgstr "Çöp sepetinden kalıcı olarak kaldırmak istiyor muzunuz?"
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "%s klasörünü kaldırmak istiyor musunuz?"
-
-#, python-format
-msgid "Do you really want to remove the plugin \"%s\"?"
-msgstr "Eklenti \"%s\" gerçekten kaldırmak istiyor musunuz?"
 
 #, python-format
 msgid "Do you really want to remove the timer for %s?"
@@ -6876,6 +6842,10 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Başka kanal taraması yapacak mısınız?"
 
 #, python-format
+msgid "Do you want to download '%s'?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr ""
 
@@ -6909,9 +6879,17 @@ msgstr "%s %s alıcınızı yeniden başlatmak istiyor musunuz?"
 msgid "Do you want to reboot your receiver?"
 msgstr "Alıcınızı tekrar başlatmak istiyor musunuz?"
 
+#, python-format
+msgid "Do you want to remove '%s'?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Seçilen paketi kaldırmak istiyor musunuz?:\n"
+
+#, python-format
+msgid "Do you want to replace '%s' with '%s?"
+msgstr ""
 
 #
 msgid "Do you want to restore your settings?"
@@ -6922,6 +6900,10 @@ msgid "Do you want to resume this playback?"
 msgstr "Oynatmaya kaldığınız yerden devam etmek istiyor musunuz?"
 
 msgid "Do you want to start a backup now?"
+msgstr ""
+
+#, python-format
+msgid "Do you want to update '%s'?"
 msgstr ""
 
 #
@@ -6990,6 +6972,9 @@ msgstr "Aşağı"
 msgid "Down / Inactive"
 msgstr ""
 
+msgid "Download Plugin"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Eklentileri iİndir"
 
@@ -7007,6 +6992,9 @@ msgstr "Camı indirip yükleyin"
 
 msgid "Download error"
 msgstr "İndirme hatası"
+
+msgid "Download the highlighted plugin"
+msgstr ""
 
 msgid "Downloadable plugins"
 msgstr "İndirilebilir eklentiler"
@@ -7041,11 +7029,11 @@ msgstr "Dreambox formatında veri DVD (HDTV uyumlu)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox formatında veri DVD (diğer DVD oynatıcılarla çalışmaz)"
 
+msgid "Driver Packages"
+msgstr ""
+
 msgid "Driver and kernel information"
 msgstr "Sürücü ve çekirdek bilgileri"
-
-msgid "Drivers"
-msgstr "Sürücüler"
 
 msgid "Drivers version"
 msgstr "Sürücü sürümü"
@@ -7338,12 +7326,6 @@ msgstr "BT Sesini Etkinleştir"
 #
 msgid "Enable Bouquet Edit"
 msgstr "buket düzenlemeyi etkinleştir"
-
-msgid "Enable CIHelper for SLOT CI0"
-msgstr "SLOT CI0 için CIHelper'ı etkinleştir"
-
-msgid "Enable CIHelper for SLOT CI1"
-msgstr "SLOT CI1 için CIHelper'ı etkinleştir"
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr "Dolby Digital / Dolby AC-3 ofsetlerini etkinleştir"
@@ -7765,6 +7747,9 @@ msgstr "Yüksek bant yerel osilatör frekansınızı girin. Daha fazla bilgi iç
 
 msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr "Düşük bant yerel osilatör frekansınızı girin. Daha fazla bilgi için LNB'nizin teknik özelliklerine bakın."
+
+msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
 
 #
 msgid "Entertainment"
@@ -8313,6 +8298,9 @@ msgstr "Genişletilmiş paylaşımlar"
 msgid "Extension Actions"
 msgstr "Uzantı Eylemleri"
 
+msgid "Extension Packages"
+msgstr ""
+
 #
 msgid "Extensions"
 msgstr "Eklentiler"
@@ -8511,6 +8499,12 @@ msgstr "Feed URL"
 
 msgid "Feed disabled!"
 msgstr "Besleme devre dışı bırakıldı!"
+
+msgid "Feed server DNS error!"
+msgstr ""
+
+msgid "Feed server access error!"
+msgstr ""
 
 msgid "Feed stable."
 msgstr "Yem kararlı."
@@ -8823,6 +8817,9 @@ msgstr "LNB Tuner ToneBurst ayarlarını zorla."
 
 msgid "Force Legacy Signal stats"
 msgstr "Legacy Signal istatistiklerini zorla"
+
+msgid "Force OPKG clean mode"
+msgstr ""
 
 #
 msgid "Force ToneBurst"
@@ -9496,6 +9493,9 @@ msgstr "Gizlenmiş ağ"
 msgid "Hide"
 msgstr "Gizle"
 
+msgid "Hide CI messages"
+msgstr ""
+
 msgid "Hide InfoBar"
 msgstr "Bilgi çubuğunu hep gizle"
 
@@ -9504,6 +9504,9 @@ msgstr "Bu hizmet için VBI hattını gizle"
 
 msgid "Hide any zap error messages."
 msgstr "Zap hata mesajlarını gizle."
+
+msgid "Hide error messages from the Common Interface module."
+msgstr ""
 
 #
 msgid "Hide known extensions"
@@ -10251,12 +10254,6 @@ msgstr "Uzantıları yükle"
 msgid "Install extensions."
 msgstr "Eklentileri yükle."
 
-msgid "Install lcd picons on"
-msgstr "Lcd pikonlarını yükle"
-
-msgid "Install picons on"
-msgstr "Pikonları yükle"
-
 msgid "Install the package"
 msgstr ""
 
@@ -10555,8 +10552,8 @@ msgstr "Ses dosyalarını çalarken Film Listesini açık tutar."
 msgid "Kenya"
 msgstr "Kenya"
 
-msgid "Kernel Modules"
-msgstr "Çekirdek Modülleri"
+msgid "Kernel Packages"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Çekirdek dosyası"
@@ -11169,8 +11166,8 @@ msgstr "Lüksemburg'un"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Lüksemburgca / Letzeburgesch"
 
-msgid "M2k"
-msgstr "M2k"
+msgid "M2k Packages"
+msgstr ""
 
 msgid "MAC Address Actions"
 msgstr ""
@@ -11276,14 +11273,13 @@ msgid "Maltese"
 msgstr "Malta"
 
 #
-msgid "Manage Extensions"
-msgstr "Eklentileri yönet"
-
-#
 msgid "Manage Locale/Language Selection settings"
 msgstr "Yerel/Dil Seçimi ayarlarını yönetin"
 
 msgid "Manage Plugins"
+msgstr ""
+
+msgid "Manage Plugins. This will remove/install Plugins on your box"
 msgstr ""
 
 msgid "Manage and explore directories and files."
@@ -11291,6 +11287,9 @@ msgstr ""
 
 msgid "Manage network mounts"
 msgstr "Ağ bağlarını yönet"
+
+msgid "Manage the highlighted plugin"
+msgstr ""
 
 msgid "Manage your online update files"
 msgstr "Çevrimiçi güncelleme dosyalarınızı yönetin"
@@ -11421,8 +11420,8 @@ msgstr "Medya oynatıcı"
 msgid "Media Player Settings"
 msgstr "Medya Oynatıcı Ayarları"
 
-msgid "Media Portal"
-msgstr "Medya Portalı"
+msgid "Media Stream"
+msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Ortam oynatımında Kalan/Geçen süre"
@@ -11440,8 +11439,8 @@ msgstr ""
 msgid "MediaPlayer"
 msgstr "Medya Oynatıcı"
 
-msgid "MediaPortal"
-msgstr "Medya Portalı"
+msgid "MediaStream"
+msgstr ""
 
 msgid "Medical"
 msgstr "Tıp"
@@ -11887,10 +11886,34 @@ msgstr "Son satıra / ekrana git"
 msgid "Move to last line / screen in the panel"
 msgstr ""
 
+msgid "Move to the first item on the current line"
+msgstr ""
+
+msgid "Move to the first item on the first screen"
+msgstr ""
+
 msgid "Move to the first line / screen"
 msgstr ""
 
+msgid "Move to the last item on the current line"
+msgstr ""
+
+msgid "Move to the last item on the last screen"
+msgstr ""
+
 msgid "Move to the last line / screen"
+msgstr ""
+
+msgid "Move to the next category in the list"
+msgstr ""
+
+msgid "Move to the next item in the list"
+msgstr ""
+
+msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item in list"
 msgstr ""
 
 msgid "Move up a line"
@@ -12258,6 +12281,9 @@ msgstr ""
 msgid "Network Wizard"
 msgstr "Ağ Sihirbazı"
 
+msgid "Network adapter not connected to a network!"
+msgstr ""
+
 msgid "Network address"
 msgstr "Ağ adresi"
 
@@ -12521,6 +12547,9 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Eşleşen yer adı bulunamadı"
 
+msgid "No network adapters enabled/available!"
+msgstr ""
+
 msgid "No network storage detected."
 msgstr ""
 
@@ -12530,9 +12559,6 @@ msgstr "Ağ bulunamadı"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Değişen öğeler (artan veya azalan)"
-
-msgid "No packages found."
-msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -12876,9 +12902,6 @@ msgstr "Tamam, güncelleme işleminde bana rehberlik yap"
 msgid "ONID"
 msgstr "ONID"
 
-msgid "OPKG clean mode"
-msgstr "OPKG temizleme modu"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12993,9 +13016,6 @@ msgstr "Çanağı sadece bu saatten önce hızlıca hareket ettirin."
 msgid "Only on startup"
 msgstr "Sadece başlangıçta"
 
-msgid "Only provider"
-msgstr "Yalnızca sağlayıcı"
-
 msgid "Open"
 msgstr "Aç"
 
@@ -13011,8 +13031,8 @@ msgstr "EPGSearch'ü açın"
 msgid "Open IMDb"
 msgstr "IMDb'yi aç"
 
-msgid "Open MediaPortal"
-msgstr "MediaPortal'ı açın"
+msgid "Open MediaStream"
+msgstr ""
 
 msgid "Open Similar List Channel List"
 msgstr "Benzer Listeyi Aç Kanal Listesi"
@@ -13059,6 +13079,9 @@ msgstr ""
 msgid "Open the Plugin Browser"
 msgstr "Eklenti Tarayıcısını Aç"
 
+msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
@@ -13080,8 +13103,8 @@ msgstr "OpenDNS FamilyShield"
 msgid "OpenDNS Home"
 msgstr "OpenDNS Ana Sayfası"
 
-msgid "OpenPLi"
-msgstr "OpenPLi"
+msgid "OpenPLi Packages"
+msgstr ""
 
 msgid "OpenSSL version"
 msgstr "OpenSSL sürümü"
@@ -13095,8 +13118,8 @@ msgstr ""
 msgid "OpenVPN Settings"
 msgstr "VPN Kurulumu Aç"
 
-msgid "OpenViX"
-msgstr "OpenViX"
+msgid "OpenViX Packages"
+msgstr ""
 
 msgid "OpenVpn Log"
 msgstr "OpenVPN Günlüğü"
@@ -13469,9 +13492,6 @@ msgstr "Sağ ilerleme çubuğu"
 msgid "Perform an on-line flash instead"
 msgstr "Bunun yerine bir çevrimiçi flaş gerçekleştirin"
 
-msgid "Perform install/remove of the selected item"
-msgstr ""
-
 msgid "Perform the upgrade?"
 msgstr ""
 
@@ -13520,14 +13540,14 @@ msgstr "PiP Zap"
 msgid "Picon"
 msgstr "Simge"
 
+msgid "Picon Packages"
+msgstr ""
+
 msgid "Picon and Service Name"
 msgstr "Simge ve kanal ismi"
 
 msgid "Picon width"
 msgstr "Picon genişliği"
-
-msgid "Picons"
-msgstr "Pikons"
 
 msgid "Picture Information"
 msgstr ""
@@ -13746,9 +13766,6 @@ msgstr ""
 "Lütfen giriş bilgileriniz olacak e-posta adresinizi girin.\n"
 "IceTV web sitesindeki hesabınız aracılığıyla hizmet duyuruları, hesap hatırlatıcıları ve promosyon teklifleri almayı seçebilirsiniz."
 
-msgid "Please enter your personal feed URL"
-msgstr "Lütfen kişisel yayın URL’nizi girin"
-
 #
 msgid "Please follow the instructions on the TV"
 msgstr "Lütfen TV'deki yönergeyi takip edin"
@@ -13763,6 +13780,9 @@ msgstr "Lütfen önce Resim içinde Resmi aç"
 #
 msgid "Please press OK to continue."
 msgstr "Lütfen devam etmek için OK tuşuna basın."
+
+msgid "Please press OK when ready"
+msgstr ""
 
 msgid "Please select a backup destination"
 msgstr "Lütfen bir yedekleme hedefi seçin"
@@ -13873,6 +13893,9 @@ msgstr "Lütfen bekle"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Lütfen ağ yapılandırmanızın etkinleştirilmesi için bekleyin..."
 
+msgid "Please wait while feeds are updated..."
+msgstr ""
+
 msgid "Please wait while gathering data..."
 msgstr "Lütfen bilgi toplanırken bekleyin..."
 
@@ -13885,6 +13908,18 @@ msgstr ""
 
 msgid "Please wait while the list downloads..."
 msgstr "Liste indirilirken lütfen bekleyin..."
+
+msgid "Please wait while the plugin is downloaded."
+msgstr ""
+
+msgid "Please wait while the plugin is removed."
+msgstr ""
+
+msgid "Please wait while the plugin is replaced."
+msgstr ""
+
+msgid "Please wait while the plugin is updated."
+msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "Yüklü eklentilerinizi kontrol ederken lütfen bekleyin ..."
@@ -13948,16 +13983,43 @@ msgstr ""
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr ""
 
+msgid "Plugin Action Log Actions"
+msgstr ""
+
 msgid "Plugin Browser"
 msgstr "Eklentiler Listesi"
+
+msgid "Plugin Browser Actions"
+msgstr ""
+
+msgid "Plugin Browser Download Actions"
+msgstr ""
+
+msgid "Plugin Browser Edit Actions"
+msgstr ""
+
+msgid "Plugin Browser Manage Actions"
+msgstr ""
+
+msgid "Plugin Browser Navigation Actions"
+msgstr ""
+
+msgid "Plugin Browser Remove Actions"
+msgstr ""
+
+msgid "Plugin Browser Select Actions"
+msgstr ""
 
 msgid "Plugin Browser Settings"
 msgstr "Pluginbrowser Ayarları"
 
-msgid "Plugin Filter Settings"
-msgstr "Eklenti Filtresi"
+msgid "Plugin Browser Update Actions"
+msgstr ""
 
-msgid "Plugin Manager Actions"
+msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Skin Packages"
 msgstr ""
 
 #
@@ -14318,6 +14380,9 @@ msgid "Process RED button action"
 msgstr ""
 
 msgid "Process YELLOW button action"
+msgstr ""
+
+msgid "Processing"
 msgstr ""
 
 msgid "Processor information"
@@ -14983,8 +15048,8 @@ msgstr "Kara listeyi yeniden yükle"
 msgid "Reloading EPG Cache..."
 msgstr "EPG önbelleğini yeniden yüklüyor..."
 
-msgid "Reloading bouquets and services..."
-msgstr "Buket ve kanalları yeniden yüklüyor..."
+msgid "Reloading bouquets and services."
+msgstr ""
 
 msgid "Remaining"
 msgstr "Kalan"
@@ -15075,6 +15140,9 @@ msgstr "ebeveyn korumasından kaldır"
 msgid "Remove New Found Flag"
 msgstr "yeni bulunan işareti kaldır"
 
+msgid "Remove Plugin"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr "Eklentileri Kaldır"
 
@@ -15156,6 +15224,9 @@ msgid "Remove the MultiBoot files"
 msgstr ""
 
 msgid "Remove the current bookmark"
+msgstr ""
+
+msgid "Remove the highlighted plugin"
 msgstr ""
 
 #
@@ -15306,6 +15377,9 @@ msgstr "Kalıcı PIN kodunu sıfırla"
 
 msgid "Reset playback position"
 msgstr "Çalma konumunu sıfırla"
+
+msgid "Reset sort order"
+msgstr ""
 
 msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
 msgstr "YEŞİL düğmeye basıldığında, seçili cihazları sıfırlayın ve yapılandırmanızdaki değişiklikleri kaydedin."
@@ -16080,8 +16154,8 @@ msgstr "İkincil DNS"
 msgid "Seconds"
 msgstr "saniye"
 
-msgid "Security"
-msgstr "Güvenlik"
+msgid "Security Packages"
+msgstr ""
 
 #
 msgid "Seek"
@@ -16134,6 +16208,9 @@ msgstr "Standart taahhütlü anahtarlar için '1.0', kabul edilmeyen anahtarlar 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Anten sisteminiz bunu gerektiriyorsa 'A' veya 'B' seçeneğini seçin, aksi halde 'none' seçeneğini seçin. Emin değilseniz 'none' seçeneğini seçin."
 
+msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "'Hayır' olarak ayarlanırsa, zaman kayması yalnızca bir arabellek dosyası kullanılır. 'Eski dosyalara [dakika]] ve' Timeshift boş alan kontrolü 'için Timeshift'i kontrol etmenizi tavsiye ederiz. ayarlamak."
 
@@ -16172,12 +16249,6 @@ msgstr ""
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "'evet' EPG'de küçük TV ekranı gösterir."
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr "'Evet' seçilirse tarayıcıda 'PO' paketlerini gösterecek."
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
-msgstr "'Evet' seçilirse tarayıcıda 'SRC' paketlerini gösterecek."
 
 msgid "Select 'Yes' to display the InfoBar when a new event starts."
 msgstr "'evet' Yeni bir etkinlik başladığında bilgi-çubuğu görüntülenir."
@@ -16245,7 +16316,58 @@ msgstr "Ağ yapılandırmasını varsayılana sıfırlamak için 'Evet'i seçin.
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr ""
 
+msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
+msgstr ""
+
+msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show security packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show the advanced setting options."
@@ -16258,6 +16380,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "'evet' Radyo ve TV kipleri arasındaki geçişlerde kanal listesi görüntülenir."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -16714,6 +16839,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Bir menüden yerel ayarı seçin"
 
@@ -16791,6 +16919,9 @@ msgid "Select the sort order for the file lines:"
 msgstr ""
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
@@ -17395,6 +17526,9 @@ msgstr "Voltaj ayarı ve 22KHz"
 msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Klasörün başında görünen '..' kaldırmak için, film listesinin kök klasörünü seçin."
 
+msgid "Setting Packages"
+msgstr ""
+
 #
 msgid "Setting Restored "
 msgstr "Ayar geri yüklendi "
@@ -17466,11 +17600,11 @@ msgstr "Ağ Hizmetlerini Ayarlama (Samba, Ftp, NFS, ...)"
 msgid "Setup OpenVPN"
 msgstr "OpenVPN Kurulumu"
 
-msgid "Setup Plugin filter"
-msgstr "Kurulum Eklentisi filtresi"
+msgid "Setup Plugin Browser"
+msgstr ""
 
-msgid "Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"
-msgstr "Eklenti filtresini ayarlayın. Burada, Eklenti Tarayıcısında hangi Eklentilerin gösterileceğini seçebilirsiniz"
+msgid "Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"
+msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Kurulum Eklentileri"
@@ -17719,8 +17853,17 @@ msgstr "İstemcileri göster"
 msgid "Show Default Backup Files"
 msgstr "Varsayılan yedekleme dosyalarını göster"
 
+msgid "Show Development packages"
+msgstr ""
+
 msgid "Show Display Icons"
 msgstr "Görüntü ikonlarını göster"
+
+msgid "Show Display packages"
+msgstr ""
+
+msgid "Show Driver packages"
+msgstr ""
 
 msgid "Show EPG"
 msgstr "EPG Göster"
@@ -17730,6 +17873,9 @@ msgstr "Mevcut kanalın EĞPG sini göster..."
 
 msgid "Show EventView"
 msgstr "Etkinlik Görünümü Göster"
+
+msgid "Show Extension packages"
+msgstr ""
 
 msgid "Show Format Setup"
 msgstr "Biçim Ayarını Göster"
@@ -17773,6 +17919,9 @@ msgstr "Bilgi çubuğu piksilerini göster"
 msgid "Show Information"
 msgstr "Bilgi göster"
 
+msgid "Show Kernel packages"
+msgstr ""
+
 #
 msgid "Show Live in MiniTV"
 msgstr "MiniTV'de Canlı Gösteri"
@@ -17782,6 +17931,9 @@ msgstr "Günlük göster"
 
 msgid "Show Log Manager in extensions list"
 msgstr "Log Manager'ı uzantı listesinde göster"
+
+msgid "Show M2k packages"
+msgstr ""
 
 msgid "Show Media Player in Main Menu"
 msgstr "Medya oynatıcıyı ana menüde göster"
@@ -17807,6 +17959,12 @@ msgstr "OScam Bilgilerini Göster"
 msgid "Show OScam in extensions"
 msgstr "OScam'i uzantılarda göster"
 
+msgid "Show OpenPLi packages"
+msgstr ""
+
+msgid "Show OpenViX packages"
+msgstr ""
+
 msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr "FilmPlayer bilgi çubuğunda PVR durumunu göster"
 
@@ -17819,6 +17977,12 @@ msgstr "MiniTV'de PIP Göster"
 
 msgid "Show PiP in the Front Display"
 msgstr "Ön Ekranda PIP'yi Göster"
+
+msgid "Show Picon packages"
+msgstr ""
+
+msgid "Show Plugin Skin packages"
+msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "RFmod kurulumu göster ..."
@@ -17836,8 +18000,29 @@ msgstr "Uzantılar listesinde Yeniden Başlatma Ağı'nı göster *"
 msgid "Show SD as"
 msgstr "SD yi göster"
 
+msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Setting packages"
+msgstr ""
+
 msgid "Show Single EPG"
 msgstr "Tekli EPG Göster"
+
+msgid "Show Skin Component packages"
+msgstr ""
+
+msgid "Show Skin packages"
+msgstr ""
+
+msgid "Show Softcam packages"
+msgstr ""
+
+msgid "Show Source packages"
+msgstr ""
+
+msgid "Show System Plugin packages"
+msgstr ""
 
 msgid "Show Timer List"
 msgstr "Zamanlayıcı Listesini göster"
@@ -17861,6 +18046,9 @@ msgstr "Dikey EPG'yi Göster"
 #
 msgid "Show WLAN status"
 msgstr "WLAN durumunu göster"
+
+msgid "Show Web Link packages"
+msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "Sistem meşgul olduğunda dönüş logosunu göster."
@@ -17935,9 +18123,6 @@ msgstr "Ayrıntılı etkinlik bilgilerini göster (menüde ayarlar)"
 
 msgid "Show details of highlighted task"
 msgstr ""
-
-msgid "Show development packages in opkg"
-msgstr "Geliştirme paketlerini opkg'da göster"
 
 msgid "Show directories first"
 msgstr "Önce dizinleri göster"
@@ -18185,9 +18370,6 @@ msgstr "Geçerli kanal için tek epg göster (menüde ayarlar)"
 msgid "Show single service EPG"
 msgstr "Tek servis EPG'yi göster"
 
-msgid "Show source packages"
-msgstr "Kaynak paketleri göster"
-
 msgid "Show status messages on switch to live TV"
 msgstr "Canlı TV'ye geçerken durum mesajlarını göster"
 
@@ -18237,6 +18419,9 @@ msgstr "Uyku Zamanlayıcısını Göster"
 msgid "Show the information on current event."
 msgstr "Mevcut olayla ilgili bilgileri göster."
 
+msgid "Show the last opkg command's output"
+msgstr ""
+
 msgid "Show the list of AutoTimers."
 msgstr "Oto Zamanlayıcıların listesini göster."
 
@@ -18280,9 +18465,6 @@ msgstr "Kalan/Geçen zamanı göster"
 
 msgid "Show translation information"
 msgstr "Çeviri bilgilerini göster"
-
-msgid "Show translation packages"
-msgstr "Çeviri paketlerini göster"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Transponder kalan/geçen zamanı göster"
@@ -18477,6 +18659,12 @@ msgstr "Arayüz"
 msgid "Skin & Resolution"
 msgstr "Cilt ve Çözünürlük"
 
+msgid "Skin Component Packages"
+msgstr ""
+
+msgid "Skin Packages"
+msgstr ""
+
 msgid "Skin Selector"
 msgstr "Arayüz Seçici"
 
@@ -18626,6 +18814,12 @@ msgstr "Yuva '%s': %s%s"
 msgid "Slot Manager"
 msgstr ""
 
+msgid "Slot Manager Actions"
+msgstr ""
+
+msgid "Slot R: Root Slot Full Backup (Current image)"
+msgstr ""
+
 msgid "Slot count"
 msgstr ""
 
@@ -18707,14 +18901,14 @@ msgstr "Softcam"
 msgid "Softcam Actions"
 msgstr "Softcam Eylemleri"
 
+msgid "Softcam Packages"
+msgstr ""
+
 msgid "Softcam Settings"
 msgstr "Softcam Kurulumu"
 
 msgid "Softcam Setup"
 msgstr ""
-
-msgid "Softcams"
-msgstr "Softcams"
 
 #
 msgid "Software Management"
@@ -18767,16 +18961,12 @@ msgstr "Somali"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Bazı TV cihazları, başka bir HDMI bağlantı noktası etkinse girişi düzeltmek için geçiş yapamaz. Bu ayar, TV'yi anahtardan önce beklemeye alır. (TV tekrar açılmazsa, daha yavaş bir aktarım aralığı veya uyandırma komutlarının tekrarı gerekebilir.)"
 
-#
-msgid "Some plugins are not available:\n"
-msgstr "Bazı eklentiler kullanılabilir değil:\n"
+msgid "Some plugins are not available:"
+msgstr ""
 
 #
 msgid "Sorbian"
 msgstr "Sorb"
-
-msgid "Sorry CIHelper Config is Missing"
-msgstr "Maalesef CIHelper config eksik"
 
 msgid "Sorry Inadyn Config is Missing"
 msgstr "Üzgünüm, Inadyn Yapılandırması eksik"
@@ -18789,9 +18979,6 @@ msgstr "Üzgünüm, MiniDLNA Yapılandırması eksik"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Maalesef beslemeler bakım nedeniyle kapalı, lütfen daha sonra tekrar deneyin."
-
-msgid "Sorry feeds are down for maintenance."
-msgstr "Maalesef Feed bakımda."
 
 msgid "Sorry no backups found!"
 msgstr "Ne yazık ki yedekleme bulunamadı!"
@@ -18846,6 +19033,9 @@ msgstr "Uzantıları alfabetik olarak sırala"
 msgid "Sort Plugin Browser"
 msgstr "Eklenti tarayıcı girişlerini sırala"
 
+msgid "Sort Plugin Browser entries"
+msgstr ""
+
 msgid "Sort by"
 msgstr "Göre sırala"
 
@@ -18882,6 +19072,9 @@ msgstr "Ses"
 #
 msgid "Sound carrier"
 msgstr "Ses taşıyıcı"
+
+msgid "Source Packages"
+msgstr ""
 
 msgid "Source request"
 msgstr "Kaynak istemi"
@@ -18998,6 +19191,9 @@ msgstr ""
 msgid "Start edit at line end"
 msgstr ""
 
+msgid "Start edit mode"
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Baştan başla"
@@ -19025,6 +19221,9 @@ msgid "Start test"
 msgstr "Test'i başlat"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the highlighted plugin"
 msgstr ""
 
 #
@@ -19134,6 +19333,9 @@ msgstr "Geçerli etkinliği durdur ve gelecek etkinlikleri devre dışı bırak"
 #
 msgid "Stop current event but not future events"
 msgstr "Geçerli etkinliği durdur ama gelecek etkinliklere dokunma"
+
+msgid "Stop edit mode"
+msgstr ""
 
 #
 msgid "Stop entry"
@@ -19587,8 +19789,8 @@ msgstr "Sistem Bilgileri Eylemleri"
 msgid "System Message Check"
 msgstr "Sistem Mesaj Kontrolü"
 
-msgid "System Plugins"
-msgstr "Sistem Eklentileri"
+msgid "System Plugin Packages"
+msgstr ""
 
 msgid "System Setup"
 msgstr "Sistem Kurulumu"
@@ -19964,11 +20166,9 @@ msgstr ""
 "Lütfen yükleyin."
 
 msgid ""
-"The MediaPortal plugin is not installed!\n"
+"The MediaStream plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"MediaPortal eklentisi yüklü değil!\n"
-"Lütfen kurun."
 
 msgid ""
 "The Merlin EPG Center plugin is not installed!\n"
@@ -20274,48 +20474,6 @@ msgstr "Bu, gösterilen satır sayısını değiştirmenize izin verir."
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Bu, 9999 kanaldan daha fazlaysa, hanelerin sayısını 5'e ayarlamanıza olanak tanır."
-
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "Bu, indirmelerde OpenPLi modülleri göstermenizi sağlar"
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr "Bu, indirme işlemlerinde OpenViX modüllerini göstermenizi sağlar"
-
-msgid "This allows you to show drivers modules in downloads"
-msgstr "Bu, indirmelerde sürücü modüllerini göstermenizi sağlar"
-
-msgid "This allows you to show extensions modules in downloads"
-msgstr "Bu, indirmelerdeki uzantı modüllerini göstermenizi sağlar"
-
-msgid "This allows you to show kernel modules in downloads"
-msgstr "Bu, indirmelerde çekirdek modüllerini göstermenizi sağlar"
-
-msgid "This allows you to show lcd skins in downloads"
-msgstr "Bu indirmelerde lcd skini göstermenizi sağlar"
-
-msgid "This allows you to show m2k modules in downloads"
-msgstr "Bu, indirme işleminde m2k modüllerini göstermenizi sağlar"
-
-msgid "This allows you to show picons modules in downloads"
-msgstr "Bu, picons modüllerini indirmelerde göstermenizi sağlar"
-
-msgid "This allows you to show security modules in downloads"
-msgstr "Bu, güvenlik modülleri indirmelerde göstermenizi sağlar"
-
-msgid "This allows you to show settings modules in downloads"
-msgstr "Bu, indirmelerde ayar modüllerini göstermenizi sağlar"
-
-msgid "This allows you to show skin modules in downloads"
-msgstr "Bu, skin modüllerini indirmelerde göstermenizi sağlar"
-
-msgid "This allows you to show softcams modules in downloads"
-msgstr "Bu, indirmelerde softcams modüllerini göstermenizi sağlar"
-
-msgid "This allows you to show system plugin modules in downloads"
-msgstr "Bu, indirmelerde systemplugins modüllerini göstermenizi sağlar"
-
-msgid "This allows you to show weblinks modules in downloads"
-msgstr "Bu, weblinks modüllerini indirmelerde göstermenizi sağlar"
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "bu buket bir ebeveyn kontrol pimi tarafından korunmaktadır"
@@ -20950,6 +21108,9 @@ msgstr ""
 msgid "Toggle item move mode on/off"
 msgstr ""
 
+msgid "Toggle move mode"
+msgstr ""
+
 msgid "Toggle move mode selection"
 msgstr ""
 
@@ -20964,6 +21125,9 @@ msgstr "Geçerli etiketin seçimini aç/kapat"
 
 msgid "Toggle service name display"
 msgstr "Hizmet adı ekranını aç/kapat"
+
+msgid "Toggle the visibility of the highlighted plugin"
+msgstr ""
 
 msgid "Toggles between tv and radio"
 msgstr "Tv ve radyo arasında geçiş yapar"
@@ -21545,6 +21709,12 @@ msgstr "Yukarı / Aşağı düğmeleri de 'tümü yukarı / aşağı' için mi?"
 msgid "Update"
 msgstr "Güncelle"
 
+msgid "Update Plugin"
+msgstr ""
+
+msgid "Update Plugins"
+msgstr ""
+
 msgid "Update completed."
 msgstr "Güncelleme tamamlandı, %d paket yüklendi."
 
@@ -21574,6 +21744,9 @@ msgid ""
 msgstr ""
 "Güncelleme başarılı oldu!\n"
 "Bootloader'ınız şimdi güncel!"
+
+msgid "Update the highlighted plugin"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Ürün yazılımınızı güncelleyin / yedekleyin, Yedekleme / Geri Yükleme ayarları"
@@ -22205,6 +22378,12 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr "Etkileşimli Rass'ı (Radio acoustic sounding system) izle..."
 
+msgid "View as grid"
+msgstr ""
+
+msgid "View as list"
+msgstr ""
+
 msgid "View mode"
 msgstr "İzleme modu"
 
@@ -22450,8 +22629,8 @@ msgstr "Hava"
 msgid "Web Interface"
 msgstr "Web Arayüzü"
 
-msgid "Web Links"
-msgstr "Web Links"
+msgid "Web Link Packages"
+msgstr ""
 
 msgid "Web browser base visibility"
 msgstr "Web tarayıcısı temel görünürlüğü"
@@ -22620,9 +22799,6 @@ msgstr "Etkinleştirildiğinde, her zaman http akışlarını alarak her zaman �
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması gereklidir."
 
-msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online."
-msgstr "Etkinleştirildiğinde, opkg güncellemesinden önce hiçbir şeyin güncellemeyi bozmadığından emin olmak için opkg clean olacaktır, ancak bunu yalnızca çevrimiçi güncelleme yapamadığınızda etkinleştirin."
-
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Etkinleştirildiğinde, her buket için kanal numaralandırma '1' de başlayacaktır."
 
@@ -22706,9 +22882,6 @@ msgstr "Etkinleştirildiğinde, zaman kayması belirlenen süre sonunda arka pla
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Etkinleştirilince, İP yapılandırması için DHCP kullanılır."
-
-msgid "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list."
-msgstr "Etkinleştirildiğinde, opkg listesinde dev, staticdev, dbg, doc, src ve po paketlerini göreceksiniz."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Etkinleştirilince, alıcınız VCR SCART girişindeki etkinliği algılayacak."
@@ -23009,26 +23182,6 @@ msgstr "Eskenazi Dili"
 msgid "Yoruba"
 msgstr "Yoruba Dili"
 
-#, python-format
-msgid ""
-"You already have a bootlogo installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Yüklenmiş başlangıç logosu var,\n"
-"kaldırmak ister misiniz\n"
-"\"%s\"?"
-
-#, python-format
-msgid ""
-"You already have a channel list installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Yüklenmiş kanal listeniz var,\n"
-"kaldırmak ister misiniz\n"
-"\"%s\"?"
-
 msgid "You can Display MiniTV with or without OSD Menu"
 msgstr "OSD Menüsü olan veya olmayan MiniTV'yi görüntüleyebilirsiniz"
 
@@ -23198,9 +23351,6 @@ msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
-
-msgid "Your Hardware can detect ci mode self or work only in legacy mode."
-msgstr "Donanımınız ci modunu algılayabilir veya yalnızca eski modda çalışabilir."
 
 #
 msgid ""
@@ -24058,6 +24208,9 @@ msgstr "tıp/fizyoloji/psikoloji"
 msgid "min"
 msgstr "dk"
 
+msgid "module disabled"
+msgstr ""
+
 #
 msgid "month"
 msgstr "ay"
@@ -24140,6 +24293,9 @@ msgstr "sonraki kanal sayfası"
 #
 msgid "next higher Resolution"
 msgstr "sonraki yüksek Çözünürlük"
+
+msgid "no"
+msgstr ""
 
 #
 msgid "no CAId selected"
@@ -24251,10 +24407,6 @@ msgstr "pid:"
 
 msgid "pink"
 msgstr ""
-
-#
-msgid "please press OK when ready"
-msgstr "lütfen hazır olduğunuzda OK tuşuna basın"
 
 #
 msgid "please wait, loading picture..."
@@ -24659,6 +24811,9 @@ msgstr "eklentiler izle..."
 msgid "violet"
 msgstr "mor"
 
+msgid "wait for ci..."
+msgstr ""
+
 #
 msgid "wait for mmi..."
 msgstr "mmi bekle..."
@@ -24707,471 +24862,12 @@ msgstr "çalışıyor"
 msgid "yellow"
 msgstr "sarı"
 
+msgid "yes"
+msgstr ""
+
 #
 msgid "yes (keep feeds)"
 msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr ""
-
-#
-#~ msgid "Auto Modes Selected."
-#~ msgstr "Seçilen Otomatik Modlar."
-
-#~ msgid "Check the Internet connection"
-#~ msgstr "İnternet bağlantısını kontrol et"
-
-#~ msgid "Checking the Internet connection"
-#~ msgstr "İnternet bağlantısı kontrol ediliyor"
-
-#
-#~ msgid "Configure nameservers"
-#~ msgstr "Ad sunucu yapılandırması"
-
-#
-#~ msgid "Default Modes Selected."
-#~ msgstr "Varsayılan Mod Seçildi."
-
-#
-#~ msgid ""
-#~ "Please configure or verify your Nameservers by filling out the required values.\n"
-#~ "When you are ready press OK to continue."
-#~ msgstr ""
-#~ "Lütfen ad sunucu ayarlarınızı, gerekli alanları doldurarak yapılandırın veya kullanılabilir bilgileri doğrulayın.\n"
-#~ "Hazır olduğunuzda, devam etmek için OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "Please configure your Internet connection by filling out the required values.\n"
-#~ "When you are ready press OK to continue."
-#~ msgstr ""
-#~ "Lütfen internet bağlantınızı, gerekli alanları doldurarak yapılandırın.\n"
-#~ "Hazır olduğunuzda, devam etmek için OK tuşuna basın."
-
-#~ msgid "Please connect your %s %s to the Internet"
-#~ msgstr "Lütfen %s %s internete bağlayın"
-
-#
-#~ msgid ""
-#~ "Please select the network interface that you want to use for your Internet connection.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Lütfen internet bağlantınızı kullanmak için bir ağ arayüzü seçin.\n"
-#~ "\n"
-#~ "Devam etmek için OK tuşuna basın."
-
-#
-#~ msgid ""
-#~ "Please select the wireless network that you want to connect to.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Lütfen bağlanmak istediğiniz kablosuz ağı seçin.\n"
-#~ "\n"
-#~ "Devam etmek için OK tuşuna basın."
-
-#~ msgid "Please set up tuner A"
-#~ msgstr "Lütfen tuner A'yi kurun"
-
-#~ msgid ""
-#~ "Please set up tuner A\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen A ayarını yapın\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#
-#~ msgid "Please set up tuner B"
-#~ msgstr "Lütfen tuner B'yi kurun"
-
-#~ msgid ""
-#~ "Please set up tuner B\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen B ayarlayıcısını kurun\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#
-#~ msgid "Please set up tuner C"
-#~ msgstr "Lütfen tuner C'yi kurun"
-
-#~ msgid ""
-#~ "Please set up tuner C\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen C ayarlayıcısını kurun\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#
-#~ msgid "Please set up tuner D"
-#~ msgstr "Lütfen tuner D'yi kurun"
-
-#~ msgid ""
-#~ "Please set up tuner D\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen D ayarlayıcısını kurun\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#~ msgid ""
-#~ "Please set up tuner E\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen E ayarını yapın\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#~ msgid ""
-#~ "Please set up tuner F\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen F ayarını yapın\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#~ msgid ""
-#~ "Please set up tuner G\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen G ayarlayıcısını kurun\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#~ msgid ""
-#~ "Please set up tuner H\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen tuner H ayarını yap\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#~ msgid ""
-#~ "Please set up tuner I\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen tuner ı ayarla\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#~ msgid ""
-#~ "Please set up tuner J\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen tuner J'yi kurun.\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#~ msgid ""
-#~ "Please set up tuner Q\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen alıcı Q ayarını yap\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#~ msgid ""
-#~ "Please set up tuner R\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Lütfen tuner R ayarını yapın\n"
-#~ "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
-
-#~ msgid "Please set your time options"
-#~ msgstr "Lütfen zaman seçeneklerinizi ayarlayın"
-
-#~ msgid ""
-#~ "Please set your time options.\n"
-#~ "\n"
-#~ "Press YELLOW to set the time zone via geolocation."
-#~ msgstr ""
-#~ "Lütfen zaman seçeneklerinizi ayarlayın.\n"
-#~ "\n"
-#~ "Konum belirleme yoluyla saat dilimini ayarlamak için SARI'ya basın."
-
-#
-#~ msgid "Refresh rate selection."
-#~ msgstr "Yenileme hızı seçimi."
-
-#
-#~ msgid "Select video input with up/down buttons"
-#~ msgstr "Yukarı/aşağı tuşlarıyla görüntü girişini seçin"
-
-#~ msgid "Skip Internet connection check (disables automatic package installation)"
-#~ msgstr "İnternet bağlantısını atla (otomatik paket yüklemeyi engeller)"
-
-#~ msgid "StartWizard"
-#~ msgstr "Başlatma sihirbazı"
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard.\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Sihirbazı kullandığınız için teşekkür ederiz.\n"
-#~ "Lütfen devam etmek için OK tuşuna basın."
-
-#~ msgid ""
-#~ "Thank you for using the wizard. Your %s %s is now ready to use.\n"
-#~ "Please press OK to start using your %s %s."
-#~ msgstr ""
-#~ "Sihirbazı kullandığınız için teşekkür ederiz. %s %s cihazınız şimdi kullanıma hazır.\n"
-#~ "%s %s cihazınızı kullanmaya başlamak için lütfen OK tuşuna basınız."
-
-#
-#~ msgid "The backup failed. Please choose a different backup location."
-#~ msgstr "Yedek alınamadı. Lütfen başka bir yedekleme konumu seçin."
-
-#
-#~ msgid ""
-#~ "The wireless LAN plugin is not installed!\n"
-#~ "Please install it and choose what you want to do next."
-#~ msgstr ""
-#~ "Kablosuz LAN eklentisi yüklü değil!\n"
-#~ "Lütfen kurun ve sonra ne yapmak istediğinizi seçin."
-
-#
-#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-#~ msgstr "Bu sihirbaz geçerli ayarlarınızın yedeğini alacaktır. Yedeği şimdi almak istiyor musunuz?"
-
-#
-#~ msgid "The wizard is finished now."
-#~ msgstr "Sihirbaz tamamlandı."
-
-#~ msgid ""
-#~ "Use automatic mode detection.\n"
-#~ " This option reads all supported modes from your TV.\n"
-#~ " Please disable it only if you want to customize the preferred configuration."
-#~ msgstr ""
-#~ "Otomatik mod algılamayı kullanın.\n"
-#~ "  Bu seçenek, desteklenen tüm modları TV’nizden okur.\n"
-#~ "  Lütfen yalnızca tercih edilen yapılandırmayı özelleştirmek istiyorsanız devre dışı bırakın."
-
-#
-#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-#~ msgstr "Seçiminizi yapmak için yukarı/aşağı tuşlarıını kullanın, sonrasında OK  tuşuna basın."
-
-#~ msgid ""
-#~ "Video input selection\n"
-#~ "\n"
-#~ "Please press OK if you can see this page on your TV (or select a different input port).\n"
-#~ "\n"
-#~ "The next input port will be automatically probed in 10 seconds."
-#~ msgstr ""
-#~ "Video giriş seçimi\n"
-#~ "\n"
-#~ "Bu sayfayı TVnizde görebiliyorsanız OK tuşuna basın (veya başka bir giriş seçin).\n"
-#~ "\n"
-#~ "10 saniye içinde otomatik olarak sonraki giriş aranacak."
-
-#
-#~ msgid "Video mode selection."
-#~ msgstr "Görüntü kipi seçimi."
-
-#~ msgid "VideoWizard"
-#~ msgstr "Video Sihirbazı"
-
-#
-#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-#~ msgstr "İmaj yükseltme sihirbazına hoş geldiniz. Bu sihirbaz, %s %s bellenim yükseltmesi esnasında, geçerli ayarlarınızın yedeğini almanıza imkan sağlayacak ve kısa açıklamalarla bellenimi nasıl yükselteceğinizi anlatacaktır."
-
-#
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-#~ "\n"
-#~ "Press OK to start configuring your network"
-#~ msgstr ""
-#~ "Hoşgeldiniz.\n"
-#~ "\n"
-#~ "%s %s cihazınızı internete bağlamak istiyorsanız, bu sihirbaz size ağınızı yapılandırmanız için rehberlik yapacaktır.\n"
-#~ "\n"
-#~ "Ağ yapılandırmasına başlamak için OK tuşuna basın"
-
-#
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "This start wizard will guide you through the basic setup of your %s %s.\n"
-#~ "Press the OK button on your remote control to move to the next step."
-#~ msgstr ""
-#~ "Hoşgeldiniz.\n"
-#~ "\n"
-#~ "Bu başlangıç sihirbazı %s %s cihazınızın temel kurulumunda size rehberlik yapacaktır.\n"
-#~ "\n"
-#~ "Sonraki adıma geçmek için kumandanızdaki  OK tuşuna basın."
-
-#~ msgid "Wireless network connection setup"
-#~ msgstr "Kablosuz ağ bağlantı kurulumu"
-
-#~ msgid "Wireless network connection setup."
-#~ msgstr "Kablosuz ağ bağlantı kurulumu."
-
-#
-#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-#~ msgstr "Ayarlarınızı yedeklemeyi seçtiniz. Yedeklemeyi başlatmak için lütfen OK tuşuna basın."
-
-#
-#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-#~ msgstr "Ayarlarınızı geri yüklemeyi seçtiniz. Geri yüklemeden sonra Enigma2 yeniden başlayacaktır. Lütfen geri yüklemeyi şimdi başlatmak için OK tuşuna basın."
-
-#~ msgid ""
-#~ "You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-#~ "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
-#~ msgstr ""
-#~ "Öğesine bağlı bir PC'ye ihtiyacınız var %s% s. Daha fazla bilgiye ihtiyacınız varsa, lütfen https://www.opena.tv adresini ziyaret edin.\n"
-#~ "%s% s artık durdurulacak. Güncelleme talimatlarını web sitesinden gerçekleştirdikten sonra, yeni ürün yazılımınız ayarlarınızı geri yüklemenizi isteyecektir."
-
-#~ msgid "Your %s %s does not have an Internet connection"
-#~ msgstr "Internet bağlantısı %s%s  yok"
-
-#~ msgid "Your %s %s is not connected to the Internet"
-#~ msgstr "Internet'e bağlı %s% s değil"
-
-#
-#~ msgid ""
-#~ "Your %s %s is now ready to use.\n"
-#~ "\n"
-#~ "Your Internet connection is working now.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "%s %s kullanımınız için hazır.\n"
-#~ "\n"
-#~ "Internet bağlantınız çalışıyor.\n"
-#~ "\n"
-#~ "Lütfen devam etmek için OK tuşuna basın."
-
-#
-#~ msgid "Your %s %s is shutting down. Please wait..."
-#~ msgstr "%s %s kapatılıyor. Lütfen bekleyin..."
-
-#
-#~ msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-#~ msgstr "Yedek başarıyla alındı. Şimdi yükseltme işlemine devam edeceğiz."
-
-#
-#~ msgid ""
-#~ "Your wireless LAN Internet connection could not be started!\n"
-#~ "Have you attached your USB WLAN Stick?\n"
-#~ "\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Kablosuz ağ bağlantısı başlatılamadı!\n"
-#~ "USB WLAN çubuğunu taktığınızdan emin olun?\n"
-#~ "\n"
-#~ "Lütfen sonraki adımda yapmak istediğiniz işlemi seçin."
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "   Please press OK to start Kodi..."
-#~ msgstr ""
-#~ "\n"
-#~ "Kodi'yi başlatmak için lütfen Tamam'a basın ..."
-
-#~ msgid ""
-#~ "\n"
-#~ "  WARNING: \n"
-#~ "  There is not enough space to install Kodi!"
-#~ msgstr ""
-#~ "\n"
-#~ " UYARI: \n"
-#~ " Kodi'yi yüklemek için yeterli alan yok!"
-
-#~ msgid ""
-#~ "\n"
-#~ " Kodi not present. Proceed with install?"
-#~ msgstr ""
-#~ "\n"
-#~ "Kodi mevcut değil. Kuruluma devam edilsin mi?"
-
-#, python-format
-#~ msgid "%d KB"
-#~ msgstr "%d KB"
-
-#, python-format
-#~ msgid "%s - %s (%s%d min)"
-#~ msgstr "%s - %s (%s%d min)"
-
-#~ msgid "60 minutes"
-#~ msgstr "60 dakika"
-
-#~ msgid "Basic settings"
-#~ msgstr "Temel ayarlar"
-
-#
-#~ msgid "Capacity: "
-#~ msgstr "Kapasite: "
-
-#~ msgid "Choose Bouquet"
-#~ msgstr "Buket Seç"
-
-#~ msgid "Cleaning Trashes"
-#~ msgstr "Çöpler boşaltılıyor"
-
-#
-#~ msgid "Delete EPG"
-#~ msgstr "EPG'yi sil"
-
-#~ msgid ""
-#~ "Do you really want to initialize the device?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Aygıtı sıfırlamak istiyor muzunuz?\n"
-#~ "Diskteki tüm bilgiler kaybolacak!"
-
-#~ msgid "Extended GUI"
-#~ msgstr "Genişletilmiş GUI"
-
-#
-#~ msgid "Keyboard map"
-#~ msgstr "Klavye dizilimi"
-
-#
-#~ msgid "Kodi installed:"
-#~ msgstr "Kodi yüklü:"
-
-#
-#~ msgid "Kodi media player"
-#~ msgstr "Kodi medya oynatıcı"
-
-#~ msgid "Kodi/extra partition free space:"
-#~ msgstr "Kodi / ekstra bölüm boş alan:"
-
-#~ msgid "Load EPG"
-#~ msgstr "EPG yükle"
-
-#~ msgid "Load/Save/Delete"
-#~ msgstr "Yük / Kaydet / Sil"
-
-#
-#~ msgid "Model: "
-#~ msgstr "Model: "
-
-#
-#~ msgid "Please press OK to start Kodi..."
-#~ msgstr "Kodi'yi başlatmak için lütfen Tamam'a basın ..."
-
-#~ msgid "Restart Enigma2 to apply the changes?"
-#~ msgstr "Değişiklikleri uygulamak için Enigma2 yeniden başlatılsın mı?"
-
-#~ msgid "STB Display"
-#~ msgstr "STB Ekranı"
-
-#~ msgid "Save EPG"
-#~ msgstr "EPG Sakla"
-
-#~ msgid "Start Kodi"
-#~ msgstr "Kodi'yi başlat"
-
-#~ msgid "System partition free space:"
-#~ msgstr "Sistem bölümü boş alanı:"
-
-#~ msgid "Trashcan:"
-#~ msgstr "Çöp Sepeti:"
-
-#~ msgid "and never ask again this session again"
-#~ msgstr "ve bir daha asla tekrar bu soruyu sorma"
-
-#
-#~ msgid "blacklist"
-#~ msgstr "kara liste"
-
-#
-#~ msgid "show transponder info"
-#~ msgstr "transponder bilgisini göster"

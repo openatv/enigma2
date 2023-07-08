@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-04 19:44+0000\n"
+"POT-Creation-Date: 2023-07-03 21:13+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -971,6 +971,26 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package has an update"
+msgid_plural "%d packages have updates."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package installable."
+msgid_plural "%d packages installable."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package installed."
+msgid_plural "%d packages installed."
+msgstr[0] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] ""
@@ -1009,10 +1029,6 @@ msgstr[0] ""
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] ""
-
-#, python-format
-msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr ""
 
 #, python-format
 msgid "%d sec"
@@ -1160,10 +1176,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Cài đặt"
 
@@ -1186,10 +1198,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%s MHz"
 msgstr "   (%s MHz)"
-
-#, python-format
-msgid "%s Packages found"
-msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1450,9 +1458,6 @@ msgstr "24+ Hours"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
-msgid "128"
-msgstr "128"
-
 msgid "128 Mb"
 msgstr "128 Mb"
 
@@ -1477,9 +1482,6 @@ msgstr "5 phút"
 
 msgid "1536 Mb"
 msgstr "1536 Mb"
-
-msgid "16"
-msgstr "16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -1571,9 +1573,6 @@ msgstr "24p/60p"
 msgid "25"
 msgstr "25"
 
-msgid "256"
-msgstr "256"
-
 msgid "256 Mb"
 msgstr "256 Mb"
 
@@ -1650,9 +1649,6 @@ msgstr "30p/50p"
 
 msgid "30p/60p"
 msgstr "30p/60p"
-
-msgid "32"
-msgstr "32"
 
 msgid "32 Mb"
 msgstr "32 Mb"
@@ -1752,9 +1748,6 @@ msgstr "60p/50p"
 
 msgid "60p/60p"
 msgstr "60p/60p"
-
-msgid "64"
-msgstr "64"
 
 msgid "64 Mb"
 msgstr "64 Mb"
@@ -2018,9 +2011,6 @@ msgstr "Nhà cung cấp ATSC"
 msgid "AV Setup"
 msgstr "Thiết lập AV"
 
-msgid "AZPlay"
-msgstr "ChơiAZ"
-
 msgid "Abkhazian"
 msgstr ""
 
@@ -2226,6 +2216,9 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
 
+msgid "Add bouquet"
+msgstr ""
+
 msgid "Add current directory to bookmarks"
 msgstr "Thêm thư mục hiện tại vào bookmark"
 
@@ -2276,6 +2269,9 @@ msgstr ""
 
 msgid "Add service"
 msgstr "Thêm dịch vụ"
+
+msgid "Add services to this bouquet?"
+msgstr ""
 
 msgid "Add the current directory as a bookmark"
 msgstr ""
@@ -2438,6 +2434,9 @@ msgstr "Tất cả các vệ tinh 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Tất cả các nhà cung cấp dịch vụ"
+
+msgid "All slots"
+msgstr ""
 
 #, fuzzy
 msgid "All supported"
@@ -3157,6 +3156,9 @@ msgstr "Sao lưu hoàn tất."
 msgid "Backup done."
 msgstr "Làm xong."
 
+msgid "Backup failed!"
+msgstr ""
+
 msgid "Backup failed."
 msgstr "Sao lưu thất bại."
 
@@ -3429,7 +3431,7 @@ msgstr "Danh sách kênh"
 msgid "Bouvet Island"
 msgstr "Đảo Bouvet"
 
-msgid "Box or driver is not support Quad PiP."
+msgid "Receiver does not support Quad PiP."
 msgstr "Hộp hoặc trình điều khiển không hỗ trợ Quad PiP."
 
 msgid "Boxing"
@@ -3471,7 +3473,7 @@ msgstr ""
 msgid "Broadcom"
 msgstr ""
 
-msgid "Browse, install or remove extensions / plugins."
+msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -3669,23 +3671,8 @@ msgstr ""
 msgid "CI (Common Interface) Setup"
 msgstr "Cài đặt CI (Giao diện chung)"
 
-msgid "CI Basic Settings"
-msgstr "Cài đặt cơ bản CI"
-
 msgid "CI Helper Settings"
 msgstr "Cài đặt CIHelper"
-
-msgid "CI Legacy"
-msgstr "Phân công CI"
-
-msgid "CI Operation Mode"
-msgstr "Chế độ vận hành CI"
-
-msgid "CI Plus 1.2"
-msgstr "CI Plus 1.2"
-
-msgid "CI Plus 1.3"
-msgstr "CI Plus 1.3"
 
 msgid "CI assignment"
 msgstr "Phân công CI"
@@ -3695,15 +3682,6 @@ msgstr "Khe CI: "
 
 msgid "CIFS/Samba Settings"
 msgstr "Cài đặt CIFS / Samba"
-
-msgid "CIHelper for SLOT CI0"
-msgstr "Trợ giúp CI cho SLOT CI0"
-
-msgid "CIHelper for SLOT CI1"
-msgstr "Trợ giúp CI cho SLOT CI1"
-
-msgid "CIconfigMenu"
-msgstr "ChọnManyMothy"
 
 msgid "CPU"
 msgstr "CPU"
@@ -3879,9 +3857,6 @@ msgstr "Canada"
 
 msgid "Cancel"
 msgstr "Hủy bỏ"
-
-msgid "Cancel / Close the screen"
-msgstr ""
 
 msgid "Cancel / Close the software update screen"
 msgstr ""
@@ -4306,17 +4281,11 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
-msgid "Choose dvb wait delay for ci response."
-msgstr "Chọn độ trễ chờ dvb cho phản hồi ci."
-
 msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
-
-msgid "Choose the CI protocol operation mode for standard ci or ciplus."
-msgstr "Chọn chế độ hoạt động giao thức CI cho ci hoặc ciplus tiêu chuẩn."
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4512,6 +4481,9 @@ msgid "Close screen"
 msgstr ""
 
 msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Close the Plugin Browser screen"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5086,6 +5058,9 @@ msgstr "Khách hàng đã kết nối"
 
 msgid "Connected satellites"
 msgstr "Các vệ tinh được kết nối"
+
+msgid "Connected through another tuner"
+msgstr ""
 
 msgid "Connected to"
 msgstr "Kết nối với"
@@ -6217,6 +6192,9 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
+msgid "Development Packages"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Quản lý thiết bị"
 
@@ -6405,9 +6383,6 @@ msgstr "không thể ghi được!"
 msgid "Disk was not found!"
 msgstr "không tìm thấy!"
 
-msgid "Display"
-msgstr "trưng bày"
-
 msgid "Display 16:9 content as"
 msgstr "Hiển thị hình ảnh chuẩn 16: 9"
 
@@ -6419,6 +6394,9 @@ msgstr "Hiển thị hình ảnh chuẩn> 16: 9"
 
 msgid "Display Settings"
 msgstr "Thiết lập hiển thị"
+
+msgid "Display Skin Packages"
+msgstr ""
 
 msgid "Display context menu"
 msgstr ""
@@ -6556,12 +6534,6 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Bạn có thực sự muốn xóa bộ đếm thời gian này?"
 
-#, python-format
-msgid "Do you really want to download the plugin \"%s\"?"
-msgstr ""
-"Bạn có thực sự muốn tải về\n"
-"plugin \"%s\"?"
-
 msgid "Do you really want to exit?"
 msgstr "Bạn có thực sự muốn thoát?"
 
@@ -6583,12 +6555,6 @@ msgstr "Bạn có thực sự muốn loại bỏ vĩnh viễn khỏi thùng rác
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Bạn có thực sự muốn xóa thư mục%s khỏi đĩa không?"
-
-#, python-format
-msgid "Do you really want to remove the plugin \"%s\"?"
-msgstr ""
-"Bạn có thực sự muốn loại bỏ\n"
-"plugin \"%s\"?"
 
 #, python-format
 msgid "Do you really want to remove the timer for %s?"
@@ -6663,6 +6629,10 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Bạn có muốn thực hiện quét dịch vụ thủ công khác không?"
 
 #, python-format
+msgid "Do you want to download '%s'?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr ""
 
@@ -6692,8 +6662,16 @@ msgstr "Bạn có muốn khởi động lại đầu thu % s% s của mình khô
 msgid "Do you want to reboot your receiver?"
 msgstr "Bạn có muốn khởi động lại máy thu của mình?"
 
+#, python-format
+msgid "Do you want to remove '%s'?"
+msgstr ""
+
 msgid "Do you want to remove the package:\n"
 msgstr "Bạn có muốn xóa gói:\n"
+
+#, python-format
+msgid "Do you want to replace '%s' with '%s?"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Bạn có muốn khôi phục cài đặt của bạn?"
@@ -6702,6 +6680,10 @@ msgid "Do you want to resume this playback?"
 msgstr "Bạn có muốn tiếp tục phát lại này?"
 
 msgid "Do you want to start a backup now?"
+msgstr ""
+
+#, python-format
+msgid "Do you want to update '%s'?"
 msgstr ""
 
 msgid "Do you want to upgrade the package:\n"
@@ -6769,6 +6751,9 @@ msgstr "Đi xuống danh sách"
 msgid "Down / Inactive"
 msgstr ""
 
+msgid "Download Plugin"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Tải xuống plugin"
 
@@ -6785,6 +6770,9 @@ msgid "Download and install cam"
 msgstr "Tải xuống và cài đặt cam"
 
 msgid "Download error"
+msgstr ""
+
+msgid "Download the highlighted plugin"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -6818,11 +6806,11 @@ msgstr "DVD định dạng dữ liệu Dreambox (tương thích với HDTV)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "DVD dữ liệu định dạng Dreambox (sẽ không hoạt động trong các đầu DVD khác)"
 
-msgid "Driver and kernel information"
+msgid "Driver Packages"
 msgstr ""
 
-msgid "Drivers"
-msgstr "lái xe"
+msgid "Driver and kernel information"
+msgstr ""
 
 msgid "Drivers version"
 msgstr ""
@@ -7108,12 +7096,6 @@ msgstr "Kích hoạt âm thanh BT"
 
 msgid "Enable Bouquet Edit"
 msgstr "cho phép chỉnh sửa gói kênh"
-
-msgid "Enable CIHelper for SLOT CI0"
-msgstr "Kích hoạt CIHelper cho SLOT CI0"
-
-msgid "Enable CIHelper for SLOT CI1"
-msgstr "Kích hoạt CIHelper cho SLOT CI1"
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr ""
@@ -7523,6 +7505,9 @@ msgstr "Nhập tần số dao động cục bộ băng tần cao của bạn. Đ
 
 msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr "Nhập tần số dao động cục bộ băng tần thấp của bạn. Để biết thêm thông tin tham khảo bảng thông số kỹ thuật của LNB của bạn."
+
+msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
 
 #, fuzzy
 msgid "Entertainment"
@@ -8041,6 +8026,9 @@ msgstr "Mở rộng"
 msgid "Extension Actions"
 msgstr "Tiện ích mở rộng"
 
+msgid "Extension Packages"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Tiện ích mở rộng"
 
@@ -8230,6 +8218,12 @@ msgid "Feed URL"
 msgstr ""
 
 msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed server DNS error!"
+msgstr ""
+
+msgid "Feed server access error!"
 msgstr ""
 
 msgid "Feed stable."
@@ -8542,6 +8536,9 @@ msgstr "Buộc cài đặt LNB Tuner ToneBurst."
 
 msgid "Force Legacy Signal stats"
 msgstr "Lực lượng thống kê tín hiệu kế thừa"
+
+msgid "Force OPKG clean mode"
+msgstr ""
 
 msgid "Force ToneBurst"
 msgstr "Buộc ToneBurst"
@@ -9194,6 +9191,9 @@ msgstr "Mạng ẩn"
 msgid "Hide"
 msgstr "ẩn giấu"
 
+msgid "Hide CI messages"
+msgstr ""
+
 msgid "Hide InfoBar"
 msgstr "Luôn ẩn infobar"
 
@@ -9202,6 +9202,9 @@ msgstr "Ẩn dòng VBI cho dịch vụ này"
 
 msgid "Hide any zap error messages."
 msgstr "Ẩn bất kỳ thông báo lỗi zap."
+
+msgid "Hide error messages from the Common Interface module."
+msgstr ""
 
 msgid "Hide known extensions"
 msgstr "Ẩn các tiện ích mở rộng đã biết"
@@ -9927,12 +9930,6 @@ msgstr "Cài đặt tiện ích mở rộng"
 msgid "Install extensions."
 msgstr "Cài đặt tiện ích mở rộng."
 
-msgid "Install lcd picons on"
-msgstr "Cài đặt màn hình LCD trên"
-
-msgid "Install picons on"
-msgstr "Cài đặt picons trên"
-
 msgid "Install the package"
 msgstr ""
 
@@ -10219,8 +10216,8 @@ msgstr "Giữ MovieList mở trong khi phát tệp âm thanh."
 msgid "Kenya"
 msgstr "Nước Kenya"
 
-msgid "Kernel Modules"
-msgstr "mô-đun hạt nhân"
+msgid "Kernel Packages"
+msgstr ""
 
 msgid "Kernel file"
 msgstr ""
@@ -10809,8 +10806,8 @@ msgstr "Tiếng Luxembourg"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Tiếng Luxembourg"
 
-msgid "M2k"
-msgstr "M2k"
+msgid "M2k Packages"
+msgstr ""
 
 msgid "MAC Address Actions"
 msgstr ""
@@ -10917,9 +10914,6 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Malta"
 
-msgid "Manage Extensions"
-msgstr "Quản lý tiện ích mở rộng"
-
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Cài đặt chọn kênh"
@@ -10927,11 +10921,17 @@ msgstr "Cài đặt chọn kênh"
 msgid "Manage Plugins"
 msgstr ""
 
+msgid "Manage Plugins. This will remove/install Plugins on your box"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr ""
 
 msgid "Manage network mounts"
 msgstr "Quản lý kết nối mạng"
+
+msgid "Manage the highlighted plugin"
+msgstr ""
 
 msgid "Manage your online update files"
 msgstr "Quản lý tập tin cập nhật trực tuyến của bạn"
@@ -11057,8 +11057,8 @@ msgstr "Phương tiện truyền thông"
 msgid "Media Player Settings"
 msgstr ""
 
-msgid "Media Portal"
-msgstr "Cổng thông tin truyền thông"
+msgid "Media Stream"
+msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Phát lại đa phương tiện Còn lại / Đã qua"
@@ -11075,9 +11075,8 @@ msgstr ""
 msgid "MediaPlayer"
 msgstr "Phương tiện truyền thông"
 
-#, fuzzy
-msgid "MediaPortal"
-msgstr "Cổng thông tin truyền thông"
+msgid "MediaStream"
+msgstr ""
 
 #, fuzzy
 msgid "Medical"
@@ -11523,10 +11522,34 @@ msgstr ""
 msgid "Move to last line / screen in the panel"
 msgstr ""
 
+msgid "Move to the first item on the current line"
+msgstr ""
+
+msgid "Move to the first item on the first screen"
+msgstr ""
+
 msgid "Move to the first line / screen"
 msgstr ""
 
+msgid "Move to the last item on the current line"
+msgstr ""
+
+msgid "Move to the last item on the last screen"
+msgstr ""
+
 msgid "Move to the last line / screen"
+msgstr ""
+
+msgid "Move to the next category in the list"
+msgstr ""
+
+msgid "Move to the next item in the list"
+msgstr ""
+
+msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item in list"
 msgstr ""
 
 #, fuzzy
@@ -11880,6 +11903,9 @@ msgstr "Kiểm tra mạng lưới: "
 msgid "Network Wizard"
 msgstr "Số dách mạng"
 
+msgid "Network adapter not connected to a network!"
+msgstr ""
+
 msgid "Network address"
 msgstr ""
 
@@ -12130,6 +12156,9 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Không tìm thấy tên địa điểm phù hợp"
 
+msgid "No network adapters enabled/available!"
+msgstr ""
+
 msgid "No network storage detected."
 msgstr ""
 
@@ -12138,9 +12167,6 @@ msgstr "Không tìm thấy kết nối mạng"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Không có mục chuyển đổi (tăng hoặc giảm)"
-
-msgid "No packages found."
-msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -12461,9 +12487,6 @@ msgstr "OK, hướng dẫn tôi qua quá trình nâng cấp"
 msgid "ONID"
 msgstr "ONID"
 
-msgid "OPKG clean mode"
-msgstr ""
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12572,10 +12595,6 @@ msgstr "Chỉ di chuyển chảo nhanh chóng trước giờ này."
 msgid "Only on startup"
 msgstr "Chỉ khi khởi động"
 
-#, fuzzy
-msgid "Only provider"
-msgstr "nhà cung cấp:"
-
 msgid "Open"
 msgstr "Mở"
 
@@ -12594,9 +12613,8 @@ msgstr "Mở Tìm kiếm EPG ..."
 msgid "Open IMDb"
 msgstr "Mở IMDB ..."
 
-#, fuzzy
-msgid "Open MediaPortal"
-msgstr "Mở MediaPortal ..."
+msgid "Open MediaStream"
+msgstr ""
 
 msgid "Open Similar List Channel List"
 msgstr ""
@@ -12645,6 +12663,9 @@ msgstr ""
 msgid "Open the Plugin Browser"
 msgstr "Mở Trình duyệt Plugin"
 
+msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
@@ -12667,8 +12688,8 @@ msgstr ""
 msgid "OpenDNS Home"
 msgstr "Mở AutoTimer"
 
-msgid "OpenPLi"
-msgstr "OpenPLi"
+msgid "OpenPLi Packages"
+msgstr ""
 
 msgid "OpenSSL version"
 msgstr ""
@@ -12682,8 +12703,8 @@ msgstr ""
 msgid "OpenVPN Settings"
 msgstr "Cài đặt OpenVPN"
 
-msgid "OpenViX"
-msgstr "OpenViX"
+msgid "OpenViX Packages"
+msgstr ""
 
 msgid "OpenVpn Log"
 msgstr "Nhật ký OpenVpn"
@@ -13049,9 +13070,6 @@ msgstr "Thanh tiến độ ngay"
 msgid "Perform an on-line flash instead"
 msgstr ""
 
-msgid "Perform install/remove of the selected item"
-msgstr ""
-
 msgid "Perform the upgrade?"
 msgstr ""
 
@@ -13101,14 +13119,14 @@ msgstr "PiPZap"
 msgid "Picon"
 msgstr "Picon"
 
+msgid "Picon Packages"
+msgstr ""
+
 msgid "Picon and Service Name"
 msgstr "Tên dịch vụ và Picon"
 
 msgid "Picon width"
 msgstr "Chiều rộng Picon"
-
-msgid "Picons"
-msgstr "Picons"
 
 msgid "Picture Information"
 msgstr ""
@@ -13303,9 +13321,6 @@ msgid ""
 "Via your account on the IceTV website you can choose to receive service announcements, account reminders and promotional offers."
 msgstr ""
 
-msgid "Please enter your personal feed URL"
-msgstr "Vui lòng nhập URL nguồn cấp dữ liệu cá nhân của bạn"
-
 msgid "Please follow the instructions on the TV"
 msgstr "Vui lòng làm theo hướng dẫn trên TV"
 
@@ -13317,6 +13332,9 @@ msgstr "Vui lòng mở Ảnh trong Ảnh trước"
 
 msgid "Please press OK to continue."
 msgstr "Vui lòng nhấn OK để tiếp tục."
+
+msgid "Please press OK when ready"
+msgstr ""
 
 msgid "Please select a backup destination"
 msgstr "Vui lòng chọn một điểm đến dự phòng"
@@ -13416,6 +13434,9 @@ msgstr "Xin vui lòng chờ"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Vui lòng đợi kích hoạt cấu hình mạng của bạn ..."
 
+msgid "Please wait while feeds are updated..."
+msgstr ""
+
 msgid "Please wait while gathering data..."
 msgstr "Vui lòng đợi trong khi thu thập dữ liệu ..."
 
@@ -13428,6 +13449,18 @@ msgstr ""
 #, fuzzy
 msgid "Please wait while the list downloads..."
 msgstr "Vui lòng đợi trong khi thu thập dữ liệu ..."
+
+msgid "Please wait while the plugin is downloaded."
+msgstr ""
+
+msgid "Please wait while the plugin is removed."
+msgstr ""
+
+msgid "Please wait while the plugin is replaced."
+msgstr ""
+
+msgid "Please wait while the plugin is updated."
+msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "Vui lòng đợi trong khi chúng tôi kiểm tra các plugin đã cài đặt của bạn ..."
@@ -13484,16 +13517,43 @@ msgstr ""
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr ""
 
+msgid "Plugin Action Log Actions"
+msgstr ""
+
 msgid "Plugin Browser"
 msgstr "Trình duyệt Plugin"
+
+msgid "Plugin Browser Actions"
+msgstr ""
+
+msgid "Plugin Browser Download Actions"
+msgstr ""
+
+msgid "Plugin Browser Edit Actions"
+msgstr ""
+
+msgid "Plugin Browser Manage Actions"
+msgstr ""
+
+msgid "Plugin Browser Navigation Actions"
+msgstr ""
+
+msgid "Plugin Browser Remove Actions"
+msgstr ""
+
+msgid "Plugin Browser Select Actions"
+msgstr ""
 
 msgid "Plugin Browser Settings"
 msgstr "Cài đặt trình cắm"
 
-msgid "Plugin Filter Settings"
-msgstr "Bộ lọc Plugin"
+msgid "Plugin Browser Update Actions"
+msgstr ""
 
-msgid "Plugin Manager Actions"
+msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Skin Packages"
 msgstr ""
 
 msgid "Plugins"
@@ -13827,6 +13887,9 @@ msgid "Process RED button action"
 msgstr ""
 
 msgid "Process YELLOW button action"
+msgstr ""
+
+msgid "Processing"
 msgstr ""
 
 msgid "Processor information"
@@ -14475,8 +14538,8 @@ msgstr "Tải lại danh sách đen"
 msgid "Reloading EPG Cache..."
 msgstr "Đang tải lại bộ đệm EPG ..."
 
-msgid "Reloading bouquets and services..."
-msgstr "Tải lại gói kênh và dịch vụ ..."
+msgid "Reloading bouquets and services."
+msgstr ""
 
 msgid "Remaining"
 msgstr "Còn lại"
@@ -14562,6 +14625,9 @@ msgstr "loại bỏ khỏi sự bảo vệ của cha mẹ"
 msgid "Remove New Found Flag"
 msgstr "xóa cờ mới tìm thấy"
 
+msgid "Remove Plugin"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr "Xóa plugin"
 
@@ -14638,6 +14704,9 @@ msgid "Remove the MultiBoot files"
 msgstr ""
 
 msgid "Remove the current bookmark"
+msgstr ""
+
+msgid "Remove the highlighted plugin"
 msgstr ""
 
 msgid "Remove timer"
@@ -14773,6 +14842,9 @@ msgstr "Đặt lại mã PIN liên tục"
 
 msgid "Reset playback position"
 msgstr "Đặt lại vị trí phát lại"
+
+msgid "Reset sort order"
+msgstr ""
 
 msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
 msgstr ""
@@ -15499,8 +15571,8 @@ msgstr "DNS phụ"
 msgid "Seconds"
 msgstr "giây"
 
-msgid "Security"
-msgstr "bảo vệ"
+msgid "Security Packages"
+msgstr ""
 
 msgid "Seek"
 msgstr "Tìm kiếm"
@@ -15554,6 +15626,9 @@ msgstr "Chọn '1.0' cho các công tắc được cam kết tiêu chuẩn, '1.1
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Chọn 'A' hoặc 'B' nếu hệ thống trên không của bạn yêu cầu điều này, nếu không thì chọn 'không'. Nếu bạn không chắc chắn, hãy chọn 'không'."
 
+msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Nếu được đặt thành 'không', timeshift chỉ sử dụng một tệp bộ đệm. Chúng tôi khuyên bạn nên 'Kiểm tra thời gian cho các tệp cũ hơn [tính bằng phút]' và 'Kiểm tra thời gian để có dung lượng trống?' để điều chỉnh."
 
@@ -15592,12 +15667,6 @@ msgstr ""
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Nếu được đặt thành 'có', sẽ hiển thị một màn hình TV nhỏ trong EPG."
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr "Nếu được đặt thành 'có', nó sẽ hiển thị các gói 'PO' trong trình duyệt."
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
-msgstr "Nếu được đặt thành 'có', nó sẽ hiển thị các gói 'SRC' trong trình duyệt."
 
 msgid "Select 'Yes' to display the InfoBar when a new event starts."
 msgstr "Nếu được đặt thành 'có', infobar sẽ được hiển thị khi một sự kiện mới bắt đầu."
@@ -15665,7 +15734,58 @@ msgstr ""
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr ""
 
+msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
+msgstr ""
+
+msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show security packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show the advanced setting options."
@@ -15678,6 +15798,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Nếu được đặt thành 'có', danh sách kênh sẽ được hiển thị sau khi chuyển đổi giữa chế độ radio và TV."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -16122,6 +16245,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "Chọn ngôn ngữ bàn phím ảo từ menu"
@@ -16201,6 +16327,9 @@ msgid "Select the sort order for the file lines:"
 msgstr ""
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
@@ -16792,6 +16921,9 @@ msgstr "Đặt điện áp và 22KHz"
 msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Đặt thư mục gốc của danh sách phim, để xóa '..' khỏi lành tính được hiển thị trong thư mục đó."
 
+msgid "Setting Packages"
+msgstr ""
+
 msgid "Setting Restored "
 msgstr "Đã khôi phục cài đặt "
 
@@ -16859,11 +16991,11 @@ msgstr "Thiết lập dịch vụ mạng (Samba, Ftp, NFS, ...)"
 msgid "Setup OpenVPN"
 msgstr "Thiết lập OpenVPN"
 
-msgid "Setup Plugin filter"
-msgstr "Cài đặt bộ lọc Plugin"
+msgid "Setup Plugin Browser"
+msgstr ""
 
-msgid "Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"
-msgstr "Cài đặt bộ lọc Plugin. Tại đây bạn có thể chọn Plugin nào được hiển thị trong Trình duyệt Plugin"
+msgid "Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"
+msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Cài đặt plugin"
@@ -17114,8 +17246,17 @@ msgstr "Hiển thị khách hàng"
 msgid "Show Default Backup Files"
 msgstr "Hiển thị tập tin sao lưu mặc định"
 
+msgid "Show Development packages"
+msgstr ""
+
 msgid "Show Display Icons"
 msgstr "Hiển thị biểu tượng hiển thị"
+
+msgid "Show Display packages"
+msgstr ""
+
+msgid "Show Driver packages"
+msgstr ""
 
 msgid "Show EPG"
 msgstr "Hiển thị EPG"
@@ -17125,6 +17266,9 @@ msgstr "Hiển thị EPG cho kênh hiện tại ..."
 
 msgid "Show EventView"
 msgstr "Hiển thị sự kiện"
+
+msgid "Show Extension packages"
+msgstr ""
 
 #, fuzzy
 msgid "Show Format Setup"
@@ -17167,6 +17311,9 @@ msgstr "Hiển thị picons infobar"
 msgid "Show Information"
 msgstr "Hiển thị thông tin..."
 
+msgid "Show Kernel packages"
+msgstr ""
+
 msgid "Show Live in MiniTV"
 msgstr "Hiển thị trực tiếp trong MiniTV"
 
@@ -17175,6 +17322,9 @@ msgstr "Hiển thị nhật ký"
 
 msgid "Show Log Manager in extensions list"
 msgstr "Hiển thị Trình quản lý nhật ký trong danh sách tiện ích mở rộng?"
+
+msgid "Show M2k packages"
+msgstr ""
 
 msgid "Show Media Player in Main Menu"
 msgstr "hiển thị trình phát đa phương tiện trên menu chính"
@@ -17200,6 +17350,12 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show OpenPLi packages"
+msgstr ""
+
+msgid "Show OpenViX packages"
+msgstr ""
+
 msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr "Hiển thị trạng thái PVR trong infobar MoviePlayer"
 
@@ -17211,6 +17367,12 @@ msgstr "Hiển thị PIP trong MiniTAB"
 
 msgid "Show PiP in the Front Display"
 msgstr "Hiển thị PIP trong màn hình phía trước"
+
+msgid "Show Picon packages"
+msgstr ""
+
+msgid "Show Plugin Skin packages"
+msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "Hiển thị thiết lập RFmod ..."
@@ -17227,8 +17389,29 @@ msgstr "Hiển thị mạng khởi động lại trong danh sách Tiện ích m�
 msgid "Show SD as"
 msgstr "Hiển thị SD dưới dạng"
 
+msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Setting packages"
+msgstr ""
+
 msgid "Show Single EPG"
 msgstr "Hiển thị EPG đơn"
+
+msgid "Show Skin Component packages"
+msgstr ""
+
+msgid "Show Skin packages"
+msgstr ""
+
+msgid "Show Softcam packages"
+msgstr ""
+
+msgid "Show Source packages"
+msgstr ""
+
+msgid "Show System Plugin packages"
+msgstr ""
 
 msgid "Show Timer List"
 msgstr "Hiển thị danh sách hẹn giờ"
@@ -17250,6 +17433,9 @@ msgstr "Hiển thị EPG dọc"
 
 msgid "Show WLAN status"
 msgstr "Hiển thị trạng thái mạng WLAN"
+
+msgid "Show Web Link packages"
+msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "Hiển thị logo quay khi hệ thống bận."
@@ -17323,9 +17509,6 @@ msgid "Show detailed event info (setup in menu)"
 msgstr "Hiển thị thông tin sự kiện chi tiết (thiết lập trong menu)"
 
 msgid "Show details of highlighted task"
-msgstr ""
-
-msgid "Show development packages in opkg"
 msgstr ""
 
 msgid "Show directories first"
@@ -17566,9 +17749,6 @@ msgstr ""
 msgid "Show single service EPG"
 msgstr "Hiển thị EPG dịch vụ duy nhất"
 
-msgid "Show source packages"
-msgstr "Hiển thị các gói nguồn"
-
 msgid "Show status messages on switch to live TV"
 msgstr "Hiển thị thông báo trạng thái khi chuyển sang truyền hình trực tiếp"
 
@@ -17619,6 +17799,9 @@ msgstr "Hiển thị Đồng hồ ngủ ..."
 msgid "Show the information on current event."
 msgstr "Hiển thị thông tin về sự kiện hiện tại."
 
+msgid "Show the last opkg command's output"
+msgstr ""
+
 msgid "Show the list of AutoTimers."
 msgstr "Hiển thị danh sách AutoTimers."
 
@@ -17665,9 +17848,6 @@ msgstr "Hiển thị thời gian còn lại / trôi qua"
 
 msgid "Show translation information"
 msgstr ""
-
-msgid "Show translation packages"
-msgstr "Hiển thị các gói dịch"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Hiển thị transponder còn lại / trôi qua như"
@@ -17846,6 +18026,12 @@ msgstr "Da"
 msgid "Skin & Resolution"
 msgstr ""
 
+msgid "Skin Component Packages"
+msgstr ""
+
+msgid "Skin Packages"
+msgstr ""
+
 msgid "Skin Selector"
 msgstr "Chọn da"
 
@@ -17990,6 +18176,12 @@ msgstr ""
 msgid "Slot Manager"
 msgstr ""
 
+msgid "Slot Manager Actions"
+msgstr ""
+
+msgid "Slot R: Root Slot Full Backup (Current image)"
+msgstr ""
+
 msgid "Slot count"
 msgstr ""
 
@@ -18066,14 +18258,14 @@ msgstr "Softcam"
 msgid "Softcam Actions"
 msgstr ""
 
+msgid "Softcam Packages"
+msgstr ""
+
 msgid "Softcam Settings"
 msgstr "Softcam cài đặt"
 
 msgid "Softcam Setup"
 msgstr ""
-
-msgid "Softcams"
-msgstr "Softcams"
 
 msgid "Software Management"
 msgstr "Quản lý phần mềm"
@@ -18123,15 +18315,12 @@ msgstr "Somalia"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr ""
 
-msgid "Some plugins are not available:\n"
-msgstr "Một số plugin không có sẵn:\n"
+msgid "Some plugins are not available:"
+msgstr ""
 
 #, fuzzy
 msgid "Sorbian"
 msgstr "Tiếng Serbia"
-
-msgid "Sorry CIHelper Config is Missing"
-msgstr "Xin lỗi CIHelper Config bị thiếu"
 
 msgid "Sorry Inadyn Config is Missing"
 msgstr "Xin lỗi, Inadyn Config bị thiếu"
@@ -18144,9 +18333,6 @@ msgstr "Xin lỗi, cấu hình MiniDLNA bị thiếu"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng thử lại sau."
-
-msgid "Sorry feeds are down for maintenance."
-msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì"
 
 msgid "Sorry no backups found!"
 msgstr "Xin lỗi không tìm thấy bản sao lưu!"
@@ -18201,6 +18387,9 @@ msgstr "Sắp xếp danh sách tiện ích mở rộng theo thứ tự abc"
 msgid "Sort Plugin Browser"
 msgstr "Sắp xếp các mục trình duyệt bổ trợ"
 
+msgid "Sort Plugin Browser entries"
+msgstr ""
+
 msgid "Sort by"
 msgstr "Sắp xếp theo"
 
@@ -18236,6 +18425,9 @@ msgstr "Âm thanh"
 
 msgid "Sound carrier"
 msgstr "Tốc độ chuyền âm thanh"
+
+msgid "Source Packages"
+msgstr ""
 
 msgid "Source request"
 msgstr "Yêu cầu nguồn"
@@ -18349,6 +18541,9 @@ msgstr ""
 msgid "Start edit at line end"
 msgstr ""
 
+msgid "Start edit mode"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "Bắt đầu từ đầu"
 
@@ -18374,6 +18569,9 @@ msgid "Start test"
 msgstr "Bắt đầu kiểm tra"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the highlighted plugin"
 msgstr ""
 
 msgid "Start time"
@@ -18473,6 +18671,9 @@ msgstr "Dừng sự kiện hiện tại và vô hiệu hóa các sự kiện s�
 
 msgid "Stop current event but not future events"
 msgstr "Sự kiện hàng đầu hiện tại nhưng không đến"
+
+msgid "Stop edit mode"
+msgstr ""
 
 msgid "Stop entry"
 msgstr "Dừng nhập cảnh"
@@ -18907,8 +19108,8 @@ msgstr ""
 msgid "System Message Check"
 msgstr "Kiểm tra tin nhắn hệ thống"
 
-msgid "System Plugins"
-msgstr "hệ thống"
+msgid "System Plugin Packages"
+msgstr ""
 
 msgid "System Setup"
 msgstr "Thiết lập hệ thống"
@@ -19279,11 +19480,9 @@ msgstr ""
 "Vui lòng cài đặt nó."
 
 msgid ""
-"The MediaPortal plugin is not installed!\n"
+"The MediaStream plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Plugin MediaPortal chưa được cài đặt!\n"
-"Vui lòng cài đặt nó."
 
 msgid ""
 "The Merlin EPG Center plugin is not installed!\n"
@@ -19578,48 +19777,6 @@ msgstr "Điều này cho phép bạn thay đổi số lượng hàng được hi
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Điều này cho phép bạn đặt số chữ số thành 5, nếu bạn có nhiều hơn 9999 kênh."
-
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun OpenPLi trong tải xuống"
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun OpenViX trong tải xuống"
-
-msgid "This allows you to show drivers modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun trình điều khiển trong tải xuống"
-
-msgid "This allows you to show extensions modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun mở rộng trong phần tải xuống"
-
-msgid "This allows you to show kernel modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun hạt nhân trong các bản tải xuống"
-
-msgid "This allows you to show lcd skins in downloads"
-msgstr "Điều này cho phép bạn hiển thị giao diện LCD trong các bản tải xuống"
-
-msgid "This allows you to show m2k modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun m2k trong tải xuống"
-
-msgid "This allows you to show picons modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun picons trong tải xuống"
-
-msgid "This allows you to show security modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun bảo mật trong các bản tải xuống"
-
-msgid "This allows you to show settings modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun cài đặt trong phần tải xuống"
-
-msgid "This allows you to show skin modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun da trong các bản tải xuống"
-
-msgid "This allows you to show softcams modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun softcam trong phần tải xuống"
-
-msgid "This allows you to show system plugin modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun systemplugins trong phần tải xuống"
-
-msgid "This allows you to show weblinks modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun liên kết web trong các bản tải xuống"
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "gói kênh này được bảo vệ bởi một chốt kiểm soát của cha mẹ"
@@ -20246,6 +20403,9 @@ msgstr ""
 msgid "Toggle item move mode on/off"
 msgstr ""
 
+msgid "Toggle move mode"
+msgstr ""
+
 msgid "Toggle move mode selection"
 msgstr ""
 
@@ -20261,6 +20421,9 @@ msgstr ""
 #, fuzzy
 msgid "Toggle service name display"
 msgstr "Sắp xếp tên dịch vụ"
+
+msgid "Toggle the visibility of the highlighted plugin"
+msgstr ""
 
 #, fuzzy
 msgid "Toggles between tv and radio"
@@ -20809,6 +20972,12 @@ msgstr "Nút lên / xuống cũng cho 'tất cả lên / xuống'?"
 msgid "Update"
 msgstr "Cập nhật"
 
+msgid "Update Plugin"
+msgstr ""
+
+msgid "Update Plugins"
+msgstr ""
+
 msgid "Update completed."
 msgstr ""
 
@@ -20836,6 +21005,9 @@ msgid ""
 msgstr ""
 "Cập nhật thành công!\n"
 "Bootloader của bạn đã được cập nhật!"
+
+msgid "Update the highlighted plugin"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Cập nhật / Sao lưu chương trình cơ sở, cài đặt Sao lưu / Khôi phục"
@@ -21450,6 +21622,12 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr "Xem Rass tương tác ..."
 
+msgid "View as grid"
+msgstr ""
+
+msgid "View as list"
+msgstr ""
+
 msgid "View mode"
 msgstr "Chế độ xem sự kiện"
 
@@ -21685,8 +21863,8 @@ msgstr "Khác"
 msgid "Web Interface"
 msgstr "Giao diện web"
 
-msgid "Web Links"
-msgstr "liên kết web"
+msgid "Web Link Packages"
+msgstr ""
 
 msgid "Web browser base visibility"
 msgstr "Khả năng hiển thị cơ sở trình duyệt web"
@@ -21851,9 +22029,6 @@ msgstr "Khi được bật, luôn luôn giải mã các luồng http. Điều n�
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Khi được bật, cần xác thực để xem luồng http."
 
-msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online."
-msgstr ""
-
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Khi được bật, đánh số kênh sẽ bắt đầu ở '1' cho mỗi bó hoa."
 
@@ -21937,9 +22112,6 @@ msgstr "Khi được bật, timeshift bắt đầu tự động trong nền sau 
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Khi được bật, sử dụng DHCP cho cấu hình IP."
-
-msgid "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list."
-msgstr ""
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Khi được bật, bộ thu của bạn sẽ phát hiện hoạt động trên đầu vào VCR SCART."
@@ -22224,26 +22396,6 @@ msgstr ""
 msgid "Yoruba"
 msgstr "Argentina"
 
-#, python-format
-msgid ""
-"You already have a bootlogo installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Bạn đã cài đặt bootlogo,\n"
-"bạn có muốn xóa\n"
-"\"%s\"?"
-
-#, python-format
-msgid ""
-"You already have a channel list installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Bạn đã cài đặt danh sách kênh,\n"
-"bạn có muốn xóa\n"
-"\"%s\"?"
-
 msgid "You can Display MiniTV with or without OSD Menu"
 msgstr "Bạn có thể hiển thị MiniTV có hoặc không có Menu OSD"
 
@@ -22409,9 +22561,6 @@ msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
-
-msgid "Your Hardware can detect ci mode self or work only in legacy mode."
-msgstr "Phần cứng của bạn có thể tự phát hiện chế độ ci hoặc chỉ hoạt động ở chế độ cũ."
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -23236,6 +23385,9 @@ msgstr "y học / sinh lý / tâm lý"
 msgid "min"
 msgstr "phút"
 
+msgid "module disabled"
+msgstr ""
+
 msgid "month"
 msgstr "tháng"
 
@@ -23313,6 +23465,9 @@ msgstr "trang tiếp theo của sự kiện"
 
 msgid "next higher Resolution"
 msgstr "nghị quyết cao hơn tiếp theo"
+
+msgid "no"
+msgstr ""
 
 msgid "no CAId selected"
 msgstr "không chọn CAId"
@@ -23409,9 +23564,6 @@ msgstr "pid:"
 
 msgid "pink"
 msgstr ""
-
-msgid "please press OK when ready"
-msgstr "vui lòng nhấn OK khi sẵn sàng"
 
 msgid "please wait, loading picture..."
 msgstr "vui lòng đợi, tải hình ảnh ..."
@@ -23784,6 +23936,9 @@ msgstr "xem tiện ích mở rộng ..."
 msgid "violet"
 msgstr "màu tím"
 
+msgid "wait for ci..."
+msgstr ""
+
 msgid "wait for mmi..."
 msgstr "chờ mmi ..."
 
@@ -23828,419 +23983,11 @@ msgstr "đang làm việc"
 msgid "yellow"
 msgstr "màu vàng"
 
+msgid "yes"
+msgstr ""
+
 msgid "yes (keep feeds)"
 msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
-
-#~ msgid "Auto Modes Selected."
-#~ msgstr "Chế độ tự động được chọn."
-
-#~ msgid "Check the Internet connection"
-#~ msgstr "Kiểm tra kết nối internet"
-
-#~ msgid "Checking the Internet connection"
-#~ msgstr "Kiểm tra kết nối internet"
-
-#~ msgid "Configure nameservers"
-#~ msgstr "Cấu hình máy chủ tên"
-
-#~ msgid "Default Modes Selected."
-#~ msgstr "Các chế độ mặc định được chọn."
-
-#~ msgid ""
-#~ "Please configure or verify your Nameservers by filling out the required values.\n"
-#~ "When you are ready press OK to continue."
-#~ msgstr ""
-#~ "Vui lòng định cấu hình hoặc xác minh Máy chủ tên của bạn bằng cách điền vào các giá trị bắt buộc.\n"
-#~ "Khi bạn đã sẵn sàng nhấn OK để tiếp tục."
-
-#~ msgid ""
-#~ "Please configure your Internet connection by filling out the required values.\n"
-#~ "When you are ready press OK to continue."
-#~ msgstr ""
-#~ "Vui lòng định cấu hình kết nối internet của bạn bằng cách điền vào các giá trị cần thiết.\n"
-#~ "Khi bạn đã sẵn sàng nhấn OK để tiếp tục."
-
-#~ msgid "Please connect your %s %s to the Internet"
-#~ msgstr "Vui lòng kết nối % s% s của bạn với internet"
-
-#~ msgid ""
-#~ "Please select the network interface that you want to use for your Internet connection.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Vui lòng chọn giao diện mạng mà bạn muốn sử dụng cho kết nối internet của mình.\n"
-#~ "\n"
-#~ "Vui lòng nhấn OK để tiếp tục."
-
-#~ msgid ""
-#~ "Please select the wireless network that you want to connect to.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Vui lòng chọn mạng không dây mà bạn muốn kết nối.\n"
-#~ "\n"
-#~ "Vui lòng nhấn OK để tiếp tục."
-
-#~ msgid "Please set up tuner A"
-#~ msgstr "Vui lòng thiết lập bộ chỉnh tần số A"
-
-#~ msgid ""
-#~ "Please set up tuner A\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh tần số A\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid "Please set up tuner B"
-#~ msgstr "Vui lòng thiết lập bộ chỉnh tần số B"
-
-#~ msgid ""
-#~ "Please set up tuner B\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh B\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid "Please set up tuner C"
-#~ msgstr "Vui lòng thiết lập bộ chỉnh tần số C"
-
-#~ msgid ""
-#~ "Please set up tuner C\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh C\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid "Please set up tuner D"
-#~ msgstr "Vui lòng thiết lập bộ chỉnh tần số D"
-
-#~ msgid ""
-#~ "Please set up tuner D\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh D\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid ""
-#~ "Please set up tuner E\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh tần số E\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid ""
-#~ "Please set up tuner F\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh F\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid ""
-#~ "Please set up tuner G\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh G\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid ""
-#~ "Please set up tuner H\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh H\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid ""
-#~ "Please set up tuner I\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập tuner I\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid ""
-#~ "Please set up tuner J\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh J\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid ""
-#~ "Please set up tuner Q\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh tần số Q\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid ""
-#~ "Please set up tuner R\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Vui lòng thiết lập bộ chỉnh R\n"
-#~ "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và phải"
-
-#~ msgid "Refresh rate selection."
-#~ msgstr "Làm mới lựa chọn tỷ lệ."
-
-#~ msgid "Select video input with up/down buttons"
-#~ msgstr "Chọn đầu vào video với các nút lên / xuống"
-
-#~ msgid "Skip Internet connection check (disables automatic package installation)"
-#~ msgstr "Bỏ qua kiểm tra kết nối internet (vô hiệu hóa cài đặt gói tự động)"
-
-#~ msgid "StartWizard"
-#~ msgstr "Thuật sĩ bắt đầu"
-
-#~ msgid ""
-#~ "Thank you for using the wizard.\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Cảm ơn bạn đã sử dụng thuật sĩ.\n"
-#~ "Vui lòng nhấn OK để tiếp tục."
-
-#~ msgid ""
-#~ "Thank you for using the wizard. Your %s %s is now ready to use.\n"
-#~ "Please press OK to start using your %s %s."
-#~ msgstr ""
-#~ "Cảm ơn bạn và bạn % s% s của bạn và bạn có thể sử dụng %.\n"
-#~ "Vui lòng với nhau."
-
-#~ msgid "The backup failed. Please choose a different backup location."
-#~ msgstr "Việc sao lưu thất bại. Vui lòng chọn một vị trí sao lưu khác."
-
-#~ msgid ""
-#~ "The wireless LAN plugin is not installed!\n"
-#~ "Please install it and choose what you want to do next."
-#~ msgstr ""
-#~ "Plugin LAN không dây chưa được cài đặt!\n"
-#~ "Vui lòng cài đặt nó và chọn những gì bạn muốn làm tiếp theo."
-
-#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-#~ msgstr "Trình hướng dẫn có thể sao lưu các cài đặt hiện tại của bạn. Bạn có muốn làm một bản sao lưu bây giờ?"
-
-#~ msgid "The wizard is finished now."
-#~ msgstr "Đã kết thúc."
-
-#~ msgid ""
-#~ "Use automatic mode detection.\n"
-#~ " This option reads all supported modes from your TV.\n"
-#~ " Please disable it only if you want to customize the preferred configuration."
-#~ msgstr ""
-#~ "Sử dụng chế độ tự động phát hiện.\n"
-#~ "  Tùy chọn này đọc tất cả các chế độ được hỗ trợ từ TV của bạn.\n"
-#~ "  Vui lòng tắt nó chỉ khi bạn muốn tùy chỉnh cấu hình ưa thích."
-
-#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-#~ msgstr "Sử dụng các phím lên / xuống trên điều khiển từ xa của bạn để chọn một tùy chọn. Sau đó, nhấn OK."
-
-#~ msgid ""
-#~ "Video input selection\n"
-#~ "\n"
-#~ "Please press OK if you can see this page on your TV (or select a different input port).\n"
-#~ "\n"
-#~ "The next input port will be automatically probed in 10 seconds."
-#~ msgstr ""
-#~ "Lựa chọn đầu vào video\n"
-#~ "\n"
-#~ "Vui lòng nhấn OK nếu bạn có thể thấy trang này trên TV của bạn (hoặc chọn một cổng đầu vào khác).\n"
-#~ "\n"
-#~ "Cổng đầu vào tiếp theo sẽ được tự động dò trong 10 giây."
-
-#~ msgid "Video mode selection."
-#~ msgstr "Lựa chọn chế độ video."
-
-#~ msgid "VideoWizard"
-#~ msgstr "Thuật sĩ video"
-
-#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-#~ msgstr "Chào mừng bạn đến với trình hướng dẫn nâng cấp hình ảnh. Trình hướng dẫn sẽ hỗ trợ bạn nâng cấp chương trình cơ sở của% s% s bằng cách cung cấp phương tiện sao lưu cho các cài đặt hiện tại của bạn và giải thích ngắn về cách nâng cấp chương trình cơ sở của bạn."
-
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-#~ "\n"
-#~ "Press OK to start configuring your network"
-#~ msgstr ""
-#~ "Chào mừng bạn\n"
-#~ "\n"
-#~ "Nếu bạn muốn kết nối% s% s với Internet, trình hướng dẫn này sẽ hướng dẫn bạn cách thiết lập mạng cơ bản cho% s% s của bạn.\n"
-#~ "\n"
-#~ "Nhấn OK để bắt đầu cấu hình mạng của bạn"
-
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "This start wizard will guide you through the basic setup of your %s %s.\n"
-#~ "Press the OK button on your remote control to move to the next step."
-#~ msgstr ""
-#~ "Chào mừng bạn\n"
-#~ "\n"
-#~ "Trình hướng dẫn bắt đầu này sẽ hướng dẫn bạn cách thiết lập cơ bản % s% s của bạn.\n"
-#~ "Nhấn nút OK trên điều khiển từ xa của bạn để chuyển sang bước tiếp theo."
-
-#~ msgid "Wireless network connection setup"
-#~ msgstr "Thiết lập kết nối mạng không dây"
-
-#~ msgid "Wireless network connection setup."
-#~ msgstr "Thiết lập kết nối mạng không dây."
-
-#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-#~ msgstr "Bạn đã chọn sao lưu các thiết lập của bạn. Vui lòng nhấn OK để bắt đầu sao lưu ngay bây giờ."
-
-#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-#~ msgstr "Bạn đã chọn để khôi phục cài đặt của bạn. Enigma2 sẽ khởi động lại sau khi khôi phục. Vui lòng nhấn OK để bắt đầu khôi phục ngay bây giờ."
-
-#~ msgid ""
-#~ "You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-#~ "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
-#~ msgstr ""
-#~ "Bạn cần một PC được kết nối với% s% s của bạn. Nếu bạn cần hướng dẫn thêm, vui lòng truy cập trang web https://www.opena.tv.\n"
-#~ "% S% s của bạn bây giờ sẽ bị dừng. Sau khi bạn thực hiện các hướng dẫn cập nhật từ trang web, phần mềm mới của bạn sẽ yêu cầu bạn khôi phục cài đặt của mình."
-
-#~ msgid "Your %s %s does not have an Internet connection"
-#~ msgstr "Máy thu của bạn %s%s không có kết nối internet"
-
-#~ msgid "Your %s %s is not connected to the Internet"
-#~ msgstr "Đầu thu của bạn % s% s không được kết nối với internet"
-
-#~ msgid ""
-#~ "Your %s %s is now ready to use.\n"
-#~ "\n"
-#~ "Your Internet connection is working now.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Máy thu của bạn đã sẵn sàng để sử dụng.\n"
-#~ "\n"
-#~ "Kết nối internet của bạn đang hoạt động.\n"
-#~ "\n"
-#~ "Vui lòng nhấn OK để tiếp tục."
-
-#~ msgid "Your %s %s is shutting down. Please wait..."
-#~ msgstr "% s% s của bạn đang tắt. Xin vui lòng chờ ..."
-
-#~ msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-#~ msgstr "Sao lưu của bạn đã thành công. Bây giờ chúng tôi sẽ tiếp tục giải thích quá trình nâng cấp hơn nữa."
-
-#~ msgid ""
-#~ "Your wireless LAN Internet connection could not be started!\n"
-#~ "Have you attached your USB WLAN Stick?\n"
-#~ "\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Không thể bắt đầu kết nối internet LAN không dây của bạn!\n"
-#~ "Bạn đã gắn USB WLAN Stick chưa?\n"
-#~ "\n"
-#~ "Vui lòng chọn những gì bạn muốn làm tiếp theo."
-
-#~ msgid ""
-#~ "\n"
-#~ "   Please press OK to start Kodi..."
-#~ msgstr ""
-#~ "\n"
-#~ "   Vui lòng nhấn OK để bắt đầu Kodi ..."
-
-#~ msgid ""
-#~ "\n"
-#~ "  WARNING: \n"
-#~ "  There is not enough space to install Kodi!"
-#~ msgstr ""
-#~ "\n"
-#~ "  CẢNH BÁO:\n"
-#~ "   Không có đủ dung lượng để cài đặt Kodi!"
-
-#~ msgid ""
-#~ "\n"
-#~ " Kodi not present. Proceed with install?"
-#~ msgstr ""
-#~ "\n"
-#~ "Kodi không có mặt. Tiến hành cài đặt?"
-
-#, python-format
-#~ msgid "%d KB"
-#~ msgstr "%d KB"
-
-#, fuzzy, python-format
-#~ msgid "%s - %s (%s%d min)"
-#~ msgstr "vị trí % s -% s-% s "
-
-#~ msgid "60 minutes"
-#~ msgstr "60 phút"
-
-#~ msgid "Basic settings"
-#~ msgstr "Cài đặt cơ bản"
-
-#~ msgid "Capacity: "
-#~ msgstr "Sức chứa: "
-
-#~ msgid "Choose Bouquet"
-#~ msgstr "Chọn gói kênh"
-
-#~ msgid "Cleaning Trashes"
-#~ msgstr "Thùng rác"
-
-#~ msgid "Delete EPG"
-#~ msgstr "Xóa EPG"
-
-#~ msgid ""
-#~ "Do you really want to initialize the device?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Bạn có thực sự muốn khởi tạo thiết bị?\n"
-#~ "Tất cả dữ liệu trên đĩa sẽ bị mất!"
-
-#~ msgid "Extended GUI"
-#~ msgstr "GUI mở rộng"
-
-#~ msgid "Keyboard map"
-#~ msgstr "Bản đồ bàn phím"
-
-#~ msgid "Kodi installed:"
-#~ msgstr "Kodi đã cài đặt:"
-
-#~ msgid "Kodi media player"
-#~ msgstr "Máy nghe nhạc Kodi"
-
-#~ msgid "Kodi/extra partition free space:"
-#~ msgstr "Kodi / không gian trống thêm phân vùng:"
-
-#~ msgid "Load EPG"
-#~ msgstr "Tải EPG"
-
-#~ msgid "Load/Save/Delete"
-#~ msgstr "Tải / lưu / xóa"
-
-#~ msgid "Model: "
-#~ msgstr "Mô hình: "
-
-#~ msgid "Please press OK to start Kodi..."
-#~ msgstr "Vui lòng nhấn OK để bắt đầu Kodi ..."
-
-#~ msgid "Restart Enigma2 to apply the changes?"
-#~ msgstr "Khởi động lại Enigma2 để áp dụng các thay đổi?"
-
-#~ msgid "STB Display"
-#~ msgstr "Màn hình hiển thị STB"
-
-#~ msgid "Save EPG"
-#~ msgstr "Lưu EPG"
-
-#~ msgid "Start Kodi"
-#~ msgstr "Khởi động Kodi"
-
-#~ msgid "System partition free space:"
-#~ msgstr "Phân vùng hệ thống không gian trống:"
-
-#~ msgid "Trashcan:"
-#~ msgstr "Thùng rác:"
-
-#~ msgid "and never ask again this session again"
-#~ msgstr "và không bao giờ hỏi lại phiên này một lần nữa"
-
-#~ msgid "blacklist"
-#~ msgstr "danh sách đen"
-
-#~ msgid "show transponder info"
-#~ msgstr "hiển thị thông tin transponder"

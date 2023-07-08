@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-04 19:44+0000\n"
+"POT-Creation-Date: 2023-07-03 21:13+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -975,6 +975,34 @@ msgid "%d ms"
 msgstr "%d msek."
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package has an update"
+msgid_plural "%d packages have updates."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package installable."
+msgid_plural "%d packages installable."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package installed."
+msgid_plural "%d packages installed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d paketas atnaujintas."
@@ -1029,10 +1057,6 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paketas buvo atnaujintas."
 msgstr[1] "%d paketai buvo atnaujinti."
 msgstr[2] "%d paketų buvo atnaujinta."
-
-#, python-format
-msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr "%d rasti paketai, įdiegti %d paketai ir %d paketai turi atnaujinimus."
 
 #, python-format
 msgid "%d sec"
@@ -1176,10 +1200,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Sąranka"
 
@@ -1202,10 +1222,6 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
-
-#, python-format
-msgid "%s Packages found"
-msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1463,9 +1479,6 @@ msgstr "12 valandų"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, rodyti lotyniškus-1 simbolius, išskyrus graikų ir kirilicos simbolius, jei reikia, pereikite prie 8."
 
-msgid "128"
-msgstr "128"
-
 msgid "128 Mb"
 msgstr "128 Mb"
 
@@ -1489,9 +1502,6 @@ msgstr "15 minučių"
 
 msgid "1536 Mb"
 msgstr "1536 Mb"
-
-msgid "16"
-msgstr "16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -1580,9 +1590,6 @@ msgstr "24p/60p"
 msgid "25"
 msgstr "25"
 
-msgid "256"
-msgstr "256"
-
 msgid "256 Mb"
 msgstr "256 Mb"
 
@@ -1657,9 +1664,6 @@ msgstr "30p/50p"
 
 msgid "30p/60p"
 msgstr "30p/60p"
-
-msgid "32"
-msgstr "32"
 
 msgid "32 Mb"
 msgstr "32 Mb"
@@ -1756,9 +1760,6 @@ msgstr "60p/50p"
 
 msgid "60p/60p"
 msgstr "60p/60p"
-
-msgid "64"
-msgstr "64"
 
 msgid "64 Mb"
 msgstr "64 MB"
@@ -2022,9 +2023,6 @@ msgstr "ATSC teikėjas"
 msgid "AV Setup"
 msgstr "Garso/vaizdo valdymas"
 
-msgid "AZPlay"
-msgstr "AZ atkūrimas"
-
 msgid "Abkhazian"
 msgstr "Abchazijos"
 
@@ -2229,6 +2227,9 @@ msgstr "Įtraukti dabartinio įvykio laikmatį"
 msgid "Add an AutoTimer for the current event"
 msgstr "Pridėkite dabartinio įvykio automatinį laikmatį"
 
+msgid "Add bouquet"
+msgstr ""
+
 msgid "Add current directory to bookmarks"
 msgstr "Įtraukite dabartinį aplanką į žymes"
 
@@ -2279,6 +2280,9 @@ msgstr "pridėti kanalą į paketą"
 
 msgid "Add service"
 msgstr "Pridėti kanalą"
+
+msgid "Add services to this bouquet?"
+msgstr ""
 
 msgid "Add the current directory as a bookmark"
 msgstr "Pridėkite dabartinį katalogą kaip žymelę"
@@ -2438,6 +2442,9 @@ msgstr "Visi palydovai 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Visų kanalų teikėjas"
+
+msgid "All slots"
+msgstr ""
 
 msgid "All supported"
 msgstr "Visi palaikomi"
@@ -3148,6 +3155,9 @@ msgstr "Atsarginė kopija padaryta."
 msgid "Backup done."
 msgstr "Atsarginė kopija padaryta."
 
+msgid "Backup failed!"
+msgstr ""
+
 msgid "Backup failed."
 msgstr "Atsarginė kopija nepavyko."
 
@@ -3416,7 +3426,7 @@ msgstr "Paketų sąrašas"
 msgid "Bouvet Island"
 msgstr "Buveto sala"
 
-msgid "Box or driver is not support Quad PiP."
+msgid "Receiver does not support Quad PiP."
 msgstr "Imtuvas, arba tvarkyklė nepalaiko Quad PiP."
 
 msgid "Boxing"
@@ -3458,8 +3468,8 @@ msgstr "Transliavimo sistemos"
 msgid "Broadcom"
 msgstr "Broadcom"
 
-msgid "Browse, install or remove extensions / plugins."
-msgstr "Naršykite, įdiekite arba pašalinkite priedus / papildinius."
+msgid "Browse, install or remove plugins on a one by one basis."
+msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "Brunėjus"
@@ -3658,23 +3668,8 @@ msgstr "CI %s įjungtas"
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Įstatomo modulio) nustatymas"
 
-msgid "CI Basic Settings"
-msgstr "CI pagrindiniai parametrai"
-
 msgid "CI Helper Settings"
 msgstr "CI žinyno parametrai"
-
-msgid "CI Legacy"
-msgstr "CI įprastinis"
-
-msgid "CI Operation Mode"
-msgstr "CI veikimo būsena"
-
-msgid "CI Plus 1.2"
-msgstr "CI Plus 1.2"
-
-msgid "CI Plus 1.3"
-msgstr "CI Plus 1.3"
 
 msgid "CI assignment"
 msgstr "CI paskyrimas"
@@ -3684,15 +3679,6 @@ msgstr "CI lizdas: "
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba parametrai"
-
-msgid "CIHelper for SLOT CI0"
-msgstr "CI padėjėjas lizdui CI0"
-
-msgid "CIHelper for SLOT CI1"
-msgstr "CI padėjėjas lizdui CI1"
-
-msgid "CIconfigMenu"
-msgstr "Konfigūravimo meniu"
 
 msgid "CPU"
 msgstr "Procesorius"
@@ -3876,9 +3862,6 @@ msgstr "Kanados"
 
 msgid "Cancel"
 msgstr "Atšaukti"
-
-msgid "Cancel / Close the screen"
-msgstr ""
 
 msgid "Cancel / Close the software update screen"
 msgstr "Atšaukti / uždaryti programinės įrangos naujinimo ekraną"
@@ -4290,17 +4273,11 @@ msgstr "Pasirinkite šalies schemą EPG renginių reitingo informacijos dekodavi
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Pasirinkite etiketę, kuri atpažins šį įrenginį IceTV paslaugose."
 
-msgid "Choose dvb wait delay for ci response."
-msgstr "Pasirinkite DVB laukimo delsą CI atsakymui."
-
 msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
 msgstr "Pasirinkite, kiek EPG istorijos, jei tokia yra, norite laikyti EPG talpykloje. Šiuos istorinius duomenis galima naršyti bet kuriame EPG rodinyje. Tai gali būti naudinga, kai jums reikia informacijos apie neseniai pasibaigusį įvykį."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Pasirinkite, kaip dažnai prisijungti prie IceTV serverio, kad patikrintumėte atnaujinimus."
-
-msgid "Choose the CI protocol operation mode for standard ci or ciplus."
-msgstr "Pasirinkite CI protokolo darbo režimą standartiniam CI arba CIplus."
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4496,6 +4473,9 @@ msgid "Close screen"
 msgstr "Uždaryti ekraną"
 
 msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Close the Plugin Browser screen"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5070,6 +5050,9 @@ msgstr "Prisijungę klientai"
 
 msgid "Connected satellites"
 msgstr "Prijungti palydovai"
+
+msgid "Connected through another tuner"
+msgstr ""
 
 msgid "Connected to"
 msgstr "Prisijungta prie"
@@ -6181,6 +6164,9 @@ msgstr "Išsami GStreamer žurnalo informacija"
 msgid "Details"
 msgstr "Išsamiau"
 
+msgid "Development Packages"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Įrenginių valdymas"
 
@@ -6363,9 +6349,6 @@ msgstr "Disko negalima rašyti!"
 msgid "Disk was not found!"
 msgstr "Diskas nerastas!"
 
-msgid "Display"
-msgstr "Ekranas"
-
 msgid "Display 16:9 content as"
 msgstr "16:9 turinį rodyti, kaip"
 
@@ -6377,6 +6360,9 @@ msgstr ">16:9 turinį rodyti, kaip"
 
 msgid "Display Settings"
 msgstr "Monitoriaus nustatymai"
+
+msgid "Display Skin Packages"
+msgstr ""
 
 msgid "Display context menu"
 msgstr "Rodyti kontekstinį meniu"
@@ -6518,10 +6504,6 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Ar tikrai norite trinti šį laikmatį ?"
 
-#, python-format
-msgid "Do you really want to download the plugin \"%s\"?"
-msgstr "Ar tikrai norite parsisiųsti priedą \"%s\"?"
-
 msgid "Do you really want to exit?"
 msgstr "Ar tikrai norite užverti?"
 
@@ -6543,10 +6525,6 @@ msgstr "Ar tikrai norite negrįžtamai pašalinti iš šiukšliadėžės?"
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Ar tikrai norite pašalinti %s katalogą iš disko?"
-
-#, python-format
-msgid "Do you really want to remove the plugin \"%s\"?"
-msgstr "Ar tikrai norite pašalinti priedą \"%s\"?"
 
 #, python-format
 msgid "Do you really want to remove the timer for %s?"
@@ -6619,6 +6597,10 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Ar norite atlikti kitą rankinę kanalų paiešką?"
 
 #, python-format
+msgid "Do you want to download '%s'?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr "Ar norite įdiegti šį atvaizdą '%s'?"
 
@@ -6648,8 +6630,16 @@ msgstr "Ar norite savo %s %s paleisti iš naujo?"
 msgid "Do you want to reboot your receiver?"
 msgstr "Ar norite iš naujo paleisti imtuvą?"
 
+#, python-format
+msgid "Do you want to remove '%s'?"
+msgstr ""
+
 msgid "Do you want to remove the package:\n"
 msgstr "Ar norite pašalinti paketą:\n"
+
+#, python-format
+msgid "Do you want to replace '%s' with '%s?"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Ar norite atkurti savo nustatymus?"
@@ -6658,6 +6648,10 @@ msgid "Do you want to resume this playback?"
 msgstr "Ar norite pratęsti šio įrašo peržiūrą?"
 
 msgid "Do you want to start a backup now?"
+msgstr ""
+
+#, python-format
+msgid "Do you want to update '%s'?"
 msgstr ""
 
 msgid "Do you want to upgrade the package:\n"
@@ -6725,6 +6719,9 @@ msgstr "Žemyn"
 msgid "Down / Inactive"
 msgstr "Žemyn / Neaktyvus"
 
+msgid "Download Plugin"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Parsisiųsti priedus"
 
@@ -6742,6 +6739,9 @@ msgstr "Parsisiųsti ir įdiegti emuliatorius"
 
 msgid "Download error"
 msgstr "Atsisiuntimo klaida"
+
+msgid "Download the highlighted plugin"
+msgstr ""
 
 msgid "Downloadable plugins"
 msgstr "Galimi parsisiųsti priedai"
@@ -6773,11 +6773,11 @@ msgstr "Dreambox formato duomenų DVD (suderinama su HDTV)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox formato duomenų DVD (neveiks kituose DVD grotuvuose)"
 
+msgid "Driver Packages"
+msgstr ""
+
 msgid "Driver and kernel information"
 msgstr "Tvarkyklės ir branduolio informacija"
-
-msgid "Drivers"
-msgstr "Tvarkyklės"
 
 msgid "Drivers version"
 msgstr "Tvarkyklių versija"
@@ -7053,12 +7053,6 @@ msgstr "Įjungti BT garsą"
 
 msgid "Enable Bouquet Edit"
 msgstr "įjungti paketo redagavimą"
-
-msgid "Enable CIHelper for SLOT CI0"
-msgstr "Įjungti CI padėjėją lizdui CI0"
-
-msgid "Enable CIHelper for SLOT CI1"
-msgstr "Įjungti CI padėjėją lizdui CI1"
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr "Įjunkite Dolby Digital / Dolby AC-3 poslinkius"
@@ -7468,6 +7462,9 @@ msgstr "Įrašykite savo aukštos juostos heterodino dažnį. Daugiau informacij
 
 msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr "Įrašykite savo žemos juostos heterodino dažnį. Daugiau informacijos rasite LNB specifikacijų lape."
+
+msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
 
 msgid "Entertainment"
 msgstr "Pramogos"
@@ -7986,6 +7983,9 @@ msgstr "Išplėstiniai bendrinimai"
 msgid "Extension Actions"
 msgstr "Plėtinio veiksmai"
 
+msgid "Extension Packages"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Plėtiniai"
 
@@ -8173,6 +8173,12 @@ msgstr "Šaltinių internetinis adresas"
 
 msgid "Feed disabled!"
 msgstr "Šaltinis išjungtas!"
+
+msgid "Feed server DNS error!"
+msgstr ""
+
+msgid "Feed server access error!"
+msgstr ""
 
 msgid "Feed stable."
 msgstr "Šaltinis stabilus."
@@ -8477,6 +8483,9 @@ msgstr "Priverstinis LNB imtuvo ToneBurst nustatymas."
 
 msgid "Force Legacy Signal stats"
 msgstr "Priverstinė pasenusių signalų statistika"
+
+msgid "Force OPKG clean mode"
+msgstr ""
 
 msgid "Force ToneBurst"
 msgstr "Priverstinis tono impulsas"
@@ -9115,6 +9124,9 @@ msgstr "Paslėptas tinklas"
 msgid "Hide"
 msgstr "Paslėpti"
 
+msgid "Hide CI messages"
+msgstr ""
+
 msgid "Hide InfoBar"
 msgstr "Slėpti informacijos juostą"
 
@@ -9123,6 +9135,9 @@ msgstr "Slėpti VBI liniją šiam kanalui"
 
 msgid "Hide any zap error messages."
 msgstr "Paslėpti visus perjungimo klaidų pranešimus."
+
+msgid "Hide error messages from the Common Interface module."
+msgstr ""
 
 msgid "Hide known extensions"
 msgstr "Paslėpti žinomus plėtinius"
@@ -9834,12 +9849,6 @@ msgstr "Įdiekite plėtinius"
 msgid "Install extensions."
 msgstr "Įdiekite plėtinius."
 
-msgid "Install lcd picons on"
-msgstr "Įdiegti LCD logotipus į"
-
-msgid "Install picons on"
-msgstr "Įdiegti logotipus į"
-
 msgid "Install the package"
 msgstr "Įdiekite paketą"
 
@@ -10120,8 +10129,8 @@ msgstr "Išlaikys filmų sąrašą atvertą ir grojant garsinius failus."
 msgid "Kenya"
 msgstr "Kenija"
 
-msgid "Kernel Modules"
-msgstr "Branduolio moduliai"
+msgid "Kernel Packages"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Branduolio failas"
@@ -10697,8 +10706,8 @@ msgstr "Liuksemburgiečių"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Liuksemburgiečių"
 
-msgid "M2k"
-msgstr "M2k"
+msgid "M2k Packages"
+msgstr ""
 
 msgid "MAC Address Actions"
 msgstr "MAC adreso veiksmai"
@@ -10799,13 +10808,13 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Maltiečių"
 
-msgid "Manage Extensions"
-msgstr "Valdyti Plėtinius"
-
 msgid "Manage Locale/Language Selection settings"
 msgstr "Tvarkyti lokalės / kalbos pasirinkimo nustatymus"
 
 msgid "Manage Plugins"
+msgstr ""
+
+msgid "Manage Plugins. This will remove/install Plugins on your box"
 msgstr ""
 
 msgid "Manage and explore directories and files."
@@ -10813,6 +10822,9 @@ msgstr "Tvarkykite ir tyrinėkite katalogus ir failus."
 
 msgid "Manage network mounts"
 msgstr "Tvarkyti tinklo pajungimus"
+
+msgid "Manage the highlighted plugin"
+msgstr ""
 
 msgid "Manage your online update files"
 msgstr "Tvarkyti savo internetinio atnaujinimo failus"
@@ -10935,8 +10947,8 @@ msgstr "Media grotuvas"
 msgid "Media Player Settings"
 msgstr "Medijos leistuvo parametrai"
 
-msgid "Media Portal"
-msgstr "Atverti Medija Portalą"
+msgid "Media Stream"
+msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Medijos atkūrime liko/praėjo kaip"
@@ -10953,8 +10965,8 @@ msgstr "MediaInfo"
 msgid "MediaPlayer"
 msgstr "Medija grotuvas"
 
-msgid "MediaPortal"
-msgstr "Medija portalas"
+msgid "MediaStream"
+msgstr ""
 
 msgid "Medical"
 msgstr "Medicinos"
@@ -11378,11 +11390,35 @@ msgstr "Pereiti į paskutinę eilutę / ekraną"
 msgid "Move to last line / screen in the panel"
 msgstr "Pereiti į paskutinę eilutę / ekraną skydelyje"
 
+msgid "Move to the first item on the current line"
+msgstr ""
+
+msgid "Move to the first item on the first screen"
+msgstr ""
+
 msgid "Move to the first line / screen"
 msgstr "Pereiti į pirmą eilutę / ekraną"
 
+msgid "Move to the last item on the current line"
+msgstr ""
+
+msgid "Move to the last item on the last screen"
+msgstr ""
+
 msgid "Move to the last line / screen"
 msgstr "Pereiti į paskutinę eilutę / ekraną"
+
+msgid "Move to the next category in the list"
+msgstr ""
+
+msgid "Move to the next item in the list"
+msgstr ""
+
+msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item in list"
+msgstr ""
 
 msgid "Move up a line"
 msgstr "Judėkite linija aukštyn"
@@ -11721,6 +11757,9 @@ msgstr "Tinklo testas:"
 msgid "Network Wizard"
 msgstr "Tinklo vedlys"
 
+msgid "Network adapter not connected to a network!"
+msgstr ""
+
 msgid "Network address"
 msgstr "Tinklo adresas"
 
@@ -11961,6 +12000,9 @@ msgstr "Žurnalo failų nerasta, todėl derinimo žurnalai nepasiekiami!"
 msgid "No matching place names found"
 msgstr "Atitinkančių vietovardžių nerasta"
 
+msgid "No network adapters enabled/available!"
+msgstr ""
+
 msgid "No network storage detected."
 msgstr "Tinklo saugykla neaptikta."
 
@@ -11969,9 +12011,6 @@ msgstr "Jokių tinklų nerasta"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nėra perjungimo elementų (padidinti arba sumažinti)"
-
-msgid "No packages found."
-msgstr ""
 
 msgid "No pictures available"
 msgstr "Nuotraukų nėra"
@@ -12288,9 +12327,6 @@ msgstr "Gerai, informuoti mane apie atnaujinimo eigą"
 msgid "ONID"
 msgstr "ONID"
 
-msgid "OPKG clean mode"
-msgstr "OPKG valymo režimas"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12399,9 +12435,6 @@ msgstr "Tik greitai perkelti anteną iki šios valandos."
 msgid "Only on startup"
 msgstr "Tik paleidimo metu"
 
-msgid "Only provider"
-msgstr "Tik teikėjas"
-
 msgid "Open"
 msgstr "Atverti"
 
@@ -12417,8 +12450,8 @@ msgstr "Atverti EPG paiešką"
 msgid "Open IMDb"
 msgstr "Atverti IMDb"
 
-msgid "Open MediaPortal"
-msgstr "Atverti medijos portalą"
+msgid "Open MediaStream"
+msgstr ""
 
 msgid "Open Similar List Channel List"
 msgstr "Atidaryti panašų sąrašo kanalų sąrašą"
@@ -12465,6 +12498,9 @@ msgstr ""
 msgid "Open the Plugin Browser"
 msgstr "Atverti priedų tvarkyklę"
 
+msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
@@ -12486,8 +12522,8 @@ msgstr "OpenDNS Šeimos Skydas"
 msgid "OpenDNS Home"
 msgstr "OpenDNS pagrindinis puslapis"
 
-msgid "OpenPLi"
-msgstr "OpenPLi"
+msgid "OpenPLi Packages"
+msgstr ""
 
 msgid "OpenSSL version"
 msgstr "OpenSSL versija"
@@ -12501,8 +12537,8 @@ msgstr "OpenVPN veiksmai"
 msgid "OpenVPN Settings"
 msgstr "OpenVPN parametrai"
 
-msgid "OpenViX"
-msgstr "OpenVix"
+msgid "OpenViX Packages"
+msgstr ""
 
 msgid "OpenVpn Log"
 msgstr "OpenVpn loginis žurnalas"
@@ -12860,9 +12896,6 @@ msgstr "Procentai / eigos juosta dešinėje"
 msgid "Perform an on-line flash instead"
 msgstr "Vietoj to atlikite internetinį įdiegimą"
 
-msgid "Perform install/remove of the selected item"
-msgstr ""
-
 msgid "Perform the upgrade?"
 msgstr ""
 
@@ -12911,14 +12944,14 @@ msgstr "PiP jungimas"
 msgid "Picon"
 msgstr "Piktograma"
 
+msgid "Picon Packages"
+msgstr ""
+
 msgid "Picon and Service Name"
 msgstr "Piktograma ir kanalo pavadinimas"
 
 msgid "Picon width"
 msgstr "Piktogramos plotis"
-
-msgid "Picons"
-msgstr "Logotipai"
 
 msgid "Picture Information"
 msgstr "Paveikslėlio informacija"
@@ -13114,9 +13147,6 @@ msgstr ""
 "Įrašykite savo elektroninio pašto adresą, kuris bus jūsų prisijungimo vardas.\n"
 "Per savo paskyrą IceTV svetainėje, galite pasirinkti gauti paslaugų pranešimus, paskyros priminimus ir reklaminius pasiūlymus."
 
-msgid "Please enter your personal feed URL"
-msgstr "Įrašykite savo asmeninių šaltinių internetinį adresą"
-
 msgid "Please follow the instructions on the TV"
 msgstr "Vadovaukitės instrukcijomis TV ekrane"
 
@@ -13128,6 +13158,9 @@ msgstr "Pirmiausiai atsidarykite vaizdą vaizde"
 
 msgid "Please press OK to continue."
 msgstr "Spauskite 'OK', kad tęsti."
+
+msgid "Please press OK when ready"
+msgstr ""
 
 msgid "Please select a backup destination"
 msgstr "Pasirinkite atsarginės kopijos paskirties vietą"
@@ -13230,6 +13263,9 @@ msgstr "Palaukite"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Palaukite, kol aktyvuosis jūsų tinklo konfigūracija..."
 
+msgid "Please wait while feeds are updated..."
+msgstr ""
+
 msgid "Please wait while gathering data..."
 msgstr "Palaukite, kol įkeliami duomenys ..."
 
@@ -13241,6 +13277,18 @@ msgstr "Palaukite, kol duomenys bus išgauti..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Palaukite, kol sąrašas atsisiunčiamas..."
+
+msgid "Please wait while the plugin is downloaded."
+msgstr ""
+
+msgid "Please wait while the plugin is removed."
+msgstr ""
+
+msgid "Please wait while the plugin is replaced."
+msgstr ""
+
+msgid "Please wait while the plugin is updated."
+msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "Palaukite, kol tikrinami jūsų įdiegti priedai..."
@@ -13297,16 +13345,43 @@ msgstr ""
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr ""
 
+msgid "Plugin Action Log Actions"
+msgstr ""
+
 msgid "Plugin Browser"
 msgstr "Priedų naršyklė"
+
+msgid "Plugin Browser Actions"
+msgstr ""
+
+msgid "Plugin Browser Download Actions"
+msgstr ""
+
+msgid "Plugin Browser Edit Actions"
+msgstr ""
+
+msgid "Plugin Browser Manage Actions"
+msgstr ""
+
+msgid "Plugin Browser Navigation Actions"
+msgstr ""
+
+msgid "Plugin Browser Remove Actions"
+msgstr ""
+
+msgid "Plugin Browser Select Actions"
+msgstr ""
 
 msgid "Plugin Browser Settings"
 msgstr "Priedo naršyklės parametrai"
 
-msgid "Plugin Filter Settings"
-msgstr "Priedo filtro parametrai"
+msgid "Plugin Browser Update Actions"
+msgstr ""
 
-msgid "Plugin Manager Actions"
+msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Skin Packages"
 msgstr ""
 
 msgid "Plugins"
@@ -13636,6 +13711,9 @@ msgid "Process RED button action"
 msgstr ""
 
 msgid "Process YELLOW button action"
+msgstr ""
+
+msgid "Processing"
 msgstr ""
 
 msgid "Processor information"
@@ -14268,8 +14346,8 @@ msgstr "Atnaujinti juoduosius sąrašus"
 msgid "Reloading EPG Cache..."
 msgstr "Atnaujinama EPG talpykla..."
 
-msgid "Reloading bouquets and services..."
-msgstr "Atnaujinami paketai ir kanalai..."
+msgid "Reloading bouquets and services."
+msgstr ""
 
 msgid "Remaining"
 msgstr "Liko"
@@ -14352,6 +14430,9 @@ msgstr "pašalinti iš tėvų kontrolės"
 msgid "Remove New Found Flag"
 msgstr "pašalinti naujai rastą žymeklį"
 
+msgid "Remove Plugin"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr "Pašalinti priedus"
 
@@ -14429,6 +14510,9 @@ msgstr ""
 
 msgid "Remove the current bookmark"
 msgstr "Dabartinės žymelės pašalinimas"
+
+msgid "Remove the highlighted plugin"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Pašalinti laikmatį"
@@ -14564,6 +14648,9 @@ msgstr "Išvalyti pastovų PIN kodą"
 
 msgid "Reset playback position"
 msgstr "Išvalyti peržiūros poziciją"
+
+msgid "Reset sort order"
+msgstr ""
 
 msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
 msgstr "Iš naujo nustatykite pasirinktus įrenginius ir išsaugokite konfigūracijos pakeitimus, paspausdami ŽALIĄ mygtuką."
@@ -15284,8 +15371,8 @@ msgstr "Antrinis DNS"
 msgid "Seconds"
 msgstr "sekundžių"
 
-msgid "Security"
-msgstr "Saugumas"
+msgid "Security Packages"
+msgstr ""
 
 msgid "Seek"
 msgstr "Ieškoti"
@@ -15335,6 +15422,9 @@ msgstr "Pasirinkite '1.0' standartiniams įvykdytiems jungikliams, '1.1' nepriju
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Pasirinkite 'A' arba 'B', jei jūsų antenos sistema reikalauja to, kitaip pasirinkite \"nė vieno\". Jei nesate tikri, pasirinkite \"nė vieno\"."
 
+msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Jei nustatyta 'ne', laiko poslinkis naudos tik vieną kaupimo failą. Todėl rekomenduojama koreguoti \"Laiko poslinkis tikrins failų senumą (min.)\" ir \"Laiko poslinkis tikrins laisvą vietą?\"."
 
@@ -15373,12 +15463,6 @@ msgstr "Pasirinkite \"Taip\", jei norite, kad visi vaizdai būtų nuolat rodomi 
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Jei nustatyta 'taip', EPG lange rodys mažą TV ekraną su esamu įvykiu."
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr "Jei nustatyta 'taip', tai naršyklėje bus rodomi 'PO' paketai."
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
-msgstr "Jei nustatyta 'taip', tai naršyklėje bus rodomi 'SRC' paketai."
 
 msgid "Select 'Yes' to display the InfoBar when a new event starts."
 msgstr "Jei nustatyta 'taip', naujam įvykiui prasidedant, bus rodoma info juosta."
@@ -15446,8 +15530,59 @@ msgstr "Pasirinkite 'Taip', kad iš naujo nustatytumėte numatytąją tinklo kon
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "Pasirinkite \"Taip\", kad redaguodami tekstinį failą nustatytumėte žymeklio padėtį eilutės pabaigoje.  Pasirinkite \"Ne\", kad nustatytumėte žymeklį į eilutės pradžią."
 
+msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr "Pasirinkite \"Taip\", jei norite, kad katalogai būtų rodomi sąrašo viršuje / pradžioje, arba pasirinkite \"Ne\", kad pirmiausia būtų rodomi failai."
+
+msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show security packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
+msgstr ""
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Pasirinkite 'Taip', kad būtų rodomos išplėstinės nustatymų parinktys."
@@ -15460,6 +15595,9 @@ msgstr "Jei nustatyta 'taip', po perjungimo tarp radijo ir TV režimų bus rodom
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Pasirinkite \"Taip\", kad katalogų sąraše būtų rodomas dabartinis katalogas. Atminkite, kad failų vadas turi būti paleistas iš naujo, kad šis pakeitimas įsigaliotų."
+
+msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
+msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jei nustatyta \"taip\", signalo reikšmės (SNR ir t.t.) bus apskaičiuotos pagal API V3. Tai senoji API versija, kuri dabar buvo pakeista."
@@ -15902,6 +16040,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Pasirinkite lokalę iš meniu"
 
@@ -15979,6 +16120,9 @@ msgstr "Pasirinkite failų eilučių rūšiavimo tvarką:"
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Pasirinkite papildinių naršyklės meniu įrašų rūšiavimo tvarką.  Vartotojo apibrėžtas taip pat leidžia paslėpti meniu įrašus."
+
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
+msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Pasirinkite meniu įrašų rūšiavimo tvarką.  Vartotojo apibrėžtas taip pat leidžia paslėpti meniu įrašus."
@@ -16559,6 +16703,9 @@ msgstr "Nustatykite įtampą ir 22 KHz"
 msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Nustato pagrindinį laikmenų sąrašo katalogą.  Tai pašalina įrašą '..' kad jis nebūtų rodomas tame kataloge."
 
+msgid "Setting Packages"
+msgstr ""
+
 msgid "Setting Restored "
 msgstr "Nustatymai atkurti "
 
@@ -16626,11 +16773,11 @@ msgstr "Sukonfigūruoti tinklo paslaugas (Samba, Ftp, NFS,...)"
 msgid "Setup OpenVPN"
 msgstr "Sukonfigūruoti OpenVPN"
 
-msgid "Setup Plugin filter"
-msgstr "Sukonfigūruoti priedų filtrą"
+msgid "Setup Plugin Browser"
+msgstr ""
 
-msgid "Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"
-msgstr "Čia galite pasirinkti, kurie priedai bus rodomi priedų naršyklėje"
+msgid "Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"
+msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Sukonfigūruoti priedus"
@@ -16876,8 +17023,17 @@ msgstr "Klientai"
 msgid "Show Default Backup Files"
 msgstr "Rodyti numatytuosius atsarginių kopijų failus"
 
+msgid "Show Development packages"
+msgstr ""
+
 msgid "Show Display Icons"
 msgstr "Rodyti ekrano piktogramas"
+
+msgid "Show Display packages"
+msgstr ""
+
+msgid "Show Driver packages"
+msgstr ""
 
 msgid "Show EPG"
 msgstr "Rodyti EPG"
@@ -16887,6 +17043,9 @@ msgstr "Rodyti šio kanalo EPG..."
 
 msgid "Show EventView"
 msgstr "Rodyti įvykių peržiūrą"
+
+msgid "Show Extension packages"
+msgstr ""
 
 msgid "Show Format Setup"
 msgstr "Rodyti formato nustatymą"
@@ -16927,6 +17086,9 @@ msgstr "Rodyti info juostos logotipus"
 msgid "Show Information"
 msgstr "Rodyti informaciją"
 
+msgid "Show Kernel packages"
+msgstr ""
+
 msgid "Show Live in MiniTV"
 msgstr "Rodyti tiesiogiai į MiniTV"
 
@@ -16935,6 +17097,9 @@ msgstr "Loginis žurnalas"
 
 msgid "Show Log Manager in extensions list"
 msgstr "Rodyti žurnalo tvarkyklę plėtinių sąraše"
+
+msgid "Show M2k packages"
+msgstr ""
 
 msgid "Show Media Player in Main Menu"
 msgstr "Medija grotuvą rodyti pagrindiniame meniu"
@@ -16960,6 +17125,12 @@ msgstr "Rodyti 'OScam' informaciją"
 msgid "Show OScam in extensions"
 msgstr "Rodyti OScam plėtiniuose"
 
+msgid "Show OpenPLi packages"
+msgstr ""
+
+msgid "Show OpenViX packages"
+msgstr ""
+
 msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr "Rodyti PVR būseną filmų grotuvo info juostoje"
 
@@ -16971,6 +17142,12 @@ msgstr "Rodyti PIP į MiniTV"
 
 msgid "Show PiP in the Front Display"
 msgstr "Rodyti PIP priekiniame monitoriuje"
+
+msgid "Show Picon packages"
+msgstr ""
+
+msgid "Show Plugin Skin packages"
+msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "Rodyti RF modulio sąranką..."
@@ -16987,8 +17164,29 @@ msgstr "Rodyti 'paleisti iš naujo tinklą' plėtinių sąraše *"
 msgid "Show SD as"
 msgstr "Rodyti SD kaip"
 
+msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Setting packages"
+msgstr ""
+
 msgid "Show Single EPG"
 msgstr "Rodyti vieno kanalo EPG"
+
+msgid "Show Skin Component packages"
+msgstr ""
+
+msgid "Show Skin packages"
+msgstr ""
+
+msgid "Show Softcam packages"
+msgstr ""
+
+msgid "Show Source packages"
+msgstr ""
+
+msgid "Show System Plugin packages"
+msgstr ""
 
 msgid "Show Timer List"
 msgstr "Rodyti laikmačių sąrašą"
@@ -17010,6 +17208,9 @@ msgstr "Rodyti vertikalų EPG"
 
 msgid "Show WLAN status"
 msgstr "Rodyti belaidžio tinklo būseną"
+
+msgid "Show Web Link packages"
+msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "Rodyti besisukantį logotipą, kai sistema užimta."
@@ -17082,9 +17283,6 @@ msgstr "Rodyti išsamią informaciją apie įvykį (nustatymas meniu)"
 
 msgid "Show details of highlighted task"
 msgstr ""
-
-msgid "Show development packages in opkg"
-msgstr "Rodyti kūrimo paketus opkg"
 
 msgid "Show directories first"
 msgstr "Pirmiausia parodyti katalogus"
@@ -17321,9 +17519,6 @@ msgstr "Rodyti vieną dabartinio kanalo EPG (sąranka meniu)"
 msgid "Show single service EPG"
 msgstr "Rodyti vieno kanalo EPG"
 
-msgid "Show source packages"
-msgstr "Rodyti paketų šaltinį"
-
 msgid "Show status messages on switch to live TV"
 msgstr "Perjungiant į tiesioginę TV transliaciją, rodyti žinutę"
 
@@ -17372,6 +17567,9 @@ msgstr "Rodyti miego laikmatį"
 msgid "Show the information on current event."
 msgstr "Rodyti informaciją apie dabartinį įvykį."
 
+msgid "Show the last opkg command's output"
+msgstr ""
+
 msgid "Show the list of AutoTimers."
 msgstr "Rodyti auto laikmačių sąrašą."
 
@@ -17413,9 +17611,6 @@ msgstr "Rodyti laiką liko/praėjo"
 
 msgid "Show translation information"
 msgstr "Rodyti vertimo informaciją"
-
-msgid "Show translation packages"
-msgstr "Rodyti vertimų paketus"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Rodyti transponderio liko/praėjo kaip"
@@ -17591,6 +17786,12 @@ msgstr "Tema"
 msgid "Skin & Resolution"
 msgstr "Tema ir skiriamoji geba"
 
+msgid "Skin Component Packages"
+msgstr ""
+
+msgid "Skin Packages"
+msgstr ""
+
 msgid "Skin Selector"
 msgstr "Temos parinkėjas"
 
@@ -17739,6 +17940,12 @@ msgstr "Lizdas '%s': %s%s"
 msgid "Slot Manager"
 msgstr ""
 
+msgid "Slot Manager Actions"
+msgstr ""
+
+msgid "Slot R: Root Slot Full Backup (Current image)"
+msgstr ""
+
 msgid "Slot count"
 msgstr ""
 
@@ -17814,14 +18021,14 @@ msgstr "Emuliatorius"
 msgid "Softcam Actions"
 msgstr "Emuliatoriaus nustatymai"
 
+msgid "Softcam Packages"
+msgstr ""
+
 msgid "Softcam Settings"
 msgstr "Emuliatoriaus nustatymai"
 
 msgid "Softcam Setup"
 msgstr ""
-
-msgid "Softcams"
-msgstr "Emuliatoriai"
 
 msgid "Software Management"
 msgstr "Programinės įrangos valdymas"
@@ -17872,14 +18079,11 @@ msgstr "Somalis"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Kai kurie TV įrenginiai negali pataisyti įvesties, jei veikia kitas HDMI prievadas. Šis parametras nustato televizoriaus budėjimo režimą prieš jungiklį. (Jei televizorius neįjungia, gali prireikti lėtesnio perdavimo intervalo arba pažadinimo komandų pasikartojimo.)"
 
-msgid "Some plugins are not available:\n"
-msgstr "Kai kurių priedų nėra:\n"
+msgid "Some plugins are not available:"
+msgstr ""
 
 msgid "Sorbian"
 msgstr "Serbiškai"
-
-msgid "Sorry CIHelper Config is Missing"
-msgstr "Atsiprašome CI padėjėjo konfigūracijos nėra"
 
 msgid "Sorry Inadyn Config is Missing"
 msgstr "Atsiprašome Inadyn konfigūracijos nėra"
@@ -17892,9 +18096,6 @@ msgstr "Atsiprašome MiniDLNA konfigūracijos nėra"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Atsiprašome šaltiniai neveikia dėl priežiūros darbų, prašome pabandyti vėliau."
-
-msgid "Sorry feeds are down for maintenance."
-msgstr "Atsiprašome šaltiniai neveikia dėl priežiūros darbų"
 
 msgid "Sorry no backups found!"
 msgstr "Atsiprašome, bet atsarginių kopijų nerasta!"
@@ -17949,6 +18150,9 @@ msgstr "Meniu Rūšiuoti plėtinius"
 msgid "Sort Plugin Browser"
 msgstr "Rūšiuoti priedų naršyklę"
 
+msgid "Sort Plugin Browser entries"
+msgstr ""
+
 msgid "Sort by"
 msgstr "Rūšiuoti pagal"
 
@@ -17982,6 +18186,9 @@ msgstr "Garsas"
 
 msgid "Sound carrier"
 msgstr "Garso nešėjas"
+
+msgid "Source Packages"
+msgstr ""
 
 msgid "Source request"
 msgstr "Šaltinio užklausa"
@@ -18092,6 +18299,9 @@ msgstr ""
 msgid "Start edit at line end"
 msgstr ""
 
+msgid "Start edit mode"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "Pradėti iš pradžių"
 
@@ -18117,6 +18327,9 @@ msgid "Start test"
 msgstr "Pradėti testą"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the highlighted plugin"
 msgstr ""
 
 msgid "Start time"
@@ -18215,6 +18428,9 @@ msgstr "Sustabdyti dabartinį įvykį ir išjungti būsimus įvykius"
 
 msgid "Stop current event but not future events"
 msgstr "Sustabdyti dabartinį įvykį, bet ne būsimus įvykius"
+
+msgid "Stop edit mode"
+msgstr ""
 
 msgid "Stop entry"
 msgstr "Stabdyti įrašą"
@@ -18639,8 +18855,8 @@ msgstr "Sistemos informacijos veiksmai"
 msgid "System Message Check"
 msgstr "Sistemos pranešimų tikrinimas"
 
-msgid "System Plugins"
-msgstr "Sistemos priedai"
+msgid "System Plugin Packages"
+msgstr ""
 
 msgid "System Setup"
 msgstr "Sistemos nustatymai"
@@ -19004,11 +19220,9 @@ msgstr ""
 "Įdiekite jį."
 
 msgid ""
-"The MediaPortal plugin is not installed!\n"
+"The MediaStream plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Medija portalas neįdiegtas!\n"
-"Įdiekite jį."
 
 msgid ""
 "The Merlin EPG Center plugin is not installed!\n"
@@ -19312,48 +19526,6 @@ msgstr "Ši parinktis leidžia nustatyti rodomų eilučių skaičių."
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Ši parinktis leidžia nustatyti 5 skaitmenų skaičių, jei turite daugiau nei 9999 kanalus."
-
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "Tai leidžia rodyti OpenPLi modulius atsisiuntimuose"
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr "Tai leidžia jums rodyti OpenViX modulius atsisiuntimuose"
-
-msgid "This allows you to show drivers modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti modulių tvarkykles, skirtas atsisiuntimui"
-
-msgid "This allows you to show extensions modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti išplėstinius modulius, skirtus atsisiuntimui"
-
-msgid "This allows you to show kernel modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti branduolio modulius, skirtus atsisiuntimui"
-
-msgid "This allows you to show lcd skins in downloads"
-msgstr "Ši parinktis leidžia jums parodyti lcd temas, skirtas atsisiuntimui"
-
-msgid "This allows you to show m2k modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti m2k modulius, skirtus atsisiuntimui"
-
-msgid "This allows you to show picons modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti logotipų modulius, skirtus atsisiuntimui"
-
-msgid "This allows you to show security modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti saugumo modulius, skirtus atsisiuntimui"
-
-msgid "This allows you to show settings modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti nustatymų modulius, skirtus atsisiuntimui"
-
-msgid "This allows you to show skin modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti temų modulius, skirtus atsisiuntimui"
-
-msgid "This allows you to show softcams modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti emuliatorių modulius, skirtus atsisiuntimui"
-
-msgid "This allows you to show system plugin modules in downloads"
-msgstr "Tai leidžia jums rodyti sistemos priedų modulius atsisiuntimuose"
-
-msgid "This allows you to show weblinks modules in downloads"
-msgstr "Ši parinktis leidžia jums parodyti web nuorodų modulius, skirtus atsisiuntimui"
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "šis paketas apsaugotas tėvų kontrolės PIN kodu"
@@ -19971,6 +20143,9 @@ msgstr "Perjungti elemento redagavimo režimą įjungimas / išjungimas"
 msgid "Toggle item move mode on/off"
 msgstr "Perjungti elemento perkėlimo režimą įjungimas / išjungimas"
 
+msgid "Toggle move mode"
+msgstr ""
+
 msgid "Toggle move mode selection"
 msgstr ""
 
@@ -19985,6 +20160,9 @@ msgstr "Perjungti dabartinės žymės pasirinkimą"
 
 msgid "Toggle service name display"
 msgstr "Perjungti kanalų pavadinimo rodymą"
+
+msgid "Toggle the visibility of the highlighted plugin"
+msgstr ""
 
 msgid "Toggles between tv and radio"
 msgstr "Perjungia tarp tv ir radijo..."
@@ -20521,6 +20699,12 @@ msgstr "Aukštyn / žemyn mygtukai taip pat 'visi aukštyn / žemyn'"
 msgid "Update"
 msgstr "Atnaujinimas"
 
+msgid "Update Plugin"
+msgstr ""
+
+msgid "Update Plugins"
+msgstr ""
+
 msgid "Update completed."
 msgstr "Naujinimas baigtas."
 
@@ -20548,6 +20732,9 @@ msgid ""
 msgstr ""
 "Atnaujinimas pavyko!\n"
 "Jūsų įkrovos tvarkyklė dabar yra naujausia!"
+
+msgid "Update the highlighted plugin"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Atnaujinti / padaryti programinės įrangos atsarginę kopiją , nustatymų atsarginę kopiją / atkūrimą"
@@ -21178,6 +21365,12 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr "Žiūrėti Rass interaktyviai..."
 
+msgid "View as grid"
+msgstr ""
+
+msgid "View as list"
+msgstr ""
+
 msgid "View mode"
 msgstr "Peržiūros režimas"
 
@@ -21409,8 +21602,8 @@ msgstr "Orų prognozė"
 msgid "Web Interface"
 msgstr "Internetinė sąsaja"
 
-msgid "Web Links"
-msgstr "Žiniatinklio saitai"
+msgid "Web Link Packages"
+msgstr ""
 
 msgid "Web browser base visibility"
 msgstr "Interneto naršyklės bazinis matomumas"
@@ -21573,9 +21766,6 @@ msgstr "Kai čia įjungta, gaunamas http srautas bus visada iškoduojamas. Tai p
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kai čia įjungta, http srautų žiūrėjimui turėsite nurodyti savo autentifikacijos duomenis."
 
-msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online."
-msgstr "Kai įjungtas, prieš opkg atnaujinimą bus opkg švarus, kad įsitikintumėte, jog niekas nesugadina atnaujinimo, bet tik įjunkite tai, kai negalite atnaujinti internete."
-
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Kai čia įjungta, kanalų numeracija kiekvieno paketo viduje prasidės nuo '1'."
 
@@ -21659,9 +21849,6 @@ msgstr "Kai čia įjungta, laiko poslinkis įsijungs po nurodyto laiko automati�
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Kai čia įjungta, IP adresą priskirs tinklo DHCP serveris."
-
-msgid "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list."
-msgstr "Kai įjungtas, pamatysite dev, staticdev, dbg, doc, src ir po paketus opkg sąraše."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kai čia įjungta, imtuvas aptiks aktyvų VCR SCART įvesties signalą."
@@ -21943,26 +22130,6 @@ msgstr "Jidiš"
 msgid "Yoruba"
 msgstr "Joruba"
 
-#, python-format
-msgid ""
-"You already have a bootlogo installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Jūs jau turite įkrovos logotipą įdiegtą,\n"
-"ar norite pašalinti\n"
-"'%s'?"
-
-#, python-format
-msgid ""
-"You already have a channel list installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Jūs jau įdiegėte kanalų sąrašą\n"
-"ar norite pašalinti\n"
-"'%s'?"
-
 msgid "You can Display MiniTV with or without OSD Menu"
 msgstr "Galite rodyti mini TV su, arba be OSD meniu"
 
@@ -22135,9 +22302,6 @@ msgid ""
 msgstr ""
 "Pašalinus paslaugą, jūsų %s %s bus paleistas iš naujo.\n"
 "Ar norite pašalinti dabar?"
-
-msgid "Your Hardware can detect ci mode self or work only in legacy mode."
-msgstr "Jūsų techninė įranga gali aptikti ci režimą savarankiškai arba dirbti tik standartiniame režime."
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -22940,6 +23104,9 @@ msgstr "medicina/fiziologija/psichologija"
 msgid "min"
 msgstr "min"
 
+msgid "module disabled"
+msgstr ""
+
 msgid "month"
 msgstr "mėnuo"
 
@@ -23014,6 +23181,9 @@ msgstr "kito kanalo puslapis"
 
 msgid "next higher Resolution"
 msgstr "kita didesnė rezoliucija"
+
+msgid "no"
+msgstr ""
 
 msgid "no CAId selected"
 msgstr "joks CAId neišsirinktas"
@@ -23110,9 +23280,6 @@ msgstr "pid:"
 
 msgid "pink"
 msgstr "rožinė"
-
-msgid "please press OK when ready"
-msgstr "kai būsite pasiruošę, spauskite OK"
 
 msgid "please wait, loading picture..."
 msgstr "palaukite, įkeliamas paveikslėlis..."
@@ -23482,6 +23649,9 @@ msgstr "žiūrėti išplėtimus..."
 msgid "violet"
 msgstr "violetinė"
 
+msgid "wait for ci..."
+msgstr ""
+
 msgid "wait for mmi..."
 msgstr "laukite atsakymo iš mmi..."
 
@@ -23530,1940 +23700,11 @@ msgstr "veikiantis"
 msgid "yellow"
 msgstr "geltonas"
 
+msgid "yes"
+msgstr ""
+
 msgid "yes (keep feeds)"
 msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
-
-#~ msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-#~ msgstr "\"Kexec MultiBoot\" inicijavimas - bus paleistas iš naujo po 10 sekundžių."
-
-#~ msgid ""
-#~ "Kexec MultiBoot Initialisation in progress!\n"
-#~ "\n"
-#~ "Will reboot after restoring any eMMC slots.\n"
-#~ "This can take from 1 -> 5 minutes per slot."
-#~ msgstr ""
-#~ "Kexec MultiBoot Inicijavimas vyksta!\n"
-#~ "\n"
-#~ "Bus paleistas iš naujo atkūrus visus eMMC lizdus.\n"
-#~ "Tai gali užtrukti nuo 1 iki > 5 minučių vienam lizdui."
-
-#~ msgid ""
-#~ "Press Green key to enable MultiBoot!\n"
-#~ "\n"
-#~ "Will reboot within 10 seconds,\n"
-#~ "unless you have eMMC slots to restore.\n"
-#~ "Restoring eMMC slots can take from 1 -> 5 minutes per slot."
-#~ msgstr ""
-#~ "Paspauskite žalią klavišą, kad įjungtumėte \"MultiBoot\"!\n"
-#~ "\n"
-#~ "Bus paleistas iš naujo per 10 sekundžių,\n"
-#~ "nebent turite eMMC lizdus, kuriuos norite atkurti.\n"
-#~ "eMMC lizdų atkūrimas gali užtrukti nuo 1 iki > 5 minučių vienam lizdui."
-
-#, python-format
-#~ msgid ""
-#~ "Really permanently delete MultiBoot files?\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Ar tikrai visam laikui ištrinate \"MultiBoot\" failus?\n"
-#~ "%s"
-
-#~ msgid "Auto Modes Selected."
-#~ msgstr "Pasirinkti automatiniai režimai."
-
-#~ msgid "Check the Internet connection"
-#~ msgstr "Tikrinkite interneto ryšį"
-
-#~ msgid "Checking the Internet connection"
-#~ msgstr "Tikrinamas interneto ryšys"
-
-#~ msgid "Configure nameservers"
-#~ msgstr "Konfigūruokite serverių pavadinimus"
-
-#~ msgid "Default Modes Selected."
-#~ msgstr "Pasirinkti numatytieji režimai."
-
-#~ msgid ""
-#~ "Please configure or verify your Nameservers by filling out the required values.\n"
-#~ "When you are ready press OK to continue."
-#~ msgstr ""
-#~ "Sukonfigūruokite serverius, užpildydami reikiamas reikšmes. \n"
-#~ "Tai atlikę, spauskite 'OK', kad tęsti."
-
-#~ msgid ""
-#~ "Please configure your Internet connection by filling out the required values.\n"
-#~ "When you are ready press OK to continue."
-#~ msgstr ""
-#~ "Sukonfigūruokite savo interneto prisijungimą, užpildydami reikiamas reikšmes.\n"
-#~ "Tai atlikę, spauskite 'OK', kad tęsti."
-
-#~ msgid "Please connect your %s %s to the Internet"
-#~ msgstr "Prijunkite %s %s prie interneto"
-
-#~ msgid ""
-#~ "Please select the network interface that you want to use for your Internet connection.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Išsirinkite tinklo sąsają, kurią naudosite interneto ryšiui.\n"
-#~ "\n"
-#~ "Spauskite 'OK', kad tęsti."
-
-#~ msgid ""
-#~ "Please select the wireless network that you want to connect to.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Išsirinkite belaidį tinklą, prie kurio norite prisijungti.\n"
-#~ "\n"
-#~ "Spauskite 'OK', kad tęsti."
-
-#~ msgid "Please set up tuner A"
-#~ msgstr "Sukonfigūruokite A imtuvą"
-
-#~ msgid ""
-#~ "Please set up tuner A\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą A\n"
-#~ "Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid "Please set up tuner B"
-#~ msgstr "Sukonfigūruokite B imtuvą"
-
-#~ msgid ""
-#~ "Please set up tuner B\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą B\n"
-#~ "Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid "Please set up tuner C"
-#~ msgstr "Sukonfigūruokite C imtuvą"
-
-#~ msgid ""
-#~ "Please set up tuner C\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą C\n"
-#~ "Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid "Please set up tuner D"
-#~ msgstr "Sukonfigūruokite D imtuvą"
-
-#~ msgid ""
-#~ "Please set up tuner D\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą D\n"
-#~ "Hibridinių imtuvų modeliams, imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid ""
-#~ "Please set up tuner E\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą E\n"
-#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid ""
-#~ "Please set up tuner F\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą F\n"
-#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid ""
-#~ "Please set up tuner G\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą G\n"
-#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid ""
-#~ "Please set up tuner H\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą H\n"
-#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid ""
-#~ "Please set up tuner I\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą I\n"
-#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid ""
-#~ "Please set up tuner J\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą J\n"
-#~ "Hibridinių imtuvų modeliams imtuvo tipą perjungti su 'kairėn' ir 'dešinėn' mygtukais"
-
-#~ msgid ""
-#~ "Please set up tuner Q\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą Q\n"
-#~ "Hibridinio imtuvo modelio tipą perjunkite su mygtukais kairėn ir dešinėn"
-
-#~ msgid ""
-#~ "Please set up tuner R\n"
-#~ "For Hybrid Tuner Models switch Tuner Type with left and right keys"
-#~ msgstr ""
-#~ "Prašome nustatyti imtuvą R\n"
-#~ "Hibridinio imtuvo modelio tipą perjunkite su mygtukais kairėn ir dešinėn"
-
-#~ msgid "Please set your time options"
-#~ msgstr "Nustatykite laiko parinktis"
-
-#~ msgid ""
-#~ "Please set your time options.\n"
-#~ "\n"
-#~ "Press YELLOW to set the time zone via geolocation."
-#~ msgstr ""
-#~ "Nustatykite laiko parinktis.\n"
-#~ "\n"
-#~ "Paspauskite GELTONA, kad nustatytumėte laiko juostą per geografinę vietą."
-
-#~ msgid "Refresh rate selection."
-#~ msgstr "Atnaujinimo dažnio pasirinkimas."
-
-#~ msgid "Select video input with up/down buttons"
-#~ msgstr "Mygtukais aukštyn/žemyn pasirinkite vaizdo įvestį"
-
-#~ msgid "Skip Internet connection check (disables automatic package installation)"
-#~ msgstr "Praleisti interneto ryšio tikrinimą (išjungs automatinį paketų diegimą)"
-
-#~ msgid "StartWizard"
-#~ msgstr "Paleiskite vedlį"
-
-#~ msgid ""
-#~ "Thank you for using the wizard.\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Ačiū, kad naudojatės vedliu.\n"
-#~ "Spauskite OK, kad tęsti."
-
-#~ msgid ""
-#~ "Thank you for using the wizard. Your %s %s is now ready to use.\n"
-#~ "Please press OK to start using your %s %s."
-#~ msgstr ""
-#~ "Ačiū, kad naudojatės vedliu. Jūsų %s %s paruoštas naudojimui.\n"
-#~ "Spauskite OK ir pradėkite naudotis savo %s %s."
-
-#~ msgid "The backup failed. Please choose a different backup location."
-#~ msgstr "Išsaugoti nepavyko. Pasirinkite kitą vietą išsaugojimui."
-
-#~ msgid ""
-#~ "The wireless LAN plugin is not installed!\n"
-#~ "Please install it and choose what you want to do next."
-#~ msgstr ""
-#~ "Belaidžio tinklo priedas neįdiegtas!\n"
-#~ "Prašome įdiegti tai ir pasirinkite ką jūs norite daryti vėliau."
-
-#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-#~ msgstr "Nustatymų vedlys gali išsaugoti Jūsų dabartinius nustatymus. Jūs norite tai padaryti dabar?"
-
-#~ msgid "The wizard is finished now."
-#~ msgstr "Vedlys baigė darbą."
-
-#~ msgid ""
-#~ "Use automatic mode detection.\n"
-#~ " This option reads all supported modes from your TV.\n"
-#~ " Please disable it only if you want to customize the preferred configuration."
-#~ msgstr ""
-#~ "Naudokite automatinį režimo aptikimą.\n"
-#~ " Ši parinktis parodo visus jūsų televizoriaus palaikomus režimus.\n"
-#~ " Prašome jį išjungti tik tada, jei norite pritaikyti pageidaujamą konfigūraciją."
-
-#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-#~ msgstr "Naudokitės mygtukais aukštyn/žemyn valdymo pulte, nustatymų pasirinkimui. Po to spauskite OK."
-
-#~ msgid ""
-#~ "Video input selection\n"
-#~ "\n"
-#~ "Please press OK if you can see this page on your TV (or select a different input port).\n"
-#~ "\n"
-#~ "The next input port will be automatically probed in 10 seconds."
-#~ msgstr ""
-#~ "Vaizdo įėjimo pasirinkimas\n"
-#~ "\n"
-#~ " Prašome spausti OK, jei jūs galite matyti šį puslapį savo televizoriuje (ar išrinkti skirtingą įėjimo jungtį).\n"
-#~ "\n"
-#~ "Kita įėjimo jungtis bus automatiškai išbandyta po 10 sekundžių."
-
-#~ msgid "Video mode selection."
-#~ msgstr "Vaizdo režimo pasirinkimas."
-
-#~ msgid "VideoWizard"
-#~ msgstr "Vaizdo vedlys"
-
-#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-#~ msgstr "Sveiki atvykę į atvaizdo atnaujinimo vedlį. Šis vedlys padės jums atnaujinti Jūsų %s %s programinę įrangą su galimybe išsaugoti dabartinius nustatymus ir trumpai patars, kaip visa tai atlikti."
-
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-#~ "\n"
-#~ "Press OK to start configuring your network"
-#~ msgstr ""
-#~ "Sveiki atvykę.\n"
-#~ "\n"
-#~ "Jei jūs norėsite prijungti savo imtuvą prie interneto, šis vedlys ves jus per pagrindinę tinklo sąranką jūsų imtuve.\n"
-#~ "\n"
-#~ "Spauskite OK mygtuką, kad pradėti tinklo konfigūravimą"
-
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "This start wizard will guide you through the basic setup of your %s %s.\n"
-#~ "Press the OK button on your remote control to move to the next step."
-#~ msgstr ""
-#~ "Sveiki.\n"
-#~ "\n"
-#~ "Šis pradinis vedlys padės nustatyti pagrindinius jūsų  %s %s parametrus.\n"
-#~ "Kad pereiti į sekantį žingsnį, spauskite 'OK'."
-
-#~ msgid "Wireless network connection setup"
-#~ msgstr "Belaidžio tinklo prisijungimo valdymas"
-
-#~ msgid "Wireless network connection setup."
-#~ msgstr "Belaidžio tinklo prisijungimo valdymas."
-
-#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-#~ msgstr "Jūs nusprendėte padaryti atsarginę kopiją savo nustatymų. Prašome spausti OK, kad pradėtumėte atsarginę kopiją dabar."
-
-#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-#~ msgstr "Jūs nusprendėte atkurti savo nustatymus. Enigma2 iš naujo pasileis po atkūrimo. Prašome spausti OK, kad pradėtumėte atkūrimą dabar."
-
-#~ msgid ""
-#~ "You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-#~ "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
-#~ msgstr ""
-#~ "Jums reikia kompiuterio, pajungto prie jūsų %s %s. Išsamesnių instrukcijų ieškokite https://www.opena.tv.\n"
-#~ "Jūsų %s %s dabar bus sustabdytas. Kai atliksite šio internetinio puslapio atnaujinimo instrukcijas, naujoji programinė įranga paklaus, ar atkurti jūsų nustatymus."
-
-#~ msgid "Your %s %s does not have an Internet connection"
-#~ msgstr "Jūsų %s %s neturi interneto ryšio"
-
-#~ msgid "Your %s %s is not connected to the Internet"
-#~ msgstr "Jūsų %s %s neprijungtas prie interneto"
-
-#~ msgid ""
-#~ "Your %s %s is now ready to use.\n"
-#~ "\n"
-#~ "Your Internet connection is working now.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Jūsų %s %s dabar paruoštas naudoti.\n"
-#~ "\n"
-#~ "Jūsų interneto ryšys dabar veikia.\n"
-#~ "\n"
-#~ "Spauskite 'OK', kad tęsti."
-
-#~ msgid "Your %s %s is shutting down. Please wait..."
-#~ msgstr "Jūsų %s%s išsijungia. Palaukite..."
-
-#~ msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-#~ msgstr "Atsarginė kopija sukurta. Dabar išaiškinsime tolimesnius atnaujinimo proceso veiksmus."
-
-#~ msgid ""
-#~ "Your wireless LAN Internet connection could not be started!\n"
-#~ "Have you attached your USB WLAN Stick?\n"
-#~ "\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Belaidis interneto ryšys neveikia!\n"
-#~ "Ar prijungėte USB belaidžio tinklo įrenginį?\n"
-#~ "\n"
-#~ "Pasirinkite, ką jūs norėsite daryti toliau."
-
-#~ msgid ""
-#~ "\n"
-#~ "   Please press OK to start Kodi..."
-#~ msgstr ""
-#~ "\n"
-#~ "   Norėdami paleisti Kodi, spauskite OK..."
-
-#~ msgid ""
-#~ "\n"
-#~ "  WARNING: \n"
-#~ "  There is not enough space to install Kodi!"
-#~ msgstr ""
-#~ "\n"
-#~ "  DĖMESIO: \n"
-#~ "  Nėra pakankamai vietos Kodi įdiegimui!"
-
-#~ msgid ""
-#~ "\n"
-#~ " Kodi not present. Proceed with install?"
-#~ msgstr ""
-#~ "\n"
-#~ " Kodi nėra. Tęsti įdiegimą?"
-
-#, python-format
-#~ msgid "%d KB"
-#~ msgstr "%d KB"
-
-#, python-format
-#~ msgid "%s - %s (%s%d min)"
-#~ msgstr "%s - %s (%s%d min)"
-
-#~ msgid "60 minutes"
-#~ msgstr "60 minučių"
-
-#~ msgid "Basic settings"
-#~ msgstr "Pagrindiniai nustatymai"
-
-#~ msgid "Capacity: "
-#~ msgstr "Talpa: "
-
-#~ msgid "Choose Bouquet"
-#~ msgstr "Pasirinkite paketą"
-
-#~ msgid "Cleaning Trashes"
-#~ msgstr "Valomos šiukšliadėžės"
-
-#~ msgid "Delete EPG"
-#~ msgstr "Trinti EPG"
-
-#~ msgid ""
-#~ "Do you really want to initialize the device?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Ar tikrai norite inicializuoti šį įrenginį?\n"
-#~ "Visi jame esantys duomenys bus prarasti!"
-
-#~ msgid "Extended GUI"
-#~ msgstr "Išplėstinė grafinė aplinka"
-
-#~ msgid "Keyboard map"
-#~ msgstr "Klaviatūros išdėstymas"
-
-#~ msgid "Kodi installed:"
-#~ msgstr "Kodi įdiegta:"
-
-#~ msgid "Kodi media player"
-#~ msgstr "Kodi medijos grotuvas"
-
-#~ msgid "Kodi/extra partition free space:"
-#~ msgstr "Kodi/extra skaidinio laisva vieta:"
-
-#~ msgid "Load EPG"
-#~ msgstr "Įkelti EPG"
-
-#~ msgid "Load/Save/Delete"
-#~ msgstr "Įkelti, išsaugoti ir trinti"
-
-#~ msgid "Model: "
-#~ msgstr "Modelis: "
-
-#~ msgid "Please press OK to start Kodi..."
-#~ msgstr "Prašome paspausti OK, kad paleisti Kodi..."
-
-#~ msgid "Restart Enigma2 to apply the changes?"
-#~ msgstr "Kad įsigaliotų, paleisti enigma2 iš naujo?"
-
-#~ msgid "STB Display"
-#~ msgstr "Imtuvo ekranas"
-
-#~ msgid "Save EPG"
-#~ msgstr "Išsaugoti EPG"
-
-#~ msgid "Start Kodi"
-#~ msgstr "Pradėti Kodi"
-
-#~ msgid "System partition free space:"
-#~ msgstr "Sistemos skaidinio laisva vieta:"
-
-#~ msgid "Trashcan:"
-#~ msgstr "Šiukšliadėžė:"
-
-#~ msgid "and never ask again this session again"
-#~ msgstr "ir niekada neklausti šios sesijos dar kartą"
-
-#~ msgid "blacklist"
-#~ msgstr "juodas sąrašas"
-
-#~ msgid "show transponder info"
-#~ msgstr "rodyti transponderio informaciją"
-
-#, python-format
-#~ msgid "%s %s software because updates are available."
-#~ msgstr "%s %s galimi nauji atnaujinimai."
-
-#~ msgid "A small overview of the available icon states and actions."
-#~ msgstr "Galimų logotipų būsenos ir veiksmų apžvalga."
-
-#~ msgid "Aborting update progress"
-#~ msgstr "Atnaujinimas nutraukiamas"
-
-#~ msgid "Author: "
-#~ msgstr "Autorius: "
-
-#~ msgid "Caution update not yet tested !!"
-#~ msgstr "Atsargiai, atnaujinimas dar neišbandytas !!"
-
-#~ msgid "Communication"
-#~ msgstr "Bendravimas, ryšiai"
-
-#~ msgid "Continue"
-#~ msgstr "Tęsti"
-
-#~ msgid "Default settings"
-#~ msgstr "Numatytieji nustatymai"
-
-#~ msgid "Display and user interface"
-#~ msgstr "Monitorius ir vartotojo sąsaja"
-
-#~ msgid "Do you want to update your box?"
-#~ msgstr "Ar norite atnaujinti savo imtuvą?"
-
-#, python-format
-#~ msgid "Done - Installed or upgraded %d packages"
-#~ msgstr "Baigta - įdiegta arba atnaujinta %d paketų"
-
-#~ msgid "Extensions Management"
-#~ msgstr "Plėtinių valdymas"
-
-#~ msgid "Following tasks will be done after you press OK!"
-#~ msgstr "Šios užduotys bus atliktos, kai paspausite 'OK'!"
-
-#~ msgid "For more information see https://www.opena.tv"
-#~ msgstr "Daugiau informacijos rasite https://www.opena.tv"
-
-#~ msgid "Install or remove finished."
-#~ msgstr "Įdiegimas arba pašalinimas baigtas."
-
-#~ msgid "Multimedia"
-#~ msgstr "Daugialypė terpė"
-
-#~ msgid "No description available."
-#~ msgstr "Nėra aprašymo."
-
-#~ msgid "No network connection available."
-#~ msgstr "Nėra prieinamo tinklo ryšio."
-
-#~ msgid "No packages were upgraded yet. So you can check your network and try again."
-#~ msgstr "Paketai neatnaujinti. Patikrinkite tinklo nustatymus ir bandykite dar kartą."
-
-#~ msgid "Only extensions."
-#~ msgstr "Tik plėtinius."
-
-#~ msgid "Plugin Details"
-#~ msgstr "Priedo informacija"
-
-#, python-format
-#~ msgid "Plugin Details: %s"
-#~ msgstr "Išsami priedo informacija: %s"
-
-#~ msgid "Plugin Manager Activity Information"
-#~ msgstr "Priedų tvarkyklės veiklos informacija"
-
-#~ msgid "Plugin Manager Help"
-#~ msgstr "Priedų tvarkyklės žinynas"
-
-#~ msgid "Process"
-#~ msgstr "Apdorojama"
-
-#~ msgid "Satellite equipment"
-#~ msgstr "Palydovinė įranga"
-
-#~ msgid "Searching for available updates. Please wait..."
-#~ msgstr "Ieškoma galimų atnaujinimų. Palaukite..."
-
-#~ msgid "Searching for new installed or removed packages. Please wait..."
-#~ msgstr "Ieškoma naujai įdiegtų, ar pašalintų paketų. Palaukite..."
-
-#~ msgid "Skins"
-#~ msgstr "Temos"
-
-#~ msgid "Software"
-#~ msgstr "Programinė įranga"
-
-#~ msgid "Sorry, no details available!"
-#~ msgstr "Atsiprašome, smulkesnės informacijos nėra!"
-
-#~ msgid ""
-#~ "The software management extension is not installed!\n"
-#~ "Please install it."
-#~ msgstr ""
-#~ "Programinės įrangos valdymo priedas neįdiegtas!\n"
-#~ "Įdiekite jį."
-
-#~ msgid "The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason"
-#~ msgstr "Dabartinio atnaujinimo būsenos negalima patikrinti, nes https://www.opena.tv nepasiekiama dėl kažkokios tai priežasties"
-
-#~ msgid "There are at least "
-#~ msgstr "Bent jau yra "
-
-#~ msgid "There are currently no outstanding actions."
-#~ msgstr "Šiuo metu nėra jokių neįvykdytų veiksmų."
-
-#~ msgid "This allows you to show languages in downloads"
-#~ msgstr "Ši parinktis leidžia jums parodyti kalbas, skirtas atsisiuntimui"
-
-#~ msgid "This plugin is installed."
-#~ msgstr "Šis priedas yra įdiegtas."
-
-#~ msgid "This plugin is not installed."
-#~ msgstr "Šis priedas neįdiegtas."
-
-#~ msgid "This plugin will be installed."
-#~ msgstr "Šis priedas bus įdiegtas."
-
-#~ msgid "This plugin will be removed."
-#~ msgstr "Šis priedas jau pašalintas."
-
-#~ msgid "Undo install"
-#~ msgstr "Atšaukti diegimą"
-
-#~ msgid "Undo uninstall"
-#~ msgstr "Atšaukti pašalinimą"
-
-#~ msgid "Uninstall"
-#~ msgstr "Išinstaliuoti"
-
-#~ msgid "Update at your own risk"
-#~ msgstr "Atnaujinti savo pačių rizika"
-
-#~ msgid "Update feed not available."
-#~ msgstr "Atnaujinimo šaltinis nepasiekiamas."
-
-#~ msgid "Update is reported as faulty !!"
-#~ msgstr "Atnaujinimas pranešė, kad klaidingas!!"
-
-#~ msgid "Updating software catalog"
-#~ msgstr "Atnaujinamas programinės įrangos katalogas"
-
-#~ msgid "Upgrading"
-#~ msgstr "Atnaujinama"
-
-#~ msgid "View details"
-#~ msgstr "Smulkiau"
-
-#~ msgid "View list of available "
-#~ msgstr "Peržiūrėti galimą sąrašą "
-
-#~ msgid "View list of available CommonInterface extensions"
-#~ msgstr "Peržiūrėti CI modulių galimą plėtinių sąrašą"
-
-#~ msgid "View list of available EPG extensions."
-#~ msgstr "Peržiūrėti sąrašą galimų EPG plėtinių."
-
-#~ msgid "View list of available Satellite equipment extensions."
-#~ msgstr "Peržiūrėti sąrašą galimų palydovinės įrangos plėtinių."
-
-#~ msgid "View list of available communication extensions."
-#~ msgstr "Peržiūrėti sąrašą galimų komunikacijos plėtinių."
-
-#~ msgid "View list of available default settings"
-#~ msgstr "Peržiūrėti galimų numatytųjų nuostatų sąrašą"
-
-#~ msgid "View list of available display and user interface extensions."
-#~ msgstr "Peržiūrėti sąrašą galimų monitoriaus ir vartotojo sąsajos priedų."
-
-#~ msgid "View list of available multimedia extensions."
-#~ msgstr "Peržiūrėti sąrašą galimų multimedijos plėtinių."
-
-#~ msgid "View list of available networking extensions"
-#~ msgstr "Peržiūrėti galimų tinklo plėtinių sąrašą"
-
-#~ msgid "View list of available recording extensions"
-#~ msgstr "Peržiūrėti galimų įrašymo plėtinių sąrašą"
-
-#~ msgid "View list of available skins"
-#~ msgstr "Peržiūrėti galimų vartotojo aplinkos temų sąrašą"
-
-#~ msgid "View list of available software extensions"
-#~ msgstr "Peržiūrėti galimos programinės įrangos plėtinių sąrašą"
-
-#~ msgid "View list of available system extensions"
-#~ msgstr "Peržiūrėti sąrašą galimam sistemos papildymui"
-
-#~ msgid "You can cancel the installation."
-#~ msgstr "Jūs galite nutraukti įdiegimą."
-
-#~ msgid "You can cancel the removal."
-#~ msgstr "Jūs galite nutraukti šalinimą."
-
-#~ msgid "You can install this plugin."
-#~ msgstr "Galite įdiegti šį priedą."
-
-#~ msgid "You can remove this plugin."
-#~ msgstr "Galite pašalinti šį priedą."
-
-#, python-format
-#~ msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-#~ msgstr "Jūsų %s %s nėra tinkamai prijungtas prie interneto. Patikrinkite ir bandykite dar kartą."
-
-#, python-format
-#~ msgid ""
-#~ "Your image is out of date!\n"
-#~ "\n"
-#~ "After such a long time, there is a risk that your %s %s will not\n"
-#~ "boot after online-update, or will show disfunction in running Image.\n"
-#~ "\n"
-#~ "A new flash will increase the stability\n"
-#~ "\n"
-#~ "An online update is done at your own risk !!\n"
-#~ "\n"
-#~ "\n"
-#~ "Do you still want to update?"
-#~ msgstr ""
-#~ "Jūsų atvaizdas yra pasenęs!\n"
-#~ "Po tokio ilgo laiko, yra rizika, kad jūsų %s%s neužsikraus\n"
-#~ "Po internetinio atnaujinimo, arba parodys sutrikimus veikiančiam atvaizdui.\n"
-#~ "\n"
-#~ "Naujas įdiegimas padidina stabilumą\n"
-#~ "\n"
-#~ "Internetinį atnaujinimą darote savo pačių rizika !!\n"
-#~ "\n"
-#~ "\n"
-#~ "Ar jūs vis dar norite atnaujinti?"
-
-#~ msgid "extensions."
-#~ msgstr "plėtiniai."
-
-#~ msgid "packages selected."
-#~ msgstr "pasirinkti paketai."
-
-#~ msgid "updates available."
-#~ msgstr "galimi atnaujinimai."
-
-#, python-format
-#~ msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-#~ msgstr "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo vadovu, prieš paleisdami %s %s iš naujo."
-
-#~ msgid "Additional Info"
-#~ msgstr "Papildoma info"
-
-#~ msgid "Are you sure you want to send this log:\n"
-#~ msgstr "Ar tikrai norite pasiųsti šį žurnalą:\n"
-
-#~ msgid "Attach a file"
-#~ msgstr "Prisegti failą"
-
-#~ msgid "Do you want to add any additional information ?"
-#~ msgstr "Ar norite pridėti dar kokią papildomą informaciją?"
-
-#~ msgid ""
-#~ "Do you want to attach a text file to explain the log ?\n"
-#~ "(choose 'No' to type message using virtual keyboard.)"
-#~ msgstr ""
-#~ "Ar norite prisegti teksto failą, paaiškinantį šį žurnalą ?\n"
-#~ "(pasirinkite 'Ne', kad parašyti pranešimą, naudojant virtualią klaviatūrą.)"
-
-#~ msgid ""
-#~ "Do you want to send all selected files:\n"
-#~ "(choose 'No' to only send the currently selected file.)"
-#~ msgstr ""
-#~ "Ar norite pasiųsti visus pasirinktus failus:\n"
-#~ "(pasirinkite 'Ne', kad siųsti tik šiuo metu pasirinktą failą.)"
-
-#, python-format
-#~ msgid ""
-#~ "Error:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Klaida:\n"
-#~ "%s"
-
-#~ msgid "Send"
-#~ msgstr "Siųsti"
-
-#~ msgid "Send Confirmation"
-#~ msgstr "Siųsti patvirtinimą"
-
-#~ msgid "Use OpenTV EPG information when it is available."
-#~ msgstr "Naudokite OpenTV EPG informaciją, kai ji galima."
-
-#~ msgid "You have already sent this log, are you sure you want to resend this log:\n"
-#~ msgstr "Jūs jau nusiuntėte šį žurnalą, ar jūs tikrai norite išsiųsti šį žurnalą:\n"
-
-#~ msgid ""
-#~ "You have not setup your user info in the setup screen\n"
-#~ "Press MENU, and enter your info, then try again"
-#~ msgstr ""
-#~ "Jūs turite nustatyti jūsų vartotojo informaciją valdymo ekrane\n"
-#~ "Paspauskite MENU ir įrašykite savo info, tada bandykite dar kartą"
-
-#~ msgid "You have selected no logs to send."
-#~ msgstr "Jūs nepasirinkote žurnalų išsiuntimui."
-
-#~ msgid ""
-#~ "has been sent to the SVN team team.\n"
-#~ "please quote"
-#~ msgstr ""
-#~ "buvo išsiųsta į SVN komanda komanda.\n"
-#~ "prašome citatą"
-
-#~ msgid "rename"
-#~ msgstr "pervardinti"
-
-#~ msgid "when asking question about this log"
-#~ msgstr "kai klausia klausimą apie šį žurnalą"
-
-#~ msgid ""
-#~ "when asking question about this log\n"
-#~ "\n"
-#~ "A copy has been sent to yourself."
-#~ msgstr ""
-#~ "kai klausia klausimą apie šį žurnalą\n"
-#~ "Kopija buvo išsiųsta sau."
-
-#~ msgid "LOF"
-#~ msgstr "LOF"
-
-#~ msgid "Error: The root file system can not be copied!"
-#~ msgstr "Klaida: šakninės failų sistemos negalima nukopijuoti!"
-
-#~ msgid "Error: The root file system can not be deleted!"
-#~ msgstr "Klaida: šakninės failų sistemos negalima ištrinti!"
-
-#~ msgid "Error: The root file system can not be moved!"
-#~ msgstr "Klaida: šakninės failų sistemos negalima perkelti!"
-
-#~ msgid "Error: The root file system can not be renamed!"
-#~ msgstr "Klaida: šakninės failų sistemos negalima pervardyti!"
-
-#~ msgid "Virtual KeyBoard Functions"
-#~ msgstr "Virtualios klaviatūros funkcijos"
-
-#, python-format
-#~ msgid ""
-#~ "\n"
-#~ "optional parameter:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "\n"
-#~ "pasirenkamas parametras:\n"
-#~ "%s"
-
-#, python-format
-#~ msgid " ('%s') ends successfully."
-#~ msgstr " ('%s') sėkmingai baigėsi."
-
-#, python-format
-#~ msgid " ('%s') ends with error messages."
-#~ msgstr " ('%s') baigėsi su klaidų pranešimais."
-
-#, python-format
-#~ msgid " ('%s') ends with error number [%d]."
-#~ msgstr " ('%s') baigiasi klaidos numeriu [% d]."
-
-#, python-format
-#~ msgid " - %d elements exist! Overwrite"
-#~ msgstr " - yra %d elementai! Perrašyti"
-
-#~ msgid " - 1 element exist! Overwrite"
-#~ msgstr " - yra 1 elementas! Perrašyti"
-
-#~ msgid " - file exist! Overwrite"
-#~ msgstr " - failas yra! Perrašyti"
-
-#~ msgid " - folder exist! Overwrite"
-#~ msgstr " - aplankas yra! Perrašyti"
-
-#~ msgid " or save additional the picture to a file"
-#~ msgstr " arba išsaugokite papildomą paveikslėlį į failą"
-
-#, python-format
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#, python-format
-#~ msgid "%s (%s"
-#~ msgstr "%s (%s"
-
-#, python-format
-#~ msgid "%s - extraction errors."
-#~ msgstr "%s - išarchyvavimo klaidos."
-
-#, python-format
-#~ msgid "%s is password protected."
-#~ msgstr "%s yra apsaugota slaptažodžiu."
-
-#, python-format
-#~ msgid "%s successfully extracted."
-#~ msgstr "%s sėkmingai išarchyvuota."
-
-#, python-format
-#~ msgid "'%s' not installed and no known package"
-#~ msgstr "'%s' neįdiegta ir nėra žinomo paketo"
-
-#, python-format
-#~ msgid "(%d jobs)"
-#~ msgstr "(%d darbų)"
-
-#~ msgid "(1 job)"
-#~ msgstr "(1 darbas)"
-
-#~ msgid "(Selectmode)"
-#~ msgstr "(Pasirinkimo būsena)"
-
-#~ msgid ": "
-#~ msgstr ": "
-
-#~ msgid "?"
-#~ msgstr "?"
-
-#~ msgid "Accessed:"
-#~ msgstr "Prieinama:"
-
-#~ msgid "Activate left-hand file list as multi-select source"
-#~ msgstr "Aktyvuokite kairiojo rinkmenos sąrašą kaip kelių pasirinkimo šaltinį"
-
-#~ msgid "Activate left-hand file list as source"
-#~ msgstr "Aktyvuokite kairiojo failo sąrašą kaip šaltinį"
-
-#~ msgid "Activate right-hand file list as multi-select source"
-#~ msgstr "Aktyvuokite dešinįjį failų sąrašą kaip kelių pasirinkimo šaltinį"
-
-#~ msgid "Activate right-hand file list as source"
-#~ msgstr "Aktyvuokite dešinįjį failų sąrašą kaip šaltinį"
-
-#~ msgid "Add plugin to Extensions menu*"
-#~ msgstr "Pridėti priedą į išplėstinį meniu*"
-
-#~ msgid "Add plugin to main menu*"
-#~ msgstr "Pridėti priedą į pagrindinį meniu*"
-
-#~ msgid "CPU priority for script execution"
-#~ msgstr "CPU prioritetas scenarijų vykdymui"
-
-#~ msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
-#~ msgstr "Skaičiuoti ir rodyti katalogo dydį. Pastaba: tai gali sulėtinti vartotojo sąsają pasirinkus aplanką!"
-
-#~ msgid "Calculate file checksums"
-#~ msgstr "Apskaičiuoti failo kontrolines sumas"
-
-#, python-format
-#~ msgid ""
-#~ "Can not run %s: %s.\n"
-#~ "%s may be in a plugin that is not installed."
-#~ msgstr ""
-#~ "Nepavyksta paleisti %s: %s.\n"
-#~ " %s gali būti, kad priedas nėra įdiegtas."
-
-#, python-format
-#~ msgid "Can't read link contents: %s"
-#~ msgstr "Negalima skaityti nuorodų turinio: %s"
-
-#~ msgid "Change buttons for list navigation"
-#~ msgstr "Keisti sąrašo navigacijos mygtukus"
-
-#~ msgid "Channel button always changes sides"
-#~ msgstr "Kanalo mygtukas visada keičia puses"
-
-#, python-format
-#~ msgid "Copy %d elements"
-#~ msgstr "Kopijuoti %d elementus"
-
-#~ msgid "Copy 1 element"
-#~ msgstr "Kopijuoti 1 elementą"
-
-#~ msgid "Copy file"
-#~ msgstr "Kopijuoti failą"
-
-#~ msgid "Copy file/directory to target directory"
-#~ msgstr "Nukopijuoti failą/katalogą į taikomą katalogą"
-
-#~ msgid "Copy files/directories to target directory"
-#~ msgstr "Nukopijuokite failus/katalogus į nukreiptą katalogą"
-
-#~ msgid "Copy folder"
-#~ msgstr "Kopijuoti aplanką"
-
-#~ msgid "Create directory/folder"
-#~ msgstr "Sukurti katalogą/aplanką"
-
-#~ msgid "Create symlink to file"
-#~ msgstr "Sukurti nuorodą į failą"
-
-#~ msgid "Create user-named symbolic link"
-#~ msgstr "Sukurti vartotojo pavadintą simbolinę nuorodą"
-
-#~ msgid "Date reverse"
-#~ msgstr "Atvirkštinė data"
-
-#~ msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-#~ msgstr "Numatytasis CPU prioritetas (puikus) vykdomiems scenarijus. Tai gali sumažinti apkrovą, kad scenarijai netrukdytų likusiai sistemos daliai. (aukštesnės vertės = žemesnis prioritetas)"
-
-#~ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-#~ msgstr "Numatytasis I/O prioritetas (joninis) vykdomiems scenarijus. Tai gali sumažinti apkrovą, kad scenarijai netrukdytų likusiai sistemos daliai. (aukštesnės vertės = žemesnis prioritetas)"
-
-#~ msgid "Default directory sorting"
-#~ msgstr "Numatytasis katalogų rūšiavimas"
-
-#~ msgid "Default file sorting left"
-#~ msgstr "Numatytasis failų rūšiavimas kairėje"
-
-#~ msgid "Default file sorting right"
-#~ msgstr "Numatytasis failų rūšiavimas dešinėje"
-
-#~ msgid "Default folder"
-#~ msgstr "Numatytasis aplankas"
-
-#~ msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-#~ msgstr "Numatytasis aplankas, jei kairysis arba dešinysis aplankas nėra išsaugotas, ir mygtuko 5 tikslinis aplankas."
-
-#~ msgid "Default sorting method for directories on both sides."
-#~ msgstr "Numatytasis abiejų pusių katalogų rūšiavimo metodas."
-
-#~ msgid "Default sorting method for files on the left side."
-#~ msgstr "Numatytasis failų rūšiavimo būdas kairėje pusėje."
-
-#~ msgid "Default sorting method for files on the right side."
-#~ msgstr "Numatytasis failų rūšiavimo būdas dešinėje pusėje."
-
-#, python-format
-#~ msgid "Delete %d elements"
-#~ msgstr "Ištrinti %d elementus"
-
-#~ msgid "Delete 1 element"
-#~ msgstr "Ištrinti 1 elementą"
-
-#~ msgid "Delete file or directory (and all its contents)"
-#~ msgstr "Ištrinti failą ar katalogą (ir visą jo turinį)"
-
-#~ msgid "Delete folder"
-#~ msgstr "Trinti aplanką"
-
-#~ msgid "Delete the selected files or directories"
-#~ msgstr "Ištrinkite pasirinktus failus ar katalogus"
-
-#~ msgid "Do you want change rights?\n"
-#~ msgstr "Ar norite pakeisti teises?\n"
-
-#~ msgid "Do you want to view or run the script?\n"
-#~ msgstr "Ar norite peržiūrėti ar paleisti scenarijų?\n"
-
-#~ msgid "Edit line "
-#~ msgstr "Redaguokite eilutę "
-
-#~ msgid "Edit position is the line end"
-#~ msgstr "Redagavimo pozicija yra linijos pabaiga"
-
-#~ msgid "Enter multi-file selection mode"
-#~ msgstr "Įeikite į kelių failų pasirinkimo režimą"
-
-#, python-format
-#~ msgid ""
-#~ "Error creating directory %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Klaida kuriant katalogą %s:\n"
-#~ "%s"
-
-#, python-format
-#~ msgid ""
-#~ "Error linking %s to %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Klaida susiejant %s su %s:\n"
-#~ "%s"
-
-#, python-format
-#~ msgid ""
-#~ "Error renaming %s to %s:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Klaida pervadinant %s į %s:\n"
-#~ "%s"
-
-#~ msgid "Error..."
-#~ msgstr "Klaida..."
-
-#~ msgid "Exit editor and write changes (if any)"
-#~ msgstr "Uždarykite redaktorių ir rašykite pakeitimus (jei yra)"
-
-#~ msgid "Exit picture viewer"
-#~ msgstr "Išeiti iš nuotraukų peržiūros"
-
-#~ msgid "File Commander - Addon File-Viewer"
-#~ msgstr "Failų valdytojas - pridėtų failų peržiūra"
-
-#~ msgid "File Commander - Addon Mediaplayer"
-#~ msgstr "Failų valdytojas - pridėtų medijų grotuvas"
-
-#~ msgid "File Commander - Addon Movieplayer"
-#~ msgstr "Failų valdytojas - pridėtų filmų grotuvas"
-
-#~ msgid "File Commander - all Task's are completed!"
-#~ msgstr "Failų valdytojas - visos užduotys baigtos!"
-
-#~ msgid "File Commander - generalised archive handler"
-#~ msgstr "Failų valdytojas - apibendrintas archyvų tvarkytojas"
-
-#~ msgid "File Commander - gzip Addon"
-#~ msgstr "Failų valdytojas - gzip priedas"
-
-#~ msgid "File Commander - ipk Addon"
-#~ msgstr "Failų valdytojas - ipk priedas"
-
-#~ msgid "File Commander - tar Addon"
-#~ msgstr "Failų valdytojas - tar priedas"
-
-#~ msgid "File Commander - unrar Addon"
-#~ msgstr "Failų valdytojas - unrar priedas"
-
-#~ msgid "File Commander - unzip Addon"
-#~ msgstr "Failų valdytojas - unzip priedas"
-
-#~ msgid "File Commander context menu"
-#~ msgstr "Failų valdytojo kontekstinis meniu"
-
-#~ msgid "File Commander menu"
-#~ msgstr "Failų valdytojo meniu"
-
-#~ msgid "File checksums to calculate for button 9"
-#~ msgstr "Failo kontrolinės sumos, skirtos skaičiuoti 9 mygtuką"
-
-#~ msgid "File checksums/hashes"
-#~ msgstr "Failų kontrolinės sumos"
-
-#, python-format
-#~ msgid "File not found: %s"
-#~ msgstr "Failas nerastas: %s"
-
-#~ msgid "File/Directory Status Information"
-#~ msgstr "Failo/katalogo būsenos informacija"
-
-#~ msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
-#~ msgstr "Filtrų plėtinys 'Mano plėtinys' nustatymui 'Filtrų plėtinys'. Naudokite plėtinio pavadinimą be '.'."
-
-#~ msgid "Filter extension, (*) appears in title"
-#~ msgstr "Filtruoti išplėtimą, (*) pasirodo pavadinime"
-
-#~ msgid "Filter visible file classes by extension."
-#~ msgstr "Filtruoti matomas failų klases pagal plėtinį."
-
-#~ msgid "Go to bookmarked folder"
-#~ msgstr "Eiti į aplanką su žymėmis"
-
-#~ msgid "Go to end of file"
-#~ msgstr "Eikite į failo pabaigą"
-
-#~ msgid "Go to parent directory"
-#~ msgstr "Eikite į pagrindinį katalogą"
-
-#~ msgid "Go to start of file"
-#~ msgstr "Eikite į failo pradžią"
-
-#~ msgid "Group:"
-#~ msgstr "Grupė:"
-
-#~ msgid "I/O priority for script execution"
-#~ msgstr "I/O prioritetas scenarijų vykdymui"
-
-#~ msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-#~ msgstr "Jei redaguojate failą, galite nustatyti žymeklio pradinę padėtį linijos pabaigoje arba pradžioje."
-
-#~ msgid "Inode:"
-#~ msgstr "Inode:"
-
-#~ msgid "Insert"
-#~ msgstr "Įterpti"
-
-#, python-format
-#~ msgid "Install '%s' and enable this operation"
-#~ msgstr "Įdiegti '%s' ir įjungti šią operaciją"
-
-#~ msgid "Installing Plugin ..."
-#~ msgstr "Įdiegiamas priedas ..."
-
-#~ msgid "It is not possible to calculate hashes on <List of Storage Devices>"
-#~ msgstr "Negalima apskaičiuoti maišų <Saugojimo įrenginių sąrašas>"
-
-#~ msgid "It is not possible to change the file mode of <List of Storage Devices>"
-#~ msgstr "Negalima pakeisti failo režimo <Saugojimo įrenginių sąrašas>"
-
-#~ msgid "It is not possible to get the file status of <List of Storage Devices>"
-#~ msgstr "Negalima gauti failo būsenos <Saugojimo įrenginių sąrašas>"
-
-#, python-format
-#~ msgid "It is not possible to run '%s' on <List of Storage Devices>"
-#~ msgstr "'%s' neįmanoma paleisti <Saugojimo įrenginių sąrašas>"
-
-#~ msgid "It's not possible to rename the file system root."
-#~ msgstr "Negalima pervardyti failų sistemos šaknies."
-
-#~ msgid "Leave File Commander"
-#~ msgstr "Palikite Failų valdytoją"
-
-#~ msgid "Leave multi-select mode"
-#~ msgstr "Palikite kelių failų pasirinkimo režimą"
-
-#~ msgid "Link target:"
-#~ msgstr "Nuorodos tikslas:"
-
-#~ msgid "Links:"
-#~ msgstr "Nuorodos:"
-
-#~ msgid "Make File Commander accessible from the Extensions menu."
-#~ msgstr "Padarykite Failų valdytoją prieinamą išplėstiniame meniu."
-
-#~ msgid "Make File Commander accessible from the main menu."
-#~ msgstr "Padarykite Failų valdytoją prieinamą pagrindiniame meniu."
-
-#~ msgid "Metadata changed:"
-#~ msgstr "Pakeisti meta duomenys:"
-
-#, python-format
-#~ msgid "Mode %s (%04o)"
-#~ msgstr "Režimas %s (%04o)"
-
-#~ msgid "Modified:"
-#~ msgstr "Pakeista:"
-
-#, python-format
-#~ msgid "Move %d elements"
-#~ msgstr "Perkelti %d elementus"
-
-#~ msgid "Move 1 element"
-#~ msgstr "Perkelti 1 elementą"
-
-#~ msgid "Move down list"
-#~ msgstr "Perkelti žemyn sąrašą"
-
-#~ msgid "Move file"
-#~ msgstr "Perkelti failą"
-
-#~ msgid "Move file/directory to target directory"
-#~ msgstr "Perkelti failą/katalogą į taikomą katalogą"
-
-#~ msgid "Move files/directories to target directory"
-#~ msgstr "Perkelkite failus/katalogus į taikomą katalogą"
-
-#~ msgid "Move folder"
-#~ msgstr "Perkelti aplanką"
-
-#~ msgid "Move up list"
-#~ msgstr "Perkelti sąrašą"
-
-#~ msgid "My extension"
-#~ msgstr "Išplėtimai"
-
-#~ msgid "Name reverse"
-#~ msgstr "Atvirkštinis pavadinimas"
-
-#~ msgid "New folder"
-#~ msgstr "Naujas aplankas"
-
-#~ msgid "No files found."
-#~ msgstr "Failų nerasta."
-
-#~ msgid "No hash calculations configured"
-#~ msgstr "Nėra konfigūruotų maišos skaičiavimų"
-
-#, python-format
-#~ msgid "No viewer installed for this file type: %s"
-#~ msgstr "Šiam failo tipui nėra įdiegtas žiūrėtojas :%s"
-
-#, python-format
-#~ msgid "None of the hash programs for the hashes %s are available"
-#~ msgstr "Nėra nė vienos iš maišytos %s raiškos programų"
-
-#~ msgid "Not allowed with folders"
-#~ msgstr "Neleidžiama su aplankais"
-
-#~ msgid "Number of lines in script messages"
-#~ msgstr "Scenarijų pranešimų linijų skaičius"
-
-#~ msgid "On device:"
-#~ msgstr "Įrenginyje:"
-
-#~ msgid "Open settings/actions menu"
-#~ msgstr "Atidarykite nustatymų/veiksmų meniu"
-
-#~ msgid "Owner:"
-#~ msgstr "Savininkas:"
-
-#~ msgid "Page down list"
-#~ msgstr "Puslapio žemyn sąrašas"
-
-#~ msgid "Page up list"
-#~ msgstr "Puslapio viršų sąrašas"
-
-#~ msgid "Parent directory"
-#~ msgstr "Pagrindinis katalogas"
-
-#~ msgid "Permissions:"
-#~ msgstr "Leidimai:"
-
-#~ msgid "Play folder"
-#~ msgstr "Leisti aplanką"
-
-#~ msgid "Play title"
-#~ msgstr "Leisti pavadinimą"
-
-#~ msgid "Play/view/edit/install/extract/run file or enter directory"
-#~ msgstr "Leisti/peržiūrėti/redaguoti/įdiegti/išarchyvuoti/paleisti failą arba įvesti katalogą"
-
-#~ msgid "Please enter name of the new symlink"
-#~ msgstr "Prašome įrašyti pavadinimą ir naują simbolinę nuorodą"
-
-#~ msgid "Please enter password"
-#~ msgstr "Prašome įrašyti slaptažodį"
-
-#~ msgid "Please enter the new directory name"
-#~ msgstr "Įrašykite naują katalogo pavadinimą"
-
-#~ msgid "Please enter the new file name"
-#~ msgstr "Įrašykite naują failo pavadinimą"
-
-#~ msgid "Please wait, Loading image."
-#~ msgstr "Palaukite, įkeliamas atvaizdas."
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' is installed.\n"
-#~ "The package containing this program isn't known, so it can't be uninstalled."
-#~ msgstr ""
-#~ "Įdiegta programa '%s'.\n"
-#~ "Paketas, kuriame yra ši programa, nežinomas, todėl jo negalima pašalinti."
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' needs to be installed to run the '%s' action.\n"
-#~ "Uninstall the '%s' package to uninstall the program?"
-#~ msgstr ""
-#~ "'%s' programa turi būti įdiegta, kad veiktų '%s' veiksmas.\n"
-#~ "Pašalinkite paketą '%s', kad pašalintumėte programą?"
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' needs to be installed to run this action.\n"
-#~ "Install the '%s' package to install the program?"
-#~ msgstr ""
-#~ "Norėdami paleisti šį veiksmą, reikia įdiegti programą '%s'.\n"
-#~ "Įdiegti '%s' paketą, kad įdiegtumėte programą?"
-
-#, python-format
-#~ msgid ""
-#~ "Program '%s' not installed.\n"
-#~ "The package containing this program isn't known."
-#~ msgstr ""
-#~ "Programa '%s' neįdiegta.\n"
-#~ "Paketas, kuriame yra ši programa, nežinomas."
-
-#~ msgid "Records"
-#~ msgstr "Įrašai"
-
-#~ msgid "Rename file/directory"
-#~ msgstr "Pervardyti failą / katalogą"
-
-#~ msgid "Reverse left file sorting"
-#~ msgstr "Atgal į kairę failų rūšiavime"
-
-#~ msgid "Reverse right file sorting"
-#~ msgstr "Atgal į dešinę failų rūšiavime"
-
-#~ msgid "Save left folder on exit"
-#~ msgstr "Išsaugoti kairįjį aplanką"
-
-#~ msgid "Save right folder on exit"
-#~ msgstr "Išeiti išsaugant tinkamą aplanką"
-
-#~ msgid "Save the left folder list location on exit."
-#~ msgstr "Užveriant išsaugokite kairiojo aplanko sąrašo vietą."
-
-#~ msgid "Save the right folder list location on exit."
-#~ msgstr "Užveriant išsaugokite dešinio aplanko sąrašo vietą."
-
-#, python-format
-#~ msgid "Script '%s' must have read permission to be able to run it"
-#~ msgstr "Scenarijus '%s' turi turėti skaitymo leidimą, kad jis galėtų jį paleisti"
-
-#~ msgid "Select (source list) or enter directory (target list)"
-#~ msgstr "Pasirinkite (šaltinių sąrašą) arba įveskite katalogą (tikslinį sąrašą)"
-
-#~ msgid "Select a path"
-#~ msgstr "Pasirinkite kelią"
-
-#~ msgid "Set archive mode (644)"
-#~ msgstr "Nustatykite archyvo būseną (644)"
-
-#~ msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
-#~ msgstr "Nustatykite 'stout' ir 'sterr' scenarijų informacijos arba scenarijų klaidų pranešimų skaičių."
-
-#, python-format
-#~ msgid ""
-#~ "Show '%s' as picture%s?\n"
-#~ "The current service must interrupted!"
-#~ msgstr ""
-#~ "Rodyti '%s' kaip paveikslėlį%s?\n"
-#~ "Dabartinis kanalas turi būti nutrauktas!"
-
-#~ msgid "Show Directory size"
-#~ msgstr "Rodyti katalogo dydį"
-
-#~ msgid "Show Script completed message"
-#~ msgstr "Rodyti scenarijaus užpildytą pranešimą"
-
-#~ msgid "Show Task's completed message"
-#~ msgstr "Rodyti baigtos užduoties pranešimą"
-
-#~ msgid "Show as Picture (press any key to close)"
-#~ msgstr "Rodyti kaip paveikslėlį (paspauskite bet kurį mygtuką, kad uždarytumėte)"
-
-#, python-format
-#~ msgid "Show as Picture and save as file ('%s')"
-#~ msgstr "Rodyti kaip paveikslėlį ir įrašyti kaip failą ('%s')"
-
-#~ msgid "Show contents of ipk file"
-#~ msgstr "Rodyti ipk failo turinį"
-
-#~ msgid "Show contents of rar file"
-#~ msgstr "Rodyti rar failo turinį"
-
-#~ msgid "Show contents of tar or compressed tar file"
-#~ msgstr "Rodyti tar turinį arba suspaustą tar failą"
-
-#~ msgid "Show contents of zip file"
-#~ msgstr "Rodyti zip failo turinį"
-
-#~ msgid "Show directories on first or last in list.(must restart File Commander)"
-#~ msgstr "Rodyk katalogus pirmajame arba paskutiniame sąraše.(reikia Failų valdytoją paleisti iš naujo)"
-
-#~ msgid "Show image information"
-#~ msgstr "Rodyti atvaizdo informaciją"
-
-#~ msgid "Show message if File Commander is not running and all Task's are completed."
-#~ msgstr "Rodyti pranešimą, jei Failų valdytojas neveikia ir visos užduotys yra baigtos."
-
-#~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-#~ msgstr "Rodyti pranešimą, jei fono scenarijus baigiasi sėkmingai. Turi 'stout', tai rodoma kaip papildoma informacija."
-
-#~ msgid "Show unknown extension as text"
-#~ msgstr "Rodyti nežinomą plėtinį kaip tekstą"
-
-#~ msgid "Show unknown file extensions with 'Addon File-Viewer'."
-#~ msgstr "Rodyti nežinomus failų plėtinius su 'Pridėtų failų peržiūra'."
-
-#~ msgid "Size reverse"
-#~ msgstr "Atvirkštinis dydis"
-
-#~ msgid "Skip selection"
-#~ msgstr "Praleisti pasirinkimą"
-
-#~ msgid "Sorting left files by name, date or size"
-#~ msgstr "Kairių failų rūšiavimas pagal pavadinimą, datą ar dydį"
-
-#~ msgid "Sorting right files by name, date or size"
-#~ msgstr "Dešinių failų rūšiavimas pagal pavadinimą, datą ar dydį"
-
-#~ msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-#~ msgstr "Mygtukais plius/minus pakeiskite kairįjį/dešinįjį mygtuką arba visada pakeiskite kanalo mygtuko šoninį mygtuką."
-
-#~ msgid "Symlink to "
-#~ msgstr "Simbolinė nuoroda "
-
-#~ msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
-#~ msgstr "Failų valdytojo atvaizdo peržiūros komponentui reikia paveikslėlių grotuvo plėtinio. Įdiekite paveikslėlių grotuvą, kad įjungti šią operaciją."
-
-#~ msgid "The authors are NOT RESPONSIBLE"
-#~ msgstr "Autoriai NĖRA ATSAKINGI"
-
-#~ msgid ""
-#~ "The function has interrupted.\n"
-#~ "Don't press in the next time any key until the picture from mvi-file is displayed!"
-#~ msgstr ""
-#~ "Funkcija nutraukta.\n"
-#~ "Kitą kartą nespauskite jokių mygtukų, kol bus rodomas vaizdas iš mvi-failo!"
-
-#~ msgid "The hash of a directory can't be calculated."
-#~ msgstr "Negalima apskaičiuoti katalogo maišos."
-
-#~ msgid "This line is not editable!"
-#~ msgstr "Ši eilutė yra neredaguojama!"
-
-#~ msgid "Time between slides in image viewer slideshow."
-#~ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
-
-#~ msgid "Time for Slideshow"
-#~ msgstr "Skaidrių rodymo laikas"
-
-#~ msgid "Type:"
-#~ msgstr "Tipas:"
-
-#, python-format
-#~ msgid "Uninstall '%s' package and disable '%s'"
-#~ msgstr "Pašalinti '%s' paketą ir išjungti '%s'"
-
-#, python-format
-#~ msgid "Unpack to %s"
-#~ msgstr "Išpakuokite į %s"
-
-#~ msgid "Unpack to current folder"
-#~ msgstr "Išpakuokite į dabartinį aplanką"
-
-#~ msgid "WARNING!"
-#~ msgstr "ĮSPĖJIMAS!"
-
-#~ msgid "What do you want to play?\n"
-#~ msgstr "Ką norite atkurti?\n"
-
-#, python-format
-#~ msgid "You can't usefully run '%s' on '%s'."
-#~ msgstr "'%s' negalite naudoti '%s'."
-
-#, python-format
-#~ msgid "You can't usefully run '%s' on a directory."
-#~ msgstr "Jūs negalite naudingai paleisti '%s' kataloge."
-
-#~ msgid "create symlink ..."
-#~ msgstr "sukurti nuorodą ..."
-
-#~ msgid "for DATA LOSS OR DAMAGE !!!"
-#~ msgstr "duomenų praradimui arba sugadinimui !!!"
-
-#~ msgid "from dir"
-#~ msgstr "nuo rež"
-
-#~ msgid "has been CHANGED! Do you want to save it?"
-#~ msgstr "buvo PAKEISTAS! Ar norite jį išsaugoti?"
-
-#~ msgid "install/unpack ipk Files"
-#~ msgstr "įdiegti/išpakuoti ipk failus"
-
-#~ msgid "manage local Files"
-#~ msgstr "tvarkyti vietinius failus"
-
-#~ msgid "move file"
-#~ msgstr "perkelti failą"
-
-#~ msgid "move folder"
-#~ msgstr "perkelti aplanką"
-
-#~ msgid "original"
-#~ msgstr "originali"
-
-#~ msgid "play Files"
-#~ msgstr "paleisti failus"
-
-#~ msgid "play/show Files"
-#~ msgstr "paleisti/rodyti failus"
-
-#~ msgid "python"
-#~ msgstr "python versija"
-
-#~ msgid "script 'sterr':"
-#~ msgstr "scenarijus 'sterr':"
-
-#~ msgid "script 'stout':"
-#~ msgstr "scenarijus 'stout':"
-
-#~ msgid "to dir"
-#~ msgstr "į rež"
-
-#~ msgid "unpack Rar Files"
-#~ msgstr "išpakuokite Rar failus"
-
-#~ msgid "unpack archives"
-#~ msgstr "išpakuokite archyvus"
-
-#~ msgid "unpack gzip Files"
-#~ msgstr "išpakuokite gzip failus"
-
-#~ msgid "unpack tar/compressed tar Files"
-#~ msgstr "išpakuokite tar/suspaustus tar failus"
-
-#~ msgid "unpack zip Files"
-#~ msgstr "išpakuokite zip failus"
-
-#~ msgid "v"
-#~ msgstr "V"
-
-#~ msgid "without"
-#~ msgstr "be"
-
-#, python-format
-#~ msgid ""
-#~ "A sleep timer wants to set your\n"
-#~ "%s %s to standby. Do that now?"
-#~ msgstr ""
-#~ "Budėjimo laikmatis nori perjungti Jūsų\n"
-#~ "%s %s į budėjimo režimą. Perjungti dabar?"
-
-#, python-format
-#~ msgid ""
-#~ "A sleep timer wants to shut down\n"
-#~ "your %s %s. Shutdown now?"
-#~ msgstr ""
-#~ "Budėjimo laikmatis nori išjungti\n"
-#~ "Jūsų %s %s. Išjungti dabar?"
-
-#~ msgid "Enable screenshot of LCD in /tmp"
-#~ msgstr "Įjungti LCD ekrano kopiją į /tmp"
-
-#~ msgid "Job View"
-#~ msgstr "Užduoties peržiūra"
-
-#~ msgid "Jump to first item in list or the start of text"
-#~ msgstr "Peršokti į pirmą sąrašo elementą arba teksto pradžią"
-
-#~ msgid "Jump to last item in list or the end of text"
-#~ msgstr "Peršokti į paskutinį sąrašo elementą arba teksto pabaigą"
-
-#~ msgid "Please enter a new filename:"
-#~ msgstr "Įrašykite naujo failo pavadinimą"
-
-#~ msgid "Remove directory"
-#~ msgstr "pašalinti katalogą"
-
-#~ msgid "Screenshot of LCD in /tmp"
-#~ msgstr "LCD ekrano kopija į /tmp"
-
-#~ msgid "Select the next item in list or move cursor right"
-#~ msgstr "Pasirinkti paskesnį sąrašo elementą arba perkelti žymeklį į dešinę"
-
-#~ msgid "Select the previous item in list or move cursor left"
-#~ msgstr "Pasirinkti ankstesnį sąrašo elementą arba perkelti žymeklį į kairę"
-
-#~ msgid "Switch to bookmarks"
-#~ msgstr "perjungti į pažymėtus"
-
-#~ msgid "Task list"
-#~ msgstr "Užduočių sąrašas"
-
-#~ msgid "Please select the IceTV service that you wish to use."
-#~ msgstr "Pasirinkite IceTV paslaugą, kuria norite naudotis."
-
-#~ msgid "Long key press"
-#~ msgstr "Ilgas mygtuko paspaudimas"
-
-#~ msgid "Next Image"
-#~ msgstr "Kitas atvaizdas"
-
-#~ msgid "Receiver Image Actions"
-#~ msgstr "Gavėjo atvaizdo veiksmai"
-
-#~ msgid "Use these settings?"
-#~ msgstr "Naudoti šiuos nustatymus?"
-
-#~ msgid "Please select an acceptable directory."
-#~ msgstr "Pasirinkite priimtiną katalogą."
-
-#~ msgid "Aspect long"
-#~ msgstr "Formatas (ilgai)"
-
-#~ msgid "Audio long"
-#~ msgstr "Ilgas Audio paspaudimas"
-
-#~ msgid "Context long"
-#~ msgstr "Kontekstas ilgai"
-
-#~ msgid "Directory long"
-#~ msgstr "Katalogas ilgai"
-
-#~ msgid "EJECTCD long"
-#~ msgstr "IŠSTUMTI CD ilgai spausti"
-
-#~ msgid "End long"
-#~ msgstr "End (ilgai spausti)"
-
-#~ msgid "Epg/Guide long"
-#~ msgstr "Epg/Vadovas ilgai"
-
-#~ msgid "F1 long"
-#~ msgstr "F2 (ilgai spausti)"
-
-#~ msgid "F2 long"
-#~ msgstr "F2 ilgai"
-
-#~ msgid "F3 long"
-#~ msgstr "F3 ilgai"
-
-#~ msgid "F4 long"
-#~ msgstr "F4 ilgai"
-
-#~ msgid "Favorites long"
-#~ msgstr "Mėgstamiausi (ilgai spausti)"
-
-#~ msgid "File long"
-#~ msgstr "Failas (ilgai spausti)"
-
-#~ msgid "Flash on the fly your %s %s."
-#~ msgstr "Įdiegti %s %s iškart, nedelsiant."
-
-#~ msgid "Help long"
-#~ msgstr "Pagalba (ilgai spausti)"
-
-#~ msgid "History long"
-#~ msgstr "Istorija (ilgai spausti)"
-
-#~ msgid "Home long"
-#~ msgstr "Home (ilgai spausti)"
-
-#~ msgid "Homepage long"
-#~ msgstr "Pradinis puslapis ilgai"
-
-#~ msgid "Info (EPG) Long"
-#~ msgstr "Info (EPG) (ilgai spausti)"
-
-#~ msgid "Keyboard long"
-#~ msgstr "Klaviatūra"
-
-#~ msgid "Kodi long"
-#~ msgstr "Kodi ilgas spaudimas"
-
-#~ msgid "LAN long"
-#~ msgstr "LAN (ilgai spausti)"
-
-#~ msgid "Left long"
-#~ msgstr "Ilgai spausti 'kairėn'"
-
-#~ msgid "List/Fav long"
-#~ msgstr "Sąrašas/Mėgstamiausi ilgai"
-
-#~ msgid "MOUSE long"
-#~ msgstr "PELĖ (ilgai spausti)"
-
-#~ msgid "Magic long"
-#~ msgstr "Magija ilgai"
-
-#~ msgid "Mark/Portal/Playlist long"
-#~ msgstr "Žymė/portalas/grojaraštis (ilgai spausti)"
-
-#~ msgid "Media long"
-#~ msgstr "Media ilgai"
-
-#~ msgid "Nextsong long"
-#~ msgstr "Kita daina (ilgai spausti)"
-
-#~ msgid "OK long"
-#~ msgstr "OK ilgai"
-
-#~ msgid "Open long"
-#~ msgstr "Atverti ilgai"
-
-#~ msgid "Option long"
-#~ msgstr "Parinktis (ilgai spausti)"
-
-#~ msgid "PC long"
-#~ msgstr "PC (ilgai spausti)"
-
-#~ msgid "PIP long"
-#~ msgstr "PIP ilgai"
-
-#~ msgid "PVR long"
-#~ msgstr "PVR, ilgai spausti"
-
-#~ msgid "PageDown long"
-#~ msgstr "Puslapis žemyn, ilgai spausti"
-
-#~ msgid "PageUp long"
-#~ msgstr "Puslapis aukštyn, ilgai spausti"
-
-#~ msgid "Playlist long"
-#~ msgstr "Grojaraštis ilgai"
-
-#~ msgid "Power long"
-#~ msgstr "Įtampa ilgai"
-
-#~ msgid "Prevsong long"
-#~ msgstr "Ankstesnė daina (ilgai spausti)"
-
-#~ msgid "Program long"
-#~ msgstr "Program, ilgai spausti"
-
-#~ msgid "Prov long"
-#~ msgstr "Teik. ilgai"
-
-#~ msgid "RADIO long"
-#~ msgstr "RADIO ilgas spaudimas"
-
-#~ msgid "Rec long"
-#~ msgstr "Raudoną, ilgai spausti"
-
-#~ msgid "Right long"
-#~ msgstr "Ilgai spausti 'dešinėn'"
-
-#~ msgid "SAT long"
-#~ msgstr "SAT, ilgai spausti"
-
-#~ msgid "Search/WEB long"
-#~ msgstr "Paieška / internetas (ilgai spausti)"
-
-#~ msgid "Sleep long"
-#~ msgstr "Miegoti, ilgai spausti"
-
-#~ msgid "Subtitle long"
-#~ msgstr "Subtitrai ilgai spaudžiant"
-
-#~ msgid "Teletext long"
-#~ msgstr "Teletekstas (ilgai spausti)"
-
-#~ msgid "Time long"
-#~ msgstr "Laikas ilgai"
-
-#~ msgid "VOD long"
-#~ msgstr "VOD (ilgai spausti)"
-
-#~ msgid "Www long"
-#~ msgstr "Www, ilgai spausti"
-
-#~ msgid "YouTube long"
-#~ msgstr "YouTube ilgai spausti"
-
-#~ msgid "ZOOM long"
-#~ msgstr "ZOOM (ilgai spausti)"
-
-#~ msgid "0.2s"
-#~ msgstr "0.2 sek."
-
-#~ msgid "0.3s"
-#~ msgstr "0.3 sek."
-
-#~ msgid "0.4s"
-#~ msgstr "0.4 sek."
-
-#~ msgid "0.5s"
-#~ msgstr "0.5 sek."
-
-#~ msgid "0.6s"
-#~ msgstr "0.6 sek."
-
-#~ msgid "0.7s"
-#~ msgstr "0.7 sek."
-
-#~ msgid "0.8s"
-#~ msgstr "0.8 sek."
-
-#~ msgid "0.9s"
-#~ msgstr "0.9 sek."
-
-#~ msgid "1 GB"
-#~ msgstr "1 GB"
-
-#~ msgid "1.2s"
-#~ msgstr "1.2 sek."
-
-#~ msgid "1.5s"
-#~ msgstr "1.5 sek."
-
-#~ msgid "1.7s"
-#~ msgstr "1.7 sek."
-
-#~ msgid "10 MB/s"
-#~ msgstr "10 MB/s"
-
-#~ msgid "100 MB/s"
-#~ msgstr "100 MB/s"
-
-#~ msgid "1s"
-#~ msgstr "1 sek."
-
-#~ msgid "2 GB"
-#~ msgstr "2 GB"
-
-#~ msgid "2.5s"
-#~ msgstr "2.5 sek."
-
-#~ msgid "20 MB/s"
-#~ msgstr "20 MB/s"
-
-#~ msgid "24+ Hours"
-#~ msgstr "+ 24 valandos"
-
-#~ msgid "24- Hours"
-#~ msgstr "- 24 valandos"
-
-#~ msgid "2s"
-#~ msgstr "2 sek."
-
-#~ msgid "3.5s"
-#~ msgstr "3.5 sek."
-
-#~ msgid "3s"
-#~ msgstr "3 sek."
-
-#~ msgid "4 GB"
-#~ msgstr "4 GB"
-
-#~ msgid "4s"
-#~ msgstr "4 sek."
-
-#~ msgid "50 MB/s"
-#~ msgstr "50 MB/s"
-
-#~ msgid "5s"
-#~ msgstr "5 sek."
-
-#~ msgid "8 GB"
-#~ msgstr "8 GB"
-
-#~ msgid "Auto Timer"
-#~ msgstr "Automatinis laikmatis"
-
-#~ msgid "Hour"
-#~ msgstr "Valanda"
-
-#~ msgid "Once per day"
-#~ msgstr "Kartą per dieną"
-
-#~ msgid "alphabetical"
-#~ msgstr "abėcėlės tvarka"
-
-#~ msgid "alternative"
-#~ msgstr "alternatyvus"
-
-#~ msgid "user defined"
-#~ msgstr "pasirinktas vartotojo"
-
-#, python-format
-#~ msgid "Mount '%s' has not enough free space to record."
-#~ msgstr "Pajungtas '%s' neturi pakankamai vietos įrašymui."
-
-#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Laikmačio failas (pm_timers.xml) sugadintas, įkelti nepavyko."
-
-#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-#~ msgstr "Laikmačio failas (timers.xml) sugadintas, įkelti nepavyko."
-
-#~ msgid ""
-#~ "Timer overlap in pm_timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Aptiktas laikmačio sutapimas timers.xml!\n"
-#~ "Pertikrinkit dar kartą!"
-
-#~ msgid ""
-#~ "Timer overlap in timers.xml detected!\n"
-#~ "Please recheck it!"
-#~ msgstr ""
-#~ "Aptiktas laikmačio timers.xml sutapimas! \n"
-#~ " prašome iš naujo tikrinti tai!"
-
-#~ msgid "ask user"
-#~ msgstr "klausti vartotojo"
-
-#~ msgid "end zapping"
-#~ msgstr "jungimo pabaiga"
-
-#~ msgid "menu"
-#~ msgstr "meniu"
-
-#, python-format
-#~ msgid "record time changed, start prepare is now: %s"
-#~ msgstr "įrašymo laikas pasikeitė, dabar ruošiamas paleidimas: %s"
-
-#~ msgid "select"
-#~ msgstr "pasirinkti"
-
-#~ msgid "start recording"
-#~ msgstr "pradėti įrašymą"
-
-#~ msgid "stop recording"
-#~ msgstr "stabdyti įrašymą"
-
-#~ msgid "zapping"
-#~ msgstr "perjungimas"

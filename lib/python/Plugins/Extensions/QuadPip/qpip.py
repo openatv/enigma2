@@ -702,7 +702,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.session.openWithCallback(self.close, MessageBox, _("Quad PiP is not available."), MessageBox.TYPE_ERROR)
 
 	def showNotSupport(self):
-		self.session.openWithCallback(self.close, MessageBox, _("Box or driver is not support Quad PiP."), MessageBox.TYPE_ERROR)
+		self.session.openWithCallback(self.close, MessageBox, _("Receiver does not support Quad PiP."), MessageBox.TYPE_ERROR)
 
 	def noChannelTimerCB(self):
 		self.session.openWithCallback(self.ChannelSelectCB, QuadPiPChannelSelection)

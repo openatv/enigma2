@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-04 19:44+0000\n"
+"POT-Creation-Date: 2023-07-03 21:13+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1072,6 +1072,30 @@ msgid "%d ms"
 msgstr "%d min"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package has an update"
+msgid_plural "%d packages have updates."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package installable."
+msgid_plural "%d packages installable."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package installed."
+msgid_plural "%d packages installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] ""
@@ -1118,10 +1142,6 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] ""
 msgstr[1] ""
-
-#, python-format
-msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr ""
 
 #, python-format
 msgid "%d sec"
@@ -1272,10 +1292,6 @@ msgstr "%s (%s)\n"
 msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
-#, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
 #, fuzzy, python-format
 msgid "%s - Setup"
 msgstr "uShare Konfiguration"
@@ -1298,10 +1314,6 @@ msgstr ""
 
 #, python-format
 msgid "%s MHz"
-msgstr ""
-
-#, python-format
-msgid "%s Packages found"
 msgstr ""
 
 #
@@ -1580,11 +1592,6 @@ msgstr "Timme"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
-#
-#, fuzzy
-msgid "128"
-msgstr "1.2"
-
 msgid "128 Mb"
 msgstr ""
 
@@ -1613,11 +1620,6 @@ msgstr "minuter"
 
 msgid "1536 Mb"
 msgstr ""
-
-#
-#, fuzzy
-msgid "16"
-msgstr "16:9"
 
 #
 msgid "16:10"
@@ -1721,11 +1723,6 @@ msgstr ""
 msgid "25"
 msgstr "25"
 
-#
-#, fuzzy
-msgid "256"
-msgstr "25"
-
 msgid "256 Mb"
 msgstr ""
 
@@ -1803,9 +1800,6 @@ msgid "30p/50p"
 msgstr ""
 
 msgid "30p/60p"
-msgstr ""
-
-msgid "32"
 msgstr ""
 
 msgid "32 Mb"
@@ -1909,9 +1903,6 @@ msgid "60p/50p"
 msgstr ""
 
 msgid "60p/60p"
-msgstr ""
-
-msgid "64"
 msgstr ""
 
 msgid "64 Mb"
@@ -2194,11 +2185,6 @@ msgstr "ATSC operatör"
 msgid "AV Setup"
 msgstr ""
 
-#
-#, fuzzy
-msgid "AZPlay"
-msgstr "Spela upp"
-
 msgid "Abkhazian"
 msgstr ""
 
@@ -2435,6 +2421,9 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Lägg till en AutoTimer för pågående händelse"
 
+msgid "Add bouquet"
+msgstr ""
+
 msgid "Add current directory to bookmarks"
 msgstr ""
 
@@ -2492,6 +2481,9 @@ msgstr ""
 #
 msgid "Add service"
 msgstr "Lägg till tjänst"
+
+msgid "Add services to this bouquet?"
+msgstr ""
 
 msgid "Add the current directory as a bookmark"
 msgstr ""
@@ -2674,6 +2666,9 @@ msgstr "Alla Satelliter 4 (USALS)"
 #
 msgid "All services provider"
 msgstr "Alla kanaloperatörer"
+
+msgid "All slots"
+msgstr ""
 
 #, fuzzy
 msgid "All supported"
@@ -3449,6 +3444,9 @@ msgstr "Säkerhetskopia klar."
 msgid "Backup done."
 msgstr ""
 
+msgid "Backup failed!"
+msgstr ""
+
 #
 msgid "Backup failed."
 msgstr "Säkerhetskopia misslyckades."
@@ -3744,7 +3742,7 @@ msgid "Bouvet Island"
 msgstr ""
 
 #, fuzzy
-msgid "Box or driver is not support Quad PiP."
+msgid "Receiver does not support Quad PiP."
 msgstr "Mottagaren stöds inte"
 
 msgid "Boxing"
@@ -3787,7 +3785,7 @@ msgstr ""
 msgid "Broadcom"
 msgstr ""
 
-msgid "Browse, install or remove extensions / plugins."
+msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -3989,25 +3987,7 @@ msgstr ""
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) inställning"
 
-#
-#, fuzzy
-msgid "CI Basic Settings"
-msgstr "Ändra inställningar"
-
 msgid "CI Helper Settings"
-msgstr ""
-
-msgid "CI Legacy"
-msgstr ""
-
-#, fuzzy
-msgid "CI Operation Mode"
-msgstr "Konfigurationsläge"
-
-msgid "CI Plus 1.2"
-msgstr ""
-
-msgid "CI Plus 1.3"
 msgstr ""
 
 #
@@ -4019,15 +3999,6 @@ msgstr "CI plats : "
 
 msgid "CIFS/Samba Settings"
 msgstr "Samba-Konfiguration"
-
-msgid "CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "CIHelper for SLOT CI1"
-msgstr ""
-
-msgid "CIconfigMenu"
-msgstr ""
 
 msgid "CPU"
 msgstr ""
@@ -4203,9 +4174,6 @@ msgstr ""
 #
 msgid "Cancel"
 msgstr "Avbryt"
-
-msgid "Cancel / Close the screen"
-msgstr ""
 
 msgid "Cancel / Close the software update screen"
 msgstr ""
@@ -4665,16 +4633,10 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
-msgid "Choose dvb wait delay for ci response."
-msgstr ""
-
 msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
-msgstr ""
-
-msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr ""
 
 msgid "Choose the amount of additional slots."
@@ -4889,6 +4851,9 @@ msgid "Close screen"
 msgstr ""
 
 msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Close the Plugin Browser screen"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5507,6 +5472,9 @@ msgstr "Anslutna klienter"
 
 msgid "Connected satellites"
 msgstr "Anslutna satelliter"
+
+msgid "Connected through another tuner"
+msgstr ""
 
 #
 msgid "Connected to"
@@ -6696,6 +6664,9 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
+msgid "Development Packages"
+msgstr ""
+
 msgid "Device Manager"
 msgstr ""
 
@@ -6904,9 +6875,6 @@ msgstr "Media är inte en skrivbar DVD!"
 msgid "Disk was not found!"
 msgstr "ingen CI slot hittad"
 
-msgid "Display"
-msgstr ""
-
 #
 msgid "Display 16:9 content as"
 msgstr "Visa 16:9 sändning som"
@@ -6920,6 +6888,9 @@ msgid "Display >16:9 content as"
 msgstr "Visa 16:9 sändning som"
 
 msgid "Display Settings"
+msgstr ""
+
+msgid "Display Skin Packages"
 msgstr ""
 
 msgid "Display context menu"
@@ -7067,11 +7038,6 @@ msgid "Do you really want to delete this timer?"
 msgstr "Vill du verkligen ta bort denna timerinspelning?"
 
 #
-#, python-format
-msgid "Do you really want to download the plugin \"%s\"?"
-msgstr "Vill du verkligen ladda ner pluginet \"%s\"?"
-
-#
 msgid "Do you really want to exit?"
 msgstr "Vill du verkligen avsluta?"
 
@@ -7094,10 +7060,6 @@ msgstr "Vill du verkligen ta bort från papperskorgen permanent ?"
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Vill du verkligen ta bort katalog %s från disken?"
-
-#, python-format
-msgid "Do you really want to remove the plugin \"%s\"?"
-msgstr "Vill du verkligen ta BORT plugin \"%s\"?"
 
 #, fuzzy, python-format
 msgid "Do you really want to remove the timer for %s?"
@@ -7173,6 +7135,10 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Vill du göra en ny manuell sökning?"
 
 #, python-format
+msgid "Do you want to download '%s'?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr ""
 
@@ -7207,9 +7173,17 @@ msgstr ""
 msgid "Do you want to reboot your receiver?"
 msgstr "Vill du starta om din mottagare?"
 
+#, python-format
+msgid "Do you want to remove '%s'?"
+msgstr ""
+
 #
 msgid "Do you want to remove the package:\n"
 msgstr "Vill du ta bort detta paketet :\n"
+
+#, python-format
+msgid "Do you want to replace '%s' with '%s?"
+msgstr ""
 
 #
 msgid "Do you want to restore your settings?"
@@ -7220,6 +7194,10 @@ msgid "Do you want to resume this playback?"
 msgstr "Vill du återuppta uppspelningen?"
 
 msgid "Do you want to start a backup now?"
+msgstr ""
+
+#, python-format
+msgid "Do you want to update '%s'?"
 msgstr ""
 
 #
@@ -7291,6 +7269,9 @@ msgstr "Ned"
 msgid "Down / Inactive"
 msgstr ""
 
+msgid "Download Plugin"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr ""
 
@@ -7307,6 +7288,9 @@ msgid "Download and install cam"
 msgstr ""
 
 msgid "Download error"
+msgstr ""
+
+msgid "Download the highlighted plugin"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7348,10 +7332,10 @@ msgstr ""
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr ""
 
-msgid "Driver and kernel information"
+msgid "Driver Packages"
 msgstr ""
 
-msgid "Drivers"
+msgid "Driver and kernel information"
 msgstr ""
 
 msgid "Drivers version"
@@ -7656,12 +7640,6 @@ msgstr "Aktiverad"
 #
 msgid "Enable Bouquet Edit"
 msgstr "aktivera favoritlists editor"
-
-msgid "Enable CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "Enable CIHelper for SLOT CI1"
-msgstr ""
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr ""
@@ -8091,6 +8069,9 @@ msgid "Enter your high band local oscillator frequency. For more information con
 msgstr ""
 
 msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgstr ""
+
+msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
 msgstr ""
 
 #
@@ -8638,6 +8619,9 @@ msgstr "Utökade Delningar"
 msgid "Extension Actions"
 msgstr "Utökningar"
 
+msgid "Extension Packages"
+msgstr ""
+
 #
 msgid "Extensions"
 msgstr "Utökningar"
@@ -8839,6 +8823,12 @@ msgid "Feed URL"
 msgstr ""
 
 msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed server DNS error!"
+msgstr ""
+
+msgid "Feed server access error!"
 msgstr ""
 
 msgid "Feed stable."
@@ -9164,6 +9154,9 @@ msgid "Force LNB Tuner ToneBurst settings."
 msgstr ""
 
 msgid "Force Legacy Signal stats"
+msgstr ""
+
+msgid "Force OPKG clean mode"
 msgstr ""
 
 #
@@ -9871,6 +9864,9 @@ msgstr "Dolt nätverk"
 msgid "Hide"
 msgstr ""
 
+msgid "Hide CI messages"
+msgstr ""
+
 msgid "Hide InfoBar"
 msgstr "Dölj infobalk"
 
@@ -9879,6 +9875,9 @@ msgstr ""
 
 msgid "Hide any zap error messages."
 msgstr "Dölj alla felmeddelanden vid kanalbyte."
+
+msgid "Hide error messages from the Common Interface module."
+msgstr ""
 
 #
 msgid "Hide known extensions"
@@ -10657,12 +10656,6 @@ msgstr "Installera utökningar"
 msgid "Install extensions."
 msgstr "Installera utökningar."
 
-msgid "Install lcd picons on"
-msgstr "Installera lcd picons på"
-
-msgid "Install picons on"
-msgstr "Installera picons på"
-
 msgid "Install the package"
 msgstr ""
 
@@ -10976,7 +10969,7 @@ msgstr "Behåller Filmlistan öppen även under uppspelning av audiofiler"
 msgid "Kenya"
 msgstr ""
 
-msgid "Kernel Modules"
+msgid "Kernel Packages"
 msgstr ""
 
 msgid "Kernel file"
@@ -11620,7 +11613,7 @@ msgstr "Luxemburgiska"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Luxemburgska"
 
-msgid "M2k"
+msgid "M2k Packages"
 msgstr ""
 
 msgid "MAC Address Actions"
@@ -11727,10 +11720,6 @@ msgid "Maltese"
 msgstr ""
 
 #
-msgid "Manage Extensions"
-msgstr "Hantera utökningar"
-
-#
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Kanalvalsinställning"
@@ -11738,10 +11727,16 @@ msgstr "Kanalvalsinställning"
 msgid "Manage Plugins"
 msgstr ""
 
+msgid "Manage Plugins. This will remove/install Plugins on your box"
+msgstr ""
+
 msgid "Manage and explore directories and files."
 msgstr ""
 
 msgid "Manage network mounts"
+msgstr ""
+
+msgid "Manage the highlighted plugin"
 msgstr ""
 
 msgid "Manage your online update files"
@@ -11885,7 +11880,7 @@ msgstr "Mediaspelare"
 msgid "Media Player Settings"
 msgstr ""
 
-msgid "Media Portal"
+msgid "Media Stream"
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -11904,10 +11899,8 @@ msgstr ""
 msgid "MediaPlayer"
 msgstr ""
 
-#
-#, fuzzy
-msgid "MediaPortal"
-msgstr "Vertikal"
+msgid "MediaStream"
+msgstr ""
 
 #
 #, fuzzy
@@ -12366,10 +12359,34 @@ msgstr ""
 msgid "Move to last line / screen in the panel"
 msgstr ""
 
+msgid "Move to the first item on the current line"
+msgstr ""
+
+msgid "Move to the first item on the first screen"
+msgstr ""
+
 msgid "Move to the first line / screen"
 msgstr ""
 
+msgid "Move to the last item on the current line"
+msgstr ""
+
+msgid "Move to the last item on the last screen"
+msgstr ""
+
 msgid "Move to the last line / screen"
+msgstr ""
+
+msgid "Move to the next category in the list"
+msgstr ""
+
+msgid "Move to the next item in the list"
+msgstr ""
+
+msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item in list"
 msgstr ""
 
 #, fuzzy
@@ -12755,6 +12772,9 @@ msgstr "Nätverkstest : "
 msgid "Network Wizard"
 msgstr ""
 
+msgid "Network adapter not connected to a network!"
+msgstr ""
+
 msgid "Network address"
 msgstr ""
 
@@ -13030,6 +13050,9 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Inga nya plugins funna"
 
+msgid "No network adapters enabled/available!"
+msgstr ""
+
 msgid "No network storage detected."
 msgstr ""
 
@@ -13038,9 +13061,6 @@ msgid "No networks found"
 msgstr "Inget nätverk hittat"
 
 msgid "No of items switch (increase or reduced)"
-msgstr ""
-
-msgid "No packages found."
 msgstr ""
 
 msgid "No pictures available"
@@ -13394,9 +13414,6 @@ msgstr "OK, guida mig genom uppgraderingen"
 msgid "ONID"
 msgstr "ONID"
 
-msgid "OPKG clean mode"
-msgstr ""
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -13513,10 +13530,6 @@ msgstr ""
 msgid "Only on startup"
 msgstr "Endast vid uppstart"
 
-#, fuzzy
-msgid "Only provider"
-msgstr "leverantör:"
-
 msgid "Open"
 msgstr ""
 
@@ -13535,10 +13548,8 @@ msgstr "EPG Sökning"
 msgid "Open IMDb"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Open MediaPortal"
-msgstr "Vertikal"
+msgid "Open MediaStream"
+msgstr ""
 
 msgid "Open Similar List Channel List"
 msgstr ""
@@ -13589,6 +13600,9 @@ msgstr ""
 msgid "Open the Plugin Browser"
 msgstr ""
 
+msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
@@ -13611,7 +13625,7 @@ msgstr ""
 msgid "OpenDNS Home"
 msgstr "Lägg till AutoTimer"
 
-msgid "OpenPLi"
+msgid "OpenPLi Packages"
 msgstr ""
 
 msgid "OpenSSL version"
@@ -13626,7 +13640,7 @@ msgstr ""
 msgid "OpenVPN Settings"
 msgstr ""
 
-msgid "OpenViX"
+msgid "OpenViX Packages"
 msgstr ""
 
 msgid "OpenVpn Log"
@@ -14019,9 +14033,6 @@ msgstr "Förloppsindikator höger"
 msgid "Perform an on-line flash instead"
 msgstr ""
 
-msgid "Perform install/remove of the selected item"
-msgstr ""
-
 msgid "Perform the upgrade?"
 msgstr ""
 
@@ -14072,14 +14083,14 @@ msgstr ""
 msgid "Picon"
 msgstr "Picon"
 
+msgid "Picon Packages"
+msgstr ""
+
 msgid "Picon and Service Name"
 msgstr "Picon och Kanalnamn"
 
 msgid "Picon width"
 msgstr "Picon bredd"
-
-msgid "Picons"
-msgstr ""
 
 msgid "Picture Information"
 msgstr ""
@@ -14307,11 +14318,6 @@ msgid ""
 msgstr ""
 
 #
-#, fuzzy
-msgid "Please enter your personal feed URL"
-msgstr "Vänligen ange nytt filnamn"
-
-#
 msgid "Please follow the instructions on the TV"
 msgstr "Vänligen följ instruktionerna på TVn"
 
@@ -14326,6 +14332,9 @@ msgstr "Vänligen öppna BiB först"
 #
 msgid "Please press OK to continue."
 msgstr "Vänligen tryck OK för att försätta."
+
+msgid "Please press OK when ready"
+msgstr ""
 
 #
 #, fuzzy
@@ -14435,6 +14444,9 @@ msgstr "Vänligen vänta"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Vänligen vänta för aktivering av din nätverkskonfiguration..."
 
+msgid "Please wait while feeds are updated..."
+msgstr ""
+
 msgid "Please wait while gathering data..."
 msgstr "Vänligen vänta, insamling av data pågår..."
 
@@ -14448,6 +14460,18 @@ msgstr ""
 #, fuzzy
 msgid "Please wait while the list downloads..."
 msgstr "Vänligen vänta, insamling av data pågår..."
+
+msgid "Please wait while the plugin is downloaded."
+msgstr ""
+
+msgid "Please wait while the plugin is removed."
+msgstr ""
+
+msgid "Please wait while the plugin is replaced."
+msgstr ""
+
+msgid "Please wait while the plugin is updated."
+msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
 msgstr ""
@@ -14512,16 +14536,43 @@ msgstr ""
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr ""
 
+msgid "Plugin Action Log Actions"
+msgstr ""
+
 msgid "Plugin Browser"
 msgstr "Pluginhanterare"
+
+msgid "Plugin Browser Actions"
+msgstr ""
+
+msgid "Plugin Browser Download Actions"
+msgstr ""
+
+msgid "Plugin Browser Edit Actions"
+msgstr ""
+
+msgid "Plugin Browser Manage Actions"
+msgstr ""
+
+msgid "Plugin Browser Navigation Actions"
+msgstr ""
+
+msgid "Plugin Browser Remove Actions"
+msgstr ""
+
+msgid "Plugin Browser Select Actions"
+msgstr ""
 
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Filter Settings"
+msgid "Plugin Browser Update Actions"
 msgstr ""
 
-msgid "Plugin Manager Actions"
+msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Skin Packages"
 msgstr ""
 
 #
@@ -14908,6 +14959,9 @@ msgid "Process RED button action"
 msgstr ""
 
 msgid "Process YELLOW button action"
+msgstr ""
+
+msgid "Processing"
 msgstr ""
 
 msgid "Processor information"
@@ -15610,8 +15664,8 @@ msgstr "Ladda om svartlistor"
 msgid "Reloading EPG Cache..."
 msgstr "Laddar om EPG Cachen..."
 
-msgid "Reloading bouquets and services..."
-msgstr "Laddar om favoritlistor och kanaler..."
+msgid "Reloading bouquets and services."
+msgstr ""
 
 msgid "Remaining"
 msgstr "Återstående"
@@ -15706,6 +15760,9 @@ msgstr "ta bort från föräldraskydd"
 msgid "Remove New Found Flag"
 msgstr "ta bort ny funnen flagga"
 
+msgid "Remove Plugin"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr ""
 
@@ -15790,6 +15847,9 @@ msgid "Remove the MultiBoot files"
 msgstr ""
 
 msgid "Remove the current bookmark"
+msgstr ""
+
+msgid "Remove the highlighted plugin"
 msgstr ""
 
 #
@@ -15941,6 +16001,9 @@ msgstr "Återställ beständig PIN-kod"
 
 msgid "Reset playback position"
 msgstr "Återställ visningsläget"
+
+msgid "Reset sort order"
+msgstr ""
 
 msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
 msgstr ""
@@ -16741,7 +16804,7 @@ msgstr "Sekundär DNS"
 msgid "Seconds"
 msgstr "sekunder"
 
-msgid "Security"
+msgid "Security Packages"
 msgstr ""
 
 #
@@ -16801,6 +16864,9 @@ msgstr ""
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr ""
 
+msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr ""
 
@@ -16840,12 +16906,6 @@ msgstr ""
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Om 'Ja' är valt  så  visas en liten TV-bild i EPG:n."
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr "Satt till 'Ja' så visas 'PO' paketen i browsern."
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
-msgstr "Om satt till 'Ja' så kommer 'SRC' paketen att visas i browsern"
 
 msgid "Select 'Yes' to display the InfoBar when a new event starts."
 msgstr "Om 'Ja' är valt  så visas  Informationsfältet när en ny händelse startar."
@@ -16914,7 +16974,58 @@ msgstr ""
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr ""
 
+msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
+msgstr ""
+
+msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show security packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show the advanced setting options."
@@ -16927,6 +17038,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Om 'Ja' är valt  så visas kanallistan efter byte mellan Radio och TV lägena"
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -17393,6 +17507,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Select the locale from a menu"
@@ -17474,6 +17591,9 @@ msgid "Select the sort order for the file lines:"
 msgstr ""
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
@@ -18092,6 +18212,9 @@ msgstr "Ange Volt och 22KHz"
 msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Ställer in rootmappen i filmlistan så att tecknen '..' inte visas för den mappen."
 
+msgid "Setting Packages"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Setting Restored "
@@ -18164,10 +18287,10 @@ msgstr ""
 msgid "Setup OpenVPN"
 msgstr ""
 
-msgid "Setup Plugin filter"
+msgid "Setup Plugin Browser"
 msgstr ""
 
-msgid "Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"
+msgid "Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"
 msgstr ""
 
 #
@@ -18429,8 +18552,17 @@ msgstr "Visa Klienter"
 msgid "Show Default Backup Files"
 msgstr ""
 
+msgid "Show Development packages"
+msgstr ""
+
 msgid "Show Display Icons"
 msgstr "Visa statusikoner i filmlistan"
+
+msgid "Show Display packages"
+msgstr ""
+
+msgid "Show Driver packages"
+msgstr ""
 
 msgid "Show EPG"
 msgstr ""
@@ -18439,6 +18571,9 @@ msgid "Show EPG for current channel..."
 msgstr "Visa EPG för aktuell kanal ..."
 
 msgid "Show EventView"
+msgstr ""
+
+msgid "Show Extension packages"
 msgstr ""
 
 #, fuzzy
@@ -18486,6 +18621,9 @@ msgstr ""
 msgid "Show Information"
 msgstr "visa programinformation..."
 
+msgid "Show Kernel packages"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show Live in MiniTV"
@@ -18497,6 +18635,9 @@ msgstr "Visa Logg"
 #, fuzzy
 msgid "Show Log Manager in extensions list"
 msgstr "Visa Logghanteraren i listan för utökningar?"
+
+msgid "Show M2k packages"
+msgstr ""
 
 msgid "Show Media Player in Main Menu"
 msgstr "visa mediaspelaren i huvudmenyn"
@@ -18523,6 +18664,12 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show OpenPLi packages"
+msgstr ""
+
+msgid "Show OpenViX packages"
+msgstr ""
+
 msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr ""
 
@@ -18538,6 +18685,12 @@ msgstr "Visa info line"
 #, fuzzy
 msgid "Show PiP in the Front Display"
 msgstr "Visa radiospelaren..."
+
+msgid "Show Picon packages"
+msgstr ""
+
+msgid "Show Plugin Skin packages"
+msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "Visa RFmod inställning..."
@@ -18555,7 +18708,28 @@ msgstr ""
 msgid "Show SD as"
 msgstr "Visa SD som"
 
+msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Setting packages"
+msgstr ""
+
 msgid "Show Single EPG"
+msgstr ""
+
+msgid "Show Skin Component packages"
+msgstr ""
+
+msgid "Show Skin packages"
+msgstr ""
+
+msgid "Show Softcam packages"
+msgstr ""
+
+msgid "Show Source packages"
+msgstr ""
+
+msgid "Show System Plugin packages"
 msgstr ""
 
 msgid "Show Timer List"
@@ -18581,6 +18755,9 @@ msgstr "Visa multikanal EPG"
 #
 msgid "Show WLAN status"
 msgstr "Visa WLAN Status"
+
+msgid "Show Web Link packages"
+msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
 msgstr ""
@@ -18661,9 +18838,6 @@ msgid "Show detailed event info (setup in menu)"
 msgstr "Visa detaljerad programinfo "
 
 msgid "Show details of highlighted task"
-msgstr ""
-
-msgid "Show development packages in opkg"
 msgstr ""
 
 #
@@ -18930,9 +19104,6 @@ msgstr ""
 msgid "Show single service EPG"
 msgstr "Visa singel kanal EPG"
 
-msgid "Show source packages"
-msgstr "Visa källkodspaket"
-
 msgid "Show status messages on switch to live TV"
 msgstr ""
 
@@ -18990,6 +19161,9 @@ msgstr "Visa tv spelare..."
 msgid "Show the information on current event."
 msgstr "Sök i IMDB efter information om aktuell film."
 
+msgid "Show the last opkg command's output"
+msgstr ""
+
 msgid "Show the list of AutoTimers."
 msgstr "Visar listan för AutoTimers."
 
@@ -19039,9 +19213,6 @@ msgstr "Visa tid återstående/förfluten"
 
 msgid "Show translation information"
 msgstr ""
-
-msgid "Show translation packages"
-msgstr "Visa översättningspaket"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Visa transponder återstående/förluten som"
@@ -19242,6 +19413,12 @@ msgstr ""
 msgid "Skin & Resolution"
 msgstr ""
 
+msgid "Skin Component Packages"
+msgstr ""
+
+msgid "Skin Packages"
+msgstr ""
+
 msgid "Skin Selector"
 msgstr ""
 
@@ -19396,6 +19573,12 @@ msgstr ""
 msgid "Slot Manager"
 msgstr ""
 
+msgid "Slot Manager Actions"
+msgstr ""
+
+msgid "Slot R: Root Slot Full Backup (Current image)"
+msgstr ""
+
 msgid "Slot count"
 msgstr ""
 
@@ -19481,13 +19664,13 @@ msgstr ""
 msgid "Softcam Actions"
 msgstr ""
 
+msgid "Softcam Packages"
+msgstr ""
+
 msgid "Softcam Settings"
 msgstr ""
 
 msgid "Softcam Setup"
-msgstr ""
-
-msgid "Softcams"
 msgstr ""
 
 #
@@ -19539,17 +19722,13 @@ msgstr ""
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr ""
 
-#
-msgid "Some plugins are not available:\n"
-msgstr "Några plugins är inte tillgängliga :\n"
+msgid "Some plugins are not available:"
+msgstr ""
 
 #
 #, fuzzy
 msgid "Sorbian"
 msgstr "Serbiska"
-
-msgid "Sorry CIHelper Config is Missing"
-msgstr ""
 
 msgid "Sorry Inadyn Config is Missing"
 msgstr "Tyvärr, Inadyn Config Saknas"
@@ -19562,9 +19741,6 @@ msgstr "Tyvärr, MiniDLNA Config Saknas"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Tyvärr, feeds är nere för underåll, v.v. försök igen senare."
-
-msgid "Sorry feeds are down for maintenance."
-msgstr "Tyvärr, feeds är nere för underhåll"
 
 msgid "Sorry no backups found!"
 msgstr ""
@@ -19617,6 +19793,9 @@ msgstr ""
 msgid "Sort Plugin Browser"
 msgstr "Sortera plug-in bowser alfabetiskt"
 
+msgid "Sort Plugin Browser entries"
+msgstr ""
+
 msgid "Sort by"
 msgstr "Sortera efter"
 
@@ -19655,6 +19834,9 @@ msgstr "Ljud"
 #
 msgid "Sound carrier"
 msgstr "Ljudbärare"
+
+msgid "Source Packages"
+msgstr ""
 
 msgid "Source request"
 msgstr "Källbegäran"
@@ -19780,6 +19962,9 @@ msgstr ""
 msgid "Start edit at line end"
 msgstr ""
 
+msgid "Start edit mode"
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Spela upp från början"
@@ -19812,6 +19997,9 @@ msgid "Start test"
 msgstr "Starta test"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the highlighted plugin"
 msgstr ""
 
 #
@@ -19923,6 +20111,9 @@ msgstr "Avsluta nuvarande och avaktivera kommande program"
 #
 msgid "Stop current event but not future events"
 msgstr "Avsluta nuvarande program men inte kommande"
+
+msgid "Stop edit mode"
+msgstr ""
 
 #
 msgid "Stop entry"
@@ -20397,7 +20588,7 @@ msgstr ""
 msgid "System Message Check"
 msgstr "Filsystemskontroll"
 
-msgid "System Plugins"
+msgid "System Plugin Packages"
 msgstr ""
 
 msgid "System Setup"
@@ -20779,7 +20970,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"The MediaPortal plugin is not installed!\n"
+"The MediaStream plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
@@ -21072,49 +21263,6 @@ msgid "This allows you change the number of rows shown."
 msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
-msgstr ""
-
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr ""
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr ""
-
-msgid "This allows you to show drivers modules in downloads"
-msgstr ""
-
-msgid "This allows you to show extensions modules in downloads"
-msgstr ""
-
-msgid "This allows you to show kernel modules in downloads"
-msgstr ""
-
-msgid "This allows you to show lcd skins in downloads"
-msgstr ""
-
-msgid "This allows you to show m2k modules in downloads"
-msgstr ""
-
-msgid "This allows you to show picons modules in downloads"
-msgstr ""
-
-msgid "This allows you to show security modules in downloads"
-msgstr ""
-
-msgid "This allows you to show settings modules in downloads"
-msgstr ""
-
-#, fuzzy
-msgid "This allows you to show skin modules in downloads"
-msgstr "Det här alternativet låter dig avaktivera sortering av plugin browser"
-
-msgid "This allows you to show softcams modules in downloads"
-msgstr ""
-
-msgid "This allows you to show system plugin modules in downloads"
-msgstr ""
-
-msgid "This allows you to show weblinks modules in downloads"
 msgstr ""
 
 #
@@ -21799,6 +21947,9 @@ msgstr ""
 msgid "Toggle item move mode on/off"
 msgstr ""
 
+msgid "Toggle move mode"
+msgstr ""
+
 msgid "Toggle move mode selection"
 msgstr ""
 
@@ -21814,6 +21965,9 @@ msgstr ""
 #, fuzzy
 msgid "Toggle service name display"
 msgstr "Höger om kanalnamn"
+
+msgid "Toggle the visibility of the highlighted plugin"
+msgstr ""
 
 #, fuzzy
 msgid "Toggles between tv and radio"
@@ -22415,6 +22569,12 @@ msgstr ""
 msgid "Update"
 msgstr "Uppdatera"
 
+msgid "Update Plugin"
+msgstr ""
+
+msgid "Update Plugins"
+msgstr ""
+
 msgid "Update completed."
 msgstr ""
 
@@ -22443,6 +22603,9 @@ msgstr ""
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
+msgstr ""
+
+msgid "Update the highlighted plugin"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -23101,6 +23264,12 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr "Visa Rass interaktivitet..."
 
+msgid "View as grid"
+msgstr ""
+
+msgid "View as list"
+msgstr ""
+
 msgid "View mode"
 msgstr "Visningsläge"
 
@@ -23347,7 +23516,7 @@ msgstr "Annat"
 msgid "Web Interface"
 msgstr "Web Interface"
 
-msgid "Web Links"
+msgid "Web Link Packages"
 msgstr ""
 
 msgid "Web browser base visibility"
@@ -23516,9 +23685,6 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Vid aktiverad kommer autentisering krävas för att titta på http strömmar."
 
-msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online."
-msgstr ""
-
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Vid aktiverad kommer kanalnumreringen starta på '1' för varje favoritlista."
 
@@ -23603,9 +23769,6 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Vid aktiverad används DHCP för IP konfiguration."
-
-msgid "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list."
-msgstr ""
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Vid aktiverad kommer din mottagare känna av aktivitet på VCR SCART ingången."
@@ -23916,26 +24079,6 @@ msgstr ""
 msgid "Yoruba"
 msgstr ""
 
-#, python-format
-msgid ""
-"You already have a bootlogo installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Du har redan installerat en bootlogo,\n"
-"vill du ta bort\n"
-"\"%s\"?"
-
-#, python-format
-msgid ""
-"You already have a channel list installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Du har redan en kanallista installerad,\n"
-"vill du ta bort\n"
-"\"%s\"?"
-
 msgid "You can Display MiniTV with or without OSD Menu"
 msgstr ""
 
@@ -24099,9 +24242,6 @@ msgstr ""
 msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
-msgstr ""
-
-msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
 #
@@ -25001,6 +25141,9 @@ msgstr "medicin / fysiologi / psykologi"
 msgid "min"
 msgstr "min"
 
+msgid "module disabled"
+msgstr ""
+
 #
 msgid "month"
 msgstr "månad"
@@ -25088,6 +25231,9 @@ msgstr "Gå till nästa kanal"
 #, fuzzy
 msgid "next higher Resolution"
 msgstr "Upplösning"
+
+msgid "no"
+msgstr ""
 
 #
 msgid "no CAId selected"
@@ -25203,10 +25349,6 @@ msgstr "pid:"
 
 msgid "pink"
 msgstr ""
-
-#
-msgid "please press OK when ready"
-msgstr "tryck OK när du är klar"
 
 #
 msgid "please wait, loading picture..."
@@ -25617,6 +25759,9 @@ msgstr "visa utökningar..."
 msgid "violet"
 msgstr ""
 
+msgid "wait for ci..."
+msgstr ""
+
 #
 msgid "wait for mmi..."
 msgstr "vänta på mmi..."
@@ -25666,309 +25811,12 @@ msgstr "pågående"
 msgid "yellow"
 msgstr "gul"
 
+msgid "yes"
+msgstr ""
+
 #
 msgid "yes (keep feeds)"
 msgstr "ja (behåll feeds)"
 
 msgid "®"
 msgstr ""
-
-#
-#, fuzzy
-#~ msgid "Auto Modes Selected."
-#~ msgstr "ingen CAId vald"
-
-#~ msgid "Check the Internet connection"
-#~ msgstr "Kontrollera internetanslutningen"
-
-#~ msgid "Checking the Internet connection"
-#~ msgstr "Kontrollerar Internetanslutningen"
-
-#
-#~ msgid "Configure nameservers"
-#~ msgstr "Konfigurera namnservers"
-
-#
-#, fuzzy
-#~ msgid "Default Modes Selected."
-#~ msgstr "Förvald sökväg "
-
-#~ msgid ""
-#~ "Please configure or verify your Nameservers by filling out the required values.\n"
-#~ "When you are ready press OK to continue."
-#~ msgstr ""
-#~ "Vänligen konfigurera eller bekräfta din namnserver med att fylla i de begärda fälten.\n"
-#~ "När du är klar tryck OK för att fortsätta."
-
-#
-#~ msgid ""
-#~ "Please configure your Internet connection by filling out the required values.\n"
-#~ "When you are ready press OK to continue."
-#~ msgstr ""
-#~ "Vänligen konfigurera din Internetanslutning med att fylla i begärda fält.\n"
-#~ "När du är klar tryck OK för att forsätta."
-
-#~ msgid ""
-#~ "Please select the network interface that you want to use for your Internet connection.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Vänligen välj nätverkskort som du vill använda för anslutning till Internet.\n"
-#~ "\n"
-#~ "Vänligen tryck OK för att fortsätta."
-
-#
-#~ msgid ""
-#~ "Please select the wireless network that you want to connect to.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Vänligen välj det trådlösa nätverk du vill ansluta till.\n"
-#~ "\n"
-#~ "Vänligen tryck OK för att forsätta."
-
-#~ msgid "Please set up tuner A"
-#~ msgstr "Vänligen installera tuner A"
-
-#
-#~ msgid "Please set up tuner B"
-#~ msgstr "Vänligen installera tuner B"
-
-#
-#~ msgid "Please set up tuner C"
-#~ msgstr "Vänligen installera tuner C"
-
-#
-#~ msgid "Please set up tuner D"
-#~ msgstr "Vänligen installera tuner D"
-
-#
-#~ msgid "Refresh rate selection."
-#~ msgstr "Val av uppdateringsfrekvens."
-
-#
-#~ msgid "Select video input with up/down buttons"
-#~ msgstr "Välj videoingång med upp / ner knapparna"
-
-#~ msgid "Skip Internet connection check (disables automatic package installation)"
-#~ msgstr "Hoppa över kontroll av internetanslutning (inaktiverar automatisk paketinstallation)"
-
-#
-#~ msgid ""
-#~ "Thank you for using the wizard.\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Tack för att du använde guiden.\n"
-#~ "Vänligen tryck OK för att forsätta."
-
-#~ msgid ""
-#~ "Thank you for using the wizard. Your %s %s is now ready to use.\n"
-#~ "Please press OK to start using your %s %s."
-#~ msgstr ""
-#~ "Tack för att du använde guiden. Din %s %s är nu klar att användas.\n"
-#~ "Vänligen tryck OK för att börja använda din %s %s."
-
-#~ msgid "The backup failed. Please choose a different backup location."
-#~ msgstr "Backupen misslyckades. Välj en annan plats för din backup."
-
-#
-#~ msgid ""
-#~ "The wireless LAN plugin is not installed!\n"
-#~ "Please install it and choose what you want to do next."
-#~ msgstr ""
-#~ "Pluginet för trådlöst LAN är inte installerad!\n"
-#~ "Vänligen installera den och välj vad du vill göra härnäst."
-
-#
-#~ msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-#~ msgstr "Guiden kan ta en backup på nuvarande inställningar. Vill du ta en backup nu?"
-
-#
-#~ msgid "The wizard is finished now."
-#~ msgstr "Guiden är nu färdig."
-
-#
-#~ msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-#~ msgstr "Använd upp/ner pilarna på din fjärrkontroll för att välja. Tryck sedan OK."
-
-#~ msgid ""
-#~ "Video input selection\n"
-#~ "\n"
-#~ "Please press OK if you can see this page on your TV (or select a different input port).\n"
-#~ "\n"
-#~ "The next input port will be automatically probed in 10 seconds."
-#~ msgstr ""
-#~ "Val av videoingång\n"
-#~ "\n"
-#~ "Vänligen tryck OK om du kan se denna sida på din TV (eller välj en anna ingångsport).\n"
-#~ "\n"
-#~ "Den nästa ingångsporten kommer att undersökas automatiskt inom 10 sekunder."
-
-#
-#~ msgid "Video mode selection."
-#~ msgstr "Videolägesval."
-
-#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-#~ msgstr "Välkommen till uppgraderingsguiden för Image. Guiden hjälper dig med uppgraderingen av mjukvaran i din %s %s genom att tillgodose en backupmöjlighet av dina nuvarande inställningar och en kort förklaring hur du uppgraderar mjukvaran."
-
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-#~ "\n"
-#~ "Press OK to start configuring your network"
-#~ msgstr ""
-#~ "Välkommen.\n"
-#~ "\n"
-#~ "Om du vill ansluta din %s %s till Internet, då kommer den här guiden hjälpa dig genom grundläggande konfiguration av din %s %s.\n"
-#~ "\n"
-#~ "Tryck OK för att starta konfigurationen av ditt nätverk"
-
-#~ msgid ""
-#~ "Welcome.\n"
-#~ "\n"
-#~ "This start wizard will guide you through the basic setup of your %s %s.\n"
-#~ "Press the OK button on your remote control to move to the next step."
-#~ msgstr ""
-#~ "Välkommen.\n"
-#~ "\n"
-#~ "Den här guiden hjälper dig genom den grundläggande konfigurationen av din %s %s.\n"
-#~ "Tryck OK på din fjärrkontroll för att gå vidare till nästa steg."
-
-#~ msgid "Wireless network connection setup"
-#~ msgstr "Trådlös nätverksinställning"
-
-#~ msgid "Wireless network connection setup."
-#~ msgstr "Trådlös nätverksinställning."
-
-#
-#~ msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-#~ msgstr "Du har valt att ta backup på dina inställningar. Vänligen tryck OK för att starta backup nu."
-
-#
-#~ msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-#~ msgstr "Du har valt att återskapa dina inställningar. Enigma2 kommer starta om efter återställning. Vänligen tryck OK för att starta återställningen nu."
-
-#
-#~ msgid ""
-#~ "Your %s %s is now ready to use.\n"
-#~ "\n"
-#~ "Your Internet connection is working now.\n"
-#~ "\n"
-#~ "Please press OK to continue."
-#~ msgstr ""
-#~ "Din %s %s är nu klar för användning.\n"
-#~ "\n"
-#~ "Din Internet anslutning fungerar nu.\n"
-#~ "\n"
-#~ "Vänligen tryck OK för att forsätta."
-
-#
-#~ msgid "Your %s %s is shutting down. Please wait..."
-#~ msgstr "Din %s %s håller på att stängas av. Vänligen vänta..."
-
-#
-#~ msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-#~ msgstr "Backupen lyckades. Vi kommer nu att fortsätta förklara uppgraderingsprocessen."
-
-#
-#~ msgid ""
-#~ "Your wireless LAN Internet connection could not be started!\n"
-#~ "Have you attached your USB WLAN Stick?\n"
-#~ "\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Ditt trådlösa LAN Internetanslutning kunde inte startas!\n"
-#~ "Har du anslutit ditt USB WLAN sticka?\n"
-#~ "\n"
-#~ "Vänligen välj vad du vill göra härnäst."
-
-#
-#, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "   Please press OK to start Kodi..."
-#~ msgstr "Vänligen tryck OK för att försätta."
-
-#, python-format
-#~ msgid "%d KB"
-#~ msgstr "%d KB"
-
-#, fuzzy, python-format
-#~ msgid "%s - %s (%s%d min)"
-#~ msgstr "%02d.%02d - %02d.%02d (%s%d min)"
-
-#
-#~ msgid "Capacity: "
-#~ msgstr "Kapacitet : "
-
-#~ msgid "Choose Bouquet"
-#~ msgstr "Välj Kanallista"
-
-#~ msgid "Cleaning Trashes"
-#~ msgstr "Rensar skräp"
-
-#
-#, fuzzy
-#~ msgid "Delete EPG"
-#~ msgstr "Ta bort"
-
-#~ msgid ""
-#~ "Do you really want to initialize the device?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ "Vill du verkligen initiera enheten?\n"
-#~ "All data på disken kommer att raderas!"
-
-#
-#~ msgid "Keyboard map"
-#~ msgstr "Tangentbordslayout"
-
-#
-#, fuzzy
-#~ msgid "Kodi installed:"
-#~ msgstr "Ångra installation"
-
-#
-#, fuzzy
-#~ msgid "Kodi media player"
-#~ msgstr "Avsluta mediaspelare?"
-
-#~ msgid "Load EPG"
-#~ msgstr "Ladda EPG"
-
-#, fuzzy
-#~ msgid "Load/Save/Delete"
-#~ msgstr "Ladda/Spara"
-
-#
-#~ msgid "Model: "
-#~ msgstr "Modell : "
-
-#
-#, fuzzy
-#~ msgid "Please press OK to start Kodi..."
-#~ msgstr "Vänligen tryck OK för att försätta."
-
-#, fuzzy
-#~ msgid "STB Display"
-#~ msgstr "Skärminställningar"
-
-#~ msgid "Save EPG"
-#~ msgstr "Spara EPG"
-
-#
-#, fuzzy
-#~ msgid "Start Kodi"
-#~ msgstr "Starttid"
-
-#~ msgid "Trashcan:"
-#~ msgstr "Papperskorgen:"
-
-#
-#~ msgid "blacklist"
-#~ msgstr "svartlista"
-
-#
-#~ msgid "show transponder info"
-#~ msgstr "visa transponder info"

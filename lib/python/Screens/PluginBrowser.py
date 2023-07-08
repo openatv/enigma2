@@ -27,7 +27,7 @@ from Tools.NumericalTextInput import NumericalTextInput
 
 MODULE_NAME = __name__.split(".")[-1]
 
-INTERNET_TIMEOUT = 1
+INTERNET_TIMEOUT = 2
 FEED_SERVER = "feeds2.mynonpublic.com"
 ENIGMA_PREFIX = "enigma2-plugin-%s"
 KERNEL_PREFIX = "kernel-module-%s"
@@ -322,7 +322,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 		elif config.usage.plugins_sort_mode.value == "user":
 			self.pluginList.sort(key=lambda x: x[0].listWeight)
 		if self.sortMode:
-			self["key_red"].setText("Reset Order")
+			self["key_red"].setText(_("Reset Order"))
 			self["key_green"].setText(_("Move Mode Off") if self.selectedPlugin else _("Move Mode On"))
 			self["key_blue"].setText(_("Edit Mode Off"))
 			self["pluginRemoveActions"].setEnabled(False)
@@ -624,6 +624,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 	PLUGIN_DISPLAY_CATEGORY = 8  # This is the same as PLUGIN_FORMATTED_CATEGORY but is always available for the summary screen.
 	PLUGIN_INSTALLED = 9  # This is only defined for management screens and is not intended for display.
 	PLUGIN_UPGRADABLE = 10  # This is only defined for management screens and is not intended for display.
+	PLUGIN_NAME_VERSION = 11  # This is the name and the version and only defined for plugin details and management.
 
 	INFO_PACKAGE = 0
 	INFO_CATEGORY = 1
@@ -944,8 +945,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			case OpkgComponent.EVENT_ERROR:
 				print("[PluginBrowser] Opkg command '%s' error!  (%s)" % (parameter[1], self.opkgComponent.getCommandText(parameter[0])))
 			case _:
-				# Unhandled events, no action required.
-				pass
+				print("[PluginBrowser] Opkg command '%s' returned event '%s'." % (self.opkgComponent.getCommandText(self.opkgComponent.currentCommand), self.opkgComponent.getEventText(event)))
 
 		haveLogs = self.logData != ""
 		self["logAction"].setEnabled(haveLogs)
@@ -1014,7 +1014,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		plugins = []
 		for category in sorted(categories.keys()):
 			if category in self.expanded:
-				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandedIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None))
+				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandedIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None, None))
 				for info in sorted(categories[category], key=lambda x: x[self.INFO_PACKAGE]):
 					installed = info[self.INFO_INSTALLED]
 					icon = self.installedIcon if installed else self.installableIcon
@@ -1030,9 +1030,9 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 						if part.startswith("git"):
 							parts.remove(part)
 					version = "+".join(parts)
-					plugins.append((info[self.INFO_PACKAGE], None, None, info[self.INFO_NAME], info[self.INFO_DESCRIPTION], version, self.verticalIcon, icon, PACKAGE_CATEGORIES.get(category, category), info[self.INFO_INSTALLED], info[self.INFO_UPGRADE]))
+					plugins.append((info[self.INFO_PACKAGE], None, None, info[self.INFO_NAME], info[self.INFO_DESCRIPTION], version, self.verticalIcon, icon, PACKAGE_CATEGORIES.get(category, category), info[self.INFO_INSTALLED], info[self.INFO_UPGRADE], "%s (%s)" % (info[self.INFO_NAME], version)))
 			else:
-				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandableIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None))
+				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandableIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None, None))
 		self["plugins"].setList(plugins)
 
 	def setWaiting(self, text):
