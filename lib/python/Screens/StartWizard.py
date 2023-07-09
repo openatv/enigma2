@@ -2,6 +2,7 @@ from os import stat, statvfs, makedirs
 from os.path import join, isdir
 from shlex import split
 
+from Components.AVSwitch import iAVSwitch
 from Components.config import ConfigBoolean, config, configfile
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
@@ -10,9 +11,9 @@ from Components.Pixmap import Pixmap
 from Screens.FlashExpander import EXPANDER_MOUNT, MOUNT_DEVICE, MOUNT_MOUNTPOINT, MOUNT_FILESYSTEM
 from Screens.HelpMenu import ShowRemoteControl
 from Screens.MessageBox import MessageBox
-from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 from Screens.VideoWizard import VideoWizard
-from Screens.Wizard import wizardManager
+from Screens.Wizard import Wizard, wizardManager
 from Screens.WizardLanguage import WizardLanguage
 from Tools.Directories import fileReadLines, fileWriteLines
 
@@ -20,12 +21,13 @@ MODULE_NAME = __name__.split(".")[-1]
 
 config.misc.firstrun = ConfigBoolean(default=True)
 config.misc.videowizardenabled = ConfigBoolean(default=True)
+config.misc.localewizardenabled = ConfigBoolean(default=True)
 
 
-class StartWizard(WizardLanguage, ShowRemoteControl):
+class StartWizard(Wizard, ShowRemoteControl):
 	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
 		self.xmlfile = ["startwizard.xml"]
-		WizardLanguage.__init__(self, session, showSteps=False)
+		Wizard.__init__(self, session, showSteps=False)
 		ShowRemoteControl.__init__(self)
 		self.deviceData = {}
 		self.mountData = None
@@ -162,8 +164,87 @@ class StartWizard(WizardLanguage, ShowRemoteControl):
 		return isdir(join("/%s/%s" % (EXPANDER_MOUNT, EXPANDER_MOUNT), "bin"))
 
 
+class WelcomeWizard(WizardLanguage, ShowRemoteControl):
+	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
+		self.xmlfile = ["welcomewizard.xml"]
+		WizardLanguage.__init__(self, session, showSteps=False)
+		ShowRemoteControl.__init__(self)
+		self.skinName = "StartWizard"
+		self.oldLang = config.osd.language.value
+		self["wizard"] = Pixmap()
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self.setTitle(_("Start Wizard"))
+		self.port = "HDMI"
+		self.avSwitch = iAVSwitch
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		WizardLanguage.layoutFinished(self)
+		preferred = ""
+		try:
+			if BoxInfo.getItem("AmlogicFamily"):
+				fd = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
+				preferred = fd.read()[:-1].replace('*', '')
+				fd.close()
+			else:
+				fd = open("/proc/stb/video/videomode_edid")
+				preferred = fd.read()[:-1]
+				fd.close()
+		except OSError:
+			try:
+				fd = open("/proc/stb/video/videomode_preferred")
+				preferred = fd.read()[:-1]
+				fd.close()
+			except OSError:
+				pass
+
+		mode = "720p"
+		if "1080p" in preferred:
+			mode = "1080p"
+
+		if BoxInfo.getItem("AmlogicFamily"):
+			rates = self.listRates(mode)
+			self.avSwitch.setMode(port=self.port, mode=mode, rate=rates[0][0])
+		else:
+			self.avSwitch.setMode(port=self.port, mode=mode, rate="multi")
+
+	def listRates(self, mode=None):
+		def sortKey(name):
+			return {
+				"multi": 1,
+				"auto": 2
+			}.get(name[0], 3)
+
+		rates = []
+		for modes in self.avSwitch.getModeList(self.port):
+			if modes[0] == mode:
+				for rate in modes[1]:
+					if rate == "auto" and not BoxInfo.getItem("have24hz"):
+						continue
+					if self.port == "DVI-PC" and rate == "640x480":
+						rates.insert(0, (rate, rate))
+						continue
+					rates.append((rate, rate))
+		rates.sort(key=sortKey)
+		return rates
+
+	def keyRed(self):
+		self.red()
+
+	def markDone(self):
+		print("markDone")
+		config.misc.localewizardenabled.value = False
+		config.misc.localewizardenabled.save()
+		configfile.save()
+		if self.oldLang != config.osd.language.value:
+			self.session.open(TryQuitMainloop, QUIT_RESTART)
+
+
 # StartEnigma.py#L528ff - RestoreSettings
-wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, priority=0)
+if config.misc.firstrun.value:
+	wizardManager.registerWizard(WelcomeWizard, config.misc.localewizardenabled.value, priority=0)
+wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, priority=1)
 #wizardManager.registerWizard(LocaleWizard, config.misc.languageselected.value, priority=2)
 # FrontprocessorUpgrade FPUpgrade priority = 8
 # FrontprocessorUpgrade SystemMessage priority = 9

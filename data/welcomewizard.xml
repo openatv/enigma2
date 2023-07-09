@@ -1,0 +1,10 @@
+<wizard>
+	<step id="end" >
+		<buttons enable="OK,RED" />
+		<text value="Welcome to openATV.\n\nUse the RED to select the language or press OK to continue." />
+		<displaytext value="Use the RED to select the language or press OK" />
+		<code pos="after" async="yes">
+self.markDone()
+		</code>
+	</step>
+</wizard>
