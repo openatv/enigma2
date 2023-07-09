@@ -1,19 +1,20 @@
 from Screens.HelpMenu import ShowRemoteControl
-from Screens.Wizard import Wizard
+from Screens.Screen import Screen
+from Screens.WizardLanguage import WizardLanguage
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Tools.Directories import resolveFilename, SCOPE_SKINS
 from Components.Console import Console
 
 
-class UserInterfacePositionerWizard(Wizard, ShowRemoteControl):
+class UserInterfacePositionerWizard(WizardLanguage, ShowRemoteControl):
 	def __init__(self, session, interface=None):
 		self.xmlfile = resolveFilename(SCOPE_SKINS, "userinterfacepositionerwizard.xml")
-		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
+		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
 		self.skinName = "StartWizard"
 		self.session = session
-		self.setTitle(_("Welcome..."))
+		Screen.setTitle(self, _("Welcome..."))
 		self.Console = Console()
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
@@ -38,7 +39,7 @@ class UserInterfacePositionerWizard(Wizard, ShowRemoteControl):
 		pass
 
 	def back(self):
-		Wizard.back(self)
+		WizardLanguage.back(self)
 
 	def __onClose(self):
 		self.Console.ePopen('/usr/bin/showiframe /usr/share/backdrop.mvi')

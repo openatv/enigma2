@@ -6,7 +6,8 @@ from Components.Harddisk import harddiskmanager
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import ShowRemoteControl
-from Screens.Wizard import Wizard, wizardManager
+from Screens.Wizard import wizardManager
+from Screens.WizardLanguage import WizardLanguage
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 from .BackupRestore import getBackupFilename, InitConfig as BackupRestore_InitConfig
@@ -44,7 +45,7 @@ def checkBackupFile():
 	return isfile(fullBackupFile1) or isfile(fullBackupFile2)
 
 
-class ImageWizard(Wizard, ShowRemoteControl):
+class ImageWizard(WizardLanguage, ShowRemoteControl):
 	skin = """
 		<screen name="ImageWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" resolution="720,576">
 			<widget name="text" position="153,40" size="340,330" font="Regular;22" />
@@ -64,7 +65,7 @@ class ImageWizard(Wizard, ShowRemoteControl):
 
 	def __init__(self, session):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/imagewizard.xml")
-		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
+		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
 		self.session = session
 		self["wizard"] = Pixmap()
