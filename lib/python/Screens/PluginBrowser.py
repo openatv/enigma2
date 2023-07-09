@@ -1139,6 +1139,7 @@ class PluginActionLog(Screen, HelpableScreen):
 	def __init__(self, session, logData):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		self.setTitle(_("Plugin Action Log"))
 		self["log"] = ScrollLabel()
 		self["log"].setText(logData)
 		self["key_red"] = StaticText(_("Close"))
