@@ -2,6 +2,8 @@ from os import stat, statvfs, makedirs
 from os.path import join, isdir
 from shlex import split
 
+from enigma import eTimer
+
 from Components.AVSwitch import iAVSwitch
 from Components.config import ConfigBoolean, config, configfile
 from Components.Console import Console
@@ -164,6 +166,9 @@ class StartWizard(Wizard, ShowRemoteControl):
 		return isdir(join("/%s/%s" % (EXPANDER_MOUNT, EXPANDER_MOUNT), "bin"))
 
 
+# This is only a temporary solution
+# * The video format selection needs to be improved
+# * This extra wizard should be merged into the VideoWizard
 class WelcomeWizard(WizardLanguage, ShowRemoteControl):
 	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
 		self.xmlfile = ["welcomewizard.xml"]
@@ -175,65 +180,71 @@ class WelcomeWizard(WizardLanguage, ShowRemoteControl):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.setTitle(_("Start Wizard"))
-		self.port = "HDMI"
 		self.avSwitch = iAVSwitch
+		self.hasHDMI = BoxInfo.getItem("hdmi", False)
+		self.hasScart = BoxInfo.getItem("scart", False)
+		self.ports = self.listPorts()
+		self.port = "HDMI" if self.hasHDMI else "Scart"
+		self.mode = "720p" if self.hasHDMI else "576i"
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.modeTimer = eTimer()
+		self.modeTimer.callback.append(self.modeTimeout)
 
 	def layoutFinished(self):
 		WizardLanguage.layoutFinished(self)
-		preferred = ""
-		try:
-			if BoxInfo.getItem("AmlogicFamily"):
-				fd = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
-				preferred = fd.read()[:-1].replace('*', '')
-				fd.close()
-			else:
-				fd = open("/proc/stb/video/videomode_edid")
-				preferred = fd.read()[:-1]
-				fd.close()
-		except OSError:
+		if self.hasHDMI:
+			preferred = ""
 			try:
-				fd = open("/proc/stb/video/videomode_preferred")
-				preferred = fd.read()[:-1]
-				fd.close()
+				if BoxInfo.getItem("AmlogicFamily"):
+					fd = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
+					preferred = fd.read()[:-1].replace('*', '')
+					fd.close()
+				else:
+					fd = open("/proc/stb/video/videomode_edid")
+					preferred = fd.read()[:-1]
+					fd.close()
 			except OSError:
-				pass
+				try:
+					fd = open("/proc/stb/video/videomode_preferred")
+					preferred = fd.read()[:-1]
+					fd.close()
+				except OSError:
+					pass
 
-		mode = "720p"
-		if "1080p" in preferred:
-			mode = "1080p"
+			if "1080p" in preferred:
+				self.mode = "1080p"
 
-		if BoxInfo.getItem("AmlogicFamily"):
-			rates = self.listRates(mode)
-			self.avSwitch.setMode(port=self.port, mode=mode, rate=rates[0][0])
-		else:
-			self.avSwitch.setMode(port=self.port, mode=mode, rate="multi")
+		self.changeMode()
+		if len(self.ports) > 1:
+			self.modeTimer.start(10000)
 
-	def listRates(self, mode=None):
-		def sortKey(name):
-			return {
-				"multi": 1,
-				"auto": 2
-			}.get(name[0], 3)
+	def changeMode(self):
+		mode = self.mode if self.port == "HDMI" else "576i"
+		rate = "auto" if BoxInfo.getItem("AmlogicFamily") else "multi"
+		if self.port == "Scart":
+			rate = "50Hz"
+		self.avSwitch.setMode(port=self.port, mode=mode, rate=rate)
 
-		rates = []
-		for modes in self.avSwitch.getModeList(self.port):
-			if modes[0] == mode:
-				for rate in modes[1]:
-					if rate == "auto" and not BoxInfo.getItem("have24hz"):
-						continue
-					if self.port == "DVI-PC" and rate == "640x480":
-						rates.insert(0, (rate, rate))
-						continue
-					rates.append((rate, rate))
-		rates.sort(key=sortKey)
-		return rates
+	def modeTimeout(self):
+		self.port = "Scart" if self.port == "HDMI" else "HDMI"
+		self.changeMode()
+
+	def listPorts(self):
+		allports = ["HDMI"] if self.hasHDMI else []
+		if self.hasScart:
+			allports.append("Scart")
+		ports = []
+		for port in allports:
+			if self.avSwitch.isPortUsed(port):
+				ports.append(port)
+		return ports
 
 	def keyRed(self):
+		self.modeTimer.stop()
 		self.red()
 
 	def markDone(self):
-		print("markDone")
+		self.modeTimer.stop()
 		config.misc.localewizardenabled.value = False
 		config.misc.localewizardenabled.save()
 		configfile.save()
