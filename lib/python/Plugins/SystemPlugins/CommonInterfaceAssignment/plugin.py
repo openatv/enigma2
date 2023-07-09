@@ -623,7 +623,7 @@ class myChannelSelection(ChannelSelectionBase):
 		ref = self.getCurrentSelection()
 		if ref:
 			if (ref.flags & 7) == 7 and "FROM BOUQUET" in ref.toString():
-				self["key_yellow"].setText(_("Add bouquet"))
+				self["key_yellow"].setText(_("Add Bouquet"))
 				return True
 			else:
 				self["key_yellow"].setText("")
