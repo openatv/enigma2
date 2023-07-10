@@ -2,7 +2,7 @@
 #
 # jbleyel <jbleyel@gmx.net>, 2021, 2022, 2023.
 # hd75hd <hd75hd.hd75hd@gmail.com>, 2021, 2022.
-# openATV <openatv@gmail.com>, 2021.
+# openATV <openatv@gmail.com>, 2021, 2023.
 # Holger <mrservo@gmx.de>, 2021.
 # Makumbo <tokioplo@web.de>, 2021, 2022, 2023.
 # Mr.Servo <mrservo@gmx.de>, 2021, 2022.
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 21:13+0000\n"
-"PO-Revision-Date: 2023-07-06 15:02+0000\n"
+"POT-Creation-Date: 2023-07-09 12:10+0000\n"
+"PO-Revision-Date: 2023-07-10 18:51+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1331,9 +1331,6 @@ msgstr "(FTA-Service)"
 msgid "(PiP)"
 msgstr "(Bild-im-Bild)"
 
-msgid "(Pip)"
-msgstr "(Bild-im-Bild)"
-
 msgid "(Radio)"
 msgstr "(Radio)"
 
@@ -2088,11 +2085,11 @@ msgstr "Alternativen-Bearbeitung abbrechen"
 
 #
 msgid "Abort Bouquet Edit"
-msgstr "Bouquet editieren abbrechen"
+msgstr "Bouquet bearbeiten abbrechen"
 
 #
 msgid "Abort Favorites Edit"
-msgstr "Favoriten editieren abbrechen"
+msgstr "Favoriten bearbeiten abbrechen"
 
 # RecordTimer.py
 msgid "Aborted a pseudo recording.\n"
@@ -2137,11 +2134,11 @@ msgid "Action at end of media"
 msgstr "Verhalten bei Filmende"
 
 msgid "Action on long POWER button press"
-msgstr "Aktion bei langem Drücken der Ausschalttaste"
+msgstr "Ausschalttaste länger gedrückt"
 
 #
 msgid "Action on short POWER button press"
-msgstr "Aktion bei kurzem Drücken der Ausschalttaste"
+msgstr "Ausschalttaste kurz gedrückt"
 
 msgid "Activate"
 msgstr "Aktiviere"
@@ -2303,9 +2300,6 @@ msgstr "Timer für die aktuelle Sendung hinzufügen"
 
 msgid "Add an AutoTimer for the current event"
 msgstr "AutoTimer für ausgewählte Sendung hinzufügen"
-
-msgid "Add bouquet"
-msgstr "Bouquet hinzu"
 
 msgid "Add current directory to bookmarks"
 msgstr "Aktuellen Ordner zu Lesezeichen hinzufügen"
@@ -3463,9 +3457,6 @@ msgstr "Schwarz"
 msgid "Black Screen"
 msgstr "Schwarzer Bildschirm"
 
-msgid "Black screen"
-msgstr "Schwarzer Bildschirm"
-
 msgid "Black screen till locked"
 msgstr "Schwarzer Bildschirm bis gesichert"
 
@@ -3576,9 +3567,6 @@ msgstr "Bouquetliste"
 
 msgid "Bouvet Island"
 msgstr "Bouvet Insel"
-
-msgid "Receiver does not support Quad PiP."
-msgstr "Der Receiver unterstützt Quad Bild-im-Bild nicht!"
 
 msgid "Boxing"
 msgstr "Boxen"
@@ -6684,7 +6672,7 @@ msgid "Display Settings"
 msgstr "Displayeinstellungen"
 
 msgid "Display Skin Packages"
-msgstr "Skin Pakete anzeigen"
+msgstr "Display-Skin Pakete anzeigen"
 
 msgid "Display context menu"
 msgstr "Kontextmenü anzeigen"
@@ -7367,7 +7355,7 @@ msgid "Edit the upgrade source address."
 msgstr "Adresse der Updatequelle bearbeiten."
 
 msgid "Edit the username."
-msgstr "Benutzername bearbeiten."
+msgstr "Benutzernamen bearbeiten."
 
 #
 msgid "Education"
@@ -7424,7 +7412,7 @@ msgstr "Bluetooth-Audio aktivieren"
 
 #
 msgid "Enable Bouquet Edit"
-msgstr "Bouquet editieren aktivieren"
+msgstr "Bouquet bearbeiten aktivieren"
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr "Dolby Digital / Dolby AC-3 Offset aktivieren"
@@ -7437,7 +7425,7 @@ msgstr "Schnellen Kanalwechsel aktivieren"
 
 #
 msgid "Enable Favorite Edit"
-msgstr "Favoriten editieren aktivieren"
+msgstr "Favoriten bearbeiten aktivieren"
 
 msgid "Enable Focus Animation"
 msgstr "Fokusanimation aktivieren"
@@ -7686,11 +7674,11 @@ msgstr "Alternativen-Bearbeitung beenden"
 
 #
 msgid "End Bouquet Edit"
-msgstr "Bouquet editieren beenden"
+msgstr "Bouquet bearbeiten beenden"
 
 #
 msgid "End Favorites Edit"
-msgstr "Favoriten editieren beenden"
+msgstr "Favoriten bearbeiten beenden"
 
 #
 msgid "End time"
@@ -14177,11 +14165,14 @@ msgstr "USB-Gerät einstecken"
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr "Schließen Sie ein USB-Gerät an, das für die Auslagerungsdatei verwendet werden kann. Beachten Sie, dass dieses Gerät nicht entfernt werden darf, während die %s %s läuft!"
 
+msgid "Plugin Action Log"
+msgstr "PluginInstall Log"
+
 msgid "Plugin Action Log Actions"
 msgstr "PluginInstall Log-Aktionen"
 
 msgid "Plugin Browser"
-msgstr "Plugin-Manager"
+msgstr "Erweiterungen"
 
 msgid "Plugin Browser Actions"
 msgstr "Plugin-Manager Aktionen"
@@ -15018,6 +15009,9 @@ msgstr "Receiver-Informationen"
 msgid "Receiver Information Actions"
 msgstr "Receiver Informationsaktionen"
 
+msgid "Receiver does not support Quad PiP."
+msgstr "Der Receiver unterstützt Quad Bild-im-Bild nicht!"
+
 #, python-format
 msgid "Receiver information for %s %s"
 msgstr "Receiver-Informationen für %s %s"
@@ -15574,6 +15568,9 @@ msgstr "Zurücksetzen"
 
 msgid "Reset HDMI-CEC settings to default"
 msgstr "HDMI-CEC-Einstellungen zurücksetzen"
+
+msgid "Reset Order"
+msgstr "Standardsortierung"
 
 #
 msgid "Reset and renumerate title names"
@@ -16509,7 +16506,7 @@ msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Bei 'Ja' werden Sender ohne EPG nicht angezeigt."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
-msgstr "Wählen Sie 'Ja', um alle Konfigurationsdaten zu löschen. Dann werden alle Enigma2-Einstellungen auf ihre Standardwerte zurückgesetzt. Dies führt auch dazu, dass Enigma2 beim Neustart den Willkommensassistenten ausführt."
+msgstr "Wählen Sie 'Ja', um alle Konfigurationsdaten zu löschen. Dadurch werden alle Enigma2-Einstellungen auf ihre Standardwerte zurückgesetzt und beim Neustart dann der Willkommensassistent ausführt."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
 msgstr "Wählen Sie 'Ja', um alle Fortsetzungsdaten des Mediaplayers zu entfernen. Dann werden die Daten entfernt, mit denen die Wiedergabe von Mediendateien an der Stelle fortgesetzt werden kann, an der die Wiedergabe zuletzt gestoppt wurde. Die Wiedergabeposition von Aufnahmen ist davon nicht betroffen."
@@ -16521,13 +16518,13 @@ msgid "Select 'Yes' to remove all other files and directories not covered by the
 msgstr "Wählen Sie 'Ja', um alle anderen Dateien und Verzeichnisse zu entfernen, die nicht von den oben genannten Optionen abgedeckt werden."
 
 msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
-msgstr "Wählen Sie 'Ja', um alle Plugin-Konfigurationsdaten zu entfernen. Dann werden alle Plugin-Konfigurationsdaten, die im Enigma2-Konfigurationsordner gespeichert sind, gelöscht. Dies führt dazu, dass alle betroffenen Plugins auf ihre Standardeinstellungen zurückgesetzt werden. Es kann aber sein, dass einige Plugins nicht funktionieren, bis sie konfiguriert sind."
+msgstr "Wählen Sie 'Ja', um alle Plugin-Konfigurationsdaten zu entfernen. Dadurch werden alle Plugin-Konfigurationsdaten, die im Enigma2-Konfigurationsordner gespeichert sind, gelöscht und alle betroffenen Plugins auf ihre Standardeinstellungen zurückgesetzt. Es kann aber dazu führen, dass einige Plugins so lange nicht funktionieren, bis sie konfiguriert sind."
 
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
-msgstr "Wählen Sie 'Ja', um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Dann wird die Konfiguration auf die ursprünglichen Einstellungen zurückgesetzt, bevor irgendwelche Konfigurationseinstellungen vorgenommen wurden. Dies ist die zuverlässigste Form für die Werkseinstellungen."
+msgstr "Wählen Sie 'Ja', um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Dadurch wird die Konfiguration auf die ursprünglichen Einstellungen zurückgesetzt. Dies ist die zuverlässigste Form für die Werkseinstellungen."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr "Wählen Sie 'Ja', um alle Timer-Konfigurationsdaten zu löschen. Dann werden alle Timer, AutoTimer und PowerTimer gelöscht."
+msgstr "Wählen Sie 'Ja', um alle Timer-Konfigurationsdaten zu löschen. Dadurch werden alle Timer, AutoTimer und PowerTimer gelöscht."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
 msgstr "Wählen Sie 'Ja', um alle Empfangsdaten zu löschen. Dann werden alle Empfangs- und Bouquetdaten gelöscht und die Timer sind nicht funktionsfähig, bis der Empfänger neu abgestimmt wurde."
@@ -19480,7 +19477,7 @@ msgid "Start date"
 msgstr "Startdatum"
 
 msgid "Start edit at line end"
-msgstr "Editieren ab Zeilenende"
+msgstr "Ab Zeilenende bearbeiten"
 
 msgid "Start edit mode"
 msgstr "Starte Bearbeitungsmodus"
@@ -21468,7 +21465,7 @@ msgid "Toggle if new text inserts before or overwrites existing text"
 msgstr "Zwischen Einfüge- und Überschreibungsmodus umschalten"
 
 msgid "Toggle item edit mode on/off"
-msgstr "Editmodus An/Aus umschalten"
+msgstr "Edit-Modus An/Aus umschalten"
 
 msgid "Toggle item move mode on/off"
 msgstr "Verschiebemodus An/Aus umschalten"
@@ -24765,9 +24762,6 @@ msgstr "Nächste Kanalseite"
 msgid "next higher Resolution"
 msgstr "nächsthöhere Auflösung"
 
-msgid "no"
-msgstr "Nein"
-
 #
 msgid "no CAId selected"
 msgstr "Keine CAID ausgewählt"
@@ -25328,12 +25322,24 @@ msgstr "Arbeite"
 msgid "yellow"
 msgstr "Gelb"
 
-msgid "yes"
-msgstr "Ja"
-
 #
 msgid "yes (keep feeds)"
 msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "(Pip)"
+#~ msgstr "(Bild-im-Bild)"
+
+#~ msgid "Add bouquet"
+#~ msgstr "Bouquet hinzu"
+
+#~ msgid "Black screen"
+#~ msgstr "Schwarzer Bildschirm"
+
+#~ msgid "no"
+#~ msgstr "Nein"
+
+#~ msgid "yes"
+#~ msgstr "Ja"

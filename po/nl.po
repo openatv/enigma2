@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 21:13+0000\n"
-"PO-Revision-Date: 2023-07-07 18:48+0000\n"
+"POT-Creation-Date: 2023-07-09 12:10+0000\n"
+"PO-Revision-Date: 2023-07-09 16:31+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -966,8 +966,8 @@ msgstr[1] "%d pakketten gevonden."
 #, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
-msgstr[0] "%d pakket heeft een update beschikbaar."
-msgstr[1] "%d pakketten hebben updates beschikbaar."
+msgstr[0] "Voor %d pakket is een update beschikbaar."
+msgstr[1] "Voor %d pakketten zijn updates beschikbaar."
 
 #, python-format
 msgid "%d package installable."
@@ -1309,9 +1309,6 @@ msgid "(FTA Service)"
 msgstr "(FTA Zender)"
 
 msgid "(PiP)"
-msgstr "(PiP)"
-
-msgid "(Pip)"
 msgstr "(PiP)"
 
 msgid "(Radio)"
@@ -2194,9 +2191,6 @@ msgstr "Timer toevoegen voor het huidige programma"
 
 msgid "Add an AutoTimer for the current event"
 msgstr "Een AutoTimer toevoegen voor het huidige programma"
-
-msgid "Add bouquet"
-msgstr "Favorietenlijst toevoegen"
 
 msgid "Add current directory to bookmarks"
 msgstr "Huidige map aan bookmarks toevoegen"
@@ -3282,9 +3276,6 @@ msgstr "Zwart"
 msgid "Black Screen"
 msgstr "Zwart scherm"
 
-msgid "Black screen"
-msgstr "Zwart scherm"
-
 msgid "Black screen till locked"
 msgstr "Zwart scherm totdat de zender gelocked is"
 
@@ -3390,9 +3381,6 @@ msgstr "Favorietenlijst"
 
 msgid "Bouvet Island"
 msgstr "Bouvet Eilanden"
-
-msgid "Receiver does not support Quad PiP."
-msgstr "Box of driver ondersteunt geen Quad PiP."
 
 msgid "Boxing"
 msgstr "Boxen"
@@ -4254,10 +4242,10 @@ msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for
 msgstr "Selecteer de stijl voor de tijdsweergave. 'H' / 'HH' is het uur voor een 24-uurs klok, 'h' / 'hh' is het uur voor de 12-uurs klok, 'mm' staat voor minuten en 'ss' voor seconden. ('HH' en 'hh' hebben een voorloop-nul bij een enkel getal) Uw keuze kan ook beïnvloed worden door de skin."
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Selecteer hoe datums moeten worden weergegeven op het frontpanel display. 'D' / 'DD' is de datum en 'M' / 'MM' is de maand in cijfers. ('DD' en 'MM' hebben een voorloop nul indien die bestaat uit een enkel getal). Het resultaat zal gebaseerd zijn op uw keuze, maar kan beïnvloed worden door de gebruikte skin."
+msgstr "Selecteer hoe datums moeten worden weergegeven op het Display. 'D' / 'DD' is de datum en 'M' / 'MM' is de maand in cijfers. ('DD' en 'MM' hebben een voorloop nul indien die bestaat uit een enkel getal). Het resultaat zal gebaseerd zijn op uw keuze, maar kan beïnvloed worden door de gebruikte skin."
 
 msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
-msgstr "Selecteer hoe tijden op het frontpaneldisplay moeten worden weergegeven. 'H' / 'HH' is het uur voor de 24-uurs klok, 'h' / 'hh' is het uur voor de 12-uurs klok, 'mm' is de minuten ('HH' en 'hh' hebben een voorloop nul indien die bestaat uit een enkel getal). Het resultaat zal gebaseerd zijn op uw keuze, maar kan beïnvloed worden door de gebruikte skin."
+msgstr "Selecteer hoe tijden op het Display moeten worden weergegeven. 'H' / 'HH' is het uur voor de 24-uurs klok, 'h' / 'hh' is het uur voor de 12-uurs klok, 'mm' is de minuten ('HH' en 'hh' hebben een voorloop nul indien die bestaat uit een enkel getal). Het resultaat zal gebaseerd zijn op uw keuze, maar kan beïnvloed worden door de gebruikte skin."
 
 msgid "Choose the location for crash and debug logs."
 msgstr "Selecteer waar u crash- en debuglogs wilt opslaan."
@@ -5042,7 +5030,7 @@ msgid "Configure whether multi channel sound tracks should be downmixed to stere
 msgstr "Kiezen of zenders met meerdere audiokanalen omgezet moeten worden naar stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. EPGrefresh)."
-msgstr "Stel in of het opname symbool (in de skin en op het LCD display) alleen zichtbaar is bij echte opnames. Of ook voor streaming en pseudo opnames (zoals bijvoorbeeld bij EPGRefresh)."
+msgstr "Stel in of het opname symbool (in de skin en op het Display) alleen zichtbaar is bij echte opnames. Of ook voor streaming en pseudo opnames (zoals bijvoorbeeld bij EPG-Refresh)."
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Stel in welk kleurformaat gebruikt wordt bij weergave via de scart."
@@ -6240,7 +6228,7 @@ msgid "Details"
 msgstr "Details"
 
 msgid "Development Packages"
-msgstr "Development pakketten"
+msgstr "Development"
 
 msgid "Device Manager"
 msgstr "Beheer opslagmedia"
@@ -6437,7 +6425,7 @@ msgid "Display Settings"
 msgstr "LCD instellingen"
 
 msgid "Display Skin Packages"
-msgstr "Display Skins"
+msgstr "LCD skins"
 
 msgid "Display context menu"
 msgstr "Contextmenu weergeven"
@@ -7169,7 +7157,7 @@ msgid "Enable MiniTV"
 msgstr "MiniTV inschakelen"
 
 msgid "Enable Move Mode"
-msgstr "Verplaatsmodus activeren"
+msgstr "Volgorde wijzigen"
 
 msgid "Enable Netmed EPG"
 msgstr "Netmed EPG inschakelen"
@@ -7550,7 +7538,7 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Voer de occillatorfrequentie van de lage band in. Voor meer info raadpleeg de specificaties van uw LNB."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
-msgstr "Voer uw persoonlijke Feed-URL in zodat u pakketten uit uw persoonlijke Feed kunt selecteren."
+msgstr "Uw persoonlijke Feed-URL invullen zodat u uw eigen Feed kunt gebruiken."
 
 msgid "Entertainment"
 msgstr "Entertainment"
@@ -9688,7 +9676,7 @@ msgstr ""
 "\n"
 
 msgid "In order to record a timer, the TV was switched to the recording service!\n"
-msgstr "Om de opname te kunnen maken, is uw TV overgeschakeld naar het op te nemen kanaal!\n"
+msgstr "De ontvanger is vanwege een geplande opname (Timer) omgeschakeld op de ingestelde zender!\n"
 
 msgid "In progress"
 msgstr "Bezig"
@@ -10221,7 +10209,7 @@ msgid "Kenya"
 msgstr "Kenia"
 
 msgid "Kernel Packages"
-msgstr "Kernel pakketten"
+msgstr "Kernel"
 
 msgid "Kernel file"
 msgstr "Kernel bestand"
@@ -10797,7 +10785,7 @@ msgid "Luxembourgish / Letzeburgesch"
 msgstr "Luxumburgs"
 
 msgid "M2k Packages"
-msgstr "M2k pakketten"
+msgstr "M2K"
 
 msgid "MAC Address Actions"
 msgstr "MAC Adres Acties"
@@ -11336,13 +11324,13 @@ msgid "Move Left/Right"
 msgstr "Verplaats links/rechts"
 
 msgid "Move Mode"
-msgstr "[verplaats modus]"
+msgstr "[Volgorde wijzigen]"
 
 msgid "Move Mode Off"
-msgstr "Verplaats modus uit"
+msgstr "Volgorde wijzigen Uit"
 
 msgid "Move Mode On"
-msgstr "Verplaats modus aan"
+msgstr "Volgorde wijzigen Aan"
 
 msgid "Move PiP"
 msgstr "Verplaats PIP"
@@ -12245,7 +12233,7 @@ msgid "No, scan later manually"
 msgstr "Nee, later handmatig zoeken"
 
 msgid "No, show always the plugin browser"
-msgstr "Nee, toon altijd de Plug-in browser"
+msgstr "Nee, toon altijd de Plug-in Browser"
 
 msgid "No, show always the timer list"
 msgstr "Nee, toon altijd de timerlijst"
@@ -12592,10 +12580,10 @@ msgid "Open the Channel Selection Settings screen"
 msgstr "Open de Zenderlijst-instellingen"
 
 msgid "Open the Plugin Browser"
-msgstr "Open de Plug-in browser"
+msgstr "Open de Plug-in Browser"
 
 msgid "Open the Plugin Browser settings screen"
-msgstr "Plug-in browser instellingen"
+msgstr "Plug-in Browser instellingen"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Open het Virtuele toetsenbord voor tekstinvoer"
@@ -12619,7 +12607,7 @@ msgid "OpenDNS Home"
 msgstr "OpenDNS Home"
 
 msgid "OpenPLi Packages"
-msgstr "OpenPLi pakketten"
+msgstr "OpenPLi"
 
 msgid "OpenSSL version"
 msgstr "OpenSSL versie"
@@ -12634,7 +12622,7 @@ msgid "OpenVPN Settings"
 msgstr "OpenVPN"
 
 msgid "OpenViX Packages"
-msgstr "OpenViX pakketten"
+msgstr "OpenViX"
 
 msgid "OpenVpn Log"
 msgstr "OpenVPN log"
@@ -13442,11 +13430,14 @@ msgstr "Een USB-apparaat aansluiten"
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr "Een USB-apparaat aansluiten dat als opslag voor een swap-file kan worden gebruikt. Let op! Dit apparaat mag niet worden verwijderd zo lang uw %s %s is ingeschakeld!"
 
+msgid "Plugin Action Log"
+msgstr "Plug-in installatie Log"
+
 msgid "Plugin Action Log Actions"
 msgstr "Plug-in installatie Log Acties"
 
 msgid "Plugin Browser"
-msgstr "Plug-in browser"
+msgstr "Plug-in Browser"
 
 msgid "Plugin Browser Actions"
 msgstr "Plug-in Browser Acties"
@@ -13470,7 +13461,7 @@ msgid "Plugin Browser Select Actions"
 msgstr "Plug-in Browser Selecteer Acties"
 
 msgid "Plugin Browser Settings"
-msgstr "Plug-in browser instellingen"
+msgstr "Plug-in Browser instellingen"
 
 msgid "Plugin Browser Update Actions"
 msgstr "Plug-in Browser Update Acties"
@@ -13479,7 +13470,7 @@ msgid "Plugin Browser layout"
 msgstr "Plug-in Browser indeling"
 
 msgid "Plugin Skin Packages"
-msgstr "Plug-in Skins"
+msgstr "Plug-in skins"
 
 msgid "Plugins"
 msgstr "Applicaties"
@@ -13898,7 +13889,7 @@ msgid "Protect on epg age"
 msgstr "Beveilig op epg leeftijd"
 
 msgid "Protect plugin browser"
-msgstr "Beveilig de Plug-in browser"
+msgstr "Beveilig de Plug-in Browser"
 
 msgid "Protect services"
 msgstr "Beveilig zenders"
@@ -14219,6 +14210,9 @@ msgstr "Ontvanger Informatie"
 msgid "Receiver Information Actions"
 msgstr "Ontvanger Informatie Acties"
 
+msgid "Receiver does not support Quad PiP."
+msgstr "Box of driver ondersteunt geen Quad PiP."
+
 #, python-format
 msgid "Receiver information for %s %s"
 msgstr "Ontvanger informatie voor uw %s %s"
@@ -14367,7 +14361,7 @@ msgid "Red/HbbTV Button Actions"
 msgstr "Rode/HbbTV knop Acties"
 
 msgid "Reduce the size of the service picons for more line spacing between them."
-msgstr "Verkleinen van de picons (zenderlogo's) voor een grotere regelafstand."
+msgstr "Verkleinen van de Picons (zenderlogo's) voor een grotere regelafstand."
 
 msgid "Reduce time scale"
 msgstr "Verklein de tijdschaal"
@@ -14732,6 +14726,9 @@ msgstr "Herstel"
 
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Reset de HDMI-CEC instellingen naar default"
+
+msgid "Reset Order"
+msgstr "Reset volgorde"
 
 msgid "Reset and renumerate title names"
 msgstr "Reset en hernummertitels"
@@ -15473,7 +15470,7 @@ msgid "Seconds"
 msgstr "seconden"
 
 msgid "Security Packages"
-msgstr "Beveiligingspakketten"
+msgstr "Beveiliging"
 
 msgid "Seek"
 msgstr "Spoelen"
@@ -15637,55 +15634,55 @@ msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the 
 msgstr "Kies 'Ja' om 'dev', 'staticdev', 'dbg' and 'doc' pakketten in het Plug-ins download-scherm weer te geven."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Display Skin pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om LCD skins in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om OpenPLi pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om OpenPLi in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om OpenVIX pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om OpenVIX in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr "Selecteer 'Ja' om mappen bovenaan/begin van de lijst weer te geven, of selecteer 'Nee' om eerst bestanden weer te geven."
 
 msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Driver pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Drivers in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Applicatie pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Applicaties in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om kernel pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Kernel pakketten in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om m2k pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om M2K pakketten in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Picon pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Picons in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Plug-in Skin pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Plug-in skins in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show security packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om beveiligingspakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Beveiliging in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om pakketten voor Settings in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Settings in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Skinparts pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Skinparts in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Skin pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Skins in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Softcam pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Softcams in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om 'src' pakketten in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Systeem plug-in pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Systeem plug-ins in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Kies 'Ja' om de geavanceerde instellingen te tonen."
@@ -15702,7 +15699,7 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Selecteer 'Ja' om de huidige map in de lijst met mappen weer te geven. Merk op dat File Commander opnieuw moet worden opgestart om deze wijziging door te voeren."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om web link pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Weblinks in het Plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Indien 'ja' wordt gekozen, worden de signaalwaardes (SNR etc.) berekend op basis van de API V3. Dit is een oude API die nu vervangen is."
@@ -15937,7 +15934,7 @@ msgid "Select if the default value for a setup entry is shown and, if so, where 
 msgstr "Met deze optie kunt u selecteren of de standaardwaarde voor een instellingsitem wordt weergegeven en, wanneer ja, waar deze wordt weergegeven t.o.v. de beschrijving."
 
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
-msgstr "Selecteer of de menupad geschiedenis moet worden getoond en wanneer ja, hoe."
+msgstr "Selecteer of de 'menu path history' moet worden getoond, en wanneer ja, hoe."
 
 msgid "Select if the timer name and description modification code is run on repeating timers."
 msgstr "Opgeven of de naam en omschrijving van herhalende Timers gewijzigd moeten worden."
@@ -16233,10 +16230,10 @@ msgid "Select the sort order for the file lines:"
 msgstr "Kies de sorteervolgorde voor de bestandsregels:"
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Kies hier de volgorde en zichtbaarheid van de menu items in de Plug-in browser."
+msgstr "Kies hier de volgorde en zichtbaarheid van de menu items in de Plug-in Browser."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
-msgstr "Volgorde van de menu-items in de Plug-in Browser. 'Door u ingesteld' maakt het mogelijk om items te verbergen."
+msgstr "Volgorde van de menu-items in de Plug-in Browser. 'Gebruiker gedefinieerd' maakt het ook mogelijk om items te verbergen."
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Selecteer de volgorde en zichtbaarheid van de menu items."
@@ -17161,16 +17158,16 @@ msgid "Show Default Backup Files"
 msgstr "Standaard back-up bestanden"
 
 msgid "Show Development packages"
-msgstr "Development pakketten tonen"
+msgstr "Development"
 
 msgid "Show Display Icons"
 msgstr "Toon LCD picons"
 
 msgid "Show Display packages"
-msgstr "Display pakketten tonen"
+msgstr "Display"
 
 msgid "Show Driver packages"
-msgstr "Driver Pakketten tonen"
+msgstr "Drivers"
 
 msgid "Show EPG"
 msgstr "Toon EPG"
@@ -17182,7 +17179,7 @@ msgid "Show EventView"
 msgstr "Toon programma overzicht"
 
 msgid "Show Extension packages"
-msgstr "Applicatie pakketten tonen"
+msgstr "Applicaties"
 
 msgid "Show Format Setup"
 msgstr "Toon de format instellingen"
@@ -17224,19 +17221,19 @@ msgid "Show Information"
 msgstr "Toon informatie"
 
 msgid "Show Kernel packages"
-msgstr "Kernel pakketten tonen"
+msgstr "Kernel"
 
 msgid "Show Live in MiniTV"
 msgstr "Toon Live in MiniTV"
 
 msgid "Show Log"
-msgstr "Toon log"
+msgstr "Plug-in installatie Log"
 
 msgid "Show Log Manager in extensions list"
 msgstr "Toon de Log-manager in het Applicatiemenu (Blauw-lang)"
 
 msgid "Show M2k packages"
-msgstr "M2k pakketten tonen"
+msgstr "M2K"
 
 msgid "Show Media Player in Main Menu"
 msgstr "Mediaspeler in het hoofdmenu tonen"
@@ -17263,10 +17260,10 @@ msgid "Show OScam in extensions"
 msgstr "Toon OScam in het Applicatiemenu (Blauw-lang)"
 
 msgid "Show OpenPLi packages"
-msgstr "OpenPLi pakketten tonen"
+msgstr "OpenPLi"
 
 msgid "Show OpenViX packages"
-msgstr "OpenVIX pakketten tonen"
+msgstr "OpenVIX"
 
 msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr "Toon de PVR-status in de Mediaspeler informatiebalk"
@@ -17281,10 +17278,10 @@ msgid "Show PiP in the Front Display"
 msgstr "Toon PiP in het Front Display"
 
 msgid "Show Picon packages"
-msgstr "Picon pakketten tonen"
+msgstr "Picons"
 
 msgid "Show Plugin Skin packages"
-msgstr "Plug-in Skin pakketten tonen"
+msgstr "Plug-in skins"
 
 msgid "Show RFmod setup..."
 msgstr "Toon RFmod instellingen..."
@@ -17302,28 +17299,28 @@ msgid "Show SD as"
 msgstr "Toon SD als"
 
 msgid "Show Security packages"
-msgstr "Beveiligingspakketten tonen"
+msgstr "Beveiliging"
 
 msgid "Show Setting packages"
-msgstr "Pakketten voor Settings tonen"
+msgstr "Settings"
 
 msgid "Show Single EPG"
 msgstr "Toon de Single-EPG"
 
 msgid "Show Skin Component packages"
-msgstr "Skinparts pakketten tonen"
+msgstr "Skinparts"
 
 msgid "Show Skin packages"
-msgstr "Skin pakketten tonen"
+msgstr "Skins"
 
 msgid "Show Softcam packages"
 msgstr "Softcams"
 
 msgid "Show Source packages"
-msgstr "Bron pakketten tonen"
+msgstr "Broncode"
 
 msgid "Show System Plugin packages"
-msgstr "Pakketten voor Systeem Plug-ins tonen"
+msgstr "Systeem Plug-ins"
 
 msgid "Show Timer List"
 msgstr "Toon timers"
@@ -17347,7 +17344,7 @@ msgid "Show WLAN status"
 msgstr "WLAN-status weergeven"
 
 msgid "Show Web Link packages"
-msgstr "Weblink pakketten tonen"
+msgstr "Weblinks"
 
 msgid "Show a spinning logo when the system is busy."
 msgstr ""
@@ -17607,7 +17604,7 @@ msgid "Show satellites list"
 msgstr "Toon satellieten lijst"
 
 msgid "Show screen menu path"
-msgstr "Toon het scherm menu adres"
+msgstr "Toon het scherm 'menu path history'"
 
 msgid "Show screensaver"
 msgstr "Screensaver"
@@ -17729,7 +17726,7 @@ msgid "Show the media player..."
 msgstr "Open de mediaspeler..."
 
 msgid "Show the plugin browser.."
-msgstr "Toon de Plug-in browser.."
+msgstr "Toon de Plug-in Browser.."
 
 msgid "Show the plugins"
 msgstr "Toon de plug-ins"
@@ -18290,7 +18287,7 @@ msgid "Sort Extensions menu"
 msgstr "Sorteer het Applicatiemenu alfabetisch"
 
 msgid "Sort Plugin Browser"
-msgstr "Sorteer de volgorde van plug-ins in de Plug-in browser"
+msgstr "Sorteer de volgorde van plug-ins in de Plug-in Browser"
 
 msgid "Sort Plugin Browser entries"
 msgstr "Plug-in Browser items sorteren"
@@ -18327,10 +18324,10 @@ msgid "Sound"
 msgstr "Geluid"
 
 msgid "Sound carrier"
-msgstr "Geluidskanaal"
+msgstr "Geluidsdrager"
 
 msgid "Source Packages"
-msgstr "Bron pakketten"
+msgstr "Broncode"
 
 msgid "Source request"
 msgstr "Bronverzoek"
@@ -19417,7 +19414,7 @@ msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
-"De VPS-Plugin kon niet vaststellen of het geselecteerde kanaal ondersteuning biedt voor handmatig geprogrammeerde timers!\n"
+"De VPS-Plugin kon niet vaststellen of de geselecteerde zender ondersteuning biedt voor handmatig geprogrammeerde timers!\n"
 "Wilt u VPS echt inschakelen?"
 
 msgid ""
@@ -19550,7 +19547,7 @@ msgid ""
 "The selected channel doesn't support VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
-"Het geselecteerde kanaal ondersteunt geen VPS voor handmatige timers!\n"
+"De geselecteerde zender ondersteunt geen VPS voor handmatige timers!\n"
 "Wilt u VPS echt inschakelen?"
 
 msgid "The service list is reloaded."
@@ -19970,7 +19967,7 @@ msgstr ""
 "(Default: 0)"
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr "De plugin kon niet vaststellen of een programma eerder begint of langer duurt. Het kanaal heeft geen betrouwbare gegevens."
+msgstr "De VPS Plug-in kan bepalen of een programma eerder begint of langer duurt dan in de Timer ingesteld. De zender moet dan wel betrouwbare gegevens leveren!"
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Deze zender is beveiligd met een PIN-code (kinderslot)!"
@@ -20348,10 +20345,10 @@ msgid "Toggle item edit mode on/off"
 msgstr "Edit modus in- of uitschakelen"
 
 msgid "Toggle item move mode on/off"
-msgstr "Verplaatsmodus in- of uitschakelen"
+msgstr "Volgorde wijzigen in- of uitschakelen"
 
 msgid "Toggle move mode"
-msgstr "Verplaatsingsmodus in- of uitschakelen"
+msgstr "Volgorde wijzigen in- of uitschakelen"
 
 msgid "Toggle move mode selection"
 msgstr "Verplaatsingsmodus wijzigen"
@@ -21250,7 +21247,7 @@ msgid "User comments"
 msgstr "Opmerkingen van gebruikers"
 
 msgid "User defined"
-msgstr "Door u ingesteld"
+msgstr "Gebruiker gedefinieerd"
 
 #, python-format
 msgid "User defined 0x%02x"
@@ -21376,20 +21373,20 @@ msgstr ""
 "Als een Timer handmatig is ingesteld (niet via de EPG), is het noodzakelijk om VPS-Time in te stellen om VPS in te schakelen. VPS-Time (ook bekend als PDC) is de eerst gepubliceerde starttijd, zoals die b.v. in tijdschriften staat. Als u een VPS-Time instelt, moet u de timer naam leeg laten."
 
 msgid "VPS-Plugin checks if the channel supports VPS ..."
-msgstr "VPS-Plugin controleert of het kanaal VPS ondersteunt..."
+msgstr "De VPS-Plugin controleert of de zender VPS ondersteunt..."
 
 msgid ""
 "VPS-Plugin couldn't check if the channel supports VPS.\n"
 " Do you want to enable VPS anyway?"
 msgstr ""
-"De VPS Plug-in kon niet controleren of het geselecteerde kanaal VPS ondersteunt.\n"
+"De VPS Plug-in kon niet controleren of de geselecteerde zender VPS ondersteunt.\n"
 "VPS (of PDC) wordt in Nederland niet meer gebruikt, wilt u VPS toch inschakelen?"
 
 msgid ""
 "VPS-Plugin couldn't check if the selected channel supports VPS.\n"
 " Do you really want to enable VPS?"
 msgstr ""
-"VPS-Plugin kon niet controleren of het geselecteerde kanaal VPS ondersteunt.\n"
+"De VPS-Plugin kon niet controleren of de geselecteerde zender VPS ondersteunt.\n"
 "Wilt u VPS echt inschakelen?"
 
 msgid "VPS-Time (date)"
@@ -21784,7 +21781,7 @@ msgstr "Waarschuwing: A.u.b. niet opnemen op een Flashdrive!"
 
 #, python-format
 msgid "Warning: There are %d update packages!"
-msgstr "Waarschuwing: Er zijn %d update pakketten!"
+msgstr "Waarschuwing: Er zijn %d updates!"
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr "Er is alleen een netwerkschijf gevonden om de back-up op te slaan. Dit betekent dat het automatisch herstellen na het flashen niet zal werken. Als alternatief kunt u na het flashen de netwerkschijf handmatig mounten en vervolgens een fabrieks-reset uitvoeren, om de instellingen alsnog te herstellen."
@@ -21820,7 +21817,7 @@ msgid "Web Interface"
 msgstr "Webinterface"
 
 msgid "Web Link Packages"
-msgstr "Weblink pakketten"
+msgstr "Weblinks"
 
 msgid "Web browser base visibility"
 msgstr "Web browser basis zichtbaarheid"
@@ -22328,7 +22325,7 @@ msgid "Yes, but don't save time shift as movie"
 msgstr "Ja, en sla Timeshift niet op als opname"
 
 msgid "Yes, but if not available show the plugin browser"
-msgstr "Ja, maar wanneer niet beschikbaar toon de Plug-in browser"
+msgstr "Ja, maar wanneer niet beschikbaar toon de Plug-in Browser"
 
 msgid "Yes, but if not available show the timer list"
 msgstr "Ja, maar als niet beschikbaar toon timer lijst"
@@ -22952,7 +22949,7 @@ msgid "convert to DTS"
 msgstr "converteer naar DTS"
 
 msgid "convert to multi-channel PCM"
-msgstr "converteer naar meerkanaals PCM"
+msgstr "Converteer naar meerkanaals PCM"
 
 msgid "cooking"
 msgstr "koken"
@@ -23428,9 +23425,6 @@ msgstr "Volgende zender pagina"
 
 msgid "next higher Resolution"
 msgstr "volgende hogere Resolutie"
-
-msgid "no"
-msgstr "Nee"
 
 msgid "no CAId selected"
 msgstr "Geen CAId geselecteerd"
@@ -23944,11 +23938,23 @@ msgstr "bezig"
 msgid "yellow"
 msgstr "Geel"
 
-msgid "yes"
-msgstr "Ja"
-
 msgid "yes (keep feeds)"
 msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "(Pip)"
+#~ msgstr "(PiP)"
+
+#~ msgid "Add bouquet"
+#~ msgstr "Favorietenlijst toevoegen"
+
+#~ msgid "Black screen"
+#~ msgstr "Zwart scherm"
+
+#~ msgid "no"
+#~ msgstr "Nee"
+
+#~ msgid "yes"
+#~ msgstr "Ja"

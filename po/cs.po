@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 21:13+0000\n"
-"PO-Revision-Date: 2023-07-06 05:59+0000\n"
-"Last-Translator: Jiří Engelthaler <engycz@gmail.com>\n"
+"POT-Creation-Date: 2023-07-09 12:10+0000\n"
+"PO-Revision-Date: 2023-07-10 18:51+0000\n"
+"Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -974,30 +974,30 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package found."
 msgid_plural "%d packages found."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Nalezen %d balíček."
+msgstr[1] "Počet nalezených balíčků: %d."
+msgstr[2] "Počet nalezených balíčků: %d."
 
 #, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d balíček má aktualizaci"
+msgstr[1] "%d balíčky mají aktualizace."
+msgstr[2] "%d balíčků má aktualizace."
 
 #, python-format
 msgid "%d package installable."
 msgid_plural "%d packages installable."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d balíček k instalaci."
+msgstr[1] "%d balíčky k instalaci."
+msgstr[2] "%d balíčků k instalaci."
 
 #, python-format
 msgid "%d package installed."
 msgid_plural "%d packages installed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d balíček nainstalován."
+msgstr[1] "Nainstalované balíčky: %d."
+msgstr[2] "Nainstalované balíčky: %d."
 
 #, python-format
 msgid "%d package upgraded."
@@ -1337,9 +1337,6 @@ msgstr "(služba FTA)"
 
 msgid "(PiP)"
 msgstr "(PiP)"
-
-msgid "(Pip)"
-msgstr "(Pip)"
 
 msgid "(Radio)"
 msgstr "(Rádio)"
@@ -2214,9 +2211,6 @@ msgstr "Přidat časovač pro aktuální událost"
 msgid "Add an AutoTimer for the current event"
 msgstr "Přidat automatický časovač k aktuálnímu pořadu"
 
-msgid "Add bouquet"
-msgstr ""
-
 msgid "Add current directory to bookmarks"
 msgstr "Přidat aktuální složku do záložek"
 
@@ -2269,7 +2263,7 @@ msgid "Add service"
 msgstr "Přidat program"
 
 msgid "Add services to this bouquet?"
-msgstr ""
+msgstr "Přidat služby k tomuto přehledu?"
 
 msgid "Add the current directory as a bookmark"
 msgstr "Přidat aktuální adresář jako záložku"
@@ -2431,7 +2425,7 @@ msgid "All services provider"
 msgstr "Poskytovatel všech programů"
 
 msgid "All slots"
-msgstr ""
+msgstr "Všechny sloty"
 
 msgid "All supported"
 msgstr "Podporováno vše"
@@ -3141,7 +3135,7 @@ msgid "Backup done."
 msgstr "Záloha je hotová."
 
 msgid "Backup failed!"
-msgstr ""
+msgstr "Zálohování se nezdařilo!"
 
 msgid "Backup failed."
 msgstr "Záloha selhala."
@@ -3302,9 +3296,6 @@ msgstr "Černé"
 msgid "Black Screen"
 msgstr "Černá obrazovka"
 
-msgid "Black screen"
-msgstr "Černá obrazovka"
-
 msgid "Black screen till locked"
 msgstr "Vyplnit černou obrazovkou"
 
@@ -3411,9 +3402,6 @@ msgstr "Seznam přehledů"
 msgid "Bouvet Island"
 msgstr "Bouvetův ostrov"
 
-msgid "Receiver does not support Quad PiP."
-msgstr "Box nebo ovladač nepodporuje Quad PiP."
-
 msgid "Boxing"
 msgstr "Box"
 
@@ -3454,7 +3442,7 @@ msgid "Broadcom"
 msgstr "Broadcom"
 
 msgid "Browse, install or remove plugins on a one by one basis."
-msgstr ""
+msgstr "Procházejte, instalujte nebo odeberte pluginy jeden po druhém."
 
 msgid "Brunei Darussalam"
 msgstr "Brunej Darussalam"
@@ -13332,6 +13320,9 @@ msgstr "Připojte zařízení USB"
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr "Zapojte USB zařízení, které lze použít jako odkládací zařízení. Pamatujte, že toto zařízení nesmí být odstraněno, když je %s %s spuštěno!"
 
+msgid "Plugin Action Log"
+msgstr ""
+
 msgid "Plugin Action Log Actions"
 msgstr ""
 
@@ -14107,6 +14098,9 @@ msgstr "Informace o přijímači"
 msgid "Receiver Information Actions"
 msgstr "Akce s informacemi o přijímači"
 
+msgid "Receiver does not support Quad PiP."
+msgstr "Box nebo ovladač nepodporuje Quad PiP."
+
 #, python-format
 msgid "Receiver information for %s %s"
 msgstr "Informace o přijímači %s %s"
@@ -14620,6 +14614,9 @@ msgstr "Reset"
 
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Obnovit výchozí nastavení HDMI-CEC"
+
+msgid "Reset Order"
+msgstr ""
 
 msgid "Reset and renumerate title names"
 msgstr "Resetovat a přepočítat titulky"
@@ -23218,9 +23215,6 @@ msgstr "další stránka výběru kanálu"
 msgid "next higher Resolution"
 msgstr "další vyšší rozlišení"
 
-msgid "no"
-msgstr ""
-
 msgid "no CAId selected"
 msgstr "není vybrán žádný CAId"
 
@@ -23734,11 +23728,14 @@ msgstr "pracuji"
 msgid "yellow"
 msgstr "žluté"
 
-msgid "yes"
-msgstr ""
-
 msgid "yes (keep feeds)"
 msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "(Pip)"
+#~ msgstr "(Pip)"
+
+#~ msgid "Black screen"
+#~ msgstr "Černá obrazovka"
