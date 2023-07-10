@@ -151,7 +151,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<menu key="cam" level="1" text="Decryption &amp; Parental Control" weight="30">
 				<item key="softcam_settings" level="0" text="Softcam Settings" weight="50" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup" /></item>
 				<item key="oscam_info" level="0" text="OScam Information" weight="60" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>
-				<item key="cccam_info" level="0" text="CCCam Information" weight="70" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
+				<item key="cccam_info" level="0" text="CCcam Information" weight="70" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
 				<item key="ci_setup" level="1" text="CI Helper Settings" weight="90" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
 				<item key="ci_selection" level="1" text="Common Interface Settings" weight="100" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 				<item key="parental_setup" level="0" text="Parental Control Settings" weight="200"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>

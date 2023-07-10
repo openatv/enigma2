@@ -1716,8 +1716,8 @@ class InfoBarSimpleEventView:
 
 	def __init__(self):
 		self["EventViewActions"] = HelpableActionMap(self, "InfobarEPGActions", {
-			"showEventInfo": (self.openEventView, _("show event details")),
-			"InfoPressed": (self.openEventView, _("show event details")),
+			"showEventInfo": (self.openEventView, _("Show event details")),
+			"InfoPressed": (self.openEventView, _("Show event details")),
 			"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 		}, prio=0, description=_("InfoBar Event View Actions"))
 
