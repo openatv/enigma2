@@ -12,8 +12,7 @@ from Screens.HelpMenu import ShowRemoteControl
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VideoWizard import VideoWizard
-from Screens.Wizard import wizardManager
-from Screens.WizardLanguage import WizardLanguage
+from Screens.Wizard import wizardManager, Wizard
 from Tools.Directories import fileReadLines, fileWriteLines
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -22,10 +21,10 @@ config.misc.firstrun = ConfigBoolean(default=True)
 config.misc.videowizardenabled = ConfigBoolean(default=True)
 
 
-class StartWizard(WizardLanguage, ShowRemoteControl):
+class StartWizard(Wizard, ShowRemoteControl):
 	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
 		self.xmlfile = ["startwizard.xml"]
-		WizardLanguage.__init__(self, session, showSteps=False)
+		Wizard.__init__(self, session, showSteps=False)
 		ShowRemoteControl.__init__(self)
 		self.deviceData = {}
 		self.mountData = None
