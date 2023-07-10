@@ -1,13 +1,7 @@
-from enigma import eTimer
-
 from Components.AVSwitch import iAVSwitch as avSwitch
 from Components.config import ConfigBoolean, config, configfile
-from Components.Label import Label
 from Components.SystemInfo import BoxInfo
-from Components.International import international
 from Screens.HelpMenu import ShowRemoteControl
-from Screens.LocaleSelection import LocaleWizard
-from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 from Screens.Wizard import WizardSummary, Wizard
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
 
@@ -17,7 +11,6 @@ class VideoWizard(Wizard, ShowRemoteControl):
 		self.xmlfile = resolveFilename(SCOPE_SKINS, "videowizard.xml")
 		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
-		self["languagetext"] = Label(_("Change Language"))
 		self.setTitle(_("Video Wizard"))
 		self.avSwitch = avSwitch
 		self.hasDVI = BoxInfo.getItem("dvi", False)
@@ -28,50 +21,6 @@ class VideoWizard(Wizard, ShowRemoteControl):
 		self.port = None
 		self.mode = None
 		self.rate = None
-		self.initialLocale = international.getLocale()
-		self.currentLocale = self.initialLocale
-		self.languageSelected = False
-		mainlangs = ["de_DE", "en_US", "fr_FR", "es_ES", "it_IT"]
-		if self.currentLocale == "en_AU":
-			mainlangs.remove("en_US")
-		if self.currentLocale not in mainlangs:
-			mainlangs.insert(0, self.currentLocale)
-		self.locales = list(set(international.getLocaleList()).intersection(mainlangs))
-		try:
-			self.currentLocaleIndex = self.locales.index(self.currentLocale)
-		except ValueError:
-			self.currentLocaleIndex = -1
-		self.langugageTimer = eTimer()
-		self.langugageTimer.callback.append(self.changeLangugage)
-
-	def layoutFinished(self):
-		Wizard.layoutFinished(self)
-		if self.currentLocaleIndex != -1 and len(self.locales) > 1:
-			self.langugageTimer.start(3000)
-
-	def changeLangugage(self, locale=None):
-		self.currentLocaleIndex += 1
-		if self.currentLocaleIndex >= len(self.locales):
-			self.currentLocaleIndex = 0
-		if not locale:
-			locale = self.locales[self.currentLocaleIndex]
-			international.activateLocale(locale, runCallbacks=False)
-		# This block should be moved to Wizard.py
-		self.setTitle(_("Video Wizard"))
-		self["languagetext"].setText(_("Change Language"))
-		self.updateText(firstSet=True)
-		if "display" in self.wizard[self.currStep]:
-			displayText = self.getTranslation(self.wizard[self.currStep]["display"])
-			self.textChanged(displayText)
-		if self.wizard[self.currStep]["list"]:
-			newList = []
-			index = self["list"].getCurrentIndex()
-			for entry, step in self.wizard[self.currStep]["list"]:
-				entry = self.getTranslation(entry)
-				newList.append((entry, step))
-			self.wizard[self.currStep]["evaluatedList"] = newList
-			self["list"].setList(newList)
-			self["list"].setCurrentIndex(index)
 
 	def listPorts(self):  # Called by wizardvideo.xml.
 		ports = []
@@ -222,25 +171,12 @@ class VideoWizard(Wizard, ShowRemoteControl):
 		Wizard.keyNumberGlobal(self, number)
 
 	def saveWizardChanges(self):  # Called by wizardvideo.xml.
-		# print("[WizardVideo] saveWizardChanges %s %s" % (self.currentLocale, self.initialLocale))
 		self.avSwitch.saveMode(self.port, self.mode, self.rate)
 		# config.misc.wizardVideoEnabled.value = 0
 		# config.misc.wizardVideoEnabled.save()
 		config.misc.videowizardenabled.value = 0
 		config.misc.videowizardenabled.save()
 		configfile.save()
-		if self.currentLocale != self.initialLocale:
-			self.session.open(TryQuitMainloop, QUIT_RESTART)
-
-	def keyRed(self):  # Thats is only a temporary workaround for language selection
-		def keyRedCallback():
-			self.languageSelected = True
-			self.currentLocale = international.getLocale()
-			self.changeLangugage(self.currentLocale)
-		self.timeoutTimer.stop()
-		self.langugageTimer.stop()
-		international.activateLocale(self.initialLocale, runCallbacks=False)
-		self.session.openWithCallback(keyRedCallback, LocaleWizard)
 
 	def createSummary(self):
 		return WizardSummary

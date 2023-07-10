@@ -1,6 +1,5 @@
 <wizard>
 	<step id="inputselection" nextstep="modesdetection" timeout="10" timeoutaction="selectnext">
-		<buttons enable="OK,UP,DOWN,RED" />
 		<condition>
 self.portCount = len(self.listPorts())
 self.condition = self.portCount > 1
@@ -11,10 +10,13 @@ if self.portCount == 1:
 		<text value="Video output port selection.\n\nMake sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n\nThe next output port will be automatically tried in 10 seconds." />
 		<displaytext value="Select video output port with UP/DOWN buttons" />
 		<list type="dynamic" source="listPorts" evaluation="portSelectionMade" onselect="portSelectionMoved" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+		</code>
 	</step>
 
 	<step id="modesdetection" >
-		<buttons enable="OK,UP,DOWN,RED" />
 		<condition>
 self.condition = (self.port == "DVI" or self.port == "HDMI")
 		</condition>
@@ -24,6 +26,11 @@ self.condition = (self.port == "DVI" or self.port == "HDMI")
 			<listentry caption="Yes" step="modeauto" />
 			<listentry caption="No" step="modedefault" />
 		</list>
+		<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+		</code>
 	</step>
 
 	<step id="modedefault" timeoutstep="modeselection" timeout="1" timeoutaction="changestep">
@@ -51,29 +58,27 @@ config.av.edid_override.save()
 	</step>
 
 	<step id="modeselection" nextstep="rateselection" timeout="10" timeoutaction="selectnext">
-		<buttons enable="OK,UP,DOWN,RED" />
 		<text value="Select the video mode to be used on the TV." />
 		<displaytext value="Select video mode" />
 		<list type="dynamic" source="listModes" evaluation="modeSelectionMade" onselect="modeSelectionMoved" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+		</code>
 	</step>
 
-	<step id="rateselection" nextstep="locale" timeout="10" timeoutaction="selectnext">
-		<buttons enable="OK,UP,DOWN,RED" />
+	<step id="rateselection" nextstep="end" timeout="10" timeoutaction="selectnext">
 		<condition>
 self.condition = (self.port != "DVI" or self.mode == "PC")
 		</condition>
 		<text value="Select the refresh rate to be used on the TV." />
 		<displaytext value="Select refresh rate" />
 		<list type="dynamic" source="listRates" evaluation="rateSelectionMade" onselect="rateSelectionMoved" />
-	</step>
-
-	<step id="locale">
-		<buttons enable="OK,UP,DOWN" />
-		<condition>
-self.condition = not self.languageSelected
-		</condition>
 		<code>
-self.keyRed()
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
 		</code>
 	</step>
 
