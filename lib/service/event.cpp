@@ -368,10 +368,13 @@ std::string eServiceEvent::getBeginTimeString() const
 {
 	tm t;
 	localtime_r(&m_begin, &t);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-truncation"
 	char tmp[13];
 	snprintf(tmp, 13, "%02d.%02d, %02d:%02d",
 		t.tm_mday, t.tm_mon+1,
 		t.tm_hour, t.tm_min);
+#pragma GCC diagnostic pop
 	return std::string(tmp, 12);
 }
 
@@ -394,10 +397,10 @@ PyObject *eServiceEvent::getGenreDataList() const
 	for (std::list<eGenreData>::const_iterator it(m_genres.begin()); it != m_genres.end(); ++it)
 	{
 		ePyObject tuple = PyTuple_New(4);
-		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->getLevel1()));
-		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->getLevel2()));
-		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(it->getUser1()));
-		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(it->getUser2()));
+		PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong(it->getLevel1()));
+		PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(it->getLevel2()));
+		PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(it->getUser1()));
+		PyTuple_SET_ITEM(tuple, 3, PyLong_FromLong(it->getUser2()));
 		PyList_SET_ITEM(ret, cnt++, tuple);
 	}
 	return ret;
@@ -423,7 +426,7 @@ PyObject *eServiceEvent::getParentalDataList() const
 	{
 		ePyObject tuple = PyTuple_New(2);
 		PyTuple_SET_ITEM(tuple, 0, PyString_FromString(it->getCountryCode().c_str()));
-		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->getRating()));
+		PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(it->getRating()));
 		PyList_SET_ITEM(ret, cnt++, tuple);
 	}
 	return ret;
@@ -440,8 +443,8 @@ PyObject *eServiceEvent::getCridData(int mask) const
 		if ((1 << cridMatchType) & mask)
 		{
 			ePyObject tuple = PyTuple_New(3);
-			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->getType()));
-			PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->getLocation()));
+			PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong(it->getType()));
+			PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(it->getLocation()));
 			PyTuple_SET_ITEM(tuple, 2, PyString_FromString(it->getCrid().c_str()));
 			PyList_Append(ret, tuple);
 		}
@@ -472,9 +475,9 @@ PyObject *eServiceEvent::getComponentDataList() const
 	for (std::list<eComponentData>::const_iterator it(m_component_data.begin()); it != m_component_data.end(); ++it)
 	{
 		ePyObject tuple = PyTuple_New(5);
-		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->m_componentTag));
-		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->m_componentType));
-		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(it->m_streamContent));
+		PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong(it->m_componentTag));
+		PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(it->m_componentType));
+		PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(it->m_streamContent));
 		PyTuple_SET_ITEM(tuple, 3, PyString_FromString(it->m_iso639LanguageCode.c_str()));
 		PyTuple_SET_ITEM(tuple, 4, PyString_FromString(it->m_text.c_str()));
 		PyList_SET_ITEM(ret, cnt++, tuple);

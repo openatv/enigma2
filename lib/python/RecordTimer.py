@@ -152,6 +152,7 @@ class RecordTimer(Timer):
 			timerEntry.append("rename_repeat=\"%s\"" % int(timer.rename_repeat))
 			timerEntry.append("name=\"%s\"" % stringToXML(timer.name))
 			timerEntry.append("description=\"%s\"" % stringToXML(timer.description))
+			timerEntry.append("state=\"%d\"" % timer.state)
 			if timer.dirname:
 				timerEntry.append("location=\"%s\"" % stringToXML(timer.dirname))
 			if timer.tags:
@@ -269,6 +270,9 @@ class RecordTimer(Timer):
 			timer.vpsplugin_time = int(vpsTime)
 		for log in timerDom.findall("log"):
 			timer.log_entries.append((int(log.get("time")), int(log.get("code")), log.text.strip()))
+		state = int(timerDom.get("state") or "0")
+		if state:
+			timer.state = state
 		return timer
 
 	def timeChanged(self, timer):

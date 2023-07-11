@@ -7,7 +7,7 @@
 
 #include <SDL2/SDL.h>
 
-gSDLDC::gSDLDC() : m_pump(eApp, 1,"gSDLDC"), m_window(nullptr), m_osd_tex(nullptr)
+gSDLDC::gSDLDC() : m_window(nullptr), m_osd_tex(nullptr), m_pump(eApp, 1,"gSDLDC")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		eWarning("[gSDLDC] Could not initialize SDL: %s", SDL_GetError());
@@ -21,7 +21,10 @@ gSDLDC::gSDLDC() : m_pump(eApp, 1,"gSDLDC"), m_window(nullptr), m_osd_tex(nullpt
 
 	m_pixmap = new gPixmap(&m_surface);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wclass-memaccess"
 	memset(m_surface.clut.data, 0, sizeof(*m_surface.clut.data)*m_surface.clut.colors);
+#pragma GCC diagnostic pop
 
 	run();
 }
@@ -85,7 +88,10 @@ void gSDLDC::exec(const gOpcode *o)
 
 void gSDLDC::setResolution(int xres, int yres, int bpp)
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 	pushEvent(EV_SET_VIDEO_MODE, (void *)xres, (void *)yres);
+#pragma GCC diagnostic pop
 }
 
 /*

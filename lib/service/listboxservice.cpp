@@ -679,24 +679,24 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		if (selected)
 		{
 			/* if we have a local background color set, use that. */
-			if (local_style->m_background_color_selected_set)
+			if (local_style->is_set.background_color_selected)
 				painter.setBackgroundColor(local_style->m_background_color_selected);
 			/* same for foreground */
-			if (local_style->m_foreground_color_selected_set)
+			if (local_style->is_set.foreground_color_selected)
 				painter.setForegroundColor(local_style->m_foreground_color_selected);
 		}
 		else
 		{
 			/* if we have a local background color set, use that. */
-			if (local_style->m_background_color_set)
+			if (local_style->is_set.background_color)
 				painter.setBackgroundColor(local_style->m_background_color);
 			/* same for foreground */
-			if (local_style->m_foreground_color_set)
+			if (local_style->is_set.foreground_color)
 				painter.setForegroundColor(local_style->m_foreground_color);
 		}
 	}
 
-	if (!local_style || !local_style->m_transparent_background)
+	if (!local_style || !local_style->is_set.transparent_background)
 		/* if we have no transparent background */
 	{
 		/* blit background picture, if available (otherwise, clear only) */

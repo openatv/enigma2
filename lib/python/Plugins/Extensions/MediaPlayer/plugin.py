@@ -214,7 +214,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		self["InfobarEPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"showEventInfo": (self.showEventInformation, _("show event details")),
+				"showEventInfo": (self.showEventInformation, _("Show event details")),
 			})
 
 		self["actions"] = MoviePlayerActionMap(self, ["DirectionActions"],

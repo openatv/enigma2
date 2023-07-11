@@ -1462,7 +1462,7 @@ def InitUsageConfig():
 		def setZapmode(el):
 			open(BoxInfo.getItem("ZapMode"), "w").write(el.value)
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
-			("mute", _("Black screen")),
+			("mute", _("Black Screen")),
 			("hold", _("Hold screen")),
 			("mutetilllock", _("Black screen till locked")),
 			("holdtilllock", _("Hold till locked"))

@@ -2662,7 +2662,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if pos != -1:
 				# title = title[:pos]
 				# title += _(" (PiP)")
-				self.setTitle("%s %s" % (title[:pos], _("(Pip)")))
+				self.setTitle("%s %s" % (title[:pos], _("(PiP)")))
 				print("[ChannelSelection] correctChannelNumber DEBUG: Setting title='%s'." % self.getTitle())
 				self.buildTitle()
 			if tmp_ref and pip_ref and tmp_ref.getChannelNum() != pip_ref.getChannelNum():

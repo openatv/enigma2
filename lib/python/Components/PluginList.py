@@ -1,12 +1,12 @@
-from enigma import eListboxPythonMultiContent, gFont, BT_SCALE, BT_KEEP_ASPECT_RATIO, BT_HALIGN_CENTER, BT_VALIGN_CENTER
+from enigma import BT_HALIGN_CENTER, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_CENTER, eListboxPythonMultiContent, gFont
+
+from skin import fonts, parameters
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-from skin import fonts, parameters
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 
 
-#DIVPNG = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 INSTALLEDPNG = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 INSTALLABLE = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
 UPGRADEABLE = LoadPixmap(cached=False, path=resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png"))
@@ -54,10 +54,9 @@ def PluginCategoryComponent(name, png, width=440):
 def PluginDownloadComponent(plugin, name, version=None, width=440, installstatus=None, updatestatus=None):
 	png = plugin.icon or PLUGINPNG
 	if version:
-		if "+git" in version:
-			# remove git "hash"
+		if "+git" in version:  # Remove git "hash".
 			version = "+".join(version.split("+")[:2])
-		elif version.startswith('experimental-'):
+		elif version.startswith("experimental-"):
 			version = version[13:]
 		name += "  (" + version + ")"
 	x, y, h = parameters.get("PluginBrowserDownloadName", (80, 5, 25))
@@ -85,8 +84,8 @@ def PluginDownloadComponent(plugin, name, version=None, width=440, installstatus
 
 
 class PluginList(MenuList):
-	def __init__(self, list, enableWrapAround=True):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
+	def __init__(self, pluginList, enableWrapAround=True):
+		MenuList.__init__(self, pluginList, enableWrapAround, eListboxPythonMultiContent)
 		font = fonts.get("PluginBrowser0", ("Regular", 20, 50))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])

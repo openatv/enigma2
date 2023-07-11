@@ -899,10 +899,10 @@ void eDVBRdsDecoder::abortNonAvail()
 ePyObject eDVBRdsDecoder::getRassPictureMask()
 {
 	ePyObject ret = PyTuple_New(5);
-	PyTuple_SET_ITEM(ret, 0, PyInt_FromLong(rass_picture_mask[0]));
-	PyTuple_SET_ITEM(ret, 1, PyInt_FromLong(rass_picture_mask[1]));
-	PyTuple_SET_ITEM(ret, 2, PyInt_FromLong(rass_picture_mask[2]));
-	PyTuple_SET_ITEM(ret, 3, PyInt_FromLong(rass_picture_mask[3]));
-	PyTuple_SET_ITEM(ret, 4, PyInt_FromLong(rass_picture_mask[4]));
+	PyTuple_SET_ITEM(ret, 0, PyLong_FromLong(rass_picture_mask[0]));
+	PyTuple_SET_ITEM(ret, 1, PyLong_FromLong(rass_picture_mask[1]));
+	PyTuple_SET_ITEM(ret, 2, PyLong_FromLong(rass_picture_mask[2]));
+	PyTuple_SET_ITEM(ret, 3, PyLong_FromLong(rass_picture_mask[3]));
+	PyTuple_SET_ITEM(ret, 4, PyLong_FromLong(rass_picture_mask[4]));
 	return ret;
 }

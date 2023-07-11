@@ -23,7 +23,7 @@ class PluginComponent:
 		self.pluginList = []
 		self.installedPluginList = []
 		self.setPluginPrefix("Plugins.")
-		self.resetWarnings()
+		self.pluginWarnings = []
 
 	def setPluginPrefix(self, prefix):
 		self.prefix = prefix
@@ -34,7 +34,7 @@ class PluginComponent:
 			for where in plugin.where:
 				insort(self.plugins.setdefault(where, []), plugin)
 				if where == PluginDescriptor.WHERE_AUTOSTART:
-					plugin(reason=REASON_START)
+					plugin(reason=PluginDescriptor.REASON_START)
 		else:
 			self.restartRequired = True
 
@@ -44,7 +44,7 @@ class PluginComponent:
 		for where in plugin.where:
 			self.plugins[where].remove(plugin)
 			if where == PluginDescriptor.WHERE_AUTOSTART:
-				plugin(reason=REASON_STOP)
+				plugin(reason=PluginDescriptor.REASON_STOP)
 
 	def readPluginList(self, directory):
 		"""Enumerates plugins."""
@@ -63,14 +63,14 @@ class PluginComponent:
 						plugin = my_import(".".join(["Plugins", pluginDirectory, pluginName, "plugin"]))
 						plugins = plugin.Plugins(path=path)
 					except Exception as err:
-						print("[PluginComponent] Error: Plugin '%s/%s' failed to load!  (%s)" % (pluginDirectory, pluginName, str(err)))
-						for filename in ("plugin.py", "plugin.pyc", "plugin.pyo"):  # Suppress errors due to missing plugin.py* files (badly removed plugin).
-							if exists(join(path, filename)):
-								self.warnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
-								print_exc()
-								break
-						else:
-							if not pluginName == "WebInterface":
+						if pluginName != "WebInterface":  # Ignore old WebInterface plugin
+							print("[PluginComponent] Error: Plugin '%s/%s' failed to load!  (%s)" % (pluginDirectory, pluginName, str(err)))
+							for filename in ("plugin.py", "plugin.pyc"):  # Suppress errors due to missing plugin.py* files (badly removed plugin).
+								if exists(join(path, filename)):
+									self.pluginWarnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
+									print_exc()
+									break
+							else:
 								print("[PluginComponent] Plugin probably removed, but not cleanly, in '%s'; trying to remove it." % path)
 								try:
 									rmtree(path)
@@ -89,7 +89,7 @@ class PluginComponent:
 							loadKeymap(keymap)
 						except Exception as err:
 							print("[PluginComponent] Error: The keymap file for plugin '%s/%s' failed to load!  (%s)" % (pluginDirectory, pluginName, str(err)))
-							self.warnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
+							self.pluginWarnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
 		# Build a diff between the old list of plugins and the new one internally, the "fnc" argument will be compared with "__eq__".
 		pluginsAdded = [x for x in newPlugins if x not in self.pluginList]
 		pluginsRemoved = [x for x in self.pluginList if not x.internal and x not in newPlugins]
@@ -145,8 +145,13 @@ class PluginComponent:
 		for plugin in self.pluginList[:]:
 			self.removePlugin(plugin)
 
+	def getWarnings(self):
+		return self.pluginWarnings
+
+	warnings = property(getWarnings)
+
 	def resetWarnings(self):
-		self.warnings = []
+		self.pluginWarnings = []
 
 	def getNextWakeupTime(self, getPluginIdent=False):
 		wakeUp = -1
@@ -161,4 +166,5 @@ class PluginComponent:
 		return wakeUp
 
 
-plugins = PluginComponent()
+pluginComponent = PluginComponent()
+plugins = pluginComponent  # Retain the legacy name until all code is updated.

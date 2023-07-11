@@ -5,7 +5,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2023-06-04 19:44+0000\n"
+=======
+"POT-Creation-Date: 2023-07-09 12:10+0000\n"
+>>>>>>> master
 "PO-Revision-Date: 2022-05-29 00:20+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -956,6 +960,30 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package has an update"
+msgid_plural "%d packages have updates."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package installable."
+msgid_plural "%d packages installable."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package installed."
+msgid_plural "%d packages installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d paquet mis à jour."
@@ -1002,10 +1030,6 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paquet a été mis à niveau."
 msgstr[1] "%d paquets a été mis à niveau."
-
-#, python-format
-msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr ""
 
 #, python-format
 msgid "%d sec"
@@ -1148,10 +1172,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Configuration"
 
@@ -1174,10 +1194,6 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
-
-#, python-format
-msgid "%s Packages found"
-msgstr ""
 
 #, python-format
 msgid "%s Setup"
@@ -1296,9 +1312,6 @@ msgstr "(Service FTA)"
 
 msgid "(PiP)"
 msgstr "(PiP)"
-
-msgid "(Pip)"
-msgstr ""
 
 msgid "(Radio)"
 msgstr "(Radio)"
@@ -1433,9 +1446,6 @@ msgstr "12 heures"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, affiche les caractères Latin-1 sauf pour le grec et le cyrillique, passe à 8 si nécessaire."
 
-msgid "128"
-msgstr "128"
-
 msgid "128 Mb"
 msgstr "128 Mb"
 
@@ -1459,9 +1469,6 @@ msgstr "15 minutes"
 
 msgid "1536 Mb"
 msgstr "1536 Mb"
-
-msgid "16"
-msgstr "16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -1550,9 +1557,6 @@ msgstr "24p/60p"
 msgid "25"
 msgstr "25"
 
-msgid "256"
-msgstr "256"
-
 msgid "256 Mb"
 msgstr "256 Mb"
 
@@ -1627,9 +1631,6 @@ msgstr "30p/50p"
 
 msgid "30p/60p"
 msgstr "30p/60p"
-
-msgid "32"
-msgstr "32"
 
 msgid "32 Mb"
 msgstr "32 Mb"
@@ -1726,9 +1727,6 @@ msgstr "60p/50p"
 
 msgid "60p/60p"
 msgstr "60p/60p"
-
-msgid "64"
-msgstr "64"
 
 msgid "64 Mb"
 msgstr "64 Mb"
@@ -1992,9 +1990,6 @@ msgstr "Opérateur ATSC"
 msgid "AV Setup"
 msgstr "Paramètres AV"
 
-msgid "AZPlay"
-msgstr "AZPlay"
-
 msgid "Abkhazian"
 msgstr "Abkhaze"
 
@@ -2250,6 +2245,9 @@ msgstr ""
 msgid "Add service"
 msgstr "Ajouter service"
 
+msgid "Add services to this bouquet?"
+msgstr ""
+
 msgid "Add the current directory as a bookmark"
 msgstr ""
 
@@ -2408,6 +2406,9 @@ msgstr "Tous satellites 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Tous les opérateurs de services"
+
+msgid "All slots"
+msgstr ""
 
 msgid "All supported"
 msgstr "Tous supportés"
@@ -3116,6 +3117,9 @@ msgstr "Sauvegarde terminée."
 msgid "Backup done."
 msgstr "Sauvegarde terminée."
 
+msgid "Backup failed!"
+msgstr ""
+
 msgid "Backup failed."
 msgstr "Échec de la sauvegarde."
 
@@ -3275,9 +3279,6 @@ msgstr "noir"
 msgid "Black Screen"
 msgstr ""
 
-msgid "Black screen"
-msgstr "Ecran noir"
-
 msgid "Black screen till locked"
 msgstr "Ecran noir jusqu'au verrouillage"
 
@@ -3384,9 +3385,6 @@ msgstr "Liste des Bouquets"
 msgid "Bouvet Island"
 msgstr "Île Bouvet"
 
-msgid "Box or driver is not support Quad PiP."
-msgstr "Box ou pilote ne prend pas en charge Quad PiP."
-
 msgid "Boxing"
 msgstr "Boxe"
 
@@ -3426,7 +3424,7 @@ msgstr ""
 msgid "Broadcom"
 msgstr "Broadcom"
 
-msgid "Browse, install or remove extensions / plugins."
+msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -3626,23 +3624,8 @@ msgstr "CI %s activé"
 msgid "CI (Common Interface) Setup"
 msgstr "Configuration CI (Interface Commune)"
 
-msgid "CI Basic Settings"
-msgstr "Paramètres ci de base"
-
 msgid "CI Helper Settings"
 msgstr "Configurer CIHelper"
-
-msgid "CI Legacy"
-msgstr "CI Legacy"
-
-msgid "CI Operation Mode"
-msgstr "Mode de fonctionnement CI"
-
-msgid "CI Plus 1.2"
-msgstr "CI Plus 1.2"
-
-msgid "CI Plus 1.3"
-msgstr "CI Plus 1.3"
 
 msgid "CI assignment"
 msgstr "Assignation CI"
@@ -3652,15 +3635,6 @@ msgstr "slot CI : "
 
 msgid "CIFS/Samba Settings"
 msgstr "Configuration CIFS/Samba"
-
-msgid "CIHelper for SLOT CI0"
-msgstr "CIHelper pour le SLOT CI0"
-
-msgid "CIHelper for SLOT CI1"
-msgstr "CIHelper pour le SLOT CI1"
-
-msgid "CIconfigMenu"
-msgstr "MenuPrincipalSélectCI"
 
 msgid "CPU"
 msgstr "CPU"
@@ -3844,9 +3818,6 @@ msgstr "Canada"
 
 msgid "Cancel"
 msgstr "Annuler"
-
-msgid "Cancel / Close the screen"
-msgstr ""
 
 msgid "Cancel / Close the software update screen"
 msgstr "Annuler / Fermer l'écran de mise à jour du logiciel"
@@ -4260,17 +4231,14 @@ msgstr "Choisissez un schéma de pays pour décoder les informations de classeme
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Choisissez une étiquette qui identifiera cet appareil dans les services IceTV."
 
-msgid "Choose dvb wait delay for ci response."
-msgstr "Choisir le délai d'attente DVB pour réponse CI."
-
 msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Choisissez la fréquence de connexion au serveur IceTV pour vérifier les mises à jour."
 
-msgid "Choose the CI protocol operation mode for standard ci or ciplus."
-msgstr "Choisir le mode de fonctionnement du protocole CI pour la norme CI ou CIplus."
+msgid "Choose the amount of additional slots."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4469,6 +4437,12 @@ msgstr "Fermer l'écran"
 msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+msgid "Close the Plugin Browser screen"
+msgstr ""
+
+>>>>>>> master
 msgid "Close the current screen"
 msgstr "Fermer l'écran actuel"
 
@@ -5036,6 +5010,9 @@ msgstr "Clients connectés"
 
 msgid "Connected satellites"
 msgstr "Satellites connectés"
+
+msgid "Connected through another tuner"
+msgstr ""
 
 msgid "Connected to"
 msgstr "Connecté à"
@@ -6145,6 +6122,9 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
+msgid "Development Packages"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Gestionnaire des périphériques"
 
@@ -6329,9 +6309,6 @@ msgstr "Le disque n’est pas accessible en écriture !"
 msgid "Disk was not found!"
 msgstr "Disque introuvable !"
 
-msgid "Display"
-msgstr "affichage"
-
 msgid "Display 16:9 content as"
 msgstr "Afficher contenu 16:9 comme"
 
@@ -6343,6 +6320,9 @@ msgstr "Afficher contenu >16:9 comme"
 
 msgid "Display Settings"
 msgstr "Paramètres d'affichage"
+
+msgid "Display Skin Packages"
+msgstr ""
 
 msgid "Display context menu"
 msgstr ""
@@ -6484,10 +6464,6 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Voulez-vous vraiment effacer ce timer ?"
 
-#, python-format
-msgid "Do you really want to download the plugin \"%s\"?"
-msgstr "Voulez-vous vraiment télécharger le plugin \"%s\" ?"
-
 msgid "Do you really want to exit?"
 msgstr "Voulez-vous vraiment sortir ?"
 
@@ -6509,10 +6485,6 @@ msgstr "Voulez-vous vraiment effacer de manière permanente de la corbeille ?"
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Voulez-vous vraiment effacer le répertoire %s du disque ?"
-
-#, python-format
-msgid "Do you really want to remove the plugin \"%s\"?"
-msgstr "Voulez-vous vraiment effacer le plugin \"%s\" ?"
 
 #, python-format
 msgid "Do you really want to remove the timer for %s?"
@@ -6585,6 +6557,10 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Voulez-vous faire une autre analyse manuelle des services ?"
 
 #, python-format
+msgid "Do you want to download '%s'?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr ""
 
@@ -6614,8 +6590,16 @@ msgstr "Voulez-vous redémarrer votre %s %s ?"
 msgid "Do you want to reboot your receiver?"
 msgstr "Voulez-vous redémarrer votre récepteur ?"
 
+#, python-format
+msgid "Do you want to remove '%s'?"
+msgstr ""
+
 msgid "Do you want to remove the package:\n"
 msgstr "Voulez-vous retirer le paquet :\n"
+
+#, python-format
+msgid "Do you want to replace '%s' with '%s?"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Voulez-vous restaurer vos paramètres ?"
@@ -6626,6 +6610,13 @@ msgstr "Voulez-vous reprendre cette lecture ?"
 msgid "Do you want to start a backup now?"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+#, python-format
+msgid "Do you want to update '%s'?"
+msgstr ""
+
+>>>>>>> master
 msgid "Do you want to upgrade the package:\n"
 msgstr "Voulez-vous mettre à jour le paquet :\n"
 
@@ -6691,6 +6682,9 @@ msgstr "Bas"
 msgid "Down / Inactive"
 msgstr ""
 
+msgid "Download Plugin"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Télécharger plugins"
 
@@ -6708,6 +6702,9 @@ msgstr "Télécharger et installer la CAM"
 
 msgid "Download error"
 msgstr "Erreur de téléchargement"
+
+msgid "Download the highlighted plugin"
+msgstr ""
 
 msgid "Downloadable plugins"
 msgstr "Extensions téléchargeables"
@@ -6739,11 +6736,11 @@ msgstr "DVD au format de donnée Dreambox (Compatible HDTV)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "DVD au format de donnée Dreambox (ne fonctionnera pas dans les lecteurs DVD)"
 
-msgid "Driver and kernel information"
+msgid "Driver Packages"
 msgstr ""
 
-msgid "Drivers"
-msgstr "pilotes"
+msgid "Driver and kernel information"
+msgstr ""
 
 msgid "Drivers version"
 msgstr ""
@@ -7019,12 +7016,6 @@ msgstr "Activer BT Audio"
 
 msgid "Enable Bouquet Edit"
 msgstr "Activer l'édition des bouquets"
-
-msgid "Enable CIHelper for SLOT CI0"
-msgstr "Activer CIHelper pour SLOT CI0"
-
-msgid "Enable CIHelper for SLOT CI1"
-msgstr "Activer CIHelper pour SLOT CI1"
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr ""
@@ -7432,6 +7423,9 @@ msgstr "Entrez votre fréquence d’oscillateur local à bande haute. Pour plus 
 
 msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr "Entrez votre fréquence d’oscillateur local à bande basse. Pour plus d’information consultez la fiche technique de votre LNB."
+
+msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
 
 msgid "Entertainment"
 msgstr "Divertissement"
@@ -7948,6 +7942,9 @@ msgstr "Partages étendus"
 msgid "Extension Actions"
 msgstr "Actions d'extension"
 
+msgid "Extension Packages"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Extensions"
 
@@ -8135,6 +8132,12 @@ msgstr ""
 
 msgid "Feed disabled!"
 msgstr "Alimentation désactivée !"
+
+msgid "Feed server DNS error!"
+msgstr ""
+
+msgid "Feed server access error!"
+msgstr ""
 
 msgid "Feed stable."
 msgstr "Alimentation stable."
@@ -8439,6 +8442,9 @@ msgstr "Forcez les paramètres LNB Tuner ToneBurst."
 
 msgid "Force Legacy Signal stats"
 msgstr "Statistiques du signal de l'héritage de la Force"
+
+msgid "Force OPKG clean mode"
+msgstr ""
 
 msgid "Force ToneBurst"
 msgstr "Force ToneBurst"
@@ -9078,6 +9084,9 @@ msgstr "Réseau caché"
 msgid "Hide"
 msgstr "cacher"
 
+msgid "Hide CI messages"
+msgstr ""
+
 msgid "Hide InfoBar"
 msgstr "Toujours cacher la barre d'infos"
 
@@ -9086,6 +9095,9 @@ msgstr "Cacher ligne blanche VBI pour ce service"
 
 msgid "Hide any zap error messages."
 msgstr "Cacher n'importe quel message d'erreur de zap."
+
+msgid "Hide error messages from the Common Interface module."
+msgstr ""
 
 msgid "Hide known extensions"
 msgstr "Cacher les extensions connues"
@@ -9797,12 +9809,6 @@ msgstr "Installer des extensions"
 msgid "Install extensions."
 msgstr "Installer extensions."
 
-msgid "Install lcd picons on"
-msgstr "Installer les picons LCD sur"
-
-msgid "Install picons on"
-msgstr "Installer les picons sur"
-
 msgid "Install the package"
 msgstr ""
 
@@ -10083,8 +10089,8 @@ msgstr "Garder la liste des films ouverte lors de la lecture des fichiers audio.
 msgid "Kenya"
 msgstr "Kenya"
 
-msgid "Kernel Modules"
-msgstr "Modules du noyau"
+msgid "Kernel Packages"
+msgstr ""
 
 msgid "Kernel file"
 msgstr ""
@@ -10659,8 +10665,8 @@ msgstr "Luxembourgeois"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Luxembourgeois / Letzeburgesch"
 
-msgid "M2k"
-msgstr "M2k"
+msgid "M2k Packages"
+msgstr ""
 
 msgid "MAC Address Actions"
 msgstr ""
@@ -10761,13 +10767,13 @@ msgstr "Malte"
 msgid "Maltese"
 msgstr "Maltais"
 
-msgid "Manage Extensions"
-msgstr "Gestionnaire des extensions"
-
 msgid "Manage Locale/Language Selection settings"
 msgstr "Gérer les paramètres de la sélection locale/langue"
 
 msgid "Manage Plugins"
+msgstr ""
+
+msgid "Manage Plugins. This will remove/install Plugins on your box"
 msgstr ""
 
 msgid "Manage and explore directories and files."
@@ -10775,6 +10781,9 @@ msgstr ""
 
 msgid "Manage network mounts"
 msgstr "Gérer les points de montage réseau"
+
+msgid "Manage the highlighted plugin"
+msgstr ""
 
 msgid "Manage your online update files"
 msgstr "Gère vos fichiers de mise à jour en ligne"
@@ -10897,8 +10906,8 @@ msgstr "Media Player"
 msgid "Media Player Settings"
 msgstr ""
 
-msgid "Media Portal"
-msgstr "Media Portal"
+msgid "Media Stream"
+msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Lecteur de média écoulé/restant comme"
@@ -10916,8 +10925,8 @@ msgstr ""
 msgid "MediaPlayer"
 msgstr "Lecteur de médias"
 
-msgid "MediaPortal"
-msgstr "Media Portal"
+msgid "MediaStream"
+msgstr ""
 
 msgid "Medical"
 msgstr "Médical"
@@ -11341,10 +11350,34 @@ msgstr "Accéder à la dernière ligne/écran"
 msgid "Move to last line / screen in the panel"
 msgstr ""
 
+msgid "Move to the first item on the current line"
+msgstr ""
+
+msgid "Move to the first item on the first screen"
+msgstr ""
+
 msgid "Move to the first line / screen"
 msgstr ""
 
+msgid "Move to the last item on the current line"
+msgstr ""
+
+msgid "Move to the last item on the last screen"
+msgstr ""
+
 msgid "Move to the last line / screen"
+msgstr ""
+
+msgid "Move to the next category in the list"
+msgstr ""
+
+msgid "Move to the next item in the list"
+msgstr ""
+
+msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item in list"
 msgstr ""
 
 msgid "Move up a line"
@@ -11686,6 +11719,9 @@ msgstr "Test de réseau : "
 msgid "Network Wizard"
 msgstr "Assistant Réseau"
 
+msgid "Network adapter not connected to a network!"
+msgstr ""
+
 msgid "Network address"
 msgstr ""
 
@@ -11926,6 +11962,9 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "Aucun nom de lieu correspondant n’a été trouvé"
 
+msgid "No network adapters enabled/available!"
+msgstr ""
+
 msgid "No network storage detected."
 msgstr ""
 
@@ -11934,9 +11973,6 @@ msgstr "Aucun réseau trouvé"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nombre d'éléments à permuter (augmenter ou diminuer)"
-
-msgid "No packages found."
-msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -12253,9 +12289,6 @@ msgstr "D'accord, guidez-moi à travers la procédure de mise à jour"
 msgid "ONID"
 msgstr "ONID"
 
-msgid "OPKG clean mode"
-msgstr ""
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12364,9 +12397,6 @@ msgstr "Déplacer uniquement l’antenne rapidement avant cette heure."
 msgid "Only on startup"
 msgstr "Seulement au démarrage"
 
-msgid "Only provider"
-msgstr "Seul fournisseur"
-
 msgid "Open"
 msgstr "Ouvert"
 
@@ -12384,8 +12414,8 @@ msgstr "Ouvrir la recherche EPG"
 msgid "Open IMDb"
 msgstr "Ouvrir IMDb"
 
-msgid "Open MediaPortal"
-msgstr "Ouvrir MediaPortal"
+msgid "Open MediaStream"
+msgstr ""
 
 msgid "Open Similar List Channel List"
 msgstr "Ouvrir la liste similaire Liste des chaînes"
@@ -12432,6 +12462,12 @@ msgstr ""
 msgid "Open the Plugin Browser"
 msgstr "Ouvrir le gestionnaire de plugin"
 
+<<<<<<< HEAD
+=======
+msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+>>>>>>> master
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
@@ -12454,8 +12490,8 @@ msgstr "OpenDNS FamilyShield"
 msgid "OpenDNS Home"
 msgstr "Accueil OpenDNS"
 
-msgid "OpenPLi"
-msgstr "OpenPLi"
+msgid "OpenPLi Packages"
+msgstr ""
 
 msgid "OpenSSL version"
 msgstr ""
@@ -12469,8 +12505,8 @@ msgstr ""
 msgid "OpenVPN Settings"
 msgstr "Configuration OpenVPN"
 
-msgid "OpenViX"
-msgstr "OpenViX"
+msgid "OpenViX Packages"
+msgstr ""
 
 msgid "OpenVpn Log"
 msgstr "Log OpenVPN"
@@ -12828,7 +12864,7 @@ msgstr "Barre de pourcentage/progression à droite"
 msgid "Perform an on-line flash instead"
 msgstr "Effectuez un flash en ligne à la place"
 
-msgid "Perform install/remove of the selected item"
+msgid "Perform the upgrade?"
 msgstr ""
 
 msgid "Perform the upgrade?"
@@ -12879,14 +12915,14 @@ msgstr "PiPZap"
 msgid "Picon"
 msgstr "Picon"
 
+msgid "Picon Packages"
+msgstr ""
+
 msgid "Picon and Service Name"
 msgstr "Picon et nom de service"
 
 msgid "Picon width"
 msgstr "Largeur picon"
-
-msgid "Picons"
-msgstr "Picons"
 
 msgid "Picture Information"
 msgstr ""
@@ -13082,9 +13118,6 @@ msgstr ""
 "Veuillez saisir votre adresse e-mail, qui sera votre identifiant.\n"
 "Via votre compte sur le site Web d’IceTV, vous pouvez choisir de recevoir des annonces de service, des rappels de compte et des offres promotionnelles."
 
-msgid "Please enter your personal feed URL"
-msgstr "Entrez l’URL de votre flux personnel"
-
 msgid "Please follow the instructions on the TV"
 msgstr "Veuillez suivre les instructions sur la TV"
 
@@ -13096,6 +13129,9 @@ msgstr "Veuillez d'abord ouvrir l'incrustation d'image"
 
 msgid "Please press OK to continue."
 msgstr "Veuillez appuyer sur OK pour continuer."
+
+msgid "Please press OK when ready"
+msgstr ""
 
 msgid "Please select a backup destination"
 msgstr "Veuillez sélectionner une destination de sauvegarde"
@@ -13195,6 +13231,9 @@ msgstr "Veuillez patienter"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Veuillez attendre l'activation de votre configuration réseau..."
 
+msgid "Please wait while feeds are updated..."
+msgstr ""
+
 msgid "Please wait while gathering data..."
 msgstr "Veuillez patienter pendant la réception des données…"
 
@@ -13206,6 +13245,18 @@ msgstr ""
 
 msgid "Please wait while the list downloads..."
 msgstr "Veuillez patienter pendant que la liste se télécharge..."
+
+msgid "Please wait while the plugin is downloaded."
+msgstr ""
+
+msgid "Please wait while the plugin is removed."
+msgstr ""
+
+msgid "Please wait while the plugin is replaced."
+msgstr ""
+
+msgid "Please wait while the plugin is updated."
+msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "Veuillez patienter pendant que nous vérifions les plugins installés…"
@@ -13262,16 +13313,49 @@ msgstr ""
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+msgid "Plugin Action Log"
+msgstr ""
+
+msgid "Plugin Action Log Actions"
+msgstr ""
+
+>>>>>>> master
 msgid "Plugin Browser"
 msgstr "Navigateur d'extensions"
+
+msgid "Plugin Browser Actions"
+msgstr ""
+
+msgid "Plugin Browser Download Actions"
+msgstr ""
+
+msgid "Plugin Browser Edit Actions"
+msgstr ""
+
+msgid "Plugin Browser Manage Actions"
+msgstr ""
+
+msgid "Plugin Browser Navigation Actions"
+msgstr ""
+
+msgid "Plugin Browser Remove Actions"
+msgstr ""
+
+msgid "Plugin Browser Select Actions"
+msgstr ""
 
 msgid "Plugin Browser Settings"
 msgstr "Paramètres de l'explorateur de plugins"
 
-msgid "Plugin Filter Settings"
-msgstr "Filtrer les plugins"
+msgid "Plugin Browser Update Actions"
+msgstr ""
 
-msgid "Plugin Manager Actions"
+msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Skin Packages"
 msgstr ""
 
 msgid "Plugins"
@@ -13603,6 +13687,12 @@ msgstr ""
 msgid "Process YELLOW button action"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+msgid "Processing"
+msgstr ""
+
+>>>>>>> master
 msgid "Processor information"
 msgstr ""
 
@@ -14007,6 +14097,9 @@ msgstr ""
 msgid "Receiver Information Actions"
 msgstr ""
 
+msgid "Receiver does not support Quad PiP."
+msgstr "Box ou pilote ne prend pas en charge Quad PiP."
+
 #, python-format
 msgid "Receiver information for %s %s"
 msgstr ""
@@ -14234,8 +14327,8 @@ msgstr "Recharger la liste noire"
 msgid "Reloading EPG Cache..."
 msgstr "Recharger le cache EPG…"
 
-msgid "Reloading bouquets and services..."
-msgstr "Recharger les bouquets et services..."
+msgid "Reloading bouquets and services."
+msgstr ""
 
 msgid "Remaining"
 msgstr "Restant"
@@ -14320,6 +14413,9 @@ msgstr "retirer de la protection parentale"
 msgid "Remove New Found Flag"
 msgstr "enlever le nouvel indicateur trouvé"
 
+msgid "Remove Plugin"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr "Enlever extensions"
 
@@ -14396,6 +14492,9 @@ msgid "Remove the MultiBoot files"
 msgstr ""
 
 msgid "Remove the current bookmark"
+msgstr ""
+
+msgid "Remove the highlighted plugin"
 msgstr ""
 
 msgid "Remove timer"
@@ -14518,6 +14617,9 @@ msgstr "Réinitialiser"
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Réinitialiser les paramètres HDMI-CEC par défaut"
 
+msgid "Reset Order"
+msgstr ""
+
 msgid "Reset and renumerate title names"
 msgstr "Réinitialiser et renuméroter les titres"
 
@@ -14532,6 +14634,9 @@ msgstr "Réinitialiser le code PIN persistant"
 
 msgid "Reset playback position"
 msgstr "Réinitialiser la position de reprise de lecture"
+
+msgid "Reset sort order"
+msgstr ""
 
 msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
 msgstr "Réinitialisez les appareils sélectionnés et enregistrez les modifications de votre configuration lorsque le bouton VERT est enfoncé."
@@ -15251,8 +15356,8 @@ msgstr "DNS secondaire"
 msgid "Seconds"
 msgstr "Secondes"
 
-msgid "Security"
-msgstr "sécurité"
+msgid "Security Packages"
+msgstr ""
 
 msgid "Seek"
 msgstr "Sauter"
@@ -15302,6 +15407,9 @@ msgstr "Sélectionnez ‘1.0’ pour un commutateur commité standard, ‘1.1’
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Sélectionnez ‘A’ ou ‘B’ si votre système aérien nécessite cela, sinon laissez sur ‘aucun’. Si vous n’êtes pas certain sélectionnez ‘aucun’."
 
+msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Si mis à 'non', PauseDirect utilise seulement le fichier de buffer. Il est recommandé d'ajuster 'PauseDirect vérifie les fichiers plus anciens [en minutes]' et 'PauseDirect vérifie l'espace libre ?'."
 
@@ -15340,12 +15448,6 @@ msgstr ""
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Si mis à 'oui' cela affichera une petite fenêtre TV dans l'EPG."
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr "Si mis à 'oui' cela affichera les paquets 'PO' dans le navigateur."
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
-msgstr "Si mis à 'oui' cela affichera les paquets 'SRC' dans le navigateur."
 
 msgid "Select 'Yes' to display the InfoBar when a new event starts."
 msgstr "Si mis à 'oui' la barre d'informations s'affiche quand un nouvel événement commence."
@@ -15413,7 +15515,58 @@ msgstr ""
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr ""
 
+msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
+msgstr ""
+
+msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show security packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show the advanced setting options."
@@ -15426,6 +15579,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Si mis à 'oui' la liste des chaînes sera affichée après avoir basculé entre les modes radio et TV."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -15869,6 +16025,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Sélectionnez les paramètres régionaux à partir d’un menu"
 
@@ -15945,6 +16104,9 @@ msgid "Select the sort order for the file lines:"
 msgstr ""
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
@@ -16524,6 +16686,9 @@ msgstr "Utiliser la tension et le 22KHz"
 msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Définir le répertoire principal pour la liste des films, pour enlever le '..' affiché dans ce répertoire."
 
+msgid "Setting Packages"
+msgstr ""
+
 msgid "Setting Restored "
 msgstr "Paramètre Restauré "
 
@@ -16591,11 +16756,11 @@ msgstr "Configurer les services réseaux (Samba, FTP, NFS, …)"
 msgid "Setup OpenVPN"
 msgstr "Configurer OpenVPN"
 
-msgid "Setup Plugin filter"
-msgstr "Configurer le filtre des plugins"
+msgid "Setup Plugin Browser"
+msgstr ""
 
-msgid "Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"
-msgstr "Configurer le filtre des plugins. Ici vous pouvez choisir quels plugins seront affichés dans l'explorateur de plugins"
+msgid "Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"
+msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Paramétrer les Plugins"
@@ -16841,8 +17006,17 @@ msgstr "Afficher les clients"
 msgid "Show Default Backup Files"
 msgstr "Afficher les fichiers sauvegardés par défaut"
 
+msgid "Show Development packages"
+msgstr ""
+
 msgid "Show Display Icons"
 msgstr "Afficher les icônes à l'écran"
+
+msgid "Show Display packages"
+msgstr ""
+
+msgid "Show Driver packages"
+msgstr ""
 
 msgid "Show EPG"
 msgstr "Afficher l'EPG"
@@ -16852,6 +17026,9 @@ msgstr "Afficher l’EPG de la chaîne actuelle ..."
 
 msgid "Show EventView"
 msgstr "Afficher la vue des événements"
+
+msgid "Show Extension packages"
+msgstr ""
 
 msgid "Show Format Setup"
 msgstr "Afficher la configuration du format"
@@ -16892,6 +17069,9 @@ msgstr "Afficher picon dans infobarre"
 msgid "Show Information"
 msgstr "Afficher les informations"
 
+msgid "Show Kernel packages"
+msgstr ""
+
 msgid "Show Live in MiniTV"
 msgstr "Afficher en direct dans MiniTV"
 
@@ -16900,6 +17080,9 @@ msgstr "Afficher la log"
 
 msgid "Show Log Manager in extensions list"
 msgstr "Afficher le gestionnaire de log dans la liste des extensions ?"
+
+msgid "Show M2k packages"
+msgstr ""
 
 msgid "Show Media Player in Main Menu"
 msgstr "Afficher le lecteur de média dans le menu principal"
@@ -16925,6 +17108,12 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show OpenPLi packages"
+msgstr ""
+
+msgid "Show OpenViX packages"
+msgstr ""
+
 msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr "Afficher le statut PVR dans la barre d'info du lecteur de film"
 
@@ -16936,6 +17125,12 @@ msgstr "Afficher PIP dans MiniTV"
 
 msgid "Show PiP in the Front Display"
 msgstr "Afficher PiP dans l'affichage avant"
+
+msgid "Show Picon packages"
+msgstr ""
+
+msgid "Show Plugin Skin packages"
+msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "Afficher la configuration RFmod…"
@@ -16953,8 +17148,29 @@ msgstr "Afficher Redémarrer Réseau dans la liste des extensions *"
 msgid "Show SD as"
 msgstr "Afficher SD comme"
 
+msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Setting packages"
+msgstr ""
+
 msgid "Show Single EPG"
 msgstr "Afficher EPG simple"
+
+msgid "Show Skin Component packages"
+msgstr ""
+
+msgid "Show Skin packages"
+msgstr ""
+
+msgid "Show Softcam packages"
+msgstr ""
+
+msgid "Show Source packages"
+msgstr ""
+
+msgid "Show System Plugin packages"
+msgstr ""
 
 msgid "Show Timer List"
 msgstr "Afficher la liste des programmations"
@@ -16976,6 +17192,9 @@ msgstr "Afficher l'EPG vertical"
 
 msgid "Show WLAN status"
 msgstr "Afficher le status WLAN"
+
+msgid "Show Web Link packages"
+msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "Afficher l'indicateur occupé lorsque le système est occupé."
@@ -17047,9 +17266,6 @@ msgid "Show detailed event info (setup in menu)"
 msgstr "Afficher les informations détaillées de l'événement (réglage dans le menu)"
 
 msgid "Show details of highlighted task"
-msgstr ""
-
-msgid "Show development packages in opkg"
 msgstr ""
 
 msgid "Show directories first"
@@ -17289,9 +17505,6 @@ msgstr "Afficher un seul EPG pour la chaîne actuelle (réglage dans le menu)"
 msgid "Show single service EPG"
 msgstr "Afficher l'EPG simple du service"
 
-msgid "Show source packages"
-msgstr "Afficher la source des paquets"
-
 msgid "Show status messages on switch to live TV"
 msgstr "Afficher les messages de statut lorsqu'on bascule sur la TV en direct"
 
@@ -17340,6 +17553,9 @@ msgstr "Afficher la minuterie de veille"
 msgid "Show the information on current event."
 msgstr "Afficher les informations sur l’événement en cours."
 
+msgid "Show the last opkg command's output"
+msgstr ""
+
 # TODO
 msgid "Show the list of AutoTimers."
 msgstr "Afficher la liste des AutoTimers."
@@ -17382,9 +17598,6 @@ msgstr "Afficher le temps écoulé/restant"
 
 msgid "Show translation information"
 msgstr ""
-
-msgid "Show translation packages"
-msgstr "Afficher les paquets de traduction"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Afficher le temps restant/écoulé du transpondeur comme"
@@ -17561,6 +17774,12 @@ msgstr "Thème"
 msgid "Skin & Resolution"
 msgstr ""
 
+msgid "Skin Component Packages"
+msgstr ""
+
+msgid "Skin Packages"
+msgstr ""
+
 msgid "Skin Selector"
 msgstr "Sélecteur de thèmes"
 
@@ -17708,6 +17927,15 @@ msgstr ""
 msgid "Slot Manager"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+msgid "Slot Manager Actions"
+msgstr ""
+
+msgid "Slot R: Root Slot Full Backup (Current image)"
+msgstr ""
+
+>>>>>>> master
 msgid "Slot count"
 msgstr ""
 
@@ -17783,14 +18011,14 @@ msgstr "Softcam"
 msgid "Softcam Actions"
 msgstr "Actions Softcam"
 
+msgid "Softcam Packages"
+msgstr ""
+
 msgid "Softcam Settings"
 msgstr "Configuration Softcam"
 
 msgid "Softcam Setup"
 msgstr ""
-
-msgid "Softcams"
-msgstr "Softcams"
 
 msgid "Software Management"
 msgstr "Gestionnaire logiciel"
@@ -17839,14 +18067,11 @@ msgstr "Somalie"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Certains téléviseurs ne peuvent pas basculer vers la bonne entrée si un autre port HDMI est actif. Ce paramètre permet de mettre le téléviseur en veille avant la commutation. (Si le téléviseur ne se rallume pas, cela peut nécessiter un intervalle de transmission plus lent ou la répétition des commandes de réveil.)"
 
-msgid "Some plugins are not available:\n"
-msgstr "Certains plugins ne sont pas disponibles :\n"
+msgid "Some plugins are not available:"
+msgstr ""
 
 msgid "Sorbian"
 msgstr "Sorbian"
-
-msgid "Sorry CIHelper Config is Missing"
-msgstr "Désolé la configuration de CIHelper est manquante"
 
 msgid "Sorry Inadyn Config is Missing"
 msgstr "Désolé la configuration de Inadyn est manquante"
@@ -17859,9 +18084,6 @@ msgstr "Désolé la configuration de MiniDLNA est manquante"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Désolé les feeds sont fermés pour maintenance, merci de réessayer plus tard."
-
-msgid "Sorry feeds are down for maintenance."
-msgstr "Désolé les feeds sont fermés pour maintenance"
 
 msgid "Sorry no backups found!"
 msgstr "Désolé aucune sauvegarde n'a été trouvée !"
@@ -17916,6 +18138,9 @@ msgstr "Trier les extensions dans l'ordre alphabétique"
 msgid "Sort Plugin Browser"
 msgstr "Ordre de tri pour les entrées du navigateur de plug-in"
 
+msgid "Sort Plugin Browser entries"
+msgstr ""
+
 msgid "Sort by"
 msgstr "Trier par"
 
@@ -17949,6 +18174,9 @@ msgstr "Son"
 
 msgid "Sound carrier"
 msgstr "Porteuse sonore"
+
+msgid "Source Packages"
+msgstr ""
 
 msgid "Source request"
 msgstr "Demande d'entrée"
@@ -18059,6 +18287,9 @@ msgstr ""
 msgid "Start edit at line end"
 msgstr ""
 
+msgid "Start edit mode"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "Démarrer depuis le début"
 
@@ -18086,6 +18317,12 @@ msgstr "Lancer le test"
 msgid "Start the Kexec initialization"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+msgid "Start the highlighted plugin"
+msgstr ""
+
+>>>>>>> master
 msgid "Start time"
 msgstr "Heure de début"
 
@@ -18182,6 +18419,9 @@ msgstr "Stopper événement courant et désactiver les prochains"
 
 msgid "Stop current event but not future events"
 msgstr "Stopper événement courant mais pas les prochains"
+
+msgid "Stop edit mode"
+msgstr ""
 
 msgid "Stop entry"
 msgstr "Arrêter entrée"
@@ -18614,8 +18854,8 @@ msgstr ""
 msgid "System Message Check"
 msgstr "Vérifier Message Système"
 
-msgid "System Plugins"
-msgstr "Plugins système"
+msgid "System Plugin Packages"
+msgstr ""
 
 msgid "System Setup"
 msgstr "Configuration système"
@@ -18981,11 +19221,9 @@ msgstr ""
 "Merci de l'installer."
 
 msgid ""
-"The MediaPortal plugin is not installed!\n"
+"The MediaStream plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Le plugin MediaPortal n'est pas installée !\n"
-"Veuillez l'installer."
 
 msgid ""
 "The Merlin EPG Center plugin is not installed!\n"
@@ -19278,48 +19516,6 @@ msgstr "Permet de modifier le nombre de lignes affichées."
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Cela vous permet de définir le nombre de chiffre à 5, si vous avez plus de 9999 chaînes."
-
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "Cela permet d'afficher les modules PLi dans les téléchargements"
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr "Cela permet d'afficher les modules ViX dans les téléchargements"
-
-msgid "This allows you to show drivers modules in downloads"
-msgstr "Cela permet d'afficher les modules des pilotes (drivers) dans les téléchargements"
-
-msgid "This allows you to show extensions modules in downloads"
-msgstr "Cela permet d'afficher les extensions dans les téléchargements"
-
-msgid "This allows you to show kernel modules in downloads"
-msgstr "Cela permet d'afficher les modules du noyau (kernel) dans les téléchargements"
-
-msgid "This allows you to show lcd skins in downloads"
-msgstr "Cela permet d'afficher les thèmes LCD (lcd skins) dans les téléchargements"
-
-msgid "This allows you to show m2k modules in downloads"
-msgstr "Cela permet d'afficher les modules m2k dans les téléchargements"
-
-msgid "This allows you to show picons modules in downloads"
-msgstr "Cela permet d'afficher les modules de picons dans les téléchargements"
-
-msgid "This allows you to show security modules in downloads"
-msgstr "Cela permet d'afficher les modules de sécurité dans les téléchargements"
-
-msgid "This allows you to show settings modules in downloads"
-msgstr "Cela permet d'afficher les modules de configuration dans les téléchargements"
-
-msgid "This allows you to show skin modules in downloads"
-msgstr "Cela vous permet d'afficher les modules de skin dans les téléchargements"
-
-msgid "This allows you to show softcams modules in downloads"
-msgstr "Cela permet d'afficher les modules de softcams dans les téléchargements"
-
-msgid "This allows you to show system plugin modules in downloads"
-msgstr "Cela permet d'afficher les modules de plugins systèmes dans les téléchargements"
-
-msgid "This allows you to show weblinks modules in downloads"
-msgstr "Cela permet d'afficher les modules de liens web dans les téléchargements"
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "ce bouquet est protégé par un PIN contrôle parental"
@@ -19947,6 +20143,9 @@ msgstr ""
 msgid "Toggle item move mode on/off"
 msgstr ""
 
+msgid "Toggle move mode"
+msgstr ""
+
 msgid "Toggle move mode selection"
 msgstr ""
 
@@ -19961,6 +20160,9 @@ msgstr "Basculer la sélection de la balise courante"
 
 msgid "Toggle service name display"
 msgstr "Basculer l'affichage du nom du service"
+
+msgid "Toggle the visibility of the highlighted plugin"
+msgstr ""
 
 msgid "Toggles between tv and radio"
 msgstr "Bascule entre la télévision et la radio"
@@ -20500,6 +20702,12 @@ msgstr "Boutons haut/bas également pour « tout haut/bas » ?"
 msgid "Update"
 msgstr "Mise à jour"
 
+msgid "Update Plugin"
+msgstr ""
+
+msgid "Update Plugins"
+msgstr ""
+
 msgid "Update completed."
 msgstr ""
 
@@ -20527,6 +20735,9 @@ msgid ""
 msgstr ""
 "Mise à jour réussie !\n"
 "Votre Bootloader est maintenant à jour !"
+
+msgid "Update the highlighted plugin"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Mise à jour/sauvegarde de votre firmware, sauvegarde/restauration des paramètres"
@@ -21131,6 +21342,12 @@ msgstr ""
 msgid "View Rass interactive..."
 msgstr "Afficher Rass interactif..."
 
+msgid "View as grid"
+msgstr ""
+
+msgid "View as list"
+msgstr ""
+
 msgid "View mode"
 msgstr "Mode vue"
 
@@ -21362,8 +21579,8 @@ msgstr "Météo"
 msgid "Web Interface"
 msgstr "Interface web"
 
-msgid "Web Links"
-msgstr "Liens web"
+msgid "Web Link Packages"
+msgstr ""
 
 msgid "Web browser base visibility"
 msgstr "Visibilité de base du navigateur Web"
@@ -21526,9 +21743,6 @@ msgstr "Lorsqu'il est activé, désembrouillez toujours la réception des flux h
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Lorsqu'elle est activée, l'authentification est requise pour regarder les flux http."
 
-msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online."
-msgstr ""
-
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Lorsqu'elle est activée, la numérotation des chaînes démarre à '1' pour chaque bouquet."
 
@@ -21612,9 +21826,6 @@ msgstr "Lorsqu'activé, la PauseDirect démarrera automatiquement en tâche de f
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Lorsqu'elle est activée, utiliser DHCP pour la configuration IP."
-
-msgid "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list."
-msgstr ""
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Lorsqu'elle est activée, le récepteur détectera l'activité sur l'entrée péritel magnétoscope."
@@ -21896,26 +22107,6 @@ msgstr "Yiddish"
 msgid "Yoruba"
 msgstr "Yoruba"
 
-#, python-format
-msgid ""
-"You already have a bootlogo installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Vous avez déjà un logo de démarrage installé.\n"
-"Voulez-vous l'enlever\n"
-"' %s' ?"
-
-#, python-format
-msgid ""
-"You already have a channel list installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-"Vous avez déjà installé une liste de chaînes,\n"
-"voulez-vous supprimer\n"
-"\"%s\" ?"
-
 msgid "You can Display MiniTV with or without OSD Menu"
 msgstr "Vous pouvez afficher MiniTV avec ou sans menu OSD"
 
@@ -22084,9 +22275,6 @@ msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
-
-msgid "Your Hardware can detect ci mode self or work only in legacy mode."
-msgstr "Votre matériel peut détecter le mode CI lui-même ou fonctionner en mode antérieur (Legacy)."
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -22894,6 +23082,9 @@ msgstr "Médecine/Physiologie/Psychologie"
 msgid "min"
 msgstr "min"
 
+msgid "module disabled"
+msgstr ""
+
 msgid "month"
 msgstr "Mois"
 
@@ -23064,9 +23255,6 @@ msgstr "pid :"
 
 msgid "pink"
 msgstr ""
-
-msgid "please press OK when ready"
-msgstr "Veuillez appuyer sur OK quand vous êtes prêt(e)"
 
 msgid "please wait, loading picture..."
 msgstr "Veuillez patienter, chargement de l'image..."
@@ -23436,6 +23624,9 @@ msgstr "voir les extensions..."
 msgid "violet"
 msgstr "violet"
 
+msgid "wait for ci..."
+msgstr ""
+
 msgid "wait for mmi..."
 msgstr "Attente pour mmi..."
 
@@ -23487,6 +23678,7 @@ msgstr "Oui (garder feeds)"
 msgid "®"
 msgstr "®"
 
+<<<<<<< HEAD
 #~ msgid "Auto Modes Selected."
 #~ msgstr "Modes automatiques sélectionnés."
 
@@ -25363,3 +25555,7 @@ msgstr "®"
 
 #~ msgid "zapping"
 #~ msgstr "zapping"
+=======
+#~ msgid "Black screen"
+#~ msgstr "Ecran noir"
+>>>>>>> master
