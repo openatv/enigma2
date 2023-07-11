@@ -373,7 +373,7 @@ class LocaleSelection(Screen, HelpableScreen):
 		config.misc.country.save()
 		international.activateLocale(self.currentLocale, runCallbacks=True)
 		if not self.inWizard and self.initialLocale != self.currentLocale:
-			self.session.openWithCallback(keySaveCallback, MessageBox, _("Restart GUI now?"), default=True, type=MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(keySaveCallback, MessageBox, _("Restart GUI now?"), default=True, type=MessageBox.TYPE_YESNO, windowTitle=_("Question"))
 		else:
 			self.close()
 
