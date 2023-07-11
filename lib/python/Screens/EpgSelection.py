@@ -971,6 +971,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.graph_red.value == "imdb" or config.epgselection.graph_red.value == None:
 					self.openIMDb()
+				if config.epgselection.graph_red.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.graph_red.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.graph_red.value == "bouquetlist":
@@ -1000,6 +1002,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.vertical_red.value == "imdb" or config.epgselection.vertical_red.value == None:
 					self.openIMDb()
+				if config.epgselection.vertical_red.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.vertical_red.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.vertical_red.value == "bouquetlist":
@@ -1040,6 +1044,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.graph_green.value == "imdb":
 					self.openIMDb()
+				if config.epgselection.graph_green.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.graph_green.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.graph_green.value == "bouquetlist":
@@ -1069,6 +1075,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.vertical_green.value == "imdb" or config.epgselection.vertical_green.value == None:
 					self.openIMDb()
+				if config.epgselection.vertical_green.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.vertical_green.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.vertical_green.value == "bouquetlist":
@@ -1109,6 +1117,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.graph_yellow.value == "imdb":
 					self.openIMDb()
+				if config.epgselection.graph_yellow.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.graph_yellow.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.graph_yellow.value == "bouquetlist":
@@ -1138,6 +1148,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.vertical_yellow.value == "imdb" or config.epgselection.vertical_yellow.value == None:
 					self.openIMDb()
+				if config.epgselection.vertical_yellow.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.vertical_yellow.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.vertical_yellow.value == "bouquetlist":
@@ -1171,6 +1183,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.graph_blue.value == "imdb":
 					self.openIMDb()
+				if config.epgselection.graph_blue.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.graph_blue.value == "autotimer" or config.epgselection.graph_blue.value == None:
 					self.addAutoTimer()
 				if config.epgselection.graph_blue.value == "bouquetlist":
@@ -1200,6 +1214,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.vertical_blue.value == "imdb" or config.epgselection.vertical_blue.value == None:
 					self.openIMDb()
+				if config.epgselection.vertical_blue.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.vertical_blue.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.vertical_blue.value == "bouquetlist":
@@ -1287,6 +1303,20 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.open(IMDB, name, False)
 		except ImportError:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+
+	def openTMDB(self):
+		try:
+			from Plugins.Extensions.tmdb.tmdb import tmdbScreen
+			try:
+				cur = self["list" + str(self.activeList)].getCurrent()
+				event = cur[0]
+				name = event.getEventName()
+			except:
+				name = ""
+
+			self.session.open(tmdbScreen, name, 2)
+		except ImportError:
+			self.session.open(MessageBox, _("The TMDB plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openEPGSearch(self):
 		try:
