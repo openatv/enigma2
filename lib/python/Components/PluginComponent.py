@@ -10,9 +10,6 @@ from Tools.Directories import SCOPE_PLUGINS, fileExists, resolveFilename
 from Tools.Import import my_import
 from Tools.Profile import profile
 
-REASON_START = 0
-REASON_STOP = 1
-
 
 class PluginComponent:
 	firstRun = True

@@ -1206,6 +1206,7 @@ void eListbox::moveSelection(int dir)
 						newSel = m_content->cursorGet();
 						newColumn = newSel % m_max_columns;
 					} while (oldColumn != newColumn);
+
 					if (m_content->currentCursorSelectable())
 						break;
 				}

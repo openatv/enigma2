@@ -178,9 +178,5 @@ class VideoWizard(Wizard, ShowRemoteControl):
 		config.misc.videowizardenabled.save()
 		configfile.save()
 
-	def keyRed(self):  # Thats is only a temporary workaround for language selection
-		self.timeoutTimer.stop()
-		self.red()
-
 	def createSummary(self):
 		return WizardSummary
