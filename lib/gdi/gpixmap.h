@@ -235,6 +235,9 @@ private:
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
 	void line(const gRegion &clip, ePoint start, ePoint end, gRGB color);
 	void line(const gRegion &clip, ePoint start, ePoint end, unsigned int color);
+
+	uint32_t* allocBoxBuf(const int dx, const int dy, uint32_t* buf = NULL);
+	void drawGradient(const gRegion &region, const eRect &area, const gRGB &startcolor, const gRGB &endcolor, int direction = 0, int flag = 0);
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<gPixmap>, gPixmapPtr);
 

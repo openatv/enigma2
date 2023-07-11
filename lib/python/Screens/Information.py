@@ -888,7 +888,7 @@ class MultiBootInformation(InformationBase):
 		info.append("")
 		if self.slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
-			slotImageList = sorted(self.slotImages.keys())
+			slotImageList = sorted(self.slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))
 			currentMsg = "  -  %s" % _("Current")
 			imageLists = {}
 			for slot in slotImageList:

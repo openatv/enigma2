@@ -375,7 +375,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 #if KEY_HOME_TO_KEY_HOMEPAGE
 	if (ev->code == KEY_HOME)
 	{
-		/* DAGS map HOME Key to show Mediaportal */
+		/* DAGS map HOME Key to show MediaPlugin */
 		ev->code = KEY_HOMEPAGE;
 	}
 #endif
@@ -547,7 +547,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 #if KEY_VIDEO_TO_KEY_BOOKMARKS
 	if (ev->code == KEY_VIDEO)
 	{
-		/* Axas Ultra have two keys open Movie folder , use Media key to open Mediaportal */
+		/* Axas Ultra have two keys open Movie folder , use Media key to open MediaPlugin */
 		ev->code = KEY_BOOKMARKS;
 	}
 #endif
@@ -694,7 +694,7 @@ public:
 
 	void removeAll(void)
 	{
-		int size = items.size();
+		[[maybe_unused]] size_t size = items.size();
 		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)
 		{
 			delete *it;

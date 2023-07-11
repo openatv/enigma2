@@ -53,6 +53,7 @@ private:
 	int m_cursor;
 	int m_saved_cursor;
 	int m_saved_cursor_line;
+	ePtr<gFont> m_font_zoomed;
 
 protected:
 	ePyObject m_list;
@@ -93,8 +94,11 @@ public:
 	~eListboxPythonMultiContent();
 	enum
 	{
+		TYPE_RECT,
 		TYPE_TEXT,
 		TYPE_PROGRESS,
+		TYPE_LINEAR_GRADIENT,
+		TYPE_LINEAR_GRADIENT_ALPHABLEND,
 		TYPE_PIXMAP,
 		TYPE_PIXMAP_ALPHATEST,
 		TYPE_PIXMAP_ALPHABLEND,
@@ -114,6 +118,7 @@ public:
 
 private:
 	std::map<int, ePtr<gFont>> m_fonts;
+	std::map<int, ePtr<gFont>> m_fonts_zoomed;
 };
 
 #ifdef SWIG
@@ -139,6 +144,9 @@ private:
 #define BT_VALIGN_CENTER 64
 #define BT_VALIGN_BOTTOM 128
 #define BT_ALIGN_CENTER BT_HALIGN_CENTER | BT_VALIGN_CENTER
+
+#define GRADIENT_VERTICAL 0
+#define GRADIENT_HORIZONTAL 1
 
 #endif // SWIG
 

@@ -407,6 +407,10 @@ class ServiceName2(Converter):
 			return "web.tvbox.md"
 		elif 'live-p12' in refstr:
 			return "PAC12"
+		elif '.ottg.tv' in refstr:
+			return "Glanc"
+		elif '/iptv/' in refstr:
+			return "Edem"		
 		elif '4097' in refstr:
 			return "StreamTV"
 		elif '%3a1234' in refstr:

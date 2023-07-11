@@ -586,7 +586,10 @@ class MultiBootClass():
 		else:
 			bootSlot = self.bootSlots[self.slotCode]
 			startup = bootSlot["startupfile"][self.bootCode]
-			target = STARTUP_ONCE if startup == STARTUP_RECOVERY else STARTUP_FILE
+			if fileHas("/proc/cmdline", "kexec=1") and startup == STARTUP_RECOVERY:
+				target = STARTUP_FILE
+			else:
+				target = STARTUP_ONCE if startup == STARTUP_RECOVERY else STARTUP_FILE
 			copyfile(pathjoin(self.tempDir, startup), pathjoin(self.tempDir, target))
 			if exists(DUAL_BOOT_FILE):
 				slot = self.slotCode if self.slotCode.isdecimal() else "0"

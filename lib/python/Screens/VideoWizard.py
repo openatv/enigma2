@@ -2,15 +2,14 @@ from Components.AVSwitch import iAVSwitch as avSwitch
 from Components.config import ConfigBoolean, config, configfile
 from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import ShowRemoteControl
-from Screens.Wizard import WizardSummary
-from Screens.WizardLanguage import WizardLanguage
+from Screens.Wizard import WizardSummary, Wizard
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
 
 
-class VideoWizard(WizardLanguage, ShowRemoteControl):
+class VideoWizard(Wizard, ShowRemoteControl):
 	def __init__(self, session):
 		self.xmlfile = resolveFilename(SCOPE_SKINS, "videowizard.xml")
-		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
+		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
 		self.setTitle(_("Video Wizard"))
 		self.avSwitch = avSwitch
@@ -58,7 +57,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 		preferred = ""
 		try:
 			if BoxInfo.getItem("AmlogicFamily"):
-				fd =open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
+				fd = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
 				preferred = fd.read()[:-1].replace('*', '')
 				fd.close()
 			else:
@@ -169,7 +168,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 				self.avSwitch.saveMode("Scart", "Multi", "multi")
 			self.avSwitch.setConfiguredMode()
 			self.close()
-		WizardLanguage.keyNumberGlobal(self, number)
+		Wizard.keyNumberGlobal(self, number)
 
 	def saveWizardChanges(self):  # Called by wizardvideo.xml.
 		self.avSwitch.saveMode(self.port, self.mode, self.rate)

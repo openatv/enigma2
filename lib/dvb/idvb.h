@@ -607,7 +607,7 @@ public:
 	virtual RESULT getData(int num, long &data)=0;
 	virtual RESULT setData(int num, long val)=0;
 		/* 0 means: not compatible. other values are a priority. */
-	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)=0;
+	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, bool is_configured_sat = false)=0;
 #endif
 	virtual bool changeType(int type)=0;
 	virtual int getCurrentType()=0;
@@ -624,6 +624,10 @@ public:
 	virtual void prepareTurnOffSatCR(iDVBFrontend &frontend)=0;
 	virtual int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *fe, int frontend_id, int *highest_score_lnb=0)=0;
 	virtual void setRotorMoving(int slotid, bool)=0;
+	virtual RESULT resetAdvancedsatposdependsRoot(int link)=0;
+	virtual bool isOrbitalPositionConfigured(int orbital_position)=0;
+	virtual bool tunerLinkedInUse(int root)=0;
+	virtual void forceUpdateRotorPos(int slot, int orbital_position)=0;
 };
 
 struct eDVBCIRouting

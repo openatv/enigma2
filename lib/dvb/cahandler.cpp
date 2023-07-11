@@ -253,6 +253,11 @@ void eDVBCAHandler::connectionLost(ePMTClient *client)
 	}
 }
 
+int eDVBCAHandler::getNumberOfCAServices()
+{
+	return services.size();
+}
+
 int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice)
 {
 	CAServiceMap::iterator it = services.find(ref);
@@ -308,7 +313,7 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 	return 0;
 }
 
-int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], eTable<ProgramMapSection> *ptr)
+int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], int servicetype, eTable<ProgramMapSection> *ptr)
 {
 	CAServiceMap::iterator it = services.find(ref);
 	if (it == services.end())
@@ -319,6 +324,8 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 	else
 	{
 		eDVBCAService *caservice = it->second;
+		caservice->removeServiceType(servicetype);
+
 		int loops = demux_nums[0] != demux_nums[1] ? 2 : 1;
 		for (int i = 0; i < loops; ++i)
 		{
@@ -352,6 +359,12 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 				{
 					delete it->second;
 					services.erase(it);
+
+					/*
+					 * this service is completely removed, so we distribute
+					 * a new list of CAPMT objects to all our clients
+					 */
+					distributeCAPMT();
 				}
 				else
 				{
@@ -374,8 +387,7 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 	serviceLeft->startLongTimer(2);
 
 	usedcaid(0);
-	/* our servicelist has changed, distribute the list of CAPMT objects to all our clients */
-	distributeCAPMT();
+
 	return 0;
 }
 
@@ -432,7 +444,10 @@ void eDVBCAHandler::processPMTForService(eDVBCAService *service, eTable<ProgramM
 
 	if (isUpdate)
 	{
-		/* this is a PMT update, we should distribute the new CAPMT object to all our connected clients */
+		/*
+		 * this is a PMT update for an existing service, so we should
+		 * send the updated CAPMT object to all our connected clients
+		 */
 		for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
 		{
 			if (client_it->state() == eSocket::Connection)
@@ -444,10 +459,18 @@ void eDVBCAHandler::processPMTForService(eDVBCAService *service, eTable<ProgramM
 	else
 	{
 		/*
-		 * this is PMT information for a new service, so we can now distribute
-		 * the CAPMT objects to all our connected clients
+		 * this is PMT information for a new service, so we should
+		 * send the new CAPMT object to all our connected clients
 		 */
-		distributeCAPMT();
+		int list_management = (getNumberOfCAServices() == 1) ? LIST_ONLY : LIST_ADD;
+
+		for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
+		{
+			if (client_it->state() == eSocket::Connection)
+			{
+				service->writeCAPMTObject(*client_it, list_management);
+			}
+		}
 	}
 }
 
@@ -539,6 +562,11 @@ void eDVBCAService::addServiceType(int type)
 	m_service_type_mask |= (1 << type);
 }
 
+void eDVBCAService::removeServiceType(int type)
+{
+	m_service_type_mask ^= (1 << type);
+}
+
 void eDVBCAService::connectionLost()
 {
 	/* reconnect in 1s */
@@ -556,7 +584,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	int pmtpid = table_spec.pid,
 		pmt_version = table_spec.version;
 
-	uint8_t demux_mask = 0;
+	uint32_t demux_mask = 0;
 	int data_demux = -1;
 	uint32_t crc = 0;
 
@@ -586,11 +614,11 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	build_hash <<= 16;
 	build_hash |= pmtpid;
 	build_hash <<= 8;
-	build_hash |= demux_mask;
+	build_hash |= (demux_mask & 0xff);
 	build_hash <<= 8;
 	build_hash |= (pmt_version & 0xff);
-	build_hash <<= 16;
-	build_hash |= (m_service_type_mask & 0xffff);
+	//build_hash <<= 16;
+	//build_hash |= (m_service_type_mask & 0xffff); // don't include in build_hash
 
 	bool scrambled = false;
 	for (std::vector<ProgramMapSection*>::const_iterator pmt = ptr->getSections().begin();
@@ -651,7 +679,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 		tmp[0] = 0x82; // demux
 		tmp[1] = 0x02;
-		tmp[2] = demux_mask;	// descramble bitmask
+		tmp[2] = demux_mask&0xFF; // descramble bitmask
 		tmp[3] = data_demux&0xFF; // read section data from demux number
 		capmt.injectDescriptor(tmp, false);
 
@@ -673,6 +701,11 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		tmp[3] = (m_service_type_mask >> 16) & 0xff;
 		tmp[4] = (m_service_type_mask >> 8) & 0xff;
 		tmp[5] = m_service_type_mask & 0xff;
+		capmt.injectDescriptor(tmp, true);
+
+		tmp[0] = 0x86; // demux only
+		tmp[1] = 0x01;
+		tmp[2] = data_demux&0xFF; // read section data from demux number
 		capmt.injectDescriptor(tmp, true);
 
 		ePtr<eDVBService> dvbservice;
@@ -718,7 +751,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 {
 	int pmt_version = 0;
-	uint8_t demux_mask = 0;
+	uint32_t demux_mask = 0;
 	int data_demux = -1;
 	uint32_t crc = 0;
 
@@ -754,11 +787,11 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 	build_hash <<= 16;
 	build_hash |= pmtpid;
 	build_hash <<= 8;
-	build_hash |= demux_mask;
+	build_hash |= (demux_mask & 0xff);
 	build_hash <<= 8;
 	build_hash |= (pmt_version & 0xff);
-	build_hash <<= 16;
-	build_hash |= (m_service_type_mask & 0xffff);
+	//build_hash <<= 16;
+	//build_hash |= (m_service_type_mask & 0xffff); // don't include in build_hash
 
 	int pos = 0;
 	int programInfoLength = 0;
@@ -796,7 +829,7 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 
 	m_capmt[pos++] = 0x82; // demux
 	m_capmt[pos++] = 0x02;
-	m_capmt[pos++] = demux_mask;	// descramble bitmask
+	m_capmt[pos++] = demux_mask&0xFF; // descramble bitmask
 	m_capmt[pos++] = data_demux&0xFF; // read section data from demux number
 
 	programInfoLength += 4;
@@ -839,6 +872,12 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 	m_capmt[pos++] = m_service_type_mask & 0xff;
 
 	programInfoLength += 6;
+
+	m_capmt[pos++] = 0x86; // demux
+	m_capmt[pos++] = 0x01;
+	m_capmt[pos++] = data_demux&0xFF; // read section data from demux number
+
+	programInfoLength += 3;
 
 	std::map<int,int> pidtype;
 

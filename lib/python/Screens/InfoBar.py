@@ -75,7 +75,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV")),
 			"ZoomOff": (self.ZoomOff, _("Zoom Off")),
 			"HarddiskSetup": (self.HarddiskSetup, _("Select HDD")),
-			"showWWW": (self.showPORTAL, _("Open MediaPortal")),
+			"showWWW": (self.showPORTAL, _("Open MediaStream")),
 			"showSetup": (self.showSetup, _("Show setup")),
 			"showInformation": (self.showInformation, _("Show Information")),
 			"showFormat": (self.showFormat, _("Show Format Setup")),
@@ -184,7 +184,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.servicelist.showFavourites()
 
 	def showTvButton(self):
-		if boxtype.startswith('gb') or boxtype in ('classm', 'genius', 'evo', 'galaxym6', 'sf8008', 'sf8008m', 'sx988', 'ip8', 'og2ott4k', 'sfx6008'):
+		if boxtype.startswith('gb') or boxtype in ('classm', 'genius', 'evo', 'galaxym6', 'sf8008', 'sf8008m', 'sx988', 'ip8', 'og2ott4k', 'og2s4k', 'sfx6008'):
 			self.toogleTvRadio()
 		elif boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin'):
 			self.showMovies()
@@ -370,11 +370,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showPORTAL(self):
 		try:
-			from Plugins.Extensions.MediaPortal.plugin import MPmain as MediaPortal
-			MediaPortal(self.session)
+			from Plugins.Extensions.MediaStream.plugin import MSmain as MediaStream
+			MediaStream(self.session)
 			no_plugin = False
 		except Exception as e:
-			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _("The MediaStream plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showSetup(self):
 		from Screens.Menu import Menu, findMenu

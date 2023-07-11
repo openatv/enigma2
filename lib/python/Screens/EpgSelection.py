@@ -521,7 +521,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.type == EPG_TYPE_MULTI:
 				self["list"].fillMultiEPG(self.services, self.ask_time)
 			else:
-				self["list"].fillGraphEPG(self.services, self.ask_time)
+				self["list"].fillGraphEPG(self.services, self.ask_time, current_service=serviceref)
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].moveToService(serviceref)
 			if self.type != EPG_TYPE_MULTI:
@@ -592,6 +592,10 @@ class EPGSelection(Screen, HelpableScreen):
 			self["list" + str(self.activeList)].moveToEventId(curr)
 
 	def moveUp(self):
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].moveUp()
+			self.moveTimeLines(True)
+			return
 		if self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_updownbtn.value:
 			if self.getEventTime(self.activeList)[0] is None:
 				return
@@ -606,19 +610,19 @@ class EPGSelection(Screen, HelpableScreen):
 				if not idx % config.epgselection.vertical_itemsperpage.value:
 					self.syncUp(idx)
 		self["list" + str(self.activeList)].moveTo(self["list" + str(self.activeList)].instance.moveUp)
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self.moveTimeLines(True)
 		if self.type == EPG_TYPE_VERTICAL:
 			self.saveLastEventTime()
 
 	def moveDown(self):
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].moveDown()
+			self.moveTimeLines(True)
+			return
 		if self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_updownbtn.value:
 			idx = self["list" + str(self.activeList)].getCurrentIndex()
 			if not (idx + 1) % config.epgselection.vertical_itemsperpage.value:
 				self.syncDown(idx + 1)
 		self["list" + str(self.activeList)].moveTo(self["list" + str(self.activeList)].instance.moveDown)
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self.moveTimeLines(True)
 		if self.type == EPG_TYPE_VERTICAL:
 			self.saveLastEventTime()
 
@@ -653,6 +657,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.activeList = 1
 					self.updateVerticalEPG()
 				self.gotoLasttime()
+		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].nextPage()
 		else:
 			self["list"].moveTo(self["list"].instance.pageDown)
 
@@ -680,6 +686,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.activeList = (self.Fields - 1)
 					self.updateVerticalEPG()
 				self.gotoLasttime()
+		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].prevPage()
 		else:
 			self["list"].moveTo(self["list"].instance.pageUp)
 
@@ -963,6 +971,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.graph_red.value == "imdb" or config.epgselection.graph_red.value == None:
 					self.openIMDb()
+				if config.epgselection.graph_red.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.graph_red.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.graph_red.value == "bouquetlist":
@@ -992,6 +1002,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.vertical_red.value == "imdb" or config.epgselection.vertical_red.value == None:
 					self.openIMDb()
+				if config.epgselection.vertical_red.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.vertical_red.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.vertical_red.value == "bouquetlist":
@@ -1032,6 +1044,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.graph_green.value == "imdb":
 					self.openIMDb()
+				if config.epgselection.graph_green.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.graph_green.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.graph_green.value == "bouquetlist":
@@ -1061,6 +1075,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.vertical_green.value == "imdb" or config.epgselection.vertical_green.value == None:
 					self.openIMDb()
+				if config.epgselection.vertical_green.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.vertical_green.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.vertical_green.value == "bouquetlist":
@@ -1101,6 +1117,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.graph_yellow.value == "imdb":
 					self.openIMDb()
+				if config.epgselection.graph_yellow.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.graph_yellow.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.graph_yellow.value == "bouquetlist":
@@ -1130,6 +1148,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.vertical_yellow.value == "imdb" or config.epgselection.vertical_yellow.value == None:
 					self.openIMDb()
+				if config.epgselection.vertical_yellow.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.vertical_yellow.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.vertical_yellow.value == "bouquetlist":
@@ -1163,6 +1183,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.graph_blue.value == "imdb":
 					self.openIMDb()
+				if config.epgselection.graph_blue.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.graph_blue.value == "autotimer" or config.epgselection.graph_blue.value == None:
 					self.addAutoTimer()
 				if config.epgselection.graph_blue.value == "bouquetlist":
@@ -1192,6 +1214,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion(True)
 				if config.epgselection.vertical_blue.value == "imdb" or config.epgselection.vertical_blue.value == None:
 					self.openIMDb()
+				if config.epgselection.vertical_blue.value == "tmdb":
+					self.openTMDB()
 				if config.epgselection.vertical_blue.value == "autotimer":
 					self.addAutoTimer()
 				if config.epgselection.vertical_blue.value == "bouquetlist":
@@ -1279,6 +1303,20 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.open(IMDB, name, False)
 		except ImportError:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+
+	def openTMDB(self):
+		try:
+			from Plugins.Extensions.tmdb.tmdb import tmdbScreen
+			try:
+				cur = self["list" + str(self.activeList)].getCurrent()
+				event = cur[0]
+				name = event.getEventName()
+			except:
+				name = ""
+
+			self.session.open(tmdbScreen, name, 2)
+		except ImportError:
+			self.session.open(MessageBox, _("The TMDB plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openEPGSearch(self):
 		try:

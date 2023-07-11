@@ -293,8 +293,8 @@ PyObject *eFCCServiceManager::getFCCServiceList()
 		for (;it != m_FCCServices.end();++it)
 		{
 			ePyObject tplist = PyList_New(0);
-			PyList_Append(tplist, PyInt_FromLong((long)it->second.m_state));
-			PyList_Append(tplist, PyInt_FromLong((long)isLocked(it->first)));
+			PyList_Append(tplist, PyLong_FromLong((long)it->second.m_state));
+			PyList_Append(tplist, PyLong_FromLong((long)isLocked(it->first)));
 			PyDict_SetItemString(dest, it->second.m_service_reference.toString().c_str(), tplist);
 			Py_DECREF(tplist);
 		}

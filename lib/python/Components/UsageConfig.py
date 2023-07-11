@@ -1462,7 +1462,7 @@ def InitUsageConfig():
 		def setZapmode(el):
 			open(BoxInfo.getItem("ZapMode"), "w").write(el.value)
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
-			("mute", _("Black screen")),
+			("mute", _("Black Screen")),
 			("hold", _("Hold screen")),
 			("mutetilllock", _("Black screen till locked")),
 			("holdtilllock", _("Hold till locked"))
@@ -1820,6 +1820,7 @@ def InitUsageConfig():
 		("autotimer", _("AutoTimer")),
 		("timer", _("Add/Remove Timer")),
 		("imdb", _("IMDb Search")),
+		("tmdb", _("TMDB Search")),
 		("bouquetlist", _("Bouquet List")),
 		("showmovies", _("Show Movies List")),
 		("record", _("Record - same as record button")),
@@ -1860,6 +1861,7 @@ def InitUsageConfig():
 		("24plus", _("+24 Hours")),
 		("24minus", _("-24 Hours")),
 		("imdb", _("IMDb Search")),
+		("tmdb", _("TMDB Search")),
 		("bouquetlist", _("Bouquet List")),
 		("showmovies", _("Show Movies List")),
 		("record", _("Record - same as record button")),

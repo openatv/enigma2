@@ -314,8 +314,8 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 			{
 				//eDebug("[eActionMap]   python wildcard.");
 				ePyObject pArgs = PyTuple_New(2);
-				PyTuple_SET_ITEM(pArgs, 0, PyInt_FromLong(key));
-				PyTuple_SET_ITEM(pArgs, 1, PyInt_FromLong(flags));
+				PyTuple_SET_ITEM(pArgs, 0, PyLong_FromLong(key));
+				PyTuple_SET_ITEM(pArgs, 1, PyLong_FromLong(flags));
 				Py_INCREF(c->second.m_fnc);
 				call_list.push_back(call_entry(c->second.m_fnc, pArgs));
 			}
