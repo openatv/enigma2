@@ -360,7 +360,8 @@ class LocaleSelection(Screen, HelpableScreen):
 		def keySaveCallback(result):
 			if result:
 				self.session.open(TryQuitMainloop, retvalue=QUIT_RESTART)
-			self.close()
+			else:
+				self.close()
 		config.osd.language.value = self.currentLocale
 		config.osd.language.save()
 		config.misc.locale.value = self.currentLocale
@@ -373,7 +374,8 @@ class LocaleSelection(Screen, HelpableScreen):
 		international.activateLocale(self.currentLocale, runCallbacks=True)
 		if not self.inWizard and self.initialLocale != self.currentLocale:
 			self.session.openWithCallback(keySaveCallback, MessageBox, _("Restart GUI now?"), default=True, type=MessageBox.TYPE_YESNO)
-		self.close()
+		else:
+			self.close()
 
 	def keyCancel(self, closeParameters=()):
 		# if self["locales"].isChanged():
