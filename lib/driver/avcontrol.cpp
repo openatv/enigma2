@@ -204,6 +204,10 @@ bool eAVControl::setHDMIInPiP(int flags) const
 
 	std::string check = CFile::read(proc_hdmi_rx_monitor, __MODULE__, flags);
 
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: check: %s", __MODULE__, "setHDMIInPiP", check.c_str());
+
+
 	if (check.rfind("off", 0) == 0)
 	{
 		CFile::writeStr(proc_hdmi_rx_monitor_audio, "on", __MODULE__, flags);
@@ -233,12 +237,18 @@ bool eAVControl::setHDMIInFull(int flags)
 
 	std::string check = CFile::read(proc_hdmi_rx_monitor, __MODULE__, flags);
 
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: check: %s", __MODULE__, "setHDMIInFull", check.c_str());
+
 	if (check.rfind("off", 0) == 0)
 	{
 
 		m_video_mode = CFile::read(proc_videomode, __MODULE__, flags);
 		m_video_mode_50 = CFile::read(proc_videomode_50, __MODULE__, flags);
 		m_video_mode_60 = CFile::read(proc_videomode_60, __MODULE__, flags);
+
+		if (flags & FLAGS_DEBUG)
+			eDebug("[%s] %s: on / mode:%s mode50:%s mode60:%s", __MODULE__, "setHDMIInFull", m_video_mode.c_str(), m_video_mode_50.c_str(), m_video_mode_60.c_str());
 
 #ifdef HAVE_HDMIIN_FHD
 		CFile::writeStr(proc_videomode, "1080p", __MODULE__, flags);
@@ -251,6 +261,9 @@ bool eAVControl::setHDMIInFull(int flags)
 	}
 	else
 	{
+		if (flags & FLAGS_DEBUG)
+			eDebug("[%s] %s: off", __MODULE__, "setHDMIInFull");
+
 		CFile::writeStr(proc_hdmi_rx_monitor_audio, "off", __MODULE__, flags);
 		CFile::writeStr(proc_hdmi_rx_monitor, "off", __MODULE__, flags);
 		CFile::writeStr(proc_videomode, m_video_mode, __MODULE__, flags);
