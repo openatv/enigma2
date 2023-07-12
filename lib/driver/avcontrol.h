@@ -8,18 +8,15 @@ class eAVControl
 
 #ifdef SWIG
 	eAVControl();
+	~eAVControl();
 #endif
 
 public:
 #ifndef SWIG
 	eAVControl();
+	~eAVControl();
 #endif
-	static eAVControl &getInstance()
-	{
-		static eAVControl m_instance;
-		return m_instance;
-	}
-
+	static eAVControl *getInstance() { return m_instance; }
 	int getAspect(int defaultVal = 0, int flags = 0) const;
 	int getFrameRate(int defaultVal = 50, int flags = 0) const;
 	bool getProgressive(int flags = 0) const;
@@ -54,6 +51,7 @@ public:
 	};
 
 private:
+	static eAVControl *m_instance;
 	std::string m_video_mode;
 	std::string m_video_mode_50;
 	std::string m_video_mode_60;

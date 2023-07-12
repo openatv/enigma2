@@ -5018,7 +5018,7 @@ class InfoBarHdmi:
 			return _("Turn off HDMI-IN PiP mode")
 
 	def HDMIInPiP(self):
-		if eAVControl.instance().setHDMIInPiP():
+		if eAVControl.getInstance().setHDMIInPiP():
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.hdmi_enabled_pip = True
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
@@ -5038,7 +5038,7 @@ class InfoBarHdmi:
 					del self.session.pip
 
 	def HDMIInFull(self):
-		if eAVControl.instance().setHDMIInFull():
+		if eAVControl.getInstance().setHDMIInFull():
 			slist = self.servicelist
 			curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if curref and curref.type != eServiceReference.idServiceHDMIIn:

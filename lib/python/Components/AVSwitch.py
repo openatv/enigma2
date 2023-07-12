@@ -232,7 +232,7 @@ class AVSwitch:
 			self.on_hotplug("HDMI")  # must be HDMI
 
 	def is24hzAvailable(self):
-		BoxInfo.setItem("have24hz", eAVControl.instance().has24hz())
+		BoxInfo.setItem("have24hz", eAVControl.getInstance().has24hz())
 
 	# check if a high-level mode with a given rate is available.
 	def isModeAvailable(self, port, mode, rate):

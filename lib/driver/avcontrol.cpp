@@ -30,6 +30,10 @@ const char *proc_videomode_24 = "/proc/stb/video/videomode_24hz"; // NOSONAR
 
 eAVControl::eAVControl()
 {
+	if (!m_instance)
+	{
+		m_instance = this;
+	}
 	struct stat buffer;
 	m_b_has_proc_aspect = (stat(proc_videoaspect, &buffer) == 0);
 	m_b_has_proc_hdmi_rx_monitor = (stat(proc_hdmi_rx_monitor, &buffer) == 0);
@@ -55,6 +59,14 @@ eAVControl::eAVControl()
 	eDebug("[%s] Init: ScartSwitch:%d / VideoMode 24:%d 50:%d 60:%d / HDMIRxMonitor:%d / VideoAspect:%d", __MODULE__, m_b_has_scartswitch, m_b_has_proc_videomode_24, m_b_has_proc_videomode_50, m_b_has_proc_videomode_60, m_b_has_proc_hdmi_rx_monitor, m_b_has_proc_aspect);
 	eDebug("[%s] Init: VideoMode Choices:%s", __MODULE__, m_videomode_choices.c_str());
 
+}
+
+eAVControl::~eAVControl()
+{
+	if (m_instance == this)
+	{
+		m_instance = nullptr;
+	}
 }
 
 /// @brief Get video aspect
