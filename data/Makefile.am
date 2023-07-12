@@ -14,6 +14,7 @@ dist_pkgdata_DATA = \
 	startwizard.xml \
 	userinterfacepositionerwizard.xml \
 	videowizard.xml \
+	wizardlanguage.xml \
 	freesat.t1 \
 	freesat.t2 \
 	unicable.xml \

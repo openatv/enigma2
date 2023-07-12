@@ -156,3 +156,10 @@ void eWindow::setAnimationMode(int mode)
 	 */
 	m_animation_mode = (eWindow::m_has_animation_mode==1) ? mode : 0;
 }
+
+void eWindow::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+{
+	/* set background gradient for child, too */
+	eWidget::setBackgroundGradient(startcolor,endcolor,direction,blend);
+	m_child->setBackgroundGradient(startcolor,endcolor,direction,blend);
+}

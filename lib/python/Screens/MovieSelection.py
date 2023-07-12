@@ -2007,7 +2007,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		menu = [(_("Settings") + "...", csel.configure),
 				(_("Device mounts") + "...", csel.showDeviceMounts),
 				(_("Network mounts") + "...", csel.showNetworkMounts),
-				(_("Create directory"), csel.do_createdir),
+				(_("Create Directory"), csel.do_createdir),
 				(_("Sort by") + "...", csel.selectSortby)]
 		if csel.exist_bookmark():
 			menu.append((_("Remove Bookmark"), csel.do_addbookmark))

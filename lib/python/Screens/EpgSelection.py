@@ -521,7 +521,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.type == EPG_TYPE_MULTI:
 				self["list"].fillMultiEPG(self.services, self.ask_time)
 			else:
-				self["list"].fillGraphEPG(self.services, self.ask_time)
+				self["list"].fillGraphEPG(self.services, self.ask_time, current_service=serviceref)
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].moveToService(serviceref)
 			if self.type != EPG_TYPE_MULTI:
@@ -592,6 +592,10 @@ class EPGSelection(Screen, HelpableScreen):
 			self["list" + str(self.activeList)].moveToEventId(curr)
 
 	def moveUp(self):
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].moveUp()
+			self.moveTimeLines(True)
+			return
 		if self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_updownbtn.value:
 			if self.getEventTime(self.activeList)[0] is None:
 				return
@@ -606,19 +610,19 @@ class EPGSelection(Screen, HelpableScreen):
 				if not idx % config.epgselection.vertical_itemsperpage.value:
 					self.syncUp(idx)
 		self["list" + str(self.activeList)].moveTo(self["list" + str(self.activeList)].instance.moveUp)
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self.moveTimeLines(True)
 		if self.type == EPG_TYPE_VERTICAL:
 			self.saveLastEventTime()
 
 	def moveDown(self):
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].moveDown()
+			self.moveTimeLines(True)
+			return
 		if self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_updownbtn.value:
 			idx = self["list" + str(self.activeList)].getCurrentIndex()
 			if not (idx + 1) % config.epgselection.vertical_itemsperpage.value:
 				self.syncDown(idx + 1)
 		self["list" + str(self.activeList)].moveTo(self["list" + str(self.activeList)].instance.moveDown)
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self.moveTimeLines(True)
 		if self.type == EPG_TYPE_VERTICAL:
 			self.saveLastEventTime()
 
@@ -653,6 +657,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.activeList = 1
 					self.updateVerticalEPG()
 				self.gotoLasttime()
+		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].nextPage()
 		else:
 			self["list"].moveTo(self["list"].instance.pageDown)
 
@@ -680,6 +686,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.activeList = (self.Fields - 1)
 					self.updateVerticalEPG()
 				self.gotoLasttime()
+		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].prevPage()
 		else:
 			self["list"].moveTo(self["list"].instance.pageUp)
 

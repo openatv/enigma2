@@ -27,11 +27,7 @@ class eDVBRegisteredFrontend: public iObject, public sigc::trackable
 {
 	DECLARE_REF(eDVBRegisteredFrontend);
 	ePtr<eTimer> disable;
-	void closeFrontend()
-	{
-		if (!m_inuse && m_frontend->closeFrontend()) // frontend busy
-			disable->start(60000, true);  // retry close in 60secs
-	}
+	void closeFrontend();
 public:
 	sigc::signal0<void> stateChanged;
 	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap)
@@ -75,7 +71,7 @@ class eDVBAllocatedFrontend
 	DECLARE_REF(eDVBAllocatedFrontend);
 public:
 
-	eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe);
+	eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe, eFBCTunerManager *fbcmng);
 	~eDVBAllocatedFrontend();
 	eDVBFrontend &get() { return *m_fe->m_frontend; }
 	operator eDVBRegisteredFrontend*() { return m_fe; }
@@ -83,6 +79,7 @@ public:
 
 private:
 	eDVBRegisteredFrontend *m_fe;
+	eFBCTunerManager *m_fbcmng;
 };
 
 class eDVBAllocatedDemux
@@ -188,11 +185,12 @@ private:
 	ePtr<iDVBChannelList> m_list;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
 	static eDVBResourceManager *instance;
-	ePtr<eFBCTunerManager> m_fbc_mng;
 
 	friend class eDVBChannel;
 	friend class eFBCTunerManager;
 	friend class eRTSPStreamClient;
+
+	ePtr<eFBCTunerManager> m_fbcmng;
 
 	RESULT addChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 	RESULT removeChannel(eDVBChannel *ch);

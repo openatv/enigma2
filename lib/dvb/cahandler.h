@@ -102,7 +102,7 @@ public:
 class eDVBCAService: public eUnixDomainSocket
 {
 	eServiceReferenceDVB m_service;
-	uint8_t m_used_demux[8];
+	uint8_t m_used_demux[32];
 	uint8_t m_adapter;
 	uint32_t m_service_type_mask;
 	uint64_t m_prev_build_hash;
@@ -122,6 +122,7 @@ public:
 	uint8_t getAdapter();
 	void setAdapter(uint8_t value);
 	void addServiceType(int type);
+	void removeServiceType(int type);
 	void sendCAPMT();
 	int writeCAPMTObject(eSocket *socket, int list_management = -1);
 	int buildCAPMT(eTable<ProgramMapSection> *ptr);
@@ -136,13 +137,11 @@ typedef std::map<eServiceReferenceDVB, eDVBCAService*> CAServiceMap;
 SWIG_IGNORE(iCryptoInfo);
 class iCryptoInfo : public iObject
 {
-#ifdef SWIG
 public:
+#ifdef SWIG
 	iCryptoInfo();
 	~iCryptoInfo();
-private:
 #endif
-public:
 	PSignal1<void, const char*> clientname;
 	PSignal1<void, const char*> clientinfo;
 	PSignal1<void, const char*> verboseinfo;
@@ -176,8 +175,9 @@ public:
 #ifndef SWIG
 	~eDVBCAHandler();
 
+	int getNumberOfCAServices();
 	int registerService(const eServiceReferenceDVB &service, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice);
-	int unregisterService(const eServiceReferenceDVB &service , int adapter, int demux_nums[2], eTable<ProgramMapSection> *ptr);
+	int unregisterService(const eServiceReferenceDVB &service, int adapter, int demux_nums[2], int servicetype, eTable<ProgramMapSection> *ptr);
 	void handlePMT(const eServiceReferenceDVB &service, ePtr<eTable<ProgramMapSection> > &ptr);
 	void handlePMT(const eServiceReferenceDVB &service, ePtr<eDVBService> &dvbservice);
 	void connectionLost(ePMTClient *client);
