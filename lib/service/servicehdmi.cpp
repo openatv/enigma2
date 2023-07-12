@@ -125,9 +125,9 @@ RESULT eServiceHDMI::start()
 {
 #ifdef HAVE_HDMIIN_DM
 	if(m_noaudio)
-		eAVControl::getInstance().setHDMIInPiP();
+		eAVControl::getInstance()->setHDMIInPiP();
 	else
-		eAVControl::getInstance().setHDMIInFull();
+		eAVControl::getInstance()->setHDMIInFull();
 #else
 	m_decoder = new eTSMPEGDecoder(NULL, m_decoder_index);
 	m_decoder->setVideoPID(1, 0);
@@ -143,9 +143,9 @@ RESULT eServiceHDMI::stop()
 {
 #ifdef HAVE_HDMIIN_DM
 	if(m_noaudio)
-		eAVControl::getInstance().setHDMIInPiP();
+		eAVControl::getInstance()->setHDMIInPiP();
 	else
-		eAVControl::getInstance().setHDMIInFull();
+		eAVControl::getInstance()->setHDMIInFull();
 #else
 	m_decoder = NULL;
 #endif
