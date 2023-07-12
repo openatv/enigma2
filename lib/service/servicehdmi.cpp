@@ -8,6 +8,7 @@
 #include <lib/dvb/encoder.h>
 #include <lib/service/servicehdmi.h>
 #include <lib/service/service.h>
+#include <lib/driver/avcontrol.h>
 
 #include <string>
 
@@ -122,18 +123,32 @@ RESULT eServiceHDMI::connectEvent(const sigc::slot2<void,iPlayableService*,int> 
 
 RESULT eServiceHDMI::start()
 {
+#ifdef HAVE_HDMIIN_DM
+	if(m_noaudio)
+		eAVControl::getInstance().setHDMIInPiP();
+	else
+		eAVControl::getInstance().setHDMIInFull();
+#else
 	m_decoder = new eTSMPEGDecoder(NULL, m_decoder_index);
 	m_decoder->setVideoPID(1, 0);
 	if (!m_noaudio)
 		m_decoder->setAudioPID(1, 0);
 	m_decoder->play();
+#endif
 	m_event(this, evStart);
 	return 0;
 }
 
 RESULT eServiceHDMI::stop()
 {
+#ifdef HAVE_HDMIIN_DM
+	if(m_noaudio)
+		eAVControl::getInstance().setHDMIInPiP();
+	else
+		eAVControl::getInstance().setHDMIInFull();
+#else
 	m_decoder = NULL;
+#endif
 	m_event(this, evStopped);
 	return 0;
 }
