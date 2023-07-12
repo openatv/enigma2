@@ -1034,7 +1034,7 @@ class NimSelection(Screen):
 								"satposdepends": _("Second cable of motorized LNB")
 							}[nimConfig.configMode.value]
 						if len(x.input_name) > 1:
-							text += " " + _("Tuner") + " " + ["A1", "A2", "B", "C"][int(nimConfig.connectedTo.value)]
+							text += " " + _("Tuner") + " " + ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B", "C"][int(nimConfig.connectedTo.value)]
 						else:
 							text += " " + _("Tuner") + " " + chr(ord('A') + int(nimConfig.connectedTo.value))
 					elif nimConfig.configMode.value == "nothing":
