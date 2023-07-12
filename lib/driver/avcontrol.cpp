@@ -38,7 +38,7 @@ eAVControl::eAVControl()
 #ifdef DREAMNEXTGEN
 	m_b_has_proc_videomode_24 = true;
 #else
-	m_b_has_proc_videomode_24 = (access(proc_videomode_24, R_OK) == 0);
+	m_b_has_proc_videomode_24 = (access(proc_videomode_24, W_OK) == 0);
 #endif
 	m_videomode_choices = readAvailableModes();
 	m_video_output_active = false;
@@ -51,6 +51,10 @@ eAVControl::eAVControl()
 		if (m_b_has_scartswitch)
 			m_b_has_scartswitch = checkScartSwitch();
 	}
+
+	eDebug("[%s] Init: ScartSwitch:%d / VideoMode 24:%d 50:%d 60:%d / HDMIRxMonitor:%d / VideoAspect:%d", __MODULE__, m_b_has_scartswitch, m_b_has_proc_videomode_24, m_b_has_proc_videomode_50, m_b_has_proc_videomode_60, m_b_has_proc_hdmi_rx_monitor, m_b_has_proc_aspect);
+	eDebug("[%s] Init: VideoMode Choices:%s", __MODULE__, m_videomode_choices.c_str());
+
 }
 
 /// @brief Get video aspect

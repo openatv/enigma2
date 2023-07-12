@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 import os
 from time import sleep
-from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop
+from enigma import eAVControl, eAVSwitch, eDVBVolumecontrol, getDesktop
 from Components.config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigYesNo, ConfigEnableDisable, ConfigOnOff, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
 from Components.About import about
 from Components.SystemInfo import BoxInfo
@@ -232,15 +232,7 @@ class AVSwitch:
 			self.on_hotplug("HDMI")  # must be HDMI
 
 	def is24hzAvailable(self):
-		if BoxInfo.getItem("AmlogicFamily"):
-			self.has24pAvailable = True
-		else:
-			try:
-				self.has24pAvailable = os.access("/proc/stb/video/videomode_24hz", os.W_OK) and True or False
-			except OSError:
-				print("[AVSwitch] failed to read video choices 24hz .")
-				self.has24pAvailable = False
-		BoxInfo.setItem("have24hz", self.has24pAvailable)
+		BoxInfo.setItem("have24hz", eAVControl.instance().has24hz())
 
 	# check if a high-level mode with a given rate is available.
 	def isModeAvailable(self, port, mode, rate):
