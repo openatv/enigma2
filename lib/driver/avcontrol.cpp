@@ -28,6 +28,8 @@ const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz"; // NOSONAR
 const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz"; // NOSONAR
 const char *proc_videomode_24 = "/proc/stb/video/videomode_24hz"; // NOSONAR
 
+eAVControl *eAVControl::m_instance = nullptr;
+
 eAVControl::eAVControl()
 {
 	if (!m_instance)
