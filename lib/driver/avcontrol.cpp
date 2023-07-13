@@ -71,13 +71,13 @@ eAVControl::eAVControl()
 	m_fp_fd = open("/dev/dbox/fp0", O_RDONLY|O_NONBLOCK);
 	if (m_fp_fd == -1)
 	{
-		eDebug("[eAVSwitch] failed to open /dev/dbox/fp0 to monitor vcr scart slow blanking changed: %m");
+		eDebug("[%s] failed to open /dev/dbox/fp0 to monitor vcr scart slow blanking changed: %m", __MODULE__);
 		m_fp_notifier=0;
 	}
 	else
 	{
 		m_fp_notifier = eSocketNotifier::create(eApp, m_fp_fd, eSocketNotifier::Read|POLLERR);
-		CONNECT(m_fp_notifier->activated, eAVSwitch::fp_event);
+		CONNECT(m_fp_notifier->activated, eAVControl::fp_event);
 	}
 
 }
@@ -103,10 +103,10 @@ int eAVControl::getVCRSlowBlanking()
 		if (f)
 		{
 			if (fscanf(f, "%d", &val) != 1)
-				eDebug("[eAVControl] read /proc/stb/fp/vcr_fns failed: %m");
+				eDebug("[%s] read /proc/stb/fp/vcr_fns failed: %m", __MODULE__);
 		}
 		else if (ioctl(m_fp_fd, FP_IOCTL_GET_VCR, &val) < 0)
-			eDebug("[eAVControl] FP_GET_VCR failed: %m");
+			eDebug("[%s] FP_GET_VCR failed: %m", __MODULE__);
 	}
 	return val;
 }
@@ -115,7 +115,7 @@ void eAVControl::fp_event(int what)
 {
 	if (what & POLLERR) // driver not ready for fp polling
 	{
-		eDebug("[eAVControl] fp driver not read for polling.. so disable polling");
+		eDebug("[%s] fp driver not read for polling.. so disable polling", __MODULE__);
 		m_fp_notifier->stop();
 	}
 	else
@@ -125,7 +125,7 @@ void eAVControl::fp_event(int what)
 		{
 			int events;
 			if (fscanf(f, "%d", &events) != 1)
-				eDebug("[eAVControl] read /proc/stb/fp/events failed: %m");
+				eDebug("[%s] read /proc/stb/fp/events failed: %m", __MODULE__);
 			else if (events & FP_EVENT_VCR_SB_CHANGED)
 				/* emit */ vcr_sb_notifier(getVCRSlowBlanking());
 		}
@@ -133,7 +133,7 @@ void eAVControl::fp_event(int what)
 		{
 			int val = FP_EVENT_VCR_SB_CHANGED;  // ask only for this event
 			if (ioctl(m_fp_fd, FP_IOCTL_GET_EVENT, &val) < 0)
-				eDebug("[eAVControl] FP_IOCTL_GET_EVENT failed: %m");
+				eDebug("[%s] FP_IOCTL_GET_EVENT failed: %m", __MODULE__);
 			else if (val & FP_EVENT_VCR_SB_CHANGED)
 				/* emit */ vcr_sb_notifier(getVCRSlowBlanking());
 		}
