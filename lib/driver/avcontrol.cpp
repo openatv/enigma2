@@ -288,6 +288,8 @@ void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: audio:%d on:%d", __MODULE__, "startStopHDMIIn", audio, on);
 
+	std::string state = on ? "on" : "off";
+
 	if (on)
 	{
 		m_video_mode = CFile::read(proc_videomode, __MODULE__, flags);
@@ -298,20 +300,25 @@ void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 			CFile::writeStr(proc_videomode, "1080p", __MODULE__, flags);
 		else
 			CFile::writeStr(proc_videomode, "720p", __MODULE__, flags);
+
+		if (m_b_has_proc_hdmi_rx_monitor)
+		{
+			if (audio)
+				CFile::writeStr(proc_hdmi_rx_monitor_audio, state, __MODULE__, flags);
+			CFile::writeStr(proc_hdmi_rx_monitor, state, __MODULE__, flags);
+		}
+
 	}
 	else
 	{
+		if (m_b_has_proc_hdmi_rx_monitor)
+		{
+			CFile::writeStr(proc_hdmi_rx_monitor_audio, state, __MODULE__, flags);
+			CFile::writeStr(proc_hdmi_rx_monitor, state, __MODULE__, flags);
+		}
 		CFile::writeStr(proc_videomode, m_video_mode, __MODULE__, flags);
 		CFile::writeStr(proc_videomode_50, m_video_mode_50, __MODULE__, flags);
 		CFile::writeStr(proc_videomode_60, m_video_mode_60, __MODULE__, flags);
-	}
-
-	if (m_b_has_proc_hdmi_rx_monitor)
-	{
-		std::string state = on ? "on" : "off";
-		if (audio || !on)
-			CFile::writeStr(proc_hdmi_rx_monitor_audio, state, __MODULE__, flags);
-		CFile::writeStr(proc_hdmi_rx_monitor, state, __MODULE__, flags);
 	}
 
 }
