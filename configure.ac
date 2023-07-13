@@ -779,7 +779,6 @@ if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm900"
 fi
 
 if test "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920"; then
-	AC_DEFINE(HAVE_HDMIIN_FHD, 1,[has hdmi in dm])
 	AC_DEFINE(LCD_DM900_Y_OFFSET, 4,[define LCD Y offset for dm900 and dm920])
 fi
 

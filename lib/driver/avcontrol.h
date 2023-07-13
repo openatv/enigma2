@@ -32,8 +32,7 @@ public:
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	void setVideoOutput(std::string newMode, int flags = 0);
-	bool setHDMIInFull(int flags = 0, bool audio = true);
-	bool setHDMIInPiP(int flags = 0) const;
+	void startStopHDMIIn(int flags = 0, bool audio, bool start);
 	void disableHDMIIn(int flags = 0) const;
 
 	bool hasProcAspect() const { return m_b_has_proc_aspect; }
@@ -64,6 +63,7 @@ private:
 	bool m_b_has_proc_videomode_24;
 	bool m_video_output_active;
 	bool m_b_has_scartswitch;
+	bool m_b_hdmiin_fhd;
 
 	std::string readAvailableModes(int flags = 0) const;
 	bool checkScartSwitch(int flags = 0) const;
