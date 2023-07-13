@@ -902,9 +902,7 @@ IconCheck()
 if BOX_TYPE in ("uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "beyonwizt3"):
 	fileUpdateLine("/proc/stb/fp/enable_clock", conditionValue="1", replacementValue="0", source=MODULE_NAME)
 
-if BOX_TYPE in ("dm7080", "dm820", "dm900", "dm920", "gb7252"):
-	fileUpdateLine("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", conditionValue="on", replacementValue="off", source=MODULE_NAME)
-	fileUpdateLine("/proc/stb/audio/hdmi_rx_monitor", conditionValue="on", replacementValue="off", source=MODULE_NAME)
+enigma.AVControl.getInstance().disableHDMIIn()
 
 profile("UserInterface")
 from Screens.UserInterfacePositioner import InitOsd

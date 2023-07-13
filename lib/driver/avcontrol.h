@@ -32,7 +32,7 @@ public:
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	void setVideoOutput(std::string newMode, int flags = 0);
-	bool setHDMIInFull(int flags = 0);
+	bool setHDMIInFull(int flags = 0, bool audio = true);
 	bool setHDMIInPiP(int flags = 0) const;
 	void disableHDMIIn(int flags = 0) const;
 

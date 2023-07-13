@@ -124,10 +124,7 @@ RESULT eServiceHDMI::connectEvent(const sigc::slot2<void,iPlayableService*,int> 
 RESULT eServiceHDMI::start()
 {
 #ifdef HAVE_HDMIIN_DM
-	if(m_noaudio)
-		eAVControl::getInstance()->setHDMIInPiP(1);
-	else
-		eAVControl::getInstance()->setHDMIInFull(1);
+	eAVControl::getInstance()->setHDMIInFull(1, !m_noaudio);
 #else
 	m_decoder = new eTSMPEGDecoder(NULL, m_decoder_index);
 	m_decoder->setVideoPID(1, 0);
@@ -142,10 +139,7 @@ RESULT eServiceHDMI::start()
 RESULT eServiceHDMI::stop()
 {
 #ifdef HAVE_HDMIIN_DM
-	if(m_noaudio)
-		eAVControl::getInstance()->setHDMIInPiP(1);
-	else
-		eAVControl::getInstance()->setHDMIInFull(1);
+	eAVControl::getInstance()->setHDMIInFull(1, !m_noaudio);
 #else
 	m_decoder = NULL;
 #endif

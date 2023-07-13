@@ -227,7 +227,7 @@ bool eAVControl::setHDMIInPiP(int flags) const
 }
 /// @brief set HDMIInFull for 'dm7080', 'dm820', 'dm900', 'dm920'
 /// @return false if one of the models
-bool eAVControl::setHDMIInFull(int flags)
+bool eAVControl::setHDMIInFull(int flags, bool audio)
 {
 
 #ifdef HAVE_HDMIIN_DM
@@ -256,7 +256,8 @@ bool eAVControl::setHDMIInFull(int flags)
 		CFile::writeStr(proc_videomode, "720p", __MODULE__, flags);
 #endif
 
-		CFile::writeStr(proc_hdmi_rx_monitor_audio, "on", __MODULE__, flags);
+		if(audio)
+			CFile::writeStr(proc_hdmi_rx_monitor_audio, "on", __MODULE__, flags);
 		CFile::writeStr(proc_hdmi_rx_monitor, "on", __MODULE__, flags);
 	}
 	else
