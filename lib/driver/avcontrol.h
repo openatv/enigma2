@@ -32,7 +32,7 @@ public:
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	void setVideoOutput(std::string newMode, int flags = 0);
-	void startStopHDMIIn(int flags = 0, bool audio, bool start);
+	void startStopHDMIIn(bool on, bool audio, int flags = 0);
 	void disableHDMIIn(int flags = 0) const;
 
 	bool hasProcAspect() const { return m_b_has_proc_aspect; }

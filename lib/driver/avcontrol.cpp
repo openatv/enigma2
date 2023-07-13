@@ -203,7 +203,7 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 /// @param flags
 /// @param audio
 /// @param on
-void eAVControl::startStopHDMIIn(int flags, bool audio, bool on)
+void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 {
 
 	if (flags & FLAGS_DEBUG)
