@@ -205,7 +205,10 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 /// @param on
 void eAVControl::startStopHDMIIn(int flags, bool audio, bool on)
 {
-	std::string state = on ? "on" : "off";
+
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: audio:%d on:%d", __MODULE__, "startStopHDMIIn", audio, on);
+
 	if (on)
 	{
 		m_video_mode = CFile::read(proc_videomode, __MODULE__, flags);
@@ -226,7 +229,8 @@ void eAVControl::startStopHDMIIn(int flags, bool audio, bool on)
 
 	if (m_b_has_proc_hdmi_rx_monitor)
 	{
-		if (audio && on)
+		std::string state = on ? "on" : "off";
+		if (audio || !on)
 			CFile::writeStr(proc_hdmi_rx_monitor_audio, state, __MODULE__, flags);
 		CFile::writeStr(proc_hdmi_rx_monitor, state, __MODULE__, flags);
 	}

@@ -137,7 +137,7 @@ RESULT eServiceHDMI::start()
 
 RESULT eServiceHDMI::stop()
 {
-	eAVControl::getInstance()->startStopHDMIIn(1, !m_noaudio, false);
+	eAVControl::getInstance()->startStopHDMIIn(1, true, false);
 #ifndef HAVE_HDMIIN_DM
 	m_decoder = NULL;
 #endif
