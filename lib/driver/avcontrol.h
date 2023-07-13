@@ -6,7 +6,7 @@
 
 class eSocketNotifier;
 
-class eAVControl: public sigc::trackable
+class eAVControl : public sigc::trackable
 {
 	ePtr<eSocketNotifier> m_fp_notifier;
 	void fp_event(int what);
@@ -23,7 +23,10 @@ public:
 	~eAVControl();
 #endif
 
-	static eAVControl *getInstance() { return m_instance; }
+	static eAVControl *getInstance()
+	{
+		return m_instance;
+	}
 	int getAspect(int defaultVal = 0, int flags = 0) const;
 	int getFrameRate(int defaultVal = 50, int flags = 0) const;
 	bool getProgressive(int flags = 0) const;
@@ -38,7 +41,7 @@ public:
 	void setColorFormat(const std::string &newFormat, int flags) const;
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
-	void setVideoOutput(std::string newMode, int flags = 0);
+	void setVideoOutput(const std::string &newMode, int flags = 0);
 	void startStopHDMIIn(bool on, bool audio, int flags = 0);
 	void disableHDMIIn(int flags = 0) const;
 
@@ -48,6 +51,9 @@ public:
 	bool hasProcVideoMode60() const { return m_b_has_proc_videomode_60; }
 	bool hasScartSwitch() const;
 	bool has24hz() const { return m_b_has_proc_videomode_24; }
+
+	void setWSS(int val, int flags = 0) const;
+	void setPolicy43(const std::string &newPolicy, int flags = 0) const;
 
 	enum
 	{

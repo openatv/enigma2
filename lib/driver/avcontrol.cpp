@@ -18,15 +18,19 @@ const char *__MODULE__ = "eAVControl"; // NOSONAR
 const char *proc_hdmi_rx_monitor = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor";	// NOSONAR
 const char *proc_hdmi_rx_monitor_audio = "/proc/stb/audio/hdmi_rx_monitor"; // NOSONAR
 #ifdef DREAMNEXTGEN
+const char *proc_policy43 = "/sys/class/video/screen_mode";	   // NOSONAR
 const char *proc_videomode = "/sys/class/display/mode";		   // NOSONAR
 const char *proc_videoaspect = "/sys/class/video/screen_mode"; // NOSONAR
 #else
+const char *proc_policy43 = "/proc/stb/video/policy";	   // NOSONAR
 const char *proc_videomode = "/proc/stb/video/videomode";  // NOSONAR
 const char *proc_videoaspect = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
 #endif
 const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz"; // NOSONAR
 const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz"; // NOSONAR
 const char *proc_videomode_24 = "/proc/stb/video/videomode_24hz"; // NOSONAR
+
+const char *proc_wss = "/proc/stb/denc/0/wss"; // NOSONAR
 
 eAVControl *eAVControl::m_instance = 0;
 
@@ -68,21 +72,21 @@ eAVControl::eAVControl()
 
 	m_b_has_proc_hdmi_rx_monitor = true;
 
-	if(modelinformation.getValue("scart") == "True") {
+	if (modelinformation.getValue("scart") == "True")
+	{
 
-		m_fp_fd = open("/dev/dbox/fp0", O_RDONLY|O_NONBLOCK);
+		m_fp_fd = open("/dev/dbox/fp0", O_RDONLY | O_NONBLOCK);
 		if (m_fp_fd == -1)
 		{
 			eDebug("[%s] failed to open /dev/dbox/fp0 to monitor vcr scart slow blanking changed: %m", __MODULE__);
-			m_fp_notifier=0;
+			m_fp_notifier = 0;
 		}
 		else
 		{
-			m_fp_notifier = eSocketNotifier::create(eApp, m_fp_fd, eSocketNotifier::Read|POLLERR);
+			m_fp_notifier = eSocketNotifier::create(eApp, m_fp_fd, eSocketNotifier::Read | POLLERR);
 			CONNECT(m_fp_notifier->activated, eAVControl::fp_event);
 		}
 	}
-
 }
 
 #ifndef FP_IOCTL_GET_EVENT
@@ -99,7 +103,7 @@ eAVControl::eAVControl()
 
 int eAVControl::getVCRSlowBlanking()
 {
-	int val=0;
+	int val = 0;
 	if (m_fp_fd >= 0)
 	{
 		CFile f("/proc/stb/fp/vcr_fns", "r");
@@ -134,7 +138,7 @@ void eAVControl::fp_event(int what)
 		}
 		else
 		{
-			int val = FP_EVENT_VCR_SB_CHANGED;  // ask only for this event
+			int val = FP_EVENT_VCR_SB_CHANGED; // ask only for this event
 			if (ioctl(m_fp_fd, FP_IOCTL_GET_EVENT, &val) < 0)
 				eDebug("[%s] FP_IOCTL_GET_EVENT failed: %m", __MODULE__);
 			else if (val & FP_EVENT_VCR_SB_CHANGED)
@@ -143,11 +147,10 @@ void eAVControl::fp_event(int what)
 	}
 }
 
-
 eAVControl::~eAVControl()
 {
 	m_instance = 0;
-	if ( m_fp_fd >= 0 )
+	if (m_fp_fd >= 0)
 		close(m_fp_fd);
 }
 
@@ -293,17 +296,17 @@ void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 	if (on)
 	{
 		m_video_mode = CFile::read(proc_videomode, __MODULE__, flags);
-		if(m_b_has_proc_videomode_50)
+		if (m_b_has_proc_videomode_50)
 			m_video_mode_50 = CFile::read(proc_videomode_50, __MODULE__, flags);
-		if(m_b_has_proc_videomode_60)
+		if (m_b_has_proc_videomode_60)
 			m_video_mode_60 = CFile::read(proc_videomode_60, __MODULE__, flags);
 
 		std::string mode = m_b_hdmiin_fhd ? "1080p" : "720p";
 
 		CFile::writeStr(proc_videomode, mode, __MODULE__, flags);
-		if(m_b_has_proc_videomode_50)
+		if (m_b_has_proc_videomode_50)
 			CFile::writeStr(proc_videomode_50, mode, __MODULE__, flags);
-		if(m_b_has_proc_videomode_60)
+		if (m_b_has_proc_videomode_60)
 			CFile::writeStr(proc_videomode_60, mode, __MODULE__, flags);
 
 		if (m_b_has_proc_hdmi_rx_monitor)
@@ -312,7 +315,6 @@ void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 				CFile::writeStr(proc_hdmi_rx_monitor_audio, state, __MODULE__, flags);
 			CFile::writeStr(proc_hdmi_rx_monitor, state, __MODULE__, flags);
 		}
-
 	}
 	else
 	{
@@ -322,12 +324,11 @@ void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 			CFile::writeStr(proc_hdmi_rx_monitor, state, __MODULE__, flags);
 		}
 		CFile::writeStr(proc_videomode, m_video_mode, __MODULE__, flags);
-		if(m_b_has_proc_videomode_50)
+		if (m_b_has_proc_videomode_50)
 			CFile::writeStr(proc_videomode_50, m_video_mode_50, __MODULE__, flags);
-		if(m_b_has_proc_videomode_60)
+		if (m_b_has_proc_videomode_60)
 			CFile::writeStr(proc_videomode_60, m_video_mode_60, __MODULE__, flags);
 	}
-
 }
 
 /// @brief disable HDMIIn / used in StartEnigma.py
@@ -465,23 +466,24 @@ void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
 /// @brief set video output
 /// @param newMode (scart, aux, encoder, off)
 /// @param flags
-void eAVControl::setVideoOutput(std::string newMode, int flags)
+void eAVControl::setVideoOutput(const std::string &newMode, int flags)
 {
 
+	std::string newval = newMode;
 	if (newMode == "off") // off = aux or scart based on scartswitch used for standby
 	{
-		newMode = m_b_has_scartswitch ? "scart" : "aux";
+		newval = m_b_has_scartswitch ? "scart" : "aux";
 	}
 	else if (newMode != "scart" && newMode != "aux" && newMode != "encoder")
 	{
-		newMode = "encoder"; // set to encoder if not valid
+		newval = "encoder"; // set to encoder if not valid
 	}
 
-	m_video_output_active = newMode == "encoder";
+	m_video_output_active = newval == "encoder";
 
-	CFile::writeStr("/proc/stb/avs/0/input", newMode, __MODULE__, flags);
+	CFile::writeStr("/proc/stb/avs/0/input", newval, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "enableVideoOut", newMode.c_str());
+		eDebug("[%s] %s: %s", __MODULE__, "enableVideoOut", newval.c_str());
 }
 
 /// @brief get video output active state
@@ -525,6 +527,46 @@ void eAVControl::setColorFormat(const std::string &newFormat, int flags) const
 
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setColorFormat/policy", newFormat.c_str());
+}
+
+/// @brief setWSS
+/// @param val
+void eAVControl::setWSS(int val, int flags) const
+{
+	if (access(proc_wss, W_OK))
+		return;
+
+	std::string newval = (val == 1) ? "auto" : "auto(4:3_off)";
+
+	CFile::writeStr(proc_wss, newval, __MODULE__, flags);
+
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setWSS", newval.c_str());
+}
+
+/// @brief setPolicy43
+/// @param newPolicy
+/// @param flags
+void eAVControl::setPolicy43(const std::string &newPolicy, int flags) const
+{
+	if (access(proc_policy43, W_OK))
+		return;
+
+	std::string newval = newPolicy;
+#ifdef DREAMNEXTGEN
+	newval = "0";
+	if (newPolicy == "panscan")
+		newval = "12";
+	if (newPolicy == "letterbox")
+		newval = "11";
+	if (newPolicy == "bestfit")
+		newval = "10";
+#endif
+
+	CFile::writeStr(proc_policy43, newval, __MODULE__, flags);
+
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setPolicy43", newval.c_str());
 }
 
 eAutoInitP0<eAVControl> init_avcontrol(eAutoInitNumbers::rc, "AVControl Driver");

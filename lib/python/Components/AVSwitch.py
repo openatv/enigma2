@@ -485,34 +485,10 @@ class AVSwitch:
 			print("[AVSwitch] setting aspect failed.")
 
 	def setWss(self, cfgelement):
-		if not cfgelement.value:
-			wss = "auto(4:3_off)"
-		else:
-			wss = "auto"
-		if os.path.exists("/proc/stb/denc/0/wss"):
-			print("[AVSwitch] setting wss: %s" % wss)
-			f = open("/proc/stb/denc/0/wss", "w")
-			f.write(wss)
-			f.close()
+		eAVControl.getInstance().setWSS(cfgelement.value, 1)
 
 	def setPolicy43(self, cfgelement):
-		print("[AVSwitch] setting policy: %s" % cfgelement.value)
-		arw = "0"
-		try:
-			if BoxInfo.getItem("AmlogicFamily"):
-				if cfgelement.value == "panscan":
-					arw = "12"
-				if cfgelement.value == "letterbox":
-					arw = "11"
-				if cfgelement.value == "bestfit":
-					arw = "10"
-				open("/sys/class/video/screen_mode", "w").write(arw)
-			else:
-				f = open("/proc/stb/video/policy", "w")
-				f.write(cfgelement.value)
-				f.close()
-		except OSError:
-			print("[AVSwitch] setting policy43 failed.")
+		eAVControl.getInstance().setPolicy43(cfgelement.value, 1)
 
 	def setPolicy169(self, cfgelement):
 		if os.path.exists("/proc/stb/video/policy2"):
