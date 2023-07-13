@@ -293,13 +293,18 @@ void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 	if (on)
 	{
 		m_video_mode = CFile::read(proc_videomode, __MODULE__, flags);
-		m_video_mode_50 = CFile::read(proc_videomode_50, __MODULE__, flags);
-		m_video_mode_60 = CFile::read(proc_videomode_60, __MODULE__, flags);
+		if(m_b_has_proc_videomode_50)
+			m_video_mode_50 = CFile::read(proc_videomode_50, __MODULE__, flags);
+		if(m_b_has_proc_videomode_60)
+			m_video_mode_60 = CFile::read(proc_videomode_60, __MODULE__, flags);
 
-		if (m_b_hdmiin_fhd)
-			CFile::writeStr(proc_videomode, "1080p", __MODULE__, flags);
-		else
-			CFile::writeStr(proc_videomode, "720p", __MODULE__, flags);
+		std::string mode = m_b_hdmiin_fhd ? "1080p" : "720p";
+
+		CFile::writeStr(proc_videomode, mode, __MODULE__, flags);
+		if(m_b_has_proc_videomode_50)
+			CFile::writeStr(proc_videomode_50, mode, __MODULE__, flags);
+		if(m_b_has_proc_videomode_60)
+			CFile::writeStr(proc_videomode_60, mode, __MODULE__, flags);
 
 		if (m_b_has_proc_hdmi_rx_monitor)
 		{
@@ -317,8 +322,10 @@ void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 			CFile::writeStr(proc_hdmi_rx_monitor, state, __MODULE__, flags);
 		}
 		CFile::writeStr(proc_videomode, m_video_mode, __MODULE__, flags);
-		CFile::writeStr(proc_videomode_50, m_video_mode_50, __MODULE__, flags);
-		CFile::writeStr(proc_videomode_60, m_video_mode_60, __MODULE__, flags);
+		if(m_b_has_proc_videomode_50)
+			CFile::writeStr(proc_videomode_50, m_video_mode_50, __MODULE__, flags);
+		if(m_b_has_proc_videomode_60)
+			CFile::writeStr(proc_videomode_60, m_video_mode_60, __MODULE__, flags);
 	}
 
 }
