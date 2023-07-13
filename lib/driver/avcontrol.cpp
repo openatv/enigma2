@@ -68,16 +68,19 @@ eAVControl::eAVControl()
 
 	m_b_has_proc_hdmi_rx_monitor = true;
 
-	m_fp_fd = open("/dev/dbox/fp0", O_RDONLY|O_NONBLOCK);
-	if (m_fp_fd == -1)
-	{
-		eDebug("[%s] failed to open /dev/dbox/fp0 to monitor vcr scart slow blanking changed: %m", __MODULE__);
-		m_fp_notifier=0;
-	}
-	else
-	{
-		m_fp_notifier = eSocketNotifier::create(eApp, m_fp_fd, eSocketNotifier::Read|POLLERR);
-		CONNECT(m_fp_notifier->activated, eAVControl::fp_event);
+	if(modelinformation.getValue("scart") == "True") {
+
+		m_fp_fd = open("/dev/dbox/fp0", O_RDONLY|O_NONBLOCK);
+		if (m_fp_fd == -1)
+		{
+			eDebug("[%s] failed to open /dev/dbox/fp0 to monitor vcr scart slow blanking changed: %m", __MODULE__);
+			m_fp_notifier=0;
+		}
+		else
+		{
+			m_fp_notifier = eSocketNotifier::create(eApp, m_fp_fd, eSocketNotifier::Read|POLLERR);
+			CONNECT(m_fp_notifier->activated, eAVControl::fp_event);
+		}
 	}
 
 }
