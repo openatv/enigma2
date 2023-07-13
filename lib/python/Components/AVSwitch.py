@@ -801,14 +801,8 @@ def InitAVSwitch():
 		iAVSwitch.setAspectRatio(cmap[configElement.value])
 
 	iAVSwitch.setInput("ENCODER")  # init on startup
-	detected = BoxInfo.getItem("scart")
-	if detected:
-		if MACHINEBUILD in ('gbquad', 'gbquadplus', 'et5x00', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'twinboxlcd', 'et6000'):
-			detected = False
-		else:
-			detected = eAVSwitch.getInstance().haveScartSwitch()
 
-	BoxInfo.setItem("ScartSwitch", detected)
+	BoxInfo.setItem("ScartSwitch", eAVControl.getInstance().hasScartSwitch())
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
