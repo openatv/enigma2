@@ -2,9 +2,15 @@
 #define __avcontrol_h
 
 #include <lib/base/object.h>
+#include <lib/python/connections.h>
 
-class eAVControl
+class eSocketNotifier;
+
+class eAVControl: public sigc::trackable
 {
+	ePtr<eSocketNotifier> m_fp_notifier;
+	void fp_event(int what);
+	int m_fp_fd;
 
 #ifdef SWIG
 	eAVControl();
@@ -16,6 +22,7 @@ public:
 	eAVControl();
 	~eAVControl();
 #endif
+
 	static eAVControl *getInstance() { return m_instance; }
 	int getAspect(int defaultVal = 0, int flags = 0) const;
 	int getFrameRate(int defaultVal = 50, int flags = 0) const;
@@ -48,6 +55,8 @@ public:
 		FLAGS_SUPPRESS_NOT_EXISTS = 2,
 		FLAGS_SUPPRESS_READWRITE_ERROR = 4
 	};
+	PSignal1<void, int> vcr_sb_notifier;
+	int getVCRSlowBlanking();
 
 private:
 	static eAVControl *m_instance;

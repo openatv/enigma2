@@ -65,11 +65,87 @@ eAVControl::eAVControl()
 	eDebug("[%s] Init: ScartSwitch:%d / VideoMode 24:%d 50:%d 60:%d / HDMIRxMonitor:%d / VideoAspect:%d", __MODULE__, m_b_has_scartswitch, m_b_has_proc_videomode_24, m_b_has_proc_videomode_50, m_b_has_proc_videomode_60, m_b_has_proc_hdmi_rx_monitor, m_b_has_proc_aspect);
 	eDebug("[%s] Init: VideoMode Choices:%s", __MODULE__, m_videomode_choices.c_str());
 	m_instance = this;
+
+	m_b_has_proc_hdmi_rx_monitor = true;
+
+	m_fp_fd = open("/dev/dbox/fp0", O_RDONLY|O_NONBLOCK);
+	if (m_fp_fd == -1)
+	{
+		eDebug("[eAVSwitch] failed to open /dev/dbox/fp0 to monitor vcr scart slow blanking changed: %m");
+		m_fp_notifier=0;
+	}
+	else
+	{
+		m_fp_notifier = eSocketNotifier::create(eApp, m_fp_fd, eSocketNotifier::Read|POLLERR);
+		CONNECT(m_fp_notifier->activated, eAVSwitch::fp_event);
+	}
+
 }
+
+#ifndef FP_IOCTL_GET_EVENT
+#define FP_IOCTL_GET_EVENT 20
+#endif
+
+#ifndef FP_IOCTL_GET_VCR
+#define FP_IOCTL_GET_VCR 7
+#endif
+
+#ifndef FP_EVENT_VCR_SB_CHANGED
+#define FP_EVENT_VCR_SB_CHANGED 1
+#endif
+
+int eAVControl::getVCRSlowBlanking()
+{
+	int val=0;
+	if (m_fp_fd >= 0)
+	{
+		CFile f("/proc/stb/fp/vcr_fns", "r");
+		if (f)
+		{
+			if (fscanf(f, "%d", &val) != 1)
+				eDebug("[eAVControl] read /proc/stb/fp/vcr_fns failed: %m");
+		}
+		else if (ioctl(m_fp_fd, FP_IOCTL_GET_VCR, &val) < 0)
+			eDebug("[eAVControl] FP_GET_VCR failed: %m");
+	}
+	return val;
+}
+
+void eAVControl::fp_event(int what)
+{
+	if (what & POLLERR) // driver not ready for fp polling
+	{
+		eDebug("[eAVControl] fp driver not read for polling.. so disable polling");
+		m_fp_notifier->stop();
+	}
+	else
+	{
+		CFile f("/proc/stb/fp/events", "r");
+		if (f)
+		{
+			int events;
+			if (fscanf(f, "%d", &events) != 1)
+				eDebug("[eAVControl] read /proc/stb/fp/events failed: %m");
+			else if (events & FP_EVENT_VCR_SB_CHANGED)
+				/* emit */ vcr_sb_notifier(getVCRSlowBlanking());
+		}
+		else
+		{
+			int val = FP_EVENT_VCR_SB_CHANGED;  // ask only for this event
+			if (ioctl(m_fp_fd, FP_IOCTL_GET_EVENT, &val) < 0)
+				eDebug("[eAVControl] FP_IOCTL_GET_EVENT failed: %m");
+			else if (val & FP_EVENT_VCR_SB_CHANGED)
+				/* emit */ vcr_sb_notifier(getVCRSlowBlanking());
+		}
+	}
+}
+
 
 eAVControl::~eAVControl()
 {
 	m_instance = 0;
+	if ( m_fp_fd >= 0 )
+		close(m_fp_fd);
 }
 
 /// @brief Get video aspect
