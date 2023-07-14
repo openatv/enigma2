@@ -347,8 +347,7 @@ class AVSwitch:
 			except OSError:
 				print("[AVSwitch] writing initial videomode to /etc/videomode failed.")
 
-		cmap = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
-		self.setColorFormat(cmap[config.av.colorformat.value])
+		self.setColorFormat(config.av.colorformat.value)
 
 	def saveMode(self, port, mode, rate):
 		config.av.videoport.setValue(port)
@@ -443,18 +442,16 @@ class AVSwitch:
 
 	def setInput(self, input):
 		eAVControl.getInstance().setInput(input, 1)
-#		INPUT = {"ENCODER": 0, "SCART": 1, "AUX": 2}
-#		eAVSwitch.getInstance().setInput(INPUT[input])
 
 	def setColorFormat(self, value):
 		if not self.current_port:
 			self.current_port = config.av.videoport.value
 		if self.current_port in ("YPbPr", "Scart-YPbPr"):
-			eAVSwitch.getInstance().setColorFormat(3)
+			eAVControl.getInstance().setColorFormat("yuv")
 		elif self.current_port in ("RCA"):
-			eAVSwitch.getInstance().setColorFormat(0)
+			eAVControl.getInstance().setColorFormat("cvbs")
 		else:
-			eAVSwitch.getInstance().setColorFormat(value)
+			eAVControl.getInstance().setColorFormat(value)
 
 	def setConfiguredMode(self):
 		port = config.av.videoport.value
@@ -755,17 +752,11 @@ def InitAVSwitch():
 
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
-			iAVSwitch.setColorFormat(3)
+			iAVSwitch.setColorFormat("yuv")
 		elif config.av.videoport and config.av.videoport.value in ("RCA"):
-			iAVSwitch.setColorFormat(0)
+			iAVSwitch.setColorFormat("cvbs")
 		else:
-			if MACHINEBUILD == 'et6x00':
-				cmap = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}
-			elif MACHINEBUILD == 'gbquad' or MACHINEBUILD == 'gbquadplus' or MACHINEBUILD.startswith('et'):
-				cmap = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
-			else:
-				cmap = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
-			iAVSwitch.setColorFormat(cmap[configElement.value])
+			iAVSwitch.setColorFormat(configElement.value)
 	config.av.colorformat.addNotifier(setColorFormat)
 
 	def setAspectRatio(configElement):

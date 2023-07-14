@@ -526,7 +526,7 @@ void eAVControl::setColorFormat(const std::string &newFormat, int flags) const
 	CFile::writeStr("/proc/stb/avs/0/colorformat", newFormat, __MODULE__, flags);
 
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "setColorFormat/policy", newFormat.c_str());
+		eDebug("[%s] %s: %s", __MODULE__, "setColorFormat", newFormat.c_str());
 }
 
 /// @brief setWSS
