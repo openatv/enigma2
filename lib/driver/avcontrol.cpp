@@ -18,10 +18,12 @@ const char *__MODULE__ = "eAVControl"; // NOSONAR
 const char *proc_hdmi_rx_monitor = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor";	// NOSONAR
 const char *proc_hdmi_rx_monitor_audio = "/proc/stb/audio/hdmi_rx_monitor"; // NOSONAR
 #ifdef DREAMNEXTGEN
+const char *proc_policy169 = "/sys/class/video/screen_mode";   // NOSONAR
 const char *proc_policy43 = "/sys/class/video/screen_mode";	   // NOSONAR
 const char *proc_videomode = "/sys/class/display/mode";		   // NOSONAR
 const char *proc_videoaspect = "/sys/class/video/screen_mode"; // NOSONAR
 #else
+const char *proc_policy169 = "/proc/stb/video/policy2";	   // NOSONAR
 const char *proc_policy43 = "/proc/stb/video/policy";	   // NOSONAR
 const char *proc_videomode = "/proc/stb/video/videomode";  // NOSONAR
 const char *proc_videoaspect = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
@@ -47,11 +49,17 @@ eAVControl::eAVControl()
 
 	m_b_has_proc_videomode_50 = (stat(proc_videomode_50, &buffer) == 0);
 	m_b_has_proc_videomode_60 = (stat(proc_videomode_60, &buffer) == 0);
+
 #ifdef DREAMNEXTGEN
 	m_b_has_proc_videomode_24 = true;
+	m_b_has_proc_policy43 = true;
+	m_b_has_proc_policy169 = true;
 #else
 	m_b_has_proc_videomode_24 = (access(proc_videomode_24, W_OK) == 0);
+	m_b_has_proc_policy43 = (access(proc_policy43, W_OK) == 0);
+	m_b_has_proc_policy169 = (access(proc_policy169, W_OK) == 0);
 #endif
+
 	m_videomode_choices = readAvailableModes();
 	m_encoder_active = false;
 
@@ -421,19 +429,38 @@ std::string eAVControl::getAvailableModes() const
 /// @brief set the aspect ratio
 /// @param ratio
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
-void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
+void eAVControl::setAspectRatio(int ratio, int flags) const
 {
+
+#ifdef DREAMNEXTGEN
+
+	// TODO
+	eDebug("[%s] %s: not supported", __MODULE__, "setAspectRatio");
+
+	//	CFile::writeInt("/sys/class/video/screen_mode", ratio, __MODULE__, flags);
+	//	if (flags & FLAGS_DEBUG)
+	//		eDebug("[%s] %s: %d", __MODULE__, "setAspectRatio/aspect", ratio);
+
 	/*
-	0-4:3 Letterbox
-	1-4:3 PanScan
-	2-16:9
-	3-16:9 forced ("panscan")
-	4-16:10 Letterbox
-	5-16:10 PanScan
-	6-16:9 forced ("letterbox")
+
+	0 normal
+	1 full stretch
+	2 4-3
+	3 16-9
+	4 non-linear
+	5 normal-noscaleup
+	6 4-3 ignore
+	7 4-3 letter box
+	8 4-3 pan scan
+	9 4-3 combined
+	10 16-9 ignore
+	11 16-9 letter box
+	12 16-9 pan scan
+	13 16-9 combined
+
 	*/
-	const char *aspect[] = {"4:3", "4:3", "any", "16:9", "16:10", "16:10", "16:9"};
-	const char *policy[] = {"letterbox", "panscan", "bestfit", "panscan", "letterbox", "panscan", "letterbox"};
+
+#else
 
 	if (ratio < 0 || ratio > 7)
 	{
@@ -441,20 +468,24 @@ void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
 		return;
 	}
 
+	/*
+	0 - 4:3 Letterbox
+	1 - 4:3 PanScan
+	2 - 16:9
+	3 - 16:9 forced ("panscan")
+	4 - 16:10 Letterbox
+	5 - 16:10 PanScan
+	6 - 16:9 forced ("letterbox")
+	*/
+	const char *aspect[] = {"4:3", "4:3", "any", "16:9", "16:10", "16:10", "16:9"};
+	const char *policy[] = {"letterbox", "panscan", "bestfit", "panscan", "letterbox", "panscan", "letterbox"};
+
 	std::string newAspect = aspect[ratio];
 	std::string newPolicy = policy[ratio];
 
-#ifdef DREAMNEXTGEN
-	CFile::writeInt("/sys/class/video/screen_mode", ratio, __MODULE__, flags);
-	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %d", __MODULE__, "setAspectRatio/aspect", ratio);
-#else
 	CFile::writeStr("/proc/stb/video/aspect", newAspect, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/aspect", newAspect.c_str());
-
-	if (!setPolicy)
-		return;
 
 	CFile::writeStr("/proc/stb/video/policy", newPolicy, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
@@ -549,24 +580,28 @@ void eAVControl::setWSS(int val, int flags) const
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setPolicy43(const std::string &newPolicy, int flags) const
 {
-	if (access(proc_policy43, W_OK))
+
+	if (!m_b_has_proc_policy43)
 		return;
 
-	std::string newval = newPolicy;
-#ifdef DREAMNEXTGEN
-	newval = "0";
-	if (newPolicy == "panscan")
-		newval = "12";
-	if (newPolicy == "letterbox")
-		newval = "11";
-	if (newPolicy == "bestfit")
-		newval = "10";
-#endif
-
-	CFile::writeStr(proc_policy43, newval, __MODULE__, flags);
+	CFile::writeStr(proc_policy43, newPolicy, __MODULE__, flags);
 
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "setPolicy43", newval.c_str());
+		eDebug("[%s] %s: %s", __MODULE__, "setPolicy43", newPolicy.c_str());
+}
+
+/// @brief setPolicy169
+/// @param newPolicy
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+void eAVControl::setPolicy169(const std::string &newPolicy, int flags) const
+{
+	if (!m_b_has_proc_policy169)
+		return;
+
+	CFile::writeStr(proc_policy169, newPolicy, __MODULE__, flags);
+
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setPolicy169", newPolicy.c_str());
 }
 
 eAutoInitP0<eAVControl> init_avcontrol(eAutoInitNumbers::rc, "AVControl Driver");

@@ -37,7 +37,7 @@ public:
 	std::string getAvailableModes() const;
 	bool isEncoderActive() const;
 
-	void setAspectRatio(int ratio, bool setPolicy = true, int flags = 0) const;
+	void setAspectRatio(int ratio, int flags = 0) const;
 	void setColorFormat(const std::string &newFormat, int flags) const;
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
@@ -54,6 +54,7 @@ public:
 
 	void setWSS(int val, int flags = 0) const;
 	void setPolicy43(const std::string &newPolicy, int flags = 0) const;
+	void setPolicy169(const std::string &newPolicy, int flags = 0) const;
 
 	enum
 	{
@@ -76,6 +77,8 @@ private:
 	bool m_b_has_proc_videomode_50;
 	bool m_b_has_proc_videomode_60;
 	bool m_b_has_proc_videomode_24;
+	bool m_b_has_proc_policy43;
+	bool m_b_has_proc_policy169;
 	bool m_encoder_active;
 	bool m_b_has_scartswitch;
 	bool m_b_hdmiin_fhd;
