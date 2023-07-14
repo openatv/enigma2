@@ -34,7 +34,7 @@ const char *proc_videomode_24 = "/proc/stb/video/videomode_24hz"; // NOSONAR
 
 const char *proc_wss = "/proc/stb/denc/0/wss"; // NOSONAR
 
-eAVControl *eAVControl::m_instance = 0;
+eAVControl *eAVControl::m_instance = nullptr;
 
 eAVControl::eAVControl()
 {
@@ -87,7 +87,7 @@ eAVControl::eAVControl()
 		if (m_fp_fd == -1)
 		{
 			eDebug("[%s] failed to open /dev/dbox/fp0 to monitor vcr scart slow blanking changed: %m", __MODULE__);
-			m_fp_notifier = 0;
+			m_fp_notifier = nullptr;
 		}
 		else
 		{
@@ -157,7 +157,7 @@ void eAVControl::fp_event(int what)
 
 eAVControl::~eAVControl()
 {
-	m_instance = 0;
+	m_instance = nullptr;
 	if (m_fp_fd >= 0)
 		close(m_fp_fd);
 }

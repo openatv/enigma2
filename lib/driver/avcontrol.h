@@ -8,9 +8,7 @@ class eSocketNotifier;
 
 class eAVControl : public sigc::trackable
 {
-	ePtr<eSocketNotifier> m_fp_notifier;
 	void fp_event(int what);
-	int m_fp_fd;
 
 #ifdef SWIG
 	eAVControl();
@@ -82,6 +80,9 @@ private:
 	bool m_encoder_active;
 	bool m_b_has_scartswitch;
 	bool m_b_hdmiin_fhd;
+	int m_fp_fd;
+
+	ePtr<eSocketNotifier> m_fp_notifier;
 
 	std::string readAvailableModes(int flags = 0) const;
 	bool checkScartSwitch(int flags = 0) const;
