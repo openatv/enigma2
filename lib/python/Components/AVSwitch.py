@@ -446,9 +446,13 @@ class AVSwitch:
 				config.av.autores_rate_uhd[mode] = ConfigSelection(choices=ratelist)
 		config.av.videoport = ConfigSelection(choices=lst)
 
+	def setVideoOutput(self, output):
+		eAVControl.getInstance().setVideoOutput(output, 1)
+
 	def setInput(self, input):
-		INPUT = {"ENCODER": 0, "SCART": 1, "AUX": 2}
-		eAVSwitch.getInstance().setInput(INPUT[input])
+		print("AVSwitch setInput is no longer working.")
+#		INPUT = {"ENCODER": 0, "SCART": 1, "AUX": 2}
+#		eAVSwitch.getInstance().setInput(INPUT[input])
 
 	def setColorFormat(self, value):
 		if not self.current_port:
@@ -776,7 +780,7 @@ def InitAVSwitch():
 		cmap = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox": 6}
 		iAVSwitch.setAspectRatio(cmap[configElement.value])
 
-	iAVSwitch.setInput("ENCODER")  # init on startup
+	iAVSwitch.setVideoOutput("encoder")  # init on startup
 
 	BoxInfo.setItem("ScartSwitch", eAVControl.getInstance().hasScartSwitch())
 

@@ -121,7 +121,7 @@ class Standby2(Screen):
 			except OSError:
 				pass
 		#set input to encoder
-		self.avswitch.setInput("ENCODER")
+		self.avswitch.setVideoOutput("encoder")
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
@@ -227,10 +227,7 @@ class Standby2(Screen):
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
 		#set input to vcr scart
-		if BoxInfo.getItem("ScartSwitch"):
-			self.avswitch.setInput("SCART")
-		else:
-			self.avswitch.setInput("AUX")
+		self.avswitch.setVideoOutput("off")
 		if BoxInfo.getItem("hdmistandbymode") == 1:
 			try:
 				open("/proc/stb/hdmi/output", "w").write("off")
