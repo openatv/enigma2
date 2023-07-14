@@ -233,8 +233,6 @@ def getCPUBrand():
 		return _("HiSilicon")
 	elif socfamily.startswith("smp"):
 		return _("Sigma Designs")
-	elif BoxInfo.getItem("STi"):
-		return _("Sti")
 	elif socfamily.startswith("bcm") or BoxInfo.getItem("brand") == "rpi":
 		return _("Broadcom")
 	print("[About] No CPU brand?")
