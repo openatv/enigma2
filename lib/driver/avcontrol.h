@@ -35,13 +35,13 @@ public:
 	std::string getVideoMode(const std::string &defaultVal = "", int flags = 0) const;
 	std::string getPreferredModes(int flags = 0) const;
 	std::string getAvailableModes() const;
-	bool isVideoOutputActive() const;
+	bool isEncoderActive() const;
 
 	void setAspectRatio(int ratio, bool setPolicy = true, int flags = 0) const;
 	void setColorFormat(const std::string &newFormat, int flags) const;
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
-	void setVideoOutput(const std::string &newMode, int flags = 0);
+	void setInput(const std::string &newMode, int flags = 0);
 	void startStopHDMIIn(bool on, bool audio, int flags = 0);
 	void disableHDMIIn(int flags = 0) const;
 
@@ -76,7 +76,7 @@ private:
 	bool m_b_has_proc_videomode_50;
 	bool m_b_has_proc_videomode_60;
 	bool m_b_has_proc_videomode_24;
-	bool m_video_output_active;
+	bool m_encoder_active;
 	bool m_b_has_scartswitch;
 	bool m_b_hdmiin_fhd;
 

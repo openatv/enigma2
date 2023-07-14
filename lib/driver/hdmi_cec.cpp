@@ -320,7 +320,7 @@ bool eHdmiCEC::getActiveStatus()
 	bool active = true;
 	eAVControl *avc = eAVControl::getInstance();
 	if (avc)
-		active = avc->isVideoOutputActive();
+		active = avc->isEncoderActive();
 	return active;
 }
 

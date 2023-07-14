@@ -53,7 +53,7 @@ eAVControl::eAVControl()
 	m_b_has_proc_videomode_24 = (access(proc_videomode_24, W_OK) == 0);
 #endif
 	m_videomode_choices = readAvailableModes();
-	m_video_output_active = false;
+	m_encoder_active = false;
 
 	eModelInformation &modelinformation = eModelInformation::getInstance();
 	m_b_has_scartswitch = modelinformation.getValue("scart") == "True";
@@ -463,10 +463,10 @@ void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
 #endif
 }
 
-/// @brief set video output
+/// @brief set video input
 /// @param newMode (scart, aux, encoder, off)
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
-void eAVControl::setVideoOutput(const std::string &newMode, int flags)
+void eAVControl::setInput(const std::string &newMode, int flags)
 {
 
 	std::string newval = newMode;
@@ -479,18 +479,18 @@ void eAVControl::setVideoOutput(const std::string &newMode, int flags)
 		newval = "encoder"; // set to encoder if not valid
 	}
 
-	m_video_output_active = newval == "encoder";
+	m_encoder_active = newval == "encoder";
 
 	CFile::writeStr("/proc/stb/avs/0/input", newval, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "enableVideoOut", newval.c_str());
+		eDebug("[%s] %s: %s", __MODULE__, "setInput", newval.c_str());
 }
 
 /// @brief get video output active state
 /// @return true/false
-bool eAVControl::isVideoOutputActive() const
+bool eAVControl::isEncoderActive() const
 {
-	return m_video_output_active;
+	return m_encoder_active;
 }
 
 /// @brief read input choices and check for scart / it's for internal use only
