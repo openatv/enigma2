@@ -313,8 +313,8 @@ int eEncoder::allocateHDMIEncoder(const std::string &serviceref, int &buffersize
 	int hdmi_encoding_framerate = eConfigManager::getConfigIntValue("config.hdmirecord.framerate", 50000);
 	int hdmi_encoding_interlaced = eConfigManager::getConfigIntValue("config.hdmirecord.interlaced", 0);
 	int hdmi_encoding_aspect_ratio = eConfigManager::getConfigIntValue("config.hdmirecord.aspectratio", 0);
-	std::string hdmi_encoding_vcodec = eConfigManager::getConfigValue("config.hdmirecord.vcodec", "h264");
-	std::string hdmi_encoding_acodec = eConfigManager::getConfigValue("config.hdmirecord.acodec", "aac");
+	const std::string hdmi_encoding_vcodec = eConfigManager::getConfigValue("config.hdmirecord.vcodec", "h264");
+	const std::string hdmi_encoding_acodec = eConfigManager::getConfigValue("config.hdmirecord.acodec", "aac");
 
 	char filename[128];
 	const char *vcodec_node;

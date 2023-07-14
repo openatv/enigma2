@@ -230,7 +230,7 @@ int eAVControl::getResolutionY(int defaultVal, int flags) const
 
 /// @brief Get FrameRate
 /// @param defaultVal
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 /// @return
 int eAVControl::getFrameRate(int defaultVal, int flags) const
 {
@@ -255,7 +255,7 @@ int eAVControl::getFrameRate(int defaultVal, int flags) const
 
 /// @brief Get VideoMode
 /// @param defaultVal
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 /// @return
 std::string eAVControl::getVideoMode(const std::string &defaultVal, int flags) const
 {
@@ -272,7 +272,7 @@ std::string eAVControl::getVideoMode(const std::string &defaultVal, int flags) c
 
 /// @brief Set VideoMode
 /// @param newMode
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 {
 	CFile::writeStr(proc_videomode, newMode, __MODULE__, flags);
@@ -282,7 +282,7 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 }
 
 /// @brief startStopHDMIIn
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 /// @param audio
 /// @param on
 void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
@@ -332,7 +332,7 @@ void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 }
 
 /// @brief disable HDMIIn / used in StartEnigma.py
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::disableHDMIIn(int flags) const
 {
 	if (!m_b_has_proc_hdmi_rx_monitor)
@@ -343,7 +343,7 @@ void eAVControl::disableHDMIIn(int flags) const
 }
 
 /// @brief read the preferred video modes
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 /// @return
 std::string eAVControl::getPreferredModes(int flags) const
 {
@@ -386,7 +386,7 @@ std::string eAVControl::getPreferredModes(int flags) const
 }
 
 /// @brief read the available video modes It's for internal use only because it will be static.
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 /// @return
 std::string eAVControl::readAvailableModes(int flags) const
 {
@@ -420,7 +420,7 @@ std::string eAVControl::getAvailableModes() const
 
 /// @brief set the aspect ratio
 /// @param ratio
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
 {
 	/*
@@ -465,7 +465,7 @@ void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
 
 /// @brief set video output
 /// @param newMode (scart, aux, encoder, off)
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setVideoOutput(const std::string &newMode, int flags)
 {
 
@@ -494,7 +494,7 @@ bool eAVControl::isVideoOutputActive() const
 }
 
 /// @brief read input choices and check for scart / it's for internal use only
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 /// @return
 bool eAVControl::checkScartSwitch(int flags) const
 {
@@ -516,7 +516,7 @@ bool eAVControl::hasScartSwitch() const
 
 /// @brief sets the color format
 /// @param newFormat (cvbs, rgb, svideo, yuv)
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setColorFormat(const std::string &newFormat, int flags) const
 {
 
@@ -531,6 +531,7 @@ void eAVControl::setColorFormat(const std::string &newFormat, int flags) const
 
 /// @brief setWSS
 /// @param val
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setWSS(int val, int flags) const
 {
 	if (access(proc_wss, W_OK))
@@ -546,7 +547,7 @@ void eAVControl::setWSS(int val, int flags) const
 
 /// @brief setPolicy43
 /// @param newPolicy
-/// @param flags
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setPolicy43(const std::string &newPolicy, int flags) const
 {
 	if (access(proc_policy43, W_OK))
