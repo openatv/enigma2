@@ -313,8 +313,12 @@ int eEncoder::allocateHDMIEncoder(const std::string &serviceref, int &buffersize
 	int hdmi_encoding_framerate = eConfigManager::getConfigIntValue("config.hdmirecord.framerate", 50000);
 	int hdmi_encoding_interlaced = eConfigManager::getConfigIntValue("config.hdmirecord.interlaced", 0);
 	int hdmi_encoding_aspect_ratio = eConfigManager::getConfigIntValue("config.hdmirecord.aspectratio", 0);
-	const std::string hdmi_encoding_vcodec = eConfigManager::getConfigValue("config.hdmirecord.vcodec", "h264");
-	const std::string hdmi_encoding_acodec = eConfigManager::getConfigValue("config.hdmirecord.acodec", "aac");
+	std::string hdmi_encoding_vcodec = eConfigManager::getConfigValue("config.hdmirecord.vcodec");
+	if(hdmi_encoding_vcodec.empty())
+		hdmi_encoding_vcodec = "h264";
+	std::string hdmi_encoding_acodec = eConfigManager::getConfigValue("config.hdmirecord.acodec");
+	if(hdmi_encoding_acodec.empty())
+		hdmi_encoding_acodec = "aac";
 
 	char filename[128];
 	const char *vcodec_node;
@@ -355,10 +359,10 @@ int eEncoder::allocateHDMIEncoder(const std::string &serviceref, int &buffersize
 	CFile::writeInt("/proc/stb/encoder/0/aspectratio", hdmi_encoding_aspect_ratio);
 
 	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/%s", 0, vcodec_node);
-	CFile::write(filename, hdmi_encoding_vcodec);
+	CFile::write(filename, hdmi_encoding_vcodec.c_str());
 
 	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/%s", 0, acodec_node);
-	CFile::write(filename, hdmi_encoding_acodec);
+	CFile::write(filename, hdmi_encoding_acodec.c_str());
 
 	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/apply", 0);
 	CFile::writeInt(filename, 1);
