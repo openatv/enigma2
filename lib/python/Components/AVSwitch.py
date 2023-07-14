@@ -527,7 +527,7 @@ class AVSwitch:
 		return aspect[0] * fb_size.height(), aspect[1] * fb_size.width()
 
 	def setAspectRatio(self, value):
-		eAVSwitch.getInstance().setAspectRatio(value)
+		eAVControl.getInstance().setAspectRatio(value)
 
 	def getAspectRatioSetting(self):
 		valstr = config.av.aspectratio.value
