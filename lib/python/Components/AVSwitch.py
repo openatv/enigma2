@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 import os
 from time import sleep
-from enigma import eAVControl, eAVSwitch, eDVBVolumecontrol, getDesktop
+from enigma import eAVControl, eDVBVolumecontrol, getDesktop
 from Components.config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigYesNo, ConfigEnableDisable, ConfigOnOff, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
 from Components.About import about
 from Components.SystemInfo import BoxInfo

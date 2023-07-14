@@ -459,7 +459,6 @@ void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
 	CFile::writeStr("/proc/stb/video/policy", newPolicy, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/policy", newAspect.c_str());
-
 #endif
 }
 
