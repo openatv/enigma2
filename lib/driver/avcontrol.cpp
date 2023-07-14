@@ -445,11 +445,11 @@ void eAVControl::setAspectRatio(int ratio, bool setPolicy, int flags) const
 	std::string newPolicy = policy[ratio];
 
 #ifdef DREAMNEXTGEN
-	CFile::writeInt("/sys/class/video/screen_mode", newAspect, __MODULE__, flags);
+	CFile::writeInt("/sys/class/video/screen_mode", ratio, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/aspect", newAspect);
+		eDebug("[%s] %s: %d", __MODULE__, "setAspectRatio/aspect", ratio);
 #else
-	CFile::writeInt("/proc/stb/video/aspect", ratio, __MODULE__, flags);
+	CFile::writeStr("/proc/stb/video/aspect", newAspect, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/aspect", newAspect.c_str());
 
