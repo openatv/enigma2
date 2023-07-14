@@ -77,6 +77,7 @@ class eEncoder
 
 		int allocateEncoder(const std::string &serviceref, int &buffersize, int bitrate, int width, int height, int framerate, int interlaced, int aspectratio,
 				const std::string &vcodec = "", const std::string &acodec = "");
+		int allocateHDMIEncoder(const std::string &serviceref, int &buffersize);
 		void freeEncoder(int encoderfd);
 		int getUsedEncoderCount();
 
