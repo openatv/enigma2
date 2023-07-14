@@ -1,7 +1,7 @@
 from __future__ import print_function
 from os import path
 
-from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
+from enigma import eAVControl, iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
 
 from Screens.Screen import Screen
 from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
@@ -585,14 +585,10 @@ class AutoVideoMode(Screen):
 	def VideoChangeDetect(self):
 		# info: autoresolution preview or save settings call this function with session = None / ~338, ~374
 		global resolutionlabel
+		avControl = eAVControl.getInstance()
 		config_port, config_mode, config_res, config_pol, config_rate = getConfig_videomode(config.av.videomode, config.av.videorate)
 		config_mode = config_mode.replace('p30', 'p')
-		if BoxInfo.getItem("AmlogicFamily"):
-			f = open("/sys/class/display/mode")
-		else:
-			f = open("/proc/stb/video/videomode")
-		current_mode = f.read()[:-1].replace('\n', '')
-		f.close()
+		current_mode = avControl.getVideoMode("")
 		if current_mode.upper() in ('PAL', 'NTSC'):
 			current_mode = current_mode.upper()
 
@@ -608,59 +604,11 @@ class AutoVideoMode(Screen):
 		new_mode = None
 		video_height = None
 		video_width = None
-		video_pol = None
-		video_rate = None
-		if BoxInfo.getItem("AmlogicFamily"):
-			if path.exists("/sys/class/video/frame_height"):
-				try:
-					f = open("/sys/class/video/frame_height", "r")
-					video_height = int(f.read())
-					f.close()
-				except Exception:
-					video_height = 0
-			if path.exists("/sys/class/video/frame_width"):
-				try:
-					f = open("/sys/class/video/frame_width", "r")
-					video_width = int(f.read())
-					f.close()
-				except Exception:
-					video_width = 0
-			if path.exists("/proc/stb/vmpeg/0/progressive"):
-				try:
-					f = open("/proc/stb/vmpeg/0/progressive", "r")
-					video_pol = "p" if int(f.read()) else "i"
-					f.close()
-				except Exception:
-					video_pol = "i"
-			if path.exists("/proc/stb/vmpeg/0/frame_rate"):
-				f = open("/proc/stb/vmpeg/0/frame_rate", "r")
-				try:
-					video_rate = int(f.read())
-				except Exception:
-					video_rate = 50
-				f.close()
-		else:
-			if path.exists("/proc/stb/vmpeg/0/xres"):
-				try:
-					f = open("/proc/stb/vmpeg/0/xres", "r")
-					video_width = int(f.read(), 16)
-					f.close()
-				except Exception:
-					video_width = 0
-			if path.exists("/proc/stb/vmpeg/0/progressive"):
-				try:
-					f = open("/proc/stb/vmpeg/0/progressive", "r")
-					video_pol = "p" if int(f.read(), 16) else "i"
-					f.close()
-				except Exception:
-					video_pol = "i"
-			if path.exists("/proc/stb/vmpeg/0/framerate"):
-				f = open("/proc/stb/vmpeg/0/framerate", "r")
-				try:
-					video_rate = int(f.read())
-				except Exception:
-					video_rate = 50
-				f.close()
+
+		video_rate = avControl.getFrameRate(50)
+		video_pol = "p" if avControl.getProgressive() else "i"
+		video_width = avControl.getResolutionY(0)
+		video_height = avControl.getResolutionX(0)
 
 		if not video_height or not video_width or not video_pol or not video_rate:
 			service = self.session and self.session.nav.getCurrentService()
