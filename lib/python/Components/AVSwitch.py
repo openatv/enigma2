@@ -218,12 +218,17 @@ class AVSwitchBase:
 	def is24hzAvailable(self):
 		BoxInfo.setItem("have24hz", eAVControl.getInstance().has24hz())
 
-	def readPreferredModes(self):
+	def readPreferredModes(self, saveMode=False):
 		modes = ""
 		if config.av.edid_override.value is False:
 			modes = eAVControl.getInstance().getPreferredModes(1)
+			if saveMode:
+				modes = modes.split(' ')
+				return modes if len(modes) > 1 else []
+
 			print("[AVSwitch] getPreferredModes:'%s'" % modes)
 			self.modes_preferred = modes.split(' ')
+
 #			try:
 #				if BoxInfo.getItem("AmlogicFamily"):
 #					f = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
