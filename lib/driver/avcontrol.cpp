@@ -27,7 +27,6 @@ const char *proc_policy169 = "/proc/stb/video/policy2";	   // NOSONAR
 const char *proc_policy43 = "/proc/stb/video/policy";	   // NOSONAR
 const char *proc_videomode = "/proc/stb/video/videomode";  // NOSONAR
 const char *proc_videoaspect = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
-const char *proc_videomode = "/proc/stb/video/videomode";  // NOSONAR
 #endif
 const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz"; // NOSONAR
 const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz"; // NOSONAR
