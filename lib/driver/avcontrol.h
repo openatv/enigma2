@@ -26,7 +26,7 @@ public:
 		return m_instance;
 	}
 	int getAspect(int defaultVal = 0, int flags = 0) const;
-	int getFrameRate(int defaultVal = 50, int flags = 0) const;
+	int getFrameRate(int defaultVal = 50000, int flags = 0) const;
 	bool getProgressive(int flags = 0) const;
 	int getResolutionX(int defaultVal = 0, int flags = 0) const;
 	int getResolutionY(int defaultVal = 0, int flags = 0) const;

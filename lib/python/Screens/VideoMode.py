@@ -597,7 +597,7 @@ class AutoVideoMode(Screen):
 		write_mode = None
 		new_mode = None
 
-		video_rate = avControl.getFrameRate(50)
+		video_rate = avControl.getFrameRate(0)
 		video_pol = "p" if avControl.getProgressive() else "i"
 		video_width = avControl.getResolutionY(0)
 		video_height = avControl.getResolutionX(0)

@@ -4329,13 +4329,10 @@ class InfoBarResolutionSelection:
 
 	def resolutionSelection(self):
 		amlogic = BoxInfo.getItem("AmlogicFamily")
-		base = 10 if amlogic else 16
-		file = "/sys/class/video/frame_width" if amlogic else "/proc/stb/vmpeg/0/xres"
-		xRes = int(fileReadLine(file, 0, source=MODULE_NAME), base)
-		file = "/sys/class/video/frame_height" if amlogic else "/proc/stb/vmpeg/0/yres"
-		yRes = int(fileReadLine(file, 0, source=MODULE_NAME), base)
-		file = "/proc/stb/vmpeg/0/frame_rate" if amlogic else "/proc/stb/vmpeg/0/framerate"
-		fps = float(fileReadLine(file, default=50000, source=MODULE_NAME)) / 1000.0
+		avControl = eAVControl.getInstance()
+		fps = float(avControl.getFrameRate(50000)) / 1000.0
+		yRes = avControl.getResolutionY(0)
+		xRes = avControl.getResolutionX(0)
 		resList = []
 		resList.append((_("Exit"), "exit"))
 		resList.append((_("Auto(not available)"), "auto"))
