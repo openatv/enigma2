@@ -525,6 +525,7 @@ class AVSwitch:
 	def setAspectRatio(self, value):
 		eAVControl.getInstance().setAspectRatio(value)
 
+	# TODO AML
 	def getAspectRatioSetting(self):
 		valstr = config.av.aspectratio.value
 		if valstr == "4_3_letterbox":
@@ -608,35 +609,6 @@ def InitAVSwitch():
 		config.av.autores_2160p24 = ConfigSelection(choices={"2160p24hz": _("2160p 24Hz"), "2160p25hz": _("2160p 25Hz"), "2160p30hz": _("2160p 30Hz")}, default="2160p24hz")
 		config.av.autores_2160p25 = ConfigSelection(choices={"2160p25hz": _("2160p 25Hz"), "2160p50hz": _("2160p 50Hz")}, default="2160p25hz")
 		config.av.autores_2160p30 = ConfigSelection(choices={"2160p30hz": _("2160p 30Hz"), "2160p60hz": _("2160p 60Hz")}, default="2160p30hz")
-	else:
-		config.av.autores_sd = ConfigSelection(choices={"720p50": _("720p50"), "720p": _("720p"), "1080i50": _("1080i50"), "1080i": _("1080i")}, default="720p50")
-		config.av.autores_480p24 = ConfigSelection(choices={"480p24": _("480p 24Hz"), "720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz")}, default="1080p24")
-		config.av.autores_720p24 = ConfigSelection(choices={"720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz"), "1080i50": _("1080i 50Hz"), "1080i": _("1080i 60Hz")}, default="720p24")
-		config.av.autores_1080p24 = ConfigSelection(choices={"1080p24": _("1080p 24Hz"), "1080p25": _("1080p 25Hz"), "1080i50": _("1080p 50Hz"), "1080i": _("1080i 60Hz")}, default="1080p24")
-		config.av.autores_1080p25 = ConfigSelection(choices={"1080p25": _("1080p 25Hz"), "1080p50": _("1080p 50Hz"), "1080i50": _("1080i 50Hz")}, default="1080p25")
-		config.av.autores_1080p30 = ConfigSelection(choices={"1080p30": _("1080p 30Hz"), "1080p60": _("1080p 60Hz"), "1080i": _("1080i 60Hz")}, default="1080p30")
-		config.av.autores_2160p24 = ConfigSelection(choices={"2160p24": _("2160p 24Hz"), "2160p25": _("2160p 25Hz"), "2160p30": _("2160p 30Hz")}, default="2160p24")
-		config.av.autores_2160p25 = ConfigSelection(choices={"2160p25": _("2160p 25Hz"), "2160p50": _("2160p 50Hz")}, default="2160p25")
-		config.av.autores_2160p30 = ConfigSelection(choices={"2160p30": _("2160p 30Hz"), "2160p60": _("2160p 60Hz")}, default="2160p30")
-	config.av.smart1080p = ConfigSelection(choices={"false": _("Off"), "true": _("1080p50: 24p/50p/60p"), "2160p50": _("2160p50: 24p/50p/60p"), "1080i50": _("1080i50: 24p/50i/60i"), "720p50": _("720p50: 24p/50p/60p")}, default="false")
-	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
-	config.av.aspectratio = ConfigSelection(choices={
-			"4_3_letterbox": _("4:3 Letterbox"),
-			"4_3_panscan": _("4:3 PanScan"),
-			"16_9": _("16:9"),
-			"16_9_always": _("16:9 Always"),
-			"16_10_letterbox": _("16:10 Letterbox"),
-			"16_10_panscan": _("16:10 PanScan"),
-			"16_9_letterbox": _("16:9 Letterbox")},
-			default="16_9")
-	config.av.aspect = ConfigSelection(choices={
-			"4:3": _("4:3"),
-			"16:9": _("16:9"),
-			"16:10": _("16:10"),
-			"auto": _("Automatic")},
-			default="16:9")
-
-	if BoxInfo.getItem("AmlogicFamily"):
 
 		policy_choices = [
 			("4", _("Stretch nonlinear")),
@@ -660,53 +632,59 @@ def InitAVSwitch():
 		]
 
 		config.av.policy_43 = ConfigSelection(choices=policy_choices, default="8")
-
 	else:
+		config.av.autores_sd = ConfigSelection(choices={"720p50": _("720p50"), "720p": _("720p"), "1080i50": _("1080i50"), "1080i": _("1080i")}, default="720p50")
+		config.av.autores_480p24 = ConfigSelection(choices={"480p24": _("480p 24Hz"), "720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz")}, default="1080p24")
+		config.av.autores_720p24 = ConfigSelection(choices={"720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz"), "1080i50": _("1080i 50Hz"), "1080i": _("1080i 60Hz")}, default="720p24")
+		config.av.autores_1080p24 = ConfigSelection(choices={"1080p24": _("1080p 24Hz"), "1080p25": _("1080p 25Hz"), "1080i50": _("1080p 50Hz"), "1080i": _("1080i 60Hz")}, default="1080p24")
+		config.av.autores_1080p25 = ConfigSelection(choices={"1080p25": _("1080p 25Hz"), "1080p50": _("1080p 50Hz"), "1080i50": _("1080i 50Hz")}, default="1080p25")
+		config.av.autores_1080p30 = ConfigSelection(choices={"1080p30": _("1080p 30Hz"), "1080p60": _("1080p 60Hz"), "1080i": _("1080i 60Hz")}, default="1080p30")
+		config.av.autores_2160p24 = ConfigSelection(choices={"2160p24": _("2160p 24Hz"), "2160p25": _("2160p 25Hz"), "2160p30": _("2160p 30Hz")}, default="2160p24")
+		config.av.autores_2160p25 = ConfigSelection(choices={"2160p25": _("2160p 25Hz"), "2160p50": _("2160p 50Hz")}, default="2160p25")
+		config.av.autores_2160p30 = ConfigSelection(choices={"2160p30": _("2160p 30Hz"), "2160p60": _("2160p 60Hz")}, default="2160p30")
 
-		# Only add a setting for 16:9+ policy when /proc/stb/video/policy2 exists
-		if os.path.exists("/proc/stb/video/policy2"):
-			# Some boxes have a redundant proc entry for policy2 choices, but some don't (The choices are from a 16:9 point of view anyways)
-			if os.path.exists("/proc/stb/video/policy2_choices"):
-				policy2_choices_proc = "/proc/stb/video/policy2_choices"
-			else:
-				policy2_choices_proc = "/proc/stb/video/policy_choices"
+		# Some boxes have a redundant proc entry for policy2 choices, but some don't (The choices are from a 16:9 point of view anyways)
+		if os.path.exists("/proc/stb/video/policy2_choices"):
+			policy2_choices_proc = "/proc/stb/video/policy2_choices"
+		else:
+			policy2_choices_proc = "/proc/stb/video/policy_choices"
 
-			try:
-				policy2_choices_raw = open(policy2_choices_proc, "r").read()
-			except:
-				policy2_choices_raw = "letterbox"
+		try:
+			policy2_choices_raw = open(policy2_choices_proc, "r").read()
+		except:
+			policy2_choices_raw = "letterbox"
 
-			policy2_choices = {}
+		policy2_choices = {}
 
-			if "letterbox" in policy2_choices_raw:
-				# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
-				policy2_choices.update({"letterbox": _("Letterbox")})
+		if "letterbox" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+			policy2_choices.update({"letterbox": _("Letterbox")})
 
-			if "panscan" in policy2_choices_raw:
-				# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-				policy2_choices.update({"panscan": _("Pan&scan")})
+		if "panscan" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+			policy2_choices.update({"panscan": _("Pan&scan")})
 
-			if "nonliner" in policy2_choices_raw and not "nonlinear" in policy2_choices_raw:
-				# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-				policy2_choices.update({"nonliner": _("Stretch nonlinear")})
-			if "nonlinear" in policy2_choices_raw:
-				# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-				policy2_choices.update({"nonlinear": _("Stretch nonlinear")})
+		if "nonliner" in policy2_choices_raw and not "nonlinear" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
+			policy2_choices.update({"nonliner": _("Stretch nonlinear")})
+		if "nonlinear" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
+			policy2_choices.update({"nonlinear": _("Stretch nonlinear")})
 
-			if "scale" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-				# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-				policy2_choices.update({"scale": _("Stretch linear")})
-			if "full" in policy2_choices_raw:
-				# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
-				policy2_choices.update({"full": _("Stretch full")})
-			if "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-				# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-				policy2_choices.update({"auto": _("Stretch linear")})
-			if "bestfit" in policy2_choices_raw:
-				# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-				policy2_choices.update({"bestfit": _("Stretch linear")})
+		if "scale" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+			policy2_choices.update({"scale": _("Stretch linear")})
+		if "full" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+			policy2_choices.update({"full": _("Stretch full")})
+		if "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+			policy2_choices.update({"auto": _("Stretch linear")})
+		if "bestfit" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+			policy2_choices.update({"bestfit": _("Stretch linear")})
 
-			config.av.policy_169 = ConfigSelection(choices=policy2_choices, default="letterbox")
+		config.av.policy_169 = ConfigSelection(choices=policy2_choices, default="letterbox")
 
 		policy_choices_proc = "/proc/stb/video/policy_choices"
 		try:
@@ -760,6 +738,25 @@ def InitAVSwitch():
 			policy_choices.update({"bestfit": _("Stretch linear")})
 
 		config.av.policy_43 = ConfigSelection(choices=policy_choices, default="panscan")
+
+	config.av.smart1080p = ConfigSelection(choices={"false": _("Off"), "true": _("1080p50: 24p/50p/60p"), "2160p50": _("2160p50: 24p/50p/60p"), "1080i50": _("1080i50: 24p/50i/60i"), "720p50": _("720p50: 24p/50p/60p")}, default="false")
+	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
+	config.av.aspectratio = ConfigSelection(choices={
+			"4_3_letterbox": _("4:3 Letterbox"),
+			"4_3_panscan": _("4:3 PanScan"),
+			"16_9": _("16:9"),
+			"16_9_always": _("16:9 Always"),
+			"16_10_letterbox": _("16:10 Letterbox"),
+			"16_10_panscan": _("16:10 PanScan"),
+			"16_9_letterbox": _("16:9 Letterbox")},
+			default="16_9")
+	config.av.aspect = ConfigSelection(choices={
+			"4:3": _("4:3"),
+			"16:9": _("16:9"),
+			"16:10": _("16:10"),
+			"auto": _("Automatic")},
+			default="16:9")
+
 	config.av.tvsystem = ConfigSelection(choices={"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default=True)
 	config.av.generalAC3delay = ConfigSelectionNumber(-1000, 1000, 5, default=0)
@@ -770,8 +767,7 @@ def InitAVSwitch():
 	config.av.aspect.addNotifier(iAVSwitch.setAspect)
 	config.av.wss.addNotifier(iAVSwitch.setWss)
 	config.av.policy_43.addNotifier(iAVSwitch.setPolicy43)
-	if hasattr(config.av, 'policy_169'):
-		config.av.policy_169.addNotifier(iAVSwitch.setPolicy169)
+	config.av.policy_169.addNotifier(iAVSwitch.setPolicy169)
 
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
@@ -782,9 +778,9 @@ def InitAVSwitch():
 			iAVSwitch.setColorFormat(configElement.value)
 	config.av.colorformat.addNotifier(setColorFormat)
 
-	def setAspectRatio(configElement):
-		cmap = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox": 6}
-		iAVSwitch.setAspectRatio(cmap[configElement.value])
+	#def setAspectRatio(configElement):
+	#	cmap = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox": 6}
+	#	iAVSwitch.setAspectRatio(cmap[configElement.value])
 
 	iAVSwitch.setInput("encoder")  # init on startup
 

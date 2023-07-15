@@ -430,12 +430,17 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 
 #ifdef DREAMNEXTGEN
 
-	// TODO
+	if (ratio < 0 || ratio > 13)
+	{
+		eDebug("[%s] %s: invalid value %d", __MODULE__, "setAspectRatio", ratio);
+		return;
+	}
+
 	eDebug("[%s] %s: not supported", __MODULE__, "setAspectRatio");
 
-	//	CFile::writeInt("/sys/class/video/screen_mode", ratio, __MODULE__, flags);
-	//	if (flags & FLAGS_DEBUG)
-	//		eDebug("[%s] %s: %d", __MODULE__, "setAspectRatio/aspect", ratio);
+	CFile::writeInt("/sys/class/video/screen_mode", ratio, __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %d", __MODULE__, "setAspectRatio", ratio);
 
 	/*
 
