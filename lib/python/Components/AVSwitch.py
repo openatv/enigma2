@@ -198,22 +198,6 @@ class AVSwitchBase:
 		modes = eAVControl.getInstance().getAvailableModes()
 		print("[AVSwitch] getAvailableModes:'%s'" % modes)
 		return modes.split(' ')
-		if BoxInfo.getItem("AmlogicFamily"):
-			f = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
-			modes = f.read()[:-1].replace("*", "")
-			f.close()
-			self.modes_preferred = modes.splitlines()
-			return modes.splitlines()
-		else:
-			try:
-				f = open("/proc/stb/video/videomode_choices")
-				modes = f.read()[:-1]
-				f.close()
-			except OSError:
-				print("[AVSwitch] couldn't read available videomodes.")
-				modes = []
-				return modes
-			return modes.split(" ")
 
 	def is24hzAvailable(self):
 		BoxInfo.setItem("have24hz", eAVControl.getInstance().has24hz())
@@ -229,29 +213,6 @@ class AVSwitchBase:
 			print("[AVSwitch] getPreferredModes:'%s'" % modes)
 			self.modes_preferred = modes.split(' ')
 
-#			try:
-#				if BoxInfo.getItem("AmlogicFamily"):
-#					f = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
-#					modes = f.read()[:-1].replace('*', '')
-#					f.close()
-#					self.modes_preferred = modes.splitlines()
-#				else:
-#					f = open("/proc/stb/video/videomode_edid")
-#					modes = f.read()[:-1]
-#					f.close()
-#					self.modes_preferred = modes.split(' ')
-#				print("[AVSwitch] reading edid modes: ", self.modes_preferred)
-#			except OSError:
-#				print("[AVSwitch] reading edid modes failed, using all modes")
-#				try:
-#					f = open("/proc/stb/video/videomode_preferred")
-#					modes = f.read()[:-1]
-#					f.close()
-#					self.modes_preferred = modes.split(' ')
-#					print("[AVSwitch] reading _preferred modes: ", self.modes_preferred)
-#				except OSError:
-#					print("[AVSwitch] reading preferred modes failed, using all modes")
-#					self.modes_preferred = self.readAvailableModes()
 		if len(modes) < 2:
 			self.modes_preferred = self.readAvailableModes()
 			print("[AVSwitch] used default modes:%s" % self.modes_preferred)
