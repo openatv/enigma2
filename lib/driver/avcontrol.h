@@ -36,7 +36,7 @@ public:
 	bool isEncoderActive() const;
 
 	void setAspectRatio(int ratio, int flags = 0) const;
-	void setColorFormat(const std::string &newFormat, int flags) const;
+	void setColorFormat(const std::string &newFormat, int flags = 0) const;
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	void setInput(const std::string &newMode, int flags = 0);
@@ -75,8 +75,6 @@ private:
 	bool m_b_has_proc_videomode_50;
 	bool m_b_has_proc_videomode_60;
 	bool m_b_has_proc_videomode_24;
-	bool m_b_has_proc_policy43;
-	bool m_b_has_proc_policy169;
 	bool m_encoder_active;
 	bool m_b_has_scartswitch;
 	bool m_b_hdmiin_fhd;

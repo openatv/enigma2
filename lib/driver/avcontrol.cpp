@@ -52,12 +52,8 @@ eAVControl::eAVControl()
 
 #ifdef DREAMNEXTGEN
 	m_b_has_proc_videomode_24 = true;
-	m_b_has_proc_policy43 = true;
-	m_b_has_proc_policy169 = true;
 #else
 	m_b_has_proc_videomode_24 = (access(proc_videomode_24, W_OK) == 0);
-	m_b_has_proc_policy43 = (access(proc_policy43, W_OK) == 0);
-	m_b_has_proc_policy169 = (access(proc_policy169, W_OK) == 0);
 #endif
 
 	m_videomode_choices = readAvailableModes();
@@ -581,9 +577,6 @@ void eAVControl::setWSS(int val, int flags) const
 void eAVControl::setPolicy43(const std::string &newPolicy, int flags) const
 {
 
-	if (!m_b_has_proc_policy43)
-		return;
-
 	CFile::writeStr(proc_policy43, newPolicy, __MODULE__, flags);
 
 	if (flags & FLAGS_DEBUG)
@@ -595,8 +588,6 @@ void eAVControl::setPolicy43(const std::string &newPolicy, int flags) const
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setPolicy169(const std::string &newPolicy, int flags) const
 {
-	if (!m_b_has_proc_policy169)
-		return;
 
 	CFile::writeStr(proc_policy169, newPolicy, __MODULE__, flags);
 
