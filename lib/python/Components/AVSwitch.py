@@ -15,7 +15,7 @@ config.av = ConfigSubsection()
 config.av.edid_override = ConfigYesNo(default=False)
 
 
-class AVSwitch:
+class AVSwitchBase:
 	axis = {
 		"480i": "0 0 719 479",
 		"480p": "0 0 719 479",
@@ -163,10 +163,6 @@ class AVSwitch:
 		modes["HDMI"] = ["720p", "1080p", "2160p", "2160p30", "1080i", "576p", "576i", "480p", "480i"]
 	elif (about.getChipSetString() in ("7241", "7358", "7362", "73625", "7346", "7356", "73565", "7424", "7425", "7435", "7552", "7581", "7584", "75845", "7585", "pnx8493", "7162", "7111", "3716mv410", "hi3716mv410", "hi3716mv430", "3716mv430")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
-	elif about.getChipSetString() in ("meson-6",):
-		modes["HDMI"] = ["720p", "1080p", "1080i"]
-	elif about.getChipSetString() in ("meson-64", "S905D"):
-		modes["HDMI"] = ["720p", "1080p", "2160p", "2160p30", "1080i"]
 	else:
 		modes["HDMI"] = ["720p", "1080i", "576p", "576i", "480p", "480i"]
 
@@ -275,8 +271,6 @@ class AVSwitch:
 		return self.axis[mode]
 
 	def createConfig(self, *args):
-		lst = []
-
 		config.av.videomode = ConfigSubDict()
 		config.av.autores_mode_sd = ConfigSubDict()
 		config.av.autores_mode_hd = ConfigSubDict()
@@ -287,16 +281,12 @@ class AVSwitch:
 		config.av.autores_rate_hd = ConfigSubDict()
 		config.av.autores_rate_fhd = ConfigSubDict()
 		config.av.autores_rate_uhd = ConfigSubDict()
-
-		# create list of output ports
-		portlist = self.getPortList()
-		for port in portlist:
-			descr = port
-			if 'HDMI' in port:
-				lst.insert(0, (port, descr))
+		portList = []  # Create list of output ports.
+		for port in self.getPortList():
+			if "HDMI" in port:
+				portList.insert(0, (port, port))
 			else:
-				lst.append((port, descr))
-
+				portList.append((port, port))
 			modes = self.getModeList(port)
 			if len(modes):
 				config.av.videomode[port] = ConfigSelection(choices=[mode for (mode, rates) in modes])
@@ -305,17 +295,17 @@ class AVSwitch:
 				config.av.autores_mode_fhd[port] = ConfigSelection(choices=[mode for (mode, rates) in modes])
 				config.av.autores_mode_uhd[port] = ConfigSelection(choices=[mode for (mode, rates) in modes])
 			for (mode, rates) in modes:
-				ratelist = []
+				rateList = []
 				for rate in rates:
-					if rate = "auto" and not BoxInfo.getItem("have24hz"):
+					if rate == "auto" and not BoxInfo.getItem("have24hz"):
 						continue
-					ratelist.append((rate, rate))
-				config.av.videorate[mode] = ConfigSelection(choices=ratelist)
-				config.av.autores_rate_sd[mode] = ConfigSelection(choices=ratelist)
-				config.av.autores_rate_hd[mode] = ConfigSelection(choices=ratelist)
-				config.av.autores_rate_fhd[mode] = ConfigSelection(choices=ratelist)
-				config.av.autores_rate_uhd[mode] = ConfigSelection(choices=ratelist)
-		config.av.videoport = ConfigSelection(choices=lst)
+					rateList.append((rate, rate))
+				config.av.videorate[mode] = ConfigSelection(choices=rateList)
+				config.av.autores_rate_sd[mode] = ConfigSelection(choices=rateList)
+				config.av.autores_rate_hd[mode] = ConfigSelection(choices=rateList)
+				config.av.autores_rate_fhd[mode] = ConfigSelection(choices=rateList)
+				config.av.autores_rate_uhd[mode] = ConfigSelection(choices=rateList)
+		config.av.videoport = ConfigSelection(choices=portList)
 
 	def isPortAvailable(self, port):  # Fix me!
 		return True
@@ -337,47 +327,37 @@ class AVSwitch:
 		else:
 			return True
 
-	def isWidescreenMode(self, port, mode):
+	def isWidescreenMode(self, port, mode):  # This is only used in getOutputAspect
 		return mode in self.widescreenModes
 
 	# TODO AML
 	def getAspectRatioSetting(self):
-		valstr = config.av.aspectratio.value
-		if valstr == "4_3_letterbox":
-			val = 0
-		elif valstr == "4_3_panscan":
-			val = 1
-		elif valstr == "16_9":
-			val = 2
-		elif valstr == "16_9_always":
-			val = 3
-		elif valstr == "16_10_letterbox":
-			val = 4
-		elif valstr == "16_10_panscan":
-			val = 5
-		elif valstr == "16_9_letterbox":
-			val = 6
-		return val
+		return {
+			"4_3_letterbox": 0,
+			"4_3_panscan": 1,
+			"16_9": 2,
+			"16_9_always": 3,
+			"16_10_letterbox": 4,
+			"16_10_panscan": 5,
+			"16_9_letterbox": 6
+		}.get(config.av.aspectratio.value, config.av.aspectratio.value)
 
 	def getFramebufferScale(self):
 		return (1, 1)
 
 	def getModeList(self, port):  # Get a list with all modes, with all rates, for a given port.
-		res = []
+		results = []
 		for mode in self.modes[port]:
-			# list all rates which are completely valid
-			rates = [rate for rate in self.rates[mode] if self.isModeAvailable(port, mode, rate)]
-
-			# if at least one rate is ok, add this mode
-			if len(rates):
-				res.append((mode, rates))
-		return res
+			rates = [rate for rate in self.rates[mode] if self.isModeAvailable(port, mode, rate)]  # List all rates which are completely valid.
+			if len(rates):  # If at least one rate is OK then add this mode.
+				results.append((mode, rates))
+		return results
 
 	def getPortList(self):
 		return [port for port in self.modes if self.isPortAvailable(port)]
 
-	def setAspect(self, cfgelement):
-		eAVControl.getInstance().setAspect(cfgelement.value, 1)
+	def setAspect(self, configElement):
+		eAVControl.getInstance().setAspect(configElement.value, 1)
 
 	def setAspectRatio(self, value):
 		eAVControl.getInstance().setAspectRatio(value)
@@ -414,18 +394,18 @@ class AVSwitch:
 		self.current_port = port
 		modes = self.rates[mode][rate]
 
-		mode_50 = modes.get(50)
-		mode_60 = modes.get(60)
-		mode_24 = modes.get(24)
+		mode50 = modes.get(50)
+		mode60 = modes.get(60)
+		mode24 = modes.get(24)
 
-		if mode_50 is None or force == 60:
-			mode_50 = mode_60
-		if mode_60 is None or force == 50:
-			mode_60 = mode_50
-		if mode_24 is None or force:
-			mode_24 = mode_60
+		if mode50 is None or force == 60:
+			mode50 = mode60
+		if mode60 is None or force == 50:
+			mode60 = mode50
+		if mode24 is None or force:
+			mode24 = mode60
 			if force == 50:
-				mode_24 = mode_50
+				mode24 = mode50
 
 		if BoxInfo.getItem("AmlogicFamily"):
 			amlmode = list(modes.values())[0]
@@ -448,7 +428,7 @@ class AVSwitch:
 			f.write("0")
 			f.close()
 			f = open("/sys/class/video/axis", "w")
-			f.write(axis[mode])
+			f.write(self.axis[mode])
 			f.close()
 			f = open("/sys/class/graphics/fb0/stride", "r")
 			stride = f.read().strip()
@@ -473,23 +453,23 @@ class AVSwitch:
 
 		try:
 			f = open("/proc/stb/video/videomode_50hz", "w")
-			f.write(mode_50)
+			f.write(mode50)
 			f.close()
 			f = open("/proc/stb/video/videomode_60hz", "w")
-			f.write(mode_60)
+			f.write(mode60)
 			f.close()
 		except OSError:
 			try:
 				# fallback if no possibility to setup 50/60 hz mode
 				f = open("/proc/stb/video/videomode", "w")
-				f.write(mode_50)
+				f.write(mode50)
 				f.close()
 			except OSError:
 				print("[AVSwitch] setting videomode failed.")
 
 		if BoxInfo.getItem("have24hz"):
 			try:
-				open("/proc/stb/video/videomode_24hz", "w").write(mode_24)
+				open("/proc/stb/video/videomode_24hz", "w").write(mode24)
 			except OSError:
 				print("[VideoHardware] cannot open /proc/stb/video/videomode_24hz")
 
@@ -497,7 +477,7 @@ class AVSwitch:
 			try:
 				# use 50Hz mode (if available) for booting
 				f = open("/etc/videomode", "w")
-				f.write(mode_50)
+				f.write(mode50)
 				f.close()
 			except OSError:
 				print("[AVSwitch] writing initial videomode to /etc/videomode failed.")
@@ -514,29 +494,22 @@ class AVSwitch:
 		eAVControl.getInstance().setWSS(configElement.value, 1)
 
 	def saveMode(self, port, mode, rate):
-		config.av.videoport.setValue(port)
+		config.av.videoport.value = port
 		config.av.videoport.save()
 		if port in config.av.videomode:
-			config.av.videomode[port].setValue(mode)
+			config.av.videomode[port].value = mode
 			config.av.videomode[port].save()
 		if mode in config.av.videorate:
-			config.av.videorate[mode].setValue(rate)
+			config.av.videorate[mode].value = rate
 			config.av.videorate[mode].save()
 
 
-iAVSwitch = AVSwitch()
-
-
 def InitAVSwitch():
-	if MACHINEBUILD == 'vuduo':
+	if MACHINEBUILD == "vuduo":
 		config.av.yuvenabled = ConfigBoolean(default=False)
 	else:
 		config.av.yuvenabled = ConfigBoolean(default=True)
-	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make openATV compatible with some plugins who still use config.av.osd_alpha
-	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
-	# when YUV is not enabled, don't let the user select it
-	if config.av.yuvenabled.value:
-		colorformat_choices["yuv"] = _("YPbPr")
+	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make openATV compatible with some plugins who still use config.av.osd_alpha.
 
 	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "simple": _("Simple"), "native": _("Native"), "all": _("All resolutions"), "hd": _("only HD")}, default="disabled")
 	config.av.autores_preview = NoSave(ConfigYesNo(default=False))
@@ -719,8 +692,24 @@ def InitAVSwitch():
 
 		config.av.policy_43 = ConfigSelection(choices=policy_choices, default="panscan")
 
-	config.av.smart1080p = ConfigSelection(choices={"false": _("Off"), "true": _("1080p50: 24p/50p/60p"), "2160p50": _("2160p50: 24p/50p/60p"), "1080i50": _("1080i50: 24p/50i/60i"), "720p50": _("720p50: 24p/50p/60p")}, default="false")
-	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
+	config.av.smart1080p = ConfigSelection(default="false", choices=[
+		("false", _("Off")),
+		("true", "1080p50: 24p/50p/60p"),
+		("2160p50", "2160p50: 24p/50p/60p"),
+		("1080i50", "1080i50: 24p/50i/60i"),
+		("720p50", "720p50: 24p/50p/60p")
+	])
+
+	choiceList = [
+		("cvbs", "CVBS"),
+		("rgb", "RGB"),
+		("svideo", "S-Video")
+	]
+	if config.av.yuvenabled.value:  # When YUV is not enabled, don't let the user select it.
+		choiceList.append(("yuv", "YPbPr"))
+
+	config.av.colorformat = ConfigSelection(choices=choiceList, default="rgb")
+
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
 			"4_3_panscan": _("4:3 PanScan"),
@@ -730,12 +719,13 @@ def InitAVSwitch():
 			"16_10_panscan": _("16:10 PanScan"),
 			"16_9_letterbox": _("16:9 Letterbox")},
 			default="16_9")
-	config.av.aspect = ConfigSelection(choices={
-			"4:3": _("4:3"),
-			"16:9": _("16:9"),
-			"16:10": _("16:10"),
-			"auto": _("Automatic")},
-			default="16:9")
+
+	config.av.aspect = ConfigSelection(default="16:9", choices=[
+		("4:3", "4:3"),
+		("16:9", "16:9"),
+		("16:10", "16:10"),
+		("auto", _("Automatic"))
+	])
 
 	config.av.tvsystem = ConfigSelection(choices={"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default=True)
@@ -749,9 +739,17 @@ def InitAVSwitch():
 	config.av.policy_43.addNotifier(iAVSwitch.setPolicy43)
 	config.av.policy_169.addNotifier(iAVSwitch.setPolicy169)
 
-	#def setAspectRatio(configElement):
-	#	cmap = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox": 6}
-	#	iAVSwitch.setAspectRatio(cmap[configElement.value])
+	def setAspectRatio(configElement):  # Not used
+		aspects = {
+			"4_3_letterbox": 0,
+			"4_3_panscan": 1,
+			"16_9": 2,
+			"16_9_always": 3,
+			"16_10_letterbox": 4,
+			"16_10_panscan": 5,
+			"16_9_letterbox": 6
+		}
+		iAVSwitch.setAspectRatio(aspects[configElement.value])
 
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
@@ -801,14 +799,13 @@ def InitAVSwitch():
 
 	if exists("/proc/stb/video/hdmi_colorspace"):
 		f = open("/proc/stb/video/hdmi_colorspace", "r")
-		have_colorspace = f.read().strip().split(" ")
+		colorspace = f.read().strip().split(" ")
 		f.close()
 	else:
-		have_colorspace = False
+		colorspace = False
 
-	BoxInfo.setItem("havecolorspace", have_colorspace)
-
-	if have_colorspace:
+	BoxInfo.setItem("havecolorspace", colorspace)
+	if colorspace:
 		if MACHINEBUILD in ("vusolo4k", "vuuno4k", "vuuno4kse", "vuultimo4k", "vuduo4k", "vuduo4kse"):
 			default = "Edid(Auto)"
 			choiceList = [
@@ -852,20 +849,20 @@ def InitAVSwitch():
 				f.close()
 			except OSError:
 				pass
+
 		config.av.hdmicolorspace.addNotifier(setHDMIColorspace)
 	else:
 		config.av.hdmicolorspace = ConfigNothing()
 
 	if exists("/proc/stb/video/hdmi_colorimetry"):
 		f = open("/proc/stb/video/hdmi_colorimetry", "r")
-		have_colorimetry = f.read().strip().split(" ")
+		colorimetry = f.read().strip().split(" ")
 		f.close()
 	else:
-		have_colorimetry = False
+		colorimetry = False
 
-	BoxInfo.setItem("havecolorimetry", have_colorimetry)
-
-	if have_colorimetry:
+	BoxInfo.setItem("havecolorimetry", colorimetry)
+	if colorimetry:
 		config.av.hdmicolorimetry = ConfigSelection(default="auto", choices=[
 			("auto", _("Auto")),
 			("bt2020ncl", "BT.2020 NCL"),
@@ -887,40 +884,39 @@ def InitAVSwitch():
 
 	if exists("/proc/stb/info/boxmode"):
 		f = open("/proc/stb/info/boxmode", "r")
-		have_boxmode = f.read().strip().split(" ")
+		boxMode = f.read().strip().split(" ")
 		f.close()
 	else:
-		have_boxmode = False
+		boxMode = False
 
-	BoxInfo.setItem("haveboxmode", have_boxmode)
-
-	if have_boxmode:
+	BoxInfo.setItem("haveboxmode", boxMode)
+	if boxMode:
 		config.av.boxmode = ConfigSelection(choices={
 				"12": _("enable PiP no HDR"),
 				"1": _("12bit 4:2:0/4:2:2 no PiP")},
 				default="12")
 
-		def setBoxmode(configElement):
+		def setBoxMode(configElement):
 			try:
 				f = open("/proc/stb/info/boxmode", "w")
 				f.write(configElement.value)
 				f.close()
 			except OSError:
 				pass
-		config.av.boxmode.addNotifier(setBoxmode)
+		config.av.boxmode.addNotifier(setBoxMode)
 	else:
 		config.av.boxmode = ConfigNothing()
 
 	if exists("/proc/stb/video/hdmi_colordepth"):
 		f = open("/proc/stb/video/hdmi_colordepth", "r")
-		have_HdmiColordepth = f.read().strip().split(" ")
+		colorDepth = f.read().strip().split(" ")
 		f.close()
 	else:
-		have_HdmiColordepth = False
+		colorDepth = False
 
-	BoxInfo.setItem("havehdmicolordepth", have_HdmiColordepth)
+	BoxInfo.setItem("havehdmicolordepth", colorDepth)
 
-	if have_HdmiColordepth:
+	if colorDepth:
 		config.av.hdmicolordepth = ConfigSelection(choices={
 				"auto": _("Auto"),
 				"8bit": _("8bit"),
@@ -928,27 +924,27 @@ def InitAVSwitch():
 				"12bit": _("12bit")},
 				default="auto")
 
-		def setHdmiColordepth(configElement):
+		def setColorDepth(configElement):
 			try:
 				f = open("/proc/stb/video/hdmi_colordepth", "w")
 				f.write(configElement.value)
 				f.close()
 			except OSError:
 				pass
-		config.av.hdmicolordepth.addNotifier(setHdmiColordepth)
+		config.av.hdmicolordepth.addNotifier(setColorDepth)
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
 
 	if exists("/proc/stb/video/sync_mode_choices"):
 		f = open("/proc/stb/video/sync_mode_choices", "r")
-		have_SyncMode = f.read().strip().split(" ")
+		syncMode = f.read().strip().split(" ")
 		f.close()
 	else:
-		have_SyncMode = False
+		syncMode = False
 
-	BoxInfo.setItem("havesyncmode", have_SyncMode)
+	BoxInfo.setItem("havesyncmode", syncMode)
 
-	if have_SyncMode:
+	if syncMode:
 		def setSyncMode(configElement):
 			try:
 				f = open("/proc/stb/video/sync_mode", "w")
@@ -966,13 +962,14 @@ def InitAVSwitch():
 		config.av.sync_mode = ConfigNothing()
 
 	if exists("/sys/class/amhdmitx/amhdmitx0/config"):
-		have_AMLHDRSupport = True
+		AMLHDRSupport = True
 	else:
-		have_AMLHDRSupport = False
+		AMLHDRSupport = False
 
-	BoxInfo.setItem("haveamlhdrsupport", have_AMLHDRSupport)
+	BoxInfo.setItem("haveamlhdrsupport", AMLHDRSupport)
 
-	if have_AMLHDRSupport:
+	if AMLHDRSupport:
+
 		config.av.amlhdr10_support = ConfigSelection(choices={
 			"hdr10-0": _("force enabled"),
 			"hdr10-1": _("force disabled"),
@@ -991,7 +988,8 @@ def InitAVSwitch():
 	else:
 		config.av.amlhdr10_support = ConfigNothing()
 
-	if have_AMLHDRSupport:
+	if AMLHDRSupport:
+
 		config.av.amlhlg_support = ConfigSelection(choices={
 				"hlg-0": _("force enabled"),
 				"hlg-1": _("force disabled"),
@@ -1011,14 +1009,14 @@ def InitAVSwitch():
 
 	if exists("/proc/stb/video/hdmi_hdrtype"):
 		f = open("/proc/stb/video/hdmi_hdrtype", "r")
-		have_HdmiHdrType = f.read().strip().split(" ")
+		hdrType = f.read().strip().split(" ")
 		f.close()
 	else:
-		have_HdmiHdrType = False
+		hdrType = False
 
-	BoxInfo.setItem("havehdmihdrtype", have_HdmiHdrType)
+	BoxInfo.setItem("havehdmihdrtype", hdrType)
 
-	if have_HdmiHdrType:
+	if hdrType:
 		config.av.hdmihdrtype = ConfigSelection(choices={
 				"auto": _("Auto"),
 				"dolby": _("dolby"),
@@ -1027,7 +1025,7 @@ def InitAVSwitch():
 				"hlg": _("hlg")},
 				default="auto")
 
-		def setHdmiHdrType(configElement):
+		def setHDRType(configElement):
 			try:
 				f = open("/proc/stb/video/hdmi_hdrtype", "w")
 				f.write(configElement.value)
@@ -1035,20 +1033,20 @@ def InitAVSwitch():
 			except OSError:
 				pass
 
-		config.av.hdmihdrtype.addNotifier(setHdmiHdrType)
+		config.av.hdmihdrtype.addNotifier(setHDRType)
 	else:
 		config.av.hdmihdrtype = ConfigNothing()
 
 	if exists("/proc/stb/hdmi/hlg_support_choices"):
 		f = open("/proc/stb/hdmi/hlg_support_choices", "r")
-		have_HDRSupport = f.read().strip().split(" ")
+		hdrSupport = f.read().strip().split(" ")
 		f.close()
 	else:
-		have_HDRSupport = False
+		hdrSupport = False
 
-	BoxInfo.setItem("HDRSupport", have_HDRSupport)
+	BoxInfo.setItem("HDRSupport", hdrSupport)
 
-	if have_HDRSupport:
+	if hdrSupport:
 		def setHlgSupport(configElement):
 			open("/proc/stb/hdmi/hlg_support", "w").write(configElement.value)
 		config.av.hlg_support = ConfigSelection(default="auto(EDID)",
@@ -1073,14 +1071,14 @@ def InitAVSwitch():
 
 	if exists("/proc/stb/hdmi/audio_source"):
 		f = open("/proc/stb/hdmi/audio_source", "r")
-		can_audiosource = f.read().strip().split(" ")
+		audioSource = f.read().strip().split(" ")
 		f.close()
 	else:
-		can_audiosource = False
+		audioSource = False
 
-	BoxInfo.setItem("Canaudiosource", can_audiosource)
+	BoxInfo.setItem("Canaudiosource", audioSource)
 
-	if can_audiosource:
+	if audioSource:
 		config.av.audio_source = ConfigSelection(choices={
 				"pcm": _("PCM"),
 				"spdif": _("SPDIF")},
@@ -1099,14 +1097,14 @@ def InitAVSwitch():
 
 	if exists("/proc/stb/audio/3d_surround_choices"):
 		f = open("/proc/stb/audio/3d_surround_choices", "r")
-		can_3dsurround = f.read().strip().split(" ")
+		surround = f.read().strip().split(" ")
 		f.close()
 	else:
-		can_3dsurround = False
+		surround = False
 
-	BoxInfo.setItem("Can3DSurround", can_3dsurround)
+	BoxInfo.setItem("Can3DSurround", surround)
 
-	if can_3dsurround:
+	if surround:
 		choice_list = [("none", _("Off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 		config.av.surround_3d = ConfigSelection(choices=choice_list, default="none")
 
@@ -1120,14 +1118,14 @@ def InitAVSwitch():
 
 	if exists("/proc/stb/audio/3d_surround_speaker_position_choices"):
 		f = open("/proc/stb/audio/3d_surround_speaker_position_choices", "r")
-		can_3dsurround_speaker = f.read().strip().split(" ")
+		surroundSpeaker = f.read().strip().split(" ")
 		f.close()
 	else:
-		can_3dsurround_speaker = False
+		surroundSpeaker = False
 
-	BoxInfo.setItem("Can3DSpeaker", can_3dsurround_speaker)
+	BoxInfo.setItem("Can3DSpeaker", surroundSpeaker)
 
-	if can_3dsurround_speaker:
+	if surroundSpeaker:
 		choice_list = [("center", _("Center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
 		config.av.surround_3d_speaker = ConfigSelection(choices=choice_list, default="center")
 
@@ -1144,14 +1142,14 @@ def InitAVSwitch():
 
 	if exists("/proc/stb/audio/avl_choices"):
 		f = open("/proc/stb/audio/avl_choices", "r")
-		can_autovolume = f.read().strip().split(" ")
+		autoVolume = f.read().strip().split(" ")
 		f.close()
 	else:
-		can_autovolume = False
+		autoVolume = False
 
-	BoxInfo.setItem("CanAutoVolume", can_autovolume)
+	BoxInfo.setItem("CanAutoVolume", autoVolume)
 
-	if can_autovolume:
+	if autoVolume:
 		choice_list = [("none", _("Off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 		config.av.autovolume = ConfigSelection(choices=choice_list, default="none")
 
@@ -1164,12 +1162,12 @@ def InitAVSwitch():
 		config.av.autovolume = ConfigNothing()
 
 	try:
-		can_pcm_multichannel = access("/proc/stb/audio/multichannel_pcm", W_OK)
+		multiChannel = access("/proc/stb/audio/multichannel_pcm", W_OK)
 	except OSError:
-		can_pcm_multichannel = False
+		multiChannel = False
 
-	BoxInfo.setItem("supportPcmMultichannel", can_pcm_multichannel)
-	if can_pcm_multichannel:
+	BoxInfo.setItem("supportPcmMultichannel", multiChannel)
+	if multiChannel:
 		config.av.pcm_multichannel = ConfigYesNo(default=False)
 
 		def setPCMMultichannel(configElement):
@@ -1177,9 +1175,9 @@ def InitAVSwitch():
 		config.av.pcm_multichannel.addNotifier(setPCMMultichannel)
 	config.av.volume_stepsize = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=5)
 
-	def setVolumeStepsize(configElement):
+	def setVolumeStepSize(configElement):
 		eDVBVolumecontrol.getInstance().setVolumeSteps(int(configElement.value))
-	config.av.volume_stepsize.addNotifier(setVolumeStepsize)
+	config.av.volume_stepsize.addNotifier(setVolumeStepSize)
 	config.av.volume_stepsize_fastmode = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=5)
 	config.av.volume_hide_mute = ConfigYesNo(default=True)
 
@@ -1187,17 +1185,18 @@ def InitAVSwitch():
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]
 		f.close()
-		can_downmix_ac3 = "downmix" in file
+		downmixAC3 = "downmix" in file
 	except OSError:
 		if BoxInfo.getItem("AmlogicFamily"):
-			can_downmix_ac3 = True
+			downmixAC3 = True
 			BoxInfo.setItem("CanPcmMultichannel", True)
 		else:
-			can_downmix_ac3 = False
+			downmixAC3 = False
 			BoxInfo.setItem("CanPcmMultichannel", False)
 
-	BoxInfo.setItem("CanDownmixAC3", can_downmix_ac3)
-	if can_downmix_ac3:
+	BoxInfo.setItem("CanDownmixAC3", downmixAC3)
+	if downmixAC3:
+
 		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
 			choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 			config.av.downmix_ac3 = ConfigSelection(choices=choice_list, default="downmix")
@@ -1224,21 +1223,21 @@ def InitAVSwitch():
 				BoxInfo.setItem("CanPcmMultichannel", True)
 			else:
 				BoxInfo.setItem("CanPcmMultichannel", False)
-				if can_pcm_multichannel:
+				if multiChannel:
 					config.av.pcm_multichannel.setValue(False)
 
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
 	if exists("/proc/stb/audio/ac3plus_choices"):
 		f = open("/proc/stb/audio/ac3plus_choices", "r")
-		can_ac3plustranscode = f.read().strip().split(" ")
+		AC3plusTranscode = f.read().strip().split(" ")
 		f.close()
 	else:
-		can_ac3plustranscode = False
+		AC3plusTranscode = False
 
-	BoxInfo.setItem("CanAC3plusTranscode", can_ac3plustranscode)
+	BoxInfo.setItem("CanAC3plusTranscode", AC3plusTranscode)
 
-	if can_ac3plustranscode:
+	if AC3plusTranscode:
 		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
 			choiceList = [
 					("use_hdmi_caps", _("controlled by HDMI")),
@@ -1273,13 +1272,13 @@ def InitAVSwitch():
 	try:
 		f = open("/proc/stb/audio/dtshd_choices", "r")
 		file = f.read()[:-1]
-		can_dtshd = f.read().strip().split(" ")
+		dtsHD = f.read().strip().split(" ")
 		f.close()
 	except OSError:
-		can_dtshd = False
+		dtsHD = False
 
-	BoxInfo.setItem("CanDTSHD", can_dtshd)
-	if can_dtshd:
+	BoxInfo.setItem("CanDTSHD", dtsHD)
+	if dtsHD:
 		if MACHINEBUILD in ("dm7080", "dm820"):
 			default = "use_hdmi_caps"
 			choiceList = [
@@ -1307,32 +1306,32 @@ def InitAVSwitch():
 	try:
 		f = open("/proc/stb/audio/wmapro_choices", "r")
 		file = f.read()[:-1]
-		can_wmapro = f.read().strip().split(" ")
+		wmaPro = f.read().strip().split(" ")
 		f.close()
 	except OSError:
-		can_wmapro = False
+		wmaPro = False
 
-	BoxInfo.setItem("CanWMAPRO", can_wmapro)
-	if can_wmapro:
+	BoxInfo.setItem("CanWMAPRO", wmaPro)
+	if wmaPro:
 		choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 		config.av.wmapro = ConfigSelection(choices=choice_list, default="downmix")
 
-		def setWMAPRO(configElement):
+		def setWMAPro(configElement):
 			f = open("/proc/stb/audio/wmapro", "w")
 			f.write(configElement.value)
 			f.close()
-		config.av.wmapro.addNotifier(setWMAPRO)
+		config.av.wmapro.addNotifier(setWMAPro)
 
 	try:
 		f = open("/proc/stb/audio/dts_choices", "r")
 		file = f.read()[:-1]
 		f.close()
-		can_downmix_dts = "downmix" in file
+		dtsDownmix = "downmix" in file
 	except OSError:
-		can_downmix_dts = False
+		dtsDownmix = False
 
-	BoxInfo.setItem("CanDownmixDTS", can_downmix_dts)
-	if can_downmix_dts:
+	BoxInfo.setItem("CanDownmixDTS", dtsDownmix)
+	if dtsDownmix:
 		config.av.downmix_dts = ConfigYesNo(default=True)
 
 		def setDTSDownmix(configElement):
@@ -1345,12 +1344,12 @@ def InitAVSwitch():
 		f = open("/proc/stb/audio/aac_choices", "r")
 		file = f.read()[:-1]
 		f.close()
-		can_downmix_aac = "downmix" in file
+		aacDownmix = "downmix" in file
 	except OSError:
-		can_downmix_aac = False
+		aacDownmix = False
 
-	BoxInfo.setItem("CanDownmixAAC", can_downmix_aac)
-	if can_downmix_aac:
+	BoxInfo.setItem("CanDownmixAAC", aacDownmix)
+	if aacDownmix:
 		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
 			choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 			config.av.downmix_aac = ConfigSelection(choices=choice_list, default="downmix")
@@ -1371,12 +1370,12 @@ def InitAVSwitch():
 		f = open("/proc/stb/audio/aacplus_choices", "r")
 		file = f.read()[:-1]
 		f.close()
-		can_downmix_aacplus = "downmix" in file
+		aacplusDownmix = "downmix" in file
 	except OSError:
-		can_downmix_aacplus = False
+		aacplusDownmix = False
 
-	BoxInfo.setItem("CanDownmixAACPlus", can_downmix_aacplus)
-	if can_downmix_aacplus:
+	BoxInfo.setItem("CanDownmixAACPlus", aacplusDownmix)
+	if aacplusDownmix:
 		choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts", _("convert to DTS")), ("use_hdmi_cacenter", _("use_hdmi_cacenter")), ("wide", _("wide")), ("extrawide", _("extrawide"))]
 		config.av.downmix_aacplus = ConfigSelection(choices=choice_list, default="downmix")
 
@@ -1420,14 +1419,13 @@ def InitAVSwitch():
 
 	if exists("/proc/stb/audio/btaudio"):
 		f = open("/proc/stb/audio/btaudio", "r")
-		can_btaudio = f.read().strip().split(" ")
+		btAudio = f.read().strip().split(" ")
 		f.close()
 	else:
-		can_btaudio = False
+		btAudio = False
 
-	BoxInfo.setItem("CanBTAudio", can_btaudio)
-
-	if can_btaudio:
+	BoxInfo.setItem("CanBTAudio", btAudio)
+	if btAudio:
 		config.av.btaudio = ConfigOnOff(default=False)
 
 		def setBTAudio(configElement):
@@ -1440,14 +1438,13 @@ def InitAVSwitch():
 
 	if exists("/proc/stb/audio/btaudio_delay"):
 		f = open("/proc/stb/audio/btaudio_delay", "r")
-		can_btaudio_delay = f.read().strip().split(" ")
+		btAudioDelay = f.read().strip().split(" ")
 		f.close()
 	else:
-		can_btaudio_delay = False
+		btAudioDelay = False
 
-	BoxInfo.setItem("CanBTAudioDelay", can_btaudio_delay)
-
-	if can_btaudio_delay:
+	BoxInfo.setItem("CanBTAudioDelay", btAudioDelay)
+	if btAudioDelay:
 		config.av.btaudiodelay = ConfigSelectionNumber(min=-1000, max=1000, stepwidth=5, default=0)
 
 		def setBTAudioDelay(configElement):
@@ -1497,11 +1494,10 @@ class VideomodeHotplug:
 		port = config.av.videoport.value
 		mode = config.av.videomode[port].value
 		rate = config.av.videorate[mode].value
-
 		if not iAVSwitch.isModeAvailable(port, mode, rate):
 			print("[AVSwitch] VideoModeHoyplug: Mode for port '%s', mode '%s', rate '%s' went away." % (port, mode, rate))
 			modeList = iAVSwitch.getModeList(port)
-			if not len(modelist):
+			if len(modeList):
 				mode = modeList[0][0]
 				rate = modeList[0][1]
 				# FIXME: The rate needs to be a single value.
@@ -1509,12 +1505,9 @@ class VideomodeHotplug:
 					print("[AVSwitch] ERROR: Rate is a list and needs to be a single value!")
 					rate = rate[0]
 				print("[AVSwitch] VideoModeHoyplug: Setting mode for port '%s', mode '%s', rate '%s'." % (port, mode, rate))
-			iAVSwitch.setMode(port, mode, rate)
+				iAVSwitch.setMode(port, mode, rate)
 			else:
 				print("[AVSwitch] VideoModeHoyplug: Sorry, no other mode is available (unplug?). Doing nothing.")
-
-
-hotplug = None
 
 
 def startHotplug():
@@ -1530,3 +1523,33 @@ def stopHotplug():
 
 def InitiVideomodeHotplug(**kwargs):
 	startHotplug()
+
+
+iAVSwitch = AVSwitchBase()  # This should be updated in Screens/InfoBarGenerics.py, Screens/VideoWizard.py and Screens/VideoMode.py.
+hotplug = None
+
+
+# This is a dummy class to stop the constant re-instantiation of the AVSwitchBase class!
+#
+# NOTE: All code that uses a syntax like AVSwitch().getFramebufferScale() should
+# 	be fixed to use avSwitch.getFramebufferScale(), that is use the existing
+# 	instantiation of the class rather then creating a new instance!
+# 	That is:
+# 		from Components.AVSwitch import AVSwitch
+# 		...
+# 		AVSwitch().getFramebufferScale()
+# 	should be changed to:
+#		(1, 1)
+#
+class AVSwitch:
+	def setInput(self, input):
+		return iAVSwitch.setInput(input)
+
+	def getAspectRatioSetting(self):
+		return iAVSwitch.getAspectRatioSetting()
+
+	def setAspectRatio(self, value):
+		return iAVSwitch.setAspectRatio(value)
+
+	def getFramebufferScale(self):
+		return (1, 1)
