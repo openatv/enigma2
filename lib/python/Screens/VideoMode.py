@@ -599,8 +599,8 @@ class AutoVideoMode(Screen):
 
 		video_rate = avControl.getFrameRate(0)
 		video_pol = "p" if avControl.getProgressive() else "i"
-		video_width = avControl.getResolutionY(0)
-		video_height = avControl.getResolutionX(0)
+		video_width = avControl.getResolutionX(0)
+		video_height = avControl.getResolutionY(0)
 
 		if not video_height or not video_width or not video_pol or not video_rate:
 			service = self.session and self.session.nav.getCurrentService()

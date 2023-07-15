@@ -154,25 +154,25 @@ class ServiceInfo(Poll, Converter):
 	def _getVideoHeight(self, info):
 		if self._isHDMIIn(info):
 			return -1
-		val = eAVControl.getInstance().getResolutionX(0)
+		val = eAVControl.getInstance().getResolutionY(0)
 		return val if val else info.getInfo(iServiceInformation.sVideoHeight)
 
 	def _getVideoHeightStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
 		if self._isHDMIIn(info):
 			return "?"
-		val = eAVControl.getInstance().getResolutionX(0)
+		val = eAVControl.getInstance().getResolutionY(0)
 		return convert(val) if val else self.getServiceInfoString(info, iServiceInformation.sVideoHeight, convert)
 
 	def _getVideoWidth(self, info):
 		if self._isHDMIIn(info):
 			return -1
-		val = eAVControl.getInstance().getResolutionY(0)
+		val = eAVControl.getInstance().getResolutionX(0)
 		return val if val else info.getInfo(iServiceInformation.sVideoWidth)
 
 	def _getVideoWidthStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
 		if self._isHDMIIn(info):
 			return "?"
-		val = eAVControl.getInstance().getResolutionY(0)
+		val = eAVControl.getInstance().getResolutionX(0)
 		return convert(val) if val else self.getServiceInfoString(info, iServiceInformation.sVideoWidth, convert)
 
 	def _getFrameRate(self, info):
@@ -400,12 +400,12 @@ class ServiceInfo(Poll, Converter):
 			return -1
 
 		if self.type == self.XRES:
-			video_width = eAVControl.getInstance().getResolutionY(0)
+			video_width = eAVControl.getInstance().getResolutionX(0)
 			if not video_width:
 				video_width = info.getInfo(iServiceInformation.sVideoWidth)
 			return str(video_width)
 		elif self.type == self.YRES:
-			video_height = eAVControl.getInstance().getResolutionX(0)
+			video_height = eAVControl.getInstance().getResolutionY(0)
 			if not video_height:
 				video_height = info.getInfo(iServiceInformation.sVideoHeight)
 			return str(video_height)
