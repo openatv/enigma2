@@ -36,6 +36,7 @@ public:
 	bool isEncoderActive() const;
 
 	void setAspectRatio(int ratio, int flags = 0) const;
+	void setAspect(const std::string &newFormat, int flags = 0) const;
 	void setColorFormat(const std::string &newFormat, int flags = 0) const;
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;

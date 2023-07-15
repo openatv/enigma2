@@ -442,24 +442,24 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %d", __MODULE__, "setAspectRatio", ratio);
 
-	/*
+		/*
 
-	0 normal
-	1 full stretch
-	2 4-3
-	3 16-9
-	4 non-linear
-	5 normal-noscaleup
-	6 4-3 ignore
-	7 4-3 letter box
-	8 4-3 pan scan
-	9 4-3 combined
-	10 16-9 ignore
-	11 16-9 letter box
-	12 16-9 pan scan
-	13 16-9 combined
+		0 normal
+		1 full stretch
+		2 4-3
+		3 16-9
+		4 non-linear
+		5 normal-noscaleup
+		6 4-3 ignore
+		7 4-3 letter box
+		8 4-3 pan scan
+		9 4-3 combined
+		10 16-9 ignore
+		11 16-9 letter box
+		12 16-9 pan scan
+		13 16-9 combined
 
-	*/
+		*/
 
 #else
 
@@ -492,6 +492,32 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/policy", newAspect.c_str());
 #endif
+}
+
+/// @brief setAspect
+/// @param newFormat (auto, 4:3, 16:9, 16:10)
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+void eAVControl::setAspect(const std::string &newFormat, int flags) const
+{
+
+#ifdef DREAMNEXTGEN
+
+	std::string newMode = "0";
+
+	if (newFormat == "16:9")
+		newMode = "7";
+	else if (newFormat == "4:3")
+		newMode = "2";
+	else if (newFormat == "16:10")
+		newMode = "9";
+
+	CFile::writeStr(proc_videoaspect, newMode, __MODULE__, flags);
+#else
+	CFile::writeStr(proc_videoaspect, newFormat, __MODULE__, flags);
+#endif
+
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setAspect", newFormat.c_str());
 }
 
 /// @brief set video input

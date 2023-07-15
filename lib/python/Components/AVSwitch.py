@@ -469,13 +469,7 @@ class AVSwitch:
 		self.setMode(port, mode, rate)
 
 	def setAspect(self, cfgelement):
-		print("[AVSwitch] setting aspect: %s" % cfgelement.value)
-		try:
-			f = open("/proc/stb/video/aspect", "w")
-			f.write(cfgelement.value)
-			f.close()
-		except OSError:
-			print("[AVSwitch] setting aspect failed.")
+		eAVControl.getInstance().setAspect(cfgelement.value, 1)
 
 	def setWss(self, cfgelement):
 		eAVControl.getInstance().setWSS(cfgelement.value, 1)
