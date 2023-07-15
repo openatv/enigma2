@@ -33,7 +33,7 @@ class ResolutionSelection(Screen):
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 		if BoxInfo.getItem("AmlogicFamily"):
-			mode = open("/sys/class/display/mode").read()[:-1]
+			mode = open("/sys/class/display/mode").read()[:-5]
 		else:
 			mode = open("/proc/stb/video/videomode").read()[:-1]
 		print(mode)
