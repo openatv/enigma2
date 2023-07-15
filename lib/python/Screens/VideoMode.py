@@ -896,11 +896,6 @@ class AutoVideoMode(Screen):
 
 			if write_mode and current_mode != write_mode and self.bufferfull or self.firstrun:
 				values = iAVSwitch.readAvailableModes()
-				if write_mode not in values:
-					if (write_mode == "1080p24") or (write_mode == "1080p30") or (write_mode == "1080p60"):
-						write_mode = "1080p"
-					elif (write_mode == "2160p24") or (write_mode == "2160p30") or (write_mode == "2160p60"):
-						write_mode = "2160p"
 				if write_mode in values:
 					avControl.setVideoMode(write_mode)
 					print("[VideoMode] setMode - port: %s, mode: %s (autoresTyp: '%s')" % (config_port, write_mode, autorestyp))
