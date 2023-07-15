@@ -1,5 +1,4 @@
-from __future__ import print_function
-from __future__ import absolute_import
+from enigma import eAVControl
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Components.SystemInfo import BoxInfo
@@ -9,22 +8,13 @@ class ResolutionSelection(Screen):
 	def __init__(self, session, infobar=None):
 		Screen.__init__(self, session)
 
-		if BoxInfo.getItem("AmlogicFamily"):
-			xresString = open("/sys/class/video/frame_width", "r").read()
-			yresString = open("/sys/class/video/frame_height", "r").read()
-			fpsString = open("/proc/stb/vmpeg/0/frame_rate", "r").read()
-			xres = int(xresString)
-			yres = int(yresString)
-			fps = int(fpsString)
-		else:
-			xresString = open("/proc/stb/vmpeg/0/xres", "r").read()
-			yresString = open("/proc/stb/vmpeg/0/yres", "r").read()
-			fpsString = open("/proc/stb/vmpeg/0/framerate", "r").read()
-			xres = int(xresString, 16)
-			yres = int(yresString, 16)
-			fps = int(fpsString, 16)
-			fpsFloat = float(fps)
-			fpsFloat = fpsFloat / 1000
+		avControl = eAVControl.getInstance()
+		fps = avControl.getFrameRate(0)
+		yres = avControl.getResolutionY(0)
+		xres = avControl.getResolutionX(0)
+
+		fpsFloat = float(fps)
+		fpsFloat = fpsFloat / 1000
 
 		selection = 0
 		tlist = []
