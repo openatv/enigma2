@@ -206,19 +206,13 @@ class VideoSetup(Screen, ConfigListScreen):
 		if not force_wide:
 			self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
 
-		if hasattr(config.av, 'policy_169'):
-			if force_wide or config.av.aspect.value in ("16:9", "16:10"):
-				self.list.extend((
-					getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture.")),
-					getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."))
-				))
-			elif config.av.aspect.value == "4:3":
-				self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
-		else:
-			if force_wide or config.av.aspect.value in ("16:9", "16:10"):
-				self.list.append(getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture.")))
-			elif config.av.aspect.value == "4:3":
-				self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_43, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
+		if force_wide or config.av.aspect.value in ("16:9", "16:10"):
+			self.list.extend((
+				getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture.")),
+				getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."))
+			))
+		elif config.av.aspect.value == "4:3":
+			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
 		if config.av.videoport.value == "HDMI":
 			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override, _("This option allows you to use all HDMI Modes")))
@@ -992,8 +986,7 @@ class AutoVideoMode(Screen):
 			iAVSwitch.setAspect(config.av.aspect)
 			iAVSwitch.setWss(config.av.wss)
 			iAVSwitch.setPolicy43(config.av.policy_43)
-			if hasattr(config.av, 'policy_169'):
-				iAVSwitch.setPolicy169(config.av.policy_169)
+			iAVSwitch.setPolicy169(config.av.policy_169)
 
 		self.firstrun = False
 		self.delay = False
