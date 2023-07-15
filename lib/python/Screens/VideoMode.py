@@ -869,13 +869,13 @@ class AutoVideoMode(Screen):
 					new_rate = ''  # omit frame rate specifier, e.g. '1080p' instead of '1080p50' if there is no clue
 				if mypath != '':
 					if mypath.endswith('.ts'):
-						print("DEBUG VIDEOMODE/ playing .ts file")
+						print("[VIDEOMODE] playing .ts file")
 						new_rate = '50'  # for .ts files
 					else:
-						print("DEBUG VIDEOMODE/ playing other (non .ts) file")
+						print("[VIDEOMODE] playing other (non .ts) file")
 						# new_rate from above for all other videos
 				else:
-					print("DEBUG VIDEOMODE/ no path or no service reference, presumably live TV")
+					print("[VIDEOMODE] no path or no service reference, presumably live TV")
 					new_rate = '50'  # for TV / or no service reference, then stay at 1080p50
 
 				new_rate = new_rate.replace('25', '50')
@@ -892,7 +892,7 @@ class AutoVideoMode(Screen):
 						write_mode = '1080i' + new_rate
 				elif config.av.smart1080p.value == '720p50':
 					write_mode = '720p' + new_rate
-				#print "[VideoMode] smart1080p mode, selecting ",write_mode
+				#print("[VideoMode] smart1080p mode, selecting ",write_mode)
 
 			if write_mode and current_mode != write_mode and self.bufferfull or self.firstrun:
 				values = iAVSwitch.readAvailableModes()
@@ -901,6 +901,11 @@ class AutoVideoMode(Screen):
 						write_mode = "1080p"
 					elif (write_mode == "2160p24") or (write_mode == "2160p30") or (write_mode == "2160p60"):
 						write_mode = "2160p"
+				if BoxInfo.getItem("AmlogicFamily"):
+					if write_mode[-1] == "p" or write_mode[-1] == "i":
+						write_mode += "60hz"
+					else:
+						write_mode += "hz"
 				if write_mode in values:
 					avControl.setVideoMode(write_mode)
 					print("[VideoMode] setMode - port: %s, mode: %s (autoresTyp: '%s')" % (config_port, write_mode, autorestyp))
