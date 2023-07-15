@@ -609,7 +609,7 @@ class AutoVideoMode(Screen):
 
 		print("[VideoMode] detect video height: %s, width: %s, pol: %s, rate: %s (current video mode: %s)" % (video_height, video_width, video_pol, video_rate, current_mode))
 		if video_height and video_width and video_pol and video_rate:
-			label_rate = (video_rate + 500) / 1000
+			label_rate = (video_rate + 500) // 1000
 			if video_pol == 'i':
 				label_rate *= 2
 			resolutionlabel["content"].setText(_("Video content: %ix%i%s %iHz") % (video_width, video_height, video_pol, label_rate))
@@ -636,7 +636,7 @@ class AutoVideoMode(Screen):
 					new_rate = 30000
 				else:
 					new_rate = video_rate
-				new_rate = str((new_rate + 500) / 1000)
+				new_rate = str((new_rate + 500) // 1000)
 			else:
 				new_rate = config_rate
 
@@ -652,7 +652,7 @@ class AutoVideoMode(Screen):
 
 			elif config.av.autores.value == 'simple':
 				autorestyp = 'simple'
-				new_rate = (video_rate + 500) / 1000
+				new_rate = (video_rate + 500) // 1000
 				if video_height <= 576 and int(config_res) >= 576:  # sd
 					if config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value in ("auto", "multi"):
 						if video_pol == 'i':
@@ -690,7 +690,7 @@ class AutoVideoMode(Screen):
 				new_rate = str(int(new_rate))
 
 				if new_mode[-1:] == 'p':
-					new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_mode[:-1], config_res, config_rate)
+					new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == 'i') + 1), new_rate, new_mode[:-1], config_res, config_rate)
 
 				if new_mode + new_rate in iAVSwitch.readAvailableModes():
 					write_mode = new_mode + new_rate
@@ -706,7 +706,7 @@ class AutoVideoMode(Screen):
 
 			elif config.av.autores.value == 'native':
 				autorestyp = 'native'
-				new_rate = (video_rate + 500) / 1000
+				new_rate = (video_rate + 500) // 1000
 				new_pol = video_pol
 				new_res = str(video_height)
 				if video_pol == 'i':
@@ -729,7 +729,7 @@ class AutoVideoMode(Screen):
 				new_rate = str(int(new_rate))
 
 				if new_pol == 'p':
-					new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
+					new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
 
 				if new_res + new_pol + new_rate in iAVSwitch.readAvailableModes():
 					write_mode = new_res + new_pol + new_rate
@@ -752,7 +752,7 @@ class AutoVideoMode(Screen):
 					elif config.av.autores_unknownres.value == 'highest':
 						new_res = config_res
 					if new_pol == 'p':
-						new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
+						new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
 					if new_res + new_pol + new_rate in iAVSwitch.readAvailableModes():
 						write_mode = new_res + new_pol + new_rate
 					elif new_res + new_pol in iAVSwitch.readAvailableModes():
