@@ -4349,8 +4349,7 @@ class InfoBarResolutionSelection:
 				if videoMode[-1].isdigit():
 					video = "%sHz" % videoMode
 				resList.append((video, videoMode))
-		file = "/sys/class/display/mode" if amlogic else "/proc/stb/video/videomode"
-		videoMode = fileReadLine(file, default="Unknown", source=MODULE_NAME)
+		videoMode = avControl.getVideoMode("Unknown")
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		selection = 0
 		for item in range(len(resList)):
@@ -4366,17 +4365,12 @@ class InfoBarResolutionSelection:
 				if videoMode[1] == "exit" or videoMode[1] == "" or videoMode[1] == "auto":
 					self.ExGreen_toggleGreen()
 				if videoMode[1] != "auto":
-					file = "/sys/class/display/mode" if BoxInfo.getItem("AmlogicFamily") else "/proc/stb/video/videomode"
-					if fileWriteLine(file, videoMode[1], source=MODULE_NAME):
-						print("[InfoBarGenerics] New video mode is '%s'." % videoMode[1])
-					else:
-						print("[InfoBarGenerics] Error: Unable to set new video mode of '%s'!" % videoMode[1])
+					eAVControl.getInstance().setVideoMode(videoMode[1])
 					# from enigma import gMainDC
 					# gMainDC.getInstance().setResolution(-1, -1)
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()
-		return
 
 
 class InfoBarVmodeButton:

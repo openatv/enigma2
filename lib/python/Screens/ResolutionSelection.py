@@ -50,10 +50,7 @@ class ResolutionSelection(Screen):
 				if Resolution[1] == "exit":
 					self.ExGreen_toggleGreen()
 				elif Resolution[1] != "auto":
-					if BoxInfo.getItem("AmlogicFamily"):
-						open("/sys/class/display/mode", "w").write(Resolution[1])
-					else:
-						open("/proc/stb/video/videomode", "w").write(Resolution[1])
+					eAVControl.getInstance().setVideoMode(Resolution[1])
 					from enigma import gFBDC
 					gFBDC.getInstance().setResolution(-1, -1)
 					self.ExGreen_toggleGreen()
