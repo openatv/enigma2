@@ -284,7 +284,9 @@ std::string eAVControl::getVideoMode(const std::string &defaultVal, int flags) c
 void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 {
 #ifdef VIDEO_MODE_50
+	// gigablue driver bug
 	CFile::writeStr(proc_videomode_50, newMode, __MODULE__, flags);
+	CFile::writeStr(proc_videomode_60, newMode, __MODULE__, flags);
 #else
 	CFile::writeStr(proc_videomode, newMode, __MODULE__, flags);
 #endif
