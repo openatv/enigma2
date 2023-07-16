@@ -4338,8 +4338,8 @@ class InfoBarResolutionSelection:
 		resList.append((_("Video: ") + "%dx%d@%gHz" % (xRes, yRes, fps), ""))
 		resList.append(("--", ""))
 		# Do we need a new sorting with this way here or should we disable some choices?
-		videoModes = iAVSwitch.readPreferredModes()
-		videoModes = videoModes.replace("pal ", "").replace("ntsc ", "").split(" ")
+		videoModes = iAVSwitch.readPreferredModes(readOnly=True)
+		videoModes = [x.replace("pal ", "").replace("ntsc ", "") for x in videoModes]  # Do we need this?
 		for videoMode in videoModes:
 			video = videoMode
 			if videoMode.endswith("23"):

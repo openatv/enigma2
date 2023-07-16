@@ -203,7 +203,7 @@ class AVSwitchBase:
 	def is24hzAvailable(self):
 		BoxInfo.setItem("have24hz", eAVControl.getInstance().has24hz())
 
-	def readPreferredModes(self, saveMode=False):
+	def readPreferredModes(self, saveMode=False, readOnly=False):
 		modes = ""
 		if config.av.edid_override.value is False:
 			modes = eAVControl.getInstance().getPreferredModes(1)
@@ -221,6 +221,9 @@ class AVSwitchBase:
 		if len(self.modes_preferred) <= 2:
 			print("[AVSwitch] preferend modes not ok, possible driver failer, len=%s" % len(self.modes_preferred))
 			self.modes_preferred = self.readAvailableModes()
+
+		if readOnly:
+			return self.modes_preferred
 
 		if self.modes_preferred != self.last_modes_preferred:
 			self.last_modes_preferred = self.modes_preferred
