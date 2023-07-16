@@ -50,7 +50,14 @@ eServiceMP3Record::~eServiceMP3Record()
 
 RESULT eServiceMP3Record::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm, int packetsize)
 {
-	eDebug("[eMP3ServiceRecord] prepare filename %s", filename);
+
+	bool config_recording_always_ecm = eConfigManager::getConfigBoolValue("config.recording.always_ecm", false);
+	bool config_recording_never_decrypt = eConfigManager::getConfigBoolValue("config.recording.never_decrypt", false);
+
+	m_descramble = config_recording_never_decrypt ? false : descramble;
+	m_record_ecm = config_recording_always_ecm ? true : recordecm;
+
+	eDebug("[eMP3ServiceRecord] prepare filename %s / m_record_ecm = %d / m_descramble = %d", filename, m_record_ecm, m_descramble);
 	m_filename = filename;
 
 	if (m_state == stateIdle)
@@ -71,7 +78,7 @@ RESULT eServiceMP3Record::prepare(const char *filename, time_t begTime, time_t e
 				meta.m_description = descr;
 			if (tags)
 				meta.m_tags = tags;
-			meta.m_scrambled = recordecm; /* assume we will record scrambled data, when ecm will be included in the recording */
+			meta.m_scrambled = !m_descramble;
 			ret = meta.updateMeta(m_filename.c_str()) ? -255 : 0;
 			if (!ret)
 			{
