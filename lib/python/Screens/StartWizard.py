@@ -197,8 +197,10 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 				pass
 
 		if preferred:
-			if "2160p" in preferred:
+			if "2160p50" in preferred:
 				self.mode = "2160p"
+			elif "2160p30" in preferred:
+				self.mode = "2160p30"
 			elif "1080p" in preferred:
 				self.mode = "1080p"
 
