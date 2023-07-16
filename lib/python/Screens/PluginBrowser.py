@@ -234,6 +234,8 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 		if config.pluginfilter.userfeed.value != "http://" and not exists("/etc/opkg/user-feed.conf"):
 			self.createFeedConfig()
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.onFirstExecBegin.append(self.checkWarnings)
+		self.onShown.append(self.updatePluginList)
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
@@ -252,8 +254,6 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 
 	def layoutFinished(self):
 		self[self.layout].enableAutoNavigation(False)  # Override list box self navigation.
-		self.checkWarnings()
-		self.updatePluginList()
 
 	def selectionChanged(self):
 		if self.pluginList:
