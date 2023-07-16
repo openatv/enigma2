@@ -457,7 +457,7 @@ def InitAVSwitch():
 		("simple", _("Simple")),
 		("native", _("Native")),
 		("all", _("All resolutions")),
-		("hd", _("only HD"))
+		("hd", _("Only HD"))
 	])
 
 	config.av.autores_preview = NoSave(ConfigYesNo(default=False))
@@ -494,8 +494,8 @@ def InitAVSwitch():
 	config.av.autores_30p = ConfigSelection(default="60,30", choices=choiceList)
 
 	config.av.autores_unknownres = ConfigSelection(default="next", choices=[
-		("next", _("next higher Resolution")),
-		("highest", _("highest Resolution"))
+		("next", _("Next higher resolution")),
+		("highest", _("Highest resolution"))
 	])
 
 	choiceList = []
@@ -895,7 +895,7 @@ def InitAVSwitch():
 	BoxInfo.setItem("haveboxmode", boxMode)
 	if boxMode:
 		config.av.boxmode = ConfigSelection(default="12", choices=[
-			("12", _("enable PiP no HDR")),
+			("12", _("Enable PiP no HDR")),
 			("1", _("12bit 4:2:0/4:2:2 no PiP"))
 		])
 
@@ -952,9 +952,9 @@ def InitAVSwitch():
 	if AMLHDRSupport:
 
 		config.av.amlhdr10_support = ConfigSelection(default="hdr10-2", choices=[
-			("hdr10-0", _("force enabled")),
-			("hdr10-1", _("force disabled")),
-			("hdr10-2", _("controlled by HDMI"))
+			("hdr10-0", _("Force enabled")),
+			("hdr10-1", _("Force disabled")),
+			("hdr10-2", _("Controlled by HDMI"))
 		])
 
 		def setAMLHDR10(configElement):
@@ -967,9 +967,9 @@ def InitAVSwitch():
 	if AMLHDRSupport:
 
 		config.av.amlhlg_support = ConfigSelection(default="hlg-2", choices=[
-			("hlg-0", _("force enabled")),
-			("hlg-1", _("force disabled")),
-			("hlg-2", _("controlled by HDMI"))
+			("hlg-0", _("Force enabled")),
+			("hlg-1", _("Force disabled")),
+			("hlg-2", _("Controlled by HDMI"))
 		])
 
 		def setAMLHLG(configElement):
@@ -1011,9 +1011,9 @@ def InitAVSwitch():
 			fileWriteLine("/proc/stb/hdmi/hlg_support", configElement.value, source=MODULE_NAME)
 
 		config.av.hlg_support = ConfigSelection(default="auto(EDID)", choices=[
-			("auto(EDID)", _("controlled by HDMI")),
-			("yes", _("force enabled")),
-			("no", _("force disabled"))
+			("auto(EDID)", _("Controlled by HDMI")),
+			("yes", _("Force enabled")),
+			("no", _("Force disabled"))
 		])
 		config.av.hlg_support.addNotifier(setHlgSupport)
 
@@ -1021,9 +1021,9 @@ def InitAVSwitch():
 			fileWriteLine("/proc/stb/hdmi/hdr10_support", configElement.value, source=MODULE_NAME)
 
 		config.av.hdr10_support = ConfigSelection(default="auto(EDID)", choices=[
-			("auto(EDID)", _("controlled by HDMI")),
-			("yes", _("force enabled")),
-			("no", _("force disabled"))
+			("auto(EDID)", _("Controlled by HDMI")),
+			("yes", _("Force enabled")),
+			("no", _("Force disabled"))
 		])
 		config.av.hdr10_support.addNotifier(setHdr10Support)
 
@@ -1085,8 +1085,8 @@ def InitAVSwitch():
 	if surroundSpeaker:
 		config.av.surround_3d_speaker = ConfigSelection(default="center", choices=[
 			("center", _("Center")),
-			("wide", _("wide")),
-			("extrawide", _("extra wide"))
+			("wide", _("Wide")),
+			("extrawide", _("Extra wide"))
 		])
 
 		def set3DSurroundSpeaker(configElement):
@@ -1152,16 +1152,16 @@ def InitAVSwitch():
 
 			config.av.downmix_ac3 = ConfigSelection(default="downmix", choices=[
 				("downmix", _("Downmix")),
-				("passthrough", _("Passthrough")),
-				("multichannel", _("convert to multi-channel PCM")),
-				("hdmi_best", _("use best / controlled by HDMI"))
+				("passthrough", _("Pass-through")),
+				("multichannel", _("Convert to multi-channel PCM")),
+				("hdmi_best", _("Use best / Controlled by HDMI"))
 			])
 
 		elif MACHINEBUILD in ("dreamone", "dreamtwo"):
 			config.av.downmix_ac3 = ConfigSelection(default="0", choices=[
 				("0", _("Downmix")),
-				("1", _("Passthrough")),
-				("2", _("use best / controlled by HDMI"))
+				("1", _("Pass-through")),
+				("2", _("Use best / Controlled by HDMI"))
 			])
 		else:
 			config.av.downmix_ac3 = ConfigYesNo(default=True)
@@ -1194,24 +1194,24 @@ def InitAVSwitch():
 	if AC3plusTranscode:
 		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
 			choiceList = [
-					("use_hdmi_caps", _("controlled by HDMI")),
-					("force_ac3", _("convert to AC3")),
-					("multichannel", _("convert to multi-channel PCM")),
-					("hdmi_best", _("use best / controlled by HDMI")),
-					("force_ddp", _("force AC3plus"))
+					("use_hdmi_caps", _("Controlled by HDMI")),
+					("force_ac3", _("Convert to AC3")),
+					("multichannel", _("Convert to multi-channel PCM")),
+					("hdmi_best", _("Use best / Controlled by HDMI")),
+					("force_ddp", _("Force AC3plus"))
 				]
 		elif MACHINEBUILD in ("gbquad4k", "gbue4k", "gbx34k"):
 			choiceList = [
 					("downmix", _("Downmix")),
-					("passthrough", _("Passthrough")),
-					("force_ac3", _("convert to AC3")),
-					("multichannel", _("convert to multi-channel PCM")),
-					("force_dts", _("convert to DTS"))
+					("passthrough", _("Pass-through")),
+					("force_ac3", _("Convert to AC3")),
+					("multichannel", _("Convert to multi-channel PCM")),
+					("force_dts", _("Convert to DTS"))
 				]
 		else:
 			choiceList = [
-					("use_hdmi_caps", _("controlled by HDMI")),
-					("force_ac3", _("convert to AC3"))
+					("use_hdmi_caps", _("Controlled by HDMI")),
+					("force_ac3", _("Convert to AC3"))
 				]
 
 		config.av.transcodeac3plus = ConfigSelection(default="force_ac3", choices=choiceList)
@@ -1229,17 +1229,17 @@ def InitAVSwitch():
 		if MACHINEBUILD in ("dm7080", "dm820"):
 			default = "use_hdmi_caps"
 			choiceList = [
-				("use_hdmi_caps", _("controlled by HDMI")),
-				("force_dts", _("convert to DTS"))
+				("use_hdmi_caps", _("Controlled by HDMI")),
+				("force_dts", _("Convert to DTS"))
 			]
 		else:
 			default = "downmix"
 			choiceList = [
 				("downmix", _("Downmix")),
-				("force_dts", _("convert to DTS")),
-				("use_hdmi_caps", _("controlled by HDMI")),
-				("multichannel", _("convert to multi-channel PCM")),
-				("hdmi_best", _("use best / controlled by HDMI"))
+				("force_dts", _("Convert to DTS")),
+				("use_hdmi_caps", _("Controlled by HDMI")),
+				("multichannel", _("Convert to multi-channel PCM")),
+				("hdmi_best", _("Use best / Controlled by HDMI"))
 			]
 		config.av.dtshd = ConfigSelection(default=default, choices=choiceList)
 
@@ -1256,9 +1256,9 @@ def InitAVSwitch():
 
 		config.av.wmapro = ConfigSelection(default="downmix", choices=[
 			("downmix", _("Downmix")),
-			("passthrough", _("Passthrough")),
-			("multichannel", _("convert to multi-channel PCM")),
-			("hdmi_best", _("use best / controlled by HDMI"))
+			("passthrough", _("Pass-through")),
+			("multichannel", _("Convert to multi-channel PCM")),
+			("hdmi_best", _("Use best / Controlled by HDMI"))
 		])
 
 		def setWMAPro(configElement):
@@ -1286,22 +1286,22 @@ def InitAVSwitch():
 
 			config.av.downmix_aac = ConfigSelection(default="downmix", choices=[
 				("downmix", _("Downmix")),
-				("passthrough", _("Passthrough")),
-				("multichannel", _("convert to multi-channel PCM")),
-				("hdmi_best", _("use best / Controlled by HDMI"))
+				("passthrough", _("Pass-through")),
+				("multichannel", _("Convert to multi-channel PCM")),
+				("hdmi_best", _("Use best / Controlled by HDMI"))
 			])
 
 		elif MACHINEBUILD in ("gbquad4k", "gbue4k", "gbx34k"):
 
 			config.av.downmix_aac = ConfigSelection(default="downmix", choices=[
 				("downmix", _("Downmix")),
-				("passthrough", _("Passthrough")),
-				("multichannel", _("convert to multi-channel PCM")),
-				("force_ac3", _("convert to AC3")),
-				("force_dts", _("convert to DTS")),
-				("use_hdmi_cacenter", _("use_hdmi_cacenter")),
-				("wide", _("wide")),
-				("extrawide", _("extra wide"))
+				("passthrough", _("Pass-through")),
+				("multichannel", _("Convert to multi-channel PCM")),
+				("force_ac3", _("Convert to AC3")),
+				("force_dts", _("Convert to DTS")),
+				("use_hdmi_cacenter", _("Use best / Controlled by HDMI")),
+				("wide", _("Wide")),
+				("extrawide", _("Extra wide"))
 			])
 
 		else:
@@ -1320,13 +1320,13 @@ def InitAVSwitch():
 	if aacplusDownmix:
 		config.av.downmix_aacplus = ConfigSelection(default="downmix", choices=[
 			("downmix", _("Downmix")),
-			("passthrough", _("Passthrough")),
-			("multichannel", _("convert to multi-channel PCM")),
-			("force_ac3", _("convert to AC3")),
-			("force_dts", _("convert to DTS")),
-			("use_hdmi_cacenter", _("use_hdmi_cacenter")),
-			("wide", _("wide")),
-			("extrawide", _("extra wide"))
+			("passthrough", _("Pass-through")),
+			("multichannel", _("Convert to multi-channel PCM")),
+			("force_ac3", _("Convert to AC3")),
+			("force_dts", _("Convert to DTS")),
+			("use_hdmi_cacenter", _("Use best / Controlled by HDMI")),
+			("wide", _("Wide")),
+			("extrawide", _("Extra wide"))
 		])
 
 		def setAACDownmixPlus(configElement):
@@ -1335,7 +1335,7 @@ def InitAVSwitch():
 		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
 
 	if exists("/proc/stb/audio/aac_transcode_choices"):
-		aacTranscodeAll = [("off", _("off")), ("ac3", _("ac3")), ("dts", _("dts"))]
+		aacTranscodeAll = [("off", _("Off")), ("ac3", "AC3"), ("dts", "DTS")]
 		# The translation text must look exactly like the read value. It is then adjusted with the PO file
 
 		aactranscodeChoices = fileReadLine("/proc/stb/audio/aac_transcode_choices", default=None, source=MODULE_NAME)
