@@ -304,7 +304,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				config.av.autores_1080i_deinterlace.setValue(self.last_good_autores_extra[1])
 				config.av.autores_unknownres.setValue(self.last_good_autores_unknownres)
 				if self.current_mode in iAVSwitch.readAvailableModes():
-					eAVControl.getInstance().setVideoMode(self.current_mode)
+					self.hw.setVideoModeDirect(self.current_mode)
 				else:
 					self.hw.setMode(*self.last_good)
 			self.createSetup()
@@ -907,7 +907,7 @@ class AutoVideoMode(Screen):
 					else:
 						write_mode += "hz"
 				if write_mode in values:
-					avControl.setVideoMode(write_mode)
+					self.hw.setVideoModeDirect(write_mode)
 					print("[VideoMode] setMode - port: %s, mode: %s (autoresTyp: '%s')" % (config_port, write_mode, autorestyp))
 					resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 				else:

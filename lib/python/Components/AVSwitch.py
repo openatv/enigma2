@@ -348,6 +348,15 @@ class AVSwitchBase:
 	def setInput(self, input):
 		eAVControl.getInstance().setInput(input, 1)
 
+	def setVideoModeDirect(self, mode):
+		if BoxInfo.getItem("AmlogicFamily"):
+			rate = mode[-4:].replace("hz", "Hz")
+			force = int(rate[:-2])
+			mode = mode[:-4]
+			self.setMode("HDMI", mode, rate, force)
+		else:
+			eAVControl.getInstance().setVideoMode(mode)
+
 	def setMode(self, port, mode, rate, force=None):
 		print("[AVSwitch] Setting mode for port '%s', mode '%s', rate '%s'." % (port, mode, rate))
 		# config.av.videoport.value = port  # We can ignore "port".
