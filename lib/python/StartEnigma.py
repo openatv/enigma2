@@ -320,26 +320,29 @@ class PowerKey:
 
 class AutoScartControl:
 	def __init__(self, session):
-		self.force = False
-		self.current_vcr_sb = enigma.eAVSwitch.getInstance().getVCRSlowBlanking()
-		if self.current_vcr_sb and config.av.vcrswitch.value:
-			self.scartDialog = session.instantiateDialog(Scart, True)
-		else:
-			self.scartDialog = session.instantiateDialog(Scart, False)
-		config.av.vcrswitch.addNotifier(self.recheckVCRSb)
-		enigma.eAVSwitch.getInstance().vcr_sb_notifier.get().append(self.VCRSbChanged)
+		self.hasScart = BoxInfo.getItem("scart")
+		if self.hasScart:
+			self.force = False
+			self.current_vcr_sb = enigma.eAVControl.getInstance().getVCRSlowBlanking()
+			if self.current_vcr_sb and config.av.vcrswitch.value:
+				self.scartDialog = session.instantiateDialog(Scart, True)
+			else:
+				self.scartDialog = session.instantiateDialog(Scart, False)
+			config.av.vcrswitch.addNotifier(self.recheckVCRSb)
+			enigma.eAVControl.getInstance().vcr_sb_notifier.get().append(self.VCRSbChanged)
 
 	def recheckVCRSb(self, configelement):
 		self.VCRSbChanged(self.current_vcr_sb)
 
 	def VCRSbChanged(self, value):
-		# print("[StartEnigma] VCR SB changed to '%s'." % value)
-		self.current_vcr_sb = value
-		if config.av.vcrswitch.value or value > 2:
-			if value:
-				self.scartDialog.showMessageBox()
-			else:
-				self.scartDialog.switchToTV()
+		if self.hasScart:
+			# print("[StartEnigma] VCR SB changed to '%s'." % value)
+			self.current_vcr_sb = value
+			if config.av.vcrswitch.value or value > 2:
+				if value:
+					self.scartDialog.showMessageBox()
+				else:
+					self.scartDialog.switchToTV()
 
 
 def runScreenTest():
@@ -350,7 +353,7 @@ def runScreenTest():
 			try:
 				with open(filename, "r") as fd:
 					line = fd.read().strip().replace("\0", "")
-					count = int(line) if isdecimal(line) else 0
+					count = int(line) if line.isdecimal() else 0
 				if count >= 3:
 					return False
 			except OSError as err:
@@ -902,9 +905,7 @@ IconCheck()
 if BOX_TYPE in ("uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "beyonwizt3"):
 	fileUpdateLine("/proc/stb/fp/enable_clock", conditionValue="1", replacementValue="0", source=MODULE_NAME)
 
-if BOX_TYPE in ("dm7080", "dm820", "dm900", "dm920", "gb7252"):
-	fileUpdateLine("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", conditionValue="on", replacementValue="off", source=MODULE_NAME)
-	fileUpdateLine("/proc/stb/audio/hdmi_rx_monitor", conditionValue="on", replacementValue="off", source=MODULE_NAME)
+enigma.eAVControl.getInstance().disableHDMIIn()
 
 profile("UserInterface")
 from Screens.UserInterfacePositioner import InitOsd

@@ -54,23 +54,7 @@ class VideoWizard(Wizard, ShowRemoteControl):
 			"smpte": 20
 		}
 
-		preferred = ""
-		try:
-			if BoxInfo.getItem("AmlogicFamily"):
-				fd = open("/sys/class/amhdmitx/amhdmitx0/disp_cap")
-				preferred = fd.read()[:-1].replace('*', '')
-				fd.close()
-			else:
-				fd = open("/proc/stb/video/videomode_edid")
-				preferred = fd.read()[:-1]
-				fd.close()
-		except OSError:
-			try:
-				fd = open("/proc/stb/video/videomode_preferred")
-				preferred = fd.read()[:-1]
-				fd.close()
-			except OSError:
-				pass
+		preferred = self.avSwitch.readPreferredModes(saveMode=True)
 
 		if "2160p" in preferred:
 			sortKeys["2160p"] = 1

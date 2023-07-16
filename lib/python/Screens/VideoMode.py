@@ -1,7 +1,7 @@
 from __future__ import print_function
 from os import path
 
-from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
+from enigma import eAVControl, iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
 
 from Screens.Screen import Screen
 from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
@@ -206,19 +206,13 @@ class VideoSetup(Screen, ConfigListScreen):
 		if not force_wide:
 			self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
 
-		if hasattr(config.av, 'policy_169'):
-			if force_wide or config.av.aspect.value in ("16:9", "16:10"):
-				self.list.extend((
-					getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture.")),
-					getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."))
-				))
-			elif config.av.aspect.value == "4:3":
-				self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
-		else:
-			if force_wide or config.av.aspect.value in ("16:9", "16:10"):
-				self.list.append(getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture.")))
-			elif config.av.aspect.value == "4:3":
-				self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_43, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
+		if force_wide or config.av.aspect.value in ("16:9", "16:10"):
+			self.list.extend((
+				getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43, _("When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture.")),
+				getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."))
+			))
+		elif config.av.aspect.value == "4:3":
+			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
 		if config.av.videoport.value == "HDMI":
 			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override, _("This option allows you to use all HDMI Modes")))
@@ -309,17 +303,9 @@ class VideoSetup(Screen, ConfigListScreen):
 				config.av.autores_24p.setValue(self.last_good_autores_extra[0])
 				config.av.autores_1080i_deinterlace.setValue(self.last_good_autores_extra[1])
 				config.av.autores_unknownres.setValue(self.last_good_autores_unknownres)
-				try:
-					if not self.current_mode in iAVSwitch.readAvailableModes():
-						raise TypeError("No old video mode saved!")
-					if BoxInfo.getItem("AmlogicFamily"):
-						f = open("/sys/class/display/mode", "w")
-					else:
-						f = open("/proc/stb/video/videomode", "w")
-					f.write(self.current_mode)
-					f.close()
-				except Exception as e:
-					print("[VideoMode] failed to set old video mode!", e)
+				if self.current_mode in iAVSwitch.readAvailableModes():
+					self.hw.setVideoModeDirect(self.current_mode)
+				else:
 					self.hw.setMode(*self.last_good)
 			self.createSetup()
 		else:
@@ -585,14 +571,10 @@ class AutoVideoMode(Screen):
 	def VideoChangeDetect(self):
 		# info: autoresolution preview or save settings call this function with session = None / ~338, ~374
 		global resolutionlabel
+		avControl = eAVControl.getInstance()
 		config_port, config_mode, config_res, config_pol, config_rate = getConfig_videomode(config.av.videomode, config.av.videorate)
 		config_mode = config_mode.replace('p30', 'p')
-		if BoxInfo.getItem("AmlogicFamily"):
-			f = open("/sys/class/display/mode")
-		else:
-			f = open("/proc/stb/video/videomode")
-		current_mode = f.read()[:-1].replace('\n', '')
-		f.close()
+		current_mode = avControl.getVideoMode("")
 		if current_mode.upper() in ('PAL', 'NTSC'):
 			current_mode = current_mode.upper()
 
@@ -606,61 +588,11 @@ class AutoVideoMode(Screen):
 
 		write_mode = None
 		new_mode = None
-		video_height = None
-		video_width = None
-		video_pol = None
-		video_rate = None
-		if BoxInfo.getItem("AmlogicFamily"):
-			if path.exists("/sys/class/video/frame_height"):
-				try:
-					f = open("/sys/class/video/frame_height", "r")
-					video_height = int(f.read())
-					f.close()
-				except Exception:
-					video_height = 0
-			if path.exists("/sys/class/video/frame_width"):
-				try:
-					f = open("/sys/class/video/frame_width", "r")
-					video_width = int(f.read())
-					f.close()
-				except Exception:
-					video_width = 0
-			if path.exists("/proc/stb/vmpeg/0/progressive"):
-				try:
-					f = open("/proc/stb/vmpeg/0/progressive", "r")
-					video_pol = "p" if int(f.read()) else "i"
-					f.close()
-				except Exception:
-					video_pol = "i"
-			if path.exists("/proc/stb/vmpeg/0/frame_rate"):
-				f = open("/proc/stb/vmpeg/0/frame_rate", "r")
-				try:
-					video_rate = int(f.read())
-				except Exception:
-					video_rate = 50
-				f.close()
-		else:
-			if path.exists("/proc/stb/vmpeg/0/xres"):
-				try:
-					f = open("/proc/stb/vmpeg/0/xres", "r")
-					video_width = int(f.read(), 16)
-					f.close()
-				except Exception:
-					video_width = 0
-			if path.exists("/proc/stb/vmpeg/0/progressive"):
-				try:
-					f = open("/proc/stb/vmpeg/0/progressive", "r")
-					video_pol = "p" if int(f.read(), 16) else "i"
-					f.close()
-				except Exception:
-					video_pol = "i"
-			if path.exists("/proc/stb/vmpeg/0/framerate"):
-				f = open("/proc/stb/vmpeg/0/framerate", "r")
-				try:
-					video_rate = int(f.read())
-				except Exception:
-					video_rate = 50
-				f.close()
+
+		video_rate = avControl.getFrameRate(0)
+		video_pol = "p" if avControl.getProgressive() else "i"
+		video_width = avControl.getResolutionX(0)
+		video_height = avControl.getResolutionY(0)
 
 		if not video_height or not video_width or not video_pol or not video_rate:
 			service = self.session and self.session.nav.getCurrentService()
@@ -677,7 +609,7 @@ class AutoVideoMode(Screen):
 
 		print("[VideoMode] detect video height: %s, width: %s, pol: %s, rate: %s (current video mode: %s)" % (video_height, video_width, video_pol, video_rate, current_mode))
 		if video_height and video_width and video_pol and video_rate:
-			label_rate = (video_rate + 500) / 1000
+			label_rate = (video_rate + 500) // 1000
 			if video_pol == 'i':
 				label_rate *= 2
 			resolutionlabel["content"].setText(_("Video content: %ix%i%s %iHz") % (video_width, video_height, video_pol, label_rate))
@@ -704,7 +636,7 @@ class AutoVideoMode(Screen):
 					new_rate = 30000
 				else:
 					new_rate = video_rate
-				new_rate = str((new_rate + 500) / 1000)
+				new_rate = str((new_rate + 500) // 1000)
 			else:
 				new_rate = config_rate
 
@@ -720,7 +652,7 @@ class AutoVideoMode(Screen):
 
 			elif config.av.autores.value == 'simple':
 				autorestyp = 'simple'
-				new_rate = (video_rate + 500) / 1000
+				new_rate = (video_rate + 500) // 1000
 				if video_height <= 576 and int(config_res) >= 576:  # sd
 					if config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value in ("auto", "multi"):
 						if video_pol == 'i':
@@ -758,7 +690,7 @@ class AutoVideoMode(Screen):
 				new_rate = str(int(new_rate))
 
 				if new_mode[-1:] == 'p':
-					new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_mode[:-1], config_res, config_rate)
+					new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == 'i') + 1), new_rate, new_mode[:-1], config_res, config_rate)
 
 				if new_mode + new_rate in iAVSwitch.readAvailableModes():
 					write_mode = new_mode + new_rate
@@ -774,7 +706,7 @@ class AutoVideoMode(Screen):
 
 			elif config.av.autores.value == 'native':
 				autorestyp = 'native'
-				new_rate = (video_rate + 500) / 1000
+				new_rate = (video_rate + 500) // 1000
 				new_pol = video_pol
 				new_res = str(video_height)
 				if video_pol == 'i':
@@ -797,7 +729,7 @@ class AutoVideoMode(Screen):
 				new_rate = str(int(new_rate))
 
 				if new_pol == 'p':
-					new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
+					new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
 
 				if new_res + new_pol + new_rate in iAVSwitch.readAvailableModes():
 					write_mode = new_res + new_pol + new_rate
@@ -820,7 +752,7 @@ class AutoVideoMode(Screen):
 					elif config.av.autores_unknownres.value == 'highest':
 						new_res = config_res
 					if new_pol == 'p':
-						new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
+						new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
 					if new_res + new_pol + new_rate in iAVSwitch.readAvailableModes():
 						write_mode = new_res + new_pol + new_rate
 					elif new_res + new_pol in iAVSwitch.readAvailableModes():
@@ -937,13 +869,13 @@ class AutoVideoMode(Screen):
 					new_rate = ''  # omit frame rate specifier, e.g. '1080p' instead of '1080p50' if there is no clue
 				if mypath != '':
 					if mypath.endswith('.ts'):
-						print("DEBUG VIDEOMODE/ playing .ts file")
+						print("[VIDEOMODE] playing .ts file")
 						new_rate = '50'  # for .ts files
 					else:
-						print("DEBUG VIDEOMODE/ playing other (non .ts) file")
+						print("[VIDEOMODE] playing other (non .ts) file")
 						# new_rate from above for all other videos
 				else:
-					print("DEBUG VIDEOMODE/ no path or no service reference, presumably live TV")
+					print("[VIDEOMODE] no path or no service reference, presumably live TV")
 					new_rate = '50'  # for TV / or no service reference, then stay at 1080p50
 
 				new_rate = new_rate.replace('25', '50')
@@ -960,82 +892,31 @@ class AutoVideoMode(Screen):
 						write_mode = '1080i' + new_rate
 				elif config.av.smart1080p.value == '720p50':
 					write_mode = '720p' + new_rate
-				#print "[VideoMode] smart1080p mode, selecting ",write_mode
+				#print("[VideoMode] smart1080p mode, selecting ",write_mode)
 
 			if write_mode and current_mode != write_mode and self.bufferfull or self.firstrun:
-				# first we read now the real available values for every stb,
-				# before we try to write the new mode
-				changeResolution = False
-				try:
-					if path.exists("/proc/stb/video/videomode_choices"):
-						vf = open("/proc/stb/video/videomode_choices")
-						values = vf.readline().replace("\n", "").split(" ", -1)
-						for x in values:
-							if x == write_mode:
-								try:
-									if BoxInfo.getItem("AmlogicFamily"):
-										f = open("/sys/class/display/mode", "w")
-									else:
-										f = open("/proc/stb/video/videomode", "w")
-									f.write(write_mode)
-									f.close()
-									changeResolution = True
-								except Exception as e:
-									print("[VideoMode] write_mode exception:" + str(e))
+				values = iAVSwitch.readAvailableModes()
+				if write_mode not in values:
+					if (write_mode == "1080p24") or (write_mode == "1080p30") or (write_mode == "1080p60"):
+						write_mode = "1080p"
+					elif (write_mode == "2160p24") or (write_mode == "2160p30") or (write_mode == "2160p60"):
+						write_mode = "2160p"
+				if BoxInfo.getItem("AmlogicFamily"):
+					if write_mode[-1] == "p" or write_mode[-1] == "i":
+						write_mode += "60hz"
+					else:
+						write_mode += "hz"
+				if write_mode in values:
+					self.hw.setVideoModeDirect(write_mode)
+					print("[VideoMode] setMode - port: %s, mode: %s (autoresTyp: '%s')" % (config_port, write_mode, autorestyp))
+					resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
+				else:
+					print("[VideoMode] setMode - port: %s, mode: %s is not available" % (config_port, write_mode))
+					resolutionlabel["restxt"].setText(_("Video mode: %s not available") % write_mode)
 
-						if not changeResolution:
-							print("[VideoMode] setMode - port: %s, mode: %s is not available" % (config_port, write_mode))
-							resolutionlabel["restxt"].setText(_("Video mode: %s not available") % write_mode)
-							# we try to go for not available 1080p24/1080p30/1080p60 to change to 1080p from 60hz_choices if available
-							# TODO: can we make it easier, or more important --> smaller ?
-							# should we outsourced that way, like two new "def ..."
-							# or some other stuff, not like this?
-							if (write_mode == "1080p24") or (write_mode == "1080p30") or (write_mode == "1080p60"):
-								for x in values:
-									if x == "1080p":
-										try:
-											if BoxInfo.getItem("AmlogicFamily"):
-												f = open("/sys/class/display/mode", "w")
-											else:
-												f = open("/proc/stb/video/videomode", "w")
-											f.write(x)
-											f.close()
-											changeResolution = True
-										except Exception as e:
-											print("[VideoMode] write_mode exception:" + str(e))
-								if not changeResolution:
-									print("[VideoMode] setMode - port: %s, mode: 1080p is also not available" % config_port)
-									resolutionlabel["restxt"].setText(_("Video mode: 1080p also not available"))
-								else:
-									print("[VideoMode] setMode - port: %s, mode: 1080p" % config_port)
-									resolutionlabel["restxt"].setText(_("Video mode: 1080p"))
-							if (write_mode == "2160p24") or (write_mode == "2160p30") or (write_mode == "2160p60"):
-								for x in values:
-									if x == "2160p":
-										try:
-											if BoxInfo.getItem("AmlogicFamily"):
-												f = open("/sys/class/display/mode", "w")
-											else:
-												f = open("/proc/stb/video/videomode", "w")
-											f.write(x)
-											f.close()
-											changeResolution = True
-										except Exception as e:
-											print("[VideoMode] write_mode exception:" + str(e))
-								if not changeResolution:
-									print("[VideoMode] setMode - port: %s, mode: 2160p is also not available" % config_port)
-									resolutionlabel["restxt"].setText(_("Video mode: 2160p also not available"))
-								else:
-									print("[VideoMode] setMode - port: %s, mode: 2160p" % config_port)
-									resolutionlabel["restxt"].setText(_("Video mode: 2160p"))
-						else:
-							resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
-							print("[VideoMode] setMode - port: %s, mode: %s (autoresTyp: '%s')" % (config_port, write_mode, autorestyp))
-						if config.av.autores_label_timeout.value != '0':
-							resolutionlabel.show()
-						vf.close()
-				except Exception as e:
-					print("[VideoMode] read videomode_choices exception:" + str(e))
+				if config.av.autores_label_timeout.value != '0':
+					resolutionlabel.show()
+
 			elif write_mode and current_mode != write_mode:
 				# the resolution remained stuck at a wrong setting after streaming when self.bufferfull was False (should be fixed now after adding BufferInfoStop)
 				print("[VideoMode] not changing from", current_mode, "to", write_mode, "as self.bufferfull is", self.bufferfull)
@@ -1044,8 +925,7 @@ class AutoVideoMode(Screen):
 			iAVSwitch.setAspect(config.av.aspect)
 			iAVSwitch.setWss(config.av.wss)
 			iAVSwitch.setPolicy43(config.av.policy_43)
-			if hasattr(config.av, 'policy_169'):
-				iAVSwitch.setPolicy169(config.av.policy_169)
+			iAVSwitch.setPolicy169(config.av.policy_169)
 
 		self.firstrun = False
 		self.delay = False

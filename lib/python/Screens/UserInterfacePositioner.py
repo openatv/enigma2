@@ -1,105 +1,94 @@
-from Screens.Screen import Screen
+from os import access, R_OK
+from os.path import exists
+from enigma import getDesktop
+
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import iAVSwitch
 from Components.config import config, configfile, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
+from Components.Label import Label
 from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap
-from Components.Label import Label
-from Tools.Directories import fileExists
-from enigma import getDesktop
-from os import access, R_OK
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Setup import SetupSummary
+from Tools.Directories import fileWriteLine
+
+MODULE_NAME = __name__.split(".")[-1]
 
 BRAND = BoxInfo.getItem("brand")
 
 
-def getFilePath(setting):
-	return "/proc/stb/fb/dst_%s" % (setting)
-
-
-def setPositionParameter(parameter, configElement):
-	with open(getFilePath(parameter), "w") as fd:
-		fd.write('%08X\n' % configElement.value)
-	if fileExists(getFilePath("apply")):
-		with open(getFilePath("apply"), "w") as fd:
-			fd.write("1")
-
-
-def setPositionParameterAML():
-	with open("/sys/class/graphics/fb0/window_axis", "w") as fd:
-		fd.write('%s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_top.value, config.osd.dst_width.value, config.osd.dst_height.value))
-	with open("/sys/class/graphics/fb0/free_scale", "w") as fd:
-		fd.write("0x10001")
-
-
 def InitOsd():
 
-	BoxInfo.setItem("CanChange3DOsd", access('/proc/stb/fb/3dmode', R_OK) and True or False)
-	BoxInfo.setItem("CanChangeOsdAlpha", access('/proc/stb/video/alpha', R_OK) and True or False)
-	BoxInfo.setItem("CanChangeOsdPlaneAlpha", access('/sys/class/graphics/fb0/osd_plane_alpha', R_OK) and True or False)
-	BoxInfo.setItem("CanChangeOsdPosition", access('/proc/stb/fb/dst_left', R_OK) and True or False)
-	BoxInfo.setItem("CanChangeOsdPositionAML", access('/sys/class/graphics/fb0/free_scale', R_OK) and True or False)
+	BoxInfo.setItem("CanChange3DOsd", access("/proc/stb/fb/3dmode", R_OK))
+	BoxInfo.setItem("CanChangeOsdAlpha", access("/proc/stb/video/alpha", R_OK))
+	BoxInfo.setItem("CanChangeOsdPlaneAlpha", access("/sys/class/graphics/fb0/osd_plane_alpha", R_OK))
+	BoxInfo.setItem("CanChangeOsdPosition", access("/proc/stb/fb/dst_left", R_OK))
+	BoxInfo.setItem("CanChangeOsdPositionAML", access("/sys/class/graphics/fb0/free_scale", R_OK))
 	BoxInfo.setItem("OsdSetup", BoxInfo.getItem("CanChangeOsdPosition"))
-	if BoxInfo.getItem("CanChangeOsdAlpha") == True or BoxInfo.getItem("CanChangeOsdPosition") == True or BoxInfo.getItem("CanChangeOsdPositionAML") == True or BoxInfo.getItem("CanChangeOsdPlaneAlpha") == True:
+	if BoxInfo.getItem("CanChangeOsdAlpha") is True or BoxInfo.getItem("CanChangeOsdPosition") is True or BoxInfo.getItem("CanChangeOsdPositionAML") is True or BoxInfo.getItem("CanChangeOsdPlaneAlpha") is True:
 		BoxInfo.setItem("OsdMenu", True)
 	else:
 		BoxInfo.setItem("OsdMenu", False)
 
-	if BRAND in ('fulan',):
+	if BRAND == "fulan":
 		BoxInfo.setItem("CanChangeOsdPosition", False)
 		BoxInfo.setItem("CanChange3DOsd", False)
 
+	if BoxInfo.getItem("CanChangeOsdPosition"):
+		def setPositionParameter(parameter, configElement):
+			fileWriteLine("/proc/stb/fb/dst_%s" % parameter, "%08X\n" % configElement.value, source=MODULE_NAME)
+			fileName = "/proc/stb/fb/dst_apply"
+			if exists(fileName):
+				fileWriteLine(fileName, "1", source=MODULE_NAME)
+	elif BoxInfo.getItem("CanChangeOsdPositionAML"):
+		def setPositionParameter(parameter, configElement):
+			value = "%s %s %s %s" % (config.osd.dst_left.value, config.osd.dst_top.value, config.osd.dst_width.value, config.osd.dst_height.value)
+			fileWriteLine("/sys/class/graphics/fb0/window_axis", value, source=MODULE_NAME)
+			fileWriteLine("/sys/class/graphics/fb0/free_scale", "0x10001", source=MODULE_NAME)
+
+	else:
+		def setPositionParameter(parameter, configElement):
+			# dummy else case
+			pass
+
 	def setOSDLeft(configElement):
-		if BoxInfo.getItem("CanChangeOsdPosition"):
-			setPositionParameter("left", configElement)
-		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			setPositionParameterAML()
+		setPositionParameter("left", configElement)
 	config.osd.dst_left.addNotifier(setOSDLeft)
 
 	def setOSDWidth(configElement):
-		if BoxInfo.getItem("CanChangeOsdPosition"):
-			setPositionParameter("width", configElement)
-		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			setPositionParameterAML()
+		setPositionParameter("width", configElement)
 	config.osd.dst_width.addNotifier(setOSDWidth)
 
 	def setOSDTop(configElement):
-		if BoxInfo.getItem("CanChangeOsdPosition"):
-			setPositionParameter("top", configElement)
-		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			setPositionParameterAML()
+		setPositionParameter("top", configElement)
 	config.osd.dst_top.addNotifier(setOSDTop)
 
 	def setOSDHeight(configElement):
-		if BoxInfo.getItem("CanChangeOsdPosition"):
-			setPositionParameter("height", configElement)
-		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			setPositionParameterAML()
+		setPositionParameter("height", configElement)
 	config.osd.dst_height.addNotifier(setOSDHeight)
 
-	print('[UserInterfacePositioner] Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value))
+	print("[UserInterfacePositioner] Setting OSD position: %s %s %s %s" % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value))
 
 	def setOSDAlpha(configElement):
 		if BoxInfo.getItem("CanChangeOsdAlpha"):
-			print('[UserInterfacePositioner] Setting OSD alpha:%s' % str(configElement.value))
+			print("[UserInterfacePositioner] Setting OSD alpha:%s" % str(configElement.value))
 			config.av.osd_alpha.setValue(configElement.value)
-			with open("/proc/stb/video/alpha", "w") as fd:
-				fd.write(str(configElement.value))
+			fileWriteLine("/proc/stb/video/alpha", str(configElement.value), source=MODULE_NAME)
 	config.osd.alpha.addNotifier(setOSDAlpha)
 
 	def setOSDPlaneAlpha(configElement):
 		if BoxInfo.getItem("CanChangeOsdPlaneAlpha"):
-			print('[UserInterfacePositioner] Setting OSD plane alpha:%s' % str(configElement.value))
+			print("[UserInterfacePositioner] Setting OSD plane alpha:%s" % str(configElement.value))
 			config.av.osd_alpha.setValue(configElement.value)
-			with open("/sys/class/graphics/fb0/osd_plane_alpha", "w") as fd:
-				fd.write(hex(configElement.value))
+			fileWriteLine("/sys/class/graphics/fb0/osd_plane_alpha", hex(configElement.value), source=MODULE_NAME)
 	config.osd.alpha.addNotifier(setOSDPlaneAlpha)
 
 	def set3DMode(configElement):
 		if BoxInfo.getItem("CanChange3DOsd"):
 			value = configElement.value
-			print('[UserInterfacePositioner] Setting 3D mode: %s' % str(value))
+			print("[UserInterfacePositioner] Setting 3D mode: %s" % str(value))
 			try:
 				if BoxInfo.getItem("CanUse3DModeChoices"):
 					f = open("/proc/stb/fb/3dmode_choices", "r")
@@ -112,22 +101,15 @@ def InitOsd():
 							value = "tab"
 						elif value == "auto":
 							value = "off"
-				f = open("/proc/stb/fb/3dmode", "w")
-				f.write(value)
-				f.close()
+				fileWriteLine("/proc/stb/fb/3dmode", value, source=MODULE_NAME)
 			except OSError:
 				pass
 	config.osd.threeDmode.addNotifier(set3DMode)
 
 	def set3DZnorm(configElement):
 		if BoxInfo.getItem("CanChange3DOsd"):
-			print('[UserInterfacePositioner] Setting 3D depth: %s' % str(configElement.value))
-			try:
-				f = open("/proc/stb/fb/znorm", "w")
-				f.write('%d' % int(configElement.value))
-				f.close()
-			except OSError:
-				pass
+			print("[UserInterfacePositioner] Setting 3D depth: %s" % str(configElement.value))
+			fileWriteLine("/proc/stb/fb/znorm", "%d" % int(configElement.value), source=MODULE_NAME)
 	config.osd.threeDznorm.addNotifier(set3DZnorm)
 
 
@@ -327,10 +309,9 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
-#		self.Console.ePopen('/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi')
+#		self.Console.ePopen("/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi")
 
 	def createSummary(self):
-		from Screens.Setup import SetupSummary
 		return SetupSummary
 
 	# for summary:
@@ -390,7 +371,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		config.osd.dst_width.setValue(dst_width)
 		config.osd.dst_top.setValue(dst_top)
 		config.osd.dst_height.setValue(dst_height)
-		print('[UserInterfacePositioner] Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value))
+		print("[UserInterfacePositioner] Setting OSD position: %s %s %s %s" % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value))
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -413,7 +394,6 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.close()
@@ -449,11 +429,11 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
-		if BoxInfo.getItem("CanChangeOsdAlpha") == True:
+		if BoxInfo.getItem("CanChangeOsdAlpha") is True:
 			self.list.append(getConfigListEntry(_("User interface visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the user interface")))
 			self.list.append(getConfigListEntry(_("Teletext base visibility"), config.osd.alpha_teletext, _("Base transparency for teletext, more options available within teletext screen.")))
 			self.list.append(getConfigListEntry(_("Web browser base visibility"), config.osd.alpha_webbrowser, _("Base transparency for OpenOpera web browser")))
-		if BoxInfo.getItem("CanChangeOsdPosition") == True or BoxInfo.getItem("CanChangeOsdPositionAML") == True:
+		if BoxInfo.getItem("CanChangeOsdPosition") is True or BoxInfo.getItem("CanChangeOsdPositionAML") is True:
 			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the user interface left/right")))
 			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
 			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface up/down")))
@@ -472,10 +452,9 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
-#		self.Console.ePopen('/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi')
+#		self.Console.ePopen("/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi")
 
 	def createSummary(self):
-		from Screens.Setup import SetupSummary
 		return SetupSummary
 
 	# for summary:
@@ -535,7 +514,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_width.setValue(dst_width)
 		config.osd.dst_top.setValue(dst_top)
 		config.osd.dst_height.setValue(dst_height)
-		print('[UserInterfacePositioner] Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value))
+		print("[UserInterfacePositioner] Setting OSD position: %s %s %s %s" % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value))
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -558,7 +537,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.close()
@@ -570,88 +548,3 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_height.save()
 		configfile.save()
 		self.close()
-
-# FIXME Can be removed
-
-
-class OSD3DSetupScreen(Screen, ConfigListScreen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.setup_title = _("OSD 3D Settings")
-		self.skinName = "Setup"
-
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["status"] = StaticText()
-		self["footnote"] = StaticText()
-		self["description"] = StaticText()
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-
-		self["actions"] = ActionMap(["SetupActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.keySave,
-			}, -2)
-
-		self.onChangedEntry = []
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
-		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode, _("This option lets you choose the 3D mode")))
-		self.list.append(getConfigListEntry(_("Depth"), config.osd.threeDznorm, _("This option lets you adjust the 3D depth")))
-		self.list.append(getConfigListEntry(_("Show in extensions list"), config.osd.show3dextensions, _("This option lets you show the option in the extension screen.")))
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
-
-		self.onLayoutFinish.append(self.layoutFinished)
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def selectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[2])
-
-	def layoutFinished(self):
-		self.setTitle(_(self.setup_title))
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def saveAll(self):
-		for x in self["config"].list:
-			x[1].save()
-		configfile.save()
-
-	# keySave and keyCancel are just provided in case you need them.
-	# you have to call them by yourself.
-	def keySave(self):
-		self.saveAll()
-		self.close()
-
-	def cancelConfirm(self, result):
-		if not result:
-			return
-
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			from Screens.MessageBox import MessageBox
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()

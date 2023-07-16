@@ -1,5 +1,5 @@
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, eServiceReference
+from enigma import eAVControl, iServiceInformation, iPlayableService, eServiceReference
 from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Components.Element import cached
 from Components.Converter.Poll import Poll
@@ -123,77 +123,79 @@ class ServiceInfo(Poll, Converter):
 			return info.getInfoString(what)
 		return convert(v)
 
-	def _getProcVal(self, pathname, base=10):
-		val = None
-		try:
-			f = open(pathname, "r")
-			val = int(f.read(), base)
-			f.close()
-			if val >= 2 ** 31:
-				val -= 2 ** 32
-		except Exception:
-			pass
-		return val
+#	def _getProcVal(self, pathname, base=10):
+#		val = None
+#		try:
+#			f = open(pathname, "r")
+#			val = int(f.read(), base)
+#			f.close()
+#			if val >= 2 ** 31:
+#				val -= 2 ** 32
+#		except Exception:
+#			pass
+#		return val
 
-	def _getVal(self, pathname, info, infoVal, base=10):
-		if self._isHDMIIn(info):
-			return None
-		val = self._getProcVal(pathname, base=base)
+#	def _getVal(self, pathname, info, infoVal, base=10):
+#		if self._isHDMIIn(info):
+#			return None
+#		val = self._getProcVal(pathname, base=base)
+#		return val if val is not None else info.getInfo(infoVal)
 
-		return val if val is not None else info.getInfo(infoVal)
+#	def _getValInt(self, pathname, info, infoVal, base=10, default=-1):
+#		val = self._getVal(pathname, info, infoVal, base)
+#		return val if val is not None else default
 
-	def _getValInt(self, pathname, info, infoVal, base=10, default=-1):
-		val = self._getVal(pathname, info, infoVal, base)
-		return val if val is not None else default
-
-	def _getValStr(self, pathname, info, infoVal, base=10, convert=lambda x: "%d" % x):
-		if self._isHDMIIn(info):
-			return "N/A"
-		val = self._getProcVal(pathname, base=base)
-
-		return convert(val) if val is not None else self.getServiceInfoString(info, infoVal, convert)
+#	def _getValStr(self, pathname, info, infoVal, base=10, convert=lambda x: "%d" % x):
+#		if self._isHDMIIn(info):
+#			return "N/A"
+#		val = self._getProcVal(pathname, base=base)
+#		return convert(val) if val is not None else self.getServiceInfoString(info, infoVal, convert)
 
 	def _getVideoHeight(self, info):
-		if BoxInfo.getItem("AmlogicFamily"):
-			return self._getValInt("/sys/class/video/frame_height", info, iServiceInformation.sVideoHeight)
-		else:
-			return self._getValInt("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16)
+		if self._isHDMIIn(info):
+			return -1
+		val = eAVControl.getInstance().getResolutionY(0)
+		return val if val else info.getInfo(iServiceInformation.sVideoHeight)
 
 	def _getVideoHeightStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
-		if BoxInfo.getItem("AmlogicFamily"):
-			return self._getValStr("/sys/class/video/frame_height", info, iServiceInformation.sVideoHeight, convert=convert)
-		else:
-			return self._getValStr("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16, convert=convert)
+		if self._isHDMIIn(info):
+			return "?"
+		val = eAVControl.getInstance().getResolutionY(0)
+		return convert(val) if val else self.getServiceInfoString(info, iServiceInformation.sVideoHeight, convert)
 
 	def _getVideoWidth(self, info):
-		if BoxInfo.getItem("AmlogicFamily"):
-			return self._getValInt("/sys/class/video/frame_width", info, iServiceInformation.sVideoWidth)
-		else:
-			return self._getValInt("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16)
+		if self._isHDMIIn(info):
+			return -1
+		val = eAVControl.getInstance().getResolutionX(0)
+		return val if val else info.getInfo(iServiceInformation.sVideoWidth)
 
 	def _getVideoWidthStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
-		if BoxInfo.getItem("AmlogicFamily"):
-			return self._getValStr("/sys/class/video/frame_width", info, iServiceInformation.sVideoWidth, convert=convert)
-		else:
-			return self._getValStr("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16, convert=convert)
+		if self._isHDMIIn(info):
+			return "?"
+		val = eAVControl.getInstance().getResolutionX(0)
+		return convert(val) if val else self.getServiceInfoString(info, iServiceInformation.sVideoWidth, convert)
 
 	def _getFrameRate(self, info):
-		if BoxInfo.getItem("AmlogicFamily"):
-			return self._getValInt("/proc/stb/vmpeg/0/frame_rate", info, iServiceInformation.sFrameRate)
-		else:
-			return self._getValInt("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate)
+		if self._isHDMIIn(info):
+			return -1
+		val = eAVControl.getInstance().getFrameRate(0)
+		return val if val else info.getInfo(iServiceInformation.sFrameRate)
 
 	def _getFrameRateStr(self, info, convert=lambda x: "%d" % x if x > 0 else ""):
-		if BoxInfo.getItem("AmlogicFamily"):
-			return self._getValStr("/proc/stb/vmpeg/0/frame_rate", info, iServiceInformation.sFrameRate, convert=convert)
-		else:
-			return self._getValStr("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate, convert=convert)
+		if self._isHDMIIn(info):
+			return ""
+		val = eAVControl.getInstance().getFrameRate(0)
+		return convert(val) if val else self.getServiceInfoString(info, iServiceInformation.sFrameRate, convert)
 
 	def _getProgressive(self, info):
-		return self._getValInt("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive, default=0)
+		if self._isHDMIIn(info):
+			return 0
+		return eAVControl.getInstance().getProgressive()
 
-	def _getProgressiveStr(self, info, convert=lambda x: "" if x else "i"):
-		return self._getValStr("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive, convert=convert)
+	def _getProgressiveStr(self, info):
+		if self._isHDMIIn(info):
+			return "i"
+		return "p" if eAVControl.getInstance().getProgressive() else "i"
 
 	@cached
 	def getBoolean(self):
@@ -337,18 +339,7 @@ class ServiceInfo(Poll, Converter):
 		elif self.type == self.SID:
 			return self.getServiceInfoHexString(info, iServiceInformation.sSID)
 		elif self.type == self.FRAMERATE:
-			video_rate = None
-			f = None
-			if path.exists("/proc/stb/vmpeg/0/framerate"):
-				f = open("/proc/stb/vmpeg/0/framerate", "r")
-			elif path.exists("/proc/stb/vmpeg/0/frame_rate"):
-				f = open("/proc/stb/vmpeg/0/frame_rate", "r")
-			if f:
-				try:
-					video_rate = int(f.read())
-				except Exception:
-					pass
-				f.close()
+			video_rate = eAVControl.getInstance().getFrameRate(0)
 			if not video_rate:
 				try:
 					video_rate = int(self.getServiceInfoString(info, iServiceInformation.sFrameRate))
@@ -409,56 +400,17 @@ class ServiceInfo(Poll, Converter):
 			return -1
 
 		if self.type == self.XRES:
-			video_width = None
-			if path.exists("/proc/stb/vmpeg/0/xres"):
-				f = open("/proc/stb/vmpeg/0/xres", "r")
-				try:
-					video_width = int(f.read(), 16)
-				except Exception:
-					video_width = None
-				f.close()
-			elif path.exists("/sys/class/video/frame_width"):
-				f = open("/sys/class/video/frame_width", "r")
-				try:
-					video_width = int(f.read())
-				except Exception:
-					video_width = None
-				f.close()
+			video_width = eAVControl.getInstance().getResolutionX(0)
 			if not video_width:
 				video_width = info.getInfo(iServiceInformation.sVideoWidth)
 			return str(video_width)
 		elif self.type == self.YRES:
-			video_height = None
-			if path.exists("/proc/stb/vmpeg/0/yres"):
-				f = open("/proc/stb/vmpeg/0/yres", "r")
-				try:
-					video_height = int(f.read(), 16)
-				except Exception:
-					video_height = None
-				f.close()
-			elif path.exists("/sys/class/video/frame_height"):
-				f = open("/sys/class/video/frame_height", "r")
-				try:
-					video_height = int(f.read())
-				except Exception:
-					video_height = None
-				f.close()
+			video_height = eAVControl.getInstance().getResolutionY(0)
 			if not video_height:
 				video_height = info.getInfo(iServiceInformation.sVideoHeight)
 			return str(video_height)
 		elif self.type == self.FRAMERATE:
-			video_rate = None
-			f = None
-			if path.exists("/proc/stb/vmpeg/0/framerate"):
-				f = open("/proc/stb/vmpeg/0/framerate", "r")
-			elif path.exists("/proc/stb/vmpeg/0/frame_rate"):
-				f = open("/proc/stb/vmpeg/0/frame_rate", "r")
-			if f:
-				try:
-					video_rate = f.read()
-				except Exception:
-					pass
-				f.close()
+			video_rate = eAVControl.getInstance().getFrameRate(0)
 			if not video_rate:
 				video_rate = info.getInfo(iServiceInformation.sFrameRate)
 			return str(video_rate)
