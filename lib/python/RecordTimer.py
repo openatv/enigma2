@@ -886,6 +886,7 @@ class RecordTimerEntry(TimerEntry, object):
 					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_INFO, timeout=20)
 				else:
 					AddNotification(MessageBox, message, MessageBox.TYPE_INFO, timeout=20)
+				self.state = 3  # This will prevent error loop beause next state will be failed
 			return False
 		elif nextState == self.StateRunning:  # If this timer has been canceled, just go to "end" state.
 			if self.cancelled:
