@@ -75,7 +75,7 @@
 				<item key="usage_setup" level="0" text="Customize System Settings" weight="15"><setup setupKey="Usage" /></item>
 				<!--item key="specialfeatures_menu" level="0" text="Special Features Settings" weight="20"><setup setupKey="SpecialFeatures" /></item-->
 				<item key="skin_setup" level="0" text="Skin Settings" weight="25"><screen module="SkinSelector" screen="SkinSelector" /></item>
-				<item key="display_setup" level="0" text="Display Settings" weight="30"><setup setupKey="Display" /></item>
+				<item key="display_setup" level="0" text="Display Settings" weight="30" requires="DisplaySetup"><setup setupKey="Display" /></item>
 				<item key="led_setup" level="1" text="Configure front panel LEDs" weight="35" requires="LEDColorControl"><setup setupKey="LEDs" /></item>
 				<item key="lcd_skin_setup" level="0" text="LCD Skin Settings" weight="40" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector" /></item>
 				<item key="buttonsetup_setup" level="2" text="Hotkey Settings" weight="45"><screen module="ButtonSetup" screen="ButtonSetup" /></item>
