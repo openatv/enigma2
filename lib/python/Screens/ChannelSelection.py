@@ -5,7 +5,7 @@ from time import localtime, strftime, time
 from enigma import eActionMap, eDVBDB, eEPGCache, eEnv, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
-from ServiceReference import ServiceReference
+from ServiceReference import ServiceReference, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
 from skin import getSkinFactor
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Button import Button
@@ -51,7 +51,6 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.BoundFunction import boundFunction
 from Tools.Notifications import AddPopup, RemovePopup
 from Tools.NumericalTextInput import NumericalTextInput
-from Tools.ServiceReference import service_types_radio_ref, service_types_tv_ref, serviceRefAppendPath, hdmiInServiceRef
 
 MODE_TV = 0
 MODE_RADIO = 1
