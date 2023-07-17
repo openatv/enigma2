@@ -2695,7 +2695,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			servicelist = Screens.InfoBar.InfoBar.instance.servicelist
 			if servicelist:
 				refStr = sref.toString()
-				if (refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:")) and config.usage.e1like_radio_mode.value:
+				sType = refStr.split(":", maxsplit=3)
+				if len(sType) == 4 and sType[2] in ("2", "A") and config.usage.e1like_radio_mode.value:
 					typestr = "radio"
 					if servicelist.mode != 1:
 						servicelist.setModeRadio()
@@ -2724,7 +2725,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		def getBqRoot(reference):
 			reference = reference.toString()
 			isTV = True
-			if (reference.startswith("1:0:2:") or reference.startswith("1:0:A:")) and config.usage.e1like_radio_mode.value:
+			sType = reference.split(":", maxsplit=3)
+			if len(sType) == 4 and sType[2] in ("2", "A") and config.usage.e1like_radio_mode.value:
 				isTV = False
 				if config.usage.multibouquet.value:
 					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
