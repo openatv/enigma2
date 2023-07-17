@@ -14,7 +14,7 @@ from enigma import eAVControl, eTimer, eServiceCenter, eDVBServicePMTHandler, iS
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
-from ServiceReference import ServiceReference, isPlayableForCur
+from ServiceReference import ServiceReference, isPlayableForCur, hdmiInServiceRef
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap, NumberActionMap
 from Components.AVSwitch import iAVSwitch
 from Components.config import ConfigBoolean, ConfigClock, config, configfile
@@ -58,7 +58,6 @@ from Screens.Timers import RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
 from Tools.Directories import pathExists, fileReadLine, fileWriteLine, isPluginInstalled
-from Tools.ServiceReference import hdmiInServiceRef
 
 MODULE_NAME = __name__.split(".")[-1]
 
