@@ -1039,20 +1039,17 @@ def InitAVSwitch():
 		config.av.allow_10bit = ConfigYesNo(default=False)
 		config.av.allow_10bit.addNotifier(setDisable10Bit)
 
-	if BoxInfo.getItem("AmlogicFamily"):
-		audioSource = fileReadLine("/sys/devices/virtual/amhdmitx/amhdmitx0/audio_source", default=None, source=MODULE_NAME)
-	else:
-		audioSource = fileReadLine("/proc/stb/hdmi/audio_source", default=None, source=MODULE_NAME)
+	audioSource = fileReadLine("/sys/devices/virtual/amhdmitx/amhdmitx0/audio_source" if BoxInfo.getItem("AmlogicFamily") else "/proc/stb/hdmi/audio_source", default=None, source=MODULE_NAME)
 	audioSource = audioSource.split() if audioSource else False
 
 	BoxInfo.setItem("Canaudiosource", audioSource)
 
 	if audioSource:
 		if BoxInfo.getItem("AmlogicFamily"):
-			config.av.audio_source = ConfigSelection(default="0" , choices=[
-				"0": _("PCM"),
-				"1": _("S/PDIF"),
-				"2": _("BLUETOOTH")},
+			config.av.audio_source = ConfigSelection(default="0", choices=[
+				("0", "PCM"),
+				("1", "S/PDIF"),
+				("2", _("Bluetooth"))
 			])
 		else:
 			config.av.audio_source = ConfigSelection(default="pcm", choices=[
@@ -1061,10 +1058,7 @@ def InitAVSwitch():
 			])
 
 		def setAudioSource(configElement):
-			if BoxInfo.getItem("AmlogicFamily"):
-				fileWriteLine("/sys/devices/virtual/amhdmitx/amhdmitx0/audio_source", configElement.value, source=MODULE_NAME)
-			else:
-				fileWriteLine("/proc/stb/hdmi/audio_source", configElement.value, source=MODULE_NAME)
+			fileWriteLine("/sys/devices/virtual/amhdmitx/amhdmitx0/audio_source" if BoxInfo.getItem("AmlogicFamily") else "/proc/stb/hdmi/audio_source", configElement.value, source=MODULE_NAME)
 
 		config.av.audio_source.addNotifier(setAudioSource)
 	else:
@@ -1160,9 +1154,7 @@ def InitAVSwitch():
 
 	BoxInfo.setItem("CanDownmixAC3", downmixAC3)
 	if downmixAC3:
-
 		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
-
 			config.av.downmix_ac3 = ConfigSelection(default="downmix", choices=[
 				("downmix", _("Downmix")),
 				("passthrough", _("Pass-through")),

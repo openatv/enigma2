@@ -44,7 +44,6 @@ public:
 	void startStopHDMIIn(bool on, bool audio, int flags = 0);
 	void disableHDMIIn(int flags = 0) const;
 
-	bool hasProcAspect() const { return m_b_has_proc_aspect; }
 	bool hasProcHDMIRXMonitor() const { return m_b_has_proc_hdmi_rx_monitor; }
 	bool hasProcVideoMode50() const { return m_b_has_proc_videomode_50; }
 	bool hasProcVideoMode60() const { return m_b_has_proc_videomode_60; }
@@ -71,7 +70,6 @@ private:
 	std::string m_video_mode_60;
 	std::string m_videomode_choices;
 
-	bool m_b_has_proc_aspect;
 	bool m_b_has_proc_hdmi_rx_monitor;
 	bool m_b_has_proc_videomode_50;
 	bool m_b_has_proc_videomode_60;

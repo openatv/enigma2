@@ -185,8 +185,8 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.wmapro.addNotifier(self.setWMAPro, initial_call=False)
 				conflist.append(getConfigListEntry(_("WMA Pro downmix"), self.settings.wmapro, None))
 
-			if BoxInfo.getItem("Canaudiosource") and BoxInfo.getItem("AmlogicFamily"):
-				choice_list = [("0", _("PCM")), ("1", _("SPDIF")), ("2", _("BLUETOOTH"))]
+			if BoxInfo.getItem("Canaudiosource"):
+				choice_list = [("0", "PCM"), ("1", "SPDIF"), ("2", _("Bluetooth"))] if BoxInfo.getItem("AmlogicFamily") else [("pcm", "PCM"), ("spdif", "S/PDIF")]
 				self.settings.audio_source = ConfigSelection(choices=choice_list, default=config.av.audio_source.value)
 				self.settings.audio_source.addNotifier(self.setAudioSource, initial_call=False)
 				conflist.append(getConfigListEntry(_("Audio Source"), self.settings.audio_source, None))

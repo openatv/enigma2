@@ -18,15 +18,17 @@ const char *__MODULE__ = "eAVControl"; // NOSONAR
 const char *proc_hdmi_rx_monitor = "/proc/stb/hdmi-rx/0/hdmi_rx_monitor";	// NOSONAR
 const char *proc_hdmi_rx_monitor_audio = "/proc/stb/audio/hdmi_rx_monitor"; // NOSONAR
 #ifdef DREAMNEXTGEN
-const char *proc_policy169 = "/sys/class/video/screen_mode";   // NOSONAR
-const char *proc_policy43 = "/sys/class/video/screen_mode";	   // NOSONAR
-const char *proc_videomode = "/sys/class/display/mode";		   // NOSONAR
-const char *proc_videoaspect = "/sys/class/video/screen_mode"; // NOSONAR
+const char *proc_policy169 = "/sys/class/video/screen_mode";	 // NOSONAR
+const char *proc_policy43 = "/sys/class/video/screen_mode";		 // NOSONAR
+const char *proc_videomode = "/sys/class/display/mode";			 // NOSONAR
+const char *proc_videoaspect_r = "/sys/class/video/screen_mode"; // NOSONAR
+const char *proc_videoaspect_w = "/sys/class/video/screen_mode"; // NOSONAR
 #else
-const char *proc_policy169 = "/proc/stb/video/policy2";	   // NOSONAR
-const char *proc_policy43 = "/proc/stb/video/policy";	   // NOSONAR
-const char *proc_videomode = "/proc/stb/video/videomode";  // NOSONAR
-const char *proc_videoaspect = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
+const char *proc_policy169 = "/proc/stb/video/policy2";		 // NOSONAR
+const char *proc_policy43 = "/proc/stb/video/policy";		 // NOSONAR
+const char *proc_videomode = "/proc/stb/video/videomode";	 // NOSONAR
+const char *proc_videoaspect_r = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
+const char *proc_videoaspect_w = "/proc/stb/video/aspect";	 // NOSONAR
 #endif
 const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz"; // NOSONAR
 const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz"; // NOSONAR
@@ -39,7 +41,6 @@ eAVControl *eAVControl::m_instance = nullptr;
 eAVControl::eAVControl()
 {
 	struct stat buffer;
-	m_b_has_proc_aspect = (stat(proc_videoaspect, &buffer) == 0);
 
 #ifdef HAVE_HDMIIN_DM
 	m_b_has_proc_hdmi_rx_monitor = (stat(proc_hdmi_rx_monitor, &buffer) == 0);
@@ -70,7 +71,7 @@ eAVControl::eAVControl()
 
 	m_b_hdmiin_fhd = modelinformation.getValue("hdmifhdin") == "True";
 
-	eDebug("[%s] Init: ScartSwitch:%d / VideoMode 24:%d 50:%d 60:%d / HDMIRxMonitor:%d / VideoAspect:%d", __MODULE__, m_b_has_scartswitch, m_b_has_proc_videomode_24, m_b_has_proc_videomode_50, m_b_has_proc_videomode_60, m_b_has_proc_hdmi_rx_monitor, m_b_has_proc_aspect);
+	eDebug("[%s] Init: ScartSwitch:%d / VideoMode 24:%d 50:%d 60:%d / HDMIRxMonitor:%d", __MODULE__, m_b_has_scartswitch, m_b_has_proc_videomode_24, m_b_has_proc_videomode_50, m_b_has_proc_videomode_60, m_b_has_proc_hdmi_rx_monitor);
 	eDebug("[%s] Init: VideoMode Choices:%s", __MODULE__, m_videomode_choices.c_str());
 	m_instance = this;
 
@@ -164,13 +165,10 @@ eAVControl::~eAVControl()
 /// @return
 int eAVControl::getAspect(int defaultVal, int flags) const
 {
-	if (m_b_has_proc_aspect)
-	{
-		int value = 0;
-		CFile::parseIntHex(&value, proc_videoaspect, __MODULE__, flags);
-		if (flags & FLAGS_DEBUG)
-			eDebug("[%s] %s: %d", __MODULE__, "getAspect", value);
-	}
+	int value = 0;
+	CFile::parseIntHex(&value, proc_videoaspect_r, __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %d", __MODULE__, "getAspect", value);
 	return defaultVal;
 }
 
@@ -448,7 +446,7 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 
 	eDebug("[%s] %s: not supported", __MODULE__, "setAspectRatio");
 
-	CFile::writeInt("/sys/class/video/screen_mode", ratio, __MODULE__, flags);
+	CFile::writeInt(proc_videoaspect_w, ratio, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %d", __MODULE__, "setAspectRatio", ratio);
 
@@ -494,13 +492,13 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 	std::string newAspect = aspect[ratio];
 	std::string newPolicy = policy[ratio];
 
-	CFile::writeStr("/proc/stb/video/aspect", newAspect, __MODULE__, flags);
+	CFile::writeStr(proc_videoaspect_w, newAspect, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/aspect", newAspect.c_str());
 
 	CFile::writeStr("/proc/stb/video/policy", newPolicy, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/policy", newAspect.c_str());
+		eDebug("[%s] %s: %s", __MODULE__, "setAspectRatio/policy", newPolicy.c_str());
 #endif
 }
 
@@ -521,9 +519,9 @@ void eAVControl::setAspect(const std::string &newFormat, int flags) const
 	else if (newFormat == "16:10")
 		newMode = "9";
 
-	CFile::writeStr(proc_videoaspect, newMode, __MODULE__, flags);
+	CFile::writeStr(proc_videoaspect_w, newMode, __MODULE__, flags);
 #else
-	CFile::writeStr(proc_videoaspect, newFormat, __MODULE__, flags);
+	CFile::writeStr(proc_videoaspect_w, newFormat, __MODULE__, flags);
 #endif
 
 	if (flags & FLAGS_DEBUG)
