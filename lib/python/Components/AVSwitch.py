@@ -1039,19 +1039,32 @@ def InitAVSwitch():
 		config.av.allow_10bit = ConfigYesNo(default=False)
 		config.av.allow_10bit.addNotifier(setDisable10Bit)
 
-	audioSource = fileReadLine("/proc/stb/hdmi/audio_source", default=None, source=MODULE_NAME)
+	if BoxInfo.getItem("AmlogicFamily"):
+		audioSource = fileReadLine("/sys/devices/virtual/amhdmitx/amhdmitx0/audio_source", default=None, source=MODULE_NAME)
+	else:
+		audioSource = fileReadLine("/proc/stb/hdmi/audio_source", default=None, source=MODULE_NAME)
 	audioSource = audioSource.split() if audioSource else False
 
 	BoxInfo.setItem("Canaudiosource", audioSource)
 
 	if audioSource:
-		config.av.audio_source = ConfigSelection(default="pcm", choices=[
-			("pcm", "PCM"),
-			("spdif", "S/PDIF")
-		])
+		if BoxInfo.getItem("AmlogicFamily"):
+			config.av.audio_source = ConfigSelection(default="0" , choices=[
+				"0": _("PCM"),
+				"1": _("S/PDIF"),
+				"2": _("BLUETOOTH")},
+			])
+		else:
+			config.av.audio_source = ConfigSelection(default="pcm", choices=[
+				("pcm", "PCM"),
+				("spdif", "S/PDIF")
+			])
 
 		def setAudioSource(configElement):
-			fileWriteLine("/proc/stb/hdmi/audio_source", configElement.value, source=MODULE_NAME)
+			if BoxInfo.getItem("AmlogicFamily"):
+				fileWriteLine("/sys/devices/virtual/amhdmitx/amhdmitx0/audio_source", configElement.value, source=MODULE_NAME)
+			else:
+				fileWriteLine("/proc/stb/hdmi/audio_source", configElement.value, source=MODULE_NAME)
 
 		config.av.audio_source.addNotifier(setAudioSource)
 	else:

@@ -185,6 +185,12 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.wmapro.addNotifier(self.setWMAPro, initial_call=False)
 				conflist.append(getConfigListEntry(_("WMA Pro downmix"), self.settings.wmapro, None))
 
+			if BoxInfo.getItem("Canaudiosource") and BoxInfo.getItem("AmlogicFamily"):
+				choice_list = [("0", _("PCM")), ("1", _("SPDIF")), ("2", _("BLUETOOTH"))]
+				self.settings.audio_source = ConfigSelection(choices=choice_list, default=config.av.audio_source.value)
+				self.settings.audio_source.addNotifier(self.setAudioSource, initial_call=False)
+				conflist.append(getConfigListEntry(_("Audio Source"), self.settings.audio_source, None))
+
 			if BoxInfo.getItem("CanBTAudio"):
 				self.settings.btaudio = ConfigOnOff(default=config.av.btaudio.value)
 				self.settings.btaudio.addNotifier(self.changeBTAudio, initial_call=False)
@@ -416,6 +422,10 @@ class AudioSelection(Screen, ConfigListScreen):
 	def setWMAPro(self, downmix):
 		config.av.wmapro.setValue(downmix.value)
 		config.av.wmapro.save()
+
+	def setAudioSource(self, audiosource):
+		config.av.audio_source.setValue(audiosource.value)
+		config.av.audio_source.save()
 
 	def setDTSHD(self, downmix):
 		config.av.dtshd.setValue(downmix.value)
