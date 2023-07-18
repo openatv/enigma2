@@ -350,7 +350,7 @@ def runScreenTest():
 			try:
 				with open(filename, "r") as fd:
 					line = fd.read().strip().replace("\0", "")
-					count = int(line) if isdecimal(line) else 0
+					count = int(line) if line.isdecimal() else 0
 				if count >= 3:
 					return False
 			except OSError as err:
