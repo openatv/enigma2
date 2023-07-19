@@ -209,6 +209,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					i = audio.getTrackInfo(x)
 					languages = i.getLanguage().split('/')
 					description = i.getDescription() or ""
+					description = description.replace("A ", "").replace("A_", "").replace("EAC3", "AC3+").replace("EAC-3", "AC3+").replace("AC-3", "AC3")
 					selected = ""
 					language = ""
 

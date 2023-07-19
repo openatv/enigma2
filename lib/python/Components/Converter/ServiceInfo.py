@@ -238,8 +238,9 @@ class ServiceInfo(Poll, Converter):
 				idx = 0
 				while idx < n:
 					i = audio.getTrackInfo(idx)
-					description = i.getDescription()
-					if description and description.split()[0] in ("AC3", "AC-3", "AC3+", "DTS"):  # some audio description has 'audio' as additional value (e.g. 'AC-3 audio')
+					description = i.getDescription() or ""
+					description = description.replace("A ", "").replace("A_", "").replace("EAC3", "AC3+").replace("EAC-3", "AC3+").replace("AC-3", "AC3")
+					if description and description.split()[0] in ("AC3", "AC3+", "DTS", "DTS-HD", "AC4", "LPCM", "Dolby", "HE-AAC"):  # some audio description has 'audio' as additional value (e.g. 'AC-3 audio')
 						if self.type == self.IS_MULTICHANNEL:
 							return True
 						elif self.type == self.AUDIO_STEREO:
