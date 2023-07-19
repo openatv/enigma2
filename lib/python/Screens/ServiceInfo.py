@@ -225,7 +225,8 @@ class ServiceInfo(Screen):
 		if self.numberofTracks:
 			currentTrack = self.audio.getCurrentTrack()
 			for i in list(range(0, self.numberofTracks)):
-				audioDesc = self.audio.getTrackInfo(i).getDescription()
+				audioDesc = self.audio.getTrackInfo(i).getDescription() or ""
+				audioDesc = audioDesc.replace("A ", "").replace("A_", "").replace("EAC3", "AC3+").replace("EAC-3", "AC3+").replace("AC-3", "AC3")
 				audioPID = self.audio.getTrackInfo(i).getPID()
 				audioLang = self.audio.getTrackInfo(i).getLanguage()
 				if audioLang == "":
