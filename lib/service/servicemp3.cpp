@@ -1883,6 +1883,8 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 		return -2;
 	}
 
+	std::string desc = m_audioStreams[i].codec;
+
 	std::map<std::string, std::string> audioReplacements = {
 		{"A ", ""},
 		{"A_", ""},
@@ -1901,15 +1903,18 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 		{"(ATSC A/52B)", ""},
 		{" audio", ""}};
 
-	for (auto const &x : audioReplacements)
+	if (!desc.empty())
 	{
-		std::string s = x.first;
-		if (desc.length() >= s.length())
+		for (auto const &x : audioReplacements)
 		{
-			size_t loc = desc.find(s);
-			if (loc != std::string::npos)
+			std::string s = x.first;
+			if (desc.length() >= s.length())
 			{
-				desc.replace(loc, s.length(), x.second);
+				size_t loc = desc.find(s);
+				if (loc != std::string::npos)
+				{
+					desc.replace(loc, s.length(), x.second);
+				}
 			}
 		}
 	}
