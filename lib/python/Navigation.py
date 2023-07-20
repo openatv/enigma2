@@ -52,10 +52,13 @@ class Navigation:
 				break
 		if not self.RecordTimer:
 			self.RecordTimer = RecordTimer.RecordTimer()
+			self.RecordTimer.loadTimers()  # call loadTimers after init of self.RecordTimer
 			self.isRecordTimerImageStandard = True
 
 		self.PowerTimer = None
 		self.PowerTimer = PowerTimer.PowerTimer()
+		self.PowerTimer.loadTimers()  # call loadTimers after init of self.PowerTimer
+
 		self.__wasTimerWakeup = False
 		self.__wasRecTimerWakeup = False
 		self.__wasPowerTimerWakeup = False
