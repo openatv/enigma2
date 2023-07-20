@@ -2059,6 +2059,7 @@ class EPGSelection(Screen, HelpableScreen):
 			"24minus": _("-24"),
 			"timer": _("Add Timer"),
 			"imdb": _("IMDb Search"),
+			"tmdb": _("TMDB Search"),
 			"autotimer": _("Add AutoTimer"),
 			"bouquetlist": _("BouquetList"),
 			"epgsearch": _("EPG Search"),
