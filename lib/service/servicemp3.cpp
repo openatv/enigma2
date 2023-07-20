@@ -1883,7 +1883,38 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 		return -2;
 	}
 
-	info.m_description = m_audioStreams[i].codec;
+	std::map<std::string, std::string> audioReplacements = {
+		{"A ", ""},
+		{"A_", ""},
+		{"EAC3", "AC3+"},
+		{"EAC-3", "AC3+"},
+		{"E-AC3", "AC3+"},
+		{"E-AC-3", "AC3+"},
+		{"AC-3", "AC3"},
+		{"MPEG4-AAC", "HE-AAC"},
+		{"MPEG-4 ", "HE-"},
+		{" AAC", "AAC"},
+		{"A_MPEG/l3", "MPEG"},
+		{"MPEG-1", "MPEG"},
+		{"MPEG-2AAC", "AAC"},
+		{"(ATSC A/52)", ""},
+		{"(ATSC A/52B)", ""},
+		{" audio", ""}};
+
+	for (auto const &x : audioReplacements)
+	{
+		std::string s = x.first;
+		if (desc.length() >= s.length())
+		{
+			size_t loc = desc.find(s);
+			if (loc != std::string::npos)
+			{
+				desc.replace(loc, s.length(), x.second);
+			}
+		}
+	}
+
+	info.m_description = desc;
 
 	if (info.m_language.empty())
 	{
