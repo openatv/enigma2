@@ -16,17 +16,20 @@ class VAudioInfo(Poll, Converter):
 		self.poll_enabled = True
 		self.lang_strings = ("ger", "german", "deu")
 		self.codecs = {
-			"01_dolbydigitalplus": ("digital+", "digitalplus", "ac3+", "e-ac-3"),
-			"02_dolbydigital": ("ac3", "ac-3", "dolbydigital"),
-			"03_mp3": ("mp3", ),
-			"04_wma": ("wma", ),
-			"05_flac": ("flac", ),
-			"06_mpeg": ("mpeg", ),
-			"07_lpcm": ("lpcm", ),
-			"08_dts-hd": ("dts-hd", ),
-			"09_dts": ("dts", ),
-			"10_pcm": ("pcm", ),
-		}
+			"01_dolbydigitalplus": ("digital+", "digitalplus", "ac3+",),
+			"02_dolbydigital": ("ac3", "dolbydigital",),
+			"03_mp3": ("mp3",),
+			"04_wma": ("wma",),
+			"05_flac": ("flac",),
+			"06_he-aac": ("he-aac",),
+			"07_aac": ("aac",),
+			"08_lpcm": ("lpcm",),
+			"09_dts-hd": ("dts-hd",),
+			"10_dts": ("dts",),
+			"11_pcm": ("pcm",),
+			"12_mpeg": ("mpeg",),
+			"13_dolbytruehd": ("truehd",),
+			}
 		self.codec_info = {
 			"dolbydigitalplus": ("51", "20", "71"),
 			"dolbydigital": ("51", "20", "71"),
@@ -62,7 +65,7 @@ class VAudioInfo(Poll, Converter):
 		if self.getAudio():
 			languages = self.getLanguage()
 			description = self.audio_info.getDescription() or ""
-			description = description.replace("A ", "").replace("A_", "").replace("EAC3", "AC3+").replace("EAC-3", "AC3+").replace("AC-3", "AC3")
+			description = description.replace("A ", "").replace("A_", "").replace("EAC3", "AC3+").replace("EAC-3", "AC3+").replace("E-AC3", "AC3+").replace("E-AC-3", "AC3+").replace("AC-3", "AC3").replace("MPEG4-AAC", "HE-AAC").replace("MPEG-4 ", "HE-").replace(" AAC", "AAC").replace("A_MPEG/l3", "MPEG").replace("MPEG-1", "MPEG").replace("MPEG-2AAC", "AAC").replace("(ATSC A/52)", "").replace("(ATSC A/52B)", "").replace("audio", "")
 			description_str = description.split(" ")
 			if len(description_str) and description_str[0] in languages:
 				return languages
