@@ -106,7 +106,6 @@ class RecordTimer(Timer):
 		self.onTimerAdded = []
 		self.onTimerRemoved = []
 		self.onTimerChanged = []
-		self.loadTimers()
 
 	def loadTimers(self):
 		if exists(TIMER_XML_FILE):

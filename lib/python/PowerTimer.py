@@ -93,7 +93,6 @@ def parseEvent(event):
 class PowerTimer(Timer):
 	def __init__(self):
 		Timer.__init__(self)
-		self.loadTimers()
 
 	def loadTimers(self):
 		if exists(TIMER_XML_FILE):
