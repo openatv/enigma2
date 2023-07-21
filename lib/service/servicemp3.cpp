@@ -2323,17 +2323,23 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 			for (i = 0; i < n_text; i++)
 			{
-				gchar *g_codec = NULL, *g_lang = NULL;
+				gchar *g_codec = NULL, *g_lang = NULL, *g_lang_title = NULL;
 				GstTagList *tags = NULL;
 				g_signal_emit_by_name (m_gst_playbin, "get-text-tags", i, &tags);
 				subtitleStream subs;
 				subs.language_code = "und";
+				subs.title = "";
 				if (tags && GST_IS_TAG_LIST(tags))
 				{
 					if (gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_lang))
 					{
 						subs.language_code = g_lang;
 						g_free(g_lang);
+					}
+					if (gst_tag_list_get_string(tags, GST_TAG_TITLE, &g_lang_title))
+					{
+						subs.title = g_lang_title;
+						g_free(g_lang_title);
 					}
 					gst_tag_list_get_string(tags, GST_TAG_SUBTITLE_CODEC, &g_codec);
 					gst_tag_list_free(tags);
@@ -2826,7 +2832,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 		if ( subs.type == stUnknown )
 		{
 			GstTagList *tags = NULL;
-			gchar *g_lang = NULL;
+			gchar *g_lang = NULL, *g_lang_title = NULL;
 			g_signal_emit_by_name (m_gst_playbin, "get-text-tags", m_currentSubtitleStream, &tags);
 
 			subs.language_code = "und";
@@ -2837,6 +2843,11 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 				{
 					subs.language_code = std::string(g_lang);
 					g_free(g_lang);
+				}
+				if (gst_tag_list_get_string(tags, GST_TAG_TITLE, &g_lang_title))
+				{
+					subs.title = g_lang_title;
+					g_free(g_lang_title);
 				}
 				gst_tag_list_free(tags);
 			}
@@ -3125,6 +3136,7 @@ RESULT eServiceMP3::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 			track.page_number = int(type);
 			track.magazine_number = 0;
 			track.language_code = IterSubtitleStream->language_code;
+			track.title = IterSubtitleStream->title;
 			subtitlelist.push_back(track);
 		}
 		}

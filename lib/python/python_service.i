@@ -379,6 +379,7 @@ PyObject *getSubtitleList()
 			PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(subtitlelist[i].page_number));
 			PyTuple_SET_ITEM(tuple, 3, PyLong_FromLong(subtitlelist[i].magazine_number));
 			PyTuple_SET_ITEM(tuple, 4, PyString_FromString(subtitlelist[i].language_code.c_str()));
+			PyTuple_SET_ITEM(tuple, 5, PyString_FromString(subtitlelist[i].title.c_str()));
 			PyList_Append(l, tuple);
 			Py_DECREF(tuple);
 		}
@@ -399,6 +400,7 @@ PyObject *getCachedSubtitle()
 		PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(track.page_number));
 		PyTuple_SET_ITEM(tuple, 3, PyLong_FromLong(track.magazine_number));
 		PyTuple_SET_ITEM(tuple, 4, PyString_FromString(track.language_code.c_str()));
+		PyTuple_SET_ITEM(tuple, 5, PyString_FromString(track.title.c_str()));
 		return tuple;
 	}
 	Py_INCREF(Py_None);

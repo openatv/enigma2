@@ -742,6 +742,7 @@ public:
 		int page_number;
 		int magazine_number;
 		std::string language_code;
+		std::string title;
 	};
 
 	virtual RESULT enableSubtitles(iSubtitleUser *user, SubtitleTrack &track) = 0;
