@@ -4317,14 +4317,19 @@ class InfoBarAspectSelection:
 		self.session.openWithCallback(self.aspectSelected, ChoiceBox, text=_("Please select an aspect ratio..."), list=aspectList, keys=keys, selection=selection)
 
 	def aspectSelected(self, aspect):
-		if not aspect is None:
+		if aspect is not None:
 			if isinstance(aspect[1], str):
 				if aspect[1] == "":
 					self.ExGreen_doHide()
 				elif aspect[1] == "resolution":
 					self.ExGreen_toggleGreen()
 				else:
-					iAVSwitch.setAspectRatio(int(aspect[1]))
+					service = self.session.nav.getCurrentService()
+					info = service and service.info()
+					if info:
+						width = int(info.getInfo(iServiceInformation.sVideoWidth))
+						height = int(info.getInfo(iServiceInformation.sVideoHeight))
+						iAVSwitch.setAspectRatio(int(aspect[1]), width, height)
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()
