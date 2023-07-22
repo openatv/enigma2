@@ -4324,12 +4324,7 @@ class InfoBarAspectSelection:
 				elif aspect[1] == "resolution":
 					self.ExGreen_toggleGreen()
 				else:
-					service = self.session.nav.getCurrentService()
-					info = service and service.info()
-					if info:
-						width = int(info.getInfo(iServiceInformation.sVideoWidth))
-						height = int(info.getInfo(iServiceInformation.sVideoHeight))
-						iAVSwitch.setAspectRatio(int(aspect[1]), width, height)
+					iAVSwitch.setAspectRatio(int(aspect[1]))
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()

@@ -647,6 +647,7 @@ void eAVControl::setVideoSize(int top, int left, int width, int height, int flag
 	CFile::writeIntHex("/proc/stb/vmpeg/0/dst_left", left, __MODULE__, flags);
 	CFile::writeIntHex("/proc/stb/vmpeg/0/dst_width", width, __MODULE__, flags);
 	CFile::writeIntHex("/proc/stb/vmpeg/0/dst_height", height, __MODULE__, flags);
+	CFile::writeInt("/proc/stb/vmpeg/0/dst_apply", 1, __MODULE__, flags);
 
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: T:%d L:%d W:%d H:%d", __MODULE__, "setVideoSize", top, left, width, height);

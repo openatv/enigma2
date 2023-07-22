@@ -341,18 +341,16 @@ class AVSwitchBase:
 	def setAspect(self, configElement):
 		eAVControl.getInstance().setAspect(configElement.value, 1)
 
-	def setAspectRatio(self, value, width=None, height=None):
+	def setAspectRatio(self, value):
 		if value < 100:
 			eAVControl.getInstance().setAspectRatio(value)
-		elif width and height:  # aspect switcher
+		else:  # aspect switcher
 			value -= 100
 			offset = config.av.aspectswitch.offsets[str(value)].value
-			offset = int((height / 720) * offset)
-
-			newheight = height - offset
-			newtop = height - newheight // 2
+			newheight = 567 - offset
+			newtop = offset // 2
 			if value:
-				newwidth = width  # interestingly the height and top values have no effect if width is 0 (default), so we set it to 720
+				newwidth = 720  # interestingly the height and top values have no effect if width is 0 (default), so we set it to 720
 				newasp = 2  # also interesting, the aspect ratio needs to be set to 16:9 (not letterbox !!?) for height changes
 			else:
 				newtop = 0  # for resetting old values we need to set all values to 0
