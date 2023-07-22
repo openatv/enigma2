@@ -212,7 +212,14 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
 		if config.av.videoport.value == "HDMI":
+			if not BoxInfo.getItem("AmlogicFamily"):
+				self.list.append(getConfigListEntry(_("Aspect switch"), config.av.aspectswitch.enabled, _("This option allows you to set offset values for different Letterbox resolutions.")))
+				if config.av.aspectswitch.enabled.value:
+					for aspect in range(5):
+						self.list.append(getConfigListEntry(" -> %s" % iAVSwitch.ASPECT_SWITCH_MSG[aspect], config.av.aspectswitch.offsets[str(aspect)]))
+
 			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override, _("This option allows you to use all HDMI Modes")))
+
 		if config.av.videoport.value == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:

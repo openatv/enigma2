@@ -634,4 +634,23 @@ void eAVControl::setPolicy169(const std::string &newPolicy, int flags) const
 		eDebug("[%s] %s: %s", __MODULE__, "setPolicy169", newPolicy.c_str());
 }
 
+/// @brief setVideoSize
+/// @param top 
+/// @param left 
+/// @param width 
+/// @param height 
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+void eAVControl::setVideoSize(int top, int left, int width, int height, int flags) const
+{
+
+	CFile::writeIntHex("/proc/stb/vmpeg/0/dst_top", top, __MODULE__, flags);
+	CFile::writeIntHex("/proc/stb/vmpeg/0/dst_left", left, __MODULE__, flags);
+	CFile::writeIntHex("/proc/stb/vmpeg/0/dst_width", width, __MODULE__, flags);
+	CFile::writeIntHex("/proc/stb/vmpeg/0/dst_height", height, __MODULE__, flags);
+	CFile::writeInt("/proc/stb/vmpeg/0/dst_apply", 1, __MODULE__, flags);
+
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: T:%d L:%d W:%d H:%d", __MODULE__, "setVideoSize", top, left, width, height);
+}
+
 eAutoInitP0<eAVControl> init_avcontrol(eAutoInitNumbers::rc, "AVControl Driver");

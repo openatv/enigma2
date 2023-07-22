@@ -4286,9 +4286,17 @@ class InfoBarAspectSelection:
 				(_("16:9 Combined"), "13")
 			]
 		else:
+			aspectSwitchList = []
+			if config.av.aspectswitch.enabled.value:
+				for aspect in range(5):
+					aspectSwitchList.append((iAVSwitch.ASPECT_SWITCH_MSG[aspect], str(aspect + 100)))
+
+				aspectSwitchList.append(("--", ""))
+
 			aspectList = [
 				(_("Resolution"), "resolution"),
-				("--", ""),
+				("--", "")
+			] + aspectSwitchList + [
 				(_("4:3 Letterbox"), "0"),
 				(_("4:3 PanScan"), "1"),
 				(_("16:9"), "2"),
@@ -4309,7 +4317,7 @@ class InfoBarAspectSelection:
 		self.session.openWithCallback(self.aspectSelected, ChoiceBox, text=_("Please select an aspect ratio..."), list=aspectList, keys=keys, selection=selection)
 
 	def aspectSelected(self, aspect):
-		if not aspect is None:
+		if aspect is not None:
 			if isinstance(aspect[1], str):
 				if aspect[1] == "":
 					self.ExGreen_doHide()

@@ -1,8 +1,8 @@
 from os.path import exists
 from os import W_OK, access, system
 from time import sleep
-from enigma import eAVControl, eDVBVolumecontrol, getDesktop
-from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigYesNo, NoSave, config
+from enigma import eAVControl, eDVBVolumecontrol, getDesktop, iServiceInformation
+from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigYesNo, NoSave, config
 from Components.About import about
 from Components.SystemInfo import BoxInfo
 from Tools.CList import CList
@@ -185,6 +185,12 @@ class AVSwitchBase:
 
 	widescreenModes = tuple([x for x in modes["HDMI"] if x not in ("576p", "576i", "480p", "480i")])
 
+	ASPECT_SWITCH_MSG = (_("16/9 reset to normal"),
+			"1.85:1 %s" % _("Letterbox"),
+			"2.00:1 %s" % _("Letterbox"),
+			"2.21:1 %s" % _("Letterbox"),
+			"2.35:1 %s" % _("Letterbox"))
+
 	def __init__(self):
 		self.last_modes_preferred = []
 		self.on_hotplug = CList()
@@ -271,6 +277,18 @@ class AVSwitchBase:
 				config.av.autores_rate_uhd[mode] = ConfigSelection(choices=rateList)
 		config.av.videoport = ConfigSelection(choices=portList)
 
+		defaults = (0,  # the preset values for the offset heights
+				62,   # 1.85:1
+				100,  # 2.00:1
+				144,  # 2.21:1
+				170)  # 2.35:1
+
+		config.av.aspectswitch = ConfigSubsection()
+		config.av.aspectswitch.enabled = ConfigYesNo(default=False)
+		config.av.aspectswitch.offsets = ConfigSubDict()
+		for aspect in range(5):
+			config.av.aspectswitch.offsets[str(aspect)] = ConfigInteger(default=defaults[aspect], limits=(0, 170))
+
 	def isPortAvailable(self, port):  # Fix me!
 		return True
 
@@ -324,7 +342,22 @@ class AVSwitchBase:
 		eAVControl.getInstance().setAspect(configElement.value, 1)
 
 	def setAspectRatio(self, value):
-		eAVControl.getInstance().setAspectRatio(value)
+		if value < 100:
+			eAVControl.getInstance().setAspectRatio(value)
+		else:  # Aspect Switcher
+			value -= 100
+			offset = config.av.aspectswitch.offsets[str(value)].value
+			newheight = 576 - offset
+			newtop = offset // 2
+			if value:
+				newwidth = 720
+			else:
+				newtop = 0
+				newwidth = 0
+				newheight = 0
+
+			eAVControl.getInstance().setAspectRatio(2)  # 16:9
+			eAVControl.getInstance().setVideoSize(newtop, 0, newwidth, newheight)
 
 	def setColorFormat(self, value):
 		if not self.current_port:
