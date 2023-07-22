@@ -4286,9 +4286,17 @@ class InfoBarAspectSelection:
 				(_("16:9 Combined"), "13")
 			]
 		else:
+			aspectSwitchList = []
+			if config.av.aspectswitch.enabled:
+				for aspect in range(5):
+					aspectSwitchList.append((iAVSwitch.ASPECT_SWITCH_MSG[aspect], aspect + 100))
+
+				aspectSwitchList.append(("--", ""))
+
 			aspectList = [
 				(_("Resolution"), "resolution"),
-				("--", ""),
+				("--", "")
+			] + aspectSwitchList + [
 				(_("4:3 Letterbox"), "0"),
 				(_("4:3 PanScan"), "1"),
 				(_("16:9"), "2"),

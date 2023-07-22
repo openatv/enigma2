@@ -2,7 +2,7 @@ from os.path import exists
 from os import W_OK, access, system
 from time import sleep
 from enigma import eAVControl, eDVBVolumecontrol, getDesktop
-from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigYesNo, NoSave, config
+from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigYesNo, NoSave, config
 from Components.About import about
 from Components.SystemInfo import BoxInfo
 from Tools.CList import CList
@@ -185,6 +185,12 @@ class AVSwitchBase:
 
 	widescreenModes = tuple([x for x in modes["HDMI"] if x not in ("576p", "576i", "480p", "480i")])
 
+	ASPECT_SWITCH_MSG = (_("16/9 reset to normal"),
+			"1.85:1 %s" % _("Letterbox"),
+			"2.00:1 %s" % _("Letterbox"),
+			"2.21:1 %s" % _("Letterbox"),
+			"2.35:1 %s" % _("Letterbox"))
+
 	def __init__(self):
 		self.last_modes_preferred = []
 		self.on_hotplug = CList()
@@ -271,6 +277,17 @@ class AVSwitchBase:
 				config.av.autores_rate_uhd[mode] = ConfigSelection(choices=rateList)
 		config.av.videoport = ConfigSelection(choices=portList)
 
+		defaults = (0,  # the preset values for the heights
+				514,  # still not clear why these values fit best - e.g. for a 2.35:1 movie I would ecpect the value
+				476,  # 720/2.35 which is 322 and not 406 but on my screen it delivers round circles and no elypses
+				432,  # however, the values can be changed in the plugin setup
+				406)
+
+		config.av.aspectswitch.enabled = ConfigYesNo(default=False)
+		config.av.aspectswitch.heights = ConfigSubDict()
+		for aspect in range(5):
+			config.av.aspectswitch.heights[str(aspect)] = ConfigInteger(default=defaults[aspect], limits=(0, 576))
+
 	def isPortAvailable(self, port):  # Fix me!
 		return True
 
@@ -324,7 +341,28 @@ class AVSwitchBase:
 		eAVControl.getInstance().setAspect(configElement.value, 1)
 
 	def setAspectRatio(self, value):
-		eAVControl.getInstance().setAspectRatio(value)
+		if value < 100:
+			eAVControl.getInstance().setAspectRatio(value)
+		else:  # aspect switcher
+			value -= 100
+			newheight = config.av.aspectswitch.heights[str(value)].value  # the height is read from the array (decimal) and changed to a hex string,
+			newtop = int((576 - config.av.aspectswitch.heights[str(value)].value) // 2)  # the top is calculated (576-height)/2, and converted to hex
+			if value:
+				newwidth = 720  # interestingly the height and top values have no effect if width is 0 (default), so we set it to 720
+				newasp = 2  # also interesting, the aspect ratio needs to be set to 16:9 (not letterbox !!?) for height changes
+			else:
+				newtop = 0  # for resetting old values we need to set all values to 0
+				newwidth = 0
+				newasp = 0  # no glue why this is needed, if it is not set (ar 4:3) then 4:3 movies are not 'pillarboxed' , 16:9 works fine with this setting (why !!?)
+
+			eAVControl.getInstance().setAspectRatio(newasp)
+			eAVControl.getInstance().setVideoSize(newtop, 0, newwidth, newheight)
+
+#			open("/proc/stb/vmpeg/0/dst_left", "w").write("0")  # set left (allways 0)
+#			open("/proc/stb/vmpeg/0/dst_width", "w").write(newwidth)  # set width to 720 - except for reset
+#			open("/proc/stb/vmpeg/0/dst_top", "w").write(newtop)  # set top to new value - 0 for reset
+#			open("/proc/stb/vmpeg/0/dst_height", "w").write(newheight)  # set height to new value - 0 for reset
+			#open("/proc/stb/video/aspect", "w").write("16:9") # eventually not required
 
 	def setColorFormat(self, value):
 		if not self.current_port:

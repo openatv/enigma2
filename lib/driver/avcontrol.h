@@ -54,6 +54,8 @@ public:
 	void setPolicy43(const std::string &newPolicy, int flags = 0) const;
 	void setPolicy169(const std::string &newPolicy, int flags = 0) const;
 
+	void setVideoSize(int top, int left, int width, int height, int flags = 0) const;
+
 	enum
 	{
 		FLAGS_DEBUG = 1,
