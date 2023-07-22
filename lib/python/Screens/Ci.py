@@ -439,20 +439,18 @@ class CiSelection(Screen):
 		self.state[slot] = state
 		if self.slot > 1:
 			self.list.append(("**************************", ConfigNothing(), 3, slot))
-		self.list.append((_("CI %s enabled" % (slot)), config.ci[slot].enabled, -1, slot))
+		self.list.append((_("CI enabled"), config.ci[slot].enabled, -1, slot))
+		if self.state[slot] in (0, 3):
+			self.list.append((self.state[slot] == 0 and _("no module found") or _("module disabled"), ConfigNothing(), 2, slot))
+			return
 		self.list.append((_("Reset"), ConfigNothing(), 0, slot))
 		self.list.append((_("Init"), ConfigNothing(), 1, slot))
 
-		if self.state[slot] == 0:  # no module
-			self.list.append((_("no module found"), ConfigNothing(), 2, slot))
-		elif self.state[slot] == 1:  # module in init
+		if self.state[slot] == 1: #module in init
 			self.list.append((_("init module"), ConfigNothing(), 2, slot))
 		elif self.state[slot] == 2:  # module ready
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
 			self.list.append((appname, ConfigNothing(), 2, slot))
-		elif self.state[slot] == 3:  # module disabled by the user
-			self.list.append((_("module disabled"), ConfigNothing(), 2, slot))
-			return
 
 		self.list.append(getConfigListEntry(_("Set pin code persistent"), config.ci[slot].use_static_pin, 3, slot))
 		self.list.append((_("Enter persistent PIN code"), ConfigNothing(), 5, slot))
@@ -467,31 +465,13 @@ class CiSelection(Screen):
 			self.list.append(getConfigListEntry(_("DVB CI Delay"), config.cimisc.dvbCiDelay, 3, slot))
 
 	def updateState(self, slot):
-		state = eDVBCI_UI.getInstance().getState(slot)
-		self.state[slot] = state
-
-		slotidx = 0
-		while len(self.list[slotidx]) < 3 or self.list[slotidx][3] != slot:
-			slotidx += 1
-
-		if slot > 0:
-			slotidx += 1  # do not change separator
-		slotidx += 1  # do not change CI Enabled
-		slotidx += 1  # do not change Reset
-		slotidx += 1  # do not change Init
-
-		if state == 0:  # no module
-			self.list[slotidx] = (_("no module found"), ConfigNothing(), 2, slot)
-		elif state == 1:  # module in init
-			self.list[slotidx] = (_("init module"), ConfigNothing(), 2, slot)
-		elif state == 2:  # module ready
-			appname = eDVBCI_UI.getInstance().getAppName(slot)
-			self.list[slotidx] = (appname, ConfigNothing(), 2, slot)
-			if len(self.list) <= slotidx + 1:
-				self.list = []
-				self.appendEntries(slot, state)
-		elif state == 3:
-			self.list = self.list[0:slotidx + 1]
+		self.list = []
+		self.slot = 0
+		for module in range(SystemInfo["CommonInterface"]):
+			state = eDVBCI_UI.getInstance().getState(module)
+			if state != -1:
+				self.slot += 1
+				self.appendEntries(module, state)
 		lst = self["entries"]
 		lst.list = self.list
 		lst.l.setList(self.list)
@@ -513,9 +493,9 @@ class CiSelection(Screen):
 		if cur and len(cur) > 2:
 			action = cur[2]
 			slot = cur[3]
-			# if action == 3:
-			#	pass
-			if action == 0:  # reset
+			if action == 3:
+				pass
+			elif action == 0:  # reset
 				eDVBCI_UI.getInstance().setReset(slot)
 			elif action == 1:  # init
 				eDVBCI_UI.getInstance().setInit(slot)
@@ -525,7 +505,7 @@ class CiSelection(Screen):
 				config.ci[slot].static_pin.value = 0
 				config.ci[slot].static_pin.save()
 				self.session.openWithCallback(self.cancelCB, MessageBox, _("The saved PIN was cleared."), MessageBox.TYPE_INFO)
-			elif self.state[slot] == 2:
+			elif action == 2 and self.state[slot] == 2:
 				self.dlg = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, action)
 
 	def cancelCB(self, value):
