@@ -640,7 +640,7 @@ void eAVControl::setPolicy169(const std::string &newPolicy, int flags) const
 /// @param width 
 /// @param height 
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
-void eAVControl::setVideoSize(int top, int left, int width, int height, int flags = 0) const
+void eAVControl::setVideoSize(int top, int left, int width, int height, int flags) const
 {
 
 	CFile::writeIntHex("/proc/stb/vmpeg/0/dst_top", top, __MODULE__, flags);
