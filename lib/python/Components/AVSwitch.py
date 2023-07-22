@@ -283,7 +283,7 @@ class AVSwitchBase:
 				144,  # 2.21:1
 				170)  # 2.35:1
 
-		config.av.aspectswitch = ConfigSubDict()
+		config.av.aspectswitch = ConfigSubsection()
 		config.av.aspectswitch.enabled = ConfigYesNo(default=False)
 		config.av.aspectswitch.offsets = ConfigSubDict()
 		for aspect in range(5):
@@ -347,7 +347,7 @@ class AVSwitchBase:
 		else:  # aspect switcher
 			value -= 100
 			offset = config.av.aspectswitch.offsets[str(value)].value
-			newheight = 567 - offset
+			newheight = 576 - offset
 			newtop = offset // 2
 			if value:
 				newwidth = 720  # interestingly the height and top values have no effect if width is 0 (default), so we set it to 720
@@ -356,6 +356,7 @@ class AVSwitchBase:
 				newtop = 0  # for resetting old values we need to set all values to 0
 				newwidth = 0
 				newasp = 0  # no glue why this is needed, if it is not set (ar 4:3) then 4:3 movies are not 'pillarboxed' , 16:9 works fine with this setting (why !!?)
+				newheight = 0
 
 			eAVControl.getInstance().setAspectRatio(newasp)
 			eAVControl.getInstance().setVideoSize(newtop, 0, newwidth, newheight)

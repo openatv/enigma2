@@ -4289,7 +4289,7 @@ class InfoBarAspectSelection:
 			aspectSwitchList = []
 			if config.av.aspectswitch.enabled.value:
 				for aspect in range(5):
-					aspectSwitchList.append((iAVSwitch.ASPECT_SWITCH_MSG[aspect], aspect + 100))
+					aspectSwitchList.append((iAVSwitch.ASPECT_SWITCH_MSG[aspect], str(aspect + 100)))
 
 				aspectSwitchList.append(("--", ""))
 
