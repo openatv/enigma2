@@ -435,6 +435,8 @@ class PowerTimerEntry(TimerEntry, object):
 		self.autosleepbegin = self.begin
 		self.autosleepend = self.end
 		self.nettraffic = False
+		self.netbytes = 0
+		self.netbytes_time = 0
 		self.trafficlimit = 100
 		self.netip = False
 		self.ipadress = "0.0.0.0"
