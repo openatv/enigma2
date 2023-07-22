@@ -372,7 +372,7 @@
 	<setup key="InputDeviceSetup" title="Input Device Settings">
 		<!-- This is just a placeholder. -->
 	</setup>
-	<setup key = "KexecSlotManager" title="Slot Manager">
+	<setup key="KexecSlotManager" title="Slot Manager">
 		<item level="0" text="Target location" description="Choose the target location for the slots.">self.kexecSlotManagerLocation</item>
 		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.kexecSlotManagerLocation.value">self.kexecSlotManagerSlots</item>
 	</setup>
