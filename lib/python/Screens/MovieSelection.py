@@ -339,8 +339,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self["InfobarActions"] = HelpableActionMap(self, ["InfobarActions"], {
 			"showMovies": (self.doPathSelect, _("Select the movie path")),
 			"showRadio": (self.btn_radio, boundFunction(self.getinitUserDefinedActionsDescription, "btn_radio")),
-			"showTv": (self.btn_tv, boundFunction(self.getinitUserDefinedActionsDescription, "btn_tv")),
-			"showText": (self.btn_text, boundFunction(self.getinitUserDefinedActionsDescription, "btn_text"))
+			"showTv": (self.btn_tv, boundFunction(self.getinitUserDefinedActionsDescription, "btn_tv"))
 		}, prio=0)
 		self["NumberActions"] = NumberActionMap(["NumberActions", "InputAsciiActions"], {
 			"gotAsciiCode": self.keyAsciiCode,
@@ -364,7 +363,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		}, prio=0)
 		self["MovieSelectionActions"] = HelpableActionMap(self, ["MovieSelectionActions"], {
 			"contextMenu": (self.doContext, _("Menu")),
-			"showEventInfo": (self.showEventInformation, _("Show event details"))
+			"showEventInfo": (self.showEventInformation, _("Show event details")),
+			"showText": (self.btn_text, boundFunction(self.getinitUserDefinedActionsDescription, "btn_text"))
 		}, prio=0)
 		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"red": (self.btn_red, boundFunction(self.getinitUserDefinedActionsDescription, "btn_red")),
