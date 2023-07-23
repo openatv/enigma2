@@ -35,7 +35,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.CopyFiles import copyFiles, deleteFiles, moveFiles
-from Tools.Directories import SCOPE_HDD, resolveFilename
+from Tools.Directories import SCOPE_HDD, resolveFilename, isPluginInstalled
 from Tools.NumericalTextInput import MAP_SEARCH_UPCASE, NumericalTextInput
 from Tools.Trashcan import TRASHCAN, TrashInfo, cleanAll, createTrashcan, getTrashcan
 
@@ -366,6 +366,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			"showEventInfo": (self.showEventInformation, _("Show event details")),
 			"showText": (self.btn_text, boundFunction(self.getinitUserDefinedActionsDescription, "btn_text"))
 		}, prio=0)
+		if isPluginInstalled("SubsSupport"):
+			self["SubtitleActions"] = HelpableActionMap(self, ["MovieSelectionActions"], {
+				"subtitle": (self.openSubsSupport, _("Open external subtitle management screen"))
+			}, prio=0)
 		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"red": (self.btn_red, boundFunction(self.getinitUserDefinedActionsDescription, "btn_red")),
 			"green": (self.btn_green, boundFunction(self.getinitUserDefinedActionsDescription, "btn_green")),
@@ -1939,6 +1943,20 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						continue
 					else:
 						items.append(item)
+
+	def openSubsSupport(self):
+		item = self.getCurrentSelection()
+		if item and item[0] and item[1] and not item[0].flags & eServiceReference.mustDescent:
+			info = item[1]
+			name = info and info.getName(item[0])
+			if name:
+				# The import must be done here, otherwise enigma will not start
+				try:
+					from Plugins.Extensions.SubsSupport.subtitles import SubsSearch, E2SubsSeeker, initSubsSettings
+					settings = initSubsSettings().search
+					self.session.open(SubsSearch, E2SubsSeeker(self.session, settings), settings, searchTitles=[name], standAlone=True)
+				except Exception as err:
+					print("[MovieSelection] Error start SubsSupport Plugin : '%s'" % str(err))
 
 
 class MovieSelectionSummary(Screen):
