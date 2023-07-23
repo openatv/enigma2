@@ -73,9 +73,9 @@ class TitleList(Screen, HelpableScreen):
 				"burnProject": (self.askBurnProject, _("Burn to medium"), _("Burn to medium")),
 			})
 
-		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
+		self["menuactions"] = HelpableActionMap(self, "MenuActions",
 			{
-				"contextMenu": (self.showMenu, _("Menu")),
+				"menu": (self.showMenu, _("Menu")),
 			})
 
 		self["actions"] = ActionMap(["OkCancelActions"],

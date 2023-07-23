@@ -246,7 +246,7 @@ class Pic_Thumb(Screen):
 
 		Screen.__init__(self, session)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "MovieSelectionActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "InfoActions"],
 		{
 			"cancel": self.Exit,
 			"ok": self.KeyOk,
@@ -254,7 +254,7 @@ class Pic_Thumb(Screen):
 			"right": self.key_right,
 			"up": self.key_up,
 			"down": self.key_down,
-			"showEventInfo": self.StartExif,
+			"info": self.StartExif,
 		}, -1)
 
 		self["frame"] = MovingPixmap()
@@ -417,7 +417,7 @@ class Pic_Full_View(Screen):
 
 		Screen.__init__(self, session)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "MovieSelectionActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "InfoActions"],
 		{
 			"cancel": self.Exit,
 			"green": self.PlayPause,
@@ -426,7 +426,7 @@ class Pic_Full_View(Screen):
 			"red": self.prevPic,
 			"left": self.prevPic,
 			"right": self.nextPic,
-			"showEventInfo": self.StartExif,
+			"info": self.StartExif,
 		}, -1)
 
 		self["point"] = Pixmap()
