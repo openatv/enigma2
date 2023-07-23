@@ -1949,12 +1949,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if item and item[0] and item[1] and not item[0].flags & eServiceReference.mustDescent:
 			info = item[1]
 			name = info and info.getName(item[0])
+			path = item[0].getPath()
 			if name:
 				# The import must be done here, otherwise enigma will not start
 				try:
 					from Plugins.Extensions.SubsSupport.subtitles import SubsSearch, E2SubsSeeker, initSubsSettings
 					settings = initSubsSettings().search
-					self.session.open(SubsSearch, E2SubsSeeker(self.session, settings), settings, searchTitles=[name], standAlone=True)
+					self.session.open(SubsSearch, E2SubsSeeker(self.session, settings), settings, filepath=path, searchTitles=[name], standAlone=True)
 				except Exception as err:
 					print("[MovieSelection] Error start SubsSupport Plugin : '%s'" % str(err))
 
