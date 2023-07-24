@@ -586,8 +586,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		pos = suburi_str.find_last_of(".");
 		if (pos != std::string::npos)
 		{
-			std::string _ext = suburi_str.substr(pos + 1);
-			m_external_subtitle_extension = suburi_str.substr(0, pos);
+			m_external_subtitle_extension = suburi_str.substr(pos + 1);
+			suburi_str = suburi_str.substr(0, pos);
 		}
 
 		pos = suburi_str.find_last_of(".");
