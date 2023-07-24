@@ -75,8 +75,6 @@ eAVControl::eAVControl()
 	eDebug("[%s] Init: VideoMode Choices:%s", __MODULE__, m_videomode_choices.c_str());
 	m_instance = this;
 
-	m_b_has_proc_hdmi_rx_monitor = true;
-
 	if (modelinformation.getValue("scart") == "True")
 	{
 
