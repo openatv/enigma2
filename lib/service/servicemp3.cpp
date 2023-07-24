@@ -597,6 +597,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			if (m_external_subtitle_language.size() > 3)
 				m_external_subtitle_language = "";
 		}
+		eDebug("[eServiceMP3] m_external_subtitle_path: %s m_external_subtitle_extension: %s m_external_subtitle_language: %s", m_external_subtitle_path.c_str(), m_external_subtitle_extension.c_str(), m_external_subtitle_language.c_str());
 	}
 
 	const char *ext = strrchr(filename, '.');
@@ -815,7 +816,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			g_object_set (m_gst_playbin, "suburi", suburi, NULL);
 		else
 		{
-			if(!m_external_subtitle_path.empty())
+			if(m_external_subtitle_path.empty())
 			{
 				char srt_filename[ext - filename + 5];
 				strncpy(srt_filename,filename, ext - filename);
@@ -834,7 +835,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 				if (::access(m_external_subtitle_path.c_str(), R_OK) >= 0)
 				{
 					gchar *luri = g_filename_to_uri(m_external_subtitle_path.c_str(), NULL, NULL);
-					eDebug("[eServiceMP3] subtitle uri: %s", luri);
+					eDebug("[eServiceMP3] m_external_subtitle uri: %s", luri);
 					g_object_set (m_gst_playbin, "suburi", luri, NULL);
 					g_free(luri);
 				}
@@ -1992,7 +1993,7 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 		if (str)
 		{
 			const gchar *g_type = gst_structure_get_name(str);
-			// eDebug("[eServiceMP3] getSubtitleType::subtitle probe caps type=%s", g_type ? g_type : "(null)");
+			eDebug("[eServiceMP3] getSubtitleType::subtitle probe caps type=%s", g_type ? g_type : "(null)");
 			if (g_type)
 			{
 				if ( !strcmp(g_type, "subpicture/x-dvd") )
@@ -2010,7 +2011,7 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 	}
 	else if ( g_codec )
 	{
-		// eDebug("[eServiceMP3] getSubtitleType::subtitle probe codec tag=%s", g_codec);
+		eDebug("[eServiceMP3] getSubtitleType::subtitle probe codec tag=%s", g_codec);
 		if ( !strcmp(g_codec, "VOB") )
 			type = stVOB;
 		else if ( !strcmp(g_codec, "SubStation Alpha") || !strcmp(g_codec, "SSA") )
@@ -2393,7 +2394,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					gst_tag_list_free(tags);
 				}
 
-				//eDebug("[eServiceMP3] subtitle stream=%i language=%s codec=%s", i, subs.language_code.c_str(), g_codec ? g_codec : "(null)");
+				eDebug("[eServiceMP3] subtitle stream=%i language=%s codec=%s", i, subs.language_code.c_str(), g_codec ? g_codec : "(null)");
 
 				GstPad* pad = 0;
 				g_signal_emit_by_name (m_gst_playbin, "get-text-pad", i, &pad);
