@@ -1993,7 +1993,7 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 		if (str)
 		{
 			const gchar *g_type = gst_structure_get_name(str);
-			eDebug("[eServiceMP3] getSubtitleType::subtitle probe caps type=%s", g_type ? g_type : "(null)");
+			//eDebug("[eServiceMP3] getSubtitleType::subtitle probe caps type=%s", g_type ? g_type : "(null)");
 			if (g_type)
 			{
 				if ( !strcmp(g_type, "subpicture/x-dvd") )
@@ -2011,7 +2011,7 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 	}
 	else if ( g_codec )
 	{
-		eDebug("[eServiceMP3] getSubtitleType::subtitle probe codec tag=%s", g_codec);
+		//eDebug("[eServiceMP3] getSubtitleType::subtitle probe codec tag=%s", g_codec);
 		if ( !strcmp(g_codec, "VOB") )
 			type = stVOB;
 		else if ( !strcmp(g_codec, "SubStation Alpha") || !strcmp(g_codec, "SSA") )
@@ -2394,19 +2394,23 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					gst_tag_list_free(tags);
 				}
 
-				eDebug("[eServiceMP3] subtitle stream=%i language=%s codec=%s", i, subs.language_code.c_str(), g_codec ? g_codec : "(null)");
+				//eDebug("[eServiceMP3] subtitle stream=%i language=%s codec=%s", i, subs.language_code.c_str(), g_codec ? g_codec : "(null)");
 
-				GstPad* pad = 0;
-				g_signal_emit_by_name (m_gst_playbin, "get-text-pad", i, &pad);
-				if ( pad )
-					g_signal_connect (G_OBJECT (pad), "notify::caps", G_CALLBACK (gstTextpadHasCAPS), this);
+				GstPad *pad = 0;
+				g_signal_emit_by_name(m_gst_playbin, "get-text-pad", i, &pad);
+				if (pad)
+					g_signal_connect(G_OBJECT(pad), "notify::caps", G_CALLBACK(gstTextpadHasCAPS), this);
 
 				subs.type = getSubtitleType(pad, g_codec);
 
 				if (i == 0 && !m_external_subtitle_extension.empty())
 				{
-					gchar *ext = g_strdup_printf("%s", m_external_subtitle_extension.c_str());
-					subs.type = getSubtitleType(pad, ext);
+					if (m_external_subtitle_extension == "srt")
+						subs.type = stSRT;
+					if (m_external_subtitle_extension == "ass")
+						subs.type = stASS;
+					if (m_external_subtitle_extension == "ssa")
+						subs.type = stSSA;
 					if (!m_external_subtitle_language.empty())
 						subs.language_code = m_external_subtitle_language;
 				}
