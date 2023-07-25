@@ -864,20 +864,15 @@ class NIM(object):
 
 	def isFBCTuner(self):
 		return self.is_fbc[0] != 0
-#		# get FBC from description if proc not exists
-#		return (self.description and "FBC" in self.description) or ((self.frontend_id is not None) and access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, F_OK))
 
 	def isFBCRoot(self):
 		return self.is_fbc[0] == 1
-#		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
 
 	def isFBCLink(self):
 		return self.is_fbc[0] == 2
-#		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
 
 	def isNotFirstFBCTuner(self):
 		return self.is_fbc[0] != 0 and self.is_fbc[1] != 1
-#		return self.isFBCTuner() and self.slot % 8 and True
 
 	slot_id = property(getSlotID)
 
@@ -923,8 +918,11 @@ class NIM(object):
 
 	def isFBCLinkEnabled(self):
 		if self.isFBCLink():
-			for slot in nimmanager.nim_slots:
-				if slot.isFBCRoot() and slot.is_fbc[2] == self.is_fbc[2] and config.Nims[slot.slot].dvbs.configMode.value != "nothing":
+			for slot in [slot for slot in nimmanager.nim_slots if slot.isFBCRoot() and slot.is_fbc[2] == self.is_fbc[2]]:
+				if self.getType() == "DVB-C":
+					if config.Nims[slot.slot].dvbc.configMode.value != "nothing":
+						return True
+				elif config.Nims[slot.slot].dvbs.configMode.value != "nothing":
 					return True
 		return False
 
