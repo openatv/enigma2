@@ -1009,9 +1009,14 @@ class NimSelection(Screen):
 	def updateList(self, index=None):
 		self.list = []
 		for x in nimmanager.nim_slots:
+			if x.isFBCLink() and not x.isFBCLinkEnabled():
+				continue
 			slotid = x.slot
 			text = ""
 			if self.showNim(x):
+				fbc_text = ""
+				if x.isFBCTuner():
+					fbc_text = (x.isFBCRoot() and _("Slot %s / FBC in %s") % (x.is_fbc[2], x.is_fbc[1])) or _("Slot %s / FBC virtual %s") % (x.is_fbc[2], x.is_fbc[1] - (x.isCompatible("DVB-S") and 2 or 1))
 				if x.isMultiType():
 					if x.canBeCompatible("DVB-S") and nimmanager.getNimConfig(x.slot).dvbs.configMode.value != "nothing":
 						text = " DVB-S,"
@@ -1037,12 +1042,15 @@ class NimSelection(Screen):
 							text += " " + _("Tuner") + " " + ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B", "C"][int(nimConfig.connectedTo.value)]
 						else:
 							text += " " + _("Tuner") + " " + chr(ord('A') + int(nimConfig.connectedTo.value))
+						if fbc_text:
+							text += "\n" + fbc_text
 					elif nimConfig.configMode.value == "nothing":
 						text = _("not configured")
+						if fbc_text:
+							text += "\n" + fbc_text
 					elif nimConfig.configMode.value == "simple":
 						if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
-							text = {"single": _("Single"), "toneburst_a_b": _("Tone burst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value] + "\n"
-							text += _("Sats") + ": "
+							text = "%s\n%s:" % ({"single": _("Single"), "toneburst_a_b": _("Tone burst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value],  _("Sats"))
 							satnames = []
 							if nimConfig.diseqcA.orbital_position < 3600:
 								satnames.append(nimmanager.getSatName(int(nimConfig.diseqcA.value)))
@@ -1061,14 +1069,15 @@ class NimSelection(Screen):
 								text += ", ".join(satnames[:2]) + ",\n"
 								text += "         " + ", ".join(satnames[2:])
 						elif nimConfig.diseqcMode.value in ("positioner", "positioner_select"):
-							text = {"positioner": _("Positioner"), "positioner_select": _("Positioner (selecting satellites)")}[nimConfig.diseqcMode.value]
-							text += ":"
+							text = "%s: " % {"positioner": _("Positioner"), "positioner_select": _("Positioner (selecting satellites)")}[nimConfig.diseqcMode.value]
 							if nimConfig.positionerMode.value == "usals":
 								text += "USALS"
 							elif nimConfig.positionerMode.value == "manual":
 								text += _("Manual")
 						else:
 							text = _("Simple")
+						if fbc_text:
+							text = fbc_text + " / " + text
 					elif nimConfig.configMode.value == "advanced":
 						text = _("Advanced")
 					if isFBCLink(x.slot) and nimConfig.configMode.value != "advanced":

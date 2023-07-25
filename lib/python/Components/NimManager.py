@@ -11,7 +11,6 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteRotorParameters as rotorParam, \
 	eDVBResourceManager, eDVBDB, eEnv, iDVBFrontend
 
-from Tools.HardwareInfo import HardwareInfo
 from Tools.BoundFunction import boundFunction
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
 from Components.SystemInfo import BoxInfo
@@ -716,7 +715,7 @@ class SecConfigure:
 
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False, input_name=None, supports_blind_scan=False, number_of_slots=0):
+	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False, input_name=None, supports_blind_scan=False, is_fbc=None, number_of_slots=0):
 		if not multi_type:
 			multi_type = {}
 		self.slot = slot
@@ -735,6 +734,7 @@ class NIM(object):
 		self.i2c = i2c
 		self.frontend_id = frontend_id
 		self.__is_empty = is_empty
+		self.is_fbc = is_fbc or (0, 0, 0)
 		self.input_name = input_name
 
 		self.compatible = {
@@ -852,19 +852,6 @@ class NIM(object):
 			multistream = True
 		return multistream
 
-	def isFBCTuner(self):
-		# get FBC from description if proc not exists
-		return (self.description and "FBC" in self.description) or ((self.frontend_id is not None) and access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, F_OK))
-
-	def isFBCRoot(self):
-		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
-
-	def isFBCLink(self):
-		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
-
-	def isNotFirstFBCTuner(self):
-		return self.isFBCTuner() and self.slot % 8 and True
-
 	def isT2MI(self):
 		return exists("/proc/stb/frontend/%d/t2mi" % self.frontend_id)
 
@@ -874,6 +861,23 @@ class NIM(object):
 	# returns dict {<slotid>: <type>}
 	def getMultiTypeList(self):
 		return self.multi_type
+
+	def isFBCTuner(self):
+		return self.is_fbc[0] != 0
+#		# get FBC from description if proc not exists
+#		return (self.description and "FBC" in self.description) or ((self.frontend_id is not None) and access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, F_OK))
+
+	def isFBCRoot(self):
+		return self.is_fbc[0] == 1
+#		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
+
+	def isFBCLink(self):
+		return self.is_fbc[0] == 2
+#		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
+
+	def isNotFirstFBCTuner(self):
+		return self.is_fbc[0] != 0 and self.is_fbc[1] != 1
+#		return self.isFBCTuner() and self.slot % 8 and True
 
 	slot_id = property(getSlotID)
 
@@ -917,6 +921,16 @@ class NIM(object):
 			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 1), self.getFullDescription())
 		return self.getFriendlyFullDescription()
 
+	def isFBCLinkEnabled(self):
+		if self.isFBCLink():
+			for slot in nimmanager.nim_slots:
+				if slot.isFBCRoot() and slot.is_fbc[2] == self.is_fbc[2] and config.Nims[slot.slot].dvbs.configMode.value != "nothing":
+					return True
+		return False
+
+	def isEnabled(self):
+		return self.config_mode_dvbs != "nothing" or self.isFBCLinkEnabled()
+
 	friendly_full_description = property(getFriendlyFullDescription)
 	friendly_full_description_compressed = property(getFriendlyFullDescriptionCompressed)
 	config_mode_dvbs = property(lambda self: config.Nims[self.slot].dvbs.configMode.value)
@@ -926,9 +940,22 @@ class NIM(object):
 
 	config = property(lambda self: config.Nims[self.slot])
 	empty = property(lambda self: self.getType() is None)
+	enabled = property(isEnabled)
 
 
 class NimManager:
+	def __init__(self):
+		sec = secClass.getInstance()
+		global maxFixedLnbPositions
+		maxFixedLnbPositions = sec.getMaxFixedLnbPositions()
+		self.satList = []
+		self.cablesList = []
+		self.terrestrialsList = []
+		self.atscList = []
+		self.enumerateNIMs()
+		self.readTransponders()
+		InitNimManager(self)  # init config stuff
+
 	def getConfiguredSats(self):
 		return self.sec.getConfiguredSats()
 
@@ -1279,6 +1306,11 @@ class NimManager:
 				entries[current_slot]["isempty"] = True
 		nimfile.close()
 		self.number_of_slots = len(list(entries.keys()))
+		fbc_number = 0
+		fbc_tuner = 1
+
+		HasFBCtuner = ["Vuplus DVB-C NIM(BCM3158)", "Vuplus DVB-C NIM(BCM3148)", "Vuplus DVB-S NIM(7376 FBC)", "Vuplus DVB-S NIM(45308X FBC)", "Vuplus DVB-S NIM(45208 FBC)", "DVB-S2 NIM(45208 FBC)", "DVB-S2X NIM(45308X FBC)", "DVB-S2 NIM(45308 FBC)", "DVB-C NIM(3128 FBC)", "BCM45208", "BCM45308X", "BCM3158"]
+		HasPhysicalLoopthrough = ["Vuplus DVB-S NIM(AVL2108)", "GIGA DVB-S2 NIM (Internal)"]
 
 		for id, entry in entries.items():
 			if not ("name" in entry and "type" in entry):
@@ -1287,7 +1319,8 @@ class NimManager:
 			if "i2c" not in entry:
 				entry["i2c"] = None
 			if "has_outputs" not in entry:
-				entry["has_outputs"] = True
+				entry["has_outputs"] = entry["name"] in HasPhysicalLoopthrough  # "Has_Outputs: yes" not in /proc/bus/nim_sockets NIM, but the physical loopthrough exist
+
 			if "frontend_device" in entry:  # check if internally connectable
 				if exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and ((id > 0) or (BoxInfo.getItem("machinebuild") == 'vusolo2')):
 					entry["internally_connectable"] = entry["frontend_device"] - 1
@@ -1304,7 +1337,19 @@ class NimManager:
 				entry["input_name"] = chr(ord('A') + id)
 			if "supports_blind_scan" not in entry:
 				entry["supports_blind_scan"] = False
-			self.nim_slots.append(NIM(slot=id, description=entry["name"], type=entry["type"], has_outputs=entry["has_outputs"], internally_connectable=entry["internally_connectable"], multi_type=entry["multi_type"], frontend_id=entry["frontend_device"], i2c=entry["i2c"], is_empty=entry["isempty"], input_name=entry.get("input_name", None), supports_blind_scan=entry["supports_blind_scan"], number_of_slots=self.number_of_slots))
+
+			entry["fbc"] = [0, 0, 0]  # not fbc
+			if entry["name"] and ("fbc" in entry["name"].lower() or (entry["name"] in HasFBCtuner and entry["frontend_device"] is not None and access("/proc/stb/frontend/%d/fbc_id" % entry["frontend_device"], F_OK))):
+				fbc_number += 1
+				if fbc_number <= (entry["type"] and "DVB-C" in entry["type"] and 1 or 2):
+					entry["fbc"] = [1, fbc_number, fbc_tuner]  # fbc root
+				elif fbc_number <= 8:
+					entry["fbc"] = [2, fbc_number, fbc_tuner]  # fbc link
+				if fbc_number == 8:
+					fbc_number = 0
+					fbc_tuner += 1
+
+			self.nim_slots.append(NIM(slot=id, description=entry["name"], type=entry["type"], has_outputs=entry["has_outputs"], internally_connectable=entry["internally_connectable"], multi_type=entry["multi_type"], frontend_id=entry["frontend_device"], i2c=entry["i2c"], is_empty=entry["isempty"], input_name=entry.get("input_name", None), supports_blind_scan=entry["supports_blind_scan"], is_fbc=entry["fbc"], number_of_slots=self.number_of_slots))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
@@ -1357,24 +1402,9 @@ class NimManager:
 			return False
 		return [x.slot for x in self.nim_slots if x.slot != exception and enabled(x)]
 
-	def __init__(self):
-		sec = secClass.getInstance()
-		global maxFixedLnbPositions
-		maxFixedLnbPositions = sec.getMaxFixedLnbPositions()
-		self.satList = []
-		self.cablesList = []
-		self.terrestrialsList = []
-		self.atscList = []
-		self.enumerateNIMs()
-		self.readTransponders()
-		InitNimManager(self)  # init config stuff
-
 	# get a list with the friendly full description
 	def nimList(self):
-		result = []
-		for slot in self.nim_slots:
-			result.append(slot.friendly_full_description)
-		return result
+		return [slot.friendly_full_description for slot in self.nim_slots]
 
 	def nimListCompressed(self):
 		return [slot.friendly_full_description_compressed for slot in self.nim_slots if not (slot.isNotFirstFBCTuner() or slot.internally_connectable is not None)]
@@ -1544,7 +1574,7 @@ class NimManager:
 					for x in self.satList:
 						if int(nim.advanced.sat[x[0]].lnb.value) != 0:
 							result.append(x)
-				for x in list(range(3605, 3607)):
+				for x in range(3605, 3607):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for user_sat in self.satList:
 							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in result:
@@ -1676,7 +1706,6 @@ lscr = [("scr%d" % i) for i in list(range(1, 33))]
 
 def InitNimManager(nimmgr, update_slots=None):
 	update_slots = [] if update_slots is None else update_slots
-	hw = HardwareInfo()
 	addNimConfig = False
 	try:
 		config.Nims
@@ -2166,7 +2195,7 @@ def InitNimManager(nimmgr, update_slots=None):
 			nim.turningspeedH = ConfigFloat(default=[2, 3], limits=[(0, 9), (0, 9)])
 			nim.turningspeedV = ConfigFloat(default=[1, 7], limits=[(0, 9), (0, 9)])
 			nim.powerMeasurement = ConfigYesNo(False)
-			nim.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
+			nim.powerThreshold = ConfigInteger(default=BoxInfo.getItem("machinebuild") == "dm8000" and 15 or 50, limits=(0, 100))
 			nim.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
 			btime = datetime(1970, 1, 1, 7, 0)
 			nim.fastTurningBegin = ConfigDateTime(default=mktime(btime.timetuple()), formatstring=_("%H:%M"), increment=900)
