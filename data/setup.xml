@@ -61,6 +61,11 @@
 		<item level="0" text="Password" description="Edit the password.">config.cccaminfo.password</item>
 		<item level="0" text="Port" description="Edit the remote CCCam port.">config.cccaminfo.port</item>
 	</setup>
+	<setup key="CiSelection" title="Common Interface">
+		<item level="0" text="Common Settings"></item>
+		<item level="0" text="DVB CI Delay" description="Set DVB CI delay.">config.cimisc.dvbCiDelay</item>
+		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
+	</setup>
 	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="1">
 		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
