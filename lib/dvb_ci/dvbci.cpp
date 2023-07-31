@@ -1716,7 +1716,7 @@ int eDVBCISlot::setClockRate(const std::string &rate)
 {
 	char buf[64];
 	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/ci%d_tsclk", slotid);
-	if(CFile::write(buf, rate) == -1)
+	if(CFile::writeStr(buf, rate) == -1)
 		return -1;
 	return 0;
 }
