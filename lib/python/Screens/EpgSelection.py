@@ -175,8 +175,8 @@ class EPGSelection(Screen, HelpableScreen):
 					epgActions["tvlong"] = (self.togglePIG, _("Toggle Picture in Graphics"))
 			epgActions["nextBouquet"] = (self.nextBouquet, _("Goto next bouquet"))
 			epgActions["prevBouquet"] = (self.prevBouquet, _("Goto previous bouquet"))
-			epgActions["nextService"] = (self.nextPage, _("Move down a page"))
-			epgActions["prevService"] = (self.prevPage, _("Move up a page"))
+			epgActions["prevService"] = (self.nextPage, _("Move down a page"))
+			epgActions["nextService"] = (self.prevPage, _("Move up a page"))
 
 			if self.type == EPG_TYPE_ENHANCED:
 				epgActions["nextService"] = (self.nextService, _("Goto next channel"))
