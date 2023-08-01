@@ -367,14 +367,14 @@ class MovieList(GUIComponent):
 				txt = p[1]
 				if txt == TRASHCAN:
 					dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Trashcan")).width()
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconTrash))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconTrash, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Deleted items")))
 					res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, textPosY), size=(dateSize, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trashcan")))
 					return res
 			if not config.movielist.show_underscores.value:
 				txt = txt.replace('_', ' ').strip()
 			dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Directory")).width()
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconFolder))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconFolder, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 			res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=txt))
 			res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, textPosY), size=(dateSize, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Directory")))
 			return res
@@ -437,7 +437,7 @@ class MovieList(GUIComponent):
 			iconPosY = ih // 2 - iconSize // 2
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 		elif switch == 'p':
 			if data.part is not None and data.part > 0:
 				iconSize = progressBarSize
@@ -452,7 +452,7 @@ class MovieList(GUIComponent):
 				iconPosY = ih // 2 - iconSize // 2
 				if iconPosY < iconPosX:
 					iconPosY = iconPosX
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 		elif switch == 's':
 			iconSize = progressIconSize
 			iconPosX = listBeginX
@@ -462,7 +462,7 @@ class MovieList(GUIComponent):
 			if data.part is not None and data.part > 0:
 				res.append(MultiContentEntryProgress(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 
 		begin_string = ""
 		if begin > 0:
