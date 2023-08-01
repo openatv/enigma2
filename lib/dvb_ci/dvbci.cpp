@@ -1120,7 +1120,7 @@ int eDVBCIInterfaces::setCIEnabled(int slotid, bool enabled)
 	return -1;
 }
 
-int eDVBCIInterfaces::setCIClockRate(int slotid, int rate)
+int eDVBCIInterfaces::setCIClockRate(int slotid, const std::string &rate)
 {
 	singleLock s(m_slot_lock);
 	eDVBCISlot *slot = getSlot(slotid);
@@ -1712,11 +1712,11 @@ int eDVBCISlot::setSource(const std::string &source)
 	return 0;
 }
 
-int eDVBCISlot::setClockRate(int rate)
+int eDVBCISlot::setClockRate(const std::string &rate)
 {
 	char buf[64];
 	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/ci%d_tsclk", slotid);
-	if(CFile::write(buf, rate ? "high" : "normal") == -1)
+	if(CFile::writeStr(buf, rate) == -1)
 		return -1;
 	return 0;
 }

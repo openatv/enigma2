@@ -91,7 +91,7 @@ int eDVBCI_UI::getMMIState(int slot)
 	return eDVBCIInterfaces::getInstance()->getMMIState(slot);
 }
 
-int eDVBCI_UI::setClockRate(int slot, int rate)
+int eDVBCI_UI::setClockRate(int slot, const std::string &rate)
 {
 	return eDVBCIInterfaces::getInstance()->setCIClockRate(slot, rate);
 }

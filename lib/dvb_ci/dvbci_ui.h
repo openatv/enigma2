@@ -18,7 +18,6 @@ class eDVBCI_UI: public eMMI_UI
 #endif
 	void stateChanged(int val) { ciStateChanged(val); }
 public:
-	enum { rateNormal, rateHigh };
 	PSignal1<void,int> ciStateChanged;
 #ifndef SWIG
 	eFixedMessagePump<eDVBCIInterfaces::Message> m_messagepump;
@@ -33,7 +32,7 @@ public:
 	int answerMenu(int slot, int answer);
 	int answerEnq(int slot, char *val);
 	int cancelEnq(int slot);
-	int setClockRate(int slot, int rate);
+	int setClockRate(int slot, const std::string &rate);
 	int setEnabled(int slot, bool enabled);
 };
 
