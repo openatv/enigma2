@@ -68,7 +68,7 @@ def InitCiConfig():
 		if SystemInfo["CommonInterfaceCIDelay"]:
 			config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16", "16"), ("32", "32"), ("64", "64"), ("128", "128"), ("256", "256")])
 			config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
-		config.cimisc.bootDelay = ConfigSelection(default=10, choices=[(x, _("%d Seconds") % x) for x in range(11)])
+		config.cimisc.bootDelay = ConfigSelection(default=10, choices=[(x, _("%d Seconds") % x) for x in range(16)])
 		if config.cimisc.bootDelay.value:
 			delayTimer = eTimer()
 			delayTimer.callback.append(delayTimerCallback)
@@ -402,6 +402,7 @@ class CiSelection(Setup):
 		forceNotShowCiMessages = False
 
 	def createSetup(self):
+		currentItem = self["config"].getCurrent() if self.list else None
 		Setup.createSetup(self)
 		self.slot = 0
 		for slot in range(SystemInfo["CommonInterface"]):
@@ -411,6 +412,8 @@ class CiSelection(Setup):
 				self.appendEntries(slot, state)
 				CiHandler.registerCIMessageHandler(slot, self.ciStateChanged)
 		self["config"].setList(self.list)
+		if currentItem:
+			self.moveToItem(currentItem)
 
 	def ciStateChanged(self, slot):
 		if self.dlg:
@@ -426,26 +429,28 @@ class CiSelection(Setup):
 
 	def appendEntries(self, slot, state):
 		self.list.append(("**************************",))  # Add the comment line to the config list.
-		self.list.append((_("Slot %d") % (slot + 1),))
 
 		self.state[slot] = state
+		text = _("Slot %d") % (slot + 1)
+		if state in (0, 3):
+			text = "%s - %s" % (text, state == 0 and _("no module found") or _("module disabled"))
+		self.list.append((text,))
 
 		self.list.append((_("CI enabled"), config.ci[slot].enabled))
 		if self.state[slot] in (0, 3):
-			self.list.append((self.state[slot] == 0 and _("no module found") or _("module disabled"), ConfigNothing(), "", 2, slot))
 			return
-		self.list.append((_("Reset"), ConfigNothing(), "", 0, slot))
-		self.list.append((_("Init"), ConfigNothing(), "", 1, slot))
+		self.list.append((_("Reset"), ConfigNothing(), _("Press OK to reset module"), 0, slot))
+		self.list.append((_("Init"), ConfigNothing(), _("Press OK to init module"), 1, slot))
 
 		if self.state[slot] == 1:  # module in init
 			self.list.append((_("init module"), ConfigNothing(), "", 2, slot))
 		elif self.state[slot] == 2:  # module ready
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
-			self.list.append((appname, ConfigNothing(), "", 2, slot))
+			self.list.append((appname, ConfigNothing(), _("Press OK to open module info"), 2, slot))
 
 		self.list.append(getConfigListEntry(_("Set pin code persistent"), config.ci[slot].use_static_pin))
-		self.list.append((_("Enter persistent PIN code"), ConfigNothing(), "", 5, slot))
-		self.list.append((_("Reset persistent PIN code"), ConfigNothing(), "", 6, slot))
+		self.list.append((_("Enter persistent PIN code"), ConfigNothing(), _("Press OK to enter PIN code"), 5, slot))
+		self.list.append((_("Reset persistent PIN code"), ConfigNothing(), _("Press OK to reset PIN code"), 6, slot))
 		self.list.append(getConfigListEntry(_("Show CI messages"), config.ci[slot].show_ci_messages))
 		self.list.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
 		if SystemInfo["CI%dSupportsHighBitrates" % slot]:
@@ -476,7 +481,7 @@ class CiSelection(Setup):
 				self.session.openWithCallback(self.cancelCB, MessageBox, _("The saved PIN was cleared."), MessageBox.TYPE_INFO)
 			elif action == 2 and self.state[slot] == 2:
 				self.dlg = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, action)
-			if action in (0, 1, 5, 6):
+			if action in (0, 1, 2, 5, 6):
 				return
 		Setup.keySelect(self)
 
