@@ -1,5 +1,7 @@
-from os.path import exists
+from os import makedirs, symlink, unlink
+from os.path import exists, join, islink
 from re import compile
+from shutil import rmtree
 
 from enigma import checkInternetAccess, eDVBDB, eTimer, gRGB
 
@@ -7,6 +9,7 @@ from skin import parseColor
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import ConfigDictionarySet, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.GUIComponent import GUIComponent
+from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 from Components.Opkg import OpkgComponent
 from Components.PluginComponent import pluginComponent
@@ -21,7 +24,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Processing import Processing
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, fileWriteLine, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, fileAccess, fileWriteLine, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -67,6 +70,7 @@ config.usage.plugins_sort_mode = ConfigSelection(default="user", choices=[
 	("user", _("User defined"))
 ])
 config.usage.plugin_sort_weight = ConfigDictionarySet()
+config.usage.piconInstallLocation = ConfigSelection(default="/", choices=[("/", _("Internal flash"))])
 config.pluginfilter.display = ConfigYesNo(default=True)
 config.pluginfilter.drivers = ConfigYesNo(default=True)
 config.pluginfilter.extensions = ConfigYesNo(default=True)
@@ -548,6 +552,63 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 class PluginBrowserSetup(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "PluginBrowser")
+		choiceList = [("/", _("Internal flash"))]
+		oldLocation = config.usage.piconInstallLocation.savedValue
+		for partition in harddiskmanager.getMountedPartitions():
+			if partition.device and fileAccess(partition.mountpoint, "w") and partition.filesystem() in ("ext3", "ext4"):  # Limit to physical drives with ext3 and ext4
+				choiceList.append((partition.mountpoint, "%s (%s)" % (partition.description, partition.mountpoint)))
+		if oldLocation and oldLocation not in [location[0] for location in choiceList]:  # Add old location if not in calculated list of locations to prevent a setting change.
+			choiceList.append((oldLocation, oldLocation))
+		config.usage.piconInstallLocation.setSelectionList(default="/", choices=sorted(choiceList))
+		config.usage.piconInstallLocation.value = oldLocation
+
+	def keySave(self):
+		def keySaveCallback(answer):
+			if answer:
+				try:
+					for dir in ("picon", "piconlcd"):
+						destDir = join("/", dir)
+						if exists(destDir):
+							if islink(destDir):
+								unlink(destDir)
+							else:
+								rmtree(destDir)
+						srcDir = join(location, dir)
+						makedirs(srcDir, mode=0o755, exist_ok=True)
+						symlink(srcDir, destDir)
+				except OSError as err:
+					print("[PluginBrowserSetup] Error %d: Unable to create picon links!  (%s)" % (err.errno, err.strerror))
+					self.session.open(MessageBox, _("Error: Creating picon target directory: (%s)") % err.strerror, type=MessageBox.TYPE_ERROR)
+					config.usage.piconInstallLocation.cancel()
+			else:
+				config.usage.piconInstallLocation.cancel()
+			Setup.keySave(self)
+
+		location = config.usage.piconInstallLocation.value
+
+		if location != "/" and location != config.usage.piconInstallLocation.savedValue:
+			srcExists = False
+			for dir in ("picon", "piconlcd"):
+				destDir = join("/", dir)
+				if exists(destDir) and not islink(destDir):
+					srcExists = True
+					break
+			if srcExists:
+				self.session.openWithCallback(keySaveCallback, MessageBox, _("The picon directory already exists and must be removed. Do you want to proceed?"), default=False, type=MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
+			else:
+				keySaveCallback(True)
+		elif location == "/" and config.usage.piconInstallLocation.savedValue != "/":  # remove link if the setting has been changed to flash
+			errordir = ""
+			try:
+				for dir in ("/picon", "/piconlcd"):
+					errordir = dir
+					if islink(dir):
+						unlink(dir)
+			except OSError as err:
+				print("[PluginBrowser] Error %d: Unable to remove picon link '%s'!  (%s)" % (err.errno, errordir, err.strerror))
+			Setup.keySave(self)
+		else:
+			Setup.keySave(self)
 
 
 class PluginBrowserSummary(ScreenSummary):
@@ -664,13 +725,22 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			"cancel": (self.keyCancel, _("Close the screen"))
 		}, prio=0, description=description)
 		buttonHelp = {
-			self.REMOVE: _("Remove the highlighted plugin"),
-			self.DOWNLOAD: _("Download the highlighted plugin"),
-			self.UPDATE: _("Update the highlighted plugin"),
+			self.REMOVE: _("Add/Remove highlighted plugin to/from remove list"),
+			self.DOWNLOAD: _("Add/Remove highlighted plugin to/from download list"),
+			self.UPDATE: _("Add/Remove highlighted plugin to/from update list"),
 			self.MANAGE: _("Manage the highlighted plugin")
 		}.get(type, _("Unknown"))
-		self["selectAction"] = HelpableActionMap(self, ["SelectCancelActions"], {
-			"select": (self.keySelect, buttonHelp),
+		self["selectAction"] = HelpableActionMap(self, ["OkCancelActions"], {
+			"ok": (self.keySelect, buttonHelp),
+		}, prio=0, description=description)
+		buttonHelp = {
+			self.REMOVE: _("Remove the selected list of plugins"),
+			self.DOWNLOAD: _("Download the selected list of plugins"),
+			self.UPDATE: _("Update the selected list of plugins"),
+			self.MANAGE: _("Manage the highlighted plugin")
+		}.get(type, _("Unknown"))
+		self["performAction"] = HelpableActionMap(self, ["ColorActions"], {
+			"green": (self.keyGreen, buttonHelp),
 		}, prio=0, description=description)
 		self["logAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.keyYellow, _("Show the last opkg command's output"))
@@ -705,9 +775,11 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		self.expandableIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/plugin_expandable.png"))
 		self.expandedIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/plugin_expanded.png"))
 		self.verticalIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/plugin_vertical.png"))
-		self.installedIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 		self.installableIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
+		self.installIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/install.png"))
+		self.installedIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 		self.upgradableIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png"))
+		self.removeIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 		self.kernelVersion = "-%s" % BoxInfo.getItem("kernel", "")
 		self.quickSelectTimer = eTimer()  # Initialize QuickSelect timer.
 		self.quickSelectTimer.callback.append(self.quickSelectTimeout)
@@ -719,6 +791,8 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		self.pluginList = []
 		self.currentCategory = None
 		self.expanded = []
+		self.selectedInstallItems = []
+		self.selectedRemoveItems = []
 		self.pluginsChanged = False
 		self.reloadSettings = False
 		self.currentBootLogo = None
@@ -807,79 +881,6 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		for callback in self.onChangedEntry:
 			callback()
 
-	def keySelect(self):
-		def keySelectCallback(answer):
-			if answer:
-				args = {}
-				if self.type in (self.REMOVE, self.MANAGE) and current[self.PLUGIN_INSTALLED]:
-					args["arguments"] = [package]
-					args["options"] = ["--autoremove", "--force-depends"]
-					if package.startswith("bootlogo-"):
-						args["options"].append("--force-remove")
-					# args["testMode"] = True
-					self.opkgComponent.runCmd(OpkgComponent.CMD_REMOVE, args)
-					text = _("Please wait while the plugin is removed.")
-				elif self.type in (self.DOWNLOAD, self.MANAGE) and not current[self.PLUGIN_INSTALLED]:
-					oldPackage = None
-					if package.startswith("enigma2-plugin-bootlogo-") and self.currentBootLogo:
-						oldPackage = self.currentBootLogo
-						args["options"] = ["--autoremove", "--force-depends", "--force-remove"]
-					elif package.startswith("enigma2-plugin-settings-") and self.currentSettings:
-						oldPackage = self.currentSettings
-						args["options"] = ["--autoremove", "--force-depends"]
-						self.reloadSettings = True
-					if oldPackage:
-						args["arguments"] = [oldPackage, package]
-						# args["testMode"] = True
-						self.opkgComponent.runCmd(OpkgComponent.CMD_REPLACE, args)
-						text = _("Please wait while the plugin is replaced.")
-					else:
-						args["arguments"] = [package]
-						# args["testMode"] = True
-						self.opkgComponent.runCmd(OpkgComponent.CMD_INSTALL, args)
-						text = _("Please wait while the plugin is downloaded.")
-						if package.startswith("enigma2-plugin-settings-"):
-							self.reloadSettings = True
-				elif self.type == self.UPDATE and current[self.PLUGIN_UPGRADABLE]:
-					args["arguments"] = [package]
-					args["options"] = ["--force-overwrite"]
-					# args["testMode"] = True
-					self.opkgComponent.runCmd(OpkgComponent.CMD_UPDATE, args)
-					text = _("Please wait while the plugin is updated.")
-				self.setWaiting(text)
-				self.logData = ""
-
-		current = self["plugins"].getCurrent()
-		if current:
-			category = current[self.PLUGIN_CATEGORY]
-			if isinstance(category, str):  # Entry is a category.
-				if category in self.expanded:
-					self.expanded.remove(category)
-				else:
-					self.expanded.append(category)
-				self.displayPluginList(self.pluginList)
-			else:
-				package = current[self.PLUGIN_PACKAGE]
-				if self.type in (self.REMOVE, self.MANAGE) and current[self.PLUGIN_INSTALLED]:
-					text = _("Do you want to remove '%s'?") % package
-					default = False
-				elif self.type in (self.DOWNLOAD, self.MANAGE) and not current[self.PLUGIN_INSTALLED]:
-					oldPackage = None
-					if package.startswith("enigma2-plugin-bootlogo-") and self.currentBootLogo:
-						oldPackage = self.currentBootLogo
-					elif package.startswith("enigma2-plugin-settings-") and self.currentSettings:
-						oldPackage = self.currentSettings
-					if oldPackage:
-						text = _("Do you want to replace '%s' with '%s?") % (oldPackage, package)
-						default = False
-					else:
-						text = _("Do you want to download '%s'?") % package
-						default = True
-				elif self.type == self.UPDATE and current[self.PLUGIN_UPGRADABLE]:
-					text = _("Do you want to update '%s'?") % package
-					default = False
-				self.session.openWithCallback(keySelectCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
-
 	def keyCancel(self):
 		if self.pluginsChanged:
 			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
@@ -889,6 +890,140 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			eDVBDB.getInstance().reloadServicelist()
 		pluginComponent.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		self.close()
+
+	def keySelect(self):
+		current = self["plugins"].getCurrent()
+		if current:
+			category = current[self.PLUGIN_CATEGORY]
+			if isinstance(category, str):  # Entry is a category.
+				if category in self.expanded:
+					self.expanded.remove(category)
+				else:
+					self.expanded.append(category)
+			else:
+				package = current[self.PLUGIN_PACKAGE]
+				# Don't use multiselect for bootlogo , settings or picons
+				if package.startswith("enigma2-plugin-bootlogo-") or package.startswith("enigma2-plugin-settings-") or package.startswith("enigma2-plugin-picons-"):
+					self.selectedRemoveItems = []
+					self.selectedInstallItems = []
+					self.keyGreen()
+					return
+				if self.type == self.MANAGE:  # support only remove or install and not mixing
+					if current[self.PLUGIN_INSTALLED]:
+						if package in self.selectedRemoveItems:
+							self.selectedRemoveItems.remove(package)
+						else:
+							self.selectedRemoveItems.append(package)
+						self.selectedInstallItems = []
+					else:
+						if package in self.selectedInstallItems:
+							self.selectedInstallItems.remove(package)
+						else:
+							self.selectedInstallItems.append(package)
+						self.selectedRemoveItems = []
+				elif self.type == self.REMOVE:
+					if package in self.selectedRemoveItems:
+						self.selectedRemoveItems.remove(package)
+					else:
+						self.selectedRemoveItems.append(package)
+				else:
+					if package in self.selectedInstallItems:
+						self.selectedInstallItems.remove(package)
+					else:
+						self.selectedInstallItems.append(package)
+			self.displayPluginList(self.pluginList)
+			installText = ngettext("%d package marked for install.", "%d packages marked install.", len(self.selectedInstallItems)) % len(self.selectedInstallItems) if self.selectedInstallItems else ""
+			removeText = ngettext("%d package marked for remove.", "%d packages marked for remove.", len(self.selectedRemoveItems)) % len(self.selectedRemoveItems) if self.selectedRemoveItems else ""
+			markedText = installText if installText else removeText
+			markedText = "\n%s" % markedText if markedText else ""
+			self["description"].setText("%s%s" % (self.descriptionText, markedText))
+
+	def keyGreen(self):
+		def keyGreenCallback(answer):
+			if answer:
+				args = {}
+				if self.type in (self.REMOVE, self.MANAGE) and (self.selectedRemoveItems or current[self.PLUGIN_INSTALLED]):
+					args["arguments"] = self.selectedRemoveItems or [package]
+					args["options"] = ["--autoremove", "--force-depends"]
+					if package.startswith("bootlogo-"):
+						args["options"].append("--force-remove")
+					# args["testMode"] = True
+					self.opkgComponent.runCmd(OpkgComponent.CMD_REMOVE, args)
+					text = _("Please wait while the plugin is removed.")
+				elif self.type in (self.DOWNLOAD, self.MANAGE) and (self.selectedInstallItems or not current[self.PLUGIN_INSTALLED]):
+					oldPackage = None
+					if package.startswith("enigma2-plugin-bootlogo-") and self.currentBootLogo:
+						oldPackage = self.currentBootLogo
+						args["options"] = ["--autoremove", "--force-depends", "--force-remove"]
+					elif package.startswith("enigma2-plugin-settings-") and self.currentSettings:
+						oldPackage = self.currentSettings
+						args["options"] = ["--autoremove", "--force-depends"]
+						self.reloadSettings = True
+					elif package.startswith("enigma2-plugin-picons-") and config.usage.piconInstallLocation.value:
+						location = config.usage.piconInstallLocation.value
+						try:
+							for dir in ("picon", "piconlcd"):
+								srcDir = join(location, dir)
+								if not exists(srcDir):
+									makedirs(srcDir, mode=0o755, exist_ok=True)
+						except OSError as err:
+							print("[PluginAction] Error %d: Unable to create picon location!  (%s)" % (err.errno, err.strerror))
+					if oldPackage:
+						args["arguments"] = [oldPackage, package]
+						# args["testMode"] = True
+						self.opkgComponent.runCmd(OpkgComponent.CMD_REPLACE, args)
+						text = _("Please wait while the plugin is replaced.")
+					else:
+						args["arguments"] = self.selectedInstallItems or [package]
+						# args["testMode"] = True
+						self.opkgComponent.runCmd(OpkgComponent.CMD_INSTALL, args)
+						text = _("Please wait while the plugin is downloaded.")
+						if package.startswith("enigma2-plugin-settings-"):
+							self.reloadSettings = True
+				elif self.type == self.UPDATE and (self.selectedInstallItems or current[self.PLUGIN_UPGRADABLE]):
+					args["arguments"] = self.selectedInstallItems or [package]
+					args["options"] = ["--force-overwrite"]
+					# args["testMode"] = True
+					self.opkgComponent.runCmd(OpkgComponent.CMD_UPDATE, args)
+					text = _("Please wait while the plugin is updated.")
+				self.setWaiting(text)
+				self.logData = ""
+
+		current = None
+		if self.selectedRemoveItems and self.selectedInstallItems:  # mixing install and remove is currently not possible
+			pass
+		elif self.selectedInstallItems:
+			text = _("Do you want to download '%s'?") % ", ".join(self.selectedInstallItems)
+			default = True
+			package = " ".join(self.selectedInstallItems)
+			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
+		elif self.selectedRemoveItems:
+			text = _("Do you want to remove '%s'?") % ", ".join(self.selectedRemoveItems)
+			default = False
+			package = " ".join(self.selectedRemoveItems)
+			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
+		else:
+			current = self["plugins"].getCurrent()
+			package = current[self.PLUGIN_PACKAGE]
+			if self.type in (self.REMOVE, self.MANAGE) and current[self.PLUGIN_INSTALLED]:
+				text = _("Do you want to remove '%s'?") % package
+				default = False
+			elif self.type in (self.DOWNLOAD, self.MANAGE) and not current[self.PLUGIN_INSTALLED]:
+				oldPackage = None
+				if package.startswith("enigma2-plugin-bootlogo-") and self.currentBootLogo:
+					oldPackage = self.currentBootLogo
+				elif package.startswith("enigma2-plugin-settings-") and self.currentSettings:
+					oldPackage = self.currentSettings
+				if oldPackage:
+					text = _("Do you want to replace '%s' with '%s?") % (oldPackage, package)
+					default = False
+				else:
+					text = _("Do you want to download '%s'?") % package
+					default = True
+			elif self.type == self.UPDATE and current[self.PLUGIN_UPGRADABLE]:
+				text = _("Do you want to update '%s'?") % package
+				default = False
+			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
 
 	def keyYellow(self):
 		self.session.open(PluginActionLog, self.logData)
@@ -990,16 +1125,17 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 				pluginList.append(data)
 		# self.setWaiting(None)
 		print("[PluginBrowser] Packages: %d returned from opkg, %d matched, %d installed, %d have updates." % (len(packages), allCount, installCount, updateCount))
-		installText = ngettext("%d package installed.", "%d packages installed.", installCount) % installCount
+		installedText = ngettext("%d package installed.", "%d packages installed.", installCount) % installCount
 		updateText = ngettext("%d package has an update", "%d packages have updates.", updateCount) % updateCount
 		if self.type == self.REMOVE:
-			self["description"].setText(installText)
+			self.descriptionText = installedText
 		elif self.type == self.DOWNLOAD:
-			self["description"].setText(ngettext("%d package installable.", "%d packages installable.", allCount) % allCount)
+			self.descriptionText = ngettext("%d package installable.", "%d packages installable.", allCount) % allCount
 		elif self.type == self.UPDATE:
-			self["description"].setText(updateText)
+			self.descriptionText = updateText
 		else:
-			self["description"].setText("%s %s %s" % (ngettext("%d package found.", "%d packages found.", allCount) % allCount, installText, updateText))
+			self.descriptionText = "%s %s %s" % (ngettext("%d package found.", "%d packages found.", allCount) % allCount, installedText, updateText)
+		self["description"].setText(self.descriptionText)
 		self.displayPluginList(pluginList)
 		self.pluginList = pluginList
 
@@ -1020,6 +1156,10 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 					icon = self.installedIcon if installed else self.installableIcon
 					if installed and info[self.INFO_UPGRADE]:
 						icon = self.upgradableIcon
+					if info[self.INFO_PACKAGE] in self.selectedInstallItems:
+						icon = self.installIcon
+					if info[self.INFO_PACKAGE] in self.selectedRemoveItems:
+						icon = self.removeIcon
 					version = info[self.INFO_VERSION]
 					if version.startswith("experimental-"):
 						version = "exp-%s" % version[13:]
@@ -1037,9 +1177,10 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 
 	def setWaiting(self, text):
 		if text:
-			self.actionMaps = (self["actions"].getEnabled(), self["selectAction"].getEnabled(), self["logAction"].getEnabled(), self["navigationActions"].getEnabled(), self["quickSelectActions"].getEnabled())
+			self.actionMaps = (self["actions"].getEnabled(), self["selectAction"].getEnabled(), self["performAction"].getEnabled(), self["logAction"].getEnabled(), self["navigationActions"].getEnabled(), self["quickSelectActions"].getEnabled())
 			self["actions"].setEnabled(False)
 			self["selectAction"].setEnabled(False)
+			self["performAction"].setEnabled(False)
 			self["logAction"].setEnabled(False)
 			self["navigationActions"].setEnabled(False)
 			self["quickSelectActions"].setEnabled(False)
@@ -1049,9 +1190,10 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			Processing.instance.hideProgress()
 			self["actions"].setEnabled(self.actionMaps[0])
 			self["selectAction"].setEnabled(self.actionMaps[1])
-			self["logAction"].setEnabled(self.actionMaps[2])
-			self["navigationActions"].setEnabled(self.actionMaps[3])
-			self["quickSelectActions"].setEnabled(self.actionMaps[4])
+			self["performAction"].setEnabled(self.actionMaps[2])
+			self["logAction"].setEnabled(self.actionMaps[3])
+			self["navigationActions"].setEnabled(self.actionMaps[4])
+			self["quickSelectActions"].setEnabled(self.actionMaps[5])
 
 	def keyNumberGlobal(self, digit):
 		self.quickSelectTimer.stop()
