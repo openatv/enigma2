@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 19:54+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -967,6 +967,18 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked install."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] ""
@@ -1415,6 +1427,9 @@ msgid "15 minutes"
 msgstr ""
 
 msgid "1536 Mb"
+msgstr ""
+
+msgid "16/9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2075,6 +2090,15 @@ msgstr ""
 msgid "Add/Remove a timer for the current event"
 msgstr ""
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
 msgid "Adding schedule..."
 msgstr ""
 
@@ -2217,9 +2241,6 @@ msgid "All satellites 4 (USALS)"
 msgstr ""
 
 msgid "All services provider"
-msgstr ""
-
-msgid "All slots"
 msgstr ""
 
 msgid "All supported"
@@ -2548,6 +2569,9 @@ msgid "Aspect list..."
 msgstr ""
 
 msgid "Aspect ratio"
+msgstr ""
+
+msgid "Aspect switch"
 msgstr ""
 
 msgid "Assamese"
@@ -3073,6 +3097,9 @@ msgstr ""
 msgid "Blue"
 msgstr ""
 
+msgid "Bluetooth"
+msgstr ""
+
 msgid "Bluetooth Setup"
 msgstr ""
 
@@ -3383,17 +3410,19 @@ msgstr ""
 msgid "CHANNEL +/-"
 msgstr ""
 
-#, python-format
-msgid "CI %s enabled"
+msgid "CI (Common Interface) Setup"
 msgstr ""
 
-msgid "CI (Common Interface) Setup"
+msgid "CI Boot Delay"
 msgstr ""
 
 msgid "CI Helper Settings"
 msgstr ""
 
 msgid "CI assignment"
+msgstr ""
+
+msgid "CI enabled"
 msgstr ""
 
 msgid "CI slot: "
@@ -4287,6 +4316,9 @@ msgid "Common Interface Assignment"
 msgstr ""
 
 msgid "Common Interface Settings"
+msgstr ""
+
+msgid "Common Settings"
 msgstr ""
 
 msgid "Common Setup Actions"
@@ -6418,7 +6450,7 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download the highlighted plugin"
+msgid "Download the selected list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7327,6 +7359,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr ""
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr ""
 
@@ -7653,6 +7689,9 @@ msgstr ""
 msgid "External subtitle switch fonts"
 msgstr ""
 
+msgid "Extra High"
+msgstr ""
+
 msgid "Extra motor options"
 msgstr ""
 
@@ -7681,6 +7720,12 @@ msgid "F3"
 msgstr ""
 
 msgid "F4"
+msgstr ""
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr ""
+
+msgid "FBC automatic"
 msgstr ""
 
 msgid "FCC enabled"
@@ -8809,6 +8854,9 @@ msgid "Hide zap errors"
 msgstr ""
 
 msgid "Hierarchy info"
+msgstr ""
+
+msgid "High"
 msgstr ""
 
 msgid "High bitrate support"
@@ -12090,6 +12138,9 @@ msgstr ""
 msgid "Open context menu (contains settings menu)"
 msgstr ""
 
+msgid "Open external subtitle management screen"
+msgstr ""
+
 msgid "Open favorites list"
 msgstr ""
 
@@ -12567,6 +12618,9 @@ msgid "Picon Packages"
 msgstr ""
 
 msgid "Picon and Service Name"
+msgstr ""
+
+msgid "Picon package target location"
 msgstr ""
 
 msgid "Picon width"
@@ -13186,8 +13240,14 @@ msgstr ""
 msgid "Press OK to edit the settings."
 msgstr ""
 
+msgid "Press OK to enter PIN code"
+msgstr ""
+
 #, python-format
 msgid "Press OK to get further details for %s"
+msgstr ""
+
+msgid "Press OK to init module"
 msgstr ""
 
 #, python-format
@@ -13196,6 +13256,15 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
+
+msgid "Press OK to open module info"
+msgstr ""
+
+msgid "Press OK to reset PIN code"
+msgstr ""
+
+msgid "Press OK to reset module"
 msgstr ""
 
 msgid "Press OK to scan"
@@ -14104,6 +14173,9 @@ msgstr ""
 msgid "Remove highlighted directory from bookmarks"
 msgstr ""
 
+msgid "Remove plugins ..."
+msgstr ""
+
 msgid "Remove selected service"
 msgstr ""
 
@@ -14119,7 +14191,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the highlighted plugin"
+msgid "Remove the selected list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -15741,6 +15813,9 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
+msgid "Select the target location where picon files will be installed."
+msgstr ""
+
 msgid "Select the time after which this timer can start."
 msgstr ""
 
@@ -16105,7 +16180,13 @@ msgstr ""
 msgid "Set Base time"
 msgstr ""
 
+msgid "Set CI Boot delay."
+msgstr ""
+
 msgid "Set CI assignment for detection of available services."
+msgstr ""
+
+msgid "Set DVB CI delay."
 msgstr ""
 
 msgid "Set Framerate for MiniTV"
@@ -17486,6 +17567,14 @@ msgstr ""
 
 #, python-format
 msgid "Slot %d"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC in %s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
 msgstr ""
 
 #, python-format
@@ -18915,6 +19004,9 @@ msgid ""
 "Please install it."
 msgstr ""
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr ""
@@ -19198,6 +19290,9 @@ msgid "This option allows you to choose whether or not to display genre informat
 msgstr ""
 
 msgid "This option allows you to enable 3D Surround Sound."
+msgstr ""
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
@@ -20229,7 +20324,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
-msgid "Update the highlighted plugin"
+msgid "Update the selected list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
