@@ -1,6 +1,6 @@
 from datetime import date
 from os import popen, makedirs, listdir, stat, rename, remove
-from os.path import exists, isdir, join as pathjoin
+from os.path import exists, isdir, join
 
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
@@ -75,11 +75,7 @@ def InitConfig():
 		+ eEnv_resolve_multi("/usr/script/*")
 
 	# Drop non existant paths from list
-	tmpfiles = []
-	for f in BACKUPFILES:
-		if exists(f):
-			tmpfiles.append(f)
-	backupset = tmpfiles
+	backupset = [f for f in BACKUPFILES if exists(f)]
 
 	config.plugins.configurationbackup = ConfigSubsection()
 	defaultlocation = "/media/hdd/"
@@ -97,12 +93,12 @@ config.plugins.configurationbackup = InitConfig()
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
-	return pathjoin(backuppath, "backup_%s_%s" % (BoxInfo.getItem("distro"), MACHINEBUILD))
+	return join(backuppath, "backup_%s_%s" % (BoxInfo.getItem("distro"), MACHINEBUILD))
 
 
 def getOldBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
-	return pathjoin(backuppath, "backup")
+	return join(backuppath, "backup")
 
 
 def getBackupFilename():
@@ -132,7 +128,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		self.finished_cb = None
 		self.backuppath = getBackupPath()
 		self.backupfile = getBackupFilename()
-		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+		self.fullbackupfilename = join(self.backuppath, self.backupfile)
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -153,7 +149,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if config.plugins.softwaremanager.epgcache.value:
 				eEPGCache.getInstance().save()
-		except:
+		except Exception:
 			pass
 		try:
 			if exists(self.backuppath) == False:
@@ -163,19 +159,25 @@ class BackupScreen(Screen, ConfigListScreen):
 			for f in config.plugins.configurationbackup.backupdirs.value:
 				if f.strip("/") not in self.backupdirs:
 					self.backupdirs += " %s" % f.strip("/")
-			if "tmp/installed-list.txt" not in self.backupdirs:
-				self.backupdirs += " tmp/installed-list.txt"
-			if "tmp/changed-configfiles.txt" not in self.backupdirs:
-				self.backupdirs += " tmp/changed-configfiles.txt"
-			if "tmp/passwd.txt" not in self.backupdirs:
-				self.backupdirs += " tmp/passwd.txt"
-			if "tmp/groups.txt" not in self.backupdirs:
-				self.backupdirs += " tmp/groups.txt"
+			for file in ("installed-list.txt", "changed-configfiles.txt", "passwd.txt", "groups.txt"):
+				if "tmp/%s" % file not in self.backupdirs:
+					self.backupdirs += " tmp/%s" % file
 
 			ShellCompatibleFunctions.backupUserDB()
 			pkgs = ShellCompatibleFunctions.listpkg(type="user")
 			with open("/tmp/installed-list.txt", "w") as fd:
 				fd.write("\n".join(pkgs))
+			if exists("/usr/lib/package.lst"):
+				pkgs = ShellCompatibleFunctions.listpkg(type="installed")
+				with open("/usr/lib/package.lst", "r") as fd:
+					installed = set(line.split()[0] for line in pkgs)
+					preinstalled = set(line.split()[0] for line in fd)
+					removed = preinstalled - installed
+					removed = [package for package in removed if package.startswith("enigma2-plugin-") or package.startswith("enigma2-locale-")]
+					if removed:
+						with open("/tmp/removed-list.txt", "w") as fd:
+							fd.write("\n".join(removed))
+							self.backupdirs += " tmp/removed-list.txt"
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -C / -czvf %s" % self.fullbackupfilename
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
@@ -186,7 +188,7 @@ class BackupScreen(Screen, ConfigListScreen):
 			cmd = [cmd2, cmd3]
 			if exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
-				self.newfilename = pathjoin(self.backuppath, "%s-%s" % (dt, self.backupfile))
+				self.newfilename = join(self.backuppath, "%s-%s" % (dt, self.backupfile))
 				if exists(self.newfilename):
 					remove(self.newfilename)
 				rename(self.fullbackupfilename, self.newfilename)
@@ -383,7 +385,7 @@ class RestoreMenu(Screen):
 		if (self.exe is False) and (self.entry is True):
 			self.sel = self["filelist"].getCurrent()
 			if self.sel:
-				self.val = pathjoin(self.path, self.sel)
+				self.val = join(self.path, self.sel)
 				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore\nthe following backup:\n%s\nYour receiver will restart after the backup has been restored!") % self.sel)
 
 	def keyCancel(self):
@@ -403,7 +405,7 @@ class RestoreMenu(Screen):
 
 	def CB_startRestore(self, ret=False):
 		self.exe = True
-		tarcmd = "tar -C / -xzvf %s" % pathjoin(self.path, self.sel)
+		tarcmd = "tar -C / -xzvf %s" % join(self.path, self.sel)
 		for f in BLACKLISTED:
 			tarcmd += " --exclude %s" % f.strip("/")
 
@@ -416,7 +418,7 @@ class RestoreMenu(Screen):
 		if (self.exe is False) and (self.entry is True):
 			self.sel = self["filelist"].getCurrent()
 			if self.sel:
-				self.val = pathjoin(self.path, self.sel)
+				self.val = join(self.path, self.sel)
 				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nthe following backup:\n") + self.sel)
 
 	def startDelete(self, ret=False):
@@ -453,7 +455,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		if not isdir(self.backuppath):
 			self.backuppath = getOldBackupPath()
 		self.backupfile = getBackupFilename()
-		self.fullbackupfilename = pathjoin(self.backuppath, self.backupfile)
+		self.fullbackupfilename = join(self.backuppath, self.backupfile)
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		if self.runRestore:
@@ -510,7 +512,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			with open("/tmp/rebootSYS.sh", "w") as fd:
 				fd.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
 			self.session.open(Console, title=_("Your %s %s will Reboot...") % getBoxDisplayName(), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
-		except:
+		except Exception:
 			self.restartGUI()
 
 	def restoreMetrixSkin(self, ret=None):
@@ -521,7 +523,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			with open("/etc/enigma2/settings", "r") as fd:
 				s = fd.read()
 			restore = "config.skin.primary_skin=MetrixHD/skin.MySkin.xml" in s
-		except:
+		except Exception:
 			restore = False
 		if restore:
 			self.session.openWithCallback(self.rebootSYS, RestoreMyMetrixHD)
@@ -566,7 +568,7 @@ class RestoreMyMetrixHD(Screen):
 				self.session.openWithCallback(self.checkSkinCallback, MessageBox, infotext, MessageBox.TYPE_ERROR, timeout=30)
 			else:
 				self.close()
-		except:
+		except Exception:
 			self.session.openWithCallback(self.checkSkinCallback, MessageBox, _("Error creating MetrixHD-Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."), MessageBox.TYPE_ERROR, timeout=30)
 
 	def checkSkinCallback(self, ret=None):
@@ -627,10 +629,17 @@ class installedPlugins(Screen):
 	def readPluginList(self):
 		installedpkgs = ShellCompatibleFunctions.listpkg(type="installed")
 		self.PluginList = []
-		with open("/tmp/installed-list.txt") as f:
-			for line in f:
-				if line.strip() not in installedpkgs:
-					self.PluginList.append(line.strip())
+		if exists("/tmp/installed-list.txt"):
+			with open("/tmp/installed-list.txt") as f:
+				for line in f:
+					if line.strip() not in installedpkgs:
+						self.PluginList.append(line.strip())
+		self.PluginRemoveList = []
+		if exists("/tmp/removed-list.txt"):
+			with open("/tmp/removed-list.txt") as f:
+				for line in f:
+					if line.strip() in installedpkgs:
+						self.PluginRemoveList.append(line.strip())
 		self.createMenuList()
 
 	def createMenuList(self):
@@ -638,7 +647,7 @@ class installedPlugins(Screen):
 		for x in self.PluginList:
 			if x not in self.pluginsInstalled:
 				self.Menulist.append(SettingsEntry(x, True))
-		if len(self.Menulist) == 0:
+		if len(self.Menulist) == 0 and len(self.PluginRemoveList) == 0:
 			self.close()
 		else:
 			if exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
@@ -648,7 +657,7 @@ class installedPlugins(Screen):
 
 	def startInstall(self, ret=None):
 		if ret:
-			self.session.openWithCallback(self.restoreCB, RestorePlugins, self.Menulist)
+			self.session.openWithCallback(self.restoreCB, RestorePlugins, self.Menulist, self.PluginRemoveList)
 		else:
 			self.close()
 
@@ -658,13 +667,16 @@ class installedPlugins(Screen):
 
 class RestorePlugins(Screen):
 
-	def __init__(self, session, menulist):
+	def __init__(self, session, menulist, removelist=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("Restore Plugins"))
 		self.index = 0
 		self.list = menulist
+		self.removelist = removelist or []
 		for r in menulist:
 			print("[SOFTWARE MANAGER] Plugin to restore: %s" % r[0])
+		for r in self.removelist:
+			print("[SOFTWARE MANAGER] Plugin to remove: %s" % r)
 		self.container = eConsoleAppContainer()
 		self["menu"] = List([])
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
@@ -674,9 +686,9 @@ class RestorePlugins(Screen):
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 				{
-					"red": self.exit,
+					"red": self.close,
 					"green": self.green,
-					"cancel": self.exit,
+					"cancel": self.close,
 					"ok": self.ok
 				}, -2)
 
@@ -687,11 +699,8 @@ class RestorePlugins(Screen):
 	def setWindowTitle(self):
 		self.selectionChanged()
 		self.setTitle(_("Restore Plugins"))
-		if exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+		if (exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value) or len(self.list) == 0:
 			self.green()
-
-	def exit(self):
-		self.close()
 
 	def green(self):
 		self.pluginlist = []
@@ -732,26 +741,36 @@ class RestorePlugins(Screen):
 
 	def installPlugins(self):
 		if len(self.pluginlist) > 0:
-			self.session.open(Console, title=_("Installing plugins from feed ..."), cmdlist=["opkg install " + " ".join(self.pluginlist)], finishedCallback=self.exit, closeOnSuccess=True)
+			self.session.open(Console, title=_("Installing plugins from feed ..."), cmdlist=["opkg install " + " ".join(self.pluginlist)], finishedCallback=self.removePlugins, closeOnSuccess=True)
+		else:
+			self.removePlugins()
+
+	def removePlugins(self):
+		if len(self.removelist) > 0:
+			self.session.open(Console, title=_("Remove plugins ..."), cmdlist=["opkg --autoremove --force-depends remove " + " ".join(self.removelist)], finishedCallback=self.close, closeOnSuccess=True)
+		else:
+			self.close()
 
 	def ok(self):
-		index = self["menu"].getIndex()
-		item = self["menu"].getCurrent()[0]
-		state = self["menu"].getCurrent()[2]
-		self.list[index] = SettingsEntry(item, False if state else True)
-		self["menu"].setList(self.list)
-		self["menu"].setIndex(index)
+		if self["menu"].count():
+			index = self["menu"].getIndex()
+			item = self["menu"].getCurrent()[0]
+			state = self["menu"].getCurrent()[2]
+			self.list[index] = SettingsEntry(item, False if state else True)
+			self["menu"].setList(self.list)
+			self["menu"].setIndex(index)
 
 	def selectionChanged(self):
-		index = self["menu"].getIndex()
-		if index == None:
-			index = 0
-		else:
-			self["summary_description"].text = self["menu"].getCurrent()[0]
-		self.index = index
+		if self["menu"].count():
+			index = self["menu"].getIndex()
+			if index is None:
+				index = 0
+			else:
+				self["summary_description"].text = self["menu"].getCurrent()[0]
+			self.index = index
 
-	def exitNoPlugin(self, ret):
-		self.close()
+	#def exitNoPlugin(self, ret):
+	#	self.close()
 
 	def SearchIPK(self, ipkname):
 		ipkname = ipkname + "*"
