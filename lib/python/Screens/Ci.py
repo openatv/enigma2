@@ -42,7 +42,7 @@ def InitCiConfig():
 			config.ci.append(ConfigSubsection())
 			config.ci[slot].enabled = ConfigYesNo(default=True)
 			config.ci[slot].enabled.slotid = slot
-			config.ci[slot].enabled.addNotifier(setCIEnabled)
+			config.ci[slot].enabled.addNotifier(setCIEnabled, initial_call=False)
 			config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices=[("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default="auto")
 			config.ci[slot].use_static_pin = ConfigYesNo(default=True)
 			config.ci[slot].static_pin = ConfigPIN(default=0)
