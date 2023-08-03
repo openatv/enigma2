@@ -1324,7 +1324,7 @@ void eDVBCISlot::data(int what)
 DEFINE_REF(eDVBCISlot);
 
 eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
-	startup_timeout(eTimer::create(this))
+	startup_timeout(eTimer::create(context))
 {
 	char configStr[255];
 	slotid = nr;
