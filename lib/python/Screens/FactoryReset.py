@@ -1,15 +1,14 @@
 from errno import ENOENT
 from os import _exit, listdir, remove
-from os.path import isdir, isfile, join as pathjoin
+from os.path import isdir, isfile, join
 from shutil import rmtree
 
 from Components.config import ConfigSubsection, ConfigYesNo, NoSave, config
 from Components.Console import Console
-from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, copyFile, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, copyFile, resolveFilename, fileWriteLine
 
 
 class FactoryReset(Setup, ProtectedScreen):
@@ -133,7 +132,7 @@ class FactoryReset(Setup, ProtectedScreen):
 				self.others.append(file)
 
 	def resetNetworkConfig(self):
-		configFile = pathjoin(resolveFilename(SCOPE_SKINS), "defaults", "interfaces")
+		configFile = join(resolveFilename(SCOPE_SKINS), "defaults", "interfaces")
 		if isfile(configFile):
 			print("[FactoryReset] Default network configuration file found and being installed.")
 			if copyFile(configFile, "/etc/network/interfaces") == 0:
@@ -143,7 +142,7 @@ class FactoryReset(Setup, ProtectedScreen):
 		if fileList is None:
 			fileList = sorted(listdir(self.configDir))
 		for file in fileList:
-			target = pathjoin(path, file)
+			target = join(path, file)
 			try:
 				if isdir(target):
 					print("[FactoryReset] Removing directory '%s' from '%s'." % (target, self.configDir))
@@ -154,9 +153,11 @@ class FactoryReset(Setup, ProtectedScreen):
 			except OSError as err:
 				if err.errno != ENOENT:
 					print("[FactoryReset] Error %d: Unable to delete '%s'!  (%s)" % (err.errno, target, err.strerror))
+		if "settings" in fileList:
+			fileWriteLine(join(self.configDir, "settings"), "")
 
 	def installDefaults(self):
-		defaults = pathjoin(resolveFilename(SCOPE_SKINS), "defaults")
+		defaults = join(resolveFilename(SCOPE_SKINS), "defaults")
 		if isdir(defaults):
 			defaultFiles = sorted(listdir(defaults))
 			if "interfaces" in defaultFiles:  # Network default is done separately.
@@ -164,7 +165,7 @@ class FactoryReset(Setup, ProtectedScreen):
 			if defaultFiles:
 				print("[FactoryReset] Copying default configuration files from '%s'." % defaults)
 				for file in defaultFiles:
-					sourceFile = pathjoin(defaults, file)
+					sourceFile = join(defaults, file)
 					if copyFile(sourceFile, self.configDir):
 						print("[FactoryReset] Error: Unable to copy file '%s' to '%s'!" % (sourceFile, self.configDir))
 					else:
