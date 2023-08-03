@@ -1323,7 +1323,8 @@ void eDVBCISlot::data(int what)
 
 DEFINE_REF(eDVBCISlot);
 
-eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
+eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
+	startup_timeout(eTimer::create(context))
 {
 	char configStr[255];
 	slotid = nr;
@@ -1331,8 +1332,15 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	state = stateDisabled;
 	snprintf(configStr, 255, "config.ci.%d.enabled", slotid);
 	bool enabled = eConfigManager::getConfigBoolValue(configStr, true);
-	if (enabled)
-		openDevice();
+	int bootDelay = eConfigManager::getConfigIntValue("config.cimisc.bootDelay");
+	if (enabled) {
+		if (bootDelay) {
+			CONNECT(startup_timeout->timeout, eDVBCISlot::openDevice);
+			startup_timeout->start(1000 * bootDelay, true);
+		}
+		else
+			openDevice();
+	}
 	else
 		/* emit */ eDVBCI_UI::getInstance()->m_messagepump.send(eDVBCIInterfaces::Message(eDVBCIInterfaces::Message::slotStateChanged, getSlotID(), 3)); // state disabled
 }

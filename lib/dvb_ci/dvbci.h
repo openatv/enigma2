@@ -48,6 +48,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	int slotid;
 	int fd;
 	ePtr<eSocketNotifier> notifier;
+	ePtr<eTimer> startup_timeout;
 	int state;
 	int m_ci_version;
 	std::map<uint16_t, uint8_t> running_services;

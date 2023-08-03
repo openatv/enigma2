@@ -35,9 +35,6 @@ def setRelevantPidsRouting(configElement):
 
 
 def InitCiConfig():
-	def delayTimerCallback():
-		for slot in range(SystemInfo["CommonInterface"]):
-			config.ci[slot].enabled.addNotifier(setCIEnabled)
 	config.ci = ConfigSubList()
 	config.cimisc = ConfigSubsection()
 	if SystemInfo["CommonInterface"]:
@@ -45,6 +42,7 @@ def InitCiConfig():
 			config.ci.append(ConfigSubsection())
 			config.ci[slot].enabled = ConfigYesNo(default=True)
 			config.ci[slot].enabled.slotid = slot
+			config.ci[slot].enabled.addNotifier(setCIEnabled, initial_call=False)
 			config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices=[("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default="auto")
 			config.ci[slot].use_static_pin = ConfigYesNo(default=True)
 			config.ci[slot].static_pin = ConfigPIN(default=0)
@@ -68,11 +66,7 @@ def InitCiConfig():
 		if SystemInfo["CommonInterfaceCIDelay"]:
 			config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16", "16"), ("32", "32"), ("64", "64"), ("128", "128"), ("256", "256")])
 			config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
-		config.cimisc.bootDelay = ConfigSelection(default=10, choices=[(x, _("%d Seconds") % x) for x in range(16)])
-		if config.cimisc.bootDelay.value:
-			delayTimer = eTimer()
-			delayTimer.callback.append(delayTimerCallback)
-			delayTimer.start(config.cimisc.bootDelay.value * 1000, True)
+		config.cimisc.bootDelay = ConfigSelection(default=5, choices=[(x, _("%d Seconds") % x) for x in range(16)])
 
 
 class MMIDialog(Screen):
