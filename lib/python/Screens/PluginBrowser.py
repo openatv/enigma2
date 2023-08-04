@@ -932,7 +932,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 					else:
 						self.selectedInstallItems.append(package)
 			self.displayPluginList(self.pluginList)
-			installText = ngettext("%d package marked for install.", "%d packages marked install.", len(self.selectedInstallItems)) % len(self.selectedInstallItems) if self.selectedInstallItems else ""
+			installText = ngettext("%d package marked for install.", "%d packages marked for install.", len(self.selectedInstallItems)) % len(self.selectedInstallItems) if self.selectedInstallItems else ""
 			removeText = ngettext("%d package marked for remove.", "%d packages marked for remove.", len(self.selectedRemoveItems)) % len(self.selectedRemoveItems) if self.selectedRemoveItems else ""
 			markedText = installText if installText else removeText
 			markedText = "\n%s" % markedText if markedText else ""
