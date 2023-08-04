@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 19:54+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
 "PO-Revision-Date: 2023-07-26 11:07+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -982,6 +982,18 @@ msgstr[0] "%d πακέτο εγκαταστάθηκε."
 msgstr[1] "%d πακέτα εγκαταστάθηκαν."
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "Αναβαθμίστηκε %d πακέτο."
@@ -1431,6 +1443,9 @@ msgstr "15 λεπτά"
 
 msgid "1536 Mb"
 msgstr "1536 Mb"
+
+msgid "16/9 reset to normal"
+msgstr ""
 
 msgid "16:10 Letterbox"
 msgstr "16:10 μπάρες πάνω - κάτω"
@@ -2112,6 +2127,15 @@ msgstr "Προσθήκη/Αφαίρεση χρονοδιακόπτη"
 msgid "Add/Remove a timer for the current event"
 msgstr "Προσθήκη/αφαίρεση χρονοδιακόπτη για το τρέχον πρόγραμμα"
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
 msgid "Adding schedule..."
 msgstr "Προσθήκη χρονοδιαγράμματος..."
 
@@ -2255,9 +2279,6 @@ msgstr "Όλοι οι δορυφόροι 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Πάροχος όλων των υπηρεσιών"
-
-msgid "All slots"
-msgstr "Όλες οι θέσεις"
 
 msgid "All supported"
 msgstr "Όλα τα υποστηριζόμενα"
@@ -2596,6 +2617,9 @@ msgstr "Λίστα λόγων πλευρών..."
 
 msgid "Aspect ratio"
 msgstr "Λόγος πλευρών"
+
+msgid "Aspect switch"
+msgstr ""
 
 msgid "Assamese"
 msgstr "Ασαμιακά"
@@ -3122,6 +3146,9 @@ msgstr "Φραγή μείωσης θορύβου"
 msgid "Blue"
 msgstr "Μπλε"
 
+msgid "Bluetooth"
+msgstr ""
+
 msgid "Bluetooth Setup"
 msgstr "Ρυθμίσεις Bluetooth"
 
@@ -3436,18 +3463,20 @@ msgstr "ΑΛΛΑΓΗ ΜΠΟΥΚΕΤΟΥ"
 msgid "CHANNEL +/-"
 msgstr "ΚΑΝΑΛΙ +/-"
 
-#, python-format
-msgid "CI %s enabled"
-msgstr "CI %s ενεργό"
-
 msgid "CI (Common Interface) Setup"
 msgstr "Ρυθμίσεις CI (κοινής διεπαφής)"
+
+msgid "CI Boot Delay"
+msgstr ""
 
 msgid "CI Helper Settings"
 msgstr "Ρυθμίσεις CI Helper"
 
 msgid "CI assignment"
 msgstr "Ανάθεση CI"
+
+msgid "CI enabled"
+msgstr ""
 
 msgid "CI slot: "
 msgstr "Θύρα CI: "
@@ -4364,6 +4393,9 @@ msgstr "Ανάθεση Κοινής διεπαφής"
 
 msgid "Common Interface Settings"
 msgstr "Ρυθμίσεις κοινής διεπαφής"
+
+msgid "Common Settings"
+msgstr ""
 
 msgid "Common Setup Actions"
 msgstr "Ενέργειες κοινών ρυθμίσεων"
@@ -6524,8 +6556,8 @@ msgstr "Λήψη και εγκατάσταση cam"
 msgid "Download error"
 msgstr "Σφάλμα λήψης"
 
-msgid "Download the highlighted plugin"
-msgstr "Λήψη του επιλεγμένου πρόσθετου"
+msgid "Download the selected list of plugins"
+msgstr ""
 
 msgid "Downloadable plugins"
 msgstr "Πρόσθετα για λήψη"
@@ -7461,6 +7493,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Σφάλμα: Η δημιουργία του φακέλου '%s' απέτυχε!"
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr "Σφάλμα: Αδύνατο το άνοιγμα του αρχείου '%s'!  (%s)"
 
@@ -7794,6 +7830,9 @@ msgstr "Χρωματισμός διαλόγου εξωτερικών υποτί�
 msgid "External subtitle switch fonts"
 msgstr "Αλλαγή γραμματοσειρών εξωτερικού υπότιτλου"
 
+msgid "Extra High"
+msgstr ""
+
 msgid "Extra motor options"
 msgstr "Πρόσθετες επιλογές μοτέρ"
 
@@ -7823,6 +7862,12 @@ msgstr "F3"
 
 msgid "F4"
 msgstr "F4"
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr ""
+
+msgid "FBC automatic"
+msgstr ""
 
 msgid "FCC enabled"
 msgstr "FCC ενεργό"
@@ -8957,6 +9002,9 @@ msgstr "Απόκρυψη σφαλμάτων του ζάπινγκ"
 
 msgid "Hierarchy info"
 msgstr "Πληροφορίες ιεραρχίας"
+
+msgid "High"
+msgstr ""
 
 msgid "High bitrate support"
 msgstr "Υποστήριξη υψηλού bitrate"
@@ -12280,6 +12328,9 @@ msgstr "Μενού περιεχομένων μενού"
 msgid "Open context menu (contains settings menu)"
 msgstr "Άνοιγμα μενού περιεχομένων (περιέχει το μενού ρυθμίσεων)"
 
+msgid "Open external subtitle management screen"
+msgstr ""
+
 msgid "Open favorites list"
 msgstr "Άνοιγμα λίστας αγαπημένων"
 
@@ -12758,6 +12809,9 @@ msgstr "Πακέτα λογότυπων"
 
 msgid "Picon and Service Name"
 msgstr "Λογότυπο και όνομα υπηρεσίας"
+
+msgid "Picon package target location"
+msgstr ""
 
 msgid "Picon width"
 msgstr "Πλάτος λογότυπου (picon)"
@@ -13388,9 +13442,15 @@ msgstr "Πιέστε ΟΚ για να συνεχίσετε."
 msgid "Press OK to edit the settings."
 msgstr "Πιέστε ΟΚ για επεξεργασία των ρυθμίσεων."
 
+msgid "Press OK to enter PIN code"
+msgstr ""
+
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Πιέστε ΟΚ για λεπτομέρειες σχετικά με το %s"
+
+msgid "Press OK to init module"
+msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -13399,6 +13459,15 @@ msgstr "Πιέστε ΟΚ για εγκατάσταση αυτής της γλώ
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
 msgstr "Πιέστε ΟΚ για εγκατάσταση και χρήση αυτής της διαλέκτου.  [%s]"
+
+msgid "Press OK to open module info"
+msgstr ""
+
+msgid "Press OK to reset PIN code"
+msgstr ""
+
+msgid "Press OK to reset module"
+msgstr ""
 
 msgid "Press OK to scan"
 msgstr "Πιέστε OK για ανίχνευση"
@@ -14311,6 +14380,9 @@ msgstr "Διαγραφή επιλεγμένου τίτλου"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Αφαίρεση του επιλεγμένου φακέλου από τους σελιδοδείκτες"
 
+msgid "Remove plugins ..."
+msgstr ""
+
 msgid "Remove selected service"
 msgstr "Αφαίρεση της επιλεγμένης υπηρεσίας"
 
@@ -14326,8 +14398,8 @@ msgstr "Κατάργηση των αρχείων πολλαπλής εκκίνη
 msgid "Remove the current bookmark"
 msgstr "Διαγραφή τρέχοντος σελιδοδείκτη"
 
-msgid "Remove the highlighted plugin"
-msgstr "Αφαίρεση του επιλεγμένου πρόσθετου"
+msgid "Remove the selected list of plugins"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Διαγραφή χρονοδιακόπτη"
@@ -15955,6 +16027,9 @@ msgstr "Επιλέξτε την αρχική στήλη εκκίνησης πο�
 msgid "Select the tags that should be used for this recording."
 msgstr "Επιλέξτε τις ετικέτες που θα χρησιμοποιούνται για αυτόν τον χρονοδιακόπτη."
 
+msgid "Select the target location where picon files will be installed."
+msgstr ""
+
 msgid "Select the time after which this timer can start."
 msgstr "Επιλογή ώρας πριν την εκκίνηση αυτού του χρονοδιακόπτη."
 
@@ -16343,8 +16418,14 @@ msgstr "ορισμός ως υπηρεσία εκκίνησης"
 msgid "Set Base time"
 msgstr "Ορισμός χρόνου βάσης"
 
+msgid "Set CI Boot delay."
+msgstr ""
+
 msgid "Set CI assignment for detection of available services."
 msgstr "Ορισμός ανάθεσης CI για εντοπισμό των διαθέσιμων υπηρεσιών."
+
+msgid "Set DVB CI delay."
+msgstr ""
 
 msgid "Set Framerate for MiniTV"
 msgstr "Ορισμός ρυθμού καρέ για το MiniTV"
@@ -17731,6 +17812,14 @@ msgstr "Ολίσθηση από την κορυφή στον πάτο"
 #, python-format
 msgid "Slot %d"
 msgstr "Θύρα %d"
+
+#, python-format
+msgid "Slot %s / FBC in %s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
 
 #, python-format
 msgid "Slot %s: %s"
@@ -19219,6 +19308,9 @@ msgstr ""
 "Το πρόσθετο οδηγού δικτύου δεν είναι εγκατεστημένο!\n"
 "Παρακαλώ εγκαταστήστε το."
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Τα αποτελέσματα έχουν γραφεί στο %s."
@@ -19521,6 +19613,9 @@ msgstr "Αυτή η επιλογή επιτρέπει ή όχι την εμφά�
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Αυτή η επιλογή επιτρέπει την ενεργοποίηση του Περιφερειακού ήχου 3D."
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr ""
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Αυτή η επιλογή επιτρέπει την εμφάνιση του SNR ως ποσοστό (δεν υποστηρίζεται από όλους τους δέκτες)."
@@ -20580,8 +20675,8 @@ msgstr ""
 "Επιτυχής ενημέρωση!\n"
 "Ο Bootloader σας είναι πλέον ενημερωμένος!"
 
-msgid "Update the highlighted plugin"
-msgstr "Ενημέρωση του επιλεγμένου πρόσθετου"
+msgid "Update the selected list of plugins"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Ενημέρωση/εφεδρεία του λογισμικού, εφεδρεία/επαναφορά ρυθμίσεων"
@@ -23469,6 +23564,22 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "All slots"
+#~ msgstr "Όλες οι θέσεις"
+
+#, python-format
+#~ msgid "CI %s enabled"
+#~ msgstr "CI %s ενεργό"
+
+#~ msgid "Download the highlighted plugin"
+#~ msgstr "Λήψη του επιλεγμένου πρόσθετου"
+
+#~ msgid "Remove the highlighted plugin"
+#~ msgstr "Αφαίρεση του επιλεγμένου πρόσθετου"
+
+#~ msgid "Update the highlighted plugin"
+#~ msgstr "Ενημέρωση του επιλεγμένου πρόσθετου"
 
 #~ msgid "1080i"
 #~ msgstr "1080i"

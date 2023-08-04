@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 19:54+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -1082,6 +1082,18 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] ""
@@ -1547,6 +1559,9 @@ msgid "15 minutes"
 msgstr "minutos"
 
 msgid "1536 Mb"
+msgstr ""
+
+msgid "16/9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2270,6 +2285,15 @@ msgstr "Remover temporizador"
 msgid "Add/Remove a timer for the current event"
 msgstr "Adic./Remov. gravação do evento atual"
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
 msgid "Adding schedule..."
 msgstr "Adicionando agendamento"
 
@@ -2423,9 +2447,6 @@ msgstr ""
 #, fuzzy
 msgid "All services provider"
 msgstr "Serviços/provedores atribuídos:"
-
-msgid "All slots"
-msgstr ""
 
 #, fuzzy
 msgid "All supported"
@@ -2783,6 +2804,9 @@ msgstr ""
 
 msgid "Aspect ratio"
 msgstr "Proporção"
+
+msgid "Aspect switch"
+msgstr ""
 
 msgid "Assamese"
 msgstr ""
@@ -3340,6 +3364,9 @@ msgstr "Bloquear a redução de ruído"
 msgid "Blue"
 msgstr ""
 
+msgid "Bluetooth"
+msgstr ""
+
 #, fuzzy
 msgid "Bluetooth Setup"
 msgstr "Config. de rede"
@@ -3661,11 +3688,10 @@ msgstr ""
 msgid "CHANNEL +/-"
 msgstr "Canal"
 
-#, python-format
-msgid "CI %s enabled"
+msgid "CI (Common Interface) Setup"
 msgstr ""
 
-msgid "CI (Common Interface) Setup"
+msgid "CI Boot Delay"
 msgstr ""
 
 msgid "CI Helper Settings"
@@ -3673,6 +3699,9 @@ msgstr ""
 
 msgid "CI assignment"
 msgstr "Definição de CI"
+
+msgid "CI enabled"
+msgstr ""
 
 msgid "CI slot: "
 msgstr ""
@@ -4630,6 +4659,9 @@ msgid "Common Interface Assignment"
 msgstr "Escolha da interface comum"
 
 msgid "Common Interface Settings"
+msgstr ""
+
+msgid "Common Settings"
 msgstr ""
 
 #, fuzzy
@@ -6852,7 +6884,7 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download the highlighted plugin"
+msgid "Download the selected list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7798,6 +7830,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Falha ao criar a pasta %s ."
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr ""
 
@@ -8138,6 +8174,9 @@ msgstr ""
 msgid "External subtitle switch fonts"
 msgstr ""
 
+msgid "Extra High"
+msgstr ""
+
 msgid "Extra motor options"
 msgstr ""
 
@@ -8166,6 +8205,12 @@ msgid "F3"
 msgstr ""
 
 msgid "F4"
+msgstr ""
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr ""
+
+msgid "FBC automatic"
 msgstr ""
 
 msgid "FCC enabled"
@@ -9359,6 +9404,9 @@ msgstr "Ocultar erros no zapping"
 
 msgid "Hierarchy info"
 msgstr "Informação hierárquica"
+
+msgid "High"
+msgstr ""
 
 msgid "High bitrate support"
 msgstr "Suporte para bitrate alto"
@@ -12830,6 +12878,9 @@ msgstr ""
 msgid "Open context menu (contains settings menu)"
 msgstr ""
 
+msgid "Open external subtitle management screen"
+msgstr ""
+
 msgid "Open favorites list"
 msgstr ""
 
@@ -13331,6 +13382,9 @@ msgstr ""
 #, fuzzy
 msgid "Picon and Service Name"
 msgstr "Picon e nome do serviço"
+
+msgid "Picon package target location"
+msgstr ""
 
 #, fuzzy
 msgid "Picon width"
@@ -13981,9 +14035,15 @@ msgstr ""
 msgid "Press OK to edit the settings."
 msgstr "Pressione OK para editar as configurações."
 
+msgid "Press OK to enter PIN code"
+msgstr ""
+
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Pressione OK para mais detalhes de %s"
+
+msgid "Press OK to init module"
+msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -13991,6 +14051,15 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
+
+msgid "Press OK to open module info"
+msgstr ""
+
+msgid "Press OK to reset PIN code"
+msgstr ""
+
+msgid "Press OK to reset module"
 msgstr ""
 
 msgid "Press OK to scan"
@@ -14957,6 +15026,9 @@ msgstr "Remover o título atualmente selecionado"
 msgid "Remove highlighted directory from bookmarks"
 msgstr ""
 
+msgid "Remove plugins ..."
+msgstr ""
+
 msgid "Remove selected service"
 msgstr ""
 
@@ -14972,7 +15044,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the highlighted plugin"
+msgid "Remove the selected list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -16645,6 +16717,9 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
+msgid "Select the target location where picon files will be installed."
+msgstr ""
+
 msgid "Select the time after which this timer can start."
 msgstr ""
 
@@ -17048,7 +17123,13 @@ msgstr "marcar com canal inicial"
 msgid "Set Base time"
 msgstr "Tempo de início"
 
+msgid "Set CI Boot delay."
+msgstr ""
+
 msgid "Set CI assignment for detection of available services."
+msgstr ""
+
+msgid "Set DVB CI delay."
 msgstr ""
 
 msgid "Set Framerate for MiniTV"
@@ -18507,6 +18588,14 @@ msgstr ""
 #, python-format
 msgid "Slot %d"
 msgstr "Slot %d"
+
+#, python-format
+msgid "Slot %s / FBC in %s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
 
 #, python-format
 msgid "Slot %s: %s"
@@ -20009,6 +20098,9 @@ msgstr ""
 "O assistente de rede não está instalado!\n"
 "Instale o assistente de rede e tente novamente."
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Os resultados foram escritos em %s."
@@ -20306,6 +20398,9 @@ msgstr "Configurar a resolução da tela no modo de saída \"PC\"."
 #, fuzzy
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Configurar a resolução da tela no modo de saída \"PC\"."
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr ""
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr ""
@@ -21422,7 +21517,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
-msgid "Update the highlighted plugin"
+msgid "Update the selected list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 19:54+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1003,6 +1003,20 @@ msgstr[1] ""
 msgstr[2] ""
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d paketas atnaujintas."
@@ -1463,6 +1477,9 @@ msgstr "15 minučių"
 
 msgid "1536 Mb"
 msgstr "1536 Mb"
+
+msgid "16/9 reset to normal"
+msgstr ""
 
 msgid "16:10 Letterbox"
 msgstr "16:10 įterpiant juodas juostas"
@@ -2152,6 +2169,15 @@ msgstr "Pridėti/pašalinti laikmatį"
 msgid "Add/Remove a timer for the current event"
 msgstr "Įtraukti / pašalinti dabartinio įvykio laikmatį"
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
 msgid "Adding schedule..."
 msgstr "Pridedamas tvarkaraštis..."
 
@@ -2295,9 +2321,6 @@ msgstr "Visi palydovai 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Visų kanalų teikėjas"
-
-msgid "All slots"
-msgstr ""
 
 msgid "All supported"
 msgstr "Visi palaikomi"
@@ -2638,6 +2661,9 @@ msgstr "Formatų sąrašas..."
 
 msgid "Aspect ratio"
 msgstr "Formato kraštinių santykis"
+
+msgid "Aspect switch"
+msgstr ""
 
 msgid "Assamese"
 msgstr "Asamų"
@@ -3164,6 +3190,9 @@ msgstr "\"Kvadratavimosi\" triukšmų šalinimas"
 msgid "Blue"
 msgstr "Mėlynas"
 
+msgid "Bluetooth"
+msgstr ""
+
 msgid "Bluetooth Setup"
 msgstr "Bluetooth sąranka"
 
@@ -3478,18 +3507,20 @@ msgstr "KEISTI PAKETĄ"
 msgid "CHANNEL +/-"
 msgstr "KANALAS +/-"
 
-#, python-format
-msgid "CI %s enabled"
-msgstr "CI %s įjungtas"
-
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Įstatomo modulio) nustatymas"
+
+msgid "CI Boot Delay"
+msgstr ""
 
 msgid "CI Helper Settings"
 msgstr "CI žinyno parametrai"
 
 msgid "CI assignment"
 msgstr "CI paskyrimas"
+
+msgid "CI enabled"
+msgstr ""
 
 msgid "CI slot: "
 msgstr "CI lizdas: "
@@ -4405,6 +4436,9 @@ msgid "Common Interface Assignment"
 msgstr "Įstatomo modulio priskyrimas"
 
 msgid "Common Interface Settings"
+msgstr ""
+
+msgid "Common Settings"
 msgstr ""
 
 msgid "Common Setup Actions"
@@ -6566,7 +6600,7 @@ msgstr "Parsisiųsti ir įdiegti emuliatorius"
 msgid "Download error"
 msgstr "Atsisiuntimo klaida"
 
-msgid "Download the highlighted plugin"
+msgid "Download the selected list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7505,6 +7539,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Katalogo sukurti %s nepavyko."
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr "Klaida: failo \"%s\" atidaryti negalima!  (%s)"
 
@@ -7840,6 +7878,9 @@ msgstr "Išorinių subtitrų dialogų spalvinimas"
 msgid "External subtitle switch fonts"
 msgstr "Išorinių subtitrų perjungimo šriftai"
 
+msgid "Extra High"
+msgstr ""
+
 msgid "Extra motor options"
 msgstr "Papildomos variklio parinktys"
 
@@ -7869,6 +7910,12 @@ msgstr "F3"
 
 msgid "F4"
 msgstr "F4"
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr ""
+
+msgid "FBC automatic"
+msgstr ""
 
 msgid "FCC enabled"
 msgstr "FCC įjungta"
@@ -9003,6 +9050,9 @@ msgstr "Paslėpti perjungimo klaidas"
 
 msgid "Hierarchy info"
 msgstr "Informacijos lygis"
+
+msgid "High"
+msgstr ""
 
 msgid "High bitrate support"
 msgstr "Aukštos bitų spartos palaikymas"
@@ -12324,6 +12374,9 @@ msgstr "Atidaryti kontekstinį meniu"
 msgid "Open context menu (contains settings menu)"
 msgstr "Atidarykite kontekstinį meniu (jame yra nustatymų meniu)"
 
+msgid "Open external subtitle management screen"
+msgstr ""
+
 msgid "Open favorites list"
 msgstr "Atverti mėgstamiausių sąrašą"
 
@@ -12802,6 +12855,9 @@ msgstr ""
 
 msgid "Picon and Service Name"
 msgstr "Piktograma ir kanalo pavadinimas"
+
+msgid "Picon package target location"
+msgstr ""
 
 msgid "Picon width"
 msgstr "Piktogramos plotis"
@@ -13432,9 +13488,15 @@ msgstr "Spauskite OK, kad tęsti."
 msgid "Press OK to edit the settings."
 msgstr "Paspauskite OK ir redaguokite nustatymus."
 
+msgid "Press OK to enter PIN code"
+msgstr ""
+
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Papildomai informacijai apie %s gauti, spauskite OK"
+
+msgid "Press OK to init module"
+msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -13443,6 +13505,15 @@ msgstr "Paspauskite OK, kad įdiegtumėte ir naudotumėte šią kalbą.  [%s]"
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
 msgstr "Paspauskite OK, kad įdiegtumėte ir naudotumėte šią lokalę.  [%s]"
+
+msgid "Press OK to open module info"
+msgstr ""
+
+msgid "Press OK to reset PIN code"
+msgstr ""
+
+msgid "Press OK to reset module"
+msgstr ""
 
 msgid "Press OK to scan"
 msgstr "Spauskite OK, jei norite pradėti paiešką"
@@ -14355,6 +14426,9 @@ msgstr "Pašalinti dabartinį pasirinktą pavadinimą"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Pašalinkite pasirinktą aplanką iš žymių"
 
+msgid "Remove plugins ..."
+msgstr ""
+
 msgid "Remove selected service"
 msgstr ""
 
@@ -14370,7 +14444,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr "Dabartinės žymelės pašalinimas"
 
-msgid "Remove the highlighted plugin"
+msgid "Remove the selected list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -15998,6 +16072,9 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
+msgid "Select the target location where picon files will be installed."
+msgstr ""
+
 msgid "Select the time after which this timer can start."
 msgstr ""
 
@@ -16383,8 +16460,14 @@ msgstr "nustatyti, kaip pradinį kanalą"
 msgid "Set Base time"
 msgstr "Nustatykite bazinį laiką"
 
+msgid "Set CI Boot delay."
+msgstr ""
+
 msgid "Set CI assignment for detection of available services."
 msgstr "Prieinamų kanalų aptikimui, įtraukti ir CI priskyrimą."
+
+msgid "Set DVB CI delay."
+msgstr ""
 
 msgid "Set Framerate for MiniTV"
 msgstr "Nustatykite MiniTV kadrų dažnį"
@@ -17767,6 +17850,14 @@ msgstr "Skaidrės iš viršaus žemyn"
 #, python-format
 msgid "Slot %d"
 msgstr "Lizdas %d"
+
+#, python-format
+msgid "Slot %s / FBC in %s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
 
 #, python-format
 msgid "Slot %s: %s"
@@ -19237,6 +19328,9 @@ msgstr ""
 "Tinklo vedlio plėtinys neįdiegtas!\n"
 "Prašome įdiegti."
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Rezultatai įrašyti į %s."
@@ -19534,6 +19628,9 @@ msgstr "Ši pasirinktis leidžia pasirinkti, rodyti, ar ne įvykio žanro inform
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Ši parinktis leidžia įjungti 3D erdvinį garsą."
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr ""
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Ši parinktis leidžia jums rodyti SNR procentais (ne visi imtuvai tai palaiko)."
@@ -20591,7 +20688,7 @@ msgstr ""
 "Atnaujinimas pavyko!\n"
 "Jūsų įkrovos tvarkyklė dabar yra naujausia!"
 
-msgid "Update the highlighted plugin"
+msgid "Update the selected list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -23467,6 +23564,10 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "CI %s enabled"
+#~ msgstr "CI %s įjungtas"
 
 #~ msgid "1080i"
 #~ msgstr "1080i"

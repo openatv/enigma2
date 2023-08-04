@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 19:54+0000\n"
-"PO-Revision-Date: 2023-07-22 06:27+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
+"PO-Revision-Date: 2023-08-04 07:50+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1005,6 +1005,20 @@ msgstr[1] "Встановлено %d пакети."
 msgstr[2] "Встановлено %d пакетів."
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] "%d пакет позначено для встановлення."
+msgstr[1] "%d пакети позначено для встановлення."
+msgstr[2] "%d пакетів позначено для встановлення."
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] "%d пакет позначено для видалення."
+msgstr[1] "%d пакети позначено для видалення."
+msgstr[2] "%d пакетів позначено для видалення."
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "Оновлено %d пакет."
@@ -1463,6 +1477,9 @@ msgstr "15 хвилин"
 
 msgid "1536 Mb"
 msgstr "1536 Мб"
+
+msgid "16/9 reset to normal"
+msgstr "16/9 скидання до нормального"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Поштова скринька"
@@ -2144,6 +2161,15 @@ msgstr "Додати/Видалити Таймер"
 msgid "Add/Remove a timer for the current event"
 msgstr "Додати/Видалити таймер поточної події"
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr "Додати/Видалити виділений плагін до/із списку завантажень"
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr "Додати/Видалити виділений плагін до/із списку видалення"
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr "Додати/Видалити виділений плагін до/із списку оновлень"
+
 msgid "Adding schedule..."
 msgstr "Додавання завдання..."
 
@@ -2287,9 +2313,6 @@ msgstr "Всі супутники 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Всі канали провайдера"
-
-msgid "All slots"
-msgstr "Всі слоти"
 
 msgid "All supported"
 msgstr "Усі підтримуються"
@@ -2628,6 +2651,9 @@ msgstr "Список виглядів..."
 
 msgid "Aspect ratio"
 msgstr "Співвідношення сторін"
+
+msgid "Aspect switch"
+msgstr "Перемикач формату"
 
 msgid "Assamese"
 msgstr "Ассамська"
@@ -3154,6 +3180,9 @@ msgstr "Зниження блокових шумів"
 msgid "Blue"
 msgstr "Синя"
 
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
 msgid "Bluetooth Setup"
 msgstr "Налаштування Bluetooth"
 
@@ -3468,18 +3497,20 @@ msgstr "ЗМІНА ФАВОРИТУ"
 msgid "CHANNEL +/-"
 msgstr "Канал +/-"
 
-#, python-format
-msgid "CI %s enabled"
-msgstr "CI %s увімкнено"
-
 msgid "CI (Common Interface) Setup"
 msgstr "Налаштування CI (Common Interface)"
+
+msgid "CI Boot Delay"
+msgstr "Затримка завантаження CI"
 
 msgid "CI Helper Settings"
 msgstr "Помічник налаштування CI"
 
 msgid "CI assignment"
 msgstr "Призначення CI"
+
+msgid "CI enabled"
+msgstr "CI увімкнено"
 
 msgid "CI slot: "
 msgstr "CI слот: "
@@ -4396,6 +4427,9 @@ msgstr "Призначення Модуля доступу"
 
 msgid "Common Interface Settings"
 msgstr "Загальні налаштування інтерфейсу"
+
+msgid "Common Settings"
+msgstr "Загальні налаштування"
 
 msgid "Common Setup Actions"
 msgstr "Загальні дії з налаштування"
@@ -6557,8 +6591,8 @@ msgstr "Завантажити і встановити емулятори"
 msgid "Download error"
 msgstr "Помилка завантаження"
 
-msgid "Download the highlighted plugin"
-msgstr "Завантажити виділений плагін"
+msgid "Download the selected list of plugins"
+msgstr "Завантажити вибраний список плагінів"
 
 msgid "Downloadable plugins"
 msgstr "Доступні плагіни"
@@ -7496,6 +7530,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Створення директорії %s невдале!"
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr "Помилка: Створення цільового каталогу піконів: (%s)"
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr "Помилка: файл '%s' неможливо відкрити!  (%s)"
 
@@ -7829,6 +7867,9 @@ msgstr "Зовнішній колір діалогових підзаголов�
 msgid "External subtitle switch fonts"
 msgstr "Перемикання шрифтів для зовнішніх субтитрів"
 
+msgid "Extra High"
+msgstr "Дуже високий"
+
 msgid "Extra motor options"
 msgstr "Додаткові параметри мотору"
 
@@ -7858,6 +7899,12 @@ msgstr "F3"
 
 msgid "F4"
 msgstr "F4"
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr "FBC SCR (Unicable/JESS)"
+
+msgid "FBC automatic"
+msgstr "Автоматичний FBC"
 
 msgid "FCC enabled"
 msgstr "FCC увімкнено"
@@ -8992,6 +9039,9 @@ msgstr "Приховати помилки перемикання"
 
 msgid "Hierarchy info"
 msgstr "Інфо ієрархії"
+
+msgid "High"
+msgstr "Високий"
 
 msgid "High bitrate support"
 msgstr "Підтримка високого бітрейту"
@@ -12316,6 +12366,9 @@ msgstr "Відкрити контекстне меню"
 msgid "Open context menu (contains settings menu)"
 msgstr "Відкрити контекстне меню (містить меню налаштувань)"
 
+msgid "Open external subtitle management screen"
+msgstr "Відкрити зовнішній екран керування субтитрами"
+
 msgid "Open favorites list"
 msgstr "Відкрити список фаворитів"
 
@@ -12794,6 +12847,9 @@ msgstr "Пакети Піконів"
 
 msgid "Picon and Service Name"
 msgstr "Пікони і Назва Каналу"
+
+msgid "Picon package target location"
+msgstr "Цільове розташування пакета Picon"
 
 msgid "Picon width"
 msgstr "Ширина Піконів"
@@ -13424,9 +13480,15 @@ msgstr "Для продовження натисніть ОК."
 msgid "Press OK to edit the settings."
 msgstr "Натисніть ОК для редагування налаштувань."
 
+msgid "Press OK to enter PIN code"
+msgstr "Натисніть OK, щоб ввести PIN-код"
+
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Натисніть OK для отримання додаткових відомостей %s"
+
+msgid "Press OK to init module"
+msgstr "Натисніть OK, щоб запустити модуль"
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -13435,6 +13497,15 @@ msgstr "Натисніть OK, щоб встановити та використ
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
 msgstr "Натисніть OK, щоб встановити та використовувати цей регіон.  [%s]"
+
+msgid "Press OK to open module info"
+msgstr "Натисніть OK, щоб відкрити інформацію про модуль"
+
+msgid "Press OK to reset PIN code"
+msgstr "Натисніть OK, щоб скинути PIN-код"
+
+msgid "Press OK to reset module"
+msgstr "Натисніть OK, щоб скинути модуль"
 
 msgid "Press OK to scan"
 msgstr "Натисніть ОК для пошуку"
@@ -14347,6 +14418,9 @@ msgstr "Видалити вибрану назву"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Видалити вибрану теку зі закладок"
 
+msgid "Remove plugins ..."
+msgstr "Видалити плагіни..."
+
 msgid "Remove selected service"
 msgstr "Видалити вибраний канал"
 
@@ -14362,8 +14436,8 @@ msgstr "Видалити файли MultiBoot"
 msgid "Remove the current bookmark"
 msgstr "Видалити поточну закладку"
 
-msgid "Remove the highlighted plugin"
-msgstr "Видалити виділений плагін"
+msgid "Remove the selected list of plugins"
+msgstr "Видалити вибраний список плагінів"
 
 msgid "Remove timer"
 msgstr "Видалити таймер"
@@ -15993,6 +16067,9 @@ msgstr "Виберіть стартовий/початковий стовпец�
 msgid "Select the tags that should be used for this recording."
 msgstr "Виберіть теги, які слід використовувати для цього запису."
 
+msgid "Select the target location where picon files will be installed."
+msgstr "Виберіть цільове розташування, куди буде встановлено файли піконів."
+
 msgid "Select the time after which this timer can start."
 msgstr "Виберіть час, після якого цей таймер може запуститися."
 
@@ -16381,8 +16458,14 @@ msgstr "встановити стартовим каналом"
 msgid "Set Base time"
 msgstr "Встановити Базовий час"
 
+msgid "Set CI Boot delay."
+msgstr "Встановіть затримку завантаження CI."
+
 msgid "Set CI assignment for detection of available services."
 msgstr "Встановити призначення CI для виявлення доступних каналів."
+
+msgid "Set DVB CI delay."
+msgstr "Встановити затримку DVB CI."
 
 msgid "Set Framerate for MiniTV"
 msgstr "Частота кадрів для PiG-вікна"
@@ -17773,6 +17856,14 @@ msgid "Slot %d"
 msgstr "Слот %d"
 
 #, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "Слот %s / FBC в %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr "Слот %s / FBC віртуальний %s"
+
+#, python-format
 msgid "Slot %s: %s"
 msgstr "Слот %s: %s"
 
@@ -18749,7 +18840,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 21.07.2023"
+msgstr "Переклад: kvinto - 03.08.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19259,6 +19350,9 @@ msgstr ""
 "Майстер налаштування мережі не встановлено!\n"
 "Будь-ласка встановіть його."
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr "Каталог піконів уже існує і його потрібно видалити. Ви бажаєте продовжити?"
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Результати були записані до %s."
@@ -19561,6 +19655,9 @@ msgstr "Цей параметр дозволяє Вам вибрати, відо
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Цей параметр дозволяє Вам включити підтримку об'ємного звуку 3D."
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr "Цей параметр дозволяє встановити значення зсуву для різних роздільних здатностей Letterbox."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Цей параметр дозволяє Вам показати SNR в dB (підтримується не всіма приймачами)."
@@ -20620,8 +20717,8 @@ msgstr ""
 "Оновлення успішне!\n"
 "Ваш завантажувач тепер оновлений!"
 
-msgid "Update the highlighted plugin"
-msgstr "Оновити виділений плагін"
+msgid "Update the selected list of plugins"
+msgstr "Оновити вибраний список плагінів"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Оновлення/Копіювання Вашої прошивки, Копіювання/Відновлення налаштувань"
@@ -23510,6 +23607,22 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "All slots"
+#~ msgstr "Всі слоти"
+
+#, python-format
+#~ msgid "CI %s enabled"
+#~ msgstr "CI %s увімкнено"
+
+#~ msgid "Download the highlighted plugin"
+#~ msgstr "Завантажити виділений плагін"
+
+#~ msgid "Remove the highlighted plugin"
+#~ msgstr "Видалити виділений плагін"
+
+#~ msgid "Update the highlighted plugin"
+#~ msgstr "Оновити виділений плагін"
 
 #~ msgid "1080i"
 #~ msgstr "1080i"

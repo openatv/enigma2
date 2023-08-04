@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 19:54+0000\n"
-"PO-Revision-Date: 2023-07-17 12:26+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
+"PO-Revision-Date: 2023-08-04 07:49+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -1000,6 +1000,20 @@ msgstr[1] "Nainstalované balíčky: %d."
 msgstr[2] "Nainstalované balíčky: %d."
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] "%d balíček označený k instalaci."
+msgstr[1] "%d balíčků označeno k instalaci."
+msgstr[2] "%d balíčků označeno k instalaci."
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] "%d balíček označený k odstranění."
+msgstr[1] "%d balíčky označeny k odstranění."
+msgstr[2] "%d balíčků označených k odstranění."
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d balíček aktualizován."
@@ -1458,6 +1472,9 @@ msgstr "15 minut"
 
 msgid "1536 Mb"
 msgstr "MB"
+
+msgid "16/9 reset to normal"
+msgstr "16/9 reset do normálu"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -2139,6 +2156,15 @@ msgstr "Přidat/odebrat časovač"
 msgid "Add/Remove a timer for the current event"
 msgstr "Přidat/Odstranit časovač pro aktuální pořad"
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr "Přidat/odebrat zvýrazněný plugin do/ze seznamu stahování"
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr "Přidat/odebrat zvýrazněný plugin do/ze seznamu odebrání"
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr "Přidat/odebrat zvýrazněný plugin do/ze seznamu aktualizací"
+
 msgid "Adding schedule..."
 msgstr "Přidávám plán..."
 
@@ -2282,9 +2308,6 @@ msgstr "Všechny satelity 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Poskytovatel všech programů"
-
-msgid "All slots"
-msgstr "Všechny sloty"
 
 msgid "All supported"
 msgstr "Podporováno vše"
@@ -2623,6 +2646,9 @@ msgstr "Seznam aspektů..."
 
 msgid "Aspect ratio"
 msgstr "Poměr stran"
+
+msgid "Aspect switch"
+msgstr "Přepínač poměru stran"
 
 msgid "Assamese"
 msgstr "Asámština"
@@ -3149,6 +3175,9 @@ msgstr "Redukce blokového šumu"
 msgid "Blue"
 msgstr "Modré"
 
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
 msgid "Bluetooth Setup"
 msgstr "Nastavení Bluetooth"
 
@@ -3463,18 +3492,20 @@ msgstr "ZMĚNA PŘEHLEDU"
 msgid "CHANNEL +/-"
 msgstr "KANÁL +/-"
 
-#, python-format
-msgid "CI %s enabled"
-msgstr "CI %s spuštěno"
-
 msgid "CI (Common Interface) Setup"
 msgstr "Nastavení rozhraní CI"
+
+msgid "CI Boot Delay"
+msgstr "Zpoždění spouštění CI"
 
 msgid "CI Helper Settings"
 msgstr "Nastavení pomocníka CI"
 
 msgid "CI assignment"
 msgstr "Nastavení CI"
+
+msgid "CI enabled"
+msgstr "CI povoleno"
 
 msgid "CI slot: "
 msgstr "CI slot: "
@@ -4391,6 +4422,9 @@ msgstr "Konfigurace CI slotů"
 
 msgid "Common Interface Settings"
 msgstr "Nastavení společného rozhraní"
+
+msgid "Common Settings"
+msgstr "Společná nastavení"
 
 msgid "Common Setup Actions"
 msgstr "Běžné instalační akce"
@@ -6552,8 +6586,8 @@ msgstr "Stáhnout a instalovat CAMy"
 msgid "Download error"
 msgstr "Chyba stahování"
 
-msgid "Download the highlighted plugin"
-msgstr "Stáhněte si označený plugin"
+msgid "Download the selected list of plugins"
+msgstr "Stáhnout vybraný seznam pluginů"
 
 msgid "Downloadable plugins"
 msgstr "Nahrát pluginy"
@@ -7491,6 +7525,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Chyba: Vytvoření adresáře '%s' se nezdařilo!"
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr "Chyba: Vytváření cílového adresáře picon: (%s)"
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr "Chyba: Soubor '%s' nelze otevřít! (%s)"
 
@@ -7824,6 +7862,9 @@ msgstr "Barevně odlišit titulky s dialogy"
 msgid "External subtitle switch fonts"
 msgstr "Přepínat externí fonty titulků"
 
+msgid "Extra High"
+msgstr "Extra vysoký"
+
 msgid "Extra motor options"
 msgstr "Extra možnosti motoru"
 
@@ -7853,6 +7894,12 @@ msgstr "F3"
 
 msgid "F4"
 msgstr "F4"
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr "FBC SCR (Unicable/JESS)"
+
+msgid "FBC automatic"
+msgstr "FBC automatické"
 
 msgid "FCC enabled"
 msgstr "Povoleno FCC"
@@ -8987,6 +9034,9 @@ msgstr "Skrýt chyby při přepínání"
 
 msgid "Hierarchy info"
 msgstr "Hierarchické info"
+
+msgid "High"
+msgstr "Vysoký"
 
 msgid "High bitrate support"
 msgstr "Podpora vysokého bitového toku dat"
@@ -12311,6 +12361,9 @@ msgstr "Otevřít kontextovou nabídku"
 msgid "Open context menu (contains settings menu)"
 msgstr "Otevřít kontextovou nabídku (obsahuje nabídku nastavení)"
 
+msgid "Open external subtitle management screen"
+msgstr "Otevřít obrazovku správy externích titulků"
+
 msgid "Open favorites list"
 msgstr "Otevřít seznam oblíbených položek"
 
@@ -12789,6 +12842,9 @@ msgstr "Balíčky Picon"
 
 msgid "Picon and Service Name"
 msgstr "Picony a názvy programů"
+
+msgid "Picon package target location"
+msgstr "Cílové umístění balíčku picon"
 
 msgid "Picon width"
 msgstr "Šířka piconů kanálů"
@@ -13419,9 +13475,15 @@ msgstr "Pokračujte stisknutím tlačítka OK."
 msgid "Press OK to edit the settings."
 msgstr "Stiskněte OK pro úpravu nastavení."
 
+msgid "Press OK to enter PIN code"
+msgstr "Stiskněte OK pro zadání PIN kódu"
+
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Stiskněte OK a získejte detaily pro %s"
+
+msgid "Press OK to init module"
+msgstr "Stiskněte OK pro spuštění modulu"
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -13430,6 +13492,15 @@ msgstr "Stisknutím tlačítka OK nainstalujete a použijete tento jazyk.  [%s]"
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
 msgstr "Stisknutím tlačítka OK nainstalujete a použijete toto místní nastavení.  [%s]"
+
+msgid "Press OK to open module info"
+msgstr "Stiskněte OK pro otevření informací o modulu"
+
+msgid "Press OK to reset PIN code"
+msgstr "Stisknutím tlačítka OK resetujte kód PIN"
+
+msgid "Press OK to reset module"
+msgstr "Stiskněte OK pro reset modulu"
 
 msgid "Press OK to scan"
 msgstr "Stiskněte OK pro prohledávání"
@@ -14342,6 +14413,9 @@ msgstr "Odstranit vybraný titul"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Odstranit vybranou složku ze záložek"
 
+msgid "Remove plugins ..."
+msgstr "Odstranit pluginy..."
+
 msgid "Remove selected service"
 msgstr "Odstranit vybranou službu"
 
@@ -14357,8 +14431,8 @@ msgstr "Odstranit soubory MultiBoot"
 msgid "Remove the current bookmark"
 msgstr "Odebrat aktuální záložku"
 
-msgid "Remove the highlighted plugin"
-msgstr "Odstraňte označený plugin"
+msgid "Remove the selected list of plugins"
+msgstr "Odebrat vybraný seznam pluginů"
 
 msgid "Remove timer"
 msgstr "Odstranit časovač"
@@ -15988,6 +16062,9 @@ msgstr "Vyberte počáteční sloupec, který se má aktivovat při spuštění 
 msgid "Select the tags that should be used for this recording."
 msgstr "Vyberte značky, které by měly být použity pro tento záznam."
 
+msgid "Select the target location where picon files will be installed."
+msgstr "Vyberte cílové umístění, kam budou nainstalovány soubory picon."
+
 msgid "Select the time after which this timer can start."
 msgstr "Vyberte čas, po kterém se tento časovač může spustit."
 
@@ -16376,8 +16453,14 @@ msgstr "Nastavit jako spouštěcí službu"
 msgid "Set Base time"
 msgstr "Nastavit základní čas"
 
+msgid "Set CI Boot delay."
+msgstr "Nastavit zpoždění spuštění CI."
+
 msgid "Set CI assignment for detection of available services."
 msgstr "Nastavit přiřazení CI pro detekci dostupných služeb."
+
+msgid "Set DVB CI delay."
+msgstr "Nastavit zpoždění DVB CI."
 
 msgid "Set Framerate for MiniTV"
 msgstr "Nastavit obnovovací kmitočet pro MiniTV"
@@ -17766,6 +17849,14 @@ msgstr "Klouzat zhora dolů"
 #, python-format
 msgid "Slot %d"
 msgstr "Slot %d"
+
+#, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "Slot %s / FBC v %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr "Slot %s / FBC virtuální %s"
 
 #, python-format
 msgid "Slot %s: %s"
@@ -19254,6 +19345,9 @@ msgstr ""
 "Rozšířený síťový průvodce není nainstalován!\n"
 "Nainstalujte ho."
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr "Adresář picon již existuje a musí být odstraněn. Chcete pokračovat?"
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Výsledky byly zapsány do %s."
@@ -19556,6 +19650,9 @@ msgstr "Tato možnost vám umožňuje zvolit, zda chcete zobrazit informace o ž
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Tato možnost umožňuje povolit 3D prostorový zvuk."
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr "Tato možnost umožňuje nastavit hodnoty odsazení pro různá rozlišení Letterbox."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Tato volba umožňuje zobrazovat Kvalitu signálu v procentech (toto nepodporují všechny stb)."
@@ -20615,8 +20712,8 @@ msgstr ""
 "Aktualizace proběhla úspěšně!\n"
 "Váš Bootloader je nyní aktuální!"
 
-msgid "Update the highlighted plugin"
-msgstr "Aktualizovat zvýrazněný plugin"
+msgid "Update the selected list of plugins"
+msgstr "Aktualizovat vybraný seznam pluginů"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Aktualizace / Zálohování firmwaru, Záloha / Obnova nastavení"
@@ -23505,6 +23602,22 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "All slots"
+#~ msgstr "Všechny sloty"
+
+#, python-format
+#~ msgid "CI %s enabled"
+#~ msgstr "CI %s spuštěno"
+
+#~ msgid "Download the highlighted plugin"
+#~ msgstr "Stáhněte si označený plugin"
+
+#~ msgid "Remove the highlighted plugin"
+#~ msgstr "Odstraňte označený plugin"
+
+#~ msgid "Update the highlighted plugin"
+#~ msgstr "Aktualizovat zvýrazněný plugin"
 
 #~ msgid "1080i"
 #~ msgstr "1080i"

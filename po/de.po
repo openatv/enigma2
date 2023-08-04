@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 19:54+0000\n"
-"PO-Revision-Date: 2023-07-31 21:21+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
+"PO-Revision-Date: 2023-08-04 08:23+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -998,6 +998,18 @@ msgstr[0] "%d Paket installiert."
 msgstr[1] "%d Pakete installiert."
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] "%d Paket zur Installation markiert."
+msgstr[1] "%d Pakete zur Installation markiert."
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] "%d Paket zum Entfernen markiert."
+msgstr[1] "%d Pakete zum Entfernen markiert."
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d Paket aktualisiert."
@@ -1461,6 +1473,9 @@ msgstr "15 Minuten"
 
 msgid "1536 Mb"
 msgstr "1536 MB"
+
+msgid "16/9 reset to normal"
+msgstr "16:9 zurücksetzen"
 
 #
 msgid "16:10 Letterbox"
@@ -2237,6 +2252,15 @@ msgstr "Timer hinzufügen/entfernen"
 msgid "Add/Remove a timer for the current event"
 msgstr "Timer für ausgewählte Sendung hinzufügen/entfernen"
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr "Markiertes Plugin zur Download-Liste hinzufügen oder entfernen"
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr "Markiertes Plugin zur Entfernungs-Liste hinzufügen oder entfernen"
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr "Markiertes Plugin zur Update-Liste hinzufügen oder entfernen"
+
 msgid "Adding schedule..."
 msgstr "Zeitplan hinzufügen..."
 
@@ -2387,9 +2411,6 @@ msgstr "Alle Satelliten 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Alle Sendergruppen"
-
-msgid "All slots"
-msgstr "Alle Slots"
 
 msgid "All supported"
 msgstr "Alle unterstützten"
@@ -2748,6 +2769,9 @@ msgstr "Seitenverhältnis..."
 
 msgid "Aspect ratio"
 msgstr "Seitenverhältnis"
+
+msgid "Aspect switch"
+msgstr "Aspekt umschalten"
 
 msgid "Assamese"
 msgstr "Assamesisch"
@@ -3310,6 +3334,9 @@ msgstr "Block-Rauschen-Reduzierung"
 msgid "Blue"
 msgstr "Blau"
 
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
 msgid "Bluetooth Setup"
 msgstr "Bluetooth-Einstellungen"
 
@@ -3634,12 +3661,11 @@ msgstr "Bouquet wechseln"
 msgid "CHANNEL +/-"
 msgstr "Kanal +/-"
 
-#, python-format
-msgid "CI %s enabled"
-msgstr "CI %s aktiviert"
-
 msgid "CI (Common Interface) Setup"
 msgstr "CI-Einstellungen"
+
+msgid "CI Boot Delay"
+msgstr "CI-Boot-Verzögerung"
 
 msgid "CI Helper Settings"
 msgstr "CIHelper-Einstellungen"
@@ -3647,6 +3673,9 @@ msgstr "CIHelper-Einstellungen"
 #
 msgid "CI assignment"
 msgstr "CI-Zuweisung"
+
+msgid "CI enabled"
+msgstr "CI aktiviert"
 
 msgid "CI slot: "
 msgstr "CI-Schacht: "
@@ -4622,6 +4651,9 @@ msgstr "Common Interface Zuweisung"
 
 msgid "Common Interface Settings"
 msgstr "CI-Einstellungen"
+
+msgid "Common Settings"
+msgstr "Allgemeine Einstellungen"
 
 # boot-up action
 msgid "Common Setup Actions"
@@ -6911,8 +6943,8 @@ msgstr "Softcams herunterladen und installieren"
 msgid "Download error"
 msgstr "Download Fehler"
 
-msgid "Download the highlighted plugin"
-msgstr "Angewähltes Plugin herunterladen"
+msgid "Download the selected list of plugins"
+msgstr "Plugins anhand der Auswahl herunterladen"
 
 #
 msgid "Downloadable plugins"
@@ -7650,7 +7682,7 @@ msgid "Enter number to jump to channel"
 msgstr "Nummer, um zum Kanal zu wechseln"
 
 msgid "Enter persistent PIN code"
-msgstr "PIN eingeben"
+msgstr "PIN-Code eingeben"
 
 #
 msgid "Enter pin code"
@@ -7909,6 +7941,10 @@ msgstr ""
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
 msgstr "Fehler: Das Erstellen des Verzeichnisses '%s' ist fehlgeschlagen!"
+
+#, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr "Fehler beim Erzeugen des Zielordners ('%s')!"
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -8268,6 +8304,9 @@ msgstr "Farbige Dialoge bei externen Untertiteln"
 msgid "External subtitle switch fonts"
 msgstr "Schriftart der externen Untertitel wechseln"
 
+msgid "Extra High"
+msgstr "Extra Hoch"
+
 # satconfig.py
 msgid "Extra motor options"
 msgstr "Spezielle Motoroptionen"
@@ -8298,6 +8337,12 @@ msgstr "F3"
 
 msgid "F4"
 msgstr "F4"
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr "FBC SCR (Unicable/JESS)"
+
+msgid "FBC automatic"
+msgstr "FBC automatisch"
 
 msgid "FCC enabled"
 msgstr "FCC aktiviert"
@@ -9487,6 +9532,9 @@ msgstr "Fehler beim Umschalten unterdrücken"
 
 msgid "Hierarchy info"
 msgstr "Hierarchie-Info"
+
+msgid "High"
+msgstr "Hoch"
 
 #
 msgid "High bitrate support"
@@ -11258,7 +11306,7 @@ msgid "Manage network mounts"
 msgstr "Netzwerklaufwerke verwalten"
 
 msgid "Manage the highlighted plugin"
-msgstr "Angewähltes Plugin verwalten"
+msgstr "Markiertes Plugin verwalten"
 
 msgid "Manage your online update files"
 msgstr "Verwaltung Ihrer Onlineupdate-Dateien"
@@ -13071,6 +13119,9 @@ msgstr "Kontextmenü öffnen"
 msgid "Open context menu (contains settings menu)"
 msgstr "Kontextmenü inklusive Einstellungsmenü öffnen"
 
+msgid "Open external subtitle management screen"
+msgstr "Externere Untertitel-Verwaltung öffnen"
+
 msgid "Open favorites list"
 msgstr "Öffne Favoritenliste"
 
@@ -13581,6 +13632,9 @@ msgstr "Picons"
 #
 msgid "Picon and Service Name"
 msgstr "Picon und Sendername"
+
+msgid "Picon package target location"
+msgstr "Zielordner für Picons"
 
 #
 msgid "Picon width"
@@ -14284,10 +14338,16 @@ msgstr "Drücken Sie OK, um fortzufahren."
 msgid "Press OK to edit the settings."
 msgstr "Drücken Sie OK, um die Einstellungen zu bearbeiten."
 
+msgid "Press OK to enter PIN code"
+msgstr "Drücken Sie OK, um den PIN-Code einzugeben"
+
 #
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Drücken Sie OK, um weitere Details über %s zu erhalten"
+
+msgid "Press OK to init module"
+msgstr "Drücken Sie OK zur Initialisierung vom Modul"
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -14300,6 +14360,15 @@ msgid "Press OK to install and use this locale.  [%s]"
 msgstr ""
 "Drücken Sie OK, um die Sprachregion zu installieren und zu verwenden:\n"
 "[%s]"
+
+msgid "Press OK to open module info"
+msgstr "Drücken Sie OK zum Öffnen der Informationen zum Modul"
+
+msgid "Press OK to reset PIN code"
+msgstr "Drücken Sie OK, um den PIN-Code zurückzusetzen"
+
+msgid "Press OK to reset module"
+msgstr "Drücken Sie OK zum Reset vom Modul"
 
 #
 msgid "Press OK to scan"
@@ -15279,6 +15348,9 @@ msgstr "Entferne aktuell ausgewählten Titel"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Ausgewählten Ordner aus Lesezeichen entfernen"
 
+msgid "Remove plugins ..."
+msgstr "Entferne Plugins..."
+
 msgid "Remove selected service"
 msgstr "Gewählten Kanal entfernen"
 
@@ -15294,8 +15366,8 @@ msgstr "MultiBoot-Dateien entfernen"
 msgid "Remove the current bookmark"
 msgstr "Aktuelles Lesezeichen entfernen"
 
-msgid "Remove the highlighted plugin"
-msgstr "Angewähltes Plugin entfernen"
+msgid "Remove the selected list of plugins"
+msgstr "Plugins anhand der Auswahl entfernen"
 
 #
 msgid "Remove timer"
@@ -17042,6 +17114,9 @@ msgstr "Startspalten vom File Commander wählen."
 msgid "Select the tags that should be used for this recording."
 msgstr "Wählen Sie die Tags, die für diese Aufnahme verwendet werden sollen."
 
+msgid "Select the target location where picon files will be installed."
+msgstr "Wählen Sie, wohin Picons installiert werden sollen."
+
 msgid "Select the time after which this timer can start."
 msgstr "Wählen Sie die Zeit, nach der dieser Timer starten kann."
 
@@ -17455,8 +17530,14 @@ msgstr "Kanal als Startkanal auswählen"
 msgid "Set Base time"
 msgstr "Setze Basiszeit"
 
+msgid "Set CI Boot delay."
+msgstr "CI-Boot-Verzögerung einstellen."
+
 msgid "Set CI assignment for detection of available services."
 msgstr "Bei 'Ja' Ermittlung verfügbarer Sender inklusive Berücksichtigung der CI-Zuweisung."
+
+msgid "Set DVB CI delay."
+msgstr "DVB-CI-Verzögerung einstellen."
 
 #
 msgid "Set Framerate for MiniTV"
@@ -18929,6 +19010,14 @@ msgid "Slot %d"
 msgstr "Steckplatz %d"
 
 #, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "Slot %s / FBC in %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr "Slot %s / FBC virtuell %s"
+
+#, python-format
 msgid "Slot %s: %s"
 msgstr "Slot %s: %s"
 
@@ -19368,7 +19457,7 @@ msgid "Start the Kexec initialization"
 msgstr "Kexec-Initialisierung starten"
 
 msgid "Start the highlighted plugin"
-msgstr "Starte das angewählte Plugin"
+msgstr "Starte das markierte Plugin"
 
 msgid "Start time"
 msgstr "Startzeit"
@@ -20496,6 +20585,9 @@ msgstr ""
 "Die Netzwerkassistent-Erweiterung ist nicht installiert!\n"
 "Bitte installieren Sie sie."
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr "Der Picon Ordner existiert bereits! Er muss entfernt werden. Fortfahren?"
+
 #
 #, python-format
 msgid "The results have been written to %s."
@@ -20818,6 +20910,9 @@ msgstr "Bei 'Ja' werden Genre-Informationen für die Sendung angezeigt."
 # A/V Settings
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Die Ausgabe von 3D-Surround-Sound aktivieren."
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr "Offset-Werte für verschiedene Letterbox-Auflösungen einstellen."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Bei 'Ja' wird der Signalwert SNR in 'dB' anstatt in '%' angezeigt. Nicht alle Receiver unterstützen diese Funktion."
@@ -21969,8 +22064,8 @@ msgstr ""
 "Update erfolgreich!\n"
 "Der Bootloader ist nun aktuell!"
 
-msgid "Update the highlighted plugin"
-msgstr "Angewähltes Plugin aktualisieren"
+msgid "Update the selected list of plugins"
+msgstr "Plugins anhand der Auswahl aktualisieren"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Sichern/Wiederherstellen des Images oder der Einstellungen."
@@ -25094,6 +25189,22 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "All slots"
+#~ msgstr "Alle Slots"
+
+#, python-format
+#~ msgid "CI %s enabled"
+#~ msgstr "CI %s aktiviert"
+
+#~ msgid "Download the highlighted plugin"
+#~ msgstr "Angewähltes Plugin herunterladen"
+
+#~ msgid "Remove the highlighted plugin"
+#~ msgstr "Angewähltes Plugin entfernen"
+
+#~ msgid "Update the highlighted plugin"
+#~ msgstr "Angewähltes Plugin aktualisieren"
 
 #~ msgid "1080i"
 #~ msgstr "1080i"

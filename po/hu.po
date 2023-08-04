@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 19:54+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1008,6 +1008,18 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d csomag frissítve."
@@ -1465,6 +1477,9 @@ msgstr "15 perc"
 
 msgid "1536 Mb"
 msgstr "1536 MB"
+
+msgid "16/9 reset to normal"
+msgstr ""
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -2157,6 +2172,15 @@ msgstr "Időzítő Hozzáadása/Eltávolítása"
 msgid "Add/Remove a timer for the current event"
 msgstr "Időzítő Hozzáadása/Eltávolítása a jelenlegi eseménynél"
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
 msgid "Adding schedule..."
 msgstr "Felvétel ütemezése..."
 
@@ -2301,9 +2325,6 @@ msgstr "Minden műhold 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Minden szolgáltató"
-
-msgid "All slots"
-msgstr ""
 
 #, fuzzy
 msgid "All supported"
@@ -2645,6 +2666,9 @@ msgstr "Képarány lista..."
 
 msgid "Aspect ratio"
 msgstr "Kép méretarány"
+
+msgid "Aspect switch"
+msgstr ""
 
 msgid "Assamese"
 msgstr ""
@@ -3176,6 +3200,9 @@ msgstr "Blokk-zaj csökkentés"
 msgid "Blue"
 msgstr "Kék"
 
+msgid "Bluetooth"
+msgstr ""
+
 msgid "Bluetooth Setup"
 msgstr "Bluetooth eszköz beállítása"
 
@@ -3488,18 +3515,20 @@ msgstr "CSATORNACSOMAG VÁLTÁS"
 msgid "CHANNEL +/-"
 msgstr "Csatorna +/- gomb"
 
-#, python-format
-msgid "CI %s enabled"
-msgstr ""
-
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) beállítása"
+
+msgid "CI Boot Delay"
+msgstr ""
 
 msgid "CI Helper Settings"
 msgstr "CIHelper beállítása"
 
 msgid "CI assignment"
 msgstr "CI hozzárendelés"
+
+msgid "CI enabled"
+msgstr ""
 
 msgid "CI slot: "
 msgstr "CI foglalat: "
@@ -4411,6 +4440,9 @@ msgid "Common Interface Assignment"
 msgstr "CI hozzárendelés"
 
 msgid "Common Interface Settings"
+msgstr ""
+
+msgid "Common Settings"
 msgstr ""
 
 #, fuzzy
@@ -6577,7 +6609,7 @@ msgstr "Cam letöltés és telepítés"
 msgid "Download error"
 msgstr "Letöltési hiba"
 
-msgid "Download the highlighted plugin"
+msgid "Download the selected list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7515,6 +7547,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "A %s mappa létrehozása nem sikerült."
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr ""
 
@@ -7847,6 +7883,9 @@ msgstr "Külső feliratok párbeszéd-színe"
 msgid "External subtitle switch fonts"
 msgstr "Külső felirat betűtípus csere"
 
+msgid "Extra High"
+msgstr ""
+
 msgid "Extra motor options"
 msgstr "Haladó motor beállítások"
 
@@ -7877,6 +7916,12 @@ msgstr "F3"
 
 msgid "F4"
 msgstr "F4"
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr ""
+
+msgid "FBC automatic"
+msgstr ""
 
 msgid "FCC enabled"
 msgstr ""
@@ -9028,6 +9073,9 @@ msgstr "Csatornaváltási hibák elrejtése"
 
 msgid "Hierarchy info"
 msgstr "Hierarchikus mód"
+
+msgid "High"
+msgstr ""
 
 msgid "High bitrate support"
 msgstr "Magas bitráta támogatása"
@@ -12419,6 +12467,9 @@ msgstr ""
 msgid "Open context menu (contains settings menu)"
 msgstr ""
 
+msgid "Open external subtitle management screen"
+msgstr ""
+
 msgid "Open favorites list"
 msgstr "Kedvencek lista mutatása"
 
@@ -12903,6 +12954,9 @@ msgstr ""
 
 msgid "Picon and Service Name"
 msgstr "Pikon és csatornanév"
+
+msgid "Picon package target location"
+msgstr ""
 
 msgid "Picon width"
 msgstr "Picon szélessége"
@@ -13533,9 +13587,15 @@ msgstr ""
 msgid "Press OK to edit the settings."
 msgstr "Az OK gombbal módosíthatja a beállításokat."
 
+msgid "Press OK to enter PIN code"
+msgstr ""
+
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Nyomja le az OK gombot több részletért %s kapcsán"
+
+msgid "Press OK to init module"
+msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -13543,6 +13603,15 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
+
+msgid "Press OK to open module info"
+msgstr ""
+
+msgid "Press OK to reset PIN code"
+msgstr ""
+
+msgid "Press OK to reset module"
 msgstr ""
 
 msgid "Press OK to scan"
@@ -14459,6 +14528,9 @@ msgstr "Kijelölt címek eltávolítása"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Kijelölt mappa eltávolítása könyvjelzőkből"
 
+msgid "Remove plugins ..."
+msgstr ""
+
 msgid "Remove selected service"
 msgstr ""
 
@@ -14474,7 +14546,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the highlighted plugin"
+msgid "Remove the selected list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -16114,6 +16186,9 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
+msgid "Select the target location where picon files will be installed."
+msgstr ""
+
 msgid "Select the time after which this timer can start."
 msgstr ""
 
@@ -16506,8 +16581,14 @@ msgstr "beállítás indítási csatornának"
 msgid "Set Base time"
 msgstr "Alapidő beállítása"
 
+msgid "Set CI Boot delay."
+msgstr ""
+
 msgid "Set CI assignment for detection of available services."
 msgstr "Állítsa be a CI hozzárendelést a rendelkezésre álló Csatornák észlelésekor."
+
+msgid "Set DVB CI delay."
+msgstr ""
 
 msgid "Set Framerate for MiniTV"
 msgstr "Állítsa be a képarányt a MiniTV számára"
@@ -17904,6 +17985,14 @@ msgstr "Csúsztatás felülről lefelé"
 #, python-format
 msgid "Slot %d"
 msgstr "%d foglalat"
+
+#, python-format
+msgid "Slot %s / FBC in %s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
 
 #, python-format
 msgid "Slot %s: %s"
@@ -19393,6 +19482,9 @@ msgstr ""
 "A NetworkWizard bővítmémy nincs feltelepítve!\n"
 "Kérem, telepítse fel."
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Az eredmények ide lettek kiírva: %s."
@@ -19685,6 +19777,9 @@ msgstr "Ezzel a beállítással megadhatja, hogy megjelenjenek-e az esemény mű
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Ez az opció lehetővé teszi a 3D Surround hang használatát."
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr ""
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Ez az opció lehetővé teszi, hogy az SNR százalékos arányként jelenjen meg (ezt nem minden vevő egység támogatja)."
@@ -20755,7 +20850,7 @@ msgstr ""
 "Frissítés sikeres!\n"
 "A Bootloader aktuális!"
 
-msgid "Update the highlighted plugin"
+msgid "Update the selected list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"

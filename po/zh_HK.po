@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 19:54+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1000,6 +1000,16 @@ msgid_plural "%d packages installed."
 msgstr[0] ""
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] ""
@@ -1451,6 +1461,9 @@ msgid "15 minutes"
 msgstr "5 分鐘"
 
 msgid "1536 Mb"
+msgstr ""
+
+msgid "16/9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2190,6 +2203,15 @@ msgstr "移除計時器"
 msgid "Add/Remove a timer for the current event"
 msgstr "自定義當前事件時長"
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
 msgid "Adding schedule..."
 msgstr ""
 
@@ -2350,9 +2372,6 @@ msgstr "所有衛星"
 #, fuzzy
 msgid "All services provider"
 msgstr "已分配的 頻道/供應商"
-
-msgid "All slots"
-msgstr ""
 
 #, fuzzy
 msgid "All supported"
@@ -2709,6 +2728,9 @@ msgid "Aspect list..."
 msgstr "子服務列表..."
 
 msgid "Aspect ratio"
+msgstr ""
+
+msgid "Aspect switch"
 msgstr ""
 
 msgid "Assamese"
@@ -3279,6 +3301,9 @@ msgstr "塊狀雜訊控制"
 msgid "Blue"
 msgstr ""
 
+msgid "Bluetooth"
+msgstr ""
+
 #, fuzzy
 msgid "Bluetooth Setup"
 msgstr "網路設定"
@@ -3614,13 +3639,12 @@ msgstr ""
 msgid "CHANNEL +/-"
 msgstr "頻道"
 
-#, python-format
-msgid "CI %s enabled"
-msgstr ""
-
 #, fuzzy
 msgid "CI (Common Interface) Setup"
 msgstr "通用介面 (CI)"
+
+msgid "CI Boot Delay"
+msgstr ""
 
 #, fuzzy
 msgid "CI Helper Settings"
@@ -3628,6 +3652,9 @@ msgstr "DNS設定"
 
 msgid "CI assignment"
 msgstr "CI-證書"
+
+msgid "CI enabled"
+msgstr ""
 
 #, fuzzy
 msgid "CI slot: "
@@ -4583,6 +4610,9 @@ msgid "Common Interface Assignment"
 msgstr "通用介面分配"
 
 msgid "Common Interface Settings"
+msgstr ""
+
+msgid "Common Settings"
 msgstr ""
 
 #, fuzzy
@@ -6819,7 +6849,7 @@ msgstr "下載並安裝"
 msgid "Download error"
 msgstr ""
 
-msgid "Download the highlighted plugin"
+msgid "Download the selected list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7775,6 +7805,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "創建目錄%s 失敗."
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr ""
 
@@ -8123,6 +8157,9 @@ msgstr ""
 msgid "External subtitle switch fonts"
 msgstr ""
 
+msgid "Extra High"
+msgstr ""
+
 #, fuzzy
 msgid "Extra motor options"
 msgstr "輸入選項:"
@@ -8159,6 +8196,12 @@ msgstr "3"
 #, fuzzy
 msgid "F4"
 msgstr "4"
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr ""
+
+msgid "FBC automatic"
+msgstr ""
 
 msgid "FCC enabled"
 msgstr ""
@@ -9371,6 +9414,9 @@ msgid "Hide zap errors"
 msgstr ""
 
 msgid "Hierarchy info"
+msgstr ""
+
+msgid "High"
 msgstr ""
 
 msgid "High bitrate support"
@@ -12934,6 +12980,9 @@ msgstr ""
 msgid "Open context menu (contains settings menu)"
 msgstr ""
 
+msgid "Open external subtitle management screen"
+msgstr ""
+
 #, fuzzy
 msgid "Open favorites list"
 msgstr "結束喜愛頻道編輯"
@@ -13450,6 +13499,9 @@ msgstr ""
 #, fuzzy
 msgid "Picon and Service Name"
 msgstr "在所有頻道"
+
+msgid "Picon package target location"
+msgstr ""
 
 #, fuzzy
 msgid "Picon width"
@@ -14125,9 +14177,15 @@ msgstr ""
 msgid "Press OK to edit the settings."
 msgstr "按OK鍵修改設定"
 
+msgid "Press OK to enter PIN code"
+msgstr ""
+
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "按OK鍵獲取 %s 詳細說明"
+
+msgid "Press OK to init module"
+msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -14135,6 +14193,15 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
+
+msgid "Press OK to open module info"
+msgstr ""
+
+msgid "Press OK to reset PIN code"
+msgstr ""
+
+msgid "Press OK to reset module"
 msgstr ""
 
 msgid "Press OK to scan"
@@ -15134,6 +15201,9 @@ msgstr "移除當前選擇的標題"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "移除選定的自動計時器"
 
+msgid "Remove plugins ..."
+msgstr ""
+
 msgid "Remove selected service"
 msgstr ""
 
@@ -15149,7 +15219,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the highlighted plugin"
+msgid "Remove the selected list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -16862,6 +16932,9 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
+msgid "Select the target location where picon files will be installed."
+msgstr ""
+
 msgid "Select the time after which this timer can start."
 msgstr ""
 
@@ -17267,7 +17340,13 @@ msgstr ""
 msgid "Set Base time"
 msgstr "開始時間"
 
+msgid "Set CI Boot delay."
+msgstr ""
+
 msgid "Set CI assignment for detection of available services."
+msgstr ""
+
+msgid "Set DVB CI delay."
 msgstr ""
 
 msgid "Set Framerate for MiniTV"
@@ -18799,6 +18878,14 @@ msgstr ""
 #, python-format
 msgid "Slot %d"
 msgstr "插槽 %d"
+
+#, python-format
+msgid "Slot %s / FBC in %s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
 
 #, python-format
 msgid "Slot %s: %s"
@@ -20342,6 +20429,9 @@ msgid ""
 "Please install it."
 msgstr ""
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "測驗結果是在 %s 中保存."
@@ -20635,6 +20725,9 @@ msgid "This option allows you to choose whether or not to display genre informat
 msgstr ""
 
 msgid "This option allows you to enable 3D Surround Sound."
+msgstr ""
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
@@ -21736,7 +21829,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
-msgid "Update the highlighted plugin"
+msgid "Update the selected list of plugins"
 msgstr ""
 
 #, fuzzy
