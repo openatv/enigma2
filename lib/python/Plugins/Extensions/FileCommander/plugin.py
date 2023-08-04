@@ -16,7 +16,6 @@ from twisted.internet.threads import deferToThread
 from enigma import eConsoleAppContainer, ePicLoad, ePoint, eServiceReference, eSize, eTimer
 
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
-from Components.AVSwitch import AVSwitch
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.config import config, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigLocations, ConfigSelectionNumber, ConfigSubsection
 from Components.Console import Console as console
@@ -2252,8 +2251,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 	def layoutFinished(self):
 		if self.fileListLen >= 0:
 			self.imageLoad.PictureData.get().append(self.finishDecode)
-			scale = AVSwitch().getFramebufferScale()
-			self.imageLoad.setPara([self["image"].instance.size().width(), self["image"].instance.size().height(), scale[0], scale[1], 0, 1, "#00000000"])
+			self.imageLoad.setPara([self["image"].instance.size().width(), self["image"].instance.size().height(), 1, 1, 0, 1, "#00000000"])
 			self["icon"].hide()
 			self["message"].setText("")
 			self["infolabels"].setText("")

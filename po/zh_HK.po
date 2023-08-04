@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 12:10+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1000,6 +1000,16 @@ msgid_plural "%d packages installed."
 msgstr[0] ""
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] ""
@@ -1413,42 +1423,6 @@ msgstr "30 分鐘"
 msgid "1024 Mb"
 msgstr ""
 
-msgid "1080i"
-msgstr ""
-
-msgid "1080i 50Hz"
-msgstr ""
-
-msgid "1080i 60Hz"
-msgstr ""
-
-msgid "1080i50"
-msgstr ""
-
-msgid "1080i50: 24p/50i/60i"
-msgstr ""
-
-msgid "1080i50Hz"
-msgstr ""
-
-msgid "1080p 24Hz"
-msgstr ""
-
-msgid "1080p 25Hz"
-msgstr ""
-
-msgid "1080p 30Hz"
-msgstr ""
-
-msgid "1080p 50Hz"
-msgstr ""
-
-msgid "1080p 60Hz"
-msgstr ""
-
-msgid "1080p50: 24p/50p/60p"
-msgstr ""
-
 msgid "10bit"
 msgstr ""
 
@@ -1489,8 +1463,8 @@ msgstr "5 分鐘"
 msgid "1536 Mb"
 msgstr ""
 
-msgid "16:10"
-msgstr "16:10"
+msgid "16/9 reset to normal"
+msgstr ""
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -1504,8 +1478,17 @@ msgstr "16:9"
 msgid "16:9 Always"
 msgstr "總是 16:9"
 
+msgid "16:9 Combined"
+msgstr ""
+
+msgid "16:9 Ignore"
+msgstr ""
+
 msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
+
+msgid "16:9 PanScan"
+msgstr ""
 
 msgid "16K"
 msgstr ""
@@ -1533,24 +1516,6 @@ msgstr "2 分鐘"
 msgid "2048 Mb"
 msgstr ""
 
-msgid "2160p 24Hz"
-msgstr ""
-
-msgid "2160p 25Hz"
-msgstr ""
-
-msgid "2160p 30Hz"
-msgstr ""
-
-msgid "2160p 50Hz"
-msgstr ""
-
-msgid "2160p 60Hz"
-msgstr ""
-
-msgid "2160p50: 24p/50p/60p"
-msgstr ""
-
 msgid "23.976"
 msgstr ""
 
@@ -1562,41 +1527,11 @@ msgstr "2"
 msgid "24 hours"
 msgstr "4 小時"
 
-msgid "24p/24p"
-msgstr ""
-
-msgid "24p/25p"
-msgstr ""
-
-msgid "24p/30p"
-msgstr ""
-
-msgid "24p/50p"
-msgstr ""
-
-msgid "24p/60p"
-msgstr ""
-
 #, fuzzy
 msgid "25"
 msgstr "2"
 
 msgid "256 Mb"
-msgstr ""
-
-msgid "25p/24p"
-msgstr ""
-
-msgid "25p/25p"
-msgstr ""
-
-msgid "25p/30p"
-msgstr ""
-
-msgid "25p/50p"
-msgstr ""
-
-msgid "25p/60p"
 msgstr ""
 
 msgid "29.97"
@@ -1649,21 +1584,6 @@ msgstr "3"
 msgid "30 minutes"
 msgstr "30 分鐘"
 
-msgid "30p/24p"
-msgstr ""
-
-msgid "30p/25p"
-msgstr ""
-
-msgid "30p/30p"
-msgstr ""
-
-msgid "30p/50p"
-msgstr ""
-
-msgid "30p/60p"
-msgstr ""
-
 msgid "32 Mb"
 msgstr ""
 
@@ -1687,20 +1607,14 @@ msgstr "4"
 msgid "4 hours"
 msgstr "4 小時"
 
-msgid "420"
-msgstr ""
-
-msgid "422"
-msgstr ""
-
-msgid "444"
-msgstr ""
-
-msgid "480p 24Hz"
-msgstr ""
-
 msgid "4:3"
 msgstr "4:3"
+
+msgid "4:3 Combined"
+msgstr ""
+
+msgid "4:3 Ignore"
+msgstr ""
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -1724,21 +1638,6 @@ msgstr "4 小時"
 msgid "5 minutes"
 msgstr "5 分鐘"
 
-msgid "50p/24p"
-msgstr ""
-
-msgid "50p/25p"
-msgstr ""
-
-msgid "50p/30p"
-msgstr ""
-
-msgid "50p/50p"
-msgstr ""
-
-msgid "50p/60p"
-msgstr ""
-
 msgid "512 Mb"
 msgstr ""
 
@@ -1749,21 +1648,6 @@ msgstr "6"
 msgid "6 hours"
 msgstr "4 小時"
 
-msgid "60p/24p"
-msgstr ""
-
-msgid "60p/25p"
-msgstr ""
-
-msgid "60p/30p"
-msgstr ""
-
-msgid "60p/50p"
-msgstr ""
-
-msgid "60p/60p"
-msgstr ""
-
 msgid "64 Mb"
 msgstr ""
 
@@ -1773,21 +1657,6 @@ msgstr "7"
 #, fuzzy
 msgid "7 hours"
 msgstr "4 小時"
-
-msgid "720p"
-msgstr ""
-
-msgid "720p 24Hz"
-msgstr ""
-
-msgid "720p50"
-msgstr ""
-
-msgid "720p50: 24p/50p/60p"
-msgstr ""
-
-msgid "720p50Hz"
-msgstr ""
 
 msgid "8"
 msgstr "8"
@@ -2183,6 +2052,9 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
+msgid "Add HDMI IN to bouquet"
+msgstr ""
+
 msgid "Add Marker"
 msgstr "添加標記"
 
@@ -2330,6 +2202,15 @@ msgstr "移除計時器"
 #, fuzzy
 msgid "Add/Remove a timer for the current event"
 msgstr "自定義當前事件時長"
+
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
 
 msgid "Adding schedule..."
 msgstr ""
@@ -2491,9 +2372,6 @@ msgstr "所有衛星"
 #, fuzzy
 msgid "All services provider"
 msgstr "已分配的 頻道/供應商"
-
-msgid "All slots"
-msgstr ""
 
 #, fuzzy
 msgid "All supported"
@@ -2852,6 +2730,9 @@ msgstr "子服務列表..."
 msgid "Aspect ratio"
 msgstr ""
 
+msgid "Aspect switch"
+msgstr ""
+
 msgid "Assamese"
 msgstr ""
 
@@ -3131,33 +3012,6 @@ msgid "BLUE long"
 msgstr "藍色增強"
 
 msgid "BLUE switch: BLUE/BLUE long"
-msgstr ""
-
-msgid "BT 2020 CL"
-msgstr ""
-
-msgid "BT 2020 NCL"
-msgstr ""
-
-msgid "BT 709"
-msgstr ""
-
-msgid "BT2020 CL"
-msgstr ""
-
-msgid "BT2020 NCL"
-msgstr ""
-
-msgid "BT470 BG"
-msgstr ""
-
-msgid "BT601 XvYCC"
-msgstr ""
-
-msgid "BT709"
-msgstr ""
-
-msgid "BT709 XvYCC"
 msgstr ""
 
 msgid "Back"
@@ -3447,6 +3301,9 @@ msgstr "塊狀雜訊控制"
 msgid "Blue"
 msgstr ""
 
+msgid "Bluetooth"
+msgstr ""
+
 #, fuzzy
 msgid "Bluetooth Setup"
 msgstr "網路設定"
@@ -3690,9 +3547,6 @@ msgstr ""
 msgid "CAID:SrvID"
 msgstr ""
 
-msgid "CCCam Information"
-msgstr ""
-
 msgid "CCD-Width"
 msgstr ""
 
@@ -3785,13 +3639,12 @@ msgstr ""
 msgid "CHANNEL +/-"
 msgstr "頻道"
 
-#, python-format
-msgid "CI %s enabled"
-msgstr ""
-
 #, fuzzy
 msgid "CI (Common Interface) Setup"
 msgstr "通用介面 (CI)"
+
+msgid "CI Boot Delay"
+msgstr ""
 
 #, fuzzy
 msgid "CI Helper Settings"
@@ -3799,6 +3652,9 @@ msgstr "DNS設定"
 
 msgid "CI assignment"
 msgstr "CI-證書"
+
+msgid "CI enabled"
+msgstr ""
 
 #, fuzzy
 msgid "CI slot: "
@@ -3837,9 +3693,6 @@ msgstr ""
 
 msgid "CPU temperature"
 msgstr ""
-
-msgid "CVBS"
-msgstr "CVBS"
 
 msgid "CaID: "
 msgstr ""
@@ -4706,6 +4559,9 @@ msgstr ""
 msgid "Color space"
 msgstr "色彩"
 
+msgid "Combined"
+msgstr ""
+
 msgid "Combo"
 msgstr ""
 
@@ -4754,6 +4610,9 @@ msgid "Common Interface Assignment"
 msgstr "通用介面分配"
 
 msgid "Common Interface Settings"
+msgstr ""
+
+msgid "Common Settings"
 msgstr ""
 
 #, fuzzy
@@ -5318,6 +5177,9 @@ msgstr ""
 msgid "Control your Softcams"
 msgstr ""
 
+msgid "Controlled by HDMI"
+msgstr ""
+
 msgid "Convert EXT3 File System to EXT4"
 msgstr ""
 
@@ -5325,6 +5187,15 @@ msgid "Convert ext3 to ext4"
 msgstr ""
 
 msgid "Convert file system ext3 to ext4"
+msgstr ""
+
+msgid "Convert to AC3"
+msgstr ""
+
+msgid "Convert to DTS"
+msgstr ""
+
+msgid "Convert to multi-channel PCM"
 msgstr ""
 
 msgid "Converting ext3 to ext4..."
@@ -5467,9 +5338,6 @@ msgstr ""
 
 msgid "Create a symbolic link"
 msgstr ""
-
-msgid "Create directory"
-msgstr "創建目錄"
 
 msgid "Create separate radio user bouquet"
 msgstr ""
@@ -6981,7 +6849,7 @@ msgstr "下載並安裝"
 msgid "Download error"
 msgstr ""
 
-msgid "Download the highlighted plugin"
+msgid "Download the selected list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7358,6 +7226,9 @@ msgstr ""
 #, fuzzy
 msgid "Enable OpenTV EPG"
 msgstr "啟用計時器"
+
+msgid "Enable PiP no HDR"
+msgstr ""
 
 #, fuzzy
 msgid "Enable Quad PiP"
@@ -7934,6 +7805,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "創建目錄%s 失敗."
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr ""
 
@@ -8282,9 +8157,16 @@ msgstr ""
 msgid "External subtitle switch fonts"
 msgstr ""
 
+msgid "Extra High"
+msgstr ""
+
 #, fuzzy
 msgid "Extra motor options"
 msgstr "輸入選項:"
+
+#, fuzzy
+msgid "Extra wide"
+msgstr "附加欄位"
 
 msgid "Extract the archive contents"
 msgstr ""
@@ -8315,7 +8197,10 @@ msgstr "3"
 msgid "F4"
 msgstr "4"
 
-msgid "FCC 1953"
+msgid "FBC SCR (Unicable/JESS)"
+msgstr ""
+
+msgid "FBC automatic"
 msgstr ""
 
 msgid "FCC enabled"
@@ -8772,6 +8657,9 @@ msgstr ""
 msgid "Football"
 msgstr ""
 
+msgid "Force AC3plus"
+msgstr ""
+
 msgid "Force LNB Power"
 msgstr ""
 
@@ -8794,6 +8682,14 @@ msgstr "Tone burst"
 #, fuzzy
 msgid "Force de-interlace"
 msgstr "配置網卡"
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "不可用"
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "未啟用"
 
 msgid "Format"
 msgstr "格式化"
@@ -8920,6 +8816,9 @@ msgid "Full Image Backup "
 msgstr ""
 
 msgid "Full Range RGB"
+msgstr ""
+
+msgid "Full Stretch"
 msgstr ""
 
 #, python-format
@@ -9517,8 +9416,15 @@ msgstr ""
 msgid "Hierarchy info"
 msgstr ""
 
+msgid "High"
+msgstr ""
+
 msgid "High bitrate support"
 msgstr "高位元率支援"
+
+#, fuzzy
+msgid "Highest resolution"
+msgstr "解析度"
 
 msgid "Highlighted item"
 msgstr ""
@@ -9668,6 +9574,9 @@ msgstr "匈牙利語"
 msgid "Hybrid Tuner"
 msgstr ""
 
+msgid "Hz"
+msgstr ""
+
 #, fuzzy
 msgid "I"
 msgstr "IP:"
@@ -9676,9 +9585,6 @@ msgid "I/O priority for scripts"
 msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr ""
-
-msgid "IMDB Search"
 msgstr ""
 
 msgid "IMDb Details"
@@ -12440,6 +12346,10 @@ msgid "Next bouquet"
 msgstr "選擇自定義組"
 
 #, fuzzy
+msgid "Next higher resolution"
+msgstr "解析度"
+
+#, fuzzy
 msgid "Next page"
 msgstr "下一個頻道"
 
@@ -12732,6 +12642,9 @@ msgstr ""
 msgid "Nominate how many IP Addresses are to be checked for active connections."
 msgstr ""
 
+msgid "Non-Linear"
+msgstr ""
+
 msgid "None"
 msgstr "無"
 
@@ -12742,6 +12655,9 @@ msgid "Normal"
 msgstr ""
 
 msgid "Normal - Standard image"
+msgstr ""
+
+msgid "Normal No ScaleUp"
 msgstr ""
 
 msgid "Normal: No boot modes required."
@@ -13002,6 +12918,10 @@ msgstr "線上更新您的Dreambox軟體。"
 msgid "Only Flash Backup Image"
 msgstr ""
 
+#, fuzzy
+msgid "Only HD"
+msgstr "僅僅"
+
 msgid "Only free scan"
 msgstr ""
 
@@ -13058,6 +12978,9 @@ msgid "Open context menu"
 msgstr ""
 
 msgid "Open context menu (contains settings menu)"
+msgstr ""
+
+msgid "Open external subtitle management screen"
 msgstr ""
 
 #, fuzzy
@@ -13291,10 +13214,6 @@ msgid "PC"
 msgstr "C"
 
 #, fuzzy
-msgid "PCM"
-msgstr "PM"
-
-#, fuzzy
 msgid "PCM Multichannel"
 msgstr "頻道"
 
@@ -13460,7 +13379,7 @@ msgstr ""
 msgid "Partitions"
 msgstr "分區"
 
-msgid "Passthrough"
+msgid "Pass-through"
 msgstr ""
 
 msgid "Password"
@@ -13580,6 +13499,9 @@ msgstr ""
 #, fuzzy
 msgid "Picon and Service Name"
 msgstr "在所有頻道"
+
+msgid "Picon package target location"
+msgstr ""
 
 #, fuzzy
 msgid "Picon width"
@@ -13741,6 +13663,9 @@ msgid "Please do not change any values unless you know what you are doing!"
 msgstr "不要做任何改變,除非您知道您在幹什麼!"
 
 msgid "Please don't panic if you see values that look suspicious."
+msgstr ""
+
+msgid "Please enter a name for the HDMI-IN"
 msgstr ""
 
 msgid "Please enter a name for the new bouquet"
@@ -14252,9 +14177,15 @@ msgstr ""
 msgid "Press OK to edit the settings."
 msgstr "按OK鍵修改設定"
 
+msgid "Press OK to enter PIN code"
+msgstr ""
+
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "按OK鍵獲取 %s 詳細說明"
+
+msgid "Press OK to init module"
+msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -14262,6 +14193,15 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
+
+msgid "Press OK to open module info"
+msgstr ""
+
+msgid "Press OK to reset PIN code"
+msgstr ""
+
+msgid "Press OK to reset module"
 msgstr ""
 
 msgid "Press OK to scan"
@@ -14715,9 +14655,6 @@ msgstr ""
 
 msgid "RF Output Settings"
 msgstr "RF-輸出"
-
-msgid "RGB"
-msgstr "RGB"
 
 msgid "Radio"
 msgstr ""
@@ -15264,6 +15201,9 @@ msgstr "移除當前選擇的標題"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "移除選定的自動計時器"
 
+msgid "Remove plugins ..."
+msgstr ""
+
 msgid "Remove selected service"
 msgstr ""
 
@@ -15279,7 +15219,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the highlighted plugin"
+msgid "Remove the selected list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -15752,9 +15692,6 @@ msgstr ""
 
 msgid "Réunion"
 msgstr ""
-
-msgid "S-Video"
-msgstr "S-Video"
 
 msgid "SABnzbd"
 msgstr ""
@@ -16995,6 +16932,9 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
+msgid "Select the target location where picon files will be installed."
+msgstr ""
+
 msgid "Select the time after which this timer can start."
 msgstr ""
 
@@ -17400,7 +17340,13 @@ msgstr ""
 msgid "Set Base time"
 msgstr "開始時間"
 
+msgid "Set CI Boot delay."
+msgstr ""
+
 msgid "Set CI assignment for detection of available services."
+msgstr ""
+
+msgid "Set DVB CI delay."
 msgstr ""
 
 msgid "Set Framerate for MiniTV"
@@ -18934,6 +18880,14 @@ msgid "Slot %d"
 msgstr "插槽 %d"
 
 #, python-format
+msgid "Slot %s / FBC in %s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
+#, python-format
 msgid "Slot %s: %s"
 msgstr ""
 
@@ -19015,12 +18969,6 @@ msgid "Smartcard PIN"
 msgstr ""
 
 msgid "Smooth"
-msgstr ""
-
-msgid "Smpte 170M"
-msgstr ""
-
-msgid "Smpte 240M"
 msgstr ""
 
 msgid "SoC family"
@@ -19458,9 +19406,6 @@ msgid "Stepped east"
 msgstr ""
 
 msgid "Stepped west"
-msgstr ""
-
-msgid "Sti"
 msgstr ""
 
 msgid "Stop"
@@ -19981,6 +19926,9 @@ msgstr "B"
 msgid "TEXT"
 msgstr ""
 
+msgid "TMDB Search"
+msgstr ""
+
 msgid "TRANSLATOR_INFO"
 msgstr ""
 
@@ -20361,6 +20309,11 @@ msgstr ""
 "WLAN插件未安裝!\n"
 "請先安裝."
 
+msgid ""
+"The TMDB plugin is not installed!\n"
+"Please install it."
+msgstr ""
+
 #, fuzzy
 msgid "The TV was switched to the recording service!\n"
 msgstr "定時錄製開始,即將切換到預錄頻道!\n"
@@ -20474,6 +20427,9 @@ msgstr ""
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
+msgstr ""
+
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
 #, python-format
@@ -20769,6 +20725,9 @@ msgid "This option allows you to choose whether or not to display genre informat
 msgstr ""
 
 msgid "This option allows you to enable 3D Surround Sound."
+msgstr ""
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
@@ -21870,7 +21829,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
-msgid "Update the highlighted plugin"
+msgid "Update the selected list of plugins"
 msgstr ""
 
 #, fuzzy
@@ -22029,6 +21988,9 @@ msgid ""
 "Use automatic mode detection?\n"
 "\n"
 "This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
+msgstr ""
+
+msgid "Use best / Controlled by HDMI"
 msgstr ""
 
 #, fuzzy
@@ -22428,20 +22390,6 @@ msgstr "選擇視頻模式."
 #, fuzzy, python-format
 msgid "Video mode: %s not available"
 msgstr "抱歉, 視頻不可用!"
-
-msgid "Video mode: 1080p"
-msgstr ""
-
-#, fuzzy
-msgid "Video mode: 1080p also not available"
-msgstr "不使用這些插件:\n"
-
-msgid "Video mode: 2160p"
-msgstr ""
-
-#, fuzzy
-msgid "Video mode: 2160p also not available"
-msgstr "不使用這些插件:\n"
 
 msgid "Video output"
 msgstr ""
@@ -23074,6 +23022,9 @@ msgstr "可用"
 msgid "White"
 msgstr ""
 
+msgid "Wide"
+msgstr ""
+
 msgid "Width"
 msgstr ""
 
@@ -23200,23 +23151,11 @@ msgstr ""
 msgid "Y-Resolution"
 msgstr ""
 
-msgid "YCbCr420"
-msgstr ""
-
-msgid "YCbCr422"
-msgstr ""
-
-msgid "YCbCr444"
-msgstr ""
-
 msgid "YELLOW button"
 msgstr ""
 
 msgid "YELLOW long"
 msgstr ""
-
-msgid "YPbPr"
-msgstr "YPbPr"
 
 msgid "Year"
 msgstr "年"
@@ -23675,9 +23614,6 @@ msgstr "a gui to assign services/providers to common interface modules"
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "a gui to assign services/providers/caids to common interface modules"
 
-msgid "ac3"
-msgstr ""
-
 #, fuzzy
 msgid "activatePiP"
 msgstr "啟動交換檔"
@@ -23760,9 +23696,6 @@ msgstr "(%s)音軌語言"
 
 msgid "audio tracks"
 msgstr "單軌"
-
-msgid "auto"
-msgstr "自動"
 
 msgid "automatic"
 msgstr ""
@@ -23863,18 +23796,6 @@ msgstr "測驗通過"
 msgid "connected"
 msgstr "已連接"
 
-msgid "controlled by HDMI"
-msgstr ""
-
-msgid "convert to AC3"
-msgstr ""
-
-msgid "convert to DTS"
-msgstr ""
-
-msgid "convert to multi-channel PCM"
-msgstr ""
-
 msgid "cooking"
 msgstr ""
 
@@ -23928,13 +23849,7 @@ msgstr ""
 msgid "documentary (general)"
 msgstr ""
 
-msgid "dolby"
-msgstr ""
-
 msgid "drama (general)"
-msgstr ""
-
-msgid "dts"
 msgstr ""
 
 msgid "eMMC"
@@ -23972,9 +23887,6 @@ msgstr ""
 
 msgid "empty"
 msgstr "空的"
-
-msgid "enable PiP no HDR"
-msgstr ""
 
 msgid "enabled"
 msgstr "允許"
@@ -24027,14 +23939,6 @@ msgstr ""
 msgid "externally loopthrough to"
 msgstr "聯繫"
 
-#, fuzzy
-msgid "extra wide"
-msgstr "附加欄位"
-
-#, fuzzy
-msgid "extrawide"
-msgstr "附加欄位"
-
 msgid "failed"
 msgstr "失敗"
 
@@ -24073,17 +23977,6 @@ msgstr ""
 
 msgid "football/soccer"
 msgstr ""
-
-msgid "force AC3plus"
-msgstr ""
-
-#, fuzzy
-msgid "force disabled"
-msgstr "不可用"
-
-#, fuzzy
-msgid "force enabled"
-msgstr "未啟用"
 
 msgid "foreign countries/expeditions"
 msgstr ""
@@ -24157,9 +24050,6 @@ msgstr ""
 msgid "handled"
 msgstr ""
 
-msgid "hdr10"
-msgstr ""
-
 msgid "height"
 msgstr ""
 
@@ -24182,13 +24072,6 @@ msgid "hh:mmAM/PM"
 msgstr ""
 
 msgid "hh:mmam/pm"
-msgstr ""
-
-#, fuzzy
-msgid "highest Resolution"
-msgstr "解析度"
-
-msgid "hlg"
 msgstr ""
 
 msgid "hops:"
@@ -24368,10 +24251,6 @@ msgstr ""
 msgid "next channel page"
 msgstr "下一個頻道"
 
-#, fuzzy
-msgid "next higher Resolution"
-msgstr "解析度"
-
 msgid "no CAId selected"
 msgstr "未選擇CAId"
 
@@ -24452,10 +24331,6 @@ msgstr "唯讀介質."
 msgid "on how to restore the image"
 msgstr " 是否移出套裝軟體:\n"
 
-#, fuzzy
-msgid "only HD"
-msgstr "僅僅"
-
 msgid "orange"
 msgstr ""
 
@@ -24535,9 +24410,6 @@ msgstr ""
 msgid "rewind to the previous chapter"
 msgstr "退回上一個章節"
 
-msgid "rgb"
-msgstr ""
-
 msgid "right"
 msgstr "右"
 
@@ -24561,9 +24433,6 @@ msgid "scan state"
 msgstr "掃描狀態"
 
 msgid "science fiction/fantasy/horror"
-msgstr ""
-
-msgid "sdr"
 msgstr ""
 
 #, fuzzy
@@ -24635,9 +24504,6 @@ msgstr ""
 
 msgid "show cards with uphop 9"
 msgstr ""
-
-msgid "show event details"
-msgstr "顯示事件詳細內容"
 
 #, fuzzy
 msgid "show picons in quickzap"
@@ -24836,13 +24702,7 @@ msgstr "啟用"
 msgid "update"
 msgstr "更新"
 
-msgid "use best / controlled by HDMI"
-msgstr ""
-
 msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
-msgstr ""
-
-msgid "use_hdmi_cacenter"
 msgstr ""
 
 #, fuzzy
@@ -24874,9 +24734,6 @@ msgid "west"
 msgstr ""
 
 msgid "white"
-msgstr ""
-
-msgid "wide"
 msgstr ""
 
 msgid "width"
@@ -24915,3 +24772,43 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "16:10"
+#~ msgstr "16:10"
+
+#~ msgid "CVBS"
+#~ msgstr "CVBS"
+
+#~ msgid "Create directory"
+#~ msgstr "創建目錄"
+
+#, fuzzy
+#~ msgid "PCM"
+#~ msgstr "PM"
+
+#~ msgid "RGB"
+#~ msgstr "RGB"
+
+#~ msgid "S-Video"
+#~ msgstr "S-Video"
+
+#, fuzzy
+#~ msgid "Video mode: 1080p also not available"
+#~ msgstr "不使用這些插件:\n"
+
+#, fuzzy
+#~ msgid "Video mode: 2160p also not available"
+#~ msgstr "不使用這些插件:\n"
+
+#~ msgid "YPbPr"
+#~ msgstr "YPbPr"
+
+#~ msgid "auto"
+#~ msgstr "自動"
+
+#, fuzzy
+#~ msgid "extrawide"
+#~ msgstr "附加欄位"
+
+#~ msgid "show event details"
+#~ msgstr "顯示事件詳細內容"

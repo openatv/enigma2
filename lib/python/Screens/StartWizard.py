@@ -181,20 +181,7 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 		self.setTitle(_("Start Wizard"))
 		self.resolutionTimer = eTimer()
 		self.resolutionTimer.callback.append(self.resolutionTimeout)
-		preferred = ""
-		try:
-			if BoxInfo.getItem("AmlogicFamily"):
-				with open("/sys/class/amhdmitx/amhdmitx0/disp_cap") as fd:
-					preferred = fd.read()[:-1].replace('*', '')
-			else:
-				with open("/proc/stb/video/videomode_edid") as fd:
-					preferred = fd.read()[:-1]
-		except OSError:
-			try:
-				with open("/proc/stb/video/videomode_preferred") as fd:
-					preferred = fd.read()[:-1]
-			except OSError:
-				pass
+		preferred = self.avSwitch.readPreferredModes(saveMode=True)
 
 		if preferred:
 			if "2160p50" in preferred:

@@ -1208,6 +1208,8 @@
 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
 		<key id="KEY_SPACE" mapto="contextMenu" flags="m" />
 		<key id="KEY_INFO" mapto="showEventInfo" flags="m" />
+		<key id="KEY_TEXT" mapto="showText" flags="m" />
+		<key id="KEY_SUBTITLE" mapto="subtitle" flags="m" />
 	</map>
 
 	<map context="PiPSetupActions">
@@ -1345,6 +1347,11 @@
 		<key id="KEY_TEXT" mapto="exit" flags="m" />
 		<key id="KEY_EXIT" mapto="exit" flags="m" />
 		<key id="KEY_POWER" mapto="exit" flags="m" />
+	</map>
+
+	<map context="TextActions">
+		<key id="KEY_TEXT" mapto="text" flags="b" />
+		<key id="KEY_TEXT" mapto="textlong" flags="l" />
 	</map>
 
 	<map context="TextEntryActions">

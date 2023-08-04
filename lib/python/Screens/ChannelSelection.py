@@ -5,7 +5,7 @@ from time import localtime, strftime, time
 from enigma import eActionMap, eDVBDB, eEPGCache, eEnv, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
-from ServiceReference import ServiceReference
+from ServiceReference import ServiceReference, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
 from skin import getSkinFactor
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Button import Button
@@ -51,7 +51,6 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.BoundFunction import boundFunction
 from Tools.Notifications import AddPopup, RemovePopup
 from Tools.NumericalTextInput import NumericalTextInput
-from Tools.ServiceReference import service_types_radio_ref, service_types_tv_ref, serviceRefAppendPath
 
 MODE_TV = 0
 MODE_RADIO = 1
@@ -529,6 +528,16 @@ class ChannelSelectionEdit:
 				self.servicelist.removeCurrent()
 				if not self.servicelist.atEnd():
 					self.servicelist.moveUp()
+
+	def addHDMIIn(self, name):
+		current = self.servicelist.getCurrent()
+		mutableList = self.getMutableList()
+		ref = hdmiInServiceRef()
+		ref.setName(name)
+		if mutableList and current and current.valid():
+			if not mutableList.addService(ref, current):
+				self.servicelist.addService(ref, True)
+				mutableList.flushChanges()
 
 	def addMarker(self, name):
 		current = self.servicelist.getCurrent()
@@ -1632,6 +1641,8 @@ class ChannelContextMenu(Screen, HelpableScreen):
 				if not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 					if current.type != -1:
 						menu.append(ChoiceEntryComponent(key="7", text=(_("Add Marker"), self.showMarkerInputBox)))
+					if BoxInfo.getItem("HDMIin"):
+						appendWhenValid(current, menu, (_("Add HDMI IN to bouquet"), self.showHDMIInInputBox))
 					if not csel.movemode:
 						if haveBouquets:
 							appendWhenValid(current, menu, (_("Enable Bouquet Edit"), self.bouquetMarkStart))
@@ -1985,6 +1996,14 @@ class ChannelContextMenu(Screen, HelpableScreen):
 
 	def copyCurrentToBouquetList(self):
 		self.csel.copyCurrentToBouquetList()
+		self.close()
+
+	def showHDMIInInputBox(self):
+		self.session.openWithCallback(self.hdmiInputCallback, VirtualKeyBoard, title=_("Please enter a name for the HDMI-IN"), text="HDMI-IN", maxSize=False, visible_width=56, type=Input.TEXT)
+
+	def hdmiInputCallback(self, marker):
+		if marker is not None:
+			self.csel.addHDMIIn(marker)
 		self.close()
 
 	def showMarkerInputBox(self):
@@ -2675,7 +2694,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			servicelist = Screens.InfoBar.InfoBar.instance.servicelist
 			if servicelist:
 				refStr = sref.toString()
-				if (refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:")) and config.usage.e1like_radio_mode.value:
+				sType = refStr.split(":", maxsplit=3)
+				if len(sType) == 4 and sType[2] in ("2", "A") and config.usage.e1like_radio_mode.value:
 					typestr = "radio"
 					if servicelist.mode != 1:
 						servicelist.setModeRadio()
@@ -2704,7 +2724,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		def getBqRoot(reference):
 			reference = reference.toString()
 			isTV = True
-			if (reference.startswith("1:0:2:") or reference.startswith("1:0:A:")) and config.usage.e1like_radio_mode.value:
+			sType = reference.split(":", maxsplit=3)
+			if len(sType) == 4 and sType[2] in ("2", "A") and config.usage.e1like_radio_mode.value:
 				isTV = False
 				if config.usage.multibouquet.value:
 					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"

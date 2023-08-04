@@ -8,8 +8,7 @@ install_PYTHON = \
 	BackupRestore.py \
 	ImageBackup.py \
 	ImageWizard.py \
-	ShellCompatibleFunctions.py \
-	SoftwareTools.py
+	ShellCompatibleFunctions.py
 
 dist_install_DATA = \
 	imagewizard.xml \

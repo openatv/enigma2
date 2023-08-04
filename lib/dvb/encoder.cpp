@@ -12,6 +12,7 @@
 #include <lib/base/wrappers.h>
 #include <lib/base/cfile.h>
 #include <lib/nav/core.h>
+#include <lib/base/nconfig.h>
 #include <lib/dvb/encoder.h>
 #include <lib/dvb/pmt.h>
 #include <lib/service/service.h>
@@ -291,6 +292,99 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 	return(encoder[encoder_index].encoder_fd);
 }
 
+int eEncoder::allocateHDMIEncoder(const std::string &serviceref, int &buffersize)
+{
+	/* these are hardcoded because they're ignored anyway */
+
+/*
+	static const int hdmi_encoding_bitrate = 100000;
+	static const int hdmi_encoding_width = 1280;
+	static const int hdmi_encoding_height = 720;
+	static const int hdmi_encoding_framerate = 25000;
+	static const int hdmi_encoding_interlaced = 0;
+	static const int hdmi_encoding_aspect_ratio = 0;
+	static const char *hdmi_encoding_vcodec = "h264";
+	static const char *hdmi_encoding_acodec = "aac";
+*/
+
+	int hdmi_encoding_bitrate = eConfigManager::getConfigIntValue("config.hdmirecord.bitrate", 8 * 1024 * 1024);
+	int hdmi_encoding_width = eConfigManager::getConfigIntValue("config.hdmirecord.width", 1280);
+	int hdmi_encoding_height = eConfigManager::getConfigIntValue("config.hdmirecord.height", 720);
+	int hdmi_encoding_framerate = eConfigManager::getConfigIntValue("config.hdmirecord.framerate", 50000);
+	int hdmi_encoding_interlaced = eConfigManager::getConfigIntValue("config.hdmirecord.interlaced", 0);
+	int hdmi_encoding_aspect_ratio = eConfigManager::getConfigIntValue("config.hdmirecord.aspectratio", 0);
+	std::string hdmi_encoding_vcodec = eConfigManager::getConfigValue("config.hdmirecord.vcodec");
+	if(hdmi_encoding_vcodec.empty())
+		hdmi_encoding_vcodec = "h264";
+	std::string hdmi_encoding_acodec = eConfigManager::getConfigValue("config.hdmirecord.acodec");
+	if(hdmi_encoding_acodec.empty())
+		hdmi_encoding_acodec = "aac";
+
+	char filename[128];
+	const char *vcodec_node;
+	const char *acodec_node;
+
+	if(bcm_encoder)
+	{
+		vcodec_node = "video_codec";
+		acodec_node = "audio_codec";
+		buffersize = 188 * 256; /* broadcom magic value */
+	}
+	else
+	{
+		vcodec_node = "vcodec";
+		acodec_node = "acodec";
+		buffersize = -1;
+	}
+
+	/* both systems can only use the first encoder for HDMI recording */
+
+	if((encoder.size() < 1) || (encoder[0].state != EncoderContext::state_idle))
+	{
+		eWarning("[eEncoder] no encoders free");
+		return(-1);
+	}
+
+	encoder[0].navigation_instance = encoder[0].navigation_instance_normal;
+
+	CFile::writeInt("/proc/stb/encoder/0/bitrate", hdmi_encoding_bitrate);
+	CFile::writeInt("/proc/stb/encoder/0/width", hdmi_encoding_width);
+	CFile::writeInt("/proc/stb/encoder/0/height", hdmi_encoding_height);
+
+	if(bcm_encoder)
+		CFile::write("/proc/stb/encoder/0/display_format", "720p");
+
+	CFile::writeInt("/proc/stb/encoder/0/framerate", hdmi_encoding_framerate);
+	CFile::writeInt("/proc/stb/encoder/0/interlaced", hdmi_encoding_interlaced);
+	CFile::writeInt("/proc/stb/encoder/0/aspectratio", hdmi_encoding_aspect_ratio);
+
+	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/%s", 0, vcodec_node);
+	CFile::write(filename, hdmi_encoding_vcodec.c_str());
+
+	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/%s", 0, acodec_node);
+	CFile::write(filename, hdmi_encoding_acodec.c_str());
+
+	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/apply", 0);
+	CFile::writeInt(filename, 1);
+
+	if(encoder[0].navigation_instance->playService(serviceref) < 0)
+	{
+		eWarning("[eEncoder] navigation->playservice failed");
+		return(-1);
+	}
+
+	snprintf(filename, sizeof(filename), "/dev/%s%d", "encoder", 0);
+
+	if((encoder[0].encoder_fd = open(filename, O_RDONLY)) < 0)
+	{
+		eWarning("[eEncoder] open encoder failed");
+		return(-1);
+	}
+
+	encoder[0].state = EncoderContext::state_running;
+
+	return(encoder[0].encoder_fd);
+}
 
 void eEncoder::freeEncoder(int encoderfd)
 {

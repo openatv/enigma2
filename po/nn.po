@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 12:10+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1109,6 +1109,18 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] ""
@@ -1562,42 +1574,6 @@ msgstr "minutter"
 msgid "1024 Mb"
 msgstr ""
 
-msgid "1080i"
-msgstr "1080i"
-
-msgid "1080i 50Hz"
-msgstr ""
-
-msgid "1080i 60Hz"
-msgstr ""
-
-msgid "1080i50"
-msgstr ""
-
-msgid "1080i50: 24p/50i/60i"
-msgstr ""
-
-msgid "1080i50Hz"
-msgstr ""
-
-msgid "1080p 24Hz"
-msgstr "1080p 24Hz"
-
-msgid "1080p 25Hz"
-msgstr "1080p 25Hz"
-
-msgid "1080p 30Hz"
-msgstr "1080p 30Hz"
-
-msgid "1080p 50Hz"
-msgstr "1080p 50Hz"
-
-msgid "1080p 60Hz"
-msgstr "1080p 60Hz"
-
-msgid "1080p50: 24p/50p/60p"
-msgstr ""
-
 msgid "10bit"
 msgstr ""
 
@@ -1642,9 +1618,8 @@ msgstr "minutter"
 msgid "1536 Mb"
 msgstr ""
 
-#
-msgid "16:10"
-msgstr "16:10"
+msgid "16/9 reset to normal"
+msgstr ""
 
 #
 msgid "16:10 Letterbox"
@@ -1662,9 +1637,18 @@ msgstr "16:9"
 msgid "16:9 Always"
 msgstr "16:9 alltid"
 
+msgid "16:9 Combined"
+msgstr ""
+
+msgid "16:9 Ignore"
+msgstr ""
+
 #
 msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
+
+msgid "16:9 PanScan"
+msgstr ""
 
 msgid "16K"
 msgstr ""
@@ -1694,29 +1678,6 @@ msgstr "minutter"
 msgid "2048 Mb"
 msgstr ""
 
-#, fuzzy
-msgid "2160p 24Hz"
-msgstr "720p 24Hz"
-
-#, fuzzy
-msgid "2160p 25Hz"
-msgstr "1080p 25Hz"
-
-#, fuzzy
-msgid "2160p 30Hz"
-msgstr "1080p 30Hz"
-
-#, fuzzy
-msgid "2160p 50Hz"
-msgstr "1080p 50Hz"
-
-#, fuzzy
-msgid "2160p 60Hz"
-msgstr "1080p 60Hz"
-
-msgid "2160p50: 24p/50p/60p"
-msgstr ""
-
 msgid "23.976"
 msgstr "23.976"
 
@@ -1728,41 +1689,11 @@ msgstr "24"
 msgid "24 hours"
 msgstr "Time"
 
-msgid "24p/24p"
-msgstr ""
-
-msgid "24p/25p"
-msgstr ""
-
-msgid "24p/30p"
-msgstr ""
-
-msgid "24p/50p"
-msgstr ""
-
-msgid "24p/60p"
-msgstr ""
-
 #
 msgid "25"
 msgstr "25"
 
 msgid "256 Mb"
-msgstr ""
-
-msgid "25p/24p"
-msgstr ""
-
-msgid "25p/25p"
-msgstr ""
-
-msgid "25p/30p"
-msgstr ""
-
-msgid "25p/50p"
-msgstr ""
-
-msgid "25p/60p"
 msgstr ""
 
 msgid "29.97"
@@ -1811,21 +1742,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr ""
 
-msgid "30p/24p"
-msgstr ""
-
-msgid "30p/25p"
-msgstr ""
-
-msgid "30p/30p"
-msgstr ""
-
-msgid "30p/50p"
-msgstr ""
-
-msgid "30p/60p"
-msgstr ""
-
 msgid "32 Mb"
 msgstr ""
 
@@ -1849,21 +1765,15 @@ msgstr ""
 msgid "4 hours"
 msgstr "Time"
 
-msgid "420"
-msgstr ""
-
-msgid "422"
-msgstr ""
-
-msgid "444"
-msgstr ""
-
-msgid "480p 24Hz"
-msgstr ""
-
 #
 msgid "4:3"
 msgstr "4:3"
+
+msgid "4:3 Combined"
+msgstr ""
+
+msgid "4:3 Ignore"
+msgstr ""
 
 #
 msgid "4:3 Letterbox"
@@ -1889,21 +1799,6 @@ msgstr "%d time"
 msgid "5 minutes"
 msgstr ""
 
-msgid "50p/24p"
-msgstr ""
-
-msgid "50p/25p"
-msgstr ""
-
-msgid "50p/30p"
-msgstr ""
-
-msgid "50p/50p"
-msgstr ""
-
-msgid "50p/60p"
-msgstr ""
-
 msgid "512 Mb"
 msgstr ""
 
@@ -1914,21 +1809,6 @@ msgstr ""
 msgid "6 hours"
 msgstr "%d time"
 
-msgid "60p/24p"
-msgstr ""
-
-msgid "60p/25p"
-msgstr ""
-
-msgid "60p/30p"
-msgstr ""
-
-msgid "60p/50p"
-msgstr ""
-
-msgid "60p/60p"
-msgstr ""
-
 msgid "64 Mb"
 msgstr ""
 
@@ -1938,21 +1818,6 @@ msgstr ""
 #, fuzzy
 msgid "7 hours"
 msgstr "%d time"
-
-msgid "720p"
-msgstr "720p"
-
-msgid "720p 24Hz"
-msgstr "720p 24Hz"
-
-msgid "720p50"
-msgstr ""
-
-msgid "720p50: 24p/50p/60p"
-msgstr ""
-
-msgid "720p50Hz"
-msgstr ""
 
 msgid "8"
 msgstr ""
@@ -2367,6 +2232,9 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
+msgid "Add HDMI IN to bouquet"
+msgstr ""
+
 #
 msgid "Add Marker"
 msgstr "Legg til markør"
@@ -2526,6 +2394,15 @@ msgstr "Fjern timer"
 
 msgid "Add/Remove a timer for the current event"
 msgstr "Legg til/fjern timer for aktuelle program"
+
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
 
 msgid "Adding schedule..."
 msgstr "Legg til planlagt oppgave..."
@@ -2689,9 +2566,6 @@ msgstr ""
 #, fuzzy
 msgid "All services provider"
 msgstr "Tildelte kanaler/tilbyder:"
-
-msgid "All slots"
-msgstr ""
 
 #, fuzzy
 msgid "All supported"
@@ -3054,6 +2928,9 @@ msgstr ""
 msgid "Aspect ratio"
 msgstr "Breddeforhold"
 
+msgid "Aspect switch"
+msgstr ""
+
 msgid "Assamese"
 msgstr ""
 
@@ -3338,33 +3215,6 @@ msgid "BLUE long"
 msgstr "Lang blå"
 
 msgid "BLUE switch: BLUE/BLUE long"
-msgstr ""
-
-msgid "BT 2020 CL"
-msgstr ""
-
-msgid "BT 2020 NCL"
-msgstr ""
-
-msgid "BT 709"
-msgstr ""
-
-msgid "BT2020 CL"
-msgstr ""
-
-msgid "BT2020 NCL"
-msgstr ""
-
-msgid "BT470 BG"
-msgstr ""
-
-msgid "BT601 XvYCC"
-msgstr ""
-
-msgid "BT709"
-msgstr ""
-
-msgid "BT709 XvYCC"
 msgstr ""
 
 #
@@ -3665,6 +3515,9 @@ msgstr "Blokker støyreduksjon"
 msgid "Blue"
 msgstr "Blå"
 
+msgid "Bluetooth"
+msgstr ""
+
 #, fuzzy
 msgid "Bluetooth Setup"
 msgstr "Telnet Oppsett"
@@ -3906,9 +3759,6 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr ""
 
-msgid "CCCam Information"
-msgstr ""
-
 msgid "CCD-Width"
 msgstr ""
 
@@ -3992,11 +3842,10 @@ msgstr "BYTT KANALLISTE"
 msgid "CHANNEL +/-"
 msgstr "Kanal"
 
-#, python-format
-msgid "CI %s enabled"
+msgid "CI (Common Interface) Setup"
 msgstr ""
 
-msgid "CI (Common Interface) Setup"
+msgid "CI Boot Delay"
 msgstr ""
 
 msgid "CI Helper Settings"
@@ -4005,6 +3854,9 @@ msgstr ""
 #
 msgid "CI assignment"
 msgstr "CI tildeling"
+
+msgid "CI enabled"
+msgstr ""
 
 msgid "CI slot: "
 msgstr ""
@@ -4043,10 +3895,6 @@ msgstr ""
 
 msgid "CPU temperature"
 msgstr ""
-
-#
-msgid "CVBS"
-msgstr "CVBS"
 
 msgid "CaID: "
 msgstr "CaID: "
@@ -4941,6 +4789,9 @@ msgstr "Fargeformat"
 msgid "Color space"
 msgstr "Fargeformat"
 
+msgid "Combined"
+msgstr ""
+
 msgid "Combo"
 msgstr ""
 
@@ -4993,6 +4844,9 @@ msgid "Common Interface Assignment"
 msgstr "Common Interface oppdrag"
 
 msgid "Common Interface Settings"
+msgstr ""
+
+msgid "Common Settings"
 msgstr ""
 
 #
@@ -5580,6 +5434,9 @@ msgstr ""
 msgid "Control your Softcams"
 msgstr ""
 
+msgid "Controlled by HDMI"
+msgstr ""
+
 msgid "Convert EXT3 File System to EXT4"
 msgstr "Konverter filsystem ext3 til ext4"
 
@@ -5588,6 +5445,15 @@ msgstr "Konverter filsystem ext3 til ext4"
 
 msgid "Convert file system ext3 to ext4"
 msgstr "Konverter filsystem ext3 til ext4"
+
+msgid "Convert to AC3"
+msgstr ""
+
+msgid "Convert to DTS"
+msgstr ""
+
+msgid "Convert to multi-channel PCM"
+msgstr ""
 
 msgid "Converting ext3 to ext4..."
 msgstr "Konverterer ext3 til ext4..."
@@ -5734,9 +5600,6 @@ msgstr ""
 
 msgid "Create a symbolic link"
 msgstr ""
-
-msgid "Create directory"
-msgstr "Lag katalog"
 
 msgid "Create separate radio user bouquet"
 msgstr ""
@@ -7303,7 +7166,7 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download the highlighted plugin"
+msgid "Download the selected list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7703,6 +7566,9 @@ msgstr ""
 #, fuzzy
 msgid "Enable OpenTV EPG"
 msgstr "Aktivere EIT EPG"
+
+msgid "Enable PiP no HDR"
+msgstr ""
 
 #
 #, fuzzy
@@ -8294,6 +8160,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Laging av katalog %s feilet."
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr ""
 
@@ -8658,7 +8528,13 @@ msgstr ""
 msgid "External subtitle switch fonts"
 msgstr ""
 
+msgid "Extra High"
+msgstr ""
+
 msgid "Extra motor options"
+msgstr ""
+
+msgid "Extra wide"
 msgstr ""
 
 msgid "Extract the archive contents"
@@ -8685,7 +8561,10 @@ msgstr ""
 msgid "F4"
 msgstr ""
 
-msgid "FCC 1953"
+msgid "FBC SCR (Unicable/JESS)"
+msgstr ""
+
+msgid "FBC automatic"
 msgstr ""
 
 msgid "FCC enabled"
@@ -9156,6 +9035,9 @@ msgstr ""
 msgid "Football"
 msgstr "fotball/soccer"
 
+msgid "Force AC3plus"
+msgstr ""
+
 msgid "Force LNB Power"
 msgstr ""
 
@@ -9180,6 +9062,16 @@ msgstr "Tone burst"
 #
 msgid "Force de-interlace"
 msgstr "Tving de-interlace"
+
+#
+#, fuzzy
+msgid "Force disabled"
+msgstr "deaktivert"
+
+#
+#, fuzzy
+msgid "Force enabled"
+msgstr "aktivert"
 
 #
 msgid "Format"
@@ -9318,6 +9210,9 @@ msgid "Full Image Backup "
 msgstr ""
 
 msgid "Full Range RGB"
+msgstr ""
+
+msgid "Full Stretch"
 msgstr ""
 
 #, python-format
@@ -9919,9 +9814,17 @@ msgstr "Skjule zappe feil"
 msgid "Hierarchy info"
 msgstr "Hierarchy info"
 
+msgid "High"
+msgstr ""
+
 #
 msgid "High bitrate support"
 msgstr "Høy bitrate støtte"
+
+#
+#, fuzzy
+msgid "Highest resolution"
+msgstr "Oppløsning"
 
 msgid "Highlighted item"
 msgstr ""
@@ -10075,6 +9978,9 @@ msgstr "Ungarsk"
 msgid "Hybrid Tuner"
 msgstr ""
 
+msgid "Hz"
+msgstr ""
+
 #, fuzzy
 msgid "I"
 msgstr "IP:"
@@ -10083,9 +9989,6 @@ msgid "I/O priority for scripts"
 msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr ""
-
-msgid "IMDB Search"
 msgstr ""
 
 msgid "IMDb Details"
@@ -12918,6 +12821,11 @@ msgstr ""
 msgid "Next bouquet"
 msgstr "Gå til neste favorittliste"
 
+#
+#, fuzzy
+msgid "Next higher resolution"
+msgstr "Oppløsning"
+
 #, fuzzy
 msgid "Next page"
 msgstr "Gå til neste kanal"
@@ -13233,6 +13141,9 @@ msgstr "NodeID:"
 msgid "Nominate how many IP Addresses are to be checked for active connections."
 msgstr ""
 
+msgid "Non-Linear"
+msgstr ""
+
 #
 msgid "None"
 msgstr "Ingen"
@@ -13244,6 +13155,9 @@ msgid "Normal"
 msgstr "normal"
 
 msgid "Normal - Standard image"
+msgstr ""
+
+msgid "Normal No ScaleUp"
 msgstr ""
 
 msgid "Normal: No boot modes required."
@@ -13510,6 +13424,9 @@ msgstr "Online oppdatering av din %s %s programvare."
 msgid "Only Flash Backup Image"
 msgstr ""
 
+msgid "Only HD"
+msgstr "bare HD"
+
 #
 msgid "Only free scan"
 msgstr "Bare gratiskanaler"
@@ -13565,6 +13482,9 @@ msgid "Open context menu"
 msgstr ""
 
 msgid "Open context menu (contains settings menu)"
+msgstr ""
+
+msgid "Open external subtitle management screen"
 msgstr ""
 
 msgid "Open favorites list"
@@ -13792,9 +13712,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr ""
 
-msgid "PCM"
-msgstr ""
-
 #
 msgid "PCM Multichannel"
 msgstr "PCM Multikanal"
@@ -13959,7 +13876,7 @@ msgstr ""
 msgid "Partitions"
 msgstr ""
 
-msgid "Passthrough"
+msgid "Pass-through"
 msgstr ""
 
 #
@@ -14082,6 +13999,9 @@ msgstr ""
 
 msgid "Picon and Service Name"
 msgstr "Picons og Kanal Navn"
+
+msgid "Picon package target location"
+msgstr ""
 
 msgid "Picon width"
 msgstr "Picon bredde"
@@ -14255,6 +14175,9 @@ msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Vennligst ikke endre verdier, hvis du ikke vet hva du gjør!"
 
 msgid "Please don't panic if you see values that look suspicious."
+msgstr ""
+
+msgid "Please enter a name for the HDMI-IN"
 msgstr ""
 
 #
@@ -14794,10 +14717,16 @@ msgstr ""
 msgid "Press OK to edit the settings."
 msgstr "Trykk OK for å endre innstillinger."
 
+msgid "Press OK to enter PIN code"
+msgstr ""
+
 #
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Trykk OK for å få flere detaljer om %s"
+
+msgid "Press OK to init module"
+msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -14805,6 +14734,15 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
+
+msgid "Press OK to open module info"
+msgstr ""
+
+msgid "Press OK to reset PIN code"
+msgstr ""
+
+msgid "Press OK to reset module"
 msgstr ""
 
 #
@@ -15259,10 +15197,6 @@ msgstr "Lang rød"
 #
 msgid "RF Output Settings"
 msgstr "RF utgang"
-
-#
-msgid "RGB"
-msgstr "RGB"
 
 msgid "Radio"
 msgstr ""
@@ -15821,6 +15755,9 @@ msgstr "Fjern valgte tittel"
 msgid "Remove highlighted directory from bookmarks"
 msgstr ""
 
+msgid "Remove plugins ..."
+msgstr ""
+
 msgid "Remove selected service"
 msgstr ""
 
@@ -15836,7 +15773,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the highlighted plugin"
+msgid "Remove the selected list of plugins"
 msgstr ""
 
 #
@@ -16329,10 +16266,6 @@ msgstr ""
 
 msgid "Réunion"
 msgstr ""
-
-#
-msgid "S-Video"
-msgstr "S-Video"
 
 msgid "SABnzbd"
 msgstr ""
@@ -17593,6 +17526,9 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
+msgid "Select the target location where picon files will be installed."
+msgstr ""
+
 msgid "Select the time after which this timer can start."
 msgstr ""
 
@@ -18009,7 +17945,13 @@ msgstr "Sett som oppstart kanal"
 msgid "Set Base time"
 msgstr "Starttid"
 
+msgid "Set CI Boot delay."
+msgstr ""
+
 msgid "Set CI assignment for detection of available services."
+msgstr ""
+
+msgid "Set DVB CI delay."
 msgstr ""
 
 msgid "Set Framerate for MiniTV"
@@ -19512,6 +19454,14 @@ msgid "Slot %d"
 msgstr "Slot %d"
 
 #, python-format
+msgid "Slot %s / FBC in %s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
+#, python-format
 msgid "Slot %s: %s"
 msgstr ""
 
@@ -19600,12 +19550,6 @@ msgstr ""
 
 msgid "Smooth"
 msgstr "Glatt"
-
-msgid "Smpte 170M"
-msgstr ""
-
-msgid "Smpte 240M"
-msgstr ""
 
 msgid "SoC family"
 msgstr ""
@@ -20048,9 +19992,6 @@ msgstr "Steg øst"
 #
 msgid "Stepped west"
 msgstr "Steg vest"
-
-msgid "Sti"
-msgstr ""
 
 #
 msgid "Stop"
@@ -20590,6 +20531,9 @@ msgstr "TB"
 msgid "TEXT"
 msgstr ""
 
+msgid "TMDB Search"
+msgstr ""
+
 #
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -20965,6 +20909,11 @@ msgstr ""
 "AutoTimer plugin er ikke installert!\n"
 "Vennligst installer den."
 
+msgid ""
+"The TMDB plugin is not installed!\n"
+"Please install it."
+msgstr ""
+
 msgid "The TV was switched to the recording service!\n"
 msgstr ""
 
@@ -21080,6 +21029,9 @@ msgid ""
 msgstr ""
 "Nettverket veiviser er ikke installert!\n"
 "Vennligst installer den."
+
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
 
 #
 #, python-format
@@ -21389,6 +21341,9 @@ msgstr "Med dette alternativet kan du velge hvordan du vil vise den gjenværende
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Dette alternativet lar deg aktivere 3D Surround Sound."
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr ""
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr ""
@@ -22560,7 +22515,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
-msgid "Update the highlighted plugin"
+msgid "Update the selected list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -22718,6 +22673,9 @@ msgid ""
 "Use automatic mode detection?\n"
 "\n"
 "This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
+msgstr ""
+
+msgid "Use best / Controlled by HDMI"
 msgstr ""
 
 msgid "Use circular LNB"
@@ -23121,22 +23079,6 @@ msgstr "Video modus: %s"
 
 #, python-format
 msgid "Video mode: %s not available"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Video mode: 1080p"
-msgstr "Video modus: %s"
-
-msgid "Video mode: 1080p also not available"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Video mode: 2160p"
-msgstr "Video modus: %s"
-
-msgid "Video mode: 2160p also not available"
 msgstr ""
 
 msgid "Video output"
@@ -23783,6 +23725,9 @@ msgstr "ikke tilgjengelig"
 msgid "White"
 msgstr "Hvit"
 
+msgid "Wide"
+msgstr ""
+
 msgid "Width"
 msgstr "Bredde"
 
@@ -23917,25 +23862,12 @@ msgstr ""
 msgid "Y-Resolution"
 msgstr ""
 
-msgid "YCbCr420"
-msgstr ""
-
-msgid "YCbCr422"
-msgstr ""
-
-msgid "YCbCr444"
-msgstr ""
-
 #, fuzzy
 msgid "YELLOW button"
 msgstr "Lang gul"
 
 msgid "YELLOW long"
 msgstr "Lang gul"
-
-#
-msgid "YPbPr"
-msgstr "YPbPr"
 
 #
 msgid "Year"
@@ -24427,9 +24359,6 @@ msgstr "grensesnitt for å tildele kanaler/ tilbydere til common interface-modul
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "grensesnitt for å tildele kanaler/ tilbydere/ caids til common interface-moduler"
 
-msgid "ac3"
-msgstr ""
-
 msgid "activatePiP"
 msgstr ""
 
@@ -24516,10 +24445,6 @@ msgstr ""
 #
 msgid "audio tracks"
 msgstr "lydspor"
-
-#
-msgid "auto"
-msgstr "auto"
 
 msgid "automatic"
 msgstr "automatisk"
@@ -24629,18 +24554,6 @@ msgstr "bekreftet"
 msgid "connected"
 msgstr "tilkoblet"
 
-msgid "controlled by HDMI"
-msgstr ""
-
-msgid "convert to AC3"
-msgstr ""
-
-msgid "convert to DTS"
-msgstr ""
-
-msgid "convert to multi-channel PCM"
-msgstr ""
-
 msgid "cooking"
 msgstr "matlaging"
 
@@ -24699,15 +24612,9 @@ msgstr "dokumentar"
 msgid "documentary (general)"
 msgstr "dokumentar"
 
-msgid "dolby"
-msgstr ""
-
 #, fuzzy
 msgid "drama (general)"
 msgstr "film/drama (generelt)"
-
-msgid "dts"
-msgstr ""
 
 msgid "eMMC"
 msgstr ""
@@ -24745,9 +24652,6 @@ msgstr ""
 #
 msgid "empty"
 msgstr "tom"
-
-msgid "enable PiP no HDR"
-msgstr ""
 
 #
 msgid "enabled"
@@ -24803,12 +24707,6 @@ msgstr "eksperimentell film/video"
 msgid "externally loopthrough to"
 msgstr ""
 
-msgid "extra wide"
-msgstr ""
-
-msgid "extrawide"
-msgstr ""
-
 msgid "failed"
 msgstr "feilet"
 
@@ -24850,19 +24748,6 @@ msgstr "folkemusikk/tradisjonsmusikk"
 
 msgid "football/soccer"
 msgstr "fotball/soccer"
-
-msgid "force AC3plus"
-msgstr ""
-
-#
-#, fuzzy
-msgid "force disabled"
-msgstr "deaktivert"
-
-#
-#, fuzzy
-msgid "force enabled"
-msgstr "aktivert"
 
 msgid "foreign countries/expeditions"
 msgstr "utenlandske land/ekspedisjoner"
@@ -24941,9 +24826,6 @@ msgstr "håndverk"
 msgid "handled"
 msgstr "håndteres"
 
-msgid "hdr10"
-msgstr ""
-
 msgid "height"
 msgstr "høyde"
 
@@ -24966,14 +24848,6 @@ msgid "hh:mmAM/PM"
 msgstr ""
 
 msgid "hh:mmam/pm"
-msgstr ""
-
-#
-#, fuzzy
-msgid "highest Resolution"
-msgstr "Oppløsning"
-
-msgid "hlg"
 msgstr ""
 
 msgid "hops:"
@@ -25179,11 +25053,6 @@ msgid "next channel page"
 msgstr "Gå til neste kanal"
 
 #
-#, fuzzy
-msgid "next higher Resolution"
-msgstr "Oppløsning"
-
-#
 msgid "no CAId selected"
 msgstr "ingen CAId valgt"
 
@@ -25276,9 +25145,6 @@ msgstr "av kun les medie."
 msgid "on how to restore the image"
 msgstr "Vil du fjerne denne pakken?\n"
 
-msgid "only HD"
-msgstr "bare HD"
-
 msgid "orange"
 msgstr ""
 
@@ -25364,9 +25230,6 @@ msgstr "reversere etter dato"
 msgid "rewind to the previous chapter"
 msgstr "spol tilbake til forrige kapittel"
 
-msgid "rgb"
-msgstr ""
-
 #
 msgid "right"
 msgstr "høyre"
@@ -25393,9 +25256,6 @@ msgstr "Søkestatus"
 
 msgid "science fiction/fantasy/horror"
 msgstr "science fiction/fantasi/grøsser"
-
-msgid "sdr"
-msgstr ""
 
 msgid "search EPG..."
 msgstr ""
@@ -25465,10 +25325,6 @@ msgstr "vise kortene med uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "vise kortene med uphop 9"
-
-#
-msgid "show event details"
-msgstr "vis program detaljer"
 
 #
 #, fuzzy
@@ -25683,13 +25539,7 @@ msgstr "Aktiver"
 msgid "update"
 msgstr "Oppdater"
 
-msgid "use best / controlled by HDMI"
-msgstr ""
-
 msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
-msgstr ""
-
-msgid "use_hdmi_cacenter"
 msgstr ""
 
 #
@@ -25725,9 +25575,6 @@ msgid "west"
 msgstr "vest"
 
 msgid "white"
-msgstr ""
-
-msgid "wide"
 msgstr ""
 
 msgid "width"
@@ -25770,6 +25617,91 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "1080i"
+#~ msgstr "1080i"
+
+#~ msgid "1080p 24Hz"
+#~ msgstr "1080p 24Hz"
+
+#~ msgid "1080p 25Hz"
+#~ msgstr "1080p 25Hz"
+
+#~ msgid "1080p 30Hz"
+#~ msgstr "1080p 30Hz"
+
+#~ msgid "1080p 50Hz"
+#~ msgstr "1080p 50Hz"
+
+#~ msgid "1080p 60Hz"
+#~ msgstr "1080p 60Hz"
+
+#
+#~ msgid "16:10"
+#~ msgstr "16:10"
+
+#, fuzzy
+#~ msgid "2160p 24Hz"
+#~ msgstr "720p 24Hz"
+
+#, fuzzy
+#~ msgid "2160p 25Hz"
+#~ msgstr "1080p 25Hz"
+
+#, fuzzy
+#~ msgid "2160p 30Hz"
+#~ msgstr "1080p 30Hz"
+
+#, fuzzy
+#~ msgid "2160p 50Hz"
+#~ msgstr "1080p 50Hz"
+
+#, fuzzy
+#~ msgid "2160p 60Hz"
+#~ msgstr "1080p 60Hz"
+
+#~ msgid "720p"
+#~ msgstr "720p"
+
+#~ msgid "720p 24Hz"
+#~ msgstr "720p 24Hz"
+
+#
+#~ msgid "CVBS"
+#~ msgstr "CVBS"
+
+#~ msgid "Create directory"
+#~ msgstr "Lag katalog"
+
+#
+#~ msgid "RGB"
+#~ msgstr "RGB"
+
+#
+#~ msgid "S-Video"
+#~ msgstr "S-Video"
+
+#
+#, fuzzy
+#~ msgid "Video mode: 1080p"
+#~ msgstr "Video modus: %s"
+
+#
+#, fuzzy
+#~ msgid "Video mode: 2160p"
+#~ msgstr "Video modus: %s"
+
+#
+#~ msgid "YPbPr"
+#~ msgstr "YPbPr"
+
+#
+#~ msgid "auto"
+#~ msgstr "auto"
+
+#
+#~ msgid "show event details"
+#~ msgstr "vis program detaljer"
 
 #~ msgid "Black screen"
 #~ msgstr "Sort skjerm"

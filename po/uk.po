@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 12:10+0000\n"
-"PO-Revision-Date: 2023-07-07 17:19+0000\n"
+"POT-Creation-Date: 2023-08-02 20:55+0000\n"
+"PO-Revision-Date: 2023-08-04 07:50+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1005,6 +1005,20 @@ msgstr[1] "Встановлено %d пакети."
 msgstr[2] "Встановлено %d пакетів."
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked for install."
+msgstr[0] "%d пакет позначено для встановлення."
+msgstr[1] "%d пакети позначено для встановлення."
+msgstr[2] "%d пакетів позначено для встановлення."
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] "%d пакет позначено для видалення."
+msgstr[1] "%d пакети позначено для видалення."
+msgstr[2] "%d пакетів позначено для видалення."
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "Оновлено %d пакет."
@@ -1428,42 +1442,6 @@ msgstr "10 хвилин"
 msgid "1024 Mb"
 msgstr "1024 Мб"
 
-msgid "1080i"
-msgstr "1080i"
-
-msgid "1080i 50Hz"
-msgstr "1080i 50Гц"
-
-msgid "1080i 60Hz"
-msgstr "1080i 60Гц"
-
-msgid "1080i50"
-msgstr "1080i50"
-
-msgid "1080i50: 24p/50i/60i"
-msgstr "1080i50: 24p/50i/60i"
-
-msgid "1080i50Hz"
-msgstr "1080i50Гц"
-
-msgid "1080p 24Hz"
-msgstr "1080p 24Гц"
-
-msgid "1080p 25Hz"
-msgstr "1080p 25Гц"
-
-msgid "1080p 30Hz"
-msgstr "1080p 30Гц"
-
-msgid "1080p 50Hz"
-msgstr "1080p 50Гц"
-
-msgid "1080p 60Hz"
-msgstr "1080p 60Гц"
-
-msgid "1080p50: 24p/50p/60p"
-msgstr "1080p50: 24p/50p/60p"
-
 msgid "10bit"
 msgstr "10біт"
 
@@ -1500,8 +1478,8 @@ msgstr "15 хвилин"
 msgid "1536 Mb"
 msgstr "1536 Мб"
 
-msgid "16:10"
-msgstr "16:10"
+msgid "16/9 reset to normal"
+msgstr "16/9 скидання до нормального"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Поштова скринька"
@@ -1515,8 +1493,17 @@ msgstr "16:9"
 msgid "16:9 Always"
 msgstr "16:9 завжди"
 
+msgid "16:9 Combined"
+msgstr "16:9 Комбінований"
+
+msgid "16:9 Ignore"
+msgstr "16:9 Ігнорувати"
+
 msgid "16:9 Letterbox"
 msgstr "16:9 Поштова скринька"
+
+msgid "16:9 PanScan"
+msgstr "16:9 Pan Scan"
 
 msgid "16K"
 msgstr "16K"
@@ -1542,24 +1529,6 @@ msgstr "2 хвилини"
 msgid "2048 Mb"
 msgstr "2048 Мб"
 
-msgid "2160p 24Hz"
-msgstr "2160p 24Гц"
-
-msgid "2160p 25Hz"
-msgstr "2160p 25Гц"
-
-msgid "2160p 30Hz"
-msgstr "2160p 30Гц"
-
-msgid "2160p 50Hz"
-msgstr "2160p 50Гц"
-
-msgid "2160p 60Hz"
-msgstr "2160p 60Гц"
-
-msgid "2160p50: 24p/50p/60p"
-msgstr "2160p50: 24p/50p/60p"
-
 msgid "23.976"
 msgstr "23.976"
 
@@ -1569,41 +1538,11 @@ msgstr "24"
 msgid "24 hours"
 msgstr "24 годин"
 
-msgid "24p/24p"
-msgstr "24p/24p"
-
-msgid "24p/25p"
-msgstr "24p/25p"
-
-msgid "24p/30p"
-msgstr "24p/30p"
-
-msgid "24p/50p"
-msgstr "24p/50p"
-
-msgid "24p/60p"
-msgstr "24p/60p"
-
 msgid "25"
 msgstr "25"
 
 msgid "256 Mb"
 msgstr "256 Мб"
-
-msgid "25p/24p"
-msgstr "25p/24p"
-
-msgid "25p/25p"
-msgstr "25p/25p"
-
-msgid "25p/30p"
-msgstr "25p/30p"
-
-msgid "25p/50p"
-msgstr "25p/50p"
-
-msgid "25p/60p"
-msgstr "25p/60p"
 
 msgid "29.97"
 msgstr "29.97"
@@ -1647,21 +1586,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "30 хвилин"
 
-msgid "30p/24p"
-msgstr "30p/24p"
-
-msgid "30p/25p"
-msgstr "30p/25p"
-
-msgid "30p/30p"
-msgstr "30p/30p"
-
-msgid "30p/50p"
-msgstr "30p/50p"
-
-msgid "30p/60p"
-msgstr "30p/60p"
-
 msgid "32 Mb"
 msgstr "32 Мб"
 
@@ -1683,20 +1607,14 @@ msgstr "4"
 msgid "4 hours"
 msgstr "4 годин"
 
-msgid "420"
-msgstr "420"
-
-msgid "422"
-msgstr "422"
-
-msgid "444"
-msgstr "444"
-
-msgid "480p 24Hz"
-msgstr "480p 24Гц"
-
 msgid "4:3"
 msgstr "4:3"
+
+msgid "4:3 Combined"
+msgstr "4:3 Комбінований"
+
+msgid "4:3 Ignore"
+msgstr "4:3 Ігнорувати"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Поштова скринька"
@@ -1719,21 +1637,6 @@ msgstr "5 годин"
 msgid "5 minutes"
 msgstr "5 хвилин"
 
-msgid "50p/24p"
-msgstr "50p/24p"
-
-msgid "50p/25p"
-msgstr "50p/25p"
-
-msgid "50p/30p"
-msgstr "50p/30p"
-
-msgid "50p/50p"
-msgstr "50p/50p"
-
-msgid "50p/60p"
-msgstr "50p/60p"
-
 msgid "512 Mb"
 msgstr "512 Мб"
 
@@ -1743,21 +1646,6 @@ msgstr "6"
 msgid "6 hours"
 msgstr "6 годин"
 
-msgid "60p/24p"
-msgstr "60p/24p"
-
-msgid "60p/25p"
-msgstr "60p/25p"
-
-msgid "60p/30p"
-msgstr "60p/30p"
-
-msgid "60p/50p"
-msgstr "60p/50p"
-
-msgid "60p/60p"
-msgstr "60p/60p"
-
 msgid "64 Mb"
 msgstr "64 Мб"
 
@@ -1766,21 +1654,6 @@ msgstr "7"
 
 msgid "7 hours"
 msgstr "7 годин"
-
-msgid "720p"
-msgstr "720p"
-
-msgid "720p 24Hz"
-msgstr "720p 24Гц"
-
-msgid "720p50"
-msgstr "720p50"
-
-msgid "720p50: 24p/50p/60p"
-msgstr "720p50: 24p/50p/60p"
-
-msgid "720p50Hz"
-msgstr "720p50Гц"
 
 msgid "8"
 msgstr "8"
@@ -2147,6 +2020,9 @@ msgstr "Додайте File Commander до списку параметрів М�
 msgid "Add File Commander to the Main Menu list of options."
 msgstr "Додати File Commander до списку параметрів Головного Меню."
 
+msgid "Add HDMI IN to bouquet"
+msgstr "Додати HDMI IN до фавориту"
+
 msgid "Add Marker"
 msgstr "додати закладку"
 
@@ -2284,6 +2160,15 @@ msgstr "Додати/Видалити Таймер"
 
 msgid "Add/Remove a timer for the current event"
 msgstr "Додати/Видалити таймер поточної події"
+
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr "Додати/Видалити виділений плагін до/із списку завантажень"
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr "Додати/Видалити виділений плагін до/із списку видалення"
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr "Додати/Видалити виділений плагін до/із списку оновлень"
 
 msgid "Adding schedule..."
 msgstr "Додавання завдання..."
@@ -2428,9 +2313,6 @@ msgstr "Всі супутники 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Всі канали провайдера"
-
-msgid "All slots"
-msgstr "Всі слоти"
 
 msgid "All supported"
 msgstr "Усі підтримуються"
@@ -2770,6 +2652,9 @@ msgstr "Список виглядів..."
 msgid "Aspect ratio"
 msgstr "Співвідношення сторін"
 
+msgid "Aspect switch"
+msgstr "Перемикач формату"
+
 msgid "Assamese"
 msgstr "Ассамська"
 
@@ -3024,33 +2909,6 @@ msgstr "Синя довге натискання"
 
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "Синя-Заміна дії: Синя-коротке/Синя-довге"
-
-msgid "BT 2020 CL"
-msgstr "BT 2020 CL"
-
-msgid "BT 2020 NCL"
-msgstr "BT 2020 NCL"
-
-msgid "BT 709"
-msgstr "BT 709"
-
-msgid "BT2020 CL"
-msgstr "BT2020 CL"
-
-msgid "BT2020 NCL"
-msgstr "BT2020 NCL"
-
-msgid "BT470 BG"
-msgstr "BT470 BG"
-
-msgid "BT601 XvYCC"
-msgstr "BT 601 XvYCC"
-
-msgid "BT709"
-msgstr "BT709"
-
-msgid "BT709 XvYCC"
-msgstr "BT 709 XvYCC"
 
 msgid "Back"
 msgstr "Назад"
@@ -3322,6 +3180,9 @@ msgstr "Зниження блокових шумів"
 msgid "Blue"
 msgstr "Синя"
 
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
 msgid "Bluetooth Setup"
 msgstr "Налаштування Bluetooth"
 
@@ -3551,9 +3412,6 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID : SrvID"
 
-msgid "CCCam Information"
-msgstr "Інфо про CCCam"
-
 msgid "CCD-Width"
 msgstr "CCD-Ширина"
 
@@ -3639,18 +3497,20 @@ msgstr "ЗМІНА ФАВОРИТУ"
 msgid "CHANNEL +/-"
 msgstr "Канал +/-"
 
-#, python-format
-msgid "CI %s enabled"
-msgstr "CI %s увімкнено"
-
 msgid "CI (Common Interface) Setup"
 msgstr "Налаштування CI (Common Interface)"
+
+msgid "CI Boot Delay"
+msgstr "Затримка завантаження CI"
 
 msgid "CI Helper Settings"
 msgstr "Помічник налаштування CI"
 
 msgid "CI assignment"
 msgstr "Призначення CI"
+
+msgid "CI enabled"
+msgstr "CI увімкнено"
 
 msgid "CI slot: "
 msgstr "CI слот: "
@@ -3688,9 +3548,6 @@ msgstr "Швидкість/к-сть ядер ЦПУ"
 
 msgid "CPU temperature"
 msgstr "Температура ЦПУ"
-
-msgid "CVBS"
-msgstr "CVBS"
 
 msgid "CaID: "
 msgstr "CAID: "
@@ -4519,6 +4376,9 @@ msgstr "Формат кольору"
 msgid "Color space"
 msgstr "Колірний простір"
 
+msgid "Combined"
+msgstr "Комбінований"
+
 msgid "Combo"
 msgstr "Комбінований"
 
@@ -4567,6 +4427,9 @@ msgstr "Призначення Модуля доступу"
 
 msgid "Common Interface Settings"
 msgstr "Загальні налаштування інтерфейсу"
+
+msgid "Common Settings"
+msgstr "Загальні налаштування"
 
 msgid "Common Setup Actions"
 msgstr "Загальні дії з налаштування"
@@ -5119,6 +4982,9 @@ msgstr "Управління швидкістю згасання Інфобар�
 msgid "Control your Softcams"
 msgstr "Керування емуляторами"
 
+msgid "Controlled by HDMI"
+msgstr "управляється HDMI"
+
 msgid "Convert EXT3 File System to EXT4"
 msgstr "Перетворити файлову систему ext3 в ext4"
 
@@ -5127,6 +4993,15 @@ msgstr "Перетворення ext3 в ext4"
 
 msgid "Convert file system ext3 to ext4"
 msgstr "Перетворити файлову систему ext3 на ext4"
+
+msgid "Convert to AC3"
+msgstr "конвертувати в AC3"
+
+msgid "Convert to DTS"
+msgstr "конвертувати в DTS"
+
+msgid "Convert to multi-channel PCM"
+msgstr "конвертувати в багатоканальний PCM"
 
 msgid "Converting ext3 to ext4..."
 msgstr "Перетворення ext3 на ext4..."
@@ -5263,9 +5138,6 @@ msgstr "Створити випадково згенерований парол�
 
 msgid "Create a symbolic link"
 msgstr "Створити символічне посилання"
-
-msgid "Create directory"
-msgstr "Створити теку"
 
 msgid "Create separate radio user bouquet"
 msgstr "Створити окремий фаворитний радіо-список"
@@ -6719,8 +6591,8 @@ msgstr "Завантажити і встановити емулятори"
 msgid "Download error"
 msgstr "Помилка завантаження"
 
-msgid "Download the highlighted plugin"
-msgstr "Завантажити виділений плагін"
+msgid "Download the selected list of plugins"
+msgstr "Завантажити вибраний список плагінів"
 
 msgid "Downloadable plugins"
 msgstr "Доступні плагіни"
@@ -7080,6 +6952,9 @@ msgstr "Включити перевірку мережевої АП-адреси
 
 msgid "Enable OpenTV EPG"
 msgstr "Увімкнути OpenTV EPG"
+
+msgid "Enable PiP no HDR"
+msgstr "ввімкнути ПІП без HDR"
 
 msgid "Enable Quad PiP"
 msgstr "Включити чотирикратний ПіП"
@@ -7655,6 +7530,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Створення директорії %s невдале!"
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr "Помилка: Створення цільового каталогу піконів: (%s)"
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr "Помилка: файл '%s' неможливо відкрити!  (%s)"
 
@@ -7988,8 +7867,14 @@ msgstr "Зовнішній колір діалогових підзаголов�
 msgid "External subtitle switch fonts"
 msgstr "Перемикання шрифтів для зовнішніх субтитрів"
 
+msgid "Extra High"
+msgstr "Дуже високий"
+
 msgid "Extra motor options"
 msgstr "Додаткові параметри мотору"
+
+msgid "Extra wide"
+msgstr "надширокий"
 
 msgid "Extract the archive contents"
 msgstr "Розпакувати вміст архіву"
@@ -8015,8 +7900,11 @@ msgstr "F3"
 msgid "F4"
 msgstr "F4"
 
-msgid "FCC 1953"
-msgstr "FCC 1953"
+msgid "FBC SCR (Unicable/JESS)"
+msgstr "FBC SCR (Unicable/JESS)"
+
+msgid "FBC automatic"
+msgstr "Автоматичний FBC"
 
 msgid "FCC enabled"
 msgstr "FCC увімкнено"
@@ -8449,6 +8337,9 @@ msgstr "Продукти харчування/Вино"
 msgid "Football"
 msgstr "Футбол"
 
+msgid "Force AC3plus"
+msgstr "примусово AC3plus"
+
 msgid "Force LNB Power"
 msgstr "Потужність LNB"
 
@@ -8469,6 +8360,12 @@ msgstr "Потужність Тонового сигналу"
 
 msgid "Force de-interlace"
 msgstr "Завжди використовувати деінтерлейсінг"
+
+msgid "Force disabled"
+msgstr "примусово вимкнуто"
+
+msgid "Force enabled"
+msgstr "примусово ввімкнуто"
 
 msgid "Format"
 msgstr "Форматування"
@@ -8586,6 +8483,9 @@ msgstr "Повна копія Іміджу "
 
 msgid "Full Range RGB"
 msgstr "Повний діапазон RGB"
+
+msgid "Full Stretch"
+msgstr "Повне розтягування"
 
 #, python-format
 msgid "Full back-up on %s"
@@ -9140,8 +9040,14 @@ msgstr "Приховати помилки перемикання"
 msgid "Hierarchy info"
 msgstr "Інфо ієрархії"
 
+msgid "High"
+msgstr "Високий"
+
 msgid "High bitrate support"
 msgstr "Підтримка високого бітрейту"
+
+msgid "Highest resolution"
+msgstr "найбільша роздільна здатність"
 
 msgid "Highlighted item"
 msgstr "Виділений елемент"
@@ -9278,6 +9184,9 @@ msgstr "Венгрія"
 msgid "Hybrid Tuner"
 msgstr "Гібридний тюнер"
 
+msgid "Hz"
+msgstr "Гц"
+
 msgid "I"
 msgstr "I"
 
@@ -9286,9 +9195,6 @@ msgstr "Пріоритет введення/виведення для скрип
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 нові Моделі"
-
-msgid "IMDB Search"
-msgstr "Пошук IMDB"
 
 msgid "IMDb Details"
 msgstr "IMDb подробиці"
@@ -11865,6 +11771,9 @@ msgstr "Наступне зображення"
 msgid "Next bouquet"
 msgstr "Наступний фаворит"
 
+msgid "Next higher resolution"
+msgstr "наступна вища роздільна здатність"
+
 msgid "Next page"
 msgstr "Наступна сторінка"
 
@@ -12146,6 +12055,9 @@ msgstr "Node ID: "
 msgid "Nominate how many IP Addresses are to be checked for active connections."
 msgstr "Вкажіть, скільки IP-адрес потрібно перевірити на активні підключення."
 
+msgid "Non-Linear"
+msgstr "Нелінійний"
+
 msgid "None"
 msgstr "Нічого"
 
@@ -12157,6 +12069,9 @@ msgstr "нормальний"
 
 msgid "Normal - Standard image"
 msgstr "Звичайно- Стандартний імідж"
+
+msgid "Normal No ScaleUp"
+msgstr "Звичайний без масштабування"
 
 msgid "Normal: No boot modes required."
 msgstr "Звичайний: режими завантаження не потрібні."
@@ -12397,6 +12312,9 @@ msgstr "Онлайн оновлення ПЗ Вашого %s %s."
 msgid "Only Flash Backup Image"
 msgstr "Тільки флеш-резервний імідж"
 
+msgid "Only HD"
+msgstr "тільки HD"
+
 msgid "Only free scan"
 msgstr "Сканувати тільки відкриті"
 
@@ -12447,6 +12365,9 @@ msgstr "Відкрити контекстне меню"
 
 msgid "Open context menu (contains settings menu)"
 msgstr "Відкрити контекстне меню (містить меню налаштувань)"
+
+msgid "Open external subtitle management screen"
+msgstr "Відкрити зовнішній екран керування субтитрами"
 
 msgid "Open favorites list"
 msgstr "Відкрити список фаворитів"
@@ -12663,9 +12584,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PCM"
-msgstr "PCM"
-
 msgid "PCM Multichannel"
 msgstr "PCM багатоканальний"
 
@@ -12816,7 +12734,7 @@ msgstr "Розділ"
 msgid "Partitions"
 msgstr "Розділи"
 
-msgid "Passthrough"
+msgid "Pass-through"
 msgstr "Проходити через"
 
 msgid "Password"
@@ -12929,6 +12847,9 @@ msgstr "Пакети Піконів"
 
 msgid "Picon and Service Name"
 msgstr "Пікони і Назва Каналу"
+
+msgid "Picon package target location"
+msgstr "Цільове розташування пакета Picon"
 
 msgid "Picon width"
 msgstr "Ширина Піконів"
@@ -13080,6 +13001,9 @@ msgstr "Будь ласка, не міняйте ніякі значення, я
 
 msgid "Please don't panic if you see values that look suspicious."
 msgstr "Будь ласка, не панікуйте, якщо Ви бачите підозрілі значення."
+
+msgid "Please enter a name for the HDMI-IN"
+msgstr "Введіть назву входу HDMI-IN"
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Будь ласка, введіть назву нового фавориту"
@@ -13326,7 +13250,7 @@ msgid "Plug in a USB device that can be used as a swap device. Note that this de
 msgstr "Підключіть USB-пристрій, який можна використовувати як пристрій для обміну. Зауважте, що цей пристрій не можна видаляти, поки працює %s %s!"
 
 msgid "Plugin Action Log"
-msgstr ""
+msgstr "Лог Plugin Action"
 
 msgid "Plugin Action Log Actions"
 msgstr "Лог дій плагіна"
@@ -13556,9 +13480,15 @@ msgstr "Для продовження натисніть ОК."
 msgid "Press OK to edit the settings."
 msgstr "Натисніть ОК для редагування налаштувань."
 
+msgid "Press OK to enter PIN code"
+msgstr "Натисніть OK, щоб ввести PIN-код"
+
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Натисніть OK для отримання додаткових відомостей %s"
+
+msgid "Press OK to init module"
+msgstr "Натисніть OK, щоб запустити модуль"
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -13567,6 +13497,15 @@ msgstr "Натисніть OK, щоб встановити та використ
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
 msgstr "Натисніть OK, щоб встановити та використовувати цей регіон.  [%s]"
+
+msgid "Press OK to open module info"
+msgstr "Натисніть OK, щоб відкрити інформацію про модуль"
+
+msgid "Press OK to reset PIN code"
+msgstr "Натисніть OK, щоб скинути PIN-код"
+
+msgid "Press OK to reset module"
+msgstr "Натисніть OK, щоб скинути модуль"
 
 msgid "Press OK to scan"
 msgstr "Натисніть ОК для пошуку"
@@ -13978,9 +13917,6 @@ msgstr "Червона довге натискання"
 
 msgid "RF Output Settings"
 msgstr "RF вихід"
-
-msgid "RGB"
-msgstr "RGB"
 
 msgid "Radio"
 msgstr "Радіо"
@@ -14482,6 +14418,9 @@ msgstr "Видалити вибрану назву"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Видалити вибрану теку зі закладок"
 
+msgid "Remove plugins ..."
+msgstr "Видалити плагіни..."
+
 msgid "Remove selected service"
 msgstr "Видалити вибраний канал"
 
@@ -14497,8 +14436,8 @@ msgstr "Видалити файли MultiBoot"
 msgid "Remove the current bookmark"
 msgstr "Видалити поточну закладку"
 
-msgid "Remove the highlighted plugin"
-msgstr "Видалити виділений плагін"
+msgid "Remove the selected list of plugins"
+msgstr "Видалити вибраний список плагінів"
 
 msgid "Remove timer"
 msgstr "Видалити таймер"
@@ -14621,7 +14560,7 @@ msgid "Reset HDMI-CEC settings to default"
 msgstr "Повернути початкові налаштування HDMI-CEC"
 
 msgid "Reset Order"
-msgstr ""
+msgstr "Скинути порядок"
 
 msgid "Reset and renumerate title names"
 msgstr "Скинути і перенумерувати назви заголовків"
@@ -14937,9 +14876,6 @@ msgstr "Rwanda"
 
 msgid "Réunion"
 msgstr "Реюньйон"
-
-msgid "S-Video"
-msgstr "S-Відео"
 
 msgid "SABnzbd"
 msgstr "SABnzbd"
@@ -16131,6 +16067,9 @@ msgstr "Виберіть стартовий/початковий стовпец�
 msgid "Select the tags that should be used for this recording."
 msgstr "Виберіть теги, які слід використовувати для цього запису."
 
+msgid "Select the target location where picon files will be installed."
+msgstr "Виберіть цільове розташування, куди буде встановлено файли піконів."
+
 msgid "Select the time after which this timer can start."
 msgstr "Виберіть час, після якого цей таймер може запуститися."
 
@@ -16519,8 +16458,14 @@ msgstr "встановити стартовим каналом"
 msgid "Set Base time"
 msgstr "Встановити Базовий час"
 
+msgid "Set CI Boot delay."
+msgstr "Встановіть затримку завантаження CI."
+
 msgid "Set CI assignment for detection of available services."
 msgstr "Встановити призначення CI для виявлення доступних каналів."
+
+msgid "Set DVB CI delay."
+msgstr "Встановити затримку DVB CI."
 
 msgid "Set Framerate for MiniTV"
 msgstr "Частота кадрів для PiG-вікна"
@@ -17911,6 +17856,14 @@ msgid "Slot %d"
 msgstr "Слот %d"
 
 #, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "Слот %s / FBC в %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr "Слот %s / FBC віртуальний %s"
+
+#, python-format
 msgid "Slot %s: %s"
 msgstr "Слот %s: %s"
 
@@ -17991,12 +17944,6 @@ msgstr "Пін-код карти доступу"
 
 msgid "Smooth"
 msgstr "Плавність"
-
-msgid "Smpte 170M"
-msgstr "Smpte 170M"
-
-msgid "Smpte 240M"
-msgstr "Smpte 240M"
 
 msgid "SoC family"
 msgstr "Сімейство SoC"
@@ -18408,9 +18355,6 @@ msgstr "Покроково на схід"
 
 msgid "Stepped west"
 msgstr "Покроково на захід"
-
-msgid "Sti"
-msgstr "Sti"
 
 msgid "Stop"
 msgstr "Зупинити"
@@ -18892,8 +18836,11 @@ msgstr "ТБ"
 msgid "TEXT"
 msgstr "TEXT"
 
+msgid "TMDB Search"
+msgstr "TMDB Пошук"
+
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 07.07.2023"
+msgstr "Переклад: kvinto - 03.08.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19267,6 +19214,13 @@ msgstr ""
 "Плагін SimpleUmount не встановлений.\n"
 "Будь ласка, спочатку встановіть його."
 
+msgid ""
+"The TMDB plugin is not installed!\n"
+"Please install it."
+msgstr ""
+"Плагін TMDB не встановлено!\n"
+"Будь ласка, встановіть його."
+
 msgid "The TV was switched to the recording service!\n"
 msgstr "ТБ переключено на записуваний канал!\n"
 
@@ -19395,6 +19349,9 @@ msgid ""
 msgstr ""
 "Майстер налаштування мережі не встановлено!\n"
 "Будь-ласка встановіть його."
+
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr "Каталог піконів уже існує і його потрібно видалити. Ви бажаєте продовжити?"
 
 #, python-format
 msgid "The results have been written to %s."
@@ -19698,6 +19655,9 @@ msgstr "Цей параметр дозволяє Вам вибрати, відо
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Цей параметр дозволяє Вам включити підтримку об'ємного звуку 3D."
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr "Цей параметр дозволяє встановити значення зсуву для різних роздільних здатностей Letterbox."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Цей параметр дозволяє Вам показати SNR в dB (підтримується не всіма приймачами)."
@@ -20757,8 +20717,8 @@ msgstr ""
 "Оновлення успішне!\n"
 "Ваш завантажувач тепер оновлений!"
 
-msgid "Update the highlighted plugin"
-msgstr "Оновити виділений плагін"
+msgid "Update the selected list of plugins"
+msgstr "Оновити вибраний список плагінів"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Оновлення/Копіювання Вашої прошивки, Копіювання/Відновлення налаштувань"
@@ -20913,6 +20873,9 @@ msgstr ""
 "Використовувати автоматичне визначення режиму?\n"
 "\n"
 "Ця опція читає всі підтримувані режими з вашого телевізора. Вимкніть його, лише якщо ви хочете налаштувати потрібну конфігурацію."
+
+msgid "Use best / Controlled by HDMI"
+msgstr "використовувати краще / контролюється HDMI"
 
 msgid "Use circular LNB"
 msgstr "Використовувати круговий LNB"
@@ -21314,18 +21277,6 @@ msgstr "Режим відео: %s"
 msgid "Video mode: %s not available"
 msgstr "Режим відео: %s не доступний"
 
-msgid "Video mode: 1080p"
-msgstr "Режим відео: 1080р"
-
-msgid "Video mode: 1080p also not available"
-msgstr "Режим відео: 1080р також не доступний"
-
-msgid "Video mode: 2160p"
-msgstr "Режим відео: 2160p"
-
-msgid "Video mode: 2160p also not available"
-msgstr "Режим відео: 2160p також не доступний"
-
 msgid "Video output"
 msgstr "Відео вихід"
 
@@ -21398,7 +21349,7 @@ msgid "View Rass interactive..."
 msgstr "Показати інтерактивний Rass..."
 
 msgid "View as grid"
-msgstr "Перегляд у вигляді сітки"
+msgstr "Вид сітки"
 
 msgid "View as list"
 msgstr "Вид списку"
@@ -21942,6 +21893,9 @@ msgstr "Поки доступно"
 msgid "White"
 msgstr "Білий"
 
+msgid "Wide"
+msgstr "широкий"
+
 msgid "Width"
 msgstr "Ширина"
 
@@ -22069,23 +22023,11 @@ msgstr "Xhosa"
 msgid "Y-Resolution"
 msgstr "Y-Роздільна здатність"
 
-msgid "YCbCr420"
-msgstr "YCbCr420"
-
-msgid "YCbCr422"
-msgstr "YCbCr422"
-
-msgid "YCbCr444"
-msgstr "YCbCr444"
-
 msgid "YELLOW button"
 msgstr "Жовта кнопка"
 
 msgid "YELLOW long"
 msgstr "Жовта довге натискання"
-
-msgid "YPbPr"
-msgstr "YPbPr"
 
 msgid "Year"
 msgstr "Рік"
@@ -22550,9 +22492,6 @@ msgstr "графічний інтерфейс для призначення ка
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "графічний інтерфейс для призначення каналів/провайдерів/caid'ів для CI-модулів"
 
-msgid "ac3"
-msgstr "ac3"
-
 msgid "activatePiP"
 msgstr "активувати ПІП"
 
@@ -22633,9 +22572,6 @@ msgstr "мова аудіо доріжки (%s)"
 
 msgid "audio tracks"
 msgstr "звукова доріжка"
-
-msgid "auto"
-msgstr "авто"
 
 msgid "automatic"
 msgstr "автоматичний"
@@ -22735,18 +22671,6 @@ msgstr "підтверджений"
 msgid "connected"
 msgstr "під'єднаний"
 
-msgid "controlled by HDMI"
-msgstr "управляється HDMI"
-
-msgid "convert to AC3"
-msgstr "конвертувати в AC3"
-
-msgid "convert to DTS"
-msgstr "конвертувати в DTS"
-
-msgid "convert to multi-channel PCM"
-msgstr "конвертувати в багатоканальний PCM"
-
 msgid "cooking"
 msgstr "приготування їжі"
 
@@ -22798,14 +22722,8 @@ msgstr "документальний"
 msgid "documentary (general)"
 msgstr "документальний (загальна)"
 
-msgid "dolby"
-msgstr "dolby"
-
 msgid "drama (general)"
 msgstr "драма (загальна)"
-
-msgid "dts"
-msgstr "dts"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -22840,9 +22758,6 @@ msgstr "вбудований"
 
 msgid "empty"
 msgstr "порожній"
-
-msgid "enable PiP no HDR"
-msgstr "ввімкнути ПІП без HDR"
 
 msgid "enabled"
 msgstr "ввімкнуто"
@@ -22892,12 +22807,6 @@ msgstr "експериментальний фільм/відео"
 msgid "externally loopthrough to"
 msgstr "зовнішня петля до"
 
-msgid "extra wide"
-msgstr "надширокий"
-
-msgid "extrawide"
-msgstr "екстра широкий"
-
 msgid "failed"
 msgstr "невдале"
 
@@ -22936,15 +22845,6 @@ msgstr "народна/традиційна музика"
 
 msgid "football/soccer"
 msgstr "футбол/малий футбол"
-
-msgid "force AC3plus"
-msgstr "примусово AC3plus"
-
-msgid "force disabled"
-msgstr "примусово вимкнуто"
-
-msgid "force enabled"
-msgstr "примусово ввімкнуто"
 
 msgid "foreign countries/expeditions"
 msgstr "зарубіжні країни/експедиції"
@@ -23015,9 +22915,6 @@ msgstr "ремесло"
 msgid "handled"
 msgstr "обробляються"
 
-msgid "hdr10"
-msgstr "hdr10"
-
 msgid "height"
 msgstr "висота"
 
@@ -23041,12 +22938,6 @@ msgstr "гг:хх AM/PM"
 
 msgid "hh:mmam/pm"
 msgstr "гг:хх am/pm"
-
-msgid "highest Resolution"
-msgstr "найбільша роздільна здатність"
-
-msgid "hlg"
-msgstr "hlg"
 
 msgid "hops:"
 msgstr "hops:"
@@ -23219,9 +23110,6 @@ msgstr "новини/прогноз погоди"
 msgid "next channel page"
 msgstr "наступна сторінка каналів"
 
-msgid "next higher Resolution"
-msgstr "наступна вища роздільна здатність"
-
 msgid "no CAId selected"
 msgstr "не вибрано CAId"
 
@@ -23296,9 +23184,6 @@ msgstr "на READ ONLY носії."
 
 msgid "on how to restore the image"
 msgstr "що робити для відновлення іміджа"
-
-msgid "only HD"
-msgstr "тільки HD"
 
 msgid "orange"
 msgstr "помаранчевий"
@@ -23375,9 +23260,6 @@ msgstr "зворотньо за датою"
 msgid "rewind to the previous chapter"
 msgstr "перейти до попереднього фрагменту"
 
-msgid "rgb"
-msgstr "rgb"
-
 msgid "right"
 msgstr "правий"
 
@@ -23406,9 +23288,6 @@ msgstr "стан сканування"
 
 msgid "science fiction/fantasy/horror"
 msgstr "наукова фантастика/фентезі/жахи"
-
-msgid "sdr"
-msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "пошук ЕПГ..."
@@ -23475,9 +23354,6 @@ msgstr "показати картки з uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "показати картки з uphop 9"
-
-msgid "show event details"
-msgstr "показати деталі передачі"
 
 msgid "show picons in quickzap"
 msgstr "показувати пікони при швидкому перемиканні"
@@ -23662,14 +23538,8 @@ msgstr "нестабільний"
 msgid "update"
 msgstr "оновлено"
 
-msgid "use best / controlled by HDMI"
-msgstr "використовувати краще / контролюється HDMI"
-
 msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
 msgstr "використовуйте збільшену напругу '14/18В ', якщо виникають проблеми при перемиканні конверторів"
-
-msgid "use_hdmi_cacenter"
-msgstr "використати центр hdmi"
 
 msgid "userdefined"
 msgstr "на вибір користувача"
@@ -23700,9 +23570,6 @@ msgstr "захід"
 
 msgid "white"
 msgstr "білий"
-
-msgid "wide"
-msgstr "широкий"
 
 msgid "width"
 msgstr "ширина"
@@ -23740,6 +23607,298 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "All slots"
+#~ msgstr "Всі слоти"
+
+#, python-format
+#~ msgid "CI %s enabled"
+#~ msgstr "CI %s увімкнено"
+
+#~ msgid "Download the highlighted plugin"
+#~ msgstr "Завантажити виділений плагін"
+
+#~ msgid "Remove the highlighted plugin"
+#~ msgstr "Видалити виділений плагін"
+
+#~ msgid "Update the highlighted plugin"
+#~ msgstr "Оновити виділений плагін"
+
+#~ msgid "1080i"
+#~ msgstr "1080i"
+
+#~ msgid "1080i 50Hz"
+#~ msgstr "1080i 50Гц"
+
+#~ msgid "1080i 60Hz"
+#~ msgstr "1080i 60Гц"
+
+#~ msgid "1080i50"
+#~ msgstr "1080i50"
+
+#~ msgid "1080i50: 24p/50i/60i"
+#~ msgstr "1080i50: 24p/50i/60i"
+
+#~ msgid "1080i50Hz"
+#~ msgstr "1080i50Гц"
+
+#~ msgid "1080p 24Hz"
+#~ msgstr "1080p 24Гц"
+
+#~ msgid "1080p 25Hz"
+#~ msgstr "1080p 25Гц"
+
+#~ msgid "1080p 30Hz"
+#~ msgstr "1080p 30Гц"
+
+#~ msgid "1080p 50Hz"
+#~ msgstr "1080p 50Гц"
+
+#~ msgid "1080p 60Hz"
+#~ msgstr "1080p 60Гц"
+
+#~ msgid "1080p50: 24p/50p/60p"
+#~ msgstr "1080p50: 24p/50p/60p"
+
+#~ msgid "16:10"
+#~ msgstr "16:10"
+
+#~ msgid "2160p 24Hz"
+#~ msgstr "2160p 24Гц"
+
+#~ msgid "2160p 25Hz"
+#~ msgstr "2160p 25Гц"
+
+#~ msgid "2160p 30Hz"
+#~ msgstr "2160p 30Гц"
+
+#~ msgid "2160p 50Hz"
+#~ msgstr "2160p 50Гц"
+
+#~ msgid "2160p 60Hz"
+#~ msgstr "2160p 60Гц"
+
+#~ msgid "2160p50: 24p/50p/60p"
+#~ msgstr "2160p50: 24p/50p/60p"
+
+#~ msgid "24p/24p"
+#~ msgstr "24p/24p"
+
+#~ msgid "24p/25p"
+#~ msgstr "24p/25p"
+
+#~ msgid "24p/30p"
+#~ msgstr "24p/30p"
+
+#~ msgid "24p/50p"
+#~ msgstr "24p/50p"
+
+#~ msgid "24p/60p"
+#~ msgstr "24p/60p"
+
+#~ msgid "25p/24p"
+#~ msgstr "25p/24p"
+
+#~ msgid "25p/25p"
+#~ msgstr "25p/25p"
+
+#~ msgid "25p/30p"
+#~ msgstr "25p/30p"
+
+#~ msgid "25p/50p"
+#~ msgstr "25p/50p"
+
+#~ msgid "25p/60p"
+#~ msgstr "25p/60p"
+
+#~ msgid "30p/24p"
+#~ msgstr "30p/24p"
+
+#~ msgid "30p/25p"
+#~ msgstr "30p/25p"
+
+#~ msgid "30p/30p"
+#~ msgstr "30p/30p"
+
+#~ msgid "30p/50p"
+#~ msgstr "30p/50p"
+
+#~ msgid "30p/60p"
+#~ msgstr "30p/60p"
+
+#~ msgid "420"
+#~ msgstr "420"
+
+#~ msgid "422"
+#~ msgstr "422"
+
+#~ msgid "444"
+#~ msgstr "444"
+
+#~ msgid "480p 24Hz"
+#~ msgstr "480p 24Гц"
+
+#~ msgid "50p/24p"
+#~ msgstr "50p/24p"
+
+#~ msgid "50p/25p"
+#~ msgstr "50p/25p"
+
+#~ msgid "50p/30p"
+#~ msgstr "50p/30p"
+
+#~ msgid "50p/50p"
+#~ msgstr "50p/50p"
+
+#~ msgid "50p/60p"
+#~ msgstr "50p/60p"
+
+#~ msgid "60p/24p"
+#~ msgstr "60p/24p"
+
+#~ msgid "60p/25p"
+#~ msgstr "60p/25p"
+
+#~ msgid "60p/30p"
+#~ msgstr "60p/30p"
+
+#~ msgid "60p/50p"
+#~ msgstr "60p/50p"
+
+#~ msgid "60p/60p"
+#~ msgstr "60p/60p"
+
+#~ msgid "720p"
+#~ msgstr "720p"
+
+#~ msgid "720p 24Hz"
+#~ msgstr "720p 24Гц"
+
+#~ msgid "720p50"
+#~ msgstr "720p50"
+
+#~ msgid "720p50: 24p/50p/60p"
+#~ msgstr "720p50: 24p/50p/60p"
+
+#~ msgid "720p50Hz"
+#~ msgstr "720p50Гц"
+
+#~ msgid "BT 2020 CL"
+#~ msgstr "BT 2020 CL"
+
+#~ msgid "BT 2020 NCL"
+#~ msgstr "BT 2020 NCL"
+
+#~ msgid "BT 709"
+#~ msgstr "BT 709"
+
+#~ msgid "BT2020 CL"
+#~ msgstr "BT2020 CL"
+
+#~ msgid "BT2020 NCL"
+#~ msgstr "BT2020 NCL"
+
+#~ msgid "BT470 BG"
+#~ msgstr "BT470 BG"
+
+#~ msgid "BT601 XvYCC"
+#~ msgstr "BT 601 XvYCC"
+
+#~ msgid "BT709"
+#~ msgstr "BT709"
+
+#~ msgid "BT709 XvYCC"
+#~ msgstr "BT 709 XvYCC"
+
+#~ msgid "CCCam Information"
+#~ msgstr "Інфо про CCCam"
+
+#~ msgid "CVBS"
+#~ msgstr "CVBS"
+
+#~ msgid "Create directory"
+#~ msgstr "Створити теку"
+
+#~ msgid "FCC 1953"
+#~ msgstr "FCC 1953"
+
+#~ msgid "IMDB Search"
+#~ msgstr "Пошук IMDB"
+
+#~ msgid "PCM"
+#~ msgstr "PCM"
+
+#~ msgid "RGB"
+#~ msgstr "RGB"
+
+#~ msgid "S-Video"
+#~ msgstr "S-Відео"
+
+#~ msgid "Smpte 170M"
+#~ msgstr "Smpte 170M"
+
+#~ msgid "Smpte 240M"
+#~ msgstr "Smpte 240M"
+
+#~ msgid "Sti"
+#~ msgstr "Sti"
+
+#~ msgid "Video mode: 1080p"
+#~ msgstr "Режим відео: 1080р"
+
+#~ msgid "Video mode: 1080p also not available"
+#~ msgstr "Режим відео: 1080р також не доступний"
+
+#~ msgid "Video mode: 2160p"
+#~ msgstr "Режим відео: 2160p"
+
+#~ msgid "Video mode: 2160p also not available"
+#~ msgstr "Режим відео: 2160p також не доступний"
+
+#~ msgid "YCbCr420"
+#~ msgstr "YCbCr420"
+
+#~ msgid "YCbCr422"
+#~ msgstr "YCbCr422"
+
+#~ msgid "YCbCr444"
+#~ msgstr "YCbCr444"
+
+#~ msgid "YPbPr"
+#~ msgstr "YPbPr"
+
+#~ msgid "ac3"
+#~ msgstr "ac3"
+
+#~ msgid "auto"
+#~ msgstr "авто"
+
+#~ msgid "dolby"
+#~ msgstr "dolby"
+
+#~ msgid "dts"
+#~ msgstr "dts"
+
+#~ msgid "extrawide"
+#~ msgstr "екстра широкий"
+
+#~ msgid "hdr10"
+#~ msgstr "hdr10"
+
+#~ msgid "hlg"
+#~ msgstr "hlg"
+
+#~ msgid "rgb"
+#~ msgstr "rgb"
+
+#~ msgid "sdr"
+#~ msgstr "sdr"
+
+#~ msgid "show event details"
+#~ msgstr "показати деталі передачі"
+
+#~ msgid "use_hdmi_cacenter"
+#~ msgstr "використати центр hdmi"
 
 #~ msgid "(Pip)"
 #~ msgstr "(ПіП)"

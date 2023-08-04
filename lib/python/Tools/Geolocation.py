@@ -81,7 +81,7 @@ class Geolocation:
 		if useCache and self.checkGeolocationData(fields):
 			print("[Geolocation] Using cached data.")
 			return self.geolocation
-		internetAccess = checkInternetAccess("ip-api.com", 3)
+		internetAccess = checkInternetAccess("ip-api.com", 5)
 		if internetAccess == 0:  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
 			try:
 				response = get("http://ip-api.com/json/?fields=%s" % fields, timeout=(3, 2))

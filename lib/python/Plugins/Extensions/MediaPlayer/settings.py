@@ -19,7 +19,7 @@ def Load_defaults():
 	config.mediaplayer.onMainMenu = ConfigYesNo(default=False)
 
 	config.mediaplayer.useAlternateUserAgent = NoSave(ConfigYesNo(default=False))
-	config.mediaplayer.alternateUserAgent = NoSave(ConfigText(default="Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)"))
+	config.mediaplayer.alternateUserAgent = NoSave(ConfigText(default="HbbTV/1.1.1 (+PVR+RTSP+DL; Sonic; TV44; 1.32.455; 2.002) Bee/3.5"))
 
 
 Load_defaults()

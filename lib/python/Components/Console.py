@@ -61,7 +61,7 @@ class Console(object):
 	"""
 
 	def __init__(self, binary=False):
-		# Still called appContainers because Network.py, SoftwareTools.py
+		# Still called appContainers because Network.py
 		# and WirelessLan/Wlan.py accesses it to know if there's still
 		# stuff running.
 		self.appContainers = {}
