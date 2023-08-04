@@ -1349,6 +1349,11 @@
 		<key id="KEY_POWER" mapto="exit" flags="m" />
 	</map>
 
+	<map context="TextActions">
+		<key id="KEY_TEXT" mapto="text" flags="b" />
+		<key id="KEY_TEXT" mapto="textlong" flags="l" />
+	</map>
+
 	<map context="TextEntryActions">
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
