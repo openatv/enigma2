@@ -451,20 +451,16 @@ class VideoSetup(Screen, ConfigListScreen):
 class AutoVideoModeLabel(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
 		self["content"] = Label()
 		self["restxt"] = Label()
-
 		self.hideTimer = eTimer()
 		self.hideTimer.callback.append(self.hide)
-
 		self.onShow.append(self.hide_me)
 
 	def hide_me(self):
-		idx = config.av.autores_label_timeout.index
-		if idx:
-			idx += 4
-			self.hideTimer.start(idx * 1000, True)
+		value = config.av.autores_label_timeout.value
+		if value:
+			self.hideTimer.start(value * 1000, True)
 
 
 previous = None
@@ -909,7 +905,7 @@ class AutoVideoMode(Screen):
 					print("[VideoMode] setMode - port: %s, mode: %s is not available" % (config_port, write_mode))
 					resolutionlabel["restxt"].setText(_("Video mode: %s not available") % write_mode)
 
-				if config.av.autores_label_timeout.value != "0":
+				if config.av.autores_label_timeout.value:
 					resolutionlabel.show()
 
 			elif write_mode and current_mode != write_mode:
