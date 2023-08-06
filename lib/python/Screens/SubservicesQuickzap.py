@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
@@ -66,8 +65,11 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
 			self.playSubservice((self.currentlyPlayingSubservice - 1) % len(self.subservices))
 
 	def getSubserviceIndex(self, service):
-		if self.subservices and service and service.toCompareString() in [x[1] for x in self.subservices]:
-			return [x[1] for x in self.subservices].index(service.toCompareString())
+		if self.subservices and service:
+			if service.toCompareString() in [x[1] for x in self.subservices]:
+				return [x[1] for x in self.subservices].index(service.toCompareString())
+			elif service.toString() in [x[1] for x in self.subservices]:
+				return [x[1] for x in self.subservices].index(service.toString())
 
 	def keyNumberGlobal(self, number):
 		if number == 0:
