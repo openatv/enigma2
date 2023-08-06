@@ -1745,6 +1745,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				rec_filename = split(current.getPath())[1]
 				if rec_filename.endswith(".ts"):
 					rec_filename = rec_filename[:-3]
+				if rec_filename.endswith(".stream"):
+					rec_filename = rec_filename[:-7]
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.isRunning() and not timer.justplay and rec_filename in timer.Filename:
 						choices = [
