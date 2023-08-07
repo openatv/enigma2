@@ -323,13 +323,9 @@ RESULT eStaticServiceMP3Info::getName(const eServiceReference &ref, std::string 
 		name = ref.name;
 	else
 	{
-		if (endsWith(ref.path, ".stream"))
-		{
-			if (!m_parser.parseMeta(ref.path))
-			{
-				name = m_parser.m_name;
-				return 0;
-			}
+		if (endsWith(ref.path, ".stream") && !m_parser.parseMeta(ref.path))
+			name = m_parser.m_name;
+			return 0;
 		}
 		size_t last = ref.path.rfind('/');
 		if (last != std::string::npos)
