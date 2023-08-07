@@ -594,7 +594,7 @@ void eDVBServiceRecord::saveCutlist()
 	/* XXX: dupe of eDVBServicePlay::saveCuesheet, refactor plz */
 	
 	/* save cuesheet only when main file is accessible. */
-	if (::access(filename.c_str(), R_OK) < 0)
+	if (::access(m_filename.c_str(), R_OK) < 0)
 		return;
 
 	std::string filename = m_filename + ".cuts";
