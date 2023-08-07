@@ -461,6 +461,7 @@ class RecordTimerList(TimerListBase):
 			state = TIMER_STATES.get(TimerEntry.StateEnded)
 			stateIcon = self.iconDone
 		if timer.failed:
+			state = TIMER_STATES.get(TimerEntry.StateFailed)
 			stateIcon = self.iconFailed
 		leftOffset = self.indent + self.iconWidth + self.iconMargin
 		res = [None]
