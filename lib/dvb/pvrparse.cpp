@@ -652,7 +652,7 @@ int eMPEGStreamInformationWriter::stopSave(void)
 		return 1;
 
 	// do not create access points if there is no recording file
-	if (::access(filename.c_str(), R_OK) < 0)
+	if (::access(m_filename.c_str(), R_OK) < 0)
 		return 1;
 
 	std::string ap_filename(m_filename);
