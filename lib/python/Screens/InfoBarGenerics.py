@@ -221,6 +221,8 @@ def getActiveSubservicesForCurrentChannel(current_service):
 
 
 def hasActiveSubservicesForCurrentChannel(current_service):
+	if current_service and "%3a" not in current_service:
+		current_service = ':'.join(current_service.split(':')[:11])
 	activeSubservices = getActiveSubservicesForCurrentChannel(current_service)
 	return bool(activeSubservices and len(activeSubservices) > 1)
 
@@ -4033,7 +4035,7 @@ class InfoBarSubserviceSelection:
 		self.session.nav.event.remove(self.checkSubservicesAvail)
 
 	def checkSubservicesAvail(self):
-		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
+		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toString()
 		if not refstr or not hasActiveSubservicesForCurrentChannel(refstr):
 			self["SubserviceQuickzapAction"].setEnabled(False)
 			self.bouquets = self.bsel = self.selectedSubservice = None
@@ -4045,13 +4047,15 @@ class InfoBarSubserviceSelection:
 		self.changeSubservice(-1)
 
 	def playSubservice(self, ref):
-		if ref.getUnsignedData(6) == 0:
+		if ref.getUnsignedData(6) == 0 and "%3a" not in ref.toString():
 			ref.setName("")
 		self.session.nav.playService(ref, checkParentalControl=False, adjust=False)
 
 	def changeSubservice(self, direction):
 		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
 		if refstr:
+			if "%3a" in refstr:
+				refstr = self.session.nav.getCurrentlyPlayingServiceReference().toString()
 			subservices = getActiveSubservicesForCurrentChannel(refstr)
 			if subservices and len(subservices) > 1 and refstr in [x[1] for x in subservices]:
 				selection = [x[1] for x in subservices].index(refstr)
@@ -4066,6 +4070,8 @@ class InfoBarSubserviceSelection:
 	def subserviceSelection(self):
 		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
 		if refstr:
+			if "%3a" in refstr:
+				refstr = self.session.nav.getCurrentlyPlayingServiceReference().toString()
 			subservices = getActiveSubservicesForCurrentChannel(refstr)
 			if subservices and len(subservices) > 1 and refstr in [x[1] for x in subservices]:
 				selection = [x[1] for x in subservices].index(refstr)
@@ -4134,6 +4140,8 @@ class InfoBarSubserviceSelection:
 		else:
 			refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
 			if refstr:
+				if "%3a" in refstr:
+					refstr = self.session.nav.getCurrentlyPlayingServiceReference().toString()
 				subservices = getActiveSubservicesForCurrentChannel(refstr)
 				if subservices and len(subservices) > 1 and refstr in [x[1] for x in subservices]:
 					self.subserviceSelection()
