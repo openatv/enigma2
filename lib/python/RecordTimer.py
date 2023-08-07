@@ -1367,7 +1367,7 @@ class RecordTimerEntry(TimerEntry, object):
 			print("[RecordTimer] Write error while recording, %s" % msg)
 			# Show notification. The 'id' will make sure that it will be displayed only once, even if
 			# more timers are failing at the same time which is very likely in case of disk full.
-			AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
+			AddPopup(text=_("Write error while recording: %s") % (_("An unknown error occurred."), _("The device was not found."), _("The device is not writable."), _("The device is full."))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
 			# Okay, the recording has been stopped. We need to properly note that in our
 			# state, with also keeping the possibility to re-try.
 			# DEBUG: This has to be done!
