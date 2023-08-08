@@ -1075,11 +1075,14 @@ class NimSelection(Screen):
 							lnb = nimConfig.advanced.sat.get(sat).content.items.get("lnb")
 							if lnb:
 								lnb = int(lnb.value)
-								lof = nimConfig.advanced.lnb[lnb].lof.value
-								text += " / " + LNB_CHOICES().get(lof, lof)
-								if lof == "unicable":
-									uni = nimConfig.advanced.lnb[lnb].unicable.value
-									text += " / " + UNICABLE_CHOICES().get(uni, uni)
+								try:
+									lof = nimConfig.advanced.lnb[lnb].lof.value
+									text += " / " + LNB_CHOICES().get(lof, lof)
+									if lof == "unicable":
+										uni = nimConfig.advanced.lnb[lnb].unicable.value
+										text += " / " + UNICABLE_CHOICES().get(uni, uni)
+								except AttributeError:
+									pass
 						if fbc_text:
 							text += "\n" + fbc_text
 					if isFBCLink(x.slot) and nimConfig.configMode.value != "advanced":
