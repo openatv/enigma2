@@ -46,17 +46,18 @@ class Navigation:
 		self.RecordTimer = None
 		self.isRecordTimerImageStandard = False
 		self.skipServiceReferenceReset = False
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):  # Do we really need this ?
 			self.RecordTimer = p()
 			if self.RecordTimer:
 				break
+
+		self.PowerTimer = PowerTimer.PowerTimer()  # Init PowerTimer before RecordTimer.loadTimers
+
 		if not self.RecordTimer:
 			self.RecordTimer = RecordTimer.RecordTimer()
 			self.RecordTimer.loadTimers()  # call loadTimers after init of self.RecordTimer
 			self.isRecordTimerImageStandard = True
 
-		self.PowerTimer = None
-		self.PowerTimer = PowerTimer.PowerTimer()
 		self.PowerTimer.loadTimers()  # call loadTimers after init of self.PowerTimer
 
 		self.__wasTimerWakeup = False
