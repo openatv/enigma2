@@ -677,19 +677,14 @@ class PowerTimerOverview(TimerOverviewBase):
 		self.session.nav.PowerTimer.on_state_change.remove(self.onStateChange)
 
 	def loadTimerList(self):
-		def cmp(a, b):  # Helper function to move finished timers to end of list.
-			return (a > b) - (a < b)
-
-		def eolCompare(x, y):
-			if x[0].state != y[0].state and x[0].state == TimerEntry.StateEnded or y[0].state == TimerEntry.StateEnded:
-				return cmp(x[0].state, y[0].state)
-			return cmp(x[0].begin, y[0].begin)
+		def condition(element):
+			return element[0].state == TimerEntry.StateEnded, element[0].begin
 
 		timerList = []
 		timerList.extend([(timer, False) for timer in self.session.nav.PowerTimer.timer_list])
 		timerList.extend([(timer, True) for timer in self.session.nav.PowerTimer.processed_timers])
 		if config.usage.timerlist_finished_timer_position.index:  # End of list.
-			timerList.sort(key=cmp_to_key(eolCompare))
+			timerList.sort(key=condition)
 		else:
 			timerList.sort(key=lambda x: x[0].begin)
 		self["timerlist"].setList(timerList)
@@ -848,19 +843,14 @@ class RecordTimerOverview(TimerOverviewBase):
 		self.session.nav.RecordTimer.on_state_change.remove(self.onStateChange)
 
 	def loadTimerList(self):
-		def cmp(a, b):  # Helper function to move finished timers to end of list.
-			return (a > b) - (a < b)
-
-		def endCompare(x, y):
-			if x[0].state != y[0].state and x[0].state == TimerEntry.StateEnded or y[0].state == TimerEntry.StateEnded:
-				return cmp(x[0].state, y[0].state)
-			return cmp(x[0].begin, y[0].begin)
+		def condition(element):
+			return element[0].state == TimerEntry.StateEnded, element[0].begin
 
 		timerList = []
 		timerList.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
 		timerList.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
 		if config.usage.timerlist_finished_timer_position.index:  # End of list.
-			timerList.sort(key=cmp_to_key(endCompare))
+			timerList.sort(key=condition)
 		else:
 			timerList.sort(key=lambda x: x[0].begin)
 		self["timerlist"].setList(timerList)
