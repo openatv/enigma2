@@ -165,7 +165,6 @@ def createMoveList(serviceref, dest):
 
 def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 	moveList = createMoveList(serviceref, dest)
-	movedList = []  # Try to "atomically" move these files.
 	try:
 		# print("[MovieSelection] Moving in background.")
 		moveList.reverse()  # Start with the smaller files, do the big one later.
@@ -179,7 +178,6 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 
 def copyServiceFiles(serviceref, dest, name=None):
 	moveList = createMoveList(serviceref, dest)  # Current should be "ref" type, dest a simple path string.
-	movedList = []  # Try to "atomically" move these files.
 	try:
 		# print("[MovieSelection] Copying in background.")
 		moveList.reverse()  # Start with the smaller files, do the big one later.
@@ -806,10 +804,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def __evEOF(self):
 		playInBackground = self.list.playInBackground
 		playInForeground = self.list.playInForeground
-		if not playInBackground:  # TODO: What if playInForeground?
+		if not playInBackground:  # TODO: What if playInForeground = True?
 			print("[MovieSelection] Not playing anything in background.")
 			return
-		if not playInBackground:  # TODO: What is this?
+		if not playInForeground:
 			print("[MovieSelection] Not playing anything in foreground.")
 			return
 		current = self.getCurrent()
@@ -885,7 +883,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.startPreview()
 
 	def seekRelative(self, direction, amount):
-		if self.list.playInBackground or self.list.playInBackground:  # TODO ?
+		if self.list.playInBackground or self.list.playInForeground:
 			seekable = self.getSeek()
 			if seekable is None:
 				return
@@ -995,14 +993,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				with open(path, "rb") as fd:
 					updates = load(fd)
 				self.applyConfigSettings(updates)
-			except OSError as err:
+			except OSError as err:  # Ignore fail to open errors.
 				updates = {
 					"moviesort": config.movielist.moviesort.default,
 					"description": config.movielist.description.default,
 					"movieoff": config.usage.on_movie_eof.default
 				}
 				self.applyConfigSettings(updates)
-				pass  # Ignore fail to open errors.
 			except Exception as err:
 				print("[MovieSelection] Error: Failed to load settings from '%s'!  (%s)" % (path, str(err)))
 		else:
