@@ -205,8 +205,8 @@ def getActiveSubservicesForCurrentChannel(current_service):
 		possibleSubservices = getPossibleSubservicesForCurrentChannel(current_service)
 		activeSubservices = []
 		epgCache = eEPGCache.getInstance()
-		idx = 0
 		for subservice in possibleSubservices:
+			servicename = ServiceReference(subservice).getServiceName()
 			events = epgCache.lookupEvent(['BDTS', (subservice, 0, -1)])
 			if events and len(events) == 1:
 				event = events[0]
@@ -214,17 +214,18 @@ def getActiveSubservicesForCurrentChannel(current_service):
 				if title and "Sendepause" not in title:
 					starttime = datetime.fromtimestamp(event[0]).strftime('%H:%M')
 					endtime = datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
-					servicename = ServiceReference(subservice).getServiceName()
 					schedule = str(starttime) + "-" + str(endtime)
 					activeSubservices.append((servicename + " " + schedule + " " + title, subservice))
+			else:
+				activeSubservices.append((servicename, subservice))
 		return activeSubservices
 
 
 def hasActiveSubservicesForCurrentChannel(current_service):
 	if current_service and "%3a" not in current_service:
 		current_service = ':'.join(current_service.split(':')[:11])
-	activeSubservices = getActiveSubservicesForCurrentChannel(current_service)
-	return bool(activeSubservices and len(activeSubservices) > 1)
+	subservices = getPossibleSubservicesForCurrentChannel(current_service)
+	return bool(subservices and len(subservices) > 1)
 
 
 class TimerSelection(Screen):
