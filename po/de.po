@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-02 20:55+0000\n"
-"PO-Revision-Date: 2023-08-04 08:23+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"PO-Revision-Date: 2023-08-11 04:46+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -976,86 +976,86 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package found."
 msgid_plural "%d packages found."
-msgstr[0] "%d Paket gefunden."
-msgstr[1] "%d Pakete gefunden."
+msgstr[0] "%d Plugin gefunden."
+msgstr[1] "%d Plugins gefunden."
 
 #, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
-msgstr[0] "%d Paket kann aktualisiert werden."
-msgstr[1] "%d Pakete können aktualisiert werden."
+msgstr[0] "%d Plugin kann aktualisiert werden."
+msgstr[1] "%d Plugins können aktualisiert werden."
 
 #, python-format
 msgid "%d package installable."
 msgid_plural "%d packages installable."
-msgstr[0] "%d Paket installierbar."
-msgstr[1] "%d Pakete installierbar."
+msgstr[0] "%d Plugin installierbar."
+msgstr[1] "%d Plugins installierbar."
 
 #, python-format
 msgid "%d package installed."
 msgid_plural "%d packages installed."
-msgstr[0] "%d Paket installiert."
-msgstr[1] "%d Pakete installiert."
+msgstr[0] "%d Plugin installiert."
+msgstr[1] "%d Plugins installiert."
 
 #, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
-msgstr[0] "%d Paket zur Installation markiert."
-msgstr[1] "%d Pakete zur Installation markiert."
+msgstr[0] "%d Plugin zur Installation markiert."
+msgstr[1] "%d Plugins zur Installation markiert."
 
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
-msgstr[0] "%d Paket zum Entfernen markiert."
-msgstr[1] "%d Pakete zum Entfernen markiert."
+msgstr[0] "%d Plugin zum Entfernen markiert."
+msgstr[1] "%d Plugins zum Entfernen markiert."
 
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] "%d Paket aktualisiert."
-msgstr[1] "%d Pakete aktualisiert."
+msgstr[0] "%d Plugin aktualisiert."
+msgstr[1] "%d Plugins aktualisiert."
 
 #, python-format
 msgid "%d package was configured."
 msgid_plural "%d packages were configured."
-msgstr[0] "%d Paket konfiguriert."
-msgstr[1] "%d Pakete konfiguriert."
+msgstr[0] "%d Plugin konfiguriert."
+msgstr[1] "%d Plugins konfiguriert."
 
 #, python-format
 msgid "%d package was deselected."
 msgid_plural "%d packages were deselected."
-msgstr[0] "%d Paket abgewählt."
-msgstr[1] "%d Pakete abgewählt."
+msgstr[0] "%d Plugin abgewählt."
+msgstr[1] "%d Plugins abgewählt."
 
 #, python-format
 msgid "%d package was downloaded."
 msgid_plural "%d packages were downloaded."
-msgstr[0] "%d Paket heruntergeladen."
-msgstr[1] "%d Pakete heruntergeladen."
+msgstr[0] "%d Plugin heruntergeladen."
+msgstr[1] "%d Plugins heruntergeladen."
 
 #, python-format
 msgid "%d package was identified for upgrade."
 msgid_plural "%d packages were identified for upgrade."
-msgstr[0] "%d Paket zum Aktualisieren."
-msgstr[1] "%d Pakete zum Aktualisieren."
+msgstr[0] "%d Plugin zum Aktualisieren."
+msgstr[1] "%d Plugins zum Aktualisieren."
 
 #, python-format
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
-msgstr[0] "%d Paket installiert."
-msgstr[1] "%d Pakete installiert."
+msgstr[0] "%d Plugin installiert."
+msgstr[1] "%d Plugins installiert."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
-msgstr[0] "%d Paket entfernt."
-msgstr[1] "%d Pakete entfernt."
+msgstr[0] "%d Plugin entfernt."
+msgstr[1] "%d Plugins entfernt."
 
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
-msgstr[0] "%d Paket aktualisiert."
-msgstr[1] "%d Pakete aktualisiert."
+msgstr[0] "%d Plugin aktualisiert."
+msgstr[1] "%d Plugins aktualisiert."
 
 #, python-format
 msgid "%d sec"
@@ -6513,13 +6513,13 @@ msgstr "Spiegel"
 msgid "Disk full"
 msgstr "Festplatte voll!"
 
-msgid "Disk full?"
+msgid "The storage device is full!"
 msgstr "Festplatte voll?"
 
-msgid "Disk is not writable!"
+msgid "The storage device is not writable!"
 msgstr "Festplatte ist nicht beschreibbar!"
 
-msgid "Disk was not found!"
+msgid "The storage device was not found!"
 msgstr "Festplatte wurde nicht gefunden!"
 
 #
@@ -6539,7 +6539,7 @@ msgid "Display Settings"
 msgstr "Displayeinstellungen"
 
 msgid "Display Skin Packages"
-msgstr "Display-Skin"
+msgstr "Display-Skins"
 
 msgid "Display context menu"
 msgstr "Kontextmenü anzeigen"
@@ -6965,7 +6965,9 @@ msgstr "Herunterladen der Updates. Bitte warten..."
 
 #
 msgid "Downloading plugin information. Please wait..."
-msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
+msgstr ""
+"Lade Plugin-Informationen herunter.\n"
+"Bitte warten..."
 
 msgid "Downmix"
 msgstr "Downmix"
@@ -7150,10 +7152,10 @@ msgid "Edit Alternatives"
 msgstr "Alternativen bearbeiten"
 
 msgid "Edit Mode Off"
-msgstr "Edit-Modus aus"
+msgstr "Bearbeitungsmodus Aus"
 
 msgid "Edit Mode On"
-msgstr "Edit-Modus an"
+msgstr "Bearbeitungsmodus Ein"
 
 msgid "Edit Quad Channel Entry"
 msgstr "Quad Sendereintrag bearbeiten"
@@ -9115,7 +9117,9 @@ msgstr "Lade Liste der Softcams. Bitte warten..."
 
 #
 msgid "Getting plugin information. Please wait..."
-msgstr "Lade Plugin-Informationen. Bitte warten..."
+msgstr ""
+"Lade Plugin-Informationen.\n"
+"Bitte warten..."
 
 msgid "Ghana"
 msgstr "Ghana"
@@ -14012,10 +14016,14 @@ msgid "Please wait while the data is extracted..."
 msgstr "Daten werden entpackt. Bitte warten..."
 
 msgid "Please wait while the list downloads..."
-msgstr "Die Liste wird heruntergeladen. Bitte warten..."
+msgstr ""
+"Die Liste wird heruntergeladen.\n"
+"Bitte warten..."
 
 msgid "Please wait while the plugin is downloaded."
-msgstr "Plugin wird heruntergeladen. Bitte warten..."
+msgstr ""
+"Plugin wird heruntergeladen.\n"
+"Bitte warten..."
 
 msgid "Please wait while the plugin is removed."
 msgstr "Plugin wird entfernt. Bitte warten..."
@@ -16474,10 +16482,10 @@ msgid "Select 'Yes' to set the cursor position to the end of the line when editi
 msgstr "Wählen Sie 'Ja', um den Cursor an das Ende einer Textzeile zu setzen. 'Nein' setzt den Cursor an den Anfang der Textzeile."
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden die 'dev', 'staticdev', 'dbg' und 'doc' Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden 'dev', 'staticdev', 'dbg' und 'doc' Pakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden LCD-Skin-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden LCD-Display-Skin Pakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden OpenPLi-Pakete in der Download-Liste angezeigt."
@@ -16492,7 +16500,7 @@ msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Treiber-Pakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Erweiterungs-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Erweiterungs Plugins in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Kernel-Pakete in der Download-Liste angezeigt."
@@ -16504,28 +16512,28 @@ msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Picon-Pakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Plugin-Skin-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Plugin-Skin Pakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show security packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Sicherheitspakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Senderlisten-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Senderlistenpakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Skinkomponenten-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Skinkomponenten in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Skin-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Skin Pakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Softcam-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Softcam Pakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden 'src'-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden 'src' Pakete in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Systemplugin-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Systemplugins in der Download-Liste angezeigt."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Wählen Sie 'Ja', um die erweiterten Einstellungen anzuzeigen."
@@ -17166,7 +17174,9 @@ msgid "Select the type of this timer."
 msgstr "Wählen Sie den Typ dieses Timers."
 
 msgid "Select the video mode to be used on the TV."
-msgstr "Wählen Sie den Videomodus, der auf dem Fernsehgerät verwendet werden soll."
+msgstr ""
+"Den Videomodus wählen, der auf dem Fernsehgerät verwendet werden soll.\n"
+"Sollte der Bildschirm danach dunkel bleiben, die Taste TXT (Videotext) etwas länger drücken."
 
 msgid ""
 "Select the wireless network to which you want to connect.\n"
@@ -17731,7 +17741,7 @@ msgid "Sets the root directory of media list. This removes the '..' entry from b
 msgstr "Wählen Sie das Root-Verzeichnis der Aufnahmeliste, um '..' in der Ansicht zu unterdrücken."
 
 msgid "Setting Packages"
-msgstr "Senderliste"
+msgstr "Senderlisten"
 
 msgid "Setting Restored "
 msgstr "Wiederhergestellte Programmliste "
@@ -17888,7 +17898,7 @@ msgid "Setup your LCD"
 msgstr "Einstellen des Displays"
 
 msgid "Setup your LCD Skin"
-msgstr "Einrichten des LCD-Skins"
+msgstr "Einrichten des LCD-Display-Skins"
 
 # Quick Menue
 msgid "Setup your OSD"
@@ -18091,7 +18101,7 @@ msgid "Show EventView"
 msgstr "Sendungsinformation anzeigen"
 
 msgid "Show Extension packages"
-msgstr "Erweiterungs-Pakete anzeigen"
+msgstr "Erweiterungs-Plugins anzeigen"
 
 msgid "Show Format Setup"
 msgstr "Samba-Einstellungen anzeigen"
@@ -18225,13 +18235,13 @@ msgid "Show Security packages"
 msgstr "Sicherheitspakete anzeigen"
 
 msgid "Show Setting packages"
-msgstr "Senderlisten-Pakete anzeigen"
+msgstr "Senderlistenpakete anzeigen"
 
 msgid "Show Single EPG"
 msgstr "Einzel-EPG anzeigen"
 
 msgid "Show Skin Component packages"
-msgstr "Skinkomponenten-Pakete anzeigen"
+msgstr "Skinkomponenten anzeigen"
 
 msgid "Show Skin packages"
 msgstr "Skin-Pakete anzeigen"
@@ -18243,7 +18253,7 @@ msgid "Show Source packages"
 msgstr "Source-Pakete anzeigen"
 
 msgid "Show System Plugin packages"
-msgstr "Systemplugin-Pakete anzeigen"
+msgstr "Systemplugins anzeigen"
 
 msgid "Show Timer List"
 msgstr "Alle Timer anzeigen"
@@ -21365,7 +21375,7 @@ msgid "Today"
 msgstr "Heute"
 
 msgid "Toggle Digital downmix..."
-msgstr "Dolby-Digital-Downmix An/Aus"
+msgstr "Dolby-Digital-Downmix Ein/Aus"
 
 msgid "Toggle HDMI-In PiP"
 msgstr "HDMI-IN als Bild-im-Bild wiedergeben"
@@ -21421,10 +21431,10 @@ msgid "Toggle if new text inserts before or overwrites existing text"
 msgstr "Zwischen Einfüge- und Überschreibungsmodus umschalten"
 
 msgid "Toggle item edit mode on/off"
-msgstr "Edit-Modus An/Aus umschalten"
+msgstr "Bearbeitungsmodus Ein/Aus umschalten"
 
 msgid "Toggle item move mode on/off"
-msgstr "Verschiebemodus An/Aus umschalten"
+msgstr "Verschiebemodus Ein/Aus umschalten"
 
 msgid "Toggle move mode"
 msgstr "Verschiebemodus aktivieren / deaktivieren"

@@ -733,7 +733,7 @@ class RecordTimerEntry(TimerEntry, object):
 					self.start_prepare = int(time()) + 5  # tryPrepare in 5 seconds.
 					self.log(0, "Next try in 5 seconds.  (%d/3)" % self.mountPathRetryCounter)
 					return False
-				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.mountPathErrorNumber - 1], self.name)
+				message = _("Write error at start of recording. %s\n%s") % ((_("The storage device was not found!"), _("The storage device is not writable!"), _("The storage device is full!"))[self.mountPathErrorNumber - 1], self.name)
 				if InfoBar and InfoBar.instance:
 					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_ERROR, timeout=20)
 				else:
@@ -1367,7 +1367,7 @@ class RecordTimerEntry(TimerEntry, object):
 			print("[RecordTimer] Write error while recording, %s" % msg)
 			# Show notification. The 'id' will make sure that it will be displayed only once, even if
 			# more timers are failing at the same time which is very likely in case of disk full.
-			AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
+			AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("The storage device was not found!"), _("The storage device is not writable!"), _("The storage device is full!"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
 			# Okay, the recording has been stopped. We need to properly note that in our
 			# state, with also keeping the possibility to re-try.
 			# DEBUG: This has to be done!

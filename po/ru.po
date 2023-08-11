@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-02 20:55+0000\n"
-"PO-Revision-Date: 2023-07-20 18:05+0000\n"
+"PO-Revision-Date: 2023-08-06 08:26+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -1005,16 +1005,16 @@ msgstr[2] "%d пакетов установлено."
 #, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пакет помечен для установки."
+msgstr[1] "%d пакета, помеченных для установки."
+msgstr[2] "%d пакетов, помеченных для установки."
 
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пакет помечен для удаления."
+msgstr[1] "%d пакета, помеченных для удаления."
+msgstr[2] "%d пакетов, помеченных для удаления."
 
 #, python-format
 msgid "%d package upgraded."
@@ -1477,7 +1477,7 @@ msgid "1536 Mb"
 msgstr "1536 Мб"
 
 msgid "16/9 reset to normal"
-msgstr ""
+msgstr "16/9 сброс в нормальное состояние"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 режим ящика"
@@ -2160,13 +2160,13 @@ msgid "Add/Remove a timer for the current event"
 msgstr "Добавить/удалить таймер для идущей передачи"
 
 msgid "Add/Remove highlighted plugin to/from download list"
-msgstr ""
+msgstr "Добавить/удалить выделенный плагин в/из списка загрузки"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
-msgstr ""
+msgstr "Добавить/удалить выделенный плагин в/из списка удаления"
 
 msgid "Add/Remove highlighted plugin to/from update list"
-msgstr ""
+msgstr "Добавить/удалить выделенный плагин в/из списка обновлений"
 
 msgid "Adding schedule..."
 msgstr "Добавление задания..."
@@ -2651,7 +2651,7 @@ msgid "Aspect ratio"
 msgstr "Соотношение сторон"
 
 msgid "Aspect switch"
-msgstr ""
+msgstr "Переключатель соотношения сторон"
 
 msgid "Assamese"
 msgstr "Ассамский"
@@ -3179,7 +3179,7 @@ msgid "Blue"
 msgstr "Синий"
 
 msgid "Bluetooth"
-msgstr ""
+msgstr "Bluetooth"
 
 msgid "Bluetooth Setup"
 msgstr "Настройки Bluetooth"
@@ -3499,7 +3499,7 @@ msgid "CI (Common Interface) Setup"
 msgstr "Настройки CI"
 
 msgid "CI Boot Delay"
-msgstr ""
+msgstr "Задержка загрузки CI"
 
 msgid "CI Helper Settings"
 msgstr "Настройки CIHelper"
@@ -3508,7 +3508,7 @@ msgid "CI assignment"
 msgstr "Назначение CI"
 
 msgid "CI enabled"
-msgstr ""
+msgstr "CI включён"
 
 msgid "CI slot: "
 msgstr "Слот CI: "
@@ -4427,7 +4427,7 @@ msgid "Common Interface Settings"
 msgstr "Общие настройки интерфейса"
 
 msgid "Common Settings"
-msgstr ""
+msgstr "Общие настройки"
 
 msgid "Common Setup Actions"
 msgstr "Общие действия по установке"
@@ -6187,13 +6187,13 @@ msgstr "Антенна"
 msgid "Disk full"
 msgstr "Диск заполнен"
 
-msgid "Disk full?"
+msgid "The storage device is full!"
 msgstr "Диск полон?"
 
-msgid "Disk is not writable!"
+msgid "The storage device is not writable!"
 msgstr "Диск не доступен для записи!"
 
-msgid "Disk was not found!"
+msgid "The storage device was not found!"
 msgstr "Диск не найден!"
 
 msgid "Display 16:9 content as"
@@ -6590,7 +6590,7 @@ msgid "Download error"
 msgstr "Ошибка загрузки"
 
 msgid "Download the selected list of plugins"
-msgstr ""
+msgstr "Скачать выбранный список плагинов"
 
 msgid "Downloadable plugins"
 msgstr "Доступные плагины"
@@ -7529,7 +7529,7 @@ msgstr "Ошибка: не удалось создать каталог '%s'!"
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
-msgstr ""
+msgstr "Ошибка: создание целевого каталога для пикона: (%s)"
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -7866,7 +7866,7 @@ msgid "External subtitle switch fonts"
 msgstr "Переключение шрифтов для внешних субтитров"
 
 msgid "Extra High"
-msgstr ""
+msgstr "Очень высокий"
 
 msgid "Extra motor options"
 msgstr "Продвинутые настройки мотора"
@@ -7899,10 +7899,10 @@ msgid "F4"
 msgstr "F4"
 
 msgid "FBC SCR (Unicable/JESS)"
-msgstr ""
+msgstr "FBC SCR (Unicable/JESS)"
 
 msgid "FBC automatic"
-msgstr ""
+msgstr "FBC автоматический"
 
 msgid "FCC enabled"
 msgstr "FCC включён"
@@ -9039,7 +9039,7 @@ msgid "Hierarchy info"
 msgstr "Информация иерархии"
 
 msgid "High"
-msgstr ""
+msgstr "Высокий"
 
 msgid "High bitrate support"
 msgstr "Поддержка высокого битрейта"
@@ -12365,7 +12365,7 @@ msgid "Open context menu (contains settings menu)"
 msgstr "Открыть контекстное меню (содержит меню настроек)"
 
 msgid "Open external subtitle management screen"
-msgstr ""
+msgstr "Открыть экран управления внешними субтитрами"
 
 msgid "Open favorites list"
 msgstr "Открыть список фаворитов"
@@ -12847,7 +12847,7 @@ msgid "Picon and Service Name"
 msgstr "Пикон и название канала"
 
 msgid "Picon package target location"
-msgstr ""
+msgstr "Целевое местоположение пакета Picon"
 
 msgid "Picon width"
 msgstr "Ширина пикона"
@@ -13479,14 +13479,14 @@ msgid "Press OK to edit the settings."
 msgstr "Нажмите OK, чтобы изменить настройки."
 
 msgid "Press OK to enter PIN code"
-msgstr ""
+msgstr "Нажмите OK, чтобы ввести PIN-код"
 
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Нажмите ОК, чтобы получить подробную информацию о %s"
 
 msgid "Press OK to init module"
-msgstr ""
+msgstr "Нажмите OK для инициализации модуля"
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -13497,13 +13497,13 @@ msgid "Press OK to install and use this locale.  [%s]"
 msgstr "Нажмите OK, чтобы установить и использовать эту локаль.  [%s]"
 
 msgid "Press OK to open module info"
-msgstr ""
+msgstr "Нажмите OK, чтобы открыть информацию о модуле"
 
 msgid "Press OK to reset PIN code"
-msgstr ""
+msgstr "Нажмите OK, чтобы сбросить PIN-код"
 
 msgid "Press OK to reset module"
-msgstr ""
+msgstr "Нажмите OK, чтобы сбросить модуль"
 
 msgid "Press OK to scan"
 msgstr "Нажмите OK для поиска"
@@ -14417,7 +14417,7 @@ msgid "Remove highlighted directory from bookmarks"
 msgstr "Удалить выбранную папку из закладок"
 
 msgid "Remove plugins ..."
-msgstr ""
+msgstr "Удалить плагины..."
 
 msgid "Remove selected service"
 msgstr "Удалить выбранный канал"
@@ -14435,7 +14435,7 @@ msgid "Remove the current bookmark"
 msgstr "Remove the current bookmark"
 
 msgid "Remove the selected list of plugins"
-msgstr ""
+msgstr "Удалить выбранный список плагинов"
 
 msgid "Remove timer"
 msgstr "Удалить таймер"
@@ -16066,7 +16066,7 @@ msgid "Select the tags that should be used for this recording."
 msgstr "Выберите теги, которые следует использовать для этой записи."
 
 msgid "Select the target location where picon files will be installed."
-msgstr ""
+msgstr "Выберите целевое место, куда будут установлены файлы пиконов."
 
 msgid "Select the time after which this timer can start."
 msgstr "Выберите время, после которого этот таймер может запуститься."
@@ -16457,13 +16457,13 @@ msgid "Set Base time"
 msgstr "Базовое время"
 
 msgid "Set CI Boot delay."
-msgstr ""
+msgstr "Установите задержку загрузки CI."
 
 msgid "Set CI assignment for detection of available services."
 msgstr "Задать назначение CI для обнаружения доступных каналов."
 
 msgid "Set DVB CI delay."
-msgstr ""
+msgstr "Установите задержку DVB CI."
 
 msgid "Set Framerate for MiniTV"
 msgstr "Частота кадров для PiG-окна"
@@ -17855,11 +17855,11 @@ msgstr "Слот %d"
 
 #, python-format
 msgid "Slot %s / FBC in %s"
-msgstr ""
+msgstr "Слот %s / FBC в %s"
 
 #, python-format
 msgid "Slot %s / FBC virtual %s"
-msgstr ""
+msgstr "Слот %s / виртуальный FBC %s"
 
 #, python-format
 msgid "Slot %s: %s"
@@ -18838,7 +18838,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 19.07.2023"
+msgstr "Коррекция перевода Monja 06.08.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19349,7 +19349,7 @@ msgstr ""
 "Пожалуйста, сначала установите его."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
-msgstr ""
+msgstr "Каталог Picon уже существует и должен быть удалён. Вы хотите продолжить?"
 
 #, python-format
 msgid "The results have been written to %s."
@@ -19655,7 +19655,7 @@ msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Позволяет включить поддержку объемного звука 3D."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
-msgstr ""
+msgstr "Этот параметр позволяет установить значения смещения для различных разрешений почтового ящика."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Эта опция позволяет показать SNR в dB (поддерживается не всеми ресиверами)."
@@ -20716,7 +20716,7 @@ msgstr ""
 "Загрузчик обновлен!"
 
 msgid "Update the selected list of plugins"
-msgstr ""
+msgstr "Обновить выбранный список плагинов"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Обновление, сохранение, восстановление прошивки или настроек"
