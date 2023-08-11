@@ -1029,8 +1029,8 @@ class ChannelSelectionBase(Screen):
 			EDIT_PIP: _("PiP")
 		}.get(self.function)
 		functionType = " [%s]" % functionType if functionType else ""
-		# self.setTitle("%s: %s%s" % (mode, title, functionType))
-		self.setTitle("%s (%s)%s" % (title, mode, functionType))
+		self.setTitle("%s - %s%s" % (mode, title, functionType))
+		#self.setTitle("%s (%s)%s" % (title, mode, functionType))
 		print("[ChannelSelection] buildTitle DEBUG: Setting title='%s'." % self.getTitle())
 
 	def getServiceName(self, serviceReference):
