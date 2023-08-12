@@ -316,7 +316,7 @@ class RemoteControlType(Setup):
 				("multibox", 27),
 				("multiboxse", 27),
 				("multiboxpro", 27),
-				("h7", 28),  # new model
+				("h7", 21),  # new model
 				("h9", 28),  # new model
 				("h9se", 28),  # new model
 				("h9combo", 28),
