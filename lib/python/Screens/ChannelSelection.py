@@ -1010,7 +1010,9 @@ class ChannelSelectionBase(Screen):
 					return _("Reception Lists")
 				if "ORDER BY name" in servicePath:
 					return _("All Services")
-			return serviceName if config.usage.multibouquet.value else _("Favorites")
+			elif serviceName == "favourites" and not config.usage.multibouquet.value:  # Translate single bouquet favourites
+				return _("Favorites")
+			return serviceName
 
 		mode = _("TV") if self.mode == MODE_TV else _("Radio")
 		title = self.baseTitle
