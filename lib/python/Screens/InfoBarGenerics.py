@@ -216,16 +216,22 @@ def getActiveSubservicesForCurrentChannel(current_service):
 					endtime = datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
 					schedule = str(starttime) + "-" + str(endtime)
 					activeSubservices.append((servicename + " " + schedule + " " + title, subservice))
-			else:
+			elif config.usage.show_infobar_subservices.value == 2:
 				activeSubservices.append((servicename, subservice))
 		return activeSubservices
 
 
 def hasActiveSubservicesForCurrentChannel(current_service):
-	if current_service and "%3a" not in current_service:
-		current_service = ':'.join(current_service.split(':')[:11])
-	subservices = getPossibleSubservicesForCurrentChannel(current_service)
-	return bool(subservices and len(subservices) > 1)
+	if config.usage.show_infobar_subservices.value:
+		if current_service and "%3a" not in current_service:
+			current_service = ':'.join(current_service.split(':')[:11])
+		if config.usage.show_infobar_subservices.value == 1:
+			subservices = getActiveSubservicesForCurrentChannel(current_service)
+		elif config.usage.show_infobar_subservices.value == 2:
+			subservices = getPossibleSubservicesForCurrentChannel(current_service)
+		return bool(subservices and len(subservices) > 1)
+	else:
+		return False
 
 
 class TimerSelection(Screen):
