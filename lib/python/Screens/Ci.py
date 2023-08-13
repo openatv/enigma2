@@ -398,7 +398,7 @@ class CiSelection(Setup):
 		global forceNotShowCiMessages
 		forceNotShowCiMessages = False
 
-	def createSetup(self):
+	def createSetup(self):  # NOSONAR silence S2638
 		self.slot = 0
 		items = []
 		for slot in range(SystemInfo["CommonInterface"]):
