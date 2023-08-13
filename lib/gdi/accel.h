@@ -28,6 +28,7 @@ public:
 	void accelFree(gUnmanagedSurface* surface);
 
 	void dumpDebug();
+	void setAccelDebug(bool enable) { m_accel_debug = enable; }
 private:
 	struct MemoryBlock {
 		gUnmanagedSurface *surface;
@@ -51,6 +52,7 @@ private:
 	int m_bcm_accel_state;
 
 	static gAccel *instance;
+	bool m_accel_debug = false;
 };
 
 #endif
