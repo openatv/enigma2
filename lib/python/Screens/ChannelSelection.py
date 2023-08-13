@@ -1010,6 +1010,8 @@ class ChannelSelectionBase(Screen):
 					return _("Reception Lists")
 				if "ORDER BY name" in servicePath:
 					return _("All Services")
+			elif serviceName == "favourites" and not config.usage.multibouquet.value:  # Translate single bouquet favourites
+				return _("Favorites")
 			return serviceName
 
 		mode = _("TV") if self.mode == MODE_TV else _("Radio")
@@ -1029,8 +1031,8 @@ class ChannelSelectionBase(Screen):
 			EDIT_PIP: _("PiP")
 		}.get(self.function)
 		functionType = " [%s]" % functionType if functionType else ""
-		# self.setTitle("%s: %s%s" % (mode, title, functionType))
-		self.setTitle("%s (%s)%s" % (title, mode, functionType))
+		self.setTitle("%s - %s%s" % (mode, title, functionType))
+		#self.setTitle("%s (%s)%s" % (title, mode, functionType))
 		print("[ChannelSelection] buildTitle DEBUG: Setting title='%s'." % self.getTitle())
 
 	def getServiceName(self, serviceReference):
@@ -1085,7 +1087,7 @@ class ChannelSelectionBase(Screen):
 	def getBouquetNumOffset(self, bouquet):
 		if not config.usage.multibouquet.value:
 			return 0
-		str = bouquet.toString()
+		bStr = bouquet.toString()  # TODO Do we need this?
 		offset = 0
 		if "userbouquet." in bouquet.toCompareString():
 			serviceHandler = eServiceCenter.getInstance()
@@ -2602,6 +2604,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				lastservice = eServiceReference(self.lastservice.value)
 				if lastservice.valid() and self.getCurrentSelection() != lastservice:
 					self.setCurrentSelection(lastservice)
+		elif self.revertMode == MODE_TV and self.mode == MODE_RADIO:
+			self.setModeTv()
+		elif self.revertMode == MODE_RADIO and self.mode == MODE_TV:
+			self.setModeRadio()
 		self.asciiOff()
 		if config.usage.servicelistpreview_mode.value:
 			self.zapBack()
