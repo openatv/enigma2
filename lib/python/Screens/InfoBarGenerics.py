@@ -201,7 +201,7 @@ def getPossibleSubservicesForCurrentChannel(current_service):
 
 
 def getActiveSubservicesForCurrentChannel(current_service):
-	if current_service:
+	if current_service and config.usage.show_infobar_subservices.value:
 		possibleSubservices = getPossibleSubservicesForCurrentChannel(current_service)
 		activeSubservices = []
 		epgCache = eEPGCache.getInstance()
@@ -221,8 +221,8 @@ def getActiveSubservicesForCurrentChannel(current_service):
 		return activeSubservices
 
 
-def hasActiveSubservicesForCurrentChannel(current_service):
-	if config.usage.show_infobar_subservices.value:
+if config.usage.show_infobar_subservices.value:
+	def hasActiveSubservicesForCurrentChannel(current_service):
 		if current_service and "%3a" not in current_service:
 			current_service = ':'.join(current_service.split(':')[:11])
 		if config.usage.show_infobar_subservices.value == 1:
@@ -230,7 +230,8 @@ def hasActiveSubservicesForCurrentChannel(current_service):
 		elif config.usage.show_infobar_subservices.value == 2:
 			subservices = getPossibleSubservicesForCurrentChannel(current_service)
 		return bool(subservices and len(subservices) > 1)
-	else:
+else:
+	def hasActiveSubservicesForCurrentChannel(current_service):
 		return False
 
 
@@ -4031,10 +4032,11 @@ class InfoBarSubserviceSelection:
 		}, prio=-1, description=_("Sub Service Actions"))
 		self["SubserviceQuickzapAction"].setEnabled(False)
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-				iPlayableService.evUpdatedEventInfo: self.checkSubservicesAvail
-			})
-		self.onClose.append(self.__removeNotifications)
+		if config.usage.show_infobar_subservices.value:
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+					iPlayableService.evUpdatedEventInfo: self.checkSubservicesAvail
+				})
+			self.onClose.append(self.__removeNotifications)
 
 		self.bouquets = self.bsel = self.selectedSubservice = None
 
