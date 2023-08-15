@@ -221,8 +221,8 @@ def getActiveSubservicesForCurrentChannel(current_service):
 		return activeSubservices
 
 
-if config.usage.show_infobar_subservices.value:
-	def hasActiveSubservicesForCurrentChannel(current_service):
+def hasActiveSubservicesForCurrentChannel(current_service):
+	if config.usage.show_infobar_subservices.value:
 		if current_service and "%3a" not in current_service:
 			current_service = ':'.join(current_service.split(':')[:11])
 		if config.usage.show_infobar_subservices.value == 1:
@@ -230,8 +230,7 @@ if config.usage.show_infobar_subservices.value:
 		elif config.usage.show_infobar_subservices.value == 2:
 			subservices = getPossibleSubservicesForCurrentChannel(current_service)
 		return bool(subservices and len(subservices) > 1)
-else:
-	def hasActiveSubservicesForCurrentChannel(current_service):
+	else:
 		return False
 
 
