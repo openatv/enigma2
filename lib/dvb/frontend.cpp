@@ -1582,6 +1582,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				break;
 		}
 	}
+	else if (!strcmp(m_description, "rs6060")) // DVB-S2X Zgemma 4K
+	{
+		ret = (int)(snr / 32.5);
+	}
 	else if (!strcmp(m_description, "AVL62X1")) // UCLAN
 	{
 		ret = snr;
