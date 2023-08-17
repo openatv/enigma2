@@ -2009,8 +2009,9 @@ def InitNimManager(nimmgr, update_slots=None):
 					sectionDict[manufacturer] = tmp
 					if defaultProduct and defaultProduct in products_valide:
 						tmp.product.value = defaultProduct
-						if defaultSlot and len(tmp.vco[defaultProduct]) >= int(defaultSlot):
-							tmp.scr[defaultProduct].value = str(defaultSlot)
+						# default scr needs to be fixed
+						#if defaultSlot and len(tmp.vco[defaultProduct]) >= int(defaultSlot):
+						#	tmp.scr[defaultProduct].value = str(defaultSlot)
 
 			print("[NimManager] MATRIX")
 			section.unicableMatrix = ConfigSubDict()
