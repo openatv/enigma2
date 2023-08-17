@@ -798,6 +798,21 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def selectionChanged(self):
 		self["description"].setText(self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or "")
 
+	def keyMenuCallback(self, answer):
+		if answer:
+			cur = self["config"].getCurrent()
+			prev = str(self.getCurrentValue())
+			self["config"].getCurrent()[1].setValue(answer[1])
+			self["config"].invalidateCurrent()
+			if answer[1] != prev:
+				self.entryChanged()
+				if cur in (self.advancedSelectSatsEntry, self.selectSatsEntry) and cur:
+					self.keyOk()
+				else:
+					if cur == self.multiType and cur:
+						self.saveAll()
+					self.newConfig()
+
 	def keyLeft(self):
 		cur = self["config"].getCurrent()
 		if cur and isFBCLink(self.nim.slot):
