@@ -56,17 +56,18 @@ class IconCheckPoller:
 
 	def jobTask(self):
 		if self.symbolNetwork:
-			linkState = False
-			if exists("/sys/class/net/wlan0/operstate"):
-				linkState = fileReadLine("/sys/class/net/wlan0/operstate")
-				if linkState != "down":
-					linkState = fileReadLine("/sys/class/net/wlan0/carrier")
-			elif exists("/sys/class/net/eth0/operstate"):
-				linkState = fileReadLine("/sys/class/net/eth0/operstate")
-				if linkState != "down":
-					linkState = fileReadLine("/sys/class/net/eth0/carrier")
-			linkState = linkState[:1] if linkState else False
-			fileWriteLine("/proc/stb/lcd/symbol_network", linkState if config.lcd.mode.value else "0")
+			linkState = "0"
+			if config.lcd.mode.value:
+				if exists("/sys/class/net/wlan0/operstate"):
+					linkState = fileReadLine("/sys/class/net/wlan0/operstate")
+					if linkState != "down":
+						linkState = fileReadLine("/sys/class/net/wlan0/carrier")
+				elif exists("/sys/class/net/eth0/operstate"):
+					linkState = fileReadLine("/sys/class/net/eth0/operstate")
+					if linkState != "down":
+						linkState = fileReadLine("/sys/class/net/eth0/carrier")
+				linkState = linkState[:1]
+			fileWriteLine("/proc/stb/lcd/symbol_network", linkState)
 		if self.symbolUsb:
 			USBState = 0
 			try:
