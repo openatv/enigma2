@@ -37,6 +37,8 @@ def IconCheck(session=None, **kwargs):
 
 class IconCheckPoller:
 	def __init__(self):
+		self.symbolNetwork = exists("/proc/stb/lcd/symbol_network")
+		self.symbolUsb = exists("/proc/stb/lcd/symbol_usb")
 		self.timer = eTimer()
 
 	def start(self):
@@ -53,30 +55,28 @@ class IconCheckPoller:
 		threads.deferToThread(self.jobTask)
 
 	def jobTask(self):
-		linkState = 0
-		if exists("/sys/class/net/wlan0/operstate"):
-			linkState = fileReadLine("/sys/class/net/wlan0/operstate")
-			if linkState != "down":
-				linkState = fileReadLine("/sys/class/net/wlan0/carrier")
-		elif exists("/sys/class/net/eth0/operstate"):
-			linkState = fileReadLine("/sys/class/net/eth0/operstate")
-			if linkState != "down":
-				linkState = fileReadLine("/sys/class/net/eth0/carrier")
-		linkState = linkState[:1]
-		if exists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == "1":
-			fileWriteLine("/proc/stb/lcd/symbol_network", linkState)
-		elif exists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == "0":
-			fileWriteLine("/proc/stb/lcd/symbol_network", "0")
-		USBState = 0
-		try:
-			for bus in busses():
-				devices = bus.devices
-				for dev in devices:
-					if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor != 3034 and dev.idVendor > 0:
-						USBState = 1
-		except Exception as err:
-			print("[IconCheckPoller] Error get USB devices!  (%s)" % str(err))
-		if exists("/proc/stb/lcd/symbol_usb"):
+		if self.symbolNetwork:
+			linkState = False
+			if exists("/sys/class/net/wlan0/operstate"):
+				linkState = fileReadLine("/sys/class/net/wlan0/operstate")
+				if linkState != "down":
+					linkState = fileReadLine("/sys/class/net/wlan0/carrier")
+			elif exists("/sys/class/net/eth0/operstate"):
+				linkState = fileReadLine("/sys/class/net/eth0/operstate")
+				if linkState != "down":
+					linkState = fileReadLine("/sys/class/net/eth0/carrier")
+			linkState = linkState[:1] if linkState else False
+			fileWriteLine("/proc/stb/lcd/symbol_network", linkState if config.lcd.mode.value else "0")
+		if self.symbolUsb:
+			USBState = 0
+			try:
+				for bus in busses():
+					devices = bus.devices
+					for dev in devices:
+						if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor != 3034 and dev.idVendor > 0:
+							USBState = 1
+			except Exception as err:
+				print("[IconCheckPoller] Error get USB devices!  (%s)" % str(err))
 			fileWriteLine("/proc/stb/lcd/symbol_usb", USBState)
 		self.timer.startLongTimer(30)
 
