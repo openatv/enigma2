@@ -39,7 +39,12 @@ class IconCheckPoller:
 	def __init__(self):
 		self.symbolNetwork = exists("/proc/stb/lcd/symbol_network")
 		self.symbolUsb = exists("/proc/stb/lcd/symbol_usb")
+		self.lcdMode = config.lcd.mode.value
+		config.lcd.mode.addNotifier(self.setLCDmode)
 		self.timer = eTimer()
+
+	def setLCDmode(self, configElement):
+		self.lcdMode = configElement.value
 
 	def start(self):
 		if self.iconcheck not in self.timer.callback:
@@ -55,18 +60,16 @@ class IconCheckPoller:
 		threads.deferToThread(self.jobTask)
 
 	def jobTask(self):
-		if self.symbolNetwork:
+		if self.symbolNetwork and self.lcdMode:
 			linkState = "0"
-			if config.lcd.mode.value:
-				if exists("/sys/class/net/wlan0/operstate"):
-					linkState = fileReadLine("/sys/class/net/wlan0/operstate")
-					if linkState != "down":
-						linkState = fileReadLine("/sys/class/net/wlan0/carrier")
-				elif exists("/sys/class/net/eth0/operstate"):
-					linkState = fileReadLine("/sys/class/net/eth0/operstate")
-					if linkState != "down":
-						linkState = fileReadLine("/sys/class/net/eth0/carrier")
-				linkState = linkState[:1]
+			if exists("/sys/class/net/wlan0/operstate"):
+				linkState = fileReadLine("/sys/class/net/wlan0/operstate")
+				if linkState != "down":
+					linkState = fileReadLine("/sys/class/net/wlan0/carrier")
+			elif exists("/sys/class/net/eth0/operstate"):
+				linkState = fileReadLine("/sys/class/net/eth0/operstate")
+				if linkState != "down":
+					linkState = fileReadLine("/sys/class/net/eth0/carrier")
 			fileWriteLine("/proc/stb/lcd/symbol_network", linkState)
 		if self.symbolUsb:
 			USBState = 0
