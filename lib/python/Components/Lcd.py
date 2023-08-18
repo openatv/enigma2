@@ -50,11 +50,7 @@ class IconCheckPoller:
 		self.timer.stop()
 
 	def iconcheck(self):
-		try:
-			threads.deferToThread(self.jobTask)
-		except:
-			pass
-		self.timer.startLongTimer(30)
+		threads.deferToThread(self.jobTask)
 
 	def jobTask(self):
 		linkState = 0
@@ -72,11 +68,14 @@ class IconCheckPoller:
 		elif exists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == "0":
 			fileWriteLine("/proc/stb/lcd/symbol_network", "0")
 		USBState = 0
-		for bus in busses():
-			devices = bus.devices
-			for dev in devices:
-				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor != 3034 and dev.idVendor > 0:
-					USBState = 1
+		try:
+			for bus in busses():
+				devices = bus.devices
+				for dev in devices:
+					if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor != 3034 and dev.idVendor > 0:
+						USBState = 1
+		except Exception as err:
+			print("[IconCheckPoller] Error get USB devices!  (%s)" % str(err))
 		if exists("/proc/stb/lcd/symbol_usb"):
 			fileWriteLine("/proc/stb/lcd/symbol_usb", USBState)
 		self.timer.startLongTimer(30)
