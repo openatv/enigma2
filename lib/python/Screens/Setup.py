@@ -97,11 +97,11 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		if isinstance(self["config"].getCurrent()[1], (ConfigBoolean, ConfigSelection)):
 			self.createSetup()
 
-	def createSetup(self):
+	def createSetup(self, appendItems=None, prependItems=None):
 		oldList = self.list
 		self.showDefaultChanged = False
 		self.graphicSwitchChanged = False
-		self.list = []
+		self.list = prependItems or []
 		title = None
 		xmlData = setupDom(self.setup, self.plugin)
 		for setup in xmlData.findall("setup"):
@@ -114,6 +114,8 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 				# If this break is executed then there can only be one setup tag with this key.
 				# This may not be appropriate if conditional setup blocks become available.
 				break
+		if appendItems:
+			self.list = self.list + appendItems
 		if title:
 			title = dgettext(self.pluginLanguageDomain, title) if self.pluginLanguageDomain else _(title)
 		self.setTitle(title if title else _("Setup"))
