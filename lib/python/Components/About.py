@@ -196,7 +196,7 @@ def getCPUInfoString():
 			cpuSpeedStr = _("%d MHz") % int(cpuSpeedMhz)
 
 		if temperature:
-			degree = u"\u00B0"
+			degree = "\u00B0"
 			if not isinstance(degree, str):
 				degree = degree.encode("UTF-8", errors="ignore")
 			if isinstance(temperature, float):
@@ -218,7 +218,7 @@ def getSystemTemperature():
 	elif isfile("/proc/stb/fp/temp_sensor"):
 		temperature = fileReadLine("/proc/stb/fp/temp_sensor", source=MODULE_NAME)
 	if temperature:
-		return "%s%s C" % (temperature, u"\u00B0")
+		return "%s%s C" % (temperature, "\u00B0")
 	return temperature
 
 

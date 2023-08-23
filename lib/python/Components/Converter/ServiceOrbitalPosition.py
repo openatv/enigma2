@@ -48,7 +48,7 @@ class ServiceOrbitalPosition(Converter):
 				if self.type == self.SHORT:
 					return "%d.%d%s" % (pos / 10, pos % 10, direction)
 				else:
-					return "%d.%d%s %s" % (pos / 10, pos % 10, u"\u00B0", direction)
+					return "%d.%d%s %s" % (pos / 10, pos % 10, "\u00B0", direction)
 			return tunerType
 		if ref:
 			refString = ref.toString().lower()

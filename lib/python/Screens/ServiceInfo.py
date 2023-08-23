@@ -11,7 +11,7 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformat
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 import skin
 
-SIGN = u"\u00B0"
+SIGN = "\u00B0"
 
 TYPE_TEXT = 0
 TYPE_VALUE_HEX = 1
