@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile
 from Components.ActionMap import ActionMap

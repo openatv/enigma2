@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
 from Components.VariableValue import VariableValue
 

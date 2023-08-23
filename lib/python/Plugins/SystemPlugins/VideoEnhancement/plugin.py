@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from os import path as os_path
 
 from Plugins.Plugin import PluginDescriptor

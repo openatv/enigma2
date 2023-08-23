@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
 from skin import applyAllAttributes
 from Tools.CList import CList

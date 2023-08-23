@@ -17,7 +17,6 @@
 #
 #######################################################################
 
-from __future__ import absolute_import
 import os
 from Components.Label import Label
 from Components.Converter.Converter import Converter

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 import skin
 
 from enigma import ePoint, eSize

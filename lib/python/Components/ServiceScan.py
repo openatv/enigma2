@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from enigma import eComponentScan, iDVBFrontend, eTimer
 from Components.NimManager import nimmanager as nimmgr
 from Tools.Transponder import getChannelNumber

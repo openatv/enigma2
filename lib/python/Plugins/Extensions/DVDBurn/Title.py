@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.config import ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection
 from . import TitleCutter
 
