@@ -1,4 +1,3 @@
-
 from pickle import dump, load
 from os import access, F_OK, R_OK
 from enigma import eServiceReference, eTimer

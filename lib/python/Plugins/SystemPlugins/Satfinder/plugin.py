@@ -1,4 +1,3 @@
-from __future__ import print_function
 from enigma import eDVBResourceManager,\
 	eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC, iDVBFrontend
 

@@ -6,7 +6,6 @@ Copyright (C) 2014 Peter Urbanec
 All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
-from __future__ import print_function
 from __future__ import absolute_import
 
 from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter

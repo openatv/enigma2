@@ -1,7 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 # (c) 2006 Stephan Reichholf
 # This Software is Free, use it where you want, when you want for whatever you want and modify it if you want but don't remove my copyright!
-from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox

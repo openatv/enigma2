@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 class VariableValue:
 	"""VariableValue can be used for components which have a variable value (like eSlider), based on any widget with setValue call"""
 

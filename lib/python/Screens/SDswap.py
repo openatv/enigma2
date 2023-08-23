@@ -1,4 +1,3 @@
-from __future__ import print_function
 import os
 from Components.Sources.StaticText import StaticText
 from Components.ActionMap import ActionMap

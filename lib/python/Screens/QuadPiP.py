@@ -1,4 +1,3 @@
-from __future__ import print_function
 from Screens.Screen import Screen
 from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
 from Components.VideoWindow import VideoWindow

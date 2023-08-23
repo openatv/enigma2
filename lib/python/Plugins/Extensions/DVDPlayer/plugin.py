@@ -1,4 +1,3 @@
-from __future__ import print_function
 import os
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
