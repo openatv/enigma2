@@ -162,7 +162,7 @@ class Keyboard:
 				keyboardMapFile = None
 				keyboardMapName = None
 				for line in lines:
-					key, val = [x.strip() for x in line.split("=", 1)]
+					key, val = (x.strip() for x in line.split("=", 1))
 					if key == "kmap":
 						keyboardMapFile = val
 					elif key == "name":

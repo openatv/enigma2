@@ -245,7 +245,7 @@ class EventName(Converter):
 				country = rating.getCountryCode().upper() if rating else "ETSI"
 				if config.misc.epggenrecountry.value:
 					country = config.misc.epggenrecountry.value
-				return self.separator.join((genretext for genretext in (self.trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genretext))
+				return self.separator.join(genretext for genretext in (self.trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genretext)
 		elif self.type == self.CRID_EPISODE:
 			return self.trimText(self.getCRID(event, eServiceEventEnums.EPISODE_MATCH))
 		elif self.type == self.CRID_SERIES:

@@ -493,7 +493,7 @@ class RecordTimerList(TimerListBase):
 			direction = "W"
 		else:
 			direction = "E"
-		return ("%d.%d%s%s") % (op // 10, op % 10, u"\u00B0", direction)
+		return ("%d.%d%s%s") % (op // 10, op % 10, "\u00B0", direction)
 
 
 class TimerOverviewBase(Screen, HelpableScreen):

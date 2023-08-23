@@ -814,7 +814,7 @@ class MemoryInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		for line in memInfo:
-			key, value = [x for x in line.split(maxsplit=1)]
+			key, value = (x for x in line.split(maxsplit=1))
 			if key == "MemTotal:":
 				info.append(formatLine("P1", _("Total memory"), formatNumber(value)))
 			elif key == "MemFree:":
@@ -843,7 +843,7 @@ class MemoryInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		for line in memInfo:
-			key, value = [x for x in line.split(maxsplit=1)]
+			key, value = (x for x in line.split(maxsplit=1))
 			info.append(formatLine("P1", key[:-1], formatNumber(value)))
 		info.append("")
 		info.append(formatLine("M1", _("The detailed information is intended for developers only.")))
@@ -1475,7 +1475,7 @@ class ReceiverInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		for count, nim in enumerate(nimmanager.nimListCompressed()):
-			tuner, type = [x.strip() for x in nim.split(":", 1)]
+			tuner, type = (x.strip() for x in nim.split(":", 1))
 			info.append(formatLine("P1", tuner, type))
 		info.append("")
 		info.append(formatLine("S", _("Storage / Drive information")))
@@ -1805,7 +1805,7 @@ class TunerInformation(InformationBase):
 		curIndex = -1
 		for count, nim in enumerate(nimmanager.nimList()):
 			tunerData = {}
-			tuner, model = [x.strip() for x in nim.split(":", 1)]
+			tuner, model = (x.strip() for x in nim.split(":", 1))
 			tuner = tuner.strip("Tuner").strip()
 			if self.tunerList and self.tunerList[curIndex]["model"] == model:
 				self.tunerList[curIndex]["end"] = tuner

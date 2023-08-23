@@ -26,7 +26,7 @@ for line in lines:
 	if line.startswith("#") or line.strip() == "":
 		continue
 	if "=" in line:
-		item, value = [x.strip() for x in line.split("=", 1)]
+		item, value = (x.strip() for x in line.split("=", 1))
 		if item == "machinebuild":
 			model = value
 			break

@@ -520,7 +520,7 @@ def parseParameter(value):
 	elif value in colors:  # Named color.
 		return colors[value].argb()
 	elif value.find(";") != -1:  # Font.
-		(font, size) = [x.strip() for x in value.split(";", 1)]
+		(font, size) = (x.strip() for x in value.split(";", 1))
 		return [font, int(size)]
 	else:  # Integer.
 		return int(value)
@@ -892,7 +892,7 @@ class AttributeParser:
 		self.guiObject.setPixmap(parsePixmap(value, self.desktop))
 
 	def pointer(self, value):
-		(name, pos) = [x.strip() for x in value.split(":", 1)]
+		(name, pos) = (x.strip() for x in value.split(":", 1))
 		ptr = parsePixmap(name, self.desktop)
 		pos = parsePosition(pos, self.scaleTuple)
 		self.guiObject.setPointer(0, ptr, pos)
@@ -980,7 +980,7 @@ class AttributeParser:
 		# attribDeprecationWarning("seek_pointer", "seekPointer")
 
 	def seekPointer(self, value):
-		(name, pos) = [x.strip() for x in value.split(":", 1)]
+		(name, pos) = (x.strip() for x in value.split(":", 1))
 		ptr = parsePixmap(name, self.desktop)
 		pos = parsePosition(pos, self.scaleTuple)
 		self.guiObject.setPointer(1, ptr, pos)

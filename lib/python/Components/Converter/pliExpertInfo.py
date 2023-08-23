@@ -88,8 +88,8 @@ class pliExpertInfo(Poll, Converter):
 			if (frontendDataOrg is not None):
 				frontendData = ConvertToHumanReadable(frontendDataOrg)
 				if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
-					frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-					symbolrate = (str((frontendData.get("symbol_rate") / 1000)))
+					frequency = (str(frontendData.get("frequency") / 1000) + " MHz")
+					symbolrate = (str(frontendData.get("symbol_rate") / 1000))
 					fec_inner = frontendData.get("fec_inner")
 					if (frontendDataOrg.get("tuner_type") == "DVB-S"):
 						Ret_Text += sep + frontendData.get("system")
@@ -305,7 +305,7 @@ class pliExpertInfo(Poll, Converter):
 					else:
 						Ret_Text += sep + "DVB-C " + frequency + " MHz" + sep + fec_inner + sep + symbolrate
 				elif (frontendData.get("tuner_type") == "DVB-T"):
-					frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
+					frequency = (str(frontendData.get("frequency") / 1000) + " MHz")
 					Ret_Text = "Frequency: " + frequency
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.SERVICE_INFO):
@@ -321,8 +321,8 @@ class pliExpertInfo(Poll, Converter):
 			if (frontendDataOrg is not None):
 				frontendData = ConvertToHumanReadable(frontendDataOrg)
 				if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
-					frequency = (str((frontendData.get("frequency") / 1000)))
-					symbolrate = (str((frontendData.get("symbol_rate") / 1000)))
+					frequency = (str(frontendData.get("frequency") / 1000))
+					symbolrate = (str(frontendData.get("symbol_rate") / 1000))
 					fec_inner = frontendData.get("fec_inner")
 					if (frontendDataOrg.get("tuner_type") == "DVB-S"):
 						Ret_Text += sep + frontendData.get("system")
@@ -338,7 +338,7 @@ class pliExpertInfo(Poll, Converter):
 					else:
 						Ret_Text += sep + "DVB-C " + frequency + " MHz" + sep + fec_inner + sep + symbolrate
 				elif (frontendDataOrg.get("tuner_type") == "DVB-T"):
-					frequency = (str((frontendData.get("frequency") / 1000)))
+					frequency = (str(frontendData.get("frequency") / 1000))
 					Ret_Text += sep + "DVB-T" + sep + "Frequency:" + sep + frequency + " MHz"
 
 			if (feinfo is not None) and (xresol > 0):
