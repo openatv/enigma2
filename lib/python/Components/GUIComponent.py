@@ -5,7 +5,7 @@ from enigma import ePoint, eSize
 from Components.config import config
 
 
-class GUIComponent(object):
+class GUIComponent:
 	""" GUI component """
 
 	def __init__(self):

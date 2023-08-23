@@ -4,7 +4,7 @@ from Components.config import ConfigSubsection, config
 from Tools.LoadPixmap import LoadPixmap
 
 
-class PluginDescriptor(object):
+class PluginDescriptor:
 	"""An object to describe a plugin."""
 	# Rather than using magic numbers plugins can use these definitions to signify the Enigma2 starting or stopping status.
 	REASON_START = 0

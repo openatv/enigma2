@@ -8,7 +8,7 @@ from enigma import eLabel, eSlider, eTimer
 import six
 
 
-class PerServiceBase(object):
+class PerServiceBase:
 	EventMap = {}
 
 	@staticmethod

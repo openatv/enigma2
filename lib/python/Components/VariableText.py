@@ -1,4 +1,4 @@
-class VariableText(object):
+class VariableText:
 	"""VariableText can be used for components which have a variable text, based on any widget with setText call"""
 
 	def __init__(self):

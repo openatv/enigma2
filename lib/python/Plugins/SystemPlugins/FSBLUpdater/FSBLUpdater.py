@@ -6,7 +6,7 @@ import hashlib
 from distutils import spawn
 
 
-class FSBLCheckerBase(object):
+class FSBLCheckerBase:
 	def getCurrentHash(self):
 		data = None
 		try:
