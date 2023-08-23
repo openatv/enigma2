@@ -2,7 +2,7 @@ from errno import ENOENT
 from os import environ, path, symlink, unlink, walk
 from os.path import exists, isfile, join as pathjoin, realpath
 from time import gmtime, localtime, strftime, time, tzset
-from xml.etree.cElementTree import ParseError, parse
+from xml.etree.ElementTree import ParseError, parse
 
 from Components.config import ConfigSelection, ConfigSubsection, config
 from Tools.Directories import fileReadXML, fileWriteLine

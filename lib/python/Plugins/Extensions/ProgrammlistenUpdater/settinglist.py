@@ -5,8 +5,8 @@ import sys
 from Components.config import config, configfile
 from Screens.MessageBox import MessageBox
 from .downloader import DownloadSetting, ConverDate, ConverDateBack
-from six.moves.urllib.request import urlopen
-from six.moves.urllib.request import Request
+from urllib.request import urlopen
+from urllib.request import Request
 import six
 
 Directory = os.path.dirname(sys.modules[__name__].__file__)

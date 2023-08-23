@@ -405,7 +405,7 @@ def runScreenTest():
 		filename = "/media/hdd/images/config/autorestore"
 		try:
 			remove(filename)
-		except IOError as err:
+		except OSError as err:
 			if err.errno != ENOENT:  # ENOENT - No such file or directory.
 				print("[StartEnigma] Error %d: Unable to delete file '%s'!  (%s)" % (err.errno, filename, err.strerror))
 		screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]

@@ -1,4 +1,4 @@
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceReference
 from timer import TimerEntry

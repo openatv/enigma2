@@ -1,6 +1,6 @@
 import re
-from six.moves.urllib.request import urlopen
-from six.moves.urllib.request import Request
+from urllib.request import urlopen
+from urllib.request import Request
 import six
 
 
