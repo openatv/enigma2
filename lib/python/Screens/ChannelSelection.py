@@ -694,7 +694,7 @@ class ChannelSelectionEdit:
 				direction = _("W")
 			else:
 				direction = _("E")
-			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (unsigned_orbpos / 10, unsigned_orbpos % 10, u"\u00B0", direction)
+			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (unsigned_orbpos / 10, unsigned_orbpos % 10, "\u00B0", direction)
 		self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, messageText)
 
 	def removeSatelliteServicesCallback(self, answer):
@@ -969,9 +969,9 @@ class ChannelSelectionBase(Screen):
 
 	def applyKeyMap(self):
 		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
-			self.numericalTextInput.setUseableChars(u"abcdefghijklmnopqrstuvwxyz1234567890")
+			self.numericalTextInput.setUseableChars("abcdefghijklmnopqrstuvwxyz1234567890")
 		else:
-			self.numericalTextInput.setUseableChars(u"1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+			self.numericalTextInput.setUseableChars("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 	def setTvMode(self):
 		self.mode = MODE_TV

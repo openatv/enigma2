@@ -25,7 +25,7 @@ def get_woeid_from_yahoo(search_string):
 
 	content_type = handler.info().dict['content-type']
 	try:
-		charset = re.search('charset\=(.*)', content_type).group(1)
+		charset = re.search(r'charset\=(.*)', content_type).group(1)
 	except AttributeError:
 		charset = 'utf-8'
 	if charset.lower() != 'utf-8':
