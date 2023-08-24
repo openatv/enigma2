@@ -482,7 +482,7 @@ class ChannelSelectionEdit:
 		})
 
 	def getMutableList(self, root=eServiceReference()):
-		if not self.mutableList is None:
+		if self.mutableList is not None:
 			return self.mutableList
 		serviceHandler = eServiceCenter.getInstance()
 		if not root.valid():
@@ -839,7 +839,7 @@ class ChannelSelectionEdit:
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
-		if not mutableList is None:
+		if mutableList is not None:
 			if service is None:  # Use current selected service.
 				service = self.servicelist.getCurrent()
 			if not mutableList.addService(service):

@@ -1252,14 +1252,14 @@ class InfoBarNumberZap:
 				bouquet = eServiceReference(bqrootstr)
 				bouquetlist = serviceHandler.list(bouquet)
 
-				if not bouquetlist is None:
+				if bouquetlist is not None:
 					while True:
 						bouquet = bouquetlist.getNext()
 						if bouquet.flags & eServiceReference.isDirectory:
 							self.servicelist.clearPath()
 							self.servicelist.setRoot(bouquet)
 							servicelist = serviceHandler.list(bouquet)
-							if not servicelist is None:
+							if servicelist is not None:
 								serviceIterator = servicelist.getNext()
 								while serviceIterator.valid():
 									service, bouquet2 = self.searchNumber(config.usage.panicchannel.value)
@@ -1953,7 +1953,7 @@ class InfoBarEPG:
 	def getBouquetServices(self, bouquet):
 		services = []
 		servicelist = eServiceCenter.getInstance().list(bouquet)
-		if not servicelist is None:
+		if servicelist is not None:
 			while True:
 				service = servicelist.getNext()
 				if not service.valid():  # check if end of list

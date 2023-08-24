@@ -441,7 +441,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def getBouquetServices(self, bouquet):
 		services = []
 		servicelist = eServiceCenter.getInstance().list(bouquet)
-		if not servicelist is None:
+		if servicelist is not None:
 			while True:
 				service = servicelist.getNext()
 				if not service.valid():  # check if end of list

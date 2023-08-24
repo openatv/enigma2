@@ -504,7 +504,7 @@ class myProviderSelection(ChannelSelectionBase):
 						elif choice[1] == "providerlist":
 							serviceHandler = eServiceCenter.getInstance()
 							servicelist = serviceHandler.list(ref)
-							if not servicelist is None:
+							if servicelist is not None:
 								providerlist = []
 								while True:
 									service = servicelist.getNext()
@@ -540,7 +540,7 @@ class myProviderSelection(ChannelSelectionBase):
 				if justSet:
 					serviceHandler = eServiceCenter.getInstance()
 					servicelist = serviceHandler.list(ref)
-					if not servicelist is None:
+					if servicelist is not None:
 						while True:
 							service = servicelist.getNext()
 							if not service.valid():  # check if end of list
@@ -642,7 +642,7 @@ class myChannelSelection(ChannelSelectionBase):
 		if answer and ref:
 			serviceHandler = eServiceCenter.getInstance()
 			servicelist = serviceHandler.list(ref)
-			if not servicelist is None:
+			if servicelist is not None:
 				providerlist = []
 				while True:
 					service = servicelist.getNext()
