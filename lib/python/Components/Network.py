@@ -112,17 +112,17 @@ class Network:
 				if split[0] == "address":
 					ifaces[currif]["address"] = list(map(int, split[1].split(".")))
 					if "ip" in self.ifaces[currif]:
-						if self.ifaces[currif]["ip"] != ifaces[currif]["address"] and ifaces[currif]["dhcp"] == False:
+						if self.ifaces[currif]["ip"] != ifaces[currif]["address"] and ifaces[currif]["dhcp"] is False:
 							self.ifaces[currif]["ip"] = list(map(int, split[1].split(".")))
 				if split[0] == "netmask":
 					ifaces[currif]["netmask"] = map(int, split[1].split("."))
 					if "netmask" in self.ifaces[currif]:
-						if self.ifaces[currif]["netmask"] != ifaces[currif]["netmask"] and ifaces[currif]["dhcp"] == False:
+						if self.ifaces[currif]["netmask"] != ifaces[currif]["netmask"] and ifaces[currif]["dhcp"] is False:
 							self.ifaces[currif]["netmask"] = list(map(int, split[1].split(".")))
 				if split[0] == "gateway":
 					ifaces[currif]["gateway"] = map(int, split[1].split("."))
 					if "gateway" in self.ifaces[currif]:
-						if self.ifaces[currif]["gateway"] != ifaces[currif]["gateway"] and ifaces[currif]["dhcp"] == False:
+						if self.ifaces[currif]["gateway"] != ifaces[currif]["gateway"] and ifaces[currif]["dhcp"] is False:
 							self.ifaces[currif]["gateway"] = list(map(int, split[1].split(".")))
 				if split[0] == "pre-up":
 					if "preup" in self.ifaces[currif]:
@@ -199,11 +199,11 @@ class Network:
 			WoW = False
 			if ifacename in self.onlyWoWifaces:
 				WoW = self.onlyWoWifaces[ifacename]
-			if WoW == False and iface["up"] == True:
+			if WoW is False and iface["up"] is True:
 				lines.append("auto %s" % ifacename)
 				self.configuredInterfaces.append(ifacename)
 				self.onlyWoWifaces[ifacename] = False
-			elif WoW == True:
+			elif WoW is True:
 				self.onlyWoWifaces[ifacename] = True
 				lines.append("# Only WakeOnWiFi %s" % ifacename)
 			if iface["dhcp"]:

@@ -364,7 +364,7 @@ class LCNBuildHelper():
 		return ret
 
 	def buildAfterScan(self):
-		if config.lcn.enabled.value == True:
+		if config.lcn.enabled.value is True:
 			self.buildlcn(True)
 
 	def buildlcn(self, suppressmessages=False):
@@ -438,7 +438,7 @@ class LCNScannerPlugin(Screen, ConfigListScreen, LCNBuildHelper):
 		configfile.save()
 
 	def ok(self):
-		if config.lcn.enabled.value == True:
+		if config.lcn.enabled.value is True:
 			self.session.openWithCallback(self.confirm, MessageBox, _("Rebuild LCN bouquet now?"), MessageBox.TYPE_YESNO, default=True)
 		else:
 			self.keySave()

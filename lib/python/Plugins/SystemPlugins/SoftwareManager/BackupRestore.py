@@ -152,7 +152,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		except Exception:
 			pass
 		try:
-			if exists(self.backuppath) == False:
+			if exists(self.backuppath) is False:
 				makedirs(self.backuppath)
 			InitConfig()
 			self.backupdirs = " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)

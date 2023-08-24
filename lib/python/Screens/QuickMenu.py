@@ -570,7 +570,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.session.open(MessageBox, _("Backup done.") if retval else _("Backup failed!"), MessageBox.TYPE_INFO if retval else MessageBox.TYPE_ERROR, timeout=10)
 
 	def startRestore(self, ret=False):
-		if (ret == True):
+		if (ret is True):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
 

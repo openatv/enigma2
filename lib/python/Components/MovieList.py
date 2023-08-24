@@ -862,7 +862,7 @@ class MovieList(GUIComponent):
 					found = True
 					self.instance.moveSelectionTo(index + currentIndex + 1)
 					break
-		if found == False and currentIndex > 0:
+		if found is False and currentIndex > 0:
 			itemsAbove = self.list[1:currentIndex]  # first item (0) points parent folder - no point to include
 			for index, item in enumerate(itemsAbove):
 				if item[1] == None:

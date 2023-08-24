@@ -116,7 +116,7 @@ class CIHelper:
 					appname = eDVBCI_UI.getInstance().getAppName(ci)
 					if appname in self.CI_MULTIDESCRAMBLE_MODULES:
 						self.CI_MULTIDESCRAMBLE = True
-		elif self.CI_MULTIDESCRAMBLE == False:
+		elif self.CI_MULTIDESCRAMBLE is False:
 			return False
 
 		if self.CI_ASSIGNMENT_LIST is not None and len(self.CI_ASSIGNMENT_LIST):

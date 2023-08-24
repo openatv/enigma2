@@ -538,10 +538,10 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 			else:
 				self["key_green"].setText(_("Move Mode Off"))
 			for entry in self.menuList:
-				if current[WIDGET_KEY] == entry[MENU_KEY] and select == True:
+				if current[WIDGET_KEY] == entry[MENU_KEY] and select is True:
 					self.selectedEntry = current[WIDGET_KEY]
 					break
-				elif current[WIDGET_KEY] == entry[MENU_KEY] and select == False:
+				elif current[WIDGET_KEY] == entry[MENU_KEY] and select is False:
 					self.selectedEntry = None
 					break
 		elif not self.sortMode:

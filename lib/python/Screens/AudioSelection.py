@@ -473,7 +473,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			else:
 				ConfigListScreen.keyRight(self)
 
-		if self.focus == FOCUS_STREAMS and config == False:
+		if self.focus == FOCUS_STREAMS and config is False:
 			self.keyAudioSubtitle()
 
 	def keyRed(self):

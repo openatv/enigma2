@@ -1063,7 +1063,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.session.openWithCallback(self.configureDone, MovieSelectionSetup)
 
 	def configureDone(self, result):
-		if result == True:
+		if result is True:
 			self.applyConfigSettings({
 			"moviesort": config.movielist.moviesort.value,
 				"description": config.movielist.description.value,

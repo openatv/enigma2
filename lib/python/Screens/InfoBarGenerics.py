@@ -995,7 +995,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		closedScreen = self.dlg_stack.pop()
 		if self.eventView and closedScreen == self.eventView:
 			self.eventView = None
-		if ret == True or ret == 'close':
+		if ret is True or ret == 'close':
 			dlgs = len(self.dlg_stack)
 			if dlgs > 0:
 				self.dlg_stack[dlgs - 1].close(dlgs > 1)
@@ -1976,7 +1976,7 @@ class InfoBarEPG:
 			self.bouquetSel = None
 		elif self.eventView and closedScreen == self.eventView:
 			self.eventView = None
-		if ret == True or ret == 'close':
+		if ret is True or ret == 'close':
 			dlgs = len(self.dlg_stack)
 			if dlgs > 0:
 				self.dlg_stack[dlgs - 1].close(dlgs > 1)
@@ -3753,7 +3753,7 @@ class InfoBarInstantRecord:
 		recording.marginAfter = (config.recording.margin_after.value * 60) if event and limitEvent else 0
 		recording.eventEnd = recording.end - recording.marginAfter
 
-		if event is None or limitEvent == False:
+		if event is None or limitEvent is False:
 			recording.autoincrease = True
 			recording.setAutoincreaseEnd()
 
@@ -4570,7 +4570,7 @@ class InfoBarCueSheetSupport:
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
 	def playLastCB(self, answer):
-		if answer == True and self.resume_point:
+		if answer is True and self.resume_point:
 			self.doSeek(self.resume_point)
 		self.hideAfterResume()
 

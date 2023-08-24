@@ -224,7 +224,7 @@ class Swap(Screen):
 		self['labsize'].setText(self.swapsize)
 		self['labsize'].show()
 
-		if self.swap_active == True:
+		if self.swap_active is True:
 			self['inactive'].hide()
 			self['active'].show()
 			self['key_red'].setText(_("Deactivate"))
@@ -244,7 +244,7 @@ class Swap(Screen):
 		self['swapname_summary'].setText(name)
 
 	def actDeact(self):
-		if self.swap_active == True:
+		if self.swap_active is True:
 			self.Console.ePopen('swapoff ' + self.swap_place, self.updateSwap)
 		else:
 			if not self.device:
@@ -259,7 +259,7 @@ class Swap(Screen):
 	def createDel(self):
 		if not self.device:
 			if self.swap_place != '':
-				if self.swap_active == True:
+				if self.swap_active is True:
 					self.Console.ePopen('swapoff ' + self.swap_place, self.createDel2)
 				else:
 					self.createDel2(None, 0)

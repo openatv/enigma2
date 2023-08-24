@@ -117,7 +117,7 @@ class IPKGMenu(Screen):
 	def fill_list(self):
 		flist = []
 		self.path = "/etc/opkg/"
-		if (exists(self.path) == False):
+		if (exists(self.path) is False):
 			self.entry = False
 			return
 		for file in listdir(self.path):
@@ -128,7 +128,7 @@ class IPKGMenu(Screen):
 		self["filelist"].l.setList(flist)
 
 	def KeyOk(self):
-		if (self.exe == False) and (self.entry == True):
+		if (self.exe is False) and (self.entry is True):
 			self.sel = self["filelist"].getCurrent()
 			self.val = self.path + self.sel
 			self.session.open(IPKGSource, self.val)
@@ -333,7 +333,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.close()
 
 	def reload(self):
-		if (exists(self.cache_file) == True):
+		if (exists(self.cache_file) is True):
 			remove(self.cache_file)
 			self.packageList_updating = True
 			self.rebuildList()
@@ -671,7 +671,7 @@ class BackupHelper(Screen):
 			self.close()
 
 	def startRestore(self, ret=False):
-		if (ret == True):
+		if (ret is True):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
 		self.close()

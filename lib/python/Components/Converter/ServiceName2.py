@@ -657,7 +657,7 @@ class ServiceName2(Converter):
 			self.what = None
 
 	def forceChanged(self, what):
-		if what == True:
+		if what is True:
 			self.refstr = self.isStream = self.ref = self.info = self.tpdata = None
 			Converter.changed(self, (self.CHANGED_ALL,))
 			self.what = None

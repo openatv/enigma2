@@ -51,10 +51,10 @@ class MessageBox(Screen, HelpableScreen):
 			self["list"].hide()
 			self.list = []
 		self.timeout = timeout
-		if close_on_any_key == True:  # Process legacy close_on_any_key argument.
+		if close_on_any_key is True:  # Process legacy close_on_any_key argument.
 			closeOnAnyKey = True
 		self.closeOnAnyKey = closeOnAnyKey
-		if enable_input == False:  # Process legacy enable_input argument.
+		if enable_input is False:  # Process legacy enable_input argument.
 			enableInput = False
 		if enableInput:
 			if self.list:
