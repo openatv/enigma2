@@ -842,7 +842,7 @@ profile("Load:StackTracePrinter")
 from Components.StackTrace import StackTracePrinter
 StackTracePrinterInst = StackTracePrinter()
 
-from time import time, localtime, strftime
+from time import localtime, strftime
 from Tools.StbHardware import setFPWakeuptime, setRTCtime
 
 profile("Init:skin")
