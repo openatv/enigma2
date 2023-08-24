@@ -1,12 +1,10 @@
+from os import path
 from Components.Converter.Converter import Converter
 from enigma import eAVControl, iServiceInformation, iPlayableService, eServiceReference
 from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Components.Element import cached
 from Components.Converter.Poll import Poll
 from Tools.Transponder import ConvertToHumanReadable
-from Components.SystemInfo import BoxInfo
-
-from os import path
 
 WIDESCREEN = [1, 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
 

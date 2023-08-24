@@ -1,12 +1,10 @@
-from os import path
 from enigma import eAVControl, iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
-from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
+from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
 from Components.Converter.Poll import Poll
-from Components.SystemInfo import BoxInfo
 
 caid_data = (
 	("0x100", "0x1ff", "Seca", "S", True),

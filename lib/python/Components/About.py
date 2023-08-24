@@ -3,7 +3,7 @@ from binascii import hexlify
 from fcntl import ioctl
 from glob import glob
 from locale import format_string
-from os import popen, stat
+from os import stat
 from os.path import isfile
 from re import search
 from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket

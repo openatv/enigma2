@@ -9,7 +9,6 @@ from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap
 from Components.Label import Label
-from Components.Pixmap import Pixmap
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, ConfigSelection, NoSave
 from Components.Console import Console

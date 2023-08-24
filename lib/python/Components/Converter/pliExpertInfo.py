@@ -2,7 +2,7 @@
 #  Coded by Vali, updated by Mirakels for openpli
 #
 
-from enigma import iServiceInformation, eServiceCenter, iPlayableService, iPlayableServicePtr
+from enigma import iServiceInformation, eServiceCenter
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
@@ -63,14 +63,14 @@ class pliExpertInfo(Poll, Converter):
 		Res_Text = ""
 		showCryptoInfo = False
 
-		if (self.type == self.SMART_INFO_H or self.type == self.SERVICE_INFO or self.type == self.CRYPTO_INFO or self.type == self.FREQUENCY_INFO): # HORIZONTAL
+		if (self.type == self.SMART_INFO_H or self.type == self.SERVICE_INFO or self.type == self.CRYPTO_INFO or self.type == self.FREQUENCY_INFO):  # HORIZONTAL
 			sep = "  "
 			sep2 = " - "
-		elif (self.type == self.SMART_INFO_V): # VERTIKAL
+		elif (self.type == self.SMART_INFO_V):  # VERTIKAL
 			sep = "\n"
 			sep2 = "\n"
 		else:
-			return ""	# unsupported orientation
+			return ""  # unsupported orientation
 
 		if (self.type == self.FREQUENCY_INFO):
 			try:

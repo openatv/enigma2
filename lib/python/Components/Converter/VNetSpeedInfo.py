@@ -14,8 +14,6 @@
 #
 #######################################################################
 
-import os
-from Components.Label import Label
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.Converter.Poll import Poll
@@ -40,7 +38,7 @@ class VNetSpeedInfo(Poll, Converter):
 	TMT = 15			# Transmit Lan oder Wlan total seit dem letzten Neustart in Megabyte - wenn beides vorhanden wird Lan ausgegeben
 	RC_MB = 16		# Receive Lan oder Wlan in Megabyte/s = Geschwindigkeit/Bandbreite - wenn beides vorhanden wird Lan ausgegeben
 	TM_MB = 17		# Transmit Lan oder Wlan in Megabyte/s = Geschwindigkeit/Bandbreite - wenn beides vorhanden wird Lan ausgegeben
-	NET_TYP = 18	# Lan - Wlan - Lan+Wlan
+	NET_TYP = 18  # Lan - Wlan - Lan+Wlan
 	ERR_RCL = 19  # Fehler Lan-Receive
 	ERR_TML = 20  # Fehler Lan-Transmit
 	DRO_RCL = 21  # Drop Lan-Receive
