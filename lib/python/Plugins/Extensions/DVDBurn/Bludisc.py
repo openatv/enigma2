@@ -104,12 +104,12 @@ class BludiscStream:
 
 	def setStreamtype(self, streamtype):
 		if isinstance(streamtype, int):
-			if streamtype in dict((VIDEO_TYPES[k], k) for k in VIDEO_TYPES):
+			if streamtype in {VIDEO_TYPES[k]: k for k in VIDEO_TYPES}:
 				self.__streamtype = streamtype
 				self.isVideo = True
 				self.isAudio = False
 				return True
-			elif streamtype in dict((AUDIO_TYPES[k], k) for k in AUDIO_TYPES):
+			elif streamtype in {AUDIO_TYPES[k]: k for k in AUDIO_TYPES}:
 				self.__streamtype = streamtype
 				self.isVideo = False
 				self.isAudio = True

@@ -326,7 +326,7 @@ class HelpMenuList(List):
 				sortCmp = None
 		else:
 			if sortCmp == self._sortCmpInd:
-				self.rcKeyIndex = dict((x[1], x[0]) for x in enumerate(remoteControl.getRemoteControlKeyList()))
+				self.rcKeyIndex = {x[1]: x[0] for x in enumerate(remoteControl.getRemoteControlKeyList())}
 		buttonsProcessed = set()
 		helpSeen = defaultdict(list)
 		sortedHelpList = sorted(helpList, key=lambda hle: hle[0].prio)

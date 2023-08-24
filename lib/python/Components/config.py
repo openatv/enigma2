@@ -2033,7 +2033,7 @@ class ConfigSubList(list):
 			item.load()
 
 	def dict(self):
-		return dict([(str(index), value) for index, value in enumerate(self)])
+		return {str(index): value for index, value in enumerate(self)}
 
 
 # Same as ConfigSubList, just as a dictionary.  Care must be taken that the

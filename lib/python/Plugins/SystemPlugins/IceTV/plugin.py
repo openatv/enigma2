@@ -544,7 +544,7 @@ class EPGFetcher:
         res = True
         old_service_set = self.service_set
         try:
-            self.settings = dict((s["name"], six.ensure_str(s["value"]) if s["type"] == 2 else s["value"]) for s in self.getSettings())
+            self.settings = {s["name"]: six.ensure_str(s["value"]) if s["type"] == 2 else s["value"] for s in self.getSettings()}
             print("[EPGFetcher] settings", self.settings)
         except (Exception) as ex:
             self.settings = {}
@@ -641,7 +641,7 @@ class EPGFetcher:
 
     def makeChanServMap(self, channels):
         res = defaultdict(list)
-        name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().items())
+        name_map = {n.upper(): t for n, t in self.getScanChanNameMap().items()}
 
         ice_services = set()
         for channel in channels:
@@ -764,7 +764,7 @@ class EPGFetcher:
 
     def triplesToChannels(self, triples):
         if triples:
-            return set(ch for ch, tl in self.channel_service_map.items() for t in tl if t in triples)
+            return {ch for ch, tl in self.channel_service_map.items() for t in tl if t in triples}
         else:
             return set()
 

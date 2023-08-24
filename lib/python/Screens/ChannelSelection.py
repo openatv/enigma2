@@ -165,7 +165,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			("Epg/Guide", "epg", "Infobar/EPGPressed/1"),
 			("Epg/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins")
 		]
-		self["ChannelSelectEPGActions"] = ButtonSetupActionMap(["ChannelSelectEPGActions"], dict((x[1], self.ButtonSetupGlobal) for x in self.hotkeys))
+		self["ChannelSelectEPGActions"] = ButtonSetupActionMap(["ChannelSelectEPGActions"], {x[1]: self.ButtonSetupGlobal for x in self.hotkeys})
 		self.currentSavedPath = []
 		self.onExecBegin.append(self.clearLongKeyPressed)
 		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectInfoActions", "ChannelSelectEPGActions"], {

@@ -169,9 +169,9 @@ class BackupScreen(Screen, ConfigListScreen):
 				fd.write("\n".join(pkgs))
 			if exists("/usr/lib/package.lst"):
 				pkgs = ShellCompatibleFunctions.listpkg(type="installed")
-				with open("/usr/lib/package.lst", "r") as fd:
-					installed = set(line.split()[0] for line in pkgs)
-					preinstalled = set(line.split()[0] for line in fd)
+				with open("/usr/lib/package.lst") as fd:
+					installed = {line.split()[0] for line in pkgs}
+					preinstalled = {line.split()[0] for line in fd}
 					removed = preinstalled - installed
 					removed = [package for package in removed if package.startswith("enigma2-plugin-") or package.startswith("enigma2-locale-")]
 					if removed:

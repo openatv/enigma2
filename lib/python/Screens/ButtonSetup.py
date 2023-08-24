@@ -330,7 +330,7 @@ class ButtonSetup(Screen):
 		self["actions"] = ActionMap(["OkCancelActions"], {  # No help available, HELP is a changeable button!
 			"cancel": self.close,
 		}, prio=-1)
-		self["ButtonSetupButtonActions"] = ButtonSetupActionMap(["ButtonSetupActions"], dict((x[1], self.ButtonSetupGlobal) for x in BUTTON_SETUP_KEYS))
+		self["ButtonSetupButtonActions"] = ButtonSetupActionMap(["ButtonSetupActions"], {x[1]: self.ButtonSetupGlobal for x in BUTTON_SETUP_KEYS})
 		self.longKeyPressed = False
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onExecBegin.append(self.getFunctions)
@@ -554,7 +554,7 @@ class HelpableButtonSetupActionMap(HelpableActionMap):
 class InfoBarButtonSetup():
 	def __init__(self):
 		self["ButtonSetupButtonActions"] = HelpableButtonSetupActionMap(self, "ButtonSetupActions",
-			dict((button[1], (self.ButtonSetupGlobal, boundFunction(self.getHelpText, button[1]))) for button in BUTTON_SETUP_KEYS), -10)
+			{button[1]: (self.ButtonSetupGlobal, boundFunction(self.getHelpText, button[1])) for button in BUTTON_SETUP_KEYS}, -10)
 		self.longKeyPressed = False
 		self.onExecEnd.append(self.clearLongKeyPressed)
 
