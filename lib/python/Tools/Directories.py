@@ -222,7 +222,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 def fileReadLine(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
 	line = None
 	try:
-		with open(filename, "r") as fd:
+		with open(filename) as fd:
 			line = fd.read().strip().replace("\0", "")
 		msg = "Read"
 	except OSError as err:
@@ -259,7 +259,7 @@ def fileUpdateLine(filename, conditionValue, replacementValue, create=False, sou
 def fileReadLines(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
 	lines = None
 	try:
-		with open(filename, "r") as fd:
+		with open(filename) as fd:
 			lines = fd.read().splitlines()
 		msg = "Read"
 	except OSError as err:
@@ -294,7 +294,7 @@ def fileWriteLines(filename, lines, source=DEFAULT_MODULE_NAME, debug=False):
 def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
 	dom = None
 	try:
-		with open(filename, "r") as fd:  # This open gets around a possible file handle leak in Python's XML parser.
+		with open(filename) as fd:  # This open gets around a possible file handle leak in Python's XML parser.
 			try:
 				dom = parse(fd).getroot()
 				msg = "Read"

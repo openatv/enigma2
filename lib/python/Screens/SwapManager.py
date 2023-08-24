@@ -163,7 +163,7 @@ class Swap(Screen):
 					if self.swap_place == 'sfdisk:':
 						self.swap_place = ''
 					self.device = True
-				f = open('/proc/swaps', 'r')
+				f = open('/proc/swaps')
 				for line in f.readlines():
 					parts = line.strip().split()
 					if line.find('partition') != -1:
@@ -199,7 +199,7 @@ class Swap(Screen):
 		self['labplace'].setText(self.swap_place)
 		self['labplace'].show()
 
-		f = open('/proc/swaps', 'r')
+		f = open('/proc/swaps')
 		for line in f.readlines():
 			parts = line.strip().split()
 			if line.find('partition') != -1:

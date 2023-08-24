@@ -5,7 +5,7 @@ import os
 filename = sys.argv[1]
 os.rename(filename, filename + ".org")
 
-source = open(filename + ".org", "r")
+source = open(filename + ".org")
 dest = open(filename, "w")
 
 for line, str in enumerate(source):

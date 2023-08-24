@@ -191,7 +191,7 @@ class Console(Screen):
 
 	def readFile(self, file):
 		try:
-			with open(file, 'r') as rdfile:
+			with open(file) as rdfile:
 				rd = rdfile.read()
 			rdfile.close()
 		except:

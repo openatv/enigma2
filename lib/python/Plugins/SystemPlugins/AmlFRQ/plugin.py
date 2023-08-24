@@ -175,13 +175,13 @@ class AmlFRQ(ConfigListScreen, Screen):
 		self.cfrq = "N/A"
 		self.cfrq2 = "N/A"
 		try:
-			with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq", "r") as fd:
+			with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq") as fd:
 				self.cfrq = fd.read().strip()
-			with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq", "r") as fd:
+			with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq") as fd:
 				self.cfrq2 = fd.read().strip()
-			with open("/proc/stb/fp/temp_sensor_avs", "r") as fd:
+			with open("/proc/stb/fp/temp_sensor_avs") as fd:
 				self.temp = fd.read().strip()
-			with open("/sys/devices/system/cpu/cpufreq/policy0/brcm_avs_voltage", "r") as fd:
+			with open("/sys/devices/system/cpu/cpufreq/policy0/brcm_avs_voltage") as fd:
 				self.voltage = fd.read().strip()
 		except Exception:
 			pass

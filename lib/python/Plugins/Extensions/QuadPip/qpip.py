@@ -31,7 +31,7 @@ def setDecoderMode(value):
 		newval = None
 		with open(ENABLE_QPIP_PROCPATH, "w") as fd:
 			fd.write(value)
-		with open(ENABLE_QPIP_PROCPATH, "r") as fd:
+		with open(ENABLE_QPIP_PROCPATH) as fd:
 			newval = fd.read().strip()
 		return newval == value
 

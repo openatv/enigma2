@@ -663,7 +663,7 @@ def InitAVSwitch():
 
 		policy2_choices_raw = "letterbox"
 		try:
-			with open(policy2_choices_proc, "r") as fd:
+			with open(policy2_choices_proc) as fd:
 				policy2_choices_raw = fd.read()
 		except OSError:
 			pass
@@ -703,7 +703,7 @@ def InitAVSwitch():
 		policy_choices_proc = "/proc/stb/video/policy_choices"
 		policy_choices_raw = "panscan"
 		try:
-			with open(policy_choices_proc, "r") as fd:
+			with open(policy_choices_proc) as fd:
 				policy_choices_raw = fd.read()
 		except OSError:
 			pass

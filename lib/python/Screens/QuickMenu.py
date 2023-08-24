@@ -46,7 +46,7 @@ SATFINDER = isPluginInstalled("Satfinder")
 
 def isFileSystemSupported(filesystem):
 	try:
-		for fs in open("/proc/filesystems", "r"):
+		for fs in open("/proc/filesystems"):
 			if fs.strip().endswith(filesystem):
 				return True
 		return False
@@ -666,7 +666,7 @@ class QuickMenuDevices(Screen):
 		def swapCallback(data, retVal, extraArgs):
 			list2 = []
 			swapdevices = data.replace("\n", "").split("/")
-			with open("/proc/partitions", "r") as fd:
+			with open("/proc/partitions") as fd:
 				for line in fd.readlines():
 					parts = line.strip().split()
 					if not parts:
@@ -700,7 +700,7 @@ class QuickMenuDevices(Screen):
 			name = _("HARD DISK: ")
 			myPixmap = "/usr/share/enigma2/icons/dev_hdd.png"
 		name = name + model
-		with open("/proc/mounts", "r") as fd:
+		with open("/proc/mounts") as fd:
 			for line in fd.readlines():
 				if line.find(device) != -1:
 					parts = line.strip().split()
@@ -719,7 +719,7 @@ class QuickMenuDevices(Screen):
 						d1 = _("None")
 						dtype = _("unavailable")
 						rw = _("None")
-		with open("/proc/partitions", "r") as fd:
+		with open("/proc/partitions") as fd:
 			for line in fd.readlines():
 				if line.find(device) != -1:
 					parts = line.strip().split()

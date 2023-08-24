@@ -60,7 +60,7 @@ def InstallSettings(name, link, date):
         RemoveList = []
         inhaltfile = Directory + '/Settings/tmp/setting/inhalt.lst'
         if os.path.isfile(inhaltfile):
-            with open(inhaltfile, 'r') as f:
+            with open(inhaltfile) as f:
                 data = six.ensure_str(f.read())
             RemoveList = data.splitlines()
         return RemoveList

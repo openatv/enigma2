@@ -623,7 +623,7 @@ class InfoBarTimeshift:
 					statinfo = stat("%s%s" % (config.timeshift.path.value, filename))
 					if statinfo.st_mtime < (time() - 5.0):
 						# Get Event Info from meta file
-						readmetafile = open("%s%s.meta" % (config.timeshift.path.value, filename), "r")
+						readmetafile = open("%s%s.meta" % (config.timeshift.path.value, filename))
 						servicerefname = readmetafile.readline()[0:-1]
 						eventname = readmetafile.readline()[0:-1]
 						description = readmetafile.readline()[0:-1]
@@ -711,7 +711,7 @@ class InfoBarTimeshift:
 					self.ptsCreateEITFile(fullname)
 				elif timeshiftfile.startswith("pts_livebuffer"):
 					# Save stored time shift by creating hardlink to ts file.
-					readmetafile = open("%s%s.meta" % (config.timeshift.path.value, timeshiftfile), "r")
+					readmetafile = open("%s%s.meta" % (config.timeshift.path.value, timeshiftfile))
 					servicerefname = readmetafile.readline()[0:-1]
 					eventname = readmetafile.readline()[0:-1]
 					description = readmetafile.readline()[0:-1]
@@ -791,7 +791,7 @@ class InfoBarTimeshift:
 						copy_file = copy_file + "." + str(randomint)
 						# Get Event Info from meta file
 						if exists("%s.ts.meta" % fullname):
-							readmetafile = open("%s.ts.meta" % fullname, "r")
+							readmetafile = open("%s.ts.meta" % fullname)
 							servicerefname = readmetafile.readline()[0:-1]
 							eventname = readmetafile.readline()[0:-1]
 							readmetafile.close()
@@ -1106,7 +1106,7 @@ class InfoBarTimeshift:
 		for filename in filelist:
 			if filename.endswith(".meta"):
 				# Get Event Info from meta file.
-				readmetafile = open("%s%s" % (config.usage.default_path.value, filename), "r")
+				readmetafile = open("%s%s" % (config.usage.default_path.value, filename))
 				servicerefname = readmetafile.readline()[0:-1]
 				eventname = readmetafile.readline()[0:-1]
 				eventtitle = readmetafile.readline()[0:-1]
@@ -1154,7 +1154,7 @@ class InfoBarTimeshift:
 		if fileExists(filename, "r"):
 			if fileExists("%s.meta" % filename, "r"):
 				# Get Event Info from meta file.
-				readmetafile = open(filename + ".meta", "r")
+				readmetafile = open(filename + ".meta")
 				servicerefname = readmetafile.readline()[0:-1]
 				eventname = readmetafile.readline()[0:-1]
 				readmetafile.close()

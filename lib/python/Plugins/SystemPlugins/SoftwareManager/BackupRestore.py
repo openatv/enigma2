@@ -520,7 +520,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		configfile.save()
 		try:
 			s = ""
-			with open("/etc/enigma2/settings", "r") as fd:
+			with open("/etc/enigma2/settings") as fd:
 				s = fd.read()
 			restore = "config.skin.primary_skin=MetrixHD/skin.MySkin.xml" in s
 		except Exception:

@@ -116,7 +116,7 @@ class Project:
 	def loadProject(self, filename):
 		if not fileExists(filename):
 			self.error = "xml file not found!"
-		file = open(filename, "r")
+		file = open(filename)
 		data = file.read().decode("utf-8").replace('&', "&amp;").encode("ascii", 'xmlcharrefreplace')
 		file.close()
 		projectfiledom = xml.dom.minidom.parseString(data)

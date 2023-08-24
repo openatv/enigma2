@@ -490,7 +490,7 @@ class DebugInformation(InformationBase):
 				info = self.cachedDebugInfo[path]
 			else:
 				try:
-					with open(path, "r") as fd:
+					with open(path) as fd:
 						info = [x.strip() for x in fd.readlines()][-LOG_MAX_LINES:]
 				except OSError as err:
 					info = "%s,%s" % (err.errno, err.strerror)
@@ -1725,7 +1725,7 @@ class SystemInformation(InformationBase):
 			self.console.ePopen(command, self.fetchInformationCallback)
 		elif path:
 			try:
-				with open(path, "r") as fd:
+				with open(path) as fd:
 					self.info = [x.strip() for x in fd.readlines()]
 			except OSError as err:
 				self.info = [_("Error %d: System information file '%s' can't be read!  (%s)") % (err.errno, path, err.strerror)]

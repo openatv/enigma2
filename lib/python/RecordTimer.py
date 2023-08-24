@@ -433,7 +433,7 @@ class RecordTimer(Timer):
 
 	def isRecTimerWakeup(self):
 		global wasRecTimerWakeup
-		wasRecTimerWakeup = int(open(TIMER_FLAG_FILE, "r").read()) and True or False if exists(TIMER_FLAG_FILE) else False  # DEBUG: Use fileReadLine()
+		wasRecTimerWakeup = int(open(TIMER_FLAG_FILE).read()) and True or False if exists(TIMER_FLAG_FILE) else False  # DEBUG: Use fileReadLine()
 		return wasRecTimerWakeup
 
 	def isRecording(self):
@@ -713,7 +713,7 @@ class RecordTimerEntry(TimerEntry):
 			except Exception as err:
 				print("[RecordTimer] Error: Import 'InfoBar' from 'Screens.InfoBar' failed!  (%s)" % str(err))
 		if exists(TIMER_FLAG_FILE) and not wasRecTimerWakeup:
-			wasRecTimerWakeup = int(open(TIMER_FLAG_FILE, "r").read()) and True or False
+			wasRecTimerWakeup = int(open(TIMER_FLAG_FILE).read()) and True or False
 		nextState = self.state + 1
 		if DEBUG:
 			self.log(5, "Activating state %d." % nextState)

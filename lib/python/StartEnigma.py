@@ -351,7 +351,7 @@ def runScreenTest():
 		filename = "/media/hdd/images/config/autorestore"
 		if exists(filename):
 			try:
-				with open(filename, "r") as fd:
+				with open(filename) as fd:
 					line = fd.read().strip().replace("\0", "")
 					count = int(line) if line.isdecimal() else 0
 				if count >= 3:

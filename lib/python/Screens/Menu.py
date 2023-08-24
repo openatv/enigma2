@@ -49,7 +49,7 @@ imageCache = {}
 lastKey = None
 
 # Read the menu.
-file = open(resolveFilename(SCOPE_SKINS, "menu.xml"), "r")
+file = open(resolveFilename(SCOPE_SKINS, "menu.xml"))
 mdom = parse(file)
 file.close()
 

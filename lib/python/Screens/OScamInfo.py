@@ -65,7 +65,7 @@ class OscamInfo:
 		# Find and parse running oscam
 		for file in ["/tmp/.ncam/ncam.version", "/tmp/.oscam/oscam.version"]:
 			if fileExists(file):
-				with open(file, 'r') as data:
+				with open(file) as data:
 					conffile = file.split('/')[-1].replace("version", "conf")
 					for i in data:
 						if "web interface support:" in i.lower():
@@ -111,7 +111,7 @@ class OscamInfo:
 		# oscam reports it got webif support and webif is running (Port != 0)
 			if conf is not None and exists(conf):
 				# If we have a config file, we need to investigate it further
-				with open(conf, 'r') as data:
+				with open(conf) as data:
 					for i in data:
 						if "httpuser" in i.lower():
 							user = i.split("=")[1].strip()
@@ -355,7 +355,7 @@ class OscamInfo:
 	def getECMInfo(self, ecminfo):
 		result = []
 		if exists(ecminfo):
-			data = open(ecminfo, "r").readlines()
+			data = open(ecminfo).readlines()
 			for i in data:
 				if "caid" in i:
 					result.append((_("CAID"), i.split(":")[1].strip()))
