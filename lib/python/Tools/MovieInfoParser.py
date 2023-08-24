@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # plnick@vuplus-support.org
 
 from os import path

@@ -1,5 +1,3 @@
-# -*- coding: UTF-8 -*-
-
 from gettext import bindtextdomain, install, textdomain, translation
 from locale import Error as LocaleError, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC, LC_TIME, setlocale, getlocale
 from os import environ, listdir

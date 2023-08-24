@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # enigma2 reactor: based on pollreactor, which is
 # Copyright (c) 2001-2004 Twisted Matrix Laboratories.
 # See LICENSE for details.

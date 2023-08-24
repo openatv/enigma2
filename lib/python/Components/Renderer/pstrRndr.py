@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # by digiteng...12-2019
 # v1.1a 01-2020
 from Components.Renderer.Renderer import Renderer

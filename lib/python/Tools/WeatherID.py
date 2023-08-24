@@ -1,5 +1,3 @@
-#-*- coding: UTF-8 -*-
-
 # source: https://code.google.com/p/python-weather-api/
 
 import re

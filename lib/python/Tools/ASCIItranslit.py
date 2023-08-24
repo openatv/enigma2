@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-
 ASCIItranslit = {
 	0x0022: "''",
 	0x002A: "_",

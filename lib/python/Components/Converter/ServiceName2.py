@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Extended ServiceName Converter for Enigma2 Dreamboxes (ServiceName2.py)
 # Coded by vlamo (c) 2011
