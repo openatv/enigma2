@@ -206,9 +206,9 @@ class ServiceInfo(Screen):
 		if isinstance(nmspc, str):
 			return "N/A - N/A"
 		namespace = "%08X" % (to_unsigned(nmspc))
-		if namespace[:4] == "EEEE":
+		if namespace.startswith("EEEE"):
 			return "%s - DVB-T" % (namespace)
-		elif namespace[:4] == "FFFF":
+		elif namespace.startswith("FFFF"):
 			return "%s - DVB-C" % (namespace)
 		else:
 			EW = "E"

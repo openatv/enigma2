@@ -1475,8 +1475,8 @@ class ReceiverInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		for count, nim in enumerate(nimmanager.nimListCompressed()):
-			tuner, type = (x.strip() for x in nim.split(":", 1))
-			info.append(formatLine("P1", tuner, type))
+			tuner, tunerType = (x.strip() for x in nim.split(":", 1))
+			info.append(formatLine("P1", tuner, tunerType))
 		info.append("")
 		info.append(formatLine("S", _("Storage / Drive information")))
 		if self.extraSpacing:
