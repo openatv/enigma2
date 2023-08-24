@@ -665,7 +665,7 @@ def mediaFilesInUse(session):
 	filename = service and service.getPath()
 	if filename:
 		filename = None if "://" in filename else basename(filename)  # When path is a stream ignore it.
-	return set([file for file in files if not (filename and file == filename and files.count(filename) < 2)])
+	return {file for file in files if not (filename and file == filename and files.count(filename) < 2)}
 
 
 def isPluginInstalled(pluginName, pluginFile="plugin", pluginType=None):

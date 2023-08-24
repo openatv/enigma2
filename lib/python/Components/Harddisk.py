@@ -978,7 +978,7 @@ class HarddiskManager:
 		if mounts is None:
 			mounts = getProcMounts()
 		parts = [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted(mounts)]
-		devs = set([x.device for x in parts])
+		devs = {x.device for x in parts}
 		for devname in devs.copy():
 			if not devname:
 				continue
