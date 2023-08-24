@@ -3,6 +3,7 @@
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/region.h>
 #include <lib/gdi/accel.h>
+#include <lib/gdi/color.h>
 #include <byteswap.h>
 
 #ifndef BYTE_ORDER
@@ -188,7 +189,6 @@ static inline void added_pixmap(int size) {}
 static inline void removed_pixmap(int size) {}
 #endif
 
-#if not defined(__sh__)
 static bool is_a_candidate_for_accel(const gUnmanagedSurface* surface)
 {
 	if (surface->stride < 48)
@@ -202,17 +202,12 @@ static bool is_a_candidate_for_accel(const gUnmanagedSurface* surface)
 			return false;
 	}
 }
-#endif
 
 gSurface::gSurface(int width, int height, int _bpp, int accel):
 	gUnmanagedSurface(width, height, _bpp)
 {
-#if defined(__sh__)
-	if (accel)
-#else
 	if ((accel > gPixmap::accelAuto) ||
 		((accel == gPixmap::accelAuto) && (is_a_candidate_for_accel(this))))
-#endif
 	{
 		if (gAccel::getInstance()->accelAlloc(this) != 0)
 				eDebug("[gSurface] ERROR: accelAlloc failed");
@@ -456,6 +451,115 @@ static void convert_palette(uint32_t* pal, const gPalette& clut)
 }
 
 #define FIX 0x10000
+
+uint32_t* gPixmap::allocBoxBuf(const int dx, const int dy, uint32_t* buf)
+{
+	uint32_t* pixBuf = buf;
+	if (pixBuf == NULL) 
+	{
+		pixBuf = (uint32_t*)malloc(dx*dy*sizeof(uint32_t));
+		if (pixBuf == NULL) 
+		{
+			return NULL;
+		}
+	}
+	memset((void*)pixBuf, '\0', dx*dy*sizeof(uint32_t));
+
+	return pixBuf;
+}
+
+void gPixmap::drawGradient(const gRegion &region, const eRect &area, const gRGB &startcolor, const gRGB &endcolor, int direction, int flag)
+{
+	uint32_t* gradientBuf = NULL;
+	uint32_t* boxBuf = allocBoxBuf(area.width(), area.height(), NULL);
+
+	gradientBuf = gradientColorToColor(startcolor, endcolor, NULL, (direction == 0) ? area.height() : area.width());
+
+	uint32_t *bp = boxBuf;
+	uint32_t *gra = gradientBuf;
+
+	if (direction == 0)
+	{
+		for (int pos = 0; pos < area.width(); pos++) 
+		{
+			for(int count = 0; count < area.height(); count++) 
+			{
+				*(bp + pos) = (uint32_t)(*(gra + count));
+				bp += area.width();
+			}
+			bp = boxBuf;
+		}
+	}
+	else
+	{
+		for (int line = 0; line < area.height(); line++) 
+		{
+			int gra_pos = 0;
+			for (int pos = 0; pos < area.width(); pos++) 
+			{
+				if ( (pos >= 0) && (gra_pos < area.width()))
+				{
+					*(bp + pos) = (uint32_t)(*(gra + gra_pos));
+					gra_pos++;
+				}
+			}
+			bp += area.width();
+		}
+	}
+
+	//blit
+	for (unsigned int i=0; i<region.rects.size(); ++i)
+	{
+		eRect reg = area;
+		reg&=region.rects[i];
+		reg&=eRect(ePoint(0, 0), size());
+
+		if (reg.empty())
+			continue;
+
+		eRect srcarea = reg;
+		srcarea.moveBy(-area.x(), -area.y());
+
+		const int src_stride = area.width() * surface->bypp;
+		const uint8_t* srcptr = (const uint8_t*)boxBuf + srcarea.left()*surface->bypp + srcarea.top()*src_stride;
+		uint8_t* dstptr = (uint8_t*)surface->data + reg.left()*surface->bypp + reg.top()*surface->stride;
+		const int width = reg.width();
+		const int height = reg.height();
+		const int src_height = srcarea.height();
+		const int src_width = srcarea.width();
+		if (flag & blitAlphaBlend)
+		{
+			for (int y = 0; y < height; ++y)
+			{
+				const gRGB *src_row_ptr = (gRGB *)(srcptr + (((y * src_height) / height) * src_stride));
+				gRGB *dst = (gRGB*)dstptr;
+				for (int x = 0; x < width; ++x)
+				{
+					dst->alpha_blend(src_row_ptr[(x * src_width) / width]);
+					++dst;
+				}
+				dstptr += surface->stride;
+			}
+		}
+		else
+		{
+			for (int y = 0; y < height; ++y)
+			{
+				const uint32_t *src_row_ptr = (uint32_t*)(srcptr + (((y * src_height) / height) * src_stride));
+				uint32_t *dst = (uint32_t*)dstptr;
+				for (int x = 0; x < width; ++x)
+				{
+					*dst = src_row_ptr[(x * src_width) / width];
+					++dst;
+				}
+				dstptr += surface->stride;
+			}
+		}
+		
+	}
+	if (boxBuf)
+		free(boxBuf);
+}
 
 void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int flag)
 {

@@ -1,206 +1,204 @@
-<!--suppress XmlUnboundNsPrefix -->
 <wizard>
-        <step id="welcome">
-                <text value="Welcome.\n\nIf you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n\nPress OK to start configuring your network" />
-                <displaytext value="Network Wizard" />
-	        <code>
+	<!--
+	<step id="welcome">
+		<text value="Welcome.\n\nThis wizard will guide you through the basic network setup of the %s %s.\n\nPress OK to start configuring the network." />
+		<displaytext value="Network Wizard" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-                </code>
+		</code>
 		<code pos="after" async="yes">
 self.selectInterface()
 		</code>
-        </step>
-
-        <step id="selectinterface">
-                <text value="Please select the network interface that you want to use for your Internet connection.\n\nPlease press OK to continue." />
-                <displaytext value="Select interface" />
-                <list type="dynamic" source="listInterfaces" evaluation="InterfaceSelectionMade" onselect="InterfaceSelectionMoved" />
-                <code>
+	</step>
+	<step id="selectinterface">
+	-->
+	<step id="welcome">
+		<text value="Select the network interface to be used for the Internet connection.\n\nPress OK to continue." />
+		<displaytext value="Select interface" />
+		<list type="dynamic" source="listInterfaces" evaluation="InterfaceSelectionMade" onselect="InterfaceSelectionMoved" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("UP")
 self.selectKey("DOWN")
-                </code>
-                <code pos="after" async="yes">
+		</code>
+		<code pos="after" async="yes">
 self.checkInterface(self.selectedInterface)
-                </code>
-        </step>
-        <step id="nwconfig">
-                <text value="Please configure your Internet connection by filling out the required values.\nWhen you are ready press OK to continue." />
-                <displaytext value="Configure interface" />
-                <config screen="AdapterSetup" module="NetworkSetup" args="self.selectedInterface" type="ConfigList" />
-                <code>
+		</code>
+	</step>
+	<step id="nwconfig">
+		<text value="Configure the Internet connection by adjusting the values shown.\n\nWhen the settings are correct press OK to continue." />
+		<displaytext value="Configure interface" />
+		<config screen="AdapterSetup" module="NetworkSetup" args="self.selectedInterface" type="ConfigList" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-                </code>
-                <code pos="after" async="yes">
+		</code>
+		<code pos="after" async="yes">
 self.AdapterSetupEnd(self.selectedInterface)
-                </code>
-        </step>
-        <step id="confdns" nextstep="checklanstatusend">
-                <text value="Please configure or verify your Nameservers by filling out the required values.\nWhen you are ready press OK to continue." />
-                <displaytext value="Configure nameservers" />
-                <config screen="NameserverSetup" module="NetworkSetup" type="ConfigList" />
-                <code>
+		</code>
+	</step>
+	<step id="confdns" nextstep="checklanstatusend">
+		<text value="Configure or verify your DNS (name servers) by adjusting the values shown.\n\nWhen the settings are correct press OK to continue." />
+		<displaytext value="Configure DNS (name servers)" />
+		<config screen="NameserverSetup" module="NetworkSetup" type="ConfigList" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-                </code>
-                <code pos="after" async="yes">
+		</code>
+		<code pos="after" async="yes">
 self.checkNetwork()
-                </code>
-        </step>
-        <step id="checklanstatusend" nextstep="end">
+		</code>
+	</step>
+	<step id="checklanstatusend" nextstep="end">
 		<condition>
 self.condition = (self.InterfaceState == True )
 		</condition>
-                <text value="Your %s %s is now ready to use.\n\nYour Internet connection is working now.\n\nPlease press OK to continue." />
-                <displaytext value="Please follow the instructions on the TV" />
-                <code>
+		<text value="The Internet connection appears to be working.\n\nPress OK to continue." />
+		<displaytext value="Follow instructions on TV" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-                </code>
-                <code pos="after">
+		</code>
+		<code pos="after">
 currStep = self.numSteps
 self.wizard[currStep]["nextstep"] = None
 self.markDone()
 self.close()
-                </code>
-        </step>
-        <step id="checklanstatusend">
+		</code>
+	</step>
+	<step id="checklanstatusend" nextstep="end">
 		<condition>
 self.condition = (self.InterfaceState == False )
 		</condition>
-                <text value="Your Internet connection is not working!\nPlease choose what you want to do next." />
-                <displaytext value="Please follow the instructions on the TV" />
-                <code>
+		<text value="The Internet connection appears to not be working!\n\nChoose what to do next." />
+		<displaytext value="Follow instructions on TV" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-                </code>
-                <list>
-                        <listentry caption="Configure your network again" step="welcome" />
-                        <listentry caption="Exit network wizard" step="end" />
-                </list>
-        </step>
-
-        <step id="asknetworktype">
+		</code>
+		<list>
+			<listentry caption="Configure the network again" step="welcome" />
+			<listentry caption="Exit network wizard" step="end" />
+		</list>
+	</step>
+	<step id="asknetworktype">
 		<condition>
 self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == True)
 		</condition>
-                <text value="Wireless network connection setup." />
-                <displaytext value="Wireless network connection setup" />
-                <code>
+		<text value="Wireless network connection setup.\n\nChoose what to do next." />
+		<displaytext value="Wireless network setup" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-                </code>
-                <list>
-                        <listentry caption="List available networks" step="scanwlan" />
-                        <listentry caption="Manual configuration" step="wlanconfig" />
-                        <listentry caption="Exit network wizard" step="end" />
-                </list>
-        </step>
-
-        <step id="scanwlan">
+		</code>
+		<list>
+			<listentry caption="List available networks" step="scanwlan" />
+			<listentry caption="Manual configuration" step="wlanconfig" />
+			<listentry caption="Exit network wizard" step="end" />
+		</list>
+	</step>
+	<step id="scanwlan">
 		<condition>
 self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == True)
-                </condition>
-                <text value="Please select the wireless network that you want to connect to.\n\nPlease press OK to continue." />
-                <displaytext value="Select wireless network" />
-                <list type="dynamic" source="listAccessPoints" onselect="AccessPointsSelectionMoved" />
-                <code>
+		</condition>
+		<text value="Select the wireless network to which you want to connect.\n\nPress OK to continue." />
+		<displaytext value="Select wireless network" />
+		<list type="dynamic" source="listAccessPoints" onselect="AccessPointsSelectionMoved" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
-                </code>
-                <code pos="after">
+		</code>
+		<code pos="after">
 self.checkWlanSelection()
-                </code>
-        </step>
-        <step id="scanwlan">
-                <condition>
+		</code>
+	</step>
+	<step id="scanwlan">
+		<condition>
 self.condition = (self.isInterfaceUp == False and self.WlanPluginInstalled == True)
-                </condition>
-                <text value="Your wireless LAN Internet connection could not be started!\nHave you attached your USB WLAN Stick?\n\nPlease choose what you want to do next." />
-                <displaytext value="Please follow the instructions on the TV" />
-                <list type="dynamic" source="listChoices" evaluation="ChoicesSelectionMade" onselect="ChoicesSelectionMoved" />
-                <code>
+		</condition>
+		<text value="The wireless LAN Internet connection could not be started!\nIs the wireless LAN device connected?\n\nChoose what to do next." />
+		<displaytext value="Follow instructions on TV" />
+		<list type="dynamic" source="listChoices" evaluation="ChoicesSelectionMade" onselect="ChoicesSelectionMoved" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
 self.selectKey("UP")
 self.selectKey("DOWN")
-                </code>
-        </step>
-        <step id="scanwlan">
-                <condition>
+		</code>
+	</step>
+	<step id="scanwlan">
+		<condition>
 self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == False)
-                </condition>
-                <text value="The wireless LAN plugin is not installed!\nPlease install it and choose what you want to do next." />
-                <displaytext value="Please follow the instructions on the TV" />
-                <list type="dynamic" source="listChoices" evaluation="ChoicesSelectionMade" onselect="ChoicesSelectionMoved" />
-
-                <code>
+		</condition>
+		<text value="The wireless LAN plugin code is not installed!\n\nInstall it and choose what to do next." />
+		<displaytext value="Follow instructions on TV" />
+		<list type="dynamic" source="listChoices" evaluation="ChoicesSelectionMade" onselect="ChoicesSelectionMoved" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
 self.selectKey("UP")
 self.selectKey("DOWN")
-                </code>
-        </step>
-        <step id="wlanconfig">
-                <text value="Please configure your Internet connection by filling out the required values.\nWhen you are ready press OK to continue." />
-                <displaytext value="Configure interface" />
-                <config screen="AdapterSetup" module="NetworkSetup" args="(self.selectedInterface,self.ap)" type="ConfigList" />
-                <code>
+		</code>
+	</step>
+	<step id="wlanconfig">
+		<text value="Configure the Internet connection by adjusting the values shown.\n\nWhen the settings are correct press OK to continue." />
+		<displaytext value="Configure interface" />
+		<config screen="AdapterSetup" module="NetworkSetup" args="(self.selectedInterface,self.ap)" type="ConfigList" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
 self.selectKey("UP")
 self.selectKey("DOWN")
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
-                </code>
-                <code pos="after" async="yes">
+		</code>
+		<code pos="after" async="yes">
 self.AdapterSetupEnd(self.selectedInterface)
-                </code>
-        </step>
-        <step id="checkWlanstatusend" nextstep="end">
+		</code>
+	</step>
+	<step id="checkWlanstatusend" nextstep="end">
 		<condition>
 self.condition = (self.InterfaceState == True )
 		</condition>
-                <text value="Your %s %s is now ready to use.\n\nYour Internet connection is working now.\n\nPlease press OK to continue." />
-                <displaytext value="Please follow the instructions on the TV" />
-                <code>
+		<text value="The Internet connection appears to be working.\n\nPress OK to continue." />
+		<displaytext value="Follow instructions on TV" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
 self["text"].setText(self.Text)
-                </code>
-                <code pos="after">
+		</code>
+		<code pos="after">
 currStep = self.numSteps
 self.wizard[currStep]["nextstep"] = None
 self.markDone()
 self.close()
-                </code>
-        </step>
-        <step id="checkWlanstatusend">
+		</code>
+	</step>
+	<step id="checkWlanstatusend">
 		<condition>
 self.condition = (self.InterfaceState == False )
 		</condition>
-                <text value="Your Internet connection is not working!\nPlease choose what you want to do next." />
-                <displaytext value="Please follow the instructions on the TV" />
-                <code>
+		<text value="Your Internet connection is not working!\nPlease choose what you want to do next." />
+		<displaytext value="Please follow the instructions on the TV" />
+		<code>
 self.clearSelectedKeys()
 self.selectKey("OK")
 self.selectKey("UP")
 self.selectKey("DOWN")
-                </code>
-                <list>
-                        <listentry caption="Configure your network again" step="welcome" />
-                        <listentry caption="Exit network wizard" step="end" />
-                </list>
-        </step>
-
-        <step id="end">
-                <text value="Thank you for using the wizard.\nPlease press OK to continue." />
-                <code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-                </code>
-        </step>
+		</code>
+		<list>
+			<listentry caption="Configure the network again" step="welcome" />
+			<listentry caption="Exit network wizard" step="end" />
+		</list>
+	</step>
+	<step id="end">
+		<text value="Network wizard completed.\n\nPress OK to continue." />
+		<!--displaytext value="Network wizard complete" /-->
+		<code>
+# self.clearSelectedKeys()
+# self.selectKey("OK")
+self.close()
+		</code>
+	</step>
 </wizard>
-

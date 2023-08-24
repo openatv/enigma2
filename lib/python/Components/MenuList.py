@@ -6,9 +6,9 @@ from Components.GUIComponent import GUIComponent
 class MenuList(GUIComponent):
 	GUI_WIDGET = eListbox
 
-	def __init__(self, list, enableWrapAround=None, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
+	def __init__(self, menuList, enableWrapAround=None, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
 		GUIComponent.__init__(self)
-		self.list = list
+		self.list = menuList
 		self.l = content()
 		self.l.setList(self.list)
 		self.onSelectionChanged = []
@@ -21,42 +21,48 @@ class MenuList(GUIComponent):
 		instance.setContent(None)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
-	def selectionChanged(self):
-		for callback in self.onSelectionChanged:
-			callback()
-
-	def getList(self):
-		return self.list
-
-	def setList(self, list):
-		self.list = list
-		self.l.setList(self.list)
+	def enableAutoNavigation(self, enabled):
+		if self.instance:
+			self.instance.enableAutoNavigation(enabled)
 
 	def selectionEnabled(self, enabled):
 		if self.instance:
 			self.instance.setSelectionEnable(enabled)
 
-	def getCurrent(self):
-		return self.l.getCurrentSelection()
+	def getList(self):
+		return self.list
 
-	def getCurrentIndex(self):
-		return self.l.getCurrentSelectionIndex()
-
-	def getSelectionIndex(self):
-		return self.getCurrentIndex()
-
-	def getSelectedIndex(self):
-		return self.getCurrentIndex()
+	def setList(self, menuList):
+		self.list = menuList
+		self.l.setList(self.list)
 
 	def count(self):
 		return len(self.list)
+
+	def selectionChanged(self):
+		for callback in self.onSelectionChanged:
+			callback()
+
+	def getCurrent(self):
+		return self.l.getCurrentSelection()
+
+	current = property(getCurrent)
+
+	def getCurrentIndex(self):
+		return self.l.getCurrentSelectionIndex()
 
 	def setCurrentIndex(self, index):
 		if self.instance:
 			self.instance.moveSelectionTo(index)
 
-	def moveToIndex(self, index):
-		self.setCurrentIndex(index)
+	index = property(getCurrentIndex, setCurrentIndex)
+
+	def getTopIndex(self):
+		return self.instance.getTopIndex() if self.instance else -1
+
+	def setTopIndex(self, index):
+		if self.instance:
+			self.instance.setTopIndex(index)
 
 	def goTop(self):
 		if self.instance:
@@ -70,6 +76,22 @@ class MenuList(GUIComponent):
 		if self.instance:
 			self.instance.goLineUp()
 
+	def goFirst(self):
+		if self.instance:
+			self.instance.goFirst()
+
+	def goLeft(self):
+		if self.instance:
+			self.instance.goLeft()
+
+	def goRight(self):
+		if self.instance:
+			self.instance.goRight()
+
+	def goLast(self):
+		if self.instance:
+			self.instance.goLast()
+
 	def goLineDown(self):
 		if self.instance:
 			self.instance.goLineDown()
@@ -82,15 +104,17 @@ class MenuList(GUIComponent):
 		if self.instance:
 			self.instance.goBottom()
 
-	def getTopIndex(self):
-		return self.instance.getTopIndex() if self.instance else -1
-
-	def setTopIndex(self, index):
-		if self.instance:
-			self.instance.setTopIndex(index)
-
-	# Old navigation method names.
+	# Old method names. This methods should be found and removed from all code.
 	#
+	def getSelectionIndex(self):
+		return self.getCurrentIndex()
+
+	def getSelectedIndex(self):
+		return self.getCurrentIndex()
+
+	def moveToIndex(self, index):
+		self.setCurrentIndex(index)
+
 	def top(self):
 		self.goTop()
 

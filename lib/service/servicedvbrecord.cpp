@@ -94,8 +94,11 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 	m_filename = filename;
 	m_streaming = 0;
 	m_descramble = config_recording_never_decrypt ? false : descramble;
+	bool write_descramble = m_descramble; // remember descramble flag to fix icam recordings
 	m_record_ecm = config_recording_always_ecm ? true : recordecm;
 	m_packet_size = packetsize;
+
+	// eDebug("[eDVBServiceRecord] prepare filename %s / m_record_ecm = %d / m_descramble = %d", filename, m_record_ecm, m_descramble);
 
 	if (m_state == stateIdle)
 	{
@@ -137,7 +140,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 				meta.m_description = descr;
 			if (tags)
 				meta.m_tags = tags;
-			meta.m_scrambled = !m_descramble;
+			meta.m_scrambled = !write_descramble;
 			meta.m_packet_size = m_packet_size;
 			ret = meta.updateMeta(filename) ? -255 : 0;
 			if (!ret)
@@ -588,7 +591,12 @@ void eDVBServiceRecord::gotNewEvent(int /*error*/)
 
 void eDVBServiceRecord::saveCutlist()
 {
-			/* XXX: dupe of eDVBServicePlay::saveCuesheet, refactor plz */
+	/* XXX: dupe of eDVBServicePlay::saveCuesheet, refactor plz */
+	
+	/* save cuesheet only when main file is accessible. */
+	if (::access(m_filename.c_str(), R_OK) < 0)
+		return;
+
 	std::string filename = m_filename + ".cuts";
 
 	eDVBTSTools tstools;

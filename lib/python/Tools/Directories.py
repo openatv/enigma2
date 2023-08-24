@@ -250,6 +250,12 @@ def fileWriteLine(filename, line, source=DEFAULT_MODULE_NAME, debug=False):
 	return result
 
 
+def fileUpdateLine(filename, conditionValue, replacementValue, create=False, source=DEFAULT_MODULE_NAME, debug=False):
+	line = fileReadLine(filename, default="", source=source, debug=debug)
+	create = False if conditionValue and not line.startswith(conditionValue) else create
+	return fileWriteLine(filename, replacementValue, source=source, debug=debug) if create or (conditionValue and line.startswith(conditionValue)) else 0
+
+
 def fileReadLines(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
 	lines = None
 	try:
@@ -659,7 +665,7 @@ def mediaFilesInUse(session):
 	filename = service and service.getPath()
 	if filename:
 		filename = None if "://" in filename else basename(filename)  # When path is a stream ignore it.
-	return set([file for file in files if not(filename and file == filename and files.count(filename) < 2)])
+	return set([file for file in files if not (filename and file == filename and files.count(filename) < 2)])
 
 
 def isPluginInstalled(pluginName, pluginFile="plugin", pluginType=None):

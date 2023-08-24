@@ -164,7 +164,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 			config.ParentalControl.config_sections.software_update.value
 
 	def layoutFinished(self):
-		self["list"].master.master.instance.enableAutoNavigation(False)
+		self["list"].enableAutoNavigation(False)
 		self.setStatus("update")
 		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 		self.timer.start(25, True)
@@ -452,10 +452,13 @@ class RunSoftwareUpdate(Screen, HelpableScreen):
 			self.timer.stop()
 			self["activity"].hide()
 		else:
-			self.activity += 1
-			if self.activity == 100:
-				self.activity = 0
-			self["activity"].setValue(self.activity)
+			if self.packageTotal and self.upgradeCount:
+				self["activity"].setValue(int(self.upgradeCount / self.packageTotal * 100))
+			else:
+				self.activity += 1
+				if self.activity == 100:
+					self.activity = 0
+				self["activity"].setValue(self.activity)
 			self.timer.start(100, True)
 		for callback in self.onTimerTick:
 			callback()

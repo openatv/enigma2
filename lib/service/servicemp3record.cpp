@@ -50,7 +50,8 @@ eServiceMP3Record::~eServiceMP3Record()
 
 RESULT eServiceMP3Record::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm, int packetsize)
 {
-	eDebug("[eMP3ServiceRecord] prepare filename %s", filename);
+
+	eDebug("[eMP3ServiceRecord] prepare filename %s / recordecm = %d / descramble = %d", filename, recordecm, descramble);
 	m_filename = filename;
 
 	if (m_state == stateIdle)

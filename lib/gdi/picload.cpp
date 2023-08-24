@@ -27,8 +27,8 @@ static std::string getSize(const char* file)
 	struct stat64 s;
 	if (stat64(file, &s) < 0)
 		return "";
-	char tmp[20];
-	snprintf(tmp, 20, "%ld kB", (long)s.st_size / 1024);
+	char tmp[21];
+	snprintf(tmp, 21, "%ld kB", (long)s.st_size / 1024);
 	return tmp;
 }
 
@@ -321,7 +321,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 			lseek(fd, raster, SEEK_SET);
 			for (int i = 0; i < (*y); i++)
 			{
-				read(fd, wr_buffer, (*x) * 3);
+				[[maybe_unused]] size_t ret = read(fd, wr_buffer, (*x) * 3);
 				for (int j = 0; j < (*x) * 3 ; j = j + 3)
 				{
 					unsigned char c = wr_buffer[j];
@@ -502,7 +502,7 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 		for(int pass = 0; pass < number_passes; pass++)
 		{
 			fbptr = (png_byte *)pic_buffer;
-			for (int i = 0; i < height; i++, fbptr += width * bpp)
+			for (unsigned int i = 0; i < height; i++, fbptr += width * bpp)
 				png_read_row(png_ptr, fbptr, NULL);
 		}
 		png_read_end(png_ptr, info_ptr);
@@ -520,16 +520,15 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 
 			unsigned char *src = pic_buffer;
 			unsigned char *dst = pic_buffer24;
-			int a, r, g, b;
 			int bg_r = (background >> 16) & 0xFF;
 			int bg_g = (background >> 8) & 0xFF;
 			int bg_b = background & 0xFF;
 			for(int i = 0; i < pixel_cnt; i++)
 			{
-				r = (int)*src++;
-				g = (int)*src++;
-				b = (int)*src++;
-				a = (int)*src++;
+				int r = (int)*src++;
+				int g = (int)*src++;
+				int b = (int)*src++;
+				int a = (int)*src++;
 
 				*dst++ = ((r-bg_r)*a)/255 + bg_r;
 				*dst++ = ((g-bg_g)*a)/255 + bg_g;
@@ -900,7 +899,7 @@ void ePicLoad::thread()
 {
 	threadrunning=true;
 	hasStarted();
-	nice(4);
+	[[maybe_unused]] int ret = nice(4);
 	runLoop();
 }
 
@@ -963,7 +962,7 @@ void ePicLoad::decodeThumb()
 			int c;
 			int count = 1024*100;
 			unsigned long crc32 = 0;
-			char crcstr[9];*crcstr=0;
+			char crcstr[16];*crcstr=0;
 
 			while ((c=getc(f))!=EOF)
 			{
@@ -973,7 +972,10 @@ void ePicLoad::decodeThumb()
 
 			fclose(f);
 			crc32 = ~crc32;
-			sprintf(crcstr, "%08lX", crc32);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-truncation"
+			snprintf(crcstr, 16, "%08lX", crc32);
+#pragma GCC diagnostic pop
 
 			cachedir = m_filepara->file;
 			size_t pos = cachedir.find_last_of("/");
@@ -1146,7 +1148,7 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 	unsigned char id[10];
 	int fd = ::open(file, O_RDONLY);
 	if (fd == -1) return -errno;
-	::read(fd, id, 10);
+	[[maybe_unused]] size_t ret = ::read(fd, id, 10);
 	::close(fd);
 
 	if(id[1] == 'P' && id[2] == 'N' && id[3] == 'G')			file_id = F_PNG;

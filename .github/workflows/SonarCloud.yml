@@ -1,7 +1,7 @@
 name: SonarCloud
 on:
   push:
-    branches: [ 7.2, master ]
+    branches: [ 7.3, master ]
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -9,8 +9,8 @@ jobs:
     name: Build
     runs-on: ubuntu-22.04
     env:
-      SONAR_SCANNER_VERSION: 4.7.0.2747
-      SONAR_SERVER_URL: "https://sonarcloud.io"
+#      SONAR_SCANNER_VERSION: 4.7.0.2747
+#      SONAR_SERVER_URL: "https://sonarcloud.io"
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
     steps:
       - name: Install libraries
@@ -37,13 +37,14 @@ jobs:
           sudo apt-get install libavahi-client-dev
           sudo apt-get install libjpeg-turbo8-dev
           sudo apt-get install libgif-dev
+          sudo apt-get install libcurl4-openssl-dev
 
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Install sonar-scanner and build-wrapper
-        uses: SonarSource/sonarcloud-github-c-cpp@v1
+        uses: SonarSource/sonarcloud-github-c-cpp@v2
 
       - uses: actions/setup-python@v4
         with:

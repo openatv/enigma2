@@ -5,6 +5,7 @@ from enigma import eTimer
 
 from skin import findSkinScreen, menus
 from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
+from Components.AVSwitch import iAVSwitch
 from Components.config import ConfigDictionarySet, NoSave, config, configfile
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
@@ -111,39 +112,39 @@ def menuEntryName(name):
 class Menu(Screen, HelpableScreen, ProtectedScreen):
 	ALLOW_SUSPEND = True
 
-	skin = ["""
+	skin = """
 	<screen name="Menu" title="Menu"  position="center,center" size="980,600" resolution="1280,720">
 		<widget source="menu" render="Listbox" position="0,0" size="730,490">
 			<convert type="TemplatedMultiContent">
 				{
 				"templates":
 					{
-					"default": (%d,
+					"default": (35,
 						[
-						MultiContentEntryText(pos=(%d, 0), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=0)
+						MultiContentEntryText(pos=(15, 0), size=(710, 35), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=0)
 						]),
-					"text": (%d,
+					"text": (35,
 						[
-						MultiContentEntryText(pos=(%d, 0), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=3),
+						MultiContentEntryText(pos=(20, 0), size=(660, 35), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=3),
 						]),
-					"number": (%d,
+					"number": (35,
 						[
-						MultiContentEntryText(pos=(%d, 0), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=2),
-						MultiContentEntryText(pos=(%d, 0), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=3),
+						MultiContentEntryText(pos=(15, 0), size=(30, 35), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=2),
+						MultiContentEntryText(pos=(65, 0), size=(610, 35), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=3),
 						]),
-					"image": (%d,
+					"image": (35,
 						[
-						MultiContentEntryPixmapAlphaBlend(pos=(%d, %d), size=(%d, %d), png=1, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO),
-						MultiContentEntryText(pos=(%d, 0), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=3),
+						MultiContentEntryPixmapAlphaBlend(pos=(15, 2), size=(31, 31), png=1, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO),
+						MultiContentEntryText(pos=(65, 0), size=(610, 35), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=3),
 						]),
-					"both": (%d,
+					"both": (35,
 						[
-						MultiContentEntryPixmapAlphaBlend(pos=(%d, %d), size=(%d, %d), png=1, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO),
-						MultiContentEntryText(pos=(%d, 0), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=2),
-						MultiContentEntryText(pos=(%d, 0), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=3),
+						MultiContentEntryPixmapAlphaBlend(pos=(15, 2), size=(31, 31), png=1, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO),
+						MultiContentEntryText(pos=(65, 0), size=(40, 35), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=2),
+						MultiContentEntryText(pos=(125, 0), size=(550, 35), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=3),
 						])
 					},
-				"fonts": [parseFont("Regular;%d")]
+				"fonts": [parseFont("Regular;25")]
 				}
 			</convert>
 		</widget>
@@ -170,23 +171,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		<widget source="key_help" render="Label" position="e-100,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" conditional="key_help" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-	</screen>""",
-		35,  # Template "default".
-		15, 710, 35,
-		35,  # Template "text".
-		20, 660, 35,
-		35,  # Template "number".
-		15, 30, 35,
-		65, 610, 35,
-		35,  # Template "image".
-		15, 2, 31, 31,
-		65, 610, 35,
-		35,  # Template "both".
-		15, 2, 31, 31,
-		65, 40, 35,
-		125, 550, 35,
-		25  # Template "fonts".
-	]
+	</screen>"""
 
 	def __init__(self, session, parentMenu):
 		self.session = session
@@ -226,7 +211,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 			self.onShown.append(self.openTestA)
 		elif config.usage.menuType.value == "horzicon" and findSkinScreen("Iconmain"):
 			self.onShown.append(self.openTestB)
-		self["menuActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "MenuActions", "ColorActions", "NumberActions"], {
+		self["menuActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "MenuActions", "ColorActions", "NumberActions", "TextActions"], {
 			"ok": (self.okbuttonClick, _("Select the current menu item")),
 			"cancel": (self.closeNonRecursive, _("Exit menu")),
 			"close": (self.closeRecursive, _("Exit all menus")),
@@ -241,7 +226,8 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 			"7": (self.keyNumberGlobal, _("Direct menu item selection")),
 			"8": (self.keyNumberGlobal, _("Direct menu item selection")),
 			"9": (self.keyNumberGlobal, _("Direct menu item selection")),
-			"0": (self.keyNumberGlobal, _("Direct menu item selection"))
+			"0": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"textlong": (self.keyText, _("Switch to 720p video"))
 		}, prio=0, description=_("Menu Common Actions"))
 		if config.usage.menuSortOrder.value == "user":
 			self["moveActions"] = HelpableActionMap(self, ["NavigationActions"], {
@@ -640,6 +626,9 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		self["menu"].bottom()
 		if self.sortMode and self.selectedEntry is not None:
 			self.moveAction()
+
+	def keyText(self):
+		iAVSwitch.setMode("HDMI", "720p", "50Hz")
 
 	def moveAction(self):
 		menuListCopy = list(self.menuList)
@@ -1087,4 +1076,4 @@ class MenuSummary(ScreenSummary):
 			self.parent["menu"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		self["entry"].text = self.parent["menu"].getCurrent()[WIDGET_NUMBER_TEXT]
+		self["entry"].setText(self.parent["menu"].getCurrent()[WIDGET_NUMBER_TEXT])

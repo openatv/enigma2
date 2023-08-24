@@ -128,7 +128,7 @@
 		<panel name="SummaryClockPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>
-<!-- Movieplayer auch MediaPortal-->
+<!-- Movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="400,240">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="400,133" font="FdLcD;38" halign="center" valign="center" transparent="1" zPosition="2">
 			<convert type="ServiceName">Name</convert>
@@ -230,9 +230,7 @@
 	<screen name="MenuSummary" position="fill">
 		<widget source="Title" render="Label" position="top" size="*,119" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="parent.menu" render="Label" position="top" size="*,119" font="FdLcD;38" halign="center" valign="center">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="top" size="*,119" font="FdLcD;38" halign="center" valign="center"/>
 	</screen>
 <!-- Schnellstartmenue -->
 	<screen name="QuickMenu_summary" position="0,0" size="400,240">
@@ -253,11 +251,11 @@
 	</screen>
 <!-- setup-->
 	<screen name="SetupSummary" position="fill">
-		<widget source="SetupTitle" render="Label" position="top" size="*,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="left"  valign="center" />
+		<widget source="Title" render="Label" position="top" size="*,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="left"  valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="SetupEntry" render="Label" position="top" size="*,95" font="FdLcD;25" halign="left" valign="center" />
+		<widget source="entry" render="Label" position="top" size="*,95" font="FdLcD;25" halign="left" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="SetupValue" render="Label" position="top" size="*,65" font="FdLcD;25" foregroundColor="#F4FA58" halign="left" valign="center" />
+		<widget source="value" render="Label" position="top" size="*,65" font="FdLcD;25" foregroundColor="#F4FA58" halign="left" valign="center" />
 	</screen>		
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="400,240">
@@ -280,12 +278,6 @@
 	<screen name="WizardSummary" position="fill">
 		<widget source="text" render="Label" position="top" size="*,71" font="FdLcD;35" halign="center" />
 		<widget source="parent.list" render="Label" position="fill" font="FdLcD;25" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
-		<widget source="parent.list" render="Label" position="fill" font="FdLcD;45" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -382,9 +374,6 @@
 	<screen name="MessageBoxSimpleSummary" position="0,0" size="400,240">
 		<panel name="MessageBoxSummary" />
 	</screen>
-	<screen name="AboutSummary" position="0,0" size="400,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="400,240" font="FdLcD;34" foregroundColor="#87CEFA" halign="center" valign="center" />
-	</screen>
 <!-- LocationBox_summary -->
 	<screen name="LocationBox_summary" position="0,0" size="400,240">
 		<widget source="parent.text" render="Label" position="0,0" size="400,178" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" valign="center" />
@@ -444,12 +433,6 @@
 	</screen>
 	<screen name="WizardSummary" position="0,0" size="400,240">
 		<widget source="text" render="Label" position="0,0" size="400,55" font="FdLcD;24" halign="center" />
-		<widget source="parent.list" render="Label" position="0,85" size="400,124" font="FdLcD;24" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<widget source="text" render="Label" position="0,0" size="400,50" font="FdLcD;24" halign="center" />
 		<widget source="parent.list" render="Label" position="0,85" size="400,124" font="FdLcD;24" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>

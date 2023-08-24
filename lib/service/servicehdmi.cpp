@@ -8,6 +8,7 @@
 #include <lib/dvb/encoder.h>
 #include <lib/service/servicehdmi.h>
 #include <lib/service/service.h>
+#include <lib/driver/avcontrol.h>
 
 #include <string>
 
@@ -122,18 +123,24 @@ RESULT eServiceHDMI::connectEvent(const sigc::slot2<void,iPlayableService*,int> 
 
 RESULT eServiceHDMI::start()
 {
+	eAVControl::getInstance()->startStopHDMIIn(true, !m_noaudio, 1);
+#ifndef HAVE_HDMIIN_DM
 	m_decoder = new eTSMPEGDecoder(NULL, m_decoder_index);
 	m_decoder->setVideoPID(1, 0);
 	if (!m_noaudio)
 		m_decoder->setAudioPID(1, 0);
 	m_decoder->play();
+#endif
 	m_event(this, evStart);
 	return 0;
 }
 
 RESULT eServiceHDMI::stop()
 {
+	eAVControl::getInstance()->startStopHDMIIn(false, true, 1);
+#ifndef HAVE_HDMIIN_DM
 	m_decoder = NULL;
+#endif
 	m_event(this, evStopped);
 	return 0;
 }
@@ -259,6 +266,7 @@ int eServiceHDMIRecord::doPrepare()
 	{
 		if (eEncoder::getInstance())
 		{
+			/*
 			int bitrate = eConfigManager::getConfigIntValue("config.hdmirecord.bitrate", 8 * 1024 * 1024);
 			int width = eConfigManager::getConfigIntValue("config.hdmirecord.width", 1280);
 			int height = eConfigManager::getConfigIntValue("config.hdmirecord.height", 720);
@@ -266,6 +274,8 @@ int eServiceHDMIRecord::doPrepare()
 			int interlaced = eConfigManager::getConfigIntValue("config.hdmirecord.interlaced", 0);
 			int aspectratio = eConfigManager::getConfigIntValue("config.hdmirecord.aspectratio", 0);
 			m_encoder_fd = eEncoder::getInstance()->allocateEncoder(m_ref.toString(), m_buffersize, bitrate, width, height, framerate, interlaced, aspectratio);
+			*/
+			m_encoder_fd = eEncoder::getInstance()->allocateHDMIEncoder(m_ref.toString(), m_buffersize);
 		}
 		if (m_encoder_fd < 0) return -1;
 	}

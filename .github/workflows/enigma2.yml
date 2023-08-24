@@ -2,9 +2,9 @@ name: enigma2 build
 
 on:
   push:
-    branches: [ 7.2, master ]
+    branches: [ 7.3, master ]
   pull_request:
-    branches: [ 7.2, master ]
+    branches: [ 7.3, master ]
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         gcc: [11]
-        python: ['3.10', '3.11']
+        python: ['3.11']
     steps:
       - name: Install prerequisites
         run: |
@@ -39,6 +39,7 @@ jobs:
           sudo apt-get install libavahi-client-dev
           sudo apt-get install libjpeg-turbo8-dev
           sudo apt-get install libgif-dev
+          sudo apt-get install libcurl4-openssl-dev
 
       - uses: actions/checkout@v3
 

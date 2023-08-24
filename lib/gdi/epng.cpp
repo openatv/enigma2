@@ -618,7 +618,6 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, int accel,int cached)
 	surface->clut.data = m_filepara->palette;
 	surface->clut.colors = m_filepara->palette_size;
 	m_filepara->palette = NULL; // transfer ownership
-	int o_y=0, u_y=0, v_x=0, h_x=0;
 	int extra_stride = surface->stride - surface->x;
 
 	unsigned char *tmp_buffer=((unsigned char *)(surface->data));

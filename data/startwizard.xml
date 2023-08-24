@@ -1,363 +1,347 @@
-<!--suppress XmlUnboundNsPrefix -->
 <wizard>
+	<step id="introduction" >
+		<buttons enable="OK,UP,DOWN" />
+		<text value="Welcome to openATV.\n\nUse the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen." />
+		<displaytext value="Use UP/DOWN buttons to select option then press OK" />
+		<list>
+			<listentry caption="Use the wizard to set up basic features" step="flashexpander" />
+			<listentry caption="Exit the wizard" step="end" />
+		</list>
+	</step>
 
-		<step id="start" nextstep="introduction">
-			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
-			<displaytext value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-			</code>
-		</step>
+	<step id="flashexpander" nextstep="swap">
+		<condition>
+self.condition = self.smallFlashSize
+		</condition>
+		<config screen="FlashExpander" module="FlashExpander" type="standalone" />
+		<code pos="after" async="yes">
+if self.isFlashExpanderActive() and self.getFreeMemory() &lt; 128:
+	self.createSwapFileFlashExpander(self.afterAsyncCode)
+		</code>
+	</step>
 
-		<step id="introduction" >
-			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
-			<displaytext value="Use the up/down keys on your remote control to select an option. After that, press OK." />
-			<list>
-				<listentry caption="Use the wizard to set up basic features" step="timezone" />
-				<listentry caption="Exit the wizard" step="end" />
-			</list>
-			<code>
-self.clearSelectedKeys()
-self.selectKey("UP")
-self.selectKey("DOWN")
-self["key_yellow"].text = ""
-			</code>
-		</step>
+	<step id="swap" nextstep="swapretry">
+		<condition>
+self.condition = not self.smallFlashSize and self.getFreeMemory() &lt; 128 and not self.swapExists
+		</condition>
+		<buttons enable="OK,UP,DOWN" />
+		<text value="The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."/>
+		<displaytext value="Limited memory size, swap file required" />
+		<list type="dynamic" source="swapDeviceList" evaluation="swapDeviceSelectionMade" onselect="swapDeviceSelectionMoved"/>
+		<code async="yes">
+self.readSwapDevices(self.afterAsyncCode)
+		</code>
+		<code pos="after" async="yes">
+if self.swapDevice and self.swapDevice != ".":
+	self.createSwapFile(self.afterAsyncCode)
+else:
+	self.afterAsyncCode()
+		</code>
+	</step>
 
-		<step id="network" >
-			<text value="Please connect your %s %s to the Internet" />
-			<displaytext value="Please connect your %s %s to the Internet" />
-			<list>
-				<listentry caption="Check the Internet connection" step="update" />
-				<listentry caption="Skip Internet connection check (disables automatic package installation)" step="timezone" />
-			</list>
-			<code>
-self.clearSelectedKeys()
-self.selectKey("UP")
-self.selectKey("DOWN")
-			</code>
-		</step>
+	<step id="swapretry">
+		<condition>
+self.condition = self.swapDevice and self.swapDevice == "."
+		</condition>
+		<text value="Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"/>
+		<displaytext value="Plug in USB device" />
+		<list>
+			<listentry caption="Retry" step="swap" />
+			<listentry caption="Cancel" step="network" />
+		</list>
+	</step>
 
-		<step id="update">
-			<text value="Checking the Internet connection" />
-			<displaytext value="Checking the Internet connection" />
-			<config screen="InstallWizard" module="InstallWizard" args="0" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-			</code>
-		</step>
+	<step id="network">
+		<condition>
+self.condition = self.smallFlashSize or self.isFlashExpanderActive()
+		</condition>
+		<buttons enable="OK,UP,DOWN" />
+		<text value="To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now." />
+		<displaytext value="Connect to the Internet" />
+		<list>
+			<listentry caption="Continue with package download and installation" step="update" />
+			<listentry caption="Skip package installation, only core packages will be available" step="timezone" />
+		</list>
+	</step>
 
-		<step id="networkfailed" >
-			<condition>
-self.condition = not config.misc.installwizard.ipkgloaded.value
-			</condition>
-			<text value="Your %s %s does not have an Internet connection" />
-			<displaytext value="Your %s %s is not connected to the Internet" />
-			<list>
-				<listentry caption="Check the Internet connection again" step="update" />
-				<listentry caption="Skip Internet connection check (disables automatic package installation)" step="timezone" />
-			</list>
-			<code>
-self.clearSelectedKeys()
-self.selectKey("UP")
-self.selectKey("DOWN")
-			</code>
-		</step>
-		<step id="timezone">
-			<text value="Please set your time options.\n\nPress YELLOW to set the time zone via geolocation."/>
-			<displaytext value="Please set your time options"/>
-			<config screen="Time" module="Time" type="ConfigList"/>
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-self.selectKey("YELLOW")
-self["key_yellow"].text = _("Use Geolocation")
-			</code>
-			<code pos="after">
-self["key_yellow"].text = ""
-			</code>
-		</step>
+	<step id="update">
+		<condition>
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash")
+		</condition>
+		<config screen="InstallWizardSmallBox" module="InstallWizard" type="standalone" />
+	</step>
 
-		<step id="nima">
-			<condition>
+	<step id="networkfailed" >
+		<condition>
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash") and not config.misc.installwizard.ipkgloaded.value
+		</condition>
+		<buttons enable="OK,UP,DOWN" />
+		<text value="The %s %s does not have an Internet connection." />
+		<displaytext value="No Internet connection" />
+		<list>
+			<listentry caption="Check the Internet connection again" step="update" />
+			<listentry caption="Skip package installation, only core packages will be available" step="timezone" />
+		</list>
+	</step>
+
+	<step id="timezone">
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,YELLOW" />
+		<colorButtonLabels yellow="Use Geolocation" />
+		<text value="Set the time options.\n\nPress YELLOW to set the time zone via geolocation."/>
+		<displaytext value="Set time options"/>
+		<config screen="Time" module="Time" type="ConfigList"/>
+	</step>
+
+	<step id="nima">
+		<condition>
 from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 0 and not nimmanager.nim_slots[0].empty
-			</condition>
-			<text value="Please set up tuner A\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<displaytext value="Please set up tuner A" />
-			<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
+	</step>
 
-		<step id="nimb">
-			<condition>
+	<step id="nimb">
+		<condition>
 from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 1 and not nimmanager.nim_slots[1].empty
-			</condition>
-			<text value="Please set up tuner B\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<displaytext value="Please set up tuner B" />
-			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
+	</step>
 
-		<step id="nimc">
-			<condition>
+	<step id="nimc">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 2 and not nimmanager.nim_slots[2].empty and not isFBCLink(nimmanager.nim_slots[2].slot)
-			</condition>
-			<text value="Please set up tuner C\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<displaytext value="Please set up tuner C" />
-			<config screen="NimSetup" module="Satconfig" args="2" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="2" type="ConfigList" />
+	</step>
 
-		<step id="nimd">
-			<condition>
+	<step id="nimd">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 3 and not nimmanager.nim_slots[3].empty and not isFBCLink(nimmanager.nim_slots[3].slot)
-			</condition>
-			<text value="Please set up tuner D\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<displaytext value="Please set up tuner D" />
-			<config screen="NimSetup" module="Satconfig" args="3" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="3" type="ConfigList" />
+	</step>
 
-		<step id="nime">
-			<condition>
+	<step id="nime">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 4 and not nimmanager.nim_slots[4].empty and not isFBCLink(nimmanager.nim_slots[4].slot)
-			</condition>
-			<text value="Please set up tuner E\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<config screen="NimSetup" module="Satconfig" args="4" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="4" type="ConfigList" />
+	</step>
 
-		<step id="nimf">
-			<condition>
+	<step id="nimf">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 5 and not nimmanager.nim_slots[5].empty and not isFBCLink(nimmanager.nim_slots[5].slot)
-			</condition>
-			<text value="Please set up tuner F\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<config screen="NimSetup" module="Satconfig" args="5" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="5" type="ConfigList" />
+	</step>
 
-		<step id="nimg">
-			<condition>
+	<step id="nimg">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 6 and not nimmanager.nim_slots[6].empty and not isFBCLink(nimmanager.nim_slots[6].slot)
-			</condition>
-			<text value="Please set up tuner G\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<config screen="NimSetup" module="Satconfig" args="6" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="6" type="ConfigList" />
+	</step>
 
-		<step id="nimh">
-			<condition>
+	<step id="nimh">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 7 and not nimmanager.nim_slots[7].empty and not isFBCLink(nimmanager.nim_slots[7].slot)
-			</condition>
-			<text value="Please set up tuner H\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<config screen="NimSetup" module="Satconfig" args="7" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="7" type="ConfigList" />
+	</step>
 
-		<step id="nimi">
-			<condition>
+	<step id="nimi">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 8 and not nimmanager.nim_slots[8].empty and not isFBCLink(nimmanager.nim_slots[8].slot)
-			</condition>
-			<text value="Please set up tuner I\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<config screen="NimSetup" module="Satconfig" args="8" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="8" type="ConfigList" />
+	</step>
 
-		<step id="nimj">
-			<condition>
+	<step id="nimj">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 9 and not nimmanager.nim_slots[9].empty and not isFBCLink(nimmanager.nim_slots[9].slot)
-			</condition>
-			<text value="Please set up tuner J\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<config screen="NimSetup" module="Satconfig" args="9" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
-		<step id="nimq">
-			<condition>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="9" type="ConfigList" />
+	</step>
+
+	<step id="nimq">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 16 and not nimmanager.nim_slots[16].empty and not isFBCLink(nimmanager.nim_slots[16].slot)
-			</condition>
-			<text value="Please set up tuner Q\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<config screen="NimSetup" module="Satconfig" args="16" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
-		<step id="nimr">
-			<condition>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="16" type="ConfigList" />
+	</step>
+
+	<step id="nimr">
+		<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 17 and not nimmanager.nim_slots[17].empty and not isFBCLink(nimmanager.nim_slots[17].slot)
-			</condition>
-			<text value="Please set up tuner R\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
-			<config screen="NimSetup" module="Satconfig" args="17" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
+		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<displaytext value="Set up tuner [TUNER]" />
+		<config screen="NimSetup" module="Satconfig" args="17" type="ConfigList" />
+	</step>
 
-		<step id="channels">
-			<condition>
+	<step id="channels">
+		<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and nimmanager.hasNimType("DVB-S")
-			</condition>
-			<text value="Do you want to install a channel list?" />
-			<displaytext value="Do you want to install a channel list?" />
-			<config screen="InstallWizard" module="InstallWizard" args="1" type="ConfigList" />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("LEFT")
-self.selectKey("RIGHT")
-			</code>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT" />
+		<text value="Do you want to install a channel list?" />
+		<displaytext value="Do you want to install a channel list?" />
+		<config screen="InstallWizard" module="InstallWizard" args="1" type="ConfigList" />
+	</step>
 
-		<step id="scanquestion">
-			<text value="Do you want to do a service scan?" />
-			<displaytext value="Do you want to do a service scan?" />
-			<condition>
+	<step id="scanquestion">
+		<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
-			</condition>
-			<list>
-				<listentry caption="No, scan later manually" step="end" />
-				<listentry caption="Yes, do an automatic scan now" step="scan" />
-				<listentry caption="Yes, do a manual scan now" step="manualscan" />
-			</list>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN" />
+		<text value="Do you want to do a service scan?" />
+		<displaytext value="Do you want to do a service scan?" />
+		<list>
+			<listentry caption="No, scan later manually" step="reboot" />
+			<listentry caption="Yes, do an automatic scan now" step="scan" />
+			<listentry caption="Yes, do a manual scan now" step="manualscan" />
+		</list>
+	</step>
 
-		<step id="scan" nextstep="end">
-			<condition>
+	<step id="scan" nextstep="reboot">
+		<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
-			</condition>
-			<text value="What do you want to scan?" />
-			<displaytext value="What do you want to scan?" />
-			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
-		</step>
+		</condition>
+		<buttons enable="OK,LEFT,RIGHT" />
+		<text value="What do you want to scan?" />
+		<displaytext value="What do you want to scan?" />
+		<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
+	</step>
 
-		<step id="manualscan">
-			<condition>
+	<step id="manualscan">
+		<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
-			</condition>
-			<text value="What do you want to scan?" />
-			<displaytext value="What do you want to scan?" />
-			<config screen="ScanSetup" module="ScanSetup" type="ConfigList" />
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT" />
+		<text value="What do you want to scan?" />
+		<displaytext value="What do you want to scan?" />
+		<config screen="ScanSetup" module="ScanSetup" type="ConfigList" />
+	</step>
 
-		<step id="nextscan">
-			<condition>
+	<step id="nextscan">
+		<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
-			</condition>
-			<text value="Do you want to do another manual service scan?" />
-			<displaytext value="Do you want to do another manual service scan?" />
-			<list>
-				<listentry caption="No, scan later manually" step="end" />
-				<listentry caption="Yes, do another manual scan now" step="manualscan" />
-			</list>
-		</step>
+		</condition>
+		<buttons enable="OK,UP,DOWN" />
+		<text value="Do you want to do another manual service scan?" />
+		<displaytext value="Do another manual service scan?" />
+		<list>
+			<listentry caption="No, scan later manually" step="reboot" />
+			<listentry caption="Yes, do another manual scan now" step="manualscan" />
+		</list>
+	</step>
 
-<!--
-		<step id="finisheddefaultsatlists">
-			<text value="Do you want to enable the parental control feature on your %s %s?" />
-			<displaytext value="Do you want to enable the parental control feature on your %s %s?" />
-			<list>
-				<listentry caption="No" step="end" />
-				<listentry caption="Yes" step="parentalsetup" />
-			</list>
-			<code pos="after">
+	<!--
+	<step id="finisheddefaultsatlists">
+		<buttons enable="OK,UP,DOWN" />
+		<text value="Do you want to enable the parental control feature on your %s %s?" />
+		<displaytext value="Do you want to enable the parental control feature on your %s %s?" />
+		<list>
+			<listentry caption="No" step="reboot" />
+			<listentry caption="Yes" step="parentalsetup" />
+		</list>
+		<code pos="after">
 if self["list"].index == 0:
 	config.ParentalControl.configured.setValue(True)
 else:
 	config.ParentalControl.configured.setValue(False)
 config.ParentalControl.configured.save()
-			</code>
-		</step>
-		<step id="parentalsetup">
-			<text value="You need to set a PIN code and hide it from your children.\n\nDo you want to set the pin now?" />
-			<displaytext value="You need to set a PIN code and hide it from your children.\n\nDo you want to set the pin now?" />
-			<list>
-				<listentry caption="Yes" step="finishparentalsetup" />
-				<listentry caption="No" step="warnpin" />
-			</list>
-			<code pos="after">
+		</code>
+	</step>
+
+	<step id="parentalsetup">
+		<buttons enable="OK,UP,DOWN" />
+		<text value="You need to set a PIN code and hide it from your children.\n\nDo you want to set the PIN now?" />
+		<displaytext value="Set PIN code now" />
+		<list>
+			<listentry caption="Yes" step="finishparentalsetup" />
+			<listentry caption="No" step="warnpin" />
+		</list>
+		<code pos="after">
 from ParentalControlSetup import ParentalControlChangePin
 if self["list"].index == 0:
 	self.session.open(ParentalControlChangePin, config.ParentalControl.servicepin[0], _("parental control pin"))
-			</code>
-		</step>
-		<step id="warnpin">
-			<text value="Please be aware, that anyone can disable the parental control, if you have not set a PIN." />
-			<displaytext value="Please be aware, that anyone can disable the parental control, if you have not set a PIN." />
-		</step>
-		<step id="finishparentalsetup">
-			<code>
+		</code>
+	</step>
+
+	<step id="warnpin">
+		<buttons enable="OK" />
+		<text value="Please be aware, that anyone can disable the parental control, if you have not set a PIN." />
+		<displaytext value="Please be aware, that anyone can disable the parental control, if you have not set a PIN." />
+	</step>
+
+	<step id="finishparentalsetup">
+		<buttons enable="OK" />
+		<text value="When the start wizard has completed, you need to protect single services. Refer to the %s %s's manual on how to do that." />
+		<displaytext value="Remember to protect single services" />
+		<code>
 if config.ParentalControl.setuppin.value == "aaaa":
 	config.ParentalControl.setuppinactive.setValue(False)
 else:
@@ -367,22 +351,32 @@ config.ParentalControl.servicepinactive.setValue(True)
 config.ParentalControl.servicepinactive.save()
 config.ParentalControl.setuppin.setValue(config.ParentalControl.servicepin[0].value)
 config.ParentalControl.setuppin.save()
-			</code>
-			<text value="After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that." />
-			<displaytext value="After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that." />
-		</step>
--->
+		</code>
+	</step>
+	-->
 
-		<step id="end" laststep="true">
-			<condition>
+	<step id="reboot" nextstep="end">
+		<condition>
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash")
+		</condition>
+		<buttons enable="OK" />
+		<text value="Thank you for using and completing the wizard. The %s %s needs to restart.\n\nPlease press OK to restart the %s %s." />
+		<displaytext value="Restart needed, press OK to restart" />
+		<code>
+self.markDone()
+from enigma import quitMainloop
+from Screens.Standby import QUIT_RESTART
+quitMainloop(QUIT_RESTART)
+		</code>
+	</step>
+
+	<step id="end" laststep="true">
+		<condition>
 self.condition = self.isLastWizard
-			</condition>
-			<text value="Thank you for using the wizard. Your %s %s is now ready to use.\nPlease press OK to start using your %s %s." />
-			<displaytext value="Thank you for using the wizard. Your %s %s is now ready to use.\nPlease press OK to start using your %s %s." />
-			<code>
-self.clearSelectedKeys()
-self.selectKey("OK")
-			</code>
-		</step>
-
+		</condition>
+		<buttons enable="OK" />
+		<text value="Thank you for using and completing the wizard. The %s %s is now ready to use.\n\nPlease press OK to start using the %s %s." />
+		<displaytext value="Press OK to start using %s %s" />
+	</step>
 </wizard>

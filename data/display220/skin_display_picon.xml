@@ -98,25 +98,16 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="Title" render="Label" foregroundColor="#FFFF00" position="top" size="*,61" font="FdLcD;30" halign="center" valign="top" />
-		<widget source="parent.menu" render="Label" position="top" size="*,53" font="FdLcD;26" halign="center" valign="center">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="top" size="*,53" font="FdLcD;26" halign="center" valign="center"/>
 	</screen>
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="220,176"> 
-		<widget source="SetupTitle" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,25" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupEntry" render="Label" position="0,26" size="220,50" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupValue" render="Label" position="0,78" size="220,50" font="FdLcD;22" halign="center" valign="top" />
+		<widget source="Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,25" font="FdLcD;24" halign="center" valign="center" />
+		<widget source="entry" render="Label" position="0,26" size="220,50" font="FdLcD;24" halign="center" valign="center" />
+		<widget source="value" render="Label" position="0,78" size="220,50" font="FdLcD;22" halign="center" valign="top" />
 	</screen>
 	
-<!-- Blindscan-->
-	<screen name="SetupSummary2" position="0,0" size="220,176"> 
-		<widget source="SetupTitle" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,25" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupEntry" render="Label" position="0,26" size="220,50" font="FdLcD;24" halign="center" valign="center" />
-		<widget source="SetupValue" render="Label" position="0,78" size="220,50" font="FdLcD;22" halign="center" valign="top" />
-	</screen>
-
 <!-- misc-->
 	<screen name="SimpleSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,100" font="FdLcD;28" halign="center" valign="center" />
@@ -125,12 +116,6 @@
 	<screen name="WizardSummary" position="fill">
 		<widget source="text" render="Label" position="top" size="*,71" font="FdLcD;35" halign="center" />
 		<widget source="parent.list" render="Label" position="fill" font="FdLcD;25" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
-		<widget source="parent.list" render="Label" position="fill" font="FdLcD;45" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -240,11 +225,6 @@
 		<panel name="MessageBoxSummary" />
 	</screen>
 
-	<screen name="AboutSummary" position="0,0" size="220,176">
-		<widget source="parent.Title" render="Label" position="top" size="*,100" font="FdLcD;28" halign="center" valign="center" />
-		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
-	</screen>
-
 	<screen name="TimerEditListSummary" position="0,0" size="220,176">
 		<widget source="service" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="name" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
@@ -257,12 +237,6 @@
 
 	<screen name="WizardSummary" position="0,0" size="220,176">
 		<widget source="text" render="Label" position="0,0" size="220,55" font="FdLcD;24" halign="center" />
-		<widget source="parent.list" render="Label" position="0,85" size="220,124" font="FdLcD;24" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-	<screen name="VideoWizardSummary" position="fill">
-		<widget source="text" render="Label" position="0,0" size="220,50" font="FdLcD;24" halign="center" />
 		<widget source="parent.list" render="Label" position="0,85" size="220,124" font="FdLcD;24" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>

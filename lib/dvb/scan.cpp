@@ -621,7 +621,7 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 		int size = 0;
 		char row[40];
 		bool added = false;
-		size_t ret; /* dummy value to store fread return values */
+		[[maybe_unused]] size_t ret; /* dummy value to store fread return values */
 		sprintf(row, "%08x:%04x:%04x:%04x:%05d:%08d\n", ns.get(), onid.get(), tsid.get(), sid.get(), lcn, signal);
 		fseek(m_lcn_file, 0, SEEK_END);
 		size = ftell(m_lcn_file);

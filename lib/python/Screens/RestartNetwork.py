@@ -3,6 +3,7 @@ from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 
+
 class RestartNetwork(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

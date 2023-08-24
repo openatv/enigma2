@@ -7,7 +7,6 @@ from Components.Pixmap import Pixmap
 from enigma import ePicLoad
 from Components.config import config, getConfigListEntry, ConfigInteger
 from Components.ConfigList import ConfigListScreen
-from Components.AVSwitch import AVSwitch
 from . import Title
 
 
@@ -53,11 +52,11 @@ class TitleProperties(Screen, ConfigListScreen):
 
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
-		    "green": self.exit,
-		    "red": self.cancel,
-		    "yellow": self.editTitle,
-		    "cancel": self.cancel,
-		    "ok": self.ok,
+			"green": self.exit,
+			"red": self.cancel,
+			"yellow": self.editTitle,
+			"cancel": self.cancel,
+			"ok": self.ok,
 		}, -2)
 
 		self.onShown.append(self.update)
@@ -74,7 +73,7 @@ class TitleProperties(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry("DVD " + _("Track"), self.properties.position))
 			self.list.append(getConfigListEntry("DVD " + _("Title"), self.properties.menutitle))
 			self.list.append(getConfigListEntry("DVD " + _("Description"), self.properties.menusubtitle))
-			if config.usage.setup_level.index >= 2: # expert+
+			if config.usage.setup_level.index >= 2:  # expert+
 				for audiotrack in self.properties.audiotracks:
 					DVB_aud = audiotrack.DVB_lang.getValue() or audiotrack.pid.getValue()
 					self.list.append(getConfigListEntry(_("burn audio track (%s)") % DVB_aud, audiotrack.active))
@@ -110,8 +109,7 @@ class TitleProperties(Screen, ConfigListScreen):
 
 	def loadThumb(self):
 		thumbfile = self.project.titles[self.title_idx].inputfile.rsplit('.', 1)[0] + ".png"
-		sc = AVSwitch().getFramebufferScale()
-		self.picload.setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
+		self.picload.setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), 1, 1, False, 1, "#00000000"))
 		self.picload.startDecode(thumbfile)
 
 	def paintThumbPixmapCB(self, picInfo=None):
@@ -137,10 +135,10 @@ class TitleProperties(Screen, ConfigListScreen):
 			self.project.titles.insert(new_pos - 1, swaptitle)
 
 	def ok(self):
-		#key = self.keydict[self["config"].getCurrent()[1]]
-		#if key in self.project.filekeys:
-			#self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, key, self.settings)
 		pass
+		# key = self.keydict[self["config"].getCurrent()[1]]
+		# if key in self.project.filekeys:
+			# self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, key, self.settings)
 
 	def cancel(self):
 		self.close()

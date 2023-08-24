@@ -27,11 +27,7 @@ class eDVBRegisteredFrontend: public iObject, public sigc::trackable
 {
 	DECLARE_REF(eDVBRegisteredFrontend);
 	ePtr<eTimer> disable;
-	void closeFrontend()
-	{
-		if (!m_inuse && m_frontend->closeFrontend()) // frontend busy
-			disable->start(60000, true);  // retry close in 60secs
-	}
+	void closeFrontend();
 public:
 	sigc::signal0<void> stateChanged;
 	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap)
@@ -75,7 +71,7 @@ class eDVBAllocatedFrontend
 	DECLARE_REF(eDVBAllocatedFrontend);
 public:
 
-	eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe);
+	eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe, eFBCTunerManager *fbcmng);
 	~eDVBAllocatedFrontend();
 	eDVBFrontend &get() { return *m_fe->m_frontend; }
 	operator eDVBRegisteredFrontend*() { return m_fe; }
@@ -83,6 +79,7 @@ public:
 
 private:
 	eDVBRegisteredFrontend *m_fe;
+	eFBCTunerManager *m_fbcmng;
 };
 
 class eDVBAllocatedDemux
@@ -162,7 +159,7 @@ class eDVBResourceManager: public iObject, public sigc::trackable
 	DECLARE_REF(eDVBResourceManager);
 	int avail, busy;
 
-	enum { DM7025, DM800, DM500HD, DM800SE, DM8000, DM7020HD, DM7080, DM820, DM520, DM525, DM900, DM920, GIGABLUE, DM500HDV2, DM800SEV2, WETEKPLAY, WETEKPLAY2, WETEKHUB};
+	enum { DM800, DM500HD, DM800SE, DM8000, DM7020HD, DM7080, DM820, DM520, DM525, DM900, DM920, DREAMONE, DREAMTWO, DREAMSEVEN, GIGABLUE, DM500HDV2, DM800SEV2};
 
 	int m_boxtype;
 
@@ -188,11 +185,12 @@ private:
 	ePtr<iDVBChannelList> m_list;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
 	static eDVBResourceManager *instance;
-	ePtr<eFBCTunerManager> m_fbc_mng;
 
 	friend class eDVBChannel;
 	friend class eFBCTunerManager;
 	friend class eRTSPStreamClient;
+
+	ePtr<eFBCTunerManager> m_fbcmng;
 
 	RESULT addChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 	RESULT removeChannel(eDVBChannel *ch);
@@ -288,9 +286,6 @@ public:
 		/* RESULT != 0: failed */
 	RESULT setChannel(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &feparam);
 	eDVBChannelID getChannelID() { return m_channel_id; }
-#if defined(__sh__) //see filepush.h
-	int getSkipMode() { return m_skipmode_m; }
-#endif
 
 	RESULT connectStateChange(const sigc::slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection);
 	RESULT connectEvent(const sigc::slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection);

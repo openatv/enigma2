@@ -16,7 +16,6 @@ from twisted.internet.threads import deferToThread
 from enigma import eConsoleAppContainer, ePicLoad, ePoint, eServiceReference, eSize, eTimer
 
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
-from Components.AVSwitch import AVSwitch
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.config import config, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigLocations, ConfigSelectionNumber, ConfigSubsection
 from Components.Console import Console as console
@@ -399,10 +398,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.updateButtons()
 
 	def layoutFinished(self):
-		self["headleft"].master.master.instance.enableAutoNavigation(False)  # Override listbox navigation.
-		self["headright"].master.master.instance.enableAutoNavigation(False)  # Override listbox navigation.
-		self["listleft"].instance.enableAutoNavigation(False)  # Override listbox navigation.
-		self["listright"].instance.enableAutoNavigation(False)  # Override listbox navigation.
+		self["headleft"].enableAutoNavigation(False)  # Override listbox navigation.
+		self["headright"].enableAutoNavigation(False)  # Override listbox navigation.
+		self["listleft"].enableAutoNavigation(False)  # Override listbox navigation.
+		self["listright"].enableAutoNavigation(False)  # Override listbox navigation.
 		if self.leftActive:
 			self.keyGoLeftColumn()
 		else:
@@ -1632,7 +1631,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			base = splitext(base)[0]
 			relatedFiles.append(base)
 			relatedFiles.append("%s%s" % (base, extension))
-			relatedExtensions = (".eit", extension, "%s.ap" % extension, "%s.cuts" % extension, "%s.jpg" % extension, "%s.meta" % extension, "%s.sc" % extension, "%s.txt" % extension)
+			relatedExtensions = (".eit", ".jpg", ".log", ".txt", extension, "%s.ap" % extension, "%s.cuts" % extension, "%s.meta" % extension, "%s.sc" % extension)
 			for extension in relatedExtensions:
 				related = "%s%s" % (base, extension)
 				if isfile(related):
@@ -2252,8 +2251,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 	def layoutFinished(self):
 		if self.fileListLen >= 0:
 			self.imageLoad.PictureData.get().append(self.finishDecode)
-			scale = AVSwitch().getFramebufferScale()
-			self.imageLoad.setPara([self["image"].instance.size().width(), self["image"].instance.size().height(), scale[0], scale[1], 0, 1, "#00000000"])
+			self.imageLoad.setPara([self["image"].instance.size().width(), self["image"].instance.size().height(), 1, 1, 0, 1, "#00000000"])
 			self["icon"].hide()
 			self["message"].setText("")
 			self["infolabels"].setText("")
@@ -2269,7 +2267,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 			extension = splitext(imagePath)[1].lower() if imagePath and not fileData[0][FILE_IS_DIR] else None
 			if extension and extension in IMAGE_EXTENSIONS:
 				imageList.append(imagePath)
-				if imagePath.endswith(filename):
+				if basename(imagePath) == filename:
 					self.currentIndex = index
 				index += 1
 		return imageList
@@ -2641,7 +2639,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["data"].instance.enableAutoNavigation(False)  # Override listbox navigation.
+		self["data"].enableAutoNavigation(False)  # Override listbox navigation.
 		self.data = fileReadLines(self.path, default=[], source=MODULE_NAME)
 		self["data"].setList(self.data)
 		self["data"].onSelectionChanged.append(self.updateStatus)

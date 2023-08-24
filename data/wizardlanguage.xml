@@ -1,0 +1,10 @@
+<wizard>
+	<step id="start">
+		<config screen="LocaleWizard" module="LocaleSelection" type="standalone" />
+	</step>
+	<step id="end">
+		<code>
+self.saveWizardChanges()
+		</code>
+	</step>
+</wizard>

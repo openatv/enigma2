@@ -7,7 +7,7 @@
 
 import sys
 import threading
-from six.moves import cStringIO as StringIO
+from io import StringIO
 
 logfile = None
 # Need to make our operations thread-safe.

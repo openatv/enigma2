@@ -6,9 +6,6 @@
 #include <signal.h>
 #include <sys/sysinfo.h>
 #include <sys/mman.h>
-#ifdef HAVE_AMLOGIC
-#include <lib/dvb/amldecoder.h>
-#endif
 
 #include <linux/dvb/dmx.h>
 
@@ -57,7 +54,7 @@ static int determineBufferCount()
 	else if (megabytes > 100)
 		result = 16; // 256MB systems: Use 3MB demux buffers (dm8000, et5x00, vuduo)
 	else
-		result = 8; // Smaller boxes: Use 1.5MB buffer (dm7025)
+		result = 8; // Smaller boxes: Use 1.5MB buffer
 	return result;
 }
 
@@ -67,9 +64,6 @@ eDVBDemux::eDVBDemux(int adapter, int demux):
 	adapter(adapter),
 	demux(demux),
 	source(-1),
-#ifdef HAVE_AMLOGIC
-	m_pvr_fd(-1),
-#endif
 	m_dvr_busy(0),
 	m_dvr_id(-1),
 	m_dvr_source_offset(DMX_SOURCE_DVR0)
@@ -96,12 +90,7 @@ int eDVBDemux::openDVR(int flags)
 	char filename[32];
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/dvr%d", adapter, demux);
 	eDebug("[eDVBDemux] open dvr %s", filename);
-#if HAVE_AMLOGIC
-	m_pvr_fd =  ::open(filename, flags);
-	return m_pvr_fd;
-#else
 	return ::open(filename, flags);
-#endif
 }
 
 DEFINE_REF(eDVBDemux)
@@ -115,13 +104,6 @@ RESULT eDVBDemux::setSourceFrontend(int fenum)
 	if (res)
 	{
 		eDebug("[eDVBDemux] DMX_SET_SOURCE Frontend%d failed: %m", fenum);
-#if HAVE_AMLOGIC
-		/** FIXME: gg begin dirty hack  */
-		eDebug("[eDVBDemux] Ignoring due to limitation to one frontend for each adapter and missing ioctl....");
-		source = fenum;
-		res = 0;
-		/** FIXME: gg end dirty hack  */
-#endif
 	}
 	else
 		source = fenum;
@@ -171,11 +153,7 @@ RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, unsigned int 
 
 RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder, int index)
 {
-#ifdef HAVE_AMLOGIC
-	decoder = new eAMLTSMPEGDecoder(this, index);
-#else
 	decoder = new eTSMPEGDecoder(this, index);
-#endif
 	return 0;
 }
 

@@ -58,6 +58,8 @@ def getFPVersion():
 			version = fileReadLine("/proc/stb/info/micomver", source=MODULE_NAME)
 		elif BoxInfo.getItem("machinebuild") in ('dm7080', 'dm820', 'dm520', 'dm525', 'dm900', 'dm920'):
 			version = open("/proc/stb/fp/version", "r").read()
+		elif BoxInfo.getItem("machinebuild") in ('dreamone', 'dreamtwo'):
+			version = open("/proc/stb/fp/fp_version", "r").read()
 		else:
 			version = int(open("/proc/stb/fp/version", "r").read())
 	except OSError:

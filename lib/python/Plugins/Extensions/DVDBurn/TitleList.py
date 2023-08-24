@@ -73,9 +73,9 @@ class TitleList(Screen, HelpableScreen):
 				"burnProject": (self.askBurnProject, _("Burn to medium"), _("Burn to medium")),
 			})
 
-		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
+		self["menuactions"] = HelpableActionMap(self, "MenuActions",
 			{
-				"contextMenu": (self.showMenu, _("Menu")),
+				"menu": (self.showMenu, _("Menu")),
 			})
 
 		self["actions"] = ActionMap(["OkCancelActions"],
@@ -152,7 +152,7 @@ class TitleList(Screen, HelpableScreen):
 
 	def titleProperties(self):
 		#if self.getCurrentTitle():
-			self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
+		self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
 
 	def selectImage(self):
 		self.session.openWithCallback(self.burnISO, ProjectSettings.FileBrowser, "image", self.project.settings)

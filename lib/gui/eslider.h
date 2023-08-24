@@ -21,6 +21,7 @@ public:
 	void setPixmap(ePtr<gPixmap> &pixmap);
 	void setBackgroundPixmap(gPixmap *pixmap);
 	void setBackgroundPixmap(ePtr<gPixmap> &pixmap);
+	void setPixmapScale(int flags);
 	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 	void setIsScrollbar();
 	static void setDefaultBorderWidth(int borderwidth) { 
@@ -52,7 +53,7 @@ private:
 		evtChangedSlider = evtUserWidget
 	};
 	bool m_have_border_color, m_have_foreground_color, m_have_background_color, m_scrollbar, m_pixel_mode;
-	int m_min, m_max, m_value, m_start, m_orientation, m_orientation_swapped, m_border_width;
+	int m_min, m_max, m_value, m_start, m_orientation, m_orientation_swapped, m_border_width, m_scale;
 	ePtr<gPixmap> m_pixmap, m_backgroundpixmap;
 	ePtr<gPixmap> m_scrollbarslidepixmap, m_scrollbarslidebackgroundpixmap;
 

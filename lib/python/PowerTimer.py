@@ -93,7 +93,6 @@ def parseEvent(event):
 class PowerTimer(Timer):
 	def __init__(self):
 		Timer.__init__(self)
-		self.loadTimers()
 
 	def loadTimers(self):
 		if exists(TIMER_XML_FILE):
@@ -436,6 +435,8 @@ class PowerTimerEntry(TimerEntry, object):
 		self.autosleepbegin = self.begin
 		self.autosleepend = self.end
 		self.nettraffic = False
+		self.netbytes = 0
+		self.netbytes_time = 0
 		self.trafficlimit = 100
 		self.netip = False
 		self.ipadress = "0.0.0.0"

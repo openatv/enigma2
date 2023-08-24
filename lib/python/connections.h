@@ -22,7 +22,7 @@ public:
 
 inline PyObject *PyFrom(int v)
 {
-	return PyInt_FromLong(v);
+	return PyLong_FromLong(v);
 }
 
 inline PyObject *PyFrom(const char *c)

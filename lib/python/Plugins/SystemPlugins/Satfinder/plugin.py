@@ -77,7 +77,7 @@ class Satfinder(ScanSetup, ServiceScan):
 						from Screens.InfoBar import InfoBar
 						InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 						if not self.openFrontend():
-							self.frontend = None # in normal case this should not happen
+							self.frontend = None  # in normal case this should not happen
 			self.tuner = Tuner(self.frontend)
 			self.createSetup()
 			self.retune()
@@ -170,14 +170,13 @@ class Satfinder(ScanSetup, ServiceScan):
 					from Screens.InfoBar import InfoBar
 					InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 					if not self.openFrontend():
-						self.frontend = None # in normal case this should not happen
+						self.frontend = None  # in normal case this should not happen
 		self.tuner = Tuner(self.frontend)
 
 		if slot.isMultiType():
-			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
+			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False)  # to force a clear of m_delsys_whitelist
 			types = slot.getMultiTypeList()
-			import six
-			for FeType in six.itervalues(types):
+			for FeType in types.values():
 				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 					continue
 				elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -292,7 +291,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				frequency = self.scan_ter.frequency.floatint * 1000
 			if self.scan_typeterrestrial.value == "single_transponder":
 				transponder = [
-					2, #TERRESTRIAL
+					2,  # TERRESTRIAL
 					frequency,
 					self.scan_ter.bandwidth.value,
 					self.scan_ter.modulation.value,
@@ -393,21 +392,21 @@ class Satfinder(ScanSetup, ServiceScan):
 			if len(nimsats):
 				orbpos = nimsats[selsatidx][0]
 				self.addSatTransponder(tlist,
-					self.transponder[0], # frequency
-					self.transponder[1], # sr
-					self.transponder[2], # pol
-					self.transponder[3], # fec
-					self.transponder[4], # inversion
+					self.transponder[0],  # frequency
+					self.transponder[1],  # sr
+					self.transponder[2],  # pol
+					self.transponder[3],  # fec
+					self.transponder[4],  # inversion
 					orbpos,
-					self.transponder[6], # system
-					self.transponder[7], # modulation
-					self.transponder[8], # rolloff
-					self.transponder[9], # pilot
-					self.transponder[10],# input stream id
-					self.transponder[11],# pls mode
-					self.transponder[12], # pls code
-					self.transponder[13], # t2mi_plp_id
-					self.transponder[14] # t2mi_pid
+					self.transponder[6],  # system
+					self.transponder[7],  # modulation
+					self.transponder[8],  # rolloff
+					self.transponder[9],  # pilot
+					self.transponder[10],  # input stream id
+					self.transponder[11],  # pls mode
+					self.transponder[12],  # pls code
+					self.transponder[13],  # t2mi_plp_id
+					self.transponder[14]  # t2mi_pid
 				)
 		elif nim.isCompatible("DVB-T"):
 			parm = buildTerTransponder(
@@ -420,23 +419,23 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.transponder[7],  # transmission
 				self.transponder[6],  # guard
 				self.transponder[8],  # hierarchy
-				self.transponder[10], # system
+				self.transponder[10],  # system
 				self.transponder[11]  # plp_id
 			)
 			tlist.append(parm)
 		elif nim.isCompatible("DVB-C"):
 			self.addCabTransponder(tlist,
-				self.transponder[0], # frequency
-				self.transponder[1], # sr
-				self.transponder[2], # modulation
-				self.transponder[3], # fec_inner
+				self.transponder[0],  # frequency
+				self.transponder[1],  # sr
+				self.transponder[2],  # modulation
+				self.transponder[3],  # fec_inner
 				self.transponder[4]  # inversion
 			)
 		elif nim.isCompatible("ATSC"):
 			self.addATSCTransponder(tlist,
-				self.transponder[0], # frequency
-				self.transponder[1], # modulation
-				self.transponder[2], # inversion
+				self.transponder[0],  # frequency
+				self.transponder[1],  # modulation
+				self.transponder[2],  # inversion
 				self.transponder[3]  # system
 			)
 		else:

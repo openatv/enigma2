@@ -97,11 +97,11 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		if isinstance(self["config"].getCurrent()[1], (ConfigBoolean, ConfigSelection)):
 			self.createSetup()
 
-	def createSetup(self):
+	def createSetup(self, appendItems=None, prependItems=None):
 		oldList = self.list
 		self.showDefaultChanged = False
 		self.graphicSwitchChanged = False
-		self.list = []
+		self.list = prependItems or []
 		title = None
 		xmlData = setupDom(self.setup, self.plugin)
 		for setup in xmlData.findall("setup"):
@@ -114,6 +114,8 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 				# If this break is executed then there can only be one setup tag with this key.
 				# This may not be appropriate if conditional setup blocks become available.
 				break
+		if appendItems:
+			self.list = self.list + appendItems
 		if title:
 			title = dgettext(self.pluginLanguageDomain, title) if self.pluginLanguageDomain else _(title)
 		self.setTitle(title if title else _("Setup"))
@@ -213,9 +215,9 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 	def selectionChanged(self):
 		if self["config"]:
 			self.setFootnote(None)
-			self["description"].text = self.getCurrentDescription()
+			self["description"].setText(self.getCurrentDescription())
 		else:
-			self["description"].text = _("There are no items currently available for this screen.")
+			self["description"].setText(_("There are no items currently available for this screen."))
 
 	def layoutFinished(self):
 		if self.setupImage:
@@ -226,13 +228,13 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 	def setFootnote(self, footnote):
 		if footnote is None:
 			if self.getCurrentEntry().endswith("*"):
-				self["footnote"].text = _("* = Restart Required")
+				self["footnote"].setText(_("* = Restart Required"))
 				self["footnote"].show()
 			else:
-				self["footnote"].text = ""
+				self["footnote"].setText("")
 				self["footnote"].hide()
 		else:
-			self["footnote"].text = footnote
+			self["footnote"].setText(footnote)
 			self["footnote"].show()
 
 	def getFootnote(self):
@@ -259,11 +261,11 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 class SetupSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
-		self["entry"] = StaticText("")  # DEBUG: Proposed for new summary screens.
-		self["value"] = StaticText("")  # DEBUG: Proposed for new summary screens.
-		self["SetupTitle"] = StaticText(parent.getTitle())
-		self["SetupEntry"] = StaticText("")
-		self["SetupValue"] = StaticText("")
+		self["entry"] = StaticText("")
+		self["value"] = StaticText("")
+		self["SetupTitle"] = StaticText(parent.getTitle())  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["SetupEntry"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["SetupValue"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:
@@ -283,10 +285,10 @@ class SetupSummary(ScreenSummary):
 			self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		self["entry"].text = self.parent.getCurrentEntry()  # DEBUG: Proposed for new summary screens.
-		self["value"].text = self.parent.getCurrentValue()  # DEBUG: Proposed for new summary screens.
-		self["SetupEntry"].text = self.parent.getCurrentEntry()
-		self["SetupValue"].text = self.parent.getCurrentValue()
+		self["entry"].setText(self.parent.getCurrentEntry())
+		self["value"].setText(self.parent.getCurrentValue())
+		self["SetupEntry"].setText(self.parent.getCurrentEntry())  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["SetupValue"].setText(self.parent.getCurrentValue())  # DEBUG: Deprecated widget name, this will be removed soon.
 
 
 # Read the setup XML file.

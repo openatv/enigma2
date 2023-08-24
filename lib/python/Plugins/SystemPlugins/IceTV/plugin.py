@@ -10,7 +10,6 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter
-from Tools.ServiceReference import service_types_tv_ref
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
@@ -24,7 +23,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from RecordTimer import RecordTimerEntry
-from ServiceReference import ServiceReference
+from ServiceReference import ServiceReference, service_types_tv_ref
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 from calendar import timegm
@@ -644,7 +643,7 @@ class EPGFetcher(object):
 
     def makeChanServMap(self, channels):
         res = defaultdict(list)
-        name_map = dict((n.upper(), t) for n, t in six.iteritems(self.getScanChanNameMap()))
+        name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().items())
 
         ice_services = set()
         for channel in channels:
@@ -682,7 +681,7 @@ class EPGFetcher(object):
     def serviceToIceChannelId(self, serviceref):
         svc = str(serviceref).split(":")
         triplet = (int(svc[5], 16), int(svc[4], 16), int(svc[3], 16))
-        for channel_id, dvbt in six.iteritems(self.channel_service_map):
+        for channel_id, dvbt in self.channel_service_map.items():
             if triplet in dvbt:
                 return channel_id
 
@@ -767,7 +766,7 @@ class EPGFetcher(object):
 
     def triplesToChannels(self, triples):
         if triples:
-            return set(ch for ch, tl in self.channel_service_map.iteritems() for t in tl if t in triples)
+            return set(ch for ch, tl in self.channel_service_map.items() for t in tl if t in triples)
         else:
             return set()
 

@@ -1,6 +1,6 @@
 import os
 from time import time
-from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference, eStreamServer, quitMainloop, iRecordableService
+from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference, eStreamServer, quitMainloop, iRecordableService, eDBoxLCD
 
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
@@ -121,7 +121,7 @@ class Standby2(Screen):
 			except OSError:
 				pass
 		#set input to encoder
-		self.avswitch.setInput("ENCODER")
+		self.avswitch.setInput("encoder")
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
@@ -227,10 +227,7 @@ class Standby2(Screen):
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
 		#set input to vcr scart
-		if BoxInfo.getItem("ScartSwitch"):
-			self.avswitch.setInput("SCART")
-		else:
-			self.avswitch.setInput("AUX")
+		self.avswitch.setInput("off")
 		if BoxInfo.getItem("hdmistandbymode") == 1:
 			try:
 				open("/proc/stb/hdmi/output", "w").write("off")
@@ -269,6 +266,11 @@ class Standby2(Screen):
 		inStandby = self
 		self.session.screen["Standby"].boolean = True
 		config.misc.standbyCounter.value += 1
+		if BoxInfo.getItem("AmlogicFamily"):
+			try:
+				open("/proc/stb/lcd/oled_brightness", "w").write("0")
+			except OSError:
+				pass
 
 	def createSummary(self):
 		return StandbySummary
@@ -443,10 +445,10 @@ class TryQuitMainloop(MessageBox):
 				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k
 				print("[Standby] LCDminiTV off")
 				setLCDModeMinitTV("0")
-			if BoxInfo.getItem("machinebuild") == "vusolo4k":  #workaround for white display flash
-				open("/proc/stb/fp/oled_brightness", "w").write("0")
-			if BoxInfo.getItem("machinebuild") == "pulse4k":
-				open("/proc/stb/lcd/oled_brightness", "w").write("0")
+
+			if BoxInfo.getItem("machinebuild") in ("vusolo4k", "pulse4k"):  # Workaround for white display flash.
+				eDBoxLCD.getInstance().setLCDBrightness(0)
+
 			quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)
@@ -460,4 +462,4 @@ class TryQuitMainloop(MessageBox):
 		inTryQuitMainloop = False
 
 	def createSummary(self):  # Suppress the normal MessageBox ScreenSummary screen.
- 		return None
+		return None

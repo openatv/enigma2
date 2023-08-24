@@ -23,7 +23,6 @@ from Components.MovieList import AUDIO_EXTENSIONS
 from Components.ServicePosition import ServicePositionGauge
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
-from Components.AVSwitch import AVSwitch
 from Components.config import config
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_GUISKIN
@@ -65,9 +64,8 @@ class MediaPixmap(Pixmap):
 
 	def onShow(self):
 		Pixmap.onShow(self)
-		sc = AVSwitch().getFramebufferScale()
 		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
-		self.picload.setPara((self.instance.size().width(), self.instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
+		self.picload.setPara((self.instance.size().width(), self.instance.size().height(), 1, 1, False, 1, "#00000000"))
 
 	def paintCoverArtPixmapCB(self, picInfo=None):
 		ptr = self.picload.getData()
@@ -214,7 +212,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		self["InfobarEPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"showEventInfo": (self.showEventInformation, _("show event details")),
+				"showEventInfo": (self.showEventInformation, _("Show event details")),
 			})
 
 		self["actions"] = MoviePlayerActionMap(self, ["DirectionActions"],
@@ -886,15 +884,15 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		# check if MerlinMusicPlayer is installed and merlinmp3player.so is running
 		# so we need the right id to play now the mp3-file
 		elif self.filelist.getServiceRef().type == 4116:
-				if self.filelist.getSelection() is not None:
-					inst = self.filelist.getSelection()[0]
-					if isinstance(inst, eServiceReference):
-						path = inst.getPath()
-						service = eServiceReference(4097, 0, path)
-						self.playlist.addFile(service)
-						self.playlist.updateList()
-						if len(self.playlist) == 1:
-							self.changeEntry(0)
+			if self.filelist.getSelection() is not None:
+				inst = self.filelist.getSelection()[0]
+				if isinstance(inst, eServiceReference):
+					path = inst.getPath()
+					service = eServiceReference(4097, 0, path)
+					self.playlist.addFile(service)
+					self.playlist.updateList()
+					if len(self.playlist) == 1:
+						self.changeEntry(0)
 		else:
 			self.playlist.addFile(self.filelist.getServiceRef())
 			self.playlist.updateList()

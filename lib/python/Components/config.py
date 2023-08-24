@@ -496,7 +496,7 @@ class ConfigBoolean(ConfigElement):
 		elif key == ACTIONKEY_LAST:
 			self.value = True
 		if self.value != prev:
-			self.changed()
+			# self.changed() allready called in setValue
 			if callable(callback):
 				callback()
 
@@ -572,7 +572,7 @@ class ConfigDateTime(ConfigElement):
 		elif key == ACTIONKEY_FIRST or key == ACTIONKEY_LAST:
 			self.value = self.default
 		if self.value != prev:
-			self.changed()
+			# self.changed() allready called in setValue
 			if callable(callback):
 				callback()
 
@@ -853,7 +853,7 @@ class ConfigSelection(ConfigElement):
 			elif key == ACTIONKEY_LAST:
 				self.value = self.choices[count - 1]
 			if str(self.value) != prev:
-				self.changed()
+				# self.changed() allready called in setValue
 				if callable(callback):
 					callback()
 
@@ -879,7 +879,10 @@ class ConfigSelection(ConfigElement):
 	def getDescriptions(self):
 		return self.description.__list__()
 
-	def setChoices(self, choices, default=None):
+	def getSelectionList(self):
+		return list(zip(self.choices.__list__(), self.description.__list__()))
+
+	def setSelectionList(self, choices, default=None):
 		value = self.value
 		self.choices = choicesList(choices)
 		if default is None:
@@ -889,6 +892,9 @@ class ConfigSelection(ConfigElement):
 			self.value = default
 		if self.value != value:
 			self.changed()
+
+	def setChoices(self, choices, default=None):
+		return self.setSelectionList(choices, default=default)
 
 	def getValue(self):
 		return self._value
@@ -1482,7 +1488,7 @@ class ConfigSet(ConfigElement):
 				value.append(choice)
 				value.sort()
 			self.value = value
-			self.changed()
+			# self.changed() allready called in setValue
 			if callable(callback):
 				callback()
 
@@ -1565,7 +1571,7 @@ class ConfigSlider(ConfigElement):
 			value = self.max
 		if value != self.value:
 			self.value = value
-			self.changed()
+			# self.changed() allready called in setValue
 			if callable(callback):
 				callback()
 

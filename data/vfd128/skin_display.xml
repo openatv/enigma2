@@ -198,16 +198,14 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="128,32">
 		<widget source="Title" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
-		<widget source="parent.menu" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" noWrap="1" >
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" noWrap="1" />
 	</screen>
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="128,32">
-		<!-- <widget source="SetupTitle" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1"  /> -->
-		<widget source="SetupEntry" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
-		<widget source="SetupValue" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" noWrap="1" />
+		<!-- <widget source="Title" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1"  /> -->
+		<widget source="entry" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="value" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" noWrap="1" />
 	</screen>
 
 
@@ -334,10 +332,6 @@
 		<panel name="MessageBoxSummary" />
 	</screen>
 
-	<screen name="AboutSummary" position="0,0" size="128,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="128,32" font="FdLcD;16" halign="center" valign="center" />
-	</screen>
-
 	<screen name="TimerEditListSummary" position="0,0" size="128,32">
 		<widget source="service" render="Label" position="0,0" size="128,16" font="FdLcD;15" halign="left" valign="bottom" transparent="1" />
 		<widget source="name" render="Label" position="0,10" size="128,18" font="FdLcD;12" halign="left" noWrap="1" transparent="1" />
@@ -352,12 +346,6 @@
 	<screen name="WizardSummary" position="0,0" size="128,32">
 		<widget source="text" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" />
 		<widget source="parent.list" render="Label" position="0,16" size="128,16" font="FdLcD;12" halign="center" noWrap="1"  >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-	<screen name="VideoWizardSummary" position="0,0" size="128,32">
-		<widget source="text" render="Label" position="0,0" size="128,32" font="FdLcD;12" halign="center" />
-		<widget source="parent.list" render="Label" position="0,50" size="128,14" font="FdLcD;12" halign="center" noWrap="1"  >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -488,12 +476,12 @@
 		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
 	</screen>
 
-	<screen name="MPScreenSummary" position="0,0" size="132,32">
-		<eLabel text="MediaPortal" position="0,0" size="132,32" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
+	<screen name="MSScreenSummary" position="0,0" size="132,32">
+		<eLabel text="MediaStream" position="0,0" size="132,32" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
 	</screen>
 	
-	<screen name="MPSummary" position="0,0" size="132,32">
-		<eLabel text="MediaPortal" position="0,0" size="132,32" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
+	<screen name="MSSummary" position="0,0" size="132,32">
+		<eLabel text="MediaStream" position="0,0" size="132,32" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
 	</screen>
 
 <!-- softwaremanagment -->

@@ -428,44 +428,6 @@ void eEPGChannelData::readData( const uint8_t *data, int source)
 {
 	int map;
 	iDVBSectionReader *reader = NULL;
-#ifdef __sh__
-/* Dagobert: this is still very hacky, but currently I cant find
- * the origin of the readData call. I think the caller is
- * responsible for the unaligned data pointer in this call.
- * So we malloc our own memory here which _should_ be aligned.
- *
- * TODO: We should search for the origin of this call. As I
- * said before I need an UML Diagram or must try to import
- * e2 and all libs into an IDE for better overview ;)
- *
- */
-	const uint8_t *aligned_data;
-	bool isNotAligned = false;
-
-	if ((unsigned int) data % 4 != 0)
-		isNotAligned = true;
-
-	if (isNotAligned)
-	{
-		int len = ((data[1] & 0x0F) << 8 | data[2]) -1;
-
-		/*eDebug("[eEPGChannelData] len %d %x, %x %x\n", len, len, data[1], data[2]);*/
-
-		if ( EIT_SIZE >= len )
-			return;
-
-		aligned_data = (const uint8_t *) malloc(len);
-
-		if ((unsigned int)aligned_data % 4 != 0)
-		{
-			eDebug("[eEPGChannelData] eEPGChannelData::readData: ERRORERRORERROR: unaligned data pointer %p\n", aligned_data);
-		}
-
-		/*eDebug("%p %p\n", aligned_data, data); */
-		memcpy((void *) aligned_data, (const uint8_t *) data, len);
-		data = aligned_data;
-	}
-#endif
 	switch (source)
 	{
 		case eEPGCache::NOWNEXT:
@@ -591,10 +553,6 @@ void eEPGChannelData::readData( const uint8_t *data, int source)
 				eEPGCache::getInstance()->sectionRead(data, source, this);
 		}
 	}
-#ifdef __sh__
-	if (isNotAligned)
-		free((void *)aligned_data);
-#endif
 }
 
 void eEPGChannelData::abortNonAvail()

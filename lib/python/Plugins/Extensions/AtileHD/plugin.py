@@ -516,7 +516,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 				print("makedir mySkin_off")
 			if self.myAtileHD_active.value:
 				if not path.exists("mySkin") and path.exists("mySkin_off"):
-						symlink("mySkin_off", "mySkin")
+					symlink("mySkin_off", "mySkin")
 			else:
 				if path.exists("mySkin"):
 					if path.exists("mySkin_off"):

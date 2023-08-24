@@ -10,7 +10,7 @@
 #include <lib/base/nconfig.h>
 #include <lib/driver/input_fake.h>
 #include <lib/driver/hdmi_cec.h>
-#include <lib/driver/avswitch.h>
+#include <lib/driver/avcontrol.h>
 /* NOTE: this header will move to linux uapi, once the cec framework is out of staging */
 #include <lib/driver/linux-uapi-cec.h>
 
@@ -318,8 +318,9 @@ int eHdmiCEC::getDeviceType()
 bool eHdmiCEC::getActiveStatus()
 {
 	bool active = true;
-	eAVSwitch *avswitch = eAVSwitch::getInstance();
-	if (avswitch) active = avswitch->isActive();
+	eAVControl *avc = eAVControl::getInstance();
+	if (avc)
+		active = avc->isEncoderActive();
 	return active;
 }
 

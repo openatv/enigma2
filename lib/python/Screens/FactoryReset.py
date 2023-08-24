@@ -1,15 +1,16 @@
 from errno import ENOENT
 from os import _exit, listdir, remove
-from os.path import isdir, isfile, join as pathjoin
+from os.path import isdir, isfile, join
 from shutil import rmtree
 
 from Components.config import ConfigSubsection, ConfigYesNo, NoSave, config
 from Components.Console import Console
-from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, copyFile, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, copyFile, fileWriteLine, resolveFilename
+
+MODULE_NAME = __name__.split(".")[-1]
 
 
 class FactoryReset(Setup, ProtectedScreen):
@@ -39,54 +40,53 @@ class FactoryReset(Setup, ProtectedScreen):
 		Setup.createSetup(self)
 
 	def keySave(self):
-		self.session.openWithCallback(self.keySaveCallback, MessageBox, _("Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n\nAre you sure you want to continue with the factory reset?"), default=False, title=_("Factory Reset"))
+		def keySaveCallback(answer):
+			if answer:
+				self.console = Console()
+				if config.factory.resetFull.value:
+					print("[FactoryReset] Performing a full factory reset.")
+					self.resetNetworkConfig()
+					self.deleteFiles(None)
+					self.installDefaults()
+				else:
+					if config.factory.resetNetwork.value:
+						print("[FactoryReset] Performing a network configuration reset.")
+						self.resetNetworkConfig()
+					if config.factory.resetBouquets.value and self.bouquets:
+						print("[FactoryReset] Performing a bouquets reset.")
+						self.deleteFiles(self.bouquets)
+					if config.factory.resetUserInterfaces.value and self.userInterfaces:
+						print("[FactoryReset] Performing a user interface reset.")
+						self.deleteFiles(self.userInterfaces)
+					if config.factory.resetMounts.value and self.mounts:
+						print("[FactoryReset] Performing a network mount reset.")
+						self.deleteFiles(self.mounts)
+					if config.factory.resetPlugins.value and self.plugins:
+						print("[FactoryReset] Performing a plugins reset.")
+						self.deleteFiles(self.plugins)
+					if config.factory.resetResumePoints.value and self.resumePoints:
+						print("[FactoryReset] Performing a resume points reset.")
+						self.deleteFiles(self.resumePoints)
+					if config.factory.resetSettings.value and self.settings:
+						print("[FactoryReset] Performing a settings reset.")
+						self.deleteFiles(self.settings)
+					if config.factory.resetSkins.value and self.skins:
+						print("[FactoryReset] Performing a skins reset.")
+						self.deleteFiles(self.skins)
+					if config.factory.resetTimers.value and self.timers:
+						print("[FactoryReset] Performing a timers reset.")
+						self.deleteFiles(self.timers)
+					if config.factory.resetOthers.value and self.others:
+						print("[FactoryReset] Performing an other files reset.")
+						self.deleteFiles(self.others)
+				print("[FactoryReset] Stopping the active service to display the backdrop.")
+				self.session.nav.stopService()
+				self.console.ePopen(["/usr/bin/showiframe", "/usr/bin/showiframe", "/usr/share/backdrop.mvi"])
+				print("[FactoryReset] Stopping and exiting enigma2.")
+				_exit(0)
+				self.close()  # We should never get to here!
 
-	def keySaveCallback(self, answer):
-		if not answer:
-			return
-		self.console = Console()
-		if config.factory.resetFull.value:
-			print("[FactoryReset] Performing a full factory reset.")
-			self.resetNetworkConfig()
-			self.deleteFiles(self.configDir, None)
-			self.installDefaults()
-		else:
-			if config.factory.resetNetwork.value:
-				print("[FactoryReset] Performing a network configuration reset.")
-				self.resetNetworkConfig()
-			if config.factory.resetBouquets.value and self.bouquets:
-				print("[FactoryReset] Performing a bouquets reset.")
-				self.deleteFiles(self.configDir, self.bouquets)
-			if config.factory.resetUserInterfaces.value and self.userInterfaces:
-				print("[FactoryReset] Performing a user interface reset.")
-				self.deleteFiles(self.configDir, self.userInterfaces)
-			if config.factory.resetMounts.value and self.mounts:
-				print("[FactoryReset] Performing a network mount reset.")
-				self.deleteFiles(self.configDir, self.mounts)
-			if config.factory.resetPlugins.value and self.plugins:
-				print("[FactoryReset] Performing a plugins reset.")
-				self.deleteFiles(self.configDir, self.plugins)
-			if config.factory.resetResumePoints.value and self.resumePoints:
-				print("[FactoryReset] Performing a resume points reset.")
-				self.deleteFiles(self.configDir, self.resumePoints)
-			if config.factory.resetSettings.value and self.settings:
-				print("[FactoryReset] Performing a settings reset.")
-				self.deleteFiles(self.configDir, self.settings)
-			if config.factory.resetSkins.value and self.skins:
-				print("[FactoryReset] Performing a skins reset.")
-				self.deleteFiles(self.configDir, self.skins)
-			if config.factory.resetTimers.value and self.timers:
-				print("[FactoryReset] Performing a timers reset.")
-				self.deleteFiles(self.configDir, self.timers)
-			if config.factory.resetOthers.value and self.others:
-				print("[FactoryReset] Performing an other files reset.")
-				self.deleteFiles(self.configDir, self.others)
-		print("[FactoryReset] Stopping the active service to display the backdrop.")
-		self.session.nav.stopService()
-		self.console.ePopen(["/usr/bin/showiframe", "/usr/bin/showiframe", "/usr/share/backdrop.mvi"])
-		print("[FactoryReset] Stopping and exiting enigma2.")
-		_exit(0)
-		self.close()  # We should never get to here!
+		self.session.openWithCallback(keySaveCallback, MessageBox, _("Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n\nAre you sure you want to continue with the factory reset?"), default=False, title=self.getTitle())
 
 	def closeConfigList(self, closeParameters=()):  # Suppress the save settings pop up on exit.
 		self.close(*closeParameters)
@@ -133,17 +133,22 @@ class FactoryReset(Setup, ProtectedScreen):
 				self.others.append(file)
 
 	def resetNetworkConfig(self):
-		configFile = pathjoin(resolveFilename(SCOPE_SKINS), "defaults", "interfaces")
+		configFile = join(resolveFilename(SCOPE_SKINS), "defaults", "interfaces")
 		if isfile(configFile):
 			print("[FactoryReset] Default network configuration file found and being installed.")
 			if copyFile(configFile, "/etc/network/interfaces") == 0:
 				self.console.ePopen(["/bin/sh", "/etc/init.d/networking", "restart"])
 
-	def deleteFiles(self, path, fileList):
+	def deleteFiles(self, fileList):
+		settingsFile = "settings"
 		if fileList is None:
 			fileList = sorted(listdir(self.configDir))
+		elif settingsFile in fileList:
+			print("[FactoryReset] Clearing contents of '%s' in '%s'." % (settingsFile, self.configDir))
+			fileWriteLine(join(self.configDir, settingsFile), "", source=MODULE_NAME)
+			fileList.remove(settingsFile)
 		for file in fileList:
-			target = pathjoin(path, file)
+			target = join(self.configDir, file)
 			try:
 				if isdir(target):
 					print("[FactoryReset] Removing directory '%s' from '%s'." % (target, self.configDir))
@@ -156,7 +161,7 @@ class FactoryReset(Setup, ProtectedScreen):
 					print("[FactoryReset] Error %d: Unable to delete '%s'!  (%s)" % (err.errno, target, err.strerror))
 
 	def installDefaults(self):
-		defaults = pathjoin(resolveFilename(SCOPE_SKINS), "defaults")
+		defaults = join(resolveFilename(SCOPE_SKINS), "defaults")
 		if isdir(defaults):
 			defaultFiles = sorted(listdir(defaults))
 			if "interfaces" in defaultFiles:  # Network default is done separately.
@@ -164,7 +169,7 @@ class FactoryReset(Setup, ProtectedScreen):
 			if defaultFiles:
 				print("[FactoryReset] Copying default configuration files from '%s'." % defaults)
 				for file in defaultFiles:
-					sourceFile = pathjoin(defaults, file)
+					sourceFile = join(defaults, file)
 					if copyFile(sourceFile, self.configDir):
 						print("[FactoryReset] Error: Unable to copy file '%s' to '%s'!" % (sourceFile, self.configDir))
 					else:

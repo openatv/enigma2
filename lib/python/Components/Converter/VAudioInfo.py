@@ -15,21 +15,26 @@ class VAudioInfo(Poll, Converter):
 		self.poll_interval = 1000
 		self.poll_enabled = True
 		self.lang_strings = ("ger", "german", "deu")
-		self.codecs = {"01_dolbydigitalplus": ("digital+", "digitalplus", "ac3+", "e-ac-3"),
-				   "02_dolbydigital": ("ac3", "ac-3", "dolbydigital"),
-				   "03_mp3": ("mp3", ),
-				   "04_wma": ("wma", ),
-				   "05_flac": ("flac", ),
-				   "06_mpeg": ("mpeg", ),
-				   "07_lpcm": ("lpcm", ),
-				   "08_dts-hd": ("dts-hd", ),
-				   "09_dts": ("dts", ),
-				   "10_pcm": ("pcm", ),
-				}
-		self.codec_info = {"dolbydigitalplus": ("51", "20", "71"),
-				    "dolbydigital": ("51", "20", "71"),
-				    "wma": ("8", "9"),
-				  }
+		self.codecs = {
+			"01_dolbydigitalplus": ("digital+", "digitalplus", "ac3+",),
+			"02_dolbydigital": ("ac3", "dolbydigital",),
+			"03_mp3": ("mp3",),
+			"04_wma": ("wma",),
+			"05_flac": ("flac",),
+			"06_he-aac": ("he-aac",),
+			"07_aac": ("aac",),
+			"08_lpcm": ("lpcm",),
+			"09_dts-hd": ("dts-hd",),
+			"10_dts": ("dts",),
+			"11_pcm": ("pcm",),
+			"12_mpeg": ("mpeg",),
+			"13_dolbytruehd": ("truehd",),
+			}
+		self.codec_info = {
+			"dolbydigitalplus": ("51", "20", "71"),
+			"dolbydigital": ("51", "20", "71"),
+			"wma": ("8", "9"),
+		}
 		self.type, self.interesting_events = {
 				"AudioIcon": (self.GET_AUDIO_ICON, (iPlayableService.evUpdatedInfo,)),
 				"AudioCodec": (self.GET_AUDIO_CODEC, (iPlayableService.evUpdatedInfo,)),
@@ -59,7 +64,7 @@ class VAudioInfo(Poll, Converter):
 		description_str = _("unknown")
 		if self.getAudio():
 			languages = self.getLanguage()
-			description = self.audio_info.getDescription()
+			description = self.audio_info.getDescription() or ""
 			description_str = description.split(" ")
 			if len(description_str) and description_str[0] in languages:
 				return languages
@@ -73,8 +78,7 @@ class VAudioInfo(Poll, Converter):
 		return description_str
 
 	def get_short(self, audioName):
-		import six
-		for return_codec, codecs in sorted(six.iteritems(self.codecs)):
+		for return_codec, codecs in sorted(iter(self.codecs.items())):
 			for codec in codecs:
 				if codec in audioName:
 					codec = return_codec.split('_')[1]

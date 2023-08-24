@@ -1,12 +1,36 @@
+from os import W_OK, access, remove, stat, statvfs
+from os.path import exists, isdir
+from shlex import split
+
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+from Components.config import ConfigInteger, ConfigSelection
+from Components.Console import Console
+from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.HelpMenu import HelpableScreen
+from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
+from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
+from Tools.Directories import fileReadLines, fileWriteLine
 from Tools.MultiBoot import MultiBoot
+
+MODULE_NAME = __name__.split(".")[-1]
+
+ACTION_SELECT = 0
+ACTION_CREATE = 1
+
+MOUNT_DEVICE = 0
+MOUNT_MOUNTPOINT = 1
+MOUNT_FILESYSTEM = 2
+MOUNT_OPTIONS = 3
+MOUNT_DUMP = 4
+MOUNT_FSCK_ORDER = 5
+MAX_MOUNT = 6
 
 
 class MultiBootManager(Screen, HelpableScreen):
@@ -36,7 +60,7 @@ class MultiBootManager(Screen, HelpableScreen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("MultiBoot Manager"))
+		self.setTitle(_("MultiBoot Manager"))
 		self["slotlist"] = ChoiceList([ChoiceEntryComponent("", (_("Loading slot information, please wait..."), "Loading"))])
 		self["description"] = Label(_("Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"))
 		self["key_red"] = StaticText(_("Cancel"))
@@ -68,12 +92,17 @@ class MultiBootManager(Screen, HelpableScreen):
 			"blue": (self.restoreImage, _("Restore the highlighted slot"))
 		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restoreActions"].setEnabled(False)
+		if BoxInfo.getItem("HasKexecMultiboot"):
+			self["moreSlotActions"] = HelpableActionMap(self, ["ColorActions"], {
+				"blue": (self.moreSlots, _("Add more slots"))
+			}, prio=0, description=_("MultiBoot Manager Actions"))
+			self["moreSlotActions"].setEnabled(False)
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.initialize = True
 		self.callLater(self.getImagesList)
 
 	def layoutFinished(self):
-		self["slotlist"].instance.enableAutoNavigation(False)
+		self["slotlist"].enableAutoNavigation(False)
 
 	def getImagesList(self):
 		MultiBoot.getSlotImageList(self.getSlotImageListCallback)
@@ -82,7 +111,7 @@ class MultiBootManager(Screen, HelpableScreen):
 		imageList = []
 		if slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
-			slotImageList = sorted(slotImages.keys())
+			slotImageList = sorted(slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))
 			currentMsg = "  -  %s" % _("Current")
 			slotMsg = _("Slot '%s': %s%s")
 			imageLists = {}
@@ -135,6 +164,9 @@ class MultiBootManager(Screen, HelpableScreen):
 			print("[MultiBootManager] %s marked as deleted." % currentSelected[0])
 		self.getImagesList()
 
+	def moreSlots(self):
+		self.session.open(KexecSlotManager)
+
 	def restoreImage(self):
 		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
 		MultiBoot.restoreSlot(currentSelected[1][0], self.restoreImageCallback)
@@ -165,7 +197,7 @@ class MultiBootManager(Screen, HelpableScreen):
 		slot = currentSelected[1][0]
 		status = currentSelected[1][2]
 		ubi = currentSelected[1][3]
-		current = currentSelected[1][4]
+		# current = currentSelected[1][4]
 		if slot == slotCode or status in ("android", "androidlinuxse", "recovery"):
 			self["key_green"].setText(_("Reboot"))
 			self["key_yellow"].setText("")
@@ -201,6 +233,10 @@ class MultiBootManager(Screen, HelpableScreen):
 			self["restartActions"].setEnabled(True)
 			self["deleteActions"].setEnabled(True)
 			self["restoreActions"].setEnabled(False)
+		if BoxInfo.getItem("HasKexecMultiboot") and slotCode == "R":
+			self["restoreActions"].setEnabled(False)
+			self["moreSlotActions"].setEnabled(True)
+			self["key_blue"].setText(_("Add more slots"))
 
 	def keyTop(self):
 		self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveTop)
@@ -225,3 +261,239 @@ class MultiBootManager(Screen, HelpableScreen):
 		while self["slotlist"].l.getCurrentSelection()[0][1] is None:
 			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveUp)
 		self.selectionChanged()
+
+
+class KexecInit(Screen, HelpableScreen):
+	skin = """
+	<screen name="KexecInit" title="Kexec MultiBoot Manager" position="center,center" size="900,600" resolution="1280,720">
+		<widget name="description" position="0,0" size="e,e-50" font="Regular;20" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session, *args):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		self.setTitle(_("Kexec MultiBoot Manager"))
+		self["key_red"] = StaticText()
+		self["key_green"] = StaticText()
+		self["description"] = Label()
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
+			"ok": (self.close, _("Close the Kexec MultiBoot Manager")),
+			"cancel": (self.close, _("Close the Kexec MultiBoot Manager"))
+		}, prio=0, description=_("Kexec MultiBoot Actions"))
+		if exists("/usr/bin/kernel_auto.bin") and exists("/usr/bin/STARTUP.cpio.gz"):
+			self["key_red"].setText(_("Remove Files"))
+			self["key_green"].setText(_("Initialize"))
+			self.descriptionSuffix = _("The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot.") % getBoxDisplayName()
+			self["description"].setText("%s\n\n%s" % (_("Press GREEN to enable MultiBoot!"), self.descriptionSuffix))
+			self["kexecActions"] = HelpableActionMap(self, ["ColorActions"], {
+				"red": (self.removeFiles, _("Remove the MultiBoot files")),
+				"green": (self.rootInit, _("Start the Kexec initialization"))
+			}, prio=0, description=_("Kexec MultiBoot Actions"))
+		else:
+			self.descriptionSuffix = ""
+			self["description"].setText("%s: %s\n\n%s" % (_("NOTE"), _("Unable to initialize Kexec MultiBoot!"), _("Kexec MultiBoot files are missing.")))
+
+	def rootInit(self):
+		def rootInitCallback(*args, **kwargs):
+			model = BoxInfo.getItem("model")
+			for usbSlot in range(1, 4):
+				if exists("/media/hdd/%s/linuxrootfs%s" % (model, usbSlot)):
+					Console().ePopen("/bin/cp -R /media/hdd/%s/linuxrootfs%s . /" % (model, usbSlot))
+			self.session.open(TryQuitMainloop, QUIT_REBOOT)
+
+		self["actions"].setEnabled(False)  # This function takes time so disable the ActionMaps to avoid responding to multiple button presses.
+		self["kexecActions"].setEnabled(False)
+		self["description"].setText("%s\n\n%s" % (_("Kexec MultiBoot Initialization in progress!"), self.descriptionSuffix))
+		mtdRootFs = BoxInfo.getItem("mtdrootfs")
+		fileWriteLine("/STARTUP", "kernel=/zImage root=/dev/%s rootsubdir=linuxrootfs0" % mtdRootFs, source=MODULE_NAME)
+		fileWriteLine("/STARTUP_RECOVERY", "kernel=/zImage root=/dev/%s rootsubdir=linuxrootfs0" % mtdRootFs, source=MODULE_NAME)
+		fileWriteLine("/STARTUP_1", "kernel=/linuxrootfs1/zImage root=/dev/%s rootsubdir=linuxrootfs1" % mtdRootFs, source=MODULE_NAME)
+		fileWriteLine("/STARTUP_2", "kernel=/linuxrootfs2/zImage root=/dev/%s rootsubdir=linuxrootfs2" % mtdRootFs, source=MODULE_NAME)
+		fileWriteLine("/STARTUP_3", "kernel=/linuxrootfs3/zImage root=/dev/%s rootsubdir=linuxrootfs3" % mtdRootFs, source=MODULE_NAME)
+		mtdKernel = BoxInfo.getItem("mtdkernel")
+		cmdList = []
+		cmdList.append("/bin/dd if=/dev/%s of=/zImage" % mtdKernel)  # Backup old kernel.
+		cmdList.append("/bin/dd if=/usr/bin/kernel_auto.bin of=/dev/%s" % mtdKernel)  # Create new kernel.
+		cmdList.append("/bin/mv /usr/bin/STARTUP.cpio.gz /STARTUP.cpio.gz")  # Copy user root routine.
+		Console().eBatch(cmdList, rootInitCallback, debug=True)
+
+	def removeFiles(self):
+		def removeFilesCallback(self, answer):
+			if answer:
+				for file in files:
+					try:
+						remove(file)
+					except OSError as err:
+						print("[MultiBootManager] Error %d: Unable to delete MultiBoot file '%s'.  (%s)" % (err.errno, file, err.strerror))
+				self.close()
+
+		files = ("/usr/bin/kernel_auto.bin", "/usr/bin/STARTUP.cpio.gz")
+		self.session.openWithCallback(removeFilesCallback, MessageBox, "%s\n\n%s" % (_("Permanently remove the MultiBoot files?"), "\n".join(files)), simple=True)
+
+
+class KexecSlotManager(Setup):
+	def __init__(self, session):
+		def getGreenHelpText():
+			return {
+				ACTION_SELECT: _("Select a device to use for the additional slots"),
+				ACTION_CREATE: _("Create the additional slots on the selected device")
+			}.get(self.green, _("Help text uninitialized"))
+
+		self.kexecSlotManagerLocation = ConfigSelection(default=None, choices=[(None, _("<Select a device>"))])
+		self.kexecSlotManagerSlots = ConfigInteger(default=1, limits=(1, 50))
+		self.kexecSlotManagerDevice = None
+		Setup.__init__(self, session=session, setup="KexecSlotManager")
+		self.setTitle(_("Slot Manager"))
+		self["fullUIActions"] = HelpableActionMap(self, ["CancelSaveActions"], {
+			"cancel": (self.keyCancel, _("Cancel any changed settings and exit")),
+			"close": (self.closeRecursive, _("Cancel any changed settings and exit all menus"))
+		}, prio=0, description=_("Common Setup Actions"))  # Override the ConfigList "fullUIActions" action map so that we can control the GREEN button here.
+		self["actions"] = HelpableActionMap(self, ["ColorActions"], {
+			"green": (self.keyGreen, getGreenHelpText)
+		}, prio=-1, description=_("Slot Manager Actions"))
+		self.console = Console()
+		self.freespace = 0
+		self.deviceData = {}
+		self.mountData = None
+		self.green = ACTION_SELECT
+
+	def layoutFinished(self):
+		Setup.layoutFinished(self)
+		self.readDevices()
+
+	def selectionChanged(self):
+		Setup.selectionChanged(self)
+		self.updateStatus()
+
+	def changedEntry(self):
+		Setup.changedEntry(self)
+		self.updateStatus()
+
+	def keySelect(self):
+		if self.getCurrentItem() == self.kexecSlotManagerLocation:
+			self.showDeviceSelection()
+		else:
+			Setup.keySelect(self)
+
+	def keyGreen(self):
+		def restartCallback(answer):
+			if answer is True:
+				self.session.open(TryQuitMainloop, QUIT_REBOOT)
+			else:
+				self.close()
+
+		def createSlots():
+			model = BoxInfo.getItem("model")[2:]
+			for slot in range(4, self.kexecSlotManagerSlots.value + 5):
+				rootWait = ""
+				if model == "duo4k":
+					rootWait = " rootwait=40"
+				if model == "duo4kse":
+					rootWait = " rootwait=35"
+				startupFileContent = "kernel=%s/linuxrootfs%d/zImage root=UUID=%s rootsubdir=%s/linuxrootfs%d%s" % (model, slot, self.kexecSlotManagerDevice, model, slot, rootWait)
+				with open("/STARTUP_%d" % slot, "w") as fd:
+					fd.write(startupFileContent)
+			self.session.openWithCallback(restartCallback, MessageBox, _("Restart necessary, restart GUI now?"), MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
+
+		if self.kexecSlotManagerDevice:
+			createSlots()
+		else:
+			self.showDeviceSelection()
+
+	def showDeviceSelection(self):
+		def readDevicesCallback():
+			choiceList = [
+				(_("Cancel"), "")
+			]
+			for deviceID, deviceData in self.deviceData.items():
+				choiceList.append(("%s (%s)" % (deviceData[1], deviceData[0]), deviceID))
+			self.session.openWithCallback(self.deviceSelectionCallback, MessageBox, text=_("Please select the device or Cancel to cancel the selection."), list=choiceList, windowTitle=self.getTitle())
+
+		self.readDevices(readDevicesCallback)
+
+	def deviceSelectionCallback(self, deviceId):
+		def getPathMountData(path):
+			mounts = fileReadLines("/proc/mounts", [], source=MODULE_NAME)
+			print("[KexecSlotManager] getPathMountData DEBUG: path=%s." % path)
+			for mount in mounts:
+				data = mount.split()
+				if data[MOUNT_DEVICE] == path:
+					status = stat(data[MOUNT_MOUNTPOINT])
+					return (data[MOUNT_MOUNTPOINT], status, data)
+			return None
+
+		if deviceId:
+			print("[KexecSlotManager] deviceSelectionCallback DEBUG: deviceId=%s." % deviceId)
+			self.kexecSlotManagerDevice = deviceId
+			locations = self.kexecSlotManagerLocation.getSelectionList()
+			path = self.deviceData[deviceId][0]
+			self.mountData = getPathMountData(path)
+			if self.mountData:
+				mountPoint = self.mountData[0]
+				mountStat = self.mountData[1]
+				print("[KexecSlotManager] deviceSelectionCallback DEBUG: mountData=%s." % str(self.mountData))
+				if not isdir(mountPoint):
+					footnote = _("Directory '%s' does not exist!") % mountPoint
+				elif mountStat.st_dev in DEFAULT_INHIBIT_DEVICES:
+					footnote = _("Flash directory '%s' not allowed!") % mountPoint
+				elif not access(mountPoint, W_OK):
+					footnote = _("Directory '%s' not writable!") % mountPoint
+				else:
+					status = statvfs(mountPoint)
+					self.freespace = status.f_bavail * status.f_bsize / 1024 / 1024 / 1024
+					footnote = None
+			else:
+				footnote = _("No valid mount for '%s' found!") % path
+			print("[KexecSlotManager] deviceSelectionCallback DEBUG: footnote=%s" % footnote)
+			if not footnote:
+				if (path, path) not in locations:
+					locations.append((path, path))
+					self.kexecSlotManagerLocation.setSelectionList(default=None, choices=locations)
+					self.kexecSlotManagerLocation.value = path
+					maxSlots = int(self.freespace / 2)
+					maxSlots = 50 if maxSlots > 50 else maxSlots
+					self.kexecSlotManagerSlots.limits = [(1, maxSlots)]
+					self.createSetup()
+				self.kexecSlotManagerDevice = deviceId
+			self.updateStatus(footnote)
+
+	def readDevices(self, callback=None):
+		def readDevicesCallback(output=None, retVal=None, extraArgs=None):
+			def getDeviceID(deviceInfo):
+				mode = "UUID="
+				for token in deviceInfo:
+					if token.startswith(mode):
+						return token[len(mode):]
+				return None
+
+			print("[KexecSlotManager] readDevicesCallback DEBUG: retVal=%s, output='%s'." % (retVal, output))
+			lines = [line for line in output.splitlines() if "UUID=\"" in line and ("/dev/sd" in line or "/dev/cf" in line) and "TYPE=\"ext" in line]
+			self.deviceData = {}
+			for (name, hdd) in harddiskmanager.HDDList():
+				for line in lines:
+					data = split(line.strip())
+					if data and data[0][:-1].startswith(hdd.dev_path):
+						deviceID = getDeviceID(data)
+						if deviceID:
+							self.deviceData[deviceID] = (data[0][:-1], name)
+			self.updateStatus()
+			if callback:
+				callback()
+
+		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=readDevicesCallback)
+
+	def updateStatus(self, footnote=None):
+		self.green = ACTION_CREATE if self.kexecSlotManagerDevice else ACTION_SELECT
+		self["key_green"].setText({
+			ACTION_SELECT: _("Select Device"),
+			ACTION_CREATE: _("Create Slots")
+		}.get(self.green, _("Invalid")))

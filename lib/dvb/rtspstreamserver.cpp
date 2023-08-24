@@ -1172,14 +1172,14 @@ void eRTSPStreamClient::notifier(int what)
 		ss << "<specVersion><major>1</major><minor>1</minor></specVersion>";
 		ss << "<device><deviceType>urn:ses-com:device:SatIPServer:1</deviceType>";
 		ss << "<friendlyName>" << app_name << "</friendlyName>";
-		ss << "<manufacturer>" << modelinformation.MachineBrand() << "</manufacturer>";
-		ss << "<manufacturerURL>" << modelinformation.Url() << "</manufacturerURL>";
-		ss << "<modelDescription>" << modelinformation.Creator() << "</modelDescription>";
-		ss << "<modelName>" << modelinformation.MachineName() << "</modelName>";
+		ss << "<manufacturer>" << modelinformation.getValue("displaybrand") << "</manufacturer>";
+		ss << "<manufacturerURL>http://www.opena.tv</manufacturerURL>";
+		ss << "<modelDescription>" << modelinformation.getValue("displaydistro") << "</modelDescription>";
+		ss << "<modelName>" << modelinformation.getValue("displaymodel") << "</modelName>";
 		ss << "<modelNumber>1.1</modelNumber>";
-		ss << "<modelURL>" << modelinformation.Url() << "</modelURL>";
+		ss << "<modelURL>http://www.opena.tv</modelURL>";
 		ss << "<serialNumber>1</serialNumber>";
-		ss << "<UDN>uuid:11223344-9999-0001-b7ae-" << modelinformation.Date() << "</UDN>";
+		ss << "<UDN>uuid:11223344-9999-0001-b7ae-" << modelinformation.getValue("compiledate") << "</UDN>";
 		ss << "<iconList>";
 		//ss << "<icon><mimetype>image/png</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.png</url></icon>";
 		//ss << "<icon><mimetype>image/png</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.png</url></icon>";
@@ -1333,7 +1333,7 @@ PyObject *eRTSPStreamServer::getConnectedClients()
 		ePyObject tuple = PyTuple_New(3);
 		PyTuple_SET_ITEM(tuple, 0, PyString_FromString((char *)it->getRemoteHost().c_str()));
 		PyTuple_SET_ITEM(tuple, 1, PyString_FromString((char *)it->getServiceref().c_str()));
-		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(it->isUsingEncoder()));
+		PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(it->isUsingEncoder()));
 		PyList_SET_ITEM(ret, idx++, tuple);
 	}
 	return ret;

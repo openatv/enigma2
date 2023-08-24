@@ -1,4 +1,3 @@
-from __future__ import division
 from __future__ import absolute_import
 from time import localtime, time, strftime, mktime
 
@@ -51,7 +50,7 @@ class Rect:
 class EPGList(GUIComponent):
 	def __init__(self, type=EPG_TYPE_SINGLE, selChangedCB=None, timer=None, time_epoch=120, overjump_empty=False, graphic=False):
 		sf = getSkinFactor()
-		self.screenwidth = int(1280 * sf) # important for compatibility to other plugins (e.g. partnerbox)
+		self.screenwidth = int(1280 * sf)  # important for compatibility to other plugins (e.g. partnerbox)
 		if sf == 1.5:
 			self.posx, self.posy, self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2, 13, 25, 25, 2))
 			self.column_service, self.column_time, self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (240, 180, 120, 30))
@@ -82,6 +81,10 @@ class EPGList(GUIComponent):
 		self.days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 		#//
 
+		self.listRows = 8
+		self.listFirstServiceIndex = 0
+		self.serviceList = ()
+
 		self.overjump_empty = overjump_empty
 		self.timer = timer
 		self.onSelChanged = []
@@ -101,7 +104,7 @@ class EPGList(GUIComponent):
 		elif type == EPG_TYPE_VERTICAL:
 			self.l.setBuildFunc(self.buildVerticalEntry)
 		else:
-			assert(type == EPG_TYPE_SIMILAR)
+			assert (type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
 
@@ -376,7 +379,7 @@ class EPGList(GUIComponent):
 		self.showServiceTitle = "servicename" in value
 		self.showPicon = "picon" in value
 		self.recalcEntrySize()
-		self.selEntry(0) #Select entry again so that the clipping region gets updated if needed
+		self.selEntry(0)  # Select entry again so that the clipping region gets updated if needed
 
 	def setOverjump_Empty(self, overjump_empty):
 		if overjump_empty:
@@ -434,10 +437,10 @@ class EPGList(GUIComponent):
 			try:
 				if self.cur_event is None or not events or (self.cur_event and events and self.cur_event > len(events) - 1):
 					return None, ServiceReference(refstr)
-				event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
+				event = events[self.cur_event]  # (event_id, event_title, begin_time, duration)
 				eventid = event[0]
 				service = ServiceReference(refstr)
-				event = self.getEventFromId(service, eventid) # get full event info
+				event = self.getEventFromId(service, eventid)  # get full event info
 				return event, service
 			except:
 				return None, ServiceReference(refstr)
@@ -473,7 +476,7 @@ class EPGList(GUIComponent):
 		if old_service and self.cur_event is not None:
 			try:
 				events = old_service[2]
-				cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
+				cur_event = events[self.cur_event]  # (event_id, event_title, begin_time, duration)
 				last_time = cur_event[2]
 			except:
 				pass
@@ -484,7 +487,7 @@ class EPGList(GUIComponent):
 			if events and len(events):
 				best_diff = 0
 				idx = 0
-				for event in events: #iterate all events
+				for event in events:  # iterate all events
 					ev_time = event[2]
 					ev_end_time = event[2] + event[3]
 					if ev_time < time_base:
@@ -515,7 +518,7 @@ class EPGList(GUIComponent):
 				if self.listHeight > 0:
 					itemHeight = self.listHeight / config.epgselection.graph_itemsperpage.value
 				else:
-					itemHeight = 54 * sf # some default (270/5)
+					itemHeight = 54 * sf  # some default (270/5)
 				if config.epgselection.graph_heightswitch.value:
 					if ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 3) >= 27:
 						tmp_itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) // 3)
@@ -536,7 +539,7 @@ class EPGList(GUIComponent):
 				if self.listHeight > 0:
 					itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.value
 				else:
-					itemHeight = 54 * sf # some default (270/5)
+					itemHeight = 54 * sf  # some default (270/5)
 			if self.NumberOfRows:
 				itemHeight = self.listHeight / self.NumberOfRows
 			itemHeight = int(itemHeight)
@@ -545,6 +548,7 @@ class EPGList(GUIComponent):
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
+			self.listRows = int(self.listHeight / itemHeight)
 
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			if self.listHeight > 0:
@@ -738,7 +742,7 @@ class EPGList(GUIComponent):
 			return None
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
+		if self.listSizeWidth != self.l.getItemSize().width():  # recalc size if scrollbar is shown
 			self.recalcEntrySize()
 
 		if (beginTime is not None) and (beginTime + duration < time()):
@@ -771,7 +775,7 @@ class EPGList(GUIComponent):
 		t = localtime(beginTime)
 		datetime = "%s, %s" % (strftime(config.usage.date.short.value, t), strftime(config.usage.time.short.value, t))
 		res = [
-			None, # no private data needed
+			None,  # no private data needed
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, _(strftime(_("%a"), t)), foreColor, foreColorSel, backColor, backColorSel),
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, datetime, foreColor, foreColorSel, backColor, backColorSel)
 		]
@@ -793,7 +797,7 @@ class EPGList(GUIComponent):
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
+		if self.listSizeWidth != self.l.getItemSize().width():  # recalc size if scrollbar is shown
 			self.recalcEntrySize()
 		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
@@ -823,7 +827,7 @@ class EPGList(GUIComponent):
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
-		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
+		if self.listSizeWidth != self.l.getItemSize().width():  # recalc size if scrollbar is shown
 			self.recalcEntrySize()
 		r1 = self.service_rect
 		r2 = self.progress_rect
@@ -838,7 +842,7 @@ class EPGList(GUIComponent):
 		else:
 			r_ice = Rect(0, 0, 0, 0)
 
-		res = [None, (eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w - r_ice.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)] # no private data needed
+		res = [None, (eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w - r_ice.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)]  # no private data needed
 
 		if r_ice.w > 0 and r_ice.h > 0:
 			res.append(MultiContentEntryPixmapAlphaBlend(
@@ -885,7 +889,7 @@ class EPGList(GUIComponent):
 		return res
 
 	def buildGraphEntry(self, service, service_name, events, picon, channel):
-		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
+		if self.listSizeWidth != self.l.getItemSize().width():  # recalc size if scrollbar is shown
 			self.recalcEntrySize()
 		r1 = self.service_rect
 		r2 = self.event_rect
@@ -930,7 +934,7 @@ class EPGList(GUIComponent):
 
 		displayPicon = None
 		if self.showPicon:
-			if picon is None: # go find picon and cache its location
+			if picon is None:  # go find picon and cache its location
 				picon = getPiconName(service)
 				curIdx = self.l.getCurrentSelectionIndex()
 				self.list[curIdx] = (service, service_name, events, picon, channel)
@@ -972,7 +976,7 @@ class EPGList(GUIComponent):
 					color=serviceForeColor, color_sel=serviceForeColor,
 					backcolor=serviceBackColor, backcolor_sel=serviceBackColor))
 
-		if self.showServiceTitle: # we have more space so reset parms
+		if self.showServiceTitle:  # we have more space so reset parms
 			namefont = 0
 			namefontflag = int(config.epgselection.graph_servicename_alignment.value)
 			namewidth = r1.w - channelWidth - piconWidth
@@ -1010,12 +1014,12 @@ class EPGList(GUIComponent):
 					flags=BT_SCALE))
 		if self.borderBottomPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos =(r1.x, r1.h - self.serviceBorderWidth),
+					pos=(r1.x, r1.h - self.serviceBorderWidth),
 					size=(r1.w, self.serviceBorderWidth),
 					png=self.borderBottomPix,
 					flags=BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos =(r2.x, r2.h - self.eventBorderWidth),
+					pos=(r2.x, r2.h - self.eventBorderWidth),
 					size=(r2.w, self.eventBorderWidth),
 					png=self.borderBottomPix,
 					flags=BT_SCALE))
@@ -1032,12 +1036,12 @@ class EPGList(GUIComponent):
 					flags=BT_SCALE))
 		if self.borderRightPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos =(r1.w - self.serviceBorderWidth, r1.x),
+					pos=(r1.w - self.serviceBorderWidth, r1.x),
 					size=(self.serviceBorderWidth, r1.h),
 					png=self.borderRightPix,
 					flags=BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos =(r2.x + r2.w - self.eventBorderWidth, r2.y),
+					pos=(r2.x + r2.w - self.eventBorderWidth, r2.y),
 					size=(self.eventBorderWidth, r2.h),
 					png=self.borderRightPix,
 					flags=BT_SCALE))
@@ -1193,7 +1197,7 @@ class EPGList(GUIComponent):
 							flags=BT_SCALE))
 				if borderBottomPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
-							pos =(left + xpos, height - self.eventBorderWidth),
+							pos=(left + xpos, height - self.eventBorderWidth),
 							size=(ewidth, self.eventBorderWidth),
 							png=borderBottomPix,
 							flags=BT_SCALE))
@@ -1205,7 +1209,7 @@ class EPGList(GUIComponent):
 							flags=BT_SCALE))
 				if borderRightPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
-							pos =(left + xpos + ewidth - self.eventBorderWidth, top),
+							pos=(left + xpos + ewidth - self.eventBorderWidth, top),
 							size=(self.eventBorderWidth, height),
 							png=borderRightPix,
 							flags=BT_SCALE))
@@ -1240,7 +1244,7 @@ class EPGList(GUIComponent):
 		return res
 
 	def buildVerticalEntry(self, service, eventId, beginTime, duration, EventName):
-		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
+		if self.listSizeWidth != self.l.getItemSize().width():  # recalc size if scrollbar is shown
 			self.recalcEntrySize()
 
 		if (beginTime is not None) and (beginTime + duration < time()):
@@ -1294,7 +1298,7 @@ class EPGList(GUIComponent):
 		res = [
 			None,
 			(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, backColor, backColorSel),			#//background event
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_LEFT, ' ', foreColorTime, foreColorSel, backColorTime, backColorSel),	#//background time
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_LEFT, ' ', foreColorTime, foreColorSel, backColorTime, backColorSel),  # //background time
 			]
 		if pt:
 			res.extend((
@@ -1352,50 +1356,50 @@ class EPGList(GUIComponent):
 		if cur_service:
 			update = True
 			entries = cur_service[2]
-			if dir == 0: #current
+			if dir == 0:  # current
 				update = False
-			elif dir == +1: #next
+			elif dir == +1:  # next
 				if valid_event and self.cur_event + 1 < len(entries):
 					self.cur_event += 1
 				else:
 					self.offs += 1
-					self.fillGraphEPG(None) # refill
+					self.fillGraphEPG(None)  # refill
 					return True
-			elif dir == -1: #prev
+			elif dir == -1:  # prev
 				if valid_event and self.cur_event - 1 >= 0:
 					self.cur_event -= 1
 				elif self.offs > 0:
 					self.offs -= 1
-					self.fillGraphEPG(None) # refill
+					self.fillGraphEPG(None)  # refill
 					return True
 				elif self.time_base > time():
 					self.time_base -= self.time_epoch * 60
-					self.fillGraphEPG(None) # refill
+					self.fillGraphEPG(None)  # refill
 					return True
 				elif self.time_base > now and valid_event and cur_service[2][0][2] <= self.time_base:
 					self.time_base -= self.time_epoch * 60
-					self.fillGraphEPG(None, self.time_base) # refill
+					self.fillGraphEPG(None, self.time_base)  # refill
 					return True
-			elif dir == +2: #next page
+			elif dir == +2:  # next page
 				self.offs += 1
-				self.fillGraphEPG(None) # refill
+				self.fillGraphEPG(None)  # refill
 				return True
-			elif dir == -2: #prev
+			elif dir == -2:  # prev
 				if self.offs > 0:
 					self.offs -= 1
-					self.fillGraphEPG(None) # refill
+					self.fillGraphEPG(None)  # refill
 					return True
 				elif self.time_base > time():
 					self.time_base -= self.time_epoch * 60
-					self.fillGraphEPG(None) # refill
+					self.fillGraphEPG(None)  # refill
 					return True
 				elif self.time_base > now and valid_event and cur_service[2][0][2] <= self.time_base:
 					self.time_base -= self.time_epoch * 60
-					self.fillGraphEPG(None, self.time_base) # refill
+					self.fillGraphEPG(None, self.time_base)  # refill
 					return True
 			elif dir == +24:
 				self.time_base += 86400
-				self.fillGraphEPG(None, self.time_base) # refill
+				self.fillGraphEPG(None, self.time_base)  # refill
 				return True
 			elif dir == -24:
 				roundto = None
@@ -1411,11 +1415,11 @@ class EPGList(GUIComponent):
 						self.offs = 0
 						self.time_base = now - now % (int(roundto.value) * 60)
 						getnow = True
-					self.fillGraphEPG(None, self.time_base, getnow) # refill
+					self.fillGraphEPG(None, self.time_base, getnow)  # refill
 					return True
 
 		if cur_service and valid_event and (self.cur_event + 1 <= len(entries)):
-			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
+			entry = entries[self.cur_event]  # (event_id, event_title, begin_time, duration)
 			time_base = self.time_base + self.offs * self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
 			self.select_rect = Rect(xpos, 0, width, self.event_rect.height)
@@ -1486,7 +1490,7 @@ class EPGList(GUIComponent):
 		self.l.setList(self.list)
 		self.selectionChanged()
 
-	def fillGraphEPG(self, services, stime=None, getnow=False):
+	def fillGraphEPG(self, services, stime=None, getnow=False, current_service=None):
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and not self.graphicsloaded:
 			if self.graphic:
 				self.nowEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/CurrentEvent.png'))
@@ -1515,6 +1519,8 @@ class EPGList(GUIComponent):
 
 			self.graphicsloaded = True
 
+		test = ['XRnITBD'] #return record, service ref, service name, event id, event title, begin time, duration
+
 		if stime is not None:
 			self.time_base = int(stime)
 		if services is None:
@@ -1523,40 +1529,51 @@ class EPGList(GUIComponent):
 			self.time_base = time_base
 			self.offs = 0
 			#//
-			test = [(service[0], 0, time_base, self.time_epoch) for service in self.list]
-			serviceList = self.list
-			piconIdx = 3
-			channelIdx = 4
-		else:
-			self.cur_event = None
-			self.cur_service = None
-			test = [(service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services]
-			serviceList = services
+			endRow = min(self.listFirstServiceIndex + self.listRows, len(self.serviceList))
+			for i in range(self.listFirstServiceIndex, endRow):
+				test.append((self.serviceList[i].ref.toString(), 0, self.time_base, self.time_epoch))
 			piconIdx = 0
 			channelIdx = None
 
-		test.insert(0, 'XRnITBD') #return record, service ref, service name, event id, event title, begin time, duration
+		else:
+			self.cur_event = None
+			self.cur_service = None
+			self.listFirstServiceIndex = 0
+			self.serviceList = services
+			if current_service is not None:
+				for i in range(len(self.serviceList)):
+					if self.serviceList[i].ref == current_service:
+						self.listFirstServiceIndex = int(i / self.listRows) * self.listRows
+						break
+			endRow = min(self.listFirstServiceIndex + self.listRows, len(self.serviceList))
+			for i in range(self.listFirstServiceIndex, endRow):
+				test.append((self.serviceList[i].ref.toString(), 0, self.time_base, self.time_epoch))
+
+			piconIdx = 0
+			channelIdx = None
+
 		epg_data = self.queryEPG(test)
 		self.list = []
 		tmp_list = None
 		service = ""
 		sname = ""
 
-		serviceIdx = 0
+		serviceIdx = self.listFirstServiceIndex
+
 		for x in epg_data:
 			if service != x[0]:
 				if tmp_list is not None:
-					picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
-					channel = serviceList[serviceIdx] if (channelIdx == None) else serviceList[serviceIdx][channelIdx]
+					picon = None if piconIdx == 0 else self.serviceList[serviceIdx][piconIdx]
+					channel = self.serviceList[serviceIdx] if (channelIdx == None) else self.serviceList[serviceIdx][channelIdx]
 					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon, channel))
 					serviceIdx += 1
 				service = x[0]
 				sname = x[1]
 				tmp_list = []
-			tmp_list.append((x[2], x[3], x[4], x[5])) #(event_id, event_title, begin_time, duration)
+			tmp_list.append((x[2], x[3], x[4], x[5]))  # (event_id, event_title, begin_time, duration)
 		if tmp_list and len(tmp_list):
-			picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
-			channel = serviceList[serviceIdx] if (channelIdx == None) else serviceList[serviceIdx][channelIdx]
+			picon = None if piconIdx == 0 else self.serviceList[serviceIdx][piconIdx]
+			channel = self.serviceList[serviceIdx] if (channelIdx == None) else self.serviceList[serviceIdx][channelIdx]
 			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon, channel))
 			serviceIdx += 1
 
@@ -1570,7 +1587,7 @@ class EPGList(GUIComponent):
 			if type == 1:
 				list.sort(key=lambda x: (x[4] and x[4].lower(), x[2]))
 			else:
-				assert(type == 0)
+				assert (type == 0)
 				list.sort(key=lambda x: x[2])
 			self.l.invalidate()
 			self.moveToEventId(event_id)
@@ -1619,6 +1636,40 @@ class EPGList(GUIComponent):
 				break
 			index += 1
 
+	def nextPage(self, selectFirstService = False):
+		if self.listFirstServiceIndex + self.listRows < len(self.serviceList):
+			self.listFirstServiceIndex += self.listRows
+		else:
+			self.listFirstServiceIndex = 0
+		self.fillGraphEPG(None)
+		if selectFirstService:
+			self.setCurrentIndex(0)
+
+	def prevPage(self, selectLastService = False):
+		if self.listFirstServiceIndex - self.listRows >= 0:
+			self.listFirstServiceIndex -= self.listRows
+		else:
+			self.listFirstServiceIndex = int(len(self.serviceList) / self.listRows) * self.listRows
+		self.fillGraphEPG(None)
+		if selectLastService:
+			if self.listFirstServiceIndex + self.listRows <= len(self.serviceList):
+				self.setCurrentIndex(self.listRows - 1)
+			else:
+				self.setCurrentIndex(len(self.serviceList) - self.listFirstServiceIndex - 1)
+
+	def moveUp(self):
+		idx = self.getCurrentIndex() - 1
+		if idx < 0:
+			self.prevPage(True)
+		else:
+			self.setCurrentIndex(idx)
+
+	def moveDown(self):
+		idx = self.getCurrentIndex() + 1
+		if idx >= self.listRows or self.listFirstServiceIndex + idx >= len(self.serviceList):
+			self.nextPage(True)
+		else:
+			self.setCurrentIndex(idx)
 
 class TimelineText(GUIComponent):
 	def __init__(self, type=EPG_TYPE_GRAPH, graphic=False):
@@ -1754,14 +1805,14 @@ class TimelineText(GUIComponent):
 
 			res.append(MultiContentEntryText(
 				pos=(5, 0),
-				size =(service_rect.width() - 15, self.listHeight),
+				size=(service_rect.width() - 15, self.listHeight),
 				font=0, flags=alignnment,
 				text=_(datestr),
 				color=foreColor,
 				backcolor=backColor))
 
 			bgpng = self.TlTime
-			xpos = 0 # eventLeft
+			xpos = 0  # eventLeft
 			if bgpng is not None and self.graphic:
 				backColor = None
 				backColorSel = None
@@ -2033,7 +2084,7 @@ class EPGBouquetList(GUIComponent):
 						flags=BT_SCALE))
 			if borderBottomPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
-						pos =(left, r1.h - self.BorderWidth),
+						pos=(left, r1.h - self.BorderWidth),
 						size=(r1.w, self.BorderWidth),
 						png=borderBottomPix,
 						flags=BT_SCALE))
@@ -2045,7 +2096,7 @@ class EPGBouquetList(GUIComponent):
 						flags=BT_SCALE))
 			if borderRightPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
-						pos =(r1.w - self.BorderWidth, left),
+						pos=(r1.w - self.BorderWidth, left),
 						size=(self.BorderWidth, r1.h),
 						png=borderRightPix,
 						flags=BT_SCALE))

@@ -1,5 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from glob import glob
+from os.path import splitext
+
 from Tools.Profile import profile
 
 # workaround for required config entry dependencies.
@@ -75,7 +78,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV")),
 			"ZoomOff": (self.ZoomOff, _("Zoom Off")),
 			"HarddiskSetup": (self.HarddiskSetup, _("Select HDD")),
-			"showWWW": (self.showPORTAL, _("Open MediaPortal")),
+			"showWWW": (self.showPORTAL, _("Open MediaStream")),
 			"showSetup": (self.showSetup, _("Show setup")),
 			"showInformation": (self.showInformation, _("Show Information")),
 			"showFormat": (self.showFormat, _("Show Format Setup")),
@@ -184,7 +187,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.servicelist.showFavourites()
 
 	def showTvButton(self):
-		if boxtype.startswith('gb') or boxtype in ('classm', 'genius', 'evo', 'galaxym6', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'og2ott4k', 'sfx6008'):
+		if boxtype.startswith('gb') or boxtype in ('classm', 'genius', 'evo', 'galaxym6', 'sf8008', 'sf8008m', 'sx988', 'ip8', 'og2ott4k', 'og2s4k', 'sfx6008'):
 			self.toogleTvRadio()
 		elif boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin'):
 			self.showMovies()
@@ -203,7 +206,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showTvChannelList(True)
 
 	def showRadioButton(self):
-		if boxtype.startswith('gb') or boxtype.startswith('azbox') or boxtype in ('classm', 'genius', 'evo', 'galaxym6', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3'):
+		if boxtype.startswith('gb') or boxtype in ('classm', 'genius', 'evo', 'galaxym6', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3'):
 			self.toogleTvRadio()
 		else:
 			self.showRadio()
@@ -235,7 +238,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.doShow()
 
 	def showMovies(self, defaultRef=None):
-		if BoxInfo.getItem("displaybrand") == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
+		if BoxInfo.getItem("displaybrand") == 'GI' or boxtype.startswith('ini') or boxtype.startswith('venton'):
 			from Screens.BoxPortal import BoxPortal
 			self.session.open(BoxPortal)
 		else:
@@ -370,11 +373,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showPORTAL(self):
 		try:
-			from Plugins.Extensions.MediaPortal.plugin import MPmain as MediaPortal
-			MediaPortal(self.session)
+			from Plugins.Extensions.MediaStream.plugin import MSmain as MediaStream
+			MediaStream(self.session)
 			no_plugin = False
 		except Exception as e:
-			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _("The MediaStream plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showSetup(self):
 		from Screens.Menu import Menu, findMenu
@@ -405,7 +408,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(PluginBrowser)
 
 	def showBoxPortal(self):
-		if BoxInfo.getItem("displaybrand") == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton') or boxtype.startswith('wetek'):
+		if BoxInfo.getItem("displaybrand") == 'GI' or boxtype.startswith('ini') or boxtype.startswith('venton'):
 			from Screens.BoxPortal import BoxPortal
 			self.session.open(BoxPortal)
 		else:
@@ -536,6 +539,15 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self.onChangedEntry = []
 		self.servicelist = slist
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceOrGroup()
+		path = splitext(service.getPath())[0]
+		subs = []
+		for sub in ("srt", "ass", "ssa"):
+			subs = glob("%s*.%s" % (path, sub))
+			if subs:
+				break
+		if subs:
+			service.setSubUri(subs[0])  # Support currently only one external sub
+
 		session.nav.playService(service)
 		self.cur_service = service
 		self.returning = False
@@ -662,7 +674,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 				if config.usage.movielist_trashcan.value:
 					import Tools.Trashcan
 					try:
-						trash = Tools.Trashcan.createTrashFolder(ref.getPath())
+						trash = Tools.Trashcan.createTrashcan(ref.getPath())
 						Screens.MovieSelection.moveServiceFiles(ref, trash)
 						# Moved to trash, okay
 						if answer == "quitanddelete":

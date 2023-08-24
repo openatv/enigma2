@@ -25,11 +25,11 @@
 translate = ngettext("%d Second", "%d Seconds", 1) % 1
 translate = ngettext("%d Minute", "%d Minutes", 1) % 1
 translate = ngettext("%d Min", "%d Mins", 1) % 1
-translate = ngettext("%d Hour", "%d Hours",1) % 1
-translate = ngettext("%d Day", "%d Days",1) % 1
-translate = ngettext("%d Week", "%d Weeks",1) % 1
-translate = ngettext("%d Month", "%d Months",1) % 1
-translate = ngettext("%d Year", "%d Years",1) % 1
+translate = ngettext("%d Hour", "%d Hours", 1) % 1
+translate = ngettext("%d Day", "%d Days", 1) % 1
+translate = ngettext("%d Week", "%d Weeks", 1) % 1
+translate = ngettext("%d Month", "%d Months", 1) % 1
+translate = ngettext("%d Year", "%d Years", 1) % 1
 translate = ngettext("%d Digit", "%d Digits", 1) % 1
 translate = ngettext("%d Event", "%d Events", 1) % 1
 translate = ngettext("%d Pixel", "%d Pixels", 1) % 1

@@ -64,7 +64,7 @@ class Project:
 		list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
 		list.append('<DreamDVDBurnerProject>\n')
 		list.append('\t<settings ')
-		for key, val in six.iteritems(self.settings.dict()):
+		for key, val in self.settings.dict().items():
 			list.append(key + '="' + str(val.getValue()) + '" ')
 		list.append('/>\n')
 		list.append('\t<titles>\n')
@@ -75,12 +75,12 @@ class Project:
 			list.append('</path>\n')
 			list.append('\t\t\t<properties ')
 			audiotracks = []
-			for key, val in six.iteritems(title.properties.dict()):
+			for key, val in title.properties.dict().items():
 				if isinstance(val, ConfigSubList):
 					audiotracks.append('\t\t\t<audiotracks>\n')
 					for audiotrack in val:
 						audiotracks.append('\t\t\t\t<audiotrack ')
-						for subkey, subval in six.iteritems(audiotrack.dict()):
+						for subkey, subval in audiotrack.dict().items():
 							audiotracks.append(subkey + '="' + str(subval.getValue()) + '" ')
 						audiotracks.append(' />\n')
 					audiotracks.append('\t\t\t</audiotracks>\n')
@@ -116,38 +116,32 @@ class Project:
 		return ret
 
 	def loadProject(self, filename):
-		#try:
-			if not fileExists(filename):
-				self.error = "xml file not found!"
-				#raise AttributeError
-			file = open(filename, "r")
-			data = file.read().decode("utf-8").replace('&', "&amp;").encode("ascii", 'xmlcharrefreplace')
-			file.close()
-			projectfiledom = xml.dom.minidom.parseString(data)
-			for node in projectfiledom.childNodes[0].childNodes:
-				print("node:", node)
-				if node.nodeType == xml.dom.minidom.Element.nodeType:
-					if node.tagName == 'settings':
-						self.xmlAttributesToConfig(node, self.settings)
-					elif node.tagName == 'titles':
-						self.xmlGetTitleNodeRecursive(node)
+		if not fileExists(filename):
+			self.error = "xml file not found!"
+		file = open(filename, "r")
+		data = file.read().decode("utf-8").replace('&', "&amp;").encode("ascii", 'xmlcharrefreplace')
+		file.close()
+		projectfiledom = xml.dom.minidom.parseString(data)
+		for node in projectfiledom.childNodes[0].childNodes:
+			print("node:", node)
+			if node.nodeType == xml.dom.minidom.Element.nodeType:
+				if node.tagName == 'settings':
+					self.xmlAttributesToConfig(node, self.settings)
+				elif node.tagName == 'titles':
+					self.xmlGetTitleNodeRecursive(node)
 
-			for key in self.filekeys:
-				val = self.settings.dict()[key].getValue()
-				if not fileExists(val):
-					if val[0] != "/":
-						if key.find("font") == 0:
-							val = resolveFilename(SCOPE_FONTS) + val
-						else:
-							val = resolveFilename(SCOPE_PLUGINS) + "Extensions/DVDBurn/" + val
-						if fileExists(val):
-							self.settings.dict()[key].setValue(val)
-							continue
-					self.error += "\n%s '%s' not found" % (key, val)
-		#except AttributeError:
-		  	#print "loadProject AttributeError", self.error
-			#self.error += (" in project '%s'") % (filename)
-			#return False
+		for key in self.filekeys:
+			val = self.settings.dict()[key].getValue()
+			if not fileExists(val):
+				if val[0] != "/":
+					if key.find("font") == 0:
+						val = resolveFilename(SCOPE_FONTS) + val
+					else:
+						val = resolveFilename(SCOPE_PLUGINS) + "Extensions/DVDBurn/" + val
+					if fileExists(val):
+						self.settings.dict()[key].setValue(val)
+						continue
+				self.error += "\n%s '%s' not found" % (key, val)
 			return True
 
 	def xmlAttributesToConfig(self, node, config):

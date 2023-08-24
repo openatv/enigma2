@@ -566,7 +566,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["list"].instance.enableAutoNavigation(False)
+		self["list"].enableAutoNavigation(False)
 		self.buildVirtualKeyBoard()
 
 	def arabic(self, base):

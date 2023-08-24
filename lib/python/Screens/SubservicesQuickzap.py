@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
@@ -66,8 +65,11 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
 			self.playSubservice((self.currentlyPlayingSubservice - 1) % len(self.subservices))
 
 	def getSubserviceIndex(self, service):
-		if self.subservices and service and service.toCompareString() in [x[1] for x in self.subservices]:
-			return [x[1] for x in self.subservices].index(service.toCompareString())
+		if self.subservices and service:
+			if service.toCompareString() in [x[1] for x in self.subservices]:
+				return [x[1] for x in self.subservices].index(service.toCompareString())
+			elif service.toString() in [x[1] for x in self.subservices]:
+				return [x[1] for x in self.subservices].index(service.toString())
 
 	def keyNumberGlobal(self, number):
 		if number == 0:
@@ -78,7 +80,7 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
 	def showSelection(self):
 		if self.subservices:
 			keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "green", "yellow"]
-			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list=self.subservices, selection=self.currentlyPlayingSubservice, keys=keys, windowTitle=_("Subservices"))
+			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a sub service..."), list=self.subservices, selection=self.currentlyPlayingSubservice, keys=keys, windowTitle=_("Subservices"))
 
 	def subserviceSelected(self, service):
 		if service:
