@@ -12,7 +12,7 @@ def DownloadSetting(url):
         response = urlopen(req)
         link = six.ensure_str(response.read())
         response.close()
-        xx = re.compile('<td><a href="(.+?)">(.+?)</a></td>.*?<td>(.+?)</td>', re.DOTALL).findall(link)
+        xx = re.compile(r'<td><a href="(.+?)">(.+?)</a></td>.*?<td>(.+?)</td>', re.DOTALL).findall(link)
         for link, name, date in xx:
             #print(link, name, date)
             prelink = ''
@@ -20,7 +20,7 @@ def DownloadSetting(url):
                 prelink = url.replace('asd.php', '')
             _list.append((date, name, prelink + link))
 
-    except:
+    except Exception:
         print("ERROR DownloadSetting %s" % (url))
 
     return _list
