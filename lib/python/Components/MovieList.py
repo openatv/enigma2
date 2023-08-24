@@ -850,7 +850,7 @@ class MovieList(GUIComponent):
 			itemsBelow = self.list[currentIndex + 1:]
 			#first search the items below the selection
 			for index, item in enumerate(itemsBelow):
-				if item[1] == None:
+				if item[1] is None:
 					continue
 				ref = item[0]
 				itemName = getShortName(item[1].getName(ref).upper(), ref)
@@ -865,7 +865,7 @@ class MovieList(GUIComponent):
 		if found is False and currentIndex > 0:
 			itemsAbove = self.list[1:currentIndex]  # first item (0) points parent folder - no point to include
 			for index, item in enumerate(itemsAbove):
-				if item[1] == None:
+				if item[1] is None:
 					continue
 				ref = item[0]
 				itemName = getShortName(item[1].getName(ref).upper(), ref)

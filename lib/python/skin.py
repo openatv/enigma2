@@ -125,7 +125,7 @@ def InitSkins():
 		print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.display_skin.value))
 		result.append(skin)
 	# Add the activated optional skin parts.
-	if currentPrimarySkin != None:
+	if currentPrimarySkin is not None:
 		partsDir = resolveFilename(SCOPE_GUISKIN, pathjoin(dirname(currentPrimarySkin), "mySkin", ""))
 		if pathExists(partsDir) and currentPrimarySkin != DEFAULT_SKIN:
 			for file in sorted(listdir(partsDir)):

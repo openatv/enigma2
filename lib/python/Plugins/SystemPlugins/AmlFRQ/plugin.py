@@ -284,10 +284,10 @@ def dinobotbooster():
 	global wbooster
 	global mySession
 	global gReason
-	if gReason == 0 and mySession != None and wbooster == None:
+	if gReason == 0 and mySession is not None and wbooster is None:
 		print("[AmlFRQ] booster Starting !!")
 		wbooster = U5_Booster(mySession)
-	elif gReason == 1 and wbooster != None:
+	elif gReason == 1 and wbooster is not None:
 		print("[AmlFRQ] booster Stopping !!")
 		wbooster = None
 

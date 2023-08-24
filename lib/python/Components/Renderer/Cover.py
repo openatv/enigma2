@@ -72,7 +72,7 @@ class Cover(Renderer):
 	def showCoverCallback(self, picInfo=None):
 		if self.picload:
 			ptr = self.picload.getData()
-			if ptr != None:
+			if ptr is not None:
 				self.instance.setPixmap(ptr)
 				self.instance.show()
 			del self.picload

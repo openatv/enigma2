@@ -35,7 +35,7 @@ class StartSwap:
 		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.startSwap2)
 
 	def startSwap2(self, result=None, retval=None, extra_args=None):
-		if result != None:
+		if result is not None:
 			result = six.ensure_str(result)
 		swap_place = ""
 		if result and result.find('sd') != -1:
@@ -148,7 +148,7 @@ class Swap(Screen):
 		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.updateSwap2)
 
 	def updateSwap2(self, result=None, retval=None, extra_args=None):
-		if result != None:
+		if result is not None:
 			result = six.ensure_str(result)
 		self.swapsize = 0
 		self.swap_place = ''
