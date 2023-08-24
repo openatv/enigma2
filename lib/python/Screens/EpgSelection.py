@@ -484,7 +484,7 @@ class EPGSelection(Screen, HelpableScreen):
 				service = self.session.nav.getCurrentService()
 				info = service and service.info()
 				nameROH = info and info.getName().replace("\xc2\x86", "").replace("\xc2\x87", "")
-			if (nameROH is not None) and not ("channel1" in config.epgselection.vertical_startmode.value):
+			if (nameROH is not None) and "channel1" not in config.epgselection.vertical_startmode.value:
 				idx = 0
 				for channel in self.myServices:
 					idx += 1

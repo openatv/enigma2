@@ -678,7 +678,7 @@ def InitAVSwitch():
 			# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 			policy2_choices.update({"panscan": _("Pan&scan")})
 
-		if "nonliner" in policy2_choices_raw and not "nonlinear" in policy2_choices_raw:
+		if "nonliner" in policy2_choices_raw and "nonlinear" not in policy2_choices_raw:
 			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
 			policy2_choices.update({"nonliner": _("Stretch nonlinear")})
 		if "nonlinear" in policy2_choices_raw:

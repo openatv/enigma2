@@ -218,7 +218,7 @@ class ParentalControl:
 	#
 	def addServiceToList(self, service, type, vList):
 		if service in vList:
-			if not type in vList[service]:
+			if type not in vList[service]:
 				vList[service].append(type)
 		else:
 			vList[service] = [type]
