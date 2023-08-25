@@ -16,15 +16,15 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-02 20:55+0000\n"
-"PO-Revision-Date: 2023-08-04 08:23+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"PO-Revision-Date: 2023-08-24 21:40+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2253,13 +2253,13 @@ msgid "Add/Remove a timer for the current event"
 msgstr "Timer für ausgewählte Sendung hinzufügen/entfernen"
 
 msgid "Add/Remove highlighted plugin to/from download list"
-msgstr "Markiertes Plugin zur Download-Liste hinzufügen oder entfernen"
+msgstr "Markiertes Plugin zur Downloadliste hinzufügen oder entfernen"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
-msgstr "Markiertes Plugin zur Entfernungs-Liste hinzufügen oder entfernen"
+msgstr "Markiertes Plugin zur Entfernungsliste hinzufügen oder entfernen"
 
 msgid "Add/Remove highlighted plugin to/from update list"
-msgstr "Markiertes Plugin zur Update-Liste hinzufügen oder entfernen"
+msgstr "Markiertes Plugin zur Updateliste hinzufügen oder entfernen"
 
 msgid "Adding schedule..."
 msgstr "Zeitplan hinzufügen..."
@@ -2771,7 +2771,7 @@ msgid "Aspect ratio"
 msgstr "Seitenverhältnis"
 
 msgid "Aspect switch"
-msgstr "Aspekt umschalten"
+msgstr "Seitenverhältnis umschalten"
 
 msgid "Assamese"
 msgstr "Assamesisch"
@@ -4182,7 +4182,7 @@ msgid "Channel preview mode"
 msgstr "Sender-Vorschaumodus"
 
 msgid "Channel selection configuration"
-msgstr "Senderliste Konfiguration"
+msgstr "Senderliste konfigurieren"
 
 msgid "Channel selection:"
 msgstr "Senderliste:"
@@ -6513,13 +6513,13 @@ msgstr "Spiegel"
 msgid "Disk full"
 msgstr "Festplatte voll!"
 
-msgid "Disk full?"
+msgid "Storage device full!"
 msgstr "Festplatte voll?"
 
-msgid "Disk is not writable!"
+msgid "Storage device not writable!"
 msgstr "Festplatte ist nicht beschreibbar!"
 
-msgid "Disk was not found!"
+msgid "Storage device not found!"
 msgstr "Festplatte wurde nicht gefunden!"
 
 #
@@ -6539,7 +6539,7 @@ msgid "Display Settings"
 msgstr "Displayeinstellungen"
 
 msgid "Display Skin Packages"
-msgstr "Display-Skin"
+msgstr "Display-Skins"
 
 msgid "Display context menu"
 msgstr "Kontextmenü anzeigen"
@@ -6965,7 +6965,9 @@ msgstr "Herunterladen der Updates. Bitte warten..."
 
 #
 msgid "Downloading plugin information. Please wait..."
-msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
+msgstr ""
+"Lade Plugin-Informationen herunter.\n"
+"Bitte warten..."
 
 msgid "Downmix"
 msgstr "Downmix"
@@ -7150,10 +7152,10 @@ msgid "Edit Alternatives"
 msgstr "Alternativen bearbeiten"
 
 msgid "Edit Mode Off"
-msgstr "Edit-Modus aus"
+msgstr "Edit-Modus Aus"
 
 msgid "Edit Mode On"
-msgstr "Edit-Modus an"
+msgstr "Edit-Modus Ein"
 
 msgid "Edit Quad Channel Entry"
 msgstr "Quad Sendereintrag bearbeiten"
@@ -8305,7 +8307,7 @@ msgid "External subtitle switch fonts"
 msgstr "Schriftart der externen Untertitel wechseln"
 
 msgid "Extra High"
-msgstr "Extra Hoch"
+msgstr "Extra hoch"
 
 # satconfig.py
 msgid "Extra motor options"
@@ -8484,10 +8486,10 @@ msgid "Feed disabled!"
 msgstr "Feed deaktiviert"
 
 msgid "Feed server DNS error!"
-msgstr "DNS-Fehler im Feed Server!"
+msgstr "DNS-Fehler im Feed-Server!"
 
 msgid "Feed server access error!"
-msgstr "Zugriffsfehler beim Feed Server!"
+msgstr "Zugriffsfehler beim Feed-Server!"
 
 msgid "Feed stable."
 msgstr "Feed stabil"
@@ -9115,7 +9117,9 @@ msgstr "Lade Liste der Softcams. Bitte warten..."
 
 #
 msgid "Getting plugin information. Please wait..."
-msgstr "Lade Plugin-Informationen. Bitte warten..."
+msgstr ""
+"Lade Plugin-Informationen.\n"
+"Bitte warten..."
 
 msgid "Ghana"
 msgstr "Ghana"
@@ -9493,7 +9497,7 @@ msgid "Hide"
 msgstr "Verstecken"
 
 msgid "Hide CI messages"
-msgstr "CI Meldungen unterdrücken"
+msgstr "CI-Meldungen unterdrücken"
 
 # MediaPlayer/settings.py
 msgid "Hide InfoBar"
@@ -9506,7 +9510,7 @@ msgid "Hide any zap error messages."
 msgstr "Bei 'Ja' werden Fehlermeldungen beim Umschalten unterdrückt."
 
 msgid "Hide error messages from the Common Interface module."
-msgstr "Meldungen des CI Modules unterdrücken."
+msgstr "Meldungen des CI-Moduls unterdrücken."
 
 msgid "Hide known extensions"
 msgstr "Bekannte Dateiendungen ausblenden"
@@ -13120,7 +13124,7 @@ msgid "Open context menu (contains settings menu)"
 msgstr "Kontextmenü inklusive Einstellungsmenü öffnen"
 
 msgid "Open external subtitle management screen"
-msgstr "Externere Untertitel-Verwaltung öffnen"
+msgstr "Externe Untertitel-Verwaltung öffnen"
 
 msgid "Open favorites list"
 msgstr "Öffne Favoritenliste"
@@ -14012,10 +14016,14 @@ msgid "Please wait while the data is extracted..."
 msgstr "Daten werden entpackt. Bitte warten..."
 
 msgid "Please wait while the list downloads..."
-msgstr "Die Liste wird heruntergeladen. Bitte warten..."
+msgstr ""
+"Die Liste wird heruntergeladen.\n"
+"Bitte warten..."
 
 msgid "Please wait while the plugin is downloaded."
-msgstr "Plugin wird heruntergeladen. Bitte warten..."
+msgstr ""
+"Plugin wird heruntergeladen.\n"
+"Bitte warten..."
 
 msgid "Please wait while the plugin is removed."
 msgstr "Plugin wird entfernt. Bitte warten..."
@@ -14347,7 +14355,7 @@ msgid "Press OK to get further details for %s"
 msgstr "Drücken Sie OK, um weitere Details über %s zu erhalten"
 
 msgid "Press OK to init module"
-msgstr "Drücken Sie OK zur Initialisierung vom Modul"
+msgstr "Drücken Sie OK, um das Modul zu initialisieren"
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -14362,13 +14370,13 @@ msgstr ""
 "[%s]"
 
 msgid "Press OK to open module info"
-msgstr "Drücken Sie OK zum Öffnen der Informationen zum Modul"
+msgstr "Drücken Sie OK, um die Modulinformationen zu öffnen"
 
 msgid "Press OK to reset PIN code"
 msgstr "Drücken Sie OK, um den PIN-Code zurückzusetzen"
 
 msgid "Press OK to reset module"
-msgstr "Drücken Sie OK zum Reset vom Modul"
+msgstr "Drücken Sie OK, um das Modul zurückzusetzen"
 
 #
 msgid "Press OK to scan"
@@ -15698,7 +15706,7 @@ msgid "Retrieving boot slot information..."
 msgstr "Abrufen von Boot-Slot-Informationen..."
 
 msgid "Retrieving image list, please wait..."
-msgstr "Image-Liste abrufen. Bitte warten..."
+msgstr "Imageliste abrufen. Bitte warten..."
 
 msgid "Retrieving image slots - Please wait..."
 msgstr "Image-Slots abrufen. Bitte warten..."
@@ -16231,7 +16239,7 @@ msgid "Scope"
 msgstr "Scope"
 
 msgid "Script Manager"
-msgstr "Skript-Verwaltung"
+msgstr "Skriptverwaltung"
 
 msgid "ScriptRunner"
 msgstr "SkriptRunner"
@@ -16474,58 +16482,58 @@ msgid "Select 'Yes' to set the cursor position to the end of the line when editi
 msgstr "Wählen Sie 'Ja', um den Cursor an das Ende einer Textzeile zu setzen. 'Nein' setzt den Cursor an den Anfang der Textzeile."
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden die 'dev', 'staticdev', 'dbg' und 'doc' Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden 'dev'-, 'staticdev'-, 'dbg'- und 'doc'-Pakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden LCD-Skin-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Display-Skin-Pakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden OpenPLi-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden OpenPLi-Pakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden OpenViX-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden OpenViX-Pakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr "Wählen Sie 'Ja', um Verzeichnisse am Anfang der Liste zu zeigen. 'Nein' zeigt zuerst Dateien."
 
 msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Treiber-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Treiberpakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Erweiterungs-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Erweiterungspakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Kernel-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Kernelmodule in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden M2k-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden M2k-Pakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Picon-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Piconpakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Plugin-Skin-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Skinpacks in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show security packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Sicherheitspakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Sicherheitspakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Senderlisten-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Senderlistenpakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Skinkomponenten-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Skinkomponenten in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Skin-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Skinpakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Softcam-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Softcam-Pakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden 'src'-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden 'src'-Pakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Systemplugin-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Systemplugins in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Wählen Sie 'Ja', um die erweiterten Einstellungen anzuzeigen."
@@ -16542,7 +16550,7 @@ msgstr ""
 "Achtung: File Commander muss dafür neu gestartet werden!"
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
-msgstr "Bei 'Ja' werden Weblink-Pakete in der Download-Liste angezeigt."
+msgstr "Bei 'Ja' werden Weblink-Pakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Bei 'Ja' werden die Signalwerte (SNR usw.) aus API V3 berechnet. Dies ist eine alte API-Version, die jetzt ersetzt wurde."
@@ -17166,7 +17174,9 @@ msgid "Select the type of this timer."
 msgstr "Wählen Sie den Typ dieses Timers."
 
 msgid "Select the video mode to be used on the TV."
-msgstr "Wählen Sie den Videomodus, der auf dem Fernsehgerät verwendet werden soll."
+msgstr ""
+"Den Videomodus wählen, der auf dem Fernsehgerät verwendet werden soll.\n"
+"Sollte der Bildschirm danach dunkel bleiben, die Taste TXT (Videotext) etwas länger drücken."
 
 msgid ""
 "Select the wireless network to which you want to connect.\n"
@@ -17679,7 +17689,7 @@ msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts
 msgstr "Wählen Sie 'Ja', um die Infoleiste auszublenden, wenn die Medienwiedergabe beginnt. Ansonsten bleibt die Infoleiste aktiv."
 
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
-msgstr "Wählen Sie 'Ja', um den Mediaplayer im Hauptmenü anzuzeigen, ansonsten kann er weiterhin über die Plugins-Liste gestartet werden."
+msgstr "Wählen Sie 'Ja', um den Mediaplayer im Hauptmenü anzuzeigen, ansonsten kann er weiterhin über die Pluginsliste gestartet werden."
 
 msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr "Wählen Sie 'Ja', um diese Playlist in einer Dauerschleife abzuspielen. Ansonsten wird sie nur einmal abgespielt."
@@ -17731,7 +17741,7 @@ msgid "Sets the root directory of media list. This removes the '..' entry from b
 msgstr "Wählen Sie das Root-Verzeichnis der Aufnahmeliste, um '..' in der Ansicht zu unterdrücken."
 
 msgid "Setting Packages"
-msgstr "Senderliste"
+msgstr "Senderlisten"
 
 msgid "Setting Restored "
 msgstr "Wiederhergestellte Programmliste "
@@ -17888,7 +17898,7 @@ msgid "Setup your LCD"
 msgstr "Einstellen des Displays"
 
 msgid "Setup your LCD Skin"
-msgstr "Einrichten des LCD-Skins"
+msgstr "Einrichten des Display-Skins"
 
 # Quick Menue
 msgid "Setup your OSD"
@@ -18069,13 +18079,13 @@ msgid "Show Default Backup Files"
 msgstr "Standardliste gesicherter Dateien anzeigen"
 
 msgid "Show Development packages"
-msgstr "Entwicklungs-Pakete anzeigen"
+msgstr "Entwicklungspakete anzeigen"
 
 msgid "Show Display Icons"
 msgstr "Display-Icons anzeigen"
 
 msgid "Show Display packages"
-msgstr "Display-Skin Pakete anzeigen"
+msgstr "Display-Skin-Pakete anzeigen"
 
 msgid "Show Driver packages"
 msgstr "Treiber-Pakete anzeigen"
@@ -18091,7 +18101,7 @@ msgid "Show EventView"
 msgstr "Sendungsinformation anzeigen"
 
 msgid "Show Extension packages"
-msgstr "Erweiterungs-Pakete anzeigen"
+msgstr "Erweiterungspakete anzeigen"
 
 msgid "Show Format Setup"
 msgstr "Samba-Einstellungen anzeigen"
@@ -18225,13 +18235,13 @@ msgid "Show Security packages"
 msgstr "Sicherheitspakete anzeigen"
 
 msgid "Show Setting packages"
-msgstr "Senderlisten-Pakete anzeigen"
+msgstr "Senderlistenpakete anzeigen"
 
 msgid "Show Single EPG"
 msgstr "Einzel-EPG anzeigen"
 
 msgid "Show Skin Component packages"
-msgstr "Skinkomponenten-Pakete anzeigen"
+msgstr "Skinkomponenten anzeigen"
 
 msgid "Show Skin packages"
 msgstr "Skin-Pakete anzeigen"
@@ -18243,7 +18253,7 @@ msgid "Show Source packages"
 msgstr "Source-Pakete anzeigen"
 
 msgid "Show System Plugin packages"
-msgstr "Systemplugin-Pakete anzeigen"
+msgstr "Systemplugins anzeigen"
 
 msgid "Show Timer List"
 msgstr "Alle Timer anzeigen"
@@ -21365,7 +21375,7 @@ msgid "Today"
 msgstr "Heute"
 
 msgid "Toggle Digital downmix..."
-msgstr "Dolby-Digital-Downmix An/Aus"
+msgstr "Dolby-Digital-Downmix Ein/Aus"
 
 msgid "Toggle HDMI-In PiP"
 msgstr "HDMI-IN als Bild-im-Bild wiedergeben"
@@ -21421,10 +21431,10 @@ msgid "Toggle if new text inserts before or overwrites existing text"
 msgstr "Zwischen Einfüge- und Überschreibungsmodus umschalten"
 
 msgid "Toggle item edit mode on/off"
-msgstr "Edit-Modus An/Aus umschalten"
+msgstr "Edit-Modus Ein/Aus umschalten"
 
 msgid "Toggle item move mode on/off"
-msgstr "Verschiebemodus An/Aus umschalten"
+msgstr "Verschiebemodus Ein/Aus umschalten"
 
 msgid "Toggle move mode"
 msgstr "Verschiebemodus aktivieren / deaktivieren"

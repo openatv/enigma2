@@ -294,6 +294,11 @@ def InitUsageConfig():
 		("3", _("2nd InfoBar ECM"))
 	])
 	config.usage.second_infobar_timeout = ConfigSelection(default="5", choices=choiceList)
+	config.usage.show_infobar_subservices = ConfigSelection(default=1, choices=[
+		(0, _("Off")),
+		(1, _("If EPG available")),
+		(2, _("Always"))
+	])
 
 	def showsecondinfobarChanged(configElement):
 		if config.usage.show_second_infobar.value != "INFOBAREPG":
@@ -1546,7 +1551,7 @@ def InitUsageConfig():
 	languageChoiceList = [
 		("", _("None")),
 		("und", _("Undetermined")),
-		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ oth", _("Original")),
+		("orj dos ory org esl qaa qaf und mis mul ORY ORJ Audio_ORJ oth", _("Original")),
 		("ara", _("Arabic")),
 		("eus baq", _("Basque")),
 		("bul", _("Bulgarian")),

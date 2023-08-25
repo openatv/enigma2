@@ -151,7 +151,6 @@ class RecordTimer(Timer):
 			timerEntry.append("rename_repeat=\"%s\"" % int(timer.rename_repeat))
 			timerEntry.append("name=\"%s\"" % stringToXML(timer.name))
 			timerEntry.append("description=\"%s\"" % stringToXML(timer.description))
-			timerEntry.append("state=\"%d\"" % timer.state)
 			if timer.dirname:
 				timerEntry.append("location=\"%s\"" % stringToXML(timer.dirname))
 			if timer.tags:
@@ -167,6 +166,8 @@ class RecordTimer(Timer):
 			timerEntry.append("always_zap=\"%s\"" % int(timer.always_zap))
 			timerEntry.append("descramble=\"%s\"" % int(timer.descramble))
 			timerEntry.append("record_ecm=\"%s\"" % int(timer.record_ecm))
+			if timer.failed:
+				timerEntry.append("failed=\"1\"")
 			if timer.isAutoTimer:
 				# timerEntry.append("isAutoTimer=\"True\"")
 				timerEntry.append("isAutoTimer=\"1\"")
@@ -269,9 +270,7 @@ class RecordTimer(Timer):
 			timer.vpsplugin_time = int(vpsTime)
 		for log in timerDom.findall("log"):
 			timer.log_entries.append((int(log.get("time")), int(log.get("code")), log.text.strip()))
-		state = int(timerDom.get("state") or "0")
-		if state:
-			timer.state = state
+		timer.failed = int(timerDom.get("failed") or "0")
 		return timer
 
 	def timeChanged(self, timer):
@@ -733,7 +732,7 @@ class RecordTimerEntry(TimerEntry, object):
 					self.start_prepare = int(time()) + 5  # tryPrepare in 5 seconds.
 					self.log(0, "Next try in 5 seconds.  (%d/3)" % self.mountPathRetryCounter)
 					return False
-				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.mountPathErrorNumber - 1], self.name)
+				message = _("Write error at start of recording. %s\n%s") % ((_("Storage device not found!"), _("Storage device not writable!"), _("Storage device full!"))[self.mountPathErrorNumber - 1], self.name)
 				if InfoBar and InfoBar.instance:
 					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_ERROR, timeout=20)
 				else:
@@ -1367,7 +1366,7 @@ class RecordTimerEntry(TimerEntry, object):
 			print("[RecordTimer] Write error while recording, %s" % msg)
 			# Show notification. The 'id' will make sure that it will be displayed only once, even if
 			# more timers are failing at the same time which is very likely in case of disk full.
-			AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
+			AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Storage device not found!"), _("Storage device not writable!"), _("Storage device full!"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
 			# Okay, the recording has been stopped. We need to properly note that in our
 			# state, with also keeping the possibility to re-try.
 			# DEBUG: This has to be done!

@@ -52,10 +52,13 @@ def InitCiConfig():
 					("normal", _("Normal")),
 					("high", _("High")),
 				]
-				with open("/proc/stb/tsmux/ci%d_tsclk_choices" % slot) as fd:
-					choices = fd.read()
-					if "extra_high" in choices:
-						highBitrateChoices.append(("extra_high", _("Extra High")))
+				try:
+					with open("/proc/stb/tsmux/ci%d_tsclk_choices" % slot) as fd:
+						choices = fd.read()
+						if "extra_high" in choices:
+							highBitrateChoices.append(("extra_high", _("Extra High")))
+				except OSError:
+					pass
 				config.ci[slot].highBitrate = ConfigSelection(default="high", choices=highBitrateChoices)
 				config.ci[slot].highBitrate.slotid = slot
 				config.ci[slot].highBitrate.addNotifier(setCIBitrate)
@@ -395,19 +398,16 @@ class CiSelection(Setup):
 		global forceNotShowCiMessages
 		forceNotShowCiMessages = False
 
-	def createSetup(self):
-		currentItem = self["config"].getCurrent() if self.list else None
-		Setup.createSetup(self)
+	def createSetup(self):  # NOSONAR silence S2638
 		self.slot = 0
+		items = []
 		for slot in range(SystemInfo["CommonInterface"]):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				self.slot += 1
-				self.appendEntries(slot, state)
+				items = items + self.appendEntries(slot, state)
 				CiHandler.registerCIMessageHandler(slot, self.ciStateChanged)
-		self["config"].setList(self.list)
-		if currentItem:
-			self.moveToItem(currentItem)
+		Setup.createSetup(self, appendItems=items)
 
 	def ciStateChanged(self, slot):
 		if self.dlg:
@@ -422,35 +422,37 @@ class CiSelection(Setup):
 		self.createSetup()
 
 	def appendEntries(self, slot, state):
-		self.list.append(("**************************",))  # Add the comment line to the config list.
+		items = []
+		items.append(("**************************",))  # Add the comment line to the config list.
 
 		self.state[slot] = state
 		text = _("Slot %d") % (slot + 1)
 		if state in (0, 3):
 			text = "%s - %s" % (text, state == 0 and _("no module found") or _("module disabled"))
-		self.list.append((text,))
+		items.append((text,))
 
-		self.list.append((_("CI enabled"), config.ci[slot].enabled))
+		items.append((_("CI enabled"), config.ci[slot].enabled))
 		if self.state[slot] in (0, 3):
-			return
-		self.list.append((_("Reset"), ConfigNothing(), _("Press OK to reset module"), 0, slot))
-		self.list.append((_("Init"), ConfigNothing(), _("Press OK to init module"), 1, slot))
+			return items
+		items.append((_("Reset"), ConfigNothing(), _("Press OK to reset module"), 0, slot))
+		items.append((_("Init"), ConfigNothing(), _("Press OK to init module"), 1, slot))
 
 		if self.state[slot] == 1:  # module in init
-			self.list.append((_("init module"), ConfigNothing(), "", 2, slot))
+			items.append((_("init module"), ConfigNothing(), "", 2, slot))
 		elif self.state[slot] == 2:  # module ready
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
-			self.list.append((appname, ConfigNothing(), _("Press OK to open module info"), 2, slot))
+			items.append((appname, ConfigNothing(), _("Press OK to open module info"), 2, slot))
 
-		self.list.append(getConfigListEntry(_("Set pin code persistent"), config.ci[slot].use_static_pin))
-		self.list.append((_("Enter persistent PIN code"), ConfigNothing(), _("Press OK to enter PIN code"), 5, slot))
-		self.list.append((_("Reset persistent PIN code"), ConfigNothing(), _("Press OK to reset PIN code"), 6, slot))
-		self.list.append(getConfigListEntry(_("Show CI messages"), config.ci[slot].show_ci_messages))
-		self.list.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
+		items.append(getConfigListEntry(_("Set pin code persistent"), config.ci[slot].use_static_pin))
+		items.append((_("Enter persistent PIN code"), ConfigNothing(), _("Press OK to enter PIN code"), 5, slot))
+		items.append((_("Reset persistent PIN code"), ConfigNothing(), _("Press OK to reset PIN code"), 6, slot))
+		items.append(getConfigListEntry(_("Show CI messages"), config.ci[slot].show_ci_messages))
+		items.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
 		if SystemInfo["CI%dSupportsHighBitrates" % slot]:
-			self.list.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].highBitrate))
+			items.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].highBitrate))
 		if SystemInfo["CI%dRelevantPidsRoutingSupport" % slot]:
-			self.list.append(getConfigListEntry(_("Relevant PIDs Routing"), config.ci[slot].relevantPidsRouting))
+			items.append(getConfigListEntry(_("Relevant PIDs Routing"), config.ci[slot].relevantPidsRouting))
+		return items
 
 	def dlgClosed(self, slot):
 		self.dlg = None

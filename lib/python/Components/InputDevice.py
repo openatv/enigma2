@@ -9,6 +9,7 @@ from enigma import eRCInput
 from keyids import KEYIDS, KEYIDNAMES
 from Components.config import ConfigSubsection, ConfigInteger, ConfigSelection, ConfigYesNo, ConfigText, ConfigSlider, config
 from Components.Console import Console
+from Components.International import international
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileWriteLine, fileReadLines, fileReadXML, resolveFilename, pathExists
 
@@ -191,20 +192,12 @@ class Keyboard:
 		return self.keyboardMaps
 
 	def getDefaultKeyboardMap(self):
-		# This is a code proposal to make the default keymap respond
-		# to the currently defined locale.  OpenATV initialises the
-		# keymap based on hardware manufacturer.  Making the
-		# selection based on language locale makes more sense.  There
-		# are other code changes coming that will allow this to happen.
-		#
-		# locale = language.getLocale()
-		# if locale.startswith("de_") and "de.kmap" in self.keyboardMaps:
-		# 	return "de.kmap"
-		if BoxInfo.getItem("displaybrand") in ("Zgemma", "Atto.TV"):
-			return "us.kmap"
-		elif BoxInfo.getItem("displaybrand") == "Beyonwiz":
+		locale = international.getLocale()
+		if locale.startswith("de_"):
+			return "de.kmap"
+		elif locale.startswith("en_") and locale != "en_US":
 			return "eng.kmap"
-		return "de.kmap"
+		return "us.kmap"
 
 
 class RemoteControl:

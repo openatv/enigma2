@@ -201,12 +201,12 @@ def getPossibleSubservicesForCurrentChannel(current_service):
 
 
 def getActiveSubservicesForCurrentChannel(current_service):
-	if current_service:
+	if current_service and config.usage.show_infobar_subservices.value:
 		possibleSubservices = getPossibleSubservicesForCurrentChannel(current_service)
 		activeSubservices = []
 		epgCache = eEPGCache.getInstance()
-		idx = 0
 		for subservice in possibleSubservices:
+			servicename = ServiceReference(subservice).getServiceName()
 			events = epgCache.lookupEvent(['BDTS', (subservice, 0, -1)])
 			if events and len(events) == 1:
 				event = events[0]
@@ -214,17 +214,24 @@ def getActiveSubservicesForCurrentChannel(current_service):
 				if title and "Sendepause" not in title:
 					starttime = datetime.fromtimestamp(event[0]).strftime('%H:%M')
 					endtime = datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
-					servicename = ServiceReference(subservice).getServiceName()
 					schedule = str(starttime) + "-" + str(endtime)
 					activeSubservices.append((servicename + " " + schedule + " " + title, subservice))
+			elif config.usage.show_infobar_subservices.value == 2:
+				activeSubservices.append((servicename, subservice))
 		return activeSubservices
 
 
 def hasActiveSubservicesForCurrentChannel(current_service):
-	if current_service and "%3a" not in current_service:
-		current_service = ':'.join(current_service.split(':')[:11])
-	activeSubservices = getActiveSubservicesForCurrentChannel(current_service)
-	return bool(activeSubservices and len(activeSubservices) > 1)
+	if config.usage.show_infobar_subservices.value:
+		if current_service and "%3a" not in current_service:
+			current_service = ':'.join(current_service.split(':')[:11])
+		if config.usage.show_infobar_subservices.value == 1:
+			subservices = getActiveSubservicesForCurrentChannel(current_service)
+		elif config.usage.show_infobar_subservices.value == 2:
+			subservices = getPossibleSubservicesForCurrentChannel(current_service)
+		return bool(subservices and len(subservices) > 1)
+	else:
+		return False
 
 
 class TimerSelection(Screen):
@@ -4024,10 +4031,11 @@ class InfoBarSubserviceSelection:
 		}, prio=-1, description=_("Sub Service Actions"))
 		self["SubserviceQuickzapAction"].setEnabled(False)
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-				iPlayableService.evUpdatedEventInfo: self.checkSubservicesAvail
-			})
-		self.onClose.append(self.__removeNotifications)
+		if config.usage.show_infobar_subservices.value:
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+					iPlayableService.evUpdatedEventInfo: self.checkSubservicesAvail
+				})
+			self.onClose.append(self.__removeNotifications)
 
 		self.bouquets = self.bsel = self.selectedSubservice = None
 

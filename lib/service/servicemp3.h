@@ -6,6 +6,7 @@
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
+#include <lib/dvb/metaparser.h>
 #include <gst/gst.h>
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
@@ -36,6 +37,7 @@ class eStaticServiceMP3Info: public iStaticServiceInformation
 	DECLARE_REF(eStaticServiceMP3Info);
 	friend class eServiceFactoryMP3;
 	eStaticServiceMP3Info();
+	eDVBMetaParser m_parser;
 public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
