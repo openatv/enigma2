@@ -580,13 +580,13 @@ class DistributionInformation(InformationBase):
 			"blue": (self.showTranslation, _("Show translation information"))
 		}, prio=0, description=_("%s Information Actions") % self.displayDistro)
 		self.resolutions = {
-			480: _("NTSC"),
-			576: _("PAL"),
-			720: _("HD"),
-			1080: _("FHD"),
-			2160: _("4K"),
-			4320: _("8K"),
-			8640: _("16K")
+			480: "NTSC",
+			576: "PAL",
+			720: "HD",
+			1080: "FHD",
+			2160: "4K",
+			4320: "8K",
+			8640: "16K"
 		}
 		self.imageMessage = BoxInfo.getItem("InformationDistributionWelcome", "")
 
