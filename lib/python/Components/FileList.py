@@ -487,7 +487,7 @@ class FileListBase(MenuList):
 		return "%s,%s" % (self.sortDirectories, self.sortFiles)
 
 	def sortList(self, items, sortBy):
-		sort, reverse = [int(x) for x in sortBy.split(".")]
+		sort, reverse = (int(x) for x in sortBy.split("."))
 		itemList = []
 		for name, path, isDir, isLink in items:
 			if access(path, R_OK):

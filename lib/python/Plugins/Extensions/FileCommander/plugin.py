@@ -416,8 +416,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def updateHeading(self, column):
 		def buildHeadingData(column):  # Numbers in trailing comments are the template text indexes.
 			sort = column.getSortBy().split(",")
-			sortDirs, reverseDirs = [int(x) for x in sort[0].split(".")]
-			sortFiles, reverseFiles = [int(x) for x in sort[1].split(".")]
+			sortDirs, reverseDirs = (int(x) for x in sort[0].split("."))
+			sortFiles, reverseFiles = (int(x) for x in sort[1].split("."))
 			sortText = "[D]%s%s[F]%s%s" % (("n", "d", "s")[sortDirs], ("+", "-")[reverseDirs], ("n", "d", "s")[sortFiles], ("+", "-")[reverseFiles])  # (name|date|size)(normal|reverse)
 			path = column.getPath()
 			currentDirectory = column.getCurrentDirectory()
@@ -482,8 +482,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def updateSort(self):
 		def formatSort(columnSort):
 			sortDirs, sortFiles = columnSort.split(",")
-			sortDirs, reverseDirs = [int(x) for x in sortDirs.split(".")]
-			sortFiles, reverseFiles = [int(x) for x in sortFiles.split(".")]
+			sortDirs, reverseDirs = (int(x) for x in sortDirs.split("."))
+			sortFiles, reverseFiles = (int(x) for x in sortFiles.split("."))
 			sD = (_("name"), _("date"), _("size"))[sortDirs]  # name, date, size
 			sF = (_("name"), _("date"), _("size"))[sortFiles]
 			rD = ("\u25B2", "\u25BC")[reverseDirs]  # normal, reverse
