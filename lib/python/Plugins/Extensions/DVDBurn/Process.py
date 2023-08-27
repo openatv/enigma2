@@ -536,7 +536,6 @@ class MenuImageTask(Task):
 		#try:
 		import ImageDraw
 		import Image
-		import os
 		s = self.job.project.menutemplate.settings
 		s_top = s.margin_top.getValue()
 		s_bottom = s.margin_bottom.getValue()

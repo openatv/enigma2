@@ -5,9 +5,7 @@ from time import localtime, strftime, struct_time
 
 from enigma import getPrevAsciiCode
 
-from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_CONFIG, fileAccess, resolveFilename
-from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.Harddisk import harddiskmanager  # This import is order critical!
 

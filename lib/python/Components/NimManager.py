@@ -5,7 +5,6 @@ from os import access, F_OK
 from os.path import exists
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
-	eDVBSatelliteLNBParameters as lnbParam, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
 	eDVBSatelliteSwitchParameters as switchParam, \
 	eDVBSatelliteRotorParameters as rotorParam, \

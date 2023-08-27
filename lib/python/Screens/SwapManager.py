@@ -2,7 +2,7 @@ from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Components.config import config, configfile, ConfigYesNo, ConfigSubsection
+from Components.config import config, configfile, ConfigYesNo
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap

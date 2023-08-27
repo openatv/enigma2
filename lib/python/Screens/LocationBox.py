@@ -8,7 +8,6 @@ from Components.config import config
 from Components.FileList import FileList
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen

@@ -1,6 +1,6 @@
 from errno import ETIMEDOUT
 from glob import glob
-from os import remove, rename, strerror, system, unlink
+from os import rename, strerror, system, unlink
 from os.path import exists
 from random import Random
 import sys

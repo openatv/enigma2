@@ -1,4 +1,4 @@
-from enigma import eTimer, eConsoleAppContainer, getBestPlayableServiceReference, eServiceReference, eEPGCache, getDesktop
+from enigma import eTimer, eConsoleAppContainer, getDesktop
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText

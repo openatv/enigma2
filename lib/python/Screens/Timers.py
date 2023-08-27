@@ -1,14 +1,13 @@
 from datetime import datetime
-from functools import cmp_to_key
 from os import stat, statvfs
 from time import localtime, mktime, strftime, time
 
-from enigma import BT_SCALE, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eEPGCache, eLabel, eListbox, eListboxPythonMultiContent, eServiceReference, eSize, eTimer, getBestPlayableServiceReference, iRecordableServicePtr
+from enigma import BT_SCALE, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eEPGCache, eLabel, eListbox, eListboxPythonMultiContent, eSize, eTimer
 
 from PowerTimer import AFTEREVENT as POWER_AFTEREVENT, PowerTimerEntry, TIMERTYPE as POWER_TIMERTYPE
-from RecordTimer import AFTEREVENT as RECORD_AFTEREVENT, RecordTimerEntry, TIMERTYPE as RECORD_TIMERTYPE, createRecordTimerEntry, parseEvent
+from RecordTimer import AFTEREVENT as RECORD_AFTEREVENT, RecordTimerEntry, TIMERTYPE as RECORD_TIMERTYPE, parseEvent
 from ServiceReference import ServiceReference
-from skin import parseBoolean, parseColor, parseFont, parseInteger
+from skin import parseBoolean, parseFont, parseInteger
 from timer import TimerEntry
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config

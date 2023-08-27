@@ -1,7 +1,5 @@
 from Plugins.Plugin import PluginDescriptor
-from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigSelection
-from enigma import eDBoxLCD
 from Components.SystemInfo import BoxInfo
 
 config.plugins.minitv = ConfigSubsection()

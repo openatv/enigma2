@@ -1,10 +1,9 @@
 from Screens.Screen import Screen
 from Components.config import config
 from Components.Sources.CanvasSource import CanvasSource
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Console import Console
+from Components.ActionMap import NumberActionMap
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import fileExists
 from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
 

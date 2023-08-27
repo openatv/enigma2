@@ -1,6 +1,6 @@
 from pickle import dump, load
 from os import W_OK, access, listdir, mkdir, rename, rmdir, stat
-from os.path import abspath, basename, exists, isdir, isfile, join, normpath, pardir, realpath, split, splitext
+from os.path import abspath, exists, isdir, isfile, join, normpath, pardir, realpath, split, splitext
 from time import time
 
 from enigma import eRCInput, eServiceCenter, eServiceReference, eServiceReferenceFS, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, pNavigation
@@ -9,7 +9,7 @@ import NavigationInstance
 from RecordTimer import AFTEREVENT, RecordTimerEntry
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Button import Button
-from Components.config import ConfigLocations, ConfigSelection, ConfigSelectionNumber, ConfigSet, ConfigSubsection, ConfigText, ConfigYesNo, config, getConfigListEntry
+from Components.config import ConfigLocations, ConfigSelection, ConfigSelectionNumber, ConfigSet, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.DiskInfo import DiskInfo
 from Components.Harddisk import harddiskmanager
 from Components.MenuList import MenuList

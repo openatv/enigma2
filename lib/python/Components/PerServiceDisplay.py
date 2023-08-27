@@ -5,7 +5,6 @@ from Components.VariableValue import VariableValue
 
 from enigma import iPlayableService
 from enigma import eLabel, eSlider, eTimer
-import six
 
 
 class PerServiceBase(object):

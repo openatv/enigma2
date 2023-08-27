@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from Components.Task import Task, Job, job_manager, AbortedPostcondition, ReturncodePostcondition
+from Components.Task import Task, Job
 from Tools.Directories import fileExists, shellquote
 from Components.MovieList import MOVIE_EXTENSIONS
 from enigma import eTimer
@@ -62,7 +62,7 @@ class FileTransferTask(Task):
 				self.src_size = float(self.dirSize(self.src_file))
 			else:
 				self.src_size = float(os.path.getsize(self.src_file))
-			self.updateTime = max(1000, int(self.src_size * 0.000001 * 0.5)) # based on 20Mb/s transfer rate
+			self.updateTime = max(1000, int(self.src_size * 0.000001 * 0.5))  # based on 20Mb/s transfer rate
 			self.progressTimer.start(self.updateTime, True)
 
 	def afterRun(self):

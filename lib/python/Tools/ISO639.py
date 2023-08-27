@@ -1,5 +1,3 @@
-import six
-
 LanguageCodes = {}
 
 LanguageCodes["aar"] = LanguageCodes["aa"] = ("Afar", "Hamitic")

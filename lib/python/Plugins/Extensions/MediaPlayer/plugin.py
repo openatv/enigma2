@@ -1158,7 +1158,6 @@ def filescan_open(list, session, **kwargs):
 
 
 def audioCD_open(list, session, **kwargs):
-	from enigma import eServiceReference
 	if os.path.isfile('/media/audiocd/cdplaylist.cdpls'):
 		list = open("/media/audiocd/cdplaylist.cdpls")
 	else:
@@ -1177,7 +1176,6 @@ def audioCD_open(list, session, **kwargs):
 
 
 def audioCD_open_mn(session, **kwargs):
-	from enigma import eServiceReference
 	if os.path.isfile('/media/audiocd/cdplaylist.cdpls'):
 		list = open("/media/audiocd/cdplaylist.cdpls")
 	else:

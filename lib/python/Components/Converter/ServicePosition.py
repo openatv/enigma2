@@ -1,5 +1,4 @@
 from Components.Converter.Converter import Converter
-from Components.Sources.Clock import Clock
 from time import time as getTime, localtime, strftime
 from Components.Converter.Poll import Poll
 from enigma import iPlayableService

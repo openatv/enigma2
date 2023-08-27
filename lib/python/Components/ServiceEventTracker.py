@@ -1,5 +1,3 @@
-import six
-
 InfoBarCount = 0
 
 

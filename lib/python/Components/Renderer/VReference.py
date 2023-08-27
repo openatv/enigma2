@@ -18,7 +18,6 @@
 from Components.Renderer.Renderer import Renderer
 from enigma import eLabel
 from Components.VariableText import VariableText
-from enigma import eServiceReference
 
 
 class VReference(VariableText, Renderer):

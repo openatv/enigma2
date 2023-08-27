@@ -1,6 +1,5 @@
 from os.path import join
 
-from Components.config import ConfigSubsection, config
 from Tools.LoadPixmap import LoadPixmap
 
 

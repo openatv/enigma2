@@ -3,7 +3,7 @@ from os.path import exists, join as pathjoin, normpath
 
 from enigma import eConsoleAppContainer
 
-from Components.config import ConfigSubsection, ConfigYesNo, config
+from Components.config import config
 # from Components.Harddisk import harddiskmanager
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_LIBDIR, fileReadLines, fileWriteLine, resolveFilename

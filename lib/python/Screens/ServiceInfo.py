@@ -3,12 +3,11 @@
 from __future__ import print_function
 from Components.GUIComponent import GUIComponent
 from Screens.Screen import Screen
-from Screens.AudioSelection import AudioSelection
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from ServiceReference import ServiceReference
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, eDVBFrontendParametersSatellite, RT_HALIGN_LEFT, RT_VALIGN_CENTER
-from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, eDVBFrontendParametersSatellite, RT_HALIGN_LEFT
+from Tools.Transponder import ConvertToHumanReadable
 import skin
 
 SIGN = u"\u00B0"

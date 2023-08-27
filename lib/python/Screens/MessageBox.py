@@ -3,7 +3,7 @@ from enigma import eTimer
 from Components.ActionMap import HelpableActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.Pixmap import MultiPixmap, Pixmap
+from Components.Pixmap import MultiPixmap
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary

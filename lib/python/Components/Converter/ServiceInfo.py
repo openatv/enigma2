@@ -4,7 +4,6 @@ from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Components.Element import cached
 from Components.Converter.Poll import Poll
 from Tools.Transponder import ConvertToHumanReadable
-from Components.SystemInfo import BoxInfo
 
 from os import path
 

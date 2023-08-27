@@ -9,7 +9,6 @@ from Components.config import getConfigListEntry, config, configfile, ConfigNoth
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.NimManager import nimmanager, LNB_CHOICES, UNICABLE_CHOICES
-from Components.Pixmap import Pixmap
 from Components.SelectionList import SelectionList, SelectionEntryComponent
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List

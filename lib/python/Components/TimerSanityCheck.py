@@ -3,7 +3,6 @@ from time import gmtime, localtime, mktime, time
 from enigma import eServiceCenter, eServiceReference, getBestPlayableServiceReference, iServiceInformation
 
 import NavigationInstance
-from ServiceReference import ServiceReference
 from timer import TimerEntry
 from Components.config import config
 from Tools.CIHelper import cihelper

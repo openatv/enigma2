@@ -9,8 +9,6 @@ from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
 from Components.ActionMap import ActionMap
 from Components.config import ConfigNothing
 from Components.ConfigList import ConfigList
-from Components.Label import Label
-from Components.MenuList import MenuList
 from Components.SelectionList import SelectionList
 from Components.SystemInfo import SystemInfo
 from ServiceReference import ServiceReference
@@ -19,7 +17,6 @@ from Screens.ChannelSelection import *
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.Standby import TryQuitMainloop
 from Tools.BoundFunction import boundFunction

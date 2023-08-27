@@ -26,8 +26,7 @@ from Screens.Standby import TryQuitMainloop
 from Tools.Directories import *
 from Tools.LoadPixmap import LoadPixmap
 from Tools.WeatherID import get_woeid_from_yahoo
-import Tools.Notifications
-from os import listdir, remove, rename, system, path, symlink, chdir, makedirs, mkdir
+from os import listdir, remove, rename, path, symlink, chdir, makedirs, mkdir
 import shutil
 
 cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')

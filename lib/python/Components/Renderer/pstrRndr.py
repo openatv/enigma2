@@ -4,7 +4,6 @@
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, loadJPG
 import os
-import re
 
 
 class pstrRndr(Renderer):

@@ -11,9 +11,7 @@ from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
-from Components.MultiContent import MultiContentEntryText
 from Components.Label import MultiColorLabel
-from enigma import gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 MODE_DVD, MODE_BLUDISC = list(range(2))

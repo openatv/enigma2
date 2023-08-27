@@ -2,12 +2,11 @@ from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 
 from Components.config import config, ConfigSubsection, ConfigYesNo
-from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.Label import Label
 from Components.ServicePosition import ServicePositionGauge
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.List import List
-from Components.Sources.StaticText import StaticText
 from Components.VideoWindow import VideoWindow
 
 from Screens.HelpMenu import HelpableScreen

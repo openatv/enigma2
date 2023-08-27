@@ -1,12 +1,11 @@
 from errno import EEXIST
 from grp import getgrgid
 from json import loads
-from os import R_OK, X_OK, access, chmod, environ, listdir, lstat, mkdir, readlink, remove, rename, rmdir, sep, stat, strerror, symlink, walk
+from os import R_OK, X_OK, access, chmod, environ, listdir, lstat, mkdir, readlink, remove, rename, rmdir, stat, symlink
 from os.path import basename, dirname, exists, getsize, isdir, isfile, islink, join as pathjoin, normpath, splitext
 from pwd import getpwuid
 from puremagic import PureError, from_file as fromfile
 from re import compile
-from shutil import copy2, copytree, move, rmtree
 from string import digits
 from stat import S_IFBLK, S_IFCHR, S_IFDIR, S_IFIFO, S_IFLNK, S_IFMT, S_IFREG, S_IFSOCK, S_IMODE, S_ISBLK, S_ISCHR, S_ISLNK, filemode
 from tempfile import gettempdir, mkdtemp
@@ -19,7 +18,7 @@ from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberAct
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.config import config, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigLocations, ConfigSelectionNumber, ConfigSubsection
 from Components.Console import Console as console
-from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, EXTENSIONS, FILE_PATH, FILE_IS_DIR, FileList, FileListMultiSelect, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, RECORDING_EXTENSIONS
+from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, EXTENSIONS, FILE_PATH, FILE_IS_DIR, FileList, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, RECORDING_EXTENSIONS
 from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 from Components.MenuList import MenuList

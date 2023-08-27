@@ -1,7 +1,6 @@
 from Components.config import config
 from Components.VariableText import VariableText
 from Components.Renderer.Renderer import Renderer
-from Screens.InfoBar import InfoBar
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from enigma import eLabel
 

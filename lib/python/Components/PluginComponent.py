@@ -6,7 +6,7 @@ from traceback import print_exc
 
 from Components.ActionMap import loadKeymap
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import SCOPE_PLUGINS, fileExists, resolveFilename
+from Tools.Directories import SCOPE_PLUGINS, resolveFilename
 from Tools.Import import my_import
 from Tools.Profile import profile
 

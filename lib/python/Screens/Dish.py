@@ -2,7 +2,6 @@
 from __future__ import print_function
 from Screens.Screen import Screen
 from Components.BlinkingPixmap import BlinkingPixmapConditional
-from Components.Pixmap import Pixmap
 from Components.config import config, ConfigInteger
 from Components.Label import Label
 from Components.ServiceEventTracker import ServiceEventTracker
@@ -10,7 +9,6 @@ from Components.Sources.Boolean import Boolean
 from enigma import eDVBSatelliteEquipmentControl, eTimer, iPlayableService, eServiceCenter, iServiceInformation
 from Components.NimManager import nimmanager
 from Components.Sources.FrontendStatus import FrontendStatus
-from ServiceReference import ServiceReference
 
 INVALID_POSITION = 9999
 config.misc.lastrotorposition = ConfigInteger(INVALID_POSITION)

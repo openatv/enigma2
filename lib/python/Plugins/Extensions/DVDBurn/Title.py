@@ -43,7 +43,7 @@ class Title:
 		from os import path
 		from enigma import eServiceCenter, iServiceInformation
 		from ServiceReference import ServiceReference
-		from time import localtime, time
+		from time import localtime
 		self.source = service
 		serviceHandler = eServiceCenter.getInstance()
 		info = serviceHandler.info(service)

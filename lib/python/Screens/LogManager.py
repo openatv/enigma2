@@ -10,9 +10,8 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config, configfile
-from Components.FileList import FileList, MultiFileSelectList
+from Components.FileList import MultiFileSelectList
 from Components.GUIComponent import GUIComponent
-from Components.Label import Label
 from Components.MenuList import MenuList
 import Components.Task
 from Components.VariableText import VariableText

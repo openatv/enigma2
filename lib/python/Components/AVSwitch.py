@@ -1,7 +1,7 @@
 from os.path import exists
 from os import W_OK, access, system
 from time import sleep
-from enigma import eAVControl, eDVBVolumecontrol, getDesktop, iServiceInformation
+from enigma import eAVControl, eDVBVolumecontrol, getDesktop
 from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigYesNo, NoSave, config
 from Components.About import about
 from Components.SystemInfo import BoxInfo

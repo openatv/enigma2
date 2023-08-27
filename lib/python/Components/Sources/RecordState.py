@@ -1,4 +1,4 @@
-from enigma import iRecordableService, pNavigation
+from enigma import iRecordableService
 from Components.Element import cached
 import Components.RecordingConfig
 from Components.Sources.Source import Source

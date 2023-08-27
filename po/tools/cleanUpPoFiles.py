@@ -40,10 +40,8 @@ import glob
 import polib
 import fnmatch
 import re
-import urllib
 import mmap
 import sys
-from operator import attrgetter
 
 scriptPath = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
 

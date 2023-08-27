@@ -24,7 +24,6 @@
 
 from Components.VariableText import VariableText
 from enigma import eLabel, eEPGCache
-from Components.config import config
 from Components.Renderer.Renderer import Renderer
 from time import localtime
 

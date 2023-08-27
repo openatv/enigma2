@@ -9,7 +9,6 @@ from Components.FileList import FileList
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS, SCOPE_HDD
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
-import six
 
 
 class FileBrowser(Screen, HelpableScreen):

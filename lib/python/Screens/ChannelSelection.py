@@ -2,7 +2,7 @@ from os import listdir, remove, rename
 from os.path import join
 from time import localtime, strftime, time
 
-from enigma import eActionMap, eDVBDB, eEPGCache, eEnv, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
+from enigma import eActionMap, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
 from ServiceReference import ServiceReference, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
@@ -38,7 +38,7 @@ from Screens.EpgSelection import EPGSelection
 from Screens.EventView import EventViewEPGSelect
 from Screens.HelpMenu import HelpableScreen
 import Screens.InfoBar
-from Screens.InputBox import InputBox, PinInput
+from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
