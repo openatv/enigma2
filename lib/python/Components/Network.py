@@ -167,7 +167,7 @@ class Network:
 
 	def routeFinished(self, result, retval, extra_args):
 		(iface, data, callback) = extra_args
-		ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+		ipRegexp = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 		ipPattern = compile(ipRegexp)
 		ipLinePattern = compile(ipRegexp)
 		for line in result.splitlines():
@@ -241,7 +241,7 @@ class Network:
 			print("[Network] resolv.conf or nameserversdns.conf - writing failed")
 
 	def loadNameserverConfig(self):
-		ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+		ipRegexp = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 		nameserverPattern = compile("nameserver +%s" % ipRegexp)
 		ipPattern = compile(ipRegexp)
 		fileName = self.resolvFile if config.usage.dns.value.lower() in ("dhcp-router") else "/etc/enigma2/nameserversdns.conf"
@@ -706,7 +706,7 @@ class Network:
 		result = []
 		nameservers = self.getAdapterAttribute(iface, "dns-nameservers")
 		if nameservers:
-			ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+			ipRegexp = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 			ipPattern = compile(ipRegexp)
 			for x in nameservers.split()[1:]:
 				ip = self.regExpMatch(ipPattern, x)

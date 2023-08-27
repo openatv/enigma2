@@ -389,7 +389,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def buildFileFilter(self):
 		if config.plugins.FileCommander.extension.value == "myfilter":
-			return compile("^.*\.(%s)" % "|".join([x.strip() for x in config.plugins.FileCommander.myExtensions.value.split(",")]))
+			return compile(r"^.*\.(%s)" % "|".join([x.strip() for x in config.plugins.FileCommander.myExtensions.value.split(",")]))
 		return compile(config.plugins.FileCommander.extension.value)
 
 	def selectionChanged(self):

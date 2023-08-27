@@ -255,7 +255,7 @@ class RemuxTask(Task):
 
 			for field in words[4:]:
 				key, val = field.split('=')
-				m = re.search('\(int\)(\d*).*', val)
+				m = re.search(r'\(int\)(\d*).*', val)
 				if m and len(m.groups()) > 0:
 					v = int(m.group(1))
 					if key == "rate":
