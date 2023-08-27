@@ -40,7 +40,7 @@ class VtiTempFan(Poll, Converter):
 				temp = fd.readline().strip()
 			with open('/proc/stb/sensors/temp0/unit', 'rb') as fd:
 				unit = fd.readline().strip()
-			return 'TEMP: %s %s%s' % (str(temp), u'\u00B0', str(unit))
+			return 'TEMP: %s %s%s' % (str(temp), '\u00B0', str(unit))
 		except:
 			pass
 

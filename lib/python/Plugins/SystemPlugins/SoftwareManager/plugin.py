@@ -257,7 +257,7 @@ class PacketManager(Screen, NumericalTextInput):
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self)
 		self.setTitle(_("Packet Manager"))
-		self.setUseableChars(u"1234567890abcdefghijklmnopqrstuvwxyz")
+		self.setUseableChars("1234567890abcdefghijklmnopqrstuvwxyz")
 		self["shortcuts"] = HelpableNumberActionMap(self, ["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"], {
 			"ok": self.go,
 			"back": self.exit,

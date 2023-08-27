@@ -121,9 +121,9 @@ class VWeather(Converter):
 
 	def getCF(self):
 		if config.plugins.AtileHD.tempUnit.value == "Fahrenheit":
-			return u"\u00B0" + "F"
+			return "\u00B0" + "F"
 		else:
-			return u"\u00B0" + "C"
+			return "\u00B0" + "C"
 
 	text = property(getText)
 

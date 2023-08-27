@@ -155,7 +155,7 @@ class VtiInfo(Poll, Converter):
             f = open('/proc/stb/sensors/temp0/unit', 'rb')
             unit = f.readline().strip()
             f.close()
-            tempinfo = 'TEMP: %s %s%s' % (str(temp), u"\u00B0", str(unit))
+            tempinfo = 'TEMP: %s %s%s' % (str(temp), "\u00B0", str(unit))
             return tempinfo
         except:
             pass
