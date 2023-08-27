@@ -406,7 +406,7 @@ class PowerTimer(Timer):
 		return isRunning
 
 
-class PowerTimerEntry(TimerEntry, object):
+class PowerTimerEntry(TimerEntry):
 	def __init__(self, begin, end, disabled=False, afterEvent=AFTEREVENT.NONE, timerType=TIMERTYPE.WAKEUP, checkOldTimers=False, autosleepdelay=60):
 		TimerEntry.__init__(self, int(begin), int(end))
 		print("[PowerTimerEntry] DEBUG: Running init code.")

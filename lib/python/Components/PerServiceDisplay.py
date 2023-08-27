@@ -6,7 +6,7 @@ from enigma import iPlayableService
 from enigma import eLabel, eSlider, eTimer
 
 
-class PerServiceBase(object):
+class PerServiceBase:
 	EventMap = {}
 
 	@staticmethod

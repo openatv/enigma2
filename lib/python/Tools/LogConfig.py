@@ -9,7 +9,7 @@ LOG_LEVEL_INFO = 2
 LOG_LEVEL_DEBUG = 3
 
 
-class LogConfig(object):
+class LogConfig:
 	_initialized = False
 
 	@staticmethod

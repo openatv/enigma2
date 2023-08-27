@@ -78,7 +78,7 @@ def showIdToEventId(show_id):
     return (int(show_id) % 0xFFF7) + 1
 
 
-class Request(object):
+class Request:
     def __init__(self, resource):
         super(Request, self).__init__()
         self.params = {

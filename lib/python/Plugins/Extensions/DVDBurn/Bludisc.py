@@ -17,7 +17,7 @@ AUDIO_CHANNELS = {"reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi"
 AUDIO_RATES = {48000: 1, 96000: 4, 192000: 5, 48 / 192: 12, 48 / 96: 14}
 
 
-class BludiscTitle(object):
+class BludiscTitle:
 	def __init__(self, title):
 		object.__setattr__(self, "_title", title)
 		self.__streams = {}
@@ -90,7 +90,7 @@ class BludiscTitle(object):
 		return best_pts / 2
 
 
-class BludiscStream(object):
+class BludiscStream:
 	def __init__(self, parent, PID):
 		self.__parent = parent
 		self.__PID = PID
