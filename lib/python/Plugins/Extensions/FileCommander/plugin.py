@@ -1657,7 +1657,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def isFileText(self, path):
 		text = True
 		try:
-			with open(path, mode="r", encoding="UTF-8", errors="strict") as fd:
+			with open(path, encoding="UTF-8", errors="strict") as fd:
 				fd.read(BLOCK_CHUNK_SIZE)
 		except Exception:
 			text = False
@@ -2154,7 +2154,7 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 	def keyText(self):
 		data = []
 		try:
-			with open(self.path, "r") as fd:
+			with open(self.path) as fd:
 				data = fd.read(MAX_EDIT_SIZE).splitlines()
 		except OSError as err:
 			data = ["Error %d: Unable to read '%s'!  (%s)" % (err.errno, self.path, err.strerror)]
@@ -2490,7 +2490,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 		elif extension in TEXT_FILES:
 			text = True
 			try:
-				with open(self.path, mode="r", encoding="UTF-8", errors="strict") as fd:
+				with open(self.path, encoding="UTF-8", errors="strict") as fd:
 					fd.read(BLOCK_CHUNK_SIZE)
 			except Exception:
 				text = False

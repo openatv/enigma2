@@ -519,7 +519,7 @@ class PowerTimerEntry(TimerEntry):
 			if isRecTimerWakeup:
 				wasTimerWakeup = True
 			elif exists(TIMER_FLAG_FILE) and not wasTimerWakeup:
-				wasTimerWakeup = int(open(TIMER_FLAG_FILE, "r").read()) and True or False
+				wasTimerWakeup = int(open(TIMER_FLAG_FILE).read()) and True or False
 		if nextState == self.StatePrepared:
 			self.log(6, "Prepare okay, waiting for begin %s." % ctime(self.begin))
 			self.backoff = 0

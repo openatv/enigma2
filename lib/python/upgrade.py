@@ -68,7 +68,7 @@ if stderr != "":
 
 # read configuration
 try:
-	f = open("/etc/enigma2/settings", "r")
+	f = open("/etc/enigma2/settings")
 	lines = f.readlines()
 	f.close()
 except:

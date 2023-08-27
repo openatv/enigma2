@@ -83,7 +83,7 @@ class ServiceName(Converter):
 				refstr = info.getInfoString(iServiceInformation.sServiceref)
 				path = refstr and eServiceReference(refstr).getPath()
 				if path and fileExists("%s.meta" % path):
-					fd = open("%s.meta" % path, "r")
+					fd = open("%s.meta" % path)
 					refstr = fd.readline().strip()
 					fd.close()
 				return refstr

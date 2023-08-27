@@ -26,7 +26,7 @@ def getPlugins():
 def getPluginParams(file):
 	params = {}
 	try:
-		file = open(TUXBOX_PLUGINS_PATH + file, "r")
+		file = open(TUXBOX_PLUGINS_PATH + file)
 		for x in file.readlines():
 			split = x.split("=")
 			params[split[0]] = split[1]

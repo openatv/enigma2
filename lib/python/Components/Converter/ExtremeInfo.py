@@ -288,7 +288,7 @@ class ExtremeInfo(Poll, Converter):
 
 	def getecminfo(self):
 		try:
-			with open("/tmp/ecm.info", "r") as fd:
+			with open("/tmp/ecm.info") as fd:
 				content = fd.read().split('\n')
 		except OSError as err:
 			content = []
@@ -912,7 +912,7 @@ class ExtremeInfo(Poll, Converter):
 				idx = emu.index('\n')
 				emu = emu[:idx]
 		try:
-			content = open("/usr/bin/csactive", "r").read()
+			content = open("/usr/bin/csactive").read()
 		except:
 			content = ''
 
@@ -930,7 +930,7 @@ class ExtremeInfo(Poll, Converter):
 		if cs != '' and emu == '':
 			return cs
 		try:
-			content = open("/tmp/cam.info", "r").read()
+			content = open("/tmp/cam.info").read()
 		except:
 			content = ''
 

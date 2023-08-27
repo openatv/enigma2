@@ -307,7 +307,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			file = open("/proc/stb/video/hdmi_colorspace_choices", "r")
+			file = open("/proc/stb/video/hdmi_colorspace_choices")
 			modes = file.readline().split()
 			file.close()
 			config.pep.color_space = ConfigSelection(modes, modes[0])

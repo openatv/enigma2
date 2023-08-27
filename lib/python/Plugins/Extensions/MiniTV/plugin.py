@@ -45,13 +45,13 @@ class MiniTV:
 		self.setMiniTVDecoder(configElement.value)
 
 	def setMiniTV(self, value):
-		cur_value = open("/proc/stb/lcd/live_enable", "r").read().strip()
+		cur_value = open("/proc/stb/lcd/live_enable").read().strip()
 		if cur_value != value:
 			open("/proc/stb/lcd/live_enable", "w").write(value)
 
 	def setMiniTVDecoder(self, value):
 		if BoxInfo.getItem("LcdLiveTVPiP"):
-			cur_value = open("/proc/stb/lcd/live_decoder", "r").read()
+			cur_value = open("/proc/stb/lcd/live_decoder").read()
 			if cur_value != value:
 				open("/proc/stb/lcd/live_decoder", "w").write(value)
 

@@ -101,7 +101,7 @@ class HddMount(Screen):
 		def swapCallback(data, retVal, extraArgs):
 			list2 = []
 			swapdevices = data.replace('\n', '').split('/')
-			f = open('/proc/partitions', 'r')
+			f = open('/proc/partitions')
 			for line in f.readlines():
 				parts = line.strip().split()
 				if not parts:
@@ -150,7 +150,7 @@ class HddMount(Screen):
 			name = _("HARD DISK: ")
 			mypixmap = '/usr/share/enigma2/icons/dev_hdd.png'
 		name = name + model
-		f = open('/proc/mounts', 'r')
+		f = open('/proc/mounts')
 		for line in f.readlines():
 			if line.find(device) != -1:
 				parts = line.strip().split()
@@ -172,7 +172,7 @@ class HddMount(Screen):
 					dtype = _("unavailable")
 					rw = _("None")
 		f.close()
-		f = open('/proc/partitions', 'r')
+		f = open('/proc/partitions')
 		for line in f.readlines():
 			if line.find(device) != -1:
 				parts = line.strip().split()
@@ -221,7 +221,7 @@ class HddMount(Screen):
 			device = sel[4]
 			system('mount ' + device)
 			mountok = False
-			f = open('/proc/mounts', 'r')
+			f = open('/proc/mounts')
 			for line in f.readlines():
 				if line.find(device) != -1:
 					mountok = True
@@ -323,14 +323,14 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		self.Console = Console()
 		self.Console.ePopen("sfdisk -l | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
 		sleep(0.5)
-		f = open('/tmp/devices.tmp', 'r')
+		f = open('/tmp/devices.tmp')
 		swapdevices = f.read()
 		f.close()
 		if path.exists('/tmp/devices.tmp'):
 			remove('/tmp/devices.tmp')
 		swapdevices = swapdevices.replace('\n', '')
 		swapdevices = swapdevices.split('/')
-		f = open('/proc/partitions', 'r')
+		f = open('/proc/partitions')
 		for line in f.readlines():
 			parts = line.strip().split()
 			if not parts:
@@ -374,7 +374,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			name = _("HARD DISK: ")
 			mypixmap = '/usr/share/enigma2/icons/dev_hdd.png'
 		name = name + model
-		f = open('/proc/mounts', 'r')
+		f = open('/proc/mounts')
 		for line in f.readlines():
 			if line.find(device) != -1:
 				parts = line.strip().split()
@@ -385,7 +385,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 				d1 = _("None")
 				dtype = _("unavailable")
 		f.close()
-		f = open('/proc/partitions', 'r')
+		f = open('/proc/partitions')
 		for line in f.readlines():
 			if line.find(device) != -1:
 				parts = line.strip().split()

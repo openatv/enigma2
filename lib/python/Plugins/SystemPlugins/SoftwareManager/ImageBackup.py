@@ -475,7 +475,7 @@ class ImageBackup(Screen):
 					cmdlist.append("parted -s %s unit KiB mkpart linuxkernel3 %s %s" % (EMMC_IMAGE, THRID_KERNEL_PARTITION_OFFSET, PARTED_END_KERNEL3))
 					PARTED_END_KERNEL4 = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 					cmdlist.append("parted -s %s unit KiB mkpart linuxkernel4 %s %s" % (EMMC_IMAGE, FOURTH_KERNEL_PARTITION_OFFSET, PARTED_END_KERNEL4))
-					rd = open("/proc/swaps", "r").read()
+					rd = open("/proc/swaps").read()
 					if "mmcblk0p7" in rd:
 						SWAP_PARTITION_OFFSET = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 						SWAP_PARTITION_SIZE = int(262144)
@@ -806,7 +806,7 @@ class ImageBackup(Screen):
 					if len(bouqet) > 3:
 						bouqet[3] = bouqet[3].replace("\"", "")
 						try:
-							with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
+							with open("/etc/enigma2/%s" % bouqet[3]) as fd:
 								userbouqet = fd.readline()
 							bouquetsTV.append(userbouqet.replace("#NAME ", ""))
 						except UnicodeDecodeError:
@@ -822,7 +822,7 @@ class ImageBackup(Screen):
 					if len(bouqet) > 3:
 						bouqet[3] = bouqet[3].replace("\"", "")
 						try:
-							with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
+							with open("/etc/enigma2/%s" % bouqet[3]) as fd:
 								userbouqet = fd.readline()
 							bouquetsRadio.append(userbouqet.replace("#NAME ", ""))
 						except UnicodeDecodeError:

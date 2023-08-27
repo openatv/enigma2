@@ -613,7 +613,7 @@ class Network:
 		# The r871x_usb_drv on kernel 2.6.12 is not identifiable over /sys/class/net/"ifacename"/wireless so look also inside /proc/net/wireless.
 		device = compile("[a-z]{2,}[0-9]*:")
 		ifnames = []
-		fp = open("/proc/net/wireless", "r")
+		fp = open("/proc/net/wireless")
 		for line in fp:
 			try:
 				ifnames.append(device.search(line).group()[:-1])

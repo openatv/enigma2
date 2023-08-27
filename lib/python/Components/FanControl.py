@@ -91,10 +91,10 @@ class FanControl:
 		return os.path.exists("/proc/stb/fp/fan_vlt") or os.path.exists("/proc/stb/fp/fan_pwm")
 
 	def getFanSpeed(self, fanid):
-		return int(open("/proc/stb/fp/fan_speed", "r").readline().strip()[:-4])
+		return int(open("/proc/stb/fp/fan_speed").readline().strip()[:-4])
 
 	def getVoltage(self, fanid):
-		return int(open("/proc/stb/fp/fan_vlt", "r").readline().strip(), 16)
+		return int(open("/proc/stb/fp/fan_vlt").readline().strip(), 16)
 
 	def setVoltage(self, fanid, value):
 		if value > 255:
@@ -102,7 +102,7 @@ class FanControl:
 		open("/proc/stb/fp/fan_vlt", "w").write("%x" % value)
 
 	def getPWM(self, fanid):
-		return int(open("/proc/stb/fp/fan_pwm", "r").readline().strip(), 16)
+		return int(open("/proc/stb/fp/fan_pwm").readline().strip(), 16)
 
 	def setPWM(self, fanid, value):
 		if value > 255:

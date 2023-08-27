@@ -2204,7 +2204,7 @@ class Config(ConfigSubsection):
 	def loadFromFile(self, filename, baseFile=True, base_file=None):  # DEBUG: base_file is deprecated, only used in Components/PackageInfo.py
 		if base_file is not None:
 			baseFile = base_file
-		with open(filename, "r", encoding="UTF-8") as fd:
+		with open(filename, encoding="UTF-8") as fd:
 			self.unpickle(fd, baseFile)
 
 	def saveToFile(self, filename):

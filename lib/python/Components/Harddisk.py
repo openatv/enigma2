@@ -30,7 +30,7 @@ def getextdevices(ext):
 
 def getProcMounts():
 	try:
-		mounts = open("/proc/mounts", 'r')
+		mounts = open("/proc/mounts")
 		result = []
 		tmp = [line.strip().split(' ') for line in mounts]
 		mounts.close()
@@ -46,7 +46,7 @@ def getProcMounts():
 
 def isFileSystemSupported(filesystem):
 	try:
-		file = open('/proc/filesystems', 'r')
+		file = open('/proc/filesystems')
 		for fs in file:
 			if fs.strip().endswith(filesystem):
 				file.close()

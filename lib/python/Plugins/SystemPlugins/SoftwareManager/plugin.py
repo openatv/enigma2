@@ -157,7 +157,7 @@ class IPKGSource(Screen):
 		text = ""
 		if self.configfile:
 			try:
-				fp = open(configfile, "r")
+				fp = open(configfile)
 				sources = fp.readlines()
 				if sources:
 					text = sources[0]

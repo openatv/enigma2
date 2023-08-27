@@ -211,9 +211,9 @@ class ServiceInfo(Poll, Converter):
 
 		f = None
 		if path.exists("/proc/stb/vmpeg/0/aspect"):
-			f = open("/proc/stb/vmpeg/0/aspect", "r")
+			f = open("/proc/stb/vmpeg/0/aspect")
 		elif path.exists("/sys/class/video/screen_mode"):
-			f = open("/sys/class/video/screen_mode", "r")
+			f = open("/sys/class/video/screen_mode")
 		if f:
 			try:
 				video_aspect = int(f.read())

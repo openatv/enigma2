@@ -194,7 +194,7 @@ class CronTimers(Screen):
 
 		self.list = []
 		if exists("/etc/cron/crontabs/root"):
-			f = open("/etc/cron/crontabs/root", "r")
+			f = open("/etc/cron/crontabs/root")
 			for line in f.readlines():
 				parts = line.strip().split(maxsplit=5)
 				if parts and len(parts) == 6 and not parts[0].startswith("#"):

@@ -149,7 +149,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 			unlink("/etc/default_gw")
 
 		if exists("/etc/default_gw"):
-			fp = open("/etc/default_gw", "r")
+			fp = open("/etc/default_gw")
 			result = fp.read()
 			fp.close()
 			default_gw = result
@@ -175,7 +175,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 		old_default_gw = None
 		num_configured_if = len(iNetwork.getConfiguredAdapters())
 		if exists("/etc/default_gw"):
-			fp = open("/etc/default_gw", "r")
+			fp = open("/etc/default_gw")
 			old_default_gw = fp.read()
 			fp.close()
 		if num_configured_if > 1 and (not old_default_gw or old_default_gw != selection[0]):
@@ -581,7 +581,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				iface_file = "/etc/network/interfaces"
 				default_v = False
 				if exists(iface_file):
-					with open(iface_file, "r") as f:
+					with open(iface_file) as f:
 						output = f.read()
 					search_str = "#only WakeOnWiFi %s" % self.iface
 					if output.find(search_str) >= 0:
@@ -2476,7 +2476,7 @@ class NetworkInadyn(NetworkBaseScreen):
 
 		# self.my_nabina_state = False
 		if fileExists("/etc/inadyn.conf"):
-			f = open("/etc/inadyn.conf", "r")
+			f = open("/etc/inadyn.conf")
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith("username "):
@@ -2556,7 +2556,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.ina_system = NoSave(ConfigSelection(default="dyndns@dyndns.org", choices=[("dyndns@dyndns.org", "dyndns@dyndns.org"), ("statdns@dyndns.org", "statdns@dyndns.org"), ("custom@dyndns.org", "custom@dyndns.org"), ("default@no-ip.com", "default@no-ip.com")]))
 
 		if fileExists("/etc/inadyn.conf"):
-			f = open("/etc/inadyn.conf", "r")
+			f = open("/etc/inadyn.conf")
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith("username "):
@@ -2614,7 +2614,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 
 	def saveIna(self):
 		if fileExists("/etc/inadyn.conf"):
-			inme = open("/etc/inadyn.conf", "r")
+			inme = open("/etc/inadyn.conf")
 			out = open("/etc/inadyn.conf.tmp", "w")
 			for line in inme.readlines():
 				line = line.replace("\n", "")
@@ -2749,7 +2749,7 @@ class NetworkuShare(NetworkBaseScreen):
 			status_summary = "%s %s" % (self["status"].text, self["labstop"].text)
 
 		if fileExists("/etc/ushare.conf"):
-			f = open("/etc/ushare.conf", "r")
+			f = open("/etc/ushare.conf")
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith("USHARE_NAME="):
@@ -2858,7 +2858,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		self.ushare_system = NoSave(ConfigSelection(default="dyndns@dyndns.org", choices=[("dyndns@dyndns.org", "dyndns@dyndns.org"), ("statdns@dyndns.org", "statdns@dyndns.org"), ("custom@dyndns.org", "custom@dyndns.org")]))
 
 		if fileExists("/etc/ushare.conf"):
-			f = open("/etc/ushare.conf", "r")
+			f = open("/etc/ushare.conf")
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith("USHARE_NAME="):
@@ -2930,7 +2930,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 
 	def saveuShare(self):
 		if fileExists("/etc/ushare.conf"):
-			inme = open("/etc/ushare.conf", "r")
+			inme = open("/etc/ushare.conf")
 			out = open("/etc/ushare.conf.tmp", "w")
 			for line in inme.readlines():
 				line = line.replace("\n", "")
@@ -2994,7 +2994,7 @@ class uShareSelection(Screen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
 		if fileExists("/etc/ushare.conf"):
-			f = open("/etc/ushare.conf", "r")
+			f = open("/etc/ushare.conf")
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith("USHARE_DIR="):
@@ -3155,7 +3155,7 @@ class NetworkMiniDLNA(NetworkBaseScreen):
 			status_summary = "%s %s" % (self["status"].text, self["labstop"].text)
 
 		if fileExists("/etc/minidlna.conf"):
-			f = open("/etc/minidlna.conf", "r")
+			f = open("/etc/minidlna.conf")
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith("friendly_name="):
@@ -3256,7 +3256,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		self.minidlna_tivo = NoSave(ConfigYesNo(default=True))
 		self.minidlna_strictdlna = NoSave(ConfigYesNo(default=True))
 		if fileExists("/etc/minidlna.conf"):
-			f = open("/etc/minidlna.conf", "r")
+			f = open("/etc/minidlna.conf")
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith("friendly_name="):
@@ -3312,7 +3312,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 
 	def saveMinidlna(self):
 		if fileExists("/etc/minidlna.conf"):
-			inme = open("/etc/minidlna.conf", "r")
+			inme = open("/etc/minidlna.conf")
 			out = open("/etc/minidlna.conf.tmp", "w")
 			for line in inme.readlines():
 				line = line.replace("\n", "")
@@ -3363,7 +3363,7 @@ class MiniDLNASelection(Screen):
 		self["key_yellow"] = StaticText()
 
 		if fileExists("/etc/minidlna.conf"):
-			f = open("/etc/minidlna.conf", "r")
+			f = open("/etc/minidlna.conf")
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith("media_dir="):
@@ -3641,7 +3641,7 @@ class NetworkLogScreen(Screen):
 			strview = data
 		elif self.logfile:
 			if fileExists(self.logfile):
-				f = open(self.logfile, "r")
+				f = open(self.logfile)
 				for line in f.readlines():
 					strview += line
 				f.close()

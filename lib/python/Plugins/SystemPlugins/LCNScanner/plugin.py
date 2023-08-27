@@ -196,7 +196,7 @@ class LCN():
 		self.addInTVBouquets()
 
 	def addInTVBouquets(self):
-		f = open('/etc/enigma2/bouquets.tv', 'r')
+		f = open('/etc/enigma2/bouquets.tv')
 		ret = f.read().split("\n")
 		f.close()
 
@@ -273,7 +273,7 @@ class LCN():
 		self.addInRadioBouquets()
 
 	def addInRadioBouquets(self):
-		f = open('/etc/enigma2/bouquets.radio', 'r')
+		f = open('/etc/enigma2/bouquets.radio')
 		ret = f.read().split("\n")
 		f.close()
 

@@ -10,7 +10,7 @@ class FSBLCheckerBase:
 	def getCurrentHash(self):
 		data = None
 		try:
-			with open("/dev/mtd0", 'r') as mtd0:
+			with open("/dev/mtd0") as mtd0:
 				data = mtd0.read(self.BL_SIZE)
 				if data:
 					h = hashlib.sha256()

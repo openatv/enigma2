@@ -26,7 +26,7 @@ class VtiEmuInfo(VariableText, Renderer):
     def getVtiEmuInfo(self):
         if config.misc.ecm_info.value:
             try:
-                file = open(resolveFilename(SCOPE_SYSETC, '/tmp/.emu.info'), 'r')
+                file = open(resolveFilename(SCOPE_SYSETC, '/tmp/.emu.info'))
                 emuversion = file.readline()
                 file.close()
                 return emuversion

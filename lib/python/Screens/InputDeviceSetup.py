@@ -343,7 +343,7 @@ class RemoteControlType(Setup):
 
 	def getBoxTypeCompatible(self):
 		try:
-			with open('/proc/stb/info/boxtype', 'r') as fd:
+			with open('/proc/stb/info/boxtype') as fd:
 				boxType = fd.read()
 				return boxType
 		except:

@@ -474,7 +474,7 @@ def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDz
 		try:
 			previous = (mode, znorm)
 			if BoxInfo.getItem("CanUse3DModeChoices"):
-				f = open("/proc/stb/fb/3dmode_choices", "r")
+				f = open("/proc/stb/fb/3dmode_choices")
 				choices = f.readlines()[0].split()
 				f.close()
 				if mode not in choices:
@@ -821,9 +821,9 @@ class AutoVideoMode(Screen):
 			else:
 				autorestyp = "no match"
 				if path.exists("/sys/class/display/mode") and config_rate in ("auto", "multi"):
-					f = open("/sys/class/display/mode", "r")
+					f = open("/sys/class/display/mode")
 				elif path.exists("/proc/stb/video/videomode_%shz" % new_rate) and config_rate in ("auto", "multi"):
-					f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
+					f = open("/proc/stb/video/videomode_%shz" % new_rate)
 				if f:
 					multi_videomode = f.read().replace("\n", "")
 					f.close()

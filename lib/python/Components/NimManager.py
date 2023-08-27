@@ -1094,7 +1094,7 @@ class NimManager:
 					if not exists("/etc/enigma2/lamedb"):
 						print("[NimManager] /etc/enigma2/lamedb not found")
 						return None
-					f = open("/etc/enigma2/lamedb", "r")
+					f = open("/etc/enigma2/lamedb")
 					lamedb = f.readlines()
 					f.close()
 
@@ -1764,7 +1764,7 @@ def InitNimManager(nimmgr, update_slots=None):
 
 	unicablelnbproducts = {}
 	unicablematrixproducts = {}
-	with open(eEnv.resolve("${datadir}/enigma2/unicable.xml"), 'r') as fd:
+	with open(eEnv.resolve("${datadir}/enigma2/unicable.xml")) as fd:
 		doc = xml.etree.cElementTree.parse(fd)
 	root = doc.getroot()
 
@@ -2426,12 +2426,12 @@ def InitNimManager(nimmgr, update_slots=None):
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
 			system = configElement.getText()
 			if exists("/proc/stb/frontend/%d/mode" % fe_id):
-				cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id, "r").read())
+				cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id).read())
 				if cur_type != int(configElement.value):
 					print("[NimManager]tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value)))
 
 					try:
-						oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
+						oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout").readline()
 						with open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w") as fd:
 							fd.write("0")
 					except OSError:
