@@ -95,7 +95,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if cur == self.tunerEntry:
 			self.feid = int(self.scan_nims.value)
 			self.prepareFrontend()
-			if self.frontend == None and self.session.nav.RecordTimer.isRecording():
+			if self.frontend is None and self.session.nav.RecordTimer.isRecording():
 				slot = nimmanager.nim_slots[self.feid]
 				msg = _("%s not available.") % slot.getSlotName()
 				msg += _("\nRecording in progress.")

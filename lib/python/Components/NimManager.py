@@ -2048,7 +2048,7 @@ def InitNimManager(nimmgr, update_slots=None):
 
 			nim.advanced.unicableconnected = ConfigYesNo(default=False)
 			nim.advanced.unicableconnectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
-			if nim.advanced.unicableconnected.value == True and nim.advanced.unicableconnectedTo.value != nim.advanced.unicableconnectedTo.saved_value:
+			if nim.advanced.unicableconnected.value is True and nim.advanced.unicableconnectedTo.value != nim.advanced.unicableconnectedTo.saved_value:
 				from Tools import Notifications
 				from Screens.MessageBox import MessageBox
 				nim.advanced.unicableconnected.value = False

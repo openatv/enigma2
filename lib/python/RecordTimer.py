@@ -123,7 +123,7 @@ class RecordTimer(Timer):
 		check = True  # Display a message when at least one timer overlaps another one.
 		for timer in timerDom.findall("timer"):
 			newTimer = self.createTimer(timer)
-			if (self.record(newTimer, True, dosave=False) is not None) and (check == True):
+			if (self.record(newTimer, True, dosave=False) is not None) and (check is True):
 				AddPopup(_("Timer overlap in '%s' detected! Please check all the timers.") % TIMER_XML_FILE, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				check = False  # At the moment it is enough if the message is only displayed once.
 
@@ -794,7 +794,7 @@ class RecordTimerEntry(TimerEntry, object):
 				from Screens.InfoBarGenerics import InfoBarPiP
 				from Components.ServiceEventTracker import InfoBarCount
 				InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
-				if InfoBarInstance and InfoBarPiP.pipShown(InfoBarInstance) == True:
+				if InfoBarInstance and InfoBarPiP.pipShown(InfoBarInstance) is True:
 					if config.recording.ask_to_abort_pip.value == "ask":
 						self.log(8, "Asking user to disable PiP.")
 						self.messageBoxAnswerPending = True

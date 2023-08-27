@@ -906,7 +906,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		next = self.playlist.getCurrentIndex() + 1
 		if next < len(self.playlist):
 			self.changeEntry(next)
-		elif (len(self.playlist) > 0) and (config.mediaplayer.repeat.value == True):
+		elif (len(self.playlist) > 0) and (config.mediaplayer.repeat.value is True):
 			self.stopEntry()
 			self.changeEntry(0)
 		elif len(self.playlist) > 0:

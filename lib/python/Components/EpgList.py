@@ -1564,7 +1564,7 @@ class EPGList(GUIComponent):
 			if service != x[0]:
 				if tmp_list is not None:
 					picon = None if piconIdx == 0 else self.serviceList[serviceIdx][piconIdx]
-					channel = self.serviceList[serviceIdx] if (channelIdx == None) else self.serviceList[serviceIdx][channelIdx]
+					channel = self.serviceList[serviceIdx] if (channelIdx is None) else self.serviceList[serviceIdx][channelIdx]
 					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon, channel))
 					serviceIdx += 1
 				service = x[0]
@@ -1573,7 +1573,7 @@ class EPGList(GUIComponent):
 			tmp_list.append((x[2], x[3], x[4], x[5]))  # (event_id, event_title, begin_time, duration)
 		if tmp_list and len(tmp_list):
 			picon = None if piconIdx == 0 else self.serviceList[serviceIdx][piconIdx]
-			channel = self.serviceList[serviceIdx] if (channelIdx == None) else self.serviceList[serviceIdx][channelIdx]
+			channel = self.serviceList[serviceIdx] if (channelIdx is None) else self.serviceList[serviceIdx][channelIdx]
 			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon, channel))
 			serviceIdx += 1
 

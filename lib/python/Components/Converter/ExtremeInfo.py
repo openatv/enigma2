@@ -1043,7 +1043,7 @@ class ExtremeInfo(Poll, Converter):
 						item = line.split(':', 1)
 						if len(item) > 1:
 							info[item[0].strip().lower()] = item[1].strip()
-						elif not 'caid' in info:
+						elif 'caid' not in info:
 							x = line.lower().find('caid')
 							if x != -1:
 								y = line.find(',')

@@ -197,7 +197,7 @@ class ServiceInfo(Screen):
 					+ trackList + [(_("PCR PID"), self.getServiceInfoValue(iServiceInformation.sPCRPID), TYPE_VALUE_HEX_DEC, 4),
 					(_("PMT PID"), self.getServiceInfoValue(iServiceInformation.sPMTPID), TYPE_VALUE_HEX_DEC, 4),
 					(_("TXT PID"), self.getServiceInfoValue(iServiceInformation.sTXTPID), TYPE_VALUE_HEX_DEC, 4)])
-				if self.showAll == True:
+				if self.showAll is True:
 					fillList = fillList + self.subList
 
 			self.fillList(fillList)

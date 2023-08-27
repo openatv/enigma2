@@ -2707,7 +2707,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		line = self["data"].getCurrent()
 		# Find and replace TABs with a special single character.  This could also be helpful for NEWLINE as well.
 		# line = line.replace("\t", "<TAB>") # Find and replace TABs.  This could also be helpful for NEWLINE as well.
-		currPos = None if config.plugins.FileCommander.editLineEnd.value == True else 0
+		currPos = None if config.plugins.FileCommander.editLineEnd.value is True else 0
 		self.session.openWithCallback(keyEditCallback, VirtualKeyBoard, title="%s: %s" % (_("Original"), line), text=line, currPos=currPos, allMarked=False, windowTitle=self.getTitle())
 
 	def keyInsert(self):

@@ -2022,7 +2022,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 							if req_network in nimmanager.getSatListForNim(nim.slot):
 								tag_dvbs = True
 								nimconfig = ConfigYesNo(default=tag_dvbs_default)
-								if tag_dvbs_default == True:
+								if tag_dvbs_default is True:
 									tag_dvbs_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
@@ -2034,7 +2034,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 							if req_network in nimmanager.getCableDescription(nim.slot):
 								tag_dvbc = True
 								nimconfig = ConfigYesNo(default=tag_dvbc_default)
-								if tag_dvbc_default == True:
+								if tag_dvbc_default is True:
 									tag_dvbc_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
@@ -2046,7 +2046,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 							if req_network in nimmanager.getTerrestrialDescription(nim.slot):
 								tag_dvbt = True
 								nimconfig = ConfigYesNo(default=tag_dvbt_default)
-								if tag_dvbt_default == True:
+								if tag_dvbt_default is True:
 									tag_dvbt_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
@@ -2058,7 +2058,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 							if req_network in nimmanager.getATSCDescription(nim.slot):
 								tag_atsc = True
 								nimconfig = ConfigYesNo(default=tag_atsc_default)
-								if tag_atsc_default == True:
+								if tag_atsc_default is True:
 									tag_atsc_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network

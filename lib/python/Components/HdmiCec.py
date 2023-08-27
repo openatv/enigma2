@@ -825,7 +825,7 @@ class HdmiCec:
 				self.messages = []
 				self.what = "on"
 				self.repeatCounter = 0
-				if config.hdmicec.workaround_activesource.value and config.hdmicec.report_active_source.value and not self.activesource and not "standby" in self.tv_powerstate:
+				if config.hdmicec.workaround_activesource.value and config.hdmicec.report_active_source.value and not self.activesource and "standby" not in self.tv_powerstate:
 					# Some tv devices don't switch to the correct hdmi port if a another hdmi port active.  The workaround is to switch the tv off and on.
 					self.messages.append((0, "standby"))
 					if not config.hdmicec.control_tv_wakeup.value:

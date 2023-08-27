@@ -243,7 +243,7 @@ class RemuxTask(Task):
 				stype = words[3] + ' ' + words[4][:-1]
 
 			stream = self.title.getStreamByPID(pid)
-			if stream == None:
+			if stream is None:
 				print("[bdremux] invalid stream!")
 				return
 

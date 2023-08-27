@@ -389,7 +389,7 @@ class VideoSetup(Screen, ConfigListScreen):
 			or (port, mode_uhd, rate_uhd) != self.last_good_autores_uhd or (autores_24p, autores_1080i) != self.last_good_autores_extra or self.last_good_autores != config.av.autores.value or self.reset_mode == 1
 			or (self.last_good_autores_unknownres != config.av.autores_unknownres.value and config.av.autores.value == "native")):
 			self.reset_mode = 2
-			if self.current_mode == None:
+			if self.current_mode is None:
 				self.current_mode = self.getCurrent_mode()
 			AutoVideoMode(None).VideoChangeDetect()
 		else:
@@ -419,7 +419,7 @@ class VideoSetup(Screen, ConfigListScreen):
 			cur = self["config"].getCurrent()
 			cur = cur and len(cur) > 3 and cur[3]
 			if cur in ("check", "check_sd", "check_hd", "check_fhd", "check_uhd"):
-				if self.current_mode == None:
+				if self.current_mode is None:
 					self.current_mode = self.getCurrent_mode()
 				if cur in ("check", "check_sd"):
 					self.getVerify_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
@@ -494,7 +494,7 @@ class AutoVideoMode(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		if session != None:
+		if session is not None:
 			self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__evStart,
 				iPlayableService.evVideoSizeChanged: self.VideoChanged,

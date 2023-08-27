@@ -521,7 +521,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				if len(choices):
 					if isFBCLink(self.nim.slot):
-						if nimConfig_advanced.unicableconnected.value != True:
+						if nimConfig_advanced.unicableconnected.value is not True:
 							nimConfig_advanced.unicableconnected.value = True
 					self.advancedConnected = getConfigListEntry(_("Connected through another tuner"), nimConfig_advanced.unicableconnected, _("Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."))
 					self.list.append(self.advancedConnected)
@@ -626,7 +626,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					if nim_slot == self.nimConfig:
 						self_idx = x
 					if nim_slot.config.dvbs.configMode.value == "advanced":
-						if nim_slot.config.dvbs.advanced.unicableconnected.value == True:
+						if nim_slot.config.dvbs.advanced.unicableconnected.value is True:
 							connect_count += 1
 				except:
 					pass
@@ -646,7 +646,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					connected = slot_config.advanced.unicableconnected.value
 				except:
 					connected = False
-				if connected == True:
+				if connected is True:
 					return checkRecursiveConnect(int(slot_config.advanced.unicableconnectedTo.value))
 			return True
 
@@ -791,7 +791,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.newConfig()
 		self.setTitle("%s %s %s" % (_("Reception Settings"), _("Tuner"), self.nim.slot_input_name))
 
-		if not self.selectionChanged in self["config"].onSelectionChanged:
+		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
 

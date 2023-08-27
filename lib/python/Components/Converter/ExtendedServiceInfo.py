@@ -56,11 +56,11 @@ class ExtendedServiceInfo(Converter):
 		elif self.type == self.PROVIDER:
 			text = info.getInfoString(iServiceInformation.sProvider)
 		elif self.type == self.FROMCONFIG:
-			if config.plugins.ExtendedServiceInfo.showServiceNumber.value == True and number != '':
+			if config.plugins.ExtendedServiceInfo.showServiceNumber.value is True and number != '':
 				text = '%s. %s' % (number, name)
 			else:
 				text = name
-			if config.plugins.ExtendedServiceInfo.showOrbitalPosition.value == True and orbital != '':
+			if config.plugins.ExtendedServiceInfo.showOrbitalPosition.value is True and orbital != '':
 				if config.plugins.ExtendedServiceInfo.orbitalPositionType.value == 'name':
 					text = '%s (%s)' % (text, satName)
 				else:

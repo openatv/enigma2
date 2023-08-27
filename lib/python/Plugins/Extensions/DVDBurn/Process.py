@@ -449,7 +449,7 @@ class PreviewTask(Task):
 		self.finish(aborted=True)
 
 	def previewCB(self, answer):
-		if answer == True:
+		if answer is True:
 			self.previewProject()
 		else:
 			self.closedCB(True)
@@ -461,7 +461,7 @@ class PreviewTask(Task):
 			Tools.Notifications.AddNotificationWithCallback(self.closedCB, MessageBox, _("Do you want to burn this collection to DVD medium?"), domain="JobManager")
 
 	def closedCB(self, answer):
-		if answer == True:
+		if answer is True:
 			Task.processFinished(self, 0)
 		else:
 			Task.processFinished(self, 1)

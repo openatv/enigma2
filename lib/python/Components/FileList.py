@@ -352,7 +352,7 @@ class FileListBase(MenuList):
 		path = entry[0][FILE_PATH]
 		isDir = entry[0][FILE_IS_DIR]
 		dirIcon = entry[0][FILE_DIR_ICON]
-		if (isDir == False and type == SELECT_DIRECTORIES) or (isDir == True and type == SELECT_FILES):
+		if (isDir is False and type == SELECT_DIRECTORIES) or (isDir is True and type == SELECT_FILES):
 			selected = entry[0][FILE_SELECTED]
 		if path and not entry[0][FILE_NAME].startswith("<"):
 			path = path if isDir else pathjoin(self.currentDirectory, path)

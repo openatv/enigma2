@@ -165,7 +165,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 
 		self["Picture"] = Pixmap()
 
-		if not self.selectionChanged in self["config"].onSelectionChanged:
+		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 
 		if self.start_skin == "skin.xml":
@@ -644,7 +644,7 @@ class AtileHDScreens(Screen):
 			my_path = resolveFilename(SCOPE_SKINS, "skin_default/icons/lock_off.png")
 		self.disabled_pic = LoadPixmap(cached=True, path=my_path)
 
-		if not self.selectionChanged in self["menu"].onSelectionChanged:
+		if self.selectionChanged not in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
 
 		self.onLayoutFinish.append(self.createMenuList)

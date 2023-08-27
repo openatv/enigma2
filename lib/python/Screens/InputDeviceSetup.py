@@ -335,7 +335,7 @@ class RemoteControlType(Setup):
 
 	def createSetup(self):
 		settingsList = []
-		if self.rctype == None:
+		if self.rctype is None:
 			rctype = config.plugins.remotecontroltype.rctype.value
 			self.rctype = ConfigSelection(choices=self.rcList, default=str(rctype))
 		settingsList.append(getConfigListEntry(_("Remote control type"), self.rctype))

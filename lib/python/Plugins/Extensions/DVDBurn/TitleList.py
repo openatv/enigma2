@@ -370,7 +370,7 @@ class TitleList(Screen, HelpableScreen):
 		if t.VideoType != 0 and self.project.settings.authormode.value not in ("data_ts", "bdmv"):
 			text = _("The DVD standard doesn't support H.264 (HDTV) video streams.")
 
-			if all_hd == True:
+			if all_hd is True:
 				choices.append((_("BDMV Blu-ray disk (HDTV titles only)"), "bdmv"))
 
 			choices.append((_("Dreambox format data DVD (won't work in other DVD players)"), "data_ts"))

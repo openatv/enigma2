@@ -54,7 +54,7 @@ class CronTimers(Screen):
 			"yellow": self.crondStart,
 			"blue": self.autostart}
 		)
-		if not self.selectionChanged in self["list"].onSelectionChanged:
+		if self.selectionChanged not in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.service_name = "cronie"
 		self.onLayoutFinish.append(self.installCheck)

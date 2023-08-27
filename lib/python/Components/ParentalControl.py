@@ -170,9 +170,9 @@ class ParentalControl:
 		return [x.value for x in config.ParentalControl.servicepin]
 
 	def setSessionPinCached(self):
-		if self.checkSessionPin == True:
+		if self.checkSessionPin is True:
 			self.sessionPinCached = True
-		if self.checkPinInterval == True:
+		if self.checkPinInterval is True:
 			self.sessionPinCached = True
 			self.sessionPinTimer.startLongTimer(self.pinIntervalSeconds)
 
@@ -218,7 +218,7 @@ class ParentalControl:
 	#
 	def addServiceToList(self, service, type, vList):
 		if service in vList:
-			if not type in vList[service]:
+			if type not in vList[service]:
 				vList[service].append(type)
 		else:
 			vList[service] = [type]

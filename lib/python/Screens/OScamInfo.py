@@ -92,7 +92,7 @@ class OscamInfo:
 
 	def getUserData(self):
 		[webif, port, conf, ipcompiled, conffile] = self.confPath()
-		if conf == None:
+		if conf is None:
 			conf = ""
 		if conffile == "":
 			conffile = "oscam.conf"

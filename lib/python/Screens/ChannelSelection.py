@@ -482,7 +482,7 @@ class ChannelSelectionEdit:
 		})
 
 	def getMutableList(self, root=eServiceReference()):
-		if not self.mutableList is None:
+		if self.mutableList is not None:
 			return self.mutableList
 		serviceHandler = eServiceCenter.getInstance()
 		if not root.valid():
@@ -839,7 +839,7 @@ class ChannelSelectionEdit:
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
-		if not mutableList is None:
+		if mutableList is not None:
 			if service is None:  # Use current selected service.
 				service = self.servicelist.getCurrent()
 			if not mutableList.addService(service):
@@ -1610,7 +1610,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 						else:
 							appendWhenValid(current, menu, (_("Remove Satellite Services"), self.removeSatelliteServices))
 					if haveBouquets:
-						if not self.inBouquet and not "PROVIDERS" in current_sel_path:
+						if not self.inBouquet and "PROVIDERS" not in current_sel_path:
 							appendWhenValid(current, menu, (_("Copy To Bouquets"), self.copyCurrentToBouquetList))
 					if ("flags == %d" % (FLAG_SERVICE_NEW_FOUND)) in current_sel_path:
 						appendWhenValid(current, menu, (_("Remove All New Found Flags"), self.removeAllNewFoundFlags))

@@ -65,7 +65,7 @@ class EPGSelection(Screen, HelpableScreen):
 		graphic = ((config.epgselection.infobar_type_mode.value == "graphics" and "infobargraph" == EPGtype)
 			or (config.epgselection.graph_type_mode.value == "graphics" and "graph" == EPGtype))
 
-		if EPGtype is None and eventid == None and isinstance(service, eServiceReference):
+		if EPGtype is None and eventid is None and isinstance(service, eServiceReference):
 			self.type = EPG_TYPE_SINGLE
 		else:
 			self.type = epgTypes.get(EPGtype, EPG_TYPE_SIMILAR)
@@ -442,7 +442,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def getBouquetServices(self, bouquet):
 		services = []
 		servicelist = eServiceCenter.getInstance().list(bouquet)
-		if not servicelist is None:
+		if servicelist is not None:
 			while True:
 				service = servicelist.getNext()
 				if not service.valid():  # check if end of list
@@ -485,7 +485,7 @@ class EPGSelection(Screen, HelpableScreen):
 				service = self.session.nav.getCurrentService()
 				info = service and service.info()
 				nameROH = info and info.getName().replace("\xc2\x86", "").replace("\xc2\x87", "")
-			if (nameROH is not None) and not ("channel1" in config.epgselection.vertical_startmode.value):
+			if (nameROH is not None) and "channel1" not in config.epgselection.vertical_startmode.value:
 				idx = 0
 				for channel in self.myServices:
 					idx += 1
@@ -969,7 +969,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.prevService()
 				if config.epgselection.graph_red.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.graph_red.value == "imdb" or config.epgselection.graph_red.value == None:
+				if config.epgselection.graph_red.value == "imdb" or config.epgselection.graph_red.value is None:
 					self.openIMDb()
 				if config.epgselection.graph_red.value == "tmdb":
 					self.openTMDB()
@@ -1000,7 +1000,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.setMinus24h()
 				if config.epgselection.vertical_red.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.vertical_red.value == "imdb" or config.epgselection.vertical_red.value == None:
+				if config.epgselection.vertical_red.value == "imdb" or config.epgselection.vertical_red.value is None:
 					self.openIMDb()
 				if config.epgselection.vertical_red.value == "tmdb":
 					self.openTMDB()
@@ -1040,7 +1040,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.nextService()
 				if config.epgselection.graph_green.value == "24minus":
 					self.prevService()
-				if config.epgselection.graph_green.value == "timer" or config.epgselection.graph_green.value == None:
+				if config.epgselection.graph_green.value == "timer" or config.epgselection.graph_green.value is None:
 					self.RecordTimerQuestion(True)
 				if config.epgselection.graph_green.value == "imdb":
 					self.openIMDb()
@@ -1073,7 +1073,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.setMinus24h()
 				if config.epgselection.vertical_green.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.vertical_green.value == "imdb" or config.epgselection.vertical_green.value == None:
+				if config.epgselection.vertical_green.value == "imdb" or config.epgselection.vertical_green.value is None:
 					self.openIMDb()
 				if config.epgselection.vertical_green.value == "tmdb":
 					self.openTMDB()
@@ -1123,7 +1123,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.addAutoTimer()
 				if config.epgselection.graph_yellow.value == "bouquetlist":
 					self.Bouquetlist()
-				if config.epgselection.graph_yellow.value == "epgsearch" or config.epgselection.graph_yellow.value == None:
+				if config.epgselection.graph_yellow.value == "epgsearch" or config.epgselection.graph_yellow.value is None:
 					self.openEPGSearch()
 				if config.epgselection.graph_yellow.value == "showmovies":
 					self.showMovieSelection()
@@ -1146,7 +1146,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.setMinus24h()
 				if config.epgselection.vertical_yellow.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.vertical_yellow.value == "imdb" or config.epgselection.vertical_yellow.value == None:
+				if config.epgselection.vertical_yellow.value == "imdb" or config.epgselection.vertical_yellow.value is None:
 					self.openIMDb()
 				if config.epgselection.vertical_yellow.value == "tmdb":
 					self.openTMDB()
@@ -1185,7 +1185,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.openIMDb()
 				if config.epgselection.graph_blue.value == "tmdb":
 					self.openTMDB()
-				if config.epgselection.graph_blue.value == "autotimer" or config.epgselection.graph_blue.value == None:
+				if config.epgselection.graph_blue.value == "autotimer" or config.epgselection.graph_blue.value is None:
 					self.addAutoTimer()
 				if config.epgselection.graph_blue.value == "bouquetlist":
 					self.Bouquetlist()
@@ -1212,7 +1212,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.setMinus24h()
 				if config.epgselection.vertical_blue.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.vertical_blue.value == "imdb" or config.epgselection.vertical_blue.value == None:
+				if config.epgselection.vertical_blue.value == "imdb" or config.epgselection.vertical_blue.value is None:
 					self.openIMDb()
 				if config.epgselection.vertical_blue.value == "tmdb":
 					self.openTMDB()
@@ -2085,7 +2085,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self["key_blue"] = StaticText(buttonOptions.get(config.epgselection.vertical_blue.value, "autotimer"))
 
 	def setTimerButtonText(self, text=None):
-		if text == None:
+		if text is None:
 			text = _("Add Timer")
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if config.epgselection.graph_red.value == "timer":

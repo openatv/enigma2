@@ -54,7 +54,7 @@ class BackupSetup(Screen):
 
 	def keyNumberGlobal(self, number):
 		print("You pressed number", number)
-		if (self["config"].getCurrent()[1].parent.enabled == True):
+		if (self["config"].getCurrent()[1].parent.enabled is True):
 			self["config"].handleKey(KEY_0 + number)
 
 	def keyCancel(self):
@@ -113,7 +113,7 @@ class BackupSetup(Screen):
 	def createBackupfolders(self):
 		self.path = BackupPath[self.backupconfig.location.value]
 		print("Creating Backup Folder if not already there...")
-		if (exists(self.path) == False):
+		if (exists(self.path) is False):
 			makedirs(self.path)
 
 	def Backup(self):
@@ -188,7 +188,7 @@ class RestoreMenu(Screen):
 	def fill_list(self):
 		self.flist = []
 		self.path = BackupPath[self.backupconfig.location.value]
-		if (exists(self.path) == False):
+		if (exists(self.path) is False):
 			makedirs(self.path)
 		for file in listdir(self.path):
 			if (file.endswith(".tar.gz")):
@@ -197,7 +197,7 @@ class RestoreMenu(Screen):
 				self["filelist"].l.setList(self.flist)
 
 	def KeyOk(self):
-		if (self.exe == False) and (self.entry == True):
+		if (self.exe is False) and (self.entry is True):
 			self.sel = self["filelist"].getCurrent()
 			self.val = self.path + self.sel
 			self.session.openWithCallback(self.startRestore, MessageBox, _("are you sure you want to restore\nfollowing backup:\n" + self.sel + "\nEnigma2 will restart after the restore"))
@@ -206,7 +206,7 @@ class RestoreMenu(Screen):
 		self.close()
 
 	def startRestore(self, ret=False):
-		if (ret == True):
+		if (ret is True):
 			self.exe = True
 			self.session.open(Console, title="Restore running", cmdlist=["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
 

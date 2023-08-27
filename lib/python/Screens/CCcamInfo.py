@@ -555,7 +555,7 @@ class CCcamInfoMain(Screen):
 			self.showInfo(_("Using old profile: ") + self.url, _("Profile"))
 
 	def keyNumberGlobal(self, idx):
-		if self.working == False and (idx < len(self.menu_list)):
+		if self.working is False and (idx < len(self.menu_list)):
 			self.working = True
 			sel = self.menu_list[idx]
 

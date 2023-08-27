@@ -29,7 +29,7 @@ class StackTracePrinter(Thread):
 			self.start()
 
 	def run(self):
-		while (self.__running == True):
+		while (self.__running is True):
 			if (isfile("/tmp/doPythonStackTrace")):
 				remove("/tmp/doPythonStackTrace")
 				if config.crash.pystackonspinner.value:

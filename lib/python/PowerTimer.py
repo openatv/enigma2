@@ -110,7 +110,7 @@ class PowerTimer(Timer):
 		check = True  # Display a message when at least one timer overlaps another one.
 		for timer in timerDom.findall("timer"):
 			newTimer = self.createTimer(timer)
-			if (self.record(newTimer, doSave=False) is not None) and (check == True):
+			if (self.record(newTimer, doSave=False) is not None) and (check is True):
 				AddPopup(_("Timer overlap in '%s' detected!\nPlease recheck it!") % TIMER_XML_FILE, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				check = False  # At the moment it is enough if the message is only displayed once.
 

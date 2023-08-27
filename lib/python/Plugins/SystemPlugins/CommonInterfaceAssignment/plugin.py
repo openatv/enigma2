@@ -221,7 +221,7 @@ class CIconfigMenu(Screen):
 				for ref in args[0]:
 					service_ref = ServiceReference(ref)
 					service_name = service_ref.getServiceName()
-					if len(service_name) and find_in_list(self.servicelist, service_name, 0) == False:
+					if len(service_name) and find_in_list(self.servicelist, service_name, 0) is False:
 						str_service = service_ref.ref.toString()
 						split_ref = str_service.split(":")
 						if split_ref[0] == "1" and not str_service.startswith("1:134:") and "%3a//" not in str_service:
@@ -233,7 +233,7 @@ class CIconfigMenu(Screen):
 				if ref:
 					service_ref = ServiceReference(ref)
 					service_name = service_ref.getServiceName()
-					if find_in_list(self.servicelist, service_name, 0) == False:
+					if find_in_list(self.servicelist, service_name, 0) is False:
 						str_service = service_ref.ref.toString()
 						split_ref = str_service.split(":")
 						if split_ref[0] == "1" and not str_service.startswith("1:134:") and "%3a//" not in str_service:
@@ -248,7 +248,7 @@ class CIconfigMenu(Screen):
 				for ref in args[0]:
 					service_ref = ServiceReference(ref)
 					service_name = service_ref.getServiceName()
-					if len(service_name) and find_in_list(self.servicelist, service_name, 0) == False:
+					if len(service_name) and find_in_list(self.servicelist, service_name, 0) is False:
 						split_ref = service_ref.ref.toString().split(":")
 						if split_ref[0] == "1":
 							self.servicelist.append((service_name, ConfigNothing(), 0, service_ref.ref.toString()))
@@ -257,7 +257,7 @@ class CIconfigMenu(Screen):
 			else:
 				name = args[0]
 				dvbnamespace = args[1]
-				if find_in_list(self.servicelist, name, 0) == False:
+				if find_in_list(self.servicelist, name, 0) is False:
 					self.servicelist.append((name, ConfigNothing(), 1, dvbnamespace))
 					self["ServiceList"].l.setList(self.servicelist)
 					self.setServiceListInfo()
@@ -504,7 +504,7 @@ class myProviderSelection(ChannelSelectionBase):
 						elif choice[1] == "providerlist":
 							serviceHandler = eServiceCenter.getInstance()
 							servicelist = serviceHandler.list(ref)
-							if not servicelist is None:
+							if servicelist is not None:
 								providerlist = []
 								while True:
 									service = servicelist.getNext()
@@ -540,7 +540,7 @@ class myProviderSelection(ChannelSelectionBase):
 				if justSet:
 					serviceHandler = eServiceCenter.getInstance()
 					servicelist = serviceHandler.list(ref)
-					if not servicelist is None:
+					if servicelist is not None:
 						while True:
 							service = servicelist.getNext()
 							if not service.valid():  # check if end of list
@@ -642,7 +642,7 @@ class myChannelSelection(ChannelSelectionBase):
 		if answer and ref:
 			serviceHandler = eServiceCenter.getInstance()
 			servicelist = serviceHandler.list(ref)
-			if not servicelist is None:
+			if servicelist is not None:
 				providerlist = []
 				while True:
 					service = servicelist.getNext()

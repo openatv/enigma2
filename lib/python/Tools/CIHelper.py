@@ -91,7 +91,7 @@ class CIHelper:
 				refstr = '1:7:0:0:0:0:0:0:0:0:(provider == "%s") && (type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 31) || (type == 134) || (type == 195) ORDER BY name:%s' % (x, x)
 				myref = eServiceReference(refstr)
 				servicelist = serviceHandler.list(myref)
-				if not servicelist is None:
+				if servicelist is not None:
 					while True:
 						service = servicelist.getNext()
 						if not service.valid():
@@ -117,7 +117,7 @@ class CIHelper:
 					appname = eDVBCI_UI.getInstance().getAppName(ci)
 					if appname in self.CI_MULTIDESCRAMBLE_MODULES:
 						self.CI_MULTIDESCRAMBLE = True
-		elif self.CI_MULTIDESCRAMBLE == False:
+		elif self.CI_MULTIDESCRAMBLE is False:
 			return False
 
 		if self.CI_ASSIGNMENT_LIST is not None and len(self.CI_ASSIGNMENT_LIST):

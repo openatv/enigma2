@@ -393,7 +393,7 @@ class FlashImage(Screen, HelpableScreen):
 		if choice:
 			def findMedia(paths):
 				def availableSpace(path):
-					if not "/mmc" in path and isdir(path) and access(path, W_OK):
+					if "/mmc" not in path and isdir(path) and access(path, W_OK):
 						try:
 							fs = statvfs(path)
 							return (fs.f_bavail * fs.f_frsize) / (1 << 20)

@@ -114,7 +114,7 @@ class TitleProperties(Screen, ConfigListScreen):
 
 	def paintThumbPixmapCB(self, picInfo=None):
 		ptr = self.picload.getData()
-		if ptr != None:
+		if ptr is not None:
 			self["thumbnail"].instance.setPixmap(ptr)
 
 	def changedConfigList(self):
