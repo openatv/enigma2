@@ -92,10 +92,10 @@ class TitleList(Screen, HelpableScreen):
 		self["space_bar_single"] = Progress()
 		self["space_bar_dual"] = Progress()
 		self["space_bar_bludisc"] = Progress()
-		self["marker_single"] = StaticText(("SINGLE"))
-		self["marker_dvd"] = StaticText(("DVD"))
-		self["marker_dual"] = StaticText(("DUAL"))
-		self["marker_bludisc"] = StaticText(("BLUDISC"))
+		self["marker_single"] = StaticText("SINGLE")
+		self["marker_dvd"] = StaticText("DVD")
+		self["marker_dual"] = StaticText("DUAL")
+		self["marker_bludisc"] = StaticText("BLUDISC")
 
 		self["titles"] = List([])
 		self.previous_size = 0

@@ -48,8 +48,8 @@ class AnalogClockLCD(Renderer):
 	def calc(self, w, r, m, m1):
 		a = (w * 6)
 		z = (math.pi / 180)
-		x = int(round((r * math.sin((a * z)))))
-		y = int(round((r * math.cos((a * z)))))
+		x = int(round(r * math.sin(a * z)))
+		y = int(round(r * math.cos(a * z)))
 		return ((m + x), (m1 - y))
 
 	def hand(self, opt):
@@ -67,7 +67,7 @@ class AnalogClockLCD(Renderer):
 		self.line_draw(r, r1, endX, endY)
 
 	def line_draw(self, x0, y0, x1, y1):
-		steep = (abs((y1 - y0)) > abs((x1 - x0)))
+		steep = (abs(y1 - y0) > abs(x1 - x0))
 		if steep:
 			x0, y0 = y0, x0
 			x1, y1 = y1, x1
@@ -79,7 +79,7 @@ class AnalogClockLCD(Renderer):
 		else:
 			ystep = -1
 		deltax = (x1 - x0)
-		deltay = abs((y1 - y0))
+		deltay = abs(y1 - y0)
 		error = (-deltax / 2)
 		y = int(y0)
 		for x in range(int(x0), (int(x1) + 1)):
