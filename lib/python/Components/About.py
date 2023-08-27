@@ -311,8 +311,7 @@ def GetIPsFromNetworkInterfaces():
 			break
 	ifaces = []
 	for index in range(0, outbytes, structSize):
-		ifaceName = names.tobytes()[index:index + 16].decode().split("\0", 1)[0]  # PY3
-		# ifaceName = str(names.tolist[index:index + 16]).split("\0", 1)[0] # PY2
+		ifaceName = names.tobytes()[index:index + 16].decode().split("\0", 1)[0]
 		if ifaceName != "lo":
 			ifaces.append((ifaceName, inet_ntoa(names[index + 20:index + 24])))
 	return ifaces
