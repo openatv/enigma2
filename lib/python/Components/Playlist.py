@@ -1,4 +1,3 @@
-from __future__ import print_function
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
 import os
@@ -113,7 +112,7 @@ class PlaylistIOPLS(PlaylistIO):
 		except OSError:
 			return None
 		entry = file.readline().strip()
-		if entry == "[playlist]": # extended pls
+		if entry == "[playlist]":  # extended pls
 			while True:
 				entry = file.readline().strip()
 				if entry == "":

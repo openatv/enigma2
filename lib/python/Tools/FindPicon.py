@@ -1,4 +1,3 @@
-from __future__ import print_function
 ##
 ## Picon renderer by Gruffy .. some speedups by Ghost
 ##

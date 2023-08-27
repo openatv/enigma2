@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from . import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox

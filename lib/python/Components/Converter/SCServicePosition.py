@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 import time
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll

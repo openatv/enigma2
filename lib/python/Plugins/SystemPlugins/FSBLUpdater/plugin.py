@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.config import config, ConfigBoolean
 from Screens.ChoiceBox import ChoiceBox
 from Plugins.Plugin import PluginDescriptor

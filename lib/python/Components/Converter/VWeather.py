@@ -15,7 +15,6 @@
 #######################################################################
 
 
-from __future__ import print_function
 import requests
 from xml.dom.minidom import parseString
 

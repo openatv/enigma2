@@ -1,5 +1,4 @@
 # takes a header file, outputs action ids
-from __future__ import print_function
 import tokenize
 import sys
 

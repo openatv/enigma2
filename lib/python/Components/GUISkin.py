@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
 from skin import applyAllAttributes
 from Tools.CList import CList
@@ -44,7 +42,7 @@ class GUISkin:
 			applyAllAttributes(w.instance, desktop, w.skinAttributes, self.scale)
 
 		for f in self.onLayoutFinish:
-			if not isinstance(f, type(self.close)): # is this the best way to do this?
+			if not isinstance(f, type(self.close)):  # is this the best way to do this?
 				exec(f, globals(), locals())
 			else:
 				f()
@@ -85,7 +83,7 @@ class GUISkin:
 
 	def applySkin(self):
 		z = 0
-		baseres = (720, 576) # FIXME: a skin might have set another resolution, which should be the base res
+		baseres = (720, 576)  # FIXME: a skin might have set another resolution, which should be the base res
 		idx = 0
 		skin_title_idx = -1
 		title = self.title

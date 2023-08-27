@@ -1,4 +1,3 @@
-from __future__ import print_function
 #read the comment to this file in lib/service/iservice.h !!
 import sys
 import os

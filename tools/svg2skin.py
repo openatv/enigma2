@@ -9,7 +9,6 @@
 #
 # tested only with a single inkscape-generated SVG.
 
-from __future__ import print_function
 import sys
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler

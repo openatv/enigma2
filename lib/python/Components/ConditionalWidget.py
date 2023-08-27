@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
 from enigma import eTimer
 
@@ -68,8 +67,8 @@ class BlinkingWidgetConditional(BlinkingWidget, ConditionalWidget):
 
 	def activateCondition(self, condition):
 		if condition:
-			if not self.blinking: # we are already blinking
+			if not self.blinking:  # we are already blinking
 				self.startBlinking()
 		else:
-			if self.blinking: # we are blinking
+			if self.blinking:  # we are blinking
 				self.stopBlinking()

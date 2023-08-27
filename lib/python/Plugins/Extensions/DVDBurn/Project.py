@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Tools.Directories import fileExists
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, ConfigSequence, ConfigSubList
 from . import Title
