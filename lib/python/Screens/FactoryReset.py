@@ -35,7 +35,7 @@ class FactoryReset(Setup, ProtectedScreen):
 	def isProtected(self):
 		return config.ParentalControl.configured.value and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.manufacturer_reset.value
 
-	def createSetup(self):
+	def createSetup(self):  # NOSONAR silence S2638
 		self.analyzeConfig()
 		Setup.createSetup(self)
 

@@ -289,7 +289,7 @@ class DNSSettings(Setup):
 		dnsRefresh(refresh)
 		return option
 
-	def createSetup(self):
+	def createSetup(self):  # NOSONAR silence S2638
 		Setup.createSetup(self)
 		dnsList = self["config"].getList()
 		self.dnsStart = len(dnsList)

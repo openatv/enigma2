@@ -184,7 +184,7 @@ class CIconfigMenu(Screen):
 		if answer:
 			try:
 				os.remove(self.filename)
-			except:
+			except OSError:
 				print("[CI_Config_CI%d] error remove xml..." % self.ci_slot)
 			else:
 				self.session.openWithCallback(self.restartGui, MessageBox, _("Restart GUI now?"), MessageBox.TYPE_YESNO)
@@ -301,7 +301,7 @@ class CIconfigMenu(Screen):
 			fp.write("\t</slot>\n")
 			fp.write("</ci>\n")
 			fp.close()
-		except:
+		except OSError:
 			print("[CI_Config_CI%d] xml not written" % self.ci_slot)
 			os.unlink(self.filename)
 
@@ -342,7 +342,7 @@ class CIconfigMenu(Screen):
 			print("[CI_Config_CI%d] error parsing xml..." % self.ci_slot)
 			try:
 				os.remove(self.filename)
-			except:
+			except OSError:
 				print("[CI_Activate_Config_CI%d] error remove damaged xml..." % self.ci_slot)
 
 		for item in self.read_services:

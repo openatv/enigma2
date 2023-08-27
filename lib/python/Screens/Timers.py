@@ -1277,7 +1277,7 @@ class PowerTimerEdit(Setup):
 		for callback in onPowerTimerCreate:
 			callback(self)
 
-	def createSetup(self):
+	def createSetup(self):  # NOSONAR silence S2638
 		Setup.createSetup(self)
 		for callback in onPowerTimerSetup:
 			callback(self)
@@ -1470,7 +1470,7 @@ class RecordTimerEdit(Setup):
 		for callback in onRecordTimerCreate:
 			callback(self)
 
-	def createSetup(self):
+	def createSetup(self):  # NOSONAR silence S2638
 		Setup.createSetup(self)
 		for callback in onRecordTimerSetup:
 			callback(self)

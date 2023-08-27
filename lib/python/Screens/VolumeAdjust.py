@@ -58,7 +58,7 @@ class VolumeAdjust(Setup):
 		self.serviceVolume = self.volumeControl.getVolume()
 		self.normalVolume = VolumeInstance.getNormalVolume()
 
-	def createSetup(self):
+	def createSetup(self):  # NOSONAR silence S2638
 		self.list = []
 		Setup.createSetup(self)
 		volumeList = self["config"].getList()

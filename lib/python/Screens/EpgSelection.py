@@ -2142,7 +2142,7 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self["Active1"].hide()
 			self["piconCh1"].newService(None)
-			self["currCh1"].setText(str(" "))
+			self["currCh1"].setText(" ")
 			self["list1"].hide()
 		prgIndex = prgIndex + 1
 		if prgIndex < (x + 1):
@@ -2156,7 +2156,7 @@ class EPGSelection(Screen, HelpableScreen):
 			l.fillSingleEPG(myService, stime)
 		else:
 			self["piconCh2"].newService(None)
-			self["currCh2"].setText(str(" "))
+			self["currCh2"].setText(" ")
 			self["list2"].hide()
 		prgIndex = prgIndex + 1
 		if prgIndex < (x + 1):
@@ -2170,7 +2170,7 @@ class EPGSelection(Screen, HelpableScreen):
 			l.fillSingleEPG(myService, stime)
 		else:
 			self["piconCh3"].newService(None)
-			self["currCh3"].setText(str(" "))
+			self["currCh3"].setText(" ")
 			self["list3"].hide()
 		if self.Fields == 6:
 			prgIndex = prgIndex + 1
@@ -2185,7 +2185,7 @@ class EPGSelection(Screen, HelpableScreen):
 				l.fillSingleEPG(myService, stime)
 			else:
 				self["piconCh4"].newService(None)
-				self["currCh4"].setText(str(" "))
+				self["currCh4"].setText(" ")
 				self["piconCh4"].newService(None)
 				self["list4"].hide()
 			prgIndex = prgIndex + 1
@@ -2200,13 +2200,13 @@ class EPGSelection(Screen, HelpableScreen):
 				l.fillSingleEPG(myService, stime)
 			else:
 				self["piconCh5"].newService(None)
-				self["currCh5"].setText(str(" "))
+				self["currCh5"].setText(" ")
 				self["list5"].hide()
 		else:
-			self["currCh4"].setText(str(" "))
+			self["currCh4"].setText(" ")
 			self["list4"].hide()
 			self["Active4"].hide()
-			self["currCh5"].setText(str(" "))
+			self["currCh5"].setText(" ")
 			self["list5"].hide()
 			self["Active5"].hide()
 

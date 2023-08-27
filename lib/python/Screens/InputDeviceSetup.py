@@ -131,7 +131,7 @@ class InputDeviceSetup(Setup):
 	def cleanup(self):
 		inputDevices.currentDevice = None
 
-	def createSetup(self):
+	def createSetup(self, appendItems=None, prependItems=None):
 		settingsList = []
 		if self.enableEntry and isinstance(self.enableEntry[1], ConfigYesNo):
 			settingsList.append(self.enableEntry)
@@ -333,7 +333,7 @@ class RemoteControlType(Setup):
 		Setup.__init__(self, session, None)
 		self.setTitle(_("Setup InputDevice"))
 
-	def createSetup(self):
+	def createSetup(self, appendItems=None, prependItems=None):
 		settingsList = []
 		if self.rctype is None:
 			rctype = config.plugins.remotecontroltype.rctype.value
