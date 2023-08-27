@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-from Components.Task import Task, Job
-from Tools.Directories import fileExists, shellquote
-from Components.MovieList import MOVIE_EXTENSIONS
+from os import listdir
+from os.path import basename, getsize, isdir, isfile, join, splitext
 from enigma import eTimer
-import os
+from Components.MovieList import MOVIE_EXTENSIONS
+from Components.Task import Job, Task
+from Tools.Directories import fileExists, shellquote
 
 ALL_MOVIE_EXTENSIONS = MOVIE_EXTENSIONS.union((".ts",))
 
@@ -21,10 +21,10 @@ class FileTransferTask(Task):
 		self.src_isDir = src_isDir
 		self.src_file = src_file
 		self.dst_isDir = False
-		self.dst_file = dst_file + "/" + os.path.basename(src_file)
+		self.dst_file = join(dst_file, basename(src_file))
 		src_file_append = ""
 		if not src_isDir:
-			root, ext = os.path.splitext(src_file)
+			root, ext = splitext(src_file)
 			if ext in ALL_MOVIE_EXTENSIONS:
 				src_file = root
 				src_file_append = ".*"
@@ -50,7 +50,7 @@ class FileTransferTask(Task):
 					dst_dir_size = self.dst_file + mv_dir[1]
 			dst_size = float(self.dirSize(dst_dir_size))
 		else:
-			dst_size = float(os.path.getsize(self.dst_file))
+			dst_size = float(getsize(self.dst_file))
 		progress = dst_size / self.src_size * 100.0
 		self.setProgress(progress)
 		self.progressTimer.start(self.updateTime, True)
@@ -60,7 +60,7 @@ class FileTransferTask(Task):
 			if self.src_isDir:
 				self.src_size = float(self.dirSize(self.src_file))
 			else:
-				self.src_size = float(os.path.getsize(self.src_file))
+				self.src_size = float(getsize(self.src_file))
 			self.updateTime = max(1000, int(self.src_size * 0.000001 * 0.5))  # based on 20Mb/s transfer rate
 			self.progressTimer.start(self.updateTime, True)
 
@@ -69,12 +69,12 @@ class FileTransferTask(Task):
 		self.setProgress(100)
 
 	def dirSize(self, folder):
-		total_size = os.path.getsize(folder)
-		for item in os.listdir(folder):
-			itempath = os.path.join(folder, item)
-			if os.path.isfile(itempath):
-				total_size += os.path.getsize(itempath)
-			elif os.path.isdir(itempath):
+		total_size = getsize(folder)
+		for item in listdir(folder):
+			itempath = join(folder, item)
+			if isfile(itempath):
+				total_size += getsize(itempath)
+			elif isdir(itempath):
 				total_size += self.dirSize(itempath)
 		return total_size
 
