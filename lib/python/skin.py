@@ -1,7 +1,7 @@
 from glob import glob
 from os.path import dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
-from xml.etree.cElementTree import Element, ElementTree, fromstring
+from xml.etree.ElementTree import Element, ElementTree, fromstring
 
 from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 

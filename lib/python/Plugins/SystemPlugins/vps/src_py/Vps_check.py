@@ -10,7 +10,7 @@ from time import time
 from Components.config import config
 from .Vps import vps_exe, vps_timers
 import NavigationInstance
-from xml.etree.cElementTree import parse as xml_parse
+from xml.etree.ElementTree import parse as xml_parse
 import six
 
 check_pdc_interval_available = 3600 * 24 * 30 * 12

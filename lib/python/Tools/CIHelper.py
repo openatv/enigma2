@@ -1,4 +1,4 @@
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceReference
 from timer import TimerEntry
 import NavigationInstance
