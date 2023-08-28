@@ -484,11 +484,18 @@ class CiSelection(Setup):
 	def cancelCB(self, value):
 		pass
 
-	def keyCancel(self):
+	def unregisterHandler(self):
 		for slot in range(SystemInfo["CommonInterface"]):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				CiHandler.unregisterCIMessageHandler(slot)
+
+	def keySave(self):
+		self.unregisterHandler()
+		Setup.keySave(self)
+
+	def keyCancel(self):
+		self.unregisterHandler()
 		self.close()
 
 
