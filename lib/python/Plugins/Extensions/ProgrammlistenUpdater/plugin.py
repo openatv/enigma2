@@ -2,7 +2,6 @@ from glob import glob
 from os import chdir, makedirs, remove
 from os.path import exists, dirname, isfile, join
 from re import findall, S
-from six import ensure_str
 from shutil import rmtree, copy2
 from sys import modules
 from tarfile import open as taropen
@@ -43,7 +42,7 @@ def downloadPUPage(url):
 	try:
 		req = Request(url)  # req.add_header('User-Agent', 'VAS')
 		response = urlopen(req, timeout=10)
-		link = ensure_str(response.read())
+		link = response.read().decode()
 		response.close()
 		for link, name, date in findall(r'<td><a href="(.+?)">(.+?)</a></td>.*?<td>(.+?)</td>', link, flags=S):
 			prelink = url.replace("asd.php", "") if not link.startswith("http://") else ""
@@ -66,9 +65,8 @@ def DownloadInfo(url):
 	try:
 		req = Request(url)
 		response = urlopen(req, timeout=10)
-		link = response.read().decode("windows-1252")
+		text = response.read().decode("windows-1252")
 		response.close()
-		text = ensure_str(link)
 	except Exception as err:
 		print(f"ERROR Download History {url}: {err}")
 	return text
