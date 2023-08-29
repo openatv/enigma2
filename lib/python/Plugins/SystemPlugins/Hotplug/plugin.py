@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+from os import remove
+from os.path import isfile
+from twisted.internet.protocol import Protocol, Factory
+
 from Plugins.Plugin import PluginDescriptor
 from Components.Harddisk import harddiskmanager
-from twisted.internet.protocol import Protocol, Factory
-import os
-import os.path
-import six
 
 # globals
 hotplugNotifier = []
@@ -27,7 +27,7 @@ def processHotplugData(self, v):
 	media_state = v.get("X_E2_MEDIA_STATUS")
 	global audiocd
 
-	dev = device.split('/')[-1]
+	dev = device.split("/")[-1]
 
 	if action == "add":
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = harddiskmanager.addHotplugPartition(dev, physdevpath)
@@ -45,22 +45,21 @@ def processHotplugData(self, v):
 		# Default setting is to save last playlist on closing Mediaplayer.
 		# If audio cd is removed after Mediaplayer was closed,
 		# the playlist remains in if no other media was played.
-		if os.path.isfile('/etc/enigma2/playlist.e2pls'):
-			with open('/etc/enigma2/playlist.e2pls') as f:
+		if isfile("/etc/enigma2/playlist.e2pls"):
+			with open("/etc/enigma2/playlist.e2pls") as f:
 				file = f.readline().strip()
-		if file:
-			if '.cda' in file:
-				try:
-					os.remove('/etc/enigma2/playlist.e2pls')
-				except OSError:
-					pass
+		if file and ".cda" in file:
+			try:
+				remove("/etc/enigma2/playlist.e2pls")
+			except OSError:
+				pass
 		harddiskmanager.removeHotplugPartition(dev)
 		print("[Hotplug.plugin.py] REMOVING AUDIOCD")
 	elif media_state is not None:
-		if media_state == '1':
+		if media_state == "1":
 			harddiskmanager.removeHotplugPartition(dev)
 			harddiskmanager.addHotplugPartition(dev, physdevpath)
-		elif media_state == '0':
+		elif media_state == "0":
 			harddiskmanager.removeHotplugPartition(dev)
 
 	for callback in hotplugNotifier:
@@ -79,16 +78,17 @@ class Hotplug(Protocol):
 		self.received = ""
 
 	def dataReceived(self, data):
-		data = six.ensure_str(data)
+		if isinstance(data, bytes):
+			data = data.decode()
 		self.received += data
 		print("[Hotplug.plugin.py] complete", self.received)
 
 	def connectionLost(self, reason):
 		print("[Hotplug.plugin.py] connection lost!")
-		data = self.received.split('\0')[:-1]
+		data = self.received.split("\0")[:-1]
 		v = {}
 		for x in data:
-			i = x.find('=')
+			i = x.find("=")
 			var, val = x[:i], x[i + 1:]
 			v[var] = val
 		processHotplugData(self, v)
@@ -98,7 +98,7 @@ def autostart(reason, **kwargs):
 	if reason == 0:
 		from twisted.internet import reactor
 		try:
-			os.remove("/tmp/hotplug.socket")
+			remove("/tmp/hotplug.socket")
 		except OSError:
 			pass
 		factory = Factory()
