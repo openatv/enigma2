@@ -7,7 +7,6 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Components.Console import Console
 from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-import six
 
 
 class MediumToolbox(Screen):
@@ -81,7 +80,8 @@ class MediumToolbox(Screen):
 		self.update()
 
 	def mediainfoCB(self, mediuminfo, retval, extra_args):
-		mediuminfo = six.ensure_str(mediuminfo)
+		if isinstance(mediuminfo, bytes):
+			mediuminfo = mediuminfo.decode()
 		formatted_capacity = 0
 		read_capacity = 0
 		capacity = 0
