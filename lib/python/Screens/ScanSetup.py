@@ -13,7 +13,6 @@ from Tools.Transponder import getChannelNumber, channel2frequency, supportedChan
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParametersATSC, eConsoleAppContainer, eDVBResourceManager, iDVBFrontend
-import six
 
 
 def buildTerTransponder(frequency,
@@ -225,13 +224,14 @@ class CableTransponderSearchSupport:
 		print("cableTransponderSearch finished", retval)
 		self.cable_search_session.close(True)
 
-	def getCableTransponderData(self, str):
-		str = six.ensure_str(str)
+	def getCableTransponderData(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
 		#prepend any remaining data from the previous call
-		str = self.remainingdata + str
+		data = self.remainingdata + data
 		#split in lines
-		lines = str.split('\n')
-		#'str' should end with '\n', so when splitting, the last line should be empty. If this is not the case, we received an incomplete line
+		lines = data.split('\n')
+		#'data' should end with '\n', so when splitting, the last line should be empty. If this is not the case, we received an incomplete line
 		if len(lines[-1]):
 			#remember this data for next time
 			self.remainingdata = lines[-1]
@@ -243,7 +243,7 @@ class CableTransponderSearchSupport:
 			data = line.split()
 			if len(data):
 				if data[0] == 'OK':
-					print(str)
+					print(data)
 					parm = eDVBFrontendParametersCable()
 					qam = {"QAM16": parm.Modulation_QAM16,
 						"QAM32": parm.Modulation_QAM32,
@@ -445,9 +445,10 @@ class TerrestrialTransponderSearchSupport:
 			(freq, bandWidth) = opt
 			self.terrestrialTransponderSearch(freq, bandWidth)
 
-	def getTerrestrialTransponderData(self, str):
-		str = six.ensure_str(str)
-		self.terrestrial_search_data += str
+	def getTerrestrialTransponderData(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
+		self.terrestrial_search_data += data
 
 	def setTerrestrialTransponderData(self):
 		print(self.terrestrial_search_data)
