@@ -1,6 +1,5 @@
-import six
-
-import os
+from os import remove, unlink
+from os.path import exists
 from xml.etree.ElementTree import parse
 
 from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
@@ -10,15 +9,15 @@ from Components.ActionMap import ActionMap
 from Components.config import ConfigNothing
 from Components.ConfigList import ConfigList
 from Components.SelectionList import SelectionList
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
-from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChannelSelection import *
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Components.Sources.StaticText import StaticText
 from Screens.Standby import TryQuitMainloop
+from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools.CIHelper import cihelper
 from Tools.XMLTools import stringToXML
@@ -46,7 +45,7 @@ class CIselectMainMenu(Screen):
 
 		NUM_CI = SystemInfo["CommonInterface"]
 
-		print("[CI_Wizzard] FOUND %d CI Slots " % NUM_CI)
+		print(f"[CI_Wizzard] FOUND {NUM_CI} CI Slots")
 
 		self.dlg = None
 		self.state = {}
@@ -55,15 +54,17 @@ class CIselectMainMenu(Screen):
 			for slot in range(NUM_CI):
 				state = eDVBCI_UI.getInstance().getState(slot)
 				if state != -1:
-					appname = _("Slot %d") % (slot + 1) + " - " + _("unknown error")
+					appname = _("Slot %d") % (slot + 1) + " - "
 					if state == 0:
-						appname = _("Slot %d") % (slot + 1) + " - " + _("no module found")
+						appname += _("no module found")
 					elif state == 1:
-						appname = _("Slot %d") % (slot + 1) + " - " + _("init modules")
+						appname += _("init modules")
 					elif state == 2:
-						appname = _("Slot %d") % (slot + 1) + " - " + eDVBCI_UI.getInstance().getAppName(slot)
+						appname += eDVBCI_UI.getInstance().getAppName(slot)
 					elif state == 3:
-						appname = _("Slot %d") % (slot + 1) + " - " + _("module disabled")
+						appname += _("module disabled")
+					else:
+						appname += _("unknown error")
 					self.list.append((appname, ConfigNothing(), 0, slot))
 		else:
 			self.list.append((_("no CI slots found"), ConfigNothing(), 1, -1))
@@ -84,7 +85,7 @@ class CIselectMainMenu(Screen):
 			if action == 1:
 				print("[CI_Wizzard] there is no CI Slot in your receiver")
 			else:
-				print("[CI_Wizzard] selected CI Slot : %d" % slot)
+				print(f"[CI_Wizzard] selected CI Slot : {slot}")
 				if config.usage.setup_level.index > 1:  # advanced
 					self.session.open(CIconfigMenu, slot)
 				else:
@@ -114,7 +115,7 @@ class CIconfigMenu(Screen):
 
 		Screen.__init__(self, session)
 		self.ci_slot = ci_slot
-		self.filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(self.ci_slot) + ".xml"
+		self.filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + f"{self.ci_slot}.xml"
 
 		self["key_red"] = StaticText(_("Delete"))
 		self["key_green"] = StaticText(_("Add service"))
@@ -135,7 +136,7 @@ class CIconfigMenu(Screen):
 				"cancel": self.cancel
 			}, -1)
 
-		print("[CI_Wizzard_Config] Configuring CI Slots : %d  " % self.ci_slot)
+		print(f"[CI_Wizzard_Config] Configuring CI Slots : {self.ci_slot}")
 
 		i = 0
 		self.caidlist = []
@@ -143,7 +144,7 @@ class CIconfigMenu(Screen):
 			i += 1
 			self.caidlist.append((str(hex(int(caid))), str(caid), i))
 
-		print("[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" % (self.ci_slot, self.caidlist))
+		print(f"[CI_Wizzard_Config_CI{self.ci_slot}] read following CAIds from CI: {self.caidlist}")
 
 		self.selectedcaid = []
 		self.servicelist = []
@@ -177,15 +178,15 @@ class CIconfigMenu(Screen):
 		self.session.openWithCallback(self.finishedCAidSelection, CAidSelect, self.caidlist, self.selectedcaid)
 
 	def menuPressed(self):
-		if os.path.exists(self.filename):
-			self.session.openWithCallback(self.deleteXMLfile, MessageBox, _("Delete file") + " " + self.filename + "?", MessageBox.TYPE_YESNO)
+		if exists(self.filename):
+			self.session.openWithCallback(self.deleteXMLfile, MessageBox, _("Delete file") + f" {self.filename}?", MessageBox.TYPE_YESNO)
 
 	def deleteXMLfile(self, answer):
 		if answer:
 			try:
-				os.remove(self.filename)
+				remove(self.filename)
 			except OSError:
-				print("[CI_Config_CI%d] error remove xml..." % self.ci_slot)
+				print(f"[CI_Config_CI{self.ci_slot}] error remove xml...")
 			else:
 				self.session.openWithCallback(self.restartGui, MessageBox, _("Restart GUI now?"), MessageBox.TYPE_YESNO)
 
@@ -199,10 +200,7 @@ class CIconfigMenu(Screen):
 		self.close()
 
 	def setServiceListInfo(self):
-		if len(self.servicelist):
-			self["ServiceList_info"].setText("")
-		else:
-			self["ServiceList_info"].setText(_("No services/providers selected"))
+		self["ServiceList_info"].setText("" if self.servicelist else _("No services/providers selected"))
 
 	def delete(self):
 		cur = self["ServiceList"].getCurrent()
@@ -260,12 +258,12 @@ class CIconfigMenu(Screen):
 					self.setServiceListInfo()
 
 	def finishedCAidSelection(self, *args):
-		if len(args):
+		if args:
 			self.selectedcaid = args[0]
 			self.caids = ""
-			if len(self.selectedcaid):
+			if self.selectedcaid:
 				for item in self.selectedcaid:
-					if len(self.caids):
+					if self.caids:
 						self.caids += ", " + item[0]
 					else:
 						self.caids = item[0]
@@ -279,34 +277,31 @@ class CIconfigMenu(Screen):
 
 	def saveXML(self):
 		try:
-			fp = open(self.filename, 'w')
-			fp.write("<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n")
-			fp.write("<ci>\n")
-			fp.write("\t<slot>\n")
-			fp.write("\t\t<id>%s</id>\n" % self.ci_slot)
-			for item in self.selectedcaid:
-				if len(self.selectedcaid):
-					fp.write("\t\t<caid id=\"%s\" />\n" % item[0])
-			for item in self.servicelist:
-				if len(self.servicelist):
+			with open(self.filename, "w") as fd:
+				fd.write("<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n")
+				fd.write("<ci>\n")
+				fd.write("\t<slot>\n")
+				fd.write(f"\t\t<id>{self.ci_slot}</id>\n")
+				for item in self.selectedcaid:
+					fd.write("\t\t<caid id=\"%s\" />\n" % item[0])
+				for item in self.servicelist:
 					name = item[0].replace('<', '&lt;')
 					name = name.replace('&', '&amp;')
 					name = name.replace('>', '&gt;')
 					name = name.replace('"', '&quot;')
 					name = name.replace("'", '&apos;')
 					if item[2] == 1:
-						fp.write("\t\t<provider name=\"%s\" dvbnamespace=\"%s\" />\n" % (stringToXML(name), item[3]))
+						fd.write("\t\t<provider name=\"%s\" dvbnamespace=\"%s\" />\n" % (stringToXML(name), item[3]))
 					else:
-						fp.write("\t\t<service name=\"%s\" ref=\"%s\" />\n" % (stringToXML(name), item[3]))
-			fp.write("\t</slot>\n")
-			fp.write("</ci>\n")
-			fp.close()
+						fd.write("\t\t<service name=\"%s\" ref=\"%s\" />\n" % (stringToXML(name), item[3]))
+				fd.write("\t</slot>\n")
+				fd.write("</ci>\n")
 		except OSError:
-			print("[CI_Config_CI%d] xml not written" % self.ci_slot)
-			os.unlink(self.filename)
+			print(f"[CI_Config_CI{self.ci_slot}] xml not written")
+			unlink(self.filename)
 
 	def loadXML(self):
-		if not os.path.exists(self.filename):
+		if not exists(self.filename):
 			self.setServiceListInfo()
 			return
 
@@ -320,28 +315,28 @@ class CIconfigMenu(Screen):
 		try:
 			tree = parse(self.filename).getroot()
 			for slot in tree.findall("slot"):
-				read_slot = six.ensure_str(getValue(slot.findall("id"), False))
+				read_slot = getValue(slot.findall("id"), False)
 				i = 0
 				for caid in slot.findall("caid"):
-					read_caid = caid.get("id").encode("UTF-8")
+					read_caid = caid.get("id")  # .encode("UTF-8")
 					self.selectedcaid.append((str(read_caid), str(read_caid), i))
 					self.usingcaid.append(int(read_caid, 16))
 					i += 1
 
 				for service in slot.findall("service"):
-					read_service_name = six.ensure_str(service.get("name"))
-					read_service_ref = six.ensure_str(service.get("ref"))
+					#read_service_name = service.get("name")
+					read_service_ref = service.get("ref")
 					self.read_services.append(read_service_ref)
 
 				for provider in slot.findall("provider"):
-					read_provider_name = six.ensure_str(provider.get("name"))
-					read_provider_dvbname = six.ensure_str(provider.get("dvbnamespace"))
+					read_provider_name = provider.get("name")
+					read_provider_dvbname = provider.get("dvbnamespace")
 					self.read_providers.append((read_provider_name, read_provider_dvbname))
 				self.ci_config.append((int(read_slot), (self.read_services, self.read_providers, self.usingcaid)))
 		except:
 			print("[CI_Config_CI%d] error parsing xml..." % self.ci_slot)
 			try:
-				os.remove(self.filename)
+				remove(self.filename)
 			except OSError:
 				print("[CI_Activate_Config_CI%d] error remove damaged xml..." % self.ci_slot)
 
