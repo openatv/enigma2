@@ -1,12 +1,9 @@
-from os import system, rename, path, mkdir, remove
-from time import sleep
 from re import search, sub
-from six import ensure_str
+from os import system, rename, mkdir, remove
+from os.path import exists, realpath
+from time import sleep
 from enigma import eTimer
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.ConfigList import ConfigListScreen
@@ -15,6 +12,9 @@ from Components.Console import Console
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
 from Tools.LoadPixmap import LoadPixmap
 
 MODEL = BoxInfo.getItem("model")
@@ -129,7 +129,7 @@ class HddMount(Screen):
 			device2 = device[:7]
 		else:
 			device2 = sub(r'[\d]', '', device)
-		devicetype = path.realpath('/sys/block/' + device2 + '/device')
+		devicetype = realpath('/sys/block/' + device2 + '/device')
 		name = 'USB: '
 		mypixmap = '/usr/share/enigma2/icons/dev_usbstick.png'
 		if device2.startswith('mmcblk'):
@@ -243,7 +243,7 @@ class HddMount(Screen):
 			mounts.close()
 			for line in mountcheck:
 				parts = line.strip().split(" ")
-				if path.realpath(parts[0]).startswith(device):
+				if realpath(parts[0]).startswith(device):
 					self.session.open(MessageBox, _("Can't unmount partition, make sure it is not being used for swap or record/time shift paths"), MessageBox.TYPE_INFO)
 			self.updateList()
 
@@ -254,7 +254,7 @@ class HddMount(Screen):
 			self.device = sel[4]
 			if self.mountp.find('/media/hdd') < 0:
 				self.Console.ePopen('umount ' + self.device)
-				if not path.exists('/media/hdd'):
+				if not exists('/media/hdd'):
 					mkdir('/media/hdd', 0o755)
 				else:
 					self.Console.ePopen('umount /media/hdd')
@@ -266,12 +266,12 @@ class HddMount(Screen):
 	def add_fstab(self, result=None, retval=None, extra_args=None):
 		self.device = extra_args[0]
 		self.mountp = extra_args[1]
-		self.device_uuid_tmp = ensure_str(result).split('UUID=')
+		self.device_uuid_tmp = result.split('UUID=')
 		self.device_uuid_tmp = self.device_uuid_tmp[1].replace('"', "")
 		self.device_uuid_tmp = self.device_uuid_tmp.replace('\n', "")
 		self.device_uuid_tmp = self.device_uuid_tmp.split()[0]
 		self.device_uuid = 'UUID=' + self.device_uuid_tmp
-		if not path.exists(self.mountp):
+		if not exists(self.mountp):
 			mkdir(self.mountp, 0o755)
 		open('/etc/fstab.tmp', 'w').writelines([l for l in open('/etc/fstab').readlines() if '/media/hdd' not in l])
 		rename('/etc/fstab.tmp', '/etc/fstab')
@@ -326,7 +326,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		f = open('/tmp/devices.tmp')
 		swapdevices = f.read()
 		f.close()
-		if path.exists('/tmp/devices.tmp'):
+		if exists('/tmp/devices.tmp'):
 			remove('/tmp/devices.tmp')
 		swapdevices = swapdevices.replace('\n', '')
 		swapdevices = swapdevices.split('/')
@@ -358,7 +358,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			device2 = device[:7]
 		else:
 			device2 = sub(r'[\d]', '', device)
-		devicetype = path.realpath('/sys/block/' + device2 + '/device')
+		devicetype = realpath('/sys/block/' + device2 + '/device')
 		name = 'USB: '
 		mypixmap = '/usr/share/enigma2/icons/dev_usbstick.png'
 		if device2.startswith('mmcblk'):
@@ -456,7 +456,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		if len(result) == 0 or " UUID=" not in result:
 			print("[MountManager] error get UUID for device %s" % self.device)
 			return
-		self.device_tmp = ensure_str(result).split(' ')
+		self.device_tmp = result.split(' ')
 		if self.device_tmp[0].startswith('UUID='):
 			self.device_uuid = self.device_tmp[0].replace('"', "")
 			self.device_uuid = self.device_uuid.replace('\n', "")
@@ -496,7 +496,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		if self.device_type.startswith('ext'):
 			self.device_type = 'auto'
 
-		if not path.exists(self.mountp):
+		if not exists(self.mountp):
 			mkdir(self.mountp, 0o755)
 		open('/etc/fstab.tmp', 'w').writelines([l for l in open('/etc/fstab').readlines() if self.device not in l])
 		rename('/etc/fstab.tmp', '/etc/fstab')
