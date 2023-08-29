@@ -13,7 +13,6 @@ from Components.International import international
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileWriteLine, fileReadLines, fileReadXML, resolveFilename, pathExists
 
-from six import ensure_str
 MODULE_NAME = __name__.split(".")[-1]
 
 REMOTE_MODEL = 0
@@ -36,8 +35,7 @@ class InputDevices:
 				_buffer = "\0" * 512
 				self.fd = osopen("/dev/input/%s" % device, O_RDWR | O_NONBLOCK)
 				self.name = ioctl(self.fd, self.EVIOCGNAME(256), _buffer)
-				self.name = self.name[:self.name.find(b"\0")]
-				self.name = ensure_str(self.name)
+				self.name = self.name[:self.name.find(b"\0")].decode()
 				if str(self.name).find("Keyboard") != -1:
 					self.name = 'keyboard'
 				osclose(self.fd)
