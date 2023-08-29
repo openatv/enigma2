@@ -1,6 +1,5 @@
 from os import X_OK, access, chmod
 from time import localtime, strftime, time
-import six
 from enigma import eConsoleAppContainer, eEnv, eEPGCache, eServiceReference, eTimer, getBestPlayableServiceReference
 
 import NavigationInstance
@@ -47,8 +46,9 @@ class vps_timer:
 			self.program_try_search_running = False
 			self.stop_simulation()
 
-	def program_dataAvail(self, str):
-		str = six.ensure_str(str)
+	def program_dataAvail(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
 		if self.timer is None or self.timer.state == TimerEntry.StateEnded or self.timer.cancelled:
 			self.program_abort()
 			self.stop_simulation()
@@ -60,7 +60,7 @@ class vps_timer:
 			self.stop_simulation()
 			return
 
-		lines = str.split("\n")
+		lines = data.split("\n")
 		for line in lines:
 			data = line.split()
 			if len(data) == 0:

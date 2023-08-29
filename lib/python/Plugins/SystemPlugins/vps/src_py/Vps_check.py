@@ -11,7 +11,6 @@ from Components.config import config
 from .Vps import vps_exe, vps_timers
 import NavigationInstance
 from xml.etree.ElementTree import parse as xml_parse
-import six
 
 check_pdc_interval_available = 3600 * 24 * 30 * 12
 check_pdc_interval_unavailable = 3600 * 24 * 30 * 2
@@ -30,7 +29,6 @@ class VPS_check_PDC:
 			if xmlroot is not None:
 				for xml in xmlroot.findall("channel"):
 					serviceref = xml.get("serviceref")
-					serviceref = six.ensure_str(serviceref)
 					has_pdc = xml.get("has_pdc")
 					last_check = xml.get("last_check")
 					default_vps = xml.get("default_vps")
@@ -204,9 +202,10 @@ class VPS_check(Screen):
 			self.setServicePDC(-1)
 			self.finish()
 
-	def program_dataAvail(self, str):
-		str = six.ensure_str(str)
-		lines = str.split("\n")
+	def program_dataAvail(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
+		lines = data.split("\n")
 		for line in lines:
 			if line == "PDC_AVAILABLE" and not self.calledfinished:
 				self.calledfinished = True
