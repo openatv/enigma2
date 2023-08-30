@@ -1010,14 +1010,34 @@ class AttributeParser:
 		self.guiObject.setSelectionPixmap(parsePixmap(value, self.desktop))
 
 	def selectionZoom(self, value):
+		data = (x.strip() for x in value.split(","))
+		value = data[0]
+		mode = eListbox.zoomContentZoom
+		if len(data) == 2:
+			options = {
+				"zoomContent": eListbox.zoomContentZoom,
+				"moveContent": eListbox.zoomContentMove,
+				"ignoreContent": eListbox.zoomContentOff
+			}
+			mode = parseOptions(options, "selectionZoom", data[1], mode)
 		value = parseInteger(value, 0)
 		if value > 500:
 			value = 500
-		self.guiObject.setSelectionZoom(float("%d.%02d" % ((value // 100) + 1, value % 100)))
+		self.guiObject.setSelectionZoom(float("%d.%02d" % ((value // 100) + 1, value % 100)), mode)
 
 	def selectionZoomSize(self, value):
+		data = (x.strip() for x in value.split(","))
+		value = "%s,%s" % (data[0], data[1])
+		mode = eListbox.zoomContentZoom
+		if len(data) == 3:
+			options = {
+				"zoomContent": eListbox.zoomContentZoom,
+				"moveContent": eListbox.zoomContentMove,
+				"ignoreContent": eListbox.zoomContentOff
+			}
+			mode = parseOptions(options, "selectionZoomSize", data[2], mode)
 		size = parseValuePair(value, self.scaleTuple, self.guiObject, self.desktop)
-		self.guiObject.setSelectionZoomSize(size[0], size[1])
+		self.guiObject.setSelectionZoomSize(size[0], size[1], mode)
 
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value, 0x00000000))
