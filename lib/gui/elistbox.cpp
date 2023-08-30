@@ -209,11 +209,25 @@ int eListbox::setScrollbarPosition()
 	{
 		if (m_orientation == orHorizontal)
 		{
+
+			if (m_style.m_selection_width != m_itemwidth)
+			{
+				xOffset += (m_style.m_selection_width - m_itemwidth) / 2;
+				x = xOffset;
+			}
+
 			if (xOffset > 0)
 				width -= (xOffset * 2);
 		}
 		else
 		{
+
+			if (m_style.m_selection_height != m_itemheight)
+			{
+				yOffset += (m_style.m_selection_height - m_itemheight) / 2;
+				y = yOffset;
+			}
+
 			if (yOffset > 0)
 				height -= (yOffset * 2);
 		}
@@ -719,11 +733,28 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 		int yfullSpace = size().height() - yscrollBar;
 		int xitemSpace = m_style.m_selection_width + m_defined_spacing.x();
 		if (m_max_columns > 1)
+		{
 			xitemSpace += ((m_max_columns - 1) * (m_itemwidth + m_defined_spacing.x()));
+
+			if (m_style.m_selection_width == m_itemwidth) // no zoom : remove 1 space
+				xitemSpace -= m_defined_spacing.x();
+			else
+			{ // zoom : remove 0.5 delta of zoom
+				xitemSpace -= ((m_style.m_selection_width - m_itemwidth) / 2);
+			}
+		}
 
 		int yitemSpace = m_style.m_selection_height + m_defined_spacing.y();
 		if (m_max_rows > 1)
+		{
 			yitemSpace += ((m_max_rows - 1) * (m_itemheight + m_defined_spacing.y()));
+			if (m_style.m_selection_height == m_itemheight) // no zoom : remove 1 space
+				yitemSpace -= m_defined_spacing.y();
+			else
+			{ // zoom : remove 0.5 delta of zoom
+				yitemSpace -= ((m_style.m_selection_height - m_itemheight) / 2);
+			}
+		}
 
 		int scrollbarLeftSpace = (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways) ? xscrollBar : 0;
 		int scrollbarTopSpace = (m_scrollbar_mode == showTopOnDemand || m_scrollbar_mode == showTopAlways) ? yscrollBar : 0;
