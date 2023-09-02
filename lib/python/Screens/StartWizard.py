@@ -183,6 +183,8 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 		self.resolutionTimer = eTimer()
 		self.resolutionTimer.callback.append(self.resolutionTimeout)
 		preferred = self.avSwitch.readPreferredModes(saveMode=True)
+		available = self.avSwitch.readAvailableModes()
+		preferred = list(set(preferred) & set(available))
 
 		if preferred:
 			if "2160p50" in preferred:
