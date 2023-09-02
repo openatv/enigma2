@@ -191,6 +191,7 @@ class Harddisk:
 
 		if MODEL == 'sf8008':
 			internal = ("usb1/1-1/1-1.1/1-1.1:1.0") in self.phys_path
+			internal = ("usb1/1-1/1-1.4/1-1.4:1.0") in self.phys_path
 
 		if card:
 			ret += type_name
