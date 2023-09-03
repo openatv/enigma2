@@ -704,6 +704,15 @@ def parseWrap(value):
 	return parseOptions(options, "wrap", value, 0)
 
 
+def parseZoom(mode, zoomType):
+	options = {
+		"zoomContent": eListbox.zoomContentZoom,
+		"moveContent": eListbox.zoomContentMove,
+		"ignoreContent": eListbox.zoomContentOff
+	}
+	return parseOptions(options, zoomType, mode, eListbox.zoomContentZoom)
+
+
 def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seekPointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarBackgroundPixmap", "scrollbarForegroundPixmap", "scrollbarbackgroundPixmap", "scrollbarBackgroundPicture", "scrollbarSliderPicture"))):
 	size = None
 	pos = None
@@ -1011,32 +1020,16 @@ class AttributeParser:
 
 	def selectionZoom(self, value):
 		data = [x.strip() for x in value.split(",")]
-		value = data[0]
-		mode = eListbox.zoomContentZoom
-		if len(data) == 2:
-			options = {
-				"zoomContent": eListbox.zoomContentZoom,
-				"moveContent": eListbox.zoomContentMove,
-				"ignoreContent": eListbox.zoomContentOff
-			}
-			mode = parseOptions(options, "selectionZoom", data[1], mode)
-		value = parseInteger(value, 0)
+		value = parseInteger(data[0], 0)
 		if value > 500:
 			value = 500
-		self.guiObject.setSelectionZoom(float("%d.%02d" % ((value // 100) + 1, value % 100)), mode)
+		mode = parseZoom(data[1], "selectionZoom") if len(data) == 2 else eListbox.zoomContentZoom
+		self.guiObject.setSelectionZoom(float(f"{(value // 100) + 1}.{value % 100:02}"), mode)
 
 	def selectionZoomSize(self, value):
 		data = [x.strip() for x in value.split(",")]
-		value = "%s,%s" % (data[0], data[1])
-		mode = eListbox.zoomContentZoom
-		if len(data) == 3:
-			options = {
-				"zoomContent": eListbox.zoomContentZoom,
-				"moveContent": eListbox.zoomContentMove,
-				"ignoreContent": eListbox.zoomContentOff
-			}
-			mode = parseOptions(options, "selectionZoomSize", data[2], mode)
-		size = parseValuePair(value, self.scaleTuple, self.guiObject, self.desktop)
+		size = parseValuePair(f"{data[0]},{data[1]}", self.scaleTuple, self.guiObject, self.desktop)
+		mode = parseZoom(data[2], "selectionZoomSize") if len(data) == 3 else eListbox.zoomContentZoom
 		self.guiObject.setSelectionZoomSize(size[0], size[1], mode)
 
 	def shadowColor(self, value):
