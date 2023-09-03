@@ -1053,6 +1053,12 @@ class AttributeParser:
 			value = _(value)
 		self.guiObject.setText(value)
 
+	def textBorderColor(self, value):
+		self.guiObject.setTextBorderColor(parseColor(value, 0x00FFFFFF))
+
+	def textBorderWidth(self, value):
+		self.guiObject.setTextBorderWidth(self.applyVerticalScale(value))
+
 	def textOffset(self, value):
 		self.textPadding(value)
 		attribDeprecationWarning("textOffset", "textPadding")
