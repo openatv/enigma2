@@ -418,6 +418,8 @@ private:
 	int m_item_alignment;
 	int xOffset;
 	int yOffset;
+	int m_x_itemSpace;
+	int m_y_itemSpace;
 
 	bool m_native_keys_bound;
 	int m_first_selectable_item;

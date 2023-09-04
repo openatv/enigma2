@@ -212,11 +212,14 @@ int eListbox::setScrollbarPosition()
 
 			if (m_style.m_selection_width != m_itemwidth)
 			{
-				xOffset += (m_style.m_selection_width - m_itemwidth) / 2;
-				x = xOffset;
+				x += (m_style.m_selection_width - m_itemwidth) / 2;
 			}
-
-			if (xOffset > 0)
+			if (m_x_itemSpace) {
+				width = m_x_itemSpace;
+				if (m_style.m_selection_width != m_itemwidth)
+					width -= ((m_style.m_selection_width - m_itemwidth) / 2);
+			}
+			else
 				width -= (xOffset * 2);
 		}
 		else
@@ -224,11 +227,15 @@ int eListbox::setScrollbarPosition()
 
 			if (m_style.m_selection_height != m_itemheight)
 			{
-				yOffset += (m_style.m_selection_height - m_itemheight) / 2;
-				y = yOffset;
+				y += (m_style.m_selection_height - m_itemheight) / 2;
 			}
 
-			if (yOffset > 0)
+			if (m_y_itemSpace) {
+				height = m_y_itemSpace;
+				if (m_style.m_selection_height != m_itemheight)
+					height -= (m_style.m_selection_height - m_itemheight);
+			}
+			else
 				height -= (yOffset * 2);
 		}
 	}
@@ -731,28 +738,28 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 		int yscrollBar = (m_orientation == orHorizontal) ? ((scrollbarVisible) ? m_scrollbar->size().height() + m_scrollbar_offset : 0) : 0;
 		int xfullSpace = size().width() - xscrollBar;
 		int yfullSpace = size().height() - yscrollBar;
-		int xitemSpace = m_style.m_selection_width + m_defined_spacing.x();
+		m_x_itemSpace = m_style.m_selection_width + m_defined_spacing.x();
 		if (m_max_columns > 1)
 		{
-			xitemSpace += ((m_max_columns - 1) * (m_itemwidth + m_defined_spacing.x()));
+			m_x_itemSpace += ((m_max_columns - 1) * (m_itemwidth + m_defined_spacing.x()));
 
 			if (m_style.m_selection_width == m_itemwidth) // no zoom : remove 1 space
-				xitemSpace -= m_defined_spacing.x();
+				m_x_itemSpace -= m_defined_spacing.x();
 			else
 			{ // zoom : remove 0.5 delta of zoom
-				xitemSpace -= ((m_style.m_selection_width - m_itemwidth) / 2);
+				m_x_itemSpace -= ((m_style.m_selection_width - m_itemwidth) / 2);
 			}
 		}
 
-		int yitemSpace = m_style.m_selection_height + m_defined_spacing.y();
+		m_y_itemSpace = m_style.m_selection_height + m_defined_spacing.y();
 		if (m_max_rows > 1)
 		{
-			yitemSpace += ((m_max_rows - 1) * (m_itemheight + m_defined_spacing.y()));
+			m_y_itemSpace += ((m_max_rows - 1) * (m_itemheight + m_defined_spacing.y()));
 			if (m_style.m_selection_height == m_itemheight) // no zoom : remove 1 space
-				yitemSpace -= m_defined_spacing.y();
+				m_y_itemSpace -= m_defined_spacing.y();
 			else
 			{ // zoom : remove 0.5 delta of zoom
-				yitemSpace -= ((m_style.m_selection_height - m_itemheight) / 2);
+				m_y_itemSpace -= ((m_style.m_selection_height - m_itemheight) / 2);
 			}
 		}
 
@@ -761,31 +768,31 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 
 		m_spacing = m_defined_spacing;
 
-		if (xfullSpace > xitemSpace)
+		if (xfullSpace > m_x_itemSpace)
 		{
 			if (m_item_alignment & itemHorizontalAlignCenter)
-				xOffset = ((xfullSpace - xitemSpace) / 2) + scrollbarLeftSpace;
+				xOffset = ((xfullSpace - m_x_itemSpace) / 2) + scrollbarLeftSpace;
 			if (m_item_alignment & itemHorizontalAlignRight)
-				xOffset = (xfullSpace - xitemSpace) + scrollbarLeftSpace;
+				xOffset = (xfullSpace - m_x_itemSpace) + scrollbarLeftSpace;
 			if (m_item_alignment & itemHorizontalAlignJustify)
 			{
 				xOffset = scrollbarLeftSpace;
-				xitemSpace = m_style.m_selection_width + ((m_max_columns - 1) * m_itemwidth);
-				int xspace = (xfullSpace - xitemSpace) / (m_max_columns - 1);
+				m_x_itemSpace = m_style.m_selection_width + ((m_max_columns - 1) * m_itemwidth);
+				int xspace = (xfullSpace - m_x_itemSpace) / (m_max_columns - 1);
 				m_spacing.setX(xspace);
 			}
 		}
-		if (yfullSpace > yitemSpace)
+		if (yfullSpace > m_y_itemSpace)
 		{
 			if (m_item_alignment & itemVertialAlignMiddle)
-				yOffset = ((yfullSpace - yitemSpace) / 2) + scrollbarTopSpace;
+				yOffset = ((yfullSpace - m_y_itemSpace) / 2) + scrollbarTopSpace;
 			if (m_item_alignment & itemVertialAlignBottom)
-				yOffset = (yfullSpace - yitemSpace) + scrollbarTopSpace;
+				yOffset = (yfullSpace - m_y_itemSpace) + scrollbarTopSpace;
 			if (m_item_alignment & itemVertialAlignJustify)
 			{
 				yOffset = scrollbarTopSpace;
-				yitemSpace = m_style.m_selection_height + ((m_max_rows - 1) * m_itemheight);
-				int yspace = (yfullSpace - yitemSpace) / (m_max_rows - 1);
+				m_y_itemSpace = m_style.m_selection_height + ((m_max_rows - 1) * m_itemheight);
+				int yspace = (yfullSpace - m_y_itemSpace) / (m_max_rows - 1);
 				m_spacing.setY(yspace);
 			}
 		}
@@ -820,7 +827,6 @@ void eListbox::setItemWidth(int w)
 {
 	if (w && m_itemwidth != w)
 	{
-		eDebug("[eListbox] DO setItemWidth %d", w);
 		m_itemwidth = w;
 		m_itemwidth_set = true;
 		m_style.m_selection_width = w;
