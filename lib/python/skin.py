@@ -946,6 +946,9 @@ class AttributeParser:
 	def scrollbarMode(self, value):
 		self.guiObject.setScrollbarMode(parseScrollbarMode(value))
 
+	def scrollbarOffset(self, value):
+		self.guiObject.setScrollbarOffset(parseInteger(value))
+
 	def scrollbarScroll(self, value):
 		self.guiObject.setScrollbarScroll(parseScrollbarScroll(value))
 
