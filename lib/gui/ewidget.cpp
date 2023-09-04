@@ -25,6 +25,8 @@ eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->
 	m_current_focus = 0;
 	m_focus_owner = 0;
 	m_notify_child_on_position_change = 1;
+	m_padding = eRect(0, 0, 0, 0);
+
 }
 
 void eWidget::move(ePoint pos)

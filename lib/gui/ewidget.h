@@ -48,6 +48,9 @@ public:
 	void setBackgroundColor(const gRGB &col);
 	void clearBackgroundColor();
 
+	void setPadding(const eRect &padding) { m_padding = padding; }
+	eRect getPadding() { return m_padding; }
+
 	void setZPosition(int z);
 	void setTransparent(int transp);
 
@@ -101,6 +104,8 @@ private:
 	bool m_gradient_set;
 	int m_gradient_direction, m_gradient_blend;
 	gRGB m_gradient_startcolor, m_gradient_endcolor;
+
+	eRect m_padding;
 
 protected:
 	void mayKillFocus();
