@@ -214,7 +214,11 @@ int eListbox::setScrollbarPosition()
 			{
 				x += (m_style.m_selection_width - m_itemwidth) / 2;
 			}
-			if (m_x_itemSpace) {
+			if(m_item_alignment & itemHorizontalAlignJustify)
+			{
+				width -= (x * 2);
+			}
+			else if (m_x_itemSpace) {
 				width = m_x_itemSpace;
 				if (m_style.m_selection_width != m_itemwidth)
 					width -= ((m_style.m_selection_width - m_itemwidth) / 2);
@@ -230,7 +234,11 @@ int eListbox::setScrollbarPosition()
 				y += (m_style.m_selection_height - m_itemheight) / 2;
 			}
 
-			if (m_y_itemSpace) {
+			if(m_item_alignment & itemVertialAlignJustify)
+			{
+				height -= (y * 2);
+			}
+			else if (m_y_itemSpace) {
 				height = m_y_itemSpace;
 				if (m_style.m_selection_height != m_itemheight)
 					height -= (m_style.m_selection_height - m_itemheight);
@@ -646,6 +654,20 @@ void eListbox::recalcSize()
 {
 	m_content_changed = true;
 	m_prev_scrollbar_page = -1;
+
+	bool scrollbarVisible = false;
+	int xscrollBar = 0;
+	int yscrollBar = 0;
+	if (m_content)
+	{
+		scrollbarVisible = m_scrollbar && m_scrollbar->isVisible();
+		if(scrollbarVisible)
+		{
+			xscrollBar = (m_orientation == orGrid) ? (m_scrollbar->size().width() + m_scrollbar_offset) : 0;
+			yscrollBar = (m_orientation == orHorizontal) ? (m_scrollbar->size().height() + m_scrollbar_offset) : 0;
+		}
+	}
+
 	if (m_orientation == orVertical)
 	{
 		m_style.m_selection_height = m_itemheight;
@@ -669,11 +691,11 @@ void eListbox::recalcSize()
 		}
 		if (m_content)
 			m_content->setSize(eSize(m_itemwidth, m_itemheight));
-		int w = size().width() - m_spacing.x();
+		int w = size().width();
 		m_max_columns = w / (m_itemwidth + m_spacing.x());
 		if (m_style.m_selection_zoom > 1.0)
 		{
-			int item_w_zoom = (m_style.m_selection_width) + m_spacing.x();
+			int item_w_zoom = (m_style.m_selection_width) - m_spacing.x();
 			if (m_max_columns > 1)
 			{
 				if (w < (item_w_zoom + (m_max_columns - 1) * (m_itemwidth + m_spacing.x())))
@@ -686,8 +708,8 @@ void eListbox::recalcSize()
 		if (m_content)
 			m_content->setSize(eSize(m_itemwidth, m_itemheight));
 
-		int w = size().width() - m_spacing.x();
-		int h = size().height() - m_spacing.y();
+		int w = size().width() - xscrollBar;
+		int h = size().height();
 
 		m_max_columns = w / (m_itemwidth + m_spacing.x());
 		m_max_rows = h / (m_itemheight + m_spacing.y());
@@ -695,8 +717,8 @@ void eListbox::recalcSize()
 		if (m_style.m_selection_zoom > 1.0)
 		{
 
-			int item_w_zoom = m_style.m_selection_width + m_spacing.x();
-			int item_h_zoom = m_style.m_selection_height + m_spacing.y();
+			int item_w_zoom = m_style.m_selection_width - m_spacing.x();
+			int item_h_zoom = m_style.m_selection_height - m_spacing.y();
 
 			if (m_max_columns > 1)
 			{
@@ -719,10 +741,7 @@ void eListbox::recalcSize()
 		m_max_rows = 0;
 
 	if (m_content)
-	{
-		bool scrollbarVisible = m_scrollbar && m_scrollbar->isVisible();
 		recalcSizeAlignment(scrollbarVisible);
-	}
 
 
 	moveSelection(justCheck);
