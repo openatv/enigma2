@@ -88,6 +88,7 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 					print("[Setup] Error: Unable to load image '%s'!" % setupImage)
 			else:
 				print("[Setup] Error: Setup image '%s' is not a file!" % setupImage)
+				self.setupImage = None
 		else:
 			self.setupImage = None
 		self["config"].onSelectionChanged.append(self.selectionChanged)
