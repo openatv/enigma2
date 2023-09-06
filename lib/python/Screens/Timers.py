@@ -1679,7 +1679,7 @@ class RecordTimerEdit(Setup):
 		locations = config.movielist.videodirs.value
 		return (default, locations)
 
-	def getLocation(self):
+	def getLocation(self, retVal = None):
 		def getLocationCallback(result):
 			if result:
 				if config.movielist.videodirs.value != self.timerLocation.choices:
