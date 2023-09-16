@@ -129,6 +129,11 @@ void eWindowStyleSimple::setStyle(gPainter &painter, int what)
 	}
 }
 
+gRGB eWindowStyleSimple::getColor(int what)
+{
+	return nullptr;
+}
+
 void eWindowStyleSimple::drawFrame(gPainter &painter, const eRect &frame, int what)
 {
 	gColor c1, c2;

@@ -311,6 +311,13 @@ void eWindowStyleSkinned::setColor(int what, const gRGB &col)
 		m_color[what] = col;
 }
 
+gRGB eWindowStyleSkinned::getColor(int what)
+{
+	if ((what < colMax) && (what >= 0))
+		return m_color[what];
+	return nullptr;
+}
+
 void eWindowStyleSkinned::setTitleOffset(const eSize &offset)
 {
 	m_title_offset = offset;
