@@ -25,6 +25,10 @@ eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->
 	m_current_focus = 0;
 	m_focus_owner = 0;
 	m_notify_child_on_position_change = 1;
+	m_cornerRadius = 0;
+	m_cornerRadiusEdges = 0;
+	m_have_border_color = false;
+	m_border_width = 0;
 	m_padding = eRect(0, 0, 0, 0);
 
 }
@@ -441,5 +445,25 @@ void eWidget::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor
 	m_gradient_direction = direction;
 	m_gradient_blend = blend;
 	m_gradient_set = true;
+	invalidate();
+}
+
+void eWidget::setCornerRadius(int radius, int edges)
+{
+	m_cornerRadius = radius;
+	m_cornerRadiusEdges = edges;
+	invalidate();
+}
+
+void eWidget::setBorderWidth(int pixel)
+{
+	m_border_width = pixel;
+	invalidate();
+}
+
+void eWidget::setBorderColor(const gRGB &color)
+{
+	m_border_color = color;
+	m_have_border_color = true;
 	invalidate();
 }
