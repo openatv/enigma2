@@ -3,7 +3,7 @@ from os.path import dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
@@ -425,15 +425,15 @@ def parseGradient(value):
 	data = [x.strip() for x in value.split(",")]
 	if len(data) > 2:
 		options = {
-			"horizontal": ePixmap.GRADIENT_HORIZONTAL,
-			"vertical": ePixmap.GRADIENT_VERTICAL,
+			"horizontal": eWidget.GRADIENT_HORIZONTAL,
+			"vertical": eWidget.GRADIENT_VERTICAL,
 		}
-		direction = parseOptions(options, "gradient", data[2], ePixmap.GRADIENT_VERTICAL)
+		direction = parseOptions(options, "gradient", data[2], eWidget.GRADIENT_VERTICAL)
 		alphaBend = BT_ALPHABLEND if len(data) == 4 and parseBoolean("1", data[3]) else 0
 		return (parseColor(data[0], default=0x00000000), parseColor(data[1], 0x00FFFFFF), direction, alphaBend)
 	else:
 		skinError("The gradient '%s' must be 'startColor,endColor,direction[,blend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)" % value)
-		return (0x000000, 0x00FFFFFF, ePixmap.GRADIENT_VERTICAL, 0)
+		return (0x000000, 0x00FFFFFF, eWidget.GRADIENT_VERTICAL, 0)
 
 
 def parseHorizontalAlignment(value):

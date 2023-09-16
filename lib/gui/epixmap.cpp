@@ -4,7 +4,7 @@
 #include <lib/gui/ewidgetdesktop.h>
 
 ePixmap::ePixmap(eWidget *parent)
-	: eWidget(parent), m_alphatest(0), m_scale(0), m_have_border_color(false), m_gradient_set(false), m_border_width(0), m_gradient_direction(0)
+	: eWidget(parent), m_alphatest(0), m_scale(0), m_have_border_color(false), m_border_width(0)
 {
 }
 
@@ -75,15 +75,6 @@ void ePixmap::setBorderColor(const gRGB &color)
 	invalidate();
 }
 
-void ePixmap::setGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
-{
-	m_gradient_startcolor = startcolor;
-	m_gradient_endcolor = endcolor;
-	m_gradient_direction = direction;
-	m_gradient_set = true;
-	invalidate();
-}
-
 void ePixmap::checkSize()
 {
 	/* when we have no pixmap, or a pixmap of different size, we need
@@ -134,10 +125,6 @@ int ePixmap::event(int event, void *data, void *data2)
 			painter.fill(eRect(m_border_width, s.height() - m_border_width, s.width() - m_border_width, m_border_width));
 			painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
 		}
-
-		if (m_gradient_set)
-			painter.drawGradient(eRect(ePoint(0, 0), s), m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction, m_alphatest == 2 ? gPainter::BT_ALPHABLEND : 0);
-
 		return 0;
 	}
 	case evtChangedPixmap:
