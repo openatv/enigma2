@@ -372,18 +372,34 @@ int eWidget::event(int event, void *data, void *data2)
 //		dumpRegion(*(gRegion*)data);
 		if (!isTransparent())
 		{
+
 			if (m_gradient_set)
-				painter.drawGradient(eRect(ePoint(0, 0), size()), m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction, m_gradient_blend);
-			else if (!m_have_background_color)
-			{
-				ePtr<eWindowStyle> style;
-				if (!getStyle(style))
-					style->paintBackground(painter, ePoint(0, 0), size());
-			} 
-			else
-			{
+				painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction);
+			else if(m_have_background_color)
 				painter.setBackgroundColor(m_background_color);
-				painter.clear();
+			if (m_cornerRadius)
+				painter.setRadius(m_cornerRadius, m_cornerRadiusEdges);
+//			if (m_have_border_color && m_border_width)
+//				painter.setBorder(m_border_color, m_border_width);
+			if (m_cornerRadius || m_gradient_set)
+				painter.drawRectangle(eRect(ePoint(0, 0), size()), gPainter::BT_ALPHABLEND);
+			else {
+				if (!m_have_background_color) {
+					ePtr<eWindowStyle> style;
+					if (!getStyle(style))
+						style->paintBackground(painter, ePoint(0, 0), size());
+				}
+				else {
+					painter.clear();
+					if (m_have_border_color && m_border_width) {
+						eSize s(size());
+						painter.setForegroundColor(m_border_color);
+						painter.fill(eRect(0, 0, s.width(), m_border_width));
+						painter.fill(eRect(0, m_border_width, m_border_width, s.height() - m_border_width));
+						painter.fill(eRect(m_border_width, s.height() - m_border_width, s.width() - m_border_width, m_border_width));
+						painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
+					}
+				}
 			}
 		} 
 		else
