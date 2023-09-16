@@ -352,6 +352,46 @@ void gPainter::setForegroundColor(const gRGB &color)
 	m_rc->submit(o);
 }
 
+void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int orientation)
+{
+	if (m_dc->islocked())
+		return;
+	gOpcode o;
+	o.opcode = gOpcode::setGradient;
+	o.dc = m_dc.grabRef();
+	o.parm.gradient = new gOpcode::para::pgradient;
+	o.parm.gradient->startColor = startColor;
+	o.parm.gradient->endColor = endColor;
+	o.parm.gradient->orientation = orientation;
+	m_rc->submit(o);
+}
+
+void gPainter::setRadius(int radius, int edges)
+{
+	if (m_dc->islocked())
+		return;
+	gOpcode o;
+	o.opcode = gOpcode::setRadius;
+	o.dc = m_dc.grabRef();
+	o.parm.radius = new gOpcode::para::pradius;
+	o.parm.radius->radius = radius;
+	o.parm.radius->edges = edges;
+	m_rc->submit(o);
+}
+
+void gPainter::setBorder(const gRGB &borderColor, int width)
+{
+	if (m_dc->islocked())
+		return;
+	gOpcode o;
+	o.opcode = gOpcode::setBorder;
+	o.dc = m_dc.grabRef();
+	o.parm.border = new gOpcode::para::pborder;
+	o.parm.border->color = borderColor;
+	o.parm.border->width = width;
+	m_rc->submit(o);
+}
+
 void gPainter::setFont(gFont *font)
 {
 	if (m_dc->islocked())
@@ -471,22 +511,17 @@ void gPainter::blit(gPixmap *pixmap, const eRect &pos, const eRect &clip, int fl
 	m_rc->submit(o);
 }
 
-void gPainter::drawGradient(const eRect &area, const gRGB &startcolor, const gRGB &endcolor, int orientation, int flag)
-{
+void gPainter::drawRectangle(const eRect &area, int flag) {
 	if ( m_dc->islocked() )
 		return;
 	gOpcode o;
-	o.opcode=gOpcode::gradient;
+	o.opcode=gOpcode::rectangle;
 	o.dc = m_dc.grabRef();
-	o.parm.gradient = new gOpcode::para::pgradient;
-	o.parm.gradient->area = area;
-	o.parm.gradient->gradientStartColor = startcolor;
-	o.parm.gradient->gradientEndColor = endcolor;
-	o.parm.gradient->orientation = orientation;
-	o.parm.gradient->flag = flag;
+	o.parm.rectangle = new gOpcode::para::prectangle;
+	o.parm.rectangle->area = area;
+	o.parm.rectangle->flag = flag;
 	m_rc->submit(o);
 }
-
 
 void gPainter::setPalette(gRGB *colors, int start, int len)
 {
@@ -738,6 +773,10 @@ void gPainter::setView(eSize size)
 gDC::gDC()
 {
 	m_spinner_pic = 0;
+	m_border_width = 0;
+	m_radius = 0;
+	m_radius_edges = 0;
+	m_gradient_orientation = 0;
 }
 
 gDC::gDC(gPixmap *pixmap) : m_pixmap(pixmap)
@@ -780,6 +819,22 @@ void gDC::exec(const gOpcode *o)
 		m_current_font = o->parm.setFont->font;
 		o->parm.setFont->font->Release();
 		delete o->parm.setFont;
+		break;
+	case gOpcode::setGradient:
+		m_gradient_start_color = o->parm.gradient->startColor;
+		m_gradient_end_color = o->parm.gradient->endColor;
+		m_gradient_orientation = o->parm.gradient->orientation;
+		delete o->parm.gradient;
+		break;
+	case gOpcode::setRadius:
+		m_radius = o->parm.radius->radius;
+		m_radius_edges = o->parm.radius->edges;
+		delete o->parm.radius;
+		break;
+	case gOpcode::setBorder:
+		m_border_color = o->parm.border->color;
+		m_border_width = o->parm.border->width;
+		delete o->parm.border;
 		break;
 	case gOpcode::renderText:
 	{
@@ -986,12 +1041,16 @@ void gDC::exec(const gOpcode *o)
 		delete o->parm.blit;
 		break;
 	}
-	case gOpcode::gradient:
+	case gOpcode::rectangle:
 	{
-		o->parm.gradient->area.moveBy(m_current_offset);
-		gRegion clip = m_current_clip & o->parm.gradient->area;
-		m_pixmap->drawGradient(clip, o->parm.gradient->area, o->parm.gradient->gradientStartColor, o->parm.gradient->gradientEndColor, o->parm.gradient->orientation, o->parm.gradient->flag);
-		delete o->parm.gradient;
+		o->parm.rectangle->area.moveBy(m_current_offset);
+		gRegion clip = m_current_clip & o->parm.rectangle->area;
+		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, o->parm.rectangle->flag);
+		m_border_width = 0;
+		m_radius = 0;
+		m_radius_edges = 0;
+		m_gradient_orientation = 0;
+		delete o->parm.rectangle;
 		break;
 	}
 	case gOpcode::setPalette:
