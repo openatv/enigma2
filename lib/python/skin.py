@@ -558,6 +558,28 @@ def parsePosition(value, scale, object=None, desktop=None, size=None):
 	return ePoint(*parseValuePair(value, scale, object, desktop, size))
 
 
+def parseRadius(value):
+	data = [x.strip() for x in value.split(";")]
+	if len(data) == 2:
+		edges = [x.strip() for x in data[1].split(",")]
+		edgesMask = {
+			"topLeft": eWidget.RADIUS_TOP_LEFT,
+			"topRight": eWidget.RADIUS_TOP_RIGHT,
+			"top": eWidget.RADIUS_TOP,
+			"bottomLeft": eWidget.RADIUS_BOTTOM_LEFT,
+			"bottomRight": eWidget.RADIUS_BOTTOM_RIGHT,
+			"bottom": eWidget.RADIUS_BOTTOM,
+			"left": eWidget.RADIUS_LEFT,
+			"right": eWidget.RADIUS_RIGHT,
+		}
+		edgeValue = 0
+		for e in edges:
+			edgeValue += edgesMask.get(e, 0)
+		return int(data[0]), edgeValue
+	else:
+		return int(data[0]), eWidget.RADIUS_ALL
+
+
 def parseSize(value, scale, object=None, desktop=None):
 	return eSize(*parseValuePair(value, scale, object, desktop))
 
@@ -815,6 +837,10 @@ class AttributeParser:
 	def borderWidth(self, value):
 		self.guiObject.setBorderWidth(self.applyVerticalScale(value))
 
+	def cornerRadius(self, value):
+		radius, edgeValue = parseRadius(value)
+		self.guiObject.setCornerRadius(radius, edgeValue)
+
 	def conditional(self, value):
 		pass
 
@@ -877,6 +903,10 @@ class AttributeParser:
 
 	def itemAlignment(self, value):
 		self.guiObject.setItemAlignment(parseItemAlignment(value))
+
+	def itemCornerRadius(self, value):
+		radius, edgeValue = parseRadius(value)
+		self.guiObject.setItemCornerRadius(radius, edgeValue)
 
 	def itemHeight(self, value):
 		# print("[Skin] DEBUG: Scale itemHeight %d -> %d." % (int(value), self.applyVerticalScale(value)))
@@ -1103,6 +1133,12 @@ class AttributeParser:
 
 	def verticalAlignment(self, value):
 		self.guiObject.setVAlign(parseVerticalAlignment(value))
+
+	def widgetBorderColor(self, value):
+		self.guiObject.setWidgetBorderColor(parseColor(value, 0x00FFFFFF))
+
+	def widgetBorderWidth(self, value):
+		self.guiObject.setWidgetBorderWidth(self.applyVerticalScale(value))
 
 	def wrap(self, value):
 		self.guiObject.setWrap(parseWrap(value))
