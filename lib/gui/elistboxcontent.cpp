@@ -1190,7 +1190,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
 				painter.clip(rect);
 				{
-					if(cornerEdges && cornerRadius && cornerEdges) 
+					if(cornerRadius && cornerEdges) 
 					{
 						painter.setRadius(cornerRadius, cornerEdges);
 						if(selected && !pbackColorSelected)
@@ -1219,17 +1219,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						painter.setForegroundColor(gRGB(color));
 					}
 
-					rect.setRect(x, y, width, bwidth);
-					painter.fill(rect);
-
-					rect.setRect(x, y + bwidth, bwidth, height - bwidth);
-					painter.fill(rect);
-
-					rect.setRect(x + bwidth, y + height - bwidth, width - bwidth, bwidth);
-					painter.fill(rect);
-
-					rect.setRect(x + width - bwidth, y + bwidth, bwidth, height - bwidth);
-					painter.fill(rect);
+					painter.fillBorder(rect, bwidth);
 
 					painter.clippop();
 				}
@@ -1347,17 +1337,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						painter.setForegroundColor(gRGB(color));
 					}
 
-					rect.setRect(x, y, width, bwidth);
-					painter.fill(rect);
-
-					rect.setRect(x, y + bwidth, bwidth, height - bwidth);
-					painter.fill(rect);
-
-					rect.setRect(x + bwidth, y + height - bwidth, width - bwidth, bwidth);
-					painter.fill(rect);
-
-					rect.setRect(x + width - bwidth, y + bwidth, bwidth, height - bwidth);
-					painter.fill(rect);
+					painter.fillBorder(rect, bwidth);
 
 					painter.clippop();
 				}
@@ -1472,17 +1452,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				// border
 				if (bwidth)
 				{
-					rect.setRect(x, y, width, bwidth);
-					painter.fill(rect);
-
-					rect.setRect(x, y + bwidth, bwidth, height - bwidth);
-					painter.fill(rect);
-
-					rect.setRect(x + bwidth, y + height - bwidth, width - bwidth, bwidth);
-					painter.fill(rect);
-
-					rect.setRect(x + width - bwidth, y + bwidth, bwidth, height - bwidth);
-					painter.fill(rect);
+					painter.fillBorder(rect, bwidth);
 				}
 
 				rect.setRect(x + bwidth, y + bwidth, (width - bwidth * 2) * filled / 100, height - bwidth * 2);

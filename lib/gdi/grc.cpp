@@ -457,6 +457,21 @@ void gPainter::fill(const eRect &area)
 	m_rc->submit(o);
 }
 
+void gPainter::fillBorder(const eRect &rect, const int borderWidth)
+{
+
+	int top = rect.top();
+	int left = rect.left();
+	int width = rect.width();
+	int height = rect.height();
+	
+	fill(eRect(top, left, width, borderWidth));
+	fill(eRect(top, left + borderWidth, borderWidth, height - borderWidth));
+	fill(eRect(top + borderWidth, left + height - borderWidth, width - borderWidth, borderWidth));
+	fill(eRect(top + width - borderWidth, left + borderWidth, borderWidth, height- borderWidth));
+
+}
+
 void gPainter::fill(const gRegion &region)
 {
 	if (m_dc->islocked())

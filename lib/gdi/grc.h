@@ -319,6 +319,7 @@ public:
 
 	void renderPara(eTextPara *para, ePoint offset = ePoint(0, 0));
 
+	void fillBorder(const eRect &area, const int borderWidth);
 	void fill(const eRect &area);
 	void fill(const gRegion &area);
 

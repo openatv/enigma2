@@ -120,10 +120,7 @@ int ePixmap::event(int event, void *data, void *data2)
 
 		if (m_border_width)
 		{
-			painter.fill(eRect(0, 0, s.width(), m_border_width));
-			painter.fill(eRect(0, m_border_width, m_border_width, s.height() - m_border_width));
-			painter.fill(eRect(m_border_width, s.height() - m_border_width, s.width() - m_border_width, m_border_width));
-			painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
+			painter.fillBorder(eRect(ePoint(0, 0), s), m_border_width);
 		}
 		return 0;
 	}
