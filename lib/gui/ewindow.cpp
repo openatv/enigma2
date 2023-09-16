@@ -163,3 +163,10 @@ void eWindow::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor
 	eWidget::setBackgroundGradient(startcolor,endcolor,direction,blend);
 	m_child->setBackgroundGradient(startcolor,endcolor,direction,blend);
 }
+
+void eWindow::setCornerRadius(int radius, int edges)
+{
+	/* set corner radius for child, too */
+	eWidget::setCornerRadius(radius, edges);
+	m_child->setCornerRadius(radius, edges);
+}
