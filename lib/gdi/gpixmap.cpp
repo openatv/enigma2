@@ -3,8 +3,9 @@
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/region.h>
 #include <lib/gdi/accel.h>
-#include <lib/gdi/color.h>
+#include <lib/gdi/drawing.h>
 #include <byteswap.h>
+
 
 #ifndef BYTE_ORDER
 #error "no BYTE_ORDER defined!"
@@ -246,7 +247,8 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 		{
 			for (int y=area.top(); y<area.bottom(); y++)
 		 		memset(((__u8*)surface->data)+y*surface->stride+area.left(), color.color, area.width());
-		} else if (surface->bpp == 16)
+		} 
+		else if (surface->bpp == 16)
 		{
 			uint32_t icol;
 
@@ -266,7 +268,8 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 				while (x--)
 					*dst++=col;
 			}
-		} else if (surface->bpp == 32)
+		} 
+		else if (surface->bpp == 32)
 		{
 			uint32_t col;
 
@@ -452,113 +455,240 @@ static void convert_palette(uint32_t* pal, const gPalette& clut)
 
 #define FIX 0x10000
 
-uint32_t* gPixmap::allocBoxBuf(const int dx, const int dy, uint32_t* buf)
+
+
+void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth, const gRGB &startColor, const gRGB &endColor, int direction, int radius, int edges, int flag)
 {
-	uint32_t* pixBuf = buf;
-	if (pixBuf == NULL) 
+	if (surface->bpp < 32)
 	{
-		pixBuf = (uint32_t*)malloc(dx*dy*sizeof(uint32_t));
-		if (pixBuf == NULL) 
-		{
-			return NULL;
-		}
+		eWarning("[gPixmap] couldn't rgbfill %d bpp", surface->bpp);
+		return;
 	}
-	memset((void*)pixBuf, '\0', dx*dy*sizeof(uint32_t));
+    
+#ifdef GPIXMAP_DEBUG
+	Stopwatch s;
+#endif
+	const int GRADIENT_VERTICAL = 1;
+	uint32_t backColor = backgroundColor.argb();
+	backColor^=0xFF000000;
+	uint32_t borderCol = borderColor.argb();
+	borderCol^=0xFF000000;
+	uint32_t* gradientBuf = nullptr;
 
-	return pixBuf;
-}
+	gradientBuf = createGradientBuffer(direction == GRADIENT_VERTICAL ? area.height() : area.width(), !direction ? backgroundColor : startColor, !direction ? backgroundColor : endColor);
 
-void gPixmap::drawGradient(const gRegion &region, const eRect &area, const gRGB &startcolor, const gRGB &endcolor, int direction, int flag)
-{
-	uint32_t* gradientBuf = NULL;
-	uint32_t* boxBuf = allocBoxBuf(area.width(), area.height(), NULL);
+	CornerData cornerData(radius, edges, area.width(), area.height(), borderWidth, borderCol);
 
-	gradientBuf = gradientColorToColor(startcolor, endcolor, NULL, (direction == 0) ? area.height() : area.width());
-
-	uint32_t *bp = boxBuf;
-	uint32_t *gra = gradientBuf;
-
-	if (direction == 0)
-	{
-		for (int pos = 0; pos < area.width(); pos++) 
-		{
-			for(int count = 0; count < area.height(); count++) 
-			{
-				*(bp + pos) = (uint32_t)(*(gra + count));
-				bp += area.width();
-			}
-			bp = boxBuf;
-		}
-	}
-	else
-	{
-		for (int line = 0; line < area.height(); line++) 
-		{
-			int gra_pos = 0;
-			for (int pos = 0; pos < area.width(); pos++) 
-			{
-				if ( (pos >= 0) && (gra_pos < area.width()))
-				{
-					*(bp + pos) = (uint32_t)(*(gra + gra_pos));
-					gra_pos++;
-				}
-			}
-			bp += area.width();
-		}
-	}
-
-	//blit
-	for (unsigned int i=0; i<region.rects.size(); ++i)
+	for (unsigned int i = 0; i < region.rects.size(); ++i)
 	{
 		eRect reg = area;
-		reg&=region.rects[i];
-		reg&=eRect(ePoint(0, 0), size());
+		reg &= region.rects[i];
 
 		if (reg.empty())
 			continue;
 
-		eRect srcarea = reg;
-		srcarea.moveBy(-area.x(), -area.y());
+		int corners = 0;
 
-		const int src_stride = area.width() * surface->bypp;
-		const uint8_t* srcptr = (const uint8_t*)boxBuf + srcarea.left()*surface->bypp + srcarea.top()*src_stride;
-		uint8_t* dstptr = (uint8_t*)surface->data + reg.left()*surface->bypp + reg.top()*surface->stride;
-		const int width = reg.width();
-		const int height = reg.height();
-		const int src_height = srcarea.height();
-		const int src_width = srcarea.width();
-		if (flag & blitAlphaBlend)
+		if (cornerData.topLeftCornerRadius)
 		{
-			for (int y = 0; y < height; ++y)
-			{
-				const gRGB *src_row_ptr = (gRGB *)(srcptr + (((y * src_height) / height) * src_stride));
-				gRGB *dst = (gRGB*)dstptr;
-				for (int x = 0; x < width; ++x)
-				{
-					dst->alpha_blend(src_row_ptr[(x * src_width) / width]);
-					++dst;
-				}
-				dstptr += surface->stride;
+			eRect cornerRect = eRect(area.left(), area.top(), cornerData.topLeftCornerRadius, cornerData.topLeftCornerRadius);
+			cornerRect &= region.rects[i];
+			if (!cornerRect.empty()) {
+				corners += 1;
+				drawAngleTl(surface, gradientBuf, area, direction, cornerRect, cornerData);
 			}
 		}
-		else
+		if (cornerData.topRightCornerRadius)
 		{
-			for (int y = 0; y < height; ++y)
-			{
-				const uint32_t *src_row_ptr = (uint32_t*)(srcptr + (((y * src_height) / height) * src_stride));
-				uint32_t *dst = (uint32_t*)dstptr;
-				for (int x = 0; x < width; ++x)
-				{
-					*dst = src_row_ptr[(x * src_width) / width];
-					++dst;
-				}
-				dstptr += surface->stride;
+			eRect cornerRect = eRect(area.right() - cornerData.topRightCornerRadius, area.top(), cornerData.topRightCornerRadius, cornerData.topRightCornerRadius);
+			cornerRect &= region.rects[i];
+			if (!cornerRect.empty()) {
+				corners += 2;
+				drawAngleTr(surface, gradientBuf, area, direction, cornerRect, cornerData);
 			}
 		}
+		if (cornerData.bottomLeftCornerRadius)
+		{
+			eRect cornerRect = eRect(area.left(), area.bottom() - cornerData.bottomLeftCornerRadius, cornerData.bottomLeftCornerRadius, cornerData.bottomLeftCornerRadius);
+			cornerRect &= region.rects[i];
+			if (!cornerRect.empty()) {
+				corners += 4;
+				drawAngleBl(surface, gradientBuf, area, direction, cornerRect, cornerData);
+			}
+		}
+
+		if (cornerData.bottomRightCornerRadius)
+		{
+			eRect cornerRect = eRect(area.right() - cornerData.bottomRightCornerRadius, area.bottom() - cornerData.bottomRightCornerRadius, cornerData.bottomRightCornerRadius, cornerData.bottomRightCornerRadius);
+			cornerRect &= region.rects[i];
+			if (!cornerRect.empty()) {
+				corners += 8;
+				drawAngleBr(surface, gradientBuf, area, direction, cornerRect, cornerData);
+			}
+		}
+
+		if (cornerData.isCircle)
+			continue;
 		
-	}
-	if (boxBuf)
-		free(boxBuf);
+		const int bottom = MAX(cornerData.bottomRightCornerRadius,cornerData.bottomLeftCornerRadius);
+		const int top = MAX(cornerData.topRightCornerRadius,cornerData.topLeftCornerRadius);
+
+		int topw = area.width();
+		int topl = area.left();
+		int bottomw = area.width();
+		int bottoml = area.left();
+
+		if(corners & 1) {
+			topw -= cornerData.topLeftCornerRadius;
+			topl += cornerData.topLeftCornerRadius;
+		}
+		if(corners & 2)
+			topw -= cornerData.topRightCornerRadius;
+
+		if(corners & 4) {
+			bottomw -= cornerData.bottomLeftCornerRadius;
+			bottoml += cornerData.bottomLeftCornerRadius;
+		}
+		if(corners & 8)
+			bottomw -= cornerData.bottomRightCornerRadius;
+		
+		eRect topRect = eRect(topl, area.top(), topw, top);
+		topRect &= region.rects[i];
+
+		eRect bottomRect = eRect(bottoml, area.bottom() - bottom, bottomw, bottom);
+		bottomRect &= region.rects[i];
+
+		eRect mRect = eRect(area.left(), area.top() + top, area.width(), area.height() - top - bottom);
+		mRect &= region.rects[i];
+
+		if(direction == GRADIENT_VERTICAL)
+        {
+
+            // draw center rect
+            if (!mRect.empty())
+            {
+                if(flag & blitAlphaBlend && !cornerData.radiusSet)
+                {
+                    for (int y = mRect.top(); y < mRect.bottom(); y++)
+                    {
+                        uint32_t *dstptr=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+mRect.left()*surface->bypp);
+                        const gRGB *src = (gRGB*)&gradientBuf[y - area.top()];
+                        int width=mRect.width();
+                        gRGB *dst = (gRGB*)dstptr;
+                        while (width--)
+                        {
+                            if (src->a > 0)
+                            {
+                                bool isOpaque = dst->r == 0 && dst->g == 0 && dst->b == 0 && dst->a == 0 && src->a >= 254;
+                                if (!isOpaque)
+                                    dst->alpha_blend(*src);
+                                else
+                                    *dst = *src;
+                            }
+                            ++dst;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int y = mRect.top(); y < mRect.bottom(); y++)
+                    {
+                        uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+mRect.left()*surface->bypp);
+                        int yInOriginalArea = y - area.top();
+                        backColor = gradientBuf[yInOriginalArea];
+                        duplicate_32fc(dst,backColor,mRect.width());
+                    }
+                } // if blitAlphaBlend
+            } // if center
+
+            if(top && !topRect.empty()) {
+                for (int y = topRect.top(); y < topRect.top() + top; y++)
+                {
+                    uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+topRect.left()*surface->bypp);
+                    int yInOriginalArea = y - area.top();
+                    backColor = gradientBuf[yInOriginalArea];
+                    duplicate_32fc(dst,backColor,topRect.width());
+                }
+            } // if top
+
+            if(bottom && !bottomRect.empty()) {
+                for (int y = bottomRect.bottom() - bottom; y < bottomRect.bottom(); y++)
+                {
+                    uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+bottomRect.left()*surface->bypp);
+                    int yInOriginalArea = y - area.top();
+                    backColor = gradientBuf[yInOriginalArea];
+                    duplicate_32fc(dst,backColor,bottomRect.width());
+                }
+            } // if bottom
+        }
+		else
+        {
+
+            if (!mRect.empty())
+            {
+                if(flag & blitAlphaBlend && !cornerData.radiusSet)
+                {
+                    for (int y = mRect.top(); y < mRect.bottom(); y++)
+                    {
+                        uint32_t *dstptr=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+mRect.left()*surface->bypp);
+                        uint32_t* gradientBuf2 = gradientBuf + mRect.left() - area.left();
+                        int width=mRect.width();
+                        gRGB *src = (gRGB*)gradientBuf2;
+                        gRGB *dst = (gRGB*)dstptr;
+                        while (width--)
+                        {
+                            if (src->a > 0)
+                            {
+                                bool isOpaque = dst->r == 0 && dst->g == 0 && dst->b == 0 && dst->a == 0 && src->a >= 254;
+                                if (!isOpaque)
+                                    dst->alpha_blend(*src);
+                                else
+                                    *dst = *src;
+                            }
+                            ++src;
+                            ++dst;
+                        }
+                    }
+                }
+                else
+                {
+                    int linesize = mRect.width()*surface->bypp;
+                    for (int y = mRect.top(); y < mRect.bottom(); y++)
+                    {
+                        uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+mRect.left()*surface->bypp);
+                        uint32_t* gradientBuf2 = gradientBuf + mRect.left() - area.left();
+                        std::memcpy(dst,gradientBuf2,linesize);
+                    }
+                } // if blitAlphaBlend
+            } // if center
+
+            if(top && !topRect.empty()) {
+                int linesize = topRect.width()*surface->bypp;
+                for (int y = topRect.top(); y < topRect.top() + top; y++)
+                {
+                    uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+topRect.left()*surface->bypp);
+                    uint32_t* gradientBuf2 = gradientBuf + topRect.left() - area.left();
+                    std::memcpy(dst,gradientBuf2,linesize);
+                }
+            } // if top
+            
+            if(bottom && !bottomRect.empty()) {
+                int linesize = bottomRect.width()*surface->bypp;
+                for (int y = bottomRect.bottom() - bottom; y < bottomRect.bottom(); y++)
+                {
+                    uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+bottomRect.left()*surface->bypp);
+                    uint32_t* gradientBuf2 = gradientBuf + bottomRect.left() - area.left();
+                    std::memcpy(dst,gradientBuf2,linesize);
+                }
+            } // if bottom
+        } // if direction
+	} // for region
+#ifdef GPIXMAP_DEBUG
+	s.stop();
+	eDebug("[gPixmap] [BLITBENCH] cpu drawRectangle %dx%d (%d bytes) took %u us", area.width(), area.height(), area.surface() * surface->bypp, s.elapsed_us());
+#endif
+	if (gradientBuf)
+		free(gradientBuf);
 }
 
 void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int flag)
@@ -839,11 +969,21 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					{
 						const gRGB *src_row_ptr = (gRGB *)(srcptr + (((y * src_height) / height) * src_stride));
 						gRGB *dst = (gRGB*)dstptr;
+						
 						for (int x = 0; x < width; ++x)
 						{
-							dst->alpha_blend(src_row_ptr[(x * src_width) / width]);
+							const gRGB &src_pixel = src_row_ptr[(x * src_width) / width];
+							if (src_pixel.a > 0)
+							{
+								bool isOpaque = dst->r == 0 && dst->g == 0 && dst->b == 0 && dst->a == 0 && src_pixel.a >= 254;
+								if (!isOpaque)
+									dst->alpha_blend(src_pixel);
+								else
+									*dst = src_pixel;
+							}
 							++dst;
 						}
+						
 						dstptr += surface->stride;
 					}
 				}
@@ -951,9 +1091,18 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					int width = area.width();
 					gRGB *src = (gRGB*)srcptr;
 					gRGB *dst = (gRGB*)dstptr;
+					
 					while (width--)
 					{
-						dst->alpha_blend(*src++);
+						if (src->a > 0)
+						{
+							bool isOpaque = dst->r == 0 && dst->g == 0 && dst->b == 0 && dst->a == 0 && src->a >= 254;
+							if (!isOpaque) 
+								dst->alpha_blend(*src);
+							else
+								*dst = *src;
+						}
+						++src;
 						++dst;
 					}
 				}
