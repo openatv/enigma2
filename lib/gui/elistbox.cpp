@@ -37,6 +37,13 @@ eListbox::eListbox(eWidget *parent) : eWidget(parent), m_scrollbar_mode(showNeve
 	m_style.m_selection_width = m_itemwidth;
 	m_style.m_selection_height = m_itemheight;
 
+	m_style.m_gradient_set[0] = false;
+	m_style.m_gradient_set[1] = false;
+	m_style.m_gradient_set[2] = false;
+	m_style.m_gradient_set[3] = false;
+
+	setItemCornerRadius(0, 0);
+
 	allowNativeKeys(true);
 
 	if (m_scrollbar_mode != showNever)
@@ -485,18 +492,26 @@ int eListbox::event(int event, void *data, void *data2)
 
 		if (!isTransparent())
 		{
+			int cornerRadius = getCornerRadius();
+			int cornerRadiusEdges = getCornerRadiusEdges();
 			painter.clip(paint_region);
 			style->setStyle(painter, eWindowStyle::styleListboxNormal);
-			if (m_style.is_set.spacing_color)
+			if (m_style.is_set.spacing_color) {
 				painter.setBackgroundColor(m_style.m_spacing_color);
+			}
 			else
 			{
 				if (m_style.is_set.background_color)
 					painter.setBackgroundColor(m_style.m_background_color);
 			}
-			painter.clear();
+			if (cornerRadius && cornerRadiusEdges) {
+				painter.setRadius(cornerRadius, cornerRadiusEdges);
+				painter.drawRectangle(eRect(ePoint(0, 0), size()), 0);
+			}
+			else
+				painter.clear();
 			painter.clippop();
-		}
+		} 
 
 		int line = 0;
 		int m_max_items = m_orientation == orGrid ? m_max_columns * m_max_rows : m_orientation == orHorizontal ? m_max_columns
@@ -1029,24 +1044,6 @@ void eListbox::setBackgroundColorSelected(gRGB &col)
 {
 	m_style.m_background_color_selected = col;
 	m_style.is_set.background_color_selected = 1;
-}
-
-void eListbox::setBackgroundGradient(gRGB &start, gRGB &end, int direction, int flag)
-{
-	m_style.m_background_gradient_color_start = start;
-	m_style.m_background_gradient_color_end = end;
-	m_style.m_background_color_gradient_direction = direction;
-	m_style.m_background_color_gradient_flag = flag;
-	m_style.is_set.background_gradient_color = 1;
-}
-
-void eListbox::setBackgroundGradientSelected(gRGB &start, gRGB &end, int direction, int flag)
-{
-	m_style.m_background_gradient_color_selected_start = start;
-	m_style.m_background_gradient_color_selected_end = end;
-	m_style.m_background_color_gradient_selected_direction = direction;
-	m_style.m_background_color_gradient_selected_flag = flag;
-	m_style.is_set.background_gradient_selected_color = 1;
 }
 
 void eListbox::setForegroundColor(gRGB &col)
@@ -1748,4 +1745,74 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 	}
 
 	return topLeft;
+}
+
+void eListbox::setItemCornerRadius(int radius, int edges)
+{
+	m_style.m_itemCornerRadius[0] = radius;
+	m_style.m_itemCornerRadiusEdges[0] = edges;
+
+	setItemCornerRadiusSelected(radius, edges);
+	setItemCornerRadiusMarked(radius, edges);
+	setItemCornerRadiusMarkedandSelected(radius, edges);
+
+}
+
+void eListbox::setItemCornerRadiusSelected(int radius, int edges)
+{
+	m_style.m_itemCornerRadius[1] = radius;
+	m_style.m_itemCornerRadiusEdges[1] = edges;
+}
+
+
+void eListbox::setItemCornerRadiusMarked(int radius, int edges)
+{
+	m_style.m_itemCornerRadius[2] = radius;
+	m_style.m_itemCornerRadiusEdges[2] = edges;
+}
+
+void eListbox::setItemCornerRadiusMarkedandSelected(int radius, int edges)
+{
+	m_style.m_itemCornerRadius[3] = radius;
+	m_style.m_itemCornerRadiusEdges[3] = edges;
+}
+
+void eListbox::setItemGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+{
+	m_style.m_gradient_startcolor[0] = startcolor;
+	m_style.m_gradient_endcolor[0] = endcolor;
+	m_style.m_gradient_direction[0] = direction;
+	m_style.m_gradient_blend[0] = blend;
+	m_style.m_gradient_set[0] = true;
+	invalidate();
+}
+
+void eListbox::setItemGradientSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+{
+	m_style.m_gradient_startcolor[1] = startcolor;
+	m_style.m_gradient_endcolor[1] = endcolor;
+	m_style.m_gradient_direction[1] = direction;
+	m_style.m_gradient_blend[1] = blend;
+	m_style.m_gradient_set[1] = true;
+	invalidate();
+}
+
+void eListbox::setItemGradientMarked(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+{
+	m_style.m_gradient_startcolor[2] = startcolor;
+	m_style.m_gradient_endcolor[2] = endcolor;
+	m_style.m_gradient_direction[2] = direction;
+	m_style.m_gradient_blend[2] = blend;
+	m_style.m_gradient_set[2] = true;
+	invalidate();
+}
+
+void eListbox::setItemGradientMarkedandSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+{
+	m_style.m_gradient_startcolor[3] = startcolor;
+	m_style.m_gradient_endcolor[3] = endcolor;
+	m_style.m_gradient_direction[3] = direction;
+	m_style.m_gradient_blend[3] = blend;
+	m_style.m_gradient_set[3] = true;
+	invalidate();
 }

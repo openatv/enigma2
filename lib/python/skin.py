@@ -816,9 +816,6 @@ class AttributeParser:
 	def backgroundGradient(self, value):
 		self.guiObject.setBackgroundGradient(*parseGradient(value))
 
-	def backgroundGradientSelected(self, value):
-		self.guiObject.setBackgroundGradientSelected(*parseGradient(value))
-
 	def backgroundCrypted(self, value):
 		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
 
@@ -907,6 +904,30 @@ class AttributeParser:
 	def itemCornerRadius(self, value):
 		radius, edgeValue = parseRadius(value)
 		self.guiObject.setItemCornerRadius(radius, edgeValue)
+
+	def itemCornerRadiusSelected(self, value):
+		radius, edgeValue = parseRadius(value)
+		self.guiObject.setItemCornerRadiusSelected(radius, edgeValue)
+
+	def itemCornerRadiusMarked(self, value):
+		radius, edgeValue = parseRadius(value)
+		self.guiObject.setItemCornerRadiusMarked(radius, edgeValue)
+
+	def itemCornerRadiusMarkedAndSelected(self, value):
+		radius, edgeValue = parseRadius(value)
+		self.guiObject.setItemCornerRadiusMarkedAndSelected(radius, edgeValue)
+
+	def itemGradient(self, value):
+		self.guiObject.setItemGradient(*parseGradient(value))
+
+	def itemGradientSelected(self, value):
+		self.guiObject.setItemGradientSelected(*parseGradient(value))
+
+	def itemGradientMarked(self, value):
+		self.guiObject.setItemGradientMarked(*parseGradient(value))
+
+	def itemGradientMarkedAndSelected(self, value):
+		self.guiObject.setItemGradientMarkedAndSelected(*parseGradient(value))
 
 	def itemHeight(self, value):
 		# print("[Skin] DEBUG: Scale itemHeight %d -> %d." % (int(value), self.applyVerticalScale(value)))
