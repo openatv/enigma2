@@ -969,21 +969,11 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					{
 						const gRGB *src_row_ptr = (gRGB *)(srcptr + (((y * src_height) / height) * src_stride));
 						gRGB *dst = (gRGB*)dstptr;
-						
 						for (int x = 0; x < width; ++x)
 						{
-							const gRGB &src_pixel = src_row_ptr[(x * src_width) / width];
-							if (src_pixel.a > 0)
-							{
-								bool isOpaque = dst->r == 0 && dst->g == 0 && dst->b == 0 && dst->a == 0 && src_pixel.a >= 254;
-								if (!isOpaque)
-									dst->alpha_blend(src_pixel);
-								else
-									*dst = src_pixel;
-							}
+							dst->alpha_blend(src_row_ptr[(x * src_width) / width]);
 							++dst;
 						}
-						
 						dstptr += surface->stride;
 					}
 				}
@@ -1091,18 +1081,9 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					int width = area.width();
 					gRGB *src = (gRGB*)srcptr;
 					gRGB *dst = (gRGB*)dstptr;
-					
 					while (width--)
 					{
-						if (src->a > 0)
-						{
-							bool isOpaque = dst->r == 0 && dst->g == 0 && dst->b == 0 && dst->a == 0 && src->a >= 254;
-							if (!isOpaque) 
-								dst->alpha_blend(*src);
-							else
-								*dst = *src;
-						}
-						++src;
+						dst->alpha_blend(*src++);
 						++dst;
 					}
 				}
