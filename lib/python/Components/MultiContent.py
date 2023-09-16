@@ -29,8 +29,8 @@ def MultiContentTemplateColor(n):
 	return 0xff000000 | n
 
 
-def MultiContentEntryRectangle(pos=(0, 0), size=(0, 0), backgroundColor=None, backgroundColorSelected=None, borderWidth=None, borderColor=None, borderColorSelected=None):
-	return eListboxPythonMultiContent.TYPE_RECT, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), __resolveColor(backgroundColor), __resolveColor(backgroundColorSelected), borderWidth, __resolveColor(borderColor), __resolveColor(borderColorSelected)
+def MultiContentEntryRectangle(pos=(0, 0), size=(0, 0), backgroundColor=None, backgroundColorSelected=None, borderWidth=None, borderColor=None, borderColorSelected=None, cornerRadius=0, cornerEdges=15):
+	return eListboxPythonMultiContent.TYPE_RECT, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), __resolveColor(backgroundColor), __resolveColor(backgroundColorSelected), borderWidth, __resolveColor(borderColor), __resolveColor(borderColorSelected), cornerRadius, cornerEdges
 
 
 def MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_TOP, text="", color=None, color_sel=None, backcolor=None, backcolor_sel=None, border_width=None, border_color=None):
