@@ -1,6 +1,6 @@
 noinst_LIBRARIES += gdi/libenigma_gdi.a
 
-gdi_libenigma_gdi_CXXFLAGS = -O3 $(LIBSDL_CFLAGS)
+gdi_libenigma_gdi_a_CXXFLAGS = -O3 $(LIBSDL_CFLAGS)
 
 gdi_libenigma_gdi_a_SOURCES = \
 	gdi/accel.cpp \
