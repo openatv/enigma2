@@ -1072,7 +1072,7 @@ void gDC::exec(const gOpcode *o)
 		FILE *handle = fopen("/tmp/drawRectangle.perf", "a");
 		if (handle) {
 			eRect area = o->parm.rectangle->area;
-			fprintf(handle, "[Painter] performance drawRectangle %dx%d (%d bytes) took %u us\n", area.width(), area.height(), area.surface() * m_pixmap->surface->bypp, s.elapsed_us());
+			fprintf(handle, "%dx%d|%u\n", area.width(), area.height(), s.elapsed_us());
 			fclose(handle);
 		}
 		delete o->parm.rectangle;
