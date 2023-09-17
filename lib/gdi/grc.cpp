@@ -9,6 +9,8 @@
 #include <vuplus_gles.h>
 #endif
 
+#include "../base/benchmark.h"
+
 #ifndef SYNC_PAINT
 void *gRC::thread_wrapper(void *ptr)
 {
@@ -530,7 +532,7 @@ void gPainter::drawRectangle(const eRect &area, int flag) {
 	if ( m_dc->islocked() )
 		return;
 	gOpcode o;
-	o.opcode=gOpcode::rectangle;
+	o.opcode=(flag & BT_PERFORMANCE_MESSURE) ? gOpcode::rectangleperf : gOpcode::rectangle;
 	o.dc = m_dc.grabRef();
 	o.parm.rectangle = new gOpcode::para::prectangle;
 	o.parm.rectangle->area = area;
@@ -1054,6 +1056,26 @@ void gDC::exec(const gOpcode *o)
 		m_pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, clip, o->parm.blit->flags);
 		o->parm.blit->pixmap->Release();
 		delete o->parm.blit;
+		break;
+	}
+	case gOpcode::rectangleperf:
+	{
+		Stopwatch s;
+		o->parm.rectangle->area.moveBy(m_current_offset);
+		gRegion clip = m_current_clip & o->parm.rectangle->area;
+		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, o->parm.rectangle->flag);
+		m_border_width = 0;
+		m_radius = 0;
+		m_radius_edges = 0;
+		m_gradient_orientation = 0;
+		s.stop();
+		FILE *handle = fopen("/tmp/drawRectangle.perf", "a");
+		if (handle) {
+			eRect area = o->parm.rectangle->area;
+			fprintf(handle, "[Painter] performance drawRectangle %dx%d (%d bytes) took %u us\n", area.width(), area.height(), area.surface() * m_pixmap->surface->bypp, s.elapsed_us());
+			fclose(handle);
+		}
+		delete o->parm.rectangle;
 		break;
 	}
 	case gOpcode::rectangle:

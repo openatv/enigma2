@@ -41,6 +41,7 @@ struct gOpcode
 		blit,
 		gradient,
 		rectangle,
+		rectangleperf,
 
 		setPalette,
 		mergePalette,
@@ -335,7 +336,8 @@ public:
 		BT_HALIGN_CENTER = 16,
 		BT_HALIGN_RIGHT = 32,
 		BT_VALIGN_CENTER = 64,
-		BT_VALIGN_BOTTOM = 128
+		BT_VALIGN_BOTTOM = 128,
+		BT_PERFORMANCE_MESSURE = 256
 	};
 
 	enum

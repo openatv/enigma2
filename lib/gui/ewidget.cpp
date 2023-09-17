@@ -382,7 +382,7 @@ int eWidget::event(int event, void *data, void *data2)
 //			if (m_have_border_color && m_border_width)
 //				painter.setBorder(m_border_color, m_border_width);
 			if (m_cornerRadius || m_gradient_set)
-				painter.drawRectangle(eRect(ePoint(0, 0), size()), gPainter::BT_ALPHABLEND);
+				painter.drawRectangle(eRect(ePoint(0, 0), size()), gPainter::BT_ALPHABLEND | gPainter::BT_PERFORMANCE_MESSURE);
 			else {
 				if (!m_have_background_color) {
 					ePtr<eWindowStyle> style;

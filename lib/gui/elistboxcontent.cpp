@@ -1016,7 +1016,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				painter.setGradient(local_style->m_gradient_startcolor[mode], local_style->m_gradient_endcolor[mode], local_style->m_gradient_direction[mode]);
 			else
 				painter.setBackgroundColor(gRGB(color));
-			painter.drawRectangle(itemRect, 0);
+			painter.drawRectangle(itemRect, gPainter::BT_PERFORMANCE_MESSURE);
 		}
 		else
 			clearRegion(painter, style, local_style, ePyObject(), ePyObject(), ePyObject(), ePyObject(), selected, marked, itemregion, sel_clip, offs, itemRect.size(), cursorValid, true, orientation);
@@ -1197,7 +1197,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 							pbackColorSelected = pbackColor;
 						unsigned int color = PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor);
 						painter.setBackgroundColor(gRGB(color));
-						painter.drawRectangle(rect, 0);
+						painter.drawRectangle(rect, gPainter::BT_PERFORMANCE_MESSURE);
 					}
 					else 
 					{
@@ -1537,6 +1537,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				int flag = type == TYPE_LINEAR_GRADIENT_ALPHABLEND ? gPainter::BT_ALPHABLEND : 0;
+				flag += gPainter::BT_PERFORMANCE_MESSURE;
 
 				if (!selected && ppstartColor && pendColor)
 				{
