@@ -9,6 +9,7 @@
 #include <lib/gdi/erect.h>
 #include <lib/gdi/fb.h>
 #include <byteswap.h>
+#include <unordered_map>
 
 struct gRGB
 {
