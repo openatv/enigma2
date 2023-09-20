@@ -1594,6 +1594,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 
 				int flags = 0;
+				int radius = 0;
+				int edges = 0;
 				ePtr<gPixmap> pixmap;
 				if (SwigFromPython(pixmap, ppixmap))
 				{
@@ -1609,6 +1611,13 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (size > 8)
 					flags = PyLong_AsLong(PyTuple_GET_ITEM(item, 8));
+
+				if (size > 9)
+					radius = PyLong_AsLong(PyTuple_GET_ITEM(item, 9));
+
+				if (size > 10)
+					edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 10));
+
 
 				if (selected && itemZoomContent)
 				{
@@ -1631,8 +1640,11 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, marked, rc, sel_clip, offs, itemRect.size(), cursorValid, mustClear, orientation);
 				}
 
-				flags |= (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND
-																													 : 0;
+				flags |= (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : 0;
+
+				if(radius && edges)
+					painter.setRadius(radius, edges);
+
 				painter.blit(pixmap, rect, rect, flags);
 				painter.clippop();
 				break;

@@ -1030,6 +1030,7 @@ void eListbox::entryReset(bool selectionHome)
 
 void eListbox::setSpacingColor(gRGB &col)
 {
+	eWidget::setBackgroundColor(col);
 	m_style.m_spacing_color = col;
 	m_style.is_set.spacing_color = 1;
 }
