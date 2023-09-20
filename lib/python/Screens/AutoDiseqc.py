@@ -25,7 +25,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			192,
 			eDVBFrontendParametersSatellite.System_DVB_S,
 			eDVBFrontendParametersSatellite.Modulation_Auto,
-			eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
 			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 			eDVBFrontendParametersSatellite.PLS_Gold,
 			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
@@ -58,12 +59,12 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			_("Astra 3 23.5e")
 		),
 
-		# astra 282 cnbc
+		# Astra 28.2E EPG background audio
 		(
-			11479,
-			22000,
+			11778,
+			27500,
 			eDVBFrontendParametersSatellite.Polarisation_Vertical,
-			eDVBFrontendParametersSatellite.FEC_5_6,
+			eDVBFrontendParametersSatellite.FEC_2_3,
 			eDVBFrontendParametersSatellite.Inversion_Off,
 			282,
 			eDVBFrontendParametersSatellite.System_DVB_S,
@@ -75,7 +76,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
 			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
 			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
-			2090,
+			2004,
 			2,
 			_("Astra 2 28.2e")
 		),
