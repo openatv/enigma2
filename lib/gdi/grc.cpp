@@ -1053,7 +1053,9 @@ void gDC::exec(const gOpcode *o)
 		else
 			clip = m_current_clip;
 
-		m_pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, clip, o->parm.blit->flags);
+		m_pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, clip, m_radius, m_radius_edges, o->parm.blit->flags);
+		m_radius = 0;
+		m_radius_edges = 0;
 		o->parm.blit->pixmap->Release();
 		delete o->parm.blit;
 		break;
@@ -1072,7 +1074,7 @@ void gDC::exec(const gOpcode *o)
 		FILE *handle = fopen("/tmp/drawRectangle.perf", "a");
 		if (handle) {
 			eRect area = o->parm.rectangle->area;
-			fprintf(handle, "%dx%d|%u\n", area.width(), area.height(), s.elapsed_us());
+			fprintf(handle, "%dx%dx%dx%d|%u\n", area.left(), area.top(), area.width(), area.height(), s.elapsed_us());
 			fclose(handle);
 		}
 		delete o->parm.rectangle;
@@ -1191,7 +1193,7 @@ void gDC::enableSpinner()
 	ASSERT(m_spinner_saved);
 
 	/* save the background to restore it later. We need to negative position because we want to blit from the middle of the screen. */
-	m_spinner_saved->blit(*m_pixmap, eRect(-m_spinner_pos.topLeft(), eSize()), gRegion(eRect(ePoint(0, 0), m_spinner_saved->size())), 0);
+	m_spinner_saved->blit(*m_pixmap, eRect(-m_spinner_pos.topLeft(), eSize()), gRegion(eRect(ePoint(0, 0), m_spinner_saved->size())), 0, 0 ,0);
 
 	incrementSpinner();
 }
@@ -1201,7 +1203,7 @@ void gDC::disableSpinner()
 	ASSERT(m_spinner_saved);
 
 	/* restore background */
-	m_pixmap->blit(*m_spinner_saved, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0);
+	m_pixmap->blit(*m_spinner_saved, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0, 0, 0);
 }
 
 void gDC::incrementSpinner()
@@ -1225,12 +1227,12 @@ void gDC::incrementSpinner()
 	}
 #endif
 
-	m_spinner_temp->blit(*m_spinner_saved, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()));
+	m_spinner_temp->blit(*m_spinner_saved, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), 0, 0, 0);
 
 	if (m_spinner_pic[m_spinner_i])
-		m_spinner_temp->blit(*m_spinner_pic[m_spinner_i], eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), gPixmap::blitAlphaBlend);
+		m_spinner_temp->blit(*m_spinner_pic[m_spinner_i], eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), 0, 0, gPixmap::blitAlphaBlend);
 
-	m_pixmap->blit(*m_spinner_temp, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0);
+	m_pixmap->blit(*m_spinner_temp, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0, 0, 0);
 	m_spinner_i++;
 	m_spinner_i %= m_spinner_num;
 }

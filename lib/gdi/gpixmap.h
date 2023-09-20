@@ -238,7 +238,12 @@ private:
 	void fill(const gRegion &clip, const gColor &color);
 	void fill(const gRegion &clip, const gRGB &color);
 
-	void blit(const gPixmap &src, const eRect &pos, const gRegion &clip, int flags=0);
+	void blit(const gPixmap &src, const eRect &pos, const gRegion &clip, int cornerRadius, int edges, int flags=0);
+
+    void blitRounded32Bit(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, int edges, int flag);
+    void blitRounded32BitScaled(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, int edges, int flag);
+    void blitRounded8Bit(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, int edges, int flag);
+    void blitRounded8BitScaled(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, int edges, int flag);
 
 	void mergePalette(const gPixmap &target);
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
