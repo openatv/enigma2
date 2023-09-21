@@ -1040,6 +1040,8 @@ void gDC::exec(const gOpcode *o)
 		break;
 	case gOpcode::blit:
 	{
+		Stopwatch s;
+
 		gRegion clip;
 		// this code should be checked again but i'm too tired now
 
@@ -1054,6 +1056,15 @@ void gDC::exec(const gOpcode *o)
 			clip = m_current_clip;
 
 		m_pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, clip, m_radius, m_radius_edges, o->parm.blit->flags);
+		if(m_radius)
+		{
+			s.stop();
+			FILE *handle = fopen("/tmp/drawRectangle.perf", "a");
+			if (handle) {
+				fprintf(handle, "%dx%dx%d|%u\n", o->parm.blit->pixmap->size().width(), o->parm.blit->pixmap->size().height(),o->parm.blit->pixmap->surface->bpp, s.elapsed_us());
+				fclose(handle);
+			}
+		}
 		m_radius = 0;
 		m_radius_edges = 0;
 		o->parm.blit->pixmap->Release();
