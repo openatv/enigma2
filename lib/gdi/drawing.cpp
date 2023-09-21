@@ -33,31 +33,6 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
 #include <lib/gdi/drawing.h>
 #include <lib/gdi/region.h>
 
-void duplicate_32fc(uint32_t *out, const uint32_t in, size_t size) {
-
-	size_t n = 1;
-	size_t last_n = 0;
-
-	if (n < 1)
-		return;
-
-	//Copy the first one
-	out[0] = in;
-
-	//Double the size of the copy for each copy
-	while (n * 2 <= size)
-	{
-		memcpy(&out[n], out, n * sizeof(uint32_t));
-		last_n = n;
-		n = n * 2;
-	}
-
-	//Copy the tail
-	if (last_n < size) {
-		memcpy(&out[last_n], out, (size - last_n) * sizeof(uint32_t));
-	}
-}
-
 uint32_t* createGradientBuffer(int graSize, const gRGB &startColor, const gRGB &endColor) {
 	uint32_t* gradientBuf = (uint32_t*)malloc(graSize * sizeof(uint32_t));
 
@@ -97,7 +72,6 @@ uint32_t* createGradientBuffer(int graSize, const gRGB &startColor, const gRGB &
 
 static void blendPixelRounded(uint32_t *dst, const uint32_t *src, const double alpha)
 {
-	
 	if (!((*src)&0xFF000000))
 		return;
 	
@@ -131,14 +105,20 @@ void drawAngleTl(gUnmanagedSurface *surface, const uint32_t *src, const eRect &a
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	for (int y = rTop; y < rBottom; y++)
 	{
-		int yInOriginalArea = y - area.top();
-		uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+cornerRect.left()*surface->bypp);
+		int yInOriginalArea = y - aTop;
+		uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+rLeft*surface->bypp);
 
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int x = rLeft; x < rRight; x++)
 		{
-			int xInOriginalArea = x - area.left();
+			int xInOriginalArea = x - aLeft;
 			dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 			dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
 			squared_dst = dx * dx + dy * dy;
@@ -165,14 +145,20 @@ void drawAngleTr(gUnmanagedSurface *surface, const uint32_t *src, const eRect &a
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	for (int y = rTop; y < rBottom; y++)
 	{
-		int yInOriginalArea = y - area.top();
-		uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+cornerRect.left()*surface->bypp);
+		int yInOriginalArea = y - aTop;
+		uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+rLeft*surface->bypp);
 
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int x = rLeft; x < rRight; x++)
 		{
-			int xInOriginalArea = x - area.left();
+			int xInOriginalArea = x - aLeft;
 			dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
 			dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
 			squared_dst = dx * dx + dy * dy;
@@ -199,14 +185,20 @@ void drawAngleBl(gUnmanagedSurface *surface, const uint32_t *src, const eRect &a
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	for (int y = rTop; y < rBottom; y++)
 	{
-		int yInOriginalArea = y - area.top();
-		uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+cornerRect.left()*surface->bypp);
+		int yInOriginalArea = y - aTop;
+		uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+rLeft*surface->bypp);
 
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int x = rLeft; x < rRight; x++)
 		{
-			int xInOriginalArea = x - area.left();
+			int xInOriginalArea = x - aLeft;
 			dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 			dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
 			squared_dst = dx * dx + dy * dy;
@@ -233,14 +225,20 @@ void drawAngleBr(gUnmanagedSurface *surface, const uint32_t *src, const eRect &a
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	for (int y = rTop; y < rBottom; y++)
 	{
-		int yInOriginalArea = y - area.top();
-		uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+cornerRect.left()*surface->bypp);
+		int yInOriginalArea = y - aTop;
+		uint32_t *dst=(uint32_t*)(((uint8_t*)surface->data)+y*surface->stride+rLeft*surface->bypp);
 
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int x = rLeft; x < rRight; x++)
 		{
-			int xInOriginalArea = x - area.left();
+			int xInOriginalArea = x - aLeft;
 			dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
 			dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
 			squared_dst = dx * dx + dy * dy;
@@ -267,26 +265,32 @@ void drawAngle32Tl(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
 	uint32_t *srcptr=(uint32_t*)pixmap.surface->data;
 	uint32_t *dstptr=(uint32_t*)surface->data;
 
-	srcptr+=(cornerRect.left() - area.left())+(cornerRect.top() - area.top())*pixmap.surface->stride/4;
-	dstptr+=cornerRect.left()+cornerRect.top()*surface->stride/4;
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	srcptr+=(rLeft - aLeft)+(rTop - aTop)*pixmap.surface->stride/4;
+	dstptr+=rLeft+rTop*surface->stride/4;
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-		uint32_t *src = srcptr;
-		uint32_t *dst = dstptr;
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop; y < rBottom; y++)
 		{
-			int xInOriginalArea = x - area.left();
-			dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
-			dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.topLeftCornerDRadius)
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topLeftCornerDRadius)
 				{
 					if (!((*src)&0xFF000000))
 					{
@@ -294,30 +298,85 @@ void drawAngle32Tl(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 						dst++;
 					} else
 						*dst++=*src++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.topLeftCornerSRadius)
 				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
+			}
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop; y < rBottom; y++)
+		{
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
 
+			for (int x = rLeft; x < rRight; x++)
+			{
+				int xInOriginalArea = x - aLeft;
+				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topLeftCornerDRadius)
+				{
 					gRGB *gSrc = (gRGB*)src;
 					gRGB *gDst = (gRGB*)dst;
 					gDst->alpha_blend(*gSrc);
 					src++;
 					dst++;
+					continue;
 				}
-				else
-					*dst++=*src++;
-				continue;
+				else if (squared_dst < cornerData.topLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
 			}
-			else if (squared_dst < cornerData.topLeftCornerSRadius)
-			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, src, alpha);
-			}
-			++dst;
-			++src;
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
 		}
-		srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
-		dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+	}
+	else
+	{
+		for (int y = rTop; y < rBottom; y++)
+		{
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
+			{
+				int xInOriginalArea = x - aLeft;
+				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topLeftCornerDRadius)
+				{
+					*dst++=*src++;
+					continue;
+				}
+				else if (squared_dst < cornerData.topLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
+			}
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+		}
 	}
 }
 
@@ -326,27 +385,32 @@ void drawAngle32Tr(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
 	uint32_t *srcptr=(uint32_t*)pixmap.surface->data;
 	uint32_t *dstptr=(uint32_t*)surface->data;
 
-	srcptr+=(cornerRect.left() - area.left())+(cornerRect.top() - area.top())*pixmap.surface->stride/4;
-	dstptr+=cornerRect.left()+cornerRect.top()*surface->stride/4;
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	srcptr+=(rLeft - aLeft)+(rTop - aTop)*pixmap.surface->stride/4;
+	dstptr+=rLeft+rTop*surface->stride/4;
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-		uint32_t *src = srcptr;
-		uint32_t *dst = dstptr;
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop; y < rBottom; y++)
 		{
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
 
-			int xInOriginalArea = x - area.left();
-			dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
-			dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.topRightCornerDRadius)
+			for (int x = rLeft; x < rRight; x++)
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
+				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topRightCornerDRadius)
 				{
 					if (!((*src)&0xFF000000))
 					{
@@ -354,29 +418,85 @@ void drawAngle32Tr(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 						dst++;
 					} else
 						*dst++=*src++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.topRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
+			}
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop; y < rBottom; y++)
+		{
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
+			{
+				int xInOriginalArea = x - aLeft;
+				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
+				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topRightCornerDRadius)
 				{
 					gRGB *gSrc = (gRGB*)src;
 					gRGB *gDst = (gRGB*)dst;
 					gDst->alpha_blend(*gSrc);
 					src++;
 					dst++;
+					continue;
 				}
-				else
-					*dst++=*src++;
-				continue;
+				else if (squared_dst < cornerData.topRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
 			}
-			else if (squared_dst < cornerData.topRightCornerSRadius)
-			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, src, alpha);
-			}
-			++dst;
-			++src;
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
 		}
-		srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
-		dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+	}
+	else
+	{
+		for (int y = rTop; y < rBottom; y++)
+		{
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
+			{
+				int xInOriginalArea = x - aLeft;
+				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
+				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topRightCornerDRadius)
+				{
+					*dst++=*src++;
+					continue;
+				}
+				else if (squared_dst < cornerData.topRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
+			}
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+		}
 	}
 }
 
@@ -385,26 +505,32 @@ void drawAngle32Bl(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
 	uint32_t *srcptr=(uint32_t*)pixmap.surface->data;
 	uint32_t *dstptr=(uint32_t*)surface->data;
 
-	srcptr+=(cornerRect.left() - area.left())+(cornerRect.top() - area.top())*pixmap.surface->stride/4;
-	dstptr+=cornerRect.left()+cornerRect.top()*surface->stride/4;
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	srcptr+=(rLeft - aLeft)+(rTop - aTop)*pixmap.surface->stride/4;
+	dstptr+=rLeft+rTop*surface->stride/4;
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-		uint32_t *src = srcptr;
-		uint32_t *dst = dstptr;
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop; y < rBottom; y++)
 		{
-			int xInOriginalArea = x - area.left();
-			dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
-			dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.bottomLeftCornerDRadius)
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomLeftCornerDRadius)
 				{
 					if (!((*src)&0xFF000000))
 					{
@@ -412,29 +538,85 @@ void drawAngle32Bl(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 						dst++;
 					} else
 						*dst++=*src++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
+			}
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop; y < rBottom; y++)
+		{
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
+			{
+				int xInOriginalArea = x - aLeft;
+				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomLeftCornerDRadius)
 				{
 					gRGB *gSrc = (gRGB*)src;
 					gRGB *gDst = (gRGB*)dst;
 					gDst->alpha_blend(*gSrc);
 					src++;
 					dst++;
+					continue;
 				}
-				else
-					*dst++=*src++;
-				continue;
+				else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
 			}
-			else if (squared_dst < cornerData.bottomLeftCornerSRadius)
-			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, src, alpha);
-			}
-			++dst;
-			++src;
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
 		}
-		srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
-		dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+	}
+	else
+	{
+		for (int y = rTop; y < rBottom; y++)
+		{
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
+			{
+				int xInOriginalArea = x - aLeft;
+				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomLeftCornerDRadius)
+				{
+					*dst++=*src++;
+					continue;
+				}
+				else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
+			}
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+		}
 	}
 }
 
@@ -443,26 +625,32 @@ void drawAngle32Br(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
 	uint32_t *srcptr=(uint32_t*)pixmap.surface->data;
 	uint32_t *dstptr=(uint32_t*)surface->data;
 
-	srcptr+=(cornerRect.left() - area.left())+(cornerRect.top() - area.top())*pixmap.surface->stride/4;
-	dstptr+=cornerRect.left()+cornerRect.top()*surface->stride/4;
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	srcptr+=(rLeft - aLeft)+(rTop - aTop)*pixmap.surface->stride/4;
+	dstptr+=rLeft+rTop*surface->stride/4;
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-		uint32_t *src = srcptr;
-		uint32_t *dst = dstptr;
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop; y < rBottom; y++)
 		{
-			int xInOriginalArea = x - area.left();
-			dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
-			dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.bottomRightCornerDRadius)
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
+				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomRightCornerDRadius)
 				{
 					if (!((*src)&0xFF000000))
 					{
@@ -470,29 +658,85 @@ void drawAngle32Br(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 						dst++;
 					} else
 						*dst++=*src++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.bottomRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
+			}
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop; y < rBottom; y++)
+		{
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
+			{
+				int xInOriginalArea = x - aLeft;
+				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
+				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomRightCornerDRadius)
 				{
 					gRGB *gSrc = (gRGB*)src;
 					gRGB *gDst = (gRGB*)dst;
 					gDst->alpha_blend(*gSrc);
 					src++;
 					dst++;
+					continue;
 				}
-				else
-					*dst++=*src++;
-				continue;
+				else if (squared_dst < cornerData.bottomRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
 			}
-			else if (squared_dst < cornerData.bottomRightCornerSRadius)
-			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, src, alpha);
-			}
-			++dst;
-			++src;
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
 		}
-		srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
-		dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+	}
+	else
+	{
+		for (int y = rTop; y < rBottom; y++)
+		{
+			int yInOriginalArea = y - aTop;
+			uint32_t *src = srcptr;
+			uint32_t *dst = dstptr;
+
+			for (int x = rLeft; x < rRight; x++)
+			{
+				int xInOriginalArea = x - aLeft;
+				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
+				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomRightCornerDRadius)
+				{
+					*dst++=*src++;
+					continue;
+				}
+				else if (squared_dst < cornerData.bottomRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				}
+				++dst;
+				++src;
+			}
+			srcptr = (uint32_t*)((uint8_t*)srcptr + pixmap.surface->stride);
+			dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
+		}
 	}
 }
 
@@ -501,53 +745,114 @@ void drawAngle32ScaledTl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	
-	const int src_stride = pixmap.surface->stride;
-	const int dst_stride = surface->stride;
 	const int src_bypp = pixmap.surface->bypp;
 	const int dst_bypp = surface->bypp;
+	const int src_stride = pixmap.surface->stride;
+	const int dst_stride = surface->stride;
+	const float scaleX = (float)pixmap.size().width() / (float)area.width();
+	const float scaleY = (float)pixmap.size().height() / (float)area.height();
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	uint8_t* dst_row = (uint8_t*)surface->data + rLeft * dst_bypp + rTop * dst_stride;
 
-	const int src_width = pixmap.size().width();
-	const int src_height = pixmap.size().height();
-	const float scaleX = (float)src_width / (float)area.width();
-	const float scaleY = (float)src_height / (float)area.height();
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); ++y) {
-		int yInOriginalArea = y - area.top();
-		for (int x = cornerRect.left(); x < cornerRect.right(); ++x) {
-			int src_x = (x - area.left()) * scaleX;
-			int src_y = (y - area.top()) * scaleY;
-			int xInOriginalArea = x - area.left();
+	if (flag & gPixmap::blitAlphaTest)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
 
-			uint8_t* dst_pixel = (uint8_t*)surface->data + x * dst_bypp + y * dst_stride;
-			const uint8_t* src_pixel = (const uint8_t*)pixmap.surface->data + src_x * src_bypp + src_y * src_stride;
-			uint32_t *dst = (uint32_t*)dst_pixel;
-			uint32_t *src = (uint32_t*)src_pixel;
-
-			dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
-			dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.topLeftCornerDRadius)
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topLeftCornerDRadius)
 				{
-					if ((*src) & 0x80000000)
-						*dst=*src;
+					if (*src & 0x80000000)
+						*dst = *src;
+					dst++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.topLeftCornerSRadius)
 				{
-					gRGB *gSrc = (gRGB*)src;
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
+			}
+			dst_row += dst_stride;
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			{
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topLeftCornerDRadius)
+				{
+					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*gSrc);
+					gDst->alpha_blend(*src);
+					dst++;
+					continue;
 				}
-				else
-					memcpy(dst_pixel, src_pixel, dst_bypp);
-				continue;
+				else if (squared_dst < cornerData.topLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
 			}
-			else if (squared_dst < cornerData.topLeftCornerSRadius)
+			dst_row += dst_stride;
+		}
+	}
+	else
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, src, alpha);
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topLeftCornerDRadius)
+				{
+					*dst = *src;
+					dst++;
+					continue;
+				}
+				else if (squared_dst < cornerData.topLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
 			}
+			dst_row += dst_stride;
 		}
 	}
 }
@@ -557,56 +862,114 @@ void drawAngle32ScaledTr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	const int src_stride = pixmap.surface->stride;
-	const int dst_stride = surface->stride;
 	const int src_bypp = pixmap.surface->bypp;
 	const int dst_bypp = surface->bypp;
+	const int src_stride = pixmap.surface->stride;
+	const int dst_stride = surface->stride;
+	const float scaleX = (float)pixmap.size().width() / (float)area.width();
+	const float scaleY = (float)pixmap.size().height() / (float)area.height();
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	uint8_t* dst_row = (uint8_t*)surface->data + rLeft * dst_bypp + rTop * dst_stride;
 
-	const int src_width = pixmap.size().width();
-	const int src_height = pixmap.size().height();
-	const float scaleX = (float)src_width / (float)area.width();
-	const float scaleY = (float)src_height / (float)area.height();
-
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
 		{
-			int src_x = (x - area.left()) * scaleX;
-			int src_y = (y - area.top()) * scaleY;
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
 
-			uint8_t* dst_pixel = (uint8_t*)surface->data + x * dst_bypp + y * dst_stride;
-			const uint8_t* src_pixel = (const uint8_t*)pixmap.surface->data + src_x * src_bypp + src_y * src_stride;
-			uint32_t *dst = (uint32_t*)dst_pixel;
-			uint32_t *src = (uint32_t*)src_pixel;
-
-			int xInOriginalArea = x - area.left();
-			dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
-			dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.topRightCornerDRadius)
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
+				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topRightCornerDRadius)
 				{
-					if ((*src) & 0x80000000)
-						*dst=*src;
+					if (*src & 0x80000000)
+						*dst = *src;
+					dst++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.topRightCornerSRadius)
 				{
-					gRGB *gSrc = (gRGB*)src;
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
+			}
+			dst_row += dst_stride;
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			{
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
+				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topRightCornerDRadius)
+				{
+					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*gSrc);
+					gDst->alpha_blend(*src);
+					dst++;
+					continue;
 				}
-				else
-					memcpy(dst_pixel, src_pixel, dst_bypp);
-				continue;
+				else if (squared_dst < cornerData.topRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
 			}
-			else if (squared_dst < cornerData.topRightCornerSRadius)
+			dst_row += dst_stride;
+		}
+	}
+	else
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, src, alpha);
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
+				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topRightCornerDRadius)
+				{
+					*dst = *src;
+					dst++;
+					continue;
+				}
+				else if (squared_dst < cornerData.topRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
 			}
+			dst_row += dst_stride;
 		}
 	}
 }
@@ -616,57 +979,114 @@ void drawAngle32ScaledBl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	const int src_stride = pixmap.surface->stride;
-	const int dst_stride = surface->stride;
 	const int src_bypp = pixmap.surface->bypp;
 	const int dst_bypp = surface->bypp;
+	const int src_stride = pixmap.surface->stride;
+	const int dst_stride = surface->stride;
+	const float scaleX = (float)pixmap.size().width() / (float)area.width();
+	const float scaleY = (float)pixmap.size().height() / (float)area.height();
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	uint8_t* dst_row = (uint8_t*)surface->data + rLeft * dst_bypp + rTop * dst_stride;
 
-	const int src_width = pixmap.size().width();
-	const int src_height = pixmap.size().height();
-	const float scaleX = (float)src_width / (float)area.width();
-	const float scaleY = (float)src_height / (float)area.height();
-
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
 		{
-			int src_x = (x - area.left()) * scaleX;
-			int src_y = (y - area.top()) * scaleY;
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
 
-			int xInOriginalArea = x - area.left();
-
-			uint8_t* dst_pixel = (uint8_t*)surface->data + x * dst_bypp + y * dst_stride;
-			const uint8_t* src_pixel = (const uint8_t*)pixmap.surface->data + src_x * src_bypp + src_y * src_stride;
-			uint32_t *dst = (uint32_t*)dst_pixel;
-			uint32_t *src = (uint32_t*)src_pixel;
-
-			dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
-			dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.bottomLeftCornerDRadius)
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomLeftCornerDRadius)
 				{
-					if ((*src) & 0x80000000)
-						*dst=*src;
+					if (*src & 0x80000000)
+						*dst = *src;
+					dst++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.bottomLeftCornerSRadius)
 				{
-					gRGB *gSrc = (gRGB*)src;
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
+			}
+			dst_row += dst_stride;
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			{
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomLeftCornerDRadius)
+				{
+					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*gSrc);
+					gDst->alpha_blend(*src);
+					dst++;
+					continue;
 				}
-				else
-					memcpy(dst_pixel, src_pixel, dst_bypp);
-				continue;
+				else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
 			}
-			else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+			dst_row += dst_stride;
+		}
+	}
+	else
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, src, alpha);
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomLeftCornerDRadius)
+				{
+					*dst = *src;
+					dst++;
+					continue;
+				}
+				else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
 			}
+			dst_row += dst_stride;
 		}
 	}
 }
@@ -676,57 +1096,114 @@ void drawAngle32ScaledBr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	const int src_stride = pixmap.surface->stride;
-	const int dst_stride = surface->stride;
 	const int src_bypp = pixmap.surface->bypp;
 	const int dst_bypp = surface->bypp;
+	const int src_stride = pixmap.surface->stride;
+	const int dst_stride = surface->stride;
+	const float scaleX = (float)pixmap.size().width() / (float)area.width();
+	const float scaleY = (float)pixmap.size().height() / (float)area.height();
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	uint8_t* dst_row = (uint8_t*)surface->data + rLeft * dst_bypp + rTop * dst_stride;
 
-	const int src_width = pixmap.size().width();
-	const int src_height = pixmap.size().height();
-	const float scaleX = (float)src_width / (float)area.width();
-	const float scaleY = (float)src_height / (float)area.height();
-
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
 		{
-			int src_x = (x - area.left()) * scaleX;
-			int src_y = (y - area.top()) * scaleY;
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
 
-			int xInOriginalArea = x - area.left();
-			
-			uint8_t* dst_pixel = (uint8_t*)surface->data + x * dst_bypp + y * dst_stride;
-			const uint8_t* src_pixel = (const uint8_t*)pixmap.surface->data + src_x * src_bypp + src_y * src_stride;
-			uint32_t *dst = (uint32_t*)dst_pixel;
-			uint32_t *src = (uint32_t*)src_pixel;
-
-			dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
-			dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.bottomRightCornerDRadius)
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
+				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomRightCornerDRadius)
 				{
-					if ((*src) & 0x80000000)
-						*dst=*src;
+					if (*src & 0x80000000)
+						*dst = *src;
+					dst++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.bottomRightCornerSRadius)
 				{
-					gRGB *gSrc = (gRGB*)src;
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
+			}
+			dst_row += dst_stride;
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			{
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
+				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomRightCornerDRadius)
+				{
+					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*gSrc);
+					gDst->alpha_blend(*src);
+					dst++;
+					continue;
 				}
-				else
-					memcpy(dst_pixel, src_pixel, dst_bypp);
-				continue;
+				else if (squared_dst < cornerData.bottomRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
 			}
-			else if (squared_dst < cornerData.bottomRightCornerSRadius)
+			dst_row += dst_stride;
+		}
+	}
+	else
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, src, alpha);
+				int xInOriginalArea = x - aLeft;
+				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
+				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
+				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomRightCornerDRadius)
+				{
+					*dst = *src;
+					dst++;
+					continue;
+				}
+				else if (squared_dst < cornerData.bottomRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, src, alpha);
+				} 
+				dst++;
 			}
+			dst_row += dst_stride;
 		}
 	}
 }
@@ -960,52 +1437,113 @@ void drawAngle8ScaledTl(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	
-	const int src_stride = pixmap.surface->stride;
-	const int dst_stride = surface->stride;
 	const int src_bypp = pixmap.surface->bypp;
 	const int dst_bypp = surface->bypp;
+	const int src_stride = pixmap.surface->stride;
+	const int dst_stride = surface->stride;
+	const float scaleX = (float)pixmap.size().width() / (float)area.width();
+	const float scaleY = (float)pixmap.size().height() / (float)area.height();
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	uint8_t* dst_row = (uint8_t*)surface->data + rLeft * dst_bypp + rTop * dst_stride;
 
-	const int src_width = pixmap.size().width();
-	const int src_height = pixmap.size().height();
-	const float scaleX = (float)src_width / (float)area.width();
-	const float scaleY = (float)src_height / (float)area.height();
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); ++y) {
-		int yInOriginalArea = y - area.top();
-		for (int x = cornerRect.left(); x < cornerRect.right(); ++x) {
-			int src_x = (x - area.left()) * scaleX;
-			int src_y = (y - area.top()) * scaleY;
-			int xInOriginalArea = x - area.left();
+	if (flag & gPixmap::blitAlphaTest)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
 
-			uint8_t* dst_pixel = (uint8_t*)surface->data + x * dst_bypp + y * dst_stride;
-			const uint8_t* src_pixel = (const uint8_t*)pixmap.surface->data + src_x * src_bypp + src_y * src_stride;
-			uint32_t *dst = (uint32_t*)dst_pixel;
-			uint32_t src = pal[*src_pixel];
-
-			dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
-			dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.topLeftCornerDRadius)
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topLeftCornerDRadius)
 				{
-					if (src & 0x80000000)
-						*dst=src;
+					if (pal[*src] & 0x80000000)
+						*dst = pal[*src];
+					dst++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.topLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
+			}
+			dst_row += dst_stride;
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			{
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topLeftCornerDRadius)
 				{
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(src);
+					gDst->alpha_blend(pal[*src]);
+					dst++;
+					continue;
 				}
-				else
-					memcpy(dst_pixel, &src, dst_bypp);
-				continue;
+				else if (squared_dst < cornerData.topLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
 			}
-			else if (squared_dst < cornerData.topLeftCornerSRadius)
+			dst_row += dst_stride;
+		}
+	}
+	else
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, &src, alpha);
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topLeftCornerDRadius)
+				{
+					*dst = pal[*src];
+					dst++;
+					continue;
+				}
+				else if (squared_dst < cornerData.topLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
 			}
+			dst_row += dst_stride;
 		}
 	}
 }
@@ -1015,55 +1553,113 @@ void drawAngle8ScaledTr(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	const int src_stride = pixmap.surface->stride;
-	const int dst_stride = surface->stride;
 	const int src_bypp = pixmap.surface->bypp;
 	const int dst_bypp = surface->bypp;
+	const int src_stride = pixmap.surface->stride;
+	const int dst_stride = surface->stride;
+	const float scaleX = (float)pixmap.size().width() / (float)area.width();
+	const float scaleY = (float)pixmap.size().height() / (float)area.height();
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	uint8_t* dst_row = (uint8_t*)surface->data + rLeft * dst_bypp + rTop * dst_stride;
 
-	const int src_width = pixmap.size().width();
-	const int src_height = pixmap.size().height();
-	const float scaleX = (float)src_width / (float)area.width();
-	const float scaleY = (float)src_height / (float)area.height();
-
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
 		{
-			int src_x = (x - area.left()) * scaleX;
-			int src_y = (y - area.top()) * scaleY;
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
 
-			uint8_t* dst_pixel = (uint8_t*)surface->data + x * dst_bypp + y * dst_stride;
-			const uint8_t* src_pixel = (const uint8_t*)pixmap.surface->data + src_x * src_bypp + src_y * src_stride;
-			uint32_t *dst = (uint32_t*)dst_pixel;
-			uint32_t src = pal[*src_pixel];
-
-			int xInOriginalArea = x - area.left();
-			dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
-			dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.topRightCornerDRadius)
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
+				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topRightCornerDRadius)
 				{
-					if (src & 0x80000000)
-						*dst=src;
+					if (pal[*src] & 0x80000000)
+						*dst = pal[*src];
+					dst++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.topRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
+			}
+			dst_row += dst_stride;
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			{
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
+				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topRightCornerDRadius)
 				{
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(src);
+					gDst->alpha_blend(pal[*src]);
+					dst++;
+					continue;
 				}
-				else
-					memcpy(dst_pixel, &src, dst_bypp);
-				continue;
+				else if (squared_dst < cornerData.topRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
 			}
-			else if (squared_dst < cornerData.topRightCornerSRadius)
+			dst_row += dst_stride;
+		}
+	}
+	else
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, &src, alpha);
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
+				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.topRightCornerDRadius)
+				{
+					*dst = pal[*src];
+					dst++;
+					continue;
+				}
+				else if (squared_dst < cornerData.topRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
 			}
+			dst_row += dst_stride;
 		}
 	}
 }
@@ -1073,56 +1669,113 @@ void drawAngle8ScaledBl(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	const int src_stride = pixmap.surface->stride;
-	const int dst_stride = surface->stride;
 	const int src_bypp = pixmap.surface->bypp;
 	const int dst_bypp = surface->bypp;
+	const int src_stride = pixmap.surface->stride;
+	const int dst_stride = surface->stride;
+	const float scaleX = (float)pixmap.size().width() / (float)area.width();
+	const float scaleY = (float)pixmap.size().height() / (float)area.height();
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	uint8_t* dst_row = (uint8_t*)surface->data + rLeft * dst_bypp + rTop * dst_stride;
 
-	const int src_width = pixmap.size().width();
-	const int src_height = pixmap.size().height();
-	const float scaleX = (float)src_width / (float)area.width();
-	const float scaleY = (float)src_height / (float)area.height();
-
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
 		{
-			int src_x = (x - area.left()) * scaleX;
-			int src_y = (y - area.top()) * scaleY;
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
 
-			int xInOriginalArea = x - area.left();
-
-			uint8_t* dst_pixel = (uint8_t*)surface->data + x * dst_bypp + y * dst_stride;
-			const uint8_t* src_pixel = (const uint8_t*)pixmap.surface->data + src_x * src_bypp + src_y * src_stride;
-			uint32_t *dst = (uint32_t*)dst_pixel;
-			uint32_t src = pal[*src_pixel];
-
-			dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
-			dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.bottomLeftCornerDRadius)
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomLeftCornerDRadius)
 				{
-					if (src & 0x80000000)
-						*dst=src;
+					if (pal[*src] & 0x80000000)
+						*dst = pal[*src];
+					dst++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
+			}
+			dst_row += dst_stride;
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			{
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomLeftCornerDRadius)
 				{
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(src);
+					gDst->alpha_blend(pal[*src]);
+					dst++;
+					continue;
 				}
-				else
-					memcpy(dst_pixel, &src, dst_bypp);
-				continue;
+				else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
 			}
-			else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+			dst_row += dst_stride;
+		}
+	}
+	else
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, &src, alpha);
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
+				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomLeftCornerDRadius)
+				{
+					*dst = pal[*src];
+					dst++;
+					continue;
+				}
+				else if (squared_dst < cornerData.bottomLeftCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
 			}
+			dst_row += dst_stride;
 		}
 	}
 }
@@ -1132,56 +1785,113 @@ void drawAngle8ScaledBr(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	double alpha = 1.0;
 	int dx = 0, dy = 0, squared_dst = 0;
 	const std::unordered_map<int, double> &radiusData = cornerData.RadiusData;
-	const int src_stride = pixmap.surface->stride;
-	const int dst_stride = surface->stride;
 	const int src_bypp = pixmap.surface->bypp;
 	const int dst_bypp = surface->bypp;
+	const int src_stride = pixmap.surface->stride;
+	const int dst_stride = surface->stride;
+	const float scaleX = (float)pixmap.size().width() / (float)area.width();
+	const float scaleY = (float)pixmap.size().height() / (float)area.height();
+	const int aLeft = area.left();
+	const int aTop = area.top();
+	const int rLeft = cornerRect.left();
+	const int rRight = cornerRect.right();
+	const int rTop = cornerRect.top();
+	const int rBottom = cornerRect.bottom();
+	uint8_t* dst_row = (uint8_t*)surface->data + rLeft * dst_bypp + rTop * dst_stride;
 
-	const int src_width = pixmap.size().width();
-	const int src_height = pixmap.size().height();
-	const float scaleX = (float)src_width / (float)area.width();
-	const float scaleY = (float)src_height / (float)area.height();
-
-	for (int y = cornerRect.top(); y < cornerRect.bottom(); y++)
+	if (flag & gPixmap::blitAlphaTest)
 	{
-		int yInOriginalArea = y - area.top();
-
-		for (int x = cornerRect.left(); x < cornerRect.right(); x++)
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
 		{
-			int src_x = (x - area.left()) * scaleX;
-			int src_y = (y - area.top()) * scaleY;
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
 
-			int xInOriginalArea = x - area.left();
-			
-			uint8_t* dst_pixel = (uint8_t*)surface->data + x * dst_bypp + y * dst_stride;
-			const uint8_t* src_pixel = (const uint8_t*)pixmap.surface->data + src_x * src_bypp + src_y * src_stride;
-			uint32_t *dst = (uint32_t*)dst_pixel;
-			uint32_t src = pal[*src_pixel];
-
-			dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
-			dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
-			squared_dst = dx * dx + dy * dy;
-			if (squared_dst <= cornerData.bottomRightCornerDRadius)
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				if (flag & gPixmap::blitAlphaTest)
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
+				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomRightCornerDRadius)
 				{
-					if (src & 0x80000000)
-						*dst=src;
+					if (pal[*src] & 0x80000000)
+						*dst = pal[*src];
+					dst++;
+					continue;
 				}
-				else if (flag & gPixmap::blitAlphaBlend)
+				else if (squared_dst < cornerData.bottomRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
+			}
+			dst_row += dst_stride;
+		}
+	}
+	else if (flag & gPixmap::blitAlphaBlend)
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			{
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
+				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomRightCornerDRadius)
 				{
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(src);
+					gDst->alpha_blend(pal[*src]);
+					dst++;
+					continue;
 				}
-				else
-					memcpy(dst_pixel, &src, dst_bypp);
-				continue;
+				else if (squared_dst < cornerData.bottomRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
 			}
-			else if (squared_dst < cornerData.bottomRightCornerSRadius)
+			dst_row += dst_stride;
+		}
+	}
+	else
+	{
+		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		{
+			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
+			uint32_t* dst = (uint32_t*)dst_row;
+			int yInOriginalArea = y - aTop;
+
+			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
 			{
-				alpha = radiusData.at(squared_dst);
-				blendPixelRounded(dst, &src, alpha);
+				int xInOriginalArea = x - aLeft;
+				const uint8_t* src = src_row + src_x * src_bypp;
+				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
+				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
+				squared_dst = dx * dx + dy * dy;
+				if (squared_dst <= cornerData.bottomRightCornerDRadius)
+				{
+					*dst = pal[*src];
+					dst++;
+					continue;
+				}
+				else if (squared_dst < cornerData.bottomRightCornerSRadius)
+				{
+					alpha = radiusData.at(squared_dst);
+					blendPixelRounded(dst, &pal[*src], alpha);
+				} 
+				dst++;
 			}
+			dst_row += dst_stride;
 		}
 	}
 }
