@@ -345,7 +345,7 @@ struct CornerData
 
 	void caclCornerAlpha()
 	{
-		int dx = 0.0, dy = 0.0, squared_dst = 0.0;
+		int dx = 0, dy = 0, squared_dst = 0;
 		double alpha = 0.0, distance = 0.0;
 		int r = cornerRadius;
 		for (int y = 0; y < r; y++)
