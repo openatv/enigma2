@@ -166,6 +166,7 @@ struct gUnmanagedSurface
 	gPalette clut;
 	void *data;
 	int data_phys;
+	bool transparent = true;
 
 	gUnmanagedSurface();
 	gUnmanagedSurface(int width, int height, int bpp);

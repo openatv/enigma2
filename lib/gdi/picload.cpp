@@ -401,6 +401,18 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 	filepara->ox = width;
 	filepara->oy = height;
 
+	if (color_type == PNG_COLOR_TYPE_RGBA || color_type == PNG_COLOR_TYPE_GA)
+		filepara->transparent = true;
+	else
+	{
+		png_bytep trans_alpha = NULL;
+		int num_trans = 0;
+		png_color_16p trans_color = NULL;
+
+		png_get_tRNS(png_ptr, info_ptr, &trans_alpha, &num_trans, &trans_color);
+		filepara->transparent = (trans_alpha != NULL);
+	}
+
 	if( (bit_depth <= 8) && (color_type == PNG_COLOR_TYPE_GRAY || color_type & PNG_COLOR_MASK_PALETTE))
 	{
 		if(bit_depth < 8)
@@ -910,8 +922,8 @@ void ePicLoad::decodePic()
 	switch(m_filepara->id)
 	{
 		case F_PNG:	png_load(m_filepara, m_conf.background); break;
-		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);	break;
-		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
+		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);	m_filepara->transparent = false;	break;
+		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	m_filepara->transparent = false;	break;
 		case F_GIF:	gif_load(m_filepara); break;
 		case F_SVG:	svg_load(m_filepara); break;
 	}
@@ -1312,6 +1324,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	{
 		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 8, gPixmap::accelAlways);
 		gUnmanagedSurface *surface = result->surface;
+		surface->transparent = m_filepara->transparent;
 		surface->clut.data = m_filepara->palette;
 		surface->clut.colors = m_filepara->palette_size;
 		m_filepara->palette = NULL; // transfer ownership
@@ -1373,6 +1386,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	{
 		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 32, gPixmap::accelAuto);
 		gUnmanagedSurface *surface = result->surface;
+		surface->transparent = m_filepara->transparent;
 		int o_y=0, u_y=0, v_x=0, h_x=0;
 
 		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
