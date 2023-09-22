@@ -130,7 +130,6 @@ struct eListboxStyle
 	bool m_gradient_set[4];
 	int m_gradient_direction[4], m_gradient_blend[4];
 	gRGB m_gradient_startcolor[4], m_gradient_endcolor[4];
-
 };
 #endif
 
@@ -361,6 +360,27 @@ public:
 
 	static void setDefaultPadding(const eRect &padding) { defaultPadding = padding; }
 
+	static void setDefaultItemRadius(int radius, int radiusEdges)
+	{
+		defaultItemRadius[0] = radius;
+		defaultItemRadiusEdges[0] = radiusEdges;
+	}
+	static void setDefaultItemRadiusSelected(int radius, int radiusEdges)
+	{
+		defaultItemRadius[1] = radius;
+		defaultItemRadiusEdges[1] = radiusEdges;
+	}
+	static void setDefaultItemRadiusMarked(int radius, int radiusEdges)
+	{
+		defaultItemRadius[2] = radius;
+		defaultItemRadiusEdges[2] = radiusEdges;
+	}
+	static void setDefaultItemRadiusMarkedAndSelected(int radius, int radiusEdges)
+	{
+		defaultItemRadius[3] = radius;
+		defaultItemRadiusEdges[3] = radiusEdges;
+	}
+
 	void setTopIndex(int idx);
 
 	bool getWrapAround() { return m_enabled_wrap_around; }
@@ -405,6 +425,7 @@ private:
 	int moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int maxItems, bool indexChanged, int pageOffset, int topLeft);
 	void recalcSizeAlignment(bool scrollbarVisible);
 	int setScrollbarPosition();
+	void setItemCornerRadiusInternal(int radius, int edges, int index);
 
 	static int defaultScrollBarWidth;
 	static int defaultScrollBarOffset;
@@ -414,6 +435,8 @@ private:
 	static int defaultPageSize;
 	static bool defaultWrapAround;
 	static eRect defaultPadding;
+	static int defaultItemRadius[4];
+	static int defaultItemRadiusEdges[4];
 
 	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;
