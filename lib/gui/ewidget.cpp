@@ -377,11 +377,12 @@ int eWidget::event(int event, void *data, void *data2)
 				painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction);
 			else if(m_have_background_color)
 				painter.setBackgroundColor(m_background_color);
-			if (m_cornerRadius)
-				painter.setRadius(m_cornerRadius, m_cornerRadiusEdges);
+			const int r = getCornerRadius()
+			if (r)
+				painter.setRadius(r, m_cornerRadiusEdges);
 //			if (m_have_border_color && m_border_width)
 //				painter.setBorder(m_border_color, m_border_width);
-			if (m_cornerRadius || m_gradient_set)
+			if (r || m_gradient_set)
 				painter.drawRectangle(eRect(ePoint(0, 0), size()), gPainter::BT_ALPHABLEND | gPainter::BT_PERFORMANCE_MESSURE);
 			else {
 				if (!m_have_background_color) {
@@ -478,4 +479,20 @@ void eWidget::setBorderColor(const gRGB &color)
 	m_border_color = color;
 	m_have_border_color = true;
 	invalidate();
+}
+
+int eWidget::getCornerRadius()
+{
+	int r = m_cornerRadius;
+	if(r) {
+		const int w = m_size.width();
+		const int h = m_size.height();
+		if(w && h) {
+			int minDimension = (w < h) ? w : h;
+			if (r > minDimension / 2) {
+				r = minDimension / 2;
+			}
+		}
+	}
+	return r;
 }

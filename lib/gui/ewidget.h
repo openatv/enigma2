@@ -159,7 +159,6 @@ public:
 	void setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
 
 	void setCornerRadius(int radius, int edges);
-	int getCornerRadius() {return m_cornerRadius;}
 	int getCornerRadiusEdges() {return m_cornerRadiusEdges;}
 
 	enum
