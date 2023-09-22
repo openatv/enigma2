@@ -501,7 +501,8 @@ int eListbox::event(int event, void *data, void *data2)
 			int cornerRadiusEdges = getCornerRadiusEdges();
 			painter.clip(paint_region);
 			style->setStyle(painter, eWindowStyle::styleListboxNormal);
-			if (m_style.is_set.spacing_color) {
+			if (m_style.is_set.spacing_color)
+			{
 				painter.setBackgroundColor(m_style.m_spacing_color);
 			}
 			else
@@ -509,7 +510,8 @@ int eListbox::event(int event, void *data, void *data2)
 				if (m_style.is_set.background_color)
 					painter.setBackgroundColor(m_style.m_background_color);
 			}
-			if (cornerRadius && cornerRadiusEdges) {
+			if (cornerRadius && cornerRadiusEdges)
+			{
 				painter.setRadius(cornerRadius, cornerRadiusEdges);
 				painter.drawRectangle(eRect(ePoint(0, 0), size()), gPainter::BT_PERFORMANCE_MESSURE);
 			}
