@@ -44,8 +44,8 @@ struct Cfilepara
 
 	~Cfilepara()
 	{
-		if (pic_buffer != NULL)	delete pic_buffer;
-		if (palette != NULL) delete palette;
+		if (pic_buffer != NULL)	delete [] pic_buffer;
+		if (palette != NULL) delete [] palette;
 		free(file);
 	}
 
