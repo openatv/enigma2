@@ -761,15 +761,17 @@ void drawAngle32ScaledTl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 
 	if (flag & gPixmap::blitAlphaTest)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -793,15 +795,17 @@ void drawAngle32ScaledTl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	}
 	else if (flag & gPixmap::blitAlphaBlend)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -826,15 +830,17 @@ void drawAngle32ScaledTl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	}
 	else
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -878,15 +884,17 @@ void drawAngle32ScaledTr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 
 	if (flag & gPixmap::blitAlphaTest)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
 				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -910,15 +918,17 @@ void drawAngle32ScaledTr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	}
 	else if (flag & gPixmap::blitAlphaBlend)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
 				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -943,15 +953,17 @@ void drawAngle32ScaledTr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	}
 	else
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
 				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -995,15 +1007,17 @@ void drawAngle32ScaledBl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 
 	if (flag & gPixmap::blitAlphaTest)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
@@ -1027,15 +1041,17 @@ void drawAngle32ScaledBl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	}
 	else if (flag & gPixmap::blitAlphaBlend)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
@@ -1060,15 +1076,17 @@ void drawAngle32ScaledBl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	}
 	else
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
@@ -1112,15 +1130,17 @@ void drawAngle32ScaledBr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 
 	if (flag & gPixmap::blitAlphaTest)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
 				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
@@ -1144,15 +1164,17 @@ void drawAngle32ScaledBr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	}
 	else if (flag & gPixmap::blitAlphaBlend)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
 				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
@@ -1177,15 +1199,17 @@ void drawAngle32ScaledBr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 	}
 	else
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint32_t* src = (const uint32_t*)(src_row + src_x * src_bypp);
 				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
 				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
@@ -1453,15 +1477,17 @@ void drawAngle8ScaledTl(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 
 	if (flag & gPixmap::blitAlphaTest)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -1485,15 +1511,17 @@ void drawAngle8ScaledTl(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	}
 	else if (flag & gPixmap::blitAlphaBlend)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -1517,15 +1545,17 @@ void drawAngle8ScaledTl(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	}
 	else
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = cornerData.topLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = cornerData.topLeftCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -1569,15 +1599,17 @@ void drawAngle8ScaledTr(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 
 	if (flag & gPixmap::blitAlphaTest)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
 				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -1601,15 +1633,17 @@ void drawAngle8ScaledTr(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	}
 	else if (flag & gPixmap::blitAlphaBlend)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
 				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -1633,15 +1667,17 @@ void drawAngle8ScaledTr(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	}
 	else
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = xInOriginalArea - cornerData.w_topRightCornerRadius;
 				dy = cornerData.topRightCornerRadius - yInOriginalArea - 1 + cornerData.borderWidth;
@@ -1685,15 +1721,17 @@ void drawAngle8ScaledBl(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 
 	if (flag & gPixmap::blitAlphaTest)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
@@ -1717,15 +1755,17 @@ void drawAngle8ScaledBl(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	}
 	else if (flag & gPixmap::blitAlphaBlend)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
@@ -1749,15 +1789,17 @@ void drawAngle8ScaledBl(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	}
 	else
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = cornerData.bottomLeftCornerRadius - xInOriginalArea - 1 + cornerData.borderWidth;
 				dy = yInOriginalArea - cornerData.h_bottomLeftCornerRadius;
@@ -1801,15 +1843,17 @@ void drawAngle8ScaledBr(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 
 	if (flag & gPixmap::blitAlphaTest)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
 				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
@@ -1833,15 +1877,17 @@ void drawAngle8ScaledBr(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	}
 	else if (flag & gPixmap::blitAlphaBlend)
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
 				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
@@ -1865,15 +1911,17 @@ void drawAngle8ScaledBr(gUnmanagedSurface *surface, const gPixmap &pixmap, const
 	}
 	else
 	{
-		for (int y = rTop, src_y = (int)((y - aTop) * scaleY); y < rBottom; ++y, src_y += (int)(scaleY)) 
+		for (int y = rTop; y < rBottom; ++y) 
 		{
+			int src_y = (int)((y - aTop) * scaleY);
 			const uint8_t* src_row = (const uint8_t*)pixmap.surface->data + src_y * src_stride;
 			uint32_t* dst = (uint32_t*)dst_row;
 			int yInOriginalArea = y - aTop;
 
-			for (int x = rLeft, src_x = (int)((x - aLeft) * scaleX); x < rRight; ++x, src_x += (int)(scaleX)) 
+			for (int x = rLeft; x < rRight; ++x) 
 			{
 				int xInOriginalArea = x - aLeft;
+				int src_x = (int)((x - aLeft) * scaleX);
 				const uint8_t* src = src_row + src_x * src_bypp;
 				dx = xInOriginalArea - cornerData.w_bottomRightCornerRadius;
 				dy = yInOriginalArea - cornerData.h_bottomRightCornerRadius;
