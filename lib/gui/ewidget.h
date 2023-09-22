@@ -160,6 +160,7 @@ public:
 
 	void setCornerRadius(int radius, int edges);
 	int getCornerRadiusEdges() {return m_cornerRadiusEdges;}
+	int getCornerRadius();
 
 	enum
 	{

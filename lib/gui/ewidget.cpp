@@ -377,7 +377,7 @@ int eWidget::event(int event, void *data, void *data2)
 				painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction);
 			else if(m_have_background_color)
 				painter.setBackgroundColor(m_background_color);
-			const int r = getCornerRadius()
+			const int r = getCornerRadius();
 			if (r)
 				painter.setRadius(r, m_cornerRadiusEdges);
 //			if (m_have_border_color && m_border_width)
