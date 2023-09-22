@@ -21,6 +21,7 @@ REMOVE = "/bin/rm"
 PREFIX = "MultiBoot_"
 COMMAND_FILE = "cmdline.txt"
 DUAL_BOOT_FILE = "/dev/block/by-name/flag"
+DREAM_BOOT_FILE = "/data/bootconfig.txt"
 STARTUP_FILE = "STARTUP"
 STARTUP_ONCE = "STARTUP_ONCE"
 STARTUP_TEMPLATE = "STARTUP_*"
@@ -93,6 +94,13 @@ class MultiBootClass():
 				self.bootCode = ""
 			except struct.error as err:
 				print("MultiBoot] Unable to interpret dual boot file '%s' data!  (%s)" % (DUAL_BOOT_FILE, err))
+		elif exists(DREAM_BOOT_FILE):
+			with open(DREAM_BOOT_FILE, "r") as fd:
+				lines = fd.readlines()
+				for line in lines:
+					if line.startswith("default="):
+						self.bootSlot = str(int(line.strip().split("=")[1]) + 1)
+						self.bootCode = ""
 		else:
 			self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
 
@@ -590,11 +598,30 @@ class MultiBootClass():
 				target = STARTUP_FILE
 			else:
 				target = STARTUP_ONCE if startup == STARTUP_RECOVERY else STARTUP_FILE
-			copyfile(pathjoin(self.tempDir, startup), pathjoin(self.tempDir, target))
+			if not exists(DREAM_BOOT_FILE) and not startup == STARTUP_RECOVERY:
+				copyfile(pathjoin(self.tempDir, startup), pathjoin(self.tempDir, target))
 			if exists(DUAL_BOOT_FILE):
 				slot = self.slotCode if self.slotCode.isdecimal() else "0"
 				with open(DUAL_BOOT_FILE, "wb") as fd:
 					fd.write(pack("B", int(slot)))
+			if exists(DREAM_BOOT_FILE):
+				if self.slotCode == "R":
+					cmd_count = 0
+					with open(DREAM_BOOT_FILE, "r") as fd:
+						lines = fd.readlines()
+						for line in lines:
+							if line.startswith("cmd="):
+								cmd_count += 1
+					self.slotCode = str(cmd_count)
+				slot = int(self.slotCode) - 1
+				with open(DREAM_BOOT_FILE, "r+") as fd:
+					lines = fd.readlines()
+					fd.seek(0)
+					for line in lines:
+						if line.startswith("default="):
+							line = f"default={slot}\n"
+						fd.write(line)
+					fd.truncate()
 			if self.debugMode:
 				print("[MultiBoot] Installing '%s' as '%s'." % (startup, target))
 			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.bootDeviceUnmounted)
