@@ -158,10 +158,10 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 		self.setTitle(_("Plugin Browser"))
 		ProtectedScreen.__init__(self)
 		self["key_menu"] = StaticText(_("MENU"))
-		self["key_red"] = StaticText(_("Remove Plugins"))
-		self["key_green"] = StaticText(_("Download Plugins"))
-		self["key_yellow"] = StaticText(_("Update Plugins"))
-		self["key_blue"] = StaticText("")
+		self["key_red"] = StaticText()
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self[self.layout] = List([])
 		self[self.layout].onSelectionChanged.append(self.selectionChanged)
 		self.currentList = self[self.layout]
@@ -233,13 +233,13 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 		self.firstTime = True
 		self.sortMode = False
 		self.selectedPlugin = None
+		self.internetAccess = 0  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
 		self.opkgComponent = OpkgComponent()
 		self.opkgComponent.addCallback(self.createFeedConfigCallback)
 		if config.pluginfilter.userfeed.value != "http://" and not exists("/etc/opkg/user-feed.conf"):
 			self.createFeedConfig()
+		self.onFirstExecBegin.append(self.checkWarnings)  # This is needed to avoid a modal screen issue.
 		self.onLayoutFinish.append(self.layoutFinished)
-		self.onFirstExecBegin.append(self.checkWarnings)
-		self.onShown.append(self.updatePluginList)
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
@@ -255,9 +255,6 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 						PluginBrowser.moveFontColor = parseColor(value)
 						item.skinAttributes.remove((attribute, value))
 		Screen.createGUIScreen(self, parent, desktop, updateonly)
-
-	def layoutFinished(self):
-		self[self.layout].enableAutoNavigation(False)  # Override list box self navigation.
 
 	def selectionChanged(self):
 		if self.pluginList:
@@ -305,13 +302,30 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 			self["quickSelectActions"].setEnabled(True)
 
 	def checkWarnings(self):
+		def checkWarningsCallback(answer):
+			if answer:
+				pluginComponent.resetWarnings()
+
 		warnings = pluginComponent.getWarnings()
 		if warnings:
-			text = [_("Some plugins are not available:"), ""]
+			count = len(warnings)
+			text = [ngettext("%d plugin is not available:", "%d plugins are not available:", count) % count, ""]
 			for pluginName, error in warnings:
-				text.append(_("%s  (%s)") % (pluginName, error))
-			pluginComponent.resetWarnings()
-			self.session.open(MessageBox, text="\n".join(text), type=MessageBox.TYPE_WARNING, windowTitle=self.getTitle())
+				text.append("- %s\n    %s" % (pluginName, error))
+			options = [
+				(ngettext("Keep warning", "Keep warnings", count), False),
+				(ngettext("Clear warning", "Clear warnings", count), True)
+			]
+			self.session.openWithCallback(checkWarningsCallback, MessageBox, text="\n".join(text), type=MessageBox.TYPE_YESNO, list=options, default=0, typeIcon=MessageBox.TYPE_WARNING, windowTitle=self.getTitle())
+
+	def layoutFinished(self):
+		self[self.layout].enableAutoNavigation(False)  # Override list box self navigation.
+		self.callLater(self.checkInternet)
+		self.updatePluginList()
+
+	def checkInternet(self):
+		self.internetAccess = checkInternetAccess(FEED_SERVER, INTERNET_TIMEOUT)
+		self.updateButtons()
 
 	def updatePluginList(self):
 		pluginList = pluginComponent.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
@@ -325,6 +339,10 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 			self.pluginList.sort(key=lambda x: x[0].name.lower())
 		elif config.usage.plugins_sort_mode.value == "user":
 			self.pluginList.sort(key=lambda x: x[0].listWeight)
+		self[self.layout].updateList(self.pluginList)
+		self.updateButtons()
+
+	def updateButtons(self):
 		if self.sortMode:
 			self["key_red"].setText(_("Reset Order"))
 			self["key_green"].setText(_("Move Mode Off") if self.selectedPlugin else _("Move Mode On"))
@@ -334,10 +352,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 			self["pluginEditActions"].setEnabled(True)
 		else:
 			self["key_red"].setText(_("Remove Plugins"))
-			self["key_blue"].setText(_("Edit Mode On") if config.usage.plugins_sort_mode.value == "user" else "")
-			self["pluginRemoveActions"].setEnabled(True)
-			internetAccess = checkInternetAccess(FEED_SERVER, INTERNET_TIMEOUT)
-			if internetAccess == 0:  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
+			if self.internetAccess == 0:  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
 				self["key_green"].setText(_("Download Plugins"))
 				self["key_yellow"].setText(_("Update Plugins"))
 				self["pluginDownloadActions"].setEnabled(True)
@@ -345,8 +360,9 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 				self["key_green"].setText("")
 				self["key_yellow"].setText("")
 				self["pluginDownloadActions"].setEnabled(False)
+			self["key_blue"].setText(_("Edit Mode On") if config.usage.plugins_sort_mode.value == "user" else "")
+			self["pluginRemoveActions"].setEnabled(True)
 			self["pluginEditActions"].setEnabled(False)
-		self[self.layout].updateList(self.pluginList)
 
 	def keyCancel(self):
 		if self.sortMode:
@@ -734,14 +750,15 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			"ok": (self.keySelect, buttonHelp),
 		}, prio=0, description=description)
 		buttonHelp = {
-			self.REMOVE: _("Remove the selected list of plugins"),
-			self.DOWNLOAD: _("Download the selected list of plugins"),
-			self.UPDATE: _("Update the selected list of plugins"),
+			self.REMOVE: _("Remove the selected plugin / list of plugins"),
+			self.DOWNLOAD: _("Download the selected plugin / list of plugins"),
+			self.UPDATE: _("Update the selected plugin / list of plugins"),
 			self.MANAGE: _("Manage the highlighted plugin")
 		}.get(type, _("Unknown"))
 		self["performAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"green": (self.keyGreen, buttonHelp),
 		}, prio=0, description=description)
+		self["performAction"].setEnabled(False)
 		self["logAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.keyYellow, _("Show the last opkg command's output"))
 		}, prio=0, description=description)
@@ -788,6 +805,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		self.quickSelect = ""
 		self.quickSelectPos = -1
 		self.onChangedEntry = []
+		self.processing = False
 		self.pluginList = []
 		self.currentCategory = None
 		self.expanded = []
@@ -858,37 +876,37 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 				self.setWaiting(None)
 
 	def selectionChanged(self):
+		label = ""
 		current = self["plugins"].getCurrent()
 		if current:
 			category = current[self.PLUGIN_CATEGORY]
-			if isinstance(category, str):  # Entry is a category.
-				if category in self.expanded:  # This allows QuickSelect to start searching the current category from the category heading.
-					self["key_green"].setText(_("Collapse"))
-					self.quickSelectCategory = current[self.PLUGIN_DISPLAY_CATEGORY]
-				else:  # QuickSelect disabled on closed categories.
-					self["key_green"].setText(_("Expand"))
-					self.quickSelectCategory = ""
-			else:
+			if not isinstance(category, str) or self.selectedInstallItems or self.selectedRemoveItems:
 				label = {
-					self.REMOVE: _("Remove Plugin"),
-					self.DOWNLOAD: _("Download Plugin"),
-					self.UPDATE: _("Update Plugin"),
+					self.REMOVE: _("Remove Plugins") if len(self.selectedRemoveItems) > 1 else _("Remove Plugin"),
+					self.DOWNLOAD: _("Download Plugins") if len(self.selectedInstallItems) > 1 else _("Download Plugin"),
+					self.UPDATE: _("Update Plugins") if len(self.selectedInstallItems) > 1 else _("Update Plugin"),
 					self.MANAGE: _("Remove Plugin") if current[self.PLUGIN_INSTALLED] else _("Download Plugin")
 				}.get(self.type, _("Unknown"))
-				self["key_green"].setText(label)
-				self.quickSelectCategory = current[self.PLUGIN_DISPLAY_CATEGORY]  # This allows QuickSelect to search the current category.
+			self.quickSelectCategory = current[self.PLUGIN_DISPLAY_CATEGORY] if category in self.expanded else ""  # Allows QuickSelect to start searching the current category from the category heading. QuickSelect disabled on closed categories.
 			self["quickSelectActions"].setEnabled(self.quickSelectCategory != "")
+		self["key_green"].setText(label)
+		self["performAction"].setEnabled(label != "")
 		for callback in self.onChangedEntry:
 			callback()
 
 	def keyCancel(self):
-		if self.pluginsChanged:
-			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
-		if self.reloadSettings:
-			self["description"].setText(_("Reloading bouquets and services."))
-			eDVBDB.getInstance().reloadBouquets()
-			eDVBDB.getInstance().reloadServicelist()
-		pluginComponent.readPluginList(resolveFilename(SCOPE_PLUGINS))
+		if self.processing:
+			self.opkgComponent.stop()
+			self.setWaiting(None)
+			print("[PluginBrowser] NOTE: User aborted the 'opkg' plugin refresh!")
+		else:
+			if self.pluginsChanged:
+				plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+			if self.reloadSettings:
+				self["description"].setText(_("Reloading bouquets and services."))
+				eDVBDB.getInstance().reloadBouquets()
+				eDVBDB.getInstance().reloadServicelist()
+			pluginComponent.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		self.close()
 
 	def keySelect(self):
@@ -902,13 +920,12 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 					self.expanded.append(category)
 			else:
 				package = current[self.PLUGIN_PACKAGE]
-				# Don't use multiselect for bootlogo , settings or picons
-				if package.startswith("enigma2-plugin-bootlogo-") or package.startswith("enigma2-plugin-settings-") or package.startswith("enigma2-plugin-picons-"):
+				if package.startswith("enigma2-plugin-bootlogo-") or package.startswith("enigma2-plugin-settings-") or package.startswith("enigma2-plugin-picons-"):  # Don't use MultiSelect for bootlogo, settings or picons.
 					self.selectedRemoveItems = []
 					self.selectedInstallItems = []
 					self.keyGreen()
 					return
-				if self.type == self.MANAGE:  # support only remove or install and not mixing
+				if self.type == self.MANAGE:  # Install and remove actions can't be mixed, only support install or remove actions at any one time.
 					if current[self.PLUGIN_INSTALLED]:
 						if package in self.selectedRemoveItems:
 							self.selectedRemoveItems.remove(package)
@@ -988,9 +1005,11 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 					text = _("Please wait while the plugin is updated.")
 				self.setWaiting(text)
 				self.logData = ""
+				self.selectedInstallItems = []
+				self.selectedRemoveItems = []
 
-		current = None
-		if self.selectedRemoveItems and self.selectedInstallItems:  # mixing install and remove is currently not possible
+		current = self["plugins"].getCurrent()
+		if self.selectedRemoveItems and self.selectedInstallItems:  # Mixing install and remove is currently not possible.
 			pass
 		elif self.selectedInstallItems:
 			text = _("Do you want to download '%s'?") % ", ".join(self.selectedInstallItems)
@@ -1002,8 +1021,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			default = False
 			package = " ".join(self.selectedRemoveItems)
 			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
-		else:
-			current = self["plugins"].getCurrent()
+		elif current:
 			package = current[self.PLUGIN_PACKAGE]
 			if self.type in (self.REMOVE, self.MANAGE) and current[self.PLUGIN_INSTALLED]:
 				text = _("Do you want to remove '%s'?") % package
@@ -1177,23 +1195,23 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 
 	def setWaiting(self, text):
 		if text:
-			self.actionMaps = (self["actions"].getEnabled(), self["selectAction"].getEnabled(), self["performAction"].getEnabled(), self["logAction"].getEnabled(), self["navigationActions"].getEnabled(), self["quickSelectActions"].getEnabled())
-			self["actions"].setEnabled(False)
+			self.actionMaps = (self["selectAction"].getEnabled(), self["performAction"].getEnabled(), self["logAction"].getEnabled(), self["navigationActions"].getEnabled(), self["quickSelectActions"].getEnabled())
 			self["selectAction"].setEnabled(False)
 			self["performAction"].setEnabled(False)
 			self["logAction"].setEnabled(False)
 			self["navigationActions"].setEnabled(False)
 			self["quickSelectActions"].setEnabled(False)
+			self.processing = True
 			Processing.instance.setDescription(text)
 			Processing.instance.showProgress(endless=True)
 		else:
 			Processing.instance.hideProgress()
-			self["actions"].setEnabled(self.actionMaps[0])
-			self["selectAction"].setEnabled(self.actionMaps[1])
-			self["performAction"].setEnabled(self.actionMaps[2])
-			self["logAction"].setEnabled(self.actionMaps[3])
-			self["navigationActions"].setEnabled(self.actionMaps[4])
-			self["quickSelectActions"].setEnabled(self.actionMaps[5])
+			self.processing = False
+			self["selectAction"].setEnabled(self.actionMaps[0])
+			self["performAction"].setEnabled(self.actionMaps[1])
+			self["logAction"].setEnabled(self.actionMaps[2])
+			self["navigationActions"].setEnabled(self.actionMaps[3])
+			self["quickSelectActions"].setEnabled(self.actionMaps[4])
 
 	def keyNumberGlobal(self, digit):
 		self.quickSelectTimer.stop()
