@@ -65,6 +65,9 @@ int eLabel::event(int event, void *data, void *data2)
 		else if (m_wrap == 2)
 			flags |= gPainter::RT_ELLIPSIS;
 
+		if(isGradientSet())
+			flags |= gPainter::RT_BLEND;
+
 		int x = m_padding.x();
 		int y = m_padding.y();
 

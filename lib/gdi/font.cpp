@@ -930,7 +930,7 @@ nprint:				isprintable=0;
 	return 0;
 }
 
-void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, const gRGB &foreground, bool border)
+void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, const gRGB &foreground, bool border)
 {
 	if (glyphs.empty()) return;
 
@@ -957,6 +957,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	gUnmanagedSurface *surface = target->surface;
 	gRGB currentforeground = foreground;
 
+	const gRGB background = (m_blend && surface->bpp == 32) ? gRGB(currentforeground.r, currentforeground.g, currentforeground.b, 200) : cbackground;
+
 	register int opcode = -1;
 
 	__u32 lookup32_normal[16];
@@ -972,6 +974,11 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	gRegion sarea(eRect(0, 0, surface->x, surface->y));
 	gRegion clip = dc.getClip() & sarea;
 	clip &= eRect(area.left() + offset.x(), area.top() + offset.y(), area.width(), area.height()+(current_face->size->metrics.ascender>>6));
+
+	int __top = area.top() + offset.y();
+	int __left = area.left() + offset.x();
+	uint8_t* dstptr = (uint8_t*)surface->data + __left*surface->bypp + __top*surface->stride;
+	gRGB *dstcolor = (gRGB*)dstptr;
 
 	int buffer_stride=surface->stride;
 
@@ -1012,9 +1019,10 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 					opcode=0;
 				} else
 					opcode=1;
-			} else if (surface->bpp == 32)
+			} 
+			else if (surface->bpp == 32)
 			{
-				opcode=3;
+				opcode = (m_blend) ? 4 : 3;
 
 				for (int i=0; i<16; ++i)
 				{
@@ -1035,7 +1043,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				}
 				for (int i=0; i<16; ++i)
 					lookup32_invert[i]=lookup32_normal[i^0xF];
-			} else if (surface->bpp == 16)
+			} 
+			else if (surface->bpp == 16)
 			{
 				opcode=2;
 				for (int i = 0; i != 16; ++i)
@@ -1059,7 +1068,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				}
 				for (int i=0; i<16; ++i)
 					lookup16_invert[i]=lookup16_normal[i^0xF];
-			} else
+			} 
+			else
 			{
 				eWarning("[eTextPara] Can't render to %dbpp!", surface->bpp);
 				return;
@@ -1073,7 +1083,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			lookup8 = lookup8_normal;
 			lookup16 = lookup16_normal;
 			lookup32 = lookup32_normal;
-		} else
+		} 
+		else
 		{
 			lookup8 = lookup8_invert;
 			lookup16 = lookup16_invert;
@@ -1145,60 +1156,60 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				{
 				case 0: 		// 4bit lookup to 8bit
 					{
-					register int extra_buffer_stride = buffer_stride - sx;
-					register __u8 *td=d;
-					for (int ay = 0; ay < sy; ay++)
-					{
-						register int ax;
-
-						for (ax=0; ax<sx; ax++)
+						register int extra_buffer_stride = buffer_stride - sx;
+						register __u8 *td=d;
+						for (int ay = 0; ay < sy; ay++)
 						{
-							register int b=(*s++)>>4;
-							if(b)
-								*td=lookup8[b];
-							++td;
+							register int ax;
+
+							for (ax=0; ax<sx; ax++)
+							{
+								register int b=(*s++)>>4;
+								if(b)
+									*td=lookup8[b];
+								++td;
+							}
+							s += extra_source_stride;
+							td += extra_buffer_stride;
 						}
-						s += extra_source_stride;
-						td += extra_buffer_stride;
-					}
 					}
 					break;
 				case 1:	// 8bit direct
 					{
-					register int extra_buffer_stride = buffer_stride - sx;
-					register __u8 *td=d;
-					for (int ay = 0; ay < sy; ay++)
-					{
-						register int ax;
-						for (ax=0; ax<sx; ax++)
+						register int extra_buffer_stride = buffer_stride - sx;
+						register __u8 *td=d;
+						for (int ay = 0; ay < sy; ay++)
 						{
-							register int b=*s++;
-							*td++^=b;
+							register int ax;
+							for (ax=0; ax<sx; ax++)
+							{
+								register int b=*s++;
+								*td++^=b;
+							}
+							s += extra_source_stride;
+							td += extra_buffer_stride;
 						}
-						s += extra_source_stride;
-						td += extra_buffer_stride;
-					}
 					}
 					break;
 				case 2: // 16bit
-                                        {
-                                        int extra_buffer_stride = (buffer_stride >> 1) - sx;
-                                        register __u16 *td = (__u16*)d;
-                                        for (int ay = 0; ay != sy; ay++)
-                                        {
-                                                register int ax;
-                                                for (ax = 0; ax != sx; ax++)
-                                                {
-                                                        register int b = (*s++) >> 4;
-							if (b)
-								*td = lookup16[b];
-                                                        ++td;
-                                                }
-                                                s += extra_source_stride;
-                                                td += extra_buffer_stride;
-                                        }
-                                        }
-                                        break;
+					{
+						int extra_buffer_stride = (buffer_stride >> 1) - sx;
+						register __u16 *td = (__u16*)d;
+						for (int ay = 0; ay != sy; ay++)
+						{
+								register int ax;
+								for (ax = 0; ax != sx; ax++)
+								{
+									register int b = (*s++) >> 4;
+									if (b)
+										*td = lookup16[b];
+									++td;
+								}
+								s += extra_source_stride;
+								td += extra_buffer_stride;
+						}
+					}
+					break;
 				case 3: // 32bit
 					{
 					register int extra_buffer_stride = (buffer_stride >> 2) - sx;
@@ -1216,6 +1227,36 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 						s += extra_source_stride;
 						td += extra_buffer_stride;
 					}
+					}
+					break;
+				case 4: // 32-bit blend
+					{
+						const int extra_buffer_stride = (buffer_stride >> 2) - sx;
+						register __u32 *td = (__u32 *)d;
+						for (int ay = 0; ay < sy; ay++)
+						{
+							register int ax;
+							for (ax = 0; ax < sx; ax++)
+							{
+								register int b = (*s++) >> 4;
+								if (b)
+								{
+
+									__u32 src_color = lookup32[b];
+									__u32 dst_color = *td;
+									__u32 alpha = (src_color >> 24) & 0xFF;
+									__u32 inv_alpha = 255 - alpha;
+
+									__u32 blended_color = (((src_color & 0xFF00FF) * alpha + (dst_color & 0xFF00FF) * inv_alpha) >> 8) & 0xFF00FF;
+									blended_color |= (((src_color & 0x00FF00) * alpha + (dst_color & 0x00FF00) * inv_alpha) >> 8) & 0x00FF00;
+
+									*td = (dst_color & 0xFF000000) | blended_color;
+								}
+								++td;
+							}
+							s += extra_source_stride;
+							td += extra_buffer_stride;
+						}
 					}
 					break;
 				}

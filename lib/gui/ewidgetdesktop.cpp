@@ -68,7 +68,7 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 		widget->m_visible_region.moveBy(widget->position());
 		widget->m_visible_region &= parent_visible; // in parent space!
 
-		if (!widget->isTransparent() && (widget->m_gradient_blend != gPainter::BT_ALPHABLEND || parent)  && (widget->m_cornerRadius == 0 || parent))
+		if (!widget->isTransparent() && (!widget->m_gradient_alphablend || parent)  && (widget->m_cornerRadius == 0 || parent))
 				/* remove everything this widget will contain from parent's visible list, unless widget is transparent. */
 			parent_visible -= widget->m_visible_region; // will remove child regions too!
 

@@ -461,7 +461,7 @@ static void convert_palette(uint32_t *pal, const gPalette &clut)
 
 #define FIX 0x10000
 
-void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth, const gRGB &startColor, const gRGB &endColor, int direction, int radius, int edges, int flag)
+void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth, const gRGB &startColor, const gRGB &endColor, int direction, int radius, int edges, bool alphablend)
 {
 	if (surface->bpp < 32)
 	{
@@ -571,6 +571,7 @@ void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB
 
 		eRect mRect = eRect(area.left(), area.top() + top, area.width(), area.height() - top - bottom);
 		mRect &= region.rects[i];
+		const int blendRatio = 12;
 
 		if (direction == GRADIENT_VERTICAL)
 		{
@@ -578,18 +579,42 @@ void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB
 			// draw center rect
 			if (!mRect.empty())
 			{
-				if (flag & blitAlphaBlend && !cornerData.radiusSet)
+				if (alphablend && !cornerData.radiusSet)
 				{
-					for (int y = mRect.top(); y < mRect.bottom(); y++)
+					for (int y = mRect.top(); y < mRect.bottom(); ++y)
 					{
-						uint32_t *dstptr = (uint32_t *)(((uint8_t *)surface->data) + y * surface->stride + mRect.left() * surface->bypp);
-						const gRGB *src = (gRGB *)&gradientBuf[y - area.top()];
+						uint32_t *dstptr = (uint32_t*)(((uint8_t*)surface->data) + y * surface->stride + mRect.left() * surface->bypp);
+						const gRGB *src = (gRGB*)&gradientBuf[y - area.top()];
+						gRGB *dst = (gRGB*)dstptr;
 						int width = mRect.width();
-						gRGB *dst = (gRGB *)dstptr;
-						while (width--)
+						const uint8_t alpha = src->a;
+						const uint8_t blue = src->b;
+						const uint8_t green = src->g;
+						const uint8_t red = src->r;
+
+						while (width >= blendRatio)
 						{
-							dst->alpha_blend(*src);
+							for (int i = 0; i < blendRatio; ++i)
+							{
+								dst[i].b += (((blue - dst[i].b) * alpha) >> 8);
+								dst[i].g += (((green - dst[i].g) * alpha) >> 8);
+								dst[i].r += (((red - dst[i].r) * alpha) >> 8);
+								dst[i].a += (((0xFF - dst[i].a) * alpha) >> 8);
+							}
+
+							dst += blendRatio;
+							width -= blendRatio;
+						}
+
+						while (width > 0)
+						{
+							dst->b += (((blue - dst->b) * alpha) >> 8);
+							dst->g += (((green - dst->g) * alpha) >> 8);
+							dst->r += (((red - dst->r) * alpha) >> 8);
+							dst->a += (((0xFF - dst->a) * alpha) >> 8);
+							
 							++dst;
+							--width;
 						}
 					}
 				}
@@ -647,7 +672,7 @@ void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB
 
 			if (!mRect.empty())
 			{
-				if (flag & blitAlphaBlend && !cornerData.radiusSet)
+				if (alphablend && !cornerData.radiusSet)
 				{
 					for (int y = mRect.top(); y < mRect.bottom(); y++)
 					{
@@ -656,11 +681,31 @@ void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB
 						int width = mRect.width();
 						gRGB *src = (gRGB *)gradientBuf2;
 						gRGB *dst = (gRGB *)dstptr;
-						while (width--)
+						while (width >= blendRatio)
 						{
-							dst->alpha_blend(*src);
+							for (int i = 0; i < blendRatio; ++i)
+							{
+								dst[i].b += (((src->b - dst[i].b) * src->a) >> 8);
+								dst[i].g += (((src->g - dst[i].g) * src->a) >> 8);
+								dst[i].r += (((src->r - dst[i].r) * src->a) >> 8);
+								dst[i].a += (((0xFF - dst[i].a) * src->a) >> 8);
+							}
+
+							dst += blendRatio;
+							src += blendRatio;
+							width -= blendRatio;
+						}
+
+						while (width > 0)
+						{
+							dst->b += (((src->b - dst->b) * src->a) >> 8);
+							dst->g += (((src->g - dst->g) * src->a) >> 8);
+							dst->r += (((src->r - dst->r) * src->a) >> 8);
+							dst->a += (((0xFF - dst->a) * src->a) >> 8);
+							
 							++dst;
 							++src;
+							--width;
 						}
 					}
 				}
@@ -830,9 +875,11 @@ void gPixmap::blitRounded32Bit(const gPixmap &src, const eRect &pos, const eRect
 				gRGB *src = (gRGB *)srcptr;
 				gRGB *dst = (gRGB *)dstptr;
 
-				while (width--)
-				{
-					dst->alpha_blend(*src);
+				while (width--) {
+					dst->b += (((src->b - dst->b) * src->a) >> 8);
+					dst->g += (((src->g - dst->g) * src->a) >> 8);
+					dst->r += (((src->r - dst->r) * src->a) >> 8);
+					dst->a += (((0xFF - dst->a) * src->a) >> 8);
 					++src;
 					++dst;
 				}
@@ -880,9 +927,11 @@ void gPixmap::blitRounded32Bit(const gPixmap &src, const eRect &pos, const eRect
 				gRGB *src = (gRGB *)srcptr;
 				gRGB *dst = (gRGB *)dstptr;
 
-				while (width--)
-				{
-					dst->alpha_blend(*src);
+				while (width--) {
+					dst->b += (((src->b - dst->b) * src->a) >> 8);
+					dst->g += (((src->g - dst->g) * src->a) >> 8);
+					dst->r += (((src->r - dst->r) * src->a) >> 8);
+					dst->a += (((0xFF - dst->a) * src->a) >> 8);
 					++src;
 					++dst;
 				}
@@ -931,9 +980,11 @@ void gPixmap::blitRounded32Bit(const gPixmap &src, const eRect &pos, const eRect
 				gRGB *src = (gRGB *)srcptr;
 				gRGB *dst = (gRGB *)dstptr;
 
-				while (width--)
-				{
-					dst->alpha_blend(*src);
+				while (width--) {
+					dst->b += (((src->b - dst->b) * src->a) >> 8);
+					dst->g += (((src->g - dst->g) * src->a) >> 8);
+					dst->r += (((src->r - dst->r) * src->a) >> 8);
+					dst->a += (((0xFF - dst->a) * src->a) >> 8);
 					++src;
 					++dst;
 				}
@@ -1076,7 +1127,10 @@ void gPixmap::blitRounded32BitScaled(const gPixmap &src, const eRect &pos, const
 				{
 					int src_x = (int)((x - aLeft) * scaleX);
 					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
-					dst->alpha_blend(*src);
+					dst->b += (((src->b - dst->b) * src->a) >> 8);
+					dst->g += (((src->g - dst->g) * src->a) >> 8);
+					dst->r += (((src->r - dst->r) * src->a) >> 8);
+					dst->a += (((0xFF - dst->a) * src->a) >> 8);
 					dst++;
 				}
 				dst_row += dst_stride;
@@ -1094,8 +1148,7 @@ void gPixmap::blitRounded32BitScaled(const gPixmap &src, const eRect &pos, const
 				{
 					int src_x = (int)((x - aLeft) * scaleX);
 					const uint32_t *src = (const uint32_t *)(src_row + src_x * src_bypp);
-					*dst = *src;
-					dst++;
+					*dst++ = *src;
 				}
 				dst_row += dst_stride;
 			}
@@ -1140,7 +1193,10 @@ void gPixmap::blitRounded32BitScaled(const gPixmap &src, const eRect &pos, const
 				{
 					int src_x = (int)((x - aLeft) * scaleX);
 					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
-					dst->alpha_blend(*src);
+					dst->b += (((src->b - dst->b) * src->a) >> 8);
+					dst->g += (((src->g - dst->g) * src->a) >> 8);
+					dst->r += (((src->r - dst->r) * src->a) >> 8);
+					dst->a += (((0xFF - dst->a) * src->a) >> 8);
 					dst++;
 				}
 				dst_row += dst_stride;
@@ -1204,7 +1260,10 @@ void gPixmap::blitRounded32BitScaled(const gPixmap &src, const eRect &pos, const
 				{
 					int src_x = (int)((x - aLeft) * scaleX);
 					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
-					dst->alpha_blend(*src);
+					dst->b += (((src->b - dst->b) * src->a) >> 8);
+					dst->g += (((src->g - dst->g) * src->a) >> 8);
+					dst->r += (((src->r - dst->r) * src->a) >> 8);
+					dst->a += (((0xFF - dst->a) * src->a) >> 8);
 					dst++;
 				}
 				dst_row += dst_stride;

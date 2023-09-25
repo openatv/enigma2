@@ -251,7 +251,7 @@ private:
 	void line(const gRegion &clip, ePoint start, ePoint end, gRGB color);
 	void line(const gRegion &clip, ePoint start, ePoint end, unsigned int color);
 
-	void drawRectangle(const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth, const gRGB &startColor, const gRGB &endColor, int direction, int cornerRadius, int edges, int flag);
+	void drawRectangle(const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth, const gRGB &startColor, const gRGB &endColor, int direction, int cornerRadius, int edges, bool alphablend);
 
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<gPixmap>, gPixmapPtr);

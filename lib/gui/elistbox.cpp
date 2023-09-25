@@ -513,7 +513,7 @@ int eListbox::event(int event, void *data, void *data2)
 			if (cornerRadius && cornerRadiusEdges)
 			{
 				painter.setRadius(cornerRadius, cornerRadiusEdges);
-				painter.drawRectangle(eRect(ePoint(0, 0), size()), gPainter::BT_PERFORMANCE_MESSURE);
+				painter.drawRectangle(eRect(ePoint(0, 0), size()));
 			}
 			else
 				painter.clear();
@@ -1783,42 +1783,42 @@ void eListbox::setItemCornerRadiusMarkedandSelected(int radius, int edges)
 	setItemCornerRadiusInternal(radius, edges, 3);
 }
 
-void eListbox::setItemGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+void eListbox::setItemGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
 {
 	m_style.m_gradient_startcolor[0] = startcolor;
 	m_style.m_gradient_endcolor[0] = endcolor;
 	m_style.m_gradient_direction[0] = direction;
-	m_style.m_gradient_blend[0] = blend | gPainter::BT_PERFORMANCE_MESSURE;
+	m_style.m_gradient_alphablend[0] = alphablend;
 	m_style.m_gradient_set[0] = true;
 	invalidate();
 }
 
-void eListbox::setItemGradientSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+void eListbox::setItemGradientSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
 {
 	m_style.m_gradient_startcolor[1] = startcolor;
 	m_style.m_gradient_endcolor[1] = endcolor;
 	m_style.m_gradient_direction[1] = direction;
-	m_style.m_gradient_blend[1] = blend | gPainter::BT_PERFORMANCE_MESSURE;
+	m_style.m_gradient_alphablend[1] = alphablend;
 	m_style.m_gradient_set[1] = true;
 	invalidate();
 }
 
-void eListbox::setItemGradientMarked(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+void eListbox::setItemGradientMarked(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
 {
 	m_style.m_gradient_startcolor[2] = startcolor;
 	m_style.m_gradient_endcolor[2] = endcolor;
 	m_style.m_gradient_direction[2] = direction;
-	m_style.m_gradient_blend[2] = blend | gPainter::BT_PERFORMANCE_MESSURE;
+	m_style.m_gradient_alphablend[2] = alphablend;
 	m_style.m_gradient_set[2] = true;
 	invalidate();
 }
 
-void eListbox::setItemGradientMarkedandSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+void eListbox::setItemGradientMarkedandSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
 {
 	m_style.m_gradient_startcolor[3] = startcolor;
 	m_style.m_gradient_endcolor[3] = endcolor;
 	m_style.m_gradient_direction[3] = direction;
-	m_style.m_gradient_blend[3] = blend | gPainter::BT_PERFORMANCE_MESSURE;
+	m_style.m_gradient_alphablend[3] = alphablend;
 	m_style.m_gradient_set[3] = true;
 	invalidate();
 }

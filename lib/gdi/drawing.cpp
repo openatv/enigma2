@@ -330,7 +330,10 @@ void drawAngle32Tl(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 				{
 					gRGB *gSrc = (gRGB*)src;
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*gSrc);
+					gDst->b += (((gSrc->b - gDst->b) * gSrc->a) >> 8);
+					gDst->g += (((gSrc->g - gDst->g) * gSrc->a) >> 8);
+					gDst->r += (((gSrc->r - gDst->r) * gSrc->a) >> 8);
+					gDst->a += (((0xFF - gDst->a) * gSrc->a) >> 8);
 					src++;
 					dst++;
 					continue;
@@ -450,7 +453,10 @@ void drawAngle32Tr(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 				{
 					gRGB *gSrc = (gRGB*)src;
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*gSrc);
+					gDst->b += (((gSrc->b - gDst->b) * gSrc->a) >> 8);
+					gDst->g += (((gSrc->g - gDst->g) * gSrc->a) >> 8);
+					gDst->r += (((gSrc->r - gDst->r) * gSrc->a) >> 8);
+					gDst->a += (((0xFF - gDst->a) * gSrc->a) >> 8);
 					src++;
 					dst++;
 					continue;
@@ -570,7 +576,10 @@ void drawAngle32Bl(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 				{
 					gRGB *gSrc = (gRGB*)src;
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*gSrc);
+					gDst->b += (((gSrc->b - gDst->b) * gSrc->a) >> 8);
+					gDst->g += (((gSrc->g - gDst->g) * gSrc->a) >> 8);
+					gDst->r += (((gSrc->r - gDst->r) * gSrc->a) >> 8);
+					gDst->a += (((0xFF - gDst->a) * gSrc->a) >> 8);
 					src++;
 					dst++;
 					continue;
@@ -690,7 +699,10 @@ void drawAngle32Br(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRec
 				{
 					gRGB *gSrc = (gRGB*)src;
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*gSrc);
+					gDst->b += (((gSrc->b - gDst->b) * gSrc->a) >> 8);
+					gDst->g += (((gSrc->g - gDst->g) * gSrc->a) >> 8);
+					gDst->r += (((gSrc->r - gDst->r) * gSrc->a) >> 8);
+					gDst->a += (((0xFF - gDst->a) * gSrc->a) >> 8);
 					src++;
 					dst++;
 					continue;
@@ -814,7 +826,10 @@ void drawAngle32ScaledTl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 				{
 					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*src);
+					gDst->b += (((src->b - gDst->b) * src->a) >> 8);
+					gDst->g += (((src->g - gDst->g) * src->a) >> 8);
+					gDst->r += (((src->r - gDst->r) * src->a) >> 8);
+					gDst->a += (((0xFF - gDst->a) * src->a) >> 8);
 					dst++;
 					continue;
 				}
@@ -937,7 +952,10 @@ void drawAngle32ScaledTr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 				{
 					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*src);
+					gDst->b += (((src->b - gDst->b) * src->a) >> 8);
+					gDst->g += (((src->g - gDst->g) * src->a) >> 8);
+					gDst->r += (((src->r - gDst->r) * src->a) >> 8);
+					gDst->a += (((0xFF - gDst->a) * src->a) >> 8);
 					dst++;
 					continue;
 				}
@@ -1060,7 +1078,10 @@ void drawAngle32ScaledBl(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 				{
 					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*src);
+					gDst->b += (((src->b - gDst->b) * src->a) >> 8);
+					gDst->g += (((src->g - gDst->g) * src->a) >> 8);
+					gDst->r += (((src->r - gDst->r) * src->a) >> 8);
+					gDst->a += (((0xFF - gDst->a) * src->a) >> 8);
 					dst++;
 					continue;
 				}
@@ -1183,7 +1204,10 @@ void drawAngle32ScaledBr(gUnmanagedSurface *surface, const gPixmap &pixmap, cons
 				{
 					const gRGB *src = (gRGB *)(src_row + src_x * src_bypp);
 					gRGB *gDst = (gRGB*)dst;
-					gDst->alpha_blend(*src);
+					gDst->b += (((src->b - gDst->b) * src->a) >> 8);
+					gDst->g += (((src->g - gDst->g) * src->a) >> 8);
+					gDst->r += (((src->r - gDst->r) * src->a) >> 8);
+					gDst->a += (((0xFF - gDst->a) * src->a) >> 8);
 					dst++;
 					continue;
 				}

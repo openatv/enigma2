@@ -108,7 +108,8 @@ private:
 	int m_notify_child_on_position_change;
 
 	bool m_gradient_set;
-	int m_gradient_direction, m_gradient_blend;
+	bool m_gradient_alphablend;
+	int m_gradient_direction;
 	gRGB m_gradient_startcolor, m_gradient_endcolor;
 
 	bool m_have_border_color;
@@ -156,11 +157,13 @@ public:
 
 	void notifyShowHide();
 
-	void setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
+	void setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
 
 	void setCornerRadius(int radius, int edges);
 	int getCornerRadiusEdges() {return m_cornerRadiusEdges;}
 	int getCornerRadius();
+
+	bool isGradientSet() {return m_gradient_set;}
 
 	enum
 	{

@@ -41,7 +41,6 @@ struct gOpcode
 		blit,
 		gradient,
 		rectangle,
-		rectangleperf,
 
 		setPalette,
 		mergePalette,
@@ -140,6 +139,7 @@ struct gOpcode
 			gRGB startColor;
 			gRGB endColor;
 			int orientation;
+			bool alphablend;
 		} *gradient;
 
 		struct pradius
@@ -157,7 +157,6 @@ struct gOpcode
 		struct prectangle
 		{
 			eRect area;
-			int flag;
 		} *rectangle;
 
 		struct pmergePalette
@@ -295,7 +294,7 @@ public:
 	void setForegroundColor(const gRGB &color);
 
 	void setBorder(const gRGB &borderColor, int width);
-	void setGradient(const gRGB &startColor, const gRGB &endColor, int orientation);
+	void setGradient(const gRGB &startColor, const gRGB &endColor, int orientation, bool alphablend);
 	void setRadius(int radius, int edges);
 
 	void setFont(gFont *font);
@@ -314,13 +313,13 @@ public:
 		RT_VALIGN_BOTTOM = 32,
 
 		RT_WRAP = 64,
-		RT_ELLIPSIS = 128
+		RT_ELLIPSIS = 128,
+		RT_BLEND = 256
 	};
 	void renderText(const eRect &position, const std::string &string, int flags = 0, gRGB bordercolor = gRGB(), int border = 0, int markedpos = -1, int *offset = 0);
 
 	void renderPara(eTextPara *para, ePoint offset = ePoint(0, 0));
 
-	void fillBorder(const eRect &area, const int borderWidth);
 	void fill(const eRect &area);
 	void fill(const gRegion &area);
 
@@ -336,8 +335,7 @@ public:
 		BT_HALIGN_CENTER = 16,
 		BT_HALIGN_RIGHT = 32,
 		BT_VALIGN_CENTER = 64,
-		BT_VALIGN_BOTTOM = 128,
-		BT_PERFORMANCE_MESSURE = 256
+		BT_VALIGN_BOTTOM = 128
 	};
 
 	enum
@@ -351,7 +349,7 @@ public:
 	void blit(gPixmap *pixmap, ePoint pos, const eRect &clip=eRect(), int flags=0);
 	void blit(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0);
 
-	void drawRectangle(const eRect &area, int flag);
+	void drawRectangle(const eRect &area);
 
 	void setPalette(gRGB *colors, int start = 0, int len = 256);
 	void setPalette(gPixmap *source);
@@ -396,6 +394,7 @@ protected:
 
 	gRGB m_gradient_start_color, m_gradient_end_color;
 	int m_gradient_orientation;
+	bool m_gradient_alphablend;
 
 	int m_radius, m_radius_edges;
 

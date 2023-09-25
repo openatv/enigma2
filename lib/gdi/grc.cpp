@@ -354,7 +354,7 @@ void gPainter::setForegroundColor(const gRGB &color)
 	m_rc->submit(o);
 }
 
-void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int orientation)
+void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int orientation, bool alphablend)
 {
 	if (m_dc->islocked())
 		return;
@@ -365,6 +365,7 @@ void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int ori
 	o.parm.gradient->startColor = startColor;
 	o.parm.gradient->endColor = endColor;
 	o.parm.gradient->orientation = orientation;
+	o.parm.gradient->alphablend = alphablend;
 	m_rc->submit(o);
 }
 
@@ -459,21 +460,6 @@ void gPainter::fill(const eRect &area)
 	m_rc->submit(o);
 }
 
-void gPainter::fillBorder(const eRect &rect, const int borderWidth)
-{
-
-	int top = rect.top();
-	int left = rect.left();
-	int width = rect.width();
-	int height = rect.height();
-	
-	fill(eRect(top, left, width, borderWidth));
-	fill(eRect(top, left + borderWidth, borderWidth, height - borderWidth));
-	fill(eRect(top + borderWidth, left + height - borderWidth, width - borderWidth, borderWidth));
-	fill(eRect(top + width - borderWidth, left + borderWidth, borderWidth, height- borderWidth));
-
-}
-
 void gPainter::fill(const gRegion &region)
 {
 	if (m_dc->islocked())
@@ -528,15 +514,14 @@ void gPainter::blit(gPixmap *pixmap, const eRect &pos, const eRect &clip, int fl
 	m_rc->submit(o);
 }
 
-void gPainter::drawRectangle(const eRect &area, int flag) {
+void gPainter::drawRectangle(const eRect &area) {
 	if ( m_dc->islocked() )
 		return;
 	gOpcode o;
-	o.opcode=(flag & BT_PERFORMANCE_MESSURE) ? gOpcode::rectangleperf : gOpcode::rectangle;
+	o.opcode=gOpcode::rectangle;
 	o.dc = m_dc.grabRef();
 	o.parm.rectangle = new gOpcode::para::prectangle;
 	o.parm.rectangle->area = area;
-	o.parm.rectangle->flag = flag;
 	m_rc->submit(o);
 }
 
@@ -794,6 +779,7 @@ gDC::gDC()
 	m_radius = 0;
 	m_radius_edges = 0;
 	m_gradient_orientation = 0;
+	m_gradient_alphablend = false;
 }
 
 gDC::gDC(gPixmap *pixmap) : m_pixmap(pixmap)
@@ -841,6 +827,7 @@ void gDC::exec(const gOpcode *o)
 		m_gradient_start_color = o->parm.gradient->startColor;
 		m_gradient_end_color = o->parm.gradient->endColor;
 		m_gradient_orientation = o->parm.gradient->orientation;
+		m_gradient_alphablend = o->parm.gradient->alphablend;
 		delete o->parm.gradient;
 		break;
 	case gOpcode::setRadius:
@@ -989,6 +976,9 @@ void gDC::exec(const gOpcode *o)
 					m_pixmap->fill(clip, m_foreground_color_rgb);
 			}
 		}
+
+		para->setBlend(flags & gPainter::RT_BLEND);
+
 		if (border)
 		{
 			para->blit(*this, offset, m_background_color_rgb, o->parm.renderText->bordercolor, true);
@@ -1072,16 +1062,17 @@ void gDC::exec(const gOpcode *o)
 		delete o->parm.blit;
 		break;
 	}
-	case gOpcode::rectangleperf:
+	case gOpcode::rectangle:
 	{
 		Stopwatch s;
 		o->parm.rectangle->area.moveBy(m_current_offset);
 		gRegion clip = m_current_clip & o->parm.rectangle->area;
-		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, o->parm.rectangle->flag);
+		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, m_gradient_alphablend);
 		m_border_width = 0;
 		m_radius = 0;
 		m_radius_edges = 0;
 		m_gradient_orientation = 0;
+		m_gradient_alphablend = false;
 		s.stop();
 		FILE *handle = fopen("/tmp/drawRectangle.perf", "a");
 		if (handle) {
@@ -1089,18 +1080,6 @@ void gDC::exec(const gOpcode *o)
 			fprintf(handle, "%dx%dx%dx%d|%u\n", area.left(), area.top(), area.width(), area.height(), s.elapsed_us());
 			fclose(handle);
 		}
-		delete o->parm.rectangle;
-		break;
-	}
-	case gOpcode::rectangle:
-	{
-		o->parm.rectangle->area.moveBy(m_current_offset);
-		gRegion clip = m_current_clip & o->parm.rectangle->area;
-		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, o->parm.rectangle->flag);
-		m_border_width = 0;
-		m_radius = 0;
-		m_radius_edges = 0;
-		m_gradient_orientation = 0;
 		delete o->parm.rectangle;
 		break;
 	}

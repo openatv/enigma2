@@ -374,8 +374,8 @@ int eWidget::event(int event, void *data, void *data2)
 		{
 
 			if (m_gradient_set)
-				painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction);
-			else if(m_have_background_color)
+				painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction, m_gradient_alphablend);
+			if (m_have_background_color)
 				painter.setBackgroundColor(m_background_color);
 			const int r = getCornerRadius();
 			if (r)
@@ -383,7 +383,7 @@ int eWidget::event(int event, void *data, void *data2)
 //			if (m_have_border_color && m_border_width)
 //				painter.setBorder(m_border_color, m_border_width);
 			if (r || m_gradient_set)
-				painter.drawRectangle(eRect(ePoint(0, 0), size()), gPainter::BT_ALPHABLEND | gPainter::BT_PERFORMANCE_MESSURE);
+				painter.drawRectangle(eRect(ePoint(0, 0), size()));
 			else {
 				if (!m_have_background_color) {
 					ePtr<eWindowStyle> style;
@@ -394,7 +394,11 @@ int eWidget::event(int event, void *data, void *data2)
 					painter.clear();
 					if (m_have_border_color && m_border_width) {
 						painter.setForegroundColor(m_border_color);
-						painter.fillBorder(eRect(ePoint(0,0),size()), m_border_width);
+						eSize s(size());
+						painter.fill(eRect(0, 0, s.width(), m_border_width));
+						painter.fill(eRect(0, m_border_width, m_border_width, s.height() - m_border_width));
+						painter.fill(eRect(m_border_width, s.height() - m_border_width, s.width() - m_border_width, m_border_width));
+						painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
 					}
 				}
 			}
@@ -451,12 +455,12 @@ void eWidget::notifyShowHide()
 		i->notifyShowHide();
 }
 
-void eWidget::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend)
+void eWidget::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
 {
 	m_gradient_startcolor = startcolor;
 	m_gradient_endcolor = endcolor;
 	m_gradient_direction = direction;
-	m_gradient_blend = blend;
+	m_gradient_alphablend = alphablend;
 	m_gradient_set = true;
 	invalidate();
 }

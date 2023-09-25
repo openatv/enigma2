@@ -429,7 +429,7 @@ def parseGradient(value):
 			"vertical": eWidget.GRADIENT_VERTICAL,
 		}
 		direction = parseOptions(options, "gradient", data[2], eWidget.GRADIENT_VERTICAL)
-		alphaBend = BT_ALPHABLEND if len(data) == 4 and parseBoolean("1", data[3]) else 0
+		alphaBend = 1 if len(data) == 4 and parseBoolean("1", data[3]) else 0
 		return (parseColor(data[0], default=0x00000000), parseColor(data[1], 0x00FFFFFF), direction, alphaBend)
 	else:
 		skinError("The gradient '%s' must be 'startColor,endColor,direction[,blend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)" % value)

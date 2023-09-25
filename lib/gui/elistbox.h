@@ -127,8 +127,8 @@ struct eListboxStyle
 		return m_itemCornerRadiusEdges[mode];
 	}
 
-	bool m_gradient_set[4];
-	int m_gradient_direction[4], m_gradient_blend[4];
+	bool m_gradient_set[4], m_gradient_alphablend[4];
+	int m_gradient_direction[4];
 	gRGB m_gradient_startcolor[4], m_gradient_endcolor[4];
 };
 #endif
@@ -331,10 +331,10 @@ public:
 	void setItemCornerRadiusMarked(int radius, int edges);
 	void setItemCornerRadiusMarkedandSelected(int radius, int edges);
 
-	void setItemGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
-	void setItemGradientSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
-	void setItemGradientMarked(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
-	void setItemGradientMarkedandSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
+	void setItemGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setItemGradientSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setItemGradientMarked(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setItemGradientMarkedandSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
 
 	void setSelectionZoom(float zoom, int zoomContentMode = 0);
 	void setSelectionZoomSize(int width, int height, int zoomContentMode = 0);
