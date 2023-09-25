@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 20:55+0000\n"
-"PO-Revision-Date: 2023-08-16 10:47+0000\n"
+"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"PO-Revision-Date: 2023-08-28 12:56+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1422,9 +1422,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 hour"
-msgstr "1 час"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1434,26 +1431,14 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "10 minutes"
-msgstr "10 минут"
-
-msgid "1024 Mb"
-msgstr "1024 Мб"
-
 msgid "10bit"
 msgstr "10бит"
 
 msgid "12 character"
 msgstr "12 символов"
 
-msgid "12 hours"
-msgstr "12 часов"
-
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, показать символы Latin-1, кроме греческого и кириллицы, при необходимости переключиться на 8."
-
-msgid "128 Mb"
-msgstr "128 Мб"
 
 msgid "12V output"
 msgstr "12В выход"
@@ -1469,12 +1454,6 @@ msgstr "12bit 4:2:0/4:2:2 без PIP"
 
 msgid "13 V"
 msgstr "13 В"
-
-msgid "15 minutes"
-msgstr "15 минут"
-
-msgid "1536 Mb"
-msgstr "1536 Мб"
 
 msgid "16/9 reset to normal"
 msgstr "16/9 сброс в нормальное состояние"
@@ -1503,9 +1482,6 @@ msgstr "16:9 режим ящика"
 msgid "16:9 PanScan"
 msgstr "16:9 Панорамирование"
 
-msgid "16K"
-msgstr "16K"
-
 msgid "18 V"
 msgstr "18 В"
 
@@ -1518,29 +1494,14 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 hours"
-msgstr "2 часа"
-
-msgid "2 minutes"
-msgstr "2 минуты"
-
-msgid "2048 Mb"
-msgstr "2048 Мб"
-
 msgid "23.976"
 msgstr "23.976"
 
 msgid "24"
 msgstr "24"
 
-msgid "24 hours"
-msgstr "24 часа"
-
 msgid "25"
 msgstr "25"
-
-msgid "256 Mb"
-msgstr "256 Мб"
 
 msgid "29.97"
 msgstr "29.97"
@@ -1575,17 +1536,8 @@ msgstr "2x, 4x, 6x, 8x"
 msgid "3"
 msgstr "3"
 
-msgid "3 hours"
-msgstr "3 часа"
-
 msgid "30"
 msgstr "30"
-
-msgid "30 minutes"
-msgstr "30 минут"
-
-msgid "32 Mb"
-msgstr "32 Мб"
 
 msgid "3D Mode"
 msgstr "Режим 3D"
@@ -1602,12 +1554,6 @@ msgstr "3x"
 msgid "4"
 msgstr "4"
 
-msgid "4 hours"
-msgstr "4 часа"
-
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Combined"
 msgstr "4:3 Комбинированный"
 
@@ -1620,50 +1566,23 @@ msgstr "4:3 режим ящика"
 msgid "4:3 PanScan"
 msgstr "4:3 панорама"
 
-msgid "4K"
-msgstr "4K"
-
 msgid "4x"
 msgstr "4x"
 
 msgid "5"
 msgstr "5"
 
-msgid "5 hours"
-msgstr "5 часов"
-
-msgid "5 minutes"
-msgstr "5 минут"
-
-msgid "512 Mb"
-msgstr "512 Гб"
-
 msgid "6"
 msgstr "6"
 
-msgid "6 hours"
-msgstr "6 часов"
-
-msgid "64 Mb"
-msgstr "64 Мб"
-
 msgid "7"
 msgstr "7"
-
-msgid "7 hours"
-msgstr "7 часов"
 
 msgid "8"
 msgstr "8"
 
 msgid "8 character"
 msgstr "8 символов"
-
-msgid "8 hours"
-msgstr "8 часов"
-
-msgid "8K"
-msgstr "8K"
 
 msgid "8bit"
 msgstr "8бит"
@@ -2416,6 +2335,9 @@ msgstr "Альтернативный радио режим"
 
 msgid "Alternative services tuner priority"
 msgstr "Приоритет используемых тюнеров"
+
+msgid "Always"
+msgstr "Всегда"
 
 msgid "Always ask"
 msgstr "Всегда спрашивать"
@@ -6187,15 +6109,6 @@ msgstr "Антенна"
 msgid "Disk full"
 msgstr "Диск заполнен"
 
-msgid "Storage device full!"
-msgstr "Устройство хранения заполнено!"
-
-msgid "Storage device not writable!"
-msgstr "Диск не доступен для записи!"
-
-msgid "Storage device not found!"
-msgstr "Диск не найден!"
-
 msgid "Display 16:9 content as"
 msgstr "Показать 16:9 контент как"
 
@@ -6568,6 +6481,9 @@ msgstr "Вниз"
 msgid "Down / Inactive"
 msgstr "Вниз / неактивен"
 
+msgid "Download Image"
+msgstr "Загрузить изображение"
+
 msgid "Download Plugin"
 msgstr "Скачать плагин"
 
@@ -6588,6 +6504,9 @@ msgstr "Загрузить и установить эмуляторы"
 
 msgid "Download error"
 msgstr "Ошибка загрузки"
+
+msgid "Download the selected image"
+msgstr "Загрузите выбранный имидж"
 
 msgid "Download the selected list of plugins"
 msgstr "Скачать выбранный список плагинов"
@@ -6784,10 +6703,10 @@ msgid "Edit Alternatives"
 msgstr "Редактировать альтернативы"
 
 msgid "Edit Mode Off"
-msgstr "Режим редактирования выключен"
+msgstr "Редактирование выкл"
 
 msgid "Edit Mode On"
-msgstr "Режим редактирования включен"
+msgstr "Редактирование вкл"
 
 msgid "Edit Quad Channel Entry"
 msgstr "Изменить 4X канал"
@@ -7922,9 +7841,6 @@ msgstr "FFmpeg не установлен, поэтому действия с ф�
 msgid "FFmpeg version"
 msgstr "Версия FFmpeg"
 
-msgid "FHD"
-msgstr "FHD"
-
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -8816,9 +8732,6 @@ msgstr "Ч:мм:сс"
 msgid "HARD DISK: "
 msgstr "Жёсткий диск "
 
-msgid "HD"
-msgstr "HD"
-
 msgid "HD list"
 msgstr "Список HD"
 
@@ -9327,6 +9240,9 @@ msgstr "Если 'никогда', произойдет принудительн
 
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Если 'никогда', несмотря на это, будет записываться лог сбоев при первом сбое."
+
+msgid "If EPG available"
+msgstr "Если доступен EPG"
 
 msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
 msgstr "Если программа прерывается и делится на отдельные события, плагин будет искать связанные события."
@@ -13086,9 +13002,6 @@ msgid "Please select a resolution..."
 msgstr "Пожалуйста, выберите разрешение изображения..."
 
 msgid "Please select a sub service..."
-msgstr "Пожалуйста, выберите подсервис..."
-
-msgid "Please select a subservice..."
 msgstr "Пожалуйста, выберите подсервис..."
 
 msgid "Please select an aspect ratio..."
@@ -17469,6 +17382,9 @@ msgstr "Показать сообщение при переходе на пря�
 msgid "Show subservice selection"
 msgstr "Показать выбор подсервисов"
 
+msgid "Show subservices *"
+msgstr "Показать дополнительные услуги *"
+
 msgid "Show subtitle quick menu"
 msgstr "Показать меню субтитров"
 
@@ -18451,6 +18367,15 @@ msgstr "Информация о хранилище/диске"
 msgid "Storage Devices"
 msgstr "Устройства хранения"
 
+msgid "Storage device full!"
+msgstr "Устройство хранения заполнено!"
+
+msgid "Storage device not found!"
+msgstr "Диск не найден!"
+
+msgid "Storage device not writable!"
+msgstr "Диск не доступен для записи!"
+
 msgid "Store position"
 msgstr "Сохранить положение"
 
@@ -18684,6 +18609,9 @@ msgstr "Переключить на следующий канал"
 msgid "Switch off the TV to correct input"
 msgstr "Переключить ТВ на корректный вход"
 
+msgid "Switch to 720p video"
+msgstr "Переключиться на видео 720p"
+
 msgid "Switch to HDMI in mode"
 msgstr "Переключить на HDMI-IN"
 
@@ -18838,7 +18766,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 14.08.2023"
+msgstr "Коррекция перевода Monja 27.08.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19587,6 +19515,9 @@ msgstr "Этот параметр позволяет выбрать способ
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Эта опция позволяет выбрать цвет фона для прозрачных пиконов."
+
+msgid "This option allows you choose the option for subservice indicator or selection."
+msgstr "Эта опция позволяет вам выбрать опцию для индикатора или выбора подуслуги."
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Эта опция позволяет активировать сглаживающий фильтр, чтобы контролировать процесс отбора."
@@ -20685,7 +20616,7 @@ msgid "Update Plugin"
 msgstr "Обновить плагин"
 
 msgid "Update Plugins"
-msgstr "Обновление плагинов"
+msgstr "Обновление"
 
 msgid "Update completed."
 msgstr "Обновление завершено."
@@ -23605,6 +23536,96 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "1 hour"
+#~ msgstr "1 час"
+
+#~ msgid "10 minutes"
+#~ msgstr "10 минут"
+
+#~ msgid "1024 Mb"
+#~ msgstr "1024 Мб"
+
+#~ msgid "12 hours"
+#~ msgstr "12 часов"
+
+#~ msgid "128 Mb"
+#~ msgstr "128 Мб"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 минут"
+
+#~ msgid "1536 Mb"
+#~ msgstr "1536 Мб"
+
+#~ msgid "16K"
+#~ msgstr "16K"
+
+#~ msgid "2 hours"
+#~ msgstr "2 часа"
+
+#~ msgid "2 minutes"
+#~ msgstr "2 минуты"
+
+#~ msgid "2048 Mb"
+#~ msgstr "2048 Мб"
+
+#~ msgid "24 hours"
+#~ msgstr "24 часа"
+
+#~ msgid "256 Mb"
+#~ msgstr "256 Мб"
+
+#~ msgid "3 hours"
+#~ msgstr "3 часа"
+
+#~ msgid "30 minutes"
+#~ msgstr "30 минут"
+
+#~ msgid "32 Mb"
+#~ msgstr "32 Мб"
+
+#~ msgid "4 hours"
+#~ msgstr "4 часа"
+
+#~ msgid "4:3"
+#~ msgstr "4:3"
+
+#~ msgid "4K"
+#~ msgstr "4K"
+
+#~ msgid "5 hours"
+#~ msgstr "5 часов"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 минут"
+
+#~ msgid "512 Mb"
+#~ msgstr "512 Гб"
+
+#~ msgid "6 hours"
+#~ msgstr "6 часов"
+
+#~ msgid "64 Mb"
+#~ msgstr "64 Мб"
+
+#~ msgid "7 hours"
+#~ msgstr "7 часов"
+
+#~ msgid "8 hours"
+#~ msgstr "8 часов"
+
+#~ msgid "8K"
+#~ msgstr "8K"
+
+#~ msgid "FHD"
+#~ msgstr "FHD"
+
+#~ msgid "HD"
+#~ msgstr "HD"
+
+#~ msgid "Please select a subservice..."
+#~ msgstr "Пожалуйста, выберите подсервис..."
 
 #~ msgid "All slots"
 #~ msgstr "Все слоты"
