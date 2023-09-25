@@ -331,7 +331,7 @@ struct CornerData
 		else if (height > width)
 			h_bottomRightCornerRadius += (height - width);
 
-		isCircle = ((edges == 15) && (radius == width / 2));
+		isCircle = ((edges == 15) && (width == height) && (cornerRadius == width / 2));
 		caclCornerAlpha();
 	}
 
