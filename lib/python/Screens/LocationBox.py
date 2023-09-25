@@ -1,5 +1,5 @@
-from os import sep, stat, statvfs
-from os.path import exists, isdir, join as pathjoin, splitext
+from os import lstat, sep, statvfs
+from os.path import exists, isdir, join, splitext
 
 from enigma import eTimer
 
@@ -24,7 +24,7 @@ defaultInhibitDirs = list(DEFAULT_INHIBIT_DIRECTORIES)
 DEFAULT_INHIBIT_DEVICES = []
 for dir in DEFAULT_INHIBIT_DIRECTORIES + ("/", "/media"):
 	if isdir(dir):
-		device = stat(dir).st_dev
+		device = lstat(dir).st_dev
 		if device not in DEFAULT_INHIBIT_DEVICES:
 			DEFAULT_INHIBIT_DEVICES.append(device)
 DEFAULT_INHIBIT_DEVICES = tuple(DEFAULT_INHIBIT_DEVICES)
@@ -347,7 +347,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def createDirCallback(self, directory):
 		if directory:
-			path = pathjoin(self["filelist"].getCurrentDirectory(), directory)
+			path = join(self["filelist"].getCurrentDirectory(), directory)
 			if not exists(path):
 				if not createDir(path):
 					self.session.open(MessageBox, _("Error: Creating directory '%s' failed!") % path, type=MessageBox.TYPE_ERROR, timeout=5)
@@ -365,7 +365,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def renameDirectoryCallback(self, directory, newName):
 		if newName:
-			path = pathjoin(self["filelist"].getCurrentDirectory(), newName)
+			path = join(self["filelist"].getCurrentDirectory(), newName)
 			if exists(path):
 				self.session.open(MessageBox, _("Error: File or directory '%s' already exists!") % path, type=MessageBox.TYPE_ERROR, timeout=5)
 			elif renameDir(directory, path):
@@ -472,7 +472,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		if currentDir and self.quickSelect:  # Don't try to select if there is no directory or QuickSelect text.
 			self["quickselect"].visible = False
 			self["quickselect"].setText("")
-			pattern = pathjoin(currentDir, self.quickSelect).lower()
+			pattern = join(currentDir, self.quickSelect).lower()
 			files = self["filelist"].getFileList()  # Files returned by getFileList() are absolute paths.
 			for index, file in enumerate(files):
 				if file[0][0] and file[0][0].lower().startswith(pattern):  # Select first file starting with case insensitive QuickSelect text.
