@@ -64,7 +64,9 @@ class PluginComponent:
 							print("[PluginComponent] Error: Plugin '%s/%s' failed to load!  (%s)" % (pluginDirectory, pluginName, str(err)))
 							for filename in ("plugin.py", "plugin.pyc"):  # Suppress errors due to missing plugin.py* files (badly removed plugin).
 								if exists(join(path, filename)):
-									self.pluginWarnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
+									warning = (join(pluginDirectory, pluginName), str(err))
+									if warning not in self.pluginWarnings:
+										self.pluginWarnings.append(warning)
 									print_exc()
 									break
 							else:
@@ -86,7 +88,9 @@ class PluginComponent:
 							loadKeymap(keymap)
 						except Exception as err:
 							print("[PluginComponent] Error: The keymap file for plugin '%s/%s' failed to load!  (%s)" % (pluginDirectory, pluginName, str(err)))
-							self.pluginWarnings.append(("%s/%s" % (pluginDirectory, pluginName), str(err)))
+							warning = (join(pluginDirectory, pluginName), str(err))
+							if warning not in self.pluginWarnings:
+								self.pluginWarnings.append(warning)
 		# Build a diff between the old list of plugins and the new one internally, the "fnc" argument will be compared with "__eq__".
 		pluginsAdded = [x for x in newPlugins if x not in self.pluginList]
 		pluginsRemoved = [x for x in self.pluginList if not x.internal and x not in newPlugins]
