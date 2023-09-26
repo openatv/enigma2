@@ -230,6 +230,8 @@ shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &tex
 			i != text.end(); ++i)
 	{
 		nextletter = *i;
+		if ((nextletter >= 0x064E) && (nextletter <= 0x0652))
+			continue;
 		int nc = shapecount (nextletter);
 
 		if (nc == 1)
