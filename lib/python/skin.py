@@ -46,6 +46,7 @@ windowStyles = {}  # Dictionary of window styles for each screen ID.
 resolutions = {}  # Dictionary of screen resolutions for each screen ID.
 scrollLabelStyle = {}  # Dictionary of scrollLabel widget defaults.
 constantWidgets = {}
+layouts = {}
 variables = {}
 isVTISkin = False  # Temporary flag to suppress errors in OpenATV.
 
@@ -878,6 +879,9 @@ class AttributeParser:
 	def foregroundEncrypted(self, value):
 		self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
 
+	def foregroundGradient(self, value):
+		self.guiObject.setForegroundGradient(*parseGradient(value))
+
 	def foregroundNotCrypted(self, value):
 		self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
 
@@ -1002,6 +1006,15 @@ class AttributeParser:
 		self.scrollbarBackgroundPixmap(value)
 		attribDeprecationWarning("scrollbarbackgroundPixmap", "scrollbarBackgroundPixmap")
 
+	def scrollbarBackgroundColor(self, value):
+		self.guiObject.setScrollbarBackgroundColor(parseColor(value, 0x00000000))
+
+	def scrollbarBorderColor(self, value):
+		self.guiObject.setScrollbarBorderColor(parseColor(value, 0x00FFFFFF))
+
+	def scrollbarGradient(self, value):
+		self.guiObject.setScrollbarGradient(*parseGradient(value))
+
 	def scrollbarMode(self, value):
 		self.guiObject.setScrollbarMode(parseScrollbarMode(value))
 
@@ -1011,14 +1024,12 @@ class AttributeParser:
 	def scrollbarScroll(self, value):
 		self.guiObject.setScrollbarScroll(parseScrollbarScroll(value))
 
-	def scrollbarBackgroundColor(self, value):
-		self.guiObject.setScrollbarBackgroundColor(parseColor(value, 0x00000000))
-
-	def scrollbarBorderColor(self, value):
-		self.guiObject.setScrollbarBorderColor(parseColor(value, 0x00FFFFFF))
-
 	def scrollbarLength(self, value):
 		self.guiObject.setScrollbarLength(parseScrollbarLength(value, 0))
+
+	def scrollbarRadius(self, value):
+		radius, edgeValue = parseRadius(value)
+		self.guiObject.setScrollbarRadius(radius, edgeValue)
 
 	def scrollbarSliderBorderColor(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBorderColor' instead!
 		self.scrollbarBorderColor(value)
@@ -1278,6 +1289,11 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			name = constant_widget.attrib.get("name")
 			if name:
 				constantWidgets[name] = constant_widget
+	for tag in domSkin.findall("layouts"):
+		for layout in tag.findall("layout"):
+			name = layout.attrib.get("name")
+			if name:
+				layouts[name] = layout
 	for tag in domSkin.findall("variables"):
 		for parameter in tag.findall("variable"):
 			name = parameter.attrib.get("name")
@@ -1605,6 +1621,21 @@ def readSkin(screen, skin, names, desktop):
 		except ValueError:
 			pass
 
+	def processLayouts(layout, context):
+		wname = layout.attrib.get("name")
+		if wname:
+			try:
+				cwvalue = layouts[wname]
+			except KeyError:
+				raise SkinError("Given layout '%s' not found in skin" % wname)
+		if cwvalue:
+			for x in cwvalue:
+				myScreen.append((x))
+		try:
+			myScreen.remove(layout)
+		except ValueError:
+			pass
+
 	def processNone(widget, context):
 		pass
 
@@ -1720,6 +1751,8 @@ def readSkin(screen, skin, names, desktop):
 		widgets = widget
 		for w in widgets.findall('constant-widget'):
 			processConstant(w, context)
+		for l in widgets.findall('layout'):
+			processLayouts(l, context)
 		for w in widgets:
 			conditional = w.attrib.get("conditional")
 			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
@@ -1759,6 +1792,7 @@ def readSkin(screen, skin, names, desktop):
 	processors = {
 		None: processNone,
 		"constant-widget": processConstant,
+		"layout": processLayouts,
 		"widget": processWidget,
 		"applet": processApplet,
 		"eLabel": processLabel,
