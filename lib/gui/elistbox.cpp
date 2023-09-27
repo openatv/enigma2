@@ -91,6 +91,11 @@ void eListbox::setScrollbarMode(int mode)
 			m_scrollbar->setForegroundColor(m_style.m_scrollbarforeground_color);
 		if (m_style.is_set.scrollbarbackground_color)
 			m_scrollbar->setBackgroundColor(m_style.m_scrollbarbackground_color);
+		if (m_style.m_scrollbar_radius)
+			m_scrollbar->setCornerRadius(m_style.m_scrollbar_radius, m_style.m_scrollbar_edges);
+		if (m_style.is_set.scrollbargradient)
+			m_scrollbar->setForegroundGradient(m_style.m_scrollbarstart_color, m_style.m_scrollbarend_color, (m_orientation == orHorizontal) ? 2 : 1, false);
+
 	}
 }
 
@@ -1117,6 +1122,24 @@ void eListbox::setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm)
 	m_scrollbarbackgroundpixmap = pm;
 	if (m_scrollbar && m_scrollbarbackgroundpixmap)
 		m_scrollbar->setBackgroundPixmap(pm);
+}
+
+void eListbox::setScrollbarGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
+{
+	m_style.m_scrollbarstart_color = startcolor;
+	m_style.m_scrollbarend_color = endcolor;
+	m_style.is_set.scrollbargradient = 1;
+	if (m_scrollbar)
+		m_scrollbar->setForegroundGradient(startcolor, endcolor, (m_orientation == orHorizontal) ? 2 : 1, false);
+
+}
+void eListbox::setScrollbarRadius(int radius, int edges)
+{
+	m_style.m_scrollbar_radius = radius;
+	m_style.m_scrollbar_edges = edges;
+	if (m_scrollbar)
+		m_scrollbar->setCornerRadius(radius, edges);
+
 }
 
 void eListbox::setItemAlignment(int align)

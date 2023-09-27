@@ -80,17 +80,20 @@ struct eListboxStyleSetted
 	bool use_vti_workaround : 1;
 	bool zoom_content : 1;
 	bool zoom_move_content : 1;
+	bool scrollbargradient : 1;
 };
 
 struct eListboxStyle
 {
 	ePtr<gPixmap> m_background, m_selection, m_overlay;
-	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacing_color;
+	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacing_color, m_scrollbarstart_color, m_scrollbarend_color;
 	int m_max_columns;
 	int m_max_rows;
 	float m_selection_zoom;
 	int m_selection_width;
 	int m_selection_height;
+	int m_scrollbar_radius;
+	int m_scrollbar_edges;
 
 	eListboxStyleSetted is_set;
 
@@ -313,6 +316,9 @@ public:
 	void setScrollbarBorderColor(const gRGB &col);
 	void setScrollbarForegroundColor(gRGB &col);
 	void setScrollbarBackgroundColor(gRGB &col);
+
+	void setScrollbarGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setScrollbarRadius(int radius, int edges);
 
 	void setMaxRows(int rows)
 	{
