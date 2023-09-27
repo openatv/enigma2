@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: Juanjo-EA1CJ <juanjo.ea1cj@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -1054,6 +1054,12 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paquete fue actualizado."
 msgstr[1] "%d paquetes fueron actualizados."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d sec"
@@ -4356,6 +4362,11 @@ msgstr "Limpiar los registros de este temporizador"
 msgid "Clear the virtual memory caches"
 msgstr "Borrar las cachés de la memoria virtual"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Pulsa la tecla del mando que quieras cambiar."
 
@@ -6698,6 +6709,9 @@ msgstr "¿Quieres restaurar la configuración?"
 msgid "Do you want to resume this playback?"
 msgstr "¿Quieres reanudar la reproducción?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -6801,7 +6815,7 @@ msgstr "Error de descarga"
 msgid "Download the selected image"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 #
@@ -7772,9 +7786,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Error: %s %s ¡ningún %s!  Por favor, inténtelo de nuevo más tarde."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Error: ¡No se ha seleccionado el destino de la grabación!"
-
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Error: ¡El nombre del fichero no puede estar vacío!"
@@ -7858,6 +7869,9 @@ msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
 msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
+
+msgid "Error: The selected service can't be recorded!"
 msgstr ""
 
 #, python-format
@@ -10418,6 +10432,11 @@ msgstr "Mantener el historial de EPG (en minutos)"
 
 msgid "Keep service"
 msgstr "Mantener servicio"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Mantiene abierta la lista de películas durante la reproducción de archivos de audio."
@@ -15195,7 +15214,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr "Eliminar el favorito actual"
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 #
@@ -19046,9 +19065,6 @@ msgstr ""
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr ""
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 # Language
 #, fuzzy
 msgid "Sorbian"
@@ -21977,7 +21993,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -25125,6 +25141,9 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Error: ¡No se ha seleccionado el destino de la grabación!"
 
 #~ msgid "1 hour"
 #~ msgstr "1 hora"

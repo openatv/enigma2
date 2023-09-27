@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2023-08-12 03:37+0000\n"
 "Last-Translator: JPierre <jpcoquelle@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1039,6 +1039,12 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paquet a été mis à niveau."
 msgstr[1] "%d paquets a été mis à niveau."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d sec"
@@ -4156,6 +4162,11 @@ msgstr ""
 msgid "Clear the virtual memory caches"
 msgstr "Effacer les caches de la mémoire virtuelle"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Cliquer sur le bouton de la télécommande que vous voulez changer"
 
@@ -6381,6 +6392,9 @@ msgstr "Voulez-vous restaurer vos paramètres ?"
 msgid "Do you want to resume this playback?"
 msgstr "Voulez-vous reprendre cette lecture ?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -6480,7 +6494,7 @@ msgstr "Erreur de téléchargement"
 msgid "Download the selected image"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7396,9 +7410,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Erreur : %s %s pas %s !  Veuillez réessayer plus tard."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Un nom de fichier vide est illégal."
 
@@ -7477,6 +7488,9 @@ msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
 msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
+
+msgid "Error: The selected service can't be recorded!"
 msgstr ""
 
 #, python-format
@@ -9890,6 +9904,11 @@ msgstr ""
 
 msgid "Keep service"
 msgstr "Garder le service"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Garder la liste des films ouverte lors de la lecture des fichiers audio."
@@ -14320,7 +14339,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -17901,9 +17920,6 @@ msgstr "Somalie"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Certains téléviseurs ne peuvent pas basculer vers la bonne entrée si un autre port HDMI est actif. Ce paramètre permet de mettre le téléviseur en veille avant la commutation. (Si le téléviseur ne se rallume pas, cela peut nécessiter un intervalle de transmission plus lent ou la répétition des commandes de réveil.)"
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 msgid "Sorbian"
 msgstr "Sorbian"
 
@@ -20593,7 +20609,7 @@ msgstr ""
 "Mise à jour réussie !\n"
 "Votre Bootloader est maintenant à jour !"
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"

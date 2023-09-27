@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2023-08-28 12:56+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1071,6 +1071,13 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "%d пакет обновлён."
 msgstr[1] "%d пакетов обновлено."
 msgstr[2] "%d пакетов обновлено."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d sec"
@@ -4178,6 +4185,12 @@ msgstr "Очистить логи для этого таймера"
 msgid "Clear the virtual memory caches"
 msgstr "Очистить кэши виртуальной памяти"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Нажмите на пульте кнопку, действие для которой хотите изменить."
 
@@ -6409,6 +6422,9 @@ msgstr "Хотите восстановить Ваши настройки?"
 msgid "Do you want to resume this playback?"
 msgstr "Хотите продолжить воспроизведение?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr "Вы хотите начать резервное копирование сейчас?"
 
@@ -6508,8 +6524,8 @@ msgstr "Ошибка загрузки"
 msgid "Download the selected image"
 msgstr "Загрузите выбранный имидж"
 
-msgid "Download the selected list of plugins"
-msgstr "Скачать выбранный список плагинов"
+msgid "Download the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Downloadable plugins"
 msgstr "Доступные плагины"
@@ -7427,9 +7443,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Ошибка: %s %s, а не %s! Пожалуйста, попробуйте позже."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Ошибка: Не выбрано место для сохранения записи!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Ошибка: пустое имя файла является недопустимым!"
 
@@ -7509,6 +7522,9 @@ msgstr "Ошибка: Корневая файловая система и сис
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Ошибка: Корневая файловая система и системные каталоги не могут быть переименованы!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr ""
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9919,6 +9935,12 @@ msgstr "Хранить историю EPG (в минутах)"
 
 msgid "Keep service"
 msgstr "Сохранить канал"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Сохраняет список фильмов открытым при воспроизведении аудиофайлов."
@@ -14347,8 +14369,8 @@ msgstr "Удалите файлы мультизагрузки"
 msgid "Remove the current bookmark"
 msgstr "Remove the current bookmark"
 
-msgid "Remove the selected list of plugins"
-msgstr "Удалить выбранный список плагинов"
+msgid "Remove the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Удалить таймер"
@@ -17941,9 +17963,6 @@ msgstr "Сомали"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Некоторые телевизионные устройства не могут переключиться на правильный ввод, если активен другой порт HDMI. Эта настройка переводит телевизор в режим ожидания перед переключением. (Если телевизор не включается, может потребоваться более медленный интервал передачи или повторение команд пробуждения.)"
 
-msgid "Some plugins are not available:"
-msgstr "Некоторые плагины недоступны:"
-
 msgid "Sorbian"
 msgstr "Сербский"
 
@@ -20646,8 +20665,8 @@ msgstr ""
 "Обновление удалось!\n"
 "Загрузчик обновлен!"
 
-msgid "Update the selected list of plugins"
-msgstr "Обновить выбранный список плагинов"
+msgid "Update the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Обновление, сохранение, восстановление прошивки или настроек"
@@ -23536,6 +23555,21 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Download the selected list of plugins"
+#~ msgstr "Скачать выбранный список плагинов"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Ошибка: Не выбрано место для сохранения записи!"
+
+#~ msgid "Remove the selected list of plugins"
+#~ msgstr "Удалить выбранный список плагинов"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Некоторые плагины недоступны:"
+
+#~ msgid "Update the selected list of plugins"
+#~ msgstr "Обновить выбранный список плагинов"
 
 #~ msgid "1 hour"
 #~ msgstr "1 час"

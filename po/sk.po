@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2023-08-01 17:36+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1068,6 +1068,13 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "Bol aktualizovaný %d balík."
 msgstr[1] "Boli aktualizované %d balíky."
 msgstr[2] "Bolo aktualizovaných %d balíkov."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d sec"
@@ -4175,6 +4182,12 @@ msgstr "Vyčistiť záznamy pre tento časovač"
 msgid "Clear the virtual memory caches"
 msgstr "Vyčistiť virtuálne vyrovnávacie pamäte"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Stlačte na diaľkovom ovládači tlačidlo, ktoré chcete zmeniť."
 
@@ -6406,6 +6419,9 @@ msgstr "Chcete obnoviť nastavenia?"
 msgid "Do you want to resume this playback?"
 msgstr "Chcete pokračovať v prehrávaní?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr "Chcete spustiť zálohovanie teraz?"
 
@@ -6505,7 +6521,7 @@ msgstr "Chyba pri sťahovaní"
 msgid "Download the selected image"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7424,9 +7440,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Chyba: %s %s nie %s! Skúste neskôr prosím."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Chyba: Umiestnenie pre uloženie nahrávky nebolo zvolené!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Chyba: prázdny názov súboru je neplatný!"
 
@@ -7506,6 +7519,9 @@ msgstr "Chyba: Koreňový systém súborov a systémové priečinky nemožno pre
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Chyba: Koreňový systém súborov a systémové priečinky nemožno premenovať!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr ""
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9916,6 +9932,12 @@ msgstr "Udržiavať históriu EPG (v minútach)"
 
 msgid "Keep service"
 msgstr "Udržiavať stanicu"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Udržiavať otvorený zoznam filmov pri prehrávaní audio súborov."
@@ -14344,7 +14366,7 @@ msgstr "Odstrániť súbory pre MultiBoot"
 msgid "Remove the current bookmark"
 msgstr "Odstrániť aktuálnu záložku"
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -17938,9 +17960,6 @@ msgstr "Somálsko"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Niektoré TV prijímače sa nedokážu prepnúť na správny vstup v prípade, že je aktívny aj iný port HDMI. Toto nastavenie uvedie TV do pohotovostného režimu predtým, než prebehne prepnutie. (Ak sa TV prijímač potom nezapne, môže byť potrebný pomalší interval prenosu alebo zopakovanie príkazov pre prebudenie.)"
 
-msgid "Some plugins are not available:"
-msgstr "Niektoré pluginy nie sú dostupné:"
-
 msgid "Sorbian"
 msgstr "Srbčina"
 
@@ -20643,7 +20662,7 @@ msgstr ""
 "Aktualizácia bola úspešná.\n"
 "Zavádzač je teraz aktuálny!"
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -23533,6 +23552,12 @@ msgstr "áno (zachovať zdroje softvéru)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Chyba: Umiestnenie pre uloženie nahrávky nebolo zvolené!"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Niektoré pluginy nie sú dostupné:"
 
 #~ msgid "1 hour"
 #~ msgstr "1 hodina"

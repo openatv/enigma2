@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1038,6 +1038,11 @@ msgstr[0] ""
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
 msgstr[0] ""
 
 #, python-format
@@ -4181,6 +4186,10 @@ msgstr ""
 msgid "Clear the virtual memory caches"
 msgstr ""
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Bấm vào điều khiển từ xa của bạn vào nút bạn muốn thay đổi"
 
@@ -6432,6 +6441,9 @@ msgstr "Bạn có muốn khôi phục cài đặt của bạn?"
 msgid "Do you want to resume this playback?"
 msgstr "Bạn có muốn tiếp tục phát lại này?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -6531,7 +6543,7 @@ msgstr ""
 msgid "Download the selected image"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7465,9 +7477,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Không có bảng cập nhật có sẵn. Vui lòng thử lại sau."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Một tên tệp trống là bất hợp pháp."
 
@@ -7546,6 +7555,9 @@ msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
 msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
+
+msgid "Error: The selected service can't be recorded!"
 msgstr ""
 
 #, python-format
@@ -9999,6 +10011,10 @@ msgstr ""
 
 msgid "Keep service"
 msgstr "Giữ dịch vụ"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Giữ MovieList mở trong khi phát tệp âm thanh."
@@ -14532,7 +14548,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -18155,9 +18171,6 @@ msgstr "Somalia"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr ""
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 #, fuzzy
 msgid "Sorbian"
 msgstr "Tiếng Serbia"
@@ -20875,7 +20888,7 @@ msgstr ""
 "Cập nhật thành công!\n"
 "Bootloader của bạn đã được cập nhật!"
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"

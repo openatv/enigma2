@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
-"PO-Revision-Date: 2023-08-31 16:49+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"PO-Revision-Date: 2023-09-26 17:46+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1073,6 +1073,13 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "%d пакет оновлено."
 msgstr[1] "%d пакети оновлено."
 msgstr[2] "%d пакетів оновлено."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] "%d плагін недоступний:"
+msgstr[1] "%d плагіни недоступний:"
+msgstr[2] "%d плагінів недоступний:"
 
 #, python-format
 msgid "%d sec"
@@ -4180,6 +4187,12 @@ msgstr "Очистити журнали для цього таймера"
 msgid "Clear the virtual memory caches"
 msgstr "Очистити віртуальну пам’ять"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] "Очистити попередження"
+msgstr[1] "Очистити попередження"
+msgstr[2] "Очистити попередження"
+
 msgid "Click the button on your remote you want to change."
 msgstr "Натисніть на пульті ту кнопку, дію якої хочете змінити."
 
@@ -6411,6 +6424,9 @@ msgstr "Ви хочете відновити свої налаштування?"
 msgid "Do you want to resume this playback?"
 msgstr "Ви хочете продовжити відтворення?"
 
+msgid "Do you want to select another service?"
+msgstr "Бажаєте вибрати інший каналу?"
+
 msgid "Do you want to start a backup now?"
 msgstr "Ви хочете почати резервне копіювання зараз?"
 
@@ -6510,8 +6526,8 @@ msgstr "Помилка завантаження"
 msgid "Download the selected image"
 msgstr "Завантажити вибраний імідж"
 
-msgid "Download the selected list of plugins"
-msgstr "Завантажити вибраний список плагінів"
+msgid "Download the selected plugin / list of plugins"
+msgstr "Завантажити вибраний плагін/список плагінів"
 
 msgid "Downloadable plugins"
 msgstr "Доступні плагіни"
@@ -7429,9 +7445,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Помилка: %s %s не %s!  Будь-ласка, спробуйте пізніше."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Помилка: не вибрано місце для збереження запису!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Пусте ім'я файлу є недопустимим!"
 
@@ -7511,6 +7524,9 @@ msgstr "Помилка: кореневу файлову систему та си
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Помилка: кореневу файлову систему та системні каталоги не можна перейменувати!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr "Помилка: Вибраний канал неможливо записати!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9921,6 +9937,12 @@ msgstr "Зберігати історію EPG (в хвилинах)"
 
 msgid "Keep service"
 msgstr "Зберігати поточний канал"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] "Дотримуватися попередження"
+msgstr[1] "Дотримуватися попереджень"
+msgstr[2] "Дотримуватися попереджень"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Тримати список записів відкритим, коли відтворюються аудіо-файли."
@@ -14349,8 +14371,8 @@ msgstr "Видалити файли MultiBoot"
 msgid "Remove the current bookmark"
 msgstr "Видалити поточну закладку"
 
-msgid "Remove the selected list of plugins"
-msgstr "Видалити вибраний список плагінів"
+msgid "Remove the selected plugin / list of plugins"
+msgstr "Видалити вибраний плагін/список плагінів"
 
 msgid "Remove timer"
 msgstr "Видалити таймер"
@@ -17943,9 +17965,6 @@ msgstr "Сомалійська"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Деякі телевізійні пристрої не можуть переключитися на правильний вхід, якщо активний інший вхід HDMI. Цей параметр переводить телевізор у режим очікування перед перемиканням. (Якщо телевізор не вмикається, може знадобитися більший інтервал передачі, або повторення команд пробудження.)"
 
-msgid "Some plugins are not available:"
-msgstr "Деякі плагіни недоступні:"
-
 msgid "Sorbian"
 msgstr "Сербська"
 
@@ -18768,7 +18787,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 30.08.2023"
+msgstr "Переклад: kvinto - 26.09.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20648,8 +20667,8 @@ msgstr ""
 "Оновлення успішне!\n"
 "Ваш завантажувач тепер оновлений!"
 
-msgid "Update the selected list of plugins"
-msgstr "Оновити вибраний список плагінів"
+msgid "Update the selected plugin / list of plugins"
+msgstr "Оновити вибраний плагін/список плагінів"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Оновлення/Копіювання Вашої прошивки, Копіювання/Відновлення налаштувань"
@@ -23538,6 +23557,21 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Download the selected list of plugins"
+#~ msgstr "Завантажити вибраний список плагінів"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Помилка: не вибрано місце для збереження запису!"
+
+#~ msgid "Remove the selected list of plugins"
+#~ msgstr "Видалити вибраний список плагінів"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Деякі плагіни недоступні:"
+
+#~ msgid "Update the selected list of plugins"
+#~ msgstr "Оновити вибраний список плагінів"
 
 #~ msgid "1 hour"
 #~ msgstr "1 година"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2023-09-03 01:19+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1040,6 +1040,12 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d pakket is bijgewerkt."
 msgstr[1] "%d pakketten zijn bijgewerkt."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d sec"
@@ -4158,6 +4164,11 @@ msgstr "Het Log-bestand voor deze timer verwijderen"
 msgid "Clear the virtual memory caches"
 msgstr "Wis de virtuele geheugencache"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Druk op de knop van de afstandsbediening waarvan u de functie wil wijzigen."
 
@@ -6497,6 +6508,9 @@ msgstr "Wilt u uw instellingen nu terugzetten?"
 msgid "Do you want to resume this playback?"
 msgstr "Wilt u verder gaan met het afspelen van deze opname?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr "Wilt u nu een back-up maken?"
 
@@ -6595,8 +6609,8 @@ msgstr "Fout bij het downloaden"
 msgid "Download the selected image"
 msgstr "Gekozen image downloaden"
 
-msgid "Download the selected list of plugins"
-msgstr "De geselecteerde Plug-ins downloaden"
+msgid "Download the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Downloadable plugins"
 msgstr "Beschikbare plug-ins"
@@ -7524,9 +7538,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Fout: %s %s niet %s!  A.u.b. later nog een keer proberen."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Fout: Er is geen locatie opgegeven om de opname op te slaan!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Fout: Geen bestandsnaam is niet toegestaan!"
 
@@ -7606,6 +7617,9 @@ msgstr "Fout: Het root-bestandssysteem en de systeemmappen kunnen niet worden ve
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Fout: Het root-bestandssysteem en de systeemmappen kunnen niet worden hernoemd!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr ""
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -10023,6 +10037,11 @@ msgstr "EPG historie bewaren (in minuten)"
 
 msgid "Keep service"
 msgstr "Huidige zender"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Houdt de opnamelijst geopend tijdens het afspelen van audio bestanden."
@@ -14456,8 +14475,8 @@ msgstr "De MultiBoot-bestanden verwijderen"
 msgid "Remove the current bookmark"
 msgstr "De huidige bladwijzer verwijderen"
 
-msgid "Remove the selected list of plugins"
-msgstr "De geselecteerde Plug-ins verwijderen"
+msgid "Remove the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Verwijder timer"
@@ -18084,9 +18103,6 @@ msgstr "Somalië"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Sommige TV-apparaten kunnen niet naar de juiste poort schakelen wanneer een andere HDMI poort actief is. Deze instelling schakelt de TV eerst naar standby voor de poortwissel. (Wanneer de TV niet meer inschakelt eventueel een tragere verzend-interval of een herhaling van wake-up commando's proberen)."
 
-msgid "Some plugins are not available:"
-msgstr "Sommige plug-ins zijn niet beschikbaar:"
-
 msgid "Sorbian"
 msgstr "Servisch"
 
@@ -20832,8 +20848,8 @@ msgstr ""
 "Update geslaagd!\n"
 "Uw Bootloader is nu bijgewerkt!"
 
-msgid "Update the selected list of plugins"
-msgstr "De geselecteerde Plug-ins updaten"
+msgid "Update the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Update/back-up uw firmware, back-up/herstel instellingen."
@@ -23745,6 +23761,21 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Download the selected list of plugins"
+#~ msgstr "De geselecteerde Plug-ins downloaden"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Fout: Er is geen locatie opgegeven om de opname op te slaan!"
+
+#~ msgid "Remove the selected list of plugins"
+#~ msgstr "De geselecteerde Plug-ins verwijderen"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Sommige plug-ins zijn niet beschikbaar:"
+
+#~ msgid "Update the selected list of plugins"
+#~ msgstr "De geselecteerde Plug-ins updaten"
 
 #~ msgid "1 hour"
 #~ msgstr "1 uur"

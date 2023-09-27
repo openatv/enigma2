@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1071,6 +1071,13 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paketas buvo atnaujintas."
 msgstr[1] "%d paketai buvo atnaujinti."
 msgstr[2] "%d paketų buvo atnaujinta."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d sec"
@@ -4190,6 +4197,12 @@ msgstr "Išvalykite šio laikmačio žurnalus"
 msgid "Clear the virtual memory caches"
 msgstr "Virtualiosios atminties talpyklų išvalymas"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Spauskite nuotolinio valdymo pulto mygtuką, kurį norite pakeisti"
 
@@ -6420,6 +6433,9 @@ msgstr "Ar norite atkurti savo nustatymus?"
 msgid "Do you want to resume this playback?"
 msgstr "Ar norite pratęsti šio įrašo peržiūrą?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -6519,7 +6535,7 @@ msgstr "Atsisiuntimo klaida"
 msgid "Download the selected image"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7438,9 +7454,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Klaida: %s %s ne %s!  Bandykite dar kartą vėliau."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Klaida: vieta, kurioje norite išsaugoti įrašą, nepasirinkta!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Tuščias failo pavadinimas negalimas."
 
@@ -7522,6 +7535,9 @@ msgstr "Klaida: šakninės failų sistemos ir sistemos katalogų perkelti negali
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Klaida: šakninės failų sistemos ir sistemos katalogų negalima pervardyti!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr ""
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9932,6 +9948,12 @@ msgstr "Saugokite EPG istoriją (minutėmis)"
 
 msgid "Keep service"
 msgstr "Išlaikyti kanalą"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Išlaikys filmų sąrašą atvertą ir grojant garsinius failus."
@@ -14357,7 +14379,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr "Dabartinės žymelės pašalinimas"
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -17939,9 +17961,6 @@ msgstr "Somalis"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Kai kurie TV įrenginiai negali pataisyti įvesties, jei veikia kitas HDMI prievadas. Šis parametras nustato televizoriaus budėjimo režimą prieš jungiklį. (Jei televizorius neįjungia, gali prireikti lėtesnio perdavimo intervalo arba pažadinimo komandų pasikartojimo.)"
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 msgid "Sorbian"
 msgstr "Serbiškai"
 
@@ -20619,7 +20638,7 @@ msgstr ""
 "Atnaujinimas pavyko!\n"
 "Jūsų įkrovos tvarkyklė dabar yra naujausia!"
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -23495,6 +23514,9 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Klaida: vieta, kurioje norite išsaugoti įrašą, nepasirinkta!"
 
 #~ msgid "1 hour"
 #~ msgstr "1 valanda"

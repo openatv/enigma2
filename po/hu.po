@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1066,6 +1066,12 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d csomag frissítve."
 msgstr[1] "%d csomag frissítve."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d sec"
@@ -4191,6 +4197,11 @@ msgstr ""
 msgid "Clear the virtual memory caches"
 msgstr ""
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Kattintson a távirányító gombjára, ha érvényesíteni szeretné a változásokat"
 
@@ -6427,6 +6438,9 @@ msgstr "Szeretné visszaállítani a beállításait?"
 msgid "Do you want to resume this playback?"
 msgstr "Szeretné folytatni ezt a lejátszást?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -6525,7 +6539,7 @@ msgstr "Letöltési hiba"
 msgid "Download the selected image"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7443,9 +7457,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Nincs elérhető frissítés. Kérem, próbálja meg később."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Egy üres fájlnév érvénytelen."
 
@@ -7524,6 +7535,9 @@ msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
 msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
+
+msgid "Error: The selected service can't be recorded!"
 msgstr ""
 
 #, python-format
@@ -9965,6 +9979,11 @@ msgstr ""
 
 msgid "Keep service"
 msgstr "Maradjon a csatornán"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "A Film listát nyitva tartja mialatt az audió fájlt játssza le."
@@ -14456,7 +14475,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -18071,9 +18090,6 @@ msgstr "Szomália"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr ""
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 #, fuzzy
 msgid "Sorbian"
 msgstr "Szerb"
@@ -20778,7 +20794,7 @@ msgstr ""
 "Frissítés sikeres!\n"
 "A Bootloader aktuális!"
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1034,6 +1034,12 @@ msgstr[1] ""
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -4143,6 +4149,11 @@ msgstr ""
 msgid "Clear the virtual memory caches"
 msgstr "Изчистете кеша на виртуалната памет"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Кликнете върху бутона на дистанционното, който искате да промените"
 
@@ -6366,6 +6377,9 @@ msgstr "Искате ли да възстановите настройките �
 msgid "Do you want to resume this playback?"
 msgstr "Искате ли да възобновите това възпроизвеждане?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -6464,7 +6478,7 @@ msgstr "Грешка при изтегляне"
 msgid "Download the selected image"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7379,9 +7393,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Грешка: %s %s не %s!  Моля, опитайте отново по-късно."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Празно име на файла е недопустимо."
 
@@ -7460,6 +7471,9 @@ msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
 msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
+
+msgid "Error: The selected service can't be recorded!"
 msgstr ""
 
 #, python-format
@@ -9868,6 +9882,11 @@ msgstr ""
 
 msgid "Keep service"
 msgstr "Запази сервиза"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Поддържа списък с филми отворен, докато възпроизвеждате аудио файлове."
@@ -14289,7 +14308,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -17868,9 +17887,6 @@ msgstr ""
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Някои телевизионни устройства не могат да се превключват, за да коригират входа, ако е активен друг HDMI порт. Тази настройка настройва телевизора в режим на готовност преди превключвателя. (Ако телевизорът не се включи отново, може да се наложи по-бавен интервал на предаване или повторение на командите за събуждане.)"
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 msgid "Sorbian"
 msgstr ""
 
@@ -20538,7 +20554,7 @@ msgstr ""
 "Актуализирането е успешно!\n"
 "Вашият Bootloader вече е актуален!"
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"

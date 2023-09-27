@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
-"PO-Revision-Date: 2023-09-20 08:59+0000\n"
-"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"PO-Revision-Date: 2023-09-26 17:46+0000\n"
+"Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1077,6 +1077,13 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "%d pakiet został uaktualniony."
 msgstr[1] "%d pakiety zostały uaktualnione."
 msgstr[2] "%d pakietów zostało uaktualnionych."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] "%d wtyczka nie jest dostępna:"
+msgstr[1] "%d wtyczki nie są dostępne:"
+msgstr[2] "%d wtyczek nie jest dostępnych:"
 
 #, python-format
 msgid "%d sec"
@@ -4187,6 +4194,12 @@ msgstr "Wyczyść logi dla tego timera"
 msgid "Clear the virtual memory caches"
 msgstr "Wyczyść pamięć wirtualną"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] "Wyczyść ostrzeżenie"
+msgstr[1] "Wyczyść ostrzeżenia"
+msgstr[2] "Wyczyść ostrzeżenia"
+
 msgid "Click the button on your remote you want to change."
 msgstr "Kliknij na pilocie przycisk, który chcesz zmienić."
 
@@ -6419,6 +6432,9 @@ msgstr "Chcesz przywrócić ustawienia?"
 msgid "Do you want to resume this playback?"
 msgstr "Chcesz wznowić odtwarzanie?"
 
+msgid "Do you want to select another service?"
+msgstr "Czy chcesz wybrać inną usługę?"
+
 msgid "Do you want to start a backup now?"
 msgstr "Czy chcesz rozpocząć tworzenie kopii teraz?"
 
@@ -6518,8 +6534,8 @@ msgstr "Błąd pobierania"
 msgid "Download the selected image"
 msgstr "Pobierz wybrany obraz"
 
-msgid "Download the selected list of plugins"
-msgstr "Pobierz wybraną listę wtyczek"
+msgid "Download the selected plugin / list of plugins"
+msgstr "Pobierz wybraną wtyczkę / listę wtyczek"
 
 msgid "Downloadable plugins"
 msgstr "Wtyczki do pobrania"
@@ -7437,9 +7453,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Błąd: %s %s nie %s!  Spróbuj ponownie później."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Błąd: Nie wybrano lokalizacji do zapisania nagrania!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Błąd: pusta nazwa pliku jest nieprawidłowa!"
 
@@ -7519,6 +7532,9 @@ msgstr "Błąd: System plików root i katalogi systemowe nie mogą być przenies
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Błąd: Nie można zmienić nazwy głównego systemu plików i katalogów systemowych!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr "Błąd: Wybrana usługa nie może zostać nagrana!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9929,6 +9945,12 @@ msgstr "Zachowaj historię EPG (w minutach)"
 
 msgid "Keep service"
 msgstr "Utrzymaj kanał"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] "Zachowaj ostrzeżenie"
+msgstr[1] "Zachowaj ostrzeżenia"
+msgstr[2] "Zachowaj ostrzeżenia"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Utrzymuje otwartą listę filmów podczas odtwarzania plików audio."
@@ -14358,8 +14380,8 @@ msgstr "Usuń pliki MultiBoot"
 msgid "Remove the current bookmark"
 msgstr "Usuń bieżącą zakładkę"
 
-msgid "Remove the selected list of plugins"
-msgstr "Usuń wybraną listę wtyczek"
+msgid "Remove the selected plugin / list of plugins"
+msgstr "Usuń wybraną wtyczkę / listę wtyczek"
 
 msgid "Remove timer"
 msgstr "Usuń timer"
@@ -17953,9 +17975,6 @@ msgstr "Somalia"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Niektóre urządzenia TV nie mogą zostać przełączone na poprawne wejście jeśli jest aktywne inne wejście HDMI. To ustawienie przełącza TV w tryb czuwania przed przełączeniem. (Jeśli telewizor się nie włącza, może wymagać wolniejszego przedziału transmisji lub powtórzenia poleceń budzenia.)"
 
-msgid "Some plugins are not available:"
-msgstr "Niektóre wtyczki są niedostępne:"
-
 msgid "Sorbian"
 msgstr "Serbski"
 
@@ -20658,8 +20677,8 @@ msgstr ""
 "Aktualizacja powiodła się!\n"
 "Bootloader jest teraz aktualny!"
 
-msgid "Update the selected list of plugins"
-msgstr "Zaktualizuj wybraną listę wtyczek"
+msgid "Update the selected plugin / list of plugins"
+msgstr "Zaktualizuj wybraną wtyczkę / listę wtyczek"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Aktualizuj, wykonaj kopię zapasową systemu i przywróć ustawienia"
@@ -23548,6 +23567,21 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Download the selected list of plugins"
+#~ msgstr "Pobierz wybraną listę wtyczek"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Błąd: Nie wybrano lokalizacji do zapisania nagrania!"
+
+#~ msgid "Remove the selected list of plugins"
+#~ msgstr "Usuń wybraną listę wtyczek"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Niektóre wtyczki są niedostępne:"
+
+#~ msgid "Update the selected list of plugins"
+#~ msgstr "Zaktualizuj wybraną listę wtyczek"
 
 #~ msgid "1 hour"
 #~ msgstr "1 godzina"

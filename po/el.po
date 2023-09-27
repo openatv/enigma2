@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2023-09-17 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1040,6 +1040,12 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "Αναβαθμίστηκε %d πακέτο."
 msgstr[1] "Αναβαθμίστηκαν %d πακέτα."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d sec"
@@ -4146,6 +4152,11 @@ msgstr "Εκκαθάριση καταγραφών για αυτόν τον χρ�
 msgid "Clear the virtual memory caches"
 msgstr "Εκκαθάριση των εικονικών προφορτώσεων μνήμης"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Πιέστε το πλήκτρο που θέλετε να αλλάξετε στο τηλεχειριστήριό σας."
 
@@ -6377,6 +6388,9 @@ msgstr "Θέλετε να γίνει επαναφορά των ρυθμίσεώ�
 msgid "Do you want to resume this playback?"
 msgstr "Θέλετε να επανασυνεχίσετε την αναπαραγωγή;"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr "Θέλετε να ξεκινήσει η εφεδρεία τώρα;"
 
@@ -6475,8 +6489,8 @@ msgstr "Σφάλμα λήψης"
 msgid "Download the selected image"
 msgstr "Λήψη του επιλεγμένου image"
 
-msgid "Download the selected list of plugins"
-msgstr "Λήψη της επιλεγμένης λίστας προσθέτων"
+msgid "Download the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Downloadable plugins"
 msgstr "Πρόσθετα για λήψη"
@@ -7392,9 +7406,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Σφάλμα: Ο %s %s δεν είναι %s!  Παρακαλώ δοκιμάστε αργότερα."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Σφάλμα: Δεν έχει επιλεγεί τοποθεσία αποθήκευσης της εγγραφής!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Σφάλμα: Ένα κενό όνομα αρχείου δεν είναι έγκυρο!"
 
@@ -7474,6 +7485,9 @@ msgstr "Σφάλμα: Το ριζικό σύστημα αρχείων και ο�
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Σφάλμα: Το ριζικό σύστημα αρχείων και οι φάκελοι συστήματος δεν μπορούν να μετονομαστούν!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr ""
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9884,6 +9898,11 @@ msgstr "Διατήρηση του ιστορικού EPG (σε λεπτά)"
 
 msgid "Keep service"
 msgstr "Διατήρηση υπηρεσίας"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Κρατάει ανοιχτή τη λίστα ταινιών όταν γίνεται αναπαραγωγή αρχείων ήχου."
@@ -14311,8 +14330,8 @@ msgstr "Κατάργηση των αρχείων πολλαπλής εκκίνη
 msgid "Remove the current bookmark"
 msgstr "Διαγραφή τρέχοντος σελιδοδείκτη"
 
-msgid "Remove the selected list of plugins"
-msgstr "Αφαίρεση της επιλεγμένης λίστας προσθέτων"
+msgid "Remove the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Διαγραφή χρονοδιακόπτη"
@@ -17901,9 +17920,6 @@ msgstr "Σομαλία"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Μερικές τηλεοράσεις δεν δύνανται να μεταβούν στην κατάλληλη είσοδο αν είναι ενεργή μία άλλη θύρα HDMI. Αυτή η επιλογή θέτει την TV σε αναμονή πριν την αλλαγή. (Αν η TV δεν επιστρέφει, μπορεί να απαιτείται μικρότερο μεσοδιάστημα εκπομπής ή επανάληψη της εντολής αφύπνισης.)"
 
-msgid "Some plugins are not available:"
-msgstr "Μερικά πρόσθετα δεν είναι διαθέσιμα:"
-
 msgid "Sorbian"
 msgstr "Σορβικά"
 
@@ -20606,8 +20622,8 @@ msgstr ""
 "Επιτυχής ενημέρωση!\n"
 "Ο Bootloader σας είναι πλέον ενημερωμένος!"
 
-msgid "Update the selected list of plugins"
-msgstr "Ενημέρωση της επιλεγμένης λίστας προσθέτων"
+msgid "Update the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Ενημέρωση/εφεδρεία του λογισμικού, εφεδρεία/επαναφορά ρυθμίσεων"
@@ -23495,6 +23511,21 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Download the selected list of plugins"
+#~ msgstr "Λήψη της επιλεγμένης λίστας προσθέτων"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Σφάλμα: Δεν έχει επιλεγεί τοποθεσία αποθήκευσης της εγγραφής!"
+
+#~ msgid "Remove the selected list of plugins"
+#~ msgstr "Αφαίρεση της επιλεγμένης λίστας προσθέτων"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Μερικά πρόσθετα δεν είναι διαθέσιμα:"
+
+#~ msgid "Update the selected list of plugins"
+#~ msgstr "Ενημέρωση της επιλεγμένης λίστας προσθέτων"
 
 #~ msgid "1 hour"
 #~ msgstr "1 ώρα"

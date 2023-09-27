@@ -15,16 +15,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
-"PO-Revision-Date: 2023-08-26 15:57+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"PO-Revision-Date: 2023-09-26 17:46+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1056,6 +1056,12 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d Paket aktualisiert."
 msgstr[1] "%d Pakete aktualisiert."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] "%d Plugin nicht verfügbar:"
+msgstr[1] "%d Plugins nicht verfügbar:"
 
 #, python-format
 msgid "%d sec"
@@ -4394,6 +4400,11 @@ msgstr "Löschen der Logs für diesen Timer"
 msgid "Clear the virtual memory caches"
 msgstr "Löschen des virtuellen Speichercaches"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] "Warnung löschen"
+msgstr[1] "Warnungen löschen"
+
 msgid "Click the button on your remote you want to change."
 msgstr "Drücken Sie die Taste der Fernbedienung, die neu belegt werden soll."
 
@@ -6759,6 +6770,9 @@ msgstr "Die Einstellungen wiederherstellen?"
 msgid "Do you want to resume this playback?"
 msgstr "Die Wiedergabe an der letzten Stelle fortsetzen?"
 
+msgid "Do you want to select another service?"
+msgstr "Wollen Sie einen anderen Sender wählen?"
+
 msgid "Do you want to start a backup now?"
 msgstr "Möchten Sie jetzt ein Backup starten?"
 
@@ -6861,8 +6875,8 @@ msgstr "Fehler beim Herunterladen!"
 msgid "Download the selected image"
 msgstr "Gewähltes Image herunterladen"
 
-msgid "Download the selected list of plugins"
-msgstr "Plugins anhand der Auswahl herunterladen"
+msgid "Download the selected plugin / list of plugins"
+msgstr "Gewähltes Plugin oder Pluginliste herunterladen"
 
 #
 msgid "Downloadable plugins"
@@ -7837,9 +7851,6 @@ msgstr ""
 "Fehler: %s %s nicht %s!\n"
 "Bitte versuchen Sie es später erneut."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Fehler: Es wurde kein Speicherort für die Aufnahme ausgewählt!"
-
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Fehler: Leere Dateinamen sind unzulässig!"
@@ -7926,6 +7937,9 @@ msgstr "Fehler: Das Root File System und Systemverzeichnisse können nicht versc
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Fehler: Das Root File System und Systemverzeichnisse können nicht umbenannt werden!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr "Fehler: Vom ausgewählten Sender kann nicht aufgenommen werden!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -10469,6 +10483,11 @@ msgstr "Alte EPG-Daten für x Minuten halten"
 
 msgid "Keep service"
 msgstr "Laufender Kanal"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] "Warnung behalten"
+msgstr[1] "Warnungen behalten"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Bei 'Ja' bleibt die Filmauswahl geöffnet, wenn Audiodateien abgespielt werden."
@@ -15277,8 +15296,8 @@ msgstr "MultiBoot-Dateien entfernen"
 msgid "Remove the current bookmark"
 msgstr "Aktuelles Lesezeichen entfernen"
 
-msgid "Remove the selected list of plugins"
-msgstr "Plugins anhand der Auswahl entfernen"
+msgid "Remove the selected plugin / list of plugins"
+msgstr "Gewähltes Plugin oder Pluginliste entfernen"
 
 #
 msgid "Remove timer"
@@ -19104,9 +19123,6 @@ msgstr ""
 "Einige TV-Geräte wechseln nicht den Eingang wenn ein anderer HDMI-Port aktiv ist. Diese Einstellung schaltet den TV zuvor in den Standby.\n"
 "(Wenn sich der TV nicht wieder einschaltet, ist möglicherweise ein langsameres Sendeintervall oder die Wiederholung von Aufwachbefehlen erforderlich.)"
 
-msgid "Some plugins are not available:"
-msgstr "Einige Plugins nicht verfügbar:"
-
 msgid "Sorbian"
 msgstr "Sorbisch"
 
@@ -21995,8 +22011,8 @@ msgstr ""
 "Update erfolgreich!\n"
 "Der Bootloader ist nun aktuell!"
 
-msgid "Update the selected list of plugins"
-msgstr "Plugins anhand der Auswahl aktualisieren"
+msgid "Update the selected plugin / list of plugins"
+msgstr "Gewähltes Plugin oder Pluginliste aktualisieren"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Sichern/Wiederherstellen des Images oder der Einstellungen."
@@ -25124,6 +25140,21 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Download the selected list of plugins"
+#~ msgstr "Plugins anhand der Auswahl herunterladen"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Fehler: Es wurde kein Speicherort für die Aufnahme ausgewählt!"
+
+#~ msgid "Remove the selected list of plugins"
+#~ msgstr "Plugins anhand der Auswahl entfernen"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Einige Plugins nicht verfügbar:"
+
+#~ msgid "Update the selected list of plugins"
+#~ msgstr "Plugins anhand der Auswahl aktualisieren"
 
 #~ msgid "1 hour"
 #~ msgstr "1 Stunde"

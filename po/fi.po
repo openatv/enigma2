@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-26 21:35+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2023-09-15 11:56+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1036,6 +1036,12 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d Paketti päivitetty."
 msgstr[1] "%d Pakettia päivitetty."
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d sec"
@@ -4155,6 +4161,11 @@ msgstr "Tyhjennä tämän ajastuksen lokit"
 msgid "Clear the virtual memory caches"
 msgstr "Tyhjennä virtuaalimuistin välimuisti"
 
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr "Määrittää näppäimelle haluamasi toiminnon."
 
@@ -6386,6 +6397,9 @@ msgstr "Haluatko palauttaa asetukset?"
 msgid "Do you want to resume this playback?"
 msgstr "Jatketaanko kohdasta, johon katselu viimeksi jäi?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr "Haluatko aloittaa varmuuskopioinnin nyt?"
 
@@ -6484,8 +6498,8 @@ msgstr "Lataus virhe"
 msgid "Download the selected image"
 msgstr "Lataa valittu ohjelmisto"
 
-msgid "Download the selected list of plugins"
-msgstr "Lataa valittu lisäosa plugin listalta"
+msgid "Download the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Downloadable plugins"
 msgstr "Lataa lisäosia"
@@ -7403,9 +7417,6 @@ msgstr ""
 "Ei: %s %s päivityksiä %s!\n"
 "Yritä myöhemmin uudelleen."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Virhe: Tallennuspaikkaa ei ole valittu!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Virhe: Tyhjä nimi ei ole sallittu!"
 
@@ -7485,6 +7496,9 @@ msgstr "Virhe: Tiedostojärjestelmää ja järjestelmähakemistoja ei voi siirt�
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Virhe: Tiedostojärjestelmää ja järjestelmähakemistoja ei voi nimetä uudelleen!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr ""
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9900,6 +9914,11 @@ msgstr "Säilytä EPG historia (minuutteina)"
 
 msgid "Keep service"
 msgstr "Säilytä kanava"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Pidä tallenneluettelo auki äänitiedostojen toiston aikana."
@@ -14335,8 +14354,8 @@ msgstr "Poista MultiBoot tiedostot"
 msgid "Remove the current bookmark"
 msgstr "Poista nykyinen kirjanmerkki"
 
-msgid "Remove the selected list of plugins"
-msgstr "Poista valittu lista lisäosista"
+msgid "Remove the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Poista ajastus"
@@ -17939,9 +17958,6 @@ msgstr "Somalia"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Jotkin TV:eet eivät voi vaihtaa oikeaan sisääntuloon, jos toinen HDMI portti on aktiivinen. Tämä asetus asettaa television valmiustilaan ennen vaihtoa. (Jos televisio ei kytkeydy takaisin päälle, se voi vaatia hitaampaa lähetysväliä tai herätyskomentojen toistamista.)"
 
-msgid "Some plugins are not available:"
-msgstr "Seuraavat lisäosat eivät ole saatavilla:"
-
 msgid "Sorbian"
 msgstr "Sorbi"
 
@@ -20653,8 +20669,8 @@ msgstr ""
 "Päivitys onnistui!\n"
 "Bootloaderi on nyt ajan tasalla!"
 
-msgid "Update the selected list of plugins"
-msgstr "Päivitä valittu lista lisäosa plugineista"
+msgid "Update the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Päivitä/varmuuskopioi ohjelmisto, varmuuskopioi/palauta asetukset"
@@ -23548,6 +23564,21 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Download the selected list of plugins"
+#~ msgstr "Lataa valittu lisäosa plugin listalta"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Virhe: Tallennuspaikkaa ei ole valittu!"
+
+#~ msgid "Remove the selected list of plugins"
+#~ msgstr "Poista valittu lista lisäosista"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Seuraavat lisäosat eivät ole saatavilla:"
+
+#~ msgid "Update the selected list of plugins"
+#~ msgstr "Päivitä valittu lista lisäosa plugineista"
 
 #~ msgid "1 hour"
 #~ msgstr "1 tunti"
