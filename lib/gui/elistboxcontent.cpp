@@ -1440,7 +1440,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						  pwidth = PyTuple_GET_ITEM(item, 3),
 						  pheight = PyTuple_GET_ITEM(item, 4),
 						  pfilled_perc = PyTuple_GET_ITEM(item, 5),
-						  ppixmap, pborderWidth, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected;
+						  ppixmap, pborderWidth, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected,
+						  pstartColor, pendColor, pstartColorSelected, pendColorSelected;
+					  
 				int idx = 6;
 				if (type == TYPE_PROGRESS)
 				{
@@ -1493,6 +1495,40 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						pbackColorSelected = ePyObject();
 				}
 
+				int radius = 0;
+				int edges = 0;
+
+				if (type == TYPE_PROGRESS)
+				{
+					if (size > 12)
+						pstartColor = lookupColor(PyTuple_GET_ITEM(item, 12), data);
+
+					if (size > 13)
+						pendColor = lookupColor(PyTuple_GET_ITEM(item, 13), data);
+
+					if (size > 14)
+						pstartColorSelected = lookupColor(PyTuple_GET_ITEM(item, 14), data);
+
+					if (size > 15)
+						pendColorSelected = lookupColor(PyTuple_GET_ITEM(item, 15), data);
+
+					if (size > 16)
+						radius = PyLong_AsLong(PyTuple_GET_ITEM(item, 16));
+
+					if (size > 17)
+						edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 17));
+
+				}
+				else
+				{
+					if (size > 12)
+						radius = PyLong_AsLong(PyTuple_GET_ITEM(item, 12));
+
+					if (size > 13)
+						edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 13));
+
+				}
+
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
@@ -1535,17 +1571,38 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				// border
 				if (bwidth)
 				{
-					rect.setRect(x, y, width, bwidth);
-					painter.fill(rect);
 
-					rect.setRect(x, y + bwidth, bwidth, height - bwidth);
-					painter.fill(rect);
+					if(radius)
+					{
 
-					rect.setRect(x + bwidth, y + height - bwidth, width - bwidth, bwidth);
-					painter.fill(rect);
+						if (selected && pforeColorSelected)
+						{
+							unsigned int color = PyLong_AsUnsignedLongMask(pforeColorSelected);
+							painter.setBackgroundColor(gRGB(color));
+						}
+						else
+						{
+							unsigned int color = PyLong_AsUnsignedLongMask(pforeColor);
+							painter.setBackgroundColor(gRGB(color));
+						}
+						painter.setRadius(radius, edges);
+						painter.drawRectangle(eRect(x, y, width, height));
+					}
+					else
+					{
+						rect.setRect(x, y, width, bwidth);
+						painter.fill(rect);
 
-					rect.setRect(x + width - bwidth, y + bwidth, bwidth, height - bwidth);
-					painter.fill(rect);
+						rect.setRect(x, y + bwidth, bwidth, height - bwidth);
+						painter.fill(rect);
+
+						rect.setRect(x + bwidth, y + height - bwidth, width - bwidth, bwidth);
+						painter.fill(rect);
+
+						rect.setRect(x + width - bwidth, y + bwidth, bwidth, height - bwidth);
+						painter.fill(rect);
+					}
+
 				}
 
 				rect.setRect(x + bwidth, y + bwidth, (width - bwidth * 2) * filled / 100, height - bwidth * 2);
@@ -1563,10 +1620,30 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						painter.clippop();
 						continue;
 					}
-					if (pixmap->size().width() != width || pixmap->size().height() != height)
-						painter.blitScale(pixmap, eRect(rect.left(), rect.top(), width, height), rect);
-					else
-						painter.blit(pixmap, rect.topLeft(), rect, 0);
+
+					if (radius)
+						painter.setRadius(radius, edges);
+
+					painter.blitScale(pixmap, eRect(rect.left(), rect.top(), width, height), rect);
+				}
+				else if (radius || pstartColor)
+				{
+					if (radius)
+						painter.setRadius(radius, edges);
+					
+					if(pstartColor)
+					{
+						if (selected && !pstartColorSelected)
+							pstartColorSelected = pstartColor;
+						if (selected && !pendColorSelected)
+							pendColorSelected = pendColor;
+
+						unsigned int startcolor = PyLong_AsUnsignedLongMask(selected ? pstartColorSelected : pstartColor);
+						unsigned int endcolor = PyLong_AsUnsignedLongMask(selected ? pendColorSelected : pendColor);
+
+						painter.setGradient(startcolor, endcolor, 2, false, rect.width());
+					}
+
 				}
 				else
 					painter.fill(rect);
