@@ -140,6 +140,7 @@ struct gOpcode
 			gRGB endColor;
 			int orientation;
 			bool alphablend;
+			int fullSize;
 		} *gradient;
 
 		struct pradius
@@ -294,7 +295,7 @@ public:
 	void setForegroundColor(const gRGB &color);
 
 	void setBorder(const gRGB &borderColor, int width);
-	void setGradient(const gRGB &startColor, const gRGB &endColor, int orientation, bool alphablend);
+	void setGradient(const gRGB &startColor, const gRGB &endColor, int orientation, bool alphablend, int fullSize = 0);
 	void setRadius(int radius, int edges);
 
 	void setFont(gFont *font);
@@ -395,6 +396,7 @@ protected:
 	gRGB m_gradient_start_color, m_gradient_end_color;
 	int m_gradient_orientation;
 	bool m_gradient_alphablend;
+	int m_gradient_fullSize;
 
 	int m_radius, m_radius_edges;
 

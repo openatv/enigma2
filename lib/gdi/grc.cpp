@@ -354,7 +354,7 @@ void gPainter::setForegroundColor(const gRGB &color)
 	m_rc->submit(o);
 }
 
-void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int orientation, bool alphablend)
+void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int orientation, bool alphablend, int fullSize)
 {
 	if (m_dc->islocked())
 		return;
@@ -366,6 +366,7 @@ void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int ori
 	o.parm.gradient->endColor = endColor;
 	o.parm.gradient->orientation = orientation;
 	o.parm.gradient->alphablend = alphablend;
+	o.parm.gradient->fullSize = fullSize;
 	m_rc->submit(o);
 }
 
@@ -780,6 +781,7 @@ gDC::gDC()
 	m_radius_edges = 0;
 	m_gradient_orientation = 0;
 	m_gradient_alphablend = false;
+	m_gradient_fullSize = 0;
 }
 
 gDC::gDC(gPixmap *pixmap) : m_pixmap(pixmap)
@@ -828,6 +830,7 @@ void gDC::exec(const gOpcode *o)
 		m_gradient_end_color = o->parm.gradient->endColor;
 		m_gradient_orientation = o->parm.gradient->orientation;
 		m_gradient_alphablend = o->parm.gradient->alphablend;
+		m_gradient_fullSize = o->parm.gradient->fullSize;
 		delete o->parm.gradient;
 		break;
 	case gOpcode::setRadius:
@@ -1067,11 +1070,12 @@ void gDC::exec(const gOpcode *o)
 		Stopwatch s;
 		o->parm.rectangle->area.moveBy(m_current_offset);
 		gRegion clip = m_current_clip & o->parm.rectangle->area;
-		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, m_gradient_alphablend);
+		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, m_gradient_alphablend, m_gradient_fullSize);
 		m_border_width = 0;
 		m_radius = 0;
 		m_radius_edges = 0;
 		m_gradient_orientation = 0;
+		m_gradient_fullSize = 0;
 		m_gradient_alphablend = false;
 		s.stop();
 		FILE *handle = fopen("/tmp/drawRectangle.perf", "a");
