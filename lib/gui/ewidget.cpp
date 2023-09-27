@@ -367,42 +367,58 @@ int eWidget::event(int event, void *data, void *data2)
 	{
 	case evtPaint:
 	{
-		gPainter &painter = *(gPainter*)data2;
-	//		eDebug("[eWidget] evtPaint");
-//		dumpRegion(*(gRegion*)data);
+		gPainter &painter = *(gPainter *)data2;
+		//		eDebug("[eWidget] evtPaint");
+		//		dumpRegion(*(gRegion*)data);
 		if (!isTransparent())
 		{
+			bool drawborder = (m_have_border_color && m_border_width);
 
 			if (m_gradient_set)
 				painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction, m_gradient_alphablend);
 			if (m_have_background_color)
 				painter.setBackgroundColor(m_background_color);
 			const int r = getCornerRadius();
-			if (r)
-				painter.setRadius(r, m_cornerRadiusEdges);
-//			if (m_have_border_color && m_border_width)
-//				painter.setBorder(m_border_color, m_border_width);
 			if (r || m_gradient_set)
-				painter.drawRectangle(eRect(ePoint(0, 0), size()));
-			else {
-				if (!m_have_background_color) {
+			{
+				if (r)
+					painter.setRadius(r, m_cornerRadiusEdges);
+				if (r && drawborder)
+				{
+					painter.setBackgroundColor(m_border_color);
+					painter.drawRectangle(eRect(ePoint(0, 0), size()));
+					if (r)
+						painter.setRadius(r, m_cornerRadiusEdges);
+					painter.setBackgroundColor((m_have_background_color) ? m_background_color : gRGB(0, 0, 0));
+					painter.drawRectangle(eRect(m_border_width, m_border_width, size().width() - m_border_width * 2, size().height() - m_border_width * 2));
+					drawborder = false;
+				}
+				else
+					painter.drawRectangle(eRect(ePoint(0, 0), size()));
+			}
+			else
+			{
+				if (!m_have_background_color)
+				{
 					ePtr<eWindowStyle> style;
 					if (!getStyle(style))
 						style->paintBackground(painter, ePoint(0, 0), size());
 				}
-				else {
+				else
+				{
 					painter.clear();
-					if (m_have_border_color && m_border_width) {
-						painter.setForegroundColor(m_border_color);
-						eSize s(size());
-						painter.fill(eRect(0, 0, s.width(), m_border_width));
-						painter.fill(eRect(0, m_border_width, m_border_width, s.height() - m_border_width));
-						painter.fill(eRect(m_border_width, s.height() - m_border_width, s.width() - m_border_width, m_border_width));
-						painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
-					}
 				}
 			}
-		} 
+			if (drawborder)
+			{
+				painter.setForegroundColor(m_border_color);
+				eSize s(size());
+				painter.fill(eRect(0, 0, s.width(), m_border_width));
+				painter.fill(eRect(0, m_border_width, m_border_width, s.height() - m_border_width));
+				painter.fill(eRect(m_border_width, s.height() - m_border_width, s.width() - m_border_width, m_border_width));
+				painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
+			}
+		}
 		else
 		{
 			eWidget *w = this;
