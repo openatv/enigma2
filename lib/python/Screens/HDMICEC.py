@@ -1,5 +1,5 @@
 from Components.ActionMap import HelpableActionMap
-from Components.config import config, configfile
+from Components.config import config
 from Components.HdmiCec import hdmi_cec as hdmiCec
 from Components.Sources.StaticText import StaticText
 from Screens.Setup import Setup

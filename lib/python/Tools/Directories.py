@@ -2,13 +2,12 @@ from errno import ENOENT, EXDEV
 from os import F_OK, R_OK, W_OK, access, chmod, link, listdir, makedirs, mkdir, readlink, remove, rename, rmdir, sep, stat, statvfs, symlink, utime, walk
 from os.path import basename, dirname, exists, getsize, isdir, isfile, islink, join as pathjoin, normpath, splitext
 from re import compile
-from six import PY2
 from shutil import copy2
 from stat import S_IMODE
 from sys import _getframe as getframe
 from tempfile import mkstemp
 from traceback import print_exc
-from xml.etree.cElementTree import Element, ParseError, fromstring, parse
+from xml.etree.ElementTree import Element, ParseError, fromstring, parse
 
 from enigma import eEnv, getDesktop, eGetEnigmaDebugLvl
 
@@ -222,7 +221,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 def fileReadLine(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
 	line = None
 	try:
-		with open(filename, "r") as fd:
+		with open(filename) as fd:
 			line = fd.read().strip().replace("\0", "")
 		msg = "Read"
 	except OSError as err:
@@ -259,7 +258,7 @@ def fileUpdateLine(filename, conditionValue, replacementValue, create=False, sou
 def fileReadLines(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
 	lines = None
 	try:
-		with open(filename, "r") as fd:
+		with open(filename) as fd:
 			lines = fd.read().splitlines()
 		msg = "Read"
 	except OSError as err:
@@ -294,7 +293,7 @@ def fileWriteLines(filename, lines, source=DEFAULT_MODULE_NAME, debug=False):
 def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
 	dom = None
 	try:
-		with open(filename, "r") as fd:  # This open gets around a possible file handle leak in Python's XML parser.
+		with open(filename) as fd:  # This open gets around a possible file handle leak in Python's XML parser.
 			try:
 				dom = parse(fd).getroot()
 				msg = "Read"
@@ -368,7 +367,7 @@ def bestRecordingLocation(candidates):
 
 def getRecordingFilename(basename, dirname=None):
 	nonAllowedCharacters = "/.\\:*?<>|\""  # Filter out non-allowed characters.
-	basename = basename.replace("\xc2\x86", "").replace("\xc2\x87", "") if PY2 else basename.replace("\x86", "").replace("\x87", "")
+	basename = basename.replace("\x86", "").replace("\x87", "")
 	filename = ""
 	for character in basename:
 		if character in nonAllowedCharacters or ord(character) < 32:
@@ -378,7 +377,7 @@ def getRecordingFilename(basename, dirname=None):
 	# but must not truncate in the middle of a multi-byte utf8 character!
 	# So convert the truncation to unicode and back, ignoring errors, the
 	# result will be valid utf8 and so xml parsing will be OK.
-	filename = unicode(filename[:247], "UTF8", "ignore").encode("UTF8", "ignore") if PY2 else filename[:247]
+	filename = filename[:247]
 	if dirname is None:
 		dirname = defaultRecordingLocation()
 	else:

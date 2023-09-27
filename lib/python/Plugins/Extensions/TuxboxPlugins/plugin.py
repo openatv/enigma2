@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 # must be fixed for the new plugin interface
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists
@@ -28,7 +26,7 @@ def getPlugins():
 def getPluginParams(file):
 	params = {}
 	try:
-		file = open(TUXBOX_PLUGINS_PATH + file, "r")
+		file = open(TUXBOX_PLUGINS_PATH + file)
 		for x in file.readlines():
 			split = x.split("=")
 			params[split[0]] = split[1]

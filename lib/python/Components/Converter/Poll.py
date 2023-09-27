@@ -1,7 +1,7 @@
 from enigma import eTimer
 
 
-class Poll(object):
+class Poll:
 	def __init__(self):
 		self.__poll_timer = eTimer()
 		self.__poll_timer.callback.append(self.poll)

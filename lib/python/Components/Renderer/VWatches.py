@@ -46,8 +46,8 @@ class VWatches(Renderer):
 	def calculate(self, w, r, m):
 		a = (w * 6)
 		z = (math.pi / 180)
-		x = int(round((r * math.sin((a * z)))))
-		y = int(round((r * math.cos((a * z)))))
+		x = int(round(r * math.sin(a * z)))
+		y = int(round(r * math.cos(a * z)))
 		return ((m + x), (m - y))
 
 	def hand(self):

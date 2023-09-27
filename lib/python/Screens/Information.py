@@ -490,7 +490,7 @@ class DebugInformation(InformationBase):
 				info = self.cachedDebugInfo[path]
 			else:
 				try:
-					with open(path, "r") as fd:
+					with open(path) as fd:
 						info = [x.strip() for x in fd.readlines()][-LOG_MAX_LINES:]
 				except OSError as err:
 					info = "%s,%s" % (err.errno, err.strerror)
@@ -580,13 +580,13 @@ class DistributionInformation(InformationBase):
 			"blue": (self.showTranslation, _("Show translation information"))
 		}, prio=0, description=_("%s Information Actions") % self.displayDistro)
 		self.resolutions = {
-			480: _("NTSC"),
-			576: _("PAL"),
-			720: _("HD"),
-			1080: _("FHD"),
-			2160: _("4K"),
-			4320: _("8K"),
-			8640: _("16K")
+			480: "NTSC",
+			576: "PAL",
+			720: "HD",
+			1080: "FHD",
+			2160: "4K",
+			4320: "8K",
+			8640: "16K"
 		}
 		self.imageMessage = BoxInfo.getItem("InformationDistributionWelcome", "")
 
@@ -814,7 +814,7 @@ class MemoryInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		for line in memInfo:
-			key, value = [x for x in line.split(maxsplit=1)]
+			key, value = (x for x in line.split(maxsplit=1))
 			if key == "MemTotal:":
 				info.append(formatLine("P1", _("Total memory"), formatNumber(value)))
 			elif key == "MemFree:":
@@ -843,7 +843,7 @@ class MemoryInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		for line in memInfo:
-			key, value = [x for x in line.split(maxsplit=1)]
+			key, value = (x for x in line.split(maxsplit=1))
 			info.append(formatLine("P1", key[:-1], formatNumber(value)))
 		info.append("")
 		info.append(formatLine("M1", _("The detailed information is intended for developers only.")))
@@ -1475,7 +1475,7 @@ class ReceiverInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		for count, nim in enumerate(nimmanager.nimListCompressed()):
-			tuner, type = [x.strip() for x in nim.split(":", 1)]
+			tuner, type = (x.strip() for x in nim.split(":", 1))
 			info.append(formatLine("P1", tuner, type))
 		info.append("")
 		info.append(formatLine("S", _("Storage / Drive information")))
@@ -1725,7 +1725,7 @@ class SystemInformation(InformationBase):
 			self.console.ePopen(command, self.fetchInformationCallback)
 		elif path:
 			try:
-				with open(path, "r") as fd:
+				with open(path) as fd:
 					self.info = [x.strip() for x in fd.readlines()]
 			except OSError as err:
 				self.info = [_("Error %d: System information file '%s' can't be read!  (%s)") % (err.errno, path, err.strerror)]
@@ -1805,7 +1805,7 @@ class TunerInformation(InformationBase):
 		curIndex = -1
 		for count, nim in enumerate(nimmanager.nimList()):
 			tunerData = {}
-			tuner, model = [x.strip() for x in nim.split(":", 1)]
+			tuner, model = (x.strip() for x in nim.split(":", 1))
 			tuner = tuner.strip("Tuner").strip()
 			if self.tunerList and self.tunerList[curIndex]["model"] == model:
 				self.tunerList[curIndex]["end"] = tuner

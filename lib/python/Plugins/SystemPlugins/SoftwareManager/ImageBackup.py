@@ -366,7 +366,7 @@ class ImageBackup(Screen):
 					cmd1 = "%s -r %s -o %s/root.ubi %s" % (self.MKFS_UBI, self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
 					cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
 				elif not self.RECOVERY:
-					cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket --exclude ./run/chrony/chronyd.sock ." % (self.MKFS_TAR, self.WORKDIR, self.backuproot)
+					cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./boot/kernel.img --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket --exclude ./run/chrony/chronyd.sock ." % (self.MKFS_TAR, self.WORKDIR, self.backuproot)
 					cmd2 = "sync"
 					cmd3 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 
@@ -437,7 +437,7 @@ class ImageBackup(Screen):
 
 				cmdlist.append(self.makeEchoCreate("kerneldump"))
 				if MultiBoot.canMultiBoot() or self.MTDKERNEL.startswith("mmcblk0") or self.MACHINEBUILD in ("h8", "hzero"):
-					if BoxInfo.getItem("HasKexecMultiboot"):
+					if BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT"):
 						cmdlist.append("cp /%s %s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
 					else:
 						cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
@@ -475,7 +475,7 @@ class ImageBackup(Screen):
 					cmdlist.append("parted -s %s unit KiB mkpart linuxkernel3 %s %s" % (EMMC_IMAGE, THRID_KERNEL_PARTITION_OFFSET, PARTED_END_KERNEL3))
 					PARTED_END_KERNEL4 = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 					cmdlist.append("parted -s %s unit KiB mkpart linuxkernel4 %s %s" % (EMMC_IMAGE, FOURTH_KERNEL_PARTITION_OFFSET, PARTED_END_KERNEL4))
-					rd = open("/proc/swaps", "r").read()
+					rd = open("/proc/swaps").read()
 					if "mmcblk0p7" in rd:
 						SWAP_PARTITION_OFFSET = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 						SWAP_PARTITION_SIZE = int(262144)
@@ -600,10 +600,10 @@ class ImageBackup(Screen):
 					system("mv %s/%s %s/%s" % (self.WORKDIR, self.ROOTFSBIN, self.MAINDEST, self.ROOTFSBIN))
 				else:
 					system("mv %s/root.ubifs %s/%s" % (self.WORKDIR, self.MAINDEST, self.ROOTFSBIN))
-				if MultiBoot.canMultiBoot() or self.MTDKERNEL.startswith("mmcblk0") or self.MACHINEBUILD in ("h8", "hzero"):
-					system("mv %s/%s %s/%s" % (self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
-				elif self.MACHINEBUILD in ("dm800se", "dm500hd"):
+				if self.MACHINEBUILD in ("dm800se", "dm500hd", "dreamone", "dreamtwo"):
 					system("touch %s/%s" % (self.MAINDEST, self.KERNELBIN))
+				elif MultiBoot.canMultiBoot() or self.MTDKERNEL.startswith("mmcblk0") or self.MACHINEBUILD in ("h8", "hzero"):
+					system("mv %s/%s %s/%s" % (self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
 				else:
 					system("mv %s/vmlinux.gz %s/%s" % (self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 
@@ -806,7 +806,7 @@ class ImageBackup(Screen):
 					if len(bouqet) > 3:
 						bouqet[3] = bouqet[3].replace("\"", "")
 						try:
-							with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
+							with open("/etc/enigma2/%s" % bouqet[3]) as fd:
 								userbouqet = fd.readline()
 							bouquetsTV.append(userbouqet.replace("#NAME ", ""))
 						except UnicodeDecodeError:
@@ -822,7 +822,7 @@ class ImageBackup(Screen):
 					if len(bouqet) > 3:
 						bouqet[3] = bouqet[3].replace("\"", "")
 						try:
-							with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
+							with open("/etc/enigma2/%s" % bouqet[3]) as fd:
 								userbouqet = fd.readline()
 							bouquetsRadio.append(userbouqet.replace("#NAME ", ""))
 						except UnicodeDecodeError:

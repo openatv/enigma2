@@ -1,4 +1,3 @@
-from __future__ import print_function, division
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -7,7 +6,6 @@ from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
 import enigma
-from six.moves import zip
 
 config.misc.pluginlist = ConfigSubsection()
 config.misc.pluginlist.eventinfo_order = ConfigText(default="")
@@ -17,7 +15,7 @@ config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
 
 class ChoiceBox(Screen):
 	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", windowTitle=None, allow_cancel=True, titlebartext=_("Choice Box")):
-		if not windowTitle: #for compatibility
+		if not windowTitle:  # for compatibility
 			windowTitle = titlebartext
 		if not list:
 			list = []

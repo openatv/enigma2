@@ -26,7 +26,7 @@ EIT_SHORT_EVENT_DESCRIPTOR = 0x4d
 EIT_EXTENDED_EVENT_DESCRIPOR = 0x4e
 
 
-class Bytes(object):
+class Bytes:
 
     def __init__(self):
         self.b = bytearray()

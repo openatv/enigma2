@@ -1,4 +1,3 @@
-from __future__ import print_function
 # plugin from Sif Team
 
 from enigma import eDVBDB, eServiceReference, eServiceCenter
@@ -12,8 +11,6 @@ from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Plugins.Plugin import PluginDescriptor
 import os
 import sys
-import re
-import shutil
 import xml.etree.cElementTree
 
 
@@ -130,14 +127,14 @@ class LCN():
 		ref = eServiceReference(refstr)
 		serviceHandler = eServiceCenter.getInstance()
 		servicelist = serviceHandler.list(ref)
-		if not servicelist is None:
+		if servicelist is not None:
 			while True:
 				service = servicelist.getNext()
-				if not service.valid(): #check if end of list
+				if not service.valid():  # check if end of list
 					break
 
 				unsigned_orbpos = service.getUnsignedData(4) >> 16
-				if unsigned_orbpos == 0xEEEE: #Terrestrial
+				if unsigned_orbpos == 0xEEEE:  # Terrestrial
 					self.e2services.append(service.toString())
 
 	def writeTVBouquet(self):
@@ -182,7 +179,7 @@ class LCN():
 					f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0:\n")
 					f.write("#DESCRIPTION ------- " + self.markers[0][1] + " -------\n")
 					self.markers.remove(self.markers[0])
-			refstr = "1:0:1:%x:%x:%x:%x:0:0:0:" % (x[4], x[3], x[2], x[1]) # temporary ref
+			refstr = "1:0:1:%x:%x:%x:%x:0:0:0:" % (x[4], x[3], x[2], x[1])  # temporary ref
 			refsplit = eServiceReference(refstr).toString().split(":")
 			added = False
 			for tref in self.e2services:
@@ -192,14 +189,14 @@ class LCN():
 					added = True
 					break
 
-			if not added: # no service found? something wrong? a log should be a good idea. Anyway we add an empty line so we keep the numeration
+			if not added:  # no service found? something wrong? a log should be a good idea. Anyway we add an empty line so we keep the numeration
 				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
 
 		f.close()
 		self.addInTVBouquets()
 
 	def addInTVBouquets(self):
-		f = open('/etc/enigma2/bouquets.tv', 'r')
+		f = open('/etc/enigma2/bouquets.tv')
 		ret = f.read().split("\n")
 		f.close()
 
@@ -259,7 +256,7 @@ class LCN():
 					f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0:\n")
 					f.write("#DESCRIPTION ------- " + self.markers[0][1] + " -------\n")
 					self.markers.remove(self.markers[0])
-			refstr = "1:0:2:%x:%x:%x:%x:0:0:0:" % (x[4], x[3], x[2], x[1]) # temporary ref
+			refstr = "1:0:2:%x:%x:%x:%x:0:0:0:" % (x[4], x[3], x[2], x[1])  # temporary ref
 			refsplit = eServiceReference(refstr).toString().split(":")
 			added = False
 			for tref in self.e2services:
@@ -269,14 +266,14 @@ class LCN():
 					added = True
 					break
 
-			if not added: # no service found? something wrong? a log should be a good idea. Anyway we add an empty line so we keep the numeration
+			if not added:  # no service found? something wrong? a log should be a good idea. Anyway we add an empty line so we keep the numeration
 				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
 
 		f.close()
 		self.addInRadioBouquets()
 
 	def addInRadioBouquets(self):
-		f = open('/etc/enigma2/bouquets.radio', 'r')
+		f = open('/etc/enigma2/bouquets.radio')
 		ret = f.read().split("\n")
 		f.close()
 
@@ -365,7 +362,7 @@ class LCNBuildHelper():
 		return ret
 
 	def buildAfterScan(self):
-		if config.lcn.enabled.value == True:
+		if config.lcn.enabled.value is True:
 			self.buildlcn(True)
 
 	def buildlcn(self, suppressmessages=False):
@@ -439,7 +436,7 @@ class LCNScannerPlugin(Screen, ConfigListScreen, LCNBuildHelper):
 		configfile.save()
 
 	def ok(self):
-		if config.lcn.enabled.value == True:
+		if config.lcn.enabled.value is True:
 			self.session.openWithCallback(self.confirm, MessageBox, _("Rebuild LCN bouquet now?"), MessageBox.TYPE_YESNO, default=True)
 		else:
 			self.keySave()

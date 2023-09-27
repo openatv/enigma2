@@ -10,7 +10,7 @@ class parseXML(ContentHandler, LexicalHandler):
 	def __init__(self, attributes):
 		self.attributes = attributes
 		self.lastComment = None
-		self.isHex = compile('#[0-9a-fA-F]+\Z')
+		self.isHex = compile(r'#[0-9a-fA-F]+\Z')
 
 	def comment(self, comment):
 		if "TRANSLATORS:" in comment:

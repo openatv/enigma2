@@ -1,7 +1,7 @@
 from glob import glob
 from os.path import dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
-from xml.etree.cElementTree import Element, ElementTree, fromstring
+from xml.etree.ElementTree import Element, ElementTree, fromstring
 
 from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
@@ -125,7 +125,7 @@ def InitSkins():
 		print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.display_skin.value))
 		result.append(skin)
 	# Add the activated optional skin parts.
-	if currentPrimarySkin != None:
+	if currentPrimarySkin is not None:
 		partsDir = resolveFilename(SCOPE_GUISKIN, pathjoin(dirname(currentPrimarySkin), "mySkin", ""))
 		if pathExists(partsDir) and currentPrimarySkin != DEFAULT_SKIN:
 			for file in sorted(listdir(partsDir)):
@@ -457,11 +457,25 @@ def parseInteger(value, default=0):
 
 def parseItemAlignment(value):
 	options = {
-		"default": eListbox.itemAlignDefault,
-		"center": eListbox.itemAlignCenter,
-		"justify": eListbox.itemAlignJustify,
+		"default": eListbox.itemAlignLeftTop,
+		"center": eListbox.itemAlignCenterMiddle,
+		"justify": eListbox.itemAlignJustifyFull,
+		"leftTop": eListbox.itemAlignLeftTop,
+		"leftMiddle": eListbox.itemAlignLeftMiddle,
+		"leftBottom": eListbox.itemAlignLeftBottom,
+		"rightTop": eListbox.itemAlignRightTop,
+		"rightMiddle": eListbox.itemAlignRightMiddle,
+		"rightBottom": eListbox.itemAlignRightBottom,
+		"centerTop": eListbox.itemAlignCenterTop,
+		"centerMiddle": eListbox.itemAlignCenterMiddle,
+		"centerBottom": eListbox.itemAlignCenterBottom,
+		"justifyTop": eListbox.itemAlignJustifyTop,
+		"justifyMiddle": eListbox.itemAlignJustifyMiddle,
+		"justifyBottom": eListbox.itemAlignJustifyBottom,
+		"justifyLeft": eListbox.itemAlignJustifyLeft,
+		"justifyRight": eListbox.itemAlignJustifyRight
 	}
-	return parseOptions(options, "itemAlignment", value, eListbox.itemAlignDefault)
+	return parseOptions(options, "itemAlignment", value, eListbox.itemAlignLeftTop)
 
 
 def parseScrollbarLength(value, default):
@@ -520,7 +534,7 @@ def parseParameter(value):
 	elif value in colors:  # Named color.
 		return colors[value].argb()
 	elif value.find(";") != -1:  # Font.
-		(font, size) = [x.strip() for x in value.split(";", 1)]
+		(font, size) = (x.strip() for x in value.split(";", 1))
 		return [font, int(size)]
 	else:  # Integer.
 		return int(value)
@@ -652,7 +666,7 @@ def parseScrollbarScroll(value):
 	return parseOptions(options, "scrollbarScroll", value, 0)
 
 
-def parseTextPadding(value):
+def parsePadding(value, attribute):
 	if value in variables:
 		value = variables[value]
 	padding = [parseInteger(x.strip()) for x in value.split(",")]
@@ -663,7 +677,7 @@ def parseTextPadding(value):
 		return padding * 2
 	elif count == 4:
 		return padding
-	print("[Skin] Error: Attribute 'textPadding' with value '%s' is invalid!  Attribute must have 1, 2 or 4 values." % value)
+	print(f"[Skin] Error: Attribute '{attribute}' with value '{value}' is invalid!  Attribute must have 1, 2 or 4 values.")
 	return [0, 0, 0, 0]
 
 
@@ -688,6 +702,15 @@ def parseWrap(value):
 		"ellipsis": 2
 	}
 	return parseOptions(options, "wrap", value, 0)
+
+
+def parseZoom(mode, zoomType):
+	options = {
+		"zoomContent": eListbox.zoomContentZoom,
+		"moveContent": eListbox.zoomContentMove,
+		"ignoreContent": eListbox.zoomContentOff
+	}
+	return parseOptions(options, zoomType, mode, eListbox.zoomContentZoom)
 
 
 def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seekPointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarBackgroundPixmap", "scrollbarForegroundPixmap", "scrollbarbackgroundPixmap", "scrollbarBackgroundPicture", "scrollbarSliderPicture"))):
@@ -888,11 +911,19 @@ class AttributeParser:
 	def overScan(self, value):
 		self.guiObject.setOverscan(value)
 
+	def padding(self, value):
+		leftPadding, topPadding, rightPadding, bottomPadding = parsePadding(value, "padding")
+		leftPadding = self.applyHorizontalScale(leftPadding)
+		topPadding = self.applyVerticalScale(topPadding)
+		rightPadding = self.applyHorizontalScale(rightPadding)
+		bottomPadding = self.applyVerticalScale(topPadding)
+		self.guiObject.setPadding(eRect(leftPadding, topPadding, rightPadding, bottomPadding))
+
 	def pixmap(self, value):
 		self.guiObject.setPixmap(parsePixmap(value, self.desktop))
 
 	def pointer(self, value):
-		(name, pos) = [x.strip() for x in value.split(":", 1)]
+		(name, pos) = (x.strip() for x in value.split(":", 1))
 		ptr = parsePixmap(name, self.desktop)
 		pos = parsePosition(pos, self.scaleTuple)
 		self.guiObject.setPointer(0, ptr, pos)
@@ -922,6 +953,9 @@ class AttributeParser:
 
 	def scrollbarMode(self, value):
 		self.guiObject.setScrollbarMode(parseScrollbarMode(value))
+
+	def scrollbarOffset(self, value):
+		self.guiObject.setScrollbarOffset(parseInteger(value))
 
 	def scrollbarScroll(self, value):
 		self.guiObject.setScrollbarScroll(parseScrollbarScroll(value))
@@ -980,7 +1014,7 @@ class AttributeParser:
 		# attribDeprecationWarning("seek_pointer", "seekPointer")
 
 	def seekPointer(self, value):
-		(name, pos) = [x.strip() for x in value.split(":", 1)]
+		(name, pos) = (x.strip() for x in value.split(":", 1))
 		ptr = parsePixmap(name, self.desktop)
 		pos = parsePosition(pos, self.scaleTuple)
 		self.guiObject.setPointer(1, ptr, pos)
@@ -996,10 +1030,18 @@ class AttributeParser:
 		self.guiObject.setSelectionPixmap(parsePixmap(value, self.desktop))
 
 	def selectionZoom(self, value):
-		value = parseInteger(value, 0)
+		data = [x.strip() for x in value.split(",")]
+		value = parseInteger(data[0], 0)
 		if value > 500:
 			value = 500
-		self.guiObject.setSelectionZoom(float("%d.%02d" % ((value // 100) + 1, value % 100)))
+		mode = parseZoom(data[1], "selectionZoom") if len(data) == 2 else eListbox.zoomContentZoom
+		self.guiObject.setSelectionZoom(float(f"{(value // 100) + 1}.{value % 100:02}"), mode)
+
+	def selectionZoomSize(self, value):
+		data = [x.strip() for x in value.split(",")]
+		size = parseValuePair(f"{data[0]},{data[1]}", self.scaleTuple, self.guiObject, self.desktop)
+		mode = parseZoom(data[2], "selectionZoomSize") if len(data) == 3 else eListbox.zoomContentZoom
+		self.guiObject.setSelectionZoomSize(size[0], size[1], mode)
 
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value, 0x00000000))
@@ -1022,12 +1064,18 @@ class AttributeParser:
 			value = _(value)
 		self.guiObject.setText(value)
 
+	def textBorderColor(self, value):
+		self.guiObject.setTextBorderColor(parseColor(value, 0x00FFFFFF))
+
+	def textBorderWidth(self, value):
+		self.guiObject.setTextBorderWidth(self.applyVerticalScale(value))
+
 	def textOffset(self, value):
 		self.textPadding(value)
 		attribDeprecationWarning("textOffset", "textPadding")
 
 	def textPadding(self, value):
-		leftPadding, topPadding, rightPadding, bottomPadding = parseTextPadding(value)
+		leftPadding, topPadding, rightPadding, bottomPadding = parsePadding(value, "textPadding")
 		leftPadding = self.applyHorizontalScale(leftPadding)
 		topPadding = self.applyVerticalScale(topPadding)
 		rightPadding = self.applyHorizontalScale(rightPadding)
@@ -1271,7 +1319,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			borderWidth = parseInteger(slider.attrib.get("borderWidth", eSlider.DefaultBorderWidth), eSlider.DefaultBorderWidth)
 			eSlider.setDefaultBorderWidth(borderWidth)
 		for stringList in tag.findall("stringList"):
-			leftPadding, topPadding, rightPadding, bottomPadding = parseTextPadding(stringList.attrib.get("textPadding", "0,0,0,0"))
+			leftPadding, topPadding, rightPadding, bottomPadding = parsePadding(stringList.attrib.get("textPadding", "0,0,0,0"), "textPadding")
 			eListbox.setDefaultPadding(eRect(leftPadding, topPadding, rightPadding, bottomPadding))
 		for title in tag.findall("title"):
 			style.setTitleFont(parseFont(title.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))

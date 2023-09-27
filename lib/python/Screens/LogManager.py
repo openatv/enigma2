@@ -10,9 +10,8 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config, configfile
-from Components.FileList import FileList, MultiFileSelectList
+from Components.FileList import MultiFileSelectList
 from Components.GUIComponent import GUIComponent
-from Components.Label import Label
 from Components.MenuList import MenuList
 import Components.Task
 from Components.VariableText import VariableText
@@ -24,8 +23,8 @@ from Tools.Directories import fileReadLines
 MODULE_NAME = __name__.split(".")[-1]
 
 
-CRASH_LOG_PATTERN = "^.*-enigma\d?-crash\.log$"
-DEBUG_LOG_PATTERN = "^.*-enigma\d?-debug\.log$"
+CRASH_LOG_PATTERN = r"^.*-enigma\d?-crash\.log$"
+DEBUG_LOG_PATTERN = r"^.*-enigma\d?-debug\.log$"
 
 
 def get_size(start_path=None):
@@ -215,7 +214,7 @@ class LogManager(Screen):
 		self["list"] = self.filelist
 		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
 		self.onLayoutFinish.append(self.layoutFinished)
-		if not self.selectionChanged in self["list"].onSelectionChanged:
+		if self.selectionChanged not in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
 
 	def createSummary(self):

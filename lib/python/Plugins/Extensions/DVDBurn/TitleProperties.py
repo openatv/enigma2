@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
@@ -114,7 +112,7 @@ class TitleProperties(Screen, ConfigListScreen):
 
 	def paintThumbPixmapCB(self, picInfo=None):
 		ptr = self.picload.getData()
-		if ptr != None:
+		if ptr is not None:
 			self["thumbnail"].instance.setPixmap(ptr)
 
 	def changedConfigList(self):

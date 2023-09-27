@@ -63,7 +63,7 @@ class picshow(Screen):
 		if not pathExists(currDir):
 			currDir = "/"
 
-		self.filelist = FileList(currDir, matchingPattern="(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif)")
+		self.filelist = FileList(currDir, matchingPattern=r"(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif)")
 		self["filelist"] = self.filelist
 		self["filelist"].onSelectionChanged.append(self.selectionChanged)
 
@@ -511,7 +511,7 @@ class Pic_Full_View(Screen):
 
 	def slidePic(self):
 		print("slide to next Picture index=%s" % str(self.lastindex))
-		if config.pic.loop.value == False and self.lastindex == self.maxentry:
+		if config.pic.loop.value is False and self.lastindex == self.maxentry:
 			self.PlayPause()
 		self.shownow = True
 		self.ShowPicture()

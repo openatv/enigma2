@@ -1,7 +1,7 @@
 from os.path import exists
 from os import W_OK, access, system
 from time import sleep
-from enigma import eAVControl, eDVBVolumecontrol, getDesktop, iServiceInformation
+from enigma import eAVControl, eDVBVolumecontrol, getDesktop
 from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigYesNo, NoSave, config
 from Components.About import about
 from Components.SystemInfo import BoxInfo
@@ -663,7 +663,7 @@ def InitAVSwitch():
 
 		policy2_choices_raw = "letterbox"
 		try:
-			with open(policy2_choices_proc, "r") as fd:
+			with open(policy2_choices_proc) as fd:
 				policy2_choices_raw = fd.read()
 		except OSError:
 			pass
@@ -678,7 +678,7 @@ def InitAVSwitch():
 			# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 			policy2_choices.update({"panscan": _("Pan&scan")})
 
-		if "nonliner" in policy2_choices_raw and not "nonlinear" in policy2_choices_raw:
+		if "nonliner" in policy2_choices_raw and "nonlinear" not in policy2_choices_raw:
 			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
 			policy2_choices.update({"nonliner": _("Stretch nonlinear")})
 		if "nonlinear" in policy2_choices_raw:
@@ -703,7 +703,7 @@ def InitAVSwitch():
 		policy_choices_proc = "/proc/stb/video/policy_choices"
 		policy_choices_raw = "panscan"
 		try:
-			with open(policy_choices_proc, "r") as fd:
+			with open(policy_choices_proc) as fd:
 				policy_choices_raw = fd.read()
 		except OSError:
 			pass

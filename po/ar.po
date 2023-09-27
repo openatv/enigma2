@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 20:55+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2022-05-23 16:27+0000\n"
 "Last-Translator: Bader <fentanyl100@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -1173,6 +1173,16 @@ msgstr[4] ""
 msgstr[5] ""
 
 #, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#, python-format
 msgid "%d sec"
 msgstr ""
 
@@ -1544,9 +1554,6 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1 hour"
-msgstr ""
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1556,13 +1563,6 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-#, fuzzy
-msgid "10 minutes"
-msgstr "دقائق"
-
-msgid "1024 Mb"
-msgstr ""
-
 msgid "10bit"
 msgstr ""
 
@@ -1570,13 +1570,7 @@ msgstr ""
 msgid "12 character"
 msgstr "حروف خاصه"
 
-msgid "12 hours"
-msgstr ""
-
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr ""
-
-msgid "128 Mb"
 msgstr ""
 
 #
@@ -1597,13 +1591,6 @@ msgstr ""
 #
 msgid "13 V"
 msgstr "13 فولت"
-
-#, fuzzy
-msgid "15 minutes"
-msgstr "دقائق"
-
-msgid "1536 Mb"
-msgstr ""
 
 msgid "16/9 reset to normal"
 msgstr ""
@@ -1635,9 +1622,6 @@ msgstr "16:9 شاشة مصغرة"
 msgid "16:9 PanScan"
 msgstr ""
 
-msgid "16K"
-msgstr ""
-
 #
 msgid "18 V"
 msgstr "18 فولت"
@@ -1651,30 +1635,14 @@ msgstr ""
 msgid "2"
 msgstr ""
 
-msgid "2 hours"
-msgstr ""
-
-#, fuzzy
-msgid "2 minutes"
-msgstr "دقائق"
-
-msgid "2048 Mb"
-msgstr ""
-
 msgid "23.976"
 msgstr "23.976"
 
 msgid "24"
 msgstr "24"
 
-msgid "24 hours"
-msgstr ""
-
 msgid "25"
 msgstr "25"
-
-msgid "256 Mb"
-msgstr ""
 
 msgid "29.97"
 msgstr "29.97"
@@ -1711,17 +1679,8 @@ msgstr ""
 msgid "3"
 msgstr ""
 
-msgid "3 hours"
-msgstr ""
-
 msgid "30"
 msgstr "30"
-
-msgid "30 minutes"
-msgstr ""
-
-msgid "32 Mb"
-msgstr ""
 
 msgid "3D Mode"
 msgstr ""
@@ -1740,12 +1699,6 @@ msgstr ""
 msgid "4"
 msgstr ""
 
-msgid "4 hours"
-msgstr ""
-
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Combined"
 msgstr ""
 
@@ -1760,37 +1713,16 @@ msgstr "4:3 شاشة مصغرة"
 msgid "4:3 PanScan"
 msgstr "4:3 شاشة عريضة"
 
-msgid "4K"
-msgstr ""
-
 msgid "4x"
 msgstr ""
 
 msgid "5"
 msgstr ""
 
-msgid "5 hours"
-msgstr ""
-
-msgid "5 minutes"
-msgstr ""
-
-msgid "512 Mb"
-msgstr ""
-
 msgid "6"
 msgstr ""
 
-msgid "6 hours"
-msgstr ""
-
-msgid "64 Mb"
-msgstr ""
-
 msgid "7"
-msgstr ""
-
-msgid "7 hours"
 msgstr ""
 
 msgid "8"
@@ -1799,12 +1731,6 @@ msgstr ""
 #, fuzzy
 msgid "8 character"
 msgstr "حروف خاصه"
-
-msgid "8 hours"
-msgstr ""
-
-msgid "8K"
-msgstr ""
 
 msgid "8bit"
 msgstr ""
@@ -2617,6 +2543,9 @@ msgstr ""
 
 msgid "Alternative services tuner priority"
 msgstr "أولوية المؤالف للقنوات البديله"
+
+msgid "Always"
+msgstr ""
 
 msgid "Always ask"
 msgstr "أسال دائما"
@@ -4537,6 +4466,15 @@ msgstr ""
 
 msgid "Clear the virtual memory caches"
 msgstr ""
+
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Click the button on your remote you want to change."
 msgstr ""
@@ -6526,17 +6464,6 @@ msgstr ""
 msgid "Disk full"
 msgstr ""
 
-msgid "Storage device full!"
-msgstr ""
-
-#, fuzzy
-msgid "Storage device not writable!"
-msgstr "هذا البلج إن غير مثبت ."
-
-#, fuzzy
-msgid "Storage device not found!"
-msgstr "غير مستخدمه"
-
 msgid "Display 16:9 content as"
 msgstr "محتوى أبعاد شاشة العرض 16:9"
 
@@ -6832,6 +6759,9 @@ msgstr "هل تريد إستعادة الاعدادات ؟"
 msgid "Do you want to resume this playback?"
 msgstr "هل تريد إستئناف هذا العرض؟"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -6905,6 +6835,9 @@ msgstr ""
 msgid "Down / Inactive"
 msgstr ""
 
+msgid "Download Image"
+msgstr ""
+
 msgid "Download Plugin"
 msgstr ""
 
@@ -6926,7 +6859,10 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected image"
+msgstr ""
+
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7870,9 +7806,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr ""
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
-
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "اسم ملف فارغ غير قانوني."
@@ -7952,6 +7885,9 @@ msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
 msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
+
+msgid "Error: The selected service can't be recorded!"
 msgstr ""
 
 #, python-format
@@ -8284,9 +8220,6 @@ msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr ""
 
 msgid "FFmpeg version"
-msgstr ""
-
-msgid "FHD"
 msgstr ""
 
 msgid "FIFO"
@@ -9228,9 +9161,6 @@ msgstr ""
 msgid "HARD DISK: "
 msgstr ""
 
-msgid "HD"
-msgstr ""
-
 msgid "HD list"
 msgstr "قائمة عالية الوضوح"
 
@@ -9758,6 +9688,9 @@ msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr ""
 
 msgid "If 'never', will write crash log despite that for the first crash."
+msgstr ""
+
+msgid "If EPG available"
 msgstr ""
 
 msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
@@ -10470,6 +10403,15 @@ msgstr ""
 
 msgid "Keep service"
 msgstr "البقاء على القناة"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -13753,10 +13695,6 @@ msgstr ""
 msgid "Please select a sub service..."
 msgstr "من فضلك أختار خدمة الترجمة..."
 
-#
-msgid "Please select a subservice..."
-msgstr "من فضلك أختار الخدمه الفرعيه..."
-
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -15173,7 +15111,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -18324,6 +18262,9 @@ msgstr ""
 msgid "Show subservice selection"
 msgstr "عرض تحديد الخدمة الفرعية"
 
+msgid "Show subservices *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show subtitle quick menu"
@@ -18927,9 +18868,6 @@ msgstr "الصومال"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr ""
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Sorbian"
@@ -19382,6 +19320,17 @@ msgstr ""
 msgid "Storage Devices"
 msgstr "قائمة أجهزة التخزين"
 
+msgid "Storage device full!"
+msgstr ""
+
+#, fuzzy
+msgid "Storage device not found!"
+msgstr "غير مستخدمه"
+
+#, fuzzy
+msgid "Storage device not writable!"
+msgstr "هذا البلج إن غير مثبت ."
+
 msgid "Store position"
 msgstr "متجر الموقع"
 
@@ -19633,6 +19582,9 @@ msgid "Switch next channel"
 msgstr ""
 
 msgid "Switch off the TV to correct input"
+msgstr ""
+
+msgid "Switch to 720p video"
 msgstr ""
 
 msgid "Switch to HDMI in mode"
@@ -20505,6 +20457,9 @@ msgid "This option allows you choose how to display the remaining/elapsed time f
 msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
+msgstr ""
+
+msgid "This option allows you choose the option for subservice indicator or selection."
 msgstr ""
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
@@ -21711,7 +21666,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -24646,6 +24601,25 @@ msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "10 minutes"
+#~ msgstr "دقائق"
+
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "دقائق"
+
+#, fuzzy
+#~ msgid "2 minutes"
+#~ msgstr "دقائق"
+
+#~ msgid "4:3"
+#~ msgstr "4:3"
+
+#
+#~ msgid "Please select a subservice..."
+#~ msgstr "من فضلك أختار الخدمه الفرعيه..."
 
 #~ msgid "16:10"
 #~ msgstr "16:10"

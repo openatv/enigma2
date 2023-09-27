@@ -7,7 +7,6 @@
 #This means you also have to distribute
 #source code of your modifications.
 
-from __future__ import print_function
 from enigma import eTimer
 from Components.ActionMap import ActionMap
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigSelection, ConfigYesNo, NoSave, ConfigNothing, ConfigNumber
@@ -26,8 +25,7 @@ from Screens.Standby import TryQuitMainloop
 from Tools.Directories import *
 from Tools.LoadPixmap import LoadPixmap
 from Tools.WeatherID import get_woeid_from_yahoo
-import Tools.Notifications
-from os import listdir, remove, rename, system, path, symlink, chdir, makedirs, mkdir
+from os import listdir, remove, rename, path, symlink, chdir, makedirs, mkdir
 import shutil
 
 cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')
@@ -165,7 +163,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 
 		self["Picture"] = Pixmap()
 
-		if not self.selectionChanged in self["config"].onSelectionChanged:
+		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 
 		if self.start_skin == "skin.xml":
@@ -644,7 +642,7 @@ class AtileHDScreens(Screen):
 			my_path = resolveFilename(SCOPE_SKINS, "skin_default/icons/lock_off.png")
 		self.disabled_pic = LoadPixmap(cached=True, path=my_path)
 
-		if not self.selectionChanged in self["menu"].onSelectionChanged:
+		if self.selectionChanged not in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
 
 		self.onLayoutFinish.append(self.createMenuList)

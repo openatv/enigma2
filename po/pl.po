@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 20:55+0000\n"
-"PO-Revision-Date: 2023-08-06 06:22+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"PO-Revision-Date: 2023-09-26 17:46+0000\n"
 "Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1079,6 +1079,13 @@ msgstr[1] "%d pakiety zostały uaktualnione."
 msgstr[2] "%d pakietów zostało uaktualnionych."
 
 #, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] "%d wtyczka nie jest dostępna:"
+msgstr[1] "%d wtyczki nie są dostępne:"
+msgstr[2] "%d wtyczek nie jest dostępnych:"
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sek"
 
@@ -1431,9 +1438,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 hour"
-msgstr "1 godzina"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1443,26 +1447,14 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "10 minutes"
-msgstr "10 minut"
-
-msgid "1024 Mb"
-msgstr "1024 Mb"
-
 msgid "10bit"
 msgstr "10bit"
 
 msgid "12 character"
 msgstr "12 znaków"
 
-msgid "12 hours"
-msgstr "12 Godzin"
-
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, wyświetla znaki alfabetu łacińskiego-1 z wyjątkiem greckiego i cyrylicy, w razie potrzeby przełącz na 8."
-
-msgid "128 Mb"
-msgstr "128 Mb"
 
 msgid "12V output"
 msgstr "Wyjście 12V"
@@ -1478,12 +1470,6 @@ msgstr "12bit 4:2:0/4:2:2 bez PIP"
 
 msgid "13 V"
 msgstr "13 V"
-
-msgid "15 minutes"
-msgstr "15 Minut"
-
-msgid "1536 Mb"
-msgstr "1536 Mb"
 
 msgid "16/9 reset to normal"
 msgstr "16/9 przywrócić do normy"
@@ -1512,9 +1498,6 @@ msgstr "16:9 Letterbox"
 msgid "16:9 PanScan"
 msgstr "16:9 Pan Scan"
 
-msgid "16K"
-msgstr "16K"
-
 msgid "18 V"
 msgstr "18 V"
 
@@ -1527,29 +1510,14 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 hours"
-msgstr "2 godziny"
-
-msgid "2 minutes"
-msgstr "2 minuty"
-
-msgid "2048 Mb"
-msgstr "2048 Mb"
-
 msgid "23.976"
 msgstr "23.976"
 
 msgid "24"
 msgstr "24"
 
-msgid "24 hours"
-msgstr "24 Godziny"
-
 msgid "25"
 msgstr "25"
-
-msgid "256 Mb"
-msgstr "256 Mb"
 
 msgid "29.97"
 msgstr "29.97"
@@ -1584,17 +1552,8 @@ msgstr "2x, 4x, 6x, 8x"
 msgid "3"
 msgstr "3"
 
-msgid "3 hours"
-msgstr "3 Godziny"
-
 msgid "30"
 msgstr "30"
-
-msgid "30 minutes"
-msgstr "30 minut"
-
-msgid "32 Mb"
-msgstr "32 Mb"
 
 msgid "3D Mode"
 msgstr "Tryb 3D"
@@ -1611,12 +1570,6 @@ msgstr "3x"
 msgid "4"
 msgstr "4"
 
-msgid "4 hours"
-msgstr "4 godziny"
-
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Combined"
 msgstr "4:3 łącznie"
 
@@ -1629,50 +1582,23 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
-msgid "4K"
-msgstr "4K"
-
 msgid "4x"
 msgstr "4x"
 
 msgid "5"
 msgstr "5"
 
-msgid "5 hours"
-msgstr "5 Godzin"
-
-msgid "5 minutes"
-msgstr "5 minut"
-
-msgid "512 Mb"
-msgstr "512 Mb"
-
 msgid "6"
 msgstr "6"
 
-msgid "6 hours"
-msgstr "6 Godzin"
-
-msgid "64 Mb"
-msgstr "64 Mb"
-
 msgid "7"
 msgstr "7"
-
-msgid "7 hours"
-msgstr "7 Godzin"
 
 msgid "8"
 msgstr "8"
 
 msgid "8 character"
 msgstr "8 znaków"
-
-msgid "8 hours"
-msgstr "8 Godzin"
-
-msgid "8K"
-msgstr "8K"
 
 msgid "8bit"
 msgstr "8bit"
@@ -2426,6 +2352,9 @@ msgstr "Alternatywny tryb radiowy"
 msgid "Alternative services tuner priority"
 msgstr "Priorytet tunera dla usług alternatywnych"
 
+msgid "Always"
+msgstr "Zawsze"
+
 msgid "Always ask"
 msgstr "Zawsze pytaj"
 
@@ -3025,7 +2954,7 @@ msgstr ""
 
 #, python-format
 msgid "Backup to destination: %s"
-msgstr "Kopia zapasowa w : %s"
+msgstr "Zapisz kopię zapasową w : %s"
 
 msgid "Backup your %s %s settings."
 msgstr "Wykonaj kopię zapasową ustawień %s %s."
@@ -4264,6 +4193,12 @@ msgstr "Wyczyść logi dla tego timera"
 
 msgid "Clear the virtual memory caches"
 msgstr "Wyczyść pamięć wirtualną"
+
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] "Wyczyść ostrzeżenie"
+msgstr[1] "Wyczyść ostrzeżenia"
+msgstr[2] "Wyczyść ostrzeżenia"
 
 msgid "Click the button on your remote you want to change."
 msgstr "Kliknij na pilocie przycisk, który chcesz zmienić."
@@ -6197,15 +6132,6 @@ msgstr "Antena"
 msgid "Disk full"
 msgstr "Dysk jest pełny"
 
-msgid "Storage device full!"
-msgstr "Dysk jest pełny?"
-
-msgid "Storage device not writable!"
-msgstr "Dysk nie jest zapisywalny!"
-
-msgid "Storage device not found!"
-msgstr "Nie znaleziono dysku!"
-
 msgid "Display 16:9 content as"
 msgstr "Wyświetlać zawartość 16:9 jako"
 
@@ -6506,6 +6432,9 @@ msgstr "Chcesz przywrócić ustawienia?"
 msgid "Do you want to resume this playback?"
 msgstr "Chcesz wznowić odtwarzanie?"
 
+msgid "Do you want to select another service?"
+msgstr "Czy chcesz wybrać inną usługę?"
+
 msgid "Do you want to start a backup now?"
 msgstr "Czy chcesz rozpocząć tworzenie kopii teraz?"
 
@@ -6578,6 +6507,9 @@ msgstr "W dół"
 msgid "Down / Inactive"
 msgstr "Nieaktywny"
 
+msgid "Download Image"
+msgstr "Pobierz obraz"
+
 msgid "Download Plugin"
 msgstr "Pobierz Wtyczki"
 
@@ -6599,8 +6531,11 @@ msgstr "Pobierz i zainstaluj softcam"
 msgid "Download error"
 msgstr "Błąd pobierania"
 
-msgid "Download the selected list of plugins"
-msgstr "Pobierz wybraną listę wtyczek"
+msgid "Download the selected image"
+msgstr "Pobierz wybrany obraz"
+
+msgid "Download the selected plugin / list of plugins"
+msgstr "Pobierz wybraną wtyczkę / listę wtyczek"
 
 msgid "Downloadable plugins"
 msgstr "Wtyczki do pobrania"
@@ -7518,9 +7453,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Błąd: %s %s nie %s!  Spróbuj ponownie później."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Błąd: Nie wybrano lokalizacji do zapisania nagrania!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Błąd: pusta nazwa pliku jest nieprawidłowa!"
 
@@ -7600,6 +7532,9 @@ msgstr "Błąd: System plików root i katalogi systemowe nie mogą być przenies
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Błąd: Nie można zmienić nazwy głównego systemu plików i katalogów systemowych!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr "Błąd: Wybrana usługa nie może zostać nagrana!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -7931,9 +7866,6 @@ msgstr "FFmpeg nie jest zainstalowany, więc akcje dla plików '.mvi' nie są do
 
 msgid "FFmpeg version"
 msgstr "Wersja FFmpeg"
-
-msgid "FHD"
-msgstr "FHD"
 
 msgid "FIFO"
 msgstr "FIFO"
@@ -8826,9 +8758,6 @@ msgstr "H:mm:ss"
 msgid "HARD DISK: "
 msgstr "DYSK TWARDY: "
 
-msgid "HD"
-msgstr "HD"
-
 msgid "HD list"
 msgstr "Lista HD"
 
@@ -9262,7 +9191,7 @@ msgid "ISO speed rating"
 msgstr "Wskaźnik prędkości ISO"
 
 msgid "ISP"
-msgstr "ISP"
+msgstr "Dostawca"
 
 msgid "IceTV"
 msgstr "IceTV"
@@ -9337,6 +9266,9 @@ msgstr "Jeśli 'nigdy', wymusi restart pomimo tego po 100 awariach."
 
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Jeśli 'nigdy', mimo to zapisze dziennik awarii dla pierwszej awarii."
+
+msgid "If EPG available"
+msgstr "Jeśli EPG jest dostępne"
 
 msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
 msgstr "Jeśli program zostanie przerwany i podzielony na osobne wydarzenia, wtyczka wyszuka połączone wydarzenia."
@@ -10013,6 +9945,12 @@ msgstr "Zachowaj historię EPG (w minutach)"
 
 msgid "Keep service"
 msgstr "Utrzymaj kanał"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] "Zachowaj ostrzeżenie"
+msgstr[1] "Zachowaj ostrzeżenia"
+msgstr[2] "Zachowaj ostrzeżenia"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Utrzymuje otwartą listę filmów podczas odtwarzania plików audio."
@@ -11117,7 +11055,7 @@ msgid "Mount failed"
 msgstr "Nie można zamontować"
 
 msgid "Mount: "
-msgstr "Mount: "
+msgstr "Montowanie: "
 
 msgid "Mountpoint"
 msgstr "Punkt montowania"
@@ -12032,7 +11970,7 @@ msgid "No, but restart from begin"
 msgstr "Nie, ale rozpocznij od początku"
 
 msgid "No, do not backup a image"
-msgstr "Nie, nie twórz kopii zapasowej systemu"
+msgstr "Anuluj tworzenie kopii zapasowej"
 
 msgid "No, do nothing."
 msgstr "Nie, nie rób nic."
@@ -13098,9 +13036,6 @@ msgstr "Wybierz rozdzielczość..."
 
 msgid "Please select a sub service..."
 msgstr "Wybierz usługę wydarzenie..."
-
-msgid "Please select a subservice..."
-msgstr "Wybierz wydarzenie..."
 
 msgid "Please select an aspect ratio..."
 msgstr "Wybierz proporcje ekranu..."
@@ -14445,8 +14380,8 @@ msgstr "Usuń pliki MultiBoot"
 msgid "Remove the current bookmark"
 msgstr "Usuń bieżącą zakładkę"
 
-msgid "Remove the selected list of plugins"
-msgstr "Usuń wybraną listę wtyczek"
+msgid "Remove the selected plugin / list of plugins"
+msgstr "Usuń wybraną wtyczkę / listę wtyczek"
 
 msgid "Remove timer"
 msgstr "Usuń timer"
@@ -17480,6 +17415,9 @@ msgstr "Pokaż komunikat po przełączeniu na telewizję"
 msgid "Show subservice selection"
 msgstr "Pokaż wybór podsieci"
 
+msgid "Show subservices *"
+msgstr "Wyświetl pod-usługi *"
+
 msgid "Show subtitle quick menu"
 msgstr "Menu podręczne napisów"
 
@@ -18037,9 +17975,6 @@ msgstr "Somalia"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Niektóre urządzenia TV nie mogą zostać przełączone na poprawne wejście jeśli jest aktywne inne wejście HDMI. To ustawienie przełącza TV w tryb czuwania przed przełączeniem. (Jeśli telewizor się nie włącza, może wymagać wolniejszego przedziału transmisji lub powtórzenia poleceń budzenia.)"
 
-msgid "Some plugins are not available:"
-msgstr "Niektóre wtyczki są niedostępne:"
-
 msgid "Sorbian"
 msgstr "Serbski"
 
@@ -18463,6 +18398,15 @@ msgstr "Pamięć masowa / Informacje o dysku"
 msgid "Storage Devices"
 msgstr "Urządzenia pamięci masowej"
 
+msgid "Storage device full!"
+msgstr "Dysk jest pełny!"
+
+msgid "Storage device not found!"
+msgstr "Nie znaleziono dysku!"
+
+msgid "Storage device not writable!"
+msgstr "Dysk nie jest zapisywalny!"
+
 msgid "Store position"
 msgstr "Zapamiętaj pozycję"
 
@@ -18695,6 +18639,9 @@ msgstr "Przełącz na następny kanał"
 
 msgid "Switch off the TV to correct input"
 msgstr "Wyłącz TV na poprawne wejście"
+
+msgid "Switch to 720p video"
+msgstr "Przełączna wideo 720p"
 
 msgid "Switch to HDMI in mode"
 msgstr "Przełącz na HDMI w trybie"
@@ -19599,6 +19546,9 @@ msgstr "Ta opcja pozwala wybrać sposób wyświetlania czasu pozostałego/upływ
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Ta opcja pozwala wybrać kolor tła dla przezroczystych pikon."
+
+msgid "This option allows you choose the option for subservice indicator or selection."
+msgstr "Opcja zezwala na wybór opcji dla wskaźnika pod-usługi lub wyboru."
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Ta opcja pozwala włączyć filtr wygładzający proces kontroli symulowania."
@@ -20727,8 +20677,8 @@ msgstr ""
 "Aktualizacja powiodła się!\n"
 "Bootloader jest teraz aktualny!"
 
-msgid "Update the selected list of plugins"
-msgstr "Zaktualizuj wybraną listę wtyczek"
+msgid "Update the selected plugin / list of plugins"
+msgstr "Zaktualizuj wybraną wtyczkę / listę wtyczek"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Aktualizuj, wykonaj kopię zapasową systemu i przywróć ustawienia"
@@ -23617,6 +23567,111 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Download the selected list of plugins"
+#~ msgstr "Pobierz wybraną listę wtyczek"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Błąd: Nie wybrano lokalizacji do zapisania nagrania!"
+
+#~ msgid "Remove the selected list of plugins"
+#~ msgstr "Usuń wybraną listę wtyczek"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Niektóre wtyczki są niedostępne:"
+
+#~ msgid "Update the selected list of plugins"
+#~ msgstr "Zaktualizuj wybraną listę wtyczek"
+
+#~ msgid "1 hour"
+#~ msgstr "1 godzina"
+
+#~ msgid "10 minutes"
+#~ msgstr "10 minut"
+
+#~ msgid "1024 Mb"
+#~ msgstr "1024 Mb"
+
+#~ msgid "12 hours"
+#~ msgstr "12 Godzin"
+
+#~ msgid "128 Mb"
+#~ msgstr "128 Mb"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 Minut"
+
+#~ msgid "1536 Mb"
+#~ msgstr "1536 Mb"
+
+#~ msgid "16K"
+#~ msgstr "16K"
+
+#~ msgid "2 hours"
+#~ msgstr "2 godziny"
+
+#~ msgid "2 minutes"
+#~ msgstr "2 minuty"
+
+#~ msgid "2048 Mb"
+#~ msgstr "2048 Mb"
+
+#~ msgid "24 hours"
+#~ msgstr "24 Godziny"
+
+#~ msgid "256 Mb"
+#~ msgstr "256 Mb"
+
+#~ msgid "3 hours"
+#~ msgstr "3 Godziny"
+
+#~ msgid "30 minutes"
+#~ msgstr "30 minut"
+
+#~ msgid "32 Mb"
+#~ msgstr "32 Mb"
+
+#~ msgid "4 hours"
+#~ msgstr "4 godziny"
+
+#~ msgid "4:3"
+#~ msgstr "4:3"
+
+#~ msgid "4K"
+#~ msgstr "4K"
+
+#~ msgid "5 hours"
+#~ msgstr "5 Godzin"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 minut"
+
+#~ msgid "512 Mb"
+#~ msgstr "512 Mb"
+
+#~ msgid "6 hours"
+#~ msgstr "6 Godzin"
+
+#~ msgid "64 Mb"
+#~ msgstr "64 Mb"
+
+#~ msgid "7 hours"
+#~ msgstr "7 Godzin"
+
+#~ msgid "8 hours"
+#~ msgstr "8 Godzin"
+
+#~ msgid "8K"
+#~ msgstr "8K"
+
+#~ msgid "FHD"
+#~ msgstr "FHD"
+
+#~ msgid "HD"
+#~ msgstr "HD"
+
+#~ msgid "Please select a subservice..."
+#~ msgstr "Wybierz wydarzenie..."
 
 #~ msgid "All slots"
 #~ msgstr "Wszystkie sloty"

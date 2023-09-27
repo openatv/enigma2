@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from os import path as os_path
 
 from Plugins.Plugin import PluginDescriptor
@@ -257,7 +255,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			if self.dynamic_contrastEntry is not None:
 				config.pep.dynamic_contrast.setValue(0)
 			if self.color_spaceEntry is not None:
-				file = open("/proc/stb/video/hdmi_colorspace_choices", "r")
+				file = open("/proc/stb/video/hdmi_colorspace_choices")
 				modes = file.readline().split()
 				file.close()
 				config.pep.color_space.setValue(modes[0])

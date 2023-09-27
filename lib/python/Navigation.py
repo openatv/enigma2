@@ -1,4 +1,3 @@
-from __future__ import print_function
 from os import path, remove
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
@@ -75,7 +74,7 @@ class Navigation:
 		#wakeup data
 		now = time()
 		try:
-			self.lastshutdowntime, self.wakeuptime, self.timertime, self.wakeuptyp, self.getstandby, self.recordtime, self.forcerecord = [int(n) for n in wakeupData.split(',')]
+			self.lastshutdowntime, self.wakeuptime, self.timertime, self.wakeuptyp, self.getstandby, self.recordtime, self.forcerecord = (int(n) for n in wakeupData.split(','))
 		except:
 			print("=" * 100)
 			print("[NAVIGATION] ERROR: can't read wakeup data")

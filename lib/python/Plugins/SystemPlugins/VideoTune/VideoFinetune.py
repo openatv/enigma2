@@ -1,10 +1,9 @@
 from Screens.Screen import Screen
 from Components.config import config
 from Components.Sources.CanvasSource import CanvasSource
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Console import Console
+from Components.ActionMap import NumberActionMap
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import fileExists
 from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
 
@@ -132,10 +131,10 @@ class VideoFinetune(Screen):
 		self.fontsize = getDesktop(0).size().height() == 1080 and 30 or 20
 
 		if fileExists("/proc/stb/fb/dst_left"):
-			self.left = open("/proc/stb/fb/dst_left", "r").read()
-			self.width = open("/proc/stb/fb/dst_width", "r").read()
-			self.top = open("/proc/stb/fb/dst_top", "r").read()
-			self.height = open("/proc/stb/fb/dst_height", "r").read()
+			self.left = open("/proc/stb/fb/dst_left").read()
+			self.width = open("/proc/stb/fb/dst_width").read()
+			self.top = open("/proc/stb/fb/dst_top").read()
+			self.height = open("/proc/stb/fb/dst_height").read()
 			if self.left != "00000000" or self.top != "00000000" or self.width != "000002d0" or self.height != "0000000240":
 				open("/proc/stb/fb/dst_left", "w").write("00000000")
 				open("/proc/stb/fb/dst_width", "w").write("000002d0")
@@ -409,7 +408,7 @@ class VideoFinetune(Screen):
 
 	def testpicCallback(self, key):
 		if key:
-			if key == True:
+			if key is True:
 				self.next()
 			else:
 				self.keyNumber(key)

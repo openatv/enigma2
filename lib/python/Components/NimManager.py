@@ -5,7 +5,6 @@ from os import access, F_OK
 from os.path import exists
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
-	eDVBSatelliteLNBParameters as lnbParam, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
 	eDVBSatelliteSwitchParameters as switchParam, \
 	eDVBSatelliteRotorParameters as rotorParam, \
@@ -714,7 +713,7 @@ class SecConfigure:
 		self.update()
 
 
-class NIM(object):
+class NIM:
 	def __init__(self, slot, nimtype, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False, input_name=None, supports_blind_scan=False, is_fbc=None, number_of_slots=0):
 		if not multi_type:
 			multi_type = {}
@@ -1095,7 +1094,7 @@ class NimManager:
 					if not exists("/etc/enigma2/lamedb"):
 						print("[NimManager] /etc/enigma2/lamedb not found")
 						return None
-					f = open("/etc/enigma2/lamedb", "r")
+					f = open("/etc/enigma2/lamedb")
 					lamedb = f.readlines()
 					f.close()
 
@@ -1765,7 +1764,7 @@ def InitNimManager(nimmgr, update_slots=None):
 
 	unicablelnbproducts = {}
 	unicablematrixproducts = {}
-	with open(eEnv.resolve("${datadir}/enigma2/unicable.xml"), 'r') as fd:
+	with open(eEnv.resolve("${datadir}/enigma2/unicable.xml")) as fd:
 		doc = xml.etree.cElementTree.parse(fd)
 	root = doc.getroot()
 
@@ -2048,7 +2047,7 @@ def InitNimManager(nimmgr, update_slots=None):
 
 			nim.advanced.unicableconnected = ConfigYesNo(default=False)
 			nim.advanced.unicableconnectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
-			if nim.advanced.unicableconnected.value == True and nim.advanced.unicableconnectedTo.value != nim.advanced.unicableconnectedTo.saved_value:
+			if nim.advanced.unicableconnected.value is True and nim.advanced.unicableconnectedTo.value != nim.advanced.unicableconnectedTo.saved_value:
 				from Tools import Notifications
 				from Screens.MessageBox import MessageBox
 				nim.advanced.unicableconnected.value = False
@@ -2427,12 +2426,12 @@ def InitNimManager(nimmgr, update_slots=None):
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
 			system = configElement.getText()
 			if exists("/proc/stb/frontend/%d/mode" % fe_id):
-				cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id, "r").read())
+				cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id).read())
 				if cur_type != int(configElement.value):
 					print("[NimManager]tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value)))
 
 					try:
-						oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
+						oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout").readline()
 						with open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w") as fd:
 							fd.write("0")
 					except OSError:

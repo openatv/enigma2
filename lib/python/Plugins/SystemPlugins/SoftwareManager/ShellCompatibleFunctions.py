@@ -192,7 +192,7 @@ def restoreUserDB():
 def listpkg(type="installed"):
 	pkgs = []
 	ret = []
-	for line in open(INSTALLEDPACKAGES, 'r'):
+	for line in open(INSTALLEDPACKAGES):
 		if line.startswith('Package:'):
 			package = line.split(":", 1)[1].strip()
 			version = ''
@@ -224,7 +224,7 @@ def listpkg(type="installed"):
 				ret.append(package['package'])
 		elif type == "user":
 			if not package['autoinstalled']:
-				if not package['package'] in IMAGE_INSTALL:
+				if package['package'] not in IMAGE_INSTALL:
 					ret.append(package['package'])
 
 	return sorted(ret)

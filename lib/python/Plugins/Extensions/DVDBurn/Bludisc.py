@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Components.Task import Task, Job, DiskspacePrecondition, Condition
 from Components.Harddisk import harddiskmanager
 from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
@@ -19,7 +17,7 @@ AUDIO_CHANNELS = {"reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi"
 AUDIO_RATES = {48000: 1, 96000: 4, 192000: 5, 48 / 192: 12, 48 / 96: 14}
 
 
-class BludiscTitle(object):
+class BludiscTitle:
 	def __init__(self, title):
 		object.__setattr__(self, "_title", title)
 		self.__streams = {}
@@ -92,7 +90,7 @@ class BludiscTitle(object):
 		return best_pts / 2
 
 
-class BludiscStream(object):
+class BludiscStream:
 	def __init__(self, parent, PID):
 		self.__parent = parent
 		self.__PID = PID
@@ -243,7 +241,7 @@ class RemuxTask(Task):
 				stype = words[3] + ' ' + words[4][:-1]
 
 			stream = self.title.getStreamByPID(pid)
-			if stream == None:
+			if stream is None:
 				print("[bdremux] invalid stream!")
 				return
 
@@ -257,7 +255,7 @@ class RemuxTask(Task):
 
 			for field in words[4:]:
 				key, val = field.split('=')
-				m = re.search('\(int\)(\d*).*', val)
+				m = re.search(r'\(int\)(\d*).*', val)
 				if m and len(m.groups()) > 0:
 					v = int(m.group(1))
 					if key == "rate":

@@ -186,7 +186,7 @@ class VRunningText(Renderer):
 		#self.changed((self.CHANGED_DEFAULT,))
 
 	def changed(self, what):
-		if not self.mTimer is None:
+		if self.mTimer is not None:
 			self.mTimer.stop()
 		if what[0] == self.CHANGED_CLEAR:
 			self.txtext = ""
@@ -206,12 +206,12 @@ class VRunningText(Renderer):
 		#if not self.scolor is None:
 		#	self.instance.writeText( eRect(X-self.soffset[0], Y-self.soffset[1], self.W-self.soffset[0], self.H-self.soffset[1]), self.scolor, self.bcolor, self.txfont, self.txtext, self.txtflags )
 		#self.instance.writeText( eRect(X, Y, self.W, self.H), self.fcolor, self.bcolor, self.txfont, self.txtext, self.txtflags )
-		if not self.scolor is None:
+		if self.scolor is not None:
 			fcolor = self.scolor
 		else:
 			fcolor = self.fcolor
 		self.instance.writeText(eRect(X - self.soffset[0], Y - self.soffset[1], self.W, self.H), fcolor, self.bcolor, self.txfont, self.txtext, self.txtflags)
-		if not self.scolor is None:
+		if self.scolor is not None:
 			self.instance.writeText(eRect(X, Y, self.W, self.H), self.fcolor, self.scolor, self.txfont, self.txtext, self.txtflags)
 
 	def calcMoving(self):
@@ -246,7 +246,7 @@ class VRunningText(Renderer):
 					self.mStop = self.B - text_width + self.soffset[0] - self.mStep
 					self.P = self.A
 
-				if not self.mStartPoint is None:
+				if self.mStartPoint is not None:
 					if self.direction == LEFT:
 						#self.P = min(self.B, max(self.A, self.mStartPoint))
 						self.mStop = self.P = max(self.A, min(self.W, self.mStartPoint))
@@ -308,7 +308,7 @@ class VRunningText(Renderer):
 					self.mStop = self.B - text_height + self.soffset[1] - self.mStep - 9
 					self.P = self.A
 
-				if not self.mStartPoint is None:
+				if self.mStartPoint is not None:
 					if self.direction == TOP:
 						self.mStop = self.P = max(self.A, min(self.H, self.mStartPoint))
 					else:

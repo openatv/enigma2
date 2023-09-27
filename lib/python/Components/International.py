@@ -1,11 +1,10 @@
 # -*- coding: UTF-8 -*-
 
 from gettext import bindtextdomain, install, textdomain, translation
-from locale import Error as LocaleError, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC, LC_TIME, setlocale, getlocale
+from locale import Error as LocaleError, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC, LC_TIME, setlocale
 from os import environ, listdir
 from os.path import isdir
 from subprocess import Popen, PIPE
-from time import localtime, strftime, time
 
 from Tools.CountryCodes import setISO3166
 from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, fileReadLines, resolveFilename

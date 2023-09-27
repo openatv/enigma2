@@ -1,5 +1,5 @@
 from os import R_OK, access, listdir, lstat, sep
-from os.path import basename, dirname, exists, isdir, isfile, islink, join as pathjoin, normpath, realpath, splitext
+from os.path import basename, dirname, exists, isdir, islink, join as pathjoin, normpath, realpath, splitext
 from re import compile
 
 from enigma import BT_SCALE, BT_VALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eServiceCenter, eServiceReference, eServiceReferenceFS, gFont
@@ -352,7 +352,7 @@ class FileListBase(MenuList):
 		path = entry[0][FILE_PATH]
 		isDir = entry[0][FILE_IS_DIR]
 		dirIcon = entry[0][FILE_DIR_ICON]
-		if (isDir == False and type == SELECT_DIRECTORIES) or (isDir == True and type == SELECT_FILES):
+		if (isDir is False and type == SELECT_DIRECTORIES) or (isDir is True and type == SELECT_FILES):
 			selected = entry[0][FILE_SELECTED]
 		if path and not entry[0][FILE_NAME].startswith("<"):
 			path = path if isDir else pathjoin(self.currentDirectory, path)
@@ -487,7 +487,7 @@ class FileListBase(MenuList):
 		return "%s,%s" % (self.sortDirectories, self.sortFiles)
 
 	def sortList(self, items, sortBy):
-		sort, reverse = [int(x) for x in sortBy.split(".")]
+		sort, reverse = (int(x) for x in sortBy.split("."))
 		itemList = []
 		for name, path, isDir, isLink in items:
 			if access(path, R_OK):

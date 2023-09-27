@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 20:55+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1025,6 +1025,11 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paketi yükseltildi."
 
 #, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sec"
 
@@ -1391,9 +1396,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 hour"
-msgstr "1 saat"
-
 #
 msgid "1.0"
 msgstr "1.0"
@@ -1406,26 +1408,14 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "10 minutes"
-msgstr "10 dakika"
-
-msgid "1024 Mb"
-msgstr "1024 Mb"
-
 msgid "10bit"
 msgstr "10bit"
 
 msgid "12 character"
 msgstr "12 özellik"
 
-msgid "12 hours"
-msgstr "12 saat"
-
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "Şekil 12'de Yunanca ve Kiril hariç latin-1 karakterleri gösteriliyor, gerekirse 8'e geçiliyor."
-
-msgid "128 Mb"
-msgstr "128 Mb"
 
 #
 msgid "12V output"
@@ -1444,12 +1434,6 @@ msgstr "12bit 4:2:0/4:2:2 no PiP"
 #
 msgid "13 V"
 msgstr "13 V"
-
-msgid "15 minutes"
-msgstr "15 dakika"
-
-msgid "1536 Mb"
-msgstr "1536 Mb"
 
 msgid "16/9 reset to normal"
 msgstr ""
@@ -1483,9 +1467,6 @@ msgstr "16:9 Letterbox"
 msgid "16:9 PanScan"
 msgstr ""
 
-msgid "16K"
-msgstr "16K"
-
 #
 msgid "18 V"
 msgstr "18 V"
@@ -1499,15 +1480,6 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 hours"
-msgstr "2 saat"
-
-msgid "2 minutes"
-msgstr "2 dakika"
-
-msgid "2048 Mb"
-msgstr "2048 Mb"
-
 msgid "23.976"
 msgstr "23.976"
 
@@ -1515,15 +1487,9 @@ msgstr "23.976"
 msgid "24"
 msgstr "24"
 
-msgid "24 hours"
-msgstr "24 saatler"
-
 #
 msgid "25"
 msgstr "25"
-
-msgid "256 Mb"
-msgstr "256 Mb"
 
 msgid "29.97"
 msgstr "29.97"
@@ -1558,18 +1524,9 @@ msgstr "2x, 4x, 6x, 8x"
 msgid "3"
 msgstr "3"
 
-msgid "3 hours"
-msgstr "3 Saat"
-
 #
 msgid "30"
 msgstr "30"
-
-msgid "30 minutes"
-msgstr "30 dakika"
-
-msgid "32 Mb"
-msgstr "32 Mb"
 
 msgid "3D Mode"
 msgstr "3D Kipi"
@@ -1587,13 +1544,6 @@ msgstr "3x"
 msgid "4"
 msgstr "4"
 
-msgid "4 hours"
-msgstr "4 Saat"
-
-#
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Combined"
 msgstr ""
 
@@ -1608,50 +1558,23 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
-msgid "4K"
-msgstr "4K"
-
 msgid "4x"
 msgstr "4x"
 
 msgid "5"
 msgstr "5"
 
-msgid "5 hours"
-msgstr "5 saat"
-
-msgid "5 minutes"
-msgstr "5 dakika"
-
-msgid "512 Mb"
-msgstr "512 Mb"
-
 msgid "6"
 msgstr "6"
 
-msgid "6 hours"
-msgstr "6 saat"
-
-msgid "64 Mb"
-msgstr "64 Mb"
-
 msgid "7"
 msgstr "7"
-
-msgid "7 hours"
-msgstr "7 saat"
 
 msgid "8"
 msgstr "8"
 
 msgid "8 character"
 msgstr "8 özellik"
-
-msgid "8 hours"
-msgstr "8 saat"
-
-msgid "8K"
-msgstr "8K"
 
 msgid "8bit"
 msgstr "8bit"
@@ -2476,6 +2399,9 @@ msgstr "Alternatif radyo kipi"
 #
 msgid "Alternative services tuner priority"
 msgstr "Alternatifli kanallarda tuner önceliği"
+
+msgid "Always"
+msgstr ""
 
 msgid "Always ask"
 msgstr "Herzaman sor"
@@ -4403,6 +4329,10 @@ msgstr ""
 
 msgid "Clear the virtual memory caches"
 msgstr "Sanal bellek önbelleklerini temizleyin"
+
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
 
 msgid "Click the button on your remote you want to change."
 msgstr "Değiştirmek istediğiniz düğmeye uzaktan kumandayı tıklayın"
@@ -6422,17 +6352,6 @@ msgstr "Çanak"
 msgid "Disk full"
 msgstr "Disk dolu"
 
-msgid "Storage device full!"
-msgstr "Disk dolu?"
-
-#
-msgid "Storage device not writable!"
-msgstr "Disk yazılabilir değil!"
-
-#
-msgid "Storage device not found!"
-msgstr "Disk bulunamadı!"
-
 #
 msgid "Display 16:9 content as"
 msgstr "16:9 içeriği şu şekilde göster"
@@ -6752,6 +6671,9 @@ msgstr "Ayarlarınızı geri yüklemek istiyor musunuz?"
 msgid "Do you want to resume this playback?"
 msgstr "Oynatmaya kaldığınız yerden devam etmek istiyor musunuz?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -6825,6 +6747,9 @@ msgstr "Aşağı"
 msgid "Down / Inactive"
 msgstr ""
 
+msgid "Download Image"
+msgstr ""
+
 msgid "Download Plugin"
 msgstr ""
 
@@ -6846,7 +6771,10 @@ msgstr "Camı indirip yükleyin"
 msgid "Download error"
 msgstr "İndirme hatası"
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected image"
+msgstr ""
+
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7802,9 +7730,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Hata: %s %s, %s değil! Lütfen daha sonra tekrar deneyiniz."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
-
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Boş dosya adı geçersiz."
@@ -7888,6 +7813,9 @@ msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
 msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
+
+msgid "Error: The selected service can't be recorded!"
 msgstr ""
 
 #, python-format
@@ -8245,9 +8173,6 @@ msgstr ""
 
 msgid "FFmpeg version"
 msgstr "FFmpeg sürümü"
-
-msgid "FHD"
-msgstr "FHD"
 
 msgid "FIFO"
 msgstr "FIFO"
@@ -9189,9 +9114,6 @@ msgstr "H:dd:ss"
 msgid "HARD DISK: "
 msgstr "HARD DISK: "
 
-msgid "HD"
-msgstr "HD"
-
 msgid "HD list"
 msgstr "HD listesi"
 
@@ -9723,6 +9645,9 @@ msgstr "Eğer 'asla' ise, 100 çarpışmadan sonra buna rağmen tekrar çalışm
 
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Eğer 'asla' ise, ilk çarpışma için buna rağmen çarpışma günlüğü yazacaktır."
+
+msgid "If EPG available"
+msgstr ""
 
 msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
 msgstr ""
@@ -10435,6 +10360,10 @@ msgstr ""
 #
 msgid "Keep service"
 msgstr "Kanalı tut"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Ses dosyalarını çalarken Film Listesini açık tutar."
@@ -13720,10 +13649,6 @@ msgstr "Lütfen bir çözünürlük seçin..."
 msgid "Please select a sub service..."
 msgstr "Lütfen bir alt servis seçin..."
 
-#
-msgid "Please select a subservice..."
-msgstr "Lütfen bir alt servis seçin..."
-
 msgid "Please select an aspect ratio..."
 msgstr "Lütfen bir en boy oranı seçin ..."
 
@@ -15155,7 +15080,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 #
@@ -18313,6 +18238,9 @@ msgstr "Canlı TV'ye geçerken durum mesajlarını göster"
 msgid "Show subservice selection"
 msgstr "Alt hizmet seçimini göster"
 
+msgid "Show subservices *"
+msgstr ""
+
 #
 msgid "Show subtitle quick menu"
 msgstr "Altyazı hızlı menüsünü göster"
@@ -18900,9 +18828,6 @@ msgstr "Somali"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Bazı TV cihazları, başka bir HDMI bağlantı noktası etkinse girişi düzeltmek için geçiş yapamaz. Bu ayar, TV'yi anahtardan önce beklemeye alır. (TV tekrar açılmazsa, daha yavaş bir aktarım aralığı veya uyandırma komutlarının tekrarı gerekebilir.)"
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 #
 msgid "Sorbian"
 msgstr "Sorb"
@@ -19355,6 +19280,17 @@ msgstr ""
 msgid "Storage Devices"
 msgstr "Depolama Aygıtları"
 
+msgid "Storage device full!"
+msgstr "Disk dolu?"
+
+#
+msgid "Storage device not found!"
+msgstr "Disk bulunamadı!"
+
+#
+msgid "Storage device not writable!"
+msgstr "Disk yazılabilir değil!"
+
 #
 msgid "Store position"
 msgstr "Konumu kaydet"
@@ -19602,6 +19538,9 @@ msgstr "Sonraki kanala geçiş"
 
 msgid "Switch off the TV to correct input"
 msgstr "Girişi düzeltmek için TV'yi kapatın"
+
+msgid "Switch to 720p video"
+msgstr ""
 
 msgid "Switch to HDMI in mode"
 msgstr "HDMI moduna geç"
@@ -20505,6 +20444,9 @@ msgstr "Bu seçenek, medya oynatma için kalan / geçen sürenin nasıl görünt
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Bu seçenek şeffaf pikoların arka plan rengini seçmenizi sağlar."
+
+msgid "This option allows you choose the option for subservice indicator or selection."
+msgstr ""
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Bu seçenek, titreme işlemini kontrol etmek için filtreyi yumuşatmanızı sağlar."
@@ -21695,7 +21637,7 @@ msgstr ""
 "Güncelleme başarılı oldu!\n"
 "Bootloader'ınız şimdi güncel!"
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -24713,6 +24655,98 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "1 hour"
+#~ msgstr "1 saat"
+
+#~ msgid "10 minutes"
+#~ msgstr "10 dakika"
+
+#~ msgid "1024 Mb"
+#~ msgstr "1024 Mb"
+
+#~ msgid "12 hours"
+#~ msgstr "12 saat"
+
+#~ msgid "128 Mb"
+#~ msgstr "128 Mb"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 dakika"
+
+#~ msgid "1536 Mb"
+#~ msgstr "1536 Mb"
+
+#~ msgid "16K"
+#~ msgstr "16K"
+
+#~ msgid "2 hours"
+#~ msgstr "2 saat"
+
+#~ msgid "2 minutes"
+#~ msgstr "2 dakika"
+
+#~ msgid "2048 Mb"
+#~ msgstr "2048 Mb"
+
+#~ msgid "24 hours"
+#~ msgstr "24 saatler"
+
+#~ msgid "256 Mb"
+#~ msgstr "256 Mb"
+
+#~ msgid "3 hours"
+#~ msgstr "3 Saat"
+
+#~ msgid "30 minutes"
+#~ msgstr "30 dakika"
+
+#~ msgid "32 Mb"
+#~ msgstr "32 Mb"
+
+#~ msgid "4 hours"
+#~ msgstr "4 Saat"
+
+#
+#~ msgid "4:3"
+#~ msgstr "4:3"
+
+#~ msgid "4K"
+#~ msgstr "4K"
+
+#~ msgid "5 hours"
+#~ msgstr "5 saat"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 dakika"
+
+#~ msgid "512 Mb"
+#~ msgstr "512 Mb"
+
+#~ msgid "6 hours"
+#~ msgstr "6 saat"
+
+#~ msgid "64 Mb"
+#~ msgstr "64 Mb"
+
+#~ msgid "7 hours"
+#~ msgstr "7 saat"
+
+#~ msgid "8 hours"
+#~ msgstr "8 saat"
+
+#~ msgid "8K"
+#~ msgstr "8K"
+
+#~ msgid "FHD"
+#~ msgstr "FHD"
+
+#~ msgid "HD"
+#~ msgstr "HD"
+
+#
+#~ msgid "Please select a subservice..."
+#~ msgstr "Lütfen bir alt servis seçin..."
 
 #, python-format
 #~ msgid "CI %s enabled"

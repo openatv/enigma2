@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 20:55+0000\n"
-"PO-Revision-Date: 2023-08-20 00:05+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"PO-Revision-Date: 2023-09-15 11:56+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 msgid ""
 "\n"
@@ -1038,6 +1038,12 @@ msgstr[0] "%d Paketti päivitetty."
 msgstr[1] "%d Pakettia päivitetty."
 
 #, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sekunti"
 
@@ -1386,9 +1392,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 hour"
-msgstr "1 tunti"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1398,26 +1401,14 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "10 minutes"
-msgstr "10 minuuttia"
-
-msgid "1024 Mb"
-msgstr "1024 Mb"
-
 msgid "10bit"
 msgstr "10bit"
 
 msgid "12 character"
 msgstr "12 merkki"
 
-msgid "12 hours"
-msgstr "12 tuntia"
-
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, näyttää Latin-1 merkistön paitsi kreikan ja kyrillisen, vaihda tarvittaessa 8:een."
-
-msgid "128 Mb"
-msgstr "128 Mb"
 
 msgid "12V output"
 msgstr "12V ulostulo"
@@ -1433,12 +1424,6 @@ msgstr "12bit 4:2:0/4:2:2 ei PIP"
 
 msgid "13 V"
 msgstr "13 V"
-
-msgid "15 minutes"
-msgstr "15 minuuttia"
-
-msgid "1536 Mb"
-msgstr "1536 Mb"
 
 msgid "16/9 reset to normal"
 msgstr "16/9 palautus normaaliksi"
@@ -1467,9 +1452,6 @@ msgstr "16:9 Letterbox"
 msgid "16:9 PanScan"
 msgstr "16:9 PanScan"
 
-msgid "16K"
-msgstr "16K"
-
 msgid "18 V"
 msgstr "18 V"
 
@@ -1482,29 +1464,14 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 hours"
-msgstr "2 tuntia"
-
-msgid "2 minutes"
-msgstr "2 minuuttia"
-
-msgid "2048 Mb"
-msgstr "2048 Mb"
-
 msgid "23.976"
 msgstr "23.976"
 
 msgid "24"
 msgstr "24"
 
-msgid "24 hours"
-msgstr "24 tuntia"
-
 msgid "25"
 msgstr "25"
-
-msgid "256 Mb"
-msgstr "256 Mb"
 
 msgid "29.97"
 msgstr "29.97"
@@ -1539,17 +1506,8 @@ msgstr "2x, 4x, 6x, 8x"
 msgid "3"
 msgstr "3"
 
-msgid "3 hours"
-msgstr "3 tuntia"
-
 msgid "30"
 msgstr "30"
-
-msgid "30 minutes"
-msgstr "30 minuuttia"
-
-msgid "32 Mb"
-msgstr "32 Mb"
 
 msgid "3D Mode"
 msgstr "3D tila"
@@ -1566,12 +1524,6 @@ msgstr "3x"
 msgid "4"
 msgstr "4"
 
-msgid "4 hours"
-msgstr "4 tuntia"
-
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Combined"
 msgstr "4:3 Yhdistetty"
 
@@ -1584,50 +1536,23 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
-msgid "4K"
-msgstr "4K"
-
 msgid "4x"
 msgstr "4x"
 
 msgid "5"
 msgstr "5"
 
-msgid "5 hours"
-msgstr "5 tuntia"
-
-msgid "5 minutes"
-msgstr "5 minuuttia"
-
-msgid "512 Mb"
-msgstr "512 Mb"
-
 msgid "6"
 msgstr "6"
 
-msgid "6 hours"
-msgstr "6 tuntia"
-
-msgid "64 Mb"
-msgstr "64 Mb"
-
 msgid "7"
 msgstr "7"
-
-msgid "7 hours"
-msgstr "7 tuntia"
 
 msgid "8"
 msgstr "8"
 
 msgid "8 character"
 msgstr "8 merkkiä"
-
-msgid "8 hours"
-msgstr "8 tuntia"
-
-msgid "8K"
-msgstr "8K"
 
 msgid "8bit"
 msgstr "8bit"
@@ -2393,14 +2318,17 @@ msgstr "TV tyylinen radiokanavien selaus"
 msgid "Alternative services tuner priority"
 msgstr "Virittimien prioriteetti"
 
+msgid "Always"
+msgstr "Aina"
+
 msgid "Always ask"
 msgstr "Kysy aina"
 
 msgid "Always include ECM in recordings"
-msgstr "Sisällytä aina ECM nauhoituksiin"
+msgstr "Sisällytä aina ECM tallennuksiin"
 
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
-msgstr "Sisällytä aina ECM viesti tallenteisiin. Nauhoitukset tallennetaan salatussa muodossa ja puretaan jälkikäteen, (Tallennuksen Offline purkaminen), jos vastaanottimesi tukee sitä. Oletus: Ei."
+msgstr "Sisällytä aina ECM tiedot tallenteisiin. Tallennukset tallennetaan salatussa muodossa ja puretaan jälkikäteen, jos vastaanottimesi tukee sitä. Oletus: Ei."
 
 msgid "Always show bouquets"
 msgstr "Näytä suosikkilistat aina"
@@ -3975,7 +3903,7 @@ msgid "Channel zap delay another button"
 msgstr "Kanava vaihto viive toista näppäintä"
 
 msgid "Channel zap delay first button"
-msgstr "Kanavan vaihto viive ensimmäinen näppäin"
+msgstr "Kanavan vaihtoviive ensimmäinen näppäin"
 
 msgid "Channel zap delay mode"
 msgstr "Kanavan vaihtoviive"
@@ -4232,6 +4160,11 @@ msgstr "Tyhjennä tämän ajastuksen lokit"
 
 msgid "Clear the virtual memory caches"
 msgstr "Tyhjennä virtuaalimuistin välimuisti"
+
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Click the button on your remote you want to change."
 msgstr "Määrittää näppäimelle haluamasi toiminnon."
@@ -4734,7 +4667,7 @@ msgid "Configure the source of the frontend data as shown on the infobars. 'Sett
 msgstr "Määrittää tietopalkeissa näytettävän viritintiedon lähteen. 'Asetukset' on asetuksiin tallennettu tieto. 'Viritin' on tieto, jonka viritin ilmoittaa."
 
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
-msgstr "Määrittää taustallatuhoamis-prosessin nopeuden. Matalampi nopeus kuormittaa vähemmän kiintolevyä."
+msgstr "Määrittää taustalla poistamisen nopeuden. Matalampi nopeus kuormittaa vähemmän kiintolevyä."
 
 msgid "Configure the start coordinate in x of the teletext display area."
 msgstr "Määritä alkukoordinaatti tekstitv:een X leveys."
@@ -6164,15 +6097,6 @@ msgstr "Lautasantenni"
 msgid "Disk full"
 msgstr "Levy täysi"
 
-msgid "Storage device full!"
-msgstr "Kiintolevy täynnä?"
-
-msgid "Storage device not writable!"
-msgstr "Levyä ei voi kirjoittaa!"
-
-msgid "Storage device not found!"
-msgstr "Levyä ei löytynyt!"
-
 msgid "Display 16:9 content as"
 msgstr "Näytä 16:9 sisältö näin"
 
@@ -6473,6 +6397,9 @@ msgstr "Haluatko palauttaa asetukset?"
 msgid "Do you want to resume this playback?"
 msgstr "Jatketaanko kohdasta, johon katselu viimeksi jäi?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr "Haluatko aloittaa varmuuskopioinnin nyt?"
 
@@ -6544,6 +6471,9 @@ msgstr "Alas"
 msgid "Down / Inactive"
 msgstr "Alas / Ei aktiivinen"
 
+msgid "Download Image"
+msgstr "Lataa Ohjelmisto"
+
 msgid "Download Plugin"
 msgstr "Lataa lisäosia"
 
@@ -6565,8 +6495,11 @@ msgstr "Lataa ja asenna softcameja"
 msgid "Download error"
 msgstr "Lataus virhe"
 
-msgid "Download the selected list of plugins"
-msgstr "Lataa valittu lisäosa plugin listalta"
+msgid "Download the selected image"
+msgstr "Lataa valittu ohjelmisto"
+
+msgid "Download the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Downloadable plugins"
 msgstr "Lataa lisäosia"
@@ -7484,9 +7417,6 @@ msgstr ""
 "Ei: %s %s päivityksiä %s!\n"
 "Yritä myöhemmin uudelleen."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr "Virhe: Tallennuspaikkaa ei ole valittu!"
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Virhe: Tyhjä nimi ei ole sallittu!"
 
@@ -7566,6 +7496,9 @@ msgstr "Virhe: Tiedostojärjestelmää ja järjestelmähakemistoja ei voi siirt�
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Virhe: Tiedostojärjestelmää ja järjestelmähakemistoja ei voi nimetä uudelleen!"
+
+msgid "Error: The selected service can't be recorded!"
+msgstr ""
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -7897,9 +7830,6 @@ msgstr "FFmpeg ei ole asennettu, joten '.mvi' tiedostot eivät ole käytettävis
 
 msgid "FFmpeg version"
 msgstr "FFmpeg versio"
-
-msgid "FHD"
-msgstr "FHD"
 
 msgid "FIFO"
 msgstr "FIFO"
@@ -8792,9 +8722,6 @@ msgstr "H:mm:ss"
 msgid "HARD DISK: "
 msgstr "Kiintolevy: "
 
-msgid "HD"
-msgstr "HD"
-
 msgid "HD list"
 msgstr "HD lista"
 
@@ -9303,6 +9230,9 @@ msgstr "Jos 'ei koskaan' , pakottaa uudelleenkäynnistyksen siitä huolimatta 10
 
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Jos `ei koskaan` kirjoita kaatumislokin ensimmäisestä kaatumisesta huolimatta."
+
+msgid "If EPG available"
+msgstr "Jos EPG on saatavilla"
 
 msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
 msgstr "Jos ohjelma keskeytetään ja jaetaan erillisiin tapahtumiin, laajennus etsii yhdistettyjä tapahtumia."
@@ -9984,6 +9914,11 @@ msgstr "Säilytä EPG historia (minuutteina)"
 
 msgid "Keep service"
 msgstr "Säilytä kanava"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Pidä tallenneluettelo auki äänitiedostojen toiston aikana."
@@ -10724,13 +10659,13 @@ msgid "Margin after recording"
 msgstr "Lisäaika tallenteen loppuun (minuuttia)"
 
 msgid "Margin after zap"
-msgstr "Marginaali vaihdoin jälkeen"
+msgstr "Lisäaika vaihdoin jälkeen"
 
 msgid "Margin before recording"
 msgstr "Lisäaika tallenteen alkuun (minuuttia)"
 
 msgid "Margin before zap"
-msgstr "Marginaali ennen vaihtoa"
+msgstr "Lisäaika ennen vaihtoa"
 
 msgid "Mark As Dedicated 3D Service"
 msgstr "Merkitse kanava 3D:ksi"
@@ -13076,9 +13011,6 @@ msgstr "Valitse kuvaruudun tarkkuus"
 msgid "Please select a sub service..."
 msgstr "Valitse alipalvelu."
 
-msgid "Please select a subservice..."
-msgstr "Valitse alipalvelu."
-
 msgid "Please select an aspect ratio..."
 msgstr "Valitse kuvasuhde."
 
@@ -14422,8 +14354,8 @@ msgstr "Poista MultiBoot tiedostot"
 msgid "Remove the current bookmark"
 msgstr "Poista nykyinen kirjanmerkki"
 
-msgid "Remove the selected list of plugins"
-msgstr "Poista valittu lista lisäosista"
+msgid "Remove the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Poista ajastus"
@@ -17469,6 +17401,9 @@ msgstr "Näytä viesti kun siirrytään suoraan katseluun"
 msgid "Show subservice selection"
 msgstr "Näytä kanavatyypin kuvakkeet"
 
+msgid "Show subservices *"
+msgstr "Näytä tekstitys palvelu *"
+
 msgid "Show subtitle quick menu"
 msgstr "Näytä tekstityksen pikavalikko"
 
@@ -18023,9 +17958,6 @@ msgstr "Somalia"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr "Jotkin TV:eet eivät voi vaihtaa oikeaan sisääntuloon, jos toinen HDMI portti on aktiivinen. Tämä asetus asettaa television valmiustilaan ennen vaihtoa. (Jos televisio ei kytkeydy takaisin päälle, se voi vaatia hitaampaa lähetysväliä tai herätyskomentojen toistamista.)"
 
-msgid "Some plugins are not available:"
-msgstr "Seuraavat lisäosat eivät ole saatavilla:"
-
 msgid "Sorbian"
 msgstr "Sorbi"
 
@@ -18449,6 +18381,15 @@ msgstr "Tallennustilan / Aseman tiedot"
 msgid "Storage Devices"
 msgstr "Tallennusvälineet"
 
+msgid "Storage device full!"
+msgstr "Kiintolevy täynnä?"
+
+msgid "Storage device not found!"
+msgstr "Levyä ei löytynyt!"
+
+msgid "Storage device not writable!"
+msgstr "Levyä ei voi kirjoittaa!"
+
 msgid "Store position"
 msgstr "Tallenna sijainti"
 
@@ -18682,6 +18623,9 @@ msgstr "Vaihda seuraavalle kanavalle"
 msgid "Switch off the TV to correct input"
 msgstr "Vaihda TV oikealle sisäänmenolle"
 
+msgid "Switch to 720p video"
+msgstr "Vaihda 720p"
+
 msgid "Switch to HDMI in mode"
 msgstr "Vaihda HDMI sisääntuloon"
 
@@ -18837,7 +18781,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 6.8.2023\n"
+"Suomenkielinen käännös: 28.8.2023\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19589,6 +19533,9 @@ msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään tallenn
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Määrittää, minkävärinen taustaväri läpinäkyville kanavalogoille asetetaan."
+
+msgid "This option allows you choose the option for subservice indicator or selection."
+msgstr "Tämän vaihtoehdon avulla voit valita miten kanavatyyppi näytettään."
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Tämä asetus ottaa käyttöön pehmennyssuodattimen sävyjen sekoituksessa."
@@ -20722,8 +20669,8 @@ msgstr ""
 "Päivitys onnistui!\n"
 "Bootloaderi on nyt ajan tasalla!"
 
-msgid "Update the selected list of plugins"
-msgstr "Päivitä valittu lista lisäosa plugineista"
+msgid "Update the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Päivitä/varmuuskopioi ohjelmisto, varmuuskopioi/palauta asetukset"
@@ -21851,7 +21798,7 @@ msgid "When nonzero, a recording will stop the nominated period after the ending
 msgstr "Kun arvo ei ole nolla, tallennus päättyy myöhemmin kuin ohjelmaoppaassa oleva lopetusaika."
 
 msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
-msgstr "Kun arvo ei ole nolla, tallennus alkaa aiemmin kuin ohjelmaoppaassa oleva aloitusaika."
+msgstr "Kun arvo ei ole nolla, kanavan vaihto ajastus alkaa aiemmin kuin ohjelmaoppaassa oleva aloitusaika."
 
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Kun arvo ei ole nolla, tallennus päättyy myöhemmin kuin ohjelmaoppaassa oleva lopetusaika."
@@ -22071,7 +22018,7 @@ msgid "Yes, but don't save time shift as movie"
 msgstr "Kyllä, mutta älä muunna ajansiirtoa tallenteeksi"
 
 msgid "Yes, but if not available show the plugin browser"
-msgstr "Kyllä, mutta jos ei saatavilla näytä lisäosa lista"
+msgstr "Kyllä, jos ei saatavilla näytä lisäosa lista"
 
 msgid "Yes, but if not available show the timer list"
 msgstr "Kyllä, jos ei käytettävissä, näytä ajastinluettelo"
@@ -23617,6 +23564,111 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Download the selected list of plugins"
+#~ msgstr "Lataa valittu lisäosa plugin listalta"
+
+#~ msgid "Error: A location to save the recording has not been selected!"
+#~ msgstr "Virhe: Tallennuspaikkaa ei ole valittu!"
+
+#~ msgid "Remove the selected list of plugins"
+#~ msgstr "Poista valittu lista lisäosista"
+
+#~ msgid "Some plugins are not available:"
+#~ msgstr "Seuraavat lisäosat eivät ole saatavilla:"
+
+#~ msgid "Update the selected list of plugins"
+#~ msgstr "Päivitä valittu lista lisäosa plugineista"
+
+#~ msgid "1 hour"
+#~ msgstr "1 tunti"
+
+#~ msgid "10 minutes"
+#~ msgstr "10 minuuttia"
+
+#~ msgid "1024 Mb"
+#~ msgstr "1024 Mb"
+
+#~ msgid "12 hours"
+#~ msgstr "12 tuntia"
+
+#~ msgid "128 Mb"
+#~ msgstr "128 Mb"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 minuuttia"
+
+#~ msgid "1536 Mb"
+#~ msgstr "1536 Mb"
+
+#~ msgid "16K"
+#~ msgstr "16K"
+
+#~ msgid "2 hours"
+#~ msgstr "2 tuntia"
+
+#~ msgid "2 minutes"
+#~ msgstr "2 minuuttia"
+
+#~ msgid "2048 Mb"
+#~ msgstr "2048 Mb"
+
+#~ msgid "24 hours"
+#~ msgstr "24 tuntia"
+
+#~ msgid "256 Mb"
+#~ msgstr "256 Mb"
+
+#~ msgid "3 hours"
+#~ msgstr "3 tuntia"
+
+#~ msgid "30 minutes"
+#~ msgstr "30 minuuttia"
+
+#~ msgid "32 Mb"
+#~ msgstr "32 Mb"
+
+#~ msgid "4 hours"
+#~ msgstr "4 tuntia"
+
+#~ msgid "4:3"
+#~ msgstr "4:3"
+
+#~ msgid "4K"
+#~ msgstr "4K"
+
+#~ msgid "5 hours"
+#~ msgstr "5 tuntia"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 minuuttia"
+
+#~ msgid "512 Mb"
+#~ msgstr "512 Mb"
+
+#~ msgid "6 hours"
+#~ msgstr "6 tuntia"
+
+#~ msgid "64 Mb"
+#~ msgstr "64 Mb"
+
+#~ msgid "7 hours"
+#~ msgstr "7 tuntia"
+
+#~ msgid "8 hours"
+#~ msgstr "8 tuntia"
+
+#~ msgid "8K"
+#~ msgstr "8K"
+
+#~ msgid "FHD"
+#~ msgstr "FHD"
+
+#~ msgid "HD"
+#~ msgstr "HD"
+
+#~ msgid "Please select a subservice..."
+#~ msgstr "Valitse alipalvelu."
 
 #~ msgid "All slots"
 #~ msgstr "Kaikki paikat"

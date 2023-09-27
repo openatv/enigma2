@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 20:55+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1156,6 +1156,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d sec"
 msgstr "%d sek"
 
@@ -1527,10 +1533,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-#, fuzzy
-msgid "1 hour"
-msgstr "%d timme"
-
 #
 msgid "1.0"
 msgstr "1.0"
@@ -1543,14 +1545,6 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-#
-#, fuzzy
-msgid "10 minutes"
-msgstr "minuter"
-
-msgid "1024 Mb"
-msgstr ""
-
 msgid "10bit"
 msgstr ""
 
@@ -1558,14 +1552,7 @@ msgstr ""
 msgid "12 character"
 msgstr "speciella tecken"
 
-#, fuzzy
-msgid "12 hours"
-msgstr "Timme"
-
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr ""
-
-msgid "128 Mb"
 msgstr ""
 
 #
@@ -1585,14 +1572,6 @@ msgstr ""
 #
 msgid "13 V"
 msgstr "13 V"
-
-#
-#, fuzzy
-msgid "15 minutes"
-msgstr "minuter"
-
-msgid "1536 Mb"
-msgstr ""
 
 msgid "16/9 reset to normal"
 msgstr ""
@@ -1623,9 +1602,6 @@ msgstr "16:9 Letterbox"
 msgid "16:9 PanScan"
 msgstr ""
 
-msgid "16K"
-msgstr ""
-
 #
 msgid "18 V"
 msgstr "18 V"
@@ -1639,18 +1615,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-#, fuzzy
-msgid "2 hours"
-msgstr "Timme"
-
-#
-#, fuzzy
-msgid "2 minutes"
-msgstr "minuter"
-
-msgid "2048 Mb"
-msgstr ""
-
 msgid "23.976"
 msgstr "23.976"
 
@@ -1658,16 +1622,9 @@ msgstr "23.976"
 msgid "24"
 msgstr "24"
 
-#, fuzzy
-msgid "24 hours"
-msgstr "Timme"
-
 #
 msgid "25"
 msgstr "25"
-
-msgid "256 Mb"
-msgstr ""
 
 msgid "29.97"
 msgstr "29.97"
@@ -1704,19 +1661,9 @@ msgstr ""
 msgid "3"
 msgstr "3"
 
-#, fuzzy
-msgid "3 hours"
-msgstr "%d timme"
-
 #
 msgid "30"
 msgstr "30"
-
-msgid "30 minutes"
-msgstr ""
-
-msgid "32 Mb"
-msgstr ""
 
 msgid "3D Mode"
 msgstr "3D läge"
@@ -1734,14 +1681,6 @@ msgstr ""
 msgid "4"
 msgstr "4"
 
-#, fuzzy
-msgid "4 hours"
-msgstr "Timme"
-
-#
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Combined"
 msgstr ""
 
@@ -1756,41 +1695,17 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
-msgid "4K"
-msgstr ""
-
 msgid "4x"
 msgstr ""
 
 msgid "5"
 msgstr "5"
 
-#, fuzzy
-msgid "5 hours"
-msgstr "%d timme"
-
-msgid "5 minutes"
-msgstr ""
-
-msgid "512 Mb"
-msgstr ""
-
 msgid "6"
 msgstr "6"
 
-#, fuzzy
-msgid "6 hours"
-msgstr "%d timme"
-
-msgid "64 Mb"
-msgstr ""
-
 msgid "7"
 msgstr "7"
-
-#, fuzzy
-msgid "7 hours"
-msgstr "%d timme"
 
 msgid "8"
 msgstr "8"
@@ -1798,13 +1713,6 @@ msgstr "8"
 #, fuzzy
 msgid "8 character"
 msgstr "speciella tecken"
-
-#, fuzzy
-msgid "8 hours"
-msgstr "%d timme"
-
-msgid "8K"
-msgstr ""
 
 msgid "8bit"
 msgstr ""
@@ -2652,6 +2560,9 @@ msgstr "Alternativt radioläge"
 #
 msgid "Alternative services tuner priority"
 msgstr "Alternativ tunerprioritering"
+
+msgid "Always"
+msgstr ""
 
 msgid "Always ask"
 msgstr "Fråga alltid"
@@ -4630,6 +4541,11 @@ msgstr ""
 
 msgid "Clear the virtual memory caches"
 msgstr ""
+
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Click the button on your remote you want to change."
 msgstr "Tryck på den knapp på din fjärrkontroll som du vill ändra"
@@ -6711,20 +6627,6 @@ msgstr ""
 msgid "Disk full"
 msgstr "full"
 
-#, fuzzy
-msgid "Storage device full!"
-msgstr "full"
-
-#
-#, fuzzy
-msgid "Storage device not writable!"
-msgstr "Media är inte en skrivbar DVD!"
-
-#
-#, fuzzy
-msgid "Storage device not found!"
-msgstr "ingen CI slot hittad"
-
 #
 msgid "Display 16:9 content as"
 msgstr "Visa 16:9 sändning som"
@@ -7043,6 +6945,9 @@ msgstr "Vill du återställa dina inställningar?"
 msgid "Do you want to resume this playback?"
 msgstr "Vill du återuppta uppspelningen?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -7119,6 +7024,9 @@ msgstr "Ned"
 msgid "Down / Inactive"
 msgstr ""
 
+msgid "Download Image"
+msgstr ""
+
 msgid "Download Plugin"
 msgstr ""
 
@@ -7140,7 +7048,10 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected image"
+msgstr ""
+
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -8116,9 +8027,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Inga uppdateringar tillgängliga. V.v. försök igen senare. "
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
-
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Ett tomt filnamn är inte tillåtet."
@@ -8202,6 +8110,9 @@ msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
 msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
+
+msgid "Error: The selected service can't be recorded!"
 msgstr ""
 
 #, python-format
@@ -8562,9 +8473,6 @@ msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr ""
 
 msgid "FFmpeg version"
-msgstr ""
-
-msgid "FHD"
 msgstr ""
 
 msgid "FIFO"
@@ -9549,9 +9457,6 @@ msgstr ""
 msgid "HARD DISK: "
 msgstr ""
 
-msgid "HD"
-msgstr ""
-
 msgid "HD list"
 msgstr "HD lista"
 
@@ -10110,6 +10015,9 @@ msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr ""
 
 msgid "If 'never', will write crash log despite that for the first crash."
+msgstr ""
+
+msgid "If EPG available"
 msgstr ""
 
 msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
@@ -10852,6 +10760,11 @@ msgstr ""
 #
 msgid "Keep service"
 msgstr "Behåll kanal"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Behåller Filmlistan öppen även under uppspelning av audiofiler"
@@ -14275,10 +14188,6 @@ msgstr ""
 msgid "Please select a sub service..."
 msgstr "Vänligen välj en tjänst..."
 
-#
-msgid "Please select a subservice..."
-msgstr "Vänligen välj en tjänst..."
-
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -15780,7 +15689,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 #
@@ -19050,6 +18959,9 @@ msgstr ""
 msgid "Show subservice selection"
 msgstr "Visa val av tjänst"
 
+msgid "Show subservices *"
+msgstr ""
+
 #, fuzzy
 msgid "Show subtitle quick menu"
 msgstr "Snabbmeny Undertexter"
@@ -19663,9 +19575,6 @@ msgstr ""
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr ""
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Sorbian"
@@ -20136,6 +20045,20 @@ msgstr ""
 msgid "Storage Devices"
 msgstr "Lagringsenheter"
 
+#, fuzzy
+msgid "Storage device full!"
+msgstr "full"
+
+#
+#, fuzzy
+msgid "Storage device not found!"
+msgstr "ingen CI slot hittad"
+
+#
+#, fuzzy
+msgid "Storage device not writable!"
+msgstr "Media är inte en skrivbar DVD!"
+
 #
 msgid "Store position"
 msgstr "Lagra position"
@@ -20396,6 +20319,9 @@ msgstr "Byt till nästa kanal"
 #, fuzzy
 msgid "Switch off the TV to correct input"
 msgstr "Byt TV till korrekt ingång"
+
+msgid "Switch to 720p video"
+msgstr ""
 
 #
 msgid "Switch to HDMI in mode"
@@ -21305,6 +21231,9 @@ msgid "This option allows you choose how to display the remaining/elapsed time f
 msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
+msgstr ""
+
+msgid "This option allows you choose the option for subservice indicator or selection."
 msgstr ""
 
 #, fuzzy
@@ -22557,7 +22486,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -25658,6 +25587,69 @@ msgstr "ja (behåll feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "1 hour"
+#~ msgstr "%d timme"
+
+#
+#, fuzzy
+#~ msgid "10 minutes"
+#~ msgstr "minuter"
+
+#, fuzzy
+#~ msgid "12 hours"
+#~ msgstr "Timme"
+
+#
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "minuter"
+
+#, fuzzy
+#~ msgid "2 hours"
+#~ msgstr "Timme"
+
+#
+#, fuzzy
+#~ msgid "2 minutes"
+#~ msgstr "minuter"
+
+#, fuzzy
+#~ msgid "24 hours"
+#~ msgstr "Timme"
+
+#, fuzzy
+#~ msgid "3 hours"
+#~ msgstr "%d timme"
+
+#, fuzzy
+#~ msgid "4 hours"
+#~ msgstr "Timme"
+
+#
+#~ msgid "4:3"
+#~ msgstr "4:3"
+
+#, fuzzy
+#~ msgid "5 hours"
+#~ msgstr "%d timme"
+
+#, fuzzy
+#~ msgid "6 hours"
+#~ msgstr "%d timme"
+
+#, fuzzy
+#~ msgid "7 hours"
+#~ msgstr "%d timme"
+
+#, fuzzy
+#~ msgid "8 hours"
+#~ msgstr "%d timme"
+
+#
+#~ msgid "Please select a subservice..."
+#~ msgstr "Vänligen välj en tjänst..."
 
 #~ msgid "1080i"
 #~ msgstr "1080i"

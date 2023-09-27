@@ -1,7 +1,6 @@
-from __future__ import absolute_import
 from time import localtime, time, strftime, mktime
 
-from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, eServiceReference, loadPNG, gFont, getDesktop, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
+from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, eServiceReference, loadPNG, gFont, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
 from Components.GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
@@ -1519,7 +1518,7 @@ class EPGList(GUIComponent):
 
 			self.graphicsloaded = True
 
-		test = ['XRnITBD'] #return record, service ref, service name, event id, event title, begin time, duration
+		test = ['XRnITBD']  # return record, service ref, service name, event id, event title, begin time, duration
 
 		if stime is not None:
 			self.time_base = int(stime)
@@ -1564,7 +1563,7 @@ class EPGList(GUIComponent):
 			if service != x[0]:
 				if tmp_list is not None:
 					picon = None if piconIdx == 0 else self.serviceList[serviceIdx][piconIdx]
-					channel = self.serviceList[serviceIdx] if (channelIdx == None) else self.serviceList[serviceIdx][channelIdx]
+					channel = self.serviceList[serviceIdx] if (channelIdx is None) else self.serviceList[serviceIdx][channelIdx]
 					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon, channel))
 					serviceIdx += 1
 				service = x[0]
@@ -1573,7 +1572,7 @@ class EPGList(GUIComponent):
 			tmp_list.append((x[2], x[3], x[4], x[5]))  # (event_id, event_title, begin_time, duration)
 		if tmp_list and len(tmp_list):
 			picon = None if piconIdx == 0 else self.serviceList[serviceIdx][piconIdx]
-			channel = self.serviceList[serviceIdx] if (channelIdx == None) else self.serviceList[serviceIdx][channelIdx]
+			channel = self.serviceList[serviceIdx] if (channelIdx is None) else self.serviceList[serviceIdx][channelIdx]
 			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon, channel))
 			serviceIdx += 1
 
@@ -1636,7 +1635,7 @@ class EPGList(GUIComponent):
 				break
 			index += 1
 
-	def nextPage(self, selectFirstService = False):
+	def nextPage(self, selectFirstService=False):
 		if self.listFirstServiceIndex + self.listRows < len(self.serviceList):
 			self.listFirstServiceIndex += self.listRows
 		else:
@@ -1645,7 +1644,7 @@ class EPGList(GUIComponent):
 		if selectFirstService:
 			self.setCurrentIndex(0)
 
-	def prevPage(self, selectLastService = False):
+	def prevPage(self, selectLastService=False):
 		if self.listFirstServiceIndex - self.listRows >= 0:
 			self.listFirstServiceIndex -= self.listRows
 		else:
@@ -1670,6 +1669,7 @@ class EPGList(GUIComponent):
 			self.nextPage(True)
 		else:
 			self.setCurrentIndex(idx)
+
 
 class TimelineText(GUIComponent):
 	def __init__(self, type=EPG_TYPE_GRAPH, graphic=False):

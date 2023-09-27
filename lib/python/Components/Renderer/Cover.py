@@ -1,6 +1,5 @@
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad
-from Components.Pixmap import Pixmap
 from Components.config import config
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.CurrentService import CurrentService
@@ -72,7 +71,7 @@ class Cover(Renderer):
 	def showCoverCallback(self, picInfo=None):
 		if self.picload:
 			ptr = self.picload.getData()
-			if ptr != None:
+			if ptr is not None:
 				self.instance.setPixmap(ptr)
 				self.instance.show()
 			del self.picload

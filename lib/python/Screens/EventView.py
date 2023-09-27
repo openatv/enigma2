@@ -1,12 +1,11 @@
-from time import localtime, mktime, time, strftime
+from time import localtime, strftime
 
-from enigma import eEPGCache, ePoint, eTimer, eServiceReference
+from enigma import eEPGCache, eTimer, eServiceReference
 
-from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
+from RecordTimer import RecordTimerEntry, parseEvent
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.Label import Label
-from Components.MenuList import MenuList
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins

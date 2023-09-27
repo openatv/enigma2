@@ -1,4 +1,3 @@
-
 from Components.Renderer.AnalogClockLCD import AnalogClockLCD
 
 # copy of AnalogClockLCD

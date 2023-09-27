@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 20:55+0000\n"
+"POT-Creation-Date: 2023-09-25 16:13+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -1143,6 +1143,12 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] ""
 msgstr[1] ""
 
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy, python-format
 msgid "%d sec"
 msgstr "%d second"
@@ -1503,10 +1509,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-#, fuzzy
-msgid "1 hour"
-msgstr "%d hour"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1516,13 +1518,6 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-#, fuzzy
-msgid "10 minutes"
-msgstr "minutes"
-
-msgid "1024 Mb"
-msgstr ""
-
 msgid "10bit"
 msgstr ""
 
@@ -1530,14 +1525,7 @@ msgstr ""
 msgid "12 character"
 msgstr "special characters"
 
-#, fuzzy
-msgid "12 hours"
-msgstr "%d hour"
-
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr ""
-
-msgid "128 Mb"
 msgstr ""
 
 msgid "12V output"
@@ -1555,13 +1543,6 @@ msgstr ""
 
 msgid "13 V"
 msgstr "13 V"
-
-#, fuzzy
-msgid "15 minutes"
-msgstr "minutes"
-
-msgid "1536 Mb"
-msgstr ""
 
 msgid "16/9 reset to normal"
 msgstr ""
@@ -1590,9 +1571,6 @@ msgstr "16:9 Letterbox"
 msgid "16:9 PanScan"
 msgstr ""
 
-msgid "16K"
-msgstr ""
-
 msgid "18 V"
 msgstr "18 V"
 
@@ -1606,17 +1584,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-#, fuzzy
-msgid "2 hours"
-msgstr "%d hour"
-
-#, fuzzy
-msgid "2 minutes"
-msgstr "minutes"
-
-msgid "2048 Mb"
-msgstr ""
-
 msgid "23.976"
 msgstr ""
 
@@ -1625,15 +1592,8 @@ msgid "24"
 msgstr "2"
 
 #, fuzzy
-msgid "24 hours"
-msgstr "%d hour"
-
-#, fuzzy
 msgid "25"
 msgstr "2"
-
-msgid "256 Mb"
-msgstr ""
 
 msgid "29.97"
 msgstr ""
@@ -1670,18 +1630,8 @@ msgid "3"
 msgstr "3"
 
 #, fuzzy
-msgid "3 hours"
-msgstr "%d hour"
-
-#, fuzzy
 msgid "30"
 msgstr "0"
-
-msgid "30 minutes"
-msgstr ""
-
-msgid "32 Mb"
-msgstr ""
 
 #, fuzzy
 msgid "3D Mode"
@@ -1700,13 +1650,6 @@ msgstr ""
 msgid "4"
 msgstr "4"
 
-#, fuzzy
-msgid "4 hours"
-msgstr "%d hour"
-
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Combined"
 msgstr ""
 
@@ -1719,41 +1662,17 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
-msgid "4K"
-msgstr ""
-
 msgid "4x"
 msgstr ""
 
 msgid "5"
 msgstr "5"
 
-#, fuzzy
-msgid "5 hours"
-msgstr "%d hour"
-
-msgid "5 minutes"
-msgstr ""
-
-msgid "512 Mb"
-msgstr ""
-
 msgid "6"
 msgstr "6"
 
-#, fuzzy
-msgid "6 hours"
-msgstr "%d hour"
-
-msgid "64 Mb"
-msgstr ""
-
 msgid "7"
 msgstr "7"
-
-#, fuzzy
-msgid "7 hours"
-msgstr "%d hour"
 
 msgid "8"
 msgstr "8"
@@ -1761,13 +1680,6 @@ msgstr "8"
 #, fuzzy
 msgid "8 character"
 msgstr "special characters"
-
-#, fuzzy
-msgid "8 hours"
-msgstr "%d hour"
-
-msgid "8K"
-msgstr ""
 
 msgid "8bit"
 msgstr ""
@@ -2561,6 +2473,9 @@ msgstr "Evé din numara"
 
 msgid "Alternative services tuner priority"
 msgstr "Alternative services tuner priority"
+
+msgid "Always"
+msgstr ""
 
 msgid "Always ask"
 msgstr "Always ask"
@@ -4490,6 +4405,11 @@ msgstr ""
 
 msgid "Clear the virtual memory caches"
 msgstr ""
+
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Click the button on your remote you want to change."
 msgstr ""
@@ -6495,17 +6415,6 @@ msgstr ""
 msgid "Disk full"
 msgstr ""
 
-msgid "Storage device full!"
-msgstr ""
-
-#, fuzzy
-msgid "Storage device not writable!"
-msgstr "Medium is not a writeable DVD!"
-
-#, fuzzy
-msgid "Storage device not found!"
-msgstr "no CI slots found"
-
 msgid "Display 16:9 content as"
 msgstr "Display 16:9 content as"
 
@@ -6801,6 +6710,9 @@ msgstr "Do you want to restore your settings?"
 msgid "Do you want to resume this playback?"
 msgstr "Do you want to resume this playback?"
 
+msgid "Do you want to select another service?"
+msgstr ""
+
 msgid "Do you want to start a backup now?"
 msgstr ""
 
@@ -6871,6 +6783,9 @@ msgstr ""
 msgid "Down / Inactive"
 msgstr ""
 
+msgid "Download Image"
+msgstr ""
+
 msgid "Download Plugin"
 msgstr ""
 
@@ -6892,7 +6807,10 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download the selected list of plugins"
+msgid "Download the selected image"
+msgstr ""
+
+msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7818,9 +7736,6 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "No updates available. Please try again later."
 
-msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Error: An empty filename is illegal!"
 
@@ -7899,6 +7814,9 @@ msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
 
 msgid "Error: The root file system and system directories can't be renamed!"
+msgstr ""
+
+msgid "Error: The selected service can't be recorded!"
 msgstr ""
 
 #, python-format
@@ -8239,9 +8157,6 @@ msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr ""
 
 msgid "FFmpeg version"
-msgstr ""
-
-msgid "FHD"
 msgstr ""
 
 msgid "FIFO"
@@ -9183,9 +9098,6 @@ msgstr ""
 msgid "HARD DISK: "
 msgstr ""
 
-msgid "HD"
-msgstr ""
-
 msgid "HD list"
 msgstr "HD list"
 
@@ -9720,6 +9632,9 @@ msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr ""
 
 msgid "If 'never', will write crash log despite that for the first crash."
+msgstr ""
+
+msgid "If EPG available"
 msgstr ""
 
 msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
@@ -10426,6 +10341,11 @@ msgstr ""
 #, fuzzy
 msgid "Keep service"
 msgstr "Hizmeté Nu girédi"
+
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -13649,9 +13569,6 @@ msgstr ""
 msgid "Please select a sub service..."
 msgstr "Please select a sub service..."
 
-msgid "Please select a subservice..."
-msgstr "Please select a subservice..."
-
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -15061,7 +14978,7 @@ msgstr ""
 msgid "Remove the current bookmark"
 msgstr ""
 
-msgid "Remove the selected list of plugins"
+msgid "Remove the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Remove timer"
@@ -18204,6 +18121,9 @@ msgstr ""
 msgid "Show subservice selection"
 msgstr ""
 
+msgid "Show subservices *"
+msgstr ""
+
 #, fuzzy
 msgid "Show subtitle quick menu"
 msgstr "Subtitle alignment"
@@ -18785,9 +18705,6 @@ msgstr ""
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr ""
 
-msgid "Some plugins are not available:"
-msgstr ""
-
 #, fuzzy
 msgid "Sorbian"
 msgstr "Serbian"
@@ -19227,6 +19144,17 @@ msgstr ""
 msgid "Storage Devices"
 msgstr "List of storage devices"
 
+msgid "Storage device full!"
+msgstr ""
+
+#, fuzzy
+msgid "Storage device not found!"
+msgstr "no CI slots found"
+
+#, fuzzy
+msgid "Storage device not writable!"
+msgstr "Medium is not a writeable DVD!"
+
 msgid "Store position"
 msgstr "Store position"
 
@@ -19473,6 +19401,9 @@ msgstr "Switch next channel"
 #, fuzzy
 msgid "Switch off the TV to correct input"
 msgstr "Switch TV to correct input"
+
+msgid "Switch to 720p video"
+msgstr ""
 
 msgid "Switch to HDMI in mode"
 msgstr ""
@@ -20347,6 +20278,9 @@ msgid "This option allows you choose how to display the remaining/elapsed time f
 msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
+msgstr ""
+
+msgid "This option allows you choose the option for subservice indicator or selection."
 msgstr ""
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
@@ -21531,7 +21465,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
-msgid "Update the selected list of plugins"
+msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -24460,6 +24394,64 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "1 hour"
+#~ msgstr "%d hour"
+
+#, fuzzy
+#~ msgid "10 minutes"
+#~ msgstr "minutes"
+
+#, fuzzy
+#~ msgid "12 hours"
+#~ msgstr "%d hour"
+
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "minutes"
+
+#, fuzzy
+#~ msgid "2 hours"
+#~ msgstr "%d hour"
+
+#, fuzzy
+#~ msgid "2 minutes"
+#~ msgstr "minutes"
+
+#, fuzzy
+#~ msgid "24 hours"
+#~ msgstr "%d hour"
+
+#, fuzzy
+#~ msgid "3 hours"
+#~ msgstr "%d hour"
+
+#, fuzzy
+#~ msgid "4 hours"
+#~ msgstr "%d hour"
+
+#~ msgid "4:3"
+#~ msgstr "4:3"
+
+#, fuzzy
+#~ msgid "5 hours"
+#~ msgstr "%d hour"
+
+#, fuzzy
+#~ msgid "6 hours"
+#~ msgstr "%d hour"
+
+#, fuzzy
+#~ msgid "7 hours"
+#~ msgstr "%d hour"
+
+#, fuzzy
+#~ msgid "8 hours"
+#~ msgstr "%d hour"
+
+#~ msgid "Please select a subservice..."
+#~ msgstr "Please select a subservice..."
 
 #~ msgid "16:10"
 #~ msgstr "16:10"

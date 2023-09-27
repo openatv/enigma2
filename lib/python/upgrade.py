@@ -1,4 +1,3 @@
-from __future__ import print_function
 import os
 from subprocess import Popen, PIPE
 
@@ -69,7 +68,7 @@ if stderr != "":
 
 # read configuration
 try:
-	f = open("/etc/enigma2/settings", "r")
+	f = open("/etc/enigma2/settings")
 	lines = f.readlines()
 	f.close()
 except:

@@ -5,7 +5,7 @@ from Components.Element import cached
 class ValueRange(Converter):
 	def __init__(self, arg):
 		Converter.__init__(self, arg)
-		(self.lower, self.upper) = [int(x) for x in arg.split(',')]
+		(self.lower, self.upper) = (int(x) for x in arg.split(','))
 
 	@cached
 	def getBoolean(self):

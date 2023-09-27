@@ -7,7 +7,6 @@ from enigma import eDVBVolumecontrol, eServiceReference, iPlayableService, iServ
 from ServiceReference import ServiceReference
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelectionNumber, ConfigSubsection, ConfigYesNo, NoSave, config, getConfigListEntry
-from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
 from Screens.ChannelSelection import ChannelSelectionBase, OFF
@@ -59,7 +58,7 @@ class VolumeAdjust(Setup):
 		self.serviceVolume = self.volumeControl.getVolume()
 		self.normalVolume = VolumeInstance.getNormalVolume()
 
-	def createSetup(self):
+	def createSetup(self):  # NOSONAR silence S2638
 		self.list = []
 		Setup.createSetup(self)
 		volumeList = self["config"].getList()

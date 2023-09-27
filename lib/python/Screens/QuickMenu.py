@@ -46,7 +46,7 @@ SATFINDER = isPluginInstalled("Satfinder")
 
 def isFileSystemSupported(filesystem):
 	try:
-		for fs in open("/proc/filesystems", "r"):
+		for fs in open("/proc/filesystems"):
 			if fs.strip().endswith(filesystem):
 				return True
 		return False
@@ -208,7 +208,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.sublist.append(QuickSubMenuEntryComponent("Network Wizard", _("Configure your Network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
 		if len(self.adapters) > 1:  # show only adapter selection if more as 1 adapter is installed
 			self.sublist.append(QuickSubMenuEntryComponent("Network Adapter Selection", _("Select Lan/Wlan"), _("Setup your network interface. If no Wlan stick is used, you only can select Lan")))
-		if not self.activeInterface == None:  # show only if there is already a adapter up
+		if self.activeInterface is not None:  # show only if there is already a adapter up
 			self.sublist.append(QuickSubMenuEntryComponent("Network Interface", _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network Restart", _("Restart network to with current setup"), _("Restart network and remount connections")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network Services", _("Setup Network Services"), _("Setup Network Services (Samba, Ftp, NFS, ...)")))
@@ -570,7 +570,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.session.open(MessageBox, _("Backup done.") if retval else _("Backup failed!"), MessageBox.TYPE_INFO if retval else MessageBox.TYPE_ERROR, timeout=10)
 
 	def startRestore(self, ret=False):
-		if (ret == True):
+		if (ret is True):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
 
@@ -666,7 +666,7 @@ class QuickMenuDevices(Screen):
 		def swapCallback(data, retVal, extraArgs):
 			list2 = []
 			swapdevices = data.replace("\n", "").split("/")
-			with open("/proc/partitions", "r") as fd:
+			with open("/proc/partitions") as fd:
 				for line in fd.readlines():
 					parts = line.strip().split()
 					if not parts:
@@ -700,7 +700,7 @@ class QuickMenuDevices(Screen):
 			name = _("HARD DISK: ")
 			myPixmap = "/usr/share/enigma2/icons/dev_hdd.png"
 		name = name + model
-		with open("/proc/mounts", "r") as fd:
+		with open("/proc/mounts") as fd:
 			for line in fd.readlines():
 				if line.find(device) != -1:
 					parts = line.strip().split()
@@ -719,7 +719,7 @@ class QuickMenuDevices(Screen):
 						d1 = _("None")
 						dtype = _("unavailable")
 						rw = _("None")
-		with open("/proc/partitions", "r") as fd:
+		with open("/proc/partitions") as fd:
 			for line in fd.readlines():
 				if line.find(device) != -1:
 					parts = line.strip().split()

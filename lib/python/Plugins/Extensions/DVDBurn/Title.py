@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.config import ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection
 from . import TitleCutter
 
@@ -16,7 +15,7 @@ class Title:
 		self.properties = ConfigSubsection()
 		self.properties.menutitle = ConfigText(fixed_size=False, visible_width=80)
 		self.properties.menusubtitle = ConfigText(fixed_size=False, visible_width=80)
-		self.properties.aspect = ConfigSelection(choices=[("4:3", _("4:3")), ("16:9", _("16:9"))])
+		self.properties.aspect = ConfigSelection(choices=[("4:3", "4:3"), ("16:9", "16:9")])
 		self.properties.widescreen = ConfigSelection(choices=[("nopanscan", "nopanscan"), ("noletterbox", "noletterbox")])
 		self.properties.autochapter = ConfigInteger(default=0, limits=(0, 60))
 		self.properties.audiotracks = ConfigSubList()
@@ -43,7 +42,7 @@ class Title:
 		from os import path
 		from enigma import eServiceCenter, iServiceInformation
 		from ServiceReference import ServiceReference
-		from time import localtime, time
+		from time import localtime
 		self.source = service
 		serviceHandler = eServiceCenter.getInstance()
 		info = serviceHandler.info(service)
@@ -126,7 +125,7 @@ class Title:
 		# our demuxer expects *strictly* IN,OUT lists.
 		currently_in = not any(type == CUT_TYPE_IN for pts, type in self.cuesheet)
 		if currently_in:
-			self.cutlist.append(0) # emulate "in" at first
+			self.cutlist.append(0)  # emulate "in" at first
 
 		for (pts, type) in self.cuesheet:
 			#print "pts=", pts, "type=", type, "accumulated_in=", accumulated_in, "accumulated_at=", accumulated_at, "last_in=", last_in

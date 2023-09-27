@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 from skin import parseColor

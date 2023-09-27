@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.config import config, ConfigBoolean
 from Screens.ChoiceBox import ChoiceBox
 from Plugins.Plugin import PluginDescriptor
@@ -12,7 +11,7 @@ import Tools.Notifications
 config.misc.fsbl_update_never = ConfigBoolean(default=False)
 
 
-class FSBLUpdateHandler(object):
+class FSBLUpdateHandler:
 	def __init__(self):
 		self._boxtype = HardwareInfo().get_device_name()
 		self._session = None

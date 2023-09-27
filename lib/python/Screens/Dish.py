@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
 from Screens.Screen import Screen
 from Components.BlinkingPixmap import BlinkingPixmapConditional
-from Components.Pixmap import Pixmap
 from Components.config import config, ConfigInteger
 from Components.Label import Label
 from Components.ServiceEventTracker import ServiceEventTracker
@@ -10,7 +8,6 @@ from Components.Sources.Boolean import Boolean
 from enigma import eDVBSatelliteEquipmentControl, eTimer, iPlayableService, eServiceCenter, iServiceInformation
 from Components.NimManager import nimmanager
 from Components.Sources.FrontendStatus import FrontendStatus
-from ServiceReference import ServiceReference
 
 INVALID_POSITION = 9999
 config.misc.lastrotorposition = ConfigInteger(INVALID_POSITION)
@@ -241,8 +238,8 @@ class Dish(Screen):
 			return "N/A"
 		if orbpos > 1800:
 			orbpos = 3600 - orbpos
-			return "%d.%d%sW" % (orbpos / 10, orbpos % 10, u"\u00B0")
-		return "%d.%d%sE" % (orbpos / 10, orbpos % 10, u"\u00B0")
+			return "%d.%d%sW" % (orbpos / 10, orbpos % 10, "\u00B0")
+		return "%d.%d%sE" % (orbpos / 10, orbpos % 10, "\u00B0")
 
 	def FormatTurnTime(self, time):
 		t = abs(time)

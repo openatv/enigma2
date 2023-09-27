@@ -52,7 +52,7 @@ def timerSetupHook(self):
 		timerentry_vpsplugin_enabled_index = 0
 	self.timerVps_enabled_Entry = None
 	try:
-		if self.timerType.value != "zap" and self.timerRepeat.value == "once" and config.plugins.vps.enabled.value == True:
+		if self.timerType.value != "zap" and self.timerRepeat.value == "once" and config.plugins.vps.enabled.value is True:
 			self.timerVps_enabled_Entry = getConfigListEntry(_("Enable VPS"), self.timerentry_vpsplugin_enabled)
 			self.list.append(self.timerVps_enabled_Entry)
 

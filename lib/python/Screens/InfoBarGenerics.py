@@ -1,6 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
-
 from bisect import insort
 from datetime import datetime
 from itertools import groupby
@@ -184,7 +181,7 @@ def reload_subservice_groupslist(force=False):
 			groupedservices = "/etc/enigma2/groupedservices"
 			if not isfile(groupedservices):
 				groupedservices = "/usr/share/enigma2/groupedservices"
-			subservice_groupslist = [list(g) for k, g in groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x:not x) if not k]
+			subservice_groupslist = [list(g) for k, g in groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x: not x) if not k]
 		except:
 			subservice_groupslist = []
 
@@ -799,7 +796,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.showPiP()
 
 	def connectShowHideNotifier(self, fnc):
-		if not fnc in self.onShowHideNotifiers:
+		if fnc not in self.onShowHideNotifiers:
 			self.onShowHideNotifiers.append(fnc)
 
 	def disconnectShowHideNotifier(self, fnc):
@@ -998,7 +995,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		closedScreen = self.dlg_stack.pop()
 		if self.eventView and closedScreen == self.eventView:
 			self.eventView = None
-		if ret == True or ret == 'close':
+		if ret is True or ret == 'close':
 			dlgs = len(self.dlg_stack)
 			if dlgs > 0:
 				self.dlg_stack[dlgs - 1].close(dlgs > 1)
@@ -1255,14 +1252,14 @@ class InfoBarNumberZap:
 				bouquet = eServiceReference(bqrootstr)
 				bouquetlist = serviceHandler.list(bouquet)
 
-				if not bouquetlist is None:
+				if bouquetlist is not None:
 					while True:
 						bouquet = bouquetlist.getNext()
 						if bouquet.flags & eServiceReference.isDirectory:
 							self.servicelist.clearPath()
 							self.servicelist.setRoot(bouquet)
 							servicelist = serviceHandler.list(bouquet)
-							if not servicelist is None:
+							if servicelist is not None:
 								serviceIterator = servicelist.getNext()
 								while serviceIterator.valid():
 									service, bouquet2 = self.searchNumber(config.usage.panicchannel.value)
@@ -1538,6 +1535,7 @@ class InfoBarChannelSelection:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
 				if prev:
+					isIPTV = "://" in prev.getPath()  # Workaround:  ignore IPTV channel streaming
 					prev = prev.toString()
 					while True:
 						if config.usage.quickzap_bouquet_change.value and self.servicelist.atBegin():
@@ -1548,9 +1546,9 @@ class InfoBarChannelSelection:
 						cur = self.servicelist.getCurrentSelection()
 						if cur:
 							if self.servicelist.dopipzap:
-								isPlayable = self.session.pip.isPlayableForPipService(cur)
+								isPlayable = isIPTV or self.session.pip.isPlayableForPipService(cur)
 							else:
-								isPlayable = isPlayableForCur(cur)
+								isPlayable = isIPTV or isPlayableForCur(cur)
 						if cur and (cur.toString() == prev or isPlayable):
 							break
 			else:
@@ -1568,6 +1566,7 @@ class InfoBarChannelSelection:
 			if self.servicelist2.inBouquet():
 				prev = self.servicelist2.getCurrentSelection()
 				if prev:
+					isIPTV = "://" in prev.getPath()  # Workaround:  ignore IPTV channel streaming
 					prev = prev.toString()
 					while True:
 						if config.usage.quickzap_bouquet_change.value and self.servicelist2.atBegin():
@@ -1578,9 +1577,9 @@ class InfoBarChannelSelection:
 						cur = self.servicelist2.getCurrentSelection()
 						if cur:
 							if ChannelSelectionInstance.dopipzap:
-								isPlayable = self.session.pip.isPlayableForPipService(cur)
+								isPlayable = isIPTV or self.session.pip.isPlayableForPipService(cur)
 							else:
-								isPlayable = isPlayableForCur(cur)
+								isPlayable = isIPTV or isPlayableForCur(cur)
 						if cur and (cur.toString() == prev or isPlayable):
 							break
 			else:
@@ -1599,6 +1598,7 @@ class InfoBarChannelSelection:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
 				if prev:
+					isIPTV = "://" in prev.getPath()  # Workaround:  ignore IPTV channel streaming
 					prev = prev.toString()
 					while True:
 						if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
@@ -1609,9 +1609,9 @@ class InfoBarChannelSelection:
 						cur = self.servicelist.getCurrentSelection()
 						if cur:
 							if self.servicelist.dopipzap:
-								isPlayable = self.session.pip.isPlayableForPipService(cur)
+								isPlayable = isIPTV or self.session.pip.isPlayableForPipService(cur)
 							else:
-								isPlayable = isPlayableForCur(cur)
+								isPlayable = isIPTV or isPlayableForCur(cur)
 						if cur and (cur.toString() == prev or isPlayable):
 							break
 			else:
@@ -1628,6 +1628,7 @@ class InfoBarChannelSelection:
 			if self.servicelist2.inBouquet():
 				prev = self.servicelist2.getCurrentSelection()
 				if prev:
+					isIPTV = "://" in prev.getPath()  # Workaround:  ignore IPTV channel streaming
 					prev = prev.toString()
 					while True:
 						if config.usage.quickzap_bouquet_change.value and self.servicelist2.atEnd():
@@ -1638,9 +1639,9 @@ class InfoBarChannelSelection:
 						cur = self.servicelist2.getCurrentSelection()
 						if cur:
 							if ChannelSelectionInstance.dopipzap:
-								isPlayable = self.session.pip.isPlayableForPipService(cur)
+								isPlayable = isIPTV or self.session.pip.isPlayableForPipService(cur)
 							else:
-								isPlayable = isPlayableForCur(cur)
+								isPlayable = isIPTV or isPlayableForCur(cur)
 						if cur and (cur.toString() == prev or isPlayable):
 							break
 			else:
@@ -1956,7 +1957,7 @@ class InfoBarEPG:
 	def getBouquetServices(self, bouquet):
 		services = []
 		servicelist = eServiceCenter.getInstance().list(bouquet)
-		if not servicelist is None:
+		if servicelist is not None:
 			while True:
 				service = servicelist.getNext()
 				if not service.valid():  # check if end of list
@@ -1979,7 +1980,7 @@ class InfoBarEPG:
 			self.bouquetSel = None
 		elif self.eventView and closedScreen == self.eventView:
 			self.eventView = None
-		if ret == True or ret == 'close':
+		if ret is True or ret == 'close':
 			dlgs = len(self.dlg_stack)
 			if dlgs > 0:
 				self.dlg_stack[dlgs - 1].close(dlgs > 1)
@@ -3047,7 +3048,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 
 	def __timeshiftEventName(self, state):
 		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying)):
-			readmetafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying), "r")
+			readmetafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying))
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
@@ -3756,7 +3757,7 @@ class InfoBarInstantRecord:
 		recording.marginAfter = (config.recording.margin_after.value * 60) if event and limitEvent else 0
 		recording.eventEnd = recording.end - recording.marginAfter
 
-		if event is None or limitEvent == False:
+		if event is None or limitEvent is False:
 			recording.autoincrease = True
 			recording.setAutoincreaseEnd()
 
@@ -3804,7 +3805,7 @@ class InfoBarInstantRecord:
 		list = []
 		recording = self.recording[:]
 		for x in recording:
-			if not x in self.session.nav.RecordTimer.timer_list:
+			if x not in self.session.nav.RecordTimer.timer_list:
 				self.recording.remove(x)
 			elif x.dontSave and x.isRunning():
 				list.append((x, False))
@@ -4288,8 +4289,8 @@ class InfoBarAspectSelection:
 				("--", ""),
 				(_("Normal"), "0"),
 				(_("Full Stretch"), "1"),
-				(_("4:3"), "2"),
-				(_("16:9"), "3"),
+				("4:3", "2"),
+				("16:9", "3"),
 				(_("Non-Linear"), "4"),
 				(_("Normal No ScaleUp"), "5"),
 				(_("4:3 Ignore"), "6"),
@@ -4573,7 +4574,7 @@ class InfoBarCueSheetSupport:
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
 	def playLastCB(self, answer):
-		if answer == True and self.resume_point:
+		if answer is True and self.resume_point:
 			self.doSeek(self.resume_point)
 		self.hideAfterResume()
 
@@ -4814,7 +4815,7 @@ class InfoBarTeletextPlugin:
 		self.teletext_plugin and self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
 
 
-class InfoBarSubtitleSupport(object):
+class InfoBarSubtitleSupport:
 	def __init__(self):
 		object.__init__(self)
 		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions", {

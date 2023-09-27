@@ -1,7 +1,7 @@
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC
 from Components.NimManager import nimmanager
 
-SIGN = u"\u00B0"
+SIGN = "\u00B0"
 
 
 def orbpos(pos):

@@ -1,9 +1,9 @@
 from Components.AVSwitch import iAVSwitch as avSwitch
-from Components.config import ConfigBoolean, config, configfile
+from Components.config import config, configfile
 from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import ShowRemoteControl
 from Screens.Wizard import WizardSummary, Wizard
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
+from Tools.Directories import SCOPE_SKINS, resolveFilename
 
 
 class VideoWizard(Wizard, ShowRemoteControl):

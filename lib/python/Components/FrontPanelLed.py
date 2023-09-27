@@ -32,7 +32,7 @@ config.fp.led.shutdown_color = ConfigSelection(colors, default="0xFF5500")
 frontPanelLed = None
 
 
-class FrontPanelLed(object):
+class FrontPanelLed:
 	BLINK_PATH = "/proc/stb/fp/led_blink"
 	BLINK_DEFAULT = 0x0710ff
 

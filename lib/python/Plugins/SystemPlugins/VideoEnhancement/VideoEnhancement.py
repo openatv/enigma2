@@ -1,4 +1,3 @@
-from __future__ import print_function
 from os import path as os_path
 from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
 from Components.SystemInfo import BoxInfo
@@ -308,7 +307,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			file = open("/proc/stb/video/hdmi_colorspace_choices", "r")
+			file = open("/proc/stb/video/hdmi_colorspace_choices")
 			modes = file.readline().split()
 			file.close()
 			config.pep.color_space = ConfigSelection(modes, modes[0])

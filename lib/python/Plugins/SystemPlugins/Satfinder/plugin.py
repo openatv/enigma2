@@ -1,6 +1,4 @@
-from __future__ import print_function
-from enigma import eDVBResourceManager,\
-	eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC, iDVBFrontend
+from enigma import eDVBResourceManager, eDVBFrontendParametersSatellite, iDVBFrontend
 
 from Screens.ScanSetup import ScanSetup, buildTerTransponder
 from Screens.ServiceScan import ServiceScan
@@ -9,10 +7,10 @@ from Plugins.Plugin import PluginDescriptor
 
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.ActionMap import ActionMap
-from Components.NimManager import nimmanager, getConfigSatlist
-from Components.config import config, ConfigSelection, getConfigListEntry
+from Components.NimManager import nimmanager
+from Components.config import config
 from Components.TuneTest import Tuner
-from Tools.Transponder import getChannelNumber, channel2frequency
+from Tools.Transponder import channel2frequency
 
 
 class Satfinder(ScanSetup, ServiceScan):
@@ -95,7 +93,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if cur == self.tunerEntry:
 			self.feid = int(self.scan_nims.value)
 			self.prepareFrontend()
-			if self.frontend == None and self.session.nav.RecordTimer.isRecording():
+			if self.frontend is None and self.session.nav.RecordTimer.isRecording():
 				slot = nimmanager.nim_slots[self.feid]
 				msg = _("%s not available.") % slot.getSlotName()
 				msg += _("\nRecording in progress.")

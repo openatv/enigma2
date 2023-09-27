@@ -1,16 +1,11 @@
-from __future__ import print_function
 import os
 from Components.Sources.StaticText import StaticText
 from Components.ActionMap import ActionMap
-from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Console import Console
-from Components.Label import Label
-from Components.SystemInfo import SystemInfo
 from Screens.Standby import TryQuitMainloop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import fileExists, fileCheck, pathExists, fileHas
 
 
 class SDswap(Screen):
@@ -56,7 +51,7 @@ class SDswap(Screen):
 
 	def SwaptoNand(self):
 		self.switchtype = "Nand"
-		f = open('/proc/cmdline', 'r').read()
+		f = open('/proc/cmdline').read()
 		if "root=/dev/mmcblk0p1" in f:
 			self.container = Console()
 			self.container.ePopen("dd if=/usr/share/bootargs-nand.bin of=/dev/mtdblock1", self.Unm)
@@ -65,7 +60,7 @@ class SDswap(Screen):
 
 	def SwaptoSD(self):
 		self.switchtype = "mmc"
-		f = open('/proc/cmdline', 'r').read()
+		f = open('/proc/cmdline').read()
 		print("[H9SDswap] switchtype %s cmdline %s" % (self.switchtype, f))
 		if "root=/dev/mmcblk0p1" in f:
 			self.session.open(MessageBox, _("SDcard switch ERROR! - already on mmc"), MessageBox.TYPE_INFO, timeout=20)
@@ -77,7 +72,7 @@ class SDswap(Screen):
 
 	def SwaptoUSB(self):
 		self.switchtype = "usb"
-		f = open('/proc/cmdline', 'r').read()
+		f = open('/proc/cmdline').read()
 		print("[H9SDswap] switchtype %s cmdline %s" % (self.switchtype, f))
 		if "root=/dev/SDA1" in f:
 			self.session.open(MessageBox, _("USB switch ERROR! - already on USB"), MessageBox.TYPE_INFO, timeout=20)

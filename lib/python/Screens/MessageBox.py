@@ -3,7 +3,7 @@ from enigma import eTimer
 from Components.ActionMap import HelpableActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.Pixmap import MultiPixmap, Pixmap
+from Components.Pixmap import MultiPixmap
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary
@@ -32,7 +32,7 @@ class MessageBox(Screen, HelpableScreen):
 	}
 
 	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, list=None, default=True, closeOnAnyKey=False, enableInput=True, msgBoxID=None, typeIcon=None, timeoutDefault=None, windowTitle=None, skinName=None, close_on_any_key=False, enable_input=True, timeout_default=None, title=None, picon=None, skin_name=None, simple=None):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, mandatoryWidgets=["icon", "list", "text"])
 		HelpableScreen.__init__(self)
 		self.text = text
 		self["text"] = Label(text)
@@ -51,10 +51,10 @@ class MessageBox(Screen, HelpableScreen):
 			self["list"].hide()
 			self.list = []
 		self.timeout = timeout
-		if close_on_any_key == True:  # Process legacy close_on_any_key argument.
+		if close_on_any_key is True:  # Process legacy close_on_any_key argument.
 			closeOnAnyKey = True
 		self.closeOnAnyKey = closeOnAnyKey
-		if enable_input == False:  # Process legacy enable_input argument.
+		if enable_input is False:  # Process legacy enable_input argument.
 			enableInput = False
 		if enableInput:
 			if self.list:
@@ -85,19 +85,6 @@ class MessageBox(Screen, HelpableScreen):
 		self.picon = (typeIcon != self.TYPE_NOICON)  # Legacy picon argument to support old skins.
 		if typeIcon:
 			self["icon"] = MultiPixmap()
-			# These lines can go with new skins that only use self["icon"]...
-			self["QuestionPixmap"] = Pixmap()
-			self["QuestionPixmap"].hide()
-			self["InfoPixmap"] = Pixmap()
-			self["InfoPixmap"].hide()
-			self["ErrorPixmap"] = Pixmap()
-			self["ErrorPixmap"].hide()
-			if typeIcon == self.TYPE_YESNO:
-				self["QuestionPixmap"].show()
-			elif typeIcon == self.TYPE_INFO or typeIcon == self.TYPE_WARNING:
-				self["InfoPixmap"].show()
-			elif typeIcon == self.TYPE_ERROR:
-				self["ErrorPixmap"].show()
 		if timeout_default is not None:  # Process legacy timeout_default argument.
 			timeoutDefault = timeout_default
 		self.timeoutDefault = timeoutDefault

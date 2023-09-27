@@ -1,4 +1,3 @@
-from __future__ import print_function
 from datasource import datasource
 
 
@@ -17,7 +16,7 @@ class lamedb(datasource):
 		return [("read file", self.read), ("print all", self.printAll)]
 
 	def read(self):
-		inputfile = open(self.filename, "r")
+		inputfile = open(self.filename)
 		lines = inputfile.readlines()
 		inputfile.close()
 

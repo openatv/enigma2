@@ -12,13 +12,13 @@ class HardwareInfo:
 
 		HardwareInfo.device_name = "unknown"
 		try:
-			file = open("/proc/stb/info/model", "r")
+			file = open("/proc/stb/info/model")
 			HardwareInfo.device_name = file.readline().strip()
 			file.close()
 			if BoxInfo.getItem("brand") == "dags":
 				HardwareInfo.device_name = "dm800se"
 			try:
-				file = open("/proc/stb/info/version", "r")
+				file = open("/proc/stb/info/version")
 				HardwareInfo.device_version = file.readline().strip()
 				file.close()
 			except:
@@ -29,7 +29,7 @@ class HardwareInfo:
 			print("----------------")
 			print("fallback to detect hardware via /proc/cpuinfo!!")
 			try:
-				rd = open("/proc/cpuinfo", "r").read()
+				rd = open("/proc/cpuinfo").read()
 				if "Brcm4380 V4.2" in rd:
 					HardwareInfo.device_name = "dm8000"
 					print("dm8000 detected!")
@@ -56,6 +56,6 @@ class HardwareInfo:
 
 	def linux_kernel(self):
 		try:
-			return open("/proc/version", "r").read().split(' ', 4)[2].split('-', 2)[0]
+			return open("/proc/version").read().split(' ', 4)[2].split('-', 2)[0]
 		except:
 			return "unknown"

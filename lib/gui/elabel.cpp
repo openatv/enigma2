@@ -17,8 +17,7 @@ eLabel::eLabel(eWidget *parent, int markedPos) : eWidget(parent)
 	m_have_shadow_color = 0;
 
 	m_wrap = 1;
-	m_border_size = 0;
-
+	m_text_border_width = 0;
 	m_text_offset = 0;
 }
 
@@ -75,7 +74,7 @@ int eLabel::event(int event, void *data, void *data2)
 		auto position = eRect(x, y, w, h);
 		/* if we don't have shadow, m_shadow_offset will be 0,0 */
 		auto shadowposition = eRect(position.x() - m_shadow_offset.x(), position.y() - m_shadow_offset.y(), position.width() - m_shadow_offset.x(), position.height() - m_shadow_offset.y());
-		painter.renderText(shadowposition, m_text, flags, m_border_color, m_border_size, m_pos, &m_text_offset);
+		painter.renderText(shadowposition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, &m_text_offset);
 
 		if (m_have_shadow_color)
 		{
@@ -120,11 +119,6 @@ void eLabel::setFont(gFont *font)
 	event(evtChangedFont);
 }
 
-gFont *eLabel::getFont()
-{
-	return m_font;
-}
-
 void eLabel::setVAlign(int align)
 {
 	m_valign = align;
@@ -157,23 +151,13 @@ void eLabel::setShadowColor(const gRGB &col)
 	}
 }
 
-void eLabel::setShadowOffset(const ePoint &offset)
+void eLabel::setTextBorderColor(const gRGB &col)
 {
-	m_shadow_offset = offset;
-}
-
-void eLabel::setBorderColor(const gRGB &col)
-{
-	if (m_border_color != col)
+	if (m_text_border_color != col)
 	{
-		m_border_color = col;
+		m_text_border_color = col;
 		invalidate();
 	}
-}
-
-void eLabel::setBorderWidth(int size)
-{
-	m_border_size = size;
 }
 
 void eLabel::setWrap(int wrap)

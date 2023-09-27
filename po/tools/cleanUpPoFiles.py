@@ -1,6 +1,5 @@
 #!/usr/local/bin/python
 
-from __future__ import print_function
 
 """Cleans up PO translation files
 
@@ -40,10 +39,8 @@ import glob
 import polib
 import fnmatch
 import re
-import urllib
 import mmap
 import sys
-from operator import attrgetter
 
 scriptPath = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
 

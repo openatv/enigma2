@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.ServiceScan import ServiceScan
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable, ConfigFloat
@@ -15,7 +13,6 @@ from Tools.Transponder import getChannelNumber, channel2frequency, supportedChan
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParametersATSC, eConsoleAppContainer, eDVBResourceManager, iDVBFrontend
-import six
 
 
 def buildTerTransponder(frequency,
@@ -227,13 +224,14 @@ class CableTransponderSearchSupport:
 		print("cableTransponderSearch finished", retval)
 		self.cable_search_session.close(True)
 
-	def getCableTransponderData(self, str):
-		str = six.ensure_str(str)
+	def getCableTransponderData(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
 		#prepend any remaining data from the previous call
-		str = self.remainingdata + str
+		data = self.remainingdata + data
 		#split in lines
-		lines = str.split('\n')
-		#'str' should end with '\n', so when splitting, the last line should be empty. If this is not the case, we received an incomplete line
+		lines = data.split('\n')
+		#'data' should end with '\n', so when splitting, the last line should be empty. If this is not the case, we received an incomplete line
 		if len(lines[-1]):
 			#remember this data for next time
 			self.remainingdata = lines[-1]
@@ -245,7 +243,7 @@ class CableTransponderSearchSupport:
 			data = line.split()
 			if len(data):
 				if data[0] == 'OK':
-					print(str)
+					print(data)
 					parm = eDVBFrontendParametersCable()
 					qam = {"QAM16": parm.Modulation_QAM16,
 						"QAM32": parm.Modulation_QAM32,
@@ -447,9 +445,10 @@ class TerrestrialTransponderSearchSupport:
 			(freq, bandWidth) = opt
 			self.terrestrialTransponderSearch(freq, bandWidth)
 
-	def getTerrestrialTransponderData(self, str):
-		str = six.ensure_str(str)
-		self.terrestrial_search_data += str
+	def getTerrestrialTransponderData(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
+		self.terrestrial_search_data += data
 
 	def setTerrestrialTransponderData(self):
 		print(self.terrestrial_search_data)
@@ -2022,7 +2021,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 							if req_network in nimmanager.getSatListForNim(nim.slot):
 								tag_dvbs = True
 								nimconfig = ConfigYesNo(default=tag_dvbs_default)
-								if tag_dvbs_default == True:
+								if tag_dvbs_default is True:
 									tag_dvbs_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
@@ -2034,7 +2033,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 							if req_network in nimmanager.getCableDescription(nim.slot):
 								tag_dvbc = True
 								nimconfig = ConfigYesNo(default=tag_dvbc_default)
-								if tag_dvbc_default == True:
+								if tag_dvbc_default is True:
 									tag_dvbc_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
@@ -2046,7 +2045,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 							if req_network in nimmanager.getTerrestrialDescription(nim.slot):
 								tag_dvbt = True
 								nimconfig = ConfigYesNo(default=tag_dvbt_default)
-								if tag_dvbt_default == True:
+								if tag_dvbt_default is True:
 									tag_dvbt_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
@@ -2058,7 +2057,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 							if req_network in nimmanager.getATSCDescription(nim.slot):
 								tag_atsc = True
 								nimconfig = ConfigYesNo(default=tag_atsc_default)
-								if tag_atsc_default == True:
+								if tag_atsc_default is True:
 									tag_atsc_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network

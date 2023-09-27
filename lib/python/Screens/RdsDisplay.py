@@ -1,4 +1,3 @@
-from __future__ import print_function
 from enigma import iPlayableService, iRdsDecoder
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
@@ -84,7 +83,7 @@ class RdsInfoDisplay(Screen):
 			service = self.session.nav.getCurrentService()
 			decoder = service and service.rdsDecoder()
 			mask = decoder and decoder.getRassInteractiveMask()
-			if mask[0] & 1: #rass interactive index page available
+			if mask[0] & 1:  # rass interactive index page available
 				self["RassLogo"].show()
 				self.rassInteractivePossible = True
 				for x in self.onRassInteractivePossibilityChanged:
@@ -161,7 +160,7 @@ class RassInteractive(Screen):
 	def updateSubPagePixmaps(self):
 		service = self.session.nav.getCurrentService()
 		decoder = service and service.rdsDecoder()
-		if not decoder: # this should never happen
+		if not decoder:  # this should never happen
 			print("NO RDS DECODER in showRassPage")
 		else:
 			mask = decoder.getRassInteractiveMask()
@@ -187,7 +186,7 @@ class RassInteractive(Screen):
 	def showRassPage(self, page, subpage):
 		service = self.session.nav.getCurrentService()
 		decoder = service and service.rdsDecoder()
-		if not decoder: # this should never happen
+		if not decoder:  # this should never happen
 			print("NO RDS DECODER in showRassPage")
 		else:
 			decoder.showRassInteractivePic(page, subpage)
@@ -203,7 +202,7 @@ class RassInteractive(Screen):
 		if not masks:
 			service = self.session.nav.getCurrentService()
 			decoder = service and service.rdsDecoder()
-			if not decoder: # this should never happen
+			if not decoder:  # this should never happen
 				print("NO RDS DECODER in getMaskForPage")
 			masks = decoder.getRassInteractiveMask()
 		mask = 0
@@ -258,11 +257,11 @@ class RassInteractive(Screen):
 				tmp = 8
 			else:
 				tmp >>= 1
-			if tmp == cur_bit: # no other subpage avail
+			if tmp == cur_bit:  # no other subpage avail
 				return
-			if mask & tmp: # next subpage found
+			if mask & tmp:  # next subpage found
 				subpage = 0
-				while tmp > 1: # convert bit to subpage
+				while tmp > 1:  # convert bit to subpage
 					subpage += 1
 					tmp >>= 1
 				self.current_subpage = subpage
@@ -287,11 +286,11 @@ class RassInteractive(Screen):
 					tmp <<= 1
 			else:
 				self.skip = 0
-			if tmp == cur_bit: # no other subpage avail
+			if tmp == cur_bit:  # no other subpage avail
 				return
-			if mask & tmp: # next subpage found
+			if mask & tmp:  # next subpage found
 				subpage = 0
-				while tmp > 1: # convert bit to subpage
+				while tmp > 1:  # convert bit to subpage
 					subpage += 1
 					tmp >>= 1
 				self.current_subpage = subpage

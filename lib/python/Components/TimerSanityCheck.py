@@ -3,7 +3,6 @@ from time import gmtime, localtime, mktime, time
 from enigma import eServiceCenter, eServiceReference, getBestPlayableServiceReference, iServiceInformation
 
 import NavigationInstance
-from ServiceReference import ServiceReference
 from timer import TimerEntry
 from Components.config import config
 from Tools.CIHelper import cihelper
@@ -270,7 +269,7 @@ class TimerSanityCheck:
 				else:
 					continue
 				for entry in event[4]:
-					if not entry[1] in self.simultimer:
+					if entry[1] not in self.simultimer:
 						for x in entry[2]:
 							if x in ConflictTunerType:
 								self.simultimer.append(entry[1])

@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from glob import glob
 from os.path import splitext
 
@@ -32,7 +30,6 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarSleepTimer, InfoBarOpenOnTopHelper, InfoBarHandleBsod, \
 	InfoBarHdmi, setResumePoint, delResumePoint
-from Screens.ButtonSetup import InfoBarButtonSetup
 
 profile("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
@@ -169,7 +166,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if self.execing:
 			InfoBarShowHide.serviceStarted(self)
 			self.current_begin_time = 0
-		elif not self.__checkServiceStarted in self.onShown and new:
+		elif self.__checkServiceStarted not in self.onShown and new:
 			self.onShown.append(self.__checkServiceStarted)
 
 	def __checkServiceStarted(self):

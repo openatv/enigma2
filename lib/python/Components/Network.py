@@ -112,17 +112,17 @@ class Network:
 				if split[0] == "address":
 					ifaces[currif]["address"] = list(map(int, split[1].split(".")))
 					if "ip" in self.ifaces[currif]:
-						if self.ifaces[currif]["ip"] != ifaces[currif]["address"] and ifaces[currif]["dhcp"] == False:
+						if self.ifaces[currif]["ip"] != ifaces[currif]["address"] and ifaces[currif]["dhcp"] is False:
 							self.ifaces[currif]["ip"] = list(map(int, split[1].split(".")))
 				if split[0] == "netmask":
 					ifaces[currif]["netmask"] = map(int, split[1].split("."))
 					if "netmask" in self.ifaces[currif]:
-						if self.ifaces[currif]["netmask"] != ifaces[currif]["netmask"] and ifaces[currif]["dhcp"] == False:
+						if self.ifaces[currif]["netmask"] != ifaces[currif]["netmask"] and ifaces[currif]["dhcp"] is False:
 							self.ifaces[currif]["netmask"] = list(map(int, split[1].split(".")))
 				if split[0] == "gateway":
 					ifaces[currif]["gateway"] = map(int, split[1].split("."))
 					if "gateway" in self.ifaces[currif]:
-						if self.ifaces[currif]["gateway"] != ifaces[currif]["gateway"] and ifaces[currif]["dhcp"] == False:
+						if self.ifaces[currif]["gateway"] != ifaces[currif]["gateway"] and ifaces[currif]["dhcp"] is False:
 							self.ifaces[currif]["gateway"] = list(map(int, split[1].split(".")))
 				if split[0] == "pre-up":
 					if "preup" in self.ifaces[currif]:
@@ -167,7 +167,7 @@ class Network:
 
 	def routeFinished(self, result, retval, extra_args):
 		(iface, data, callback) = extra_args
-		ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+		ipRegexp = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 		ipPattern = compile(ipRegexp)
 		ipLinePattern = compile(ipRegexp)
 		for line in result.splitlines():
@@ -199,11 +199,11 @@ class Network:
 			WoW = False
 			if ifacename in self.onlyWoWifaces:
 				WoW = self.onlyWoWifaces[ifacename]
-			if WoW == False and iface["up"] == True:
+			if WoW is False and iface["up"] is True:
 				lines.append("auto %s" % ifacename)
 				self.configuredInterfaces.append(ifacename)
 				self.onlyWoWifaces[ifacename] = False
-			elif WoW == True:
+			elif WoW is True:
 				self.onlyWoWifaces[ifacename] = True
 				lines.append("# Only WakeOnWiFi %s" % ifacename)
 			if iface["dhcp"]:
@@ -241,7 +241,7 @@ class Network:
 			print("[Network] resolv.conf or nameserversdns.conf - writing failed")
 
 	def loadNameserverConfig(self):
-		ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+		ipRegexp = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 		nameserverPattern = compile("nameserver +%s" % ipRegexp)
 		ipPattern = compile(ipRegexp)
 		fileName = self.resolvFile if config.usage.dns.value.lower() in ("dhcp-router") else "/etc/enigma2/nameserversdns.conf"
@@ -613,7 +613,7 @@ class Network:
 		# The r871x_usb_drv on kernel 2.6.12 is not identifiable over /sys/class/net/"ifacename"/wireless so look also inside /proc/net/wireless.
 		device = compile("[a-z]{2,}[0-9]*:")
 		ifnames = []
-		fp = open("/proc/net/wireless", "r")
+		fp = open("/proc/net/wireless")
 		for line in fp:
 			try:
 				ifnames.append(device.search(line).group()[:-1])
@@ -706,7 +706,7 @@ class Network:
 		result = []
 		nameservers = self.getAdapterAttribute(iface, "dns-nameservers")
 		if nameservers:
-			ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+			ipRegexp = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 			ipPattern = compile(ipRegexp)
 			for x in nameservers.split()[1:]:
 				ip = self.regExpMatch(ipPattern, x)

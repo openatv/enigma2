@@ -1,7 +1,6 @@
 from Components.config import config
 from Components.VariableText import VariableText
 from Components.Renderer.Renderer import Renderer
-from Screens.InfoBar import InfoBar
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from enigma import eLabel
 
@@ -27,7 +26,7 @@ class VtiEmuInfo(VariableText, Renderer):
     def getVtiEmuInfo(self):
         if config.misc.ecm_info.value:
             try:
-                file = open(resolveFilename(SCOPE_SYSETC, '/tmp/.emu.info'), 'r')
+                file = open(resolveFilename(SCOPE_SYSETC, '/tmp/.emu.info'))
                 emuversion = file.readline()
                 file.close()
                 return emuversion

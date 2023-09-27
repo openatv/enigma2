@@ -35,7 +35,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 				if line.startswith("#") or line.strip() == "":
 					continue
 				if "=" in line:
-					item, value = [x.strip() for x in line.split("=", 1)]
+					item, value = (x.strip() for x in line.split("=", 1))
 					if item:
 						self.immutableList.append(item)
 						self.enigmaInfoList.append(item)
@@ -52,7 +52,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 				if line.startswith("#") or line.strip() == "":
 					continue
 				if "=" in line:
-					item, value = [x.strip() for x in line.split("=", 1)]
+					item, value = (x.strip() for x in line.split("=", 1))
 					if item:
 						self.enigmaConfList.append(item)
 						if item in self.boxInfo:
@@ -67,7 +67,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		data = []
 		for line in lines:
 			if line.startswith("checksum"):
-				item, value = [x.strip() for x in line.split("=", 1)]
+				item, value = (x.strip() for x in line.split("=", 1))
 			else:
 				data.append(line)
 		data.append("")
@@ -292,7 +292,7 @@ def getBoxName():
 		box = "miraclebox-twin"
 	elif box == "xp1000" and machinename == "sf8 hd":
 		box = "sf8"
-	elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
+	elif box.startswith('et') and box not in ('et8000', 'et8500', 'et8500s', 'et10000'):
 		box = box[0:3] + 'x00'
 	elif box == "odinm9":
 		box = "maram9"
@@ -390,6 +390,7 @@ BoxInfo.setItem("HasExternalPIP", MODEL not in ("et9x00", "et6x00", "et5x00") an
 BoxInfo.setItem("HasFullHDSkinSupport", MACHINEBUILD not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc"))
 BoxInfo.setItem("HasHiSi", pathExists("/proc/hisi"))
 BoxInfo.setItem("hasPIPVisibleProc", fileCheck("/proc/stb/vmpeg/1/visible"))
+BoxInfo.setItem("HasGPT", MODEL in ("dreamone", "dreamtwo") and pathExists("/dev/mmcblk0p7"))
 BoxInfo.setItem("HasMMC", fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda"))
 BoxInfo.setItem("HasSDmmc", MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots()["2"] and "mmcblk" in MTDROOTFS)
 BoxInfo.setItem("HasSDswap", MODEL in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1"))

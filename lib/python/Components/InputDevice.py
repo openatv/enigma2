@@ -7,13 +7,12 @@ from struct import pack
 from enigma import eRCInput
 
 from keyids import KEYIDS, KEYIDNAMES
-from Components.config import ConfigSubsection, ConfigInteger, ConfigSelection, ConfigYesNo, ConfigText, ConfigSlider, config
+from Components.config import ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigText, ConfigSlider, config
 from Components.Console import Console
 from Components.International import international
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileWriteLine, fileReadLines, fileReadXML, resolveFilename, pathExists
 
-from six import ensure_str
 MODULE_NAME = __name__.split(".")[-1]
 
 REMOTE_MODEL = 0
@@ -36,8 +35,7 @@ class InputDevices:
 				_buffer = "\0" * 512
 				self.fd = osopen("/dev/input/%s" % device, O_RDWR | O_NONBLOCK)
 				self.name = ioctl(self.fd, self.EVIOCGNAME(256), _buffer)
-				self.name = self.name[:self.name.find(b"\0")]
-				self.name = ensure_str(self.name)
+				self.name = self.name[:self.name.find(b"\0")].decode()
 				if str(self.name).find("Keyboard") != -1:
 					self.name = 'keyboard'
 				osclose(self.fd)
@@ -162,7 +160,7 @@ class Keyboard:
 				keyboardMapFile = None
 				keyboardMapName = None
 				for line in lines:
-					key, val = [x.strip() for x in line.split("=", 1)]
+					key, val = (x.strip() for x in line.split("=", 1))
 					if key == "kmap":
 						keyboardMapFile = val
 					elif key == "name":

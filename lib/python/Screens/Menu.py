@@ -1,5 +1,5 @@
 from os.path import isdir, isfile
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from enigma import eTimer
 
@@ -49,7 +49,7 @@ imageCache = {}
 lastKey = None
 
 # Read the menu.
-file = open(resolveFilename(SCOPE_SKINS, "menu.xml"), "r")
+file = open(resolveFilename(SCOPE_SKINS, "menu.xml"))
 mdom = parse(file)
 file.close()
 
@@ -538,10 +538,10 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 			else:
 				self["key_green"].setText(_("Move Mode Off"))
 			for entry in self.menuList:
-				if current[WIDGET_KEY] == entry[MENU_KEY] and select == True:
+				if current[WIDGET_KEY] == entry[MENU_KEY] and select is True:
 					self.selectedEntry = current[WIDGET_KEY]
 					break
-				elif current[WIDGET_KEY] == entry[MENU_KEY] and select == False:
+				elif current[WIDGET_KEY] == entry[MENU_KEY] and select is False:
 					self.selectedEntry = None
 					break
 		elif not self.sortMode:

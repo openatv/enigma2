@@ -10,7 +10,7 @@ public:
 	void setText(const std::string &string);
 	void setMarkedPos(int markedPos);
 	void setFont(gFont *font);
-	gFont *getFont();
+	gFont *getFont() { return m_font; }
 
 	enum
 	{
@@ -28,9 +28,11 @@ public:
 
 	void setForegroundColor(const gRGB &col);
 	void setShadowColor(const gRGB &col);
-	void setShadowOffset(const ePoint &offset);
-	void setBorderColor(const gRGB &col);
-	void setBorderWidth(int size);
+	void setShadowOffset(const ePoint &offset) { m_shadow_offset = offset; }
+	void setBorderColor(const gRGB &col) { setTextBorderColor(col); } // WILL BE CHANGED !!!!
+	void setBorderWidth(int size) { setTextBorderWidth(size); }		  // WILL BE CHANGED !!!!
+	void setTextBorderColor(const gRGB &col);
+	void setTextBorderWidth(int size) { m_text_border_width = size; }
 	void setWrap(int wrap);
 	void setNoWrap(int nowrap) { setWrap((nowrap == 1) ? 0 : 1); } // DEPRECATED
 	void clearForegroundColor();
@@ -51,10 +53,10 @@ protected:
 
 private:
 	int m_have_foreground_color, m_have_shadow_color;
-	gRGB m_foreground_color, m_shadow_color, m_border_color;
+	gRGB m_foreground_color, m_shadow_color, m_text_border_color;
 	ePoint m_shadow_offset;
 	eRect m_padding = eRect(0, 0, 0, 0);
-	int m_border_size;
+	int m_text_border_width;
 	int m_wrap;
 
 	enum eLabelEvent

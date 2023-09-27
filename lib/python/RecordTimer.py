@@ -123,7 +123,7 @@ class RecordTimer(Timer):
 		check = True  # Display a message when at least one timer overlaps another one.
 		for timer in timerDom.findall("timer"):
 			newTimer = self.createTimer(timer)
-			if (self.record(newTimer, True, dosave=False) is not None) and (check == True):
+			if (self.record(newTimer, True, dosave=False) is not None) and (check is True):
 				AddPopup(_("Timer overlap in '%s' detected! Please check all the timers.") % TIMER_XML_FILE, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				check = False  # At the moment it is enough if the message is only displayed once.
 
@@ -433,7 +433,7 @@ class RecordTimer(Timer):
 
 	def isRecTimerWakeup(self):
 		global wasRecTimerWakeup
-		wasRecTimerWakeup = int(open(TIMER_FLAG_FILE, "r").read()) and True or False if exists(TIMER_FLAG_FILE) else False  # DEBUG: Use fileReadLine()
+		wasRecTimerWakeup = int(open(TIMER_FLAG_FILE).read()) and True or False if exists(TIMER_FLAG_FILE) else False  # DEBUG: Use fileReadLine()
 		return wasRecTimerWakeup
 
 	def isRecording(self):
@@ -599,7 +599,7 @@ def createRecordTimerEntry(timer):
 	)
 
 
-class RecordTimerEntry(TimerEntry, object):
+class RecordTimerEntry(TimerEntry):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble="notset", record_ecm="notset", rename_repeat=True, isAutoTimer=False, ice_timer_id=None, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None, fixDescription=False, cridSeries=None, cridEpisode=None, cridRecommendation=None):
 		TimerEntry.__init__(self, int(begin), int(end))
 		# print("[RecordTimerEntry] DEBUG: Running init code.")
@@ -713,7 +713,7 @@ class RecordTimerEntry(TimerEntry, object):
 			except Exception as err:
 				print("[RecordTimer] Error: Import 'InfoBar' from 'Screens.InfoBar' failed!  (%s)" % str(err))
 		if exists(TIMER_FLAG_FILE) and not wasRecTimerWakeup:
-			wasRecTimerWakeup = int(open(TIMER_FLAG_FILE, "r").read()) and True or False
+			wasRecTimerWakeup = int(open(TIMER_FLAG_FILE).read()) and True or False
 		nextState = self.state + 1
 		if DEBUG:
 			self.log(5, "Activating state %d." % nextState)
@@ -794,7 +794,7 @@ class RecordTimerEntry(TimerEntry, object):
 				from Screens.InfoBarGenerics import InfoBarPiP
 				from Components.ServiceEventTracker import InfoBarCount
 				InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
-				if InfoBarInstance and InfoBarPiP.pipShown(InfoBarInstance) == True:
+				if InfoBarInstance and InfoBarPiP.pipShown(InfoBarInstance) is True:
 					if config.recording.ask_to_abort_pip.value == "ask":
 						self.log(8, "Asking user to disable PiP.")
 						self.messageBoxAnswerPending = True

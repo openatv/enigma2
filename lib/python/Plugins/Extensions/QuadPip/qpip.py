@@ -1,4 +1,3 @@
-
 from pickle import dump, load
 from os import access, F_OK, R_OK
 from enigma import eServiceReference, eTimer
@@ -32,7 +31,7 @@ def setDecoderMode(value):
 		newval = None
 		with open(ENABLE_QPIP_PROCPATH, "w") as fd:
 			fd.write(value)
-		with open(ENABLE_QPIP_PROCPATH, "r") as fd:
+		with open(ENABLE_QPIP_PROCPATH) as fd:
 			newval = fd.read().strip()
 		return newval == value
 

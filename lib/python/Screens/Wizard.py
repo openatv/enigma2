@@ -722,7 +722,7 @@ class Wizard(Screen, HelpableScreen):
 		return False
 
 	def afterAsyncCode(self):
-		if not self.updateValues in self.onShown:
+		if self.updateValues not in self.onShown:
 			self.onShown.append(self.updateValues)
 		if self.codeAfter:
 			if self.wizard[self.prevStep]["nextStep"]:

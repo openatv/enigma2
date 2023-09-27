@@ -1,6 +1,5 @@
 from os import X_OK, access, chmod
 from time import localtime, strftime, time
-import six
 from enigma import eConsoleAppContainer, eEnv, eEPGCache, eServiceReference, eTimer, getBestPlayableServiceReference
 
 import NavigationInstance
@@ -47,8 +46,9 @@ class vps_timer:
 			self.program_try_search_running = False
 			self.stop_simulation()
 
-	def program_dataAvail(self, str):
-		str = six.ensure_str(str)
+	def program_dataAvail(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
 		if self.timer is None or self.timer.state == TimerEntry.StateEnded or self.timer.cancelled:
 			self.program_abort()
 			self.stop_simulation()
@@ -60,7 +60,7 @@ class vps_timer:
 			self.stop_simulation()
 			return
 
-		lines = str.split("\n")
+		lines = data.split("\n")
 		for line in lines:
 			data = line.split()
 			if len(data) == 0:
@@ -385,7 +385,7 @@ class vps_timer:
 								self.nextExecution = 60
 
 							# Bei Overwrite versuchen ohne Fragen auf Sender zu schalten
-							if self.timer.vpsplugin_overwrite == True:
+							if self.timer.vpsplugin_overwrite is True:
 								cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 								if cur_ref and not cur_ref.getPath() and self.rec_ref.toCompareString() != cur_ref.toCompareString():
 									self.timer.log(9, "[VPS-Plugin] zap without asking (simulation)")
@@ -439,7 +439,7 @@ class vps_timer:
 			self.stop_simulation()
 			return -1
 
-		if self.timer.vpsplugin_enabled == False or config.plugins.vps.enabled.value == False:
+		if self.timer.vpsplugin_enabled is False or config.plugins.vps.enabled.value is False:
 			if self.activated_auto_increase:
 				self.timer.autoincrease = False
 			self.program_abort()
@@ -453,7 +453,7 @@ class vps_timer:
 		else:
 			initial_time = config.plugins.vps.initial_time.value * 60
 
-		if self.timer.vpsplugin_overwrite == True:
+		if self.timer.vpsplugin_overwrite is True:
 			if self.timer.state == TimerEntry.StateWaiting or self.timer.state == TimerEntry.StatePrepared:
 				# Startzeit verschieben
 				if (self.timer.begin - 60) < time():
@@ -533,13 +533,13 @@ class vps:
 		nextExecution = self.max_activation
 
 		# nach den Timern schauen und ggf. zur Liste hinzufügen
-		if config.plugins.vps.enabled.value == True:
+		if config.plugins.vps.enabled.value is True:
 			now = time()
 			try:
 				for timer in self.session.nav.RecordTimer.timer_list:
 					n = timer.begin - now - (config.plugins.vps.initial_time.value * 60) - 120
 					if n <= self.max_activation:
-						if timer.vpsplugin_enabled == True and timer not in self.current_timers_list and not timer.justplay and not timer.repeated and not timer.disabled:
+						if timer.vpsplugin_enabled is True and timer not in self.current_timers_list and not timer.justplay and not timer.repeated and not timer.disabled:
 							self.addTimerToList(timer)
 					elif (timer.begin - now) > 4 * 3600:
 						break
@@ -583,7 +583,7 @@ class vps:
 				next_timer.vpsplugin_wasTimerWakeup = True
 
 	def NextWakeup(self):
-		if config.plugins.vps.enabled.value == False or config.plugins.vps.allow_wakeup.value == False:
+		if config.plugins.vps.enabled.value is False or config.plugins.vps.allow_wakeup.value is False:
 			return -1
 
 		try:

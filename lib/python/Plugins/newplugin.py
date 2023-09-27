@@ -73,7 +73,7 @@ except OSError as err:
 	else:
 		print("Error %d: Unable to create plugin directory '%s'!  (%s)" % (err.errno, pluginPath, err.strerror))
 		exit(err.errno)
-with open(join(category, "Makefile.am"), "r") as fd:
+with open(join(category, "Makefile.am")) as fd:
 	lines = fd.read().splitlines()
 	lines[-1] = "%s %s" % (lines[-1], internalName)
 	lines.append("")
@@ -81,7 +81,7 @@ with open(join(category, "Makefile.am"), "w") as fd:
 	fd.write("\n".join(lines))
 lines = []
 print("Updating file 'configure.ac'...")
-with open("../../../configure.ac", "r") as fd:
+with open("../../../configure.ac") as fd:
 	lines = fd.read().splitlines()
 	for count, line in enumerate(lines):
 		if line.strip() == "lib/python/Plugins/%s/Makefile" % category:

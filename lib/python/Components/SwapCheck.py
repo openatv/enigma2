@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Components.Console import Console
 import os
 
@@ -45,7 +43,7 @@ class SwapCheck:
 			if os.path.exists(swapdevice):
 				print("[SwapCheck] Removing old swapfile")
 				self.Console.ePopen("swapoff " + swapdevice + " && rm " + swapdevice)
-			f = open('/proc/meminfo', 'r')
+			f = open('/proc/meminfo')
 			for line in f.readlines():
 				if line.find('MemFree') != -1:
 					parts = line.strip().split()

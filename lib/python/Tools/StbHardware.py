@@ -57,11 +57,11 @@ def getFPVersion():
 		if BoxInfo.getItem("brand") == "blackbox" and isfile("/proc/stb/info/micomver"):
 			version = fileReadLine("/proc/stb/info/micomver", source=MODULE_NAME)
 		elif BoxInfo.getItem("machinebuild") in ('dm7080', 'dm820', 'dm520', 'dm525', 'dm900', 'dm920'):
-			version = open("/proc/stb/fp/version", "r").read()
+			version = open("/proc/stb/fp/version").read()
 		elif BoxInfo.getItem("machinebuild") in ('dreamone', 'dreamtwo'):
-			version = open("/proc/stb/fp/fp_version", "r").read()
+			version = open("/proc/stb/fp/fp_version").read()
 		else:
-			version = int(open("/proc/stb/fp/version", "r").read())
+			version = int(open("/proc/stb/fp/version").read())
 	except OSError:
 		if isfile("/dev/dbox/fp0"):
 			try:
