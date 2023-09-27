@@ -9,7 +9,11 @@
 #include <vuplus_gles.h>
 #endif
 
+//#define GFX_DEBUG_DRAWRECT
+
+#ifdef GFX_DEBUG_DRAWRECT
 #include "../base/benchmark.h"
+#endif
 
 #ifndef SYNC_PAINT
 void *gRC::thread_wrapper(void *ptr)
@@ -1033,8 +1037,9 @@ void gDC::exec(const gOpcode *o)
 		break;
 	case gOpcode::blit:
 	{
+#ifdef GFX_DEBUG_DRAWRECT
 		Stopwatch s;
-
+#endif
 		gRegion clip;
 		// this code should be checked again but i'm too tired now
 
@@ -1050,6 +1055,7 @@ void gDC::exec(const gOpcode *o)
 		if (!o->parm.blit->pixmap->surface->transparent)
 			o->parm.blit->flags &=~(gPixmap::blitAlphaTest|gPixmap::blitAlphaBlend);
 		m_pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, clip, m_radius, m_radius_edges, o->parm.blit->flags);
+#ifdef GFX_DEBUG_DRAWRECT
 		if(m_radius)
 		{
 			s.stop();
@@ -1059,6 +1065,7 @@ void gDC::exec(const gOpcode *o)
 				fclose(handle);
 			}
 		}
+#endif
 		m_radius = 0;
 		m_radius_edges = 0;
 		o->parm.blit->pixmap->Release();
@@ -1067,7 +1074,9 @@ void gDC::exec(const gOpcode *o)
 	}
 	case gOpcode::rectangle:
 	{
+#ifdef GFX_DEBUG_DRAWRECT
 		Stopwatch s;
+#endif
 		o->parm.rectangle->area.moveBy(m_current_offset);
 		gRegion clip = m_current_clip & o->parm.rectangle->area;
 		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, m_gradient_alphablend, m_gradient_fullSize);
@@ -1077,6 +1086,7 @@ void gDC::exec(const gOpcode *o)
 		m_gradient_orientation = 0;
 		m_gradient_fullSize = 0;
 		m_gradient_alphablend = false;
+#ifdef GFX_DEBUG_DRAWRECT
 		s.stop();
 		FILE *handle = fopen("/tmp/drawRectangle.perf", "a");
 		if (handle) {
@@ -1084,6 +1094,7 @@ void gDC::exec(const gOpcode *o)
 			fprintf(handle, "%dx%dx%dx%d|%u\n", area.left(), area.top(), area.width(), area.height(), s.elapsed_us());
 			fclose(handle);
 		}
+#endif
 		delete o->parm.rectangle;
 		break;
 	}
