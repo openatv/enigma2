@@ -461,7 +461,7 @@ static void convert_palette(uint32_t *pal, const gPalette &clut)
 
 #define FIX 0x10000
 
-void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth, const gRGB &startColor, const gRGB &endColor, int direction, int radius, int edges, bool alphablend)
+void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth, const gRGB &startColor, const gRGB &endColor, int direction, int radius, int edges, bool alphablend, int gradientFullSize)
 {
 	if (surface->bpp < 32)
 	{
@@ -479,7 +479,8 @@ void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB
 	borderCol ^= 0xFF000000;
 	uint32_t *gradientBuf = nullptr;
 
-	gradientBuf = createGradientBuffer(direction == GRADIENT_VERTICAL ? area.height() : area.width(), !direction ? backgroundColor : startColor, !direction ? backgroundColor : endColor);
+	const int gradientSize = (gradientFullSize) ? gradientFullSize : (direction == GRADIENT_VERTICAL) ? area.height() : area.width();
+	gradientBuf = createGradientBuffer(gradientSize, !direction ? backgroundColor : startColor, !direction ? backgroundColor : endColor);
 
 	CornerData cornerData(radius, edges, area.width(), area.height(), borderWidth, borderCol);
 
