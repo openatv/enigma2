@@ -956,7 +956,6 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 	dc.getPixmap(target);
 	gUnmanagedSurface *surface = target->surface;
 	gRGB currentforeground = foreground;
-
 	const gRGB background = (m_blend && surface->bpp == 32) ? gRGB(currentforeground.r, currentforeground.g, currentforeground.b, 200) : cbackground;
 
 	register int opcode = -1;
@@ -974,11 +973,6 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 	gRegion sarea(eRect(0, 0, surface->x, surface->y));
 	gRegion clip = dc.getClip() & sarea;
 	clip &= eRect(area.left() + offset.x(), area.top() + offset.y(), area.width(), area.height()+(current_face->size->metrics.ascender>>6));
-
-	int __top = area.top() + offset.y();
-	int __left = area.left() + offset.x();
-	uint8_t* dstptr = (uint8_t*)surface->data + __left*surface->bypp + __top*surface->stride;
-	gRGB *dstcolor = (gRGB*)dstptr;
 
 	int buffer_stride=surface->stride;
 
@@ -1026,9 +1020,9 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 
 				for (int i=0; i<16; ++i)
 				{
+					unsigned char da = background.a, dr = background.r, dg = background.g, db = background.b;
 #define BLEND(y, x, a) (y + (((x-y) * a)>>8))
 
-					unsigned char da = background.a, dr = background.r, dg = background.g, db = background.b;
 					int sa = i * 16;
 					if (sa < 256)
 					{
@@ -1212,26 +1206,26 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 					break;
 				case 3: // 32bit
 					{
-					register int extra_buffer_stride = (buffer_stride >> 2) - sx;
-					register __u32 *td=(__u32*)d;
-					for (int ay = 0; ay < sy; ay++)
-					{
-						register int ax;
-						for (ax=0; ax<sx; ax++)
+						register int extra_buffer_stride = (buffer_stride >> 2) - sx;
+						register __u32 *td=(__u32*)d;
+						for (int ay = 0; ay < sy; ay++)
 						{
-							register int b=(*s++)>>4;
-							if(b)
-								*td=lookup32[b];
-							++td;
+							register int ax;
+							for (ax=0; ax<sx; ax++)
+							{
+								register int b=(*s++)>>4;
+								if(b)
+									*td=lookup32[b];
+								++td;
+							}
+							s += extra_source_stride;
+							td += extra_buffer_stride;
 						}
-						s += extra_source_stride;
-						td += extra_buffer_stride;
-					}
 					}
 					break;
 				case 4: // 32-bit blend
 					{
-						const int extra_buffer_stride = (buffer_stride >> 2) - sx;
+						register int extra_buffer_stride = (buffer_stride >> 2) - sx;
 						register __u32 *td = (__u32 *)d;
 						for (int ay = 0; ay < sy; ay++)
 						{
@@ -1241,16 +1235,22 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 								register int b = (*s++) >> 4;
 								if (b)
 								{
+									unsigned char frame_a = (*td) >> 24 & 0xFF;
+									unsigned char frame_r = (*td) >> 16 & 0xFF;
+									unsigned char frame_g = (*td) >> 8 & 0xFF;
+									unsigned char frame_b = (*td) & 0xFF;
 
-									__u32 src_color = lookup32[b];
-									__u32 dst_color = *td;
-									__u32 alpha = (src_color >> 24) & 0xFF;
-									__u32 inv_alpha = 255 - alpha;
+									unsigned char da = lookup32[b] >> 24 & 0xFF;
+									unsigned char dr = lookup32[b] >> 16 & 0xFF;
+									unsigned char dg = lookup32[b] >> 8 & 0xFF;
+									unsigned char db = lookup32[b] & 0xFF;
 
-									__u32 blended_color = (((src_color & 0xFF00FF) * alpha + (dst_color & 0xFF00FF) * inv_alpha) >> 8) & 0xFF00FF;
-									blended_color |= (((src_color & 0x00FF00) * alpha + (dst_color & 0x00FF00) * inv_alpha) >> 8) & 0x00FF00;
-
-									*td = (dst_color & 0xFF000000) | blended_color;
+#define BLEND(y, x, a) (y + (((x-y) * a)>>8))
+									frame_r = BLEND(frame_r, dr, da) & 0xFF;
+									frame_g = BLEND(frame_g, dg, da) & 0xFF;
+									frame_b = BLEND(frame_b, db, da) & 0xFF;
+#undef BLEND
+									*td = ((currentforeground.a ^ 0xFF) << 24) | (frame_r << 16) | (frame_g << 8) | frame_b;
 								}
 								++td;
 							}
