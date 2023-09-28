@@ -40,6 +40,7 @@ struct gOpcode
 		clear,
 		blit,
 		gradient,
+		rectangle,
 
 		setPalette,
 		mergePalette,
@@ -51,6 +52,10 @@ struct gOpcode
 
 		setBackgroundColorRGB,
 		setForegroundColorRGB,
+
+		setGradient,
+		setRadius,
+		setBorder,
 
 		setOffset,
 
@@ -131,12 +136,29 @@ struct gOpcode
 
 		struct pgradient
 		{
-			eRect area;
-			gRGB gradientStartColor;
-			gRGB gradientEndColor;
+			gRGB startColor;
+			gRGB endColor;
 			int orientation;
-			int flag;
+			bool alphablend;
+			int fullSize;
 		} *gradient;
+
+		struct pradius
+		{
+			int radius;
+			int edges;
+		} *radius;
+
+		struct pborder
+		{
+			gRGB color;
+			int width;
+		} *border;
+
+		struct prectangle
+		{
+			eRect area;
+		} *rectangle;
 
 		struct pmergePalette
 		{
@@ -272,6 +294,10 @@ public:
 	void setBackgroundColor(const gRGB &color);
 	void setForegroundColor(const gRGB &color);
 
+	void setBorder(const gRGB &borderColor, int width);
+	void setGradient(const gRGB &startColor, const gRGB &endColor, int orientation, bool alphablend, int fullSize = 0);
+	void setRadius(int radius, int edges);
+
 	void setFont(gFont *font);
 	/* flags only THESE: */
 	enum
@@ -288,7 +314,8 @@ public:
 		RT_VALIGN_BOTTOM = 32,
 
 		RT_WRAP = 64,
-		RT_ELLIPSIS = 128
+		RT_ELLIPSIS = 128,
+		RT_BLEND = 256
 	};
 	void renderText(const eRect &position, const std::string &string, int flags = 0, gRGB bordercolor = gRGB(), int border = 0, int markedpos = -1, int *offset = 0);
 
@@ -314,15 +341,16 @@ public:
 
 	enum
 	{
-		GRADIENT_VERTICAL = 0,
-		GRADIENT_HORIZONTAL = 1
+		GRADIENT_OFF = 0,
+		GRADIENT_VERTICAL = 1,
+		GRADIENT_HORIZONTAL = 2
 	};
 
 	void blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0, int aflags = BT_SCALE);
 	void blit(gPixmap *pixmap, ePoint pos, const eRect &clip=eRect(), int flags=0);
 	void blit(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0);
 
-	void drawGradient(const eRect &area, const gRGB &startcolor, const gRGB &endcolor, int orientation, int flag=0);
+	void drawRectangle(const eRect &area);
 
 	void setPalette(gRGB *colors, int start = 0, int len = 256);
 	void setPalette(gPixmap *source);
@@ -364,6 +392,16 @@ protected:
 	gRGB m_foreground_color_rgb, m_background_color_rgb;
 	ePtr<gFont> m_current_font;
 	ePoint m_current_offset;
+
+	gRGB m_gradient_start_color, m_gradient_end_color;
+	int m_gradient_orientation;
+	bool m_gradient_alphablend;
+	int m_gradient_fullSize;
+
+	int m_radius, m_radius_edges;
+
+	gRGB m_border_color;
+	int m_border_width;
 
 	std::stack<gRegion> m_clip_stack;
 	gRegion m_current_clip;

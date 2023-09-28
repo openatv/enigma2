@@ -22,6 +22,7 @@ struct Cfilepara
 	int oy;
 	std::string picinfo;
 	bool callback;
+	bool transparent;
 
 	Cfilepara(const char *mfile, int mid, std::string size):
 		file(strdup(mfile)),
@@ -35,15 +36,16 @@ struct Cfilepara
 		ox(0),
 		oy(0),
 		picinfo(mfile),
-		callback(true)
+		callback(true),
+		transparent(true)
 	{
 		picinfo += "\n" + size + "\n";
 	}
 
 	~Cfilepara()
 	{
-		if (pic_buffer != NULL)	delete pic_buffer;
-		if (palette != NULL) delete palette;
+		if (pic_buffer != NULL)	delete [] pic_buffer;
+		if (palette != NULL) delete [] palette;
 		free(file);
 	}
 

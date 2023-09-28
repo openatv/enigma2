@@ -48,6 +48,12 @@ public:
 	void setBackgroundColor(const gRGB &col);
 	void clearBackgroundColor();
 
+	void setBorderWidth(int pixel);
+	void setBorderColor(const gRGB &color);
+
+	void setWidgetBorderWidth(int pixel) { setBorderWidth(pixel); }
+	void setWidgetBorderColor(const gRGB &color) { setBorderColor(color); }
+
 	void setPadding(const eRect &padding) { m_padding = padding; }
 	eRect getPadding() { return m_padding; }
 
@@ -102,8 +108,16 @@ private:
 	int m_notify_child_on_position_change;
 
 	bool m_gradient_set;
-	int m_gradient_direction, m_gradient_blend;
+	bool m_gradient_alphablend;
+	int m_gradient_direction;
 	gRGB m_gradient_startcolor, m_gradient_endcolor;
+
+	bool m_have_border_color;
+	int m_border_width;
+	gRGB m_border_color;
+
+	int m_cornerRadius;
+	int m_cornerRadiusEdges;
 
 	eRect m_padding;
 
@@ -143,12 +157,32 @@ public:
 
 	void notifyShowHide();
 
-	void setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
+	void setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+
+	void setCornerRadius(int radius, int edges);
+	int getCornerRadiusEdges() {return m_cornerRadiusEdges;}
+	int getCornerRadius();
+
+	bool isGradientSet() {return m_gradient_set;}
 
 	enum
 	{
-		GRADIENT_VERTICAL = 0,
-		GRADIENT_HORIZONTAL = 1
+		GRADIENT_OFF = 0,
+		GRADIENT_VERTICAL = 1,
+		GRADIENT_HORIZONTAL = 2
+	};
+
+	enum
+	{
+		RADIUS_TOP_LEFT = 1,
+		RADIUS_TOP_RIGHT = 2,
+		RADIUS_TOP = 3,
+		RADIUS_BOTTOM_LEFT = 4,
+		RADIUS_BOTTOM_RIGHT = 8,
+		RADIUS_BOTTOM = 12,
+		RADIUS_LEFT = 5,
+		RADIUS_RIGHT = 10,
+		RADIUS_ALL = 15,
 	};
 
 };

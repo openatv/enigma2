@@ -68,8 +68,6 @@ struct eListboxStyleSetted
 	bool background_color : 1;
 	bool foreground_color : 1;
 	bool background_color_selected : 1;
-	bool background_gradient_color : 1;
-	bool background_gradient_selected_color : 1;
 	bool foreground_color_selected : 1;
 	bool scrollbarforeground_color : 1;
 	bool scrollbarbackground_color : 1;
@@ -82,21 +80,20 @@ struct eListboxStyleSetted
 	bool use_vti_workaround : 1;
 	bool zoom_content : 1;
 	bool zoom_move_content : 1;
+	bool scrollbargradient : 1;
 };
 
 struct eListboxStyle
 {
 	ePtr<gPixmap> m_background, m_selection, m_overlay;
-	gRGB m_background_color, m_background_color_selected, m_background_gradient_color_start, m_background_gradient_color_end, m_background_gradient_color_selected_start, m_background_gradient_color_selected_end, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacing_color;
+	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacing_color, m_scrollbarstart_color, m_scrollbarend_color;
 	int m_max_columns;
 	int m_max_rows;
-	int m_background_color_gradient_direction;
-	int m_background_color_gradient_selected_direction;
-	int m_background_color_gradient_flag;
-	int m_background_color_gradient_selected_flag;
 	float m_selection_zoom;
 	int m_selection_width;
 	int m_selection_height;
+	int m_scrollbar_radius;
+	int m_scrollbar_edges;
 
 	eListboxStyleSetted is_set;
 
@@ -121,6 +118,21 @@ struct eListboxStyle
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
 	ePtr<gFont> m_font, m_font_zoomed, m_valuefont;
 	eRect m_text_padding;
+
+	int m_itemCornerRadius[4];
+	int m_itemCornerRadiusEdges[4];
+	int cornerRadius(int mode)
+	{
+		return m_itemCornerRadius[mode];
+	}
+	int cornerRadiusEdges(int mode)
+	{
+		return m_itemCornerRadiusEdges[mode];
+	}
+
+	bool m_gradient_set[4], m_gradient_alphablend[4];
+	int m_gradient_direction[4];
+	gRGB m_gradient_startcolor[4], m_gradient_endcolor[4];
 };
 #endif
 
@@ -266,8 +278,6 @@ public:
 
 	void setBackgroundColor(gRGB &col);
 	void setBackgroundColorSelected(gRGB &col);
-	void setBackgroundGradient(gRGB &start, gRGB &end, int direction, int flag);
-	void setBackgroundGradientSelected(gRGB &start, gRGB &end, int direction, int flag);
 	void setForegroundColor(gRGB &col);
 	void setForegroundColorSelected(gRGB &col);
 
@@ -307,6 +317,9 @@ public:
 	void setScrollbarForegroundColor(gRGB &col);
 	void setScrollbarBackgroundColor(gRGB &col);
 
+	void setScrollbarGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setScrollbarRadius(int radius, int edges);
+
 	void setMaxRows(int rows)
 	{
 		m_style.m_max_rows = rows;
@@ -318,6 +331,17 @@ public:
 		m_style.is_set.max_columns = 1;
 	};
 	void setItemSpacing(const ePoint &spacing, bool innerOnly = false);
+
+	void setItemCornerRadius(int radius, int edges);
+	void setItemCornerRadiusSelected(int radius, int edges);
+	void setItemCornerRadiusMarked(int radius, int edges);
+	void setItemCornerRadiusMarkedandSelected(int radius, int edges);
+
+	void setItemGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setItemGradientSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setItemGradientMarked(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setItemGradientMarkedandSelected(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+
 	void setSelectionZoom(float zoom, int zoomContentMode = 0);
 	void setSelectionZoomSize(int width, int height, int zoomContentMode = 0);
 
@@ -341,6 +365,27 @@ public:
 	}
 
 	static void setDefaultPadding(const eRect &padding) { defaultPadding = padding; }
+
+	static void setDefaultItemRadius(int radius, int radiusEdges)
+	{
+		defaultItemRadius[0] = radius;
+		defaultItemRadiusEdges[0] = radiusEdges;
+	}
+	static void setDefaultItemRadiusSelected(int radius, int radiusEdges)
+	{
+		defaultItemRadius[1] = radius;
+		defaultItemRadiusEdges[1] = radiusEdges;
+	}
+	static void setDefaultItemRadiusMarked(int radius, int radiusEdges)
+	{
+		defaultItemRadius[2] = radius;
+		defaultItemRadiusEdges[2] = radiusEdges;
+	}
+	static void setDefaultItemRadiusMarkedAndSelected(int radius, int radiusEdges)
+	{
+		defaultItemRadius[3] = radius;
+		defaultItemRadiusEdges[3] = radiusEdges;
+	}
 
 	void setTopIndex(int idx);
 
@@ -386,6 +431,7 @@ private:
 	int moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int maxItems, bool indexChanged, int pageOffset, int topLeft);
 	void recalcSizeAlignment(bool scrollbarVisible);
 	int setScrollbarPosition();
+	void setItemCornerRadiusInternal(int radius, int edges, int index);
 
 	static int defaultScrollBarWidth;
 	static int defaultScrollBarOffset;
@@ -395,6 +441,8 @@ private:
 	static int defaultPageSize;
 	static bool defaultWrapAround;
 	static eRect defaultPadding;
+	static int defaultItemRadius[4];
+	static int defaultItemRadiusEdges[4];
 
 	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;

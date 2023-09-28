@@ -9,6 +9,12 @@
 #include <vuplus_gles.h>
 #endif
 
+//#define GFX_DEBUG_DRAWRECT
+
+#ifdef GFX_DEBUG_DRAWRECT
+#include "../base/benchmark.h"
+#endif
+
 #ifndef SYNC_PAINT
 void *gRC::thread_wrapper(void *ptr)
 {
@@ -352,6 +358,48 @@ void gPainter::setForegroundColor(const gRGB &color)
 	m_rc->submit(o);
 }
 
+void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int orientation, bool alphablend, int fullSize)
+{
+	if (m_dc->islocked())
+		return;
+	gOpcode o;
+	o.opcode = gOpcode::setGradient;
+	o.dc = m_dc.grabRef();
+	o.parm.gradient = new gOpcode::para::pgradient;
+	o.parm.gradient->startColor = startColor;
+	o.parm.gradient->endColor = endColor;
+	o.parm.gradient->orientation = orientation;
+	o.parm.gradient->alphablend = alphablend;
+	o.parm.gradient->fullSize = fullSize;
+	m_rc->submit(o);
+}
+
+void gPainter::setRadius(int radius, int edges)
+{
+	if (m_dc->islocked())
+		return;
+	gOpcode o;
+	o.opcode = gOpcode::setRadius;
+	o.dc = m_dc.grabRef();
+	o.parm.radius = new gOpcode::para::pradius;
+	o.parm.radius->radius = radius;
+	o.parm.radius->edges = edges;
+	m_rc->submit(o);
+}
+
+void gPainter::setBorder(const gRGB &borderColor, int width)
+{
+	if (m_dc->islocked())
+		return;
+	gOpcode o;
+	o.opcode = gOpcode::setBorder;
+	o.dc = m_dc.grabRef();
+	o.parm.border = new gOpcode::para::pborder;
+	o.parm.border->color = borderColor;
+	o.parm.border->width = width;
+	m_rc->submit(o);
+}
+
 void gPainter::setFont(gFont *font)
 {
 	if (m_dc->islocked())
@@ -471,22 +519,16 @@ void gPainter::blit(gPixmap *pixmap, const eRect &pos, const eRect &clip, int fl
 	m_rc->submit(o);
 }
 
-void gPainter::drawGradient(const eRect &area, const gRGB &startcolor, const gRGB &endcolor, int orientation, int flag)
-{
+void gPainter::drawRectangle(const eRect &area) {
 	if ( m_dc->islocked() )
 		return;
 	gOpcode o;
-	o.opcode=gOpcode::gradient;
+	o.opcode=gOpcode::rectangle;
 	o.dc = m_dc.grabRef();
-	o.parm.gradient = new gOpcode::para::pgradient;
-	o.parm.gradient->area = area;
-	o.parm.gradient->gradientStartColor = startcolor;
-	o.parm.gradient->gradientEndColor = endcolor;
-	o.parm.gradient->orientation = orientation;
-	o.parm.gradient->flag = flag;
+	o.parm.rectangle = new gOpcode::para::prectangle;
+	o.parm.rectangle->area = area;
 	m_rc->submit(o);
 }
-
 
 void gPainter::setPalette(gRGB *colors, int start, int len)
 {
@@ -738,6 +780,12 @@ void gPainter::setView(eSize size)
 gDC::gDC()
 {
 	m_spinner_pic = 0;
+	m_border_width = 0;
+	m_radius = 0;
+	m_radius_edges = 0;
+	m_gradient_orientation = 0;
+	m_gradient_alphablend = false;
+	m_gradient_fullSize = 0;
 }
 
 gDC::gDC(gPixmap *pixmap) : m_pixmap(pixmap)
@@ -780,6 +828,24 @@ void gDC::exec(const gOpcode *o)
 		m_current_font = o->parm.setFont->font;
 		o->parm.setFont->font->Release();
 		delete o->parm.setFont;
+		break;
+	case gOpcode::setGradient:
+		m_gradient_start_color = o->parm.gradient->startColor;
+		m_gradient_end_color = o->parm.gradient->endColor;
+		m_gradient_orientation = o->parm.gradient->orientation;
+		m_gradient_alphablend = o->parm.gradient->alphablend;
+		m_gradient_fullSize = o->parm.gradient->fullSize;
+		delete o->parm.gradient;
+		break;
+	case gOpcode::setRadius:
+		m_radius = o->parm.radius->radius;
+		m_radius_edges = o->parm.radius->edges;
+		delete o->parm.radius;
+		break;
+	case gOpcode::setBorder:
+		m_border_color = o->parm.border->color;
+		m_border_width = o->parm.border->width;
+		delete o->parm.border;
 		break;
 	case gOpcode::renderText:
 	{
@@ -917,6 +983,9 @@ void gDC::exec(const gOpcode *o)
 					m_pixmap->fill(clip, m_foreground_color_rgb);
 			}
 		}
+
+		para->setBlend(flags & gPainter::RT_BLEND);
+
 		if (border)
 		{
 			para->blit(*this, offset, m_background_color_rgb, o->parm.renderText->bordercolor, true);
@@ -968,6 +1037,9 @@ void gDC::exec(const gOpcode *o)
 		break;
 	case gOpcode::blit:
 	{
+#ifdef GFX_DEBUG_DRAWRECT
+		Stopwatch s;
+#endif
 		gRegion clip;
 		// this code should be checked again but i'm too tired now
 
@@ -980,18 +1052,50 @@ void gDC::exec(const gOpcode *o)
 		}
 		else
 			clip = m_current_clip;
-
-		m_pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, clip, o->parm.blit->flags);
+		if (!o->parm.blit->pixmap->surface->transparent)
+			o->parm.blit->flags &=~(gPixmap::blitAlphaTest|gPixmap::blitAlphaBlend);
+		m_pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, clip, m_radius, m_radius_edges, o->parm.blit->flags);
+#ifdef GFX_DEBUG_DRAWRECT
+		if(m_radius)
+		{
+			s.stop();
+			FILE *handle = fopen("/tmp/drawRectangle.perf", "a");
+			if (handle) {
+				fprintf(handle, "%dx%dx%d|%u\n", o->parm.blit->pixmap->size().width(), o->parm.blit->pixmap->size().height(),o->parm.blit->pixmap->surface->bpp, s.elapsed_us());
+				fclose(handle);
+			}
+		}
+#endif
+		m_radius = 0;
+		m_radius_edges = 0;
 		o->parm.blit->pixmap->Release();
 		delete o->parm.blit;
 		break;
 	}
-	case gOpcode::gradient:
+	case gOpcode::rectangle:
 	{
-		o->parm.gradient->area.moveBy(m_current_offset);
-		gRegion clip = m_current_clip & o->parm.gradient->area;
-		m_pixmap->drawGradient(clip, o->parm.gradient->area, o->parm.gradient->gradientStartColor, o->parm.gradient->gradientEndColor, o->parm.gradient->orientation, o->parm.gradient->flag);
-		delete o->parm.gradient;
+#ifdef GFX_DEBUG_DRAWRECT
+		Stopwatch s;
+#endif
+		o->parm.rectangle->area.moveBy(m_current_offset);
+		gRegion clip = m_current_clip & o->parm.rectangle->area;
+		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, m_gradient_alphablend, m_gradient_fullSize);
+		m_border_width = 0;
+		m_radius = 0;
+		m_radius_edges = 0;
+		m_gradient_orientation = 0;
+		m_gradient_fullSize = 0;
+		m_gradient_alphablend = false;
+#ifdef GFX_DEBUG_DRAWRECT
+		s.stop();
+		FILE *handle = fopen("/tmp/drawRectangle.perf", "a");
+		if (handle) {
+			eRect area = o->parm.rectangle->area;
+			fprintf(handle, "%dx%dx%dx%d|%u\n", area.left(), area.top(), area.width(), area.height(), s.elapsed_us());
+			fclose(handle);
+		}
+#endif
+		delete o->parm.rectangle;
 		break;
 	}
 	case gOpcode::setPalette:
@@ -1095,7 +1199,7 @@ void gDC::enableSpinner()
 	ASSERT(m_spinner_saved);
 
 	/* save the background to restore it later. We need to negative position because we want to blit from the middle of the screen. */
-	m_spinner_saved->blit(*m_pixmap, eRect(-m_spinner_pos.topLeft(), eSize()), gRegion(eRect(ePoint(0, 0), m_spinner_saved->size())), 0);
+	m_spinner_saved->blit(*m_pixmap, eRect(-m_spinner_pos.topLeft(), eSize()), gRegion(eRect(ePoint(0, 0), m_spinner_saved->size())), 0, 0 ,0);
 
 	incrementSpinner();
 }
@@ -1105,7 +1209,7 @@ void gDC::disableSpinner()
 	ASSERT(m_spinner_saved);
 
 	/* restore background */
-	m_pixmap->blit(*m_spinner_saved, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0);
+	m_pixmap->blit(*m_spinner_saved, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0, 0, 0);
 }
 
 void gDC::incrementSpinner()
@@ -1129,12 +1233,12 @@ void gDC::incrementSpinner()
 	}
 #endif
 
-	m_spinner_temp->blit(*m_spinner_saved, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()));
+	m_spinner_temp->blit(*m_spinner_saved, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), 0, 0, 0);
 
 	if (m_spinner_pic[m_spinner_i])
-		m_spinner_temp->blit(*m_spinner_pic[m_spinner_i], eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), gPixmap::blitAlphaBlend);
+		m_spinner_temp->blit(*m_spinner_pic[m_spinner_i], eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), 0, 0, gPixmap::blitAlphaBlend);
 
-	m_pixmap->blit(*m_spinner_temp, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0);
+	m_pixmap->blit(*m_spinner_temp, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0, 0, 0);
 	m_spinner_i++;
 	m_spinner_i %= m_spinner_num;
 }
