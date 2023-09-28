@@ -1334,20 +1334,25 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
 		unsigned char *origin = m_filepara->pic_buffer;
 
+		gColor background;
+		gRGB bg(m_conf.background);
+		background = surface->clut.findColor(bg);
+		unsigned char alpha = (background >> 24) & 0xFF;
+
 		if(m_filepara->oy < m_filepara->max_y)
 		{
 			o_y = (m_filepara->max_y - m_filepara->oy) / 2;
 			u_y = m_filepara->max_y - m_filepara->oy - o_y;
+			if (alpha < 255)
+				surface->transparent = true;
 		}
 		if(m_filepara->ox < m_filepara->max_x)
 		{
 			v_x = (m_filepara->max_x - m_filepara->ox) / 2;
 			h_x = m_filepara->max_x - m_filepara->ox - v_x;
+			if (alpha < 255)
+				surface->transparent = true;
 		}
-
-		gColor background;
-		gRGB bg(m_conf.background);
-		background = surface->clut.findColor(bg);
 
 		if(m_filepara->oy < m_filepara->max_y)
 		{
@@ -1389,6 +1394,8 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		surface->transparent = m_filepara->transparent;
 		int o_y=0, u_y=0, v_x=0, h_x=0;
 
+		unsigned int background = m_conf.background;
+		unsigned char alpha = (background >> 24) & 0xFF;
 		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
 		unsigned char *origin = m_filepara->pic_buffer;
 		int extra_stride = surface->stride - (surface->x * surface->bypp);
@@ -1397,14 +1404,17 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		{
 			o_y = (m_filepara->max_y - m_filepara->oy) / 2;
 			u_y = m_filepara->max_y - m_filepara->oy - o_y;
+			if (alpha < 255)
+				surface->transparent = true;
 		}
 		if(m_filepara->ox < m_filepara->max_x)
 		{
 			v_x = (m_filepara->max_x - m_filepara->ox) / 2;
 			h_x = m_filepara->max_x - m_filepara->ox - v_x;
+			if (alpha < 255)
+				surface->transparent = true;
 		}
 
-		unsigned int background = m_conf.background;
 		if(m_filepara->oy < m_filepara->max_y)
 		{
 			for (int y = o_y; y != 0; --y)
