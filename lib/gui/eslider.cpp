@@ -99,7 +99,7 @@ int eSlider::event(int event, void *data, void *data2)
 
 		gPainter &painter = *(gPainter*)data2;
 
-		bool drawborder = (m_have_border_color && m_border_width);
+		bool drawborder = (m_border_width > 0);
 
 		if (m_backgroundpixmap)
 		{
