@@ -44,6 +44,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/message.h>
 #include <lib/base/modelinformation.h>
 #include <lib/base/e2avahi.h>
+#include <lib/base/internetcheck.h>
 #include <lib/driver/rc.h>
 #include <lib/driver/rcinput_swig.h>
 #include <lib/service/event.h>
@@ -174,6 +175,7 @@ typedef long time_t;
 %include <lib/service/servicepeer.h>
 
 // TODO: embed these...
+%immutable eInternetCheck::callback;
 %immutable ePicLoad::PictureData;
 %immutable eButton::selected;
 %immutable eInput::changed;
@@ -204,6 +206,7 @@ typedef long time_t;
 %immutable eTuxtxtApp::appClosed;
 %immutable iDVBChannel::receivedTsidOnid;
 %include <lib/base/message.h>
+%include <lib/base/internetcheck.h>
 %include <lib/base/etpm.h>
 %include <lib/driver/rc.h>
 %include <lib/driver/rcinput_swig.h>
