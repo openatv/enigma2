@@ -38,6 +38,8 @@ eListbox::eListbox(eWidget *parent) : eWidget(parent), m_scrollbar_mode(showNeve
 	m_style.m_selection_zoom = 1.0;
 	m_style.m_selection_width = m_itemwidth;
 	m_style.m_selection_height = m_itemheight;
+	m_style.m_scrollbar_radius = 0;
+	m_style.m_scrollbar_edges = 0;
 
 	for (int x = 0; x < 4; x++)
 	{
@@ -315,7 +317,9 @@ void eListbox::updateScrollBar()
 {
 	if (!m_scrollbar || !m_content || m_scrollbar_mode == showNever)
 		return;
-	int entries = (m_max_columns == 0) ? 0 : ((m_orientation == orGrid) ? (m_content->size() + m_max_columns - 1) / m_max_columns : m_content->size());
+	int entries = m_content->size();
+	if((m_orientation == orGrid) && m_max_columns)
+		entries = (m_content->size() + m_max_columns - 1) / m_max_columns;
 	bool scrollbarvisible = m_scrollbar->isVisible();
 	bool scrollbarvisibleOld = m_scrollbar->isVisible();
 	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
