@@ -399,7 +399,6 @@ void eListbox::updateScrollBar()
 		{
 			m_scrollbar->setRange(0, m_scrollbar_calcsize - (m_scrollbar_border_width * 2));
 		}
-
 	}
 
 	// Don't set Start/End if scollbar not visible or entries/maxItems = 0
@@ -413,7 +412,7 @@ void eListbox::updateScrollBar()
 			{
 				m_prev_scrollbar_page = m_selected;
 				int start = 0;
-				int selected = (m_orientation == orGrid) ? m_selected / m_max_columns : m_selected;
+				int selected = (m_orientation == orGrid && m_max_columns > 0) ? m_selected / m_max_columns : m_selected;
 				int range = m_scrollbar_calcsize - (m_scrollbar_border_width * 2);
 				int end = range;
 				// calculate thumb only if needed
