@@ -598,7 +598,9 @@ class MultiBootClass():
 				target = STARTUP_FILE
 			else:
 				target = STARTUP_ONCE if startup == STARTUP_RECOVERY else STARTUP_FILE
-			if not exists(DREAM_BOOT_FILE) and not startup == STARTUP_RECOVERY:
+			if exists(DREAM_BOOT_FILE) and startup == STARTUP_RECOVERY:
+				pass
+			else:
 				copyfile(pathjoin(self.tempDir, startup), pathjoin(self.tempDir, target))
 			if exists(DUAL_BOOT_FILE):
 				slot = self.slotCode if self.slotCode.isdecimal() else "0"
