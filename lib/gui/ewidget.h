@@ -99,7 +99,7 @@ private:
 	void parentRemoved();
 
 	gRGB m_background_color;
-	int m_have_background_color;
+	bool m_have_background_color = false;
 
 	eWidget *m_current_focus, *m_focus_owner;
 
