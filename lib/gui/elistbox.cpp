@@ -17,6 +17,8 @@ bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 eRect eListbox::defaultPadding = eRect(1, 1, 1, 1);
 int eListbox::defaultItemRadius[4] = {0,0,0,0};
 int eListbox::defaultItemRadiusEdges[4] = {0,0,0,0};
+int eListbox::defaultScrollbarRadius = 0;
+int eListbox::defaultScrollbarRadiusEdges = 0;
 
 eListbox::eListbox(eWidget *parent) : eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
 									  m_scrollbar_scroll(byPage), m_content_changed(false), m_enabled_wrap_around(false), m_itemwidth_set(false), m_itemheight_set(false), m_scrollbar_width(10),
@@ -38,8 +40,8 @@ eListbox::eListbox(eWidget *parent) : eWidget(parent), m_scrollbar_mode(showNeve
 	m_style.m_selection_zoom = 1.0;
 	m_style.m_selection_width = m_itemwidth;
 	m_style.m_selection_height = m_itemheight;
-	m_style.m_scrollbar_radius = 0;
-	m_style.m_scrollbar_edges = 0;
+	m_style.m_scrollbar_radius = eListbox::defaultScrollbarRadius;
+	m_style.m_scrollbar_edges = eListbox::defaultScrollbarRadiusEdges;
 
 	for (int x = 0; x < 4; x++)
 	{

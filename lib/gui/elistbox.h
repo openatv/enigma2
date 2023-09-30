@@ -366,6 +366,12 @@ public:
 
 	static void setDefaultPadding(const eRect &padding) { defaultPadding = padding; }
 
+	static void setDefaultScrollbarRadius(int radius, int radiusEdges)
+	{
+		defaultScrollbarRadius = radius;
+		defaultScrollbarRadiusEdges = radiusEdges;
+	}
+
 	static void setDefaultItemRadius(int radius, int radiusEdges)
 	{
 		defaultItemRadius[0] = radius;
@@ -443,6 +449,8 @@ private:
 	static eRect defaultPadding;
 	static int defaultItemRadius[4];
 	static int defaultItemRadiusEdges[4];
+	static int defaultScrollbarRadius;
+	static int defaultScrollbarRadiusEdges;
 
 	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;

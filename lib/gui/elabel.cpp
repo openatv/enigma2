@@ -174,7 +174,7 @@ void eLabel::setWrap(int wrap)
 	}
 }
 
-void eSlider::setAlphatest(int alphatest)
+void eLabel::setAlphatest(int alphatest)
 {
 	bool blend = (alphatest > 0); // blend if BT_ALPHATEST or BT_ALPHABLEND
 	if (m_blend != blend)
