@@ -12,15 +12,6 @@ eLabel::eLabel(eWidget *parent, int markedPos) : eWidget(parent)
 	/* default to topleft alignment */
 	m_valign = alignTop;
 	m_halign = alignBidi;
-
-	m_have_foreground_color = 0;
-	m_have_shadow_color = 0;
-
-	m_wrap = 1;
-	m_text_border_width = 0;
-	m_text_offset = 0;
-
-	m_blend = false;
 }
 
 int eLabel::event(int event, void *data, void *data2)
@@ -67,7 +58,7 @@ int eLabel::event(int event, void *data, void *data2)
 		else if (m_wrap == 2)
 			flags |= gPainter::RT_ELLIPSIS;
 
-		if(isGradientSet() || m_blend)
+		if (isGradientSet() || m_blend)
 			flags |= gPainter::RT_BLEND;
 
 		int x = m_padding.x();

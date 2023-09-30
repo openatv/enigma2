@@ -50,16 +50,17 @@ protected:
 	std::string m_text;
 	int event(int event, void *data = 0, void *data2 = 0);
 	int m_pos;
-	int m_text_offset;
+	int m_text_offset = 0;
 
 private:
-	int m_have_foreground_color, m_have_shadow_color;
+	int m_have_foreground_color = 0;
+	int m_have_shadow_color = 0;
 	gRGB m_foreground_color, m_shadow_color, m_text_border_color;
 	ePoint m_shadow_offset;
 	eRect m_padding = eRect(0, 0, 0, 0);
-	int m_text_border_width;
-	int m_wrap;
-	bool m_blend;
+	int m_text_border_width = 0;
+	int m_wrap = 1;
+	bool m_blend = false;
 
 	enum eLabelEvent
 	{
