@@ -142,24 +142,27 @@ int eSlider::event(int event, void *data, void *data2)
 
 		if (!m_pixmap)
 		{
-			if (m_gradient_set)
-			{
-				if (m_orientation == orHorizontal)
-					painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 2, m_gradient_alphablend, m_gradient_fullcolor ? 0 : m_currently_filled.extends.size().height());
-				else
-					painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 1, m_gradient_alphablend, m_gradient_fullcolor ? 0 : m_currently_filled.extends.size().width());
-			}
-
 			if (cornerRadius || m_gradient_set)
 			{
-				if (!m_gradient_set)
+				if (m_gradient_set)
+				{
+					if (m_orientation == orHorizontal)
+						painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 2, m_gradient_alphablend, m_gradient_fullcolor ? 0 : m_currently_filled.extends.size().height());
+					else
+						painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 1, m_gradient_alphablend, m_gradient_fullcolor ? 0 : m_currently_filled.extends.size().width());
+				}
+				else
+				{
 					if (m_have_foreground_color)
+					{
 						painter.setBackgroundColor(m_foreground_color);
+					}
 					else
 					{
 						const gRGB color = style->getColor(m_scrollbar ? eWindowStyleSkinned::colScrollbarForeground : eWindowStyleSkinned::colSliderForeground);
 						painter.setBackgroundColor(color);
 					}
+				}
 				painter.setRadius(cornerRadius, getCornerRadiusEdges());
 				eRect rect = eRect(m_currently_filled.extends);
 				if (m_orientation == orHorizontal)
@@ -177,7 +180,6 @@ int eSlider::event(int event, void *data, void *data2)
 		}
 		else
 		{
-
 			if (cornerRadius)
 				painter.setRadius(cornerRadius, getCornerRadiusEdges());
 			painter.blitScale(m_pixmap, eRect(ePoint(0, 0), s), m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
