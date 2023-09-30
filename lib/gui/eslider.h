@@ -45,8 +45,8 @@ public:
 	void setScrollbarForegroundColor(const gRGB &color);
 	void setScrollbarBackgroundColor(const gRGB &color); // dummy function not implemented yet reserved for future use.
 
-	void setForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
-	void setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend, bool fullColor=false);
+	void setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend, bool fullColor=false);
 
 
 protected:
@@ -68,6 +68,7 @@ private:
 
 	bool m_gradient_set;
 	bool m_gradient_alphablend;
+	bool m_gradient_fullcolor;
 	int m_gradient_direction;
 	gRGB m_gradient_startcolor, m_gradient_endcolor;
 

@@ -1,4 +1,5 @@
 #include <lib/gui/eslider.h>
+#include <lib/gui/ewindowstyleskinned.h>
 
 int eSlider::defaultSliderBorderWidth = eSlider::DefaultBorderWidth;
 
@@ -8,6 +9,7 @@ eSlider::eSlider(eWidget *parent)
 	m_border_width(0), m_scale(0)
 {
 	m_gradient_set = false;
+	m_gradient_fullcolor = false;
 	m_gradient_direction = 0;
 	m_border_width = eSlider::defaultSliderBorderWidth;
 }
@@ -93,7 +95,7 @@ int eSlider::event(int event, void *data, void *data2)
 		getStyle(style);
 
 		/* paint background */
-		int cornerRadius = getCornerRadius();
+		const int cornerRadius = getCornerRadius();
 		if(!cornerRadius && !isGradientSet()) // don't call eWidget paint if radius or gradient
 			eWidget::event(evtPaint, data, data2);
 
@@ -122,7 +124,7 @@ int eSlider::event(int event, void *data, void *data2)
 					painter.setBackgroundColor(m_border_color);
 				else
 				{
-					gRGB color = style->getColor(m_scrollbar ? eWindowStyle::styleScollbarBorder : eWindowStyle::styleSliderBorder);
+					const gRGB color = style->getColor(m_scrollbar ? eWindowStyleSkinned::colScrollbarBorder : eWindowStyleSkinned::colSliderBorder);
 					painter.setBackgroundColor(color);
 				}
 				painter.drawRectangle(eRect(ePoint(0, 0), size()));
@@ -132,7 +134,10 @@ int eSlider::event(int event, void *data, void *data2)
 				drawborder = false;
 			}
 			else
+			{
+ 				painter.setBackgroundColor((m_have_background_color) ? m_background_color : gRGB(0, 0, 0));
 				painter.drawRectangle(eRect(ePoint(0, 0), size()));
+			}
 		}
 
 		style->setStyle(painter, m_scrollbar ? eWindowStyle::styleScollbar : eWindowStyle::styleSlider );
@@ -141,15 +146,21 @@ int eSlider::event(int event, void *data, void *data2)
 		{
 			if(m_gradient_set) {
 				if(m_orientation == orHorizontal)
-					painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 2, m_gradient_alphablend, m_currently_filled.extends.size().height());
+					painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 2, m_gradient_alphablend, m_gradient_fullcolor ? 0 : m_currently_filled.extends.size().height());
 				else
-					painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 1, m_gradient_alphablend, m_currently_filled.extends.size().width());
+					painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 1, m_gradient_alphablend, m_gradient_fullcolor ? 0 : m_currently_filled.extends.size().width());
 			}
 
 			if (cornerRadius || m_gradient_set)
 			{
-				if (!m_gradient_set && m_have_foreground_color)
-					painter.setBackgroundColor(m_foreground_color);
+				if (!m_gradient_set)
+					if(m_have_foreground_color)
+						painter.setBackgroundColor(m_foreground_color);
+					else
+					{
+						const gRGB color = style->getColor(m_scrollbar ? eWindowStyleSkinned::colScrollbarForeground : eWindowStyleSkinned::colSliderForeground);
+						painter.setBackgroundColor(color);
+					}
 				painter.setRadius(cornerRadius, getCornerRadiusEdges());
 				eRect rect = eRect(m_currently_filled.extends);
 				if (m_orientation == orHorizontal)
@@ -190,11 +201,11 @@ int eSlider::event(int event, void *data, void *data2)
 	case evtChangedSlider:
 	{
 		int num_pix = 0, start_pix = 0;
-		gRegion old_currently_filled = m_currently_filled;
+		const gRegion old_currently_filled = m_currently_filled;
 
 		// calculate the pixel size of the thumb
-		int offset = m_border_width * 2;
-		int pixsize = (m_orientation == orHorizontal) ? size().width()-offset : size().height()-offset;
+		const int offset = m_border_width * 2;
+		const int pixsize = (m_orientation == orHorizontal) ? size().width()-offset : size().height()-offset;
 
 		if (m_min < m_max)
 		{
@@ -229,10 +240,19 @@ int eSlider::event(int event, void *data, void *data2)
 		else
 			m_currently_filled = eRect(m_border_width, start_pix, pixsize, num_pix);
 
-		// redraw what *was* filled before and now isn't.
-		invalidate(m_currently_filled - old_currently_filled);
-		// redraw what wasn't filled before and is now.
-		invalidate(old_currently_filled - m_currently_filled);
+		const int cornerRadius = getCornerRadius();
+
+		if(cornerRadius)
+		{
+			invalidate(old_currently_filled);
+			invalidate(m_currently_filled);
+		}
+		else {
+			// redraw what *was* filled before and now isn't.
+			invalidate(m_currently_filled - old_currently_filled);
+			// redraw what wasn't filled before and is now.
+			invalidate(old_currently_filled - m_currently_filled);
+		}
 
 		return 0;
 	}
@@ -310,17 +330,18 @@ void eSlider::setScrollbarBackgroundColor(const gRGB &color)
 	setBackgroundColor(color);
 }
 
-void eSlider::setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
+void eSlider::setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend, bool fullColor)
 {
-	setForegroundGradient(startcolor, endcolor, direction, alphablend);
+	setForegroundGradient(startcolor, endcolor, direction, alphablend, fullColor);
 }
 
-void eSlider::setForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
+void eSlider::setForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend, bool fullColor)
 {
 	m_gradient_startcolor = startcolor;
 	m_gradient_endcolor = endcolor;
 	m_gradient_direction = direction;
 	m_gradient_alphablend = alphablend;
+	m_gradient_fullcolor = fullColor;
 	m_gradient_set = true;
 	invalidate();
 }
