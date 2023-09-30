@@ -39,6 +39,7 @@ public:
 	int getWrap() const { return m_wrap; }
 	int getNoWrap() const { return (m_wrap == 0) ? 1 : 0; } // DEPRECATED
 	void setTextPadding(const eRect &padding) { m_padding = padding; }
+	void setAlphatest(int alphatest);
 
 	eSize calculateSize();
 	static eSize calculateTextSize(gFont *font, const std::string &string, eSize targetSize, bool nowrap = false);
@@ -58,6 +59,7 @@ private:
 	eRect m_padding = eRect(0, 0, 0, 0);
 	int m_text_border_width;
 	int m_wrap;
+	bool m_blend;
 
 	enum eLabelEvent
 	{

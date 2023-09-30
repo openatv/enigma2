@@ -19,6 +19,8 @@ eLabel::eLabel(eWidget *parent, int markedPos) : eWidget(parent)
 	m_wrap = 1;
 	m_text_border_width = 0;
 	m_text_offset = 0;
+
+	m_blend = false;
 }
 
 int eLabel::event(int event, void *data, void *data2)
@@ -65,7 +67,7 @@ int eLabel::event(int event, void *data, void *data2)
 		else if (m_wrap == 2)
 			flags |= gPainter::RT_ELLIPSIS;
 
-		if(isGradientSet())
+		if(isGradientSet() || m_blend)
 			flags |= gPainter::RT_BLEND;
 
 		int x = m_padding.x();
@@ -168,6 +170,16 @@ void eLabel::setWrap(int wrap)
 	if (m_wrap != wrap)
 	{
 		m_wrap = wrap;
+		invalidate();
+	}
+}
+
+void eSlider::setAlphatest(int alphatest)
+{
+	bool blend = (alphatest > 0); // blend if BT_ALPHATEST or BT_ALPHABLEND
+	if (m_blend != blend)
+	{
+		m_blend = blend;
 		invalidate();
 	}
 }
