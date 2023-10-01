@@ -1560,7 +1560,7 @@ def readSkin(screen, skin, names, desktop):
 				break
 			else:
 				widgetList = ", ".join(screen.mandatoryWidgets)
-				print(f"[Skin] Warning: Skin screen '{n}' rejected as it does not offer all the mandatory widgets '{widgetList}'!")
+				print(f"[Skin] Warning: Skin screen '{name}' rejected as it does not offer all the mandatory widgets '{widgetList}'!")
 				myScreen = None
 	else:
 		myName = f"<embedded-in-{screen.__class__.__name__}>"
