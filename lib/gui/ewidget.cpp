@@ -10,7 +10,6 @@ eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->
 	m_vis = 0;
 	m_layer = 0;
 	m_desktop = 0;
-	m_have_background_color = 0;
 	m_z_position = 0;
 	m_lowered = 0;
 	m_client_offset = eSize(0, 0);
@@ -218,12 +217,12 @@ void eWidget::destruct()
 void eWidget::setBackgroundColor(const gRGB &col)
 {
 	m_background_color = col;
-	m_have_background_color = 1;
+	m_have_background_color = true;
 }
 
 void eWidget::clearBackgroundColor()
 {
-	m_have_background_color = 0;
+	m_have_background_color = false;
 }
 
 void eWidget::setZPosition(int z)
@@ -389,7 +388,7 @@ int eWidget::event(int event, void *data, void *data2)
 					painter.drawRectangle(eRect(ePoint(0, 0), size()));
 					if (r)
 						painter.setRadius(r, m_cornerRadiusEdges);
-					painter.setBackgroundColor((m_have_background_color) ? m_background_color : gRGB(0, 0, 0));
+					painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
 					painter.drawRectangle(eRect(m_border_width, m_border_width, size().width() - m_border_width * 2, size().height() - m_border_width * 2));
 					drawborder = false;
 				}
