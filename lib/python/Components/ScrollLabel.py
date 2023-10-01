@@ -159,7 +159,7 @@ class ScrollLabel(GUIComponent):
 		self.slider.setOrientation(eSlider.orVertical)
 		self.slider.setRange(0, 1000)
 		self.slider.setBorderWidth(sliderBorderWidth)
-		self.slider.setRadius(*scrollbarRadius)
+		self.slider.setCornerRadius(*scrollbarRadius)
 		if scrollbarGradient:
 			scrollbarGradient = scrollbarGradient + (True,)  # Add fullColor
 			self.slider.setForegroundGradient(*scrollbarGradient)
