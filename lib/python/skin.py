@@ -973,7 +973,7 @@ class AttributeParser:
 
 	def padding(self, value):
 		leftPadding, topPadding, rightPadding, bottomPadding = parsePadding("padding", value)
-		self.guiObject.setPadding(eRect(self.applyHorizontalScale(leftPadding), self.applyVerticalScale(topPadding), self.applyHorizontalScale(rightPadding), self.applyVerticalScale(topPadding)))
+		self.guiObject.setPadding(eRect(self.applyHorizontalScale(leftPadding), self.applyVerticalScale(topPadding), self.applyHorizontalScale(rightPadding), self.applyVerticalScale(bottomPadding)))
 
 	def pixmap(self, value):
 		self.guiObject.setPixmap(parsePixmap(value, self.desktop))
@@ -1139,7 +1139,7 @@ class AttributeParser:
 
 	def textPadding(self, value):
 		leftPadding, topPadding, rightPadding, bottomPadding = parsePadding("textPadding", value)
-		self.guiObject.setTextPadding(eRect(self.applyHorizontalScale(leftPadding), self.applyVerticalScale(topPadding), self.applyHorizontalScale(rightPadding), self.applyVerticalScale(topPadding)))
+		self.guiObject.setTextPadding(eRect(self.applyHorizontalScale(leftPadding), self.applyVerticalScale(topPadding), self.applyHorizontalScale(rightPadding), self.applyVerticalScale(bottomPadding)))
 
 	def title(self, value):
 		if value:
@@ -1572,7 +1572,7 @@ def readSkin(screen, skin, names, desktop):
 			skin = screen.skin[0] % tuple([int(x * getSkinFactor()) for x in screen.skin[1:]])
 		else:
 			skin = screen.skin
-		print(f"[Skin] Parsing embedded skin '{name}'.")
+		print(f"[Skin] Parsing embedded skin '{names}'.")
 		if isinstance(skin, tuple):
 			for xml in skin:
 				candidate = fromstring(xml)
