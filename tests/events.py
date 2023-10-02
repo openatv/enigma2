@@ -37,7 +37,7 @@ def end_log(test_name):
 	results = ""
 
 	for (t, self, method, args, kwargs) in get_events():
-		results += "%s T+%f: %s::%s(%s, *%s, *%s)\n" % (time.ctime(t), t - base_time, str(self.__class__), method, self, args, kwargs)
+		results += f"{time.ctime(t)} T+{t - base_time:f}: {str(self.__class__)}::{method}({self}, *{args}, *{kwargs})\n"
 
 	expected = None
 

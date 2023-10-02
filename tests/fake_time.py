@@ -33,7 +33,7 @@ time.time = my_time
 def my_sleep(sleep):
 	global time_offset
 	time_offset -= sleep
-	print("(faking %f seconds)" % sleep)
+	print(f"(faking {sleep:f} seconds)")
 
 
 time.sleep = my_sleep

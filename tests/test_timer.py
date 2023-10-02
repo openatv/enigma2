@@ -24,19 +24,19 @@ def test_timer(repeat=0, timer_start=3600, timer_length=1000, sim_length=86400 *
 	import RecordTimer
 
 	timer = RecordTimer.createTimer(xml.etree.cElementTree.fromstring(
-	"""
-		<timer
-			begin="%d"
-			end="%d"
-			serviceref="1:0:1:6DD2:44D:1:C00000:0:0:0:"
-			repeated="%d"
-			name="Test Event Name"
-			description="Test Event Description"
-			afterevent="nothing"
-			eit="56422"
-			disabled="0"
-			justplay="0">
-	</timer>""" % (at + timer_start, at + timer_start + timer_length, repeat)
+	f"""
+\t\t<timer
+\t\t\tbegin="{at + timer_start}"
+\t\t\tend="{at + timer_start + timer_length}"
+\t\t\tserviceref="1:0:1:6DD2:44D:1:C00000:0:0:0:"
+\t\t\trepeated="{repeat}"
+\t\t\tname="Test Event Name"
+\t\t\tdescription="Test Event Description"
+\t\t\tafterevent="nothing"
+\t\t\teit="56422"
+\t\t\tdisabled="0"
+\t\t\tjustplay="0">
+\t</timer>"""
 	))
 
 	t.record(timer)
@@ -48,14 +48,14 @@ def test_timer(repeat=0, timer_start=3600, timer_length=1000, sim_length=86400 *
 
 	timers = t.processed_timers + t.timer_list
 
-	print("start: %s" % (time.ctime(at + 10)))
+	print(f"start: {time.ctime(at + 10)}")
 
 	assert len(timers) == 1
 
 	for t in timers:
-		print("begin=%d, end=%d, repeated=%d, state=%d" % (t.begin - at, t.end - at, t.repeated, t.state))
-		print("begin: %s" % (time.ctime(t.begin)))
-		print("end: %s" % (time.ctime(t.end)))
+		print(f"begin={t.begin - at}, end={t.end - at}, repeated={t.repeated}, state={t.state}")
+		print(f"begin: {time.ctime(t.begin)}")
+		print(f"end: {time.ctime(t.end)}")
 
 	# if repeat, check if the calculated repeated time of day matches the initial time of day
 	if repeat:
