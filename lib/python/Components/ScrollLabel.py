@@ -38,25 +38,15 @@ class ScrollLabel(GUIComponent):
 		self.instance = None
 
 	def applySkin(self, desktop, parent):
-		scrollLabelDefaults = (
-			("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth),
-			("scrollbarMode", eListbox.showOnDemand),
-			("scrollbarOffset", eListbox.DefaultScrollBarOffset),
-			("scrollbarScroll", eListbox.DefaultScrollBarScroll),
-			("scrollbarWidth", eListbox.DefaultScrollBarWidth)
-		)
-		for attribute, default in scrollLabelDefaults:
-			if attribute not in scrollLabelStyle:
-				scrollLabelStyle[attribute] = default
 		splitMargin = 0
 		splitPosition = 0
 		splitSeparated = False
-		sliderBorderWidth = scrollLabelStyle["scrollbarBorderWidth"]
-		sliderMode = scrollLabelStyle["scrollbarMode"]
-		sliderScroll = scrollLabelStyle["scrollbarScroll"]
-		sliderOffset = scrollLabelStyle["scrollbarOffset"]
-		sliderWidth = scrollLabelStyle["scrollbarWidth"]
-		scrollbarRadius = scrollLabelStyle["scrollbarRadius"]
+		sliderBorderWidth = scrollLabelStyle.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth)
+		sliderMode = scrollLabelStyle.get("scrollbarMode", eListbox.showOnDemand)
+		sliderScroll = scrollLabelStyle.get("scrollbarScroll", eListbox.DefaultScrollBarScroll)
+		sliderOffset = scrollLabelStyle.get("scrollbarOffset", eListbox.DefaultScrollBarOffset)
+		sliderWidth = scrollLabelStyle.get("scrollbarWidth", eListbox.DefaultScrollBarWidth)
+		scrollbarRadius = scrollLabelStyle.get("scrollbarRadius", None)
 		scrollbarGradient = None
 		noWrap = False
 		if self.skinAttributes:
@@ -159,7 +149,8 @@ class ScrollLabel(GUIComponent):
 		self.slider.setOrientation(eSlider.orVertical)
 		self.slider.setRange(0, 1000)
 		self.slider.setBorderWidth(sliderBorderWidth)
-		self.slider.setCornerRadius(*scrollbarRadius)
+		if scrollbarRadius:
+			self.slider.setCornerRadius(*scrollbarRadius)
 		if scrollbarGradient:
 			scrollbarGradient = scrollbarGradient + (True,)  # Add fullColor
 			self.slider.setForegroundGradient(*scrollbarGradient)
