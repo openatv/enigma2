@@ -1572,7 +1572,7 @@ def readSkin(screen, skin, names, desktop):
 			skin = screen.skin[0] % tuple([int(x * getSkinFactor()) for x in screen.skin[1:]])
 		else:
 			skin = screen.skin
-		print(f"[Skin] Parsing embedded skin '{names}'.")
+		print(f"[Skin] Parsing embedded skin '{myName}'.")
 		if isinstance(skin, tuple):
 			for xml in skin:
 				candidate = fromstring(xml)
