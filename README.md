@@ -150,5 +150,5 @@
 
     source env.source
 
-    bitbake nfs-utils rcpbind ...
+    bitbake nfs-utils rpcbind ...
     ```
