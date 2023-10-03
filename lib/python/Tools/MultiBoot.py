@@ -94,15 +94,14 @@ class MultiBootClass():
 				self.bootCode = ""
 			except struct.error as err:
 				print("MultiBoot] Unable to interpret dual boot file '%s' data!  (%s)" % (DUAL_BOOT_FILE, err))
-		#elif exists(DREAM_BOOT_FILE):
-		#	with open(DREAM_BOOT_FILE, "r") as fd:
-		#		lines = fd.readlines()
-		#		for line in lines:
-		#			if line.startswith("default="):
-		#				self.bootSlot = str(int(line.strip().split("=")[1]) + 1)
-		#				self.bootCode = ""
 		else:
 			self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
+		if exists(DREAM_BOOT_FILE):
+			with open(DREAM_BOOT_FILE, "r") as fd:
+				lines = fd.readlines()
+				for line in lines:
+					if line.startswith("default="):
+						self.bootSlot = str(int(line.strip().split("=")[1]) + 1)
 
 	def loadBootDevice(self):
 		bootDeviceList = BOOT_DEVICE_LIST_VUPLUS if fileHas("/proc/cmdline", "kexec=1") else BOOT_DEVICE_LIST
