@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-25 16:13+0000\n"
-"PO-Revision-Date: 2023-09-03 01:19+0000\n"
+"PO-Revision-Date: 2023-10-02 12:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -1044,8 +1044,8 @@ msgstr[1] "%d pakketten zijn bijgewerkt."
 #, python-format
 msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Plug-in is niet beschikbaar:"
+msgstr[1] "%d Plug-ins zijn niet beschikbaar:"
 
 #, python-format
 msgid "%d sec"
@@ -1310,7 +1310,7 @@ msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if un
 msgstr "`Decodeer & en ECM opnemen' geeft de optie om achteraf te decoderen indien dit niet lukt tijdens de opname. 'Niet Decoderen & en neem ECM op' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normaal' betekent decoderen en geen ECM opslaan."
 
 msgid "'WeatherPlugin' is not installed!"
-msgstr "de 'Weer plug-in' is niet geïnstalleerd!"
+msgstr "De 'Weer plug-in' is niet geïnstalleerd!"
 
 msgid "( All readers)"
 msgstr "(Alle lezers)"
@@ -1598,7 +1598,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Op de achtergrond wordt een controle uitgevoerd. Wacht een paar minuten en probeer het opnieuw."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
-msgstr "Een door komma's gescheiden lijst van Plug-ins, die voor de instelling van \"Mijn Plug-ins\" in \"Plug-ins filteren\" gebruikt gaan worden. Geef de naam van de plug-in op zonder leidende punt (.)."
+msgstr "Een door komma's gescheiden lijst van plug-ins, die voor de instelling van \"Mijn plug-ins\" in \"plug-ins filteren\" gebruikt gaan worden. Geef de naam van de plug-in op zonder leidende punt (.)."
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
@@ -2061,13 +2061,13 @@ msgid "Add/Remove a timer for the current event"
 msgstr "Timer voor het huidige programma toevoegen/verwijderen"
 
 msgid "Add/Remove highlighted plugin to/from download list"
-msgstr "Geselecteerde Plug-in toevoegen/verwijderen van de downloadlijst"
+msgstr "Geselecteerde plug-in toevoegen/verwijderen van de downloadlijst"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
-msgstr "Geselecteerde Plug-in toevoegen/verwijderen van de verwijder-lijst"
+msgstr "Geselecteerde plug-in toevoegen/verwijderen van de verwijder-lijst"
 
 msgid "Add/Remove highlighted plugin to/from update list"
-msgstr "Geselecteerde Plug-in toevoegen/verwijderen van de Update-lijst"
+msgstr "Geselecteerde plug-in toevoegen/verwijderen van de Update-lijst"
 
 msgid "Adding schedule..."
 msgstr "Voegt schema toe..."
@@ -2527,7 +2527,7 @@ msgid "Aruba"
 msgstr "Aruba"
 
 msgid "As plugin in extended bar"
-msgstr "als plug-in de uitgebreide informatiebalk"
+msgstr "Als plug-in in de uitgebreide informatiebalk"
 
 msgid "Ascending"
 msgstr "Oplopend"
@@ -4166,8 +4166,8 @@ msgstr "Wis de virtuele geheugencache"
 
 msgid "Clear warning"
 msgid_plural "Clear warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Waarschuwing wissen"
+msgstr[1] "Waarschuwingen wissen"
 
 msgid "Click the button on your remote you want to change."
 msgstr "Druk op de knop van de afstandsbediening waarvan u de functie wil wijzigen."
@@ -6509,7 +6509,7 @@ msgid "Do you want to resume this playback?"
 msgstr "Wilt u verder gaan met het afspelen van deze opname?"
 
 msgid "Do you want to select another service?"
-msgstr ""
+msgstr "Wilt u een andere zender kiezen?"
 
 msgid "Do you want to start a backup now?"
 msgstr "Wilt u nu een back-up maken?"
@@ -6610,7 +6610,7 @@ msgid "Download the selected image"
 msgstr "Gekozen image downloaden"
 
 msgid "Download the selected plugin / list of plugins"
-msgstr ""
+msgstr "Download de geselecteerde plug-in of het plug-in overzicht"
 
 msgid "Downloadable plugins"
 msgstr "Beschikbare plug-ins"
@@ -7487,7 +7487,7 @@ msgid ""
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
 "Fout bij het maken van de Skin.\n"
-"Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite Plug-in, en bevestig deze via de groene knop."
+"Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite plug-in, en bevestig deze via de groene knop."
 
 #, python-format
 msgid "Error downloading image '%s'!"
@@ -7619,7 +7619,7 @@ msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Fout: Het root-bestandssysteem en de systeemmappen kunnen niet worden hernoemd!"
 
 msgid "Error: The selected service can't be recorded!"
-msgstr ""
+msgstr "Fout: De gekozen zender kan niet worden opgenomen!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -8302,7 +8302,7 @@ msgid "Flash and restore settings and no plugins"
 msgstr "Flash en herstel instellingen, zonder plug-ins"
 
 msgid "Flash and restore settings and selected plugins (Ask user)"
-msgstr "Flash en herstel instellingen, Plug-ins vragen"
+msgstr "Flash en herstel instellingen, plug-ins vragen"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
@@ -9365,7 +9365,7 @@ msgid "If an action is user-configurable, its help entry will be flagged with a 
 msgstr "Wanneer een actie instelbaar is, wordt de bijbehorende help functie gemarkeerd met een '(C)'."
 
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
-msgstr "Wanneer geactiveerd, zal de Plug-in uw ontvanger eerder dan de opgegeven Starttijd inschakelen om te controleren of het programma eventueel eerder begint."
+msgstr "Wanneer geactiveerd, zal de plug-in uw ontvanger eerder dan de opgegeven starttijd inschakelen om te controleren of het programma eventueel eerder begint."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Instellen, of en hoe de video-resolutie van uw ontvanger aan de resolutie van de video inhoud moet worden aangepast."
@@ -9796,10 +9796,10 @@ msgid "Installing feeds from feed ..."
 msgstr "Installeert feeds uit feed ..."
 
 msgid "Installing plugins from IPK ..."
-msgstr "Installeert plug-ins uit IPK..."
+msgstr "Installeer plug-ins uit een IPK..."
 
 msgid "Installing plugins from feed ..."
-msgstr "Installeert plug-ins uit feed ..."
+msgstr "Installeer plug-ins uit de feed ..."
 
 msgid "Instant record"
 msgstr "Onmiddellijk opnemen"
@@ -10040,8 +10040,8 @@ msgstr "Huidige zender"
 
 msgid "Keep warning"
 msgid_plural "Keep warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Waarschuwing bewaren"
+msgstr[1] "Waarschuwingen bewaren"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Houdt de opnamelijst geopend tijdens het afspelen van audio bestanden."
@@ -10734,7 +10734,7 @@ msgid "Manage Plugins"
 msgstr "Plug-ins beheren"
 
 msgid "Manage Plugins. This will remove/install Plugins on your box"
-msgstr "Plug-ins beheren, verwijderden of installeren"
+msgstr "Plug-ins beheren, verwijderen of installeren"
 
 msgid "Manage and explore directories and files."
 msgstr "Mappen en bestanden verkennen en beheren."
@@ -10743,7 +10743,7 @@ msgid "Manage network mounts"
 msgstr "Beheer netwerk verbindingen"
 
 msgid "Manage the highlighted plugin"
-msgstr "De geselecteerde plug-in beheren"
+msgstr "De geselecteerde plug-in instellen"
 
 msgid "Manage your online update files"
 msgstr "Selecteer te overschrijven bestanden bij een update"
@@ -14428,7 +14428,7 @@ msgid "Remove all other data"
 msgstr "Verwijder alle overige data"
 
 msgid "Remove all plugin setting data"
-msgstr "Verwijder alle Plug-in instellingen data"
+msgstr "Verwijder alle plug-in instelling gegevens"
 
 msgid "Remove all resume point data"
 msgstr "Verwijder alle hervat punt data"
@@ -14476,7 +14476,7 @@ msgid "Remove the current bookmark"
 msgstr "De huidige bladwijzer verwijderen"
 
 msgid "Remove the selected plugin / list of plugins"
-msgstr ""
+msgstr "De geselecteerde plug-in of lijst van plug-ins verwijderen"
 
 msgid "Remove timer"
 msgstr "Verwijder timer"
@@ -15210,7 +15210,7 @@ msgstr "Zoek bestanden..."
 
 msgid "Scan for local extensions and install them"
 msgstr ""
-"Zoek naar lokale Plug-ins en installeer deze.\n"
+"Zoek naar lokale plug-ins en installeer deze.\n"
 "Plug-ins installeren vanaf: HDD of USB"
 
 msgid "Scan for local extensions and install them."
@@ -15475,7 +15475,7 @@ msgid "Select 'Yes' to remove all other files and directories not covered by the
 msgstr "Kies 'Ja' om alle overige bestanden en mappen te verwijderen die hierboven niet worden omschreven."
 
 msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
-msgstr "Kies 'Ja' om alle configuratie data van Plug-ins te verwijderen. Hierdoor worden alle Plug-in configuratie gegevens verwijderd die in de Enigma2 configuratie map zijn opgeslagen. Alle betroffen Plug-ins zullen worden terug gezet naar hun default instellingen en moeten opnieuw worden geconfigureerd."
+msgstr "Kies 'Ja' om alle configuratie data van plug-ins te verwijderen. Hierdoor worden alle plug-in configuratie gegevens verwijderd die in de Enigma2 configuratie map zijn opgeslagen. Alle betroffen plug-ins zullen worden terug gezet naar hun default instellingen en moeten opnieuw worden geconfigureerd."
 
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Kies 'Ja' om alle favorietenlijsten, tuning data, timers, hervat punten en dergelijke te verwijderen. Hierdoor worden alle instellingen terug gezet naar default, dit is de meest betrouwbare methode voor het herstellen van de fabrieksinstellingen."
@@ -15499,60 +15499,60 @@ msgid "Select 'Yes' to set the cursor position to the end of the line when editi
 msgstr "Selecteer 'Ja' om de cursor op het einde van de regel te plaatsen bij het bewerken van een tekstbestand.  Selecteer 'Nee' om de cursor aan het begin van de regel te zetten."
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om 'dev', 'staticdev', 'dbg' and 'doc' pakketten in het Plug-ins download-scherm weer te geven."
+msgstr "Kies 'Ja' om 'dev', 'staticdev', 'dbg' and 'doc' pakketten in het plug-ins download-scherm weer te geven."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Display skins in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Display skins in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om OpenPLi in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om OpenPLi in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om OpenVIX in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om OpenVIX in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr "Selecteer 'Ja' om mappen bovenaan/begin van de lijst weer te geven, of selecteer 'Nee' om eerst bestanden weer te geven."
 
 msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Drivers in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Drivers in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Applicaties in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Applicaties in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Kernel pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Kernel pakketten in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om M2K pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om M2K pakketten in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
 msgstr ""
-"Kies 'Ja' om Picons in het Plug-in\n"
+"Kies 'Ja' om Picons in het plug-in\n"
 "download-scherm weer te geven."
 
 msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Skinpacks in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Skinpacks in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show security packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Beveiliging in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Beveiliging in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Settings in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Settings in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Skinparts in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Skinparts in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Skins in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Skins in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Softcams in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Softcams in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om 'src' pakketten in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om 'src' pakketten in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Systeem plug-ins in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Systeem plug-ins in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Kies 'Ja' om de geavanceerde instellingen te tonen."
@@ -15569,7 +15569,7 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Selecteer 'Ja' om de huidige map in de lijst met mappen weer te geven. Merk op dat File Commander opnieuw moet worden opgestart om deze wijziging door te voeren."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Weblinks in het Plug-in download-scherm weer te geven."
+msgstr "Kies 'Ja' om Weblinks in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Indien 'ja' wordt gekozen, worden de signaalwaardes (SNR etc.) berekend op basis van de API V3. Dit is een oude API die nu vervangen is."
@@ -16657,7 +16657,7 @@ msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts
 msgstr "Kies hier voor 'Ja' om de informatiebalk automatisch te verbergen wanneer het afspelen van media begint. Bij 'Nee' zal de informatiebalk zichtbaar blijven."
 
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
-msgstr "Kies hier voor 'Ja' om de Mediaspeler in het hoofdmenu te tonen. Bij 'Nee' kan de Mediaspeler nog steeds vanuit het Plug-in overzicht worden gestart."
+msgstr "Kies hier voor 'Ja' om de Mediaspeler in het hoofdmenu te tonen. Bij 'Nee' kan de Mediaspeler nog steeds vanuit het plug-in overzicht worden gestart."
 
 msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr "Kies hier voor 'Ja' om de huidige afspeellijst in een herhalende lus af te spelen. Bij 'Nee' wordt de afspeellijst maar één keer afgespeeld."
@@ -16781,7 +16781,7 @@ msgid "Setup Plugin Browser"
 msgstr "Plug-in Browser instellen"
 
 msgid "Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"
-msgstr "Hier kunt u bepalen welke Plug-ins er zichtbaar zijn in de Plug-in Browser."
+msgstr "Hier kunt u bepalen welke plug-ins er zichtbaar zijn in de Plug-in Browser."
 
 msgid "Setup Plugins"
 msgstr "Applicaties beheren"
@@ -17199,7 +17199,7 @@ msgid "Show Source packages"
 msgstr "Broncode"
 
 msgid "Show System Plugin packages"
-msgstr "Systeem Plug-ins"
+msgstr "Systeem plug-ins"
 
 msgid "Show Timer List"
 msgstr "Toon timers"
@@ -17678,7 +17678,7 @@ msgstr "Toont de geïnstalleerde applicaties. Ook kunt u hier applicaties/plug-i
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr ""
-"Hier vindt u een overzicht van alle geïnstalleerde Plug-ins.\n"
+"Hier vindt u een overzicht van alle geïnstalleerde plug-ins.\n"
 "Die kunt u hier online of d.m.v. een .ipk bestand installeren of verwijderen."
 
 msgid "Shows available softcams. Here you can download and install them"
@@ -19271,7 +19271,7 @@ msgid ""
 "The MediaStream plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Het MediaStream Plug-in is niet geïnstalleerd!\n"
+"Het MediaStream plug-in is niet geïnstalleerd!\n"
 "A.u.b. deze installeren."
 
 msgid ""
@@ -19878,7 +19878,7 @@ msgstr ""
 "(Default: 0)"
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr "De VPS Plug-in kan bepalen of een programma eerder begint of langer duurt dan in de Timer ingesteld. De zender moet dan wel betrouwbare gegevens leveren!"
+msgstr "De VPS plug-in kan bepalen of een programma eerder begint of langer duurt dan in de Timer ingesteld. De zender moet dan wel betrouwbare gegevens leveren!"
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Deze zender is beveiligd met een PIN-code (kinderslot)!"
@@ -20277,7 +20277,7 @@ msgid "Toggle service name display"
 msgstr "Weergave van de zendernaam in- of uitschakelen"
 
 msgid "Toggle the visibility of the highlighted plugin"
-msgstr "Zichtbaarheid van de geselecteerde Plug-in wijzigen"
+msgstr "Zichtbaarheid van de geselecteerde plug-in wijzigen"
 
 msgid "Toggles between tv and radio"
 msgstr "Wissel tussen TV en Radio"
@@ -20717,7 +20717,7 @@ msgid ""
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
 "Onbekende fout bij het maken van de Skin.\n"
-"Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite Plug-in, en bevestig deze via de groene knop."
+"Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite plug-in, en bevestig deze via de groene knop."
 
 msgid "Unknown Service"
 msgstr "Onbekende zender"
@@ -20849,7 +20849,7 @@ msgstr ""
 "Uw Bootloader is nu bijgewerkt!"
 
 msgid "Update the selected plugin / list of plugins"
-msgstr ""
+msgstr "De geselecteerde plug-in of plug-in lijst updaten"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Update/back-up uw firmware, back-up/herstel instellingen."
@@ -21237,7 +21237,7 @@ msgid "VPS enabled by default"
 msgstr "VPS standaard ingeschakeld"
 
 msgid "VPS-Plugin Information"
-msgstr "VPS Plug-in informatie"
+msgstr "VPS plug-in informatie"
 
 msgid ""
 "VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
@@ -21293,7 +21293,7 @@ msgid ""
 "VPS-Plugin couldn't check if the channel supports VPS.\n"
 " Do you want to enable VPS anyway?"
 msgstr ""
-"De VPS Plug-in kon niet controleren of de geselecteerde zender VPS ondersteunt.\n"
+"De VPS plug-in kon niet controleren of de geselecteerde zender VPS ondersteunt.\n"
 "VPS (of PDC) wordt in Nederland niet meer gebruikt, wilt u VPS toch inschakelen?"
 
 msgid ""
@@ -21870,7 +21870,7 @@ msgstr "Indien geactiveerd, mag een opname Picture-in-Picture stoppen, als er ge
 msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
 msgstr ""
 "Indien geactiveerd, mag een opname de pseudo-opname stoppen, als er geen vrije tuners zijn.\n"
-"Een pseudo-opname wordt bijvoorbeeld gebruikt in de plug-in EPGRefresh."
+"Een pseudo-opname wordt bijvoorbeeld gebruikt in de plug-in EPG-Refresh."
 
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
 msgstr "Indien geactiveerd, mag een opname de stream stoppen, als er geen vrije tuners zijn."
