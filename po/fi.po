@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-25 16:13+0000\n"
-"PO-Revision-Date: 2023-09-15 11:56+0000\n"
+"PO-Revision-Date: 2023-09-28 23:02+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 msgid ""
 "\n"
@@ -1040,8 +1040,8 @@ msgstr[1] "%d Pakettia päivitetty."
 #, python-format
 msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ei ole saatavilla:"
+msgstr[1] "Lisäosa plugit %d eivät ole saatavilla"
 
 #, python-format
 msgid "%d sec"
@@ -4163,8 +4163,8 @@ msgstr "Tyhjennä virtuaalimuistin välimuisti"
 
 msgid "Clear warning"
 msgid_plural "Clear warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tyhjennä varoitus"
+msgstr[1] "Tyhjennä varoitukset"
 
 msgid "Click the button on your remote you want to change."
 msgstr "Määrittää näppäimelle haluamasi toiminnon."
@@ -6398,7 +6398,7 @@ msgid "Do you want to resume this playback?"
 msgstr "Jatketaanko kohdasta, johon katselu viimeksi jäi?"
 
 msgid "Do you want to select another service?"
-msgstr ""
+msgstr "Haluatko valita toisen kanavan?"
 
 msgid "Do you want to start a backup now?"
 msgstr "Haluatko aloittaa varmuuskopioinnin nyt?"
@@ -6499,7 +6499,7 @@ msgid "Download the selected image"
 msgstr "Lataa valittu ohjelmisto"
 
 msgid "Download the selected plugin / list of plugins"
-msgstr ""
+msgstr "Lataa valittu lisäosa/ lista lisäosista"
 
 msgid "Downloadable plugins"
 msgstr "Lataa lisäosia"
@@ -7498,7 +7498,7 @@ msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Virhe: Tiedostojärjestelmää ja järjestelmähakemistoja ei voi nimetä uudelleen!"
 
 msgid "Error: The selected service can't be recorded!"
-msgstr ""
+msgstr "Virhe: Valittua kanavaa ei voi tallentaa!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -9917,8 +9917,8 @@ msgstr "Säilytä kanava"
 
 msgid "Keep warning"
 msgid_plural "Keep warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pidä varoitus"
+msgstr[1] "Pidä varoitukset"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Pidä tallenneluettelo auki äänitiedostojen toiston aikana."
@@ -14355,7 +14355,7 @@ msgid "Remove the current bookmark"
 msgstr "Poista nykyinen kirjanmerkki"
 
 msgid "Remove the selected plugin / list of plugins"
-msgstr ""
+msgstr "Poista valittu lisäosa/ lista lisäosista"
 
 msgid "Remove timer"
 msgstr "Poista ajastus"
@@ -18781,7 +18781,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 28.8.2023\n"
+"Suomenkielinen käännös: 29.9.2023\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -20670,7 +20670,7 @@ msgstr ""
 "Bootloaderi on nyt ajan tasalla!"
 
 msgid "Update the selected plugin / list of plugins"
-msgstr ""
+msgstr "Päivitä valittu lisäosa/ lista lisäosista"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Päivitä/varmuuskopioi ohjelmisto, varmuuskopioi/palauta asetukset"
