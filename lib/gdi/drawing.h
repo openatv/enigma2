@@ -34,13 +34,15 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
 #define __drawing__
 
 #include "gpixmap.h"
+#include <vector>
 
 void duplicate_32fc(uint32_t *out, const uint32_t in, size_t size);
-uint32_t* createGradientBuffer(int graSize, const gRGB &startColor, const gRGB &endColor);
-void drawAngleTl(gUnmanagedSurface *surface, const uint32_t *src, const eRect &area, int direction, const eRect &cornerRect, const CornerData &cornerData);
-void drawAngleTr(gUnmanagedSurface *surface, const uint32_t *src, const eRect &area, int direction, const eRect &cornerRect, const CornerData &cornerData);
-void drawAngleBl(gUnmanagedSurface *surface, const uint32_t *src, const eRect &area, int direction, const eRect &cornerRect, const CornerData &cornerData);
-void drawAngleBr(gUnmanagedSurface *surface, const uint32_t *src, const eRect &area, int direction, const eRect &cornerRect, const CornerData &cornerData);
+uint32_t *createGradientBuffer2(int graSize, const gRGB &startColor, const gRGB &endColor);
+uint32_t *createGradientBuffer3(int graSize, const std::vector<gRGB> &colors);
+void drawAngleTl(gUnmanagedSurface *surface, const uint32_t *src, const eRect &area, uint8_t direction, const eRect &cornerRect, const CornerData &cornerData);
+void drawAngleTr(gUnmanagedSurface *surface, const uint32_t *src, const eRect &area, uint8_t direction, const eRect &cornerRect, const CornerData &cornerData);
+void drawAngleBl(gUnmanagedSurface *surface, const uint32_t *src, const eRect &area, uint8_t direction, const eRect &cornerRect, const CornerData &cornerData);
+void drawAngleBr(gUnmanagedSurface *surface, const uint32_t *src, const eRect &area, uint8_t direction, const eRect &cornerRect, const CornerData &cornerData);
 
 void drawAngle32Tl(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRect &area, const eRect &cornerRect, const CornerData &cornerData, int flag);
 void drawAngle32Tr(gUnmanagedSurface *surface, const gPixmap &pixmap, const eRect &area, const eRect &cornerRect, const CornerData &cornerData, int flag);

@@ -358,7 +358,7 @@ void gPainter::setForegroundColor(const gRGB &color)
 	m_rc->submit(o);
 }
 
-void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int orientation, bool alphablend, int fullSize)
+void gPainter::setGradient(const std::vector<gRGB> &colors, uint8_t orientation, bool alphablend, int fullSize)
 {
 	if (m_dc->islocked())
 		return;
@@ -366,15 +366,14 @@ void gPainter::setGradient(const gRGB &startColor, const gRGB &endColor, int ori
 	o.opcode = gOpcode::setGradient;
 	o.dc = m_dc.grabRef();
 	o.parm.gradient = new gOpcode::para::pgradient;
-	o.parm.gradient->startColor = startColor;
-	o.parm.gradient->endColor = endColor;
+	o.parm.gradient->colors = colors;
 	o.parm.gradient->orientation = orientation;
 	o.parm.gradient->alphablend = alphablend;
 	o.parm.gradient->fullSize = fullSize;
 	m_rc->submit(o);
 }
 
-void gPainter::setRadius(int radius, int edges)
+void gPainter::setRadius(int radius, uint8_t edges)
 {
 	if (m_dc->islocked())
 		return;
@@ -830,8 +829,7 @@ void gDC::exec(const gOpcode *o)
 		delete o->parm.setFont;
 		break;
 	case gOpcode::setGradient:
-		m_gradient_start_color = o->parm.gradient->startColor;
-		m_gradient_end_color = o->parm.gradient->endColor;
+		m_gradient_colors = o->parm.gradient->colors;
 		m_gradient_orientation = o->parm.gradient->orientation;
 		m_gradient_alphablend = o->parm.gradient->alphablend;
 		m_gradient_fullSize = o->parm.gradient->fullSize;
@@ -1079,7 +1077,7 @@ void gDC::exec(const gOpcode *o)
 #endif
 		o->parm.rectangle->area.moveBy(m_current_offset);
 		gRegion clip = m_current_clip & o->parm.rectangle->area;
-		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_start_color, m_gradient_end_color, m_gradient_orientation, m_radius, m_radius_edges, m_gradient_alphablend, m_gradient_fullSize);
+		m_pixmap->drawRectangle(clip, o->parm.rectangle->area, m_background_color_rgb, m_border_color, m_border_width, m_gradient_colors, m_gradient_orientation, m_radius, m_radius_edges, m_gradient_alphablend, m_gradient_fullSize);
 		m_border_width = 0;
 		m_radius = 0;
 		m_radius_edges = 0;

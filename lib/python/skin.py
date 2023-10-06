@@ -424,18 +424,24 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 
 
 def parseGradient(value):
-	data = [x.strip() for x in value.split(",")]
-	if len(data) > 2:
+	value = value.split(";")
+	gradientcolors = [x.strip() for x in value[0].split(",")]
+	data = [x.strip() for x in value[1].split(",")]
+	if len(colors) > 1 and data:
 		options = {
 			"horizontal": eWidget.GRADIENT_HORIZONTAL,
 			"vertical": eWidget.GRADIENT_VERTICAL,
 		}
-		direction = parseOptions(options, "gradient", data[2], eWidget.GRADIENT_VERTICAL)
-		alphaBend = 1 if len(data) == 4 and parseBoolean("1", data[3]) else 0
-		return (parseColor(data[0], default=0x00000000), parseColor(data[1], 0x00FFFFFF), direction, alphaBend)
+		direction = parseOptions(options, "gradient", data[0], eWidget.GRADIENT_VERTICAL)
+		alphaBend = 1 if len(data) == 4 and parseBoolean("1", data[1]) else 0
+
+		color1 = parseColor(gradientcolors[0], default=0x00000000)
+		color2 = parseColor(gradientcolors[1], default=0x00FFFFFF)
+		color3 = parseColor(gradientcolors[2], default=0x00FFFFFF) if len(gradientcolors) == 3 else color2
+		return (color1, color2, color3, direction, alphaBend)
 	else:
-		skinError(f"The gradient '{value}' must be 'startColor,endColor,direction[,blend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)")
-		return (0x000000, 0x00FFFFFF, eWidget.GRADIENT_VERTICAL, 0)
+		skinError(f"The gradient '{value}' must be 'startColor[,midColor],endColor;direction[,blend]', using '#00000000,#00FFFFFF,#00FFFFFF;vertical' (Black,White,White;vertical)")
+		return (0x000000, 0x00FFFFFF, 0x00FFFFFF, eWidget.GRADIENT_VERTICAL, 0)
 
 
 def parseHorizontalAlignment(value):

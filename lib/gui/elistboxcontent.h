@@ -13,7 +13,7 @@ public:
 	~eListboxPythonStringContent();
 
 	void setList(SWIG_PYOBJECT(ePyObject) list);
-	void setOrientation(int orientation);
+	void setOrientation(uint8_t orientation);
 	void setItemHeight(int height);
 	void setItemWidth(int width);
 	PyObject *getCurrentSelection();
@@ -47,7 +47,7 @@ protected:
 
 	int getItemHeight() { return m_itemheight; }
 	int getItemWidth() { return m_itemwidth; }
-	int getOrientation() { return m_orientation; }
+	uint8_t getOrientation() { return m_orientation; }
 
 private:
 	int m_saved_cursor_line;
@@ -60,7 +60,7 @@ protected:
 	eSize m_itemsize;
 	int m_itemheight;
 	int m_itemwidth;
-	int m_orientation;
+	uint8_t m_orientation;
 #endif
 };
 

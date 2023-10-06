@@ -461,7 +461,7 @@ static void convert_palette(uint32_t *pal, const gPalette &clut)
 
 #define FIX 0x10000
 
-void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth, const gRGB &startColor, const gRGB &endColor, int direction, int radius, int edges, bool alphablend, int gradientFullSize)
+void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth, const std::vector<gRGB> &gradientColors, uint8_t direction, int radius, uint8_t edges, bool alphablend, int gradientFullSize)
 {
 	if (surface->bpp < 32)
 	{
@@ -472,7 +472,7 @@ void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB
 #ifdef GPIXMAP_DEBUG
 	Stopwatch s;
 #endif
-	const int GRADIENT_VERTICAL = 1;
+	const uint8_t GRADIENT_VERTICAL = 1;
 	uint32_t backColor = backgroundColor.argb();
 	backColor ^= 0xFF000000;
 	uint32_t borderCol = borderColor.argb();
@@ -480,7 +480,12 @@ void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB
 	uint32_t *gradientBuf = nullptr;
 
 	const int gradientSize = (gradientFullSize) ? gradientFullSize : (direction == GRADIENT_VERTICAL) ? area.height() : area.width();
-	gradientBuf = createGradientBuffer(gradientSize, !direction ? backgroundColor : startColor, !direction ? backgroundColor : endColor);
+	if(!direction)
+		gradientBuf = createGradientBuffer2(gradientSize, backgroundColor, backgroundColor);
+	else if(gradientColors.at(1) == gradientColors.at(2))
+		gradientBuf = createGradientBuffer2(gradientSize, gradientColors.at(0), gradientColors.at(1));
+	else
+		gradientBuf = createGradientBuffer3(gradientSize, gradientColors);
 
 	CornerData cornerData(radius, edges, area.width(), area.height(), borderWidth, borderCol);
 
@@ -753,7 +758,7 @@ void gPixmap::drawRectangle(const gRegion &region, const eRect &area, const gRGB
 		free(gradientBuf);
 }
 
-void gPixmap::blitRounded32Bit(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, int edges, int flag)
+void gPixmap::blitRounded32Bit(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, uint8_t edges, int flag)
 {
 	CornerData cornerData(cornerRadius, edges, pos.width(), pos.height(), 0, 0xFF000000);
 	int corners = 0;
@@ -998,7 +1003,7 @@ void gPixmap::blitRounded32Bit(const gPixmap &src, const eRect &pos, const eRect
 	}
 }
 
-void gPixmap::blitRounded32BitScaled(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, int edges, int flag)
+void gPixmap::blitRounded32BitScaled(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, uint8_t edges, int flag)
 {
 	CornerData cornerData(cornerRadius, edges, pos.width(), pos.height(), 0, 0xFF000000);
 	int corners = 0;
@@ -1291,7 +1296,7 @@ void gPixmap::blitRounded32BitScaled(const gPixmap &src, const eRect &pos, const
 	}
 }
 
-void gPixmap::blitRounded8Bit(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, int edges, int flag)
+void gPixmap::blitRounded8Bit(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, uint8_t edges, int flag)
 {
 
 	int corners = 0;
@@ -1449,7 +1454,7 @@ void gPixmap::blitRounded8Bit(const gPixmap &src, const eRect &pos, const eRect 
 	}
 }
 
-void gPixmap::blitRounded8BitScaled(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, int edges, int flag)
+void gPixmap::blitRounded8BitScaled(const gPixmap &src, const eRect &pos, const eRect &clip, int cornerRadius, uint8_t edges, int flag)
 {
 	int corners = 0;
 	uint32_t pal[256];
@@ -1737,7 +1742,7 @@ void gPixmap::blitRounded8BitScaled(const gPixmap &src, const eRect &pos, const 
 	}
 }
 
-void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int cornerRadius, int edges, int flag)
+void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int cornerRadius, uint8_t edges, int flag)
 {
 	bool accel = (surface->data_phys && src.surface->data_phys);
 	bool accumulate = accel && (gAccel::getInstance()->accumulate() >= 0);

@@ -157,14 +157,14 @@ void eWindow::setAnimationMode(int mode)
 	m_animation_mode = (eWindow::m_has_animation_mode==1) ? mode : 0;
 }
 
-void eWindow::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
+void eWindow::setBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
 {
 	/* set background gradient for child, too */
-	eWidget::setBackgroundGradient(startcolor, endcolor, direction, alphablend);
-	m_child->setBackgroundGradient(startcolor, endcolor, direction, alphablend);
+	eWidget::setBackgroundGradient(startcolor, midcolor, endcolor, direction, alphablend);
+	m_child->setBackgroundGradient(startcolor, midcolor, endcolor, direction, alphablend);
 }
 
-void eWindow::setCornerRadius(int radius, int edges)
+void eWindow::setCornerRadius(int radius, uint8_t edges)
 {
 	/* set corner radius for child, too */
 	eWidget::setCornerRadius(radius, edges);

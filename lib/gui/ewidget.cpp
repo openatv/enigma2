@@ -374,7 +374,7 @@ int eWidget::event(int event, void *data, void *data2)
 			bool drawborder = (m_have_border_color && m_border_width);
 
 			if (m_gradient_set)
-				painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, m_gradient_direction, m_gradient_alphablend);
+				painter.setGradient(m_gradient_colors, m_gradient_direction, m_gradient_alphablend);
 			if (m_have_background_color)
 				painter.setBackgroundColor(m_background_color);
 			const int r = getCornerRadius();
@@ -470,17 +470,16 @@ void eWidget::notifyShowHide()
 		i->notifyShowHide();
 }
 
-void eWidget::setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend)
+void eWidget::setBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
 {
-	m_gradient_startcolor = startcolor;
-	m_gradient_endcolor = endcolor;
+	m_gradient_colors = { startcolor, midcolor, endcolor };
 	m_gradient_direction = direction;
 	m_gradient_alphablend = alphablend;
 	m_gradient_set = true;
 	invalidate();
 }
 
-void eWidget::setCornerRadius(int radius, int edges)
+void eWidget::setCornerRadius(int radius, uint8_t edges)
 {
 	m_cornerRadius = radius;
 	m_cornerRadiusEdges = edges;
