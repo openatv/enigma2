@@ -424,18 +424,36 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 
 
 def parseGradient(value):
+	def validColor(value):
+		if value[0] == "#" and 7 < len(value) < 10:
+			isColor = True
+		elif value in colors:
+			isColor = True
+		else:
+			isColor = False
+		return isColor
+
 	data = [x.strip() for x in value.split(",")]
-	if len(data) > 2:
+	gradientColors = [gRGB(0x00000000), gRGB(0x00FFFFFF), gRGB(0x00FFFFFF)]  # Start color, center color, end color.
+	for index, color in enumerate(data):
+		if not validColor(color) or index > 2:
+			break
+		gradientColors[index] = parseColor(color)
+	if index == 2:
+		gradientColors[2] = gradientColors[1]
+	argCount = len(data) - index - 1
+	if index > 1 and argCount:
 		options = {
 			"horizontal": eWidget.GRADIENT_HORIZONTAL,
 			"vertical": eWidget.GRADIENT_VERTICAL,
 		}
-		direction = parseOptions(options, "gradient", data[2], eWidget.GRADIENT_VERTICAL)
-		alphaBend = 1 if len(data) == 4 and parseBoolean("1", data[3]) else 0
-		return (parseColor(data[0], default=0x00000000), parseColor(data[1], 0x00FFFFFF), direction, alphaBend)
+		direction = parseOptions(options, "gradient", data[index], eWidget.GRADIENT_VERTICAL)
+		alphaBlend = 1 if argCount > 1 and parseBoolean("alphablend", data[index + 1]) else 0
 	else:
-		skinError(f"The gradient '{value}' must be 'startColor,endColor,direction[,blend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)")
-		return (0x000000, 0x00FFFFFF, eWidget.GRADIENT_VERTICAL, 0)
+		skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)")
+		direction = eWidget.GRADIENT_VERTICAL
+		alphaBlend = 0
+	return (gradientColors[0], gradientColors[1], gradientColors[2], direction, alphaBlend)
 
 
 def parseHorizontalAlignment(value):
@@ -890,9 +908,6 @@ class AttributeParser:
 	def foregroundNotCrypted(self, value):
 		self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
 
-	def gradient(self, value):
-		self.guiObject.setGradient(*parseGradient(value))
-
 	def hAlign(self, value):  # This typo catcher definition uses an inconsistent name, use 'horizontalAlignment' instead!
 		self.horizontalAlignment(value)
 		# attribDeprecationWarning("hAlign", "horizontalAlignment")
@@ -999,6 +1014,9 @@ class AttributeParser:
 	def scrollbarBackgroundColor(self, value):
 		self.guiObject.setScrollbarBackgroundColor(parseColor(value, 0x00000000))
 
+	def scrollbarBackgroundGradient(self, value):
+		self.guiObject.setScrollbarBackgroundGradient(*parseGradient(value))
+
 	def scrollbarBackgroundPicture(self, value):  # For compatibility same as 'scrollbarBackgroundPixmap', use 'scrollbarBackgroundPixmap' instead.
 		self.scrollbarBackgroundPixmap(value)
 		attribDeprecationWarning("scrollbarBackgroundPicture", "scrollbarBackgroundPixmap")
@@ -1019,11 +1037,11 @@ class AttributeParser:
 	def scrollbarForegroundColor(self, value):
 		self.guiObject.setScrollbarForegroundColor(parseColor(value, 0x00FFFFFF))
 
+	def scrollbarForegroundGradient(self, value):
+		self.guiObject.setScrollbarForegroundGradient(*parseGradient(value))
+
 	def scrollbarForegroundPixmap(self, value):
 		self.guiObject.setScrollbarForegroundPixmap(parsePixmap(value, self.desktop))
-
-	def scrollbarGradient(self, value):
-		self.guiObject.setScrollbarGradient(*parseGradient(value))
 
 	def scrollbarLength(self, value):
 		self.guiObject.setScrollbarLength(parseScrollbarLength(value, 0))

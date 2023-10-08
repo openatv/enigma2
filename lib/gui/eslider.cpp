@@ -5,8 +5,7 @@ int eSlider::defaultSliderBorderWidth = eSlider::DefaultBorderWidth;
 
 eSlider::eSlider(eWidget *parent)
 	: eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_have_background_color(false), m_scrollbar(false), m_pixel_mode(false),
-	  m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
-	  m_border_width(0)
+	  m_min(0), m_max(0), m_value(0), m_start(0), m_border_width(0), m_orientation(orHorizontal), m_orientation_swapped(0)
 {
 	m_border_width = eSlider::defaultSliderBorderWidth;
 }
@@ -106,13 +105,13 @@ int eSlider::event(int event, void *data, void *data2)
 				painter.setRadius(cornerRadius, getCornerRadiusEdges());
 			painter.blit(m_backgroundpixmap, ePoint(0, 0), eRect(), isTransparent() ? gPainter::BT_ALPHATEST : 0);
 		}
-		else if (m_have_background_color && !cornerRadius)
+		else if (m_have_background_color && !cornerRadius && !m_background_gradient_set)
 		{
 			painter.setBackgroundColor(m_background_color);
 			painter.clear();
 		}
 
-		if (cornerRadius)
+		if (cornerRadius || m_background_gradient_set)
 		{
 			painter.setRadius(cornerRadius, getCornerRadiusEdges());
 
@@ -126,7 +125,14 @@ int eSlider::event(int event, void *data, void *data2)
 					painter.setBackgroundColor(color);
 				}
 				painter.drawRectangle(eRect(ePoint(0, 0), size()));
-				painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
+				if(m_background_gradient_set) {
+					if (m_orientation == orHorizontal)
+						painter.setGradient(m_background_gradient_colors, 2, m_background_gradient_alphablend, 0);
+					else
+						painter.setGradient(m_background_gradient_colors, 1, m_background_gradient_alphablend, 0);
+				}
+				else
+					painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
 				painter.setRadius(cornerRadius, getCornerRadiusEdges());
 				painter.drawRectangle(eRect(m_border_width, m_border_width, size().width() - m_border_width * 2, size().height() - m_border_width * 2));
 				drawborder = false;
@@ -142,14 +148,14 @@ int eSlider::event(int event, void *data, void *data2)
 
 		if (!m_pixmap)
 		{
-			if (cornerRadius || m_gradient_set)
+			if (cornerRadius || m_foreground_gradient_set)
 			{
-				if (m_gradient_set)
+				if (m_foreground_gradient_set)
 				{
 					if (m_orientation == orHorizontal)
-						painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 2, m_gradient_alphablend, m_gradient_fullcolor ? 0 : m_currently_filled.extends.size().height());
+						painter.setGradient(m_foreground_gradient_colors, 2, m_foreground_gradient_alphablend, m_foreground_gradient_fullcolor ? 0 : m_currently_filled.extends.size().height());
 					else
-						painter.setGradient(m_gradient_startcolor, m_gradient_endcolor, 1, m_gradient_alphablend, m_gradient_fullcolor ? 0 : m_currently_filled.extends.size().width());
+						painter.setGradient(m_foreground_gradient_colors, 1, m_foreground_gradient_alphablend, m_foreground_gradient_fullcolor ? 0 : m_currently_filled.extends.size().width());
 				}
 				else
 				{
@@ -282,7 +288,7 @@ void eSlider::setStartEnd(int start, int end, bool pixel)
 	event(evtChangedSlider);
 }
 
-void eSlider::setOrientation(int orientation, int swapped)
+void eSlider::setOrientation(uint8_t orientation, uint8_t swapped)
 {
 	m_orientation = orientation;
 	m_orientation_swapped = swapped;
@@ -337,18 +343,50 @@ void eSlider::setScrollbarBackgroundColor(const gRGB &color)
 	setBackgroundColor(color);
 }
 
-void eSlider::setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend, bool fullColor)
+void eSlider::setScrollbarBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
 {
-	setForegroundGradient(startcolor, endcolor, direction, alphablend, fullColor);
+	setBackgroundGradient(startcolor, midcolor, endcolor, direction, alphablend);
 }
 
-void eSlider::setForegroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend, bool fullColor)
+void eSlider::setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend, bool fullColor)
 {
-	m_gradient_startcolor = startcolor;
-	m_gradient_endcolor = endcolor;
-	m_gradient_direction = direction;
-	m_gradient_alphablend = alphablend;
-	m_gradient_fullcolor = fullColor;
-	m_gradient_set = true;
+	setForegroundGradient(startcolor, midcolor, endcolor, direction, alphablend, fullColor);
+}
+
+void eSlider::setForegroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend, bool fullColor)
+{
+	m_foreground_gradient_colors = {startcolor, midcolor, endcolor};
+	m_foreground_gradient_direction = direction;
+	m_foreground_gradient_alphablend = alphablend;
+	m_foreground_gradient_fullcolor = fullColor;
+	m_foreground_gradient_set = true;
+	invalidate();
+}
+
+void eSlider::setForegroundGradient(const std::vector<gRGB> &colors, uint8_t direction, bool alphablend, bool fullColor)
+{
+	m_foreground_gradient_colors = colors;
+	m_foreground_gradient_direction = direction;
+	m_foreground_gradient_alphablend = alphablend;
+	m_foreground_gradient_fullcolor = fullColor;
+	m_foreground_gradient_set = true;
+	invalidate();
+}
+
+void eSlider::setBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
+{
+	m_background_gradient_colors = {startcolor, midcolor, endcolor};
+	m_background_gradient_direction = direction;
+	m_background_gradient_alphablend = alphablend;
+	m_background_gradient_set = true;
+	invalidate();
+}
+
+void eSlider::setBackgroundGradient(const std::vector<gRGB> &colors, uint8_t direction, bool alphablend)
+{
+	m_background_gradient_colors = colors;
+	m_background_gradient_direction = direction;
+	m_background_gradient_alphablend = alphablend;
+	m_background_gradient_set = true;
 	invalidate();
 }

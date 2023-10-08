@@ -5,6 +5,7 @@
 #include <lib/base/eptrlist.h> /* for eSmartPtrList */
 #include <lib/gui/ewindowstyle.h> /* for eWindowStyle */
 #include <lib/gui/ewidgetanimation.h>
+#include <vector>
 
 #define MAX_LAYER 16
 
@@ -109,15 +110,15 @@ private:
 
 	bool m_gradient_set;
 	bool m_gradient_alphablend;
-	int m_gradient_direction;
-	gRGB m_gradient_startcolor, m_gradient_endcolor;
+	uint8_t m_gradient_direction;
+	std::vector<gRGB> m_gradient_colors;
 
 	bool m_have_border_color;
 	int m_border_width;
 	gRGB m_border_color;
 
 	int m_cornerRadius;
-	int m_cornerRadiusEdges;
+	uint8_t m_cornerRadiusEdges;
 
 	eRect m_padding;
 
@@ -157,10 +158,10 @@ public:
 
 	void notifyShowHide();
 
-	void setBackgroundGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, bool alphablend);
+	void setBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend);
 
-	void setCornerRadius(int radius, int edges);
-	int getCornerRadiusEdges() {return m_cornerRadiusEdges;}
+	void setCornerRadius(int radius, uint8_t edges);
+	uint8_t getCornerRadiusEdges() {return m_cornerRadiusEdges;}
 	int getCornerRadius();
 
 	bool isGradientSet() {return m_gradient_set;}
