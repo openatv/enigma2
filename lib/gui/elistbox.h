@@ -81,7 +81,8 @@ struct eListboxStyleSetted
 	bool use_vti_workaround : 1;
 	bool zoom_content : 1;
 	bool zoom_move_content : 1;
-	bool scrollbargradient : 1;
+	bool scrollbarforegroundgradient : 1;
+	bool scrollbarbackgroundgradient : 1;
 };
 
 struct eListboxStyle
@@ -134,7 +135,8 @@ struct eListboxStyle
 	bool m_gradient_set[4], m_gradient_alphablend[4];
 	uint8_t m_gradient_direction[4];
 	std::vector<gRGB> m_gradient_colors[4];
-	std::vector<gRGB> m_scrollbargradient_colors;
+	std::vector<gRGB> m_scrollbarforegroundgradient_colors;
+	std::vector<gRGB> m_scrollbarbackgroundgradient_colors;
 };
 #endif
 
@@ -319,7 +321,8 @@ public:
 	void setScrollbarForegroundColor(gRGB &col);
 	void setScrollbarBackgroundColor(gRGB &col);
 
-	void setScrollbarGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend);
+	void setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend);
+	void setScrollbarBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend);
 	void setScrollbarRadius(int radius, uint8_t edges);
 
 	void setMaxRows(int rows)

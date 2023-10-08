@@ -55,6 +55,10 @@ public:
 	void setForegroundGradient(const std::vector<gRGB> &colors, uint8_t direction, bool alphablend, bool fullColor = false);
 	void setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend, bool fullColor = false);
 
+	void setBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend);
+	void setBackgroundGradient(const std::vector<gRGB> &colors, uint8_t direction, bool alphablend);
+	void setScrollbarBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend);
+
 protected:
 	int event(int event, void *data = 0, void *data2 = 0);
 
@@ -74,11 +78,17 @@ private:
 
 	static int defaultSliderBorderWidth;
 
-	bool m_gradient_set = false;
-	bool m_gradient_alphablend = false;
-	bool m_gradient_fullcolor = false;
-	uint8_t m_gradient_direction = 0;
-	std::vector<gRGB> m_gradient_colors;
+	bool m_background_gradient_set = false;
+	bool m_background_gradient_alphablend = false;
+	uint8_t m_background_gradient_direction = 0;
+	std::vector<gRGB> m_background_gradient_colors;
+
+	bool m_foreground_gradient_set = false;
+	bool m_foreground_gradient_alphablend = false;
+	bool m_foreground_gradient_fullcolor = false;
+	uint8_t m_foreground_gradient_direction = 0;
+	std::vector<gRGB> m_foreground_gradient_colors;
+
 };
 
 #endif
