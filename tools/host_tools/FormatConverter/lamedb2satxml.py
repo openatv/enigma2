@@ -6,7 +6,7 @@ from lamedb import lamedb
 import sys
 
 if len(sys.argv) != 3:
-	print("usage: %s <lamedb> <satellites.xml>" % sys.argv[0])
+	print(f"usage: {sys.argv[0]} <lamedb> <satellites.xml>")
 	sys.exit()
 
 gen = genericdatasource()

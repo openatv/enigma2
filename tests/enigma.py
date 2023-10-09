@@ -39,7 +39,7 @@ class eTimer:
 		timers.remove(self)
 
 	def __repr__(self):
-		return "<eTimer timeout=%s next_activation=%s singleshot=%s>" % (repr(self.timeout), repr(self.next_activation), repr(self.singleshot))
+		return f"<eTimer timeout={repr(self.timeout)} next_activation={repr(self.next_activation)} singleshot={repr(self.singleshot)}>"
 
 	def do(self):
 		if self.singleshot:
@@ -188,7 +188,7 @@ class iRecordableService:
 		return 0
 
 	def __repr__(self):
-		return "iRecordableService(%s)" % repr(self.ref)
+		return f"iRecordableService({repr(self.ref)})"
 
 
 quitMainloop = None
@@ -208,22 +208,22 @@ class eRFmod:
 		eRFmod.instance = self
 
 	def setFunction(self, value):
-		print("[eRFmod] set function to %d" % value)
+		print(f"[eRFmod] set function to {value}")
 
 	def setTestmode(self, value):
-		print("[eRFmod] set testmode to %d" % value)
+		print(f"[eRFmod] set testmode to {value}")
 
 	def setSoundFunction(self, value):
-		print("[eRFmod] set sound function to %d" % value)
+		print(f"[eRFmod] set sound function to {value}")
 
 	def setSoundCarrier(self, value):
-		print("[eRFmod] set sound carrier to %d" % value)
+		print(f"[eRFmod] set sound carrier to {value}")
 
 	def setChannel(self, value):
-		print("[eRFmod] set channel to %d" % value)
+		print(f"[eRFmod] set channel to {value}")
 
 	def setFinetune(self, value):
-		print("[eRFmod] set finetune to %d" % value)
+		print(f"[eRFmod] set finetune to {value}")
 
 
 eRFmod()
@@ -240,16 +240,16 @@ class eDBoxLCD:
 		eDBoxLCD.instance = self
 
 	def setLCDBrightness(self, value):
-		print("[eDBoxLCD] set brightness to %d" % value)
+		print(f"[eDBoxLCD] set brightness to {value}")
 
 	def setLCDContrast(self, value):
-		print("[eDBoxLCD] set contrast to %d" % value)
+		print(f"[eDBoxLCD] set contrast to {value}")
 
 	def setLED(self, value):
-		print("[eDBoxLCD] set led button to %d" % value)
+		print(f"[eDBoxLCD] set led button to {value}")
 
 	def setInverted(self, value):
-		print("[eDBoxLCD] set inverted to %d" % value)
+		print(f"[eDBoxLCD] set inverted to {value}")
 
 
 eDBoxLCD()
