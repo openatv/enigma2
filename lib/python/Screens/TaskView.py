@@ -76,7 +76,7 @@ class TaskView(Screen, HelpableScreen, ConfigListScreen, InfoBarNotifications):
 		self["backgroundActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"green": (self.keyBackground, _("Continue to run the task in the background"))
 		}, prio=0, description=_("Task View Actions"))
-		self["backgroundActions"].setEnabled(cancelable)
+		self["backgroundActions"].setEnabled(backgroundable)
 		self["cancelActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.keyCancelTask, _("Cancel the task"))
 		}, prio=0, description=_("Task View Actions"))
@@ -106,7 +106,7 @@ class TaskView(Screen, HelpableScreen, ConfigListScreen, InfoBarNotifications):
 			("deepstandby", shutdownString)
 		])
 		self.job.afterEvent = self.setting.afterEvent.value
-		self["config"].setList([(_("After event"), self.setting.afterEvent, _("Select an action to perform when the task has completed."))])
+		self["config"].setList([(_("After event"), self.setting.afterEvent, _("Select an action to perform when the task has completed."))] if afterEventChangeable else [])
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.closed)
 		self.job.state_changed.append(self.stateChanged)
