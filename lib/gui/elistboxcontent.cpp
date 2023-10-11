@@ -171,7 +171,6 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	uint8_t edges = 0;
 	bool alphablendtext = false;
 
-
 	/* get local listbox style, if present */
 	if (m_listbox)
 		local_style = m_listbox->getLocalStyle();
@@ -181,8 +180,8 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		border_size = local_style->m_border_size;
 		border_color = local_style->m_border_color;
 		itemZoomed = local_style->m_selection_zoom > 1.0;
-		radius = local_style->cornerRadius(selected ? 1:0);
-		edges = local_style->cornerRadiusEdges(selected ? 1:0);
+		radius = local_style->cornerRadius(selected ? 1 : 0);
+		edges = local_style->cornerRadiusEdges(selected ? 1 : 0);
 
 		if (selected && itemZoomed && local_style->is_set.zoom_content)
 			fnt = local_style->m_font_zoomed;
@@ -261,12 +260,12 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		}
 		else if (local_style && !local_style->m_background && cursorValid && (local_style->m_gradient_set[0] || radius))
 		{
-			if(local_style->m_gradient_set[0])
+			if (local_style->m_gradient_set[0])
 			{
 				alphablendtext = local_style->m_gradient_set[0];
 				painter.setGradient(local_style->m_gradient_colors[0], local_style->m_gradient_direction[0], local_style->m_gradient_alphablend[0]);
 			}
-			if(radius)
+			if (radius)
 				painter.setRadius(radius, edges);
 			painter.drawRectangle(itemRect);
 		}
@@ -290,7 +289,6 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		{
 			painter.clear();
 		}
-		
 	}
 	// Draw frame here so to be under the content
 	if (selected && (!local_style || !local_style->m_selection) && (!local_style || !local_style->is_set.border))
@@ -318,14 +316,15 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			y += (orientation & 1) ? (itemRect.height() - local_style->m_selection->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_selection, ePoint(x, y), eRect(), gPainter::BT_ALPHATEST);
 		}
-		else if (selected && local_style && (local_style->m_gradient_set[1] || radius) && !local_style->m_selection) {
+		else if (selected && local_style && (local_style->m_gradient_set[1] || radius) && !local_style->m_selection)
+		{
 
-			if(local_style->m_gradient_set[1])
+			if (local_style->m_gradient_set[1])
 			{
 				alphablendtext = local_style->m_gradient_set[1];
 				painter.setGradient(local_style->m_gradient_colors[1], local_style->m_gradient_direction[1], local_style->m_gradient_alphablend[1]);
 			}
-			if(radius)
+			if (radius)
 				painter.setRadius(radius, edges);
 			painter.drawRectangle(itemRect);
 		}
@@ -349,7 +348,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				painter.setForegroundColor(gRGB(0x808080));
 
 			int flags = 0;
-			if(alphablendtext)
+			if (alphablendtext)
 				flags |= gPainter::RT_BLEND;
 			if (local_style)
 			{
@@ -491,8 +490,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		border_color = local_style->m_border_color;
 		fnt = local_style->m_font;
 		fnt2 = local_style->m_valuefont;
-		radius = local_style->cornerRadius(selected ? 1:0);
-		edges = local_style->cornerRadiusEdges(selected ? 1:0);
+		radius = local_style->cornerRadius(selected ? 1 : 0);
+		edges = local_style->cornerRadiusEdges(selected ? 1 : 0);
 		if (selected)
 		{
 			/* if we have a local background color set, use that. */
@@ -535,12 +534,12 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		}
 		else if (local_style && !local_style->m_background && cursorValid && (local_style->m_gradient_set[0] || radius))
 		{
-			if(local_style->m_gradient_set[0])
+			if (local_style->m_gradient_set[0])
 			{
 				alphablendtext = local_style->m_gradient_set[0];
 				painter.setGradient(local_style->m_gradient_colors[0], local_style->m_gradient_direction[0], local_style->m_gradient_alphablend[0]);
 			}
-			if(radius)
+			if (radius)
 				painter.setRadius(radius, edges);
 			painter.drawRectangle(itemRect);
 		}
@@ -581,13 +580,14 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			y += (orientation & 1) ? (m_itemsize.height() - local_style->m_selection->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_selection, ePoint(x, y), eRect(), gPainter::BT_ALPHATEST);
 		}
-		else if (selected && (local_style->m_gradient_set[1] || radius) && !local_style->m_selection) {
-			if(local_style->m_gradient_set[1])
+		else if (selected && (local_style->m_gradient_set[1] || radius) && !local_style->m_selection)
+		{
+			if (local_style->m_gradient_set[1])
 			{
 				alphablendtext = local_style->m_gradient_set[1];
 				painter.setGradient(local_style->m_gradient_colors[1], local_style->m_gradient_direction[1], local_style->m_gradient_alphablend[1]);
 			}
-			if(radius)
+			if (radius)
 				painter.setRadius(radius, edges);
 			painter.drawRectangle(itemRect);
 		}
@@ -881,7 +881,7 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 		}
 		else if (local_style->m_gradient_set[1] && cursorValid)
 		{
-			painter.setGradient(local_style->m_gradient_colors[1], local_style->m_gradient_direction[1],local_style->m_gradient_alphablend[1]);
+			painter.setGradient(local_style->m_gradient_colors[1], local_style->m_gradient_direction[1], local_style->m_gradient_alphablend[1]);
 			painter.drawRectangle(eRect(offset, size));
 			return;
 		}
@@ -993,6 +993,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	bool itemZoomed = false;
 	bool itemZoomContent = false;
 	bool marked = false;
+	gRGB defaultforecolor;
+	gRGB defaultbackcolor;
 
 	if (sel_clip.valid())
 		sel_clip.moveBy(offset);
@@ -1030,29 +1032,42 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		itemregion = itemRect;
 	}
 
+	if (m_servicelist)
+		marked = getIsMarked(selected);
+
 	painter.clip(itemregion);
 
-	if(local_style) {
-		int mode = (selected) ? 1:0;
-		mode += (marked) ? 2:0;
+	if (marked)
+	{
+		defaultforecolor = style.getColor(selected ? eWindowStyleSkinned::colListboxForegroundMarkedSelected : eWindowStyleSkinned::colListboxForegroundMarked);
+		defaultbackcolor = style.getColor(selected ? eWindowStyleSkinned::colListboxBackgroundMarkedSelected : eWindowStyleSkinned::colListboxBackgroundMarked);
+	}
+	else
+	{
+		defaultforecolor = style.getColor(selected ? eWindowStyleSkinned::colListboxForegroundSelected : eWindowStyleSkinned::colListboxForeground);
+		defaultbackcolor = style.getColor(selected ? eWindowStyleSkinned::colListboxBackgroundSelected : eWindowStyleSkinned::colListboxBackground);
+	}
+
+	if (local_style)
+	{
+		int mode = (selected) ? 1 : 0;
+		mode += (marked) ? 2 : 0;
 		int radius = local_style->cornerRadius(mode);
 		uint8_t edges = local_style->cornerRadiusEdges(mode);
-		if (radius) {
-			gRGB color;
-			if(marked)
-				color = style.getColor(selected ? eWindowStyleSkinned::colListboxBackgroundMarkedSelected : eWindowStyleSkinned::colListboxBackgroundMarked);
-			else {
-				color = style.getColor(selected ? eWindowStyleSkinned::colListboxBackgroundSelected : eWindowStyleSkinned::colListboxBackground);
+		if (radius)
+		{
+			if (!marked)
+			{
 				if (selected && local_style->is_set.background_color_selected)
-					color = local_style->m_background_color_selected;
+					defaultbackcolor = local_style->m_background_color_selected;
 				if (!selected && local_style->is_set.background_color)
-					color = local_style->m_background_color;
+					defaultbackcolor = local_style->m_background_color;
 			}
 			painter.setRadius(radius, edges);
-			if(local_style->m_gradient_set[mode])
+			if (local_style->m_gradient_set[mode])
 				painter.setGradient(local_style->m_gradient_colors[mode], local_style->m_gradient_direction[mode], local_style->m_gradient_alphablend[mode]);
 			else
-				painter.setBackgroundColor(gRGB(color));
+				painter.setBackgroundColor(gRGB(defaultbackcolor));
 			painter.drawRectangle(itemRect);
 		}
 		else
@@ -1067,22 +1082,37 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 	ePyObject items, buildfunc_ret;
 
-	if (m_list && cursorValid)
+	if ((m_list || m_servicelist) && cursorValid)
 	{
 		/* a multicontent list can be used in two ways:
 			either each item is a list of (TYPE,...)-tuples,
 			or there is a template defined, which is a list of (TYPE,...)-tuples,
 			and the list is an unformatted tuple. The template then references items from the list.
 		*/
-		int cursor = cursorGet();
-		items = PyList_GET_ITEM(m_list, cursor); // borrowed reference!
+		int cursor = 0;
+		if (!m_servicelist)
+		{
+			cursor = cursorGet();
+			items = PyList_GET_ITEM(m_list, cursor); // borrowed reference!
+		}
 
 		if (m_buildFunc)
 		{
 			if (PyCallable_Check(m_buildFunc)) // when we have a buildFunc then call it
 			{
-				if (PyTuple_Check(items))
-					buildfunc_ret = items = PyObject_CallObject(m_buildFunc, items);
+				if (m_servicelist || PyTuple_Check(items))
+				{
+					setBuildArgs(selected);
+					if (m_pArgs)
+					{
+						buildfunc_ret = items = PyObject_CallObject(m_buildFunc, m_pArgs);
+						Py_DECREF(m_pArgs);
+					}
+					else
+					{
+						buildfunc_ret = items = PyObject_CallObject(m_buildFunc, items);
+					}
+				}
 				else
 					eDebug("[eListboxPythonMultiContent] items is not a tuple");
 			}
@@ -1090,13 +1120,13 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				eDebug("[eListboxPythonMultiContent] buildfunc is not callable");
 		}
 
-		if (!items)
+		if (!items || items == Py_None)
 		{
 			eDebug("[eListboxPythonMultiContent] error getting item %d", cursor);
 			goto error_out;
 		}
 
-		if (!m_template)
+		if (!m_template || m_template == Py_None)
 		{
 			if (!PyList_Check(items))
 			{
@@ -1119,7 +1149,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			we will later detect that "data" is present, and refer to that, instead
 			of the immediate value. */
 		int start = 1;
-		if (m_template)
+		if (m_template && m_template != Py_None)
 		{
 			data = items;
 			items = m_template;
@@ -1195,7 +1225,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 11)
 					pCornerEdges = PyTuple_GET_ITEM(item, 11);
 
-
 				if (!(px && py && pwidth && pheight))
 				{
 					eDebug("[eListboxPythonMultiContent] tuple too small (must be (TYPE_RECT, x, y, width, height [, backgroundColor, backgroundColorSelected, borderWidth, borderColor, borderColorSelected])");
@@ -1229,16 +1258,16 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
 				painter.clip(rect);
 				{
-					if(cornerRadius && cornerEdges) 
+					if (cornerRadius && cornerEdges)
 					{
 						painter.setRadius(cornerRadius, cornerEdges);
-						if(selected && !pbackColorSelected)
+						if (selected && !pbackColorSelected)
 							pbackColorSelected = pbackColor;
 						uint32_t color = PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor);
 						painter.setBackgroundColor(gRGB(color));
 						painter.drawRectangle(rect);
 					}
-					else 
+					else
 					{
 						gRegion rc(rect);
 						bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
@@ -1364,7 +1393,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					y += zoomoffs.y();
 				}
 
-				if(radius)
+				if (radius)
 					bwidth = 0; // border is not supported yet
 
 				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
@@ -1372,9 +1401,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				{
 					gRegion rc(rect);
 
-					if(radius && (pbackColor || pbackColorSelected))
+					if (radius && (pbackColor || pbackColorSelected))
 					{
-						if(selected && !pbackColorSelected)
+						if (selected && !pbackColorSelected)
 							pbackColorSelected = pbackColor;
 						uint32_t color = PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor);
 						painter.setBackgroundColor(gRGB(color));
@@ -1386,7 +1415,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 						clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, marked, rc, sel_clip, offs, itemRect.size(), cursorValid, mustClear, orientation);
 					}
-
 				}
 
 				if (selected && itemZoomContent)
@@ -1444,7 +1472,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						  pfilled_perc = PyTuple_GET_ITEM(item, 5),
 						  ppixmap, pborderWidth, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected,
 						  pstartColor, pmidColor, pendColor, pstartColorSelected, pmidColorSelected, pendColorSelected;
-					  
+
 				int idx = 6;
 				if (type == TYPE_PROGRESS)
 				{
@@ -1502,39 +1530,37 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (type == TYPE_PROGRESS)
 				{
-					if (size > 12)
-						pstartColor = lookupColor(PyTuple_GET_ITEM(item, 12), data);
+					if (size > idx)
+						pstartColor = lookupColor(PyTuple_GET_ITEM(item, idx++), data);
 
-					if (size > 13)
-						pmidColor = lookupColor(PyTuple_GET_ITEM(item, 13), data);
+					if (size > idx)
+						pmidColor = lookupColor(PyTuple_GET_ITEM(item, idx++), data);
 
-					if (size > 14)
-						pendColor = lookupColor(PyTuple_GET_ITEM(item, 14), data);
+					if (size > idx)
+						pendColor = lookupColor(PyTuple_GET_ITEM(item, idx++), data);
 
-					if (size > 15)
-						pstartColorSelected = lookupColor(PyTuple_GET_ITEM(item, 15), data);
+					if (size > idx)
+						pstartColorSelected = lookupColor(PyTuple_GET_ITEM(item, idx++), data);
 
-					if (size > 16)
-						pmidColorSelected = lookupColor(PyTuple_GET_ITEM(item, 16), data);
+					if (size > idx)
+						pmidColorSelected = lookupColor(PyTuple_GET_ITEM(item, idx++), data);
 
-					if (size > 17)
-						pendColorSelected = lookupColor(PyTuple_GET_ITEM(item, 17), data);
+					if (size > idx)
+						pendColorSelected = lookupColor(PyTuple_GET_ITEM(item, idx++), data);
 
-					if (size > 18)
-						radius = PyLong_AsLong(PyTuple_GET_ITEM(item, 18));
+					if (size > idx)
+						radius = PyLong_AsLong(PyTuple_GET_ITEM(item, idx++));
 
-					if (size > 19)
-						edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 19));
-
+					if (size > idx)
+						edges = PyLong_AsLong(PyTuple_GET_ITEM(item, idx++));
 				}
 				else
 				{
-					if (size > 12)
-						radius = PyLong_AsLong(PyTuple_GET_ITEM(item, 12));
+					if (size > idx)
+						radius = PyLong_AsLong(PyTuple_GET_ITEM(item, idx++));
 
-					if (size > 13)
-						edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 13));
-
+					if (size > idx)
+						edges = PyLong_AsLong(PyTuple_GET_ITEM(item, idx++));
 				}
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
@@ -1569,7 +1595,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
-
 				{
 					gRegion rc(rect);
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
@@ -1579,8 +1604,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				// border
 				if (bwidth)
 				{
-
-					if(radius)
+					if (radius)
 					{
 
 						if (selected && pforeColorSelected)
@@ -1588,13 +1612,37 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 							uint32_t color = PyLong_AsUnsignedLongMask(pforeColorSelected);
 							painter.setBackgroundColor(gRGB(color));
 						}
-						else
+						else if (pforeColor)
 						{
 							uint32_t color = PyLong_AsUnsignedLongMask(pforeColor);
 							painter.setBackgroundColor(gRGB(color));
 						}
+						else
+						{
+							painter.setBackgroundColor(defaultforecolor);
+						}
 						painter.setRadius(radius, edges);
 						painter.drawRectangle(eRect(x, y, width, height));
+
+						rect.setRect(x + bwidth, y + bwidth, (width - bwidth * 2), height - bwidth * 2);
+
+						if (selected && pbackColorSelected)
+						{
+							uint32_t color = PyLong_AsUnsignedLongMask(pbackColorSelected);
+							painter.setBackgroundColor(gRGB(color));
+						}
+						else if (pbackColor)
+						{
+							uint32_t color = PyLong_AsUnsignedLongMask(pbackColor);
+							painter.setBackgroundColor(gRGB(color));
+						}
+						else
+						{
+							painter.setBackgroundColor(defaultbackcolor);
+						}
+
+						painter.setRadius(radius, edges);
+						painter.drawRectangle(rect);
 					}
 					else
 					{
@@ -1610,7 +1658,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						rect.setRect(x + width - bwidth, y + bwidth, bwidth, height - bwidth);
 						painter.fill(rect);
 					}
-
 				}
 
 				rect.setRect(x + bwidth, y + bwidth, (width - bwidth * 2) * filled / 100, height - bwidth * 2);
@@ -1637,9 +1684,14 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				else if (radius || pstartColor)
 				{
 					if (radius)
-						painter.setRadius(radius, edges);
-					
-					if(pstartColor && pendColor)
+					{
+						if ((width * filled / 100) > radius)
+							painter.setRadius(radius, edges);
+						else
+							painter.setRadius(radius, edges & ~10); // remove right radius
+					}
+
+					if (pstartColor && pendColor)
 					{
 						if (selected && !pstartColorSelected)
 							pstartColorSelected = pstartColor;
@@ -1649,7 +1701,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						uint32_t startcolor = PyLong_AsUnsignedLongMask(selected ? pstartColorSelected : pstartColor);
 						uint32_t endcolor = PyLong_AsUnsignedLongMask(selected ? pendColorSelected : pendColor);
 						std::vector<gRGB> colors = {gRGB(startcolor)};
-						if(pmidColor)
+						if (pmidColor)
 						{
 							if (selected && !pmidColorSelected)
 								pmidColorSelected = pmidColor;
@@ -1660,7 +1712,24 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 						painter.setGradient(colors, 2, false, rect.width());
 					}
-
+					else
+					{
+						if (selected && pforeColorSelected)
+						{
+							uint32_t color = PyLong_AsUnsignedLongMask(pforeColorSelected);
+							painter.setBackgroundColor(gRGB(color));
+						}
+						else if (pforeColor)
+						{
+							uint32_t color = PyLong_AsUnsignedLongMask(pforeColor);
+							painter.setBackgroundColor(gRGB(color));
+						}
+						else
+						{
+							painter.setBackgroundColor(defaultforecolor);
+						}
+					}
+					painter.drawRectangle(rect);
 				}
 				else
 					painter.fill(rect);
@@ -1735,7 +1804,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				bool alphablend = (type == TYPE_LINEAR_GRADIENT_ALPHABLEND);
 
-				if(radius && edges)
+				if (radius && edges)
 					painter.setRadius(radius, edges);
 
 				if (!selected && ppstartColor && pendColor)
@@ -1744,7 +1813,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					uint32_t color1 = PyLong_AsUnsignedLongMask(pendColor);
 
 					std::vector<gRGB> colors = {gRGB(color)};
-					if(pmidColor)
+					if (pmidColor)
 					{
 						uint32_t midcolor = PyLong_AsUnsignedLongMask(pmidColor);
 						colors.push_back(gRGB(midcolor));
@@ -1759,7 +1828,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					uint32_t color = PyLong_AsUnsignedLongMask(pstartColorSelected);
 					uint32_t color1 = PyLong_AsUnsignedLongMask(pendColorSelected);
 					std::vector<gRGB> colors = {gRGB(color)};
-					if(pmidColorSelected)
+					if (pmidColorSelected)
 					{
 						uint32_t midcolor = PyLong_AsUnsignedLongMask(pmidColorSelected);
 						colors.push_back(gRGB(midcolor));
@@ -1833,7 +1902,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 10)
 					edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 10));
 
-
 				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
@@ -1855,9 +1923,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, marked, rc, sel_clip, offs, itemRect.size(), cursorValid, mustClear, orientation);
 				}
 
-				flags |= (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : 0;
+				flags |= (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND
+																													 : 0;
 
-				if(radius && edges)
+				if (radius && edges)
 					painter.setRadius(radius, edges);
 
 				painter.blit(pixmap, rect, rect, flags);

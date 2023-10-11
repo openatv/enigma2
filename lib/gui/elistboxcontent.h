@@ -116,6 +116,12 @@ public:
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
 
+protected:
+	virtual void setBuildArgs(int selected) {}
+	virtual bool getIsMarked(int selected) { return false; }
+	bool m_servicelist = false;
+	ePyObject m_pArgs;
+
 private:
 	std::map<int, ePtr<gFont>> m_fonts;
 	std::map<int, ePtr<gFont>> m_fonts_zoomed;
