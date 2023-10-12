@@ -1710,7 +1710,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						}
 						colors.push_back(gRGB(endcolor));
 
-						painter.setGradient(colors, 2, false, rect.width());
+						painter.setGradient(colors, 2, false, (width - bwidth * 2));
 					}
 					else
 					{
