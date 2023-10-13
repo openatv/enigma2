@@ -117,7 +117,8 @@ def installPUSettings(name, link, date):
 	tt = strftime("%y%m%d_%H%M%S", localtime(time()))
 	with taropen(f"{settingsDir}/{tt}_enigma2settingsbackup.tar.gz", "w:gz") as tar:
 		for file in glob("/etc/enigma2/*.tv") + glob("/etc/enigma2/*.radio") + ["/etc/enigma2/lamedb"]:
-			tar.add(file)
+			if isfile(file):
+				tar.add(file)
 #	system("tar -czvf %s/%s_enigma2settingsbackup.tar.gz -C / /etc/enigma2/*.tv /etc/enigma2/*.radio /etc/enigma2/lamedb" % (settingsDir, tt))
 	if not downloadPUSetting(link):
 		def getRemoveList():
