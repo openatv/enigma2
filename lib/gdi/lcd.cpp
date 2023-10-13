@@ -354,7 +354,7 @@ void eDBoxLCD::dumpLCD(bool png)
 	int lcd_width = res.width();
 	int lcd_hight = res.height();
 	ePtr<gPixmap> pixmap32;
-	pixmap32 = new gPixmap(eSize(lcd_width, lcd_hight), 32, gPixmap::accelAuto);
+	pixmap32 = new gPixmap(eSize(lcd_width, lcd_hight), 32, gPixmap::accelNever);
 	const uint8_t *srcptr = (uint8_t *)_buffer;
 	uint8_t *dstptr = (uint8_t *)pixmap32->surface->data;
 
@@ -414,11 +414,9 @@ void eDBoxLCD::dumpLCD(bool png)
 	break;
 	case 32:
 	{
-		srcptr += _stride / 4;
-		dstptr += pixmap32->surface->stride / 4;
 		for (int y = lcd_hight; y != 0; --y)
 		{
-			memcpy(dstptr, srcptr, lcd_width * bpp);
+			memcpy(dstptr, srcptr, lcd_width * pixmap32->surface->bypp);
 			srcptr += _stride;
 			dstptr += pixmap32->surface->stride;
 		}
