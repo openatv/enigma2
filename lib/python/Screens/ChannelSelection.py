@@ -43,7 +43,6 @@ from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from Screens.Screen import Screen
-from Screens.ServiceInfo import ServiceInfo
 from Screens.Setup import Setup
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
@@ -1845,7 +1844,8 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		self.session.openWithCallback(self.close, MessageBox, _("The service list is reloaded."), MessageBox.TYPE_INFO, timeout=5)
 
 	def showServiceInformations(self):
-		self.session.open(ServiceInfo, self.csel.getCurrentSelection())
+		from Screens.Information import ServiceInformation  # The import needs to be here
+		self.session.open(ServiceInformation, self.csel.getCurrentSelection())
 
 	def setStartupService(self):
 		self.session.openWithCallback(self.setStartupServiceCallback, MessageBox, _("Set startup service"), list=[(_("Only on startup"), "startup"), (_("Also on standby"), "standby")])
