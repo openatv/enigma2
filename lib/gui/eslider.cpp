@@ -188,7 +188,12 @@ int eSlider::event(int event, void *data, void *data2)
 		{
 			if (cornerRadius)
 				painter.setRadius(cornerRadius, getCornerRadiusEdges());
-			painter.blitScale(m_pixmap, eRect(ePoint(0, 0), s), m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
+
+			if(m_scale && (m_pixmap->size().width() != m_currently_filled.extends.width() || m_pixmap->size().height() != m_currently_filled.extends.height()))
+				painter.blitScale(m_pixmap, eRect(ePoint(0,0),s),m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0, m_scale);
+			else
+				painter.blit(m_pixmap, ePoint(0, 0), m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
+
 		}
 
 		// Border
