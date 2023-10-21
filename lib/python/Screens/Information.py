@@ -9,7 +9,7 @@ from subprocess import PIPE, Popen
 from time import localtime, strftime, strptime
 from urllib.request import urlopen
 
-from enigma import eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eStreamServer, eTimer, getDesktop, getE2Rev
+from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from skin import parameters
@@ -24,6 +24,7 @@ from Components.Network import iNetwork
 from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
 from Components.ScrollLabel import ScrollLabel
+from Components.ServiceEventTracker import ServiceEventTracker
 # from Components.Storage import Harddisk, storageManager
 from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
 from Components.Sources.StaticText import StaticText
@@ -38,6 +39,7 @@ from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
 from Tools.MultiBoot import MultiBoot
 from Tools.StbHardware import getFPVersion, getBoxProc, getHWSerial, getBoxRCType, getBoxProcType
+from Tools.Transponder import ConvertToHumanReadable
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -75,7 +77,7 @@ def getBoxProcTypeName():
 	procType = getBoxProcType()
 	if procType == "unknown":
 		return _("Unknown")
-	return "%s  -  %s" % (procType, boxProcTypes.get(procType, _("Unknown")))
+	return f"{procType}  -  {boxProcTypes.get(procType, _('Unknown'))}"
 
 
 welcome = [
@@ -137,7 +139,7 @@ class InformationBase(Screen, HelpableScreen):
 			for index in range(len(colors)):
 				INFO_COLOR[INFO_COLORS[index]] = colors[index]
 		else:
-			print("[Information] Warning: %d colors are defined in the skin when %d were expected!" % (len(colors), len(INFO_COLORS)))
+			print(f"[Information] Warning: {len(colors)} colors are defined in the skin when {len(INFO_COLORS)} were expected!")
 		self["information"].setText(_("Loading information, please wait..."))
 		self.extraSpacing = config.usage.informationExtraSpacing.value
 		self.onInformationUpdated = [self.displayInformation]
@@ -189,8 +191,8 @@ def formatLine(style, left, right=None):
 	rightIndent = "    " * int(style[3]) if styleLen > 3 and style[3].isdigit() else ""
 	if right is None:
 		colon = "" if styleLen > 0 and style[0] in ("M", "P", "V") else ":"
-		return "%s%s%s%s%s" % (leftIndent, leftStartColor, left, colon, leftEndColor)
-	return "%s%s%s:%s|%s%s%s%s" % (leftIndent, leftStartColor, left, leftEndColor, rightIndent, rightStartColor, right, rightEndColor)
+		return f"{leftIndent}{leftStartColor}{left}{colon}{leftEndColor}"
+	return f"{leftIndent}{leftStartColor}{left}:{leftEndColor}|{rightIndent}{rightStartColor}{right}{rightEndColor}"
 
 
 class BenchmarkInformation(InformationBase):  # This code can't be used until we find open source test code!
@@ -248,13 +250,13 @@ class BenchmarkInformation(InformationBase):  # This code can't be used until we
 		for index, cpu in enumerate(self.cpuTypes):
 			info.append(formatLine("P1", _("CPU / Core %d type") % index, cpu))
 		info.append("")
-		info.append(formatLine("P1", _("CPU benchmark"), _("%d DMIPS per core") % self.cpuBenchmark if self.cpuBenchmark else _("Calculating benchmark...")))
+		info.append(formatLine("P1", _("CPU benchmark"), _("%d DMIPS per core") % (self.cpuBenchmark if self.cpuBenchmark else _("Calculating benchmark..."))))
 		count = len(self.cpuTypes)
 		if count > 1:
 			info.append(formatLine("P1", _("Total CPU benchmark"), _("%d DMIPS with %d cores") % (self.cpuBenchmark * count, count) if self.cpuBenchmark else _("Calculating benchmark...")))
 		info.append(formatLine("P1", _("CPU rating"), self.cpuRating if self.cpuRating else _("Calculating rating...")))
 		info.append("")
-		info.append(formatLine("P1", _("RAM benchmark"), "%.2f MB/s copy rate" % self.ramBenchmark if self.ramBenchmark else _("Calculating benchmark...")))
+		info.append(formatLine("P1", _("RAM benchmark"), f"{self.ramBenchmark:.2f} MB/s copy rate" if self.ramBenchmark else _("Calculating benchmark...")))
 		self["information"].setText("\n".join(info))
 
 	def getSummaryInformation(self):
@@ -294,8 +296,8 @@ class CommitInformation(InformationBase):
 		self.baseTitle = _("Commit Log")
 		self.skinName.insert(0, "CommitInformation")
 		self["key_menu"] = StaticText(_("MENU"))
-		self["key_yellow"] = StaticText(_("Previous Log"))
-		self["key_blue"] = StaticText(_("Next Log"))
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self["commitActions"] = HelpableActionMap(self, ["MenuActions", "ColorActions", "NavigationActions"], {
 			"menu": (self.showCommitMenu, _("Show selection menu for commit logs")),
 			"yellow": (self.previousCommitLog, _("Show previous commit log")),
@@ -341,7 +343,7 @@ class CommitInformation(InformationBase):
 					log = loads(fd.read())
 				info = []
 				for data in log:
-					date = datetime.strptime(data["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ").strftime("%s %s" % (config.usage.date.daylong.value, config.usage.time.long.value))
+					date = datetime.strptime(data["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ").strftime(f"{config.usage.date.daylong.value} {config.usage.time.long.value}")
 					author = data["commit"]["author"]["name"]
 					# committer = data["commit"]["committer"]["name"]
 					message = [x.rstrip() for x in data["commit"]["message"].split("\n")]
@@ -364,7 +366,7 @@ class CommitInformation(InformationBase):
 
 	def displayInformation(self):
 		name = self.commitLogs[self.commitLogIndex][0]
-		self.setTitle("%s: %s" % (self.baseTitle, name))
+		self.setTitle(f"{self.baseTitle}: {name}")
 		self["key_yellow"].setText(self.commitLogs[(self.commitLogIndex - 1) % self.commitLogMax][0])
 		self["key_blue"].setText(self.commitLogs[(self.commitLogIndex + 1) % self.commitLogMax][0])
 		if name in self.cachedCommitInfo:
@@ -493,7 +495,7 @@ class DebugInformation(InformationBase):
 					with open(path) as fd:
 						info = [x.strip() for x in fd.readlines()][-LOG_MAX_LINES:]
 				except OSError as err:
-					info = "%s,%s" % (err.errno, err.strerror)
+					info = f"{err.errno},{err.strerror}"
 			self.cachedDebugInfo[path] = info
 		else:
 			self["key_menu"].setText("")
@@ -502,7 +504,7 @@ class DebugInformation(InformationBase):
 			self["debugActions"].setEnabled(False)
 			name = "Unavailable"
 			self.debugLogs = [(name, name, name)]
-			self.cachedDebugInfo[name] = "0,%s" % _("No log files found so debug logs are unavailable!")
+			self.cachedDebugInfo[name] = f"0,{_('No log files found so debug logs are unavailable!')}"
 		for callback in self.onInformationUpdated:
 			callback()
 
@@ -543,7 +545,7 @@ class DebugInformation(InformationBase):
 	def displayInformation(self):
 		if self.debugLogs:
 			name, sequence, path = self.debugLogs[self.debugLogIndex]
-			self.setTitle(_("Debug Log Information") if sequence == "Unavailable" else "%s: '%s' (%s)" % (self.baseTitle, name, sequence))
+			self.setTitle(_("Debug Log Information") if sequence == "Unavailable" else f"{self.baseTitle}: '{name}' ({sequence})")
 			if path in self.cachedDebugInfo:
 				info = self.cachedDebugInfo[path]
 				if isinstance(info, str):
@@ -624,9 +626,9 @@ class DistributionInformation(InformationBase):
 			if BoxInfo.getItem("HasHiSi") and "sda" in device:
 				slotCode = int(slotCode)
 				image = slotCode - 4 if slotCode > 4 else slotCode - 1
-				device = _("SDcard slot %s%s") % (image, "  -  %s" % device if device else "")
+				device = _("SDcard slot %s%s") % (image, f"  -  {device}" if device else "")
 			else:
-				device = _("eMMC slot %s%s") % (slotCode, "  -  %s" % device if device else "")
+				device = _("eMMC slot %s%s") % (slotCode, f"  -  {device}" if device else "")
 			info.append(formatLine("P1", _("Hardware MultiBoot device"), device))
 			info.append(formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile()))
 		if bootCode:
@@ -635,7 +637,7 @@ class DistributionInformation(InformationBase):
 		info.append(formatLine("P1", _("Flash type"), about.getFlashType()))
 		xResolution = getDesktop(0).size().width()
 		yResolution = getDesktop(0).size().height()
-		info.append(formatLine("P1", _("Skin & Resolution"), "%s  (%s  -  %s x %s)" % (config.skin.primary_skin.value.split('/')[0], self.resolutions.get(yResolution, "Unknown"), xResolution, yResolution)))
+		info.append(formatLine("P1", _("Skin & Resolution"), f"{config.skin.primary_skin.value.split('/')[0]}  ({self.resolutions.get(yResolution, 'Unknown')}  -  {xResolution} x {yResolution})"))
 		info.append("")
 		info.append(formatLine("S", _("Enigma2 information")))
 		if self.extraSpacing:
@@ -643,15 +645,15 @@ class DistributionInformation(InformationBase):
 		enigmaVersion = str(BoxInfo.getItem("imageversion"))
 		enigmaVersion = enigmaVersion.rsplit("-", enigmaVersion.count("-") - 2)
 		if len(enigmaVersion) == 3:
-			enigmaVersion = "%s (%s-%s)" % (enigmaVersion[0], enigmaVersion[2], enigmaVersion[1].capitalize())
+			enigmaVersion = f"{enigmaVersion[0]} ({enigmaVersion[2]}-{enigmaVersion[1].capitalize()})"
 		elif len(enigmaVersion) == 1:
-			enigmaVersion = "%s" % enigmaVersion[0]
+			enigmaVersion = f"{enigmaVersion[0]}"
 		else:
-			enigmaVersion = "%s (%s)" % (enigmaVersion[0], enigmaVersion[1].capitalize())
+			enigmaVersion = f"{enigmaVersion[0]} ({enigmaVersion[1].capitalize()})"
 		info.append(formatLine("P1", _("Enigma2 version"), enigmaVersion))
 		info.append(formatLine("P1", _("Enigma2 revision"), getE2Rev()))
 		compileDate = str(BoxInfo.getItem("compiledate"))
-		info.append(formatLine("P1", _("Last update"), formatDate("%s%s%s" % (compileDate[:4], compileDate[4:6], compileDate[6:]))))
+		info.append(formatLine("P1", _("Last update"), formatDate(f"{compileDate[:4]}{compileDate[4:6]}{compileDate[6:]}")))
 		info.append(formatLine("P1", _("Last flash"), formatDate(about.getFlashDateString())))
 		info.append(formatLine("P1", _("Enigma2 (re)starts"), config.misc.startCounter.value))
 		info.append(formatLine("P1", _("Enigma2 debug level"), eGetEnigmaDebugLvl()))
@@ -709,7 +711,7 @@ class DistributionInformation(InformationBase):
 		self["information"].setText("\n".join(info))
 
 	def getSummaryInformation(self):
-		return "%s Information" % self.displayDistro
+		return f"{self.displayDistro} Information"
 
 
 class GeolocationInformation(InformationBase):
@@ -764,7 +766,7 @@ class GeolocationInformation(InformationBase):
 			if isp:
 				ispOrg = geolocationData.get("org", None)
 				if ispOrg:
-					info.append(formatLine("P1", _("ISP"), "%s  (%s)" % (isp, ispOrg)))
+					info.append(formatLine("P1", _("ISP"), f"{isp}  ({ispOrg})"))
 				else:
 					info.append(formatLine("P1", _("ISP"), isp))
 			mobile = geolocationData.get("mobile", None)
@@ -804,7 +806,7 @@ class MemoryInformation(InformationBase):
 			else:
 				format = "%d"
 				value = int(value)
-			return "%s %s" % (format_string(format, value, grouping=True), units) if units else format_string(format, value, grouping=True)
+			return f"{format_string(format, value, grouping=True)} {units}" if units else format_string(format, value, grouping=True)
 
 		info = []
 		info.append(formatLine("H", _("Memory information for %s %s") % getBoxDisplayName()))
@@ -835,9 +837,9 @@ class MemoryInformation(InformationBase):
 		diskSize = stat.f_blocks * stat.f_frsize
 		diskFree = stat.f_bfree * stat.f_frsize
 		diskUsed = diskSize - diskFree
-		info.append(formatLine("P1", _("Total flash"), "%s  (%s)" % (scaleNumber(diskSize), scaleNumber(diskSize, "Iec"))))
-		info.append(formatLine("P1", _("Used flash"), "%s  (%s)" % (scaleNumber(diskUsed), scaleNumber(diskUsed, "Iec"))))
-		info.append(formatLine("P1", _("Free flash"), "%s  (%s)" % (scaleNumber(diskFree), scaleNumber(diskFree, "Iec"))))
+		info.append(formatLine("P1", _("Total flash"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+		info.append(formatLine("P1", _("Used flash"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
+		info.append(formatLine("P1", _("Free flash"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
 		info.append("")
 		info.append(formatLine("S", _("RAM (Details)")))
 		if self.extraSpacing:
@@ -869,13 +871,13 @@ class MultiBootInformation(InformationBase):
 		self.slotImages = None
 
 	def fetchInformation(self):
-		self.informationTimer.stop()
-		MultiBoot.getSlotImageList(self.gotInformation)
+		def fetchInformationCallback(slotImages):
+			self.slotImages = slotImages
+			for callback in self.onInformationUpdated:
+				callback()
 
-	def gotInformation(self, slotImages):
-		self.slotImages = slotImages
-		for callback in self.onInformationUpdated:
-			callback()
+		self.informationTimer.stop()
+		MultiBoot.getSlotImageList(fetchInformationCallback)
 
 	def refreshInformation(self):
 		self.slotImages = None
@@ -889,7 +891,7 @@ class MultiBootInformation(InformationBase):
 		if self.slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 			slotImageList = sorted(self.slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))
-			currentMsg = "  -  %s" % _("Current")
+			currentMsg = f"  -  {_('Current')}"
 			imageLists = {}
 			for slot in slotImageList:
 				for boot in self.slotImages[slot]["bootCodes"]:
@@ -899,7 +901,7 @@ class MultiBootInformation(InformationBase):
 					indent = "P0V" if boot == "" else "P1V"
 					if current:
 						indent = indent.replace("P", "F").replace("V", "F")
-					imageLists[boot].append(formatLine(indent, _("Slot '%s'") % slot, "%s%s" % (self.slotImages[slot]["imagename"], current)))
+					imageLists[boot].append(formatLine(indent, _("Slot '%s'") % slot, f"{self.slotImages[slot]['imagename']}{current}"))
 			count = 0
 			for bootCode in sorted(imageLists.keys()):
 				if bootCode == "":
@@ -999,7 +1001,7 @@ class NetworkInformation(InformationBase):
 			if isp:
 				ispOrg = geolocationData.get("org", None)
 				if ispOrg:
-					info.append(formatLine("P1", _("ISP"), "%s  (%s)" % (isp, ispOrg)))
+					info.append(formatLine("P1", _("ISP"), f"{isp}  ({ispOrg})"))
 				else:
 					info.append(formatLine("P1", _("ISP"), isp))
 			mobile = geolocationData.get("mobile", None)
@@ -1042,7 +1044,7 @@ class NetworkInformation(InformationBase):
 			if isinstance(result, bytes):
 				result = result.decode("UTF-8", "ignore")
 			for line in result.split("\n"):
-				if line.startswith("%s " % extraArgs):
+				if line.startswith(f"{extraArgs} "):
 					capture = True
 					if "HWaddr " in line:
 						line = line.replace("HWaddr ", "HWaddr:")
@@ -1055,6 +1057,7 @@ class NetworkInformation(InformationBase):
 						pos = line.index("X packets:")
 						direction = line[pos - 1:pos].lower()
 						line = "%s%s" % (line[0:pos + 10], line[pos + 10:].replace(" ", "  %sx" % direction))
+						# line = f"{line[0:pos + 10]}{line[pos + 10:].replace(" ", f"  {direction}x")}"  # Python 3.12
 					elif " txqueuelen" in line:
 						line = line.replace(" txqueuelen:", "  txqueuelen:")
 					data += line
@@ -1062,7 +1065,7 @@ class NetworkInformation(InformationBase):
 				if line == "":
 					break
 			data = list(filter(None, [x.strip().replace("=", ":", 1) for x in data.split("  ")]))
-			data[0] = "interface:%s" % data[0]
+			data[0] = f"interface:{data[0]}"
 			# print("[Network] DEBUG: Raw network data %s." % data)
 			for item in data:
 				if ":" not in item:
@@ -1095,7 +1098,7 @@ class NetworkInformation(InformationBase):
 			if isinstance(result, bytes):
 				result = result.decode("UTF-8", "ignore")
 			for line in result.split("\n"):
-				if line.startswith("%s " % extraArgs):
+				if line.startswith(f"{extraArgs} "):
 					capture = True
 					data += line
 					continue
@@ -1105,8 +1108,8 @@ class NetworkInformation(InformationBase):
 				if line == "":
 					break
 			data = list(filter(None, [x.strip().replace("=", ":", 1) for x in data.split("  ")]))
-			data[0] = "interface:%s" % data[0]
-			data[1] = "standard:%s" % data[1]
+			data[0] = f"interface:{data[0]}"
+			data[1] = f"standard:{data[1]}"
 			for item in data:
 				if ":" not in item:
 					continue
@@ -1175,7 +1178,7 @@ class NetworkInformation(InformationBase):
 					if "mac" in self.interfaceData[interface]:
 						info.append(formatLine("P1", _("MAC address"), self.interfaceData[interface]["mac"]))
 					if "speed" in self.interfaceData[interface]:
-						info.append(formatLine("P1", _("Speed"), "%s Mbps" % self.interfaceData[interface]["speed"]))
+						info.append(formatLine("P1", _("Speed"), f"{self.interfaceData[interface]['speed']} Mbps"))
 					if "duplex" in self.interfaceData[interface]:
 						info.append(formatLine("P1", _("Duplex"), self.interfaceData[interface]["duplex"]))
 					if "mtu" in self.interfaceData[interface]:
@@ -1234,8 +1237,8 @@ class PictureInformation(Screen, HelpableScreen):
 		self["name"] = Label()
 		self["picture"] = Pixmap()
 		self["key_red"] = StaticText(_("Close"))
-		self["key_yellow"] = StaticText(_("Previous Picture"))
-		self["key_blue"] = StaticText(_("Next Picture"))
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
 			"cancel": (self.keyCancel, _("Close the screen")),
 			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
@@ -1252,10 +1255,10 @@ class PictureInformation(Screen, HelpableScreen):
 		}, prio=0, description=_("Picture Information Actions"))
 		self["pictureActions"].setEnabled(False)
 		self.definedPictures = (
-			(_("Remote Control"), "hardware/%s.png" % BoxInfo.getItem("rcname")),
-			(_("Front"), "hardware/%s_front.png" % MACHINE_BUILD),
-			(_("Rear"), "hardware/%s_rear.png" % MACHINE_BUILD),
-			(_("Internal"), "hardware/%s_internal.png" % MACHINE_BUILD)
+			(_("Remote Control"), f"hardware/{BoxInfo.getItem('rcname')}.png"),
+			(_("Front"), f"hardware/{MACHINE_BUILD}_front.png"),
+			(_("Rear"), f"hardware/{MACHINE_BUILD}_rear.png"),
+			(_("Internal"), f"hardware/{MACHINE_BUILD}_internal.png")
 		)
 		self.pictures = []
 		for item in self.definedPictures:
@@ -1277,7 +1280,7 @@ class PictureInformation(Screen, HelpableScreen):
 		self.close(True)
 
 	def layoutFinished(self):
-		self["name"].setText("%s %s  -  %s View" % (DISPLAY_BRAND, DISPLAY_MODEL, self.pictures[self.pictureIndex][0]))
+		self["name"].setText(f"{DISPLAY_BRAND} {DISPLAY_MODEL}  -  {self.pictures[self.pictureIndex][0]} View")
 		if self.pictureMax > 1:
 			self["key_yellow"].setText(_("%s View") % self.pictures[(self.pictureIndex - 1) % self.pictureMax][0])
 			self["key_blue"].setText(_("%s View") % self.pictures[(self.pictureIndex + 1) % self.pictureMax][0])
@@ -1325,7 +1328,7 @@ class ReceiverInformation(InformationBase):
 	def displayInformation(self):
 		def findPackageRevision(package, packageList):
 			revision = None
-			data = [x for x in packageList if "-%s" % package in x]
+			data = [x for x in packageList if f"-{package}" in x]
 			if data:
 				data = data[0].split("-")
 				if len(data) >= 4:
@@ -1376,7 +1379,7 @@ class ReceiverInformation(InformationBase):
 			info.append("")
 		cpu = about.getCPUInfoString()
 		info.append(formatLine("P1", _("CPU"), cpu[0]))
-		info.append(formatLine("P1", _("CPU speed/cores"), "%s %s" % (cpu[1], cpu[2])))
+		info.append(formatLine("P1", _("CPU speed/cores"), f"{cpu[1]} {cpu[2]}"))
 		if cpu[3]:
 			info.append(formatLine("P1", _("CPU temperature"), cpu[3]))
 		info.append(formatLine("P1", _("CPU brand"), about.getCPUBrand()))
@@ -1393,7 +1396,7 @@ class ReceiverInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		rcIndex = int(config.inputDevices.remotesIndex.value)
-		info.append(formatLine("P1", _("RC identification"), "%s  (Index: %d)" % (remoteControl.remotes[rcIndex][REMOTE_DISPLAY_NAME], rcIndex)))
+		info.append(formatLine("P1", _("RC identification"), f"{remoteControl.remotes[rcIndex][REMOTE_DISPLAY_NAME]}  (Index: {rcIndex})"))
 		rcName = remoteControl.remotes[rcIndex][REMOTE_NAME]
 		info.append(formatLine("P1", _("RC selected name"), rcName))
 		boxName = BoxInfo.getItem("rcname")
@@ -1483,14 +1486,14 @@ class ReceiverInformation(InformationBase):
 			info.append("")
 		stat = statvfs("/")
 		diskSize = stat.f_blocks * stat.f_frsize
-		info.append(formatLine("P1", _("Internal flash"), "%s  (%s)" % (scaleNumber(diskSize), scaleNumber(diskSize, "Iec"))))
+		info.append(formatLine("P1", _("Internal flash"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 		# hddList = storageManager.HDDList()
 		hddList = harddiskmanager.HDDList()
 		if hddList:
 			for hdd in hddList:
 				hdd = hdd[1]
 				capacity = hdd.diskSize() * 1000000
-				info.append(formatLine("P1", hdd.model(), "%s  (%s)" % (scaleNumber(capacity), scaleNumber(capacity, "Iec"))))
+				info.append(formatLine("P1", hdd.model(), f"{scaleNumber(capacity)}  ({scaleNumber(capacity, 'Iec')})"))
 		else:
 			info.append(formatLine("H", _("No hard disks detected.")))
 		info.append("")
@@ -1505,6 +1508,380 @@ class ReceiverInformation(InformationBase):
 
 	def getSummaryInformation(self):
 		return "Receiver Information"
+
+
+class ServiceInformation(InformationBase):
+	def __init__(self, session, serviceRef=None):
+		InformationBase.__init__(self, session)
+		self.baseTitle = _("Service Information")
+		self.setTitle(self.baseTitle)
+		self.skinName.insert(0, "ServiceInformation")
+		self.serviceRef = serviceRef
+		self["key_menu"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
+		self["serviceActions"] = HelpableActionMap(self, ["MenuActions", "ColorActions", "NavigationActions"], {
+			"menu": (self.showServiceMenu, _("Show selection for service information screen")),
+			"yellow": (self.previousService, _("Show previous service information screen")),
+			"blue": (self.nextService, _("Show next service information screen")),
+			"left": (self.previousService, _("Show previous service information screen")),
+			"right": (self.nextService, _("Show next service information screen"))
+		}, prio=0, description=_("Service Information Actions"))
+		self.serviceCommands = [
+			(_("Service and PID information"), _("Service & PID"), self.showServiceInformation),
+			(_("Transponder/Tuning information"), _("Transponder"), self.showTransponderInformation),
+			(_("ECM information"), _("ECM"), self.showECMInformation)
+		]
+		self.serviceCommandsMax = len(self.serviceCommands)
+		self.info = None
+		if serviceRef:
+			self.serviceCommandsIndex = 1
+		else:
+			self.eventTracker = ServiceEventTracker(screen=self, eventmap={iPlayableService.evEnd: self.fetchInformationDelayed})
+			self.serviceCommandsIndex = 0
+
+	def getServiceTransponderData(self):
+		self.frontendInfo = None
+		self.serviceInfo = None
+		self.transponderInfo = None
+		self.service = None
+		playServiceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		if playServiceRef:
+			self.serviceName = ServiceReference(playServiceRef).getServiceName()
+			self.serviceReference = playServiceRef.toString()
+			self.serviceReferenceType = playServiceRef.type
+		else:
+			self.serviceName = _("N/A")
+			self.serviceReference = _("N/A")
+			self.serviceReferenceType = 0
+		if self.serviceRef:  # and not (playServiceRef and playServiceRef == self.serviceRef):
+			self.serviceName = ServiceReference(self.serviceRef).getServiceName()
+			self.transponderInfo = eServiceCenter.getInstance().info(self.serviceRef).getInfoObject(self.serviceRef, iServiceInformation.sTransponderData)  # Note that info is a iStaticServiceInformation not a iServiceInformation.
+			self["key_menu"].setText("")
+			self["serviceActions"].setEnabled(False)
+			self.serviceCommandsIndex = 1
+		else:
+			self.service = self.session.nav.getCurrentService()
+			if self.service:
+				self.serviceInfo = self.service.info()
+				self.frontendInfo = self.service.frontendInfo()
+				if self.frontendInfo and not self.frontendInfo.getAll(True):
+					self.frontendInfo = None
+					serviceRef = playServiceRef
+					self.transponderInfo = serviceRef and eServiceCenter.getInstance().info(serviceRef).getInfoObject(serviceRef, iServiceInformation.sTransponderData)
+			self["key_menu"].setText(_("MENU"))
+			self["serviceActions"].setEnabled(True)
+
+	def showServiceMenu(self):
+		def showServiceMenuCallBack(selectedIndex):
+			if isinstance(selectedIndex, int):
+				self.serviceCommandsIndex = selectedIndex
+				self.displayInformation()
+				self.informationTimer.start(25)
+
+		choices = [(serviceCommand[0], index) for index, serviceCommand in enumerate(self.serviceCommands)]
+		self.session.openWithCallback(showServiceMenuCallBack, MessageBox, text=_("Select service information to view:"), list=choices, windowTitle=self.baseTitle)
+
+	def previousService(self):
+		self.serviceCommandsIndex = (self.serviceCommandsIndex - 1) % self.serviceCommandsMax
+		self.displayInformation()
+		self.informationTimer.start(25)
+
+	def nextService(self):
+		self.serviceCommandsIndex = (self.serviceCommandsIndex + 1) % self.serviceCommandsMax
+		self.displayInformation()
+		self.informationTimer.start(25)
+
+	def fetchInformation(self):
+		self.informationTimer.stop()
+		self.getServiceTransponderData()
+		name, label, method = self.serviceCommands[self.serviceCommandsIndex]
+		self.info = method()
+		for callback in self.onInformationUpdated:
+			callback()
+
+	def fetchInformationDelayed(self):  # This allows the newly selected service to stabilize before updating the service data.
+		self.informationTimer.startLongTimer(3)
+
+	def refreshInformation(self):
+		self.getServiceTransponderData()
+		InformationBase.refreshInformation(self)
+
+	def displayInformation(self):
+		name, label, method = self.serviceCommands[self.serviceCommandsIndex]
+		self.setTitle(f"{self.baseTitle}: {label}")
+		if self["key_menu"].getText():
+			self["key_yellow"].setText(self.serviceCommands[(self.serviceCommandsIndex - 1) % self.serviceCommandsMax][1])
+			self["key_blue"].setText(self.serviceCommands[(self.serviceCommandsIndex + 1) % self.serviceCommandsMax][1])
+		else:
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+		info = [_("Retrieving '%s' information, please wait...") % name] if self.info is None else self.info
+		if info == [""]:
+			info = [_("There is no information to show for '%s'.") % name]
+		self["information"].setText("\n".join(info))
+		self.frontendInfo = None
+		self.serviceInfo = None
+		self.transponderInfo = None
+		self.service = None
+
+	def showServiceInformation(self):
+		def formatHex(value):
+			return f"0x{value:04X}  ({value})" if value and isinstance(value, int) else ""
+
+		def getServiceInfoValue(item):
+			if self.serviceInfo:
+				value = self.serviceInfo.getInfo(item)
+				if value == -2:
+					value = self.serviceInfo.getInfoString(item)
+				elif value == -1:
+					value = _("N/A")
+			else:
+				value = ""
+			return value
+
+		def getNamespace(value):
+			if isinstance(value, str):
+				namespace = f"{_('N/A')}  -  {_('N/A')}"
+			else:
+				namespace = f"{value & 0xFFFFFFFF:08X}"
+				if namespace.startswith("EEEE"):
+					namespace = f"{namespace}  -  DVB-T"
+				elif namespace.startswith("FFFF"):
+					namespace = f"{namespace}  -  DVB-C"
+				else:
+					position = int(namespace[:4], 16)
+					if position > 1800:
+						position = 3600 - position
+						alignment = _("W")
+					else:
+						alignment = _("E")
+					namespace = f"{namespace}  -  {float(position) / 10.0}\u00B0{alignment}"
+			return namespace
+
+		def getSubtitleList():  # IanSav: If we know the current subtitle then we should flag it as "(Current)".
+			subtitleTypes = {  # This should be in SystemInfo maybe as a BoxInfo variable.
+				0: _("Unknown"),
+				1: _("Embedded"),
+				2: _("SSA file"),
+				3: _("ASS file"),
+				4: _("SRT file"),
+				5: _("VOB file"),
+				6: _("PGS file")
+			}
+			subtitleSelected = self.service and self.service.subtitle().getCachedSubtitle()
+			if subtitleSelected:
+				subtitleSelected = subtitleSelected[:3]
+			subtitle = self.service and self.service.subtitle()
+			subList = subtitle and subtitle.getSubtitleList() or []
+			for subtitle in subList:
+				print(subtitle)
+				indent = "P1F0" if subtitle[:3] == subtitleSelected else "P1"
+				subtitleLang = subtitle[4]
+				if subtitle[0] == 0:  # DVB PID.
+					info.append(formatLine(indent, _("DVB Subtitles PID & Language"), f"{formatHex(subtitle[1])}  -  {subtitleLang}"))
+				elif subtitle[0] == 1:  # Teletext.
+					info.append(formatLine(indent, _("TXT Subtitles page & Language"), f"0x0{subtitle[3] or 8:X}{subtitle[2]:02X}  -  {subtitleLang}"))
+				elif subtitle[0] == 2:  # File.
+					subtitleDesc = subtitleTypes.get(subtitle[2], f"{_('Unknown')}: {subtitle[2]}")
+					info.append(formatLine(indent, _("Other Subtitles & Language"), f"{subtitle[1] + 1}  -  {subtitleDesc}  -  {subtitleLang}"))
+
+		info = []
+		info.append(formatLine("H", _("Service and PID information for '%s'") % self.serviceName))
+		info.append("")
+		if self.serviceInfo:
+			from Components.Converter.PliExtraInfo import codec_data  # This should be in SystemInfo maybe as a BoxInfo variable.
+			videoData = []
+			videoData.append(codec_data.get(self.serviceInfo.getInfo(iServiceInformation.sVideoType), _("N/A")))
+			width = self.serviceInfo.getInfo(iServiceInformation.sVideoWidth)
+			height = self.serviceInfo.getInfo(iServiceInformation.sVideoHeight)
+			if width > 0 and height > 0:
+				videoData.append(f"{width}x{height}")
+				videoData.append(f"{(self.serviceInfo.getInfo(iServiceInformation.sFrameRate) + 500) // 1000}{('i', 'p', '')[self.serviceInfo.getInfo(iServiceInformation.sProgressive)]}")
+				videoData.append(f"[{'4:3' if getServiceInfoValue(iServiceInformation.sAspect) in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) else '16:9'}]")  # This should be in SystemInfo maybe as a BoxInfo variable.
+			gamma = ("SDR", "HDR", "HDR10", "HLG", "")[self.serviceInfo.getInfo(iServiceInformation.sGamma)]  # This should be in SystemInfo maybe as a BoxInfo variable.
+			if gamma:
+				videoData.append(gamma)
+			videoData = "  -  ".join(videoData)
+		else:
+			videoData = _("Unknown")
+		if "%3a//" in self.serviceReference and self.serviceReferenceType not in (1, 257, 4098, 4114):  # IPTV 4097 5001, no PIDs shown.
+			info.append(formatLine("P1", _("Video Codec, Size & Format"), videoData))
+			info.append(formatLine("P1", _("Service reference"), ":".join(self.serviceReference.split(":")[:9])))
+			info.append(formatLine("P1", _("URL"), self.serviceReference.split(":")[10].replace("%3a", ":")))
+			getSubtitleList()  # IanSav: This wasn't activated to be used!
+		else:
+			if ":/" in self.serviceReference:  # mp4 videos, DVB-S-T recording.
+				info.append(formatLine("P1", _("Video Codec, Size & Format"), videoData))
+				info.append(formatLine("P1", _("Service reference"), ":".join(self.serviceReference.split(":")[:9])))
+				info.append(formatLine("P1", _("Filename"), self.serviceReference.split(":")[10]))
+			else:  # fallback, movistartv, live DVB-S-T.
+				info.append(formatLine("P1", _("Provider"), getServiceInfoValue(iServiceInformation.sProvider)))
+				info.append(formatLine("P1", _("Video Codec, Size & Format"), videoData))
+				if "%3a//" in self.serviceReference:  # fallback, movistartv.
+					info.append(formatLine("P1", _("Service reference"), ":".join(self.serviceReference.split(":")[:9])))
+					info.append(formatLine("P1", _("URL"), self.serviceReference.split(":")[10].replace("%3a", ":")))
+				else:  # Live DVB-S-T
+					info.append(formatLine("P1", _("Service reference"), self.serviceReference))
+			info.append(formatLine("P1", _("Namespace & Orbital position"), getNamespace(getServiceInfoValue(iServiceInformation.sNamespace))))
+			info.append(formatLine("P1", _("Service ID (SID)"), formatHex(getServiceInfoValue(iServiceInformation.sSID))))
+			info.append(formatLine("P1", _("Transport Stream ID (TSID)"), formatHex(getServiceInfoValue(iServiceInformation.sTSID))))
+			info.append(formatLine("P1", _("Original Network ID (ONID)"), formatHex(getServiceInfoValue(iServiceInformation.sONID))))
+			info.append(formatLine("P1", _("Video PID"), formatHex(getServiceInfoValue(iServiceInformation.sVideoPID))))
+			audio = self.service and self.service.audioTracks()
+			numberOfTracks = audio and audio.getNumberOfTracks()
+			if numberOfTracks:
+				for index in range(numberOfTracks):
+					audioPID = audio.getTrackInfo(index).getPID()
+					audioDesc = audio.getTrackInfo(index).getDescription()
+					audioLang = audio.getTrackInfo(index).getLanguage() or _("Undefined")
+					audioPIDValue = _("N/A") if getServiceInfoValue(iServiceInformation.sAudioPID) == "N/A" else formatHex(audioPID)
+					indent = "P1F0" if numberOfTracks > 1 and audio.getCurrentTrack() == index else "P1"
+					info.append(formatLine(indent, _("Audio PID%s, Codec & Language") % (f" {index + 1}" if numberOfTracks > 1 else ""), f"{audioPIDValue}  -  {audioDesc}  -  {audioLang}"))
+			else:
+				info.append(formatLine("P1", _("Audio PID"), _("N/A")))
+			info.append(formatLine("P1", _("PCR PID"), formatHex(getServiceInfoValue(iServiceInformation.sPCRPID))))
+			info.append(formatLine("P1", _("PMT PID"), formatHex(getServiceInfoValue(iServiceInformation.sPMTPID))))
+			info.append(formatLine("P1", _("TXT PID"), formatHex(getServiceInfoValue(iServiceInformation.sTXTPID))))
+			getSubtitleList()
+		return info
+
+	def showTransponderInformation(self):
+		def getValue(key, default):
+			valueLive = frontendLive.get(key, default)
+			valueConfig = frontendConfig.get(key, default)
+			return valueLive if valueLive == valueConfig else f"{valueLive}  ({valueConfig})"
+
+		def getDVBCFrequencyValue():
+			valueLive = frontendLive.get("frequency", 0) / 1000.0
+			valueConfig = frontendConfig.get("frequency", 0) / 1000.0
+			return f"{valueLive:.3f} {mhz}" if valueLive == valueConfig else f"{valueLive:.3f} {mhz}  ({valueConfig:.3f} {mhz})"
+
+		def getSymbolRateValue():
+			valueLive = frontendLive.get("symbol_rate", 0) // 1000
+			valueConfig = frontendConfig.get("symbol_rate", 0) // 1000
+			return f"{valueLive} {_('KSymb/s')}" if valueLive == valueConfig else f"{valueLive} {_('KSymb/s')}  ({valueConfig} {_('KSymb/s')})"
+
+		def getDVBSFrequencyValue():
+			valueLive = frontendLive.get("frequency", 0) // 1000
+			valueConfig = frontendConfig.get("frequency", 0) // 1000
+			return f"{valueLive} {mhz}" if valueLive == valueConfig else f"{valueLive} {mhz}  ({valueConfig} {mhz})"
+
+		def getInputStreamID():
+			valueLive = frontendLive.get("is_id", -1)
+			if valueLive == -1:
+				valueLive = na
+			valueConfig = frontendConfig.get("is_id", -1)
+			if valueConfig == -1:
+				valueConfig = na
+			return valueLive if valueLive == valueConfig else f"{valueLive}  ({valueConfig})"
+
+		def getFrequencyValue():
+			valueLive = frontendLive.get("frequency", 0) / 1000000.0
+			valueConfig = frontendConfig.get("frequency", 0) / 1000000.0
+			return f"{valueLive:.3f} {mhz}" if valueLive == valueConfig else f"{valueLive:.3f} {mhz}  ({valueConfig:.3f} {mhz})"
+
+		info = []
+		info.append(formatLine("H", _("Tuning information for '%s'") % self.serviceName))
+		info.append("")
+		if self.frontendInfo:
+			frontendLive = self.frontendInfo and self.frontendInfo.getAll(False)
+			frontendConfig = self.frontendInfo and self.frontendInfo.getAll(True)
+		else:
+			frontendLive = self.transponderInfo
+			frontendConfig = self.transponderInfo
+		if frontendLive and len(frontendLive) and frontendConfig and len(frontendConfig):
+			tunerType = frontendLive["tuner_type"]
+			frontendLive = ConvertToHumanReadable(frontendLive)
+			frontendConfig = ConvertToHumanReadable(frontendConfig)
+			na = _("N/A")
+			mhz = _("MHz")
+			if not self.transponderInfo:
+				info.append(formatLine("P1", _("NIM"), f"{chr(ord('A') + frontendLive.get('tuner_number', 0))}"))
+			info.append(formatLine("P1", _("Type"), f"{frontendLive.get('tuner_type', na)}  [{tunerType}]"))
+			if tunerType == "DVB-C":
+				info.append(formatLine("P1", _("Modulation"), getValue("modulation", na)))
+				info.append(formatLine("P1", _("Frequency"), getDVBCFrequencyValue()))
+				info.append(formatLine("P1", _("Symbol rate"), getSymbolRateValue()))
+				info.append(formatLine("P1", _("Forward Error Correction (FEC)"), getValue("fec_inner", na)))
+				info.append(formatLine("P1", _("Inversion"), getValue("inversion", na)))
+			elif tunerType == "DVB-S":
+				info.append(formatLine("P1", _("System"), getValue("system", na)))
+				info.append(formatLine("P1", _("Modulation"), getValue("modulation", na)))
+				info.append(formatLine("P1", _("Orbital position"), getValue("orbital_position", na)))
+				info.append(formatLine("P1", _("Frequency"), getDVBSFrequencyValue()))
+				info.append(formatLine("P1", _("Polarization"), getValue("polarization", na)))
+				info.append(formatLine("P1", _("Symbol rate"), getSymbolRateValue()))
+				info.append(formatLine("P1", _("Forward Error Correction (FEC)"), getValue("fec_inner", na)))
+				info.append(formatLine("P1", _("Inversion"), getValue("inversion", na)))
+				info.append(formatLine("P1", _("Pilot"), getValue("pilot", na)))
+				info.append(formatLine("P1", _("Roll-off"), getValue("rolloff", na)))
+				info.append(formatLine("P1", _("Input Stream ID"), getInputStreamID()))
+				info.append(formatLine("P1", _("PLS Mode"), getValue("pls_mode", na)))
+				info.append(formatLine("P1", _("PLS Code"), getValue("pls_code", 0)))
+				valueLive = frontendLive.get("t2mi_plp_id", -1)
+				valueConfig = frontendConfig.get("t2mi_plp_id", -1)
+				if valueLive != -1 or valueConfig != -1:
+					info.append(formatLine("P1", _("T2MI PLP ID"), f"{valueLive}" if valueLive == valueConfig else f"{valueLive}  ({valueConfig})"))
+				valueLive = None if frontendLive.get("t2mi_plp_id", -1) == -1 else frontendLive.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)
+				valueConfig = None if frontendConfig.get("t2mi_plp_id", -1) == -1 else frontendConfig.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)
+				if valueLive or valueConfig:
+					info.append(formatLine("P1", _("T2MI PID"), f"{valueLive or 'None'}" if valueLive == valueConfig else f"{valueLive or 'None'}  ({valueConfig or 'None'})"))
+			elif tunerType == "DVB-T":
+				info.append(formatLine("P1", _("Frequency"), getFrequencyValue()))
+				info.append(formatLine("P1", _("Channel"), getValue("channel", na)))
+				info.append(formatLine("P1", _("Inversion"), getValue("inversion", na)))
+				info.append(formatLine("P1", _("Bandwidth"), getValue("bandwidth", na)))
+				info.append(formatLine("P1", _("Code rate LP"), getValue("code_rate_lp", na)))
+				info.append(formatLine("P1", _("Code rate HP"), getValue("code_rate_hp", na)))
+				info.append(formatLine("P1", _("Guard Interval"), getValue("guard_interval", na)))
+				info.append(formatLine("P1", _("Constellation"), getValue("constellation", na)))
+				info.append(formatLine("P1", _("Transmission mode"), getValue("transmission_mode", na)))
+				info.append(formatLine("P1", _("Hierarchy info"), getValue("hierarchy_information", na)))
+			elif tunerType == "ATSC":
+				info.append(formatLine("P1", _("System"), getValue("system", na)))
+				info.append(formatLine("P1", _("Modulation"), getValue("modulation", na)))
+				info.append(formatLine("P1", _("Frequency"), getFrequencyValue()))
+				info.append(formatLine("P1", _("Inversion"), getValue("inversion", na)))
+		else:
+			info.append(formatLine("M0", _("Tuner data is not available!")))
+		return info
+
+	def showECMInformation(self):
+		info = []
+		info.append(formatLine("H", _("ECM information for '%s'") % self.serviceName))
+		info.append("")
+		if self.serviceInfo:
+			from Components.Converter.PliExtraInfo import caid_data  # This should be in SystemInfo maybe as a BoxInfo variable.
+			from Tools.GetEcmInfo import GetEcmInfo
+			ecmData = GetEcmInfo().getEcmData()
+			for caID in sorted(set(self.serviceInfo.getInfoObject(iServiceInformation.sCAIDPIDs)), key=lambda x: (x[0], x[1])):
+				description = _("Undefined")
+				extraInfo = ""
+				provid = ""
+				for caidEntry in caid_data:
+					if int(caidEntry[0], 16) <= caID[0] <= int(caidEntry[1], 16):
+						description = caidEntry[2]
+						break
+				if caID[2]:
+					if description == "Seca":
+						provid = ",".join([caID[2][y:y + 4] for y in range(len(caID[2]), 30)])
+					elif description == "Nagra":
+						provid = caID[2][-4:]
+					elif description == "Via":
+						provid = caID[2][-6:]
+					if provid:
+						extraInfo = f" provid={provid}"
+					else:
+						extraInfo = f" extra={caID[2]}"
+				active = f" ({_('Active')})" if caID[0] == int(ecmData[1], 16) and (caID[1] == int(ecmData[3], 16) or str(int(ecmData[2], 16)) in provid) else ""
+				info.append(formatLine("P1", f"ECMPid {caID[1]:04X} ({caID[1]})", f"{caID[0]:04X}-{description}{extraInfo}{active}"))
+			if len(info) == 2:
+				info.append(formatLine("P1", _("No ECM PIDs available"), _("Free to Air (FTA) Service")))
+		return info
+
+	def getSummaryInformation(self):
+		return "Service Information"
 
 
 class StorageInformation(InformationBase):
@@ -1558,9 +1935,9 @@ class StorageInformation(InformationBase):
 				diskFree = stat.f_bfree * stat.f_frsize
 				diskUsed = diskSize - diskFree
 				info.append(formatLine("P2", _("Mountpoint"), partition.mountpoint))
-				info.append(formatLine("P2", _("Capacity"), "%s  (%s)" % (scaleNumber(diskSize), scaleNumber(diskSize, "Iec"))))
-				info.append(formatLine("P2", _("Used"), "%s  (%s)" % (scaleNumber(diskUsed), scaleNumber(diskUsed, "Iec"))))
-				info.append(formatLine("P2", _("Free"), "%s  (%s)" % (scaleNumber(diskFree), scaleNumber(diskFree, "Iec"))))
+				info.append(formatLine("P2", _("Capacity"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+				info.append(formatLine("P2", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
+				info.append(formatLine("P2", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
 				break
 		# hddList = storageManager.HDDList()
 		hddList = harddiskmanager.HDDList()
@@ -1571,7 +1948,7 @@ class StorageInformation(InformationBase):
 				info.append(formatLine("S1", hdd.getDeviceName(), hdd.bus()))
 				info.append(formatLine("P2", _("Model"), hdd.model()))
 				diskSize = hdd.diskSize() * 1000000
-				info.append(formatLine("P2", _("Capacity"), "%s  (%s)" % (scaleNumber(diskSize), scaleNumber(diskSize, "Iec"))))
+				info.append(formatLine("P2", _("Capacity"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 				info.append(formatLine("P2", _("Sleeping"), (_("Yes") if hdd.isSleeping() else _("No"))))
 				for partition in partitions:
 					if partition.device and join("/dev", partition.device).startswith(hdd.getDeviceName()):
@@ -1581,14 +1958,14 @@ class StorageInformation(InformationBase):
 						diskFree = stat.f_bfree * stat.f_frsize
 						diskUsed = diskSize - diskFree
 						info.append(formatLine("P3", _("Mountpoint"), partition.mountpoint))
-						info.append(formatLine("P3", _("Capacity"), "%s  (%s)" % (scaleNumber(diskSize), scaleNumber(diskSize, "Iec"))))
-						info.append(formatLine("P3", _("Used"), "%s  (%s)" % (scaleNumber(diskUsed), scaleNumber(diskUsed, "Iec"))))
-						info.append(formatLine("P3", _("Free"), "%s  (%s)" % (scaleNumber(diskFree), scaleNumber(diskFree, "Iec"))))
+						info.append(formatLine("P3", _("Capacity"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+						info.append(formatLine("P3", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
+						info.append(formatLine("P3", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
 		else:
 			info.append("")
 			info.append(formatLine("S1", _("No storage or hard disks detected.")))
 		info.append("")
-		info.append(formatLine("H", "%s %s %s" % (_("Network storage on"), DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", f"{_('Network storage on')} {DISPLAY_BRAND} {DISPLAY_MODEL}"))
 		info.append("")
 		if self.mountInfo:
 			count = 0
@@ -1599,7 +1976,7 @@ class StorageInformation(InformationBase):
 				if data[0]:
 					info.append(formatLine("P2", _("Network address"), data[0]))
 					info.append(formatLine("P2", _("Capacity"), data[1]))
-					info.append(formatLine("P2", _("Used"), "%s  (%s)" % (data[2], data[4])))
+					info.append(formatLine("P2", _("Used"), f"{data[2]}  ({data[4]})"))
 					info.append(formatLine("P2", _("Free"), data[3]))
 				else:
 					info.append(formatLine("P2", _("Not currently mounted.")))
@@ -1647,7 +2024,7 @@ class StreamingInformation(InformationBase):
 				# print("[Information] DEBUG: Client data '%s'." % str(client))
 				if count:
 					info.append("")
-				info.append(formatLine("S", "%s  -  %d" % (_("Client"), count + 1)))
+				info.append(formatLine("S", f"{_('Client')}  -  {count + 1}"))
 				info.append(formatLine("P1", _("Service reference"), client[1]))
 				info.append(formatLine("P1", _("Service name"), ServiceReference(client[1]).getServiceName() or _("Unknown service!")))
 				info.append(formatLine("P1", _("IP address"), client[0][7:] if client[0].startswith("::ffff:") else client[0]))
@@ -1670,8 +2047,9 @@ class SystemInformation(InformationBase):
 		self.baseTitle = _("System Information")
 		self.setTitle(self.baseTitle)
 		self.skinName.insert(0, "SystemInformation")
-		self["key_yellow"] = StaticText(_("Previous"))
-		self["key_blue"] = StaticText(_("Next"))
+		self["key_menu"] = StaticText(_("MENU"))
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self["systemActions"] = HelpableActionMap(self, ["MenuActions", "ColorActions", "NavigationActions"], {
 			"menu": (self.showSystemMenu, _("Show selection for system information screen")),
 			"yellow": (self.previousSystem, _("Show previous system information screen")),
@@ -1698,14 +2076,14 @@ class SystemInformation(InformationBase):
 		self.info = None
 
 	def showSystemMenu(self):
-		choices = [(systemCommand[0], index) for index, systemCommand in enumerate(self.systemCommands)]
-		self.session.openWithCallback(self.showSystemMenuCallBack, MessageBox, text=_("Select system information to view:"), list=choices, windowTitle=self.baseTitle)
+		def showSystemMenuCallBack(selectedIndex):
+			if isinstance(selectedIndex, int):
+				self.systemCommandsIndex = selectedIndex
+				self.displayInformation()
+				self.informationTimer.start(25)
 
-	def showSystemMenuCallBack(self, selectedIndex):
-		if isinstance(selectedIndex, int):
-			self.systemCommandsIndex = selectedIndex
-			self.displayInformation()
-			self.informationTimer.start(25)
+		choices = [(systemCommand[0], index) for index, systemCommand in enumerate(self.systemCommands)]
+		self.session.openWithCallback(showSystemMenuCallBack, MessageBox, text=_("Select system information to view:"), list=choices, windowTitle=self.baseTitle)
 
 	def previousSystem(self):
 		self.systemCommandsIndex = (self.systemCommandsIndex - 1) % self.systemCommandsMax
@@ -1718,11 +2096,16 @@ class SystemInformation(InformationBase):
 		self.informationTimer.start(25)
 
 	def fetchInformation(self):
+		def fetchInformationCallback(result, retVal, extraArgs):
+			self.info = [x.rstrip() for x in result.split("\n")]
+			for callback in self.onInformationUpdated:
+				callback()
+
 		self.informationTimer.stop()
 		name, command, path = self.systemCommands[self.systemCommandsIndex]
 		self.info = None
 		if command:
-			self.console.ePopen(command, self.fetchInformationCallback)
+			self.console.ePopen(command, fetchInformationCallback)
 		elif path:
 			try:
 				with open(path) as fd:
@@ -1732,14 +2115,9 @@ class SystemInformation(InformationBase):
 			for callback in self.onInformationUpdated:
 				callback()
 
-	def fetchInformationCallback(self, result, retVal, extraArgs):
-		self.info = [x.rstrip() for x in result.split("\n")]
-		for callback in self.onInformationUpdated:
-			callback()
-
 	def displayInformation(self):
 		name, command, path = self.systemCommands[self.systemCommandsIndex]
-		self.setTitle("%s: %s" % (self.baseTitle, name))
+		self.setTitle(f"{self.baseTitle}: {name}")
 		self["key_yellow"].setText(self.systemCommands[(self.systemCommandsIndex - 1) % self.systemCommandsMax][0])
 		self["key_blue"].setText(self.systemCommands[(self.systemCommandsIndex + 1) % self.systemCommandsMax][0])
 		info = [_("Retrieving '%s' information, please wait...") % name] if self.info is None else self.info
@@ -1818,7 +2196,7 @@ class TunerInformation(InformationBase):
 				if key in self.frontEndFields:
 					tunerData[self.frontEndFields[key]] = value
 				else:
-					print("[Information] Note: Unexpected field '%s' in front-end with data '%s'!" % (key, value))
+					print(f"[Information] Note: Unexpected field '{key}' in front-end with data '{value}'!")
 			if tunerData.get("delivery"):
 				broadcasts = []
 				for broadcast in self.broadcasts:
@@ -1847,10 +2225,10 @@ class TunerInformation(InformationBase):
 			else:
 				format = "%d"
 				value = int(value)
-			return "%s %s" % (format_string(format, value, grouping=True), units) if units else format_string(format, value, grouping=True)
+			return f"{format_string(format, value, grouping=True)} {units}" if units else format_string(format, value, grouping=True)
 
 		def extractModes(data, mode):
-			mode = "%s " % mode
+			mode = f"{mode} "
 			length = len(mode)
 			values = []
 			for item in data.split(","):
@@ -1875,8 +2253,8 @@ class TunerInformation(InformationBase):
 		for count, tunerData in enumerate(self.tunerList):
 			if count:
 				info.append("")
-			tuner = tunerData["start"] if tunerData["start"] == tunerData["end"] else "%s - %s" % (tunerData["start"], tunerData["end"])
-			info.append(formatLine("S", "Tuner %s" % tuner))
+			tuner = tunerData["start"] if tunerData["start"] == tunerData["end"] else f"{tunerData['start']} - {tunerData['end']}"
+			info.append(formatLine("S", f"Tuner {tuner}"))
 			if self.extraSpacing:
 				info.append("")
 			name = tunerData.get("name")
@@ -1894,11 +2272,11 @@ class TunerInformation(InformationBase):
 			frequency = tunerData.get("frequency")
 			if frequency:
 				data = parseValues(frequency)
-				info.append(formatLine("P1", _("Frequency range"), "%s  -  %s  (Step %s)" % (data["min"], data["max"], data["stepsize"])))
+				info.append(formatLine("P1", _("Frequency range"), f"{data['min']}  -  {data['max']}  (Step {data['stepsize']})"))
 			symbolrate = tunerData.get("symbolrate")
 			if symbolrate:
 				data = parseValues(symbolrate)
-				info.append(formatLine("P1", _("Symbol rate"), "%s  -  %s" % (data["min"], data["max"])))
+				info.append(formatLine("P1", _("Symbol rate"), f"{data['min']}  -  {data['max']}"))
 			FEC = extractModes(capabilities, "FEC")
 			if FEC:
 				info.append(formatLine("P1", _("FEC modes"), ", ".join(FEC)))
