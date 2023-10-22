@@ -231,6 +231,61 @@ def hasActiveSubservicesForCurrentChannel(current_service):
 		return False
 
 
+class InfoBarStreamRelay:
+
+	FILENAME = "/etc/enigma2/whitelist_streamrelay"
+
+	def __init__(self) -> None:
+		self.streamRelay = []
+
+		if exists(self.FILENAME):
+			try:
+				with open(self.FILENAME) as fd:
+					self.streamRelay = [line.strip() for line in fd.readlines()]
+			except OSError as err:
+				print(f"[{self.__class__.__name__}] Error {err.errno}: Unable to read file '{self.FILENAME}'!  ({err.strerror})")
+
+	def check(self, nav, service):
+		return (service or nav.getCurrentlyPlayingServiceReference()) and service.toString() in self.streamRelay
+
+	def write(self):
+		try:
+			with open(self.FILENAME, "w") as fd:
+				fd.write("\n".join(self.streamRelay))
+		except OSError as err:
+			print(f"[{self.__class__.__name__}] Error {err.errno}: Unable to write file '{self.FILENAME}'!  ({err.strerror})")
+
+	def toggle(self, nav, service):
+		service = service or nav.getCurrentlyPlayingServiceReference()
+		if service:
+			servicestring = service.toString()
+			if servicestring in self.streamRelay:
+				self.streamRelay.remove(servicestring)
+			else:
+				self.streamRelay.append(servicestring)
+				if nav.getCurrentlyPlayingServiceReference() == service:
+					nav.restartService()
+			self.write()
+
+	def streamrelayChecker(self, playref):
+		playrefstring = playref.toString()
+		if "%3a//" not in playrefstring and playrefstring in self.streamRelay:
+			url = f'http://{".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)}:{config.misc.softcam_streamrelay_port.value}/'
+			if "127.0.0.1" in url:
+					playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(':'))])
+			else:
+					playrefmod = playrefstring
+			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
+			print(f"[{self.__class__.__name__} Play service {playref.toString()} via streamrelay")
+		return playref
+
+	def checkService(self, service):
+		return service and service.toString() in self.streamRelay
+
+
+streamrelay = InfoBarStreamRelay()
+
+
 class TimerSelection(Screen):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
@@ -1019,7 +1074,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				FLAG_HIDE_VBI = 512
 				return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_HIDE_VBI and True
 			else:
-				return ".hidvbi." in servicepath.lower()
+				return ".hidevbi." in servicepath.lower()
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		return info and info.getInfo(iServiceInformation.sHideVBI) == 1
@@ -1029,6 +1084,12 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.hideVBILineScreen.show()
 		else:
 			self.hideVBILineScreen.hide()
+
+	def checkStreamrelay(self, service=None):
+		return streamrelay.check(self.session.nav, service)
+
+	def ToggleStreamrelay(self, service=None):
+		streamrelay.toggle(self.session.nav, service)
 
 
 class BufferIndicator(Screen):
