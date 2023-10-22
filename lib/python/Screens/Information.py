@@ -1529,7 +1529,7 @@ class ServiceInformation(InformationBase):
 		}, prio=0, description=_("Service Information Actions"))
 		self.serviceCommands = [
 			(_("Service and PID information"), _("Service & PID"), self.showServiceInformation),
-			(_("Transponder/Tuning information"), _("Transponder"), self.showTransponderInformation),
+			(_("Transponder information"), _("Transponder"), self.showTransponderInformation),
 			(_("ECM information"), _("ECM"), self.showECMInformation)
 		]
 		self.serviceCommandsMax = len(self.serviceCommands)
@@ -1782,7 +1782,7 @@ class ServiceInformation(InformationBase):
 			return f"{valueLive:.3f} {mhz}" if valueLive == valueConfig else f"{valueLive:.3f} {mhz}  ({valueConfig:.3f} {mhz})"
 
 		info = []
-		info.append(formatLine("H", _("Tuning information for '%s'") % self.serviceName))
+		info.append(formatLine("H", _("Transponder information for '%s'") % self.serviceName))
 		info.append("")
 		if self.frontendInfo:
 			frontendLive = self.frontendInfo and self.frontendInfo.getAll(False)
