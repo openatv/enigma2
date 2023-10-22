@@ -57,7 +57,7 @@ KEY_9 = ACTIONKEY_9
 
 def getKeyNumber(key):
 	if key not in ACTIONKEY_NUMBERS:
-		raise ValueError("[Config] Error: The key '%s' is not a numeric digit!" % key)
+		raise ValueError(f"[Config] Error: The key '{key}' is not a numeric digit!")
 	return key - ACTIONKEY_0
 
 
@@ -120,12 +120,11 @@ class ConfigElement:
 	def load(self):  # You can overide this for fancy default handling.
 		self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
 		self.value = self.loadValue
-		# print("[Config] load DEBUG: Default='%s', SavedValue='%s'." % (self.toString(self.default), self.saved_value))
+		# print(f"[Config] load DEBUG: Default='{self.toString(self.default)}', SavedValue='{self.saved_value}'.")
 
 	def cancel(self):  # You need to override this if you want cancel to use something other than loadValue.
-		if self.loadValue is None:
-			self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
-		# print("[Config] cancel DEBUG: Load='%s' %s, Value='%s' %s." % (self.loadValue, type(self.loadValue), self.value, type(self.value)))
+		self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
+		# print(f"[Config] cancel DEBUG: Load='{self.loadValue}' {type(self.loadValue)}, Value='{self.value}' {type(self.value)}.")
 		if self.value != self.loadValue:
 			self.value = self.loadValue
 			self.changedFinal()  # Call non-immediate_feedback notifiers, immediate_feedback Notifiers are called as the values change.
@@ -133,7 +132,7 @@ class ConfigElement:
 	def save(self):  # You need to override this if str(self.value) doesn't work.
 		if self.loadValue is None:
 			self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
-		# print("[Config] save DEBUG: Load='%s', Value='%s'." % (self.loadValue, self.value))
+		# print(f"[Config] save DEBUG: Load='{self.loadValue}', Value='{self.value}'.")
 		self.saved_value = None if self.save_disabled or (self.value == self.default and not self.saveForced) else self.toString(self.value)
 		if self.value != self.loadValue:
 			self.changedFinal()  # Call non-immediate_feedback notifiers, immediate_feedback notifiers are called as the values chanage.
@@ -210,7 +209,7 @@ class ConfigElement:
 
 	def isChanged(self):  # NOTE: self.saved_value should already be stringified, self.default may be a string or None.
 		saved = self.saved_value or self.toString(self.default)
-		# print("[Config] isChanged DEBUG: Saved='%s', Default='%s', Value='%s', Changed=%s." % (saved, self.toString(self.default), self.toString(self.value), self.toString(self.value) != saved))
+		# print(f"[Config] isChanged DEBUG: Saved='{saved}', Default='{self.toString(self.default)}', Value='{self.toString(self.value)}', Changed={self.toString(self.value) != saved}.")
 		return self.toString(self.value) != saved
 
 	def changed(self):  # This calls all the notifiers on every change to an element.
@@ -344,7 +343,7 @@ class choicesList():
 				raise TypeError("[Config] Error: Choices must be a dictionary or a list!")
 		else:
 			self.type = type
-		# print("[Config] choicesList DEBUG: Choices=%s." % choices)
+		# print(f"[Config] choicesList DEBUG: Choices={choices}.")
 		# if len(choices):
 		# 	if self.type == choicesList.TYPE_LIST:
 		# 		if isinstance(choices[0], tuple):
@@ -352,7 +351,7 @@ class choicesList():
 		# 			pass
 		# 		else:
 		# 			print("[Config] choicesList DEBUG: ChoicesList is a value list.")
-		# 			print("[Config] choicesList DEBUG: Choices=%s." % choices)
+		# 			print(f"[Config] choicesList DEBUG: Choices={choices}.")
 		# 	else:
 		# 		# print("[Config] choicesList DEBUG: ChoicesList is a dictionary.")
 		# 		pass
@@ -468,7 +467,7 @@ class ConfigBoolean(ConfigElement):
 		ConfigElement.__init__(self)
 		if not isinstance(default, bool):
 			# raise TypeError("[Config] Error: 'ConfigBoolean' default must be a Boolean!")
-			print("[Config] Error: 'ConfigBoolean' default must be a Boolean!  (%s)" % default)
+			print(f"[Config] Error: 'ConfigBoolean' default must be a Boolean!  ({default})")
 		if descriptions is None:
 			descriptions = {
 				False: _("False"),
@@ -521,7 +520,7 @@ class ConfigBoolean(ConfigElement):
 
 	def isChanged(self):  # This is required because old settings files have various text representations for True and False.  All changes settings will be corrected.
 		saved = self.saved_value.lower() in self.trueValues if self.saved_value else self.default
-		# print("[Config] isChanged DEBUG Boolean: Saved='%s', Default='%s', Value='%s', Changed=%s." % (saved, self.default, self.value, self.value != saved))
+		# print(f"[Config] isChanged DEBUG Boolean: Saved='{saved}', Default='{self.default}', Value='{self.value}', Changed={self.value != saved}.")
 		return self.value != saved
 
 
@@ -761,7 +760,7 @@ class ConfigLocations(ConfigElement):
 		self.mountPoints.sort(key=lambda x: -len(x))
 
 	def getMountPoint(self, path):
-		path = "%s%s" % (realpath(path), sep)
+		path = f"{realpath(path)}{sep}"
 		for mountPoint in self.mountPoints:
 			if path.startswith(mountPoint):
 				return mountPoint
@@ -1112,7 +1111,7 @@ class ConfigSequence(ConfigElement):
 		return self.seperator.join([str(x) for x in value])
 
 	def toDisplayString(self, value):
-		return self.seperator.join(["%%0%sd" % (str(self.blockLen[index]) if self.zeroPad else "") % value for index, value in enumerate(self._value)])
+		return self.seperator.join([f"%0{str(self.blockLen[index]) if self.zeroPad else ''}d" % value for index, value in enumerate(self._value)])
 
 	def onSelect(self, session):
 		self.hidden = False
@@ -1501,7 +1500,7 @@ class ConfigSet(ConfigElement):
 			end = 0
 			for item in self.choices:
 				itemStr = str(item)
-				text.append(" %s " % itemStr if item in self.value else "(%s)" % itemStr)
+				text.append(f" {itemStr} " if item in self.value else f"({itemStr})")
 				length = 2 + len(itemStr)
 				if item == self.choices[self.pos]:
 					start = pos
@@ -1574,7 +1573,7 @@ class ConfigSlider(ConfigElement):
 				callback()
 
 	def getText(self):
-		return "%d / %d / %d" % (self.min, self.value, self.max)
+		return f"{self.min} / {self.value} / {self.max}"
 
 	def getMulti(self, selected):
 		return ("slider", self.value, self.min, self.max)
@@ -1689,19 +1688,19 @@ class ConfigText(ConfigElement, NumericalTextInput):
 
 	def insertChar(self, ch, pos, owr):
 		if owr or self.overwrite:
-			self.text = "%s%s%s" % (self.text[0:pos], ch, self.text[pos + 1:])
+			self.text = f"{self.text[0:pos]}{ch}{self.text[pos + 1:]}"
 		elif self.fixed_size:
-			self.text = "%s%s%s" % (self.text[0:pos], ch, self.text[pos:-1])
+			self.text = f"{self.text[0:pos]}{ch}{self.text[pos:-1]}"
 		else:
-			self.text = "%s%s%s" % (self.text[0:pos], ch, self.text[pos:])
+			self.text = f"{self.text[0:pos]}{ch}{self.text[pos:]}"
 
 	def deleteChar(self, pos):
 		if not self.fixed_size:
-			self.text = "%s%s" % (self.text[0:pos], self.text[pos + 1:])
+			self.text = f"{self.text[0:pos]}{self.text[pos + 1:]}"
 		elif self.overwrite:
-			self.text = "%s %s" % (self.text[0:pos], self.text[pos + 1:])
+			self.text = f"{self.text[0:pos]} {self.text[pos + 1:]}"
 		else:
-			self.text = "%s%s " % (self.text[0:pos], self.text[pos + 1:])
+			self.text = f"{self.text[0:pos]}{self.text[pos + 1:]} "
 
 	def deleteAllChars(self):
 		if self.fixed_size:
@@ -1741,13 +1740,13 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.markedPos - self.offset]
-			multi = "%s%s" % (self.text[self.offset:self.offset + self.visible_width], padding)
+			multi = f"{self.text[self.offset:self.offset + self.visible_width]}{padding}"
 		else:
 			if self.allmarked:
 				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.markedPos]
-			multi = "%s%s" % (self.text, padding)
+			multi = f"{self.text}{padding}"
 		return ("mtext"[1 - selected:], multi, mark)
 
 	def showHelp(self, session):
@@ -2107,7 +2106,7 @@ class ConfigSubsection:
 		content.items[name] = value
 		val = content.stored_values.get(name, None)
 		if val is not None:
-			# print("[Config] Ok, now we have a new item '%s' and have the following value for it '%s'." % (name, str(val)))
+			# print(f"[Config] Ok, now we have a new item '{name}' and have the following value for it '{str(val)}'.")
 			value.saved_value = val
 			value.load()
 
@@ -2165,9 +2164,9 @@ class Config(ConfigSubsection):
 			if isinstance(val, dict):
 				self.pickleThis(name, val, result)
 			elif isinstance(val, tuple):
-				result += ["%s=%s\n" % (name, str(val[0]))]
+				result += [f"{name}={str(val[0])}\n"]
 			else:
-				result += ["%s=%s\n" % (name, str(val))]
+				result += [f"{name}={str(val)}\n"]
 
 	def pickle(self):
 		result = []
@@ -2209,13 +2208,13 @@ class Config(ConfigSubsection):
 
 	def saveToFile(self, filename):
 		try:
-			with open("%s.writing" % filename, "w", encoding="UTF-8") as fd:
+			with open(f"{filename}.writing", "w", encoding="UTF-8") as fd:
 				fd.write(self.pickle())
 				fd.flush()
 				fsync(fd.fileno())
-			rename("%s.writing" % filename, filename)
+			rename(f"{filename}.writing", filename)
 		except OSError as err:
-			print("[Config] Error %d: Couldn't write '%s'!  (%s)" % (err.errno, filename, err.strerror))
+			print(f"[Config] Error {err.errno}: Couldn't write '{filename}'!  ({err.strerror})")
 
 
 class ConfigFile:
@@ -2225,7 +2224,7 @@ class ConfigFile:
 		try:
 			config.loadFromFile(self.CONFIG_FILE, baseFile=True)
 		except OSError as err:
-			print("[Config] Error %d: Unable to load config file '%s', assuming defaults.  (%s)" % (err.errno, self.CONFIG_FILE, err.strerror))
+			print(f"[Config] Error {err.errno}: Unable to load config file '{self.CONFIG_FILE}', assuming defaults.  ({err.strerror})")
 
 	def save(self):
 		# config.save()
@@ -2249,7 +2248,7 @@ class ConfigFile:
 					return val
 		if silent:
 			return None
-		print("[Config] Error: getResolvedKey '%s' failed!  (Typo?)" % key)
+		print(f"[Config] Error: getResolvedKey '{key}' failed!  (Typo?)")
 		return ""
 
 
