@@ -7,6 +7,7 @@ from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar
 from Screens.Setup import Setup
+from Screens.InfoBarGenerics import streamrelay
 
 max_fcc = len(glob('/dev/fcc?'))
 default_fcc = (max_fcc) > 5 and 5 or max_fcc
@@ -232,6 +233,8 @@ class FCCSupport:
 
 		elif int(sref.getData(0)) in (2, 10):  # is RADIO?
 			playable = False
+
+		playable = playable and not streamrelay.checkService(sref)
 
 		return playable
 
