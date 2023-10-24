@@ -207,8 +207,8 @@ class Pic_Thumb(Screen):
 
 		self.size_w = getDesktop(0).size().width()
 		self.size_h = getDesktop(0).size().height()
-		self.thumbsX = self.size_w / (self.spaceX + self.picX)  # thumbnails in X
-		self.thumbsY = self.size_h / (self.spaceY + self.picY)  # thumbnails in Y
+		self.thumbsX = self.size_w // (self.spaceX + self.picX)  # thumbnails in X
+		self.thumbsY = self.size_h // (self.spaceY + self.picY)  # thumbnails in Y
 		self.thumbsC = int(self.thumbsX * self.thumbsY)  # all thumbnails
 
 		self.positionlist = []
