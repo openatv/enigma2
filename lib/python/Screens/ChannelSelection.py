@@ -1560,6 +1560,11 @@ class ChannelContextMenu(Screen, HelpableScreen):
 							appendWhenValid(current, menu, (_("Unmark As Dedicated 3D Service"), self.removeDedicated3DFlag))
 						else:
 							appendWhenValid(current, menu, (_("Mark As Dedicated 3D Service"), self.addDedicated3DFlag))
+					if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
+						appendWhenValid(current, menu, (_("Play service without streamrelay"), self.toggleStreamrelay))
+					else:
+						appendWhenValid(current, menu, (_("Play service with streamrelay"), self.toggleStreamrelay))
+
 					if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
 						appendWhenValid(current, menu, (_("Show VBI Line For This Service"), self.removeHideVBIFlag))
 					else:
@@ -1731,6 +1736,10 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		if config.osd.threeDmode.value == "auto" and self.session.nav.currentlyPlayingServiceReference == self.csel.getCurrentSelection():
 			from Screens.VideoMode import applySettings  # This needs to be here as VideoMode has a circular import!
 			applySettings(value and "sidebyside" or config.osd.threeDmode.value)
+
+	def toggleStreamrelay(self):
+		Screens.InfoBar.InfoBar.instance.ToggleStreamrelay(self.csel.getCurrentSelection())
+		self.close()
 
 	def addHideVBIFlag(self):
 		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_HIDE_VBI)
