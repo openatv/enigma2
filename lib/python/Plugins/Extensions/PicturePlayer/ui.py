@@ -216,7 +216,7 @@ class Pic_Thumb(Screen):
 
 		posX = -1
 		for x in range(self.thumbsC):
-			posY = x / self.thumbsX
+			posY = x // self.thumbsX
 			posX += 1
 			if posX >= self.thumbsX:
 				posX = 0
