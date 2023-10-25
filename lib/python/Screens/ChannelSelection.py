@@ -1561,9 +1561,9 @@ class ChannelContextMenu(Screen, HelpableScreen):
 						else:
 							appendWhenValid(current, menu, (_("Mark As Dedicated 3D Service"), self.addDedicated3DFlag))
 					if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
-						appendWhenValid(current, menu, (_("Play service without streamrelay"), self.toggleStreamrelay))
+						appendWhenValid(current, menu, (_("Play service without Stream Relay"), self.toggleStreamrelay))
 					else:
-						appendWhenValid(current, menu, (_("Play service with streamrelay"), self.toggleStreamrelay))
+						appendWhenValid(current, menu, (_("Play service with Stream Relay"), self.toggleStreamrelay))
 
 					if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
 						appendWhenValid(current, menu, (_("Show VBI Line For This Service"), self.removeHideVBIFlag))
