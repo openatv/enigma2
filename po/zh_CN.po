@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -249,10 +249,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1203,14 +1199,6 @@ msgid "%s Information Actions"
 msgstr "%s 信息操作"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/秒"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s 设置"
 
@@ -1322,9 +1310,6 @@ msgstr "访问 %s 提交日志需要互联网连接."
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(注意: 将在 %d 次崩溃后重新启动.)"
 
-msgid "(FTA Service)"
-msgstr "(免费频道)"
-
 msgid "(PiP)"
 msgstr " (画中画)"
 
@@ -1428,7 +1413,7 @@ msgstr "12位 4:2:0/4:2:2 无画中画"
 msgid "13 V"
 msgstr "13V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2606,9 +2591,6 @@ msgstr "音频PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "音频PID%s,编解码器和语言"
 
-msgid "Audio PID, codec & lang"
-msgstr "音频PID,编解码器和语言"
-
 msgid "Audio Settings"
 msgstr "音频设置"
 
@@ -2972,9 +2954,6 @@ msgstr "棒球"
 msgid "Bashkir"
 msgstr "巴什基尔语"
 
-msgid "Basic PID info"
-msgstr "基本PID信息"
-
 msgid "Basketball"
 msgstr "篮球"
 
@@ -3276,9 +3255,6 @@ msgstr "按键设置"
 
 msgid "Button error timeout"
 msgstr ""
-
-msgid "ButtonSetup"
-msgstr "按键设置"
 
 msgid "By disk UUID"
 msgstr ""
@@ -4042,6 +4018,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4164,9 +4143,6 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "请单击你想要修改的遥控键"
 
-msgid "Client"
-msgstr "客户"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "客户端信息(Oscam-版本: %s)"
@@ -4242,9 +4218,6 @@ msgstr ""
 
 msgid "Cocos (Keeling) Islands"
 msgstr "科科斯(基林)群岛"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "代码R.LP-HP和Guard Int."
 
 msgid "Code rate HP"
 msgstr "高编码率"
@@ -4805,8 +4778,8 @@ msgstr "连接信息"
 msgid "Console"
 msgstr "控制台"
 
-msgid "Constellation & FFT mode"
-msgstr "配置和FFT模式"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "有关此信息,请参阅SCR设备规格表."
@@ -6554,8 +6527,8 @@ msgstr "E"
 msgid "E "
 msgstr "E "
 
-msgid "ECM Info"
-msgstr "ECM信息"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "ECM统计数据"
@@ -6568,6 +6541,13 @@ msgstr "ECM平均值"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM数据将包括在流中. 这使得客户端接收机能够对其进行解码."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "ECM最后"
@@ -7717,9 +7697,6 @@ msgstr "扩展"
 msgid "Extended Networksetup Plugin..."
 msgstr "扩展网络设置插件..."
 
-msgid "Extended PID info"
-msgstr "更多PID信息"
-
 msgid "Extended Setup..."
 msgstr "扩展设置..."
 
@@ -8269,6 +8246,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr "格式化你的硬盘"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "向前音量键"
 
@@ -8296,6 +8276,9 @@ msgstr "可用内存:"
 msgid "Free swap"
 msgstr "空闲交换"
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "可用："
 
@@ -8313,12 +8296,6 @@ msgstr "法属南部领地"
 
 msgid "Frequency"
 msgstr "频段频率"
-
-msgid "Frequency & Channel"
-msgstr "频率和频道"
-
-msgid "Frequency & Polarization"
-msgstr "频率和极化"
 
 msgid "Frequency Norm:"
 msgstr "频率标准:"
@@ -9035,9 +9012,6 @@ msgstr "主机名: "
 msgid "Hotbird 13.0e"
 msgstr "热鸟 13.0e"
 
-msgid "Hotkey"
-msgstr "快捷键"
-
 msgid "Hotkey Settings"
 msgstr "快捷键设置"
 
@@ -9733,12 +9707,6 @@ msgstr "无效的转发器数据"
 
 msgid "Inversion"
 msgstr "反演"
-
-msgid "Inversion & Bandwidth"
-msgstr "反演与带宽"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "反演,引导和滚降"
 
 msgid "Invert"
 msgstr "反演"
@@ -10500,6 +10468,9 @@ msgstr "MB"
 
 msgid "MENU"
 msgstr "菜单"
+
+msgid "MHz"
+msgstr ""
 
 msgid "MKUBIFS"
 msgstr "姆库比夫斯"
@@ -11378,8 +11349,8 @@ msgstr ""
 msgid "NFS Settings"
 msgstr "NFS设置"
 
-msgid "NIM & Type"
-msgstr "NIM模块类型"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr ""
@@ -11559,9 +11530,6 @@ msgstr "网络名称(SSID)"
 msgid "Network scan"
 msgstr "网络扫描"
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr "网络测试"
 
@@ -11649,12 +11617,6 @@ msgstr "接下来"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "接下来"
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
-msgstr ""
 
 msgid "Next bouquet"
 msgstr "下一个自定义组"
@@ -11770,9 +11732,6 @@ msgstr "没有空闲的调谐器！"
 
 msgid "No hard disks detected."
 msgstr "未检测到硬盘."
-
-msgid "No log files found so debug logs are unavailable!"
-msgstr ""
 
 msgid "No matching place names found"
 msgstr "未找到匹配的地名"
@@ -12107,9 +12066,6 @@ msgstr "OK键模式"
 msgid "OK, guide me through the upgrade process"
 msgstr "确定,引导我完成升级过程"
 
-msgid "ONID"
-msgstr "客户端(ONID)"
-
 msgid "OSD"
 msgstr "OSD菜单"
 
@@ -12371,6 +12327,9 @@ msgstr ""
 msgid "Original"
 msgstr "原始"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr "奥里亚"
 
@@ -12506,9 +12465,6 @@ msgstr "PLS模式"
 msgid "PMT PID"
 msgstr "节目映射(PMT PID)"
 
-msgid "PPanel"
-msgstr "PPanel面板"
-
 msgid "PRIMETIME"
 msgstr "黄金时段"
 
@@ -12582,9 +12538,6 @@ msgstr "巴拿马"
 
 msgid "Panic channel"
 msgstr "应急频道"
-
-msgid "Panic to"
-msgstr "应急到"
 
 msgid "Panjabi / Punjabi"
 msgstr "旁遮普语"
@@ -13456,12 +13409,6 @@ msgstr "预览菜单"
 
 msgid "Previous"
 msgstr "前一个"
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
-msgstr ""
 
 msgid "Previous bouquet"
 msgstr "转到上个自定义组"
@@ -15703,6 +15650,9 @@ msgstr "选择卫星"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "选择要激活的搜索栏,通过L/R箭头(长按)或<< >>(长按)."
 
+msgid "Select service information to view:"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr "选择要添加的频道..."
 
@@ -16197,8 +16147,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-msgid "Service ID"
-msgstr "频道ID"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "频道名称"
@@ -16221,6 +16177,13 @@ msgstr "频道标题模式"
 msgid "Service Zap Actions"
 msgstr "频道切换动作"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr "频道无法添加到收藏夹."
 
@@ -16235,24 +16198,6 @@ msgstr "频道已添加到选择的自定义组."
 
 msgid "Service info"
 msgstr "频道信息"
-
-msgid "Service info - ECM Info"
-msgstr "频道信息-ECM信息"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "频道信息-频道和基本PID信息"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "频道信息-频道和扩展PID信息"
-
-msgid "Service info - service & PIDs"
-msgstr "频道信息-频道和PIDs"
-
-msgid "Service info - tuner live values"
-msgstr "频道信息-调谐器实时值"
-
-msgid "Service info - tuner setting values"
-msgstr "频道信息-调谐器设置值"
 
 msgid "Service info font size"
 msgstr "频道信息字体大小"
@@ -16730,9 +16675,6 @@ msgstr "共享"
 
 msgid "Sharpness"
 msgstr "清晰度"
-
-msgid "Shellscript"
-msgstr "shell脚本语言"
 
 msgid "Shift"
 msgstr "移动"
@@ -17216,6 +17158,9 @@ msgstr "显示下一页"
 msgid "Show next picture"
 msgstr "显示下一张图片"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17261,6 +17206,9 @@ msgstr "显示上一页"
 msgid "Show previous picture"
 msgstr "显示上一张图片"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17286,6 +17234,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -18634,9 +18585,6 @@ msgstr "瑞士"
 msgid "Symbol rate"
 msgstr "符号率"
 
-msgid "Symbol rate & FEC"
-msgstr "符号率和前向纠错"
-
 msgid "Symbolic link"
 msgstr "符号链接"
 
@@ -18660,9 +18608,6 @@ msgstr "阿拉伯叙利亚共和国"
 
 msgid "System"
 msgstr "系统设置"
-
-msgid "System & Modulation"
-msgstr "系统与调制"
 
 msgid "System Info"
 msgstr "系统信息"
@@ -18720,9 +18665,6 @@ msgstr "翻译者信息"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS文件对于ISO9660级别1太大！"
-
-msgid "TSID"
-msgstr "TS参数"
 
 msgid "TUNER:"
 msgstr "调谐器:"
@@ -20093,6 +20035,16 @@ msgstr "转发器"
 msgid "Transponder Time"
 msgstr "转发器时间"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr "传输流类型"
 
@@ -20186,6 +20138,9 @@ msgstr "调谐器设置"
 msgid "Tuner Setup"
 msgstr "调谐器设置"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr "调谐器信息"
 
@@ -20195,12 +20150,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "不支持的调谐器"
-
-msgid "Tuner live values"
-msgstr "调谐器实时值"
-
-msgid "Tuner setting values"
-msgstr "调谐器设置值"
 
 msgid "Tuner slot"
 msgstr "调谐器插槽"
@@ -21059,6 +21008,9 @@ msgstr "非常非常短文件名 - 警告"
 msgid "Video"
 msgstr "视频设置"
 
+msgid "Video Codec, Size & Format"
+msgstr "视频编解码器,大小和格式"
+
 msgid "Video PID"
 msgstr "视频PID"
 
@@ -21136,9 +21088,6 @@ msgstr "视频增强预览"
 
 msgid "VideoFinetune"
 msgstr "视频微调"
-
-msgid "Video Codec, Size & Format"
-msgstr "视频编解码器,大小和格式"
 
 msgid "Videosetup"
 msgstr "视频设置"
@@ -22224,9 +22173,6 @@ msgstr "换台模式"
 msgid "Zap next"
 msgstr "切换到下一个"
 
-msgid "Zap to"
-msgstr "切换到"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "切换频道(设置菜单)"
 
@@ -22292,9 +22238,6 @@ msgstr "为CI模块分配频道/供应商/CAID图形界面"
 
 msgid "activatePiP"
 msgstr "激活画中画"
-
-msgid "active"
-msgstr "激活"
 
 msgid "address:"
 msgstr "地址:"
@@ -23404,6 +23347,117 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/秒"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(免费频道)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "音频PID,编解码器和语言"
+
+#~ msgid "Basic PID info"
+#~ msgstr "基本PID信息"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "按键设置"
+
+#~ msgid "Client"
+#~ msgstr "客户"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "代码R.LP-HP和Guard Int."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "配置和FFT模式"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM信息"
+
+#~ msgid "Extended PID info"
+#~ msgstr "更多PID信息"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "频率和频道"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "频率和极化"
+
+#~ msgid "Hotkey"
+#~ msgstr "快捷键"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "反演与带宽"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "反演,引导和滚降"
+
+#~ msgid "NIM & Type"
+#~ msgstr "NIM模块类型"
+
+#~ msgid "ONID"
+#~ msgstr "客户端(ONID)"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel面板"
+
+#~ msgid "Panic to"
+#~ msgstr "应急到"
+
+#~ msgid "Service ID"
+#~ msgstr "频道ID"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "频道信息-ECM信息"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "频道信息-频道和基本PID信息"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "频道信息-频道和扩展PID信息"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "频道信息-频道和PIDs"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "频道信息-调谐器实时值"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "频道信息-调谐器设置值"
+
+#~ msgid "Shellscript"
+#~ msgstr "shell脚本语言"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "符号率和前向纠错"
+
+#~ msgid "System & Modulation"
+#~ msgstr "系统与调制"
+
+#~ msgid "TSID"
+#~ msgstr "TS参数"
+
+#~ msgid "Tuner live values"
+#~ msgstr "调谐器实时值"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "调谐器设置值"
+
+#~ msgid "Zap to"
+#~ msgstr "切换到"
+
+#~ msgid "active"
+#~ msgstr "激活"
 
 #~ msgid "1 hour"
 #~ msgstr "1小时"

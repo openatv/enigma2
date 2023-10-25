@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -259,10 +259,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1193,14 +1189,6 @@ msgstr "%s Bilgileri"
 msgid "%s Information Actions"
 msgstr "%s Bilgi İşlemleri"
 
-#, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/s"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
 #
 #, python-format
 msgid "%s Setup"
@@ -1317,10 +1305,6 @@ msgstr "%s kaydetme günlüklerine erişim için internet bağlantısı gerekir.
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Dikkat:%d çöküşten sonra yeniden başlatılacak.)"
 
-#
-msgid "(FTA Service)"
-msgstr "(FTA Hizmeti)"
-
 msgid "(PiP)"
 msgstr " (RiR)"
 
@@ -1435,7 +1419,7 @@ msgstr "12bit 4:2:0/4:2:2 no PiP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 #
@@ -2701,9 +2685,6 @@ msgstr "Ses PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Ses PID%s, kodek & uzun"
 
-msgid "Audio PID, codec & lang"
-msgstr "Ses PID, kodek & uzun"
-
 msgid "Audio Settings"
 msgstr "Ses Ayarları"
 
@@ -3092,9 +3073,6 @@ msgstr "Beyzbol"
 msgid "Bashkir"
 msgstr "Başkurtça"
 
-msgid "Basic PID info"
-msgstr "Temel PID bilgisi"
-
 msgid "Basketball"
 msgstr "Basketbol"
 
@@ -3411,9 +3389,6 @@ msgstr "Tuş Kurulumu"
 
 msgid "Button error timeout"
 msgstr ""
-
-msgid "ButtonSetup"
-msgstr "Tuş Kurulumu"
 
 msgid "By disk UUID"
 msgstr ""
@@ -4209,6 +4184,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4337,9 +4315,6 @@ msgstr[0] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Değiştirmek istediğiniz düğmeye uzaktan kumandayı tıklayın"
 
-msgid "Client"
-msgstr "Müşteri"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Müşteri Bilgisi ( Oscam-Version:%s )"
@@ -4418,9 +4393,6 @@ msgstr "Bulut Parlaması DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Cocos (Keeling) Adaları"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "Kod R. LP-HP ve Guard Int."
 
 msgid "Code rate HP"
 msgstr "HP kod oranı"
@@ -5007,9 +4979,8 @@ msgstr "Bağlantı bilgileri"
 msgid "Console"
 msgstr "Konsol"
 
-#
-msgid "Constellation & FFT mode"
-msgstr "Takımyıldızı ve FFT modu"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Bu bilgi için SCR cihazınızın teknik sayfasına bakın."
@@ -6849,8 +6820,8 @@ msgstr "E"
 msgid "E "
 msgstr "E "
 
-msgid "ECM Info"
-msgstr "ECM Bilgisi"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "ECM istatistiği"
@@ -6863,6 +6834,13 @@ msgstr "ECM ortalaması"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "Akışa ECM verileri eklenecektir. Bu, bir istemci alıcısının onu çözmesine olanak sağlar."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "ECM son"
@@ -8072,9 +8050,6 @@ msgstr "Genişletilmiş"
 msgid "Extended Networksetup Plugin..."
 msgstr "Extended Networksetup Eklentisi..."
 
-msgid "Extended PID info"
-msgstr "Genişletilmiş PID bilgisi"
-
 #
 msgid "Extended Setup..."
 msgstr "Gelişmiş Kurulum..."
@@ -8650,6 +8625,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr "Harddisk'inizi biçimlendirin"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "İleri ses tuşları"
 
@@ -8678,6 +8656,9 @@ msgstr "Boş bellek:"
 msgid "Free swap"
 msgstr "Boş Swap"
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "Boş:"
 
@@ -8698,13 +8679,6 @@ msgstr "Fransız Güney Toprakları"
 #
 msgid "Frequency"
 msgstr "Frekans"
-
-msgid "Frequency & Channel"
-msgstr "Frekans & Kanal"
-
-#
-msgid "Frequency & Polarization"
-msgstr "Frekans & Polarizasyon"
 
 #
 msgid "Frequency Norm:"
@@ -9458,9 +9432,6 @@ msgstr "Host adı: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Kısayol"
-
 msgid "Hotkey Settings"
 msgstr "Kısayol Kurulum"
 
@@ -10195,12 +10166,6 @@ msgstr "Geçersiz transponder bilgisi"
 #
 msgid "Inversion"
 msgstr "Tersine çevir"
-
-msgid "Inversion & Bandwidth"
-msgstr "Inversiyon ve Bant Genişliği"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "İnversiyon, Pilot ve Roll-off"
 
 msgid "Invert"
 msgstr "Ters"
@@ -11005,6 +10970,9 @@ msgstr "MB"
 
 msgid "MENU"
 msgstr "MENÜ"
+
+msgid "MHz"
+msgstr ""
 
 msgid "MKUBIFS"
 msgstr "MKUBIFS"
@@ -11940,8 +11908,8 @@ msgstr ""
 msgid "NFS Settings"
 msgstr "NFS Yapılandırma"
 
-msgid "NIM & Type"
-msgstr "NIM ve Türü"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr ""
@@ -12129,9 +12097,6 @@ msgstr "Ağ adı (SSID)"
 msgid "Network scan"
 msgstr "Ağ Tarama"
 
-msgid "Network storage on"
-msgstr ""
-
 #
 msgid "Network test"
 msgstr "Ağ yapılandırmasını test et"
@@ -12225,12 +12190,6 @@ msgstr "Sonraki"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Sonraki"
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
-msgstr ""
 
 msgid "Next bouquet"
 msgstr "Sonraki bukete geç"
@@ -12362,9 +12321,6 @@ msgstr "Boş tuner yok!"
 
 msgid "No hard disks detected."
 msgstr "Sabit disk algılanmadı."
-
-msgid "No log files found so debug logs are unavailable!"
-msgstr ""
 
 #
 msgid "No matching place names found"
@@ -12728,9 +12684,6 @@ msgstr "OK tuşu fonksiyonu"
 msgid "OK, guide me through the upgrade process"
 msgstr "Tamam, güncelleme işleminde bana rehberlik yap"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12999,6 +12952,9 @@ msgstr ""
 msgid "Original"
 msgstr "Özgün"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr "Oriya Dili"
 
@@ -13138,9 +13094,6 @@ msgstr "PLS Modu"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr "PPanel"
-
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
 
@@ -13218,9 +13171,6 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Panik kanalı"
-
-msgid "Panic to"
-msgstr "Panik"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Pencapça"
@@ -14171,12 +14121,6 @@ msgstr "Önizleme menüsü"
 
 msgid "Previous"
 msgstr "Önceki"
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
-msgstr ""
 
 msgid "Previous bouquet"
 msgstr "Önceki bukete geç"
@@ -16549,6 +16493,9 @@ msgstr "Uyduları seç"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Arama çubuğunun Sağ/sol (uzun) oklarıyla veya << >> (uzun) tuşlarıyla etkinleşmesini seçin."
 
+msgid "Select service information to view:"
+msgstr ""
+
 #
 msgid "Select service to add..."
 msgstr "Eklenecek kanalı seçin..."
@@ -17060,9 +17007,14 @@ msgstr "'%s' hizmeti silindi."
 msgid "Service '%s' is already defined."
 msgstr "'%s' hizmeti zaten tanımlı."
 
-#
-msgid "Service ID"
-msgstr "Kanal Kimliği"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "Kanal Adı"
@@ -17086,6 +17038,13 @@ msgstr "Kanal başlığı modu"
 msgid "Service Zap Actions"
 msgstr "Hizmet Zap Eylemleri"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 #
 msgid "Service cant been added to the favorites."
 msgstr "Hizmet sık kullanılanlara eklenemedi."
@@ -17103,24 +17062,6 @@ msgstr "Kanal seçilen bukete eklendi."
 
 msgid "Service info"
 msgstr "Kanal bilgisi"
-
-msgid "Service info - ECM Info"
-msgstr "Servis bilgisi - ECM Bilgisi"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "Servis bilgisi - servis ve Temel PID Bilgisi"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "Servis bilgisi - servis ve Genişletilmiş PID Bilgisi"
-
-msgid "Service info - service & PIDs"
-msgstr "Kanal bilgisi - kanal & PIDs"
-
-msgid "Service info - tuner live values"
-msgstr "Kanal bilgisi - canlı tuner değerleri"
-
-msgid "Service info - tuner setting values"
-msgstr "Kanal bilgisi - tuner ayar değerleri"
 
 msgid "Service info font size"
 msgstr "Kanal bilgisi yazı tipi boyutu"
@@ -17609,9 +17550,6 @@ msgstr "Paylaşımlar"
 #
 msgid "Sharpness"
 msgstr "Keskinlik"
-
-msgid "Shellscript"
-msgstr "Shell Komut"
 
 msgid "Shift"
 msgstr "Değiştirme"
@@ -18112,6 +18050,9 @@ msgstr "Sonraki sayfayı göster"
 msgid "Show next picture"
 msgstr "Sonraki resmi göster"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -18161,6 +18102,9 @@ msgstr "Önceki sayfayı göster"
 msgid "Show previous picture"
 msgstr "Önceki resmi göster"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -18186,6 +18130,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -19620,9 +19567,6 @@ msgstr "İsviçre"
 msgid "Symbol rate"
 msgstr "Sembol değeri"
 
-msgid "Symbol rate & FEC"
-msgstr "Sembol oranı & FEC"
-
 msgid "Symbolic link"
 msgstr "Sembolik bağlantı"
 
@@ -19647,10 +19591,6 @@ msgstr "Suriye Arap Cumhuriyeti"
 #
 msgid "System"
 msgstr "Sistem"
-
-#
-msgid "System & Modulation"
-msgstr "Sistem & Modülasyon"
 
 msgid "System Info"
 msgstr "Sistem Bilgisi"
@@ -19710,9 +19650,6 @@ msgstr "ÇEVİRMEN HAKKINDA"
 #
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS dosyası ISO9660 level 1 standardları için çok büyük!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr "TUNER:"
@@ -21130,6 +21067,16 @@ msgstr "Transponder"
 msgid "Transponder Time"
 msgstr "Transponder Zamanı"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 #
 msgid "Transport Stream Type"
 msgstr "Taşıma Stream Türü"
@@ -21235,6 +21182,9 @@ msgstr "Tuner ayarları"
 msgid "Tuner Setup"
 msgstr "Tuner  Kurulumu"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr "Tuner Bilgileri"
 
@@ -21244,13 +21194,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Tuner desteklenmiyor"
-
-#
-msgid "Tuner live values"
-msgstr "Tuner canlı değerleri"
-
-msgid "Tuner setting values"
-msgstr "Tuner ayar değerleri"
 
 msgid "Tuner slot"
 msgstr "Tuner yuvası"
@@ -22154,6 +22097,9 @@ msgstr "Çok kısa dosya isimleri - Uyarı"
 msgid "Video"
 msgstr "Video"
 
+msgid "Video Codec, Size & Format"
+msgstr "Videocodec, boyut & biçim"
+
 msgid "Video PID"
 msgstr "Görüntü PID"
 
@@ -22235,9 +22181,6 @@ msgstr "Video Geliştirme Önizlemesi"
 #
 msgid "VideoFinetune"
 msgstr "VideoFinetune"
-
-msgid "Video Codec, Size & Format"
-msgstr "Videocodec, boyut & biçim"
 
 msgid "Videosetup"
 msgstr "Videosetup"
@@ -23371,9 +23314,6 @@ msgstr "Kanal değişim kipi"
 msgid "Zap next"
 msgstr "Sonraki"
 
-msgid "Zap to"
-msgstr "Zap için"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Kanala zap (menüde ayar)"
 
@@ -23442,9 +23382,6 @@ msgstr "ortak arayüz modüllerine kanal/sağlayıcı/caid atama kullanıcı ara
 
 msgid "activatePiP"
 msgstr "pip'yi etkinleştir"
-
-msgid "active"
-msgstr "aktif"
 
 msgid "address:"
 msgstr "adres:"
@@ -24655,6 +24592,123 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/s"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#
+#~ msgid "(FTA Service)"
+#~ msgstr "(FTA Hizmeti)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "Ses PID, kodek & uzun"
+
+#~ msgid "Basic PID info"
+#~ msgstr "Temel PID bilgisi"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Tuş Kurulumu"
+
+#~ msgid "Client"
+#~ msgstr "Müşteri"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "Kod R. LP-HP ve Guard Int."
+
+#
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Takımyıldızı ve FFT modu"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM Bilgisi"
+
+#~ msgid "Extended PID info"
+#~ msgstr "Genişletilmiş PID bilgisi"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "Frekans & Kanal"
+
+#
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Frekans & Polarizasyon"
+
+#~ msgid "Hotkey"
+#~ msgstr "Kısayol"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Inversiyon ve Bant Genişliği"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "İnversiyon, Pilot ve Roll-off"
+
+#~ msgid "NIM & Type"
+#~ msgstr "NIM ve Türü"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel"
+
+#~ msgid "Panic to"
+#~ msgstr "Panik"
+
+#
+#~ msgid "Service ID"
+#~ msgstr "Kanal Kimliği"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Servis bilgisi - ECM Bilgisi"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "Servis bilgisi - servis ve Temel PID Bilgisi"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "Servis bilgisi - servis ve Genişletilmiş PID Bilgisi"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Kanal bilgisi - kanal & PIDs"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Kanal bilgisi - canlı tuner değerleri"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Kanal bilgisi - tuner ayar değerleri"
+
+#~ msgid "Shellscript"
+#~ msgstr "Shell Komut"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Sembol oranı & FEC"
+
+#
+#~ msgid "System & Modulation"
+#~ msgstr "Sistem & Modülasyon"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#
+#~ msgid "Tuner live values"
+#~ msgstr "Tuner canlı değerleri"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "Tuner ayar değerleri"
+
+#~ msgid "Zap to"
+#~ msgstr "Zap için"
+
+#~ msgid "active"
+#~ msgstr "aktif"
 
 #~ msgid "1 hour"
 #~ msgstr "1 saat"

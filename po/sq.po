@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2022-07-04 20:11+0000\n"
 "Last-Translator: BliNeR-KeY <blinerg@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -250,10 +250,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1204,14 +1200,6 @@ msgid "%s Information Actions"
 msgstr "%s Veprimet e informacionit"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/s"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s - Konfigurimi"
 
@@ -1323,9 +1311,6 @@ msgstr "(Hyrja në login e kryerjes '%s' kërkon një lidhje interneti.)"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Vëmendje: Do të ketë një rinisje pas rrëzimit të %d.)"
 
-msgid "(FTA Service)"
-msgstr "(Shërbimi FTA)"
-
 msgid "(PiP)"
 msgstr " (FnF)"
 
@@ -1429,7 +1414,7 @@ msgstr "12 bit 4:2:0/4:2:2 pa PIP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2610,9 +2595,6 @@ msgstr "PID audio"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Audio PID%s, kodek dhe gjuha"
 
-msgid "Audio PID, codec & lang"
-msgstr "PID audio, kodek dhe gjuhe"
-
 msgid "Audio Settings"
 msgstr "Rregullimet audio"
 
@@ -2976,9 +2958,6 @@ msgstr "Bejzboll"
 msgid "Bashkir"
 msgstr "Bashkir"
 
-msgid "Basic PID info"
-msgstr "Info bazë PID"
-
 msgid "Basketball"
 msgstr "Basketboll"
 
@@ -3280,9 +3259,6 @@ msgstr "Rregullimi i butonit"
 
 msgid "Button error timeout"
 msgstr ""
-
-msgid "ButtonSetup"
-msgstr "Rregullimi i butonit"
 
 msgid "By disk UUID"
 msgstr ""
@@ -4046,6 +4022,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Zgjidhni stilin/rendin në të cilin artikujt shfaqen në dritaret e ndihmës."
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4168,9 +4147,6 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Klikoni butonin në telekomandë që dëshironi të ndryshoni."
 
-msgid "Client"
-msgstr "Klienti"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Informacioni i klientit (Versioni Oscam: %s)"
@@ -4246,9 +4222,6 @@ msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Ishujt Kokos (Keeling)"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "Kodi R. LP-HP & Roje Int."
 
 msgid "Code rate HP"
 msgstr "Norma e kodit HP"
@@ -4807,8 +4780,8 @@ msgstr "Informacioni i lidhjes"
 msgid "Console"
 msgstr "Konsolë"
 
-msgid "Constellation & FFT mode"
-msgstr "Konstelacioni dhe modaliteti FFT"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Për këtë informacion, konsultohuni me fletën e specifikimeve të pajisjes SCR."
@@ -6556,8 +6529,8 @@ msgstr "E"
 msgid "E "
 msgstr "E "
 
-msgid "ECM Info"
-msgstr "ECM Info"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "Statistikat e ECM"
@@ -6570,6 +6543,13 @@ msgstr "Avg ECM"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "Të dhënat ECM do të përfshihen në transmetim. Kjo i mundëson marrësit të klientit ta deshifrojë atë."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "ECM e fundit"
@@ -7721,9 +7701,6 @@ msgstr "I zgjatur"
 msgid "Extended Networksetup Plugin..."
 msgstr "Plugin i Zgjeruar Networksetup..."
 
-msgid "Extended PID info"
-msgstr "Informacione e zgjeruara PID"
-
 msgid "Extended Setup..."
 msgstr "Organizimi i zgjeruar..."
 
@@ -8273,6 +8250,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr "Formatoni harddiskun tuaj"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "Çelësat e volumit përpara"
 
@@ -8300,6 +8280,9 @@ msgstr "Memorie e lirë"
 msgid "Free swap"
 msgstr "Shkëmbim falas"
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "Falas:"
 
@@ -8317,12 +8300,6 @@ msgstr "Territoret jugore franceze"
 
 msgid "Frequency"
 msgstr "Frekuenca"
-
-msgid "Frequency & Channel"
-msgstr "Frekuenca dhe kanalet"
-
-msgid "Frequency & Polarization"
-msgstr "Frekuenca & Polarizimi"
 
 msgid "Frequency Norm:"
 msgstr "Norma e frekuencës:"
@@ -9039,9 +9016,6 @@ msgstr "Emri i hostit:"
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Hotkey"
-
 msgid "Hotkey Settings"
 msgstr "Cilësimet e tastierës së nxehtë"
 
@@ -9736,12 +9710,6 @@ msgid "Invalid transponder data"
 msgstr ""
 
 msgid "Inversion"
-msgstr ""
-
-msgid "Inversion & Bandwidth"
-msgstr ""
-
-msgid "Inversion, Pilot & Roll-off"
 msgstr ""
 
 msgid "Invert"
@@ -10503,6 +10471,9 @@ msgid "MB"
 msgstr ""
 
 msgid "MENU"
+msgstr ""
+
+msgid "MHz"
 msgstr ""
 
 msgid "MKUBIFS"
@@ -11380,7 +11351,7 @@ msgstr ""
 msgid "NFS Settings"
 msgstr ""
 
-msgid "NIM & Type"
+msgid "NIM"
 msgstr ""
 
 msgid "NOTE"
@@ -11561,9 +11532,6 @@ msgstr ""
 msgid "Network scan"
 msgstr ""
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr ""
 
@@ -11650,12 +11618,6 @@ msgstr ""
 
 msgctxt "now/next: 'next' event label"
 msgid "Next"
-msgstr ""
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
 msgstr ""
 
 msgid "Next bouquet"
@@ -11766,9 +11728,6 @@ msgid "No free tuner!"
 msgstr ""
 
 msgid "No hard disks detected."
-msgstr ""
-
-msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
 msgid "No matching place names found"
@@ -12085,9 +12044,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr ""
 
-msgid "ONID"
-msgstr ""
-
 msgid "OSD"
 msgstr ""
 
@@ -12349,6 +12305,9 @@ msgstr ""
 msgid "Original"
 msgstr ""
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr ""
 
@@ -12484,9 +12443,6 @@ msgstr ""
 msgid "PMT PID"
 msgstr ""
 
-msgid "PPanel"
-msgstr ""
-
 msgid "PRIMETIME"
 msgstr ""
 
@@ -12559,9 +12515,6 @@ msgid "Panama"
 msgstr ""
 
 msgid "Panic channel"
-msgstr ""
-
-msgid "Panic to"
 msgstr ""
 
 msgid "Panjabi / Punjabi"
@@ -13424,12 +13377,6 @@ msgid "Preview menu"
 msgstr ""
 
 msgid "Previous"
-msgstr ""
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
 msgstr ""
 
 msgid "Previous bouquet"
@@ -15668,6 +15615,9 @@ msgstr ""
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 
+msgid "Select service information to view:"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr ""
 
@@ -16150,7 +16100,13 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-msgid "Service ID"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
 msgstr ""
 
 msgid "Service Name"
@@ -16174,6 +16130,13 @@ msgstr ""
 msgid "Service Zap Actions"
 msgstr ""
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr ""
 
@@ -16187,24 +16150,6 @@ msgid "Service has been added to the selected bouquet."
 msgstr ""
 
 msgid "Service info"
-msgstr ""
-
-msgid "Service info - ECM Info"
-msgstr ""
-
-msgid "Service info - service & Basic PID Info"
-msgstr ""
-
-msgid "Service info - service & Extended PID Info"
-msgstr ""
-
-msgid "Service info - service & PIDs"
-msgstr ""
-
-msgid "Service info - tuner live values"
-msgstr ""
-
-msgid "Service info - tuner setting values"
 msgstr ""
 
 msgid "Service info font size"
@@ -16676,9 +16621,6 @@ msgid "Shares"
 msgstr ""
 
 msgid "Sharpness"
-msgstr ""
-
-msgid "Shellscript"
 msgstr ""
 
 msgid "Shift"
@@ -17163,6 +17105,9 @@ msgstr ""
 msgid "Show next picture"
 msgstr ""
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17208,6 +17153,9 @@ msgstr ""
 msgid "Show previous picture"
 msgstr ""
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17233,6 +17181,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -18573,9 +18524,6 @@ msgstr "Zvicra"
 msgid "Symbol rate"
 msgstr "Shkalla e simboleve"
 
-msgid "Symbol rate & FEC"
-msgstr "Norma e simboleve & FEC"
-
 msgid "Symbolic link"
 msgstr "Lidhje simbolike"
 
@@ -18599,9 +18547,6 @@ msgstr "Republika Arabe Siriane"
 
 msgid "System"
 msgstr "Sistemi"
-
-msgid "System & Modulation"
-msgstr "Sistemi & Modulimi"
 
 msgid "System Info"
 msgstr "Informacioni i Sistemit"
@@ -18659,9 +18604,6 @@ msgstr "TRANSLATOR_INFO"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Skedari TS është shumë i madh për ISO9660 niveli 1!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr "TUNER:"
@@ -20018,6 +19960,16 @@ msgstr ""
 msgid "Transponder Time"
 msgstr ""
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -20111,6 +20063,9 @@ msgstr ""
 msgid "Tuner Setup"
 msgstr ""
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr ""
 
@@ -20119,12 +20074,6 @@ msgid "Tuner information for %s %s"
 msgstr ""
 
 msgid "Tuner is not supported"
-msgstr ""
-
-msgid "Tuner live values"
-msgstr ""
-
-msgid "Tuner setting values"
 msgstr ""
 
 msgid "Tuner slot"
@@ -20974,6 +20923,9 @@ msgstr "Emri shumë i shkurtër i file - Paralajmërim"
 msgid "Video"
 msgstr "Video"
 
+msgid "Video Codec, Size & Format"
+msgstr "Videokodeku, madhësia dhe formati"
+
 msgid "Video PID"
 msgstr "Video PID"
 
@@ -21051,9 +21003,6 @@ msgstr "Video EnhancementParashikim"
 
 msgid "VideoFinetune"
 msgstr "VideoFinetune"
-
-msgid "Video Codec, Size & Format"
-msgstr "Videokodeku, madhësia dhe formati"
 
 msgid "Videosetup"
 msgstr "Konfigurimi i videos"
@@ -22143,9 +22092,6 @@ msgstr ""
 msgid "Zap next"
 msgstr ""
 
-msgid "Zap to"
-msgstr ""
-
 msgid "Zap to channel (setup in menu)"
 msgstr ""
 
@@ -22210,9 +22156,6 @@ msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr ""
 
 msgid "activatePiP"
-msgstr ""
-
-msgid "active"
 msgstr ""
 
 msgid "address:"
@@ -23317,6 +23260,63 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/s"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(Shërbimi FTA)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "PID audio, kodek dhe gjuhe"
+
+#~ msgid "Basic PID info"
+#~ msgstr "Info bazë PID"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Rregullimi i butonit"
+
+#~ msgid "Client"
+#~ msgstr "Klienti"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "Kodi R. LP-HP & Roje Int."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Konstelacioni dhe modaliteti FFT"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM Info"
+
+#~ msgid "Extended PID info"
+#~ msgstr "Informacione e zgjeruara PID"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "Frekuenca dhe kanalet"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Frekuenca & Polarizimi"
+
+#~ msgid "Hotkey"
+#~ msgstr "Hotkey"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Norma e simboleve & FEC"
+
+#~ msgid "System & Modulation"
+#~ msgstr "Sistemi & Modulimi"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
 
 #~ msgid "1 hour"
 #~ msgstr "1 orë"

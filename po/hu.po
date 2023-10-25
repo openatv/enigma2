@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -250,10 +250,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, fuzzy, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1235,14 +1231,6 @@ msgid "%s Information Actions"
 msgstr "%s Információ műveletek"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/mp"
-
-#, python-format
-msgid "%s MHz"
-msgstr "(%s MHz)"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s - beállítás"
 
@@ -1354,10 +1342,6 @@ msgstr "A %s véglegesítési naplóihoz internetkapcsolat szükséges."
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Figyelem: A(z) %d összeomlás után újraindul.)"
 
-#, fuzzy
-msgid "(FTA Service)"
-msgstr "Összes csatorna"
-
 msgid "(PiP)"
 msgstr " (Kép-a-Képben)"
 
@@ -1463,7 +1447,7 @@ msgstr "12bit 4:2:0/4:2:2 nincs Kép-a-Képben"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2649,9 +2633,6 @@ msgstr "Audió PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Audió PID%s, kódolás & nyelv"
 
-msgid "Audio PID, codec & lang"
-msgstr "Audió PID, kódolás és nyelv"
-
 msgid "Audio Settings"
 msgstr "Hangbeállítások"
 
@@ -3017,9 +2998,6 @@ msgstr "Baseball"
 msgid "Bashkir"
 msgstr ""
 
-msgid "Basic PID info"
-msgstr ""
-
 msgid "Basketball"
 msgstr "Kosárlabda"
 
@@ -3324,9 +3302,6 @@ msgstr "Távirányító gomb beállítása"
 
 msgid "Button error timeout"
 msgstr ""
-
-msgid "ButtonSetup"
-msgstr "Távirányító gomb beállítás"
 
 msgid "By disk UUID"
 msgstr ""
@@ -4083,6 +4058,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4205,9 +4183,6 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Kattintson a távirányító gombjára, ha érvényesíteni szeretné a változásokat"
 
-msgid "Client"
-msgstr ""
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Kliens információ ( Oscam verzió: %s )"
@@ -4283,9 +4258,6 @@ msgstr ""
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kókusz (Keeling)-szigetek"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr ""
 
 msgid "Code rate HP"
 msgstr "HP kódarány"
@@ -4846,9 +4818,8 @@ msgstr ""
 msgid "Console"
 msgstr "Konsole"
 
-#, fuzzy
-msgid "Constellation & FFT mode"
-msgstr "Együttállás"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Ehhez az információért forduljon az SCR-eszköz specifikációs lapjához."
@@ -6609,8 +6580,8 @@ msgstr "E"
 msgid "E "
 msgstr " "
 
-msgid "ECM Info"
-msgstr "ECM információ"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "ECM Statisztika"
@@ -6623,6 +6594,13 @@ msgstr "ECM átlag"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "Az ECM adatok bekerüljenek az adatfolyamba? Ha engedélyezi, akkor a vevőkészülék dekódolja azokat."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "ECM utolsó"
@@ -7771,10 +7749,6 @@ msgstr "Kiterjesztett"
 msgid "Extended Networksetup Plugin..."
 msgstr "Bővített hálózati beállítások bővítmény..."
 
-#, fuzzy
-msgid "Extended PID info"
-msgstr "Kiterjesztett kinézet (GUI)"
-
 msgid "Extended Setup..."
 msgstr "Bővített beállítások..."
 
@@ -8332,6 +8306,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr "A merevlemez formázása"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "Hangerőszabályzás továbbítása"
 
@@ -8359,6 +8336,9 @@ msgstr "Szabad memória:"
 msgid "Free swap"
 msgstr ""
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "Szabad:"
 
@@ -8376,14 +8356,6 @@ msgstr "Francia déli és antarktiszi területek"
 
 msgid "Frequency"
 msgstr "Frekvencia"
-
-#, fuzzy
-msgid "Frequency & Channel"
-msgstr "Frekvencia vagy csatorna használata"
-
-#, fuzzy
-msgid "Frequency & Polarization"
-msgstr "Polarizáció"
 
 #, fuzzy
 msgid "Frequency Norm:"
@@ -9109,9 +9081,6 @@ msgstr "Gépnév: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Hotkey"
-
 msgid "Hotkey Settings"
 msgstr "Hotkey beállítása"
 
@@ -9815,13 +9784,6 @@ msgstr "Érvénytelen transzponder adat"
 
 msgid "Inversion"
 msgstr "Invertálás"
-
-#, fuzzy
-msgid "Inversion & Bandwidth"
-msgstr "Info ikon szélesség"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr ""
 
 msgid "Invert"
 msgstr "Invertálás"
@@ -10599,6 +10561,9 @@ msgid "MB"
 msgstr "MB"
 
 msgid "MENU"
+msgstr ""
+
+msgid "MHz"
 msgstr ""
 
 msgid "MKUBIFS"
@@ -11510,9 +11475,8 @@ msgstr ""
 msgid "NFS Settings"
 msgstr "NFS beállítása"
 
-#, fuzzy
-msgid "NIM & Type"
-msgstr "HDMI HDR típus"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr ""
@@ -11694,9 +11658,6 @@ msgstr "Hálózatnév (SSID)"
 msgid "Network scan"
 msgstr "Hálózat keresése"
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr "Hálózat ellenőrzése"
 
@@ -11785,12 +11746,6 @@ msgstr "Következő"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Következő"
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
-msgstr ""
 
 msgid "Next bouquet"
 msgstr "Következő lista"
@@ -11906,9 +11861,6 @@ msgid "No free tuner!"
 msgstr "Nincs szabad tuner!"
 
 msgid "No hard disks detected."
-msgstr ""
-
-msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
 msgid "No matching place names found"
@@ -12247,9 +12199,6 @@ msgstr "OK gomb mód"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, vezessen végig a frissítési folyamaton"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12517,6 +12466,9 @@ msgstr ""
 msgid "Original"
 msgstr "Eredeti"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr ""
 
@@ -12655,9 +12607,6 @@ msgstr "PLS Mód"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr "PPanel"
-
 msgid "PRIMETIME"
 msgstr "FŐMŰSORIDŐ"
 
@@ -12732,9 +12681,6 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Pánik csatorna"
-
-msgid "Panic to"
-msgstr "Panic to"
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -13610,12 +13556,6 @@ msgstr "Előnézeti menü"
 
 msgid "Previous"
 msgstr "Előző"
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
-msgstr ""
 
 msgid "Previous bouquet"
 msgstr "Előző lista"
@@ -15870,6 +15810,9 @@ msgstr "Válasszon műholdat"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Használja a keresősáv aktiválásához az L / R (hosszan) vagy << >> (hosszan) nyilat."
 
+msgid "Select service information to view:"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr "Válasszon hozzáadandó csatornát..."
 
@@ -16370,9 +16313,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-#, fuzzy
-msgid "Service ID"
-msgstr "Csatorna információ"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "Csatornanév"
@@ -16398,6 +16346,13 @@ msgstr "Információ kijelzési módja"
 msgid "Service Zap Actions"
 msgstr "Csatorna típus ikonok megjelenítése"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr "A csatornát nem lehet hozzáadni a kedvencekhez."
 
@@ -16412,28 +16367,6 @@ msgstr "A csatornát hozzáadtam a kiválasztott csatornacsomaghoz."
 
 msgid "Service info"
 msgstr "Csatorna"
-
-#, fuzzy
-msgid "Service info - ECM Info"
-msgstr "Csatorna"
-
-msgid "Service info - service & Basic PID Info"
-msgstr ""
-
-msgid "Service info - service & Extended PID Info"
-msgstr ""
-
-#, fuzzy
-msgid "Service info - service & PIDs"
-msgstr "Csatorna információ betű mérete"
-
-#, fuzzy
-msgid "Service info - tuner live values"
-msgstr "Csatorna információ betű mérete"
-
-#, fuzzy
-msgid "Service info - tuner setting values"
-msgstr "Csatorna információ betű mérete"
 
 msgid "Service info font size"
 msgstr "Csatorna információ betű mérete"
@@ -16912,9 +16845,6 @@ msgstr "Megosztások"
 
 msgid "Sharpness"
 msgstr "Élesség"
-
-msgid "Shellscript"
-msgstr "Shell script"
 
 msgid "Shift"
 msgstr "Shift"
@@ -17403,6 +17333,9 @@ msgstr ""
 msgid "Show next picture"
 msgstr "Következő kép megjelenítése"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17448,6 +17381,9 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "Előző kép megjelenítése"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17474,6 +17410,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -18840,10 +18779,6 @@ msgstr "Svájc"
 msgid "Symbol rate"
 msgstr "Sebesség"
 
-#, fuzzy
-msgid "Symbol rate & FEC"
-msgstr "Sebesség"
-
 msgid "Symbolic link"
 msgstr "Szimbolikus hivatkozás"
 
@@ -18867,10 +18802,6 @@ msgstr "Szíriai Arab Köztársaság"
 
 msgid "System"
 msgstr "Rendszer"
-
-#, fuzzy
-msgid "System & Modulation"
-msgstr "Moduláció"
 
 msgid "System Info"
 msgstr "Rendszer Információ"
@@ -18934,9 +18865,6 @@ msgstr ""
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "A TS fájl túl nagy az 'ISO9660 level 1' szabvány szerint!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr ""
@@ -20319,6 +20247,16 @@ msgstr "Transzponder"
 msgid "Transponder Time"
 msgstr "Transzponder ideje"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr "Átviteli adatfolyam típusa"
 
@@ -20414,6 +20352,9 @@ msgstr "Tuner beállításai"
 msgid "Tuner Setup"
 msgstr "Tuner Beállítás"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr ""
 
@@ -20423,14 +20364,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Tuner nem támogatott"
-
-#, fuzzy
-msgid "Tuner live values"
-msgstr "Tuner állapota"
-
-#, fuzzy
-msgid "Tuner setting values"
-msgstr "Tuner beállításai"
 
 msgid "Tuner slot"
 msgstr "Tuner foglalat"
@@ -21297,6 +21230,10 @@ msgstr "Nagyon rövid fájlnevek - Figyelem"
 msgid "Video"
 msgstr "Videó"
 
+#, fuzzy
+msgid "Video Codec, Size & Format"
+msgstr "Videó formátum"
+
 msgid "Video PID"
 msgstr "Videó PID"
 
@@ -21374,10 +21311,6 @@ msgstr "VideoEnhancementPreview"
 
 msgid "VideoFinetune"
 msgstr "VideoFinetune"
-
-#, fuzzy
-msgid "Video Codec, Size & Format"
-msgstr "Videó formátum"
 
 msgid "Videosetup"
 msgstr "Videó beállítások"
@@ -22468,9 +22401,6 @@ msgstr "Csatornaváltás mód"
 msgid "Zap next"
 msgstr "Ugrás a következőre"
 
-msgid "Zap to"
-msgstr "Ugrás ide"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Ugrás a csatornára (beállítás a menüben)"
 
@@ -22539,10 +22469,6 @@ msgstr "egy felhasználói felület, mely lehetővé teszi szolgáltatók/csator
 
 msgid "activatePiP"
 msgstr "Kép-a-Képben bekapcsolása"
-
-#, fuzzy
-msgid "active"
-msgstr "Nem aktív"
 
 msgid "address:"
 msgstr "cím:"
@@ -23657,6 +23583,116 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#, fuzzy, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/mp"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "(%s MHz)"
+
+#, fuzzy
+#~ msgid "(FTA Service)"
+#~ msgstr "Összes csatorna"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "Audió PID, kódolás és nyelv"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Távirányító gomb beállítás"
+
+#, fuzzy
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Együttállás"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM információ"
+
+#, fuzzy
+#~ msgid "Extended PID info"
+#~ msgstr "Kiterjesztett kinézet (GUI)"
+
+#, fuzzy
+#~ msgid "Frequency & Channel"
+#~ msgstr "Frekvencia vagy csatorna használata"
+
+#, fuzzy
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Polarizáció"
+
+#~ msgid "Hotkey"
+#~ msgstr "Hotkey"
+
+#, fuzzy
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Info ikon szélesség"
+
+#, fuzzy
+#~ msgid "NIM & Type"
+#~ msgstr "HDMI HDR típus"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel"
+
+#~ msgid "Panic to"
+#~ msgstr "Panic to"
+
+#, fuzzy
+#~ msgid "Service ID"
+#~ msgstr "Csatorna információ"
+
+#, fuzzy
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Csatorna"
+
+#, fuzzy
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Csatorna információ betű mérete"
+
+#, fuzzy
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Csatorna információ betű mérete"
+
+#, fuzzy
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Csatorna információ betű mérete"
+
+#~ msgid "Shellscript"
+#~ msgstr "Shell script"
+
+#, fuzzy
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Sebesség"
+
+#, fuzzy
+#~ msgid "System & Modulation"
+#~ msgstr "Moduláció"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#, fuzzy
+#~ msgid "Tuner live values"
+#~ msgstr "Tuner állapota"
+
+#, fuzzy
+#~ msgid "Tuner setting values"
+#~ msgstr "Tuner beállításai"
+
+#~ msgid "Zap to"
+#~ msgstr "Ugrás ide"
+
+#, fuzzy
+#~ msgid "active"
+#~ msgstr "Nem aktív"
 
 #~ msgid "1 hour"
 #~ msgstr "1 óra"

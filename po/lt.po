@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -250,10 +250,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1237,14 +1233,6 @@ msgid "%s Information Actions"
 msgstr "%s informaciniai veiksmai"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/s"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s Sąranka"
 
@@ -1358,9 +1346,6 @@ msgstr "Prieiga prie %s naujinimo žurnalų reikalauja interneto ryšio."
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Dėmesio: Bus paleista iš naujo po %d gedimų.)"
 
-msgid "(FTA Service)"
-msgstr "(Nekoduoti kanalai)"
-
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -1464,7 +1449,7 @@ msgstr "12bitų 4:2:0/4:2:2 be PIP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2647,9 +2632,6 @@ msgstr "Garso PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Garso PID %s, kodavimas ir kalba"
 
-msgid "Audio PID, codec & lang"
-msgstr "Garso PID, kodekas ir kalba"
-
 msgid "Audio Settings"
 msgstr "Garso nustatymai"
 
@@ -3013,9 +2995,6 @@ msgstr "Beisbolas"
 msgid "Bashkir"
 msgstr "Baškirų"
 
-msgid "Basic PID info"
-msgstr "Pagrindinė PID info"
-
 msgid "Basketball"
 msgstr "Krepšinis"
 
@@ -3317,9 +3296,6 @@ msgstr "Mygtukų nustatymas"
 
 msgid "Button error timeout"
 msgstr "Mygtuko klaidos skirtasis laikas"
-
-msgid "ButtonSetup"
-msgstr "Mygtukų sąranka"
 
 msgid "By disk UUID"
 msgstr ""
@@ -4083,6 +4059,9 @@ msgstr "Pasirinkite parinktį kad ištaisyti neteisingus EPG duomenis."
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Pasirinkite stilių / tvarką, kuria elementai rodomi žinyno languose."
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4206,9 +4185,6 @@ msgstr[2] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Spauskite nuotolinio valdymo pulto mygtuką, kurį norite pakeisti"
 
-msgid "Client"
-msgstr "Klientas"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Kliento Info (Oscam versija: %s)"
@@ -4284,9 +4260,6 @@ msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokosų (Kylingo) salos"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "Kodas R. LP-HP ir Guard Int."
 
 msgid "Code rate HP"
 msgstr "Aukšto prioriteto kodavimo greitis HP"
@@ -4852,8 +4825,8 @@ msgstr "Ryšio informacija"
 msgid "Console"
 msgstr "Konsolė"
 
-msgid "Constellation & FFT mode"
-msgstr "Konsteliacija ir FFT režimas"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Dėl šios informacijos kreipkitės į savo SCR įrenginio specifikacijų lapą."
@@ -6604,8 +6577,8 @@ msgstr "E"
 msgid "E "
 msgstr "Е "
 
-msgid "ECM Info"
-msgstr "ECM informacija"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "ECM statistika"
@@ -6618,6 +6591,13 @@ msgstr "ECM vid"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM duomenys bus įtraukti į transliuojamą srautą. Tai leis kliento imtuvui jį iškoduoti."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "ECM paskutinis"
@@ -7773,9 +7753,6 @@ msgstr "Išplėstinis"
 msgid "Extended Networksetup Plugin..."
 msgstr "Išplėstinis tinklo valdymo priedas..."
 
-msgid "Extended PID info"
-msgstr "Išplėstinė PID info"
-
 msgid "Extended Setup..."
 msgstr "Išplėstinis valdymas..."
 
@@ -8325,6 +8302,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr "Formatuoti kietą diską"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "Reguliuoti TV garsumą imtuvo pulteliu"
 
@@ -8352,6 +8332,9 @@ msgstr "Laisva atmintis:"
 msgid "Free swap"
 msgstr "Nemokamas apsikeitimas"
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "Laisva:"
 
@@ -8369,12 +8352,6 @@ msgstr "Prancūzijos pietinės teritorijos"
 
 msgid "Frequency"
 msgstr "Dažnis"
-
-msgid "Frequency & Channel"
-msgstr "Dažnis ir kanalas"
-
-msgid "Frequency & Polarization"
-msgstr "Dažnis ir poliarizacija"
 
 msgid "Frequency Norm:"
 msgstr "Dažnio norma:"
@@ -9091,9 +9068,6 @@ msgstr "Pavadinimas tinkle: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Spartusis klavišas"
-
 msgid "Hotkey Settings"
 msgstr "Sparčiojo klavišo parametrai"
 
@@ -9789,12 +9763,6 @@ msgstr "Netinkami transponderio duomenys"
 
 msgid "Inversion"
 msgstr "Pervertimas"
-
-msgid "Inversion & Bandwidth"
-msgstr "Inversija ir dažnių juostos plotis"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "Inversija, Pilot ir Roll-off"
 
 msgid "Invert"
 msgstr "Perversti"
@@ -10558,6 +10526,9 @@ msgstr "MB"
 
 msgid "MENU"
 msgstr "MENIU"
+
+msgid "MHz"
+msgstr ""
 
 msgid "MKUBIFS"
 msgstr "MKUBIFAI"
@@ -11436,8 +11407,8 @@ msgstr "NFS veiksmai"
 msgid "NFS Settings"
 msgstr "NFS parametrai"
 
-msgid "NIM & Type"
-msgstr "IMTUVAS IR TIPAS"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr ""
@@ -11617,9 +11588,6 @@ msgstr "Tinklo pavadinimas (SSID)"
 msgid "Network scan"
 msgstr "Tinklo paieška"
 
-msgid "Network storage on"
-msgstr "Tinklo saugykla įjungta"
-
 msgid "Network test"
 msgstr "Tinklo testavimas"
 
@@ -11707,12 +11675,6 @@ msgstr "Kitas"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Kitas"
-
-msgid "Next Log"
-msgstr "Kitas žurnalas"
-
-msgid "Next Picture"
-msgstr "Kitas paveikslėlis"
 
 msgid "Next bouquet"
 msgstr "Sekantis paketas"
@@ -11828,9 +11790,6 @@ msgstr "Nėra laisvo imtuvo!"
 
 msgid "No hard disks detected."
 msgstr "Kietųjų diskų neaptikta."
-
-msgid "No log files found so debug logs are unavailable!"
-msgstr "Žurnalo failų nerasta, todėl derinimo žurnalai nepasiekiami!"
 
 msgid "No matching place names found"
 msgstr "Atitinkančių vietovardžių nerasta"
@@ -12165,9 +12124,6 @@ msgstr "OK mygtuko režimas"
 msgid "OK, guide me through the upgrade process"
 msgstr "Gerai, informuoti mane apie atnaujinimo eigą"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12429,6 +12385,9 @@ msgstr "Orentacija"
 msgid "Original"
 msgstr "Originali"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr "Orijų"
 
@@ -12564,9 +12523,6 @@ msgstr "PLS režimas"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr "PSkydelis"
-
 msgid "PRIMETIME"
 msgstr "ŽIŪRIMIAUSIAS LAIKAS"
 
@@ -12640,9 +12596,6 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Panikos kanalas"
-
-msgid "Panic to"
-msgstr "Panikos mygtukas"
 
 msgid "Panjabi / Punjabi"
 msgstr "Pandžabi / Pandžabi"
@@ -13517,12 +13470,6 @@ msgstr "Peržiūros meniu"
 
 msgid "Previous"
 msgstr "Ankstesnis"
-
-msgid "Previous Log"
-msgstr "Ankstesnis žurnalas"
-
-msgid "Previous Picture"
-msgstr "Ankstesnis paveikslėlis"
 
 msgid "Previous bouquet"
 msgstr "Ankstesnis paketas"
@@ -15766,6 +15713,9 @@ msgstr "Pasirinkite palydovus"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Pasirinkite, kad paieškos juostą aktyvuoti rodyklėmis '</>' (ilgai), arba '<</>>' (ilgai)."
 
+msgid "Select service information to view:"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr "Pasirinkite kanalą, kurį norite pridėti..."
 
@@ -16263,8 +16213,14 @@ msgstr "Paslauga '%s' ištrinta."
 msgid "Service '%s' is already defined."
 msgstr "Paslauga '%s' jau apibrėžta."
 
-msgid "Service ID"
-msgstr "Kanalo ID"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "Kanalo pavadinimas"
@@ -16287,6 +16243,13 @@ msgstr "Kanalo pavadinimo atvaizdavimo būdas"
 msgid "Service Zap Actions"
 msgstr "Paslaugos jungimo veiksmai"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr "Kanalas negali būti įtrauktas į mėgstamiausius."
 
@@ -16301,24 +16264,6 @@ msgstr "Kanalas įtrauktas į pasirinktą paketą."
 
 msgid "Service info"
 msgstr "Informacija apie kanalą"
-
-msgid "Service info - ECM Info"
-msgstr "Kanalo info - ECM info"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "Kanalo info - kanalas ir pagrindinė PID info"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "Kanalo info - kanalas ir išplėstinė PID info"
-
-msgid "Service info - service & PIDs"
-msgstr "Kanalo informacija - kanalas ir PID's"
-
-msgid "Service info - tuner live values"
-msgstr "Kanalo informacija - imtuvo tiesioginės reikšmės"
-
-msgid "Service info - tuner setting values"
-msgstr "Kanalo informacija - imtuvo nustatymų reikšmės"
 
 msgid "Service info font size"
 msgstr "Kanalo informacijos šrifto dydis"
@@ -16796,9 +16741,6 @@ msgstr "Bendrinimai"
 
 msgid "Sharpness"
 msgstr "Aštrumas"
-
-msgid "Shellscript"
-msgstr "Grafinės aplinkos scenarijus"
 
 msgid "Shift"
 msgstr "Pakeisti"
@@ -17282,6 +17224,9 @@ msgstr "Rodyti kitą puslapį"
 msgid "Show next picture"
 msgstr "Rodyti kitą nuotrauką"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17327,6 +17272,9 @@ msgstr "Rodyti ankstesnį puslapį"
 msgid "Show previous picture"
 msgstr "Rodyti ankstesnę nuotrauką"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17352,6 +17300,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -18701,9 +18652,6 @@ msgstr "Šveicarų"
 msgid "Symbol rate"
 msgstr "Simbolių greitis"
 
-msgid "Symbol rate & FEC"
-msgstr "Simbolių sparta ir FEC"
-
 msgid "Symbolic link"
 msgstr "Simbolinė nuoroda"
 
@@ -18727,9 +18675,6 @@ msgstr "Sirijos Arabų Respublika"
 
 msgid "System"
 msgstr "Sistema"
-
-msgid "System & Modulation"
-msgstr "Sistema ir moduliacija"
 
 msgid "System Info"
 msgstr "Informacija apie sistemą"
@@ -18787,9 +18732,6 @@ msgstr "2023-06-04 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr "IMTUVAS:"
@@ -20170,6 +20112,16 @@ msgstr "Transponderis"
 msgid "Transponder Time"
 msgstr "Transponderio laiką"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr "Transporto srauto tipas"
 
@@ -20263,6 +20215,9 @@ msgstr "Imtuvo nustatymai"
 msgid "Tuner Setup"
 msgstr "Imtuvo valdymas"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr "Imtuvo informacija"
 
@@ -20272,12 +20227,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Imtuvas nepalaiko"
-
-msgid "Tuner live values"
-msgstr "Imtuvo tiesioginės reikšmės"
-
-msgid "Tuner setting values"
-msgstr "Nustatymo reikšmės"
 
 msgid "Tuner slot"
 msgstr "Imtuvo lizdas"
@@ -21162,6 +21111,9 @@ msgstr "Labai labai trumpi failų pavdinimai - dėmesio"
 msgid "Video"
 msgstr "Vaizdas"
 
+msgid "Video Codec, Size & Format"
+msgstr "Vaizdo kodavimas, dydis ir formatas"
+
 msgid "Video PID"
 msgstr "Vaizdo PID"
 
@@ -21239,9 +21191,6 @@ msgstr "Vaizdo gerinimo peržiūra"
 
 msgid "VideoFinetune"
 msgstr "Tikslesnis vaizdo suderinimas"
-
-msgid "Video Codec, Size & Format"
-msgstr "Vaizdo kodavimas, dydis ir formatas"
 
 msgid "Videosetup"
 msgstr "Vaizdo nustatymas"
@@ -22331,9 +22280,6 @@ msgstr "Perjungimo būdas"
 msgid "Zap next"
 msgstr "Jungti toliau"
 
-msgid "Zap to"
-msgstr "Perjungti į"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Perjungti į kanalą (nustatyti meniu)"
 
@@ -22399,9 +22345,6 @@ msgstr "pasirinkite kanalus/teikėjus/programas, kurias norite įtraukti į CI m
 
 msgid "activatePiP"
 msgstr "aktyvuoti PiP"
-
-msgid "active"
-msgstr "aktyvus"
 
 msgid "address:"
 msgstr "adresas:"
@@ -23514,6 +23457,135 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/s"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(Nekoduoti kanalai)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "Garso PID, kodekas ir kalba"
+
+#~ msgid "Basic PID info"
+#~ msgstr "Pagrindinė PID info"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Mygtukų sąranka"
+
+#~ msgid "Client"
+#~ msgstr "Klientas"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "Kodas R. LP-HP ir Guard Int."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Konsteliacija ir FFT režimas"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM informacija"
+
+#~ msgid "Extended PID info"
+#~ msgstr "Išplėstinė PID info"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "Dažnis ir kanalas"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Dažnis ir poliarizacija"
+
+#~ msgid "Hotkey"
+#~ msgstr "Spartusis klavišas"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Inversija ir dažnių juostos plotis"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "Inversija, Pilot ir Roll-off"
+
+#~ msgid "NIM & Type"
+#~ msgstr "IMTUVAS IR TIPAS"
+
+#~ msgid "Network storage on"
+#~ msgstr "Tinklo saugykla įjungta"
+
+#~ msgid "Next Log"
+#~ msgstr "Kitas žurnalas"
+
+#~ msgid "Next Picture"
+#~ msgstr "Kitas paveikslėlis"
+
+#~ msgid "No log files found so debug logs are unavailable!"
+#~ msgstr "Žurnalo failų nerasta, todėl derinimo žurnalai nepasiekiami!"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "PSkydelis"
+
+#~ msgid "Panic to"
+#~ msgstr "Panikos mygtukas"
+
+#~ msgid "Previous Log"
+#~ msgstr "Ankstesnis žurnalas"
+
+#~ msgid "Previous Picture"
+#~ msgstr "Ankstesnis paveikslėlis"
+
+#~ msgid "Service ID"
+#~ msgstr "Kanalo ID"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Kanalo info - ECM info"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "Kanalo info - kanalas ir pagrindinė PID info"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "Kanalo info - kanalas ir išplėstinė PID info"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Kanalo informacija - kanalas ir PID's"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Kanalo informacija - imtuvo tiesioginės reikšmės"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Kanalo informacija - imtuvo nustatymų reikšmės"
+
+#~ msgid "Shellscript"
+#~ msgstr "Grafinės aplinkos scenarijus"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Simbolių sparta ir FEC"
+
+#~ msgid "System & Modulation"
+#~ msgstr "Sistema ir moduliacija"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#~ msgid "Tuner live values"
+#~ msgstr "Imtuvo tiesioginės reikšmės"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "Nustatymo reikšmės"
+
+#~ msgid "Zap to"
+#~ msgstr "Perjungti į"
+
+#~ msgid "active"
+#~ msgstr "aktyvus"
 
 #~ msgid "Error: A location to save the recording has not been selected!"
 #~ msgstr "Klaida: vieta, kurioje norite išsaugoti įrašą, nepasirinkta!"

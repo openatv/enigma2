@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -242,10 +242,6 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
-msgstr ""
-
-#, python-format
-msgid "%.3f MHz"
 msgstr ""
 
 #, python-format
@@ -1239,14 +1235,6 @@ msgstr ""
 msgid "%s Information Actions"
 msgstr ""
 
-#, python-format
-msgid "%s KSymb/s"
-msgstr ""
-
-#, python-format
-msgid "%s MHz"
-msgstr ""
-
 #, fuzzy, python-format
 msgid "%s Setup"
 msgstr "ตั้งค่า"
@@ -1360,10 +1348,6 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr ""
 
-#, fuzzy
-msgid "(FTA Service)"
-msgstr "บริการต่างๆ"
-
 msgid "(PiP)"
 msgstr ""
 
@@ -1470,7 +1454,7 @@ msgstr ""
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2674,9 +2658,6 @@ msgstr ""
 msgid "Audio PID%s, Codec & Language"
 msgstr ""
 
-msgid "Audio PID, codec & lang"
-msgstr ""
-
 msgid "Audio Settings"
 msgstr ""
 
@@ -3055,9 +3036,6 @@ msgstr ""
 msgid "Bashkir"
 msgstr ""
 
-msgid "Basic PID info"
-msgstr ""
-
 msgid "Basketball"
 msgstr ""
 
@@ -3365,9 +3343,6 @@ msgid "Button Setup"
 msgstr ""
 
 msgid "Button error timeout"
-msgstr ""
-
-msgid "ButtonSetup"
 msgstr ""
 
 msgid "By disk UUID"
@@ -4137,6 +4112,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4262,9 +4240,6 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr ""
 
-msgid "Client"
-msgstr ""
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
@@ -4342,9 +4317,6 @@ msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
-msgstr ""
-
-msgid "Code R. LP-HP & Guard Int."
 msgstr ""
 
 msgid "Code rate HP"
@@ -4917,9 +4889,8 @@ msgstr ""
 msgid "Console"
 msgstr ""
 
-#, fuzzy
-msgid "Constellation & FFT mode"
-msgstr "Constellation"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr ""
@@ -6697,9 +6668,8 @@ msgstr "E"
 msgid "E "
 msgstr "E"
 
-#, fuzzy
-msgid "ECM Info"
-msgstr "ข้อมูล"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr ""
@@ -6711,6 +6681,13 @@ msgid "ECM avg"
 msgstr ""
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
+msgstr ""
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
 msgstr ""
 
 msgid "ECM last"
@@ -7858,9 +7835,6 @@ msgstr ""
 msgid "Extended Networksetup Plugin..."
 msgstr "Plugin สำหรับตั้งค่าเครือข่าย..."
 
-msgid "Extended PID info"
-msgstr ""
-
 msgid "Extended Setup..."
 msgstr "ตั้งค่าส่วนเพิ่มเติม..."
 
@@ -8425,6 +8399,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr ""
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr ""
 
@@ -8453,6 +8430,9 @@ msgstr ""
 msgid "Free swap"
 msgstr ""
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr ""
 
@@ -8471,14 +8451,6 @@ msgstr ""
 
 msgid "Frequency"
 msgstr "ความถี่"
-
-#, fuzzy
-msgid "Frequency & Channel"
-msgstr "แถบของความถี่"
-
-#, fuzzy
-msgid "Frequency & Polarization"
-msgstr "ค่าทิศทาง"
 
 #, fuzzy
 msgid "Frequency Norm:"
@@ -9217,9 +9189,6 @@ msgstr ""
 msgid "Hotbird 13.0e"
 msgstr ""
 
-msgid "Hotkey"
-msgstr ""
-
 msgid "Hotkey Settings"
 msgstr ""
 
@@ -9939,13 +9908,6 @@ msgstr "ป้อนทรานสปอนเดอร์เอง"
 
 msgid "Inversion"
 msgstr "Inversion"
-
-#, fuzzy
-msgid "Inversion & Bandwidth"
-msgstr "แบนด์วิดธ์"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr ""
 
 msgid "Invert"
 msgstr ""
@@ -10739,6 +10701,9 @@ msgid "MB"
 msgstr ""
 
 msgid "MENU"
+msgstr ""
+
+msgid "MHz"
 msgstr ""
 
 msgid "MKUBIFS"
@@ -11662,7 +11627,7 @@ msgstr ""
 msgid "NFS Settings"
 msgstr ""
 
-msgid "NIM & Type"
+msgid "NIM"
 msgstr ""
 
 msgid "NOTE"
@@ -11846,9 +11811,6 @@ msgstr ""
 msgid "Network scan"
 msgstr "ค้นหาเครือข่าย"
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr "ทดสอบเครือข่าย"
 
@@ -11939,12 +11901,6 @@ msgstr ""
 
 msgctxt "now/next: 'next' event label"
 msgid "Next"
-msgstr ""
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
 msgstr ""
 
 #, fuzzy
@@ -12066,9 +12022,6 @@ msgid "No free tuner!"
 msgstr "ไม่มี Tuner ว่างที่จะใช้งานได้"
 
 msgid "No hard disks detected."
-msgstr ""
-
-msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
 #, fuzzy
@@ -12409,9 +12362,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "ตกลง - ช่วยแนะนำขั้นตอนการปรับปรุงด้วย"
 
-msgid "ONID"
-msgstr ""
-
 msgid "OSD"
 msgstr ""
 
@@ -12681,6 +12631,9 @@ msgstr ""
 msgid "Original"
 msgstr ""
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr ""
 
@@ -12821,9 +12774,6 @@ msgstr ""
 msgid "PMT PID"
 msgstr ""
 
-msgid "PPanel"
-msgstr ""
-
 msgid "PRIMETIME"
 msgstr ""
 
@@ -12897,9 +12847,6 @@ msgid "Panama"
 msgstr ""
 
 msgid "Panic channel"
-msgstr ""
-
-msgid "Panic to"
 msgstr ""
 
 msgid "Panjabi / Punjabi"
@@ -13801,12 +13748,6 @@ msgid "Preview menu"
 msgstr "เมนูดูตัวอย่าง"
 
 msgid "Previous"
-msgstr ""
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
 msgstr ""
 
 #, fuzzy
@@ -16117,6 +16058,9 @@ msgstr ""
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 
+msgid "Select service information to view:"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr "เลือกบริการที่ต้องการเพิ่ม..."
 
@@ -16607,9 +16551,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-#, fuzzy
-msgid "Service ID"
-msgstr "บริการ"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr ""
@@ -16634,6 +16583,13 @@ msgstr ""
 msgid "Service Zap Actions"
 msgstr "แสดงบริการที่เริ่มต้นด้วย"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 #, fuzzy
 msgid "Service cant been added to the favorites."
 msgstr "บริการนี้ถูกเพิ่มเข้ารายการโปรดแล้ว"
@@ -16649,25 +16605,6 @@ msgid "Service has been added to the selected bouquet."
 msgstr "บริการนี้ถูกเพิ่มเข้ากลุ่มรายการแล้ว"
 
 msgid "Service info"
-msgstr ""
-
-msgid "Service info - ECM Info"
-msgstr ""
-
-msgid "Service info - service & Basic PID Info"
-msgstr ""
-
-msgid "Service info - service & Extended PID Info"
-msgstr ""
-
-#, fuzzy
-msgid "Service info - service & PIDs"
-msgstr "รายละเอียดของบริการ"
-
-msgid "Service info - tuner live values"
-msgstr ""
-
-msgid "Service info - tuner setting values"
 msgstr ""
 
 msgid "Service info font size"
@@ -17155,9 +17092,6 @@ msgstr ""
 
 msgid "Sharpness"
 msgstr "ความคม"
-
-msgid "Shellscript"
-msgstr ""
 
 msgid "Shift"
 msgstr ""
@@ -17664,6 +17598,9 @@ msgstr ""
 msgid "Show next picture"
 msgstr ""
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17713,6 +17650,9 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "ไปบริการย่อยก่อนหน้า"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17739,6 +17679,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -19142,9 +19085,6 @@ msgstr ""
 msgid "Symbol rate"
 msgstr ""
 
-msgid "Symbol rate & FEC"
-msgstr ""
-
 msgid "Symbolic link"
 msgstr ""
 
@@ -19168,10 +19108,6 @@ msgstr ""
 
 msgid "System"
 msgstr "ระบบ"
-
-#, fuzzy
-msgid "System & Modulation"
-msgstr "Modulation"
 
 msgid "System Info"
 msgstr ""
@@ -19229,9 +19165,6 @@ msgstr "TRANSLATOR_INFO"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "ชื่อไฟล์ TS ยาวเกินไปสำหรับ ISO9660 level 1!"
-
-msgid "TSID"
-msgstr ""
 
 msgid "TUNER:"
 msgstr ""
@@ -20589,6 +20522,16 @@ msgstr "ทรานสปอนเดอร์"
 msgid "Transponder Time"
 msgstr "ทรานสปอนเดอร์"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 #, fuzzy
 msgid "Transport Stream Type"
 msgstr "ประเภทของทรานสปอนเดอร์"
@@ -20686,6 +20629,9 @@ msgstr ""
 msgid "Tuner Setup"
 msgstr ""
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr ""
 
@@ -20695,14 +20641,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr ""
-
-#, fuzzy
-msgid "Tuner live values"
-msgstr "สถานะของ Tuner"
-
-#, fuzzy
-msgid "Tuner setting values"
-msgstr "สถานะของ Tuner"
 
 msgid "Tuner slot"
 msgstr ""
@@ -21576,6 +21514,9 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
+msgid "Video Codec, Size & Format"
+msgstr ""
+
 msgid "Video PID"
 msgstr ""
 
@@ -21656,9 +21597,6 @@ msgstr ""
 #, fuzzy
 msgid "VideoFinetune"
 msgstr "ปรับแบบละเอียด"
-
-msgid "Video Codec, Size & Format"
-msgstr ""
 
 #, fuzzy
 msgid "Videosetup"
@@ -22734,9 +22672,6 @@ msgstr ""
 msgid "Zap next"
 msgstr ""
 
-msgid "Zap to"
-msgstr ""
-
 msgid "Zap to channel (setup in menu)"
 msgstr ""
 
@@ -22803,9 +22738,6 @@ msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "ส่วนนี้จะกำหนดบริการ/ผู้ให้บริการ/caids ให้กับอินเตอร์เฟซพื้นฐาน"
 
 msgid "activatePiP"
-msgstr ""
-
-msgid "active"
 msgstr ""
 
 msgid "address:"
@@ -23931,6 +23863,50 @@ msgstr "ใช่ (เก็บฟีดนี้ไว้)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "(FTA Service)"
+#~ msgstr "บริการต่างๆ"
+
+#, fuzzy
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Constellation"
+
+#, fuzzy
+#~ msgid "ECM Info"
+#~ msgstr "ข้อมูล"
+
+#, fuzzy
+#~ msgid "Frequency & Channel"
+#~ msgstr "แถบของความถี่"
+
+#, fuzzy
+#~ msgid "Frequency & Polarization"
+#~ msgstr "ค่าทิศทาง"
+
+#, fuzzy
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "แบนด์วิดธ์"
+
+#, fuzzy
+#~ msgid "Service ID"
+#~ msgstr "บริการ"
+
+#, fuzzy
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "รายละเอียดของบริการ"
+
+#, fuzzy
+#~ msgid "System & Modulation"
+#~ msgstr "Modulation"
+
+#, fuzzy
+#~ msgid "Tuner live values"
+#~ msgstr "สถานะของ Tuner"
+
+#, fuzzy
+#~ msgid "Tuner setting values"
+#~ msgstr "สถานะของ Tuner"
 
 #, fuzzy
 #~ msgid "10 minutes"

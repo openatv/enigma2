@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
-"PO-Revision-Date: 2023-09-26 17:46+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
+"PO-Revision-Date: 2023-10-23 22:24+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.1.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -252,10 +252,6 @@ msgstr "%.0f МБ"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f ГБ"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f МГц"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1239,14 +1235,6 @@ msgid "%s Information Actions"
 msgstr "%s Інформаційні дії"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s КБіт/с"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s МГц"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s Налаштування"
 
@@ -1358,9 +1346,6 @@ msgstr "(Для доступу до журналу логів %s потрібн�
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Увага: Відбудеться перезавантаження після %d збоїв.)"
 
-msgid "(FTA Service)"
-msgstr "(Канал не кодований)"
-
 msgid "(PiP)"
 msgstr "(ПіП)"
 
@@ -1464,7 +1449,7 @@ msgstr "12біт 4:2:0/4:2:2 ПіП відсутній"
 msgid "13 V"
 msgstr "13 В"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr "16/9 скидання до нормального"
 
 msgid "16:10 Letterbox"
@@ -2637,9 +2622,6 @@ msgstr "Аудіо PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Aудіо PID%s, кодек і мова"
 
-msgid "Audio PID, codec & lang"
-msgstr "Aудіо PID, кодек і мова"
-
 msgid "Audio Settings"
 msgstr "Налаштування аудіо"
 
@@ -3003,9 +2985,6 @@ msgstr "Бейсбол"
 msgid "Bashkir"
 msgstr "Башкирська"
 
-msgid "Basic PID info"
-msgstr "Основна інформація про PID"
-
 msgid "Basketball"
 msgstr "Баскетбол"
 
@@ -3307,9 +3286,6 @@ msgstr "Налаштування кнопок"
 
 msgid "Button error timeout"
 msgstr "Час очікування помилки кнопки"
-
-msgid "ButtonSetup"
-msgstr "Налаштування кнопок"
 
 msgid "By disk UUID"
 msgstr "За UUID диску"
@@ -4073,6 +4049,9 @@ msgstr "Виберіть опцію для виправлення невірни
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Choose the style/order in which items are displayed in help windows."
 
+msgid "Choose the target device for the slots."
+msgstr "Виберіть цільовий пристрій для слотів."
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Виберіть цільове розташування для розгорнутого каталогу '/usr'."
 
@@ -4191,13 +4170,10 @@ msgid "Clear warning"
 msgid_plural "Clear warnings"
 msgstr[0] "Очистити попередження"
 msgstr[1] "Очистити попередження"
-msgstr[2] "Очистити попередження"
+msgstr[2] "Очистити попереджень"
 
 msgid "Click the button on your remote you want to change."
 msgstr "Натисніть на пульті ту кнопку, дію якої хочете змінити."
-
-msgid "Client"
-msgstr "Клієнт"
 
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
@@ -4274,9 +4250,6 @@ msgstr "DNS у хмарі"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Кокосові (Кілінг) острови"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "Код R. LP-HP & Guard Int."
 
 msgid "Code rate HP"
 msgstr "Швидк. кодування HP"
@@ -4841,8 +4814,8 @@ msgstr "Інформація про підключення"
 msgid "Console"
 msgstr "Консоль"
 
-msgid "Constellation & FFT mode"
-msgstr "Constellation & FFT режим"
+msgid "Constellation"
+msgstr "Констеляція"
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Для отримання цієї інформації зверніться до специфікації SCR-пристрою."
@@ -6595,8 +6568,8 @@ msgstr "Е"
 msgid "E "
 msgstr "E "
 
-msgid "ECM Info"
-msgstr "Інфо ECM"
+msgid "ECM"
+msgstr "ЕСМ"
 
 msgid "ECM Statistics"
 msgstr "Статистика ECM"
@@ -6609,6 +6582,13 @@ msgstr "ECM сер"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM дані будуть включені в потік. Приймач клієнта буде декодувати потік."
+
+msgid "ECM information"
+msgstr "Інформація ЕСМ"
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr "Інформація ЕСМ для '%s'"
 
 msgid "ECM last"
 msgstr "Останній ECM"
@@ -7762,9 +7742,6 @@ msgstr "Розширений"
 msgid "Extended Networksetup Plugin..."
 msgstr "Додаток розширених параметрів мережі..."
 
-msgid "Extended PID info"
-msgstr "Розширена PID інормація"
-
 msgid "Extended Setup..."
 msgstr "Розширені налаштування..."
 
@@ -8314,6 +8291,9 @@ msgstr "Форматувати пристрій зберігання"
 msgid "Format your hard drive"
 msgstr "Форматування Вашого жорсткого диска"
 
+msgid "Forward Error Correction (FEC)"
+msgstr "Корекція помилок (FEC)"
+
 msgid "Forward volume keys"
 msgstr "Кнопки збільшення звуку"
 
@@ -8341,6 +8321,9 @@ msgstr "Вільно пам'яті:"
 msgid "Free swap"
 msgstr "Вільно swap"
 
+msgid "Free to Air (FTA) Service"
+msgstr "Не кодований канал (FTA)"
+
 msgid "Free:"
 msgstr "Вільно:"
 
@@ -8358,12 +8341,6 @@ msgstr "Французькі південні території"
 
 msgid "Frequency"
 msgstr "Частота"
-
-msgid "Frequency & Channel"
-msgstr "Частота і канал"
-
-msgid "Frequency & Polarization"
-msgstr "Частота і поляризація"
 
 msgid "Frequency Norm:"
 msgstr "Частота:"
@@ -9080,9 +9057,6 @@ msgstr "Мережеве ім'я: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0E"
 
-msgid "Hotkey"
-msgstr "Гарячі кнопки"
-
 msgid "Hotkey Settings"
 msgstr "Налаштування гарячих кнопок"
 
@@ -9778,12 +9752,6 @@ msgstr "Некоректні транспондерні дані"
 
 msgid "Inversion"
 msgstr "Інверсія"
-
-msgid "Inversion & Bandwidth"
-msgstr "Інверсія і ширина смуги"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "Інверсія, пілот і Roll-off"
 
 msgid "Invert"
 msgstr "Інвертувати"
@@ -10547,6 +10515,9 @@ msgstr "МБ"
 
 msgid "MENU"
 msgstr "MENU"
+
+msgid "MHz"
+msgstr "МГц"
 
 msgid "MKUBIFS"
 msgstr "MKUBIFS"
@@ -11425,8 +11396,8 @@ msgstr "NFS дії"
 msgid "NFS Settings"
 msgstr "Налаштування NFS"
 
-msgid "NIM & Type"
-msgstr "Тюнер і модель"
+msgid "NIM"
+msgstr "NIM"
 
 msgid "NOTE"
 msgstr "ПРИМІТКА"
@@ -11474,7 +11445,7 @@ msgid "Nameserver setup"
 msgstr "Налаштування Nameserver"
 
 msgid "Namespace & Orbital position"
-msgstr "Простір імен і орбіт.поз."
+msgstr "Простір імен і позиція"
 
 msgid "Namibia"
 msgstr "Намібія"
@@ -11606,9 +11577,6 @@ msgstr "Назва мережі (SSID)"
 msgid "Network scan"
 msgstr "Мережевий пошук"
 
-msgid "Network storage on"
-msgstr "Мережевий накопичувач увімкнено"
-
 msgid "Network test"
 msgstr "Тест мережевого з'єднання"
 
@@ -11699,12 +11667,6 @@ msgstr "Наступна"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Наступна"
-
-msgid "Next Log"
-msgstr "Наступний лог"
-
-msgid "Next Picture"
-msgstr "Наступне зображення"
 
 msgid "Next bouquet"
 msgstr "Наступний фаворит"
@@ -11820,9 +11782,6 @@ msgstr "Немає вільного тюнера!"
 
 msgid "No hard disks detected."
 msgstr "Жорстких дисків не виявлено."
-
-msgid "No log files found so debug logs are unavailable!"
-msgstr "Файлів журналу не знайдено, тому журнали налагодження недоступні!"
 
 msgid "No matching place names found"
 msgstr "Не знайдено відповідних назв"
@@ -12157,9 +12116,6 @@ msgstr "Режим кнопки OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, допомогти мені в процесі оновлення"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12421,6 +12377,9 @@ msgstr "Орієнтація"
 msgid "Original"
 msgstr "Оригінал"
 
+msgid "Original Network ID (ONID)"
+msgstr "Оригінальний ідентифікатор мережі (ONID)"
+
 msgid "Oriya"
 msgstr "Oriya"
 
@@ -12556,9 +12515,6 @@ msgstr "Режим PLS"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr "PPanel"
-
 msgid "PRIMETIME"
 msgstr "ПРАЙМ-ТАЙМ"
 
@@ -12632,9 +12588,6 @@ msgstr "Панама"
 
 msgid "Panic channel"
 msgstr "Канал на тривожній кнопці"
-
-msgid "Panic to"
-msgstr "Тривожна кнопка на"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Punjabi"
@@ -13509,12 +13462,6 @@ msgstr "Перегляд Меню"
 
 msgid "Previous"
 msgstr "Попередній"
-
-msgid "Previous Log"
-msgstr "Попередній Лог"
-
-msgid "Previous Picture"
-msgstr "Попереднє зображення"
 
 msgid "Previous bouquet"
 msgstr "Попередній фаворит"
@@ -15128,8 +15075,8 @@ msgstr "Сканування %s..."
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Сканування - %d%% завершено"
-msgstr[1] "Сканування - %d%%  -а завершено"
-msgstr[2] "Сканування - %d%%  -ів завершено"
+msgstr[1] "Сканування - %d%% завершено"
+msgstr[2] "Сканування - %d%% завершене"
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -15758,6 +15705,9 @@ msgstr "Виберіть супутники"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Виберіть кнопку активації Seekbar вправо/вліво або << >> (довге натискання)."
 
+msgid "Select service information to view:"
+msgstr "Виберіть інформацію каналу для перегляду:"
+
 msgid "Select service to add..."
 msgstr "Виберіть канал, щоб додати..."
 
@@ -16261,8 +16211,14 @@ msgstr "Канал '%s' видалено."
 msgid "Service '%s' is already defined."
 msgstr "Канал '%s' вже визначено."
 
-msgid "Service ID"
-msgstr "ID Каналу"
+msgid "Service ID (SID)"
+msgstr "Ідентифікатор каналу (SID)"
+
+msgid "Service Information"
+msgstr "Інформація Каналу"
+
+msgid "Service Information Actions"
+msgstr "Інформаційні дії щодо каналу"
 
 msgid "Service Name"
 msgstr "Назва Каналу"
@@ -16285,6 +16241,13 @@ msgstr "Режим назви каналу"
 msgid "Service Zap Actions"
 msgstr "Дії для Перемикання Каналу"
 
+msgid "Service and PID information"
+msgstr "Канал та PID інформація"
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr "Канал та інформація PID для '%s'"
+
 msgid "Service cant been added to the favorites."
 msgstr "Канал не може бути додано до фаворитів."
 
@@ -16299,24 +16262,6 @@ msgstr "Канал додано до вибраного списку."
 
 msgid "Service info"
 msgstr "Інформація каналу"
-
-msgid "Service info - ECM Info"
-msgstr "Інформація каналу - ECM інформація"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "Інформація каналу - сервіси та основна інформація про PIDи"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "Інформація каналу - сервіси і розширена інформація про PIDи"
-
-msgid "Service info - service & PIDs"
-msgstr "Інформація каналу - сервіси і PIDи"
-
-msgid "Service info - tuner live values"
-msgstr "Інформація каналу - поточні налаштування тюнера"
-
-msgid "Service info - tuner setting values"
-msgstr "Інформація каналу - значення налаштування тюнера"
 
 msgid "Service info font size"
 msgstr "Розмір шрифту для передачі"
@@ -16801,9 +16746,6 @@ msgstr "Мережеві диски"
 msgid "Sharpness"
 msgstr "Чіткість"
 
-msgid "Shellscript"
-msgstr "Скрипт Shell"
-
 msgid "Shift"
 msgstr "Шифт"
 
@@ -17286,6 +17228,9 @@ msgstr "Показати наступну сторінку"
 msgid "Show next picture"
 msgstr "Показати наступне зображення"
 
+msgid "Show next service information screen"
+msgstr "Показати наступну інформацію про канал"
+
 msgid "Show next system information screen"
 msgstr "Показати наступний екран інформації про систему"
 
@@ -17331,6 +17276,9 @@ msgstr "Показати попередню сторінку"
 msgid "Show previous picture"
 msgstr "Показати попереднє зображення"
 
+msgid "Show previous service information screen"
+msgstr "Показати попередню інформацію каналу"
+
 msgid "Show previous system information screen"
 msgstr "Показати екран попередньої інформації про систему"
 
@@ -17357,6 +17305,9 @@ msgstr "Показати повідомлення скрипту"
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
 msgstr "Показувати повідомлення скрипту, якщо фоновий скрипт завершується. Якщо скрипт має додаткові результати, це також буде показано."
+
+msgid "Show selection for service information screen"
+msgstr "Показати вибір для вибору інформації про канал"
 
 msgid "Show selection for system information screen"
 msgstr "Показати вибір на екрані системної інформації"
@@ -18705,9 +18656,6 @@ msgstr "Швейцарія"
 msgid "Symbol rate"
 msgstr "Швидкість потоку"
 
-msgid "Symbol rate & FEC"
-msgstr "Швидкість потоку і FEC"
-
 msgid "Symbolic link"
 msgstr "Посилання"
 
@@ -18731,9 +18679,6 @@ msgstr "Сирія, Арабська Республіка"
 
 msgid "System"
 msgstr "Система"
-
-msgid "System & Modulation"
-msgstr "Система і модуляція"
 
 msgid "System Info"
 msgstr "Системна інформація"
@@ -18787,13 +18732,10 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 26.09.2023"
+msgstr "Переклад: kvinto - 23.10.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr "ТЮНЕР:"
@@ -20199,6 +20141,16 @@ msgstr "Транспондер"
 msgid "Transponder Time"
 msgstr "Час з транспондера"
 
+msgid "Transponder information"
+msgstr "Інформація про транспондер"
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr "Інформація про транспондер для '%s'"
+
+msgid "Transport Stream ID (TSID)"
+msgstr "Ідентифікатор транспортного потоку (TSID)"
+
 msgid "Transport Stream Type"
 msgstr "Тип транспортного потоку"
 
@@ -20292,6 +20244,9 @@ msgstr "Налаштування тюнера"
 msgid "Tuner Setup"
 msgstr "Налаштування тюнера"
 
+msgid "Tuner data is not available!"
+msgstr "Дані тюнера недоступні!"
+
 msgid "Tuner information"
 msgstr "Інформація про тюнер"
 
@@ -20301,12 +20256,6 @@ msgstr "Інформація про тюнер для %s %s"
 
 msgid "Tuner is not supported"
 msgstr "Тюнер не підтримується"
-
-msgid "Tuner live values"
-msgstr "Поточні налаштування тюнера"
-
-msgid "Tuner setting values"
-msgstr "Значення налаштування тюнера"
 
 msgid "Tuner slot"
 msgstr "Слот Тюнера"
@@ -21194,6 +21143,9 @@ msgstr "Попередження - Дуже короткі назви файлі
 msgid "Video"
 msgstr "Відео"
 
+msgid "Video Codec, Size & Format"
+msgstr "Відеокодек, розмір і формат"
+
 msgid "Video PID"
 msgstr "Відео PID"
 
@@ -21276,9 +21228,6 @@ msgstr "Попередній перегляд покращення відео"
 
 msgid "VideoFinetune"
 msgstr "Точна настройка відео"
-
-msgid "Video Codec, Size & Format"
-msgstr "Відеокодек, розмір і формат"
 
 msgid "Videosetup"
 msgstr "Налаштування відео"
@@ -22376,9 +22325,6 @@ msgstr "Режими переключення"
 msgid "Zap next"
 msgstr "Переключити на наступний"
 
-msgid "Zap to"
-msgstr "Переключити на"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Переключити на канал (налаштування в меню)"
 
@@ -22444,9 +22390,6 @@ msgstr "графічний інтерфейс для призначення ка
 
 msgid "activatePiP"
 msgstr "активувати ПІП"
-
-msgid "active"
-msgstr "активний"
 
 msgid "address:"
 msgstr "адреса:"
@@ -23557,6 +23500,135 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f МГц"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s КБіт/с"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s МГц"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(Канал не кодований)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "Aудіо PID, кодек і мова"
+
+#~ msgid "Basic PID info"
+#~ msgstr "Основна інформація про PID"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Налаштування кнопок"
+
+#~ msgid "Client"
+#~ msgstr "Клієнт"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "Код R. LP-HP & Guard Int."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Constellation & FFT режим"
+
+#~ msgid "ECM Info"
+#~ msgstr "Інфо ECM"
+
+#~ msgid "Extended PID info"
+#~ msgstr "Розширена PID інормація"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "Частота і канал"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Частота і поляризація"
+
+#~ msgid "Hotkey"
+#~ msgstr "Гарячі кнопки"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Інверсія і ширина смуги"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "Інверсія, пілот і Roll-off"
+
+#~ msgid "NIM & Type"
+#~ msgstr "Тюнер і модель"
+
+#~ msgid "Network storage on"
+#~ msgstr "Мережевий накопичувач увімкнено"
+
+#~ msgid "Next Log"
+#~ msgstr "Наступний лог"
+
+#~ msgid "Next Picture"
+#~ msgstr "Наступне зображення"
+
+#~ msgid "No log files found so debug logs are unavailable!"
+#~ msgstr "Файлів журналу не знайдено, тому журнали налагодження недоступні!"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel"
+
+#~ msgid "Panic to"
+#~ msgstr "Тривожна кнопка на"
+
+#~ msgid "Previous Log"
+#~ msgstr "Попередній Лог"
+
+#~ msgid "Previous Picture"
+#~ msgstr "Попереднє зображення"
+
+#~ msgid "Service ID"
+#~ msgstr "ID Каналу"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Інформація каналу - ECM інформація"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "Інформація каналу - сервіси та основна інформація про PIDи"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "Інформація каналу - сервіси і розширена інформація про PIDи"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Інформація каналу - сервіси і PIDи"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Інформація каналу - поточні налаштування тюнера"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Інформація каналу - значення налаштування тюнера"
+
+#~ msgid "Shellscript"
+#~ msgstr "Скрипт Shell"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Швидкість потоку і FEC"
+
+#~ msgid "System & Modulation"
+#~ msgstr "Система і модуляція"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#~ msgid "Tuner live values"
+#~ msgstr "Поточні налаштування тюнера"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "Значення налаштування тюнера"
+
+#~ msgid "Zap to"
+#~ msgstr "Переключити на"
+
+#~ msgid "active"
+#~ msgstr "активний"
 
 #~ msgid "Download the selected list of plugins"
 #~ msgstr "Завантажити вибраний список плагінів"

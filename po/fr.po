@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2023-08-12 03:37+0000\n"
 "Last-Translator: JPierre <jpcoquelle@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -249,10 +249,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1203,14 +1199,6 @@ msgid "%s Information Actions"
 msgstr "%s Actions d'information"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/s"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s Configuration"
 
@@ -1322,9 +1310,6 @@ msgstr "L'accès aux journaux de commit %s nécessite une connexion internet."
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Attention : il y aura un redémarrage après %d crashes.)"
 
-msgid "(FTA Service)"
-msgstr "(Service FTA)"
-
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -1428,7 +1413,7 @@ msgstr "12bit 4:2:0/4:2:2 pas de PIP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2609,9 +2594,6 @@ msgstr "PID audio"
 msgid "Audio PID%s, Codec & Language"
 msgstr "PID audio %s - codec - lang"
 
-msgid "Audio PID, codec & lang"
-msgstr "PID audio - codec - lang"
-
 msgid "Audio Settings"
 msgstr "Paramètres audio"
 
@@ -2975,9 +2957,6 @@ msgstr "Base-ball"
 msgid "Bashkir"
 msgstr "Bachkir"
 
-msgid "Basic PID info"
-msgstr "Info de base PID"
-
 msgid "Basketball"
 msgstr "Basketball"
 
@@ -3279,9 +3258,6 @@ msgstr "Paramètres des touches"
 
 msgid "Button error timeout"
 msgstr ""
-
-msgid "ButtonSetup"
-msgstr "Paramètres des touches"
 
 msgid "By disk UUID"
 msgstr ""
@@ -4047,6 +4023,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4170,9 +4149,6 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Cliquer sur le bouton de la télécommande que vous voulez changer"
 
-msgid "Client"
-msgstr "Client"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Info Client ( Version-Oscam : %s )"
@@ -4248,9 +4224,6 @@ msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Îles Cocos (Keeling)"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "Code R. LP-HP & Int. de garde."
 
 msgid "Code rate HP"
 msgstr "Taux de codage HP"
@@ -4811,8 +4784,8 @@ msgstr ""
 msgid "Console"
 msgstr "Console"
 
-msgid "Constellation & FFT mode"
-msgstr "Constellation & mode FFT"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Consulter la fiche technique de votre périphérique SCR pour obtenir cette information."
@@ -6563,8 +6536,8 @@ msgstr "E"
 msgid "E "
 msgstr "E "
 
-msgid "ECM Info"
-msgstr "ECM Info"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "Statistiques ECM"
@@ -6577,6 +6550,13 @@ msgstr "Moy ECM"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "Les données ECM seront inclues dans le stream. Cela permet au client qui le reçoit de le décoder."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "Dernier ECM"
@@ -7727,10 +7707,6 @@ msgstr "Etendu"
 msgid "Extended Networksetup Plugin..."
 msgstr "Extension paramètre réseau avancée..."
 
-# TODO
-msgid "Extended PID info"
-msgstr "Info PID étendue"
-
 msgid "Extended Setup..."
 msgstr "Paramètre avancé..."
 
@@ -8280,6 +8256,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr "Formater le disque dur"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "Faire suivre les touches du volume"
 
@@ -8307,6 +8286,9 @@ msgstr "Mémoire libre :"
 msgid "Free swap"
 msgstr ""
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "Libre :"
 
@@ -8324,12 +8306,6 @@ msgstr "Terres Australes Françaises"
 
 msgid "Frequency"
 msgstr "Fréquence"
-
-msgid "Frequency & Channel"
-msgstr "Fréquence & chaîne"
-
-msgid "Frequency & Polarization"
-msgstr "Fréquence & polarisation"
 
 msgid "Frequency Norm:"
 msgstr "Norme de fréquence :"
@@ -9047,9 +9023,6 @@ msgstr "Nom d'hôte : "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Hotkey"
-
 msgid "Hotkey Settings"
 msgstr "Configurer Hotkey"
 
@@ -9745,12 +9718,6 @@ msgstr "Données du transpondeur non valides"
 
 msgid "Inversion"
 msgstr "Inversion"
-
-msgid "Inversion & Bandwidth"
-msgstr "Inversion & bande passante"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "Inversion, Pilot & Roll-off"
 
 msgid "Invert"
 msgstr "Inverser"
@@ -10512,6 +10479,9 @@ msgstr "Mo"
 
 msgid "MENU"
 msgstr "MENU"
+
+msgid "MHz"
+msgstr ""
 
 msgid "MKUBIFS"
 msgstr ""
@@ -11393,8 +11363,8 @@ msgstr ""
 msgid "NFS Settings"
 msgstr "Configuration NFS"
 
-msgid "NIM & Type"
-msgstr "NIM & type"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr ""
@@ -11574,9 +11544,6 @@ msgstr "Nom du réseau (SSID)"
 msgid "Network scan"
 msgstr "Recherche du réseau"
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr "Test du réseau"
 
@@ -11664,12 +11631,6 @@ msgstr "Suivant"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Suivant"
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
-msgstr ""
 
 msgid "Next bouquet"
 msgstr "Bouquet suivant"
@@ -11784,9 +11745,6 @@ msgid "No free tuner!"
 msgstr "Pas de tuner gratuit !"
 
 msgid "No hard disks detected."
-msgstr ""
-
-msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
 msgid "No matching place names found"
@@ -12122,9 +12080,6 @@ msgstr "Mode bouton OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "D'accord, guidez-moi à travers la procédure de mise à jour"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12389,6 +12344,9 @@ msgstr ""
 msgid "Original"
 msgstr "Original"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr "Oriya"
 
@@ -12524,9 +12482,6 @@ msgstr "Mode PLS"
 msgid "PMT PID"
 msgstr "PID PMT"
 
-msgid "PPanel"
-msgstr "PPanel"
-
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
 
@@ -12600,9 +12555,6 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Chaîne de panique"
-
-msgid "Panic to"
-msgstr "Panique vers"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Pendjabi"
@@ -13474,12 +13426,6 @@ msgstr "Menu aperçu"
 
 msgid "Previous"
 msgstr "Précédent"
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
-msgstr ""
 
 msgid "Previous bouquet"
 msgstr "Bouquet précédent"
@@ -15725,6 +15671,9 @@ msgstr "Sélectionner les satellites"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Choisir si la barre de recherche doit être activée par les flèches G/D (long) ou << >> (long)."
 
+msgid "Select service information to view:"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr "Sélectionner le service à ajouter..."
 
@@ -16219,8 +16168,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-msgid "Service ID"
-msgstr "ID du service"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "Nom du service"
@@ -16243,6 +16198,13 @@ msgstr "Mode titre de service"
 msgid "Service Zap Actions"
 msgstr "Service Zap Actions"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr "Le sevice ne peut pas être ajouté aux favoris."
 
@@ -16257,24 +16219,6 @@ msgstr "Le service a été ajouté au bouquet sélectionné."
 
 msgid "Service info"
 msgstr "Info service"
-
-msgid "Service info - ECM Info"
-msgstr "Info service - info ECM"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "Info du service - service & info PID de base"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "Info du service - service & info PIDs étendues"
-
-msgid "Service info - service & PIDs"
-msgstr "Info du service - service & PIDs"
-
-msgid "Service info - tuner live values"
-msgstr "Info du service - valeurs réelles du tuner"
-
-msgid "Service info - tuner setting values"
-msgstr "Info du service - valeurs des paramètres du tuner"
 
 msgid "Service info font size"
 msgstr "Taille de la police pour les infos du service"
@@ -16753,9 +16697,6 @@ msgstr "Partages"
 
 msgid "Sharpness"
 msgstr "Netteté"
-
-msgid "Shellscript"
-msgstr "Shellscript"
 
 msgid "Shift"
 msgstr "Décalage"
@@ -17241,6 +17182,9 @@ msgstr "Afficher la page suivante"
 msgid "Show next picture"
 msgstr "Afficher l'image suivante"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17286,6 +17230,9 @@ msgstr "Afficher la page précédente"
 msgid "Show previous picture"
 msgstr "Afficher l’image précédente"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17312,6 +17259,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -18668,9 +18618,6 @@ msgstr "Suisse"
 msgid "Symbol rate"
 msgstr "Fréq. symbole"
 
-msgid "Symbol rate & FEC"
-msgstr "Fréq. symbole & FEC"
-
 msgid "Symbolic link"
 msgstr "Lien symbolique"
 
@@ -18694,9 +18641,6 @@ msgstr "Syrie (République Arabe de )"
 
 msgid "System"
 msgstr "Système"
-
-msgid "System & Modulation"
-msgstr "Système & modulation"
 
 msgid "System Info"
 msgstr "Info système"
@@ -18754,9 +18698,6 @@ msgstr "TRANSLATOR_INFO"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Le fichier TS est trop grand pour la norme ISO9660 niveau 1 !"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr "TUNER :"
@@ -20140,6 +20081,16 @@ msgstr "Transpondeur"
 msgid "Transponder Time"
 msgstr "Heure du Transpondeur"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr "Type de flux de transport"
 
@@ -20234,6 +20185,9 @@ msgstr "Paramètres du tuner"
 msgid "Tuner Setup"
 msgstr "Configuration du Tuner"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr ""
 
@@ -20243,12 +20197,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Le tuner n'est pas supporté"
-
-msgid "Tuner live values"
-msgstr "Valeurs réelles du tuner"
-
-msgid "Tuner setting values"
-msgstr "Valeur des paramètres du tuner"
 
 msgid "Tuner slot"
 msgstr "Slot tuner"
@@ -21107,6 +21055,9 @@ msgstr "Noms de fichiers très très courts - Attention"
 msgid "Video"
 msgstr "Vidéo"
 
+msgid "Video Codec, Size & Format"
+msgstr "Codec vidéo - taille - format"
+
 msgid "Video PID"
 msgstr "PID vidéo"
 
@@ -21184,9 +21135,6 @@ msgstr "Aperçu pour vidéo améliorée"
 
 msgid "VideoFinetune"
 msgstr "VidéoFinetune"
-
-msgid "Video Codec, Size & Format"
-msgstr "Codec vidéo - taille - format"
 
 msgid "Videosetup"
 msgstr "Configuration vidéo"
@@ -22276,9 +22224,6 @@ msgstr "Mode de zapping"
 msgid "Zap next"
 msgstr "Zap suivant"
 
-msgid "Zap to"
-msgstr "Zapper vers"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Zapper vers la chaîne (config dans le menu)"
 
@@ -22344,9 +22289,6 @@ msgstr "un gui pour assigner des services/providers/caids aux modules d'interfac
 
 msgid "activatePiP"
 msgstr "activerPiP"
-
-msgid "active"
-msgstr "actif"
 
 msgid "address:"
 msgstr "adresse :"
@@ -23457,6 +23399,118 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/s"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(Service FTA)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "PID audio - codec - lang"
+
+#~ msgid "Basic PID info"
+#~ msgstr "Info de base PID"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Paramètres des touches"
+
+#~ msgid "Client"
+#~ msgstr "Client"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "Code R. LP-HP & Int. de garde."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Constellation & mode FFT"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM Info"
+
+# TODO
+#~ msgid "Extended PID info"
+#~ msgstr "Info PID étendue"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "Fréquence & chaîne"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Fréquence & polarisation"
+
+#~ msgid "Hotkey"
+#~ msgstr "Hotkey"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Inversion & bande passante"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "Inversion, Pilot & Roll-off"
+
+#~ msgid "NIM & Type"
+#~ msgstr "NIM & type"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel"
+
+#~ msgid "Panic to"
+#~ msgstr "Panique vers"
+
+#~ msgid "Service ID"
+#~ msgstr "ID du service"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Info service - info ECM"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "Info du service - service & info PID de base"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "Info du service - service & info PIDs étendues"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Info du service - service & PIDs"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Info du service - valeurs réelles du tuner"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Info du service - valeurs des paramètres du tuner"
+
+#~ msgid "Shellscript"
+#~ msgstr "Shellscript"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Fréq. symbole & FEC"
+
+#~ msgid "System & Modulation"
+#~ msgstr "Système & modulation"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#~ msgid "Tuner live values"
+#~ msgstr "Valeurs réelles du tuner"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "Valeur des paramètres du tuner"
+
+#~ msgid "Zap to"
+#~ msgstr "Zapper vers"
+
+#~ msgid "active"
+#~ msgstr "actif"
 
 #~ msgid "1 hour"
 #~ msgstr "1 heure"

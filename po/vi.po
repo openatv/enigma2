@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -254,10 +254,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr ""
 
 #, python-format
 msgid "%02d.%02d."
@@ -1207,14 +1203,6 @@ msgid "%s Information Actions"
 msgstr ""
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr ""
-
-#, fuzzy, python-format
-msgid "%s MHz"
-msgstr "   (%s MHz)"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%sCài đặt"
 
@@ -1326,10 +1314,6 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Chú ý: Sẽ có khởi động lại sau khi%d gặp sự cố.)"
 
-#, fuzzy
-msgid "(FTA Service)"
-msgstr "Tất cả các nhà cung cấp dịch vụ"
-
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -1434,7 +1418,7 @@ msgstr "12bit 4:2:0/4:2:2 no PiP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2626,9 +2610,6 @@ msgstr "Âm thanh PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr ""
 
-msgid "Audio PID, codec & lang"
-msgstr ""
-
 msgid "Audio Settings"
 msgstr "Cài đặt âm thanh"
 
@@ -2996,9 +2977,6 @@ msgstr ""
 msgid "Bashkir"
 msgstr ""
 
-msgid "Basic PID info"
-msgstr ""
-
 msgid "Basketball"
 msgstr ""
 
@@ -3303,9 +3281,6 @@ msgstr "Cài đặt nút"
 
 msgid "Button error timeout"
 msgstr ""
-
-msgid "ButtonSetup"
-msgstr "Cài đặt nút"
 
 msgid "By disk UUID"
 msgstr ""
@@ -4072,6 +4047,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4193,9 +4171,6 @@ msgstr[0] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Bấm vào điều khiển từ xa của bạn vào nút bạn muốn thay đổi"
 
-msgid "Client"
-msgstr ""
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Thông tin khách hàng (Phiên bản Oscar:% s)"
@@ -4271,9 +4246,6 @@ msgstr ""
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Quần đảo Cocos (Keeling)"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr ""
 
 msgid "Code rate HP"
 msgstr "Mã tốc độ HP"
@@ -4839,9 +4811,8 @@ msgstr ""
 msgid "Console"
 msgstr "Bảng điều khiển"
 
-#, fuzzy
-msgid "Constellation & FFT mode"
-msgstr "Hợp thành"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Tham khảo bảng thông số thiết bị SCR của bạn để biết thông tin này."
@@ -6614,9 +6585,8 @@ msgstr "E"
 msgid "E "
 msgstr " "
 
-#, fuzzy
-msgid "ECM Info"
-msgstr "Thông tin dịch vụ - Thông tin ECM"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "Thống kê ECM"
@@ -6629,6 +6599,13 @@ msgstr "ECM avg"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "Dữ liệu ECM sẽ được bao gồm trong luồng. Điều này cho phép một người nhận khách hàng giải mã nó."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "ECM cuối"
@@ -7790,10 +7767,6 @@ msgstr "Mở rộng"
 msgid "Extended Networksetup Plugin..."
 msgstr "Plugin Networksetup mở rộng ..."
 
-#, fuzzy
-msgid "Extended PID info"
-msgstr "GUI mở rộng"
-
 msgid "Extended Setup..."
 msgstr "Thiết lập mở rộng ..."
 
@@ -8354,6 +8327,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr "Định dạng đĩa cứng của bạn"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "Phím âm lượng chuyển tiếp"
 
@@ -8381,6 +8357,9 @@ msgstr "Bộ nhớ trống:"
 msgid "Free swap"
 msgstr ""
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "Miễn phí:"
 
@@ -8398,14 +8377,6 @@ msgstr "Lãnh thổ phía Nam của Pháp"
 
 msgid "Frequency"
 msgstr "Tần số"
-
-#, fuzzy
-msgid "Frequency & Channel"
-msgstr "Sử dụng tần số hoặc kênh"
-
-#, fuzzy
-msgid "Frequency & Polarization"
-msgstr "Phân cực"
 
 #, fuzzy
 msgid "Frequency Norm:"
@@ -9141,9 +9112,6 @@ msgstr "Tên máy chủ: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Phím nóng"
-
 msgid "Hotkey Settings"
 msgstr "Cài đặt phím nóng"
 
@@ -9847,13 +9815,6 @@ msgstr "Dữ liệu transponder không hợp lệ"
 
 msgid "Inversion"
 msgstr "Nghịch đảo"
-
-#, fuzzy
-msgid "Inversion & Bandwidth"
-msgstr "Chiều rộng biểu tượng thông tin"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr ""
 
 msgid "Invert"
 msgstr "Đảo ngược"
@@ -10631,6 +10592,9 @@ msgid "MB"
 msgstr "MB"
 
 msgid "MENU"
+msgstr ""
+
+msgid "MHz"
 msgstr ""
 
 msgid "MKUBIFS"
@@ -11551,9 +11515,8 @@ msgstr ""
 msgid "NFS Settings"
 msgstr "Thiết lập NFS"
 
-#, fuzzy
-msgid "NIM & Type"
-msgstr "Loại HDMI HDR"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr ""
@@ -11737,9 +11700,6 @@ msgstr "Tên Mạng (SSID)"
 msgid "Network scan"
 msgstr "Quét mạng"
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr "Kiểm tra mạng"
 
@@ -11831,12 +11791,6 @@ msgstr "Kế tiếp"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Kế tiếp"
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
-msgstr ""
 
 #, fuzzy
 msgid "Next bouquet"
@@ -11957,9 +11911,6 @@ msgid "No free tuner!"
 msgstr "Không có bộ chỉnh miễn phí!"
 
 msgid "No hard disks detected."
-msgstr ""
-
-msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
 msgid "No matching place names found"
@@ -12299,9 +12250,6 @@ msgstr "Chế độ nút OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, hướng dẫn tôi qua quá trình nâng cấp"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12569,6 +12517,9 @@ msgstr ""
 msgid "Original"
 msgstr "Nguyên"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr ""
 
@@ -12708,9 +12659,6 @@ msgstr "Chế độ PLS"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr "Bảng điều khiển"
-
 msgid "PRIMETIME"
 msgstr "TIẾNG VIỆT"
 
@@ -12785,9 +12733,6 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Kênh Panic"
-
-msgid "Panic to"
-msgstr "Hoảng sợ"
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -13664,12 +13609,6 @@ msgstr "Menu xem trước"
 
 msgid "Previous"
 msgstr "Trước"
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
-msgstr ""
 
 #, fuzzy
 msgid "Previous bouquet"
@@ -15944,6 +15883,9 @@ msgstr "Chọn vệ tinh"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Chọn thanh tìm kiếm được kích hoạt bằng mũi tên L / R (dài) hoặc << >> (dài)."
 
+msgid "Select service information to view:"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr "Chọn dịch vụ để thêm ..."
 
@@ -16446,9 +16388,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-#, fuzzy
-msgid "Service ID"
-msgstr "Dịch vụ"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "Tên dịch vụ"
@@ -16474,6 +16421,13 @@ msgstr "Chế độ tiêu đề dịch vụ"
 msgid "Service Zap Actions"
 msgstr "Hiển thị biểu tượng loại dịch vụ"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr "Dịch vụ không thể được thêm vào mục yêu thích."
 
@@ -16488,28 +16442,6 @@ msgstr "Dịch vụ đã được thêm vào bó hoa được chọn."
 
 msgid "Service info"
 msgstr "Thông tin dịch vụ"
-
-#, fuzzy
-msgid "Service info - ECM Info"
-msgstr "Thông tin dịch vụ"
-
-msgid "Service info - service & Basic PID Info"
-msgstr ""
-
-msgid "Service info - service & Extended PID Info"
-msgstr ""
-
-#, fuzzy
-msgid "Service info - service & PIDs"
-msgstr "Kích thước phông chữ thông tin dịch vụ"
-
-#, fuzzy
-msgid "Service info - tuner live values"
-msgstr "Kích thước phông chữ thông tin dịch vụ"
-
-#, fuzzy
-msgid "Service info - tuner setting values"
-msgstr "Kích thước phông chữ thông tin dịch vụ"
 
 msgid "Service info font size"
 msgstr "Kích thước phông chữ thông tin dịch vụ"
@@ -16989,9 +16921,6 @@ msgstr "Chia sẻ"
 
 msgid "Sharpness"
 msgstr "Độ sắc nét"
-
-msgid "Shellscript"
-msgstr "Vỏ sò"
 
 msgid "Shift"
 msgstr "Ca"
@@ -17484,6 +17413,9 @@ msgstr ""
 msgid "Show next picture"
 msgstr "Hiển thị hình ảnh tiếp theo"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17529,6 +17461,9 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "Hiển thị hình ảnh trước đó"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17555,6 +17490,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -18929,10 +18867,6 @@ msgstr "Thụy sĩ"
 msgid "Symbol rate"
 msgstr "Tỷ lệ biểu tượng"
 
-#, fuzzy
-msgid "Symbol rate & FEC"
-msgstr "Tỷ lệ biểu tượng"
-
 msgid "Symbolic link"
 msgstr "Liên kết tượng trưng"
 
@@ -18956,10 +18890,6 @@ msgstr "Cộng Hòa Arab Syrian"
 
 msgid "System"
 msgstr "Hệ thống"
-
-#, fuzzy
-msgid "System & Modulation"
-msgstr "Điều chế"
 
 msgid "System Info"
 msgstr "Thông tin hệ thống"
@@ -19017,9 +18947,6 @@ msgstr "THÔNG TIN TRUYỀN THÔNG"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Tệp TS quá lớn so với ISO9660 cấp 1!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr ""
@@ -20409,6 +20336,16 @@ msgstr "Bộ tiếp sóng"
 msgid "Transponder Time"
 msgstr "Thời gian phát"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr "Loại luồng vận chuyển"
 
@@ -20505,6 +20442,9 @@ msgstr "Cài đặt bộ chỉnh"
 msgid "Tuner Setup"
 msgstr "Cài đặt bộ chỉnh"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr ""
 
@@ -20514,14 +20454,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Bộ chỉnh tần số không được hỗ trợ"
-
-#, fuzzy
-msgid "Tuner live values"
-msgstr "Trạng thái bộ chỉnh"
-
-#, fuzzy
-msgid "Tuner setting values"
-msgstr "Cài đặt bộ chỉnh"
 
 msgid "Tuner slot"
 msgstr "Khe điều chỉnh"
@@ -21394,6 +21326,10 @@ msgstr "Tên tệp rất rất ngắn - Cảnh báo"
 msgid "Video"
 msgstr "Video"
 
+#, fuzzy
+msgid "Video Codec, Size & Format"
+msgstr "Định dạng video"
+
 msgid "Video PID"
 msgstr "Video PID"
 
@@ -21471,10 +21407,6 @@ msgstr "Đánh giá nâng cao video"
 
 msgid "VideoFinetune"
 msgstr "Tinh chỉnh video"
-
-#, fuzzy
-msgid "Video Codec, Size & Format"
-msgstr "Định dạng video"
 
 msgid "Videosetup"
 msgstr "Cài đặtVideo"
@@ -22570,9 +22502,6 @@ msgstr "Chế độ zap"
 msgid "Zap next"
 msgstr "Tiếp theo"
 
-msgid "Zap to"
-msgstr "Chuyển sang"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Chuyển sang kênh (thiết lập trong menu)"
 
@@ -22642,10 +22571,6 @@ msgstr "một gui để gán dịch vụ / nhà cung cấp / người trả ti�
 
 msgid "activatePiP"
 msgstr "kích hoạtPiP"
-
-#, fuzzy
-msgid "active"
-msgstr "Không hoạt động"
 
 msgid "address:"
 msgstr "địa chỉ nhà:"
@@ -23774,6 +23699,106 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "%s MHz"
+#~ msgstr "   (%s MHz)"
+
+#, fuzzy
+#~ msgid "(FTA Service)"
+#~ msgstr "Tất cả các nhà cung cấp dịch vụ"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Cài đặt nút"
+
+#, fuzzy
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Hợp thành"
+
+#, fuzzy
+#~ msgid "ECM Info"
+#~ msgstr "Thông tin dịch vụ - Thông tin ECM"
+
+#, fuzzy
+#~ msgid "Extended PID info"
+#~ msgstr "GUI mở rộng"
+
+#, fuzzy
+#~ msgid "Frequency & Channel"
+#~ msgstr "Sử dụng tần số hoặc kênh"
+
+#, fuzzy
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Phân cực"
+
+#~ msgid "Hotkey"
+#~ msgstr "Phím nóng"
+
+#, fuzzy
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Chiều rộng biểu tượng thông tin"
+
+#, fuzzy
+#~ msgid "NIM & Type"
+#~ msgstr "Loại HDMI HDR"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "Bảng điều khiển"
+
+#~ msgid "Panic to"
+#~ msgstr "Hoảng sợ"
+
+#, fuzzy
+#~ msgid "Service ID"
+#~ msgstr "Dịch vụ"
+
+#, fuzzy
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Thông tin dịch vụ"
+
+#, fuzzy
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Kích thước phông chữ thông tin dịch vụ"
+
+#, fuzzy
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Kích thước phông chữ thông tin dịch vụ"
+
+#, fuzzy
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Kích thước phông chữ thông tin dịch vụ"
+
+#~ msgid "Shellscript"
+#~ msgstr "Vỏ sò"
+
+#, fuzzy
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Tỷ lệ biểu tượng"
+
+#, fuzzy
+#~ msgid "System & Modulation"
+#~ msgstr "Điều chế"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#, fuzzy
+#~ msgid "Tuner live values"
+#~ msgstr "Trạng thái bộ chỉnh"
+
+#, fuzzy
+#~ msgid "Tuner setting values"
+#~ msgstr "Cài đặt bộ chỉnh"
+
+#~ msgid "Zap to"
+#~ msgstr "Chuyển sang"
+
+#, fuzzy
+#~ msgid "active"
+#~ msgstr "Không hoạt động"
 
 #, fuzzy
 #~ msgid "1 hour"

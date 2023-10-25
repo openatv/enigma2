@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2023-09-28 23:02+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -246,10 +246,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1200,14 +1196,6 @@ msgid "%s Information Actions"
 msgstr "%s Tiedotustoiminnot"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/s"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s Asetukset"
 
@@ -1319,9 +1307,6 @@ msgstr "Pääsy %s lokitiedostoihin edellyttää internet yhteyttä."
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(HUOMIO: Uudelleenkäynnistys tulee %d kaatumisen jälkeen.)"
 
-msgid "(FTA Service)"
-msgstr "(FTA Palvelu)"
-
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -1425,7 +1410,7 @@ msgstr "12bit 4:2:0/4:2:2 ei PIP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr "16/9 palautus normaaliksi"
 
 msgid "16:10 Letterbox"
@@ -2610,9 +2595,6 @@ msgstr "Ääni PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Ääni PID%s, koodekki & kieli"
 
-msgid "Audio PID, codec & lang"
-msgstr "Ääni PID, koodekki & kieli"
-
 msgid "Audio Settings"
 msgstr "Ääni asetukset"
 
@@ -2976,9 +2958,6 @@ msgstr "Pesäpallo"
 msgid "Bashkir"
 msgstr "Bashkir"
 
-msgid "Basic PID info"
-msgstr "Perus PID tiedot"
-
 msgid "Basketball"
 msgstr "Koripallo"
 
@@ -3280,9 +3259,6 @@ msgstr "Näppäinmääritykset"
 
 msgid "Button error timeout"
 msgstr "Virheen aikakatkaisu"
-
-msgid "ButtonSetup"
-msgstr "Näppäinmääritykset"
 
 msgid "By disk UUID"
 msgstr "Levyllä UUID"
@@ -4047,6 +4023,9 @@ msgstr "Valitse vaihtoehto virheellisten EPG tietojen korjaamiseksi."
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Valitse järjestys, jossa kohteet näytetään ohje ikkunoissa."
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Valitse kohteen sijainti laajennetulle \"/usr\" hakemistolle."
 
@@ -4169,9 +4148,6 @@ msgstr[1] "Tyhjennä varoitukset"
 msgid "Click the button on your remote you want to change."
 msgstr "Määrittää näppäimelle haluamasi toiminnon."
 
-msgid "Client"
-msgstr "Asiakas"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Asiakas tiedot ( Oscam-Version: %s )"
@@ -4247,9 +4223,6 @@ msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Cocos (Keeling) Saari"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "Code R. LP-HP & Guard Int."
 
 msgid "Code rate HP"
 msgstr "Koodinopeus HP"
@@ -4814,8 +4787,8 @@ msgstr "Yhteyden tiedot"
 msgid "Console"
 msgstr "Konsoli"
 
-msgid "Constellation & FFT mode"
-msgstr "Tähdistö ja FFT tila"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Ota yhteyttä moottorin valmistajaan saadaksesi tekniset tiedot, tai jätä oletus asetukset."
@@ -6567,8 +6540,8 @@ msgstr "O"
 msgid "E "
 msgstr "O "
 
-msgid "ECM Info"
-msgstr "ECM tiedot"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "ECM tietoja"
@@ -6581,6 +6554,13 @@ msgstr "ECM keskim"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM data lisätään streamiin. Tämä mahdollistaa lähetyksen purkamisen etävastaanottimessa."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "EMC viim"
@@ -7734,9 +7714,6 @@ msgstr "Laajennettu"
 msgid "Extended Networksetup Plugin..."
 msgstr "Laajennetut Verkkoasetukset."
 
-msgid "Extended PID info"
-msgstr "Laajat PID tiedot"
-
 msgid "Extended Setup..."
 msgstr "Laajat Asetukset."
 
@@ -8286,6 +8263,9 @@ msgstr "Alusta kiintolevy"
 msgid "Format your hard drive"
 msgstr "Alusta kiintolevy"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "Välitä äänenvoimakkuusnäppäimet"
 
@@ -8313,6 +8293,9 @@ msgstr "Vapaa muisti:"
 msgid "Free swap"
 msgstr "Vapaa swappi"
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "Vapaana:"
 
@@ -8330,12 +8313,6 @@ msgstr "Ranskan eteläiset alueet"
 
 msgid "Frequency"
 msgstr "Taajuus"
-
-msgid "Frequency & Channel"
-msgstr "Taajuus & kanava"
-
-msgid "Frequency & Polarization"
-msgstr "Taajuus & polarisaatio"
 
 msgid "Frequency Norm:"
 msgstr "Taajuus:"
@@ -9052,9 +9029,6 @@ msgstr "Isäntänimi: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Pikanäppäin"
-
 msgid "Hotkey Settings"
 msgstr "Pikanäppäimet"
 
@@ -9755,12 +9729,6 @@ msgstr "Epäkelpo transponderin tieto"
 
 msgid "Inversion"
 msgstr "Inversio"
-
-msgid "Inversion & Bandwidth"
-msgstr "Inversio & kaistanleveys"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "Inversio, Pilot & Roll-off"
 
 msgid "Invert"
 msgstr "Käänteinen"
@@ -10522,6 +10490,9 @@ msgstr "MB"
 
 msgid "MENU"
 msgstr "VALIKKO"
+
+msgid "MHz"
+msgstr ""
 
 msgid "MKUBIFS"
 msgstr "MKUBIFS"
@@ -11402,8 +11373,8 @@ msgstr "NFS toiminnot"
 msgid "NFS Settings"
 msgstr "NFS asetukset"
 
-msgid "NIM & Type"
-msgstr "NIM & Tyyppi"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr "HUOMAUTUS"
@@ -11583,9 +11554,6 @@ msgstr "Verkkonimi (SSID)"
 msgid "Network scan"
 msgstr "Verkkohaku"
 
-msgid "Network storage on"
-msgstr "Verkkotallennus päällä"
-
 msgid "Network test"
 msgstr "Lähiverkon testi"
 
@@ -11676,12 +11644,6 @@ msgstr "Seuraava"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Seuraava"
-
-msgid "Next Log"
-msgstr "Seuraava loki"
-
-msgid "Next Picture"
-msgstr "Seuraava kuva"
 
 msgid "Next bouquet"
 msgstr "Seuraavalle suosikkilistalle"
@@ -11799,9 +11761,6 @@ msgstr "Kaikki virittimet ovat jo käytössä!"
 
 msgid "No hard disks detected."
 msgstr "Kiintolevyjä ei havaittu."
-
-msgid "No log files found so debug logs are unavailable!"
-msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käytettävissä!"
 
 msgid "No matching place names found"
 msgstr "Ei vastaavuutta löytynyt nimistä"
@@ -12140,9 +12099,6 @@ msgstr "OK näppäimen toiminto"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, opasta minua päivityksessä"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "Kuvaruutu"
 
@@ -12404,6 +12360,9 @@ msgstr "Suuntautuminen"
 msgid "Original"
 msgstr "Alkuperäinen"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr "Oriya"
 
@@ -12539,9 +12498,6 @@ msgstr "PLS Tila"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr "Tieto Paneeli"
-
 msgid "PRIMETIME"
 msgstr "Paras katseluaika"
 
@@ -12615,9 +12571,6 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Paniikki kanava"
-
-msgid "Panic to"
-msgstr "Paniikkinäppäimestä"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Punjabi"
@@ -13492,12 +13445,6 @@ msgstr "Esikatsele valikkoa"
 
 msgid "Previous"
 msgstr "Edellinen"
-
-msgid "Previous Log"
-msgstr "Edellinen loki"
-
-msgid "Previous Picture"
-msgstr "Edellinen kuva"
 
 msgid "Previous bouquet"
 msgstr "Edellinen suosikkilista"
@@ -15751,6 +15698,9 @@ msgstr "Valitse satelliitit"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Valitse hakupalkin aktivointi: kursori vasen/oikea (pitkä) tai << >> (pitkä)."
 
+msgid "Select service information to view:"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr "Valitse lisättävä kanava..."
 
@@ -16254,8 +16204,14 @@ msgstr "Kanava '%s' poistettu."
 msgid "Service '%s' is already defined."
 msgstr "Kanava '%s' on jo määritelty."
 
-msgid "Service ID"
-msgstr "Kanavan ID"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "Kanavan nimi"
@@ -16278,6 +16234,13 @@ msgstr "Kanavan otsikkotila"
 msgid "Service Zap Actions"
 msgstr "Palvelun Zap Toiminnot"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr "Kanavaa ei voi lisätä suosikkeihin."
 
@@ -16292,24 +16255,6 @@ msgstr "Kanava on lisätty valitulle suosikkilistalle."
 
 msgid "Service info"
 msgstr "Kanavan tiedot"
-
-msgid "Service info - ECM Info"
-msgstr "Kanava tiedot - ECM tiedot"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "Kanavatiedot - Perustiedot"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "Kanavan tiedot ja Laajennettu PID tiedot"
-
-msgid "Service info - service & PIDs"
-msgstr "Kanava tiedot ja PIDs"
-
-msgid "Service info - tuner live values"
-msgstr "Palvelun tiedot - virittimen tilatiedot"
-
-msgid "Service info - tuner setting values"
-msgstr "Palvelun tiedot - virittimen asetusarvot"
 
 msgid "Service info font size"
 msgstr "Ohjelmatiedon tekstikoko"
@@ -16796,9 +16741,6 @@ msgstr "Jaot"
 msgid "Sharpness"
 msgstr "Terävyys"
 
-msgid "Shellscript"
-msgstr "Shellscripti"
-
 msgid "Shift"
 msgstr "Vaihto"
 
@@ -17281,6 +17223,9 @@ msgstr "Näytä seuraava sivu"
 msgid "Show next picture"
 msgstr "Näytä seuraava kanava"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr "Näytä seuraava järjestelmätietonäyttö"
 
@@ -17326,6 +17271,9 @@ msgstr "Näytä edellinen sivu"
 msgid "Show previous picture"
 msgstr "Vaihda edelliselle kanavalle"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr "Näytä aikaisempi järjestelmätieto näyttö"
 
@@ -17352,6 +17300,9 @@ msgstr "Näytä komentosarjan viestit"
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
 msgstr "Näytä komentosarjaviestit, jos taustakomentosarja päättyy. Jos komentosarjalla on muita ne näytetään kanssa."
+
+msgid "Show selection for service information screen"
+msgstr ""
 
 msgid "Show selection for system information screen"
 msgstr "Näytä järjestelmätietojen valinta näyttö"
@@ -18698,9 +18649,6 @@ msgstr "Sveitsi"
 msgid "Symbol rate"
 msgstr "Modulaationopeus"
 
-msgid "Symbol rate & FEC"
-msgstr "Symbolinopeus & FEC"
-
 msgid "Symbolic link"
 msgstr "Symbolinen linkki"
 
@@ -18724,9 +18672,6 @@ msgstr "Syrian Arab Republic"
 
 msgid "System"
 msgstr "Järjestelmä"
-
-msgid "System & Modulation"
-msgstr "Järjestelmä & modulaatio"
 
 msgid "System Info"
 msgstr "Järjestelmätiedot"
@@ -18786,9 +18731,6 @@ msgstr ""
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS-tiedosto on liian suuri ISO9660 1-tasolle!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr "VIRITIN:"
@@ -20198,6 +20140,16 @@ msgstr "Lähetin"
 msgid "Transponder Time"
 msgstr "Lähettimen aika"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr "Syötteen tyyppi"
 
@@ -20291,6 +20243,9 @@ msgstr "Virittimen asetukset"
 msgid "Tuner Setup"
 msgstr "Viritin asetukset"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr "Viritin tiedot"
 
@@ -20300,12 +20255,6 @@ msgstr "Viritin tiedot %s %s"
 
 msgid "Tuner is not supported"
 msgstr "Viritin ei ole tuettu"
-
-msgid "Tuner live values"
-msgstr "Virittimen tilatiedot"
-
-msgid "Tuner setting values"
-msgstr "Virittimen asetusarvot"
 
 msgid "Tuner slot"
 msgstr "Virittimen paikka"
@@ -21196,6 +21145,9 @@ msgstr "Äärimmäisen lyhyet tiedostonimet - Varoitus"
 msgid "Video"
 msgstr "Kuva"
 
+msgid "Video Codec, Size & Format"
+msgstr "Koodekki, koko & kuvasuhde"
+
 msgid "Video PID"
 msgstr "Video PID"
 
@@ -21278,9 +21230,6 @@ msgstr "Kuvan optimointi esikatselu"
 
 msgid "VideoFinetune"
 msgstr "Video Hienosäätö"
-
-msgid "Video Codec, Size & Format"
-msgstr "Koodekki, koko & kuvasuhde"
 
 msgid "Videosetup"
 msgstr "Video asetukset"
@@ -22384,9 +22333,6 @@ msgstr "Kanavanvaihdon toiminta"
 msgid "Zap next"
 msgstr "Vaihda seuraavalle kanavalle"
 
-msgid "Zap to"
-msgstr "Vaihda kanavalle"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Vaihda kanavalle (määritettävissä asetuksissa)"
 
@@ -22452,9 +22398,6 @@ msgstr "käyttöliittymä kanavien/palvelutarjoajien/CAId:en määrittämiseen C
 
 msgid "activatePiP"
 msgstr "aktivoi PiP"
-
-msgid "active"
-msgstr "aktivoi"
 
 msgid "address:"
 msgstr "osoite:"
@@ -23564,6 +23507,135 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/s"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(FTA Palvelu)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "Ääni PID, koodekki & kieli"
+
+#~ msgid "Basic PID info"
+#~ msgstr "Perus PID tiedot"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Näppäinmääritykset"
+
+#~ msgid "Client"
+#~ msgstr "Asiakas"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "Code R. LP-HP & Guard Int."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Tähdistö ja FFT tila"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM tiedot"
+
+#~ msgid "Extended PID info"
+#~ msgstr "Laajat PID tiedot"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "Taajuus & kanava"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Taajuus & polarisaatio"
+
+#~ msgid "Hotkey"
+#~ msgstr "Pikanäppäin"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Inversio & kaistanleveys"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "Inversio, Pilot & Roll-off"
+
+#~ msgid "NIM & Type"
+#~ msgstr "NIM & Tyyppi"
+
+#~ msgid "Network storage on"
+#~ msgstr "Verkkotallennus päällä"
+
+#~ msgid "Next Log"
+#~ msgstr "Seuraava loki"
+
+#~ msgid "Next Picture"
+#~ msgstr "Seuraava kuva"
+
+#~ msgid "No log files found so debug logs are unavailable!"
+#~ msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käytettävissä!"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "Tieto Paneeli"
+
+#~ msgid "Panic to"
+#~ msgstr "Paniikkinäppäimestä"
+
+#~ msgid "Previous Log"
+#~ msgstr "Edellinen loki"
+
+#~ msgid "Previous Picture"
+#~ msgstr "Edellinen kuva"
+
+#~ msgid "Service ID"
+#~ msgstr "Kanavan ID"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Kanava tiedot - ECM tiedot"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "Kanavatiedot - Perustiedot"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "Kanavan tiedot ja Laajennettu PID tiedot"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Kanava tiedot ja PIDs"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Palvelun tiedot - virittimen tilatiedot"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Palvelun tiedot - virittimen asetusarvot"
+
+#~ msgid "Shellscript"
+#~ msgstr "Shellscripti"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Symbolinopeus & FEC"
+
+#~ msgid "System & Modulation"
+#~ msgstr "Järjestelmä & modulaatio"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#~ msgid "Tuner live values"
+#~ msgstr "Virittimen tilatiedot"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "Virittimen asetusarvot"
+
+#~ msgid "Zap to"
+#~ msgstr "Vaihda kanavalle"
+
+#~ msgid "active"
+#~ msgstr "aktivoi"
 
 #~ msgid "Download the selected list of plugins"
 #~ msgstr "Lataa valittu lisäosa plugin listalta"

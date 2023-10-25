@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -251,10 +251,6 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
-msgstr ""
-
-#, python-format
-msgid "%.3f MHz"
 msgstr ""
 
 #, python-format
@@ -1337,14 +1333,6 @@ msgstr ""
 msgid "%s Information Actions"
 msgstr ""
 
-#, python-format
-msgid "%s KSymb/s"
-msgstr ""
-
-#, python-format
-msgid "%s MHz"
-msgstr ""
-
 #
 #, fuzzy, python-format
 msgid "%s Setup"
@@ -1467,11 +1455,6 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr ""
 
-#
-#, fuzzy
-msgid "(FTA Service)"
-msgstr "Kanali"
-
 msgid "(PiP)"
 msgstr ""
 
@@ -1591,7 +1574,7 @@ msgstr ""
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 #
@@ -2910,9 +2893,6 @@ msgstr "Zvučni PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr ""
 
-msgid "Audio PID, codec & lang"
-msgstr ""
-
 msgid "Audio Settings"
 msgstr ""
 
@@ -3325,9 +3305,6 @@ msgstr ""
 msgid "Bashkir"
 msgstr ""
 
-msgid "Basic PID info"
-msgstr ""
-
 msgid "Basketball"
 msgstr ""
 
@@ -3655,9 +3632,6 @@ msgid "Button Setup"
 msgstr ""
 
 msgid "Button error timeout"
-msgstr ""
-
-msgid "ButtonSetup"
 msgstr ""
 
 msgid "By disk UUID"
@@ -4471,6 +4445,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4605,9 +4582,6 @@ msgstr[2] ""
 msgid "Click the button on your remote you want to change."
 msgstr ""
 
-msgid "Client"
-msgstr ""
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
@@ -4690,9 +4664,6 @@ msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
-msgstr ""
-
-msgid "Code R. LP-HP & Guard Int."
 msgstr ""
 
 msgid "Code rate HP"
@@ -5292,10 +5263,8 @@ msgstr ""
 msgid "Console"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Constellation & FFT mode"
-msgstr "Konstelacija"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr ""
@@ -7187,10 +7156,8 @@ msgstr "E"
 msgid "E "
 msgstr "E"
 
-#
-#, fuzzy
-msgid "ECM Info"
-msgstr "Info"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr ""
@@ -7202,6 +7169,13 @@ msgid "ECM avg"
 msgstr ""
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
+msgstr ""
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
 msgstr ""
 
 msgid "ECM last"
@@ -8430,9 +8404,6 @@ msgstr ""
 msgid "Extended Networksetup Plugin..."
 msgstr "Prošireni dodatak za postavke mreže..."
 
-msgid "Extended PID info"
-msgstr ""
-
 #
 msgid "Extended Setup..."
 msgstr "Proširene postavke..."
@@ -9029,6 +9000,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr ""
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr ""
 
@@ -9059,6 +9033,9 @@ msgstr ""
 msgid "Free swap"
 msgstr ""
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr ""
 
@@ -9080,16 +9057,6 @@ msgstr ""
 #
 msgid "Frequency"
 msgstr "Frekvencija"
-
-#
-#, fuzzy
-msgid "Frequency & Channel"
-msgstr "Band frekvencije"
-
-#
-#, fuzzy
-msgid "Frequency & Polarization"
-msgstr "Polarizacija"
 
 #
 #, fuzzy
@@ -9866,9 +9833,6 @@ msgid "Hostname: "
 msgstr ""
 
 msgid "Hotbird 13.0e"
-msgstr ""
-
-msgid "Hotkey"
 msgstr ""
 
 msgid "Hotkey Settings"
@@ -10650,14 +10614,6 @@ msgstr "Ručno uneseni transponder"
 #
 msgid "Inversion"
 msgstr "Inverzija"
-
-#
-#, fuzzy
-msgid "Inversion & Bandwidth"
-msgstr "Propusnost"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr ""
 
 #
 msgid "Invert"
@@ -11511,6 +11467,9 @@ msgid "MB"
 msgstr ""
 
 msgid "MENU"
+msgstr ""
+
+msgid "MHz"
 msgstr ""
 
 msgid "MKUBIFS"
@@ -12506,7 +12465,7 @@ msgstr ""
 msgid "NFS Settings"
 msgstr ""
 
-msgid "NIM & Type"
+msgid "NIM"
 msgstr ""
 
 msgid "NOTE"
@@ -12702,9 +12661,6 @@ msgstr "Test mreže:"
 msgid "Network scan"
 msgstr "Pretraga mreže"
 
-msgid "Network storage on"
-msgstr ""
-
 #
 msgid "Network test"
 msgstr "Test mreže"
@@ -12803,12 +12759,6 @@ msgstr ""
 
 msgctxt "now/next: 'next' event label"
 msgid "Next"
-msgstr ""
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
 msgstr ""
 
 #
@@ -12949,9 +12899,6 @@ msgid "No free tuner!"
 msgstr "Nema slobodnog tjunera!"
 
 msgid "No hard disks detected."
-msgstr ""
-
-msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
 #
@@ -13326,9 +13273,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, vodi me kroz postupak nadogradnje"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr ""
 
@@ -13610,6 +13554,9 @@ msgstr ""
 msgid "Original"
 msgstr ""
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr ""
 
@@ -13756,9 +13703,6 @@ msgstr ""
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr ""
-
 msgid "PRIMETIME"
 msgstr ""
 
@@ -13836,9 +13780,6 @@ msgid "Panama"
 msgstr ""
 
 msgid "Panic channel"
-msgstr ""
-
-msgid "Panic to"
 msgstr ""
 
 msgid "Panjabi / Punjabi"
@@ -14834,12 +14775,6 @@ msgid "Preview menu"
 msgstr "Pregled menia"
 
 msgid "Previous"
-msgstr ""
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
 msgstr ""
 
 #
@@ -17320,6 +17255,9 @@ msgstr ""
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 
+msgid "Select service information to view:"
+msgstr ""
+
 #
 msgid "Select service to add..."
 msgstr "Izaberi kanal za dodavanje..."
@@ -17828,10 +17766,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Service ID"
-msgstr "Kanal"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr ""
@@ -17858,6 +17800,13 @@ msgstr ""
 msgid "Service Zap Actions"
 msgstr "Prikaži kanale koji počinju sa"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Service cant been added to the favorites."
@@ -17876,25 +17825,6 @@ msgid "Service has been added to the selected bouquet."
 msgstr "Kanal je dodat u odabrani buket."
 
 msgid "Service info"
-msgstr ""
-
-msgid "Service info - ECM Info"
-msgstr ""
-
-msgid "Service info - service & Basic PID Info"
-msgstr ""
-
-msgid "Service info - service & Extended PID Info"
-msgstr ""
-
-#, fuzzy
-msgid "Service info - service & PIDs"
-msgstr "Kanal referenca"
-
-msgid "Service info - tuner live values"
-msgstr ""
-
-msgid "Service info - tuner setting values"
 msgstr ""
 
 msgid "Service info font size"
@@ -18402,9 +18332,6 @@ msgstr ""
 #
 msgid "Sharpness"
 msgstr "Oštrina"
-
-msgid "Shellscript"
-msgstr ""
 
 msgid "Shift"
 msgstr ""
@@ -18940,6 +18867,9 @@ msgstr ""
 msgid "Show next picture"
 msgstr ""
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -18994,6 +18924,9 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "prebaci na prethodni podkanal "
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -19021,6 +18954,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -20532,10 +20468,6 @@ msgstr ""
 msgid "Symbol rate"
 msgstr "Simbol rata"
 
-#, fuzzy
-msgid "Symbol rate & FEC"
-msgstr "Simbol rata"
-
 msgid "Symbolic link"
 msgstr ""
 
@@ -20560,11 +20492,6 @@ msgstr ""
 #
 msgid "System"
 msgstr "Sistem "
-
-#
-#, fuzzy
-msgid "System & Modulation"
-msgstr "Modulacija"
 
 msgid "System Info"
 msgstr ""
@@ -20627,9 +20554,6 @@ msgstr "PREVODILAC_INFO"
 #
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS datoteka je prevelika za ISO9660 nivo 1!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr ""
@@ -22060,6 +21984,16 @@ msgstr "Transponder"
 msgid "Transponder Time"
 msgstr "Transponder"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Transport Stream Type"
@@ -22170,6 +22104,9 @@ msgstr ""
 msgid "Tuner Setup"
 msgstr ""
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr ""
 
@@ -22179,16 +22116,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Tuner live values"
-msgstr "Status tjunera"
-
-#
-#, fuzzy
-msgid "Tuner setting values"
-msgstr "Status tjunera"
 
 msgid "Tuner slot"
 msgstr ""
@@ -23116,6 +23043,9 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
+msgid "Video Codec, Size & Format"
+msgstr ""
+
 msgid "Video PID"
 msgstr "Video PID"
 
@@ -23201,9 +23131,6 @@ msgstr ""
 #, fuzzy
 msgid "VideoFinetune"
 msgstr "Fino podešavanje"
-
-msgid "Video Codec, Size & Format"
-msgstr ""
 
 #
 #, fuzzy
@@ -24340,9 +24267,6 @@ msgstr ""
 msgid "Zap next"
 msgstr ""
 
-msgid "Zap to"
-msgstr ""
-
 msgid "Zap to channel (setup in menu)"
 msgstr ""
 
@@ -24412,9 +24336,6 @@ msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "Gui da dodeli kanale/provajdere/kaide modulima opšteg interfejsa"
 
 msgid "activatePiP"
-msgstr ""
-
-msgid "active"
 msgstr ""
 
 msgid "address:"
@@ -25649,6 +25570,70 @@ msgstr "Da ( zadrži fidove)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "(FTA Service)"
+#~ msgstr "Kanali"
+
+#
+#, fuzzy
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Konstelacija"
+
+#
+#, fuzzy
+#~ msgid "ECM Info"
+#~ msgstr "Info"
+
+#
+#, fuzzy
+#~ msgid "Frequency & Channel"
+#~ msgstr "Band frekvencije"
+
+#
+#, fuzzy
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Polarizacija"
+
+#
+#, fuzzy
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Propusnost"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#
+#, fuzzy
+#~ msgid "Service ID"
+#~ msgstr "Kanal"
+
+#, fuzzy
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Kanal referenca"
+
+#, fuzzy
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Simbol rata"
+
+#
+#, fuzzy
+#~ msgid "System & Modulation"
+#~ msgstr "Modulacija"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#
+#, fuzzy
+#~ msgid "Tuner live values"
+#~ msgstr "Status tjunera"
+
+#
+#, fuzzy
+#~ msgid "Tuner setting values"
+#~ msgstr "Status tjunera"
 
 #
 #, fuzzy

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
-"PO-Revision-Date: 2023-10-15 10:23+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
+"PO-Revision-Date: 2023-10-22 10:28+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.1\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -250,10 +250,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1204,14 +1200,6 @@ msgid "%s Information Actions"
 msgstr "%s Informatie Acties"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/s"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s Instellingen"
 
@@ -1323,9 +1311,6 @@ msgstr "Voor toegang tot de '%s' commit logs is een internetverbinding noodzakel
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Opgelet: Na %d crashes vind een herstart plaats.)"
 
-msgid "(FTA Service)"
-msgstr "(FTA Zender)"
-
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -1429,7 +1414,7 @@ msgstr "12bit 4:2:0/4:2:2 geen PiP"
 msgid "13 V"
 msgstr "13V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr "16:9 resetten naar normaal"
 
 msgid "16:10 Letterbox"
@@ -2609,9 +2594,6 @@ msgstr "Audio PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Audio PID%s, codec & taal"
 
-msgid "Audio PID, codec & lang"
-msgstr "Audio PID, codec & taal"
-
 msgid "Audio Settings"
 msgstr "Audio instellingen"
 
@@ -2975,9 +2957,6 @@ msgstr "Baseball"
 msgid "Bashkir"
 msgstr "Bashkir"
 
-msgid "Basic PID info"
-msgstr "PID info"
-
 msgid "Basketball"
 msgstr "Basketbal"
 
@@ -3279,9 +3258,6 @@ msgstr "Afstandsbediening knoppen configuratie"
 
 msgid "Button error timeout"
 msgstr "Time-out voor knopfout"
-
-msgid "ButtonSetup"
-msgstr "Knop instellingen"
 
 msgid "By disk UUID"
 msgstr "Op schijf UUID"
@@ -4048,6 +4024,9 @@ msgstr "Kies de optie om ongeldige EPG-gegevens te corrigeren."
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Kies de stijl en volgorde van de items in de help schermen."
 
+msgid "Choose the target device for the slots."
+msgstr "Kies een apparaat voor de Slots."
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Kies de opslaglocatie voor de uitgebreide map '/usr'."
 
@@ -4172,9 +4151,6 @@ msgstr[1] "Waarschuwingen wissen"
 msgid "Click the button on your remote you want to change."
 msgstr "Druk op de knop van de afstandsbediening waarvan u de functie wil wijzigen."
 
-msgid "Client"
-msgstr "Cliënt"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Client Info ( Oscam-Versie: %s )"
@@ -4250,9 +4226,6 @@ msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokos Eilanden"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "Code R. LP-HP & Guard Int."
 
 msgid "Code rate HP"
 msgstr "Code rate HP"
@@ -4917,8 +4890,8 @@ msgstr "Verbindingsinformatie"
 msgid "Console"
 msgstr "Console"
 
-msgid "Constellation & FFT mode"
-msgstr "Samenstelling & FFT mode"
+msgid "Constellation"
+msgstr "Situatie"
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Raadpleeg de SCR apparaat specificaties voor de gewenste informatie."
@@ -6680,8 +6653,8 @@ msgstr "O"
 msgid "E "
 msgstr "E "
 
-msgid "ECM Info"
-msgstr "ECM Info"
+msgid "ECM"
+msgstr "ECM"
 
 msgid "ECM Statistics"
 msgstr "ECM statistieken"
@@ -6694,6 +6667,13 @@ msgstr "ECM gemiddelde"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM data zal worden opgenomen in de stream. Dit geeft de client-box de mogelijkheid die te decoderen."
+
+msgid "ECM information"
+msgstr "ECM-informatie"
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr "ECM-informatie voor '%s'"
 
 msgid "ECM last"
 msgstr "ECM laatste"
@@ -7855,9 +7835,6 @@ msgstr "Uitgebreid"
 msgid "Extended Networksetup Plugin..."
 msgstr "Uitgebreide netwerkinstellingen..."
 
-msgid "Extended PID info"
-msgstr "Uitvoerige PID info"
-
 msgid "Extended Setup..."
 msgstr "Uitgebreide instellingen..."
 
@@ -8407,6 +8384,9 @@ msgstr "Opslagapparaat formatteren"
 msgid "Format your hard drive"
 msgstr "Uw harde schijf formatteren"
 
+msgid "Forward Error Correction (FEC)"
+msgstr "Forward Error Correction (FEC)"
+
 msgid "Forward volume keys"
 msgstr "Geef volume opdrachten door"
 
@@ -8434,6 +8414,9 @@ msgstr "Vrij geheugen:"
 msgid "Free swap"
 msgstr "Vrije ruimte swap"
 
+msgid "Free to Air (FTA) Service"
+msgstr "FTA zenders"
+
 msgid "Free:"
 msgstr "Vrij:"
 
@@ -8451,12 +8434,6 @@ msgstr "Zuidelijke en Antarctische Franse Gebieden"
 
 msgid "Frequency"
 msgstr "Frequentie"
-
-msgid "Frequency & Channel"
-msgstr "Frequentie & Kanaal"
-
-msgid "Frequency & Polarization"
-msgstr "Frequentie & Polarisatie"
 
 msgid "Frequency Norm:"
 msgstr "Frequentie Norm:"
@@ -9176,9 +9153,6 @@ msgstr "Apparaat naam: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Hotkey"
-
 msgid "Hotkey Settings"
 msgstr "Hotkey"
 
@@ -9878,12 +9852,6 @@ msgstr "Ongeldige transponderdata"
 
 msgid "Inversion"
 msgstr "Inversie"
-
-msgid "Inversion & Bandwidth"
-msgstr "Inversie & Bandbreedte"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "Inversie, Pilot & Roll-off"
 
 msgid "Invert"
 msgstr "Omgekeerd"
@@ -10645,6 +10613,9 @@ msgstr "MB"
 
 msgid "MENU"
 msgstr "MENU"
+
+msgid "MHz"
+msgstr "MHz"
 
 msgid "MKUBIFS"
 msgstr "MKUBIFS"
@@ -11523,8 +11494,8 @@ msgstr "NFS Acties"
 msgid "NFS Settings"
 msgstr "NFS-Bestandsserver"
 
-msgid "NIM & Type"
-msgstr "NIM & Type"
+msgid "NIM"
+msgstr "NIM"
 
 msgid "NOTE"
 msgstr "OPMERKING"
@@ -11704,9 +11675,6 @@ msgstr "Netwerknaam (SSID)"
 msgid "Network scan"
 msgstr "Netwerk zoeken"
 
-msgid "Network storage on"
-msgstr "Netwerk opslag op"
-
 msgid "Network test"
 msgstr "Netwerktest"
 
@@ -11797,12 +11765,6 @@ msgstr "Straks"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Straks"
-
-msgid "Next Log"
-msgstr "Volgende Log"
-
-msgid "Next Picture"
-msgstr "Volgende foto"
 
 msgid "Next bouquet"
 msgstr "Volgende favorietenlijst"
@@ -11918,9 +11880,6 @@ msgstr "Geen vrije tuner!"
 
 msgid "No hard disks detected."
 msgstr "Geen harde schijven gevonden"
-
-msgid "No log files found so debug logs are unavailable!"
-msgstr "Geen log-bestanden gevonden, daarom zijn er geen debug-logs beschikbaar!"
 
 msgid "No matching place names found"
 msgstr "Geen overeenkomende locaties gevonden"
@@ -12258,9 +12217,6 @@ msgstr "OK-knop functie"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, mij tijdens de software update begeleiden"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12522,6 +12478,9 @@ msgstr "Oriëntatie"
 msgid "Original"
 msgstr "Origineel"
 
+msgid "Original Network ID (ONID)"
+msgstr "Oorspronkelijke Netwerk-ID (ONID)"
+
 msgid "Oriya"
 msgstr "Odia"
 
@@ -12657,9 +12616,6 @@ msgstr "PLS Modus"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr "PPanel"
-
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
 
@@ -12733,9 +12689,6 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Paniek-zender"
-
-msgid "Panic to"
-msgstr "Paniek naar"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Punjabi"
@@ -13613,12 +13566,6 @@ msgstr "Voorbeeld menu"
 
 msgid "Previous"
 msgstr "Vorige"
-
-msgid "Previous Log"
-msgstr "Vorig Log-bestand"
-
-msgid "Previous Picture"
-msgstr "Vorige foto"
 
 msgid "Previous bouquet"
 msgstr "Vorige favorietenlijst"
@@ -15870,6 +15817,9 @@ msgstr "Selecteer de satellieten"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Selecteer of de 'seekbar' wordt geactiveerd met pijl L/R (lang) of met << - >> (lang)."
 
+msgid "Select service information to view:"
+msgstr "Welke zender-informatie wilt u zien:"
+
 msgid "Select service to add..."
 msgstr "Selecteer zender om toe te voegen..."
 
@@ -16381,8 +16331,14 @@ msgstr "Zender '%s' verwijderd."
 msgid "Service '%s' is already defined."
 msgstr "Zender '%s' is al ingesteld."
 
-msgid "Service ID"
-msgstr "Zender ID"
+msgid "Service ID (SID)"
+msgstr "Service ID (SID)"
+
+msgid "Service Information"
+msgstr "Zenderinformatie"
+
+msgid "Service Information Actions"
+msgstr "Zenderinformatie Acties"
 
 msgid "Service Name"
 msgstr "Zendernaam"
@@ -16405,6 +16361,13 @@ msgstr "Zenders titel mode"
 msgid "Service Zap Actions"
 msgstr "Zender Zap Acties"
 
+msgid "Service and PID information"
+msgstr "Zender en PID-informatie"
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr "Zender en PID-informatie voor '%s'"
+
 msgid "Service cant been added to the favorites."
 msgstr "Zender kan niet worden toegevoegd aan favorieten."
 
@@ -16419,24 +16382,6 @@ msgstr "De zender is toegevoegd aan de geselecteerd favorietenlijst."
 
 msgid "Service info"
 msgstr "Zender info"
-
-msgid "Service info - ECM Info"
-msgstr "Zender info - ECM Info"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "Zender info - zender & Basis PID Info"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "Zender info - zender & Uitvoerige PID Info"
-
-msgid "Service info - service & PIDs"
-msgstr "Zender info - zender & PID's"
-
-msgid "Service info - tuner live values"
-msgstr "Zender info - live tuner waarden"
-
-msgid "Service info - tuner setting values"
-msgstr "Zender info - tuner instellingen"
 
 msgid "Service info font size"
 msgstr "Programma omschrijving lettergrootte"
@@ -16933,9 +16878,6 @@ msgstr "Shares"
 msgid "Sharpness"
 msgstr "Scherpte"
 
-msgid "Shellscript"
-msgstr "Shellscript"
-
 msgid "Shift"
 msgstr "Shift"
 
@@ -17422,6 +17364,9 @@ msgstr "Toon de volgende pagina"
 msgid "Show next picture"
 msgstr "Toon volgende afbeelding"
 
+msgid "Show next service information screen"
+msgstr "Het volgende zenderinformatie scherm laten zien"
+
 msgid "Show next system information screen"
 msgstr "Toon het volgende systeeminformatie scherm"
 
@@ -17467,6 +17412,9 @@ msgstr "Toon de vorige pagina"
 msgid "Show previous picture"
 msgstr "Toon vorige afbeelding"
 
+msgid "Show previous service information screen"
+msgstr "Het vorige zenderinformatie scherm laten zien"
+
 msgid "Show previous system information screen"
 msgstr "Toon het vorige systeeminformatie scherm"
 
@@ -17493,6 +17441,9 @@ msgstr "Scriptberichten weergeven"
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
 msgstr "Scriptberichten weergeven als een achtergrondscript eindigt. Als het script extra uitvoer heeft, wordt deze ook weergegeven."
+
+msgid "Show selection for service information screen"
+msgstr "Een selectie voor het zenderinformatie scherm laten zien"
 
 msgid "Show selection for system information screen"
 msgstr "Toon selectie voor het systeem informatie scherm"
@@ -18842,9 +18793,6 @@ msgstr "Zwitzerland"
 msgid "Symbol rate"
 msgstr "Symbolrate"
 
-msgid "Symbol rate & FEC"
-msgstr "Symbol rate & FEC"
-
 msgid "Symbolic link"
 msgstr "Symbolische link"
 
@@ -18868,9 +18816,6 @@ msgstr "Syrië"
 
 msgid "System"
 msgstr "Systeem"
-
-msgid "System & Modulation"
-msgstr "Systeem & Modulatie"
 
 msgid "System Info"
 msgstr "Uw ontvanger"
@@ -18930,9 +18875,6 @@ msgstr ""
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS bestand is te groot voor ISO9660 level1!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr "TUNER:"
@@ -20380,6 +20322,16 @@ msgstr "Transponder"
 msgid "Transponder Time"
 msgstr "de transponder tijd"
 
+msgid "Transponder information"
+msgstr "Transponder informatie"
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr "Transponder informatie voor '%s'"
+
+msgid "Transport Stream ID (TSID)"
+msgstr "Transport Stream ID (TSID)"
+
 msgid "Transport Stream Type"
 msgstr "Transponder stream type"
 
@@ -20473,6 +20425,9 @@ msgstr "Tuner instellingen"
 msgid "Tuner Setup"
 msgstr "Tuner"
 
+msgid "Tuner data is not available!"
+msgstr "Tuner gegevens zijn niet beschikbaar!"
+
 msgid "Tuner information"
 msgstr "Tuner informatie"
 
@@ -20482,12 +20437,6 @@ msgstr "Tuner informatie voor uw %s %s"
 
 msgid "Tuner is not supported"
 msgstr "Tuner wordt niet ondersteund"
-
-msgid "Tuner live values"
-msgstr "Live tuner waarden"
-
-msgid "Tuner setting values"
-msgstr "Tuner instellingen"
 
 msgid "Tuner slot"
 msgstr "Tunerslot"
@@ -21377,6 +21326,9 @@ msgstr "Zeer zeer korte bestandsnamen - Waarschuwing"
 msgid "Video"
 msgstr "Video"
 
+msgid "Video Codec, Size & Format"
+msgstr "Videoformaat"
+
 msgid "Video PID"
 msgstr "Video PID"
 
@@ -21459,9 +21411,6 @@ msgstr "Videoverbetering voorbeeld"
 
 msgid "VideoFinetune"
 msgstr "Video fijn afstelling"
-
-msgid "Video Codec, Size & Format"
-msgstr "Videoformaat"
 
 msgid "Videosetup"
 msgstr "Video instellingen"
@@ -22581,9 +22530,6 @@ msgstr "Zap-modus"
 msgid "Zap next"
 msgstr "Zap naar volgende"
 
-msgid "Zap to"
-msgstr "Zap naar"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Zap naar zender (setup in menu)"
 
@@ -22649,9 +22595,6 @@ msgstr "een GUI om zenders/providers/caids aan de CI modules toe te voegen"
 
 msgid "activatePiP"
 msgstr "activeer PiP"
-
-msgid "active"
-msgstr "actief"
 
 msgid "address:"
 msgstr "adres:"
@@ -23761,6 +23704,135 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/s"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(FTA Zender)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "Audio PID, codec & taal"
+
+#~ msgid "Basic PID info"
+#~ msgstr "PID info"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Knop instellingen"
+
+#~ msgid "Client"
+#~ msgstr "Cliënt"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "Code R. LP-HP & Guard Int."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Samenstelling & FFT mode"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM Info"
+
+#~ msgid "Extended PID info"
+#~ msgstr "Uitvoerige PID info"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "Frequentie & Kanaal"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Frequentie & Polarisatie"
+
+#~ msgid "Hotkey"
+#~ msgstr "Hotkey"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Inversie & Bandbreedte"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "Inversie, Pilot & Roll-off"
+
+#~ msgid "NIM & Type"
+#~ msgstr "NIM & Type"
+
+#~ msgid "Network storage on"
+#~ msgstr "Netwerk opslag op"
+
+#~ msgid "Next Log"
+#~ msgstr "Volgende Log"
+
+#~ msgid "Next Picture"
+#~ msgstr "Volgende foto"
+
+#~ msgid "No log files found so debug logs are unavailable!"
+#~ msgstr "Geen log-bestanden gevonden, daarom zijn er geen debug-logs beschikbaar!"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel"
+
+#~ msgid "Panic to"
+#~ msgstr "Paniek naar"
+
+#~ msgid "Previous Log"
+#~ msgstr "Vorig Log-bestand"
+
+#~ msgid "Previous Picture"
+#~ msgstr "Vorige foto"
+
+#~ msgid "Service ID"
+#~ msgstr "Zender ID"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Zender info - ECM Info"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "Zender info - zender & Basis PID Info"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "Zender info - zender & Uitvoerige PID Info"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Zender info - zender & PID's"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Zender info - live tuner waarden"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Zender info - tuner instellingen"
+
+#~ msgid "Shellscript"
+#~ msgstr "Shellscript"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Symbol rate & FEC"
+
+#~ msgid "System & Modulation"
+#~ msgstr "Systeem & Modulatie"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#~ msgid "Tuner live values"
+#~ msgstr "Live tuner waarden"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "Tuner instellingen"
+
+#~ msgid "Zap to"
+#~ msgstr "Zap naar"
+
+#~ msgid "active"
+#~ msgstr "actief"
 
 #~ msgid "Download the selected list of plugins"
 #~ msgstr "De geselecteerde Plug-ins downloaden"

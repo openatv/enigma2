@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
 "PO-Revision-Date: 2022-05-23 16:27+0000\n"
 "Last-Translator: Bader <fentanyl100@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -253,10 +253,6 @@ msgstr "%.0f ميجابايت"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f جيجابايت"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1352,14 +1348,6 @@ msgstr ""
 msgid "%s Information Actions"
 msgstr ""
 
-#, python-format
-msgid "%s KSymb/s"
-msgstr ""
-
-#, python-format
-msgid "%s MHz"
-msgstr ""
-
 #
 #, fuzzy, python-format
 msgid "%s Setup"
@@ -1477,11 +1465,6 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr ""
 
-#
-#, fuzzy
-msgid "(FTA Service)"
-msgstr "القنوات/الخدمات"
-
 msgid "(PiP)"
 msgstr " ( قناة داخل قناة)"
 
@@ -1592,7 +1575,7 @@ msgstr ""
 msgid "13 V"
 msgstr "13 فولت"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr ""
 
 #
@@ -2842,9 +2825,6 @@ msgstr "تعريف الصوت"
 msgid "Audio PID%s, Codec & Language"
 msgstr ""
 
-msgid "Audio PID, codec & lang"
-msgstr ""
-
 msgid "Audio Settings"
 msgstr ""
 
@@ -3230,9 +3210,6 @@ msgstr ""
 msgid "Bashkir"
 msgstr ""
 
-msgid "Basic PID info"
-msgstr ""
-
 msgid "Basketball"
 msgstr ""
 
@@ -3550,9 +3527,6 @@ msgid "Button Setup"
 msgstr ""
 
 msgid "Button error timeout"
-msgstr ""
-
-msgid "ButtonSetup"
 msgstr ""
 
 msgid "By disk UUID"
@@ -4350,6 +4324,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4479,9 +4456,6 @@ msgstr[5] ""
 msgid "Click the button on your remote you want to change."
 msgstr ""
 
-msgid "Client"
-msgstr ""
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
@@ -4560,9 +4534,6 @@ msgstr ""
 
 msgid "Cocos (Keeling) Islands"
 msgstr "جزر كوكوس (كيلينغ)"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr ""
 
 msgid "Code rate HP"
 msgstr "معدل ترميز الضغط العالي"
@@ -5135,9 +5106,8 @@ msgstr ""
 msgid "Console"
 msgstr ""
 
-#, fuzzy
-msgid "Constellation & FFT mode"
-msgstr "كوكبه"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr ""
@@ -6934,9 +6904,8 @@ msgstr "E"
 msgid "E "
 msgstr ""
 
-#
-msgid "ECM Info"
-msgstr "معلومات تشفير الإيموهات"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr ""
@@ -6948,6 +6917,13 @@ msgid "ECM avg"
 msgstr ""
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
+msgstr ""
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
 msgstr ""
 
 msgid "ECM last"
@@ -8124,9 +8100,6 @@ msgstr "تفاصيل الأقمار"
 msgid "Extended Networksetup Plugin..."
 msgstr "بلج إن إعدادات الشبكه المتقدمه"
 
-msgid "Extended PID info"
-msgstr ""
-
 msgid "Extended Setup..."
 msgstr "إعدادات متقدمه"
 
@@ -8697,6 +8670,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr ""
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "مفاتيح رفع مستوى الصوت"
 
@@ -8726,6 +8702,9 @@ msgstr ""
 msgid "Free swap"
 msgstr ""
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr ""
 
@@ -8746,13 +8725,6 @@ msgstr "المناطق الجنوبية لفرنسا"
 #
 msgid "Frequency"
 msgstr "التردد"
-
-msgid "Frequency & Channel"
-msgstr "التردد والقناة"
-
-#
-msgid "Frequency & Polarization"
-msgstr "التردد والاستقطاب"
 
 #
 #, fuzzy
@@ -9502,9 +9474,6 @@ msgstr ""
 msgid "Hotbird 13.0e"
 msgstr ""
 
-msgid "Hotkey"
-msgstr ""
-
 msgid "Hotkey Settings"
 msgstr ""
 
@@ -10241,12 +10210,6 @@ msgstr "بيانات مرسله غير صالحه"
 #
 msgid "Inversion"
 msgstr "عكـس"
-
-msgid "Inversion & Bandwidth"
-msgstr "عكس وعرض النطاق الترددي"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "عكس , تجريبي والدوران"
 
 #
 msgid "Invert"
@@ -11066,6 +11029,9 @@ msgid "MB"
 msgstr ""
 
 msgid "MENU"
+msgstr ""
+
+msgid "MHz"
 msgstr ""
 
 msgid "MKUBIFS"
@@ -11999,8 +11965,8 @@ msgstr ""
 msgid "NFS Settings"
 msgstr ""
 
-msgid "NIM & Type"
-msgstr "ذاكرة حفظ المواقع & النوع"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr ""
@@ -12188,9 +12154,6 @@ msgstr "أسم الشبكة (معرِّف ضبط الخدمة)"
 msgid "Network scan"
 msgstr "بحث عن الشبكة"
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr "أختبار الشبكة"
 
@@ -12286,12 +12249,6 @@ msgstr ""
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "التالي"
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
-msgstr ""
 
 #, fuzzy
 msgid "Next bouquet"
@@ -12424,9 +12381,6 @@ msgid "No free tuner!"
 msgstr "لا يوجد مؤالف متاح!"
 
 msgid "No hard disks detected."
-msgstr ""
-
-msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
 #
@@ -12778,9 +12732,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "موافق، أرشدنى أثناء عملية الترقيه"
 
-msgid "ONID"
-msgstr "معرف الشبكة الاصلي"
-
 msgid "OSD"
 msgstr ""
 
@@ -13057,6 +13008,9 @@ msgstr ""
 msgid "Original"
 msgstr "أصلي"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr ""
 
@@ -13199,9 +13153,6 @@ msgstr "وضع مربعات القياس"
 msgid "PMT PID"
 msgstr "المعلومات الخاصة بالبرامج ومعرف مزودين الخدمات"
 
-msgid "PPanel"
-msgstr ""
-
 msgid "PRIMETIME"
 msgstr ""
 
@@ -13276,9 +13227,6 @@ msgstr "بنما"
 
 msgid "Panic channel"
 msgstr ""
-
-msgid "Panic to"
-msgstr "الرجوع للخلف"
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -14198,12 +14146,6 @@ msgid "Preview menu"
 msgstr "معاينة القائمة"
 
 msgid "Previous"
-msgstr ""
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
 msgstr ""
 
 #
@@ -16563,6 +16505,9 @@ msgstr "اختيار الأقمار الصناعية"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 
+msgid "Select service information to view:"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr "أختار القناة لإضافتها..."
 
@@ -17055,9 +17000,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-#
-msgid "Service ID"
-msgstr "معرف القناة"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr ""
@@ -17083,6 +17033,13 @@ msgstr ""
 msgid "Service Zap Actions"
 msgstr "إظهر القنوات التى تبدأ بـ"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Service cant been added to the favorites."
@@ -17101,26 +17058,6 @@ msgid "Service has been added to the selected bouquet."
 msgstr "تم إضافة القناه الى الباقه المختاره."
 
 msgid "Service info"
-msgstr ""
-
-msgid "Service info - ECM Info"
-msgstr "معلومات القناة - معلومات تشفير الايموهات"
-
-msgid "Service info - service & Basic PID Info"
-msgstr ""
-
-msgid "Service info - service & Extended PID Info"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Service info - service & PIDs"
-msgstr "معلومات القناه"
-
-msgid "Service info - tuner live values"
-msgstr ""
-
-msgid "Service info - tuner setting values"
 msgstr ""
 
 msgid "Service info font size"
@@ -17618,9 +17555,6 @@ msgstr ""
 
 msgid "Sharpness"
 msgstr "الحده"
-
-msgid "Shellscript"
-msgstr ""
 
 msgid "Shift"
 msgstr ""
@@ -18131,6 +18065,9 @@ msgstr ""
 msgid "Show next picture"
 msgstr ""
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -18181,6 +18118,9 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "الانتقال الى الفرعيه السابقه"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -18208,6 +18148,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -19666,9 +19609,6 @@ msgstr "سويسرا"
 msgid "Symbol rate"
 msgstr "معدل الترميز"
 
-msgid "Symbol rate & FEC"
-msgstr "معدل الترميز و الإستقطاب"
-
 msgid "Symbolic link"
 msgstr ""
 
@@ -19693,10 +19633,6 @@ msgstr "الجمهورية العربية السورية"
 #
 msgid "System"
 msgstr "النـظام"
-
-#
-msgid "System & Modulation"
-msgstr "النظام والتحوير"
 
 msgid "System Info"
 msgstr ""
@@ -19757,9 +19693,6 @@ msgstr "معلومات المترجم"
 #
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "ملف TS كبير جدا بالنسبة ISO9660 المستوى 1!"
-
-msgid "TSID"
-msgstr "إرسال معرف المحطة"
 
 msgid "TUNER:"
 msgstr ""
@@ -21166,6 +21099,16 @@ msgstr "التردد"
 msgid "Transponder Time"
 msgstr "التردد"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 #
 msgid "Transport Stream Type"
 msgstr "نوع تردد نقل التدفق"
@@ -21268,6 +21211,9 @@ msgstr ""
 msgid "Tuner Setup"
 msgstr ""
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr ""
 
@@ -21277,13 +21223,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "مؤالف غير معتمد"
-
-msgid "Tuner live values"
-msgstr "قيم المؤالف المباشرة"
-
-#, fuzzy
-msgid "Tuner setting values"
-msgstr "حالة الموالف"
 
 msgid "Tuner slot"
 msgstr "فتحة المؤالف"
@@ -22180,6 +22119,9 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
+msgid "Video Codec, Size & Format"
+msgstr ""
+
 msgid "Video PID"
 msgstr "تعريف الفديو"
 
@@ -22261,9 +22203,6 @@ msgstr ""
 #, fuzzy
 msgid "VideoFinetune"
 msgstr "الضبط الدقيق"
-
-msgid "Video Codec, Size & Format"
-msgstr ""
 
 #, fuzzy
 msgid "Videosetup"
@@ -23362,9 +23301,6 @@ msgstr "شكل التنقل"
 msgid "Zap next"
 msgstr ""
 
-msgid "Zap to"
-msgstr "إنتقل إلى"
-
 msgid "Zap to channel (setup in menu)"
 msgstr ""
 
@@ -23435,11 +23371,6 @@ msgstr "واجهة الانجما قنوات/مزودين/كايدات في وح
 
 msgid "activatePiP"
 msgstr ""
-
-#
-#, fuzzy
-msgid "active"
-msgstr "نشط"
 
 msgid "address:"
 msgstr ""
@@ -24601,6 +24532,82 @@ msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#
+#, fuzzy
+#~ msgid "(FTA Service)"
+#~ msgstr "القنوات/الخدمات"
+
+#, fuzzy
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "كوكبه"
+
+#
+#~ msgid "ECM Info"
+#~ msgstr "معلومات تشفير الإيموهات"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "التردد والقناة"
+
+#
+#~ msgid "Frequency & Polarization"
+#~ msgstr "التردد والاستقطاب"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "عكس وعرض النطاق الترددي"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "عكس , تجريبي والدوران"
+
+#~ msgid "NIM & Type"
+#~ msgstr "ذاكرة حفظ المواقع & النوع"
+
+#~ msgid "ONID"
+#~ msgstr "معرف الشبكة الاصلي"
+
+#~ msgid "Panic to"
+#~ msgstr "الرجوع للخلف"
+
+#
+#~ msgid "Service ID"
+#~ msgstr "معرف القناة"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "معلومات القناة - معلومات تشفير الايموهات"
+
+#
+#, fuzzy
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "معلومات القناه"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "معدل الترميز و الإستقطاب"
+
+#
+#~ msgid "System & Modulation"
+#~ msgstr "النظام والتحوير"
+
+#~ msgid "TSID"
+#~ msgstr "إرسال معرف المحطة"
+
+#~ msgid "Tuner live values"
+#~ msgstr "قيم المؤالف المباشرة"
+
+#, fuzzy
+#~ msgid "Tuner setting values"
+#~ msgstr "حالة الموالف"
+
+#~ msgid "Zap to"
+#~ msgstr "إنتقل إلى"
+
+#
+#, fuzzy
+#~ msgid "active"
+#~ msgstr "نشط"
 
 #, fuzzy
 #~ msgid "10 minutes"

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
-"PO-Revision-Date: 2023-09-28 23:02+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
+"PO-Revision-Date: 2023-10-23 22:24+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.1.1-dev\n"
 
 msgid ""
 "\n"
@@ -247,10 +247,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1234,14 +1230,6 @@ msgid "%s Information Actions"
 msgstr "%s Akce s informacemi"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s Nastavení"
 
@@ -1353,9 +1341,6 @@ msgstr "(Přístup k protokolu '%s' vyžaduje internetové připojení.)"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Upozornění: Po selhání %d dojde k restartu.)"
 
-msgid "(FTA Service)"
-msgstr "(služba FTA)"
-
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -1459,7 +1444,7 @@ msgstr "12bit 4:2:0/4:2:2 bez PiP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr "16/9 reset do normálu"
 
 msgid "16:10 Letterbox"
@@ -2632,9 +2617,6 @@ msgstr "Audio PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Audio PID%s, kodek a jazyk"
 
-msgid "Audio PID, codec & lang"
-msgstr "Audio PID, kodek a jazyk"
-
 msgid "Audio Settings"
 msgstr "Nastavení zvuku"
 
@@ -2998,9 +2980,6 @@ msgstr "Baseball"
 msgid "Bashkir"
 msgstr "Baškir"
 
-msgid "Basic PID info"
-msgstr "Základní informace o PID"
-
 msgid "Basketball"
 msgstr "Basketball"
 
@@ -3302,9 +3281,6 @@ msgstr "Funkce dálkového ovládání"
 
 msgid "Button error timeout"
 msgstr "Vypršel časový limit pro chybu tlačítka"
-
-msgid "ButtonSetup"
-msgstr "Funkce dálkového ovládání"
 
 msgid "By disk UUID"
 msgstr "Podle UUID disku"
@@ -4068,6 +4044,9 @@ msgstr "Vyberte možnost opravit neplatná data EPG."
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Vyberte styl/pořadí, ve kterém se položky zobrazí v oknech nápovědy."
 
+msgid "Choose the target device for the slots."
+msgstr "Vyberte cílové zařízení pro sloty."
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Vyberte cílové umístění pro rozšířený adresář '/usr'."
 
@@ -4191,9 +4170,6 @@ msgstr[2] "Jasných výstrah"
 msgid "Click the button on your remote you want to change."
 msgstr "Na dálkovém ovladači stiskněte tlačítko, které chcete nastavit."
 
-msgid "Client"
-msgstr "Klient"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Informace o klientovi (verze Oscam: %s)"
@@ -4269,9 +4245,6 @@ msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokosové (Keelingovy) ostrovy"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "Code R. LP-HP & Guard Int."
 
 msgid "Code rate HP"
 msgstr "Rychlost HP"
@@ -4836,8 +4809,8 @@ msgstr "Informace o připojení"
 msgid "Console"
 msgstr "Řídící panel"
 
-msgid "Constellation & FFT mode"
-msgstr "Režim Constellation & FFT"
+msgid "Constellation"
+msgstr "Konstelace"
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Tyto informace naleznete v technickém listu vašeho zařízení SCR."
@@ -6590,8 +6563,8 @@ msgstr "Východně"
 msgid "E "
 msgstr "E "
 
-msgid "ECM Info"
-msgstr "Informace o ECM"
+msgid "ECM"
+msgstr "ECM"
 
 msgid "ECM Statistics"
 msgstr "Statistika ECM"
@@ -6604,6 +6577,13 @@ msgstr "ECM ∅"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "Data ECM budou zahrnuty do datového proudu. To umožňuje přijímači dekódovat."
+
+msgid "ECM information"
+msgstr "Informace ECM"
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr "Informace ECM pro '%s'"
 
 msgid "ECM last"
 msgstr "Poslední ECM"
@@ -7757,9 +7737,6 @@ msgstr "Rozšířené"
 msgid "Extended Networksetup Plugin..."
 msgstr "Plugin rozšířeného nastavení sítě..."
 
-msgid "Extended PID info"
-msgstr "Rozšířené inf. PID"
-
 msgid "Extended Setup..."
 msgstr "Rozšířené nastavení..."
 
@@ -8309,6 +8286,9 @@ msgstr "Formátovat úložné zařízení"
 msgid "Format your hard drive"
 msgstr "Zformátujte svůj pevný disk"
 
+msgid "Forward Error Correction (FEC)"
+msgstr "Dopředná oprava chyb (FEC)"
+
 msgid "Forward volume keys"
 msgstr "Tlačítko vpřed = hlasitost"
 
@@ -8336,6 +8316,9 @@ msgstr "Volná Ram:"
 msgid "Free swap"
 msgstr "Volný swap"
 
+msgid "Free to Air (FTA) Service"
+msgstr "Služba Free to Air (FTA)"
+
 msgid "Free:"
 msgstr "Volné:"
 
@@ -8353,12 +8336,6 @@ msgstr "Francouzská jižní území"
 
 msgid "Frequency"
 msgstr "Frekvence"
-
-msgid "Frequency & Channel"
-msgstr "Frekvence a kanál"
-
-msgid "Frequency & Polarization"
-msgstr "Frekvence a polarizace"
 
 msgid "Frequency Norm:"
 msgstr "Frekvenční norma:"
@@ -9075,9 +9052,6 @@ msgstr "Název hostitele: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Tlačítka DO"
-
 msgid "Hotkey Settings"
 msgstr "Nastavení klávesových zkratek"
 
@@ -9773,12 +9747,6 @@ msgstr "Neplatná data transpondéru"
 
 msgid "Inversion"
 msgstr "Inverze"
-
-msgid "Inversion & Bandwidth"
-msgstr "Inverze a šířka pásma"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "Inverze, Pilot & Roll-off"
 
 msgid "Invert"
 msgstr "Inverze"
@@ -10542,6 +10510,9 @@ msgstr "MB"
 
 msgid "MENU"
 msgstr "MENU"
+
+msgid "MHz"
+msgstr "MHz"
 
 msgid "MKUBIFS"
 msgstr "MKUBIFS"
@@ -11420,8 +11391,8 @@ msgstr "Akce NFS"
 msgid "NFS Settings"
 msgstr "Nastavení NFS"
 
-msgid "NIM & Type"
-msgstr "NIM a typ"
+msgid "NIM"
+msgstr "NIM"
 
 msgid "NOTE"
 msgstr "POZNÁMKA"
@@ -11469,7 +11440,7 @@ msgid "Nameserver setup"
 msgstr "Nastavení DNS"
 
 msgid "Namespace & Orbital position"
-msgstr "Jmenný prostor a orbitální pozice."
+msgstr "Jmenný prostor a orbitální pozice"
 
 msgid "Namibia"
 msgstr "Namibie"
@@ -11601,9 +11572,6 @@ msgstr "Název sítě (SSID)"
 msgid "Network scan"
 msgstr "Prohledávání sítě"
 
-msgid "Network storage on"
-msgstr "Síťové úložiště zapnuto"
-
 msgid "Network test"
 msgstr "Test sítě"
 
@@ -11694,12 +11662,6 @@ msgstr "Další"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Další"
-
-msgid "Next Log"
-msgstr "Další protokol"
-
-msgid "Next Picture"
-msgstr "Další obrázek"
 
 msgid "Next bouquet"
 msgstr "Další přehled"
@@ -11815,9 +11777,6 @@ msgstr "Žádný volný tuner!"
 
 msgid "No hard disks detected."
 msgstr "Nebyly zjištěny žádné pevné disky."
-
-msgid "No log files found so debug logs are unavailable!"
-msgstr "Nebyly nalezeny žádné soubory protokolu, takže protokoly ladění nejsou k dispozici!"
 
 msgid "No matching place names found"
 msgstr "Nebyly nalezeny žádné odpovídající názvy míst"
@@ -12152,9 +12111,6 @@ msgstr "Režim tlačítka OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, provést procesem instalace firmware (image)"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12416,6 +12372,9 @@ msgstr "Orientace"
 msgid "Original"
 msgstr "Originál"
 
+msgid "Original Network ID (ONID)"
+msgstr "Původní ID sítě (ONID)"
+
 msgid "Oriya"
 msgstr "Oriya"
 
@@ -12551,9 +12510,6 @@ msgstr "Režim PLS"
 msgid "PMT PID"
 msgstr "PMT Pid"
 
-msgid "PPanel"
-msgstr "PPanel"
-
 msgid "PRIMETIME"
 msgstr "HLAVNÍ VYSÍLACÍ ČAS"
 
@@ -12627,9 +12583,6 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Kanál tlačítka Panika"
-
-msgid "Panic to"
-msgstr "Panika k"
 
 msgid "Panjabi / Punjabi"
 msgstr "Pandžábština / paňdžábština"
@@ -13504,12 +13457,6 @@ msgstr "Náhled menu"
 
 msgid "Previous"
 msgstr "Předchozí"
-
-msgid "Previous Log"
-msgstr "Předchozí záznam"
-
-msgid "Previous Picture"
-msgstr "Předchozí obrázek"
 
 msgid "Previous bouquet"
 msgstr "Předchozí přehled"
@@ -15753,6 +15700,9 @@ msgstr "Vybrat satelity"
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Vyberte aktivaci lišty šipkou L/R (dlouhý stisk) nebo << >> (dlouhý stisk)."
 
+msgid "Select service information to view:"
+msgstr "Vyberte servisní informace, které chcete zobrazit:"
+
 msgid "Select service to add..."
 msgstr "Vyberte program(y) pro přidání..."
 
@@ -16256,8 +16206,14 @@ msgstr "Služba '%s' odstraněna."
 msgid "Service '%s' is already defined."
 msgstr "Služba „%s“ je již definována."
 
-msgid "Service ID"
-msgstr "ID služby"
+msgid "Service ID (SID)"
+msgstr "ID služby (SID)"
+
+msgid "Service Information"
+msgstr "Servisní informace"
+
+msgid "Service Information Actions"
+msgstr "Akce s informacemi o službě"
 
 msgid "Service Name"
 msgstr "Název programu"
@@ -16280,6 +16236,13 @@ msgstr "Názvy programů"
 msgid "Service Zap Actions"
 msgstr "Akce Zap služby"
 
+msgid "Service and PID information"
+msgstr "Servisní a PID informace"
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr "Informace o službě a PID pro '%s'"
+
 msgid "Service cant been added to the favorites."
 msgstr "Službu nelze přidat do oblíbených."
 
@@ -16294,24 +16257,6 @@ msgstr "Program byl přidán do vybraného přehledu."
 
 msgid "Service info"
 msgstr "Info o programu"
-
-msgid "Service info - ECM Info"
-msgstr "Servisní informace - Informace o ECM"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "Servisní info - servisní a základní PID Info"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "Servisní informace - servis & Rozšířené informace PID"
-
-msgid "Service info - service & PIDs"
-msgstr "Servisní informace - servis a PID"
-
-msgid "Service info - tuner live values"
-msgstr "Servisní informace - aktuální hodnoty tuneru"
-
-msgid "Service info - tuner setting values"
-msgstr "Servisní info - hodnoty nastavení tuneru"
 
 msgid "Service info font size"
 msgstr "Velikost fontu infa o kanálu"
@@ -16796,9 +16741,6 @@ msgstr "Sdílené"
 msgid "Sharpness"
 msgstr "Ostrost"
 
-msgid "Shellscript"
-msgstr "Skript shellu"
-
 msgid "Shift"
 msgstr "Posun"
 
@@ -17281,6 +17223,9 @@ msgstr "Zobrazit další stránku"
 msgid "Show next picture"
 msgstr "Zobrazit další obrázek"
 
+msgid "Show next service information screen"
+msgstr "Zobrazit další obrazovku servisních informací"
+
 msgid "Show next system information screen"
 msgstr "Zobrazit další obrazovku s informacemi o systému"
 
@@ -17326,6 +17271,9 @@ msgstr "Zobrazit předchozí stránku"
 msgid "Show previous picture"
 msgstr "Zobrazit předchozí obrázek"
 
+msgid "Show previous service information screen"
+msgstr "Zobrazit obrazovku s předchozími servisními informacemi"
+
 msgid "Show previous system information screen"
 msgstr "Zobrazit předchozí obrazovku s informacemi o systému"
 
@@ -17352,6 +17300,9 @@ msgstr "Zobrazit zprávy skriptu"
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
 msgstr "Pokud skript na pozadí skončí, zobrazit zprávy skriptu. Pokud má skript další výstup, zobrazí se také."
+
+msgid "Show selection for service information screen"
+msgstr "Zobrazit výběr na obrazovce s informacemi o službě"
 
 msgid "Show selection for system information screen"
 msgstr "Zobrazit výběr pro obrazovku systémových informací"
@@ -18700,9 +18651,6 @@ msgstr "Švýcarsko"
 msgid "Symbol rate"
 msgstr "Sym. rychlost"
 
-msgid "Symbol rate & FEC"
-msgstr "Symbolová rychlost a FEC"
-
 msgid "Symbolic link"
 msgstr "Symbolický odkaz"
 
@@ -18726,9 +18674,6 @@ msgstr "Syrská Arabská republika"
 
 msgid "System"
 msgstr "Systém"
-
-msgid "System & Modulation"
-msgstr "Systém a modulace"
 
 msgid "System Info"
 msgstr "Info o systému"
@@ -18786,9 +18731,6 @@ msgstr "(# FIRST AUTOR: jjezevec@seznam.cz 2015)"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS soubor je příliš velký pro ISO9660 level 1!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr "TUNER:"
@@ -20194,6 +20136,16 @@ msgstr "Transpondér"
 msgid "Transponder Time"
 msgstr "Čas transpondéru"
 
+msgid "Transponder information"
+msgstr "Informace o transpondéru"
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr "Informace o transpondéru pro '%s'"
+
+msgid "Transport Stream ID (TSID)"
+msgstr "ID transportního toku (TSID)"
+
 msgid "Transport Stream Type"
 msgstr "Typ transportního toku"
 
@@ -20287,6 +20239,9 @@ msgstr "Nastavení tuneru"
 msgid "Tuner Setup"
 msgstr "Hledání programů"
 
+msgid "Tuner data is not available!"
+msgstr "Data tuneru nejsou k dispozici!"
+
 msgid "Tuner information"
 msgstr "Informace o tuneru"
 
@@ -20296,12 +20251,6 @@ msgstr "Informace o tuneru pro %s %s"
 
 msgid "Tuner is not supported"
 msgstr "Tuner není podporován"
-
-msgid "Tuner live values"
-msgstr "Tuner živé hodnoty"
-
-msgid "Tuner setting values"
-msgstr "Nast. hodnot tuneru"
 
 msgid "Tuner slot"
 msgstr "Slot tuneru"
@@ -21189,6 +21138,9 @@ msgstr "Velmi, velmi krátké názvy souborů - Varování"
 msgid "Video"
 msgstr "Obraz"
 
+msgid "Video Codec, Size & Format"
+msgstr "Videokodek, velikost a formát"
+
 msgid "Video PID"
 msgstr "Video PID"
 
@@ -21271,9 +21223,6 @@ msgstr "Kontrola vylepšení videa"
 
 msgid "VideoFinetune"
 msgstr "Jemné doladění videa"
-
-msgid "Video Codec, Size & Format"
-msgstr "Videokodek, velikost a formát"
 
 msgid "Videosetup"
 msgstr "Nastavení videa"
@@ -22371,9 +22320,6 @@ msgstr "Způsob přepínání programů"
 msgid "Zap next"
 msgstr "Další zap"
 
-msgid "Zap to"
-msgstr "Přepnout na"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Přepnout kanál (menu nastavení)"
 
@@ -22439,9 +22385,6 @@ msgstr "gui přidělené poskytovateli/kanálu/caidu v CI modulu"
 
 msgid "activatePiP"
 msgstr "aktivovat PiP"
-
-msgid "active"
-msgstr "aktivní"
 
 msgid "address:"
 msgstr "adresa:"
@@ -23552,6 +23495,135 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(služba FTA)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "Audio PID, kodek a jazyk"
+
+#~ msgid "Basic PID info"
+#~ msgstr "Základní informace o PID"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Funkce dálkového ovládání"
+
+#~ msgid "Client"
+#~ msgstr "Klient"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "Code R. LP-HP & Guard Int."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Režim Constellation & FFT"
+
+#~ msgid "ECM Info"
+#~ msgstr "Informace o ECM"
+
+#~ msgid "Extended PID info"
+#~ msgstr "Rozšířené inf. PID"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "Frekvence a kanál"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Frekvence a polarizace"
+
+#~ msgid "Hotkey"
+#~ msgstr "Tlačítka DO"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Inverze a šířka pásma"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "Inverze, Pilot & Roll-off"
+
+#~ msgid "NIM & Type"
+#~ msgstr "NIM a typ"
+
+#~ msgid "Network storage on"
+#~ msgstr "Síťové úložiště zapnuto"
+
+#~ msgid "Next Log"
+#~ msgstr "Další protokol"
+
+#~ msgid "Next Picture"
+#~ msgstr "Další obrázek"
+
+#~ msgid "No log files found so debug logs are unavailable!"
+#~ msgstr "Nebyly nalezeny žádné soubory protokolu, takže protokoly ladění nejsou k dispozici!"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel"
+
+#~ msgid "Panic to"
+#~ msgstr "Panika k"
+
+#~ msgid "Previous Log"
+#~ msgstr "Předchozí záznam"
+
+#~ msgid "Previous Picture"
+#~ msgstr "Předchozí obrázek"
+
+#~ msgid "Service ID"
+#~ msgstr "ID služby"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Servisní informace - Informace o ECM"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "Servisní info - servisní a základní PID Info"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "Servisní informace - servis & Rozšířené informace PID"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Servisní informace - servis a PID"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Servisní informace - aktuální hodnoty tuneru"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Servisní info - hodnoty nastavení tuneru"
+
+#~ msgid "Shellscript"
+#~ msgstr "Skript shellu"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Symbolová rychlost a FEC"
+
+#~ msgid "System & Modulation"
+#~ msgstr "Systém a modulace"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#~ msgid "Tuner live values"
+#~ msgstr "Tuner živé hodnoty"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "Nast. hodnot tuneru"
+
+#~ msgid "Zap to"
+#~ msgstr "Přepnout na"
+
+#~ msgid "active"
+#~ msgstr "aktivní"
 
 #~ msgid "Download the selected list of plugins"
 #~ msgstr "Stáhnout vybraný seznam pluginů"

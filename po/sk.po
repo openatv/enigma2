@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
-"PO-Revision-Date: 2023-10-20 08:45+0000\n"
+"POT-Creation-Date: 2023-10-22 08:09+0000\n"
+"PO-Revision-Date: 2023-10-25 08:26+0000\n"
 "Last-Translator: Atec <dr.atec@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.1.1-dev\n"
 
 msgid ""
 "\n"
@@ -249,10 +249,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1236,14 +1232,6 @@ msgid "%s Information Actions"
 msgstr "%s informácie – akcie"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/s"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s Nastavenie"
 
@@ -1355,9 +1343,6 @@ msgstr "(Prístup k denníku '%s' si vyžaduje pripojenie na internet.)"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Pozor: po %d pádoch bude nasledovať reštart.)"
 
-msgid "(FTA Service)"
-msgstr "(Nekódovaná stanica)"
-
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -1461,7 +1446,7 @@ msgstr "12 bitov 4:2:0/4:2:2 bez PIP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
+msgid "16:9 reset to normal"
 msgstr "16/9 reset na normál"
 
 msgid "16:10 Letterbox"
@@ -2634,11 +2619,8 @@ msgstr "Audio PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Audio PID %s, kodek & jazyk"
 
-msgid "Audio PID, codec & lang"
-msgstr "Audio PID, kodek & jazyk"
-
 msgid "Audio Settings"
-msgstr "Nastavenia zvuku"
+msgstr "Nastavenie zvuku"
 
 msgid "Audio Source"
 msgstr "Zdroj zvuku"
@@ -2752,7 +2734,7 @@ msgid "Automatic Scan"
 msgstr "Automatické skenovanie"
 
 msgid "Automatic Service Searching"
-msgstr "Automatické hľadanie stanice"
+msgstr "Automatické vyhľadávanie staníc"
 
 msgid "Automatic resolution"
 msgstr "Automatické rozlíšenie"
@@ -2999,9 +2981,6 @@ msgstr "Bejzbal"
 
 msgid "Bashkir"
 msgstr "baškirčina"
-
-msgid "Basic PID info"
-msgstr "Základné info o PID"
 
 msgid "Basketball"
 msgstr "Basketbal"
@@ -3304,9 +3283,6 @@ msgstr "Nastavenie tlačidiel"
 
 msgid "Button error timeout"
 msgstr "Vypršal časový limit pre chybu tlačidla"
-
-msgid "ButtonSetup"
-msgstr "Nastavenie tlačidiel"
 
 msgid "By disk UUID"
 msgstr "Podľa UUID disku"
@@ -4070,6 +4046,9 @@ msgstr "Vyberte možnosť opravy neplatných údajov EPG."
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Vyberte štýl/poradie, v ktorom sa zobrazia položky v oknách pomocníka."
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Vyberte cieľový priečinok pre rozbalený priečinok '/usr'."
 
@@ -4193,9 +4172,6 @@ msgstr[2] "Vymazať upozornenia"
 msgid "Click the button on your remote you want to change."
 msgstr "Stlačte na diaľkovom ovládači tlačidlo, ktoré chcete zmeniť."
 
-msgid "Client"
-msgstr "Klient"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Informácie o klientovi (verzia Oscam: %s)"
@@ -4271,9 +4247,6 @@ msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokosové ostrovy"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "Code R. LP-HP & Guard Int."
 
 msgid "Code rate HP"
 msgstr "Rýchlosť kódovania HP"
@@ -4838,8 +4811,8 @@ msgstr "Informácie o pripojení"
 msgid "Console"
 msgstr "Ovládací panel"
 
-msgid "Constellation & FFT mode"
-msgstr "Mód Constellation & FFT"
+msgid "Constellation"
+msgstr ""
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Túto informáciu získate v zozname špecifikácií zariadenia SCR."
@@ -4912,7 +4885,7 @@ msgid "Control the InfoBar fading speed"
 msgstr "Nastavenie rýchlosti postupného strácania infolišty"
 
 msgid "Control your Softcams"
-msgstr "Ovládanie vašich softcamov"
+msgstr "Ovládanie softcamov"
 
 msgid "Controlled by HDMI"
 msgstr "ovládané cez HDMI"
@@ -4924,7 +4897,7 @@ msgid "Convert ext3 to ext4"
 msgstr "Konvertovať ext3 na ext4"
 
 msgid "Convert file system ext3 to ext4"
-msgstr "Konvertovať súb. systém z ext3 na ext4"
+msgstr "Konvertovať súborový systém z ext3 na ext4"
 
 msgid "Convert to AC3"
 msgstr "konvertovať do AC3"
@@ -5770,7 +5743,7 @@ msgid "Delete Line"
 msgstr "Vymazať riadok"
 
 msgid "Delete Plugins"
-msgstr "Vymazať pluginy"
+msgstr "Vymazanie pluginov"
 
 msgid "Delete Timer"
 msgstr "Vymazať časovač"
@@ -6515,7 +6488,7 @@ msgid "Download and install Plugins"
 msgstr "Stiahnutie a nainštalovanie pluginov"
 
 msgid "Download and install cam"
-msgstr "Stiahnutie a inštalácia CAM"
+msgstr "Stiahnutie a inštalácia softcamov"
 
 msgid "Download error"
 msgstr "Chyba pri sťahovaní"
@@ -6592,8 +6565,8 @@ msgstr "Východne"
 msgid "E "
 msgstr "E "
 
-msgid "ECM Info"
-msgstr "ECM Info"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "Štatistika ECM"
@@ -6606,6 +6579,13 @@ msgstr "ECM priemer"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM údaje budú zahrnuté v streame. To umožňuje, aby ho prijímač klienta dekódoval."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "Posledné ECM"
@@ -7759,9 +7739,6 @@ msgstr "Rozšírené"
 msgid "Extended Networksetup Plugin..."
 msgstr "Plugin rozšíreného nastavenia siete..."
 
-msgid "Extended PID info"
-msgstr "Rozšírené info o PID"
-
 msgid "Extended Setup..."
 msgstr "Rozšírené nastavenie..."
 
@@ -7978,7 +7955,7 @@ msgid "Feed stable."
 msgstr "Zdroj je stabilný."
 
 msgid "Feed unstable!"
-msgstr "Zdroj je nestabilný!"
+msgstr "Nestabilný!"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Ihneď prevziať EPG a aktualizovať časovače"
@@ -8311,6 +8288,9 @@ msgstr "Formátovať úložné zariadenie"
 msgid "Format your hard drive"
 msgstr "Formátovanie vášho HDD"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "Tlačidlá hlasitosti dopredu"
 
@@ -8338,6 +8318,9 @@ msgstr "Voľná pamäť:"
 msgid "Free swap"
 msgstr "Voľný swap"
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "Voľné:"
 
@@ -8355,12 +8338,6 @@ msgstr "Francúzske južné územia"
 
 msgid "Frequency"
 msgstr "Frekvencia"
-
-msgid "Frequency & Channel"
-msgstr "Frekvencia a kanál"
-
-msgid "Frequency & Polarization"
-msgstr "Frekvencia a polarizácia"
 
 msgid "Frequency Norm:"
 msgstr "Frekvenčná norma:"
@@ -9077,9 +9054,6 @@ msgstr "Názov host.: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13,0 E"
 
-msgid "Hotkey"
-msgstr "Tlačidlo skrátenej voľby"
-
 msgid "Hotkey Settings"
 msgstr "Nastavenie tlač. skrátenej voľby"
 
@@ -9775,12 +9749,6 @@ msgstr "Neplatné údaje o transpondéri"
 
 msgid "Inversion"
 msgstr "Inverzia"
-
-msgid "Inversion & Bandwidth"
-msgstr "Inverzia a šírka pásma"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "Inverzia, pilot a roll-off"
 
 msgid "Invert"
 msgstr "Invertovať"
@@ -10545,6 +10513,9 @@ msgstr "MB"
 msgid "MENU"
 msgstr "MENU"
 
+msgid "MHz"
+msgstr ""
+
 msgid "MKUBIFS"
 msgstr "MKUBIFS"
 
@@ -10654,7 +10625,7 @@ msgid "Manual Scan"
 msgstr "Ručné skenovanie"
 
 msgid "Manual Service Searching"
-msgstr "Ručné hľadanie stanice"
+msgstr "Ručné vyhľadávanie staníc"
 
 msgid "Manual configuration"
 msgstr "Ručná konfigurácia"
@@ -11037,7 +11008,7 @@ msgid "Mount Settings"
 msgstr "Nastavenia pripojení"
 
 msgid "Mount Setup"
-msgstr "Nastavenie pripojenia"
+msgstr "Nastavenie pripojení"
 
 msgid "Mount failed"
 msgstr "Pripojenie neúspešné"
@@ -11422,8 +11393,8 @@ msgstr "Akcie NFS"
 msgid "NFS Settings"
 msgstr "Nastavenie NFS"
 
-msgid "NIM & Type"
-msgstr "NIM a typ"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr "POZNÁMKA"
@@ -11603,9 +11574,6 @@ msgstr "Názov siete (SSID)"
 msgid "Network scan"
 msgstr "Vyhľadanie sietí"
 
-msgid "Network storage on"
-msgstr "Sieťové úložisko na"
-
 msgid "Network test"
 msgstr "Test siete"
 
@@ -11696,12 +11664,6 @@ msgstr "Ďalej"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Ďalej"
-
-msgid "Next Log"
-msgstr "Ďalší denník"
-
-msgid "Next Picture"
-msgstr "Ďalší obrázok"
 
 msgid "Next bouquet"
 msgstr "Ďalší prehľad"
@@ -11817,9 +11779,6 @@ msgstr "Žiadny voľný tuner!"
 
 msgid "No hard disks detected."
 msgstr "Neboli zistené žiadne pevné disky."
-
-msgid "No log files found so debug logs are unavailable!"
-msgstr "Nenašli sa žiadne súbory denníkov, takže denníky ladenia nie sú k dispozícii!"
 
 msgid "No matching place names found"
 msgstr "Nenašlo sa žiadne zodpovedajúce umiestnenie"
@@ -12154,9 +12113,6 @@ msgstr "Režim tlačidla OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, preveď ma procesom aktualizácie"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "OSD"
 
@@ -12418,6 +12374,9 @@ msgstr "Orientácia"
 msgid "Original"
 msgstr "Originál"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr "urijčina"
 
@@ -12553,9 +12512,6 @@ msgstr "Režim PLS"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr "PPanel"
-
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
 
@@ -12629,9 +12585,6 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Kanál pre tlačidlo PANIKA"
-
-msgid "Panic to"
-msgstr "PANIKA = prepnutie na"
 
 msgid "Panjabi / Punjabi"
 msgstr "pandžábčina"
@@ -13507,12 +13460,6 @@ msgstr "Menu pre náhľad"
 msgid "Previous"
 msgstr "Predchádzajúce"
 
-msgid "Previous Log"
-msgstr "Predchádzajúci denník"
-
-msgid "Previous Picture"
-msgstr "Predchádzajúci obrázok"
-
 msgid "Previous bouquet"
 msgstr "Predchádzajúci prehľad"
 
@@ -13985,7 +13932,7 @@ msgid "Reception"
 msgstr "Príjem"
 
 msgid "Reception Lists"
-msgstr "Príjem – zoznamy"
+msgstr "Družice"
 
 msgid "Reception Settings"
 msgstr "Nastavenie príjmu"
@@ -14040,7 +13987,7 @@ msgid "Recording Actions"
 msgstr "Akcie nahrávania"
 
 msgid "Recording Settings"
-msgstr "Nastavenia nahrávania"
+msgstr "Nastavenie nahrávania"
 
 msgid "Recording Setup"
 msgstr "Nastavenie nahrávania"
@@ -15526,7 +15473,7 @@ msgid "Select HDD"
 msgstr "Vyberte pevný disk"
 
 msgid "Select LCD Skin"
-msgstr "Vyberte vzhľad pre LCD"
+msgstr "Výber vzhľadu LCD"
 
 msgid "Select Lan/Wlan"
 msgstr "Vyberte LAN/WLAN"
@@ -15648,7 +15595,7 @@ msgid "Select destination for:"
 msgstr "Vyberte umiestnenie pre:"
 
 msgid "Select files to exclude from backup"
-msgstr "Vyberte súbory, ktoré sa nemajú zálohovať"
+msgstr "Výber súborov, ktoré sa nemajú zálohovať"
 
 msgid "Select files/folders to backup"
 msgstr "Vyberte súbory/priečinky na zálohovanie"
@@ -15754,6 +15701,9 @@ msgstr "Vyberte družice"
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Vyberte, ktorými tlačidlami sa má aktivovať panel pre posun: šípky L/R (dlhé stlačenie) alebo << >> (dlhé stlačenie)."
+
+msgid "Select service information to view:"
+msgstr ""
 
 msgid "Select service to add..."
 msgstr "Vyberte stanicu, ktorá sa má pridať…"
@@ -16258,8 +16208,14 @@ msgstr "Stanica/služba '%s' bola vymazaná."
 msgid "Service '%s' is already defined."
 msgstr "Stanica/služba '%s' je už definovaná."
 
-msgid "Service ID"
-msgstr "ID stanice"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "Názov stanice"
@@ -16282,6 +16238,13 @@ msgstr "Režim názvu stanice"
 msgid "Service Zap Actions"
 msgstr "Akcie prepnutia stanice"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr "Stanicu nie je možné pridať do obľúbených."
 
@@ -16296,24 +16259,6 @@ msgstr "Stanica bola pridaná do vybraného prehľadu."
 
 msgid "Service info"
 msgstr "Informácie o stanici"
-
-msgid "Service info - ECM Info"
-msgstr "Informácie o stanici – ECM Info"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "Informácie o stanici – služba a základné PID informácie"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "Informácie o stanici – služba a rozšírené PID informácie"
-
-msgid "Service info - service & PIDs"
-msgstr "Informácie o stanici – stanica/služba a PIDy"
-
-msgid "Service info - tuner live values"
-msgstr "Informácie o stanici – aktuálne hodnoty tunera"
-
-msgid "Service info - tuner setting values"
-msgstr "Informácie o stanici – hodnoty nastavenia tunera"
 
 msgid "Service info font size"
 msgstr "Veľkosť písma informácie o stanici"
@@ -16694,7 +16639,7 @@ msgid "Setup how to control the channel changing."
 msgstr "Nastavenie spôsobu ovládania zmeny kanála."
 
 msgid "Setup interface"
-msgstr "Rozhranie pre nastavovanie"
+msgstr "Nastavenie sieťových rozhraní"
 
 msgid "Setup menu"
 msgstr "Nastavenie menu"
@@ -16730,25 +16675,25 @@ msgid "Setup your Harddisk"
 msgstr "Nastavenie vášho pevného disku"
 
 msgid "Setup your LCD"
-msgstr "Nastavenie vášho LCD"
+msgstr "Nastavenie LCD"
 
 msgid "Setup your LCD Skin"
 msgstr "Nastavte vzhľad pre váš LCD"
 
 msgid "Setup your OSD"
-msgstr "Nastavenie OSD"
+msgstr "Nastavenie používateľského prostredia"
 
 msgid "Setup your Skin"
 msgstr "Nastavenie vzhľadu"
 
 msgid "Setup your System"
-msgstr "Nastavenie vášho systému"
+msgstr "Nastavenie systému"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Nastavenie vášho tunera a vyhľadávanie kanálov"
+msgstr "Nastavenie tunera a vyhľadávanie staníc"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
-msgstr "Nastavenie vášho video režimu, video výstupu a iných nastavení videa"
+msgstr "Nastavenie video režimu, video výstupu a iných parametrov videa"
 
 msgid "Setup your display"
 msgstr "Vaše nastavenie pre zobrazovacie zariadenie"
@@ -16797,9 +16742,6 @@ msgstr "Zdieľania"
 
 msgid "Sharpness"
 msgstr "Ostrosť"
-
-msgid "Shellscript"
-msgstr "Skript rozhrania shell"
 
 msgid "Shift"
 msgstr "Shift"
@@ -16998,7 +16940,7 @@ msgid "Show Multi EPG"
 msgstr "Zobraziť Multi-EPG"
 
 msgid "Show OScam Info"
-msgstr "Zobraziť informácie o OScam"
+msgstr "Zobraziť informácie o OScame"
 
 msgid "Show OScam in extensions"
 msgstr "Zobraziť OScam v rozšíreniach"
@@ -17283,6 +17225,9 @@ msgstr "Zobraziť ďalšiu stranu"
 msgid "Show next picture"
 msgstr "Zobraziť nasledujúci obrázok"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr "Zobraziť ďalšiu systémovú informačnú obrazovku"
 
@@ -17328,6 +17273,9 @@ msgstr "Zobraziť predchádzajúcu stranu"
 msgid "Show previous picture"
 msgstr "Zobraziť predchádzajúci obrázok"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr "Zobraziť predchádzajúcu systémovú informačnú obrazovku"
 
@@ -17354,6 +17302,9 @@ msgstr "Zobraziť správy skriptu"
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
 msgstr "Po skončení skriptu na pozadí zobraziť jeho správy. Ak má skript aj ďalší výstup, zobrazí sa tiež."
+
+msgid "Show selection for service information screen"
+msgstr ""
 
 msgid "Show selection for system information screen"
 msgstr "Zobraziť výber pre obrazovku so systémovými informáciami"
@@ -17536,7 +17487,7 @@ msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Zobrazenie prehliadača pluginov. Tu si môžete nastaviť nainštalované pluginy"
 
 msgid "Shows available plugins. Here you can download and install them"
-msgstr "Zobrazenie dostupných pluginy. Tu si ich môžete stiahnuť a nainštalovať"
+msgstr "Zobrazenie dostupných pluginov. Tu ich môžete stiahnuť a nainštalovať"
 
 msgid "Shows available softcams. Here you can download and install them"
 msgstr "Zobrazenie dostupných softvérových emulátorov CAM. Tu si ich môžete stiahnuť a nainštalovať"
@@ -18222,10 +18173,10 @@ msgid "Start/stop slide show"
 msgstr "Spustenie/zastavenie prezentácie"
 
 msgid "Start/stop/select cam"
-msgstr "Spustenie/zastavenie/výber CAM"
+msgstr "Spustenie/zastavenie/výber softacmu"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
-msgstr "Spustenie/zastavenie/výber CAM. Najprv je potrebné nainštalovať softvérový emulátor CAM (softcam)"
+msgstr "Spustenie/zastavenie/výber softcamov. Softcam je najprv potrebné nainštalovať"
 
 msgid "Starting Softcam"
 msgstr "Spustenie softcamu"
@@ -18702,9 +18653,6 @@ msgstr "Švajčiarsko"
 msgid "Symbol rate"
 msgstr "Symbolová rýchlosť"
 
-msgid "Symbol rate & FEC"
-msgstr "Symbolová rýchlosť & FEC"
-
 msgid "Symbolic link"
 msgstr "Symbolický odkaz"
 
@@ -18728,9 +18676,6 @@ msgstr "Sýrska arabská republika"
 
 msgid "System"
 msgstr "Systém"
-
-msgid "System & Modulation"
-msgstr "Systém & modulácia"
 
 msgid "System Info"
 msgstr "Systémové informácie"
@@ -18788,9 +18733,6 @@ msgstr "@dym1, Marián Hikaník, atec"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Súbor TS je príliš veľký pre ISO9660 level 1!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr "TUNER:"
@@ -20196,6 +20138,16 @@ msgstr "Transpondér"
 msgid "Transponder Time"
 msgstr "Čas transpondéra"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr "Typ transportného streamu"
 
@@ -20289,6 +20241,9 @@ msgstr "Nastavenia tunera"
 msgid "Tuner Setup"
 msgstr "Nastavenie tunera"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr "Informácie o tuneri"
 
@@ -20298,12 +20253,6 @@ msgstr "Informácie o tuneri pre %s %s"
 
 msgid "Tuner is not supported"
 msgstr "Tuner nie je podporovaný"
-
-msgid "Tuner live values"
-msgstr "Hodnoty tunera naživo"
-
-msgid "Tuner setting values"
-msgstr "Hodnoty nastavenia tunera"
 
 msgid "Tuner slot"
 msgstr "Slot tunera"
@@ -21191,11 +21140,14 @@ msgstr "Extrémne krátke názvy súborov – POZOR"
 msgid "Video"
 msgstr "Video"
 
+msgid "Video Codec, Size & Format"
+msgstr "Video kodek, veľkosť a formát"
+
 msgid "Video PID"
 msgstr "Video PID"
 
 msgid "Video Settings"
-msgstr "Nastavenia videa"
+msgstr "Nastavenie videa"
 
 msgid "Video Wizard"
 msgstr "Video sprievodca"
@@ -21273,9 +21225,6 @@ msgstr "Náhľad vylepšenia videa"
 
 msgid "VideoFinetune"
 msgstr "Jemné doladenie videa"
-
-msgid "Video Codec, Size & Format"
-msgstr "Video kodek, veľkosť a formát"
 
 msgid "Videosetup"
 msgstr "Nastavenie videa"
@@ -22373,9 +22322,6 @@ msgstr "Režim prepínania"
 msgid "Zap next"
 msgstr "Prepnúť ďalej"
 
-msgid "Zap to"
-msgstr "Prepnúť na"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Prepnúť na kanál (nastavenie v menu)"
 
@@ -22441,9 +22387,6 @@ msgstr "rozhranie GUI na priradenie staníc, poskytovateľov a CAId k modulom CI
 
 msgid "activatePiP"
 msgstr "aktivovaťPiP"
-
-msgid "active"
-msgstr "aktívne"
 
 msgid "address:"
 msgstr "adresa:"
@@ -23554,6 +23497,135 @@ msgstr "áno (zachovať zdroje softvéru)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/s"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(Nekódovaná stanica)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "Audio PID, kodek & jazyk"
+
+#~ msgid "Basic PID info"
+#~ msgstr "Základné info o PID"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Nastavenie tlačidiel"
+
+#~ msgid "Client"
+#~ msgstr "Klient"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "Code R. LP-HP & Guard Int."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Mód Constellation & FFT"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM Info"
+
+#~ msgid "Extended PID info"
+#~ msgstr "Rozšírené info o PID"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "Frekvencia a kanál"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Frekvencia a polarizácia"
+
+#~ msgid "Hotkey"
+#~ msgstr "Tlačidlo skrátenej voľby"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Inverzia a šírka pásma"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "Inverzia, pilot a roll-off"
+
+#~ msgid "NIM & Type"
+#~ msgstr "NIM a typ"
+
+#~ msgid "Network storage on"
+#~ msgstr "Sieťové úložisko na"
+
+#~ msgid "Next Log"
+#~ msgstr "Ďalší denník"
+
+#~ msgid "Next Picture"
+#~ msgstr "Ďalší obrázok"
+
+#~ msgid "No log files found so debug logs are unavailable!"
+#~ msgstr "Nenašli sa žiadne súbory denníkov, takže denníky ladenia nie sú k dispozícii!"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel"
+
+#~ msgid "Panic to"
+#~ msgstr "PANIKA = prepnutie na"
+
+#~ msgid "Previous Log"
+#~ msgstr "Predchádzajúci denník"
+
+#~ msgid "Previous Picture"
+#~ msgstr "Predchádzajúci obrázok"
+
+#~ msgid "Service ID"
+#~ msgstr "ID stanice"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Informácie o stanici – ECM Info"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "Informácie o stanici – služba a základné PID informácie"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "Informácie o stanici – služba a rozšírené PID informácie"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Informácie o stanici – stanica/služba a PIDy"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Informácie o stanici – aktuálne hodnoty tunera"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Informácie o stanici – hodnoty nastavenia tunera"
+
+#~ msgid "Shellscript"
+#~ msgstr "Skript rozhrania shell"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Symbolová rýchlosť & FEC"
+
+#~ msgid "System & Modulation"
+#~ msgstr "Systém & modulácia"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#~ msgid "Tuner live values"
+#~ msgstr "Hodnoty tunera naživo"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "Hodnoty nastavenia tunera"
+
+#~ msgid "Zap to"
+#~ msgstr "Prepnúť na"
+
+#~ msgid "active"
+#~ msgstr "aktívne"
 
 #~ msgid "Error: A location to save the recording has not been selected!"
 #~ msgstr "Chyba: Umiestnenie pre uloženie nahrávky nebolo zvolené!"
