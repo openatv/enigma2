@@ -236,7 +236,7 @@ class InfoBarStreamRelay:
 	FILENAME = "/etc/enigma2/whitelist_streamrelay"
 
 	def __init__(self) -> None:
-		self.streamRelay = fileReadLines(self.FILENAME, source=self.__class__.__name__)
+		self.streamRelay = fileReadLines(self.FILENAME, default=[] source=self.__class__.__name__)
 
 	def check(self, nav, service):
 		return (service or nav.getCurrentlyPlayingServiceReference()) and service.toString() in self.streamRelay
