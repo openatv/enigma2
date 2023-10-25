@@ -54,7 +54,7 @@ from Screens.TimeDateInput import TimeDateInput
 from Screens.Timers import RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
-from Tools.Directories import pathExists, fileReadLine, fileWriteLine, isPluginInstalled
+from Tools.Directories import pathExists, fileReadLines, fileWriteLines, isPluginInstalled
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -236,24 +236,13 @@ class InfoBarStreamRelay:
 	FILENAME = "/etc/enigma2/whitelist_streamrelay"
 
 	def __init__(self) -> None:
-		self.streamRelay = []
-
-		if exists(self.FILENAME):
-			try:
-				with open(self.FILENAME) as fd:
-					self.streamRelay = [line.strip() for line in fd.readlines()]
-			except OSError as err:
-				print(f"[{self.__class__.__name__}] Error {err.errno}: Unable to read file '{self.FILENAME}'!  ({err.strerror})")
+		self.streamRelay = fileReadLines(self.FILENAME, source=self.__class__.__name__)
 
 	def check(self, nav, service):
 		return (service or nav.getCurrentlyPlayingServiceReference()) and service.toString() in self.streamRelay
 
 	def write(self):
-		try:
-			with open(self.FILENAME, "w") as fd:
-				fd.write("\n".join(self.streamRelay))
-		except OSError as err:
-			print(f"[{self.__class__.__name__}] Error {err.errno}: Unable to write file '{self.FILENAME}'!  ({err.strerror})")
+		fileWriteLines(self.FILENAME, self.streamRelay, source=self.__class__.__name__)
 
 	def toggle(self, nav, service):
 		service = service or nav.getCurrentlyPlayingServiceReference()
