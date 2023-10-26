@@ -46,7 +46,7 @@ def InitConfig():
 		"/etc/default/crond", "/etc/dropbear/", "/etc/default/dropbear", "/home/", "/etc/samba/", "/etc/fstab", "/etc/inadyn.conf",
 		"/etc/network/interfaces", "/etc/wpa_supplicant.conf", "/etc/wpa_supplicant.ath0.conf", "/etc/ciplus/",
 		"/etc/wpa_supplicant.wlan0.conf", "/etc/wpa_supplicant.wlan1.conf", "/etc/resolv.conf", "/etc/enigma2/nameserversdns.conf", "/etc/default_gw", "/etc/hostname", "/etc/hosts", "/etc/epgimport/", "/etc/exports",
-		"/etc/enigmalight.conf", "/etc/enigma2/volume.xml", "/etc/enigma2/ci_auth_slot_0.bin", "/etc/enigma2/ci_auth_slot_1.bin",
+		"/etc/enigmalight.conf", "/etc/enigma2/volume.xml", "/etc/enigma2/ci_auth_slot_0.bin", "/etc/enigma2/ci_auth_slot_1.bin", "/etc/PrivateKey.key",
 		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/",
 		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd",
 		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config",
@@ -169,7 +169,7 @@ class BackupScreen(Screen, ConfigListScreen):
 				fd.write("\n".join(pkgs))
 			if exists("/usr/lib/package.lst"):
 				pkgs = ShellCompatibleFunctions.listpkg(type="installed")
-				with open("/usr/lib/package.lst", "r") as fd:
+				with open("/usr/lib/package.lst") as fd:
 					installed = set(line.split()[0] for line in pkgs)
 					preinstalled = set(line.split()[0] for line in fd)
 					removed = preinstalled - installed
