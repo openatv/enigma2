@@ -52,6 +52,9 @@ void eListboxServiceContent::removeCurrent()
 			m_list.erase(m_cursor++);
 			m_listbox->entryRemoved(cursorResolve(m_cursor_number));
 		}
+
+		// prevent a crash in case we are deleting an marked item while in move mode
+		m_current_marked = false;
 	}
 }
 

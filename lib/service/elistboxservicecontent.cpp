@@ -53,6 +53,8 @@ void eListboxPythonServiceContent::removeCurrent()
 			m_service_list.erase(m_service_cursor++);
 			m_listbox->entryRemoved(cursorResolve(m_cursor));
 		}
+		// prevent a crash in case we are deleting an marked item while in move mode
+		m_current_marked = false;
 	}
 }
 
