@@ -441,7 +441,7 @@ def parseGradient(value):
 		gradientColors[index] = parseColor(color)
 	if index == 2:
 		gradientColors[2] = gradientColors[1]
-	argCount = len(data) - index - 1
+	argCount = len(data) - index
 	if index > 1 and argCount:
 		options = {
 			"horizontal": eWidget.GRADIENT_HORIZONTAL,
