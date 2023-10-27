@@ -245,16 +245,26 @@ class InfoBarStreamRelay:
 		fileWriteLines(self.FILENAME, self.streamRelay, source=self.__class__.__name__)
 
 	def toggle(self, nav, service):
-		service = service or nav.getCurrentlyPlayingServiceReference()
-		if service:
-			servicestring = service.toString()
-			if servicestring in self.streamRelay:
-				self.streamRelay.remove(servicestring)
-			else:
-				self.streamRelay.append(servicestring)
-				if nav.getCurrentlyPlayingServiceReference() == service:
-					nav.restartService()
+		if isinstance(service, list):
+			serviceList = service
+			for service in serviceList:
+				servicestring = service.toString()
+				if servicestring in self.streamRelay:
+					self.streamRelay.remove(servicestring)
+				else:
+					self.streamRelay.append(servicestring)
 			self.write()
+		else:
+			service = service or nav.getCurrentlyPlayingServiceReference()
+			if service:
+				servicestring = service.toString()
+				if servicestring in self.streamRelay:
+					self.streamRelay.remove(servicestring)
+				else:
+					self.streamRelay.append(servicestring)
+					if nav.getCurrentlyPlayingServiceReference() == service:
+						nav.restartService()
+				self.write()
 
 	def streamrelayChecker(self, playref):
 		playrefstring = playref.toString()
