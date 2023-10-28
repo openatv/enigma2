@@ -6,9 +6,8 @@
 # Support: http://dream.altmaster.net/
 #
 
+from enigma import eCanvas, eLabel, ePoint, eRect, eSize, eTimer, gFont, gRGB, RT_WRAP, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_HALIGN_BLOCK, RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM
 from Components.Renderer.Renderer import Renderer
-from enigma import eCanvas, eRect, gRGB, eLabel, eTimer, ePoint, eSize, gFont
-from enigma import RT_WRAP, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_HALIGN_BLOCK, RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM
 from skin import parseColor, parseFont
 
 # scroll type:
@@ -57,7 +56,7 @@ class VRunningText(Renderer):
 	def postWidgetCreate(self, instance):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "size":
-				x, y = value.split(',')
+				x, y = value.split(",")
 				self.W, self.H = int(x), int(y)
 
 		self.instance.setSize(eSize(self.W, self.H))
@@ -78,7 +77,7 @@ class VRunningText(Renderer):
 					x = min(limit, int(val))
 				else:
 					x = max(limit, int(val))
-			except:
+			except Exception:
 				x = default
 			return x
 
@@ -95,7 +94,7 @@ class VRunningText(Renderer):
 				elif attrib == "shadowColor":
 					self.scolor = parseColor(value)
 				elif attrib == "shadowOffset":
-					x, y = value.split(',')
+					x, y = value.split(",")
 					self.soffset = (int(x), int(y))
 				elif attrib == "valign" and value in ("top", "center", "bottom"):
 					valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
@@ -109,10 +108,10 @@ class VRunningText(Renderer):
 					else:
 						self.txtflags &= ~RT_WRAP
 				elif attrib == "options":
-					options = value.split(',')
+					options = value.split(",")
 					for opt in options:
-						val = ''
-						pos = opt.find('=')
+						val = ""
+						pos = opt.find("=")
 						if pos != -1:
 							val = opt[pos + 1:].strip()
 							opt = opt[:pos].strip()
@@ -195,9 +194,8 @@ class VRunningText(Renderer):
 				self.instance.clear(self.bcolor)
 		else:
 			self.txtext = self.source.text or ""
-			if self.instance:
-				if not self.calcMoving():
-					self.drawText(self.X, self.Y)
+			if self.instance and not self.calcMoving():
+				self.drawText(self.X, self.Y)
 
 	def drawText(self, X, Y):
 		#self.instance.fillRect( eRect(0, 0, self.W, self.H), self.bcolor )
@@ -206,20 +204,13 @@ class VRunningText(Renderer):
 		#if not self.scolor is None:
 		#	self.instance.writeText( eRect(X-self.soffset[0], Y-self.soffset[1], self.W-self.soffset[0], self.H-self.soffset[1]), self.scolor, self.bcolor, self.txfont, self.txtext, self.txtflags )
 		#self.instance.writeText( eRect(X, Y, self.W, self.H), self.fcolor, self.bcolor, self.txfont, self.txtext, self.txtflags )
-		if self.scolor is not None:
-			fcolor = self.scolor
-		else:
-			fcolor = self.fcolor
+		fcolor = self.scolor if self.scolor is not None else self.fcolor
 		self.instance.writeText(eRect(X - self.soffset[0], Y - self.soffset[1], self.W, self.H), fcolor, self.bcolor, self.txfont, self.txtext, self.txtflags)
 		if self.scolor is not None:
 			self.instance.writeText(eRect(X, Y, self.W, self.H), self.fcolor, self.scolor, self.txfont, self.txtext, self.txtflags)
 
 	def calcMoving(self):
-		if self.txtext == "":
-			return False
-		if self.type == NONE:
-			return False
-		if self.test_label is None:
+		if self.txtext == "" or self.type == NONE or self.test_label is None:
 			return False
 		self.test_label.setText(self.txtext)
 		text_size = self.test_label.calculateSize()
