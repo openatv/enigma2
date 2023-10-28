@@ -1,11 +1,11 @@
-from Components.Renderer.Renderer import Renderer
+from os.path import exists, join
 from enigma import ePixmap
+from Components.Renderer.Renderer import Renderer
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
-from os.path import exists
 
 
 class AudioIcon(Renderer):
-	searchPaths = (resolveFilename(SCOPE_GUISKIN), '/usr/share/enigma2/skin_default/')
+	searchPaths = (resolveFilename(SCOPE_GUISKIN), "/usr/share/enigma2/skin_default/")
 
 	def __init__(self):
 		Renderer.__init__(self)
@@ -18,17 +18,13 @@ class AudioIcon(Renderer):
 		attribs = []
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
-				self.path = value
-				if value.endswith("/"):
-					self.path = value
-				else:
-					self.path = value + "/"
+				self.path = join(value, "")
 			else:
 				attribs.append((attrib, value))
 			if attrib == "size":
-				value = value.split(',')
+				value = value.split(",")
 				if len(value) == 2:
-					self.size = value[0] + "x" + value[1]
+					self.size = f"{value[0]}x{value[1]}"
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
@@ -54,11 +50,11 @@ class AudioIcon(Renderer):
 
 	def findAudioIcon(self, audioName):
 		if self.path.startswith("/"):
-			pngname = self.path + audioName + ".png"
+			pngname = f"{self.path}{audioName}.png"
 			if exists(pngname):
 				return pngname
 		for path in self.searchPaths:
-			pngname = path + self.path + audioName + ".png"
+			pngname = f"{path}{self.path}{audioName}.png"
 			if exists(pngname):
 				return pngname
 		return ""
