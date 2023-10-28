@@ -1,7 +1,7 @@
-from Components.VariableText import VariableText
+from enigma import eLabel
 from Components.Renderer.Renderer import Renderer
 from Components.SystemInfo import BoxInfo
-from enigma import eLabel
+from Components.VariableText import VariableText
 
 
 class VtiImageVersion(VariableText, Renderer):
@@ -22,4 +22,4 @@ class VtiImageVersion(VariableText, Renderer):
 
     def ATVImageVersion(self):
         atvversion = BoxInfo.getItem("imageversion")
-        return 'openATV Image Release v. %s' % atvversion
+        return f"openATV Image Release v. {atvversion}"
