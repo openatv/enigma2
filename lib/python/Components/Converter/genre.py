@@ -455,7 +455,7 @@ def __remapCountry(country):
 	if hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
 		if not country:
 			country = config.plugins.icetv.member.country.value
-		iceTVCountry = country + "IceTV"
+		iceTVCountry = f"{country}IceTV"
 		if iceTVCountry in countries:
 			return iceTVCountry
 	return country
@@ -475,11 +475,11 @@ def getGenreStringLong(hn, ln, country=None):
 	# if hn == 0:
 	# 	return _("Undefined content") + " " + str(ln)
 	if hn == 15 and not (hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value):
-		return _("User defined") + " " + str(ln)
+		return f'{_("User defined")} {str(ln)}'
 	main = getGenreStringMain(hn, ln, country=country)
 	sub = getGenreStringSub(hn, ln, country=country)
 	if main and main != sub:
-		return main + ": " + sub
+		return f"{main}: {sub}"
 	else:
 		return main
 # 	return _("Reserved") + " " + str(hn) + "," + str(ln)
