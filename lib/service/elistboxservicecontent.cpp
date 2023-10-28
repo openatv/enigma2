@@ -183,20 +183,27 @@ int eListboxPythonServiceContent::getPrevMarkerPos()
 		return 0;
 	list::iterator i(m_service_cursor);
 	int index = m_cursor;
-	while (index) // Skip precending markers
-	{
-		--i;
-		--index;
-		if (!((i->flags & eServiceReference::isMarker) && !(i->flags & eServiceReference::isInvisible)))
-			break;
-	}
+	// if the search is starting part way through a section return to the start of the current section
 	while (index)
 	{
 		--i;
 		--index;
-		if ((i->flags & eServiceReference::isMarker) && !(i->flags & eServiceReference::isInvisible))
+		if (i->flags == eServiceReference::isMarker)
 			break;
 	}
+
+	// if the search started from part way through the current section return now because this is the previous visible marker
+	if (cursorResolve(index) + 1 != cursorResolve(m_cursor)) return cursorResolve(index);
+
+	// search for visible marker index of previous section
+	while (index)
+	{
+		--i;
+		--index;
+		if (i->flags == eServiceReference::isMarker)
+			break;
+	}
+
 	return cursorResolve(index);
 }
 
@@ -210,7 +217,7 @@ int eListboxPythonServiceContent::getNextMarkerPos()
 	{
 		++i;
 		++index;
-		if ((i->flags & eServiceReference::isMarker) && !(i->flags & eServiceReference::isInvisible))
+		if (i->flags == eServiceReference::isMarker)
 			break;
 	}
 	return cursorResolve(index);
