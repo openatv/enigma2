@@ -1,7 +1,8 @@
-from enigma import eServiceCenter, eServiceReference, iServiceInformation, eDVBFrontendParametersSatellite, eDVBFrontendParametersCable
+from enigma import eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eServiceCenter, eServiceReference, iServiceInformation
+
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
 
 
 class ExtremeInfo(Poll, Converter):
@@ -36,102 +37,65 @@ class ExtremeInfo(Poll, Converter):
 	BISCRYPT = 28
 	BISECM = 29
 	MGCAMD = 30
-	OSCAM = 31
-	CAMD3 = 32
-	CCAM = 33
-	MBOX = 34
-	GBOX = 35
-	INCUBUS = 36
-	WICARDD = 37
-	BULCRYPT = 38
-	BULECM = 39
+	BULCRYPT = 31
+	BULECM = 32
+# This is for future enhancement
+#	OSCAM = 33
+#	CAMD3 = 34
+#	CCAM = 35
+#	MBOX = 36
+#	GBOX = 37
+#	INCUBUS = 38
+#	WICARDD = 39
 
 	def __init__(self, type):
 		Poll.__init__(self)
 		Converter.__init__(self, type)
 		self.list = []
-		self.type = 0
 		self.getLists()
-		if type == "TunerInfo":
-			self.type = self.TUNERINFO
-		elif type == "CamName":
-			self.type = self.CAMNAME
-		elif type == "Number":
-			self.type = self.NUMBER
-		elif type == "EcmInfo":
-			self.type = self.ECMINFO
-		elif type == "CaidInfo":
-			self.type = self.CAIDINFO
-		elif type == "IrdCrypt":
-			self.type = self.IRDCRYPT
-		elif type == "SecaCrypt":
-			self.type = self.SECACRYPT
-		elif type == "NagraCrypt":
-			self.type = self.NAGRACRYPT
-		elif type == "ViaCrypt":
-			self.type = self.VIACRYPT
-		elif type == "ConaxCrypt":
-			self.type = self.CONAXCRYPT
-		elif type == "BetaCrypt":
-			self.type = self.BETACRYPT
-		elif type == "CrwCrypt":
-			self.type = self.CRWCRYPT
-		elif type == "DreamCrypt":
-			self.type = self.DREAMCRYPT
-		elif type == "NdsCrypt":
-			self.type = self.NDSCRYPT
-		elif type == "IrdEcm":
-			self.type = self.IRDECM
-		elif type == "SecaEcm":
-			self.type = self.SECAECM
-		elif type == "NagraEcm":
-			self.type = self.NAGRAECM
-		elif type == "ViaEcm":
-			self.type = self.VIAECM
-		elif type == "ConaxEcm":
-			self.type = self.CONAXECM
-		elif type == "BetaEcm":
-			self.type = self.BETAECM
-		elif type == "CrwEcm":
-			self.type = self.CRWECM
-		elif type == "DreamEcm":
-			self.type = self.DREAMECM
-		elif type == "NdsEcm":
-			self.type = self.NDSECM
-		elif type == "Fta":
-			self.type = self.FTA
-		elif type == "Emu":
-			self.type = self.EMU
-		elif type == "Crd":
-			self.type = self.CRD
-		elif type == "Net":
-			self.type = self.NET
-		elif type == "TunerInfoBP":
-			self.type = self.TUNERINFOBP
-		elif type == "BisCrypt":
-			self.type = self.BISCRYPT
-		elif type == "BisEcm":
-			self.type = self.BISECM
-		elif type == "Mgcamd":
-			self.type = self.MGCAMD
-		elif type == "Oscam":
-			self.type = self.OSCAM
-		elif type == "Camd3":
-			self.type = self.CAMD3
-		elif type == "Cccam":
-			self.type = self.CCAM
-		elif type == "Mbox":
-			self.type = self.MBOX
-		elif type == "Gbox":
-			self.type = self.GBOX
-		elif type == "Incubus":
-			self.type = self.INCUBUS
-		elif type == "Wicardd":
-			self.type = self.WICARDD
-		elif type == "BulCrypt":
-			self.type = self.BULCRYPT
-		elif type == "BulEcm":
-			self.type = self.BULECM
+		self.type = {
+			"TunerInfo": self.TUNERINFO,
+			"CamName": self.CAMNAME,
+			"Number": self.NUMBER,
+			"EcmInfo": self.ECMINFO,
+			"CaidInfo": self.CAIDINFO,
+			"IrdCrypt": self.IRDCRYPT,
+			"SecaCrypt": self.SECACRYPT,
+			"NagraCrypt": self.NAGRACRYPT,
+			"ViaCrypt": self.VIACRYPT,
+			"ConaxCrypt": self.CONAXCRYPT,
+			"BetaCrypt": self.BETACRYPT,
+			"CrwCrypt": self.CRWCRYPT,
+			"DreamCrypt": self.DREAMCRYPT,
+			"NdsCrypt": self.NDSCRYPT,
+			"IrdEcm": self.IRDECM,
+			"SecaEcm": self.SECAECM,
+			"NagraEcm": self.NAGRAECM,
+			"ViaEcm": self.VIAECM,
+			"ConaxEcm": self.CONAXECM,
+			"BetaEcm": self.BETAECM,
+			"CrwEcm": self.CRWECM,
+			"DreamEcm": self.DREAMECM,
+			"NdsEcm": self.NDSECM,
+			"Fta": self.FTA,
+			"Emu": self.EMU,
+			"Crd": self.CRD,
+			"Net": self.NET,
+			"TunerInfoBP": self.TUNERINFOBP,
+			"BisCrypt": self.BISCRYPT,
+			"BisEcm": self.BISECM,
+			"Mgcamd": self.MGCAMD,
+			"BulCrypt": self.BULCRYPT,
+			"BulEcm": self.BULECM
+# This is for future enhancement
+#			"Oscam": self.OSCAM,
+#			"Camd3": self.CAMD3,
+#			"Cccam": self.CCAM,
+#			"Mbox": self.MBOX,
+#			"Gbox": self.GBOX,
+#			"Incubus": self.INCUBUS,
+#			"Wicardd": self.WICARDD
+		}.get(type, self.TUNERINFO)
 
 	@cached
 	def getText(self):
@@ -141,7 +105,6 @@ class ExtremeInfo(Poll, Converter):
 			return ""
 		text = ""
 		if self.type == self.TUNERINFO or self.type == self.TUNERINFOBP:
-			self.tunertype = "linelist" if self.type == self.TUNERINFO else "lineslist"
 			text = self.getTunerInfo(service)
 		elif self.type == self.CAMNAME:
 			text = self.getCamName()
@@ -162,121 +125,52 @@ class ExtremeInfo(Poll, Converter):
 		self.poll_interval = 500
 		self.poll_enabled = True
 		service = self.source.service
-		info = service and service.info()
-
-		if not info:
-			return False
-		if self.type == self.IRDCRYPT:
-			caemm = self.getIrdCrypt()
-			return caemm
-		if self.type == self.SECACRYPT:
-			caemm = self.getSecaCrypt()
-			return caemm
-		if self.type == self.NAGRACRYPT:
-			caemm = self.getNagraCrypt()
-			return caemm
-		if self.type == self.VIACRYPT:
-			caemm = self.getViaCrypt()
-			return caemm
-		if self.type == self.CONAXCRYPT:
-			caemm = self.getConaxCrypt()
-			return caemm
-		if self.type == self.BETACRYPT:
-			caemm = self.getBetaCrypt()
-			return caemm
-		if self.type == self.CRWCRYPT:
-			caemm = self.getCrwCrypt()
-			return caemm
-		if self.type == self.DREAMCRYPT:
-			caemm = self.getDreamCrypt()
-			return caemm
-		if self.type == self.NDSCRYPT:
-			caemm = self.getNdsCrypt()
-			return caemm
-		if self.type == self.IRDECM:
-			caemm = self.getIrdEcm()
-			return caemm
-		if self.type == self.SECAECM:
-			caemm = self.getSecaEcm()
-			return caemm
-		if self.type == self.NAGRAECM:
-			caemm = self.getNagraEcm()
-			return caemm
-		if self.type == self.VIAECM:
-			caemm = self.getViaEcm()
-			return caemm
-		if self.type == self.CONAXECM:
-			caemm = self.getConaxEcm()
-			return caemm
-		if self.type == self.BETAECM:
-			caemm = self.getBetaEcm()
-			return caemm
-		if self.type == self.CRWECM:
-			caemm = self.getCrwEcm()
-			return caemm
-		if self.type == self.DREAMECM:
-			caemm = self.getDreamEcm()
-			return caemm
-		if self.type == self.NDSECM:
-			caemm = self.getNdsEcm()
-			return caemm
-		if self.type == self.FTA:
-			caemm = self.getFta()
-			return caemm
-		if self.type == self.EMU:
-			caemm = self.getEmu()
-			return caemm
-		if self.type == self.CRD:
-			caemm = self.getCrd()
-			return caemm
-		if self.type == self.NET:
-			caemm = self.getNet()
-			return caemm
-		if self.type == self.BISCRYPT:
-			caemm = self.getBisCrypt()
-			return caemm
-		if self.type == self.BISECM:
-			caemm = self.getBisEcm()
-			return caemm
-		if self.type == self.MGCAMD:
-			caemm = self.getMgcamd()
-			return caemm
-		if self.type == self.OSCAM:
-			caemm = self.getOscam()
-			return caemm
-		if self.type == self.CAMD3:
-			caemm = self.getCamd3()
-			return caemm
-		if self.type == self.CCAM:
-			caemm = self.getCcam()
-			return caemm
-		if self.type == self.MBOX:
-			caemm = self.getMbox()
-			return caemm
-		if self.type == self.GBOX:
-			caemm = self.getGbox()
-			return caemm
-		if self.type == self.INCUBUS:
-			caemm = self.getIncubus()
-			return caemm
-		if self.type == self.WICARDD:
-			caemm = self.getWicardd()
-			return caemm
-		if self.type == self.BULCRYPT:
-			caemm = self.getBulCrypt()
-			return caemm
-		if self.type == self.BULECM:
-			caemm = self.getBulEcm()
-			return caemm
-		return False
+		if service and service.info():
+			value = {
+				self.IRDCRYPT: self.getCrypt("06"),
+				self.SECACRYPT: self.getCrypt("01"),
+				self.NAGRACRYPT: self.getCrypt("18"),
+				self.VIACRYPT: self.getCrypt("05"),
+				self.CONAXCRYPT: self.getCrypt("0B"),
+				self.BETACRYPT: self.getCrypt("17"),
+				self.CRWCRYPT: self.getCrypt("0D"),
+				self.DREAMCRYPT: self.getCrypt("4A"),
+				self.NDSCRYPT: self.getCrypt("09"),
+				self.IRDECM: self.getEcm("06"),
+				self.SECAECM: self.getEcm("01"),
+				self.NAGRAECM: self.getEcm("18"),
+				self.VIAECM: self.getEcm("05"),
+				self.CONAXECM: self.getEcm("0B"),
+				self.BETAECM: self.getEcm("17"),
+				self.CRWECM: self.getEcm("0D"),
+				self.DREAMECM: self.getEcm("4A"),
+				self.NDSECM: self.getEcm("09"),
+				self.FTA: self.getFta(),
+				self.EMU: self.getEmu(),
+				self.CRD: self.getCrd(),
+				self.NET: self.getNet(),
+				self.BISCRYPT: self.getCrypt("26"),
+				self.BISECM: self.getEcm("26"),
+#				self.MGCAMD: self.getCam("Mgcamd"),
+#				self.OSCAM: self.getOscam(),
+#				self.CAMD3: self.getCam("Camd3"),
+#				self.CCAM: self.getCam("Cccamd"),
+#				self.MBOX: self.getCam("Mbox"),
+#				self.GBOX: self.getCam("Gbox"),
+#				self.INCUBUS: self.getCam("Incubus"),
+#				self.WICARDD: self.getCam("Wicardd"),
+				self.BULCRYPT: self.getCrypt("55"),
+				self.BULECM: self.getEcm("55")
+			}.get(self.type, False)
+		else:
+			value = False
+		return value
 
 	boolean = property(getBoolean)
 
 	def getFta(self):
 		ca = self.getCaidInfo()
-		if ca == "No CA info avalaible":
-			return True
-		return False
+		return ca == "No CA info available"
 
 	def getecminfo(self):
 		try:
@@ -293,7 +187,6 @@ class ExtremeInfo(Poll, Converter):
 				using = self.parseEcmInfoLine(line)
 				if using == "emu":
 					return True
-
 		return False
 
 	def getCrd(self):
@@ -307,7 +200,6 @@ class ExtremeInfo(Poll, Converter):
 				using = self.parseEcmInfoLine(line)
 				if using == "card":
 					return True
-
 		return False
 
 	def getNet(self):
@@ -322,10 +214,9 @@ class ExtremeInfo(Poll, Converter):
 				using = self.parseEcmInfoLine(line)
 				if using == "newcamd":
 					return True
-
 		return False
 
-	def getIrdEcm(self):
+	def getEcm(self, value):
 		service = self.source.service
 		if service:
 			info = service and service.info()
@@ -341,7 +232,7 @@ class ExtremeInfo(Poll, Converter):
 								caid = f"0{caid}"
 							caid = caid[:2]
 							caid = caid.upper()
-							if caid == "06":
+							if caid == value:
 								return True
 					elif line.startswith("====="):
 						caid = self.parseInfoLine(line)
@@ -350,478 +241,26 @@ class ExtremeInfo(Poll, Converter):
 							caid = caid[idx + 1:]
 							caid = caid[:2]
 							caid = caid.upper()
-							if caid == "06":
+							if caid == value:
 								return True
-
-		return False
-
-	def getSecaEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "01":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "01":
-								return True
-
-		return False
-
-	def getNagraEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "18":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "18":
-								return True
-
-		return False
-
-	def getViaEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "05":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "05":
-								return True
-
-		return False
-
-	def getBisEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "26":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "26":
-								return True
-
-		return False
-
-	def getConaxEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "0B":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "0B":
-								return True
-
-		return False
-
-	def getBetaEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "17":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "17":
-								return True
-
-		return False
-
-	def getCrwEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "0D":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "0D":
-								return True
-
-		return False
-
-	def getDreamEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "4A":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "4A":
-								return True
-
-		return False
-
-	def getNdsEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "09":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "09":
-								return True
-
-		return False
-
-	def getBulEcm(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				contentInfo = self.getecminfo()
-				for line in contentInfo:
-					if line.startswith("caid:"):
-						caid = self.parseEcmInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							if len(caid) == 3:
-								caid = f"0{caid}"
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "55":
-								return True
-					elif line.startswith("====="):
-						caid = self.parseInfoLine(line)
-						if "x" in caid:
-							idx = caid.index("x")
-							caid = caid[idx + 1:]
-							caid = caid[:2]
-							caid = caid.upper()
-							if caid == "55":
-								return True
-
-		return False
-
-	def getIrdCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "06":
-							return True
-
-		return False
-
-	def getSecaCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "01":
-							return True
-
-		return False
-
-	def getNagraCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "18":
-							return True
-
-		return False
-
-	def getViaCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "05":
-							return True
-
-		return False
-
-	def getBisCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "26":
-							return True
-
-		return False
-
-	def getConaxCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "0B":
-							return True
-
-		return False
-
-	def getBetaCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "17":
-							return True
-
-		return False
-
-	def getCrwCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "0D":
-							return True
-
-		return False
-
-	def getDreamCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "4A":
-							return True
-
-		return False
-
-	def getNdsCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "09":
-							return True
-
-		return False
-
-	def getBulCrypt(self):
-		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				caids = info.getInfoObject(iServiceInformation.sCAIDs)
-				if caids:
-					for caid in caids:
-						caid = self.int2hex(caid)
-						caid = caid[:2]
-						if caid == "55":
-							return True
-
 		return False
 
 	def int2hex(self, integer):
 		return f"{integer:04x}".upper()
+
+	def getCrypt(self, value):
+		service = self.source.service
+		if service:
+			info = service and service.info()
+			if info:
+				caids = info.getInfoObject(iServiceInformation.sCAIDs)
+				if caids:
+					for caid in caids:
+						caid = self.int2hex(caid)
+						caid = caid[:2]
+						if caid == value:
+							return True
+		return False
 
 	def getCaidInfo(self):
 		service = self.source.service
@@ -836,7 +275,7 @@ class ExtremeInfo(Poll, Converter):
 						cainfo += f"{caid}  "
 
 					return cainfo
-		return "No CA info avalaible"
+		return "No CA info available"
 
 	def getCamName(self):
 		self.poll_interval = 2000
@@ -854,7 +293,6 @@ class ExtremeInfo(Poll, Converter):
 			content = open("/usr/bin/csactive").read()
 		except OSError:
 			content = ""
-
 		if content != "":
 			cs = content
 			if "\n" in cs:
@@ -871,14 +309,12 @@ class ExtremeInfo(Poll, Converter):
 			content = open("/tmp/cam.info").read()
 		except OSError:
 			content = ""
-
 		# contentInfo = content.split("\n")
 		if content != "":
 			return content
 		return "No emu or unknown"
 
 	def getEcmCamInfo(self):
-		textvalue = "No info from emu or FTA"
 		service = self.source.service
 		if service:
 			info = service and service.info()
@@ -906,10 +342,7 @@ class ExtremeInfo(Poll, Converter):
 					from2 = f"{from2}"
 					ecm_time = ecm_info.get("ecm time", None)
 					if ecm_time:
-						if "msec" in ecm_time:
-							ecm_time = f"0.{ecm_time} s"
-						else:
-							ecm_time = f"{ecm_time} s"
+						ecm_time = f"0.{ecm_time} s" if "msec" in ecm_time else f"{ecm_time} s"
 					address = ecm_info.get("address", "")
 					using = ecm_info.get("using", "")
 					if using:
@@ -922,25 +355,18 @@ class ExtremeInfo(Poll, Converter):
 					else:
 						source = ecm_info.get("source", None)
 						if source:
-							if source == "emu":
-								textvalue = f"Source:EMU {caid}"
-							else:
-								textvalue = f"{caid} - {source} - {ecm_time}"
+							textvalue = f"Source:EMU {caid}" if source == "emu" else f"{caid} - {source} - {ecm_time}"
 						oscsource = ecm_info.get("reader", None)
 						if oscsource:
-							if oscsource == "emu":
-								textvalue = f"Source:EMU {caid}"
-							else:
-								textvalue = f"{caid} - {from2} - {prov} - {reader} - {ecm_time}"
+							textvalue = f"Source:EMU {caid}" if oscsource == "emu" else f"{caid} - {from2} - {prov} - {reader} - {ecm_time}"
 						wicarddsource = ecm_info.get("response time", None)
 						if wicarddsource:
 							textvalue = f"{caid} - {provider} - {wicarddsource}"
 						decode = ecm_info.get("decode", None)
 						if decode:
-							if decode == "Internal":
-								textvalue = f"(EMU) {caid}"
-							else:
-								textvalue = f"{caid} - {decode}"
+							textvalue = f"(EMU) {caid}" if decode == "Internal" else f"{caid} - {decode}"
+		else:
+			textvalue = "No info from emu or FTA"
 		return textvalue
 
 	def ecmfile(self):
@@ -953,14 +379,12 @@ class ExtremeInfo(Poll, Converter):
 			frontendInfo = service.frontendInfo()
 			if frontendInfo:
 				try:
-					ecmpath = f"/tmp/ecm{frontendInfo.getAll(False).get('tuner_number')}.info"
-					ecm = open(ecmpath, "rb").readlines()
+					ecm = open(f"/tmp/ecm{frontendInfo.getAll(False).get('tuner_number')}.info", "rb").readlines()
 				except Exception:
 					try:
 						ecm = open("/tmp/ecm.info", "rb").readlines()
 					except OSError:
 						pass
-
 			if ecm:
 				for line in ecm:
 					x = line.lower().find("msec")
@@ -976,7 +400,6 @@ class ExtremeInfo(Poll, Converter):
 								y = line.find(",")
 								if y != -1:
 									info["caid"] = line[x + 5:y]
-
 		return info
 
 	def parseEcmInfoLine(self, line):
@@ -986,10 +409,8 @@ class ExtremeInfo(Poll, Converter):
 			line = line.replace("\n", "")
 			while line.startswith(" "):
 				line = line[1:]
-
 			while line.endswith(" "):
 				line = line[:-1]
-
 			return line
 		else:
 			return ""
@@ -1001,10 +422,8 @@ class ExtremeInfo(Poll, Converter):
 			line = line.replace("\n", "")
 			while line.startswith(" "):
 				line = line[1:]
-
 			while line.endswith(" "):
 				line = line[:-1]
-
 			return line
 		else:
 			return ""
@@ -1020,30 +439,28 @@ class ExtremeInfo(Poll, Converter):
 			items = self.tv_list
 		number = "---"
 		if name in items:
-			for idx in range(1, len(items)):
-				if name == items[idx - 1]:
-					number = str(idx)
+			for idx in range(len(items)):
+				if name == items[idx]:
+					number = f"{idx + 1}"
 					break
-
 		return number
 
-	def getListFromRef(self, ref):
-		items = []
-		serviceHandler = eServiceCenter.getInstance()
-		services = serviceHandler.list(ref)
-		bouquets = services and services.getContent("SN", True)
-		for bouquet in bouquets:
-			services = serviceHandler.list(eServiceReference(bouquet[0]))
-			channels = services and services.getContent("SN", True)
-			for channel in channels:
-				if not channel[0].startswith("1:64:"):
-					items.append(channel[1].replace(" -*-", "").replace(" -*-", ""))
-
-		return items
-
 	def getLists(self):
-		self.tv_list = self.getListFromRef(eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25) FROM BOUQUET "bouquets.tv" ORDER BY bouquet'))
-		self.radio_list = self.getListFromRef(eServiceReference('1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET "bouquets.radio" ORDER BY bouquet'))
+		def getListFromRef(ref):
+			serviceList = []
+			serviceHandler = eServiceCenter.getInstance()
+			services = serviceHandler.list(ref)
+			bouquets = services and services.getContent("SN", True)
+			for bouquet in bouquets:
+				services = serviceHandler.list(eServiceReference(bouquet[0]))
+				channels = services and services.getContent("SN", True)
+				for channel in channels:
+					if not channel[0].startswith("1:64:"):
+						serviceList.append(channel[1].replace(" -*-", "").replace(" -*-", ""))
+			return serviceList
+
+		self.tv_list = getListFromRef(eServiceReference("1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25) FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"))
+		self.radio_list = getListFromRef(eServiceReference("1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"))
 
 	def getTunerInfo(self, service):
 		tunerinfo = ""
@@ -1051,12 +468,14 @@ class ExtremeInfo(Poll, Converter):
 		if feinfo is not None:
 			frontendData = feinfo and feinfo.getAll(True)
 			if frontendData is not None:
-				if frontendData.get("tuner_type") == "DVB-S" or frontendData.get("tuner_type") == "DVB-C":
+				tunerType = frontendData.get("tuner_type")
+				if tunerType in ("DVB-S", "DVB-C"):
 					frequency = str(frontendData.get("frequency") / 1000) + " MHz"
 					symbolrate = str(int(frontendData.get("symbol_rate", 0) / 1000))
-					if frontendData.get("tuner_type") == "DVB-S":
-						try:
-							orb = {3590: "Thor/Intelsat (1.0W)",
+					if tunerType == "DVB-S":
+						orbitalPosition = frontendData.get("orbital_position", "None")
+						orb = {
+							3590: "Thor/Intelsat (1.0W)",
 							3560: "Amos (4.0W)",
 							3550: "Atlantic Bird (5.0W)",
 							3530: "Nilesat/Atlantic Bird (7.0W)",
@@ -1154,52 +573,58 @@ class ExtremeInfo(Poll, Converter):
 							70: "Eutelsat W3A (7.0E)",
 							50: "Sirius 4 (5.0E)",
 							48: "Sirius 4 (4.8E)",
-							30: "Telecom 2 (3.0E)"}[frontendData.get("orbital_position", "None")]
-						except Exception:
-							orb = f"Unsupported SAT: {str([frontendData.get('orbital_position', 'None')])}"
-
-						if self.tunertype == "linelist":
-							pol = {eDVBFrontendParametersSatellite.Polarisation_Horizontal: "H",
-							eDVBFrontendParametersSatellite.Polarisation_Vertical: "V",
-							eDVBFrontendParametersSatellite.Polarisation_CircularLeft: "CL",
-							eDVBFrontendParametersSatellite.Polarisation_CircularRight: "CR"}[frontendData.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal)]
+							30: "Telecom 2 (3.0E)"
+						}.get(orbitalPosition, f"Unsupported SAT: {orbitalPosition}")
+						if self.type == self.TUNERINFO:
+							pol = {
+								eDVBFrontendParametersSatellite.Polarisation_Horizontal: "H",
+								eDVBFrontendParametersSatellite.Polarisation_Vertical: "V",
+								eDVBFrontendParametersSatellite.Polarisation_CircularLeft: "CL",
+								eDVBFrontendParametersSatellite.Polarisation_CircularRight: "CR"
+							}[frontendData.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal)]
 						else:
-							pol = {eDVBFrontendParametersSatellite.Polarisation_Horizontal: "Horizontal",
-							eDVBFrontendParametersSatellite.Polarisation_Vertical: "Vertical",
-							eDVBFrontendParametersSatellite.Polarisation_CircularLeft: "Circular Left",
-							eDVBFrontendParametersSatellite.Polarisation_CircularRight: "Circular Right"}[frontendData.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal)]
-						fec = {eDVBFrontendParametersSatellite.FEC_None: "None",
-						eDVBFrontendParametersSatellite.FEC_Auto: "Auto",
-						eDVBFrontendParametersSatellite.FEC_1_2: "1/2",
-						eDVBFrontendParametersSatellite.FEC_2_3: "2/3",
-						eDVBFrontendParametersSatellite.FEC_3_4: "3/4",
-						eDVBFrontendParametersSatellite.FEC_3_5: "3/5",
-						eDVBFrontendParametersSatellite.FEC_4_5: "4/5",
-						eDVBFrontendParametersSatellite.FEC_5_6: "5/6",
-						eDVBFrontendParametersSatellite.FEC_6_7: "6/7",
-						eDVBFrontendParametersSatellite.FEC_7_8: "7/8",
-						eDVBFrontendParametersSatellite.FEC_8_9: "8/9",
-						eDVBFrontendParametersSatellite.FEC_9_10: "9/10"}[frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)]
-						if self.tunertype == "linelist":
+							pol = {
+								eDVBFrontendParametersSatellite.Polarisation_Horizontal: "Horizontal",
+								eDVBFrontendParametersSatellite.Polarisation_Vertical: "Vertical",
+								eDVBFrontendParametersSatellite.Polarisation_CircularLeft: "Circular Left",
+								eDVBFrontendParametersSatellite.Polarisation_CircularRight: "Circular Right"
+							}[frontendData.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal)]
+						fec = {
+							eDVBFrontendParametersSatellite.FEC_None: "None",
+							eDVBFrontendParametersSatellite.FEC_Auto: "Auto",
+							eDVBFrontendParametersSatellite.FEC_1_2: "1/2",
+							eDVBFrontendParametersSatellite.FEC_2_3: "2/3",
+							eDVBFrontendParametersSatellite.FEC_3_4: "3/4",
+							eDVBFrontendParametersSatellite.FEC_3_5: "3/5",
+							eDVBFrontendParametersSatellite.FEC_4_5: "4/5",
+							eDVBFrontendParametersSatellite.FEC_5_6: "5/6",
+							eDVBFrontendParametersSatellite.FEC_6_7: "6/7",
+							eDVBFrontendParametersSatellite.FEC_7_8: "7/8",
+							eDVBFrontendParametersSatellite.FEC_8_9: "8/9",
+							eDVBFrontendParametersSatellite.FEC_9_10: "9/10"
+						}[frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)]
+						if self.type == self.TUNERINFO:
 							tunerinfo = f"{frequency}  {pol}  {fec}  {symbolrate}  {orb}"
 						else:
 							tunerinfo = f"Satellite: {orb}\nFrequency: {frequency}\nPolarization: {pol}\nSymbolrate: {symbolrate}\nFEC: {fec}"
 					elif frontendData.get("tuner_type") == "DVB-C":
-						fec = {eDVBFrontendParametersCable.FEC_None: "None",
-						eDVBFrontendParametersCable.FEC_Auto: "Auto",
-						eDVBFrontendParametersCable.FEC_1_2: "1/2",
-						eDVBFrontendParametersCable.FEC_2_3: "2/3",
-						eDVBFrontendParametersCable.FEC_3_4: "3/4",
-						eDVBFrontendParametersCable.FEC_3_5: "3/5",
-						eDVBFrontendParametersCable.FEC_4_5: "4/5",
-						eDVBFrontendParametersCable.FEC_5_6: "5/6",
-						eDVBFrontendParametersCable.FEC_7_8: "7/8",
-						eDVBFrontendParametersCable.FEC_8_9: "8/9"}[frontendData.get("fec_inner", eDVBFrontendParametersCable.FEC_Auto)]
-						if self.tunertype == "linelist":
+						fec = {
+							eDVBFrontendParametersCable.FEC_None: "None",
+							eDVBFrontendParametersCable.FEC_Auto: "Auto",
+							eDVBFrontendParametersCable.FEC_1_2: "1/2",
+							eDVBFrontendParametersCable.FEC_2_3: "2/3",
+							eDVBFrontendParametersCable.FEC_3_4: "3/4",
+							eDVBFrontendParametersCable.FEC_3_5: "3/5",
+							eDVBFrontendParametersCable.FEC_4_5: "4/5",
+							eDVBFrontendParametersCable.FEC_5_6: "5/6",
+							eDVBFrontendParametersCable.FEC_7_8: "7/8",
+							eDVBFrontendParametersCable.FEC_8_9: "8/9"
+						}[frontendData.get("fec_inner", eDVBFrontendParametersCable.FEC_Auto)]
+						if self.type == self.TUNERINFO:
 							tunerinfo = f"{frequency}  {fec}  {symbolrate}"
 						else:
 							tunerinfo = f"Frequency: {frequency}\nSymbolrate: {symbolrate}\nFEC: {fec}"
-					elif self.tunertype == "linelist":
+					elif self.type == self.TUNERINFO:
 						tunerinfo = f"{frequency}  {symbolrate}"
 					else:
 						tunerinfo = f"Frequency: {frequency}\nSymbolrate: {symbolrate}"
@@ -1207,114 +632,24 @@ class ExtremeInfo(Poll, Converter):
 			else:
 				return ""
 
-	def getMgcamd(self):
-		self.poll_interval = 2000
-		self.poll_enabled = True
-		using = ""
-		content = ""
-		contentInfo = content.split("\n")
-		for line in contentInfo:
-			if "Mgcamd" in line:
-				using = "mgcamd"
-				if using == "mgcamd":
-					return True
 
-		return False
+# This is for future enhancement
+#	def getOscam(self):
+#		self.poll_interval = 2000
+#		self.poll_enabled = True
+#		content = ""  # ??
+#		contentInfo = content.split("\n")
+#		for line in contentInfo:
+#			if line.startswith("Oscam"):
+#				return True
+#		return False
 
-	def getOscam(self):
-		self.poll_interval = 2000
-		self.poll_enabled = True
-		using = ""
-		content = ""
-		contentInfo = content.split("\n")
-		for line in contentInfo:
-			if line.startswith("Oscam"):
-				using = "oscam"
-				if using == "oscam":
-					return True
-
-		return False
-
-	def getCamd3(self):
-		self.poll_interval = 2000
-		self.poll_enabled = True
-		using = ""
-		content = ""
-		contentInfo = content.split("\n")
-		for line in contentInfo:
-			if "Camd3" in line:
-				using = "camd3"
-				if using == "camd3":
-					return True
-
-		return False
-
-	def getCcam(self):
-		self.poll_interval = 2000
-		self.poll_enabled = True
-		using = ""
-		content = ""
-		contentInfo = content.split("\n")
-		for line in contentInfo:
-			if "Cccamd" in line:
-				using = "cccamd"
-				if using == "cccamd":
-					return True
-
-		return False
-
-	def getMbox(self):
-		self.poll_interval = 2000
-		self.poll_enabled = True
-		using = ""
-		content = ""
-		contentInfo = content.split("\n")
-		for line in contentInfo:
-			if "Mbox" in line:
-				using = "mbox"
-				if using == "mbox":
-					return True
-
-		return False
-
-	def getGbox(self):
-		self.poll_interval = 2000
-		self.poll_enabled = True
-		using = ""
-		content = ""
-		contentInfo = content.split("\n")
-		for line in contentInfo:
-			if "Gbox" in line:
-				using = "gbox"
-				if using == "gbox":
-					return True
-
-		return False
-
-	def getIncubus(self):
-		self.poll_interval = 2000
-		self.poll_enabled = True
-		using = ""
-		content = ""
-		contentInfo = content.split("\n")
-		for line in contentInfo:
-			if "Incubus" in line:
-				using = "incubus"
-				if using == "incubus":
-					return True
-
-		return False
-
-	def getWicardd(self):
-		self.poll_interval = 2000
-		self.poll_enabled = True
-		using = ""
-		content = ""
-		contentInfo = content.split("\n")
-		for line in contentInfo:
-			if "Wicardd" in line:
-				using = "wicardd"
-				if using == "wicardd":
-					return True
-
-		return False
+#	def getCam(self, find):
+#		self.poll_interval = 2000
+#		self.poll_enabled = True
+#		content = ""  # ??
+#		contentInfo = content.split("\n")
+#		for line in contentInfo:
+#			if find in line:
+#				return True
+#		return False
