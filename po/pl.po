@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-22 08:09+0000\n"
-"PO-Revision-Date: 2023-10-22 10:28+0000\n"
+"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"PO-Revision-Date: 2023-10-28 04:20+0000\n"
 "Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1455,9 +1455,6 @@ msgstr "12bit 4:2:0/4:2:2 bez PIP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16:9 reset to normal"
-msgstr "16/9 przywrócić do normy"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
@@ -1481,6 +1478,9 @@ msgstr "16:9 Letterbox"
 
 msgid "16:9 PanScan"
 msgstr "16:9 Pan Scan"
+
+msgid "16:9 reset to normal"
+msgstr "16/9 przywrócić do normy"
 
 msgid "18 V"
 msgstr "18 V"
@@ -4932,6 +4932,9 @@ msgstr "Kopiuj"
 
 msgid "Copy To Bouquets"
 msgstr "Kopiuj do list kanałów"
+
+msgid "Copy To Stream Relay"
+msgstr ""
 
 msgid "Copy all related files"
 msgstr "Skopiuj wszystkie powiązane pliki"
@@ -9148,6 +9151,9 @@ msgstr "Adres IP, który ma być sprawdzany przy aktywacji timera."
 msgid "IP address"
 msgstr "Adres IP"
 
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr "Adres IP serwera Stream Relay wykorzystywany do odkodowywania usług, które mogą być odszyfrowane przez Stream Relay."
+
 msgid "IPK Installer"
 msgstr "Instalator IPK"
 
@@ -12859,6 +12865,12 @@ msgstr "Odtwórz wybraną usługę w oknie PiP"
 msgid "Play selected service on the main screen"
 msgstr "Odtwórz wybraną usługę na głównym ekranie"
 
+msgid "Play service with Stream Relay"
+msgstr "Odtwarzaj usługi za pomocą Stream Relay"
+
+msgid "Play service without Stream Relay"
+msgstr "Odtwarzaj usługi bez pomocy Stream Relay"
+
 msgid "Play the audio file"
 msgstr "Odtwórz plik audio"
 
@@ -13216,6 +13228,9 @@ msgstr "Port C"
 
 msgid "Port D"
 msgstr "Port D"
+
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr "Numer portu dla serwera Stream Relay wykorzystywany do odkodowywania usług, które mogą być tylko odszyfrowane przez Stream Relay."
 
 msgid "Portugal"
 msgstr "Portugalia"
@@ -18365,6 +18380,12 @@ msgstr "Zapamiętana pozycja"
 
 msgid "Stream"
 msgstr "Strumień"
+
+msgid "Stream Relay URL"
+msgstr "URL Stream Relay"
+
+msgid "Stream Relay port"
+msgstr "Port Stream Relay"
 
 msgid "Stream request"
 msgstr "Żądanie strumienia"

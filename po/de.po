@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-22 08:09+0000\n"
-"PO-Revision-Date: 2023-10-25 08:26+0000\n"
+"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1.1-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1445,9 +1445,6 @@ msgstr "12 Bit 4:2:0/4:2:2 ohne Bild-im-Bild"
 msgid "13 V"
 msgstr "13V"
 
-msgid "16:9 reset to normal"
-msgstr "16:9 zurücksetzen"
-
 #
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -1476,6 +1473,9 @@ msgstr "16:9 Letterbox"
 
 msgid "16:9 PanScan"
 msgstr "16:9 Pan & Scan"
+
+msgid "16:9 reset to normal"
+msgstr "16:9 zurücksetzen"
 
 #
 msgid "18 V"
@@ -4245,7 +4245,7 @@ msgid "Choose the location for crash and debug logs."
 msgstr "Wählen Sie den Speicherort für Crash- und Debug-Logs."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
-msgstr "Wählen Sie einen Ort zur Speicherung der EPG-Daten, wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
+msgstr "Wählen Sie einen Ort zur Speicherung der EPG-Daten, wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein!"
 
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
@@ -5191,6 +5191,9 @@ msgstr "Kopieren"
 #
 msgid "Copy To Bouquets"
 msgstr "In Favoriten kopieren"
+
+msgid "Copy To Stream Relay"
+msgstr "Kopiere zu Stream Relay"
 
 msgid "Copy all related files"
 msgstr "Alle zugehörigen Dateien kopieren"
@@ -7929,7 +7932,7 @@ msgstr "Fehler beim Schreiben von '%s'!"
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
 "Die erforderlichen Verzeichnisse auf dem Medium (z.B. USB-Stick oder Festplatte) können nicht erstellt werden!\n"
-"Bitte überprüfen Sie das Medium und versuchen es dann erneut!"
+"Bitte überprüfen Sie das Medium und versuchen es dann erneut."
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr ""
@@ -8991,9 +8994,7 @@ msgid "Geolocation has been used to set the time zone."
 msgstr "Die Zeitzone wurde anhand der Standortbestimmung festgelegt."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
-msgstr ""
-"Standortinformationen können nicht abgerufen werden!\n"
-"Bitte versuchen Sie es später erneut."
+msgstr "Standortinformationen können nicht abgerufen werden! Bitte versuchen Sie es später erneut."
 
 #, python-format
 msgid "Geolocation information for %s %s"
@@ -9640,6 +9641,9 @@ msgstr "IP-Adresse, die bei der Aktivierung des Timers überprüft werden soll."
 #
 msgid "IP address"
 msgstr "IP-Adresse"
+
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr "IP-Adresse des Stream Relay-Servers um Dienste zu entschlüsseln, die nur über Stream Relay entschlüsselt werden können."
 
 msgid "IPK Installer"
 msgstr "IPK-Installer"
@@ -11206,7 +11210,7 @@ msgid "Manage Plugins. This will remove/install Plugins on your box"
 msgstr "Plugins verwalten, entfernen oder installieren."
 
 msgid "Manage and explore directories and files."
-msgstr "Dateien und Verzeichnisse erkunden und verwalten."
+msgstr "Dateien und Verzeichnisse durchsuchen und verwalten."
 
 msgid "Manage network mounts"
 msgstr "Netzwerklaufwerke verwalten"
@@ -11737,13 +11741,13 @@ msgid "Move east"
 msgstr "Drehen nach Osten"
 
 msgid "Move job completed."
-msgstr "Verschiebung abgeschlossen."
+msgstr "Verschieben abgeschlossen."
 
 msgid "Move job failed!"
-msgstr "Verschiebung fehlgeschlagen!"
+msgstr "Verschieben fehlgeschlagen!"
 
 msgid "Move job queued."
-msgstr "Verschiebung in Warteschlange."
+msgstr "Verschieben in Warteschlange."
 
 msgid "Move only highlighted file"
 msgstr "Nur markierte Datei verschieben"
@@ -13647,6 +13651,12 @@ msgstr "Gewählten Kanal ins Bild-im-Bild Fenster"
 msgid "Play selected service on the main screen"
 msgstr "Gewählten Kanal auf den Hauptbildschirm"
 
+msgid "Play service with Stream Relay"
+msgstr "Sender mit Stream Relay abspielen"
+
+msgid "Play service without Stream Relay"
+msgstr "Sender nicht mit Stream Relay abspielen"
+
 msgid "Play the audio file"
 msgstr "Die Audiodatei abspielen"
 
@@ -14048,6 +14058,9 @@ msgstr "Port C"
 #
 msgid "Port D"
 msgstr "Port D"
+
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr "Port-Nummer des Stream Relay-Servers um Dienste zu entschlüsseln, die nur über Stream Relay entschlüsselt werden können."
 
 msgid "Portugal"
 msgstr "Portugal"
@@ -19544,6 +19557,12 @@ msgstr "Gespeicherte Position"
 
 msgid "Stream"
 msgstr "Stream"
+
+msgid "Stream Relay URL"
+msgstr "Stream Relay URL"
+
+msgid "Stream Relay port"
+msgstr "Stream Relay Port"
 
 msgid "Stream request"
 msgstr "Streamauswahl"

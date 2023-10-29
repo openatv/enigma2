@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-22 08:09+0000\n"
-"PO-Revision-Date: 2023-09-28 23:02+0000\n"
+"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"PO-Revision-Date: 2023-10-28 04:20+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 msgid ""
 "\n"
@@ -1410,9 +1410,6 @@ msgstr "12bit 4:2:0/4:2:2 ei PIP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16:9 reset to normal"
-msgstr "16/9 palautus normaaliksi"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
@@ -1436,6 +1433,9 @@ msgstr "16:9 Letterbox"
 
 msgid "16:9 PanScan"
 msgstr "16:9 PanScan"
+
+msgid "16:9 reset to normal"
+msgstr "16/9 palautus normaaliksi"
 
 msgid "18 V"
 msgstr "18 V"
@@ -4024,7 +4024,7 @@ msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Valitse järjestys, jossa kohteet näytetään ohje ikkunoissa."
 
 msgid "Choose the target device for the slots."
-msgstr ""
+msgstr "Valitse kohdelaiteelle paikka."
 
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Valitse kohteen sijainti laajennetulle \"/usr\" hakemistolle."
@@ -4788,7 +4788,7 @@ msgid "Console"
 msgstr "Konsoli"
 
 msgid "Constellation"
-msgstr ""
+msgstr "Merkistö"
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Ota yhteyttä moottorin valmistajaan saadaksesi tekniset tiedot, tai jätä oletus asetukset."
@@ -4898,6 +4898,9 @@ msgstr "Kopioi"
 
 msgid "Copy To Bouquets"
 msgstr "kopioi suosikkilistalle"
+
+msgid "Copy To Stream Relay"
+msgstr ""
 
 msgid "Copy all related files"
 msgstr "Kopioi kaikki liittyvät tiedostot"
@@ -6541,7 +6544,7 @@ msgid "E "
 msgstr "O "
 
 msgid "ECM"
-msgstr ""
+msgstr "ECM"
 
 msgid "ECM Statistics"
 msgstr "ECM tietoja"
@@ -6556,11 +6559,11 @@ msgid "ECM data will be included in the stream. This enables a client receiver t
 msgstr "ECM data lisätään streamiin. Tämä mahdollistaa lähetyksen purkamisen etävastaanottimessa."
 
 msgid "ECM information"
-msgstr ""
+msgstr "ECM tiedot"
 
 #, python-format
 msgid "ECM information for '%s'"
-msgstr ""
+msgstr "ECM tiedot '%s'"
 
 msgid "ECM last"
 msgstr "EMC viim"
@@ -8264,7 +8267,7 @@ msgid "Format your hard drive"
 msgstr "Alusta kiintolevy"
 
 msgid "Forward Error Correction (FEC)"
-msgstr ""
+msgstr "Virheiden korjaus (FEC)"
 
 msgid "Forward volume keys"
 msgstr "Välitä äänenvoimakkuusnäppäimet"
@@ -8294,7 +8297,7 @@ msgid "Free swap"
 msgstr "Vapaa swappi"
 
 msgid "Free to Air (FTA) Service"
-msgstr ""
+msgstr "Ilmainen (FTA)"
 
 msgid "Free:"
 msgstr "Vapaana:"
@@ -9112,6 +9115,9 @@ msgstr "IP Osoite, joka tarkistetaan ajastimen aktivoinnin yhteydessä."
 
 msgid "IP address"
 msgstr "IP osoite"
+
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
 
 msgid "IPK Installer"
 msgstr "IPK Asennus"
@@ -10492,7 +10498,7 @@ msgid "MENU"
 msgstr "VALIKKO"
 
 msgid "MHz"
-msgstr ""
+msgstr "MHz"
 
 msgid "MKUBIFS"
 msgstr "MKUBIFS"
@@ -11374,7 +11380,7 @@ msgid "NFS Settings"
 msgstr "NFS asetukset"
 
 msgid "NIM"
-msgstr ""
+msgstr "NIM"
 
 msgid "NOTE"
 msgstr "HUOMAUTUS"
@@ -12361,7 +12367,7 @@ msgid "Original"
 msgstr "Alkuperäinen"
 
 msgid "Original Network ID (ONID)"
-msgstr ""
+msgstr "Alkuperäinen verkkotunnus (ONID)"
 
 msgid "Oriya"
 msgstr "Oriya"
@@ -12834,6 +12840,12 @@ msgstr "Toista valittu kanava PiP ikkunassa"
 msgid "Play selected service on the main screen"
 msgstr "Toista valittu kanava päänäytöllä"
 
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
+msgstr ""
+
 msgid "Play the audio file"
 msgstr "Toista äänitiedosto"
 
@@ -13191,6 +13203,9 @@ msgstr "Portti C"
 
 msgid "Port D"
 msgstr "Portti D"
+
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
 
 msgid "Portugal"
 msgstr "Portugali"
@@ -15699,7 +15714,7 @@ msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Valitse hakupalkin aktivointi: kursori vasen/oikea (pitkä) tai << >> (pitkä)."
 
 msgid "Select service information to view:"
-msgstr ""
+msgstr "Valitse kanava tiedot tarkastellaksesi:"
 
 msgid "Select service to add..."
 msgstr "Valitse lisättävä kanava..."
@@ -16205,13 +16220,13 @@ msgid "Service '%s' is already defined."
 msgstr "Kanava '%s' on jo määritelty."
 
 msgid "Service ID (SID)"
-msgstr ""
+msgstr "Kanava ID (SID)"
 
 msgid "Service Information"
-msgstr ""
+msgstr "Kanava tiedot"
 
 msgid "Service Information Actions"
-msgstr ""
+msgstr "Kanavan Tiedot Toiminnot"
 
 msgid "Service Name"
 msgstr "Kanavan nimi"
@@ -16235,11 +16250,11 @@ msgid "Service Zap Actions"
 msgstr "Palvelun Zap Toiminnot"
 
 msgid "Service and PID information"
-msgstr ""
+msgstr "Kanava ja PID tiedot"
 
 #, python-format
 msgid "Service and PID information for '%s'"
-msgstr ""
+msgstr "Kanavan ja PID tiedot '%s'"
 
 msgid "Service cant been added to the favorites."
 msgstr "Kanavaa ei voi lisätä suosikkeihin."
@@ -17224,7 +17239,7 @@ msgid "Show next picture"
 msgstr "Näytä seuraava kanava"
 
 msgid "Show next service information screen"
-msgstr ""
+msgstr "Näytä seuraavat kanavan tiedot ruudulla"
 
 msgid "Show next system information screen"
 msgstr "Näytä seuraava järjestelmätietonäyttö"
@@ -17272,7 +17287,7 @@ msgid "Show previous picture"
 msgstr "Vaihda edelliselle kanavalle"
 
 msgid "Show previous service information screen"
-msgstr ""
+msgstr "Näytä edellisen kanavan tiedot ruudulla"
 
 msgid "Show previous system information screen"
 msgstr "Näytä aikaisempi järjestelmätieto näyttö"
@@ -17302,7 +17317,7 @@ msgid "Show script messages if a background script ends. If the script has addit
 msgstr "Näytä komentosarjaviestit, jos taustakomentosarja päättyy. Jos komentosarjalla on muita ne näytetään kanssa."
 
 msgid "Show selection for service information screen"
-msgstr ""
+msgstr "Näytä valitun kanavan tiedot näytöllä"
 
 msgid "Show selection for system information screen"
 msgstr "Näytä järjestelmätietojen valinta näyttö"
@@ -18350,6 +18365,12 @@ msgstr "Sijainnin muistipaikka"
 msgid "Stream"
 msgstr "Suoratoisto"
 
+msgid "Stream Relay URL"
+msgstr ""
+
+msgid "Stream Relay port"
+msgstr ""
+
 msgid "Stream request"
 msgstr "Striimin pyyntö"
 
@@ -18726,7 +18747,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 29.9.2023\n"
+"Suomenkielinen käännös: 26.10.2023\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -20141,14 +20162,14 @@ msgid "Transponder Time"
 msgstr "Lähettimen aika"
 
 msgid "Transponder information"
-msgstr ""
+msgstr "Näytä lähetyksen tiedot"
 
 #, python-format
 msgid "Transponder information for '%s'"
-msgstr ""
+msgstr "Näytä lähetyksen tiedot '%s'"
 
 msgid "Transport Stream ID (TSID)"
-msgstr ""
+msgstr "Lähetyksen toisto tiedot (TSID)"
 
 msgid "Transport Stream Type"
 msgstr "Syötteen tyyppi"
@@ -20244,7 +20265,7 @@ msgid "Tuner Setup"
 msgstr "Viritin asetukset"
 
 msgid "Tuner data is not available!"
-msgstr ""
+msgstr "Viritin tietoja ei ole saatavilla!"
 
 msgid "Tuner information"
 msgstr "Viritin tiedot"

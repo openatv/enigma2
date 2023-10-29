@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-22 08:09+0000\n"
-"PO-Revision-Date: 2023-10-25 08:26+0000\n"
+"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"PO-Revision-Date: 2023-10-28 04:20+0000\n"
 "Last-Translator: Atec <dr.atec@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1.1-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 msgid ""
 "\n"
@@ -1049,16 +1049,16 @@ msgstr[2] "Je potrebné aktualizovať %d balíčkov."
 #, python-format
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
-msgstr[0] "Nainštaloval sa %d balíček."
-msgstr[1] "Nainštalovali sa %d balíčky."
-msgstr[2] "Nainštalovalo sa %d balíčkov."
+msgstr[0] "Nainštalovaný bol %d balíček."
+msgstr[1] "Nainštalované boli %d balíčky."
+msgstr[2] "Nainštalovaných bolo %d balíčkov."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
-msgstr[0] "Bol odstránený %d balíček."
-msgstr[1] "Boli odstránené %d balíčky."
-msgstr[2] "Bolo odstránených %d balíčkov."
+msgstr[0] "Odstránený bol %d balíček."
+msgstr[1] "Odstránené boli %d balíčky."
+msgstr[2] "Odstránených bolo %d balíčkov."
 
 #, python-format
 msgid "%d package was upgraded."
@@ -1446,9 +1446,6 @@ msgstr "12 bitov 4:2:0/4:2:2 bez PIP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16:9 reset to normal"
-msgstr "16/9 reset na normál"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
@@ -1472,6 +1469,9 @@ msgstr "16:9 Letterbox"
 
 msgid "16:9 PanScan"
 msgstr "16:9 PanScan"
+
+msgid "16:9 reset to normal"
+msgstr "16/9 reset na normál"
 
 msgid "18 V"
 msgstr "18 V"
@@ -4923,6 +4923,9 @@ msgstr "Kopírovať"
 msgid "Copy To Bouquets"
 msgstr "kopírovať do prehľadov"
 
+msgid "Copy To Stream Relay"
+msgstr ""
+
 msgid "Copy all related files"
 msgstr "Skopírovať všetky súvisiace súbory"
 
@@ -6459,9 +6462,9 @@ msgstr "Hotovo"
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Dokončené – bol nainštalovaný, aktualizovaný alebo odstránený %d balíček (%s)"
-msgstr[1] "Dokončené – boli nainštalované, aktualizované alebo odstránené %d balíčky (%s)"
-msgstr[2] "Dokončené – bolo nainštalovaných, aktualizovaných alebo odstránených %d balíčkov (%s)"
+msgstr[0] "Dokončené – nainštalovaný, aktualizovaný alebo odstránený bol %d balíček (%s)"
+msgstr[1] "Dokončené – nainštalované, aktualizované alebo odstránené boli %d balíčky (%s)"
+msgstr[2] "Dokončené – nainštalovaných, aktualizovaných alebo odstránených bolo %d balíčkov (%s)"
 
 msgid "Down"
 msgstr "Nadol"
@@ -9138,6 +9141,9 @@ msgstr "IP adresa sa skontroluje pri aktivácii časovača."
 msgid "IP address"
 msgstr "IP adresa"
 
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
+
 msgid "IPK Installer"
 msgstr "Inštalátor balíčkov IPK"
 
@@ -11693,7 +11699,7 @@ msgid "Niue"
 msgstr "Niue"
 
 msgid "No"
-msgstr "Nie"
+msgstr "nie"
 
 msgid "No (supported) DVDROM found!"
 msgstr "Žiadny (podporovaný) DVDROM!"
@@ -11705,7 +11711,7 @@ msgid "No Devices Found !!"
 msgstr "Nenašli sa žiadne zariadenia!"
 
 msgid "No ECM PIDs available"
-msgstr "Nie sú dostupné žiadne ECMPids"
+msgstr "Nie sú dostupné žiadne ECM PIDy"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Pevný disk sa nenašiel alebo nie je inicializovaný!"
@@ -11864,7 +11870,7 @@ msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
-"Nie je povolený žiadny!\n"
+"Nie je povolený žiadny tuner!\n"
 "Prosím, pred spustením vyhľadávania staníc nastavte tuner."
 
 msgid "No tuners are currently streaming."
@@ -11932,7 +11938,7 @@ msgid "No, never"
 msgstr "Nie, nikdy"
 
 msgid "No, scan later manually"
-msgstr "Nie, neskôr vyhľadám ručne"
+msgstr "Nie, neskôr vyhľadať ručne"
 
 msgid "No, show always the plugin browser"
 msgstr "Nie, vždy zobraziť prehliadač pluginov"
@@ -12848,6 +12854,12 @@ msgstr "Prehrať vybranú službu v okne PiP"
 msgid "Play selected service on the main screen"
 msgstr "Prehrať vybranú službu na hlavnej obrazovke"
 
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
+msgstr ""
+
 msgid "Play the audio file"
 msgstr "Prehrať zvukový súbor"
 
@@ -12873,7 +12885,7 @@ msgid "Please change recording endtime"
 msgstr "Prosím, zmeňte čas ukončenia nahrávania"
 
 msgid "Please check the manual of the receiver"
-msgstr "Prosím, pozrite si návod od prijímača"
+msgstr "Prosím, pozrite si návod na obsluhu prijímača"
 
 msgid "Please choose CCcam-Reader"
 msgstr "Prosím, vyberte čítačku CCcam"
@@ -13126,7 +13138,7 @@ msgid "Please wait... Loading list..."
 msgstr "Prosím. čakajte… Načítava sa zoznam…"
 
 msgid "Please wait...almost ready! "
-msgstr "Prosím, čakajte… takmer hotovo! "
+msgstr "Čakajte, prosím… dokončuje sa! "
 
 msgid "Plug in USB device"
 msgstr "Pripojte USB zariadenie"
@@ -13205,6 +13217,9 @@ msgstr "Port C"
 
 msgid "Port D"
 msgstr "Port D"
+
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
 
 msgid "Portugal"
 msgstr "Portugalsko"
@@ -15230,10 +15245,10 @@ msgid "Select 'Enable' to force a package clean before a package update. This is
 msgstr "Ak chcete balíček pred jeho aktualizáciou vyčistiť, vyberte možnosť 'Zapnúť'. Vtedy bude zoznam balíčkov aktuálny a počas aktualizácie sa zabráni problémom. Túto možnosť aktivujte len vtedy, keď nie je možné vykonať on-line aktualizáciu."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Ak chcete, aby timeshift používal jeden vyrovnávací súbor, vyberte možnosť \"Nie\". Na kontrolu veľkosti vyrovnávacieho súboru použite položky 'Kontrola starších súborov timeshiftu [v minútach]' a 'Kontrola voľného miesta pre timeshift'."
+msgstr "Ak chcete, aby timeshift používal jeden vyrovnávací súbor, vyberte možnosť 'Nie'. Na kontrolu veľkosti vyrovnávacieho súboru použite položky 'Kontrola starších súborov timeshiftu [v minútach]' a 'Kontrola voľného miesta pre timeshift'."
 
 msgid "Select 'No' to only write a log message to the debug log file."
-msgstr "Ak sa má do súboru denníka ladenia zapísať iba správa denník, vyberte možnosť 'Nie'."
+msgstr "Ak sa má do súboru denníka ladenia zapísať iba správa, vyberte možnosť 'Nie'."
 
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Ak chcete uložiť staršie udalosti aj po prepnutí alebo prerušení timeshiftu, vyberte možnosť 'Nie'."
@@ -15332,7 +15347,7 @@ msgid "Select 'Yes' to reset network configuration to the default. This will ena
 msgstr "Ak chcete vykonať reset konfigurácie siete na predvolené hodnoty, vyberte možnosť 'Áno'. Tým sa povolí ethernetový port, ak existuje, a prijímač sa nastaví na používanie DHCP. Všetky ostatné sieťové rozhrania budú odstránené."
 
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
-msgstr "Ak sa pri úprave textového súboru má nastaviť pozícia kurzora na koniec riadku, vyberte možnosť 'Áno'. Výberom možnosti 'Nie' sa kurzor nastaví na začiatok riadku."
+msgstr "Ak sa má pri úprave textového súboru nastaviť pozícia kurzora na koniec riadku, vyberte možnosť 'Áno'. Výberom možnosti 'Nie' sa kurzor nastaví na začiatok riadku."
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Ak sa na obrazovke Stiahnuť pluginy majú zobraziť aj balíčky typu 'dev', 'staticdev', 'dbg' a 'doc', vyberte možnosť 'Áno'."
@@ -15347,7 +15362,7 @@ msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky pre OpenVIX, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
-msgstr "Ak sa priečinky majú zobrazovať na začiatku zoznamu, vyberte možnosť 'Áno'. Ak chcete zobrazovať najskôr súbory, vyberte možnosť 'Nie'."
+msgstr "Ak sa majú priečinky zobrazovať na začiatku zoznamu, vyberte možnosť 'Áno'. Ak chcete zobrazovať najskôr súbory, vyberte možnosť 'Nie'."
 
 msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky s ovládačmi, vyberte možnosť 'Áno'."
@@ -18354,6 +18369,12 @@ msgstr "Uložená pozícia"
 msgid "Stream"
 msgstr "Stream"
 
+msgid "Stream Relay URL"
+msgstr ""
+
+msgid "Stream Relay port"
+msgstr ""
+
 msgid "Stream request"
 msgstr "Pri požiadavke streamu"
 
@@ -19381,7 +19402,7 @@ msgid "This Device is already mounted as HDD."
 msgstr "Toto zariadenie je už pripojené ako HDD."
 
 msgid "This Option allows you to switch Audio to BT Speakers."
-msgstr "Táto voľba umožňuje prepnúť zvuk na BT reproduktory."
+msgstr "Prepnutie zvuku na BT reproduktory."
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Umožňuje zmeniť relatívnu veľkosť písma vzhľadom na veľkosť vzhľadu, takže 1 zväčší veľkosť o 1 bod a -1 zmenší veľkosť o 1 bod"
@@ -19429,211 +19450,211 @@ msgid "This offset will only be used if the channel does not have its own volume
 msgstr "Tento posun sa použije len vtedy, ak kanál nemá nastavený vlastný posun hlasitosti."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
-msgstr "Táto voľba umožňuje znížiť blokový šum v obraze. Zhorší sa tým však jeho ostrosť."
+msgstr "Redukcia blokového šumu v obraze. Zhorší sa tým však jeho ostrosť."
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
-msgstr "Táto voľba umožňuje nastaviť úroveň dynamického kontrastu obrazu."
+msgstr "Nastavenie úrovne dynamického kontrastu obrazu."
 
 msgid "This option allows you can config the Colordepth for UHD"
-msgstr "Táto voľba umožňuje konfigurovať farebnú hĺbku pre UHD"
+msgstr "Konfigurácia farebnej hĺbky pre UHD"
 
 msgid "This option allows you can config the Colorimetry for HDR"
-msgstr "Táto voľba umožňuje konfigurovať kolorimetriu pre HDR"
+msgstr "Konfigurácia kolorimetrie pre HDR"
 
 msgid "This option allows you can config the Colorspace from Auto to RGB"
-msgstr "Táto voľba umožňuje zmeniť farebný priestor z Auto na RGB"
+msgstr "Zmena farebného priestoru z Auto na RGB"
 
 msgid "This option allows you can enable or disable the 10 Bit Color Mode"
-msgstr "Táto voľba umožňuje zapnúť alebo vypnúť režim 10 bitových farieb"
+msgstr "Zapnutie/vypnutie režimu 10 bitových farieb"
 
 msgid "This option allows you can enable or disable the 12 Bit Color Mode"
-msgstr "Táto voľba umožňuje zapnúť alebo vypnúť režim 12 bitových farieb"
+msgstr "Zapnutie/vypnutie režimu 12 bitových farieb"
 
 msgid "This option allows you can force the HDR Modes for UHD"
-msgstr "Táto voľba umožňuje vynútiť režimy HDR pre UHD"
+msgstr "Vynútenie režimov HDR pre UHD"
 
 msgid "This option allows you can force the HDR10 Modes for UHD"
-msgstr "Táto voľba umožňuje vynútiť režimy HDR10 pre UHD"
+msgstr "Vynútenie režimov HDR10 pre UHD"
 
 msgid "This option allows you can force the HLG Modes for UHD"
-msgstr "Táto voľba umožňuje vynútiť režimy HLG pre UHD"
+msgstr "Vynútenie režimov HLG pre UHD"
 
 msgid "This option allows you choose how to display elapsed time as + or -"
-msgstr "Táto voľba umožňuje vybrať, či sa uplynutý čas zobrazí so znamienkom + alebo -"
+msgstr "Nastavenie, či sa uplynutý čas zobrazí so znamienkom + alebo -"
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
-msgstr "Táto voľba umožňuje vybrať zobrazenie zostávajúceho času, uplynutého času alebo obidvoch."
+msgstr "Voľba zobrazenia zostávajúceho času, uplynutého času alebo obidvoch."
 
 msgid "This option allows you choose how to display the Time or nothing in Standby"
-msgstr "Táto voľba umožňuje vybrať zobrazenie/nezobrazenie času v pohotovostnom režime"
+msgstr "Zobrazenie/nezobrazenie času v pohotovostnom režime"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
-msgstr "Táto voľba umožňuje vybrať spôsob zobrazenia zostávajúceho/uplynutého času pre živé TV vysielanie."
+msgstr "Nastavenie spôsobu zobrazenia zostávajúceho/uplynutého času pre živé TV vysielanie."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
-msgstr "Táto voľba umožňuje vybrať spôsob zobrazenia zostávajúceho/uplynutého času pri prehrávaní médií."
+msgstr "Nastavenie spôsobu zobrazenia zostávajúceho/uplynutého času pri prehrávaní médií."
 
 msgid "This option allows you choose the background color of transparent picons."
-msgstr "Táto voľba umožňuje vybrať farbu pozadia priehľadných pikon."
+msgstr "Výber farby pozadia priehľadných pikon."
 
 msgid "This option allows you choose the option for subservice indicator or selection."
-msgstr "Táto voľba umožňuje vybrať možnosť pre indikátor alebo výber podradenej služby."
+msgstr "Voľby pre zobrazenie alebo výber podradenej služby."
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
-msgstr "Táto voľba umožňuje zapnúť vyhladzovací filter na ovládanie ditheringu."
+msgstr "Zapnutie vyhladzovacieho filtra ditheringu."
 
 msgid "This option allows you enable the vertical scaler dejagging."
-msgstr "Táto voľba umožňuje zapnúť vyhladzovanie vertikálnych hrán."
+msgstr "Zapnutie vyhladzovania vertikálnych hrán."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
-msgstr "Táto voľba umožňuje nastaviť výzor rozloženia (text alebo grafika)."
+msgstr "Nastavenie vzhľadu EPG (textový/grafický)."
 
 msgid "This option allows you to Power Off the display."
-msgstr "Táto voľba umožňuje vypnúť napájanie displeja."
+msgstr "Nastavenie úplného vypnutia displeja."
 
 msgid "This option allows you to always use e.g. 1080p50 for TV/.ts, and 1080p24/p50/p60 for videos"
-msgstr "Táto voľba umožňuje vždy používať napr. 1080p50 pre TV/.ts a 1080p24/p50/p60 pre videá"
+msgstr "Nastavenie možnosti vždy používať napr. 1080p50 pre TV/.ts a 1080p24/p50/p60 pre videá"
 
 msgid "This option allows you to boost the blue tones in the picture."
-msgstr "Táto voľba umožňuje zvýrazniť modré tóny v obraze."
+msgstr "Zvýraznenie modrých tónov v obraze."
 
 msgid "This option allows you to boost the green tones in the picture."
-msgstr "Táto voľba umožňuje zvýrazniť zelené tóny v obraze."
+msgstr "Zvýraznenie zelených tónov v obraze."
 
 msgid "This option allows you to bypass HDMI EDID check"
-msgstr "Táto voľba umožňuje obísť EDID kontrolu HDMI"
+msgstr "Nastavenie možnosti obísť kontrolu HDMI EDID"
 
 msgid "This option allows you to change the virtual loudspeaker position."
-msgstr "Táto voľba umožňuje zmeniť pozíciu virtuálneho reproduktora."
+msgstr "Zmena pozície virtuálneho reproduktora."
 
 msgid "This option allows you to choose from the two channel lists that are available."
-msgstr "Táto voľba umožňuje vybrať z dvoch zoznamov kanálov, ktoré sú dostupné."
+msgstr "Možnosť výberu z dvoch zoznamov kanálov, ktoré sú k dispozícii."
 
 msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Táto voľba umožňuje nastaviť zobrazenie režimu 1080p 24 Hz na vašom TV (pretože nie všetky TV toto rozlíšenie podporujú)"
+msgstr "Spôsob zobrazenia režimu 1080p 24 Hz na vašom TV (nie všetky TV toto rozlíšenie podporujú)"
 
 msgid "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Táto voľba umožňuje nastaviť zobrazenie režimu 1080p 25 Hz na vašom TV (pretože nie všetky TV toto rozlíšenie podporujú)"
+msgstr "Nastavenie zobrazenia režimu 1080p 25 Hz na vašom TV (nie všetky TV toto rozlíšenie podporujú)"
 
 msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Táto voľba umožňuje nastaviť zobrazenie režimu 1080p 30 Hz na vašom TV (pretože nie všetky TV toto rozlíšenie podporujú)"
+msgstr "Nastavenie zobrazenia režimu 1080p 30 Hz na vašom TV (nie všetky TV toto rozlíšenie podporujú)"
 
 msgid "This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Táto voľba umožňuje nastaviť zobrazenie režimu 2160p 24 Hz na vašom TV (pretože nie všetky TV toto rozlíšenie podporujú)"
+msgstr "Nastavenie zobrazenia režimu 2160p 24 Hz na vašom TV (nie všetky TV toto rozlíšenie podporujú)"
 
 msgid "This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Táto voľba umožňuje nastaviť zobrazenie režimu 2160p 25 Hz na vašom TV (pretože nie všetky TV toto rozlíšenie podporujú)"
+msgstr "Nastavenie zobrazenia režimu 2160p 25 Hz na vašom TV (nie všetky TV toto rozlíšenie podporujú)"
 
 msgid "This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Táto voľba umožňuje nastaviť zobrazenie režimu 2160p 30 Hz na vašom TV (pretože nie všetky TV toto rozlíšenie podporujú)"
+msgstr "Nastavenie zobrazenia režimu 2160p 30 Hz na vašom TV (nie všetky TV toto rozlíšenie podporujú)"
 
 msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Táto voľba umožňuje nastaviť zobrazenie režimu 720p 24 Hz na vašom TV (pretože nie všetky TV toto rozlíšenie podporujú)"
+msgstr "Nastavenie zobrazenia režimu 720p 24 Hz na vašom TV (nie všetky TV toto rozlíšenie podporujú)"
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Táto voľba umožňuje nastaviť zobrazenie režimu SD progressive 24 Hz na vašom TV (pretože nie všetky TV toto rozlíšenie podporujú)"
+msgstr "Nastavenie zobrazenia režimu SD progressive 24 Hz na vašom TV (nie všetky TV toto rozlíšenie podporujú)"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
-msgstr "Táto voľba umožňuje nastaviť zobrazenie videa v štandardnom rozlíšení na vašom TV."
+msgstr "Nastavenie zobrazenia videa v štandardnom rozlíšení na vašom TV."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. "
-msgstr "Táto voľba umožňuje nastaviť reakciu na prvé stlačenie tlačidla v zozname kanálov pri vykonávan[ prednastavených akcií 'Quick Actions'. (Takže stlačením '2' sa najskôr skočí na 'A' alebo '2'.)"
+msgstr "Nastavenie reakcie na prvé stlačenie tlačidla v zozname kanálov pri vykonávan[ prednastavených akcií 'Quick Actions'. (Takže stlačením '2' sa najskôr skočí na 'A' alebo '2'.)"
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
-msgstr "Táto voľba umožňuje vybrať, či sa pre udalosť zobrazí informácia o žánri."
+msgstr "Nastavenie, či sa pre udalosť zobrazí informácia o žánri."
 
 msgid "This option allows you to enable 3D Surround Sound."
-msgstr "Táto voľba umožňuje zapnúť zvuk 3D Surround."
+msgstr "Zapnutie zvuku 3D Surround."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
-msgstr "Táto voľba umožňuje nastaviť hodnoty odsadenia pre rôzne rozlíšenia letterboxu."
+msgstr "Nastavenie hodnoty odsadenia pre rôzne rozlíšenia letterboxu."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
-msgstr "Táto voľba umožňuje zobraziť SNR v percentách (nepodporujú všetky prijímače)."
+msgstr "Zobrazenie SNR v percentách namiesto dB (nepodporujú všetky prijímače)."
 
 msgid "This option allows you to use all HDMI Modes"
 msgstr "Táto voľba umožňuje používať všetky režimy HDMI"
 
 msgid "This option allows you to view the old and new settings side by side."
-msgstr "Táto voľba umožňuje zobraziť staré a nové nastavenia vedľa seba."
+msgstr "Zobrazenie starých a nových nastavení vedľa seba."
 
 msgid "This option configures the general audio delay for BT Speakers."
-msgstr "Táto voľba konfiguruje všeobecné oneskorenie zvuku pre BT reproduktory."
+msgstr "Konfigurácia oneskorenia zvuku pre BT reproduktory."
 
 msgid "This option configures the general audio delay of Dolby Digital sound tracks."
-msgstr "Táto voľba konfiguruje všeobecné oneskorenie zvukových stôp Dolby Digital."
+msgstr "Konfigurácia oneskorenia zvukových stôp Dolby Digital."
 
 msgid "This option configures the general audio delay of stereo sound tracks."
-msgstr "Táto voľba konfiguruje všeobecné oneskorenie stereofónnych zvukových stôp."
+msgstr "Konfigurácia oneskorenia stereofónnych zvukových stôp."
 
 msgid "This option configures the picture sharpness."
-msgstr "Táto voľba nastavuje ostrosť obrazu."
+msgstr "Nastavenie ostrosti obrazu."
 
 msgid "This option configures the screen resolution in PC output mode."
-msgstr "Táto voľba nastavuje rozlíšenie obrazovky v režime výstupu pre PC."
+msgstr "Nastavenie rozlíšenia obrazovky v režime výstupu pre PC."
 
 msgid "This option configures the video output mode (or resolution)."
-msgstr "Táto voľba nastavuje režim video výstupu (alebo rozlíšenie)."
+msgstr "Nastavenie režimu video výstupu (alebo rozlíšenia)."
 
 msgid "This option configures you can set Auto Volume Level."
-msgstr "Táto voľba nastavuje automatickú úroveň hlasitosti."
+msgstr "Nastavenie automatickej úrovne hlasitosti."
 
 msgid "This option lets you adjust the 3D depth"
-msgstr "Táto voľba umožňuje upraviť 3D hĺbku"
+msgstr "Úprava hĺbky 3D"
 
 msgid "This option lets you adjust the transparency of the user interface"
-msgstr "Táto voľba umožňuje upraviť priehľadnosť používateľského rozhrania"
+msgstr "Nastavenie priehľadnosti používateľského rozhrania"
 
 msgid "This option lets you choose the 3D mode"
-msgstr "Táto voľba umožňuje vybrať 3D režim"
+msgstr "Výber 3D režimu"
 
 msgid "This option lets you show the option in the extension screen."
-msgstr "Táto voľba umožňuje zobraziť voľbu na obrazovke rozšírení."
+msgstr "Zobrazenie možností v zozname rozšírení."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
-msgstr "Táto voľba presunie stav PVR zo samostatného okna do infolišty prehrávača filmov."
+msgstr "Presunutie stavu PVR zo samostatného okna do infolišty prehrávača filmov."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
-msgstr "Táto voľba nastavuje úroveň potlačenia šumu typu Mosquito Noise (ide o náhodne generovaný aliasing vznikajúci v dôsledku veľkej kompresie). Toto nastavenie obvykle negatívne ovplyvní detaily v obraze."
+msgstr "Nastavenie úrovne potlačenia šumu 'Mosquito Noise' (ide o náhodne generovaný aliasing vznikajúci v dôsledku veľkej kompresie). Toto nastavenie obvykle negatívne ovplyvní detaily v obraze."
 
 msgid "This option sets  the picture contrast."
-msgstr "Táto voľba nastavuje kontrast obrazu."
+msgstr "Nastavenie kontrastu obrazu."
 
 msgid "This option sets the picture brightness."
-msgstr "Táto voľba nastavuje jas obrazu."
+msgstr "Nastavenie jasu obrazu."
 
 msgid "This option sets the picture color space."
-msgstr "Táto voľba nastavuje farebný priestor obrazu."
+msgstr "Nastavenie farebného priestoru obrazu."
 
 msgid "This option sets the picture flesh tones."
-msgstr "Táto voľba nastavuje zobrazovanie odtieňov pokožky."
+msgstr "Nastavenie zobrazenia pleťových odtieňov."
 
 msgid "This option sets the picture hue."
-msgstr "Táto voľba nastavuje odtieň obrazu."
+msgstr "Nastavenie odtieňa obrazu."
 
 msgid "This option sets the picture saturation."
-msgstr "Táto voľba nastavuje sýtosť obrazu."
+msgstr "Nastavenie sýtosti obrazu."
 
 msgid "This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."
-msgstr "Táto voľba nastavuje ostrosť pri zmene mierky použitej na roztiahnutie obrazu z pomeru 4:3 na 16:9."
+msgstr "Nastavenie ostrosti pri zmene mierky použitej na roztiahnutie obrazu z pomeru 4:3 na 16:9."
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
-msgstr "Táto voľba nastaví potlačenie falošných digitálnych obrysov, ktoré vznikajú v dôsledku príliš malých diskrétnych hodnôt."
+msgstr "Nastavenie potlačenia falošných digitálnych obrysov, ktoré vznikajú v dôsledku príliš malých diskrétnych hodnôt."
 
 msgid "This option sets the video & osd picture brightness."
-msgstr "Táto voľba nastavuje jas obrazu videa a OSD."
+msgstr "Nastavenie jasu obrazu videa a OSD."
 
 msgid "This option sets the video & osd picture contrast."
-msgstr "Táto voľba nastavuje kontrast obrazu videa a OSD."
+msgstr "Nastavenie kontrastu obrazu videa a OSD."
 
 msgid "This option sets the video picture brightness."
-msgstr "Táto voľba nastavuje jas obrazu videa."
+msgstr "Nastavenie jasu obrazu videa."
 
 msgid "This option sets the video picture contrast."
-msgstr "Táto voľba nastavuje kontrast obrazu videa."
+msgstr "Nastavenie kontrastu obrazu videa."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
-msgstr "Táto voľba nastavuje ostrosť obrazu pri použití upscalingu."
+msgstr "Nastavenie ostrosti obrazu pri použití upscalingu."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Tento plugin dokáže určiť, či sa programy začínajú skôr alebo trvajú dlhšie. Vysielanie však musí poskytovať príslušné potrebné údaje."
@@ -19645,7 +19666,7 @@ msgid "This sets the prefix for each line in the debug log. The 'Boot time' is t
 msgstr "Nastavenie prefixu pre každý riadok denníka ladenia. 'Boot time' je počet sekúnd od posledného spustenia vášho %s %s."
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
-msgstr "Táto voľba umožňuje konfigurovať tuner duplikáciou nastavení iného nakonfigurovaného tunera."
+msgstr "Konfigurácia tunera duplikáciou nastavení iného nakonfigurovaného tunera."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Toto nastavenie závisí od poskytovateľa káblovej televízie a lokality. Ak nepoznáte správne nastavenie, pozrite si ponuku v oficiálnom káblovom prijímači, alebo si ho vyžiadajte od poskytovateľa káblovej televízie, prípadne vyhľadajte pomoc prostredníctvom internetového fóra."
@@ -20586,7 +20607,7 @@ msgid "Update Plugins"
 msgstr "Aktualizovať pluginy"
 
 msgid "Update completed."
-msgstr "Aktualizácia dokončená."
+msgstr "Aktualizácia je dokončená."
 
 msgid "Update delay for Events in List"
 msgstr "Oneskorenie aktualizácie pre udalosti v zozname"
@@ -20598,7 +20619,7 @@ msgid "Update failed!"
 msgstr "Aktualizácia neúspešná!"
 
 msgid "Update finished!"
-msgstr "Aktualizácia dokončená!"
+msgstr "Aktualizácia je dokončená!"
 
 msgid "Update interval (in seconds)"
 msgstr "Interval aktualizácie (s)"
@@ -21938,7 +21959,7 @@ msgid "Yemen"
 msgstr "Jemen"
 
 msgid "Yes"
-msgstr "Áno"
+msgstr "áno"
 
 msgid "Yes (safe mode)"
 msgstr "Áno (bezpečný režim)"
@@ -22250,7 +22271,7 @@ msgid "Your password must have at least 5 characters."
 msgstr "Vaše heslo musí mať aspoň 5 znakov."
 
 msgid "Your receiver can use SCPC optimized search range. Consult your receiver's manual for more information."
-msgstr "Váš prijímač dokáže využívať optimalizovaný rozsah vyhľadávania SCPC. Viac informácií získate v návode od prijímača."
+msgstr "Váš prijímač dokáže využívať optimalizovaný rozsah vyhľadávania SCPC. Viac informácií získate v návode na obsluhu prijímača."
 
 msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
 msgstr "Váš prijímač môže používať tónovú amplitúdu. Viac informácií získate v návode na obsluhu prijímača."
@@ -23073,7 +23094,7 @@ msgid "on READ ONLY medium."
 msgstr "na READ ONLY médium."
 
 msgid "on how to restore the image"
-msgstr "na návod ako obnoviť image"
+msgstr "postup ako obnoviť image"
 
 msgid "orange"
 msgstr "oranžová"

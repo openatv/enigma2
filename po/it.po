@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-22 08:09+0000\n"
-"PO-Revision-Date: 2023-10-23 22:24+0000\n"
+"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"PO-Revision-Date: 2023-10-29 20:08+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1.1-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -1413,9 +1413,6 @@ msgstr "12bit 4:2:0/4:2:2 no PiP"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16:9 reset to normal"
-msgstr "16:9 ripristinato alla normalità"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
@@ -1439,6 +1436,9 @@ msgstr "16:9 Letterbox"
 
 msgid "16:9 PanScan"
 msgstr "16:9 PanScan"
+
+msgid "16:9 reset to normal"
+msgstr "16:9 ripristinato alla normalità"
 
 msgid "18 V"
 msgstr "18 V"
@@ -4888,6 +4888,9 @@ msgstr "Copia"
 
 msgid "Copy To Bouquets"
 msgstr "Copia nei bouquet"
+
+msgid "Copy To Stream Relay"
+msgstr ""
 
 msgid "Copy all related files"
 msgstr "Copia tutti i file correlati"
@@ -9101,6 +9104,9 @@ msgstr "Indirizzo IP da verificare all'attivazione del timer."
 msgid "IP address"
 msgstr "Indirizzo IP"
 
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr "Indirizzo IP del server Stream Relay utilizzato per decodificare i servizi che possono essere decrittografati solo tramite Stream Relay."
+
 msgid "IPK Installer"
 msgstr "Installatore IPK"
 
@@ -12635,7 +12641,7 @@ msgid "Percentage right"
 msgstr "Percentuale a destra"
 
 msgid "Percentage/Progress bar left"
-msgstr "Percentuale/barra di avanzamento a sinistra"
+msgstr "Percentuale/Barra avanzamento a sinistra"
 
 msgid "Percentage/Progress bar right"
 msgstr "Percentuale/barra di avanzamento a destra"
@@ -12808,6 +12814,12 @@ msgstr "Riproduci servizio selezionato in una finestra PiP"
 
 msgid "Play selected service on the main screen"
 msgstr "Riproduci servizio selezionato nella schermata principale"
+
+msgid "Play service with Stream Relay"
+msgstr "Riproduci il servizio con Stream Relay"
+
+msgid "Play service without Stream Relay"
+msgstr "Riproduci il servizio senza Stream Relay"
 
 msgid "Play the audio file"
 msgstr "Riproduci file audio"
@@ -13167,6 +13179,9 @@ msgstr "Porta C"
 msgid "Port D"
 msgstr "Porta D"
 
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr "Numero di porta per il server Stream Relay utilizzato per decodificare i servizi che possono essere decrittografati solo tramite Stream Relay."
+
 msgid "Portugal"
 msgstr "Portogallo"
 
@@ -13519,7 +13534,7 @@ msgid "Progress bar right"
 msgstr "Barra avanzamento a destra"
 
 msgid "Progress bar/Percentage left"
-msgstr "Barra di avanzamento/Percentuale a sinistra"
+msgstr "Barra avanzamento/Percentuale a sinistra"
 
 msgid "Progress bar/Percentage right"
 msgstr "Barra di avanzamento/Percentuale a destra"
@@ -14124,7 +14139,7 @@ msgid "Remaining minutes right"
 msgstr "Minuti rimanenti a destra"
 
 msgid "Remaining minutes/Progress bar left"
-msgstr "Minuti rimanenti/Barra di avanzamento a sinistra"
+msgstr "Minuti rimanenti/Barra avanzamento a sinistra"
 
 msgid "Remaining minutes/Progress bar right"
 msgstr "Minuti rimanenti/Barra di avanzamento a destra"
@@ -17076,7 +17091,7 @@ msgid "Show event genre information"
 msgstr "Mostra informazioni sul genere dell'evento"
 
 msgid "Show event-progress in channel selection"
-msgstr "Mostra avanzamento evento in Selezione canali"
+msgstr "Mostra progresso evento in Selezione canale"
 
 msgid "Show eventinfo plugins"
 msgstr "Mostra plugin di eventinfo"
@@ -18310,6 +18325,12 @@ msgstr "Posizione memorizzata"
 
 msgid "Stream"
 msgstr "Stream"
+
+msgid "Stream Relay URL"
+msgstr "URL Stream Relay"
+
+msgid "Stream Relay port"
+msgstr "Porta Stream Relay"
 
 msgid "Stream request"
 msgstr "Richiesta streaming"

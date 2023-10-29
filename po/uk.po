@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-22 08:09+0000\n"
-"PO-Revision-Date: 2023-10-23 22:24+0000\n"
+"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"PO-Revision-Date: 2023-10-29 20:08+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1.1-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1449,9 +1449,6 @@ msgstr "12біт 4:2:0/4:2:2 ПіП відсутній"
 msgid "13 V"
 msgstr "13 В"
 
-msgid "16:9 reset to normal"
-msgstr "16/9 скидання до нормального"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Поштова скринька"
 
@@ -1475,6 +1472,9 @@ msgstr "16:9 Поштова скринька"
 
 msgid "16:9 PanScan"
 msgstr "16:9 Pan Scan"
+
+msgid "16:9 reset to normal"
+msgstr "16/9 скидання до нормального"
 
 msgid "18 V"
 msgstr "18 В"
@@ -4925,6 +4925,9 @@ msgstr "Копіювання"
 
 msgid "Copy To Bouquets"
 msgstr "копіювати до фаворитів"
+
+msgid "Copy To Stream Relay"
+msgstr "Копіювати до потокового ретранслятора"
 
 msgid "Copy all related files"
 msgstr "Скопіювати всі пов’язані файли"
@@ -9141,6 +9144,9 @@ msgstr "IP-адреса для перевірки під час активаці
 msgid "IP address"
 msgstr "АП адреса"
 
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr "IP-адреса сервера Stream Relay, який використовується для розкодування каналів, які можна розшифрувати лише за допомогою Stream Relay."
+
 msgid "IPK Installer"
 msgstr "IPK Інсталятор"
 
@@ -12851,6 +12857,12 @@ msgstr "Відтворити вибраний канал у вікні ПіП"
 msgid "Play selected service on the main screen"
 msgstr "Відтворити вибраний канал на головному екрані"
 
+msgid "Play service with Stream Relay"
+msgstr "Канал відтворення з Stream Relay"
+
+msgid "Play service without Stream Relay"
+msgstr "Канал відтворення без Stream Relay"
+
 msgid "Play the audio file"
 msgstr "Відтворити аудіофайл"
 
@@ -13208,6 +13220,9 @@ msgstr "Порт C"
 
 msgid "Port D"
 msgstr "Порт D"
+
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr "Номер порту для сервера Stream Relay, який використовується для розкодування каналів, які можна розшифрувати лише через Stream Relay."
 
 msgid "Portugal"
 msgstr "Португалія"
@@ -18357,6 +18372,12 @@ msgstr "Збережена позиція"
 msgid "Stream"
 msgstr "Потік"
 
+msgid "Stream Relay URL"
+msgstr "URL-адреса трансляції потоку"
+
+msgid "Stream Relay port"
+msgstr "Порт ретрансляції потоків"
+
 msgid "Stream request"
 msgstr "Запит потоку"
 
@@ -18732,7 +18753,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 23.10.2023"
+msgstr "Переклад: kvinto - 29.10.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
