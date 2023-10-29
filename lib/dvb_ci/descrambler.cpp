@@ -95,7 +95,7 @@ int descrambler_set_pid(int desc_fd, int index, int enable, int pid)
 int descrambler_init(void)
 {
 	int desc_fd;
-	const char *filename = "/dev/dvb/adapter0/ca0";
+	const char *filename = "/dev/dvb/adapter0/ca1";
 
 	desc_fd = open(filename, O_RDWR);
 	if (desc_fd == -1) {
