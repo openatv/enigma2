@@ -3,6 +3,7 @@
 #include <lib/base/eerror.h>
 #include <lib/dvb_ci/dvbci_appmgr.h>
 #include <lib/dvb_ci/dvbci_ui.h>
+#include <lib/base/estring.h>
 
 eDVBCIApplicationManagerSession::eDVBCIApplicationManagerSession(eDVBCISlot *tslot)
 {
@@ -50,7 +51,11 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 			eDebugNoNewLine("\n");
 
 			m_app_name = str;
-			/* emit */ eDVBCI_UI::getInstance()->m_messagepump.send(eDVBCIInterfaces::Message(eDVBCIInterfaces::Message::appNameChanged, slot->getSlotID(), str));
+			if(m_app_name.size() > 0 && !isUTF8(m_app_name)) {
+				m_app_name = repairUTF8(m_app_name.c_str(), m_app_name.size());
+				eDebug("[CI AM]   fixed menu string: %s", m_app_name.c_str());
+			}
+			/* emit */ eDVBCI_UI::getInstance()->m_messagepump.send(eDVBCIInterfaces::Message(eDVBCIInterfaces::Message::appNameChanged, slot->getSlotID(), m_app_name.c_str()));
 
 			/* emit */ eDVBCI_UI::getInstance()->m_messagepump.send(eDVBCIInterfaces::Message(eDVBCIInterfaces::Message::slotStateChanged, slot->getSlotID(), 2));
 			break;
