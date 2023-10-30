@@ -1,6 +1,5 @@
+from enigma import eCanvas, eRect, eSize, gRGB
 from Components.Renderer.Renderer import Renderer
-
-from enigma import eCanvas, eRect, gRGB
 
 
 class Canvas(Renderer):
@@ -9,53 +8,44 @@ class Canvas(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.sequence = None
-		self.draw_count = 0
+		self.drawCount = 0
 
-	def pull_updates(self):
-		if self.instance is None:
-			return
+	def pullUpdates(self):
+		if self.instance is not None:  # do an incremental update
+			items = self.source.drawlist
+			if items is not None:
+				if items[0] != self.sequence:  # if the lists sequence count changed, re-start from begin
+					self.sequence = items[0]
+					self.drawCount = 0
+				self.draw(items[1][self.drawCount:])
+				self.drawCount = len(items[1])
 
-		# do an incremental update
-		list = self.source.drawlist
-		if list is None:
-			return
-
-		# if the lists sequence count changed, re-start from begin
-		if list[0] != self.sequence:
-			self.sequence = list[0]
-			self.draw_count = 0
-
-		self.draw(list[1][self.draw_count:])
-		self.draw_count = len(list[1])
-
-	def draw(self, list):
-		for l in list:
-			if l[0] == 1:
-				self.instance.fillRect(eRect(l[1], l[2], l[3], l[4]), gRGB(l[5]))
-			elif l[0] == 2:
-				self.instance.writeText(eRect(l[1], l[2], l[3], l[4]), gRGB(l[5]), gRGB(l[6]), l[7], l[8], l[9])
-			elif l[0] == 3:
-				self.instance.drawLine(l[1], l[2], l[3], l[4], gRGB(l[5]))
-			elif l[0] == 4:
-				self.instance.drawRotatedLine(l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8], gRGB(l[9]))
+	def draw(self, items):
+		for item in items:
+			if item[0] == 1:
+				self.instance.fillRect(eRect(item[1], item[2], item[3], item[4]), gRGB(item[5]))
+			elif item[0] == 2:
+				self.instance.writeText(eRect(item[1], item[2], item[3], item[4]), gRGB(item[5]), gRGB(item[6]), item[7], item[8], item[9])
+			elif item[0] == 3:
+				self.instance.drawLine(item[1], item[2], item[3], item[4], gRGB(item[5]))
+			elif item[0] == 4:
+				self.instance.drawRotatedLine(item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], gRGB(item[9]))
 			else:
-				print("[Canvas] drawlist entry: %s" % str(l))
+				print(f"[Canvas] drawlist entry: {str(item)}")
 				raise RuntimeError("invalid drawlist entry")
 
 	def changed(self, what):
-		self.pull_updates()
+		self.pullUpdates()
 
 	def postWidgetCreate(self, instance):
 		self.sequence = None
 
-		from enigma import eSize
-
-		def parseSize(str):
-			x, y = str.split(',')
+		def parseSize(val):
+			x, y = val.split(',')
 			return eSize(int(x), int(y))
 
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "size":
 				self.instance.setSize(parseSize(value))
 
-		self.pull_updates()
+		self.pullUpdates()
