@@ -1,4 +1,3 @@
-# TODO: This module should be named SatConfig or SatelliteConfig!
 from datetime import datetime
 from os.path import exists
 from time import localtime, mktime
@@ -44,14 +43,13 @@ class ServiceStopScreen:
 	def stopService(self):
 		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
-		if self.pipAvailable():
-			if self.session.pipshown:  # Try to disable PiP.
-				if hasattr(self.session, "infobar"):
-					if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
-						self.session.infobar.servicelist.togglePipzap()
-				if hasattr(self.session, "pip"):
-					del self.session.pip
-				self.session.pipshown = False
+		if self.pipAvailable() and self.session.pipshown:  # Try to disable PiP.
+			if hasattr(self.session, "infobar"):
+				if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
+					self.session.infobar.servicelist.togglePipzap()
+			if hasattr(self.session, "pip"):
+				del self.session.pip
+			self.session.pipshown = False
 
 	def __onClose(self):
 		self.session.nav.playService(self.oldref)
