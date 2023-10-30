@@ -1,15 +1,15 @@
-from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
 from Components.config import config
+from Components.Renderer.Renderer import Renderer
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 
 
 class PiconBg(Renderer):
+	GUI_WIDGET = ePixmap
+
 	def __init__(self):
 		Renderer.__init__(self)
 		self.pngname = ""
-
-	GUI_WIDGET = ePixmap
 
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))

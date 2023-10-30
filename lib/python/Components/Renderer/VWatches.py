@@ -22,14 +22,13 @@ from skin import parseColor
 
 
 class VWatches(Renderer):
+	GUI_WIDGET = eCanvas
 
 	def __init__(self):
 		Renderer.__init__(self)
 		self.fColor = gRGB(255, 255, 255, 0)
 		self.bColor = gRGB(0, 0, 0, 255)
 		self.numval = -1
-
-	GUI_WIDGET = eCanvas
 
 	def applySkin(self, desktop, parent):
 		attribs = []

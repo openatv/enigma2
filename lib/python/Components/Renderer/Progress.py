@@ -1,17 +1,16 @@
-from Components.VariableValue import VariableValue
-from Components.Renderer.Renderer import Renderer
-
 from enigma import eSlider
+from Components.Renderer.Renderer import Renderer
+from Components.VariableValue import VariableValue
 
 
 class Progress(VariableValue, Renderer):
+	GUI_WIDGET = eSlider
+
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableValue.__init__(self)
 		self.__start = 0
 		self.__end = 100
-
-	GUI_WIDGET = eSlider
 
 	def changed(self, what):
 		if what[0] == self.CHANGED_CLEAR:

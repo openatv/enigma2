@@ -5,11 +5,12 @@ from Components.Renderer.Renderer import Renderer
 
 
 class NextEpgInfo(Renderer, VariableText):
+	GUI_WIDGET = eLabel
+
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
 		self.epgcache = eEPGCache.getInstance()
-	GUI_WIDGET = eLabel
 
 	def changed(self, what):
 		self.text = ""

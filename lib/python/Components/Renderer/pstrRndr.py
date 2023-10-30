@@ -7,6 +7,7 @@ from Components.Renderer.Renderer import Renderer
 
 
 class pstrRndr(Renderer):
+	GUI_WIDGET = ePixmap
 
 	def __init__(self):
 		Renderer.__init__(self)
@@ -17,8 +18,6 @@ class pstrRndr(Renderer):
 			attribs.append((attrib, value))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
-
-	GUI_WIDGET = ePixmap
 
 	def changed(self, what):
 		try:

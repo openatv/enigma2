@@ -108,6 +108,8 @@ def getLcdPiconName(serviceName):
 
 
 class LcdPicon(Renderer):
+	GUI_WIDGET = ePixmap
+
 	def __init__(self):
 		Renderer.__init__(self)
 		# self.PicLoad = ePicLoad()
@@ -144,8 +146,6 @@ class LcdPicon(Renderer):
 				self.piconsize = value
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
-
-	GUI_WIDGET = ePixmap
 
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))

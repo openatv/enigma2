@@ -28,12 +28,13 @@ from Components.VariableText import VariableText
 
 
 class VolumeText(Renderer, VariableText):
+	GUI_WIDGET = eLabel
+
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
 		self.vol_timer = eTimer()
 		self.vol_timer.callback.append(self.pollme)
-	GUI_WIDGET = eLabel
 
 	def changed(self, what):
 		if not self.suspended:

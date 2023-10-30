@@ -8,11 +8,11 @@ from Components.VariableText import VariableText
 
 
 class VideoSize(Renderer, VariableText):
+	GUI_WIDGET = eLabel
+
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
-
-	GUI_WIDGET = eLabel
 
 	def changed(self, what):
 		service = self.source.service

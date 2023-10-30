@@ -22,11 +22,11 @@ from Components.VariableText import VariableText
 
 class VReference(VariableText, Renderer):
 
+	GUI_WIDGET = eLabel
+
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
-
-	GUI_WIDGET = eLabel
 
 	def connect(self, source):
 		Renderer.connect(self, source)
