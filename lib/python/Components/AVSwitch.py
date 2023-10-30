@@ -185,7 +185,7 @@ class AVSwitchBase:
 
 	widescreenModes = tuple([x for x in modes["HDMI"] if x not in ("576p", "576i", "480p", "480i")])
 
-	ASPECT_SWITCH_MSG = (_("16/9 reset to normal"),
+	ASPECT_SWITCH_MSG = (_("16:9 reset to normal"),
 			"1.85:1 %s" % _("Letterbox"),
 			"2.00:1 %s" % _("Letterbox"),
 			"2.21:1 %s" % _("Letterbox"),

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-10-29 09:24+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -246,10 +246,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1200,14 +1196,6 @@ msgid "%s Information Actions"
 msgstr ""
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/s"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s seaded"
 
@@ -1319,9 +1307,6 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Teadmiseks: Pärast %d krahhi toimub taaskäivitus.)"
 
-msgid "(FTA Service)"
-msgstr "(FTA kanalid)"
-
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -1427,9 +1412,6 @@ msgstr "12bit 4:2:0/4:2:2, PIP puudub"
 msgid "13 V"
 msgstr "13 V"
 
-msgid "16/9 reset to normal"
-msgstr ""
-
 msgid "16:10 Letterbox"
 msgstr "16:10 letterbox"
 
@@ -1452,6 +1434,9 @@ msgid "16:9 Letterbox"
 msgstr "16:9 letterbox"
 
 msgid "16:9 PanScan"
+msgstr ""
+
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "18 V"
@@ -2086,10 +2071,10 @@ msgstr "Ajakava lisamine."
 msgid "Additional files/folders to backup"
 msgstr "Varundamiseks lisatud failid/kaustad"
 
-msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
+msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move the dish from one satellite to another."
 msgstr "Ajami lisavalikud lubavad sisestada andmeid mootori spetsifikatsioonilehelt, et enigma saaks arvutada antenni ühelt satelliidilt teisele liigutamise aja."
 
-msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
+msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Ajami lisavalikud lubavad sisestada andmeid mootori spetsifikatsioonilehelt, et enigma saaks arvutada ühelt satelliidilt teisele liigutamise aja."
 
 msgid "Address"
@@ -2634,9 +2619,6 @@ msgstr "Heli PID"
 msgid "Audio PID%s, Codec & Language"
 msgstr "Heli PID%s, koodek ja keel"
 
-msgid "Audio PID, codec & lang"
-msgstr "Heli PID, koodek ja keel"
-
 #
 msgid "Audio Settings"
 msgstr "Heli seaded"
@@ -3014,9 +2996,6 @@ msgstr "pesapall"
 msgid "Bashkir"
 msgstr ""
 
-msgid "Basic PID info"
-msgstr ""
-
 msgid "Basketball"
 msgstr "Korvpall"
 
@@ -3322,9 +3301,6 @@ msgstr "Nuppude seaded"
 
 msgid "Button error timeout"
 msgstr ""
-
-msgid "ButtonSetup"
-msgstr "Nuppude seadistus"
 
 msgid "By disk UUID"
 msgstr ""
@@ -4096,6 +4072,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4218,9 +4197,6 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Vajuta puldi nupule, mille toimet soovid muuta"
 
-msgid "Client"
-msgstr ""
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Kliendi info (Oscam: %s )"
@@ -4297,9 +4273,6 @@ msgstr ""
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kookossaared"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr ""
 
 msgid "Code rate HP"
 msgstr "Veaparandustegur HP"
@@ -4763,7 +4736,7 @@ msgstr "Määra kanali nime kasutatav ruum."
 msgid "Configure the width of the TrueType font letters used for teletext."
 msgstr "Kohanda teletekstis kasutatava TrueType kirjatüübi tähemärkide laiust."
 
-msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
+msgid "Configure this tuner using Simple or Advanced options, loop it through to another tuner, copy a configuration from another tuner or disable it."
 msgstr "Seadista see tuuner kasutades lihtsat või täpsemaid valikuid. Võimalik on ka läbiviik teisele tuunerile, teise tuuneri seadete kopeerimine või tuuneri keelamine."
 
 #, fuzzy
@@ -4872,14 +4845,13 @@ msgstr ""
 msgid "Console"
 msgstr ""
 
-#, fuzzy
-msgid "Constellation & FFT mode"
-msgstr "Konstellatsioon"
+msgid "Constellation"
+msgstr ""
 
-msgid "Consult your SCR device spec sheet for this information."
+msgid "Consult your SCR device specifications for this information."
 msgstr "Seda infot otsi SCR seadme spetsifikatsioonilehelt."
 
-msgid "Consult your motor's spec sheet for this information, or leave the default setting."
+msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Seda infot otsi ajami spetsifikatsioonilehelt või kasuta vaikeväärtust."
 
 #, python-format
@@ -4987,6 +4959,9 @@ msgstr "Kopeeri"
 
 msgid "Copy To Bouquets"
 msgstr "Kopeeri nimekirjadesse"
+
+msgid "Copy To Stream Relay"
+msgstr ""
 
 msgid "Copy all related files"
 msgstr ""
@@ -6665,9 +6640,8 @@ msgstr "E"
 msgid "E "
 msgstr " "
 
-#, fuzzy
-msgid "ECM Info"
-msgstr "ECM info puudub"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "ECM statistika"
@@ -6680,6 +6654,13 @@ msgstr "ECM keskmine"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM andmed kaasatakse voogudesse. Nii saab klientvastuvõtja selle dekodeerida."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "ECM viimane"
@@ -7121,7 +7102,7 @@ msgstr ""
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
-msgid "Enable this setting if your aerial system needs power"
+msgid "Enable this setting if your aerial system needs power."
 msgstr "Luba see, kui välisantenn vajab toidet"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
@@ -7290,10 +7271,10 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr ""
 
-msgid "Enter if you are in the east or west hemisphere."
+msgid "Enter if you are in the East or West hemisphere."
 msgstr "Sisesta, kas asud ida- või läänepoolkeral."
 
-msgid "Enter if you are north or south of the equator."
+msgid "Enter if you are North or South of the equator."
 msgstr "Sisesta, kas asud põhja- või lõunapoolkeral."
 
 msgid "Enter main menu..."
@@ -7314,7 +7295,7 @@ msgstr "Sisesta PIN"
 msgid "Enter text via an attached keyboard"
 msgstr ""
 
-msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
+msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Sisesta sagedus, millel LNB lülitub kõrgsagedusriba ja madalsagedusriba vahel. Enamat infot vaata LNB spetsifikatsioonist."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
@@ -7332,10 +7313,10 @@ msgstr "Sisesta asukoha laiuskraad. See on kraadide arv ekvaatorist kümnendvä�
 msgid "Enter your current longitude. This is the number of degrees you are from zero meridian as a decimal."
 msgstr "Sisesta asukoha pikkuskraad. See on kraadide arv 0-meridiaanist kümnendväärtusena."
 
-msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgid "Enter your high band local oscillator frequency. For more information consult the specifications of your LNB."
 msgstr "Sisesta kõrgsagedusriba ostsillaatori sagedus. Enamat infot vaata LNB spetsifikatsioonist."
 
-msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgid "Enter your low band local oscillator frequency. For more information consult the specifications of your LNB."
 msgstr "Sisesta madalsagedusriba ostsillaatori sagedus. Enamat infot vaata LNB spetsifikatsioonist."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
@@ -7851,10 +7832,6 @@ msgstr "Laiendatud"
 
 msgid "Extended Networksetup Plugin..."
 msgstr "Täpsemad võrguseaded."
-
-#, fuzzy
-msgid "Extended PID info"
-msgstr "Kasutajaliidese lisavalikud"
 
 msgid "Extended Setup..."
 msgstr "Täpsemad seaded."
@@ -8421,6 +8398,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr "Vorminda vastuvõtja kõvaketas"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "Kasuta helitugevuse nuppe"
 
@@ -8448,6 +8428,9 @@ msgstr "Vaba mälu:"
 msgid "Free swap"
 msgstr ""
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "Vaba:"
 
@@ -8465,14 +8448,6 @@ msgstr "Prantsuse Lõunaalad"
 
 msgid "Frequency"
 msgstr "Sagedus"
-
-#, fuzzy
-msgid "Frequency & Channel"
-msgstr "Kasuta sagedust või kanalit"
-
-#, fuzzy
-msgid "Frequency & Polarization"
-msgstr "Polarisatsioon"
 
 #, fuzzy
 msgid "Frequency Norm:"
@@ -9215,9 +9190,6 @@ msgstr "Masinanimi: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
-msgid "Hotkey"
-msgstr "Kiirnupud"
-
 #
 msgid "Hotkey Settings"
 msgstr "Kiirnuppude seadistus"
@@ -9303,6 +9275,9 @@ msgstr ""
 
 msgid "IP address"
 msgstr "IP aadress"
+
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
 
 msgid "IPK Installer"
 msgstr "IPK paigaldamine"
@@ -9459,7 +9434,7 @@ msgstr ""
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
 
-msgid "If you are using a Circular polarised LNB select 'yes', otherwise select 'no'."
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
 msgstr "Kui kasutuses on ringpolar LNB , vali 'jah', muudel juhtudel 'ei'."
 
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
@@ -9938,13 +9913,6 @@ msgstr "Vigased transponderi andmed"
 msgid "Inversion"
 msgstr "Inversioon"
 
-#, fuzzy
-msgid "Inversion & Bandwidth"
-msgstr "Infoikooni laius"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr ""
-
 msgid "Invert"
 msgstr "Vastupidi"
 
@@ -10347,7 +10315,7 @@ msgstr "Läti"
 msgid "Leave DVD player?"
 msgstr "Kas väljuda DVD mängijast?"
 
-msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
+msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "Vaikeväärtuseks on 'Jah'. Muuda ainult juhul, kui tead täpselt, mida seadistad."
 
 msgid "Lebanon"
@@ -10737,6 +10705,9 @@ msgid "MB"
 msgstr "MB"
 
 msgid "MENU"
+msgstr ""
+
+msgid "MHz"
 msgstr ""
 
 msgid "MKUBIFS"
@@ -11671,9 +11642,8 @@ msgstr ""
 msgid "NFS Settings"
 msgstr "NFS seaded"
 
-#, fuzzy
-msgid "NIM & Type"
-msgstr "HDMI HDR tüüp"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr ""
@@ -11864,9 +11834,6 @@ msgstr "Võrgu nimi (SSID)"
 msgid "Network scan"
 msgstr "Võrguotsing"
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr "Võrgu testimine"
 
@@ -11962,12 +11929,6 @@ msgstr "Järgmine"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Järgmine"
-
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
-msgstr ""
 
 #, fuzzy
 msgid "Next bouquet"
@@ -12088,9 +12049,6 @@ msgid "No free tuner!"
 msgstr "Vaba tuuner puudub!"
 
 msgid "No hard disks detected."
-msgstr ""
-
-msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
 msgid "No matching place names found"
@@ -12437,9 +12395,6 @@ msgstr "OK nupu vajutus"
 msgid "OK, guide me through the upgrade process"
 msgstr "Jah, õpeta uuendamisel"
 
-msgid "ONID"
-msgstr "ONID"
-
 msgid "OSD"
 msgstr "Ekraanigraafika"
 
@@ -12715,6 +12670,9 @@ msgstr ""
 msgid "Original"
 msgstr "Algupärane"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr ""
 
@@ -12865,9 +12823,6 @@ msgstr "PLS režiim"
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr "PPanel"
-
 msgid "PRIMETIME"
 msgstr "TIPPAEG"
 
@@ -12941,9 +12896,6 @@ msgid "Panama"
 msgstr "Panama"
 
 msgid "Panic channel"
-msgstr "Paanikanupu kanal"
-
-msgid "Panic to"
 msgstr "Paanikanupu kanal"
 
 msgid "Panjabi / Punjabi"
@@ -13218,6 +13170,12 @@ msgid "Play selected service in a PiP window"
 msgstr ""
 
 msgid "Play selected service on the main screen"
+msgstr ""
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
 msgstr ""
 
 msgid "Play the audio file"
@@ -13583,6 +13541,9 @@ msgstr "Port C"
 msgid "Port D"
 msgstr "Port D"
 
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
+
 msgid "Portugal"
 msgstr "Portugal"
 
@@ -13638,13 +13599,13 @@ msgstr "Toite LED ooteseisundis."
 msgid "Power On Display"
 msgstr "Esipaneeli näidik kasutuses"
 
-msgid "Power management. Consult your receiver's manual for more information."
+msgid "Consult your receiver's manual for more information on power management."
 msgstr "Toitehaldus. Uuri lähemalt vastuvõtja käsiraamatust."
 
 msgid "Power threshold in mA"
 msgstr "Tuvastusvool mA"
 
-msgid "Power threshold. Consult your receiver's manual for more information."
+msgid "Consult your receiver's manual for more information on power threshold."
 msgstr "Võimsuselävi. Uuri lähemalt vastuvõtja käsiraamatust."
 
 msgid "PowerTimer"
@@ -13841,12 +13802,6 @@ msgstr "Eelvaate menüü"
 
 msgid "Previous"
 msgstr "Eelmine"
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
-msgstr ""
 
 #, fuzzy
 msgid "Previous bouquet"
@@ -15671,7 +15626,7 @@ msgstr "Vali"
 msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switches, and '1.2' for systems using a positioner."
 msgstr ""
 
-msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
+msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Vali 'A' või 'B*, kui antennisüsteem seda nõuab, muudel juhtudel vali 'pole'. Kui ei ole kindel, vali 'pole'."
 
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
@@ -15860,34 +15815,34 @@ msgstr ""
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Kui lubatud, kuvatakse edasi/tagasi kerimisel inforiba."
 
-msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Universaalse LNB puhul vali 'sagedusala', muudel juhtudel vaata LNB käsiraamatust."
 
-msgid "Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Määra 'lubatud', kui tuuner on kaabliga ühendatud, muudel juhtudel vali 'midagi pole ühendatud'."
 
-msgid "Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Vali 'polarisatsioon', kui kasutuses on universaalne LNB. Muudel juhtudel uuri LNB spetsifikatsiooni."
 
-msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Valides 'Levitaja', saab otsingus kasutada eelmääratud kaablioperaatorite nimekirja. Valides 'sagedusalad' skaneeritakse ainult teatud osa spektrumist. Valides 'sageduse samm' skaneeritakse sammu kaupa teatud ribalaius."
 
-msgid "Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "Vali 'jah', kui see tuuner on ühendatud SCR seadmega teise tuuneri kaudu. Muudel juhtudel vali ei."
 
 #, python-format
-msgid "Select 'yes' to include %s multiplexes in your search."
+msgid "Select 'Yes' to include %s multiplexes in your search."
 msgstr "Määra 'jah', kaasamaks otsingusse %s multipleksid."
 
 #, python-format
-msgid "Select 'yes' to include symbol rate %s in your search."
+msgid "Select 'Yes' to include symbol rate %s in your search."
 msgstr "Määra 'jah', kaasamaks otsingusse %s sümbolikiirus."
 
 #, python-format
-msgid "Select 'yes' to include the %s band in your search."
+msgid "Select 'Yes' to include the %s band in your search."
 msgstr "Määra 'jah', kaasamaks otsingusse %s sagedusala."
 
-msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
 msgstr "Valides 'jah', saadetakse DiSEqC käsk vahetades ühelt satelliidilt teisele, valides 'ei', saadetakse DiSEqC käsk igal kanalivahetusel."
 
 msgid "Select Additional Backup Files"
@@ -15912,7 +15867,7 @@ msgstr "Vali Enigma2 kujundus"
 msgid "Select Excluded Backup Files"
 msgstr "Failid, mida ei varundata"
 
-msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
+msgid "Select Fast DiSEqC if your aerial system supports it. If you are unsure select 'No'."
 msgstr "Vali kiire DiSEqC, kui antennisüsteem seda toetab. Kui pole kindel, vali 'ei'."
 
 msgid "Select Folders"
@@ -16150,11 +16105,14 @@ msgstr "Vali lisatav levitaja"
 msgid "Select refresh rate"
 msgstr "Vali värskendussagedus"
 
-msgid "Select satellites"
+msgid "Select Satellites"
 msgstr "Vali satelliidid"
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Määra, kas otsiriba aktiveeritakse VASAK/PAREM (pikk) noolenuppude või << >> (pikk) vajutusel."
+
+msgid "Select service information to view:"
+msgstr ""
 
 msgid "Select service to add..."
 msgstr "Vali lisatav kanal"
@@ -16310,13 +16268,13 @@ msgstr "Vali varukoopiast välja jäetavad failid"
 msgid "Select the location in which to store the recording:"
 msgstr ""
 
-msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vali SCR seadme tootja. Kui tootjat nimekirjas ei ole, määra 'SCR' väärtuseks 'kasutaja määratud' ja sisesta seadme parameetrid käsitsi vastavalt selle spetsifikatsioonile."
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Vali ekraanilahutuse ja ekraanipuhvri taastamise meetod teletekstist väljumisel."
 
-msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vali unicable seadme mudeli number. Kui seda nimekirjas ei ole, määra 'SCR' väärtuseks 'kasutaja määratud' ja sisesta seadme parameetrid käsitsi vastavalt selle spetsifikatsioonile."
 
 msgid "Select the movie path"
@@ -16349,22 +16307,22 @@ msgstr "Vali SCR seadme vorming. Valikud on 'SCR Unicable' (Unicable I vorming) 
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
-msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Vali satelliit, mis on ühendatud lüliti porti A. Kui pole kindel, vali 'automaatne' ja vastuvõtja üritab seda teha ise. Kui see port on ühendamata, vali 'pole ühendatud'."
 
-msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Vali satelliit, mis on ühendatud lüliti porti B. Kui pole kindel, vali 'automaatne' ja vastuvõtja üritab seda teha ise. Kui see port on ühendamata, vali 'midagi pole ühendatud'."
 
-msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Vali satelliit, mis on ühendatud lüliti porti C. Kui pole kindel, vali 'automaatne' ja vastuvõtja üritab seda teha ise. Kui see port on ühendamata, vali 'midagi pole ühendatud'."
 
-msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Vali satelliit, mis on ühendatud lüliti porti D. Kui pole kindel, vali 'automaatne' ja vastuvõtja üritab seda teha ise. Kui see port on ühendamata, vali 'midagi pole ühendatud'."
 
-msgid "Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."
+msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Vali seadistatav satelliit. Kui see satelliit on seadistatud, saab valida ja seadistada teised sama tuuneriga vastuvõetavad satelliidid."
 
-msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
 msgstr "Vali vastuvõetav satelliit. Kui pole kindel, vali 'automaatne' ja vastuvõtja üritab selle ise tuvastada."
 
 #, fuzzy
@@ -16430,13 +16388,13 @@ msgstr "Määra aeg inforiba peitmiseks."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Vali tuuner, mis juhib ajamiga antenni."
 
-msgid "Select the tuner that this loopthrough depends on."
+msgid "Select the tuner upon which this loop through depends."
 msgstr "Vali tuuner, millest see läbiviik sõltub."
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Vali tuuner, millega on SCR seadme signaalikaabel ühendatud."
 
-msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."
+msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "Vali kasutatava LNB/seadme tüüp (tavaliselt 'universaalne'). Kui pole valikus, vali 'kasutaja määratud'."
 
 msgid "Select the type of Single Cable Reception device you are using."
@@ -16524,16 +16482,16 @@ msgstr "Määra heli ja subtiitrite keel"
 msgid "Select your backup device."
 msgstr ""
 
-msgid "Select your country. If not available select 'all'."
+msgid "Select your country. If not available select 'All'."
 msgstr "Vali asukohamaa. Kui pole saadaval, vali 'kõik'."
 
-msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
+msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Vali operaator ja regioon. Kui need selles loendis puuduvad, tuleb valida mõni muu 'kanaliotsingu tüüp'."
 
 msgid "Select your provider, and press OK to start the scan"
 msgstr "Vali teenusepakkuja ja vajuta otsingu alustamiseks OK"
 
-msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Määra regioon. Kui see pole saadaval, muuda riigi asemel 'Kõik' ja vali üks alternatiividest."
 
 #, fuzzy
@@ -16660,9 +16618,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-#, fuzzy
-msgid "Service ID"
-msgstr "Kanal"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "Kanali nimi"
@@ -16688,6 +16651,13 @@ msgstr "Kanalinime kuju"
 msgid "Service Zap Actions"
 msgstr "Edastusmooduse tähistamine"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr "Kanalit ei saa lemmiknimekirja lisada."
 
@@ -16702,28 +16672,6 @@ msgstr "Kanal on lisatud valitud lemmiknimekirja."
 
 msgid "Service info"
 msgstr "Kanaliinfo"
-
-#, fuzzy
-msgid "Service info - ECM Info"
-msgstr "Kanaliinfo"
-
-msgid "Service info - service & Basic PID Info"
-msgstr ""
-
-msgid "Service info - service & Extended PID Info"
-msgstr ""
-
-#, fuzzy
-msgid "Service info - service & PIDs"
-msgstr "Saateinfo tähesuurus"
-
-#, fuzzy
-msgid "Service info - tuner live values"
-msgstr "Saateinfo tähesuurus"
-
-#, fuzzy
-msgid "Service info - tuner setting values"
-msgstr "Saateinfo tähesuurus"
 
 msgid "Service info font size"
 msgstr "Saateinfo tähesuurus"
@@ -16835,7 +16783,7 @@ msgstr "'Info' nupu vajutus"
 msgid "Set current CEC address as fixed address"
 msgstr ""
 
-msgid "Set default"
+msgid "Set Default"
 msgstr "Taasta vaikeväärtus"
 
 msgid "Set end time"
@@ -17215,9 +17163,6 @@ msgstr "Jaod"
 
 msgid "Sharpness"
 msgstr "Teravus"
-
-msgid "Shellscript"
-msgstr "Skript"
 
 msgid "Shift"
 msgstr ""
@@ -17718,6 +17663,9 @@ msgstr ""
 msgid "Show next picture"
 msgstr "Kuva järgmine pilt"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17764,6 +17712,9 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "Kuva eelmine pilt"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17791,6 +17742,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -18870,6 +18824,12 @@ msgstr "Salvestatud asukoht"
 msgid "Stream"
 msgstr "IPTV"
 
+msgid "Stream Relay URL"
+msgstr ""
+
+msgid "Stream Relay port"
+msgstr ""
+
 msgid "Stream request"
 msgstr "Striimi päring"
 
@@ -19182,10 +19142,6 @@ msgstr "Šveits"
 msgid "Symbol rate"
 msgstr "Sümbolikiirus"
 
-#, fuzzy
-msgid "Symbol rate & FEC"
-msgstr "Sümbolikiirus"
-
 msgid "Symbolic link"
 msgstr "Nimeviit"
 
@@ -19210,10 +19166,6 @@ msgstr "Süüria"
 
 msgid "System"
 msgstr "Süsteem"
-
-#, fuzzy
-msgid "System & Modulation"
-msgstr "Modulatsioon"
 
 msgid "System Info"
 msgstr "Süsteemiinfo"
@@ -19274,9 +19226,6 @@ msgstr ""
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS fail on liiga suur ISO9660/1 jaoks!"
-
-msgid "TSID"
-msgstr "TSID"
 
 msgid "TUNER:"
 msgstr ""
@@ -19804,7 +19753,7 @@ msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
-" Maybe recursive connection of tuners."
+"Maybe recursive connection of tuners."
 msgstr ""
 "Unicable ühendus on valesti seadistatud.\n"
 " Tuunerid võivad olla ühendatud rekursiivselt."
@@ -20180,7 +20129,7 @@ msgstr "see kanal on kaitstud lapselukuga"
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
 
-msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
+msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
 msgstr "See säte võimaldab kasutada juba seadistatud teise tuuneri seadistusi."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
@@ -20695,6 +20644,16 @@ msgstr "Transponder"
 msgid "Transponder Time"
 msgstr "Transponderi aeg"
 
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr "Transpordivoo tüüp"
 
@@ -20794,6 +20753,9 @@ msgstr "Tuuneri seaded"
 msgid "Tuner Setup"
 msgstr "Tuuneri seaded"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr ""
 
@@ -20803,14 +20765,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Tuuner ei ole toetatud"
-
-#, fuzzy
-msgid "Tuner live values"
-msgstr "Tuuneri olek"
-
-#, fuzzy
-msgid "Tuner setting values"
-msgstr "Tuuneri seaded"
 
 msgid "Tuner slot"
 msgstr "Tuuneri pesa"
@@ -21699,6 +21653,10 @@ msgstr "Hoiatus! Ülilühikesed failinimed"
 msgid "Video"
 msgstr "Pilt"
 
+#, fuzzy
+msgid "Video Codec, Size & Format"
+msgstr "Kuvasuhe"
+
 msgid "Video PID"
 msgstr "Video PID"
 
@@ -21778,10 +21736,6 @@ msgstr "Pildiparanduse eelvaade"
 
 msgid "VideoFinetune"
 msgstr "Pildihäälestus"
-
-#, fuzzy
-msgid "Video Codec, Size & Format"
-msgstr "Kuvasuhe"
 
 msgid "Videosetup"
 msgstr "Videoseaded"
@@ -22900,9 +22854,6 @@ msgstr "Kanalivahetus"
 msgid "Zap next"
 msgstr "Kanalivahetus 'järgmine'"
 
-msgid "Zap to"
-msgstr "Mine kanalile"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "Mine kanalile (seadistamine menüüs)"
 
@@ -22972,10 +22923,6 @@ msgstr "Kasutajaliides kanalite/levitajate/CAIde CI-moodulile määramiseks"
 
 msgid "activatePiP"
 msgstr "PiP käivitamine"
-
-#, fuzzy
-msgid "active"
-msgstr "Väljas"
 
 msgid "address:"
 msgstr "aadress:"
@@ -23645,7 +23592,7 @@ msgstr ""
 msgid "not"
 msgstr "mitte"
 
-msgid "not configured"
+msgid "Not configured"
 msgstr "ei ole häälestatud"
 
 msgid "not locked"
@@ -24046,7 +23993,7 @@ msgstr "testimatu"
 msgid "update"
 msgstr "Uuendus"
 
-msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "Kasuta tõstetud pinget '14 / 18V ', kui LNB lülitamisel on probleeme"
 
 msgid "userdefined"
@@ -24114,6 +24061,116 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/s"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(FTA kanalid)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "Heli PID, koodek ja keel"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "Nuppude seadistus"
+
+#, fuzzy
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Konstellatsioon"
+
+#, fuzzy
+#~ msgid "ECM Info"
+#~ msgstr "ECM info puudub"
+
+#, fuzzy
+#~ msgid "Extended PID info"
+#~ msgstr "Kasutajaliidese lisavalikud"
+
+#, fuzzy
+#~ msgid "Frequency & Channel"
+#~ msgstr "Kasuta sagedust või kanalit"
+
+#, fuzzy
+#~ msgid "Frequency & Polarization"
+#~ msgstr "Polarisatsioon"
+
+#~ msgid "Hotkey"
+#~ msgstr "Kiirnupud"
+
+#, fuzzy
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "Infoikooni laius"
+
+#, fuzzy
+#~ msgid "NIM & Type"
+#~ msgstr "HDMI HDR tüüp"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel"
+
+#~ msgid "Panic to"
+#~ msgstr "Paanikanupu kanal"
+
+#, fuzzy
+#~ msgid "Service ID"
+#~ msgstr "Kanal"
+
+#, fuzzy
+#~ msgid "Service info - ECM Info"
+#~ msgstr "Kanaliinfo"
+
+#, fuzzy
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "Saateinfo tähesuurus"
+
+#, fuzzy
+#~ msgid "Service info - tuner live values"
+#~ msgstr "Saateinfo tähesuurus"
+
+#, fuzzy
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "Saateinfo tähesuurus"
+
+#~ msgid "Shellscript"
+#~ msgstr "Skript"
+
+#, fuzzy
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "Sümbolikiirus"
+
+#, fuzzy
+#~ msgid "System & Modulation"
+#~ msgstr "Modulatsioon"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#, fuzzy
+#~ msgid "Tuner live values"
+#~ msgstr "Tuuneri olek"
+
+#, fuzzy
+#~ msgid "Tuner setting values"
+#~ msgstr "Tuuneri seaded"
+
+#~ msgid "Zap to"
+#~ msgstr "Mine kanalile"
+
+#, fuzzy
+#~ msgid "active"
+#~ msgstr "Väljas"
 
 #~ msgid "1 hour"
 #~ msgstr "1 tund"
