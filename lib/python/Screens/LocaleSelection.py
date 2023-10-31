@@ -506,7 +506,7 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 				if config.locales.packageLocales.value == "P":
 					break
 		if inUseLocale not in [x[self.LIST_LOCALE] for x in self.localeList]:
-			country = international.splitLocale(inUseLocale)[]
+			country = international.splitLocale(inUseLocale)[1]
 			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, f"countries/{country.lower()}.png")
 			if png is None:
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
