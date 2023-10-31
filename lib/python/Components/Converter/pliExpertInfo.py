@@ -50,10 +50,10 @@ class pliExpertInfo(Poll, Converter):
 		service = self.source.service
 		try:
 			info = service and service.info()
-		except:
+		except Exception:
 			try:
 				info = eServiceCenter.getInstance().info(service)
-			except:
+			except Exception:
 				pass
 		if not info:
 			return ""
@@ -78,11 +78,11 @@ class pliExpertInfo(Poll, Converter):
 				prvd = info.getInfoString(iServiceInformation.sProvider)
 				Ret_Text = self.short(prvd)
 				frontendDataOrg = (feinfo and feinfo.getAll(True))
-			except:
+			except Exception:
 				try:
 					frontendDataOrg = info.getInfoObject(service, iServiceInformation.sTransponderData)
 					prvd = info.getInfoString(service, iServiceInformation.sProvider)
-				except:
+				except Exception:
 					pass
 
 			if (frontendDataOrg is not None):
@@ -94,210 +94,104 @@ class pliExpertInfo(Poll, Converter):
 					if (frontendDataOrg.get("tuner_type") == "DVB-S"):
 						Ret_Text += sep + frontendData.get("system")
 						orbital_pos = int(frontendDataOrg["orbital_position"])
-						if orbital_pos > 1800:
-							if orbital_pos == 3590:
-								orb_pos = 'Thor/Intelsat'
-							elif orbital_pos == 3560:
-								orb_pos = 'Amos (4'
-							elif orbital_pos == 3550:
-								orb_pos = 'Atlantic Bird'
-							elif orbital_pos == 3530:
-								orb_pos = 'Nilesat/Atlantic Bird'
-							elif orbital_pos == 3520:
-								orb_pos = 'Atlantic Bird'
-							elif orbital_pos == 3475:
-								orb_pos = 'Atlantic Bird'
-							elif orbital_pos == 3460:
-								orb_pos = 'Express'
-							elif orbital_pos == 3450:
-								orb_pos = 'Telstar'
-							elif orbital_pos == 3420:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 3380:
-								orb_pos = 'Nss'
-							elif orbital_pos == 3355:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 3325:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 3300:
-								orb_pos = 'Hispasat'
-							elif orbital_pos == 3285:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 3170:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 3150:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 3070:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 3045:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 3020:
-								orb_pos = 'Intelsat 9'
-							elif orbital_pos == 2990:
-								orb_pos = 'Amazonas'
-							elif orbital_pos == 2900:
-								orb_pos = 'Star One'
-							elif orbital_pos == 2880:
-								orb_pos = 'AMC 6 (72'
-							elif orbital_pos == 2875:
-								orb_pos = 'Echostar 6'
-							elif orbital_pos == 2860:
-								orb_pos = 'Horizons'
-							elif orbital_pos == 2810:
-								orb_pos = 'AMC5'
-							elif orbital_pos == 2780:
-								orb_pos = 'NIMIQ 4'
-							elif orbital_pos == 2690:
-								orb_pos = 'NIMIQ 1'
-							elif orbital_pos == 3592:
-								orb_pos = 'Thor/Intelsat'
-							elif orbital_pos == 2985:
-								orb_pos = 'Echostar 3,12'
-							elif orbital_pos == 2830:
-								orb_pos = 'Echostar 8'
-							elif orbital_pos == 2630:
-								orb_pos = 'Galaxy 19'
-							elif orbital_pos == 2500:
-								orb_pos = 'Echostar 10,11'
-							elif orbital_pos == 2502:
-								orb_pos = 'DirectTV 5'
-							elif orbital_pos == 2410:
-								orb_pos = 'Echostar 7 Anik F3'
-							elif orbital_pos == 2391:
-								orb_pos = 'Galaxy 23'
-							elif orbital_pos == 2390:
-								orb_pos = 'Echostar 9'
-							elif orbital_pos == 2412:
-								orb_pos = 'DirectTV 7S'
-							elif orbital_pos == 2310:
-								orb_pos = 'Galaxy 27'
-							elif orbital_pos == 2311:
-								orb_pos = 'Ciel 2'
-							elif orbital_pos == 2120:
-								orb_pos = 'Echostar 2'
-							else:
+						orb_pos = {
+							30: 'Rascom/Eutelsat 3E',
+							48: 'SES 5',
+							70: 'Eutelsat 7E',
+							90: 'Eutelsat 9E',
+							100: 'Eutelsat 10E',
+							130: 'Hot Bird',
+							160: 'Eutelsat 16E',
+							192: 'Astra 1KR/1L/1M/1N',
+							200: 'Arabsat 20E',
+							216: 'Eutelsat 21.5E',
+							235: 'Astra 3',
+							255: 'Eutelsat 25.5E',
+							260: 'Badr 4/5/6',
+							282: 'Astra 2E/2F/2G',
+							305: 'Arabsat 30.5E',
+							315: 'Astra 5',
+							330: 'Eutelsat 33E',
+							360: 'Eutelsat 36E',
+							380: 'Paksat',
+							390: 'Hellas Sat',
+							400: 'Express 40E',
+							420: 'Turksat',
+							450: 'Intelsat 45E',
+							480: 'Afghansat',
+							490: 'Yamal 49E',
+							530: 'Express 53E',
+							570: 'NSS 57E',
+							600: 'Intelsat 60E',
+							620: 'Intelsat 62E',
+							685: 'Intelsat 68.5E',
+							705: 'Eutelsat 70.5E',
+							720: 'Intelsat 72E',
+							750: 'ABS',
+							765: 'Apstar',
+							785: 'ThaiCom',
+							800: 'Express 80E',
+							830: 'Insat',
+							851: 'Intelsat/Horizons',
+							880: 'ST2',
+							900: 'Yamal 90E',
+							915: 'Mesat',
+							950: 'NSS/SES 95E',
+							1005: 'AsiaSat 100E',
+							1030: 'Express 103E',
+							1055: 'Asiasat 105E',
+							1082: 'NSS/SES 108E',
+							1100: 'BSat/NSAT',
+							1105: 'ChinaSat',
+							1130: 'KoreaSat',
+							1222: 'AsiaSat 122E',
+							1380: 'Telstar 18',
+							1440: 'SuperBird',
+							2310: 'Ciel',
+							2390: 'Echostar/Galaxy 121W',
+							2410: 'Echostar/DirectTV 119W',
+							2500: 'Echostar/DirectTV 110W',
+							2630: 'Galaxy 97W',
+							2690: 'NIMIQ 91W',
+							2780: 'NIMIQ 82W',
+							2830: 'Echostar/QuetzSat',
+							2880: 'AMC 72W',
+							2900: 'Star One',
+							2985: 'Echostar 61.5W',
+							2990: 'Amazonas',
+							3020: 'Intelsat 58W',
+							3045: 'Intelsat 55.5W',
+							3070: 'Intelsat 53W',
+							3100: 'Intelsat 50W',
+							3150: 'Intelsat 45W',
+							3169: 'Intelsat 43.1W',
+							3195: 'SES 40.5W',
+							3225: 'NSS/Telstar 37W',
+							3255: 'Intelsat 34.5W',
+							3285: 'Intelsat 31.5W',
+							3300: 'Hispasat',
+							3325: 'Intelsat 27.5W',
+							3355: 'Intelsat 24.5W',
+							3380: 'SES 22W',
+							3400: 'NSS 20W',
+							3420: 'Intelsat 18W',
+							3450: 'Telstar 15W',
+							3460: 'Express 14W',
+							3475: 'Eutelsat 12.5W',
+							3490: 'Express 11W',
+							3520: 'Eutelsat 8W',
+							3530: 'Nilesat/Eutelsat 7W',
+							3550: 'Eutelsat 5W',
+							3560: "Amos",
+							3592: 'Thor/Intelsat'
+						}.get(orbital_pos, "")
+
+						if not orb_pos:
+							if orbital_pos > 1800:
 								orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "W"
-						elif orbital_pos > 0:
-							if orbital_pos == 192:
-								orb_pos = 'Astra 1F'
-							elif orbital_pos == 130:
-								orb_pos = 'Hot Bird 6,7A,8'
-							elif orbital_pos == 235:
-								orb_pos = 'Astra 1E'
-							elif orbital_pos == 1100:
-								orb_pos = 'BSat 1A,2A'
-							elif orbital_pos == 1101:
-								orb_pos = 'N-Sat 110'
-							elif orbital_pos == 1131:
-								orb_pos = 'KoreaSat 5'
-							elif orbital_pos == 1440:
-								orb_pos = 'SuperBird 7,C2'
-							elif orbital_pos == 1006:
-								orb_pos = 'AsiaSat 2'
-							elif orbital_pos == 1030:
-								orb_pos = 'Express A2'
-							elif orbital_pos == 1056:
-								orb_pos = 'Asiasat 3S'
-							elif orbital_pos == 1082:
-								orb_pos = 'NSS 11'
-							elif orbital_pos == 881:
-								orb_pos = 'ST1'
-							elif orbital_pos == 900:
-								orb_pos = 'Yamal 201'
-							elif orbital_pos == 917:
-								orb_pos = 'Mesat'
-							elif orbital_pos == 950:
-								orb_pos = 'Insat 4B'
-							elif orbital_pos == 951:
-								orb_pos = 'NSS 6'
-							elif orbital_pos == 765:
-								orb_pos = 'Telestar'
-							elif orbital_pos == 785:
-								orb_pos = 'ThaiCom 5'
-							elif orbital_pos == 800:
-								orb_pos = 'Express'
-							elif orbital_pos == 830:
-								orb_pos = 'Insat 4A'
-							elif orbital_pos == 850:
-								orb_pos = 'Intelsat 709'
-							elif orbital_pos == 750:
-								orb_pos = 'Abs'
-							elif orbital_pos == 720:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 705:
-								orb_pos = 'Eutelsat W5'
-							elif orbital_pos == 685:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 620:
-								orb_pos = 'Intelsat 902'
-							elif orbital_pos == 600:
-								orb_pos = 'Intelsat 904'
-							elif orbital_pos == 570:
-								orb_pos = 'Nss'
-							elif orbital_pos == 530:
-								orb_pos = 'Express AM22'
-							elif orbital_pos == 480:
-								orb_pos = 'Eutelsat 2F2'
-							elif orbital_pos == 450:
-								orb_pos = 'Intelsat'
-							elif orbital_pos == 420:
-								orb_pos = 'Turksat 2A'
-							elif orbital_pos == 400:
-								orb_pos = 'Express AM1'
-							elif orbital_pos == 390:
-								orb_pos = 'Hellas Sat 2'
-							elif orbital_pos == 380:
-								orb_pos = 'Paksat 1'
-							elif orbital_pos == 360:
-								orb_pos = 'Eutelsat Sesat'
-							elif orbital_pos == 335:
-								orb_pos = 'Astra 1M'
-							elif orbital_pos == 330:
-								orb_pos = 'Eurobird 3'
-							elif orbital_pos == 328:
-								orb_pos = 'Galaxy 11'
-							elif orbital_pos == 315:
-								orb_pos = 'Astra 5A'
-							elif orbital_pos == 310:
-								orb_pos = 'Turksat'
-							elif orbital_pos == 305:
-								orb_pos = 'Arabsat'
-							elif orbital_pos == 285:
-								orb_pos = 'Eurobird 1'
-							elif orbital_pos == 284:
-								orb_pos = 'Eurobird/Astra'
-							elif orbital_pos == 282:
-								orb_pos = 'Eurobird/Astra'
-							elif orbital_pos == 1220:
-								orb_pos = 'AsiaSat'
-							elif orbital_pos == 1380:
-								orb_pos = 'Telstar 18'
-							elif orbital_pos == 260:
-								orb_pos = 'Badr 3/4'
-							elif orbital_pos == 255:
-								orb_pos = 'Eurobird 2'
-							elif orbital_pos == 215:
-								orb_pos = 'Eutelsat'
-							elif orbital_pos == 216:
-								orb_pos = 'Eutelsat W6'
-							elif orbital_pos == 210:
-								orb_pos = 'AfriStar 1'
-							elif orbital_pos == 160:
-								orb_pos = 'Eutelsat W2'
-							elif orbital_pos == 100:
-								orb_pos = 'Eutelsat W1'
-							elif orbital_pos == 90:
-								orb_pos = 'Eurobird 9'
-							elif orbital_pos == 70:
-								orb_pos = 'Eutelsat W3A'
-							elif orbital_pos == 50:
-								orb_pos = 'Sirius 4'
-							elif orbital_pos == 48:
-								orb_pos = 'Sirius 4'
-							elif orbital_pos == 30:
-								orb_pos = 'Telecom 2'
 							else:
 								orb_pos = str((float(orbital_pos)) / 10.0) + "E"
+
 						Ret_Text += sep + orb_pos + "\n"
 						Ret_Text += frequency + sep + frontendData.get("polarization_abbreviation")
 						Ret_Text += sep + symbolrate
@@ -306,7 +200,7 @@ class pliExpertInfo(Poll, Converter):
 						Ret_Text += sep + "DVB-C " + frequency + " MHz" + sep + fec_inner + sep + symbolrate
 				elif (frontendData.get("tuner_type") == "DVB-T"):
 					frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-					Ret_Text = "Frequency: " + frequency
+					Ret_Text = f"Frequency: {frequency}"
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.SERVICE_INFO):
 
@@ -382,26 +276,24 @@ class pliExpertInfo(Poll, Converter):
 			searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
 			for idline in self.idnames:
 				if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):
-					color = "\c0000ff00"
+					color = r"\c0000ff00"
 				else:
-					color = "\c007f7f7f"
+					color = r"\c007f7f7f"
 					try:
 						for oneID in searchIDs:
 							if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
-								color = "\c00ffff00"
-					except:
+								color = r"\c00ffff00"
+					except Exception:
 						pass
 				res += color + idline[3] + " "
 
 			if (self.type != self.CRYPTO_INFO):
 				Ret_Text += "\n"
-			Ret_Text += res + "\c00ffffff " + Sec_Text
+			Ret_Text += res + r"\c00ffffff " + Sec_Text
 
 		if Res_Text != "":
-			if showCryptoInfo:
-				Ret_Text += sep + Res_Text
-			else:
-				Ret_Text += "\n" + Res_Text
+			_sep = sep if showCryptoInfo else "\n"
+			Ret_Text = f"{_sep}{Ret_Text}"
 
 		return Ret_Text
 
