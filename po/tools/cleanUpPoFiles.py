@@ -56,7 +56,7 @@ prefs = {
   'outputFinalStats': True,
   'processMaxEntries': 0,  # useful for testing; 0 will process all entries
   'include': ["*.xml", "*.py"],  # for files only
-  'exclude': ["*/\.*", codeBasePath + "/po/*"]  # for dirs and files
+  'exclude': [r"*/\.*", codeBasePath + "/po/*"]  # for dirs and files
 }
 
 # transform glob patterns to regular expressions
