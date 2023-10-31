@@ -1,5 +1,5 @@
-from Components.Renderer.Renderer import Renderer
 from enigma import eListbox
+from Components.Renderer.Renderer import Renderer
 
 # the listbox renderer is the listbox, but no listbox content.
 # the content will be provided by the source (or converter).
@@ -15,13 +15,13 @@ from enigma import eListbox
 
 
 class Listbox(Renderer):
+	GUI_WIDGET = eListbox
+
 	def __init__(self):
 		Renderer.__init__(self)
 		self.__content = None
 		self.__selectionEnabled = True  # FIXME: The default is true already.
 		self.scale = None
-
-	GUI_WIDGET = eListbox
 
 	def contentChanged(self):
 		self.content = self.source.content

@@ -1852,14 +1852,13 @@ class ServiceInformation(InformationBase):
 		info.append(formatLine("H", _("ECM information for '%s'") % self.serviceName))
 		info.append("")
 		if self.serviceInfo:
-			from Components.Converter.PliExtraInfo import caid_data  # This should be in SystemInfo maybe as a BoxInfo variable.
-			from Tools.GetEcmInfo import GetEcmInfo
+			from Tools.GetEcmInfo import GetCaidData, GetEcmInfo
 			ecmData = GetEcmInfo().getEcmData()
 			for caID in sorted(set(self.serviceInfo.getInfoObject(iServiceInformation.sCAIDPIDs)), key=lambda x: (x[0], x[1])):
 				description = _("Undefined")
 				extraInfo = ""
 				provid = ""
-				for caidEntry in caid_data:
+				for caidEntry in GetCaidData():
 					if int(caidEntry[0], 16) <= caID[0] <= int(caidEntry[1], 16):
 						description = caidEntry[2]
 						break

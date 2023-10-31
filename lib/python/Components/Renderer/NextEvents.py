@@ -1,10 +1,12 @@
-from Components.VariableText import VariableText
-from Components.Renderer.Renderer import Renderer
-from enigma import eLabel, eEPGCache
 from time import localtime
+from enigma import eLabel, eEPGCache
+from Components.Renderer.Renderer import Renderer
+from Components.VariableText import VariableText
 
 
 class NextEvents(VariableText, Renderer):
+	GUI_WIDGET = eLabel
+
 	def __init__(self):
 		self.lines = False
 		Renderer.__init__(self)
@@ -25,8 +27,6 @@ class NextEvents(VariableText, Renderer):
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
-	GUI_WIDGET = eLabel
-
 	def connect(self, source):
 		Renderer.connect(self, source)
 		self.changed((self.CHANGED_DEFAULT,))
@@ -35,7 +35,7 @@ class NextEvents(VariableText, Renderer):
 		if what[0] == self.CHANGED_CLEAR:
 			self.text = ""
 		else:
-			list = self.epgcache.lookupEvent(['BDT', (self.source.text, 0, -1, 360)])
+			list = self.epgcache.lookupEvent(["BDT", (self.source.text, 0, -1, 360)])
 			text = ""
 			if len(list):
 				if self.lines:

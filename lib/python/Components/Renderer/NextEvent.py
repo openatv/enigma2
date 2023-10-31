@@ -22,18 +22,19 @@
 #
 #######################################################################
 
-from Components.VariableText import VariableText
+from time import localtime
 from enigma import eLabel, eEPGCache
 from Components.Renderer.Renderer import Renderer
-from time import localtime
+from Components.VariableText import VariableText
 
 
 class NextEvent(Renderer, VariableText):
+	GUI_WIDGET = eLabel
+
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
 		self.epgcache = eEPGCache.getInstance()
-	GUI_WIDGET = eLabel
 
 	def changed(self, what):
 		ref = self.source.service
@@ -42,9 +43,9 @@ class NextEvent(Renderer, VariableText):
 			self.text = ""
 			return
 		ENext = ""
-		eventNext = self.epgcache.lookupEvent(['IBDCTSERNX', (ref.toString(), 1, -1)])
+		eventNext = self.epgcache.lookupEvent(["IBDCTSERNX", (ref.toString(), 1, -1)])
 		if eventNext and eventNext[0][4]:
 			t = localtime(eventNext[0][1])
 			duration = "%d min" % (eventNext[0][2] / 60)
-			ENext = _("It follows:") + ' ' + "%s %02d:%02d  %s\n%s" % (_("It follows:"), t[3], t[4], duration, eventNext[0][4])
+			ENext = _("It follows:") + " " + "%s %02d:%02d  %s\n%s" % (_("It follows:"), t[3], t[4], duration, eventNext[0][4])
 		self.text = ENext

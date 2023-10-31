@@ -1,17 +1,16 @@
-from Components.VariableText import VariableText
+from time import localtime
 from enigma import eLabel, eEPGCache
 from Components.Renderer.Renderer import Renderer
-from time import localtime
+from Components.VariableText import VariableText
 
 
 class SingleEpgList(Renderer, VariableText):
+	GUI_WIDGET = eLabel
 
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
 		self.epgcache = eEPGCache.getInstance()
-
-	GUI_WIDGET = eLabel
 
 	def changed(self, what):
 		event = self.source.event
@@ -25,7 +24,7 @@ class SingleEpgList(Renderer, VariableText):
 		evt = None
 
 		if self.epgcache is not None:
-			evt = self.epgcache.lookupEvent(['IBDCT', (service.toString(), 0, -1, -1)])
+			evt = self.epgcache.lookupEvent(["IBDCT", (service.toString(), 0, -1, -1)])
 
 		if evt:
 			maxx = 0
