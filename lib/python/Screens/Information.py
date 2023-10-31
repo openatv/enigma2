@@ -1852,13 +1852,13 @@ class ServiceInformation(InformationBase):
 		info.append(formatLine("H", _("ECM information for '%s'") % self.serviceName))
 		info.append("")
 		if self.serviceInfo:
-			from Tools.GetEcmInfo import GetCaidData, GetEcmInfo
+			from Tools.GetEcmInfo import getCaidData, GetEcmInfo
 			ecmData = GetEcmInfo().getEcmData()
 			for caID in sorted(set(self.serviceInfo.getInfoObject(iServiceInformation.sCAIDPIDs)), key=lambda x: (x[0], x[1])):
 				description = _("Undefined")
 				extraInfo = ""
 				provid = ""
-				for caidEntry in GetCaidData():
+				for caidEntry in getCaidData():
 					if int(caidEntry[0], 16) <= caID[0] <= int(caidEntry[1], 16):
 						description = caidEntry[2]
 						break
