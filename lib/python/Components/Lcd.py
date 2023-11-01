@@ -294,8 +294,8 @@ def InitLcd():
 		ilcd = LCD()
 		if can_lcdmodechecking:
 			def setLCDModeMinitTV(configElement):
-				print("[Lcd] setLCDModeMinitTV='%s'." % configElement.value)
-				fileWriteLine("/proc/stb/lcd/mode", configElement.value)
+				print(f"[Lcd] setLCDModeMinitTV='{configElement.value}'.")
+				fileWriteLine("/proc/stb/lcd/mode", str(configElement.value))
 
 			def setMiniTVFPS(configElement):
 				print("[Lcd] setMiniTVFPS='%s'." % configElement.value)
@@ -310,12 +310,12 @@ def InitLcd():
 				"7": _("PiP with OSD")
 			}, default="0")
 			config.lcd.modepip.addNotifier(setLCDModePiP)
-			config.lcd.modeminitv = ConfigSelection(choices={
-				"0": _("normal"),
-				"1": _("MiniTV"),
-				"2": _("OSD"),
-				"3": _("MiniTV with OSD")
-			}, default="0")
+			config.lcd.modeminitv = ConfigSelection(default=0, choices=[
+				(0, _("normal")),
+				(1, _("MiniTV")),
+				(2, _("OSD")),
+				(3, _("MiniTV with OSD"))
+			])
 			config.lcd.fpsminitv = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
 			config.lcd.fpsminitv.addNotifier(setMiniTVFPS)

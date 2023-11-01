@@ -54,7 +54,7 @@ from Screens.TimeDateInput import TimeDateInput
 from Screens.Timers import RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
-from Tools.Directories import pathExists, fileReadLines, fileWriteLines, isPluginInstalled
+from Tools.Directories import pathExists, fileReadLines, fileWriteLine, fileWriteLines, isPluginInstalled
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -3599,9 +3599,7 @@ class InfoBarPiP:
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTV") and int(config.lcd.modepip.value) >= 1:
 					print('[InfoBarGenerics] [LCDMiniTV] disable PiP')
-					f = open("/proc/stb/lcd/mode", "w")
-					f.write(config.lcd.modeminitv.value)
-					f.close()
+					fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
 				self.session.pipshown = False
 			if hasattr(self, "ScreenSaverTimerStart"):
 				self.ScreenSaverTimerStart()

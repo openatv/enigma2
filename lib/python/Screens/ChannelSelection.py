@@ -48,6 +48,7 @@ from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.BoundFunction import boundFunction
+from Tools.Directories import fileWriteLine
 from Tools.Notifications import AddPopup, RemovePopup
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -1952,9 +1953,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
 					print("[ChannelSelection] LCDMiniTV disable PiP.")
-					f = open("/proc/stb/lcd/mode", "w")
-					f.write(config.lcd.modeminitv.value)
-					f.close()
+					fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.setAnimationMode(0)
 			self.session.pip.show()
@@ -1985,9 +1984,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					del self.session.pip
 					if BoxInfo.getItem("LCDMiniTV") and int(config.lcd.modepip.value) >= 1:
 						print("[ChannelSelection] LCDMiniTV disable PiP.")
-						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modeminitv.value)
-						f.close()
+						fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
 					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
 			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=5)
@@ -2898,9 +2895,7 @@ class PiPZapSelection(ChannelSelection):
 					del self.session.pip
 					if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
 							print("[ChannelSelection] LCDMiniTV disable PiP.")
-							f = open("/proc/stb/lcd/mode", "w")
-							f.write(config.lcd.modeminitv.value)
-							f.close()
+							fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
 					self.close(None)
 
 	def cancel(self):
@@ -2909,10 +2904,8 @@ class PiPZapSelection(ChannelSelection):
 			self.session.pipshown = False
 			del self.session.pip
 			if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
-					print("[ChannelSelection] LCDMiniTV disable PiP.")
-					f = open("/proc/stb/lcd/mode", "w")
-					f.write(config.lcd.modeminitv.value)
-					f.close()
+				print("[ChannelSelection] LCDMiniTV disable PiP.")
+				fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
 		self.correctChannelNumber()
 		self.close(None)
 
