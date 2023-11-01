@@ -289,6 +289,7 @@ int main(int argc, char **argv)
 	eLog(0, "[Enigma] Python path is '%s'.", getenv("PYTHONPATH"));
 	eLog(0, "[Enigma] DVB API version %d, DVB API version minor %d.", DVB_API_VERSION, DVB_API_VERSION_MINOR);
 	eLog(0, "[Enigma] Enigma debug level %d.", debugLvl);
+	eLog(0, "[Enigma] sourcedate %s / %s %s.", enigma2_date, enigma2_branch, E2REV);
 
 	ePython python;
 	eMain main;
