@@ -3597,7 +3597,7 @@ class InfoBarPiP:
 					if lastPiPServiceTimeout:
 						self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
 				del self.session.pip
-				if BoxInfo.getItem("LCDMiniTV") and int(config.lcd.modepip.value) >= 1:
+				if BoxInfo.getItem("LCDMiniTV") and config.lcd.modepip.value >= 1:
 					print('[InfoBarGenerics] [LCDMiniTV] disable PiP')
 					fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
 				self.session.pipshown = False
@@ -3616,11 +3616,9 @@ class InfoBarPiP:
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-					if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
+					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print('[InfoBarGenerics] [LCDMiniTV] enable PiP')
-						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modepip.value)
-						f.close()
+						fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modepip.value))
 						f = open("/proc/stb/vmpeg/1/dst_width", "w")
 						f.write("0")
 						f.close()
@@ -3635,11 +3633,9 @@ class InfoBarPiP:
 					if self.session.pip.playService(newservice):
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-						if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
+						if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 							print('[InfoBarGenerics] [LCDMiniTV] enable PiP')
-							f = open("/proc/stb/lcd/mode", "w")
-							f.write(config.lcd.modepip.value)
-							f.close()
+							fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modepip.value))
 							f = open("/proc/stb/vmpeg/1/dst_width", "w")
 							f.write("0")
 							f.close()

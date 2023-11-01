@@ -304,11 +304,11 @@ def InitLcd():
 			def setLCDModePiP(configElement):
 				pass  # DEBUG: Should this be doing something?
 
-			config.lcd.modepip = ConfigSelection(choices={
-				"0": _("Off"),
-				"5": _("PiP"),
-				"7": _("PiP with OSD")
-			}, default="0")
+			config.lcd.modepip = ConfigSelection(default=0, choices=[
+				(0, _("Off")),
+				(5, _("PiP")),
+				(7, _("PiP with OSD"))
+			])
 			config.lcd.modepip.addNotifier(setLCDModePiP)
 			config.lcd.modeminitv = ConfigSelection(default=0, choices=[
 				(0, _("normal")),
