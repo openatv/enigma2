@@ -138,6 +138,11 @@ void eLCD::set_VFD_scroll_repeats(int delay) const
 	CFile::writeInt(VFD_scroll_repeats_proc, delay);
 }
 
+void eLCD::setLCDMode(int mode) const
+{
+	CFile::writeInt("/proc/stb/lcd/mode", mode);
+}
+
 #if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
 void eLCD::renderText(ePoint start, const char *text)
 {

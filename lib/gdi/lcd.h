@@ -69,6 +69,8 @@ public:
 	const char *get_VFD_scroll_repeats() const;
 	void set_VFD_scroll_repeats(int delay) const;
 
+	void setLCDMode(int mode) const;
+
 
 #ifndef SWIG
 	eLCD();
