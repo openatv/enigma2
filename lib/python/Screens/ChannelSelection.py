@@ -2,7 +2,7 @@ from os import listdir, remove, rename
 from os.path import join
 from time import localtime, strftime, time
 
-from enigma import eActionMap, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
+from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
 from ServiceReference import ServiceReference, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
@@ -48,7 +48,6 @@ from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import fileWriteLine
 from Tools.Notifications import AddPopup, RemovePopup
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -1953,7 +1952,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 					print("[ChannelSelection] LCDMiniTV disable PiP.")
-					fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
+					eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.setAnimationMode(0)
 			self.session.pip.show()
@@ -1966,7 +1965,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					self.session.pip.servicePath[1] = currentBouquet
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print("[ChannelSelection] LCDMiniTV enable PiP.")
-						fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modepip.value))
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
 						f = open("/proc/stb/vmpeg/1/dst_width", "w")
 						f.write("0")
 						f.close()
@@ -1982,7 +1981,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					del self.session.pip
 					if BoxInfo.getItem("LCDMiniTV") and config.lcd.modepip.value >= 1:
 						print("[ChannelSelection] LCDMiniTV disable PiP.")
-						fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
 					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
 			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=5)
@@ -2874,7 +2873,7 @@ class PiPZapSelection(ChannelSelection):
 					self.setCurrentSelection(ref)
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print("[ChannelSelection] LCDMiniTV enable PiP.")
-						fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modepip.value))
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
 						f = open("/proc/stb/vmpeg/1/dst_width", "w")
 						f.write("0")
 						f.close()
@@ -2890,8 +2889,8 @@ class PiPZapSelection(ChannelSelection):
 					self.session.pipshown = False
 					del self.session.pip
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
-							print("[ChannelSelection] LCDMiniTV disable PiP.")
-							fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
+						print("[ChannelSelection] LCDMiniTV disable PiP.")
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
 					self.close(None)
 
 	def cancel(self):
@@ -2901,7 +2900,7 @@ class PiPZapSelection(ChannelSelection):
 			del self.session.pip
 			if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 				print("[ChannelSelection] LCDMiniTV disable PiP.")
-				fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
+				eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
 		self.correctChannelNumber()
 		self.close(None)
 

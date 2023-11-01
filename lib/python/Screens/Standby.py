@@ -99,7 +99,7 @@ class TVstate:  # load in Navigation
 
 
 def setLCDModeMinitTV(value):
-	fileWriteLine("/proc/stb/lcd/mode", str(value))
+	eDBoxLCD.getInstance().setLCDMode(value)
 
 
 class Standby2(Screen):

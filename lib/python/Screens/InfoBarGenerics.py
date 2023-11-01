@@ -7,7 +7,7 @@ import pickle
 from sys import maxsize
 from time import localtime, strftime, time
 
-from enigma import eAVControl, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
+from enigma import eAVControl, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB, eDBoxLCD
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
@@ -54,7 +54,7 @@ from Screens.TimeDateInput import TimeDateInput
 from Screens.Timers import RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
-from Tools.Directories import pathExists, fileReadLines, fileWriteLine, fileWriteLines, isPluginInstalled
+from Tools.Directories import pathExists, fileReadLines, fileWriteLines, isPluginInstalled
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -3599,7 +3599,7 @@ class InfoBarPiP:
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTV") and config.lcd.modepip.value >= 1:
 					print('[InfoBarGenerics] [LCDMiniTV] disable PiP')
-					fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modeminitv.value))
+					eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
 				self.session.pipshown = False
 			if hasattr(self, "ScreenSaverTimerStart"):
 				self.ScreenSaverTimerStart()
@@ -3618,7 +3618,7 @@ class InfoBarPiP:
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print('[InfoBarGenerics] [LCDMiniTV] enable PiP')
-						fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modepip.value))
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
 						f = open("/proc/stb/vmpeg/1/dst_width", "w")
 						f.write("0")
 						f.close()
@@ -3635,7 +3635,7 @@ class InfoBarPiP:
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 						if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 							print('[InfoBarGenerics] [LCDMiniTV] enable PiP')
-							fileWriteLine("/proc/stb/lcd/mode", str(config.lcd.modepip.value))
+							eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
 							f = open("/proc/stb/vmpeg/1/dst_width", "w")
 							f.write("0")
 							f.close()
