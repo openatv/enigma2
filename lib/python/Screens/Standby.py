@@ -16,7 +16,7 @@ from GlobalActions import globalActionMap
 import Screens.InfoBar
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Tools.Directories import mediaFilesInUse
+from Tools.Directories import fileWriteLine, mediaFilesInUse
 import Tools.Notifications
 
 
@@ -99,12 +99,7 @@ class TVstate:  # load in Navigation
 
 
 def setLCDModeMinitTV(value):
-	try:
-		f = open("/proc/stb/lcd/mode", "w")
-		f.write(value)
-		f.close()
-	except OSError:
-		pass
+	eDBoxLCD.getInstance().setLCDMode(value)
 
 
 class Standby2(Screen):
@@ -200,7 +195,7 @@ class Standby2(Screen):
 
 		if BoxInfo.getItem("Display") and BoxInfo.getItem("LCDMiniTV"):
 			# set LCDminiTV off
-			setLCDModeMinitTV("0")
+			setLCDModeMinitTV(0)
 
 		self.paused_service = None
 		self.prev_running_service = None
@@ -444,7 +439,7 @@ class TryQuitMainloop(MessageBox):
 			if BoxInfo.getItem("Display") and BoxInfo.getItem("LCDMiniTV"):
 				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k
 				print("[Standby] LCDminiTV off")
-				setLCDModeMinitTV("0")
+				setLCDModeMinitTV(0)
 
 			if BoxInfo.getItem("machinebuild") in ("vusolo4k", "pulse4k"):  # Workaround for white display flash.
 				eDBoxLCD.getInstance().setLCDBrightness(0)

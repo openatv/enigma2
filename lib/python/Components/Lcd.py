@@ -246,9 +246,8 @@ class LCD:
 		eDBoxLCD.getInstance().setLED(value, 2)
 
 	def setLCDMiniTVMode(self, value):
-		if exists("/proc/stb/lcd/mode"):
-			print("[Lcd] setLCDMiniTVMode='%s'." % value)
-			fileWriteLine("/proc/stb/lcd/mode", value)
+		print(f"[Lcd] setLCDMiniTVMode='{value}'.")
+		eDBoxLCD.getInstance().setLCDMode(value)
 
 	def setLCDMiniTVPIPMode(self, value):
 		print("[Lcd] setLCDMiniTVPIPMode='%s'." % value)
@@ -294,8 +293,8 @@ def InitLcd():
 		ilcd = LCD()
 		if can_lcdmodechecking:
 			def setLCDModeMinitTV(configElement):
-				print("[Lcd] setLCDModeMinitTV='%s'." % configElement.value)
-				fileWriteLine("/proc/stb/lcd/mode", configElement.value)
+				print(f"[Lcd] setLCDModeMinitTV='{configElement.value}'.")
+				eDBoxLCD.getInstance().setLCDMode(configElement.value)
 
 			def setMiniTVFPS(configElement):
 				print("[Lcd] setMiniTVFPS='%s'." % configElement.value)
@@ -304,18 +303,18 @@ def InitLcd():
 			def setLCDModePiP(configElement):
 				pass  # DEBUG: Should this be doing something?
 
-			config.lcd.modepip = ConfigSelection(choices={
-				"0": _("Off"),
-				"5": _("PiP"),
-				"7": _("PiP with OSD")
-			}, default="0")
+			config.lcd.modepip = ConfigSelection(default=0, choices=[
+				(0, _("Off")),
+				(5, _("PiP")),
+				(7, _("PiP with OSD"))
+			])
 			config.lcd.modepip.addNotifier(setLCDModePiP)
-			config.lcd.modeminitv = ConfigSelection(choices={
-				"0": _("normal"),
-				"1": _("MiniTV"),
-				"2": _("OSD"),
-				"3": _("MiniTV with OSD")
-			}, default="0")
+			config.lcd.modeminitv = ConfigSelection(default=0, choices=[
+				(0, _("normal")),
+				(1, _("MiniTV")),
+				(2, _("OSD")),
+				(3, _("MiniTV with OSD"))
+			])
 			config.lcd.fpsminitv = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
 			config.lcd.fpsminitv.addNotifier(setMiniTVFPS)
@@ -323,19 +322,13 @@ def InitLcd():
 			config.lcd.modeminitv = ConfigNothing()
 			config.lcd.screenshot = ConfigNothing()
 			config.lcd.fpsminitv = ConfigNothing()
-		config.lcd.scroll_speed = ConfigSelection(choices=[
-			("500", _("slow")),
-			("300", _("normal")),
-			("100", _("fast"))
-		], default="300")
-		config.lcd.scroll_delay = ConfigSelection(choices=[
-			("10000", "10 %s" % _("Seconds")),
-			("20000", "20 %s" % _("Seconds")),
-			("30000", "30 %s" % _("Seconds")),
-			("60000", "1 %s" % _("Minute")),
-			("300000", "5 %s" % _("Minutes")),
-			("noscrolling", _("Off"))
-		], default="10000")
+		config.lcd.scrollSpeed = ConfigSelection(choices=[
+			(500, _("slow")),
+			(300, _("normal")),
+			(100, _("fast"))
+		], default=300)
+		delayChoices = [(x, _("%d Seconds") % x) for x in (10, 20, 30, 40, 50)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 3, 5, 10, 15)] + [(0, _("Off"))]
+		config.lcd.scrollDelay = ConfigSelection(default=10, choices=delayChoices)
 
 		def setLCDbright(configElement):
 			ilcd.setBright(configElement.value)
@@ -666,19 +659,13 @@ def InitLcd():
 		config.lcd.fblcddisplay = ConfigNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.hdd = ConfigNothing()
-		config.lcd.scroll_speed = ConfigSelection(choices=[
-			("500", _("slow")),
-			("300", _("normal")),
-			("100", _("fast"))
-		], default="300")
-		config.lcd.scroll_delay = ConfigSelection(choices=[
-			("10000", "10 %s" % _("Seconds")),
-			("20000", "20 %s" % _("Seconds")),
-			("30000", "30 %s" % _("Seconds")),
-			("60000", "1 %s" % _("Minute")),
-			("300000", "5 %s" % _("Minutes")),
-			("noscrolling", _("Off"))
-		], default="10000")
+		config.lcd.scrollSpeed = ConfigSelection(choices=[
+			(500, _("slow")),
+			(300, _("normal")),
+			(100, _("fast"))
+		], default=300)
+		delayChoices = [(x, _("%d Seconds") % x) for x in (10, 20, 30, 40, 50)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 3, 5, 10, 15)] + [(0, _("Off"))]
+		config.lcd.scrollDelay = ConfigSelection(default=10, choices=delayChoices)
 		config.lcd.showoutputresolution = ConfigNothing()
 		config.lcd.ledbrightness = ConfigNothing()
 		config.lcd.ledbrightness.apply = lambda: doNothing()

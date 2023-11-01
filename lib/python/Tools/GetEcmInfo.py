@@ -1,16 +1,16 @@
-import os
-import time
+from os import stat
+from time import time
 
-ECM_INFO = '/tmp/ecm.info'
-EMPTY_ECM_INFO = '', '0', '0', '0'
+ECM_INFO = "/tmp/ecm.info"
+EMPTY_ECM_INFO = "", "0", "0", "0"
 
-old_ecm_time = time.time()
+old_ecm_time = time()
 info = {}
-ecm = ''
+ecm = ""
 data = EMPTY_ECM_INFO
 
 
-def GetCaidData():
+def getCaidData():
 	return (
 		("0x100", "0x1ff", "Seca", "S", True),
 		("0x500", "0x5ff", "Via", "V", True),
@@ -30,37 +30,38 @@ def GetCaidData():
 
 
 class GetEcmInfo:
+
+	def __init__(self):
+		self.textValue = ""
+
 	def pollEcmData(self):
-		global data
-		global old_ecm_time
-		global info
-		global ecm
+		global data, ecm, info, old_ecm_time
 		try:
-			ecm_time = os.stat(ECM_INFO).st_mtime
-		except:
+			ecm_time = stat(ECM_INFO).st_mtime
+		except OSError:
 			ecm_time = old_ecm_time
 			data = EMPTY_ECM_INFO
 			info = {}
-			ecm = ''
+			ecm = ""
 		if ecm_time != old_ecm_time:
-			oecmi1 = info.get('ecminterval1', '')
-			oecmi0 = info.get('ecminterval0', '')
+			oecmi1 = info.get("ecminterval1", "")
+			oecmi0 = info.get("ecminterval0", "")
 			info = {}
-			info['ecminterval2'] = oecmi1
-			info['ecminterval1'] = oecmi0
+			info["ecminterval2"] = oecmi1
+			info["ecminterval1"] = oecmi0
 			old_ecm_time = ecm_time
 			try:
 				ecm = open(ECM_INFO).readlines()
-			except:
-				ecm = ''
+			except OSError:
+				ecm = ""
 			for line in ecm:
-				d = line.split(':', 1)
+				d = line.split(":", 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
 			data = self.getText()
 			return True
 		else:
-			info['ecminterval0'] = int(time.time() - ecm_time + 0.5)
+			info["ecminterval0"] = int(time() - ecm_time + 0.5)
 
 	def getEcm(self):
 		return (self.pollEcmData(), ecm)
@@ -69,94 +70,87 @@ class GetEcmInfo:
 		self.pollEcmData()
 		return data
 
-	def getInfo(self, member, ifempty=''):
+	def getInfo(self, member, ifempty=""):
 		self.pollEcmData()
 		return str(info.get(member, ifempty))
 
 	def getText(self):
 		global ecm
 		try:
-			# info is dictionary
-			using = info.get('using', '')
+			using = info.get("using", "")  # Info is a dictionary.
 			if using:
-				# CCcam
-				if using == 'fta':
-					self.textvalue = _("FTA")
-				elif using == 'emu':
-					self.textvalue = "EMU (%ss)" % (info.get('ecm time', '?'))
+				# CCcam.
+				if using == "fta":
+					self.textValue = _("FTA")
+				elif using == "emu":
+					self.textValue = f"EMU ({info.get('ecm time', '?')}s)"
 				else:
-					hops = info.get('hops', None)
-					if hops and hops != '0':
-						hops = ' @' + hops
-					else:
-						hops = ''
-					self.textvalue = info.get('address', '?') + hops + " (%ss)" % info.get('ecm time', '?')
+					hops = info.get("hops", None)
+					hops = f" @{hops}" if hops and hops != "0" else ""
+					self.textValue = f"{info.get('address', '?')}{hops} ({info.get('ecm time', '?')}s)"
 			else:
-				decode = info.get('decode', None)
+				decode = info.get("decode", None)
 				if decode:
-					# gbox (untested)
-					if info['decode'] == 'Network':
-						cardid = 'id:' + info.get('prov', '')
+					# Gbox (untested).
+					if info["decode"] == "Network":
+						cardid = f"id:{info.get('prov', '')}"
 						try:
-							share = open('/tmp/share.info').readlines()
+							share = open("/tmp/share.info").readlines()
 							for line in share:
 								if cardid in line:
-									self.textvalue = line.strip()
+									self.textValue = line.strip()
 									break
 							else:
-								self.textvalue = cardid
-						except:
-							self.textvalue = decode
+								self.textValue = cardid
+						except Exception:
+							self.textValue = decode
 					else:
-						self.textvalue = decode
-					if ecm[1].startswith('SysID'):
-						info['prov'] = ecm[1].strip()[6:]
-					if info['response'] and 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
-						self.textvalue += " (0.%ss)" % info['response']
-						info['caid'] = ecm[0][ecm[0].find('CaID 0x') + 7:ecm[0].find(',')]
-						info['pid'] = ecm[0][ecm[0].find('pid 0x') + 6:ecm[0].find(' =')]
-						info['provid'] = info.get('prov', '0')[:4]
+						self.textValue = decode
+					if ecm[1].startswith("SysID"):
+						info["prov"] = ecm[1].strip()[6:]
+					if info["response"] and "CaID 0x" in ecm[0] and "pid 0x" in ecm[0]:
+						self.textValue += f" (0.{info['response']}s)"
+						info["caid"] = ecm[0][ecm[0].find("CaID 0x") + 7:ecm[0].find(",")]
+						info["pid"] = ecm[0][ecm[0].find("pid 0x") + 6:ecm[0].find(" =")]
+						info["provid"] = info.get("prov", "0")[:4]
 				else:
-					source = info.get('source', None)
+					source = info.get("source", None)
 					if source:
-						# wicardd - type 2 / mgcamd
-						caid = info.get('caid', None)
+						# Wicardd - type 2 / mgcamd.
+						caid = info.get("caid", None)
 						if caid:
-							info['caid'] = info['caid'][2:]
-							info['pid'] = info['pid'][2:]
-						info['provid'] = info['prov'][2:]
-						time = ""
+							info["caid"] = info["caid"][2:]
+							info["pid"] = info["pid"][2:]
+						info["provid"] = info["prov"][2:]
+						timeString = ""
 						for line in ecm:
-							if 'msec' in line:
-								line = line.split(' ')
+							if "msec" in line:
+								line = line.split(" ")
 								if line[0]:
-									time = " (%ss)" % (float(line[0]) / 1000)
+									timeString = f" ({float(line[0]) / 1000.0}s)"
 									continue
-						self.textvalue = source + time
+						self.textValue = f"{source}{timeString}"
 					else:
-						reader = info.get('reader', '')
+						reader = info.get("reader", "")
 						if reader:
-							hops = info.get('hops', None)
-							if hops and hops != '0':
-								hops = ' @' + hops
-							else:
-								hops = ''
-							self.textvalue = reader + hops + " (%ss)" % info.get('ecm time', '?')
+							hops = info.get("hops", None)
+							hops = f" @{hops}" if hops and hops != "0" else ""
+							self.textValue = f"{reader}{hops} ({info.get('ecm time', '?')}s)"
 						else:
-							response = info.get('response time', None)
+							response = info.get("response time", None)
 							if response:
-								# wicardd - type 1
-								response = response.split(' ')
-								self.textvalue = "%s (%ss)" % (response[4], float(response[0]) / 1000)
+								# Wicardd - type 1.
+								response = response.split(" ")
+								self.textValue = f"{response[4]} ({float(response[0]) / 1000.0}s)"
 							else:
-								self.textvalue = ""
-			decCI = info.get('caid', info.get('CAID', '0'))
-			provid = info.get('provid', info.get('prov', info.get('Provider', '0')))
-			ecmpid = info.get('pid', info.get('ECM PID', '0'))
-		except:
-			ecm = ''
-			self.textvalue = ""
-			decCI = '0'
-			provid = '0'
-			ecmpid = '0'
-		return self.textvalue, decCI, provid, ecmpid
+								self.textValue = ""
+			decCI = info.get("caid", info.get("CAID", "0"))
+			provid = info.get("provid", info.get("prov", info.get("Provider", "0")))
+			ecmpid = info.get("pid", info.get("ECM PID", "0"))
+		except Exception:
+			ecm = ""
+			self.textValue = ""
+			decCI = "0"
+			provid = "0"
+			ecmpid = "0"
+		return self.textValue, decCI, provid, ecmpid

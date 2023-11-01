@@ -1,10 +1,10 @@
 from enigma import eAVControl, iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from Components.config import config
-from Tools.Transponder import ConvertToHumanReadable
-from Tools.GetEcmInfo import GetCaidData, GetEcmInfo
 from Components.Converter.Poll import Poll
+from Components.config import config
+from Tools.GetEcmInfo import getCaidData, GetEcmInfo
+from Tools.Transponder import ConvertToHumanReadable
 
 
 # stream type to codec map
@@ -98,7 +98,7 @@ class PliExtraInfo(Poll, Converter):
 		res = ""
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 
-		for caid_entry in GetCaidData():
+		for caid_entry in getCaidData():
 			if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
 				color = r"\c0000ff00"
 			else:
@@ -313,7 +313,7 @@ class PliExtraInfo(Poll, Converter):
 	def createCryptoSpecial(self, info):
 		caid_name = "FTA"
 		try:
-			for caid_entry in GetCaidData():
+			for caid_entry in getCaidData():
 				if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
 					caid_name = caid_entry[2]
 					break
@@ -327,7 +327,7 @@ class PliExtraInfo(Poll, Converter):
 		if int(self.current_caid, 16) == 0:
 			return caid_name
 		try:
-			for caid_entry in GetCaidData():
+			for caid_entry in getCaidData():
 				if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
 					caid_name = caid_entry[2]
 					break
@@ -813,7 +813,7 @@ class PliExtraInfo(Poll, Converter):
 
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 
-		for caid_entry in GetCaidData():
+		for caid_entry in getCaidData():
 			if caid_entry[3] == request_caid:
 				if request_selected:
 					if int(caid_entry[0], 16) <= int(current_caid, 16) <= int(caid_entry[1], 16):
