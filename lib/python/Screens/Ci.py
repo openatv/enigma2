@@ -6,6 +6,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
 from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.Console import Console
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
@@ -37,6 +38,7 @@ def setRelevantPidsRouting(configElement):
 def InitCiConfig():
 	config.ci = ConfigSubList()
 	config.cimisc = ConfigSubsection()
+	config.cimisc.cihelperenabled = ConfigYesNo(default=True)
 	if SystemInfo["CommonInterface"]:
 		for slot in range(SystemInfo["CommonInterface"]):
 			config.ci.append(ConfigSubsection())
@@ -390,6 +392,8 @@ class CiSelection(Setup):
 	def __init__(self, session):
 		self.dlg = None
 		self.state = {}
+		self.ciplushelper = config.cimisc.cihelperenabled.value and SystemInfo["CIPlusHelper"] and SystemInfo["CommonInterface"]
+		self.Console = Console()
 		Setup.__init__(self, session=session, setup="CiSelection")
 		self.skinName = ["Setup"]
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -401,6 +405,9 @@ class CiSelection(Setup):
 	def createSetup(self):  # NOSONAR silence S2638
 		self.slot = 0
 		items = []
+		if self.ciplushelper:
+			items.append((_("Restart"), ConfigNothing(), _("Press OK to restart helper"), 7, 0))
+
 		for slot in range(SystemInfo["CommonInterface"]):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
@@ -434,8 +441,9 @@ class CiSelection(Setup):
 		items.append((_("CI enabled"), config.ci[slot].enabled))
 		if self.state[slot] in (0, 3):
 			return items
-		items.append((_("Reset"), ConfigNothing(), _("Press OK to reset module"), 0, slot))
-		items.append((_("Init"), ConfigNothing(), _("Press OK to init module"), 1, slot))
+		if not self.ciplushelper:
+			items.append((_("Reset"), ConfigNothing(), _("Press OK to reset module"), 0, slot))
+			items.append((_("Init"), ConfigNothing(), _("Press OK to init module"), 1, slot))
 
 		if self.state[slot] == 1:  # module in init
 			items.append((_("init module"), ConfigNothing(), "", 2, slot))
@@ -477,7 +485,9 @@ class CiSelection(Setup):
 				self.session.openWithCallback(self.cancelCB, MessageBox, _("The saved PIN was cleared."), MessageBox.TYPE_INFO)
 			elif action == 2 and self.state[slot] == 2:
 				self.dlg = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, action)
-			if action in (0, 1, 2, 5, 6):
+			elif action == 7:  # restart
+				self.Console.ePopen('/etc/init.d/ciplushelper restart')
+			if action in (0, 1, 2, 5, 6, 7):
 				return
 		Setup.keySelect(self)
 
