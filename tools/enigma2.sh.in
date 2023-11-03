@@ -15,6 +15,11 @@ if [ "$(grep -i config.misc.firstrun=true /etc/enigma2/settings)" != "" ]; then
 	rm -rf /etc/enigma2/key.pem &
 fi
 
+#ciplushelper start delay
+if [ -e /usr/bin/ciplushelper ]; then
+    sleep 2
+fi
+
 if [ -e /proc/stb/info/boxtype ]; then
 	stbcheck=`cat /proc/stb/info/boxtype`
 	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "ustym4ks2ottx" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "og2s4k" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
