@@ -17,7 +17,7 @@ fi
 
 #ciplushelper start delay
 if [ -e /usr/bin/ciplushelper ]; then
-    sleep 2
+    sleep 3
 fi
 
 if [ -e /proc/stb/info/boxtype ]; then
