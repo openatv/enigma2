@@ -86,9 +86,9 @@ class Cover(Renderer):
 			else:
 				directory = path
 				p2 = join(directory, "folder")
-			prtdir, directory = split(directory)
-			p1 = join(dir, directory)
-			p3 = join(prtdir, directory)
+			prtdir, directoryName = split(directory)
+			p1 = join(directory, directoryName)
+			p3 = join(prtdir, directoryName)
 		pathes = (p1, p2, p3)
 		for p in pathes:
 			for ext in self.EXTENSIONS:
