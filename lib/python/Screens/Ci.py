@@ -6,7 +6,6 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
 from Components.ConfigList import ConfigList, ConfigListScreen
-from Components.Console import Console
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
@@ -393,7 +392,6 @@ class CiSelection(Setup):
 		self.dlg = None
 		self.state = {}
 		self.ciplushelper = config.cimisc.cihelperenabled.value and SystemInfo["CIPlusHelper"] and SystemInfo["CommonInterface"]
-		self.Console = Console()
 		Setup.__init__(self, session=session, setup="CiSelection")
 		self.skinName = ["Setup"]
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -405,9 +403,6 @@ class CiSelection(Setup):
 	def createSetup(self):  # NOSONAR silence S2638
 		self.slot = 0
 		items = []
-		if self.ciplushelper:
-			items.append((_("Restart"), ConfigNothing(), _("Press OK to restart helper"), 7, 0))
-
 		for slot in range(SystemInfo["CommonInterface"]):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
@@ -485,8 +480,6 @@ class CiSelection(Setup):
 				self.session.openWithCallback(self.cancelCB, MessageBox, _("The saved PIN was cleared."), MessageBox.TYPE_INFO)
 			elif action == 2 and self.state[slot] == 2:
 				self.dlg = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, action)
-			elif action == 7:  # restart
-				self.Console.ePopen('/etc/init.d/ciplushelper restart')
 			if action in (0, 1, 2, 5, 6, 7):
 				return
 		Setup.keySelect(self)
