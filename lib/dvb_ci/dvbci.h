@@ -67,6 +67,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	bool user_mapped;
 	void data(int);
 	bool plugged;
+	int16_t m_ca_demux_id;
 	eMainloop *m_context;
 
 	eDVBCIApplicationManagerSession *getAppManager() { return application_manager; }
@@ -83,6 +84,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	int cancelEnq();
 	int getMMIState();
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
+	int setCADemuxID(eDVBServicePMTHandler *pmthandler);
 	void removeService(uint16_t program_number=0xFFFF);
 	int setSource(const std::string &source);
 	int setClockRate(const std::string &rate);
@@ -107,6 +109,7 @@ public:
 	int getSlotID();
 	int getNumOfServices();
 	int getVersion();
+	int16_t getCADemuxID() { return m_ca_demux_id; };
 };
 
 struct CIPmtHandler
