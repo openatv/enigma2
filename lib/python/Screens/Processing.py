@@ -64,6 +64,7 @@ class Processing:
 			title = _("Processing")
 		self.processingDialog.setTitle(title)
 		self.progress = progress
+		self.processingDialog.setProgress(progress)
 		self.processingDialog.show()
 		if endless:
 			self.timer.start(100)
