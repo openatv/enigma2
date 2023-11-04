@@ -63,7 +63,7 @@
 	</setup>
 	<setup key="CiSelection" title="Common Interface">
 		<item level="0" text="Common Settings"></item>
-		<item level="0" text="CI+ Helper*" description="Set to 'Enabled' to start the CI+ helper." requires="CIPlusHelper">config.cimisc.cihelperenabled</item>
+		<item level="0" text="CI+ Helper*" description="Select 'Enabled' to start the CI+ helper." requires="CIPlusHelper">config.cimisc.cihelperenabled</item>
 		<item level="0" text="DVB CI Delay" description="Set DVB CI delay." requires="CommonInterfaceCIDelay">config.cimisc.dvbCiDelay</item>
 		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
 	</setup>
