@@ -45,6 +45,9 @@ int descrambler_set_key(int desc_fd, int index, int parity, unsigned char *data)
 {
 	struct ca_descr_data d;
 
+	if (desc_fd < 0)
+		return -1;
+
 	d.index = index;
 	d.parity = (enum ca_descr_parity)parity;
 	d.data_type = CA_DATA_KEY;
@@ -75,6 +78,9 @@ int descrambler_set_pid(int desc_fd, int index, int enable, int pid)
 	struct ca_pid p;
 	unsigned int flags = 0x80;
 
+	if (desc_fd < 0)
+		return -1;
+
 	if (index)
 		flags |= 0x40;
 
@@ -92,20 +98,24 @@ int descrambler_set_pid(int desc_fd, int index, int enable, int pid)
 	return 0;
 }
 
-int descrambler_init(void)
+int descrambler_init(uint8_t ca_demux_id)
 {
 	int desc_fd;
-	const char *filename = "/dev/dvb/adapter0/ca0";
 
-	desc_fd = open(filename, O_RDWR);
+	std::string filename = "/dev/dvb/adapter0/ca" + std::to_string(ca_demux_id);
+
+	desc_fd = open(filename.c_str(), O_RDWR);
 	if (desc_fd == -1) {
-		eWarning("[CI descrambler] can not open %s", filename);
+		eWarning("[CI descrambler] can not open %s", filename.c_str());
 	}
+	eDebug("[CI descrambler] using ca device %s", filename.c_str());
 
 	return desc_fd;
 }
 
 void descrambler_deinit(int desc_fd)
 {
-	close(desc_fd);
+	if (desc_fd >= 0)
+		close(desc_fd);
+	desc_fd = -1;
 }

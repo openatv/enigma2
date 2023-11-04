@@ -874,7 +874,10 @@ void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 		{
 			eTrace("[CI] check slot %d %d %d", tmp->getSlotID(), tmp->running_services.empty(), canDescrambleMultipleServices(tmp));
 			if (tmp->running_services.empty() || canDescrambleMultipleServices(tmp))
+			{
+				tmp->setCADemuxID(pmthandler);
 				tmp->sendCAPMT(pmthandler);
+			}
 			tmp = tmp->linked_next;
 		}
 	}
@@ -1328,6 +1331,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 {
 	char configStr[255];
 	slotid = nr;
+	m_ca_demux_id = -1;
 	m_context = context;
 	state = stateDisabled;
 	snprintf(configStr, 255, "config.ci.%d.enabled", slotid);
@@ -1579,6 +1583,24 @@ int eDVBCISlot::cancelEnq()
 	if(mmi_session)
 		mmi_session->cancelEnq();
 
+	return 0;
+}
+
+int eDVBCISlot::setCADemuxID(eDVBServicePMTHandler *pmthandler)
+{
+	ePtr<iDVBDemux> demux;
+	uint8_t dmx_id;
+
+	if (!pmthandler->getDataDemux(demux))
+	{
+		if (!demux->getCADemuxID(dmx_id))
+		{
+			m_ca_demux_id = dmx_id;
+			eDebug("[CI] Slot %d: CA demux_id = %d", getSlotID(), m_ca_demux_id);
+		}
+		else
+			m_ca_demux_id = -1;
+	}
 	return 0;
 }
 
