@@ -4,7 +4,7 @@ from enigma import eTimer, eDVBCI_UI
 
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
+from Components.config import config, ConfigEnableDisable, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
@@ -37,7 +37,7 @@ def setRelevantPidsRouting(configElement):
 def InitCiConfig():
 	config.ci = ConfigSubList()
 	config.cimisc = ConfigSubsection()
-	config.cimisc.cihelperenabled = ConfigYesNo(default=True)
+	config.cimisc.cihelperenabled = ConfigEnableDisable(default=True)
 	if SystemInfo["CommonInterface"]:
 		for slot in range(SystemInfo["CommonInterface"]):
 			config.ci.append(ConfigSubsection())
