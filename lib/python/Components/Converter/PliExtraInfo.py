@@ -81,9 +81,9 @@ class PliExtraInfo(Poll, Converter):
 		)
 		self.ecmdata = GetEcmInfo()
 		self.feraw = self.fedata = self.updateFEdata = None
-		self.cryptocolors = parameters.get("PliExtraInfoCryptoColors", (0x004C7D3F, 0x009F9F9F, 0x00EEEE00, 0x00FFFFFF))
+		self.cryptocolors = parameters.get("PliExtraInfoCryptoColors", ("#004C7D3F", "#009F9F9F", "#00EEEE00", "#00FFFFFF"))
 		self.cryptocolors = [r"\c%08X" % parseColor(x).argb() for x in self.cryptocolors]
-		self.infocolors = parameters.get("PliExtraInfoColors", (0x0000FF00, 0x00FFFF00, 0x007F7F7F, 0x00FFFFFF))  # "found", "not found", "available", "default" colors
+		self.infocolors = parameters.get("PliExtraInfoColors", ("#0000FF00", "#00FFFF00", "#007F7F7F", "#00FFFFFF"))  # "found", "not found", "available", "default" colors
 		self.infocolors = [r"\c%08X" % parseColor(x).argb() for x in self.infocolors]
 
 	def getCryptoInfo(self, info):
