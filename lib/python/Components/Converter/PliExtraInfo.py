@@ -1,12 +1,11 @@
 from enigma import eAVControl, iPlayableService, iServiceInformation
 
-from skin import parameters
+from skin import parameters, parseColor
 from Components.config import config
 from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
 from Tools.GetEcmInfo import GetEcmInfo, getCaidData
-from Tools.Hex2strColor import Hex2strColor
 from Tools.Transponder import ConvertToHumanReadable
 
 
@@ -181,10 +180,10 @@ class PliExtraInfo(Converter, Poll):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
 		self.type = type
-		self.cryptoColors = parameters.get("PliExtraInfoCryptoColors", (0x004C7D3F, 0x009F9F9F, 0x00EEEE00, 0x00FFFFFF))
-		self.cryptoColors = [Hex2strColor(x) for x in self.cryptoColors]
-		self.infoColors = parameters.get("PliExtraInfoColors", (0x0000FF00, 0x00FFFF00, 0x007F7F7F, 0x00FFFFFF))  # "Found", "Not found", "Available", "Default" colors.
-		self.infoColors = [Hex2strColor(x) for x in self.cryptoColors]
+		self.cryptoColors = parameters.get("PliExtraInfoCryptoColors", ("#004C7D3F", "#009F9F9F", "#00EEEE00", "#00FFFFFF"))
+		self.cryptoColors = [r"\c%08X" % parseColor(x).argb() for x in self.cryptoColors]
+		self.infoColors = parameters.get("PliExtraInfoColors", ("#0000FF00", "#00FFFF00", "#007F7F7F", "#00FFFFFF"))  # "Found", "Not found", "Available", "Default" colors.
+		self.infoColors = [r"\c%08X" % parseColor(x).argb() for x in self.infoColors]
 		self.poll_interval = 1000  # This is a shared variable!
 		self.poll_enabled = True  # This is a shared variable!
 		self.ecmData = GetEcmInfo()
@@ -198,12 +197,10 @@ class PliExtraInfo(Converter, Poll):
 			self.currentSource = data[0]
 			self.currentCAID = data[1]
 			self.currentProvID = data[2]
-			self.currentECMPID = data[3]
 		else:
 			self.currentSource = ""
 			self.currentCAID = "0"
 			self.currentProvID = "0"
-			self.currentECMPID = "0"
 
 	def createCryptoBar(self, info):
 		data = []
@@ -274,7 +271,7 @@ class PliExtraInfo(Converter, Poll):
 		return f"{avControl.getResolutionX(0)}x{avControl.getResolutionY(0)}{'p' if avControl.getProgressive() else 'i'}{(avControl.getFrameRate(0) + 500) // 1000}{gamma}"
 
 	def createVideoCodec(self, info):
-		return CODEC_NAMES.get(info.getInfo(iServiceInformation.sVideoType), "N/A")
+		return CODEC_NAMES.get(info.getInfo(iServiceInformation.sVideoType), _("N/A"))
 
 	def createServiceRef(self, info):
 		return info.getInfoString(iServiceInformation.sServiceref)
@@ -460,16 +457,15 @@ class PliExtraInfo(Converter, Poll):
 			feData = self.feData
 		if self.type == "All":
 			self.getCryptoInfo(info)
-			dat = []
 			if config.usage.show_cryptoinfo.value > 0:
 				return "  ".join([
 					self.createProviderName(info),
 					self.createTransponderInfo(feData, feRaw, info),
-					self.createTransponderName(feRaw),
-					"\n",
+					self.createTransponderName(feRaw)]) + \
+					"\n" + "  ".join([
 					self.createCryptoBar(info),
-					self.createCryptoSpecial(info),
-					"\n",
+					self.createCryptoSpecial(info)]) + \
+					"\n" + "  ".join([
 					self.createPIDInfo(info),
 					self.createVideoCodec(info),
 					self.createResolution(info)
@@ -478,17 +474,17 @@ class PliExtraInfo(Converter, Poll):
 				return "  ".join([
 					self.createProviderName(info),
 					self.createTransponderInfo(feData, feRaw, info),
-					self.createTransponderName(feRaw),
-					"\n",
+					self.createTransponderName(feRaw)]) + \
+					"\n" + "  ".join([
 					self.createCryptoBar(info),
-					self.currentSource,
-					"\n",
+					self.currentSource]) + \
+					"\n" + "  ".join([
 					self.createCryptoSpecial(info),
 					self.createVideoCodec(info),
 					self.createResolution(info)
 				])
 		if self.type == "ServiceInfo":
-			return = "  ".join([
+			return "  ".join([
 				self.createProviderName(info),
 				self.createTunerSystem(feData),
 				self.createFrequency(feRaw),
@@ -505,8 +501,8 @@ class PliExtraInfo(Converter, Poll):
 			return "  ".join([
 				self.createProviderName(info),
 				self.createTunerSystem(feData),
-				self.createTransponderName(feRaw),
-				"\n",
+				self.createTransponderName(feRaw)]) + \
+				"\n" + "  ".join([
 				self.createFrequency(feData),
 				self.createPolarization(feData),
 				self.createSymbolRate(feData, feRaw),
@@ -558,7 +554,7 @@ class PliExtraInfo(Converter, Poll):
 					requestCAID = item[1]
 					requestSelected = item[2]
 					break
-			if requestCAID and info.getInfo(iServiceInformation.sIsCrypted) == 1
+			if requestCAID and info.getInfo(iServiceInformation.sIsCrypted) == 1:
 				data = self.ecmData.getEcmData()
 				if data:
 					currentCAID = data[1]
