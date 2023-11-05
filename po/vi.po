@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -3401,9 +3401,6 @@ msgstr "Cài đặt CI (Giao diện chung)"
 msgid "CI Boot Delay"
 msgstr ""
 
-msgid "CI Helper Settings"
-msgstr "Cài đặt CIHelper"
-
 msgid "CI assignment"
 msgstr "Phân công CI"
 
@@ -3412,6 +3409,9 @@ msgstr ""
 
 msgid "CI slot: "
 msgstr "Khe CI: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "Cài đặt CIFS / Samba"
@@ -4178,9 +4178,6 @@ msgstr "Thông tin khách hàng (Phiên bản Oscar:% s)"
 msgid "Client is streaming from this box!"
 msgstr ""
 
-msgid "ClientIP"
-msgstr "ClientIP"
-
 msgid "Clients"
 msgstr "Khách hàng"
 
@@ -4819,6 +4816,12 @@ msgstr "Tham khảo bảng thông số thiết bị SCR của bạn để biết
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Tham khảo bảng thông số kỹ thuật của động cơ của bạn để biết thông tin này hoặc để lại cài đặt mặc định."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "Quản lý năng lượng. Tham khảo hướng dẫn sử dụng của người nhận để biết thêm thông tin."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "Ngưỡng công suất. Tham khảo hướng dẫn sử dụng của người nhận để biết thêm thông tin."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7212,11 +7215,11 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr ""
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "Nhập nếu bạn đang ở bán cầu đông hoặc tây."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "Nhập nếu bạn ở phía bắc hoặc phía nam của đường xích đạo."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "Nhập nếu bạn đang ở bán cầu đông hoặc tây."
 
 msgid "Enter main menu..."
 msgstr "Vào menu chính ..."
@@ -9357,14 +9360,14 @@ msgstr ""
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Nếu sử dụng nhiều chuyển mạch không được cam kết, các lệnh DiSEqC phải được gửi nhiều lần. Đặt thành số lượng công tắc không được cam kết trong chuỗi trừ đi một."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Nếu bạn đang sử dụng LNB phân cực tròn, hãy chọn 'có', nếu không thì chọn 'không'."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "Nếu bạn đang sử dụng một công tắc cam kết DiSEqC, hãy nhập ký tự cổng cần thiết để truy cập LNB được sử dụng cho vệ tinh này."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "Nếu bạn đang sử dụng một công tắc không được cam kết DiSEqC, hãy nhập số cổng cần thiết để truy cập LNB được sử dụng cho vệ tinh này."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "Nếu bạn đang sử dụng LNB phân cực tròn, hãy chọn 'có', nếu không thì chọn 'không'."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -10062,6 +10065,9 @@ msgid "Kuanyama / Kwanyama"
 msgstr ""
 
 msgid "Kurdish"
+msgstr ""
+
+msgid "Kurdistan"
 msgstr ""
 
 msgid "Kuwait"
@@ -10983,9 +10989,6 @@ msgstr "Khoảng thời gian gửi tối thiểu"
 
 msgid "Mins"
 msgstr "Phút"
-
-msgid "Minute"
-msgstr "phút"
 
 msgid "Minutes"
 msgstr "phút"
@@ -12157,6 +12160,9 @@ msgstr "Không được hiển thị"
 
 msgid "Not associated"
 msgstr "Không liên quan"
+
+msgid "Not configured"
+msgstr "không được cấu hình"
 
 msgid "Not currently mounted."
 msgstr ""
@@ -13424,14 +13430,8 @@ msgstr "Trạng thái LED nguồn trong chế độ chờ."
 msgid "Power On Display"
 msgstr "Năng lượng hiển thị"
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Quản lý năng lượng. Tham khảo hướng dẫn sử dụng của người nhận để biết thêm thông tin."
-
 msgid "Power threshold in mA"
 msgstr "Ngưỡng công suất tính bằng mA"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Ngưỡng công suất. Tham khảo hướng dẫn sử dụng của người nhận để biết thêm thông tin."
 
 msgid "PowerTimer"
 msgstr "Thời gian quyền lực"
@@ -15233,7 +15233,7 @@ msgstr "Quét tự động "
 msgid "Scan %s"
 msgstr "Quét%s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "Quét%s băng tần"
@@ -15422,7 +15422,16 @@ msgstr "Chọn '1.0' cho các công tắc được cam kết tiêu chuẩn, '1.1
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Chọn 'A' hoặc 'B' nếu hệ thống trên không của bạn yêu cầu điều này, nếu không thì chọn 'không'. Nếu bạn không chắc chắn, hãy chọn 'không'."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Chọn 'băng tần' nếu sử dụng LNB 'phổ quát', nếu không hãy tham khảo bảng thông số LNB của bạn."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Chọn 'được bật' nếu bộ chỉnh này có cáp tín hiệu được kết nối, nếu không thì chọn 'không có gì được kết nối'."
+
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -15434,11 +15443,20 @@ msgstr "nếu được đặt thành 'không', chỉ một thông báo gỡ lỗ
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Nếu được đặt thành 'không', bạn có thể lưu các sự kiện cũ hơn ngay cả sau khi hạ gục hoặc gián đoạn timeshift."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Chọn 'phân cực' nếu sử dụng LNB 'phổ quát', nếu không hãy tham khảo bảng thông số LNB của bạn."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Chọn 'nhà cung cấp' để quét từ danh sách ghép kênh cáp được xác định trước. Chọn 'dải' để chỉ quét một số phần nhất định của phổ. Chọn 'bước' để quét theo các bước của băng thông tần số cụ thể."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr ""
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "Chọn 'có' nếu bộ chỉnh này được kết nối với thiết bị SCR thông qua bộ chỉnh khác, nếu không thì chọn 'không'."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
@@ -15493,6 +15511,21 @@ msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Nếu được đặt thành các kênh 'có' mà không có EPG sẽ không được hiển thị."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "Chọn 'có' để bao gồm các ghép kênh %s trong tìm kiếm của bạn."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "Chọn 'có' để bao gồm tỷ lệ biểu tượng %s trong tìm kiếm của bạn."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "Chọn 'có' để bao gồm nhóm %s trong tìm kiếm của bạn."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "Chọn 'có' để chỉ gửi lệnh DiSEqC khi thay đổi từ vệ tinh này sang vệ tinh khác hoặc chọn 'không' để lệnh DiSEqC được gửi lại trên mỗi zap."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
@@ -15608,36 +15641,6 @@ msgstr ""
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Nếu được đặt thành 'có; infobar sẽ được hiển thị khi Chuyển tiếp nhanh hoặc tua lại trong khi phát lại phương tiện."
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Chọn 'băng tần' nếu sử dụng LNB 'phổ quát', nếu không hãy tham khảo bảng thông số LNB của bạn."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Chọn 'được bật' nếu bộ chỉnh này có cáp tín hiệu được kết nối, nếu không thì chọn 'không có gì được kết nối'."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Chọn 'phân cực' nếu sử dụng LNB 'phổ quát', nếu không hãy tham khảo bảng thông số LNB của bạn."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Chọn 'nhà cung cấp' để quét từ danh sách ghép kênh cáp được xác định trước. Chọn 'dải' để chỉ quét một số phần nhất định của phổ. Chọn 'bước' để quét theo các bước của băng thông tần số cụ thể."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr "Chọn 'có' nếu bộ chỉnh này được kết nối với thiết bị SCR thông qua bộ chỉnh khác, nếu không thì chọn 'không'."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Chọn 'có' để bao gồm các ghép kênh %s trong tìm kiếm của bạn."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Chọn 'có' để bao gồm tỷ lệ biểu tượng %s trong tìm kiếm của bạn."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Chọn 'có' để bao gồm nhóm %s trong tìm kiếm của bạn."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "Chọn 'có' để chỉ gửi lệnh DiSEqC khi thay đổi từ vệ tinh này sang vệ tinh khác hoặc chọn 'không' để lệnh DiSEqC được gửi lại trên mỗi zap."
-
 msgid "Select Additional Backup Files"
 msgstr "Chọn tập tin sao lưu bổ sung"
 
@@ -15685,6 +15688,9 @@ msgstr ""
 
 msgid "Select Quad Channels"
 msgstr "Chọn kênh Quad"
+
+msgid "Select Satellites"
+msgstr "Chọn vệ tinh"
 
 msgid "Select Software Update"
 msgstr "Chọn Cập nhật phần mềm"
@@ -15892,9 +15898,6 @@ msgstr "Lựa chọn hướng dẫn cho logfile...."
 msgid "Select refresh rate"
 msgstr "Chọn tốc độ làm mới"
 
-msgid "Select Satellites"
-msgstr "Chọn vệ tinh"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Chọn thanh tìm kiếm được kích hoạt bằng mũi tên L / R (dài) hoặc << >> (dài)."
 
@@ -16093,6 +16096,9 @@ msgstr "Chọn giao thức được sử dụng bởi thiết bị SCR của b�
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "Chọn vệ tinh mà món ăn của bạn nhận được từ. Nếu bạn không chắc chắn, hãy chọn 'tự động' và người nhận sẽ cố gắng xác định điều này cho bạn."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Chọn vệ tinh được kết nối với Cổng A của công tắc. Nếu bạn không chắc chắn, hãy chọn 'tự động' và người nhận sẽ cố gắng xác định điều này cho bạn. Nếu không có gì được kết nối với cổng này, chọn 'không có gì được kết nối'."
 
@@ -16107,9 +16113,6 @@ msgstr "Chọn vệ tinh được kết nối với Cổng-D của công tắc. 
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Chọn vệ tinh bạn muốn cấu hình. Khi vệ tinh đó được định cấu hình, bạn có thể chọn và định cấu hình các vệ tinh khác sẽ được truy cập bằng cách sử dụng cùng bộ chỉnh này."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "Chọn vệ tinh mà món ăn của bạn nhận được từ. Nếu bạn không chắc chắn, hãy chọn 'tự động' và người nhận sẽ cố gắng xác định điều này cho bạn."
 
 #, fuzzy
 msgid "Select the shifted character set"
@@ -16174,11 +16177,11 @@ msgstr "Đặt thời gian để ẩn infobar."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Chọn bộ chỉnh điều khiển đĩa cơ giới."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "Chọn bộ chỉnh mà vòng lặp này phụ thuộc vào."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Chọn bộ chỉnh mà cáp tín hiệu của thiết bị SCR được kết nối."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "Chọn bộ chỉnh mà vòng lặp này phụ thuộc vào."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "Chọn loại LNB / thiết bị đang được sử dụng (thông thường là 'Phổ quát'). Nếu loại LNB của bạn không khả dụng, hãy chọn 'người dùng xác định'."
@@ -16543,6 +16546,9 @@ msgstr "Đặt gán CI để phát hiện các dịch vụ khả dụng."
 msgid "Set DVB CI delay."
 msgstr ""
 
+msgid "Set Default"
+msgstr "Đặt mặc định"
+
 msgid "Set Framerate for MiniTV"
 msgstr "Đặt tốc độ khung hình cho MiniTV"
 
@@ -16566,9 +16572,6 @@ msgstr "Đặt hành động cho khóa 'Thông tin'"
 
 msgid "Set current CEC address as fixed address"
 msgstr ""
-
-msgid "Set Default"
-msgstr "Đặt mặc định"
 
 msgid "Set end time"
 msgstr "Đặt thời gian kết thúc"
@@ -20323,9 +20326,6 @@ msgstr "Theo dõi"
 msgid "Traditional Chinese"
 msgstr "Truyền thống Trung Hoa"
 
-msgid "Transcode"
-msgstr "Chuyển mã"
-
 msgid "Transcoding"
 msgstr ""
 
@@ -21025,6 +21025,9 @@ msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "sử dụng điện áp tăng '14 / 18V 'nếu có vấn đề khi chuyển đổi lnb"
 
 msgid "Use interface"
 msgstr "Sử dụng giao diện"
@@ -23079,7 +23082,7 @@ msgstr "Ghi lại ngay lập tức"
 msgid "internally loopthrough to"
 msgstr "vòng lặp nội bộ để"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "loại không hợp lệ"
 
 msgid "jazz"
@@ -23251,9 +23254,6 @@ msgstr ""
 
 msgid "not"
 msgstr "không có gì"
-
-msgid "Not configured"
-msgstr "không được cấu hình"
 
 msgid "not locked"
 msgstr "không bị khóa"
@@ -23653,9 +23653,6 @@ msgstr "không thể kiểm chứng"
 msgid "update"
 msgstr "cập nhật"
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr "sử dụng điện áp tăng '14 / 18V 'nếu có vấn đề khi chuyển đổi lnb"
-
 msgid "userdefined"
 msgstr "đã xác định người dùng"
 
@@ -23720,6 +23717,18 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "Cài đặt CIHelper"
+
+#~ msgid "ClientIP"
+#~ msgstr "ClientIP"
+
+#~ msgid "Minute"
+#~ msgstr "phút"
+
+#~ msgid "Transcode"
+#~ msgstr "Chuyển mã"
 
 #, fuzzy, python-format
 #~ msgid "%s MHz"

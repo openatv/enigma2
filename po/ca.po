@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -3666,9 +3666,6 @@ msgstr "Configuració de CI (Interfície comuna)"
 msgid "CI Boot Delay"
 msgstr ""
 
-msgid "CI Helper Settings"
-msgstr ""
-
 #
 msgid "CI assignment"
 msgstr "Assignació de CI"
@@ -3678,6 +3675,9 @@ msgstr ""
 
 msgid "CI slot: "
 msgstr "CI slot: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr ""
@@ -4503,9 +4503,6 @@ msgstr ""
 msgid "Client is streaming from this box!"
 msgstr ""
 
-msgid "ClientIP"
-msgstr ""
-
 msgid "Clients"
 msgstr ""
 
@@ -5170,6 +5167,12 @@ msgstr "Consulteu la fitxa de especificacions del dispositiu SCR per obtenir aqu
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Consulteu la fitxa específica del motor per a aquesta informació o bé deixeu la configuració predeterminada."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "Gestió d’energia. Consulteu el manual del vostre receptor per obtenir més informació."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "Llindar de potència. Consulteu el manual del vostre receptor per obtenir més informació."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7667,11 +7670,11 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr ""
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "Introduïu si esteu a l’hemisferi est o oest."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "Introduïu si esteu al nord o al sud de l’equador."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "Introduïu si esteu a l’hemisferi est o oest."
 
 #
 msgid "Enter main menu..."
@@ -9904,14 +9907,14 @@ msgstr ""
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Si utilitzeu diversos interruptors no compromes, les ordres DiSEqC s’han d’enviar diverses vegades. Estableix el nombre de commutadors no comesos a la cadena menys un."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Si utilitzeu un LNB polaritzat circular, seleccioneu “sí”, en cas contrari, seleccioneu “no”."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "Si utilitzeu un commutador compromès amb DiSEqC, introduïu la carta de port necessària per accedir al LNB utilitzat per a aquest satèl·lit."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "Si utilitzeu un commutador sense compromís DiSEqC, introduïu el número de port necessari per accedir al LNB que s’utilitza per a aquest satèl·lit."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "Si utilitzeu un LNB polaritzat circular, seleccioneu “sí”, en cas contrari, seleccioneu “no”."
 
 #
 msgid ""
@@ -10655,6 +10658,9 @@ msgid "Kuanyama / Kwanyama"
 msgstr ""
 
 msgid "Kurdish"
+msgstr ""
+
+msgid "Kurdistan"
 msgstr ""
 
 #
@@ -11635,11 +11641,6 @@ msgstr "Interval d’enviament mínim"
 
 msgid "Mins"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Minute"
-msgstr "minuts"
 
 #
 msgid "Minutes"
@@ -12892,6 +12893,10 @@ msgstr ""
 
 msgid "Not associated"
 msgstr "No associat"
+
+#
+msgid "Not configured"
+msgstr "no configurat"
 
 msgid "Not currently mounted."
 msgstr ""
@@ -14253,15 +14258,9 @@ msgstr ""
 msgid "Power On Display"
 msgstr ""
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Gestió d’energia. Consulteu el manual del vostre receptor per obtenir més informació."
-
 #
 msgid "Power threshold in mA"
 msgstr "Llindar de corrent en mA"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Llindar de potència. Consulteu el manual del vostre receptor per obtenir més informació."
 
 msgid "PowerTimer"
 msgstr ""
@@ -16204,7 +16203,7 @@ msgstr "Escaneig"
 msgid "Scan %s"
 msgstr "Escaneig %s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "Escaneja la banda% s"
@@ -16412,7 +16411,16 @@ msgstr "Seleccioneu “1.0” per als interruptors compromesos estàndard, “1.
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Seleccioneu “A” o “B” si el vostre sistema aeri requereix això, en cas contrari, seleccioneu “cap”. Si no esteu segurs, seleccioneu “cap”."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Seleccioneu “banda” si feu servir un LNB “universal”, si no, consulteu el vostre full de especificacions LNB."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Seleccioneu “habilitat” si aquest sintonitzador té un cable de senyal, en cas contrari, seleccioneu “res connectat”."
+
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -16424,11 +16432,20 @@ msgstr ""
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr ""
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Seleccioneu “polarització” si feu servir un LNB “universal”, si no, consulteu el vostre full de dades LNB."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Seleccioneu “proveïdor” per escanejar de la llista predefinida de múltiplex per cable. Seleccioneu “bandes” per escanejar només algunes parts de l’espectre. Seleccioneu “passos” per analitzar els passos d’un ample de banda de freqüència particular."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr ""
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "Seleccioneu “sí” si aquest sintonitzador està connectat al dispositiu SCR mitjançant un altre sintonitzador, en cas contrari, seleccioneu “no”."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
@@ -16483,6 +16500,21 @@ msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr ""
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "Seleccioneu ’si’ per incloure%s multiplexes a la cerca."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "Seleccioneu “sí” per incloure el percentatge de símbols% s a la cerca."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "Seleccioneu “sí” per incloure la banda% s a la cerca."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "Seleccioneu “sí” per enviar només la comanda DiSEqC quan canvieu d’un satèl·lit a un altre, o bé seleccioneu “no” perquè la comanda DiSEqC torni a presentar-se a cada zap."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
@@ -16598,36 +16630,6 @@ msgstr ""
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr ""
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Seleccioneu “banda” si feu servir un LNB “universal”, si no, consulteu el vostre full de especificacions LNB."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Seleccioneu “habilitat” si aquest sintonitzador té un cable de senyal, en cas contrari, seleccioneu “res connectat”."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Seleccioneu “polarització” si feu servir un LNB “universal”, si no, consulteu el vostre full de dades LNB."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Seleccioneu “proveïdor” per escanejar de la llista predefinida de múltiplex per cable. Seleccioneu “bandes” per escanejar només algunes parts de l’espectre. Seleccioneu “passos” per analitzar els passos d’un ample de banda de freqüència particular."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr "Seleccioneu “sí” si aquest sintonitzador està connectat al dispositiu SCR mitjançant un altre sintonitzador, en cas contrari, seleccioneu “no”."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Seleccioneu ’si’ per incloure%s multiplexes a la cerca."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Seleccioneu “sí” per incloure el percentatge de símbols% s a la cerca."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Seleccioneu “sí” per incloure la banda% s a la cerca."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "Seleccioneu “sí” per enviar només la comanda DiSEqC quan canvieu d’un satèl·lit a un altre, o bé seleccioneu “no” perquè la comanda DiSEqC torni a presentar-se a cada zap."
-
 msgid "Select Additional Backup Files"
 msgstr ""
 
@@ -16679,6 +16681,9 @@ msgstr ""
 
 msgid "Select Quad Channels"
 msgstr ""
+
+msgid "Select Satellites"
+msgstr "Selecciona satèl·lits"
 
 msgid "Select Software Update"
 msgstr ""
@@ -16902,9 +16907,6 @@ msgstr "Selecciona proveïdor per afegir …"
 msgid "Select refresh rate"
 msgstr "Seleccioneu el percentatge de refresc"
 
-msgid "Select Satellites"
-msgstr "Selecciona satèl·lits"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 
@@ -17104,6 +17106,9 @@ msgstr "Seleccioneu el protocol que utilitza el vostre dispositiu SCR. Les opcio
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "Seleccioneu el satèl·lit del qual rep el plat. Si no esteu segurs, seleccioneu “automàtic” i el receptor intentarà determinar-ho."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Seleccioneu el satèl·lit connectat al port-A del vostre commutador. Si no esteu segurs, seleccioneu “automàtic” i el receptor intentarà determinar-ho. Si no hi ha res connectat a aquest port, seleccioneu “Res connectat”."
 
@@ -17118,9 +17123,6 @@ msgstr "Seleccioneu el satèl·lit connectat al port-D del vostre commutador. Si
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Seleccioneu el satèl·lit que voleu configurar. Una vegada configurat aquest satèl·lit, podeu seleccionar i configurar altres satèl·lits als quals s’accedirà mitjançant aquest mateix sintonitzador."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "Seleccioneu el satèl·lit del qual rep el plat. Si no esteu segurs, seleccioneu “automàtic” i el receptor intentarà determinar-ho."
 
 #
 msgid "Select the shifted character set"
@@ -17183,11 +17185,11 @@ msgstr "Seleccioneu el fus horari dins de la zona o regió."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Seleccioneu el sintonitzador que controla el plat motoritzat."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "Seleccioneu el sintonitzador de què depèn aquest recorregut."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Seleccioneu el sintonitzador al qual està connectat el cable de senyal del dispositiu SCR."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "Seleccioneu el sintonitzador de què depèn aquest recorregut."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "Seleccioneu el tipus de LNB / dispositiu que s’utilitza (normalment “Universal”). Si el vostre tipus LNB no està disponible, seleccioneu “definit per l’usuari”."
@@ -17566,6 +17568,9 @@ msgstr "Estableix l’assignació de CI per a la detecció dels serveis disponib
 msgid "Set DVB CI delay."
 msgstr ""
 
+msgid "Set Default"
+msgstr "Instal · lat per defecte"
+
 msgid "Set Framerate for MiniTV"
 msgstr ""
 
@@ -17591,9 +17596,6 @@ msgstr "Seleccionar una pel·lícula"
 
 msgid "Set current CEC address as fixed address"
 msgstr ""
-
-msgid "Set Default"
-msgstr "Instal · lat per defecte"
 
 #
 msgid "Set end time"
@@ -21484,11 +21486,6 @@ msgstr "Pista"
 msgid "Traditional Chinese"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Transcode"
-msgstr "Transponedor"
-
 msgid "Transcoding"
 msgstr ""
 
@@ -22237,6 +22234,9 @@ msgid "Use geolocation to get WAN information"
 msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
+msgstr ""
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr ""
 
 #
@@ -24363,7 +24363,7 @@ msgstr "Gravació instantània..."
 msgid "internally loopthrough to"
 msgstr ""
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "tipus no vàlid"
 
 msgid "jazz"
@@ -24556,10 +24556,6 @@ msgstr ""
 #, fuzzy
 msgid "not"
 msgstr "no"
-
-#
-msgid "Not configured"
-msgstr "no configurat"
 
 #
 msgid "not locked"
@@ -24997,9 +24993,6 @@ msgstr "indestable"
 msgid "update"
 msgstr ""
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr ""
-
 #
 #, fuzzy
 msgid "userdefined"
@@ -25073,6 +25066,16 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Minute"
+#~ msgstr "minuts"
+
+#
+#, fuzzy
+#~ msgid "Transcode"
+#~ msgstr "Transponedor"
 
 #
 #, fuzzy

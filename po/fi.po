@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2023-11-01 10:04+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -3381,9 +3381,6 @@ msgstr "CI-liitäntä/CAM"
 msgid "CI Boot Delay"
 msgstr "CI käynnistys viive"
 
-msgid "CI Helper Settings"
-msgstr "CI Avustaja Asetukset"
-
 msgid "CI assignment"
 msgstr "CI määritys"
 
@@ -3392,6 +3389,9 @@ msgstr "CI käytössä"
 
 msgid "CI slot: "
 msgstr "CI paikka: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba asetukset"
@@ -4155,9 +4155,6 @@ msgstr "Asiakas tiedot ( Oscam-Version: %s )"
 msgid "Client is streaming from this box!"
 msgstr "Etäasiakas suora toistaa boxin kautta!"
 
-msgid "ClientIP"
-msgstr "Asikas IP"
-
 msgid "Clients"
 msgstr "Asiakkaat"
 
@@ -4795,6 +4792,12 @@ msgstr "Ota yhteyttä moottorin valmistajaan saadaksesi tekniset tiedot, tai jä
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Ota yhteyttä moottorin valmistajaan saadaksesi tekniset tiedot, tai jätä oletus asetukset."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "Virranhallinta. Katso lisätietoja vastaanottimesi käyttöoppaasta."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "Virranhallinta. Katso lisätietoja vastaanottimesi käyttöoppaasta."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7157,11 +7160,11 @@ msgstr "Anna tälle ajastukselle nimi."
 msgid "Enter a new name for this device."
 msgstr "Anna tälle laitteelle uusi nimi."
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "Aseta, jos olet maapallon itä,- tai länsipuolella."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "Syötä, jos olet päiväntasaajan etelä,- tai pohjoispuolella."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "Aseta, jos olet maapallon itä,- tai länsipuolella."
 
 msgid "Enter main menu..."
 msgstr "Avaa päävalikko..."
@@ -9270,14 +9273,14 @@ msgstr "Jos teksti on liian pitkä näytettäväksi etupaneelissa, se toistetaan
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Jos käytetään useita sitoutumattomia kytkimiä, DiSEqC komennot on lähetettävä useita kertoja. Aseta ketjun sitoutumattomien kytkinten määrä miinus yksi."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Jos käytät pyöreää polarisoitua LNB:tä, valitse 'kyllä', muuten valitse 'ei'."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "Jos käytät DiSEqC kytkintä, kirjoita portti kirjain, jota tarvitaan tämän satelliitin LNB: n käyttämiseen."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "Jos käytät DiSEqC kytkintä, kirjoita portti numero, jota tarvitaan tämän satelliitin LNB: n käyttämiseen."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "Jos käytät pyöreää polarisoitua LNB:tä, valitse 'kyllä', muuten valitse 'ei'."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -9971,6 +9974,9 @@ msgstr "Komi"
 
 msgid "Kurdish"
 msgstr "Kurdish"
+
+msgid "Kurdistan"
+msgstr ""
 
 msgid "Kuwait"
 msgstr "Kuwait"
@@ -10865,9 +10871,6 @@ msgstr "Minimi lähestysjakso"
 
 msgid "Mins"
 msgstr "Minuutit"
-
-msgid "Minute"
-msgstr "minuutti"
 
 msgid "Minutes"
 msgstr "minuuttia"
@@ -12006,6 +12009,9 @@ msgstr "Ei näytetä"
 
 msgid "Not associated"
 msgstr "Ei liitetty"
+
+msgid "Not configured"
+msgstr "ei määritetty"
 
 msgid "Not currently mounted."
 msgstr "Ei tällä hetkellä käytössä."
@@ -13261,14 +13267,8 @@ msgstr "Virta LED tila valmiustilan aikana."
 msgid "Power On Display"
 msgstr "Etupaneeli Näyttö päällä"
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Virranhallinta. Katso lisätietoja vastaanottimesi käyttöoppaasta."
-
 msgid "Power threshold in mA"
 msgstr "Tunnistusvirta mA"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Virranhallinta. Katso lisätietoja vastaanottimesi käyttöoppaasta."
 
 msgid "PowerTimer"
 msgstr "Virta ajastusasetukset"
@@ -15038,7 +15038,7 @@ msgstr "Hae "
 msgid "Scan %s"
 msgstr "Hae %s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "Hae alue %s"
@@ -15225,8 +15225,19 @@ msgstr "Valitse '1.0' standardeille kytkimille, '1.1' muille kytkimille ja '1.2'
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Valitse 'A' tai 'B', jos antennijärjestelmäsi sitä vaatii, muuten valitse 'ei mitään'. Jos olet epävarma, valitse 'ei mitään'."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr ""
+"Valitse 'taajuusalue', jos käytössä 'universaali' LNB, muutoin lisätiedot\n"
+"LNB:n teknisistä tiedoista."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr "Valitse \"Ota käyttöön\", jos haluat pakottaa paketin puhdistamaan ennen paketin päivitystä. Tämä auttaa varmistamaan, että pakettilista on ajan tasalla ja voit välttää/ratkaista ongelmia päivityksen aikana. Ota tämä käyttöön vain, kun et voi päivittää online tilassa."
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Valitse 'käytössä', jos tähän virittimeen on kytketty signaalikaapeli, muuten valitse 'ei mitään kytketty'."
+
+msgid "Select 'Enable' to start the CI+ helper."
+msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Jos Ei, vain yhtä tiedostoa käytetään puskurina. Suosittelemme ajansiirto tarkistustaa vanhemmat tiedostot (minuuteissa) ja ajansiirto tarkistaa vapaan tilan löytämiseksi."
@@ -15237,11 +15248,24 @@ msgstr "Jos asetuksena on ei, vain virhe viestit kirjoitetaan debug lokiin."
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Jos valittuna 'ei', ajansiirron puskuria ei tyhjennetä kanavanvaihdon yhteydessä. Tämä mahdollistaa ajansiirron muunnon tallenteeksi myös kanavanvaihdon jälkeen."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr ""
+"Valitse 'polarisaatio', jos käytössä 'universaali' LNB, muutoin\n"
+"lisätiedot LNB:n teknisistä tiedoista."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Valitse skannataksesi ennalta määritetystä kaapelin tarjoaja luettelosta. Valitse taajuudet, jos haluat skannata vain tiettyjä taajuuksia. Valitse skannataksesi tietyn taajuuskaistanleveyden välein."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Valitse \"Kyllä\", jos tälle ajastimelle tarvitaan päättymisaika."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr "Valitse Kyllä, jos verkkoliikenne tulee tarkistaa ennen ajastimen aktivointia."
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr ""
+"Valitse 'kyllä', jos tämä viritin on kytketty SCR laitteeseen toisen\n"
+"virittimen läpi, muutoin valitse 'ei'."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Valitse 'Kyllä' jos äänenvoimakkuuden säätöjä tulee soveltaa Dolby ääni raitoihin."
@@ -15298,6 +15322,21 @@ msgstr "Valitse 'Kyllä', jos haluat sallia VASEN/OIKEA painikkeiden käytön Si
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "'Kyllä' valinnalla kanavia ilman EPG:tä ei näytetä."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "Valitse 'kyllä' sisällyttääksesi %s multiplekserit hakuusi."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "Valitse 'kyllä' sisällyttääksesi symbolinopeuden %s hakuusi."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "Valitse 'kyllä' sisällyttääksesi %s taajuusalueen hakuusi."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "Valitse 'kyllä' jos haluat lähettää DiSEqC komennon vain vaihdettaessa satelliitista toiseen, tai valitse 'ei' jotta DiSEqC komento lähetetään uudelleen jokaiselle kanavan vaihdolla."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Valitse 'Kyllä' poistaaksesi kaikki pääasetusten konfigurointitiedot. Tämän vaihtoehdon valitseminen palauttaa kaikki järjestelmän asetukset oletusarvoihinsa. Tämä aiheuttaa myös sen, että Asennus Avustaja näytetään uudelleenkäynnistyksen yhteydessä."
@@ -15413,42 +15452,6 @@ msgstr "Valitse \"Kyllä\", jos haluat käyttää numeronäppäimiä tiedostojen
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "'Kyllä' valinnalla tietopalkki näytetään tallenteen katselussa pikakelausten aikana."
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr ""
-"Valitse 'taajuusalue', jos käytössä 'universaali' LNB, muutoin lisätiedot\n"
-"LNB:n teknisistä tiedoista."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Valitse 'käytössä', jos tähän virittimeen on kytketty signaalikaapeli, muuten valitse 'ei mitään kytketty'."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr ""
-"Valitse 'polarisaatio', jos käytössä 'universaali' LNB, muutoin\n"
-"lisätiedot LNB:n teknisistä tiedoista."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Valitse skannataksesi ennalta määritetystä kaapelin tarjoaja luettelosta. Valitse taajuudet, jos haluat skannata vain tiettyjä taajuuksia. Valitse skannataksesi tietyn taajuuskaistanleveyden välein."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr ""
-"Valitse 'kyllä', jos tämä viritin on kytketty SCR laitteeseen toisen\n"
-"virittimen läpi, muutoin valitse 'ei'."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Valitse 'kyllä' sisällyttääksesi %s multiplekserit hakuusi."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Valitse 'kyllä' sisällyttääksesi symbolinopeuden %s hakuusi."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Valitse 'kyllä' sisällyttääksesi %s taajuusalueen hakuusi."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "Valitse 'kyllä' jos haluat lähettää DiSEqC komennon vain vaihdettaessa satelliitista toiseen, tai valitse 'ei' jotta DiSEqC komento lähetetään uudelleen jokaiselle kanavan vaihdolla."
-
 msgid "Select Additional Backup Files"
 msgstr "Lisää varmuuskopioitavat tiedostot"
 
@@ -15498,6 +15501,9 @@ msgstr "Valitse Toisto sijainti"
 
 msgid "Select Quad Channels"
 msgstr "Valitse Quad kanavat"
+
+msgid "Select Satellites"
+msgstr "Valitse satelliitit"
 
 msgid "Select Software Update"
 msgstr "Ohjelmistopäivitys"
@@ -15707,9 +15713,6 @@ msgstr "Valitse lisättävä palveluntarjoaja..."
 msgid "Select refresh rate"
 msgstr "Valitse virkistystaajuus"
 
-msgid "Select Satellites"
-msgstr "Valitse satelliitit"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Valitse hakupalkin aktivointi: kursori vasen/oikea (pitkä) tai << >> (pitkä)."
 
@@ -15909,6 +15912,9 @@ msgstr "Valitse SCR:n käyttämä protokolla. Vaihtoehdot ovat 'SCR Unicable' (U
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Valitse televisiossa käytettävä virkistystaajuus."
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "Valitse satelliitti mitä lautasesi vastaanottaa. Jos et ole varma, valitse 'automaattinen' ja vastaanotin yrittää selvittää sen sinulle."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Valitse satelliitti, joka on kytkettynä kytkimen Porttiin A. Jos et ole varma, valitse 'automaattinen' ja vastaanotin yrittää selvittää sen sinulle. Jos mitään ei ole kytketty tähän porttiin, valitse 'Ei kytketty'."
 
@@ -15923,9 +15929,6 @@ msgstr "Valitse satelliitti, joka on kytkettynä kytkimen Porttiin D. Jos et ole
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Valitse satelliitti, jonka haluat määrittää. Kun kyseinen satelliitti on määritetty, voit valita ja konfiguroida muita satelliitteja, joihin pääsee tällä samalla virittimellä."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "Valitse satelliitti mitä lautasesi vastaanottaa. Jos et ole varma, valitse 'automaattinen' ja vastaanotin yrittää selvittää sen sinulle."
 
 msgid "Select the shifted character set"
 msgstr "Käytä siirtymää seuraaville merkeille"
@@ -15987,11 +15990,11 @@ msgstr "Valitse aikavyöhyke."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Valitse viritin, joka ohjaa moottoroitua lautasta."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "Valitse viritin, josta tämä läpivienti riippuu."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Valitse viritin, johon SCR laiteen signaalikaapeli on kytketty."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "Valitse viritin, josta tämä läpivienti riippuu."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "\"Valitse käytetyn LNB:n / laitteen tyyppi (yleensä\" Universal \"). Jos LNB tyyppiäsi ei ole käytettävissä, valitse 'käyttäjä päättää'."
@@ -16357,6 +16360,9 @@ msgstr "'Kyllä' valinnalla CI havaitsee käytettävissä olevat palvelut."
 msgid "Set DVB CI delay."
 msgstr "Aseta DVB CI viive."
 
+msgid "Set Default"
+msgstr "Oletus"
+
 msgid "Set Framerate for MiniTV"
 msgstr "Aseta kuvataajuus MiniTV:lle"
 
@@ -16380,9 +16386,6 @@ msgstr "Valitse toiminto ajastimelle"
 
 msgid "Set current CEC address as fixed address"
 msgstr "Nykyisen CEC osoitteen asettaminen kiinteäksi osoitteeksi"
-
-msgid "Set Default"
-msgstr "Oletus"
 
 msgid "Set end time"
 msgstr "Aseta lopetusaika"
@@ -20127,9 +20130,6 @@ msgstr "Raita"
 msgid "Traditional Chinese"
 msgstr "Kiina"
 
-msgid "Transcode"
-msgstr "Transkoodaus"
-
 msgid "Transcoding"
 msgstr "Transkoodaus"
 
@@ -20825,6 +20825,9 @@ msgstr "Käytä maantieteellistä sijaintia saadaksesi ulkoverkon tiedot"
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Nykyisen aikavyöhykkeen sijainnin asettaminen geopaikannuksen avulla"
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "jos sinulla on vaikeuksia vaihtaa LNB:tä (pysty / vaaka), erittäin pitkiä antennikaapeleita tai kaapeleita, joissa on erittäin ohut sisäjohdin, lisää jännitettä 14 / 18V."
 
 msgid "Use interface"
 msgstr "Käytä sovitinta"
@@ -22894,7 +22897,7 @@ msgstr "Pikatallennus"
 msgid "internally loopthrough to"
 msgstr "läpisyöttö"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "epäkelpo tyyppi"
 
 msgid "jazz"
@@ -23061,9 +23064,6 @@ msgstr "normaali"
 
 msgid "not"
 msgstr "ei"
-
-msgid "Not configured"
-msgstr "ei määritetty"
 
 msgid "not locked"
 msgstr "ei lukittu"
@@ -23460,9 +23460,6 @@ msgstr "testipalkki"
 msgid "update"
 msgstr "päivitä"
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr "jos sinulla on vaikeuksia vaihtaa LNB:tä (pysty / vaaka), erittäin pitkiä antennikaapeleita tai kaapeleita, joissa on erittäin ohut sisäjohdin, lisää jännitettä 14 / 18V."
-
 msgid "userdefined"
 msgstr "käyttäjän määrittelemä"
 
@@ -23528,6 +23525,18 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "CI Avustaja Asetukset"
+
+#~ msgid "ClientIP"
+#~ msgstr "Asikas IP"
+
+#~ msgid "Minute"
+#~ msgstr "minuutti"
+
+#~ msgid "Transcode"
+#~ msgstr "Transkoodaus"
 
 #, python-format
 #~ msgid "%.3f MHz"

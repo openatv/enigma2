@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2023-10-30 16:19+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -3403,9 +3403,6 @@ msgstr "Nastavení rozhraní CI"
 msgid "CI Boot Delay"
 msgstr "Zpoždění spouštění CI"
 
-msgid "CI Helper Settings"
-msgstr "Nastavení pomocníka CI"
-
 msgid "CI assignment"
 msgstr "Nastavení CI"
 
@@ -3414,6 +3411,9 @@ msgstr "CI povoleno"
 
 msgid "CI slot: "
 msgstr "CI slot: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "Nastavení CIFS/Samba"
@@ -4177,9 +4177,6 @@ msgstr "Informace o klientovi (verze Oscam: %s)"
 msgid "Client is streaming from this box!"
 msgstr "Klient z tohoto boxu streamuje!"
 
-msgid "ClientIP"
-msgstr "IP klienta"
-
 msgid "Clients"
 msgstr "Klienti"
 
@@ -4817,6 +4814,12 @@ msgstr "Tyto informace naleznete v technickém listu vašeho zařízení SCR."
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Tyto informace najdete v technickém listu vašeho motoru nebo ponechte výchozí nastavení."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "Řízení spotřeby. Další informace naleznete v příručce k přijímači."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "Práh výkonu. Další informace naleznete v příručce k přijímači."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7182,11 +7185,11 @@ msgstr "Zadejte název tohoto časovače."
 msgid "Enter a new name for this device."
 msgstr "Zadejte nový název tohoto zařízení."
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "Zadejte, pokud jste na východní nebo západní polokouli."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "Zadejte, pokud jste na sever nebo na jih od rovníku."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "Zadejte, pokud jste na východní nebo západní polokouli."
 
 msgid "Enter main menu..."
 msgstr "Vstoupit do hlavního menu..."
@@ -9291,14 +9294,14 @@ msgstr "Pokud je text příliš dlouhý na to, aby byl zobrazen na předním pan
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Při použití více nepotvrzených přepínačů musí být příkazy DiSEqC odeslány vícekrát. Nastavte na počet nepotvrzených přepínačů v řetězci mínus jeden."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Pokud používáte kruhově polarizovaný LNB, vyberte „ano“, jinak vyberte „ne“."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "Pokud používáte DiSEqC potvrzený přepínač, zadejte písmeno portu požadované pro přístup k LNB používanému pro tento satelit."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "Pokud používáte DiSEqC uncommitted switch, zadejte číslo portu potřebné pro přístup k LNB používanému pro tento satelit."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "Pokud používáte kruhově polarizovaný LNB, vyberte „ano“, jinak vyberte „ne“."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -9990,6 +9993,9 @@ msgstr "Kuanyama / Kwanyama"
 
 msgid "Kurdish"
 msgstr "Kurdština"
+
+msgid "Kurdistan"
+msgstr ""
 
 msgid "Kuwait"
 msgstr "Kuvajt"
@@ -10885,9 +10891,6 @@ msgstr "Minimální interval posílání"
 
 msgid "Mins"
 msgstr "Min"
-
-msgid "Minute"
-msgstr "minuta"
 
 msgid "Minutes"
 msgstr "minut"
@@ -12018,6 +12021,9 @@ msgstr "Nezobrazeno"
 
 msgid "Not associated"
 msgstr "Nepřipojeno"
+
+msgid "Not configured"
+msgstr "není nakonfigurováno"
 
 msgid "Not currently mounted."
 msgstr "V současné době není nic připojeno."
@@ -13273,14 +13279,8 @@ msgstr "Stav kontrolky napájení během pohotovostního režimu."
 msgid "Power On Display"
 msgstr "Zapnout přední displej"
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Řízení spotřeby. Další informace naleznete v příručce k přijímači."
-
 msgid "Power threshold in mA"
 msgstr "Prahový proud v mA"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Práh výkonu. Další informace naleznete v příručce k přijímači."
 
 msgid "PowerTimer"
 msgstr "Časovač vypnutí"
@@ -15050,7 +15050,7 @@ msgstr "Prohledat "
 msgid "Scan %s"
 msgstr "Prohledat %s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "Prohledat %s pásmo"
@@ -15239,8 +15239,17 @@ msgstr "Vyberte „1.0“ pro standardní potvrzené přepínače, „1.1“ pro
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Vyberte „A“ nebo „B“, pokud to váš anténní systém vyžaduje, v opačném případě vyberte „žádný“. Pokud si nejste jisti, vyberte „žádný“."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Pokud používáte „univerzální“ LNB, vyberte „pásmo“, v opačném případě se podívejte na technický list LNB."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr "Vyberte 'Povolit', chcete-li vynutit vyčištění balíčku před aktualizací balíčku. To je užitečné, abyste se ujistili, že seznam balíčků je aktuální a můžete se vyhnout problémům během aktualizace nebo je vyřešit. Povolte to pouze v případě, že nemůžete aktualizovat online."
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Pokud je k tomuto tuneru připojen signálový kabel, vyberte „povoleno“, jinak vyberte „nic připojeno“."
+
+msgid "Select 'Enable' to start the CI+ helper."
+msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Pokud nastavíte na 'ne', timeshift použije pouze jeden vyrovnávací soubor. Doporučujeme nastavit 'Timeshift kontrolu starších souborů [v minutách]' a 'Timeshift kontrolu volného místa."
@@ -15251,11 +15260,20 @@ msgstr "Vyberte 'Ne', chcete-li pouze zapsat zprávu protokolu do souboru protok
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Pokud nastavíte na 'ne', můžete zachovat timeshift pro starší události i po přepnutí nebo přerušení."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Pokud používáte 'univerzální' LNB, zvolte 'polarizaci', v opačném případě si prostudujte technický list vašeho LNB."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Vyberte 'poskytovatele' pro skenování z předdefinovaného seznamu kabelových multiplexů. Chcete-li skenovat pouze určité části spektra, vyberte „pásma“. Vyberte „kroky“ pro skenování v krocích určité šířky frekvenčního pásma."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Vyberte „Ano“, pokud je pro tento časovač vyžadován čas ukončení."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr "Pokud má být před aktivací časovače zkontrolován síťový provoz, vyberte „Ano“."
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "Vyberte „ano“, pokud je tento tuner připojen k zařízení SCR prostřednictvím jiného tuneru, v opačném případě vyberte „ne“."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Vyberte 'Ano', pokud mají být úpravy hlasitosti aplikovány na zvukové stopy Dolby."
@@ -15310,6 +15328,21 @@ msgstr "Vyberte 'Ano', chcete-li povolit použití tlačítek VLEVO/VPRAVO k poh
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Pokud nastavíte na 'ano' nezobrazí se kanály bez EPG."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "Vyberte 'ano' pro zahrnutí %s multiplexů do vašeho vyhledávání."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "Chcete-li do vyhledávání zahrnout symbolovou rychlost %s, vyberte 'ano'."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "Vyberte 'ano' pro zahrnutí pásma %s do vyhledávání."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "Vyberte 'ano', chcete-li odeslat příkaz DiSEqC pouze při přechodu z jednoho satelitu na druhý, nebo vyberte 'ne', pokud chcete příkaz DiSEqC znovu odeslat při každém přepnutí."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Chcete-li odstranit všechna konfigurační data hlavních nastavení, vyberte možnost „Ano“. Výběrem této možnosti vrátíte všechna nastavení Enigmy zpět na výchozí hodnoty. To také způsobí, že Enigma2 při restartu spustí uvítacího průvodce."
@@ -15425,36 +15458,6 @@ msgstr "Vyberte „Ano“ pro použití číselných tlačítek pro rychlý výb
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Jestliže nastavíte na ' Ano'; při rychlé přetáčení nebo přetáčení během přehrávání médií se zobrazí informační panel."
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Pokud používáte „univerzální“ LNB, vyberte „pásmo“, v opačném případě se podívejte na technický list LNB."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Pokud je k tomuto tuneru připojen signálový kabel, vyberte „povoleno“, jinak vyberte „nic připojeno“."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Pokud používáte 'univerzální' LNB, zvolte 'polarizaci', v opačném případě si prostudujte technický list vašeho LNB."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Vyberte 'poskytovatele' pro skenování z předdefinovaného seznamu kabelových multiplexů. Chcete-li skenovat pouze určité části spektra, vyberte „pásma“. Vyberte „kroky“ pro skenování v krocích určité šířky frekvenčního pásma."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr "Vyberte „ano“, pokud je tento tuner připojen k zařízení SCR prostřednictvím jiného tuneru, v opačném případě vyberte „ne“."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Vyberte 'ano' pro zahrnutí %s multiplexů do vašeho vyhledávání."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Chcete-li do vyhledávání zahrnout symbolovou rychlost %s, vyberte 'ano'."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Vyberte 'ano' pro zahrnutí pásma %s do vyhledávání."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "Vyberte 'ano', chcete-li odeslat příkaz DiSEqC pouze při přechodu z jednoho satelitu na druhý, nebo vyberte 'ne', pokud chcete příkaz DiSEqC znovu odeslat při každém přepnutí."
-
 msgid "Select Additional Backup Files"
 msgstr "Vybrat další soubory k zálohování"
 
@@ -15502,6 +15505,9 @@ msgstr "Vyberte umístění přehrávání"
 
 msgid "Select Quad Channels"
 msgstr "Vybrat Quad Channels"
+
+msgid "Select Satellites"
+msgstr "Vybrat satelity"
 
 msgid "Select Software Update"
 msgstr "Vyberte typ aktualizace Software"
@@ -15709,9 +15715,6 @@ msgstr "Vyberte poskytovatele služeb..."
 msgid "Select refresh rate"
 msgstr "Vyberte obnovovací frekvenci"
 
-msgid "Select Satellites"
-msgstr "Vybrat satelity"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Vyberte aktivaci lišty šipkou L/R (dlouhý stisk) nebo << >> (dlouhý stisk)."
 
@@ -15911,6 +15914,9 @@ msgstr "Vyberte protokol používaný vaším zařízením SCR. Možnosti jsou �
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Vyberte obnovovací frekvenci, která se má použít na televizoru."
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "Vyberte satelit, ze kterého vaše parabola přijímá. Pokud si nejste jisti, vyberte „automaticky“ a přijímač se to pokusí určit za vás."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Vyberte satelit, který je připojen k portu-A vašeho přepínače. Pokud si nejste jisti, vyberte „automaticky“ a přijímač se to pokusí určit za vás. Pokud k tomuto portu není nic připojeno, vyberte „nic připojeno“."
 
@@ -15925,9 +15931,6 @@ msgstr "Vyberte satelit, který je připojen k portu-D vašeho přepínače. Pok
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Vyberte satelit, který chcete konfigurovat. Jakmile je satelit nakonfigurován, můžete vybrat a nakonfigurovat další satelity, ke kterým bude přistupovat pomocí stejného tuneru."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "Vyberte satelit, ze kterého vaše parabola přijímá. Pokud si nejste jisti, vyberte „automaticky“ a přijímač se to pokusí určit za vás."
 
 msgid "Select the shifted character set"
 msgstr "Vyberte posunutou sadu znaků"
@@ -15989,11 +15992,11 @@ msgstr "Vybrat časové pásmo v oblasti nebo regionu."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Vyberte tuner, který ovládá motorizovanou parabolu."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "Vyberte tuner, na kterém závisí tato smyčka."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Vyberte tuner, ke kterému je připojen signálový kabel zařízení SCR."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "Vyberte tuner, na kterém závisí tato smyčka."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "Vyberte typ používaného LNB/zařízení (normálně 'Universal'). Pokud váš typ LNB není k dispozici, vyberte „definováno uživatelem“."
@@ -16357,6 +16360,9 @@ msgstr "Nastavit přiřazení CI pro detekci dostupných služeb."
 msgid "Set DVB CI delay."
 msgstr "Nastavit zpoždění DVB CI."
 
+msgid "Set Default"
+msgstr "Výchozí nastavení"
+
 msgid "Set Framerate for MiniTV"
 msgstr "Nastavit obnovovací kmitočet pro MiniTV"
 
@@ -16380,9 +16386,6 @@ msgstr "Nastavit akci pro klávesu „Info“"
 
 msgid "Set current CEC address as fixed address"
 msgstr "Nastavit aktuální CEC adresu jako pevnou adresu"
-
-msgid "Set Default"
-msgstr "Výchozí nastavení"
 
 msgid "Set end time"
 msgstr "Nastavit čas konce"
@@ -20123,9 +20126,6 @@ msgstr "Stopa"
 msgid "Traditional Chinese"
 msgstr "Tradiční čínština"
 
-msgid "Transcode"
-msgstr "Překódovat"
-
 msgid "Transcoding"
 msgstr "Překódování"
 
@@ -20818,6 +20818,9 @@ msgstr "Použít geolokaci pro získání informací o WAN"
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Použít geolokaci k nastavení aktuálního umístění časového pásma"
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "Při problémech při přepínání LNB použijte zvýšené napětí '14/18V'."
 
 msgid "Use interface"
 msgstr "Použít rozhraní"
@@ -22881,7 +22884,7 @@ msgstr "okamžitý záznam"
 msgid "internally loopthrough to"
 msgstr "interní propojení (smyčka) na"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "neplatný typ"
 
 msgid "jazz"
@@ -23048,9 +23051,6 @@ msgstr "normální"
 
 msgid "not"
 msgstr "ne"
-
-msgid "Not configured"
-msgstr "není nakonfigurováno"
 
 msgid "not locked"
 msgstr "není uzamčeno"
@@ -23447,9 +23447,6 @@ msgstr "netestovatelné"
 msgid "update"
 msgstr "aktualizace"
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr "Při problémech při přepínání LNB použijte zvýšené napětí '14/18V'."
-
 msgid "userdefined"
 msgstr "uživatelsky definované"
 
@@ -23516,6 +23513,18 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "Nastavení pomocníka CI"
+
+#~ msgid "ClientIP"
+#~ msgstr "IP klienta"
+
+#~ msgid "Minute"
+#~ msgstr "minuta"
+
+#~ msgid "Transcode"
+#~ msgstr "Překódovat"
 
 #, python-format
 #~ msgid "%.3f MHz"

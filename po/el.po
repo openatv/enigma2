@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2023-09-28 23:02+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -3373,9 +3373,6 @@ msgstr "Ρυθμίσεις CI (κοινής διεπαφής)"
 msgid "CI Boot Delay"
 msgstr "Καθυστέρηση εκκίνησης CI"
 
-msgid "CI Helper Settings"
-msgstr "Ρυθμίσεις CI Helper"
-
 msgid "CI assignment"
 msgstr "Ανάθεση CI"
 
@@ -3384,6 +3381,9 @@ msgstr "CI ενεργό"
 
 msgid "CI slot: "
 msgstr "Θύρα CI: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "Ρυθμίσεις CIFS/Samba"
@@ -4146,9 +4146,6 @@ msgstr "Πληροφορίες πελάτη ( Έκδοση Oscam: %s )"
 msgid "Client is streaming from this box!"
 msgstr "Υπάρχει πελάτης ροής από αυτόν τον δέκτη!"
 
-msgid "ClientIP"
-msgstr "IP πελάτη"
-
 msgid "Clients"
 msgstr "Πελάτες"
 
@@ -4786,6 +4783,12 @@ msgstr "Συμβουλευτείτε τον πίνακα χαρακτηριστ�
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Συμβουλευτείτε τον πίνακα χαρακτηριστικών του μοτέρ σας για αυτές τις πληροφορίες ή αφήστε τις προεπιλεγμένες τιμές."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "Διαχείριση ισχύος. Συμβουλευτείτε το εγχειρίδιο χρήσης του δέκτη σας για περισσότερες πληροφορίες."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "Κατώφλι ισχύος. Συμβουλευτείτε το εγχειρίδιο χρήσης του δέκτη σας για περισσότερες πληροφορίες."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7148,11 +7151,11 @@ msgstr "Εισαγωγή ονόματος για αυτόν τον χρονοδ�
 msgid "Enter a new name for this device."
 msgstr "Εισαγωγή ονόματος για αυτή τη συσκευή."
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "Εισάγετε αν βρίσκεστε στο ανατολικό ή στο δυτικό ημισφαίριο."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "Εισάγετε αν βρίσκεστε βόρεια ή νότια του ισημερινού."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "Εισάγετε αν βρίσκεστε στο ανατολικό ή στο δυτικό ημισφαίριο."
 
 msgid "Enter main menu..."
 msgstr "Είσοδος στο κύριο μενού..."
@@ -9257,14 +9260,14 @@ msgstr "Αν το κείμενο είναι πολύ μεγάλο για να ε
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Αν χρησιμοποιείτε πολλαπλές μη δεσμευμένες εντολές DiSEqC, αυτές πρέπει να σταλούν πολλές φορές. Ορίστε τον αριθμό των μη δεσμευμένων διακοπτών στην αλληλουχία πλην ενός."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Αν χρησιμοποιείτε ένα LNB κυκλικής πόλωσης επιλέξτε 'ναι', αλλιώς επιλέξτε 'όχι'."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "Αν χρησιμοποιείτε έναν διακόπτη δεσμευμένης εντολής DiSEqC, εισάγετε το γράμμα της θύρας που απαιτείται για πρόσβαση στο LNB για αυτόν τον δορυφόρο."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "Αν χρησιμοποιείτε έναν διακόπτη μη δεσμευμένης εντολής DiSEqC, εισάγετε το γράμμα της θύρας που απαιτείται για πρόσβαση στο LNB για αυτόν τον δορυφόρο."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "Αν χρησιμοποιείτε ένα LNB κυκλικής πόλωσης επιλέξτε 'ναι', αλλιώς επιλέξτε 'όχι'."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -9955,6 +9958,9 @@ msgstr "Κουανιάμα"
 
 msgid "Kurdish"
 msgstr "Κουρδικά"
+
+msgid "Kurdistan"
+msgstr ""
 
 msgid "Kuwait"
 msgstr "Κουβέιτ"
@@ -10849,9 +10855,6 @@ msgstr "Ελάχιστο διάστημα αποστολής"
 
 msgid "Mins"
 msgstr "Λεπτά"
-
-msgid "Minute"
-msgstr "Λεπτό"
 
 msgid "Minutes"
 msgstr "Λεπτά"
@@ -11982,6 +11985,9 @@ msgstr "Δεν εμφανίζεται"
 
 msgid "Not associated"
 msgstr "Χωρίς συσχέτιση"
+
+msgid "Not configured"
+msgstr "μη ρυθμισμένο"
 
 msgid "Not currently mounted."
 msgstr "Χωρίς προσάρτηση προς το παρόν."
@@ -13237,14 +13243,8 @@ msgstr "Κατάσταση LED λειτουργίας κατά την αναμο
 msgid "Power On Display"
 msgstr "Οθόνη σε λειτουργία"
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Διαχείριση ισχύος. Συμβουλευτείτε το εγχειρίδιο χρήσης του δέκτη σας για περισσότερες πληροφορίες."
-
 msgid "Power threshold in mA"
 msgstr "Κατώφλι ισχύος σε mA"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Κατώφλι ισχύος. Συμβουλευτείτε το εγχειρίδιο χρήσης του δέκτη σας για περισσότερες πληροφορίες."
 
 msgid "PowerTimer"
 msgstr "Χρονοδιακόπτης λειτουργίας"
@@ -15014,7 +15014,7 @@ msgstr "Ανίχνευση "
 msgid "Scan %s"
 msgstr "Ανίχνευση %s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "Ανίχνευση μπάντας %s"
@@ -15201,8 +15201,17 @@ msgstr "Επιλέξτε '1.0' για τυπικούς δεσμευμένους 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Επιλέξτε 'A' ή 'B' αν το απαιτεί το κεραιοσύστημά σας, αλλιώς ή αν δεν είστε σίγουροι επιλέξτε 'κανένα'."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Επιλέξτε 'μπάντα' αν χρησιμοποιείτε ένα 'universal' LNB, αλλιώς ανατρέξτε στον πίνακα χαρακτηριστικών του LNB σας."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr "Επιλέξτε 'Ενεργοποίηση' για να επιβάλλετε τον καθαρισμό πακέτων πριν από μια ενημέρωση πακέτων. Αυτό είναι χρήσιμο για να βεβαιωθείτε ότι η λίστα πακέτων είναι ενημερωμένη και μπορεί να αποφευχθούν/επιλυθούν προβλήματα κατά τη διάρκεια της ενημέρωσης. Ενεργοποιήστε το μόνο όταν δεν μπορείτε να πραγματοποιήσετε ενημέρωση διαδικτυακά."
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Επιλέξτε 'ενεργό' αν αυτό το tuner διαθέτει σήμα, αλλιώς επιλέξτε 'δεν έχει συνδεθεί τίποτα'."
+
+msgid "Select 'Enable' to start the CI+ helper."
+msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Επιλέξτε 'όχι' για χρήση ενός μονού αρχείου προφόρτωσης χρονομετατόπισης. Με τα 'έλεγχος χρονομετατόπισης για παλαιότερα αρχεία [σε λεπτά]' και 'έλεγχος χρονομετατόπισης για ελεύθερο χώρο;] θα ελέγχετε το μέγεθος του αρχείου προφόρτωσης."
@@ -15213,11 +15222,20 @@ msgstr "Επιλέξτε 'όχι' για εγγραφή μόνο ενός μην
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Επιλέξτε 'όχι' για αποθήκευση των παλιότερων προγραμμάτων ακόμα και μετά το ζάπινγκ ή τη διακοπή της χρονομετατόπισης."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Επιλέξτε 'πόλωση' αν χρησιμοποιείτε ένα LNB τύπου 'universal', αλλιώς ανατρέξτε στον πίνακα χαρακτηριστικών του LNB σας."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Επιλέξτε 'πάροχο' για να γίνει ανίχνευση από μία προρυθμισμένη λίστα καλωδιακών πολυπλεξιών. Επιλέξτε 'μπάντες' για να γίνει ανίχνευση συγκεκριμένου εύρους του φάσματος. Επιλέξτε 'βήματα' για να γίνει ανίχνευση σε βήματα ενός συγκεκριμένου εύρους ζώνης."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Επιλέξτε 'ναι' αν απαιτείται ώρα λήξης για αυτό τον χρονοδιακόπτη."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr "Επιλέξτε 'ναι' αν η κίνηση δικτύου πρέπει να ελεγχθεί πριν την ενεργοποίηση του χρονοδιακόπτη."
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "Επιλέξτε 'ναι' αν αυτό το tuner είναι συνδεδεμένο σε μία συσκευή SCR μέσω άλλου tuner, αλλιώς επιλέξτε 'όχι'."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Επιλέξτε 'ναι' αν οι ρυθμίσεις έντασης ήχου πρέπει να εφαρμοστούν στις υποφέρουσες Dolby."
@@ -15272,6 +15290,21 @@ msgstr "Επιλέξτε 'ναι' για να ενεργοποιηθεί η χρ
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Επιλέξτε 'ναι' για απόκρυψη των καναλιών χωρίς δεδομένα EPG."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "Επιλέξτε 'ναι' για να συμπεριλάβετε τους πολυπλέκτες %s στην αναζήτηση."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "Επιλέξτε 'ναι' για να συμπεριλάβετε τον ρυθμό συμβόλων %s στην αναζήτηση."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "Επιλέξτε 'ναι' για να συμπεριλάβετε την μπάντα %s στην αναζήτηση."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "Επιλέξτε 'ναι' για να αποστέλλεται η εντολή DiSEqC κατά την αλλαγή δορυφόρου ή επιλέξτε 'όχι' για να αποστέλλεται η εντολή DiSEqC σε κάθε ζάπινγκ."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Επιλέξτε 'ναι' για αφαίρεση όλων των δεδομένων παραμετροποίησης των κύριων ρυθμίσεων. Επιλέγοντας αυτό, οι ρυθμίσεις του Enigma2 θα επιστρέψουν στις προεπιλογές τους. Με αυτό επίσης, θα εμφανιστεί ο οδηγός καλωσορίσματος μετά την επανεκκίνηση."
@@ -15387,36 +15420,6 @@ msgstr "Επιλέξτε 'ναι' για να χρησιμοποιήσετε τ�
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Αν επιλεγεί το 'ναι', θα εμφανίζεται η μπάρα πληροφοριών κατά την προώθηση εμπρός/πίσω κατά την αναπαραγωγή πολυμέσων."
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Επιλέξτε 'μπάντα' αν χρησιμοποιείτε ένα 'universal' LNB, αλλιώς ανατρέξτε στον πίνακα χαρακτηριστικών του LNB σας."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Επιλέξτε 'ενεργό' αν αυτό το tuner διαθέτει σήμα, αλλιώς επιλέξτε 'δεν έχει συνδεθεί τίποτα'."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Επιλέξτε 'πόλωση' αν χρησιμοποιείτε ένα LNB τύπου 'universal', αλλιώς ανατρέξτε στον πίνακα χαρακτηριστικών του LNB σας."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Επιλέξτε 'πάροχο' για να γίνει ανίχνευση από μία προρυθμισμένη λίστα καλωδιακών πολυπλεξιών. Επιλέξτε 'μπάντες' για να γίνει ανίχνευση συγκεκριμένου εύρους του φάσματος. Επιλέξτε 'βήματα' για να γίνει ανίχνευση σε βήματα ενός συγκεκριμένου εύρους ζώνης."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr "Επιλέξτε 'ναι' αν αυτό το tuner είναι συνδεδεμένο σε μία συσκευή SCR μέσω άλλου tuner, αλλιώς επιλέξτε 'όχι'."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Επιλέξτε 'ναι' για να συμπεριλάβετε τους πολυπλέκτες %s στην αναζήτηση."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Επιλέξτε 'ναι' για να συμπεριλάβετε τον ρυθμό συμβόλων %s στην αναζήτηση."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Επιλέξτε 'ναι' για να συμπεριλάβετε την μπάντα %s στην αναζήτηση."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "Επιλέξτε 'ναι' για να αποστέλλεται η εντολή DiSEqC κατά την αλλαγή δορυφόρου ή επιλέξτε 'όχι' για να αποστέλλεται η εντολή DiSEqC σε κάθε ζάπινγκ."
-
 msgid "Select Additional Backup Files"
 msgstr "Επιλογή επιπρόσθετων αντιγράφων ασφαλείας"
 
@@ -15464,6 +15467,9 @@ msgstr "Επιλογή τοποθεσίας αναπαραγωγής"
 
 msgid "Select Quad Channels"
 msgstr "Επιλογή τετραπλών καναλιών"
+
+msgid "Select Satellites"
+msgstr "Επιλογή δορυφόρων"
 
 msgid "Select Software Update"
 msgstr "Επιλογή ενημέρωσης λογισμικού"
@@ -15671,9 +15677,6 @@ msgstr "Επιλογή παρόχου για προσθήκη..."
 msgid "Select refresh rate"
 msgstr "Επιλογή ρυθμού ανανέωσης"
 
-msgid "Select Satellites"
-msgstr "Επιλογή δορυφόρων"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Επιλογή ενεργοποίησης μπάρας αναζήτησης με τα πλήκτρα Α/Δ (παρατεταμένα) ή << >> (παρατεταμένα)."
 
@@ -15873,6 +15876,9 @@ msgstr "Επιλέξτε το πρωτόκολλο της SCR συσκευής �
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Επιλέξτε τον ρυθμό ανανέωσης που θα χρησιμοποιηθεί στην τηλεόραση."
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "Επιλέξτε τον δορυφόρο από τον οποίο λαμβάνει η δορυφορική σας κεραία. Αν δεν είστε σίγουροι επιλέξτε 'αυτόματο' και ο δέκτης θα προσπαθήσει να βρει τη σωστή ρύθμιση."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Επιλέξτε τον δορυφόρο που έχει συνδεθεί στη θύρα Α του διακόπτη σας. Αν δεν είστε σίγουροι επιλέξτε 'αυτόματο' και ο δέκτης θα προσπαθήσει να βρει τη σωστή ρύθμιση. Αν υπάρχει σύνδεση, επιλέξτε το 'δεν έχει συνδεθεί τίποτα'."
 
@@ -15887,9 +15893,6 @@ msgstr "Επιλέξτε τον δορυφόρο που έχει συνδεθε�
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Επιλέξτε τον δορυφόρο που θέλετε να ρυθμίσετε. Μετά τη ρύθμιση αυτή μπορείτε να επιλέξετε να ρυθμιστούν και άλλοι δορυφόροι για αυτό το tuner."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "Επιλέξτε τον δορυφόρο από τον οποίο λαμβάνει η δορυφορική σας κεραία. Αν δεν είστε σίγουροι επιλέξτε 'αυτόματο' και ο δέκτης θα προσπαθήσει να βρει τη σωστή ρύθμιση."
 
 msgid "Select the shifted character set"
 msgstr "Επιλογή του σετ χαρακτήρων με shift"
@@ -15951,11 +15954,11 @@ msgstr "Επιλογή της χρονικής ζώνης εντός της αν
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Επιλέξτε το tuner που ελέγχει το μοτέρ που κινεί το κάτοπτρο."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "Επιλέξτε το tuner στο οποίο βασίζεται αυτή η γέφυρα loop."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Επιλέξτε το tuner στο οποίο είναι συνδεδεμένο το καλώδιο σήματος της SCR συσκευής σας."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "Επιλέξτε το tuner στο οποίο βασίζεται αυτή η γέφυρα loop."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "Επιλέξτε τον τύπο του LNB/συσκευής που χρησιμοποιείται (συνήθως 'Universal'). Αν ο τύπος του LNB σας δεν είναι διαθέσιμος, επιλέξτε 'ορισμένο από τον χρήστη'."
@@ -16319,6 +16322,9 @@ msgstr "Ορισμός ανάθεσης CI για εντοπισμό των δι
 msgid "Set DVB CI delay."
 msgstr "Ορισμός καθυστέρησης DVB CI."
 
+msgid "Set Default"
+msgstr "Ορισμός προεπιλογής"
+
 msgid "Set Framerate for MiniTV"
 msgstr "Ορισμός ρυθμού καρέ για το MiniTV"
 
@@ -16342,9 +16348,6 @@ msgstr "Επιλογή ενέργειας πλήκτρου 'Info'"
 
 msgid "Set current CEC address as fixed address"
 msgstr "Ορισμός της τρέχουσας διεύθυνσης CEC ως σταθερή"
-
-msgid "Set Default"
-msgstr "Ορισμός προεπιλογής"
 
 msgid "Set end time"
 msgstr "Ρύθμιση χρόνου τερματισμού"
@@ -20083,9 +20086,6 @@ msgstr "Κομμάτι"
 msgid "Traditional Chinese"
 msgstr "Παραδοσιακά Κινεζικά"
 
-msgid "Transcode"
-msgstr "Διακωδικοποίηση"
-
 msgid "Transcoding"
 msgstr "Διακωδικοποίηση"
 
@@ -20778,6 +20778,9 @@ msgstr "Χρήση τοποθεσίας για λήψη πληροφοριών W
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Χρήση τοποθεσίας για ορισμό της τρέχουσας χρονικής ζώνης"
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "χρήση αυξημένης τάσης '14/18V' αν υπάρχουν προβλήματα στην εναλλαγή του lnb"
 
 msgid "Use interface"
 msgstr "Χρήση διεπαφής"
@@ -22841,7 +22844,7 @@ msgstr "άμεση εγγραφή"
 msgid "internally loopthrough to"
 msgstr "εσωτερικό loopthrough σε"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "μη έγκυρος τύπος"
 
 msgid "jazz"
@@ -23008,9 +23011,6 @@ msgstr "κανονικό"
 
 msgid "not"
 msgstr "μη"
-
-msgid "Not configured"
-msgstr "μη ρυθμισμένο"
 
 msgid "not locked"
 msgstr "μη κλειδωμένο"
@@ -23407,9 +23407,6 @@ msgstr "μη εφικτός έλεγχος"
 msgid "update"
 msgstr "ενημέρωση"
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr "χρήση αυξημένης τάσης '14/18V' αν υπάρχουν προβλήματα στην εναλλαγή του lnb"
-
 msgid "userdefined"
 msgstr "ορισμένο από τον χρήστη"
 
@@ -23475,6 +23472,18 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "Ρυθμίσεις CI Helper"
+
+#~ msgid "ClientIP"
+#~ msgstr "IP πελάτη"
+
+#~ msgid "Minute"
+#~ msgstr "Λεπτό"
+
+#~ msgid "Transcode"
+#~ msgstr "Διακωδικοποίηση"
 
 #, python-format
 #~ msgid "%.3f MHz"

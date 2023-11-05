@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -3418,9 +3418,6 @@ msgstr "CI (Įstatomo modulio) nustatymas"
 msgid "CI Boot Delay"
 msgstr ""
 
-msgid "CI Helper Settings"
-msgstr "CI žinyno parametrai"
-
 msgid "CI assignment"
 msgstr "CI paskyrimas"
 
@@ -3429,6 +3426,9 @@ msgstr ""
 
 msgid "CI slot: "
 msgstr "CI lizdas: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba parametrai"
@@ -4192,9 +4192,6 @@ msgstr "Kliento Info (Oscam versija: %s)"
 msgid "Client is streaming from this box!"
 msgstr "Klientas transliuoja iš šio imtuvo!"
 
-msgid "ClientIP"
-msgstr "Kliento IP"
-
 msgid "Clients"
 msgstr "Klientai"
 
@@ -4833,6 +4830,12 @@ msgstr "Dėl šios informacijos kreipkitės į savo SCR įrenginio specifikacij�
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Šios informacijos ieškokite savo variklio techninių duomenų lape, arba palikite pagal nutylėjimą."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "Maitinimo valdymas. Daugiau informacijos ieškokite savo imtuvo naudojimo instrukcijoje."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "Galios ribos. Daugiau informacijos ieškokite savo imtuvo naudojimo instrukcijoje."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7196,11 +7199,11 @@ msgstr "Įveskite šio laikmačio pavadinimą."
 msgid "Enter a new name for this device."
 msgstr "Įveskite naują šio įrenginio pavadinimą."
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "Įrašykite, jei esate rytų ar vakarų pusrutulyje."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "Įrašykite, jei esate į šiaurę arba į pietus nuo pusiaujo."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "Įrašykite, jei esate rytų ar vakarų pusrutulyje."
 
 msgid "Enter main menu..."
 msgstr "Į pagrindinį meniu..."
@@ -9307,14 +9310,14 @@ msgstr "Jei tekstas per ilgas ir netelpa į priekinį imtuvo ekraną, jis bus ka
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Jei naudojate kelis neprijungtus jungiklius, DiSEqC komandos turi būti siunčiamos kelis kartus. Nustatykite nenaudojamų jungiklių skaičių grandinėje, atėmus vieną."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Jei naudojate apskritiminę poliarizuotą LNB, pasirinkite \"taip\", kitaip pasirinkite \"ne\"."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "Jei naudojate DiSEqC prijungtą jungiklį, įrašykite įvesties raidę, reikalingą prieigai prie šio palydovo naudojamo LNB."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "Jei naudojate DiSEqC neprijungtą jungiklį, įrašykite įvesties skaičių, reikalingą prieigai prie šio palydovo naudojamo LNB."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "Jei naudojate apskritiminę poliarizuotą LNB, pasirinkite \"taip\", kitaip pasirinkite \"ne\"."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -10006,6 +10009,9 @@ msgstr "Kuanyama / Kwanyama"
 
 msgid "Kurdish"
 msgstr "Kurdų"
+
+msgid "Kurdistan"
+msgstr ""
 
 msgid "Kuwait"
 msgstr "Kuveitas"
@@ -10901,9 +10907,6 @@ msgstr "Minimalus siuntimo intervalas"
 
 msgid "Mins"
 msgstr "Min."
-
-msgid "Minute"
-msgstr "minutė"
 
 msgid "Minutes"
 msgstr "minučių"
@@ -12031,6 +12034,9 @@ msgstr "Nerodyti"
 
 msgid "Not associated"
 msgstr "Nesusietas"
+
+msgid "Not configured"
+msgstr "nekonfigūruota"
 
 msgid "Not currently mounted."
 msgstr "Šiuo metu jis nėra prijungtas."
@@ -13286,14 +13292,8 @@ msgstr "Maitinimo šviesos diodo būsena budėjimo režime."
 msgid "Power On Display"
 msgstr "Įjungimo ekranas"
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Maitinimo valdymas. Daugiau informacijos ieškokite savo imtuvo naudojimo instrukcijoje."
-
 msgid "Power threshold in mA"
 msgstr "Įtampos galia mA"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Galios ribos. Daugiau informacijos ieškokite savo imtuvo naudojimo instrukcijoje."
 
 msgid "PowerTimer"
 msgstr "Įjungimo laikmatis"
@@ -15063,7 +15063,7 @@ msgstr "Skenuoti "
 msgid "Scan %s"
 msgstr "Paieška %s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "Ieškoti %s diapazone"
@@ -15252,7 +15252,16 @@ msgstr "Pasirinkite '1.0' standartiniams įvykdytiems jungikliams, '1.1' nepriju
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Pasirinkite 'A' arba 'B', jei jūsų antenos sistema reikalauja to, kitaip pasirinkite \"nė vieno\". Jei nesate tikri, pasirinkite \"nė vieno\"."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'juosta', kitaip kreipkitės į savo LNB specifikacijų lapą."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Pasirinkite 'įjungta', jei šis imtuvas turi prijungtą signalinį kabelį, kitaip pasirinkite 'nieko neprijungta'."
+
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -15264,11 +15273,20 @@ msgstr "jei nustatyta \"ne\", tik derinimo pranešimas įrašomas į derinimo ž
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Jei nustatyta 'ne', galėsite išsaugoti senesnius įvykius, net ir po perjungimo, ar nutrauktus dėl laiko poslinkio."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'polarizacija', kitaip kreipkitės į savo LNB specifikacijų lapą."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Pasirinkite 'teikėjas', kad skenuoti iš anksto nustatyto kabelių multipleksų sąrašo. Pasirinkite 'juostos', kad tik skenuoti tam tikras spektro dalis. Pasirinkite 'žingsniai', kad skenuotumėte tam tikros dažnių juostos plotyje."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Pasirinkite 'Taip', jei šiam laikmačiui reikalingas pabaigos laikas."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr "Pasirinkite 'Taip', jei prieš įjungiant laikmatį reikia patikrinti tinklo srautą."
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "Pasirinkite 'taip', jei šis imtuvas yra prijungtas prie SCR įrenginio per kitą imtuvą, kitaip pasirinkite 'ne'."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Pasirinkite 'Taip', jei Dolby garso takeliams turėtų būti taikomi garsumo koregavimai."
@@ -15323,6 +15341,21 @@ msgstr "Pasirinkite \"Taip\", kad įgalintumėte mygtukų KAIRĖ/DEŠINĖ naudoj
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Jei nustatyta 'taip', kanalai be EPG duomenų nebus rodomi."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "Pasirinkite \"taip\", kad jūsų paieškoje būtų įtraukiami %s multipleksai."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "Pasirinkite \"taip\", kad įtraukti simbolių normą %s savo paieškai."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "Pasirinkite \"taip\", kad įtrauktumėte %s juostą savo paieškoje."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "Pasirinkite 'taip', jei tik siunčiate DiSEqC komandą, kad pakeisti iš vieno palydovo į kitą, arba pasirinkite 'ne', kad DiSEqC komanda būtų pakartotinai persiųsta kiekviename perjungime."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Norėdami pašalinti visus pagrindinius parametrus konfigūracijos duomenis, pasirinkite 'Taip'. Pasirinkus šią parinktį, visi Enigma2 parametrai bus grąžinti į numatytąsias reikšmes.  Tai taip pat paskatins Enigma2 paleisti pasveikinimo vedlį iš naujo."
@@ -15438,36 +15471,6 @@ msgstr "Pasirinkite \"Taip\", jei norite naudoti skaičių klavišus greitam fai
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Jei nustatyta 'taip', jungiant greitą persukimą, arba atsukimą medijos failų atkūrimo metu, bus rodoma info juosta."
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'juosta', kitaip kreipkitės į savo LNB specifikacijų lapą."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Pasirinkite 'įjungta', jei šis imtuvas turi prijungtą signalinį kabelį, kitaip pasirinkite 'nieko neprijungta'."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'polarizacija', kitaip kreipkitės į savo LNB specifikacijų lapą."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Pasirinkite 'teikėjas', kad skenuoti iš anksto nustatyto kabelių multipleksų sąrašo. Pasirinkite 'juostos', kad tik skenuoti tam tikras spektro dalis. Pasirinkite 'žingsniai', kad skenuotumėte tam tikros dažnių juostos plotyje."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr "Pasirinkite 'taip', jei šis imtuvas yra prijungtas prie SCR įrenginio per kitą imtuvą, kitaip pasirinkite 'ne'."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Pasirinkite \"taip\", kad jūsų paieškoje būtų įtraukiami %s multipleksai."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Pasirinkite \"taip\", kad įtraukti simbolių normą %s savo paieškai."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Pasirinkite \"taip\", kad įtrauktumėte %s juostą savo paieškoje."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "Pasirinkite 'taip', jei tik siunčiate DiSEqC komandą, kad pakeisti iš vieno palydovo į kitą, arba pasirinkite 'ne', kad DiSEqC komanda būtų pakartotinai persiųsta kiekviename perjungime."
-
 msgid "Select Additional Backup Files"
 msgstr "Pasirinkite papildomus failus atsarginei kopijai"
 
@@ -15515,6 +15518,9 @@ msgstr "Pasirinkite atkūrimo vietą"
 
 msgid "Select Quad Channels"
 msgstr "Pasirinkite 4 PIP kanalus"
+
+msgid "Select Satellites"
+msgstr "Pasirinkite palydovus"
 
 msgid "Select Software Update"
 msgstr "Pasirinkite programinės įrangos atnaujinimą"
@@ -15722,9 +15728,6 @@ msgstr "Pasirinkite teikėją, kurį norite pridėti..."
 msgid "Select refresh rate"
 msgstr "Pasirinkite atnaujinimo dažnį"
 
-msgid "Select Satellites"
-msgstr "Pasirinkite palydovus"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Pasirinkite, kad paieškos juostą aktyvuoti rodyklėmis '</>' (ilgai), arba '<</>>' (ilgai)."
 
@@ -15921,6 +15924,9 @@ msgstr "Pasirinkite protokolą, kurį naudoja jūsų SCR įrenginys. Pasirinkima
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "Pasirinkite palydovą, kurį jūsų antena gauna. Jei nesate tikri, pasirinkite 'automatinis' ir imtuvas bandys tai nustatyti pats."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Pasirinkite palydovą, kuris yra prijungtas prie A-jungties. Jei nesate tikri, pasirinkite 'automatinis' ir imtuvas bandys tai nustatyti pats. Jei nieko nėra prijungta prie šios jungties, pasirinkite 'niekas neprijungta'."
 
@@ -15935,9 +15941,6 @@ msgstr "Pasirinkite palydovą, kuris yra prijungtas prie D-jungties. Jei nesate 
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Pasirinkite palydovą, kurį norite konfigūruoti. Kai šis palydovas bus sukonfigūruotas, galėsite pasirinkti ir konfigūruoti kitus palydovus, kurie bus galimi naudojant tą patį imtuvą."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "Pasirinkite palydovą, kurį jūsų antena gauna. Jei nesate tikri, pasirinkite 'automatinis' ir imtuvas bandys tai nustatyti pats."
 
 msgid "Select the shifted character set"
 msgstr "Pasirinkite perkeltą simbolių rinkinį"
@@ -15999,11 +16002,11 @@ msgstr "Pasirinkite laiko juostą, toje teritorijoje arba regione."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Pasirinkite imtuvą, kuris kontroliuoja motorizuotą anteną."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "Pasirinkite imtuvą, nuo kurio priklauso šis ciklas."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Pasirinkite imtuvą, prie kurio prijungtas SCR įrenginio signalo kabelis."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "Pasirinkite imtuvą, nuo kurio priklauso šis ciklas."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "Pasirinkite naudojamo LNB/įrenginio tipą (paprastai 'Universal'). Jei jūsų LNB tipo nėra, pasirinkite 'naudotojo nustatytas'."
@@ -16364,6 +16367,9 @@ msgstr "Prieinamų kanalų aptikimui, įtraukti ir CI priskyrimą."
 msgid "Set DVB CI delay."
 msgstr ""
 
+msgid "Set Default"
+msgstr "Nustatyti numatytąjį"
+
 msgid "Set Framerate for MiniTV"
 msgstr "Nustatykite MiniTV kadrų dažnį"
 
@@ -16387,9 +16393,6 @@ msgstr "Pasirinkite veiksmą 'info' mygtukui"
 
 msgid "Set current CEC address as fixed address"
 msgstr "Nustatyti dabartinį CEC adresą kaip fiksuotą adresą"
-
-msgid "Set Default"
-msgstr "Nustatyti numatytąjį"
 
 msgid "Set end time"
 msgstr "Nustatyti pabaigos laiką"
@@ -20099,9 +20102,6 @@ msgstr "Takelis"
 msgid "Traditional Chinese"
 msgstr "Tradicinė kinų"
 
-msgid "Transcode"
-msgstr "Perkoduoti"
-
 msgid "Transcoding"
 msgstr "Transkodavimas"
 
@@ -20791,6 +20791,9 @@ msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Naudoti geografinę vietą norint nustatyti dabartinę laiko juostos vietą"
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "naudokite padidintą įtampą 14/18V, jei kyla problemų perjungiant lnb"
 
 msgid "Use interface"
 msgstr "Naudoti sąsają"
@@ -22841,7 +22844,7 @@ msgstr "momentinis įrašymas"
 msgid "internally loopthrough to"
 msgstr "vidinis ciklas į"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "neteisingas tipas"
 
 msgid "jazz"
@@ -23008,9 +23011,6 @@ msgstr "normalus"
 
 msgid "not"
 msgstr "ne"
-
-msgid "Not configured"
-msgstr "nekonfigūruota"
 
 msgid "not locked"
 msgstr "nefiksuota"
@@ -23407,9 +23407,6 @@ msgstr "neišbandytas"
 msgid "update"
 msgstr "atnaujinimas"
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr "naudokite padidintą įtampą 14/18V, jei kyla problemų perjungiant lnb"
-
 msgid "userdefined"
 msgstr "vartotojo nustatytas"
 
@@ -23478,6 +23475,18 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "CI žinyno parametrai"
+
+#~ msgid "ClientIP"
+#~ msgstr "Kliento IP"
+
+#~ msgid "Minute"
+#~ msgstr "minutė"
+
+#~ msgid "Transcode"
+#~ msgstr "Perkoduoti"
 
 #, python-format
 #~ msgid "%.3f MHz"

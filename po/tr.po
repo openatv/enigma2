@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -3504,9 +3504,6 @@ msgstr "CI (Ortak Arayüz) Kurulumu"
 msgid "CI Boot Delay"
 msgstr "CI Önyükleme Gecikmesi"
 
-msgid "CI Helper Settings"
-msgstr "CI Yardımcısı Kurulumu"
-
 #
 msgid "CI assignment"
 msgstr "CI ataması"
@@ -3516,6 +3513,9 @@ msgstr "CI etkin"
 
 msgid "CI slot: "
 msgstr "CI yuvası: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "Samba Kurulumu"
@@ -4311,9 +4311,6 @@ msgstr "Müşteri Bilgisi ( Oscam-Version:%s )"
 msgid "Client is streaming from this box!"
 msgstr "Alici bu kutudan yayın yapıyor!"
 
-msgid "ClientIP"
-msgstr "ClientIP"
-
 msgid "Clients"
 msgstr "İstemciler"
 
@@ -4978,6 +4975,12 @@ msgstr "Bu bilgi için SCR cihazınızın teknik sayfasına bakın."
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Bu bilgi için motorunuzun teknik sayfasına bakın veya varsayılan ayarı bırakın."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "Güç yönetimi. Daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "Güç eşik Daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7460,11 +7463,11 @@ msgstr "Bu zamanlayıcı için bir ad girin."
 msgid "Enter a new name for this device."
 msgstr "Yeni buket için isim girin."
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "Doğu ya da batı yarım küredeyseniz girin."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "Ekvatorun kuzeyi veya güneyinde iseniz girin."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "Doğu ya da batı yarım küredeyseniz girin."
 
 #
 msgid "Enter main menu..."
@@ -9676,14 +9679,14 @@ msgstr "Ön panelde görüntülenecek metin çok uzunsa, tekrarlanır (tekrar sa
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Birden fazla onaylanmamış anahtar kullanılıyorsa, DiSEqC komutları birden fazla kez gönderilmelidir. Bir eksi zincirindeki onaylanmamış anahtarların sayısına ayarlayın."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Dairesel polarize LNB kullanıyorsanız 'evet'i seçin, aksi halde' hayır'ı seçin."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "DiSEqC onaylı bir anahtar kullanıyorsanız, bu uydu için kullanılan LNB'ye erişmek için gereken port harfini girin."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "DiSEqC onaysız anahtar kullanıyorsanız, bu uydu için kullanılan LNB'ye erişmek için gereken port numarasını girin."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "Dairesel polarize LNB kullanıyorsanız 'evet'i seçin, aksi halde' hayır'ı seçin."
 
 #
 msgid ""
@@ -10412,6 +10415,9 @@ msgstr "Kuanyama / Kwanyama"
 
 msgid "Kurdish"
 msgstr "Kürt"
+
+msgid "Kurdistan"
+msgstr ""
 
 #
 msgid "Kuwait"
@@ -11361,10 +11367,6 @@ msgstr "Asgari gönderme aralığı"
 
 msgid "Mins"
 msgstr "Dk"
-
-#
-msgid "Minute"
-msgstr "Dakika"
 
 #
 msgid "Minutes"
@@ -12588,6 +12590,9 @@ msgstr "Gösterilmemiş"
 
 msgid "Not associated"
 msgstr "İlişkilendirilmemiş"
+
+msgid "Not configured"
+msgstr "yapılandırılmamış"
 
 msgid "Not currently mounted."
 msgstr "Şu anda takılı değil."
@@ -13924,15 +13929,9 @@ msgstr "Bekleme sırasında Güç LED'i durumu."
 msgid "Power On Display"
 msgstr "Göstergedeki güç"
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Güç yönetimi. Daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
-
 #
 msgid "Power threshold in mA"
 msgstr "Güç eşiği (mA)"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Güç eşik Daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
 
 msgid "PowerTimer"
 msgstr "PowerTimer"
@@ -15825,7 +15824,7 @@ msgstr "Tara "
 msgid "Scan %s"
 msgstr "%s tara"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "%s bandını tara"
@@ -16025,8 +16024,17 @@ msgstr "Standart taahhütlü anahtarlar için '1.0', kabul edilmeyen anahtarlar 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Anten sisteminiz bunu gerektiriyorsa 'A' veya 'B' seçeneğini seçin, aksi halde 'none' seçeneğini seçin. Emin değilseniz 'none' seçeneğini seçin."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Eğer bir 'evrensel' LNB kullanıyorsanız, 'band' seçeneğini seçin, aksi takdirde LNB teknik tablonuza bakın."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr "Bir paket güncellemesinden önce paket temizlemeye zorlamak için 'Etkinleştir'i seçin. Bu, paket listesinin güncel olduğundan emin olmak için yararlıdır ve güncelleme sırasında sorunları önleyebilir/çözebilir. Bunu yalnızca çevrimiçi güncelleme yapamadığınızda etkinleştirin."
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Bu tunerin bağlı bir sinyal kablosu varsa 'etkin' seçeneğini seçin, aksi halde 'bağlı hiçbir şey' seçin."
+
+msgid "Select 'Enable' to start the CI+ helper."
+msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "'Hayır' olarak ayarlanırsa, zaman kayması yalnızca bir arabellek dosyası kullanılır. 'Eski dosyalara [dakika]] ve' Timeshift boş alan kontrolü 'için Timeshift'i kontrol etmenizi tavsiye ederiz. ayarlamak."
@@ -16037,11 +16045,20 @@ msgstr "Hata ayıklama günlük dosyasına yalnızca bir günlük mesajı yazmak
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "'Hayır' olarak ayarlanırsa, zaman kaymasını duraklattıktan veya kesintiye uğrattıktan sonra bile eski olayları kaydedebilirsiniz."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Eğer bir 'evrensel' LNB kullanıyorsanız 'polarizasyonu' seçin, aksi halde LNB özellik sayfanıza bakın."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Önceden tanımlanmış kablo çoklama listesinden taramak için 'sağlayıcı'yı seçin. Spektrumun yalnızca belirli kısımlarını taramak için 'bantları' seçin. Belirli bir frekans bant genişliğinin adımlarında taramak için 'adımları' seçin."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Bu zamanlayıcı için bir bitiş zamanı gerekiyorsa 'Evet'i seçin."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr "Zamanlayıcıyı etkinleştirmeden önce ağ trafiğinin kontrol edilmesi gerekiyorsa 'Evet'i seçin."
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "Bu alıcı SCR cihazına başka bir alıcı aracılığıyla bağlıysa 'evet' seçeneğini seçin, aksi halde 'hayır' seçeneğini seçin."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Dolby ses parçalarına ses ayarı yapılması gerekiyorsa 'Evet'i seçin."
@@ -16096,6 +16113,21 @@ msgstr "SOL/SAĞ düğmeleri başka türlü tanımlanmadığında SayfaYukarı/S
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "'evet' EPG bilgisi olmayan kanallar gösterilmez."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "Aramanıza %s multipleksleri dahil etmek için 'evet'i seçin."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "Aramanıza %s sembol oranı dahil etmek için 'evet'i seçin."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "Aramanıza %s grubunu dahil etmek için 'evet'i seçin."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "DiSEqC komutunu yalnızca bir uydudan diğerine değiştirirken göndermek için 'yes' seçeneğini ya da her zap'ta tekrar gönderilmesi için DiSEqC komutunun 'hayır' seçeneğini seçin."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Tüm ana ayarlar yapılandırma verilerini kaldırmak için 'Evet'i seçin. Bu seçeneğin seçilmesi, tüm Enigma2 ayarlarını varsayılan değerlerine geri getirecektir. Bu aynı zamanda Enigma2'nin yeniden başlatma sırasında Hoş Geldiniz Sihirbazını çalıştırmasına neden olacaktır."
@@ -16211,36 +16243,6 @@ msgstr "Dosya / dizinlerin hızlı seçimi için sayı tuşlarını kullanmak ü
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Medya oynatma sırasında hızlı ileri veya geri sararken Bilgi Çubuğunu görüntülemek için 'Evet'i seçin."
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Eğer bir 'evrensel' LNB kullanıyorsanız, 'band' seçeneğini seçin, aksi takdirde LNB teknik tablonuza bakın."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Bu tunerin bağlı bir sinyal kablosu varsa 'etkin' seçeneğini seçin, aksi halde 'bağlı hiçbir şey' seçin."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Eğer bir 'evrensel' LNB kullanıyorsanız 'polarizasyonu' seçin, aksi halde LNB özellik sayfanıza bakın."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Önceden tanımlanmış kablo çoklama listesinden taramak için 'sağlayıcı'yı seçin. Spektrumun yalnızca belirli kısımlarını taramak için 'bantları' seçin. Belirli bir frekans bant genişliğinin adımlarında taramak için 'adımları' seçin."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr "Bu alıcı SCR cihazına başka bir alıcı aracılığıyla bağlıysa 'evet' seçeneğini seçin, aksi halde 'hayır' seçeneğini seçin."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Aramanıza %s multipleksleri dahil etmek için 'evet'i seçin."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Aramanıza %s sembol oranı dahil etmek için 'evet'i seçin."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Aramanıza %s grubunu dahil etmek için 'evet'i seçin."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "DiSEqC komutunu yalnızca bir uydudan diğerine değiştirirken göndermek için 'yes' seçeneğini ya da her zap'ta tekrar gönderilmesi için DiSEqC komutunun 'hayır' seçeneğini seçin."
-
 msgid "Select Additional Backup Files"
 msgstr "Ek yedek dosyaları seçin"
 
@@ -16290,6 +16292,9 @@ msgstr "Oynatma Konumunu Seçin"
 
 msgid "Select Quad Channels"
 msgstr "Dört Kanal Seç"
+
+msgid "Select Satellites"
+msgstr "Uyduları seç"
 
 msgid "Select Software Update"
 msgstr "Yazılım Güncelleme Seç"
@@ -16507,9 +16512,6 @@ msgstr "Eklenecek sağlayıcı seçin..."
 msgid "Select refresh rate"
 msgstr "Yenileme hızı seçin"
 
-msgid "Select Satellites"
-msgstr "Uyduları seç"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Arama çubuğunun Sağ/sol (uzun) oklarıyla veya << >> (uzun) tuşlarıyla etkinleşmesini seçin."
 
@@ -16711,6 +16713,9 @@ msgstr "SCR cihazınız tarafından kullanılan protokolü seçin. Seçenekler '
 msgid "Select the refresh rate to be used on the TV."
 msgstr "TV'de kullanılacak yenileme hızını seçin."
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "Çanağınızın alacağı uyduyu seçin. Emin değilseniz 'otomatik' seçeneğini seçin, alıcı bunu sizin için belirlemeye çalışır."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Anahtarınızın A Portuna bağlı olan uyduyu seçin. Emin değilseniz 'otomatik' seçeneğini seçin, alıcı bunu sizin için belirlemeye çalışır. Bu bağlantı noktasına hiçbir şey bağlı değilse, 'bağlı hiçbir şey'i seçin."
 
@@ -16725,9 +16730,6 @@ msgstr "Anahtarınızın Port-D'sine bağlı olan uyduyu seçin. Emin değilseni
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Yapılandırmak istediğiniz uyduyu seçin. Bu uydu yapılandırıldıktan sonra, bu aynı tarayıcıyı kullanarak erişilecek diğer uyduları seçebilir ve yapılandırabilirsiniz."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "Çanağınızın alacağı uyduyu seçin. Emin değilseniz 'otomatik' seçeneğini seçin, alıcı bunu sizin için belirlemeye çalışır."
 
 msgid "Select the shifted character set"
 msgstr "Kaydırılan karakter kümesini seçin"
@@ -16789,11 +16791,11 @@ msgstr "Alan veya bölge içindeki saat dilimini seçin."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Motorlu tabağı kontrol eden tuneri seçin."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "Bu geçişin bağlı olduğu tarayıcıyı seçin."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "SCR cihazının sinyal kablosunun bağlı olduğu alıcıyı seçin."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "Bu geçişin bağlı olduğu tarayıcıyı seçin."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "Kullanılan LNB / cihaz türünü seçin (normalde 'Evrensel'). LNB tipiniz mevcut değilse 'kullanıcı tanımlı' seçeneğini seçin."
@@ -17178,6 +17180,9 @@ msgstr "Mevcut servislerin tespiti için CI atamasını ayarlayın."
 msgid "Set DVB CI delay."
 msgstr "DVB CI gecikmesini ayarlayın."
 
+msgid "Set Default"
+msgstr "Varsayılana ayarla"
+
 msgid "Set Framerate for MiniTV"
 msgstr "MiniTV için Framerate ayarlayın"
 
@@ -17201,9 +17206,6 @@ msgstr "'Bilgi' tuşu için eylemi ayarla"
 
 msgid "Set current CEC address as fixed address"
 msgstr "Mevcut CEC adresini sabit adres olarak ayarla"
-
-msgid "Set Default"
-msgstr "Varsayılana ayarla"
 
 #
 msgid "Set end time"
@@ -21098,10 +21100,6 @@ msgstr "İz"
 msgid "Traditional Chinese"
 msgstr "Geleneksel çince"
 
-#
-msgid "Transcode"
-msgstr "Kod dönüştürme"
-
 msgid "Transcoding"
 msgstr "Transcoding"
 
@@ -21840,6 +21838,9 @@ msgstr "WAN bilgilerini almak için coğrafi konumu kullanma"
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Geçerli saat dilimi konumunu ayarlamak için coğrafi konumu kullanın"
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "lnb’yi değiştirirken sorunlar varsa, “14 / 18V”"
 
 #
 msgid "Use interface"
@@ -24006,7 +24007,7 @@ msgstr "anlık kayıt"
 msgid "internally loopthrough to"
 msgstr "dahili olarak ilmek"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "geçersiz tip"
 
 msgid "jazz"
@@ -24194,9 +24195,6 @@ msgstr "normal"
 #
 msgid "not"
 msgstr "yok"
-
-msgid "Not configured"
-msgstr "yapılandırılmamış"
 
 #
 msgid "not locked"
@@ -24634,9 +24632,6 @@ msgstr "test edilemeyen"
 msgid "update"
 msgstr "güncelleştirme"
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr "lnb’yi değiştirirken sorunlar varsa, “14 / 18V”"
-
 #
 msgid "userdefined"
 msgstr "kullanıcı tanımlı"
@@ -24708,6 +24703,20 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "CI Yardımcısı Kurulumu"
+
+#~ msgid "ClientIP"
+#~ msgstr "ClientIP"
+
+#
+#~ msgid "Minute"
+#~ msgstr "Dakika"
+
+#
+#~ msgid "Transcode"
+#~ msgstr "Kod dönüştürme"
 
 #, python-format
 #~ msgid "%.3f MHz"

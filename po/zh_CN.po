@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -3377,9 +3377,6 @@ msgstr "CI(通用接口)设置"
 msgid "CI Boot Delay"
 msgstr ""
 
-msgid "CI Helper Settings"
-msgstr "CI 助手设置"
-
 msgid "CI assignment"
 msgstr "接口分配（CI）"
 
@@ -3388,6 +3385,9 @@ msgstr ""
 
 msgid "CI slot: "
 msgstr "CI插槽: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba设置"
@@ -4150,9 +4150,6 @@ msgstr "客户端信息(Oscam-版本: %s)"
 msgid "Client is streaming from this box!"
 msgstr "客户端正在从这个机顶盒中进行流式传输!"
 
-msgid "ClientIP"
-msgstr "客户端IP"
-
 msgid "Clients"
 msgstr "客户端"
 
@@ -4786,6 +4783,12 @@ msgstr "有关此信息,请参阅SCR设备规格表."
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "有关此信息,请参阅电机的规格表,或保留默认设置."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "电源管理.有关更多信息,请查阅您的接收器手册."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "功率阈值.有关更多信息,请查阅您的接收器手册."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7144,11 +7147,11 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr "输入此设备的新名称."
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "输入您是在东半球还是西半球."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "输入您是否在赤道以北或以南."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "输入您是在东半球还是西半球."
 
 msgid "Enter main menu..."
 msgstr "输入主菜单..."
@@ -9251,14 +9254,14 @@ msgstr ""
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "如果使用多个未提交的开关,则必须多次设置DISEQC命令.设置为链中未提交的开关数减去1."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "如果您使用的是圆极化LNB,请选择'是',否则请选择'否'."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "如果使用的是DISEQC提交的开关,请输入访问此卫星使用的高频头所需的字母."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "如果使用的是DiSEqC uncommitted开关,请输入访问此卫星使用的高频头所需的端口号."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "如果您使用的是圆极化LNB,请选择'是',否则请选择'否'."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -9949,6 +9952,9 @@ msgstr "关山"
 
 msgid "Kurdish"
 msgstr "库尔德语"
+
+msgid "Kurdistan"
+msgstr ""
 
 msgid "Kuwait"
 msgstr "科威特"
@@ -10842,9 +10848,6 @@ msgid "Minimum send interval"
 msgstr "最小发送间隔"
 
 msgid "Mins"
-msgstr "分钟"
-
-msgid "Minute"
 msgstr "分钟"
 
 msgid "Minutes"
@@ -11973,6 +11976,9 @@ msgstr "不显示"
 
 msgid "Not associated"
 msgstr "未关联"
+
+msgid "Not configured"
+msgstr "未配置"
 
 msgid "Not currently mounted."
 msgstr "当前未安装."
@@ -13225,14 +13231,8 @@ msgstr "待机期间电源LED的状态."
 msgid "Power On Display"
 msgstr "LCD电源控制"
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "电源管理.有关更多信息,请查阅您的接收器手册."
-
 msgid "Power threshold in mA"
 msgstr "功率阈值(毫安)"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "功率阈值.有关更多信息,请查阅您的接收器手册."
 
 msgid "PowerTimer"
 msgstr "电源定时器"
@@ -15002,7 +15002,7 @@ msgstr "扫描 "
 msgid "Scan %s"
 msgstr "扫描 %s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "扫描 %s 波段"
@@ -15189,7 +15189,16 @@ msgstr "为标准开关选择'1.0',为非固定开关选择'1.1,'为使用定位
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "如果天线系统需要,请选择'A'或'B',否则请选择’无'.如果不确定,请选择'无'."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "如果使用'通用”高频头,请选择'波段',否则请查阅高频头规格表."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "如果此调谐器已连接信号电缆,请选择'已启用',否则选择'未连接'."
+
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -15201,11 +15210,20 @@ msgstr "如果设置为'否',则仅将调试消息写入调试日志 "
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "如果设为'否',即使在切换或中断时移后,您也可以保存较旧的事件."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "如果使用'通用'高频头,请选择'极化',否则请查阅LNB规格表."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "从电缆复用器的预定义列表中选择'供应商'进行扫描.选择'频段'仅扫描频谱的某些部分.选择'频率步长'以特定频率带宽进行扫描."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr ""
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "如果此调谐器通过另一个调谐器连接到SCR设备,请选择'是',否则请选择'否'."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
@@ -15260,6 +15278,21 @@ msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "如果设为'是',没有EPG的频道将不显示."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "选择'是'可在搜索中包含 %s 多路复用."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "选择'是'可将符号速率 %s 包含在搜索中."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "选择'是'可在搜索中包括 %s 波段."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "选择‘是’仅在从一颗卫星转换为另一颗卫星时发送DiSEqC命令,或者选择'否'以使DiSEqC命令在每次切换时都重新发送."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
@@ -15375,36 +15408,6 @@ msgstr ""
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "如果设置为'是'在媒体播放中快进或快退将会显示信息栏."
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "如果使用'通用”高频头,请选择'波段',否则请查阅高频头规格表."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "如果此调谐器已连接信号电缆,请选择'已启用',否则选择'未连接'."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "如果使用'通用'高频头,请选择'极化',否则请查阅LNB规格表."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "从电缆复用器的预定义列表中选择'供应商'进行扫描.选择'频段'仅扫描频谱的某些部分.选择'频率步长'以特定频率带宽进行扫描."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr "如果此调谐器通过另一个调谐器连接到SCR设备,请选择'是',否则请选择'否'."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "选择'是'可在搜索中包含 %s 多路复用."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "选择'是'可将符号速率 %s 包含在搜索中."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "选择'是'可在搜索中包括 %s 波段."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "选择‘是’仅在从一颗卫星转换为另一颗卫星时发送DiSEqC命令,或者选择'否'以使DiSEqC命令在每次切换时都重新发送."
-
 msgid "Select Additional Backup Files"
 msgstr "选择额外的备份文件"
 
@@ -15452,6 +15455,9 @@ msgstr ""
 
 msgid "Select Quad Channels"
 msgstr "选择四画面频道"
+
+msgid "Select Satellites"
+msgstr "选择卫星"
 
 msgid "Select Software Update"
 msgstr "选择软件更新"
@@ -15659,9 +15665,6 @@ msgstr "选择并添加供应商..."
 msgid "Select refresh rate"
 msgstr "选择刷新率"
 
-msgid "Select Satellites"
-msgstr "选择卫星"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "选择要激活的搜索栏,通过L/R箭头(长按)或<< >>(长按)."
 
@@ -15858,6 +15861,9 @@ msgstr "选择SCR设备使用的协议.可选择的选项有'SCR Unicable'(可�
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "选择接收的卫星.如果不确定,请选择'自动',接收器将尝试为您确定."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "选择连接到交换机端口A的卫星.如果不确定,请选择'自动',接收器将尝试为您确定.如果没有连接到此端口,请选择'无连接'."
 
@@ -15872,9 +15878,6 @@ msgstr "选择连接到交换机端口D的卫星.如果您不确定,请选择'�
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "选择要配置的卫星.一旦配置了卫星,您就可以 选择和配置将使用同一个调谐器访问的其他卫星."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "选择接收的卫星.如果不确定,请选择'自动',接收器将尝试为您确定."
 
 msgid "Select the shifted character set"
 msgstr "选择转换后的字符集"
@@ -15936,11 +15939,11 @@ msgstr "选择区域或区域内的时区."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "选择控制电动极轴的调谐器."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "选择此循环依赖的调谐器."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "选择与SCR设备的信号线连接的调谐器."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "选择此循环依赖的调谐器."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "选择要使用的LNB/设备类型(通常为'通用').如果您的LNB类型不可用,请选择'用户自定义'."
@@ -16298,6 +16301,9 @@ msgstr "设置CI分配检测可用的频道."
 msgid "Set DVB CI delay."
 msgstr ""
 
+msgid "Set Default"
+msgstr "设置默认值"
+
 msgid "Set Framerate for MiniTV"
 msgstr "设置MiniTV帧率"
 
@@ -16321,9 +16327,6 @@ msgstr "为'Info'键设置动作"
 
 msgid "Set current CEC address as fixed address"
 msgstr "将当前CEC地址设置为固定地址"
-
-msgid "Set Default"
-msgstr "设置默认值"
 
 msgid "Set end time"
 msgstr "设置结束时间"
@@ -20022,9 +20025,6 @@ msgstr "轨道"
 msgid "Traditional Chinese"
 msgstr "繁体中文"
 
-msgid "Transcode"
-msgstr "转码"
-
 msgid "Transcoding"
 msgstr "转码"
 
@@ -20714,6 +20714,9 @@ msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "使用定位设置当前时区位置"
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "如果在切换lnb时出现问题,请使用增加的电压'14/18V'"
 
 msgid "Use interface"
 msgstr "使用界面"
@@ -22734,7 +22737,7 @@ msgstr "即时录制"
 msgid "internally loopthrough to"
 msgstr "内循环到"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "无效类型"
 
 msgid "jazz"
@@ -22901,9 +22904,6 @@ msgstr "正常"
 
 msgid "not"
 msgstr "否"
-
-msgid "Not configured"
-msgstr "未配置"
 
 msgid "not locked"
 msgstr "未锁定"
@@ -23300,9 +23300,6 @@ msgstr "无法测试"
 msgid "update"
 msgstr "更新"
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr "如果在切换lnb时出现问题,请使用增加的电压'14/18V'"
-
 msgid "userdefined"
 msgstr "用户定义"
 
@@ -23368,6 +23365,18 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "CI 助手设置"
+
+#~ msgid "ClientIP"
+#~ msgstr "客户端IP"
+
+#~ msgid "Minute"
+#~ msgstr "分钟"
+
+#~ msgid "Transcode"
+#~ msgstr "转码"
 
 #, python-format
 #~ msgid "%.3f MHz"

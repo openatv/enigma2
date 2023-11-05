@@ -547,7 +547,7 @@ class PliExtraInfo(Poll, Converter):
 		if self.type == "TerrestrialChannelNumber":
 			return self.createChannelNumber(fedata, feraw)
 
-		return _("invalid type")
+		return _("Invalid type")
 
 	text = property(getText)
 

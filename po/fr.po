@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2023-08-12 03:37+0000\n"
 "Last-Translator: JPierre <jpcoquelle@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -3380,9 +3380,6 @@ msgstr "Configuration CI (Interface Commune)"
 msgid "CI Boot Delay"
 msgstr ""
 
-msgid "CI Helper Settings"
-msgstr "Configurer CIHelper"
-
 msgid "CI assignment"
 msgstr "Assignation CI"
 
@@ -3391,6 +3388,9 @@ msgstr ""
 
 msgid "CI slot: "
 msgstr "slot CI : "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "Configuration CIFS/Samba"
@@ -4156,9 +4156,6 @@ msgstr "Info Client ( Version-Oscam : %s )"
 msgid "Client is streaming from this box!"
 msgstr "Le client est en streaming depuis cette boîte !"
 
-msgid "ClientIP"
-msgstr "IPclient"
-
 msgid "Clients"
 msgstr "Clients"
 
@@ -4792,6 +4789,12 @@ msgstr "Consulter la fiche technique de votre périphérique SCR pour obtenir ce
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Consultez la fiche technique de votre moteur, ou gardez les valeurs par défaut."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "Gestion de l’alimentation. Consultez le manuel de votre récepteur pour plus d’information."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "Seuil de puissance. Consulter le manuel de votre récepteur pour plus d’informations."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7153,11 +7156,11 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr "Saisissez un nouveau nom pour cet appareil."
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "Saisissez si vous êtes dans l’hémisphère est ou ouest."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "Saisissez si vous êtes au nord ou au sud de l’équateur."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "Saisissez si vous êtes dans l’hémisphère est ou ouest."
 
 msgid "Enter main menu..."
 msgstr "Entrer dans le menu principal..."
@@ -9262,14 +9265,14 @@ msgstr ""
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Si vous utilisez plusieurs commutateurs DiSEqC non-commité les commandes doivent être envoyées plusieurs fois. Définir le nombre de commutateur non commité dans la chaîne moins un."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Si vous utilisez un LNB à polarisation circulaire choisir ‘oui’, autrement choisir ‘non’."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "Si vous utilisez un commutateur DiSEqC commité entrez la lettre du port requise pour accéder au LNB pour ce satellite."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "Si vous utilisez un commutateur DiSEqC non-commité entrez le numéro du port requis pour accéder au LNB utilisé pour ce satellite."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "Si vous utilisez un LNB à polarisation circulaire choisir ‘oui’, autrement choisir ‘non’."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -9960,6 +9963,9 @@ msgstr "Kuanyama / Kwanyama"
 
 msgid "Kurdish"
 msgstr "Kurde"
+
+msgid "Kurdistan"
+msgstr ""
 
 msgid "Kuwait"
 msgstr "Koweit"
@@ -10855,9 +10861,6 @@ msgstr "Intervalle minimum d'envoi"
 
 msgid "Mins"
 msgstr "Mins"
-
-msgid "Minute"
-msgstr "minute"
 
 msgid "Minutes"
 msgstr "Minutes"
@@ -11987,6 +11990,9 @@ msgstr "Non affiché"
 
 msgid "Not associated"
 msgstr "Non-Associé"
+
+msgid "Not configured"
+msgstr "Pas configuré"
 
 msgid "Not currently mounted."
 msgstr ""
@@ -13242,14 +13248,8 @@ msgstr "État de la LED d'alimentation pendant la mise en veille."
 msgid "Power On Display"
 msgstr "Activer l'affichage"
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Gestion de l’alimentation. Consultez le manuel de votre récepteur pour plus d’information."
-
 msgid "Power threshold in mA"
 msgstr "Seuil de puissance en mA"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Seuil de puissance. Consulter le manuel de votre récepteur pour plus d’informations."
 
 msgid "PowerTimer"
 msgstr "Programmations d'alimentation"
@@ -15023,7 +15023,7 @@ msgstr "Rechercher "
 msgid "Scan %s"
 msgstr "Rechercher %s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "Rechercher bande %s"
@@ -15210,7 +15210,16 @@ msgstr "Sélectionnez ‘1.0’ pour un commutateur commité standard, ‘1.1’
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Sélectionnez ‘A’ ou ‘B’ si votre système aérien nécessite cela, sinon laissez sur ‘aucun’. Si vous n’êtes pas certain sélectionnez ‘aucun’."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Sélectionnez ‘bande’ si vous utilisez un LNB ‘universel’, sinon consultez la fiche technique de votre LNB."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Sélectionnez ‘activé’ si le tuner a un câble avec du signal connecté, sinon choisir ‘rien de connecté’."
+
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -15222,11 +15231,20 @@ msgstr "s'il est défini sur « non », seul un message de débogage est écrit 
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Si mis à 'non', vous pouvez sauver les événements plus anciens même après un zap ou une interruption du PauseDirect."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Sélectionnez ‘polarisation’ si vous utilisez un LNB ‘universel’, sinon consultez la fiche technique de votre LNB."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Sélectionnez ‘opérateur’ pour scanner à partir de la liste prédéfinie des multiplexes du câble. Sélectionnez ‘bandes’ pour scanner uniquement certaines parties du spectre. Sélectionnez ‘pas’ pour balayer par incréments d’une largeur de bande de fréquence particulière."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr ""
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "Sélectionnez ‘oui’ si ce tuner est connecté à un périphérique SCR à travers un autre tuner, sinon sélectionnez ‘non’."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
@@ -15281,6 +15299,21 @@ msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Si mis à 'oui' les chaînes sans EPG ne seront pas affichées."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "Sélectionnez ‘oui’ pour inclure les multiplexes %s dans votre recherche."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "Sélectionnez ‘oui’ pour inclure le taux de symbole %s dans votre recherche."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "Sélectionnez ‘oui’ pour inclure la bande %s dans votre recherche."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "Sélectionnez ‘oui’ pour envoyer uniquement la commande DiSEqC lorsqu’on change de satellite, ou choisir ‘non’ pour que la commande DiSEqC soit renvoyée à chaque zap."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
@@ -15396,36 +15429,6 @@ msgstr ""
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Si mis à 'oui' la barre d'info sera affichée en avance et recul rapide lors de la lecture d'un média."
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Sélectionnez ‘bande’ si vous utilisez un LNB ‘universel’, sinon consultez la fiche technique de votre LNB."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Sélectionnez ‘activé’ si le tuner a un câble avec du signal connecté, sinon choisir ‘rien de connecté’."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Sélectionnez ‘polarisation’ si vous utilisez un LNB ‘universel’, sinon consultez la fiche technique de votre LNB."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Sélectionnez ‘opérateur’ pour scanner à partir de la liste prédéfinie des multiplexes du câble. Sélectionnez ‘bandes’ pour scanner uniquement certaines parties du spectre. Sélectionnez ‘pas’ pour balayer par incréments d’une largeur de bande de fréquence particulière."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr "Sélectionnez ‘oui’ si ce tuner est connecté à un périphérique SCR à travers un autre tuner, sinon sélectionnez ‘non’."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Sélectionnez ‘oui’ pour inclure les multiplexes %s dans votre recherche."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Sélectionnez ‘oui’ pour inclure le taux de symbole %s dans votre recherche."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Sélectionnez ‘oui’ pour inclure la bande %s dans votre recherche."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "Sélectionnez ‘oui’ pour envoyer uniquement la commande DiSEqC lorsqu’on change de satellite, ou choisir ‘non’ pour que la commande DiSEqC soit renvoyée à chaque zap."
-
 msgid "Select Additional Backup Files"
 msgstr "Choisir les fichiers additionnels à sauvegarder"
 
@@ -15473,6 +15476,9 @@ msgstr ""
 
 msgid "Select Quad Channels"
 msgstr "Sélectionner les canaux quadruples"
+
+msgid "Select Satellites"
+msgstr "Sélectionner les satellites"
 
 msgid "Select Software Update"
 msgstr "Choisir mise à jour logiciel"
@@ -15680,9 +15686,6 @@ msgstr "Sélectionner l’opérateur à ajouter..."
 msgid "Select refresh rate"
 msgstr "Sélectionner la vitesse rafraîchissement"
 
-msgid "Select Satellites"
-msgstr "Sélectionner les satellites"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Choisir si la barre de recherche doit être activée par les flèches G/D (long) ou << >> (long)."
 
@@ -15879,6 +15882,9 @@ msgstr "Sélectionnez le protocole utilisé par votre appareil SCR. Les choix so
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "Sélectionnez le satellite que reçoit votre antenne. Si vous n’êtes pas certains choisissez ‘automatique’ et le receveur va essayer de déterminer ceci pour vous."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Sélectionnez le satellite qui est connecté sur le Port-A de votre commutateur. Si vous n’êtes pas certains choisir ‘automatique’ et le récepteur va essayer de déterminer ceci pour vous. Si rien n’est connecté sur ce port, choisir ‘rien n’est connecté’."
 
@@ -15893,9 +15899,6 @@ msgstr "Sélectionnez le satellite qui est connecté sur le Port-D de votre comm
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Sélectionnez le satellite que vous voulez configurer. Lorsque ce satellite est configuré vous pouvez sélectionner et configurer les autres satellites qui seront accédés en utilisant ce même tuner."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "Sélectionnez le satellite que reçoit votre antenne. Si vous n’êtes pas certains choisissez ‘automatique’ et le receveur va essayer de déterminer ceci pour vous."
 
 msgid "Select the shifted character set"
 msgstr "Sélectionnez le jeu de caractères décalé"
@@ -15957,11 +15960,11 @@ msgstr "Sélectionnez le fuseau horaire dans la zone ou la région."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Sélectionnez le tuner qui contrôle l’antenne motorisée."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "Sélectionnez le tuner dont ce rebouclage dépend."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Sélectionnez le tuner auquel est connecté le câble du périphérique SCR."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "Sélectionnez le tuner dont ce rebouclage dépend."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "Sélectionnez le type de LNB/périphérique étant utilisé (normallement ‘Universel’). Si votre type de LNB n’est pas disponible choisir ‘défini par l’utilisateur’."
@@ -16319,6 +16322,9 @@ msgstr "Définir l’assignation du CI pour la détection des services disponibl
 msgid "Set DVB CI delay."
 msgstr ""
 
+msgid "Set Default"
+msgstr "Définir par défaut"
+
 msgid "Set Framerate for MiniTV"
 msgstr "Régler le fps pour MiniTV"
 
@@ -16342,9 +16348,6 @@ msgstr "Définir l’action pour la touche 'Info'"
 
 msgid "Set current CEC address as fixed address"
 msgstr "Définir l'adresse CEC actuelle comme adresse fixe"
-
-msgid "Set Default"
-msgstr "Définir par défaut"
 
 msgid "Set end time"
 msgstr "Régler l'heure de fin"
@@ -20068,9 +20071,6 @@ msgstr "Piste"
 msgid "Traditional Chinese"
 msgstr "Chinois traditionnel"
 
-msgid "Transcode"
-msgstr "Transcoder"
-
 msgid "Transcoding"
 msgstr ""
 
@@ -20761,6 +20761,9 @@ msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Utiliser la géolocalisation pour définir l'emplacement du fuseau horaire actuel"
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "utiliser une tension accrue '14/18V' s'il y a des problèmes lors de la commutation du LNB"
 
 msgid "Use interface"
 msgstr "Utiliser l'interface"
@@ -22786,7 +22789,7 @@ msgstr "enregistrement instantané"
 msgid "internally loopthrough to"
 msgstr "rebouclé en interne par"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "Type non valide"
 
 msgid "jazz"
@@ -22953,9 +22956,6 @@ msgstr "normal"
 
 msgid "not"
 msgstr "non"
-
-msgid "Not configured"
-msgstr "Pas configuré"
 
 msgid "not locked"
 msgstr "Pas verrouillé"
@@ -23352,9 +23352,6 @@ msgstr "non testable"
 msgid "update"
 msgstr "mise à jour"
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr "utiliser une tension accrue '14/18V' s'il y a des problèmes lors de la commutation du LNB"
-
 msgid "userdefined"
 msgstr "défini par l'utilisateur"
 
@@ -23420,6 +23417,18 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "Configurer CIHelper"
+
+#~ msgid "ClientIP"
+#~ msgstr "IPclient"
+
+#~ msgid "Minute"
+#~ msgstr "minute"
+
+#~ msgid "Transcode"
+#~ msgstr "Transcoder"
 
 #, python-format
 #~ msgid "%.3f MHz"

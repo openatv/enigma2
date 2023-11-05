@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-29 09:24+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -3421,9 +3421,6 @@ msgstr "CI (Common Interface) beállítása"
 msgid "CI Boot Delay"
 msgstr ""
 
-msgid "CI Helper Settings"
-msgstr "CIHelper beállítása"
-
 msgid "CI assignment"
 msgstr "CI hozzárendelés"
 
@@ -3432,6 +3429,9 @@ msgstr ""
 
 msgid "CI slot: "
 msgstr "CI foglalat: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba beállítása"
@@ -4190,9 +4190,6 @@ msgstr "Kliens információ ( Oscam verzió: %s )"
 msgid "Client is streaming from this box!"
 msgstr ""
 
-msgid "ClientIP"
-msgstr "Kliens IP"
-
 msgid "Clients"
 msgstr "Kliensek"
 
@@ -4826,6 +4823,12 @@ msgstr "Ehhez az információért forduljon az SCR-eszköz specifikációs lapj�
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Ehhez az információért forduljon a motor specifikációs lapjához, vagy hagyja meg az alapértelmezett beállítást."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "Energiagazdálkodás. További információkért olvassa el a vevőkészülék kézikönyvét."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "Energiaküszöb. További információkért olvassa el a vevőkészülék kézikönyvét."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -7199,11 +7202,11 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr ""
 
-msgid "Enter if you are in the East or West hemisphere."
-msgstr "Adja meg, ha a keleti vagy a nyugati féltekén helyezkedik el."
-
 msgid "Enter if you are North or South of the equator."
 msgstr "Adja meg, ha az Egyenlítőtől északra vagy délre van."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "Adja meg, ha a keleti vagy a nyugati féltekén helyezkedik el."
 
 msgid "Enter main menu..."
 msgstr "Belépés a főmenübe..."
@@ -9321,14 +9324,14 @@ msgstr ""
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Több nem átváltott kapcsoló használata esetén a DiSEqC parancsokat többször kell elküldeni. Állítsa be a láncon levő nem végrehajtott kapcsolók számát, mínusz egy."
 
-msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Ha körkörös polarizált LNB-t használ, válassza az 'igen' lehetőséget, ellenkező esetben válassza a 'nem' lehetőséget."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "Ha DiSEqC véglegesített kapcsolót használ, adja meg a műholdas lnb eléréséhez szükséges port szám leírását."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "Ha nem véglegesített DiSEqC kapcsolót használ, adja meg a műholdhoz használt LNB eléréséhez szükséges port számot."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "Ha körkörös polarizált LNB-t használ, válassza az 'igen' lehetőséget, ellenkező esetben válassza a 'nem' lehetőséget."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -10032,6 +10035,9 @@ msgid "Kuanyama / Kwanyama"
 msgstr ""
 
 msgid "Kurdish"
+msgstr ""
+
+msgid "Kurdistan"
 msgstr ""
 
 msgid "Kuwait"
@@ -10948,9 +10954,6 @@ msgstr "Minimális ismétlési időköz"
 
 msgid "Mins"
 msgstr "Perc"
-
-msgid "Minute"
-msgstr "perc"
 
 msgid "Minutes"
 msgstr "perc"
@@ -12106,6 +12109,9 @@ msgstr "Nem látható"
 
 msgid "Not associated"
 msgstr "Nem-csatlakozott"
+
+msgid "Not configured"
+msgstr "nem konfigurált"
 
 msgid "Not currently mounted."
 msgstr ""
@@ -13370,14 +13376,8 @@ msgstr "A Power LED állapota a készülék Készenléti állapotában."
 msgid "Power On Display"
 msgstr "LCD kijelző legyen bekapcsolva"
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Energiagazdálkodás. További információkért olvassa el a vevőkészülék kézikönyvét."
-
 msgid "Power threshold in mA"
 msgstr "Áram határérték (mA)"
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Energiaküszöb. További információkért olvassa el a vevőkészülék kézikönyvét."
 
 msgid "PowerTimer"
 msgstr "Kikapcsolás Időzítő"
@@ -15158,7 +15158,7 @@ msgstr "Keresés "
 msgid "Scan %s"
 msgstr "%s keresés"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "%s sáv szkennelése"
@@ -15349,7 +15349,16 @@ msgstr "Válassza az '1.0' lehetőséget a szabványos vezérelt kapcsolókhoz, 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "Válassza az 'A' vagy 'B' opciót, ha a aerial rendszer ezt megköveteli, egyébként válassza a 'nincs' lehetőséget. Ha nem biztos benne, válassza a 'nincs' lehetőséget."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Ha 'univerzális' LNB-t használ, válassza a 'sáv' lehetőséget, különben forduljon az LNB specifikációs laphoz."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Válassza az 'engedélyezve' lehetőséget, ha a tunerhez van egy jelkábel, különben válassza a 'semmi csatlakoztatva' lehetőséget."
+
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -15361,11 +15370,20 @@ msgstr "a kinézet (Skin) összeomlási hibái is a naplóba kerüljenek rögzí
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Csatorna váltás, vagy ugrás után a Timeshift puffer törlésre kerüljön-e vagy nem."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "Ha 'univerzális' LNB-t használ, válassza a 'polarizáció' lehetőséget, máskülönben forduljon az LNB specifikációs lapjához."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Válassza ki a 'szolgáltatót' a beolvasáshoz a kábel multiplexek előre meghatározott listájából. Válasszon 'sávokat', hogy csak a spektrum bizonyos részeit szkennelje be. Válassza a 'lépéseket', hogy egy adott frekvenciasávszélességben lépjen be."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr ""
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "Válassza az 'igen' lehetőséget, ha ez a tuner egy másik tuneren keresztül csatlakozik az SCR eszközhöz, ellenkező esetben válassza a 'nem' lehetőséget."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
@@ -15420,6 +15438,21 @@ msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ha az 'igen'-t választja, akkor a műsor nélküli csatornák nem jelennek meg."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "Válassza az 'igen' lehetőséget, ha %s multiplexeket szeretne felvenni a keresésbe."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "Válassza az 'igen' lehetőséget, ha a(z) %s szimbólumsebességet szeretné belefoglalni a keresésbe."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "Válassza az 'igen' lehetőséget, ha a(z) %s sávot szeretné felvenni a keresésbe."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "Válassza az 'igen' lehetőséget, ha csak a DiSEqC parancsot szeretné elküldeni, amikor egyik műholdról a másikra vált, vagy válassza a 'nem' lehetőséget ahhoz, hogy a DiSEqC parancs minden zap-ra érvényesüljön."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
@@ -15535,36 +15568,6 @@ msgstr ""
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Ha az 'igen'-t választja, akkor az Információs sáv megjelenik az Előre/Hátra ugrás esetén mialatt a média lejátszása történik."
 
-msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Ha 'univerzális' LNB-t használ, válassza a 'sáv' lehetőséget, különben forduljon az LNB specifikációs laphoz."
-
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Válassza az 'engedélyezve' lehetőséget, ha a tunerhez van egy jelkábel, különben válassza a 'semmi csatlakoztatva' lehetőséget."
-
-msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Ha 'univerzális' LNB-t használ, válassza a 'polarizáció' lehetőséget, máskülönben forduljon az LNB specifikációs lapjához."
-
-msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Válassza ki a 'szolgáltatót' a beolvasáshoz a kábel multiplexek előre meghatározott listájából. Válasszon 'sávokat', hogy csak a spektrum bizonyos részeit szkennelje be. Válassza a 'lépéseket', hogy egy adott frekvenciasávszélességben lépjen be."
-
-msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr "Válassza az 'igen' lehetőséget, ha ez a tuner egy másik tuneren keresztül csatlakozik az SCR eszközhöz, ellenkező esetben válassza a 'nem' lehetőséget."
-
-#, python-format
-msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Válassza az 'igen' lehetőséget, ha %s multiplexeket szeretne felvenni a keresésbe."
-
-#, python-format
-msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Válassza az 'igen' lehetőséget, ha a(z) %s szimbólumsebességet szeretné belefoglalni a keresésbe."
-
-#, python-format
-msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Válassza az 'igen' lehetőséget, ha a(z) %s sávot szeretné felvenni a keresésbe."
-
-msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "Válassza az 'igen' lehetőséget, ha csak a DiSEqC parancsot szeretné elküldeni, amikor egyik műholdról a másikra vált, vagy válassza a 'nem' lehetőséget ahhoz, hogy a DiSEqC parancs minden zap-ra érvényesüljön."
-
 msgid "Select Additional Backup Files"
 msgstr "További mentési fájlok kiválasztása"
 
@@ -15612,6 +15615,9 @@ msgstr ""
 
 msgid "Select Quad Channels"
 msgstr "Quad Csatorna választása"
+
+msgid "Select Satellites"
+msgstr "Válasszon műholdat"
 
 msgid "Select Software Update"
 msgstr "Szoftverfrissítés választása"
@@ -15819,9 +15825,6 @@ msgstr "Válasszon hozzáadandó szolgáltatót..."
 msgid "Select refresh rate"
 msgstr "Válassza ki a frissítési arányt"
 
-msgid "Select Satellites"
-msgstr "Válasszon műholdat"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Használja a keresősáv aktiválásához az L / R (hosszan) vagy << >> (hosszan) nyilat."
 
@@ -16020,6 +16023,9 @@ msgstr "Válassza ki az SCR eszköz által használt protokollt. A választható
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "Válassza ki azt a műholdat, amelyről az dish-el vesz. Ha nem biztos benne, válassza az 'automatikus' lehetőséget, és a vevő megpróbálja ezt meghatározni az Ön számára."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "Válassza ki azt a műholdat, amely a kapcsoló Port-A csatlakozik. Ha nem biztos benne, válassza az 'automatikus' lehetőséget, és a vevő megpróbálja meghatározni ezt az Ön számára. Ha semmi sincs csatlakoztatva ehhez a port-hoz, válassza a 'semmi sem csatlakozik' lehetőséget."
 
@@ -16034,9 +16040,6 @@ msgstr "Válassza ki azt a műholdat, amely a kapcsoló Port-D csatlakozik. Ha n
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Válassza ki a konfigurálni kívánt műholdat. Miután a műholdat konfigurálta, kiválaszthatja és konfigurálhatja azokat a többi műholdakat is, amelyek ugyanazzal a tunerrel lesznek elérhetők."
-
-msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
-msgstr "Válassza ki azt a műholdat, amelyről az dish-el vesz. Ha nem biztos benne, válassza az 'automatikus' lehetőséget, és a vevő megpróbálja ezt meghatározni az Ön számára."
 
 #, fuzzy
 msgid "Select the shifted character set"
@@ -16100,11 +16103,11 @@ msgstr "Válassza ki az időzónát a területen vagy a régióban."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Válassza ki a motorizált disht vezérlő tunert."
 
-msgid "Select the tuner upon which this loop through depends."
-msgstr "Válassza ki azt a hangolót, amelytől ez az áthidalás függ."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Válassza ki azt a tunert, amelyhez az SCR-eszköz jelkábele csatlakozik."
+
+msgid "Select the tuner upon which this loop through depends."
+msgstr "Válassza ki azt a hangolót, amelytől ez az áthidalás függ."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "Válassza ki a használt LNB/eszköz típusát (általában 'Univerzális'). Ha az LNB-típus nem érhető el, válassza a 'felhasználó által definiált' lehetőséget."
@@ -16467,6 +16470,9 @@ msgstr "Állítsa be a CI hozzárendelést a rendelkezésre álló Csatornák é
 msgid "Set DVB CI delay."
 msgstr ""
 
+msgid "Set Default"
+msgstr "Alapértelmezett"
+
 msgid "Set Framerate for MiniTV"
 msgstr "Állítsa be a képarányt a MiniTV számára"
 
@@ -16490,9 +16496,6 @@ msgstr "Művelet beállítása ' Info ' kulcshoz"
 
 msgid "Set current CEC address as fixed address"
 msgstr ""
-
-msgid "Set Default"
-msgstr "Alapértelmezett"
 
 msgid "Set end time"
 msgstr "Befejezés ideje legyen"
@@ -20234,9 +20237,6 @@ msgstr "Sáv"
 msgid "Traditional Chinese"
 msgstr "Tradicionális kínai"
 
-msgid "Transcode"
-msgstr "Transcode"
-
 msgid "Transcoding"
 msgstr ""
 
@@ -20931,6 +20931,9 @@ msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
+
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "használja a megnövelt '14/18V 'feszültséget, ha problémák merülnének fel az lnb váltásakor"
 
 msgid "Use interface"
 msgstr "Interfész használata"
@@ -22968,7 +22971,7 @@ msgstr "Azonnali felvétel"
 msgid "internally loopthrough to"
 msgstr "belső átfűzés ide"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "helytelen típus"
 
 msgid "jazz"
@@ -23136,9 +23139,6 @@ msgstr ""
 
 msgid "not"
 msgstr "nem"
-
-msgid "Not configured"
-msgstr "nem konfigurált"
 
 msgid "not locked"
 msgstr "nem hangolt"
@@ -23536,9 +23536,6 @@ msgstr "tesztelhetetlen"
 msgid "update"
 msgstr "frissítés"
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
-msgstr "használja a megnövelt '14/18V 'feszültséget, ha problémák merülnének fel az lnb váltásakor"
-
 msgid "userdefined"
 msgstr "felhasználó által definiált"
 
@@ -23604,6 +23601,18 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "CIHelper beállítása"
+
+#~ msgid "ClientIP"
+#~ msgstr "Kliens IP"
+
+#~ msgid "Minute"
+#~ msgstr "perc"
+
+#~ msgid "Transcode"
+#~ msgstr "Transcode"
 
 #, fuzzy, python-format
 #~ msgid "%.3f MHz"
