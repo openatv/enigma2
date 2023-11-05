@@ -4,9 +4,8 @@ from Components.Element import cached
 from Components.Converter.Poll import Poll
 from Components.config import config
 from Tools.GetEcmInfo import getCaidData, GetEcmInfo
-from Tools.Hex2strColor import Hex2strColor
 from Tools.Transponder import ConvertToHumanReadable
-from skin import parameters
+from skin import parameters, parseColor
 
 
 # stream type to codec map
@@ -83,9 +82,9 @@ class PliExtraInfo(Poll, Converter):
 		self.ecmdata = GetEcmInfo()
 		self.feraw = self.fedata = self.updateFEdata = None
 		self.cryptocolors = parameters.get("PliExtraInfoCryptoColors", (0x004C7D3F, 0x009F9F9F, 0x00EEEE00, 0x00FFFFFF))
-		self.cryptocolors = [Hex2strColor(x) for x in self.cryptocolors]
+		self.cryptocolors = [r"\c%08X" % parseColor(x).argb() for x in self.cryptocolors]
 		self.infocolors = parameters.get("PliExtraInfoColors", (0x0000FF00, 0x00FFFF00, 0x007F7F7F, 0x00FFFFFF))  # "found", "not found", "available", "default" colors
-		self.infocolors = [Hex2strColor(x) for x in self.cryptocolors]
+		self.infocolors = [r"\c%08X" % parseColor(x).argb() for x in self.infocolors]
 
 	def getCryptoInfo(self, info):
 		if info.getInfo(iServiceInformation.sIsCrypted) == 1:
