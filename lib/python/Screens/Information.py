@@ -1898,16 +1898,20 @@ class StorageInformation(InformationBase):
 			callback()
 
 	def fetchComplete(self, result, retVal, extraArgs=None):
-		result = result.replace("\n                        ", " ").split("\n")
 		self.mountInfo = []
-		for line in result:
-			line = line.strip()
-			if not line:
-				continue
-			data = line.split()
-			if data[0].startswith("192") or data[0].startswith("//192"):
-				# data[0] = ipAddress, data[1] = mountTotal, data[2] = mountUsed, data[3] = mountFree, data[4] = percetageUsed, data[5] = mountPoint.
-				self.mountInfo.append(data)
+		previousLine = None
+		for line in [x.strip() for x in result.split("\n")]:
+			if "%" in line:
+				if previousLine:
+					line = f"{previousLine} {line}"
+					previousLine = None
+				if line.startswith("//"):
+					line = line[::-1]
+					mount, other = line.split(" %")
+					percent, free, used, total, device = other.split(None, 4)
+					self.mountInfo.append([device[::-1], total[::-1], used[::-1], free[::-1], f"{percent[::-1]}%", mount[::-1]])
+			else:
+				previousLine = line
 		if isdir("/media/autofs"):
 			for entry in sorted(listdir("/media/autofs")):
 				path = join("/media/autofs", entry)
