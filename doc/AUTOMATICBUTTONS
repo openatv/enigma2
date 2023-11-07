@@ -1,0 +1,98 @@
+Automatic button bar
+====================
+
+There are two parts to this.
+    1) The colour button bar, which shows a combination of graphic and text.
+    2) Action button graphics that advise the user of availability of certain buttons (e.g. MENU, HELP, INFO, TEXT, etc).
+
+For each of the above types we just add one simple widget to our main template in skin.xml and the buttons appear
+in the screens correctly as if we had added them manually to every single screen.
+
+=========================================================================================================================================================================
+
+1) Colour buttons. Add the following widget to skin.xml (in the main template or similar).
+
+<widget 
+  addon="ColorButtonsSequence" 
+  connection="key_red,key_green,key_yellow,key_blue" 
+  pixmaps="key_red:buttons/red.png,key_green:buttons/green.png,key_yellow:buttons/yellow.png,key_blue:buttons/blue.png" 
+  position="224,1030"
+  size="1694,42" 
+  font="Regular;34"
+  backgroundColor="darkgrey"
+  transparent="1"
+  alignment="left"
+  zPosition="2"
+  spacing="10"
+  spacingPixmapText="10" />
+
+Attributes:
+  connection: comma separated list of the buttons this widget will control.
+  pixmaps: comma separated list that contains "key_name" then a ":" then the path to the graphic to be used.
+  spacing: is the spacing between the text and the next button.
+  spacingPixmapText: is the spacing between the graphic and the text.
+  
+By default the foreground text color will be the same as the default listbox text color. But this can be altered for each
+button with the "textColors" attribute.
+  textColors="key_red:buttonred,key_green:buttongreen,key_yellow:buttonyellow,key_blue:buttonblue"
+  textColors: comma separated list that contains "key_name" then a ":" then the name the color to be used. Color names as declared in the <colors> section of skin.xml.
+  
+Example widget with colored text:
+
+<widget 
+  addon="ColorButtonsSequence" 
+  connection="key_red,key_green,key_yellow,key_blue" 
+  pixmaps="key_red:buttons/red.png,key_green:buttons/green.png,key_yellow:buttons/yellow.png,key_blue:buttons/blue.png"
+  textColors="key_red:buttonred,key_green:buttongreen,key_yellow:buttonyellow,key_blue:buttonblue" 
+  position="224,1030"
+  size="1694,42" 
+  font="Regular;34"
+  backgroundColor="darkgrey"
+  transparent="1"
+  alignment="left"
+  zPosition="2"
+  spacing="10"
+  spacingPixmapText="10" />
+
+It is also possible to have colored text and no graphics:
+
+<widget 
+  addon="ColorButtonsSequence" 
+  connection="key_red,key_green,key_yellow,key_blue" 
+  textColors="key_red:buttonred,key_green:buttongreen,key_yellow:buttonyellow,key_blue:buttonblue" 
+  position="224,1030"
+  size="1694,42" 
+  font="Regular;34"
+  backgroundColor="darkgrey"
+  transparent="1"
+  alignment="left"
+  zPosition="2"
+  spacing="10" />
+
+=========================================================================================================================================================================
+
+2) Action buttons. Add the following widget to skin.xml (in the main template or similar).
+
+<widget addon="ButtonSequence" 
+  connection="key_previous,key_help,key_info,key_menu,key_text,VKeyIcon,key_next" 
+  pixmaps="key_previous:buttons/key_prev.png,key_help:buttons/key_help.png,key_info:buttons/key_info.png,key_menu:buttons/key_menu.png,key_text:buttons/key_text.png,VKeyIcon:buttons/key_text.png,key_next:buttons/key_next.png" 
+  position="10,1031"
+  size="220,38"
+  spacing="1"
+  transparent="1"
+  zPosition="10"/>
+
+Attributes:
+  connection: comma separated list of the buttons this widget will control.
+  pixmaps: comma separated list that contains "key_name" then a ":" then the path to the graphic to be used.
+  spacing: is the spacing between the text and the next button.
+
+In "connection" and "pixmap" add the buttons you want this widget to display.
+
+There must be hooks in the Python code for the buttons to display. Hooks look like the following:
+
+self["key_menu"] = StaticText(_("MENU"))
+self["key_previous"] = StaticText(_("PREVIOUS"))
+self["key_next"] = StaticText(_("NEXT"))
+
+=========================================================================================================================================================================

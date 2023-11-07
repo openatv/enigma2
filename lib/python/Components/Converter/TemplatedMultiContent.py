@@ -1,3 +1,4 @@
+from enigma import eListbox
 from Components.Converter.StringList import StringList
 
 
@@ -15,6 +16,7 @@ class TemplatedMultiContent(StringList):
 		del loc["args"]
 		self.active_style = None
 		self.template = eval(args, {}, loc)
+		self.orientations = {"orHorizontal": eListbox.orHorizontal, "orVertical": eListbox.orVertical, "orGrid": eListbox.orGrid}
 		self.scale = None
 		assert "fonts" in self.template, "templates must include a 'fonts' entry"
 		assert "itemHeight" in self.template or "itemSize" in self.template, "templates must include an 'itemHeight' or 'itemSize' entry"
@@ -91,6 +93,7 @@ class TemplatedMultiContent(StringList):
 			if "itemSize" in self.template:
 				itemWidth = self.template["itemSize"]
 				itemHeight = itemWidth
+			orientation = self.template.get("orientation")
 			selectionEnabled = self.template.get("selectionEnabled", None)
 			scrollbarMode = self.template.get("scrollbarMode", None)
 			if templates and style and style in templates:  # If we have a custom style defined in the source, and different templates in the skin, look the template up.
@@ -116,4 +119,6 @@ class TemplatedMultiContent(StringList):
 				self.selectionEnabled = selectionEnabled
 			if scrollbarMode is not None:
 				self.scrollbarMode = scrollbarMode
+			if orientation is not None:
+				self.content.setOrientation(self.orientations.get(orientation, self.orientations["orVertical"]))
 			self.active_style = style
