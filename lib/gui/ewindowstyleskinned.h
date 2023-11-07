@@ -82,6 +82,7 @@ public:
 	};
 
 	void setColor(int what, const gRGB &back);
+	gRGB getColor(int what);
 
 	void setTitleOffset(const eSize &offset);
 	void setTitleFont(gFont *fnt);

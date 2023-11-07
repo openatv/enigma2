@@ -7,7 +7,7 @@ import pickle
 from sys import maxsize
 from time import localtime, strftime, time
 
-from enigma import eAVControl, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
+from enigma import eAVControl, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB, eDBoxLCD
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
@@ -54,7 +54,7 @@ from Screens.TimeDateInput import TimeDateInput
 from Screens.Timers import RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
-from Tools.Directories import pathExists, fileReadLine, fileWriteLine, isPluginInstalled
+from Tools.Directories import pathExists, fileReadLines, fileWriteLines, isPluginInstalled
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -229,6 +229,60 @@ def hasActiveSubservicesForCurrentChannel(current_service):
 		return bool(subservices and len(subservices) > 1)
 	else:
 		return False
+
+
+class InfoBarStreamRelay:
+
+	FILENAME = "/etc/enigma2/whitelist_streamrelay"
+
+	def __init__(self) -> None:
+		self.streamRelay = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
+
+	def check(self, nav, service):
+		return (service or nav.getCurrentlyPlayingServiceReference()) and service.toString() in self.streamRelay
+
+	def write(self):
+		fileWriteLines(self.FILENAME, self.streamRelay, source=self.__class__.__name__)
+
+	def toggle(self, nav, service):
+		if isinstance(service, list):
+			serviceList = service
+			for service in serviceList:
+				servicestring = service.toString()
+				if servicestring in self.streamRelay:
+					self.streamRelay.remove(servicestring)
+				else:
+					self.streamRelay.append(servicestring)
+			self.write()
+		else:
+			service = service or nav.getCurrentlyPlayingServiceReference()
+			if service:
+				servicestring = service.toString()
+				if servicestring in self.streamRelay:
+					self.streamRelay.remove(servicestring)
+				else:
+					self.streamRelay.append(servicestring)
+					if nav.getCurrentlyPlayingServiceReference() == service:
+						nav.restartService()
+				self.write()
+
+	def streamrelayChecker(self, playref):
+		playrefstring = playref.toString()
+		if "%3a//" not in playrefstring and playrefstring in self.streamRelay:
+			url = f'http://{".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)}:{config.misc.softcam_streamrelay_port.value}/'
+			if "127.0.0.1" in url:
+				playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(':'))])
+			else:
+				playrefmod = playrefstring
+			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
+			print(f"[{self.__class__.__name__} Play service {playref.toString()} via streamrelay")
+		return playref
+
+	def checkService(self, service):
+		return service and service.toString() in self.streamRelay
+
+
+streamrelay = InfoBarStreamRelay()
 
 
 class TimerSelection(Screen):
@@ -1019,7 +1073,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				FLAG_HIDE_VBI = 512
 				return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_HIDE_VBI and True
 			else:
-				return ".hidvbi." in servicepath.lower()
+				return ".hidevbi." in servicepath.lower()
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		return info and info.getInfo(iServiceInformation.sHideVBI) == 1
@@ -1029,6 +1083,12 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.hideVBILineScreen.show()
 		else:
 			self.hideVBILineScreen.hide()
+
+	def checkStreamrelay(self, service=None):
+		return streamrelay.check(self.session.nav, service)
+
+	def ToggleStreamrelay(self, service=None):
+		streamrelay.toggle(self.session.nav, service)
 
 
 class BufferIndicator(Screen):
@@ -3537,11 +3597,9 @@ class InfoBarPiP:
 					if lastPiPServiceTimeout:
 						self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
 				del self.session.pip
-				if BoxInfo.getItem("LCDMiniTV") and int(config.lcd.modepip.value) >= 1:
+				if BoxInfo.getItem("LCDMiniTV") and config.lcd.modepip.value >= 1:
 					print('[InfoBarGenerics] [LCDMiniTV] disable PiP')
-					f = open("/proc/stb/lcd/mode", "w")
-					f.write(config.lcd.modeminitv.value)
-					f.close()
+					eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
 				self.session.pipshown = False
 			if hasattr(self, "ScreenSaverTimerStart"):
 				self.ScreenSaverTimerStart()
@@ -3558,11 +3616,9 @@ class InfoBarPiP:
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-					if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
+					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print('[InfoBarGenerics] [LCDMiniTV] enable PiP')
-						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modepip.value)
-						f.close()
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
 						f = open("/proc/stb/vmpeg/1/dst_width", "w")
 						f.write("0")
 						f.close()
@@ -3577,11 +3633,9 @@ class InfoBarPiP:
 					if self.session.pip.playService(newservice):
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-						if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
+						if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 							print('[InfoBarGenerics] [LCDMiniTV] enable PiP')
-							f = open("/proc/stb/lcd/mode", "w")
-							f.write(config.lcd.modepip.value)
-							f.close()
+							eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
 							f = open("/proc/stb/vmpeg/1/dst_width", "w")
 							f.write("0")
 							f.close()

@@ -23,7 +23,7 @@ while True:
 	os.system("/usr/bin/clear")
 	list = []
 	for index in list(range(len(datasources))):
-		list.append(datasources[index].getName() + (" (%d sats)" % len(datasources[index].transponderlist.keys())))
+		list.append(datasources[index].getName() + f" ({len(datasources[index].transponderlist.keys())} sats)")
 	index = inputChoices(list, "q", "quit")
 	if index is None:
 		break

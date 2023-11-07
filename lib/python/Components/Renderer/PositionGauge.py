@@ -1,8 +1,10 @@
-from Components.Renderer.Renderer import Renderer
 from enigma import ePositionGauge
+from Components.Renderer.Renderer import Renderer
 
 
 class PositionGauge(Renderer):
+	GUI_WIDGET = ePositionGauge
+
 	def __init__(self):
 		Renderer.__init__(self)
 		self.__position = 0
@@ -10,8 +12,6 @@ class PositionGauge(Renderer):
 		self.__length = 0
 		self.__seek_enable = 0
 		self.__cutlist = []
-
-	GUI_WIDGET = ePositionGauge
 
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))

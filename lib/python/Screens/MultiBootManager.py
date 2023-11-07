@@ -1,5 +1,5 @@
 from os import W_OK, access, remove, stat, statvfs
-from os.path import exists, isdir
+from os.path import exists, isdir, join
 from shlex import split
 
 from Components.ActionMap import HelpableActionMap
@@ -10,6 +10,7 @@ from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Screens.Console import Console as ConsoleScreen
 from Screens.HelpMenu import HelpableScreen
 from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES
 from Screens.MessageBox import MessageBox
@@ -92,7 +93,7 @@ class MultiBootManager(Screen, HelpableScreen):
 			"blue": (self.restoreImage, _("Restore the highlighted slot"))
 		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restoreActions"].setEnabled(False)
-		if BoxInfo.getItem("HasKexecMultiboot"):
+		if BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT"):
 			self["moreSlotActions"] = HelpableActionMap(self, ["ColorActions"], {
 				"blue": (self.moreSlots, _("Add more slots"))
 			}, prio=0, description=_("MultiBoot Manager Actions"))
@@ -165,7 +166,10 @@ class MultiBootManager(Screen, HelpableScreen):
 		self.getImagesList()
 
 	def moreSlots(self):
-		self.session.open(KexecSlotManager)
+		if BoxInfo.getItem("HasGPT"):
+			self.session.open(GPTSlotManager)
+		else:
+			self.session.open(KexecSlotManager)
 
 	def restoreImage(self):
 		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
@@ -233,7 +237,7 @@ class MultiBootManager(Screen, HelpableScreen):
 			self["restartActions"].setEnabled(True)
 			self["deleteActions"].setEnabled(True)
 			self["restoreActions"].setEnabled(False)
-		if BoxInfo.getItem("HasKexecMultiboot") and slotCode == "R":
+		if (BoxInfo.getItem("HasKexecMultiboot") and slotCode == "R") or BoxInfo.getItem("HasGPT"):
 			self["restoreActions"].setEnabled(False)
 			self["moreSlotActions"].setEnabled(True)
 			self["key_blue"].setText(_("Add more slots"))
@@ -493,6 +497,189 @@ class KexecSlotManager(Setup):
 
 	def updateStatus(self, footnote=None):
 		self.green = ACTION_CREATE if self.kexecSlotManagerDevice else ACTION_SELECT
+		self["key_green"].setText({
+			ACTION_SELECT: _("Select Device"),
+			ACTION_CREATE: _("Create Slots")
+		}.get(self.green, _("Invalid")))
+
+
+class GPTSlotManager(Setup):
+	def __init__(self, session):
+		def getGreenHelpText():
+			return {
+				ACTION_SELECT: _("Select a device to use for the additional slots"),
+				ACTION_CREATE: _("Create the additional slots on the selected device")
+			}.get(self.green, _("Help text uninitialized"))
+
+		self.GPTSlotManagerLocation = ConfigSelection(default=None, choices=[(None, _("<Select a device>"))])
+		self.GPTSlotManagerDevice = None
+		Setup.__init__(self, session=session, setup="GPTSlotManager")
+		self.setTitle(_("Slot Manager"))
+		self["fullUIActions"] = HelpableActionMap(self, ["CancelSaveActions"], {
+			"cancel": (self.keyCancel, _("Cancel any changed settings and exit")),
+			"close": (self.closeRecursive, _("Cancel any changed settings and exit all menus"))
+		}, prio=0, description=_("Common Setup Actions"))  # Override the ConfigList "fullUIActions" action map so that we can control the GREEN button here.
+		self["actions"] = HelpableActionMap(self, ["ColorActions"], {
+			"green": (self.keyGreen, getGreenHelpText)
+		}, prio=-1, description=_("Slot Manager Actions"))
+		self.console = Console()
+		self.deviceData = {}
+		self.green = ACTION_SELECT
+
+	def layoutFinished(self):
+		Setup.layoutFinished(self)
+		self.readDevices()
+
+	def selectionChanged(self):
+		Setup.selectionChanged(self)
+		self.updateStatus()
+
+	def changedEntry(self):
+		Setup.changedEntry(self)
+		self.updateStatus()
+
+	def keySelect(self):
+		if self.getCurrentItem() == self.GPTSlotManagerLocation:
+			self.showDeviceSelection()
+		else:
+			Setup.keySelect(self)
+
+	def keyGreen(self):
+		def restartCallback(answer):
+			if answer is True:
+				self.session.open(TryQuitMainloop, QUIT_REBOOT)
+			else:
+				self.close()
+
+		def createSlots():
+			createStartupFiles()
+			update_bootconfig()
+			formatDevice()
+
+		def createStartupFiles():
+			files = {
+				"STARTUP_4": "root=/dev/mmcblk1p2 rootfstype=ext4 kernel=/kernel2.img",
+				"STARTUP_5": "root=/dev/mmcblk1p3 rootfstype=ext4 kernel=/kernel3.img",
+				"STARTUP_6": "root=/dev/mmcblk1p4 rootfstype=ext4 kernel=/kernel4.img",
+				"STARTUP_7": "root=/dev/mmcblk1p5 rootfstype=ext4 kernel=/kernel5.img"
+			}
+			for filename, content in files.items():
+				path = join("/data", filename)
+				if not exists(path):
+					with open(path, "w") as fd:
+						fd.write(f"{content}\n")
+
+		def update_bootconfig():
+			bootInfo = """
+			[SDcard Slot 4]
+			cmd=fatload mmc 0:1 1080000 /kernel2.img;bootm;
+			arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
+			[SDcard Slot 5]
+			cmd=fatload mmc 0:1 1080000 /kernel3.img;bootm;
+			arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
+			[SDcard Slot 6]
+			cmd=fatload mmc 0:1 1080000 /kernel4.img;bootm;
+			arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
+			[SDcard Slot 7]
+			cmd=fatload mmc 0:1 1080000 /kernel5.img;bootm;
+			arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
+			"""
+			bootConfig = "/data/bootconfig.txt"
+			with open(bootConfig, 'r') as file:
+				lines = file.readlines()
+			mmc_0_present = any("mmc 0" in line for line in lines)
+			if not mmc_0_present:
+				for i in range(len(lines) - 1, -1, -1):
+					if lines[i].strip().startswith("["):
+						lines.insert(i, bootInfo.strip() + '\n')
+						break
+				with open(bootConfig, 'w') as file:
+					file.writelines(lines)
+
+		def formatDevice():
+			TARGET = "mmcblk1"
+			TARGET_DEVICE = f"/dev/{TARGET}"
+			DEVICE_LABEL = "dreambox-rootfs"
+
+			if exists(TARGET_DEVICE):
+				cmdlist = []
+				cmdlist.append(f"for n in {TARGET_DEVICE}* ; do umount -lf $n > /dev/null 2>&1 ; done")
+				cmdlist.append(f"/usr/sbin/sgdisk -z {TARGET_DEVICE}")
+				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mklabel gpt")
+				for i in range(1, 5):
+					cmdlist.append(f"/bin/touch /dev/nomount.{TARGET}p{i} > /dev/null 2>&1")
+				cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
+				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart DREAMCARD fat16 8192s 100MB")
+				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart {DEVICE_LABEL} ext4 100MB 25%")
+				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart {DEVICE_LABEL} ext4 25% 50%")
+				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart {DEVICE_LABEL} ext4 50% 75%")
+				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart {DEVICE_LABEL} ext4 75% 100%")
+				cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
+				cmdlist.append(f"/bin/umount -lf {TARGET_DEVICE}p1 > /dev/null 2>&1")
+				cmdlist.append(f"/usr/sbin/mkfs.fat -F 16 -S 512 -v -n DREAMCARD {TARGET_DEVICE}p1")
+				for i in range(2, 5):
+					cmdlist.append(f"/bin/umount -lf {TARGET_DEVICE}p{i} > /dev/null 2>&1")
+					cmdlist.append(f"/sbin/mkfs.ext4 -F {TARGET_DEVICE}p{i}")
+				self.session.open(ConsoleScreen, title=self.getTitle(), cmdlist=cmdlist, finishedCallback=formatDeviceCallback, closeOnSuccess=True)
+
+		def formatDeviceCallback():
+			self.session.openWithCallback(restartCallback, MessageBox, _("Restart necessary, restart GUI now?"), MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
+
+		if self.GPTSlotManagerDevice:
+			createSlots()
+		else:
+			self.showDeviceSelection()
+
+	def showDeviceSelection(self):
+		def readDevicesCallback():
+			choiceList = [
+				(_("Cancel"), "")
+			]
+			for deviceData in self.deviceData.items():
+				choiceList.append(("%s (%s)" % (deviceData[1], deviceData[0]), 1))
+			self.session.openWithCallback(self.deviceSelectionCallback, MessageBox, text=_("Please select the device or Cancel to cancel the selection."), list=choiceList, windowTitle=self.getTitle())
+
+		self.readDevices(readDevicesCallback)
+
+	def deviceSelectionCallback(self, selection):
+		if selection:
+			print("[GPTSlotManager] deviceSelectionCallback DEBUG: selection=%s." % selection)
+			self.GPTSlotManagerDevice = selection
+			locations = self.GPTSlotManagerLocation.getSelectionList()
+			path = self.deviceData[selection][0]
+			name = self.deviceData[selection][1]
+			if (path, path) not in locations:
+				locations.append((path, path))
+				self.GPTSlotManagerLocation.setSelectionList(default=None, choices=locations)
+				self.GPTSlotManagerLocation.value = path
+			self.GPTSlotManagerDevice = selection
+			self.updateStatus("Found SDCARD: %s" % name)
+
+	def readDevices(self, callback=None):
+		def readDevicesCallback(output=None, retVal=None, extraArgs=None):
+			def getDeviceID(deviceInfo):
+				mode = "UUID="
+				for token in deviceInfo:
+					if token.startswith(mode):
+						return token[len(mode):]
+				return None
+
+			print("[KexecSlotManager] readDevicesCallback DEBUG: retVal=%s, output='%s'." % (retVal, output))
+			lines = [line for line in output.splitlines() if "/dev/mmcblk1p1" in line]
+			self.deviceData = {}
+			for (name, hdd) in harddiskmanager.HDDList():
+				for line in lines:
+					data = split(line.strip())
+					if data and data[0][:-1].startswith(hdd.dev_path):
+						self.deviceData[1] = (data[0][:-1], name)
+			self.updateStatus()
+			if callback:
+				callback()
+
+		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=readDevicesCallback)
+
+	def updateStatus(self, footnote=None):
+		self.green = ACTION_CREATE if self.GPTSlotManagerDevice else ACTION_SELECT
 		self["key_green"].setText({
 			ACTION_SELECT: _("Select Device"),
 			ACTION_CREATE: _("Create Slots")

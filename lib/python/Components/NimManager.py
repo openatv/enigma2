@@ -1907,7 +1907,7 @@ def InitNimManager(nimmgr, update_slots=None):
 	advanced_satlist_choices = nimmgr.satList + [
 		(3601, _("All satellites 1 (USALS)"), 1), (3602, _("All satellites 2 (USALS)"), 1),
 		(3603, _("All satellites 3 (USALS)"), 1), (3604, _("All satellites 4 (USALS)"), 1), (3605, _("Selecting satellites 1 (USALS)"), 1), (3606, _("Selecting satellites 2 (USALS)"), 1)]
-	advanced_lnb_choices = [("0", _("not configured"))] + [(str(y), "LNB " + str(y)) for y in list(range(1, (maxFixedLnbPositions + 1)))]
+	advanced_lnb_choices = [("0", _("Not configured"))] + [(str(y), "LNB " + str(y)) for y in list(range(1, (maxFixedLnbPositions + 1)))]
 	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))]
 	advanced_tonemode_choices = [("band", _("Band")), ("on", _("On")), ("off", _("Off"))]
 	advanced_lnb_toneburst_choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))]
@@ -2191,7 +2191,7 @@ def InitNimManager(nimmgr, update_slots=None):
 				tmp.userSatellitesList = ConfigText('[]')
 				tmp.rotorposition = ConfigInteger(default=1, limits=(1, 255))
 				lnbnum = maxFixedLnbPositions + x - 3600
-				lnb = ConfigSelection([("0", _("not configured")), (str(lnbnum), "LNB %d" % (lnbnum))], "0")
+				lnb = ConfigSelection([("0", _("Not configured")), (str(lnbnum), "LNB %d" % (lnbnum))], "0")
 				lnb.slot_id = slot_id
 				lnb.addNotifier(configLNBChanged, initial_call=False)
 				tmp.lnb = lnb

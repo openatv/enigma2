@@ -1,6 +1,7 @@
-from Screens.Screen import Screen
 from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
 from Components.VideoWindow import VideoWindow
+from Screens.InfoBarGenerics import streamrelay
+from Screens.Screen import Screen
 
 
 class QuadPiP(Screen):
@@ -45,6 +46,7 @@ class QuadPiP(Screen):
 		else:
 			ref = service
 		if ref:
+			ref = streamrelay.streamrelayChecker(ref)
 			self.pipservice = eServiceCenter.getInstance().play(ref)
 			if self.pipservice and not self.pipservice.setTarget(self.decoderIdx):
 				self.setQpipMode(True, playAudio)

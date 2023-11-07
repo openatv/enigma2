@@ -94,15 +94,14 @@ class MultiBootClass():
 				self.bootCode = ""
 			except struct.error as err:
 				print("MultiBoot] Unable to interpret dual boot file '%s' data!  (%s)" % (DUAL_BOOT_FILE, err))
-		#elif exists(DREAM_BOOT_FILE):
-		#	with open(DREAM_BOOT_FILE, "r") as fd:
-		#		lines = fd.readlines()
-		#		for line in lines:
-		#			if line.startswith("default="):
-		#				self.bootSlot = str(int(line.strip().split("=")[1]) + 1)
-		#				self.bootCode = ""
 		else:
 			self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
+		if exists(DREAM_BOOT_FILE):
+			with open(DREAM_BOOT_FILE, "r") as fd:
+				lines = fd.readlines()
+				for line in lines:
+					if line.startswith("default="):
+						self.bootSlot = str(int(line.strip().split("=")[1]) + 1)
 
 	def loadBootDevice(self):
 		bootDeviceList = BOOT_DEVICE_LIST_VUPLUS if fileHas("/proc/cmdline", "kexec=1") else BOOT_DEVICE_LIST
@@ -543,8 +542,11 @@ class MultiBootClass():
 
 	def deriveSlotInfo(self, path):  # Part of analyzeSlot() within getSlotImageList().
 		info = {}
+		statusfile = "var/lib/opkg/status"
+		if exists(pathjoin(path, "var/lib/dpkg/status")):
+			statusfile = "var/lib/dpkg/status"
 		try:
-			date = datetime.fromtimestamp(stat(pathjoin(path, "var/lib/opkg/status")).st_mtime).strftime("%Y%m%d")
+			date = datetime.fromtimestamp(stat(pathjoin(path, statusfile)).st_mtime).strftime("%Y%m%d")
 			if date.startswith("1970"):
 				date = datetime.fromtimestamp(stat(pathjoin(path, "usr/share/bootlogo.mvi")).st_mtime).strftime("%Y%m%d")
 			date = max(date, datetime.fromtimestamp(stat(pathjoin(path, "usr/bin/enigma2")).st_mtime).strftime("%Y%m%d"))
@@ -552,7 +554,7 @@ class MultiBootClass():
 			date = "00000000"
 		info["compiledate"] = date
 		lines = fileReadLines(pathjoin(path, "etc/issue"), source=MODULE_NAME)
-		if lines and "vuplus" not in lines[0]:
+		if lines and "vuplus" not in lines[0] and len(lines) >= 2:
 			data = lines[-2].strip()[:-6].split()
 			info["distro"] = " ".join(data[:-1])
 			info["displaydistro"] = {

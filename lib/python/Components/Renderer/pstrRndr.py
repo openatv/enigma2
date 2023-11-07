@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # by digiteng...12-2019
 # v1.1a 01-2020
-from Components.Renderer.Renderer import Renderer
+from os.path import exists
 from enigma import ePixmap, loadJPG
-import os
+from Components.Renderer.Renderer import Renderer
 
 
 class pstrRndr(Renderer):
+	GUI_WIDGET = ePixmap
 
 	def __init__(self):
 		Renderer.__init__(self)
@@ -18,19 +19,17 @@ class pstrRndr(Renderer):
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
-	GUI_WIDGET = ePixmap
-
 	def changed(self, what):
 		try:
 			eventName = self.source.text
 			if eventName:
-				poster = '/tmp/poster/poster.jpg'
-				if os.path.exists(poster):
+				poster = "/tmp/poster/poster.jpg"
+				if exists(poster):
 					self.instance.setPixmap(loadJPG(poster))
 					self.instance.show()
 				else:
 					self.instance.hide()
 			else:
 				self.instance.hide()
-		except:
+		except Exception:
 			pass

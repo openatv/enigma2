@@ -100,7 +100,7 @@ class VAudioInfo(Poll, Converter):
 					return self.getAudioCodec(info)
 				if self.type == self.GET_AUDIO_ICON:
 					return self.getAudioIcon(info)
-		return _("invalid type")
+		return _("Invalid type")
 
 	text = property(getText)
 

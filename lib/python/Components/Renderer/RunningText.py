@@ -54,6 +54,8 @@ BLOCK = 3
 
 
 class RunningText(Renderer):
+	GUI_WIDGET = eWidget
+
 	def __init__(self):
 		Renderer.__init__(self)
 		self.type = NONE
@@ -73,12 +75,10 @@ class RunningText(Renderer):
 		self.lineHeight = 0		# for text height auto correction on dmm-enigma2
 		self.mShown = 0
 
-	GUI_WIDGET = eWidget
-
 	def postWidgetCreate(self, instance):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "size":
-				x, y = value.split(',')
+				x, y = value.split(",")
 				self.W, self.H = int(x), int(y)
 		self.instance.move(ePoint(0, 0))
 		self.instance.resize(eSize(self.W, self.H))
@@ -120,7 +120,7 @@ class RunningText(Renderer):
 				elif attrib in ("shadowColor", "borderColor"):  # fake for openpli-enigma2
 					self.scroll_label.setShadowColor(parseColor(value))
 				elif attrib == "shadowOffset":
-					x, y = value.split(',')
+					x, y = value.split(",")
 					self.soffset = (int(x), int(y))
 					self.scroll_label.setShadowOffset(ePoint(self.soffset))
 				elif attrib == "borderWidth":			# fake for openpli-enigma2
@@ -134,10 +134,10 @@ class RunningText(Renderer):
 				elif attrib == "noWrap":
 					setWrapFlag(attrib, value)
 				elif attrib == "options":
-					options = value.split(',')
+					options = value.split(",")
 					for o in options:
-						if '=' in o:
-							opt, val = (x.strip() for x in o.split('=', 1))
+						if "=" in o:
+							opt, val = (x.strip() for x in o.split("=", 1))
 						else:
 							opt, val = o.strip(), ""
 
@@ -283,8 +283,8 @@ class RunningText(Renderer):
 						self.mStop = self.P = max(self.A, min(self.B, self.mStartPoint - text_width + self.soffset[0]))
 			elif self.type == SWIMMING:
 				if text_width < self.W:
-					self.A = self.X + 1			# incomprehensible indent '+ 1' ???
-					self.B = self.W - text_width - 1  # incomprehensible indent '- 1' ???
+					self.A = self.X + 1			# incomprehensible indent "+ 1" ???
+					self.B = self.W - text_width - 1  # incomprehensible indent "- 1" ???
 					if self.halign == LEFT:
 						self.P = self.A
 						self.mStep = abs(self.mStep)

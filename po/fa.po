@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -242,10 +242,6 @@ msgstr "%.0f مگابایت"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f گیگابایت"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "%02d.%02d."
@@ -1258,14 +1254,6 @@ msgstr ""
 msgid "%s Information Actions"
 msgstr ""
 
-#, python-format
-msgid "%s KSymb/s"
-msgstr ""
-
-#, python-format
-msgid "%s MHz"
-msgstr ""
-
 #, fuzzy, python-format
 msgid "%s Setup"
 msgstr "تنظیمات"
@@ -1381,10 +1369,6 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr ""
 
-#, fuzzy
-msgid "(FTA Service)"
-msgstr "کانال ها"
-
 msgid "(PiP)"
 msgstr " (تصویر در تصویر)"
 
@@ -1494,9 +1478,6 @@ msgstr ""
 msgid "13 V"
 msgstr "13 ولت"
 
-msgid "16/9 reset to normal"
-msgstr ""
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
@@ -1519,6 +1500,9 @@ msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
 
 msgid "16:9 PanScan"
+msgstr ""
+
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "18 V"
@@ -2156,10 +2140,10 @@ msgstr ""
 msgid "Additional files/folders to backup"
 msgstr ""
 
-msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
+msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move the dish from one satellite to another."
 msgstr ""
 
-msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
+msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr ""
 
 msgid "Address"
@@ -2708,10 +2692,7 @@ msgid "Audio PID"
 msgstr "PID صدا"
 
 #, python-format
-msgid "Audio PID%s, codec & lang"
-msgstr ""
-
-msgid "Audio PID, codec & lang"
+msgid "Audio PID%s, Codec & Language"
 msgstr ""
 
 msgid "Audio Settings"
@@ -3096,9 +3077,6 @@ msgstr ""
 msgid "Bashkir"
 msgstr ""
 
-msgid "Basic PID info"
-msgstr ""
-
 msgid "Basketball"
 msgstr ""
 
@@ -3411,9 +3389,6 @@ msgstr ""
 msgid "Button error timeout"
 msgstr ""
 
-msgid "ButtonSetup"
-msgstr ""
-
 msgid "By disk UUID"
 msgstr ""
 
@@ -3532,9 +3507,6 @@ msgstr ""
 msgid "CI Boot Delay"
 msgstr ""
 
-msgid "CI Helper Settings"
-msgstr ""
-
 #
 msgid "CI assignment"
 msgstr "CI وظیفه"
@@ -3543,6 +3515,9 @@ msgid "CI enabled"
 msgstr ""
 
 msgid "CI slot: "
+msgstr ""
+
+msgid "CI+ Helper*"
 msgstr ""
 
 msgid "CIFS/Samba Settings"
@@ -4181,6 +4156,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4304,17 +4282,11 @@ msgstr[0] ""
 msgid "Click the button on your remote you want to change."
 msgstr ""
 
-msgid "Client"
-msgstr ""
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
 
 msgid "Client is streaming from this box!"
-msgstr ""
-
-msgid "ClientIP"
 msgstr ""
 
 msgid "Clients"
@@ -4384,9 +4356,6 @@ msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
-msgstr ""
-
-msgid "Code R. LP-HP & Guard Int."
 msgstr ""
 
 msgid "Code rate HP"
@@ -4853,7 +4822,7 @@ msgstr ""
 msgid "Configure the width of the TrueType font letters used for teletext."
 msgstr ""
 
-msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
+msgid "Configure this tuner using Simple or Advanced options, loop it through to another tuner, copy a configuration from another tuner or disable it."
 msgstr ""
 
 msgid "Configure to show channel names, numbers, picons or all three inside EPG."
@@ -4965,14 +4934,19 @@ msgstr ""
 msgid "Console"
 msgstr ""
 
-#, fuzzy
-msgid "Constellation & FFT mode"
-msgstr "Constellation"
-
-msgid "Consult your SCR device spec sheet for this information."
+msgid "Constellation"
 msgstr ""
 
-msgid "Consult your motor's spec sheet for this information, or leave the default setting."
+msgid "Consult your SCR device specifications for this information."
+msgstr ""
+
+msgid "Consult your motor's specifications for this information, or leave the default setting."
+msgstr ""
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr ""
+
+msgid "Consult your receiver's manual for more information on power threshold."
 msgstr ""
 
 #, python-format
@@ -5080,6 +5054,9 @@ msgstr "رونوشت"
 
 msgid "Copy To Bouquets"
 msgstr "رونوشت در لیست"
+
+msgid "Copy To Stream Relay"
+msgstr ""
 
 msgid "Copy all related files"
 msgstr ""
@@ -5469,7 +5446,7 @@ msgstr ""
 msgid "DVB CI Delay"
 msgstr ""
 
-msgid "DVB Subtitles PID & lang"
+msgid "DVB Subtitles PID & Language"
 msgstr ""
 
 msgid "DVB subtitle black transparency"
@@ -6749,9 +6726,8 @@ msgstr "E"
 msgid "E "
 msgstr "E"
 
-#, fuzzy
-msgid "ECM Info"
-msgstr "اطلاعات"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr ""
@@ -6763,6 +6739,13 @@ msgid "ECM avg"
 msgstr ""
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
+msgstr ""
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
 msgstr ""
 
 msgid "ECM last"
@@ -7196,7 +7179,7 @@ msgstr ""
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
-msgid "Enable this setting if your aerial system needs power"
+msgid "Enable this setting if your aerial system needs power."
 msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
@@ -7356,10 +7339,10 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr ""
 
-msgid "Enter if you are in the east or west hemisphere."
+msgid "Enter if you are North or South of the equator."
 msgstr ""
 
-msgid "Enter if you are north or south of the equator."
+msgid "Enter if you are in the East or West hemisphere."
 msgstr ""
 
 msgid "Enter main menu..."
@@ -7380,7 +7363,7 @@ msgstr "رمز را وارد کنید"
 msgid "Enter text via an attached keyboard"
 msgstr ""
 
-msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
+msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr ""
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
@@ -7398,10 +7381,10 @@ msgstr ""
 msgid "Enter your current longitude. This is the number of degrees you are from zero meridian as a decimal."
 msgstr ""
 
-msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgid "Enter your high band local oscillator frequency. For more information consult the specifications of your LNB."
 msgstr ""
 
-msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgid "Enter your low band local oscillator frequency. For more information consult the specifications of your LNB."
 msgstr ""
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
@@ -7911,9 +7894,6 @@ msgstr ""
 
 msgid "Extended Networksetup Plugin..."
 msgstr "پلاگین تنظیمات شبکه تمدید شده"
-
-msgid "Extended PID info"
-msgstr ""
 
 msgid "Extended Setup..."
 msgstr "تنظیمات تمدید شده"
@@ -8482,6 +8462,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr ""
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr ""
 
@@ -8509,6 +8492,9 @@ msgstr ""
 msgid "Free swap"
 msgstr ""
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr ""
 
@@ -8527,14 +8513,6 @@ msgstr ""
 
 msgid "Frequency"
 msgstr "فرکانس"
-
-#, fuzzy
-msgid "Frequency & Channel"
-msgstr "باند های فرکانس"
-
-#, fuzzy
-msgid "Frequency & Polarization"
-msgstr "قطبش"
 
 #, fuzzy
 msgid "Frequency Norm:"
@@ -8893,7 +8871,7 @@ msgstr ""
 msgid "Guarani"
 msgstr ""
 
-msgid "Guard interval"
+msgid "Guard Interval"
 msgstr "فاصله گارد"
 
 msgid "Guatemala"
@@ -9275,9 +9253,6 @@ msgstr ""
 msgid "Hotbird 13.0e"
 msgstr ""
 
-msgid "Hotkey"
-msgstr ""
-
 msgid "Hotkey Settings"
 msgstr ""
 
@@ -9363,6 +9338,9 @@ msgstr ""
 #, fuzzy
 msgid "IP address"
 msgstr "IP آدرس"
+
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
 
 msgid "IPK Installer"
 msgstr ""
@@ -9517,13 +9495,13 @@ msgstr ""
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
 
-msgid "If you are using a Circular polarised LNB select 'yes', otherwise select 'no'."
-msgstr ""
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr ""
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
+msgstr ""
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
 msgstr ""
 
 msgid ""
@@ -10000,13 +9978,6 @@ msgstr "ترانسپوندر دستی"
 msgid "Inversion"
 msgstr "وارونگی"
 
-#, fuzzy
-msgid "Inversion & Bandwidth"
-msgstr "پهنای باند"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr ""
-
 msgid "Invert"
 msgstr "معکوس کردن"
 
@@ -10249,6 +10220,9 @@ msgstr ""
 msgid "Kurdish"
 msgstr ""
 
+msgid "Kurdistan"
+msgstr ""
+
 msgid "Kuwait"
 msgstr "کویت"
 
@@ -10406,7 +10380,7 @@ msgstr "لتونی"
 msgid "Leave DVD player?"
 msgstr "خروج از پخش کننده DVD?"
 
-msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
+msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr ""
 
 msgid "Lebanon"
@@ -10793,6 +10767,9 @@ msgstr ""
 msgid "MENU"
 msgstr ""
 
+msgid "MHz"
+msgstr ""
+
 msgid "MKUBIFS"
 msgstr ""
 
@@ -11171,10 +11148,6 @@ msgstr "فاصله گارد"
 
 msgid "Mins"
 msgstr ""
-
-#, fuzzy
-msgid "Minute"
-msgstr "دقیقه"
 
 msgid "Minutes"
 msgstr "دقیقه"
@@ -11714,7 +11687,7 @@ msgstr ""
 msgid "NFS Settings"
 msgstr ""
 
-msgid "NIM & Type"
+msgid "NIM"
 msgstr ""
 
 msgid "NOTE"
@@ -11763,7 +11736,7 @@ msgstr "Nameserver تنظیمات"
 msgid "Nameserver setup"
 msgstr "Nameserver تنظیمات"
 
-msgid "Namespace & Orbital pos."
+msgid "Namespace & Orbital position"
 msgstr ""
 
 msgid "Namibia"
@@ -11900,9 +11873,6 @@ msgstr "نام شبکه (SSID)"
 msgid "Network scan"
 msgstr "اسکن شبکه"
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr "تست شبکه"
 
@@ -11996,12 +11966,6 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr ""
 
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
-msgstr ""
-
 #, fuzzy
 msgid "Next bouquet"
 msgstr "اضافه کردن لیست"
@@ -12046,7 +12010,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "No ECMPids available"
+msgid "No ECM PIDs available"
 msgstr "هیچ توضیحی در دسترس نیست"
 
 msgid "No HDD found or HDD not initialized!"
@@ -12126,9 +12090,6 @@ msgid "No free tuner!"
 msgstr "تیونر آزاد وجود ندارد"
 
 msgid "No hard disks detected."
-msgstr ""
-
-msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
 #, fuzzy
@@ -12375,6 +12336,9 @@ msgstr ""
 msgid "Not associated"
 msgstr ""
 
+msgid "Not configured"
+msgstr "پیکربندی نشده"
+
 msgid "Not currently mounted."
 msgstr ""
 
@@ -12468,9 +12432,6 @@ msgstr ""
 
 msgid "OK, guide me through the upgrade process"
 msgstr "من را به روند به روز رسانی راهنمایی کنید"
-
-msgid "ONID"
-msgstr "ONID"
 
 msgid "OSD"
 msgstr ""
@@ -12742,6 +12703,9 @@ msgstr ""
 msgid "Original"
 msgstr "اصلی"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr ""
 
@@ -12771,7 +12735,7 @@ msgstr "دیگر"
 msgid "Other Actions"
 msgstr "محل"
 
-msgid "Other Subtitles & lang"
+msgid "Other Subtitles & Language"
 msgstr ""
 
 msgid "Other buttons will jump to the help information for that button, if there is help available."
@@ -12882,9 +12846,6 @@ msgstr ""
 msgid "PMT PID"
 msgstr "PMT PID"
 
-msgid "PPanel"
-msgstr ""
-
 msgid "PRIMETIME"
 msgstr ""
 
@@ -12958,9 +12919,6 @@ msgid "Panama"
 msgstr ""
 
 msgid "Panic channel"
-msgstr ""
-
-msgid "Panic to"
 msgstr ""
 
 msgid "Panjabi / Punjabi"
@@ -13246,6 +13204,12 @@ msgid "Play selected service in a PiP window"
 msgstr ""
 
 msgid "Play selected service on the main screen"
+msgstr ""
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
 msgstr ""
 
 msgid "Play the audio file"
@@ -13608,6 +13572,9 @@ msgstr "پورت C"
 msgid "Port D"
 msgstr "پورت D"
 
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
+
 #, fuzzy
 msgid "Portugal"
 msgstr "پرتغالی"
@@ -13667,14 +13634,8 @@ msgstr ""
 msgid "Power On Display"
 msgstr ""
 
-msgid "Power management. Consult your receiver's manual for more information."
-msgstr ""
-
 msgid "Power threshold in mA"
 msgstr "آستانه قدرت به میلی آمپر"
-
-msgid "Power threshold. Consult your receiver's manual for more information."
-msgstr ""
 
 msgid "PowerTimer"
 msgstr ""
@@ -13871,12 +13832,6 @@ msgid "Preview menu"
 msgstr "منوی قبلی"
 
 msgid "Previous"
-msgstr ""
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
 msgstr ""
 
 #, fuzzy
@@ -15526,7 +15481,7 @@ msgstr "اسکن"
 msgid "Scan %s"
 msgstr ""
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr ""
@@ -15716,10 +15671,19 @@ msgstr "انتخاب"
 msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switches, and '1.2' for systems using a positioner."
 msgstr ""
 
-msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
+msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
+msgstr ""
+
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr ""
 
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr ""
+
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -15731,10 +15695,19 @@ msgstr ""
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr ""
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr ""
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
+msgstr ""
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr ""
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
@@ -15789,6 +15762,21 @@ msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageD
 msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
+msgstr ""
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr ""
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr ""
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr ""
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
 msgstr ""
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
@@ -15905,36 +15893,6 @@ msgstr ""
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr ""
 
-msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
-msgstr ""
-
-msgid "Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."
-msgstr ""
-
-msgid "Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
-msgstr ""
-
-msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
-msgstr ""
-
-msgid "Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."
-msgstr ""
-
-#, python-format
-msgid "Select 'yes' to include %s multiplexes in your search."
-msgstr ""
-
-#, python-format
-msgid "Select 'yes' to include symbol rate %s in your search."
-msgstr ""
-
-#, python-format
-msgid "Select 'yes' to include the %s band in your search."
-msgstr ""
-
-msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
-msgstr ""
-
 msgid "Select Additional Backup Files"
 msgstr ""
 
@@ -15957,7 +15915,7 @@ msgstr ""
 msgid "Select Excluded Backup Files"
 msgstr ""
 
-msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
+msgid "Select Fast DiSEqC if your aerial system supports it. If you are unsure select 'No'."
 msgstr ""
 
 msgid "Select Folders"
@@ -15983,6 +15941,9 @@ msgid "Select Playback Location"
 msgstr ""
 
 msgid "Select Quad Channels"
+msgstr ""
+
+msgid "Select Satellites"
 msgstr ""
 
 msgid "Select Software Update"
@@ -16198,10 +16159,10 @@ msgstr "انتخاب ارائه دهنده برای اضافه کردن"
 msgid "Select refresh rate"
 msgstr "انتخاب نرخ تجدید"
 
-msgid "Select satellites"
+msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgid "Select service information to view:"
 msgstr ""
 
 msgid "Select service to add..."
@@ -16356,13 +16317,13 @@ msgstr "انتخاب مسیر فیلم"
 msgid "Select the location in which to store the recording:"
 msgstr ""
 
-msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr ""
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr ""
 
-msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr ""
 
 #, fuzzy
@@ -16396,22 +16357,22 @@ msgstr ""
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
-msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
 msgstr ""
 
-msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr ""
 
-msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr ""
 
-msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr ""
 
-msgid "Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."
+msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr ""
 
-msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
+msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr ""
 
 #, fuzzy
@@ -16476,13 +16437,13 @@ msgstr "ترکیب نام های فایل های ضبط"
 msgid "Select the tuner that controls the motorized dish."
 msgstr ""
 
-msgid "Select the tuner that this loopthrough depends on."
-msgstr ""
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr ""
 
-msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."
+msgid "Select the tuner upon which this loop through depends."
+msgstr ""
+
+msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
@@ -16570,16 +16531,16 @@ msgstr ""
 msgid "Select your backup device."
 msgstr ""
 
-msgid "Select your country. If not available select 'all'."
+msgid "Select your country. If not available select 'All'."
 msgstr ""
 
-msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
+msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr ""
 
 msgid "Select your provider, and press OK to start the scan"
 msgstr ""
 
-msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr ""
 
 #, fuzzy
@@ -16682,7 +16643,7 @@ msgid "Service"
 msgstr "کانال"
 
 #, fuzzy
-msgid "Service & PIDs"
+msgid "Service & PID"
 msgstr "کانال ها"
 
 #, python-format
@@ -16697,9 +16658,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-#, fuzzy
-msgid "Service ID"
-msgstr "کانال"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr ""
@@ -16724,6 +16690,13 @@ msgstr ""
 msgid "Service Zap Actions"
 msgstr "نمایش کانال های که شروع میشوند با"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 #, fuzzy
 msgid "Service cant been added to the favorites."
 msgstr "کانال به مورد علاقه اضافه شد"
@@ -16739,25 +16712,6 @@ msgid "Service has been added to the selected bouquet."
 msgstr "کانال به لیست انتخاب شده اضافه شد"
 
 msgid "Service info"
-msgstr ""
-
-msgid "Service info - ECM Info"
-msgstr ""
-
-msgid "Service info - service & Basic PID Info"
-msgstr ""
-
-msgid "Service info - service & Extended PID Info"
-msgstr ""
-
-#, fuzzy
-msgid "Service info - service & PIDs"
-msgstr "ارجاع کانال"
-
-msgid "Service info - tuner live values"
-msgstr ""
-
-msgid "Service info - tuner setting values"
 msgstr ""
 
 msgid "Service info font size"
@@ -16846,6 +16800,9 @@ msgstr ""
 msgid "Set DVB CI delay."
 msgstr ""
 
+msgid "Set Default"
+msgstr ""
+
 msgid "Set Framerate for MiniTV"
 msgstr ""
 
@@ -16869,9 +16826,6 @@ msgid "Set action for 'Info' key"
 msgstr "انتخاب فایل های نسخه پشتیبان"
 
 msgid "Set current CEC address as fixed address"
-msgstr ""
-
-msgid "Set default"
 msgstr ""
 
 #, fuzzy
@@ -17247,9 +17201,6 @@ msgstr ""
 #
 msgid "Sharpness"
 msgstr "Sharpness"
-
-msgid "Shellscript"
-msgstr ""
 
 msgid "Shift"
 msgstr ""
@@ -17758,6 +17709,9 @@ msgstr ""
 msgid "Show next picture"
 msgstr ""
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17807,6 +17761,9 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "جابجایی به کانال فرعی قبلی"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17833,6 +17790,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -18919,6 +18879,12 @@ msgstr "مکان ذخیره شد"
 msgid "Stream"
 msgstr ""
 
+msgid "Stream Relay URL"
+msgstr ""
+
+msgid "Stream Relay port"
+msgstr ""
+
 msgid "Stream request"
 msgstr "درخواست جریان"
 
@@ -19234,9 +19200,6 @@ msgstr ""
 msgid "Symbol rate"
 msgstr "سیمبل ریت"
 
-msgid "Symbol rate & FEC"
-msgstr ""
-
 msgid "Symbolic link"
 msgstr ""
 
@@ -19260,10 +19223,6 @@ msgstr ""
 
 msgid "System"
 msgstr "سیستم"
-
-#, fuzzy
-msgid "System & Modulation"
-msgstr "زیر و بم"
 
 msgid "System Info"
 msgstr ""
@@ -19325,9 +19284,6 @@ msgstr "اطلاعات مترجم"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "فایل TS بسیار بزرگ است برای  ISO9660 level 1"
 
-msgid "TSID"
-msgstr "TSID"
-
 msgid "TUNER:"
 msgstr ""
 
@@ -19343,7 +19299,7 @@ msgstr ""
 msgid "TXT PID"
 msgstr "TXT PID"
 
-msgid "TXT Subtitles page & lang"
+msgid "TXT Subtitles page & Language"
 msgstr ""
 
 msgid "Table of content for collection"
@@ -19831,7 +19787,7 @@ msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
-" Maybe recursive connection of tuners."
+"Maybe recursive connection of tuners."
 msgstr ""
 
 #, fuzzy, python-format
@@ -20192,7 +20148,7 @@ msgstr "این کانال توسط رمز کنترل والدین حفاظت ش�
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
 
-msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
+msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
 msgstr ""
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
@@ -20645,10 +20601,6 @@ msgstr "آهنگ"
 msgid "Traditional Chinese"
 msgstr ""
 
-#, fuzzy
-msgid "Transcode"
-msgstr "فرستنده"
-
 msgid "Transcoding"
 msgstr ""
 
@@ -20681,6 +20633,16 @@ msgstr "فرستنده"
 #, fuzzy
 msgid "Transponder Time"
 msgstr "فرستنده"
+
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
 
 #, fuzzy
 msgid "Transport Stream Type"
@@ -20780,6 +20742,9 @@ msgstr ""
 msgid "Tuner Setup"
 msgstr ""
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr ""
 
@@ -20789,14 +20754,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr ""
-
-#, fuzzy
-msgid "Tuner live values"
-msgstr "وضعیت تیونر"
-
-#, fuzzy
-msgid "Tuner setting values"
-msgstr "وضعیت تیونر"
 
 msgid "Tuner slot"
 msgstr "شکاف تیونر"
@@ -21351,6 +21308,9 @@ msgstr ""
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr ""
+
 msgid "Use interface"
 msgstr "رابط کاربری"
 
@@ -21675,6 +21635,9 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
+msgid "Video Codec, Size & Format"
+msgstr ""
+
 msgid "Video PID"
 msgstr "PID تصویر"
 
@@ -21757,9 +21720,6 @@ msgstr ""
 #, fuzzy
 msgid "VideoFinetune"
 msgstr "تیون خوب"
-
-msgid "Videocodec, size & format"
-msgstr ""
 
 #, fuzzy
 msgid "Videosetup"
@@ -22838,9 +22798,6 @@ msgstr ""
 msgid "Zap next"
 msgstr "پخش بعدی"
 
-msgid "Zap to"
-msgstr ""
-
 msgid "Zap to channel (setup in menu)"
 msgstr ""
 
@@ -22910,10 +22867,6 @@ msgstr "یک GUI برای واگذار کردن کانال ها ، ارائه ک
 
 msgid "activatePiP"
 msgstr ""
-
-#, fuzzy
-msgid "active"
-msgstr "مربوط"
 
 msgid "address:"
 msgstr ""
@@ -23395,7 +23348,7 @@ msgstr "در حال ضبط کردن"
 msgid "internally loopthrough to"
 msgstr ""
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr ""
 
 msgid "jazz"
@@ -23571,9 +23524,6 @@ msgstr ""
 #, fuzzy
 msgid "not"
 msgstr "خیر"
-
-msgid "not configured"
-msgstr "پیکربندی نشده"
 
 msgid "not locked"
 msgstr "قفل نشده"
@@ -23974,9 +23924,6 @@ msgstr "فعال"
 msgid "update"
 msgstr "به روز رسانی"
 
-msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
-msgstr ""
-
 #, fuzzy
 msgid "userdefined"
 msgstr "تعریف شده توسط کاربر"
@@ -24042,6 +23989,68 @@ msgstr "بله نگه داشتن feeds"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Minute"
+#~ msgstr "دقیقه"
+
+#, fuzzy
+#~ msgid "Transcode"
+#~ msgstr "فرستنده"
+
+#, fuzzy
+#~ msgid "(FTA Service)"
+#~ msgstr "کانال ها"
+
+#, fuzzy
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "Constellation"
+
+#, fuzzy
+#~ msgid "ECM Info"
+#~ msgstr "اطلاعات"
+
+#, fuzzy
+#~ msgid "Frequency & Channel"
+#~ msgstr "باند های فرکانس"
+
+#, fuzzy
+#~ msgid "Frequency & Polarization"
+#~ msgstr "قطبش"
+
+#, fuzzy
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "پهنای باند"
+
+#~ msgid "ONID"
+#~ msgstr "ONID"
+
+#, fuzzy
+#~ msgid "Service ID"
+#~ msgstr "کانال"
+
+#, fuzzy
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "ارجاع کانال"
+
+#, fuzzy
+#~ msgid "System & Modulation"
+#~ msgstr "زیر و بم"
+
+#~ msgid "TSID"
+#~ msgstr "TSID"
+
+#, fuzzy
+#~ msgid "Tuner live values"
+#~ msgstr "وضعیت تیونر"
+
+#, fuzzy
+#~ msgid "Tuner setting values"
+#~ msgstr "وضعیت تیونر"
+
+#, fuzzy
+#~ msgid "active"
+#~ msgstr "مربوط"
 
 #, fuzzy
 #~ msgid "10 minutes"

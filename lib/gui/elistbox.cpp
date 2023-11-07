@@ -7,17 +7,21 @@
 #include "vuplus_gles.h"
 #endif
 
+eRect eListbox::defaultPadding = eRect(1, 1, 1, 1);
 int eListbox::defaultScrollBarWidth = eListbox::DefaultScrollBarWidth;
 int eListbox::defaultScrollBarOffset = eListbox::DefaultScrollBarOffset;
 int eListbox::defaultScrollBarBorderWidth = eListbox::DefaultScrollBarBorderWidth;
-int eListbox::defaultScrollBarScroll = eListbox::DefaultScrollBarScroll;
-int eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
+int eListbox::defaultScrollbarRadius = 0;
 int eListbox::defaultPageSize = eListbox::DefaultPageSize;
+int eListbox::defaultItemRadius[4] = {0, 0, 0, 0};
+uint8_t eListbox::defaultItemRadiusEdges[4] = {0, 0, 0, 0};
+uint8_t eListbox::defaultScrollBarScroll = eListbox::DefaultScrollBarScroll;
+uint8_t eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
+uint8_t eListbox::defaultScrollbarRadiusEdges = 0;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
-eRect eListbox::defaultPadding = eRect(1, 1, 1, 1);
 
-eListbox::eListbox(eWidget *parent) : eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
-									  m_scrollbar_scroll(byPage), m_content_changed(false), m_enabled_wrap_around(false), m_itemwidth_set(false), m_itemheight_set(false), m_scrollbar_width(10),
+eListbox::eListbox(eWidget *parent) : eWidget(parent), m_prev_scrollbar_page(-1), m_scrollbar_mode(showNever), m_scrollbar_scroll(byPage),
+									  m_content_changed(false), m_enabled_wrap_around(false), m_itemwidth_set(false), m_itemheight_set(false), m_scrollbar_width(10),
 									  m_scrollbar_height(10), m_scrollbar_length(0), m_top(0), m_left(0), m_selected(0), m_itemheight(25), m_itemwidth(25),
 									  m_orientation(orVertical), m_max_columns(0), m_max_rows(0), m_selection_enabled(1), m_page_size(0), m_item_alignment(0), xOffset(0), yOffset(0),
 									  m_native_keys_bound(false), m_first_selectable_item(-1), m_last_selectable_item(-1), m_scrollbar(nullptr)
@@ -36,6 +40,17 @@ eListbox::eListbox(eWidget *parent) : eWidget(parent), m_scrollbar_mode(showNeve
 	m_style.m_selection_zoom = 1.0;
 	m_style.m_selection_width = m_itemwidth;
 	m_style.m_selection_height = m_itemheight;
+	m_style.m_scrollbar_radius = eListbox::defaultScrollbarRadius;
+	m_style.m_scrollbar_edges = eListbox::defaultScrollbarRadiusEdges;
+
+	for (uint8_t x = 0; x < 4; x++)
+	{
+		m_style.m_gradient_set[x] = false;
+		if (eListbox::defaultItemRadius[x] && eListbox::defaultItemRadiusEdges[x])
+			setItemCornerRadiusInternal(x, eListbox::defaultItemRadius[x], eListbox::defaultItemRadiusEdges[x]);
+		else
+			setItemCornerRadiusInternal(x, 0, 0);
+	}
 
 	allowNativeKeys(true);
 
@@ -51,7 +66,7 @@ eListbox::~eListbox()
 	allowNativeKeys(false);
 }
 
-void eListbox::setScrollbarMode(int mode)
+void eListbox::setScrollbarMode(uint8_t mode)
 {
 	m_scrollbar_mode = mode;
 	if (m_scrollbar)
@@ -80,10 +95,16 @@ void eListbox::setScrollbarMode(int mode)
 			m_scrollbar->setForegroundColor(m_style.m_scrollbarforeground_color);
 		if (m_style.is_set.scrollbarbackground_color)
 			m_scrollbar->setBackgroundColor(m_style.m_scrollbarbackground_color);
+		if (m_style.m_scrollbar_radius)
+			m_scrollbar->setCornerRadius(m_style.m_scrollbar_radius, m_style.m_scrollbar_edges);
+		if (m_style.is_set.scrollbarforegroundgradient)
+			m_scrollbar->setForegroundGradient(m_style.m_scrollbarforegroundgradient_colors, (m_orientation == orHorizontal) ? 2 : 1, false, true);
+		if (m_style.is_set.scrollbarbackgroundgradient)
+			m_scrollbar->setBackgroundGradient(m_style.m_scrollbarbackgroundgradient_colors, (m_orientation == orHorizontal) ? 2 : 1, false);
 	}
 }
 
-void eListbox::setScrollbarScroll(int scroll)
+void eListbox::setScrollbarScroll(uint8_t scroll)
 {
 	if (m_scrollbar && m_scrollbar_scroll != scroll)
 	{
@@ -214,11 +235,12 @@ int eListbox::setScrollbarPosition()
 			{
 				x += (m_style.m_selection_width - m_itemwidth) / 2;
 			}
-			if(m_item_alignment & itemHorizontalAlignJustify)
+			if (m_item_alignment & itemHorizontalAlignJustify)
 			{
 				width -= (x * 2);
 			}
-			else if (m_x_itemSpace) {
+			else if (m_x_itemSpace)
+			{
 				width = m_x_itemSpace;
 				if (m_style.m_selection_width != m_itemwidth)
 					width -= ((m_style.m_selection_width - m_itemwidth) / 2);
@@ -234,11 +256,12 @@ int eListbox::setScrollbarPosition()
 				y += (m_style.m_selection_height - m_itemheight) / 2;
 			}
 
-			if(m_item_alignment & itemVertialAlignJustify)
+			if (m_item_alignment & itemVertialAlignJustify)
 			{
 				height -= (y * 2);
 			}
-			else if (m_y_itemSpace) {
+			else if (m_y_itemSpace)
+			{
 				height = m_y_itemSpace;
 				if (m_style.m_selection_height != m_itemheight)
 					height -= (m_style.m_selection_height - m_itemheight);
@@ -297,7 +320,9 @@ void eListbox::updateScrollBar()
 {
 	if (!m_scrollbar || !m_content || m_scrollbar_mode == showNever)
 		return;
-	int entries = (m_orientation == orGrid) ? (m_content->size() + m_max_columns - 1) / m_max_columns : m_content->size();
+	int entries = m_content->size();
+	if ((m_orientation == orGrid) && m_max_columns)
+		entries = (m_content->size() + m_max_columns - 1) / m_max_columns;
 	bool scrollbarvisible = m_scrollbar->isVisible();
 	bool scrollbarvisibleOld = m_scrollbar->isVisible();
 	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
@@ -377,7 +402,6 @@ void eListbox::updateScrollBar()
 		{
 			m_scrollbar->setRange(0, m_scrollbar_calcsize - (m_scrollbar_border_width * 2));
 		}
-
 	}
 
 	// Don't set Start/End if scollbar not visible or entries/maxItems = 0
@@ -390,9 +414,8 @@ void eListbox::updateScrollBar()
 			if (m_prev_scrollbar_page != m_selected)
 			{
 				m_prev_scrollbar_page = m_selected;
-
 				int start = 0;
-				int selected = (m_orientation == orGrid) ? m_selected / m_max_columns : m_selected;
+				int selected = (m_orientation == orGrid && m_max_columns > 0) ? m_selected / m_max_columns : m_selected;
 				int range = m_scrollbar_calcsize - (m_scrollbar_border_width * 2);
 				int end = range;
 				// calculate thumb only if needed
@@ -485,16 +508,26 @@ int eListbox::event(int event, void *data, void *data2)
 
 		if (!isTransparent())
 		{
+			int cornerRadius = getCornerRadius();
+			int cornerRadiusEdges = getCornerRadiusEdges();
 			painter.clip(paint_region);
 			style->setStyle(painter, eWindowStyle::styleListboxNormal);
 			if (m_style.is_set.spacing_color)
+			{
 				painter.setBackgroundColor(m_style.m_spacing_color);
+			}
 			else
 			{
 				if (m_style.is_set.background_color)
 					painter.setBackgroundColor(m_style.m_background_color);
 			}
-			painter.clear();
+			if (cornerRadius && cornerRadiusEdges)
+			{
+				painter.setRadius(cornerRadius, cornerRadiusEdges);
+				painter.drawRectangle(eRect(ePoint(0, 0), size()));
+			}
+			else
+				painter.clear();
 			painter.clippop();
 		}
 
@@ -661,7 +694,7 @@ void eListbox::recalcSize()
 	if (m_content)
 	{
 		scrollbarVisible = m_scrollbar && m_scrollbar->isVisible();
-		if(scrollbarVisible)
+		if (scrollbarVisible)
 		{
 			xscrollBar = (m_orientation == orGrid) ? (m_scrollbar->size().width() + m_scrollbar_offset) : 0;
 			yscrollBar = (m_orientation == orHorizontal) ? (m_scrollbar->size().height() + m_scrollbar_offset) : 0;
@@ -1015,6 +1048,7 @@ void eListbox::entryReset(bool selectionHome)
 
 void eListbox::setSpacingColor(gRGB &col)
 {
+	eWidget::setBackgroundColor(col);
 	m_style.m_spacing_color = col;
 	m_style.is_set.spacing_color = 1;
 }
@@ -1029,24 +1063,6 @@ void eListbox::setBackgroundColorSelected(gRGB &col)
 {
 	m_style.m_background_color_selected = col;
 	m_style.is_set.background_color_selected = 1;
-}
-
-void eListbox::setBackgroundGradient(gRGB &start, gRGB &end, int direction, int flag)
-{
-	m_style.m_background_gradient_color_start = start;
-	m_style.m_background_gradient_color_end = end;
-	m_style.m_background_color_gradient_direction = direction;
-	m_style.m_background_color_gradient_flag = flag;
-	m_style.is_set.background_gradient_color = 1;
-}
-
-void eListbox::setBackgroundGradientSelected(gRGB &start, gRGB &end, int direction, int flag)
-{
-	m_style.m_background_gradient_color_selected_start = start;
-	m_style.m_background_gradient_color_selected_end = end;
-	m_style.m_background_color_gradient_selected_direction = direction;
-	m_style.m_background_color_gradient_selected_flag = flag;
-	m_style.is_set.background_gradient_selected_color = 1;
 }
 
 void eListbox::setForegroundColor(gRGB &col)
@@ -1114,6 +1130,30 @@ void eListbox::setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm)
 		m_scrollbar->setBackgroundPixmap(pm);
 }
 
+void eListbox::setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
+{
+	m_style.m_scrollbarforegroundgradient_colors = {startcolor, midcolor, endcolor};
+	m_style.is_set.scrollbarforegroundgradient = 1;
+	if (m_scrollbar)
+		m_scrollbar->setForegroundGradient(m_style.m_scrollbarforegroundgradient_colors, (m_orientation == orHorizontal) ? 2 : 1, false, true);
+}
+
+void eListbox::setScrollbarBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
+{
+	m_style.m_scrollbarbackgroundgradient_colors = {startcolor, midcolor, endcolor};
+	m_style.is_set.scrollbarbackgroundgradient = 1;
+	if (m_scrollbar)
+		m_scrollbar->setBackgroundGradient(m_style.m_scrollbarbackgroundgradient_colors, (m_orientation == orHorizontal) ? 2 : 1, false);
+}
+
+void eListbox::setScrollbarRadius(int radius, uint8_t edges)
+{
+	m_style.m_scrollbar_radius = radius;
+	m_style.m_scrollbar_edges = edges;
+	if (m_scrollbar)
+		m_scrollbar->setCornerRadius(radius, edges);
+}
+
 void eListbox::setItemAlignment(int align)
 {
 	if (m_item_alignment != align)
@@ -1138,7 +1178,7 @@ struct eListboxStyle *eListbox::getLocalStyle(void)
 	return &m_style;
 }
 
-void eListbox::setOrientation(int newOrentation)
+void eListbox::setOrientation(uint8_t newOrentation)
 {
 	if (m_orientation != newOrentation)
 	{
@@ -1748,4 +1788,61 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 	}
 
 	return topLeft;
+}
+void eListbox::setItemCornerRadiusInternal(uint8_t index, int radius, uint8_t edges)
+{
+	m_style.m_itemCornerRadius[index] = radius;
+	m_style.m_itemCornerRadiusEdges[index] = edges;
+}
+
+void eListbox::setItemCornerRadius(int radius, uint8_t edges)
+{
+	for (uint8_t x = 0; x < 4; x++)
+	{
+		setItemCornerRadiusInternal(x, radius, edges);
+	}
+}
+
+void eListbox::setItemCornerRadiusSelected(int radius, uint8_t edges)
+{
+	setItemCornerRadiusInternal(1, radius, edges);
+}
+
+void eListbox::setItemCornerRadiusMarked(int radius, uint8_t edges)
+{
+	setItemCornerRadiusInternal(2, radius, edges);
+}
+
+void eListbox::setItemCornerRadiusMarkedandSelected(int radius, uint8_t edges)
+{
+	setItemCornerRadiusInternal(3, radius, edges);
+}
+
+void eListbox::setItemGradientInternal(uint8_t index, const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
+{
+	m_style.m_gradient_colors[index] = {startcolor, midcolor, endcolor};
+	m_style.m_gradient_direction[index] = direction;
+	m_style.m_gradient_alphablend[index] = alphablend;
+	m_style.m_gradient_set[index] = true;
+	invalidate();
+}
+
+void eListbox::setItemGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
+{
+	setItemGradientInternal(0, startcolor, midcolor, endcolor, direction, alphablend);
+}
+
+void eListbox::setItemGradientSelected(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
+{
+	setItemGradientInternal(1, startcolor, midcolor, endcolor, direction, alphablend);
+}
+
+void eListbox::setItemGradientMarked(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
+{
+	setItemGradientInternal(2, startcolor, midcolor, endcolor, direction, alphablend);
+}
+
+void eListbox::setItemGradientMarkedandSelected(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
+{
+	setItemGradientInternal(3, startcolor, midcolor, endcolor, direction, alphablend);
 }

@@ -5,4 +5,4 @@
 
 
 def Hex2strColor(rgb):
-	return "\c%08x" % rgb
+	return r"\c%08x" % rgb

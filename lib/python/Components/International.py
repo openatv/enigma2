@@ -146,7 +146,7 @@ LANGUAGE_DATA = {
 	"ko": ("Korean", _("Korean"), "한국어", "UTF-8", ("KR",)),
 	"kr": ("Kanuri", _("Kanuri"), "Kanuri", "UTF-8", ()),
 	"ks": ("Kashmiri", _("Kashmiri"), "कश्मीरी / كشميري", "UTF-8", ("IN",)),
-	"ku": ("Kurdish", _("Kurdish"), "Kurdî / کوردی", "ISO-8859-15", ("TR",)),
+	"ku": ("Kurdish", _("Kurdish"), "Kurdî / کوردی", "ISO-8859-15", ("KU",)),
 	"kv": ("Komi", _("Komi"), "Коми кыв", "UTF-8", ()),
 	"kw": ("Cornish", _("Cornish"), "Kernewek", "UTF-8", ("GB",)),
 	"ky": ("Kirghiz / Kyrgyz", _("Kirghiz / Kyrgyz"), "Кыргызча, Кыргыз тили", "UTF-8", ("KG",)),
@@ -382,6 +382,7 @@ COUNTRY_DATA = {
 	"KN": ("KNA", "659", "Saint Kitts and Nevis", _("Saint Kitts and Nevis"), "Saint Kitts and Nevis"),
 	"KP": ("PRK", "408", "Korea, Democratic People's Republic of", _("Korea, Democratic People's Republic of"), "조선"),
 	"KR": ("KOR", "410", "Korea, Republic of", _("Korea, Republic of"), "한국"),
+	"KU": ("KUR", "369", "Kurdistan", _("Kurdistan"), "کوردستان"),  # These details are fictitious! ISO recognition may require the details to be corrected.
 	"KW": ("KWT", "414", "Kuwait", _("Kuwait"), "الكويت‎"),
 	"KY": ("CYM", "136", "Cayman Islands", _("Cayman Islands"), "Cayman Islands"),
 	"KZ": ("KAZ", "398", "Kazakhstan", _("Kazakhstan"), "Қазақстан"),

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:13+0000\n"
+"POT-Creation-Date: 2023-11-04 16:40+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -249,10 +249,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1203,14 +1199,6 @@ msgid "%s Information Actions"
 msgstr "%s 信息操作"
 
 #, python-format
-msgid "%s KSymb/s"
-msgstr "%s KSymb/秒"
-
-#, python-format
-msgid "%s MHz"
-msgstr "%s MHz"
-
-#, python-format
 msgid "%s Setup"
 msgstr "%s 设置"
 
@@ -1322,9 +1310,6 @@ msgstr "访问 %s 提交日志需要互联网连接."
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(注意: 将在 %d 次崩溃后重新启动.)"
 
-msgid "(FTA Service)"
-msgstr "(免费频道)"
-
 msgid "(PiP)"
 msgstr " (画中画)"
 
@@ -1428,9 +1413,6 @@ msgstr "12位 4:2:0/4:2:2 无画中画"
 msgid "13 V"
 msgstr "13V"
 
-msgid "16/9 reset to normal"
-msgstr ""
-
 msgid "16:10 Letterbox"
 msgstr "16:10信箱模式"
 
@@ -1453,6 +1435,9 @@ msgid "16:9 Letterbox"
 msgstr "16:9信箱模式"
 
 msgid "16:9 PanScan"
+msgstr ""
+
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "18 V"
@@ -2071,10 +2056,10 @@ msgstr "添加任务..."
 msgid "Additional files/folders to backup"
 msgstr "额外备份的 文件/文件夹"
 
-msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
+msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move the dish from one satellite to another."
 msgstr "额外的电机选项允许您输入电机规格表中的详细信息,这样就可以计算出从一颗卫星移动到另一颗卫星需要多长时间."
 
-msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
+msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "额外的电机选项允许您输入电机规格表中的详细信息,这样就可以计算出从一颗卫星移动到另一颗卫星需要多长时间."
 
 msgid "Address"
@@ -2603,11 +2588,8 @@ msgid "Audio PID"
 msgstr "音频PID"
 
 #, python-format
-msgid "Audio PID%s, codec & lang"
+msgid "Audio PID%s, Codec & Language"
 msgstr "音频PID%s,编解码器和语言"
-
-msgid "Audio PID, codec & lang"
-msgstr "音频PID,编解码器和语言"
 
 msgid "Audio Settings"
 msgstr "音频设置"
@@ -2972,9 +2954,6 @@ msgstr "棒球"
 msgid "Bashkir"
 msgstr "巴什基尔语"
 
-msgid "Basic PID info"
-msgstr "基本PID信息"
-
 msgid "Basketball"
 msgstr "篮球"
 
@@ -3277,9 +3256,6 @@ msgstr "按键设置"
 msgid "Button error timeout"
 msgstr ""
 
-msgid "ButtonSetup"
-msgstr "按键设置"
-
 msgid "By disk UUID"
 msgstr ""
 
@@ -3401,9 +3377,6 @@ msgstr "CI(通用接口)设置"
 msgid "CI Boot Delay"
 msgstr ""
 
-msgid "CI Helper Settings"
-msgstr "CI 助手设置"
-
 msgid "CI assignment"
 msgstr "接口分配（CI）"
 
@@ -3412,6 +3385,9 @@ msgstr ""
 
 msgid "CI slot: "
 msgstr "CI插槽: "
+
+msgid "CI+ Helper*"
+msgstr ""
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba设置"
@@ -4042,6 +4018,9 @@ msgstr ""
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr ""
 
@@ -4164,18 +4143,12 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "请单击你想要修改的遥控键"
 
-msgid "Client"
-msgstr "客户"
-
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "客户端信息(Oscam-版本: %s)"
 
 msgid "Client is streaming from this box!"
 msgstr "客户端正在从这个机顶盒中进行流式传输!"
-
-msgid "ClientIP"
-msgstr "客户端IP"
 
 msgid "Clients"
 msgstr "客户端"
@@ -4242,9 +4215,6 @@ msgstr ""
 
 msgid "Cocos (Keeling) Islands"
 msgstr "科科斯(基林)群岛"
-
-msgid "Code R. LP-HP & Guard Int."
-msgstr "代码R.LP-HP和Guard Int."
 
 msgid "Code rate HP"
 msgstr "高编码率"
@@ -4699,7 +4669,7 @@ msgstr "配置分配给频道名称的宽度."
 msgid "Configure the width of the TrueType font letters used for teletext."
 msgstr "配置用于图文电视的TrueType字体字母的宽度."
 
-msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
+msgid "Configure this tuner using Simple or Advanced options, loop it through to another tuner, copy a configuration from another tuner or disable it."
 msgstr "使用简单或高级选项配置此调谐器,或将其循环到另一个调谐器,或从另一个调谐器复制配置,或将其禁用."
 
 msgid "Configure to show channel names, numbers, picons or all three inside EPG."
@@ -4805,14 +4775,20 @@ msgstr "连接信息"
 msgid "Console"
 msgstr "控制台"
 
-msgid "Constellation & FFT mode"
-msgstr "配置和FFT模式"
+msgid "Constellation"
+msgstr ""
 
-msgid "Consult your SCR device spec sheet for this information."
+msgid "Consult your SCR device specifications for this information."
 msgstr "有关此信息,请参阅SCR设备规格表."
 
-msgid "Consult your motor's spec sheet for this information, or leave the default setting."
+msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "有关此信息,请参阅电机的规格表,或保留默认设置."
+
+msgid "Consult your receiver's manual for more information on power management."
+msgstr "电源管理.有关更多信息,请查阅您的接收器手册."
+
+msgid "Consult your receiver's manual for more information on power threshold."
+msgstr "功率阈值.有关更多信息,请查阅您的接收器手册."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -4916,6 +4892,9 @@ msgstr "复制"
 
 msgid "Copy To Bouquets"
 msgstr "复制到自定义组"
+
+msgid "Copy To Stream Relay"
+msgstr ""
 
 msgid "Copy all related files"
 msgstr ""
@@ -5290,7 +5269,7 @@ msgstr ""
 msgid "DVB CI Delay"
 msgstr "DVB CI延迟"
 
-msgid "DVB Subtitles PID & lang"
+msgid "DVB Subtitles PID & Language"
 msgstr "DVB字幕PID和语言"
 
 msgid "DVB subtitle black transparency"
@@ -6554,8 +6533,8 @@ msgstr "E"
 msgid "E "
 msgstr "E "
 
-msgid "ECM Info"
-msgstr "ECM信息"
+msgid "ECM"
+msgstr ""
 
 msgid "ECM Statistics"
 msgstr "ECM统计数据"
@@ -6568,6 +6547,13 @@ msgstr "ECM平均值"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM数据将包括在流中. 这使得客户端接收机能够对其进行解码."
+
+msgid "ECM information"
+msgstr ""
+
+#, python-format
+msgid "ECM information for '%s'"
+msgstr ""
 
 msgid "ECM last"
 msgstr "ECM最后"
@@ -6995,7 +6981,7 @@ msgstr "启用此选项可将屏幕名称和分辨率数据添加到调试日志
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
-msgid "Enable this setting if your aerial system needs power"
+msgid "Enable this setting if your aerial system needs power."
 msgstr "如果天线系统需要电源,请启用此设置"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
@@ -7161,11 +7147,11 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr "输入此设备的新名称."
 
-msgid "Enter if you are in the east or west hemisphere."
-msgstr "输入您是在东半球还是西半球."
-
-msgid "Enter if you are north or south of the equator."
+msgid "Enter if you are North or South of the equator."
 msgstr "输入您是否在赤道以北或以南."
+
+msgid "Enter if you are in the East or West hemisphere."
+msgstr "输入您是在东半球还是西半球."
 
 msgid "Enter main menu..."
 msgstr "输入主菜单..."
@@ -7185,7 +7171,7 @@ msgstr "输入PIN码"
 msgid "Enter text via an attached keyboard"
 msgstr ""
 
-msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
+msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "输入LNB在低频段和高频段之间切换的频率.有关更多信息,请参阅LNB的规格表."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
@@ -7203,10 +7189,10 @@ msgstr "输入您当前的纬度.这是您距赤道的度数(以十进制表示)
 msgid "Enter your current longitude. This is the number of degrees you are from zero meridian as a decimal."
 msgstr "输入当前经度.这是从子午线零点算起的十进制度数."
 
-msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgid "Enter your high band local oscillator frequency. For more information consult the specifications of your LNB."
 msgstr "输入您的高频本地振荡器频率.有关更多信息,请参阅LNB的规格表."
 
-msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgid "Enter your low band local oscillator frequency. For more information consult the specifications of your LNB."
 msgstr "输入您的低频本地振荡器频率.有关更多信息,请参阅LNB的规格表."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
@@ -7716,9 +7702,6 @@ msgstr "扩展"
 
 msgid "Extended Networksetup Plugin..."
 msgstr "扩展网络设置插件..."
-
-msgid "Extended PID info"
-msgstr "更多PID信息"
 
 msgid "Extended Setup..."
 msgstr "扩展设置..."
@@ -8269,6 +8252,9 @@ msgstr ""
 msgid "Format your hard drive"
 msgstr "格式化你的硬盘"
 
+msgid "Forward Error Correction (FEC)"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "向前音量键"
 
@@ -8296,6 +8282,9 @@ msgstr "可用内存:"
 msgid "Free swap"
 msgstr "空闲交换"
 
+msgid "Free to Air (FTA) Service"
+msgstr ""
+
 msgid "Free:"
 msgstr "可用："
 
@@ -8313,12 +8302,6 @@ msgstr "法属南部领地"
 
 msgid "Frequency"
 msgstr "频段频率"
-
-msgid "Frequency & Channel"
-msgstr "频率和频道"
-
-msgid "Frequency & Polarization"
-msgstr "频率和极化"
 
 msgid "Frequency Norm:"
 msgstr "频率标准:"
@@ -8669,7 +8652,7 @@ msgstr "关岛"
 msgid "Guarani"
 msgstr "瓜拉尼语"
 
-msgid "Guard interval"
+msgid "Guard Interval"
 msgstr "保护间隔"
 
 msgid "Guatemala"
@@ -9035,9 +9018,6 @@ msgstr "主机名: "
 msgid "Hotbird 13.0e"
 msgstr "热鸟 13.0e"
 
-msgid "Hotkey"
-msgstr "快捷键"
-
 msgid "Hotkey Settings"
 msgstr "快捷键设置"
 
@@ -9121,6 +9101,9 @@ msgstr ""
 
 msgid "IP address"
 msgstr "IP地址"
+
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
 
 msgid "IPK Installer"
 msgstr "IPK安装器"
@@ -9271,14 +9254,14 @@ msgstr ""
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "如果使用多个未提交的开关,则必须多次设置DISEQC命令.设置为链中未提交的开关数减去1."
 
-msgid "If you are using a Circular polarised LNB select 'yes', otherwise select 'no'."
-msgstr "如果您使用的是圆极化LNB,请选择'是',否则请选择'否'."
-
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
 msgstr "如果使用的是DISEQC提交的开关,请输入访问此卫星使用的高频头所需的字母."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr "如果使用的是DiSEqC uncommitted开关,请输入访问此卫星使用的高频头所需的端口号."
+
+msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
+msgstr "如果您使用的是圆极化LNB,请选择'是',否则请选择'否'."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -9734,12 +9717,6 @@ msgstr "无效的转发器数据"
 msgid "Inversion"
 msgstr "反演"
 
-msgid "Inversion & Bandwidth"
-msgstr "反演与带宽"
-
-msgid "Inversion, Pilot & Roll-off"
-msgstr "反演,引导和滚降"
-
 msgid "Invert"
 msgstr "反演"
 
@@ -9976,6 +9953,9 @@ msgstr "关山"
 msgid "Kurdish"
 msgstr "库尔德语"
 
+msgid "Kurdistan"
+msgstr ""
+
 msgid "Kuwait"
 msgstr "科威特"
 
@@ -10129,7 +10109,7 @@ msgstr "拉脱维亚语"
 msgid "Leave DVD player?"
 msgstr "是否退出DVD播放器?"
 
-msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
+msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "将此设置保留为'是',除非您完全理解要调整它的原因."
 
 msgid "Lebanon"
@@ -10501,6 +10481,9 @@ msgstr "MB"
 msgid "MENU"
 msgstr "菜单"
 
+msgid "MHz"
+msgstr ""
+
 msgid "MKUBIFS"
 msgstr "姆库比夫斯"
 
@@ -10865,9 +10848,6 @@ msgid "Minimum send interval"
 msgstr "最小发送间隔"
 
 msgid "Mins"
-msgstr "分钟"
-
-msgid "Minute"
 msgstr "分钟"
 
 msgid "Minutes"
@@ -11378,8 +11358,8 @@ msgstr ""
 msgid "NFS Settings"
 msgstr "NFS设置"
 
-msgid "NIM & Type"
-msgstr "NIM模块类型"
+msgid "NIM"
+msgstr ""
 
 msgid "NOTE"
 msgstr ""
@@ -11426,7 +11406,7 @@ msgstr "DNS设置"
 msgid "Nameserver setup"
 msgstr "DNS设置"
 
-msgid "Namespace & Orbital pos."
+msgid "Namespace & Orbital position"
 msgstr "名称空间和轨道位置."
 
 msgid "Namibia"
@@ -11559,9 +11539,6 @@ msgstr "网络名称(SSID)"
 msgid "Network scan"
 msgstr "网络扫描"
 
-msgid "Network storage on"
-msgstr ""
-
 msgid "Network test"
 msgstr "网络测试"
 
@@ -11650,12 +11627,6 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "接下来"
 
-msgid "Next Log"
-msgstr ""
-
-msgid "Next Picture"
-msgstr ""
-
 msgid "Next bouquet"
 msgstr "下一个自定义组"
 
@@ -11695,7 +11666,7 @@ msgstr "未连接"
 msgid "No Devices Found !!"
 msgstr "没有找到设备!!"
 
-msgid "No ECMPids available"
+msgid "No ECM PIDs available"
 msgstr "没有可用的ECM PID"
 
 msgid "No HDD found or HDD not initialized!"
@@ -11770,9 +11741,6 @@ msgstr "没有空闲的调谐器！"
 
 msgid "No hard disks detected."
 msgstr "未检测到硬盘."
-
-msgid "No log files found so debug logs are unavailable!"
-msgstr ""
 
 msgid "No matching place names found"
 msgstr "未找到匹配的地名"
@@ -12009,6 +11977,9 @@ msgstr "不显示"
 msgid "Not associated"
 msgstr "未关联"
 
+msgid "Not configured"
+msgstr "未配置"
+
 msgid "Not currently mounted."
 msgstr "当前未安装."
 
@@ -12106,9 +12077,6 @@ msgstr "OK键模式"
 
 msgid "OK, guide me through the upgrade process"
 msgstr "确定,引导我完成升级过程"
-
-msgid "ONID"
-msgstr "客户端(ONID)"
 
 msgid "OSD"
 msgstr "OSD菜单"
@@ -12371,6 +12339,9 @@ msgstr ""
 msgid "Original"
 msgstr "原始"
 
+msgid "Original Network ID (ONID)"
+msgstr ""
+
 msgid "Oriya"
 msgstr "奥里亚"
 
@@ -12399,7 +12370,7 @@ msgstr "其它"
 msgid "Other Actions"
 msgstr "其他操作"
 
-msgid "Other Subtitles & lang"
+msgid "Other Subtitles & Language"
 msgstr "其他字幕和语言"
 
 msgid "Other buttons will jump to the help information for that button, if there is help available."
@@ -12506,9 +12477,6 @@ msgstr "PLS模式"
 msgid "PMT PID"
 msgstr "节目映射(PMT PID)"
 
-msgid "PPanel"
-msgstr "PPanel面板"
-
 msgid "PRIMETIME"
 msgstr "黄金时段"
 
@@ -12582,9 +12550,6 @@ msgstr "巴拿马"
 
 msgid "Panic channel"
 msgstr "应急频道"
-
-msgid "Panic to"
-msgstr "应急到"
 
 msgid "Panjabi / Punjabi"
 msgstr "旁遮普语"
@@ -12846,6 +12811,12 @@ msgid "Play selected service in a PiP window"
 msgstr ""
 
 msgid "Play selected service on the main screen"
+msgstr ""
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
 msgstr ""
 
 msgid "Play the audio file"
@@ -13203,6 +13174,9 @@ msgstr "端口 C"
 msgid "Port D"
 msgstr "端口 D"
 
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
+
 msgid "Portugal"
 msgstr "葡萄牙"
 
@@ -13257,14 +13231,8 @@ msgstr "待机期间电源LED的状态."
 msgid "Power On Display"
 msgstr "LCD电源控制"
 
-msgid "Power management. Consult your receiver's manual for more information."
-msgstr "电源管理.有关更多信息,请查阅您的接收器手册."
-
 msgid "Power threshold in mA"
 msgstr "功率阈值(毫安)"
-
-msgid "Power threshold. Consult your receiver's manual for more information."
-msgstr "功率阈值.有关更多信息,请查阅您的接收器手册."
 
 msgid "PowerTimer"
 msgstr "电源定时器"
@@ -13456,12 +13424,6 @@ msgstr "预览菜单"
 
 msgid "Previous"
 msgstr "前一个"
-
-msgid "Previous Log"
-msgstr ""
-
-msgid "Previous Picture"
-msgstr ""
 
 msgid "Previous bouquet"
 msgstr "转到上个自定义组"
@@ -15040,7 +15002,7 @@ msgstr "扫描 "
 msgid "Scan %s"
 msgstr "扫描 %s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
+#. TRANSLATORS: Option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'.
 #, python-format
 msgid "Scan %s band"
 msgstr "扫描 %s 波段"
@@ -15224,10 +15186,19 @@ msgstr "选择"
 msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switches, and '1.2' for systems using a positioner."
 msgstr "为标准开关选择'1.0',为非固定开关选择'1.1,'为使用定位器的系统选择 '1.2'."
 
-msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
+msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
 msgstr "如果天线系统需要,请选择'A'或'B',否则请选择’无'.如果不确定,请选择'无'."
 
+msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "如果使用'通用”高频头,请选择'波段',否则请查阅高频头规格表."
+
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "如果此调谐器已连接信号电缆,请选择'已启用',否则选择'未连接'."
+
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -15239,11 +15210,20 @@ msgstr "如果设置为'否',则仅将调试消息写入调试日志 "
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "如果设为'否',即使在切换或中断时移后,您也可以保存较旧的事件."
 
+msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
+msgstr "如果使用'通用'高频头,请选择'极化',否则请查阅LNB规格表."
+
+msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr "从电缆复用器的预定义列表中选择'供应商'进行扫描.选择'频段'仅扫描频谱的某些部分.选择'频率步长'以特定频率带宽进行扫描."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr ""
+
+msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
+msgstr "如果此调谐器通过另一个调谐器连接到SCR设备,请选择'是',否则请选择'否'."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
@@ -15298,6 +15278,21 @@ msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "如果设为'是',没有EPG的频道将不显示."
+
+#, python-format
+msgid "Select 'Yes' to include %s multiplexes in your search."
+msgstr "选择'是'可在搜索中包含 %s 多路复用."
+
+#, python-format
+msgid "Select 'Yes' to include symbol rate %s in your search."
+msgstr "选择'是'可将符号速率 %s 包含在搜索中."
+
+#, python-format
+msgid "Select 'Yes' to include the %s band in your search."
+msgstr "选择'是'可在搜索中包括 %s 波段."
+
+msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
+msgstr "选择‘是’仅在从一颗卫星转换为另一颗卫星时发送DiSEqC命令,或者选择'否'以使DiSEqC命令在每次切换时都重新发送."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
@@ -15413,36 +15408,6 @@ msgstr ""
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "如果设置为'是'在媒体播放中快进或快退将会显示信息栏."
 
-msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
-msgstr "如果使用'通用”高频头,请选择'波段',否则请查阅高频头规格表."
-
-msgid "Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."
-msgstr "如果此调谐器已连接信号电缆,请选择'已启用',否则选择'未连接'."
-
-msgid "Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
-msgstr "如果使用'通用'高频头,请选择'极化',否则请查阅LNB规格表."
-
-msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
-msgstr "从电缆复用器的预定义列表中选择'供应商'进行扫描.选择'频段'仅扫描频谱的某些部分.选择'频率步长'以特定频率带宽进行扫描."
-
-msgid "Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."
-msgstr "如果此调谐器通过另一个调谐器连接到SCR设备,请选择'是',否则请选择'否'."
-
-#, python-format
-msgid "Select 'yes' to include %s multiplexes in your search."
-msgstr "选择'是'可在搜索中包含 %s 多路复用."
-
-#, python-format
-msgid "Select 'yes' to include symbol rate %s in your search."
-msgstr "选择'是'可将符号速率 %s 包含在搜索中."
-
-#, python-format
-msgid "Select 'yes' to include the %s band in your search."
-msgstr "选择'是'可在搜索中包括 %s 波段."
-
-msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
-msgstr "选择‘是’仅在从一颗卫星转换为另一颗卫星时发送DiSEqC命令,或者选择'否'以使DiSEqC命令在每次切换时都重新发送."
-
 msgid "Select Additional Backup Files"
 msgstr "选择额外的备份文件"
 
@@ -15464,7 +15429,7 @@ msgstr "选择Enigma2皮肤"
 msgid "Select Excluded Backup Files"
 msgstr "选择排除的备份文件"
 
-msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
+msgid "Select Fast DiSEqC if your aerial system supports it. If you are unsure select 'No'."
 msgstr "如果天线系统支持此功能,请选择'快速DISEQC'.如果不确定,请选择'否'."
 
 msgid "Select Folders"
@@ -15490,6 +15455,9 @@ msgstr ""
 
 msgid "Select Quad Channels"
 msgstr "选择四画面频道"
+
+msgid "Select Satellites"
+msgstr "选择卫星"
 
 msgid "Select Software Update"
 msgstr "选择软件更新"
@@ -15697,11 +15665,11 @@ msgstr "选择并添加供应商..."
 msgid "Select refresh rate"
 msgstr "选择刷新率"
 
-msgid "Select satellites"
-msgstr "选择卫星"
-
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "选择要激活的搜索栏,通过L/R箭头(长按)或<< >>(长按)."
+
+msgid "Select service information to view:"
+msgstr ""
 
 msgid "Select service to add..."
 msgstr "选择要添加的频道..."
@@ -15854,13 +15822,13 @@ msgstr "从菜单中选择区域设置"
 msgid "Select the location in which to store the recording:"
 msgstr ""
 
-msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "选择SCR设备的制造商.如果制造商未列出,请将'SCR'设置为'用户定义',并根据其规格表手动输入设备参数."
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "选择屏幕分辨率和帧恢复时留下的图文的方法."
 
-msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "选择Unicable设备的型号.如果未列出型号,请将'SCR'设置为'用户定义',并根据其规格表手动输入设备参数."
 
 msgid "Select the movie path"
@@ -15893,23 +15861,23 @@ msgstr "选择SCR设备使用的协议.可选择的选项有'SCR Unicable'(可�
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
-msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
+msgstr "选择接收的卫星.如果不确定,请选择'自动',接收器将尝试为您确定."
+
+msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "选择连接到交换机端口A的卫星.如果不确定,请选择'自动',接收器将尝试为您确定.如果没有连接到此端口,请选择'无连接'."
 
-msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "选择连接到交换机端口B的卫星.如果您不确定,请选择'自动',接收器将尝试为您确定.如果没有连接到此端口,请选择'无连接'."
 
-msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "选择连接到交换机端口C的卫星.如果您不确定,请选择'自动',接收器将尝试为您确定.如果没有连接到此端口,请选择'无连接'."
 
-msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'."
 msgstr "选择连接到交换机端口D的卫星.如果您不确定,请选择'自动',接收器将尝试为您确定.如果没有连接到此端口,请选择'无连接'."
 
-msgid "Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."
+msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "选择要配置的卫星.一旦配置了卫星,您就可以 选择和配置将使用同一个调谐器访问的其他卫星."
-
-msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
-msgstr "选择接收的卫星.如果不确定,请选择'自动',接收器将尝试为您确定."
 
 msgid "Select the shifted character set"
 msgstr "选择转换后的字符集"
@@ -15971,13 +15939,13 @@ msgstr "选择区域或区域内的时区."
 msgid "Select the tuner that controls the motorized dish."
 msgstr "选择控制电动极轴的调谐器."
 
-msgid "Select the tuner that this loopthrough depends on."
-msgstr "选择此循环依赖的调谐器."
-
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "选择与SCR设备的信号线连接的调谐器."
 
-msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."
+msgid "Select the tuner upon which this loop through depends."
+msgstr "选择此循环依赖的调谐器."
+
+msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
 msgstr "选择要使用的LNB/设备类型(通常为'通用').如果您的LNB类型不可用,请选择'用户自定义'."
 
 msgid "Select the type of Single Cable Reception device you are using."
@@ -16064,16 +16032,16 @@ msgstr "选择音频/字幕语言"
 msgid "Select your backup device."
 msgstr ""
 
-msgid "Select your country. If not available select 'all'."
+msgid "Select your country. If not available select 'All'."
 msgstr "选择国家(地区).如果不可用,请选择'全部'."
 
-msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
+msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "选择供应商和区域.如果不在这个列表里,将需要选择另一种频道扫描类型."
 
 msgid "Select your provider, and press OK to start the scan"
 msgstr "选择供应商,并按OK开始扫描"
 
-msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "选择您的地区.如果不可用,请将'国家/地区'更改为'全部'并选择默认选项之一."
 
 msgid "Select your time zone area or region."
@@ -16182,7 +16150,7 @@ msgstr "服务器:"
 msgid "Service"
 msgstr "频道"
 
-msgid "Service & PIDs"
+msgid "Service & PID"
 msgstr "频道和PID信息"
 
 #, python-format
@@ -16197,8 +16165,14 @@ msgstr ""
 msgid "Service '%s' is already defined."
 msgstr ""
 
-msgid "Service ID"
-msgstr "频道ID"
+msgid "Service ID (SID)"
+msgstr ""
+
+msgid "Service Information"
+msgstr ""
+
+msgid "Service Information Actions"
+msgstr ""
 
 msgid "Service Name"
 msgstr "频道名称"
@@ -16221,6 +16195,13 @@ msgstr "频道标题模式"
 msgid "Service Zap Actions"
 msgstr "频道切换动作"
 
+msgid "Service and PID information"
+msgstr ""
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr ""
+
 msgid "Service cant been added to the favorites."
 msgstr "频道无法添加到收藏夹."
 
@@ -16235,24 +16216,6 @@ msgstr "频道已添加到选择的自定义组."
 
 msgid "Service info"
 msgstr "频道信息"
-
-msgid "Service info - ECM Info"
-msgstr "频道信息-ECM信息"
-
-msgid "Service info - service & Basic PID Info"
-msgstr "频道信息-频道和基本PID信息"
-
-msgid "Service info - service & Extended PID Info"
-msgstr "频道信息-频道和扩展PID信息"
-
-msgid "Service info - service & PIDs"
-msgstr "频道信息-频道和PIDs"
-
-msgid "Service info - tuner live values"
-msgstr "频道信息-调谐器实时值"
-
-msgid "Service info - tuner setting values"
-msgstr "频道信息-调谐器设置值"
 
 msgid "Service info font size"
 msgstr "频道信息字体大小"
@@ -16338,6 +16301,9 @@ msgstr "设置CI分配检测可用的频道."
 msgid "Set DVB CI delay."
 msgstr ""
 
+msgid "Set Default"
+msgstr "设置默认值"
+
 msgid "Set Framerate for MiniTV"
 msgstr "设置MiniTV帧率"
 
@@ -16361,9 +16327,6 @@ msgstr "为'Info'键设置动作"
 
 msgid "Set current CEC address as fixed address"
 msgstr "将当前CEC地址设置为固定地址"
-
-msgid "Set default"
-msgstr "设置默认值"
 
 msgid "Set end time"
 msgstr "设置结束时间"
@@ -16730,9 +16693,6 @@ msgstr "共享"
 
 msgid "Sharpness"
 msgstr "清晰度"
-
-msgid "Shellscript"
-msgstr "shell脚本语言"
 
 msgid "Shift"
 msgstr "移动"
@@ -17216,6 +17176,9 @@ msgstr "显示下一页"
 msgid "Show next picture"
 msgstr "显示下一张图片"
 
+msgid "Show next service information screen"
+msgstr ""
+
 msgid "Show next system information screen"
 msgstr ""
 
@@ -17261,6 +17224,9 @@ msgstr "显示上一页"
 msgid "Show previous picture"
 msgstr "显示上一张图片"
 
+msgid "Show previous service information screen"
+msgstr ""
+
 msgid "Show previous system information screen"
 msgstr ""
 
@@ -17286,6 +17252,9 @@ msgid "Show script messages"
 msgstr ""
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
+
+msgid "Show selection for service information screen"
 msgstr ""
 
 msgid "Show selection for system information screen"
@@ -18335,6 +18304,12 @@ msgstr "已存储位置"
 msgid "Stream"
 msgstr "媒体流"
 
+msgid "Stream Relay URL"
+msgstr ""
+
+msgid "Stream Relay port"
+msgstr ""
+
 msgid "Stream request"
 msgstr "流的请求"
 
@@ -18634,9 +18609,6 @@ msgstr "瑞士"
 msgid "Symbol rate"
 msgstr "符号率"
 
-msgid "Symbol rate & FEC"
-msgstr "符号率和前向纠错"
-
 msgid "Symbolic link"
 msgstr "符号链接"
 
@@ -18660,9 +18632,6 @@ msgstr "阿拉伯叙利亚共和国"
 
 msgid "System"
 msgstr "系统设置"
-
-msgid "System & Modulation"
-msgstr "系统与调制"
 
 msgid "System Info"
 msgstr "系统信息"
@@ -18721,9 +18690,6 @@ msgstr "翻译者信息"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS文件对于ISO9660级别1太大！"
 
-msgid "TSID"
-msgstr "TS参数"
-
 msgid "TUNER:"
 msgstr "调谐器:"
 
@@ -18739,7 +18705,7 @@ msgstr "电视物理地址报告"
 msgid "TXT PID"
 msgstr "文本控制(TXT PID)"
 
-msgid "TXT Subtitles page & lang"
+msgid "TXT Subtitles page & Language"
 msgstr "TXT字幕页面和语言"
 
 msgid "Table of content for collection"
@@ -19240,7 +19206,7 @@ msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
-" Maybe recursive connection of tuners."
+"Maybe recursive connection of tuners."
 msgstr ""
 "可连接的连接设置是错误.\n"
 "可能是调谐器的递归连接."
@@ -19601,7 +19567,7 @@ msgstr "此频道受家长控制密码保护"
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr "这将为调试日志中的每一行设置前缀.'启动时间'是自上次启动%s%s以来的秒数."
 
-msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
+msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
 msgstr "此设置允许调谐器配置复制另一个调谐器的配置方式."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
@@ -20059,9 +20025,6 @@ msgstr "轨道"
 msgid "Traditional Chinese"
 msgstr "繁体中文"
 
-msgid "Transcode"
-msgstr "转码"
-
 msgid "Transcoding"
 msgstr "转码"
 
@@ -20092,6 +20055,16 @@ msgstr "转发器"
 
 msgid "Transponder Time"
 msgstr "转发器时间"
+
+msgid "Transponder information"
+msgstr ""
+
+#, python-format
+msgid "Transponder information for '%s'"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
+msgstr ""
 
 msgid "Transport Stream Type"
 msgstr "传输流类型"
@@ -20186,6 +20159,9 @@ msgstr "调谐器设置"
 msgid "Tuner Setup"
 msgstr "调谐器设置"
 
+msgid "Tuner data is not available!"
+msgstr ""
+
 msgid "Tuner information"
 msgstr "调谐器信息"
 
@@ -20195,12 +20171,6 @@ msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "不支持的调谐器"
-
-msgid "Tuner live values"
-msgstr "调谐器实时值"
-
-msgid "Tuner setting values"
-msgstr "调谐器设置值"
 
 msgid "Tuner slot"
 msgstr "调谐器插槽"
@@ -20745,6 +20715,9 @@ msgstr ""
 msgid "Use geolocation to set the current time zone location"
 msgstr "使用定位设置当前时区位置"
 
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr "如果在切换lnb时出现问题,请使用增加的电压'14/18V'"
+
 msgid "Use interface"
 msgstr "使用界面"
 
@@ -21059,6 +21032,9 @@ msgstr "非常非常短文件名 - 警告"
 msgid "Video"
 msgstr "视频设置"
 
+msgid "Video Codec, Size & Format"
+msgstr "视频编解码器,大小和格式"
+
 msgid "Video PID"
 msgstr "视频PID"
 
@@ -21136,9 +21112,6 @@ msgstr "视频增强预览"
 
 msgid "VideoFinetune"
 msgstr "视频微调"
-
-msgid "Videocodec, size & format"
-msgstr "视频编解码器,大小和格式"
 
 msgid "Videosetup"
 msgstr "视频设置"
@@ -22224,9 +22197,6 @@ msgstr "换台模式"
 msgid "Zap next"
 msgstr "切换到下一个"
 
-msgid "Zap to"
-msgstr "切换到"
-
 msgid "Zap to channel (setup in menu)"
 msgstr "切换频道(设置菜单)"
 
@@ -22292,9 +22262,6 @@ msgstr "为CI模块分配频道/供应商/CAID图形界面"
 
 msgid "activatePiP"
 msgstr "激活画中画"
-
-msgid "active"
-msgstr "激活"
 
 msgid "address:"
 msgstr "地址:"
@@ -22770,7 +22737,7 @@ msgstr "即时录制"
 msgid "internally loopthrough to"
 msgstr "内循环到"
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr "无效类型"
 
 msgid "jazz"
@@ -22937,9 +22904,6 @@ msgstr "正常"
 
 msgid "not"
 msgstr "否"
-
-msgid "not configured"
-msgstr "未配置"
 
 msgid "not locked"
 msgstr "未锁定"
@@ -23336,9 +23300,6 @@ msgstr "无法测试"
 msgid "update"
 msgstr "更新"
 
-msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
-msgstr "如果在切换lnb时出现问题,请使用增加的电压'14/18V'"
-
 msgid "userdefined"
 msgstr "用户定义"
 
@@ -23404,6 +23365,129 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CI Helper Settings"
+#~ msgstr "CI 助手设置"
+
+#~ msgid "ClientIP"
+#~ msgstr "客户端IP"
+
+#~ msgid "Minute"
+#~ msgstr "分钟"
+
+#~ msgid "Transcode"
+#~ msgstr "转码"
+
+#, python-format
+#~ msgid "%.3f MHz"
+#~ msgstr "%.3f MHz"
+
+#, python-format
+#~ msgid "%s KSymb/s"
+#~ msgstr "%s KSymb/秒"
+
+#, python-format
+#~ msgid "%s MHz"
+#~ msgstr "%s MHz"
+
+#~ msgid "(FTA Service)"
+#~ msgstr "(免费频道)"
+
+#~ msgid "Audio PID, codec & lang"
+#~ msgstr "音频PID,编解码器和语言"
+
+#~ msgid "Basic PID info"
+#~ msgstr "基本PID信息"
+
+#~ msgid "ButtonSetup"
+#~ msgstr "按键设置"
+
+#~ msgid "Client"
+#~ msgstr "客户"
+
+#~ msgid "Code R. LP-HP & Guard Int."
+#~ msgstr "代码R.LP-HP和Guard Int."
+
+#~ msgid "Constellation & FFT mode"
+#~ msgstr "配置和FFT模式"
+
+#~ msgid "ECM Info"
+#~ msgstr "ECM信息"
+
+#~ msgid "Extended PID info"
+#~ msgstr "更多PID信息"
+
+#~ msgid "Frequency & Channel"
+#~ msgstr "频率和频道"
+
+#~ msgid "Frequency & Polarization"
+#~ msgstr "频率和极化"
+
+#~ msgid "Hotkey"
+#~ msgstr "快捷键"
+
+#~ msgid "Inversion & Bandwidth"
+#~ msgstr "反演与带宽"
+
+#~ msgid "Inversion, Pilot & Roll-off"
+#~ msgstr "反演,引导和滚降"
+
+#~ msgid "NIM & Type"
+#~ msgstr "NIM模块类型"
+
+#~ msgid "ONID"
+#~ msgstr "客户端(ONID)"
+
+#~ msgid "PPanel"
+#~ msgstr "PPanel面板"
+
+#~ msgid "Panic to"
+#~ msgstr "应急到"
+
+#~ msgid "Service ID"
+#~ msgstr "频道ID"
+
+#~ msgid "Service info - ECM Info"
+#~ msgstr "频道信息-ECM信息"
+
+#~ msgid "Service info - service & Basic PID Info"
+#~ msgstr "频道信息-频道和基本PID信息"
+
+#~ msgid "Service info - service & Extended PID Info"
+#~ msgstr "频道信息-频道和扩展PID信息"
+
+#~ msgid "Service info - service & PIDs"
+#~ msgstr "频道信息-频道和PIDs"
+
+#~ msgid "Service info - tuner live values"
+#~ msgstr "频道信息-调谐器实时值"
+
+#~ msgid "Service info - tuner setting values"
+#~ msgstr "频道信息-调谐器设置值"
+
+#~ msgid "Shellscript"
+#~ msgstr "shell脚本语言"
+
+#~ msgid "Symbol rate & FEC"
+#~ msgstr "符号率和前向纠错"
+
+#~ msgid "System & Modulation"
+#~ msgstr "系统与调制"
+
+#~ msgid "TSID"
+#~ msgstr "TS参数"
+
+#~ msgid "Tuner live values"
+#~ msgstr "调谐器实时值"
+
+#~ msgid "Tuner setting values"
+#~ msgstr "调谐器设置值"
+
+#~ msgid "Zap to"
+#~ msgstr "切换到"
+
+#~ msgid "active"
+#~ msgstr "激活"
 
 #~ msgid "1 hour"
 #~ msgstr "1小时"

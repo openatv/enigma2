@@ -59,7 +59,7 @@ int eWidgetDesktop::movedWidget(eWidget *root)
 	return 0; /* native move ok */
 }
 
-void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible)
+void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible, bool parent)
 {
 		/* start with our clip region, clipped with the parent's */
 	if (widget->m_vis & eWidget::wVisShow)
@@ -68,7 +68,7 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 		widget->m_visible_region.moveBy(widget->position());
 		widget->m_visible_region &= parent_visible; // in parent space!
 
-		if (!widget->isTransparent())
+		if (!widget->isTransparent() && (!widget->m_gradient_alphablend || parent) && (widget->m_cornerRadius == 0 || parent))
 				/* remove everything this widget will contain from parent's visible list, unless widget is transparent. */
 			parent_visible -= widget->m_visible_region; // will remove child regions too!
 
@@ -87,7 +87,7 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 		if (i != widget->m_childs.end())
 		{
 			if (i->m_vis & eWidget::wVisShow)
-				calcWidgetClipRegion(*i, widget->m_visible_region);
+				calcWidgetClipRegion(*i, widget->m_visible_region, false);
 			else
 				clearVisibility(*i);
 		}
@@ -301,6 +301,12 @@ void eWidgetDesktop::paintLayer(eWidget *widget, int layer)
 		return;
 	gPainter painter(comp->m_dc);
 	painter.moveOffset(-comp->m_position);
+	if (widget->m_cornerRadius > 0 || widget->m_gradient_set)
+	{
+		painter.resetClip(comp->m_dirty_region);
+		painter.setBackgroundColor(gRGB(0, 0, 0, 0xFF));
+		painter.clear();
+	}
 	widget->doPaint(painter, comp->m_dirty_region, layer);
 	painter.resetOffset();
 }

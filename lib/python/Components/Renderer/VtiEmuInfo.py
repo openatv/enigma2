@@ -1,37 +1,33 @@
-from Components.config import config
-from Components.VariableText import VariableText
-from Components.Renderer.Renderer import Renderer
-from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from enigma import eLabel
+from Components.config import config
+from Components.Renderer.Renderer import Renderer
+from Components.VariableText import VariableText
+from Tools.Directories import resolveFilename, SCOPE_SYSETC
 
 
 class VtiEmuInfo(VariableText, Renderer):
 
-    def __init__(self):
-        Renderer.__init__(self)
-        VariableText.__init__(self)
+	GUI_WIDGET = eLabel
 
-    GUI_WIDGET = eLabel
+	def __init__(self):
+		Renderer.__init__(self)
+		VariableText.__init__(self)
 
-    def connect(self, source):
-        Renderer.connect(self, source)
-        self.changed((self.CHANGED_DEFAULT,))
+	def connect(self, source):
+		Renderer.connect(self, source)
+		self.changed((self.CHANGED_DEFAULT,))
 
-    def changed(self, what):
-        if what[0] == self.CHANGED_CLEAR:
-            self.text = 'not detected Softcam'
-        else:
-            self.text = self.getVtiEmuInfo()
+	def changed(self, what):
+		self.text = "not detected Softcam" if what[0] == self.CHANGED_CLEAR else self.getVtiEmuInfo()
 
-    def getVtiEmuInfo(self):
-        if config.misc.ecm_info.value:
-            try:
-                file = open(resolveFilename(SCOPE_SYSETC, '/tmp/.emu.info'))
-                emuversion = file.readline()
-                file.close()
-                return emuversion
-            except OSError:
-                return 'not detected Softcam'
+	def getVtiEmuInfo(self):
+		if config.misc.ecm_info.value:
+			try:
+				with open(resolveFilename(SCOPE_SYSETC, "/tmp/.emu.info")) as fd:
+					emuversion = fd.readline()
+				return emuversion
+			except OSError:
+				return "not detected Softcam"
 
-        else:
-            return ' '
+		else:
+			return " "

@@ -194,32 +194,43 @@ int do_one(int fts, int fap, int fsc, unsigned long long filesize)
 	return 0;
 }
 
+const char *getext(const char *filename)
+{
+	const char *dot = strrchr(filename, '.');
+	if (!dot || dot == filename)
+		return "";
+	return dot;
+}
+
 int do_movie(char* inname)
 {
 	int f_ts=-1, f_sc=-1, f_ap=-1, f_tmp=-1;
 	unsigned long long filesize;
 	struct stat fp;
-	std::string tmpname = makefilename(inname, ".ts", 0);
+
+	const char *innameext = getext(inname);
+
+	std::string tmpname = makefilename(inname, innameext, 0);
 	f_ts = open(tmpname.c_str(), O_RDONLY | O_LARGEFILE);
 
 	if (f_ts == -1) {
 		printf("Failed to open input stream file \"%s\"\n", tmpname.c_str());
 		return 1;
 	}
-	tmpname = makefilename(inname, ".ts", ".reconstruct_apsc");
+	tmpname = makefilename(inname, innameext, ".reconstruct_apsc");
 	f_tmp = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0x1a4);
 	if (f_tmp == -1) {
 		printf("Failed to open sentry file \"%s\"\n", tmpname.c_str());
 		goto failure;
 	}
 	close(f_tmp);
-	tmpname = makefilename(inname, ".ts", ".ap");
+	tmpname = makefilename(inname, innameext, ".ap");
 	f_ap = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0x1a4);
 	if (f_ap == -1) {
 		printf("Failed to open output .ap file \"%s\"\n", tmpname.c_str());
 		goto failure;
 	}
-	tmpname = makefilename(inname, ".ts", ".sc");
+	tmpname = makefilename(inname, innameext, ".sc");
 	f_sc = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0x1a4);
 	if (f_sc == -1) {
 		printf("Failed to open output .sc file \"%s\"\n", tmpname.c_str());
@@ -244,20 +255,20 @@ int do_movie(char* inname)
 	close(f_ts);
 	close(f_ap);
 	close(f_sc);
-	unlink(makefilename(inname, ".ts", ".reconstruct_apsc").c_str());
+	unlink(makefilename(inname, innameext, ".reconstruct_apsc").c_str());
 	return 0;
 	failure:
 	if (f_ts != -1)
 		close(f_ts);
 	if (f_ap != -1) {
 		close(f_ap);
-		unlink(makefilename(inname, ".ts", ".ap").c_str());
+		unlink(makefilename(inname, innameext, ".ap").c_str());
 	}
 	if (f_sc != -1) {
 		close(f_sc);
-		unlink(makefilename(inname, ".ts", ".sc").c_str());
+		unlink(makefilename(inname, innameext, ".sc").c_str());
 	}
-	unlink(makefilename(inname, ".ts", ".reconstruct_apsc").c_str());
+	unlink(makefilename(inname, innameext, ".reconstruct_apsc").c_str());
 	return 1;
 }
 

@@ -29,14 +29,14 @@ class TagManager():
 		while "" in tags:
 			tags.remove("")
 		tags.sort()
-		print("[TagEditor] %d tags read from '%s'." % (len(tags), filename))
+		print(f"[TagEditor] {len(tags)} tags read from '{filename}'.")
 		return tags
 
 	def saveTags(self):
 		if self.tags != self.fileTags:
 			filename = resolveFilename(SCOPE_CONFIG, "movietags")
 			if fileWriteLines(filename, self.tags, source=MODULE_NAME):
-				print("[TagEditor] %d tags written to '%s'." % (len(self.tags), filename))
+				print(f"[TagEditor] {len(self.tags)} tags written to '{filename}'.")
 
 	def getTags(self):
 		return self.tags
@@ -289,7 +289,7 @@ class TagEditor(Screen, HelpableScreen, TagManager):
 		serviceHandler = eServiceCenter.getInstance()
 		for dir in config.movielist.videodirs.value:
 			if isdir(dir):
-				movieList = serviceHandler.list(eServiceReference("2:0:1:0:0:0:0:0:0:0:%s" % dir))
+				movieList = serviceHandler.list(eServiceReference(f"2:0:1:0:0:0:0:0:0:0:{dir}"))
 				if movieList is None:
 					continue
 				while True:
@@ -308,7 +308,7 @@ class TagEditor(Screen, HelpableScreen, TagManager):
 
 	def setMovieTags(self, serviceRef, tags):
 		filename = serviceRef.getPath()
-		filename = "%s.meta" % filename if filename.endswith(".ts") else "%s.ts.meta" % filename
+		filename = f"{filename}.meta" if filename.endswith(".ts") else f"{filename}.ts.meta"
 		if isfile(filename):
 			lines = fileReadLines(filename, source=MODULE_NAME)
 			idTags = iDVBMetaFile.idTags

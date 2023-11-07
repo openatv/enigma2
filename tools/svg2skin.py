@@ -79,10 +79,10 @@ class parseXML(ContentHandler):
 			return
 
 		if "font-size" in styles:
-			font = ' font="Regular;%d"' % px(styles["font-size"])
+			font = f" font=\"Regular;{px(styles['font-size'])}\""
 		else:
 			font = ""
-		print("""\t\t<widget source="%s" render="Label" position="%d,%d" size="%d,%d" %s />""" % (id, x, y, width, height, font))
+		print(f"""\t\t<widget source="{id}" render="Label" position="{x},{y}" size="{width},{height}" {font} />""")
 
 
 parser = make_parser()
@@ -92,6 +92,6 @@ contentHandler.find_bbox = True
 parser.parse(sys.argv[1])
 bboxi = tuple([int(x) for x in contentHandler.bbox])
 contentHandler.find_bbox = False
-print('\t<screen name="" position="%d,%d" size="%d,%d" title="">' % bboxi)
+print('\t<screen name="" position="%s,%s" size="%s,%s" title="">' % bboxi)
 parser.parse(sys.argv[1])
 print('\t</screen>')

@@ -3,19 +3,19 @@ from os.path import isdir, isfile
 
 from enigma import eActionMap, eServiceReference
 
-from GlobalActions import globalActionMap
-from ServiceReference import ServiceReference
 from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config
+from Components.config import ConfigYesNo, ConfigSubsection, ConfigText, config
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Label import Label
 from Components.SystemInfo import BoxInfo
 from Components.PluginComponent import plugins
 from Components.Sources.StaticText import StaticText
+from GlobalActions import globalActionMap
+from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
+from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import isPluginInstalled
 
@@ -188,7 +188,7 @@ def getButtonSetupFunctions():
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 			else:
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
-			ButtonSetupFunctions.append((plugin.name, "%s/%s" % (plugin.path[plugin.path.rfind("Plugins"):], str(twinPaths[plugin.path[plugin.path.rfind("Plugins"):]])), textEPG))
+			ButtonSetupFunctions.append((plugin.name, f"{plugin.path[plugin.path.rfind('Plugins'):]}/{str(twinPaths[plugin.path[plugin.path.rfind('Plugins'):]])}", textEPG))
 			twinPlugins.append(plugin.name)
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO, PluginDescriptor.WHERE_BUTTONSETUP])
 	pluginlist.sort(key=lambda p: p.name)
@@ -198,7 +198,7 @@ def getButtonSetupFunctions():
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 			else:
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
-			ButtonSetupFunctions.append((plugin.name, "%s/%s" % (plugin.path[plugin.path.rfind("Plugins"):], str(twinPaths[plugin.path[plugin.path.rfind("Plugins"):]])), textPlugins))
+			ButtonSetupFunctions.append((plugin.name, f"{plugin.path[plugin.path.rfind('Plugins'):]}/{str(twinPaths[plugin.path[plugin.path.rfind('Plugins'):]])}", textPlugins))
 			twinPlugins.append(plugin.name)
 	ButtonSetupFunctions.append((_("Show vertical Program Guide"), "Infobar/openVerticalEPG", textEPG))
 	ButtonSetupFunctions.append((_("Show graphical multi EPG"), "Infobar/openGraphEPG", textEPG))
@@ -297,11 +297,11 @@ def getButtonSetupFunctions():
 	if isdir("/etc/ppanels"):
 		for file in [x for x in listdir("/etc/ppanels") if x.endswith(".xml")]:
 			file = file[:-4]
-			ButtonSetupFunctions.append(("%s %s" % (_("PPanel"), file), "PPanel/%s" % file, "PPanels"))
+			ButtonSetupFunctions.append((f"{_('PPanel')} {file}", f"PPanel/{file}", "PPanels"))
 	if isdir("/usr/script"):
 		for file in [x for x in listdir("/usr/script") if x.endswith(".sh")]:
 			file = file[:-3]
-			ButtonSetupFunctions.append(("%s %s" % (_("Shellscript"), file), "Shellscript/%s" % file, "Shellscripts"))
+			ButtonSetupFunctions.append((f"{_('Shellscript')} {file}", f"Shellscript/{file}", "Shellscripts"))
 	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner/ScriptRunner", textPlugins))
 	ButtonSetupFunctions.append((_("QuickMenu"), "Module/Screens.QuickMenu/QuickMenu", textPlugins))
 	if isPluginInstalled("Kodi"):
@@ -384,7 +384,7 @@ class ButtonSetupSelect(Screen):
 		Screen.__init__(self, session)
 		self.key = key
 		# self.skinName = "ButtonSetupSelect"
-		self.setTitle("%s: %s" % (_("Hotkey Settings"), key[0][0]))
+		self.setTitle(f"{_('Hotkey Settings')}: {key[0][0]}")
 		self["description"] = Label(_("Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -569,9 +569,9 @@ class InfoBarButtonSetup():
 		selected = []
 		for button in selection:
 			if button.startswith("ZapPanic"):
-				selected.append(("%s %s" % (_("Panic to"), ServiceReference(eServiceReference(button.split("/", 1)[1]).toString()).getServiceName()), button))
+				selected.append((f"{_('Panic to')} {ServiceReference(eServiceReference(button.split('/', 1)[1]).toString()).getServiceName()}", button))
 			elif button.startswith("Zap"):
-				selected.append(("%s %s" % (_("Zap to"), ServiceReference(eServiceReference(button.split("/", 1)[1]).toString()).getServiceName()), button))
+				selected.append((f"{_('Zap to')} {ServiceReference(eServiceReference(button.split('/', 1)[1]).toString()).getServiceName()}", button))
 			else:
 				function = list(x for x in getButtonSetupFunctions() if x[1] == button)
 				if function:
@@ -589,7 +589,7 @@ class InfoBarButtonSetup():
 			button = selected[0]
 			return (_("%s long") % button[0]) if "_long" in button[1] else button[0]
 		else:
-			return "%s %s" % (_("ButtonSetup"), self.getName(key))
+			return f"{_('ButtonSetup')} {self.getName(key)}"
 
 	def ButtonSetupGlobal(self, key):
 		if self.longKeyPressed:
@@ -604,7 +604,7 @@ class InfoBarButtonSetup():
 				return self.execButtonSetup(selected[0])
 			else:
 				key = self.getName(key)
-				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, "%s: %s" % (_("Hotkey"), key), selected)
+				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, f"{_('Hotkey')}: {key}", selected)
 
 	def execButtonSetup(self, selected):
 		if selected:
@@ -620,7 +620,7 @@ class InfoBarButtonSetup():
 							twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 						else:
 							twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
-						if "%s/%s" % (plugin.path[plugin.path.rfind("Plugins"):], str(twinPaths[plugin.path[plugin.path.rfind("Plugins"):]])) == "/".join(selected):
+						if f"{plugin.path[plugin.path.rfind('Plugins'):]}/{str(twinPaths[plugin.path[plugin.path.rfind('Plugins'):]])}" == "/".join(selected):
 							self.runPlugin(plugin)
 							return
 						twinPlugins.append(plugin.name)
@@ -632,7 +632,7 @@ class InfoBarButtonSetup():
 							twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 						else:
 							twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
-						if "%s/%s" % (plugin.path[plugin.path.rfind("Plugins"):], str(twinPaths[plugin.path[plugin.path.rfind("Plugins"):]])) == "/".join(selected):
+						if f"{plugin.path[plugin.path.rfind('Plugins'):]}/{str(twinPaths[plugin.path[plugin.path.rfind('Plugins'):]])}" == "/".join(selected):
 							self.runPlugin(plugin)
 							return
 						twinPlugins.append(plugin.name)
@@ -643,14 +643,14 @@ class InfoBarButtonSetup():
 						return
 			elif selected[0] == "Infobar":
 				if hasattr(self, selected[1]):
-					exec("self.%s()" % ".".join(selected[1:]))
+					exec(f"self.{'.'.join(selected[1:])}()")
 				else:
 					return 0
 			elif selected[0] == "Module":
 				try:
-					exec("from %s import %s\nself.session.open(%s)" % (selected[1], selected[2], ",".join(selected[2:])))
+					exec(f"from {selected[1]} import {selected[2]}\nself.session.open({','.join(selected[2:])})")
 				except Exception as err:
-					print("[ButtonSetup] Error: Exception raised executing module '%s', screen '%s'!  (%s)" % (selected[1], selected[2], str(err)))
+					print(f"[ButtonSetup] Error: Exception raised executing module '{selected[1]}', screen '{selected[2]}'!  ({str(err)})")
 					import traceback
 					traceback.print_exc()
 			elif selected[0] == "Setup":
@@ -673,26 +673,26 @@ class InfoBarButtonSetup():
 				if moviepath:
 					config.movielist.last_videodir.value = moviepath
 			elif selected[0] == "PPanel":
-				ppanelFileName = "/etc/ppanels/%s.xml" % selected[1]
+				ppanelFileName = f"/etc/ppanels/{selected[1]}.xml"
 				if isfile(ppanelFileName) and isdir("/usr/lib/enigma2/python/Plugins/Extensions/PPanel"):
 					from Plugins.Extensions.PPanel.ppanel import PPanel
-					self.session.open(PPanel, name="%s PPanel" % selected[1], node=None, filename=ppanelFileName, deletenode=None)
+					self.session.open(PPanel, name=f"{selected[1]} PPanel", node=None, filename=ppanelFileName, deletenode=None)
 			elif selected[0] == "Shellscript":
-				command = "/usr/script/%s.sh" % selected[1]
+				command = f"/usr/script/{selected[1]}.sh"
 				if isfile(command) and isdir("/usr/lib/enigma2/python/Plugins/Extensions/PPanel"):
 					from Plugins.Extensions.PPanel.ppanel import Execute
-					self.session.open(Execute, "%s shellscript" % selected[1], None, command)
+					self.session.open(Execute, f"{selected[1]} shellscript", None, command)
 				else:
 					from Screens.Console import Console
 					# exec("self.session.open(Console, title=_(selected[1]), cmdlist=[command])")  # DEBUG: What is this trying to do?
-					self.session.open(Console, selected[1], [command])
+					self.session.open(Console, selected[1], [command], closeOnSuccess=selected[1].startswith('!'))
 			elif selected[0] == "EMC":
 				try:
 					from Plugins.Extensions.EnhancedMovieCenter.plugin import showMoviesNew
 					from Screens.InfoBar import InfoBar
 					open(showMoviesNew(InfoBar.instance))  # DEBUG: Should this be self.session.open?
 				except Exception as err:
-					print("[ButtonSetup] EMCPlayer: showMovies exception: %s!" % str(err))
+					print(f"[ButtonSetup] EMCPlayer: showMovies exception: {str(err)}!")
 			elif selected[0] == "ScriptRunner":
 				from Screens.ScriptRunner import ScriptRunner
 				self.session.open(ScriptRunner)

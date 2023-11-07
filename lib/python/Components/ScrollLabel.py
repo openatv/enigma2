@@ -1,6 +1,6 @@
 from enigma import eLabel, eListbox, ePoint, eSize, eSlider, eWidget
 
-from skin import applyAllAttributes, parseBoolean, parseHorizontalAlignment, parseInteger, parseScrollbarMode, parseScrollbarScroll, scrollLabelStyle
+from skin import applyAllAttributes, parseBoolean, parseHorizontalAlignment, parseGradient, parseInteger, parseRadius, parseScrollbarMode, parseScrollbarScroll, scrollLabelStyle
 from Components.GUIComponent import GUIComponent
 
 
@@ -38,24 +38,16 @@ class ScrollLabel(GUIComponent):
 		self.instance = None
 
 	def applySkin(self, desktop, parent):
-		scrollLabelDefaults = (
-			("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth),
-			("scrollbarMode", eListbox.showOnDemand),
-			("scrollbarOffset", eListbox.DefaultScrollBarOffset),
-			("scrollbarScroll", eListbox.DefaultScrollBarScroll),
-			("scrollbarWidth", eListbox.DefaultScrollBarWidth)
-		)
-		for attribute, default in scrollLabelDefaults:
-			if attribute not in scrollLabelStyle:
-				scrollLabelStyle[attribute] = default
 		splitMargin = 0
 		splitPosition = 0
 		splitSeparated = False
-		sliderBorderWidth = scrollLabelStyle["scrollbarBorderWidth"]
-		sliderMode = scrollLabelStyle["scrollbarMode"]
-		sliderScroll = scrollLabelStyle["scrollbarScroll"]
-		sliderOffset = scrollLabelStyle["scrollbarOffset"]
-		sliderWidth = scrollLabelStyle["scrollbarWidth"]
+		sliderBorderWidth = scrollLabelStyle.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth)
+		sliderMode = scrollLabelStyle.get("scrollbarMode", eListbox.showOnDemand)
+		sliderScroll = scrollLabelStyle.get("scrollbarScroll", eListbox.DefaultScrollBarScroll)
+		sliderOffset = scrollLabelStyle.get("scrollbarOffset", eListbox.DefaultScrollBarOffset)
+		sliderWidth = scrollLabelStyle.get("scrollbarWidth", eListbox.DefaultScrollBarWidth)
+		scrollbarRadius = scrollLabelStyle.get("scrollbarRadius", None)
+		scrollbarGradient = None
 		noWrap = False
 		if self.skinAttributes:
 			sliderProperties = (
@@ -109,6 +101,10 @@ class ScrollLabel(GUIComponent):
 						sliderOffset = parseInteger(value, eListbox.DefaultScrollBarOffset)
 					elif attribute == "scrollbarWidth":
 						sliderWidth = parseInteger(value, eListbox.DefaultScrollBarWidth)
+					elif attribute == "scrollbarRadius":
+						scrollbarRadius = parseRadius(value)
+					elif attribute == "scrollbarGradient":
+						scrollbarGradient = parseGradient(value)
 					else:
 						leftLabelAttributes.append((attribute, value))
 						rightLabelAttributes.append((attribute, value))
@@ -153,6 +149,12 @@ class ScrollLabel(GUIComponent):
 		self.slider.setOrientation(eSlider.orVertical)
 		self.slider.setRange(0, 1000)
 		self.slider.setBorderWidth(sliderBorderWidth)
+		if scrollbarRadius:
+			self.slider.setCornerRadius(*scrollbarRadius)
+		if scrollbarGradient:
+			scrollbarGradient = scrollbarGradient + (True,)  # Add fullColor
+			self.slider.setForegroundGradient(*scrollbarGradient)
+
 		self.sliderMode = sliderMode
 		self.sliderScroll = self.lineHeight if sliderScroll else self.pageHeight
 		self.setText(self.msgText)
