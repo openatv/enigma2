@@ -1,12 +1,8 @@
+from enigma import eLabel, eListbox, eListboxPythonMultiContent, eSize, getDesktop, gFont, BT_ALIGN_CENTER, BT_VALIGN_CENTER, RT_VALIGN_CENTER, RT_HALIGN_LEFT
+from skin import applySkinFactor, parseColor, parseFont, parseScale
 from Components.Addons.GUIAddon import GUIAddon
-
-from enigma import eLabel, eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, BT_VALIGN_CENTER, RT_VALIGN_CENTER, RT_HALIGN_LEFT, eSize, getDesktop, gFont
-
-from skin import parseScale, parseColor, parseFont, applySkinFactor
-
-from Components.MultiContent import MultiContentEntryPixmapAlphaBlend
 from Components.Label import Label
-
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 

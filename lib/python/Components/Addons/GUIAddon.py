@@ -21,5 +21,5 @@ class GUIAddon(GUIComponent):
 		container.onShow.append(self.onContainerShown)
 		self.relatedScreen = container
 
-	def onContainerShown(self):
+	def onContainerShown(self):  # This function needs to be overwritten
 		pass

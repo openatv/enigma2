@@ -1,14 +1,10 @@
-from Components.Addons.GUIAddon import GUIAddon
-
 from enigma import eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, BT_VALIGN_CENTER
-
 from skin import parseScale, applySkinFactor
-
+from Components.Addons.GUIAddon import GUIAddon
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
-
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 
@@ -72,12 +68,8 @@ class ButtonSequence(GUIAddon):
 	def constructButtonSequence(self):
 		sequence = []
 		for x, val in self.sources.items():
-			if isinstance(val, Boolean) and val.boolean:
-				if x not in sequence:
-					sequence.append(x)
-			elif isinstance(val, StaticText) and val.text:
-				if x not in sequence:
-					sequence.append(x)
+			if ((isinstance(val, Boolean) and val.boolean) or (isinstance(val, StaticText) and val.text)) and x not in sequence:
+				sequence.append(x)
 
 		self.updateAddon(sequence)
 
