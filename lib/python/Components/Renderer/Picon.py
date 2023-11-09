@@ -2,7 +2,7 @@ from os import listdir
 from os.path import exists, getsize, isdir, join
 from re import sub
 from unicodedata import normalize
-from enigma import ePixmap, ePicLoad
+from enigma import ePixmap  # , ePicLoad
 from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
@@ -72,25 +72,21 @@ def findPicon(serviceName):
 
 
 def getPiconName(serviceName):
-	#remove the path and name fields, and replace ":" by "_"
-	fields = GetWithAlternative(serviceName).split(":", 10)[:10]
+	fields = GetWithAlternative(serviceName).split(":", 10)[:10]  # Remove the path and name fields, and replace ":" by "_"
 	if not fields or len(fields) < 10:
 		return ""
 	pngname = findPicon("_".join(fields))
 	if not pngname and not fields[6].endswith("0000"):
-		#remove "sub-network" from namespace
-		fields[6] = fields[6][:-4] + "0000"
+		fields[6] = fields[6][:-4] + "0000"  # Remove "sub-network" from namespace
 		pngname = findPicon("_".join(fields))
 	if not pngname and fields[0] != "1":
-		#fallback to 1 for other reftypes
-		fields[0] = "1"
+		fields[0] = "1"  # Fallback to 1 for other reftypes
 		pngname = findPicon("_".join(fields))
 	if not pngname and fields[2] != "1":
-		#fallback to 1 for services with different service types
-		fields[2] = "1"
+		fields[2] = "1"  # Fallback to 1 for services with different service types
 		pngname = findPicon("_".join(fields))
-	if not pngname:  # picon by channel name
-		name = ServiceReference(serviceName).getServiceName()
+	if not pngname:
+		name = ServiceReference(serviceName).getServiceName()  # Picon by channel name
 		name = normalize("NFKD", name).encode("ASCII", "ignore").decode()
 		name = sub("[^a-z0-9]", "", name.replace("&", "and").replace("+", "plus").replace("*", "star").lower())
 		if len(name) > 0:
@@ -156,7 +152,7 @@ class Picon(Renderer):
 			pngname = ""
 			if what[0] == 1 or what[0] == 3:
 				pngname = getPiconName(self.source.text)
-				if not exists(pngname):  # no picon for service found
+				if not exists(pngname):  # No picon for service found
 					pngname = self.defaultpngname
 				if not config.usage.showpicon.value:
 					pngname = self.nopicon

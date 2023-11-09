@@ -79,25 +79,21 @@ def findLcdPicon(serviceName):
 
 
 def getLcdPiconName(serviceName):
-	#remove the path and name fields, and replace ":" by "_"
-	fields = GetWithAlternative(serviceName).split(":", 10)[:10]
+	fields = GetWithAlternative(serviceName).split(":", 10)[:10]  # Remove the path and name fields, and replace ":" by "_"
 	if not fields or len(fields) < 10:
 		return ""
 	pngname = findLcdPicon("_".join(fields))
 	if not pngname and not fields[6].endswith("0000"):
-		#remove "sub-network" from namespace
-		fields[6] = fields[6][:-4] + "0000"
+		fields[6] = fields[6][:-4] + "0000"  # Remove "sub-network" from namespace
 		pngname = findLcdPicon("_".join(fields))
 	if not pngname and fields[0] != "1":
-		#fallback to 1 for other reftypes
-		fields[0] = "1"
+		fields[0] = "1"  # Fallback to 1 for other reftypes
 		pngname = findLcdPicon("_".join(fields))
 	if not pngname and fields[2] != "1":
-		#fallback to 1 for services with different service types
-		fields[2] = "1"
+		fields[2] = "1"  # Fallback to 1 for services with different service types
 		pngname = findLcdPicon("_".join(fields))
-	if not pngname:  # picon by channel name
-		name = ServiceReference(serviceName).getServiceName()
+	if not pngname:
+		name = ServiceReference(serviceName).getServiceName()  # Picon by channel name
 		name = normalize("NFKD", name).encode("ASCII", "ignore").decode()
 		name = sub("[^a-z0-9]", "", name.replace("&", "and").replace("+", "plus").replace("*", "star").lower())
 		if len(name) > 0:
@@ -112,8 +108,8 @@ class LcdPicon(Renderer):
 
 	def __init__(self):
 		Renderer.__init__(self)
-		# self.PicLoad = ePicLoad()
-		# self.PicLoad.PictureData.get().append(self.updatePicon)
+		self.PicLoad = ePicLoad()
+		self.PicLoad.PictureData.get().append(self.updatePicon)
 		self.piconsize = (0, 0)
 		self.pngname = ""
 		self.lastPath = None
@@ -150,26 +146,23 @@ class LcdPicon(Renderer):
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))
 
-	#def updatePicon(self, picInfo=None):
-	#	ptr = self.PicLoad.getData()
-	#	if ptr is not None:
-	#		self.instance.setPixmap(ptr.__deref__())
-	#		self.instance.show()
+	def updatePicon(self, picInfo=None):
+		ptr = self.PicLoad.getData()
+		if ptr is not None:
+			self.instance.setPixmap(ptr.__deref__())
+			self.instance.show()
 
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
 			if what[0] == 1 or what[0] == 3:
 				pngname = getLcdPiconName(self.source.text)
-				if not exists(pngname):  # no picon for service found
+				if not exists(pngname):  # No picon for service found
 					pngname = self.defaultpngname
 				if self.pngname != pngname:
-					if pngname:
-						self.instance.setScale(1)
-						self.instance.setPixmapFromFile(pngname)
-						self.instance.show()
-#						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
-#						self.PicLoad.startDecode(pngname)
+					if pngname:  # We need to used ePicLoad to support 32Bit Picons for all Display types
+						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
+						self.PicLoad.startDecode(pngname)
 					else:
 						self.instance.hide()
 					self.pngname = pngname
