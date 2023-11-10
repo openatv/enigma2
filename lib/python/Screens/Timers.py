@@ -891,12 +891,12 @@ class RecordTimerOverview(TimerOverviewBase):
 					yellowText = ""
 				else:
 					yellowText = _("Enable")
+			elif not timer.repeated and timer.state == TimerEntry.StateEnded:
+				yellowText = ""
 			elif stateRunning and (not timer.repeated or timer.state == TimerEntry.StatePrepared):
 				yellowText = ""
 			elif (not stateRunning or timer.repeated and timer.isRunning()) and not timer.disabled:
 				yellowText = _("Disable")
-			if not timer.repeated and timer.state == TimerEntry.StateEnded:
-				yellowText = ""
 			self["key_yellow"].setText(yellowText)
 			self["toggleActions"].setEnabled(yellowText != "")
 			time = "%s %s ... %s" % (fuzzyDate(timer.begin)[0], fuzzyDate(timer.begin)[1], fuzzyDate(timer.end)[1])
