@@ -89,10 +89,12 @@ def getPiconName(serviceName):
 		name = ServiceReference(serviceName).getServiceName()  # Picon by channel name
 		name = normalize("NFKD", name).encode("ASCII", "ignore").decode()
 		name = sub("[^a-z0-9]", "", name.replace("&", "and").replace("+", "plus").replace("*", "star").lower())
-		if len(name) > 0:
+		if name:
 			pngname = findPicon(name)
-			if not pngname and len(name) > 2 and name.endswith("hd"):
-				pngname = findPicon(name[:-2])
+			if not pngname:
+				name = sub("(fhd|uhd|hd|sd|4k)$", "", name)
+				if name:
+					pngname = findPicon(name)
 	return pngname
 
 
