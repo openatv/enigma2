@@ -34,7 +34,7 @@ USER_AGENT = {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9
 
 
 def checkImageFiles(files):
-	return len([x for x in files if "kernel" in x and ".bin" in x or x in ("zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.tar.bz2", "rootfs.ubi", "rootfs.bin")]) >= 2
+	return len([x for x in files if "kernel" in x and ".bin" in x or x in ("zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.tar.bz2", "rootfs.ubi", "rootfs.bin", "rootfs-dreamone.tar.bz2", "rootfs-dreamtwo.tar.bz2")]) >= 2
 
 
 class FlashManager(Screen, HelpableScreen):
