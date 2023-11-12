@@ -558,10 +558,10 @@ class GPTSlotManager(Setup):
 
 		def createStartupFiles():
 			files = {
-				"STARTUP_4": "root=/dev/mmcblk1p2 rootfstype=ext4 kernel=/kernel2.img",
-				"STARTUP_5": "root=/dev/mmcblk1p3 rootfstype=ext4 kernel=/kernel3.img",
-				"STARTUP_6": "root=/dev/mmcblk1p4 rootfstype=ext4 kernel=/kernel4.img",
-				"STARTUP_7": "root=/dev/mmcblk1p5 rootfstype=ext4 kernel=/kernel5.img"
+				"STARTUP_5": "root=/dev/mmcblk1p2 rootfstype=ext4 kernel=/kernel2.img",
+				"STARTUP_6": "root=/dev/mmcblk1p3 rootfstype=ext4 kernel=/kernel3.img",
+				"STARTUP_7": "root=/dev/mmcblk1p4 rootfstype=ext4 kernel=/kernel4.img",
+				"STARTUP_8": "root=/dev/mmcblk1p5 rootfstype=ext4 kernel=/kernel5.img"
 			}
 			for filename, content in files.items():
 				path = join("/data", filename)
@@ -571,19 +571,19 @@ class GPTSlotManager(Setup):
 
 		def update_bootconfig():
 			bootInfo = """
-			[SDcard Slot 4]
-			cmd=fatload mmc 0:1 1080000 /kernel2.img;bootm;
-			arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
-			[SDcard Slot 5]
-			cmd=fatload mmc 0:1 1080000 /kernel3.img;bootm;
-			arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
-			[SDcard Slot 6]
-			cmd=fatload mmc 0:1 1080000 /kernel4.img;bootm;
-			arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
-			[SDcard Slot 7]
-			cmd=fatload mmc 0:1 1080000 /kernel5.img;bootm;
-			arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
-			"""
+[SDcard Slot 5]
+cmd=fatload mmc 0:1 1080000 /kernel2.img;bootm;
+arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
+[SDcard Slot 6]
+cmd=fatload mmc 0:1 1080000 /kernel3.img;bootm;
+arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
+[SDcard Slot 7]
+cmd=fatload mmc 0:1 1080000 /kernel4.img;bootm;
+arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
+[SDcard Slot 8]
+cmd=fatload mmc 0:1 1080000 /kernel5.img;bootm;
+arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
+"""
 			bootConfig = "/data/bootconfig.txt"
 			with open(bootConfig, 'r') as file:
 				lines = file.readlines()
@@ -595,6 +595,17 @@ class GPTSlotManager(Setup):
 						break
 				with open(bootConfig, 'w') as file:
 					file.writelines(lines)
+			with open(bootConfig, 'r') as file:
+				lines = file.readlines()
+			recovery_index = None
+			for i, line in enumerate(lines):
+				if line.strip() == "[   Recovery   ]":
+					recovery_index = i
+					break
+			if recovery_index is not None:
+				del lines[recovery_index:recovery_index + 3]
+			with open(bootConfig, 'w') as file:
+				file.writelines(lines)
 
 		def formatDevice():
 			TARGET = "mmcblk1"
