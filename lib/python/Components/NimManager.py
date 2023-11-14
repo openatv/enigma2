@@ -967,7 +967,9 @@ class NimManager:
 		self.atscList = []
 		self.enumerateNIMs()
 		self.readTransponders()
+		self.firstRun = True
 		InitNimManager(self)  # init config stuff
+		self.firstRun = False
 
 	def getConfiguredSats(self):
 		return self.sec.getConfiguredSats()
@@ -1736,7 +1738,7 @@ def UNICABLE_CHOICES():
 		"unicable_user": "Unicable " + _("User defined")}
 
 
-print(LNB_CHOICES())
+#print(LNB_CHOICES())
 
 
 def InitNimManager(nimmgr, update_slots=None):
@@ -2131,7 +2133,7 @@ def InitNimManager(nimmgr, update_slots=None):
 			sat = 192
 			oldlnbval = None
 			rootDefaults.update({"slotnr": None})
-			if slot.isFBCTuner() and not slot.isFBCFirstRoot():
+			if not nimmgr.firstRun and slot.isFBCTuner() and not slot.isFBCFirstRoot():
 				rootConfigId = slot.getFBCRootId(nimmgr.nim_slots)
 				rootConfig = config.Nims[rootConfigId].dvbs
 				if rootConfig.configMode.value == "advanced":
