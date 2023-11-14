@@ -4,7 +4,7 @@
 # openATV <openatv@gmail.com>, 2021.
 # Grzegorz <grzegorz914@icloud.com>, 2021, 2022.
 # drakulis <drakulis@interia.pl>, 2022, 2023.
-# lareq <lareq@o2.pl>, 2022.
+# lareq <lareq@o2.pl>, 2022, 2023.
 # Karol Sz <kaolsz@interia.pl>, 2022, 2023.
 # Tomasz X <wladyslaw.lam@gmail.com>, 2022.
 # sq9 <sq9hhc1@o2.pl>, 2023.
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-04 16:40+0000\n"
-"PO-Revision-Date: 2023-11-05 15:44+0000\n"
+"PO-Revision-Date: 2023-11-13 02:04+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -3588,7 +3588,7 @@ msgid ""
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Nie można przejść do TV na żywo!\n"
-"Przełączyć na TV na żywo i ponownie uruchomić Timeshift?"
+"Przełączyć na TV na żywo i ponownie uruchomić timeshift?"
 
 msgid ""
 "Can't play the next time shift file!\n"
@@ -3598,10 +3598,10 @@ msgstr ""
 "Przejść do TV na żywo i ponownie uruchomić timeshift?"
 
 msgid "Can't play the previous time shift file! You can try again."
-msgstr "Nie można odtworzyć poprzedniego pliku Timeshift! Możesz spróbować ponownie."
+msgstr "Nie można odtworzyć poprzedniego pliku timeshift! Możesz spróbować ponownie."
 
 msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
-msgstr "Nie można od montować partycji, upewnij się, że nie jest używana dla pliku wymiany lub nagrywania/TimeShiftu"
+msgstr "Nie można od montować partycji, upewnij się, że nie jest używana dla pliku wymiany lub nagrywania/timeshiftu"
 
 msgid "Canada"
 msgstr "Kanada"
@@ -5086,7 +5086,7 @@ msgid "Creating file system"
 msgstr "Tworzenie systemu plików"
 
 msgid "Creating hard link to time shift file failed!"
-msgstr "Tworzenie twardego dowiązania do pliku TimeShift nie powiodło się!"
+msgstr "Tworzenie twardego dowiązania do pliku timeshift nie powiodło się!"
 
 msgid "Creating partition"
 msgstr "Tworzenie partycji"
@@ -8158,7 +8158,7 @@ msgid "Finnish"
 msgstr "Zakończono"
 
 msgid "First playable time shift file!"
-msgstr "Pierwszy grywalny plik timeshift!"
+msgstr "Pierwszy odtwarzalny plik timeshift!"
 
 msgid "Fishing"
 msgstr "Wędkarstwo"
@@ -9298,7 +9298,7 @@ msgid "If the deep standby workaround is enabled wait until the system time is s
 msgstr "Jeśli włączono obejście głębokiego czuwania, oczekuj do czasu aż system zostanie zsynchronizowany. W zależności od wymogu budzenie urządzenia będzie kontynuowane po maksymalnie 2 minutach."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Jeśli ilość wolnego miejsca jest mniejsza niż ustawiona wartości, to następnie usuwa stare pliki Timeshiftu."
+msgstr "Jeśli ilość wolnego miejsca jest mniejsza niż ustawiona wartości, to następnie usuwa stare pliki timeshiftu."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Jeśli tekst jest zbyt długi, aby można go było wyświetlić na panelu przednim, zostanie powtórzony (określoną liczbę razy)."
@@ -18681,7 +18681,7 @@ msgid "Switchable tuner types:"
 msgstr "Wymienne typy tunerów:"
 
 msgid "Switching to live TV - time shift is still active!"
-msgstr "Przełączanie na TV na żywo - funkcja TimeShift jest nadal aktywna!"
+msgstr "Przełączanie na TV na żywo - funkcja timeshift jest nadal aktywna!"
 
 msgid "Switzerland"
 msgstr "Szwajcaria"
@@ -19246,7 +19246,7 @@ msgid ""
 "The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
-"System plików na dysku jest nie obsługiwany, Timeshift nic nie nagra.\n"
+"System plików na dysku jest nie obsługiwany, timeshift nic nie nagra.\n"
 "Upewnij się, czy dysk jest sformatowany w EXT2, EXT3 lub EXT4!"
 
 #, python-format
@@ -19857,25 +19857,25 @@ msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Time shift może nie działać poprawnie bez akceptowalnego katalogu."
 
 msgid "Time shift not possible!"
-msgstr "TimeShift niemożliwy!"
+msgstr "Timeshift niemożliwy!"
 
 msgid "Time shift save action on zap"
 msgstr "Akcja po zmianie kanału"
 
 msgid "Time shift save failed!"
-msgstr "TimeShift błąd zapisu!"
+msgstr "Timeshift błąd zapisu!"
 
 msgid "Time shift save recording (Select event)"
-msgstr "TimeShift zapisz nagranie (wybierz wydarzenie)"
+msgstr "Timeshift zapisz nagranie (wybierz wydarzenie)"
 
 msgid "Time shift save recording (stop after current event)"
 msgstr "Zapisz nagrywanie (zatrzymaj po bieżącym wydarzeniu)"
 
 msgid "Time shift saved to your hard disk drive!"
-msgstr "TimeShift zapisany na dysku twardym!"
+msgstr "Timeshift zapisany na dysku twardym!"
 
 msgid "Time shift will get saved at end of event!"
-msgstr "TimeShift będzie zapisywany tylko do końca danego wydarzenia!"
+msgstr "Timeshift będzie zapisywany tylko do końca danego wydarzenia!"
 
 msgid "Time style"
 msgstr "Styl czasu"
@@ -21995,7 +21995,7 @@ msgid "Yes, backup my settings!"
 msgstr "Tak, zrób kopię moich ustawień!"
 
 msgid "Yes, but don't save time shift as movie"
-msgstr "Tak, ale nie zapisywać TimeShift jako filmu"
+msgstr "Tak, ale nie zapisywać timeshift jako filmu"
 
 msgid "Yes, but if not available show the plugin browser"
 msgstr "Tak, ale jeśli niedostępne, pokaż przeglądanie wtyczek"
@@ -22074,7 +22074,7 @@ msgid "You have chosen to restore the settings. Enigma2 will restart after resto
 msgstr "Wybrałeś przywrócenie ustawień. Enigma2 uruchomi się ponownie po przywróceniu. Naciśnij OK, aby rozpocząć przywracanie teraz."
 
 msgid "You have chosen to save the current time shift"
-msgstr "Wybrałeś zapisanie aktualnego TimeShifta"
+msgstr "Wybrałeś zapisanie aktualnego timeshifta"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
@@ -22113,7 +22113,7 @@ msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Aktualnie jest włączony timeshift. Czy chcesz opuścić timeshift?"
 
 msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
-msgstr "Wydaje się, że jesteś w Timeshift, usługa zostanie krótko zatrzymana jak Timeshift się zatrzyma."
+msgstr "Wydaje się, że jesteś w timeshift, usługa zostanie na chwilkę zatrzymana."
 
 msgid "You should flash a new image!"
 msgstr "Powinieneś zainstalować nowy system!"
