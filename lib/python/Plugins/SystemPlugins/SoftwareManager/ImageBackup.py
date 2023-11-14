@@ -596,8 +596,11 @@ class ImageBackup(Screen):
 		else:
 			initDestination(self.MAINDEST)
 			if not self.RECOVERY:
-				if self.ROOTFSBIN == "rootfs.tar.bz2":
-					system("mv %s/%s %s/%s" % (self.WORKDIR, self.ROOTFSBIN, self.MAINDEST, self.ROOTFSBIN))
+				if self.ROOTFSBIN in ("rootfs.tar.bz2", "rootfs-two.tar.bz2", "rootfs-one.tar.bz2"):
+					if self.MACHINEBUILD in ("dreamone","dreamtwo"):
+						system("mv %s/rootfs.tar.bz2 %s/%s" % (self.WORKDIR, self.MAINDEST, self.ROOTFSBIN))
+					else:
+						system("mv %s/%s %s/%s" % (self.WORKDIR, self.ROOTFSBIN, self.MAINDEST, self.ROOTFSBIN))
 				else:
 					system("mv %s/root.ubifs %s/%s" % (self.WORKDIR, self.MAINDEST, self.ROOTFSBIN))
 				if self.MACHINEBUILD in ("dm800se", "dm500hd", "dreamone", "dreamtwo"):
