@@ -1,3 +1,5 @@
+from os import listdir
+from os.path import exists, ismount, join
 import os
 import time
 from Tools.CList import CList
@@ -856,31 +858,25 @@ class HarddiskManager:
 				self.devices_scanned_on_init.append((blockdev, removable, is_cdrom, medium_found))
 
 	def enumerateNetworkMounts(self, refresh=False):
-		print("[Harddisk] enumerating network mounts...")
-		netmount = (os.path.exists('/media/net') and os.listdir('/media/net')) or ""
-		if len(netmount) > 0:
-			for fil in netmount:
-				if os.path.ismount('/media/net/' + fil):
-					print("[Harddisk] new Network Mount", fil, '->', os.path.join('/media/net/', fil))
-					if refresh:
-						self.addMountedPartition(device=os.path.join('/media/net/', fil + '/'), desc=fil)
-					else:
-						self.partitions.append(Partition(mountpoint=os.path.join('/media/net/', fil + '/'), description=fil))
-		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
-		if len(autofsmount) > 0:
-			for fil in autofsmount:
-				if os.path.ismount('/media/autofs/' + fil) or os.path.exists('/media/autofs/' + fil):
-					print("[Harddisk] new Network Mount", fil, '->', os.path.join('/media/autofs/', fil))
-					if refresh:
-						self.addMountedPartition(device=os.path.join('/media/autofs/', fil + '/'), desc=fil)
-					else:
-						self.partitions.append(Partition(mountpoint=os.path.join('/media/autofs/', fil + '/'), description=fil))
-		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
-			print("[Harddisk] new Network Mount being used as HDD replacement -> /media/hdd/")
+		print("[Harddisk] Enumerating network mounts...")
+		for mount in ("net", "autofs"):
+			netMounts = (exists(join("/media", mount)) and listdir(join("/media", mount))) or []
+			for netMount in netMounts:
+				path = join("/media", mount, netMount, "")
+				if ismount(path):
+					partition = Partition(mountpoint=path, description=mount)
+					if str(partition) not in [str(x) for x in self.partitions]:
+						print(f"[Harddisk] New network mount {mount}->{path}.")
+						if refresh:
+							self.addMountedPartition(device=path, desc=mount)
+						else:
+							self.partitions.append(partition)
+		if ismount("/media/hdd") and "/media/hdd/" not in [x.mountpoint for x in self.partitions]:
+			print("[Harddisk] New network mount being used as HDD replacement -> '/media/hdd/'.")
 			if refresh:
-				self.addMountedPartition(device='/media/hdd/', desc='/media/hdd/')
+				self.addMountedPartition(device="/media/hdd/", desc="/media/hdd/")
 			else:
-				self.partitions.append(Partition(mountpoint='/media/hdd/', description='/media/hdd'))
+				self.partitions.append(Partition(mountpoint="/media/hdd/", description="/media/hdd"))
 
 	def getAutofsMountpoint(self, device):
 		r = self.getMountpoint(device)
