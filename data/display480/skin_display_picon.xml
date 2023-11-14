@@ -268,7 +268,7 @@
 	</screen>		
 <!-- misc-->
 	<screen name="ScreenSummary" position="5,0" size="471,320">
-		<widget source="parent.Title" render="Label" position="0,0" size="471,237" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<widget source="Title" render="Label" position="0,0" size="471,237" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="WizardSummary" position="fill">

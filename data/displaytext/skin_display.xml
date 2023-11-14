@@ -94,7 +94,7 @@
 
 <!-- misc-->
 	<screen name="ScreenSummary" position="0,0" size="132,64">
-		<widget source="parent.Title" render="RollerCharLCD" position="0,0" size="124,40" font="Regular;16" valign="center" />
+		<widget source="Title" render="RollerCharLCD" position="0,0" size="124,40" font="Regular;16" valign="center" />
 	</screen>
 	<screen name="ChoiceBoxSummary" position="0,0" size="132,64">
 		<widget source="parent.summary_selection" render="Label" position="0,0" size="126,64" font="Regular;11" noWrap="1" />

@@ -160,7 +160,7 @@
 
 <!--SimpleSummary-->
 <screen name="ScreenSummary" position="0,0" size="400,240">
-	<widget source="parent.Title" render="Label" position="2,20" size="396,220" font="LCD1;52" valign="center" halign="center"/>
+	<widget source="Title" render="Label" position="2,20" size="396,220" font="LCD1;52" valign="center" halign="center"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>

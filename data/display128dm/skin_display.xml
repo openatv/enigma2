@@ -139,7 +139,7 @@
 
 <!-- misc-->
 	<screen name="ScreenSummary" position="2,0" size="128,64">
-		<widget source="parent.Title" render="Label" position="top" size="*,40" font="FdLcD;16" halign="center" valign="center" />
+		<widget source="Title" render="Label" position="top" size="*,40" font="FdLcD;16" halign="center" valign="center" />
 		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
 	</screen>
 

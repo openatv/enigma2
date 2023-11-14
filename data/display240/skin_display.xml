@@ -131,7 +131,7 @@
 
 <!-- misc-->
 	<screen name="ScreenSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,35" font="FdLcD;30" halign="center" valign="center" />
+		<widget source="Title" render="Label" position="top" size="*,35" font="FdLcD;30" halign="center" valign="center" />
 		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
 	</screen>
 	<screen name="WizardSummary" position="fill">
