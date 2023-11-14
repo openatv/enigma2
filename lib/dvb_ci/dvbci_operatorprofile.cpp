@@ -20,7 +20,7 @@ int eDVBCIOperatorProfileSession::receivedAPDU(const unsigned char *tag,const vo
 		{
 		case 0x01:
 			eDebug("operator_status");
-			state=stateStarted;
+			state=stateStatus;
 			break;
 		case 0x03:
 			eDebug("operator_nit");
@@ -46,7 +46,7 @@ int eDVBCIOperatorProfileSession::doAction()
 {
 	switch (state)
 	{
-	case stateStarted:
+	case stateStatusRequest:
 	{
 		const unsigned char tag[3]={0x9F, 0x9C, 0x00};
 		sendAPDU(tag);
