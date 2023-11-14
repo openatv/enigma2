@@ -1246,6 +1246,10 @@ def InitUsageConfig():
 				if partition.mountpoint != "/":
 					hddchoises.append((partition.mountpoint, path))
 		config.misc.epgcachepath.setChoices(hddchoises)
+		if config.misc.epgcachepath.saved_value and config.misc.epgcachepath.saved_value != config.misc.epgcachepath.value and config.misc.epgcachepath.saved_value in [x[0] for x in hddchoises]:
+			print(f"[UsageConfig] epgcachepath changed from '{config.misc.epgcachepath.value}' to '{config.misc.epgcachepath.saved_value}'")
+			eEPGCache.getInstance().setCacheFile("")
+			config.misc.epgcachepath.value = config.misc.epgcachepath.saved_value
 
 	harddiskmanager.on_partition_list_change.append(partitionListChanged)
 
