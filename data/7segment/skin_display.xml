@@ -60,7 +60,7 @@ and the display skin will not be displayed
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
-	<screen name="QuickMenu_summary" position="0,0" size="1,1">
+	<screen name="QuickMenuSummary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
@@ -72,12 +72,12 @@ and the display skin will not be displayed
 	</screen>
 
 <!-- Numberzap -->    
-	<screen name="NumberZap_summary" position="0,0" size="1,1">
+	<screen name="NumberZapSummary" position="0,0" size="1,1">
 		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">Number;nozero</convert>
 		</widget>
 	</screen> 
-	<screen name="NumberZapPicon_summary" position="0,0" size="1,1">
+	<screen name="NumberZapPiconSummary" position="0,0" size="1,1">
 		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">Number;nozero</convert>
 		</widget>
@@ -92,7 +92,7 @@ and the display skin will not be displayed
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
-	<screen name="ChoiceBox_summary" position="0,0" size="1,1">
+	<screen name="ChoiceBoxSummary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
@@ -107,7 +107,7 @@ and the display skin will not be displayed
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
-	<screen name="JobView_summary" position="0,0" size="1,1">
+	<screen name="JobViewSummary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
@@ -133,7 +133,7 @@ and the display skin will not be displayed
 	</screen>
 
 <!-- EMC  -->
-	<screen name="EMCSelection_summary" position="0,0" size="1,1">
+	<screen name="EMCSelectionSummary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>

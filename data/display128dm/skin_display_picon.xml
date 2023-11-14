@@ -57,7 +57,7 @@
     
   
 <!-- channelselection-->
-	<screen name="ChannelSelection_summary" position="2,0" size="128,64">
+	<screen name="ChannelSelectionSummary" position="2,0" size="128,64">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="100,21" font="FdLcD;20"  noWrap="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -172,7 +172,7 @@
 	</screen>
 
 <!-- JobView Summary -->
-	<screen name="JobView_summary" position="2,0" size="128,64">
+	<screen name="JobViewSummary" position="2,0" size="128,64">
 		<widget source="parent.summary_job_name" render="Label" position="6,4" size="120,42" font="FdLcD;16" />
 		<widget source="parent.summary_job_task" render="Label" position="6,22" size="120,26" font="FdLcD;12" />
 		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
@@ -181,7 +181,7 @@
 		</widget>
 	</screen>
 
-	<screen name="ChoiceBox_summary" position="2,0" size="128,64">
+	<screen name="ChoiceBoxSummary" position="2,0" size="128,64">
 		<widget source="parent.summary_list" render="Label" position="2,0" size="128,64" font="FdLcD;11" />
 	</screen>	
 
