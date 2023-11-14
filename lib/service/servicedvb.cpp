@@ -1362,6 +1362,8 @@ RESULT eDVBServicePlay::start()
 			packetsize = meta.m_packet_size;
 			scrambled = meta.m_scrambled;
 		}
+		else
+			scrambled = false; // Set scrambled to false if meta not exists
 		m_cue = new eCueSheet();
 		type = eDVBServicePMTHandler::playback;
 	}
