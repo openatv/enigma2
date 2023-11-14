@@ -271,7 +271,7 @@
 		<widget source="autostartstatus_summary" render="Label" position="0,190" size="400,50" font="FdLcD;30" halign="center" valign="center" transparent="1" />
 	</screen>		
 <!-- misc-->
-	<screen name="SimpleSummary" position="0,0" size="400,240">
+	<screen name="ScreenSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,178" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
