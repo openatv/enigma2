@@ -299,10 +299,10 @@
 	</screen>
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,28" font="FdLcD;25" noWrap="1" />
+		<widget source="Title" render="Label" position="top" size="*,28" font="FdLcD;25" noWrap="1" />
 		<widget source="entry" render="Label" position="top" size="*,38" font="FdLcD;32" foregroundColor="#87CEFA" noWrap="1" halign="left" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="desc" render="Label" position="fill" font="FdLcD;22" valign="top" />
+		<widget source="value" render="Label" position="fill" font="FdLcD;22" valign="top" />
 	</screen>
 <!-- JobView Summary -->
 	<screen name="JobViewSummary" position="5,0" size="471,320">

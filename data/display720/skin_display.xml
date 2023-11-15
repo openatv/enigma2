@@ -287,9 +287,9 @@
 	
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="720,576"> 
-		<widget source="parent.Title" render="Label" position="15,20" foregroundColor="#e5b243" size="670,150" font="FdLcD;70" halign="center" valign="top" />
+		<widget source="Title" render="Label" position="15,20" foregroundColor="#e5b243" size="670,150" font="FdLcD;70" halign="center" valign="top" />
 		<widget source="entry" render="Label" position="22,160" size="670,200" font="FdLcD;60" halign="center" valign="center" />
-		<widget source="desc" render="Label" position="22,365" size="670,128" font="FdLcDLight;50" halign="center" valign="top" />
+		<widget source="value" render="Label" position="22,365" size="670,128" font="FdLcDLight;50" halign="center" valign="top" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	

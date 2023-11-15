@@ -385,9 +385,9 @@
 	
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="720,576"> 
-		<widget source="parent.Title" render="Label" position="15,20" foregroundColor="#e5b243" size="670,150" font="FdLcD;70" halign="center" valign="top" />
+		<widget source="Title" render="Label" position="15,20" foregroundColor="#e5b243" size="670,150" font="FdLcD;70" halign="center" valign="top" />
 		<widget source="entry" render="Label" position="22,170" size="670,200" font="FdLcD;70" halign="center" valign="center" foregroundColor="#02c6ff" />
-		<widget source="desc" render="Label" position="22,400" size="670,120" font="FdLcDLight;50" halign="center" valign="center" />
+		<widget source="value" render="Label" position="22,400" size="670,120" font="FdLcDLight;50" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	

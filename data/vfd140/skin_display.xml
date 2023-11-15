@@ -258,7 +258,7 @@
 
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;15" halign="center" valign="top" zPosition="1" noWrap="1" />
+		<widget source="Title" render="Label" position="top" size="*,14" font="FdLcD;15" halign="center" valign="top" zPosition="1" noWrap="1" />
 		<widget source="entry" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="center" valign="top" zPosition="1" />
 	</screen>
 

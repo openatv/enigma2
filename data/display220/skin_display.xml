@@ -173,9 +173,9 @@
 	
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" foregroundColor="#FFFF00" position="0,0" size="220,26" font="FdLcD;25" halign="center" noWrap="1" />
+		<widget source="Title" render="Label" foregroundColor="#FFFF00" position="0,0" size="220,26" font="FdLcD;25" halign="center" noWrap="1" />
 		<widget source="entry" render="Label" position="0,27" size="220,61" font="FdLcD;30" valign="center" halign="center" />
-		<widget source="desc" render="Label" position="0,89" size="220,70" font="FdLcD;22" valign="center" halign="center" />
+		<widget source="value" render="Label" position="0,89" size="220,70" font="FdLcD;22" valign="center" halign="center" />
 	</screen>
 
 <!-- JobView Summary -->

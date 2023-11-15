@@ -166,9 +166,9 @@
 	</screen>
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="2,0" size="128,64">
-		<widget source="parent.Title" render="Label" position="top" size="100,16" font="FdLcD;12"  noWrap="1" />
+		<widget source="Title" render="Label" position="top" size="100,16" font="FdLcD;12"  noWrap="1" />
 		<widget source="entry" render="Label" position="top" size="100,20" font="FdLcD;18" noWrap="1" />
-		<widget source="desc" render="Label" position="2,0" size="128,64" font="FdLcD;12" valign="top" />
+		<widget source="value" render="Label" position="2,0" size="128,64" font="FdLcD;12" valign="top" />
 	</screen>
 
 <!-- JobView Summary -->
