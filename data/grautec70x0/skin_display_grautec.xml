@@ -447,18 +447,8 @@
 <!--PluginBrowserSummary-->
 <screen name="PluginBrowserSummary" position="0,0" size="400,240">
 	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,80" size="396,3" />
-	<widget source="parent.pluginList" render="Label" position="2,15" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000" conditional="parent.pluginList">
-		<convert type="StringListSelection">1</convert>
-	</widget>
-	<widget source="parent.pluginList" render="Label" position="2,90" size="396,130" font="LCD1;42" halign="center" conditional="parent.pluginList">
-		<convert type="StringListSelection">2</convert>
-	</widget>
-	<widget source="parent.pluginGrid" render="Label" position="2,15" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000" conditional="parent.pluginGrid">
-		<convert type="StringListSelection">1</convert>
-	</widget>
-	<widget source="parent.pluginGrid" render="Label" position="2,90" size="396,130" font="LCD1;42" halign="center" conditional="parent.pluginGrid">
-		<convert type="StringListSelection">2</convert>
-	</widget>
+	<widget source="entry" render="Label" position="2,15" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000" />
+	<widget source="value" render="Label" position="2,90" size="396,130" font="LCD1;42" halign="center" />
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
