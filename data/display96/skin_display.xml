@@ -172,7 +172,7 @@
 	</screen>
 
 <!-- JobView Summary -->
-	<screen name="JobViewSummary" position="fill">
+	<screen name="TaskViewSummary" position="fill">
 		<widget source="parent.summary_job_name" render="Label" position="6,4" size="120,42" font="FdLcD;16" />
 		<widget source="parent.summary_job_task" render="Label" position="6,22" size="120,26" font="FdLcD;12" />
 		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />

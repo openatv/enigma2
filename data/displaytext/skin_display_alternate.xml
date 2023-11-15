@@ -132,7 +132,7 @@
 	<screen name="MessageBoxSimpleSummary" position="0,0" size="132,64">
 		<panel name="MessageBoxSummary" />
 	</screen>
-	<screen name="JobViewSummary" position="0,0" size="132,64">
+	<screen name="TaskViewSummary" position="0,0" size="132,64">
 		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="132,64" font="Regular;12" >
 			<convert type="ProgressToText" />
 		</widget>

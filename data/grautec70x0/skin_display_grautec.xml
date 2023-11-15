@@ -500,7 +500,7 @@
 </screen>
 
 <!--JobView_summary-->
-<screen name="JobViewSummary" position="0,0" size="400,240">
+<screen name="TaskViewSummary" position="0,0" size="400,240">
 	<widget source="parent.summary_job_name" render="Label" position="0,15" size="400,50" font="LCD1;50" halign="center" foregroundColor="oled1" backgroundColor="#000000" />
 	<widget source="parent.summary_job_task" render="Label" position="0,70" size="400,80" font="LCD1;40" halign="center" />
 	<widget source="parent.summary_job_progress" render="Progress" pixmap="/usr/share/enigma2/display/progress-lcd1.png" position="0,167" size="400,14" borderWidth="1" zPosition="2" backgroundColor="oledbackground1"/>

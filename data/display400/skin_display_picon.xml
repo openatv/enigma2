@@ -309,7 +309,7 @@
 		<widget source="value" render="Label" position="fill" font="FdLcD;22" valign="top" />
 	</screen>
 <!-- JobView Summary -->
-	<screen name="JobViewSummary" position="0,0" size="400,240">
+	<screen name="TaskViewSummary" position="0,0" size="400,240">
 		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="400,70" font="FdLcD;70" zposition="1" halign="center" valign="center" transparent="1" >
 			<convert type="ProgressToText">InPercent</convert>
 		</widget>
