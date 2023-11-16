@@ -31,6 +31,9 @@ class SoftcamSetup(Setup):
 			softcams = [("", _("None"))]
 			defaultsoftcam = ""
 		config.misc.softcams = ConfigSelection(default=defaultsoftcam, choices=softcams)
+		defaultsoftcams = [x for x in softcams if x != "None"]
+		defaultautocam = config.misc.autocamDefault.value or defaultsoftcam
+		self.autocamDefault = ConfigSelection(default=defaultautocam, choices=defaultsoftcams)
 		if self.softcam.notFound:
 			print("[SoftcamSetup] current: '%s' not found" % self.softcam.notFound)
 			config.misc.softcams.value = "None"
@@ -83,6 +86,9 @@ class SoftcamSetup(Setup):
 		else:
 			self.saveAll()
 			updateSysSoftCam()
+			if config.misc.autocamEnabled.value:
+				config.misc.autocamDefault.value = self.autocamDefault.value
+				config.misc.autocamDefault.save()
 			self.close()
 
 	def keyCancel(self):

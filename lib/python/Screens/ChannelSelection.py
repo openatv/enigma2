@@ -645,7 +645,8 @@ class ChannelSelectionEdit:
 		provider = ServiceReference(self.getCurrentSelection())
 		serviceHandler = eServiceCenter.getInstance()
 		services = serviceHandler.list(provider.ref)
-		Screens.InfoBar.InfoBar.instance.ToggleStreamrelay(services and services.getContent("R", True))
+		from Screens.InfoBarGenerics import streamrelay
+		streamrelay.toggle(self.session.nav, services and services.getContent("R", True))
 
 	def removeAlternativeServices(self):
 		cur_service = ServiceReference(self.getCurrentSelection())
@@ -1571,6 +1572,9 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					else:
 						appendWhenValid(current, menu, (_("Play service with Stream Relay"), self.toggleStreamrelay))
 
+					if BoxInfo.getItem("HAVEINITCAM") and config.misc.autocamEnabled.value and Screens.InfoBar.InfoBar.instance.checkCrypt(current):
+						appendWhenValid(current, menu, (_("Define Cam For This Service"), self.selectCam))
+
 					if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
 						appendWhenValid(current, menu, (_("Show VBI Line For This Service"), self.removeHideVBIFlag))
 					else:
@@ -1745,8 +1749,34 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			applySettings(value and "sidebyside" or config.osd.threeDmode.value)
 
 	def toggleStreamrelay(self):
-		Screens.InfoBar.InfoBar.instance.ToggleStreamrelay(self.csel.getCurrentSelection())
+		from Screens.InfoBarGenerics import streamrelay
+		streamrelay.toggle(self.session.nav, self.csel.getCurrentSelection())
 		self.close()
+
+	def selectCam(self):
+		def selectCamcallback(answer):
+			if answer:
+				autocam.selectCam(self.session.nav, service, answer)
+			self.close()
+		from Screens.InfoBarGenerics import autocam
+		cams = BoxInfo.getItem("Softcams")
+		if len(cams) > 2 and "None" in cams:
+			service = self.csel.getCurrentSelection()
+			choiceList = []
+			currentcam = BoxInfo.getItem("CurrentSoftcam")
+			defaultcam = config.misc.autocamDefault.value
+			for cam in cams:
+				desc = cam
+				if cam == currentcam:
+					desc = f"{desc} {_('Current')}"
+				if cam == defaultcam:
+					desc = f"{desc} {_('Default')}"
+				choiceList.append((desc, cam))
+
+			if service and choiceList:
+				name = self.getCurrentSelectionName()
+				message = _("Select the cam for '%s'" % name)
+				self.session.openWithCallback(selectCamcallback, MessageBox, message, list=choiceList)
 
 	def addHideVBIFlag(self):
 		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_HIDE_VBI)

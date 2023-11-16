@@ -259,22 +259,41 @@ def hasSoftcam():
 
 def getSysSoftcam():
 	currentsyscam = ""
-	if isfile(SOFTCAM):
-		if (islink(SOFTCAM) and not readlink(SOFTCAM).lower().endswith("none")):
-			try:
-				syscam = readlink(SOFTCAM).rsplit(".", 1)[1]
-				for cam in ("oscam", "ncam", "cccam"):
-					if syscam.lower().startswith(cam):
-						return cam
-			except OSError:
-				pass
+	if islink(SOFTCAM) and not readlink(SOFTCAM).lower().endswith("none"):
+		try:
+			syscam = readlink(SOFTCAM).rsplit(".", 1)[1]
+			for cam in ("oscam", "ncam", "cccam"):
+				if syscam.lower().startswith(cam):
+					return cam
+		except OSError:
+			pass
 	return currentsyscam
+
+
+def getCurrentSoftcam():
+	cam = "None"
+	if islink(SOFTCAM):
+		try:
+			cam = readlink(SOFTCAM)
+		except OSError:
+			pass
+	return cam
+
+
+def getSoftcams():
+	cams = sorted([cam.rsplit(".", 1)[1] for cam in listdir("/etc/init.d") if cam.startswith("softcam.")])
+	if "None" in cams:
+		cams.remove("None")
+		cams.insert(0, "None")
+	return cams
 
 
 def updateSysSoftCam():
 	BoxInfo.setItem("ShowOscamInfo", getSysSoftcam() in ("oscam", "ncam"), False)
 	BoxInfo.setItem("ShowCCCamInfo", getSysSoftcam() in ("cccam",), False)
 	BoxInfo.setItem("HasSoftcamEmu", hasSoftcamEmu(), False)
+	BoxInfo.setItem("Softcams", getSoftcams(), False)
+	BoxInfo.setItem("CurrentSoftcam", getCurrentSoftcam(), False)
 
 
 def getBoxName():
