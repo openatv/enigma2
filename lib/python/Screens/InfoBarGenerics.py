@@ -294,8 +294,8 @@ class InfoBarAutoCam:
 
 	def __init__(self):
 		self.autoCam = {}
-		self.defaultCam = config.misc.autocamDefault.value
 		self.currentCam = BoxInfo.getItem("CurrentSoftcam")
+		self.defaultCam = config.misc.autocamDefault.value or self.currentCam
 		items = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
 		for item in items:
 			itemValues = item.split("=")
@@ -306,6 +306,9 @@ class InfoBarAutoCam:
 		for key in self.autoCam.keys():
 			items.append(f"{key}={self.autoCam[key]}")
 		fileWriteLines(self.FILENAME, lines=items, source=self.__class__.__name__)
+
+	def getCam(self, service):
+		return self.autoCam.get(service.toString(), None)
 
 	def checkCrypt(self, service):
 		refstring = service.toString()
@@ -329,13 +332,14 @@ class InfoBarAutoCam:
 			self.write()
 
 	def autoCamChecker(self, service):
-		info = service.info()
-		playrefstring = info.getInfoString(iServiceInformation.sServiceref)
-		if playrefstring.startswith("1:") and "%" not in playrefstring:
-			if info and info.getInfo(iServiceInformation.sIsCrypted) == 1:
-				cam = self.autoCam.get(playrefstring, self.defaultCam)
-				if self.currentCam != cam:
-					self.switchCam(cam)
+		if config.misc.autocamEnabled.value:
+			info = service.info()
+			playrefstring = info.getInfoString(iServiceInformation.sServiceref)
+			if playrefstring.startswith("1:") and "%" not in playrefstring:
+				if info and info.getInfo(iServiceInformation.sIsCrypted) == 1:
+					cam = self.autoCam.get(playrefstring, self.defaultCam)
+					if self.currentCam != cam:
+						self.switchCam(cam)
 
 	def switchCam(self, new):
 		deamonSocket = socket(AF_UNIX, SOCK_STREAM)

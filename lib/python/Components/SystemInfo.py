@@ -274,7 +274,7 @@ def getCurrentSoftcam():
 	cam = "None"
 	if islink(SOFTCAM):
 		try:
-			cam = readlink(SOFTCAM)
+			cam = readlink(SOFTCAM).rsplit(".", 1)[1]
 		except OSError:
 			pass
 	return cam

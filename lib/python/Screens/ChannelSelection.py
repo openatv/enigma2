@@ -1758,25 +1758,36 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			if answer:
 				autocam.selectCam(self.session.nav, service, answer)
 			self.close()
-		from Screens.InfoBarGenerics import autocam
-		cams = BoxInfo.getItem("Softcams")
-		if len(cams) > 2 and "None" in cams:
-			service = self.csel.getCurrentSelection()
-			choiceList = []
-			currentcam = BoxInfo.getItem("CurrentSoftcam")
-			defaultcam = config.misc.autocamDefault.value
-			for cam in cams:
-				desc = cam
-				if cam == currentcam:
-					desc = f"{desc} {_('Current')}"
-				if cam == defaultcam:
-					desc = f"{desc} {_('Default')}"
-				choiceList.append((desc, cam))
+		service = self.csel.getCurrentSelection()
+		if service:
+			from Screens.InfoBarGenerics import autocam
+			cams = BoxInfo.getItem("Softcams")
+			if len(cams) > 2 and "None" in cams:
+				cams.remove("None")
+				channelcam = autocam.getCam(service)
+				choiceList = []
+				currentcam = BoxInfo.getItem("CurrentSoftcam")
+				defaultcam = config.misc.autocamDefault.value
+				print(f"Default : '{defaultcam}' / Current : '{currentcam}' / channelcam : '{channelcam}'")
+				channelcamidx = -1
+				defaultcamidx = 0
+				for idx, cam in enumerate(cams):
+					desc = cam
+					if cam == currentcam:
+						desc = f"{desc} ({_('Current')})"
+						defaultcamidx = idx
+					if cam == defaultcam:
+						desc = f"{desc} ({_('Default')})"
+					if channelcam == cam:
+						channelcamidx = idx
+					choiceList.append((desc, cam))
 
-			if service and choiceList:
-				name = self.getCurrentSelectionName()
-				message = _("Select the cam for '%s'" % name)
-				self.session.openWithCallback(selectCamcallback, MessageBox, message, list=choiceList)
+				if choiceList:
+					if channelcamidx == -1:
+						channelcamidx = defaultcamidx
+					name = self.getCurrentSelectionName()
+					message = _("Select the cam for '%s'" % name)
+					self.session.openWithCallback(selectCamcallback, MessageBox, message, list=choiceList, default=channelcamidx)
 
 	def addHideVBIFlag(self):
 		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_HIDE_VBI)
