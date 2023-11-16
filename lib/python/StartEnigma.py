@@ -761,6 +761,10 @@ config.keyboard = ConfigSubsection()
 config.keyboard.keymap = ConfigSelection(default=keyboard.getDefaultKeyboardMap(), choices=keyboard.getKeyboardMaplist())
 config.keyboard.keymap.addNotifier(keyboardNotifier)
 
+# this needs to defined before InfoBar and ChannelSelection
+config.misc.autocamEnabled = ConfigYesNo(default=False)
+config.misc.autocamDefault = ConfigText(default="")
+
 profile("SimpleSummary")
 from Screens import InfoBar
 from Screens.SimpleSummary import SimpleSummary
