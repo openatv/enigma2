@@ -1,5 +1,6 @@
 from enigma import eTimer
 from os.path import isfile
+from socket import socket, AF_UNIX, SOCK_STREAM
 
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import HelpableActionMap
@@ -13,48 +14,87 @@ from Tools.Directories import isPluginInstalled
 from Tools.GetEcmInfo import GetEcmInfo
 
 
-class SoftcamSetup(Setup):
+class CamSetupCommon(Setup):
+	def __init__(self, session, setup):
+		self.activityTimer = eTimer()
+		self.switchTimer = eTimer()
+		Setup.__init__(self, session=session, setup=setup)
+		self["key_yellow"] = StaticText()
+		self["restartActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.restart, _("Immediately restart selected devices."))
+		}, prio=0, description=_("Softcam Actions"))
+
+	def restart(self):
+		self.mbox = self.session.open(MessageBox, _("Please wait, restarting %s.") % _(self.servicetype), MessageBox.TYPE_INFO)
+		self.activityTimer.timeout.get().append(self.doRestart)
+		self.activityTimer.start(100, False)
+
+	def doRestart(self):
+		self.activityTimer.stop()
+		self.activityTimer.timeout.get().remove(self.doRestart)
+#		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+#		self.session.nav.stopService()
+		deamonSocket = socket(AF_UNIX, SOCK_STREAM)
+		deamonSocket.connect("/tmp/deamon.socket")
+		deamonSocket.send(f"RESTART,{self.servicetype}".encode())
+		deamonSocket.close()
+		self.activityTimer.timeout.get().append(self.doFinished)
+		self.activityTimer.start(500, False)
+
+	def doFinished(self):
+		self.activityTimer.stop()
+		self.mbox.close()
+#		self.session.nav.playService(self.oldref, adjust=False)
+
+	def switchDone(self):
+		self.switchTimer.stop()
+		self.saveAll()
+		updateSysSoftCam()
+		self.close()
+
+
+class CardserverSetup(CamSetupCommon):
 	def __init__(self, session):
-		self.softcam = CamControl("softcam", self.commandFinished)
-		self.cardserver = CamControl("cardserver", self.commandFinished)
+		self.servicetype = "cardservers"
+		self.camctrl = CamControl(self.servicetype)
+		cardservers = self.camctrl.getList()
+		defaultcardserver = self.camctrl.current()
+		if not cardservers:
+			cardservers = [("", _("None"))]
+			defaultcardserver = ""
+		config.misc.cardservers = ConfigSelection(default=defaultcardserver, choices=cardservers)
+		CamSetupCommon.__init__(self, session=session, setup="Cardserver")
+
+	def keySave(self):
+		if config.misc.cardservers.value != self.camctrl.current():
+			deamonSocket = socket(AF_UNIX, SOCK_STREAM)
+			deamonSocket.connect("/tmp/deamon.socket")
+			deamonSocket.send(f"SWITCH_CARDSERVER,{config.misc.cardservers.value}".encode())
+			deamonSocket.close()
+			self.switchTimer.timeout.get().append(self.switchDone)
+			self.switchTimer.start(500, False)
+
+
+class SoftcamSetup(CamSetupCommon):
+	def __init__(self, session):
+		self.servicetype = "softcam"
+		self.camctrl = CamControl(self.servicetype)
 		self.ecminfo = GetEcmInfo()
-		restartOptions = [
-			("", _("Don't restart")),
-			("s", _("Restart softcam"))
-		]
-		defaultrestart = ""
-		softcams = self.softcam.getList()
-		defaultsoftcam = self.softcam.current()
-		if len(softcams) > 1:
-			defaultrestart = "s"
-		else:
+		softcams = self.camctrl.getList()
+		defaultsoftcam = self.camctrl.current()
+		if not softcams:
 			softcams = [("", _("None"))]
 			defaultsoftcam = ""
 		config.misc.softcams = ConfigSelection(default=defaultsoftcam, choices=softcams)
 		defaultsoftcams = [x for x in softcams if x != "None"]
 		defaultautocam = config.misc.autocamDefault.value or defaultsoftcam
 		self.autocamDefault = ConfigSelection(default=defaultautocam, choices=defaultsoftcams)
-		if self.softcam.notFound:
-			print("[SoftcamSetup] current: '%s' not found" % self.softcam.notFound)
+		if self.camctrl.notFound:
+			print("[SoftcamSetup] current: '%s' not found" % self.camctrl.notFound)
 			config.misc.softcams.value = "None"
 			config.misc.softcams.save()
-		cardservers = self.cardserver.getList()
-		defaultcardserver = self.cardserver.current()
-		if len(cardservers) > 1:
-			restartOptions.extend([("c", _("Restart cardserver")), ("sc", _("Restart both"))])
-			defaultrestart += "c"
-		else:
-			cardservers = [("", _("None"))]
-			defaultcardserver = ""
-		config.misc.cardservers = ConfigSelection(default=defaultcardserver, choices=cardservers)
-		config.misc.restarts = ConfigSelection(default=defaultrestart, choices=restartOptions)
-		Setup.__init__(self, session=session, setup="Softcam")
-		self["key_yellow"] = StaticText()
+		CamSetupCommon.__init__(self, session=session, setup="Softcam")
 		self["key_blue"] = StaticText()
-		self["restartActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.restart, _("Immediately restart selected devices."))
-		}, prio=0, description=_("Softcam Actions"))
-		self["restartActions"].setEnabled(False)
 		self["infoActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"blue": (self.softcamInfo, _("Display oscam information."))
 		}, prio=0, description=_("Softcam Actions"))
@@ -64,7 +104,6 @@ class SoftcamSetup(Setup):
 		self.EcmInfoPollTimer = eTimer()
 		self.EcmInfoPollTimer.callback.append(self.setEcmInfo)
 		self.EcmInfoPollTimer.start(1000)
-		self.doStartCommand = False
 		self.onShown.append(self.updateButtons)
 
 	def selectionChanged(self):
@@ -76,31 +115,15 @@ class SoftcamSetup(Setup):
 		Setup.changedEntry(self)
 
 	def keySave(self):
-		device = ""
-		if hasattr(self, "cardservers") and (config.misc.cardservers.value != self.cardserver.current()):
-			device = "sc"
-		elif config.misc.softcams.value != self.softcam.current():
-			device = "s"
-		if device:
-			self.restart(device="e%s" % device)
-		else:
-			self.saveAll()
-			updateSysSoftCam()
-			if config.misc.autocamEnabled.value:
-				config.misc.autocamDefault.value = self.autocamDefault.value
-				config.misc.autocamDefault.save()
-			self.close()
-
-	def keyCancel(self):
-		Setup.keyCancel(self)
+		if config.misc.softcams.value != self.camctrl.current():
+			deamonSocket = socket(AF_UNIX, SOCK_STREAM)
+			deamonSocket.connect("/tmp/deamon.socket")
+			deamonSocket.send(f"SWITCH_CAM,{config.misc.softcams.value}".encode())
+			deamonSocket.close()
+			self.switchTimer.timeout.get().append(self.switchDone)
+			self.switchTimer.start(500, False)
 
 	def updateButtons(self):
-		if config.misc.restarts.value:
-			self["key_yellow"].setText(_("Restart"))
-			self["restartActions"].setEnabled(True)
-		else:
-			self["key_yellow"].setText("")
-			self["restartActions"].setEnabled(False)
 		if self["config"].getCurrent()[1] == config.misc.softcams and config.misc.softcams.value and config.misc.softcams.value.lower() != "none":
 			self["key_blue"].setText(_("Info"))
 			self["infoActions"].setEnabled(True)
@@ -120,79 +143,7 @@ class SoftcamSetup(Setup):
 			from Plugins.Extensions.PPanel.ppanel import PPanel
 			self.session.open(PPanel, name="%s PPanel" % config.misc.softcams.value, node=None, filename=ppanelFilename, deletenode=None)
 
-	def restart(self, device=None):
-		self.device = config.misc.restarts.value if device is None else device
-		msg = []
-		if "s" in self.device:
-			msg.append(_("softcam"))
-		if "c" in self.device:
-			msg.append(_("cardserver"))
-		msg = (" %s " % _("and")).join(msg)
-		self.mbox = self.session.open(MessageBox, _("Please wait, restarting %s.") % msg, MessageBox.TYPE_INFO)
-
-		# This can be optimized by "doRestartNEW" because you do not need to stop + start using two separate calls
-		self.activityTimer = eTimer()
-		self.activityTimer.timeout.get().append(self.doStop)
-		self.activityTimer.start(100, False)
-
-	def doStop(self):
-		self.activityTimer.stop()
-		self.doStartCommand = True
-		if "s" in self.device:
-			self.softcam.command("stop")
-		if "c" in self.device:
-			self.cardserver.command("stop")
-		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		# Do we really need to stop the current service?
-		self.session.nav.stopService()
-
-	def doStart(self):
-		del self.activityTimer
-		if "s" in self.device:
-			self.softcam.select(config.misc.softcams.value)
-			self.softcam.command("start")
-		if "c" in self.device:
-			self.cardserver.select(config.misc.cardservers.value)
-			self.cardserver.command("start")
-		if self.mbox:
-			self.mbox.close()
-		self.session.nav.playService(self.oldref, adjust=False)
-
-	def doRestartNEW(self):
-		self.doStartCommand = False
-		del self.activityTimer
-		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		# Do we really need to stop the current service?
-		self.session.nav.stopService()
-		if "s" in self.device:
-			self.softcam.select(config.misc.softcams.value)
-			self.softcam.command("restart")
-		if "c" in self.device:
-			self.cardserver.select(config.misc.cardservers.value)
-			self.cardserver.command("restart")
-		if self.mbox:
-			self.mbox.close()
-		self.session.nav.playService(self.oldref, adjust=False)
-
 	def setEcmInfo(self):
 		(newEcmFound, ecmInfo) = self.ecminfo.getEcm()
 		if newEcmFound:
 			self["info"].setText("".join(ecmInfo))
-
-	def restartSoftcam(self):
-		self.restart(device="s")
-
-	def restartCardServer(self):
-		if hasattr(self, "cardservers"):
-			self.restart(device="c")
-
-	def commandFinished(self):
-		# This is a only a workaround to prevent crashes, we need to find the root cause
-		if hasattr(self, "doStartCommand") and self.doStartCommand:
-			self.doStartCommand = False
-			self.doStart()
-			return
-		if hasattr(self, "device") and "e" in self.device:
-			self.saveAll()
-			updateSysSoftCam()
-			self.close()

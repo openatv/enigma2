@@ -203,7 +203,12 @@ def haveInitCam():
 	for cam in listdir("/etc/init.d"):
 		if cam.startswith("softcam.") and not cam.endswith("None"):
 			return True
-		elif cam.startswith("cardserver.") and not cam.endswith("None"):
+	return False
+
+
+def haveInitCardServer():
+	for cam in listdir("/etc/init.d"):
+		if cam.startswith("cardserver.") and not cam.endswith("None"):
 			return True
 	return False
 
@@ -417,6 +422,7 @@ BoxInfo.setItem("HaveCISSL", fileCheck("/etc/ssl/certs/customer.pem") and fileCh
 BoxInfo.setItem("HAVEEDIDDECODE", fileCheck("/proc/stb/hdmi/raw_edid") and fileCheck("/usr/bin/edid-decode"))
 BoxInfo.setItem("HaveID", fileCheck("/etc/.id"))
 BoxInfo.setItem("HAVEINITCAM", haveInitCam())
+BoxInfo.setItem("HAVEINITCARDSERVER", haveInitCardServer())
 BoxInfo.setItem("HaveTouchSensor", MACHINEBUILD in ("dm520", "dm525", "dm900", "dm920"))
 BoxInfo.setItem("HDMICEC", fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0"))
 BoxInfo.setItem("HDMIin", BoxInfo.getItem("hdmifhdin") or BoxInfo.getItem("hdmihdin"))
