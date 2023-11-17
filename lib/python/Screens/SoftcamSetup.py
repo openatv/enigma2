@@ -1,14 +1,14 @@
 from enigma import eTimer
 from os.path import isfile
-from socket import socket, AF_UNIX, SOCK_STREAM
 
-from Screens.MessageBox import MessageBox
+from Screens.InfoBarGenerics import autocam
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, config
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import updateSysSoftCam
+from Components.SystemInfo import updateSysSoftCam, BoxInfo
 from Screens.Setup import Setup
+from ServiceReference import ServiceReference
 from Tools.camcontrol import CamControl
 from Tools.Directories import isPluginInstalled
 from Tools.GetEcmInfo import GetEcmInfo
@@ -16,7 +16,6 @@ from Tools.GetEcmInfo import GetEcmInfo
 
 class CamSetupCommon(Setup):
 	def __init__(self, session, setup):
-		self.activityTimer = eTimer()
 		self.switchTimer = eTimer()
 		Setup.__init__(self, session=session, setup=setup)
 		self["key_yellow"] = StaticText()
@@ -25,26 +24,9 @@ class CamSetupCommon(Setup):
 		}, prio=0, description=_("Softcam Actions"))
 
 	def restart(self):
-		self.mbox = self.session.open(MessageBox, _("Please wait, restarting %s.") % _(self.servicetype), MessageBox.TYPE_INFO)
-		self.activityTimer.timeout.get().append(self.doRestart)
-		self.activityTimer.start(100, False)
-
-	def doRestart(self):
-		self.activityTimer.stop()
-		self.activityTimer.timeout.get().remove(self.doRestart)
-#		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-#		self.session.nav.stopService()
-		deamonSocket = socket(AF_UNIX, SOCK_STREAM)
-		deamonSocket.connect("/tmp/deamon.socket")
-		deamonSocket.send(f"RESTART,{self.servicetype}".encode())
-		deamonSocket.close()
-		self.activityTimer.timeout.get().append(self.doFinished)
-		self.activityTimer.start(500, False)
-
-	def doFinished(self):
-		self.activityTimer.stop()
-		self.mbox.close()
-#		self.session.nav.playService(self.oldref, adjust=False)
+		self.camctrl.restart()
+		self.switchTimer.timeout.get().append(self.switchDone)
+		self.switchTimer.start(500, False)
 
 	def switchDone(self):
 		self.switchTimer.stop()
@@ -55,7 +37,7 @@ class CamSetupCommon(Setup):
 
 class CardserverSetup(CamSetupCommon):
 	def __init__(self, session):
-		self.servicetype = "cardservers"
+		self.servicetype = "cardserver"
 		self.camctrl = CamControl(self.servicetype)
 		cardservers = self.camctrl.getList()
 		defaultcardserver = self.camctrl.current()
@@ -67,10 +49,7 @@ class CardserverSetup(CamSetupCommon):
 
 	def keySave(self):
 		if config.misc.cardservers.value != self.camctrl.current():
-			deamonSocket = socket(AF_UNIX, SOCK_STREAM)
-			deamonSocket.connect("/tmp/deamon.socket")
-			deamonSocket.send(f"SWITCH_CARDSERVER,{config.misc.cardservers.value}".encode())
-			deamonSocket.close()
+			self.camctrl.switch(config.misc.cardservers.value)
 			self.switchTimer.timeout.get().append(self.switchDone)
 			self.switchTimer.start(500, False)
 
@@ -86,9 +65,6 @@ class SoftcamSetup(CamSetupCommon):
 			softcams = [("", _("None"))]
 			defaultsoftcam = ""
 		config.misc.softcams = ConfigSelection(default=defaultsoftcam, choices=softcams)
-		defaultsoftcams = [x for x in softcams if x != "None"]
-		defaultautocam = config.misc.autocamDefault.value or defaultsoftcam
-		self.autocamDefault = ConfigSelection(default=defaultautocam, choices=defaultsoftcams)
 		if self.camctrl.notFound:
 			print("[SoftcamSetup] current: '%s' not found" % self.camctrl.notFound)
 			config.misc.softcams.value = "None"
@@ -116,10 +92,7 @@ class SoftcamSetup(CamSetupCommon):
 
 	def keySave(self):
 		if config.misc.softcams.value != self.camctrl.current():
-			deamonSocket = socket(AF_UNIX, SOCK_STREAM)
-			deamonSocket.connect("/tmp/deamon.socket")
-			deamonSocket.send(f"SWITCH_CAM,{config.misc.softcams.value}".encode())
-			deamonSocket.close()
+			self.camctrl.switch(config.misc.softcams.value)
 			self.switchTimer.timeout.get().append(self.switchDone)
 			self.switchTimer.start(500, False)
 
@@ -147,3 +120,63 @@ class SoftcamSetup(CamSetupCommon):
 		(newEcmFound, ecmInfo) = self.ecminfo.getEcm()
 		if newEcmFound:
 			self["info"].setText("".join(ecmInfo))
+
+
+class AutocamSetup(Setup):
+	def __init__(self, session):
+		self.softcams = BoxInfo.getItem("Softcams")
+		defaultsoftcam = BoxInfo.getItem("CurrentSoftcam")
+		self.camitems = []
+		self.services = []
+		self.autocamData = autocam.data.copy()
+		defaultsoftcams = [x for x in self.softcams if x != "None"]
+		defaultautocam = config.misc.autocamDefault.value or defaultsoftcam
+		self.autocamDefault = ConfigSelection(default=defaultautocam, choices=defaultsoftcams)
+		Setup.__init__(self, session=session, setup="Autocam")
+		self["key_yellow"] = StaticText()
+		self["removeActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.keyRemoveItem, _("Remove service"))
+		}, prio=0, description=_("Softcam Actions"))
+		self["removeActions"].setEnabled(True)
+
+	def layoutFinished(self):
+		Setup.layoutFinished(self)
+		if self.autocamData:
+			self.camitems.append(("**************************",))
+		for serviceref in self.autocamData.keys():
+			self.services.append(serviceref)
+			cam = self.autocamData[serviceref]
+			service = ServiceReference(serviceref)
+			self.camitems.append((service.getServiceName(), ConfigSelection(default=cam, choices=self.softcams), serviceref))
+		self.createSetup()
+
+	def createSetup(self):  # NOSONAR silence S2638
+		Setup.createSetup(self, appendItems=self.camitems)
+
+	def changedEntry(self):
+		Setup.changedEntry(self)
+		if self["config"].getCurrent() in (config.misc.autocamDefault, self.autocamDefault):
+			self["removeActions"].setEnabled(True)
+			self["key_yellow"].setText("")
+			return
+		self["removeActions"].setEnabled(True)
+		self["key_yellow"].setText(_("Remove"))
+		newcam = self["config"].getCurrent()[1].value
+		serviceref = self["config"].getCurrent()[2]
+		if self.autocamData[serviceref] != newcam:
+			self.autocamData[serviceref] = newcam
+
+	def keyRemoveItem(self):
+		if self["config"].getCurrent() in (config.misc.autocamDefault, self.autocamDefault):
+			return
+		self["config"].getCurrent()[1].value = "None"
+
+	def keySave(self):
+		remove = [service for service, cam in self.autocamData.items() if cam == 'None']
+		for service in remove:
+			del self.autocamData[service]
+		autocam.data = self.autocamData
+		config.misc.autocamDefault.value = self.autocamDefault.value
+		config.misc.autocamDefault.save()
+		config.misc.autocamEnabled.save()
+		self.close()

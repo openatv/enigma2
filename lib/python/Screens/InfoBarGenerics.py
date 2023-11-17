@@ -307,6 +307,15 @@ class InfoBarAutoCam:
 			items.append(f"{key}={self.autoCam[key]}")
 		fileWriteLines(self.FILENAME, lines=items, source=self.__class__.__name__)
 
+	def getData(self):
+		return self.autoCam
+
+	def setData(self, value):
+		self.autoCam = value
+		self.write()
+
+	data = property(getData, setData)
+
 	def getCam(self, service):
 		return self.autoCam.get(service.toString(), None)
 
@@ -354,7 +363,7 @@ class InfoBarAutoCam:
 	def switchCam(self, new):
 		deamonSocket = socket(AF_UNIX, SOCK_STREAM)
 		deamonSocket.connect("/tmp/deamon.socket")
-		deamonSocket.send(f"SWITCH_CAM,{new}".encode())
+		deamonSocket.send(f"SWITCH_SOFTCAM,{new}".encode())
 		deamonSocket.close()
 
 

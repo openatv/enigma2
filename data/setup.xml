@@ -26,6 +26,10 @@
 		<item level="1" text="Enable BT Audio" description="This Option allows you to switch Audio to BT Speakers." requires="CanBTAudio">config.av.btaudio</item>
 		<item level="1" text="General BT Audio delay" description="This option configures the general audio delay for BT Speakers." requires="CanBTAudioDelay">config.av.btaudiodelay</item>
 	</setup>
+	<setup key="Autocam" title="Autocam Settings">
+		<item level="0" text="Use autocam" description="When set to 'Yes' a specific softcam can be assigned to each encrypted service.">config.misc.autocamEnabled</item>
+		<item level="0" text="Select autocam default softcam" description="Select a softcam from the available list as the defauls for autocam." conditional="config.misc.autocamEnabled.value">self.autocamDefault</item>
+	</setup>
 	<setup key="AutoLanguage" title="Auto Language Settings" level="1" showOpenWebif="1">
 		<item level="1" text="Audio language selection 1" description="Configure the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>
 		<item level="1" text="Audio language selection 2" description="Configure the second audio language.">config.autolanguage.audio_autoselect2</item>
@@ -737,8 +741,6 @@
 		</if>
 	</setup>
 	<setup key="Softcam" title="Softcam Settings" showOpenWebif="1">
-		<item level="0" text="Use autocam" description="When set to 'Yes' a specific softcam can be assigned to each encrypted service.">config.misc.autocamEnabled</item>
-		<item level="0" text="Select autocam default softcam" description="Select a softcam from the available list as the defauls for autocam." conditional="config.misc.autocamEnabled.value">self.autocamDefault</item>
 		<item level="0" text="Select softcam" description="Select a softcam from the available list.">config.misc.softcams</item>
 		<item level="2" text="Show OScam/CCcam in extensions" description="Allows you to show/hide OScam/CCcam in extensions (BLUE button).">config.softcam.showInExtensions</item>
 	</setup>
