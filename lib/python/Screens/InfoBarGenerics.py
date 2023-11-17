@@ -331,6 +331,16 @@ class InfoBarAutoCam:
 				self.autoCam[servicestring] = cam
 			self.write()
 
+	def selectCams(self, services, cam):
+		for service in services:
+			servicestring = service.toString()
+			if cam == "None":
+				if servicestring in self.autoCam:
+					del self.autoCam[servicestring]
+			else:
+				self.autoCam[servicestring] = cam
+		self.write()
+
 	def autoCamChecker(self, service):
 		if config.misc.autocamEnabled.value:
 			info = service.info()
@@ -932,23 +942,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.autocamTimer.stop()
 			self.autocamTimer.start(1000)
 			self.autocamTimer_active = 1
-			service = self.session.nav.getCurrentService()
-			info = service and service.info()
-
-			if info and info.getInfo(iServiceInformation.sIsCrypted) == 1:
-				print("serviceStarted CRYPT")
-				print("serviceStarted CRYPT")
-				print("serviceStarted CRYPT")
-				print("serviceStarted CRYPT")
-				print("serviceStarted CRYPT")
-				print("serviceStarted CRYPT")
-			else:
-				print("serviceStarted NO CRYPT")
-				print("serviceStarted NO CRYPT")
-				print("serviceStarted NO CRYPT")
-				print("serviceStarted NO CRYPT")
-				print("serviceStarted NO CRYPT")
-				print("serviceStarted NO CRYPT")
 
 			if config.usage.show_infobar_on_zap.value:
 				self.doShow()

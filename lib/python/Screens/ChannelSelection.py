@@ -648,6 +648,12 @@ class ChannelSelectionEdit:
 		from Screens.InfoBarGenerics import streamrelay
 		streamrelay.toggle(self.session.nav, services and services.getContent("R", True))
 
+	def getRefsforProvider(self):
+		provider = ServiceReference(self.getCurrentSelection())
+		serviceHandler = eServiceCenter.getInstance()
+		services = serviceHandler.list(provider.ref)
+		return services and services.getContent("R", True)
+
 	def removeAlternativeServices(self):
 		cur_service = ServiceReference(self.getCurrentSelection())
 		end = self.atEnd()
@@ -1627,6 +1633,8 @@ class ChannelContextMenu(Screen, HelpableScreen):
 						if not self.inBouquet and "PROVIDERS" not in current_sel_path:
 							appendWhenValid(current, menu, (_("Copy To Bouquets"), self.copyCurrentToBouquetList))
 							appendWhenValid(current, menu, (_("Copy To Stream Relay"), self.copyCurrentToStreamRelay))
+							if BoxInfo.getItem("HAVEINITCAM") and config.misc.autocamEnabled.value:
+								appendWhenValid(current, menu, (_("Define Cam For This Provider"), self.selectCamProvider))
 					if ("flags == %d" % (FLAG_SERVICE_NEW_FOUND)) in current_sel_path:
 						appendWhenValid(current, menu, (_("Remove All New Found Flags"), self.removeAllNewFoundFlags))
 				if self.inBouquet:
@@ -1753,6 +1761,36 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		streamrelay.toggle(self.session.nav, self.csel.getCurrentSelection())
 		self.close()
 
+	def selectCamProvider(self):
+		def selectCamProvidercallback(answer):
+			if answer:
+				autocam.selectCams(services, answer)
+			self.close()
+		service = self.csel.getCurrentSelection()
+		if service:
+			name = service.getName()
+			services = self.csel.getRefsforProvider()
+			if services:
+				from Screens.InfoBarGenerics import autocam
+				cams = BoxInfo.getItem("Softcams")
+				if len(cams) > 2 and "None" in cams:
+					choiceList = []
+					currentcam = BoxInfo.getItem("CurrentSoftcam")
+					defaultcam = config.misc.autocamDefault.value
+					for idx, cam in enumerate(cams):
+						desc = cam
+						if cam == currentcam:
+							desc = f"{desc} ({_('Current')})"
+						if cam == defaultcam:
+							desc = f"{desc} ({_('Default')})"
+						if cam == "None":
+							desc = _("Remove")
+						choiceList.append((desc, cam))
+
+					if choiceList:
+						message = _("Select the cam for '%s'" % name)
+						self.session.openWithCallback(selectCamProvidercallback, MessageBox, message, list=choiceList)
+
 	def selectCam(self):
 		def selectCamcallback(answer):
 			if answer:
@@ -1763,12 +1801,10 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			from Screens.InfoBarGenerics import autocam
 			cams = BoxInfo.getItem("Softcams")
 			if len(cams) > 2 and "None" in cams:
-				cams.remove("None")
 				channelcam = autocam.getCam(service)
 				choiceList = []
 				currentcam = BoxInfo.getItem("CurrentSoftcam")
 				defaultcam = config.misc.autocamDefault.value
-				print(f"Default : '{defaultcam}' / Current : '{currentcam}' / channelcam : '{channelcam}'")
 				channelcamidx = -1
 				defaultcamidx = 0
 				for idx, cam in enumerate(cams):
@@ -1780,6 +1816,8 @@ class ChannelContextMenu(Screen, HelpableScreen):
 						desc = f"{desc} ({_('Default')})"
 					if channelcam == cam:
 						channelcamidx = idx
+					if cam == "None":
+						desc = _("Remove")
 					choiceList.append((desc, cam))
 
 				if choiceList:
