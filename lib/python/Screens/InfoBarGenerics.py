@@ -3332,7 +3332,7 @@ class InfoBarExtensions:
 		if pathExists('/usr/bin/'):
 			softcams = listdir('/usr/bin/')
 		for softcam in softcams:
-			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.value:
+			if softcam.lower().startswith('cccam') and config.softcam.showInExtensions.value:
 				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
 		else:
 			return []
@@ -3344,7 +3344,7 @@ class InfoBarExtensions:
 		if pathExists('/usr/bin/'):
 			softcams = listdir('/usr/bin/')
 		for softcam in softcams:
-			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
+			if softcam.lower().startswith('oscam') and config.softcam.showInExtensions.value:
 				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
 		else:
 			return []
