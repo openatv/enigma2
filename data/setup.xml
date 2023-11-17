@@ -46,6 +46,9 @@
 		<item level="1" text="EPG language selection 1" description="Configure the primary EPG language.">config.autolanguage.audio_epglanguage</item>
 		<item level="1" text="EPG language selection 2" description="Configure the secondary EPG language.">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
+	<setup key="Cardserver" title="Cardserver Settings" showOpenWebif="1">
+		<item level="0" text="Select cardserver" description="Select a cardserver from the available list.">config.misc.cardservers</item>
+	</setup>
 	<setup key="CCcamLineEdit" title="CCcam Line Editor">
 		<item level="0" text="Protocol" description="Select the softcam protocol.">config.cccamlineedit.protocol</item>
 		<item level="0" text="Domain" description="Edit the CCcam/NewCamd server hostname.">config.cccamlineedit.domain</item>
@@ -732,9 +735,6 @@
 			<item text="EnergySaver activation delay" description="Configure the duration, in minutes, before the EnergySaver timer activates.">config.usage.energyTimer</item>
 			<item text="EnergySaver action" description="Select the type of shutdown desired when the EnergySaver timer activates.">config.usage.energyTimerAction</item>
 		</if>
-	</setup>
-	<setup key="Cardserver" title="Cardserver Settings" showOpenWebif="1">
-		<item level="0" text="Select cardserver" description="Select a cardserver from the available list." conditional="config.misc.cardservers.value != ''">config.misc.cardservers</item>
 	</setup>
 	<setup key="Softcam" title="Softcam Settings" showOpenWebif="1">
 		<item level="0" text="Use autocam" description="When set to 'Yes' a specific softcam can be assigned to each encrypted service.">config.misc.autocamEnabled</item>
