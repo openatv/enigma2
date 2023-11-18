@@ -350,7 +350,7 @@ class InfoBarAutoCam:
 				self.autoCam[servicestring] = cam
 		self.write()
 
-	def autoCamChecker(self, service):
+	def autoCamChecker(self, nav, service):
 		if config.misc.autocamEnabled.value:
 			info = service.info()
 			playrefstring = info.getInfoString(iServiceInformation.sServiceref)
@@ -358,7 +358,12 @@ class InfoBarAutoCam:
 				if info and info.getInfo(iServiceInformation.sIsCrypted) == 1:
 					cam = self.autoCam.get(playrefstring, self.defaultCam)
 					if self.currentCam != cam:
+						if nav.getRecordings(False):
+							print("[InfoBarAutoCam] switch cam not possible because of active recording")
+							return
 						self.switchCam(cam)
+						self.currentCam = cam
+						BoxInfo.setItem("CurrentSoftcam", cam, False)
 
 	def switchCam(self, new):
 		deamonSocket = socket(AF_UNIX, SOCK_STREAM)
@@ -1188,7 +1193,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.autocamTimer_active = 0
 		service = self.session.nav.getCurrentService()
 		if service:
-			autocam.autoCamChecker(service)
+			autocam.autoCamChecker(self.session.nav, service)
 
 
 class BufferIndicator(Screen):
