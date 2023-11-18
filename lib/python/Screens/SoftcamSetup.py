@@ -97,7 +97,7 @@ class SoftcamSetup(CamSetupCommon):
 			self.switchTimer.start(500, False)
 
 	def updateButtons(self):
-		if self["config"].getCurrent()[1] == config.misc.softcams and config.misc.softcams.value and config.misc.softcams.value.lower() != "none":
+		if self["config"].getCurrentItem() == config.misc.softcams and config.misc.softcams.value and config.misc.softcams.value.lower() != "none":
 			self["key_blue"].setText(_("Info"))
 			self["infoActions"].setEnabled(True)
 		else:
@@ -155,21 +155,25 @@ class AutocamSetup(Setup):
 
 	def changedEntry(self):
 		Setup.changedEntry(self)
-		if self["config"].getCurrent() in (config.misc.autocamDefault, self.autocamDefault):
+		current = self["config"].getCurrent()
+		if current:
+			if current[1] in (config.misc.autocamDefault, self.autocamDefault):
+				self["removeActions"].setEnabled(True)
+				self["key_yellow"].setText("")
+				return
 			self["removeActions"].setEnabled(True)
-			self["key_yellow"].setText("")
-			return
-		self["removeActions"].setEnabled(True)
-		self["key_yellow"].setText(_("Remove"))
-		newcam = self["config"].getCurrent()[1].value
-		serviceref = self["config"].getCurrent()[2]
-		if self.autocamData[serviceref] != newcam:
-			self.autocamData[serviceref] = newcam
+			self["key_yellow"].setText(_("Remove"))
+			newcam = current[1].value
+			serviceref = current[2]
+			if self.autocamData[serviceref] != newcam:
+				self.autocamData[serviceref] = newcam
 
 	def keyRemoveItem(self):
-		if self["config"].getCurrent() in (config.misc.autocamDefault, self.autocamDefault):
+		currentItem = self["config"].getCurrentItem()
+		if currentItem in (config.misc.autocamDefault, self.autocamDefault):
 			return
-		self["config"].getCurrent()[1].value = "None"
+		elif currentItem:
+			currentItem.value = "None"
 
 	def keySave(self):
 		remove = [service for service, cam in self.autocamData.items() if cam == 'None']
