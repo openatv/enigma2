@@ -32,9 +32,9 @@ eDVBCICcSession::eDVBCICcSession(eDVBCISlot *slot, int version):
 
 	memset(buf, 0, 32);
 	buf[31] = 0x01; // URI_PROTOCOL_V1
-	if (version == 2)
+	if (version >= 2)
 		buf[31] |= 0x02; // URI_PROTOCOL_V2
-	if (version == 4)
+	if (version >= 4)
 		buf[31] |= 0x04; // URI_PROTOCOL_V4
 
 	if (!m_ci_elements.set(URI_VERSIONS, buf, 32))
