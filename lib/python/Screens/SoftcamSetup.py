@@ -97,7 +97,7 @@ class SoftcamSetup(CamSetupCommon):
 			self.switchTimer.start(500, False)
 
 	def updateButtons(self):
-		if self["config"].getCurrentItem() == config.misc.softcams and config.misc.softcams.value and config.misc.softcams.value.lower() != "none":
+		if self.getCurrentItem() == config.misc.softcams and config.misc.softcams.value and config.misc.softcams.value.lower() != "none":
 			self["key_blue"].setText(_("Info"))
 			self["infoActions"].setEnabled(True)
 		else:
@@ -130,57 +130,94 @@ class AutocamSetup(Setup):
 		self.services = []
 		self.autocamData = autocam.data.copy()
 		defaultsoftcams = [x for x in self.softcams if x != "None"]
-		defaultautocam = config.misc.autocamDefault.value or defaultsoftcam
-		self.autocamDefault = ConfigSelection(default=defaultautocam, choices=defaultsoftcams)
+		self.defaultautocam = config.misc.autocamDefault.value or defaultsoftcam
+		self.autocamDefault = ConfigSelection(default=self.defaultautocam, choices=defaultsoftcams)
 		Setup.__init__(self, session=session, setup="Autocam")
 		self["key_yellow"] = StaticText()
-		self["removeActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.keyRemoveItem, _("Remove service"))
-		}, prio=0, description=_("Softcam Actions"))
-		self["removeActions"].setEnabled(True)
+		self["key_blue"] = StaticText()
+		self["addremoveActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.keyRemoveService, _("Remove service from autocam")),
+			"blue": (self.keyAddService, _("Add service to autocam"))
+		}, prio=0, description=_("Autocam Setup Actions"))
+		self["addremoveActions"].setEnabled(False)
 
 	def layoutFinished(self):
 		Setup.layoutFinished(self)
-		if self.autocamData:
-			self.camitems.append(("**************************",))
-		for serviceref in self.autocamData.keys():
-			self.services.append(serviceref)
-			cam = self.autocamData[serviceref]
-			service = ServiceReference(serviceref)
-			self.camitems.append((service.getServiceName(), ConfigSelection(default=cam, choices=self.softcams), serviceref))
+		self.createItems()
+
+	def createItems(self):
+		self.camitems = []
+		if config.misc.autocamEnabled.value:
+			if self.autocamData:
+				self.camitems.append(("**************************",))
+			for serviceref in self.autocamData.keys():
+				self.services.append(serviceref)
+				cam = self.autocamData[serviceref]
+				service = ServiceReference(serviceref)
+				self.camitems.append((service.getServiceName(), ConfigSelection(default=cam, choices=self.softcams), serviceref))
 		self.createSetup()
 
 	def createSetup(self):  # NOSONAR silence S2638
 		Setup.createSetup(self, appendItems=self.camitems)
 
+	def selectionChanged(self):
+		self.updateButtons()
+		Setup.selectionChanged(self)
+
 	def changedEntry(self):
 		Setup.changedEntry(self)
+		self.updateButtons()
 		current = self["config"].getCurrent()
 		if current:
-			if current[1] in (config.misc.autocamDefault, self.autocamDefault):
-				self["removeActions"].setEnabled(True)
-				self["key_yellow"].setText("")
+			if current[1] == config.misc.autocamEnabled:
+				self.createItems()
 				return
-			self["removeActions"].setEnabled(True)
-			self["key_yellow"].setText(_("Remove"))
 			newcam = current[1].value
 			serviceref = current[2]
 			if self.autocamData[serviceref] != newcam:
 				self.autocamData[serviceref] = newcam
 
-	def keyRemoveItem(self):
-		currentItem = self["config"].getCurrentItem()
-		if currentItem in (config.misc.autocamDefault, self.autocamDefault):
+	def updateButtons(self):
+		currentItem = self.getCurrentItem()
+		if currentItem in (config.misc.autocamEnabled, self.autocamDefault):
+			self["addremoveActions"].setEnabled(True)
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+		else:
+			self["addremoveActions"].setEnabled(True)
+			self["key_yellow"].setText(_("Remove"))
+			self["key_blue"].setText(_("Add service"))
+
+	def keyRemoveService(self):
+		currentItem = self.getCurrentItem()
+		if currentItem in (config.misc.autocamEnabled, self.autocamDefault):
 			return
 		elif currentItem:
-			currentItem.value = "None"
+			serviceref = self["config"].getCurrent()[2]
+			del self.autocamData[serviceref]
+			index = self["config"].getCurrentIndex()
+			self.createItems()
+			self["config"].setCurrentIndex(index)
+
+	def keyAddService(self):
+		def keyAddServiceCallback(*result):
+			if result:
+				service = ServiceReference(result[0])
+				serviceref = str(service)
+				if serviceref not in self.autocamData:
+					newData = {serviceref: self.defaultautocam}
+					newData.update(self.autocamData)
+					self.autocamData = newData
+					self.createItems()
+					self["config"].setCurrentIndex(2)
+
+		from Screens.ChannelSelection import SimpleChannelSelection  # This must be here to avoid a boot loop!
+		self.session.openWithCallback(keyAddServiceCallback, SimpleChannelSelection, _("Select"), currentBouquet=True)
 
 	def keySave(self):
-		remove = [service for service, cam in self.autocamData.items() if cam == 'None']
-		for service in remove:
-			del self.autocamData[service]
-		autocam.data = self.autocamData
-		config.misc.autocamDefault.value = self.autocamDefault.value
-		config.misc.autocamDefault.save()
+		if config.misc.autocamEnabled.value:
+			autocam.data = self.autocamData
+			config.misc.autocamDefault.value = self.autocamDefault.value
+			config.misc.autocamDefault.save()
 		config.misc.autocamEnabled.save()
 		self.close()
