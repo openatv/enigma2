@@ -172,6 +172,8 @@ class AutocamSetup(Setup):
 			if current[1] == config.misc.autocamEnabled:
 				self.createItems()
 				return
+			elif current[1] == self.autocamDefault:
+				return
 			newcam = current[1].value
 			serviceref = current[2]
 			if self.autocamData[serviceref] != newcam:
