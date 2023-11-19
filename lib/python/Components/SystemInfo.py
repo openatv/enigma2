@@ -199,15 +199,6 @@ def countFrontpanelLEDs():
 	return numLeds
 
 
-def haveInitCam():
-	for cam in listdir("/etc/init.d"):
-		if cam.startswith("softcam.") and not cam.endswith("None"):
-			return True
-		elif cam.startswith("cardserver.") and not cam.endswith("None"):
-			return True
-	return False
-
-
 def getRCFile(ext):
 	filename = resolveFilename(SCOPE_SKINS, pathjoin("hardware", "%s.%s" % (BoxInfo.getItem("rcname"), ext)))
 	if not isfile(filename):
@@ -242,6 +233,20 @@ def getModuleLayout():
 	return None
 
 
+def hasInitCam():
+	for cam in listdir("/etc/init.d"):
+		if cam.startswith("softcam.") and not cam.endswith("None"):
+			return True
+	return False
+
+
+def hasInitCardServer():
+	for cam in listdir("/etc/init.d"):
+		if cam.startswith("cardserver.") and not cam.endswith("None"):
+			return True
+	return False
+
+
 def hasSoftcamEmu():
 	if isfile(NOEMU):
 		return False
@@ -259,22 +264,41 @@ def hasSoftcam():
 
 def getSysSoftcam():
 	currentsyscam = ""
-	if isfile(SOFTCAM):
-		if (islink(SOFTCAM) and not readlink(SOFTCAM).lower().endswith("none")):
-			try:
-				syscam = readlink(SOFTCAM).rsplit(".", 1)[1]
-				for cam in ("oscam", "ncam", "cccam"):
-					if syscam.lower().startswith(cam):
-						return cam
-			except OSError:
-				pass
+	if isfile(SOFTCAM) and islink(SOFTCAM) and not readlink(SOFTCAM).lower().endswith("none"):
+		try:
+			syscam = readlink(SOFTCAM).replace("softcam.", "")
+			for cam in ("oscam", "ncam", "cccam"):
+				if syscam.lower().startswith(cam):
+					return cam
+		except OSError:
+			pass
 	return currentsyscam
+
+
+def getCurrentSoftcam():
+	cam = "None"
+	if islink(SOFTCAM):
+		try:
+			cam = readlink(SOFTCAM).replace("softcam.", "")
+		except OSError:
+			pass
+	return cam
+
+
+def getSoftcams():
+	cams = sorted([cam.replace("softcam.", "") for cam in listdir("/etc/init.d") if cam.startswith("softcam.")])
+	if "None" in cams:
+		cams.remove("None")
+		cams.insert(0, "None")
+	return cams
 
 
 def updateSysSoftCam():
 	BoxInfo.setItem("ShowOscamInfo", getSysSoftcam() in ("oscam", "ncam"), False)
 	BoxInfo.setItem("ShowCCCamInfo", getSysSoftcam() in ("cccam",), False)
 	BoxInfo.setItem("HasSoftcamEmu", hasSoftcamEmu(), False)
+	BoxInfo.setItem("Softcams", getSoftcams(), False)
+	BoxInfo.setItem("CurrentSoftcam", getCurrentSoftcam(), False)
 
 
 def getBoxName():
@@ -397,7 +421,8 @@ BoxInfo.setItem("HasSDswap", MODEL in ("h9", "i55plus") and pathExists("/dev/mmc
 BoxInfo.setItem("HaveCISSL", fileCheck("/etc/ssl/certs/customer.pem") and fileCheck("/etc/ssl/certs/device.pem"))
 BoxInfo.setItem("HAVEEDIDDECODE", fileCheck("/proc/stb/hdmi/raw_edid") and fileCheck("/usr/bin/edid-decode"))
 BoxInfo.setItem("HaveID", fileCheck("/etc/.id"))
-BoxInfo.setItem("HAVEINITCAM", haveInitCam())
+BoxInfo.setItem("HAVEINITCAM", hasInitCam())
+BoxInfo.setItem("HAVEINITCARDSERVER", hasInitCardServer())
 BoxInfo.setItem("HaveTouchSensor", MACHINEBUILD in ("dm520", "dm525", "dm900", "dm920"))
 BoxInfo.setItem("HDMICEC", fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0"))
 BoxInfo.setItem("HDMIin", BoxInfo.getItem("hdmifhdin") or BoxInfo.getItem("hdmihdin"))
