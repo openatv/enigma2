@@ -359,7 +359,7 @@ class InfoBarAutoCam:
 					cam = self.autoCam.get(playrefstring, self.defaultCam)
 					if self.currentCam != cam:
 						if nav.getRecordings(False):
-							print("[InfoBarAutoCam] switch cam not possible because of active recording")
+							print("[InfoBarGenerics] InfoBarAutoCam: Switch of Softcam not possible due to an active recording.")
 							return
 						self.switchCam(cam)
 						self.currentCam = cam

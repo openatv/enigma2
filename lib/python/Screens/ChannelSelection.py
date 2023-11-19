@@ -1579,7 +1579,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 						appendWhenValid(current, menu, (_("Play service with Stream Relay"), self.toggleStreamrelay))
 
 					if BoxInfo.getItem("HAVEINITCAM") and config.misc.autocamEnabled.value and Screens.InfoBar.InfoBar.instance.checkCrypt(current):
-						appendWhenValid(current, menu, (_("Define Cam For This Service"), self.selectCam))
+						appendWhenValid(current, menu, (_("Define Softcam For This Service"), self.selectCam))
 
 					if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
 						appendWhenValid(current, menu, (_("Show VBI Line For This Service"), self.removeHideVBIFlag))
@@ -1634,7 +1634,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 							appendWhenValid(current, menu, (_("Copy To Bouquets"), self.copyCurrentToBouquetList))
 							appendWhenValid(current, menu, (_("Copy To Stream Relay"), self.copyCurrentToStreamRelay))
 							if BoxInfo.getItem("HAVEINITCAM") and config.misc.autocamEnabled.value:
-								appendWhenValid(current, menu, (_("Define Cam For This Provider"), self.selectCamProvider))
+								appendWhenValid(current, menu, (_("Define Softcam For This Provider"), self.selectCamProvider))
 					if ("flags == %d" % (FLAG_SERVICE_NEW_FOUND)) in current_sel_path:
 						appendWhenValid(current, menu, (_("Remove All New Found Flags"), self.removeAllNewFoundFlags))
 				if self.inBouquet:
@@ -1788,7 +1788,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 						choiceList.append((desc, cam))
 
 					if choiceList:
-						message = _("Select the cam for '%s'" % name)
+						message = _("Select the Softcam for '%s'" % name)
 						self.session.openWithCallback(selectCamProvidercallback, MessageBox, message, list=choiceList)
 
 	def selectCam(self):
@@ -1824,7 +1824,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					if channelcamidx == -1:
 						channelcamidx = defaultcamidx
 					name = self.getCurrentSelectionName()
-					message = _("Select the cam for '%s'" % name)
+					message = _("Select the Softcam for '%s'" % name)
 					self.session.openWithCallback(selectCamcallback, MessageBox, message, list=choiceList, default=channelcamidx)
 
 	def addHideVBIFlag(self):
