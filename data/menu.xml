@@ -150,7 +150,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<!-- Menu / Setup / Common interface -->
 			<menu key="cam" level="1" text="Decryption &amp; Parental Control" weight="30">
 				<item key="softcam_settings" level="0" text="Softcam Settings" weight="50" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup" /></item>
-				<item key="autocam_settings" level="0" text="Autocam Settings" weight="60" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="AutocamSetup" /></item>
+				<item key="autocam_settings" level="0" text="AutoCam Settings" weight="60" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="AutocamSetup" /></item>
 				<item key="cardserver_settings" level="0" text="Cardserver Settings" weight="70" requires="HAVEINITCARDSERVER"><screen module="SoftcamSetup" screen="CardserverSetup" /></item>
 				<item key="oscam_info" level="0" text="OScam Information" weight="80" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>
 				<item key="cccam_info" level="0" text="CCcam Information" weight="90" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>

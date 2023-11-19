@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -2265,6 +2265,9 @@ msgstr ""
 msgid "Add service"
 msgstr "Legg til kanal"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -2517,13 +2520,10 @@ msgstr "Tillater deg å skjule utvidelser av kjente filtyper."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr ""
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Lar deg vise/skjule logg behandling under utvidelser (blå knapp)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
 msgstr ""
 
 msgid "Almost there... "
@@ -3007,6 +3007,12 @@ msgstr ""
 #, fuzzy
 msgid "AutoUpdate"
 msgstr "Oppdater"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 #
 msgid "Automatic"
@@ -4056,6 +4062,9 @@ msgstr "Kort: 0"
 
 msgid "Cardserial"
 msgstr "Kortet serie"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr ""
@@ -6126,6 +6135,12 @@ msgstr ""
 msgid "Defaults"
 msgstr "Standard"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
@@ -6987,9 +7002,6 @@ msgstr ""
 #, fuzzy
 msgid "Don't ask again!"
 msgstr "Ikke lagre"
-
-msgid "Don't restart"
-msgstr ""
 
 msgid "Don't save"
 msgstr "Ikke lagre"
@@ -10583,6 +10595,9 @@ msgstr "Ugyldig plassering"
 #
 msgid "Invalid transponder data"
 msgstr "Ugyldig transponder data"
+
+msgid "Invalid type"
+msgstr "ugyldig type"
 
 #
 msgid "Inversion"
@@ -14294,10 +14309,6 @@ msgstr ""
 msgid "Please wait, loading image..."
 msgstr ""
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr ""
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
@@ -15623,6 +15634,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr ""
 
@@ -15793,9 +15807,6 @@ msgstr "Tilbakestill avspillingsposisjon"
 msgid "Reset sort order"
 msgstr ""
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr ""
-
 #
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Sette bildeforbedrings innstillinger til system standard?"
@@ -15843,15 +15854,6 @@ msgstr ""
 msgid "Restart Network Adapter"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Restart both"
-msgstr "Restart test"
-
-#, fuzzy
-msgid "Restart cardserver"
-msgstr "få kortenes server"
-
 msgid "Restart enigma"
 msgstr "Restart av enigma"
 
@@ -15868,11 +15870,6 @@ msgstr ""
 
 msgid "Restart network to with current setup"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Restart softcam"
-msgstr "Restart test"
 
 #
 msgid "Restart test"
@@ -16651,10 +16648,10 @@ msgstr ""
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr ""
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
-msgid "Select 'Enable' to start the CI+ helper."
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -16832,7 +16829,7 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -16942,9 +16939,6 @@ msgstr "Velg CAId"
 msgid "Select a bouquet"
 msgstr ""
 
-msgid "Select a cardserver from the available list."
-msgstr ""
-
 msgid "Select a debug log file to view:"
 msgstr ""
 
@@ -16982,7 +16976,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr ""
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr ""
 
 msgid "Select a tuner"
@@ -17013,6 +17010,9 @@ msgstr ""
 #
 msgid "Select audio track"
 msgstr "Velg lydspor"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr ""
@@ -17151,7 +17151,7 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "BH Velg kanal å legge til..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr ""
 
 msgid "Select sort method:"
@@ -17167,6 +17167,10 @@ msgid "Select temporary file sort order for the current column"
 msgstr ""
 
 msgid "Select the No / False response"
+msgstr ""
+
+#, python-format
+msgid "Select the Softcam for '%s'"
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -17197,6 +17201,9 @@ msgid "Select the action to perform when the timer ends."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
+msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr ""
 
 msgid "Select the channel from which to record:"
@@ -17367,7 +17374,7 @@ msgstr "Velg sti for lagring av film"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -18317,9 +18324,6 @@ msgstr ""
 msgid "Show CCcam Info"
 msgstr ""
 
-msgid "Show CCcam in extensions"
-msgstr ""
-
 msgid "Show CI messages"
 msgstr ""
 
@@ -18437,7 +18441,7 @@ msgstr ""
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions"
+msgid "Show OScam/CCcam in Extension Menu"
 msgstr ""
 
 msgid "Show OpenPLi packages"
@@ -22541,6 +22545,9 @@ msgstr "Bruk alternativ bilde"
 msgid "Use as HDD"
 msgstr ""
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -23567,6 +23574,9 @@ msgstr "Når satt vil hver mappe vise den tidligere tilstand , når den er av vi
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Når satt, vil PIG vende tilbake og starte etter en film har sluttet å spille."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Når innholdet har et sideforhold på 16:9, velge om du vil skalere/strekke bildet."
 
@@ -24281,9 +24291,6 @@ msgstr ""
 msgid "am"
 msgstr "am"
 
-msgid "and"
-msgstr ""
-
 msgid "aqua"
 msgstr ""
 
@@ -24377,9 +24384,6 @@ msgstr "kort"
 
 msgid "card reader"
 msgstr "kortleser"
-
-msgid "cardserver"
-msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "tegneserie/dukketeater"
@@ -24761,9 +24765,6 @@ msgstr "Direkte opptak..."
 
 msgid "internally loopthrough to"
 msgstr ""
-
-msgid "Invalid type"
-msgstr "ugyldig type"
 
 msgid "jazz"
 msgstr "jazz"
@@ -25246,9 +25247,6 @@ msgstr "sosiale/politiske saker/økonomi (generelt)"
 msgid "social/spiritual science"
 msgstr "sosial/åndsvitenskap"
 
-msgid "softcam"
-msgstr ""
-
 #, fuzzy
 msgid "special (general)"
 msgstr "sport (generelt)"
@@ -25481,6 +25479,20 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Restart both"
+#~ msgstr "Restart test"
+
+#, fuzzy
+#~ msgid "Restart cardserver"
+#~ msgstr "få kortenes server"
+
+#
+#, fuzzy
+#~ msgid "Restart softcam"
+#~ msgstr "Restart test"
 
 #, fuzzy
 #~ msgid "ClientIP"

@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
-"PO-Revision-Date: 2023-11-19 03:01+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
+"PO-Revision-Date: 2023-11-19 15:03+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -2143,6 +2143,9 @@ msgstr "Gewählten Kanal zum Bouquet hinzufügen"
 msgid "Add service"
 msgstr "Kanal hinzufügen"
 
+msgid "Add service to AutoCam"
+msgstr "Sender zu AutoCam hinzufügen"
+
 msgid "Add services to this bouquet?"
 msgstr "Sender zu diesem Bouquet?"
 
@@ -2380,14 +2383,11 @@ msgstr "Bei 'Ja' werden Dateiendungen von bekannten Dateiformaten ausgeblendet."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Maximale Größe in Megabyte (MB) des Debug-Logs festlegen. Wenn diese Größe erreicht ist, wird eine neue Datei erstellt."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "CCcam-Info unter Erweiterungen (Taste BLAU) anzeigen."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Die Logverwaltung unter Erweiterungen (Taste BLAU) anzeigen oder verstecken."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "OSCam-Info unter Erweiterungen (Taste BLAU) anzeigen."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
+msgstr "OSCam/CCcam Info unter Erweiterungen (Taste BLAU) anzeigen."
 
 # ImageBackup.py
 msgid "Almost there... "
@@ -2859,6 +2859,12 @@ msgstr "AutoTimer"
 
 msgid "AutoUpdate"
 msgstr "Autoupdate"
+
+msgid "AutoCam Settings"
+msgstr "AutoCam Einstellungen"
+
+msgid "AutoCam Setup Actions"
+msgstr "AutoCam Einstellungsaktionen"
 
 msgid "Automatic"
 msgstr "Automatisch"
@@ -3900,6 +3906,9 @@ msgstr "Karten: 0"
 
 msgid "Cardserial"
 msgstr "Seriennummer der Smartcard"
+
+msgid "Cardserver Settings"
+msgstr "Cardserver Einstellungen"
 
 msgid "Cartoon"
 msgstr "Cartoon"
@@ -5926,6 +5935,12 @@ msgstr "Standardwert: '%s'."
 msgid "Defaults"
 msgstr "Standard"
 
+msgid "Define Softcam For This Provider"
+msgstr "Definiere Softcam für diesen Provider"
+
+msgid "Define Softcam For This Service"
+msgstr "Definiere Softcam für diesen Sender"
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Legt die zusätzliche Verzögerung in Millisekunden vor dem Start von http(s)-Streams fest."
 
@@ -6787,9 +6802,6 @@ msgstr "Diese Aufnahme nicht hinzufügen"
 
 msgid "Don't ask again!"
 msgstr "Nicht mehr nachfragen!"
-
-msgid "Don't restart"
-msgstr "Nicht neu starten"
 
 msgid "Don't save"
 msgstr "Nicht speichern"
@@ -10294,6 +10306,9 @@ msgstr "Unzulässiger Ort!"
 # ScanSetup.py
 msgid "Invalid transponder data"
 msgstr "Ungültige Transponder-Daten"
+
+msgid "Invalid type"
+msgstr "Ungültiger Typ"
 
 #
 msgid "Inversion"
@@ -13959,10 +13974,6 @@ msgstr "Bitte warten Sie, der Flash-Speicher wird auf diesen Flash-Expander kopi
 msgid "Please wait, loading image..."
 msgstr "Das Image wird geladen. Bitte warten..."
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr "Neustart %s. Bitte warten..."
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "Bitte warten Sie, die Auslagerungsdatei wird gerade erstellt. Dies kann einige Minuten dauern."
 
@@ -15245,6 +15256,9 @@ msgstr "Entferne Plugins..."
 msgid "Remove selected service"
 msgstr "Gewählten Kanal entfernen"
 
+msgid "Remove service from AutoCam"
+msgstr "Sender von Autocam entfernen"
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "'Ja' entfernt Texte für Hörgeschädigte aus externen Untertiteln (z.B. Beschreibungen von Geräuschen)."
 
@@ -15418,9 +15432,6 @@ msgstr "Wiedergabeposition zurücksetzen"
 msgid "Reset sort order"
 msgstr "Sortierung zurücksetzen"
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr "Mit der Taste GRÜN ausgewählte Geräte zurücksetzen und die geänderte Konfiguration speichern."
-
 #
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Einstellungen der Bildoptimierung auf Standardwerte zurücksetzen?"
@@ -15466,12 +15477,6 @@ msgstr "Netzwerk neu starten"
 msgid "Restart Network Adapter"
 msgstr "Neustart des Netzwerkadapters"
 
-msgid "Restart both"
-msgstr "Beide neu starten"
-
-msgid "Restart cardserver"
-msgstr "Cardserver neu starten"
-
 msgid "Restart enigma"
 msgstr "Enigma2 neu starten"
 
@@ -15486,9 +15491,6 @@ msgstr "Netzwerk neu starten und Verbindungen neu aufbauen"
 
 msgid "Restart network to with current setup"
 msgstr "Netzwerk neu starten"
-
-msgid "Restart softcam"
-msgstr "Softcam neu starten"
 
 #
 msgid "Restart test"
@@ -16261,11 +16263,11 @@ msgstr ""
 "Aktivieren, um ein Paket vor dem Herunterladen zu bereinigen. Dadurch ist sichergestellt, dass die Paketliste auf dem neuesten Stand ist und ungewollte Effekte vermieden werden.\n"
 "Nur aktivieren, wenn Sie nicht Online aktualisieren können!"
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Wählen Sie 'aktiviert', wenn an diesem Tuner ein Signalkabel angeschlossen ist, andernfalls wählen Sie 'nichts verbunden'."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Wählen Sie 'Aktivieren', um den CI+ Helper zu starten."
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Wählen Sie 'aktiviert', wenn an diesem Tuner ein Signalkabel angeschlossen ist, andernfalls wählen Sie 'nichts verbunden'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Bei 'Nein' wird nur eine Datei als Puffer verwendet. Es wird empfohlen, 'Timeshift-Überprüfung auf ältere Dateien (in Minuten)' und 'Timeshift-Überprüfung auf freien Speicherplatz' anzupassen."
@@ -16442,7 +16444,7 @@ msgstr "Bei 'Ja' werden Skinkomponenten in der Downloadliste angezeigt."
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Skinpakete in der Downloadliste angezeigt."
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Softcam-Pakete in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -16551,9 +16553,6 @@ msgstr "Skin auswählen"
 msgid "Select a bouquet"
 msgstr "Bouquet auswählen"
 
-msgid "Select a cardserver from the available list."
-msgstr "Wählen Sie einen Cardserver aus der Liste aus."
-
 msgid "Select a debug log file to view:"
 msgstr "Wählen Sie ein Debug-Log zur Ansicht aus:"
 
@@ -16593,8 +16592,11 @@ msgstr "Wählen Sie ein Repository-Commit-Log zur Ansicht aus:"
 msgid "Select a script to run:"
 msgstr "Zu startendes Skript auswählen:"
 
-msgid "Select a softcam from the available list."
-msgstr "Wählen Sie eine Softcam aus der Liste aus."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr "Softcam aus der verfügbaren Liste als Standard für Autocam definieren."
+
+msgid "Select a Softcam from the available list."
+msgstr "Ein Softcam aus der Liste auswählen."
 
 msgid "Select a tuner"
 msgstr "Tuner auswählen"
@@ -16621,6 +16623,9 @@ msgstr "Wählen Sie eine Aktion aus, die durchgeführt werden soll, wenn die Auf
 #
 msgid "Select audio track"
 msgstr "Tonspur auswählen"
+
+msgid "Select AutoCam default Softcam"
+msgstr "Default Softcam für Autocam"
 
 msgid "Select cardserver"
 msgstr "Cardserver auswählen"
@@ -16758,7 +16763,7 @@ msgstr "Anzuzeigende Information wählen:"
 msgid "Select service to add..."
 msgstr "Programm zum Hinzufügen wählen..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr "Softcam auswählen"
 
 msgid "Select sort method:"
@@ -16775,6 +16780,10 @@ msgstr "Sortierreihenfolge der Dateien für die aktuelle Spalte wählen"
 
 msgid "Select the No / False response"
 msgstr "Wähle Nein / Negative Antwort"
+
+#, python-format
+msgid "Select the Softcam for '%s'"
+msgstr "Softcam für '%s ' auswählen"
 
 #
 msgid "Select the Swap File Size:"
@@ -16808,6 +16817,9 @@ msgid "Select the animation speed of the button indicators in the help screens. 
 msgstr ""
 "Stellen Sie die Animationsgeschwindigkeit der Fernbedienungstasten-Hilfe ein.\n"
 "Bei 'Standard' gibt es keine Animation."
+
+msgid "Select the cardserver to be used from the list of available cardservers."
+msgstr "Cardserver aus der Liste der verfügbaren Cardserver auswählen."
 
 msgid "Select the channel from which to record:"
 msgstr "Wählen Sie den Kanal, auf dem Sie aufnehmen möchten:"
@@ -16984,7 +16996,7 @@ msgstr "Shift für die kommenden Zeichen benutzen"
 msgid "Select the shifted character set for the next character only"
 msgstr "Shift nur für das nächste Zeichen benutzen"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr "Wählen Sie das Softcam-Protokoll aus."
 
 msgid "Select the sort order for the file lines:"
@@ -17947,9 +17959,6 @@ msgstr "Box-Portal anzeigen"
 msgid "Show CCcam Info"
 msgstr "CCcam Info anzeigen"
 
-msgid "Show CCcam in extensions"
-msgstr "CCcam in Erweiterungen anzeigen"
-
 msgid "Show CI messages"
 msgstr "CI Meldungen anzeigen"
 
@@ -18069,8 +18078,8 @@ msgstr "Multi-EPG anzeigen"
 msgid "Show OScam Info"
 msgstr "OScam-Info anzeigen"
 
-msgid "Show OScam in extensions"
-msgstr "OScam in Erweiterungen anzeigen"
+msgid "Show OScam/CCcam in Extension Menu"
+msgstr "OScam/CCcam in Erweiterungen anzeigen"
 
 msgid "Show OpenPLi packages"
 msgstr "OpenPLi-Pakete anzeigen"
@@ -19372,7 +19381,7 @@ msgid "Start/stop/select cam"
 msgstr "Starten/Stoppen/Auswahl der Cams"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
-msgstr "Starten/Stoppen/Auswahl der Cams, Installation eines Cams ist erforderlich."
+msgstr "Starten/Stoppen/Auswahl der Cams. Installation eines Cams ist erforderlich!"
 
 msgid "Starting Softcam"
 msgstr "Starte Softcam"
@@ -22138,6 +22147,9 @@ msgstr "Legt fest, ob eine alternative Anzeige verwendet werden soll."
 msgid "Use as HDD"
 msgstr "Mount HDD"
 
+msgid "Use AutoCam"
+msgstr "AutoCam verwenden"
+
 msgid "Use automatic mode detection"
 msgstr "Automatische Moduserkennung verwenden"
 
@@ -22243,7 +22255,7 @@ msgid "Use the Networkwizard to configure your Network. The wizard will help you
 msgstr "Verwenden Sie den Netzwerkassistenten, um Ihr Netzwerk zu konfigurieren"
 
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
-msgstr "Softcam-Panel für Ihre Cam-Einstellungen, Start/Stop/Auswählen der Cam."
+msgstr "Softcam-Panel für die Cam-Einstellungen, Start/Stop/Auswählen des Cams."
 
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr ""
@@ -23204,6 +23216,9 @@ msgstr "Bei 'Ja' merken sich Verzeichnisse ihren vorherigen Zustand, ansonsten w
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Bei 'Ja' wird, nachdem der Film beendet wurde, Live-TV angezeigt."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr "Bei 'Ja' kann jedem verschlüsselten Sender ein bestimmtes Softcam zugeordnet werden."
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
 "Wenn der Bildinhalt ein Seitenverhältnis größer als 16:9 hat, wählen Sie, ob und wie das Bild skaliert oder gestreckt werden soll.\n"
@@ -23924,9 +23939,6 @@ msgstr "Umgekehrt alphabetisch, dann Neueste"
 msgid "am"
 msgstr "am"
 
-msgid "and"
-msgstr "und"
-
 msgid "aqua"
 msgstr "Aqua"
 
@@ -24025,9 +24037,6 @@ msgstr "Smartcard"
 
 msgid "card reader"
 msgstr "Kartenleser"
-
-msgid "cardserver"
-msgstr "Cardserver"
 
 msgid "cartoon/puppets"
 msgstr "Zeichentrick/Puppen"
@@ -24405,9 +24414,6 @@ msgstr "Sofortaufnahme"
 # NimManager.py
 msgid "internally loopthrough to"
 msgstr "Intern verbunden mit"
-
-msgid "Invalid type"
-msgstr "Ungültiger Typ"
 
 msgid "jazz"
 msgstr "Jazz"
@@ -24875,9 +24881,6 @@ msgstr "Sozial/Politik/Wirtschaft (allgemein)"
 msgid "social/spiritual science"
 msgstr "Sozial/Geisteswissenschaft"
 
-msgid "softcam"
-msgstr "Softcam"
-
 #
 msgid "special (general)"
 msgstr "Spezial (allgemein)"
@@ -25099,6 +25102,49 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "CCcam-Info unter Erweiterungen (Taste BLAU) anzeigen."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "OSCam-Info unter Erweiterungen (Taste BLAU) anzeigen."
+
+#~ msgid "Don't restart"
+#~ msgstr "Nicht neu starten"
+
+#, python-format
+#~ msgid "Please wait, restarting %s."
+#~ msgstr "Neustart %s. Bitte warten..."
+
+#~ msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
+#~ msgstr "Mit der Taste GRÜN ausgewählte Geräte zurücksetzen und die geänderte Konfiguration speichern."
+
+#~ msgid "Restart both"
+#~ msgstr "Beide neu starten"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "Cardserver neu starten"
+
+#~ msgid "Restart softcam"
+#~ msgstr "Softcam neu starten"
+
+#~ msgid "Select a cardserver from the available list."
+#~ msgstr "Wählen Sie einen Cardserver aus der Liste aus."
+
+#~ msgid "Show CCcam in extensions"
+#~ msgstr "CCcam in Erweiterungen anzeigen"
+
+#~ msgid "Show OScam in extensions"
+#~ msgstr "OScam in Erweiterungen anzeigen"
+
+#~ msgid "and"
+#~ msgstr "und"
+
+#~ msgid "cardserver"
+#~ msgstr "Cardserver"
+
+#~ msgid "softcam"
+#~ msgstr "Softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "CIHelper-Einstellungen"

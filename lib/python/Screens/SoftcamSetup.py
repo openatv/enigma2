@@ -184,12 +184,12 @@ class AutocamSetup(Setup):
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["addActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.keyAddService, _("Add service to autocam"))
-		}, prio=0, description=_("Autocam Setup Actions"))
+			"yellow": (self.keyAddService, _("Add service to AutoCam"))
+		}, prio=0, description=_("AutoCam Setup Actions"))
 		self["addActions"].setEnabled(config.misc.autocamEnabled.value)
 		self["removeActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"blue": (self.keyRemoveService, _("Remove service from autocam"))
-		}, prio=0, description=_("Autocam Setup Actions"))
+			"blue": (self.keyRemoveService, _("Remove service from AutoCam"))
+		}, prio=0, description=_("AutoCam Setup Actions"))
 		self["removeActions"].setEnabled(False)
 
 	def layoutFinished(self):

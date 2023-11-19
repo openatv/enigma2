@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -2235,6 +2235,9 @@ msgstr ""
 msgid "Add service"
 msgstr "Lägg till tjänst"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -2488,13 +2491,10 @@ msgstr "Låter dig dölja filändelser av kända filtyper"
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr ""
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Låter dig visa/dölja Logghanteraren i Utökningar (blå tangent)"
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
 msgstr ""
 
 msgid "Almost there... "
@@ -2984,6 +2984,12 @@ msgstr ""
 #, fuzzy
 msgid "AutoUpdate"
 msgstr "Uppdatera"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 #
 msgid "Automatic"
@@ -4029,6 +4035,9 @@ msgstr "Kort: 0"
 
 msgid "Cardserial"
 msgstr "Kortnummer"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr ""
@@ -6098,6 +6107,12 @@ msgstr ""
 msgid "Defaults"
 msgstr "Standard"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
@@ -6959,9 +6974,6 @@ msgstr ""
 #, fuzzy
 msgid "Don't ask again!"
 msgstr "Spara Inte"
-
-msgid "Don't restart"
-msgstr ""
 
 msgid "Don't save"
 msgstr "Spara Inte"
@@ -10564,6 +10576,9 @@ msgstr "Ogiltig sökväg"
 #
 msgid "Invalid transponder data"
 msgstr "Ogiltig transponderdata"
+
+msgid "Invalid type"
+msgstr "ogiltig typ"
 
 #
 msgid "Inversion"
@@ -14291,10 +14306,6 @@ msgstr ""
 msgid "Please wait, loading image..."
 msgstr ""
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr ""
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
@@ -15633,6 +15644,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr ""
 
@@ -15804,9 +15818,6 @@ msgstr "Återställ visningsläget"
 msgid "Reset sort order"
 msgstr ""
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr ""
-
 #
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Återställ videoförbättringarna till grundinställningarna?"
@@ -15854,15 +15865,6 @@ msgstr ""
 msgid "Restart Network Adapter"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Restart both"
-msgstr "Omstart test"
-
-#, fuzzy
-msgid "Restart cardserver"
-msgstr "erhåll kortets server"
-
 msgid "Restart enigma"
 msgstr "Starta om enigma"
 
@@ -15879,11 +15881,6 @@ msgstr ""
 
 msgid "Restart network to with current setup"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Restart softcam"
-msgstr "Omstart test"
 
 #
 msgid "Restart test"
@@ -16665,10 +16662,10 @@ msgstr ""
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr ""
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
-msgid "Select 'Enable' to start the CI+ helper."
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -16847,7 +16844,7 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -16960,9 +16957,6 @@ msgstr "Välj CAId"
 msgid "Select a bouquet"
 msgstr "Välj en favoritlista"
 
-msgid "Select a cardserver from the available list."
-msgstr ""
-
 msgid "Select a debug log file to view:"
 msgstr ""
 
@@ -17000,7 +16994,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr ""
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr ""
 
 msgid "Select a tuner"
@@ -17030,6 +17027,9 @@ msgstr ""
 #
 msgid "Select audio track"
 msgstr "Välj ljudspår"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr ""
@@ -17168,7 +17168,7 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Välj kanal att lägga till..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr ""
 
 #
@@ -17185,6 +17185,10 @@ msgid "Select temporary file sort order for the current column"
 msgstr ""
 
 msgid "Select the No / False response"
+msgstr ""
+
+#, python-format
+msgid "Select the Softcam for '%s'"
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -17215,6 +17219,9 @@ msgid "Select the action to perform when the timer ends."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
+msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr ""
 
 msgid "Select the channel from which to record:"
@@ -17385,7 +17392,7 @@ msgstr "Vänligen ange filmens sökväg"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -18340,9 +18347,6 @@ msgstr ""
 msgid "Show CCcam Info"
 msgstr ""
 
-msgid "Show CCcam in extensions"
-msgstr ""
-
 msgid "Show CI messages"
 msgstr "Visa CI meddelanden"
 
@@ -18461,7 +18465,7 @@ msgstr ""
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions"
+msgid "Show OScam/CCcam in Extension Menu"
 msgstr ""
 
 msgid "Show OpenPLi packages"
@@ -22595,6 +22599,9 @@ msgstr "Använd den alternativa vyn"
 msgid "Use as HDD"
 msgstr ""
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -23625,6 +23632,9 @@ msgstr "Om inställt så visar varje mapp den tidigare statusen, avstängd så v
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Med den  inställningen, så återgår bilden i grafiken till live tv efter att en film har avslutats."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "När innehållet har ett bildförhållande på 16:9, välj om man ska skala / sträcka bilden."
 
@@ -24336,9 +24346,6 @@ msgstr ""
 msgid "am"
 msgstr "fm"
 
-msgid "and"
-msgstr ""
-
 msgid "aqua"
 msgstr ""
 
@@ -24432,9 +24439,6 @@ msgstr "kort"
 
 msgid "card reader"
 msgstr "kortläsare"
-
-msgid "cardserver"
-msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "tecknat / dockor"
@@ -24819,9 +24823,6 @@ msgstr "Direktinspelning"
 
 msgid "internally loopthrough to"
 msgstr ""
-
-msgid "Invalid type"
-msgstr "ogiltig typ"
 
 msgid "jazz"
 msgstr "jazz"
@@ -25301,9 +25302,6 @@ msgstr "sociala / politiska frågor / ekonomi (allmänt)"
 msgid "social/spiritual science"
 msgstr "social / andlig vetenskap"
 
-msgid "softcam"
-msgstr ""
-
 #, fuzzy
 msgid "special (general)"
 msgstr "sport (allmänt)"
@@ -25533,6 +25531,20 @@ msgstr "ja (behåll feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Restart both"
+#~ msgstr "Omstart test"
+
+#, fuzzy
+#~ msgid "Restart cardserver"
+#~ msgstr "erhåll kortets server"
+
+#
+#, fuzzy
+#~ msgid "Restart softcam"
+#~ msgstr "Omstart test"
 
 #, fuzzy
 #~ msgid "ClientIP"

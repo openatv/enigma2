@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2023-11-15 19:07+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2027,6 +2027,9 @@ msgstr "De geselecteerde zender aan de favorietenlijst toevoegen"
 msgid "Add service"
 msgstr "Zender toevoegen"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr "Zender aan deze favorietenlijst toevoegen?"
 
@@ -2255,14 +2258,11 @@ msgstr "Geeft de mogelijkheid extensies van bekende bestandsformaten niet te ton
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Hier geeft u aan hoeveel ruimte de debug logs mogen gebruiken. Als die ruimte bereikt wordt, worden de oudste logs het eerste verwijderd."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Hier kunt u kiezen of CCcam in het Applicatiemenu moet worden getoond (Blauw-lang)."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Wilt u de Logmanager in het Applicatiemenu tonen of verbergen (Blauw-lang)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "Wilt u OScam in het Applicatiemenu tonen of verbergen (Blauw-lang)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "Bijna klaar... "
@@ -2701,6 +2701,12 @@ msgstr "AutoTimer"
 
 msgid "AutoUpdate"
 msgstr "Auto update"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Automatisch"
@@ -3693,6 +3699,9 @@ msgstr "Kaarten: 0"
 
 msgid "Cardserial"
 msgstr "Serienummer"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr "Tekenfilm"
@@ -5711,6 +5720,12 @@ msgstr "Default: '%s'."
 msgid "Defaults"
 msgstr "Standaard waardes"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Geef een aanvullende vertraging op in milliseconden voorafgaand aan de start van http(s) streams."
 
@@ -6523,9 +6538,6 @@ msgstr "Deze opname niet toevoegen"
 
 msgid "Don't ask again!"
 msgstr "Niet meer vragen!"
-
-msgid "Don't restart"
-msgstr "Niet herstarten"
 
 msgid "Don't save"
 msgstr "Niet opslaan"
@@ -9858,6 +9870,9 @@ msgstr "Ongeldige locatie!"
 
 msgid "Invalid transponder data"
 msgstr "Ongeldige transponderdata"
+
+msgid "Invalid type"
+msgstr "ongeldig type"
 
 msgid "Inversion"
 msgstr "Inversie"
@@ -13232,10 +13247,6 @@ msgstr "Even geduld, er wordt flashgeheugen gekopieerd naar deze Flash-Expander.
 msgid "Please wait, loading image..."
 msgstr "Het Image wordt geladen, even geduld..."
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr "Een moment geduld, %s wordt opnieuw gestart."
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "Even geduld, de swap-file wordt gemaakt. Dit kan enkele minuten duren."
 
@@ -14425,6 +14436,9 @@ msgstr "Plug-ins verwijderen..."
 msgid "Remove selected service"
 msgstr "De geselecteerde zender verwijderen"
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Verwijdert teksten bedoelt voor slechthorenden uit externe ondertitels. Denk aan teksten als 'Deurbel gaat', 'Muziek speelt', enz."
 
@@ -14581,9 +14595,6 @@ msgstr "Zet afspeelpositie terug naar het begin"
 msgid "Reset sort order"
 msgstr "Sorteervolgorde resetten"
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr "Reset de geselecteerde apparaten en bewaar de wijzigingen in uw configuratie door de Groene knop te drukken."
-
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Herstel videoverbetering-instellingen naar de standaard?"
 
@@ -14624,12 +14635,6 @@ msgstr "Netwerk herstarten"
 msgid "Restart Network Adapter"
 msgstr "Netwerk adapter herstarten"
 
-msgid "Restart both"
-msgstr "Herstart Beide"
-
-msgid "Restart cardserver"
-msgstr "Herstart Kaartserver"
-
 msgid "Restart enigma"
 msgstr "Herstart enigma"
 
@@ -14644,9 +14649,6 @@ msgstr "Netwerk herstarten en netwerkverbinding opnieuw mounten."
 
 msgid "Restart network to with current setup"
 msgstr "Netwerk herstarten met huidige instelling"
-
-msgid "Restart softcam"
-msgstr "Herstart SoftCam"
 
 msgid "Restart test"
 msgstr "Herstart test"
@@ -15356,11 +15358,11 @@ msgstr "Selecteer 'band' als u een universele LNB gebruikt. Consulteer de specs 
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr "Selecteer deze optie om een pakket te \"schoon\" te installeren voordat die wordt bijgewerkt. Dit is handig om ervoor te zorgen dat de pakketlijst up-to-date is en problemen tijdens de update voorkomen kunnen worden. Schakel dit alleen in als u niet online kunt updaten."
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Selecteer 'ingeschakeld' als een antennekabel is aangesloten, anders kiest u 'niets verbonden'."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Kies 'Activeren' om de CI+ Helper te starten."
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Selecteer 'ingeschakeld' als een antennekabel is aangesloten, anders kiest u 'niets verbonden'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Als u hier voor 'nee', kiest zal Timeshift slechts één buffer bestand gebruiken. Het is aan te raden in dat geval 'Timeshift controleren van oude bestanden [in minuten]' en 'Timeshift controleren van vrije ruimte' ook in te schakelen."
@@ -15540,7 +15542,7 @@ msgstr "Kies 'Ja' om Skinparts in het plug-in download-scherm weer te geven."
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Skins in het plug-in download-scherm weer te geven."
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Softcams in het plug-in download-scherm weer te geven."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15644,9 +15646,6 @@ msgstr "Selecteer uw skin"
 msgid "Select a bouquet"
 msgstr "Selecteer een favorietenlijst"
 
-msgid "Select a cardserver from the available list."
-msgstr "Kies een cardserver uit de lijst."
-
 msgid "Select a debug log file to view:"
 msgstr "Selecteer een debug log-bestand:"
 
@@ -15684,7 +15683,10 @@ msgstr "Selecteer een repository commit-log:"
 msgid "Select a script to run:"
 msgstr "Selecteer script om uit te voeren:"
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr "Kies een softcam uit de lijst."
 
 msgid "Select a tuner"
@@ -15711,6 +15713,9 @@ msgstr "Selecteer een actie om uit te voeren wanneer de taak is voltooid."
 
 msgid "Select audio track"
 msgstr "Selecteer een Audio spoor"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr "Kies een cardserver"
@@ -15841,7 +15846,7 @@ msgstr "Welke zender-informatie wilt u zien:"
 msgid "Select service to add..."
 msgstr "Selecteer zender om toe te voegen..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr "Kies een softcam"
 
 msgid "Select sort method:"
@@ -15858,6 +15863,10 @@ msgstr "Selecteer de sorteervolgorde van de tijdelijke bestanden in de huidige k
 
 msgid "Select the No / False response"
 msgstr "Selecteer het onjuiste antwoord"
+
+#, python-format
+msgid "Select the Softcam for '%s'"
+msgstr ""
 
 msgid "Select the Swap File Size:"
 msgstr "Selecteer swap bestand grootte:"
@@ -15888,6 +15897,9 @@ msgstr "Opgeven wat er moet gebeuren wanneer de Timer is uitgevoerd."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Stel de animatiesnelheid in van de knop pictogrammen in het Help scherm. 'Uitgeschakeld' voorkomt een animatie."
+
+msgid "Select the cardserver to be used from the list of available cardservers."
+msgstr ""
 
 msgid "Select the channel from which to record:"
 msgstr "Kies de zender waarvan u wilt opnemen:"
@@ -16061,7 +16073,7 @@ msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord"
 msgid "Select the shifted character set for the next character only"
 msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord alleen voor de volgende letter"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr "Kies het gewenste softcam protocol."
 
 msgid "Select the sort order for the file lines:"
@@ -16984,9 +16996,6 @@ msgstr "Toon Box Portal"
 msgid "Show CCcam Info"
 msgstr "Toon CCcam Info"
 
-msgid "Show CCcam in extensions"
-msgstr "Toon CCcam in het Applicatie menu (Blauw-lang)"
-
 msgid "Show CI messages"
 msgstr "Toon CI berichten"
 
@@ -17095,8 +17104,8 @@ msgstr "Toon Multi-EPG"
 msgid "Show OScam Info"
 msgstr "Toon OScam Info"
 
-msgid "Show OScam in extensions"
-msgstr "Toon OScam in het Applicatiemenu (Blauw-lang)"
+msgid "Show OScam/CCcam in Extension Menu"
+msgstr ""
 
 msgid "Show OpenPLi packages"
 msgstr "OpenPLi"
@@ -20963,6 +20972,9 @@ msgstr "Gebruik een ander scherm."
 msgid "Use as HDD"
 msgstr "Gebruik als HDD"
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "Automatische modusdetectie gebruiken"
 
@@ -21973,6 +21985,9 @@ msgstr "Indien geactiveerd, worden de vorige waarden van elke map getoond, indie
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Indien 'Ja' wordt gekozen, wordt in de opnamelijst live-TV op de achtergrond of in PiG getoond zolang er geen opname loopt."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
 "Indien het beeld een beeldverhouding heeft van 16:9, kies dan of u het beeld geschaald of uitgerekt wenst te zien.\n"
@@ -22659,9 +22674,6 @@ msgstr "alpharev dan nieuwste"
 msgid "am"
 msgstr "am"
 
-msgid "and"
-msgstr "en"
-
 msgid "aqua"
 msgstr "aqua"
 
@@ -22750,9 +22762,6 @@ msgstr "kaart"
 
 msgid "card reader"
 msgstr "Kaartlezer"
-
-msgid "cardserver"
-msgstr "kaartserver"
 
 msgid "cartoon/puppets"
 msgstr "tekenfilm/poppen"
@@ -23093,9 +23102,6 @@ msgstr "direct opnemen"
 
 msgid "internally loopthrough to"
 msgstr "intern doorgelust naar"
-
-msgid "Invalid type"
-msgstr "ongeldig type"
 
 msgid "jazz"
 msgstr "jazz"
@@ -23517,9 +23523,6 @@ msgstr "sociaal/politieke issues/ecomomie (algemeen)"
 msgid "social/spiritual science"
 msgstr "sociale/spirituele wetenschap"
 
-msgid "softcam"
-msgstr "softcam"
-
 msgid "special (general)"
 msgstr "special (algemeen)"
 
@@ -23722,6 +23725,49 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "Hier kunt u kiezen of CCcam in het Applicatiemenu moet worden getoond (Blauw-lang)."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "Wilt u OScam in het Applicatiemenu tonen of verbergen (Blauw-lang)."
+
+#~ msgid "Don't restart"
+#~ msgstr "Niet herstarten"
+
+#, python-format
+#~ msgid "Please wait, restarting %s."
+#~ msgstr "Een moment geduld, %s wordt opnieuw gestart."
+
+#~ msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
+#~ msgstr "Reset de geselecteerde apparaten en bewaar de wijzigingen in uw configuratie door de Groene knop te drukken."
+
+#~ msgid "Restart both"
+#~ msgstr "Herstart Beide"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "Herstart Kaartserver"
+
+#~ msgid "Restart softcam"
+#~ msgstr "Herstart SoftCam"
+
+#~ msgid "Select a cardserver from the available list."
+#~ msgstr "Kies een cardserver uit de lijst."
+
+#~ msgid "Show CCcam in extensions"
+#~ msgstr "Toon CCcam in het Applicatie menu (Blauw-lang)"
+
+#~ msgid "Show OScam in extensions"
+#~ msgstr "Toon OScam in het Applicatiemenu (Blauw-lang)"
+
+#~ msgid "and"
+#~ msgstr "en"
+
+#~ msgid "cardserver"
+#~ msgstr "kaartserver"
+
+#~ msgid "softcam"
+#~ msgstr "softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI Helper instellingen"

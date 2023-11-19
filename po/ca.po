@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -2213,6 +2213,9 @@ msgstr ""
 msgid "Add service"
 msgstr "Afegeix canal"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -2464,13 +2467,10 @@ msgstr ""
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr ""
 
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
-msgstr ""
-
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
 msgstr ""
 
 msgid "Almost there... "
@@ -2950,6 +2950,12 @@ msgid "AutoTimer"
 msgstr ""
 
 msgid "AutoUpdate"
+msgstr ""
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
 msgstr ""
 
 #
@@ -4007,6 +4013,9 @@ msgid "Cards: 0"
 msgstr ""
 
 msgid "Cardserial"
+msgstr ""
+
+msgid "Cardserver Settings"
 msgstr ""
 
 msgid "Cartoon"
@@ -6036,6 +6045,12 @@ msgstr ""
 msgid "Defaults"
 msgstr ""
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
@@ -6881,9 +6896,6 @@ msgid "Don't add this recording"
 msgstr ""
 
 msgid "Don't ask again!"
-msgstr ""
-
-msgid "Don't restart"
 msgstr ""
 
 msgid "Don't save"
@@ -10411,6 +10423,9 @@ msgstr "Ubicació no vàlida"
 #
 msgid "Invalid transponder data"
 msgstr "Les dades del transpondedor no són vàlides"
+
+msgid "Invalid type"
+msgstr "tipus no vàlid"
 
 #
 msgid "Inversion"
@@ -14082,10 +14097,6 @@ msgstr ""
 msgid "Please wait, loading image..."
 msgstr ""
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr ""
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
@@ -15394,6 +15405,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr ""
 
@@ -15566,9 +15580,6 @@ msgstr "Restableix la posició de reproducció"
 msgid "Reset sort order"
 msgstr ""
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr ""
-
 #
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Voleu restablir la configuració de millora de vídeo als valors predeterminats del sistema?"
@@ -15616,14 +15627,6 @@ msgstr ""
 msgid "Restart Network Adapter"
 msgstr ""
 
-#
-msgid "Restart both"
-msgstr "Reinicieu tot"
-
-#
-msgid "Restart cardserver"
-msgstr "Reinicieu el servidor de targetes"
-
 msgid "Restart enigma"
 msgstr "Reinicieu l’enigma"
 
@@ -15640,10 +15643,6 @@ msgstr ""
 
 msgid "Restart network to with current setup"
 msgstr ""
-
-#
-msgid "Restart softcam"
-msgstr "Reiniciar softcam"
 
 #
 msgid "Restart test"
@@ -16417,11 +16416,11 @@ msgstr "Seleccioneu “banda” si feu servir un LNB “universal”, si no, con
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr ""
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Seleccioneu “habilitat” si aquest sintonitzador té un cable de senyal, en cas contrari, seleccioneu “res connectat”."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Seleccioneu “habilitat” si aquest sintonitzador té un cable de senyal, en cas contrari, seleccioneu “res connectat”."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr ""
@@ -16597,7 +16596,7 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -16708,9 +16707,6 @@ msgstr "Seleccionar disc dur"
 msgid "Select a bouquet"
 msgstr "Selecciona bouquet"
 
-msgid "Select a cardserver from the available list."
-msgstr ""
-
 msgid "Select a debug log file to view:"
 msgstr ""
 
@@ -16748,7 +16744,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr ""
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr ""
 
 msgid "Select a tuner"
@@ -16779,6 +16778,9 @@ msgstr ""
 #
 msgid "Select audio track"
 msgstr "Seleccionar pista d'àudio"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr ""
@@ -16917,7 +16919,7 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Selecciona el servei a afegir …"
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr ""
 
 msgid "Select sort method:"
@@ -16933,6 +16935,10 @@ msgid "Select temporary file sort order for the current column"
 msgstr ""
 
 msgid "Select the No / False response"
+msgstr ""
+
+#, python-format
+msgid "Select the Softcam for '%s'"
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -16963,6 +16969,9 @@ msgid "Select the action to perform when the timer ends."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
+msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr ""
 
 msgid "Select the channel from which to record:"
@@ -17131,7 +17140,7 @@ msgstr "Seleccioneu el joc de caràcters desplaçat"
 msgid "Select the shifted character set for the next character only"
 msgstr "Seleccioneu el conjunt de caràcters desplaçat només per al següent personatge"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -18067,9 +18076,6 @@ msgstr ""
 msgid "Show CCcam Info"
 msgstr ""
 
-msgid "Show CCcam in extensions"
-msgstr ""
-
 msgid "Show CI messages"
 msgstr "Mostra els missatges de CI"
 
@@ -18187,7 +18193,7 @@ msgstr ""
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions"
+msgid "Show OScam/CCcam in Extension Menu"
 msgstr ""
 
 msgid "Show OpenPLi packages"
@@ -22197,6 +22203,9 @@ msgstr ""
 msgid "Use as HDD"
 msgstr ""
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -23214,6 +23223,9 @@ msgstr ""
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Quan el contingut tingui una relació d’aspecte de 16: 9, trieu si voleu escalar / estirar la imatge."
 
@@ -23892,9 +23904,6 @@ msgstr ""
 msgid "am"
 msgstr ""
 
-msgid "and"
-msgstr ""
-
 msgid "aqua"
 msgstr ""
 
@@ -23986,9 +23995,6 @@ msgid "card"
 msgstr ""
 
 msgid "card reader"
-msgstr ""
-
-msgid "cardserver"
 msgstr ""
 
 msgid "cartoon/puppets"
@@ -24362,9 +24368,6 @@ msgstr "Gravació instantània..."
 
 msgid "internally loopthrough to"
 msgstr ""
-
-msgid "Invalid type"
-msgstr "tipus no vàlid"
 
 msgid "jazz"
 msgstr "jazz"
@@ -24841,9 +24844,6 @@ msgstr "qüestions socials / polítiques / economia (general)"
 msgid "social/spiritual science"
 msgstr "ciències socials / espirituals"
 
-msgid "softcam"
-msgstr ""
-
 msgid "special (general)"
 msgstr ""
 
@@ -25066,6 +25066,18 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Restart both"
+#~ msgstr "Reinicieu tot"
+
+#
+#~ msgid "Restart cardserver"
+#~ msgstr "Reinicieu el servidor de targetes"
+
+#
+#~ msgid "Restart softcam"
+#~ msgstr "Reiniciar softcam"
 
 #
 #, fuzzy

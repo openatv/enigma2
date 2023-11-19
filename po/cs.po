@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2023-11-06 21:50+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -2049,6 +2049,9 @@ msgstr "Přidat vybranou službu do přehledu nebo k alternativě"
 msgid "Add service"
 msgstr "Přidat program"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr "Přidat služby k tomuto přehledu?"
 
@@ -2277,14 +2280,11 @@ msgstr "Umožňuje skrýt přípony známých typů souborů."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Umožňuje nastavit maximální velikost zprávy pádu (MB). Když je dosažena, bude vytvořen nový soubor."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Umožňuje zobrazit/skrýt CCcam v rozšířené nabídce (modré tlačítko)."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Umožňuje zobrazit/skrýt Správce zpráv v rozšířené nabídce (modré tlačítko)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "Umožňuje zobrazit/skrýt OScam v rozšířené nabídce (modré tlačítko)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "Skoro hotovo... "
@@ -2724,6 +2724,12 @@ msgstr "Automatický časovač"
 
 msgid "AutoUpdate"
 msgstr "Automatická aktualizace"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Automatické"
@@ -3716,6 +3722,9 @@ msgstr "Karty: 0"
 
 msgid "Cardserial"
 msgstr "Číslo karty"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr "Kreslený"
@@ -5630,6 +5639,12 @@ msgstr "Výchozí: '%s'."
 msgid "Defaults"
 msgstr "Výchozí"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Definujte další zpoždění v milisekundách před zahájením streamů http(s)."
 
@@ -6434,9 +6449,6 @@ msgstr "Nepřidávat tuto nahrávku"
 
 msgid "Don't ask again!"
 msgstr "Neptat se!"
-
-msgid "Don't restart"
-msgstr "Nerestartovat"
 
 msgid "Don't save"
 msgstr "Neukládat"
@@ -9753,6 +9765,9 @@ msgstr "Neplatné umístění!"
 
 msgid "Invalid transponder data"
 msgstr "Neplatná data transpondéru"
+
+msgid "Invalid type"
+msgstr "neplatný typ"
 
 msgid "Inversion"
 msgstr "Inverze"
@@ -13125,10 +13140,6 @@ msgstr "Čekejte prosím, paměť flash se kopíruje do tohoto expandéru flash.
 msgid "Please wait, loading image..."
 msgstr "Čekejte prosím, načítá se obrázek..."
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr "Počkejte prosím, restartuji %s."
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "Čekejte prosím, právě se vytváří swap. Dokončení může trvat několik minut."
 
@@ -14316,6 +14327,9 @@ msgstr "Odstranit pluginy..."
 msgid "Remove selected service"
 msgstr "Odstranit vybranou službu"
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Odstranit text v externich titulcích pro sluchově postižené (instrumentální hudbě nebo v oblasti ruchových zvuků, např, když se ozve zvonek, nebo vystřelí zbraň)."
 
@@ -14472,9 +14486,6 @@ msgstr "Resetovat pozici přehrávání"
 msgid "Reset sort order"
 msgstr "Obnovit pořadí řazení"
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr "Resetujte vybraná zařízení a uložte změny konfigurace, když stisknete ZELENÉ tlačítko."
-
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Reset Rozšířeného nastavení videa na výchozí hodnoty?"
 
@@ -14515,12 +14526,6 @@ msgstr "Restartovat síť"
 msgid "Restart Network Adapter"
 msgstr "Restartuji síťové připojení"
 
-msgid "Restart both"
-msgstr "Restartovat oba"
-
-msgid "Restart cardserver"
-msgstr "Restartovat cardserver"
-
 msgid "Restart enigma"
 msgstr "Restartovat (GUI)"
 
@@ -14535,9 +14540,6 @@ msgstr "Restartujte síť a obnoví připojení s aktuálním nastavením"
 
 msgid "Restart network to with current setup"
 msgstr "Restartuje síť s aktuálním nastavením"
-
-msgid "Restart softcam"
-msgstr "Restartovat softcam"
 
 msgid "Restart test"
 msgstr "Restart testu"
@@ -15245,11 +15247,11 @@ msgstr "Pokud používáte „univerzální“ LNB, vyberte „pásmo“, v opa�
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr "Vyberte 'Povolit', chcete-li vynutit vyčištění balíčku před aktualizací balíčku. To je užitečné, abyste se ujistili, že seznam balíčků je aktuální a můžete se vyhnout problémům během aktualizace nebo je vyřešit. Povolte to pouze v případě, že nemůžete aktualizovat online."
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Pokud je k tomuto tuneru připojen signálový kabel, vyberte „povoleno“, jinak vyberte „nic připojeno“."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Chcete-li spustit pomocníka CI+, vyberte možnost Povolit."
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Pokud je k tomuto tuneru připojen signálový kabel, vyberte „povoleno“, jinak vyberte „nic připojeno“."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Pokud nastavíte na 'ne', timeshift použije pouze jeden vyrovnávací soubor. Doporučujeme nastavit 'Timeshift kontrolu starších souborů [v minutách]' a 'Timeshift kontrolu volného místa."
@@ -15425,7 +15427,7 @@ msgstr "Vyberte 'Ano' pro zobrazení balíčků součástí vzhledu na obrazovce
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano' pro zobrazení balíčků vzhledů na obrazovce Stáhnout pluginy."
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano' pro zobrazení balíčků softcam na obrazovce Stáhnout pluginy."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15527,9 +15529,6 @@ msgstr "Vyberte svůj vzhled"
 msgid "Select a bouquet"
 msgstr "Vyberte přehled"
 
-msgid "Select a cardserver from the available list."
-msgstr "Vyberte cardserver z dostupného seznamu."
-
 msgid "Select a debug log file to view:"
 msgstr "Vyberte soubor protokolu ladění, který chcete zobrazit:"
 
@@ -15567,7 +15566,10 @@ msgstr "Vyberte protokol potvrzení úložiště, který chcete zobrazit:"
 msgid "Select a script to run:"
 msgstr "Vyberte skript ke spuštění:"
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr "Vyberte softcam z dostupného seznamu."
 
 msgid "Select a tuner"
@@ -15594,6 +15596,9 @@ msgstr "Vyberte akci, která se má provést po dokončení úlohy."
 
 msgid "Select audio track"
 msgstr "Výběr zvukové stopy"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr "Vyberte cardserver"
@@ -15724,7 +15729,7 @@ msgstr "Vyberte servisní informace, které chcete zobrazit:"
 msgid "Select service to add..."
 msgstr "Vyberte program(y) pro přidání..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr "Vyberte softcam"
 
 msgid "Select sort method:"
@@ -15741,6 +15746,10 @@ msgstr "Vyberte pořadí řazení dočasných souborů pro aktuální sloupec"
 
 msgid "Select the No / False response"
 msgstr "Vyberte odpověď Ne/Nepravda"
+
+#, python-format
+msgid "Select the Softcam for '%s'"
+msgstr ""
 
 msgid "Select the Swap File Size:"
 msgstr "Vyberte velikost odkládacího souboru:"
@@ -15771,6 +15780,9 @@ msgstr "Vyberte akci, která se má provést po skončení časovače."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Zvolte rychlost animace indikátorů tlačítek na obrazovkách nápovědy. Možnost 'Zakázáno' vypne animaci, takže indikátory přeskakují mezi tlačítky."
+
+msgid "Select the cardserver to be used from the list of available cardservers."
+msgstr ""
 
 msgid "Select the channel from which to record:"
 msgstr "Vyberte kanál, ze kterého chcete nahrávat:"
@@ -15938,7 +15950,7 @@ msgstr "Vyberte posunutou sadu znaků"
 msgid "Select the shifted character set for the next character only"
 msgstr "Vyberte posunutou znakovou sadu pouze pro další znak"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr "Vyberte protokol softcam."
 
 msgid "Select the sort order for the file lines:"
@@ -16847,9 +16859,6 @@ msgstr "Zobrazit Box Portal"
 msgid "Show CCcam Info"
 msgstr "Zobrazit informace CCcam"
 
-msgid "Show CCcam in extensions"
-msgstr "Zobrazit CCcam v rozšířeních"
-
 msgid "Show CI messages"
 msgstr "Zobrazit zprávy CI"
 
@@ -16958,8 +16967,8 @@ msgstr "Zobrazit EPG z více kanálů"
 msgid "Show OScam Info"
 msgstr "Zobrazit informace OScam"
 
-msgid "Show OScam in extensions"
-msgstr "Zobrazit OScam v rozšířeních"
+msgid "Show OScam/CCcam in Extension Menu"
+msgstr ""
 
 msgid "Show OpenPLi packages"
 msgstr "Zobrazit balíčky OpenPLi"
@@ -20777,6 +20786,9 @@ msgstr "Použít alternativní menší obrazovku."
 msgid "Use as HDD"
 msgstr "Jako HDD"
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "Použít automatické rozpoznání režimu"
 
@@ -21778,6 +21790,9 @@ msgstr "Při nastavení každé složky se zobrazí předchozí použitý stav, 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Nastavíte-li PIG,obnoví se po zastavení přehrávání živé vysílání."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Pro obsah s poměrem stran 16:9 zvolte, zda chcete změnit velikost/roztáhnout obraz."
 
@@ -22449,9 +22464,6 @@ msgstr "abecední pak nejnovější"
 msgid "am"
 msgstr "am"
 
-msgid "and"
-msgstr "a"
-
 msgid "aqua"
 msgstr "modrá"
 
@@ -22540,9 +22552,6 @@ msgstr "karta"
 
 msgid "card reader"
 msgstr "čtečka karet"
-
-msgid "cardserver"
-msgstr "cardserver"
 
 msgid "cartoon/puppets"
 msgstr "karikatury/loutky"
@@ -22883,9 +22892,6 @@ msgstr "okamžitý záznam"
 
 msgid "internally loopthrough to"
 msgstr "interní propojení (smyčka) na"
-
-msgid "Invalid type"
-msgstr "neplatný typ"
 
 msgid "jazz"
 msgstr "jazz"
@@ -23309,9 +23315,6 @@ msgstr "společensko politické problémy/ekonomie (obecně)"
 msgid "social/spiritual science"
 msgstr "sociální/duchovní vědy"
 
-msgid "softcam"
-msgstr "softcam"
-
 msgid "special (general)"
 msgstr "zvláštní (obecně)"
 
@@ -23513,6 +23516,49 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "Umožňuje zobrazit/skrýt CCcam v rozšířené nabídce (modré tlačítko)."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "Umožňuje zobrazit/skrýt OScam v rozšířené nabídce (modré tlačítko)."
+
+#~ msgid "Don't restart"
+#~ msgstr "Nerestartovat"
+
+#, python-format
+#~ msgid "Please wait, restarting %s."
+#~ msgstr "Počkejte prosím, restartuji %s."
+
+#~ msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
+#~ msgstr "Resetujte vybraná zařízení a uložte změny konfigurace, když stisknete ZELENÉ tlačítko."
+
+#~ msgid "Restart both"
+#~ msgstr "Restartovat oba"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "Restartovat cardserver"
+
+#~ msgid "Restart softcam"
+#~ msgstr "Restartovat softcam"
+
+#~ msgid "Select a cardserver from the available list."
+#~ msgstr "Vyberte cardserver z dostupného seznamu."
+
+#~ msgid "Show CCcam in extensions"
+#~ msgstr "Zobrazit CCcam v rozšířeních"
+
+#~ msgid "Show OScam in extensions"
+#~ msgstr "Zobrazit OScam v rozšířeních"
+
+#~ msgid "and"
+#~ msgstr "a"
+
+#~ msgid "cardserver"
+#~ msgstr "cardserver"
+
+#~ msgid "softcam"
+#~ msgstr "softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "Nastavení pomocníka CI"

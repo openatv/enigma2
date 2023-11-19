@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -2020,6 +2020,9 @@ msgstr ""
 msgid "Add service"
 msgstr "Tilføj kanal"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -2248,14 +2251,11 @@ msgstr "Tillader dig at skjule filendelsen for kendte filtyper."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Tillader dig at sætte den maksimale størrelse på fejlsøgningsloggen (MB). Når den størrelse nås, oprettes der en ny fil."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Tillader dig at vise/skjule CCcam i udvidelsesmenuen (blå knap)"
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Tillader dig at vise/skjule Log-håndtering i udvidelsesmenuen (blå knap)"
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "Tillader dig at vise/skjule OScam i Udvidelser (blå knap)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "Næsten færdig... "
@@ -2697,6 +2697,12 @@ msgstr ""
 
 msgid "AutoUpdate"
 msgstr "AutoOpdatering"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Automatisk"
@@ -3690,6 +3696,9 @@ msgstr "Kort: 0"
 
 msgid "Cardserial"
 msgstr "Kort serienr."
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr "Tegnefilm"
@@ -5600,6 +5609,12 @@ msgstr "Standard: '%s'."
 msgid "Defaults"
 msgstr "Standarder"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
@@ -6398,9 +6413,6 @@ msgstr "Tilføj ikke denne optagelse"
 
 msgid "Don't ask again!"
 msgstr "Spørg ikke igen!"
-
-msgid "Don't restart"
-msgstr "Genstart ikke"
 
 msgid "Don't save"
 msgstr "Gem ikke"
@@ -9733,6 +9745,9 @@ msgstr "Ugyldig placering"
 
 msgid "Invalid transponder data"
 msgstr "Ugyldig transponder data"
+
+msgid "Invalid type"
+msgstr "forkert type"
 
 msgid "Inversion"
 msgstr "Invertere"
@@ -13165,10 +13180,6 @@ msgstr ""
 msgid "Please wait, loading image..."
 msgstr ""
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr "Vent venligst, genstarter %s."
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
@@ -14363,6 +14374,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Fjerner tekst for hørehæmmede fra eksterne undertekster (instrumental musik eller omgivelsesstøj, f.eks nå en dørklokke ringere eller et geværskud høres)."
 
@@ -14517,10 +14531,6 @@ msgstr "Nulstil afspilningsfremgang"
 msgid "Reset sort order"
 msgstr ""
 
-#, fuzzy
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr "Nulstil de valgte enheder og gem ændringer af din konfig når der trykkes på den GRØNNE knap."
-
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Nulstil indstilling af videoforbedring til systemets standard ?"
 
@@ -14561,12 +14571,6 @@ msgstr "Genstart netværk"
 msgid "Restart Network Adapter"
 msgstr "Genstart netværkskort"
 
-msgid "Restart both"
-msgstr "Genstart begge"
-
-msgid "Restart cardserver"
-msgstr "Genstart kortserver"
-
 msgid "Restart enigma"
 msgstr "Genstart Enigma2"
 
@@ -14581,9 +14585,6 @@ msgstr "Genstart netværk og genopret forbindelser"
 
 msgid "Restart network to with current setup"
 msgstr "Genstart også netværk med nuværende opsætning"
-
-msgid "Restart softcam"
-msgstr "Genstart softcam"
 
 msgid "Restart test"
 msgstr "Genstart Test"
@@ -15302,11 +15303,11 @@ msgstr "Vælg 'bånd' hvis der bruges en 'universal LNB, ellers se databladet ti
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr ""
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Vælg 'Aktiveret' hvis der er et signalkabel forbundet til denne Tuner, ellers vælges 'Ikke forbundet'."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Vælg 'Aktiveret' hvis der er et signalkabel forbundet til denne Tuner, ellers vælges 'Ikke forbundet'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Hvis sat til 'Nej', bruger Timeshift kune én bufferfil. Det anbefales at bruge 'Timeshift se efter ældre filer [i minutter]' og 'Timeshift se efter fri plads?' til at juster."
@@ -15482,7 +15483,7 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15584,9 +15585,6 @@ msgstr "Vælg dit Tema"
 msgid "Select a bouquet"
 msgstr "Vælg en Buket"
 
-msgid "Select a cardserver from the available list."
-msgstr "Vælg en kortserver fra listen af tilgængelige."
-
 msgid "Select a debug log file to view:"
 msgstr ""
 
@@ -15624,7 +15622,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "Vælg skript der skal køres:"
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr "Vælg en SoftCAM fra listen af tilgængelige."
 
 msgid "Select a tuner"
@@ -15651,6 +15652,9 @@ msgstr ""
 
 msgid "Select audio track"
 msgstr "Vælg lydspor"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr "Vælg kortserver"
@@ -15781,7 +15785,7 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Vælg kanal der skal tilføjes..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr "Vælg SoftCAM"
 
 msgid "Select sort method:"
@@ -15797,6 +15801,10 @@ msgid "Select temporary file sort order for the current column"
 msgstr ""
 
 msgid "Select the No / False response"
+msgstr ""
+
+#, python-format
+msgid "Select the Softcam for '%s'"
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -15828,6 +15836,9 @@ msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Styre animationshastigheden af knap-indikatorer i Hjælpeskærmen. 'Deaktiver' slår animation fra så indikatorer springer mellem knapper."
+
+msgid "Select the cardserver to be used from the list of available cardservers."
+msgstr ""
 
 msgid "Select the channel from which to record:"
 msgstr ""
@@ -15995,7 +16006,7 @@ msgstr "Vælg det skiftet tegnsæt"
 msgid "Select the shifted character set for the next character only"
 msgstr "Vælg kun skiftet tegnsæt for det næste tegn"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -16901,9 +16912,6 @@ msgstr "Vis boksportal..."
 msgid "Show CCcam Info"
 msgstr ""
 
-msgid "Show CCcam in extensions"
-msgstr ""
-
 msgid "Show CI messages"
 msgstr "Vis CI beskeder"
 
@@ -17013,7 +17021,7 @@ msgstr "Vis Multi EPG"
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions"
+msgid "Show OScam/CCcam in Extension Menu"
 msgstr ""
 
 msgid "Show OpenPLi packages"
@@ -20839,6 +20847,9 @@ msgstr "Brug den alternative skærm."
 msgid "Use as HDD"
 msgstr "Brug som harddsik"
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -21808,6 +21819,9 @@ msgstr "Når dette er sat vises hver mappe i forrige brugte tilstand, er den slu
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Når dette er sat vil PiG vende tilbage til Live efter afspilning af en film er stoppet."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Vælg om billedet skaleres eller strækkes, når indholdet har et billedformat på 16:9."
 
@@ -22471,9 +22485,6 @@ msgstr "Alfabaglæns så nyeste"
 msgid "am"
 msgstr "Am"
 
-msgid "and"
-msgstr "og"
-
 msgid "aqua"
 msgstr ""
 
@@ -22563,9 +22574,6 @@ msgstr "kort"
 
 msgid "card reader"
 msgstr "kortlæser"
-
-msgid "cardserver"
-msgstr "kortserver"
 
 msgid "cartoon/puppets"
 msgstr "Tegnefilm/Marionetter"
@@ -22914,9 +22922,6 @@ msgstr "Straksoptagelse"
 
 msgid "internally loopthrough to"
 msgstr "intern gennemsløjfning til"
-
-msgid "Invalid type"
-msgstr "forkert type"
 
 msgid "jazz"
 msgstr "Jazz"
@@ -23350,9 +23355,6 @@ msgstr "Social/Politiske spørgsmål/Økonomi (Generelt)"
 msgid "social/spiritual science"
 msgstr "Social/Åndsvidenskab"
 
-msgid "softcam"
-msgstr "SoftCAM"
-
 msgid "special (general)"
 msgstr "Særligt (Generelt)"
 
@@ -23553,6 +23555,44 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "Tillader dig at vise/skjule CCcam i udvidelsesmenuen (blå knap)"
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "Tillader dig at vise/skjule OScam i Udvidelser (blå knap)."
+
+#~ msgid "Don't restart"
+#~ msgstr "Genstart ikke"
+
+#, python-format
+#~ msgid "Please wait, restarting %s."
+#~ msgstr "Vent venligst, genstarter %s."
+
+#, fuzzy
+#~ msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
+#~ msgstr "Nulstil de valgte enheder og gem ændringer af din konfig når der trykkes på den GRØNNE knap."
+
+#~ msgid "Restart both"
+#~ msgstr "Genstart begge"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "Genstart kortserver"
+
+#~ msgid "Restart softcam"
+#~ msgstr "Genstart softcam"
+
+#~ msgid "Select a cardserver from the available list."
+#~ msgstr "Vælg en kortserver fra listen af tilgængelige."
+
+#~ msgid "and"
+#~ msgstr "og"
+
+#~ msgid "cardserver"
+#~ msgstr "kortserver"
+
+#~ msgid "softcam"
+#~ msgstr "SoftCAM"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "CIHelper Opsætning"

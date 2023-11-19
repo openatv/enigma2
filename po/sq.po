@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2022-07-04 20:11+0000\n"
 "Last-Translator: BliNeR-KeY <blinerg@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -2027,6 +2027,9 @@ msgstr ""
 msgid "Add service"
 msgstr "Shto shërbim"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -2255,14 +2258,11 @@ msgstr "Ju lejon të fshihni zgjatjet e tipeve të njohur të skedarëve."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Ju lejon të vendosni madhësinë maksimale të madhësisë së log debug (MB). Kur të arrihet kjo madhësi, do të krijohet një file i ri."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Ju lejon të shfaqni/fshihni CCcam në extensions (butoni BLUE)."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Ju lejon të shfaqni/fshihni Log Manager në extensions (butoni BLUE)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "Ju lejon të shfaqni/fshihni OScam në extensions (butoni BLUE)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "Pothuajse arritëm... "
@@ -2702,6 +2702,12 @@ msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Përditësimi automatik"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Automatike"
@@ -3694,6 +3700,9 @@ msgstr "Kartat: 0"
 
 msgid "Cardserial"
 msgstr "Cardserial"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr "Vizatim vizatimor"
@@ -5599,6 +5608,12 @@ msgstr "Prezgjedhur: '%s'."
 msgid "Defaults"
 msgstr "Paracaktimet"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Përcaktoni vonesën shtesë në milisekonda përpara fillimit të rrjedhave http(s)."
 
@@ -6401,9 +6416,6 @@ msgstr "Mos e shto këtë regjistrim"
 
 msgid "Don't ask again!"
 msgstr "Mos pyet më!"
-
-msgid "Don't restart"
-msgstr "Mos e rinisni"
 
 msgid "Don't save"
 msgstr "Mos kurse"
@@ -9716,6 +9728,9 @@ msgid "Invalid location!"
 msgstr ""
 
 msgid "Invalid transponder data"
+msgstr ""
+
+msgid "Invalid type"
 msgstr ""
 
 msgid "Inversion"
@@ -13046,10 +13061,6 @@ msgstr ""
 msgid "Please wait, loading image..."
 msgstr ""
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr ""
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
@@ -14237,6 +14248,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr ""
 
@@ -14391,9 +14405,6 @@ msgstr ""
 msgid "Reset sort order"
 msgstr ""
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr ""
-
 msgid "Reset video enhancement settings to system defaults?"
 msgstr ""
 
@@ -14434,12 +14445,6 @@ msgstr ""
 msgid "Restart Network Adapter"
 msgstr ""
 
-msgid "Restart both"
-msgstr ""
-
-msgid "Restart cardserver"
-msgstr ""
-
 msgid "Restart enigma"
 msgstr ""
 
@@ -14453,9 +14458,6 @@ msgid "Restart network and remount connections"
 msgstr ""
 
 msgid "Restart network to with current setup"
-msgstr ""
-
-msgid "Restart softcam"
 msgstr ""
 
 msgid "Restart test"
@@ -15160,10 +15162,10 @@ msgstr ""
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr ""
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
-msgid "Select 'Enable' to start the CI+ helper."
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr ""
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
@@ -15340,7 +15342,7 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15442,9 +15444,6 @@ msgstr ""
 msgid "Select a bouquet"
 msgstr ""
 
-msgid "Select a cardserver from the available list."
-msgstr ""
-
 msgid "Select a debug log file to view:"
 msgstr ""
 
@@ -15482,7 +15481,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr ""
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr ""
 
 msgid "Select a tuner"
@@ -15508,6 +15510,9 @@ msgid "Select an action to perform when the task has completed."
 msgstr ""
 
 msgid "Select audio track"
+msgstr ""
+
+msgid "Select AutoCam default Softcam"
 msgstr ""
 
 msgid "Select cardserver"
@@ -15639,7 +15644,7 @@ msgstr ""
 msgid "Select service to add..."
 msgstr ""
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr ""
 
 msgid "Select sort method:"
@@ -15655,6 +15660,10 @@ msgid "Select temporary file sort order for the current column"
 msgstr ""
 
 msgid "Select the No / False response"
+msgstr ""
+
+#, python-format
+msgid "Select the Softcam for '%s'"
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -15685,6 +15694,9 @@ msgid "Select the action to perform when the timer ends."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
+msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr ""
 
 msgid "Select the channel from which to record:"
@@ -15850,7 +15862,7 @@ msgstr ""
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -16729,9 +16741,6 @@ msgstr ""
 msgid "Show CCcam Info"
 msgstr ""
 
-msgid "Show CCcam in extensions"
-msgstr ""
-
 msgid "Show CI messages"
 msgstr ""
 
@@ -16840,7 +16849,7 @@ msgstr ""
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions"
+msgid "Show OScam/CCcam in Extension Menu"
 msgstr ""
 
 msgid "Show OpenPLi packages"
@@ -20591,6 +20600,9 @@ msgstr ""
 msgid "Use as HDD"
 msgstr ""
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -21555,6 +21567,9 @@ msgstr "Kur vendoset, çdo dosje do të tregojë gjendjen e mëparshme të përd
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Kur të vendoset, PIG do të kthehet në jetë pasi një film ka ndaluar së shfaquri."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Kur përmbajtja ka një raport aspekti prej 16:9, zgjidhni nëse duhet të zgjeroni/shtrini figurën."
 
@@ -22221,9 +22236,6 @@ msgstr ""
 msgid "am"
 msgstr ""
 
-msgid "and"
-msgstr ""
-
 msgid "aqua"
 msgstr ""
 
@@ -22309,9 +22321,6 @@ msgid "card"
 msgstr ""
 
 msgid "card reader"
-msgstr ""
-
-msgid "cardserver"
 msgstr ""
 
 msgid "cartoon/puppets"
@@ -22652,9 +22661,6 @@ msgid "instant record"
 msgstr ""
 
 msgid "internally loopthrough to"
-msgstr ""
-
-msgid "Invalid type"
 msgstr ""
 
 msgid "jazz"
@@ -23075,9 +23081,6 @@ msgstr ""
 msgid "social/spiritual science"
 msgstr ""
 
-msgid "softcam"
-msgstr ""
-
 msgid "special (general)"
 msgstr ""
 
@@ -23278,6 +23281,15 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "Ju lejon të shfaqni/fshihni CCcam në extensions (butoni BLUE)."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "Ju lejon të shfaqni/fshihni OScam në extensions (butoni BLUE)."
+
+#~ msgid "Don't restart"
+#~ msgstr "Mos e rinisni"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "Cilësimet e ndihmës CI"

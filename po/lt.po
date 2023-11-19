@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2062,6 +2062,9 @@ msgstr "pridėti kanalą į paketą"
 msgid "Add service"
 msgstr "Pridėti kanalą"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -2290,14 +2293,11 @@ msgstr "Leidžia paslėpti žinomų failų tipų plėtinius."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Leidžia jums nustatyti atskirų derinimo žurnalų maksimalius dydžius (MB). Pasiekus, dydį, bus sukuriamas naujas failas."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Leidžia rodyti / slėpti CCcam išplėtimuose (MĖLYNAS mygtukas)."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Leidžia rodyti/slėpti žurnalų valdymą plėtinių lange (MĖLYNAS mygtukas)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "Leidžia rodyti/slėpti OScam informaciją plėtinių lange (MĖLYNAS mygtukas)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "Beveik viskas!.. "
@@ -2739,6 +2739,12 @@ msgstr "Auto laikmatis"
 
 msgid "AutoUpdate"
 msgstr "Automatinis atnaujinimas"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Automatinis"
@@ -3731,6 +3737,9 @@ msgstr "Kortelės: 0"
 
 msgid "Cardserial"
 msgstr "Kortelės serijos numeris"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr "Animacinis filmas"
@@ -5646,6 +5655,12 @@ msgstr "Numatytasis: '%s'."
 msgid "Defaults"
 msgstr "Numatytieji"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Nustatykite papildomą milisekundžių delsą prieš pradedant http (-us) srautus."
 
@@ -6448,9 +6463,6 @@ msgstr "Negalima pridėti šio įrašo"
 
 msgid "Don't ask again!"
 msgstr "Daugiau neklausti!"
-
-msgid "Don't restart"
-msgstr "Nepaleisti iš naujo"
 
 msgid "Don't save"
 msgstr "Neišsaugoti"
@@ -9769,6 +9781,9 @@ msgstr "Neteisinga vieta"
 
 msgid "Invalid transponder data"
 msgstr "Netinkami transponderio duomenys"
+
+msgid "Invalid type"
+msgstr "neteisingas tipas"
 
 msgid "Inversion"
 msgstr "Pervertimas"
@@ -13138,10 +13153,6 @@ msgstr ""
 msgid "Please wait, loading image..."
 msgstr "Palaukite, įkeliamas atvaizdas..."
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr "Palaukite, paleidžiama iš naujo %s."
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
@@ -14329,6 +14340,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Pašalinti tekstus, skirtus turintiems klausos sutrikimų, iš išorinių subtitrų (instrumentinė muzika, ar aplinkos garsai, pvz., kai skamba durų skambutis, arba girdimas ginklo šūvis)."
 
@@ -14485,9 +14499,6 @@ msgstr "Išvalyti peržiūros poziciją"
 msgid "Reset sort order"
 msgstr ""
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr "Iš naujo nustatykite pasirinktus įrenginius ir išsaugokite konfigūracijos pakeitimus, paspausdami ŽALIĄ mygtuką."
-
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Iš naujo nustatyti vaizdo stiprinimo nustatymus į sistemos numatytus?"
 
@@ -14528,12 +14539,6 @@ msgstr "Paleisti tinklą iš naujo"
 msgid "Restart Network Adapter"
 msgstr "Paleisti tinklo adapterį iš naujo"
 
-msgid "Restart both"
-msgstr "Paleiskite iš naujo abu"
-
-msgid "Restart cardserver"
-msgstr "Paleisti kortelių serverį iš naujo"
-
 msgid "Restart enigma"
 msgstr "Paleisti iš naujo Enigma2"
 
@@ -14548,9 +14553,6 @@ msgstr "Paleisti tinklą ir pajungimus iš naujo"
 
 msgid "Restart network to with current setup"
 msgstr "Paleisti tinklą iš naujo su dabartiniais nustatymais"
-
-msgid "Restart softcam"
-msgstr "Paleisti emuliatorių iš naujo"
 
 msgid "Restart test"
 msgstr "Kartoti testą"
@@ -15258,11 +15260,11 @@ msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'juosta', kitaip kreipkit�
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr ""
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Pasirinkite 'įjungta', jei šis imtuvas turi prijungtą signalinį kabelį, kitaip pasirinkite 'nieko neprijungta'."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Pasirinkite 'įjungta', jei šis imtuvas turi prijungtą signalinį kabelį, kitaip pasirinkite 'nieko neprijungta'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Jei nustatyta 'ne', laiko poslinkis naudos tik vieną kaupimo failą. Todėl rekomenduojama koreguoti \"Laiko poslinkis tikrins failų senumą (min.)\" ir \"Laiko poslinkis tikrins laisvą vietą?\"."
@@ -15438,7 +15440,7 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15540,9 +15542,6 @@ msgstr "Pasirinkite norimą temą"
 msgid "Select a bouquet"
 msgstr "Pasirinkite paketą"
 
-msgid "Select a cardserver from the available list."
-msgstr "Iš galimų sąrašų pasirinkite kortelių serverį."
-
 msgid "Select a debug log file to view:"
 msgstr "Pasirinkite derinimo žurnalo failą, kurį norite peržiūrėti:"
 
@@ -15580,7 +15579,10 @@ msgstr "Pasirinkite saugyklos įsipareigojimų žurnalą, kad peržiūrėtumėte
 msgid "Select a script to run:"
 msgstr "Pasirinkite scenarijų, kad paleisti:"
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr "Iš galimų sąrašų pasirinkite emuliatorių."
 
 msgid "Select a tuner"
@@ -15607,6 +15609,9 @@ msgstr "Pasirinkite veiksmą, kurį norite atlikti, kai užduotis bus baigta."
 
 msgid "Select audio track"
 msgstr "Pasirinkite garso takelį"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr "Pasirinkite kortelių serverį"
@@ -15737,7 +15742,7 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Pasirinkite kanalą, kurį norite pridėti..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr "Pasirinkite emuliatorių"
 
 msgid "Select sort method:"
@@ -15754,6 +15759,10 @@ msgstr "Pasirinkite dabartinio stulpelio laikiną failų rikiavimo tvarką"
 
 msgid "Select the No / False response"
 msgstr "Pasirinkite atsakymą Nr. / Klaidingas"
+
+#, python-format
+msgid "Select the Softcam for '%s'"
+msgstr ""
 
 msgid "Select the Swap File Size:"
 msgstr "Pasirinkite mainų failo dydį:"
@@ -15784,6 +15793,9 @@ msgstr "Pasirinkite veiksmą, kurį atliksite pasibaigus laikmačiui."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Žinyno ekranuose pasirinkite mygtukų indikatorių animacijos greitį. \"Išjungta\" išjungia animaciją, kad indikatoriai šokinėtų tarp mygtukų."
+
+msgid "Select the cardserver to be used from the list of available cardservers."
+msgstr ""
 
 msgid "Select the channel from which to record:"
 msgstr "Pasirinkite kanalą, iš kurio norite įrašyti:"
@@ -15948,7 +15960,7 @@ msgstr "Pasirinkite perkeltą simbolių rinkinį"
 msgid "Select the shifted character set for the next character only"
 msgstr "Pasirinkite paslinktų simbolių rinkinį tik kitam simboliui"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -16848,9 +16860,6 @@ msgstr "Rodyti lauko portalą"
 msgid "Show CCcam Info"
 msgstr "Rodyti CCcam informaciją"
 
-msgid "Show CCcam in extensions"
-msgstr "Rodyti CCcam plėtiniuose"
-
 msgid "Show CI messages"
 msgstr "Rodyti CI pranešimus"
 
@@ -16959,8 +16968,8 @@ msgstr "Rodyti daugiakanalį EPG"
 msgid "Show OScam Info"
 msgstr "Rodyti 'OScam' informaciją"
 
-msgid "Show OScam in extensions"
-msgstr "Rodyti OScam plėtiniuose"
+msgid "Show OScam/CCcam in Extension Menu"
+msgstr ""
 
 msgid "Show OpenPLi packages"
 msgstr ""
@@ -20753,6 +20762,9 @@ msgstr "Naudokite alternatyvų mažesnį ekraną."
 msgid "Use as HDD"
 msgstr "Naudoti kaip HDD"
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -21743,6 +21755,9 @@ msgstr "Kai čia įjungta, kiekvienas katalogas įsimins ir rodys ankstesnį jų
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Kai čia įjungta, filmo PIG paveikslėlis išliks ir sustabdžius filmo peržiūrą."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Kai turinys yra kraštinių santykis 16:9, pasirinkti, ar didinti mastelį/ištempti vaizdą."
 
@@ -22409,9 +22424,6 @@ msgstr "alpha versija tada naujausia"
 msgid "am"
 msgstr "priešpiet"
 
-msgid "and"
-msgstr "ir"
-
 msgid "aqua"
 msgstr ""
 
@@ -22500,9 +22512,6 @@ msgstr "kortelė"
 
 msgid "card reader"
 msgstr "kortelių skaitytuvas"
-
-msgid "cardserver"
-msgstr "Paleisti kortelių serverį iš naujo"
 
 msgid "cartoon/puppets"
 msgstr "animacija/lėlės"
@@ -22843,9 +22852,6 @@ msgstr "momentinis įrašymas"
 
 msgid "internally loopthrough to"
 msgstr "vidinis ciklas į"
-
-msgid "Invalid type"
-msgstr "neteisingas tipas"
 
 msgid "jazz"
 msgstr "džiazas"
@@ -23269,9 +23275,6 @@ msgstr "socialiniai/politiniai klausimai/ekonomika (bendra)"
 msgid "social/spiritual science"
 msgstr "socialinis/dvasinis mokslas"
 
-msgid "softcam"
-msgstr "Emuliatorius"
-
 msgid "special (general)"
 msgstr "specialusis (bendrai)"
 
@@ -23475,6 +23478,49 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "Leidžia rodyti / slėpti CCcam išplėtimuose (MĖLYNAS mygtukas)."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "Leidžia rodyti/slėpti OScam informaciją plėtinių lange (MĖLYNAS mygtukas)."
+
+#~ msgid "Don't restart"
+#~ msgstr "Nepaleisti iš naujo"
+
+#, python-format
+#~ msgid "Please wait, restarting %s."
+#~ msgstr "Palaukite, paleidžiama iš naujo %s."
+
+#~ msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
+#~ msgstr "Iš naujo nustatykite pasirinktus įrenginius ir išsaugokite konfigūracijos pakeitimus, paspausdami ŽALIĄ mygtuką."
+
+#~ msgid "Restart both"
+#~ msgstr "Paleiskite iš naujo abu"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "Paleisti kortelių serverį iš naujo"
+
+#~ msgid "Restart softcam"
+#~ msgstr "Paleisti emuliatorių iš naujo"
+
+#~ msgid "Select a cardserver from the available list."
+#~ msgstr "Iš galimų sąrašų pasirinkite kortelių serverį."
+
+#~ msgid "Show CCcam in extensions"
+#~ msgstr "Rodyti CCcam plėtiniuose"
+
+#~ msgid "Show OScam in extensions"
+#~ msgstr "Rodyti OScam plėtiniuose"
+
+#~ msgid "and"
+#~ msgstr "ir"
+
+#~ msgid "cardserver"
+#~ msgstr "Paleisti kortelių serverį iš naujo"
+
+#~ msgid "softcam"
+#~ msgstr "Emuliatorius"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI žinyno parametrai"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2031,6 +2031,9 @@ msgstr ""
 msgid "Add service"
 msgstr "Thêm dịch vụ"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -2263,14 +2266,11 @@ msgstr "Cho phép bạn ẩn phần mở rộng của các loại tệp đã bi�
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Cho phép bạn đặt kích thước tối đa của kích thước nhật ký Gỡ lỗi (MB). Khi đạt được kích thước đó, một tệp mới sẽ được tạo."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Cho phép bạn hiển thị / ẩn CCcam trong tiện ích mở rộng (nút màu xanh)."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Cho phép bạn hiển thị / ẩn Trình quản lý nhật ký trong tiện ích mở rộng (nút màu xanh)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "Cho phép bạn hiển thị / ẩn OScam trong tiện ích mở rộng (nút màu xanh)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "Gần đến rồi... "
@@ -2718,6 +2718,12 @@ msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Cập nhật tự động"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Tự động"
@@ -3714,6 +3720,9 @@ msgstr "Thẻ: 0"
 
 msgid "Cardserial"
 msgstr "Chủ thẻ"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr ""
@@ -5648,6 +5657,12 @@ msgstr ""
 msgid "Defaults"
 msgstr "Mặc định"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
@@ -6455,9 +6470,6 @@ msgstr "Đừng thêm bản ghi này"
 
 msgid "Don't ask again!"
 msgstr "Đừng hỏi lại!"
-
-msgid "Don't restart"
-msgstr ""
 
 msgid "Don't save"
 msgstr "Đừng tiết kiệm"
@@ -9821,6 +9833,9 @@ msgstr "Vị trí không hợp lệ"
 
 msgid "Invalid transponder data"
 msgstr "Dữ liệu transponder không hợp lệ"
+
+msgid "Invalid type"
+msgstr "loại không hợp lệ"
 
 msgid "Inversion"
 msgstr "Nghịch đảo"
@@ -13276,10 +13291,6 @@ msgstr ""
 msgid "Please wait, loading image..."
 msgstr ""
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr ""
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
@@ -14490,6 +14501,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Xóa văn bản cho người khiếm thính khỏi phụ đề bên ngoài (nhạc cụ hoặc âm thanh môi trường, ví dụ: khi nghe tiếng chuông cửa hoặc tiếng súng nổ)."
 
@@ -14645,9 +14659,6 @@ msgstr "Đặt lại vị trí phát lại"
 msgid "Reset sort order"
 msgstr ""
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr ""
-
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Đặt lại cài đặt nâng cao video về mặc định hệ thống?"
 
@@ -14688,12 +14699,6 @@ msgstr "Khởi động lại mạng"
 msgid "Restart Network Adapter"
 msgstr "Khởi động lại bộ điều hợp mạng"
 
-msgid "Restart both"
-msgstr "Khởi động lại cả hai"
-
-msgid "Restart cardserver"
-msgstr "Khởi động lại máy chủ thẻ"
-
 msgid "Restart enigma"
 msgstr "Khởi động lại E2"
 
@@ -14708,9 +14713,6 @@ msgstr "Khởi động lại mạng và kết nối lại"
 
 msgid "Restart network to with current setup"
 msgstr "Khởi động lại mạng với thiết lập hiện tại"
-
-msgid "Restart softcam"
-msgstr "Khởi động lại softcam"
 
 msgid "Restart test"
 msgstr "Khởi động lại bài kiểm tra"
@@ -15428,11 +15430,11 @@ msgstr "Chọn 'băng tần' nếu sử dụng LNB 'phổ quát', nếu không h
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr ""
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Chọn 'được bật' nếu bộ chỉnh này có cáp tín hiệu được kết nối, nếu không thì chọn 'không có gì được kết nối'."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Chọn 'được bật' nếu bộ chỉnh này có cáp tín hiệu được kết nối, nếu không thì chọn 'không có gì được kết nối'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Nếu được đặt thành 'không', timeshift chỉ sử dụng một tệp bộ đệm. Chúng tôi khuyên bạn nên 'Kiểm tra thời gian cho các tệp cũ hơn [tính bằng phút]' và 'Kiểm tra thời gian để có dung lượng trống?' để điều chỉnh."
@@ -15608,7 +15610,7 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15710,9 +15712,6 @@ msgstr "Chọn làn da của bạn"
 msgid "Select a bouquet"
 msgstr "Chọn một gói kênh"
 
-msgid "Select a cardserver from the available list."
-msgstr ""
-
 msgid "Select a debug log file to view:"
 msgstr ""
 
@@ -15750,7 +15749,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "Chọn một tập lệnh để chạy:"
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr ""
 
 msgid "Select a tuner"
@@ -15777,6 +15779,9 @@ msgstr ""
 
 msgid "Select audio track"
 msgstr "Chọn audio"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr ""
@@ -15907,7 +15912,7 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Chọn dịch vụ để thêm ..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr ""
 
 msgid "Select sort method:"
@@ -15923,6 +15928,10 @@ msgid "Select temporary file sort order for the current column"
 msgstr ""
 
 msgid "Select the No / False response"
+msgstr ""
+
+#, python-format
+msgid "Select the Softcam for '%s'"
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -15953,6 +15962,9 @@ msgid "Select the action to perform when the timer ends."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
+msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr ""
 
 msgid "Select the channel from which to record:"
@@ -16122,7 +16134,7 @@ msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo"
 msgid "Select the shifted character set for the next character only"
 msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo cho chỉ ký tự tiếp theo"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -17032,9 +17044,6 @@ msgstr "Hiển thị Cổng thông tin ..."
 msgid "Show CCcam Info"
 msgstr ""
 
-msgid "Show CCcam in extensions"
-msgstr ""
-
 msgid "Show CI messages"
 msgstr "Hiển thị tin nhắn CI"
 
@@ -17145,7 +17154,7 @@ msgstr "Hiển thị nhiều EPG"
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions"
+msgid "Show OScam/CCcam in Extension Menu"
 msgstr ""
 
 msgid "Show OpenPLi packages"
@@ -20987,6 +20996,9 @@ msgstr "Sử dụng màn hình thay thế"
 msgid "Use as HDD"
 msgstr "Sử dụng như ổ cứng"
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -21966,6 +21978,9 @@ msgstr "Khi được đặt, mỗi thư mục sẽ hiển thị trạng thái tr
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Khi được đặt, PIG sẽ trở lại trực tiếp sau khi phim ngừng phát."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Khi nội dung có tỷ lệ khung hình là 16: 9, hãy chọn có chia tỷ lệ / kéo dài hình ảnh hay không."
 
@@ -22635,9 +22650,6 @@ msgstr "alpharev sau đó mới nhất"
 msgid "am"
 msgstr "am"
 
-msgid "and"
-msgstr ""
-
 msgid "aqua"
 msgstr ""
 
@@ -22727,9 +22739,6 @@ msgstr "thẻ"
 
 msgid "card reader"
 msgstr "đọc thẻ"
-
-msgid "cardserver"
-msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "phim hoạt hình / con rối"
@@ -23081,9 +23090,6 @@ msgstr "Ghi lại ngay lập tức"
 
 msgid "internally loopthrough to"
 msgstr "vòng lặp nội bộ để"
-
-msgid "Invalid type"
-msgstr "loại không hợp lệ"
 
 msgid "jazz"
 msgstr "nhạc jazz"
@@ -23512,9 +23518,6 @@ msgstr "các vấn đề xã hội / chính trị / kinh tế (nói chung)"
 msgid "social/spiritual science"
 msgstr "khoa học xã hội / tâm linh"
 
-msgid "softcam"
-msgstr ""
-
 #, fuzzy
 msgid "special (general)"
 msgstr "thể thao (nói chung)"
@@ -23717,6 +23720,21 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "Cho phép bạn hiển thị / ẩn CCcam trong tiện ích mở rộng (nút màu xanh)."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "Cho phép bạn hiển thị / ẩn OScam trong tiện ích mở rộng (nút màu xanh)."
+
+#~ msgid "Restart both"
+#~ msgstr "Khởi động lại cả hai"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "Khởi động lại máy chủ thẻ"
+
+#~ msgid "Restart softcam"
+#~ msgstr "Khởi động lại softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "Cài đặt CIHelper"

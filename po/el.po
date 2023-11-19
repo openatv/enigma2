@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2023-11-11 11:22+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2019,6 +2019,9 @@ msgstr "Προσθήκη επιλεγμένης υπηρεσίας σε μπου
 msgid "Add service"
 msgstr "Προσθήκη υπηρεσίας"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr "Προσθήκη υπηρεσιών σε αυτό το μπουκέτο;"
 
@@ -2247,14 +2250,11 @@ msgstr "Επιτρέπει την απόκρυψη των επεκτάσεων �
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Επιτρέπει τον ορισμό του μέγιστου μεγέθους του αρχείου καταγραφής (ΜΒ). Με το πέρας αυτού του μεγέθους, θα δημιουργηθεί ένα νέο αρχείο."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Επιτρέπει ή όχι την εμφάνιση του CCcam στις επεκτάσεις (μπλε πλήκτρο)."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Επιτρέπει ή όχι την εμφάνιση της διαχείρισης καταγραφών στις επεκτάσεις (μπλε πλήκτρο)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "Επιτρέπει ή όχι την εμφάνιση του OScam στις επεκτάσεις (μπλε πλήκτρο)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "Σχεδόν έτοιμο... "
@@ -2694,6 +2694,12 @@ msgstr "Αυτόματος χρονοδιακόπτης"
 
 msgid "AutoUpdate"
 msgstr "Αυτόματη ενημέρωση"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Αυτόματο"
@@ -3686,6 +3692,9 @@ msgstr "Κάρτες: 0"
 
 msgid "Cardserial"
 msgstr "Σειριακός αριθμός κάρτας"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr "Καρτούν"
@@ -5599,6 +5608,12 @@ msgstr "Προεπιλογή: '%s'."
 msgid "Defaults"
 msgstr "Προεπιλογές"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Καθορισμός πρόσθετης καθυστέρησης σε χιλιοστά του δευτερολέπτου πριν από την έναρξη των ροών http(s)."
 
@@ -6403,9 +6418,6 @@ msgstr "Να μη γίνει προσθήκη αυτής της εγγραφής
 
 msgid "Don't ask again!"
 msgstr "Να μη γίνει ερώτηση ξανά!"
-
-msgid "Don't restart"
-msgstr "Να μη γίνει επανεκκίνηση"
 
 msgid "Don't save"
 msgstr "Να μη γίνει αποθήκευση"
@@ -9719,6 +9731,9 @@ msgstr "Μη έγκυρη τοποθεσία!"
 
 msgid "Invalid transponder data"
 msgstr "Μη έγκυρα δεδομένα αναμεταδότη"
+
+msgid "Invalid type"
+msgstr "μη έγκυρος τύπος"
 
 msgid "Inversion"
 msgstr "Αναστροφή"
@@ -13089,10 +13104,6 @@ msgstr "Περιμένετε όσο η μνήμη flash αντιγράφεται
 msgid "Please wait, loading image..."
 msgstr "Παρακαλώ περιμένετε, φόρτωση εικόνας ..."
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr "Παρακαλώ περιμένετε, επανεκκίνηση του %s."
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "Περιμένετε όσο δημιουργείται το αρχείο swap. Αυτό μπορεί να πάρει μερικά λεπτά για να ολοκληρωθεί."
 
@@ -14280,6 +14291,9 @@ msgstr "Αφαίρεση προσθέτων..."
 msgid "Remove selected service"
 msgstr "Αφαίρεση της επιλεγμένης υπηρεσίας"
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Αφαιρεί τα κείμενα για τα Άτομα Με Προβλήματα Ακοής από τους εξωτερικούς υπότιτλους (ορχηστρική μουσική ή ήχοι περιβάλλοντος π.χ. κουδούνισμα ή πυροβολισμός)."
 
@@ -14436,9 +14450,6 @@ msgstr "Επαναφορά σημείου αναπαραγωγής"
 msgid "Reset sort order"
 msgstr "Επαναφορά σειράς ταξινόμησης"
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr "Επαναφορά των επιλεγμένων συσκευών και αποθήκευση αλλαγών των ρυθμίσεών σας όταν πιέσετε το ΠΡΑΣΙΝΟ πλήκτρο."
-
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Επαναφορά ρυθμίσεων βελτίωσης εικόνας στις προρυθμισμένες τιμές;"
 
@@ -14479,12 +14490,6 @@ msgstr "Επανεκκίνηση δικτύου"
 msgid "Restart Network Adapter"
 msgstr "Επανεκκίνηση προσαρμογέα δικτύου"
 
-msgid "Restart both"
-msgstr "Επανεκκίνηση και των δύο"
-
-msgid "Restart cardserver"
-msgstr "Επανεκκίνηση cardserver"
-
 msgid "Restart enigma"
 msgstr "Επανεκκίνηση enigma"
 
@@ -14499,9 +14504,6 @@ msgstr "Επανεκκίνηση δικτύου και επαναπροσάρτ�
 
 msgid "Restart network to with current setup"
 msgstr "Επανεκκίνηση δικτύου με τις τρέχουσες ρυθμίσεις"
-
-msgid "Restart softcam"
-msgstr "Επανεκκίνηση softcam"
 
 msgid "Restart test"
 msgstr "Eπανεκκίνηση ελέγχου"
@@ -15207,11 +15209,11 @@ msgstr "Επιλέξτε 'μπάντα' αν χρησιμοποιείτε ένα
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr "Επιλέξτε 'Ενεργοποίηση' για να επιβάλλετε τον καθαρισμό πακέτων πριν από μια ενημέρωση πακέτων. Αυτό είναι χρήσιμο για να βεβαιωθείτε ότι η λίστα πακέτων είναι ενημερωμένη και μπορεί να αποφευχθούν/επιλυθούν προβλήματα κατά τη διάρκεια της ενημέρωσης. Ενεργοποιήστε το μόνο όταν δεν μπορείτε να πραγματοποιήσετε ενημέρωση διαδικτυακά."
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Επιλέξτε 'ενεργό' αν αυτό το tuner διαθέτει σήμα, αλλιώς επιλέξτε 'δεν έχει συνδεθεί τίποτα'."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Επιλέξτε 'Ενεργό' για εκκίνηση του βοηθού CI+."
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Επιλέξτε 'ενεργό' αν αυτό το tuner διαθέτει σήμα, αλλιώς επιλέξτε 'δεν έχει συνδεθεί τίποτα'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Επιλέξτε 'όχι' για χρήση ενός μονού αρχείου προφόρτωσης χρονομετατόπισης. Με τα 'έλεγχος χρονομετατόπισης για παλαιότερα αρχεία [σε λεπτά]' και 'έλεγχος χρονομετατόπισης για ελεύθερο χώρο;] θα ελέγχετε το μέγεθος του αρχείου προφόρτωσης."
@@ -15387,7 +15389,7 @@ msgstr "Επιλέξτε 'ναι' για να εμφανιστούν τα πακ
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr "Επιλέξτε 'ναι' για να εμφανιστούν τα πακέτα θεμάτων στην οθόνη λήψης προσθέτων."
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr "Επιλέξτε 'ναι' για να εμφανιστούν τα πακέτα softcam στην οθόνη λήψης προσθέτων."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15489,9 +15491,6 @@ msgstr "Επιλογή θέματος"
 msgid "Select a bouquet"
 msgstr "Επιλογή μπουκέτου"
 
-msgid "Select a cardserver from the available list."
-msgstr "Επιλογή ενός cardserver από τη λίστα διαθέσιμων."
-
 msgid "Select a debug log file to view:"
 msgstr "Επιλογή ενός αρχείου καταγραφής αποσφαλμάτωσης για προβολή:"
 
@@ -15529,7 +15528,10 @@ msgstr "Επιλογή ενός αρχείου καταγραφής αποσφα
 msgid "Select a script to run:"
 msgstr "Επιλογή ενός σεναρίου προς εκτέλεση:"
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr "Επιλογή ενός softcam από τη λίστα διαθέσιμων."
 
 msgid "Select a tuner"
@@ -15556,6 +15558,9 @@ msgstr "Επιλογή ενέργειας όταν μία εργασία ολο�
 
 msgid "Select audio track"
 msgstr "Επιλογή ροής ήχου"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr "Επιλογή cardserver"
@@ -15686,7 +15691,7 @@ msgstr "Επιλέξτε τις πληροφορίες υπηρεσίας προ
 msgid "Select service to add..."
 msgstr "Επιλογή υπηρεσίας για προσθήκη..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr "Επιλογή softcam"
 
 msgid "Select sort method:"
@@ -15703,6 +15708,10 @@ msgstr "Επιλογή προσωρινής σειράς ταξινόμησης 
 
 msgid "Select the No / False response"
 msgstr "Επιλέξτε την απάντηση Όχι / Ψευδές"
+
+#, python-format
+msgid "Select the Softcam for '%s'"
+msgstr ""
 
 msgid "Select the Swap File Size:"
 msgstr "Επιλογή μεγέθους αρχείου Swap:"
@@ -15733,6 +15742,9 @@ msgstr "Επιλογή ενέργειας όταν ένας χρονοδιακό
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Επιλογή της ταχύτητας κίνησης των δεικτών πλήκτρων στις οθόνες βοήθειας. Το 'Ανενεργό' απενεργοποιεί την κίνηση ώστε οι δείκτες να μεταβαίνουν μεταξύ των πλήκτρων."
+
+msgid "Select the cardserver to be used from the list of available cardservers."
+msgstr ""
 
 msgid "Select the channel from which to record:"
 msgstr "Επιλογή καναλιού από το οποίο θα γίνει η εγγραφή:"
@@ -15900,7 +15912,7 @@ msgstr "Επιλογή του σετ χαρακτήρων με shift"
 msgid "Select the shifted character set for the next character only"
 msgstr "Επιλογή του σετ χαρακτήρων με shift του πληκτρολογίου μόνο για τον επόμενο χαρακτήρα"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr "Επιλογή του πρωτοκόλλου softcam."
 
 msgid "Select the sort order for the file lines:"
@@ -16809,9 +16821,6 @@ msgstr "Εμφάνιση portal δέκτη"
 msgid "Show CCcam Info"
 msgstr "Εμφάνιση πληροφοριών CCcam"
 
-msgid "Show CCcam in extensions"
-msgstr "Εμφάνιση του CCcam στις επεκτάσεις"
-
 msgid "Show CI messages"
 msgstr "Εμφάνιση μηνυμάτων CI"
 
@@ -16920,8 +16929,8 @@ msgstr "Εμφάνιση πολλαπλού EPG"
 msgid "Show OScam Info"
 msgstr "Εμφάνιση πληροφοριών OScam"
 
-msgid "Show OScam in extensions"
-msgstr "Εμφάνιση του OScam στις επεκτάσεις"
+msgid "Show OScam/CCcam in Extension Menu"
+msgstr ""
 
 msgid "Show OpenPLi packages"
 msgstr "Εμφάνιση πακέτων OpenPLi"
@@ -20737,6 +20746,9 @@ msgstr "Χρήση εναλλακτικής μικρότερης οθόνης."
 msgid "Use as HDD"
 msgstr "Χρήση ως HDD"
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "Χρήση της αυτόματης ανίχνευσης λειτουργίας"
 
@@ -21738,6 +21750,9 @@ msgstr "Όταν οριστεί, κάθε φάκελος θα εμφανίζει
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Όταν οριστεί, η PIG θα επιστρέφει σε ζωντανή TV μετά το τέλος της ταινίας."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Όταν το περιεχόμενο έχει λόγο πλευρών 16:9, επιλέξτε αν θα γίνεται κλιμάκωση/άπλωμα της εικόνας."
 
@@ -22409,9 +22424,6 @@ msgstr "αλφαβητικά μετά το νεότερο"
 msgid "am"
 msgstr "πμ"
 
-msgid "and"
-msgstr "και"
-
 msgid "aqua"
 msgstr "άκουα"
 
@@ -22500,9 +22512,6 @@ msgstr "κάρτα"
 
 msgid "card reader"
 msgstr "αναγνώστης κάρτας"
-
-msgid "cardserver"
-msgstr "cardserver"
 
 msgid "cartoon/puppets"
 msgstr "καρτούν/μαριονέτες"
@@ -22843,9 +22852,6 @@ msgstr "άμεση εγγραφή"
 
 msgid "internally loopthrough to"
 msgstr "εσωτερικό loopthrough σε"
-
-msgid "Invalid type"
-msgstr "μη έγκυρος τύπος"
 
 msgid "jazz"
 msgstr "τζαζ"
@@ -23269,9 +23275,6 @@ msgstr "κοινωνικά/πολιτική επικαιρότητα/οικον�
 msgid "social/spiritual science"
 msgstr "κοινωνικά/διανόηση"
 
-msgid "softcam"
-msgstr "softcam"
-
 msgid "special (general)"
 msgstr "ειδικό πρόγραμμα (γενικά)"
 
@@ -23472,6 +23475,49 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "Επιτρέπει ή όχι την εμφάνιση του CCcam στις επεκτάσεις (μπλε πλήκτρο)."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "Επιτρέπει ή όχι την εμφάνιση του OScam στις επεκτάσεις (μπλε πλήκτρο)."
+
+#~ msgid "Don't restart"
+#~ msgstr "Να μη γίνει επανεκκίνηση"
+
+#, python-format
+#~ msgid "Please wait, restarting %s."
+#~ msgstr "Παρακαλώ περιμένετε, επανεκκίνηση του %s."
+
+#~ msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
+#~ msgstr "Επαναφορά των επιλεγμένων συσκευών και αποθήκευση αλλαγών των ρυθμίσεών σας όταν πιέσετε το ΠΡΑΣΙΝΟ πλήκτρο."
+
+#~ msgid "Restart both"
+#~ msgstr "Επανεκκίνηση και των δύο"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "Επανεκκίνηση cardserver"
+
+#~ msgid "Restart softcam"
+#~ msgstr "Επανεκκίνηση softcam"
+
+#~ msgid "Select a cardserver from the available list."
+#~ msgstr "Επιλογή ενός cardserver από τη λίστα διαθέσιμων."
+
+#~ msgid "Show CCcam in extensions"
+#~ msgstr "Εμφάνιση του CCcam στις επεκτάσεις"
+
+#~ msgid "Show OScam in extensions"
+#~ msgstr "Εμφάνιση του OScam στις επεκτάσεις"
+
+#~ msgid "and"
+#~ msgstr "και"
+
+#~ msgid "cardserver"
+#~ msgstr "cardserver"
+
+#~ msgid "softcam"
+#~ msgstr "softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "Ρυθμίσεις CI Helper"

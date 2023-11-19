@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2023,6 +2023,9 @@ msgstr ""
 msgid "Add service"
 msgstr "添加频道"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -2251,14 +2254,11 @@ msgstr "允许您隐藏已知的文件类型的扩展名."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "允许你设置调试日志的最大(MB).当达到这个大小,一个新的文件将被创建."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "允许您在扩展中显示/隐藏CCcam（蓝色按钮）."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "允许您显示/隐藏日志管理器的扩展(蓝色键)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "允许您显示/隐藏OScam扩展(蓝色键)."
+msgid "Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "即将完成... "
@@ -2698,6 +2698,12 @@ msgstr ""
 
 msgid "AutoUpdate"
 msgstr "自动更新"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "自动"
@@ -3690,6 +3696,9 @@ msgstr "卡片: 0"
 
 msgid "Cardserial"
 msgstr "卡片序列号"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr "卡通片"
@@ -5597,6 +5606,12 @@ msgstr "默认: '%s'."
 msgid "Defaults"
 msgstr "默认值"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "定义http流开始之前的额外延迟(以毫秒为单位)."
 
@@ -6399,9 +6414,6 @@ msgstr "不添加此录像"
 
 msgid "Don't ask again!"
 msgstr "以后不再询问该会话!"
-
-msgid "Don't restart"
-msgstr "不重启"
 
 msgid "Don't save"
 msgstr "不保存"
@@ -9713,6 +9725,9 @@ msgstr "无效位置"
 
 msgid "Invalid transponder data"
 msgstr "无效的转发器数据"
+
+msgid "Invalid type"
+msgstr "无效类型"
 
 msgid "Inversion"
 msgstr "反演"
@@ -13077,10 +13092,6 @@ msgstr ""
 msgid "Please wait, loading image..."
 msgstr ""
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr "请稍候,正在重新启动 %s."
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
@@ -14268,6 +14279,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "从外部字幕(器乐或环境声音,例如,当门铃响或听到枪声)中删除听力受损者的文本."
 
@@ -14424,9 +14438,6 @@ msgstr "重置播放位置"
 msgid "Reset sort order"
 msgstr ""
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr "按下绿色键时,重置所选设备并保存配置更改."
-
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "是否将视频增强设置重置为系统默认值?"
 
@@ -14467,12 +14478,6 @@ msgstr "重启网络"
 msgid "Restart Network Adapter"
 msgstr "重启网络适配器"
 
-msgid "Restart both"
-msgstr "两个都重启"
-
-msgid "Restart cardserver"
-msgstr "重启卡服务器"
-
 msgid "Restart enigma"
 msgstr "重启Enigma"
 
@@ -14487,9 +14492,6 @@ msgstr "重启网络并重新挂载连接"
 
 msgid "Restart network to with current setup"
 msgstr "使用当前配置重启网络适配器"
-
-msgid "Restart softcam"
-msgstr "重启softcam"
 
 msgid "Restart test"
 msgstr "重启测试"
@@ -15195,11 +15197,11 @@ msgstr "如果使用'通用”高频头,请选择'波段',否则请查阅高频�
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr ""
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "如果此调谐器已连接信号电缆,请选择'已启用',否则选择'未连接'."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "如果此调谐器已连接信号电缆,请选择'已启用',否则选择'未连接'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "如果设置为'否',则时移仅使用一个缓冲文件. 建议'时移检查旧文件 [以分钟为单位]'和'时移检查可用空间?' 调整."
@@ -15375,7 +15377,7 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15477,9 +15479,6 @@ msgstr "选择你的皮肤"
 msgid "Select a bouquet"
 msgstr "选择自定义组"
 
-msgid "Select a cardserver from the available list."
-msgstr "从可用列表中选择一个卡服务器."
-
 msgid "Select a debug log file to view:"
 msgstr ""
 
@@ -15517,7 +15516,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "选择要运行的脚本:"
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr "从可用列表中选择一个softcam."
 
 msgid "Select a tuner"
@@ -15544,6 +15546,9 @@ msgstr ""
 
 msgid "Select audio track"
 msgstr "选择音轨"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr "选择卡服务器"
@@ -15674,7 +15679,7 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "选择要添加的频道..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr "选择softcam"
 
 msgid "Select sort method:"
@@ -15691,6 +15696,10 @@ msgstr ""
 
 msgid "Select the No / False response"
 msgstr "选择否/错误响应"
+
+#, python-format
+msgid "Select the Softcam for '%s'"
+msgstr ""
 
 msgid "Select the Swap File Size:"
 msgstr "选择交换文件大小:"
@@ -15721,6 +15730,9 @@ msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "控制帮助屏幕中按键指针的动画速度,使用'禁用'关闭动画,以便指针在按键之间切换."
+
+msgid "Select the cardserver to be used from the list of available cardservers."
+msgstr ""
 
 msgid "Select the channel from which to record:"
 msgstr ""
@@ -15885,7 +15897,7 @@ msgstr "选择转换后的字符集"
 msgid "Select the shifted character set for the next character only"
 msgstr "仅为下一个字符选择移位字符集"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -16782,9 +16794,6 @@ msgstr "显示机顶盒门户网站"
 msgid "Show CCcam Info"
 msgstr ""
 
-msgid "Show CCcam in extensions"
-msgstr ""
-
 msgid "Show CI messages"
 msgstr "显示CI消息"
 
@@ -16893,7 +16902,7 @@ msgstr "显示多个EPG"
 msgid "Show OScam Info"
 msgstr "显示OScam信息"
 
-msgid "Show OScam in extensions"
+msgid "Show OScam/CCcam in Extension Menu"
 msgstr ""
 
 msgid "Show OpenPLi packages"
@@ -20676,6 +20685,9 @@ msgstr "使用备选屏幕"
 msgid "Use as HDD"
 msgstr "当作硬盘使用"
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -21640,6 +21652,9 @@ msgstr "当设置时每个文件夹时将显示之前使用的状态,当关闭�
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "当设置时,PIG将在停止播放影片后返回到直播."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "当内容的宽高比为16:9时.选择是否缩放/拉伸图片."
 
@@ -22302,9 +22317,6 @@ msgstr "按 字母倒序/由新到旧 排序"
 msgid "am"
 msgstr "上午"
 
-msgid "and"
-msgstr "和"
-
 msgid "aqua"
 msgstr ""
 
@@ -22393,9 +22405,6 @@ msgstr "卡片"
 
 msgid "card reader"
 msgstr "读卡器"
-
-msgid "cardserver"
-msgstr "卡片服务器"
 
 msgid "cartoon/puppets"
 msgstr "动画/木偶"
@@ -22736,9 +22745,6 @@ msgstr "即时录制"
 
 msgid "internally loopthrough to"
 msgstr "内循环到"
-
-msgid "Invalid type"
-msgstr "无效类型"
 
 msgid "jazz"
 msgstr "爵士乐"
@@ -23162,9 +23168,6 @@ msgstr "社会/政治/经济问题(一般)"
 msgid "social/spiritual science"
 msgstr "社会/精神科学"
 
-msgid "softcam"
-msgstr "softcam设置"
-
 msgid "special (general)"
 msgstr "特殊(一般)"
 
@@ -23365,6 +23368,43 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "允许您在扩展中显示/隐藏CCcam（蓝色按钮）."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "允许您显示/隐藏OScam扩展(蓝色键)."
+
+#~ msgid "Don't restart"
+#~ msgstr "不重启"
+
+#, python-format
+#~ msgid "Please wait, restarting %s."
+#~ msgstr "请稍候,正在重新启动 %s."
+
+#~ msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
+#~ msgstr "按下绿色键时,重置所选设备并保存配置更改."
+
+#~ msgid "Restart both"
+#~ msgstr "两个都重启"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "重启卡服务器"
+
+#~ msgid "Restart softcam"
+#~ msgstr "重启softcam"
+
+#~ msgid "Select a cardserver from the available list."
+#~ msgstr "从可用列表中选择一个卡服务器."
+
+#~ msgid "and"
+#~ msgstr "和"
+
+#~ msgid "cardserver"
+#~ msgstr "卡片服务器"
+
+#~ msgid "softcam"
+#~ msgstr "softcam设置"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI 助手设置"
