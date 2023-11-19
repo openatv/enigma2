@@ -183,11 +183,14 @@ class AutocamSetup(Setup):
 		Setup.__init__(self, session=session, setup="Autocam")
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self["addremoveActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.keyRemoveService, _("Remove service from autocam")),
-			"blue": (self.keyAddService, _("Add service to autocam"))
+		self["addActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.keyAddService, _("Add service to autocam"))
 		}, prio=0, description=_("Autocam Setup Actions"))
-		self["addremoveActions"].setEnabled(False)
+		self["addActions"].setEnabled(config.misc.autocamEnabled.value)
+		self["removeActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.keyRemoveService, _("Remove service from autocam"))
+		}, prio=0, description=_("Autocam Setup Actions"))
+		self["removeActions"].setEnabled(False)
 
 	def layoutFinished(self):
 		Setup.layoutFinished(self)
@@ -230,13 +233,13 @@ class AutocamSetup(Setup):
 	def updateButtons(self):
 		currentItem = self.getCurrentItem()
 		if currentItem in (config.misc.autocamEnabled, self.autocamDefault):
-			self["addremoveActions"].setEnabled(True)
-			self["key_yellow"].setText("")
+			self["removeActions"].setEnabled(False)
 			self["key_blue"].setText("")
 		else:
-			self["addremoveActions"].setEnabled(True)
-			self["key_yellow"].setText(_("Remove"))
-			self["key_blue"].setText(_("Add service"))
+			self["removeActions"].setEnabled(True)
+			self["key_blue"].setText(_("Remove"))
+		self["addActions"].setEnabled(config.misc.autocamEnabled.value)
+		self["key_yellow"].setText(_("Add service") if config.misc.autocamEnabled.value else "")
 
 	def keyRemoveService(self):
 		currentItem = self.getCurrentItem()
