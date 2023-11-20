@@ -15,7 +15,6 @@ from Components.NimManager import nimmanager
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, BackupSelection, RestoreScreen, getBackupFilename, getBackupPath, getOldBackupPath
-from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup
 from Screens.CCcamInfo import CCcamInfoMain
 from Screens.HarddiskSetup import HarddiskConvertExt4Selection, HarddiskFsckSelection, HarddiskSelection
 from Screens.MountManager import HddMount
@@ -486,7 +485,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Select Excluded Backup Files"):
 			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False, mode="backupfiles_exclude")
 		elif item == _("Software Manager Settings"):
-			self.session.open(SoftwareManagerSetup)
+			self.openSetup("SoftwareManager")
 # ####### Select PluginDownloadBrowser Menu ##############################
 		elif item == _("Plugin Browser"):
 			self.session.open(PluginBrowser)
