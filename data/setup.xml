@@ -423,7 +423,7 @@
 		<item level="2" text="Include EPG data" description="Enable this option to add extra EPG data to the debug log file.">config.crash.debugEPG</item>
 		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file.">config.crash.debugDVBScan</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
-		<item level="2" text="Show Log Manager in extensions list" description="Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button).">config.logmanager.showinextensions</item>
+		<item level="2" text="Show Log Manager in Extension Menu" description="Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button).">config.logmanager.showinextensions</item>
 		<item level="2" text="Maximum no of days" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB)" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 		<item level="2" text="Crash at skin error for debug reasons" description="Select 'No' to only write a log message to the debug log file.">config.crash.skin_error_crash</item>
@@ -498,7 +498,7 @@
 	<setup key="OSD3D" title="OSD 3D Settings" showOpenWebif="1">
 		<item level="0" text="3D Mode" description="This option lets you choose the 3D mode">config.osd.threeDmode</item>
 		<item level="0" text="Depth" description="This option lets you adjust the 3D depth">config.osd.threeDznorm</item>
-		<item level="0" text="Show in extensions list" description="This option lets you show the option in the extension screen.">config.osd.show3dextensions</item>
+		<item level="0" text="Show in Extension Menu" description="This option lets you show the option in the Extension Menu screen.">config.osd.show3dextensions</item>
 	</setup>
 	<setup key="Password" title="Password Settings">
 		<item level="0" text="New password" description="Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH.">config.network.password</item>
@@ -711,7 +711,7 @@
 		<!--item level="0" text="Select RED long action" description="Select what you want the RED long button to activate.">config.plugins.infopanel_redpanel.selectionLong</item-->
 		<!--item level="0" text="Select YELLOW action" description="Select what you want the YELLOW button to activate.">config.plugins.infopanel_yellowkey.list</item-->
 		<!--item level="0" text="Select YELLOW long action" description="Select what you want the YELLOW long button to activate.">config.plugins.infopanel_yellowkey.listLong</item-->
-		<item level="0" text="BLUE switch: BLUE/BLUE long" description="Switch BLUE short (QuickMenu) with BLUE long (Extensions)">config.workaround.blueswitch</item>
+		<item level="0" text="BLUE switch: BLUE/BLUE long" description="Switch BLUE short (QuickMenu) with BLUE long (Extension Menu)">config.workaround.blueswitch</item>
 		<item level="0" text="Long press emulation with button" description="Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button).">config.usage.long_press_emulation_key</item>
 		<item level="0" text="Add legacy LEFT/RIGHT actions" description="Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it.">config.misc.actionLeftRightToPageUpPageDown</item>
 	</setup>
@@ -741,7 +741,7 @@
 	</setup>
 	<setup key="Softcam" title="Softcam Settings" showOpenWebif="1">
 		<item level="0" text="Select Softcam" description="Select a Softcam from the available list.">config.misc.softcams</item>
-		<item level="2" text="Show OScam/CCcam in Extension Menu" description="Allows you to show/hide OScam/CCcam in the Extensions Menu screen (BLUE button).">config.softcam.showInExtensions</item>
+		<item level="2" text="Show OScam/CCcam in Extension Menu" description="Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button).">config.softcam.showInExtensions</item>
 	</setup>
 	<setup key="SpecialFeatures" title="Special Features Settings">
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
@@ -856,8 +856,8 @@
 		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly." requires="config.usage.menuType" value="standard">config.usage.menuEntryStyle</item>
 		<item level="0" text="Menu entry sort order" description="Select the sort order of the menu entries. User defined also allows the menu entries to be hidden.">config.usage.menuSortOrder</item>
 		<item level="1" text="Show screen menu path" description="Select if the screen menu path history is displayed and, if so, how it is to be displayed.">config.usage.showScreenPath</item>
-		<item level="1" text="Sort Extensions menu" description="Enable to display the Extension menu entries alphabetically.">config.usage.sort_extensionslist</item>
-		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extensions menu.">config.usage.show_restart_network_extensionslist</item>
+		<item level="1" text="Sort Extension Menu" description="Enable to display the Extension Menu screen entries alphabetically.">config.usage.sort_extensionslist</item>
+		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extension Menu screen.">config.usage.show_restart_network_extensionslist</item>
 		<item level="1" text="Sort Plugin Browser" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden.">config.usage.plugins_sort_mode</item>
 		<item level="1" text="Setup entry sort" description="Enable to display setup entries alphabetically.">config.usage.sort_settings</item>
 		<item level="1" text="Show setup default value" description="Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description.">config.usage.setupShowDefault</item>
@@ -878,7 +878,7 @@
 		<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed">config.usage.show_infobar_dimming_speed</item>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item>
 		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in RecordTimer, PowerTimer, SleepTimer, ...)">config.usage.shutdown_msgbox_timeout</item>
-		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (BLUE button press).">config.usage.jobtaksextensions</item>
+		<item level="1" text="Show job tasks in Extension Menu" description="With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
 		<item level="1" text="Alternative radio mode" description="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Position of finished Timers in Timerlist" description="Control of the position how finished timer are shown in the Timer List.">config.usage.timerlist_finished_timer_position</item>
