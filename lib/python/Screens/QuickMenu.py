@@ -22,13 +22,12 @@ from Screens.MountManager import HddMount
 from Screens.NetworkSetup import *
 from Screens.OScamInfo import OscamInfoMenu
 from Screens.ParentalControlSetup import ProtectedScreen
-from Screens.PluginBrowser import PluginAction, PluginBrowser
+from Screens.PluginBrowser import PackageAction, PluginBrowser
 from Screens.RestartNetwork import RestartNetwork
 from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Screens.ShowSoftcamPackages import ShowSoftcamPackages
 from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.SoftcamSetup import SoftcamSetup
 from Screens.VideoMode import VideoSetup
@@ -433,7 +432,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("CCcam Information"):
 			self.session.open(CCcamInfoMain)
 		elif item == _("Download Softcams"):
-			self.session.open(ShowSoftcamPackages)
+			self.session.open(PackageAction, PackageAction.MODE_SOFTCAM)
 # ####### Select AV Setup Menu ##############################
 		elif item == _("Video Settings"):
 			self.session.open(VideoSetup)
@@ -492,11 +491,11 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Plugin Browser"):
 			self.session.open(PluginBrowser)
 		elif item == _("Download Plugins"):
-			self.session.open(PluginAction, PluginAction.DOWNLOAD)
+			self.session.open(PackageAction, PackageAction.MODE_INSTALL)
 		elif item == _("Remove Plugins"):
-			self.session.open(PluginAction, PluginAction.REMOVE)
+			self.session.open(PackageAction, PackageAction.MODE_REMOVE)
 		elif item == _("Manage Plugins"):
-			self.session.open(PluginAction, PluginAction.MANAGE)
+			self.session.open(PackageAction, PackageAction.MODE_MANAGE)
 		elif item == _("Plugin Browser Settings"):
 			self.openSetup("PluginBrowser")
 		elif item == _("IPK Installer"):
