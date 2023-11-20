@@ -190,7 +190,7 @@ class AutocamSetup(Setup):
 		defaultsoftcams = [x for x in self.softcams if x != "None"]
 		self.defaultautocam = config.misc.autocamDefault.value or defaultsoftcam
 		self.autocamDefault = ConfigSelection(default=self.defaultautocam, choices=defaultsoftcams)
-		Setup.__init__(self, session=session, setup="Autocam")
+		Setup.__init__(self, session=session, setup="AutoCam")
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["addActions"] = HelpableActionMap(self, ["ColorActions"], {
