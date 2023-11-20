@@ -14,7 +14,7 @@ from Components.Label import Label
 from Components.Opkg import OpkgComponent
 from Components.PluginComponent import pluginComponent
 from Components.ScrollLabel import ScrollLabel
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
@@ -33,12 +33,11 @@ MODULE_NAME = __name__.split(".")[-1]
 INTERNET_TIMEOUT = 2
 FEED_SERVER = "feeds2.mynonpublic.com"
 ENIGMA_PREFIX = "enigma2-plugin-%s"
+PACKAGE_PREFIX = "%s"
+SOFTCAM_PREFIX = "enigma2-plugin-softcams-%s"
 KERNEL_PREFIX = "kernel-module-%s"
 
-PLUGIN_LIST = 0
-PLUGIN_GRID = 1
-
-PACKAGE_CATEGORIES = {
+PLUGIN_CATEGORIES = {
 	"display": _("Display Skin Packages"),
 	"drivers": _("Driver Packages"),
 	"extensions": _("Extension Packages"),
@@ -58,6 +57,51 @@ PACKAGE_CATEGORIES = {
 	"vix": _("OpenViX Packages"),
 	"weblinks": _("Web Link Packages")
 }
+PACKAGE_CATEGORIES = {
+	"": _("Other Packages"),
+	"base": _("Base Packages"),
+	"base/utils": _("Base Utility Packages"),
+	"base/shell": _("Base Shell Packages"),
+	"console": _("Console Packages"),
+	"console/admin": _("Console Administrative Packages"),
+	"console/multimedia": _("Console Multimedia Packages"),
+	"console/network": _("Console Network Packages"),
+	"console/tests": _("Console Test Packages"),
+	"console/tools": _("Console Tool Packages"),
+	"console/utils": _("Console Utility Packages"),
+	"devel": _("Development Packages"),
+	"devel/python": _("Development Python Packages"),
+	"devel/tcltk": _("Development TCL Toolkit Packages"),
+	"doc": _("Documentation Packages"),
+	"enigma2": _("Enigma2 Packages"),
+	"extra": _("Extra Packages"),
+	"font": _("Font Packages"),
+	"kernel/modules": _("Kernel Module Packages"),
+	"libs": _("Library Packages"),
+	"libs/multimedia": _("Library Multimedia Packages"),
+	"libs/network": _("Library Network Packages"),
+	"misc": _("Miscellaneous Packages"),
+	"multimedia": _("Multimedia Packages"),
+	"net": _("Network (net) Packages"),
+	"network": _("Network (network) Packages"),
+	"networking": _("Networking Packages"),
+	"optional": _("Optional Packages"),
+	"otherosfs": _("File System Packages"),
+	"plugin": _("Plugin Packages"),
+	"python-devel": _("Python Development Packages"),
+	"universe/otherosfs": _("File System Support Packages"),
+	"utils": _("Utility Packages"),
+	"x11": _("X11 Packages"),
+	"x11/base": _("X11 Base Packages"),
+	"x11/fonts": _("X11 Font Packages"),
+	"x11/gnome": _("X11 Gnome Packages"),
+	"x11/gnome/libs": _("X11 Gnome Library Packages"),
+	"x11/libs": _("X11 Library Packages"),
+	"x11/utils": _("X11 Utility Packages")
+}
+
+PLUGIN_LIST = 0
+PLUGIN_GRID = 1
 
 config.pluginfilter = ConfigSubsection()
 config.usage.pluginListLayout = ConfigSelection(default=PLUGIN_GRID, choices=[
@@ -175,17 +219,17 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 		}, prio=0, description=_("Plugin Browser Actions"))
 		self["pluginRemoveActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"red": (self.keyRed, _("Remove Plugins")),
-			"blue": (self.keyBlue, _("Start edit mode")),
+			"blue": (self.keyEditMode, _("Start edit mode")),
 		}, prio=0, description=_("Plugin Browser Select Actions"))
 		self["pluginDownloadActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"green": (self.keyGreen, _("Download Plugins")),
+			"green": (self.keyGreen, _("Install Plugins")),
 			"yellow": (self.keyYellow, _("Update Plugins"))
 		}, prio=0, description=_("Plugin Browser Select Actions"))
 		self["pluginEditActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"red": (self.keyRed, _("Reset sort order")),
 			"green": (self.keyGreen, _("Toggle move mode")),
 			"yellow": (self.keyYellow, _("Toggle the visibility of the highlighted plugin")),
-			"blue": (self.keyBlue, _("Stop edit mode"))
+			"blue": (self.keyEditMode, _("Stop edit mode"))
 		}, prio=0, description=_("Plugin Browser Edit Actions"))
 		if config.usage.pluginListLayout.value == PLUGIN_LIST:
 			self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
@@ -234,8 +278,6 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 		self.sortMode = False
 		self.selectedPlugin = None
 		self.internetAccess = 0  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
-		self.opkgComponent = OpkgComponent()
-		self.opkgComponent.addCallback(self.createFeedConfigCallback)
 		if config.pluginfilter.userfeed.value != "http://" and not exists("/etc/opkg/user-feed.conf"):
 			self.createFeedConfig()
 		self.onFirstExecBegin.append(self.checkWarnings)  # This is needed to avoid a modal screen issue.
@@ -275,8 +317,29 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 				callback(name, description)
 
 	def createFeedConfig(self):
-		fileWriteLine("/etc/opkg/user-feed.conf", "src/gz user-feeds %s\n" % config.pluginfilter.userfeed.value, source=MODULE_NAME)
-		self.opkgComponent.runCmd(OpkgComponent.CMD_CLEAN_REFRESH)
+		def createFeedConfigCallback(event, eventData):
+			if event == opkgComponent.EVENT_CLEAN_ERROR:
+				print(f"[PluginBrowser] Error: There was an issue in the feed update! Please reboot and check the file system for any errors.")
+			elif event in (opkgComponent.EVENT_DOWNLOAD, opkgComponent.EVENT_UPDATED):
+				print(f"[PluginBrowser] Feed '{eventData}' {'downloaded' if event == opkgComponent.EVENT_DOWNLOAD else 'updated'}.")
+			elif event == opkgComponent.EVENT_REFRESH_DONE:
+				if eventData:
+					print(f"[PluginBrowser] Warning: {eventData} feed(s) were unable to be reloaded!")
+					self["pluginDownloadActions"].setEnabled(False)
+				else:
+					print("[PluginBrowser] Feed update completed successfully.")
+					self["pluginDownloadActions"].setEnabled(True)
+			elif event == opkgComponent.EVENT_DONE:
+				Processing.instance.hideProgress()
+				self["actions"].setEnabled(True)
+				self["pluginRemoveActions"].setEnabled(True)
+				self["navigationActions"].setEnabled(True)
+				self["quickSelectActions"].setEnabled(True)
+
+		fileWriteLine("/etc/opkg/user-feed.conf", f"src/gz user-feeds {config.pluginfilter.userfeed.value}\n", source=MODULE_NAME)
+		opkgComponent = OpkgComponent()
+		opkgComponent.addCallback(createFeedConfigCallback)
+		opkgComponent.runCommand(opkgComponent.CMD_CLEAN_REFRESH)
 		Processing.instance.setDescription(_("Please wait while feeds are updated..."))
 		Processing.instance.showProgress(endless=True)
 		self["actions"].setEnabled(False)
@@ -284,22 +347,6 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 		self["pluginDownloadActions"].setEnabled(False)
 		self["navigationActions"].setEnabled(False)
 		self["quickSelectActions"].setEnabled(False)
-
-	def createFeedConfigCallback(self, event, parameter):
-		if event in (OpkgComponent.EVENT_DOWNLOAD, OpkgComponent.EVENT_UPDATED):
-			print("[PluginBrowser] Feed '%s' %s." % (parameter, "downloaded" if event == OpkgComponent.EVENT_DOWNLOAD else "updated"))
-		else:
-			if event == OpkgComponent.EVENT_DONE:
-				print("[PluginBrowser] Feed update completed successfully.")
-				self["pluginDownloadActions"].setEnabled(True)
-			else:
-				print("[PluginBrowser] Error: Feed update error!  (%s: %s)" % (OpkgComponent.getEventText(self, event), parameter))
-				self["pluginDownloadActions"].setEnabled(False)
-			Processing.instance.hideProgress()
-			self["actions"].setEnabled(True)
-			self["pluginRemoveActions"].setEnabled(True)
-			self["navigationActions"].setEnabled(True)
-			self["quickSelectActions"].setEnabled(True)
 
 	def checkWarnings(self):
 		def checkWarningsCallback(answer):
@@ -311,7 +358,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 			count = len(warnings)
 			text = [ngettext("%d plugin is not available:", "%d plugins are not available:", count) % count, ""]
 			for pluginName, error in warnings:
-				text.append("- %s\n    %s" % (pluginName, error))
+				text.append(f"- {pluginName}\n    {error}")
 			options = [
 				(ngettext("Keep warning", "Keep warnings", count), False),
 				(ngettext("Clear warning", "Clear warnings", count), True)
@@ -353,7 +400,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 		else:
 			self["key_red"].setText(_("Remove Plugins"))
 			if self.internetAccess == 0:  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
-				self["key_green"].setText(_("Download Plugins"))
+				self["key_green"].setText(_("Install Plugins"))
 				self["key_yellow"].setText(_("Update Plugins"))
 				self["pluginDownloadActions"].setEnabled(True)
 			else:
@@ -428,14 +475,14 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 			config.usage.plugin_sort_weight.save()
 			self.updatePluginList()
 		else:
-			self.session.openWithCallback(self.childScreenClosedCallback, PluginAction, PluginAction.REMOVE)
+			self.session.openWithCallback(self.childScreenClosedCallback, PackageAction, PackageAction.MODE_REMOVE)
 
 	def keyGreen(self):
 		if self.sortMode:
 			if config.usage.plugins_sort_mode.value == "user" and self.sortMode:
 				self.keySelect()
 		else:
-			self.session.openWithCallback(self.childScreenClosedCallback, PluginAction, PluginAction.DOWNLOAD)
+			self.session.openWithCallback(self.childScreenClosedCallback, PackageAction, PackageAction.MODE_INSTALL)
 			self.firstTime = False
 
 	def keyYellow(self):
@@ -449,13 +496,13 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 				config.usage.plugin_sort_weight.changeConfigValue(plugin.name.lower(), "hidden", 1)
 				self["key_yellow"].setText(_("Show"))
 		else:
-			self.session.openWithCallback(self.childScreenClosedCallback, PluginAction, PluginAction.UPDATE)
+			self.session.openWithCallback(self.childScreenClosedCallback, PackageAction, PackageAction.MODE_UPDATE)
 
 	def childScreenClosedCallback(self):
 		self.checkWarnings()
 		self.updatePluginList()
 
-	def keyBlue(self):
+	def keyEditMode(self):
 		if config.usage.plugins_sort_mode.value == "user":
 			self.toggleSortMode()
 			self.selectionChanged()
@@ -522,8 +569,8 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 
 	def moveAction(self):
 		entry = self.pluginList.pop(self.currentIndex)
-		newpos = self.currentList.getSelectedIndex()
-		self.pluginList.insert(newpos, entry)
+		newPos = self.currentList.getSelectedIndex()
+		self.pluginList.insert(newPos, entry)
 		self.currentList.updateList(self.pluginList)
 
 	def keyNumberGlobal(self, digit):
@@ -533,7 +580,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 			self.selectByStart()
 			self.quickSelectPos += 1
 		char = self.getKey(digit)  # Get char and append to text.
-		self.quickSelect = "%s%s" % (self.quickSelect[:self.quickSelectPos], str(char))
+		self.quickSelect = f"{self.quickSelect[:self.quickSelectPos]}{str(char)}"
 		self["quickselect"].setText(self.quickSelect)
 		self["quickselect"].show()
 		self.quickSelectTimerType = 0
@@ -568,15 +615,65 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 class PluginBrowserSetup(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "PluginBrowser")
+		self["key_yellow"] = StaticText(_("Reset Feeds"))
+		self["actions"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.keyResetFeeds, _("Reset (clear and reload) the feeds"))
+		}, prio=0, description=_("Plugin Browser Actions"))
+		self["resetFeedsAction"] = HelpableActionMap(self, ["CancelActions"], {
+			"cancel": (self.keyResetFeedsCancel, _("Cancel the Reset Feeds command currently being processed"))
+		}, prio=0, description=_("Plugin Browser Actions"))
+		self["resetFeedsAction"].setEnabled(False)
 		choiceList = [("/", _("Internal flash"))]
 		oldLocation = config.usage.piconInstallLocation.savedValue
 		for partition in harddiskmanager.getMountedPartitions():
 			if partition.device and fileAccess(partition.mountpoint, "w") and partition.filesystem() in ("ext3", "ext4"):  # Limit to physical drives with ext3 and ext4
-				choiceList.append((partition.mountpoint, "%s (%s)" % (partition.description, partition.mountpoint)))
+				choiceList.append((partition.mountpoint, f"{partition.description} ({partition.mountpoint})"))
 		if oldLocation and oldLocation not in [location[0] for location in choiceList]:  # Add old location if not in calculated list of locations to prevent a setting change.
 			choiceList.append((oldLocation, oldLocation))
 		config.usage.piconInstallLocation.setSelectionList(default="/", choices=sorted(choiceList))
 		config.usage.piconInstallLocation.value = oldLocation
+		self.opkgComponent = OpkgComponent()
+		self.opkgComponent.addCallback(self.keyResetFeedsCallback)
+		self.cleanError = False
+		self.refreshIncomplete = 0
+
+	def keyResetFeeds(self):
+		self.suspendAllActionMaps()
+		Processing.instance.setDescription(f"{_('Please wait while the feeds are reset (cleared and reloaded)...')}\n\n{_('Warning: Canceling this process will leave the feeds in an incomplete and unusable state!')}")
+		Processing.instance.showProgress(endless=True)
+		self["actions"].setEnabled(False)
+		self["resetFeedsAction"].setEnabled(True)
+		self.opkgComponent.runCommand(self.opkgComponent.CMD_CLEAN_REFRESH)
+
+	def keyResetFeedsCallback(self, event, eventData):
+		match event:
+			case self.opkgComponent.EVENT_CLEAN_ERROR:
+				self.cleanError = True
+			case self.opkgComponent.EVENT_CLEAN_DONE:
+				pass  # Ignore the clean successful message.
+			case self.opkgComponent.EVENT_DOWNLOAD | self.opkgComponent.EVENT_FEED_UPDATED:
+				pass  # Ignore the feed download and updated messages.
+			case self.opkgComponent.EVENT_REFRESH_DONE:
+				if eventData:
+					self.refreshIncomplete = eventData
+			case self.opkgComponent.EVENT_DONE:
+				Processing.instance.hideProgress()
+				self["resetFeedsAction"].setEnabled(False)
+				self["actions"].setEnabled(True)
+				self.resumeAllActionMaps()
+				if self.cleanError:
+					self.session.open(MessageBox, _("Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again.") % getBoxDisplayName(), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+				if self.refreshIncomplete:
+					self.session.open(MessageBox, _("Warning: %d feeds were unable to be reloaded!") % self.refreshIncomplete, type=MessageBox.TYPE_WARNING, windowTitle=self.getTitle())
+			case _:
+				print(f"[PluginBrowser] Setup Error: Unexpected opkg event '{self.opkgComponent.getEventText(event)}'!")
+
+	def keyResetFeedsCancel(self):
+		self.opkgComponent.stop()
+		Processing.instance.hideProgress()
+		self["resetFeedsAction"].setEnabled(False)
+		self["actions"].setEnabled(True)
+		self.resumeAllActionMaps()
 
 	def keySave(self):
 		def keySaveCallback(answer):
@@ -593,7 +690,7 @@ class PluginBrowserSetup(Setup):
 						makedirs(srcDir, mode=0o755, exist_ok=True)
 						symlink(srcDir, destDir)
 				except OSError as err:
-					print("[PluginBrowserSetup] Error %d: Unable to create picon links!  (%s)" % (err.errno, err.strerror))
+					print(f"[PluginBrowser] Setup Error {err.errno}: Unable to create picon links!  ({err.strerror})")
 					self.session.open(MessageBox, _("Error: Creating picon target directory: (%s)") % err.strerror, type=MessageBox.TYPE_ERROR)
 					config.usage.piconInstallLocation.cancel()
 			else:
@@ -601,7 +698,6 @@ class PluginBrowserSetup(Setup):
 			Setup.keySave(self)
 
 		location = config.usage.piconInstallLocation.value
-
 		if location != "/" and location != config.usage.piconInstallLocation.savedValue:
 			srcExists = False
 			for dir in ("picon", "piconlcd"):
@@ -614,14 +710,14 @@ class PluginBrowserSetup(Setup):
 			else:
 				keySaveCallback(True)
 		elif location == "/" and config.usage.piconInstallLocation.savedValue != "/":  # remove link if the setting has been changed to flash
-			errordir = ""
+			errorDir = ""
 			try:
 				for dir in ("/picon", "/piconlcd"):
-					errordir = dir
+					errorDir = dir
 					if islink(dir):
 						unlink(dir)
 			except OSError as err:
-				print("[PluginBrowser] Error %d: Unable to remove picon link '%s'!  (%s)" % (err.errno, errordir, err.strerror))
+				print(f"[PluginBrowser] Setup Error {err.errno}: Unable to remove picon link '{errorDir}'!  ({err.strerror})")
 			Setup.keySave(self)
 		else:
 			Setup.keySave(self)
@@ -648,9 +744,9 @@ class PluginBrowserSummary(ScreenSummary):
 		self["value"].setText(description)
 
 
-class PluginAction(Screen, HelpableScreen, NumericalTextInput):
+class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 	skin = """
-	<screen name="PluginAction" title="Plugin Browser Download" position="center,center" size="900,585" resolution="1280,720">
+	<screen name="PackageAction" title="Plugin Browser Action" position="center,center" size="900,585" resolution="1280,720">
 		<widget source="plugins" render="Listbox" position="0,0" size="e,500" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{
@@ -684,10 +780,33 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		</widget>
 	</screen>"""
 
-	REMOVE = 0
-	DOWNLOAD = 1
-	UPDATE = 2
-	MANAGE = 3
+	MODE_REMOVE = 0
+	MODE_INSTALL = 1
+	MODE_UPDATE = 2
+	MODE_MANAGE = 3
+	MODE_PACKAGE = 4
+	MODE_SOFTCAM = 5
+	MODE_NAMES = {
+		0: "MODE_REMOVE",
+		1: "MODE_INSTALL",
+		2: "MODE_UPDATE",
+		3: "MODE_MANAGE",
+		4: "MODE_PACKAGE",
+		5: "MODE_SOFTCAM"
+	}
+
+	MANAGE_OPTIONS = {
+		MODE_MANAGE: (MODE_MANAGE, _("Plugin"), _("Plugins"), _("plugin"), _("plugins"), ENIGMA_PREFIX, PLUGIN_CATEGORIES),
+		MODE_PACKAGE: (MODE_PACKAGE, _("Package"), _("Packages"), _("package"), _("packages"), PACKAGE_PREFIX, PLUGIN_CATEGORIES | PACKAGE_CATEGORIES),
+		MODE_SOFTCAM: (MODE_SOFTCAM, _("Softcam"), _("Softcams"), _("softcam"), _("softcams"), SOFTCAM_PREFIX, PLUGIN_CATEGORIES),
+	}
+	DATA_MODE = 0
+	DATA_UPPER_SINGULAR = 1
+	DATA_UPPER_PLURAL = 2
+	DATA_LOWER_SINGULAR = 3
+	DATA_LOWER_PLURAL = 4
+	DATA_FILTER = 5
+	DATA_CATEGORIES = 6
 
 	# Skin template indexes:
 	PLUGIN_PACKAGE = 0  # This is the full package name as used in opkg.
@@ -711,56 +830,58 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 	INFO_INSTALLED = 5
 	INFO_UPGRADE = 6
 
-	def __init__(self, session, type=0):
+	def __init__(self, session, mode=MODE_REMOVE):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
-		self.type = type
+		self.skinName = ["PackageAction", "PluginAction"]
+		self.modeData = self.MANAGE_OPTIONS.get(mode, self.MANAGE_OPTIONS[self.MODE_MANAGE])
+		self.mode = min(mode, self.MODE_MANAGE)
 		self.setTitle({
-			self.REMOVE: _("Remove Plugins"),
-			self.DOWNLOAD: _("Download Plugins"),
-			self.UPDATE: _("Update Plugins"),
-			self.MANAGE: _("Manage Plugins")
-		}.get(type, _("Unknown")))
+			self.MODE_REMOVE: _("Remove Plugins"),
+			self.MODE_INSTALL: _("Install Plugins"),
+			self.MODE_UPDATE: _("Update Plugins"),
+			self.MODE_MANAGE: _("Manage %s") % self.modeData[self.DATA_UPPER_PLURAL]
+		}.get(self.mode, _("Unknown")))
 		self["plugins"] = List([])
 		self["plugins"].onSelectionChanged.append(self.selectionChanged)
 		self["quickselect"] = Label()
 		self["quickselect"].hide()
-		text = _("Downloading plugin information. Please wait...") if type in (self.DOWNLOAD, self.UPDATE, self.MANAGE) else _("Getting plugin information. Please wait...")
+		text = _("Getting plugin information. Please wait...") if self.mode == self.MODE_REMOVE else _("Downloading plugin information. Please wait...")
 		self["description"] = Label(text)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		description = {
-			self.REMOVE: _("Plugin Browser Remove Actions"),
-			self.DOWNLOAD: _("Plugin Browser Download Actions"),
-			self.UPDATE: _("Plugin Browser Update Actions"),
-			self.MANAGE: _("Plugin Browser Manage Actions")
-		}.get(type, _("Unknown"))
-		self["actions"] = HelpableActionMap(self, ["SelectCancelActions"], {
+			self.MODE_REMOVE: _("Plugin Browser Remove Actions"),
+			self.MODE_INSTALL: _("Plugin Browser Install Actions"),
+			self.MODE_UPDATE: _("Plugin Browser Update Actions"),
+			self.MODE_MANAGE: _("%s Browser Manage Actions") % self.modeData[self.DATA_UPPER_SINGULAR]
+		}.get(self.mode, _("Unknown"))
+		self["actions"] = HelpableActionMap(self, ["SelectCancelActions", "ColorActions"], {
 			"cancel": (self.keyCancel, _("Close the screen"))
 		}, prio=0, description=description)
 		buttonHelp = {
-			self.REMOVE: _("Add/Remove highlighted plugin to/from remove list"),
-			self.DOWNLOAD: _("Add/Remove highlighted plugin to/from download list"),
-			self.UPDATE: _("Add/Remove highlighted plugin to/from update list"),
-			self.MANAGE: _("Manage the highlighted plugin")
-		}.get(type, _("Unknown"))
+			self.MODE_REMOVE: _("Add/Remove highlighted plugin to/from remove list"),
+			self.MODE_INSTALL: _("Add/Remove highlighted plugin to/from install list"),
+			self.MODE_UPDATE: _("Add/Remove highlighted plugin to/from update list"),
+			self.MODE_MANAGE: _("Manage the highlighted %s") % self.modeData[self.DATA_LOWER_SINGULAR]
+		}.get(self.mode, _("Unknown"))
 		self["selectAction"] = HelpableActionMap(self, ["OkCancelActions"], {
-			"ok": (self.keySelect, buttonHelp),
+			"ok": (self.keySelect, buttonHelp)
 		}, prio=0, description=description)
 		buttonHelp = {
-			self.REMOVE: _("Remove the selected plugin / list of plugins"),
-			self.DOWNLOAD: _("Download the selected plugin / list of plugins"),
-			self.UPDATE: _("Update the selected plugin / list of plugins"),
-			self.MANAGE: _("Manage the highlighted plugin")
-		}.get(type, _("Unknown"))
+			self.MODE_REMOVE: _("Remove the selected plugin / list of plugins"),
+			self.MODE_INSTALL: _("Install the selected plugin / list of plugins"),
+			self.MODE_UPDATE: _("Update the selected plugin / list of plugins"),
+			self.MODE_MANAGE: _("Manage the highlighted %s / list of %s") % (self.modeData[self.DATA_LOWER_SINGULAR], self.modeData[self.DATA_LOWER_PLURAL])
+		}.get(self.mode, _("Unknown"))
 		self["performAction"] = HelpableActionMap(self, ["ColorActions"], {
-			"green": (self.keyGreen, buttonHelp),
+			"green": (self.keyGreen, buttonHelp)
 		}, prio=0, description=description)
 		self["performAction"].setEnabled(False)
 		self["logAction"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.keyYellow, _("Show the last opkg command's output"))
+			"yellow": (self.keyShowLog, _("Show the last opkg command's output"))
 		}, prio=0, description=description)
 		self["logAction"].setEnabled(False)
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
@@ -797,7 +918,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		self.installedIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 		self.upgradableIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png"))
 		self.removeIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
-		self.kernelVersion = "-%s" % BoxInfo.getItem("kernel", "")
+		self.kernelVersion = f"-{BoxInfo.getItem('kernel', '')}"
 		self.quickSelectTimer = eTimer()  # Initialize QuickSelect timer.
 		self.quickSelectTimer.callback.append(self.quickSelectTimeout)
 		self.quickSelectTimerType = 0
@@ -809,8 +930,9 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		self.pluginList = []
 		self.currentCategory = None
 		self.expanded = []
-		self.selectedInstallItems = []
 		self.selectedRemoveItems = []
+		self.selectedInstallItems = []
+		self.selectedUpdateItems = []
 		self.pluginsChanged = False
 		self.reloadSettings = False
 		self.currentBootLogo = None
@@ -818,76 +940,84 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		self.logData = ""
 		self.opkgComponent = OpkgComponent()
 		self.opkgComponent.addCallback(self.fetchOpkgDataCallback)
-		opkgFilterArguments = [ENIGMA_PREFIX % "*"]
-		if config.pluginfilter.kernel.value:
-			opkgFilterArguments.append(KERNEL_PREFIX % "*")
-		self.opkgFilterArguments = {"arguments": opkgFilterArguments}
-		# print("[PluginBrowser] DEBUG: Opkg filter is '%s'." % self.opkgFilterArguments)
-		displayFilter = []
-		for filter in sorted(PACKAGE_CATEGORIES.keys()):
-			if filter in ("extraopkgpackages", "src"):
-				continue
-			if getattr(config.pluginfilter, filter).value:
-				displayFilter.append((KERNEL_PREFIX % "")[:-1] if filter == "kernel" else ENIGMA_PREFIX % filter)
-		# for count, filter in enumerate(displayFilter, start=1):
-		# 	print("[PluginBrowser] DEBUG: Plugin display filter %d is '%s'." % (count, filter))
-		# print("[PluginBrowser] DEBUG: Display filter is '%s'." % (r"^(%s-)" % "-|".join(displayFilter) if displayFilter else r"^$"))
-		self.displayFilter = compile(r"^(%s-)" % "-|".join(displayFilter) if displayFilter else r"^$")
+		opkgFilterArguments = [self.modeData[self.DATA_FILTER] % "*"]
 		displayExclude = []
-		if not config.pluginfilter.extraopkgpackages.value:
-			displayExclude.extend(["-dev", "-dbg", "-doc", "-meta", "-staticdev"])
-		if not config.pluginfilter.src.value:
-			displayExclude.append("-src")
-		# for count, exclude in enumerate(displayExclude, start=1):
-		# 	print("[PluginBrowser] DEBUG: Plugin exclude filter %d is '%s'." % (count, exclude))
-		# print("[PluginBrowser] DEBUG: Exclude filter is '%s'." % (r"(%s)$" % "|".join(displayExclude) if displayExclude else r"^$"))
+		if mode <= self.MODE_MANAGE:
+			if config.pluginfilter.kernel.value:
+				opkgFilterArguments.append(KERNEL_PREFIX % "*")
+			displayFilter = []
+			for filter in sorted(PLUGIN_CATEGORIES.keys()):
+				if filter in ("extraopkgpackages", "src"):
+					continue
+				if getattr(config.pluginfilter, filter).value:
+					displayFilter.append((KERNEL_PREFIX % "")[:-1] if filter == "kernel" else self.modeData[self.DATA_FILTER] % filter)
+			self.displayFilter = compile(r"^(%s-)" % "-|".join(displayFilter)) if displayFilter else None
+			if not config.pluginfilter.extraopkgpackages.value:
+				displayExclude.extend(["-dev", "-dbg", "-doc", "-meta", "-staticdev"])
+			if not config.pluginfilter.src.value:
+				displayExclude.append("-src")
+		else:
+			self.displayFilter = compile(r"^(%s-)" % (SOFTCAM_PREFIX % "*")) if mode == self.MODE_SOFTCAM else None
+			displayExclude = ["-dev", "-dbg", "-doc", "-meta", "-staticdev", "-src"]
+		self.opkgFilterArguments = {"arguments": opkgFilterArguments}
 		self.displayExclude = compile(r"(%s)$" % "|".join(displayExclude) if displayExclude else r"^$")
+		# print(f"[PluginBrowser] DEBUG: Opkg filter is '{self.opkgFilterArguments}'.")
+		# for count, filter in enumerate(displayFilter, start=1):
+		# 	print(f"[PluginBrowser] DEBUG: Plugin display filter {count} is '{filter}'.")
+		# print("[PluginBrowser] DEBUG: Display filter is '%s'." % (r"^(%s-)" % "-|".join(displayFilter) if displayFilter else r"^$"))
+		# for count, exclude in enumerate(displayExclude, start=1):
+		# 	print(f"[PluginBrowser] DEBUG: Plugin exclude filter {count} is '{exclude}'.")
+		# print("[PluginBrowser] DEBUG: Exclude filter is '%s'." % (r"(%s)$" % "|".join(displayExclude) if displayExclude else r"^$"))
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
 		self["plugins"].enableAutoNavigation(False)
-		text = _("Downloading plugin information. Please wait...") if self.type in (self.DOWNLOAD, self.UPDATE, self.MANAGE) else _("Getting plugin information. Please wait...")
-		self.setWaiting(text)
-		if self.type == self.REMOVE:
-			self.opkgComponent.runCmd(OpkgComponent.CMD_LIST_INSTALLED, self.opkgFilterArguments)
-		elif self.type == self.DOWNLOAD:
-			self.opkgComponent.runCmd(OpkgComponent.CMD_REFRESH_INSTALLABLE, self.opkgFilterArguments)
-		elif self.type == self.UPDATE:
-			self.opkgComponent.runCmd(OpkgComponent.CMD_REFRESH_UPDATES, self.opkgFilterArguments)
-		elif self.type == self.MANAGE:
-			internetAccess = checkInternetAccess(FEED_SERVER, INTERNET_TIMEOUT)
-			if internetAccess == 0:  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
-				self.opkgComponent.runCmd(OpkgComponent.CMD_REFRESH_INFO, self.opkgFilterArguments)
-			elif internetAccess == 1:
-				self["description"].setText(_("Feed server DNS error!"))
-				print("[PluginBrowser] Error: Feed server DNS error!")
-				self.setWaiting(None)
-			elif internetAccess == 2:
-				self["description"].setText(_("Feed server access error!"))
-				print("[PluginBrowser] Error: Feed server access error!")
-				self.setWaiting(None)
-			elif internetAccess == 3:
-				self["description"].setText(_("Network adapter not connected to a network!"))
-				print("[PluginBrowser] Error: Network adapter not connected to a network!")
-				self.setWaiting(None)
-			elif internetAccess == 4:
-				self["description"].setText(_("No network adapters enabled/available!"))
-				print("[PluginBrowser] Error: No network adapters enabled/available!")
-				self.setWaiting(None)
+		self.setWaiting(self["description"].getText())
+		match self.mode:
+			case self.MODE_REMOVE:
+				self.opkgComponent.runCommand(self.opkgComponent.CMD_LIST_INSTALLED, self.opkgFilterArguments)
+			case self.MODE_INSTALL:
+				self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALLABLE, self.opkgFilterArguments)
+			case self.MODE_UPDATE:
+				self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_UPDATES, self.opkgFilterArguments)
+			case self.MODE_MANAGE:
+				match checkInternetAccess(FEED_SERVER, INTERNET_TIMEOUT):  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
+					case 0:
+						self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INFO, self.opkgFilterArguments)
+					case 1:
+						self["description"].setText(_("Feed server DNS error!"))
+						print("[PluginBrowser] PackageAction Error: Feed server DNS error!")
+						self.setWaiting(None)
+					case 2:
+						self["description"].setText(_("Feed server access error!"))
+						print("[PluginBrowser] PackageAction Error: Feed server access error!")
+						self.setWaiting(None)
+					case 3:
+						self["description"].setText(_("Network adapter not connected to a network!"))
+						print("[PluginBrowser] PackageAction Error: Network adapter not connected to a network!")
+						self.setWaiting(None)
+					case 4:
+						self["description"].setText(_("No network adapters enabled/available!"))
+						print("[PluginBrowser] PackageAction Error: No network adapters enabled/available!")
+						self.setWaiting(None)
+					case _:
+						pass
+			case _:
+				pass
 
 	def selectionChanged(self):
 		label = ""
 		current = self["plugins"].getCurrent()
 		if current:
 			category = current[self.PLUGIN_CATEGORY]
-			if not isinstance(category, str) or self.selectedInstallItems or self.selectedRemoveItems:
+			if not isinstance(category, str) or self.selectedRemoveItems or self.selectedInstallItems or self.selectedUpdateItems:
 				label = {
-					self.REMOVE: _("Remove Plugins") if len(self.selectedRemoveItems) > 1 else _("Remove Plugin"),
-					self.DOWNLOAD: _("Download Plugins") if len(self.selectedInstallItems) > 1 else _("Download Plugin"),
-					self.UPDATE: _("Update Plugins") if len(self.selectedInstallItems) > 1 else _("Update Plugin"),
-					self.MANAGE: _("Remove Plugin") if current[self.PLUGIN_INSTALLED] else _("Download Plugin")
-				}.get(self.type, _("Unknown"))
-			self.quickSelectCategory = current[self.PLUGIN_DISPLAY_CATEGORY] if category in self.expanded else ""  # Allows QuickSelect to start searching the current category from the category heading. QuickSelect disabled on closed categories.
+					self.MODE_REMOVE: _("Remove Plugins") if len(self.selectedRemoveItems) > 1 else _("Remove Plugin"),
+					self.MODE_INSTALL: _("Install Plugins") if len(self.selectedInstallItems) > 1 else _("Install Plugin"),
+					self.MODE_UPDATE: _("Update Plugins") if len(self.selectedUpdateItems) > 1 else _("Update Plugin"),
+					self.MODE_MANAGE: (_("Remove %s") if current[self.PLUGIN_INSTALLED] else _("Install %s")) % self.modeData[self.DATA_UPPER_PLURAL]
+				}.get(self.mode, _("Unknown"))
+			self.quickSelectCategory = current[self.PLUGIN_DISPLAY_CATEGORY] if category is None or category in self.expanded else ""  # Allows QuickSelect to start searching the current category from the category heading. QuickSelect disabled on closed categories.
 			self["quickSelectActions"].setEnabled(self.quickSelectCategory != "")
 		self["key_green"].setText(label)
 		self["performAction"].setEnabled(label != "")
@@ -898,7 +1028,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		if self.processing:
 			self.opkgComponent.stop()
 			self.setWaiting(None)
-			print("[PluginBrowser] NOTE: User aborted the 'opkg' plugin refresh!")
+			print("[PluginBrowser] PackageAction Note: User aborted the 'opkg' plugin refresh!")
 		else:
 			if self.pluginsChanged:
 				plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
@@ -923,58 +1053,78 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 				if package.startswith("enigma2-plugin-bootlogo-") or package.startswith("enigma2-plugin-settings-") or package.startswith("enigma2-plugin-picons-"):  # Don't use MultiSelect for bootlogo, settings or picons.
 					self.selectedRemoveItems = []
 					self.selectedInstallItems = []
+					self.selectedUpdateItems = []
 					self.keyGreen()
 					return
-				if self.type == self.MANAGE:  # Install and remove actions can't be mixed, only support install or remove actions at any one time.
-					if current[self.PLUGIN_INSTALLED]:
+				match self.mode:
+					case self.MODE_MANAGE:  # Install and remove actions can't be mixed, only support install or remove actions at any one time.
+						if current[self.PLUGIN_INSTALLED]:
+							if package in self.selectedRemoveItems:
+								self.selectedRemoveItems.remove(package)
+							else:
+								self.selectedRemoveItems.append(package)
+							self.selectedInstallItems = []
+						else:
+							if package in self.selectedInstallItems:
+								self.selectedInstallItems.remove(package)
+							else:
+								self.selectedInstallItems.append(package)
+							self.selectedRemoveItems = []
+					case self.MODE_REMOVE:
 						if package in self.selectedRemoveItems:
 							self.selectedRemoveItems.remove(package)
 						else:
 							self.selectedRemoveItems.append(package)
-						self.selectedInstallItems = []
-					else:
+					case self.MODE_INSTALL:
 						if package in self.selectedInstallItems:
 							self.selectedInstallItems.remove(package)
 						else:
 							self.selectedInstallItems.append(package)
-						self.selectedRemoveItems = []
-				elif self.type == self.REMOVE:
-					if package in self.selectedRemoveItems:
-						self.selectedRemoveItems.remove(package)
-					else:
-						self.selectedRemoveItems.append(package)
-				else:
-					if package in self.selectedInstallItems:
-						self.selectedInstallItems.remove(package)
-					else:
-						self.selectedInstallItems.append(package)
-			self.displayPluginList(self.pluginList)
-			installText = ngettext("%d package marked for install.", "%d packages marked for install.", len(self.selectedInstallItems)) % len(self.selectedInstallItems) if self.selectedInstallItems else ""
+					case self.MODE_UPDATE:
+						if package in self.selectedUpdateItems:
+							self.selectedUpdateItems.remove(package)
+						else:
+							self.selectedUpdateItems.append(package)
+					case _:
+						pass
+			self.displayPluginList(self.pluginList, False)
 			removeText = ngettext("%d package marked for remove.", "%d packages marked for remove.", len(self.selectedRemoveItems)) % len(self.selectedRemoveItems) if self.selectedRemoveItems else ""
-			markedText = installText if installText else removeText
-			markedText = "\n%s" % markedText if markedText else ""
-			self["description"].setText("%s%s" % (self.descriptionText, markedText))
+			installText = ngettext("%d package marked for install.", "%d packages marked for install.", len(self.selectedInstallItems)) % len(self.selectedInstallItems) if self.selectedInstallItems else ""
+			updateText = ngettext("%d package marked for update.", "%d packages marked for update.", len(self.selectedUpdateItems)) % len(self.selectedUpdateItems) if self.selectedUpdateItems else ""
+			markedText = installText or removeText or updateText
+			markedText = f"\n{markedText}" if markedText else ""
+			self["description"].setText(f"{self.descriptionText}{markedText}")
 
 	def keyGreen(self):
+		def confirmSelection(prompt, items, default):
+			if len(items) > 15:
+				items = "'\n    '".join(items[0:15])
+				items = f"'{items}'\n    ..."
+			else:
+				items = "'\n    '".join(items)
+				items = f"'{items}'"
+			self.session.openWithCallback(keyGreenCallback, MessageBox, text=f"{prompt}\n    {items}", default=default, windowTitle=self.getTitle())
+
 		def keyGreenCallback(answer):
 			if answer:
 				args = {}
-				if self.type in (self.REMOVE, self.MANAGE) and (self.selectedRemoveItems or current[self.PLUGIN_INSTALLED]):
+				if self.mode in (self.MODE_REMOVE, self.MODE_MANAGE) and (self.selectedRemoveItems or current[self.PLUGIN_INSTALLED]):
 					args["arguments"] = self.selectedRemoveItems or [package]
-					args["options"] = ["--autoremove", "--force-depends"]
+					args["options"] = {"remove": ["--autoremove", "--force-depends"]}
 					if package.startswith("bootlogo-"):
-						args["options"].append("--force-remove")
+						args["options"]["remove"].append("--force-remove")
+					# args["debugMode"] = True
 					# args["testMode"] = True
-					self.opkgComponent.runCmd(OpkgComponent.CMD_REMOVE, args)
-					text = _("Please wait while the plugin is removed.")
-				elif self.type in (self.DOWNLOAD, self.MANAGE) and (self.selectedInstallItems or not current[self.PLUGIN_INSTALLED]):
+					self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, args)
+					text = ngettext("Please wait while the plugin is removed.", "Please wait while the plugins are removed.", len(args["arguments"]))
+				elif self.mode in (self.MODE_INSTALL, self.MODE_MANAGE) and (self.selectedInstallItems or not current[self.PLUGIN_INSTALLED]):
 					oldPackage = None
 					if package.startswith("enigma2-plugin-bootlogo-") and self.currentBootLogo:
 						oldPackage = self.currentBootLogo
-						args["options"] = ["--autoremove", "--force-depends", "--force-remove"]
+						args["options"] = {"remove": ["--autoremove", "--force-depends", "--force-remove"]}
 					elif package.startswith("enigma2-plugin-settings-") and self.currentSettings:
 						oldPackage = self.currentSettings
-						args["options"] = ["--autoremove", "--force-depends"]
+						args["options"] = {"remove": ["--autoremove", "--force-depends"]}
 						self.reloadSettings = True
 					elif package.startswith("enigma2-plugin-picons-") and config.usage.piconInstallLocation.value:
 						location = config.usage.piconInstallLocation.value
@@ -984,24 +1134,27 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 								if not exists(srcDir):
 									makedirs(srcDir, mode=0o755, exist_ok=True)
 						except OSError as err:
-							print("[PluginAction] Error %d: Unable to create picon location!  (%s)" % (err.errno, err.strerror))
+							print(f"[PluginBrowser] PackageAction Error {err.errno}: Unable to create picon location!  ({err.strerror})")
 					if oldPackage:
 						args["arguments"] = [oldPackage, package]
+						# args["debugMode"] = True
 						# args["testMode"] = True
-						self.opkgComponent.runCmd(OpkgComponent.CMD_REPLACE, args)
+						self.opkgComponent.runCommand(self.opkgComponent.CMD_REPLACE, args)
 						text = _("Please wait while the plugin is replaced.")
 					else:
 						args["arguments"] = self.selectedInstallItems or [package]
+						# args["debugMode"] = True
 						# args["testMode"] = True
-						self.opkgComponent.runCmd(OpkgComponent.CMD_INSTALL, args)
-						text = _("Please wait while the plugin is downloaded.")
-						if package.startswith("enigma2-plugin-settings-"):
+						self.opkgComponent.runCommand(self.opkgComponent.CMD_INSTALL, args)
+						text = ngettext("Please wait while the plugin is installed.", "Please wait while the plugins are installed.", len(args["arguments"]))
+						if package.startswith("enigma2-plugin-settings-"):  # TODO: Isn't this done above?  Also, same issue as above!
 							self.reloadSettings = True
-				elif self.type == self.UPDATE and (self.selectedInstallItems or current[self.PLUGIN_UPGRADABLE]):
+				elif self.mode == self.MODE_UPDATE and (self.selectedInstallItems or current[self.PLUGIN_UPGRADABLE]):
 					args["arguments"] = self.selectedInstallItems or [package]
-					args["options"] = ["--force-overwrite"]
+					args["options"] = {"install": ["--force-overwrite"]}
+					# args["debugMode"] = True
 					# args["testMode"] = True
-					self.opkgComponent.runCmd(OpkgComponent.CMD_UPDATE, args)
+					self.opkgComponent.runCommand(self.opkgComponent.CMD_UPDATE, args)
 					text = _("Please wait while the plugin is updated.")
 				self.setWaiting(text)
 				self.logData = ""
@@ -1009,42 +1162,38 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 				self.selectedRemoveItems = []
 
 		current = self["plugins"].getCurrent()
-		if self.selectedRemoveItems and self.selectedInstallItems:  # Mixing install and remove is currently not possible.
+		if self.selectedRemoveItems and self.selectedInstallItems and self.selectedUpdateItems:  # Mixing install, remove and update is currently not possible.
 			pass
-		elif self.selectedInstallItems:
-			text = _("Do you want to download '%s'?") % ", ".join(self.selectedInstallItems)
-			default = True
-			package = " ".join(self.selectedInstallItems)
-			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
 		elif self.selectedRemoveItems:
-			text = _("Do you want to remove '%s'?") % ", ".join(self.selectedRemoveItems)
-			default = False
-			package = " ".join(self.selectedRemoveItems)
-			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
+			confirmSelection(_("Do you want to remove:"), self.selectedRemoveItems, False)
+		elif self.selectedInstallItems:
+			confirmSelection(_("Do you want to install:"), self.selectedInstallItems, True)
+		elif self.selectedUpdateItems:
+			confirmSelection(_("Do you want to update:"), self.selectedUpdateItems, True)
 		elif current:
 			package = current[self.PLUGIN_PACKAGE]
-			if self.type in (self.REMOVE, self.MANAGE) and current[self.PLUGIN_INSTALLED]:
-				text = _("Do you want to remove '%s'?") % package
+			if self.mode in (self.MODE_REMOVE, self.MODE_MANAGE) and current[self.PLUGIN_INSTALLED]:
+				text = f"{_('Do you want to remove:')}\n   '{package}'"
 				default = False
-			elif self.type in (self.DOWNLOAD, self.MANAGE) and not current[self.PLUGIN_INSTALLED]:
+			elif self.mode in (self.MODE_INSTALL, self.MODE_MANAGE) and not current[self.PLUGIN_INSTALLED]:
 				oldPackage = None
 				if package.startswith("enigma2-plugin-bootlogo-") and self.currentBootLogo:
 					oldPackage = self.currentBootLogo
 				elif package.startswith("enigma2-plugin-settings-") and self.currentSettings:
 					oldPackage = self.currentSettings
 				if oldPackage:
-					text = _("Do you want to replace '%s' with '%s?") % (oldPackage, package)
+					text = f"{_('Do you want to replace:')}\n    '{oldPackage}'\nwith:\n    '{package}'"
 					default = False
 				else:
-					text = _("Do you want to download '%s'?") % package
+					text = f"{_('Do you want to install:')}\n    '{package}'"
 					default = True
-			elif self.type == self.UPDATE and current[self.PLUGIN_UPGRADABLE]:
-				text = _("Do you want to update '%s'?") % package
+			elif self.mode == self.MODE_UPDATE and current[self.PLUGIN_UPGRADABLE]:
+				text = f"{_('Do you want to update:')}\n    '{package}'"
 				default = False
 			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
 
-	def keyYellow(self):
-		self.session.open(PluginActionLog, self.logData)
+	def keyShowLog(self):
+		self.session.open(PackageActionLog, self.logData)
 
 	def keyPreviousCategory(self):
 		current = self["plugins"].getCurrent()
@@ -1064,45 +1213,68 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 				self["plugins"].goLineDown()
 				current = self["plugins"].getCurrent()
 
-	def fetchOpkgDataCallback(self, event, parameter):
+	def fetchOpkgDataCallback(self, event, eventData):
 		match event:
-			case OpkgComponent.EVENT_BOOTLOGO_FOUND:
-				print("[PluginBrowser] Bootlogo package '%s' found." % parameter)
-				self.currentBootLogo = parameter
-			case OpkgComponent.EVENT_SETTINGS_FOUND:
-				print("[PluginBrowser] Settings package '%s' found." % parameter)
-				self.currentSettings = parameter
-			case OpkgComponent.EVENT_LOG:
-				print("[PluginBrowser] Command log data added to log screen.")
-				self.logData = "%s%s" % (self.logData, parameter)
-			case OpkgComponent.EVENT_LIST_INSTALLED_DONE | OpkgComponent.EVENT_LIST_INSTALLABLE_DONE | OpkgComponent.EVENT_LIST_UPDATES_DONE | OpkgComponent.EVENT_INFO_DONE:
-				self.processListCallback(parameter)  # The parameter is a list of dictionary items for each package processed.
-			case OpkgComponent.EVENT_REMOVE_DONE:
-				print("[PluginBrowser] Package(s) '%s' removed." % "', '".join(parameter))
-				self.opkgComponent.runCmd(OpkgComponent.CMD_INFO if self.type == self.MANAGE else OpkgComponent.CMD_LIST_INSTALLED, self.opkgFilterArguments)
-			case OpkgComponent.EVENT_DOWNLOAD_DONE:
-				print("[PluginBrowser] Package(s) '%s' downloaded." % "', '".join(parameter))
-				self.opkgComponent.runCmd(OpkgComponent.CMD_INFO if self.type == self.MANAGE else OpkgComponent.CMD_LIST_INSTALLABLE, self.opkgFilterArguments)
-			case OpkgComponent.EVENT_UPDATE_DONE:
-				print("[PluginBrowser] Package(s) '%s' updated." % "', '".join(parameter))
-				self.opkgComponent.runCmd(OpkgComponent.CMD_INFO if self.type == self.MANAGE else OpkgComponent.CMD_LIST_UPDATES, self.opkgFilterArguments)
-			case OpkgComponent.EVENT_OPKG_MISMATCH:
-				print("[PluginBrowser] Command '%s' downloading '%s' returned a mismatch error!  (Got %s bytes, expected %s bytes)" % parameter)
-			case OpkgComponent.EVENT_CANT_INSTALL:
-				print("[PluginBrowser] Command '%s' downloading '%s' returned a installation error!" % parameter)
-			case OpkgComponent.EVENT_NETWORK_ERROR:
-				print("[PluginBrowser] Command '%s' downloading '%s' returned a network error!  (Wget error %s)" % parameter)
-			case OpkgComponent.EVENT_DONE:
-				print("[PluginBrowser] Opkg command '%s' completed." % self.opkgComponent.getCommandText(parameter))
-				self.setWaiting(None)
-			case OpkgComponent.EVENT_ERROR:
-				print("[PluginBrowser] Opkg command '%s' error!  (%s)" % (parameter[1], self.opkgComponent.getCommandText(parameter[0])))
+			case self.opkgComponent.EVENT_LIST_INSTALLED_DONE | self.opkgComponent.EVENT_LIST_INSTALLABLE_DONE | self.opkgComponent.EVENT_LIST_UPDATES_DONE | self.opkgComponent.EVENT_INFO_DONE:
+				# print(f"[PluginBrowser] PackageAction DEBUG: '{self.opkgComponent.getCommandText(self.opkgComponent.command)}' returned event '{self.opkgComponent.getEventText(event)}' with {len(eventData)} parameters.")
+				self.processListCallback(eventData)  # The eventData is a list of dictionary items for each package processed.
+			case self.opkgComponent.EVENT_LOG:
+				print("[PluginBrowser] PackageAction: Command log data added to log screen.")
+				self.logData = f"{self.logData}{eventData}"
+			# case self.opkgComponent.EVENT_DOWNLOAD:
+			# 	print(f"[PluginBrowser] PackageAction: Downloading package '{eventData}'.")
+			# case self.opkgComponent.EVENT_FEED_UPDATED:
+			# 	print(f"[PluginBrowser] PackageAction: Updated feed package '{eventData}'.")
+			case self.opkgComponent.EVENT_DOWNLOAD | self.opkgComponent.EVENT_FEED_UPDATED | self.opkgComponent.EVENT_REFRESH_DONE:
+				pass  # Ignore the feed download and updated messages.
+			case self.opkgComponent.EVENT_BOOTLOGO_FOUND:
+				print(f"[PluginBrowser] PackageAction: Bootlogo package '{eventData}' found.")
+				self.currentBootLogo = eventData
+			case self.opkgComponent.EVENT_SETTINGS_FOUND:
+				print(f"[PluginBrowser] PackageAction: Settings package '{eventData}' found.")
+				self.currentSettings = eventData
+			case self.opkgComponent.EVENT_REMOVE:
+				# print(f"[PluginBrowser] PackageAction: Removing package '{eventData}'.")
+				pass  # Ignore the removed items as they will be in the log.
+			case self.opkgComponent.EVENT_INSTALL:
+				# print(f"[PluginBrowser] PackageAction: Installing package '{eventData}'.")
+				pass  # Ignore the installing items as they will be in the log.
+			case self.opkgComponent.EVENT_CONFIGURING:
+				# print(f"[PluginBrowser] PackageAction: Configuring package '{eventData}'.")
+				pass  # Ignore the configuring items as they will be in the log.
+			case self.opkgComponent.EVENT_UPDATE:
+				print(f"[PluginBrowser] PackageAction: Updating package '{eventData[0]}' from version {eventData[1]} to version {eventData[2]}.")
+			case self.opkgComponent.EVENT_REMOVE_DONE:
+				print("[PluginBrowser] PackageAction: Package(s) '%s' removed." % "', '".join(eventData))
+				self.nextCommand = self.opkgComponent.CMD_INFO if self.mode == self.MODE_MANAGE else self.opkgComponent.CMD_LIST_INSTALLED
+			case self.opkgComponent.EVENT_INSTALL_DONE:
+				print("[PluginBrowser] PackageAction: Package(s) '%s' installed." % "', '".join(eventData))
+				self.nextCommand = self.opkgComponent.CMD_INFO if self.mode == self.MODE_MANAGE else self.opkgComponent.CMD_LIST_INSTALLABLE
+			case self.opkgComponent.EVENT_UPDATE_DONE:
+				print("[PluginBrowser] PackageAction: Package(s) '%s' updated." % "', '".join(eventData))
+				self.nextCommand = self.opkgComponent.CMD_INFO if self.mode == self.MODE_MANAGE else self.opkgComponent.CMD_LIST_UPDATES
+			case self.opkgComponent.EVENT_OPKG_MISMATCH:
+				print(f"[PluginBrowser] PackageAction: Command '{eventData[0]}' downloading '{eventData[1]}' returned a mismatch error!  (Got {eventData[2]} bytes, expected {eventData[3]} bytes)")
+			case self.opkgComponent.EVENT_CANT_INSTALL:
+				print(f"[PluginBrowser] PackageAction: Command '{eventData[0]}' downloading '{eventData[1]}' returned a installation error!")
+			case self.opkgComponent.EVENT_NETWORK_ERROR:
+				print(f"[PluginBrowser] PackageAction: Command '{eventData[0]}' downloading '{eventData[1]}' returned a network error!  (Wget error {eventData[2]})")
+			case self.opkgComponent.EVENT_OPKG_IN_USE:
+				print(f"[PluginBrowser] PackageAction Error: Opkg is already running when trying to run command '{eventData[1]}'!  ({self.opkgComponent.getCommandText(eventData[0])})")
+			case self.opkgComponent.EVENT_DONE:
+				# print(f"[PluginBrowser] PackageAction: Opkg command '{self.opkgComponent.getCommandText(eventData)}' completed.")
+				if hasattr(self, "nextCommand"):
+					self.opkgComponent.runCommand(self.nextCommand, self.opkgFilterArguments)
+					del self.nextCommand
+				else:
+					self.setWaiting(None)
+					haveLogs = self.logData != ""
+					self["logAction"].setEnabled(haveLogs)
+					self["key_yellow"].setText(_("Show Log") if haveLogs else "")
+			case self.opkgComponent.EVENT_ERROR:
+				print(f"[PluginBrowser] PackageAction: Opkg command '{eventData[1]}' error!  ({self.opkgComponent.getCommandText(eventData[0])})")
 			case _:
-				print("[PluginBrowser] Opkg command '%s' returned event '%s'." % (self.opkgComponent.getCommandText(self.opkgComponent.currentCommand), self.opkgComponent.getEventText(event)))
-
-		haveLogs = self.logData != ""
-		self["logAction"].setEnabled(haveLogs)
-		self["key_yellow"].setText(_("Show Log") if haveLogs else "")
+				print(f"[PluginBrowser] PackageAction: Opkg command '{self.opkgComponent.getCommandText(self.opkgComponent.command)}' returned event '{self.opkgComponent.getEventText(event)}'.")
 
 	# Opkg info returns data with any of the possible keys:
 	# 	"Package",  "Version",  "Depends",  "Pre-Depends",  "Recommends",  "Suggests",  "Provides",  "Replaces",  "Conflicts",
@@ -1111,13 +1283,13 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 	# Only "Package" is guaranteed to be always be present.
 	#
 	def processListCallback(self, packages):
-		pluginList = []
 		allCount = 0
 		installCount = 0
 		updateCount = 0
+		pluginList = []
 		for package in packages:
 			packageFile = package["Package"]
-			if self.displayFilter.search(packageFile) and self.displayExclude.search(packageFile) is None:
+			if (self.displayFilter is None or self.displayFilter.search(packageFile)) and self.displayExclude.search(packageFile) is None:
 				allCount += 1
 				parts = packageFile.split("-")
 				count = len(parts)
@@ -1129,8 +1301,13 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 						packageCategory = "kernel"
 						packageName = ("-".join(parts[2:])).replace(self.kernelVersion, "")
 				else:
-					print("[PluginBrowser] Error: Plugin package '%s' has no name!" % packageFile)
-					continue
+					if self.modeData[self.DATA_MODE] == self.MODE_PACKAGE:
+						packageCategory = package.get("Section", "")
+						packageName = packageFile
+					else:
+						print(f"[PluginBrowser] PackageAction Error: Plugin package '{packageFile}' has no name!")
+						continue
+				# print(f"[PluginBrowser] PackageAction DEBUG: Package='{packageFile}', Name='{packageName}', Category='{packageCategory}'.")
 				packageDescription = package["Description"] if "Description" in package else ""
 				packageVersion = package["Version"] if "Version" in package else ""
 				packageInstalled = package["Installed"] if "Installed" in package else False
@@ -1141,23 +1318,23 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 					updateCount += 1
 				data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
 				pluginList.append(data)
-		# self.setWaiting(None)
-		print("[PluginBrowser] Packages: %d returned from opkg, %d matched, %d installed, %d have updates." % (len(packages), allCount, installCount, updateCount))
+		print(f"[PluginBrowser] PackageAction Packages: {len(packages)} returned from opkg, {allCount} matched, {installCount} installed, {updateCount} have updates.")
 		installedText = ngettext("%d package installed.", "%d packages installed.", installCount) % installCount
 		updateText = ngettext("%d package has an update", "%d packages have updates.", updateCount) % updateCount
-		if self.type == self.REMOVE:
-			self.descriptionText = installedText
-		elif self.type == self.DOWNLOAD:
-			self.descriptionText = ngettext("%d package installable.", "%d packages installable.", allCount) % allCount
-		elif self.type == self.UPDATE:
-			self.descriptionText = updateText
-		else:
-			self.descriptionText = "%s %s %s" % (ngettext("%d package found.", "%d packages found.", allCount) % allCount, installedText, updateText)
+		match self.mode:
+			case self.MODE_REMOVE:
+				self.descriptionText = installedText
+			case self.MODE_INSTALL:
+				self.descriptionText = ngettext("%d package installable.", "%d packages installable.", allCount) % allCount
+			case self.MODE_UPDATE:
+				self.descriptionText = updateText
+			case _:
+				self.descriptionText = f"{ngettext('%d package found.', '%d packages found.', allCount) % allCount} {installedText} {updateText}"
 		self["description"].setText(self.descriptionText)
-		self.displayPluginList(pluginList)
+		self.displayPluginList(pluginList, True)
 		self.pluginList = pluginList
 
-	def displayPluginList(self, pluginList):
+	def displayPluginList(self, pluginList, initialLoad):
 		categories = {}
 		for info in pluginList:
 			category = info[self.INFO_CATEGORY]
@@ -1165,10 +1342,26 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 				categories[category].append(info)
 			else:
 				categories[category] = [info]
+		# categoryList = sorted(categories.keys())  # This sorts the categories by their key.
+		categoryList = [y[1] for y in sorted([(self.modeData[self.DATA_CATEGORIES].get(x, _("Unknown Packages")), x) for x in categories.keys()])]  # This sorts the categories by their label.
+		count = len(categoryList)
+		if initialLoad:
+			autoExpand = 1
+			match autoExpand:  # config.pluginBrowser.autoExpand.value
+				case 1:
+					if count == 1:
+						self.expanded.append(categoryList[0])
+				case 2:
+					self.expanded.append(categoryList[0])
+				case 3:
+					for category in categoryList:
+						self.expanded.append(category)
+				case _:
+					pass
 		plugins = []
-		for category in sorted(categories.keys()):
+		for category in categoryList:
 			if category in self.expanded:
-				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandedIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None, None))
+				plugins.append((category, category, self.modeData[self.DATA_CATEGORIES].get(category, category), None, None, None, self.expandedIcon, None, self.modeData[self.DATA_CATEGORIES].get(category, category), None, None, None))
 				for info in sorted(categories[category], key=lambda x: x[self.INFO_PACKAGE]):
 					installed = info[self.INFO_INSTALLED]
 					icon = self.installedIcon if installed else self.installableIcon
@@ -1180,7 +1373,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 						icon = self.removeIcon
 					version = info[self.INFO_VERSION]
 					if version.startswith("experimental-"):
-						version = "exp-%s" % version[13:]
+						version = f"exp-{version[13:]}"
 					version = version.replace("devel", "dev")
 					version = version.replace("-git", "+git")
 					parts = version.split("+")
@@ -1188,9 +1381,9 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 						if part.startswith("git"):
 							parts.remove(part)
 					version = "+".join(parts)
-					plugins.append((info[self.INFO_PACKAGE], None, None, info[self.INFO_NAME], info[self.INFO_DESCRIPTION], version, self.verticalIcon, icon, PACKAGE_CATEGORIES.get(category, category), info[self.INFO_INSTALLED], info[self.INFO_UPGRADE], "%s (%s)" % (info[self.INFO_NAME], version)))
+					plugins.append((info[self.INFO_PACKAGE], None, None, info[self.INFO_NAME], info[self.INFO_DESCRIPTION], version, self.verticalIcon, icon, self.modeData[self.DATA_CATEGORIES].get(category, category), info[self.INFO_INSTALLED], info[self.INFO_UPGRADE], f"{info[self.INFO_NAME]} ({version})"))
 			else:
-				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandableIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None, None))
+				plugins.append((category, category, self.modeData[self.DATA_CATEGORIES].get(category, category), None, None, None, self.expandableIcon, None, self.modeData[self.DATA_CATEGORIES].get(category, category), None, None, None))
 		self["plugins"].setList(plugins)
 
 	def setWaiting(self, text):
@@ -1220,7 +1413,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			self.selectByStart()
 			self.quickSelectPos += 1
 		char = self.getKey(digit)  # Get char and append to text.
-		self.quickSelect = "%s%s" % (self.quickSelect[:self.quickSelectPos], str(char))
+		self.quickSelect = f"{self.quickSelect[:self.quickSelectPos]}{str(char)}"
 		self["quickselect"].setText(self.quickSelect)
 		self["quickselect"].show()
 		self.quickSelectTimerType = 0
@@ -1252,13 +1445,18 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 					break
 
 	def createSummary(self):
-		return PluginActionSummary
+		return PackageActionSummary
 
 
-class PluginActionSummary(ScreenSummary):
+class PluginAction(PackageAction):
+	def __init__(self, session, mode=PackageAction.MODE_REMOVE):
+		PackageAction.__init__(self, session, mode=mode)
+
+
+class PackageActionSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
-		self.skinName = ["PluginActionSummary"]
+		self.skinName = ["PackageActionSummary"]
 		self["category"] = StaticText("")
 		self["name"] = StaticText("")
 		self["description"] = StaticText("")
@@ -1284,9 +1482,9 @@ class PluginActionSummary(ScreenSummary):
 			self["description"].setText("")
 
 
-class PluginActionLog(Screen, HelpableScreen):
+class PackageActionLog(Screen, HelpableScreen):
 	skin = """
-	<screen name="PluginActionLog" title="Plugin Action Log" position="center,center" size="950,590" resolution="1280,720">
+	<screen name="PackageActionLog" title="Plugin Action Log" position="center,center" size="950,590" resolution="1280,720">
 		<widget name="log" position="0,0" size="e,e-50" font="Regular;20" />
 		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
@@ -1299,6 +1497,7 @@ class PluginActionLog(Screen, HelpableScreen):
 	def __init__(self, session, logData):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		self.skinName = ["PackageActionLog", "PluginActionLog"]
 		self.setTitle(_("Plugin Action Log"))
 		self["log"] = ScrollLabel()
 		self["log"].setText(logData)

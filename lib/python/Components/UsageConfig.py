@@ -40,7 +40,6 @@ def InitUsageConfig():
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 
 	config.misc.extraopkgpackages = ConfigYesNo(default=False)
-	config.misc.opkgcleanmode = ConfigYesNo(default=False)
 	config.misc.actionLeftRightToPageUpPageDown = ConfigYesNo(default=True)
 
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
