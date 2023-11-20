@@ -1,7 +1,5 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/DVDBurn
 
-SUBDIRS = meta
-
 install_PYTHON =	\
 	Bludisc.py \
 	MediumToolbox.py \

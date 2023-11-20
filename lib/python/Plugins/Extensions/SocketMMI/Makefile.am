@@ -1,4 +1,4 @@
-SUBDIRS = src meta
+SUBDIRS = src
 
 installdir = $(pkglibdir)/python/Plugins/Extensions/SocketMMI
 

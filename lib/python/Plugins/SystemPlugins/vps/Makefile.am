@@ -1,1 +1,1 @@
-SUBDIRS = src_cc src_py meta
+SUBDIRS = src_cc src_py
