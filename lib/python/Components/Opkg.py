@@ -308,9 +308,8 @@ class OpkgComponent:
 					elif line.startswith("Failed to download"):
 						self.callCallbacks(self.EVENT_ERROR, (self.command, self.opkgCommand))
 					elif line.startswith("Installing "):
-						if argc == 5:
-							if argv[1] in self.checklist:
-								self.installed.append(argv[1])
+						if argc == 5 and argv[1] in self.checklist:
+							self.installed.append(argv[1])
 						self.callCallbacks(self.EVENT_INSTALL, argv[1])
 					elif line.startswith("Not selecting "):
 						self.callCallbacks(self.EVENT_DESELECTED, argv[2])

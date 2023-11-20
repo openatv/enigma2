@@ -319,7 +319,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 	def createFeedConfig(self):
 		def createFeedConfigCallback(event, eventData):
 			if event == opkgComponent.EVENT_CLEAN_ERROR:
-				print(f"[PluginBrowser] Error: There was an issue in the feed update! Please reboot and check the file system for any errors.")
+				print("[PluginBrowser] Error: There was an issue in the feed update! Please reboot and check the file system for any errors.")
 			elif event in (opkgComponent.EVENT_DOWNLOAD, opkgComponent.EVENT_UPDATED):
 				print(f"[PluginBrowser] Feed '{eventData}' {'downloaded' if event == opkgComponent.EVENT_DOWNLOAD else 'updated'}.")
 			elif event == opkgComponent.EVENT_REFRESH_DONE:
@@ -1000,10 +1000,6 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 						self["description"].setText(_("No network adapters enabled/available!"))
 						print("[PluginBrowser] PackageAction Error: No network adapters enabled/available!")
 						self.setWaiting(None)
-					case _:
-						pass
-			case _:
-				pass
 
 	def selectionChanged(self):
 		label = ""
@@ -1085,8 +1081,6 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 							self.selectedUpdateItems.remove(package)
 						else:
 							self.selectedUpdateItems.append(package)
-					case _:
-						pass
 			self.displayPluginList(self.pluginList, False)
 			removeText = ngettext("%d package marked for remove.", "%d packages marked for remove.", len(self.selectedRemoveItems)) % len(self.selectedRemoveItems) if self.selectedRemoveItems else ""
 			installText = ngettext("%d package marked for install.", "%d packages marked for install.", len(self.selectedInstallItems)) % len(self.selectedInstallItems) if self.selectedInstallItems else ""
@@ -1147,7 +1141,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 						# args["testMode"] = True
 						self.opkgComponent.runCommand(self.opkgComponent.CMD_INSTALL, args)
 						text = ngettext("Please wait while the plugin is installed.", "Please wait while the plugins are installed.", len(args["arguments"]))
-						if package.startswith("enigma2-plugin-settings-"):  # TODO: Isn't this done above?  Also, same issue as above!
+						if package.startswith("enigma2-plugin-settings-"):  # Isn't this done above?  Also, same issue as above!
 							self.reloadSettings = True
 				elif self.mode == self.MODE_UPDATE and (self.selectedInstallItems or current[self.PLUGIN_UPGRADABLE]):
 					args["arguments"] = self.selectedInstallItems or [package]
@@ -1356,8 +1350,6 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 				case 3:
 					for category in categoryList:
 						self.expanded.append(category)
-				case _:
-					pass
 		plugins = []
 		for category in categoryList:
 			if category in self.expanded:
