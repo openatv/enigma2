@@ -1100,9 +1100,12 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 			self.session.openWithCallback(keyGreenCallback, MessageBox, text=f"{prompt}\n    {items}", default=default, windowTitle=self.getTitle())
 
 		def keyGreenCallback(answer):
+			package = self.selectedPackage
 			if answer:
 				args = {}
 				if self.mode in (self.MODE_REMOVE, self.MODE_MANAGE) and (self.selectedRemoveItems or current[self.PLUGIN_INSTALLED]):
+					if not package and len(self.selectedRemoveItems) == 1:
+						package = self.selectedRemoveItems[0]
 					args["arguments"] = self.selectedRemoveItems or [package]
 					args["options"] = {"remove": ["--autoremove", "--force-depends"]}
 					if package.startswith("bootlogo-"):
@@ -1113,6 +1116,8 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 					text = ngettext("Please wait while the plugin is removed.", "Please wait while the plugins are removed.", len(args["arguments"]))
 				elif self.mode in (self.MODE_INSTALL, self.MODE_MANAGE) and (self.selectedInstallItems or not current[self.PLUGIN_INSTALLED]):
 					oldPackage = None
+					if not package and len(self.selectedInstallItems) == 1:
+						package = self.selectedInstallItems[0]
 					if package.startswith("enigma2-plugin-bootlogo-") and self.currentBootLogo:
 						oldPackage = self.currentBootLogo
 						args["options"] = {"remove": ["--autoremove", "--force-depends", "--force-remove"]}
@@ -1156,6 +1161,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 				self.selectedRemoveItems = []
 
 		current = self["plugins"].getCurrent()
+		self.selectedPackage = ""
 		if self.selectedRemoveItems and self.selectedInstallItems and self.selectedUpdateItems:  # Mixing install, remove and update is currently not possible.
 			pass
 		elif self.selectedRemoveItems:
@@ -1184,6 +1190,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 			elif self.mode == self.MODE_UPDATE and current[self.PLUGIN_UPGRADABLE]:
 				text = f"{_('Do you want to update:')}\n    '{package}'"
 				default = False
+			self.selectedPackage = package
 			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
 
 	def keyShowLog(self):
