@@ -718,7 +718,7 @@ class International:
 	def getNIMCountries(self):
 		nimCountries = {}
 		for country in self.COUNTRY_DATA.keys():
-			nimCountries[self.COUNTRY_DATA[self.COUNTRY_ALPHA3]] = self.COUNTRY_DATA[self.COUNTRY_TRANSLATED]
+			nimCountries[self.COUNTRY_DATA[country][self.COUNTRY_ALPHA3]] = self.COUNTRY_DATA[country][self.COUNTRY_TRANSLATED]
 		return nimCountries
 
 	def addCallback(self, callback):
