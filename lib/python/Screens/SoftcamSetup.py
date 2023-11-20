@@ -70,6 +70,11 @@ class CamSetupCommon(Setup):
 		self["restartActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.restart, _("Immediately restart selected devices."))
 		}, prio=0, description=_("Softcam Actions"))
+		self["restartActions"].setEnabled(False)
+
+	def updateRestartButton(self, canrestart):
+		self["key_yellow"].setText(_("Restart") if canrestart else "")
+		self["restartActions"].setEnabled(canrestart)
 
 	def restart(self):
 		self.camctrl.restart()
@@ -80,7 +85,19 @@ class CamSetupCommon(Setup):
 		self.switchTimer.stop()
 		self.saveAll()
 		updateSysSoftCam()
-		self.close()
+		self["footnote"].setText(_("Restart finished"))
+
+	def updateButtons(self):  # This function needs to overwrite
+		pass
+
+	def selectionChanged(self):
+		self["footnote"].setText("")
+		self.updateButtons()
+		Setup.selectionChanged(self)
+
+	def changedEntry(self):
+		self.updateButtons()
+		Setup.changedEntry(self)
 
 
 class CardserverSetup(CamSetupCommon):
@@ -94,6 +111,9 @@ class CardserverSetup(CamSetupCommon):
 			defaultcardserver = ""
 		config.misc.cardservers = ConfigSelection(default=defaultcardserver, choices=cardservers)
 		CamSetupCommon.__init__(self, session=session, setup="Cardserver")
+
+	def updateButtons(self):
+		self.updateRestartButton(config.misc.cardservers.value and config.misc.cardservers.value.lower() != "none")
 
 	def keySave(self):
 		if config.misc.cardservers.value != self.camctrl.current():
@@ -130,14 +150,6 @@ class SoftcamSetup(CamSetupCommon):
 		self.EcmInfoPollTimer.start(1000)
 		self.onShown.append(self.updateButtons)
 
-	def selectionChanged(self):
-		self.updateButtons()
-		Setup.selectionChanged(self)
-
-	def changedEntry(self):
-		self.updateButtons()
-		Setup.changedEntry(self)
-
 	def keySave(self):
 		if config.misc.softcams.value != self.camctrl.current():
 			self.camctrl.switch(config.misc.softcams.value)
@@ -145,12 +157,10 @@ class SoftcamSetup(CamSetupCommon):
 			self.switchTimer.start(500, False)
 
 	def updateButtons(self):
-		if self.getCurrentItem() == config.misc.softcams and config.misc.softcams.value and config.misc.softcams.value.lower() != "none":
-			self["key_blue"].setText(_("Info"))
-			self["infoActions"].setEnabled(True)
-		else:
-			self["key_blue"].setText("")
-			self["infoActions"].setEnabled(False)
+		valid = config.misc.softcams.value and config.misc.softcams.value.lower() != "none"
+		self["key_blue"].setText(_("Info") if valid else "")
+		self["infoActions"].setEnabled(valid)
+		self.updateRestartButton(valid)
 
 	def softcamInfo(self):
 		ppanelFilename = "/etc/ppanels/%s.xml" % config.misc.softcams.value
