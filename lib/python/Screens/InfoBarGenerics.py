@@ -3913,8 +3913,9 @@ class InfoBarInstantRecord:
 		recording.marginBefore = 0
 		recording.dontSave = True
 		recording.eventBegin = recording.begin
-		recording.marginAfter = (config.recording.margin_after.value * 60) if event and limitEvent else 0
-		recording.eventEnd = recording.end - recording.marginAfter
+		if not limitEvent:
+			recording.marginAfter = 0
+			recording.eventEnd = recording.end
 
 		if event is None or limitEvent is False:
 			recording.autoincrease = True
@@ -4016,7 +4017,7 @@ class InfoBarInstantRecord:
 	def setEndtime(self, entry):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].end)
+			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].eventEnd)
 			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, self.endtime)
 			dlg.setTitle(_("Please change recording endtime"))
 
@@ -4028,6 +4029,7 @@ class InfoBarInstantRecord:
 				entry.autoincrease = False
 			entry.end = ret[1]
 			entry.eventEnd = entry.end
+			entry.marginAfter = 0
 			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
