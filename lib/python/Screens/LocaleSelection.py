@@ -556,6 +556,11 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 		self.updateLocaleList(self.currentLocale)
 		self.keySave()
 
+	def selectKeys(self):
+		self.clearSelectedKeys()
+		self.selectKey("UP")
+		self.selectKey("DOWN")
+
 	def changed(self):
 		self.run(justlocal=True)
 		self.setText()
