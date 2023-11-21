@@ -331,7 +331,7 @@ class PliExtraInfo(Converter, Poll):
 		return "DVB-T" in feRaw.get("tuner_type") and feData.get("channel") or ""
 
 	def createSymbolRate(self, feData, feRaw):
-		return feData.get("bandwidth" if "DVB-T" in feRaw.get("tuner_type") else "symbol_rate", "")
+		return str(feData.get("bandwidth" if "DVB-T" in feRaw.get("tuner_type") else "symbol_rate", ""))
 
 	def createPolarization(self, feData):
 		return feData.get("polarization_abbreviation") or ""
@@ -506,8 +506,7 @@ class PliExtraInfo(Converter, Poll):
 				self.createFrequency(feData),
 				self.createPolarization(feData),
 				self.createSymbolRate(feData, feRaw),
-				f"{self.createModulation(feData)}-",
-				self.createFEC(feData, feRaw)
+				f"{self.createModulation(feData)}-{self.createFEC(feData, feRaw)}"
 			])
 		if self.type == "PIDInfo":
 			return self.createPIDInfo(info)
