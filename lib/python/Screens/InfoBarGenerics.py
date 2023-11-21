@@ -4029,6 +4029,7 @@ class InfoBarInstantRecord:
 				entry.autoincrease = False
 			entry.end = ret[1]
 			entry.eventEnd = entry.end
+			entry.marginAfter = 0
 			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
