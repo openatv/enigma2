@@ -858,7 +858,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 			self.MODE_UPDATE: _("Plugin Browser Update Actions"),
 			self.MODE_MANAGE: _("%s Browser Manage Actions") % self.modeData[self.DATA_UPPER_SINGULAR]
 		}.get(self.mode, _("Unknown"))
-		self["actions"] = HelpableActionMap(self, ["SelectCancelActions", "ColorActions"], {
+		self["actions"] = HelpableActionMap(self, ["SelectCancelActions"], {
 			"cancel": (self.keyCancel, _("Close the screen"))
 		}, prio=0, description=description)
 		buttonHelp = {
@@ -1100,31 +1100,26 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 			self.session.openWithCallback(keyGreenCallback, MessageBox, text=f"{prompt}\n    {items}", default=default, windowTitle=self.getTitle())
 
 		def keyGreenCallback(answer):
-			package = self.selectedPackage
 			if answer:
 				args = {}
-				if self.mode in (self.MODE_REMOVE, self.MODE_MANAGE) and (self.selectedRemoveItems or current[self.PLUGIN_INSTALLED]):
-					if not package and len(self.selectedRemoveItems) == 1:
-						package = self.selectedRemoveItems[0]
-					args["arguments"] = self.selectedRemoveItems or [package]
+				if self.selectedRemoveItems:
+					args["arguments"] = self.selectedRemoveItems
 					args["options"] = {"remove": ["--autoremove", "--force-depends"]}
-					if package.startswith("bootlogo-"):
+					if self.selectedRemoveItems[0].startswith("bootlogo-"):
 						args["options"]["remove"].append("--force-remove")
 					# args["debugMode"] = True
 					# args["testMode"] = True
 					self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, args)
 					text = ngettext("Please wait while the plugin is removed.", "Please wait while the plugins are removed.", len(args["arguments"]))
-				elif self.mode in (self.MODE_INSTALL, self.MODE_MANAGE) and (self.selectedInstallItems or not current[self.PLUGIN_INSTALLED]):
-					oldPackage = None
-					if not package and len(self.selectedInstallItems) == 1:
-						package = self.selectedInstallItems[0]
+				elif self.selectedInstallItems:
+					package = self.selectedInstallItems[0]
+					replace = False
 					if package.startswith("enigma2-plugin-bootlogo-") and self.currentBootLogo:
-						oldPackage = self.currentBootLogo
+						replace = True
 						args["options"] = {"remove": ["--autoremove", "--force-depends", "--force-remove"]}
 					elif package.startswith("enigma2-plugin-settings-") and self.currentSettings:
-						oldPackage = self.currentSettings
+						replace = True
 						args["options"] = {"remove": ["--autoremove", "--force-depends"]}
-						self.reloadSettings = True
 					elif package.startswith("enigma2-plugin-picons-") and config.usage.piconInstallLocation.value:
 						location = config.usage.piconInstallLocation.value
 						try:
@@ -1134,22 +1129,19 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 									makedirs(srcDir, mode=0o755, exist_ok=True)
 						except OSError as err:
 							print(f"[PluginBrowser] PackageAction Error {err.errno}: Unable to create picon location!  ({err.strerror})")
-					if oldPackage:
-						args["arguments"] = [oldPackage, package]
-						# args["debugMode"] = True
-						# args["testMode"] = True
+					args["arguments"] = self.selectedInstallItems
+					# args["debugMode"] = True
+					# args["testMode"] = True
+					if replace:
 						self.opkgComponent.runCommand(self.opkgComponent.CMD_REPLACE, args)
 						text = _("Please wait while the plugin is replaced.")
 					else:
-						args["arguments"] = self.selectedInstallItems or [package]
-						# args["debugMode"] = True
-						# args["testMode"] = True
 						self.opkgComponent.runCommand(self.opkgComponent.CMD_INSTALL, args)
 						text = ngettext("Please wait while the plugin is installed.", "Please wait while the plugins are installed.", len(args["arguments"]))
-						if package.startswith("enigma2-plugin-settings-"):  # Isn't this done above?  Also, same issue as above!
-							self.reloadSettings = True
-				elif self.mode == self.MODE_UPDATE and (self.selectedInstallItems or current[self.PLUGIN_UPGRADABLE]):
-					args["arguments"] = self.selectedInstallItems or [package]
+					if package.startswith("enigma2-plugin-settings-"):
+						self.reloadSettings = True
+				elif self.selectedUpdateItems:
+					args["arguments"] = self.selectedUpdateItems
 					args["options"] = {"install": ["--force-overwrite"]}
 					# args["debugMode"] = True
 					# args["testMode"] = True
@@ -1159,9 +1151,9 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 				self.logData = ""
 				self.selectedInstallItems = []
 				self.selectedRemoveItems = []
+				self.selectedUpdateItems = []
 
 		current = self["plugins"].getCurrent()
-		self.selectedPackage = ""
 		if self.selectedRemoveItems and self.selectedInstallItems and self.selectedUpdateItems:  # Mixing install, remove and update is currently not possible.
 			pass
 		elif self.selectedRemoveItems:
@@ -1173,6 +1165,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 		elif current:
 			package = current[self.PLUGIN_PACKAGE]
 			if self.mode in (self.MODE_REMOVE, self.MODE_MANAGE) and current[self.PLUGIN_INSTALLED]:
+				self.selectedRemoveItems = [package]
 				text = f"{_('Do you want to remove:')}\n   '{package}'"
 				default = False
 			elif self.mode in (self.MODE_INSTALL, self.MODE_MANAGE) and not current[self.PLUGIN_INSTALLED]:
@@ -1182,15 +1175,17 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 				elif package.startswith("enigma2-plugin-settings-") and self.currentSettings:
 					oldPackage = self.currentSettings
 				if oldPackage:
+					self.selectedInstallItems = [oldPackage, package]
 					text = f"{_('Do you want to replace:')}\n    '{oldPackage}'\nwith:\n    '{package}'"
 					default = False
 				else:
+					self.selectedInstallItems = [package]
 					text = f"{_('Do you want to install:')}\n    '{package}'"
 					default = True
 			elif self.mode == self.MODE_UPDATE and current[self.PLUGIN_UPGRADABLE]:
+				self.selectedUpdateItems = [package]
 				text = f"{_('Do you want to update:')}\n    '{package}'"
 				default = False
-			self.selectedPackage = package
 			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
 
 	def keyShowLog(self):
