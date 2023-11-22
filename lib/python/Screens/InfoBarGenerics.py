@@ -3913,9 +3913,9 @@ class InfoBarInstantRecord:
 		recording.marginBefore = 0
 		recording.dontSave = True
 		recording.eventBegin = recording.begin
-		if not limitEvent:
-			recording.marginAfter = 0
-			recording.eventEnd = recording.end
+		recording.eventEnd = recording.end
+		recording.marginAfter = (config.recording.instantrecord_margin_after.value * 60) if event and limitEvent else 0
+		recording.end = recording.eventEnd + recording.marginAfter
 
 		if event is None or limitEvent is False:
 			recording.autoincrease = True

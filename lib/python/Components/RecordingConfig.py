@@ -13,6 +13,7 @@ def InitRecordingConfig():
 	config.recording.zap_margin_before = ConfigSelection(default=0, choices=choices)
 	config.recording.zap_margin_after = ConfigSelection(default=0, choices=choices)
 	config.recording.zap_has_endtime = ConfigYesNo(default=False)
+	config.recording.instantrecord_margin_after = ConfigSelection(default=0, choices=choices)
 	config.recording.ascii_filenames = ConfigYesNo(default=False)
 	config.recording.keep_timers = ConfigSelection(default=7, choices=[(x, ngettext("%d Day", "%d Days", x) % x) for x in range(1, 121)])
 	config.recording.filename_composition = ConfigSelection(default="standard", choices=[
