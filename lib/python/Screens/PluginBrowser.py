@@ -38,6 +38,7 @@ SOFTCAM_PREFIX = "enigma2-plugin-softcams-%s"
 KERNEL_PREFIX = "kernel-module-%s"
 
 PLUGIN_CATEGORIES = {
+	"": _("Other Packages"),
 	"display": _("Display Skin Packages"),
 	"drivers": _("Driver Packages"),
 	"extensions": _("Extension Packages"),
@@ -60,44 +61,40 @@ PLUGIN_CATEGORIES = {
 PACKAGE_CATEGORIES = {
 	"": _("Other Packages"),
 	"base": _("Base Packages"),
-	"base/utils": _("Base Utility Packages"),
+	# "base/utils": _("Base Utility Packages"),
 	"base/shell": _("Base Shell Packages"),
 	"console": _("Console Packages"),
-	"console/admin": _("Console Administrative Packages"),
-	"console/multimedia": _("Console Multimedia Packages"),
+	# "console/admin": _("Console Administrative Packages"),  # Now bundled into the "Other Packages" category.
+	# "console/multimedia": _("Console Multimedia Packages"),  # Now bundled into the "Other Packages" category.
 	"console/network": _("Console Network Packages"),
-	"console/tests": _("Console Test Packages"),
-	"console/tools": _("Console Tool Packages"),
 	"console/utils": _("Console Utility Packages"),
 	"devel": _("Development Packages"),
-	"devel/python": _("Development Python Packages"),
-	"devel/tcltk": _("Development TCL Toolkit Packages"),
-	"doc": _("Documentation Packages"),
-	"enigma2": _("Enigma2 Packages"),
-	"extra": _("Extra Packages"),
-	"font": _("Font Packages"),
-	"kernel/modules": _("Kernel Module Packages"),
+	"devel/python": _("Python Development Packages"),
+	# "doc": _("Documentation Packages"),  # Now bundled into the "Other Packages" category.
+	# "enigma2": _("Enigma2 Packages"),  # Now bundled into the "Other Packages" category.
+	# "font": _("Font Packages"),  # Now bundled into the "Other Packages" category.
+	"kernel": _("Kernel Packages"),
 	"libs": _("Library Packages"),
-	"libs/multimedia": _("Library Multimedia Packages"),
-	"libs/network": _("Library Network Packages"),
-	"misc": _("Miscellaneous Packages"),
 	"multimedia": _("Multimedia Packages"),
-	"net": _("Network (net) Packages"),
-	"network": _("Network (network) Packages"),
-	"networking": _("Networking Packages"),
-	"optional": _("Optional Packages"),
-	"otherosfs": _("File System Packages"),
+	"network": _("Network Packages"),
 	"plugin": _("Plugin Packages"),
-	"python-devel": _("Python Development Packages"),
-	"universe/otherosfs": _("File System Support Packages"),
+	"universe/otherosfs": _("File System Packages"),
 	"utils": _("Utility Packages"),
-	"x11": _("X11 Packages"),
-	"x11/base": _("X11 Base Packages"),
-	"x11/fonts": _("X11 Font Packages"),
-	"x11/gnome": _("X11 Gnome Packages"),
-	"x11/gnome/libs": _("X11 Gnome Library Packages"),
-	"x11/libs": _("X11 Library Packages"),
-	"x11/utils": _("X11 Utility Packages")
+	"x11": _("X11 Packages")
+}
+PACKAGE_CATEGORY_MAPPINGS = {
+	"console/tools": "console/utils",
+	"python-devel": "devel/python",
+	"net": "network",
+	"kernel/modules": "kernel",
+	"libs/multimedia": "libs",
+	"libs/network": "libs",
+	"x11/base": "x11",
+	"x11/fonts": "x11",
+	"x11/gnome": "x11",
+	"x11/gnome/libs": "x11",
+	"x11/libs": "x11",
+	"x11/utils": "x11"
 }
 
 PLUGIN_LIST = 0
@@ -947,7 +944,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 				opkgFilterArguments.append(KERNEL_PREFIX % "*")
 			displayFilter = []
 			for filter in sorted(PLUGIN_CATEGORIES.keys()):
-				if filter in ("extraopkgpackages", "src"):
+				if filter in ("", "extraopkgpackages", "src"):
 					continue
 				if getattr(config.pluginfilter, filter).value:
 					displayFilter.append((KERNEL_PREFIX % "")[:-1] if filter == "kernel" else self.modeData[self.DATA_FILTER] % filter)
@@ -1299,10 +1296,13 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 				else:
 					if self.modeData[self.DATA_MODE] == self.MODE_PACKAGE:
 						packageCategory = package.get("Section", "")
+						packageCategory = PACKAGE_CATEGORY_MAPPINGS.get(packageCategory, packageCategory)
 						packageName = packageFile
 					else:
 						print(f"[PluginBrowser] PackageAction Error: Plugin package '{packageFile}' has no name!")
 						continue
+				if packageCategory not in PLUGIN_CATEGORIES and packageCategory not in PACKAGE_CATEGORIES:
+					packageCategory = ""
 				# print(f"[PluginBrowser] PackageAction DEBUG: Package='{packageFile}', Name='{packageName}', Category='{packageCategory}'.")
 				packageDescription = package["Description"] if "Description" in package else ""
 				packageVersion = package["Version"] if "Version" in package else ""
