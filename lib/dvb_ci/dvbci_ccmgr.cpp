@@ -435,7 +435,7 @@ int eDVBCICcSession::data_req_handle_new(unsigned int id)
 {
 	switch (id)
 	{
-		case 22:
+		case AKH:
 		{
 			uint8_t akh[32], host_id[8];
 
@@ -452,6 +452,13 @@ int eDVBCICcSession::data_req_handle_new(unsigned int id)
 				if (!m_ci_elements.set(HOST_ID, host_id, 8))
 					eWarning("[CI%d RCC] can not set host_id in elements", m_slot->getSlotID());
 			}
+			break;
+		}
+		case CRITICAL_SEC_UPDATE:
+		{
+			uint8_t csu[1];
+			csu[0] = 0x00;
+			m_ci_elements.set(CRITICAL_SEC_UPDATE, csu, 1);
 			break;
 		}
 		default:
