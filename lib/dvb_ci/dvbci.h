@@ -70,6 +70,12 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	bool m_isCamMgrRoutingActive;
 	bool m_ciPlusRoutingDone;
 	int16_t m_ca_demux_id;
+	uint16_t m_program_number;
+	int m_video_pid;
+	int m_audio_pid;
+	int m_audio_number;
+	int m_audio_pids[16];
+	int m_tunernum;
 	eMainloop *m_context;
 	int m_ciplus_routing_tunernum;
 	std::string m_ciplus_routing_input;
@@ -97,7 +103,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	int cancelEnq();
 	int getMMIState();
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
-	int setCADemuxID(eDVBServicePMTHandler *pmthandler);
+	int setCaParameter(eDVBServicePMTHandler *pmthandler);
 	void removeService(uint16_t program_number=0xFFFF);
 	int setSource(const std::string &source);
 	int setClockRate(const std::string &rate);
@@ -119,10 +125,18 @@ public:
 	void setCAManager( eDVBCICAManagerSession *session );
 	void setCCManager( eDVBCICcSession *session );
 
+	int getFd() { return fd; };
 	int getSlotID();
 	int getNumOfServices();
 	int getVersion();
 	int16_t getCADemuxID() { return m_ca_demux_id; };
+	int getTunerNum() { return m_tunernum; };
+	int getUseCount() { return use_count; };
+	int getProgramNumber() { return (int)m_program_number; };
+	int getVideoPid() { return m_video_pid; };
+	int getAudioPid() { return m_audio_pid; };
+	int getAudioNumber() { return m_audio_number; };
+	int* getAudioPids() { return m_audio_pids; };
 };
 
 struct CIPmtHandler

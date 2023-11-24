@@ -778,7 +778,7 @@ void eDVBCICcSession::check_new_key()
 void eDVBCICcSession::set_descrambler_key()
 {
 	eDebug("[CI%d RCC] set_descrambler_key", m_slot->getSlotID());
-	bool set_key = (m_current_ca_demux_id != m_slot->getCADemuxID());
+	bool set_key = (m_current_ca_demux_id != m_slot->getCADemuxID()) || (m_slot->getTunerNum() > 7);
 
 	if (m_descrambler_fd != -1 && m_current_ca_demux_id != m_slot->getCADemuxID())
 	{
@@ -796,7 +796,7 @@ void eDVBCICcSession::set_descrambler_key()
 	if  (m_descrambler_fd != -1 && (set_key || m_descrambler_new_key))
 	{
 		eDebug("[CI%d RCC] setting key: new ca device: %d, new key: %d", m_slot->getSlotID(), set_key, m_descrambler_new_key);
-		descrambler_set_key(m_descrambler_fd, m_slot->getSlotID(), m_descrambler_odd_even, m_descrambler_key_iv);
+		descrambler_set_key(m_descrambler_fd, m_slot, m_descrambler_odd_even, m_descrambler_key_iv);
 		if (m_descrambler_new_key)
 		{
 			m_descrambler_new_key = false;
