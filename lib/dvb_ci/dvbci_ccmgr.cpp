@@ -297,6 +297,8 @@ void eDVBCICcSession::cc_sac_sync_req(const uint8_t *data, unsigned int len)
 	/* status OK */
 	dest[pos++] = 0;
 
+	set_descrambler_key();
+
 	cc_sac_send(sync_cnf_tag, dest, pos);
 }
 
@@ -766,7 +768,6 @@ void eDVBCICcSession::check_new_key()
 	m_descrambler_new_key = true;
 
 	eDVBCIInterfaces::getInstance()->revertCIPlusRouting(m_slot->getSlotID());
-	set_descrambler_key();
 
 	m_ci_elements.invalidate(KP);
 	m_ci_elements.invalidate(KEY_REGISTER);
