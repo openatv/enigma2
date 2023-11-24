@@ -2,6 +2,7 @@
 
 #include <lib/dvb_ci/dvbci_ccmgr.h>
 
+#include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb_ci/aes_xcbc_mac.h>
 #include <lib/dvb_ci/descrambler.h>
 #include <lib/dvb_ci/dvbci_ccmgr_helper.h>
@@ -757,6 +758,7 @@ void eDVBCICcSession::check_new_key()
 	m_descrambler_odd_even = slot;
 	m_descrambler_new_key = true;
 
+	eDVBCIInterfaces::getInstance()->revertCIPlusRouting(m_slot->getSlotID());
 	set_descrambler_key();
 
 	m_ci_elements.invalidate(KP);
