@@ -67,15 +67,28 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	bool user_mapped;
 	void data(int);
 	bool plugged;
+	bool m_isCamMgrRoutingActive;
+	bool m_ciPlusRoutingDone;
 	int16_t m_ca_demux_id;
 	eMainloop *m_context;
+	int m_ciplus_routing_tunernum;
+	std::string m_ciplus_routing_input;
+	std::string m_ciplus_routing_ci_input;
 
 	eDVBCIApplicationManagerSession *getAppManager() { return application_manager; }
 	eDVBCIMMISession *getMMIManager() { return mmi_session; }
 	eDVBCICAManagerSession *getCAManager() { return ca_manager; }
 	eDVBCICcSession *getCCManager() { return cc_manager; }
 
-	int getState() { return state; }
+	int getState() { return state; };
+	void setCamMgrRoutingActive(bool active) { m_isCamMgrRoutingActive= active; };
+	bool isCamMgrRoutingActive() { return m_isCamMgrRoutingActive; };
+	bool ciplusRoutingDone() { return m_ciPlusRoutingDone; };
+	void setCIPlusRoutingDone() { m_ciPlusRoutingDone = true; };
+	int getCIPlusRoutingTunerNum() { return m_ciplus_routing_tunernum; };
+	std::string getCIPlusRoutingInput() { return m_ciplus_routing_input; };
+	std::string getCIPlusRoutingCIInput() { return m_ciplus_routing_ci_input; };
+	void setCIPlusRoutingParameter(int tunernum, std::string ciplus_routing_input, std::string ciplus_routing_ci_input);
 	int reset();
 	int startMMI();
 	int stopMMI();
@@ -164,10 +177,6 @@ private:
 	eFixedMessagePump<int> m_messagepump_main; // message handling in the e2 mainloop
 	ePtr<eTimer> m_runTimer; // workaround to interrupt thread mainloop as some ci drivers don't implement poll properly
 	static pthread_mutex_t m_pmt_handler_lock;
-	bool m_ciplus_routing_active;
-	int m_ciplus_routing_tunernum;
-	std::string m_ciplus_routing_input;
-	std::string m_ciplus_routing_ci_input;
 
 	int sendCAPMT(int slot);
 
