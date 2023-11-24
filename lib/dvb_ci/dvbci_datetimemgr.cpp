@@ -12,7 +12,7 @@ eDVBCIDateTimeSession::eDVBCIDateTimeSession():
 
 int eDVBCIDateTimeSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
-	eTraceNoNewLine("[CI DT] SESSION(%d)/DATETIME %02x %02x %02x: ", session_nb, tag[0],tag[1], tag[2]);
+	eTraceNoNewLine("[CI%d DT] SESSION(%d)/DATETIME %02x %02x %02x: ", slot->getSlotID(), session_nb, tag[0],tag[1], tag[2]);
 	for (int i=0; i<len; i++)
 		eTraceNoNewLine("%02x ", ((const unsigned char*)data)[i]);
 	eTraceNoNewLine("\n");
@@ -28,7 +28,7 @@ int eDVBCIDateTimeSession::receivedAPDU(const unsigned char *tag,const void *dat
 			return 1;
 			break;
 		default:
-			eWarning("[CI DT] unknown APDU tag 9F 84 %02x", tag[2]);
+			eWarning("[CI%d DT] unknown APDU tag 9F 84 %02x", slot->getSlotID(), tag[2]);
 			break;
 		}
 	}
@@ -45,7 +45,7 @@ int eDVBCIDateTimeSession::doAction()
 		sendDateTime();
 		return 0;
 	case stateFinal:
-		eWarning("[CI DT] stateFinal and action should not happen");
+		eWarning("[CI%d DT] stateFinal and action should not happen", slot->getSlotID());
 		[[fallthrough]];
 	default:
 		return 0;

@@ -6,7 +6,7 @@
 
 int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
-	eTraceNoNewLineStart("[CI RM] SESSION(%d) %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
+	eTraceNoNewLineStart("[CI%d RM] SESSION(%d) %02x %02x %02x: ", slot->getSlotID(), session_nb, tag[0], tag[1], tag[2]);
 	for (int i=0; i<len; i++)
 		eTraceNoNewLineStart("%02x ", ((const unsigned char*)data)[i]);
 	eTraceNoNewLineStart("\n");
@@ -15,12 +15,12 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 		switch (tag[2])
 		{
 		case 0x10:  // profile enquiry
-			eDebug("[CI RM] cam profile inquiry");
+			eDebug("[CI%d RM] cam profile inquiry", slot->getSlotID());
 			state=stateProfileEnquiry;
 			return 1;
 			break;
 		case 0x11: // Tprofile
-			eDebugNoNewLineStart("[CI RM] can do: ");
+			eDebugNoNewLineStart("[CI%d RM] can do: ", slot->getSlotID());
 			if (!len)
 				eDebugNoNewLine("nothing");
 			else
@@ -36,7 +36,7 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			state=stateFinal;
 			break;
 		default:
-			eWarning("[CI RM] unknown APDU tag 9F 80 %02x", tag[2]);
+			eWarning("[CI%d RM] unknown APDU tag 9F 80 %02x", slot->getSlotID(), tag[2]);
 		}
 	}
 
@@ -63,7 +63,7 @@ int eDVBCIResourceManagerSession::doAction()
 	}
 	case stateProfileChange:
 	{
-		eWarning("[CI RM] cannot deal with statProfileChange");
+		eWarning("[CI%d RM] cannot deal with statProfileChange", slot->getSlotID());
 		break;
 	}
 	case stateProfileEnquiry:
@@ -116,7 +116,7 @@ int eDVBCIResourceManagerSession::doAction()
 		return 0;
 	}
 	case stateFinal:
-		eWarning("[CI RM] Should not happen: action on stateFinal");
+		eWarning("[CI%d RM] Should not happen: action on stateFinal", slot->getSlotID());
 	default:
 		break;
 	}

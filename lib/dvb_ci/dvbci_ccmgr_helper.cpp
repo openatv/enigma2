@@ -139,7 +139,7 @@ bool get_authdata(uint8_t *host_id, uint8_t *dhsk, uint8_t *akh, unsigned int sl
 	fd = open(filename, O_RDONLY);
 	if (fd <= 0)
 	{
-		eDebug("[CI RCC] can not open %s", filename);
+		eDebug("[CI%d RCC] can not open %s", slot, filename);
 		return false;
 	}
 
@@ -147,7 +147,7 @@ bool get_authdata(uint8_t *host_id, uint8_t *dhsk, uint8_t *akh, unsigned int sl
 	{
 		if (read(fd, chunk, sizeof(chunk)) != sizeof(chunk))
 		{
-			eDebug("[CI RCC] can not read auth_data");
+			eDebug("[CI%d RCC] can not read auth_data", slot);
 			close(fd);
 			return false;
 		}
@@ -178,7 +178,7 @@ bool write_authdata(unsigned int slot, const uint8_t *host_id, const uint8_t *dh
 		/* check if we got this pair already */
 		if (!memcmp(&buf[offset + 8 + 256], akh, 32))
 		{
-			eDebug("[CI RCC] data already stored");
+			eDebug("[CI%d RCC] data already stored", slot);
 			return true;
 		}
 	}
@@ -196,25 +196,25 @@ bool write_authdata(unsigned int slot, const uint8_t *host_id, const uint8_t *dh
 	memcpy(buf + 8 + 256, akh, 32);
 	entries++;
 
-	eDebug("[CI RCC] %d entries for writing", entries);
+	eDebug("[CI%d RCC] %d entries for writing", slot, entries);
 
 	get_authdata_filename(filename, sizeof(filename), slot);
 	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
 	if (fd < 0)
 	{
-		eWarning("[CI RCC] can not open %s", filename);
+		eWarning("[CI%d RCC] can not open %s", slot, filename);
 		return false;
 	}
 
 	if (write(fd, buf, PAIR_SIZE * entries) != PAIR_SIZE * entries)
-		eWarning("[CI RCC] error in write");
+		eWarning("[CI%d RCC] error in write", slot);
 
 	close(fd);
 
 	return true;
 }
 
-bool parameter_init(uint8_t* dh_p, uint8_t* dh_g, uint8_t* dh_q, uint8_t* s_key, uint8_t* key_data, uint8_t* iv)
+bool parameter_init(unsigned int slot, uint8_t* dh_p, uint8_t* dh_g, uint8_t* dh_q, uint8_t* s_key, uint8_t* key_data, uint8_t* iv)
 {
 	int fd;
 	unsigned char buf[592];
@@ -222,13 +222,13 @@ bool parameter_init(uint8_t* dh_p, uint8_t* dh_g, uint8_t* dh_q, uint8_t* s_key,
 	fd = open("/etc/ciplus/param", O_RDONLY);
 	if (fd <= 0)
 	{
-		eDebug("[CI RCC] can not param file");
+		eDebug("[CI%d RCC] can not param file", slot);
 		return false;
 	}
 
 	if (read(fd, buf, sizeof(buf)) != sizeof(buf))
 	{
-		eDebug("[CI RCC] can not read parameters");
+		eDebug("[CI%d RCC] can not read parameters", slot);
 		close(fd);
 		return false;
 	}

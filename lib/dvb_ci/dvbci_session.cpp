@@ -97,7 +97,7 @@ void eDVBCISession::sendOpenSessionResponse(eDVBCISlot *slot, unsigned char sess
 {
 	char pkt[6];
 	pkt[0]=session_status;
-	eDebug("[CI SESS] sendOpenSessionResponse");
+	eDebug("[CI%d SESS] sendOpenSessionResponse", slot->getSlotID());
 	memcpy(pkt + 1, resource_identifier, 4);
 	sendSPDU(slot, 0x92, pkt, 5, session_nb);
 }
@@ -107,14 +107,12 @@ void eDVBCISession::recvCreateSessionResponse(const unsigned char *data)
 	status = data[0];
 	state = stateStarted;
 	action = 1;
-	eDebug("[CI SESS] create Session Response, status %x", status);
 }
 
 void eDVBCISession::recvCloseSessionRequest(const unsigned char *data)
 {
 	state = stateInDeletion;
 	action = 1;
-	eDebug("[CI SESS] close Session Request");
 }
 
 void eDVBCISession::deleteSessions(const eDVBCISlot *slot)
@@ -151,104 +149,104 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 	{
 	case 0x00010041:
 		session=new eDVBCIResourceManagerSession(slot->getVersion());
-		eDebug("[CI SESS] RESOURCE MANAGER 1");
+		eDebug("[CI%d SESS] RESOURCE MANAGER 1", slot->getSlotID());
 		break;
 	case 0x00020041:
 		session=new eDVBCIApplicationManagerSession(slot);
-		eDebug("[CI SESS] APPLICATION MANAGER 1");
+		eDebug("[CI%d SESS] APPLICATION MANAGER 1", slot->getSlotID());
 		break;
 	case 0x00020042:
 		session=new eDVBCIApplicationManagerSession(slot);
-		eDebug("[CI SESS] APPLICATION MANAGER 2");
+		eDebug("[CI%d SESS] APPLICATION MANAGER 2", slot->getSlotID());
 		break;
 	case 0x00020043:
 		session=new eDVBCIApplicationManagerSession(slot);
-		eDebug("[CI SESS] APPLICATION MANAGER 3");
+		eDebug("[CI%d SESS] APPLICATION MANAGER 3", slot->getSlotID());
 		break;
 	case 0x00020045:
 		session=new eDVBCIApplicationManagerSession(slot);
-		eDebug("[CI SESS] APPLICATION MANAGER 5");
+		eDebug("[CI%d SESS] APPLICATION MANAGER 5", slot->getSlotID());
 		break;
 	case 0x00030041:
 		session = new eDVBCICAManagerSession(slot);
-		eDebug("[CI SESS] CA MANAGER");
+		eDebug("[CI%d SESS] CA MANAGER", slot->getSlotID());
 		break;
 	case 0x00200041:
 		session = new eDVBCIHostControlSession;
-		eDebug("[CI SESS] Host Control 1");
+		eDebug("[CI%d SESS] Host Control 1", slot->getSlotID());
 		break;
 	case 0x00200042:
 		session = new eDVBCIHostControlSession;
-		eDebug("[CI SESS] Host Control 2");
+		eDebug("[CI%d SESS] Host Control 2", slot->getSlotID());
 		break;
 	case 0x00200043:
 		session = new eDVBCIHostControlSession;
-		eDebug("[CI SESS] Host Control 3");
+		eDebug("[CI%d SESS] Host Control 3", slot->getSlotID());
 		break;
 	case 0x00240041:
 		session=new eDVBCIDateTimeSession;
-		eDebug("[CI SESS] DATE-TIME");
+		eDebug("[CI%d SESS] DATE-TIME", slot->getSlotID());
 		break;
 	case 0x00400041:
 		session = new eDVBCIMMISession(slot);
-		eDebug("[CI SESS] MMI - create session");
+		eDebug("[CI%d SESS] MMI - create session", slot->getSlotID());
 		break;
 	case 0x00410041:
 		session = new eDVBCIApplicationMMISession;
-		eDebug("[CI SESS] Application MMI 1");
+		eDebug("[CI%d SESS] Application MMI 1", slot->getSlotID());
 		break;
 	case 0x00410042:
 		session = new eDVBCIApplicationMMISession;
-		eDebug("[CI SESS] Application MMI 2");
+		eDebug("[CI%d SESS] Application MMI 2", slot->getSlotID());
 		break;
 	case 0x008C1001:
 		eDVBCIInterfaces::getInstance()->setCIPlusRouting(slot->getSlotID());
 		session = new eDVBCICcSession(slot, 1);
-		eDebug("[CI SESS] Content Control 1");
+		eDebug("[CI%d SESS] Content Control 1", slot->getSlotID());
 		break;
 	case 0x008C1002:
 		eDVBCIInterfaces::getInstance()->setCIPlusRouting(slot->getSlotID());
 		session = new eDVBCICcSession(slot, 2);
-		eDebug("[CI SESS] Content Control 2");
+		eDebug("[CI%d SESS] Content Control 2", slot->getSlotID());
 		break;
 	case 0x008C1004:
 		eDVBCIInterfaces::getInstance()->setCIPlusRouting(slot->getSlotID());
 		session = new eDVBCICcSession(slot, 4);
-		eDebug("[CI SESS] Content Control 4");
+		eDebug("[CI%d SESS] Content Control 4", slot->getSlotID());
 		break;
 	case 0x008D1001:
 		session = new eDVBCIHostLanguageAndCountrySession;
-		eDebug("[CI SESS] Host Language & Country");
+		eDebug("[CI%d SESS] Host Language & Country", slot->getSlotID());
 		break;
 	case 0x008E1001:
 		session = new eDVBCICAMUpgradeSession;
-		eDebug("[CI SESS] CAM Upgrade");
+		eDebug("[CI%d SESS] CAM Upgrade", slot->getSlotID());
 		break;
 	case 0x008F1001:
 		session = new eDVBCIOperatorProfileSession;
-		eDebug("[CI SESS] Operator Profile 1");
+		eDebug("[CI%d SESS] Operator Profile 1", slot->getSlotID());
 		break;
 	case 0x008F1002:
 		session = new eDVBCIOperatorProfileSession;
-		eDebug("[CI SESS] Operator Profile 2");
+		eDebug("[CI%d SESS] Operator Profile 2", slot->getSlotID());
 		break;
 	case 0x00100041:
 //		session=new eDVBCIAuthSession;
-		eDebug("[CI SESS] AuthSession");
+		eDebug("[CI%d SESS] AuthSession", slot->getSlotID());
 		[[fallthrough]];
 	default:
-		eDebug("[CI SESS] unknown resource type %02x %02x %02x %02x", resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
+		eDebug("[CI%d SESS] unknown resource type %02x %02x %02x %02x", slot->getSlotID(), resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
 		session=0;
 		status=0xF0;
 	}
 
 	if (!session)
 	{
-		eWarning("[CI SESS] unknown session.. expect crash");
+		eWarning("[CI%d SESS] unknown session.. expect crash", slot->getSlotID());
 		return;
 	}
 
-	eDebug("[CI SESS] new session nb %d %p", session_nb, &(*session));
+	eDebug("[CI%d SESS] new session nb %d %p", slot->getSlotID(), session_nb, &(*session));
 	session->session_nb = session_nb;
 
 	if (session)
@@ -293,9 +291,9 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 	unsigned char tag = *pkt++;
 	int llen, hlen;
 
-	eDebug("[CI SESS] slot: %p",slot);
+	eDebug("[CI%d SESS] slot: %p", slot->getSlotID(), slot);
 
-	eTraceNoNewLineStart("[CI SESS]: ");
+	eTraceNoNewLineStart("[CI%d SESS]: ", slot->getSlotID());
 	for(unsigned int i=0;i<len;i++)
 		eTraceNoNewLineStart("%02x ",ptr[i]);
 	eTraceNoNewLineStart("\n");
@@ -325,14 +323,14 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 
 		if ((!session_nb) || (session_nb >= SLMS))
 		{
-			eWarning("[CI SESS] PROTOCOL: illegal session number %x", session_nb);
+			eWarning("[CI%d SESS] PROTOCOL: illegal session number %x", slot->getSlotID(), session_nb);
 			return;
 		}
 
 		session=sessions[session_nb-1];
 		if (!session)
 		{
-			eWarning("[CI SESS] PROTOCOL: data on closed session %x", session_nb);
+			eWarning("[CI%d SESS] PROTOCOL: data on closed session %x", slot->getSlotID(), session_nb);
 			return;
 		}
 
@@ -341,14 +339,15 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 		case 0x90:
 			break;
 		case 0x94:
+			eDebug("[CI%d SESS] recvCreateSessionResponse, status %x", slot->getSlotID(), pkt[0]);
 			session->recvCreateSessionResponse(pkt);
 			break;
 		case 0x95:
-			eDebug("[CI SESS] recvCloseSessionRequest");
+			eDebug("[CI%d SESS] recvCloseSessionRequest", slot->getSlotID());
 			session->recvCloseSessionRequest(pkt);
 			break;
 		default:
-			eDebug("[CI SESS] INTERNAL: nyi, tag %02x.", tag);
+			eDebug("[CI%d SESS] INTERNAL: nyi, tag %02x.", slot->getSlotID(),tag);
 			return;
 		}
 	}
@@ -373,7 +372,7 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 			{
 				if (((len-alen) > 0) && ((len - alen) < 3))
 				{
-					eDebug("[CI SESS] WORKAROUND: applying work around MagicAPDULength");
+					eDebug("[CI%d SESS] WORKAROUND: applying work around MagicAPDULength", slot->getSlotID());
 					alen=len;
 				}
 			}
@@ -384,7 +383,7 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 		}
 
 	if (len)
-		eWarning("[CI SESS] PROTOCOL: warning, TL-Data has invalid length");
+		eWarning("[CI%d SESS] PROTOCOL: warning, TL-Data has invalid length", slot->getSlotID());
 }
 
 eDVBCISession::~eDVBCISession()

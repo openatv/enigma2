@@ -9,7 +9,7 @@ eDVBCIOperatorProfileSession::eDVBCIOperatorProfileSession()
 
 int eDVBCIOperatorProfileSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
-	eTraceNoNewLine("[CI OP] SESSION(%d)/OPERATOR %02x %02x %02x: ", session_nb, tag[0],tag[1], tag[2]);
+	eTraceNoNewLine("[CI%d OP] SESSION(%d)/OPERATOR %02x %02x %02x: ", slot->getSlotID(), session_nb, tag[0],tag[1], tag[2]);
 	for (int i=0; i<len; i++)
 		eTraceNoNewLine("%02x ", ((const unsigned char*)data)[i]);
 	eTraceNoNewLine("\n");
@@ -19,23 +19,23 @@ int eDVBCIOperatorProfileSession::receivedAPDU(const unsigned char *tag,const vo
 		switch (tag[2])
 		{
 		case 0x01:
-			eDebug("operator_status");
+			eDebug("[CI%d OP] operator_status", slot->getSlotID());
 			state=stateStatus;
 			break;
 		case 0x03:
-			eDebug("operator_nit");
+			eDebug("[CI%d OP] operator_nit", slot->getSlotID());
 			break;
 		case 0x05:
-			eDebug("operator_info");
+			eDebug("[CI%d OP] operator_info", slot->getSlotID());
 			break;
 		case 0x07:
-			eDebug("operator_search_status");
+			eDebug("[CI%d OP] operator_search_status", slot->getSlotID());
 			break;
 		case 0x09:
-			eDebug("operator_tune");
+			eDebug("[CI%d OP] operator_tune", slot->getSlotID());
 			break;
 		default:
-			eWarning("[CI OP] unknown APDU tag 9F 9C %02x", tag[2]);
+			eWarning("[CI%d OP] unknown APDU tag 9F 9C %02x", slot->getSlotID(), tag[2]);
 			break;
 		}
 	}
@@ -55,7 +55,7 @@ int eDVBCIOperatorProfileSession::doAction()
 	}
 	case stateFinal:
 	{
-		eWarning("[CI OP] stateFinal and action should not happen");
+		eWarning("[CI%d OP] stateFinal and action should not happen", slot->getSlotID());
 		break;
 	}
 	default:

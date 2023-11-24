@@ -8,7 +8,7 @@ int eDVBCIHostLanguageAndCountrySession::receivedAPDU(const unsigned char *tag,c
 {
 	int ret = 0;
 
-	eTraceNoNewLine("[CI HLC] SESSION(%d)/HLC %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
+	eTraceNoNewLine("[CI%d HLC] SESSION(%d)/HLC %02x %02x %02x: ", slot->getSlotID(), session_nb, tag[0], tag[1], tag[2]);
 	for (int i=0; i<len; i++)
 		eTraceNoNewLine("%02x ", ((const unsigned char*)data)[i]);
 	eTraceNoNewLine("\n");
@@ -18,17 +18,17 @@ int eDVBCIHostLanguageAndCountrySession::receivedAPDU(const unsigned char *tag,c
 		switch (tag[2])
 		{
 		case 0x00:  // country enquiry
-			eDebug("[CI HLC] Host country enquiry:");
+			eDebug("[CI%d HLC] Host country enquiry:", slot->getSlotID());
 			state=stateCountryEnquiry;
 			ret = 1;
 			break;
 		case 0x10:  // language enquiry
-			eDebug("[CI HLC] Host language enquiry:");
+			eDebug("[CI%d HLC] Host language enquiry:", slot->getSlotID());
 			state=stateLanguageEnquiry;
 			ret = 1;
 			break;
 		default:
-			eWarning("[CI HLC] unknown APDU tag 9F 80 %02x", tag[2]);
+			eWarning("[CI%d HLC] unknown APDU tag 9F 80 %02x", slot->getSlotID(), tag[2]);
 			state = stateFinal;
 			break;
 		}
@@ -110,7 +110,7 @@ int eDVBCIHostLanguageAndCountrySession::doAction()
 		break;
 	}
 	default:
-		eWarning("[CI HLC] unknown state");
+		eWarning("[CI%d HLC] unknown state", slot->getSlotID());
 		break;
 	}
 

@@ -5,7 +5,7 @@
 
 int eDVBCICAMUpgradeSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
-	eTraceNoNewLine("[CI CAMUP] SESSION(%d)/CAMUP %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
+	eTraceNoNewLine("[CI%d CAMUP] SESSION(%d)/CAMUP %02x %02x %02x: ", slot->getSlotID(), session_nb, tag[0], tag[1], tag[2]);
 	for (int i=0; i<len; i++)
 		eTraceNoNewLine("%02x ", ((const unsigned char*)data)[i]);
 	eTraceNoNewLine("\n");
@@ -14,7 +14,7 @@ int eDVBCICAMUpgradeSession::receivedAPDU(const unsigned char *tag,const void *d
 		switch (tag[2])
 		{
 		default:
-			eWarning("[CI CAMUP] unknown APDU tag 9F 9D %02x", tag[2]);
+			eWarning("[CI%d CAMUP] unknown APDU tag 9F 9D %02x", slot->getSlotID(), tag[2]);
 			break;
 		}
 	}
@@ -27,7 +27,7 @@ int eDVBCICAMUpgradeSession::doAction()
 	switch (state)
 	{
 	default:
-		eWarning("[CI CAMUP] unknown state");
+		eWarning("[CI%d CAMUP] unknown state", slot->getSlotID());
 		break;
 	}
 
