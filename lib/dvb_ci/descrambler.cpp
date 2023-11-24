@@ -6,6 +6,8 @@
 #include <sys/ioctl.h>
 #include <linux/dvb/ca.h>
 
+#include <lib/dvb_ci/descrambler.h>
+
 #include <lib/base/eerror.h>
 
 #ifndef CA_SET_PID
@@ -38,36 +40,94 @@ struct ca_descr_data {
 	unsigned char *data;
 };
 
+struct vu_ca_descr_data {
+	int slot_id;
+	int fix1; // = 0x6f7c
+	int demux_id;
+	int tunernum;
+	int use_count;
+	int program_number;
+	int reserved1;
+	int fix2; // = 0x1 -> add pids
+	int video_pid;
+	int audio_pid;
+	int reserved2;
+	int fix3; // = 0x12345678
+	int reserved3;
+	int key_register;
+	int use_aes; // 0x2 for AES
+	unsigned char key[16];
+	unsigned char iv[16];
+	int audio_number;
+	int audio_pids[16];
+};
+
 
 #define CA_SET_DESCR_DATA _IOW('o', 137, struct ca_descr_data)
 
-int descrambler_set_key(int desc_fd, int index, int parity, unsigned char *data)
+int descrambler_set_key(int& desc_fd, eDVBCISlot *slot, int parity, unsigned char *data)
 {
-	struct ca_descr_data d;
+	bool vuIoctlSuccess = false;
 
-	if (desc_fd < 0)
-		return -1;
+	if (slot->getTunerNum() > 7) // might be VU box with 2 FBC tuners -> try to use VU ioctl
+	{
+		struct vu_ca_descr_data d;
 
-	d.index = index;
-	d.parity = (enum ca_descr_parity)parity;
-	d.data_type = CA_DATA_KEY;
-	d.length = 16;
-	d.data = data;
+		d.slot_id = slot->getSlotID();
+		d.fix1 = 0x6f7c;
+		d.demux_id = slot->getCADemuxID();
+		d.tunernum = slot->getTunerNum();
+		d.use_count = slot->getUseCount();
+		d.program_number = slot->getProgramNumber();
+		d.fix2 = 0x1;
+		d.video_pid = slot->getVideoPid();
+		d.audio_pid = slot->getAudioPid();
+		d.fix3 = 0x12345678;
+		d.key_register = parity;
+		d.use_aes = 0x2; // AES
+		memcpy(d.key, data, 16);
+		memcpy(d.iv, data + 16, 16);
+		d.audio_number = slot->getAudioNumber();
+		memcpy(d.audio_pids, slot->getAudioPids(), 16*4);
 
-	if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1) {
-		eWarning("[CI%d descrambler] set key failed", index);
-		return -1;
+		unsigned int ret = ioctl(slot->getFd(), 0x10, &d);
+		if (ret == 0)
+		{
+			vuIoctlSuccess = true;
+			descrambler_deinit(desc_fd); // don't set pids for VU ioctl
+			desc_fd = -1;
+		}
+		eDebug("[CI%d] descrambler_set_key vu ret %u", slot->getSlotID(), ret);
 	}
 
-	d.index = index;
-	d.parity = (enum ca_descr_parity)parity;
-	d.data_type = CA_DATA_IV;
-	d.length = 16;
-	d.data = data + 16;
+	if (!vuIoctlSuccess)
+	{
+		struct ca_descr_data d;
 
-	if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1) {
-		eWarning("[CI%d descrambler] set iv failed", index);
-		return -1;
+		if (desc_fd < 0)
+			return -1;
+
+		d.index = slot->getSlotID();
+		d.parity = (enum ca_descr_parity)parity;
+		d.data_type = CA_DATA_KEY;
+		d.length = 16;
+		d.data = data;
+
+		if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1) {
+			eWarning("[CI%d descrambler] set key failed", slot->getSlotID());
+			return -1;
+		}
+
+		d.index = slot->getSlotID();
+		d.parity = (enum ca_descr_parity)parity;
+		d.data_type = CA_DATA_IV;
+		d.length = 16;
+		d.data = data + 16;
+
+		if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1) {
+			eWarning("[CI%d descrambler] set iv failed", slot->getSlotID());
+			return -1;
+		}
 	}
 
 	return 0;

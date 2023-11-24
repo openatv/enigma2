@@ -874,7 +874,7 @@ void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 			eTrace("[CI] check slot %d %d %d", tmp->getSlotID(), tmp->running_services.empty(), canDescrambleMultipleServices(tmp));
 			if (tmp->running_services.empty() || canDescrambleMultipleServices(tmp))
 			{
-				tmp->setCADemuxID(pmthandler);
+				tmp->setCaParameter(pmthandler);
 				tmp->sendCAPMT(pmthandler);
 			}
 			tmp = tmp->linked_next;
@@ -1608,10 +1608,16 @@ int eDVBCISlot::cancelEnq()
 	return 0;
 }
 
-int eDVBCISlot::setCADemuxID(eDVBServicePMTHandler *pmthandler)
+int eDVBCISlot::setCaParameter(eDVBServicePMTHandler *pmthandler)
 {
 	ePtr<iDVBDemux> demux;
+	eDVBServicePMTHandler::program program;
+	eServiceReferenceDVB ref;
 	uint8_t dmx_id;
+	eUsePtr<iDVBChannel> channel;
+	ePtr<iDVBFrontend> frontend;
+
+	eDebug("[CI%d] setCaParameter", slotid);
 
 	if (!pmthandler->getDataDemux(demux))
 	{
@@ -1623,6 +1629,38 @@ int eDVBCISlot::setCADemuxID(eDVBServicePMTHandler *pmthandler)
 		else
 			m_ca_demux_id = -1;
 	}
+
+	pmthandler->getServiceReference(ref);
+	m_program_number = ref.getServiceID().get();
+
+	pmthandler->getProgramInfo(program);
+	m_audio_number = program.audioStreams.size();
+
+	if (m_audio_number > 16)
+		m_audio_number = 16;
+	for(int i = 0; i < m_audio_number ; i++)
+	{
+		m_audio_pids[i] = program.audioStreams[i].pid;
+	}
+
+	m_video_pid = program.videoStreams.empty()? 0 : program.videoStreams[0].pid;
+	m_audio_pid = program.audioStreams.empty()? 0 : program.audioStreams[program.defaultAudioStream].pid;
+
+	m_tunernum = -1;
+	if (!pmthandler->getChannel(channel))
+	{
+		if (!channel->getFrontend(frontend))
+		{
+			eDVBFrontend *fe = (eDVBFrontend*) &(*frontend);
+			m_tunernum = fe->getSlotID();
+			if (m_tunernum > 7 && !fe->is_FBCTuner()) // use vu ioctl only for second FBC tuner
+			{
+				m_tunernum = -1;
+			}
+		}
+		eDebug("[CI%d] tunernum = %d", slotid, m_tunernum);
+	}
+
 	return 0;
 }
 
