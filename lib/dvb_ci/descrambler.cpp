@@ -55,7 +55,7 @@ int descrambler_set_key(int desc_fd, int index, int parity, unsigned char *data)
 	d.data = data;
 
 	if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1) {
-		eWarning("[CI descrambler] set key failed");
+		eWarning("[CI%d descrambler] set key failed", index);
 		return -1;
 	}
 
@@ -66,7 +66,7 @@ int descrambler_set_key(int desc_fd, int index, int parity, unsigned char *data)
 	d.data = data + 16;
 
 	if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1) {
-		eWarning("[CI descrambler] set iv failed");
+		eWarning("[CI%d descrambler] set iv failed", index);
 		return -1;
 	}
 
@@ -91,14 +91,14 @@ int descrambler_set_pid(int desc_fd, int index, int enable, int pid)
 	p.index = flags;
 
 	if (ioctl(desc_fd, CA_SET_PID, &p) == -1) {
-		eWarning("[CI descrambler] set pid failed");
+		eWarning("[CI%d descrambler] set pid failed", index);
 		return -1;
 	}
 
 	return 0;
 }
 
-int descrambler_init(uint8_t ca_demux_id)
+int descrambler_init(int slot, uint8_t ca_demux_id)
 {
 	int desc_fd;
 
@@ -106,9 +106,9 @@ int descrambler_init(uint8_t ca_demux_id)
 
 	desc_fd = open(filename.c_str(), O_RDWR);
 	if (desc_fd == -1) {
-		eWarning("[CI descrambler] can not open %s", filename.c_str());
+		eWarning("[CI%d descrambler] can not open %s", slot, filename.c_str());
 	}
-	eDebug("[CI descrambler] using ca device %s", filename.c_str());
+	eDebug("[CI%d descrambler] using ca device %s", slot, filename.c_str());
 
 	return desc_fd;
 }
