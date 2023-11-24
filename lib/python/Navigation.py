@@ -45,6 +45,7 @@ class Navigation:
 
 		self.RecordTimer = None
 		self.isRecordTimerImageStandard = False
+		self.currentServiceStreaming = False
 		self.skipServiceReferenceReset = False
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):  # Do we really need this ?
 			self.RecordTimer = p()
@@ -351,7 +352,15 @@ class Navigation:
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 				#self.skipServiceReferenceReset = True
-				if self.pnav.playService(playref):
+				if self.currentServiceStreaming and not ignoreStreamRelay:
+					self.currentServiceStreaming = False
+					self.currentlyPlayingServiceReference = None
+					self.currentlyPlayingServiceOrGroup = None
+					print("[Navigation] Streamrelay was active -> delay the zap till tuner is freed")
+					self.retryServicePlayTimer = eTimer()
+					self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust, True))
+					self.retryServicePlayTimer.start(100, True)
+				elif self.pnav.playService(playref):
 					print("[Navigation] Failed to start", playref.toString())
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
@@ -361,6 +370,8 @@ class Navigation:
 						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 						self.retryServicePlayTimer.start(500, True)
 				self.skipServiceReferenceReset = False
+				if playref.toString().find("127.0.0.1") > -1 and not self.currentServiceStreaming:
+					self.currentServiceStreaming = True
 				return 0
 		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
