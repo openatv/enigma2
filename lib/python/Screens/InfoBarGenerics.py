@@ -15,7 +15,7 @@ from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecor
 from ServiceReference import ServiceReference, isPlayableForCur, hdmiInServiceRef
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap, NumberActionMap
 from Components.AVSwitch import iAVSwitch
-from Components.config import ConfigBoolean, ConfigClock, config, configfile
+from Components.config import ConfigBoolean, ConfigClock, ConfigDate, config, configfile
 from Components.Harddisk import findMountPoint, harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
@@ -4017,8 +4017,9 @@ class InfoBarInstantRecord:
 	def setEndtime(self, entry):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].eventEnd)
-			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, self.endtime)
+			time = ConfigClock(default=self.recording[self.selectedEntry].eventEnd)
+			date = ConfigDate(default=self.recording[self.selectedEntry].eventEnd)
+			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, time, date)
 			dlg.setTitle(_("Please change recording endtime"))
 
 	def TimeDateInputClosed(self, ret):
