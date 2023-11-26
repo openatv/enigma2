@@ -530,6 +530,10 @@ eListboxPythonServiceContent::eListboxPythonServiceContent()
 	m_servicelist = true;
 }
 
+inline bool compareServices(const eServiceReference &src, const eServiceReference &trg) {
+	return (src.toString() == trg.alternativeurl);
+}
+
 bool eListboxPythonServiceContent::checkServiceIsRecorded(eServiceReference ref,pNavigation::RecordType type)
 {
 	std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > recordedServices;
@@ -545,10 +549,10 @@ bool eListboxPythonServiceContent::checkServiceIsRecorded(eServiceReference ref,
 			eBouquet *bouquet=0;
 			db->getBouquet(ref, bouquet);
 			for (std::list<eServiceReference>::iterator i(bouquet->m_services.begin()); i != bouquet->m_services.end(); ++i)
-				if (*i == it->second)
+				if (*i == it->second || compareServices(*i, it->second))
 					return true;
 		}
-		else if (ref == it->second)
+		else if (ref == it->second || compareServices(ref, it->second))
 			return true;
 	}
 	return false;
