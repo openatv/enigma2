@@ -78,7 +78,7 @@ class eDVBServicePMTHandler: public eDVBPMTParser
 	eAUTable<eTable<ApplicationInformationSection> > m_AIT;
 	eAUTable<eTable<OCSection> > m_OC;
 
-	eUsePtr<iDVBChannel> m_channel;
+	eUsePtr<iDVBChannel> m_channel, m_sr_channel;
 	eUsePtr<iDVBPVRChannel> m_pvr_channel;
 	ePtr<eDVBResourceManager> m_resourceManager;
 	ePtr<iDVBDemux> m_demux, m_pvr_demux_tmp;
