@@ -969,13 +969,16 @@ int eDVBServicePMTHandler::getChannel(eUsePtr<iDVBChannel> &channel)
 			std::list<eDVBResourceManager::active_channel> list;
 			res_mgr->getActiveChannels(list);
 			if(list.size()) {
+
+				eServiceReferenceDVB m_alternative_ref = eServiceReferenceDVB(m_reference.alternativeurl);
+				char buf[30];
+				sprintf(buf, "%x:%x:%x", m_alternative_ref.getTransportStreamID().get(), m_alternative_ref.getOriginalNetworkID().get(), m_alternative_ref.getDVBNamespace().get());
+				std::string alternativeChannelID = std::string(buf);
+
 				for (std::list<eDVBResourceManager::active_channel>::iterator i(list.begin()); i != list.end(); ++i)
 				{
 					std::string channelid = i->m_channel_id.toString();
-					eServiceReferenceDVB m_alternative_ref = eServiceReferenceDVB(m_reference.alternativeurl);
-					char buf[30];
-					sprintf(buf, "%x:%x:%x", m_alternative_ref.getTransportStreamID().get(), m_alternative_ref.getOriginalNetworkID().get(), m_alternative_ref.getDVBNamespace().get());
-					if (channelid == std::string(buf))
+					if (channelid == alternativeChannelID)
 					{
 						m_sr_channel = i->m_channel;
 						break;
