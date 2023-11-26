@@ -689,7 +689,7 @@ class International:
 		return self.LANGUAGE_DATA.get(self.getLanguage(item), tuple([None] * self.LANG_MAX))[self.LANG_ENCODING] or "UTF-8"
 
 	def getLanguageKeyboard(self, item=None):
-		return self.LANGUAGE_DATA.get(self.getLanguage(item), tuple([None] * self.LANG_MAX))[self.LANG_ENCODING] or "qwerty"
+		return self.LANGUAGE_DATA.get(self.getLanguage(item), tuple([None] * self.LANG_MAX))[self.LANG_KEYBOARD] or "qwerty"
 
 	def getLanguageCountryCode(self, item=None):
 		countries = self.LANGUAGE_DATA.get(self.getLanguage(item), tuple([None] * self.LANG_MAX))[self.LANG_COUNTRYCODES]
