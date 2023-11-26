@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 11:41+0000\n"
+"POT-Creation-Date: 2023-11-23 11:43+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -971,13 +971,6 @@ msgid "%d ms"
 msgstr "%d msek."
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1008,6 +1001,13 @@ msgstr[2] ""
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package marked for update."
+msgid_plural "%d packages marked for update."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -1219,6 +1219,10 @@ msgstr "%s (%s)"
 #, python-format
 msgid "%s - Setup"
 msgstr "%s - Sąranka"
+
+#, python-format
+msgid "%s Browser Manage Actions"
+msgstr ""
 
 #, python-format
 msgid "%s GHz"
@@ -2083,7 +2087,7 @@ msgstr "Pridėti/pašalinti laikmatį"
 msgid "Add/Remove a timer for the current event"
 msgstr "Įtraukti / pašalinti dabartinio įvykio laikmatį"
 
-msgid "Add/Remove highlighted plugin to/from download list"
+msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from remove list"
@@ -2163,9 +2167,6 @@ msgstr "Po įtampos dingimo"
 
 msgid "After event"
 msgstr "Ką daryti po įvykio"
-
-msgid "After pressing OK, please wait!"
-msgstr "Paspaudę OK, palaukite!"
 
 msgid "After recording"
 msgstr "Po įrašymo"
@@ -2375,9 +2376,6 @@ msgid "An attempt is made to capture the current TV status. If this is not possi
 msgstr ""
 "Bandoma užfiksuoti dabartinę TV būseną. Jei tai neįmanoma dėl neteisingo arba trūkstamų būsenos pranešimų, imtuvas gali netikėtai atsakyti.\n"
 "Kita vertus, bando geriau reaguoti į skirtingas eksploatavimo sąlygas."
-
-msgid "An error occurred while downloading the packet list. Please try again."
-msgstr "Parsisiunčiant paketų sąrašą, įvyko klaida. Pabandykite dar kartą."
 
 msgid "An unknown error occurred!"
 msgstr "Įvyko nežinoma klaida!"
@@ -2731,6 +2729,12 @@ msgstr ""
 msgid "Auto(not available)"
 msgstr "Automatinis (negalimas)"
 
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "Automatinių pajungimų valdymas"
 
@@ -2739,12 +2743,6 @@ msgstr "Auto laikmatis"
 
 msgid "AutoUpdate"
 msgstr "Automatinis atnaujinimas"
-
-msgid "AutoCam Settings"
-msgstr ""
-
-msgid "AutoCam Setup Actions"
-msgstr ""
 
 msgid "Automatic"
 msgstr "Automatinis"
@@ -2985,6 +2983,12 @@ msgstr "Bangladešas"
 
 msgid "Barbados"
 msgstr "Barbadosas"
+
+msgid "Base Packages"
+msgstr ""
+
+msgid "Base Shell Packages"
+msgstr ""
 
 msgid "Base time"
 msgstr "Pagrindinis laikas"
@@ -3663,6 +3667,9 @@ msgstr "Atšaukti pasirinkimą"
 
 msgid "Cancel selection and exit"
 msgstr "Atšaukti pasirinkimą ir išeiti"
+
+msgid "Cancel the Reset Feeds command currently being processed"
+msgstr ""
 
 msgid "Cancel the bouquet selection"
 msgstr ""
@@ -4831,6 +4838,15 @@ msgstr "Ryšio informacija"
 msgid "Console"
 msgstr "Konsolė"
 
+msgid "Console Network Packages"
+msgstr ""
+
+msgid "Console Packages"
+msgstr ""
+
+msgid "Console Utility Packages"
+msgstr ""
+
 msgid "Constellation"
 msgstr ""
 
@@ -5595,6 +5611,9 @@ msgstr "Numatytasis 'po įvykio' *"
 
 msgid "Default 'Timer type' *"
 msgstr "Numatytasis 'Laikmačio tipas' *"
+
+msgid "Default Astra (13e-19e)"
+msgstr "numatytasis Astra (13e-19e)"
 
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Numatytasis procesoriaus prioritetas (gražus) vykdomiems scenarijams. Tai gali sumažinti sistemos apkrovą, kad scenarijai netrukdytų likusiai sistemos daliai. (didesnės vertės = mažesnis prioritetas)"
@@ -6377,18 +6396,14 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Ar norite atlikti kitą rankinę kanalų paiešką?"
 
 #, python-format
-msgid "Do you want to download '%s'?"
-msgstr ""
-
-#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr "Ar norite įdiegti šį atvaizdą '%s'?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Ar norite įdiegti kanalų sąrašą?"
 
-msgid "Do you want to install the package:\n"
-msgstr "Ar norite įdiegti paketą:\n"
+msgid "Do you want to install:"
+msgstr ""
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Ar norite paleisti DVD?"
@@ -6407,18 +6422,7 @@ msgstr "Ar norite išvalyti visas lokales / kalbas, išskyrus %s?"
 msgid "Do you want to reboot your %s %s?"
 msgstr "Ar norite savo %s %s paleisti iš naujo?"
 
-msgid "Do you want to reboot your receiver?"
-msgstr "Ar norite iš naujo paleisti imtuvą?"
-
-#, python-format
-msgid "Do you want to remove '%s'?"
-msgstr ""
-
-msgid "Do you want to remove the package:\n"
-msgstr "Ar norite pašalinti paketą:\n"
-
-#, python-format
-msgid "Do you want to replace '%s' with '%s?"
+msgid "Do you want to remove:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -6433,12 +6437,8 @@ msgstr ""
 msgid "Do you want to start a backup now?"
 msgstr ""
 
-#, python-format
-msgid "Do you want to update '%s'?"
+msgid "Do you want to update:"
 msgstr ""
-
-msgid "Do you want to upgrade the package:\n"
-msgstr "Ar norite atnaujinti paketą:\n"
 
 msgid "Documentary"
 msgstr "Dokumentika"
@@ -6502,9 +6502,6 @@ msgstr "Žemyn / Neaktyvus"
 msgid "Download Image"
 msgstr ""
 
-msgid "Download Plugin"
-msgstr ""
-
 msgid "Download Plugins"
 msgstr "Parsisiųsti priedus"
 
@@ -6524,9 +6521,6 @@ msgid "Download error"
 msgstr "Atsisiuntimo klaida"
 
 msgid "Download the selected image"
-msgstr ""
-
-msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7448,10 +7442,6 @@ msgstr ""
 "Klaida: %s\n"
 "Kartoti?"
 
-#, python-format
-msgid "Error: %s %s not %s!  Please try again later."
-msgstr "Klaida: %s %s ne %s!  Bandykite dar kartą vėliau."
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Tuščias failo pavadinimas negalimas."
 
@@ -7541,11 +7531,12 @@ msgstr ""
 msgid "Error: There was a problem writing '%s'!"
 msgstr "Klaida: kilo problema rašant \"%s\"!"
 
+#, python-format
+msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Klaida: neįmanoma sukurti reikiamų katalogų paskirties įrenginyje (pvz., USB atmintinėje arba standžiajame diske)! Patikrinkite įrenginį ir bandykite dar kartą."
-
-msgid "Error: Unable to process the command!  Please try again later."
-msgstr "Klaida: nepavyko apdoroti komandos!  Bandykite dar kartą vėliau."
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
@@ -8083,6 +8074,9 @@ msgstr "Failų valdytojo nustatymai"
 msgid "File System Check"
 msgstr "Failų sistemos tikrinimas"
 
+msgid "File System Packages"
+msgstr ""
+
 msgid "File appears to be busy.\n"
 msgstr "Failas tikriausiai užimtas.\n"
 
@@ -8289,9 +8283,6 @@ msgstr "Priverstinis LNB imtuvo ToneBurst nustatymas."
 
 msgid "Force Legacy Signal stats"
 msgstr "Priverstinė pasenusių signalų statistika"
-
-msgid "Force OPKG clean mode"
-msgstr ""
 
 msgid "Force ToneBurst"
 msgstr "Priverstinis tono impulsas"
@@ -8533,10 +8524,10 @@ msgstr "Geografinė vieta"
 msgid "Geolocation Information"
 msgstr "Geografinės vietos nustatymo informacija"
 
-msgid "Geolocation does not contain time zone information."
+msgid "Geolocation data does not contain time zone information."
 msgstr "Geografinėje lokacijoje nėra laiko juostos informacijos."
 
-msgid "Geolocation has been used to set the time zone."
+msgid "Geolocation data has been used to set the time zone."
 msgstr "Geografinė vieta buvo naudojama laiko juostai nustatyti."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
@@ -8546,7 +8537,7 @@ msgstr "Geografinės vietos nustatymo informacijos nuskaityti negalima, bandykit
 msgid "Geolocation information for %s %s"
 msgstr "%s %s geografinės vietos informacija"
 
-msgid "Geolocation is not available."
+msgid "Geolocation data is not available."
 msgstr "Geografinė vieta negalima."
 
 msgid "Georgia"
@@ -8563,9 +8554,6 @@ msgstr "Vokietija"
 
 msgid "Getting Event Info failed!"
 msgstr "Informacijos apie įvykį gauti nepavyko!"
-
-msgid "Getting Softcam list. Please wait..."
-msgstr "Gaunamas emuliatorių sąrašas. Palaukite..."
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Gaunama informacija apie priedus. Palaukite..."
@@ -9637,26 +9625,24 @@ msgid "Install"
 msgstr "Įdiegti"
 
 #, python-format
+msgid "Install %s"
+msgstr ""
+
+#, python-format
 msgid "Install '%s' command"
 msgstr "Įdiekite komandą \"%s\""
 
 msgid "Install 1/1"
 msgstr "Įdiekite 1/1"
 
-msgid "Install Failed !!"
-msgstr "Įdiegti nepavyko !!"
-
-msgid "Install Finished."
-msgstr "Įdiegimas baigtas."
-
 msgid "Install Local Extension"
 msgstr "Įdiekite vietinį išplėtimą"
 
+msgid "Install Plugin"
+msgstr ""
+
 msgid "Install Plugins"
 msgstr "Įdiegti priedus"
-
-msgid "Install Softcams"
-msgstr "Įdiegti emuliatorius"
 
 msgid "Install a new image with a USB stick"
 msgstr "Įdiekite naują atvaizdą su USB raktu"
@@ -9673,8 +9659,8 @@ msgstr "Įdiekite plėtinius."
 msgid "Install the package"
 msgstr "Įdiekite paketą"
 
-msgid "Install/Remove plugin"
-msgstr "Įdiegti/pašalinti priedą"
+msgid "Install the selected plugin / list of plugins"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "Įdiegimas baigtas."
@@ -9685,9 +9671,6 @@ msgstr "Įdiegiama"
 #, python-format
 msgid "Installing %s (%s)..."
 msgstr "Diegiama %s (%s)..."
-
-msgid "Installing Please wait..."
-msgstr ""
 
 msgid "Installing Service"
 msgstr "Įdiegiama paslauga"
@@ -9700,6 +9683,9 @@ msgstr "Šaltinių diegimas iš IPK ..."
 
 msgid "Installing feeds from feed ..."
 msgstr "Šaltinių diegimas iš šaltinių ..."
+
+msgid "Installing package."
+msgstr ""
 
 msgid "Installing plugins from IPK ..."
 msgstr "Priedų diegimas iš IPK ..."
@@ -10129,9 +10115,6 @@ msgstr "Kalba jau pasirinkta."
 msgid "Language selection"
 msgstr "Kalbos pasirinkimas"
 
-msgid "Languages"
-msgstr "Kalbos"
-
 msgid "Lao"
 msgstr "Laoso Liaudies Demokratinė Respublika"
 
@@ -10220,6 +10203,9 @@ msgstr "Priartinimas, įterpiant juodas juostas"
 
 msgid "Liberia"
 msgstr "Liberija"
+
+msgid "Library Packages"
+msgstr ""
 
 msgid "Libs"
 msgstr "Libs"
@@ -10410,9 +10396,6 @@ msgstr "Lokalės / kalbos pasirinkimas"
 
 msgid "Locale/Language Selection Actions"
 msgstr "Lokalės / kalbos pasirinkimo veiksmai"
-
-msgid "Locales"
-msgstr "Lokalės"
 
 msgid "Locales to be displayed"
 msgstr "Lokalės, kurios bus rodomos"
@@ -10638,6 +10621,10 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Maltiečių"
 
+#, python-format
+msgid "Manage %s"
+msgstr ""
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Tvarkyti lokalės / kalbos pasirinkimo nustatymus"
 
@@ -10653,7 +10640,12 @@ msgstr "Tvarkykite ir tyrinėkite katalogus ir failus."
 msgid "Manage network mounts"
 msgstr "Tvarkyti tinklo pajungimus"
 
-msgid "Manage the highlighted plugin"
+#, python-format
+msgid "Manage the highlighted %s"
+msgstr ""
+
+#, python-format
+msgid "Manage the highlighted %s / list of %s"
 msgstr ""
 
 msgid "Manage your online update files"
@@ -11380,6 +11372,9 @@ msgstr "MultiTranskodavimas"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Daugialypės įkrovos atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_usb.zip"
 
+msgid "Multimedia Packages"
+msgstr ""
+
 msgid "Multiple service support"
 msgstr "Kelių kanalų palaikymas"
 
@@ -11565,6 +11560,9 @@ msgstr "Tinklo MAC nustatymai"
 
 msgid "Network Neighbourhood"
 msgstr "Tinklo apsuptis"
+
+msgid "Network Packages"
+msgstr ""
 
 msgid "Network Restart"
 msgstr "Paleisti tinklą iš naujo"
@@ -12443,6 +12441,9 @@ msgstr "Kita"
 msgid "Other Actions"
 msgstr "Kiti veiksmai"
 
+msgid "Other Packages"
+msgstr ""
+
 msgid "Other Subtitles & Language"
 msgstr "Kiti subtitrai ir kalba"
 
@@ -12556,6 +12557,9 @@ msgstr "ŽIŪRIMIAUSIAS LAIKAS"
 msgid "PVR"
 msgstr "ĮRAŠAI"
 
+msgid "Package"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Paketų tvarkyklė"
 
@@ -12568,20 +12572,17 @@ msgstr "Paketo informacija šiuo metu nepasiekiama!"
 msgid "Package installation failed."
 msgstr ""
 
-msgid "Package list"
-msgstr "Paketų sąrašas"
-
 msgid "Package list update"
 msgstr "Paketo sąrašo atnaujinimas"
 
 msgid "Packaged locales only"
 msgstr "Tik supakuotos lokalės"
 
+msgid "Packages"
+msgstr ""
+
 msgid "Packages and associated locales"
 msgstr "Paketai ir susijusios lokalės"
-
-msgid "Packet Manager"
-msgstr "Paketų tvarkyklė"
 
 msgid "Page down"
 msgstr "Puslapis žemyn"
@@ -12774,7 +12775,7 @@ msgstr ""
 msgid "Picon and Service Name"
 msgstr "Piktograma ir kanalo pavadinimas"
 
-msgid "Picon package target location"
+msgid "Picon install location"
 msgstr ""
 
 msgid "Picon width"
@@ -13102,6 +13103,15 @@ msgstr ""
 msgid "Please wait while gathering data..."
 msgstr "Palaukite, kol įkeliami duomenys ..."
 
+msgid "Please wait while locale/language is deleted..."
+msgstr ""
+
+msgid "Please wait while locale/language is installed..."
+msgstr ""
+
+msgid "Please wait while locales/languages are purged..."
+msgstr ""
+
 msgid "Please wait while scanning is in progress..."
 msgstr "Prašome laukti kol vyksta paieška..."
 
@@ -13111,11 +13121,17 @@ msgstr "Palaukite, kol duomenys bus išgauti..."
 msgid "Please wait while the list downloads..."
 msgstr "Palaukite, kol sąrašas atsisiunčiamas..."
 
-msgid "Please wait while the plugin is downloaded."
-msgstr ""
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Please wait while the plugin is removed."
-msgstr ""
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Please wait while the plugin is replaced."
 msgstr ""
@@ -13174,6 +13190,9 @@ msgstr ""
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr ""
 
+msgid "Plugin"
+msgstr ""
+
 msgid "Plugin Action Log"
 msgstr ""
 
@@ -13186,13 +13205,10 @@ msgstr "Priedų naršyklė"
 msgid "Plugin Browser Actions"
 msgstr ""
 
-msgid "Plugin Browser Download Actions"
-msgstr ""
-
 msgid "Plugin Browser Edit Actions"
 msgstr ""
 
-msgid "Plugin Browser Manage Actions"
+msgid "Plugin Browser Install Actions"
 msgstr ""
 
 msgid "Plugin Browser Navigation Actions"
@@ -13211,6 +13227,9 @@ msgid "Plugin Browser Update Actions"
 msgstr ""
 
 msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Packages"
 msgstr ""
 
 msgid "Plugin Skin Packages"
@@ -13714,6 +13733,9 @@ msgstr "Išjungti imtuvą į budėjimo būseną"
 msgid "Python"
 msgstr "Python"
 
+msgid "Python Development Packages"
+msgstr ""
+
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python išorinės sąsajos dėl /tmp/mmi.socket"
 
@@ -14166,9 +14188,6 @@ msgstr "Aktualus PIDs maršrutizavimas"
 msgid "Religion"
 msgstr "Religija"
 
-msgid "Reload"
-msgstr "Užkrauti"
-
 msgid "Reload Bookmarks"
 msgstr "Iš naujo įkelti žymes"
 
@@ -14232,6 +14251,10 @@ msgstr "Nuotolinio valdymo tipas"
 msgid "Remove"
 msgstr "Pašalinti"
 
+#, python-format
+msgid "Remove %s"
+msgstr ""
+
 msgid "Remove All Alternatives"
 msgstr "pašalinti visus kitus"
 
@@ -14253,14 +14276,8 @@ msgstr "Pašalinimo patvirtinimas"
 msgid "Remove Entry"
 msgstr "pašalinti"
 
-msgid "Remove Failed !!"
-msgstr "Pašalinti nepavyko !!"
-
 msgid "Remove Files"
 msgstr ""
-
-msgid "Remove Finished."
-msgstr "Pašalinimas baigtas."
 
 msgid "Remove From Parental Protection"
 msgstr "pašalinti iš tėvų kontrolės"
@@ -14475,6 +14492,12 @@ msgstr "Rezervuota ateičiai"
 msgid "Reset"
 msgstr "Atstatyti"
 
+msgid "Reset (clear and reload) the feeds"
+msgstr ""
+
+msgid "Reset Feeds"
+msgstr ""
+
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Iš naujo nustatyti numatytuosius HDMI-CEC parametrus"
 
@@ -14530,6 +14553,9 @@ msgstr "Paleisti iš naujo grafinę aplinką"
 msgid "Restart GUI after x crashes"
 msgstr "Iš naujo paleisti grafinę aplinką po x gedimų"
 
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr ""
+
 msgid "Restart GUI now?"
 msgstr "Paleisti iš naujo grafinę aplinką dabar?"
 
@@ -14559,6 +14585,9 @@ msgstr "Kartoti testą"
 
 msgid "Restart your network connection and interfaces."
 msgstr "Iš naujo paleiskite tinklo ryšį ir sąsajas."
+
+msgid "Restarting..."
+msgstr ""
 
 msgid "Restore"
 msgstr "Atkurti"
@@ -15257,9 +15286,6 @@ msgstr "Pasirinkite 'A' arba 'B', jei jūsų antenos sistema reikalauja to, kita
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'juosta', kitaip kreipkitės į savo LNB specifikacijų lapą."
 
-msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
-msgstr ""
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -15407,6 +15433,9 @@ msgstr ""
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr "Pasirinkite \"Taip\", jei norite, kad katalogai būtų rodomi sąrašo viršuje / pradžioje, arba pasirinkite \"Ne\", kad pirmiausia būtų rodomi failai."
 
@@ -15438,9 +15467,6 @@ msgid "Select 'Yes' to show skin component packages in the Download Plugins scre
 msgstr ""
 
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15475,6 +15501,9 @@ msgstr "Jei nustatyta 'taip', jungiant greitą persukimą, arba atsukimą medijo
 
 msgid "Select Additional Backup Files"
 msgstr "Pasirinkite papildomus failus atsarginei kopijai"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select Backup Location"
 msgstr "Pasirinkite atsarginės kopijos kūrimo vietą"
@@ -15524,6 +15553,9 @@ msgstr "Pasirinkite 4 PIP kanalus"
 msgid "Select Satellites"
 msgstr "Pasirinkite palydovus"
 
+msgid "Select Softcam"
+msgstr "Pasirinkite emuliatorių"
+
 msgid "Select Software Update"
 msgstr "Pasirinkite programinės įrangos atnaujinimą"
 
@@ -15538,6 +15570,12 @@ msgstr "Pasirinkite versijos naujinimo šaltinį, kurį norite redaguoti"
 
 msgid "Select Your Skin"
 msgstr "Pasirinkite norimą temą"
+
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
+msgstr "Iš galimų sąrašų pasirinkite emuliatorių."
 
 msgid "Select a bouquet"
 msgstr "Pasirinkite paketą"
@@ -15579,12 +15617,6 @@ msgstr "Pasirinkite saugyklos įsipareigojimų žurnalą, kad peržiūrėtumėte
 msgid "Select a script to run:"
 msgstr "Pasirinkite scenarijų, kad paleisti:"
 
-msgid "Select a Softcam from the available list as the default for AutoCam."
-msgstr ""
-
-msgid "Select a Softcam from the available list."
-msgstr "Iš galimų sąrašų pasirinkite emuliatorių."
-
 msgid "Select a tuner"
 msgstr "Pasirinkite imtuvą"
 
@@ -15609,9 +15641,6 @@ msgstr "Pasirinkite veiksmą, kurį norite atlikti, kai užduotis bus baigta."
 
 msgid "Select audio track"
 msgstr "Pasirinkite garso takelį"
-
-msgid "Select AutoCam default Softcam"
-msgstr ""
 
 msgid "Select cardserver"
 msgstr "Pasirinkite kortelių serverį"
@@ -15742,9 +15771,6 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Pasirinkite kanalą, kurį norite pridėti..."
 
-msgid "Select Softcam"
-msgstr "Pasirinkite emuliatorių"
-
 msgid "Select sort method:"
 msgstr "Pasirinkite rūšiavimo būdą:"
 
@@ -15762,6 +15788,9 @@ msgstr "Pasirinkite atsakymą Nr. / Klaidingas"
 
 #, python-format
 msgid "Select the Softcam for '%s'"
+msgstr ""
+
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -15960,9 +15989,6 @@ msgstr "Pasirinkite perkeltą simbolių rinkinį"
 msgid "Select the shifted character set for the next character only"
 msgstr "Pasirinkite paslinktų simbolių rinkinį tik kitam simboliui"
 
-msgid "Select the Softcam protocol."
-msgstr ""
-
 msgid "Select the sort order for the file lines:"
 msgstr "Pasirinkite failų eilučių rūšiavimo tvarką:"
 
@@ -15987,7 +16013,7 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
-msgid "Select the target location where picon files will be installed."
+msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -17188,11 +17214,11 @@ msgstr ""
 msgid "Show image and save as '%s'"
 msgstr ""
 
-msgid "Show in Standby"
-msgstr "Rodyti budėjimo režime"
-
 msgid "Show in Extension Menu"
 msgstr "Rodyti plėtinių sąraše"
+
+msgid "Show in Standby"
+msgstr "Rodyti budėjimo režime"
 
 msgid "Show info"
 msgstr "Rodyti informaciją"
@@ -17845,6 +17871,9 @@ msgstr "Nedidelis - Mažasis atvaizdas"
 msgid "Small Box Preparation"
 msgstr ""
 
+msgid "Small Box Preparation Actions"
+msgstr ""
+
 msgid "Small Test"
 msgstr "Mažas testas"
 
@@ -17888,6 +17917,9 @@ msgid "Softcam Settings"
 msgstr "Emuliatoriaus nustatymai"
 
 msgid "Softcam Setup"
+msgstr ""
+
+msgid "Softcams"
 msgstr ""
 
 msgid "Software Management"
@@ -20197,9 +20229,6 @@ msgstr "Stenkitės, kad nebūtų programinės įrangos klaidų perjungiant ir i�
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr "Pabandykite siųsti pasikartojančias komandas, jei vykdomos ne visos komandos. (pvz., TV pažadinimas, bet neperjungiamas į teisingą įvestį.)"
 
-msgid "Trying to download a new packet list. Please wait..."
-msgstr "Bandoma parsisiųsti naują paketo sąrašą. Palaukite..."
-
 msgid "Tsonga"
 msgstr "Tsongų"
 
@@ -20488,6 +20517,9 @@ msgstr ""
 "Kuriant temą, įvyko klaida.\n"
 "Paleidę sistemą iš naujo, tikrinkite MyMetrixLite priedą ir patvirtinkite savo nustatymus."
 
+msgid "Unknown Packages"
+msgstr ""
+
 msgid "Unknown Service"
 msgstr "Nežinomas kanalas"
 
@@ -20607,9 +20639,6 @@ msgstr "Atnaujinimas baigtas!"
 msgid "Update interval (in seconds)"
 msgstr "Atnaujinimo intervalas (sekundėmis)"
 
-msgid "Update package list please wait..."
-msgstr ""
-
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -20640,6 +20669,9 @@ msgstr "Atnaujinama"
 
 msgid "Updating mount locations."
 msgstr "Atnaujinamos pajungimo vietos."
+
+msgid "Updating package list."
+msgstr ""
 
 msgid "Upgrade (Flash & restore all)"
 msgstr "Versijos naujinimas (įdieg & atkurti viską)"
@@ -20698,6 +20730,9 @@ msgstr "Naudoti"
 
 msgid "Use 'Trash' in movie list"
 msgstr "'Šiukšliadėžės' naudojimas filmų sąraše"
+
+msgid "Use AutoCam"
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Naudoti DHCP"
@@ -20761,9 +20796,6 @@ msgstr "Naudokite alternatyvų mažesnį ekraną."
 
 msgid "Use as HDD"
 msgstr "Naudoti kaip HDD"
-
-msgid "Use AutoCam"
-msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -20972,6 +21004,9 @@ msgstr "Naudoti seną profilį: "
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Paprastai, kai subtitrų kalba yra ta pati kaip garso kalbą, nebus naudojami subtitruose. Įjunkite šią funkciją, kad šie subtitrai būtų naudojami."
+
+msgid "Utility Packages"
+msgstr ""
 
 msgid "Uzbek"
 msgstr "Uzbekų"
@@ -21440,6 +21475,10 @@ msgstr "Karas"
 msgid "Warning"
 msgstr "Įspėjimas"
 
+#, python-format
+msgid "Warning: %d feeds were unable to be reloaded!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Įspėjimas: nepaisymas šiuo metu aktyvus!"
 
@@ -21904,6 +21943,9 @@ msgid "Www"
 msgstr "Www"
 
 msgid "X-Resolution"
+msgstr ""
+
+msgid "X11 Packages"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -22573,17 +22615,11 @@ msgstr "sumažinti uphop 1"
 msgid "default"
 msgstr "numatytasis"
 
-msgid "Default Astra (13e-19e)"
-msgstr "numatytasis Astra (13e-19e)"
-
 msgid "delete"
 msgstr "trinti"
 
 msgid "delete cut"
 msgstr "ištrinti iškirptą"
-
-msgid "deleted"
-msgstr "ištrinta"
 
 msgid "detective/thriller"
 msgstr "detektyvas/trileris"
@@ -22844,9 +22880,6 @@ msgstr "aptinkami moduliai"
 msgid "insert mark here"
 msgstr "įterpkite žymeklį čia"
 
-msgid "installed"
-msgstr "Įdiegta"
-
 msgid "instant record"
 msgstr "momentinis įrašymas"
 
@@ -23009,9 +23042,6 @@ msgstr "išteklių valdymo nėra"
 msgid "no storage devices found"
 msgstr "laikmenos įrenginių nerasta"
 
-msgid "none"
-msgstr "nėra"
-
 msgid "normal"
 msgstr "normalus"
 
@@ -23066,6 +23096,12 @@ msgstr "oranžinė"
 msgid "original language"
 msgstr "originalo kalba"
 
+msgid "package"
+msgstr ""
+
+msgid "packages"
+msgstr ""
+
 msgid "pass"
 msgstr "perduoti"
 
@@ -23080,6 +23116,12 @@ msgstr "rožinė"
 
 msgid "please wait, loading picture..."
 msgstr "palaukite, įkeliamas paveikslėlis..."
+
+msgid "plugin"
+msgstr ""
+
+msgid "plugins"
+msgstr ""
 
 msgid "pm"
 msgstr "popiet"
@@ -23274,6 +23316,12 @@ msgstr "socialiniai/politiniai klausimai/ekonomika (bendra)"
 
 msgid "social/spiritual science"
 msgstr "socialinis/dvasinis mokslas"
+
+msgid "softcam"
+msgstr "Emuliatorius"
+
+msgid "softcams"
+msgstr ""
 
 msgid "special (general)"
 msgstr "specialusis (bendrai)"
@@ -23479,6 +23527,79 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "none"
+#~ msgstr "nėra"
+
+#~ msgid "After pressing OK, please wait!"
+#~ msgstr "Paspaudę OK, palaukite!"
+
+#~ msgid "An error occurred while downloading the packet list. Please try again."
+#~ msgstr "Parsisiunčiant paketų sąrašą, įvyko klaida. Pabandykite dar kartą."
+
+#~ msgid "Do you want to install the package:\n"
+#~ msgstr "Ar norite įdiegti paketą:\n"
+
+#~ msgid "Do you want to reboot your receiver?"
+#~ msgstr "Ar norite iš naujo paleisti imtuvą?"
+
+#~ msgid "Do you want to remove the package:\n"
+#~ msgstr "Ar norite pašalinti paketą:\n"
+
+#~ msgid "Do you want to upgrade the package:\n"
+#~ msgstr "Ar norite atnaujinti paketą:\n"
+
+#~ msgid "Getting Softcam list. Please wait..."
+#~ msgstr "Gaunamas emuliatorių sąrašas. Palaukite..."
+
+#~ msgid "Install Failed !!"
+#~ msgstr "Įdiegti nepavyko !!"
+
+#~ msgid "Install Finished."
+#~ msgstr "Įdiegimas baigtas."
+
+#~ msgid "Install Softcams"
+#~ msgstr "Įdiegti emuliatorius"
+
+#~ msgid "Install/Remove plugin"
+#~ msgstr "Įdiegti/pašalinti priedą"
+
+#~ msgid "Package list"
+#~ msgstr "Paketų sąrašas"
+
+#~ msgid "Packet Manager"
+#~ msgstr "Paketų tvarkyklė"
+
+#~ msgid "Reload"
+#~ msgstr "Užkrauti"
+
+#~ msgid "Remove Failed !!"
+#~ msgstr "Pašalinti nepavyko !!"
+
+#~ msgid "Remove Finished."
+#~ msgstr "Pašalinimas baigtas."
+
+#~ msgid "Trying to download a new packet list. Please wait..."
+#~ msgstr "Bandoma parsisiųsti naują paketo sąrašą. Palaukite..."
+
+#, python-format
+#~ msgid "Error: %s %s not %s!  Please try again later."
+#~ msgstr "Klaida: %s %s ne %s!  Bandykite dar kartą vėliau."
+
+#~ msgid "Error: Unable to process the command!  Please try again later."
+#~ msgstr "Klaida: nepavyko apdoroti komandos!  Bandykite dar kartą vėliau."
+
+#~ msgid "Languages"
+#~ msgstr "Kalbos"
+
+#~ msgid "Locales"
+#~ msgstr "Lokalės"
+
+#~ msgid "deleted"
+#~ msgstr "ištrinta"
+
+#~ msgid "installed"
+#~ msgstr "Įdiegta"
+
 #~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 #~ msgstr "Leidžia rodyti / slėpti CCcam išplėtimuose (MĖLYNAS mygtukas)."
 
@@ -23518,9 +23639,6 @@ msgstr "®"
 
 #~ msgid "cardserver"
 #~ msgstr "Paleisti kortelių serverį iš naujo"
-
-#~ msgid "softcam"
-#~ msgstr "Emuliatorius"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI žinyno parametrai"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 11:41+0000\n"
+"POT-Creation-Date: 2023-11-23 11:43+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -943,12 +943,6 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -975,6 +969,12 @@ msgstr[1] ""
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package marked for update."
+msgid_plural "%d packages marked for update."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1174,6 +1174,10 @@ msgstr ""
 
 #, python-format
 msgid "%s - Setup"
+msgstr ""
+
+#, python-format
+msgid "%s Browser Manage Actions"
 msgstr ""
 
 #, python-format
@@ -2014,7 +2018,7 @@ msgstr ""
 msgid "Add/Remove a timer for the current event"
 msgstr ""
 
-msgid "Add/Remove highlighted plugin to/from download list"
+msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from remove list"
@@ -2094,9 +2098,6 @@ msgstr ""
 
 msgid "After event"
 msgstr "Etter opptak"
-
-msgid "After pressing OK, please wait!"
-msgstr ""
 
 msgid "After recording"
 msgstr ""
@@ -2304,9 +2305,6 @@ msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
-
-msgid "An error occurred while downloading the packet list. Please try again."
-msgstr "Det oppstod en feil under nedlasting av programvare. Vennligst prøv igjen."
 
 msgid "An unknown error occurred!"
 msgstr "En ukjent feil oppstod!"
@@ -2658,6 +2656,12 @@ msgstr ""
 msgid "Auto(not available)"
 msgstr ""
 
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr ""
 
@@ -2665,12 +2669,6 @@ msgid "AutoTimer"
 msgstr ""
 
 msgid "AutoUpdate"
-msgstr ""
-
-msgid "AutoCam Settings"
-msgstr ""
-
-msgid "AutoCam Setup Actions"
 msgstr ""
 
 msgid "Automatic"
@@ -2910,6 +2908,12 @@ msgstr "Bangladesh"
 
 msgid "Barbados"
 msgstr "Barbados"
+
+msgid "Base Packages"
+msgstr ""
+
+msgid "Base Shell Packages"
+msgstr ""
 
 msgid "Base time"
 msgstr ""
@@ -3579,6 +3583,9 @@ msgid "Cancel selection"
 msgstr ""
 
 msgid "Cancel selection and exit"
+msgstr ""
+
+msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
 msgid "Cancel the bouquet selection"
@@ -4739,6 +4746,15 @@ msgstr ""
 msgid "Console"
 msgstr "Konsoll"
 
+msgid "Console Network Packages"
+msgstr ""
+
+msgid "Console Packages"
+msgstr ""
+
+msgid "Console Utility Packages"
+msgstr ""
+
 msgid "Constellation"
 msgstr ""
 
@@ -5498,6 +5514,9 @@ msgid "Default 'After event' *"
 msgstr ""
 
 msgid "Default 'Timer type' *"
+msgstr ""
+
+msgid "Default Astra (13e-19e)"
 msgstr ""
 
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
@@ -6265,18 +6284,14 @@ msgid "Do you want to do another manual service scan?"
 msgstr ""
 
 #, python-format
-msgid "Do you want to download '%s'?"
-msgstr ""
-
-#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr ""
 
 msgid "Do you want to install a channel list?"
 msgstr "Vil du installere en kanalliste?"
 
-msgid "Do you want to install the package:\n"
-msgstr "Vil du installere pakken:\n"
+msgid "Do you want to install:"
+msgstr ""
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Vil du spille av DVD?"
@@ -6295,18 +6310,7 @@ msgstr ""
 msgid "Do you want to reboot your %s %s?"
 msgstr ""
 
-msgid "Do you want to reboot your receiver?"
-msgstr "Vil du starte mottakeren på nytt?"
-
-#, python-format
-msgid "Do you want to remove '%s'?"
-msgstr ""
-
-msgid "Do you want to remove the package:\n"
-msgstr "Vil du fjerne pakken:\n"
-
-#, python-format
-msgid "Do you want to replace '%s' with '%s?"
+msgid "Do you want to remove:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -6321,11 +6325,7 @@ msgstr ""
 msgid "Do you want to start a backup now?"
 msgstr ""
 
-#, python-format
-msgid "Do you want to update '%s'?"
-msgstr ""
-
-msgid "Do you want to upgrade the package:\n"
+msgid "Do you want to update:"
 msgstr ""
 
 msgid "Documentary"
@@ -6387,9 +6387,6 @@ msgstr ""
 msgid "Download Image"
 msgstr ""
 
-msgid "Download Plugin"
-msgstr ""
-
 msgid "Download Plugins"
 msgstr ""
 
@@ -6409,9 +6406,6 @@ msgid "Download error"
 msgstr ""
 
 msgid "Download the selected image"
-msgstr ""
-
-msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7305,10 +7299,6 @@ msgstr ""
 "Feil: %s\n"
 "Prøve på nytt?"
 
-#, python-format
-msgid "Error: %s %s not %s!  Please try again later."
-msgstr ""
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Et tomt filnavn er ugyldig."
 
@@ -7396,11 +7386,12 @@ msgstr ""
 msgid "Error: There was a problem writing '%s'!"
 msgstr ""
 
+#, python-format
+msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Kan ikke opprette de nødvendige katalogene på mediet (for eksempel USB-pinne eller harddisk)-kontroller media og prøv igjen!"
-
-msgid "Error: Unable to process the command!  Please try again later."
-msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
@@ -7931,6 +7922,9 @@ msgstr ""
 msgid "File System Check"
 msgstr ""
 
+msgid "File System Packages"
+msgstr ""
+
 msgid "File appears to be busy.\n"
 msgstr "Filen ser ut til å være opptatt.\n"
 
@@ -8134,9 +8128,6 @@ msgid "Force LNB Tuner ToneBurst settings."
 msgstr ""
 
 msgid "Force Legacy Signal stats"
-msgstr ""
-
-msgid "Force OPKG clean mode"
 msgstr ""
 
 msgid "Force ToneBurst"
@@ -8375,10 +8366,10 @@ msgstr ""
 msgid "Geolocation Information"
 msgstr ""
 
-msgid "Geolocation does not contain time zone information."
+msgid "Geolocation data does not contain time zone information."
 msgstr ""
 
-msgid "Geolocation has been used to set the time zone."
+msgid "Geolocation data has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
@@ -8388,7 +8379,7 @@ msgstr ""
 msgid "Geolocation information for %s %s"
 msgstr ""
 
-msgid "Geolocation is not available."
+msgid "Geolocation data is not available."
 msgstr ""
 
 msgid "Georgia"
@@ -8404,9 +8395,6 @@ msgid "Germany"
 msgstr "Tyskland"
 
 msgid "Getting Event Info failed!"
-msgstr ""
-
-msgid "Getting Softcam list. Please wait..."
 msgstr ""
 
 msgid "Getting plugin information. Please wait..."
@@ -9471,25 +9459,23 @@ msgid "Install"
 msgstr "Installer"
 
 #, python-format
+msgid "Install %s"
+msgstr ""
+
+#, python-format
 msgid "Install '%s' command"
 msgstr ""
 
 msgid "Install 1/1"
 msgstr ""
 
-msgid "Install Failed !!"
-msgstr ""
-
-msgid "Install Finished."
-msgstr ""
-
 msgid "Install Local Extension"
 msgstr "Installer lokal utvidelse"
 
-msgid "Install Plugins"
+msgid "Install Plugin"
 msgstr ""
 
-msgid "Install Softcams"
+msgid "Install Plugins"
 msgstr ""
 
 msgid "Install a new image with a USB stick"
@@ -9507,7 +9493,7 @@ msgstr ""
 msgid "Install the package"
 msgstr ""
 
-msgid "Install/Remove plugin"
+msgid "Install the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Installation finished."
@@ -9520,9 +9506,6 @@ msgstr "Installerer"
 msgid "Installing %s (%s)..."
 msgstr ""
 
-msgid "Installing Please wait..."
-msgstr ""
-
 msgid "Installing Service"
 msgstr ""
 
@@ -9533,6 +9516,9 @@ msgid "Installing feeds from IPK ..."
 msgstr ""
 
 msgid "Installing feeds from feed ..."
+msgstr ""
+
+msgid "Installing package."
 msgstr ""
 
 msgid "Installing plugins from IPK ..."
@@ -9962,9 +9948,6 @@ msgstr ""
 msgid "Language selection"
 msgstr "Språkvalg"
 
-msgid "Languages"
-msgstr ""
-
 msgid "Lao"
 msgstr ""
 
@@ -10053,6 +10036,9 @@ msgstr "Brevsprekkformat forstørrelse"
 
 msgid "Liberia"
 msgstr "Liberia"
+
+msgid "Library Packages"
+msgstr ""
 
 msgid "Libs"
 msgstr ""
@@ -10241,9 +10227,6 @@ msgid "Locale/Language Selection"
 msgstr ""
 
 msgid "Locale/Language Selection Actions"
-msgstr ""
-
-msgid "Locales"
 msgstr ""
 
 msgid "Locales to be displayed"
@@ -10470,6 +10453,10 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr ""
 
+#, python-format
+msgid "Manage %s"
+msgstr ""
+
 msgid "Manage Locale/Language Selection settings"
 msgstr ""
 
@@ -10485,7 +10472,12 @@ msgstr ""
 msgid "Manage network mounts"
 msgstr ""
 
-msgid "Manage the highlighted plugin"
+#, python-format
+msgid "Manage the highlighted %s"
+msgstr ""
+
+#, python-format
+msgid "Manage the highlighted %s / list of %s"
 msgstr ""
 
 msgid "Manage your online update files"
@@ -11210,6 +11202,9 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
+msgid "Multimedia Packages"
+msgstr ""
+
 msgid "Multiple service support"
 msgstr "Flerkanal støtte"
 
@@ -11394,6 +11389,9 @@ msgid "Network MAC settings"
 msgstr ""
 
 msgid "Network Neighbourhood"
+msgstr ""
+
+msgid "Network Packages"
 msgstr ""
 
 msgid "Network Restart"
@@ -12261,6 +12259,9 @@ msgstr "Annen"
 msgid "Other Actions"
 msgstr ""
 
+msgid "Other Packages"
+msgstr ""
+
 msgid "Other Subtitles & Language"
 msgstr "Andre undertekster & språk"
 
@@ -12374,6 +12375,9 @@ msgstr ""
 msgid "PVR"
 msgstr ""
 
+msgid "Package"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Velg programpakker"
 
@@ -12386,20 +12390,17 @@ msgstr ""
 msgid "Package installation failed."
 msgstr ""
 
-msgid "Package list"
-msgstr ""
-
 msgid "Package list update"
 msgstr "Ser etter ny programvare"
 
 msgid "Packaged locales only"
 msgstr ""
 
-msgid "Packages and associated locales"
+msgid "Packages"
 msgstr ""
 
-msgid "Packet Manager"
-msgstr "Pakkeforvalter"
+msgid "Packages and associated locales"
+msgstr ""
 
 msgid "Page down"
 msgstr ""
@@ -12592,7 +12593,7 @@ msgstr ""
 msgid "Picon and Service Name"
 msgstr ""
 
-msgid "Picon package target location"
+msgid "Picon install location"
 msgstr ""
 
 msgid "Picon width"
@@ -12911,6 +12912,15 @@ msgstr ""
 msgid "Please wait while gathering data..."
 msgstr ""
 
+msgid "Please wait while locale/language is deleted..."
+msgstr ""
+
+msgid "Please wait while locale/language is installed..."
+msgstr ""
+
+msgid "Please wait while locales/languages are purged..."
+msgstr ""
+
 msgid "Please wait while scanning is in progress..."
 msgstr "Vent litt mens søking pågår..."
 
@@ -12920,11 +12930,15 @@ msgstr ""
 msgid "Please wait while the list downloads..."
 msgstr ""
 
-msgid "Please wait while the plugin is downloaded."
-msgstr ""
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Please wait while the plugin is removed."
-msgstr ""
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Please wait while the plugin is replaced."
 msgstr ""
@@ -12983,6 +12997,9 @@ msgstr ""
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr ""
 
+msgid "Plugin"
+msgstr ""
+
 msgid "Plugin Action Log"
 msgstr ""
 
@@ -12995,13 +13012,10 @@ msgstr "Utvidelser"
 msgid "Plugin Browser Actions"
 msgstr ""
 
-msgid "Plugin Browser Download Actions"
-msgstr ""
-
 msgid "Plugin Browser Edit Actions"
 msgstr ""
 
-msgid "Plugin Browser Manage Actions"
+msgid "Plugin Browser Install Actions"
 msgstr ""
 
 msgid "Plugin Browser Navigation Actions"
@@ -13020,6 +13034,9 @@ msgid "Plugin Browser Update Actions"
 msgstr ""
 
 msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Packages"
 msgstr ""
 
 msgid "Plugin Skin Packages"
@@ -13523,6 +13540,9 @@ msgstr ""
 msgid "Python"
 msgstr ""
 
+msgid "Python Development Packages"
+msgstr ""
+
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python visning for /tmp/mmi.kontakt"
 
@@ -13970,9 +13990,6 @@ msgstr ""
 msgid "Religion"
 msgstr ""
 
-msgid "Reload"
-msgstr "Restart"
-
 msgid "Reload Bookmarks"
 msgstr ""
 
@@ -14036,6 +14053,10 @@ msgstr "Fjernkontroll type"
 msgid "Remove"
 msgstr "Fjern"
 
+#, python-format
+msgid "Remove %s"
+msgstr ""
+
 msgid "Remove All Alternatives"
 msgstr ""
 
@@ -14057,13 +14078,7 @@ msgstr ""
 msgid "Remove Entry"
 msgstr ""
 
-msgid "Remove Failed !!"
-msgstr ""
-
 msgid "Remove Files"
-msgstr ""
-
-msgid "Remove Finished."
 msgstr ""
 
 msgid "Remove From Parental Protection"
@@ -14277,6 +14292,12 @@ msgstr ""
 msgid "Reset"
 msgstr "Tilbakestill"
 
+msgid "Reset (clear and reload) the feeds"
+msgstr ""
+
+msgid "Reset Feeds"
+msgstr ""
+
 msgid "Reset HDMI-CEC settings to default"
 msgstr ""
 
@@ -14332,6 +14353,9 @@ msgstr "Start grafisk grensesnitt på ny"
 msgid "Restart GUI after x crashes"
 msgstr ""
 
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr ""
+
 msgid "Restart GUI now?"
 msgstr "Start GUI på nytt?"
 
@@ -14361,6 +14385,9 @@ msgstr "Starte på nytt- test"
 
 msgid "Restart your network connection and interfaces."
 msgstr "Start nettverksforbindelse på nytt."
+
+msgid "Restarting..."
+msgstr ""
 
 msgid "Restore"
 msgstr "Gjenopprett"
@@ -15055,9 +15082,6 @@ msgstr "Velg 'A' eller 'B' hvis antenne systemet krever dette, ellers, velger du
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Velg 'band' hvis du bruker en universal LNB, ellers les din LNB bruksanvisning."
 
-msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
-msgstr ""
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -15205,6 +15229,9 @@ msgstr ""
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr ""
 
@@ -15238,9 +15265,6 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
-msgstr ""
-
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr ""
 
@@ -15272,6 +15296,9 @@ msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding dur
 msgstr ""
 
 msgid "Select Additional Backup Files"
+msgstr ""
+
+msgid "Select AutoCam default Softcam"
 msgstr ""
 
 msgid "Select Backup Location"
@@ -15322,6 +15349,9 @@ msgstr ""
 msgid "Select Satellites"
 msgstr "Velg satellitter"
 
+msgid "Select Softcam"
+msgstr ""
+
 msgid "Select Software Update"
 msgstr ""
 
@@ -15335,6 +15365,12 @@ msgid "Select Upgrade Source To Edit"
 msgstr ""
 
 msgid "Select Your Skin"
+msgstr ""
+
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr ""
 
 msgid "Select a bouquet"
@@ -15377,12 +15413,6 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr ""
 
-msgid "Select a Softcam from the available list as the default for AutoCam."
-msgstr ""
-
-msgid "Select a Softcam from the available list."
-msgstr ""
-
 msgid "Select a tuner"
 msgstr "Velg tuner"
 
@@ -15407,9 +15437,6 @@ msgstr ""
 
 msgid "Select audio track"
 msgstr "Velg lydspor"
-
-msgid "Select AutoCam default Softcam"
-msgstr ""
 
 msgid "Select cardserver"
 msgstr ""
@@ -15540,9 +15567,6 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Velg kanal som skal legges til..."
 
-msgid "Select Softcam"
-msgstr ""
-
 msgid "Select sort method:"
 msgstr "Velg sorteringsmetode:"
 
@@ -15560,6 +15584,9 @@ msgstr ""
 
 #, python-format
 msgid "Select the Softcam for '%s'"
+msgstr ""
+
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -15758,9 +15785,6 @@ msgstr "Velg shift tegnsett"
 msgid "Select the shifted character set for the next character only"
 msgstr "Velg shift tegnsettet bare for neste tegn"
 
-msgid "Select the Softcam protocol."
-msgstr ""
-
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -15785,7 +15809,7 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
-msgid "Select the target location where picon files will be installed."
+msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -16971,10 +16995,10 @@ msgstr ""
 msgid "Show image and save as '%s'"
 msgstr ""
 
-msgid "Show in Standby"
+msgid "Show in Extension Menu"
 msgstr ""
 
-msgid "Show in Extension Menu"
+msgid "Show in Standby"
 msgstr ""
 
 msgid "Show info"
@@ -17626,6 +17650,9 @@ msgstr ""
 msgid "Small Box Preparation"
 msgstr ""
 
+msgid "Small Box Preparation Actions"
+msgstr ""
+
 msgid "Small Test"
 msgstr ""
 
@@ -17669,6 +17696,9 @@ msgid "Softcam Settings"
 msgstr "Softcam innstilling"
 
 msgid "Softcam Setup"
+msgstr ""
+
+msgid "Softcams"
 msgstr ""
 
 msgid "Software Management"
@@ -19923,9 +19953,6 @@ msgstr ""
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr ""
 
-msgid "Trying to download a new packet list. Please wait..."
-msgstr "Forsøker å laste ned en ny pakkeliste. Vent litt..."
-
 msgid "Tsonga"
 msgstr ""
 
@@ -20209,6 +20236,9 @@ msgid ""
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
 
+msgid "Unknown Packages"
+msgstr ""
+
 msgid "Unknown Service"
 msgstr "ukjent kanal"
 
@@ -20328,9 +20358,6 @@ msgstr ""
 msgid "Update interval (in seconds)"
 msgstr ""
 
-msgid "Update package list please wait..."
-msgstr ""
-
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -20358,6 +20385,9 @@ msgid "Updating"
 msgstr ""
 
 msgid "Updating mount locations."
+msgstr ""
+
+msgid "Updating package list."
 msgstr ""
 
 msgid "Upgrade (Flash & restore all)"
@@ -20414,6 +20444,9 @@ msgstr "Bruk"
 
 msgid "Use 'Trash' in movie list"
 msgstr "Bruk papirkurven i opptaksliste"
+
+msgid "Use AutoCam"
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Bruk DHCP"
@@ -20476,9 +20509,6 @@ msgid "Use an alternative smaller screen."
 msgstr ""
 
 msgid "Use as HDD"
-msgstr ""
-
-msgid "Use AutoCam"
 msgstr ""
 
 msgid "Use automatic mode detection"
@@ -20688,6 +20718,9 @@ msgstr ""
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Vanligvis når undertekstspråket er det samme som lydspråket, vil undertekstene ikke brukes. Aktiver dette alternativet for å tillate at disse undertekstene kan brukes."
+
+msgid "Utility Packages"
+msgstr ""
 
 msgid "Uzbek"
 msgstr ""
@@ -21129,6 +21162,10 @@ msgstr ""
 
 msgid "Warning"
 msgstr "Advarsel"
+
+#, python-format
+msgid "Warning: %d feeds were unable to be reloaded!"
+msgstr ""
 
 msgid "Warning: Overrides are currently active!"
 msgstr ""
@@ -21583,6 +21620,9 @@ msgid "Www"
 msgstr ""
 
 msgid "X-Resolution"
+msgstr ""
+
+msgid "X11 Packages"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -22221,17 +22261,11 @@ msgstr ""
 msgid "default"
 msgstr "standard"
 
-msgid "Default Astra (13e-19e)"
-msgstr ""
-
 msgid "delete"
 msgstr ""
 
 msgid "delete cut"
 msgstr "slett klipp"
-
-msgid "deleted"
-msgstr ""
 
 msgid "detective/thriller"
 msgstr "krim/spenning"
@@ -22492,9 +22526,6 @@ msgstr "igangsett modulene"
 msgid "insert mark here"
 msgstr "sett et merke her"
 
-msgid "installed"
-msgstr ""
-
 msgid "instant record"
 msgstr ""
 
@@ -22657,9 +22688,6 @@ msgstr "ingen ressursforvalter"
 msgid "no storage devices found"
 msgstr "ingen lagringsenheter er funnet"
 
-msgid "none"
-msgstr "ingen"
-
 msgid "normal"
 msgstr ""
 
@@ -22714,6 +22742,12 @@ msgstr ""
 msgid "original language"
 msgstr "original språk"
 
+msgid "package"
+msgstr ""
+
+msgid "packages"
+msgstr ""
+
 msgid "pass"
 msgstr "klart"
 
@@ -22728,6 +22762,12 @@ msgstr ""
 
 msgid "please wait, loading picture..."
 msgstr "vent litt, laster bilde..."
+
+msgid "plugin"
+msgstr ""
+
+msgid "plugins"
+msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -22918,6 +22958,12 @@ msgstr "sosialt/politiske spørsmål/økonomi (generelt)"
 
 msgid "social/spiritual science"
 msgstr "sosialt/åndsvitenskap"
+
+msgid "softcam"
+msgstr ""
+
+msgid "softcams"
+msgstr ""
 
 msgid "special (general)"
 msgstr ""
@@ -23119,6 +23165,30 @@ msgstr "ja (behold feeder)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "none"
+#~ msgstr "ingen"
+
+#~ msgid "An error occurred while downloading the packet list. Please try again."
+#~ msgstr "Det oppstod en feil under nedlasting av programvare. Vennligst prøv igjen."
+
+#~ msgid "Do you want to install the package:\n"
+#~ msgstr "Vil du installere pakken:\n"
+
+#~ msgid "Do you want to reboot your receiver?"
+#~ msgstr "Vil du starte mottakeren på nytt?"
+
+#~ msgid "Do you want to remove the package:\n"
+#~ msgstr "Vil du fjerne pakken:\n"
+
+#~ msgid "Packet Manager"
+#~ msgstr "Pakkeforvalter"
+
+#~ msgid "Reload"
+#~ msgstr "Restart"
+
+#~ msgid "Trying to download a new packet list. Please wait..."
+#~ msgstr "Forsøker å laste ned en ny pakkeliste. Vent litt..."
 
 #~ msgid "Restart both"
 #~ msgstr "Restart begge"

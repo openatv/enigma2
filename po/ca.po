@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 11:41+0000\n"
+"POT-Creation-Date: 2023-11-23 11:43+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1040,12 +1040,6 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1072,6 +1066,12 @@ msgstr[1] ""
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package marked for update."
+msgid_plural "%d packages marked for update."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1288,6 +1288,10 @@ msgstr "%s (%s)\n"
 #, fuzzy, python-format
 msgid "%s - Setup"
 msgstr "Configuració"
+
+#, python-format
+msgid "%s Browser Manage Actions"
+msgstr ""
 
 #, python-format
 msgid "%s GHz"
@@ -2237,7 +2241,7 @@ msgstr "Esborra títol"
 msgid "Add/Remove a timer for the current event"
 msgstr ""
 
-msgid "Add/Remove highlighted plugin to/from download list"
+msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from remove list"
@@ -2323,9 +2327,6 @@ msgstr ""
 #
 msgid "After event"
 msgstr "Després del programa"
-
-msgid "After pressing OK, please wait!"
-msgstr ""
 
 #
 #, fuzzy
@@ -2555,9 +2556,6 @@ msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
-
-msgid "An error occurred while downloading the packet list. Please try again."
-msgstr "S’ha produït un error en descarregar la llista de paquets. Siusplau torna-ho a provar."
 
 msgid "An unknown error occurred!"
 msgstr "S’ha produït un error desconegut!"
@@ -2943,6 +2941,12 @@ msgstr ""
 msgid "Auto(not available)"
 msgstr ""
 
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr ""
 
@@ -2950,12 +2954,6 @@ msgid "AutoTimer"
 msgstr ""
 
 msgid "AutoUpdate"
-msgstr ""
-
-msgid "AutoCam Settings"
-msgstr ""
-
-msgid "AutoCam Setup Actions"
 msgstr ""
 
 #
@@ -3212,6 +3210,12 @@ msgstr "Bangladesh"
 
 msgid "Barbados"
 msgstr "Barbados"
+
+msgid "Base Packages"
+msgstr ""
+
+msgid "Base Shell Packages"
+msgstr ""
 
 #
 #, fuzzy
@@ -3933,6 +3937,9 @@ msgid "Cancel selection"
 msgstr "Selecció de canal"
 
 msgid "Cancel selection and exit"
+msgstr ""
+
+msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
 msgid "Cancel the bouquet selection"
@@ -5168,6 +5175,15 @@ msgstr ""
 msgid "Console"
 msgstr "Consola"
 
+msgid "Console Network Packages"
+msgstr ""
+
+msgid "Console Packages"
+msgstr ""
+
+msgid "Console Utility Packages"
+msgstr ""
+
 msgid "Constellation"
 msgstr ""
 
@@ -5981,6 +5997,9 @@ msgstr "Després del programa"
 #, fuzzy
 msgid "Default 'Timer type' *"
 msgstr "aquesta gravació"
+
+msgid "Default Astra (13e-19e)"
+msgstr ""
 
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -6803,10 +6822,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Vols fer una altra recerca manual?"
 
 #, python-format
-msgid "Do you want to download '%s'?"
-msgstr ""
-
-#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr ""
 
@@ -6814,9 +6829,8 @@ msgstr ""
 msgid "Do you want to install a channel list?"
 msgstr "Voleu instal·lar una llista de canals?"
 
-#
-msgid "Do you want to install the package:\n"
-msgstr "Voleu instal·lar el paquet:\n"
+msgid "Do you want to install:"
+msgstr ""
 
 #
 msgid "Do you want to play DVD in drive?"
@@ -6837,19 +6851,7 @@ msgstr ""
 msgid "Do you want to reboot your %s %s?"
 msgstr ""
 
-msgid "Do you want to reboot your receiver?"
-msgstr "Voleu reiniciar el receptor?"
-
-#, python-format
-msgid "Do you want to remove '%s'?"
-msgstr ""
-
-#
-msgid "Do you want to remove the package:\n"
-msgstr "Voleu eliminar el paquet:\n"
-
-#, python-format
-msgid "Do you want to replace '%s' with '%s?"
+msgid "Do you want to remove:"
 msgstr ""
 
 #
@@ -6866,12 +6868,7 @@ msgstr ""
 msgid "Do you want to start a backup now?"
 msgstr ""
 
-#, python-format
-msgid "Do you want to update '%s'?"
-msgstr ""
-
-#
-msgid "Do you want to upgrade the package:\n"
+msgid "Do you want to update:"
 msgstr ""
 
 msgid "Documentary"
@@ -6934,9 +6931,6 @@ msgstr ""
 msgid "Download Image"
 msgstr ""
 
-msgid "Download Plugin"
-msgstr ""
-
 msgid "Download Plugins"
 msgstr ""
 
@@ -6956,9 +6950,6 @@ msgid "Download error"
 msgstr ""
 
 msgid "Download the selected image"
-msgstr ""
-
-msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7917,10 +7908,6 @@ msgstr ""
 "Error:% s\n"
 "Torneu-ho a provar?"
 
-#, python-format
-msgid "Error: %s %s not %s!  Please try again later."
-msgstr ""
-
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Un nom de fitxer buit és il·legal."
@@ -8013,11 +8000,12 @@ msgstr ""
 msgid "Error: There was a problem writing '%s'!"
 msgstr ""
 
+#, python-format
+msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "No es poden crear els directoris obligatoris al suport (per exemple, stick USB o Harddisk). Verifiqueu el material i proveu-ho de nou."
-
-msgid "Error: Unable to process the command!  Please try again later."
-msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
@@ -8589,6 +8577,9 @@ msgstr ""
 msgid "File System Check"
 msgstr ""
 
+msgid "File System Packages"
+msgstr ""
+
 msgid "File appears to be busy.\n"
 msgstr "Sembla que el fitxer està ocupat.\n"
 
@@ -8807,9 +8798,6 @@ msgid "Force LNB Tuner ToneBurst settings."
 msgstr ""
 
 msgid "Force Legacy Signal stats"
-msgstr ""
-
-msgid "Force OPKG clean mode"
 msgstr ""
 
 #
@@ -9078,10 +9066,10 @@ msgstr ""
 msgid "Geolocation Information"
 msgstr ""
 
-msgid "Geolocation does not contain time zone information."
+msgid "Geolocation data does not contain time zone information."
 msgstr ""
 
-msgid "Geolocation has been used to set the time zone."
+msgid "Geolocation data has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
@@ -9091,7 +9079,7 @@ msgstr ""
 msgid "Geolocation information for %s %s"
 msgstr ""
 
-msgid "Geolocation is not available."
+msgid "Geolocation data is not available."
 msgstr ""
 
 msgid "Georgia"
@@ -9111,9 +9099,6 @@ msgid "Germany"
 msgstr "Alemanya"
 
 msgid "Getting Event Info failed!"
-msgstr ""
-
-msgid "Getting Softcam list. Please wait..."
 msgstr ""
 
 #
@@ -10251,26 +10236,24 @@ msgid "Install"
 msgstr "Instal·leu"
 
 #, python-format
+msgid "Install %s"
+msgstr ""
+
+#, python-format
 msgid "Install '%s' command"
 msgstr ""
 
 msgid "Install 1/1"
 msgstr ""
 
-msgid "Install Failed !!"
-msgstr ""
-
-msgid "Install Finished."
-msgstr ""
-
 #
 msgid "Install Local Extension"
 msgstr "Instal·leu l’extensió local"
 
-msgid "Install Plugins"
+msgid "Install Plugin"
 msgstr ""
 
-msgid "Install Softcams"
+msgid "Install Plugins"
 msgstr ""
 
 #
@@ -10291,7 +10274,7 @@ msgstr ""
 msgid "Install the package"
 msgstr ""
 
-msgid "Install/Remove plugin"
+msgid "Install the selected plugin / list of plugins"
 msgstr ""
 
 #
@@ -10307,9 +10290,6 @@ msgstr "Instal·lant"
 msgid "Installing %s (%s)..."
 msgstr "Instal·lant"
 
-msgid "Installing Please wait..."
-msgstr ""
-
 msgid "Installing Service"
 msgstr ""
 
@@ -10324,6 +10304,9 @@ msgid "Installing feeds from IPK ..."
 msgstr "Instal·lant"
 
 msgid "Installing feeds from feed ..."
+msgstr ""
+
+msgid "Installing package."
 msgstr ""
 
 #
@@ -10785,11 +10768,6 @@ msgstr ""
 msgid "Language selection"
 msgstr "Selecció d'idioma"
 
-#
-#, fuzzy
-msgid "Languages"
-msgstr "Idioma"
-
 msgid "Lao"
 msgstr ""
 
@@ -10889,6 +10867,9 @@ msgstr "Letterbox zoom"
 
 msgid "Liberia"
 msgstr "Liberia"
+
+msgid "Library Packages"
+msgstr ""
 
 msgid "Libs"
 msgstr ""
@@ -11101,11 +11082,6 @@ msgstr "Selecció d'idioma"
 #, fuzzy
 msgid "Locale/Language Selection Actions"
 msgstr "Selecció d'idioma"
-
-#
-#, fuzzy
-msgid "Locales"
-msgstr "carregar llista"
 
 msgid "Locales to be displayed"
 msgstr ""
@@ -11347,6 +11323,10 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr ""
 
+#, python-format
+msgid "Manage %s"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
@@ -11364,7 +11344,12 @@ msgstr ""
 msgid "Manage network mounts"
 msgstr ""
 
-msgid "Manage the highlighted plugin"
+#, python-format
+msgid "Manage the highlighted %s"
+msgstr ""
+
+#, python-format
+msgid "Manage the highlighted %s / list of %s"
 msgstr ""
 
 msgid "Manage your online update files"
@@ -12162,6 +12147,9 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
+msgid "Multimedia Packages"
+msgstr ""
+
 #
 msgid "Multiple service support"
 msgstr "Suport per a serveis múltiples"
@@ -12362,6 +12350,9 @@ msgid "Network MAC settings"
 msgstr "Activar la configuració de la xarxa"
 
 msgid "Network Neighbourhood"
+msgstr ""
+
+msgid "Network Packages"
 msgstr ""
 
 msgid "Network Restart"
@@ -13320,6 +13311,9 @@ msgstr "Altres"
 msgid "Other Actions"
 msgstr "Descripció"
 
+msgid "Other Packages"
+msgstr ""
+
 msgid "Other Subtitles & Language"
 msgstr "Altres subtítols & lang"
 
@@ -13440,6 +13434,9 @@ msgstr ""
 msgid "PVR"
 msgstr ""
 
+msgid "Package"
+msgstr ""
+
 #
 msgid "Package Manager"
 msgstr "Gestió de paquets"
@@ -13453,9 +13450,6 @@ msgstr ""
 msgid "Package installation failed."
 msgstr ""
 
-msgid "Package list"
-msgstr ""
-
 #
 msgid "Package list update"
 msgstr "Actualització de la llista de paquets"
@@ -13463,12 +13457,11 @@ msgstr "Actualització de la llista de paquets"
 msgid "Packaged locales only"
 msgstr ""
 
-msgid "Packages and associated locales"
+msgid "Packages"
 msgstr ""
 
-#
-msgid "Packet Manager"
-msgstr "Gestor de paquets"
+msgid "Packages and associated locales"
+msgstr ""
 
 msgid "Page down"
 msgstr ""
@@ -13675,7 +13668,7 @@ msgstr ""
 msgid "Picon and Service Name"
 msgstr ""
 
-msgid "Picon package target location"
+msgid "Picon install location"
 msgstr ""
 
 msgid "Picon width"
@@ -14039,6 +14032,15 @@ msgstr ""
 msgid "Please wait while gathering data..."
 msgstr "Carregant la llista... espera..."
 
+msgid "Please wait while locale/language is deleted..."
+msgstr ""
+
+msgid "Please wait while locale/language is installed..."
+msgstr ""
+
+msgid "Please wait while locales/languages are purged..."
+msgstr ""
+
 #
 msgid "Please wait while scanning is in progress..."
 msgstr "Espereu mentre el rastreig està en curs …"
@@ -14051,11 +14053,15 @@ msgstr ""
 msgid "Please wait while the list downloads..."
 msgstr "Carregant la llista... espera..."
 
-msgid "Please wait while the plugin is downloaded."
-msgstr ""
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Please wait while the plugin is removed."
-msgstr ""
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Please wait while the plugin is replaced."
 msgstr ""
@@ -14122,6 +14128,9 @@ msgstr ""
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr ""
 
+msgid "Plugin"
+msgstr ""
+
 msgid "Plugin Action Log"
 msgstr ""
 
@@ -14134,13 +14143,10 @@ msgstr "Plugin navegador"
 msgid "Plugin Browser Actions"
 msgstr ""
 
-msgid "Plugin Browser Download Actions"
-msgstr ""
-
 msgid "Plugin Browser Edit Actions"
 msgstr ""
 
-msgid "Plugin Browser Manage Actions"
+msgid "Plugin Browser Install Actions"
 msgstr ""
 
 msgid "Plugin Browser Navigation Actions"
@@ -14159,6 +14165,9 @@ msgid "Plugin Browser Update Actions"
 msgstr ""
 
 msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Packages"
 msgstr ""
 
 msgid "Plugin Skin Packages"
@@ -14716,6 +14725,9 @@ msgstr ""
 msgid "Python"
 msgstr ""
 
+msgid "Python Development Packages"
+msgstr ""
+
 #
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Front de Python per a /tmp/mmi.socket"
@@ -15215,10 +15227,6 @@ msgstr ""
 msgid "Religion"
 msgstr ""
 
-#
-msgid "Reload"
-msgstr "Recarrega"
-
 msgid "Reload Bookmarks"
 msgstr ""
 
@@ -15283,6 +15291,10 @@ msgstr "Tipus de control remot"
 msgid "Remove"
 msgstr "Esborrar"
 
+#, python-format
+msgid "Remove %s"
+msgstr ""
+
 #
 msgid "Remove All Alternatives"
 msgstr "esborrar totes les alternatives"
@@ -15310,14 +15322,7 @@ msgstr "Configuració del sintonitzador"
 msgid "Remove Entry"
 msgstr "eliminar entrada"
 
-msgid "Remove Failed !!"
-msgstr ""
-
 msgid "Remove Files"
-msgstr ""
-
-#
-msgid "Remove Finished."
 msgstr ""
 
 #
@@ -15555,6 +15560,12 @@ msgstr ""
 msgid "Reset"
 msgstr "Resetejar"
 
+msgid "Reset (clear and reload) the feeds"
+msgstr ""
+
+msgid "Reset Feeds"
+msgstr ""
+
 msgid "Reset HDMI-CEC settings to default"
 msgstr ""
 
@@ -15617,6 +15628,9 @@ msgstr "Reengegar la IGU ara?"
 msgid "Restart GUI after x crashes"
 msgstr ""
 
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr ""
+
 #
 msgid "Restart GUI now?"
 msgstr "Reengegar la IGU ara?"
@@ -15651,6 +15665,9 @@ msgstr "Reinicia la prova"
 #
 msgid "Restart your network connection and interfaces."
 msgstr "Reinicieu la connexió de xarxa i les interfícies."
+
+msgid "Restarting..."
+msgstr ""
 
 #
 msgid "Restore"
@@ -16413,9 +16430,6 @@ msgstr "Seleccioneu “A” o “B” si el vostre sistema aeri requereix això,
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Seleccioneu “banda” si feu servir un LNB “universal”, si no, consulteu el vostre full de especificacions LNB."
 
-msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
-msgstr ""
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -16563,6 +16577,9 @@ msgstr ""
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr ""
 
@@ -16596,9 +16613,6 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
-msgstr ""
-
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr ""
 
@@ -16630,6 +16644,9 @@ msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding dur
 msgstr ""
 
 msgid "Select Additional Backup Files"
+msgstr ""
+
+msgid "Select AutoCam default Softcam"
 msgstr ""
 
 #
@@ -16684,6 +16701,9 @@ msgstr ""
 msgid "Select Satellites"
 msgstr "Selecciona satèl·lits"
 
+msgid "Select Softcam"
+msgstr ""
+
 msgid "Select Software Update"
 msgstr ""
 
@@ -16703,6 +16723,12 @@ msgstr ""
 #, fuzzy
 msgid "Select Your Skin"
 msgstr "Seleccionar disc dur"
+
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
+msgstr ""
 
 msgid "Select a bouquet"
 msgstr "Selecciona bouquet"
@@ -16744,12 +16770,6 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr ""
 
-msgid "Select a Softcam from the available list as the default for AutoCam."
-msgstr ""
-
-msgid "Select a Softcam from the available list."
-msgstr ""
-
 msgid "Select a tuner"
 msgstr "Seleccioneu un sintonitzador"
 
@@ -16778,9 +16798,6 @@ msgstr ""
 #
 msgid "Select audio track"
 msgstr "Seleccionar pista d'àudio"
-
-msgid "Select AutoCam default Softcam"
-msgstr ""
 
 msgid "Select cardserver"
 msgstr ""
@@ -16919,9 +16936,6 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Selecciona el servei a afegir …"
 
-msgid "Select Softcam"
-msgstr ""
-
 msgid "Select sort method:"
 msgstr "Seleccioneu el mètode d’ordenació:"
 
@@ -16939,6 +16953,9 @@ msgstr ""
 
 #, python-format
 msgid "Select the Softcam for '%s'"
+msgstr ""
+
+msgid "Select the Softcam protocol."
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -17140,9 +17157,6 @@ msgstr "Seleccioneu el joc de caràcters desplaçat"
 msgid "Select the shifted character set for the next character only"
 msgstr "Seleccioneu el conjunt de caràcters desplaçat només per al següent personatge"
 
-msgid "Select the Softcam protocol."
-msgstr ""
-
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -17167,7 +17181,7 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
-msgid "Select the target location where picon files will be installed."
+msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -18424,13 +18438,13 @@ msgstr ""
 msgid "Show image and save as '%s'"
 msgstr ""
 
+msgid "Show in Extension Menu"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show in Standby"
 msgstr "Repòs"
-
-msgid "Show in Extension Menu"
-msgstr ""
 
 msgid "Show info"
 msgstr "Mostra informaçio"
@@ -19140,6 +19154,9 @@ msgstr ""
 msgid "Small Box Preparation"
 msgstr ""
 
+msgid "Small Box Preparation Actions"
+msgstr ""
+
 msgid "Small Test"
 msgstr ""
 
@@ -19185,6 +19202,9 @@ msgid "Softcam Settings"
 msgstr "Instal·lació de softcam"
 
 msgid "Softcam Setup"
+msgstr ""
+
+msgid "Softcams"
 msgstr ""
 
 #
@@ -21587,10 +21607,6 @@ msgstr ""
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr ""
 
-#
-msgid "Trying to download a new packet list. Please wait..."
-msgstr "Intenteu descarregar una nova llista de paquets. Espereu …"
-
 msgid "Tsonga"
 msgstr ""
 
@@ -21916,6 +21932,9 @@ msgid ""
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
 
+msgid "Unknown Packages"
+msgstr ""
+
 #
 msgid "Unknown Service"
 msgstr "canal desconegut"
@@ -22048,9 +22067,6 @@ msgstr "Ha finalitzat l'execució"
 msgid "Update interval (in seconds)"
 msgstr ""
 
-msgid "Update package list please wait..."
-msgstr ""
-
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -22079,6 +22095,9 @@ msgid "Updating"
 msgstr "Actualitzant"
 
 msgid "Updating mount locations."
+msgstr ""
+
+msgid "Updating package list."
 msgstr ""
 
 msgid "Upgrade (Flash & restore all)"
@@ -22137,6 +22156,9 @@ msgstr "Configuració d’ús"
 
 msgid "Use 'Trash' in movie list"
 msgstr "Utilitzeu les papareres a la llista de moviments"
+
+msgid "Use AutoCam"
+msgstr ""
 
 #
 msgid "Use DHCP"
@@ -22201,9 +22223,6 @@ msgid "Use an alternative smaller screen."
 msgstr ""
 
 msgid "Use as HDD"
-msgstr ""
-
-msgid "Use AutoCam"
 msgstr ""
 
 msgid "Use automatic mode detection"
@@ -22421,6 +22440,9 @@ msgstr ""
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Normalment quan el llenguatge de subtítols és el mateix que el llenguatge d’àudio, els subtítols no s’utilitzaran. Activeu aquesta opció per permetre utilitzar aquests subtítols."
+
+msgid "Utility Packages"
+msgstr ""
 
 msgid "Uzbek"
 msgstr ""
@@ -22901,6 +22923,10 @@ msgstr ""
 msgid "Warning"
 msgstr "Avís"
 
+#, python-format
+msgid "Warning: %d feeds were unable to be reloaded!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -23379,6 +23405,9 @@ msgid "Www"
 msgstr ""
 
 msgid "X-Resolution"
+msgstr ""
+
+msgid "X11 Packages"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -24061,20 +24090,12 @@ msgstr ""
 msgid "default"
 msgstr ""
 
-msgid "Default Astra (13e-19e)"
-msgstr ""
-
 msgid "delete"
 msgstr ""
 
 #
 msgid "delete cut"
 msgstr "esborrar tall"
-
-#
-#, fuzzy
-msgid "deleted"
-msgstr "Esborrar"
 
 msgid "detective/thriller"
 msgstr "detectiu / thriller"
@@ -24358,11 +24379,6 @@ msgstr "inserir marca aquí"
 
 #
 #, fuzzy
-msgid "installed"
-msgstr "Transponedor predefinit"
-
-#
-#, fuzzy
 msgid "instant record"
 msgstr "Gravació instantània..."
 
@@ -24548,10 +24564,6 @@ msgstr "cap gestor de recursos"
 msgid "no storage devices found"
 msgstr "no s’han trobat dispositius d’emmagatzematge"
 
-#
-msgid "none"
-msgstr "cap"
-
 msgid "normal"
 msgstr ""
 
@@ -24616,6 +24628,12 @@ msgstr ""
 msgid "original language"
 msgstr "original llengua"
 
+msgid "package"
+msgstr ""
+
+msgid "packages"
+msgstr ""
+
 #
 msgid "pass"
 msgstr "passa"
@@ -24632,6 +24650,12 @@ msgstr ""
 #
 msgid "please wait, loading picture..."
 msgstr "sisplau espera, carregant imatge..."
+
+msgid "plugin"
+msgstr ""
+
+msgid "plugins"
+msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -24843,6 +24867,12 @@ msgstr "qüestions socials / polítiques / economia (general)"
 
 msgid "social/spiritual science"
 msgstr "ciències socials / espirituals"
+
+msgid "softcam"
+msgstr ""
+
+msgid "softcams"
+msgstr ""
 
 msgid "special (general)"
 msgstr ""
@@ -25066,6 +25096,56 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "none"
+#~ msgstr "cap"
+
+#~ msgid "An error occurred while downloading the packet list. Please try again."
+#~ msgstr "S’ha produït un error en descarregar la llista de paquets. Siusplau torna-ho a provar."
+
+#
+#~ msgid "Do you want to install the package:\n"
+#~ msgstr "Voleu instal·lar el paquet:\n"
+
+#~ msgid "Do you want to reboot your receiver?"
+#~ msgstr "Voleu reiniciar el receptor?"
+
+#
+#~ msgid "Do you want to remove the package:\n"
+#~ msgstr "Voleu eliminar el paquet:\n"
+
+#
+#~ msgid "Packet Manager"
+#~ msgstr "Gestor de paquets"
+
+#
+#~ msgid "Reload"
+#~ msgstr "Recarrega"
+
+#
+#~ msgid "Trying to download a new packet list. Please wait..."
+#~ msgstr "Intenteu descarregar una nova llista de paquets. Espereu …"
+
+#
+#, fuzzy
+#~ msgid "Languages"
+#~ msgstr "Idioma"
+
+#
+#, fuzzy
+#~ msgid "Locales"
+#~ msgstr "carregar llista"
+
+#
+#, fuzzy
+#~ msgid "deleted"
+#~ msgstr "Esborrar"
+
+#
+#, fuzzy
+#~ msgid "installed"
+#~ msgstr "Transponedor predefinit"
 
 #
 #~ msgid "Restart both"

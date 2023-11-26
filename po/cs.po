@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 11:41+0000\n"
-"PO-Revision-Date: 2023-11-06 21:50+0000\n"
+"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"PO-Revision-Date: 2023-11-24 17:28+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.2.1-rc\n"
 
 msgid ""
 "\n"
@@ -968,13 +968,6 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] "Nalezen %d balíček."
-msgstr[1] "Počet nalezených balíčků: %d."
-msgstr[2] "Počet nalezených balíčků: %d."
-
-#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d balíček má aktualizaci"
@@ -1008,6 +1001,13 @@ msgid_plural "%d packages marked for remove."
 msgstr[0] "%d balíček označený k odstranění."
 msgstr[1] "%d balíčky označeny k odstranění."
 msgstr[2] "%d balíčků označených k odstranění."
+
+#, python-format
+msgid "%d package marked for update."
+msgid_plural "%d packages marked for update."
+msgstr[0] "%d balíček označený k aktualizaci."
+msgstr[1] "%d balíčky označené k aktualizaci."
+msgstr[2] "%d balíčků označených k aktualizaci."
 
 #, python-format
 msgid "%d package upgraded."
@@ -1216,6 +1216,10 @@ msgstr "%s (%s)"
 #, python-format
 msgid "%s - Setup"
 msgstr "%s – Nastavení"
+
+#, python-format
+msgid "%s Browser Manage Actions"
+msgstr "%s Spravovat akce prohlížeče"
 
 #, python-format
 msgid "%s GHz"
@@ -2050,7 +2054,7 @@ msgid "Add service"
 msgstr "Přidat program"
 
 msgid "Add service to AutoCam"
-msgstr ""
+msgstr "Přidání služby do AutoCam"
 
 msgid "Add services to this bouquet?"
 msgstr "Přidat služby k tomuto přehledu?"
@@ -2070,8 +2074,8 @@ msgstr "Přidat/odebrat časovač"
 msgid "Add/Remove a timer for the current event"
 msgstr "Přidat/Odstranit časovač pro aktuální pořad"
 
-msgid "Add/Remove highlighted plugin to/from download list"
-msgstr "Přidat/odebrat zvýrazněný plugin do/ze seznamu stahování"
+msgid "Add/Remove highlighted plugin to/from install list"
+msgstr "Přidat/odebrat zvýrazněný plugin do/z instalačního seznamu"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr "Přidat/odebrat zvýrazněný plugin do/ze seznamu odebrání"
@@ -2150,9 +2154,6 @@ msgstr "Akce po přerušení napájení"
 
 msgid "After event"
 msgstr "Po skončení"
-
-msgid "After pressing OK, please wait!"
-msgstr "Po stisknutí OK čekejte, prosím!"
 
 msgid "After recording"
 msgstr "Po nahrávání"
@@ -2284,7 +2285,7 @@ msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE bu
 msgstr "Umožňuje zobrazit/skrýt Správce zpráv v rozšířené nabídce (modré tlačítko)."
 
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
-msgstr ""
+msgstr "Umožňuje zobrazit/skrýt OScam/CCcam na obrazovce nabídky rozšíření (MODRÉ tlačítko)."
 
 msgid "Almost there... "
 msgstr "Skoro hotovo... "
@@ -2360,9 +2361,6 @@ msgstr "Dálkové ovládání Amlogic"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Je proveden pokus o zachycení aktuálního stavu TV. Pokud to není možné kvůli nesprávným nebo chybějícím stavovým zprávám, může to způsobit neočekávanou odpověď přijímače. Na druhou stranu se snaží lépe reagovat na různé provozní podmínky."
-
-msgid "An error occurred while downloading the packet list. Please try again."
-msgstr "Při stahování seznamu paketů došlo k chybě. Prosím zkuste to znovu."
 
 msgid "An unknown error occurred!"
 msgstr "Došlo k neznámé chybě!"
@@ -2716,6 +2714,12 @@ msgstr "Automatický režim videa zvolený pro televizor."
 msgid "Auto(not available)"
 msgstr "Auto (není dostupné)"
 
+msgid "AutoCam Settings"
+msgstr "Nastavení AutoCam"
+
+msgid "AutoCam Setup Actions"
+msgstr "Akce nastavení AutoCam"
+
 msgid "AutoMountManager"
 msgstr "Správce připojení"
 
@@ -2724,12 +2728,6 @@ msgstr "Automatický časovač"
 
 msgid "AutoUpdate"
 msgstr "Automatická aktualizace"
-
-msgid "AutoCam Settings"
-msgstr ""
-
-msgid "AutoCam Setup Actions"
-msgstr ""
 
 msgid "Automatic"
 msgstr "Automatické"
@@ -2970,6 +2968,12 @@ msgstr "Bangladéš"
 
 msgid "Barbados"
 msgstr "Barbados"
+
+msgid "Base Packages"
+msgstr "Základní balíčky"
+
+msgid "Base Shell Packages"
+msgstr "Základní balíčky Shell"
 
 msgid "Base time"
 msgstr "Základní čas"
@@ -3649,6 +3653,9 @@ msgstr "Zrušit výběr"
 msgid "Cancel selection and exit"
 msgstr "Zrušit výběr a odejít"
 
+msgid "Cancel the Reset Feeds command currently being processed"
+msgstr "Zrušit aktuálně zpracovávaný příkaz Obnovit kanály"
+
 msgid "Cancel the bouquet selection"
 msgstr "Zrušte výběr přehledu"
 
@@ -3724,7 +3731,7 @@ msgid "Cardserial"
 msgstr "Číslo karty"
 
 msgid "Cardserver Settings"
-msgstr ""
+msgstr "Nastavení Cardserver"
 
 msgid "Cartoon"
 msgstr "Kreslený"
@@ -4815,6 +4822,15 @@ msgstr "Informace o připojení"
 msgid "Console"
 msgstr "Řídící panel"
 
+msgid "Console Network Packages"
+msgstr "Síťové balíčky konzole"
+
+msgid "Console Packages"
+msgstr "Balíčky pro konzole"
+
+msgid "Console Utility Packages"
+msgstr "Balíčky obslužných programů konzole"
+
 msgid "Constellation"
 msgstr "Konstelace"
 
@@ -5580,6 +5596,9 @@ msgstr "Výchozí 'Po události' *"
 msgid "Default 'Timer type' *"
 msgstr "Výchozí „Typ časovače“ *"
 
+msgid "Default Astra (13e-19e)"
+msgstr "výchozí Astra (13e-19e)"
+
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Výchozí priorita procesoru (hezká) pro spouštěné skripty. To může snížit zatížení systému tak, aby skripty nezasahovaly do zbytku systému. (vyšší hodnoty = nižší priorita)"
 
@@ -5640,10 +5659,10 @@ msgid "Defaults"
 msgstr "Výchozí"
 
 msgid "Define Softcam For This Provider"
-msgstr ""
+msgstr "Definovat Softcam pro tohoto poskytovatele"
 
 msgid "Define Softcam For This Service"
-msgstr ""
+msgstr "Definovat Softcam pro tuto službu"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Definujte další zpoždění v milisekundách před zahájením streamů http(s)."
@@ -6363,18 +6382,14 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Chcete provést další ruční prohledávání?"
 
 #, python-format
-msgid "Do you want to download '%s'?"
-msgstr "Chcete stáhnout '%s'?"
-
-#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr "Chcete flashovat obrázek '%s'?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Chcete nainstalovat seznam programů?"
 
-msgid "Do you want to install the package:\n"
-msgstr "Přejete si nainstalovat balíček:\n"
+msgid "Do you want to install:"
+msgstr "Chcete nainstalovat:"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Chcete přehrát DVD v mechanice?"
@@ -6393,19 +6408,8 @@ msgstr "Chcete vymazat všechna národní prostředí/jazyky kromě %s?"
 msgid "Do you want to reboot your %s %s?"
 msgstr "Chcete restartovat Váš %s %s?"
 
-msgid "Do you want to reboot your receiver?"
-msgstr "Chcete restartovat Váš přijímač?"
-
-#, python-format
-msgid "Do you want to remove '%s'?"
-msgstr "Chcete odstranit '%s'?"
-
-msgid "Do you want to remove the package:\n"
-msgstr "Chcete odstranit balíček:\n"
-
-#, python-format
-msgid "Do you want to replace '%s' with '%s?"
-msgstr "Chcete nahradit '%s' za '%s?"
+msgid "Do you want to remove:"
+msgstr "Chcete odstranit:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Chcete obnovit Vaše nastavení?"
@@ -6419,12 +6423,8 @@ msgstr "Chcete zvolit jinou službu?"
 msgid "Do you want to start a backup now?"
 msgstr "Chcete nyní spustit zálohování?"
 
-#, python-format
-msgid "Do you want to update '%s'?"
-msgstr "Chcete aktualizovat '%s'?"
-
-msgid "Do you want to upgrade the package:\n"
-msgstr "Chcete aktualizovat balíček:\n"
+msgid "Do you want to update:"
+msgstr "Chcete aktualizovat:"
 
 msgid "Documentary"
 msgstr "Dokumentární"
@@ -6488,9 +6488,6 @@ msgstr "Dolů / Neaktivní"
 msgid "Download Image"
 msgstr "Stáhnout obrázek"
 
-msgid "Download Plugin"
-msgstr "Stáhnout plugin"
-
 msgid "Download Plugins"
 msgstr "Nahrát pluginy"
 
@@ -6511,9 +6508,6 @@ msgstr "Chyba stahování"
 
 msgid "Download the selected image"
 msgstr "Stáhnout vybraný obrázek"
-
-msgid "Download the selected plugin / list of plugins"
-msgstr "Stáhnout vybraný plugin / seznam pluginů"
 
 msgid "Downloadable plugins"
 msgstr "Nahrát pluginy"
@@ -7434,10 +7428,6 @@ msgstr ""
 "Chyba: %s\n"
 "opakovat?"
 
-#, python-format
-msgid "Error: %s %s not %s!  Please try again later."
-msgstr "Chyba: %s %s ne %s! Prosím zkuste to znovu později."
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Chyba: Prázdný název souboru není povolen!"
 
@@ -7525,11 +7515,12 @@ msgstr "Chyba: Vybraný program nelze nahrát!"
 msgid "Error: There was a problem writing '%s'!"
 msgstr "Chyba: Při psaní '%s' došlo k problému!"
 
+#, python-format
+msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
+msgstr "Chyba: Při resetování zdrojů došlo k problému! Restartujte prosím %s %s a před dalším pokusem o tento příkaz zkontrolujte souborový systém, zda neobsahuje nějaké chyby."
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Chyba: Nelze vytvořit požadované adresáře na cílovém zařízení (např. USB klíčenka nebo pevný disk)! Ověřte prosím zařízení a zkuste to znovu."
-
-msgid "Error: Unable to process the command!  Please try again later."
-msgstr "Chyba: Nelze zpracovat příkaz! Prosím zkuste to znovu později."
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
@@ -8067,6 +8058,9 @@ msgstr "File Commander - Nastavení"
 msgid "File System Check"
 msgstr "Kontrola souborového systému"
 
+msgid "File System Packages"
+msgstr "Balíčky souborového systému"
+
 msgid "File appears to be busy.\n"
 msgstr "Soubor je asi zaneprázdněn.\n"
 
@@ -8273,9 +8267,6 @@ msgstr "Vynutit nastavení ToneBurst tuneru LNB."
 
 msgid "Force Legacy Signal stats"
 msgstr "Vynucené statistiky signálu Legacy"
-
-msgid "Force OPKG clean mode"
-msgstr "Vynutit čistý režim OPKG"
 
 msgid "Force ToneBurst"
 msgstr "Vynutit toneburst"
@@ -8517,10 +8508,10 @@ msgstr "Zeměpisná poloha"
 msgid "Geolocation Information"
 msgstr "Informace o zeměpisné poloze"
 
-msgid "Geolocation does not contain time zone information."
+msgid "Geolocation data does not contain time zone information."
 msgstr "Zeměpisná poloha neobsahuje informace o časovém pásmu."
 
-msgid "Geolocation has been used to set the time zone."
+msgid "Geolocation data has been used to set the time zone."
 msgstr "K nastavení časového pásma byla použita zeměpisná poloha."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
@@ -8530,7 +8521,7 @@ msgstr "Informace o zeměpisné poloze nelze načíst, zkuste to znovu později.
 msgid "Geolocation information for %s %s"
 msgstr "Informace o zeměpisné poloze pro %s %s"
 
-msgid "Geolocation is not available."
+msgid "Geolocation data is not available."
 msgstr "Zeměpisná poloha není k dispozici."
 
 msgid "Georgia"
@@ -8547,9 +8538,6 @@ msgstr "Německo"
 
 msgid "Getting Event Info failed!"
 msgstr "Načtení info o pořadu selhalo!"
-
-msgid "Getting Softcam list. Please wait..."
-msgstr "Získávám seznam Softcam. Prosím, čekejte..."
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Získávám informace o pluginech. Prosím, čekejte..."
@@ -9621,26 +9609,24 @@ msgid "Install"
 msgstr "Instalovat"
 
 #, python-format
+msgid "Install %s"
+msgstr "Instalovat %s"
+
+#, python-format
 msgid "Install '%s' command"
 msgstr "Instalovat příkaz '%s'"
 
 msgid "Install 1/1"
 msgstr "Instalovat 1/1"
 
-msgid "Install Failed !!"
-msgstr "Instalace se nezdařila!!"
-
-msgid "Install Finished."
-msgstr "Instalace dokončena."
-
 msgid "Install Local Extension"
 msgstr "Instalovat místní rozšíření"
 
+msgid "Install Plugin"
+msgstr "Instalace pluginu"
+
 msgid "Install Plugins"
 msgstr "Instalovat pluginy"
-
-msgid "Install Softcams"
-msgstr "Instalace Softcamů"
 
 msgid "Install a new image with a USB stick"
 msgstr "Instalovat nové image pomocí USB zařízení"
@@ -9657,8 +9643,8 @@ msgstr "Instalovat rozšíření."
 msgid "Install the package"
 msgstr "Nainstalovat balíček"
 
-msgid "Install/Remove plugin"
-msgstr "Nainstalovat/Odebrat plugin"
+msgid "Install the selected plugin / list of plugins"
+msgstr "Nainstalovat vybraný plugin / seznam pluginů"
 
 msgid "Installation finished."
 msgstr "Instalace dokončena."
@@ -9669,9 +9655,6 @@ msgstr "Instaluji"
 #, python-format
 msgid "Installing %s (%s)..."
 msgstr "Instalace %s (%s)..."
-
-msgid "Installing Please wait..."
-msgstr "Instaluji Prosím čekejte..."
 
 msgid "Installing Service"
 msgstr "Instalace služby"
@@ -9684,6 +9667,9 @@ msgstr "Instalace zdrojů z IPK..."
 
 msgid "Installing feeds from feed ..."
 msgstr "Instalace zdrojů z kanálu..."
+
+msgid "Installing package."
+msgstr "Instalace balíčku."
 
 msgid "Installing plugins from IPK ..."
 msgstr "Instalace pluginů z IPK..."
@@ -10113,9 +10099,6 @@ msgstr "Jazyk je již vybrán."
 msgid "Language selection"
 msgstr "Výběr jazyka"
 
-msgid "Languages"
-msgstr "Jazyky"
-
 msgid "Lao"
 msgstr "Laoština"
 
@@ -10204,6 +10187,9 @@ msgstr "Nastavit Letterbox"
 
 msgid "Liberia"
 msgstr "Libérie"
+
+msgid "Library Packages"
+msgstr "Knihovna balíčků"
 
 msgid "Libs"
 msgstr "Libs"
@@ -10394,9 +10380,6 @@ msgstr "Výběr národního prostředí/jazyka"
 
 msgid "Locale/Language Selection Actions"
 msgstr "Akce výběru národního prostředí/jazyka"
-
-msgid "Locales"
-msgstr "Místní nastavení"
 
 msgid "Locales to be displayed"
 msgstr "Místní nastavení, která se mají zobrazit"
@@ -10622,6 +10605,10 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Maltština"
 
+#, python-format
+msgid "Manage %s"
+msgstr "Spravovat %s"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Správa nastavení národního prostředí/výběru jazyka"
 
@@ -10637,8 +10624,13 @@ msgstr "Správa a prozkoumání adresářů a souborů."
 msgid "Manage network mounts"
 msgstr "Správce síťových připojení"
 
-msgid "Manage the highlighted plugin"
-msgstr "Správa zvýrazněného pluginu"
+#, python-format
+msgid "Manage the highlighted %s"
+msgstr "Spravovat zvýrazněný %s"
+
+#, python-format
+msgid "Manage the highlighted %s / list of %s"
+msgstr "Spravovat zvýrazněný %s / seznam %s"
 
 msgid "Manage your online update files"
 msgstr "Správa aktualizací souborů online"
@@ -11364,6 +11356,9 @@ msgstr "MultiTranscoding"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot Image vytvořen v: %s/%s-%s-%s-backup-%s_usb.zip"
 
+msgid "Multimedia Packages"
+msgstr "Multimediální balíčky"
+
 msgid "Multiple service support"
 msgstr "Podpora dekódování více programů"
 
@@ -11549,6 +11544,9 @@ msgstr "Nastavení MAC adresy"
 
 msgid "Network Neighbourhood"
 msgstr "Síťě v okolí"
+
+msgid "Network Packages"
+msgstr "Síťové balíčky"
 
 msgid "Network Restart"
 msgstr "Restart síťě"
@@ -12430,6 +12428,9 @@ msgstr "Další"
 msgid "Other Actions"
 msgstr "Ostatní akce"
 
+msgid "Other Packages"
+msgstr "Další balíčky"
+
 msgid "Other Subtitles & Language"
 msgstr "Další titulky a jazyk"
 
@@ -12543,6 +12544,9 @@ msgstr "HLAVNÍ VYSÍLACÍ ČAS"
 msgid "PVR"
 msgstr "PVR"
 
+msgid "Package"
+msgstr "Balíček"
+
 msgid "Package Manager"
 msgstr "Správa balíčků"
 
@@ -12553,10 +12557,7 @@ msgid "Package information currently not available!"
 msgstr "Informace o balíčku nejsou v současné době k dispozici!"
 
 msgid "Package installation failed."
-msgstr "Instalace balíčku se nezdařila"
-
-msgid "Package list"
-msgstr "Seznam balíčků"
+msgstr "Instalace balíčku se nezdařila."
 
 msgid "Package list update"
 msgstr "Aktualizace seznamu doplňků"
@@ -12564,11 +12565,11 @@ msgstr "Aktualizace seznamu doplňků"
 msgid "Packaged locales only"
 msgstr "Pouze zabalená národní prostředí"
 
+msgid "Packages"
+msgstr "Balíčky"
+
 msgid "Packages and associated locales"
 msgstr "Balíčky a související místní prostředí"
-
-msgid "Packet Manager"
-msgstr "Správce paketů"
 
 msgid "Page down"
 msgstr "Dolů"
@@ -12761,7 +12762,7 @@ msgstr "Balíčky Picon"
 msgid "Picon and Service Name"
 msgstr "Picony a názvy programů"
 
-msgid "Picon package target location"
+msgid "Picon install location"
 msgstr "Cílové umístění balíčku picon"
 
 msgid "Picon width"
@@ -13089,6 +13090,15 @@ msgstr "Čekejte prosím na aktualizaci zdrojů..."
 msgid "Please wait while gathering data..."
 msgstr "Počkejte prosím, shromažďuji údaje ..."
 
+msgid "Please wait while locale/language is deleted..."
+msgstr "Počkejte prosím, než bude národní prostředí/jazyk smazáno..."
+
+msgid "Please wait while locale/language is installed..."
+msgstr "Počkejte prosím, než se nainstaluje národní prostředí/jazyk..."
+
+msgid "Please wait while locales/languages are purged..."
+msgstr "Čekejte prosím, než budou národní prostředí/jazyky vymazány..."
+
 msgid "Please wait while scanning is in progress..."
 msgstr "Čekejte prosím, dokud probíhá vyhledávání..."
 
@@ -13098,11 +13108,17 @@ msgstr "Počkejte prosím, než se data extrahují..."
 msgid "Please wait while the list downloads..."
 msgstr "Počkejte prosím, než se seznam stáhne..."
 
-msgid "Please wait while the plugin is downloaded."
-msgstr "Počkejte prosím, než se stáhne plugin."
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] "Počkejte prosím, než se plugin nainstaluje."
+msgstr[1] "Počkejte prosím, než se nainstalují pluginy."
+msgstr[2] "Počkejte prosím, než se nainstalují pluginy."
 
 msgid "Please wait while the plugin is removed."
-msgstr "Počkejte prosím na odstranění pluginu."
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] "Počkejte prosím na odstranění pluginu."
+msgstr[1] "Počkejte prosím na odstranění pluginů."
+msgstr[2] "Počkejte prosím na odstranění pluginů."
 
 msgid "Please wait while the plugin is replaced."
 msgstr "Počkejte prosím na výměnu pluginu."
@@ -13161,6 +13177,9 @@ msgstr "Připojte zařízení USB"
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr "Zapojte USB zařízení, které lze použít jako odkládací zařízení. Pamatujte, že toto zařízení nesmí být odstraněno, když je %s %s spuštěno!"
 
+msgid "Plugin"
+msgstr "Plugin"
+
 msgid "Plugin Action Log"
 msgstr "Protokol akcí pluginu"
 
@@ -13173,14 +13192,11 @@ msgstr "Prohlížeč pluginů"
 msgid "Plugin Browser Actions"
 msgstr "Akce prohlížeče pluginu"
 
-msgid "Plugin Browser Download Actions"
-msgstr "Akce stahování prohlížeče pluginů"
-
 msgid "Plugin Browser Edit Actions"
 msgstr "Akce úprav prohlížeče pluginu"
 
-msgid "Plugin Browser Manage Actions"
-msgstr "Prohlížeč pluginů Správa akcí"
+msgid "Plugin Browser Install Actions"
+msgstr "Akce instalace pluginu prohlížeče"
 
 msgid "Plugin Browser Navigation Actions"
 msgstr "Prohlížeč pluginů Navigační akce"
@@ -13199,6 +13215,9 @@ msgstr "Prohlížeč pluginů Akce aktualizace"
 
 msgid "Plugin Browser layout"
 msgstr "Prohlížeč pluginů Rozvržení"
+
+msgid "Plugin Packages"
+msgstr "balíčky pluginů"
 
 msgid "Plugin Skin Packages"
 msgstr "Plugin Balíčky vzhledů"
@@ -13701,6 +13720,9 @@ msgstr "Přepněte AV přijímač do pohotovostního režimu"
 msgid "Python"
 msgstr "Python"
 
+msgid "Python Development Packages"
+msgstr "Vývojové balíčky Pythonu"
+
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend pro /tmp/mmi.socket"
 
@@ -14153,9 +14175,6 @@ msgstr "Směrování příslušných PIDs"
 msgid "Religion"
 msgstr "Náboženství"
 
-msgid "Reload"
-msgstr "Znovu načíst"
-
 msgid "Reload Bookmarks"
 msgstr "Znovu načíst záložky"
 
@@ -14219,6 +14238,10 @@ msgstr "Typ dálkového ovládání"
 msgid "Remove"
 msgstr "Smazat"
 
+#, python-format
+msgid "Remove %s"
+msgstr "Odebrat %s"
+
 msgid "Remove All Alternatives"
 msgstr "odebrat všechny alternativy"
 
@@ -14240,14 +14263,8 @@ msgstr "Odstranit potvrzení"
 msgid "Remove Entry"
 msgstr "Odstranit položku"
 
-msgid "Remove Failed !!"
-msgstr "Odebrání se nezdařilo!!"
-
 msgid "Remove Files"
 msgstr "Odebrat soubory"
-
-msgid "Remove Finished."
-msgstr "Mazání dokončeno."
 
 msgid "Remove From Parental Protection"
 msgstr "odebrat z rodičovské ochrany"
@@ -14328,7 +14345,7 @@ msgid "Remove selected service"
 msgstr "Odstranit vybranou službu"
 
 msgid "Remove service from AutoCam"
-msgstr ""
+msgstr "Odebrat službu z AutoCam"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Odstranit text v externich titulcích pro sluchově postižené (instrumentální hudbě nebo v oblasti ruchových zvuků, např, když se ozve zvonek, nebo vystřelí zbraň)."
@@ -14462,6 +14479,12 @@ msgstr "Vyhrazeno pro budoucí použití"
 msgid "Reset"
 msgstr "Reset"
 
+msgid "Reset (clear and reload) the feeds"
+msgstr "Resetujte (vymažte a znovu načtěte) kanály"
+
+msgid "Reset Feeds"
+msgstr "Obnovit kanály"
+
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Obnovit výchozí nastavení HDMI-CEC"
 
@@ -14517,6 +14540,9 @@ msgstr "Restartovat Enigmu"
 msgid "Restart GUI after x crashes"
 msgstr "Restartovat GUI po x zhroucení"
 
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr "Restartujte GUI, abyste mohli začít používat nové národní prostředí/jazyk?"
+
 msgid "Restart GUI now?"
 msgstr "Právě teď restartovat Enigmu ?"
 
@@ -14546,6 +14572,9 @@ msgstr "Restart testu"
 
 msgid "Restart your network connection and interfaces."
 msgstr "Restartuje síťová připojení a rozhraní."
+
+msgid "Restarting..."
+msgstr "Restartování..."
 
 msgid "Restore"
 msgstr "Obnovit"
@@ -15244,9 +15273,6 @@ msgstr "Vyberte „A“ nebo „B“, pokud to váš anténní systém vyžaduje
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Pokud používáte „univerzální“ LNB, vyberte „pásmo“, v opačném případě se podívejte na technický list LNB."
 
-msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
-msgstr "Vyberte 'Povolit', chcete-li vynutit vyčištění balíčku před aktualizací balíčku. To je užitečné, abyste se ujistili, že seznam balíčků je aktuální a můžete se vyhnout problémům během aktualizace nebo je vyřešit. Povolte to pouze v případě, že nemůžete aktualizovat online."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Chcete-li spustit pomocníka CI+, vyberte možnost Povolit."
 
@@ -15394,6 +15420,9 @@ msgstr "Vyberte 'Ano' pro zobrazení balíků OpenPLi na obrazovce Stažení plu
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano' pro zobrazení balíků OpenViX na obrazovce Stažení pluginů."
 
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
+msgstr "Vyberte 'Ano' pro zobrazení balíčků softcam na obrazovce Stáhnout pluginy."
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr "Vyberte 'Ano', chcete-li zobrazit adresáře na vrchu/začátku seznamu, nebo vyberte 'Ne' pro zobrazení souborů jako první."
 
@@ -15427,9 +15456,6 @@ msgstr "Vyberte 'Ano' pro zobrazení balíčků součástí vzhledu na obrazovce
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano' pro zobrazení balíčků vzhledů na obrazovce Stáhnout pluginy."
 
-msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
-msgstr "Vyberte 'Ano' pro zobrazení balíčků softcam na obrazovce Stáhnout pluginy."
-
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano' pro zobrazení zdrojových balíčků 'src' na obrazovce Stáhnout pluginy."
 
@@ -15462,6 +15488,9 @@ msgstr "Jestliže nastavíte na ' Ano'; při rychlé přetáčení nebo přetá�
 
 msgid "Select Additional Backup Files"
 msgstr "Vybrat další soubory k zálohování"
+
+msgid "Select AutoCam default Softcam"
+msgstr "Vyberte výchozí Softcam AutoCam"
 
 msgid "Select Backup Location"
 msgstr "Vyberte umístění záloh"
@@ -15511,6 +15540,9 @@ msgstr "Vybrat Quad Channels"
 msgid "Select Satellites"
 msgstr "Vybrat satelity"
 
+msgid "Select Softcam"
+msgstr "Vyberte softcam"
+
 msgid "Select Software Update"
 msgstr "Vyberte typ aktualizace Software"
 
@@ -15525,6 +15557,12 @@ msgstr "Výběr zdroje pro aktualizaci k úpravě"
 
 msgid "Select Your Skin"
 msgstr "Vyberte svůj vzhled"
+
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr "Vyberte Softcam z dostupného seznamu jako výchozí pro AutoCam."
+
+msgid "Select a Softcam from the available list."
+msgstr "Vyberte softcam z dostupného seznamu."
 
 msgid "Select a bouquet"
 msgstr "Vyberte přehled"
@@ -15566,12 +15604,6 @@ msgstr "Vyberte protokol potvrzení úložiště, který chcete zobrazit:"
 msgid "Select a script to run:"
 msgstr "Vyberte skript ke spuštění:"
 
-msgid "Select a Softcam from the available list as the default for AutoCam."
-msgstr ""
-
-msgid "Select a Softcam from the available list."
-msgstr "Vyberte softcam z dostupného seznamu."
-
 msgid "Select a tuner"
 msgstr "Vyberte tuner"
 
@@ -15596,9 +15628,6 @@ msgstr "Vyberte akci, která se má provést po dokončení úlohy."
 
 msgid "Select audio track"
 msgstr "Výběr zvukové stopy"
-
-msgid "Select AutoCam default Softcam"
-msgstr ""
 
 msgid "Select cardserver"
 msgstr "Vyberte cardserver"
@@ -15729,9 +15758,6 @@ msgstr "Vyberte servisní informace, které chcete zobrazit:"
 msgid "Select service to add..."
 msgstr "Vyberte program(y) pro přidání..."
 
-msgid "Select Softcam"
-msgstr "Vyberte softcam"
-
 msgid "Select sort method:"
 msgstr "Vybrat způsob řazení:"
 
@@ -15749,7 +15775,10 @@ msgstr "Vyberte odpověď Ne/Nepravda"
 
 #, python-format
 msgid "Select the Softcam for '%s'"
-msgstr ""
+msgstr "Vyberte Softcam pro '%s'"
+
+msgid "Select the Softcam protocol."
+msgstr "Vyberte protokol softcam."
 
 msgid "Select the Swap File Size:"
 msgstr "Vyberte velikost odkládacího souboru:"
@@ -15782,7 +15811,7 @@ msgid "Select the animation speed of the button indicators in the help screens. 
 msgstr "Zvolte rychlost animace indikátorů tlačítek na obrazovkách nápovědy. Možnost 'Zakázáno' vypne animaci, takže indikátory přeskakují mezi tlačítky."
 
 msgid "Select the cardserver to be used from the list of available cardservers."
-msgstr ""
+msgstr "Vyberte card server, který chcete použít, ze seznamu dostupných card serverů."
 
 msgid "Select the channel from which to record:"
 msgstr "Vyberte kanál, ze kterého chcete nahrávat:"
@@ -15950,9 +15979,6 @@ msgstr "Vyberte posunutou sadu znaků"
 msgid "Select the shifted character set for the next character only"
 msgstr "Vyberte posunutou znakovou sadu pouze pro další znak"
 
-msgid "Select the Softcam protocol."
-msgstr "Vyberte protokol softcam."
-
 msgid "Select the sort order for the file lines:"
 msgstr "Vybrat pořadí řazení řádků souborů:"
 
@@ -15977,7 +16003,7 @@ msgstr "Vyberte počáteční sloupec, který se má aktivovat při spuštění 
 msgid "Select the tags that should be used for this recording."
 msgstr "Vyberte značky, které by měly být použity pro tento záznam."
 
-msgid "Select the target location where picon files will be installed."
+msgid "Select the location where the picon files will be installed."
 msgstr "Vyberte cílové umístění, kam budou nainstalovány soubory picon."
 
 msgid "Select the time after which this timer can start."
@@ -16968,7 +16994,7 @@ msgid "Show OScam Info"
 msgstr "Zobrazit informace OScam"
 
 msgid "Show OScam/CCcam in Extension Menu"
-msgstr ""
+msgstr "Zobrazit OScam/CCcam v nabídce Rozšíření"
 
 msgid "Show OpenPLi packages"
 msgstr "Zobrazit balíčky OpenPLi"
@@ -17187,11 +17213,11 @@ msgstr "Zobrazit obrázek"
 msgid "Show image and save as '%s'"
 msgstr "Zobrazit obrázek a uložit jako '%s'"
 
-msgid "Show in Standby"
-msgstr "Zobrazit v pohotovostním režimu"
-
 msgid "Show in Extension Menu"
 msgstr "Zobrazit v rozšířené nabídce (modré tlačítko)"
+
+msgid "Show in Standby"
+msgstr "Zobrazit v pohotovostním režimu"
 
 msgid "Show info"
 msgstr "Zobrazit info"
@@ -17844,6 +17870,9 @@ msgstr "Malý - Malý obrázek"
 msgid "Small Box Preparation"
 msgstr "Příprava malého boxu"
 
+msgid "Small Box Preparation Actions"
+msgstr "Akce na přípravu malého boxu"
+
 msgid "Small Test"
 msgstr "Malý test"
 
@@ -17888,6 +17917,9 @@ msgstr "Nastavení Softcamu"
 
 msgid "Softcam Setup"
 msgstr "Nastavení Softcam"
+
+msgid "Softcams"
+msgstr "Softcamy"
 
 msgid "Software Management"
 msgstr "Správa software"
@@ -20221,9 +20253,6 @@ msgstr "Pokusit se zabránit restartování kvůli softwarovým chybám a udržo
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr "Pokud nejsou provedeny všechny příkazy, pokuste se odesílat opakované příkazy. (např. probuzení televizoru, ale nepřepnutí na správný vstup.)"
 
-msgid "Trying to download a new packet list. Please wait..."
-msgstr "Pokus o stažení nového seznamu paketů. Prosím, čekejte..."
-
 msgid "Tsonga"
 msgstr "Tsonga"
 
@@ -20512,6 +20541,9 @@ msgstr ""
 "Neznámá chyba při vytváření vzhledu.\n"
 "Zkontrolujte prosím po restartu MyMetrixLite-Plugin a použijte svá nastavení."
 
+msgid "Unknown Packages"
+msgstr "Neznámé balíčky"
+
 msgid "Unknown Service"
 msgstr "Neznámý program"
 
@@ -20631,9 +20663,6 @@ msgstr "Aktualizace dokončena!"
 msgid "Update interval (in seconds)"
 msgstr "Interval aktualizace (v sek)"
 
-msgid "Update package list please wait..."
-msgstr "Aktualizuji seznam balíčků, prosím čekejte..."
-
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -20664,6 +20693,9 @@ msgstr "Aktualizace"
 
 msgid "Updating mount locations."
 msgstr "Aktualizace umístění připojení."
+
+msgid "Updating package list."
+msgstr "Aktualizace seznamu balíčků."
 
 msgid "Upgrade (Flash & restore all)"
 msgstr "Upgradovat (Flashnout a obnovit vše)"
@@ -20722,6 +20754,9 @@ msgstr "Použít"
 
 msgid "Use 'Trash' in movie list"
 msgstr "Používat koš v seznamu souborů"
+
+msgid "Use AutoCam"
+msgstr "Použít AutoCam"
 
 msgid "Use DHCP"
 msgstr "Použít DHCP"
@@ -20785,9 +20820,6 @@ msgstr "Použít alternativní menší obrazovku."
 
 msgid "Use as HDD"
 msgstr "Jako HDD"
-
-msgid "Use AutoCam"
-msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr "Použít automatické rozpoznání režimu"
@@ -20999,6 +21031,9 @@ msgstr "Použít starý profil: "
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Obvykle, když je jazyk titulků stejný jako jazyk zvuku, titulky nebudou použity. Povolením této volby umožníte povolení těchto titulků."
+
+msgid "Utility Packages"
+msgstr "Balíčky utilit"
 
 msgid "Uzbek"
 msgstr "Uzbecký"
@@ -21472,6 +21507,10 @@ msgstr "Válka"
 msgid "Warning"
 msgstr "Výstraha"
 
+#, python-format
+msgid "Warning: %d feeds were unable to be reloaded!"
+msgstr "Upozornění: %d zdrojů nebylo možné znovu načíst!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Varování: Přepsání je v současné době aktivní!"
 
@@ -21791,7 +21830,7 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Nastavíte-li PIG,obnoví se po zastavení přehrávání živé vysílání."
 
 msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr ""
+msgstr "Při nastavení na „Ano“ lze ke každé šifrované službě přiřadit konkrétní Softcam."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Pro obsah s poměrem stran 16:9 zvolte, zda chcete změnit velikost/roztáhnout obraz."
@@ -21943,6 +21982,9 @@ msgstr "Www"
 
 msgid "X-Resolution"
 msgstr "X-rozlišení"
+
+msgid "X11 Packages"
+msgstr "Balíčky X11"
 
 msgid "XBox 360 support"
 msgstr "Podpora XBox 360"
@@ -22613,17 +22655,11 @@ msgstr "snížit vzestup o 1"
 msgid "default"
 msgstr "výchozí"
 
-msgid "Default Astra (13e-19e)"
-msgstr "výchozí Astra (13e-19e)"
-
 msgid "delete"
 msgstr "smazat"
 
 msgid "delete cut"
 msgstr "odstranit střih"
-
-msgid "deleted"
-msgstr "odstraněno"
 
 msgid "detective/thriller"
 msgstr "detektivka/thriller"
@@ -22884,9 +22920,6 @@ msgstr "inic moduly"
 msgid "insert mark here"
 msgstr "vložit značku"
 
-msgid "installed"
-msgstr "nainstalováno"
-
 msgid "instant record"
 msgstr "okamžitý záznam"
 
@@ -23049,9 +23082,6 @@ msgstr "žádný správce zdrojů"
 msgid "no storage devices found"
 msgstr "nebyla nalezena žádná úložná zařízení"
 
-msgid "none"
-msgstr "žádný"
-
 msgid "normal"
 msgstr "normální"
 
@@ -23106,6 +23136,12 @@ msgstr "oranžová"
 msgid "original language"
 msgstr "původní jazyk"
 
+msgid "package"
+msgstr "balíček"
+
+msgid "packages"
+msgstr "balíčky"
+
 msgid "pass"
 msgstr "projít"
 
@@ -23120,6 +23156,12 @@ msgstr "růžová"
 
 msgid "please wait, loading picture..."
 msgstr "prosím čekejte... náčítám obrázek..."
+
+msgid "plugin"
+msgstr "plugin"
+
+msgid "plugins"
+msgstr "pluginy"
 
 msgid "pm"
 msgstr "pm"
@@ -23314,6 +23356,12 @@ msgstr "společensko politické problémy/ekonomie (obecně)"
 
 msgid "social/spiritual science"
 msgstr "sociální/duchovní vědy"
+
+msgid "softcam"
+msgstr "softcam"
+
+msgid "softcams"
+msgstr "softcamy"
 
 msgid "special (general)"
 msgstr "zvláštní (obecně)"
@@ -23517,6 +23565,216 @@ msgstr "ano (uchovat zdroje)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Installing Please wait..."
+#~ msgstr "Instaluji Prosím čekejte..."
+
+#~ msgid "Update package list please wait..."
+#~ msgstr "Aktualizuji seznam balíčků, prosím čekejte..."
+
+#~ msgid "none"
+#~ msgstr "žádný"
+
+#~ msgid "After pressing OK, please wait!"
+#~ msgstr "Po stisknutí OK čekejte, prosím!"
+
+#~ msgid "An error occurred while downloading the packet list. Please try again."
+#~ msgstr "Při stahování seznamu paketů došlo k chybě. Prosím zkuste to znovu."
+
+#~ msgid "Base Utility Packages"
+#~ msgstr "Balíčky základních obslužných programů"
+
+#~ msgid "Console Administrative Packages"
+#~ msgstr "Balíčky pro správu konzole"
+
+#~ msgid "Console Multimedia Packages"
+#~ msgstr "Multimediální balíčky konzole"
+
+#~ msgid "Console Test Packages"
+#~ msgstr "Testovací balíčky konzole"
+
+#~ msgid "Console Tool Packages"
+#~ msgstr "Balíčky nástrojů pro konzole"
+
+#~ msgid "Development Python Packages"
+#~ msgstr "Vývojové balíčky Python"
+
+#~ msgid "Development TCL Toolkit Packages"
+#~ msgstr "Vývojové balíčky TCL Toolkit"
+
+#~ msgid "Do you want to install the package:\n"
+#~ msgstr "Přejete si nainstalovat balíček:\n"
+
+#~ msgid "Do you want to reboot your receiver?"
+#~ msgstr "Chcete restartovat Váš přijímač?"
+
+#~ msgid "Do you want to remove the package:\n"
+#~ msgstr "Chcete odstranit balíček:\n"
+
+#~ msgid "Do you want to upgrade the package:\n"
+#~ msgstr "Chcete aktualizovat balíček:\n"
+
+#~ msgid "Documentation Packages"
+#~ msgstr "Balíčky dokumentace"
+
+#~ msgid "Enigma2 Packages"
+#~ msgstr "Balíčky Enigma2"
+
+#~ msgid "Extra Packages"
+#~ msgstr "Extra balíčky"
+
+#~ msgid "File System Support Packages"
+#~ msgstr "Balíčky podpory souborového systému"
+
+#~ msgid "Font Packages"
+#~ msgstr "Balíčky fontů"
+
+#~ msgid "Getting Softcam list. Please wait..."
+#~ msgstr "Získávám seznam Softcam. Prosím, čekejte..."
+
+#~ msgid "Install Failed !!"
+#~ msgstr "Instalace se nezdařila!!"
+
+#~ msgid "Install Finished."
+#~ msgstr "Instalace dokončena."
+
+#~ msgid "Install Softcams"
+#~ msgstr "Instalace Softcamů"
+
+#~ msgid "Install/Remove plugin"
+#~ msgstr "Nainstalovat/Odebrat plugin"
+
+#~ msgid "Kernel Module Packages"
+#~ msgstr "Balíčky modulů jádra"
+
+#~ msgid "Library Multimedia Packages"
+#~ msgstr "Knihovna multimediálních balíčků"
+
+#~ msgid "Library Network Packages"
+#~ msgstr "Knihovna síťových balíčků"
+
+#~ msgid "Miscellaneous Packages"
+#~ msgstr "Různé balíčky"
+
+#~ msgid "Network (net) Packages"
+#~ msgstr "Síťové (net) balíčky"
+
+#~ msgid "Network (network) Packages"
+#~ msgstr "Síťové (network) balíčky"
+
+#~ msgid "Networking Packages"
+#~ msgstr "Síťové balíčky"
+
+#~ msgid "Optional Packages"
+#~ msgstr "Volitelné balíčky"
+
+#~ msgid "Package list"
+#~ msgstr "Seznam balíčků"
+
+#~ msgid "Packet Manager"
+#~ msgstr "Správce paketů"
+
+#~ msgid "Reload"
+#~ msgstr "Znovu načíst"
+
+#~ msgid "Remove Failed !!"
+#~ msgstr "Odebrání se nezdařilo!!"
+
+#~ msgid "Remove Finished."
+#~ msgstr "Mazání dokončeno."
+
+#~ msgid "Restart finished"
+#~ msgstr "Restart dokončen"
+
+#~ msgid "Trying to download a new packet list. Please wait..."
+#~ msgstr "Pokus o stažení nového seznamu paketů. Prosím, čekejte..."
+
+#~ msgid "X11 Base Packages"
+#~ msgstr "Základní balíčky X11"
+
+#~ msgid "X11 Font Packages"
+#~ msgstr "Balíčky písem X11"
+
+#~ msgid "X11 Gnome Library Packages"
+#~ msgstr "Balíčky knihovny Gnome X11"
+
+#~ msgid "X11 Gnome Packages"
+#~ msgstr "Balíčky Gnome X11"
+
+#~ msgid "X11 Library Packages"
+#~ msgstr "Balíčky knihoven X11"
+
+#~ msgid "X11 Utility Packages"
+#~ msgstr "Obslužné balíčky X11"
+
+#, python-format
+#~ msgid "%d package found."
+#~ msgid_plural "%d packages found."
+#~ msgstr[0] "Nalezen %d balíček."
+#~ msgstr[1] "Počet nalezených balíčků: %d."
+#~ msgstr[2] "Počet nalezených balíčků: %d."
+
+#~ msgid "Add/Remove highlighted plugin to/from download list"
+#~ msgstr "Přidat/odebrat zvýrazněný plugin do/ze seznamu stahování"
+
+#, python-format
+#~ msgid "Do you want to download '%s'?"
+#~ msgstr "Chcete stáhnout '%s'?"
+
+#, python-format
+#~ msgid "Do you want to remove '%s'?"
+#~ msgstr "Chcete odstranit '%s'?"
+
+#, python-format
+#~ msgid "Do you want to replace '%s' with '%s?"
+#~ msgstr "Chcete nahradit '%s' za '%s?"
+
+#, python-format
+#~ msgid "Do you want to update '%s'?"
+#~ msgstr "Chcete aktualizovat '%s'?"
+
+#~ msgid "Download Plugin"
+#~ msgstr "Stáhnout plugin"
+
+#~ msgid "Download the selected plugin / list of plugins"
+#~ msgstr "Stáhnout vybraný plugin / seznam pluginů"
+
+#, python-format
+#~ msgid "Error: %s %s not %s!  Please try again later."
+#~ msgstr "Chyba: %s %s ne %s! Prosím zkuste to znovu později."
+
+#~ msgid "Error: Unable to process the command!  Please try again later."
+#~ msgstr "Chyba: Nelze zpracovat příkaz! Prosím zkuste to znovu později."
+
+#~ msgid "Force OPKG clean mode"
+#~ msgstr "Vynutit čistý režim OPKG"
+
+#~ msgid "Languages"
+#~ msgstr "Jazyky"
+
+#~ msgid "Locales"
+#~ msgstr "Místní nastavení"
+
+#~ msgid "Manage the highlighted plugin"
+#~ msgstr "Správa zvýrazněného pluginu"
+
+#~ msgid "Please wait while the plugin is downloaded."
+#~ msgstr "Počkejte prosím, než se stáhne plugin."
+
+#~ msgid "Plugin Browser Download Actions"
+#~ msgstr "Akce stahování prohlížeče pluginů"
+
+#~ msgid "Plugin Browser Manage Actions"
+#~ msgstr "Prohlížeč pluginů Správa akcí"
+
+#~ msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+#~ msgstr "Vyberte 'Povolit', chcete-li vynutit vyčištění balíčku před aktualizací balíčku. To je užitečné, abyste se ujistili, že seznam balíčků je aktuální a můžete se vyhnout problémům během aktualizace nebo je vyřešit. Povolte to pouze v případě, že nemůžete aktualizovat online."
+
+#~ msgid "deleted"
+#~ msgstr "odstraněno"
+
+#~ msgid "installed"
+#~ msgstr "nainstalováno"
+
 #~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 #~ msgstr "Umožňuje zobrazit/skrýt CCcam v rozšířené nabídce (modré tlačítko)."
 
@@ -23556,9 +23814,6 @@ msgstr "®"
 
 #~ msgid "cardserver"
 #~ msgstr "cardserver"
-
-#~ msgid "softcam"
-#~ msgstr "softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "Nastavení pomocníka CI"

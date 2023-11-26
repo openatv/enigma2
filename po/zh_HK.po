@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 11:41+0000\n"
+"POT-Creation-Date: 2023-11-23 11:43+0000\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -976,11 +976,6 @@ msgid "%d ms"
 msgstr "%d 分鐘"
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] ""
-
-#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1003,6 +998,11 @@ msgstr[0] ""
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package marked for update."
+msgid_plural "%d packages marked for update."
 msgstr[0] ""
 
 #, python-format
@@ -1196,6 +1196,10 @@ msgstr "%s (%s)\n"
 #, fuzzy, python-format
 msgid "%s - Setup"
 msgstr "設定"
+
+#, python-format
+msgid "%s Browser Manage Actions"
+msgstr ""
 
 #, python-format
 msgid "%s GHz"
@@ -2104,7 +2108,7 @@ msgstr "移除計時器"
 msgid "Add/Remove a timer for the current event"
 msgstr "自定義當前事件時長"
 
-msgid "Add/Remove highlighted plugin to/from download list"
+msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from remove list"
@@ -2188,12 +2192,6 @@ msgstr "事件之後"
 
 msgid "After event"
 msgstr "事件之後"
-
-#, fuzzy
-msgid "After pressing OK, please wait!"
-msgstr ""
-"\n"
-"按OK鍵確定後, 請稍等!"
 
 #, fuzzy
 msgid "After recording"
@@ -2415,9 +2413,6 @@ msgid "Amlogic remote"
 msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
-msgstr ""
-
-msgid "An error occurred while downloading the packet list. Please try again."
 msgstr ""
 
 msgid "An unknown error occurred!"
@@ -2800,6 +2795,12 @@ msgstr ""
 msgid "Auto(not available)"
 msgstr "不使用"
 
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
+
 #, fuzzy
 msgid "AutoMountManager"
 msgstr "安裝(Mount)管理"
@@ -2810,12 +2811,6 @@ msgstr ""
 #, fuzzy
 msgid "AutoUpdate"
 msgstr "自動更新設定"
-
-msgid "AutoCam Settings"
-msgstr ""
-
-msgid "AutoCam Setup Actions"
-msgstr ""
 
 msgid "Automatic"
 msgstr "自動"
@@ -3076,6 +3071,12 @@ msgid "Bangladesh"
 msgstr ""
 
 msgid "Barbados"
+msgstr ""
+
+msgid "Base Packages"
+msgstr ""
+
+msgid "Base Shell Packages"
 msgstr ""
 
 #, fuzzy
@@ -3775,6 +3776,9 @@ msgid "Cancel selection"
 msgstr "頻道選擇"
 
 msgid "Cancel selection and exit"
+msgstr ""
+
+msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
 msgid "Cancel the bouquet selection"
@@ -4993,6 +4997,15 @@ msgstr ""
 msgid "Console"
 msgstr ""
 
+msgid "Console Network Packages"
+msgstr ""
+
+msgid "Console Packages"
+msgstr ""
+
+msgid "Console Utility Packages"
+msgstr ""
+
 msgid "Constellation"
 msgstr ""
 
@@ -5792,6 +5805,9 @@ msgstr "事件之後"
 #, fuzzy
 msgid "Default 'Timer type' *"
 msgstr "定時類型"
+
+msgid "Default Astra (13e-19e)"
+msgstr ""
 
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -6598,18 +6614,14 @@ msgid "Do you want to do another manual service scan?"
 msgstr " 是否手動掃描其他頻道?"
 
 #, python-format
-msgid "Do you want to download '%s'?"
-msgstr ""
-
-#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr ""
 
 msgid "Do you want to install a channel list?"
 msgstr ""
 
-msgid "Do you want to install the package:\n"
-msgstr " 是否安裝套裝軟體:\n"
+msgid "Do you want to install:"
+msgstr ""
 
 msgid "Do you want to play DVD in drive?"
 msgstr " 是否播放DVD?"
@@ -6629,18 +6641,7 @@ msgstr ""
 msgid "Do you want to reboot your %s %s?"
 msgstr " 是否重啟您的Dreambox?"
 
-msgid "Do you want to reboot your receiver?"
-msgstr ""
-
-#, python-format
-msgid "Do you want to remove '%s'?"
-msgstr ""
-
-msgid "Do you want to remove the package:\n"
-msgstr " 是否移出套裝軟體:\n"
-
-#, python-format
-msgid "Do you want to replace '%s' with '%s?"
+msgid "Do you want to remove:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -6655,12 +6656,8 @@ msgstr ""
 msgid "Do you want to start a backup now?"
 msgstr ""
 
-#, python-format
-msgid "Do you want to update '%s'?"
+msgid "Do you want to update:"
 msgstr ""
-
-msgid "Do you want to upgrade the package:\n"
-msgstr " 是否升級套裝軟體:\n"
 
 msgid "Documentary"
 msgstr ""
@@ -6727,9 +6724,6 @@ msgstr ""
 msgid "Download Image"
 msgstr ""
 
-msgid "Download Plugin"
-msgstr ""
-
 msgid "Download Plugins"
 msgstr "下載插件"
 
@@ -6752,9 +6746,6 @@ msgid "Download error"
 msgstr ""
 
 msgid "Download the selected image"
-msgstr ""
-
-msgid "Download the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
@@ -7692,10 +7683,6 @@ msgstr ""
 "錯誤: %s\n"
 "重試?"
 
-#, python-format
-msgid "Error: %s %s not %s!  Please try again later."
-msgstr ""
-
 msgid "Error: An empty filename is illegal!"
 msgstr "一個空的檔案名是非法的."
 
@@ -7783,10 +7770,11 @@ msgstr ""
 msgid "Error: There was a problem writing '%s'!"
 msgstr ""
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+#, python-format
+msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr ""
 
-msgid "Error: Unable to process the command!  Please try again later."
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
 
 #, python-format
@@ -8355,6 +8343,9 @@ msgstr "Softcam 設定"
 msgid "File System Check"
 msgstr "檔系統檢視"
 
+msgid "File System Packages"
+msgstr ""
+
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -8574,9 +8565,6 @@ msgid "Force LNB Tuner ToneBurst settings."
 msgstr ""
 
 msgid "Force Legacy Signal stats"
-msgstr ""
-
-msgid "Force OPKG clean mode"
 msgstr ""
 
 #, fuzzy
@@ -8838,10 +8826,10 @@ msgstr ""
 msgid "Geolocation Information"
 msgstr ""
 
-msgid "Geolocation does not contain time zone information."
+msgid "Geolocation data does not contain time zone information."
 msgstr ""
 
-msgid "Geolocation has been used to set the time zone."
+msgid "Geolocation data has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
@@ -8851,7 +8839,7 @@ msgstr ""
 msgid "Geolocation information for %s %s"
 msgstr ""
 
-msgid "Geolocation is not available."
+msgid "Geolocation data is not available."
 msgstr ""
 
 msgid "Georgia"
@@ -8869,10 +8857,6 @@ msgstr "德語"
 
 msgid "Getting Event Info failed!"
 msgstr ""
-
-#, fuzzy
-msgid "Getting Softcam list. Please wait..."
-msgstr "正在安裝預設衛星列表... 請稍候..."
 
 msgid "Getting plugin information. Please wait..."
 msgstr "正在下載插件資訊, 請稍候..."
@@ -10017,30 +10001,25 @@ msgid "Install"
 msgstr "安裝"
 
 #, python-format
+msgid "Install %s"
+msgstr ""
+
+#, python-format
 msgid "Install '%s' command"
 msgstr ""
 
 msgid "Install 1/1"
 msgstr ""
 
-#, fuzzy
-msgid "Install Failed !!"
-msgstr "安裝附件: "
-
-#, fuzzy
-msgid "Install Finished."
-msgstr "安裝完成."
-
 msgid "Install Local Extension"
 msgstr "安裝本地附件"
+
+msgid "Install Plugin"
+msgstr ""
 
 #, fuzzy
 msgid "Install Plugins"
 msgstr "正在安裝"
-
-#, fuzzy
-msgid "Install Softcams"
-msgstr "已安裝的SoftCam"
 
 msgid "Install a new image with a USB stick"
 msgstr "安裝一個新的韧體到U盤"
@@ -10058,7 +10037,7 @@ msgstr "安裝附件."
 msgid "Install the package"
 msgstr ""
 
-msgid "Install/Remove plugin"
+msgid "Install the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Installation finished."
@@ -10070,9 +10049,6 @@ msgstr "正在安裝"
 #, fuzzy, python-format
 msgid "Installing %s (%s)..."
 msgstr "正在安裝..."
-
-msgid "Installing Please wait..."
-msgstr ""
 
 #, fuzzy
 msgid "Installing Service"
@@ -10088,6 +10064,9 @@ msgstr "正在安裝..."
 #, fuzzy
 msgid "Installing feeds from feed ..."
 msgstr "正在安裝軟體..."
+
+msgid "Installing package."
+msgstr ""
 
 #, fuzzy
 msgid "Installing plugins from IPK ..."
@@ -10548,10 +10527,6 @@ msgid "Language selection"
 msgstr "語言選擇"
 
 #, fuzzy
-msgid "Languages"
-msgstr "語言"
-
-#, fuzzy
 msgid "Lao"
 msgstr "RS Log"
 
@@ -10645,6 +10620,9 @@ msgid "Letterbox zoom"
 msgstr "信箱模式"
 
 msgid "Liberia"
+msgstr ""
+
+msgid "Library Packages"
 msgstr ""
 
 msgid "Libs"
@@ -10845,10 +10823,6 @@ msgstr "語言選擇"
 #, fuzzy
 msgid "Locale/Language Selection Actions"
 msgstr "語言選擇"
-
-#, fuzzy
-msgid "Locales"
-msgstr "位置框"
 
 msgid "Locales to be displayed"
 msgstr ""
@@ -11088,6 +11062,10 @@ msgstr ""
 msgid "Maltese"
 msgstr ""
 
+#, python-format
+msgid "Manage %s"
+msgstr ""
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "收藏設定"
@@ -11105,7 +11083,12 @@ msgstr ""
 msgid "Manage network mounts"
 msgstr "管理網路共用"
 
-msgid "Manage the highlighted plugin"
+#, python-format
+msgid "Manage the highlighted %s"
+msgstr ""
+
+#, python-format
+msgid "Manage the highlighted %s / list of %s"
 msgstr ""
 
 msgid "Manage your online update files"
@@ -11892,6 +11875,9 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
+msgid "Multimedia Packages"
+msgstr ""
+
 msgid "Multiple service support"
 msgstr "多系統支援"
 
@@ -12090,6 +12076,9 @@ msgstr "啟用網路設定"
 #, fuzzy
 msgid "Network Neighbourhood"
 msgstr "流覽網上鄰居"
+
+msgid "Network Packages"
+msgstr ""
 
 #, fuzzy
 msgid "Network Restart"
@@ -13031,6 +13020,9 @@ msgstr "其他"
 msgid "Other Actions"
 msgstr "計時器選擇"
 
+msgid "Other Packages"
+msgstr ""
+
 #, fuzzy
 msgid "Other Subtitles & Language"
 msgstr "字幕選擇"
@@ -13154,6 +13146,9 @@ msgstr ""
 msgid "PVR"
 msgstr ""
 
+msgid "Package"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "套裝軟體管理"
 
@@ -13166,10 +13161,6 @@ msgstr ""
 msgid "Package installation failed."
 msgstr ""
 
-#, fuzzy
-msgid "Package list"
-msgstr "升級軟體列表"
-
 msgid "Package list update"
 msgstr "升級軟體列表"
 
@@ -13177,11 +13168,11 @@ msgstr "升級軟體列表"
 msgid "Packaged locales only"
 msgstr "升級軟體列表"
 
-msgid "Packages and associated locales"
+msgid "Packages"
 msgstr ""
 
-msgid "Packet Manager"
-msgstr "軟體管理器"
+msgid "Packages and associated locales"
+msgstr ""
 
 #, fuzzy
 msgid "Page down"
@@ -13389,7 +13380,7 @@ msgstr ""
 msgid "Picon and Service Name"
 msgstr "在所有頻道"
 
-msgid "Picon package target location"
+msgid "Picon install location"
 msgstr ""
 
 #, fuzzy
@@ -13735,6 +13726,15 @@ msgstr ""
 msgid "Please wait while gathering data..."
 msgstr "請稍候,正在刪除選定的包..."
 
+msgid "Please wait while locale/language is deleted..."
+msgstr ""
+
+msgid "Please wait while locale/language is installed..."
+msgstr ""
+
+msgid "Please wait while locales/languages are purged..."
+msgstr ""
+
 msgid "Please wait while scanning is in progress..."
 msgstr "正在掃描...請稍候..."
 
@@ -13745,11 +13745,13 @@ msgstr ""
 msgid "Please wait while the list downloads..."
 msgstr "請稍候,正在刪除選定的包..."
 
-msgid "Please wait while the plugin is downloaded."
-msgstr ""
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] ""
 
 msgid "Please wait while the plugin is removed."
-msgstr ""
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] ""
 
 msgid "Please wait while the plugin is replaced."
 msgstr ""
@@ -13813,6 +13815,9 @@ msgstr ""
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr ""
 
+msgid "Plugin"
+msgstr ""
+
 msgid "Plugin Action Log"
 msgstr ""
 
@@ -13825,13 +13830,10 @@ msgstr "流覽插件"
 msgid "Plugin Browser Actions"
 msgstr ""
 
-msgid "Plugin Browser Download Actions"
-msgstr ""
-
 msgid "Plugin Browser Edit Actions"
 msgstr ""
 
-msgid "Plugin Browser Manage Actions"
+msgid "Plugin Browser Install Actions"
 msgstr ""
 
 msgid "Plugin Browser Navigation Actions"
@@ -13851,6 +13853,9 @@ msgid "Plugin Browser Update Actions"
 msgstr ""
 
 msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Packages"
 msgstr ""
 
 msgid "Plugin Skin Packages"
@@ -14406,6 +14411,9 @@ msgstr ""
 msgid "Python"
 msgstr ""
 
+msgid "Python Development Packages"
+msgstr ""
+
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr ""
 
@@ -14896,9 +14904,6 @@ msgstr ""
 msgid "Religion"
 msgstr ""
 
-msgid "Reload"
-msgstr "重新載入"
-
 msgid "Reload Bookmarks"
 msgstr ""
 
@@ -14970,6 +14975,10 @@ msgstr ""
 msgid "Remove"
 msgstr "移除"
 
+#, python-format
+msgid "Remove %s"
+msgstr ""
+
 msgid "Remove All Alternatives"
 msgstr "移除所有項目"
 
@@ -14994,14 +15003,8 @@ msgstr "Gemini 配置"
 msgid "Remove Entry"
 msgstr "移除項目"
 
-msgid "Remove Failed !!"
-msgstr ""
-
 msgid "Remove Files"
 msgstr ""
-
-msgid "Remove Finished."
-msgstr "移除結束."
 
 msgid "Remove From Parental Protection"
 msgstr "取消家長控制"
@@ -15227,6 +15230,12 @@ msgstr ""
 msgid "Reset"
 msgstr "重定"
 
+msgid "Reset (clear and reload) the feeds"
+msgstr ""
+
+msgid "Reset Feeds"
+msgstr ""
+
 msgid "Reset HDMI-CEC settings to default"
 msgstr ""
 
@@ -15284,6 +15293,9 @@ msgstr "重啟GUI"
 msgid "Restart GUI after x crashes"
 msgstr ""
 
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr ""
+
 msgid "Restart GUI now?"
 msgstr "立即重啟GUI?"
 
@@ -15317,6 +15329,9 @@ msgstr "重新測驗"
 
 msgid "Restart your network connection and interfaces."
 msgstr "重啟 Dreambox網路連接."
+
+msgid "Restarting..."
+msgstr ""
 
 msgid "Restore"
 msgstr "恢復"
@@ -16064,9 +16079,6 @@ msgstr ""
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr ""
 
-msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
-msgstr ""
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -16214,6 +16226,9 @@ msgstr ""
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr ""
 
@@ -16245,9 +16260,6 @@ msgid "Select 'Yes' to show skin component packages in the Download Plugins scre
 msgstr ""
 
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -16283,6 +16295,9 @@ msgstr ""
 #, fuzzy
 msgid "Select Additional Backup Files"
 msgstr "選擇音軌"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select Backup Location"
 msgstr ""
@@ -16339,6 +16354,9 @@ msgstr "選擇Softcam:"
 msgid "Select Satellites"
 msgstr "單個衛星"
 
+msgid "Select Softcam"
+msgstr ""
+
 #, fuzzy
 msgid "Select Software Update"
 msgstr "軟體升級"
@@ -16355,6 +16373,12 @@ msgstr "選擇並編輯升級來源"
 #, fuzzy
 msgid "Select Your Skin"
 msgstr "選擇皮膚"
+
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
+msgstr ""
 
 msgid "Select a bouquet"
 msgstr ""
@@ -16397,12 +16421,6 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "選擇一個計時器導入"
 
-msgid "Select a Softcam from the available list as the default for AutoCam."
-msgstr ""
-
-msgid "Select a Softcam from the available list."
-msgstr ""
-
 msgid "Select a tuner"
 msgstr ""
 
@@ -16429,9 +16447,6 @@ msgstr ""
 
 msgid "Select audio track"
 msgstr "選擇音軌"
-
-msgid "Select AutoCam default Softcam"
-msgstr ""
 
 msgid "Select cardserver"
 msgstr ""
@@ -16566,9 +16581,6 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "選擇並添加頻道..."
 
-msgid "Select Softcam"
-msgstr ""
-
 #, fuzzy
 msgid "Select sort method:"
 msgstr "設定視頻模式"
@@ -16587,6 +16599,9 @@ msgstr ""
 
 #, python-format
 msgid "Select the Softcam for '%s'"
+msgstr ""
+
+msgid "Select the Softcam protocol."
 msgstr ""
 
 #, fuzzy
@@ -16788,9 +16803,6 @@ msgstr "定時休眠:"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the Softcam protocol."
-msgstr ""
-
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16815,7 +16827,7 @@ msgstr ""
 msgid "Select the tags that should be used for this recording."
 msgstr ""
 
-msgid "Select the target location where picon files will be installed."
+msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -18123,12 +18135,12 @@ msgstr ""
 msgid "Show image and save as '%s'"
 msgstr ""
 
+msgid "Show in Extension Menu"
+msgstr ""
+
 #, fuzzy
 msgid "Show in Standby"
 msgstr "待機"
-
-msgid "Show in Extension Menu"
-msgstr ""
 
 msgid "Show info"
 msgstr ""
@@ -18837,6 +18849,9 @@ msgstr ""
 msgid "Small Box Preparation"
 msgstr ""
 
+msgid "Small Box Preparation Actions"
+msgstr ""
+
 msgid "Small Test"
 msgstr ""
 
@@ -18882,6 +18897,9 @@ msgid "Softcam Settings"
 msgstr "保護設定"
 
 msgid "Softcam Setup"
+msgstr ""
+
+msgid "Softcams"
 msgstr ""
 
 msgid "Software Management"
@@ -21270,9 +21288,6 @@ msgstr ""
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr ""
 
-msgid "Trying to download a new packet list. Please wait..."
-msgstr "嘗試下載新的套裝軟體列表. 請稍候..."
-
 msgid "Tsonga"
 msgstr ""
 
@@ -21585,6 +21600,9 @@ msgid ""
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
 
+msgid "Unknown Packages"
+msgstr ""
+
 msgid "Unknown Service"
 msgstr "未知頻道"
 
@@ -21709,9 +21727,6 @@ msgstr "升級完成."
 msgid "Update interval (in seconds)"
 msgstr "超時(秒)"
 
-msgid "Update package list please wait..."
-msgstr ""
-
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -21745,6 +21760,9 @@ msgstr "升級"
 #, fuzzy
 msgid "Updating mount locations."
 msgstr "更新軟體目錄"
+
+msgid "Updating package list."
+msgstr ""
 
 msgid "Upgrade (Flash & restore all)"
 msgstr ""
@@ -21802,6 +21820,9 @@ msgid "Use"
 msgstr "使用"
 
 msgid "Use 'Trash' in movie list"
+msgstr ""
+
+msgid "Use AutoCam"
 msgstr ""
 
 msgid "Use DHCP"
@@ -21867,9 +21888,6 @@ msgid "Use an alternative smaller screen."
 msgstr "編輯選項"
 
 msgid "Use as HDD"
-msgstr ""
-
-msgid "Use AutoCam"
 msgstr ""
 
 msgid "Use automatic mode detection"
@@ -22089,6 +22107,9 @@ msgid "Using old profile: "
 msgstr ""
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
+msgstr ""
+
+msgid "Utility Packages"
 msgstr ""
 
 msgid "Uzbek"
@@ -22569,6 +22590,10 @@ msgstr "3月"
 msgid "Warning"
 msgstr ""
 
+#, python-format
+msgid "Warning: %d feeds were unable to be reloaded!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -23034,6 +23059,9 @@ msgid "Www"
 msgstr ""
 
 msgid "X-Resolution"
+msgstr ""
+
+msgid "X11 Packages"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -23702,18 +23730,11 @@ msgstr ""
 msgid "default"
 msgstr "預設"
 
-msgid "Default Astra (13e-19e)"
-msgstr ""
-
 msgid "delete"
 msgstr "刪除"
 
 msgid "delete cut"
 msgstr "刪除剪輯"
-
-#, fuzzy
-msgid "deleted"
-msgstr "刪除"
 
 msgid "detective/thriller"
 msgstr ""
@@ -23983,10 +24004,6 @@ msgid "insert mark here"
 msgstr "在這裏標記"
 
 #, fuzzy
-msgid "installed"
-msgstr "反安裝"
-
-#, fuzzy
 msgid "instant record"
 msgstr "即時記錄"
 
@@ -24155,9 +24172,6 @@ msgstr "軟體管理"
 msgid "no storage devices found"
 msgstr ""
 
-msgid "none"
-msgstr "無"
-
 msgid "normal"
 msgstr ""
 
@@ -24215,6 +24229,12 @@ msgstr ""
 msgid "original language"
 msgstr ""
 
+msgid "package"
+msgstr ""
+
+msgid "packages"
+msgstr ""
+
 msgid "pass"
 msgstr "通過"
 
@@ -24229,6 +24249,12 @@ msgstr ""
 
 msgid "please wait, loading picture..."
 msgstr "請稍候，正在載入圖片..."
+
+msgid "plugin"
+msgstr ""
+
+msgid "plugins"
+msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -24429,6 +24455,12 @@ msgid "social/political issues/economics (general)"
 msgstr ""
 
 msgid "social/spiritual science"
+msgstr ""
+
+msgid "softcam"
+msgstr ""
+
+msgid "softcams"
 msgstr ""
 
 msgid "special (general)"
@@ -24644,6 +24676,72 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "none"
+#~ msgstr "無"
+
+#, fuzzy
+#~ msgid "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "按OK鍵確定後, 請稍等!"
+
+#~ msgid "Do you want to install the package:\n"
+#~ msgstr " 是否安裝套裝軟體:\n"
+
+#~ msgid "Do you want to remove the package:\n"
+#~ msgstr " 是否移出套裝軟體:\n"
+
+#~ msgid "Do you want to upgrade the package:\n"
+#~ msgstr " 是否升級套裝軟體:\n"
+
+#, fuzzy
+#~ msgid "Getting Softcam list. Please wait..."
+#~ msgstr "正在安裝預設衛星列表... 請稍候..."
+
+#, fuzzy
+#~ msgid "Install Failed !!"
+#~ msgstr "安裝附件: "
+
+#, fuzzy
+#~ msgid "Install Finished."
+#~ msgstr "安裝完成."
+
+#, fuzzy
+#~ msgid "Install Softcams"
+#~ msgstr "已安裝的SoftCam"
+
+#, fuzzy
+#~ msgid "Package list"
+#~ msgstr "升級軟體列表"
+
+#~ msgid "Packet Manager"
+#~ msgstr "軟體管理器"
+
+#~ msgid "Reload"
+#~ msgstr "重新載入"
+
+#~ msgid "Remove Finished."
+#~ msgstr "移除結束."
+
+#~ msgid "Trying to download a new packet list. Please wait..."
+#~ msgstr "嘗試下載新的套裝軟體列表. 請稍候..."
+
+#, fuzzy
+#~ msgid "Languages"
+#~ msgstr "語言"
+
+#, fuzzy
+#~ msgid "Locales"
+#~ msgstr "位置框"
+
+#, fuzzy
+#~ msgid "deleted"
+#~ msgstr "刪除"
+
+#, fuzzy
+#~ msgid "installed"
+#~ msgstr "反安裝"
 
 #, fuzzy
 #~ msgid "Restart both"

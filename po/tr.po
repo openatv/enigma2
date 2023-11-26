@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 11:41+0000\n"
+"POT-Creation-Date: 2023-11-23 11:43+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -951,11 +951,6 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] "%d paket bulundu."
-
-#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d paketinde bir güncelleme var"
@@ -979,6 +974,11 @@ msgstr[0] "%d paket kurulum için işaretlendi."
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
 msgstr[0] "%d paket kaldırılmak üzere işaretlendi."
+
+#, python-format
+msgid "%d package marked for update."
+msgid_plural "%d packages marked for update."
+msgstr[0] ""
 
 #, python-format
 msgid "%d package upgraded."
@@ -1176,6 +1176,10 @@ msgstr "%s (%s)"
 #, python-format
 msgid "%s - Setup"
 msgstr "%s - kurmak"
+
+#, python-format
+msgid "%s Browser Manage Actions"
+msgstr ""
 
 #, python-format
 msgid "%s GHz"
@@ -2102,8 +2106,8 @@ msgstr "Zamanlayıcı Ekle / Kaldır"
 msgid "Add/Remove a timer for the current event"
 msgstr "Geçerli etkinliğe zamanlama ekle/kaldır"
 
-msgid "Add/Remove highlighted plugin to/from download list"
-msgstr "Vurgulanan eklentiyi indirme listesine ekle/listeden kaldır"
+msgid "Add/Remove highlighted plugin to/from install list"
+msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr "Vurgulanan eklentiyi kaldırma listesine ekle/kaldır"
@@ -2188,9 +2192,6 @@ msgstr "PowerLost'dan sonra"
 #
 msgid "After event"
 msgstr "Etkinlikten sonra"
-
-msgid "After pressing OK, please wait!"
-msgstr "OK tuşuna bastıktan sonra lütfen bekleyin!"
 
 #
 msgid "After recording"
@@ -2410,9 +2411,6 @@ msgstr "Amlogic uzaktan kumanda"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Mevcut TV durumunu yakalama girişiminde bulunuldu. Yanlış veya eksik durum mesajları nedeniyle bu mümkün değilse, alıcının beklenmedik şekilde yanıt vermesine neden olabilir. Öte yandan, farklı çalışma koşullarına daha iyi yanıt vermeye çalışır."
-
-msgid "An error occurred while downloading the packet list. Please try again."
-msgstr "Paket listesi indirilirken hata oluştu. Tekrar deneyin."
 
 #
 msgid "An unknown error occurred!"
@@ -2786,6 +2784,12 @@ msgstr "TV için otomatik video modu seçildi."
 msgid "Auto(not available)"
 msgstr "Otomatik (mevcut değil)"
 
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "Otomatik Montaj Yöneticisi"
 
@@ -2795,12 +2799,6 @@ msgstr "Otomatik Zamanlayıcıya Genel Bakış"
 #
 msgid "AutoUpdate"
 msgstr "Otomatik güncelleme"
-
-msgid "AutoCam Settings"
-msgstr ""
-
-msgid "AutoCam Setup Actions"
-msgstr ""
 
 msgid "Automatic"
 msgstr "Otomatik"
@@ -3054,6 +3052,12 @@ msgstr "Bangladeş"
 
 msgid "Barbados"
 msgstr "Barbados"
+
+msgid "Base Packages"
+msgstr ""
+
+msgid "Base Shell Packages"
+msgstr ""
 
 msgid "Base time"
 msgstr "Temel Zaman"
@@ -3756,6 +3760,9 @@ msgstr "Seçimi iptal et"
 
 msgid "Cancel selection and exit"
 msgstr "Seçimi iptal et ve çık"
+
+msgid "Cancel the Reset Feeds command currently being processed"
+msgstr ""
 
 msgid "Cancel the bouquet selection"
 msgstr "Buket seçimini iptal edin"
@@ -4976,6 +4983,15 @@ msgstr "Bağlantı bilgileri"
 msgid "Console"
 msgstr "Konsol"
 
+msgid "Console Network Packages"
+msgstr ""
+
+msgid "Console Packages"
+msgstr ""
+
+msgid "Console Utility Packages"
+msgstr ""
+
 msgid "Constellation"
 msgstr "takımyıldız"
 
@@ -5776,6 +5792,9 @@ msgstr "Varsayılan 'Etkinlikten Sonra' *"
 
 msgid "Default 'Timer type' *"
 msgstr "Varsayılan 'Zamanlayıcı türü' *"
+
+msgid "Default Astra (13e-19e)"
+msgstr "varsayılan Astra (13e-19e)"
 
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Yürütülen komut dosyaları için varsayılan CPU önceliği (nice). Bu, sistem yükünü azaltabilir, böylece komut dosyaları sistemin geri kalanıyla etkileşime girmez. (daha yüksek değerler = daha düşük öncelik)"
@@ -6601,10 +6620,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Başka kanal taraması yapacak mısınız?"
 
 #, python-format
-msgid "Do you want to download '%s'?"
-msgstr "'%s' indirmek istiyor musunuz?"
-
-#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr "'%s' görüntüsünü flaşlamak istiyor musunuz?"
 
@@ -6612,9 +6627,8 @@ msgstr "'%s' görüntüsünü flaşlamak istiyor musunuz?"
 msgid "Do you want to install a channel list?"
 msgstr "Bir kanal listesi kurmak ister misiniz?"
 
-#
-msgid "Do you want to install the package:\n"
-msgstr "Seçilen paketi yüklemek istiyor musunuz?:\n"
+msgid "Do you want to install:"
+msgstr ""
 
 #
 msgid "Do you want to play DVD in drive?"
@@ -6635,20 +6649,8 @@ msgstr "Dışındaki tüm yerel ayarları/dilleri temizlemek istiyor musunuz %s?
 msgid "Do you want to reboot your %s %s?"
 msgstr "%s %s alıcınızı yeniden başlatmak istiyor musunuz?"
 
-msgid "Do you want to reboot your receiver?"
-msgstr "Alıcınızı tekrar başlatmak istiyor musunuz?"
-
-#, python-format
-msgid "Do you want to remove '%s'?"
-msgstr "'%s'ı kaldırmak istiyor musunuz?"
-
-#
-msgid "Do you want to remove the package:\n"
-msgstr "Seçilen paketi kaldırmak istiyor musunuz?:\n"
-
-#, python-format
-msgid "Do you want to replace '%s' with '%s?"
-msgstr "'%s' yerine '%s' mi koymak istiyorsunuz?"
+msgid "Do you want to remove:"
+msgstr ""
 
 #
 msgid "Do you want to restore your settings?"
@@ -6664,13 +6666,8 @@ msgstr "Başka bir hizmet seçmek istiyor musunuz?"
 msgid "Do you want to start a backup now?"
 msgstr "Şimdi bir yedekleme başlatmak ister misiniz?"
 
-#, python-format
-msgid "Do you want to update '%s'?"
-msgstr "'%s'ı güncellemek istiyor musunuz?"
-
-#
-msgid "Do you want to upgrade the package:\n"
-msgstr "Seçilen paketi yükseltmek istiyor musunuz?:\n"
+msgid "Do you want to update:"
+msgstr ""
 
 msgid "Documentary"
 msgstr "Belgesel"
@@ -6734,9 +6731,6 @@ msgstr "Kapalı / Etkin Değil"
 msgid "Download Image"
 msgstr "Resmi İndir"
 
-msgid "Download Plugin"
-msgstr "Eklentiyi İndir"
-
 msgid "Download Plugins"
 msgstr "Eklentileri İndir"
 
@@ -6757,9 +6751,6 @@ msgstr "İndirme hatası"
 
 msgid "Download the selected image"
 msgstr "Seçilen resmi indirin"
-
-msgid "Download the selected plugin / list of plugins"
-msgstr "Seçilen eklentiyi / eklenti listesini indirin"
 
 msgid "Downloadable plugins"
 msgstr "İndirilebilir eklentiler"
@@ -7719,10 +7710,6 @@ msgstr ""
 "Hata: %s\n"
 "Tekrar denensin mi?"
 
-#, python-format
-msgid "Error: %s %s not %s!  Please try again later."
-msgstr "Hata: %s %s, %s değil! Lütfen daha sonra tekrar deneyiniz."
-
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Hata: Boş bir dosya adı yasa dışıdır!"
@@ -7815,11 +7802,12 @@ msgstr "Hata oluştu: Seçilen hizmet kaydedilemiyor!"
 msgid "Error: There was a problem writing '%s'!"
 msgstr "Hata oluştu: '%s' yazarken bir sorun oluştu!"
 
+#, python-format
+msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Hata: Hedef cihazda (örn. USB bellek veya sabit disk) gerekli dizinler oluşturulamıyor! Lütfen cihazı doğrulayın ve tekrar deneyin."
-
-msgid "Error: Unable to process the command!  Please try again later."
-msgstr "Hata: Komut işlenemiyor! Lütfen daha sonra tekrar deneyiniz."
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
@@ -8390,6 +8378,9 @@ msgstr "Dosya Komutu Ayarları"
 msgid "File System Check"
 msgstr "Dosya sistemi kontrolü"
 
+msgid "File System Packages"
+msgstr ""
+
 msgid "File appears to be busy.\n"
 msgstr "Dosya kullanımda.\n"
 
@@ -8603,9 +8594,6 @@ msgstr "LNB Tuner ToneBurst ayarlarını zorla."
 
 msgid "Force Legacy Signal stats"
 msgstr "Legacy Signal istatistiklerini zorla"
-
-msgid "Force OPKG clean mode"
-msgstr "OPKG temizleme modunu zorla"
 
 #
 msgid "Force ToneBurst"
@@ -8867,10 +8855,10 @@ msgstr "Coğrafi Konum"
 msgid "Geolocation Information"
 msgstr "Coğrafi Konum Bilgileri"
 
-msgid "Geolocation does not contain time zone information."
+msgid "Geolocation data does not contain time zone information."
 msgstr "Coğrafi konum, saat dilimi bilgisi içermez."
 
-msgid "Geolocation has been used to set the time zone."
+msgid "Geolocation data has been used to set the time zone."
 msgstr "Saat dilimini ayarlamak için coğrafi konum kullanılmıştır."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
@@ -8880,7 +8868,7 @@ msgstr "Coğrafi konum bilgileri alınamıyor, lütfen daha sonra tekrar deneyin
 msgid "Geolocation information for %s %s"
 msgstr "Alıcı coğrafi konum bilgileri %s %s"
 
-msgid "Geolocation is not available."
+msgid "Geolocation data is not available."
 msgstr "Coğrafi konum mevcut değil."
 
 msgid "Georgia"
@@ -8899,9 +8887,6 @@ msgstr "Almanya"
 
 msgid "Getting Event Info failed!"
 msgstr "Etkinlik Bilgisi alınamadı!"
-
-msgid "Getting Softcam list. Please wait..."
-msgstr "Softcam listesi alınıyor. Lütfen bekle..."
 
 #
 msgid "Getting plugin information. Please wait..."
@@ -10022,27 +10007,25 @@ msgid "Install"
 msgstr "Yükle"
 
 #, python-format
+msgid "Install %s"
+msgstr ""
+
+#, python-format
 msgid "Install '%s' command"
 msgstr "'%s' komutunu yükleyin"
 
 msgid "Install 1/1"
 msgstr "Kurulum 1/1"
 
-msgid "Install Failed !!"
-msgstr "Kurulum Başarısız !!"
-
-msgid "Install Finished."
-msgstr "Kurulum Bitti."
-
 #
 msgid "Install Local Extension"
 msgstr "Yerel eklentileri yükle"
 
+msgid "Install Plugin"
+msgstr ""
+
 msgid "Install Plugins"
 msgstr "Eklentileri Kur"
-
-msgid "Install Softcams"
-msgstr "Softcam'ları yükle"
 
 #
 msgid "Install a new image with a USB stick"
@@ -10062,8 +10045,8 @@ msgstr "Eklentileri yükle."
 msgid "Install the package"
 msgstr "Paketi yükleyin"
 
-msgid "Install/Remove plugin"
-msgstr "Eklentiyi Yükle/Kaldır"
+msgid "Install the selected plugin / list of plugins"
+msgstr ""
 
 #
 msgid "Installation finished."
@@ -10077,9 +10060,6 @@ msgstr "Yüklüyor"
 msgid "Installing %s (%s)..."
 msgstr "%s (%s) yükleniyor..."
 
-msgid "Installing Please wait..."
-msgstr "Yükleniyor Lütfen bekleyin..."
-
 msgid "Installing Service"
 msgstr "Kanal Yükleme"
 
@@ -10091,6 +10071,9 @@ msgstr "IPK'dan yayın yükleniyor ..."
 
 msgid "Installing feeds from feed ..."
 msgstr "Yayınlardan yayın yükleniyor ..."
+
+msgid "Installing package."
+msgstr ""
 
 msgid "Installing plugins from IPK ..."
 msgstr "IPK'dan eklentiler yükleniyor ..."
@@ -10541,10 +10524,6 @@ msgstr "Dil zaten seçili."
 msgid "Language selection"
 msgstr "Dil seçimi"
 
-#
-msgid "Languages"
-msgstr "Dil"
-
 msgid "Lao"
 msgstr "Lao"
 
@@ -10642,6 +10621,9 @@ msgstr "Sinemaskop yakınlaştırma"
 
 msgid "Liberia"
 msgstr "Liberya"
+
+msgid "Library Packages"
+msgstr ""
 
 msgid "Libs"
 msgstr "Lib'ler"
@@ -10846,9 +10828,6 @@ msgstr "Yerel/Dil Seçimi"
 
 msgid "Locale/Language Selection Actions"
 msgstr "Yerel/Dil Seçimi İşlemleri"
-
-msgid "Locales"
-msgstr "Yerel ayarlar"
 
 msgid "Locales to be displayed"
 msgstr "Görüntülenecek yerel ayarlar"
@@ -11084,6 +11063,10 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Malta"
 
+#, python-format
+msgid "Manage %s"
+msgstr ""
+
 #
 msgid "Manage Locale/Language Selection settings"
 msgstr "Yerel/Dil Seçimi ayarlarını yönetin"
@@ -11100,8 +11083,13 @@ msgstr "Dizinleri ve dosyaları yönetin ve keşfedin."
 msgid "Manage network mounts"
 msgstr "Ağ bağlarını yönet"
 
-msgid "Manage the highlighted plugin"
-msgstr "Vurgulanan eklentiyi yönetme"
+#, python-format
+msgid "Manage the highlighted %s"
+msgstr ""
+
+#, python-format
+msgid "Manage the highlighted %s / list of %s"
+msgstr ""
 
 msgid "Manage your online update files"
 msgstr "Çevrimiçi güncelleme dosyalarınızı yönetin"
@@ -11874,6 +11862,9 @@ msgstr "Çoklu Dönüştürme"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Oluşturulan Multiboot Görüntüsü: %s /%s-%s-%s-backup-%s_usb.zip"
 
+msgid "Multimedia Packages"
+msgstr ""
+
 #
 msgid "Multiple service support"
 msgstr "Çoklu kanal desteği"
@@ -12069,6 +12060,9 @@ msgstr "Ağ MAC ayarları"
 
 msgid "Network Neighbourhood"
 msgstr "Ağ Komşuluğu"
+
+msgid "Network Packages"
+msgstr ""
 
 msgid "Network Restart"
 msgstr "Ağı Yeniden Başlat"
@@ -13011,6 +13005,9 @@ msgstr "Diğer"
 msgid "Other Actions"
 msgstr "Diğer eylemler"
 
+msgid "Other Packages"
+msgstr ""
+
 msgid "Other Subtitles & Language"
 msgstr "Diğer altyazılar & uzun"
 
@@ -13128,6 +13125,9 @@ msgstr "PRIMETIME"
 msgid "PVR"
 msgstr "PVR"
 
+msgid "Package"
+msgstr ""
+
 #
 msgid "Package Manager"
 msgstr "Paket yönetimi"
@@ -13141,9 +13141,6 @@ msgstr "Paket bilgileri şu anda mevcut değil!"
 msgid "Package installation failed."
 msgstr "Paket kurulumu başarısız oldu"
 
-msgid "Package list"
-msgstr "Paket listesi"
-
 #
 msgid "Package list update"
 msgstr "Paket listesi güncellemesi"
@@ -13151,12 +13148,11 @@ msgstr "Paket listesi güncellemesi"
 msgid "Packaged locales only"
 msgstr "Kullanılabilir yerler"
 
+msgid "Packages"
+msgstr ""
+
 msgid "Packages and associated locales"
 msgstr "Paketler ve ilişkili yerel ayarlar"
-
-#
-msgid "Packet Manager"
-msgstr "Paket yöneticisi"
 
 msgid "Page down"
 msgstr "Sayfa aşağı"
@@ -13356,7 +13352,7 @@ msgstr "Picon Paketleri"
 msgid "Picon and Service Name"
 msgstr "Simge ve kanal ismi"
 
-msgid "Picon package target location"
+msgid "Picon install location"
 msgstr "Picon paketi hedef konumu"
 
 msgid "Picon width"
@@ -13720,6 +13716,15 @@ msgstr "Lütfen beslemeler güncellenirken bekleyin..."
 msgid "Please wait while gathering data..."
 msgstr "Lütfen bilgi toplanırken bekleyin..."
 
+msgid "Please wait while locale/language is deleted..."
+msgstr ""
+
+msgid "Please wait while locale/language is installed..."
+msgstr ""
+
+msgid "Please wait while locales/languages are purged..."
+msgstr ""
+
 #
 msgid "Please wait while scanning is in progress..."
 msgstr "Lütfen tarama yapılırken bekleyin..."
@@ -13730,11 +13735,14 @@ msgstr "Veriler ayıklanırken lütfen bekleyin..."
 msgid "Please wait while the list downloads..."
 msgstr "Liste indirilirken lütfen bekleyin..."
 
-msgid "Please wait while the plugin is downloaded."
-msgstr "Lütfen eklenti indirilirken bekleyin."
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] ""
 
+#, fuzzy
 msgid "Please wait while the plugin is removed."
-msgstr "Lütfen eklenti kaldırılırken bekleyin."
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] "Lütfen eklenti kaldırılırken bekleyin."
 
 msgid "Please wait while the plugin is replaced."
 msgstr "Lütfen eklenti değiştirilirken bekleyin."
@@ -13800,6 +13808,9 @@ msgstr "USB aygıtını takın"
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr "Takas aygıtı olarak kullanılabilecek bir USB aygıtı takın. Bu aygıtın %s %s çalışırken çıkarılmaması gerektiğini unutmayın!"
 
+msgid "Plugin"
+msgstr ""
+
 msgid "Plugin Action Log"
 msgstr "Eklenti Eylem Günlüğü"
 
@@ -13812,14 +13823,11 @@ msgstr "Eklentiler Listesi"
 msgid "Plugin Browser Actions"
 msgstr "Eklenti Tarayıcı Eylemleri"
 
-msgid "Plugin Browser Download Actions"
-msgstr "Eklenti Tarayıcı İndirme Eylemleri"
-
 msgid "Plugin Browser Edit Actions"
 msgstr "Eklenti Tarayıcısı Düzenleme Eylemleri"
 
-msgid "Plugin Browser Manage Actions"
-msgstr "Eklenti Tarayıcısı Eylemleri Yönet"
+msgid "Plugin Browser Install Actions"
+msgstr ""
 
 msgid "Plugin Browser Navigation Actions"
 msgstr "Eklenti Tarayıcı Gezinme Eylemleri"
@@ -13838,6 +13846,9 @@ msgstr "Eklenti Tarayıcı Güncelleme Eylemleri"
 
 msgid "Plugin Browser layout"
 msgstr "Eklenti Tarayıcı düzeni"
+
+msgid "Plugin Packages"
+msgstr ""
 
 msgid "Plugin Skin Packages"
 msgstr "Eklenti Görünüm Paketleri"
@@ -14375,6 +14386,9 @@ msgstr "AV Alıcınızı beklemeye alın"
 msgid "Python"
 msgstr "Python"
 
+msgid "Python Development Packages"
+msgstr ""
+
 #
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "/tmp/mmi.socket için Python uç birimi"
@@ -14854,10 +14868,6 @@ msgstr "İlgili PID Yönlendirme"
 msgid "Religion"
 msgstr "Dini"
 
-#
-msgid "Reload"
-msgstr "Yenile"
-
 msgid "Reload Bookmarks"
 msgstr "Yer İşaretlerini Yeniden Yükle"
 
@@ -14922,6 +14932,10 @@ msgstr "Uzaktan kumanda tipi"
 msgid "Remove"
 msgstr "Kaldır"
 
+#, python-format
+msgid "Remove %s"
+msgstr ""
+
 #
 msgid "Remove All Alternatives"
 msgstr "Tüm Alternatifleri Kaldır"
@@ -14947,15 +14961,8 @@ msgstr "Silme Onayı"
 msgid "Remove Entry"
 msgstr "Girişi kaldı"
 
-msgid "Remove Failed !!"
-msgstr "Kaldır Başarısız !!"
-
 msgid "Remove Files"
 msgstr "Dosyaları Kaldır"
-
-#
-msgid "Remove Finished."
-msgstr "Kaldırma işlemi bitti."
 
 #
 msgid "Remove From Parental Protection"
@@ -15190,6 +15197,12 @@ msgstr "Gelecekte kullanılmak üzere rezerve edilmiştir"
 msgid "Reset"
 msgstr "Sıfırla"
 
+msgid "Reset (clear and reload) the feeds"
+msgstr ""
+
+msgid "Reset Feeds"
+msgstr ""
+
 msgid "Reset HDMI-CEC settings to default"
 msgstr "HDMI-CEC ayarlarını varsayılana sıfırlayın"
 
@@ -15251,6 +15264,9 @@ msgstr "Kullanıcı arayüzünü şimdi yeniden başlat"
 msgid "Restart GUI after x crashes"
 msgstr "X kilitlendikten sonra GUI'yi yeniden başlatın"
 
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr ""
+
 #
 msgid "Restart GUI now?"
 msgstr "Kullanıcı arayüzünü şimdi yeniden başlat?"
@@ -15283,6 +15299,9 @@ msgstr "Testi yeniden başlat"
 
 msgid "Restart your network connection and interfaces."
 msgstr "Ağ bağlantısını ve ağ arayüzlerini yeniden başlatın."
+
+msgid "Restarting..."
+msgstr ""
 
 #
 msgid "Restore"
@@ -16027,9 +16046,6 @@ msgstr "Anten sisteminiz bunu gerektiriyorsa 'A' veya 'B' seçeneğini seçin, a
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Eğer bir 'evrensel' LNB kullanıyorsanız, 'band' seçeneğini seçin, aksi takdirde LNB teknik tablonuza bakın."
 
-msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
-msgstr "Bir paket güncellemesinden önce paket temizlemeye zorlamak için 'Etkinleştir'i seçin. Bu, paket listesinin güncel olduğundan emin olmak için yararlıdır ve güncelleme sırasında sorunları önleyebilir/çözebilir. Bunu yalnızca çevrimiçi güncelleme yapamadığınızda etkinleştirin."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -16177,6 +16193,9 @@ msgstr "Eklentileri İndir ekranında OpenPLi paketlerini göstermek için 'Evet
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında OpenViX paketlerini göstermek için 'Evet'i seçin."
 
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
+msgstr "Eklentileri İndir ekranında softcam paketlerini göstermek için 'Evet'i seçin."
+
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr "Dizinleri listenin en üstünde/başında göstermek için 'Evet'i seçin veya dosyaları önce göstermek için 'Hayır'ı seçin."
 
@@ -16210,9 +16229,6 @@ msgstr "Eklentileri İndir ekranında dış görünüm bileşen paketlerini gös
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında dış görünüm paketlerini göstermek için 'Evet'i seçin."
 
-msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
-msgstr "Eklentileri İndir ekranında softcam paketlerini göstermek için 'Evet'i seçin."
-
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında kaynak 'src' paketlerini göstermek için 'Evet'i seçin."
 
@@ -16245,6 +16261,9 @@ msgstr "Medya oynatma sırasında hızlı ileri veya geri sararken Bilgi Çubuğ
 
 msgid "Select Additional Backup Files"
 msgstr "Ek yedek dosyaları seçin"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 #
 msgid "Select Backup Location"
@@ -16296,6 +16315,9 @@ msgstr "Dört Kanal Seç"
 msgid "Select Satellites"
 msgstr "Uyduları seç"
 
+msgid "Select Softcam"
+msgstr "Softcam'i seçin"
+
 msgid "Select Software Update"
 msgstr "Yazılım Güncelleme Seç"
 
@@ -16312,6 +16334,12 @@ msgstr "Düzenlemek için Yükseltme Kaynağını Seçin"
 
 msgid "Select Your Skin"
 msgstr "Skin Seçin"
+
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
+msgstr "Mevcut listeden bir softcam seçin."
 
 msgid "Select a bouquet"
 msgstr "Bir buket seçin"
@@ -16353,12 +16381,6 @@ msgstr "Görüntülemek için bir depo commit günlüğü seçin:"
 msgid "Select a script to run:"
 msgstr "Çalıştırılacak bir komut dosyası seçin:"
 
-msgid "Select a Softcam from the available list as the default for AutoCam."
-msgstr ""
-
-msgid "Select a Softcam from the available list."
-msgstr "Mevcut listeden bir softcam seçin."
-
 msgid "Select a tuner"
 msgstr "Bir tuner seçin"
 
@@ -16385,9 +16407,6 @@ msgstr "Görev tamamlandığında gerçekleştirilecek bir eylem seçin."
 #
 msgid "Select audio track"
 msgstr "Ses izi seçin"
-
-msgid "Select AutoCam default Softcam"
-msgstr ""
 
 msgid "Select cardserver"
 msgstr "Kart sunucusu seçin"
@@ -16525,9 +16544,6 @@ msgstr "Görüntülemek için servis bilgilerini seçin:"
 msgid "Select service to add..."
 msgstr "Eklenecek kanalı seçin..."
 
-msgid "Select Softcam"
-msgstr "Softcam'i seçin"
-
 msgid "Select sort method:"
 msgstr "Sıralama yöntemini seç:"
 
@@ -16546,6 +16562,9 @@ msgstr "Hayır / Yanlış yanıtını seçin"
 #, python-format
 msgid "Select the Softcam for '%s'"
 msgstr ""
+
+msgid "Select the Softcam protocol."
+msgstr "Softcam protokolünü seçin."
 
 msgid "Select the Swap File Size:"
 msgstr "Dosya Boyutunu Değiştirin:"
@@ -16747,9 +16766,6 @@ msgstr "Kaydırılan karakter kümesini seçin"
 msgid "Select the shifted character set for the next character only"
 msgstr "Yalnızca sonraki karakter için kaydırılmış karakter kümesini seçin"
 
-msgid "Select the Softcam protocol."
-msgstr "Softcam protokolünü seçin."
-
 msgid "Select the sort order for the file lines:"
 msgstr "Dosya satırları için sıralama düzenini seçin:"
 
@@ -16774,7 +16790,7 @@ msgstr "File Commander başlatıldığında etkinleştirilecek başlangıç/ilk 
 msgid "Select the tags that should be used for this recording."
 msgstr "Bu kayıt için kullanılması gereken etiketleri seçin."
 
-msgid "Select the target location where picon files will be installed."
+msgid "Select the location where the picon files will be installed."
 msgstr "Picon dosyalarının yükleneceği hedef konumu seçin."
 
 msgid "Select the time after which this timer can start."
@@ -18025,11 +18041,11 @@ msgstr "Resmi göster"
 msgid "Show image and save as '%s'"
 msgstr "Görüntüyü göster ve '%s' olarak kaydet"
 
-msgid "Show in Standby"
-msgstr "Bekleme modunda göster"
-
 msgid "Show in Extension Menu"
 msgstr "Eklentiler listesinde göster"
+
+msgid "Show in Standby"
+msgstr "Bekleme modunda göster"
 
 #
 msgid "Show info"
@@ -18715,6 +18731,9 @@ msgstr "Küçük - Minik görüntü"
 msgid "Small Box Preparation"
 msgstr "Küçük Kutu Hazırlama"
 
+msgid "Small Box Preparation Actions"
+msgstr ""
+
 #
 msgid "Small Test"
 msgstr "Küçük Test"
@@ -18762,6 +18781,9 @@ msgstr "Softcam Kurulumu"
 
 msgid "Softcam Setup"
 msgstr "Softcam Kurulumu"
+
+msgid "Softcams"
+msgstr ""
 
 #
 msgid "Software Management"
@@ -21199,10 +21221,6 @@ msgstr "Yazılım hataları için yeniden başlatmaları önlemeye çalışın v
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr "Tüm komutlar yürütülmezse, tekrarlanan komutlar göndermeyi deneyin. (ör. TV uyandırma, ancak doğru girişe geçmemiş.)"
 
-#
-msgid "Trying to download a new packet list. Please wait..."
-msgstr "Yeni paket listesi indiriliyor. Lütfen bekleyin..."
-
 msgid "Tsonga"
 msgstr "Tsonga Dili"
 
@@ -21518,6 +21536,9 @@ msgstr ""
 "Bilinmeyen Hata Oluşturma Hatası.\n"
 "Lütfen MyMetrixLite-Plugin uygulamasını yeniden başlattıktan sonra kontrol edin ve ayarlarınızı uygulayın."
 
+msgid "Unknown Packages"
+msgstr ""
+
 #
 msgid "Unknown Service"
 msgstr "Bilinmeyen Servis"
@@ -21644,9 +21665,6 @@ msgstr "Güncelleme bitti!"
 msgid "Update interval (in seconds)"
 msgstr "Güncelleme periyodu (saniye)"
 
-msgid "Update package list please wait..."
-msgstr "Paket listesini güncelleyin lütfen bekleyin..."
-
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -21678,6 +21696,9 @@ msgstr "Yükseltiliyor"
 
 msgid "Updating mount locations."
 msgstr "Montaj yerleri güncelleniyor."
+
+msgid "Updating package list."
+msgstr ""
 
 msgid "Upgrade (Flash & restore all)"
 msgstr "Yükseltme (Flash & tümünü geri yükle)"
@@ -21738,6 +21759,9 @@ msgstr "Kullan"
 
 msgid "Use 'Trash' in movie list"
 msgstr "Filmlistesinde çöp kutusu kullan"
+
+msgid "Use AutoCam"
+msgstr ""
 
 #
 msgid "Use DHCP"
@@ -21803,9 +21827,6 @@ msgstr "Alternatif daha küçük bir ekran kullanın."
 
 msgid "Use as HDD"
 msgstr "HDD olarak kullan"
-
-msgid "Use AutoCam"
-msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr "Otomatik mod algılamayı kullanın"
@@ -22026,6 +22047,9 @@ msgstr "Eski profil kullanılıyor: "
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Altyazı dili ses diline eşitse genelde altyazı kullanılmaz. Bu altyazıların kullanılması için bu seçeneği etkinleştirin."
+
+msgid "Utility Packages"
+msgstr ""
 
 msgid "Uzbek"
 msgstr "Özbekçe"
@@ -22522,6 +22546,10 @@ msgstr "Savaş"
 msgid "Warning"
 msgstr "Uyarı"
 
+#, python-format
+msgid "Warning: %d feeds were unable to be reloaded!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Uyarı: Geçersiz kılmalar şu anda etkin!"
 
@@ -23007,6 +23035,9 @@ msgstr "Www"
 
 msgid "X-Resolution"
 msgstr "X-Resolution"
+
+msgid "X11 Packages"
+msgstr ""
 
 msgid "XBox 360 support"
 msgstr "XBox 360 desteği"
@@ -23713,18 +23744,12 @@ msgstr "uphop 1 azalt"
 msgid "default"
 msgstr "öntanımlı"
 
-msgid "Default Astra (13e-19e)"
-msgstr "varsayılan Astra (13e-19e)"
-
 msgid "delete"
 msgstr "sil"
 
 #
 msgid "delete cut"
 msgstr "kesimi sil"
-
-msgid "deleted"
-msgstr "silindi"
 
 msgid "detective/thriller"
 msgstr "polisiye/heyecan"
@@ -24004,10 +24029,6 @@ msgstr "modülleri başlat"
 msgid "insert mark here"
 msgstr "buraya işaret koy"
 
-#
-msgid "installed"
-msgstr "yüklü"
-
 msgid "instant record"
 msgstr "anlık kayıt"
 
@@ -24189,10 +24210,6 @@ msgstr "kaynak yöneticisi yok"
 msgid "no storage devices found"
 msgstr "depolama aygıtı bulunamadı"
 
-#
-msgid "none"
-msgstr "yok"
-
 msgid "normal"
 msgstr "normal"
 
@@ -24257,6 +24274,12 @@ msgstr "turuncu"
 msgid "original language"
 msgstr "özgün dil"
 
+msgid "package"
+msgstr ""
+
+msgid "packages"
+msgstr ""
+
 #
 msgid "pass"
 msgstr "geç"
@@ -24273,6 +24296,12 @@ msgstr "pembe"
 #
 msgid "please wait, loading picture..."
 msgstr "lütfen bekleyin, resim yükleniyor..."
+
+msgid "plugin"
+msgstr ""
+
+msgid "plugins"
+msgstr ""
 
 msgid "pm"
 msgstr "ös"
@@ -24483,6 +24512,12 @@ msgstr "sosyal/politik/ekonomik konular (genel)"
 
 msgid "social/spiritual science"
 msgstr "sosyal/manevi bilimler"
+
+msgid "softcam"
+msgstr "softcam"
+
+msgid "softcams"
+msgstr ""
 
 msgid "special (general)"
 msgstr "spor (genel)"
@@ -24705,6 +24740,143 @@ msgstr "evet (beslemeleri tut)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Installing Please wait..."
+#~ msgstr "Yükleniyor Lütfen bekleyin..."
+
+#~ msgid "Update package list please wait..."
+#~ msgstr "Paket listesini güncelleyin lütfen bekleyin..."
+
+#
+#~ msgid "none"
+#~ msgstr "yok"
+
+#~ msgid "After pressing OK, please wait!"
+#~ msgstr "OK tuşuna bastıktan sonra lütfen bekleyin!"
+
+#~ msgid "An error occurred while downloading the packet list. Please try again."
+#~ msgstr "Paket listesi indirilirken hata oluştu. Tekrar deneyin."
+
+#
+#~ msgid "Do you want to install the package:\n"
+#~ msgstr "Seçilen paketi yüklemek istiyor musunuz?:\n"
+
+#~ msgid "Do you want to reboot your receiver?"
+#~ msgstr "Alıcınızı tekrar başlatmak istiyor musunuz?"
+
+#
+#~ msgid "Do you want to remove the package:\n"
+#~ msgstr "Seçilen paketi kaldırmak istiyor musunuz?:\n"
+
+#
+#~ msgid "Do you want to upgrade the package:\n"
+#~ msgstr "Seçilen paketi yükseltmek istiyor musunuz?:\n"
+
+#~ msgid "Getting Softcam list. Please wait..."
+#~ msgstr "Softcam listesi alınıyor. Lütfen bekle..."
+
+#~ msgid "Install Failed !!"
+#~ msgstr "Kurulum Başarısız !!"
+
+#~ msgid "Install Finished."
+#~ msgstr "Kurulum Bitti."
+
+#~ msgid "Install Softcams"
+#~ msgstr "Softcam'ları yükle"
+
+#~ msgid "Install/Remove plugin"
+#~ msgstr "Eklentiyi Yükle/Kaldır"
+
+#~ msgid "Package list"
+#~ msgstr "Paket listesi"
+
+#
+#~ msgid "Packet Manager"
+#~ msgstr "Paket yöneticisi"
+
+#
+#~ msgid "Reload"
+#~ msgstr "Yenile"
+
+#~ msgid "Remove Failed !!"
+#~ msgstr "Kaldır Başarısız !!"
+
+#
+#~ msgid "Remove Finished."
+#~ msgstr "Kaldırma işlemi bitti."
+
+#
+#~ msgid "Trying to download a new packet list. Please wait..."
+#~ msgstr "Yeni paket listesi indiriliyor. Lütfen bekleyin..."
+
+#, python-format
+#~ msgid "%d package found."
+#~ msgid_plural "%d packages found."
+#~ msgstr[0] "%d paket bulundu."
+
+#~ msgid "Add/Remove highlighted plugin to/from download list"
+#~ msgstr "Vurgulanan eklentiyi indirme listesine ekle/listeden kaldır"
+
+#, python-format
+#~ msgid "Do you want to download '%s'?"
+#~ msgstr "'%s' indirmek istiyor musunuz?"
+
+#, python-format
+#~ msgid "Do you want to remove '%s'?"
+#~ msgstr "'%s'ı kaldırmak istiyor musunuz?"
+
+#, python-format
+#~ msgid "Do you want to replace '%s' with '%s?"
+#~ msgstr "'%s' yerine '%s' mi koymak istiyorsunuz?"
+
+#, python-format
+#~ msgid "Do you want to update '%s'?"
+#~ msgstr "'%s'ı güncellemek istiyor musunuz?"
+
+#~ msgid "Download Plugin"
+#~ msgstr "Eklentiyi İndir"
+
+#~ msgid "Download the selected plugin / list of plugins"
+#~ msgstr "Seçilen eklentiyi / eklenti listesini indirin"
+
+#, python-format
+#~ msgid "Error: %s %s not %s!  Please try again later."
+#~ msgstr "Hata: %s %s, %s değil! Lütfen daha sonra tekrar deneyiniz."
+
+#~ msgid "Error: Unable to process the command!  Please try again later."
+#~ msgstr "Hata: Komut işlenemiyor! Lütfen daha sonra tekrar deneyiniz."
+
+#~ msgid "Force OPKG clean mode"
+#~ msgstr "OPKG temizleme modunu zorla"
+
+#
+#~ msgid "Languages"
+#~ msgstr "Dil"
+
+#~ msgid "Locales"
+#~ msgstr "Yerel ayarlar"
+
+#~ msgid "Manage the highlighted plugin"
+#~ msgstr "Vurgulanan eklentiyi yönetme"
+
+#~ msgid "Please wait while the plugin is downloaded."
+#~ msgstr "Lütfen eklenti indirilirken bekleyin."
+
+#~ msgid "Plugin Browser Download Actions"
+#~ msgstr "Eklenti Tarayıcı İndirme Eylemleri"
+
+#~ msgid "Plugin Browser Manage Actions"
+#~ msgstr "Eklenti Tarayıcısı Eylemleri Yönet"
+
+#~ msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+#~ msgstr "Bir paket güncellemesinden önce paket temizlemeye zorlamak için 'Etkinleştir'i seçin. Bu, paket listesinin güncel olduğundan emin olmak için yararlıdır ve güncelleme sırasında sorunları önleyebilir/çözebilir. Bunu yalnızca çevrimiçi güncelleme yapamadığınızda etkinleştirin."
+
+#~ msgid "deleted"
+#~ msgstr "silindi"
+
+#
+#~ msgid "installed"
+#~ msgstr "yüklü"
+
 #~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 #~ msgstr "CCcam'i uzantılarda (mavi düğme) göstermenize / gizlemenize izin verir."
 
@@ -24746,9 +24918,6 @@ msgstr "®"
 
 #~ msgid "cardserver"
 #~ msgstr "kart sunucusu"
-
-#~ msgid "softcam"
-#~ msgstr "softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI Yardımcısı Kurulumu"

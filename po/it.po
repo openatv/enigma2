@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 11:41+0000\n"
-"PO-Revision-Date: 2023-11-20 13:04+0000\n"
+"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"PO-Revision-Date: 2023-11-24 17:28+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2\n"
+"X-Generator: Weblate 5.2.1-rc\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -953,12 +953,6 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] "È stato trovato %d pacchetto."
-msgstr[1] "Sono stati trovati %d pacchetti."
-
-#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "C'è %d pacchetto con un aggiornamento."
@@ -987,6 +981,12 @@ msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
 msgstr[0] "È stato contrassegnato %d pacchetto per la rimozione."
 msgstr[1] "Sono stati contrassegnati %d pacchetti per la rimozione."
+
+#, python-format
+msgid "%d package marked for update."
+msgid_plural "%d packages marked for update."
+msgstr[0] "%d pacchetto contrassegnato per l'aggiornamento."
+msgstr[1] "%d pacchetti contrassegnati per l'aggiornamento."
 
 #, python-format
 msgid "%d package upgraded."
@@ -1185,6 +1185,10 @@ msgstr "%s (%s)"
 #, python-format
 msgid "%s - Setup"
 msgstr "%s - Setup"
+
+#, python-format
+msgid "%s Browser Manage Actions"
+msgstr "Gestione azioni del browser %s"
 
 #, python-format
 msgid "%s GHz"
@@ -2039,8 +2043,8 @@ msgstr "Aggiungi o rimuovi timer"
 msgid "Add/Remove a timer for the current event"
 msgstr "Aggiungi o rimuovi un timer per l'evento in corso"
 
-msgid "Add/Remove highlighted plugin to/from download list"
-msgstr "Aggiungi o rimuovi il plugin evidenziato dall'elenco dei plugin da scaricare"
+msgid "Add/Remove highlighted plugin to/from install list"
+msgstr "Aggiungi o rimuovi il plugin evidenziato all' o dall'elenco di installazione"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr "Aggiungi o rimuovi il plugin evidenziato dall'elenco dei plugin da rimuovere"
@@ -2119,9 +2123,6 @@ msgstr "Dopo l'assenza di elettricità"
 
 msgid "After event"
 msgstr "Dopo l'evento"
-
-msgid "After pressing OK, please wait!"
-msgstr "Dopo aver premuto OK, attendi!"
 
 msgid "After recording"
 msgstr "Dopo la registrazione"
@@ -2330,9 +2331,6 @@ msgstr "Telecomando Amlogic"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Viene effettuato un tentativo di acquisire lo stato TV attuale. Se non è possibile a causa di messaggi di stato errati o mancanti, il ricevitore potrebbe rispondere in modo imprevisto. D'altra parte, cerca di rispondere meglio alle diverse condizioni operative."
 
-msgid "An error occurred while downloading the packet list. Please try again."
-msgstr "Si è verificato un errore durante il download dell'elenco dei pacchetti. Per favore riprova."
-
 msgid "An unknown error occurred!"
 msgstr "Si è verificato un errore sconosciuto!"
 
@@ -2513,10 +2511,10 @@ msgid "Ask user"
 msgstr "Chiedi all'utente"
 
 msgid "Ask user (with default as 'No')"
-msgstr "Chiedi all'utente (predefinito \"No\")"
+msgstr "Chiedi all'utente (predefinito 'No')"
 
 msgid "Ask user (with default as 'Yes')"
-msgstr "Chiedi all'utente (predefinito \"Sì\")"
+msgstr "Chiedi all'utente (predefinito 'Sì')"
 
 msgid "Aspect"
 msgstr "Aspetto"
@@ -2685,6 +2683,12 @@ msgstr "Modalità video automatica selezionata per la TV."
 msgid "Auto(not available)"
 msgstr "Automatico (non disponibile)"
 
+msgid "AutoCam Settings"
+msgstr "Impostazioni AutoCam"
+
+msgid "AutoCam Setup Actions"
+msgstr "Azioni di impostazione AutoCam"
+
 msgid "AutoMountManager"
 msgstr "Gestore di montaggio automatico"
 
@@ -2693,12 +2697,6 @@ msgstr "Timer automatico"
 
 msgid "AutoUpdate"
 msgstr "Aggiornamento automatico"
-
-msgid "AutoCam Settings"
-msgstr "Impostazioni AutoCam"
-
-msgid "AutoCam Setup Actions"
-msgstr "Azioni di impostazione AutoCam"
 
 msgid "Automatic"
 msgstr "Automatico"
@@ -2939,6 +2937,12 @@ msgstr "Bangladesh"
 
 msgid "Barbados"
 msgstr "Barbados"
+
+msgid "Base Packages"
+msgstr "Pacchetti base"
+
+msgid "Base Shell Packages"
+msgstr "Pacchetti base shell"
 
 msgid "Base time"
 msgstr "Ora base"
@@ -3617,6 +3621,9 @@ msgstr "Annulla selezione"
 
 msgid "Cancel selection and exit"
 msgstr "Annulla selezione ed esci"
+
+msgid "Cancel the Reset Feeds command currently being processed"
+msgstr "Annulla comando Reimposta feed attualmente in fase di elaborazione"
 
 msgid "Cancel the bouquet selection"
 msgstr "Annulla selezione del bouquet"
@@ -4783,6 +4790,15 @@ msgstr "Informazioni sulla connessione"
 msgid "Console"
 msgstr "Console"
 
+msgid "Console Network Packages"
+msgstr "Pacchetti rete per console"
+
+msgid "Console Packages"
+msgstr "Pacchetti per console"
+
+msgid "Console Utility Packages"
+msgstr "Pacchetti utilità per console"
+
 msgid "Constellation"
 msgstr "Costellazione"
 
@@ -5548,6 +5564,9 @@ msgstr "Predefinito 'Dopo l'evento' *"
 msgid "Default 'Timer type' *"
 msgstr "Predefinito 'Tipo di timer' *"
 
+msgid "Default Astra (13e-19e)"
+msgstr "Astra predefinito (13e-19e)"
+
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Priorità CPU predefinita (nice) per l'esecuzione degli script. Può ridurre il carico del sistema in modo che gli script non interferiscano con il resto del sistema (valori più alti = priorità più bassa)"
 
@@ -5906,7 +5925,7 @@ msgid "Details"
 msgstr "Dettagli"
 
 msgid "Development Packages"
-msgstr "Pacchetti di sviluppo"
+msgstr "Pacchetti sviluppo"
 
 msgid "Device Manager"
 msgstr "Gestore dispositivi"
@@ -6091,10 +6110,10 @@ msgid "Display >16:9 content as"
 msgstr "Mostra contenuti > di 16:9 come"
 
 msgid "Display Settings"
-msgstr "Impostazioni visualizzazione"
+msgstr "Visualizza impostazioni"
 
 msgid "Display Skin Packages"
-msgstr "Pacchetti skin"
+msgstr "Visualizza pacchetti skin"
 
 msgid "Display context menu"
 msgstr "Visualizza menu contestuale"
@@ -6331,18 +6350,14 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Vuoi eseguire un'altra scansione manuale del servizio?"
 
 #, python-format
-msgid "Do you want to download '%s'?"
-msgstr "Vuoi scaricare '%s'?"
-
-#, python-format
 msgid "Do you want to flash the image '%s'?"
 msgstr "Vuoi eseguire il flash dell'immagine '%s'?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Vuoi installare un elenco di canali?"
 
-msgid "Do you want to install the package:\n"
-msgstr "Vuoi installare il pacchetto:\n"
+msgid "Do you want to install:"
+msgstr "Vuoi installare:"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Vuoi riprodurre DVD nell'unità?"
@@ -6361,19 +6376,8 @@ msgstr "Vuoi eliminare tutte le localizzazioni/lingue tranne %s?"
 msgid "Do you want to reboot your %s %s?"
 msgstr "Vuoi riavviare il %s %s?"
 
-msgid "Do you want to reboot your receiver?"
-msgstr "Vuoi riavviare il ricevitore?"
-
-#, python-format
-msgid "Do you want to remove '%s'?"
-msgstr "Vuoi rimuovere '%s'?"
-
-msgid "Do you want to remove the package:\n"
-msgstr "Vuoi rimuovere il pacchetto:\n"
-
-#, python-format
-msgid "Do you want to replace '%s' with '%s?"
-msgstr "Vuoi sostituire '%s' con '%s?"
+msgid "Do you want to remove:"
+msgstr "Vuoi rimuovere:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Vuoi ripristinare le impostazioni?"
@@ -6387,12 +6391,8 @@ msgstr "Vuoi selezionare un altro servizio?"
 msgid "Do you want to start a backup now?"
 msgstr "Vuoi avviare un backup adesso?"
 
-#, python-format
-msgid "Do you want to update '%s'?"
-msgstr "Vuoi aggiornare '%s'?"
-
-msgid "Do you want to upgrade the package:\n"
-msgstr "Vuoi aggiornare il pacchetto:\n"
+msgid "Do you want to update:"
+msgstr "Vuoi aggiornare:"
 
 msgid "Documentary"
 msgstr "Documentario"
@@ -6455,9 +6455,6 @@ msgstr "Giù / Inattivo"
 msgid "Download Image"
 msgstr "Scarica immagine"
 
-msgid "Download Plugin"
-msgstr "Scarica plugin"
-
 msgid "Download Plugins"
 msgstr "Scarica plugin"
 
@@ -6478,9 +6475,6 @@ msgstr "Errore di download"
 
 msgid "Download the selected image"
 msgstr "Scarica immagine selezionata"
-
-msgid "Download the selected plugin / list of plugins"
-msgstr "Scarica plugin/elenco dei plugin selezionati"
 
 msgid "Downloadable plugins"
 msgstr "Plugin scaricabili"
@@ -7399,10 +7393,6 @@ msgstr ""
 "Errore: %s\n"
 "Riprovare?"
 
-#, python-format
-msgid "Error: %s %s not %s!  Please try again later."
-msgstr "Errore: %s %s non %s! Per favore riprova più tardi."
-
 msgid "Error: An empty filename is illegal!"
 msgstr "Errore: un nome di file vuoto non è valido!"
 
@@ -7490,11 +7480,12 @@ msgstr "Errore: impossibile registrare il servizio selezionato!"
 msgid "Error: There was a problem writing '%s'!"
 msgstr "Errore: si è verificato un problema durante la scrittura di '%s'!"
 
+#, python-format
+msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
+msgstr "Errore: si è verificato un problema nel ripristino dei feed! Riavvia %s %s e controlla eventuali errori nel file system prima di provare nuovamente a eseguire questo comando."
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Errore: impossibile creare le cartelle richieste sul dispositivo di destinazione (ad es. chiavetta USB o disco rigido)! Verifica il dispositivo e riprova."
-
-msgid "Error: Unable to process the command!  Please try again later."
-msgstr "Errore: impossibile elaborare il comando! Per favore riprova più tardi."
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
@@ -8032,6 +8023,9 @@ msgstr "Impostazioni File Commander"
 msgid "File System Check"
 msgstr "Controllo file system"
 
+msgid "File System Packages"
+msgstr "Pacchetti file system"
+
 msgid "File appears to be busy.\n"
 msgstr "Il file sembra occupato.\n"
 
@@ -8238,9 +8232,6 @@ msgstr "Forza impostazioni ToneBurst LNB tuner."
 
 msgid "Force Legacy Signal stats"
 msgstr "Forza statistiche compatibili del segnale"
-
-msgid "Force OPKG clean mode"
-msgstr "Forza la modalità clean su OPKG"
 
 msgid "Force ToneBurst"
 msgstr "Forza ToneBurst"
@@ -8482,10 +8473,10 @@ msgstr "Geolocalizzazione"
 msgid "Geolocation Information"
 msgstr "Informazioni sulla geolocalizzazione"
 
-msgid "Geolocation does not contain time zone information."
+msgid "Geolocation data does not contain time zone information."
 msgstr "La geolocalizzazione non contiene informazioni sul fuso orario."
 
-msgid "Geolocation has been used to set the time zone."
+msgid "Geolocation data has been used to set the time zone."
 msgstr "La geolocalizzazione è stata utilizzata per impostare il fuso orario."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
@@ -8495,7 +8486,7 @@ msgstr "Impossibile recuperare le informazioni sulla geolocalizzazione."
 msgid "Geolocation information for %s %s"
 msgstr "Informazioni sulla geolocalizzazione per %s %s"
 
-msgid "Geolocation is not available."
+msgid "Geolocation data is not available."
 msgstr "La geolocalizzazione non è disponibile."
 
 msgid "Georgia"
@@ -8512,9 +8503,6 @@ msgstr "Germania"
 
 msgid "Getting Event Info failed!"
 msgstr "Recupero informazioni sull'evento non riuscito!"
-
-msgid "Getting Softcam list. Please wait..."
-msgstr "Recupero dell'elenco Softcam in corso. Per favore, attendi..."
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Recupero informazioni sui plugin. Attendi..."
@@ -9586,26 +9574,24 @@ msgid "Install"
 msgstr "Installa"
 
 #, python-format
+msgid "Install %s"
+msgstr "Installa %s"
+
+#, python-format
 msgid "Install '%s' command"
 msgstr "Installa comando '%s'"
 
 msgid "Install 1/1"
 msgstr "Installa 1/1"
 
-msgid "Install Failed !!"
-msgstr "Installazione non riuscita!"
-
-msgid "Install Finished."
-msgstr "Installazione terminata."
-
 msgid "Install Local Extension"
 msgstr "Installa estensioni locali"
 
-msgid "Install Plugins"
+msgid "Install Plugin"
 msgstr "Installa plugin"
 
-msgid "Install Softcams"
-msgstr "Installa Softcam"
+msgid "Install Plugins"
+msgstr "Installa plugin"
 
 msgid "Install a new image with a USB stick"
 msgstr "Installa una nuova immagine con una chiavetta USB"
@@ -9622,8 +9608,8 @@ msgstr "Installa estensioni."
 msgid "Install the package"
 msgstr "Installa pacchetto"
 
-msgid "Install/Remove plugin"
-msgstr "Installa/Rimuovi plugin"
+msgid "Install the selected plugin / list of plugins"
+msgstr "Installa plugin o elenco di plugin selezionato"
 
 msgid "Installation finished."
 msgstr "Installazione completata."
@@ -9634,9 +9620,6 @@ msgstr "Installazione"
 #, python-format
 msgid "Installing %s (%s)..."
 msgstr "Installazione di %s (%s)..."
-
-msgid "Installing Please wait..."
-msgstr "Installazione in corso, attendi..."
 
 msgid "Installing Service"
 msgstr "Installazione servizio"
@@ -9649,6 +9632,9 @@ msgstr "Installazione feed da IPK..."
 
 msgid "Installing feeds from feed ..."
 msgstr "Installazione feed dal feed..."
+
+msgid "Installing package."
+msgstr "Installazione pacchetto."
 
 msgid "Installing plugins from IPK ..."
 msgstr "Installazione plugin da IPK..."
@@ -9843,7 +9829,7 @@ msgid "Jump to prime time"
 msgstr "Vai a prima serata"
 
 msgid "Jump to the currently active locale/language"
-msgstr "Passa alla lingua/località attualmente attiva"
+msgstr "Passa alla lingua/localizzazione attualmente attiva"
 
 msgid "Just abort, no message"
 msgstr "Stop, nessun messaggio"
@@ -10077,9 +10063,6 @@ msgstr "Lingua già selezionata."
 msgid "Language selection"
 msgstr "Selezione lingua"
 
-msgid "Languages"
-msgstr "Lingue"
-
 msgid "Lao"
 msgstr "Laotiano"
 
@@ -10168,6 +10151,9 @@ msgstr "Letterbox zoom"
 
 msgid "Liberia"
 msgstr "Liberia"
+
+msgid "Library Packages"
+msgstr "Pacchetti libreria"
 
 msgid "Libs"
 msgstr "Librerie"
@@ -10357,9 +10343,6 @@ msgstr "Selezione localizzazione/lingua"
 
 msgid "Locale/Language Selection Actions"
 msgstr "Azioni di selezione localizzazione/lingua"
-
-msgid "Locales"
-msgstr "Localizzazioni"
 
 msgid "Locales to be displayed"
 msgstr "Localizzazioni da visualizzare"
@@ -10585,6 +10568,10 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Maltese"
 
+#, python-format
+msgid "Manage %s"
+msgstr "Gestisci %s"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Gestisci impostazioni di selezione localizzazione/lingua"
 
@@ -10600,8 +10587,13 @@ msgstr "Gestisci ed esplora cartelle e file."
 msgid "Manage network mounts"
 msgstr "Gestisci montaggi di rete"
 
-msgid "Manage the highlighted plugin"
-msgstr "Gestisci plugin evidenziato"
+#, python-format
+msgid "Manage the highlighted %s"
+msgstr "Gestisci %s evidenziati"
+
+#, python-format
+msgid "Manage the highlighted %s / list of %s"
+msgstr "Gestisci %s evidenziati o elenco di %s"
 
 msgid "Manage your online update files"
 msgstr "Gestisci file di aggiornamento in linea"
@@ -11327,6 +11319,9 @@ msgstr "Transcodifica multipla"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Immagine MultiBoot creata in: %s/%s-%s-%s-backup-%s_usb.zip"
 
+msgid "Multimedia Packages"
+msgstr "Pacchetti multimediali"
+
 msgid "Multiple service support"
 msgstr "Supporto per più servizi"
 
@@ -11490,7 +11485,7 @@ msgid "Network Adapter Text Actions"
 msgstr "Azioni di testo della scheda di rete"
 
 msgid "Network Browser"
-msgstr "Risorse di rete"
+msgstr "Navigatore di rete"
 
 msgid "Network ID"
 msgstr "ID rete"
@@ -11512,6 +11507,9 @@ msgstr "Configurazioni MAC di rete"
 
 msgid "Network Neighbourhood"
 msgstr "Cerca in risorse di rete vicine"
+
+msgid "Network Packages"
+msgstr "Pacchetti rete"
 
 msgid "Network Restart"
 msgstr "Riavvio della rete"
@@ -12393,6 +12391,9 @@ msgstr "Altro"
 msgid "Other Actions"
 msgstr "Altre azioni"
 
+msgid "Other Packages"
+msgstr "Altri pacchetti"
+
 msgid "Other Subtitles & Language"
 msgstr "Altri sottotitoli e lingue"
 
@@ -12506,6 +12507,9 @@ msgstr "PRIMA SERATA"
 msgid "PVR"
 msgstr "PVR"
 
+msgid "Package"
+msgstr "Pacchetto"
+
 msgid "Package Manager"
 msgstr "Gestore pacchetti"
 
@@ -12516,10 +12520,7 @@ msgid "Package information currently not available!"
 msgstr "Informazioni sul pacchetto attualmente non disponibili!"
 
 msgid "Package installation failed."
-msgstr "Installazione pacchetto non riuscita"
-
-msgid "Package list"
-msgstr "Elenco pacchetti"
+msgstr "Installazione pacchetto non riuscita."
 
 msgid "Package list update"
 msgstr "Aggiornamento elenco pacchetti"
@@ -12527,11 +12528,11 @@ msgstr "Aggiornamento elenco pacchetti"
 msgid "Packaged locales only"
 msgstr "Solo localizzazioni pacchettizzate"
 
+msgid "Packages"
+msgstr "Pacchetti"
+
 msgid "Packages and associated locales"
 msgstr "Pacchetti e localizzazioni associate"
-
-msgid "Packet Manager"
-msgstr "Gestore pacchetti"
 
 msgid "Page down"
 msgstr "Pagina giù"
@@ -12724,7 +12725,7 @@ msgstr "Pacchetti picon"
 msgid "Picon and Service Name"
 msgstr "Picon e nome del servizio"
 
-msgid "Picon package target location"
+msgid "Picon install location"
 msgstr "Posizione di destinazione del pacchetto picon"
 
 msgid "Picon width"
@@ -13047,10 +13048,19 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Attendi attivazione della configurazione di rete..."
 
 msgid "Please wait while feeds are updated..."
-msgstr "Attendi l'aggiornamento dei feed..."
+msgstr "Attendi aggiornamento dei feed..."
 
 msgid "Please wait while gathering data..."
 msgstr "Attendi durante la raccolta dei dati..."
+
+msgid "Please wait while locale/language is deleted..."
+msgstr "Attendi eliminazione della localizzazione/lingua..."
+
+msgid "Please wait while locale/language is installed..."
+msgstr "Attendi installazione della localizzazione/lingua..."
+
+msgid "Please wait while locales/languages are purged..."
+msgstr "Attendi rimozione completa delle localizzazioni/lingue..."
 
 msgid "Please wait while scanning is in progress..."
 msgstr "Attendi mentre la scansione è in corso..."
@@ -13061,11 +13071,15 @@ msgstr "Attendi estrazione dei dati..."
 msgid "Please wait while the list downloads..."
 msgstr "Attendi scaricamento dell'elenco..."
 
-msgid "Please wait while the plugin is downloaded."
-msgstr "Attendi mentre il plugin viene scaricato."
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] "Attendi mentre il plugin viene installato."
+msgstr[1] "Attendi mentre i plugin vengono installati."
 
 msgid "Please wait while the plugin is removed."
-msgstr "Attendi mentre il plugin viene rimosso."
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] "Attendi mentre il plugin viene rimosso."
+msgstr[1] "Attendi mentre i plugin vengono rimossi."
 
 msgid "Please wait while the plugin is replaced."
 msgstr "Attendi mentre il plugin viene sostituito."
@@ -13124,6 +13138,9 @@ msgstr "Collega dispositivo USB"
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
 msgstr "Collega un dispositivo USB che può essere utilizzato come dispositivo di swap. Questo dispositivo non deve essere rimosso mentre %s %s è in funzione!"
 
+msgid "Plugin"
+msgstr "Plugin"
+
 msgid "Plugin Action Log"
 msgstr "Registro azioni plugin"
 
@@ -13136,14 +13153,11 @@ msgstr "Elenco plugin"
 msgid "Plugin Browser Actions"
 msgstr "Azioni elenco plugin"
 
-msgid "Plugin Browser Download Actions"
-msgstr "Azioni di download dell'elenco plugin"
-
 msgid "Plugin Browser Edit Actions"
 msgstr "Azioni di modifica dell'elenco plugin"
 
-msgid "Plugin Browser Manage Actions"
-msgstr "Azioni di gestione dell'elenco plugin"
+msgid "Plugin Browser Install Actions"
+msgstr "Azioni di installazione dell'elenco plugin"
 
 msgid "Plugin Browser Navigation Actions"
 msgstr "Azioni di navigazione dell'elenco plugin"
@@ -13162,6 +13176,9 @@ msgstr "Azioni di aggiornamento dell'elenco plugin"
 
 msgid "Plugin Browser layout"
 msgstr "Disposizione dell'elenco plugin"
+
+msgid "Plugin Packages"
+msgstr "Pacchetti plugin"
 
 msgid "Plugin Skin Packages"
 msgstr "Pacchetti skin plugin"
@@ -13647,7 +13664,7 @@ msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "Elimina tutto tranne / Aggiungi / Elimina la lingua/località attualmente evidenziata"
 
 msgid "Purge all but the current and permanent locales/languages. Add the current locale/language if it is not installed. Delete the current locale/language if it is installed."
-msgstr "Elimina tutte le impostazioni di localizzazione/lingua tranne quelle correnti e permanenti.  Aggiungi le impostazioni attuali di localizzazione/lingua se non è installata.  Elimina  le impostazioni attuali di localizzazione/lingua se è installata."
+msgstr "Elimina tutte le lingue tranne le regioni linguistiche attuali e permanenti. Aggiungi la regione linguistica corrente se non è installata. Elimina la regione linguistica corrente, se installata."
 
 msgid "Purging all unused locales/languages..."
 msgstr "Eliminazione di tutte le impostazioni di localizzazione/lingua inutilizzate..."
@@ -13663,6 +13680,9 @@ msgstr "Metti il ricevitore AV in standby"
 
 msgid "Python"
 msgstr "Python"
+
+msgid "Python Development Packages"
+msgstr "Pacchetti sviluppo Python"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Frontend python per /tmp/mmi.socket"
@@ -14116,9 +14136,6 @@ msgstr "PIDs pertinenti di routing"
 msgid "Religion"
 msgstr "Religione"
 
-msgid "Reload"
-msgstr "Ricarica"
-
 msgid "Reload Bookmarks"
 msgstr "Ricarica segnalibri"
 
@@ -14182,6 +14199,10 @@ msgstr "Tipo di telecomando"
 msgid "Remove"
 msgstr "Rimuovi"
 
+#, python-format
+msgid "Remove %s"
+msgstr "Rimuovi %s"
+
 msgid "Remove All Alternatives"
 msgstr "Rimuovi tutte le alternative"
 
@@ -14203,14 +14224,8 @@ msgstr "Rimuovi conferma"
 msgid "Remove Entry"
 msgstr "Rimuovi voce"
 
-msgid "Remove Failed !!"
-msgstr "Rimozione non riuscita!"
-
 msgid "Remove Files"
 msgstr "Rimuovi file"
-
-msgid "Remove Finished."
-msgstr "Rimozione terminata."
 
 msgid "Remove From Parental Protection"
 msgstr "Rimuovi dal controllo genitori"
@@ -14425,6 +14440,12 @@ msgstr "Riservato per uso futuro"
 msgid "Reset"
 msgstr "Reimposta"
 
+msgid "Reset (clear and reload) the feeds"
+msgstr "Reimposta (cancella e ricarica) i feed"
+
+msgid "Reset Feeds"
+msgstr "Reimposta feed"
+
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Reimposta impostazioni HDMI-CEC ai valori predefiniti"
 
@@ -14480,6 +14501,9 @@ msgstr "Riavvio grafica"
 msgid "Restart GUI after x crashes"
 msgstr "Riavvia la GUI dopo x crash"
 
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr "Riavviare la GUI adesso per iniziare a utilizzare la nuova localizzazione/lingua?"
+
 msgid "Restart GUI now?"
 msgstr "Riavviare la GUI ora?"
 
@@ -14509,6 +14533,9 @@ msgstr "Ripetere il test"
 
 msgid "Restart your network connection and interfaces."
 msgstr "Riavvia le connessioni di rete e le interfacce."
+
+msgid "Restarting..."
+msgstr "Riavvio..."
 
 msgid "Restore"
 msgstr "Ripristino"
@@ -15205,9 +15232,6 @@ msgstr "Seleziona 'A' o 'B' se l'antenna lo richiede, altrimenti seleziona 'Ness
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Seleziona 'Banda' se utilizzi un LNB universale, altrimenti consulta la scheda tecnica dell'LNB."
 
-msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
-msgstr "Seleziona 'Abilita' per forzare la pulizia di un pacchetto prima di un aggiornamento del pacchetto. Questo è utile per assicurarsi che l'elenco dei pacchetti sia aggiornato e può evitare/risolvere problemi durante l'aggiornamento. Abilita questa opzione solo quando non puoi aggiornare online."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Seleziona 'Abilita' per avviare l'helper CI+."
 
@@ -15278,7 +15302,7 @@ msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' 
 msgstr "Seleziona 'Sì' per abilitare la modifica delle impostazioni di questo dispositivo. Selezionando 'No' si ripristinano le impostazioni dei dispositivi ai valori predefiniti."
 
 msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
-msgstr "Seleziona \"Sì\" per consentire ai nuovi timer Zap di avere un'ora di fine attivata e definita per impostazione predefinita."
+msgstr "Seleziona 'Sì' per consentire ai nuovi timer Zap di avere un'ora di fine attivata e definita per impostazione predefinita."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Seleziona 'Sì' per abilitare l'anteprima dei canali mentre si è nell'elenco EPG."
@@ -15335,7 +15359,7 @@ msgid "Select 'Yes' to remove all user customizations of skin data. Selecting th
 msgstr "Seleziona 'Sì' per rimuovere tutte le personalizzazioni utente dei dati della skin. Selezionando questa opzione verranno rimosse tutte le personalizzazioni della skin basate sull'utente. Tutte le skin interessate torneranno alle impostazioni standard. Cancellerà anche tutti i loghi e gli sfondi di avvio personalizzati."
 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
-msgstr "Seleziona \"Sì\" per rimuovere tutti i dati dell'interfaccia utente. Selezionando questa opzione verranno rimossi tutti i dati di mappatura dei tasti, dei menu e delle configurazioni e verranno ripristinate le impostazioni predefinite."
+msgstr "Seleziona 'Sì' per rimuovere tutti i dati dell'interfaccia utente. Selezionando questa opzione verranno rimossi tutti i dati di mappatura dei tasti, dei menu e delle configurazioni e verranno ripristinate le impostazioni predefinite."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Seleziona 'Sì' per ripristinare la configurazione di rete ai valori predefiniti. Abiliterà la porta Ethernet se esiste e imposterà il ricevitore per utilizzare DHCP. Tutte le altre interfacce di rete verranno eliminate."
@@ -15344,58 +15368,58 @@ msgid "Select 'Yes' to set the cursor position to the end of the line when editi
 msgstr "Seleziona 'Sì' per impostare la posizione del cursore alla fine della riga durante la modifica di un file di testo. Seleziona 'No' per impostare il cursore all'inizio della riga."
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti 'dev', 'staticdev', 'dbg' e 'doc' nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti 'dev', 'staticdev', 'dbg' e 'doc' nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti di skin LCD nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti dello skin LCD nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti OpenPLi nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti OpenPLi nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti OpenViX nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti OpenViX nella schermata Scarica plugin."
+
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti delle Softcam nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr "Seleziona 'Sì' per mostrare le directory in cima/all'inizio dell'elenco, oppure seleziona 'No' per mostrare prima i file."
 
 msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti dei driver nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti dei driver nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti delle estensioni nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti delle estensioni nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti del kernel nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti del kernel nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti m2k nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti m2k nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti dei picon nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti dei picon nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti delle skin nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti delle skin nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show security packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti sicurezza nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti sicurezza nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti delle impostazioni nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti delle impostazioni nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti dei componenti delle skin nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti dei componenti delle skin nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti delle skin nella schermata scarica plugin."
-
-msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti delle Softcam nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti delle skin nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti sorgenti 'src' nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti sorgenti 'src' nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
-msgstr "Seleziona \"Sì\" per mostrare i pacchetti dei plugin di sistema nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti dei plugin di sistema nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Seleziona 'Sì' per mostrare le opzioni di impostazione avanzate."
@@ -15410,7 +15434,7 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Seleziona 'Sì' per mostrare la cartella attuale nell'elenco delle cartelle. Si noti che File Commander deve essere riavviato affinché questa modifica abbia effetto."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
-msgstr "Seleziona 'Sì' per mostrare i pacchetti di collegamenti web nella schermata scarica plugin."
+msgstr "Seleziona 'Sì' per mostrare i pacchetti di collegamenti web nella schermata Scarica plugin."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Seleziona 'Sì' per utilizzare i valori del segnale (SNR, ecc.) calcolati dalla precedente API V3. Questa versione dell'API è stata ora sostituita."
@@ -15423,6 +15447,9 @@ msgstr "Seleziona 'Sì' per visualizzare la barra informazioni durante l'avanzam
 
 msgid "Select Additional Backup Files"
 msgstr "Seleziona file di backup aggiuntivi"
+
+msgid "Select AutoCam default Softcam"
+msgstr "Seleziona Softcam predefinita per AutoCam"
 
 msgid "Select Backup Location"
 msgstr "Seleziona posizione di backup"
@@ -15472,6 +15499,9 @@ msgstr "Seleziona Quad Channel"
 msgid "Select Satellites"
 msgstr "Seleziona satelliti"
 
+msgid "Select Softcam"
+msgstr "Seleziona Softcam"
+
 msgid "Select Software Update"
 msgstr "Seleziona aggiornamento software"
 
@@ -15486,6 +15516,12 @@ msgstr "Seleziona sorgente aggiornamento da modificare"
 
 msgid "Select Your Skin"
 msgstr "Seleziona skin"
+
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr "Seleziona Softcam come predefinita per AutoCam tra quelle disponibili nell'elenco."
+
+msgid "Select a Softcam from the available list."
+msgstr "Seleziona Softcam dall'elenco disponibile."
 
 msgid "Select a bouquet"
 msgstr "Seleziona bouquet"
@@ -15527,12 +15563,6 @@ msgstr "Seleziona registro di commit del repository da visualizzare:"
 msgid "Select a script to run:"
 msgstr "Seleziona script da avviare:"
 
-msgid "Select a Softcam from the available list as the default for AutoCam."
-msgstr "Seleziona Softcam come predefinita per AutoCam tra quelle disponibili nell'elenco."
-
-msgid "Select a Softcam from the available list."
-msgstr "Seleziona Softcam dall'elenco disponibile."
-
 msgid "Select a tuner"
 msgstr "Seleziona tuner"
 
@@ -15557,9 +15587,6 @@ msgstr "Seleziona azione da eseguire quando l'attività è stata completata."
 
 msgid "Select audio track"
 msgstr "Seleziona traccia audio"
-
-msgid "Select AutoCam default Softcam"
-msgstr "Seleziona Softcam predefinita per AutoCam"
 
 msgid "Select cardserver"
 msgstr "Seleziona Cardserver"
@@ -15690,9 +15717,6 @@ msgstr "Seleziona informazioni sul servizio da visualizzare:"
 msgid "Select service to add..."
 msgstr "Seleziona servizio da aggiungere..."
 
-msgid "Select Softcam"
-msgstr "Seleziona Softcam"
-
 msgid "Select sort method:"
 msgstr "Seleziona metodo di ordinamento:"
 
@@ -15711,6 +15735,9 @@ msgstr "Seleziona risposta No/Falso"
 #, python-format
 msgid "Select the Softcam for '%s'"
 msgstr "Seleziona Softcam per '%s'"
+
+msgid "Select the Softcam protocol."
+msgstr "Seleziona il protocollo Softcam."
 
 msgid "Select the Swap File Size:"
 msgstr "Seleziona dimensione del file swap:"
@@ -15911,9 +15938,6 @@ msgstr "Seleziona il set di caratteri maiuscoli"
 msgid "Select the shifted character set for the next character only"
 msgstr "Seleziona il set di caratteri maiuscoli solo per il carattere successivo"
 
-msgid "Select the Softcam protocol."
-msgstr "Seleziona il protocollo Softcam."
-
 msgid "Select the sort order for the file lines:"
 msgstr "Seleziona ordinamento per le righe del file:"
 
@@ -15938,7 +15962,7 @@ msgstr "Seleziona colonna iniziale/di partenza da attivare all'avvio di File Com
 msgid "Select the tags that should be used for this recording."
 msgstr "Seleziona tag da utilizzare per questa registrazione."
 
-msgid "Select the target location where picon files will be installed."
+msgid "Select the location where the picon files will be installed."
 msgstr "Selezionare posizione di installazione dei picon."
 
 msgid "Select the time after which this timer can start."
@@ -16953,7 +16977,7 @@ msgid "Show Picon packages"
 msgstr "Mostra pacchetti picon"
 
 msgid "Show Plugin Skin packages"
-msgstr "Mostra pacchetti skin plugin"
+msgstr "Mostra pacchetti dei plugin delle skin"
 
 msgid "Show RFmod setup..."
 msgstr "Mostra configurazione RFmod..."
@@ -16980,7 +17004,7 @@ msgid "Show Single EPG"
 msgstr "Mostra EPG singolo"
 
 msgid "Show Skin Component packages"
-msgstr "Mostra pacchetti componenti skin"
+msgstr "Mostra pacchetti dei componenti delle skin"
 
 msgid "Show Skin packages"
 msgstr "Mostra pacchetti skin"
@@ -16992,7 +17016,7 @@ msgid "Show Source packages"
 msgstr "Mostra pacchetti sorgenti"
 
 msgid "Show System Plugin packages"
-msgstr "Mostra pacchetti plugin di sistema"
+msgstr "Mostra pacchetti dei plugin di sistema"
 
 msgid "Show Timer List"
 msgstr "Mostra elenco timer"
@@ -17148,11 +17172,11 @@ msgstr "Mostra immagine"
 msgid "Show image and save as '%s'"
 msgstr "Mostra immagine e salva come '%s'"
 
-msgid "Show in Standby"
-msgstr "Mostra in Standby"
-
 msgid "Show in Extension Menu"
 msgstr "Mostra nell'elenco estensioni"
+
+msgid "Show in Standby"
+msgstr "Mostra in Standby"
 
 msgid "Show info"
 msgstr "Mostra informazioni"
@@ -17803,6 +17827,9 @@ msgstr "Piccolo - Immagine minuscola"
 msgid "Small Box Preparation"
 msgstr "Preparazione Small Box"
 
+msgid "Small Box Preparation Actions"
+msgstr "Azioni di preparazione Small Box"
+
 msgid "Small Test"
 msgstr "Piccola prova"
 
@@ -17847,6 +17874,9 @@ msgstr "Impostazioni Softcam"
 
 msgid "Softcam Setup"
 msgstr "Installazione Softcam"
+
+msgid "Softcams"
+msgstr "Softcam"
 
 msgid "Software Management"
 msgstr "Gestione software"
@@ -20180,9 +20210,6 @@ msgstr "Cerca di prevenire i riavvii per errori software e di mantenere la dispo
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr "Prova a inviare comandi ripetuti se non tutti i comandi vengono eseguiti. (ad es. sveglia TV, ma non commutata sull'input corretto.)"
 
-msgid "Trying to download a new packet list. Please wait..."
-msgstr "Provo a scaricare un nuovo elenco pacchetti. Per favore, attendi..."
-
 msgid "Tsonga"
 msgstr "Tsonga"
 
@@ -20471,6 +20498,9 @@ msgstr ""
 "Errore sconosciuto durante la creazione della skin.\n"
 "Controlla dopo il riavvio il plugin MyMetrixLite e applica le impostazioni."
 
+msgid "Unknown Packages"
+msgstr "Pacchetti sconosciuti"
+
 msgid "Unknown Service"
 msgstr "Servizio sconosciuto"
 
@@ -20590,9 +20620,6 @@ msgstr "Aggiornamento terminato!"
 msgid "Update interval (in seconds)"
 msgstr "Intervallo aggiornamento (secondi)"
 
-msgid "Update package list please wait..."
-msgstr "Aggiornamento elenco pacchetti in corso..."
-
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -20623,6 +20650,9 @@ msgstr "Aggiornamento in corso"
 
 msgid "Updating mount locations."
 msgstr "Aggiornamento delle posizioni di montaggio."
+
+msgid "Updating package list."
+msgstr "Aggiornamento elenco pacchetti."
 
 msgid "Upgrade (Flash & restore all)"
 msgstr "Aggiornamento (flash e ripristina tutto)"
@@ -20681,6 +20711,9 @@ msgstr "Utilizzo"
 
 msgid "Use 'Trash' in movie list"
 msgstr "Usa cestino nell'elenco registrazioni"
+
+msgid "Use AutoCam"
+msgstr "Usa AutoCam"
 
 msgid "Use DHCP"
 msgstr "Usa DHCP"
@@ -20744,9 +20777,6 @@ msgstr "Usa uno schermo alternativo più piccolo."
 
 msgid "Use as HDD"
 msgstr "Use come HDD"
-
-msgid "Use AutoCam"
-msgstr "Usa AutoCam"
 
 msgid "Use automatic mode detection"
 msgstr "Usa rilevamento automatico della modalità"
@@ -20958,6 +20988,9 @@ msgstr "Vecchio profilo in uso: "
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Di solito, quando la lingua dei sottotitoli è la stessa della lingua dell'audio, i sottotitoli non verranno utilizzati. Abilita questa opzione per consentire l'utilizzo di questi sottotitoli."
+
+msgid "Utility Packages"
+msgstr "Pacchetti utilità"
 
 msgid "Uzbek"
 msgstr "Uzbeco"
@@ -21431,6 +21464,10 @@ msgstr "Guerra"
 msgid "Warning"
 msgstr "Attenzione"
 
+#, python-format
+msgid "Warning: %d feeds were unable to be reloaded!"
+msgstr "Avviso: impossibile ricaricare %d feed!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Attenzione: le sostituzioni sono attualmente attive!"
 
@@ -21439,7 +21476,7 @@ msgstr "Avvertenza: le registrazioni non devono essere archiviate sulla memoria 
 
 #, python-format
 msgid "Warning: There are %d update packages!"
-msgstr "Attenzione: Ci sono %d pacchetti di aggiornamento!"
+msgstr "Attenzione: è possibile aggiornare %d pacchetti!"
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr "Avvertimento: esiste solo un'unità di rete per archiviare il backup. Significa che il ripristino automatico non funzionerà dopo il flash. In alternativa, montare l'unità di rete dopo il flash ed eseguire un ripristino del produttore per il ripristino automatico."
@@ -21902,6 +21939,9 @@ msgstr "Www"
 
 msgid "X-Resolution"
 msgstr "Risoluzione X"
+
+msgid "X11 Packages"
+msgstr "Pacchetti X11"
 
 msgid "XBox 360 support"
 msgstr "Supporto Xbox 360"
@@ -22572,17 +22612,11 @@ msgstr "decrementa uphop di 1"
 msgid "default"
 msgstr "predefinito"
 
-msgid "Default Astra (13e-19e)"
-msgstr "Astra predefinito (13e-19e)"
-
 msgid "delete"
 msgstr "elimina"
 
 msgid "delete cut"
 msgstr "elimina taglio"
-
-msgid "deleted"
-msgstr "eliminato"
 
 msgid "detective/thriller"
 msgstr "detective/thriller"
@@ -22843,9 +22877,6 @@ msgstr "moduli init"
 msgid "insert mark here"
 msgstr "inserisci marcatore qui"
 
-msgid "installed"
-msgstr "installato"
-
 msgid "instant record"
 msgstr "registrazione istantanea"
 
@@ -23008,9 +23039,6 @@ msgstr "nessun gestore di risorse"
 msgid "no storage devices found"
 msgstr "nessun dispositivo di archiviazione trovato"
 
-msgid "none"
-msgstr "nessuno"
-
 msgid "normal"
 msgstr "normale"
 
@@ -23065,6 +23093,12 @@ msgstr "arancia"
 msgid "original language"
 msgstr "lingua originale"
 
+msgid "package"
+msgstr "pacchetto"
+
+msgid "packages"
+msgstr "pacchetti"
+
 msgid "pass"
 msgstr "pass"
 
@@ -23079,6 +23113,12 @@ msgstr "rosa"
 
 msgid "please wait, loading picture..."
 msgstr "immagine in caricamento, attendi..."
+
+msgid "plugin"
+msgstr "plugin"
+
+msgid "plugins"
+msgstr "plugin"
 
 msgid "pm"
 msgstr "pm"
@@ -23273,6 +23313,12 @@ msgstr "questioni sociali/politiche/economia (generale)"
 
 msgid "social/spiritual science"
 msgstr "scienze sociali/spirituali"
+
+msgid "softcam"
+msgstr "softcam"
+
+msgid "softcams"
+msgstr "softcam"
 
 msgid "special (general)"
 msgstr "speciale (generale)"
@@ -23475,6 +23521,215 @@ msgstr "sì (mantieni feed)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Installing Please wait..."
+#~ msgstr "Installazione in corso, attendi..."
+
+#~ msgid "Update package list please wait..."
+#~ msgstr "Aggiornamento elenco pacchetti in corso..."
+
+#~ msgid "none"
+#~ msgstr "nessuno"
+
+#~ msgid "After pressing OK, please wait!"
+#~ msgstr "Dopo aver premuto OK, attendi!"
+
+#~ msgid "An error occurred while downloading the packet list. Please try again."
+#~ msgstr "Si è verificato un errore durante il download dell'elenco dei pacchetti. Per favore riprova."
+
+#~ msgid "Base Utility Packages"
+#~ msgstr "Pacchetti base utilità"
+
+#~ msgid "Console Administrative Packages"
+#~ msgstr "Pacchetti amministrativi per console"
+
+#~ msgid "Console Multimedia Packages"
+#~ msgstr "Pacchetti multimediali per console"
+
+#~ msgid "Console Test Packages"
+#~ msgstr "Pacchetti test per console"
+
+#~ msgid "Console Tool Packages"
+#~ msgstr "Pacchetti strumenti per console"
+
+#~ msgid "Development Python Packages"
+#~ msgstr "Pacchetti sviluppo Python"
+
+#~ msgid "Development TCL Toolkit Packages"
+#~ msgstr "Pacchetti sviluppo per Toolkit TCL"
+
+#~ msgid "Do you want to install the package:\n"
+#~ msgstr "Vuoi installare il pacchetto:\n"
+
+#~ msgid "Do you want to reboot your receiver?"
+#~ msgstr "Vuoi riavviare il ricevitore?"
+
+#~ msgid "Do you want to remove the package:\n"
+#~ msgstr "Vuoi rimuovere il pacchetto:\n"
+
+#~ msgid "Do you want to upgrade the package:\n"
+#~ msgstr "Vuoi aggiornare il pacchetto:\n"
+
+#~ msgid "Documentation Packages"
+#~ msgstr "Pacchetti documentazione"
+
+#~ msgid "Enigma2 Packages"
+#~ msgstr "Pacchetti Enigma2"
+
+#~ msgid "Extra Packages"
+#~ msgstr "Pacchetti aggiuntivi"
+
+#~ msgid "File System Support Packages"
+#~ msgstr "Pacchetti supporto del file system"
+
+#~ msgid "Font Packages"
+#~ msgstr "Pacchetti caratteri"
+
+#~ msgid "Getting Softcam list. Please wait..."
+#~ msgstr "Recupero dell'elenco Softcam in corso. Per favore, attendi..."
+
+#~ msgid "Install Failed !!"
+#~ msgstr "Installazione non riuscita!"
+
+#~ msgid "Install Finished."
+#~ msgstr "Installazione terminata."
+
+#~ msgid "Install Softcams"
+#~ msgstr "Installa Softcam"
+
+#~ msgid "Install/Remove plugin"
+#~ msgstr "Installa/Rimuovi plugin"
+
+#~ msgid "Kernel Module Packages"
+#~ msgstr "Pacchetti moduli del kernel"
+
+#~ msgid "Library Multimedia Packages"
+#~ msgstr "Pacchetti libreria multimediale"
+
+#~ msgid "Library Network Packages"
+#~ msgstr "Pacchetti libreria rete"
+
+#~ msgid "Miscellaneous Packages"
+#~ msgstr "Pacchetti vari"
+
+#~ msgid "Network (net) Packages"
+#~ msgstr "Pacchetti rete (net)"
+
+#~ msgid "Network (network) Packages"
+#~ msgstr "Pacchetti rete (network)"
+
+#~ msgid "Networking Packages"
+#~ msgstr "Pacchetti rete"
+
+#~ msgid "Optional Packages"
+#~ msgstr "Pacchetti opzionali"
+
+#~ msgid "Package list"
+#~ msgstr "Elenco pacchetti"
+
+#~ msgid "Packet Manager"
+#~ msgstr "Gestore pacchetti"
+
+#~ msgid "Reload"
+#~ msgstr "Ricarica"
+
+#~ msgid "Remove Failed !!"
+#~ msgstr "Rimozione non riuscita!"
+
+#~ msgid "Remove Finished."
+#~ msgstr "Rimozione terminata."
+
+#~ msgid "Restart finished"
+#~ msgstr "Riavvio terminato"
+
+#~ msgid "Trying to download a new packet list. Please wait..."
+#~ msgstr "Provo a scaricare un nuovo elenco pacchetti. Per favore, attendi..."
+
+#~ msgid "X11 Base Packages"
+#~ msgstr "Pacchetti base X11"
+
+#~ msgid "X11 Font Packages"
+#~ msgstr "Pacchetti caratteri X11"
+
+#~ msgid "X11 Gnome Library Packages"
+#~ msgstr "Pacchetti libreria Gnome X11"
+
+#~ msgid "X11 Gnome Packages"
+#~ msgstr "Pacchetti Gnome X11"
+
+#~ msgid "X11 Library Packages"
+#~ msgstr "Pacchetti libreria X11"
+
+#~ msgid "X11 Utility Packages"
+#~ msgstr "Pacchetti utilità X11"
+
+#, python-format
+#~ msgid "%d package found."
+#~ msgid_plural "%d packages found."
+#~ msgstr[0] "È stato trovato %d pacchetto."
+#~ msgstr[1] "Sono stati trovati %d pacchetti."
+
+#~ msgid "Add/Remove highlighted plugin to/from download list"
+#~ msgstr "Aggiungi o rimuovi il plugin evidenziato dall'elenco dei plugin da scaricare"
+
+#, python-format
+#~ msgid "Do you want to download '%s'?"
+#~ msgstr "Vuoi scaricare '%s'?"
+
+#, python-format
+#~ msgid "Do you want to remove '%s'?"
+#~ msgstr "Vuoi rimuovere '%s'?"
+
+#, python-format
+#~ msgid "Do you want to replace '%s' with '%s?"
+#~ msgstr "Vuoi sostituire '%s' con '%s?"
+
+#, python-format
+#~ msgid "Do you want to update '%s'?"
+#~ msgstr "Vuoi aggiornare '%s'?"
+
+#~ msgid "Download Plugin"
+#~ msgstr "Scarica plugin"
+
+#~ msgid "Download the selected plugin / list of plugins"
+#~ msgstr "Scarica plugin/elenco dei plugin selezionati"
+
+#, python-format
+#~ msgid "Error: %s %s not %s!  Please try again later."
+#~ msgstr "Errore: %s %s non %s! Per favore riprova più tardi."
+
+#~ msgid "Error: Unable to process the command!  Please try again later."
+#~ msgstr "Errore: impossibile elaborare il comando! Per favore riprova più tardi."
+
+#~ msgid "Force OPKG clean mode"
+#~ msgstr "Forza la modalità clean su OPKG"
+
+#~ msgid "Languages"
+#~ msgstr "Lingue"
+
+#~ msgid "Locales"
+#~ msgstr "Localizzazioni"
+
+#~ msgid "Manage the highlighted plugin"
+#~ msgstr "Gestisci plugin evidenziato"
+
+#~ msgid "Please wait while the plugin is downloaded."
+#~ msgstr "Attendi mentre il plugin viene scaricato."
+
+#~ msgid "Plugin Browser Download Actions"
+#~ msgstr "Azioni di download dell'elenco plugin"
+
+#~ msgid "Plugin Browser Manage Actions"
+#~ msgstr "Azioni di gestione dell'elenco plugin"
+
+#~ msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+#~ msgstr "Seleziona 'Abilita' per forzare la pulizia di un pacchetto prima di un aggiornamento del pacchetto. Questo è utile per assicurarsi che l'elenco dei pacchetti sia aggiornato e può evitare/risolvere problemi durante l'aggiornamento. Abilita questa opzione solo quando non puoi aggiornare online."
+
+#~ msgid "deleted"
+#~ msgstr "eliminato"
+
+#~ msgid "installed"
+#~ msgstr "installato"
+
 #~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 #~ msgstr "Consente di mostrare/nascondere CCcam nelle estensioni (tasto BLU)."
 
@@ -23514,9 +23769,6 @@ msgstr "®"
 
 #~ msgid "cardserver"
 #~ msgstr "cardserver"
-
-#~ msgid "softcam"
-#~ msgstr "softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "Impostazioni dell'assistente CI"
