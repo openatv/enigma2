@@ -106,7 +106,7 @@ class KeyboardSelection(Setup):
 			if answer:
 				return Setup.keySave(self)
 			config.inputDevices.keyboardsIndex.value = self.initialKeyboardsIndex
-			print(f"[InputDeviceSetup] Keyboard selection rejected by user, returning to initial selection.")
+			print("[InputDeviceSetup] Keyboard selection rejected by user, returning to initial selection.")
 			keyboard.loadKeyboard(self.initialKeyboardsIndex) 
 			for item in self["config"].getList():
 				self["config"].invalidate(item)
