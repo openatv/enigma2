@@ -371,8 +371,9 @@ class Navigation:
 						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 						self.retryServicePlayTimer.start(500, True)
 				self.skipServiceReferenceReset = False
-				if playref.toString().find("127.0.0.1") > -1 and not self.currentServiceStreaming:
-					self.currentServiceStreaming = True
+# This needs to be improved.
+#				if playref.toString().find("127.0.0.1") > -1 and not self.currentServiceStreaming:
+#					self.currentServiceStreaming = True
 				return 0
 		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
