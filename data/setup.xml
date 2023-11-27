@@ -393,7 +393,7 @@
 		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.kexecSlotManagerLocation.value">self.kexecSlotManagerSlots</item>
 	</setup>
 	<setup key="Keyboard" title="Keyboard Settings" showOpenWebif="1">
-		<item level="0" text="Keyboard" description="Select the type of keyboard connected to the %s %s.">config.keyboard.keymap</item>
+		<item level="0" text="Keyboard" description="Select the type of keyboard connected to the %s %s.">config.inputDevices.keyboardsIndex</item>
 	</setup>
 	<setup key="LEDs" title="LED Settings" showOpenWebif="1">
 		<item level="1" text="LED Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.default_color</item>

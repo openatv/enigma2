@@ -86,7 +86,7 @@ from Plugins.SystemPlugins.RemoteControlCode.plugin import RemoteControlCode
 self.session.open(RemoteControlCode)
 					</code>
 				</item>
-				<item key="keyboard" level="1" text="Keyboard Settings" weight="60"><setup setupKey="Keyboard" /></item>
+				<item key="keyboard" level="1" text="Keyboard Settings" weight="60"><screen module="InputDeviceSetup" screen="KeyboardSelection" /></item>
 				<item key="locale_setup" level="0" text="Locale / Language Settings" weight="65"><screen module="LocaleSelection" /></item>
 			</menu>
 			<!-- Menu / Setup / EPG -->
