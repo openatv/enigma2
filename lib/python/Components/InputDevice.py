@@ -1,17 +1,17 @@
 from fcntl import ioctl
 from os import O_NONBLOCK, O_RDWR, close as osclose, listdir, open as osopen, write as oswrite
-from os.path import isdir, isfile
+from os.path import exists, isdir, isfile, join
 from platform import machine
 from struct import pack
 
 from enigma import eRCInput
 
 from keyids import KEYIDS, KEYIDNAMES
-from Components.config import ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigText, ConfigSlider, config
+from Components.config import ConfigSelection, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.Console import Console
 from Components.International import international
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileWriteLine, fileReadLines, fileReadXML, resolveFilename, pathExists
+from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileReadLines, fileReadXML, fileWriteLine, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -29,23 +29,23 @@ class InputDevices:
 		self.currentDevice = None
 		for device in sorted(listdir("/dev/input/")):
 
-			if isdir("/dev/input/%s" % device):
+			if isdir(join("/dev/input", device)):
 				continue
 			try:
 				_buffer = "\0" * 512
-				self.fd = osopen("/dev/input/%s" % device, O_RDWR | O_NONBLOCK)
+				self.fd = osopen(join("/dev/input", device), O_RDWR | O_NONBLOCK)
 				self.name = ioctl(self.fd, self.EVIOCGNAME(256), _buffer)
 				self.name = self.name[:self.name.find(b"\0")].decode()
 				if str(self.name).find("Keyboard") != -1:
-					self.name = 'keyboard'
+					self.name = "keyboard"
 				osclose(self.fd)
 			except OSError as err:
-				print("[InputDevice] Error: device='%s' getInputDevices <ERROR: ioctl(EVIOCGNAME): '%s'>" % (device, str(err)))
+				print(f"[InputDevice] Error: device='{device}' getInputDevices <ERROR: ioctl(EVIOCGNAME): '{str(err)}'>")
 				self.name = None
 
 			if self.name:
 				devType = self.getInputDeviceType(self.name.lower())
-				print("[InputDevice] Found device '%s' with name '%s' of type '%s'." % (device, self.name, "Unknown" if devType is None else devType.capitalize()))
+				print(f"[InputDevice] Found device '{device}' with name '{self.name}' of type '{'Unknown' if devType is None else devType.capitalize()}'.")
 				# What was this for?
 				# if self.name == "aml_keypad":
 				# 	print("[InputDevice] ALERT: Old code flag for 'aml_keypad'.")
@@ -60,12 +60,12 @@ class InputDevices:
 					"configuredName": None
 				}
 
-				# load default remote control "delay" and "repeat" values for ETxxxx ("QuickFix Scrollspeed Menues" proposed by Xtrend Support)
-				if BoxInfo.getItem("machinebuild").startswith('et'):
+				# Load default remote control "delay" and "repeat" values for ETxxxx ("QuickFix Scrollspeed Menues" proposed by Xtrend Support).
+				if BoxInfo.getItem("machinebuild").startswith("et"):
 					self.setDeviceDefaults(device)
 
 	def EVIOCGNAME(self, length):
-		# include/uapi/asm-generic/ioctl.h
+		# Include/uapi/asm-generic/ioctl.h.
 		IOC_NRBITS = 8
 		IOC_TYPEBITS = 8
 		IOC_SIZEBITS = 13 if "mips" in machine() else 14
@@ -84,7 +84,7 @@ class InputDevices:
 		elif "mouse" in name:
 			return "mouse"
 		else:
-			print("[InputDevice] Warning: Unknown device type: '%s'!" % name)
+			print(f"[InputDevice] Warning: Unknown device type: '{name}'!")
 			return None
 
 	def getDeviceList(self):
@@ -98,18 +98,18 @@ class InputDevices:
 	# }; -> size = 16
 	#
 	def setDeviceDefaults(self, device):
-		print("[InputDevice] setDeviceDefaults DEBUG: Device '%s'." % device)
+		print(f"[InputDevice] setDeviceDefaults DEBUG: Device '{device}'.")
 		self.setDeviceAttribute(device, "configuredName", None)
 		eventRepeat = pack("LLHHi", 0, 0, 0x14, 0x01, 100)
 		eventDelay = pack("LLHHi", 0, 0, 0x14, 0x00, 700)
-		fd = osopen("/dev/input/%s" % device, O_RDWR)
+		fd = osopen(join("/dev/input", device), O_RDWR)
 		oswrite(fd, eventRepeat)
 		oswrite(fd, eventDelay)
 		osclose(fd)
 
 	def setDeviceEnabled(self, device, value):
 		oldVal = self.getDeviceAttribute(device, "enabled")
-		# print "[InputDevices] setDeviceEnabled for device %s to %s from %s" % (device,value,oldval)
+		# print(f"[InputDevices] setDeviceEnabled for device '{device}' to '{value}' from '{oldval}'.")
 		self.setDeviceAttribute(device, "enabled", value)
 		if oldVal is True and value is False:
 			self.setDeviceDefaults(device)
@@ -120,22 +120,22 @@ class InputDevices:
 		return "Unknown device name"
 
 	def setDeviceName(self, device, value):
-		# print "[InputDevices] setDeviceName for device %s to %s" % (device,value)
+		# print(f"[InputDevices] setDeviceName for device '{device}' to '{value}'.")
 		self.setDeviceAttribute(device, "configuredName", value)
 
-	def setDeviceDelay(self, device, value):  # REP_DELAY
+	def setDeviceDelay(self, device, value):  # REP_DELAY.
 		if self.getDeviceAttribute(device, "enabled"):
-			# print("[InputDevices] setDeviceDelay for device %s to %d ms" % (device, value))
+			# print(f"[InputDevices] setDeviceDelay for device '{device}' to {value} ms.")
 			event = pack("LLHHi", 0, 0, 0x14, 0x00, int(value))
-			fd = osopen("/dev/input/%s" % device, O_RDWR)
+			fd = osopen(join("/dev/input", device), O_RDWR)
 			oswrite(fd, event)
 			osclose(fd)
 
-	def setDeviceRepeat(self, device, value):  # REP_PERIOD
+	def setDeviceRepeat(self, device, value):  # REP_PERIOD.
 		if self.getDeviceAttribute(device, "enabled"):
-			# print("[InputDevices] setDeviceRepeat for device %s to %d ms" % (device, value))
+			# print(f"[InputDevices] setDeviceRepeat for device '{device}' to {value} ms.")
 			event = pack("LLHHi", 0, 0, 0x14, 0x01, int(value))
-			fd = osopen("/dev/input/%s" % device, O_RDWR)
+			fd = osopen(join("/dev/input", device), O_RDWR)
 			oswrite(fd, event)
 			osclose(fd)
 
@@ -151,51 +151,49 @@ class InputDevices:
 
 
 class Keyboard:
+	KEYBOARD_KMAP = 0
+	KEYBOARD_PATH = 1
+	KEYBOARD_NAME = 2
+	KEYBOARD_DISPLAY_NAME = 3
+
 	def __init__(self):
-		self.keyboardMaps = []
-		for keyboardMapInfo in sorted(listdir(resolveFilename(SCOPE_KEYMAPS))):
-			if keyboardMapInfo.endswith(".info"):
-				lines = []
-				lines = fileReadLines(resolveFilename(SCOPE_KEYMAPS, keyboardMapInfo), lines, source=MODULE_NAME)
-				keyboardMapFile = None
-				keyboardMapName = None
-				for line in lines:
-					key, val = (x.strip() for x in line.split("=", 1))
-					if key == "kmap":
-						keyboardMapFile = val
-					elif key == "name":
-						keyboardMapName = val
-				if keyboardMapFile and keyboardMapName:
-					keyboardMapPath = resolveFilename(SCOPE_KEYMAPS, keyboardMapFile)
-					if isfile(keyboardMapPath):
+		self.keyboards = []
+		keyboards = fileReadXML(resolveFilename(SCOPE_KEYMAPS, "keyboards.xml"), source=MODULE_NAME)
+		if keyboards:
+			for keyboard in sorted(keyboards.findall("keyboard"), key=lambda keyboard: (keyboard.tag, keyboard.get("name"))):
+				keyboardKmap = keyboard.attrib.get("kmap")
+				keyboardName = keyboard.attrib.get("name")
+				if keyboardKmap and keyboardName:
+					keyboardKmapPath = resolveFilename(SCOPE_KEYMAPS, keyboardKmap)
+					if isfile(keyboardKmapPath):
 						if config.crash.debugKeyboards.value:
-							print("[InputDevice] Adding keyboard keymap '%s' in '%s'." % (keyboardMapName, keyboardMapFile))
-						self.keyboardMaps.append((keyboardMapFile, keyboardMapName))
+							print(f"[InputDevice] Adding keyboard definition '{keyboardKmap}' for '{keyboardName}'.")
+						self.keyboards.append((keyboardKmap, keyboardKmapPath, keyboardName, _(keyboardName)))
 					else:
-						print("[InputDevice] Error: Keyboard keymap file '%s' doesn't exist!" % keyboardMapPath)
+						print(f"[InputDevice] Error: Keyboard definition '{keyboardKmapPath}' doesn't exist for '{keyboardName}'!")
 				else:
-					print("[InputDevice] Error: Invalid keyboard keymap information file '%s'!" % keyboardMapInfo)
+					print(f"[InputDevice] Error: Keyboard definition is invalid!  (kmap='{keyboardKmap}', name='{keyboardName}')")
+		languageDefault = f"{international.getLanguageKeyboard()}.kmap"
+		keyboardChoices = []
+		default = 0
+		for index, keyboard in enumerate(self.keyboards):
+			keyboardChoices.append((index, keyboard[self.KEYBOARD_DISPLAY_NAME]))
+			if languageDefault == keyboard[self.KEYBOARD_KMAP]:
+				print(f"[InputDevice] Default keyboard identified as '{keyboard[self.KEYBOARD_DISPLAY_NAME]}' using '{keyboard[self.KEYBOARD_KMAP]}'.")
+				default = index
+		config.inputDevices.keyboardsIndex = ConfigSelection(default=default, choices=keyboardChoices)
+		self.loadKeyboard(config.inputDevices.keyboardsIndex.value)
 
-	def activateKeyboardMap(self, index):
-		try:
-			keymap = self.keyboardMaps[index]
-			print("[Keyboard] Activating keymap: '%s'." % keymap[1])
-			keymapPath = resolveFilename(SCOPE_KEYMAPS, keymap[0])
-			if pathExists(keymapPath):
-				Console().ePopen("loadkmap < %s" % keymapPath)
-		except IndexError:
-			print("[Keyboard] Error: Selected keymap does not exist!")
-
-	def getKeyboardMaplist(self):
-		return self.keyboardMaps
-
-	def getDefaultKeyboardMap(self):
-		locale = international.getLocale()
-		if locale.startswith("de_"):
-			return "de.kmap"
-		elif locale.startswith("en_") and locale != "en_US":
-			return "eng.kmap"
-		return "us.kmap"
+	def loadKeyboard(self, index):
+		if 0 <= index < len(self.keyboards):
+			path = self.keyboards[index][self.KEYBOARD_PATH]
+			print(f"[InputDevice] Loading selected keyboard '{self.keyboards[index][self.KEYBOARD_NAME]}' from '{path}'.")
+			if isfile(path):
+				Console().ePopen(f"/sbin/loadkmap < {path}")
+			else:
+				print(f"[InputDevice] Error: Keyboard definition '{path}' does not exist!")
+		else:
+			print(f"[InputDevice] Error: Keyboard definition index '{index}' is invalid!")
 
 
 class RemoteControl:
@@ -219,7 +217,7 @@ class RemoteControl:
 				displayName = remote.attrib.get("displayName")
 				if codeName and displayName:
 					if config.crash.debugRemoteControls.value:
-						print("[InputDevice] Adding remote control identifier for '%s'." % displayName)
+						print(f"[InputDevice] Adding remote control identifier for '{displayName}'.")
 					self.remotes.append((model, rcType, codeName, displayName))
 		self.remotes.insert(0, ("", "", "", _("Default")))
 		if BoxInfo.getItem("RemoteTypeZeroAllowed", False):
@@ -230,13 +228,13 @@ class RemoteControl:
 			index = str(index)
 			rcChoices.append((index, remote[REMOTE_DISPLAY_NAME]))
 			if self.model == remote[REMOTE_MODEL] and self.rcType == remote[REMOTE_RCTYPE] and self.rcName in [x.strip() for x in remote[REMOTE_NAME].split(",")]:
-				print("[InputDevice] Default remote control identified as '%s'.  (model='%s', rcName='%s', rcType='%s')" % (remote[REMOTE_DISPLAY_NAME], self.model, self.rcName, self.rcType))
+				print(f"[InputDevice] Default remote control identified as '{remote[REMOTE_DISPLAY_NAME]}'.  (model='{self.model}', rcName='{self.rcName}', rcType='{self.rcType}')")
 				default = index
 		config.inputDevices.remotesIndex = ConfigSelection(choices=rcChoices, default=default)
 		self.remote = self.loadRemoteControl(BoxInfo.getItem("RCMapping"))
 
 	def loadRemoteControl(self, filename):
-		print("[InputDevice] Loading remote control '%s'." % filename)
+		print(f"[InputDevice] Loading remote control '{filename}'.")
 		rcs = fileReadXML(filename, source=MODULE_NAME)
 		rcButtons = {}
 		if rcs:
@@ -248,7 +246,7 @@ class RemoteControl:
 				rcButtons["keyIds"] = []
 				rcButtons["image"] = rc.attrib.get("image")
 				if config.crash.debugRemoteControls.value:
-					print("[InputDevice] Remote control image file '%s'." % rcButtons["image"])
+					print(f"[InputDevice] Remote control image file '{rcButtons['image']}'.")
 				for button in rc.findall("button"):
 					id = button.attrib.get("id", "KEY_RESERVED")
 					remap = button.attrib.get("remap")
@@ -270,10 +268,10 @@ class RemoteControl:
 					rcButtons[keyId]["shape"] = button.attrib.get("shape")
 					rcButtons[keyId]["coords"] = [int(x.strip()) for x in button.attrib.get("coords", "0").split(",")]
 					if config.crash.debugRemoteControls.value:
-						print("[InputDevice] Remote control button id='%s', keyId='%s', label='%s', pos='%s', title='%s', shape='%s', coords='%s'." % (id, keyId, rcButtons[keyId]["label"], rcButtons[keyId]["pos"], rcButtons[keyId]["title"], rcButtons[keyId]["shape"], rcButtons[keyId]["coords"]))
+						print(f"[InputDevice] Remote control button id='{id}', keyId='{keyId}', label='{rcButtons[keyId]['label']}', pos='{rcButtons[keyId]['pos']}', title='{rcButtons[keyId]['title']}', shape='{rcButtons[keyId]['shape']}', coords='{rcButtons[keyId]['coords']}'.")
 				if logRemaps:
 					for remap in logRemaps:
-						print("[InputDevice] Remapping '%s' to '%s'." % (remap[0], remap[1]))
+						print(f"[InputDevice] Remapping '{remap[0]}' to '{remap[1]}'.")
 					for evdev, evdevinfo in sorted(inputDevices.devices.items()):
 						if evdevinfo["type"] == "remote":
 							result = eRCInput.getInstance().setKeyMapping(evdevinfo["name"], remapButtons)
@@ -283,7 +281,7 @@ class RemoteControl:
 								eRCInput.remapFormatErr: "Error: Remap map in incorrect format!",
 								eRCInput.remapNoSuchDevice: "Error: Unknown device!",
 							}.get(result, "Error: Unknown error!")
-							print("[InputDevice] Remote remap evdev='%s', name='%s': %s" % (evdev, evdevinfo["name"], resStr))
+							print(f"[InputDevice] Remote remap evdev='{evdev}', name='{evdevinfo['name']}': {resStr}")
 		return rcButtons
 
 	def getRemoteControlKeyList(self):
@@ -292,13 +290,13 @@ class RemoteControl:
 	def getRemoteControlKeyLabel(self, keyId):
 		if keyId in self.remote:
 			return self.remote[keyId]["label"]
-		print("[InputDevice] Button '%s' (%d) is not available on the current remote control." % (KEYIDNAMES.get(keyId), keyId))
+		print(f"[InputDevice] Button '{KEYIDNAMES.get(keyId)}' ({keyId}) is not available on the current remote control.")
 		return None
 
 	def getRemoteControlKeyPos(self, keyId):
 		if keyId in self.remote:
 			return self.remote[keyId]["pos"]
-		print("[InputDevice] Button '%s' (%d) is not available on the current remote control." % (KEYIDNAMES.get(keyId), keyId))
+		print(f"[InputDevice] Button '{KEYIDNAMES.get(keyId)}' ({keyId}) is not available on the current remote control.")
 		return None
 
 	def readRemoteControlType(self):
@@ -313,28 +311,28 @@ class RemoteControl:
 		error = False
 		image = self.remote["image"]
 		if image:
-			html.append("<img border=\"0\" src=\"%s\" usemap=\"#map\" />" % image)
+			html.append(f"<img border=\"0\" src=\"{image}\" usemap=\"#map\" />")
 			html.append("<map name=\"map\">")
 			for keyId in self.remote["keyIds"]:
 				attribs = []
 				title = self.remote[keyId]["title"]
 				if title:
-					attribs.append("title=\"%s\"" % title)
+					attribs.append(f"title=\"{title}\"")
 				else:
 					error = True
 				shape = self.remote[keyId]["shape"]
 				if shape:
-					attribs.append("shape=\"%s\"" % shape)
+					attribs.append(f"shape=\"{shape}\"")
 				else:
 					error = True
 				coords = ",".join([str(x) for x in self.remote[keyId]["coords"]])
 				if coords:
-					attribs.append("coords=\"%s\"" % coords)
+					attribs.append(f"coords=\"{coords}\"")
 				else:
 					error = True
 				if keyId > 0:
-					attribs.append("onclick=\"pressMenuRemote('%d');\"" % keyId)
-				html.append("\t<area %s />" % " ".join(attribs))
+					attribs.append(f"onclick=\"pressMenuRemote('{keyId}');\"")
+				html.append(f"\t<area {' '.join(attribs)} />")
 			html.append("</map>")
 		else:
 			error = True
@@ -345,7 +343,7 @@ class InitInputDevices:
 	def __init__(self):
 		self.currentDevice = None
 		for device in sorted(list(inputDevices.devices.keys())):
-			print("[InputDevice] InitInputDevices DEBUG: Creating config entry for device: '%s' -> '%s'." % (device, inputDevices.devices[device]["name"]))
+			print(f"[InputDevice] InitInputDevices DEBUG: Creating config entry for device: '{device}' -> '{inputDevices.devices[device]['name']}'.")
 			self.currentDevice = device
 			self.setupConfigEntries(self.currentDevice)
 			self.currentDevice = None
@@ -374,7 +372,7 @@ class InitInputDevices:
 			if configElement.value:
 				devName = inputDevices.getDeviceAttribute(self.currentDevice, "name")
 				if devName != configElement.value:
-					configItem = getattr(config.inputDevices, "%s.enabled" % self.currentDevice)
+					configItem = getattr(config.inputDevices, f"{self.currentDevice}.enabled")
 					configItem.value = False
 					configItem.save()
 		elif inputDevices.currentDevice:
@@ -394,12 +392,12 @@ class InitInputDevices:
 
 
 inputDevices = InputDevices()
-iInputDevices = inputDevices  # Deprecated support old plugins
+iInputDevices = inputDevices  # Deprecated support old plugins.
 
 
 class RcTypeControl():
 	def __init__(self):
-		if pathExists('/proc/stb/ir/rc/type') and BoxInfo.getItem("brand") not in ('gigablue', 'odin', 'ini', 'entwopia', 'tripledot'):
+		if exists("/proc/stb/ir/rc/type") and BoxInfo.getItem("brand") not in ("gigablue", "odin", "ini", "entwopia", "tripledot"):
 			self.isSupported = True
 
 			if config.plugins.remotecontroltype.rctype.value != 0:
@@ -411,8 +409,8 @@ class RcTypeControl():
 		return self.isSupported
 
 	def writeRcType(self, rctype):
-		fd = open('/proc/stb/ir/rc/type', 'w')
-		fd.write('%d' % rctype)
+		fd = open("/proc/stb/ir/rc/type", "w")
+		fd.write(f"{rctype}")
 		fd.close()
 
 

@@ -1,8 +1,8 @@
 keymapsdir = $(datadir)/keymaps
 keymaps_DATA = \
-	*.info \
+	*.xml \
 	*.kmap
 
-*.info:
+*.xml:
 
 *.kmap:
