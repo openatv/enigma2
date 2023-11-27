@@ -91,10 +91,10 @@ def getStreamRelayRef(sref):
 			icamip = ".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)
 			icam = f"http%3a//{icamip}%3a{icamport}/"
 			if icam in sref:
-				return sref.split(icam)[1].split(":")[0].replace("%3a", ":")
+				return sref.split(icam)[1].split(":")[0].replace("%3a", ":"), True
 	except Exception:
 		pass
-	return sref
+	return sref, False
 
 
 class SilentBouquetSelector:
@@ -2309,8 +2309,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				info = service.info()
 				if info:
 					refstr = info.getInfoString(iServiceInformation.sServiceref)
-					refstr = getStreamRelayRef(refstr)
-					self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+					refstr, isStreamRelay = getStreamRelayRef(refstr)
+					ref = eServiceReference(refstr)
+					if isStreamRelay:
+						if not [timer for timer in self.session.nav.RecordTimer.timer_list if timer.state == 2 and refstr == timer.service_ref]:
+							ref.setAlternativeUrl(refstr)
+					self.servicelist.setPlayableIgnoreService(ref)
 
 	def __evServiceEnd(self):
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
