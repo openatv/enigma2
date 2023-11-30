@@ -41,7 +41,8 @@ class FrontendInfo(Source, PerServiceBase):
 
 	def updateTunerMask(self, mask):
 		self.tuner_mask = mask
-		self.updateFrontendData()
+		if mask:
+			self.updateFrontendData()
 		self.changed((self.CHANGED_ALL, ))
 
 	def getFrontendData(self):
