@@ -4048,8 +4048,8 @@ class InfoBarInstantRecord:
 			if int(value) != 0:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
-			entry.eventBegin = entry.begin
 			entry.eventEnd = entry.end
+			entry.marginAfter = 0
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def isTimerRecordRunning(self):
