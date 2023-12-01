@@ -241,6 +241,7 @@ class InfoBarStreamRelay:
 
 	def reload(self):
 		self.streamRelay = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
+		self.streamRelay = [streamRelay for streamRelay in self.streamRelay if streamRelay]
 
 	def check(self, nav, service):
 		return (service or nav.getCurrentlyPlayingServiceReference()) and service.toString() in self.streamRelay
@@ -304,6 +305,7 @@ class InfoBarAutoCam:
 		self.currentCam = BoxInfo.getItem("CurrentSoftcam")
 		self.defaultCam = config.misc.autocamDefault.value or self.currentCam
 		items = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
+		items = [item for item in items if item and "=" in item]
 		for item in items:
 			itemValues = item.split("=")
 			self.autoCam[itemValues[0]] = itemValues[1]

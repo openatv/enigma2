@@ -5,7 +5,7 @@ from socket import socket, AF_UNIX, SOCK_STREAM
 from twisted.internet.reactor import callInThread
 
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigNothing, ConfigSelection, config
+from Components.config import ConfigNothing, ConfigSelection, NoSave, config
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import updateSysSoftCam, BoxInfo
@@ -339,7 +339,7 @@ class AutocamSetup(Setup):
 
 class StreamRelaySetup(Setup):
 	def __init__(self, session):
-		self.items = []
+		self.serviceitems = []
 		self.services = streamrelay.data.copy()
 		Setup.__init__(self, session=session, setup="StreamRelay")
 		self["key_yellow"] = StaticText()
@@ -357,27 +357,37 @@ class StreamRelaySetup(Setup):
 		self.createItems()
 
 	def createItems(self):
-		self.items = []
+		self.serviceitems = []
+		if self.services:
+			self.serviceitems.append(("**************************",))
 		for serviceref in self.services:
 			service = ServiceReference(serviceref)
-			self.items.append((service.getServiceName(), ConfigNothing(), serviceref))
+			self.serviceitems.append((service.getServiceName() or "N/A", NoSave(ConfigNothing()), serviceref))
 		self.createSetup()
 
 	def createSetup(self):  # NOSONAR silence S2638
-		Setup.createSetup(self, appendItems=self.items)
+		Setup.createSetup(self, appendItems=self.serviceitems)
 
 	def selectionChanged(self):
 		self.updateButtons()
 		Setup.selectionChanged(self)
 
 	def updateButtons(self):
-		if self.services:
-			self["removeActions"].setEnabled(False)
-			self["key_blue"].setText("")
-		else:
+		if self.services and isinstance(self.getCurrentItem(), ConfigNothing):
 			self["removeActions"].setEnabled(True)
 			self["key_blue"].setText(_("Remove"))
+		else:
+			self["removeActions"].setEnabled(False)
+			self["key_blue"].setText("")
 		self["key_yellow"].setText(_("Add service"))
+
+	def keySelect(self):
+		if not isinstance(self.getCurrentItem(), ConfigNothing):
+			Setup.keySelect(self)
+
+	def keyMenu(self):
+		if not isinstance(self.getCurrentItem(), ConfigNothing):
+			Setup.keyMenu(self)
 
 	def keyRemoveService(self):
 		currentItem = self.getCurrentItem()
