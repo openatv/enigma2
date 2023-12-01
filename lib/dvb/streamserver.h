@@ -10,7 +10,7 @@ class eStreamServer;
 
 class eStreamClient: public eDVBServiceStream
 {
-	private:
+private:
 	static void set_socket_option(int fd, int optid, int option);
 	static void set_tcp_option(int fd, int optid, int option);
 
@@ -43,6 +43,7 @@ public:
 	void start();
 	std::string getRemoteHost();
 	std::string getServiceref();
+	eServiceReferenceDVB getDVBService() { return m_ref; }
 	bool isUsingEncoder();
 };
 #endif
@@ -72,6 +73,8 @@ public:
 	void stopStream();
 	bool stopStreamClient(const std::string remotehost, const std::string serviceref);
 	PyObject *getConnectedClients();
+	PyObject *getConnectedClientDetails(int index);
+
 };
 
 #endif /* __DVB_STREAMSERVER_H_ */
