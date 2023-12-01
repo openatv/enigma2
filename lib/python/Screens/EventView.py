@@ -224,7 +224,7 @@ class EventViewBase:
 		results = epgcache.search(("NB", 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, serviceRef, id))
 		if results:
 			similar = [_("Similar broadcasts:")]
-			timeFormat = "%s, %s" % (config.usage.date.long.value, config.usage.time.short.value)
+			timeFormat = "%s, %s" % (config.usage.date.dayshort.value, config.usage.time.short.value)
 			for result in sorted(results, key=lambda x: x[1]):
 				similar.append("%s  -  %s" % (strftime(timeFormat, localtime(result[1])), result[0]))
 			self["epg_description"].setText("%s\n\n%s" % (self["epg_description"].getText(), "\n".join(similar)))
