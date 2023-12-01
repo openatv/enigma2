@@ -339,6 +339,7 @@ class AutocamSetup(Setup):
 
 class StreamRelaySetup(Setup):
 	def __init__(self, session):
+		self.items = []
 		self.services = streamrelay.data.copy()
 		Setup.__init__(self, session=session, setup="StreamRelay")
 		self["key_yellow"] = StaticText()
