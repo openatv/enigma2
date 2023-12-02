@@ -12,7 +12,7 @@ from enigma import eAVControl, eTimer, eServiceCenter, eDVBServicePMTHandler, iS
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
-from ServiceReference import ServiceReference, isPlayableForCur, hdmiInServiceRef
+from ServiceReference import ServiceReference, getStreamRelayRef, isPlayableForCur, hdmiInServiceRef
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap, NumberActionMap
 from Components.AVSwitch import iAVSwitch
 from Components.config import ConfigBoolean, ConfigClock, config, configfile
@@ -360,19 +360,20 @@ class InfoBarAutoCam:
 		self.write()
 
 	def autoCamChecker(self, nav, service):
-		if config.misc.autocamEnabled.value:
-			info = service.info()
-			playrefstring = info.getInfoString(iServiceInformation.sServiceref)
-			if playrefstring.startswith("1:") and "%" not in playrefstring:
-				if info and info.getInfo(iServiceInformation.sIsCrypted) == 1:
-					cam = self.autoCam.get(playrefstring, self.defaultCam)
-					if self.currentCam != cam:
-						if nav.getRecordings(False):
-							print("[InfoBarGenerics] InfoBarAutoCam: Switch of Softcam not possible due to an active recording.")
-							return
-						self.switchCam(cam)
-						self.currentCam = cam
-						BoxInfo.setItem("CurrentSoftcam", cam, False)
+		info = service.info()
+		playrefstring = info.getInfoString(iServiceInformation.sServiceref)
+		if playrefstring.startswith("1:"):
+			if "%" in playrefstring:
+				playrefstring, isStreamRelay = getStreamRelayRef(playrefstring)
+			if "%" not in playrefstring and (isStreamRelay or info and info.getInfo(iServiceInformation.sIsCrypted) == 1):
+				cam = self.autoCam.get(playrefstring, self.defaultCam)
+				if self.currentCam != cam:
+					if nav.getRecordings(False):
+						print("[InfoBarGenerics] InfoBarAutoCam: Switch of Softcam not possible due to an active recording.")
+						return
+					self.switchCam(cam)
+					self.currentCam = cam
+					BoxInfo.setItem("CurrentSoftcam", cam, False)
 
 	def switchCam(self, new):
 		deamonSocket = socket(AF_UNIX, SOCK_STREAM)
@@ -1200,9 +1201,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def checkAutocam(self):
 		self.autocamTimer.stop()
 		self.autocamTimer_active = 0
-		service = self.session.nav.getCurrentService()
-		if service:
-			autocam.autoCamChecker(self.session.nav, service)
+		if config.misc.autocamEnabled.value:
+			service = self.session.nav.getCurrentService()
+			if service:
+				autocam.autoCamChecker(self.session.nav, service)
 
 
 class BufferIndicator(Screen):
