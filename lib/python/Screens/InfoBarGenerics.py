@@ -3977,9 +3977,9 @@ class InfoBarInstantRecord:
 				self.session.openWithCallback(self.changeDuration, TimerSelection, list)
 		elif answer[1] == "changeendtime":
 			if len(self.recording) == 1:
-				self.setEndtime(0)
+				self.changeEndtime(0)
 			else:
-				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
+				self.session.openWithCallback(self.changeEndtime, TimerSelection, list)
 		elif answer[1] == "timer":
 			self.session.open(RecordTimerOverview)
 		elif answer[1] == "stop":
@@ -3992,7 +3992,7 @@ class InfoBarInstantRecord:
 			if answer[1] == "manualduration":
 				self.changeDuration(len(self.recording) - 1)
 			elif answer[1] == "manualendtime":
-				self.setEndtime(len(self.recording) - 1)
+				self.changeEndtime(len(self.recording) - 1, True)
 		elif answer[1] == "savetimeshift":
 			# print 'test1'
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
@@ -4014,19 +4014,20 @@ class InfoBarInstantRecord:
 		if answer[1] != "savetimeshiftEvent":
 			self.saveTimeshiftEventPopupActive = False
 
-	def setEndtime(self, entry):
+	def changeEndtime(self, entry, orIndefinitely=False):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
+			time = self.recording[self.selectedEntry].eventEnd
 			time = ConfigClock(default=self.recording[self.selectedEntry].eventEnd)
-			date = ConfigDate(default=self.recording[self.selectedEntry].eventEnd)
-			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, time, date)
+			default = self.recording[self.selectedEntry].begin + (60 * 60 * 24) if orIndefinitely else 0
+			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, config_time=time, default=default)
 			dlg.setTitle(_("Please change recording endtime"))
 
 	def TimeDateInputClosed(self, ret):
-		if len(ret) > 1 and ret[0]:
+		if len(ret) > 1:
 			print("stop recording at %s " % strftime("%F %T", localtime(ret[1])))
 			entry = self.recording[self.selectedEntry]
-			if entry.end != ret[1]:
+			if ret[0] and entry.end != ret[1]:
 				entry.autoincrease = False
 			entry.end = ret[1]
 			entry.eventEnd = entry.end
