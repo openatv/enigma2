@@ -363,6 +363,7 @@ class InfoBarAutoCam:
 		info = service.info()
 		playrefstring = info.getInfoString(iServiceInformation.sServiceref)
 		if playrefstring.startswith("1:"):
+			isStreamRelay = False
 			if "%" in playrefstring:
 				playrefstring, isStreamRelay = getStreamRelayRef(playrefstring)
 			if "%" not in playrefstring and (isStreamRelay or info and info.getInfo(iServiceInformation.sIsCrypted) == 1):
