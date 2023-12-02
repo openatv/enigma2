@@ -235,7 +235,7 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 {
 	// force is isPlayable for stream relay
 	if (!ignore.alternativeurl.empty())
-		return 2;
+		return 1;
 
 	ePtr<eDVBResourceManager> res_mgr;
 	bool remote_fallback_enabled = eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false);
