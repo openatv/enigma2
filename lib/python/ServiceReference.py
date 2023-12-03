@@ -1,4 +1,5 @@
 from enigma import eServiceReference, eServiceReferenceDVB, eServiceCenter, getBestPlayableServiceReference
+from Components.config import config
 import NavigationInstance
 
 
@@ -37,6 +38,19 @@ class ServiceReference(eServiceReference):
 	def isRecordable(self):
 		ref = self.ref
 		return ref.flags & eServiceReference.isGroup or (ref.type == eServiceReference.idDVB or ref.type == eServiceReference.idDVB + 0x100 or ref.type == 0x2000 or ref.type == 0x1001)
+
+
+def getStreamRelayRef(sref):
+	try:
+		if "http" in sref:
+			icamport = config.misc.softcam_streamrelay_port.value
+			icamip = ".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)
+			icam = f"http%3a//{icamip}%3a{icamport}/"
+			if icam in sref:
+				return sref.split(icam)[1].split(":")[0].replace("%3a", ":"), True
+	except Exception:
+		pass
+	return sref, False
 
 
 def getPlayingref(ref):
