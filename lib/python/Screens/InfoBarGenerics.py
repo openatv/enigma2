@@ -15,7 +15,7 @@ from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecor
 from ServiceReference import ServiceReference, getStreamRelayRef, isPlayableForCur, hdmiInServiceRef
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap, NumberActionMap
 from Components.AVSwitch import iAVSwitch
-from Components.config import ConfigBoolean, ConfigClock, config, configfile
+from Components.config import ConfigBoolean, ConfigClock, ConfigDate, config, configfile
 from Components.Harddisk import findMountPoint, harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
@@ -3989,9 +3989,9 @@ class InfoBarInstantRecord:
 				self.session.openWithCallback(self.changeDuration, TimerSelection, list)
 		elif answer[1] == "changeendtime":
 			if len(self.recording) == 1:
-				self.setEndtime(0)
+				self.changeEndtime(0)
 			else:
-				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
+				self.session.openWithCallback(self.changeEndtime, TimerSelection, list)
 		elif answer[1] == "timer":
 			self.session.open(RecordTimerOverview)
 		elif answer[1] == "stop":
@@ -4004,7 +4004,7 @@ class InfoBarInstantRecord:
 			if answer[1] == "manualduration":
 				self.changeDuration(len(self.recording) - 1)
 			elif answer[1] == "manualendtime":
-				self.setEndtime(len(self.recording) - 1)
+				self.changeEndtime(len(self.recording) - 1, True)
 		elif answer[1] == "savetimeshift":
 			# print 'test1'
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
@@ -4026,18 +4026,20 @@ class InfoBarInstantRecord:
 		if answer[1] != "savetimeshiftEvent":
 			self.saveTimeshiftEventPopupActive = False
 
-	def setEndtime(self, entry):
+	def changeEndtime(self, entry, orIndefinitely=False):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].eventEnd)
-			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, self.endtime)
+			time = self.recording[self.selectedEntry].eventEnd
+			timeDefault = self.recording[self.selectedEntry].begin + (60 * 60 * 24) if orIndefinitely else 0
+			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, configTime=time, setupType="InstandRecord", default=timeDefault)
 			dlg.setTitle(_("Please change recording endtime"))
+			dlg.keyDown()  # Better focus
 
 	def TimeDateInputClosed(self, ret):
-		if len(ret) > 1 and ret[0]:
+		if len(ret) > 1:
 			print("stop recording at %s " % strftime("%F %T", localtime(ret[1])))
 			entry = self.recording[self.selectedEntry]
-			if entry.end != ret[1]:
+			if ret[0] and entry.end != ret[1]:
 				entry.autoincrease = False
 			entry.end = ret[1]
 			entry.eventEnd = entry.end
@@ -4059,8 +4061,8 @@ class InfoBarInstantRecord:
 			if int(value) != 0:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
-			entry.eventBegin = entry.begin
 			entry.eventEnd = entry.end
+			entry.marginAfter = 0
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def isTimerRecordRunning(self):
