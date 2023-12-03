@@ -4018,10 +4018,10 @@ class InfoBarInstantRecord:
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
 			time = self.recording[self.selectedEntry].eventEnd
-			time = ConfigClock(default=self.recording[self.selectedEntry].eventEnd)
-			default = self.recording[self.selectedEntry].begin + (60 * 60 * 24) if orIndefinitely else 0
-			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, config_time=time, default=default)
+			timeDefault = self.recording[self.selectedEntry].begin + (60 * 60 * 24) if orIndefinitely else 0
+			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, configTime=time, setupType="InstandRecord", default=timeDefault)
 			dlg.setTitle(_("Please change recording endtime"))
+			dlg.keyDown()  # Better focus
 
 	def TimeDateInputClosed(self, ret):
 		if len(ret) > 1:
