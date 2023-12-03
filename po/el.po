@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-23 11:43+0000\n"
-"PO-Revision-Date: 2023-11-11 11:22+0000\n"
+"PO-Revision-Date: 2023-12-03 10:46+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.3-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -986,8 +986,8 @@ msgstr[1] "Επιλέχθηκαν %d πακέτα για αφαίρεση."
 #, python-format
 msgid "%d package marked for update."
 msgid_plural "%d packages marked for update."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d πακέτο επιλέχθηκε για ενημέρωση."
+msgstr[1] "%d πακέτα επιλέχθηκαν για ενημέρωση."
 
 #, python-format
 msgid "%d package upgraded."
@@ -1189,7 +1189,7 @@ msgstr "%s - Ρυθμίσεις"
 
 #, python-format
 msgid "%s Browser Manage Actions"
-msgstr ""
+msgstr "%s Ενέργειες διαχείρισης πλοηγού"
 
 #, python-format
 msgid "%s GHz"
@@ -2024,7 +2024,7 @@ msgid "Add service"
 msgstr "Προσθήκη υπηρεσίας"
 
 msgid "Add service to AutoCam"
-msgstr ""
+msgstr "Προσθήκη υπηρεσίας στο αυτόματο cam"
 
 msgid "Add services to this bouquet?"
 msgstr "Προσθήκη υπηρεσιών σε αυτό το μπουκέτο;"
@@ -2045,7 +2045,7 @@ msgid "Add/Remove a timer for the current event"
 msgstr "Προσθήκη/αφαίρεση χρονοδιακόπτη για το τρέχον πρόγραμμα"
 
 msgid "Add/Remove highlighted plugin to/from install list"
-msgstr ""
+msgstr "Προσθήκη/αφαίρεση του επιλεγμένου πρόσθετου στη/από τη λίστα εγκατάστασης"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr "Προσθήκη/αφαίρεση επιλεγμένου πρόσθετου στη/από τη λίστα λήψεων"
@@ -2255,7 +2255,7 @@ msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE bu
 msgstr "Επιτρέπει ή όχι την εμφάνιση της διαχείρισης καταγραφών στις επεκτάσεις (μπλε πλήκτρο)."
 
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
-msgstr ""
+msgstr "Επιτρέπει ή όχι την εμφάνιση των OScam/CCcam στις επεκτάσεις (μπλε πλήκτρο)."
 
 msgid "Almost there... "
 msgstr "Σχεδόν έτοιμο... "
@@ -2685,10 +2685,10 @@ msgid "Auto(not available)"
 msgstr "Αυτόματο (μη διαθέσιμο)"
 
 msgid "AutoCam Settings"
-msgstr ""
+msgstr "Ρυθμίσεις αυτόματου cam"
 
 msgid "AutoCam Setup Actions"
-msgstr ""
+msgstr "Ενέργειες ρυθμίσεων αυτόματου cam"
 
 msgid "AutoMountManager"
 msgstr "Διαχείριση αυτόματων προσαρτήσεων"
@@ -2940,10 +2940,10 @@ msgid "Barbados"
 msgstr "Μπαρμπέιντος"
 
 msgid "Base Packages"
-msgstr ""
+msgstr "Βασικά πακέτα"
 
 msgid "Base Shell Packages"
-msgstr ""
+msgstr "Πακέτα βασικού κελύφους"
 
 msgid "Base time"
 msgstr "Χρόνος βάσης"
@@ -3624,7 +3624,7 @@ msgid "Cancel selection and exit"
 msgstr "Ακύρωση επιλογής και έξοδος"
 
 msgid "Cancel the Reset Feeds command currently being processed"
-msgstr ""
+msgstr "Η ακύρωση της εντολής επαναφοράς των πηγών βρίσκεται σε επεξεργασία"
 
 msgid "Cancel the bouquet selection"
 msgstr "Ακύρωση επιλογής μπουκέτου"
@@ -3701,7 +3701,7 @@ msgid "Cardserial"
 msgstr "Σειριακός αριθμός κάρτας"
 
 msgid "Cardserver Settings"
-msgstr ""
+msgstr "Ρυθμίσεις διακομιστή καρτών"
 
 msgid "Cartoon"
 msgstr "Καρτούν"
@@ -4792,13 +4792,13 @@ msgid "Console"
 msgstr "Κονσόλα"
 
 msgid "Console Network Packages"
-msgstr ""
+msgstr "Πακέτα κονσόλας δικτύου"
 
 msgid "Console Packages"
-msgstr ""
+msgstr "Πακέτα κονσόλας"
 
 msgid "Console Utility Packages"
-msgstr ""
+msgstr "Πακέτα συνοδευτικών κονσόλας"
 
 msgid "Constellation"
 msgstr "Αστερισμός"
@@ -5628,10 +5628,10 @@ msgid "Defaults"
 msgstr "Προεπιλογές"
 
 msgid "Define Softcam For This Provider"
-msgstr ""
+msgstr "Ορισμός softcam για αυτό τον πάροχο"
 
 msgid "Define Softcam For This Service"
-msgstr ""
+msgstr "Ορισμός softcam για αυτή την υπηρεσία"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Καθορισμός πρόσθετης καθυστέρησης σε χιλιοστά του δευτερολέπτου πριν από την έναρξη των ροών http(s)."
@@ -6358,7 +6358,7 @@ msgid "Do you want to install a channel list?"
 msgstr "Θέλετε να γίνει εγκατάσταση μιας λίστας καναλιών;"
 
 msgid "Do you want to install:"
-msgstr ""
+msgstr "Θέλετε να εγκαταστήσετε:"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Θέλετε να αναπαραχθεί το DVD στη συσκευή;"
@@ -6378,7 +6378,7 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Θέλετε να γίνει επανεκκίνηση του %s %s σας;"
 
 msgid "Do you want to remove:"
-msgstr ""
+msgstr "Θέλετε να αφαιρέσετε:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Θέλετε να γίνει επαναφορά των ρυθμίσεών σας;"
@@ -6393,7 +6393,7 @@ msgid "Do you want to start a backup now?"
 msgstr "Θέλετε να ξεκινήσει η εφεδρεία τώρα;"
 
 msgid "Do you want to update:"
-msgstr ""
+msgstr "Θέλετε να ενημερώσετε:"
 
 msgid "Documentary"
 msgstr "Ντοκυμαντέρ"
@@ -7483,7 +7483,7 @@ msgstr "Σφάλμα: Παρουσιάστηκε πρόβλημα με την ε
 
 #, python-format
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
-msgstr ""
+msgstr "Σφάλμα: Παρουσιάστηκε πρόβλημα στην επαναφορά των πηγών. Επανεκκινήστε τον %s %s και ελέγξτε το σύστημα αρχείων για τυχόν σφάλματα πριν εκτελέσετε ξανά αυτή την εντολή."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Σφάλμα: αδυναμία δημιουργίας των απαιτούμενων φακέλων στη συσκευή προρισμού (π.χ. USB στικ ή σκληρό δίσκο)! Παρακαλώ επαληθεύστε τη συσκευή και δοκιμάστε ξανά."
@@ -8025,7 +8025,7 @@ msgid "File System Check"
 msgstr "Έλεγχος συστήματος αρχείων"
 
 msgid "File System Packages"
-msgstr ""
+msgstr "Πακέτα συστήματος αρχείων"
 
 msgid "File appears to be busy.\n"
 msgstr "Το αρχείο φαίνεται να είναι απασχολημένο.\n"
@@ -9576,7 +9576,7 @@ msgstr "Εγκατάσταση"
 
 #, python-format
 msgid "Install %s"
-msgstr ""
+msgstr "Εγκατάσταση %s"
 
 #, python-format
 msgid "Install '%s' command"
@@ -9589,7 +9589,7 @@ msgid "Install Local Extension"
 msgstr "Εγκατάσταση τοπικής επέκτασης"
 
 msgid "Install Plugin"
-msgstr ""
+msgstr "Εγκατάσταση πρόσθετου"
 
 msgid "Install Plugins"
 msgstr "Εγκατάσταση προσθέτων"
@@ -9610,7 +9610,7 @@ msgid "Install the package"
 msgstr "Εγκατάσταση του πακέτου"
 
 msgid "Install the selected plugin / list of plugins"
-msgstr ""
+msgstr "Εγκατάσταση του επιλεγμένου πρόσθετου / λίστας προσθέτων"
 
 msgid "Installation finished."
 msgstr "Η εγκατάσταση ολοκληρώθηκε."
@@ -9635,7 +9635,7 @@ msgid "Installing feeds from feed ..."
 msgstr "Εγκατάσταση πηγών από πηγή..."
 
 msgid "Installing package."
-msgstr ""
+msgstr "Γίνεται εγκατάσταση του πακέτου."
 
 msgid "Installing plugins from IPK ..."
 msgstr "Εγκατάσταση προσθέτων από IPK..."
@@ -10154,7 +10154,7 @@ msgid "Liberia"
 msgstr "Λιβερία"
 
 msgid "Library Packages"
-msgstr ""
+msgstr "Πακέτα βιβλιοθηκών"
 
 msgid "Libs"
 msgstr "Libs"
@@ -10571,7 +10571,7 @@ msgstr "Μαλτέζικα"
 
 #, python-format
 msgid "Manage %s"
-msgstr ""
+msgstr "Διαχείριση του %s"
 
 msgid "Manage Locale/Language Selection settings"
 msgstr "Διαχείριση ρυθμίσεων γλώσσας/διαλέκτου"
@@ -10590,11 +10590,11 @@ msgstr "Διαχείριση κοινόχρηστων στοιχείων δικ�
 
 #, python-format
 msgid "Manage the highlighted %s"
-msgstr ""
+msgstr "Διαχείριση του επιλεγμένου %s"
 
 #, python-format
 msgid "Manage the highlighted %s / list of %s"
-msgstr ""
+msgstr "Διαχείριση του επιλεγμένου %s / λίστας των %s"
 
 msgid "Manage your online update files"
 msgstr "Διαχείριση αρχείων διαδικτυακής ενημέρωσης"
@@ -11058,13 +11058,13 @@ msgid "Move down one line"
 msgstr "Μετακίνηση μία γραμμή κάτω"
 
 msgid "Move down one line. Move to the top of the next screen if this is the last line of the screen. Move to the first line of the list if this is the last line on the list."
-msgstr "Μετακίνηση μία γραμμή κάτω.  Μετακίνηση στην κορυφή της επόμενης οθόνης αν αυτή είναι η τελευταία της γραμμή.  Μετακίνηση στην πρώτη γραμμή της λίστας αν αυτή είναι η τελευταία της γραμμή."
+msgstr "Μετακίνηση μία γραμμή κάτω. Μετακίνηση στην κορυφή της επόμενης οθόνης αν αυτή είναι η τελευταία της γραμμή. Μετακίνηση στην πρώτη γραμμή της λίστας αν αυτή είναι η τελευταία της γραμμή."
 
 msgid "Move down one screen"
 msgstr "Μετακίνηση μία οθόνη κάτω"
 
 msgid "Move down one screen. Move to the last line of the screen if this is the last screen."
-msgstr "Μετακίνηση μία οθόνη κάτω.  Μετακίνηση στην τελευταία γραμμή της οθόνης αν αυτή είναι η τελευταία."
+msgstr "Μετακίνηση μία οθόνη κάτω. Μετακίνηση στην τελευταία γραμμή της οθόνης αν αυτή είναι η τελευταία."
 
 msgid "Move down to last line"
 msgstr "Μετακίνηση στην τελευταία γραμμή"
@@ -11209,13 +11209,13 @@ msgid "Move up one line"
 msgstr "Μετακίνηση μία γραμμή επάνω"
 
 msgid "Move up one line. Move to the bottom of the previous screen if this is the first line of the screen. Move to the last of the entry / list if this is the first line of the list."
-msgstr "Μετακίνηση μία γραμμή επάνω.  Μετακίνηση στον πάτο της επόμενης οθόνης αν αυτή είναι η πρώτη της γραμμή.  Μετακίνηση στην τελευταία γραμμή της λίστας αν αυτή είναι η πρώτη της γραμμή."
+msgstr "Μετακίνηση μία γραμμή επάνω. Μετακίνηση στον πάτο της επόμενης οθόνης αν αυτή είναι η πρώτη της γραμμή. Μετακίνηση στην τελευταία γραμμή της λίστας αν αυτή είναι η πρώτη της γραμμή."
 
 msgid "Move up one screen"
 msgstr "Μετακίνηση μία οθόνη επάνω"
 
 msgid "Move up one screen. Move to the first line of the screen if this is the first screen."
-msgstr "Μετακίνηση μία οθόνη επάνω.  Μετακίνηση στην πρώτη γραμμή της οθόνης αν αυτή είναι η πρώτη."
+msgstr "Μετακίνηση μία οθόνη επάνω. Μετακίνηση στην πρώτη γραμμή της οθόνης αν αυτή είναι η πρώτη."
 
 msgid "Move up to first line"
 msgstr "Μετακίνηση στην πρώτη γραμμή"
@@ -11321,7 +11321,7 @@ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Το Image δημιουργήθηκε στο: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multimedia Packages"
-msgstr ""
+msgstr "Πακέτα πολυμέσων"
 
 msgid "Multiple service support"
 msgstr "Υποστήριξη πολλαπλών υπηρεσιών"
@@ -11510,7 +11510,7 @@ msgid "Network Neighbourhood"
 msgstr "Οικείο δίκτυο"
 
 msgid "Network Packages"
-msgstr ""
+msgstr "Πακέτα δικτύου"
 
 msgid "Network Restart"
 msgstr "Επανεκκίνηση δικτύου"
@@ -12393,7 +12393,7 @@ msgid "Other Actions"
 msgstr "Άλλες ενέργειες"
 
 msgid "Other Packages"
-msgstr ""
+msgstr "Άλλα πακέτα"
 
 msgid "Other Subtitles & Language"
 msgstr "Άλλοι υπότιτλοι και γλώσσες"
@@ -12509,7 +12509,7 @@ msgid "PVR"
 msgstr "PVR"
 
 msgid "Package"
-msgstr ""
+msgstr "Πακέτο"
 
 msgid "Package Manager"
 msgstr "Διαχείριση πακέτων"
@@ -12521,7 +12521,7 @@ msgid "Package information currently not available!"
 msgstr "Οι πληροφορίες του πακέτου δεν είναι διαθέσιμες!"
 
 msgid "Package installation failed."
-msgstr "Η εγκατάσταση του πακέτου απέτυχε"
+msgstr "Η εγκατάσταση του πακέτου απέτυχε."
 
 msgid "Package list update"
 msgstr "Ενημέρωση λίστας πακέτων"
@@ -12530,7 +12530,7 @@ msgid "Packaged locales only"
 msgstr "Πακεταρισμένες διάλεκτοι μόνο"
 
 msgid "Packages"
-msgstr ""
+msgstr "Πακέτα"
 
 msgid "Packages and associated locales"
 msgstr "Πακέτα και σχετιζόμενες διάλεκτοι"
@@ -13055,13 +13055,13 @@ msgid "Please wait while gathering data..."
 msgstr "Παρακαλώ περιμένετε καθώς συλλέγονται δεδομένα..."
 
 msgid "Please wait while locale/language is deleted..."
-msgstr ""
+msgstr "Περιμένετε όσο γίνεται διαγραφή της διαλέκτου/γλώσσας..."
 
 msgid "Please wait while locale/language is installed..."
-msgstr ""
+msgstr "Περιμένετε όσο γίνεται εγκατάσταση της διαλέκτου/γλώσσας..."
 
 msgid "Please wait while locales/languages are purged..."
-msgstr ""
+msgstr "Περιμένετε όσο γίνεται εκκαθάριση των διαλέκτων/γλωσσών..."
 
 msgid "Please wait while scanning is in progress..."
 msgstr "Παρακαλώ περιμένετε καθώς εκτελείται η ανίχνευση..."
@@ -13074,14 +13074,13 @@ msgstr "Παρακαλώ περιμένετε καθώς γίνεται λήψη
 
 msgid "Please wait while the plugin is installed."
 msgid_plural "Please wait while the plugins are installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Περιμένετε μέχρι να εγκατασταθεί το πρόσθετο."
+msgstr[1] "Περιμένετε μέχρι να εγκατασταθούν τα πρόσθετα."
 
-#, fuzzy
 msgid "Please wait while the plugin is removed."
 msgid_plural "Please wait while the plugins are removed."
 msgstr[0] "Περιμένετε μέχρι να αφαιρεθεί το πρόσθετο."
-msgstr[1] "Περιμένετε μέχρι να αφαιρεθεί το πρόσθετο."
+msgstr[1] "Περιμένετε μέχρι να αφαιρεθούν τα πρόσθετα."
 
 msgid "Please wait while the plugin is replaced."
 msgstr "Περιμένετε μέχρι να αντικατασταθεί το πρόσθετο."
@@ -13141,7 +13140,7 @@ msgid "Plug in a USB device that can be used as a swap device. Note that this de
 msgstr "Συνδέστε μία συσκευή USB που μπορεί να χρησιμοποιηθεί ως συσκευή swap. Σημειώστε ότι η συσκευή αυτή δεν πρέπει να αφαιρεθεί όταν εκτελείται το %s %s!"
 
 msgid "Plugin"
-msgstr ""
+msgstr "Πρόσθετο"
 
 msgid "Plugin Action Log"
 msgstr "Καταγραφή ενεργειών προσθέτων"
@@ -13159,7 +13158,7 @@ msgid "Plugin Browser Edit Actions"
 msgstr "Ενέργειες επεξεργασίας πλοηγού προσθέτων"
 
 msgid "Plugin Browser Install Actions"
-msgstr ""
+msgstr "Ενέργειες εγκατάστασης πλοηγού προσθέτων"
 
 msgid "Plugin Browser Navigation Actions"
 msgstr "Ενέργειες πλοήγησης πλοηγού προσθέτων"
@@ -13180,7 +13179,7 @@ msgid "Plugin Browser layout"
 msgstr "Διάταξη πλοηγού προσθέτων"
 
 msgid "Plugin Packages"
-msgstr ""
+msgstr "Πακέτα προσθέτων"
 
 msgid "Plugin Skin Packages"
 msgstr "Πακέτα θεμάτων προσθέτων"
@@ -13666,7 +13665,7 @@ msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "Εκκαθάριση όλων αλλά / Προσθήκη / Διαγραφή της τρέχουσας επιλεγμένης γλώσσας/διαλέκτου"
 
 msgid "Purge all but the current and permanent locales/languages. Add the current locale/language if it is not installed. Delete the current locale/language if it is installed."
-msgstr "Εκκαθάριση όλων εκτός της τρέχουσας και των μόνιμων γλωσσών/διαλέκτων.  Προσθήκη της τρέχουσας γλώσσας/διαλέκτου αν δεν είναι εγκατεστημένη.  Διαγραφή της τρέχουσας γλώσσας/διαλέκτου αν είναι εγκατεστημένη."
+msgstr "Εκκαθάριση όλων εκτός της τρέχουσας και των μόνιμων διαλέκτων/γλωσσών. Προσθήκη της τρέχουσας διαλέκτου/γλώσσας αν δεν είναι εγκατεστημένη. Διαγραφή της τρέχουσας διαλέκτου/γλώσσας αν είναι εγκατεστημένη."
 
 msgid "Purging all unused locales/languages..."
 msgstr "Εκκαθάριση όλων των μη χρησιμοποιούμενων γλωσσών/διαλέκτων..."
@@ -13684,7 +13683,7 @@ msgid "Python"
 msgstr "Python"
 
 msgid "Python Development Packages"
-msgstr ""
+msgstr "Πακέτα ανάπτυξης python"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python του tuner για το /tmp/mmi.socket"
@@ -14203,7 +14202,7 @@ msgstr "Διαγραφή"
 
 #, python-format
 msgid "Remove %s"
-msgstr ""
+msgstr "Αφαίρεση του %s"
 
 msgid "Remove All Alternatives"
 msgstr "διαγραφή όλων των εναλλακτικών"
@@ -14308,7 +14307,7 @@ msgid "Remove selected service"
 msgstr "Αφαίρεση της επιλεγμένης υπηρεσίας"
 
 msgid "Remove service from AutoCam"
-msgstr ""
+msgstr "Αφαίρεση υπηρεσίας από το αυτόματο cam"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Αφαιρεί τα κείμενα για τα Άτομα Με Προβλήματα Ακοής από τους εξωτερικούς υπότιτλους (ορχηστρική μουσική ή ήχοι περιβάλλοντος π.χ. κουδούνισμα ή πυροβολισμός)."
@@ -14443,10 +14442,10 @@ msgid "Reset"
 msgstr "Επαναφορά"
 
 msgid "Reset (clear and reload) the feeds"
-msgstr ""
+msgstr "Επαναφορά (καθαρισμός και επαναφόρτωση) των πηγών"
 
 msgid "Reset Feeds"
-msgstr ""
+msgstr "Επαναφορά των πηγών"
 
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Επαναφορά των ρυθμίσεων HDMI-CEC στις προεπιλογές"
@@ -14504,7 +14503,7 @@ msgid "Restart GUI after x crashes"
 msgstr "Επανεκκίνηση GUI μετά από x κρασαρίσματα"
 
 msgid "Restart GUI now to start using the new locale/language?"
-msgstr ""
+msgstr "Επανεκκίνηση της επιφάνειας χρήστη τώρα για να γίνει χρήση της νέας διαλέκτου/γλώσσας;"
 
 msgid "Restart GUI now?"
 msgstr "Επανεκκίνηση της διεπαφής χρήστη τώρα;"
@@ -14537,7 +14536,7 @@ msgid "Restart your network connection and interfaces."
 msgstr "Επανεκκίνηση σύνδεσης δικτύου και διεπαφών."
 
 msgid "Restarting..."
-msgstr ""
+msgstr "Επανεκκίνηση..."
 
 msgid "Restore"
 msgstr "Επαναφορά"
@@ -15451,7 +15450,7 @@ msgid "Select Additional Backup Files"
 msgstr "Επιλογή επιπρόσθετων αντιγράφων ασφαλείας"
 
 msgid "Select AutoCam default Softcam"
-msgstr ""
+msgstr "Επιλογή προεπιλεγμένου αυτόματου softcam"
 
 msgid "Select Backup Location"
 msgstr "Επιλογή θέσης αντιγράφου ασφαλείας"
@@ -15520,7 +15519,7 @@ msgid "Select Your Skin"
 msgstr "Επιλογή θέματος"
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
-msgstr ""
+msgstr "Επιλογή ενός softcam από τη διαθέσιμη λίστα ως προεπιλεγμένο αυτόματο."
 
 msgid "Select a Softcam from the available list."
 msgstr "Επιλογή ενός softcam από τη λίστα διαθέσιμων."
@@ -15736,7 +15735,7 @@ msgstr "Επιλέξτε την απάντηση Όχι / Ψευδές"
 
 #, python-format
 msgid "Select the Softcam for '%s'"
-msgstr ""
+msgstr "Επιλογή softcam για το '%s'"
 
 msgid "Select the Softcam protocol."
 msgstr "Επιλογή του πρωτοκόλλου softcam."
@@ -15772,7 +15771,7 @@ msgid "Select the animation speed of the button indicators in the help screens. 
 msgstr "Επιλογή της ταχύτητας κίνησης των δεικτών πλήκτρων στις οθόνες βοήθειας. Το 'Ανενεργό' απενεργοποιεί την κίνηση ώστε οι δείκτες να μεταβαίνουν μεταξύ των πλήκτρων."
 
 msgid "Select the cardserver to be used from the list of available cardservers."
-msgstr ""
+msgstr "Επιλέξτε το διακομιστή καρτών για χρήση από τη λίστα των διαθέσιμων."
 
 msgid "Select the channel from which to record:"
 msgstr "Επιλογή καναλιού από το οποίο θα γίνει η εγγραφή:"
@@ -16955,7 +16954,7 @@ msgid "Show OScam Info"
 msgstr "Εμφάνιση πληροφοριών OScam"
 
 msgid "Show OScam/CCcam in Extension Menu"
-msgstr ""
+msgstr "Εμφάνιση Oscam/CCcam στο μενού επεκτάσεων"
 
 msgid "Show OpenPLi packages"
 msgstr "Εμφάνιση πακέτων OpenPLi"
@@ -17830,7 +17829,7 @@ msgid "Small Box Preparation"
 msgstr "Προετοιμασία μικρού δέκτη"
 
 msgid "Small Box Preparation Actions"
-msgstr ""
+msgstr "Ενέργειες προετοιμασίας small box"
 
 msgid "Small Test"
 msgstr "Μικρό τεστ"
@@ -17878,7 +17877,7 @@ msgid "Softcam Setup"
 msgstr "Ρυθμίσεις Softcam"
 
 msgid "Softcams"
-msgstr ""
+msgstr "Softcams"
 
 msgid "Software Management"
 msgstr "Διαχείριση λογισμικού"
@@ -18847,7 +18846,7 @@ msgid "Teletext Actions"
 msgstr "Ενέργειες τηλεκειμένου"
 
 msgid "Teletext CleanAlgo (resolution reset algorithm)"
-msgstr "Καθαρισμός αλγόριθμου τηλεκειμένου (αλγόριθμος μηδενισμού ανάλυσης)"
+msgstr "Καθαρισμός αλγόριθμου τηλεκειμένου (αλγόριθμος επαναφοράς ανάλυσης)"
 
 msgid "Teletext EndX (right border)"
 msgstr "ΆκρηΧ τηλεκειμένου (δεξί περιθώριο)"
@@ -20501,7 +20500,7 @@ msgstr ""
 "Ελέγξτε μετά την επανεκκίνηση το πρόσθετο MyMetrixLite και εφαρμόστε τις ρυθμίσεις σας."
 
 msgid "Unknown Packages"
-msgstr ""
+msgstr "Άγνωστα πακέτα"
 
 msgid "Unknown Service"
 msgstr "Άγνωστη υπηρεσία"
@@ -20654,7 +20653,7 @@ msgid "Updating mount locations."
 msgstr "Ενημέρωση τοποθεσιών προσάρτησης."
 
 msgid "Updating package list."
-msgstr ""
+msgstr "Ενημέρωση της λίστας πακέτων."
 
 msgid "Upgrade (Flash & restore all)"
 msgstr "Αναβάθμιση (φλασάρισμα & επαναφορά όλων)"
@@ -20715,7 +20714,7 @@ msgid "Use 'Trash' in movie list"
 msgstr "Χρήση του κάδου αχρήστων στη λίστα ταινιών"
 
 msgid "Use AutoCam"
-msgstr ""
+msgstr "Χρήση αυτόματου cam"
 
 msgid "Use DHCP"
 msgstr "Χρήση DHCP"
@@ -20992,7 +20991,7 @@ msgid "Usually when the subtitle language is the same as the audio language, the
 msgstr "Συνήθως, όταν η γλώσσα υποτίτλων είναι η ίδια με τη γλώσσα ήχου, οι υπότιτλοι δεν θα χρησιμοποιηθούν. Ενεργοποιήστε αυτή την επιλογή ώστε να επιτραπεί η χρήση αυτών των υποτίτλων."
 
 msgid "Utility Packages"
-msgstr ""
+msgstr "Πακέτα συνοδευτικών"
 
 msgid "Uzbek"
 msgstr "Ουζμπεκικά"
@@ -21468,7 +21467,7 @@ msgstr "Προειδοποίηση"
 
 #, python-format
 msgid "Warning: %d feeds were unable to be reloaded!"
-msgstr ""
+msgstr "Προειδοποίηση: αδύνατη η επαναφόρτωση %d πηγών!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Προειδοποίηση: Οι παρακάμψεις είναι ενεργές!"
@@ -21789,7 +21788,7 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Όταν οριστεί, η PIG θα επιστρέφει σε ζωντανή TV μετά το τέλος της ταινίας."
 
 msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr ""
+msgstr "Αν επιλεγεί το 'ναι', ένα συγκεκριμένο softcam θα οριστεί για κάθε κωδικοποιημένη υπηρεσία."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Όταν το περιεχόμενο έχει λόγο πλευρών 16:9, επιλέξτε αν θα γίνεται κλιμάκωση/άπλωμα της εικόνας."
@@ -21943,7 +21942,7 @@ msgid "X-Resolution"
 msgstr "Ανάλυση Χ"
 
 msgid "X11 Packages"
-msgstr ""
+msgstr "Πακέτα X11"
 
 msgid "XBox 360 support"
 msgstr "Υποστήριξη XBox 360"
@@ -23096,10 +23095,10 @@ msgid "original language"
 msgstr "αρχική γλώσσα"
 
 msgid "package"
-msgstr ""
+msgstr "πακέτο"
 
 msgid "packages"
-msgstr ""
+msgstr "πακέτα"
 
 msgid "pass"
 msgstr "πέρασμα"
@@ -23117,10 +23116,10 @@ msgid "please wait, loading picture..."
 msgstr "περίμενετε, φορτώνεται η εικόνα..."
 
 msgid "plugin"
-msgstr ""
+msgstr "πρόσθετο"
 
 msgid "plugins"
-msgstr ""
+msgstr "πρόσθετα"
 
 msgid "pm"
 msgstr "πμ"
@@ -23320,7 +23319,7 @@ msgid "softcam"
 msgstr "softcam"
 
 msgid "softcams"
-msgstr ""
+msgstr "softcams"
 
 msgid "special (general)"
 msgstr "ειδικό πρόγραμμα (γενικά)"
