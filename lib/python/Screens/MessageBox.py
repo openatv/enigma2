@@ -47,9 +47,7 @@ class MessageBox(Screen, HelpableScreen):
 			else:
 				print(f"[MessageBox] Error: The context of the default ({default}) can't be determined!")
 		else:
-			self["list"] = MenuList([])
-			self["list"].hide()
-			self.list = []
+			self.list = None
 		self.timeout = timeout
 		if close_on_any_key is True:  # Process legacy close_on_any_key argument.
 			closeOnAnyKey = True
@@ -205,7 +203,7 @@ class MessageBoxSummary(ScreenSummary):
 		ScreenSummary.__init__(self, session, parent=parent)
 		self["text"] = StaticText(parent.text)
 		self["option"] = StaticText("")
-		if hasattr(parent, "list"):
+		if parent.list:
 			if self.addWatcher not in self.onShow:
 				self.onShow.append(self.addWatcher)
 			if self.removeWatcher not in self.onHide:
