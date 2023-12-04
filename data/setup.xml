@@ -797,6 +797,10 @@
 		<item level="0" text="Date style" description="Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
 		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
+	<setup key="TimeDateInput" title="Date/time input">
+		<item level="0" text="Date" description="Select the date.">self.timeInputDate</item>
+		<item level="0" text="Time" description="Select the time.">self.timeInputTime</item>
+	</setup>
 	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="1">
 		<item level="2" text="Time shift buffer location" description="Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.timeshift.path</item>
 		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time.">config.timeshift.startDelay</item>
