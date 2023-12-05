@@ -114,14 +114,15 @@ class MultiBootManager(Screen, HelpableScreen):
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 			slotImageList = sorted(slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))
 			currentMsg = "  -  %s" % _("Current")
-			slotMsg = _("Slot '%s': %s%s")
+			slotMsg = _("Slot '%s' %s: %s%s")
 			imageLists = {}
 			for slot in slotImageList:
 				for boot in slotImages[slot]["bootCodes"]:
 					if imageLists.get(boot) is None:
 						imageLists[boot] = []
 					current = currentMsg if boot == bootCode and slot == slotCode else ""
-					imageLists[boot].append(ChoiceEntryComponent("none" if boot else "", (slotMsg % (slot, slotImages[slot]["imagename"], current), (slot, boot, slotImages[slot]["status"], slotImages[slot]["ubi"], current != ""))))
+					slotType = "eMMC" if "mmcblk" in slotImages[slot]["device"] else "USB"
+					imageLists[boot].append(ChoiceEntryComponent("none" if boot else "", (slotMsg % (slot, slotType, slotImages[slot]["imagename"], current), (slot, boot, slotImages[slot]["status"], slotImages[slot]["ubi"], current != ""))))
 			for bootCode in sorted(imageLists.keys()):
 				if bootCode == "":
 					continue

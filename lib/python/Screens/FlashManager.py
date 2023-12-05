@@ -379,13 +379,16 @@ class FlashImage(Screen, HelpableScreen):
 		print("[FlashManager] Current image slot is '%s'." % currentSlotCode)
 		choices = []
 		default = 0
+		currentMsg = "  -  %s" % _("Current")
+		slotMsg = _("Slot '%s' %s: %s%s")
 		for index, slotCode in enumerate(sorted(imageDictionary.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))):
 			print("[FlashManager] Image Slot '%s': %s." % (slotCode, str(imageDictionary[slotCode])))
+			slotType = "eMMC" if "mmcblk" in imageDictionary[slotCode]["device"] else "USB"
+			current = ""
 			if slotCode == currentSlotCode:
-				choices.append((_("Slot '%s':  %s  -  Current") % (slotCode, imageDictionary[slotCode]["imagename"]), (slotCode, True)))
+				current = currentMsg
 				default = index
-			else:
-				choices.append((_("Slot '%s':  %s") % (slotCode, imageDictionary[slotCode]["imagename"]), (slotCode, True)))
+			choices.append((slotMsg % (slotCode, slotType, imageDictionary[slotCode]["imagename"], current), (slotCode, True)))
 		choices.append((_("No, don't flash this image"), False))
 		self.session.openWithCallback(self.checkMedia, MessageBox, _("Do you want to flash the image '%s'?") % self.imageName, list=choices, default=default, windowTitle=self.getTitle())
 

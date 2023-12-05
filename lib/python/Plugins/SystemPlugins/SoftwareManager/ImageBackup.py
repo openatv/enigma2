@@ -96,12 +96,13 @@ class ImageBackup(Screen):
 		if imagedict:
 			for slotCode in sorted(imagedict.keys()):
 				if imagedict[slotCode]["status"] == "active":
+					slotText = "%s %s" % (slotCode, "eMMC" if "mmcblk" in imagedict[slotCode]["device"] else "USB")
 					if slotCode == "1" and currentImageSlot == 1 and BoxInfo.getItem("canRecovery"):
-						imageList.append(ChoiceEntryComponent("", (_("Slot %s: %s as USB Recovery") % (slotCode, imagedict[slotCode]["imagename"]), slotCode, True)))
+						imageList.append(ChoiceEntryComponent("", (_("Slot %s: %s as USB Recovery") % (slotText, imagedict[slotCode]["imagename"]), slotCode, True)))
 					if rootSlot:
-						imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s")) % (slotCode, imagedict[slotCode]["imagename"]), slotCode, False)))
+						imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s")) % (slotText, imagedict[slotCode]["imagename"]), slotCode, False)))
 					else:
-						imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s (Current image)") if slotCode == str(currentImageSlot) else _("Slot %s: %s")) % (slotCode, imagedict[slotCode]["imagename"]), slotCode, False)))
+						imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s (Current image)") if slotCode == str(currentImageSlot) else _("Slot %s: %s")) % (slotText, imagedict[slotCode]["imagename"]), slotCode, False)))
 			if rootSlot:
 				imageList.append(ChoiceEntryComponent("", (_("Slot R: Root Slot Full Backup (Current image)"), "R", False)))
 		else:
