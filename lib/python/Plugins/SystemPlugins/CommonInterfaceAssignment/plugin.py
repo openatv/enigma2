@@ -293,7 +293,7 @@ class CIconfigMenu(Screen):
 					if item[2] == 1:
 						fd.write("\t\t<provider name=\"%s\" dvbnamespace=\"%s\" />\n" % (stringToXML(name), item[3]))
 					else:
-						fd.write("\t\t<service name=\"%s\" ref=\"%s\" />\n" % (stringToXML(name), item[3]))
+						fd.write("\t\t<service name=\"%s\" ref=\"%s\" />\n" % (stringToXML(name), ':'.join(item[3].split(':')[:11])))
 				fd.write("\t</slot>\n")
 				fd.write("</ci>\n")
 		except OSError:
