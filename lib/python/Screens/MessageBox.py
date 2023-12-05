@@ -13,8 +13,8 @@ class MessageBox(Screen, HelpableScreen):
 	skin = """
 	<screen name="MessageBox" position="center,center" size="520,225" resolution="1280,720">
 		<widget name="icon" pixmaps="icons/input_question.png,icons/input_info.png,icons/input_warning.png,icons/input_error.png,icons/input_message.png" position="10,10" size="53,53" alphatest="blend" conditional="icon" scale="1" transparent="1" />
-		<widget name="text" position="75,10" size="435,55" font="Regular;22" transparent="1" />
-		<widget name="list" position="10,75" size="500,140" conditional="list" enableWrapAround="1" font="Regular;25" itemHeight="35" scrollbarMode="showOnDemand" transparent="1" />
+		<widget name="text" position="75,10" size="435,120" font="Regular;22" transparent="1" />
+		<widget name="list" position="10,e-80" size="500,70" conditional="list" enableWrapAround="1" font="Regular;25" itemHeight="35" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>"""
 
 	TYPE_NOICON = 0
