@@ -3969,33 +3969,31 @@ class InfoBarInstantRecord:
 		# print 'recordQuestionCallback'
 #		print "pre:\n", self.recording
 
-		# print 'test1'
 		if answer is None or answer[1] == "no":
-			# print 'test2'
 			self.saveTimeshiftEventPopupActive = False
 			return
-		list = []
+		items = []
 		recording = self.recording[:]
 		for x in recording:
 			if x not in self.session.nav.RecordTimer.timer_list:
 				self.recording.remove(x)
 			elif x.dontSave and x.isRunning():
-				list.append((x, False))
+				items.append((x, False))
 
 		if answer[1] == "changeduration":
 			if len(self.recording) == 1:
 				self.changeDuration(0)
 			else:
-				self.session.openWithCallback(self.changeDuration, TimerSelection, list)
+				self.session.openWithCallback(self.changeDuration, TimerSelection, items)
 		elif answer[1] == "changeendtime":
 			if len(self.recording) == 1:
-				self.setEndtime(0)
+				self.changeEndtime(0)
 			else:
-				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
+				self.session.openWithCallback(self.changeEndtime, TimerSelection, items)
 		elif answer[1] == "timer":
 			self.session.open(RecordTimerOverview)
 		elif answer[1] == "stop":
-			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
+			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, items)
 		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
 			if len(list) >= 2 and BoxInfo.getItem("ChipsetString") in ('meson-6', 'meson-64'):
 				Notifications.AddNotification(MessageBox, _("Sorry only possible to record 2 channels at once"), MessageBox.TYPE_ERROR, timeout=5)
@@ -4004,38 +4002,33 @@ class InfoBarInstantRecord:
 			if answer[1] == "manualduration":
 				self.changeDuration(len(self.recording) - 1)
 			elif answer[1] == "manualendtime":
-				self.setEndtime(len(self.recording) - 1)
+				self.changeEndtime(len(self.recording) - 1)
 		elif answer[1] == "savetimeshift":
-			# print 'test1'
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
-				# print 'test2'
 				InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
 			else:
-				# print 'test3'
 				Notifications.AddNotification(MessageBox, _("Time shift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
 				self.save_current_timeshift = True
 				config.timeshift.isRecording.value = True
 		elif answer[1] == "savetimeshiftEvent":
-			# print 'test4'
 			InfoBarTimeshift.saveTimeshiftEventPopup(self)
 
 		elif answer[1].startswith("pts_livebuffer") is True:
-			# print 'test2'
 			InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
 
 		if answer[1] != "savetimeshiftEvent":
 			self.saveTimeshiftEventPopupActive = False
 
-	def setEndtime(self, entry):
+	def changeEndtime(self, entry):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].eventEnd)
-			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, self.endtime)
+			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].end)
+			dlg = self.session.openWithCallback(self.changeEndtimeCallback, TimeDateInput, self.endtime)
 			dlg.setTitle(_("Please change recording endtime"))
 
-	def TimeDateInputClosed(self, ret):
+	def changeEndtimeCallback(self, ret):
 		if len(ret) > 1 and ret[0]:
-			print("stop recording at %s " % strftime("%F %T", localtime(ret[1])))
+			print(f"stop recording at {strftime('%F %T', localtime(ret[1]))}")
 			entry = self.recording[self.selectedEntry]
 			if entry.end != ret[1]:
 				entry.autoincrease = False
@@ -4047,20 +4040,19 @@ class InfoBarInstantRecord:
 	def changeDuration(self, entry):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
+			self.session.openWithCallback(self.changeDurationCallback, InputBox, title=_("How many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
 
-	def inputCallback(self, value):
+	def changeDurationCallback(self, value):
 		entry = self.recording[self.selectedEntry]
 		if value is not None:
-			print("stop recording after %s minutes." % int(value))
-			value = value.replace(" ", "")
-			if value == "":
-				value = "0"
-			if int(value) != 0:
+			value = int(value.replace(" ", "") or "0")
+			if value:
 				entry.autoincrease = False
-			entry.end = int(time()) + 60 * int(value)
+			print(f"stop recording after {value} minutes.")
+			entry.end = int(time()) + 60 * value
 			entry.eventBegin = entry.begin
 			entry.eventEnd = entry.end
+			entry.marginAfter = 0
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def isTimerRecordRunning(self):
