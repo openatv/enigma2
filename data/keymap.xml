@@ -231,6 +231,15 @@
 		<key id="KEY_F6" mapto="save" flags="m" />
 	</map>
 
+	<map context="PreviousNextActions">
+		<key id="KEY_PREVIOUS" mapto="previous" flags="mr" />
+		<!-- <key id="KEY_PREVIOUS" mapto="PREVIOUS" flags="b" /> -->
+		<!-- <key id="KEY_PREVIOUS" mapto="previousLong" flags="l" /> -->
+		<key id="KEY_NEXT" mapto="next" flags="mr" />
+		<!-- <key id="KEY_NEXT" mapto="NEXT" flags="b" /> -->
+		<!-- <key id="KEY_NEXT" mapto="nextLong" flags="l" /> -->
+	</map>
+
 	<map context="SelectCancelActions">
 		<key id="KEY_OK" mapto="select" flags="m" />
 		<key id="KEY_OK" mapto="SELECT" flags="b" />
