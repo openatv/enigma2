@@ -878,7 +878,7 @@ class ChannelSelectionEdit:
 			self.buildTitle()
 			print("[ChannelSelection] toggleMoveMode DEBUG: Setting title='%s'." % self.getTitle())
 			self.servicelist.resetRoot()
-			self.servicelist.l.setHideNumberMarker(config.usage.hide_number_markers.value)
+			self.servicelist.setHideNumberMarker(config.usage.hide_number_markers.value)
 			self.servicelist.setCurrent(self.servicelist.getCurrent())
 		else:
 			self.mutableList = self.getMutableList()
@@ -918,10 +918,10 @@ class ChannelSelectionEdit:
 		# the config.usage.hide_number_markers.value so when we are in "move mode"
 		# we need to force display of the markers here after l.setMode("MODE_TV")
 		# has run. If l.setMode("MODE_TV") were ever removed above,
-		# "self.servicelist.l.setHideNumberMarker(False)" could be moved
+		# "self.servicelist.setHideNumberMarker(False)" could be moved
 		# directly to the "else" clause of "def toggleMoveMode".
 		if self.movemode:
-			self.servicelist.l.setHideNumberMarker(False)
+			self.servicelist.setHideNumberMarker(False)
 		if close:
 			self.cancel()
 
