@@ -567,8 +567,9 @@ bool eListboxPythonServiceContent::getIsMarked(int selected)
 void eListboxPythonServiceContent::setBuildArgs(int selected)
 {
 	eServiceReference &ref = *m_service_cursor;
+	bool isFolder = ref.flags & eServiceReference::isDirectory;
 	bool isMarker = ref.flags & eServiceReference::isMarker;
-	bool isPlayable = !(ref.flags & eServiceReference::isDirectory || isMarker);
+	bool isPlayable = !(isFolder || isMarker);
 	bool isRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref,pNavigation::RecordType(pNavigation::isRealRecording|pNavigation::isUnknownRecording));
 	bool isStreamed = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref,pNavigation::isStreaming);
 	bool isPseudoRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref,pNavigation::isPseudoRecording);
@@ -582,8 +583,9 @@ void eListboxPythonServiceContent::setBuildArgs(int selected)
 	// 16 isRecorded
 	// 32 isStreamed
 	// 64 isPseudoRecorded
+	// 128 isFolder
 
-    int status = (selected << 0) + (marked << 1) + (isMarker << 2) + (isPlayable << 3) + (isRecorded << 4) + (isStreamed << 5) + (isPseudoRecorded << 6);
+    int status = (selected << 0) + (marked << 1) + (isMarker << 2) + (isPlayable << 3) + (isRecorded << 4) + (isStreamed << 5) + (isPseudoRecorded << 6) + (isFolder << 7);
 
 	m_pArgs = PyTuple_New(2);
 	PyTuple_SET_ITEM(m_pArgs, 0, NEW_eServiceReference(ref));
