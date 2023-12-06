@@ -3913,7 +3913,7 @@ class InfoBarInstantRecord:
 				end = info["end"]
 		else:
 			if limitEvent:
-				self.session.open(MessageBox, _("No event info found, recording indefinitely."), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("No event info found, recording default is indefinitely."), MessageBox.TYPE_INFO)
 
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
@@ -3947,11 +3947,11 @@ class InfoBarInstantRecord:
 				if recording.setAutoincreaseEnd():
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
-					self.session.open(MessageBox, _("Record time limited due to conflicting timer %s") % name_date, MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _("Record time limited due to conflicting timer:\n%s") % name_date, MessageBox.TYPE_INFO)
 				else:
-					self.session.open(MessageBox, _("Could not record due to conflicting timer %s") % name, MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _("Could not record due to conflicting timer:\n%s") % name, MessageBox.TYPE_INFO)
 			else:
-				self.session.open(MessageBox, _("Could not record due to invalid service %s") % serviceref, MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Could not record due to invalid service:\n%s") % serviceref, MessageBox.TYPE_INFO)
 			recording.autoincrease = False
 
 	def startRecordingCurrentEvent(self):
