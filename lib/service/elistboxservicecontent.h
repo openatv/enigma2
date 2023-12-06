@@ -21,6 +21,7 @@ public:
 
 	void setRoot(const eServiceReference &ref, bool justSet = false);
 	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
+	void setHideNumberMarker(bool doHide) { m_hide_number_marker = doHide; }
 
 	void getCurrent(eServiceReference &ref);
 	void getPrev(eServiceReference &ref);
