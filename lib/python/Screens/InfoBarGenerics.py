@@ -326,10 +326,10 @@ class InfoBarAutoCam:
 	data = property(getData, setData)
 
 	def getCam(self, service):
-		return self.autoCam.get(service.toString(), None)
+		return self.autoCam.get(service.toCompareString(), None)
 
 	def checkCrypt(self, service):
-		refstring = service.toString()
+		refstring = service.toCompareString()
 		if refstring.startswith("1:") and "%" not in refstring:
 			try:
 				info = eServiceCenter.getInstance().info(service)
@@ -341,7 +341,7 @@ class InfoBarAutoCam:
 	def selectCam(self, nav, service, cam):
 		service = service or nav.getCurrentlyPlayingServiceReference()
 		if service:
-			servicestring = service.toString()
+			servicestring = service.toCompareString()
 			if cam == "None":
 				if servicestring in self.autoCam:
 					del self.autoCam[servicestring]
@@ -351,7 +351,7 @@ class InfoBarAutoCam:
 
 	def selectCams(self, services, cam):
 		for service in services:
-			servicestring = service.toString()
+			servicestring = service.toCompareString()
 			if cam == "None":
 				if servicestring in self.autoCam:
 					del self.autoCam[servicestring]
