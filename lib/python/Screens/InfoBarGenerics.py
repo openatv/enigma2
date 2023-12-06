@@ -4,6 +4,7 @@ from itertools import groupby
 from os import listdir
 from os.path import exists, isfile, ismount, realpath, splitext
 import pickle
+from re import match
 from socket import socket, AF_UNIX, SOCK_STREAM
 from sys import maxsize
 from time import localtime, strftime, time
@@ -240,58 +241,61 @@ class InfoBarStreamRelay:
 		self.reload()
 
 	def reload(self):
-		self.streamRelay = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
-		self.streamRelay = [streamRelay for streamRelay in self.streamRelay if streamRelay]
+		data = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
+		self.__services = self.__sanitizeData(data)
+
+	def __sanitizeData(self, data: list):
+		return list(set([match(r"([0-9A-F]+:){10}", line.strip()).group(0) for line in data if line and match(r"^(?:[0-9A-F]+:){10}", line.strip())]))
 
 	def check(self, nav, service):
-		return (service or nav.getCurrentlyPlayingServiceReference()) and service.toString() in self.streamRelay
+		return (service or nav.getCurrentlyPlayingServiceReference()) and service.toCompareString() in self.__services
 
 	def write(self):
-		fileWriteLines(self.FILENAME, self.streamRelay, source=self.__class__.__name__)
+		fileWriteLines(self.FILENAME, self.__services, source=self.__class__.__name__)
 
 	def toggle(self, nav, service):
 		if isinstance(service, list):
 			serviceList = service
-			serviceList = [service.toString() for service in serviceList]
-			self.streamRelay = list(set(serviceList + self.streamRelay))
+			serviceList = [service.toCompareString() for service in serviceList]
+			self.__services = list(set(serviceList + self.__services))
 			self.write()
 		else:
 			service = service or nav.getCurrentlyPlayingServiceReference()
 			if service:
-				servicestring = service.toString()
-				if servicestring in self.streamRelay:
-					self.streamRelay.remove(servicestring)
+				servicestring = service.toCompareString()
+				if servicestring in self.__services:
+					self.__services.remove(servicestring)
 				else:
-					self.streamRelay.append(servicestring)
+					self.__services.append(servicestring)
 					if nav.getCurrentlyPlayingServiceReference() == service:
 						nav.restartService()
 				self.write()
 
-	def getData(self):
-		return self.streamRelay
+	def __getData(self):
+		return self.__services
 
-	def setData(self, value):
-		self.streamRelay = value
+	def __setData(self, value):
+		self.__services = value
 		self.write()
 
-	data = property(getData, setData)
+	data = property(__getData, __setData)
 
 	def streamrelayChecker(self, playref):
-		playrefstring = playref.toString()
-		if "%3a//" not in playrefstring and playrefstring in self.streamRelay:
+		playrefstring = playref.toCompareString()
+		if "%3a//" not in playrefstring and playrefstring in self.__services:
 			url = f'http://{".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)}:{config.misc.softcam_streamrelay_port.value}/'
 			if "127.0.0.1" in url:
 				playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(':'))])
 			else:
 				playrefmod = playrefstring
 			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
-			print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
+			print(f"[{self.__class__.__name__}] Play service {playref.toCompareString()} via streamrelay")
 			playref.setAlternativeUrl(playrefstring)
 			return playref, True
 		return playref, False
 
 	def checkService(self, service):
-		return service and service.toString() in self.streamRelay
+		return service and service.toCompareString() in self.__services
 
 
 streamrelay = InfoBarStreamRelay()
