@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -6885,6 +6885,9 @@ msgstr "启用自动快速扫描"
 msgid "Enable auto fast scan for %s"
 msgstr "为%s启用快速自动扫描"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "待机录像时LCD屏显示的录制符号"
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "在LCD显示屏上启用闪烁rec符号"
 
@@ -7007,9 +7010,6 @@ msgstr "启用滑块末端滑块的当前值."
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr ""
-
-msgid "Enable unlinked bouquets"
-msgstr "启用未链接的自定义组"
 
 msgid "Enabled"
 msgstr "启用"
@@ -8474,15 +8474,15 @@ msgstr "地理位置不包含时区信息."
 msgid "Geolocation data has been used to set the time zone."
 msgstr "地理位置已用于设置时区."
 
+msgid "Geolocation data is not available."
+msgstr "地理位置不可用."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "无法检索地理位置信息,请稍后重试."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr ""
-
-msgid "Geolocation data is not available."
-msgstr "地理位置不可用."
 
 msgid "Georgia"
 msgstr "格鲁吉亚"
@@ -8558,9 +8558,6 @@ msgstr "转到 :"
 
 msgid "Goto Date/Time"
 msgstr "转到日期/时间"
-
-msgid "Goto Date/Timer"
-msgstr "转到日期/定时器"
 
 msgid "Goto Prime time"
 msgstr "转到黄金时段"
@@ -9355,9 +9352,6 @@ msgstr ""
 msgid "In progress"
 msgstr "进行中"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "待机录像时LCD屏显示的录制符号"
-
 msgid "Inaccessible"
 msgstr ""
 
@@ -9741,6 +9735,9 @@ msgstr "爱尔兰"
 
 msgid "Irish"
 msgstr "爱尔兰语"
+
+msgid "Is the keyboard working?"
+msgstr ""
 
 msgid "Is this setting ok?"
 msgstr "这个设置是否可以？"
@@ -11929,6 +11926,9 @@ msgstr ""
 
 msgid "None"
 msgstr "无"
+
+msgid "NordVPN DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr "诺福克岛"
@@ -15299,6 +15299,9 @@ msgstr "如果设置为'是',则可以预览EPG列表中的频道."
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "如果设置为'是'您可以预览频道列表中的频道.请按'OK'键预览选定的频道,按第二次'OK'键将切换到此频道并退出菜单,按'EXIT'回到你开始的频道."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "启用后,Enigma2将加载链接的userbouquets.这意味着,userbouquets是可用的,但不包括bouquets.tv或bouquets.radio文件中,依然会被加载.这允许你例如升级已安装的设置后要保持自己的用户频道列表"
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
@@ -15809,6 +15812,9 @@ msgstr ""
 msgid "Select the delay before the timer activates."
 msgstr ""
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "按OK关联所需的功能.使用 \"CH+/-\" 列表翻页.关联的功能再按OK将取消关联.使用 \"Next/Previous\"键对关联功能进行排序."
 
@@ -15859,6 +15865,9 @@ msgid "Select the locale from a menu"
 msgstr "从菜单中选择区域设置"
 
 msgid "Select the location in which to store the recording:"
+msgstr ""
+
+msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -15946,9 +15955,6 @@ msgid "Select the starting/initial column to be activated on File Commander star
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
-
-msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -17748,15 +17754,7 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "分区%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "分区%s - %s(当前镜像)"
-
-#, python-format
-msgid "Slot '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
 msgstr ""
 
 msgid "Slot Manager"
@@ -18343,10 +18341,19 @@ msgstr "已存储位置"
 msgid "Stream"
 msgstr "媒体流"
 
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay Setup Actions"
+msgstr ""
+
 msgid "Stream Relay URL"
 msgstr ""
 
 msgid "Stream Relay port"
+msgstr ""
+
+msgid "Stream Relay switch delay"
 msgstr ""
 
 msgid "Stream request"
@@ -19420,20 +19427,17 @@ msgstr "此选项允许您强制使用UHD的HDR10模式"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "此选项允许您强制使用UHD的HLG模式"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "此选项允许您选择如何显示已用时间,是+或 -"
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "此选项允许您选择如何显示剩余的时间,或已逝去的时间,或两者都是."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "此选项允许您选择如何在待机中显示时间或不显示"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "此选项允许您选择如何显示直播电视的剩余/已用时间."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "此选项允许您选择如何显示媒体播放的剩余/已用时间."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "此选项允许您选择如何在待机中显示时间或不显示"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "此选项允许您选择带透明台标的背景颜色 ."
@@ -19494,6 +19498,9 @@ msgstr "这个选项允许你选择如何在电视上显示720p 24Hz.(并非所�
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "这个选项允许你选择如何在电视上显示SD递进24Hz.(并非所有电视台都支持这些分辨率)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "此选项允许您选择如何显示已用时间,是+或 -"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "此选项允许您选择如何在电视上显示标准定义视频."
@@ -21276,6 +21283,9 @@ msgstr "接收器遥控器上的音量键将控制电视音量. 如果不支持�
 msgid "Volume up"
 msgstr "音量增大"
 
+msgid "Vu+ MultiBoot"
+msgstr ""
+
 msgid "W"
 msgstr "W"
 
@@ -21524,9 +21534,6 @@ msgstr "您需要采取什么操作？"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "启用后,Enigma2将加载链接的userbouquets.这意味着,userbouquets是可用的,但不包括bouquets.tv或bouquets.radio文件中,依然会被加载.这允许你例如升级已安装的设置后要保持自己的用户频道列表"
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "启用后,画中画可以通过EXIT键关闭."
 
@@ -21547,9 +21554,6 @@ msgstr "启用后,AIT数据将包含在HTTP流.这允许一个客户端接收利
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "启用后,EIT数据将包含在HTTP流.这允许一个客户端接收显示EPG."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "启用后,Enigma2将加载未链接的频道列表.这意味着频道列表可用,但未包括在bouquets.tv或bouquets.radio文件中,依然会被加载.这允许你例如升级已安装的设置后要保持自己的用户频道列表"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
@@ -23414,6 +23418,23 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "转到日期/定时器"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "分区%s - %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "分区%s - %s(当前镜像)"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "启用未链接的自定义组"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "启用后,Enigma2将加载未链接的频道列表.这意味着频道列表可用,但未包括在bouquets.tv或bouquets.radio文件中,依然会被加载.这允许你例如升级已安装的设置后要保持自己的用户频道列表"
 
 #~ msgid "none"
 #~ msgstr "无"

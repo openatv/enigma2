@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -6878,6 +6878,9 @@ msgstr "Разрешаване на автоматично бързо скани
 msgid "Enable auto fast scan for %s"
 msgstr "Разрешаване на автоматично бързо сканиране %s"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "В режим на готовност запис на LCD дисплея"
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Разрешаване на мигащ REC символ на LCD дисплея"
 
@@ -7000,9 +7003,6 @@ msgstr "Разрешаване на текущата стойност на пл�
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr ""
-
-msgid "Enable unlinked bouquets"
-msgstr "Разрешаване на несвързани букети"
 
 msgid "Enabled"
 msgstr "Разрешен"
@@ -8467,15 +8467,15 @@ msgstr "Геолокацията не съдържа информация за �
 msgid "Geolocation data has been used to set the time zone."
 msgstr "Геолокацията е използвана за задаване на часовата зона."
 
+msgid "Geolocation data is not available."
+msgstr "Геолокацията не е налична."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Информацията за геолокация не може да бъде извлечена, моля, опитайте отново по-късно."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr ""
-
-msgid "Geolocation data is not available."
-msgstr "Геолокацията не е налична."
 
 msgid "Georgia"
 msgstr ""
@@ -8550,9 +8550,6 @@ msgid "Goto :"
 msgstr "Отиди на :"
 
 msgid "Goto Date/Time"
-msgstr "Отиди на Дата/време"
-
-msgid "Goto Date/Timer"
 msgstr "Отиди на Дата/време"
 
 msgid "Goto Prime time"
@@ -9345,9 +9342,6 @@ msgstr ""
 msgid "In progress"
 msgstr "В прогрес"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "В режим на готовност запис на LCD дисплея"
-
 msgid "Inaccessible"
 msgstr ""
 
@@ -9730,6 +9724,9 @@ msgid "Ireland"
 msgstr ""
 
 msgid "Irish"
+msgstr ""
+
+msgid "Is the keyboard working?"
 msgstr ""
 
 msgid "Is this setting ok?"
@@ -11919,6 +11916,9 @@ msgstr ""
 
 msgid "None"
 msgstr "Нито един"
+
+msgid "NordVPN DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr ""
@@ -15290,6 +15290,9 @@ msgstr "Ако е зададено 'да', можете да прегледат�
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Ако е зададено 'да', можете да прегледате канали в списъка с канали. Натиснете \"OK\", за да прегледате избрания канал, натиснете 2-ро \"OK\", за да излезете и включите този канал, като натиснете \"EXIT\", за да се върнете към канала, в който сте започнали."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Когато е разрешено, enigma2 ще зареди несвързаните потребителски букети. Това означава, че потребителските букети, които са налични, но не са включени в bouquets.tv или bouquets.radio, пак ще бъдат заредени. Това ви позволява например да запазите собствения си потребителски букет, докато инсталираните настройки са надстроени"
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
@@ -15800,6 +15803,9 @@ msgstr ""
 msgid "Select the delay before the timer activates."
 msgstr ""
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Изберете желаната функция и кликнете върху „OK“, за да я зададете. Използвайте \"CH+/-\", за да превключвате между списъците. Изберете назначена функция и щракнете върху „OK“, за да я отмените. Използвайте \"Напред/Назад\", за да промените реда на назначените функции."
 
@@ -15850,6 +15856,9 @@ msgid "Select the locale from a menu"
 msgstr "Изберете локала от меню"
 
 msgid "Select the location in which to store the recording:"
+msgstr ""
+
+msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -15937,9 +15946,6 @@ msgid "Select the starting/initial column to be activated on File Commander star
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
-
-msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -17742,15 +17748,7 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr ""
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr ""
-
-#, python-format
-msgid "Slot '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
 msgstr ""
 
 msgid "Slot Manager"
@@ -18336,10 +18334,19 @@ msgstr "Запазена позиция"
 msgid "Stream"
 msgstr ""
 
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay Setup Actions"
+msgstr ""
+
 msgid "Stream Relay URL"
 msgstr ""
 
 msgid "Stream Relay port"
+msgstr ""
+
+msgid "Stream Relay switch delay"
 msgstr ""
 
 msgid "Stream request"
@@ -19413,20 +19420,17 @@ msgstr "Тази опция ви позволява да форсирате ре
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Тази опция ви позволява да форсирате режимите HLG за UHD"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "Тази опция ви позволява да избирате как да се показва изминалото време  като + или -"
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Тази опция ви позволява да изберете как се показва оставащо/изтекло време или и двете."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Тази опция ви позволява да изберете как да показвате времето или нищо в режим на готовност"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Тази опция ви позволява да изберете как се показва оставащо/изтекло време за live tv."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Тази опция ви позволява да изберете как се показва оставащо/изтекло време при медийно възпроизвеждане."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Тази опция ви позволява да изберете как да показвате времето или нищо в режим на готовност"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Тази опция ви позволява да изберете цвета на фона на прозрачните пикони."
@@ -19487,6 +19491,9 @@ msgstr "Тази опция ви позволява да изберете как
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Тази опция ви позволява да изберете как да се показва SD progressive 24Hz на вашия ТВ. (тъй като не подкрепят всички телевизори тези резолюции)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "Тази опция ви позволява да избирате как да се показва изминалото време  като + или -"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Тази опция ви позволява да изберете как да се показва стандартната разделителна видео способност на вашия ТВ."
@@ -21269,6 +21276,9 @@ msgstr "Бутоните за сила на звука на дистанцион
 msgid "Volume up"
 msgstr "Сила на звука нагоре"
 
+msgid "Vu+ MultiBoot"
+msgstr ""
+
 msgid "W"
 msgstr ""
 
@@ -21517,9 +21527,6 @@ msgstr "Какво искаш да правиш?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Когато е разрешено, enigma2 ще зареди несвързаните потребителски букети. Това означава, че потребителските букети, които са налични, но не са включени в bouquets.tv или bouquets.radio, пак ще бъдат заредени. Това ви позволява например да запазите собствения си потребителски букет, докато инсталираните настройки са надстроени"
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Когато е разрешено, PIP може да бъде затворен от изходния бутон."
 
@@ -21540,9 +21547,6 @@ msgstr "Когато е разрешено, данните за AIT ще бъд�
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Когато е разрешено, данните за EIT ще бъдат включени в http потоци. Това позволява на приемника да показва EPG."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Когато е разрешено, Enigma2 ще зареди несвързани букети. Това означава, че букетите, които са на разположение, но не са включени в bouquets.tv или bouquets.radio, пак ще бъдат заредени. Това ви позволява например да запазите собствения си потребителски букет, докато инсталираните настройки са надстроени"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
@@ -23409,6 +23413,15 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Отиди на Дата/време"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Разрешаване на несвързани букети"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Когато е разрешено, Enigma2 ще зареди несвързани букети. Това означава, че букетите, които са на разположение, но не са включени в bouquets.tv или bouquets.radio, пак ще бъдат заредени. Това ви позволява например да запазите собствения си потребителски букет, докато инсталираните настройки са надстроени"
 
 #~ msgid "none"
 #~ msgstr "нито един"

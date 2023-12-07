@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -6935,6 +6935,9 @@ msgstr "Įjungti automatinę greitą paiešką"
 msgid "Enable auto fast scan for %s"
 msgstr "Įjungti automatinę greitą paiešką %s"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "LCD ekrane rodomas laukimo režimas"
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Čia galite nustatyti, ar įrašymo metu imtuvo LCD ekrane rodyti mirksintį 'rec' simbolį"
 
@@ -7057,9 +7060,6 @@ msgstr "Įgalinti, kad slankiklio juostos gale būtų rodoma dabartinė slankikl
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Įgalinti, kad meniu Plėtiniai būtų rodomas įrašas 'Iš naujo paleisti tinklą'."
-
-msgid "Enable unlinked bouquets"
-msgstr "Įjungti daugiau paketų"
 
 msgid "Enabled"
 msgstr "Įjungta"
@@ -8530,15 +8530,15 @@ msgstr "Geografinėje lokacijoje nėra laiko juostos informacijos."
 msgid "Geolocation data has been used to set the time zone."
 msgstr "Geografinė vieta buvo naudojama laiko juostai nustatyti."
 
+msgid "Geolocation data is not available."
+msgstr "Geografinė vieta negalima."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Geografinės vietos nustatymo informacijos nuskaityti negalima, bandykite dar kartą vėliau."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr "%s %s geografinės vietos informacija"
-
-msgid "Geolocation data is not available."
-msgstr "Geografinė vieta negalima."
 
 msgid "Georgia"
 msgstr "Gruzija"
@@ -8614,9 +8614,6 @@ msgstr "Eiti į :"
 
 msgid "Goto Date/Time"
 msgstr "Į konkrečią datą/laiką"
-
-msgid "Goto Date/Timer"
-msgstr "Į konkrečią datą/laikmatį"
 
 msgid "Goto Prime time"
 msgstr "Į žiūrimiausią laiką"
@@ -9411,9 +9408,6 @@ msgstr "Kad pradėti įrašymą pagal laikmatį, TV perjungtas į įrašomą kan
 msgid "In progress"
 msgstr "Vykdoma"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "LCD ekrane rodomas laukimo režimas"
-
 msgid "Inaccessible"
 msgstr "Neprieinama"
 
@@ -9797,6 +9791,9 @@ msgstr "Airija"
 
 msgid "Irish"
 msgstr "Airių"
+
+msgid "Is the keyboard working?"
+msgstr ""
 
 msgid "Is this setting ok?"
 msgstr "Ar šis nustatymas geras?"
@@ -11987,6 +11984,9 @@ msgstr ""
 
 msgid "None"
 msgstr "Nėra"
+
+msgid "NordVPN DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr "Norfolko sala"
@@ -15364,6 +15364,9 @@ msgstr "Pasirinkite, ar/kaip naudoti kanalų peržiūros režimą EPG sąraše."
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Jei nustatyta 'taip', kanalų sąrašo lange jūs galite peržiūrėti kanalus. Paspauskite 'OK' ir peržiūrėkite pasirinktą kanalą, paspauskite 'OK' antrąkart, kad išeiti ir perjungti į kitą pasirinktą kanalą. Paspaudę 'EXIT', sugrįšite į pradinį kanalą."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Kai čia įjungta, enigma2 įkels nesusietus vartotojo paketus. Tai reiškia, kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į  bouquets.tv, ar  bouquets.radio failus, vis tiek bus įkelti. Tai leidžia jums pvz. išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti nustatymai"
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Pasirinkite \"Taip\", kad įgalintumėte mygtukų KAIRĖ/DEŠINĖ naudojimą, kad perkeltumėte PageUp/PageDown, kai mygtukai KAIRĖ/DEŠINĖN yra kitaip neapibrėžti. Tai suteikia seną naršymą vartotojams, kurie to pageidauja."
 
@@ -15874,6 +15877,9 @@ msgstr ""
 msgid "Select the delay before the timer activates."
 msgstr ""
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Pasirinkite norimą funkciją ir spustelėkite \"Gerai\", kad ją priskirtumėte. Naudokite \"CH+/-\", kad perjungtumėte sąrašus. Pasirinkite priskirtą funkciją ir spustelėkite \"Gerai\", kad ją priskirtumėte. Naudokite \"NEXT/PREVIOUS\", kad pakeistumėte priskirtų funkcijų tvarką."
 
@@ -15924,6 +15930,9 @@ msgid "Select the locale from a menu"
 msgstr "Pasirinkite lokalę iš meniu"
 
 msgid "Select the location in which to store the recording:"
+msgstr ""
+
+msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16011,9 +16020,6 @@ msgid "Select the starting/initial column to be activated on File Commander star
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
-
-msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -17818,16 +17824,8 @@ msgid "Slot '%s'"
 msgstr "Lizdas '%s'"
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "Lizdas '%s':  %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "Lizdas '%s':  %s  -  dabartinis"
-
-#, python-format
-msgid "Slot '%s': %s%s"
-msgstr "Lizdas '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
+msgstr ""
 
 msgid "Slot Manager"
 msgstr ""
@@ -18412,10 +18410,19 @@ msgstr "Išsaugota padėtis"
 msgid "Stream"
 msgstr "Srautas"
 
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay Setup Actions"
+msgstr ""
+
 msgid "Stream Relay URL"
 msgstr ""
 
 msgid "Stream Relay port"
+msgstr ""
+
+msgid "Stream Relay switch delay"
 msgstr ""
 
 msgid "Stream request"
@@ -19499,20 +19506,17 @@ msgstr "Ši parinktis leidžia priverstinai naudoti HDR10 režimą dėl UHD"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Ši parinktis leidžia priverstinai naudoti HLG režimą dėl UHD"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti praėjusį laiką kaip + arba -"
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Ši parinktis leidžia jums pasirinkti, kaip rodyti likusį laiką, ar praėjusį laiką, arba abu."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti laiką arba nieko, budėjimo režime"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Ši parinktis leidžia nustatyti, kaip parodyti likusį / praėjusį laiką TV peržiūros metu."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Ši parinktis leidžia nustatyti, kaip rodyti likusį / praėjusį laiką medija failų atkūrimo metu."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti laiką arba nieko, budėjimo režime"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Ši parinktis leidžia pasirinkti skaidrių logotipų fono spalvą."
@@ -19573,6 +19577,9 @@ msgstr "Ši parinktis leidžia jums pasirinkti, kad rodyti 720p 24Hz TV. (ne vis
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti SD progr. 24Hz vaizdą jūsų televizoriuje (nes ne visi TV palaiko šią rezoliuciją)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti praėjusį laiką kaip + arba -"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Ši parinktis leidžia pasirinkti, kaip televizoriuje rodyti standartinės raiškos vaizdo įrašus."
@@ -21381,6 +21388,9 @@ msgstr "Imtuvo nuotolinio valdymo pulto garsumo klavišai valdys televizoriaus g
 msgid "Volume up"
 msgstr "Padidinti garsumą"
 
+msgid "Vu+ MultiBoot"
+msgstr ""
+
 msgid "W"
 msgstr "W"
 
@@ -21629,9 +21639,6 @@ msgstr "Ką norėtumėte daryti?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Kai čia įjungta, enigma2 įkels nesusietus vartotojo paketus. Tai reiškia, kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į  bouquets.tv, ar  bouquets.radio failus, vis tiek bus įkelti. Tai leidžia jums pvz. išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti nustatymai"
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kai čia įjungta, PiP gali būti išjungtas su 'EXIT' mygtuku."
 
@@ -21652,9 +21659,6 @@ msgstr "Kai čia įjungta, http sraute bus įtraukti ir AIT duomenys. Tai leis k
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Kai čia įjungta, http sraute bus įtraukti ir EIT duomenys. Tai leis kliento imtuvui rodyti EPG."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Kai įjungta, Enigma2 įkels nesusietus paketus. Tai reiškia, kad paketai, kurie yra prieinami, bet nėra įtraukti į paketai.tv ar paketai.radijas failus, vis tiek bus įkelti. Tai leidžia jums pvz. saugoti savo vartotojo paketus, o įdiegti nustatymai bus atnaujinti"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Kai įjungta, SDT, BAT duomenys bus įtraukti į http srautus."
@@ -23526,6 +23530,27 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Į konkrečią datą/laikmatį"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "Lizdas '%s':  %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "Lizdas '%s':  %s  -  dabartinis"
+
+#, python-format
+#~ msgid "Slot '%s': %s%s"
+#~ msgstr "Lizdas '%s': %s%s"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Įjungti daugiau paketų"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Kai įjungta, Enigma2 įkels nesusietus paketus. Tai reiškia, kad paketai, kurie yra prieinami, bet nėra įtraukti į paketai.tv ar paketai.radijas failus, vis tiek bus įkelti. Tai leidžia jums pvz. saugoti savo vartotojo paketus, o įdiegti nustatymai bus atnaujinti"
 
 #~ msgid "none"
 #~ msgstr "nėra"

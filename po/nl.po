@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
-"PO-Revision-Date: 2023-12-03 10:46+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"PO-Revision-Date: 2023-12-03 19:25+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -7011,6 +7011,9 @@ msgstr "Auto Fastscan inschakelen"
 msgid "Enable auto fast scan for %s"
 msgstr "Activeer snelle auto scan voor %s"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "Toon tijdens stand-by een knipperend REC-symbool op het display (dit is niet alle ontvangers mogelijk) ."
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Toon een knipperend REC-symbool in het display."
 
@@ -7137,9 +7140,6 @@ msgstr ""
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Bij \"Ja\" wordt \"Herstart netwerk\" in het Applicatiemenu getoond (Blauw-lang)."
-
-msgid "Enable unlinked bouquets"
-msgstr "Niet gelinkte favorietenlijsten gebruiken"
 
 msgid "Enabled"
 msgstr "Ingeschakeld"
@@ -8048,7 +8048,7 @@ msgid "Feed URL"
 msgstr "Feed URL"
 
 msgid "Feed disabled!"
-msgstr "De Feed is niet beschikbaar!"
+msgstr "Feed gesloten!"
 
 msgid "Feed server DNS error!"
 msgstr "Feed server DNS-fout!"
@@ -8057,10 +8057,10 @@ msgid "Feed server access error!"
 msgstr "Fout bij toegang tot Feed server!"
 
 msgid "Feed stable."
-msgstr "De Feed is stabiel."
+msgstr "Feed stabiel."
 
 msgid "Feed unstable!"
-msgstr "De Feed is niet stabiel!"
+msgstr "Feed onstabiel"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Download de EPG en actualiseer de timers"
@@ -8612,15 +8612,15 @@ msgstr "Deze Geolocatie bevat geen informatie over de tijdzone."
 msgid "Geolocation data has been used to set the time zone."
 msgstr "Deze Geolocatie is gebruikt voor het instellen van de tijdzone."
 
+msgid "Geolocation data is not available."
+msgstr "Deze Geolocatie is niet beschikbaar."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Geolocatie informatie niet gevonden, a.u.b. later nog een keer proberen."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr "Geolocatie informatie voor uw %s %s"
-
-msgid "Geolocation data is not available."
-msgstr "Deze Geolocatie is niet beschikbaar."
 
 msgid "Georgia"
 msgstr "Georgië"
@@ -8696,9 +8696,6 @@ msgstr "Ga naar:"
 
 msgid "Goto Date/Time"
 msgstr "Ga naar datum/tijd"
-
-msgid "Goto Date/Timer"
-msgstr "Ga naar datum/timer"
 
 msgid "Goto Prime time"
 msgstr "Ga naar Primetime"
@@ -9500,9 +9497,6 @@ msgstr "De ontvanger is vanwege een geplande opname (Timer) omgeschakeld op de i
 msgid "In progress"
 msgstr "Bezig"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "Toon tijdens stand-by een knipperend REC-symbool op het display (dit is niet alle ontvangers mogelijk) ."
-
 msgid "Inaccessible"
 msgstr "Ontoegankelijk"
 
@@ -9886,6 +9880,9 @@ msgstr "Ierland"
 
 msgid "Irish"
 msgstr "Iers"
+
+msgid "Is the keyboard working?"
+msgstr ""
 
 msgid "Is this setting ok?"
 msgstr "Zijn deze instellingen correct?"
@@ -12077,6 +12074,9 @@ msgstr "Non-Linear"
 
 msgid "None"
 msgstr "Geen"
+
+msgid "NordVPN DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr "Norfolkeiland"
@@ -15463,6 +15463,9 @@ msgstr "Wanneer geactiveerd dan ziet u de zender als voorbeeld achter de EPG. Al
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Bij 'Ja' ziet u de zender als voorbeeld achter de zenderlijst. Als u op 'OK' drukt wordt de gekozen zender getoond; na een tweede keer op 'OK', gaat u naar die zender. Drukt u op 'Exit', dan gaat u terug naar de zender waar u vandaan kwam."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Favorietenlijsten die niet aanwezig zijn in bouquets.tv of bouquets.radio worden toch geladen. Uw eigen zenderlijst wordt niet gewijzigd wanneer geïnstalleerde zenderlijsten worden geactualiseerd bij een update van de ontvanger."
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Selecteer 'Ja' om het gebruik van de LINKS/RECHTS-toetsen voor PageUp/PageDown in te schakelen wanneer de LINKS/RECHTS-toetsen niet op een andere manier gebruikt worden. Dit biedt een bekende navigatie voor gebruikers die dit gewend zijn."
 
@@ -15977,6 +15980,9 @@ msgstr "Selecteer de standaardmap die moet worden gebruikt als de map in de rech
 msgid "Select the delay before the timer activates."
 msgstr "Kies de vertraging voordat de timer actief moet worden."
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Selecteer de gewenste functie en klik op 'OK' om deze toe te wijzen. Gebruik 'Ch+/-' om te schakelen tussen de lijsten. Selecteer een toegewezen functie en klik op 'OK' om deze ongedaan te maken."
 
@@ -16034,6 +16040,9 @@ msgstr "Selecteer de landinstellingen voor het virtuele toetsenbord in het menu"
 
 msgid "Select the location in which to store the recording:"
 msgstr "Selecteer de locatie waar de opname moeten worden opgeslagen:"
+
+msgid "Select the location where the picon files will be installed."
+msgstr "De locatie voor de Picons opgeven."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Selecteer de fabrikant van uw SCR-apparaat. Wanneer deze niet in de lijst voorkomt, stelt u 'SCR' in op 'door gebruiker gedefinieerd' en geeft u vervolgens de parameters handmatig in volgens de specs van het apparaat."
@@ -16124,9 +16133,6 @@ msgstr "Selecteer de start-/beginkolom die moet worden geactiveerd bij het opsta
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Selecteer de markeringen die voor deze opname gebruikt moeten worden."
-
-msgid "Select the location where the picon files will be installed."
-msgstr "De locatie voor de Picons opgeven."
 
 msgid "Select the time after which this timer can start."
 msgstr "Kies de tijd waarna deze Timer mag starten."
@@ -17959,16 +17965,8 @@ msgid "Slot '%s'"
 msgstr "Slot '%s'"
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "slot%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "slot%s - %s (huidige image)"
-
-#, python-format
-msgid "Slot '%s': %s%s"
-msgstr "Slot '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
+msgstr ""
 
 msgid "Slot Manager"
 msgstr "Slot Manager"
@@ -18552,11 +18550,20 @@ msgstr "Opgeslagen positie"
 msgid "Stream"
 msgstr "Stream"
 
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay Setup Actions"
+msgstr ""
+
 msgid "Stream Relay URL"
 msgstr "Stream Relay URL"
 
 msgid "Stream Relay port"
 msgstr "Stream Relay poort"
+
+msgid "Stream Relay switch delay"
+msgstr ""
 
 msgid "Stream request"
 msgstr "Stream verzoek"
@@ -19673,22 +19680,17 @@ msgstr "Met deze optie kunt u de HDR10 modus voor UHD forceren"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Met deze optie kunt u de HLG modus voor UHD forceren"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr ""
-"Kies 'Nee' om de verstreken tijd met\n"
-"een + of een - teken weer te geven."
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Hier kunt u instellen of u de resterende of de verstreken tijd wilt zien, of beide."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Hier kunt u instellen of en hoe u de tijd wilt weergeven in stand-by"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Hier kunt u instellen of u de resterende of de verstreken tijd wilt zien voor live-tv."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Hier kunt u instellen of u de resterende of de verstreken tijd wilt zien voor het afspelen van opnames."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Hier kunt u instellen of en hoe u de tijd wilt weergeven in stand-by"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Met deze optie kunt u de achtergrond kleur van transparante picons instellen."
@@ -19757,6 +19759,11 @@ msgstr "Hier kunt u instellen hoe 720p 24Hz weergegeven moet worden op uw TV. (s
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Met deze optie kunt u kiezen hoe u 480/576p 24Hz SD op uw TV wilt weergeven. (niet alle TV's ondersteunen deze resolutie)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr ""
+"Kies 'Nee' om de verstreken tijd met\n"
+"een + of een - teken weer te geven."
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Hier kunt u instellen hoe SD-video weergegeven moet worden op uw TV."
@@ -21600,6 +21607,9 @@ msgstr "U kunt het volume van de TV instellen via de volume knoppen op de afstan
 msgid "Volume up"
 msgstr "Volume +"
 
+msgid "Vu+ MultiBoot"
+msgstr ""
+
 msgid "W"
 msgstr "W"
 
@@ -21851,9 +21861,6 @@ msgstr "Wat wilt u doen?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Wanneer 'Ingeschakeld' wordt in het Timeroverzicht de vrije ruimte op de harde schijf weergegeven. Hierdoor wordt het apparaat uit de slaapstand gehaald."
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Favorietenlijsten die niet aanwezig zijn in bouquets.tv of bouquets.radio worden toch geladen. Uw eigen zenderlijst wordt niet gewijzigd wanneer geïnstalleerde zenderlijsten worden geactualiseerd bij een update van de ontvanger."
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Indien geactiveerd, kan PiP (ook) beëindigd worden door op de EXIT-knop te drukken."
 
@@ -21874,9 +21881,6 @@ msgstr "Indien geactiveerd, zal de AIT data worden toegevoegd aan de http-stream
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Indien geactiveerd, zal de EIT data toegevoegd worden aan de http-streams. Hiermee kan ook een cliënt-ontvanger de EPG tonen."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Favorietenlijsten die niet aanwezig zijn in bouquets.tv of bouquets.radio, worden toch geladen. Hierdoor wordt uw zelf samengestelde favorietenlijst niet gewijzigd wanneer de geïnstalleerde favorietenlijsten worden geactualiseerd bij een update van de ontvanger."
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Bij \"Ja\" worden gegevens uit de SDT (Service Description Table) en BAT (Bouquet Association Table) opgenomen in HTTP-streams."
@@ -23772,6 +23776,27 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Ga naar datum/timer"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "slot%s - %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "slot%s - %s (huidige image)"
+
+#, python-format
+#~ msgid "Slot '%s': %s%s"
+#~ msgstr "Slot '%s': %s%s"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Niet gelinkte favorietenlijsten gebruiken"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Favorietenlijsten die niet aanwezig zijn in bouquets.tv of bouquets.radio, worden toch geladen. Hierdoor wordt uw zelf samengestelde favorietenlijst niet gewijzigd wanneer de geïnstalleerde favorietenlijsten worden geactualiseerd bij een update van de ontvanger."
 
 #~ msgid "Installing Please wait..."
 #~ msgstr "Installeren is bezig, even geduld a.u.b...."

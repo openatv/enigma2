@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
-"PO-Revision-Date: 2023-11-28 11:18+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"PO-Revision-Date: 2023-12-06 03:26+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1638,7 +1638,7 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 "Eine Updateüberprüfung findet im Hintergrund statt!\n"
-"Bitte warten Sie einige Minuten und versuchen es dann erneut."
+"Bitte einige Minuten warten und es dann erneut versuchen."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Eine durch Kommata getrennte Liste von Erweiterungen, die für die Einstellung 'Meine Erweiterung' von 'Erweiterung filtern' verwendet werden sollen. Geben Sie die Namen der Erweiterungen ohne einen führenden Punkt (.) ein."
@@ -2005,10 +2005,10 @@ msgid "Add File Commander to Main Menu"
 msgstr "File Commander zum Hauptmenü hinzufügen"
 
 msgid "Add File Commander to the Extensions Menu list of options."
-msgstr "Fügen Sie File Commander zur Liste der Optionen im Menü Erweiterungen hinzu."
+msgstr "File Commander zur Liste der Optionen im Menü Erweiterungen hinzufügen."
 
 msgid "Add File Commander to the Main Menu list of options."
-msgstr "Fügen Sie File Commander zur Liste der Optionen im Hauptmenü hinzu."
+msgstr "File Commander zur Liste der Optionen im Hauptmenü hinzufügen."
 
 msgid "Add HDMI IN to bouquet"
 msgstr "HDMI-IN zu Bouquet hinzufügen"
@@ -3769,7 +3769,7 @@ msgstr ""
 msgid "Can't play the previous time shift file! You can try again."
 msgstr ""
 "Die vorherige Timeshift-Datei kann nicht abgespielt werden!\n"
-"Bitte versuchen Sie es erneut."
+"Bitte erneut versuchen."
 
 msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr ""
@@ -4163,7 +4163,7 @@ msgid "Check the Internet connection again"
 msgstr "Überprüfe die Internetverbindung erneut"
 
 msgid "Check/Install online updates (you must have a working Internet connection)"
-msgstr "Verfügbare Updates anzeigen, die Sie installieren können. Internetverbindung vorausgesetzt."
+msgstr "Verfügbare Updates anzeigen, die installiert werden können. Internetverbindung vorausgesetzt."
 
 msgid "Checking Feeds"
 msgstr "Überprüfe Feeds"
@@ -4218,10 +4218,10 @@ msgid "Choose Tuner"
 msgstr "Tuner auswählen"
 
 msgid "Choose a country scheme for decoding genre information in EPG events."
-msgstr "Wählen Sie ein Länderschema zum Dekodieren von Genre-Informationen in EPG-Ereignissen."
+msgstr "Länderschema zum Dekodieren von Genre-Informationen in EPG-Ereignissen auswählen."
 
 msgid "Choose a country scheme for decoding rating information in EPG events."
-msgstr "Wählen Sie ein Länderschema zum Dekodieren von Bewertungsinformationen in EPG-Ereignissen."
+msgstr "Länderschema zum Dekodieren von Bewertungsinformationen in EPG-Ereignissen auswählen."
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Wählen Sie eine Beschriftung, damit IceTV-Dienste das Gerät zuordnen können."
@@ -4256,19 +4256,16 @@ msgstr ""
 "Nicht jeder Skin unterstützt jede Einstellung."
 
 msgid "Choose the location for crash and debug logs."
-msgstr "Wählen Sie den Speicherort für Crash- und Debug-Logs."
+msgstr "Speicherort für Crash- und Debug-Logs auswählen."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
-msgstr "Wählen Sie einen Ort zur Speicherung der EPG-Daten, wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein!"
+msgstr "Ort zur Speicherung der EPG-Daten auswählen, wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein!"
 
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
-msgstr ""
-"Wählen Sie den Dateinamen für die EPG-Daten, wenn die %s %s ausgeschaltet wird. Das kann nützlich sein, wenn mehrere Receiver verwendet werden.\n"
-"\n"
-"Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
+msgstr "Dateinamen für die EPG-Daten auswählen, wenn die %s %s ausgeschaltet wird. Das kann nützlich sein, wenn mehrere Receiver verwendet werden."
 
 msgid "Choose the option to correct invalid EPG data."
-msgstr "Wählen Sie die Option zur Korrektur ungültiger EPG-Daten."
+msgstr "Option zur Korrektur ungültiger EPG-Daten auswählen."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Wählen Sie, wie die Beschreibung der Fernbedienungstasten-Hilfe angezeigt werden soll."
@@ -5012,10 +5009,7 @@ msgstr "Den bevorzugten Tuner einstellen, wenn mehr als ein Tuner verfügbar ist
 
 #
 msgid "Configure your NTP server."
-msgstr ""
-"Wählen Sie den NTP-Server zur Zeitsynchronisierung.\n"
-"\n"
-"Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
+msgstr "Den NTP-Server zur Zeitsynchronisierung wählen."
 
 msgid "Configure your Network"
 msgstr "Das Netzwerk konfigurieren"
@@ -7300,6 +7294,9 @@ msgstr "Automatische Schnellsuche aktivieren"
 msgid "Enable auto fast scan for %s"
 msgstr "Automatische Schnellsuche aktivieren für %s"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "Bei 'Ja' wird das blinkende Aufnahmesymbol im Display auch im Standby aktiviert (nicht alle Receiver unterstützen das)."
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Bei 'Ja' wird das blinkende Aufnahmesymbol im Display aktiviert."
 
@@ -7334,7 +7331,7 @@ msgid "Enable digital downmix"
 msgstr "Dolby Digital Downmix aktivieren"
 
 msgid "Enable fallback remote receiver"
-msgstr "Aktiviere Reservereceiver"
+msgstr "Remote-Receiver aktivieren"
 
 msgid "Enable freesat EPG"
 msgstr "Freesat-EPG aktivieren"
@@ -7362,7 +7359,7 @@ msgid "Enable preview"
 msgstr "Vorschau aktivieren"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
-msgstr "Mit 'Ja' Reserve-Enigma2-Box aktivieren, die versucht wird, wenn ein Sender lokal nicht empfangen werden kann (z.B. wenn der Tuner belegt oder der Sender lokal nicht verfügbar ist). Geben Sie die komplette URL inklusive 'http://' und Portnummer (normalerweise '8001') an, also z.B. 'http://zweite_box:8001'."
+msgstr "Mit 'Ja' Remote-Enigma2-Receiver aktivieren, der versucht wird, wenn ein Sender lokal nicht empfangen werden kann (z.B. wenn der Tuner belegt oder der Sender lokal nicht verfügbar ist). Die komplette URL inklusive 'http://' und Portnummer (normalerweise '8001') angeben, also z.B. 'http://zweite_box:8001'."
 
 msgid "Enable teletext caching"
 msgstr "Videotext-Zwischenspeicher aktivieren"
@@ -7423,10 +7420,6 @@ msgstr "Bei 'Ja' wird in Menüs mit Schiebereglern rechts neben dem Schieberegle
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Bei 'Ja' wird 'Netzwerk neu starten' im Erweiterungsmenü angezeigt."
-
-# channelselection 5.1
-msgid "Enable unlinked bouquets"
-msgstr "Nicht eingebundene Favoritenlisten laden"
 
 #
 msgid "Enabled"
@@ -7568,19 +7561,13 @@ msgid "Enter PIN"
 msgstr "PIN eingeben"
 
 msgid "Enter a description for this timer."
-msgstr ""
-"Geben Sie eine Beschreibung für diesen Timer ein.\n"
-"\n"
-"Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
+msgstr "Eine Beschreibung für diesen Timer eingeben."
 
 msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
 msgstr "Datei abspielen/anzeigen/bearbeiten/installieren/extrahieren/ausführen oder ein Verzeichnis eingeben."
 
 msgid "Enter a name for this timer."
-msgstr ""
-"Geben Sie einen Namen für diesen Timer ein.\n"
-"\n"
-"Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
+msgstr "Einen Namen für diesen Timer eingeben."
 
 msgid "Enter a new name for this device."
 msgstr "Geben Sie einen neuen Namen für dieses Gerät ein."
@@ -7637,10 +7624,7 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Geben Sie Ihre lokale Niedrig-Oszillatorfrequenz ein. Weitere Informationen finden Sie im Datenblatt Ihres LNB."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
-msgstr ""
-"Tragen Sie Ihre eigene Feed-URL ein, um Pakete auswählen zu können.\n"
-"\n"
-"Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
+msgstr "Tragen Sie Ihre eigene Feed-URL ein, um Pakete auswählen zu können."
 
 #
 msgid "Entertainment"
@@ -7846,7 +7830,7 @@ msgstr "Fehler: Prüfsumme ist ungültig!"
 msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
 msgstr ""
 "Es konnte kein geeignetes Medium gefunden werden!\n"
-"Bitte entfernen Sie einige heruntergeladene Images oder legen Sie ein Medium (z.B. USB-Stick) mit ausreichend freiem Speicherplatz ein und versuchen es dann erneut."
+"Einige heruntergeladene Images entfernen, oder ein Medium (z.B. USB-Stick) mit ausreichend freiem Speicherplatz einlegen und es dann erneut versuchen."
 
 #
 #, python-format
@@ -7936,7 +7920,7 @@ msgstr ""
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
 "Die erforderlichen Verzeichnisse auf dem Medium (z.B. USB-Stick oder Festplatte) können nicht erstellt werden!\n"
-"Bitte überprüfen Sie das Medium und versuchen es dann erneut."
+"Bitte das Medium überprüfen und es dann erneut versuchen."
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
@@ -8328,7 +8312,7 @@ msgid "Falkland Islands (Malvinas)"
 msgstr "Falklandinseln (Malvinen)"
 
 msgid "Fallback remote receiver URL"
-msgstr "Reservereceiver-URL"
+msgstr "Remote-Receiver-URL"
 
 msgid "False"
 msgstr "Falsch"
@@ -8992,15 +8976,15 @@ msgstr "Die Standortbestimmung enthält keine Zeitzonen-Informationen!"
 msgid "Geolocation data has been used to set the time zone."
 msgstr "Die Zeitzone wurde anhand der Standortbestimmung festgelegt."
 
+msgid "Geolocation data is not available."
+msgstr "Die Standortbestimmung ist nicht verfügbar!"
+
 msgid "Geolocation information cannot be retrieved, please try again later."
-msgstr "Standortinformationen können nicht abgerufen werden! Bitte versuchen Sie es später erneut."
+msgstr "Standortinformationen können nicht abgerufen werden! Bitte später erneut versuchen."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr "Standortinformationen für %s %s"
-
-msgid "Geolocation data is not available."
-msgstr "Die Standortbestimmung ist nicht verfügbar!"
 
 msgid "Georgia"
 msgstr "Georgien"
@@ -9079,9 +9063,6 @@ msgstr "Gehe zu:"
 
 msgid "Goto Date/Time"
 msgstr "Datum/Zeit"
-
-msgid "Goto Date/Timer"
-msgstr "Gehe zu Datum/Zeit"
 
 msgid "Goto Prime time"
 msgstr "Gehe zur Primetime"
@@ -9901,9 +9882,6 @@ msgstr "Der Receiver schaltete für eine Aufnahme zum entsprechenden Kanal um!\n
 msgid "In progress"
 msgstr "In Arbeit"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "Bei 'Ja' wird das blinkende Aufnahmesymbol im Display auch im Standby aktiviert (nicht alle Receiver unterstützen das)."
-
 msgid "Inaccessible"
 msgstr "Nicht zugänglich"
 
@@ -10317,6 +10295,9 @@ msgstr "Irland"
 
 msgid "Irish"
 msgstr "Irisch"
+
+msgid "Is the keyboard working?"
+msgstr "Funktioniert die Tastatur?"
 
 msgid "Is this setting ok?"
 msgstr "Ist diese Einstellung in Ordnung?"
@@ -12604,7 +12585,7 @@ msgid "No updates available."
 msgstr "Keine Updates vorhanden!"
 
 msgid "No updates were available.  Please try again later."
-msgstr "Keine Updates vorhanden! Bitte versuchen Sie es später erneut."
+msgstr "Keine Updates vorhanden! Bitte später erneut versuchen."
 
 msgid "No valid device detected - Press OK"
 msgstr "Kein gültiges Gerät erkannt - OK drücken"
@@ -12690,6 +12671,9 @@ msgstr "Nicht-Linear"
 msgid "None"
 msgstr "Keine"
 
+msgid "NordVPN DNS"
+msgstr "NordVPN DNS"
+
 msgid "Norfolk Island"
 msgstr "Norfolkinsel"
 
@@ -12764,7 +12748,7 @@ msgstr "Derzeit nicht gemountet."
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr ""
 "Nicht genug Speicherplatz: %d MB benötigt, %d MB verfügbar!\n"
-"Bitte machen Sie etwas Speicher frei und versuchen es dann erneut."
+"Bitte etwas Speicher frei machen und es dann erneut versuchen."
 
 #, python-format
 msgid ""
@@ -14594,7 +14578,6 @@ msgstr "AV-Receiver in Standby versetzen"
 msgid "Python"
 msgstr "Python"
 
-#, fuzzy
 msgid "Python Development Packages"
 msgstr "Python Entwicklung-Pakete"
 
@@ -15411,7 +15394,6 @@ msgstr "Reserviert für zukünftige Verwendung"
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#, fuzzy
 msgid "Reset (clear and reload) the feeds"
 msgstr "Zurücksetzen (Bereinigen und neu Laden) der Feeds"
 
@@ -16354,6 +16336,10 @@ msgstr "Wenn aktiviert, wird mit OK im Hintergrund auf den markierten Sender ges
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Bei 'Ja' wird in der Senderliste mit OK im Hintergrund auf den markierten Sender geschaltet. Ein zweites OK beendet die Senderliste und zeigt diesen Sender, EXIT dagegen beendet die Senderliste und schaltet zum ursprünglichen Sender zurück."
 
+# Customize neu 5.1
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies ermöglicht z.B. die eigenen Favoritenlisten zu erhalten, während die Einstellungen aktualisiert werden."
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Wählen Sie 'Ja', um mit LINKS/RECHTS eine Seite Auf/Ab zu schalten, allerdings nur, solange LINKS/RECHTS nicht auf andere Weise verwendet werden. Das ermöglicht herkömmliche Navigation, falls Sie es so gewohnt sind."
 
@@ -16885,6 +16871,9 @@ msgstr "Standardverzeichnis für die rechte Spalte wählen, wenn kein Verzeichni
 msgid "Select the delay before the timer activates."
 msgstr "Wählen Sie die Verzögerung, bevor der Timer aktiviert wird."
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr "Wählen Sie die Verzögerung, die beim Wechsel von einem Stream Relay Sender verwendet wird, bevor der Tuner auf einen anderen Sender wechselt. Die Verwendung von '0' wird nur für Boxen mit mehreren Satelliten-Tunern empfohlen."
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit P+/CH+ oder P-/CH- zwischen den Listen umschalten. Zugeordnete Funktion auswählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
 
@@ -16941,6 +16930,9 @@ msgstr "Wählen Sie ein anderes Tastaturlayout"
 
 msgid "Select the location in which to store the recording:"
 msgstr "Wählen Sie den Speicherort, wo die Aufzeichnung gespeichert werden soll:"
+
+msgid "Select the location where the picon files will be installed."
+msgstr "Wählen Sie, wohin Picons installiert werden sollen."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Wählen Sie den Hersteller Ihres Unicable/SCR-Geräts aus. Wenn der Hersteller nicht aufgeführt ist, setzen Sie 'SCR' auf 'Benutzerdefiniert' und geben Sie die Geräteparameter gemäß dem zugehörigen Datenblatt manuell ein."
@@ -17034,9 +17026,6 @@ msgstr "Startspalten vom File Commander wählen."
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Wählen Sie die Tags, die für diese Aufnahme verwendet werden sollen."
-
-msgid "Select the location where the picon files will be installed."
-msgstr "Wählen Sie, wohin Picons installiert werden sollen."
 
 msgid "Select the time after which this timer can start."
 msgstr "Wählen Sie die Zeit, nach der dieser Timer starten kann."
@@ -17509,7 +17498,7 @@ msgid "Set pin code persistent"
 msgstr "PIN dauerhaft speichern"
 
 msgid "Set sequence repeats if your aerial system requires this. Normally if the aerial system has been configured correctly sequence repeats will not be necessary. If yours does, recheck you have command order set correctly."
-msgstr "Die Sequenzeinstellung wird wiederholt, wenn Ihr Antennensystem dies erfordert. Normalerweise, wenn das Antennensystem korrekt konfiguriert wurde, sind Sequenzwiederholungen nicht notwendig. Wenn dies der Fall ist, überprüfen Sie erneut, ob die Befehlsreihenfolge richtig eingestellt ist."
+msgstr "Die Sequenzeinstellung wird wiederholt, wenn das Antennensystem dies erfordert. Normalerweise (bei korrekter Konfiguration) sind Sequenzwiederholungen nicht notwendig. Wenn dies jedoch der Fall ist, erneut überprüfen, ob die Befehlsreihenfolge richtig eingestellt ist."
 
 # ChannelSelection.py
 msgid "Set startup service"
@@ -18958,16 +18947,8 @@ msgid "Slot '%s'"
 msgstr "Slot '%s'"
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "Slot %s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "Slot %s - %s (aktuelles Image)"
-
-#, python-format
-msgid "Slot '%s': %s%s"
-msgstr "Slot '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
+msgstr "Slot '%s' %s: %s%s"
 
 msgid "Slot Manager"
 msgstr "Slot-Verwaltung"
@@ -19134,8 +19115,8 @@ msgstr "Die MiniDLNA-Konfiguration fehlt!"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 "Feeds sind wegen Wartungsarbeiten im Moment nicht verfügbar!\n"
-"Bitte versuchen Sie es später erneut.\n"
-"Für weitere Fragen besuchen Sie 'https://www.opena.tv'."
+"Bitte später erneut versuchen.\n"
+"Für weitere Fragen 'https://www.opena.tv' besuchen."
 
 #
 msgid "Sorry no backups found!"
@@ -19588,11 +19569,20 @@ msgstr "Gespeicherte Position"
 msgid "Stream"
 msgstr "Stream"
 
+msgid "Stream Relay Settings"
+msgstr "Stream Relay Einstellungen"
+
+msgid "Stream Relay Setup Actions"
+msgstr "Stream Relay Einstellungsaktionen"
+
 msgid "Stream Relay URL"
 msgstr "Stream Relay URL"
 
 msgid "Stream Relay port"
 msgstr "Stream Relay Port"
+
+msgid "Stream Relay switch delay"
+msgstr "Stream Relay Umschaltverzögerung"
 
 msgid "Stream request"
 msgstr "Streamauswahl"
@@ -20263,7 +20253,7 @@ msgstr "Die %s %s startet innerhalb von 10 Sekunden neu, es sei denn, es sind eM
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
-msgstr "Die %s Commit-Logs können nicht abgerufen werden! Bitte versuchen Sie es später erneut."
+msgstr "Die %s Commit-Logs können nicht abgerufen werden! Bitte später erneut versuchen."
 
 #, python-format
 msgid "The '%s' commit log contains no information."
@@ -20271,7 +20261,7 @@ msgstr "Das %s Commit-Log enthält keine Informationen!"
 
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
-msgstr "Die Datei '%s' kann nicht abgerufen werden! Bitte versuchen Sie es später erneut."
+msgstr "Die Datei '%s' kann nicht abgerufen werden! Bitte später erneut versuchen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -20656,7 +20646,7 @@ msgstr "Beim Herunterladen der Regionsliste ist ein Fehler aufgetreten!"
 msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
 "Beim Herunterladen der Softwareliste ist ein Fehler aufgetreten!\n"
-"Bitte versuchen Sie es erneut."
+"Bitte erneut versuchen."
 
 msgid "There was an error while trying to login."
 msgstr "Beim Versuch, sich anzumelden, ist ein Fehler aufgetreten!"
@@ -20755,20 +20745,17 @@ msgstr "Die HDR10-Modi für UHD erzwingen."
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Die HLG-Modi für UHD erzwingen."
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "Bei 'Ja' wird die verstrichene Zeit mit '+', ansonsten mit '-' angezeigt."
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Anzeige der verbleibenden und verstrichenen Zeit bei Live-TV einstellen."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Die Anzeige der Uhrzeit im Standby einstellen."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Anzeige der verbleibenden und verstrichenen Zeit bei Live-TV einstellen."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Anzeige der verbleibenden und verstrichenen Zeit bei Medienwiedergabe einstellen."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Die Anzeige der Uhrzeit im Standby einstellen."
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Die Hintergrundfarbe von transparenten Senderlogos (Picons) einstellen."
@@ -20833,6 +20820,9 @@ msgstr "Die Anzeigeart von 720p 24Hz einstellen (einige Fernseher unterstützen 
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Die Anzeigeart von 480/576p 24Hz einstellen (einige Fernseher unterstützen diese Auflösung nicht)."
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "Bei 'Ja' wird die verstrichene Zeit mit '+', ansonsten mit '-' angezeigt."
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Die Anzeigeauflösung von SD-Video einstellen."
@@ -21289,7 +21279,7 @@ msgstr "Titel-Einstellungs-Modus"
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""
 "Um die Einrichtung abzuschließen, muss die %s %s mit dem Internet verbunden werden.\n"
-"Verbinden Sie die %s %s jetzt mit dem Internet."
+"Deshalb die %s %s jetzt mit dem Internet verbinden."
 
 # ImageBackup.py
 msgid "To restore the image:"
@@ -21758,10 +21748,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "URL of fallback remote receiver."
-msgstr ""
-"URL der Reservebox.\n"
-"\n"
-"Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
+msgstr "URL des Remote-Receivers."
 
 #
 msgid "USALS"
@@ -21994,7 +21981,7 @@ msgid "Update finished!"
 msgstr "Update fertig!"
 
 msgid "Update interval (in seconds)"
-msgstr "Updateintervall (in Sekunden)."
+msgstr "Updateintervall (in Sekunden)"
 
 msgid ""
 "Update succeeded!\n"
@@ -22400,7 +22387,6 @@ msgstr ""
 "Wenn die Untertitelsprache dieselbe ist wie die Audiosprache, werden die Untertitel normalerweise unterdrückt.\n"
 "Hiermit können diese Untertitel erzwungen werden."
 
-#, fuzzy
 msgid "Utility Packages"
 msgstr "Tools Pakete"
 
@@ -22793,6 +22779,9 @@ msgstr ""
 msgid "Volume up"
 msgstr "Lautstärke +"
 
+msgid "Vu+ MultiBoot"
+msgstr "Vu+ MultiBoot"
+
 #
 msgid "W"
 msgstr "W"
@@ -22857,7 +22846,7 @@ msgstr "Suchlauf wird durchgeführt. Bitte warten..."
 
 #
 msgid "Waiting"
-msgstr "Warte"
+msgstr "Wartet"
 
 msgid "Waiting for mount"
 msgstr "Warte auf Mount"
@@ -23068,10 +23057,6 @@ msgstr ""
 "Wenn aktiviert, wird in der Timeransicht der freie Speicher des Aufnahmegerätes angezeigt, wofür dieses, falls nötig, aufgeweckt werden muss.\n"
 "Falls das nicht gewünscht ist, deaktivieren Sie diese Funktion."
 
-# Customize neu 5.1
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies ermöglicht z.B. die eigenen Favoritenlisten zu erhalten, während die Einstellungen aktualisiert werden."
-
 # /data/setup.xml
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Bei 'Ja' kann der Bild-im-Bild Modus mit EXIT beendet werden."
@@ -23093,10 +23078,6 @@ msgstr "Bei 'Ja' werden AIT-Daten in HTTP-Streams eingefügt. Dies ermöglicht e
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Bei 'Ja' werden EIT-Daten in HTTP-Streams eingefügt. Dies ermöglicht einem Client-Receiver einen EPG anzuzeigen."
-
-# channelselection 5.1
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies ermöglicht z.B. die eigenen Favoritenlisten zu erhalten, während die Einstellungen aktualisiert werden."
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Wenn aktiviert, werden Daten von SDT (Service Description Table - Programmbeschreibungstabelle) und BAT (Bouquet Association Table - Bouquetbeschreibungstabelle) in HTTP-Streams eingefügt."
@@ -23624,7 +23605,7 @@ msgstr "Die %s %s geht in den WOL-Modus"
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 "Die %s %s ist nicht mit dem Internet verbunden!\n"
-"Bitte überprüfen Sie Ihre Netzwerkeinstellungen und versuchen es dann erneut."
+"Bitte die Netzwerkeinstellungen überprüfen und es dann erneut versuchen."
 
 #
 #, python-format
@@ -25134,6 +25115,29 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Gehe zu Datum/Zeit"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "Slot %s - %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "Slot %s - %s (aktuelles Image)"
+
+#, python-format
+#~ msgid "Slot '%s': %s%s"
+#~ msgstr "Slot '%s': %s%s"
+
+# channelselection 5.1
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Nicht eingebundene Favoritenlisten laden"
+
+# channelselection 5.1
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies ermöglicht z.B. die eigenen Favoritenlisten zu erhalten, während die Einstellungen aktualisiert werden."
 
 #~ msgid "Installing Please wait..."
 #~ msgstr "Installiere. Bitte warten..."

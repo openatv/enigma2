@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
 "PO-Revision-Date: 2023-12-03 10:46+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -6889,6 +6889,9 @@ msgstr "Ενεργοποίηση της αυτόματης γρήγορης αν
 msgid "Enable auto fast scan for %s"
 msgstr "Ενεργοποίηση αυτόματης γρήγορης ανίχνευσης για το %s"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "Στην αναμονή εγγραφή στην οθόνη LCD"
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Ενεργοποίηση αναβοσβηνόμενου συμβόλου εγγραφής Οθόνη LCD"
 
@@ -7011,9 +7014,6 @@ msgstr "Ενεργοποίηση της τρέχουσας τιμής του ο�
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Ενεργοποίηση της εμφάνισης του στοιχειου 'Επανεκκίνηση δικτύου' στο μενού επεκτάσεων."
-
-msgid "Enable unlinked bouquets"
-msgstr "Ενεργοποίηση των ασύνδετων μπουκέτων"
 
 msgid "Enabled"
 msgstr "Ενεργό"
@@ -8480,15 +8480,15 @@ msgstr "Η τοποθεσία δεν περιέχει πληροφορίες χ�
 msgid "Geolocation data has been used to set the time zone."
 msgstr "Έγινε χρήση της τοποθεσίας για ορισμό της χρονικής ζώνης."
 
+msgid "Geolocation data is not available."
+msgstr "Μη διαθέσιμη τοποθεσία."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Αδυναμία ανάκτησης πληροφοριών τοποθεσίας, παρακαλώ δοκιμάστε αργότερα."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr "Πληροφορίες τοποθεσίας για τον %s %s"
-
-msgid "Geolocation data is not available."
-msgstr "Μη διαθέσιμη τοποθεσία."
 
 msgid "Georgia"
 msgstr "Γεωργία"
@@ -8564,9 +8564,6 @@ msgstr "Προς :"
 
 msgid "Goto Date/Time"
 msgstr "Μετάβαση σε ημερομηνία/ώρα"
-
-msgid "Goto Date/Timer"
-msgstr "Μετάβαση σε ημερομηνία/χρονοδιακόπτη"
 
 msgid "Goto Prime time"
 msgstr "Μετάβαση στη ζώνη αιχμής"
@@ -9361,9 +9358,6 @@ msgstr "Για να εκτελεστεί μια εγγραφή, ο δέκτης 
 msgid "In progress"
 msgstr "Σε εξέλιξη"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "Στην αναμονή εγγραφή στην οθόνη LCD"
-
 msgid "Inaccessible"
 msgstr "Μη προσβάσιμο"
 
@@ -9747,6 +9741,9 @@ msgstr "Ιρλανδία"
 
 msgid "Irish"
 msgstr "Ιρλανδικά"
+
+msgid "Is the keyboard working?"
+msgstr ""
 
 msgid "Is this setting ok?"
 msgstr "Είναι αυτή η ρύθμιση OK;"
@@ -11938,6 +11935,9 @@ msgstr "Μη γραμμικό"
 
 msgid "None"
 msgstr "Κανένα"
+
+msgid "NordVPN DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr "Νήσος Νόφορκ"
@@ -15311,6 +15311,9 @@ msgstr "Επιλέξτε 'ναι' για ενεργοποίηση της προ�
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Επιλέξτε 'ναι' για να γίνει προεπισκόπηση των καναλιών στη λίστα EPG. Πιέστε 'ΟΚ' για προεπισκόπηση του τρέχοντος καναλιού. Πιέστε 'ΟΚ' ξανά για έξοδο από το EPG και μετάβαση στο επιλεγμένο κανάλι. Πιέστε 'EXIT' για έξοδο από το EPG και επιστροφή στο προηγουμένως επιλεγμένο κανάλι."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Όταν είναι ενεργό, το enigma2 θα φορτώνει τα ασύνδετα μπουκέτα χρήστη. Αυτό σημαίνει ότι τα μπουκέτα που είναι διαθέσιμα, αλλά δεν συμπεριλαμβάνονται στα αρχεία bouquets.tv ή bouquets.radio, θα φορτώνονται επίσης. Αυτό σας επιτρέπει για παράδειγμα να διατηρείτε το δικό σας μπουκέτο χρήστη όταν τα εγκατεστημένα θα αναβαθμίζονται"
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Επιλέξτε 'ναι' για να ενεργοποιηθεί η χρήση των πλήκτρων ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ για μετακίνηση σελίδας επάνω/κάτω όταν σε αυτά έχει οριστεί διαφορετική ενέργεια. Αυτό παρέχει πλοήγηση παλαιού τύπου για όσους την προτιμούν."
 
@@ -15821,6 +15824,9 @@ msgstr "Επιλέξτε τον προεπιλεγμένο φάκελο που �
 msgid "Select the delay before the timer activates."
 msgstr "Επιλέξτε την καθυστέρηση πριν από την ενεργοποίηση του χρονοδιακόπτη."
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Επιλέξτε την επιθυμητή λειτουργία και πιέστε το \"OK\" για ανάθεση. Χρησιμοποιήστε τα \"CH+/-\" για εναλλαγή μεταξύ λιστών. Επιλέξτε μία ανατεθειμένη λειτουργία και πιέστε το \"OK\" για να την ακυρώσετε. Χρήση των \"ΕΠΟΜΕΝΟ/ΠΡΟΗΓΟΥΜΕΝΟ\" για αλλαγή σειράς των ανατεθειμένων λειτουργιών."
 
@@ -15872,6 +15878,9 @@ msgstr "Επιλογή της γλώσσας του πληκτρολογίου �
 
 msgid "Select the location in which to store the recording:"
 msgstr "Επιλογή της τοποθεσίας αποθήκευσης της εγγραφής:"
+
+msgid "Select the location where the picon files will be installed."
+msgstr "Επιλογή φακέλου προορισμού εγκατάστασης των λογότυπων."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Επιλέξτε τον κατασκευαστή της SCR συσκευής σας. Αν δεν βλέπετε τον κατασκευαστή στη λίστα, θέστε το 'SCR' ως 'ορισμένο από τον χρήστη' και εισάγετε τις παραμέτρους χειροκίνητα, σύμφωνα με τον πίνακα χαρακτηριστικών."
@@ -15962,9 +15971,6 @@ msgstr "Επιλέξτε την αρχική στήλη εκκίνησης πο�
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Επιλέξτε τις ετικέτες που θα χρησιμοποιούνται για αυτόν τον χρονοδιακόπτη."
-
-msgid "Select the location where the picon files will be installed."
-msgstr "Επιλογή φακέλου προορισμού εγκατάστασης των λογότυπων."
 
 msgid "Select the time after which this timer can start."
 msgstr "Επιλογή ώρας πριν την εκκίνηση αυτού του χρονοδιακόπτη."
@@ -17775,16 +17781,8 @@ msgid "Slot '%s'"
 msgstr "Θέση '%s'"
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "Θέση '%s':  %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "Θέση '%s':  %s  -  Τρέχον"
-
-#, python-format
-msgid "Slot '%s': %s%s"
-msgstr "Θέση '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
+msgstr ""
 
 msgid "Slot Manager"
 msgstr "Διαχείριση θέσεων"
@@ -18369,11 +18367,20 @@ msgstr "Αποθηκευμένη θέση"
 msgid "Stream"
 msgstr "Ροή"
 
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay Setup Actions"
+msgstr ""
+
 msgid "Stream Relay URL"
 msgstr "URL Ροής"
 
 msgid "Stream Relay port"
 msgstr "Θύρα ροής"
+
+msgid "Stream Relay switch delay"
+msgstr ""
 
 msgid "Stream request"
 msgstr "Αίτηση ροής"
@@ -19479,20 +19486,17 @@ msgstr "Αυτή η επιλογή επιτρέπει την αναγκαστι�
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Αυτή η επιλογή επιτρέπει την αναγκαστική ενεργοποίηση των λειτουργιών HGL για UHD"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισης του παρελθόντα χρόνου ως + ή -"
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισης του εναπομείναντα ή παρελθόντα χρόνου ή και των δύο."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισης της Ώρας ή τίποτα κατά την Αναμονή"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισης του εναπομείναντα/παρελθόντα χρόνου για τη ζωντανή tv."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισης του εναπομείναντα/παρελθόντα χρόνου αναπαραγωγής πολυμέσων."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισης της Ώρας ή τίποτα κατά την Αναμονή"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Αυτή η επιλογή επιτρέπει να επιλέξετε το χρώμα φόντου των διάφανων λογότυπων."
@@ -19553,6 +19557,9 @@ msgstr "Αυτή η επιλογή επιτρέπει την επιλογή τη
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Αυτή η επιλογή επιτρέπει την επιλογή της εμφάνισης του προοδευτικού SD 24Hz στην TV σας. (δεν υποστηρίζονται αυτές οι αναλύσεις από όλες τις TV.)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισης του παρελθόντα χρόνου ως + ή -"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Αυτή η επιλογή ρυθμίζει τον τρόπο εμφάνισης βίντεο στάνταρ ευκρίνειας στην TV σας."
@@ -21371,6 +21378,9 @@ msgstr "Τα πλήκτρα έντασης στο τηλεχειριστήριο
 msgid "Volume up"
 msgstr "Αύξηση έντασης ήχου"
 
+msgid "Vu+ MultiBoot"
+msgstr ""
+
 msgid "W"
 msgstr "Δ"
 
@@ -21622,9 +21632,6 @@ msgstr "Τι θέλετε να κάνετε;"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Όταν είναι ενεργό, θα εμφανίζεται ο ελεύθερος χώρος της συσκευής προορισμού στην προβολή χρονοδιακοπτών. Αυτό θα αφυπνίζει τη συσκευή από την κατάσταση ύπνου."
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Όταν είναι ενεργό, το enigma2 θα φορτώνει τα ασύνδετα μπουκέτα χρήστη. Αυτό σημαίνει ότι τα μπουκέτα που είναι διαθέσιμα, αλλά δεν συμπεριλαμβάνονται στα αρχεία bouquets.tv ή bouquets.radio, θα φορτώνονται επίσης. Αυτό σας επιτρέπει για παράδειγμα να διατηρείτε το δικό σας μπουκέτο χρήστη όταν τα εγκατεστημένα θα αναβαθμίζονται"
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Όταν είναι ενεργό, το PiP μπορεί να τερματιστεί με το πλήκτρο εξόδου."
 
@@ -21645,9 +21652,6 @@ msgstr "Όταν είναι ενεργό, τα AIT δεδομένα θα περ�
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Όταν είναι ενεργό, τα ΕΙΤ δεδομένα θα περιλαμβάνονται στις ροές http. Αυτό επιτρέπει σε έναν δέκτη - πελάτη vα εμφανίσει EPG."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Όταν είναι ενεργό, το Enigma2 θα φορτώσει τα μη συνδεδεμένα μπουκέτα. Αυτό σημαίνει ότι τα διαθέσιμα μπουκέτα που δεν συμπεριλαμβάνονται στα αρχεία bouquets.tv ή bouquets.radio, θα φορτωθούν επίσης. Αυτό σας επιτρέπει, για παράδειγμα, να διατηρήσετε τα δικά σας μπουκέτα χρήστη, όταν οι εγκατεστημένες ρυθμίσεις αναβαθμιστούν"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Όταν είναι ενεργό, τα δεδομένα SDT, BAT θα συμπεριλαμβάνονται στις ροές http."
@@ -23521,6 +23525,27 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Μετάβαση σε ημερομηνία/χρονοδιακόπτη"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "Θέση '%s':  %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "Θέση '%s':  %s  -  Τρέχον"
+
+#, python-format
+#~ msgid "Slot '%s': %s%s"
+#~ msgstr "Θέση '%s': %s%s"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Ενεργοποίηση των ασύνδετων μπουκέτων"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Όταν είναι ενεργό, το Enigma2 θα φορτώσει τα μη συνδεδεμένα μπουκέτα. Αυτό σημαίνει ότι τα διαθέσιμα μπουκέτα που δεν συμπεριλαμβάνονται στα αρχεία bouquets.tv ή bouquets.radio, θα φορτωθούν επίσης. Αυτό σας επιτρέπει, για παράδειγμα, να διατηρήσετε τα δικά σας μπουκέτα χρήστη, όταν οι εγκατεστημένες ρυθμίσεις αναβαθμιστούν"
 
 #~ msgid "Installing Please wait..."
 #~ msgstr "Εγκατάσταση Περιμένετε..."

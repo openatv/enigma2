@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -7187,6 +7187,9 @@ msgstr "Otomatik hızlı taramayı etkinleştir"
 msgid "Enable auto fast scan for %s"
 msgstr "İçin otomatik hızlı taramayı etkinleştir %s"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "LCD Ekrandaki Bekleme Kayıtlarında"
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "LCD Ekranda yanıp sönen rec sembolünü etkinleştirin"
 
@@ -7310,9 +7313,6 @@ msgstr "Kaydırıcı çubuğunun sonundaki kaydırıcının geçerli değerini e
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Uzantılar menüsünde 'Ağı Yeniden Başlat' girişini göstermeyi etkinleştirin."
-
-msgid "Enable unlinked bouquets"
-msgstr "Bağlanmamış buketleri etkinleştir"
 
 #
 msgid "Enabled"
@@ -8861,15 +8861,15 @@ msgstr "Coğrafi konum, saat dilimi bilgisi içermez."
 msgid "Geolocation data has been used to set the time zone."
 msgstr "Saat dilimini ayarlamak için coğrafi konum kullanılmıştır."
 
+msgid "Geolocation data is not available."
+msgstr "Coğrafi konum mevcut değil."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Coğrafi konum bilgileri alınamıyor, lütfen daha sonra tekrar deneyin."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr "Alıcı coğrafi konum bilgileri %s %s"
-
-msgid "Geolocation data is not available."
-msgstr "Coğrafi konum mevcut değil."
 
 msgid "Georgia"
 msgstr "Georgia"
@@ -8951,9 +8951,6 @@ msgstr "Git :"
 
 msgid "Goto Date/Time"
 msgstr "Tarih / Saate Git"
-
-msgid "Goto Date/Timer"
-msgstr "Tarih / Zamanlayıcı Git"
 
 msgid "Goto Prime time"
 msgstr "Primetime git"
@@ -9781,9 +9778,6 @@ msgstr "Zamanlanmış kayıt görevi başlatıldı, TV fonksiyonundan kayıt fon
 msgid "In progress"
 msgstr "İşleniyor"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "LCD Ekrandaki Bekleme Kayıtlarında"
-
 msgid "Inaccessible"
 msgstr "Erişilemez"
 
@@ -10196,6 +10190,9 @@ msgstr "İrlanda"
 
 msgid "Irish"
 msgstr "İrlanda"
+
+msgid "Is the keyboard working?"
+msgstr ""
 
 msgid "Is this setting ok?"
 msgstr "Bu ayar tamam mı?"
@@ -12533,6 +12530,9 @@ msgstr "Doğrusal Olmayan"
 #
 msgid "None"
 msgstr "Yok"
+
+msgid "NordVPN DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr "Norfolk Adası"
@@ -16124,6 +16124,9 @@ msgstr "'evet' EPG listesinde kanal önizlemesi görüntülenir."
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Eğer 'evet' ayarlanırsa kanal listesinde kanal önizlemesi görüntülenir. Seçilen kanalın önizlemesi için OK tuşuna basın, listeden çıkmak ve o kanalı izlemek için OK tuşuna bir daha basın. Kanalı değiştirmek istemiyorsanız EXIT' tuşuna basın."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Etkinleştirildiğinde, enigma2, bağlantısız kullanıcı önyüklemelerini yükler. Bu, mevcut olan ancak buketler.tv veya buketler.radio dosyalarına dahil olmayan kullanıcı buketlerinin yükleneceği anlamına gelir. Bu, örneğin kurulu ayarlar yükseltilirken kendi kullanıcı buketinizi korumanıza izin verir"
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "SOL/SAĞ düğmeleri başka türlü tanımlanmadığında SayfaYukarı/SayfaAşağı hareket etmek için SOL/SAĞ düğmelerinin kullanılmasını etkinleştirmek için 'Evet'i seçin. Bu, tercih eden kullanıcılar için eski navigasyonu sağlar."
 
@@ -16647,6 +16650,9 @@ msgstr "Sağ sütun dizini kaydedilmemişse kullanılacak varsayılan dizini se�
 msgid "Select the delay before the timer activates."
 msgstr "Zamanlayıcı etkinleşmeden önceki gecikmeyi seçin."
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "İstediğiniz işlevi seçin ve atamak için \"Tamam\" a tıklayın. Listeler arasında geçiş yapmak için \"CH +/-\" kullanın. Atanan bir işlevi seçin ve atamayı iptal etmek için \"Tamam\" a tıklayın. Atanan işlevlerin sırasını değiştirmek için \"Sonraki / Önceki\" yi kullanın."
 
@@ -16698,6 +16704,9 @@ msgstr "Bir menüden yerel ayarı seçin"
 
 msgid "Select the location in which to store the recording:"
 msgstr "Kaydın saklanacağı konumu seçin:"
+
+msgid "Select the location where the picon files will be installed."
+msgstr "Picon dosyalarının yükleneceği hedef konumu seçin."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "SCR cihazınızın üreticisini seçin. Üretici listelenmemişse, 'SCR'yi' kullanıcı tanımlı 'olarak ayarlayın ve cihaz parametrelerini özellik tablosuna göre manuel olarak girin."
@@ -16789,9 +16798,6 @@ msgstr "File Commander başlatıldığında etkinleştirilecek başlangıç/ilk 
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Bu kayıt için kullanılması gereken etiketleri seçin."
-
-msgid "Select the location where the picon files will be installed."
-msgstr "Picon dosyalarının yükleneceği hedef konumu seçin."
 
 msgid "Select the time after which this timer can start."
 msgstr "Bu zamanlayıcının başlayabileceği zamanı seçin."
@@ -18675,16 +18681,8 @@ msgid "Slot '%s'"
 msgstr "Yuva '%s'"
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "Yuva '%s':  %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "Yuva  '%s':  %s  -   Geçerli"
-
-#, python-format
-msgid "Slot '%s': %s%s"
-msgstr "Yuva '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
+msgstr ""
 
 msgid "Slot Manager"
 msgstr "Slot Yöneticisi"
@@ -19310,11 +19308,20 @@ msgstr "Kaydedilen konumlar"
 msgid "Stream"
 msgstr "Akış"
 
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay Setup Actions"
+msgstr ""
+
 msgid "Stream Relay URL"
 msgstr "Akış Aktarma URL'si"
 
 msgid "Stream Relay port"
 msgstr "Akış Aktarma bağlantı noktası"
+
+msgid "Stream Relay switch delay"
+msgstr ""
 
 msgid "Stream request"
 msgstr "Akım istemi"
@@ -20458,20 +20465,17 @@ msgstr "Bu seçenek UHD için HDR10 Modlarını zorlamanıza olanak sağlar"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Bu seçenek UHD için HLG Modlarını zorlamanıza olanak sağlar"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "Bu seçenek, geçen süreyi + veya - olarak nasıl göstereceğinizi seçmenize izin verir-"
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Bu seçenek kalan zaman, geçen zaman veya her ikisinin de gösterilme seçiminin yapılmasını sağlar."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Bu seçenek, Bekleme modunda Saatin veya hiçbir şeyin nasıl görüntüleneceğini seçmenize izin verir"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Bu seçenek, canlı TV için kalan / geçen süreyi nasıl görüntüleyeceğinizi seçmenizi sağlar."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Bu seçenek, medya oynatma için kalan / geçen sürenin nasıl görüntüleneceğini seçmenizi sağlar."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Bu seçenek, Bekleme modunda Saatin veya hiçbir şeyin nasıl görüntüleneceğini seçmenize izin verir"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Bu seçenek şeffaf pikoların arka plan rengini seçmenizi sağlar."
@@ -20532,6 +20536,9 @@ msgstr "Bu seçenek 720p 24Hz i TV nizde nasıl göstereceğinizi seçmenizi sa�
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Bu seçenek, TV'nizde SD aşamalı 24Hz'nin nasıl görüntüleneceğini seçmenizi sağlar. (tüm televizyonların bu kararları desteklemediği gibi)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "Bu seçenek, geçen süreyi + veya - olarak nasıl göstereceğinizi seçmenize izin verir-"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Bu seçenek, standart tanımlı videoların TV’nizde nasıl görüntüleneceğini seçmenizi sağlar."
@@ -22445,6 +22452,9 @@ msgstr "Alıcının uzaktan kumandasındaki ses seviyesi tuşları, TV sesini ko
 msgid "Volume up"
 msgstr "Ses yükselt"
 
+msgid "Vu+ MultiBoot"
+msgstr ""
+
 #
 msgid "W"
 msgstr "W"
@@ -22711,9 +22721,6 @@ msgstr "Ne yapmak istersin?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "'Etkin' olduğunda, zamanlayıcı görünümü hedef cihazdaki boş alanı gösterecektir. Bu, cihazı uyku modundan çıkaracaktır."
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Etkinleştirildiğinde, enigma2, bağlantısız kullanıcı önyüklemelerini yükler. Bu, mevcut olan ancak buketler.tv veya buketler.radio dosyalarına dahil olmayan kullanıcı buketlerinin yükleneceği anlamına gelir. Bu, örneğin kurulu ayarlar yükseltilirken kendi kullanıcı buketinizi korumanıza izin verir"
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Etkin olduğunda RiR çıkış düğmesi ile kapatılabilir."
 
@@ -22734,9 +22741,6 @@ msgstr "Etkinleşince, AIT verileri http akışına eklenir. Bu, istemci alıcı
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Etkinleşince, http akışına EIT verileri eklenir. Bu, bir istemci alıcısının EPG göstermesini sağlar."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Etkinleştirildiğinde, Enigma2 bağlantısız buketleri yükler. Bu, mevcut olan, ancak buketler.tv veya buketler.radio dosyalarına dahil edilmeyen buketlerin hala yükleneceği anlamına gelir. Bu, örneğin kurulu ayarlar yükseltilirken kendi kullanıcı buketinizi korumanıza izin verir"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Etkinleştirildiğinde, SDT, BAT verileri http akışlarına dahil edilecektir."
@@ -24739,6 +24743,27 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Tarih / Zamanlayıcı Git"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "Yuva '%s':  %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "Yuva  '%s':  %s  -   Geçerli"
+
+#, python-format
+#~ msgid "Slot '%s': %s%s"
+#~ msgstr "Yuva '%s': %s%s"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Bağlanmamış buketleri etkinleştir"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Etkinleştirildiğinde, Enigma2 bağlantısız buketleri yükler. Bu, mevcut olan, ancak buketler.tv veya buketler.radio dosyalarına dahil edilmeyen buketlerin hala yükleneceği anlamına gelir. Bu, örneğin kurulu ayarlar yükseltilirken kendi kullanıcı buketinizi korumanıza izin verir"
 
 #~ msgid "Installing Please wait..."
 #~ msgstr "Yükleniyor Lütfen bekleyin..."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -7488,6 +7488,9 @@ msgstr "Aktivera Panikknapp"
 msgid "Enable auto fast scan for %s"
 msgstr "Aktivera Panikknapp"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr ""
 
@@ -7613,9 +7616,6 @@ msgid "Enable to display the current value of the slider at end of the slider ba
 msgstr ""
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
-msgstr ""
-
-msgid "Enable unlinked bouquets"
 msgstr ""
 
 #
@@ -9195,14 +9195,14 @@ msgstr ""
 msgid "Geolocation data has been used to set the time zone."
 msgstr ""
 
+msgid "Geolocation data is not available."
+msgstr ""
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr ""
 
 #, python-format
 msgid "Geolocation information for %s %s"
-msgstr ""
-
-msgid "Geolocation data is not available."
 msgstr ""
 
 msgid "Georgia"
@@ -9287,9 +9287,6 @@ msgid "Goto :"
 msgstr "Gå till:"
 
 msgid "Goto Date/Time"
-msgstr ""
-
-msgid "Goto Date/Timer"
 msgstr ""
 
 #, fuzzy
@@ -10147,9 +10144,6 @@ msgstr ""
 msgid "In progress"
 msgstr "Pågående"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr ""
-
 msgid "Inaccessible"
 msgstr ""
 
@@ -10589,6 +10583,9 @@ msgid "Ireland"
 msgstr ""
 
 msgid "Irish"
+msgstr ""
+
+msgid "Is the keyboard working?"
 msgstr ""
 
 msgid "Is this setting ok?"
@@ -13015,6 +13012,9 @@ msgstr ""
 #
 msgid "None"
 msgstr "Inga"
+
+msgid "NordVPN DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr ""
@@ -16756,6 +16756,9 @@ msgstr "Om 'Ja' är valt  så  kan du förhandsgranska  kanalerna i EPG listan"
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Om 'Ja' är valt  så kan du förhandsgranska kanallistan. Tryck 'OK' för att förhandsgranska vald kanal, tryck en andra gång på 'OK' för att gå till den kanalen, tryck 'EXIT' för att återgå till kanalen du startade på."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr ""
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
@@ -17289,6 +17292,9 @@ msgstr ""
 msgid "Select the delay before the timer activates."
 msgstr ""
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr ""
 
@@ -17341,6 +17347,9 @@ msgid "Select the locale from a menu"
 msgstr "Vänligen ange filmens sökväg"
 
 msgid "Select the location in which to store the recording:"
+msgstr ""
+
+msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17431,9 +17440,6 @@ msgid "Select the starting/initial column to be activated on File Commander star
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
-
-msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -19397,15 +19403,7 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr ""
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr ""
-
-#, python-format
-msgid "Slot '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
 msgstr ""
 
 msgid "Slot Manager"
@@ -20055,10 +20053,19 @@ msgstr "Lagrad position"
 msgid "Stream"
 msgstr "Strömning"
 
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay Setup Actions"
+msgstr ""
+
 msgid "Stream Relay URL"
 msgstr ""
 
 msgid "Stream Relay port"
+msgstr ""
+
+msgid "Stream Relay switch delay"
 msgstr ""
 
 msgid "Stream request"
@@ -21195,21 +21202,18 @@ msgstr "Det här alternativet låter dig välja 3D-läget"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Det här alternativet låter dig välja 3D-läget"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr ""
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Det här alternativet låter dig välja om återstående tid, förfluten tid, eller bägge skall visas. "
-
-#, fuzzy
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Det här alternativet låter dig välja hur förfluten tid skall visas, som + eller -"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr ""
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr ""
+
+#, fuzzy
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Det här alternativet låter dig välja hur förfluten tid skall visas, som + eller -"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr ""
@@ -21281,6 +21285,9 @@ msgstr "Det här alternativet låter dig välja hur förfluten tid skall visas, 
 #, fuzzy
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Det här alternativet låter dig välja hur förfluten tid skall visas, som + eller -"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr ""
 
 #, fuzzy
 msgid "This option allows you to choose how to display standard definition video on your TV."
@@ -23229,6 +23236,9 @@ msgstr ""
 msgid "Volume up"
 msgstr "Volym upp"
 
+msgid "Vu+ MultiBoot"
+msgstr ""
+
 #
 msgid "W"
 msgstr "V"
@@ -23492,9 +23502,6 @@ msgstr ""
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr ""
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
 
@@ -23515,9 +23522,6 @@ msgstr "Vid aktiverad kommer AIT data inkluderas i http strömmar. Detta tillåt
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Vid aktiverad kommer EIT data inkluderas i http strömmar. Detta tillåter en klientmottagare att visa EPG."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr ""
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
-"PO-Revision-Date: 2023-11-28 11:18+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"PO-Revision-Date: 2023-12-07 05:27+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -6898,6 +6898,9 @@ msgstr "Ota käyttöön autom. pikahaku"
 msgid "Enable auto fast scan for %s"
 msgstr "Ota automaattinen pikahaku kohteelle %s"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "Jos 'Kyllä' Tallennus symboli vilkkuu laitteen näytössä valmiustilassa (kaikki vastaanottimet eivät tue tätä)"
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Määrittää, näytetäänkö vilkkuvaa REC-symbolia Näyttö paneelissa tallennuksen aikana"
 
@@ -7020,9 +7023,6 @@ msgstr "Ota käyttöön liukusäätimen nykyinen arvo liukusäätimen päässä.
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Näytä \"Käynnistä verkko uudelleen\" kohta Laajennukset valikossa."
-
-msgid "Enable unlinked bouquets"
-msgstr "Salli linkittämättömät suosikkilistat"
 
 msgid "Enabled"
 msgstr "Käytössä"
@@ -8489,15 +8489,15 @@ msgstr "Maantieteellinen sijainti ei sisällä aikavyöhyketietoja."
 msgid "Geolocation data has been used to set the time zone."
 msgstr "Aikavyöhykkeen asettamiseen on käytetty maantieteellistä sijaintia."
 
+msgid "Geolocation data is not available."
+msgstr "Maantieteellinen sijainti ei ole käytettävissä."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Maantieteellisen sijainnin tietoja ei voi noutaa, yritä myöhemmin uudelleen."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr "Paikannustiedot: %s %s"
-
-msgid "Geolocation data is not available."
-msgstr "Maantieteellinen sijainti ei ole käytettävissä."
 
 msgid "Georgia"
 msgstr "Georgia"
@@ -8573,9 +8573,6 @@ msgstr "Minne :"
 
 msgid "Goto Date/Time"
 msgstr "Siirry päivämäärä / aika"
-
-msgid "Goto Date/Timer"
-msgstr "Siirry päivämäärä / ajastin"
 
 msgid "Goto Prime time"
 msgstr "Siirry parhaaseen katseluaikaan"
@@ -9375,9 +9372,6 @@ msgstr "Vastaanotin vaihdetaan kanavalle tallennusta varten!\n"
 msgid "In progress"
 msgstr "Käynnissä"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "Jos 'Kyllä' Tallennus symboli vilkkuu laitteen näytössä valmiustilassa (kaikki vastaanottimet eivät tue tätä)"
-
 msgid "Inaccessible"
 msgstr "Pääsy kielletty"
 
@@ -9761,6 +9755,9 @@ msgstr "Irlanti"
 
 msgid "Irish"
 msgstr "Irlantilainen"
+
+msgid "Is the keyboard working?"
+msgstr "Toimiiko näppäimistö?"
 
 msgid "Is this setting ok?"
 msgstr "Käytä näitä asetuksia?"
@@ -11960,6 +11957,9 @@ msgstr "Epälineaarinen"
 
 msgid "None"
 msgstr "Ei mitään"
+
+msgid "NordVPN DNS"
+msgstr "NordVPN DNS"
 
 msgid "Norfolk Island"
 msgstr "Norfolkinsaari"
@@ -15341,6 +15341,9 @@ msgstr "'Kyllä' valinnalla voi esikatsella kanavia kanavalistassa."
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "'Kyllä' valinnalla voit esikatsella kanavia kanavalistassa. Esikatsele valittua kanavaa painamalla 'OK', toinen 'OK' painallus vaihtaa kanavalle ja sulkee listan, EXIT palaa takaisin kanavalle jota aiemmin katselit."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Kun päällä, piilotetut suosikkilistat näytetään. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään"
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Valitse 'Kyllä', jos haluat sallia VASEN/OIKEA painikkeiden käytön Sivu Ylös /Sivua Alas siirtymiseen, kun VASEN/OIKEA painikkeet ovat muuten määrittelemättömiä. Tämä tarjoaa perinteisen navigoinnin käyttäjille, jotka haluavat sitä."
 
@@ -15855,6 +15858,9 @@ msgstr "Valitse oletushakemisto, jota käytetään, jos oikean sarakkeen hakemis
 msgid "Select the delay before the timer activates."
 msgstr "Valitse viive ennen kuin ajastus aktivoituu."
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr "Viive striimin välitys palvelun sulkemisessa ennen kuin virittimen vaihdettaan toista palvelua varten. 0:n käyttöä suositellaan vain bokseille, joissa on useita satelliittivirittimiä."
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Valitse haluamasi toiminto ja napsauta OK vaihda listoja painamalla \"CH+/-\" siirtyäksesi luetteloiden välillä. Valitse määritetty toiminto ja paina OK määrittää sen \"Seuraava / Edellinen\" näppäimiä vaihtaaksesi toimintojen järjestystä."
 
@@ -15906,6 +15912,9 @@ msgstr "Valitse alue valikosta"
 
 msgid "Select the location in which to store the recording:"
 msgstr "Valitse paikka, johon tallennus tallennetaan:"
+
+msgid "Select the location where the picon files will be installed."
+msgstr "Valitse sijainti, minne kanavalogot asennetaan."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Valitse SCR-laitteesi valmistaja. Jos valmistajaa ei löydy listalta, aseta 'SCR' 'käyttäjän määrittelemä' ja syötä laitteen parametrit käsin teknisistä tiedoista."
@@ -15996,9 +16005,6 @@ msgstr "Valitse käynnistys-/alkusarake, joka aktivoidaan File Commanderin käyn
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Valitse tässä tallenteessa käytettävät tunnisteet."
-
-msgid "Select the location where the picon files will be installed."
-msgstr "Valitse sijainti, minne kanavalogot asennetaan."
 
 msgid "Select the time after which this timer can start."
 msgstr "Valitse aika, jonka jälkeen ajastus voi käynnistyä."
@@ -17811,16 +17817,8 @@ msgid "Slot '%s'"
 msgstr "Paikka %s"
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "Paikka %s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "Paikka %s - %s (Nykyinen image)"
-
-#, python-format
-msgid "Slot '%s': %s%s"
-msgstr "Paikka %s : %s%s"
+msgid "Slot '%s' %s: %s%s"
+msgstr "Paikka '%s' %s: %s%s"
 
 msgid "Slot Manager"
 msgstr "Paikkojen Hallinta"
@@ -18405,11 +18403,20 @@ msgstr "Sijainnin muistipaikka"
 msgid "Stream"
 msgstr "Suoratoisto"
 
+msgid "Stream Relay Settings"
+msgstr "Stream Relay Asetukset"
+
+msgid "Stream Relay Setup Actions"
+msgstr "Striimin välitysasetustoiminnot"
+
 msgid "Stream Relay URL"
 msgstr "Striimin välitys URL"
 
 msgid "Stream Relay port"
 msgstr "Striimin välitys portti"
+
+msgid "Stream Relay switch delay"
+msgstr "Striimin vaihto viive"
 
 msgid "Stream request"
 msgstr "Striimin pyyntö"
@@ -18787,7 +18794,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 14.11.2023\n"
+"Suomenkielinen käännös: 06.12.2023\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19519,20 +19526,17 @@ msgstr "Tämä asetus pakottaa HDR10-tilat UHD:lle"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Tämä asetus pakottaaa HLG-tilat UHD:lle"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "Määrittää, näytetäänkö kulunut aika positiivisena (+) vai negatiivisena (-)"
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Tämä asetus määrittää kuinka aika näytetään valmiustilassa, tai ei näytetä \"ollenkaan\""
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään suoraa lähetystä katsottaessa."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään tallennetta toistettaessa."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Tämä asetus määrittää kuinka aika näytetään valmiustilassa, tai ei näytetä \"ollenkaan\""
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Määrittää, minkävärinen taustaväri läpinäkyville kanavalogoille asetetaan."
@@ -19595,6 +19599,9 @@ msgstr "Määrittää, kuinka 720p 24Hz näytetään sinun TV:ssä (koska kaikki
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Määrittää, kuinka SD-kuva 24Hz näytetään (koska kaikki televisiot eivät suoraan tue tätä resoluutiota)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "Määrittää, näytetäänkö kulunut aika positiivisena (+) vai negatiivisena (-)"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Määrittää, kuinka normaalilla tarkkuudella oleva materiaali näytetään."
@@ -21416,6 +21423,9 @@ msgstr "Vastaanottimen kaukosäätimen äänenvoimakkuusnäppäimet ohjaavat tel
 msgid "Volume up"
 msgstr "Äänenvoimakkuus +"
 
+msgid "Vu+ MultiBoot"
+msgstr "Vu+ MultiBootti"
+
 msgid "W"
 msgstr "W"
 
@@ -21667,9 +21677,6 @@ msgstr "Mitä haluat tehdä?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Kun 'Käytössä', ajastin näkymä näyttää laitteen vapaan tilan. Tämä herättää laitteen lepotilasta."
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Kun päällä, piilotetut suosikkilistat näytetään. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään"
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kun päällä, PiP-kuvan voi sulkea exit-näppäimellä."
 
@@ -21690,9 +21697,6 @@ msgstr "Kun päällä, AIT-tiedot lähetetään http striimeissä. Tämä mahdol
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Kun päällä, EIT-tiedot lähetetään http streameissä. Tämä mahdollistaa EPG:n näkymisen asiakasvastaanottimessa."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Kun päällä, Enigma2 lataa linkittämättömät suosikkilistat. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Kun se on käytössä, SDT, BAT tiedot sisällytetään http streameihin."
@@ -23572,6 +23576,27 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Siirry päivämäärä / ajastin"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "Paikka %s - %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "Paikka %s - %s (Nykyinen image)"
+
+#, python-format
+#~ msgid "Slot '%s': %s%s"
+#~ msgstr "Paikka %s : %s%s"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Salli linkittämättömät suosikkilistat"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Kun päällä, Enigma2 lataa linkittämättömät suosikkilistat. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään"
 
 #~ msgid "Installing Please wait..."
 #~ msgstr "Asennetaan Odota..."

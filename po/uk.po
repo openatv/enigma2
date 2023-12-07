@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
-"PO-Revision-Date: 2023-11-24 17:28+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"PO-Revision-Date: 2023-12-06 03:26+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.2.1-rc\n"
+"X-Generator: Weblate 5.3-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -4446,7 +4446,7 @@ msgid "Configure if service picons will be shown in the service list."
 msgstr "Вкажіть, чи потрібно показати пікони у списку каналів."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
-msgstr "Налаштування шрифтів для зовнішніх субтитрів, чи застосовувати до них налаштування для субтитрів, що йдуть з ефіру"
+msgstr "Налаштування шрифтів для зовнішніх субтитрів, чи застосовувати до них налаштування для субтитрів, що йдуть з ефіру."
 
 msgid "Configure interface"
 msgstr "Налаштування інтерфейсу"
@@ -6890,7 +6890,7 @@ msgid "Enable Swap at startup"
 msgstr "Вкл. Swap при старті"
 
 msgid "Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column)?"
-msgstr "Включити дію кнопок вгору/вниз для функції 'все вгору/вниз\"? (на початок/в кінець колонки)"
+msgstr "Включити дію кнопок вгору/вниз для функції 'все вгору/вниз' (на початок/в кінець колонки)?"
 
 msgid "Enable VPS"
 msgstr "Увімкнути VPS"
@@ -6925,6 +6925,9 @@ msgstr "Включити швидке автосканування"
 #, python-format
 msgid "Enable auto fast scan for %s"
 msgstr "Включити швидке автосканування для %s"
+
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "Показати у режимі очікування значок Запис на LCD дисплеї"
 
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Включити блимаючий символ запису на LCD дисплеї"
@@ -7048,9 +7051,6 @@ msgstr "Включити поточне значення повзунка в к�
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Увімкніть, щоб відобразити запис 'Перезапустити мережу' в меню 'Розширення'."
-
-msgid "Enable unlinked bouquets"
-msgstr "Включити нез’язані фаворити"
 
 msgid "Enabled"
 msgstr "Ввімкнено"
@@ -8519,15 +8519,15 @@ msgstr "Геолокація не містить інформації про ч�
 msgid "Geolocation data has been used to set the time zone."
 msgstr "Для встановлення часового поясу було використано геолокацію."
 
+msgid "Geolocation data is not available."
+msgstr "Геолокація недоступна."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Неможливо отримати інформацію про геолокацію. Спробуйте пізніше."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr "Інформація про геолокацію для %s %s"
-
-msgid "Geolocation data is not available."
-msgstr "Геолокація недоступна."
 
 msgid "Georgia"
 msgstr "Грузія"
@@ -8603,9 +8603,6 @@ msgstr "Перейти :"
 
 msgid "Goto Date/Time"
 msgstr "Перехід Дата/Час"
-
-msgid "Goto Date/Timer"
-msgstr "Перейти Дата/Таймер"
 
 msgid "Goto Prime time"
 msgstr "Перейти Прайм-тайм"
@@ -9400,9 +9397,6 @@ msgstr "Щоб записати таймер, телевізор перевел�
 msgid "In progress"
 msgstr "В процесі"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "Показати у режимі очікування значок Запис на LCD дисплеї"
-
 msgid "Inaccessible"
 msgstr "Недоступний"
 
@@ -9786,6 +9780,9 @@ msgstr "Ірландія"
 
 msgid "Irish"
 msgstr "Ірландська"
+
+msgid "Is the keyboard working?"
+msgstr "Чи працює клавіатура?"
 
 msgid "Is this setting ok?"
 msgstr "Чи це налаштування є нормальним?"
@@ -11979,6 +11976,9 @@ msgstr "Нелінійний"
 
 msgid "None"
 msgstr "Нічого"
+
+msgid "NordVPN DNS"
+msgstr "Nord VPN DNS"
 
 msgid "Norfolk Island"
 msgstr "Острів Норфолк"
@@ -15356,6 +15356,9 @@ msgstr "Якщо вибрано 'так', в телегід буде включ�
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Якщо вибрано 'так', у списку каналів буде включений перегляд каналів. Натискання ОК відкриє канал в PiG-вікні, друге натиснення ОК закриє селектор каналів і перемкне на даний канал, натискання кнопки 'EXIT' закриє селектор каналів з поверненням на старий канал."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Якщо включено, то будуть завантажуватися невибрані фаворити користувача. Це означає, фаворити існують, але не були включені у файли bouquets.tv або bouquets.radio. Це дозволить Вам тримати свій власний фаворит в існуючому списку фаворитів."
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Виберіть 'Так', щоб увімкнути використання кнопок ВЛІВО/ВПРАВО для переміщення PageUp/PageDown, коли кнопки ВЛІВО/ВПРАВО не визначено. Це забезпечує попередню навігацію для користувачів, які віддають перевагу цьому."
 
@@ -15866,6 +15869,9 @@ msgstr "Виберіть каталог за замовчуванням, яки�
 msgid "Select the delay before the timer activates."
 msgstr "Виберіть затримку перед активацією таймера."
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr "Виберіть затримку для використання під час закриття послуги Stream Relay перед зміною завдання для тюнера. Використання '0' рекомендовано лише для декодера із кількома супутниковими тюнерами."
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Виберіть потрібну функцію і натисніть на \" OK \", щоб призначити. Використовуйте\" CH +/- \"для перемикання між списками. Виберіть призначену функцію і натисніть на \" OK \" щоб скасувати призначення. Використовуйте \" Наступний/Попередній \", щоб змінити порядок призначеної функції."
 
@@ -15917,6 +15923,9 @@ msgstr "Виберіть мову клавіатури в меню"
 
 msgid "Select the location in which to store the recording:"
 msgstr "Виберіть місце для збереження запису:"
+
+msgid "Select the location where the picon files will be installed."
+msgstr "Виберіть цільове розташування, куди буде встановлено файли піконів."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Виберіть виробника свого пристрою SCR. Якщо виробник не вказаний, встановіть 'SCR' на 'визначено користувачем' і введіть параметри пристрою вручну відповідно до його специфікації."
@@ -16007,9 +16016,6 @@ msgstr "Виберіть стартовий/початковий стовпец�
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Виберіть теги, які слід використовувати для цього запису."
-
-msgid "Select the location where the picon files will be installed."
-msgstr "Виберіть цільове розташування, куди буде встановлено файли піконів."
 
 msgid "Select the time after which this timer can start."
 msgstr "Виберіть час, після якого цей таймер може запуститися."
@@ -16492,7 +16498,7 @@ msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scr
 msgstr "Встановіть кількість рядків, які будуть збережені для виводу 'stout' і 'stderr' у скриптах."
 
 msgid "Set the position of the recording icons."
-msgstr "Встановіть положення значка запису"
+msgstr "Встановіть положення значка запису."
 
 msgid "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info."
 msgstr "Вкажіть тип вікна, який буде відображатися при натисканні на кнопку ОК (другий інфобар або інфо події)."
@@ -17822,16 +17828,8 @@ msgid "Slot '%s'"
 msgstr "Слот '%s'"
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "слот%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "слот%s - %s (поточний імідж)"
-
-#, python-format
-msgid "Slot '%s': %s%s"
-msgstr "Слот '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
+msgstr "Слот '%s' %s: %s%s"
 
 msgid "Slot Manager"
 msgstr "Менеджер слотів"
@@ -18416,11 +18414,20 @@ msgstr "Збережена позиція"
 msgid "Stream"
 msgstr "Потік"
 
+msgid "Stream Relay Settings"
+msgstr "Налаштування Stream Relay"
+
+msgid "Stream Relay Setup Actions"
+msgstr "Дії налаштувань Stream Relay"
+
 msgid "Stream Relay URL"
 msgstr "URL-адреса трансляції потоку"
 
 msgid "Stream Relay port"
 msgstr "Порт ретрансляції потоків"
+
+msgid "Stream Relay switch delay"
+msgstr "Затримка перемикання Stream Relay"
 
 msgid "Stream request"
 msgstr "Запит потоку"
@@ -18797,7 +18804,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 24.11.2023"
+msgstr "Переклад: kvinto - 06.12.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19452,7 +19459,7 @@ msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Ця опція дозволяє перемикати аудіосистему на BT динамік."
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
-msgstr "Можете змінити розмір шрифту по відношенню до скіна, цифра 1 збільшує розмір на 1 пункт і -1 зменшує розмір на 1 пункт"
+msgstr "Можете змінити розмір шрифту по відношенню до скіну, цифра 1 збільшує розмір на 1 пункт і -1 зменшує розмір на 1 пункт."
 
 msgid "This allows you change the number of rows shown."
 msgstr "Можете змінити кількість рядків."
@@ -19526,20 +19533,17 @@ msgstr "Ця опція дозволяє застосувати режими HDR
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Ця опція дозволяє примусово використовувати режими HLG для UHD"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "Цей параметр дозволяє Вам вибрати, як показати минулий час, як + або -"
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Цей параметр дозволяє Вам вибрати, як показати час що залишився або час що минув, або обидва."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Ця опція дозволяє вибрати можливість відображати годинник, або ні в Режимі очікування"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Цей параметр дозволяє Вам вибрати, як показати час що залишився або минув для каналу, що переглядається."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Цей параметр дозволяє Вам вибрати спосіб відображення часу залишилось/минуло для відтворення мультимедіа."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Ця опція дозволяє вибрати можливість відображати годинник, або ні в Режимі очікування"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Цей параметр дозволяє Вам вибрати колір фону для прозорих піконів."
@@ -19600,6 +19604,9 @@ msgstr "Цей параметр дозволяє Вам встановити п�
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Цей параметр дозволяє Вам вибрати, як відображати прогресивні SD 24Гц на вашому телевізорі.(Не всі телевізори підтримують цю роздільність)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "Цей параметр дозволяє Вам вибрати, як показати минулий час, як + або -"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Цей параметр дозволяє Вам встановити, як відображати роздільність для стандартного SD відео."
@@ -19780,7 +19787,7 @@ msgstr ""
 "Ви впевнені?"
 
 msgid "This will go fast forward/backward with time frames of x secs."
-msgstr "Тут задаєте час x для швидкого перемотування вперед і назад"
+msgstr "Тут задаєте час x для швидкого перемотування вперед і назад."
 
 msgid "This wizard has finished"
 msgstr "Цей майстер завершив роботу"
@@ -20256,7 +20263,7 @@ msgid "Try to prevent reboots for software errors and maintain of the availabili
 msgstr "Спробуйте запобігти перезавантаження при програмних помилках та збереження доступності до приймача."
 
 msgid "Try to send repeated commands if not all commands were executed (e.g. TV wake up, but not switched to correct input)."
-msgstr "Спробуйте надіслати повторювані команди, якщо не всі команди виконуються. (наприклад, пробудження телевізора, але не перемикання на правильний вхід.)"
+msgstr "Спробуйте надіслати повторювані команди, якщо не всі команди виконуються. (наприклад, пробудження телевізора, але не перемикання на правильний вхід)."
 
 msgid "Tsonga"
 msgstr "Цонга"
@@ -21418,6 +21425,9 @@ msgstr "Кнопки гучності на пульті дистанційног
 msgid "Volume up"
 msgstr "Гучність вище"
 
+msgid "Vu+ MultiBoot"
+msgstr "MultiBoot Vu+"
+
 msgid "W"
 msgstr "W"
 
@@ -21669,9 +21679,6 @@ msgstr "Що Ви хочете зробити?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Якщо 'Увімкнено', у вікні перегляду таймера відображатиметься вільне місце на цільовому пристрої. Це виведе пристрій із режиму сну."
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Якщо включено, то будуть завантажуватися невибрані фаворити користувача. Це означає, фаворити існують, але не були включені у файли bouquets.tv або bouquets.radio. Це дозволить Вам тримати свій власний фаворит в існуючому списку фаворитів"
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Вкажіть дію по кнопці exit, при активованому піп-вікні."
 
@@ -21692,9 +21699,6 @@ msgstr "Якщо задіяно, AIT дані будуть включені в H
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Якщо задіяно, дані EIT будуть включені в http потоки. Це дозволить клієнтам приймача показувати телегід."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Якщо включено, то будуть завантажуватися невибрані фаворити користувача. Це означає, фаворити існують, але не були включені у файли bouquets.tv або bouquets.radio. Це дозволить Вам додати свій власний фаворит в існуючий список фаворитів"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Якщо ввімкнено, дані SDT, BAT будуть долучені у потоки HTTP."
@@ -21787,7 +21791,7 @@ msgid "When enabled, teletext subtitles will be displayed at their original posi
 msgstr "Якщо включено, телетекст субтитрів буде відображатися у вихідному положенні."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
-msgstr "При включенні настройки VCR scart будуть відображатися в головному меню"
+msgstr "При включенні настройки VCR SCART будуть відображатися в головному меню."
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Показати довжину записів в списку фільмів (може знадобитися додатковий час для завантаження списку)."
@@ -23569,6 +23573,27 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Перейти Дата/Таймер"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "слот%s - %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "слот%s - %s (поточний імідж)"
+
+#, python-format
+#~ msgid "Slot '%s': %s%s"
+#~ msgstr "Слот '%s': %s%s"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Включити нез’язані фаворити"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Якщо включено, то будуть завантажуватися невибрані фаворити користувача. Це означає, фаворити існують, але не були включені у файли bouquets.tv або bouquets.radio. Це дозволить Вам додати свій власний фаворит в існуючий список фаворитів"
 
 #~ msgid "Installing Please wait..."
 #~ msgstr "Встановлення. Будь ласка, зачекайте..."

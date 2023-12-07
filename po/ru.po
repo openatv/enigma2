@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
 "PO-Revision-Date: 2023-11-26 19:27+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -6924,6 +6924,9 @@ msgstr "Быстрый автопоиск"
 msgid "Enable auto fast scan for %s"
 msgstr "Включить автоматический быстрый поиск для %s"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "Во время записи в режиме ожидания часы на экране ресивера будут мигать"
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Включить мигание значка на дисплее во время записи"
 
@@ -7046,9 +7049,6 @@ msgstr "Включить текущее значение ползунка в к�
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Включите, чтобы отобразить запись 'Перезапустить сеть' в меню 'Расширения'."
-
-msgid "Enable unlinked bouquets"
-msgstr "Включить несвязанные букеты"
 
 msgid "Enabled"
 msgstr "Включить"
@@ -8517,15 +8517,15 @@ msgstr "Геолокация не содержит информации о ча�
 msgid "Geolocation data has been used to set the time zone."
 msgstr "Геолокация была использована для установки часового пояса."
 
+msgid "Geolocation data is not available."
+msgstr "Геолокация недоступна."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Не удаётся получить информацию о геолокации. Повторите попытку позже."
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr "Информация о геолокации для %s %s"
-
-msgid "Geolocation data is not available."
-msgstr "Геолокация недоступна."
 
 msgid "Georgia"
 msgstr "Грузия"
@@ -8600,9 +8600,6 @@ msgid "Goto :"
 msgstr "Перейти "
 
 msgid "Goto Date/Time"
-msgstr "Перейти на Время/Дата"
-
-msgid "Goto Date/Timer"
 msgstr "Перейти на Время/Дата"
 
 msgid "Goto Prime time"
@@ -9398,9 +9395,6 @@ msgstr "Для записи по таймеру TV был переключён �
 msgid "In progress"
 msgstr "В процессе"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "Во время записи в режиме ожидания часы на экране ресивера будут мигать"
-
 msgid "Inaccessible"
 msgstr "Недоступно"
 
@@ -9784,6 +9778,9 @@ msgstr "Ирландия"
 
 msgid "Irish"
 msgstr "Ирландский"
+
+msgid "Is the keyboard working?"
+msgstr ""
 
 msgid "Is this setting ok?"
 msgstr "Использовать эти настройки?"
@@ -11977,6 +11974,9 @@ msgstr "Нелинейный"
 
 msgid "None"
 msgstr "Нет"
+
+msgid "NordVPN DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr "Остров Норфолк"
@@ -15354,6 +15354,9 @@ msgstr "Если выберите 'Да', в ТВ-гиде будет включ
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Если выберите 'Да', в списке каналов будет включен предпросмотр каналов. Нажатие ОК откроет канал в PiG-окне, второе нажатие ОК закроет селектор каналов и переключить на данный канал, нажатие кнопки 'EXIT' закроет селектор каналов с возвратом на старый канал."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов"
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Выберите 'Да', чтобы разрешить использование кнопок ВЛЕВО/ВПРАВО для перемещения по страницам вверх/вниз, когда кнопки ВЛЕВО/ВПРАВО в противном случае не определены. Это обеспечивает унаследованную навигацию для пользователей, которые предпочитают ее."
 
@@ -15864,6 +15867,9 @@ msgstr "Выберите каталог по умолчанию, который 
 msgid "Select the delay before the timer activates."
 msgstr "Выберите задержку перед активацией таймера."
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Выберите желаемую функцию и нажмите 'ОК', чтобы назначить её. Используйте 'CH +/-' для переключения между списками. Выберите назначенную функцию и нажмите 'ОК', чтобы отменить её назначение. Используйте 'Далее/Назад', чтобы изменить порядок назначенных функций."
 
@@ -15915,6 +15921,9 @@ msgstr "Выберите локаль из меню"
 
 msgid "Select the location in which to store the recording:"
 msgstr "Выберите место для хранения записи:"
+
+msgid "Select the location where the picon files will be installed."
+msgstr "Выберите целевое место, куда будут установлены файлы пиконов."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Выберите производителя Вашего устройства SCR. Если производитель не указан, установите для 'SCR' значение 'user defined' и введите параметры устройства вручную в соответствии с его спецификацией."
@@ -16005,9 +16014,6 @@ msgstr "Выберите стартовый/начальный столбец, �
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Выберите теги, которые следует использовать для этой записи."
-
-msgid "Select the location where the picon files will be installed."
-msgstr "Выберите целевое место, куда будут установлены файлы пиконов."
 
 msgid "Select the time after which this timer can start."
 msgstr "Выберите время, после которого этот таймер может запуститься."
@@ -17820,16 +17826,8 @@ msgid "Slot '%s'"
 msgstr "Слот '%s'"
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "слот %s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "слот%s - %s (текущий имидж)"
-
-#, python-format
-msgid "Slot '%s': %s%s"
-msgstr "Слот '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
+msgstr ""
 
 msgid "Slot Manager"
 msgstr "Менеджер слотов"
@@ -18414,11 +18412,20 @@ msgstr "Сохраненное положение"
 msgid "Stream"
 msgstr "Поток"
 
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay Setup Actions"
+msgstr ""
+
 msgid "Stream Relay URL"
 msgstr "URL-адрес ретрансляции потока"
 
 msgid "Stream Relay port"
 msgstr "Релейный порт потока"
+
+msgid "Stream Relay switch delay"
+msgstr ""
 
 msgid "Stream request"
 msgstr "Запрос потока"
@@ -19524,20 +19531,17 @@ msgstr "Эта опция позволяет принудительно уста
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Эта опция позволяет принудительно установить режимы HLG для UHD"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "Эта опция позволяет выбрать, как показать прошедшее время, как + или -"
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Эта опция позволяет Вам выбрать, как отображать оставшееся время, прошедшее время или и то, и другое."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Этот параметр позволяет выбрать, как отображать время или ничего в режиме ожидания"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Эта опция позволяет Вам выбрать, как отображать оставшееся/прошедшее время для прямого эфира."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Этот параметр позволяет выбрать способ отображения оставшегося/прошедшего времени при воспроизведении медиафайлов."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Этот параметр позволяет выбрать, как отображать время или ничего в режиме ожидания"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Эта опция позволяет выбрать цвет фона для прозрачных пиконов."
@@ -19598,6 +19602,9 @@ msgstr "Эта опция позволяет выбрать способ ото�
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Эта опция позволяет выбрать способ отображения SD прогрессивного разрешения 24 Гц на телевизоре. (так как не все телевизоры поддерживают эти разрешения)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "Эта опция позволяет выбрать, как показать прошедшее время, как + или -"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Эта опция позволяет выбрать способ отображения видео стандартной четкости на телевизоре."
@@ -21416,6 +21423,9 @@ msgstr "Клавиши громкости на пульте ДУ ресивер�
 msgid "Volume up"
 msgstr "Громкость выше"
 
+msgid "Vu+ MultiBoot"
+msgstr ""
+
 msgid "W"
 msgstr "З"
 
@@ -21667,9 +21677,6 @@ msgstr "Что бы Вы хотели сделать?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Когда 'Включено', в представлении таймера будет отображаться свободное место на целевом устройстве. Это выведет устройство из спящего режима."
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов"
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Если эта функция включена, PiP можно закрыть с помощью кнопки EXIT."
 
@@ -21690,9 +21697,6 @@ msgstr "Если задействовано, AIT данные будут вкл�
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Если эта функция включена, данные EIT будут включены в http-потоки. Это позволяет клиентскому ресиверу показывать EPG."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "При включении данные SDT, BAT будут включены в потоки http."
@@ -23567,6 +23571,27 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Перейти на Время/Дата"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "слот %s - %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "слот%s - %s (текущий имидж)"
+
+#, python-format
+#~ msgid "Slot '%s': %s%s"
+#~ msgstr "Слот '%s': %s%s"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Включить несвязанные букеты"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов"
 
 #~ msgid "Installing Please wait..."
 #~ msgstr "Установка, пожалуйста, подождите..."

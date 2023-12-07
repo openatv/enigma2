@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 11:43+0000\n"
+"POT-Creation-Date: 2023-12-05 21:44+0000\n"
 "PO-Revision-Date: 2023-08-12 03:37+0000\n"
 "Last-Translator: JPierre <jpcoquelle@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -6894,6 +6894,9 @@ msgstr "Activer le scan rapide automatique"
 msgid "Enable auto fast scan for %s"
 msgstr "Activer le scan rapide automatique pour %s"
 
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr "Dans l'enregistrement de veille sur l'écran LCD"
+
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Activer le symbole clignotant REC sur l'écran LCD"
 
@@ -7016,9 +7019,6 @@ msgstr "Activez la valeur actuelle du curseur à la fin de la barre de curseur."
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr ""
-
-msgid "Enable unlinked bouquets"
-msgstr "Activer les bouquets non liés"
 
 msgid "Enabled"
 msgstr "Activer"
@@ -8485,15 +8485,15 @@ msgstr "La géolocalisation ne contient pas d'informations sur le fuseau horaire
 msgid "Geolocation data has been used to set the time zone."
 msgstr "La géolocalisation a été utilisée pour définir le fuseau horaire."
 
+msgid "Geolocation data is not available."
+msgstr "La géolocalisation n'est pas disponible."
+
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr ""
 
 #, python-format
 msgid "Geolocation information for %s %s"
 msgstr ""
-
-msgid "Geolocation data is not available."
-msgstr "La géolocalisation n'est pas disponible."
 
 msgid "Georgia"
 msgstr "Géorgie"
@@ -8569,9 +8569,6 @@ msgstr "Aller à :"
 
 msgid "Goto Date/Time"
 msgstr "Aller à la Date/Heure"
-
-msgid "Goto Date/Timer"
-msgstr "Aller à la Date/Timer"
 
 msgid "Goto Prime time"
 msgstr "Aller à Primetime"
@@ -9366,9 +9363,6 @@ msgstr ""
 msgid "In progress"
 msgstr "En cours"
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "Dans l'enregistrement de veille sur l'écran LCD"
-
 msgid "Inaccessible"
 msgstr ""
 
@@ -9752,6 +9746,9 @@ msgstr "Irelande"
 
 msgid "Irish"
 msgstr "Irlandais"
+
+msgid "Is the keyboard working?"
+msgstr ""
 
 msgid "Is this setting ok?"
 msgstr "Est-ce que ce paramètre est correct ?"
@@ -11943,6 +11940,9 @@ msgstr ""
 
 msgid "None"
 msgstr "Aucun"
+
+msgid "NordVPN DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr "Iles Norfolk"
@@ -15319,6 +15319,9 @@ msgstr "Si mis à 'oui' vous pouvez prévisualiser une chaîne depuis la liste E
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Si mis à 'oui' vous pouvez prévisualiser une chaîne depuis la liste des chaînes. En appuyant sur OK pour prévisualiser la chaîne, appuyer une deuxième fois sur OK pour quitter et zapper sur cette chaîne, en appuyant sur EXIT vous retournerez sur la chaîne de départ."
 
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Lorsqu'activé, enigma2 chargera les bouquets non liés. Cela signifie que les bouquets qui sont disponibles mais pas repris dans les fichiers bouquets.tv ou bouquets.radio seront chargés. Cela vous permet par exemple de garder vos propres bouquets lorsque les bouquets téléchargés sont mis à jour"
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
@@ -15829,6 +15832,9 @@ msgstr ""
 msgid "Select the delay before the timer activates."
 msgstr ""
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Choisir la fonction désirée et appuyez sur 'OK' pour l'assigner. Utiliser 'CH+/- ' pour basculer entre les listes. Choisir une fonction assignée et appuyez sur 'OK' pour la dé-assigner. Utiliser 'Suivant/Précédent' pour changer l'ordre des fonctions assignées."
 
@@ -15879,6 +15885,9 @@ msgid "Select the locale from a menu"
 msgstr "Sélectionnez les paramètres régionaux à partir d’un menu"
 
 msgid "Select the location in which to store the recording:"
+msgstr ""
+
+msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -15966,9 +15975,6 @@ msgid "Select the starting/initial column to be activated on File Commander star
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
-
-msgid "Select the location where the picon files will be installed."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -17775,15 +17781,7 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s':  %s"
-msgstr "slot%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "slot%s - %s (image courante)"
-
-#, python-format
-msgid "Slot '%s': %s%s"
+msgid "Slot '%s' %s: %s%s"
 msgstr ""
 
 msgid "Slot Manager"
@@ -18368,10 +18366,19 @@ msgstr "Position enregistrée"
 msgid "Stream"
 msgstr "Flux"
 
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay Setup Actions"
+msgstr ""
+
 msgid "Stream Relay URL"
 msgstr ""
 
 msgid "Stream Relay port"
+msgstr ""
+
+msgid "Stream Relay switch delay"
 msgstr ""
 
 # TODO
@@ -19453,20 +19460,17 @@ msgstr "Cette option vous permet de forcer les modes HDR10 pour UHD"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Cette option vous permet de forcer les modes HLG pour l'UHD"
 
-msgid "This option allows you to choose how to display elapsed time, as + or -."
-msgstr "Cette option permet de choisir comment afficher le temps écoulé comme + ou -"
-
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Cette option vous permet de choisir comment afficher le temps restant, le temps écoulé ou les deux."
-
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
-msgstr "Cette option vous permet de choisir comment afficher l'heure ou rien en mode veille"
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
 msgstr "Cette option permet de choisir comment afficher le temps restant/écoulé pour le TV en direct."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Cette option permet de choisir comment afficher le temps restant/écoulé du lecteur de média."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Cette option vous permet de choisir comment afficher l'heure ou rien en mode veille"
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Cette option vous permet de choisir la couleur de fond pour les picons avec fond transparant."
@@ -19527,6 +19531,9 @@ msgstr "Cette option vous permet de choisir comment afficher 720p 24Hz sur votre
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Cette option vous permet de choisir comment afficher SD progressif 24Hz sur votre téléviseur (tous les téléviseurs ne supportent pas nécessairement ces résolutions)"
+
+msgid "This option allows you to choose how to display elapsed time, as + or -."
+msgstr "Cette option permet de choisir comment afficher le temps écoulé comme + ou -"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Cette option vous permet de choisir comment afficher la définition vidéo standard sur votre téléviseur."
@@ -21322,6 +21329,9 @@ msgstr "Les touches de volume de la télécommande du récepteur permettent de c
 msgid "Volume up"
 msgstr "Volume haut"
 
+msgid "Vu+ MultiBoot"
+msgstr ""
+
 msgid "W"
 msgstr "O"
 
@@ -21570,9 +21580,6 @@ msgstr "Que voulez-vous faire?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Lorsqu'activé, enigma2 chargera les bouquets non liés. Cela signifie que les bouquets qui sont disponibles mais pas repris dans les fichiers bouquets.tv ou bouquets.radio seront chargés. Cela vous permet par exemple de garder vos propres bouquets lorsque les bouquets téléchargés sont mis à jour"
-
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Lorsqu'activé, l'image dans l'image PiP sera fermé avec le bouton exit."
 
@@ -21593,9 +21600,6 @@ msgstr "Lorsqu'elle est activée, les données de l'AIT seront inclus dans les f
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Lorsqu'elle est activée, les données EIT seront inclus dans les flux http. Cela permet à un récepteur client d'afficher l'EPG."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Lorsqu'activé, enigma2 chargera les bouquets non liés. Cela signifie que les bouquets qui sont disponibles, mais pas repris dans les fichiers bouquets.tv ou bouquets.radio, seront chargés. Cela vous permet par exemple de garder vos propres bouquets lorsque les bouquets téléchargés sont mis à jour"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
@@ -23465,6 +23469,23 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Aller à la Date/Timer"
+
+#, python-format
+#~ msgid "Slot '%s':  %s"
+#~ msgstr "slot%s - %s"
+
+#, python-format
+#~ msgid "Slot '%s':  %s  -  Current"
+#~ msgstr "slot%s - %s (image courante)"
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Activer les bouquets non liés"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Lorsqu'activé, enigma2 chargera les bouquets non liés. Cela signifie que les bouquets qui sont disponibles, mais pas repris dans les fichiers bouquets.tv ou bouquets.radio, seront chargés. Cela vous permet par exemple de garder vos propres bouquets lorsque les bouquets téléchargés sont mis à jour"
 
 #~ msgid "none"
 #~ msgstr "aucun"
