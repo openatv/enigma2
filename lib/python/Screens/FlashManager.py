@@ -34,7 +34,7 @@ USER_AGENT = {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9
 
 
 def checkImageFiles(files):
-	return len([x for x in files if "kernel" in x and ".bin" in x or x in ("zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.tar.bz2", "rootfs.ubi", "rootfs.bin")]) >= 2
+	return len([x for x in files if "kernel" in x and ".bin" in x or x in ("zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.tar.bz2", "rootfs.ubi", "rootfs.bin", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2")]) >= 2
 
 
 class FlashManager(Screen, HelpableScreen):
@@ -379,13 +379,16 @@ class FlashImage(Screen, HelpableScreen):
 		print("[FlashManager] Current image slot is '%s'." % currentSlotCode)
 		choices = []
 		default = 0
+		currentMsg = "  -  %s" % _("Current")
+		slotMsg = _("Slot '%s' %s: %s%s")
 		for index, slotCode in enumerate(sorted(imageDictionary.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))):
 			print("[FlashManager] Image Slot '%s': %s." % (slotCode, str(imageDictionary[slotCode])))
+			slotType = "eMMC" if "mmcblk" in imageDictionary[slotCode]["device"] else "USB"
+			current = ""
 			if slotCode == currentSlotCode:
-				choices.append((_("Slot '%s':  %s  -  Current") % (slotCode, imageDictionary[slotCode]["imagename"]), (slotCode, True)))
+				current = currentMsg
 				default = index
-			else:
-				choices.append((_("Slot '%s':  %s") % (slotCode, imageDictionary[slotCode]["imagename"]), (slotCode, True)))
+			choices.append((slotMsg % (slotCode, slotType, imageDictionary[slotCode]["imagename"], current), (slotCode, True)))
 		choices.append((_("No, don't flash this image"), False))
 		self.session.openWithCallback(self.checkMedia, MessageBox, _("Do you want to flash the image '%s'?") % self.imageName, list=choices, default=default, windowTitle=self.getTitle())
 

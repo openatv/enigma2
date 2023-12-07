@@ -46,7 +46,7 @@ class QuadPiP(Screen):
 		else:
 			ref = service
 		if ref:
-			ref = streamrelay.streamrelayChecker(ref)
+			ref, isStreamRelay = streamrelay.streamrelayChecker(ref)
 			self.pipservice = eServiceCenter.getInstance().play(ref)
 			if self.pipservice and not self.pipservice.setTarget(self.decoderIdx):
 				self.setQpipMode(True, playAudio)

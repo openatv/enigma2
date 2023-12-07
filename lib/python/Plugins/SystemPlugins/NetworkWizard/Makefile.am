@@ -1,7 +1,5 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins/NetworkWizard
 
-SUBDIRS = meta
-
 install_PYTHON =	\
 	__init__.py \
 	NetworkWizard.py \

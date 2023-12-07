@@ -32,11 +32,11 @@ class Time(Setup):
 	def useGeolocation(self):
 		geolocationData = geolocation.getGeolocationData(fields="status,message,timezone,proxy")
 		if geolocationData.get("proxy", True):
-			self.setFootnote(_("Geolocation is not available."))
+			self.setFootnote(_("Geolocation data is not available."))
 			return
 		tz = geolocationData.get("timezone", None)
 		if tz is None:
-			self.setFootnote(_("Geolocation does not contain time zone information."))
+			self.setFootnote(_("Geolocation data does not contain time zone information."))
 		else:
 			areaItem = None
 			valItem = None
@@ -54,7 +54,7 @@ class Time(Setup):
 			if valItem is not None:
 				valItem[1].changed()
 			self["config"].invalidate(valItem)
-			self.setFootnote(_("Geolocation has been used to set the time zone."))
+			self.setFootnote(_("Geolocation data has been used to set the time zone."))
 
 	def yellow(self):  # Invoked from the Wizard.
 		self.useGeolocation()

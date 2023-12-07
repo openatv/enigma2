@@ -57,7 +57,6 @@ class Session:
 		self.summary = None
 		self.in_exec = False
 		self.screen = SessionGlobals(self)
-
 		self.shutdown = False
 		from Components.FrontPanelLed import frontPanelLed
 		frontPanelLed.init(self)
@@ -752,14 +751,9 @@ config.expert.autoinfo = ConfigOnOff(default=True)
 profile("Keyboard")
 from Components.InputDevice import keyboard
 
-
-def keyboardNotifier(configElement):
-	keyboard.activateKeyboardMap(configElement.index)
-
-
-config.keyboard = ConfigSubsection()
-config.keyboard.keymap = ConfigSelection(default=keyboard.getDefaultKeyboardMap(), choices=keyboard.getKeyboardMaplist())
-config.keyboard.keymap.addNotifier(keyboardNotifier)
+# These autocam settings need to defined before InfoBar and ChannelSelection are loaded.
+config.misc.autocamEnabled = ConfigYesNo(default=False)
+config.misc.autocamDefault = ConfigText(default="")
 
 profile("SimpleSummary")
 from Screens import InfoBar

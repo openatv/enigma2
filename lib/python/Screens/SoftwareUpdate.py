@@ -188,7 +188,8 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 #			status = status.get("status")
 			status = ""
 			message = ""
-			with urlopen("https://ampel.mynonpublic.com/Ampel/index.php") as fd:
+			boxName = BoxInfo.getItem("BoxName")
+			with urlopen(f"https://ampel.mynonpublic.com/status/index.php?boxname={boxName}", timeout=10) as fd:
 				tmpStatus = fd.read()
 				if b"rot.png" in tmpStatus:
 					status = "YELLOW" if exists("/etc/.beta") else "RED"
@@ -212,7 +213,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 			if message:
 				self["feedmessage"].setText(_(message))
 		except Exception as err:
-			print("[SoftwareUpdate] Error: Unable to get server status!  (%s)" % str(err))
+			print(f"[SoftwareUpdate] Error: Unable to get server status!  ({str(err)})")
 			self["feedstatus_off"].show()
 		for callback in self.onCheckTrafficLight:
 			callback()
@@ -240,7 +241,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 					for fetched in fetchedList:
 						oldVer = fetched[1] if fetched[1] else _("Current version unknown")
 						newVer = fetched[2] if fetched[2] else _("Updated version unknown")
-						self.updateList.append((fetched[0], fetched[1], "%s  ->  %s" % (oldVer, newVer), "upgradeable", upgradeablePng, divPng))
+						self.updateList.append((fetched[0], fetched[1], f"{oldVer}  ->  {newVer}", "upgradeable", upgradeablePng, divPng))
 					if self.updateList:
 						self.updateList.sort(key=lambda x: x[0])  # Sort by package name.
 						self["list"].setList(self.updateList)
@@ -251,7 +252,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 				else:
 					self.setStatus("error")
 				self.packageCount = len(self.updateList)
-				print("[SoftwareUpdate] %d packages available for update." % self.packageCount)
+				print(f"[SoftwareUpdate] {self.packageCount} packages available for update.")
 				self["package_count"].setText(str(self.packageCount))
 				for callback in self.onCheckTrafficLight:
 					callback()
@@ -299,7 +300,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 		if self.packageCount <= updateLimit:
 			self.keyUpdateCallback(2)
 		else:
-			print("[SoftwareUpdate] Warning: There are %d packages available, more than the %d maximum recommended, for an update!" % (self.packageCount, updateLimit))
+			print(f"[SoftwareUpdate] Warning: There are {self.packageCount} packages available, more than the {updateLimit} maximum recommended, for an update!")
 			message = [
 				_("Warning: There are %d update packages!") % self.packageCount,
 				_("There is a risk that your %s %s will not boot or may malfunction after such a large on-line update.") % getBoxDisplayName(),

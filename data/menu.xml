@@ -86,7 +86,7 @@ from Plugins.SystemPlugins.RemoteControlCode.plugin import RemoteControlCode
 self.session.open(RemoteControlCode)
 					</code>
 				</item>
-				<item key="keyboard" level="1" text="Keyboard Settings" weight="60"><setup setupKey="Keyboard" /></item>
+				<item key="keyboard" level="1" text="Keyboard Settings" weight="60"><screen module="InputDeviceSetup" screen="KeyboardSelection" /></item>
 				<item key="locale_setup" level="0" text="Locale / Language Settings" weight="65"><screen module="LocaleSelection" /></item>
 			</menu>
 			<!-- Menu / Setup / EPG -->
@@ -150,14 +150,17 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<!-- Menu / Setup / Common interface -->
 			<menu key="cam" level="1" text="Decryption &amp; Parental Control" weight="30">
 				<item key="softcam_settings" level="0" text="Softcam Settings" weight="50" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup" /></item>
-				<item key="oscam_info" level="0" text="OScam Information" weight="60" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>
-				<item key="cccam_info" level="0" text="CCcam Information" weight="70" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
+				<item key="autocam_settings" level="0" text="AutoCam Settings" weight="60" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="AutocamSetup" /></item>
+				<item key="cardserver_settings" level="0" text="Cardserver Settings" weight="70" requires="HAVEINITCARDSERVER"><screen module="SoftcamSetup" screen="CardserverSetup" /></item>
+				<item key="oscam_info" level="0" text="OScam Information" weight="80" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>
+				<item key="cccam_info" level="0" text="CCcam Information" weight="90" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
 				<item key="ci_selection" level="1" text="Common Interface Settings" weight="100" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
+				<item key="streamrelay_settings" level="2" text="Stream Relay Settings" weight="110" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="StreamRelaySetup" /></item>
 				<item key="parental_setup" level="0" text="Parental Control Settings" weight="200"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			</menu>
 			<!-- Menu / Setup / Software Management -->
 			<menu key="software_manager" level="0" text="Software Management" description="This menu offers options related managing the software on the %s %s." weight="50">
-				<item key="manage_plugins" level="0" text="Manage Plugins" description="Browse, install or remove plugins on a one by one basis." weight="10"><screen module="PluginBrowser" screen="PluginAction">3</screen></item>
+				<item key="manage_plugins" level="0" text="Manage Plugins" description="Browse, install or remove plugins on a one by one basis." weight="10"><screen module="PluginBrowser" screen="PackageAction">3</screen></item>
 				<item key="software_update" level="0" text="Software Update" description="Online update of your %s %s software." weight="11"><screen module="SoftwareUpdate" screen="SoftwareUpdate" /></item>
 				<item key="software_restore" level="0" text="Software Restore" description="Restore your %s %s with a new firmware." weight="12"><plugin system="SoftwareManager" screen="ImageWizard" /></item>
 				<item key="flash_online" level="0" text="Flash Online" description="Download and flash images on your %s %s." weight="13"><screen module="FlashManager" screen="FlashManager" /></item>
@@ -175,7 +178,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="backup_default" level="2" text="Show Default Backup Files" description="Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">5</plugin></item>
 					<item key="backup_additional" level="2" text="Select Additional Backup Files" description="Here you can specify additional files that should be added to the backup file." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">6</plugin></item>
 					<item key="backup_excluded" level="2" text="Select Excluded Backup Files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">7</plugin></item>
-					<item key="package_manager" level="2" text="Package Manager" description="View, install and remove available or installed packages." weight="16"><plugin system="SoftwareManager" screen="PacketManager" /></item>
+					<item key="package_manager" level="2" text="Package Manager" description="View, install and remove available or installed packages." weight="16"><screen module="PluginBrowser" screen="PackageAction">4</screen></item>
 					<item key="upgrade_source" level="2" text="Select Upgrade Source" description="Edit the upgrade source address." weight="16"><plugin system="SoftwareManager" screen="IPKGMenu" /></item>
 				</menu>
 			</menu>

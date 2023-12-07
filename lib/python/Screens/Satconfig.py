@@ -8,6 +8,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import ConfigNothing, ConfigYesNo, ConfigSelection, config, configfile, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
+from Components.International import international
 from Components.Label import Label
 from Components.NimManager import InitNimManager, LNB_CHOICES, UNICABLE_CHOICES, nimmanager
 from Components.SelectionList import SelectionEntryComponent, SelectionList
@@ -91,6 +92,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			"green": self.keySave,
 		}, prio=-2)
 		self.configMode = None
+		self.nimCountries = international.getNIMCountries()
 		self.nim = nimmanager.nim_slots[slotid]
 		self.nimConfig = self.nim.config
 		self.createSetup()
@@ -216,14 +218,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.createSetup()
 
 	def countrycodeToCountry(self, cc):
-		if not hasattr(self, 'countrycodes'):
-			self.countrycodes = {}
-			from Tools.CountryCodes import ISO3166
-			for country in ISO3166:
-				self.countrycodes[country[2]] = country[0]
-		if cc.upper() in self.countrycodes:
-			return self.countrycodes[cc.upper()]
-		return cc
+		return self.nimCountries.get(cc.upper(), cc).upper()
 
 	def createSimpleSetup(self, mode):
 		nim = self.nimConfig.dvbs
@@ -254,7 +249,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.list.append(getConfigListEntry(_("Latitude"), nim.latitude, _("Enter your current latitude. This is the number of degrees you are from the equator as a decimal.")))
 		self.list.append(getConfigListEntry(" ", nim.latitudeOrientation, _("Enter if you are North or South of the equator.")))
 		if BoxInfo.getItem("CanMeasureFrontendInputPower"):
-			self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), nim.powerMeasurement, _("Consult your receiver's manual for more information on power management."))
+			self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), nim.powerMeasurement, _("Consult your receiver's manual for more information on power management."))  # Should this be "measurement" or "management"?
 			self.list.append(self.advancedPowerMeasurement)
 			if nim.powerMeasurement.value:
 				self.list.append(getConfigListEntry(_("Power threshold in mA"), nim.powerThreshold, _("Consult your receiver's manual for more information on power threshold.")))
@@ -700,7 +695,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat, _("Set sequence repeats if your aerial system requires this. Normally if the aerial system has been configured correctly sequence repeats will not be necessary. If yours does, recheck you have command order set correctly.")))
 				if currLnb.diseqcMode.value == "1_2":
 					if BoxInfo.getItem("CanMeasureFrontendInputPower"):
-						self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), currLnb.powerMeasurement, _("Consult your receiver's manual for more information on power management."))
+						self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), currLnb.powerMeasurement, _("Consult your receiver's manual for more information on power management."))  # Should this be "measurement" or "management"?
 						self.list.append(self.advancedPowerMeasurement)
 						if currLnb.powerMeasurement.value:
 							self.list.append(getConfigListEntry(_("Power threshold in mA"), currLnb.powerThreshold, _("Consult your receiver's manual for more information on power threshold.")))

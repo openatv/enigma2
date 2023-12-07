@@ -45,6 +45,7 @@ class Navigation:
 
 		self.RecordTimer = None
 		self.isRecordTimerImageStandard = False
+		self.isCurrentServiceStreamRelay = False
 		self.skipServiceReferenceReset = False
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):  # Do we really need this ?
 			self.RecordTimer = p()
@@ -307,10 +308,13 @@ class Navigation:
 			return 0
 		from Components.ServiceEventTracker import InfoBarCount
 		InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
+		isStreamRelay = False
 		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl=False, forceRestart=forceRestart, adjust=adjust)):
 			if ref.flags & eServiceReference.isGroup:
 				oldref = self.currentlyPlayingServiceReference or eServiceReference()
-				playref = getBestPlayableServiceReference(ref, oldref) if ignoreStreamRelay else streamrelay.streamrelayChecker(getBestPlayableServiceReference(ref, oldref))
+				playref = getBestPlayableServiceReference(ref, oldref)
+				if not ignoreStreamRelay:
+					playref, isStreamRelay = streamrelay.streamrelayChecker(playref)
 				print("[Navigation] playref", playref)
 				if playref and oldref and playref == oldref and not forceRestart:
 					print("[Navigation] ignore request to play already running service(2)")
@@ -346,12 +350,24 @@ class Navigation:
 					self.skipServiceReferenceReset = True
 				self.currentlyPlayingServiceReference = playref
 				if not ignoreStreamRelay:
-					playref = streamrelay.streamrelayChecker(playref)
+					playref, isStreamRelay = streamrelay.streamrelayChecker(playref)
+				print("[Navigation] playref", playref.toString())
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 				#self.skipServiceReferenceReset = True
-				if self.pnav.playService(playref):
+
+				if config.misc.softcam_streamrelay_delay.value and self.isCurrentServiceStreamRelay:
+					self.skipServiceReferenceReset = False
+					self.isCurrentServiceStreamRelay = False
+					self.currentlyPlayingServiceReference = None
+					self.currentlyPlayingServiceOrGroup = None
+					print("[Navigation] Streamrelay was active -> delay the zap till tuner is freed")
+					self.retryServicePlayTimer = eTimer()
+					self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
+					self.retryServicePlayTimer.start(config.misc.softcam_streamrelay_delay.value, True)
+					return 0
+				elif self.pnav.playService(playref):
 					print("[Navigation] Failed to start", playref.toString())
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
@@ -361,6 +377,8 @@ class Navigation:
 						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 						self.retryServicePlayTimer.start(500, True)
 				self.skipServiceReferenceReset = False
+				if isStreamRelay and not self.isCurrentServiceStreamRelay:
+					self.isCurrentServiceStreamRelay = True
 				return 0
 		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
@@ -389,7 +407,7 @@ class Navigation:
 			if ref.flags & eServiceReference.isGroup:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
 			if type != (pNavigation.isPseudoRecording | pNavigation.isFromEPGrefresh):
-				ref = streamrelay.streamrelayChecker(ref)
+				ref, isStreamRelay = streamrelay.streamrelayChecker(ref)
 			service = ref and self.pnav and self.pnav.recordService(ref, simulate, type)
 			if service is None:
 				print("record returned non-zero")

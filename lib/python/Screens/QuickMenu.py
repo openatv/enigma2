@@ -15,20 +15,18 @@ from Components.NimManager import nimmanager
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, BackupSelection, RestoreScreen, getBackupFilename, getBackupPath, getOldBackupPath
-from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup
 from Screens.CCcamInfo import CCcamInfoMain
 from Screens.HarddiskSetup import HarddiskConvertExt4Selection, HarddiskFsckSelection, HarddiskSelection
 from Screens.MountManager import HddMount
 from Screens.NetworkSetup import *
 from Screens.OScamInfo import OscamInfoMenu
 from Screens.ParentalControlSetup import ProtectedScreen
-from Screens.PluginBrowser import PluginAction, PluginBrowser
+from Screens.PluginBrowser import PackageAction, PluginBrowser
 from Screens.RestartNetwork import RestartNetwork
 from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Screens.ShowSoftcamPackages import ShowSoftcamPackages
 from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.SoftcamSetup import SoftcamSetup
 from Screens.VideoMode import VideoSetup
@@ -433,7 +431,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("CCcam Information"):
 			self.session.open(CCcamInfoMain)
 		elif item == _("Download Softcams"):
-			self.session.open(ShowSoftcamPackages)
+			self.session.open(PackageAction, PackageAction.MODE_SOFTCAM)
 # ####### Select AV Setup Menu ##############################
 		elif item == _("Video Settings"):
 			self.session.open(VideoSetup)
@@ -487,16 +485,16 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Select Excluded Backup Files"):
 			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False, mode="backupfiles_exclude")
 		elif item == _("Software Manager Settings"):
-			self.session.open(SoftwareManagerSetup)
+			self.openSetup("SoftwareManager")
 # ####### Select PluginDownloadBrowser Menu ##############################
 		elif item == _("Plugin Browser"):
 			self.session.open(PluginBrowser)
 		elif item == _("Download Plugins"):
-			self.session.open(PluginAction, PluginAction.DOWNLOAD)
+			self.session.open(PackageAction, PackageAction.MODE_INSTALL)
 		elif item == _("Remove Plugins"):
-			self.session.open(PluginAction, PluginAction.REMOVE)
+			self.session.open(PackageAction, PackageAction.MODE_REMOVE)
 		elif item == _("Manage Plugins"):
-			self.session.open(PluginAction, PluginAction.MANAGE)
+			self.session.open(PackageAction, PackageAction.MODE_MANAGE)
 		elif item == _("Plugin Browser Settings"):
 			self.openSetup("PluginBrowser")
 		elif item == _("IPK Installer"):

@@ -1,7 +1,5 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins/SoftwareManager
 
-SUBDIRS = meta
-
 install_PYTHON = \
 	__init__.py \
 	plugin.py \
@@ -19,5 +17,4 @@ dist_install_DATA = \
 	remove.png \
 	update.png \
 	upgradeable.png \
-	upgrade.png \
-	setup.xml
+	upgrade.png

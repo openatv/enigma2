@@ -1,14 +1,13 @@
-from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, remove, stat
+from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, stat
 from os.path import dirname, exists, isdir, isfile, join as pathjoin
 from stat import ST_MTIME
 from pickle import dump, load
 from time import time
 
-from enigma import getDesktop, eRCInput, getPrevAsciiCode, eEnv
+from enigma import getDesktop
 
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import config
-from Components.Console import Console
 from Components.Harddisk import harddiskmanager
 from Components.Input import Input
 from Components.MenuList import MenuList
@@ -16,17 +15,11 @@ from Components.Opkg import OpkgComponent
 from Components.PluginComponent import plugins
 from Components.SelectionList import SelectionList
 from Components.SystemInfo import BoxInfo
-from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Opkg import Opkg
 from Screens.Screen import Screen
-from Screens.Setup import Setup
-from Screens.Standby import TryQuitMainloop
-from Tools.Directories import SCOPE_CURRENT_PLUGIN, SCOPE_GUISKIN, SCOPE_PLUGINS, resolveFilename
-from Tools.LoadPixmap import LoadPixmap
-from Tools.NumericalTextInput import NumericalTextInput
 
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
 from .ImageWizard import ImageWizard
@@ -76,11 +69,6 @@ class ImageBackup(ImageBackup):
 
 class RestoreMenu(RestoreMenu):
 	pass
-
-
-class SoftwareManagerSetup(Setup):
-	def __init__(self, session):
-		Setup.__init__(self, session, "SoftwareManager", plugin="SystemPlugins/SoftwareManager")
 
 
 class IPKGMenu(Screen):
@@ -229,304 +217,6 @@ class IPKGSource(Screen):
 
 	def keyNumberGlobal(self, number):
 		self["text"].number(number)
-
-
-class PacketManager(Screen, NumericalTextInput):
-	skin = """
-		<screen name="PacketManager" position="center,center" size="530,420" title="Packet Manager" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="list" render="Listbox" position="5,50" size="520,365" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (5, 1), size = (440, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
-							MultiContentEntryText(pos = (5, 26), size = (440, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (445, 2), size = (48, 48), png = 4), # index 4 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (5, 50), size = (510, 2), png = 5), # index 4 is the div pixmap
-						],
-					"fonts": [gFont("Regular", 22),gFont("Regular", 14)],
-					"itemHeight": 52
-					}
-				</convert>
-			</widget>
-		</screen>"""
-
-	def __init__(self, session, args=None):
-		Screen.__init__(self, session)
-		NumericalTextInput.__init__(self)
-		self.setTitle(_("Packet Manager"))
-		self.setUseableChars("1234567890abcdefghijklmnopqrstuvwxyz")
-		self["shortcuts"] = HelpableNumberActionMap(self, ["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"], {
-			"ok": self.go,
-			"back": self.exit,
-			"red": self.exit,
-			"green": self.reload,
-			"gotAsciiCode": self.keyGotAscii,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
-		}, prio=-1)
-		self.packageList = []
-		self.statuslist = []
-		self["list"] = List(self.packageList)
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Reload"))
-		self.packageList_updating = True
-		self.packetlist = []
-		self.installed_packetlist = {}
-		self.upgradeable_packages = {}
-		self.Console = Console()
-		self.cmdList = []
-		self.cachelist = []
-		self.cache_ttl = 86400  # 600 is default, 0 disables, Seconds cache is considered valid (24h should be okay for caching ipkgs).
-		self.cache_file = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache")  # Path to cache directory.
-		self.okText = _("After pressing OK, please wait!")
-		self.unwanted_extensions = ("-dbg", "-dev", "-doc", "-staticdev", "-src", "busybox")
-		self.opkg = OpkgComponent()
-		self.opkg.addCallback(self.opkgCallback)
-		self.onLayoutFinish.append(self.rebuildList)
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
-
-	def keyNumberGlobal(self, val):
-		key = self.getKey(val)
-		if key is not None:
-			keyvalue = key.encode("utf-8")
-			if len(keyvalue) == 1:
-				self.setNextIdx(keyvalue[0])
-
-	def keyGotAscii(self):
-		keyvalue = chr(getPrevAsciiCode())
-		if len(keyvalue) == 1:
-			self.setNextIdx(keyvalue[0])
-
-	def setNextIdx(self, char):
-		if char in ("0", "1", "a"):
-			self["list"].setIndex(0)
-		else:
-			idx = self.getNextIdx(char)
-			if idx and idx <= self["list"].count:
-				self["list"].setIndex(idx)
-
-	def getNextIdx(self, char):
-		for idx, i in enumerate(self["list"].list):
-			if i[0] and (i[0][0] == char):
-				return idx
-
-	def exit(self):
-		self.opkg.stop()
-		if self.Console is not None:
-			if len(self.Console.appContainers):
-				for name in list(self.Console.appContainers.keys()):
-					self.Console.kill(name)
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
-		self.close()
-
-	def reload(self):
-		if (exists(self.cache_file) is True):
-			remove(self.cache_file)
-			self.packageList_updating = True
-			self.rebuildList()
-
-	def setStatus(self, status=None):
-		if status:
-			self.statuslist = []
-			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-			if status == "update":
-				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
-				else:
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append((_("Package list update"), "", _("Trying to download a new packet list. Please wait..."), "", statuspng, divpng))
-				self["list"].setList(self.statuslist)
-			elif status == "error":
-				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
-				else:
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), "", _("An error occurred while downloading the packet list. Please try again."), "", statuspng, divpng))
-				self["list"].setList(self.statuslist)
-
-	def rebuildList(self):
-		self.setStatus("update")
-		self.inv_cache = 0
-		self.vc = valid_cache(self.cache_file, self.cache_ttl)
-		if self.cache_ttl > 0 and self.vc != 0:
-			try:
-				self.buildPacketList()
-			except:
-				self.inv_cache = 1
-		if self.cache_ttl == 0 or self.inv_cache == 1 or self.vc == 0:
-			self.run = 0
-			self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
-
-	def go(self, returnValue=None):
-		cur = self["list"].getCurrent()
-		if cur:
-			status = cur[3]
-			package = cur[0]
-			self.cmdList = []
-			if status == "installed":
-				self.cmdList.append((OpkgComponent.CMD_REMOVE, {"package": package}))
-				if len(self.cmdList):
-					self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n") + package + "\n" + self.okText)
-			elif status == "upgradeable":
-				self.cmdList.append((OpkgComponent.CMD_INSTALL, {"package": package}))
-				if len(self.cmdList):
-					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to upgrade the package:\n") + package + "\n" + self.okText)
-			elif status == "installable":
-				self.cmdList.append((OpkgComponent.CMD_INSTALL, {"package": package}))
-				if len(self.cmdList):
-					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n") + package + "\n" + self.okText)
-
-	def runRemove(self, result):
-		if result:
-			self.session.openWithCallback(self.runRemoveFinished, Opkg, cmdList=self.cmdList)
-
-	def runRemoveFinished(self):
-		self.session.openWithCallback(self.RemoveReboot, MessageBox, _("Remove Finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
-
-	def RemoveReboot(self, result):
-		if result is None:
-			return
-		if result is False:
-			cur = self["list"].getCurrent()
-			if cur:
-				item = self["list"].getIndex()
-				self.packageList[item] = self.buildEntryComponent(cur[0], cur[1], cur[2], "installable")
-				self.cachelist[item] = [cur[0], cur[1], cur[2], "installable"]
-				self["list"].setList(self.packageList)
-				write_cache(self.cache_file, self.cachelist)
-				self.reloadPluginlist()
-		if result:
-			self.session.open(TryQuitMainloop, retvalue=3)
-
-	def runUpgrade(self, result):
-		if result:
-			self.session.openWithCallback(self.runUpgradeFinished, Opkg, cmdList=self.cmdList)
-
-	def runUpgradeFinished(self):
-		self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
-
-	def UpgradeReboot(self, result):
-		if result is None:
-			return
-		if result is False:
-			cur = self["list"].getCurrent()
-			if cur:
-				item = self["list"].getIndex()
-				self.packageList[item] = self.buildEntryComponent(cur[0], cur[1], cur[2], "installed")
-				self.cachelist[item] = [cur[0], cur[1], cur[2], "installed"]
-				self["list"].setList(self.packageList)
-				write_cache(self.cache_file, self.cachelist)
-				self.reloadPluginlist()
-		if result:
-			self.session.open(TryQuitMainloop, retvalue=3)
-
-	def opkgCallback(self, event, param):
-		if event == OpkgComponent.EVENT_ERROR:
-			self.packageList_updating = False
-			self.setStatus("error")
-		elif event == OpkgComponent.EVENT_DONE:
-			if self.packageList_updating:
-				self.packageList_updating = False
-				if not self.Console:
-					self.Console = Console()
-				cmd = self.opkg.opkg + " list"
-				self.Console.ePopen(cmd, self.OpkgList_Finished)
-
-	def OpkgList_Finished(self, result, retval, extra_args=None):
-		if result:
-			result = result.replace("\n ", " - ")
-			self.packetlist = []
-			last_name = ""
-			for x in result.splitlines():
-				tokens = x.split(" - ")
-				name = tokens[0].strip()
-				if not any((name.endswith(x) or name.find("locale") != -1) for x in self.unwanted_extensions):
-					l = len(tokens)
-					version = l > 1 and tokens[1].strip() or ""
-					descr = l > 3 and tokens[3].strip() or l > 2 and tokens[2].strip() or ""
-					if name == last_name:
-						continue
-					last_name = name
-					self.packetlist.append([name, version, descr])
-		if not self.Console:
-			self.Console = Console()
-		cmd = self.opkg.opkg + " list_installed"
-		self.Console.ePopen(cmd, self.OpkgListInstalled_Finished)
-
-	def OpkgListInstalled_Finished(self, result, retval, extra_args=None):
-		if result:
-			self.installed_packetlist = {}
-			for x in result.splitlines():
-				tokens = x.split(" - ")
-				name = tokens[0].strip()
-				if not any(name.endswith(x) for x in self.unwanted_extensions):
-					l = len(tokens)
-					version = l > 1 and tokens[1].strip() or ""
-					self.installed_packetlist[name] = version
-		if not self.Console:
-			self.Console = Console()
-		cmd = "opkg list-upgradable"
-		self.Console.ePopen(cmd, self.OpkgListUpgradeable_Finished)
-
-	def OpkgListUpgradeable_Finished(self, result, retval, extra_args=None):
-		if result:
-			self.upgradeable_packages = {}
-			for x in result.splitlines():
-				tokens = x.split(" - ")
-				name = tokens[0].strip()
-				if not any(name.endswith(x) for x in self.unwanted_extensions):
-					l = len(tokens)
-					version = l > 2 and tokens[2].strip() or ""
-					self.upgradeable_packages[name] = version
-		self.buildPacketList()
-
-	def buildEntryComponent(self, name, version, description, state):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-		if not description:
-			description = "No description available."
-		imagePath = resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % state)
-		statusPng = LoadPixmap(cached=True, path=imagePath)
-		return ((name, version, _(description), state, statusPng, divpng))
-
-	def buildPacketList(self):
-		self.packageList = []
-		self.cachelist = []
-		if self.cache_ttl > 0 and self.vc != 0:
-			print("Loading packagelist cache from %s" % self.cache_file)
-			try:
-				self.cachelist = load_cache(self.cache_file)
-				if len(self.cachelist) > 0:
-					for x in self.cachelist:
-						self.packageList.append(self.buildEntryComponent(x[0], x[1], x[2], x[3]))
-					self["list"].setList(self.packageList)
-			except:
-				self.inv_cache = 1
-		if self.cache_ttl == 0 or self.inv_cache == 1 or self.vc == 0:
-			print("rebuilding fresh package list")
-			for x in self.packetlist:
-				status = "installable"
-				if x[0] in self.installed_packetlist:
-					status = "upgradeable" if x[0] in self.upgradeable_packages else "installed"
-				self.packageList.append(self.buildEntryComponent(x[0], x[1], x[2], status))
-				self.cachelist.append([x[0], x[1], x[2], status])
-			write_cache(self.cache_file, self.cachelist)
-			self["list"].setList(self.packageList)
-
-	def reloadPluginlist(self):
-		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 
 class IpkgInstaller(Screen):

@@ -178,6 +178,7 @@ public:
 
 		active_channel(const eDVBChannelID &chid, eDVBChannel *ch) : m_channel_id(chid), m_channel(ch) { }
 	};
+	void feStateChanged();
 
 private:
 	std::list<active_channel> m_active_channels, m_active_simulate_channels;
@@ -201,7 +202,6 @@ private:
 	sigc::connection m_cached_channel_state_changed_conn;
 	ePtr<eTimer> m_releaseCachedChannelTimer;
 	void DVBChannelStateChanged(iDVBChannel*);
-	void feStateChanged();
 #ifndef SWIG
 public:
 #endif

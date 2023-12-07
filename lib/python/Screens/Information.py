@@ -634,6 +634,8 @@ class DistributionInformation(InformationBase):
 		if bootCode:
 			info.append(formatLine("P1", _("MultiBoot boot mode"), MultiBoot.getBootCodeDescription(bootCode)))
 		info.append(formatLine("P1", _("Software MultiBoot"), _("Yes") if BoxInfo.getItem("multiboot", False) else _("No")))
+		if BoxInfo.getItem("HasKexecMultiboot"):
+			info.append(formatLine("P1", _("Vu+ MultiBoot"), _("Yes")))
 		info.append(formatLine("P1", _("Flash type"), about.getFlashType()))
 		xResolution = getDesktop(0).size().width()
 		yResolution = getDesktop(0).size().height()

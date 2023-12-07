@@ -350,7 +350,7 @@
 	</screen>
 
 	<!-- CHOICEBOX -->
-	<screen name="ChoiceBox_summary" position="0,0" size="800,480">
+	<screen name="ChoiceBoxSummary" position="0,0" size="800,480">
 		<widget source="parent.summary_list" render="Label" position="40,50" size="720,110" foregroundColor="white" font="FdLcD;85" halign="center" valign="center" zPosition="2" />
 		<widget source="parent.summary_selection" render="Label" position="40,200" size="720,160" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="top" zPosition="2" />
 	</screen>
@@ -361,7 +361,7 @@
 	</screen>
 
 	<!-- JOBVIEW SUMMARY -->
-	<screen name="JobView_summary" position="0,0" size="800,480"> 
+	<screen name="TaskViewSummary" position="0,0" size="800,480"> 
 		<widget source="parent.summary_job_name" render="Label" position="40,50" size="720,110" foregroundColor="white" font="FdLcD;85" halign="center" valign="center" zPosition="2" />
 		<widget source="parent.summary_job_task" render="Label" position="40,200" size="720,160" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="top" zPosition="2" />
 		<widget source="parent.summary_job_progress" render="Label" position="40,410" size="720,60" foregroundColor="white" font="FdLcDLight;60" halign="left" valign="center" zPosition="3">
@@ -422,7 +422,7 @@
 		</widget>
 	</screen>
 	<!-- EMC Player -->
-	<screen name="EMCSelection_summary" position="0,0" size="800,480"> 
+	<screen name="EMCSelectionSummary" position="0,0" size="800,480"> 
 		<widget source="parent.Title" render="Label" position="40,40" size="720,90" font="FdLcD;75" foregroundColor="white" halign="center" valign="center" zPosition="2" />
 		<widget source="parent.Service" render="Label" position="40,150" size="720,150" font="FdLcDLight;60" foregroundColor="white" halign="center" valign="top" zPosition="2">
 			<convert type="ServiceName">Name</convert>
@@ -453,14 +453,14 @@
 		</widget>
 	</screen>
 	<!-- NUMBERZAP -->
-	<screen name="NumberZap_summary" position="0,0" size="800,480">
+	<screen name="NumberZapSummary" position="0,0" size="800,480">
 		<widget source="parent.servicename" render="Label" position="40,50" size="720,110" foregroundColor="white" font="FdLcD;85" halign="center" valign="center" zPosition="2" />
 		<widget source="parent.number" render="Label" position="40,190" size="720,250" foregroundColor="white" font="FdLcD;90" halign="center" valign="center" zPosition="2" />
 	</screen>
 
 	<!-- PLUGIN BROWSER -->
 	<screen name="PluginBrowserSummary" position="0,0" size="800,480"> 
-		<widget source="parent.Title" render="Label" position="40,50" size="720,110" foregroundColor="white" font="FdLcD;85" halign="center" valign="center" zPosition="2" />
+		<widget source="Title" render="Label" position="40,50" size="720,110" foregroundColor="white" font="FdLcD;85" halign="center" valign="center" zPosition="2" />
 		<widget source="entry" render="Label" position="40,200" size="720,160" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="top" zPosition="2" />
 	</screen>
 
@@ -472,13 +472,13 @@
 	</screen>
 
 	<!-- ET PORTAL -->
-	<screen name="EtPortalScreen_summary" position="0,0" size="800,480">
+	<screen name="EtPortalScreenSummary" position="0,0" size="800,480">
 		<eLabel text="EtPortal" position="15,20" foregroundColor="white" size="670,120" font="FdLcD;70" halign="center" valign="top" noWrap="1" />
 		<widget source="parent.label" render="Label" position="white" size="670,200" font="FdLcD;60" halign="center" valign="top" />
 	</screen>
 
 	<!-- misc-->
-	<screen name="SimpleSummary" position="0,0" size="800,480"> 
+	<screen name="ScreenSummary" position="0,0" size="800,480"> 
 		<widget source="parent.Title" render="Label" position="40,190" size="720,200" font="FdLcD;60" halign="center" valign="top" />
 	</screen>
 
@@ -492,12 +492,12 @@
 	</screen>
 
 	<!-- ExtensionsList -->
-	<screen name="ExtensionsList_summary" position="0,0" size="800,480">
+	<screen name="ExtensionsListSummary" position="0,0" size="800,480">
 		<widget source="parent.Title" render="Label" position="40,20" size="720,376" font="FdLcD;70" halign="center" valign="center" />
 	</screen> 
 
 	<!-- EPG -->
-	<screen name="EPGExtensionsList_summary" position="0,0" size="800,480">
+	<screen name="EPGExtensionsListSummary" position="0,0" size="800,480">
 		<widget source="parent.Title" render="Label" position="40,20" size="720,250" font="FdLcD;80" halign="center" valign="center" foregroundColor="white" />
 	</screen> 
 </skin>

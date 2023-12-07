@@ -269,7 +269,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Network menu"), "Infobar/showNetworkMenu", textSetup))
 	ButtonSetupFunctions.append((_("VPN"), "Module/Screens.NetworkSetup/NetworkOpenvpn", textSetup))
 	ButtonSetupFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", textSetup))
-	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", textSetup))
+	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.Information/ServiceInformation", textSetup))
 	ButtonSetupFunctions.append((_("SkinSelector"), "Module/Screens.SkinSelector/SkinSelector", textSetup))
 	if BoxInfo.getItem("LCDSKINSetup"):
 		ButtonSetupFunctions.append((_("LCD SkinSelector"), "Module/Screens.SkinSelector/LcdSkinSelector", textSetup))

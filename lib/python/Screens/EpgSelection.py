@@ -691,7 +691,11 @@ class EPGSelection(Screen, HelpableScreen):
 			self["list"].moveTo(self["list"].instance.pageUp)
 
 	def toTop(self):
-		self["list"].moveTo(self["list"].instance.moveTop)
+		# dirty workaround for #3006 (pressing `0` no longer goes to first channel in bouquet)
+		if self.type == EPG_TYPE_GRAPH:
+			self.BouquetOK()
+		else:
+			self["list"].moveTo(self["list"].instance.moveTop)
 
 	def toEnd(self):
 		self["list"].moveTo(self["list"].instance.moveEnd)
