@@ -1550,7 +1550,10 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		menu = []
 		menu.append(ChoiceEntryComponent(key="menu", text=(_("Settings..."), boundFunction(self.keySetup))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
-			appendWhenValid(current, menu, (_("Show Transponder Information"), self.showServiceInformations), level=2)
+			if self.session.nav.currentlyPlayingServiceReference == current:
+				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
+			else:
+				appendWhenValid(current, menu, (_("Show Transponder Information"), boundFunction(self.showServiceInformations, current)), level=2)
 		if csel.bouquet_mark_edit == EDIT_OFF and not csel.entry_marked:
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
@@ -1938,9 +1941,9 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		eDVBDB.getInstance().reloadServicelist()
 		self.session.openWithCallback(self.close, MessageBox, _("The service list is reloaded."), MessageBox.TYPE_INFO, timeout=5)
 
-	def showServiceInformations(self):
-		from Screens.Information import ServiceInformation  # The import needs to be here
-		self.session.open(ServiceInformation, self.csel.getCurrentSelection())
+	def showServiceInformations(self, current):
+		from Screens.Information import ServiceInformation  # The import needs to be here to prevent cycle import
+		self.session.open(ServiceInformation, current)
 
 	def setStartupService(self):
 		self.session.openWithCallback(self.setStartupServiceCallback, MessageBox, _("Set startup service"), list=[(_("Only on startup"), "startup"), (_("Also on standby"), "standby")])
