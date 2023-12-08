@@ -2471,6 +2471,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif ref is None or ref != nref:
 			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
 		elif not preview_zap:
+			self.lastroot.value = ""  # force save root
 			self.saveRoot()
 			self.saveChannel(nref)
 			config.servicelist.lastmode.save()
@@ -2485,6 +2486,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.new_service_played = True
 			self.session.nav.playService(nref)
 			if not preview_zap:
+				self.lastroot.value = ""  # force save root
 				self.saveRoot()
 				self.saveChannel(nref)
 				config.servicelist.lastmode.save()
