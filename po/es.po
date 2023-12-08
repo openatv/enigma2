@@ -5224,11 +5224,11 @@ msgid "Could not open the file %s!"
 msgstr "¡No se pudo abrir el archivo %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "No se pudo grabar debido a un conflicto con el temporizador %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "No se pudo grabar debido al servicio inválido %s"
 
 #, python-format
@@ -12414,7 +12414,7 @@ msgid "No error"
 msgstr "Ningún error"
 
 #
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "No hay información del evento; grabando indefinidamente."
 
 #
@@ -14812,7 +14812,7 @@ msgstr "Grabación iniciada. Deteniendo Timeshift..."
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Grabación limitada en el tiempo por un conflicto con el temporizador %s"
 
 msgid "Record write error (no space on disk?)"

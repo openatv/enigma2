@@ -5504,11 +5504,11 @@ msgid "Could not open the file %s!"
 msgstr ""
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr ""
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr ""
 
 #, python-format
@@ -12976,7 +12976,7 @@ msgid "No error"
 msgstr "nepoznan kanal"
 
 #
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Ne najdem informacije o dogodku. Trajanje snemanja bo neomejeno."
 
 #
@@ -15487,7 +15487,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Čas snemanja je omejen zaradi konflikta s časovnikom %s"
 
 msgid "Record write error (no space on disk?)"

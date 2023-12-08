@@ -5054,11 +5054,11 @@ msgid "Could not open the file %s!"
 msgstr "Faili %s avamine nurjus!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Salvestamine nurjus. Vastuolus taimer %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Salvestamine nurjus. Kehtetu kanal %s"
 
 #, python-format
@@ -12045,7 +12045,7 @@ msgstr "LCN andmebaas on tühi. Soorita kanaliotsing."
 msgid "No error"
 msgstr "Tundmatu tõrge"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Saate lõpuaeg pole teada. Salvestatakse pidevalt."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -14344,7 +14344,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Salvestamine algas! Ajanihe peatatakse..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Salvestusaeg on piiratud teise taimeri %s tõttu"
 
 msgid "Record write error (no space on disk?)"

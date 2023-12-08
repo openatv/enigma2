@@ -5120,11 +5120,11 @@ msgid "Could not open the file %s!"
 msgstr ""
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr ""
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr ""
 
 #, python-format
@@ -11354,7 +11354,7 @@ msgstr ""
 msgid "No error"
 msgstr ""
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr ""
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -13523,7 +13523,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr ""
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr ""
 
 msgid "Record write error (no space on disk?)"

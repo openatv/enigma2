@@ -5205,11 +5205,11 @@ msgid "Could not open the file %s!"
 msgstr "Não foi possível abrir o ficheiro %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Não foi possível gravar devido a conflito com um temporizador %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr ""
 
 #, python-format
@@ -12316,7 +12316,7 @@ msgid "No error"
 msgstr "Sem erro"
 
 #
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Não foi encontrada informação do programa, a gravar indefinidamente."
 
 #
@@ -14692,7 +14692,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Tempo de gravação limitado devido a conflito %s"
 
 msgid "Record write error (no space on disk?)"

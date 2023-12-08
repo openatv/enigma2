@@ -5029,11 +5029,11 @@ msgid "Could not open the file %s!"
 msgstr "Nepavyko atverti failo %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Nepavyko įrašyti dėl konfliktų laikmatyje %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Nepavyko įrašyti dėl neveikiančių kanalų %s"
 
 #, python-format
@@ -11795,7 +11795,7 @@ msgstr "Lcn db įrašo nėra. Atlikite kanalų paiešką."
 msgid "No error"
 msgstr "Jokios klaidos"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Informacija apie įvykius nerasta, tęsiamas įrašymas."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -14015,7 +14015,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Įrašas pradėtas! Laiko poslinkis stabdomas..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Įrašo laikas apribotas dėl konfliktinio laikmačio %s"
 
 msgid "Record write error (no space on disk?)"

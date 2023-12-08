@@ -4975,11 +4975,11 @@ msgid "Could not open the file %s!"
 msgstr "Не можах да отворя файла %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Не можах да запиша поради конфликтен таймер %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Не можах да запиша поради ивалиден сервиз %s"
 
 #, python-format
@@ -11727,7 +11727,7 @@ msgstr "Няма вписване в LCN db.Моля, сканирай серв�
 msgid "No error"
 msgstr "Няма грешка"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Не е намерено инфо за събитието, запис неопределено време."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -13942,7 +13942,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Записът стартира! Спиране TimeShift сега ..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Времето за запис е ограничено поради конфликт с таймер %s"
 
 msgid "Record write error (no space on disk?)"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-05 21:44+0000\n"
-"PO-Revision-Date: 2023-11-26 19:27+0000\n"
+"PO-Revision-Date: 2023-12-08 07:43+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.2.1-rc\n"
+"X-Generator: Weblate 5.3-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -4444,7 +4444,7 @@ msgid "Configure if service picons will be shown in the service list."
 msgstr "Укажите, нужно ли показать пиконы в списке каналов."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
-msgstr "Настройка шрифтов для внешних субтитров, применять ли к ним настройки для субтитров, идущих с эфира"
+msgstr "Настройка шрифтов для внешних субтитров, применять ли к ним настройки для субтитров, идущих с эфира."
 
 msgid "Configure interface"
 msgstr "Настройка интерфейса"
@@ -5016,11 +5016,11 @@ msgid "Could not open the file %s!"
 msgstr "Не удалось открыть файл %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Запись невозможна - конфликт таймеров %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Запись невозможна, канал %s не существует"
 
 #, python-format
@@ -6888,7 +6888,7 @@ msgid "Enable Swap at startup"
 msgstr "Включить swap при запуске"
 
 msgid "Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column)?"
-msgstr "Включить кнопки ВВЕРХ/ВНИЗ для функции 'все вверх/вниз'? (в начале/конце столбца)"
+msgstr "Включить кнопки ВВЕРХ/ВНИЗ для функции 'все вверх/вниз'? (в начале/конце столбца)?"
 
 msgid "Enable VPS"
 msgstr "Включить VPS"
@@ -9780,7 +9780,7 @@ msgid "Irish"
 msgstr "Ирландский"
 
 msgid "Is the keyboard working?"
-msgstr ""
+msgstr "Клавиатура работает?"
 
 msgid "Is this setting ok?"
 msgstr "Использовать эти настройки?"
@@ -11785,7 +11785,7 @@ msgstr "Файл lcn db пуст. Пожалуйста выполните пои
 msgid "No error"
 msgstr "Нет ошибки"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Нет программы в канале, запись будет без времени окончания."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -11976,7 +11976,7 @@ msgid "None"
 msgstr "Нет"
 
 msgid "NordVPN DNS"
-msgstr ""
+msgstr "NordVPN DNS"
 
 msgid "Norfolk Island"
 msgstr "Остров Норфолк"
@@ -14005,7 +14005,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Начата запись! Остановка таймшифта..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Время записи ограничено ввиду конфликта таймера %s"
 
 msgid "Record write error (no space on disk?)"
@@ -15355,7 +15355,7 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press '
 msgstr "Если выберите 'Да', в списке каналов будет включен предпросмотр каналов. Нажатие ОК откроет канал в PiG-окне, второе нажатие ОК закроет селектор каналов и переключить на данный канал, нажатие кнопки 'EXIT' закроет селектор каналов с возвратом на старый канал."
 
 msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов"
+msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов."
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Выберите 'Да', чтобы разрешить использование кнопок ВЛЕВО/ВПРАВО для перемещения по страницам вверх/вниз, когда кнопки ВЛЕВО/ВПРАВО в противном случае не определены. Это обеспечивает унаследованную навигацию для пользователей, которые предпочитают ее."
@@ -15868,7 +15868,7 @@ msgid "Select the delay before the timer activates."
 msgstr "Выберите задержку перед активацией таймера."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
-msgstr ""
+msgstr "Выберите задержку, которая будет использоваться при закрытии службы Stream Relay перед перераспределением тюнера для другого канала. Использование '0' рекомендуется только для устройств с несколькими спутниковыми тюнерами."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Выберите желаемую функцию и нажмите 'ОК', чтобы назначить её. Используйте 'CH +/-' для переключения между списками. Выберите назначенную функцию и нажмите 'ОК', чтобы отменить её назначение. Используйте 'Далее/Назад', чтобы изменить порядок назначенных функций."
@@ -16496,7 +16496,7 @@ msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scr
 msgstr "Установите количество строк, которые будут сохранены для вывода 'stout' и 'stderr' в скриптах."
 
 msgid "Set the position of the recording icons."
-msgstr "Задайте расположение иконок записи"
+msgstr "Задайте расположение иконок записи."
 
 msgid "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info."
 msgstr "Укажите тип окна, который будет отображаться при нажатии на кнопку ОК второй инфобар или инфо события."
@@ -17827,7 +17827,7 @@ msgstr "Слот '%s'"
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
-msgstr ""
+msgstr "Слот '%s' %s: %s%s"
 
 msgid "Slot Manager"
 msgstr "Менеджер слотов"
@@ -18413,10 +18413,10 @@ msgid "Stream"
 msgstr "Поток"
 
 msgid "Stream Relay Settings"
-msgstr ""
+msgstr "Настройки Stream Relay"
 
 msgid "Stream Relay Setup Actions"
-msgstr ""
+msgstr "Действия по настройке Stream Relay"
 
 msgid "Stream Relay URL"
 msgstr "URL-адрес ретрансляции потока"
@@ -18425,7 +18425,7 @@ msgid "Stream Relay port"
 msgstr "Релейный порт потока"
 
 msgid "Stream Relay switch delay"
-msgstr ""
+msgstr "Задержка переключения Stream Relay"
 
 msgid "Stream request"
 msgstr "Запрос потока"
@@ -18802,7 +18802,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 26.11.2023"
+msgstr "Коррекция перевода Monja 07.12.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19457,7 +19457,7 @@ msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Эта опция позволяет переключать звук на BT-динамики."
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
-msgstr "Можете изменить размер шрифта по отношению к скину. Цифра 1 увеличивает размер на 1 пункт и -1 уменьшает размер на 1 пункт"
+msgstr "Можете изменить размер шрифта по отношению к скину. Цифра 1 увеличивает размер на 1 пункт и -1 уменьшает размер на 1 пункт."
 
 msgid "This allows you change the number of rows shown."
 msgstr "Это позволяет изменить количество отображаемых строк."
@@ -19785,7 +19785,7 @@ msgstr ""
 "Уверены, что хотите продолжить?"
 
 msgid "This will go fast forward/backward with time frames of x secs."
-msgstr "Здесь задаёте время x для быстрой перемотки вперёд и назад"
+msgstr "Здесь задаёте время x для быстрой перемотки вперёд и назад."
 
 msgid "This wizard has finished"
 msgstr "Этот мастер завершил работу"
@@ -20261,7 +20261,7 @@ msgid "Try to prevent reboots for software errors and maintain of the availabili
 msgstr "Постарайтесь предотвратить перезагрузку из-за программных ошибок и обеспечить доступность ресивера."
 
 msgid "Try to send repeated commands if not all commands were executed (e.g. TV wake up, but not switched to correct input)."
-msgstr "Попробуйте отправить повторяющиеся команды, если не все команды выполняются. (например, телевизор выходит из спящего режима, но не переключен на правильный вход)"
+msgstr "Попробуйте отправить повторяющиеся команды, если не все команды выполняются (например, телевизор выходит из спящего режима, но не переключён на правильный вход)."
 
 msgid "Tsonga"
 msgstr "Тсонга"
@@ -21424,7 +21424,7 @@ msgid "Volume up"
 msgstr "Громкость выше"
 
 msgid "Vu+ MultiBoot"
-msgstr ""
+msgstr "Мультизагрузка Vu+"
 
 msgid "W"
 msgstr "З"
@@ -21789,7 +21789,7 @@ msgid "When enabled, teletext subtitles will be displayed at their original posi
 msgstr "Если включено, телетекст субтитров будет отображаться в исходном положении."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
-msgstr "При включении настройки VCR scart будут отображаться в главном меню"
+msgstr "При включении настройки VCR scart будут отображаться в главном меню."
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Если эта функция включена, продолжительность каждой записи будет отображаться в списке фильмов (это может вызвать дополнительное время загрузки)."

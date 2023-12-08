@@ -5181,11 +5181,11 @@ msgid "Could not open the file %s!"
 msgstr "%s dosyası açılamıyor!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Çakışan zamanlayıcı %s nedeniyle kayıt yapılamadı"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Geçersiz kanal %s yüzünden kayıt yapılamadı"
 
 #, python-format
@@ -12319,7 +12319,7 @@ msgid "No error"
 msgstr "Hata yok"
 
 #
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Etkinlik bilgisi bulunamadı, süresiz kaydediliyor."
 
 #
@@ -14688,7 +14688,7 @@ msgstr "Kayıt başladı! Zaman-kaydırma şimdi durduruluyor ..."
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt süresi sınırlandırılmış"
 
 msgid "Record write error (no space on disk?)"

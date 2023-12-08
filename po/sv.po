@@ -5431,11 +5431,11 @@ msgid "Could not open the file %s!"
 msgstr "Det gick inte att öppna filen %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Kunde inte spela in på grund av timerkonflikt med %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Kunde inte spela in på grund av ogiltig kanal %s"
 
 #, python-format
@@ -12800,7 +12800,7 @@ msgid "No error"
 msgstr "okänd kanal"
 
 #
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Ingen programinfo hittades, inspelning oändlig."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -15267,7 +15267,7 @@ msgstr "Inspelning startad! Stoppar timeshift nu..."
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Inspelningstid begränsad på grund av timerkonflikt med %s"
 
 msgid "Record write error (no space on disk?)"

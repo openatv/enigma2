@@ -5277,11 +5277,11 @@ msgid "Could not open the file %s!"
 msgstr "Die Datei '%s' konnte nicht geöffnet werden!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Aufnahme wegen Timerkonflikt mit Timer '%s' nicht möglich!"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Ungültiger Dienst '%s' konnte nicht aufgezeichnet werden!"
 
 #, python-format
@@ -12459,7 +12459,7 @@ msgid "No error"
 msgstr "Kein Fehler"
 
 #
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Keine EPG-Daten gefunden! Starte unbegrenzte Aufnahme."
 
 #
@@ -14877,7 +14877,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Aufnahme gestartet! Timeshift wird gestoppt..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Aufnahmezeit aufgrund kollidierender Timer '%s' begrenzt"
 
 msgid "Record write error (no space on disk?)"

@@ -5019,11 +5019,11 @@ msgid "Could not open the file %s!"
 msgstr "Không thể mở tệp% s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Không thể ghi do bộ đếm thời gian xung đột%s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Không thể ghi do dịch vụ không hợp lệ%s"
 
 #, python-format
@@ -11914,7 +11914,7 @@ msgstr "Không có mục trong lcn db. Hãy làm một dịch vụ quét."
 msgid "No error"
 msgstr "lỗi không rõ"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Không tìm thấy thông tin sự kiện, ghi lại vô thời hạn."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -14157,7 +14157,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Ghi lại bắt đầu! Dừng timeshift ngay bây giờ ..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Ghi lại thời gian giới hạn do bộ đếm thời gian xung đột%s"
 
 msgid "Record write error (no space on disk?)"
