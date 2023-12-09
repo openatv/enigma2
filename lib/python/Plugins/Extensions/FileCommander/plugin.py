@@ -1359,9 +1359,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 							choiceList.append((_("Install the package"), "INSTALL"))
 						self.session.openWithCallback(archiveCallback, MessageBox, text="%s\n\n%s" % (promptMsg, path), list=choiceList, windowTitle=self.baseTitle)
 					elif fileType == ".ts":
-						self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, path))
+						if InfoBar and InfoBar.instance:
+							InfoBar.instance.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+							InfoBar.instance.movieSelected(eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, path), fromMovieSelection=False)
 					elif fileType in MOVIE_EXTENSIONS:
-						self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, path))
+						if InfoBar and InfoBar.instance:
+							InfoBar.instance.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+							InfoBar.instance.movieSelected(eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, path), fromMovieSelection=False)
 					elif fileType in DVD_EXTENSIONS:
 						self.session.open(DVDPlayer, dvd_filelist=[path])
 					elif fileType in AUDIO_EXTENSIONS:
