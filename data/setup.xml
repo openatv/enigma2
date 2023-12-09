@@ -742,6 +742,7 @@
 	<setup key="Softcam" title="Softcam Settings" showOpenWebif="1">
 		<item level="0" text="Select Softcam" description="Select a Softcam from the available list.">config.misc.softcams</item>
 		<item level="2" text="Show OScam/CCcam in Extension Menu" description="Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button).">config.softcam.showInExtensions</item>
+		<item level="2" text="Hide Server" description="Select 'Yes' to hide the server name and IP address of the server.">config.softcam.hideServerName</item>
 	</setup>
 	<setup key="SoftwareManager" title="Software Manager Settings" showOpenWebif="1">
 		<if conditional="BoxInfo.getItem('model').startswith('et')">
