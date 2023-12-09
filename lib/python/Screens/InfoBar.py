@@ -848,12 +848,15 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		pass
 
 	def showMovies(self):
-		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if ref and ':0:/' not in ref.toString():
-			self.playingservice = ref  # movie list may change the currently playing
+		if self.fromMovieSelection:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if ref and ':0:/' not in ref.toString():
+				self.playingservice = ref  # movie list may change the currently playing
+			else:
+				self.playingservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
+			self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 		else:
-			self.playingservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
-		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
+			self.close()
 
 	def movieSelected(self, service):
 		if service is not None:
