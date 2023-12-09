@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-05 21:44+0000\n"
-"PO-Revision-Date: 2023-12-07 05:27+0000\n"
+"PO-Revision-Date: 2023-12-08 07:43+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -4419,7 +4419,7 @@ msgid "Configure if service picons will be shown in the service list."
 msgstr "Määrittää, näytetäänkö kanavalogoja kanavalistassa."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
-msgstr "Muokkaa ulkoisen tekstityksen fonttia, vaihtoehtoina: normal, italic, bold ja bolditalic"
+msgstr "Muokkaa ulkoisen tekstityksen fonttia, vaihtoehtoina: normal, italic, bold ja bolditalic."
 
 msgid "Configure interface"
 msgstr "Määritä verkkosovitin"
@@ -4991,11 +4991,11 @@ msgid "Could not open the file %s!"
 msgstr "Tiedostoa %s ei voitu avata!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Ei voitu tallentaa ristiriitaisen ajastuksen takia: %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Ei voitu tallentaa virheellisen kanavan takia %s"
 
 #, python-format
@@ -11762,7 +11762,7 @@ msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
 msgid "No error"
 msgstr "Ei virhettä"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr ""
 "Lähetyksessä ei ole tietoa ohjelman loppumisajasta.\n"
 "Ohjelma tallennetaan jatkuvana tallennuksena."
@@ -13986,7 +13986,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Tallennus alkoi! Ajansiirto pysähtyy nyt..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Ajastusaika rajoitettu, ristiriita ajastukseen %s"
 
 msgid "Record write error (no space on disk?)"
@@ -15342,7 +15342,7 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press '
 msgstr "'Kyllä' valinnalla voit esikatsella kanavia kanavalistassa. Esikatsele valittua kanavaa painamalla 'OK', toinen 'OK' painallus vaihtaa kanavalle ja sulkee listan, EXIT palaa takaisin kanavalle jota aiemmin katselit."
 
 msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Kun päällä, piilotetut suosikkilistat näytetään. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään"
+msgstr "Kun päällä, piilotetut suosikkilistat näytetään. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään."
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Valitse 'Kyllä', jos haluat sallia VASEN/OIKEA painikkeiden käytön Sivu Ylös /Sivua Alas siirtymiseen, kun VASEN/OIKEA painikkeet ovat muuten määrittelemättömiä. Tämä tarjoaa perinteisen navigoinnin käyttäjille, jotka haluavat sitä."
@@ -16489,7 +16489,7 @@ msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scr
 msgstr "Asettaa skriptien 'stout'- ja 'sterr' tallennettavien rivien määrän."
 
 msgid "Set the position of the recording icons."
-msgstr "Aseta tallennuskuvakkeiden sijainti"
+msgstr "Aseta tallennuskuvakkeiden sijainti."
 
 msgid "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info."
 msgstr "Määritä näyttötyyppi, saat painamalla 'OK' kun tietopalkissa näkyy 2. tietopalkki pieni tai tapahtuman tiedot."
@@ -19452,7 +19452,7 @@ msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Tämän vaihtoehdon avulla voit vaihtaa äänen Bluetooth kaiuttimelle."
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
-msgstr "Määrittää tekstikoon suhteessa teeman määritykseen. Arvo 1 suurentaa tekstikokoa yhdellä ja arvo -1 vastaavasti pienentää yhdellä"
+msgstr "Määrittää tekstikoon suhteessa teeman määritykseen. Arvo 1 suurentaa tekstikokoa yhdellä ja arvo -1 vastaavasti pienentää yhdellä."
 
 msgid "This allows you change the number of rows shown."
 msgstr "Määrittää, montako riviä näytetään."
@@ -19782,7 +19782,7 @@ msgstr ""
 "Haluatko varmasti tehdä tämän?"
 
 msgid "This will go fast forward/backward with time frames of x secs."
-msgstr "Kun päällä, eteenpäin- ja taaksepäin kelauksessa käytetään aikahyppyjä. Yksittäisen hypyn pituuden voi määritellä erikseen"
+msgstr "Kun päällä, eteenpäin- ja taaksepäin kelauksessa käytetään aikahyppyjä. Yksittäisen hypyn pituuden voi määritellä erikseen."
 
 msgid "This wizard has finished"
 msgstr "Asennus on nyt valmis"
@@ -20258,7 +20258,7 @@ msgid "Try to prevent reboots for software errors and maintain of the availabili
 msgstr "Ohjelmistovirheen sattuessa, yritetään estää vastaanottinta uudelleen käynnistymästä."
 
 msgid "Try to send repeated commands if not all commands were executed (e.g. TV wake up, but not switched to correct input)."
-msgstr "Yritä lähettää toistuvia komentoja, jos kaikkia komentoja ei suoriteta. (esim. TV herää, mutta ei kytkeydy oikeaan tuloon.)"
+msgstr "Yritä lähettää toistuvia komentoja, jos kaikkia komentoja ei suoriteta. (esim. TV herää, mutta ei kytkeydy oikeaan tuloon)."
 
 msgid "Tsonga"
 msgstr "Tsonga"
@@ -21789,7 +21789,7 @@ msgid "When enabled, teletext subtitles will be displayed at their original posi
 msgstr "Kun päällä, teksti-tv pohjaiset tekstitykset näytetään alkuperäisellä paikallaan."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
-msgstr "Kun päällä, VCR SCART -valinta näytetään päävalikossa\""
+msgstr "Kun päällä, VCR SCART -valinta näytetään päävalikossa."
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Kun päällä, tallenteiden kestot näytetään tallenneluettelossa (saattaa hidastaa hieman näkymän latautumista)."

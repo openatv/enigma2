@@ -5261,11 +5261,11 @@ msgid "Could not open the file %s!"
 msgstr "Impossível abrir o PiP"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Não foi possível gravar devido a um conflito com o temporizador %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Não foi possível gravar. Canal inválido %s"
 
 #, fuzzy, python-format
@@ -12255,7 +12255,7 @@ msgstr ""
 msgid "No error"
 msgstr "serviço desconhecido"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Informações do evento indisponíveis. Gravando indefinidamente."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -14562,7 +14562,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr ""
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Tempo de gravação limitado devido a conflito com %s"
 
 msgid "Record write error (no space on disk?)"

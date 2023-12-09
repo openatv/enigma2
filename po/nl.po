@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-05 21:44+0000\n"
-"PO-Revision-Date: 2023-12-03 19:25+0000\n"
+"PO-Revision-Date: 2023-12-08 16:53+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -3631,7 +3631,7 @@ msgid "Cancel selection and exit"
 msgstr "Annuleer selectie en exit"
 
 msgid "Cancel the Reset Feeds command currently being processed"
-msgstr ""
+msgstr "Het nu lopende Reset Feeds commando annuleren"
 
 msgid "Cancel the bouquet selection"
 msgstr "Favorietenlijst selectie annuleren"
@@ -3708,7 +3708,7 @@ msgid "Cardserial"
 msgstr "Serienummer"
 
 msgid "Cardserver Settings"
-msgstr ""
+msgstr "Cardserver instellingen"
 
 msgid "Cartoon"
 msgstr "Tekenfilm"
@@ -4904,13 +4904,13 @@ msgid "Console"
 msgstr "Console"
 
 msgid "Console Network Packages"
-msgstr ""
+msgstr "Netwerk Console pakketten"
 
 msgid "Console Packages"
-msgstr ""
+msgstr "Console pakketten"
 
 msgid "Console Utility Packages"
-msgstr ""
+msgstr "Console tools pakketten"
 
 msgid "Constellation"
 msgstr "Situatie"
@@ -5094,11 +5094,11 @@ msgid "Could not open the file %s!"
 msgstr "Kon het bestand %s niet openen!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Kon niet opnemen vanwege conflicterende timer %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Kon niet opnemen vanwege een ongeldige service %s"
 
 #, python-format
@@ -5740,10 +5740,10 @@ msgid "Defaults"
 msgstr "Standaard waardes"
 
 msgid "Define Softcam For This Provider"
-msgstr ""
+msgstr "Softcam instellen voor deze provider"
 
 msgid "Define Softcam For This Service"
-msgstr ""
+msgstr "Softcam instellen voor deze zender"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Geef een aanvullende vertraging op in milliseconden voorafgaand aan de start van http(s) streams."
@@ -6478,7 +6478,7 @@ msgid "Do you want to install a channel list?"
 msgstr "Wilt u een zenderlijst installeren?"
 
 msgid "Do you want to install:"
-msgstr ""
+msgstr "Wilt u dit installeren:"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Wilt u de DVD in de speler afspelen?"
@@ -6498,7 +6498,7 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Wilt u uw %s %s opnieuw opstarten?"
 
 msgid "Do you want to remove:"
-msgstr ""
+msgstr "Wilt u dit verwijderen:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Wilt u uw instellingen nu terugzetten?"
@@ -6513,7 +6513,7 @@ msgid "Do you want to start a backup now?"
 msgstr "Wilt u nu een back-up maken?"
 
 msgid "Do you want to update:"
-msgstr ""
+msgstr "Wilt u dit updaten:"
 
 msgid "Documentary"
 msgstr "Documentaire"
@@ -7616,6 +7616,9 @@ msgstr "Fout: Er was een probleem bij het schrijven van '%s'!"
 #, python-format
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr ""
+"Fout: Er was een probleem bij de reset van de Feed!\n"
+"A.u.b. uw %s %s opnieuw starten, daarna het bestandssysteem op fouten controleren,\n"
+"voordat u deze opdracht opnieuw uitvoert."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Fout: Niet mogelijk om de benodigde map(pen) op het medium (b.v. USB stick of harde schijf) aan te maken! Controleer het medium en probeer het nog een keer."
@@ -8157,7 +8160,7 @@ msgid "File System Check"
 msgstr "Bestandssysteemcontrole"
 
 msgid "File System Packages"
-msgstr ""
+msgstr "Bestandssysteem pakketten"
 
 msgid "File appears to be busy.\n"
 msgstr "Bestand mogelijk in gebruik door ander proces.\n"
@@ -9709,7 +9712,7 @@ msgstr "Installeer"
 
 #, python-format
 msgid "Install %s"
-msgstr ""
+msgstr "%s installeren"
 
 #, python-format
 msgid "Install '%s' command"
@@ -9722,7 +9725,7 @@ msgid "Install Local Extension"
 msgstr "Installeer een ipk bestand"
 
 msgid "Install Plugin"
-msgstr ""
+msgstr "Plug-in installeren"
 
 msgid "Install Plugins"
 msgstr "Installeer plug-ins"
@@ -9743,7 +9746,7 @@ msgid "Install the package"
 msgstr "Het pakket installeren"
 
 msgid "Install the selected plugin / list of plugins"
-msgstr ""
+msgstr "Geselecteerde Plug-in / Plug-in lijst installeren"
 
 msgid "Installation finished."
 msgstr "Installatie mislukt."
@@ -9768,7 +9771,7 @@ msgid "Installing feeds from feed ..."
 msgstr "Installeert feeds uit feed ..."
 
 msgid "Installing package."
-msgstr ""
+msgstr "Pakket installeren."
 
 msgid "Installing plugins from IPK ..."
 msgstr "Installeer plug-ins uit een IPK..."
@@ -9882,7 +9885,7 @@ msgid "Irish"
 msgstr "Iers"
 
 msgid "Is the keyboard working?"
-msgstr ""
+msgstr "Functioneert het toetsenbord?"
 
 msgid "Is this setting ok?"
 msgstr "Zijn deze instellingen correct?"
@@ -11885,7 +11888,7 @@ msgstr "Geen vermelding in lcn db. Doe een zender scan."
 msgid "No error"
 msgstr "Geen fout"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Geen EPG gegevens gevonden. Opname voor onbepaalde tijd."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -14110,7 +14113,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Opname begonnen! Timeshift stopt nu ..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Opnametijd beperkt vanwege conflicterende timer %s"
 
 msgid "Record write error (no space on disk?)"

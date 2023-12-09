@@ -4982,11 +4982,11 @@ msgid "Could not open the file %s!"
 msgstr "无法打开文件 %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "无法录制,因为和定时器 %s 冲突"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "由于 %s 频道无效,无法录制"
 
 #, python-format
@@ -11737,7 +11737,7 @@ msgstr "没有进入LCN输入数据库.请做一个频道扫描."
 msgid "No error"
 msgstr "无错误"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "没有发现事件信息,录制无限期."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -13952,7 +13952,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "录制开始!现在停止时移 ..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "由于定时器 %s 冲突导致录像时间受限"
 
 msgid "Record write error (no space on disk?)"

@@ -5419,11 +5419,11 @@ msgid "Could not open the file %s!"
 msgstr ""
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr ""
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr ""
 
 #, python-format
@@ -12822,7 +12822,7 @@ msgid "No error"
 msgstr "nezināms kanāls"
 
 #
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Nav atrasta informācija par notikumiem, ieraksts turpinās."
 
 #
@@ -15286,7 +15286,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Ierobežots ieraksta laiks dēļ taimeru konflikta %s"
 
 msgid "Record write error (no space on disk?)"

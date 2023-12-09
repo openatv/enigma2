@@ -5015,11 +5015,11 @@ msgid "Could not open the file %s!"
 msgstr "Nie je možné otvoriť súbor %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Nahrávanie nie je možné z dôvodu konfliktu časovača %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Nie je možné nahrávať kvôli neplatnej stanici %s"
 
 #, python-format
@@ -11784,7 +11784,7 @@ msgstr "Žiadny záznam v databáze LCN. Prosím, vykonajte skenovanie staníc."
 msgid "No error"
 msgstr "Žiadna chyba"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Žiadne informácie o udalosti, spúšťa sa nahrávanie bez ukončenia."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -14004,7 +14004,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Nahrávanie spustené! Zastavuje sa timeshift…"
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Čas nahrávania je obmedzený kvôli konfliktu časovačov %s"
 
 msgid "Record write error (no space on disk?)"

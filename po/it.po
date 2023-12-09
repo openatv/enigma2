@@ -4981,11 +4981,11 @@ msgid "Could not open the file %s!"
 msgstr "Impossibile aprire il file %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Impossibile registrare a causa di un conflitto tra timer %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Impossibile registrare a causa di un servizio non valido %s"
 
 #, python-format
@@ -11745,7 +11745,7 @@ msgstr "Nessuna voce nel database LCN. Effettua una scansione dei servizi."
 msgid "No error"
 msgstr "Nessun errore"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Nessuna informazione sull'evento trovata, registrazione a tempo indeterminato."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -13963,7 +13963,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Registrazione iniziata! Arresto timeshift ora..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Tempo di registrazione limitato a causa di un conflitto tra timer %s"
 
 msgid "Record write error (no space on disk?)"

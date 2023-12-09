@@ -5453,11 +5453,11 @@ msgid "Could not open the file %s!"
 msgstr "Kunne ikke åpne filen %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Kunne ikke spille inn grunnet konflikt med timer %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Kunne ikke spille inn grunnet feil med kanal %s"
 
 #, python-format
@@ -12811,7 +12811,7 @@ msgid "No error"
 msgstr "Ukjent kanal"
 
 #
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Ingen program info funnet. Start ubegrenset innspilling."
 
 #
@@ -15262,7 +15262,7 @@ msgstr "Opptak startet! Stoppe timeshift nå..."
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Opptak begrenset grunnet motstridende timer %s"
 
 msgid "Record write error (no space on disk?)"

@@ -4985,11 +4985,11 @@ msgid "Could not open the file %s!"
 msgstr "Kunne ikke åbne fil %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer %s"
+msgid "Could not record due to conflicting timer: %s"
 msgstr "Kunne ikke optage pga. konfliktende Timer %s"
 
 #, python-format
-msgid "Could not record due to invalid service %s"
+msgid "Could not record due to invalid service: %s"
 msgstr "Kunne ikke optage pga. ugyldig kanal %s"
 
 #, python-format
@@ -11805,7 +11805,7 @@ msgstr "Ingen poster i LCN DB. Udfør venligst en kanalsøgning."
 msgid "No error"
 msgstr "Ingen fejl"
 
-msgid "No event info found, recording indefinitely."
+msgid "No event info found, recording default is infinite."
 msgstr "Ingen begivenhedsinfo fundet, optagelse i uendelighed."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -14043,7 +14043,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Optagelse startet! Stopper Timeshift nu..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
+msgid "Record time limited due to conflicting timer: %s"
 msgstr "Optagelsestid begrænset på grund af konfliktende Timer %s"
 
 msgid "Record write error (no space on disk?)"
