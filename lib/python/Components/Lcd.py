@@ -369,18 +369,6 @@ def InitLcd():
 		def setLEDblinkingtime(configElement):
 			ilcd.setLEDBlinkingTime(configElement.value)
 
-		def setPowerLEDstate(configElement):
-			fileWriteLine("/proc/stb/power/powerled", "on" if configElement.value else "off")
-
-		def setPowerLEDstate2(configElement):
-			fileWriteLine("/proc/stb/power/powerled2", "on" if configElement.value else "off")
-
-		def setPowerLEDstanbystate(configElement):
-			fileWriteLine("/proc/stb/power/standbyled", "on" if configElement.value else "off")
-
-		def setPowerLEDdeepstanbystate(configElement):
-			fileWriteLine("/proc/stb/power/suspendled", "on" if configElement.value else "off")
-
 		def setLedPowerColor(configElement):
 			fileWriteLine("/proc/stb/fp/ledpowercolor", configElement.value)
 
@@ -430,18 +418,6 @@ def InitLcd():
 			("1", _("8 character"))
 		], default="0")
 		config.usage.vfd_xcorevfd.addNotifier(setXcoreVFD)
-		config.usage.lcd_powerled = ConfigOnOff(default=True)
-		if exists("/proc/stb/power/powerled"):
-			config.usage.lcd_powerled.addNotifier(setPowerLEDstate)
-		config.usage.lcd_powerled2 = ConfigOnOff(default=True)
-		if exists("/proc/stb/power/powerled2"):
-			config.usage.lcd_powerled2.addNotifier(setPowerLEDstate2)
-		config.usage.lcd_standbypowerled = ConfigOnOff(default=True)
-		if exists("/proc/stb/power/standbyled"):
-			config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
-		config.usage.lcd_deepstandbypowerled = ConfigOnOff(default=True)
-		if exists("/proc/stb/power/suspendled"):
-			config.usage.lcd_deepstandbypowerled.addNotifier(setPowerLEDdeepstanbystate)
 
 		choices = [("0", _("off")), ("1", _("blue"))] if MACHINEBUILD == "dual" else [("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))]
 
@@ -653,7 +629,30 @@ def InitLcd():
 		config.lcd.ledbrightnessdeepstandby = ConfigNothing()
 		config.lcd.ledbrightnessdeepstandby.apply = lambda: doNothing()
 		config.lcd.ledblinkingtime = ConfigNothing()
-		config.usage.lcd_standbypowerled = ConfigNothing()
-		config.usage.lcd_deepstandbypowerled = ConfigNothing()
+
+	def setPowerLEDstate(configElement):
+		fileWriteLine("/proc/stb/power/powerled", "on" if configElement.value else "off")
+
+	def setPowerLEDstate2(configElement):
+		fileWriteLine("/proc/stb/power/powerled2", "on" if configElement.value else "off")
+
+	def setPowerLEDstanbystate(configElement):
+		fileWriteLine("/proc/stb/power/standbyled", "on" if configElement.value else "off")
+
+	def setPowerLEDdeepstanbystate(configElement):
+		fileWriteLine("/proc/stb/power/suspendled", "on" if configElement.value else "off")
+
+	if BoxInfo.getItem("PowerLed"):
+		config.usage.lcd_powerled = ConfigOnOff(default=True)
+		config.usage.lcd_powerled.addNotifier(setPowerLEDstate)
+	if BoxInfo.getItem("PowerLed2"):
+		config.usage.lcd_powerled2 = ConfigOnOff(default=True)
+		config.usage.lcd_powerled2.addNotifier(setPowerLEDstate2)
+	if BoxInfo.getItem("StandbyPowerLed"):
+		config.usage.lcd_standbypowerled = ConfigOnOff(default=True)
+		config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
+	if BoxInfo.getItem("SuspendPowerLed"):
+		config.usage.lcd_deepstandbypowerled = ConfigOnOff(default=True)
+		config.usage.lcd_deepstandbypowerled.addNotifier(setPowerLEDdeepstanbystate)
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)
