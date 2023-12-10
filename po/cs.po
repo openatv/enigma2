@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2023-12-07 05:27+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -2035,16 +2035,16 @@ msgstr "Přidat novou značku"
 msgid "Add provider"
 msgstr "Přidat poskytovatele"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Přidat nahrávání (zadat délku nahrávání)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Přidat záznam (zadejte čas konce záznamu)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Přidat nahrávání (na dobu neurčitou)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Přidat nahrávání (ukončit po současné události)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3799,10 +3799,10 @@ msgstr "Změnit příští časovač"
 msgid "Change pin code"
 msgstr "Změnit PIN kód"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Změnit záznam (Délku trvání)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Změnit nahrávání (čas konce)"
 
 msgid "Change repeat and delay settings?"
@@ -11782,7 +11782,7 @@ msgstr "Žádný záznam v lcn db. Proveďte prosím servisní sken."
 msgid "No error"
 msgstr "Bez chyby"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Žádná informace o pořadu. Nekonečné nahrávání."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17044,6 +17044,9 @@ msgstr "Zobrazit SD jako"
 msgid "Show Security packages"
 msgstr "Zobrazit balíčky zabezpečení"
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr "Zobrazit balíčky nastavení"
 
@@ -17819,8 +17822,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Slot %s: %s jako obnovení z USB"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Slot '%s'"
+msgid "Slot '%s' %s"
+msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -17986,7 +17989,7 @@ msgstr "Je nám líto, zdroje prochází údržbou, zkuste to prosím později."
 msgid "Sorry no backups found!"
 msgstr "Omlouváme se, nebyly nalezeny žádné zálohy!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Bohužel je možné nahrávat pouze 2 kanály najednou"
 
 msgid "Sorry uShare Config is Missing"
@@ -19902,13 +19905,13 @@ msgstr "Uložení Timeshiftu selhalo!"
 msgid "Time shift save recording (Select event)"
 msgstr "Uložení záznamu Timeshiftu (Vybrat událost)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Uložení záznamu Timeshiftu (zastavení po současné události)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift uložen na váš pevný disk!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Timeshift se uloží na konci pořadu!"
 
 msgid "Time style"
@@ -20465,6 +20468,10 @@ msgstr "USB 3.0 (zadní, vnější)"
 
 msgid "USB Stick"
 msgstr "USB zařízení"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB přepínač CHYBA! - již je na USB"
@@ -23568,6 +23575,10 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Slot '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Přejít na Datum/Časovač"

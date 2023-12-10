@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -2156,16 +2156,16 @@ msgstr ""
 msgid "Add provider"
 msgstr "Tambah penyedia"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Tambah rekaman (masukkan durasi rekaman)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Tambah rekaman (masukkan batas waktu rekaman)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Tambah rekaman (tak terbatas waktu)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Tambah rekaman (berhenti setelah acara saat ini)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3955,11 +3955,11 @@ msgstr "Change next timer"
 msgid "Change pin code"
 msgstr "Change pin code"
 
-msgid "Change recording (duration)"
-msgstr "Change recording (duration)"
+msgid "Change recording (Duration)"
+msgstr "Change recording (Duration)"
 
-msgid "Change recording (end time)"
-msgstr "Change recording (end time)"
+msgid "Change recording (End time)"
+msgstr "Change recording (End time)"
 
 msgid "Change repeat and delay settings?"
 msgstr "Change repeat and delay settings?"
@@ -12127,8 +12127,8 @@ msgstr "No entry in lcn db. Please do a service scan."
 msgid "No error"
 msgstr "unknown error"
 
-msgid "No event info found, recording default is infinite."
-msgstr "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
+msgstr "No event information found, recording default is 24 hours."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17491,6 +17491,9 @@ msgstr "Show SD as"
 msgid "Show Security packages"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr ""
 
@@ -18293,7 +18296,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18462,8 +18465,8 @@ msgstr "Sorry feeds are down for maintenance, please try again later."
 msgid "Sorry no backups found!"
 msgstr "Sorry no backups found!"
 
-msgid "Sorry only possible to record 2 channels at once"
-msgstr "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Sorry it is only possible to record 2 channels at once!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Sorry uShare Config is Missing"
@@ -18929,7 +18932,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Streaming recording ended"
-msgstr "Change recording (end time)"
+msgstr "Change recording (End time)"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -20395,14 +20398,14 @@ msgstr "Time shift save failed!"
 msgid "Time shift save recording (Select event)"
 msgstr "Time shift save recording (Select event)"
 
-msgid "Time shift save recording (stop after current event)"
-msgstr "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
+msgstr "Time shift save recording (Stop after current event)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Time shift saved to your hard disk drive!"
 
-msgid "Time shift will get saved at end of event!"
-msgstr "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
+msgstr "Time shift will get saved at end of event."
 
 #, fuzzy
 msgid "Time style"
@@ -20971,6 +20974,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "USB Stick"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr ""

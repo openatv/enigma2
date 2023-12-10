@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -2006,16 +2006,16 @@ msgstr "Добавяне на нов маркер"
 msgid "Add provider"
 msgstr "Добавяне на провайдер"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Добавяне на запис (въведете продължителност на запис)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Добавяне на запис (въведете край на записа)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Добавяне на запис (неограничено време)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Добавяне на запис (спиране след текущо събитие)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3766,10 +3766,10 @@ msgstr "Промени следващия таймер"
 msgid "Change pin code"
 msgstr "Промени ПИН код"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Промени записа (продължителност)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Промени записа (крайно време)"
 
 msgid "Change repeat and delay settings?"
@@ -11727,7 +11727,7 @@ msgstr "Няма вписване в LCN db.Моля, сканирай серв�
 msgid "No error"
 msgstr "Няма грешка"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Не е намерено инфо за събитието, запис неопределено време."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -16971,6 +16971,9 @@ msgstr "Показване на SD като"
 msgid "Show Security packages"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr ""
 
@@ -17744,7 +17747,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -17911,7 +17914,7 @@ msgstr "Съжаляваме, че емисиите са за поддръжка
 msgid "Sorry no backups found!"
 msgstr "За съжаление не са намерени резервни копия!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "За съжаление е възможно да се записват само 2 канала наведнъж"
 
 msgid "Sorry uShare Config is Missing"
@@ -19794,13 +19797,13 @@ msgstr "Timeshift неуспешно запазен!"
 msgid "Time shift save recording (Select event)"
 msgstr "Timeshift запазва запис (Изберете събитие)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift запазва запис (стоп след текущото събитие)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift запазен на вашия harddisk!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Timeshift ще се запази в края на събитието!"
 
 msgid "Time style"
@@ -20355,6 +20358,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "USB стик"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB превключвател ГРЕШКА! - вече на USB"

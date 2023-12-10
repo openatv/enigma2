@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
-"PO-Revision-Date: 2023-12-06 03:26+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"PO-Revision-Date: 2023-12-09 23:23+0000\n"
+"Last-Translator: VfBFan <VfBFan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2125,19 +2125,19 @@ msgid "Add provider"
 msgstr "Provider hinzufügen"
 
 #
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Aufnahme hinzufügen (Aufnahmelänge eingeben)"
 
 #
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Aufnahme hinzufügen (Aufnahmeendzeit eingeben)"
 
 #
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Aufnahme hinzufügen (unbegrenzt)"
 
 #
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Aufnahme hinzufügen (aktuelle Sendung)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3986,11 +3986,11 @@ msgid "Change pin code"
 msgstr "PIN-Code ändern"
 
 #
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Aufnahme ändern (Aufnahmelänge)"
 
 #
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Aufnahme ändern (Aufnahmeendzeit)"
 
 msgid "Change repeat and delay settings?"
@@ -12459,7 +12459,7 @@ msgid "No error"
 msgstr "Kein Fehler"
 
 #
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Keine EPG-Daten gefunden! Starte unbegrenzte Aufnahme."
 
 #
@@ -18125,6 +18125,9 @@ msgstr "SD anzeigen als"
 msgid "Show Security packages"
 msgstr "Sicherheitspakete anzeigen"
 
+msgid "Show Service Information"
+msgstr "Senderinformationen anzeigen"
+
 msgid "Show Setting packages"
 msgstr "Senderlistenpakete anzeigen"
 
@@ -18943,8 +18946,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Slot %s: %s als USB-Wiederherstellung"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Slot '%s'"
+msgid "Slot '%s' %s"
+msgstr "Slot '%s' %s"
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -19122,7 +19125,7 @@ msgstr ""
 msgid "Sorry no backups found!"
 msgstr "Keine Sicherungen gefunden!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Es können nur 2 Sender auf einmal aufgenommen werden!"
 
 msgid "Sorry uShare Config is Missing"
@@ -21152,13 +21155,13 @@ msgstr "Speichern von Timeshift fehlgeschlagen!"
 msgid "Time shift save recording (Select event)"
 msgstr "Timeshift-Aufnahme speichern (Wähle Sendung)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift-Aufnahme speichern (Stopp nach laufender Sendung)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift auf Festplatte gespeichert!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Timeshift wird am Ende des Ereignisses gespeichert!"
 
 msgid "Time style"
@@ -21766,6 +21769,10 @@ msgstr "USB 3.0 (Rückseite, außen)"
 #
 msgid "USB Stick"
 msgstr "USB-Stick"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr "USB-Slot %s%s"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "Fehler beim Wechseln auf USB! Bereits auf USB."
@@ -25115,6 +25122,10 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Slot '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Gehe zu Datum/Zeit"

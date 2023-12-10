@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2064,16 +2064,16 @@ msgstr "Yeni etiket ekle"
 msgid "Add provider"
 msgstr "Sağlayıcı ekle"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Kayıt ekle (kayıt süresini gir)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Kayıt ekle (kayıt bitiş zamanını gir)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Kayıt ekle (süresiz)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Kayıt ekle (şimdiki programdan sonra dursun)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3913,10 +3913,10 @@ msgstr "Bir sonraki zamanlayıcıyı değiştir"
 msgid "Change pin code"
 msgstr "PIN değiştir"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Kayıt değiştir (süre)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Kayıt değiştir (bitiş zamanı)"
 
 msgid "Change repeat and delay settings?"
@@ -12319,7 +12319,7 @@ msgid "No error"
 msgstr "Hata yok"
 
 #
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Etkinlik bilgisi bulunamadı, süresiz kaydediliyor."
 
 #
@@ -17866,6 +17866,9 @@ msgstr "SD yi göster"
 msgid "Show Security packages"
 msgstr "Güvenlik paketlerini göster"
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr "Ayar paketlerini göster"
 
@@ -18677,8 +18680,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Yuvas%s - %s USB Kurtarma"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Yuva '%s'"
+msgid "Slot '%s' %s"
+msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -18853,7 +18856,7 @@ msgstr "Maalesef beslemeler bakım nedeniyle kapalı, lütfen daha sonra tekrar 
 msgid "Sorry no backups found!"
 msgstr "Ne yazık ki yedekleme bulunamadı!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Aynı anda 2 kanalı kaydetmek için üzgünüm"
 
 msgid "Sorry uShare Config is Missing"
@@ -20849,13 +20852,13 @@ msgstr "Zaman-kaydırma saklanamadı!"
 msgid "Time shift save recording (Select event)"
 msgstr "Zaman kayması kaydetme kaydı (Etkinlik seç)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Zaman kayması kaydetme kaydı (geçerli olaydan sonra dur"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Zaman-kaydırma diskinize saklandı!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Zaman-kaydırma, etkinlik sonunda saklanacak!"
 
 msgid "Time style"
@@ -21456,6 +21459,10 @@ msgstr "USB 3.0 (Arka, dış)"
 
 msgid "USB Stick"
 msgstr "USB Bellek"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB anahtarı HATA! - zaten USB'de"
@@ -24743,6 +24750,10 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Yuva '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Tarih / Zamanlayıcı Git"

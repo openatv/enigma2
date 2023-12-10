@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2017,16 +2017,16 @@ msgstr ""
 msgid "Add provider"
 msgstr "Thêm nhà cung cấp"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Thêm ghi âm (nhập thời lượng ghi)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Thêm ghi âm (nhập thời gian kết thúc ghi âm)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Thêm ghi âm (vô thời hạn)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Thêm ghi âm (dừng sau sự kiện hiện tại)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3798,10 +3798,10 @@ msgstr "Change next timer"
 msgid "Change pin code"
 msgstr "Thay đổi bộ đếm thời gian tiếp theo"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Thay đổi bản ghi (thời lượng)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Thay đổi ghi âm (thời gian kết thúc)"
 
 msgid "Change repeat and delay settings?"
@@ -11914,7 +11914,7 @@ msgstr "Không có mục trong lcn db. Hãy làm một dịch vụ quét."
 msgid "No error"
 msgstr "lỗi không rõ"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Không tìm thấy thông tin sự kiện, ghi lại vô thời hạn."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17224,6 +17224,9 @@ msgstr "Hiển thị SD dưới dạng"
 msgid "Show Security packages"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr ""
 
@@ -18010,7 +18013,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18178,7 +18181,7 @@ msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng 
 msgid "Sorry no backups found!"
 msgstr "Xin lỗi không tìm thấy bản sao lưu!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Xin lỗi chỉ có thể ghi 2 kênh cùng một lúc"
 
 msgid "Sorry uShare Config is Missing"
@@ -20089,13 +20092,13 @@ msgstr "Lưu thời gian không thành công!"
 msgid "Time shift save recording (Select event)"
 msgstr "Timeshift lưu bản ghi (Chọn sự kiện)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift lưu bản ghi (dừng sau sự kiện hiện tại)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift lưu vào đĩa cứng của bạn!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Timeshift sẽ được lưu vào cuối sự kiện!"
 
 msgid "Time style"
@@ -20664,6 +20667,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "Thanh USB"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "Công tắc USB LRI! - đã có trên USB"

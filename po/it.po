@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
-"PO-Revision-Date: 2023-12-07 05:27+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"PO-Revision-Date: 2023-12-09 09:27+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -2004,16 +2004,16 @@ msgstr "Aggiungi nuovo tag"
 msgid "Add provider"
 msgstr "Aggiungi fornitore"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Aggiungi registrazione (inserisci la durata della registrazione)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Aggiungi registrazione (inserisci l'ora di fine della registrazione)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Aggiungi registrazione (a tempo indeterminato)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Aggiungi registrazione (interrompi dopo l'evento in corso)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3768,10 +3768,10 @@ msgstr "Cambia prossimo timer"
 msgid "Change pin code"
 msgstr "Cambia codice PIN"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Cambia registrazione (durata)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Cambia registrazione (ora di fine)"
 
 msgid "Change repeat and delay settings?"
@@ -11745,7 +11745,7 @@ msgstr "Nessuna voce nel database LCN. Effettua una scansione dei servizi."
 msgid "No error"
 msgstr "Nessun errore"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Nessuna informazione sull'evento trovata, registrazione a tempo indeterminato."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17003,6 +17003,9 @@ msgstr "Mostra SD come"
 msgid "Show Security packages"
 msgstr "Mostra pacchetti sicurezza"
 
+msgid "Show Service Information"
+msgstr "Mostra informazioni servizio"
+
 msgid "Show Setting packages"
 msgstr "Mostra pacchetti impostazioni"
 
@@ -17776,8 +17779,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Slot %s: %s come USB Recovery"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Slot '%s'"
+msgid "Slot '%s' %s"
+msgstr "Slot '%s' %s"
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -17943,7 +17946,7 @@ msgstr "Siamo spiacenti, i feed sono inattivi per manutenzione, riprova più tar
 msgid "Sorry no backups found!"
 msgstr "Spiacente, nessun Backup trovato!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Siamo spiacenti, è possibile registrare solo 2 canali contemporaneamente"
 
 msgid "Sorry uShare Config is Missing"
@@ -19859,13 +19862,13 @@ msgstr "Salvataggio timeshift non riuscito!"
 msgid "Time shift save recording (Select event)"
 msgstr "Registrazione di salvataggio Time Shift (Seleziona evento)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Salva come timeshift (stop dopo evento in corso)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift salvato sul disco rigido!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Il timeshift verrà salvato a fine evento!"
 
 msgid "Time style"
@@ -20422,6 +20425,10 @@ msgstr "USB 3.0 (posteriore, esterno)"
 
 msgid "USB Stick"
 msgstr "Chiavetta USB"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr "Slot USB %s%s"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "ERRORE di switch USB! - già sulla USB"
@@ -23524,6 +23531,10 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Slot '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Vai a data/timer"

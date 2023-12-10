@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2023-12-08 07:43+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -2009,16 +2009,16 @@ msgstr "Lisää uusi tunniste"
 msgid "Add provider"
 msgstr "Lisää p.tarjoaja"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Tallenna (Syötä tallennuksen kesto)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Tallenna (Syötä tallennuksen päättymisaika)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Tallenna (Jatkuva tallennus)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Tallenna (Lopeta nykyisen ohjelman jälkeen)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3778,10 +3778,10 @@ msgstr "Muuta seuraavaa ajastusta"
 msgid "Change pin code"
 msgstr "Vaihda tunnusluku"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Muuta tallennusta (kesto)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Muuta tallennusta (päättymisaika)"
 
 msgid "Change repeat and delay settings?"
@@ -11762,7 +11762,7 @@ msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
 msgid "No error"
 msgstr "Ei virhettä"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr ""
 "Lähetyksessä ei ole tietoa ohjelman loppumisajasta.\n"
 "Ohjelma tallennetaan jatkuvana tallennuksena."
@@ -17040,6 +17040,9 @@ msgstr "Näytä SD näin"
 msgid "Show Security packages"
 msgstr "Näytä turvallisuuspaketit"
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr "Näytä Asetus paketit"
 
@@ -17813,8 +17816,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Paikka %s: %s USB palautuksena"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Paikka %s"
+msgid "Slot '%s' %s"
+msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -17980,7 +17983,7 @@ msgstr "Syötteet eivät ole käytössä huollon takia, yritä myöhemmin uudell
 msgid "Sorry no backups found!"
 msgstr "Varmuuskopioita ei löydy!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Vain 2 kanavaa voidaan tallentaa kerralla"
 
 msgid "Sorry uShare Config is Missing"
@@ -19902,13 +19905,13 @@ msgstr "Ajansiirron tallennus epäonnistui!"
 msgid "Time shift save recording (Select event)"
 msgstr "Ajansiirron muunto tallenteeksi (valitse ohjelma)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Ajansiirron muunto tallenteeksi (pysäytä nykyisen ohjelman jälkeen)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Ajansiirto tallennettu kiintolevylle!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Ajansiirto tallennetaan ohjelman lopussa!"
 
 msgid "Time style"
@@ -20468,6 +20471,10 @@ msgstr "USB 3.0 (takana)"
 
 msgid "USB Stick"
 msgstr "USB muistitikku"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB vaihdon VIRHE! - jo USB:lla"
@@ -23576,6 +23583,10 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Paikka %s"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Siirry päivämäärä / ajastin"

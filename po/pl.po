@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
-"PO-Revision-Date: 2023-12-07 05:27+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"PO-Revision-Date: 2023-12-10 10:10+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -2046,16 +2046,16 @@ msgstr "Dodaj nowy znacznik"
 msgid "Add provider"
 msgstr "Dodaj dostawcę"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Dodaj nagrywanie (wpisz czas trwania nagrywania)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Dodaj nagrywanie (wpisz czas zakończenia nagrywania)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Dodaj nagrywanie (na czas nieokreślony)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Dodaj nagrywanie (stop po aktualnym wydarzeniu)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3810,10 +3810,10 @@ msgstr "Zmień następny timer"
 msgid "Change pin code"
 msgstr "Zmień kod pin"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Zmień nagrywanie (czas trwania)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Zmień nagrywanie (czas zakończenia)"
 
 msgid "Change repeat and delay settings?"
@@ -4354,7 +4354,7 @@ msgid "Common Interface Assignment"
 msgstr "Zadania modułu CI"
 
 msgid "Common Interface Settings"
-msgstr "Wspólne ustawienia CI"
+msgstr "Ustawienia CI"
 
 msgid "Common Settings"
 msgstr "Ustawienia wspólne"
@@ -5026,11 +5026,11 @@ msgstr "Nie można otworzyć pliku %s!"
 
 #, python-format
 msgid "Could not record due to conflicting timer: %s"
-msgstr "Nie można nagrywać z powodu konfliktu zaprogramowanych nagrań %s"
+msgstr "Nie można nagrać z powodu konfliktu timera: %s"
 
 #, python-format
 msgid "Could not record due to invalid service: %s"
-msgstr "Nie można nagrywać z powodu nieprawidłowego %s kanału"
+msgstr "Nie można nagrać z powodu nieprawidłowego %s kanału"
 
 #, python-format
 msgid "Could not save configuration file %s!"
@@ -11795,8 +11795,8 @@ msgstr "Brak wpisu w lcn db. Wykonaj skanowanie usługi."
 msgid "No error"
 msgstr "Brak błędów"
 
-msgid "No event info found, recording default is infinite."
-msgstr "Nie znaleziono informacji o wydarzeniu, nagrywanie na czas nieokreślony."
+msgid "No event information found, recording default is 24 hours."
+msgstr "Nie znaleziono informacji o wydarzeniu, domyślne nagrywanie jest nieskończone."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "'Przewijanie' nie dostępne (jeszcze)... można użyć przycisków numerycznych aby przeskoczyć w przód/tył!"
@@ -14016,7 +14016,7 @@ msgstr "Nagrywanie rozpoczęte! Zatrzymywanie timeshift'u..."
 
 #, python-format
 msgid "Record time limited due to conflicting timer: %s"
-msgstr "Czas nagrywania ograniczony z powodu konfliktu timera %s"
+msgstr "Czas nagrywania ograniczony z powodu konfliktu timera: %s"
 
 msgid "Record write error (no space on disk?)"
 msgstr "Błąd zapisu nagrywania (brak miejsca na dysku?)"
@@ -17057,6 +17057,9 @@ msgstr "Pokaż SD jako"
 msgid "Show Security packages"
 msgstr "Pokaż pakiety bezpieczeństwa"
 
+msgid "Show Service Information"
+msgstr "Pokaż informacje serwisowe"
+
 msgid "Show Setting packages"
 msgstr "Pokaż pakiety ustawień"
 
@@ -17832,8 +17835,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Slot %s: %s jako USB Recovery"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Slot '%s'"
+msgid "Slot '%s' %s"
+msgstr "Slot '%s' %s"
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -18000,7 +18003,7 @@ msgstr "Przepraszamy, feedy są wyłączone z powodu konserwacji, spróbuj ponow
 msgid "Sorry no backups found!"
 msgstr "Nie znaleziono kopii zapasowej!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Niestety, możliwe jest nagrywanie tylko dwóch kanałów naraz"
 
 msgid "Sorry uShare Config is Missing"
@@ -19916,13 +19919,13 @@ msgstr "Timeshift błąd zapisu!"
 msgid "Time shift save recording (Select event)"
 msgstr "Timeshift zapisz nagranie (wybierz wydarzenie)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Zapisz nagrywanie (zatrzymaj po bieżącym wydarzeniu)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift zapisany na dysku twardym!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Timeshift będzie zapisywany tylko do końca danego wydarzenia!"
 
 msgid "Time style"
@@ -20479,6 +20482,10 @@ msgstr "USB 3.0 (Z tyłu, zewnętrzny)"
 
 msgid "USB Stick"
 msgstr "Pamięć USB"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr "USB slot %s%s"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "Przełącznik USB BŁĄD! - już na USB"
@@ -23582,6 +23589,10 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Slot '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Idź do Data/Czas"

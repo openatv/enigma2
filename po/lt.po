@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2048,16 +2048,16 @@ msgstr "Pridėti naują žymę"
 msgid "Add provider"
 msgstr "Pridėti teikėją"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Pradėti įrašymą (įrašykite įrašo trukmę)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Pradėti įrašymą (įrašykite įrašymo pabaigą)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Pradėti įrašymą (neribotam laikui)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Pradėti įrašymą (stabdyti po šio įvykio)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3814,10 +3814,10 @@ msgstr "Keisti kitą laikmatį"
 msgid "Change pin code"
 msgstr "Keisti PIN kodą"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Keisti įrašymą (nurodyti trukmę)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Keisti įrašymą (nurodyti pabaigos laiką)"
 
 msgid "Change repeat and delay settings?"
@@ -11795,7 +11795,7 @@ msgstr "Lcn db įrašo nėra. Atlikite kanalų paiešką."
 msgid "No error"
 msgstr "Jokios klaidos"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Informacija apie įvykius nerasta, tęsiamas įrašymas."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17045,6 +17045,9 @@ msgstr "Rodyti SD kaip"
 msgid "Show Security packages"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr ""
 
@@ -17820,8 +17823,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Lizdų %s: %s kaip USB atkūrimas"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Lizdas '%s'"
+msgid "Slot '%s' %s"
+msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -17987,7 +17990,7 @@ msgstr "Atsiprašome šaltiniai neveikia dėl priežiūros darbų, prašome paba
 msgid "Sorry no backups found!"
 msgstr "Atsiprašome, bet atsarginių kopijų nerasta!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Atsiprašome, vienu metu galima įrašyti tik 2 kanalus"
 
 msgid "Sorry uShare Config is Missing"
@@ -19880,13 +19883,13 @@ msgstr "Išsaugoti laiko poslinkio nepavyko!"
 msgid "Time shift save recording (Select event)"
 msgstr "Išsaugoti laiko poslinkio įrašą (pasirinkite įvykį)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Laiko poslinkis bus išsaugotas įvykio pabaigoje!"
 
 msgid "Time style"
@@ -20441,6 +20444,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "USB laikmena"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB jungimo KLAIDA! - jau USB"
@@ -23530,6 +23537,10 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Lizdas '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Į konkrečią datą/laikmatį"

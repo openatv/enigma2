@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2023,16 +2023,16 @@ msgstr ""
 msgid "Add provider"
 msgstr "Lisa levitaja"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Salvesta (sisesta salvestuse kestus)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Salvesta (sisesta salvestuse lõpuaeg)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Salvesta (pidev salvestus)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Salvesta (selle saate lõpuni)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3821,10 +3821,10 @@ msgstr "Muuda järgmist taimerit"
 msgid "Change pin code"
 msgstr "Muuda PIN"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Muuda salvestuse kestust"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Muuda salvestuse lõpuaega"
 
 msgid "Change repeat and delay settings?"
@@ -12045,7 +12045,7 @@ msgstr "LCN andmebaas on tühi. Soorita kanaliotsing."
 msgid "No error"
 msgstr "Tundmatu tõrge"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Saate lõpuaeg pole teada. Salvestatakse pidevalt."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17458,6 +17458,9 @@ msgstr "SD kuvamine"
 msgid "Show Security packages"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr ""
 
@@ -18256,7 +18259,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18428,7 +18431,7 @@ msgstr "Toimuvad serverite hooldetööd. Proovi hiljem uuesti."
 msgid "Sorry no backups found!"
 msgstr "Varukoopiat ei leitud!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Kahjuks saab salvestada korraga ainult 2 kanalit"
 
 msgid "Sorry uShare Config is Missing"
@@ -20374,13 +20377,13 @@ msgstr "Ajanihke talletamine nurjus!"
 msgid "Time shift save recording (Select event)"
 msgstr "Ajanihke talletamine (vali saade)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Ajanihke talletamine (lõpeta peale praegust saadet)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Ajanihe talletati kõvakettale!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Ajanihe talletatakse saate lõppedes!"
 
 msgid "Time style"
@@ -20958,6 +20961,10 @@ msgstr ""
 #
 msgid "USB Stick"
 msgstr "USB mälupulk"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB vahetuse VIGA! - USB on juba kasutuses"

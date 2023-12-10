@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2023-06-26 04:40+0000\n"
 "Last-Translator: Pedro Figueiredo <pabfig@sapo.pt>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -2094,16 +2094,16 @@ msgstr "Adicionar nova etiqueta"
 msgid "Add provider"
 msgstr "Adicionar operador"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Adicionar gravação (inserir duração)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Adicionar gravação (inserir hora de finalização"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Adicionar gravação (indefinitivamente)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Adicionar gravação (paragem após evento actual)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3938,10 +3938,10 @@ msgstr "Alterar próximo temporizador"
 msgid "Change pin code"
 msgstr "Alterar o PIN"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Alterar gravação (duração)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Alterar gravação (hora de fim)"
 
 msgid "Change repeat and delay settings?"
@@ -12316,7 +12316,7 @@ msgid "No error"
 msgstr "Sem erro"
 
 #
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Não foi encontrada informação do programa, a gravar indefinidamente."
 
 #
@@ -17858,6 +17858,9 @@ msgstr "Mostrar SD como"
 msgid "Show Security packages"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr ""
 
@@ -18683,7 +18686,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18858,7 +18861,7 @@ msgstr "Desculpe os feeds estão fora do ar para manutenção, por favor, tente 
 msgid "Sorry no backups found!"
 msgstr ""
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -20795,13 +20798,13 @@ msgstr ""
 msgid "Time shift save recording (Select event)"
 msgstr ""
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr ""
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr ""
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr ""
 
 msgid "Time style"
@@ -21402,6 +21405,10 @@ msgid "USB 3.0 (Back, outer)"
 msgstr ""
 
 msgid "USB Stick"
+msgstr ""
+
+#, python-format
+msgid "USB slot %s%s"
 msgstr ""
 
 msgid "USB switch ERROR! - already on USB"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -2149,17 +2149,17 @@ msgstr ""
 msgid "Add provider"
 msgstr "Add provider"
 
-msgid "Add recording (enter recording duration)"
-msgstr "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
+msgstr "Add recording (Enter recording duration)"
 
-msgid "Add recording (enter recording end time)"
-msgstr "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
+msgstr "Add recording (Enter recording end time)"
 
-msgid "Add recording (indefinitely)"
-msgstr "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
+msgstr "Add recording (Indefinitely - 24 hours)"
 
-msgid "Add recording (stop after current event)"
-msgstr "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
+msgstr "Add recording (Stop after current event)"
 
 msgid "Add selected service to bouquet or alternative"
 msgstr ""
@@ -3992,11 +3992,11 @@ msgstr "Current device: "
 msgid "Change pin code"
 msgstr "Kodé pin bedilni"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Qeydi bedilni"
 
-msgid "Change recording (end time)"
-msgstr "Change recording (end time)"
+msgid "Change recording (End time)"
+msgstr "Change recording (End time)"
 
 msgid "Change repeat and delay settings?"
 msgstr "Change repeat and delay settings?"
@@ -12270,8 +12270,8 @@ msgstr ""
 msgid "No error"
 msgstr "Unknown Service"
 
-msgid "No event info found, recording default is infinite."
-msgstr "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
+msgstr "No event information found, recording default is 24 hours."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17712,6 +17712,9 @@ msgstr "Show WLAN status"
 msgid "Show Security packages"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr ""
 
@@ -18539,7 +18542,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18711,7 +18714,7 @@ msgstr "No updates available. Please try again later."
 msgid "Sorry no backups found!"
 msgstr ""
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -19182,7 +19185,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Streaming recording ended"
-msgstr "Change recording (end time)"
+msgstr "Change recording (End time)"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -20641,13 +20644,13 @@ msgid "Time shift save recording (Select event)"
 msgstr "Timer recording location"
 
 #, fuzzy
-msgid "Time shift save recording (stop after current event)"
-msgstr "Add recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
+msgstr "Add recording (Stop after current event)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr ""
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr ""
 
 #, fuzzy
@@ -21234,6 +21237,10 @@ msgid "USB 3.0 (Back, outer)"
 msgstr ""
 
 msgid "USB Stick"
+msgstr ""
+
+#, python-format
+msgid "USB slot %s%s"
 msgstr ""
 
 msgid "USB switch ERROR! - already on USB"

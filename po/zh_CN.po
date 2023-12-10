@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2009,16 +2009,16 @@ msgstr "添加新标签"
 msgid "Add provider"
 msgstr "添加供应商"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "添加录制(输入录制持续时间)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "添加录制(输入录制结束时间)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "添加录制(不限时)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "添加录制(当前事件后停止)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3773,10 +3773,10 @@ msgstr "改变下一个定时器"
 msgid "Change pin code"
 msgstr "更改PIN码"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "更改录制(持续时间)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "变更录制(结束时间)"
 
 msgid "Change repeat and delay settings?"
@@ -11737,7 +11737,7 @@ msgstr "没有进入LCN输入数据库.请做一个频道扫描."
 msgid "No error"
 msgstr "无错误"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "没有发现事件信息,录制无限期."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -16977,6 +16977,9 @@ msgstr "将SD显示为"
 msgid "Show Security packages"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr ""
 
@@ -17750,7 +17753,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -17918,7 +17921,7 @@ msgstr "抱歉,订阅源因维护而关闭,请稍后再试."
 msgid "Sorry no backups found!"
 msgstr "抱歉, 没有发现备份!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "抱歉,一次只能录制2个频道"
 
 msgid "Sorry uShare Config is Missing"
@@ -19801,13 +19804,13 @@ msgstr "时移保存失败！"
 msgid "Time shift save recording (Select event)"
 msgstr "保存时移录制(选择事件)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "保存时移录像 (当前事件停止后)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "时移已保存到硬盘！"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "时移将在事件结束时保存！"
 
 msgid "Time style"
@@ -20362,6 +20365,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "U盘"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB切换错误!-已经在USB上了"

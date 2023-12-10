@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2023-12-03 10:46+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2005,16 +2005,16 @@ msgstr "Προσθήκη νέας ετικέτας"
 msgid "Add provider"
 msgstr "Προσθήκη παρόχου"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Επιλογή διάρκειας εγγραφής"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Αλλαγή χρόνου τερματισμού εγγραφής"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Εγγραφή χωρίς όριο χρόνου"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Εγγραφή ως το τέλος του τρέχοντος προγράμματος"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3769,10 +3769,10 @@ msgstr "Αλλαγή επόμενου χρονοδιακόπτη"
 msgid "Change pin code"
 msgstr "Αλλαγή κωδικού pin"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Αλλαγή διάρκειας εγγραφής"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Αλλαγή χρόνου τερματισμού εγγραφής"
 
 msgid "Change repeat and delay settings?"
@@ -11746,7 +11746,7 @@ msgstr "Απουσία δεδομένων στη βάση του lcn. Παρακ
 msgid "No error"
 msgstr "Χωρίς σφάλμα"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Δεν βρέθηκαν πληροφορίες προγράμματος, η εγγραφή δεν θα σταματήσει."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17004,6 +17004,9 @@ msgstr "Εμφάνιση SD ως"
 msgid "Show Security packages"
 msgstr "Εμφάνιση πακέτων ασφαλείας"
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr "Εμφάνιση πακέτων προρυθμίσεων"
 
@@ -17777,8 +17780,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Θέση %s: %s ως USB ανάκτηση"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Θέση '%s'"
+msgid "Slot '%s' %s"
+msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -17944,7 +17947,7 @@ msgstr "Λυπούμαστε, οι πηγές δεν είναι διαθέσιμ
 msgid "Sorry no backups found!"
 msgstr "Λυπούμαστε, δεν βρέθηκαν αντίγραφα ασφαλείας!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Λυπούμαστε είναι δυνατή μόνο η εγγραφή 2 καναλιών ταυτόχρονα"
 
 msgid "Sorry uShare Config is Missing"
@@ -19860,13 +19863,13 @@ msgstr "Αποτυχία αποθήκευσης χρονομετατόπισης
 msgid "Time shift save recording (Select event)"
 msgstr "Αποθήκευση εγγραφής χρονομετατόπισης (επιλογή εκπομπής)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Αποθήκευση εγγραφής χρονομετατόπισης (διακοπή μετά το τρέχον πρόγραμμα)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Η χρονομετατόπιση αποθηκεύτηκε στον σκληρό δίσκο!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Η χρονομετατόπιση θα αποθηκευτεί στο τέλος του προγράμματος!"
 
 msgid "Time style"
@@ -20423,6 +20426,10 @@ msgstr "USB 3.0 (πίσω, εξωτερικό)"
 
 msgid "USB Stick"
 msgstr "USB στικ"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "ΣΦΑΛΜΑ αλλαγής κάρτας SD! - ήδη στο USB"
@@ -23525,6 +23532,10 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Θέση '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Μετάβαση σε ημερομηνία/χρονοδιακόπτη"

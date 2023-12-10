@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -2006,16 +2006,16 @@ msgstr ""
 msgid "Add provider"
 msgstr "Tilføj udbyder"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Tilføj optagelse (indtast optagelsens varighed)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Tilføje optagelse (indtast optagelsens sluttid)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Tilføj optagelse (for evigt)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Tilføj optagelse (stop efter nuværende begivenhed)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3773,10 +3773,10 @@ msgstr "Ændre næste timer"
 msgid "Change pin code"
 msgstr "Skift PIN kode"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Ændre optagelse (varighed)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Ændre optagelse (sluttid)"
 
 msgid "Change repeat and delay settings?"
@@ -11805,7 +11805,7 @@ msgstr "Ingen poster i LCN DB. Udfør venligst en kanalsøgning."
 msgid "No error"
 msgstr "Ingen fejl"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Ingen begivenhedsinfo fundet, optagelse i uendelighed."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17095,6 +17095,9 @@ msgstr "Vis SD som"
 msgid "Show Security packages"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr ""
 
@@ -17883,7 +17886,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18051,7 +18054,7 @@ msgstr "Desværre, Feeds er nede for Vedligeholdelse, prøv venligst igen senere
 msgid "Sorry no backups found!"
 msgstr "Desværre, ingen sikkerhedskopier fundet!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Det er desværre kune muligt at optage 2 kanaler samtidig"
 
 msgid "Sorry uShare Config is Missing"
@@ -19952,13 +19955,13 @@ msgstr "Timeshift gem mislykkedes!"
 msgid "Time shift save recording (Select event)"
 msgstr "Timeshift gem optagelse (vælg begivenhed)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift gem optagelse (stop efter aktuel begivenhed)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift gemt til din harddisk!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Timeshift bliver gemt ved slutningen af begivenheden!"
 
 msgid "Time style"
@@ -20519,6 +20522,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "USB stick"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB skifte FEJL! - allerede på USB"

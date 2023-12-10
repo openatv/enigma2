@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-08 17:05+0000\n"
 "PO-Revision-Date: 2023-12-08 16:53+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2013,16 +2013,16 @@ msgstr "Nieuwe tag toevoegen"
 msgid "Add provider"
 msgstr "Provider toevoegen"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Voeg een opname toe (voer de opnameduur in)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Voeg een opname toe (voer de eindtijd in)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Voeg een opname toe (doorlopend)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Voeg een opname toe (stop na huidige uitzending)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -3776,10 +3776,10 @@ msgstr "Wijziging volgende timer"
 msgid "Change pin code"
 msgstr "Wijzig pincode"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Wijzig de opname (tijdsduur)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Wijzig opname (eindtijd)"
 
 msgid "Change repeat and delay settings?"
@@ -11888,7 +11888,7 @@ msgstr "Geen vermelding in lcn db. Doe een zender scan."
 msgid "No error"
 msgstr "Geen fout"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Geen EPG gegevens gevonden. Opname voor onbepaalde tijd."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -17183,6 +17183,9 @@ msgstr "Toon SD als"
 msgid "Show Security packages"
 msgstr "Beveiliging"
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show Setting packages"
 msgstr "Settings"
 
@@ -17964,8 +17967,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Slot %s: %s als USB back-up"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Slot '%s'"
+msgid "Slot '%s' %s"
+msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -18131,7 +18134,7 @@ msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
 msgid "Sorry no backups found!"
 msgstr "Sorry geen back-up gevonden!"
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Sorry, enkel 2 zender opnames gelijktijdig mogelijk"
 
 msgid "Sorry uShare Config is Missing"
@@ -20090,13 +20093,13 @@ msgstr "Opslaan Timeshift-bestand mislukt!"
 msgid "Time shift save recording (Select event)"
 msgstr "Bewaar Timeshift opname (selecteer programma)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift wordt opgeslagen als opname (stopt na het huidige programma)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift opgeslagen op uw HDD!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Timeshift zal na afloop van het programma worden opgeslagen!"
 
 msgid "Time style"
@@ -20653,6 +20656,10 @@ msgstr "USB 3.0 (achterkant, buitenkant)"
 
 msgid "USB Stick"
 msgstr "USB stick"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB switch FOUT! - reeds op USB"
@@ -23779,6 +23786,10 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Slot '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Ga naar datum/timer"
