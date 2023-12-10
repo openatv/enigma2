@@ -377,8 +377,6 @@ class ServiceName2(Converter):
 			return "SOVOKTV"
 		elif 'Rodnoe' in refstr:
 			return "RODNOETV"
-		elif '238.1.1.89%3a1234' in refstr:
-			return "TRK UKRAINE"
 		elif '238.1.1.181%3a1234' in refstr:
 			return "VIASAT"
 		elif 'cdnet' in refstr:
@@ -407,10 +405,12 @@ class ServiceName2(Converter):
 			return "web.tvbox.md"
 		elif 'live-p12' in refstr:
 			return "PAC12"
-		elif '.ottg.tv' in refstr:
+		elif '.ottg.' in refstr:
 			return "Glanc"
 		elif '/iptv/' in refstr:
 			return "Edem"		
+		elif 'wisp.cat' in refstr:
+			return "TvoeTV"
 		elif '4097' in refstr:
 			return "StreamTV"
 		elif '%3a1234' in refstr:
