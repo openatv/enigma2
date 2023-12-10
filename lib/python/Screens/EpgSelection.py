@@ -364,16 +364,16 @@ class EPGSelection(Screen, HelpableScreen):
 			self["bouquetokactions"].csel = self
 			self["bouquetokactions"].setEnabled(False)
 			self["input_actions"] = HelpableNumberActionMap(self, ["NumberActions"], {
-					"1": (self.keyNumberGlobal, _("goto first channel")),
-					"2": (self.keyNumberGlobal, _("all events up")),
-					"3": (self.keyNumberGlobal, _("goto last channel")),
-					"4": (self.keyNumberGlobal, _("previous channel page")),
-					"0": (self.keyNumberGlobal, _("goto current channel and now")),
-					"6": (self.keyNumberGlobal, _("next channel page")),
-					"7": (self.keyNumberGlobal, _("goto now")),
-					"8": (self.keyNumberGlobal, _("all events down")),
-					"9": (self.keyNumberGlobal, _("Goto Prime time")),
-					"5": (self.keyNumberGlobal, _("Set Base time"))
+					"1": (self.keyNumberGlobal, _("Goto first channel")),
+					"2": (self.keyNumberGlobal, _("All events up")),
+					"3": (self.keyNumberGlobal, _("Goto last channel")),
+					"4": (self.keyNumberGlobal, _("Previous channel page")),
+					"0": (self.keyNumberGlobal, _("Goto current channel and now")),
+					"6": (self.keyNumberGlobal, _("Next channel page")),
+					"7": (self.keyNumberGlobal, _("Goto now")),
+					"8": (self.keyNumberGlobal, _("All events down")),
+					"9": (self.keyNumberGlobal, _("Goto Prime Time")),
+					"5": (self.keyNumberGlobal, _("Set Base Time"))
 			}, prio=-1, description=_("EPG Other Actions"))
 
 		if self.type == EPG_TYPE_GRAPH:
@@ -2058,23 +2058,23 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def RefreshColouredKeys(self):
 		buttonOptions = {
-			"24plus": _("+24"),
-			"24minus": _("-24"),
+			"24plus": _("+24 Hours"),
+			"24minus": _("-24 Hours"),
 			"timer": _("Add Timer"),
 			"imdb": _("IMDb Search"),
 			"tmdb": _("TMDB Search"),
 			"autotimer": _("Add AutoTimer"),
-			"bouquetlist": _("BouquetList"),
+			"bouquetlist": _("Bouquet List"),
 			"epgsearch": _("EPG Search"),
 			"showmovies": _("Recordings"),
 			"record": _("Record"),
 			"gotodatetime": _("Goto Date/Time"),
-			"nextpage": _("Next page"),
-			"prevpage": _("Previous page"),
-			"nextbouquet": _("Next bouquet"),
-			"prevbouquet": _("Previous bouquet"),
-			"gotoprimetime": _("Goto Prime time"),
-			"setbasetime": _("Set Base time")
+			"nextpage": _("Next Page"),
+			"prevpage": _("Previous Page"),
+			"nextbouquet": _("Next Bouquet"),
+			"prevbouquet": _("Previous Bouquet"),
+			"gotoprimetime": _("Goto Prime Time"),
+			"setbasetime": _("Set Base Time")
 		}
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self["key_red"] = StaticText(buttonOptions.get(config.epgselection.graph_red.value, "imdb"))
