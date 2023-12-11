@@ -1405,10 +1405,10 @@ def InitUsageConfig():
 	config.crash.debug_path = ConfigSelection(default="/home/root/logs/", choices=choiceList)
 	config.crash.debug_path.addNotifier(updateDebugPath, immediate_feedback=False)
 
-	crashlogheader = _("We are really sorry. Your receiver encountered "
-		"a software problem, and needs to be restarted.\n"
-		"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-		"Your receiver restarts in 10 seconds!\n"
+	crashlogheader = _("We are really sorry. Your receiver has encountered "
+		"a software problem and needs to be restarted.\n"
+		"A log file has been saved to %sxxxxxxxx-xxxxxx-enigma2_crash.log\n"
+		"Your receiver will restart in 10 seconds!\n"
 		"Component: enigma2") % config.crash.debug_path.value
 	config.crash.debug_text = ConfigText(default=crashlogheader, fixed_size=False)
 	config.crash.skin_error_crash = ConfigYesNo(default=True)
