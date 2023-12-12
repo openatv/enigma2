@@ -4,6 +4,7 @@ from enigma import eActionMap
 
 from keyids import KEYIDS
 from Components.config import config
+from Screens.Screen import Screen
 from Tools.Directories import fileReadXML
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -66,7 +67,7 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 	for key in domKeys.findall("key"):
 		keyName = key.attrib.get("id")
 		if keyName is None:
-			print("[ActionMap] Error: Key map attribute 'id' in context '%s' in file '%s' must be specified!" % (context, filename))
+			print(f"[ActionMap] Error: Key map attribute 'id' in context '{context}' in file '{filename}' must be specified!")
 			error = True
 		else:
 			try:
@@ -82,25 +83,25 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 					elif keyName[1].lower() == "b":
 						keyId = int(keyName[2:], 2) | 0x8000
 					else:
-						print("[ActionMap] Error: Key map id '%s' in context '%s' in file '%s' is not a hex, decimal, octal or binary number!" % (keyName, context, filename))
+						print(f"[ActionMap] Error: Key map id '{keyName}' in context '{context}' in file '{filename}' is not a hex, decimal, octal or binary number!")
 						error = True
 				else:
 					keyId = KEYIDS.get(keyName, -1)
 					if keyId is None:
-						print("[ActionMap] Error: Key map id '%s' in context '%s' in file '%s' is undefined/invalid!" % (keyName, context, filename))
+						print(f"[ActionMap] Error: Key map id '{keyName}' in context '{context}' in file '{filename}s' is undefined/invalid!")
 						error = True
 			except ValueError:
-				print("[ActionMap] Error: Key map id '%s' in context '%s' in file '%s' can not be evaluated!" % (keyName, context, filename))
+				print(f"[ActionMap] Error: Key map id '{keyName}' in context '{context}' in file '{filename}' can not be evaluated!")
 				keyId = -1
 				error = True
 		mapto = key.attrib.get("mapto")
 		unmap = key.attrib.get("unmap")
 		if mapto is None and unmap is None:
-			print("[ActionMap] Error: At least one of the attributes 'mapto' or 'unmap' in context '%s' id '%s' (%d) in file '%s' must be specified!" % (context, keyName, keyId, filename))
+			print("[ActionMap] Error: At least one of the attributes 'mapto' or 'unmap' in context '{context}' id '{keyName}' ({keyId}) in file '{filename}' must be specified!")
 			error = True
 		flags = key.attrib.get("flags")
 		if flags is None:
-			print("[ActionMap] Error: Attribute 'flag' in context '%s' id '%s' (%d) in file '%s' must be specified!" % (context, keyName, keyId, filename))
+			print("[ActionMap] Error: Attribute 'flag' in context '{context}' id '{keyName}' ({keyId}) in file '{filename}' must be specified!")
 			error = True
 		else:
 			flagToValue = lambda x: {
@@ -111,14 +112,14 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 			}[x]
 			newFlags = sum(map(flagToValue, flags))
 			if not newFlags:
-				print("[ActionMap] Error: Attribute 'flag' value '%s' in context '%s' id '%s' (%d) in file '%s' appears invalid!" % (flags, context, keyName, keyId, filename))
+				print(f"[ActionMap] Error: Attribute 'flag' value '{flags}' in context '{context}' id '{keyName}' ({keyId}) in file '{filename}' appears invalid!")
 				error = True
 			flags = newFlags
 		if not error:
 			if unmap is None:  # If a key was unmapped, it can only be assigned a new function in the same key map file (avoid file parsing sequence dependency).
 				if unmapDict.get((context, keyName, mapto)) in [filename, None]:
 					if config.crash.debugActionMaps.value:
-						print("[ActionMap] Context '%s' keyName '%s' (%d) mapped to '%s' (Device: %s)." % (context, keyName, keyId, mapto, device.capitalize()))
+						print(f"[ActionMap] Context '{context}' keyName '{keyName}' ({keyId}) mapped to '{mapto}' (Device: {device.capitalize()}).")
 					actionMapInstance.bindKey(filename, device, keyId, flags, context, mapto)
 					addKeyBinding(filename, keyId, context, mapto, flags)
 			else:
@@ -135,12 +136,12 @@ def getKeyId(id):  # FIME Remove keytranslation.xml.
 		elif id[1] == "d":
 			keyid = int(id[2:]) | 0x8000
 		else:
-			print("[ActionMap] Key id '%s' is neither hexadecimal nor decimal!" % id)
+			print(f"[ActionMap] Key id '{id}' is neither hexadecimal nor decimal!")
 	else:
 		try:
 			keyid = KEYIDS[id]
 		except KeyError:
-			print("[ActionMap] Key id '%s' is illegal!" % id)
+			print(f"[ActionMap] Key id '{id}' is illegal!")
 	return keyid
 
 
@@ -155,8 +156,8 @@ def parseTrans(filename, actionmap, device, keys):  # FIME Remove keytranslation
 		keyin = get_attr("from")
 		keyout = get_attr("to")
 		toggle = get_attr("toggle") or "0"
-		assert keyin, "[ActionMap] %s: must specify key to translate from '%s'" % (filename, keyin)
-		assert keyout, "[ActionMap] %s: must specify key to translate to '%s'" % (filename, keyout)
+		assert keyin, f"[ActionMap] {filename}: must specify key to translate from '{keyin}'"
+		assert keyout, f"[ActionMap] {filename}: must specify key to translate to '{keyout}'"
 		keyin = getKeyId(keyin)
 		keyout = getKeyId(keyout)
 		toggle = int(toggle)
@@ -171,7 +172,7 @@ def loadKeymap(filename, replace=False):
 		for domMap in domKeymap.findall("map"):
 			context = domMap.attrib.get("context")
 			if context is None:
-				print("ActionMap] Error: All key map action maps in '%s' must have a context!" % filename)
+				print(f"ActionMap] Error: All key map action maps in '{filename}' must have a context!")
 			else:
 				if replace and keyBindings:  # Remove all entries for an existing context.
 					removeContext(context, actionMapInstance)
@@ -189,7 +190,7 @@ def removeKeymap(filename):
 
 
 class ActionMap:
-	def __init__(self, contexts=None, actions=None, prio=0):
+	def __init__(self, contexts=None, actions=None, prio=0, parentScreen=None):
 		self.contexts = contexts or []
 		self.actions = actions or {}
 		self.prio = prio
@@ -198,6 +199,7 @@ class ActionMap:
 		self.execActive = False
 		self.enabled = True
 		self.legacyBound = False
+		self.parentScreen = parentScreen.__class__.__name__ if parentScreen and isinstance(parentScreen, Screen) else "N/A"
 		undefinedAction = list(self.actions.keys())
 		leftActionDefined = "left" in undefinedAction
 		rightActionDefined = "right" in undefinedAction
@@ -229,7 +231,7 @@ class ActionMap:
 			contextPlural = "s" if len(self.contexts) > 1 else ""
 			action = "', '".join(sorted(undefinedAction))
 			actionPlural = "s" if len(undefinedAction) > 1 else ""
-			print("[ActionMap] Map context%s '%s': Undefined action%s '%s'." % (contextPlural, context, actionPlural, action))
+			print(f"[ActionMap] Map context{contextPlural} '{context}': Undefined action{actionPlural} '{action}'.")
 
 	def getEnabled(self):
 		return self.enabled
@@ -272,23 +274,24 @@ class ActionMap:
 
 	def action(self, context, action):
 		if action in self.actions:
-			print("[ActionMap] Map context '%s' -> Action '%s'." % (context, action))
+			print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Action '{action}'.")
 			response = self.actions[action]()
 			if response is not None:
 				return response
 			return 1
-		print("[ActionMap] Map context '%s' -> Unknown action '%s'!  (Typo in map?)" % (context, action))
+		print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Unknown action '{action}'!  (Typo in map?)")
 		return 0
 
 	def legacyAction(self, context, action):
 		if action in self.legacyActions:
-			print("[ActionMap] Map context '%s' -> Legacy action '%s'." % (context, action))
-			print(self.legacyActions[action])
+			print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Legacy action '{action}'.")
+			if config.crash.debugActionMaps.value:
+				print(self.legacyActions[action])
 			response = self.legacyActions[action]()
 			if response is not None:
 				return response
 			return 1
-		print("[ActionMap] Map context '%s' -> Unknown legacy action '%s'!  (Typo in map?)" % (context, action))
+		print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Unknown legacy action '{action}'!  (Typo in map?)")
 		return 0
 
 	def destroy(self):
@@ -334,7 +337,7 @@ class HelpableActionMap(ActionMap):
 					actionList.append((action, response[1]))
 				actionDict[action] = response[0]
 			parent.helpList.append((self, context, actionList))
-		ActionMap.__init__(self, contexts, actionDict, prio)
+		ActionMap.__init__(self, contexts, actionDict, prio, parentScreen=parent)
 
 
 class HelpableNumberActionMap(NumberActionMap, HelpableActionMap):
