@@ -254,9 +254,6 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
-	<screen name="EMCSelectionSummary" position="0,0" size="720,575">
-		<panel name="EMCSelection_summary" />
-	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="720,576"> 
 		<widget source="session.CurrentService" render="Label" position="255,21" size="460,244" foregroundColor="#e5b243" font="FdLcD; 55" valign="center" halign="center" zPosition="14">
 			<convert type="ServiceName">Name</convert>

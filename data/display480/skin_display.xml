@@ -284,19 +284,19 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="QuickEPGSummary" position="0,0" size="480,320">
-		<panel name="EPGSelection_summary" />
+		<panel name="EPGSelectionSummary" />
 	</screen>
 	<screen name="GraphicalEPGSummary" position="0,0" size="480,320">
-		<panel name="EPGSelection_summary" />
+		<panel name="EPGSelectionSummary" />
 	</screen>
 	<screen name="GraphicalEPGPIGSummary" position="0,0" size="480,320">
-		<panel name="EPGSelection_summary" />
+		<panel name="EPGSelectionSummary" />
 	</screen>
 	<screen name="GraphicalInfoBarEPGSummary" position="0,0" size="480,320">
-		<panel name="EPGSelection_summary" />
+		<panel name="EPGSelectionSummary" />
 	</screen>
 	<screen name="EPGSelectionMultiSummary" position="0,0" size="480,320">
-		<panel name="EPGSelection_summary" />
+		<panel name="EPGSelectionSummary" />
 	</screen>
 
 <!-- messagebox-->
@@ -480,9 +480,6 @@
 		<widget source="parent.Service" render="Label" position="0,275" size="471,53" font="FdLcD;34" halign="right" transparent="1">
 			<convert type="MovieInfo">FileSize</convert>
 		</widget>
-	</screen>
-	<screen name="EMCSelectionSummary" position="0,0" size="471,320">
-		<panel name="EMCSelection_summary" />
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="480,320" >
 		<!-- Movie name -->		
