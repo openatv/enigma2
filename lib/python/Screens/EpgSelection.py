@@ -647,14 +647,14 @@ class EPGSelection(Screen, HelpableScreen):
 					self.activeList = (self.Fields - 1)
 					self.updateVerticalEPG()
 				self.gotoLasttime()
-		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		elif self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH) and self["list"].listFirstServiceIndex != 0:  # Workaround for https://github.com/openatv/enigma2/issues/3006#issuecomment-1751998017
 			self['list'].prevPage()
 		else:
 			self["list"].moveTo(self["list"].instance.pageUp)
 
 	def toTop(self):
 		# Dirty workaround for #3006 (Pressing '0' no longer goes to first channel in bouquet.)
-		if self.type == EPG_TYPE_GRAPH:
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			self.BouquetOK()
 		else:
 			self["list"].moveTo(self["list"].instance.moveTop)
