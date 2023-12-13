@@ -314,9 +314,6 @@
 			<convert type="MovieInfo">FileSize</convert>
 		</widget>
 	</screen>
-	<screen name="EMCSelectionSummary" position="0,0" size="240,80">
-		<panel name="EMCSelection_summary" />
-	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="240,80"> 
 		<widget source="session.CurrentService" render="Label" position="0,0" size="240,40" foregroundColor="#FFFF00" font="FdLcD;26" valign="top" halign="center" >
 			<convert type="ServiceName">Name</convert>

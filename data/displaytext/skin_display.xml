@@ -153,9 +153,6 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 	</screen>
-	<screen name="EMCSelectionSummary" position="0,0" size="132,64">
-		<panel name="EMCSelection_summary" />
-	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="132,1">
 			<convert type="ServicePosition">VFDPosition</convert>

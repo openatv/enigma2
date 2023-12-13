@@ -63,7 +63,7 @@
 	</widget>
 </screen>
 
-<!--ChannelSelection_summary-->
+<!--ChannelSelectionSummary-->
 <screen name="ChannelSelectionSummary" position="0,0" size="400,240">
 	<widget source="parent.ServiceEvent" render="Label" position="0,32" size="400,155" font="LCD1;52" halign="center">
 		  <convert type="ServiceName">Name</convert>
@@ -610,9 +610,6 @@
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 </screen>
-	<screen name="EMCSelectionSummary" position="0,0" size="400,240">
-		<panel name="EMCSelection_summary" />
-	</screen>
 
 <!--EMCMoviePlayerSummary-->
 <screen name="EMCMoviePlayerSummary" position="0,0" size="400,240">
@@ -820,7 +817,7 @@
 	</widget>
 </screen>
 
-<!--EPGSelectionMulti_summary-->
+<!--EPGSelectionMultiSummary-->
 <screen name="EPGSelectionMultiSummary" position="0,0" size="400,240">
 	<widget source="parent.Service" render="Label" position="0,20" size="400,155" font="LCD1;52" valign="center" halign="center">
 		<convert type="ServiceName">Name</convert>
