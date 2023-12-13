@@ -12,7 +12,7 @@ def ChoiceEntryComponent(key=None, text=None):
 	res = [text]
 	if text[0] == "--":
 		x, y, w, h = parameters.get("ChoicelistDash", (0, 0, 1280, 25))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT | verticalAlignment, "\u2014" * 200))
+		res = [None, (eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT | verticalAlignment, "\u2014" * 200)]
 	else:
 		if key:
 			x, y, w, h = parameters.get("ChoicelistName", (45, 0, 1235, 25))
