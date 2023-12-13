@@ -371,7 +371,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 
 	def createSetup(self):
-		def createSetupCallback(self, test=None):
+		def createSetupCallback(test=None):
 			if closeType:
 				self.close(closeType)
 
