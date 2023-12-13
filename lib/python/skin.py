@@ -1457,6 +1457,7 @@ class SizeTuple(tuple):
 
 class SkinContext:
 	def __init__(self, parent=None, pos=None, size=None, font=None):
+		self.spacing = 0
 		if parent:
 			if pos is None:
 				self.x = None
@@ -1552,6 +1553,84 @@ class SkinContextStack(SkinContext):
 				pos = pos.split(",")
 				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
 		# print(f"[Skin] SkinContextStack DEBUG: Scale={self.scale}, Pos={SizeTuple(pos)}, Size={SizeTuple(size)}.")
+		return (SizeTuple(pos), SizeTuple(size))
+
+
+class SkinContextVertical(SkinContext):
+	def parse(self, pos, size, font):
+		if size in variables:
+			size = variables[size]
+		if pos == "fill":
+			pos = (self.x, self.y)
+			size = (self.w, self.h)
+			self.w = 0
+			self.h = 0
+		else:
+			(width, height) = size.split(",")
+			width = parseCoordinate(width, self.w, 0, font, self.scale[0])
+			height = parseCoordinate(height, self.h, 0, font, self.scale[1])
+			left = self.x
+			p = pos.split(",")
+			if len(p) == 2 and p[1] in ("top", "bottom") and p[0].isdigit():
+				left = int(int(p[0]) * self.scale[0][0] / self.scale[0][1])
+				pos = p[1]
+			if pos == "bottom":
+				pos = (left, self.y + self.h - height)
+				size = (width, height)
+				self.h -= (height + self.spacing)
+			elif pos == "top":
+				pos = (left, self.y)
+				size = (width, height)
+				self.h -= (height + self.spacing)
+				self.y += (height + self.spacing)
+			else:
+				if pos in variables:
+					pos = variables[pos]
+				size = (width, height)
+				pos = pos.split(",")
+				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
+				self.h -= (height + self.spacing)
+				self.y += (height + self.spacing)
+		# print(f"[Skin] SkinContextVertical DEBUG: Scale={self.scale}, Pos={SizeTuple(pos)}, Size={SizeTuple(size)}.")
+		return (SizeTuple(pos), SizeTuple(size))
+
+
+class SkinContextHorizontal(SkinContext):
+	def parse(self, pos, size, font):
+		if size in variables:
+			size = variables[size]
+		if pos == "fill":
+			pos = (self.x, self.y)
+			size = (self.w, self.h)
+			self.w = 0
+			self.h = 0
+		else:
+			(width, height) = size.split(",")
+			width = parseCoordinate(width, self.w, 0, font, self.scale[0])
+			height = parseCoordinate(height, self.h, 0, font, self.scale[1])
+			top = self.y
+			p = pos.split(",")
+			if len(p) == 2 and p[0] in ("left", "right") and p[1].isdigit():
+				top = int(int(p[1]) * self.scale[0][0] / self.scale[0][1])
+				pos = p[0]
+			if pos == "left":
+				pos = (self.x, top)
+				size = (width, height)
+				self.x += (width + self.spacing)
+				self.w -= (width + self.spacing)
+			elif pos == "right":
+				pos = (self.x + self.w - width, top)
+				size = (width, height)
+				self.w -= (width + self.spacing)
+			else:
+				if pos in variables:
+					pos = variables[pos]
+				size = (width, height)
+				pos = pos.split(",")
+				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
+				self.w -= (width + self.spacing)
+				self.x += (width + self.spacing)
+		# print(f"[Skin] SkinContextHorizontal DEBUG: Scale={self.scale}, Pos={SizeTuple(pos)}, Size={SizeTuple(size)}.")
 		return (SizeTuple(pos), SizeTuple(size))
 
 
@@ -1801,9 +1880,17 @@ def readSkin(screen, skin, names, desktop):
 			else:
 				processScreen(screen[0], context)
 		layout = widget.attrib.get("layout")
-		contextClass = SkinContextStack if layout == "stack" else SkinContext
+		classes = {
+			"stack": SkinContextStack,
+			"vertical": SkinContextVertical,
+			"horizontal": SkinContextHorizontal,
+		}
+		contextClass = classes.get(layout, SkinContext)
 		try:
 			contextScreen = contextClass(context, widget.attrib.get("position"), widget.attrib.get("size"), widget.attrib.get("font"))
+			spacing = widget.attrib.get("spacing")
+			if spacing:
+				contextScreen.spacing = int(spacing)
 		except Exception as err:
 			raise SkinError(f"Failed to create skin context (position='{widget.attrib.get('position')}', size='{widget.attrib.get('size')}', font='{widget.attrib.get('font')}') in context '{context}': {err}")
 		processScreen(widget, contextScreen)
