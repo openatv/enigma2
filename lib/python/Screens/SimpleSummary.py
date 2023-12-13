@@ -15,7 +15,8 @@ class SimpleSummary(Screen):
 		names = parent.skinName
 		if not isinstance(names, list):
 			names = [names]
-		self.skinName = ["%s_summary" % x for x in names]
+		self.skinName = ["%sSummary" % x for x in names]
+		self.skinName += ["%s_summary" % x for x in names]
 		self.skinName.append("SimpleSummary")
 		# If parent has a "skin_summary" defined, use that as default.
 		self.skin = parent.__dict__.get("skin_summary", self.skin)
