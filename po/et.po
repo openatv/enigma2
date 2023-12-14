@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1341,9 +1341,6 @@ msgstr "* Võimalik vaid enam kui ühe aktiivse liidese puhul."
 msgid "* current animation"
 msgstr "* kasutatav animatsioon"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1353,9 +1350,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1661,13 +1655,6 @@ msgid ""
 msgstr ""
 "Algas salvestamine:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Toimub salvestamine.\n"
-"Mida tuleks teha?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Toimub salvestamine. Enne ajami häälestamist peata salvestamine."
@@ -2194,6 +2181,12 @@ msgstr "Kõik kanalid"
 
 msgid "All ages"
 msgstr "Igas vanuses"
+
+msgid "All events down"
+msgstr "kõik saated alla"
+
+msgid "All events up"
+msgstr "kõik saated üles"
 
 msgid "All files"
 msgstr ""
@@ -3193,9 +3186,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-msgid "BouquetList"
-msgstr "Lemmiknimekirjad"
 
 msgid "Bouvet Island"
 msgstr "Lihavõttesaar"
@@ -8724,9 +8714,18 @@ msgstr "Mine tippajale"
 msgid "Goto X"
 msgstr "Mine X"
 
+msgid "Goto current channel and now"
+msgstr "Mine aktiivsele kanalile ja 'nüüd'"
+
 # Powerlost usage.config
 msgid "Goto deep standby"
 msgstr "Puhkeseisund"
+
+msgid "Goto first channel"
+msgstr "Liigu esimesele kanalile"
+
+msgid "Goto last channel"
+msgstr "Liigu viimasele kanalile"
 
 msgid "Goto next bouquet"
 msgstr "Liigu järgmisse lemmiknimekirja"
@@ -8736,6 +8735,10 @@ msgstr "Liigu järgmisele kanalile"
 
 msgid "Goto next event"
 msgstr "Liigu järgmisele saatele"
+
+# Powerlost usage.config
+msgid "Goto now"
+msgstr "Mine 'nüüd'"
 
 msgid "Goto position"
 msgstr "Liigu kohale"
@@ -9826,14 +9829,14 @@ msgstr "Pluginate paigaldamine."
 msgid "Installing plugins from feed ..."
 msgstr "Pluginate paigaldamine."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Kohese salvestuse valikud"
 
 msgid "Instant recording location"
 msgstr "Kohese salvestuse asukoht"
-
-msgid "Instant recording..."
-msgstr "Kohene salvestus."
 
 msgid "Interface"
 msgstr "Liides"
@@ -11134,9 +11137,6 @@ msgstr ""
 "Valesti seadistatud unicable ühendus tuunerist %s tuunerisse %s!\n"
 "Tuuneri %s valik 'ühendatud' keelati"
 
-msgid "Missing "
-msgstr "Puudub "
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -11943,12 +11943,15 @@ msgstr "Järgmine"
 msgid "Next Bouquet"
 msgstr "Liigu järgmisse lemmiknimekirja"
 
-msgid "Next higher resolution"
-msgstr "kõrguselt järgmine lahutus"
-
 #, fuzzy
 msgid "Next Page"
 msgstr "Järgmine lehekülg"
+
+msgid "Next channel page"
+msgstr "Järgmine lehekülg"
+
+msgid "Next higher resolution"
+msgstr "kõrguselt järgmine lahutus"
 
 msgid "Next quad PiP channel"
 msgstr "Järgmine Quad PiP kanal"
@@ -12974,6 +12977,10 @@ msgstr "Parooli seadistus"
 msgid "Password changed."
 msgstr "Parool muudetud."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Salvestamise asukohta pole olemas: '/tmp/'"
 
@@ -13835,6 +13842,9 @@ msgstr "Liigu eelmisse lemmiknimekirja"
 msgid "Previous Page"
 msgstr "Eelmine lehekülg"
 
+msgid "Previous channel page"
+msgstr "Eelmine lehekülg"
+
 #, fuzzy
 msgid "Previous/Next bouquet"
 msgstr "Eelmine/järgmine lehekülg"
@@ -14370,10 +14380,6 @@ msgstr "Salvestatava meedia tööriistad"
 
 msgid "Recording"
 msgstr "Salvestus"
-
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Salvestamise seaded"
 
 msgid "Recording Settings"
 msgstr "Salvestamise seaded"
@@ -18427,12 +18433,12 @@ msgstr "MiniDLNA on seadistamata"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Toimuvad serverite hooldetööd. Proovi hiljem uuesti."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Kahjuks saab salvestada korraga ainult 2 kanalit"
+
 #
 msgid "Sorry no backups found!"
 msgstr "Varukoopiat ei leitud!"
-
-msgid "Sorry it is only possible to record 2 channels at once!"
-msgstr "Kahjuks saab salvestada korraga ainult 2 kanalit"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "uShare on seadistamata"
@@ -18630,6 +18636,9 @@ msgstr "Võrdne seiskamisajaga"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18645,6 +18654,9 @@ msgstr "Alusta algusest"
 msgid "Start instant recording"
 msgstr "Kohene salvestamine"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "Käivitumine"
 
@@ -18653,9 +18665,6 @@ msgstr "Käivita võrguta dekodeerimine"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "Kas käivitada salvestamine?"
 
 msgid "Start teletext"
 msgstr "Käivita teletekst"
@@ -23003,12 +23012,6 @@ msgstr "seiklus/vestern/sõda"
 msgid "advertisement/shopping"
 msgstr "reklaam/ostukanal"
 
-msgid "All events down"
-msgstr "kõik saated alla"
-
-msgid "All events up"
-msgstr "kõik saated üles"
-
 msgid "all up/down"
 msgstr "kõik üles/alla"
 
@@ -23365,19 +23368,6 @@ msgstr "aiandus"
 msgid "get the cards' server"
 msgstr "hangi kaardiserver"
 
-msgid "Goto current channel and now"
-msgstr "Mine aktiivsele kanalile ja 'nüüd'"
-
-msgid "Goto first channel"
-msgstr "Liigu esimesele kanalile"
-
-msgid "Goto last channel"
-msgstr "Liigu viimasele kanalile"
-
-# Powerlost usage.config
-msgid "Goto now"
-msgstr "Mine 'nüüd'"
-
 msgid "grab this frame as bitmap"
 msgstr "Salvesta kaader rasterpildina"
 
@@ -23603,9 +23593,6 @@ msgstr "uudised/päevakajalised sündmused"
 msgid "news/weather report"
 msgstr "uudised/ilm"
 
-msgid "Next channel page"
-msgstr "Järgmine lehekülg"
-
 msgid "no CAId selected"
 msgstr "CAId valimata"
 
@@ -23716,9 +23703,6 @@ msgstr "popkultuur/pärimuskunst"
 
 msgid "pre-school children's program"
 msgstr "koolieelikute saade"
-
-msgid "Previous channel page"
-msgstr "Eelmine lehekülg"
 
 msgid "provid:"
 msgstr "levitaja:"
@@ -24111,6 +24095,35 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Toimub salvestamine.\n"
+#~ "Mida tuleks teha?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Lemmiknimekirjad"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Kohene salvestus."
+
+#~ msgid "Missing "
+#~ msgstr "Puudub "
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Salvestamise seaded"
+
+#~ msgid "Start recording?"
+#~ msgstr "Kas käivitada salvestamine?"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Kuupäeva/taimeri juurde"

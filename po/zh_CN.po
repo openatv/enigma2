@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1344,9 +1344,6 @@ msgstr "* 仅在一个或多个网卡激活才有效."
 msgid "* current animation"
 msgstr "* 当前动画"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1356,9 +1353,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1652,13 +1646,6 @@ msgid ""
 msgstr ""
 "录制已开启:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"当前正在运行录制.\n"
-"你需要做什么?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "当前正在运行录制. 请在配置极轴之前停止录制."
@@ -2176,6 +2163,12 @@ msgstr "所有频道"
 
 msgid "All ages"
 msgstr "所有年龄段"
+
+msgid "All events down"
+msgstr "向下翻页"
+
+msgid "All events up"
+msgstr "向上翻页"
 
 msgid "All files"
 msgstr ""
@@ -3148,9 +3141,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-msgid "BouquetList"
-msgstr "自定义列表"
 
 msgid "Bouvet Island"
 msgstr "布韦岛"
@@ -8565,8 +8555,17 @@ msgstr "转到黄金时段"
 msgid "Goto X"
 msgstr "转到Χ"
 
+msgid "Goto current channel and now"
+msgstr "转到当前频道"
+
 msgid "Goto deep standby"
 msgstr "进入深度待机"
+
+msgid "Goto first channel"
+msgstr "转到第一个频道"
+
+msgid "Goto last channel"
+msgstr "转到最后一个频道"
 
 msgid "Goto next bouquet"
 msgstr "转到下个自定义组"
@@ -8576,6 +8575,9 @@ msgstr "转到下一个频道"
 
 msgid "Goto next event"
 msgstr "转到下一个事件"
+
+msgid "Goto now"
+msgstr "现在跳转"
 
 msgid "Goto position"
 msgstr "转到位置"
@@ -9631,14 +9633,14 @@ msgstr "正在从IPK包安装插件..."
 msgid "Installing plugins from feed ..."
 msgstr "正在从数据源中安装插件..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "即时录像"
 
 msgid "Instant recording location"
 msgstr "即时录像位置"
-
-msgid "Instant recording..."
-msgstr "即时录像中..."
 
 msgid "Interface"
 msgstr "接口"
@@ -10880,9 +10882,6 @@ msgstr ""
 "错误连接从调谐器 %s 调谐器 %s!\n"
 "调谐器 %s 选项 \"连接到\"现在被禁用"
 
-msgid "Missing "
-msgstr "丢失 "
-
 msgid "Mobile connection"
 msgstr "移动连接"
 
@@ -11640,11 +11639,14 @@ msgstr "接下来"
 msgid "Next Bouquet"
 msgstr "下一个自定义组"
 
-msgid "Next higher resolution"
-msgstr "下一个更高的分辨率"
-
 msgid "Next Page"
 msgstr "下一页"
+
+msgid "Next channel page"
+msgstr "下一个频道页面"
+
+msgid "Next higher resolution"
+msgstr "下一个更高的分辨率"
 
 msgid "Next quad PiP channel"
 msgstr "下一个四画面PIP频道"
@@ -12624,6 +12626,10 @@ msgstr "密码设置"
 msgid "Password changed."
 msgstr "密码已更改"
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "要保存的路径不存在:'/tmp/'"
 
@@ -13459,6 +13465,9 @@ msgstr "转到上个自定义组"
 msgid "Previous Page"
 msgstr "上一页"
 
+msgid "Previous channel page"
+msgstr "上一个频道页面"
+
 msgid "Previous/Next bouquet"
 msgstr "上一个/下一个频道组"
 
@@ -13978,9 +13987,6 @@ msgstr "可录制的媒体工具箱"
 
 msgid "Recording"
 msgstr "正在录制"
-
-msgid "Recording Actions"
-msgstr "录像操作"
 
 msgid "Recording Settings"
 msgstr "录像设置"
@@ -17918,11 +17924,11 @@ msgstr "抱歉,MiniDLNA配置丢失"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "抱歉,订阅源因维护而关闭,请稍后再试."
 
-msgid "Sorry no backups found!"
-msgstr "抱歉, 没有发现备份!"
-
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "抱歉,一次只能录制2个频道"
+
+msgid "Sorry no backups found!"
+msgstr "抱歉, 没有发现备份!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "抱歉,uShare 配置丢失"
@@ -18114,6 +18120,9 @@ msgstr "启动RDS交互"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18129,6 +18138,9 @@ msgstr "从头开始"
 msgid "Start instant recording"
 msgstr "开始即时录像"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "启动模式"
 
@@ -18137,9 +18149,6 @@ msgstr "开始离线解码"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "开始录像？"
 
 msgid "Start teletext"
 msgstr "启动图文电视"
@@ -22344,12 +22353,6 @@ msgstr "冒险/西部/战争"
 msgid "advertisement/shopping"
 msgstr "广告/购物"
 
-msgid "All events down"
-msgstr "向下翻页"
-
-msgid "All events up"
-msgstr "向上翻页"
-
 msgid "all up/down"
 msgstr "向上/向下滚动"
 
@@ -22692,18 +22695,6 @@ msgstr "园艺"
 msgid "get the cards' server"
 msgstr "获取卡的服务器"
 
-msgid "Goto current channel and now"
-msgstr "转到当前频道"
-
-msgid "Goto first channel"
-msgstr "转到第一个频道"
-
-msgid "Goto last channel"
-msgstr "转到最后一个频道"
-
-msgid "Goto now"
-msgstr "现在跳转"
-
 msgid "grab this frame as bitmap"
 msgstr "抓取当前帧为bmp图片"
 
@@ -22920,9 +22911,6 @@ msgstr "新闻/时事(一般)"
 msgid "news/weather report"
 msgstr "新闻/天气报告"
 
-msgid "Next channel page"
-msgstr "下一个频道页面"
-
 msgid "no CAId selected"
 msgstr "未选择CAID"
 
@@ -23033,9 +23021,6 @@ msgstr "大众文化/传统艺术"
 
 msgid "pre-school children's program"
 msgstr "学龄前儿童节目"
-
-msgid "Previous channel page"
-msgstr "上一个频道页面"
 
 msgid "provid:"
 msgstr "提供:"
@@ -23425,6 +23410,34 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "当前正在运行录制.\n"
+#~ "你需要做什么?"
+
+#~ msgid "BouquetList"
+#~ msgstr "自定义列表"
+
+#~ msgid "Instant recording..."
+#~ msgstr "即时录像中..."
+
+#~ msgid "Missing "
+#~ msgstr "丢失 "
+
+#~ msgid "Recording Actions"
+#~ msgstr "录像操作"
+
+#~ msgid "Start recording?"
+#~ msgstr "开始录像？"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "转到日期/定时器"

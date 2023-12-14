@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
-"PO-Revision-Date: 2023-12-09 09:27+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"PO-Revision-Date: 2023-12-13 02:35+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1344,9 +1344,6 @@ msgstr "* Disponibile solo se più di un'interfaccia è attiva."
 msgid "* current animation"
 msgstr "* animazione attuale"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 ore"
 
@@ -1356,9 +1353,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 ore"
@@ -1644,13 +1638,6 @@ msgid ""
 msgstr ""
 "È stata avviata una registrazione:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"È attualmente in corso una registrazione.\n"
-"Cosa vuoi fare?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "È attualmente in corso una registrazione. Interrompi la registrazione prima di provare a configurare il posizionatore."
@@ -2171,6 +2158,12 @@ msgstr "Tutti i servizi"
 
 msgid "All ages"
 msgstr "Tutte le età"
+
+msgid "All events down"
+msgstr "tutti gli eventi giù"
+
+msgid "All events up"
+msgstr "tutti gli eventi su"
 
 msgid "All files"
 msgstr "Tutti i file"
@@ -3143,9 +3136,6 @@ msgstr "Azioni del selettore bouquet"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Azioni di navigazione del selettore bouquet"
-
-msgid "BouquetList"
-msgstr "BouquetList"
 
 msgid "Bouvet Island"
 msgstr "Isola Bouvet"
@@ -8570,8 +8560,17 @@ msgstr "Vai a prima serata"
 msgid "Goto X"
 msgstr "Vai a X"
 
+msgid "Goto current channel and now"
+msgstr "vai al canale attuale ed ora"
+
 msgid "Goto deep standby"
 msgstr "Vai a spegnimento"
+
+msgid "Goto first channel"
+msgstr "vai al primo canale"
+
+msgid "Goto last channel"
+msgstr "vai all'ultimo canale"
 
 msgid "Goto next bouquet"
 msgstr "Vai al prossimo bouquet"
@@ -8581,6 +8580,9 @@ msgstr "Vai al prossimo canale"
 
 msgid "Goto next event"
 msgstr "Vai al prossimo evento"
+
+msgid "Goto now"
+msgstr "vai adesso"
 
 msgid "Goto position"
 msgstr "Vai a posizione"
@@ -9636,14 +9638,14 @@ msgstr "Installazione plugin da IPK..."
 msgid "Installing plugins from feed ..."
 msgstr "Installazione plugin dal feed..."
 
+msgid "Instant Recording Actions"
+msgstr "Azioni registrazione istantanea"
+
 msgid "Instant record"
 msgstr "Registrazione istantanea"
 
 msgid "Instant recording location"
 msgstr "Percorso registrazione istantanea"
-
-msgid "Instant recording..."
-msgstr "Registrazione istantanea..."
 
 msgid "Interface"
 msgstr "Interfaccia"
@@ -10885,9 +10887,6 @@ msgstr ""
 "Collegamento unicable non configurato correttamente dal tuner %s al tuner %s!\n"
 "L'opzione \"connesso a\" del tuner %s è ora disabilitata"
 
-msgid "Missing "
-msgstr "Mancante "
-
 msgid "Mobile connection"
 msgstr "Connessione mobile"
 
@@ -11648,11 +11647,14 @@ msgstr "Successivo"
 msgid "Next Bouquet"
 msgstr "Bouquet successivo"
 
-msgid "Next higher resolution"
-msgstr "Risoluzione successiva più alta"
-
 msgid "Next Page"
 msgstr "Pagina successiva"
+
+msgid "Next channel page"
+msgstr "pagina canale successivo"
+
+msgid "Next higher resolution"
+msgstr "Risoluzione successiva più alta"
 
 msgid "Next quad PiP channel"
 msgstr "Canale PiP quad successivo"
@@ -12632,6 +12634,10 @@ msgstr "Impostazioni password"
 msgid "Password changed."
 msgstr "Password cambiata."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr "Percorso '%s' mancante!"
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Il percorso salvataggio non esiste: '/tmp/'"
 
@@ -13470,6 +13476,9 @@ msgstr "Bouquet precedente"
 msgid "Previous Page"
 msgstr "Pagina precedente"
 
+msgid "Previous channel page"
+msgstr "pagina canale precedente"
+
 msgid "Previous/Next bouquet"
 msgstr "Bouquet precedente/successivo"
 
@@ -13989,9 +13998,6 @@ msgstr "Toolbox media registrabili"
 
 msgid "Recording"
 msgstr "Registrazione"
-
-msgid "Recording Actions"
-msgstr "Azioni di registrazione"
 
 msgid "Recording Settings"
 msgstr "Impostazioni registrazione"
@@ -17943,11 +17949,11 @@ msgstr "Spiacente, MiniDLNA non configurato"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Siamo spiacenti, i feed sono inattivi per manutenzione, riprova più tardi."
 
-msgid "Sorry no backups found!"
-msgstr "Spiacente, nessun Backup trovato!"
-
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Siamo spiacenti, è possibile registrare solo 2 canali contemporaneamente"
+
+msgid "Sorry no backups found!"
+msgstr "Spiacente, nessun Backup trovato!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Spiacente uShare non configurato"
@@ -18139,6 +18145,9 @@ msgstr "Avvia RDS interattivo"
 msgid "Start Wizard"
 msgstr "Avvia procedura guidata"
 
+msgid "Start an instant recording"
+msgstr "Avvia registrazione istantanea"
+
 msgid "Start date"
 msgstr "Data d'inizio"
 
@@ -18154,6 +18163,9 @@ msgstr "Avvio dall'inizio"
 msgid "Start instant recording"
 msgstr "Avvia la registrazione istantanea"
 
+msgid "Start instant recording?"
+msgstr "Avviare registrazione istantanea?"
+
 msgid "Start mode"
 msgstr "Modalità di avvio"
 
@@ -18162,9 +18174,6 @@ msgstr "Avvio decodifica offline"
 
 msgid "Start recording current event"
 msgstr "Inizia a registrare l'evento in corso"
-
-msgid "Start recording?"
-msgstr "Avviare registrazione?"
 
 msgid "Start teletext"
 msgstr "Avvio il televideo"
@@ -22450,12 +22459,6 @@ msgstr "avventura/western/guerra"
 msgid "advertisement/shopping"
 msgstr "pubblicità/shopping"
 
-msgid "All events down"
-msgstr "tutti gli eventi giù"
-
-msgid "All events up"
-msgstr "tutti gli eventi su"
-
 msgid "all up/down"
 msgstr "tutto su/giù"
 
@@ -22798,18 +22801,6 @@ msgstr "giardinaggio"
 msgid "get the cards' server"
 msgstr "ottieni il server schede"
 
-msgid "Goto current channel and now"
-msgstr "vai al canale attuale ed ora"
-
-msgid "Goto first channel"
-msgstr "vai al primo canale"
-
-msgid "Goto last channel"
-msgstr "vai all'ultimo canale"
-
-msgid "Goto now"
-msgstr "vai adesso"
-
 msgid "grab this frame as bitmap"
 msgstr "cattura questo fotogramma come bitmap"
 
@@ -23026,9 +23017,6 @@ msgstr "notizie/attualità (generale)"
 msgid "news/weather report"
 msgstr "notizie/meteo"
 
-msgid "Next channel page"
-msgstr "pagina canale successivo"
-
 msgid "no CAId selected"
 msgstr "nessun CAId selezionato"
 
@@ -23139,9 +23127,6 @@ msgstr "cultura popolare/arti tradizionali"
 
 msgid "pre-school children's program"
 msgstr "per bambini in età prescolare"
-
-msgid "Previous channel page"
-msgstr "pagina canale precedente"
 
 msgid "provid:"
 msgstr "provid:"
@@ -23531,6 +23516,34 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "È attualmente in corso una registrazione.\n"
+#~ "Cosa vuoi fare?"
+
+#~ msgid "BouquetList"
+#~ msgstr "BouquetList"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Registrazione istantanea..."
+
+#~ msgid "Missing "
+#~ msgstr "Mancante "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Azioni di registrazione"
+
+#~ msgid "Start recording?"
+#~ msgstr "Avviare registrazione?"
 
 #, python-format
 #~ msgid "Slot '%s'"

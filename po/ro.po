@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ro/>\n"
@@ -1334,9 +1334,6 @@ msgstr "* Disponibil doar in cazul in care mai mult de o interfata este activa."
 msgid "* current animation"
 msgstr ""
 
-msgid "+24"
-msgstr ""
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1345,9 +1342,6 @@ msgid ", "
 msgstr ""
 
 msgid "-"
-msgstr ""
-
-msgid "-24"
 msgstr ""
 
 msgid "-24 Hours"
@@ -1641,13 +1635,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"O registrare este acuma activa.\n"
-"Ce doresti sa facem?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "O registrare acuma este activa. Te rog opreste pe registrare inainte sa incerci Sa configurezi pe pozitioner."
@@ -2178,6 +2165,12 @@ msgid "All Services"
 msgstr "Servicii"
 
 msgid "All ages"
+msgstr ""
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
 msgstr ""
 
 msgid "All files"
@@ -3170,10 +3163,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-#, fuzzy
-msgid "BouquetList"
-msgstr "[editare bouquet]"
 
 msgid "Bouvet Island"
 msgstr ""
@@ -8656,8 +8645,18 @@ msgstr ""
 msgid "Goto X"
 msgstr "Goto 0"
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
 msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+#, fuzzy
+msgid "Goto last channel"
+msgstr "nu schimba"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -8666,6 +8665,9 @@ msgid "Goto next channel"
 msgstr ""
 
 msgid "Goto next event"
+msgstr ""
+
+msgid "Goto now"
 msgstr ""
 
 msgid "Goto position"
@@ -9748,15 +9750,14 @@ msgstr "Instaleaza"
 msgid "Installing plugins from feed ..."
 msgstr "Instaleaza"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
 #, fuzzy
 msgid "Instant recording location"
-msgstr "Inregistrare instant"
-
-#, fuzzy
-msgid "Instant recording..."
 msgstr "Inregistrare instant"
 
 msgid "Interface"
@@ -11048,9 +11049,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr ""
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -11848,12 +11846,16 @@ msgid "Next Bouquet"
 msgstr "adauga bouquet"
 
 #, fuzzy
-msgid "Next higher resolution"
-msgstr "Rezolutie"
-
-#, fuzzy
 msgid "Next Page"
 msgstr "nu schimba"
+
+#, fuzzy
+msgid "Next channel page"
+msgstr "nu schimba"
+
+#, fuzzy
+msgid "Next higher resolution"
+msgstr "Rezolutie"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -12853,6 +12855,10 @@ msgstr "Configurare retea"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -13718,6 +13724,9 @@ msgstr "adauga serviciu la bouquet"
 msgid "Previous Page"
 msgstr ""
 
+msgid "Previous channel page"
+msgstr ""
+
 msgid "Previous/Next bouquet"
 msgstr ""
 
@@ -14251,10 +14260,6 @@ msgstr ""
 
 msgid "Recording"
 msgstr "Inregistrare"
-
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Inregistrari"
 
 msgid "Recording Settings"
 msgstr ""
@@ -18298,10 +18303,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -18493,6 +18498,9 @@ msgstr "Vezi Rass interactive..."
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18508,6 +18516,9 @@ msgstr "Incepe de la capat"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 #, fuzzy
 msgid "Start mode"
 msgstr "Ora de incepere"
@@ -18517,9 +18528,6 @@ msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "Incepe inregistrarea?"
 
 msgid "Start teletext"
 msgstr ""
@@ -22751,12 +22759,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All events down"
-msgstr ""
-
-msgid "All events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -23098,19 +23100,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "Goto current channel and now"
-msgstr ""
-
-msgid "Goto first channel"
-msgstr ""
-
-#, fuzzy
-msgid "Goto last channel"
-msgstr "nu schimba"
-
-msgid "Goto now"
-msgstr ""
-
 msgid "grab this frame as bitmap"
 msgstr "capteaza imaginea ca bitmap"
 
@@ -23331,10 +23320,6 @@ msgstr ""
 msgid "news/weather report"
 msgstr ""
 
-#, fuzzy
-msgid "Next channel page"
-msgstr "nu schimba"
-
 msgid "no CAId selected"
 msgstr "niciun CAID selectat"
 
@@ -23447,9 +23432,6 @@ msgid "popular culture/traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
-msgstr ""
-
-msgid "Previous channel page"
 msgstr ""
 
 msgid "provid:"
@@ -23845,6 +23827,28 @@ msgstr "da (pastreaza feed-uri)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "O registrare este acuma activa.\n"
+#~ "Ce doresti sa facem?"
+
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "[editare bouquet]"
+
+#, fuzzy
+#~ msgid "Instant recording..."
+#~ msgstr "Inregistrare instant"
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Inregistrari"
+
+#~ msgid "Start recording?"
+#~ msgstr "Incepe inregistrarea?"
 
 #~ msgid "none"
 #~ msgstr "nimic"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -1455,10 +1455,6 @@ msgstr "* Only available if more than one interface is active."
 msgid "* current animation"
 msgstr ""
 
-#, fuzzy
-msgid "+24"
-msgstr "2"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1468,10 +1464,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#, fuzzy
-msgid "-24"
-msgstr "2"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1777,13 +1769,6 @@ msgid ""
 msgstr ""
 "A record has been started:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"A recording is currently running.\n"
-"What do you want to do?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2327,6 +2312,14 @@ msgstr "Services"
 
 msgid "All ages"
 msgstr "Hemu Kes"
+
+#, fuzzy
+msgid "All events down"
+msgstr "special events"
+
+#, fuzzy
+msgid "All events up"
+msgstr "special events"
 
 msgid "All files"
 msgstr ""
@@ -3361,10 +3354,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-#, fuzzy
-msgid "BouquetList"
-msgstr "Bouquet Edit"
 
 msgid "Bouvet Island"
 msgstr ""
@@ -8941,8 +8930,20 @@ msgstr "Jump to previous marked position"
 msgid "Goto X"
 msgstr "Goto X"
 
+#, fuzzy
+msgid "Goto current channel and now"
+msgstr "Switch next channel"
+
 msgid "Goto deep standby"
 msgstr ""
+
+#, fuzzy
+msgid "Goto first channel"
+msgstr "Switch next channel"
+
+#, fuzzy
+msgid "Goto last channel"
+msgstr "Switch next channel"
 
 #, fuzzy
 msgid "Goto next bouquet"
@@ -8955,6 +8956,9 @@ msgstr "Switch next channel"
 #, fuzzy
 msgid "Goto next event"
 msgstr "Go to next event"
+
+msgid "Goto now"
+msgstr ""
 
 msgid "Goto position"
 msgstr "Goto position"
@@ -10058,14 +10062,14 @@ msgstr "Install picons on"
 msgid "Installing plugins from feed ..."
 msgstr "Install picons on"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
 msgid "Instant recording location"
 msgstr "Instant recording location"
-
-msgid "Instant recording..."
-msgstr "Instant recording..."
 
 #, fuzzy
 msgid "Interface"
@@ -11364,9 +11368,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr "Missing "
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -12169,12 +12170,16 @@ msgid "Next Bouquet"
 msgstr "Go to next event"
 
 #, fuzzy
-msgid "Next higher resolution"
-msgstr "Resolution"
-
-#, fuzzy
 msgid "Next Page"
 msgstr "Switch next channel"
+
+#, fuzzy
+msgid "Next channel page"
+msgstr "Switch next channel"
+
+#, fuzzy
+msgid "Next higher resolution"
+msgstr "Resolution"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -13188,6 +13193,10 @@ msgstr "Password"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -14058,6 +14067,10 @@ msgid "Previous Page"
 msgstr "Switch to previous channel"
 
 #, fuzzy
+msgid "Previous channel page"
+msgstr "Switch to previous channel"
+
+#, fuzzy
 msgid "Previous/Next bouquet"
 msgstr "Go to previous event"
 
@@ -14604,10 +14617,6 @@ msgstr ""
 
 msgid "Recording"
 msgstr "Recording"
-
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Reception settings"
 
 #, fuzzy
 msgid "Recording Settings"
@@ -18711,10 +18720,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "No updates available. Please try again later."
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -18914,6 +18923,9 @@ msgstr "View Rass interactive..."
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18929,6 +18941,9 @@ msgstr "Start from the beginning"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 #, fuzzy
 msgid "Start mode"
 msgstr "Start time"
@@ -18938,9 +18953,6 @@ msgstr "Start offline decode"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "Start recording?"
 
 msgid "Start teletext"
 msgstr ""
@@ -23256,14 +23268,6 @@ msgstr "adventure/western/war"
 msgid "advertisement/shopping"
 msgstr "advertisement/shopping"
 
-#, fuzzy
-msgid "All events down"
-msgstr "special events"
-
-#, fuzzy
-msgid "All events up"
-msgstr "special events"
-
 msgid "all up/down"
 msgstr ""
 
@@ -23619,21 +23623,6 @@ msgstr "gardening"
 msgid "get the cards' server"
 msgstr ""
 
-#, fuzzy
-msgid "Goto current channel and now"
-msgstr "Switch next channel"
-
-#, fuzzy
-msgid "Goto first channel"
-msgstr "Switch next channel"
-
-#, fuzzy
-msgid "Goto last channel"
-msgstr "Switch next channel"
-
-msgid "Goto now"
-msgstr ""
-
 msgid "grab this frame as bitmap"
 msgstr "grab this frame as bitmap"
 
@@ -23860,10 +23849,6 @@ msgstr "news/current affairs (general)"
 msgid "news/weather report"
 msgstr "news/weather report"
 
-#, fuzzy
-msgid "Next channel page"
-msgstr "Switch next channel"
-
 msgid "no CAId selected"
 msgstr "no CAId selected"
 
@@ -23977,10 +23962,6 @@ msgstr "popular culture/traditional arts"
 
 msgid "pre-school children's program"
 msgstr "pre-school children's program"
-
-#, fuzzy
-msgid "Previous channel page"
-msgstr "Switch to previous channel"
 
 #, fuzzy
 msgid "provid:"
@@ -24387,6 +24368,38 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "2"
+
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "2"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "Bouquet Edit"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Instant recording..."
+
+#~ msgid "Missing "
+#~ msgstr "Missing "
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Reception settings"
+
+#~ msgid "Start recording?"
+#~ msgstr "Start recording?"
 
 #~ msgid "none"
 #~ msgstr "none"

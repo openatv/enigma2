@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
-"PO-Revision-Date: 2023-12-10 10:10+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"PO-Revision-Date: 2023-12-13 02:35+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1385,9 +1385,6 @@ msgstr "* Dostępne tylko wtedy gdy więcej niż jeden interfejs jest aktywny."
 msgid "* current animation"
 msgstr "* obecna animacja"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 Godziny"
 
@@ -1398,9 +1395,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 Godziny"
@@ -1686,13 +1680,6 @@ msgid ""
 msgstr ""
 "Nagranie zostało uruchomione:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Nagrywanie w toku...\n"
-"Co chcesz zrobić?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Nagrywanie w toku. Zakończ nagrywanie przed rozpoczęciem ustawiania pozycjonera."
@@ -2213,6 +2200,12 @@ msgstr "Wszystkie usługi"
 
 msgid "All ages"
 msgstr "Wszystkie grupy wiekowe"
+
+msgid "All events down"
+msgstr "Wszystkie wydarzenia w dół"
+
+msgid "All events up"
+msgstr "Wszystkie wydarzenia w górę"
 
 msgid "All files"
 msgstr "Wszystkie pliki"
@@ -3185,9 +3178,6 @@ msgstr "Akcje selektora listy kanałów"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Akcje nawigacji selektora listy kanałów"
-
-msgid "BouquetList"
-msgstr "Lista kanałów"
 
 msgid "Bouvet Island"
 msgstr "Wyspa Bouveta"
@@ -8308,7 +8298,7 @@ msgid "Format your hard drive"
 msgstr "Formatowanie twardego dysku"
 
 msgid "Forward Error Correction (FEC)"
-msgstr "Korekcja błędów w przód (FEC)"
+msgstr "Korekcja błędów (FEC)"
 
 msgid "Forward volume keys"
 msgstr "Kontroluj głośność TV/AV"
@@ -8612,13 +8602,22 @@ msgid "Goto Date/Time"
 msgstr "Idź do Data/Czas"
 
 msgid "Goto Prime Time"
-msgstr "IdX do Primetime"
+msgstr "Idź do Prime Time"
 
 msgid "Goto X"
 msgstr "Idź do X"
 
+msgid "Goto current channel and now"
+msgstr "Idż do bieżącego kanału"
+
 msgid "Goto deep standby"
 msgstr "Wyłącz tuner"
+
+msgid "Goto first channel"
+msgstr "Idż do pierwszego kanału"
+
+msgid "Goto last channel"
+msgstr "Idż do ostatniego kanału"
 
 msgid "Goto next bouquet"
 msgstr "Idź do następnej pozycji listy kanałów"
@@ -8628,6 +8627,9 @@ msgstr "Idż do nastepnego kanału"
 
 msgid "Goto next event"
 msgstr "Idź do kolejnego wydarzenia"
+
+msgid "Goto now"
+msgstr "Idź do teraz"
 
 msgid "Goto position"
 msgstr "Idź na pozycję"
@@ -8834,7 +8836,7 @@ msgid "Harddisk Setup"
 msgstr "Ustawienia HDD"
 
 msgid "Hardware MultiBoot device"
-msgstr "Urządzenie MultiBoot"
+msgstr "Slot MultiBoot"
 
 msgid "Hardware information"
 msgstr "Info o sprzęcie"
@@ -9594,7 +9596,7 @@ msgid "Input Devices Settings"
 msgstr "Urządzenia wejściowe"
 
 msgid "Input Stream ID"
-msgstr "ID Strumienia Wejściowego"
+msgstr "ID strumienia wejściowego"
 
 msgid "Input channel name."
 msgstr "Nazwa kanału wejściowego."
@@ -9683,14 +9685,14 @@ msgstr "Instalowanie wtyczek z IPK..."
 msgid "Installing plugins from feed ..."
 msgstr "Instalowanie wtyczek z kanału oprogramowania..."
 
+msgid "Instant Recording Actions"
+msgstr "Akcje natychmiastowego nagrywania"
+
 msgid "Instant record"
 msgstr "Natychmiastowe nagranie"
 
 msgid "Instant recording location"
 msgstr "Lokalizacja natychmiastowego nagrywania"
-
-msgid "Instant recording..."
-msgstr "Natychmiastowe nagrywanie..."
 
 msgid "Interface"
 msgstr "Interfejs"
@@ -9936,10 +9938,10 @@ msgid "Kernel Packages"
 msgstr "Pakiety Kernel"
 
 msgid "Kernel file"
-msgstr "Plik jądra"
+msgstr "Plik kernel"
 
 msgid "Kernel version"
-msgstr "Wersja jądra"
+msgstr "Wersja kernel"
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Akcje Kexec MultiBoot"
@@ -10550,7 +10552,7 @@ msgid "MTD boot"
 msgstr "MTD boot"
 
 msgid "MTD kernel"
-msgstr "Jądro MTD"
+msgstr "MTD kernel"
 
 msgid "MTD root"
 msgstr "MTD root"
@@ -10574,7 +10576,7 @@ msgid "Main Menu"
 msgstr "Menu główne"
 
 msgid "Maintain your multi boot device."
-msgstr "Utrzymuj swoje urządzenie multiboot."
+msgstr "Konserwacja urządzenia multiboot."
 
 msgid "Make"
 msgstr "Utwórz"
@@ -10934,9 +10936,6 @@ msgid ""
 msgstr ""
 "Źle skonfigurowane połączenie UNICABLE z tunera %s do tunera %s!\n"
 "Opcja tunera %s \"podłączona do\" jest teraz wyłączona"
-
-msgid "Missing "
-msgstr "Brakujący "
 
 msgid "Mobile connection"
 msgstr "Połączenie mobilne"
@@ -11469,7 +11468,7 @@ msgid "Nameserver setup"
 msgstr "Ustawienia DNS"
 
 msgid "Namespace & Orbital position"
-msgstr "Przestrzeń nazw i poz. orbitalna"
+msgstr "Przestrzeń i poz. orbit"
 
 msgid "Namibia"
 msgstr "Namibia"
@@ -11698,11 +11697,14 @@ msgstr "Następny"
 msgid "Next Bouquet"
 msgstr "Następna lista kanałów"
 
-msgid "Next higher resolution"
-msgstr "następna wyższa rozdzielczość"
-
 msgid "Next Page"
 msgstr "Następna strona"
+
+msgid "Next channel page"
+msgstr "Następna strona kanału"
+
+msgid "Next higher resolution"
+msgstr "Następna wyższa rozdzielczość"
 
 msgid "Next quad PiP channel"
 msgstr "Następny kanał quad PiP"
@@ -12682,6 +12684,10 @@ msgstr "Ustawienia hasła"
 msgid "Password changed."
 msgstr "Hasło zostało zmienione."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr "Brak ścieżki '%s'!"
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Ścieżka do zapisu nie istnieje: '/tmp/'"
 
@@ -12888,10 +12894,10 @@ msgid "Play selected service on the main screen"
 msgstr "Odtwórz wybraną usługę na głównym ekranie"
 
 msgid "Play service with Stream Relay"
-msgstr "Odtwarzaj usługi za pomocą Stream Relay"
+msgstr "Odtwarzaj kanał za pomocą Stream Relay"
 
 msgid "Play service without Stream Relay"
-msgstr "Odtwarzaj usługi bez pomocy Stream Relay"
+msgstr "Odtwarzaj kanał bez pomocy Stream Relay"
 
 msgid "Play the audio file"
 msgstr "Odtwórz plik audio"
@@ -13522,6 +13528,9 @@ msgstr "Poprzednia lista kanałów"
 msgid "Previous Page"
 msgstr "Poprzednia strona"
 
+msgid "Previous channel page"
+msgstr "Poprzednia strona kanału"
+
 msgid "Previous/Next bouquet"
 msgstr "poprzednia/następna lista kanałów"
 
@@ -14041,9 +14050,6 @@ msgstr "Nagrywalny media toolbox"
 
 msgid "Recording"
 msgstr "Nagranie"
-
-msgid "Recording Actions"
-msgstr "Akcje nagrywania"
 
 msgid "Recording Settings"
 msgstr "Ustawienia nagrywania"
@@ -14723,7 +14729,7 @@ msgid "Right, wrapped"
 msgstr "prawo, owinięty"
 
 msgid "Roll-off"
-msgstr "Pasmo przepustowe i zaporowe"
+msgstr "Pasmo przepustowe"
 
 msgid "Romance"
 msgstr "Romans"
@@ -18000,11 +18006,11 @@ msgstr "Przepraszamy brak Konfig. MiniDLNA"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Przepraszamy, feedy są wyłączone z powodu konserwacji, spróbuj ponownie później."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Przepraszamy, możliwe jest nagrywanie tylko 2 kanałów jednocześnie!"
+
 msgid "Sorry no backups found!"
 msgstr "Nie znaleziono kopii zapasowej!"
-
-msgid "Sorry it is only possible to record 2 channels at once!"
-msgstr "Niestety, możliwe jest nagrywanie tylko dwóch kanałów naraz"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Niestety brakuje Konfig. uShare"
@@ -18196,6 +18202,9 @@ msgstr "Uruchom interaktywny RDS"
 msgid "Start Wizard"
 msgstr "Uruchom kreator"
 
+msgid "Start an instant recording"
+msgstr "Rozpocznij natychmiastowe nagrywanie"
+
 msgid "Start date"
 msgstr "Data rozpoczęcia"
 
@@ -18211,6 +18220,9 @@ msgstr "Rozpocznij od początku"
 msgid "Start instant recording"
 msgstr "Rozpocznij nagrywanie natychmiastowe"
 
+msgid "Start instant recording?"
+msgstr "Rozpocząć natychmiastowe nagrywanie?"
+
 msgid "Start mode"
 msgstr "Tryb uruchamiania"
 
@@ -18219,9 +18231,6 @@ msgstr "Rozpocznij dekodowanie offline"
 
 msgid "Start recording current event"
 msgstr "Rozpocznij nagrywanie aktualnego wydarzenia"
-
-msgid "Start recording?"
-msgstr "Rozpocząć nagrywanie?"
 
 msgid "Start teletext"
 msgstr "Uruchom telegazete"
@@ -18837,7 +18846,7 @@ msgid "TXT PID"
 msgstr "TXT PID"
 
 msgid "TXT Subtitles page & Language"
-msgstr "Strona napisów TXT & język"
+msgstr "Strona napisów TXT, język"
 
 msgid "Table of content for collection"
 msgstr "Spis treści dla kolekcji"
@@ -19926,7 +19935,7 @@ msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift zapisany na dysku twardym!"
 
 msgid "Time shift will get saved at end of event."
-msgstr "Timeshift będzie zapisywany tylko do końca danego wydarzenia!"
+msgstr "Timeshift zostanie zapisany na końcu wydarzenia."
 
 msgid "Time style"
 msgstr "Styl czasu"
@@ -22507,12 +22516,6 @@ msgstr "przygoda/wojenny/western"
 msgid "advertisement/shopping"
 msgstr "reklama/zakupy"
 
-msgid "All events down"
-msgstr "wszystkie wydarzenia w dół"
-
-msgid "All events up"
-msgstr "wszystkie wydarzenia w górę"
-
 msgid "all up/down"
 msgstr "wszystko góra/dół"
 
@@ -22855,18 +22858,6 @@ msgstr "ogrodnictwo"
 msgid "get the cards' server"
 msgstr "serwer kart"
 
-msgid "Goto current channel and now"
-msgstr "Idż do bieżącego kanału"
-
-msgid "Goto first channel"
-msgstr "Idż do pierwszego kanału"
-
-msgid "Goto last channel"
-msgstr "Idż do ostatniego kanału"
-
-msgid "Goto now"
-msgstr "Idź do teraz"
-
 msgid "grab this frame as bitmap"
 msgstr "zrób zrzut ekranu (.bmp)"
 
@@ -23083,9 +23074,6 @@ msgstr "wiadomości"
 msgid "news/weather report"
 msgstr "wiadomości/pogoda"
 
-msgid "Next channel page"
-msgstr "następna strona z kanałami"
-
 msgid "no CAId selected"
 msgstr "nie wybrano kaida"
 
@@ -23196,9 +23184,6 @@ msgstr "popkultura/sztuka tradycyjna"
 
 msgid "pre-school children's program"
 msgstr "dla przedszkolaków"
-
-msgid "Previous channel page"
-msgstr "poprzednia strona z kanałami"
 
 msgid "provid:"
 msgstr "dost.:"
@@ -23589,6 +23574,34 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Nagrywanie w toku...\n"
+#~ "Co chcesz zrobić?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Lista kanałów"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Natychmiastowe nagrywanie..."
+
+#~ msgid "Missing "
+#~ msgstr "Brakujący "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Akcje nagrywania"
+
+#~ msgid "Start recording?"
+#~ msgstr "Rozpocząć nagrywanie?"
 
 #, python-format
 #~ msgid "Slot '%s'"

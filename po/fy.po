@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Frisian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fy/>\n"
@@ -1456,11 +1456,6 @@ msgstr "* Allinne beskikber by meer dan ien aktieve ynterfaces"
 msgid "* current animation"
 msgstr ""
 
-#
-#, fuzzy
-msgid "+24"
-msgstr "2"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1470,11 +1465,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#
-#, fuzzy
-msgid "-24"
-msgstr "2"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1804,14 +1794,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-
-#
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"In opnimmen is dwaande.\n"
-"Wat wolle jo dwaan ?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2397,6 +2379,12 @@ msgid "All Services"
 msgstr "Kanalen"
 
 msgid "All ages"
+msgstr ""
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
 msgstr ""
 
 msgid "All files"
@@ -3455,11 +3443,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-#
-#, fuzzy
-msgid "BouquetList"
-msgstr "[bouquet bewurkje]"
 
 msgid "Bouvet Island"
 msgstr ""
@@ -9264,8 +9247,19 @@ msgstr ""
 msgid "Goto X"
 msgstr "Gjin nei 0"
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
 msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Goto last channel"
+msgstr "net feroarje"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -9274,6 +9268,9 @@ msgid "Goto next channel"
 msgstr ""
 
 msgid "Goto next event"
+msgstr ""
+
+msgid "Goto now"
 msgstr ""
 
 #
@@ -10426,17 +10423,15 @@ msgstr "Oan it ynstallearjen"
 msgid "Installing plugins from feed ..."
 msgstr "Oan it ynstallearjen"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
 #
 #, fuzzy
 msgid "Instant recording location"
-msgstr "In direct opnimmen..."
-
-#
-#, fuzzy
-msgid "Instant recording..."
 msgstr "In direct opnimmen..."
 
 msgid "Interface"
@@ -11815,9 +11810,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr ""
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -12675,13 +12667,18 @@ msgstr "boeket tafoegje"
 
 #
 #, fuzzy
-msgid "Next higher resolution"
-msgstr "Skermresolusje"
+msgid "Next Page"
+msgstr "net feroarje"
 
 #
 #, fuzzy
-msgid "Next Page"
+msgid "Next channel page"
 msgstr "net feroarje"
+
+#
+#, fuzzy
+msgid "Next higher resolution"
+msgstr "Skermresolusje"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -13749,6 +13746,10 @@ msgstr "Netwurk Ynstellingen"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -14707,6 +14708,9 @@ msgstr "kanaal tafoegje oan bouquet"
 msgid "Previous Page"
 msgstr "Foar-oanskouwing"
 
+msgid "Previous channel page"
+msgstr ""
+
 msgid "Previous/Next bouquet"
 msgstr ""
 
@@ -15275,11 +15279,6 @@ msgstr ""
 #
 msgid "Recording"
 msgstr "An it opnimmen"
-
-#
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Utfiering klear.."
 
 msgid "Recording Settings"
 msgstr ""
@@ -19559,10 +19558,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -19764,6 +19763,9 @@ msgstr "Rass interaktief sjen litte"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -19780,6 +19782,9 @@ msgstr "Start fanôf it begjin"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Start mode"
@@ -19790,10 +19795,6 @@ msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
-
-#
-msgid "Start recording?"
-msgstr "Start opnimmen?"
 
 msgid "Start teletext"
 msgstr ""
@@ -24264,12 +24265,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All events down"
-msgstr ""
-
-msgid "All events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -24636,20 +24631,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "Goto current channel and now"
-msgstr ""
-
-msgid "Goto first channel"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Goto last channel"
-msgstr "net feroarje"
-
-msgid "Goto now"
-msgstr ""
-
 #
 msgid "grab this frame as bitmap"
 msgstr ""
@@ -24893,11 +24874,6 @@ msgid "news/weather report"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Next channel page"
-msgstr "net feroarje"
-
-#
 msgid "no CAId selected"
 msgstr ""
 
@@ -25022,9 +24998,6 @@ msgid "popular culture/traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
-msgstr ""
-
-msgid "Previous channel page"
 msgstr ""
 
 msgid "provid:"
@@ -25460,6 +25433,43 @@ msgstr "ja (feeds hâlde)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "2"
+
+#
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "2"
+
+#
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "In opnimmen is dwaande.\n"
+#~ "Wat wolle jo dwaan ?"
+
+#
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "[bouquet bewurkje]"
+
+#
+#, fuzzy
+#~ msgid "Instant recording..."
+#~ msgstr "In direct opnimmen..."
+
+#
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Utfiering klear.."
+
+#
+#~ msgid "Start recording?"
+#~ msgstr "Start opnimmen?"
 
 #
 #~ msgid "none"

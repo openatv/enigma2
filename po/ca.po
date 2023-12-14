@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1454,11 +1454,6 @@ msgstr "* Només disponible si hi ha més d'una interfície activa."
 msgid "* current animation"
 msgstr ""
 
-#
-#, fuzzy
-msgid "+24"
-msgstr "2"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1468,11 +1463,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#
-#, fuzzy
-msgid "-24"
-msgstr "2"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1799,14 +1789,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-
-#
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"En aquests moments s'està realitzant una gravació.\n"
-"Què voleu fer?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2386,6 +2368,12 @@ msgstr "Canals"
 
 msgid "All ages"
 msgstr "Totes les edats"
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
+msgstr ""
 
 msgid "All files"
 msgstr ""
@@ -3432,11 +3420,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-#
-#, fuzzy
-msgid "BouquetList"
-msgstr "[editar llista]"
 
 msgid "Bouvet Island"
 msgstr "Illa Bouvet"
@@ -9172,8 +9155,19 @@ msgstr ""
 msgid "Goto X"
 msgstr "Anar a X"
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
 msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Goto last channel"
+msgstr "no canviar"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -9182,6 +9176,9 @@ msgid "Goto next channel"
 msgstr ""
 
 msgid "Goto next event"
+msgstr ""
+
+msgid "Goto now"
 msgstr ""
 
 #
@@ -10313,16 +10310,15 @@ msgstr "Instal·lant"
 msgid "Installing plugins from feed ..."
 msgstr "Instal·lant"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Registre instantani"
 
 #
 msgid "Instant recording location"
 msgstr "Canviar la gravació (durada)"
-
-#
-msgid "Instant recording..."
-msgstr "Enregistrament instantani …"
 
 msgid "Interface"
 msgstr ""
@@ -11666,9 +11662,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr "Falta "
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -12507,13 +12500,18 @@ msgstr "Seguent"
 msgid "Next Bouquet"
 msgstr "afegir llista"
 
-msgid "Next higher resolution"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Next Page"
 msgstr "no canviar"
+
+#
+#, fuzzy
+msgid "Next channel page"
+msgstr "no canviar"
+
+msgid "Next higher resolution"
+msgstr ""
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -13566,6 +13564,10 @@ msgstr "Config xarxa"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -14503,6 +14505,9 @@ msgstr "afegir el canal a la llista"
 msgid "Previous Page"
 msgstr ""
 
+msgid "Previous channel page"
+msgstr ""
+
 msgid "Previous/Next bouquet"
 msgstr ""
 
@@ -15062,11 +15067,6 @@ msgstr ""
 #
 msgid "Recording"
 msgstr "Gravant"
-
-#
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Ha finalitzat l'execució"
 
 msgid "Recording Settings"
 msgstr ""
@@ -19272,10 +19272,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -19478,6 +19478,9 @@ msgstr "Veure Rass interactiu..."
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -19494,6 +19497,9 @@ msgstr "Comença des del principi"
 msgid "Start instant recording"
 msgstr "Inicia la gravació instantània"
 
+msgid "Start instant recording?"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Start mode"
@@ -19504,10 +19510,6 @@ msgstr "Comença la descodificació fora de línia"
 
 msgid "Start recording current event"
 msgstr ""
-
-#
-msgid "Start recording?"
-msgstr "Iniciar gravació?"
 
 msgid "Start teletext"
 msgstr "Inicia el teletext"
@@ -23920,12 +23922,6 @@ msgstr "aventura / occidental / de guerra"
 msgid "advertisement/shopping"
 msgstr "publicitat / compres"
 
-msgid "All events down"
-msgstr ""
-
-msgid "All events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -24291,20 +24287,6 @@ msgstr "jardineria"
 msgid "get the cards' server"
 msgstr ""
 
-msgid "Goto current channel and now"
-msgstr ""
-
-msgid "Goto first channel"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Goto last channel"
-msgstr "no canviar"
-
-msgid "Goto now"
-msgstr ""
-
 #
 msgid "grab this frame as bitmap"
 msgstr "agafeu aquest marc com a mapa de bits"
@@ -24547,11 +24529,6 @@ msgid "news/weather report"
 msgstr "notícies / actualitat (general)"
 
 #
-#, fuzzy
-msgid "Next channel page"
-msgstr "no canviar"
-
-#
 msgid "no CAId selected"
 msgstr "no s’ha seleccionat cap CAI"
 
@@ -24676,9 +24653,6 @@ msgstr "Arts/Culturas"
 
 msgid "pre-school children's program"
 msgstr "programa infantil d’educació infantil"
-
-msgid "Previous channel page"
-msgstr ""
 
 msgid "provid:"
 msgstr ""
@@ -25107,6 +25081,45 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "2"
+
+#
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "2"
+
+#
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "En aquests moments s'està realitzant una gravació.\n"
+#~ "Què voleu fer?"
+
+#
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "[editar llista]"
+
+#
+#~ msgid "Instant recording..."
+#~ msgstr "Enregistrament instantani …"
+
+#~ msgid "Missing "
+#~ msgstr "Falta "
+
+#
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Ha finalitzat l'execució"
+
+#
+#~ msgid "Start recording?"
+#~ msgstr "Iniciar gravació?"
 
 #, python-format
 #~ msgid "Slot '%s':  %s"

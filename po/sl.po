@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -1504,11 +1504,6 @@ msgstr "* Na voljo samo kadar je hkrati aktivnih več vmesnikov."
 msgid "* current animation"
 msgstr ""
 
-#
-#, fuzzy
-msgid "+24"
-msgstr "2"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1518,11 +1513,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#
-#, fuzzy
-msgid "-24"
-msgstr "2"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1842,14 +1832,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-
-#
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Trenutno poteka snemanje kanal.\n"
-"Kaj želite storiti?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2448,6 +2430,12 @@ msgid "All Services"
 msgstr "Kanali"
 
 msgid "All ages"
+msgstr ""
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
 msgstr ""
 
 msgid "All files"
@@ -3529,11 +3517,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-#
-#, fuzzy
-msgid "BouquetList"
-msgstr "Seznam priljubljenih paketov"
 
 msgid "Bouvet Island"
 msgstr ""
@@ -9420,8 +9403,19 @@ msgstr ""
 msgid "Goto X"
 msgstr "Pojdi na 0"
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
 msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Goto last channel"
+msgstr "ne spreminjaj"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -9430,6 +9424,9 @@ msgid "Goto next channel"
 msgstr ""
 
 msgid "Goto next event"
+msgstr ""
+
+msgid "Goto now"
 msgstr ""
 
 #
@@ -10595,6 +10592,9 @@ msgstr "Nameščam..."
 msgid "Installing plugins from feed ..."
 msgstr "Nameščam..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
@@ -10602,11 +10602,6 @@ msgstr ""
 #, fuzzy
 msgid "Instant recording location"
 msgstr "Lokacija takojšnjega snemanja"
-
-#
-#, fuzzy
-msgid "Instant recording..."
-msgstr "Takojšnje snemanje"
 
 msgid "Interface"
 msgstr ""
@@ -11996,9 +11991,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr ""
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -12861,13 +12853,18 @@ msgstr "dodajanje paketa"
 
 #
 #, fuzzy
-msgid "Next higher resolution"
-msgstr "Ločljivost"
+msgid "Next Page"
+msgstr "ne spreminjaj"
 
 #
 #, fuzzy
-msgid "Next Page"
+msgid "Next channel page"
 msgstr "ne spreminjaj"
+
+#
+#, fuzzy
+msgid "Next higher resolution"
+msgstr "Ločljivost"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -13955,6 +13952,10 @@ msgstr "Geslo"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -14929,6 +14930,9 @@ msgstr "Premik kanala v drug paket"
 msgid "Previous Page"
 msgstr "Predogled"
 
+msgid "Previous channel page"
+msgstr ""
+
 msgid "Previous/Next bouquet"
 msgstr ""
 
@@ -15514,11 +15518,6 @@ msgstr ""
 #
 msgid "Recording"
 msgstr "Snemanje"
-
-#
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Posnetki"
 
 msgid "Recording Settings"
 msgstr ""
@@ -19851,10 +19850,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -20058,6 +20057,9 @@ msgstr "Glejte Rass interaktivno"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -20074,6 +20076,9 @@ msgstr "Začnite od začetku"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Start mode"
@@ -20084,11 +20089,6 @@ msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Start recording?"
-msgstr "to snemanje"
 
 msgid "Start teletext"
 msgstr ""
@@ -24624,12 +24624,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All events down"
-msgstr ""
-
-msgid "All events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -24998,20 +24992,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "Goto current channel and now"
-msgstr ""
-
-msgid "Goto first channel"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Goto last channel"
-msgstr "ne spreminjaj"
-
-msgid "Goto now"
-msgstr ""
-
 #
 msgid "grab this frame as bitmap"
 msgstr ""
@@ -25255,11 +25235,6 @@ msgid "news/weather report"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Next channel page"
-msgstr "ne spreminjaj"
-
-#
 msgid "no CAId selected"
 msgstr "ni izbran nobeden CAId"
 
@@ -25386,9 +25361,6 @@ msgid "popular culture/traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
-msgstr ""
-
-msgid "Previous channel page"
 msgstr ""
 
 msgid "provid:"
@@ -25829,6 +25801,44 @@ msgstr "Da (obdrži feed-e)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "2"
+
+#
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "2"
+
+#
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Trenutno poteka snemanje kanal.\n"
+#~ "Kaj želite storiti?"
+
+#
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "Seznam priljubljenih paketov"
+
+#
+#, fuzzy
+#~ msgid "Instant recording..."
+#~ msgstr "Takojšnje snemanje"
+
+#
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Posnetki"
+
+#
+#, fuzzy
+#~ msgid "Start recording?"
+#~ msgstr "to snemanje"
 
 #
 #~ msgid "none"

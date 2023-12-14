@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
-"PO-Revision-Date: 2023-12-09 09:28+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1380,9 +1380,6 @@ msgstr "* Доступно, якщо більше ніж один інтерфе
 msgid "* current animation"
 msgstr "* поточна анімація"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 години"
 
@@ -1392,9 +1389,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 години"
@@ -1680,13 +1674,6 @@ msgid ""
 msgstr ""
 "Запис розпочався:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Триває запис.\n"
-"Що хочете зробити?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "В даний час триває запис. Зупиніть запис перед налаштуванням позиціонера."
@@ -2207,6 +2194,12 @@ msgstr "Всі канали"
 
 msgid "All ages"
 msgstr "Для всіх"
+
+msgid "All events down"
+msgstr "всі події вниз"
+
+msgid "All events up"
+msgstr "всі події вверх"
 
 msgid "All files"
 msgstr "Всі файли"
@@ -3179,9 +3172,6 @@ msgstr "Дії Селектора фаворитів"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Навігація у Селекторі фаворитів"
-
-msgid "BouquetList"
-msgstr "Список фаворитів"
 
 msgid "Bouvet Island"
 msgstr "Острів Буве"
@@ -8610,8 +8600,17 @@ msgstr "Перейти Прайм-тайм"
 msgid "Goto X"
 msgstr "Перейти на позицію Х"
 
+msgid "Goto current channel and now"
+msgstr "перейти до поточного каналу зараз"
+
 msgid "Goto deep standby"
 msgstr "вимкнути"
+
+msgid "Goto first channel"
+msgstr "перейти на перший канал"
+
+msgid "Goto last channel"
+msgstr "перейти на наступний канал"
 
 msgid "Goto next bouquet"
 msgstr "Перейти на наступний фаворит"
@@ -8621,6 +8620,9 @@ msgstr "Перейти на наступний канал"
 
 msgid "Goto next event"
 msgstr "Перейти до наступ. передачі"
+
+msgid "Goto now"
+msgstr "перейти зараз"
 
 msgid "Goto position"
 msgstr "Перейти на позицію"
@@ -9676,14 +9678,14 @@ msgstr "Встановлення плагінів з IPK..."
 msgid "Installing plugins from feed ..."
 msgstr "Встановлення плагінів з фіду..."
 
+msgid "Instant Recording Actions"
+msgstr "Дії для миттєвого запису"
+
 msgid "Instant record"
 msgstr "Негайний запис"
 
 msgid "Instant recording location"
 msgstr "Розташування миттєвих записів"
-
-msgid "Instant recording..."
-msgstr "Негайний запис..."
 
 msgid "Interface"
 msgstr "Інтерфейс"
@@ -10927,9 +10929,6 @@ msgstr ""
 "Налаштування з’єднання мосту unicable тюнера %s з тюнером %s!\n"
 "Параметр тюнера %s «підключений до» в даний час відключений"
 
-msgid "Missing "
-msgstr "Відсутній "
-
 msgid "Mobile connection"
 msgstr "Мобільне підключення"
 
@@ -11690,11 +11689,14 @@ msgstr "Наступна"
 msgid "Next Bouquet"
 msgstr "Наступний фаворит"
 
-msgid "Next higher resolution"
-msgstr "наступна вища роздільна здатність"
-
 msgid "Next Page"
 msgstr "Наступна сторінка"
+
+msgid "Next channel page"
+msgstr "наступна сторінка каналів"
+
+msgid "Next higher resolution"
+msgstr "наступна вища роздільна здатність"
 
 msgid "Next quad PiP channel"
 msgstr "Наступний 4-ч какнальний ПіП"
@@ -12674,6 +12676,10 @@ msgstr "Налаштування Пароля"
 msgid "Password changed."
 msgstr "Пароль змінено."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr "Шлях '%s' відсутній!"
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Шлях до збереження не існує: '/ tmp /'"
 
@@ -13514,6 +13520,9 @@ msgstr "Попередній фаворит"
 msgid "Previous Page"
 msgstr "Попередня сторінка"
 
+msgid "Previous channel page"
+msgstr "попередня сторінка каналів"
+
 msgid "Previous/Next bouquet"
 msgstr "попередній/наступний Фаворит"
 
@@ -14033,9 +14042,6 @@ msgstr "Панель інструментів для запису"
 
 msgid "Recording"
 msgstr "Запис"
-
-msgid "Recording Actions"
-msgstr "Дії для Записів"
 
 msgid "Recording Settings"
 msgstr "Налаштування запису"
@@ -17991,11 +17997,11 @@ msgstr "Не знайдено налаштувань MiniDLNA"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "На жаль фіди на технічному обслуговувані, будь ласка, спробуйте пізніше."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "На жаль можна записувати тільки 2 канали одночасно!"
+
 msgid "Sorry no backups found!"
 msgstr "Вибачте, але резервних копій не знайдено!"
-
-msgid "Sorry it is only possible to record 2 channels at once!"
-msgstr "На жаль можна записувати тільки 2 канали одночасно"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Не знайдено налаштувань uShare"
@@ -18187,6 +18193,9 @@ msgstr "Запуск інтерактивного RDS"
 msgid "Start Wizard"
 msgstr "Майстер Запуску"
 
+msgid "Start an instant recording"
+msgstr "Розпочати негайний запис"
+
 msgid "Start date"
 msgstr "Дата початку"
 
@@ -18202,6 +18211,9 @@ msgstr "Почати з початку"
 msgid "Start instant recording"
 msgstr "Включення негайного запису"
 
+msgid "Start instant recording?"
+msgstr "Розпочати негайний запис?"
+
 msgid "Start mode"
 msgstr "Режим запуску"
 
@@ -18210,9 +18222,6 @@ msgstr "Запуск декодування оффлайн"
 
 msgid "Start recording current event"
 msgstr "Почати запис поточної події"
-
-msgid "Start recording?"
-msgstr "Почати запис?"
 
 msgid "Start teletext"
 msgstr "Запуск телетексту"
@@ -18807,7 +18816,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 09.12.2023"
+msgstr "Переклад: kvinto - 10.12.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19917,7 +19926,7 @@ msgid "Time shift saved to your hard disk drive!"
 msgstr "Файл таймшифта збережений на жорсткий диск!"
 
 msgid "Time shift will get saved at end of event."
-msgstr "Файл таймшифта буде збережений в кінці події!"
+msgstr "Файл таймшифта буде збережений в кінці передачі."
 
 msgid "Time style"
 msgstr "Формат часу"
@@ -22498,12 +22507,6 @@ msgstr "пригоди/вестерн/війна"
 msgid "advertisement/shopping"
 msgstr "реклама/покупки"
 
-msgid "All events down"
-msgstr "всі події вниз"
-
-msgid "All events up"
-msgstr "всі події вверх"
-
 msgid "all up/down"
 msgstr "все вверх/вниз"
 
@@ -22846,18 +22849,6 @@ msgstr "садівництво"
 msgid "get the cards' server"
 msgstr "отримати картки сервера"
 
-msgid "Goto current channel and now"
-msgstr "перейти до поточного каналу зараз"
-
-msgid "Goto first channel"
-msgstr "перейти на перший канал"
-
-msgid "Goto last channel"
-msgstr "перейти на наступний канал"
-
-msgid "Goto now"
-msgstr "перейти зараз"
-
 msgid "grab this frame as bitmap"
 msgstr "захопити цей кадр як растрове зображення"
 
@@ -23074,9 +23065,6 @@ msgstr "новини/поточні події (загальні)"
 msgid "news/weather report"
 msgstr "новини/прогноз погоди"
 
-msgid "Next channel page"
-msgstr "наступна сторінка каналів"
-
 msgid "no CAId selected"
 msgstr "не вибрано CAId"
 
@@ -23187,9 +23175,6 @@ msgstr "популярна культура/традиційні мистецт�
 
 msgid "pre-school children's program"
 msgstr "дитяча програма дошкільного віку"
-
-msgid "Previous channel page"
-msgstr "попередня сторінка каналів"
 
 msgid "provid:"
 msgstr "пров.:"
@@ -23580,6 +23565,34 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Триває запис.\n"
+#~ "Що хочете зробити?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Список фаворитів"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Негайний запис..."
+
+#~ msgid "Missing "
+#~ msgstr "Відсутній "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Дії для Записів"
+
+#~ msgid "Start recording?"
+#~ msgstr "Почати запис?"
 
 #, python-format
 #~ msgid "Slot '%s'"

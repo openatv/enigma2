@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
-"PO-Revision-Date: 2023-12-09 23:23+0000\n"
-"Last-Translator: VfBFan <VfBFan@users.noreply.hosted.weblate.org>\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"PO-Revision-Date: 2023-12-13 02:35+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1369,9 +1369,6 @@ msgstr "* Nur verfügbar, wenn mehr als ein Netzwerkadapter aktiv ist."
 msgid "* current animation"
 msgstr "* gewählte Animation"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 Stunden"
 
@@ -1381,9 +1378,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 Stunden"
@@ -1714,14 +1708,6 @@ msgid ""
 msgstr ""
 "Eine Aufnahme wurde gestartet:\n"
 "%s"
-
-#
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Zurzeit läuft eine Aufnahme!\n"
-"Was möchten Sie tun?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2304,6 +2290,12 @@ msgstr "Alle Sender"
 
 msgid "All ages"
 msgstr "Jedes Alter"
+
+msgid "All events down"
+msgstr "Alle Ereignisse runter"
+
+msgid "All events up"
+msgstr "Alle Ereignisse hoch"
 
 msgid "All files"
 msgstr "Alle Dateien"
@@ -3334,9 +3326,6 @@ msgstr "Favoritenauswahl Aktionen"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Favoritenauswahl Navigationsaktionen"
-
-msgid "BouquetList"
-msgstr "Bouquetliste"
 
 msgid "Bouvet Island"
 msgstr "Bouvet Insel"
@@ -9070,9 +9059,18 @@ msgstr "Gehe zur Primetime"
 msgid "Goto X"
 msgstr "Gehe zu X"
 
+msgid "Goto current channel and now"
+msgstr "Gehe zum aktuellen Kanal"
+
 # Powerlost usage.config
 msgid "Goto deep standby"
 msgstr "Ausschalten"
+
+msgid "Goto first channel"
+msgstr "Gehe zum ersten Kanal"
+
+msgid "Goto last channel"
+msgstr "Gehe zum letzten Kanal"
 
 msgid "Goto next bouquet"
 msgstr "Gehe zur nächsten Favoritenliste"
@@ -9082,6 +9080,9 @@ msgstr "Gehe zum nächsten Sender"
 
 msgid "Goto next event"
 msgstr "Zur nächsten Sendung gehen"
+
+msgid "Goto now"
+msgstr "Gehe zur aktuellen Uhrzeit"
 
 msgid "Goto position"
 msgstr "Auf Position drehen"
@@ -10182,15 +10183,14 @@ msgstr "Installiere Plugins aus IPK..."
 msgid "Installing plugins from feed ..."
 msgstr "Installiere Plugins vom Feed..."
 
+msgid "Instant Recording Actions"
+msgstr "Sofortaufnahme-Aktionen"
+
 msgid "Instant record"
 msgstr "Sofortaufnahme"
 
 msgid "Instant recording location"
 msgstr "Sofortaufnahme-Verzeichnis"
-
-#
-msgid "Instant recording..."
-msgstr "Sofortaufnahme..."
 
 msgid "Interface"
 msgstr "Schnittstelle"
@@ -11516,9 +11516,6 @@ msgstr ""
 "Falsch konfigurierte Unicable Verbindung von Tuner %s zu %s!\n"
 "Tuner %s Option 'Verbunden mit' ist jetzt deaktiviert."
 
-msgid "Missing "
-msgstr "Fehlend "
-
 msgid "Mobile connection"
 msgstr "Mobile Verbindung"
 
@@ -11655,10 +11652,10 @@ msgid "Move Mode"
 msgstr "Verschiebemodus"
 
 msgid "Move Mode Off"
-msgstr "Verschiebemodus aus"
+msgstr "Verschiebemodus Aus"
 
 msgid "Move Mode On"
-msgstr "Verschiebemodus an"
+msgstr "Verschiebemodus Ein"
 
 msgid "Move PiP"
 msgstr "Verschiebe Bild-im-Bild"
@@ -12351,12 +12348,15 @@ msgstr "Nächstes"
 msgid "Next Bouquet"
 msgstr "Favoriten vor"
 
-msgid "Next higher resolution"
-msgstr "Nächsthöhere Auflösung"
-
 #
 msgid "Next Page"
 msgstr "Seite vor"
+
+msgid "Next channel page"
+msgstr "Nächste Kanalseite"
+
+msgid "Next higher resolution"
+msgstr "Nächsthöhere Auflösung"
 
 msgid "Next quad PiP channel"
 msgstr "Auf die nächste Sendergruppe schalten"
@@ -13421,6 +13421,10 @@ msgstr "Passwort einrichten"
 msgid "Password changed."
 msgstr "Passwort geändert."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr "Pfad '%s' nicht vorhanden!"
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Pfad zum Speichern nicht vorhanden: '/tmp/'"
 
@@ -14358,6 +14362,9 @@ msgstr "Favoriten zurück"
 msgid "Previous Page"
 msgstr "Seite zurück"
 
+msgid "Previous channel page"
+msgstr "Vorherige Kanalseite"
+
 msgid "Previous/Next bouquet"
 msgstr "Vorherige/Nächste Favoriten"
 
@@ -14904,9 +14911,6 @@ msgstr "Toolbox für beschreibbare Medien"
 #
 msgid "Recording"
 msgstr "Aufnahme"
-
-msgid "Recording Actions"
-msgstr "Aufnahmeaktionen"
 
 msgid "Recording Settings"
 msgstr "Aufnahmen"
@@ -18908,14 +18912,14 @@ msgid "Slide right to left"
 msgstr "Von rechts nach links"
 
 msgid "Slide show delay"
-msgstr "Diashow Verzögerung"
+msgstr "Diashow-Verzögerung"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "Slide show interval (sec.)"
 msgstr "Diashow-Intervall (Sekunden)"
 
 msgid "Slide show loop"
-msgstr "Diashow Schleife"
+msgstr "Diashow-Schleife"
 
 msgid "Slide top to bottom"
 msgstr "Von oben nach unten"
@@ -19121,12 +19125,12 @@ msgstr ""
 "Bitte später erneut versuchen.\n"
 "Für weitere Fragen 'https://www.opena.tv' besuchen."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Es können nur 2 Sender auf einmal aufgenommen werden!"
+
 #
 msgid "Sorry no backups found!"
 msgstr "Keine Sicherungen gefunden!"
-
-msgid "Sorry it is only possible to record 2 channels at once!"
-msgstr "Es können nur 2 Sender auf einmal aufgenommen werden!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Es fehlt die uShare-Konfiguration!"
@@ -19327,6 +19331,9 @@ msgstr "RDS interaktiv starten"
 msgid "Start Wizard"
 msgstr "Start-Assistent"
 
+msgid "Start an instant recording"
+msgstr "Sofortaufnahme starten"
+
 msgid "Start date"
 msgstr "Startdatum"
 
@@ -19343,6 +19350,9 @@ msgstr "Am Anfang starten"
 msgid "Start instant recording"
 msgstr "Sofortaufnahme starten"
 
+msgid "Start instant recording?"
+msgstr "Sofortaufnahme starten?"
+
 msgid "Start mode"
 msgstr "Startmodus"
 
@@ -19352,10 +19362,6 @@ msgstr "Starte offline decodieren"
 
 msgid "Start recording current event"
 msgstr "Starte Aufnahme der aktuellen Sendung"
-
-#
-msgid "Start recording?"
-msgstr "Aufnahme beginnen?"
 
 msgid "Start teletext"
 msgstr "Videotext"
@@ -23931,12 +23937,6 @@ msgstr "Abenteuer/Western/Krieg"
 msgid "advertisement/shopping"
 msgstr "Werbung/Verkauf"
 
-msgid "All events down"
-msgstr "Alle Ereignisse runter"
-
-msgid "All events up"
-msgstr "Alle Ereignisse hoch"
-
 msgid "all up/down"
 msgstr "Alle Hoch/Runter"
 
@@ -24316,18 +24316,6 @@ msgstr "Gartenarbeit"
 msgid "get the cards' server"
 msgstr "Einlesen der Card-Server"
 
-msgid "Goto current channel and now"
-msgstr "Gehe zum aktuellen Kanal"
-
-msgid "Goto first channel"
-msgstr "Gehe zum ersten Kanal"
-
-msgid "Goto last channel"
-msgstr "Gehe zum letzten Kanal"
-
-msgid "Goto now"
-msgstr "Gehe zur aktuellen Uhrzeit"
-
 #
 msgid "grab this frame as bitmap"
 msgstr "Diesen Frame als Bitmap speichern"
@@ -24569,9 +24557,6 @@ msgstr "Nachrichten (allgemein)"
 msgid "news/weather report"
 msgstr "Nachrichten/Wetterbericht"
 
-msgid "Next channel page"
-msgstr "Nächste Kanalseite"
-
 #
 msgid "no CAId selected"
 msgstr "Keine CAID ausgewählt"
@@ -24695,9 +24680,6 @@ msgstr "Beliebte Kultur/Traditionelle Kunst"
 
 msgid "pre-school children's program"
 msgstr "Programm für Vorschulkinder"
-
-msgid "Previous channel page"
-msgstr "Vorherige Kanalseite"
 
 msgid "provid:"
 msgstr "Bereitstellen:"
@@ -25122,6 +25104,37 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Zurzeit läuft eine Aufnahme!\n"
+#~ "Was möchten Sie tun?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Bouquetliste"
+
+#
+#~ msgid "Instant recording..."
+#~ msgstr "Sofortaufnahme..."
+
+#~ msgid "Missing "
+#~ msgstr "Fehlend "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Aufnahmeaktionen"
+
+#
+#~ msgid "Start recording?"
+#~ msgstr "Aufnahme beginnen?"
 
 #, python-format
 #~ msgid "Slot '%s'"

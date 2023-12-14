@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -1334,9 +1334,6 @@ msgstr "* Kun tilgjengelig hvis flere nettverkskort er i bruk."
 msgid "* current animation"
 msgstr ""
 
-msgid "+24"
-msgstr ""
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1346,9 +1343,6 @@ msgstr ""
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr ""
 
 msgid "-24 Hours"
 msgstr ""
@@ -1628,13 +1622,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Et opptak pågår.\n"
-"Hva vil du gjøre?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr ""
@@ -2146,6 +2133,12 @@ msgstr ""
 
 msgid "All ages"
 msgstr "Alle aldre"
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
+msgstr ""
 
 msgid "All files"
 msgstr ""
@@ -3113,9 +3106,6 @@ msgid "Bouquet Selector Actions"
 msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
-msgstr ""
-
-msgid "BouquetList"
 msgstr ""
 
 msgid "Bouvet Island"
@@ -8463,7 +8453,16 @@ msgstr ""
 msgid "Goto X"
 msgstr "Gå til X"
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
+msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+msgid "Goto last channel"
 msgstr ""
 
 msgid "Goto next bouquet"
@@ -8473,6 +8472,9 @@ msgid "Goto next channel"
 msgstr ""
 
 msgid "Goto next event"
+msgstr ""
+
+msgid "Goto now"
 msgstr ""
 
 msgid "Goto position"
@@ -9521,14 +9523,14 @@ msgstr ""
 msgid "Installing plugins from feed ..."
 msgstr ""
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Direkte opptak"
 
 msgid "Instant recording location"
 msgstr "Mappe for direkteopptak"
-
-msgid "Instant recording..."
-msgstr "Direkteopptak..."
 
 msgid "Interface"
 msgstr ""
@@ -10768,9 +10770,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr "Savnet "
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -11528,10 +11527,13 @@ msgstr "Neste"
 msgid "Next Bouquet"
 msgstr ""
 
-msgid "Next higher resolution"
+msgid "Next Page"
 msgstr ""
 
-msgid "Next Page"
+msgid "Next channel page"
+msgstr ""
+
+msgid "Next higher resolution"
 msgstr ""
 
 msgid "Next quad PiP channel"
@@ -12500,6 +12502,10 @@ msgstr ""
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -13329,6 +13335,9 @@ msgstr ""
 msgid "Previous Page"
 msgstr ""
 
+msgid "Previous channel page"
+msgstr ""
+
 msgid "Previous/Next bouquet"
 msgstr ""
 
@@ -13848,9 +13857,6 @@ msgstr ""
 
 msgid "Recording"
 msgstr "Tar opp"
-
-msgid "Recording Actions"
-msgstr ""
 
 msgid "Recording Settings"
 msgstr ""
@@ -17764,10 +17770,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -17957,6 +17963,9 @@ msgstr ""
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -17972,6 +17981,9 @@ msgstr "Start fra begynnelsen"
 msgid "Start instant recording"
 msgstr "Start øyeblikkelig innspilling"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr ""
 
@@ -17980,9 +17992,6 @@ msgstr "Start offline dekoding"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "Starte opptak?"
 
 msgid "Start teletext"
 msgstr "Start tekst TV"
@@ -22101,12 +22110,6 @@ msgstr "eventyr/western/krig"
 msgid "advertisement/shopping"
 msgstr "reklame/shopping"
 
-msgid "All events down"
-msgstr ""
-
-msgid "All events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -22447,18 +22450,6 @@ msgstr "hagearbeid"
 msgid "get the cards' server"
 msgstr ""
 
-msgid "Goto current channel and now"
-msgstr ""
-
-msgid "Goto first channel"
-msgstr ""
-
-msgid "Goto last channel"
-msgstr ""
-
-msgid "Goto now"
-msgstr ""
-
 msgid "grab this frame as bitmap"
 msgstr "lagre ramme som punktgrafikk"
 
@@ -22675,9 +22666,6 @@ msgstr "nyheter/aktuelt (generelt)"
 msgid "news/weather report"
 msgstr "nyheter/værmelding"
 
-msgid "Next channel page"
-msgstr ""
-
 msgid "no CAId selected"
 msgstr "ingen CAId er valgt"
 
@@ -22788,9 +22776,6 @@ msgstr "populær kultur/tradisjonell kunst"
 
 msgid "pre-school children's program"
 msgstr "førskole barneprogram"
-
-msgid "Previous channel page"
-msgstr ""
 
 msgid "provid:"
 msgstr ""
@@ -23176,6 +23161,22 @@ msgstr "ja (behold feeder)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Et opptak pågår.\n"
+#~ "Hva vil du gjøre?"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Direkteopptak..."
+
+#~ msgid "Missing "
+#~ msgstr "Savnet "
+
+#~ msgid "Start recording?"
+#~ msgstr "Starte opptak?"
 
 #, python-format
 #~ msgid "Slot '%s':  %s"

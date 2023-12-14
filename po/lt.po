@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1380,9 +1380,6 @@ msgstr "* Galima, jei tik daugiau kaip viena sąsaja yra aktyvi."
 msgid "* current animation"
 msgstr "* dabartinė animacija"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 valandos"
 
@@ -1392,9 +1389,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 valandos"
@@ -1688,13 +1682,6 @@ msgid ""
 msgstr ""
 "Prasidėjo įrašymas:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Dabar vyksta įrašymas.\n"
-"Ką norite daryti?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Dabar vyksta įrašymas. Prieš konfigūruodami pozicionierių išjunkite įrašymą."
@@ -2215,6 +2202,12 @@ msgstr "Visi kanalai"
 
 msgid "All ages"
 msgstr "Visi amžiai"
+
+msgid "All events down"
+msgstr "visi įvykiai žemyn"
+
+msgid "All events up"
+msgstr "visi įvykiai iki"
 
 msgid "All files"
 msgstr "Visi failai"
@@ -3189,9 +3182,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-msgid "BouquetList"
-msgstr "Paketų sąrašas"
 
 msgid "Bouvet Island"
 msgstr "Buveto sala"
@@ -8621,8 +8611,17 @@ msgstr "Į žiūrimiausią laiką"
 msgid "Goto X"
 msgstr "Eiti į X"
 
+msgid "Goto current channel and now"
+msgstr "eiti į dabartinį kanalą ir dabar"
+
 msgid "Goto deep standby"
 msgstr "į gilų budėjimą"
+
+msgid "Goto first channel"
+msgstr "eiti į kitą kanalą"
+
+msgid "Goto last channel"
+msgstr "eiti į paskutinį kanalą"
 
 msgid "Goto next bouquet"
 msgstr "Į kitą paketą"
@@ -8632,6 +8631,9 @@ msgstr "Į kitą kanalą"
 
 msgid "Goto next event"
 msgstr "Į kitą įvykį"
+
+msgid "Goto now"
+msgstr "eiti dabar"
 
 msgid "Goto position"
 msgstr "Eiti į poziciją"
@@ -9687,14 +9689,14 @@ msgstr "Priedų diegimas iš IPK ..."
 msgid "Installing plugins from feed ..."
 msgstr "Priedų diegimas iš šaltinių ..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Momentinis įrašymas"
 
 msgid "Instant recording location"
 msgstr "Momentinio įrašymo vieta"
-
-msgid "Instant recording..."
-msgstr "Momentinis įrašymas..."
 
 msgid "Interface"
 msgstr "Sąsaja"
@@ -10938,9 +10940,6 @@ msgstr ""
 "Netinkamai sukonfigūruota kelių kabelių jungtis nuo imtuvo %s į %s!\n"
 "Imtuvo %s parinktis \"Prijungtas prie\" dabar yra išjungta"
 
-msgid "Missing "
-msgstr "Trūksta "
-
 msgid "Mobile connection"
 msgstr "Mobilusis ryšys"
 
@@ -11698,11 +11697,14 @@ msgstr "Kitas"
 msgid "Next Bouquet"
 msgstr "Sekantis paketas"
 
-msgid "Next higher resolution"
-msgstr "kita didesnė rezoliucija"
-
 msgid "Next Page"
 msgstr "Sekantis puslapis"
+
+msgid "Next channel page"
+msgstr "kito kanalo puslapis"
+
+msgid "Next higher resolution"
+msgstr "kita didesnė rezoliucija"
 
 msgid "Next quad PiP channel"
 msgstr "Kitas, keturių PiP kanalų, kanalas"
@@ -12682,6 +12684,10 @@ msgstr "Slaptažodžio parametrai"
 msgid "Password changed."
 msgstr "Slaptažodis pakeistas."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Nėra kelio išsaugojimui: '/tmp/'"
 
@@ -13522,6 +13528,9 @@ msgstr "Ankstesnis paketas"
 msgid "Previous Page"
 msgstr "Ankstesnis puslapis"
 
+msgid "Previous channel page"
+msgstr "ankstesnis kanalo puslapis"
+
 msgid "Previous/Next bouquet"
 msgstr "ankstesnis/kitas paketas"
 
@@ -14041,9 +14050,6 @@ msgstr "Įrašomų medija priemonių rinkinys"
 
 msgid "Recording"
 msgstr "Įrašymas"
-
-msgid "Recording Actions"
-msgstr "Įrašymo veiksmai"
 
 msgid "Recording Settings"
 msgstr "Įrašymo nustatymai"
@@ -17987,11 +17993,11 @@ msgstr "Atsiprašome MiniDLNA konfigūracijos nėra"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Atsiprašome šaltiniai neveikia dėl priežiūros darbų, prašome pabandyti vėliau."
 
-msgid "Sorry no backups found!"
-msgstr "Atsiprašome, bet atsarginių kopijų nerasta!"
-
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Atsiprašome, vienu metu galima įrašyti tik 2 kanalus"
+
+msgid "Sorry no backups found!"
+msgstr "Atsiprašome, bet atsarginių kopijų nerasta!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Atsiprašome uShare konfigūracijos nėra"
@@ -18183,6 +18189,9 @@ msgstr "Paleisti interaktyvų RDS"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18198,6 +18207,9 @@ msgstr "Pradėti iš pradžių"
 msgid "Start instant recording"
 msgstr "Pradėti tiesioginį įrašymą"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "Paleidimo režimas"
 
@@ -18206,9 +18218,6 @@ msgstr "Pradėti dekodavimą neprisijungus"
 
 msgid "Start recording current event"
 msgstr "Pradėti įrašyti dabartinį įvykį"
-
-msgid "Start recording?"
-msgstr "Pradėti įrašymą?"
 
 msgid "Start teletext"
 msgstr "Įjungti teletekstą"
@@ -22453,12 +22462,6 @@ msgstr "nuotykių/vesternas/karinis"
 msgid "advertisement/shopping"
 msgstr "reklama/prekyba"
 
-msgid "All events down"
-msgstr "visi įvykiai žemyn"
-
-msgid "All events up"
-msgstr "visi įvykiai iki"
-
 msgid "all up/down"
 msgstr "visi aukštyn/žemyn"
 
@@ -22801,18 +22804,6 @@ msgstr "sodininkystė"
 msgid "get the cards' server"
 msgstr "prijungti kortelių serverį"
 
-msgid "Goto current channel and now"
-msgstr "eiti į dabartinį kanalą ir dabar"
-
-msgid "Goto first channel"
-msgstr "eiti į kitą kanalą"
-
-msgid "Goto last channel"
-msgstr "eiti į paskutinį kanalą"
-
-msgid "Goto now"
-msgstr "eiti dabar"
-
 msgid "grab this frame as bitmap"
 msgstr "užgriebti vaizdą bmp formatu"
 
@@ -23029,9 +23020,6 @@ msgstr "naujienos/aktualijos (bendra)"
 msgid "news/weather report"
 msgstr "naujienos/orai"
 
-msgid "Next channel page"
-msgstr "kito kanalo puslapis"
-
 msgid "no CAId selected"
 msgstr "joks CAId neišsirinktas"
 
@@ -23142,9 +23130,6 @@ msgstr "populiarioji kultūra/tradiciniai menai"
 
 msgid "pre-school children's program"
 msgstr "ikimokyklinė vaikų programa"
-
-msgid "Previous channel page"
-msgstr "ankstesnis kanalo puslapis"
 
 msgid "provid:"
 msgstr "tiekėjas:"
@@ -23537,6 +23522,34 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Dabar vyksta įrašymas.\n"
+#~ "Ką norite daryti?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Paketų sąrašas"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Momentinis įrašymas..."
+
+#~ msgid "Missing "
+#~ msgstr "Trūksta "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Įrašymo veiksmai"
+
+#~ msgid "Start recording?"
+#~ msgstr "Pradėti įrašymą?"
 
 #, python-format
 #~ msgid "Slot '%s'"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1341,9 +1341,6 @@ msgstr "* Kun tilgængelig hvis mere end en grænseflade er aktiv."
 msgid "* current animation"
 msgstr "* nuværende animation"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1353,9 +1350,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1649,13 +1643,6 @@ msgid ""
 msgstr ""
 "En optagelse er blevet startet:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"En optagelse er i gang.\n"
-"Hvad vil du gøre ?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "En optagelse er i gang. Stop venligst denne optagelse før forsøg på konfiguration af motoren."
@@ -2173,6 +2160,12 @@ msgstr "Alle kanaler"
 
 msgid "All ages"
 msgstr "Alle aldre"
+
+msgid "All events down"
+msgstr "alle begivenheder ned"
+
+msgid "All events up"
+msgstr "alle begivenheder op"
 
 msgid "All files"
 msgstr ""
@@ -3148,9 +3141,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-msgid "BouquetList"
-msgstr "Buketliste"
 
 msgid "Bouvet Island"
 msgstr "Bouvetøen"
@@ -8573,8 +8563,17 @@ msgstr "Gå til Primetime"
 msgid "Goto X"
 msgstr "Gå til X"
 
+msgid "Goto current channel and now"
+msgstr "Gå til nuværende kanal og nu"
+
 msgid "Goto deep standby"
 msgstr "Gå i Dyb Standby"
+
+msgid "Goto first channel"
+msgstr "Gå til første kanal"
+
+msgid "Goto last channel"
+msgstr "Gå til sidste kanal"
 
 msgid "Goto next bouquet"
 msgstr "Gå til næste buket"
@@ -8584,6 +8583,9 @@ msgstr "Gå til næste kanal"
 
 msgid "Goto next event"
 msgstr "Gå til næste udsendelse"
+
+msgid "Goto now"
+msgstr "Gå til nu"
 
 msgid "Goto position"
 msgstr "Gå til position"
@@ -9650,14 +9652,14 @@ msgstr "Installere Plugins fra IPK..."
 msgid "Installing plugins from feed ..."
 msgstr "Installere Plugins fra Feed..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Straksoptagelse"
 
 msgid "Instant recording location"
 msgstr "Straksoptagelse placering"
-
-msgid "Instant recording..."
-msgstr "Straksoptagelse..."
 
 msgid "Interface"
 msgstr "Grænseflade"
@@ -10932,9 +10934,6 @@ msgstr ""
 "Fejlkonfigureret unikabel-forbindelse fra Tuner %s til Tuner %s!\n"
 "Tuner %s mulighed \"forbundet til\" er nu deaktiveret"
 
-msgid "Missing "
-msgstr "Mangler "
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -11706,11 +11705,14 @@ msgstr "Næste"
 msgid "Next Bouquet"
 msgstr "Næste buket"
 
-msgid "Next higher resolution"
-msgstr "næste højere opløsning"
-
 msgid "Next Page"
 msgstr "Næste side"
+
+msgid "Next channel page"
+msgstr "næste kanalside"
+
+msgid "Next higher resolution"
+msgstr "næste højere opløsning"
 
 msgid "Next quad PiP channel"
 msgstr "Næste firedobbelt PiP kanal"
@@ -12706,6 +12708,10 @@ msgstr "Adgangskode opsætning"
 msgid "Password changed."
 msgstr "Adgangskode ændret."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Sti hvortil der gemmes eksistere ikke: 'tmp'"
 
@@ -13547,6 +13553,9 @@ msgstr "Forrige buket"
 msgid "Previous Page"
 msgstr "Forrige side"
 
+msgid "Previous channel page"
+msgstr "forrige kanalside"
+
 msgid "Previous/Next bouquet"
 msgstr "Forrige/næste Buket"
 
@@ -14069,10 +14078,6 @@ msgstr "Optagelig medie værktøjskasse"
 
 msgid "Recording"
 msgstr "Optagelse"
-
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Optagelsesindstillinger"
 
 msgid "Recording Settings"
 msgstr "Optagelsesindstillinger"
@@ -18051,11 +18056,11 @@ msgstr "Desværre, MiniDLNA konfiguration mangler"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Desværre, Feeds er nede for Vedligeholdelse, prøv venligst igen senere."
 
-msgid "Sorry no backups found!"
-msgstr "Desværre, ingen sikkerhedskopier fundet!"
-
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Det er desværre kune muligt at optage 2 kanaler samtidig"
+
+msgid "Sorry no backups found!"
+msgstr "Desværre, ingen sikkerhedskopier fundet!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Desværre, uShare konfiguration mangler"
@@ -18250,6 +18255,9 @@ msgstr "Samme som i aktiv"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18265,6 +18273,9 @@ msgstr "Start fra begyndelse"
 msgid "Start instant recording"
 msgstr "Start straksoptagelse"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "Start tilstand"
 
@@ -18273,9 +18284,6 @@ msgstr "Start offline afkodning"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "Start optagelse ?"
 
 msgid "Start teletext"
 msgstr "Start Tekst-TV"
@@ -22510,12 +22518,6 @@ msgstr "Eventyr/Western/Krig"
 msgid "advertisement/shopping"
 msgstr "Reklamer/Indkøb"
 
-msgid "All events down"
-msgstr "alle begivenheder ned"
-
-msgid "All events up"
-msgstr "alle begivenheder op"
-
 msgid "all up/down"
 msgstr "alle op/ned"
 
@@ -22864,18 +22866,6 @@ msgstr "Havearbejde"
 msgid "get the cards' server"
 msgstr "hent server for kort"
 
-msgid "Goto current channel and now"
-msgstr "Gå til nuværende kanal og nu"
-
-msgid "Goto first channel"
-msgstr "Gå til første kanal"
-
-msgid "Goto last channel"
-msgstr "Gå til sidste kanal"
-
-msgid "Goto now"
-msgstr "Gå til nu"
-
 msgid "grab this frame as bitmap"
 msgstr "Fang denne ramme som bitmap"
 
@@ -23095,9 +23085,6 @@ msgstr "Nyheder/Aktuelt (Generelt)"
 msgid "news/weather report"
 msgstr "Nyheder/Vejrudsigt"
 
-msgid "Next channel page"
-msgstr "næste kanalside"
-
 msgid "no CAId selected"
 msgstr "Ingen CAId valgt"
 
@@ -23208,9 +23195,6 @@ msgstr "Folkekultur/Traditionel kunst"
 
 msgid "pre-school children's program"
 msgstr "Førskole børneprogram"
-
-msgid "Previous channel page"
-msgstr "forrige kanalside"
 
 msgid "provid:"
 msgstr "Giver:"
@@ -23610,6 +23594,35 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "En optagelse er i gang.\n"
+#~ "Hvad vil du gøre ?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Buketliste"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Straksoptagelse..."
+
+#~ msgid "Missing "
+#~ msgstr "Mangler "
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Optagelsesindstillinger"
+
+#~ msgid "Start recording?"
+#~ msgstr "Start optagelse ?"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Gå til Dato/Timer"

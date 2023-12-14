@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
-"PO-Revision-Date: 2023-12-10 10:10+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"PO-Revision-Date: 2023-12-14 20:54+0000\n"
 "Last-Translator: Atec <dr.atec@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.3\n"
 
 msgid ""
 "\n"
@@ -1377,9 +1377,6 @@ msgstr "* Dostupné len ak je aktívne viac ako jedno rozhranie."
 msgid "* current animation"
 msgstr "* aktuálna animácia"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 hodín"
 
@@ -1389,9 +1386,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 hodín"
@@ -1677,13 +1671,6 @@ msgid ""
 msgstr ""
 "Začalo sa nahrávanie:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Práve sa nahráva.\n"
-"Čo chcete urobiť?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Práve sa nahráva. Pred nastavovaním pozicionéra nahrávanie zastavte."
@@ -2204,6 +2191,12 @@ msgstr "Všetky stanice"
 
 msgid "All ages"
 msgstr "Všetky vekové skupiny"
+
+msgid "All events down"
+msgstr "všetky udalosti dolu"
+
+msgid "All events up"
+msgstr "všetky udalosti hore"
 
 msgid "All files"
 msgstr "Všetky súbory"
@@ -3176,9 +3169,6 @@ msgstr "Akcie pre nástroj na výber prehľadu"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Akcie pre navigovanie nástroja na výber prehľadu"
-
-msgid "BouquetList"
-msgstr "Zoznam prehľadov"
 
 msgid "Bouvet Island"
 msgstr "Bouvetov ostrov"
@@ -8607,8 +8597,17 @@ msgstr "Prejsť na hlavný vysielací čas (Prime Time)"
 msgid "Goto X"
 msgstr "Prejsť na X"
 
+msgid "Goto current channel and now"
+msgstr "prejsť na aktuálny kanál"
+
 msgid "Goto deep standby"
 msgstr "Vypnúť"
+
+msgid "Goto first channel"
+msgstr "prejsť na prvý kanál"
+
+msgid "Goto last channel"
+msgstr "prejsť na posledný kanál"
 
 msgid "Goto next bouquet"
 msgstr "Prejsť na ďalší prehľad"
@@ -8618,6 +8617,9 @@ msgstr "Prejsť na ďalší kanál"
 
 msgid "Goto next event"
 msgstr "Prejsť na ďalšiu udalosť"
+
+msgid "Goto now"
+msgstr "prejsť na aktuálny čas"
 
 msgid "Goto position"
 msgstr "Prejsť na pozíciu"
@@ -9673,14 +9675,14 @@ msgstr "Inštalácia pluginov z IPK…"
 msgid "Installing plugins from feed ..."
 msgstr "Inštalácia pluginov zo zdroja softvéru…"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Okamžité nahrávanie"
 
 msgid "Instant recording location"
 msgstr "Umiestnenie okamžitej nahrávky"
-
-msgid "Instant recording..."
-msgstr "Okamžité nahrávanie…"
 
 msgid "Interface"
 msgstr "Rozhranie"
@@ -10924,9 +10926,6 @@ msgstr ""
 "Nesprávna konfigurácia unicable prepojenia z tunera %s do tunera %s!\n"
 "Možnosť 'pripojené na' pre tuner %s je teraz vypnutá"
 
-msgid "Missing "
-msgstr "Chýba "
-
 msgid "Mobile connection"
 msgstr "Mobilné pripojenie"
 
@@ -11687,11 +11686,14 @@ msgstr "Ďalej"
 msgid "Next Bouquet"
 msgstr "Ďalší prehľad"
 
-msgid "Next higher resolution"
-msgstr "najbližšie vyššie rozlíšenie"
-
 msgid "Next Page"
 msgstr "Ďalšia strana"
+
+msgid "Next channel page"
+msgstr "ďalšia stránka kanálov"
+
+msgid "Next higher resolution"
+msgstr "najbližšie vyššie rozlíšenie"
 
 msgid "Next quad PiP channel"
 msgstr "Ďalší kanál Quad PIP"
@@ -12671,6 +12673,10 @@ msgstr "Nastavenie hesla"
 msgid "Password changed."
 msgstr "Heslo zmenené."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Neexistuje cesta na uloženie: '/tmp/'"
 
@@ -13511,6 +13517,9 @@ msgstr "Predchádzajúci prehľad"
 msgid "Previous Page"
 msgstr "Predchádzajúca strana"
 
+msgid "Previous channel page"
+msgstr "predchádzajúca stránka kanála"
+
 msgid "Previous/Next bouquet"
 msgstr "predchádzajúci/ďalší prehľad"
 
@@ -14030,9 +14039,6 @@ msgstr "Súprava nástrojov pre nahrávateľné médiá"
 
 msgid "Recording"
 msgstr "Nahrávanie"
-
-msgid "Recording Actions"
-msgstr "Akcie nahrávania"
 
 msgid "Recording Settings"
 msgstr "Nastavenia nahrávania"
@@ -17988,11 +17994,11 @@ msgstr "Prepáčte, chýba konfigurácia MiniDLNA"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Žiaľ, zdroje softvéru nie sú kvôli údržbe dostupné. Skúste to neskôr, prosím."
 
-msgid "Sorry no backups found!"
-msgstr "Žiaľ, nenašli sa žiadne zálohy!"
-
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Prepáčte, naraz je možné nahrávať iba 2 kanály"
+
+msgid "Sorry no backups found!"
+msgstr "Žiaľ, nenašli sa žiadne zálohy!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Prepáčte, chýba konfigurácia uShare"
@@ -18184,6 +18190,9 @@ msgstr "Spustiť interaktívne RDS"
 msgid "Start Wizard"
 msgstr "Spustiť sprievodcu"
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr "Počiatočný dátum"
 
@@ -18199,6 +18208,9 @@ msgstr "spustiť od začiatku"
 msgid "Start instant recording"
 msgstr "Spustiť okamžité nahrávanie"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "Režim spustenia"
 
@@ -18207,9 +18219,6 @@ msgstr "Spustiť offline dekódovanie"
 
 msgid "Start recording current event"
 msgstr "Spustiť nahrávanie aktuálnej udalosti"
-
-msgid "Start recording?"
-msgstr "Spustiť nahrávanie?"
 
 msgid "Start teletext"
 msgstr "Spustiť teletext"
@@ -20653,7 +20662,7 @@ msgid "Up/Down buttons also for 'all up/down'."
 msgstr "Tlačidlá hore/dolu aj pre 'všetko nahor/nadol'."
 
 msgid "Update"
-msgstr "Aktualizácia"
+msgstr "Aktualizovať"
 
 msgid "Update Plugin"
 msgstr "Aktualizovať plugin"
@@ -22495,12 +22504,6 @@ msgstr "dobrodružný/western/vojnový"
 msgid "advertisement/shopping"
 msgstr "reklama/nakupovanie"
 
-msgid "All events down"
-msgstr "všetky udalosti dolu"
-
-msgid "All events up"
-msgstr "všetky udalosti hore"
-
 msgid "all up/down"
 msgstr "všetko nahor/nadol"
 
@@ -22843,18 +22846,6 @@ msgstr "záhradníctvo"
 msgid "get the cards' server"
 msgstr "načítanie kartového servera"
 
-msgid "Goto current channel and now"
-msgstr "prejsť na aktuálny kanál"
-
-msgid "Goto first channel"
-msgstr "prejsť na prvý kanál"
-
-msgid "Goto last channel"
-msgstr "prejsť na posledný kanál"
-
-msgid "Goto now"
-msgstr "prejsť na aktuálny čas"
-
 msgid "grab this frame as bitmap"
 msgstr "zachytiť túto snímku ako bitmapu"
 
@@ -23071,9 +23062,6 @@ msgstr "správy/publicistika (všeobecne)"
 msgid "news/weather report"
 msgstr "správy/správa o počasí"
 
-msgid "Next channel page"
-msgstr "ďalšia stránka kanálov"
-
 msgid "no CAId selected"
 msgstr "nie je zvolený žiadny CAId"
 
@@ -23184,9 +23172,6 @@ msgstr "ľudová kultúra/tradičné umenie"
 
 msgid "pre-school children's program"
 msgstr "program pre deti v predškolskom veku"
-
-msgid "Previous channel page"
-msgstr "predchádzajúca stránka kanála"
 
 msgid "provid:"
 msgstr "poskyt.:"
@@ -23577,6 +23562,34 @@ msgstr "áno (zachovať zdroje softvéru)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Práve sa nahráva.\n"
+#~ "Čo chcete urobiť?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Zoznam prehľadov"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Okamžité nahrávanie…"
+
+#~ msgid "Missing "
+#~ msgstr "Chýba "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Akcie nahrávania"
+
+#~ msgid "Start recording?"
+#~ msgstr "Spustiť nahrávanie?"
 
 #, python-format
 #~ msgid "Slot '%s'"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -1382,10 +1382,6 @@ msgstr "* ต้องมีอย่างน้อย 1 อินเตอร�
 msgid "* current animation"
 msgstr ""
 
-#, fuzzy
-msgid "+24"
-msgstr "2"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1395,10 +1391,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#, fuzzy
-msgid "-24"
-msgstr "2"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1698,13 +1690,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"กำลังบันทึกรายการอยู่\n"
-"ท่านต้องการที่จะทำอะไร?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "กำลังบันทึกรายการอยู่ ให้หยุดการบันทึกก่อนตั้งค่าตัวขับจาน"
@@ -2237,6 +2222,12 @@ msgid "All Services"
 msgstr "บริการต่างๆ"
 
 msgid "All ages"
+msgstr ""
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
 msgstr ""
 
 msgid "All files"
@@ -3235,10 +3226,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-#, fuzzy
-msgid "BouquetList"
-msgstr "[แก้ไขกลุ่มรายการ]"
 
 msgid "Bouvet Island"
 msgstr ""
@@ -8726,8 +8713,18 @@ msgstr ""
 msgid "Goto X"
 msgstr "ไปยัง 0"
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
 msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+#, fuzzy
+msgid "Goto last channel"
+msgstr "ไม่ต้องเปลี่ยน"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -8736,6 +8733,9 @@ msgid "Goto next channel"
 msgstr ""
 
 msgid "Goto next event"
+msgstr ""
+
+msgid "Goto now"
 msgstr ""
 
 msgid "Goto position"
@@ -9822,15 +9822,14 @@ msgstr "กำลังติดตั้ง"
 msgid "Installing plugins from feed ..."
 msgstr "กำลังติดตั้ง"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
 #, fuzzy
 msgid "Instant recording location"
-msgstr "บันทึกรายการ..."
-
-#, fuzzy
-msgid "Instant recording..."
 msgstr "บันทึกรายการ..."
 
 msgid "Interface"
@@ -11124,9 +11123,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr ""
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -11924,12 +11920,16 @@ msgid "Next Bouquet"
 msgstr "เพิ่มกลุ่มรายการ"
 
 #, fuzzy
-msgid "Next higher resolution"
-msgstr "ความละเอียดจอ"
-
-#, fuzzy
 msgid "Next Page"
 msgstr "ไม่ต้องเปลี่ยน"
+
+#, fuzzy
+msgid "Next channel page"
+msgstr "ไม่ต้องเปลี่ยน"
+
+#, fuzzy
+msgid "Next higher resolution"
+msgstr "ความละเอียดจอ"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -12932,6 +12932,10 @@ msgstr "รหัสผ่าน"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -13797,6 +13801,9 @@ msgstr "เพิ่มบริการเข้าสู่กลุ่มร
 msgid "Previous Page"
 msgstr ""
 
+msgid "Previous channel page"
+msgstr ""
+
 msgid "Previous/Next bouquet"
 msgstr ""
 
@@ -14330,10 +14337,6 @@ msgid "Recordable media toolbox"
 msgstr ""
 
 msgid "Recording"
-msgstr "กำลังบันทึกรายการ"
-
-#, fuzzy
-msgid "Recording Actions"
 msgstr "กำลังบันทึกรายการ"
 
 msgid "Recording Settings"
@@ -18385,10 +18388,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -18580,6 +18583,9 @@ msgstr "แสดง RASS แบบ Interactive"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18595,6 +18601,9 @@ msgstr "เริ่มตั้งแต่ต้น"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 #, fuzzy
 msgid "Start mode"
 msgstr "เวลาเริ่ม"
@@ -18604,9 +18613,6 @@ msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "เริ่มบันทึก?"
 
 msgid "Start teletext"
 msgstr ""
@@ -22838,12 +22844,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All events down"
-msgstr ""
-
-msgid "All events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -23185,19 +23185,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "Goto current channel and now"
-msgstr ""
-
-msgid "Goto first channel"
-msgstr ""
-
-#, fuzzy
-msgid "Goto last channel"
-msgstr "ไม่ต้องเปลี่ยน"
-
-msgid "Goto now"
-msgstr ""
-
 msgid "grab this frame as bitmap"
 msgstr "เก็บหน้าจอนี้ลงแฟ้ม"
 
@@ -23418,10 +23405,6 @@ msgstr ""
 msgid "news/weather report"
 msgstr ""
 
-#, fuzzy
-msgid "Next channel page"
-msgstr "ไม่ต้องเปลี่ยน"
-
 msgid "no CAId selected"
 msgstr "ไม่มี CAId ใดๆ ถูกเลือก"
 
@@ -23534,9 +23517,6 @@ msgid "popular culture/traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
-msgstr ""
-
-msgid "Previous channel page"
 msgstr ""
 
 msgid "provid:"
@@ -23932,6 +23912,36 @@ msgstr "ใช่ (เก็บฟีดนี้ไว้)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "2"
+
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "2"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "กำลังบันทึกรายการอยู่\n"
+#~ "ท่านต้องการที่จะทำอะไร?"
+
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "[แก้ไขกลุ่มรายการ]"
+
+#, fuzzy
+#~ msgid "Instant recording..."
+#~ msgstr "บันทึกรายการ..."
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "กำลังบันทึกรายการ"
+
+#~ msgid "Start recording?"
+#~ msgstr "เริ่มบันทึก?"
 
 #~ msgid "none"
 #~ msgstr "ไม่มี"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1357,9 +1357,6 @@ msgstr "* 僅在一個或多個網卡啟動才有效."
 msgid "* current animation"
 msgstr "啟動當前配置"
 
-msgid "+24"
-msgstr ""
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1368,9 +1365,6 @@ msgid ", "
 msgstr ""
 
 msgid "-"
-msgstr ""
-
-msgid "-24"
 msgstr ""
 
 msgid "-24 Hours"
@@ -1684,13 +1678,6 @@ msgid ""
 msgstr ""
 "錄製已經開始:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"錄製正在進行中.\n"
-"您想做什麼?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "錄製正在進行中. 請在配置極軸之前停止錄製."
@@ -2243,6 +2230,12 @@ msgid "All Services"
 msgstr "頻道"
 
 msgid "All ages"
+msgstr ""
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
 msgstr ""
 
 msgid "All files"
@@ -3289,10 +3282,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-#, fuzzy
-msgid "BouquetList"
-msgstr "自定義組"
 
 msgid "Bouvet Island"
 msgstr ""
@@ -8926,9 +8915,20 @@ msgstr "計時器自動寫入"
 msgid "Goto X"
 msgstr ""
 
+msgid "Goto current channel and now"
+msgstr ""
+
 #, fuzzy
 msgid "Goto deep standby"
 msgstr "深度休眠"
+
+#, fuzzy
+msgid "Goto first channel"
+msgstr "下一個頻道"
+
+#, fuzzy
+msgid "Goto last channel"
+msgstr "下一個頻道"
 
 #, fuzzy
 msgid "Goto next bouquet"
@@ -8941,6 +8941,10 @@ msgstr "下一個頻道"
 #, fuzzy
 msgid "Goto next event"
 msgstr "向下移動到下一個項目"
+
+#, fuzzy
+msgid "Goto now"
+msgstr "否, 現在不用"
 
 msgid "Goto position"
 msgstr "轉到位置"
@@ -10068,14 +10072,14 @@ msgstr "正在安裝..."
 msgid "Installing plugins from feed ..."
 msgstr "正在安裝..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Instant record"
 msgstr "即時記錄"
 
 msgid "Instant recording location"
-msgstr ""
-
-msgid "Instant recording..."
 msgstr ""
 
 #, fuzzy
@@ -11398,9 +11402,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr ""
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -12226,12 +12227,16 @@ msgid "Next Bouquet"
 msgstr "選擇自定義組"
 
 #, fuzzy
-msgid "Next higher resolution"
-msgstr "解析度"
-
-#, fuzzy
 msgid "Next Page"
 msgstr "下一個頻道"
+
+#, fuzzy
+msgid "Next channel page"
+msgstr "下一個頻道"
+
+#, fuzzy
+msgid "Next higher resolution"
+msgstr "解析度"
 
 #, fuzzy
 msgid "Next quad PiP channel"
@@ -13280,6 +13285,10 @@ msgstr "密碼"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -14176,6 +14185,10 @@ msgid "Previous Page"
 msgstr "預覽"
 
 #, fuzzy
+msgid "Previous channel page"
+msgstr "上一個頻道"
+
+#, fuzzy
 msgid "Previous/Next bouquet"
 msgstr "上一個頻道"
 
@@ -14739,10 +14752,6 @@ msgstr ""
 
 msgid "Recording"
 msgstr "正在錄製"
-
-#, fuzzy
-msgid "Recording Actions"
-msgstr "錄影位置設定"
 
 #, fuzzy
 msgid "Recording Settings"
@@ -18966,11 +18975,11 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
-msgstr "抱歉, 沒有備份發現！"
-
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
+
+msgid "Sorry no backups found!"
+msgstr "抱歉, 沒有備份發現！"
 
 msgid "Sorry uShare Config is Missing"
 msgstr ""
@@ -19178,6 +19187,9 @@ msgstr "View Rass interactive..."
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -19194,6 +19206,9 @@ msgstr "重頭開始"
 msgid "Start instant recording"
 msgstr "開始錄製？"
 
+msgid "Start instant recording?"
+msgstr ""
+
 #, fuzzy
 msgid "Start mode"
 msgstr "開始時間"
@@ -19203,9 +19218,6 @@ msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "開始錄製？"
 
 #, fuzzy
 msgid "Start teletext"
@@ -23565,12 +23577,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All events down"
-msgstr ""
-
-msgid "All events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -23919,21 +23925,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "Goto current channel and now"
-msgstr ""
-
-#, fuzzy
-msgid "Goto first channel"
-msgstr "下一個頻道"
-
-#, fuzzy
-msgid "Goto last channel"
-msgstr "下一個頻道"
-
-#, fuzzy
-msgid "Goto now"
-msgstr "否, 現在不用"
-
 msgid "grab this frame as bitmap"
 msgstr "抓取當前幀為bmp圖片"
 
@@ -24154,10 +24145,6 @@ msgstr ""
 msgid "news/weather report"
 msgstr ""
 
-#, fuzzy
-msgid "Next channel page"
-msgstr "下一個頻道"
-
 msgid "no CAId selected"
 msgstr "未選擇CAId"
 
@@ -24273,10 +24260,6 @@ msgstr ""
 
 msgid "pre-school children's program"
 msgstr ""
-
-#, fuzzy
-msgid "Previous channel page"
-msgstr "上一個頻道"
 
 #, fuzzy
 msgid "provid:"
@@ -24685,6 +24668,24 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "錄製正在進行中.\n"
+#~ "您想做什麼?"
+
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "自定義組"
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "錄影位置設定"
+
+#~ msgid "Start recording?"
+#~ msgstr "開始錄製？"
 
 #, fuzzy
 #~ msgid "Goto Date/Timer"

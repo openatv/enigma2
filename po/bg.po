@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1341,9 +1341,6 @@ msgstr "* Предлага се, ако има повече от един акт
 msgid "* current animation"
 msgstr "* текуща анимация"
 
-msgid "+24"
-msgstr ""
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1352,9 +1349,6 @@ msgid ", "
 msgstr ""
 
 msgid "-"
-msgstr ""
-
-msgid "-24"
 msgstr ""
 
 msgid "-24 Hours"
@@ -1649,13 +1643,6 @@ msgid ""
 msgstr ""
 "Записът е стартиран:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Записът в момента върви.\n"
-"Какво искаш да правиш?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Записът в момента върви. Моля спрете записа преди да опитате да конфигурирате позиционера."
@@ -2173,6 +2160,12 @@ msgstr "Всички сервизи"
 
 msgid "All ages"
 msgstr "Всички възрасти"
+
+msgid "All events down"
+msgstr "всички събития надолу"
+
+msgid "All events up"
+msgstr "всички събития нагоре"
 
 msgid "All files"
 msgstr ""
@@ -3145,9 +3138,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-msgid "BouquetList"
-msgstr "Списък с букети"
 
 msgid "Bouvet Island"
 msgstr ""
@@ -8558,8 +8548,17 @@ msgstr "Отидете в праймтайм"
 msgid "Goto X"
 msgstr "Отиди на X"
 
+msgid "Goto current channel and now"
+msgstr "отидете на текущия канал и сега"
+
 msgid "Goto deep standby"
 msgstr "отидете в режим на дълбока готовност"
+
+msgid "Goto first channel"
+msgstr "отидете на първия канал"
+
+msgid "Goto last channel"
+msgstr "отидете на следващия канал"
 
 msgid "Goto next bouquet"
 msgstr "Отиди на следващия букет"
@@ -8569,6 +8568,9 @@ msgstr "Отиди на следващия канал"
 
 msgid "Goto next event"
 msgstr "Отиди на следващо събитие"
+
+msgid "Goto now"
+msgstr "отидете сега"
 
 msgid "Goto position"
 msgstr "Отиди на позиция"
@@ -9621,14 +9623,14 @@ msgstr "Инсталиране на плъгини от IPK..."
 msgid "Installing plugins from feed ..."
 msgstr "Инсталиране на плъгини от емисия..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Незабавен запис"
 
 msgid "Instant recording location"
 msgstr "Незабавно място за запис"
-
-msgid "Instant recording..."
-msgstr "Незабавен запис на..."
 
 msgid "Interface"
 msgstr "Интерфейс"
@@ -10870,9 +10872,6 @@ msgstr ""
 "Неправилно конфигурирана невъзможна връзка от тунер %s към тунер %s!\n"
 "Опцията за тунер %s \"свързан с\" сега е деактивирана"
 
-msgid "Missing "
-msgstr "Липсващ "
-
 msgid "Mobile connection"
 msgstr "Мобилна връзка"
 
@@ -11630,11 +11629,14 @@ msgstr ""
 msgid "Next Bouquet"
 msgstr "Следващ букет"
 
-msgid "Next higher resolution"
-msgstr "следващата по-висока разделителна способност"
-
 msgid "Next Page"
 msgstr "Следваща страница"
+
+msgid "Next channel page"
+msgstr "следващата страница на канала"
+
+msgid "Next higher resolution"
+msgstr "следващата по-висока разделителна способност"
 
 msgid "Next quad PiP channel"
 msgstr "Следващият четири канала PiP"
@@ -12614,6 +12616,10 @@ msgstr "Настройки на паролата"
 msgid "Password changed."
 msgstr "Паролата е сменена."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Пътят за запис не съществува: '/tmp/'"
 
@@ -13449,6 +13455,9 @@ msgstr "Предишен букет"
 msgid "Previous Page"
 msgstr "Предишна страница"
 
+msgid "Previous channel page"
+msgstr "страница на предишния канал"
+
 msgid "Previous/Next bouquet"
 msgstr "предишен/следващ букет"
 
@@ -13968,9 +13977,6 @@ msgstr ""
 
 msgid "Recording"
 msgstr "Записване"
-
-msgid "Recording Actions"
-msgstr "Записващи действия"
 
 msgid "Recording Settings"
 msgstr "Настройки за записване"
@@ -17911,11 +17917,11 @@ msgstr "За съжаление MiniDLNA Config липсва"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Съжаляваме, че емисиите са за поддръжка, моля, опитайте отново по-късно."
 
-msgid "Sorry no backups found!"
-msgstr "За съжаление не са намерени резервни копия!"
-
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "За съжаление е възможно да се записват само 2 канала наведнъж"
+
+msgid "Sorry no backups found!"
+msgstr "За съжаление не са намерени резервни копия!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "За съжаление uShare Config липсва"
@@ -18107,6 +18113,9 @@ msgstr "Стартирайте RDS интерактивен"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18122,6 +18131,9 @@ msgstr "Старт от самото начало"
 msgid "Start instant recording"
 msgstr "Старт на незабавен запис"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "Стартов режим"
 
@@ -18130,9 +18142,6 @@ msgstr "Старт на офлайн декодиране"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "Старт на записване?"
 
 msgid "Start teletext"
 msgstr "Старт на телетекс"
@@ -22337,12 +22346,6 @@ msgstr "приключение/уестърн/война"
 msgid "advertisement/shopping"
 msgstr "реклама/пазаруване"
 
-msgid "All events down"
-msgstr "всички събития надолу"
-
-msgid "All events up"
-msgstr "всички събития нагоре"
-
 msgid "all up/down"
 msgstr "всичко нагоре/надолу"
 
@@ -22687,18 +22690,6 @@ msgstr "градинарство"
 msgid "get the cards' server"
 msgstr "вземете сървъра на картите"
 
-msgid "Goto current channel and now"
-msgstr "отидете на текущия канал и сега"
-
-msgid "Goto first channel"
-msgstr "отидете на първия канал"
-
-msgid "Goto last channel"
-msgstr "отидете на следващия канал"
-
-msgid "Goto now"
-msgstr "отидете сега"
-
 msgid "grab this frame as bitmap"
 msgstr "вземете този кадър като растерно изображение"
 
@@ -22915,9 +22906,6 @@ msgstr "новини/текущи работи (общо)"
 msgid "news/weather report"
 msgstr "новини/информация за времето"
 
-msgid "Next channel page"
-msgstr "следващата страница на канала"
-
 msgid "no CAId selected"
 msgstr "не е избран CAId"
 
@@ -23028,9 +23016,6 @@ msgstr "популярна култура/традиционни изкуств�
 
 msgid "pre-school children's program"
 msgstr "предучилищна детска програма"
-
-msgid "Previous channel page"
-msgstr "страница на предишния канал"
 
 msgid "provid:"
 msgstr "пров:"
@@ -23420,6 +23405,28 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Записът в момента върви.\n"
+#~ "Какво искаш да правиш?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Списък с букети"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Незабавен запис на..."
+
+#~ msgid "Missing "
+#~ msgstr "Липсващ "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Записващи действия"
+
+#~ msgid "Start recording?"
+#~ msgstr "Старт на записване?"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Отиди на Дата/време"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1476,11 +1476,6 @@ msgstr "* Enbart tillgänglig om mer än ett kort är aktivt."
 msgid "* current animation"
 msgstr ""
 
-#
-#, fuzzy
-msgid "+24"
-msgstr "24"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1490,11 +1485,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#
-#, fuzzy
-msgid "-24"
-msgstr "24"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1819,14 +1809,6 @@ msgid ""
 msgstr ""
 "En inspelning har påbörjats:\n"
 "%s"
-
-#
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"En inspelning pågår redan.\n"
-"Vad vill du göra?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2409,6 +2391,14 @@ msgstr "Kanaler"
 
 msgid "All ages"
 msgstr "Alla åldersgrupper"
+
+#, fuzzy
+msgid "All events down"
+msgstr "särskilda händelser"
+
+#, fuzzy
+msgid "All events up"
+msgstr "särskilda händelser"
 
 msgid "All files"
 msgstr ""
@@ -3475,10 +3465,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-#, fuzzy
-msgid "BouquetList"
-msgstr "Kanallista"
 
 msgid "Bouvet Island"
 msgstr ""
@@ -9297,8 +9283,20 @@ msgstr "Hoppa till prime time"
 msgid "Goto X"
 msgstr "Gå till X"
 
+#, fuzzy
+msgid "Goto current channel and now"
+msgstr "Gå till nästa kanal"
+
 msgid "Goto deep standby"
 msgstr ""
+
+#, fuzzy
+msgid "Goto first channel"
+msgstr "Gå till nästa kanal"
+
+#, fuzzy
+msgid "Goto last channel"
+msgstr "Gå till nästa kanal"
 
 msgid "Goto next bouquet"
 msgstr "Gå till nästa favoritlista"
@@ -9308,6 +9306,9 @@ msgstr "Gå till nästa kanal"
 
 msgid "Goto next event"
 msgstr "Gå till nästa händelse"
+
+msgid "Goto now"
+msgstr ""
 
 #
 msgid "Goto position"
@@ -10462,6 +10463,9 @@ msgstr "Installera plugins"
 msgid "Installing plugins from feed ..."
 msgstr "Installera plugins"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 #
 msgid "Instant record"
 msgstr "Direktinspelning"
@@ -10469,10 +10473,6 @@ msgstr "Direktinspelning"
 #
 msgid "Instant recording location"
 msgstr "Direktinspelningens plats"
-
-#
-msgid "Instant recording..."
-msgstr "Direktinspelning..."
 
 msgid "Interface"
 msgstr "Gränssnitt"
@@ -11839,9 +11839,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr "Saknad "
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -12685,14 +12682,18 @@ msgstr "Nästa"
 msgid "Next Bouquet"
 msgstr "Gå till nästa favoritlista"
 
+#, fuzzy
+msgid "Next Page"
+msgstr "Gå till nästa kanal"
+
+#, fuzzy
+msgid "Next channel page"
+msgstr "Gå till nästa kanal"
+
 #
 #, fuzzy
 msgid "Next higher resolution"
 msgstr "Upplösning"
-
-#, fuzzy
-msgid "Next Page"
-msgstr "Gå till nästa kanal"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -13771,6 +13772,10 @@ msgstr "Lösenord"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -14722,6 +14727,10 @@ msgid "Previous Page"
 msgstr "Föregående"
 
 #, fuzzy
+msgid "Previous channel page"
+msgstr "Gå till färegående kanal"
+
+#, fuzzy
 msgid "Previous/Next bouquet"
 msgstr "Gå till föregående favoritlista"
 
@@ -15294,11 +15303,6 @@ msgstr ""
 #
 msgid "Recording"
 msgstr "Spelar in"
-
-#
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Inspelningar"
 
 msgid "Recording Settings"
 msgstr ""
@@ -19578,10 +19582,10 @@ msgstr "Tyvärr, MiniDLNA Config Saknas"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Tyvärr, feeds är nere för underåll, v.v. försök igen senare."
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -19792,6 +19796,9 @@ msgstr "Visa Rass interaktivitet..."
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -19809,6 +19816,9 @@ msgstr "Spela upp från början"
 msgid "Start instant recording"
 msgstr "Starta Direktinspelning"
 
+msgid "Start instant recording?"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Start mode"
@@ -19819,10 +19829,6 @@ msgstr "Starta avkodning offline"
 
 msgid "Start recording current event"
 msgstr ""
-
-#
-msgid "Start recording?"
-msgstr "Starta inspelning?"
 
 #
 msgid "Start teletext"
@@ -24359,14 +24365,6 @@ msgid "advertisement/shopping"
 msgstr "reklam / shopping"
 
 #, fuzzy
-msgid "All events down"
-msgstr "särskilda händelser"
-
-#, fuzzy
-msgid "All events up"
-msgstr "särskilda händelser"
-
-#, fuzzy
 msgid "all up/down"
 msgstr "Flytta ner en sida"
 
@@ -24744,21 +24742,6 @@ msgstr "trädgård"
 msgid "get the cards' server"
 msgstr "erhåll kortets server"
 
-#, fuzzy
-msgid "Goto current channel and now"
-msgstr "Gå till nästa kanal"
-
-#, fuzzy
-msgid "Goto first channel"
-msgstr "Gå till nästa kanal"
-
-#, fuzzy
-msgid "Goto last channel"
-msgstr "Gå till nästa kanal"
-
-msgid "Goto now"
-msgstr ""
-
 #
 msgid "grab this frame as bitmap"
 msgstr "ta den här framen som bitmap"
@@ -25004,10 +24987,6 @@ msgstr "nyheter / aktuella frågor (allmänt)"
 msgid "news/weather report"
 msgstr "nyheter / väderprognos"
 
-#, fuzzy
-msgid "Next channel page"
-msgstr "Gå till nästa kanal"
-
 #
 msgid "no CAId selected"
 msgstr "ingen CAId vald"
@@ -25136,10 +25115,6 @@ msgstr "populärkultur / traditionell konst"
 
 msgid "pre-school children's program"
 msgstr "barnprogram förskola"
-
-#, fuzzy
-msgid "Previous channel page"
-msgstr "Gå till färegående kanal"
 
 msgid "provid:"
 msgstr "leverantörID:"
@@ -25572,6 +25547,44 @@ msgstr "ja (behåll feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "24"
+
+#
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "24"
+
+#
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "En inspelning pågår redan.\n"
+#~ "Vad vill du göra?"
+
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "Kanallista"
+
+#
+#~ msgid "Instant recording..."
+#~ msgstr "Direktinspelning..."
+
+#~ msgid "Missing "
+#~ msgstr "Saknad "
+
+#
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Inspelningar"
+
+#
+#~ msgid "Start recording?"
+#~ msgstr "Starta inspelning?"
 
 #
 #~ msgid "none"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -1454,11 +1454,6 @@ msgstr "* Pieejams ja ir aktīvs vairāk nekā viens interfeiss."
 msgid "* current animation"
 msgstr ""
 
-#
-#, fuzzy
-msgid "+24"
-msgstr "2"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1468,11 +1463,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#
-#, fuzzy
-msgid "-24"
-msgstr "2"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1802,14 +1792,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-
-#
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Pašreiz tiek veikts ieraksts.\n"
-"Ko Jūs vēlaties darīt?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2399,6 +2381,12 @@ msgid "All Services"
 msgstr "Kanāli"
 
 msgid "All ages"
+msgstr ""
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
 msgstr ""
 
 msgid "All files"
@@ -3462,11 +3450,6 @@ msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
-
-#
-#, fuzzy
-msgid "BouquetList"
-msgstr "[buķešu rediģēšana]"
 
 msgid "Bouvet Island"
 msgstr ""
@@ -9289,8 +9272,19 @@ msgstr ""
 msgid "Goto X"
 msgstr "Iet uz 0"
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
 msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Goto last channel"
+msgstr "nemainīt"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -9299,6 +9293,9 @@ msgid "Goto next channel"
 msgstr ""
 
 msgid "Goto next event"
+msgstr ""
+
+msgid "Goto now"
 msgstr ""
 
 #
@@ -10451,17 +10448,15 @@ msgstr "Uzstādīšana"
 msgid "Installing plugins from feed ..."
 msgstr "Uzstādīšana"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
 #
 #, fuzzy
 msgid "Instant recording location"
-msgstr "Tūlītējs ieraksts..."
-
-#
-#, fuzzy
-msgid "Instant recording..."
 msgstr "Tūlītējs ieraksts..."
 
 msgid "Interface"
@@ -11843,9 +11838,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr ""
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -12710,13 +12702,18 @@ msgstr "pievienot buķeti"
 
 #
 #, fuzzy
-msgid "Next higher resolution"
-msgstr "Izšķirtspēja"
+msgid "Next Page"
+msgstr "nemainīt"
 
 #
 #, fuzzy
-msgid "Next Page"
+msgid "Next channel page"
 msgstr "nemainīt"
+
+#
+#, fuzzy
+msgid "Next higher resolution"
+msgstr "Izšķirtspēja"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -13788,6 +13785,10 @@ msgstr "Tīkla iestatne"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -14745,6 +14746,9 @@ msgstr "pievienot kanālu buķetei"
 msgid "Previous Page"
 msgstr ""
 
+msgid "Previous channel page"
+msgstr ""
+
 msgid "Previous/Next bouquet"
 msgstr ""
 
@@ -15313,11 +15317,6 @@ msgstr ""
 #
 msgid "Recording"
 msgstr "Ieraksta"
-
-#
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Dzēst pabeigtos."
 
 msgid "Recording Settings"
 msgstr ""
@@ -19605,10 +19604,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -19811,6 +19810,9 @@ msgstr "Skatīt Rass interaktīvi..."
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -19827,6 +19829,9 @@ msgstr "Sākt no sākuma"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Start mode"
@@ -19837,11 +19842,6 @@ msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Start recording?"
-msgstr "šis ieraksts"
 
 msgid "Start teletext"
 msgstr ""
@@ -24322,12 +24322,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All events down"
-msgstr ""
-
-msgid "All events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -24694,20 +24688,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "Goto current channel and now"
-msgstr ""
-
-msgid "Goto first channel"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Goto last channel"
-msgstr "nemainīt"
-
-msgid "Goto now"
-msgstr ""
-
 #
 msgid "grab this frame as bitmap"
 msgstr ""
@@ -24952,11 +24932,6 @@ msgid "news/weather report"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Next channel page"
-msgstr "nemainīt"
-
-#
 msgid "no CAId selected"
 msgstr ""
 
@@ -25083,9 +25058,6 @@ msgid "popular culture/traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
-msgstr ""
-
-msgid "Previous channel page"
 msgstr ""
 
 msgid "provid:"
@@ -25521,6 +25493,44 @@ msgstr "jā (paturēt barotnes)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "2"
+
+#
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "2"
+
+#
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Pašreiz tiek veikts ieraksts.\n"
+#~ "Ko Jūs vēlaties darīt?"
+
+#
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "[buķešu rediģēšana]"
+
+#
+#, fuzzy
+#~ msgid "Instant recording..."
+#~ msgstr "Tūlītējs ieraksts..."
+
+#
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Dzēst pabeigtos."
+
+#
+#, fuzzy
+#~ msgid "Start recording?"
+#~ msgstr "šis ieraksts"
 
 #
 #~ msgid "none"

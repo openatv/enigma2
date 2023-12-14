@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
-"PO-Revision-Date: 2023-12-07 05:27+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"PO-Revision-Date: 2023-12-13 02:35+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -1375,9 +1375,6 @@ msgstr "* Dostupné pouze při více než jenom aktivním rozhraní."
 msgid "* current animation"
 msgstr "* Aktuální nastavení animací"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 Hodin"
 
@@ -1387,9 +1384,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 Hodin"
@@ -1675,13 +1669,6 @@ msgid ""
 msgstr ""
 "Záznam spuštěn:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Nahrává se\n"
-"Co chcete udělat?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Právě se nahrává. Prosím, ukončete nahrávání před nastavením pozicionéru."
@@ -2202,6 +2189,12 @@ msgstr "Všechny programy"
 
 msgid "All ages"
 msgstr "Libovolný věk"
+
+msgid "All events down"
+msgstr "všechny události dolů"
+
+msgid "All events up"
+msgstr "všechny události nahoru"
 
 msgid "All files"
 msgstr "Všechny soubory"
@@ -3174,9 +3167,6 @@ msgstr "Akce výběru přehledu"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Akce navigace pro výběr přehledu"
-
-msgid "BouquetList"
-msgstr "Seznam přehledů"
 
 msgid "Bouvet Island"
 msgstr "Bouvetův ostrov"
@@ -8605,8 +8595,17 @@ msgstr "Přejděte na hlavní vysílací čas"
 msgid "Goto X"
 msgstr "Přejít na X"
 
+msgid "Goto current channel and now"
+msgstr "přejít nyní na aktuální kanál"
+
 msgid "Goto deep standby"
 msgstr "přejít do hlubokého spánku"
+
+msgid "Goto first channel"
+msgstr "přejít na první kanál"
+
+msgid "Goto last channel"
+msgstr "přejít na poslední kanál"
 
 msgid "Goto next bouquet"
 msgstr "Na další přehled"
@@ -8616,6 +8615,9 @@ msgstr "Na další kanál"
 
 msgid "Goto next event"
 msgstr "Přejít na další pořad"
+
+msgid "Goto now"
+msgstr "jít teď"
 
 msgid "Goto position"
 msgstr "Jdi na pozici"
@@ -9671,14 +9673,14 @@ msgstr "Instalace pluginů z IPK..."
 msgid "Installing plugins from feed ..."
 msgstr "Instalace pluginů z kanálu..."
 
+msgid "Instant Recording Actions"
+msgstr "Akce okamžitého nahrávání"
+
 msgid "Instant record"
 msgstr "Volby okamžitého nahrávání"
 
 msgid "Instant recording location"
 msgstr "Umístění okamžitého nahrávání"
-
-msgid "Instant recording..."
-msgstr "Okamžité nahrávání..."
 
 msgid "Interface"
 msgstr "Rozhraní"
@@ -10922,9 +10924,6 @@ msgstr ""
 "Špatně nakonfigurované unicable spojení z tuneru %s do tuneru %s!\n"
 "Možnost „připojeno k“ tuneru %s je nyní zakázána"
 
-msgid "Missing "
-msgstr "Chybí "
-
 msgid "Mobile connection"
 msgstr "Mobilní připojení"
 
@@ -11685,11 +11684,14 @@ msgstr "Další"
 msgid "Next Bouquet"
 msgstr "Další přehled"
 
-msgid "Next higher resolution"
-msgstr "další vyšší rozlišení"
-
 msgid "Next Page"
 msgstr "Další strana"
+
+msgid "Next channel page"
+msgstr "další stránka výběru kanálu"
+
+msgid "Next higher resolution"
+msgstr "další vyšší rozlišení"
 
 msgid "Next quad PiP channel"
 msgstr "Další kanál quad PiP"
@@ -12669,6 +12671,10 @@ msgstr "Nastavení hesla"
 msgid "Password changed."
 msgstr "Heslo bylo změněno."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr "Cesta '%s' chybí!"
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Cesta pro uložení neexistuje: '/tmp/'"
 
@@ -13509,6 +13515,9 @@ msgstr "Předchozí přehled"
 msgid "Previous Page"
 msgstr "Předchozí stránka"
 
+msgid "Previous channel page"
+msgstr "předchozí stránka výběru kanálu"
+
 msgid "Previous/Next bouquet"
 msgstr "předchozí/následující přehled"
 
@@ -14028,9 +14037,6 @@ msgstr "Sada nástrojů pro nahrávatelná média"
 
 msgid "Recording"
 msgstr "Záznam"
-
-msgid "Recording Actions"
-msgstr "Akce nahrávání"
 
 msgid "Recording Settings"
 msgstr "Nastavení nahrávání"
@@ -17045,7 +17051,7 @@ msgid "Show Security packages"
 msgstr "Zobrazit balíčky zabezpečení"
 
 msgid "Show Service Information"
-msgstr ""
+msgstr "Zobrazit informace o službě"
 
 msgid "Show Setting packages"
 msgstr "Zobrazit balíčky nastavení"
@@ -17823,7 +17829,7 @@ msgstr "Slot %s: %s jako obnovení z USB"
 
 #, python-format
 msgid "Slot '%s' %s"
-msgstr ""
+msgstr "Slot '%s' %s"
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -17986,11 +17992,11 @@ msgstr "Promiňte, ale MiniDLNA Config je ztracen"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Je nám líto, zdroje prochází údržbou, zkuste to prosím později."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Bohužel je možné nahrávat pouze 2 kanály najednou!"
+
 msgid "Sorry no backups found!"
 msgstr "Omlouváme se, nebyly nalezeny žádné zálohy!"
-
-msgid "Sorry it is only possible to record 2 channels at once!"
-msgstr "Bohužel je možné nahrávat pouze 2 kanály najednou"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Bohužel, uShare Config je ztracen"
@@ -18182,6 +18188,9 @@ msgstr "Spustit interaktivní RDS"
 msgid "Start Wizard"
 msgstr "Spustit průvodce"
 
+msgid "Start an instant recording"
+msgstr "Spustit okamžité nahrávání"
+
 msgid "Start date"
 msgstr "Počáteční datum"
 
@@ -18197,6 +18206,9 @@ msgstr "Spustit od začátku"
 msgid "Start instant recording"
 msgstr "Spustit okamžité nahrávání"
 
+msgid "Start instant recording?"
+msgstr "Spustit okamžité nahrávání?"
+
 msgid "Start mode"
 msgstr "Režim spuštění"
 
@@ -18205,9 +18217,6 @@ msgstr "Spustit offline dekódování"
 
 msgid "Start recording current event"
 msgstr "Spustit záznam aktuální události"
-
-msgid "Start recording?"
-msgstr "Začít nahrávat?"
 
 msgid "Start teletext"
 msgstr "Spustit teletext"
@@ -19912,7 +19921,7 @@ msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift uložen na váš pevný disk!"
 
 msgid "Time shift will get saved at end of event."
-msgstr "Timeshift se uloží na konci pořadu!"
+msgstr "Časový posun se uloží na konci události."
 
 msgid "Time style"
 msgstr "Styl času"
@@ -20471,7 +20480,7 @@ msgstr "USB zařízení"
 
 #, python-format
 msgid "USB slot %s%s"
-msgstr ""
+msgstr "USB slot %s%s"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB přepínač CHYBA! - již je na USB"
@@ -22493,12 +22502,6 @@ msgstr "dobrodružný/western/válečný"
 msgid "advertisement/shopping"
 msgstr "reklama/nakupování"
 
-msgid "All events down"
-msgstr "všechny události dolů"
-
-msgid "All events up"
-msgstr "všechny události nahoru"
-
 msgid "all up/down"
 msgstr "vše nahoru/dolů"
 
@@ -22841,18 +22844,6 @@ msgstr "zahradnictví"
 msgid "get the cards' server"
 msgstr "získat cardserver"
 
-msgid "Goto current channel and now"
-msgstr "přejít nyní na aktuální kanál"
-
-msgid "Goto first channel"
-msgstr "přejít na první kanál"
-
-msgid "Goto last channel"
-msgstr "přejít na poslední kanál"
-
-msgid "Goto now"
-msgstr "jít teď"
-
 msgid "grab this frame as bitmap"
 msgstr "grabovat snímek jako bitmapu"
 
@@ -23069,9 +23060,6 @@ msgstr "zprávy/publicistika (obecně)"
 msgid "news/weather report"
 msgstr "zprávy/zpravy o počasí"
 
-msgid "Next channel page"
-msgstr "další stránka výběru kanálu"
-
 msgid "no CAId selected"
 msgstr "není vybrán žádný CAId"
 
@@ -23182,9 +23170,6 @@ msgstr "lidová kultura/tradiční umění"
 
 msgid "pre-school children's program"
 msgstr "program pro předškolní děti"
-
-msgid "Previous channel page"
-msgstr "předchozí stránka výběru kanálu"
 
 msgid "provid:"
 msgstr "posk.:"
@@ -23575,6 +23560,34 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Nahrává se\n"
+#~ "Co chcete udělat?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Seznam přehledů"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Okamžité nahrávání..."
+
+#~ msgid "Missing "
+#~ msgstr "Chybí "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Akce nahrávání"
+
+#~ msgid "Start recording?"
+#~ msgstr "Začít nahrávat?"
 
 #, python-format
 #~ msgid "Slot '%s'"

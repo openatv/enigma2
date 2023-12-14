@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
-"PO-Revision-Date: 2023-12-08 16:53+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"PO-Revision-Date: 2023-12-14 20:54+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.3\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -1345,9 +1345,6 @@ msgstr "* Alleen beschikbaar indien meer dan één interface is geactiveerd."
 msgid "* current animation"
 msgstr "* huidige animatie"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 uren"
 
@@ -1357,9 +1354,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 uren"
@@ -1653,13 +1647,6 @@ msgid ""
 msgstr ""
 "Een opname is gestart:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Bezig met opnemen.\n"
-"Wat wilt u doen?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "U bent aan het opnemen. Stop de opname voordat u de rotorinstellingen probeert te wijzigen."
@@ -2180,6 +2167,12 @@ msgstr "Alle zenders"
 
 msgid "All ages"
 msgstr "Alle leeftijden"
+
+msgid "All events down"
+msgstr "Alle programma's omlaag"
+
+msgid "All events up"
+msgstr "Alle programma's omhoog"
 
 msgid "All files"
 msgstr "Alle bestanden"
@@ -3151,9 +3144,6 @@ msgstr "Favorietenlijst selectie Acties"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Favorietenlijst navigatie Acties"
-
-msgid "BouquetList"
-msgstr "Favorietenlijst"
 
 msgid "Bouvet Island"
 msgstr "Bouvet Eilanden"
@@ -8706,8 +8696,17 @@ msgstr "Ga naar Primetime"
 msgid "Goto X"
 msgstr "Goto X"
 
+msgid "Goto current channel and now"
+msgstr "Ga direct naar huidige zender"
+
 msgid "Goto deep standby"
 msgstr "Uw ontvanger afsluiten"
+
+msgid "Goto first channel"
+msgstr "Ga naar eerste zender"
+
+msgid "Goto last channel"
+msgstr "Ga naar laatste zender"
 
 msgid "Goto next bouquet"
 msgstr "Ga naar volgende favorietenlijst"
@@ -8717,6 +8716,9 @@ msgstr "Ga naar volgende zender"
 
 msgid "Goto next event"
 msgstr "Ga naar volgende programma"
+
+msgid "Goto now"
+msgstr "Ga nu naar"
 
 msgid "Goto position"
 msgstr "Naar positie draaien"
@@ -9779,14 +9781,14 @@ msgstr "Installeer plug-ins uit een IPK..."
 msgid "Installing plugins from feed ..."
 msgstr "Installeer plug-ins uit de feed ..."
 
+msgid "Instant Recording Actions"
+msgstr "Directe opname Acties"
+
 msgid "Instant record"
 msgstr "Onmiddellijk opnemen"
 
 msgid "Instant recording location"
 msgstr "Opnamelocatie directe opnames"
-
-msgid "Instant recording..."
-msgstr "Directe opname..."
 
 msgid "Interface"
 msgstr "Interface"
@@ -10293,7 +10295,7 @@ msgid "Liberia"
 msgstr "Liberië"
 
 msgid "Library Packages"
-msgstr ""
+msgstr "Library pakketten"
 
 msgid "Libs"
 msgstr "Libs"
@@ -10710,7 +10712,7 @@ msgstr "Maltees"
 
 #, python-format
 msgid "Manage %s"
-msgstr ""
+msgstr "%s beheren"
 
 msgid "Manage Locale/Language Selection settings"
 msgstr "Beheer taalselectie instellingen"
@@ -10729,11 +10731,11 @@ msgstr "Beheer netwerk verbindingen"
 
 #, python-format
 msgid "Manage the highlighted %s"
-msgstr ""
+msgstr "De geselecteerde %s beheren"
 
 #, python-format
 msgid "Manage the highlighted %s / list of %s"
-msgstr ""
+msgstr "De geselecteerde %s / lijst van %s beheren"
 
 msgid "Manage your online update files"
 msgstr "Selecteer te overschrijven bestanden bij een update"
@@ -11027,9 +11029,6 @@ msgid ""
 msgstr ""
 "Onjuist geconfigureerde unicable verbinding van tuner %s naar %s tuner!\n"
 "Optie van de TV-tuner %s 'verbonden naar' is nu uitgeschakeld"
-
-msgid "Missing "
-msgstr "Ontbreekt "
 
 msgid "Mobile connection"
 msgstr "Mobiele verbinding"
@@ -11460,7 +11459,7 @@ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot Image gecreëerd: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multimedia Packages"
-msgstr ""
+msgstr "Multimedia pakketten"
 
 msgid "Multiple service support"
 msgstr "Geschikt voor meervoudig decoderen"
@@ -11649,7 +11648,7 @@ msgid "Network Neighbourhood"
 msgstr "Netwerk omgeving"
 
 msgid "Network Packages"
-msgstr ""
+msgstr "Netwerk pakketten"
 
 msgid "Network Restart"
 msgstr "Netwerk herstarten"
@@ -11791,11 +11790,14 @@ msgstr "Straks"
 msgid "Next Bouquet"
 msgstr "Volgende favorietenlijst"
 
-msgid "Next higher resolution"
-msgstr "volgende hogere Resolutie"
-
 msgid "Next Page"
 msgstr "Volgende pagina"
+
+msgid "Next channel page"
+msgstr "Volgende zender pagina"
+
+msgid "Next higher resolution"
+msgstr "volgende hogere Resolutie"
 
 msgid "Next quad PiP channel"
 msgstr "Volgende Quad PiP zender"
@@ -12079,7 +12081,7 @@ msgid "None"
 msgstr "Geen"
 
 msgid "NordVPN DNS"
-msgstr ""
+msgstr "NordVPN DNS"
 
 msgid "Norfolk Island"
 msgstr "Norfolkeiland"
@@ -12538,7 +12540,7 @@ msgid "Other Actions"
 msgstr "Overige acties"
 
 msgid "Other Packages"
-msgstr ""
+msgstr "Ander pakketten"
 
 msgid "Other Subtitles & Language"
 msgstr "Overige ondertitels & taal"
@@ -12654,7 +12656,7 @@ msgid "PVR"
 msgstr "PVR"
 
 msgid "Package"
-msgstr ""
+msgstr "Pakket"
 
 msgid "Package Manager"
 msgstr "Pakketbeheer"
@@ -12675,7 +12677,7 @@ msgid "Packaged locales only"
 msgstr "Alleen beschikbare talen"
 
 msgid "Packages"
-msgstr ""
+msgstr "Pakketten"
 
 msgid "Packages and associated locales"
 msgstr "Packages en bijbehorende locales"
@@ -12777,6 +12779,10 @@ msgstr "Wachtwoord instellen"
 
 msgid "Password changed."
 msgstr "Wachtwoord gewijzigd."
+
+#, python-format
+msgid "Path '%s' missing!"
+msgstr "Pad '%s' niet beschikbaar!"
 
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Pad voor opslaan bestaat niet: '/tmp/'"
@@ -13201,13 +13207,13 @@ msgid "Please wait while gathering data..."
 msgstr "Een ogenblik geduld, informatie wordt verzameld..."
 
 msgid "Please wait while locale/language is deleted..."
-msgstr ""
+msgstr "Taal wordt gewist, een moment geduld..."
 
 msgid "Please wait while locale/language is installed..."
-msgstr ""
+msgstr "Taal wordt geïnstalleerd, een moment geduld..."
 
 msgid "Please wait while locales/languages are purged..."
-msgstr ""
+msgstr "De beschikbare talen worden opgeruimd. Een moment geduld..."
 
 msgid "Please wait while scanning is in progress..."
 msgstr "Een ogenblik geduld, zoeken is bezig..."
@@ -13220,14 +13226,13 @@ msgstr "Een ogenblik geduld terwijl de lijst wordt geladen..."
 
 msgid "Please wait while the plugin is installed."
 msgid_plural "Please wait while the plugins are installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "De plug-in wordt geïnstalleerd, een moment geduld..."
+msgstr[1] "De plug-ins worden geïnstalleerd, een moment geduld..."
 
-#, fuzzy
 msgid "Please wait while the plugin is removed."
 msgid_plural "Please wait while the plugins are removed."
 msgstr[0] "Plug-in wordt verwijderd. Even geduld..."
-msgstr[1] "Plug-in wordt verwijderd. Even geduld..."
+msgstr[1] "Plug-ins worden verwijderd. Even geduld..."
 
 msgid "Please wait while the plugin is replaced."
 msgstr "Plug-in wordt vervangen. Even geduld..."
@@ -13287,7 +13292,7 @@ msgid "Plug in a USB device that can be used as a swap device. Note that this de
 msgstr "Een USB-apparaat aansluiten dat als opslag voor een swap-file kan worden gebruikt. Let op! Dit apparaat mag niet worden verwijderd zo lang uw %s %s is ingeschakeld!"
 
 msgid "Plugin"
-msgstr ""
+msgstr "Plug-in"
 
 msgid "Plugin Action Log"
 msgstr "Plug-in installatie Log"
@@ -13305,7 +13310,7 @@ msgid "Plugin Browser Edit Actions"
 msgstr "Plug-in Browser Bewerk Acties"
 
 msgid "Plugin Browser Install Actions"
-msgstr ""
+msgstr "Plug-in Browser installatie acties"
 
 msgid "Plugin Browser Navigation Actions"
 msgstr "Plug-in Browser Navigatie Acties"
@@ -13326,7 +13331,7 @@ msgid "Plugin Browser layout"
 msgstr "Plug-in Browser indeling"
 
 msgid "Plugin Packages"
-msgstr ""
+msgstr "Plug-in pakketten"
 
 msgid "Plugin Skin Packages"
 msgstr "Skinpacks"
@@ -13620,6 +13625,9 @@ msgstr "Vorige favorietenlijst"
 msgid "Previous Page"
 msgstr "Vorige pagina"
 
+msgid "Previous channel page"
+msgstr "Vorige zender pagina"
+
 msgid "Previous/Next bouquet"
 msgstr "vorige/volgende favorietenlijst"
 
@@ -13832,7 +13840,7 @@ msgid "Python"
 msgstr "Python"
 
 msgid "Python Development Packages"
-msgstr ""
+msgstr "Python Development pakketten"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend voor /tmp/mmi.socket"
@@ -14140,9 +14148,6 @@ msgstr "Opneembare media gereedschap"
 msgid "Recording"
 msgstr "Opname"
 
-msgid "Recording Actions"
-msgstr "Opname instellingen"
-
 msgid "Recording Settings"
 msgstr "Opname instellingen"
 
@@ -14351,7 +14356,7 @@ msgstr "Verwijderen"
 
 #, python-format
 msgid "Remove %s"
-msgstr ""
+msgstr "%s verwijderen"
 
 msgid "Remove All Alternatives"
 msgstr "Alternatieven verwijderen (alle)"
@@ -14456,7 +14461,7 @@ msgid "Remove selected service"
 msgstr "De geselecteerde zender verwijderen"
 
 msgid "Remove service from AutoCam"
-msgstr ""
+msgstr "Zender uit AutoCam verwijderen"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Verwijdert teksten bedoelt voor slechthorenden uit externe ondertitels. Denk aan teksten als 'Deurbel gaat', 'Muziek speelt', enz."
@@ -14591,7 +14596,7 @@ msgid "Reset"
 msgstr "Herstel"
 
 msgid "Reset (clear and reload) the feeds"
-msgstr ""
+msgstr "De Feeds resetten (opruimen en opnieuw laden)"
 
 msgid "Reset Feeds"
 msgstr ""
@@ -16596,7 +16601,7 @@ msgid "Set the aspect ratio of the service picons."
 msgstr "Selecteer de aspect ratio van de zender picons."
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Stel hier de standaard locatie in voor 'direkte opnames'. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
+msgstr "Stel hier de standaard locatie in voor 'directe opnames'. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
 
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Stel hier de standaard locatie in voor Timeshift bestanden. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
@@ -18131,11 +18136,11 @@ msgstr "MiniDLNA Configuratie ontbreekt"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
 
-msgid "Sorry no backups found!"
-msgstr "Sorry geen back-up gevonden!"
-
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Sorry, enkel 2 zender opnames gelijktijdig mogelijk"
+
+msgid "Sorry no backups found!"
+msgstr "Sorry geen back-up gevonden!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Sorry uShare configuratie ontbreekt"
@@ -18326,6 +18331,9 @@ msgstr "Start RDS interactief"
 msgid "Start Wizard"
 msgstr "Start Wizard"
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr "Startdatum"
 
@@ -18341,6 +18349,9 @@ msgstr "Start vanaf het begin"
 msgid "Start instant recording"
 msgstr "Start een directe opname"
 
+msgid "Start instant recording?"
+msgstr "Een directe opname starten?"
+
 msgid "Start mode"
 msgstr "Startmodus"
 
@@ -18349,9 +18360,6 @@ msgstr "Start achteraf decoderen"
 
 msgid "Start recording current event"
 msgstr "Het huidige programma nu opnemen"
-
-msgid "Start recording?"
-msgstr "Opname starten?"
 
 msgid "Start teletext"
 msgstr "Start Teletekst"
@@ -22705,12 +22713,6 @@ msgstr "avontuur / western / oorlog"
 msgid "advertisement/shopping"
 msgstr "reclame / shopping"
 
-msgid "All events down"
-msgstr "Alle programma's omlaag"
-
-msgid "All events up"
-msgstr "Alle programma's omhoog"
-
 msgid "all up/down"
 msgstr "Alle omhoog/omlaag"
 
@@ -23053,18 +23055,6 @@ msgstr "tuinieren"
 msgid "get the cards' server"
 msgstr "verkrijg de kaartserver"
 
-msgid "Goto current channel and now"
-msgstr "Ga direct naar huidige zender"
-
-msgid "Goto first channel"
-msgstr "Ga naar eerste zender"
-
-msgid "Goto last channel"
-msgstr "Ga naar laatste zender"
-
-msgid "Goto now"
-msgstr "Ga nu naar"
-
 msgid "grab this frame as bitmap"
 msgstr "Maak van dit scherm een screenshot"
 
@@ -23281,9 +23271,6 @@ msgstr "nieuws/actualiteiten (algemeen)"
 msgid "news/weather report"
 msgstr "nieuws/weer"
 
-msgid "Next channel page"
-msgstr "Volgende zender pagina"
-
 msgid "no CAId selected"
 msgstr "Geen CAId geselecteerd"
 
@@ -23394,9 +23381,6 @@ msgstr "populaire cultuur/traditionele kunst"
 
 msgid "pre-school children's program"
 msgstr "peuterprogrammas"
-
-msgid "Previous channel page"
-msgstr "Vorige zender pagina"
 
 msgid "provid:"
 msgstr "Provid:"
@@ -23786,6 +23770,34 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Bezig met opnemen.\n"
+#~ "Wat wilt u doen?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Favorietenlijst"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Directe opname..."
+
+#~ msgid "Missing "
+#~ msgstr "Ontbreekt "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Opname instellingen"
+
+#~ msgid "Start recording?"
+#~ msgstr "Opname starten?"
 
 #, python-format
 #~ msgid "Slot '%s'"
