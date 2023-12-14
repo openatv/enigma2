@@ -245,19 +245,6 @@ class LCD:
 	def setLEDBlinkingTime(self, value):
 		eDBoxLCD.getInstance().setLED(value, 2)
 
-	def setLCDMiniTVMode(self, value):
-		print(f"[Lcd] setLCDMiniTVMode='{value}'.")
-		eDBoxLCD.getInstance().setLCDMode(value)
-
-	def setLCDMiniTVPIPMode(self, value):
-		print("[Lcd] setLCDMiniTVPIPMode='%s'." % value)
-		# DEBUG: Should this be doing something?
-
-	def setLCDMiniTVFPS(self, value):
-		if exists("/proc/stb/lcd/fps"):
-			print("[Lcd] setLCDMiniTVFPS='%s'." % value)
-			fileWriteLine("/proc/stb/lcd/fps", value)
-
 
 def leaveStandby():
 	config.lcd.bright.apply()
@@ -350,15 +337,6 @@ def InitLcd():
 
 		def setLCDflipped(configElement):
 			ilcd.setFlipped(configElement.value)
-
-		def setLCDminitvmode(configElement):
-			ilcd.setLCDMiniTVMode(configElement.value)
-
-		def setLCDminitvpipmode(configElement):
-			ilcd.setLCDMiniTVPIPMode(configElement.value)
-
-		def setLCDminitvfps(configElement):
-			ilcd.setLCDMiniTVFPS(configElement.value)
 
 		def setLEDnormalstate(configElement):
 			ilcd.setLEDNormalState(configElement.value)
@@ -495,14 +473,6 @@ def InitLcd():
 
 			config.lcd.showTv = ConfigYesNo(default=False)
 			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
-
-		if BoxInfo.getItem("LCDMiniTV") and config.misc.boxtype.value not in ('gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
-			config.lcd.minitvmode = ConfigSelection([("0", _("normal")), ("1", _("MiniTV")), ("2", _("OSD")), ("3", _("MiniTV with OSD"))], "0")
-			config.lcd.minitvmode.addNotifier(setLCDminitvmode)
-			config.lcd.minitvpipmode = ConfigSelection([("0", _("Off")), ("5", _("PiP")), ("7", _("PiP with OSD"))], "0")
-			config.lcd.minitvpipmode.addNotifier(setLCDminitvpipmode)
-			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
-			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
 		if BoxInfo.getItem("VFD_scroll_repeats"):
 			def scroll_repeats(el):
