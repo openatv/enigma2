@@ -277,27 +277,25 @@ void bsodFatal(const char *component)
 
 	if (!bsodpython)
 	{
-		os_text << "We are really sorry. Your receiver encountered "
-			"a software problem, and needs to be restarted.\n"
-			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
-			"Your receiver restarts in 10 seconds!\n"
+		os_text << "Your receiver encountered a software problem, and needs to be restarted.\n"
+			"Please send the logfile " << crashlog_name << " to the openATV forum (www.opena.tv).\n"
+			"Your receiver will restart in 10 seconds.\n"
 			"Component: " << component;
-
-		os << getConfigString("config.crash.debug_text", os_text.str().c_str());
+		os << os_text.str();
 	}
 	else
 	{
 		std::string txt;
 		if (!bsodmax && bsodcnt < bsodmaxmax)
-			txt = "not (max " + std::to_string(bsodmaxmax) + " times)";	
+			txt = "after maximum " + std::to_string(bsodmaxmax) + " crashes";
 		else if (bsodmax - bsodcnt > 0)
-			txt = "if it happens "+ std::to_string(bsodmax - bsodcnt) + " more times";
+			txt = "if it happens " + std::to_string(bsodmax - bsodcnt) + " more time(s)";
 		else
-			txt = "if it happens next times";
-		os_text << "We are really sorry. Your receiver encountered "
-			"a software problem. So far it has occurred " << bsodcnt << " times.\n"
-			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
-			"Your receiver restarts " << txt << " by python crashes!\n"
+			txt = "if it happens one more time";
+
+		os_text << "Your receiver encountered a Python software problem. There have been " << bsodcnt << " crashes so far.\n"
+			"Please send the logfile " << crashlog_name << " to the openATV forum (www.opena.tv).\n"
+			"Your receiver will restart " << txt << ".\n"
 			"Component: " << component;
 		os << os_text.str();
 	}

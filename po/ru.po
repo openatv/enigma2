@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
-"PO-Revision-Date: 2023-12-08 07:43+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"PO-Revision-Date: 2023-12-14 20:54+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.3\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1378,9 +1378,6 @@ msgstr "* Доступно, если активно более одного ин
 msgid "* current animation"
 msgstr "* Текущая анимация"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 часа"
 
@@ -1390,9 +1387,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 часа"
@@ -1678,13 +1672,6 @@ msgid ""
 msgstr ""
 "Запись началась\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Идёт запись\n"
-"Что хотите сделать?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Идёт запись. Остановите запись перед настройкой позиционера."
@@ -2038,16 +2025,16 @@ msgstr "Добавить новый тег"
 msgid "Add provider"
 msgstr "Добавить провайдера"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Начать запись (Введите длительность записи)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Начать запись (Введите время окончания)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Начать запись (Конец не определён)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Начать запись (Стоп после текущего события)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -2205,6 +2192,12 @@ msgstr "Все каналы"
 
 msgid "All ages"
 msgstr "Все возрасты"
+
+msgid "All events down"
+msgstr "все события закончились"
+
+msgid "All events up"
+msgstr "все события вверх"
 
 msgid "All files"
 msgstr "Все файлы"
@@ -3178,9 +3171,6 @@ msgstr "Действия при выборе букета"
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Действия навигации по выбору букетов"
 
-msgid "BouquetList"
-msgstr "Список букетов"
-
 msgid "Bouvet Island"
 msgstr "Остров Буве"
 
@@ -3802,10 +3792,10 @@ msgstr "Изменить следующий таймер"
 msgid "Change pin code"
 msgstr "Сменить пин-код"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Изменить запись (Длительность)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Изменить запись (Время окончания)"
 
 msgid "Change repeat and delay settings?"
@@ -8602,14 +8592,23 @@ msgstr "Перейти "
 msgid "Goto Date/Time"
 msgstr "Перейти на Время/Дата"
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr "Перейти в прайм-тайм"
 
 msgid "Goto X"
 msgstr "Переход на позицию Х"
 
+msgid "Goto current channel and now"
+msgstr "перейдите на текущий канал и сейчас"
+
 msgid "Goto deep standby"
 msgstr "Выключить"
+
+msgid "Goto first channel"
+msgstr "перейти на первый канал"
+
+msgid "Goto last channel"
+msgstr "перейти на последний канал"
 
 msgid "Goto next bouquet"
 msgstr "Перейти на следующий фаворит"
@@ -8619,6 +8618,9 @@ msgstr "Перейти на следующий канал"
 
 msgid "Goto next event"
 msgstr "Перейти на след событие"
+
+msgid "Goto now"
+msgstr "перейти сейчас"
 
 msgid "Goto position"
 msgstr "Переход на позицию"
@@ -9674,14 +9676,14 @@ msgstr "Установка плагинов из IPK ..."
 msgid "Installing plugins from feed ..."
 msgstr "Установка плагинов из фида ..."
 
+msgid "Instant Recording Actions"
+msgstr "Действия мгновенной записи"
+
 msgid "Instant record"
 msgstr "Немедленная запись"
 
 msgid "Instant recording location"
 msgstr "Расположение немедленной записи"
-
-msgid "Instant recording..."
-msgstr "Мгновенная запись ..."
 
 msgid "Interface"
 msgstr "Интерфейс"
@@ -10925,9 +10927,6 @@ msgstr ""
 "Неправильная настройка соединения unicable от тюнера %s к тюнеру %s!\n"
 "Параметр 'подключён к' тюнера %s сейчас выключен"
 
-msgid "Missing "
-msgstr "Отсутствует "
-
 msgid "Mobile connection"
 msgstr "Мобильная сеть"
 
@@ -11685,14 +11684,17 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Далее"
 
-msgid "Next bouquet"
+msgid "Next Bouquet"
 msgstr "Следующий фаворит"
+
+msgid "Next Page"
+msgstr "Следующая страница"
+
+msgid "Next channel page"
+msgstr "следующая страница канала"
 
 msgid "Next higher resolution"
 msgstr "более высокое разрешение"
-
-msgid "Next page"
-msgstr "Следующая страница"
 
 msgid "Next quad PiP channel"
 msgstr "Следующий канал 4X PiP"
@@ -11785,7 +11787,7 @@ msgstr "Файл lcn db пуст. Пожалуйста выполните пои
 msgid "No error"
 msgstr "Нет ошибки"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Нет программы в канале, запись будет без времени окончания."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -12672,6 +12674,10 @@ msgstr "Настройки пароля"
 msgid "Password changed."
 msgstr "Пароль изменён."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr "Путь '%s' отсутствует!"
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Путь для сохранения не существует: '/tmp/'"
 
@@ -13506,11 +13512,14 @@ msgstr "Просмотреть меню"
 msgid "Previous"
 msgstr "Предыдущий"
 
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr "Перейти на предыдущий фаворит"
 
-msgid "Previous page"
+msgid "Previous Page"
 msgstr "Предыдущая страница"
+
+msgid "Previous channel page"
+msgstr "предыдущая страница канала"
 
 msgid "Previous/Next bouquet"
 msgstr "предыдущий/следующий фаворит"
@@ -14031,9 +14040,6 @@ msgstr "Записываемый медиа-носитель"
 
 msgid "Recording"
 msgstr "Запись"
-
-msgid "Recording Actions"
-msgstr "Настройки записи"
 
 msgid "Recording Settings"
 msgstr "Настройки записи"
@@ -16395,7 +16401,7 @@ msgstr "Можно создать разные фавориты. Если вкл
 msgid "Set As Startup Service"
 msgstr "Стартовый канал"
 
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "Базовое время"
 
 msgid "Set CI Boot delay."
@@ -17046,6 +17052,9 @@ msgstr "Показать SD как"
 
 msgid "Show Security packages"
 msgstr "Показать пакеты безопасности"
+
+msgid "Show Service Information"
+msgstr "Показать информацию о канале"
 
 msgid "Show Setting packages"
 msgstr "Показать пакеты настроек"
@@ -17822,8 +17831,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Слот %s: %s как USB-восстановление"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Слот '%s'"
+msgid "Slot '%s' %s"
+msgstr "Слот '%s' %s"
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -17986,11 +17995,11 @@ msgstr "Не найдена конфигурация MiniDLNA"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Фид не доступен в связи с проведением профилактики, пожалуйста, попробуйте позже."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Извините, записать сразу можно только 2 канала!"
+
 msgid "Sorry no backups found!"
 msgstr "Не найдены резервные копии!"
-
-msgid "Sorry only possible to record 2 channels at once"
-msgstr "Извините, записать сразу можно только 2 канала"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Не найден конфиг uShare"
@@ -18182,6 +18191,9 @@ msgstr "Запустить интерактивную службу RDS"
 msgid "Start Wizard"
 msgstr "Мастер запуска"
 
+msgid "Start an instant recording"
+msgstr "Начать мгновенную запись"
+
 msgid "Start date"
 msgstr "Дата начала"
 
@@ -18197,6 +18209,9 @@ msgstr "Начать с самого начала"
 msgid "Start instant recording"
 msgstr "Запуск немедленной записи"
 
+msgid "Start instant recording?"
+msgstr "Начать мгновенную запись?"
+
 msgid "Start mode"
 msgstr "Режим запуска"
 
@@ -18205,9 +18220,6 @@ msgstr "Запуск оффлайн декодирования"
 
 msgid "Start recording current event"
 msgstr "Начать запись текущего события"
-
-msgid "Start recording?"
-msgstr "Начать запись?"
 
 msgid "Start teletext"
 msgstr "Запуск телетекста"
@@ -18802,7 +18814,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 07.12.2023"
+msgstr "Коррекция перевода Monja 14.12.2023"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19905,14 +19917,14 @@ msgstr "Ошибка сохранения файла таймшифта!"
 msgid "Time shift save recording (Select event)"
 msgstr "Сохранение записи таймшифта (Выберите передачу)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Сохранение записи таймшифта (Остановить после текущей передачи)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Файл таймшифта сохранён на жёсткий диск!"
 
-msgid "Time shift will get saved at end of event!"
-msgstr "Файл таймшифта будет сохранён в конце события!"
+msgid "Time shift will get saved at end of event."
+msgstr "Файл таймшифта будет сохранён в конце события."
 
 msgid "Time style"
 msgstr "Стиль времени"
@@ -20468,6 +20480,10 @@ msgstr "USB 3.0 (сзади, снаружи)"
 
 msgid "USB Stick"
 msgstr "USB флеш"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr "USB-слот %s%s"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "ОШИБКА USB-переключателя! - уже на USB"
@@ -22489,12 +22505,6 @@ msgstr "Приключения/Вестерн/Военные"
 msgid "advertisement/shopping"
 msgstr "Реклама/Телемагазин"
 
-msgid "all events down"
-msgstr "все события закончились"
-
-msgid "all events up"
-msgstr "все события вверх"
-
 msgid "all up/down"
 msgstr "все вверх/вниз"
 
@@ -22837,18 +22847,6 @@ msgstr "Садоводство"
 msgid "get the cards' server"
 msgstr "Шаринг сервер"
 
-msgid "goto current channel and now"
-msgstr "перейдите на текущий канал и сейчас"
-
-msgid "goto first channel"
-msgstr "перейти на первый канал"
-
-msgid "goto last channel"
-msgstr "перейти на последний канал"
-
-msgid "goto now"
-msgstr "перейти сейчас"
-
 msgid "grab this frame as bitmap"
 msgstr "Фрейм в растровое изображение"
 
@@ -23065,9 +23063,6 @@ msgstr "Новости/Текущие события (Общие)"
 msgid "news/weather report"
 msgstr "Новости/Погода"
 
-msgid "next channel page"
-msgstr "следующая страница канала"
-
 msgid "no CAId selected"
 msgstr "Не выбран CAID"
 
@@ -23178,9 +23173,6 @@ msgstr "Популярная культура/Традиционное исск�
 
 msgid "pre-school children's program"
 msgstr "Программы для дошкольников"
-
-msgid "previous channel page"
-msgstr "предыдущая страница канала"
 
 msgid "provid:"
 msgstr "Провайдер:"
@@ -23571,6 +23563,38 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Идёт запись\n"
+#~ "Что хотите сделать?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Список букетов"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Мгновенная запись ..."
+
+#~ msgid "Missing "
+#~ msgstr "Отсутствует "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Настройки записи"
+
+#~ msgid "Start recording?"
+#~ msgstr "Начать запись?"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Слот '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Перейти на Время/Дата"

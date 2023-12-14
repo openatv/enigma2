@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1348,9 +1348,6 @@ msgstr "* Chỉ khả dụng nếu có nhiều giao diện được kích hoạt
 msgid "* current animation"
 msgstr "* hoạt hình hiện tại"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1361,9 +1358,6 @@ msgstr " "
 
 msgid "-"
 msgstr ""
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1658,13 +1652,6 @@ msgid ""
 msgstr ""
 "Một bản ghi âm đã được bắt đầu:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Một bản ghi hiện đang chạy.\n"
-"Bạn muốn làm gì?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Một bản ghi hiện đang chạy. Vui lòng dừng ghi âm trước khi thử cấu hình bộ định vị."
@@ -2017,16 +2004,16 @@ msgstr ""
 msgid "Add provider"
 msgstr "Thêm nhà cung cấp"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Thêm ghi âm (nhập thời lượng ghi)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Thêm ghi âm (nhập thời gian kết thúc ghi âm)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Thêm ghi âm (vô thời hạn)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Thêm ghi âm (dừng sau sự kiện hiện tại)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -2187,6 +2174,12 @@ msgstr "Tất cả các nhà cung cấp dịch vụ"
 
 msgid "All ages"
 msgstr "Mọi lứa tuổi"
+
+msgid "All events down"
+msgstr "tất cả các sự kiện xuống"
+
+msgid "All events up"
+msgstr "tất cả các sự kiện lên"
 
 msgid "All files"
 msgstr ""
@@ -3175,9 +3168,6 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
-msgid "BouquetList"
-msgstr "Danh sách kênh"
-
 msgid "Bouvet Island"
 msgstr "Đảo Bouvet"
 
@@ -3798,10 +3788,10 @@ msgstr "Change next timer"
 msgid "Change pin code"
 msgstr "Thay đổi bộ đếm thời gian tiếp theo"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Thay đổi bản ghi (thời lượng)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Thay đổi ghi âm (thời gian kết thúc)"
 
 msgid "Change repeat and delay settings?"
@@ -8648,14 +8638,23 @@ msgstr "Đi đến :"
 msgid "Goto Date/Time"
 msgstr "Ngày / Thời gian"
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr "Giờ nguyên thủy"
 
 msgid "Goto X"
 msgstr "Đi X"
 
+msgid "Goto current channel and now"
+msgstr "đến kênh hiện tại và bây giờ"
+
 msgid "Goto deep standby"
 msgstr "đến chế độ - chờ"
+
+msgid "Goto first channel"
+msgstr "đến kênh đầu tiên"
+
+msgid "Goto last channel"
+msgstr "đến kênh cuối cùng"
 
 msgid "Goto next bouquet"
 msgstr "Tới gói kênh tiếp theo"
@@ -8665,6 +8664,9 @@ msgstr "Tới kênh tiếp theo"
 
 msgid "Goto next event"
 msgstr "Sự kiện tiếp theo"
+
+msgid "Goto now"
+msgstr "đến bây giờ"
 
 msgid "Goto position"
 msgstr "Vị trí Goto"
@@ -9737,14 +9739,14 @@ msgstr "Cài đặt plugin từ IPK ..."
 msgid "Installing plugins from feed ..."
 msgstr "Cài đặt plugin từ nguồn cấp dữ liệu ..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Ghi lại ngay lập tức"
 
 msgid "Instant recording location"
 msgstr "Vị trí ghi âm tức thì"
-
-msgid "Instant recording..."
-msgstr "Ghi âm tức thì ..."
 
 msgid "Interface"
 msgstr "Giao diện"
@@ -11018,9 +11020,6 @@ msgstr ""
 "Cấu hình sai kết nối không thể kết nối từ bộ chỉnh % s sang bộ chỉnh% s!\n"
 "Tùy chọn Tuner % s \"được kết nối\" hiện bị tắt"
 
-msgid "Missing "
-msgstr "Còn thiếu "
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -11809,15 +11808,18 @@ msgid "Next"
 msgstr "Kế tiếp"
 
 #, fuzzy
-msgid "Next bouquet"
+msgid "Next Bouquet"
 msgstr "Tới gói kênh tiếp theo"
+
+#, fuzzy
+msgid "Next Page"
+msgstr "trang tiếp theo của sự kiện"
+
+msgid "Next channel page"
+msgstr "trang tiếp theo của sự kiện"
 
 msgid "Next higher resolution"
 msgstr "nghị quyết cao hơn tiếp theo"
-
-#, fuzzy
-msgid "Next page"
-msgstr "trang tiếp theo của sự kiện"
 
 msgid "Next quad PiP channel"
 msgstr "Kênh quad PiP tiếp theo"
@@ -11914,7 +11916,7 @@ msgstr "Không có mục trong lcn db. Hãy làm một dịch vụ quét."
 msgid "No error"
 msgstr "lỗi không rõ"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Không tìm thấy thông tin sự kiện, ghi lại vô thời hạn."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -12816,6 +12818,10 @@ msgstr "Thiết lập mật khẩu"
 msgid "Password changed."
 msgstr "Mật khẩu đã được thay đổi."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Đường dẫn lưu không tồn tại: '/ tmp /'"
 
@@ -13649,12 +13655,15 @@ msgid "Previous"
 msgstr "Trước"
 
 #, fuzzy
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr "Tới gói kênh trước"
 
 #, fuzzy
-msgid "Previous page"
+msgid "Previous Page"
 msgstr "Trước"
+
+msgid "Previous channel page"
+msgstr "trang kênh trước"
 
 #, fuzzy
 msgid "Previous/Next bouquet"
@@ -14183,10 +14192,6 @@ msgstr "Hộp công cụ ghi có thể ghi"
 
 msgid "Recording"
 msgstr "Ghi âm"
-
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Cài đặt ghi âm"
 
 msgid "Recording Settings"
 msgstr "Cài đặt ghi âm"
@@ -16571,7 +16576,7 @@ msgstr "Dịch vụ có thể được nhóm trong bó hoa. Khi được bật, 
 msgid "Set As Startup Service"
 msgstr "đặt làm dịch vụ khởi động"
 
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "Đặt thời gian"
 
 msgid "Set CI Boot delay."
@@ -17222,6 +17227,9 @@ msgid "Show SD as"
 msgstr "Hiển thị SD dưới dạng"
 
 msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Service Information"
 msgstr ""
 
 msgid "Show Setting packages"
@@ -18010,7 +18018,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18175,11 +18183,11 @@ msgstr "Xin lỗi, cấu hình MiniDLNA bị thiếu"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng thử lại sau."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Xin lỗi chỉ có thể ghi 2 kênh cùng một lúc"
+
 msgid "Sorry no backups found!"
 msgstr "Xin lỗi không tìm thấy bản sao lưu!"
-
-msgid "Sorry only possible to record 2 channels at once"
-msgstr "Xin lỗi chỉ có thể ghi 2 kênh cùng một lúc"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Xin lỗi uShare Config bị thiếu"
@@ -18376,6 +18384,9 @@ msgstr "Tương tự như trong hoạt động"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18391,6 +18402,9 @@ msgstr "Bắt đầu từ đầu"
 msgid "Start instant recording"
 msgstr "Bắt đầu ghi âm ngay lập tức"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "Chế độ bắt đầu"
 
@@ -18399,9 +18413,6 @@ msgstr "Bắt đầu giải mã ngoại tuyến"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "Bắt đầu ghi âm?"
 
 msgid "Start teletext"
 msgstr "Bắt đầu teletext"
@@ -20089,13 +20100,13 @@ msgstr "Lưu thời gian không thành công!"
 msgid "Time shift save recording (Select event)"
 msgstr "Timeshift lưu bản ghi (Chọn sự kiện)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift lưu bản ghi (dừng sau sự kiện hiện tại)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift lưu vào đĩa cứng của bạn!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Timeshift sẽ được lưu vào cuối sự kiện!"
 
 msgid "Time style"
@@ -20664,6 +20675,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "Thanh USB"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "Công tắc USB LRI! - đã có trên USB"
@@ -22665,12 +22680,6 @@ msgstr "phiêu lưu / tây / chiến tranh"
 msgid "advertisement/shopping"
 msgstr "quảng cáo / mua sắm"
 
-msgid "all events down"
-msgstr "tất cả các sự kiện xuống"
-
-msgid "all events up"
-msgstr "tất cả các sự kiện lên"
-
 msgid "all up/down"
 msgstr "tất cả lên / xuống"
 
@@ -23021,18 +23030,6 @@ msgstr "làm vườn"
 msgid "get the cards' server"
 msgstr "lấy máy chủ của thẻ"
 
-msgid "goto current channel and now"
-msgstr "đến kênh hiện tại và bây giờ"
-
-msgid "goto first channel"
-msgstr "đến kênh đầu tiên"
-
-msgid "goto last channel"
-msgstr "đến kênh cuối cùng"
-
-msgid "goto now"
-msgstr "đến bây giờ"
-
 msgid "grab this frame as bitmap"
 msgstr "lấy khung này làm bitmap"
 
@@ -23256,9 +23253,6 @@ msgstr "tin tức / vấn đề thời sự (chung)"
 msgid "news/weather report"
 msgstr "báo cáo tin tức / thời tiết"
 
-msgid "next channel page"
-msgstr "trang tiếp theo của sự kiện"
-
 msgid "no CAId selected"
 msgstr "không chọn CAId"
 
@@ -23369,9 +23363,6 @@ msgstr "văn hóa đại chúng / nghệ thuật truyền thống"
 
 msgid "pre-school children's program"
 msgstr "chương trình trẻ em"
-
-msgid "previous channel page"
-msgstr "trang kênh trước"
 
 msgid "provid:"
 msgstr "cung cấp:"
@@ -23763,6 +23754,35 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Một bản ghi hiện đang chạy.\n"
+#~ "Bạn muốn làm gì?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Danh sách kênh"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Ghi âm tức thì ..."
+
+#~ msgid "Missing "
+#~ msgstr "Còn thiếu "
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Cài đặt ghi âm"
+
+#~ msgid "Start recording?"
+#~ msgstr "Bắt đầu ghi âm?"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Ngày / Hẹn giờ"

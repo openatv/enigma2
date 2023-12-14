@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 17:05+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1330,9 +1330,6 @@ msgstr ""
 msgid "* current animation"
 msgstr ""
 
-msgid "+24"
-msgstr ""
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1341,9 +1338,6 @@ msgid ", "
 msgstr ""
 
 msgid "-"
-msgstr ""
-
-msgid "-24"
 msgstr ""
 
 msgid "-24 Hours"
@@ -1623,11 +1617,6 @@ msgstr ""
 msgid ""
 "A recording has been started:\n"
 "%s"
-msgstr ""
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
 msgstr ""
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -1968,16 +1957,16 @@ msgstr ""
 msgid "Add provider"
 msgstr ""
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr ""
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr ""
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr ""
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr ""
 
 msgid "Add selected service to bouquet or alternative"
@@ -2134,6 +2123,12 @@ msgid "All Services"
 msgstr ""
 
 msgid "All ages"
+msgstr ""
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
 msgstr ""
 
 msgid "All files"
@@ -3096,9 +3091,6 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
-msgid "BouquetList"
-msgstr ""
-
 msgid "Bouvet Island"
 msgstr ""
 
@@ -3697,10 +3689,10 @@ msgstr ""
 msgid "Change pin code"
 msgstr ""
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr ""
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr ""
 
 msgid "Change repeat and delay settings?"
@@ -8418,13 +8410,22 @@ msgstr ""
 msgid "Goto Date/Time"
 msgstr ""
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr ""
 
 msgid "Goto X"
 msgstr ""
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
+msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+msgid "Goto last channel"
 msgstr ""
 
 msgid "Goto next bouquet"
@@ -8434,6 +8435,9 @@ msgid "Goto next channel"
 msgstr ""
 
 msgid "Goto next event"
+msgstr ""
+
+msgid "Goto now"
 msgstr ""
 
 msgid "Goto position"
@@ -9476,13 +9480,13 @@ msgstr ""
 msgid "Installing plugins from feed ..."
 msgstr ""
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
 msgid "Instant recording location"
-msgstr ""
-
-msgid "Instant recording..."
 msgstr ""
 
 msgid "Interface"
@@ -10723,9 +10727,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr ""
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -11480,13 +11481,16 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr ""
 
-msgid "Next bouquet"
+msgid "Next Bouquet"
+msgstr ""
+
+msgid "Next Page"
+msgstr ""
+
+msgid "Next channel page"
 msgstr ""
 
 msgid "Next higher resolution"
-msgstr ""
-
-msgid "Next page"
 msgstr ""
 
 msgid "Next quad PiP channel"
@@ -11575,7 +11579,7 @@ msgstr ""
 msgid "No error"
 msgstr ""
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr ""
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -12443,6 +12447,10 @@ msgstr ""
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -13263,10 +13271,13 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr ""
 
-msgid "Previous page"
+msgid "Previous Page"
+msgstr ""
+
+msgid "Previous channel page"
 msgstr ""
 
 msgid "Previous/Next bouquet"
@@ -13787,9 +13798,6 @@ msgid "Recordable media toolbox"
 msgstr ""
 
 msgid "Recording"
-msgstr ""
-
-msgid "Recording Actions"
 msgstr ""
 
 msgid "Recording Settings"
@@ -16114,7 +16122,7 @@ msgstr ""
 msgid "Set As Startup Service"
 msgstr ""
 
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr ""
 
 msgid "Set CI Boot delay."
@@ -17698,10 +17706,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -17889,6 +17897,9 @@ msgstr ""
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -17904,6 +17915,9 @@ msgstr ""
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr ""
 
@@ -17911,9 +17925,6 @@ msgid "Start offline decode"
 msgstr ""
 
 msgid "Start recording current event"
-msgstr ""
-
-msgid "Start recording?"
 msgstr ""
 
 msgid "Start teletext"
@@ -19521,13 +19532,13 @@ msgstr ""
 msgid "Time shift save recording (Select event)"
 msgstr ""
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr ""
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr ""
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr ""
 
 msgid "Time style"
@@ -22013,12 +22024,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "all events down"
-msgstr ""
-
-msgid "all events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -22359,18 +22364,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "goto current channel and now"
-msgstr ""
-
-msgid "goto first channel"
-msgstr ""
-
-msgid "goto last channel"
-msgstr ""
-
-msgid "goto now"
-msgstr ""
-
 msgid "grab this frame as bitmap"
 msgstr ""
 
@@ -22587,9 +22580,6 @@ msgstr ""
 msgid "news/weather report"
 msgstr ""
 
-msgid "next channel page"
-msgstr ""
-
 msgid "no CAId selected"
 msgstr ""
 
@@ -22699,9 +22689,6 @@ msgid "popular culture/traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
-msgstr ""
-
-msgid "previous channel page"
 msgstr ""
 
 msgid "provid:"

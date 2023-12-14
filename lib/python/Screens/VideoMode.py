@@ -1,8 +1,8 @@
-from os import path
+from os.path import exists
 
 from enigma import eAVControl, iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
 
-from Components.ActionMap import ActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.AVSwitch import iAVSwitch
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry, ConfigNothing
@@ -79,7 +79,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
-		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
+		self["actions"] = HelpableActionMap(self, ["SetupActions", "MenuActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
@@ -216,7 +216,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Aspect switch"), config.av.aspectswitch.enabled, _("This option allows you to set offset values for different Letterbox resolutions.")))
 				if config.av.aspectswitch.enabled.value:
 					for aspect in range(5):
-						self.list.append(getConfigListEntry(" -> %s" % iAVSwitch.ASPECT_SWITCH_MSG[aspect], config.av.aspectswitch.offsets[str(aspect)]))
+						self.list.append(getConfigListEntry(f" -> {iAVSwitch.ASPECT_SWITCH_MSG[aspect]}", config.av.aspectswitch.offsets[str(aspect)]))
 
 			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override, _("This option allows you to use all HDMI Modes")))
 
@@ -602,7 +602,7 @@ class AutoVideoMode(Screen):
 				video_pol = ("i", "p")[info.getInfo(iServiceInformation.sProgressive)]
 				video_rate = int(info.getInfo(iServiceInformation.sFrameRate))
 
-		print("[VideoMode] detect video height: %s, width: %s, pol: %s, rate: %s (current video mode: %s)" % (video_height, video_width, video_pol, video_rate, current_mode))
+		print(f"[VideoMode] detect video height: {video_height}, width: {video_width}, pol: {video_pol}, rate: {video_rate} (current video mode: {current_mode})")
 		if video_height and video_width and video_pol and video_rate:
 			label_rate = (video_rate + 500) // 1000
 			if video_pol == "i":
@@ -820,10 +820,10 @@ class AutoVideoMode(Screen):
 				write_mode = new_mode
 			else:
 				autorestyp = "no match"
-				if path.exists("/sys/class/display/mode") and config_rate in ("auto", "multi"):
+				if exists("/sys/class/display/mode") and config_rate in ("auto", "multi"):
 					f = open("/sys/class/display/mode")
-				elif path.exists("/proc/stb/video/videomode_%shz" % new_rate) and config_rate in ("auto", "multi"):
-					f = open("/proc/stb/video/videomode_%shz" % new_rate)
+				elif exists(f"/proc/stb/video/videomode_{new_rate}hz") and config_rate in ("auto", "multi"):
+					f = open(f"/proc/stb/video/videomode_{new_rate}hz")
 				if f:
 					multi_videomode = f.read().replace("\n", "")
 					f.close()
@@ -899,10 +899,10 @@ class AutoVideoMode(Screen):
 						write_mode += "hz"
 				if write_mode in values:
 					iAVSwitch.setVideoModeDirect(write_mode)
-					print("[VideoMode] setMode - port: %s, mode: %s (autoresTyp: '%s')" % (config_port, write_mode, autorestyp))
+					print(f"[VideoMode] setMode - port: {config_port}, mode: {write_mode} (autoresTyp: '{autorestyp}')")
 					resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 				else:
-					print("[VideoMode] setMode - port: %s, mode: %s is not available" % (config_port, write_mode))
+					print(f"[VideoMode] setMode - port: {config_port}, mode: {write_mode} is not available")
 					resolutionlabel["restxt"].setText(_("Video mode: %s not available") % write_mode)
 
 				if config.av.autores_label_timeout.value:
@@ -910,7 +910,7 @@ class AutoVideoMode(Screen):
 
 			elif write_mode and current_mode != write_mode:
 				# the resolution remained stuck at a wrong setting after streaming when self.bufferfull was False (should be fixed now after adding BufferInfoStop)
-				print("[VideoMode] not changing from %s to %s as self.bufferfull is %s" % (current_mode, write_mode, self.bufferfull))
+				print(f"[VideoMode] not changing from {current_mode} to {write_mode} as self.bufferfull is {self.bufferfull}")
 
 		if write_mode and write_mode != current_mode or self.firstrun:
 			iAVSwitch.setAspect(config.av.aspect)

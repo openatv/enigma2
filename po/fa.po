@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -1404,10 +1404,6 @@ msgstr "فقط زمانی در دسترس است که بیش از یک رابط 
 msgid "* current animation"
 msgstr ""
 
-#, fuzzy
-msgid "+24"
-msgstr "2"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1417,10 +1413,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#, fuzzy
-msgid "-24"
-msgstr "2"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1723,13 +1715,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"یک عمل ضبط کردن در حال اجرا است\n"
-"قصد انجام چه کاری را دارید ؟"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از پیکربندی مکان یاب عمل ضبط را متوقف کنید"
@@ -2091,16 +2076,16 @@ msgstr ""
 msgid "Add provider"
 msgstr "اضافه کردن ارائه کننده"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr ""
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr ""
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr ""
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr ""
 
 msgid "Add selected service to bouquet or alternative"
@@ -2269,6 +2254,12 @@ msgid "All Services"
 msgstr "کانال ها"
 
 msgid "All ages"
+msgstr ""
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
 msgstr ""
 
 msgid "All files"
@@ -3280,10 +3271,6 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
-#, fuzzy
-msgid "BouquetList"
-msgstr "[ویرایش لیست]"
-
 msgid "Bouvet Island"
 msgstr ""
 
@@ -3903,10 +3890,10 @@ msgstr "تغییر اندازه step"
 msgid "Change pin code"
 msgstr "تغییر رمز"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr ""
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr ""
 
 msgid "Change repeat and delay settings?"
@@ -8775,14 +8762,24 @@ msgstr "مراجعه به :"
 msgid "Goto Date/Time"
 msgstr ""
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr ""
 
 msgid "Goto X"
 msgstr "مراجعه به X"
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
 msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+#, fuzzy
+msgid "Goto last channel"
+msgstr "تغییر داده نشود"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -8792,6 +8789,9 @@ msgstr ""
 
 msgid "Goto next event"
 msgstr "مراجعه به رخداد بعدی"
+
+msgid "Goto now"
+msgstr ""
 
 msgid "Goto position"
 msgstr "مراجعه به موقعیت"
@@ -9882,16 +9882,15 @@ msgstr "در حال نصب"
 msgid "Installing plugins from feed ..."
 msgstr "در حال نصب"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
 #, fuzzy
 msgid "Instant recording location"
 msgstr "مکان ضبط کردن فوری"
-
-#, fuzzy
-msgid "Instant recording..."
-msgstr "در حال ضبط کردن"
 
 msgid "Interface"
 msgstr ""
@@ -11176,9 +11175,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr "مفقود"
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -11975,16 +11971,20 @@ msgid "Next"
 msgstr ""
 
 #, fuzzy
-msgid "Next bouquet"
+msgid "Next Bouquet"
 msgstr "اضافه کردن لیست"
+
+#, fuzzy
+msgid "Next Page"
+msgstr "تغییر داده نشود"
+
+#, fuzzy
+msgid "Next channel page"
+msgstr "تغییر داده نشود"
 
 #, fuzzy
 msgid "Next higher resolution"
 msgstr "تفکیک پذیری و دقت"
-
-#, fuzzy
-msgid "Next page"
-msgstr "تغییر داده نشود"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -12082,7 +12082,7 @@ msgstr ""
 msgid "No error"
 msgstr "کانال نامشخص"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "هیچ اطلاعات رخدادی یافت نشد ، ضبط کردن به صورت نامحدود"
 
 #
@@ -12995,6 +12995,10 @@ msgstr "رمز عبور"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -13859,12 +13863,15 @@ msgid "Previous"
 msgstr ""
 
 #, fuzzy
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr "اضافه کردن کانال به لیست"
 
 #, fuzzy
-msgid "Previous page"
+msgid "Previous Page"
 msgstr "پخش قبلی"
+
+msgid "Previous channel page"
+msgstr ""
 
 msgid "Previous/Next bouquet"
 msgstr ""
@@ -14410,10 +14417,6 @@ msgstr ""
 
 msgid "Recording"
 msgstr "در حال ضبط"
-
-#, fuzzy
-msgid "Recording Actions"
-msgstr "ضبط شده ها"
 
 msgid "Recording Settings"
 msgstr ""
@@ -16823,7 +16826,7 @@ msgid "Set As Startup Service"
 msgstr "انتخاب به عنوان کانال پیش فرض"
 
 #, fuzzy
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "زمان شروع"
 
 msgid "Set CI Boot delay."
@@ -17486,6 +17489,9 @@ msgid "Show SD as"
 msgstr "نمایش وضعیت شبکه بدون سیم"
 
 msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Service Information"
 msgstr ""
 
 msgid "Show Setting packages"
@@ -18305,7 +18311,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18472,10 +18478,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -18667,6 +18673,9 @@ msgstr "مشاهده Rass تعاملی"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18682,6 +18691,9 @@ msgstr "شروع از ابتدای کار"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 #, fuzzy
 msgid "Start mode"
 msgstr "زمان شروع"
@@ -18691,9 +18703,6 @@ msgstr "شروع رمز گشایی آفلاین"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "شروع ضبط کردن؟"
 
 msgid "Start teletext"
 msgstr ""
@@ -20356,13 +20365,13 @@ msgstr ""
 msgid "Time shift save recording (Select event)"
 msgstr ""
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr ""
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr ""
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr ""
 
 #, fuzzy
@@ -20945,6 +20954,10 @@ msgid "USB 3.0 (Back, outer)"
 msgstr ""
 
 msgid "USB Stick"
+msgstr ""
+
+#, python-format
+msgid "USB slot %s%s"
 msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
@@ -22934,12 +22947,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "all events down"
-msgstr ""
-
-msgid "all events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -23282,19 +23289,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "goto current channel and now"
-msgstr ""
-
-msgid "goto first channel"
-msgstr ""
-
-#, fuzzy
-msgid "goto last channel"
-msgstr "تغییر داده نشود"
-
-msgid "goto now"
-msgstr ""
-
 #
 msgid "grab this frame as bitmap"
 msgstr "گرفتن این فریم به عنوان bitmap"
@@ -23520,10 +23514,6 @@ msgstr ""
 msgid "news/weather report"
 msgstr ""
 
-#, fuzzy
-msgid "next channel page"
-msgstr "تغییر داده نشود"
-
 #
 msgid "no CAId selected"
 msgstr "هیچ CAId انتخاب نشده است"
@@ -23637,9 +23627,6 @@ msgid "popular culture/traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
-msgstr ""
-
-msgid "previous channel page"
 msgstr ""
 
 msgid "provid:"
@@ -24032,6 +24019,39 @@ msgstr "بله نگه داشتن feeds"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "2"
+
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "2"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "یک عمل ضبط کردن در حال اجرا است\n"
+#~ "قصد انجام چه کاری را دارید ؟"
+
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "[ویرایش لیست]"
+
+#, fuzzy
+#~ msgid "Instant recording..."
+#~ msgstr "در حال ضبط کردن"
+
+#~ msgid "Missing "
+#~ msgstr "مفقود"
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "ضبط شده ها"
+
+#~ msgid "Start recording?"
+#~ msgstr "شروع ضبط کردن؟"
 
 #~ msgid "none"
 #~ msgstr "هیچ چیز"

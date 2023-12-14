@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/is/>\n"
@@ -1452,11 +1452,6 @@ msgstr "* Bara virkt ef að fleira en eitt tæki er virkt."
 msgid "* current animation"
 msgstr ""
 
-#
-#, fuzzy
-msgid "+24"
-msgstr "2"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1466,11 +1461,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#
-#, fuzzy
-msgid "-24"
-msgstr "2"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1799,14 +1789,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-
-#
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Upptaka er nú í gangi.\n"
-"Hvað viltu núna gera?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2196,16 +2178,16 @@ msgstr ""
 msgid "Add provider"
 msgstr "bæta við sendanda"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr ""
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr ""
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr ""
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr ""
 
 msgid "Add selected service to bouquet or alternative"
@@ -2379,6 +2361,12 @@ msgid "All Services"
 msgstr "Rásir"
 
 msgid "All ages"
+msgstr ""
+
+msgid "All events down"
+msgstr ""
+
+msgid "All events up"
 msgstr ""
 
 msgid "All files"
@@ -3403,11 +3391,6 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
-#
-#, fuzzy
-msgid "BouquetList"
-msgstr "[breyta fléttu]"
-
 msgid "Bouvet Island"
 msgstr ""
 
@@ -4033,10 +4016,10 @@ msgstr "Breyta skrefa stærð"
 msgid "Change pin code"
 msgstr "Breyta aðgangskóða"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr ""
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr ""
 
 msgid "Change repeat and delay settings?"
@@ -9072,15 +9055,26 @@ msgstr ""
 msgid "Goto Date/Time"
 msgstr ""
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr ""
 
 #, fuzzy
 msgid "Goto X"
 msgstr "Fara á 0"
 
+msgid "Goto current channel and now"
+msgstr ""
+
 msgid "Goto deep standby"
 msgstr ""
+
+msgid "Goto first channel"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Goto last channel"
+msgstr "ekki breyta"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -9089,6 +9083,9 @@ msgid "Goto next channel"
 msgstr ""
 
 msgid "Goto next event"
+msgstr ""
+
+msgid "Goto now"
 msgstr ""
 
 #
@@ -10236,17 +10233,15 @@ msgstr "Set inn"
 msgid "Installing plugins from feed ..."
 msgstr "Set inn"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
 #, fuzzy
 msgid "Instant recording location"
 msgstr "Skyndi upptöku staðsetning"
-
-#
-#, fuzzy
-msgid "Instant recording..."
-msgstr "Skyndi upptaka..."
 
 msgid "Interface"
 msgstr ""
@@ -11625,9 +11620,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr ""
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -12482,18 +12474,23 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Next bouquet"
+msgid "Next Bouquet"
 msgstr "bæta rásavendi við"
+
+#
+#, fuzzy
+msgid "Next Page"
+msgstr "ekki breyta"
+
+#
+#, fuzzy
+msgid "Next channel page"
+msgstr "ekki breyta"
 
 #
 #, fuzzy
 msgid "Next higher resolution"
 msgstr "Upplausn"
-
-#
-#, fuzzy
-msgid "Next page"
-msgstr "ekki breyta"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -12600,7 +12597,7 @@ msgid "No error"
 msgstr "óþekkt rás"
 
 #
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Engar upplýsingar um atriði fundust, tek upp endalaust."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -13567,6 +13564,10 @@ msgstr "Aðgangsorð"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -14506,12 +14507,15 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr "bæta rás við fléttu"
 
 #, fuzzy
-msgid "Previous page"
+msgid "Previous Page"
 msgstr "Forsýn"
+
+msgid "Previous channel page"
+msgstr ""
 
 msgid "Previous/Next bouquet"
 msgstr ""
@@ -15079,11 +15083,6 @@ msgstr ""
 #
 msgid "Recording"
 msgstr "Upptaka"
-
-#
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Upptökur"
 
 msgid "Recording Settings"
 msgstr ""
@@ -17624,7 +17623,7 @@ msgid "Set As Startup Service"
 msgstr ""
 
 #, fuzzy
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "Byrjunar tími"
 
 msgid "Set CI Boot delay."
@@ -18305,6 +18304,9 @@ msgid "Show SD as"
 msgstr "Sýna WLAN stöðu"
 
 msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Service Information"
 msgstr ""
 
 msgid "Show Setting packages"
@@ -19172,7 +19174,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -19349,10 +19351,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -19554,6 +19556,9 @@ msgstr "Skoða gagnvirkt Útvarp"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -19570,6 +19575,9 @@ msgstr "Byrja frá byrjun"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Start mode"
@@ -19580,10 +19588,6 @@ msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
-
-#
-msgid "Start recording?"
-msgstr "Byrja upptöku?"
 
 msgid "Start teletext"
 msgstr ""
@@ -21338,13 +21342,13 @@ msgstr ""
 msgid "Time shift save recording (Select event)"
 msgstr ""
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr ""
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr ""
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr ""
 
 #
@@ -21982,6 +21986,10 @@ msgid "USB 3.0 (Back, outer)"
 msgstr ""
 
 msgid "USB Stick"
+msgstr ""
+
+#, python-format
+msgid "USB slot %s%s"
 msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
@@ -24058,12 +24066,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "all events down"
-msgstr ""
-
-msgid "all events up"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -24430,20 +24432,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "goto current channel and now"
-msgstr ""
-
-msgid "goto first channel"
-msgstr ""
-
-#
-#, fuzzy
-msgid "goto last channel"
-msgstr "ekki breyta"
-
-msgid "goto now"
-msgstr ""
-
 #
 msgid "grab this frame as bitmap"
 msgstr "grípa þennan ramma sem bitmap"
@@ -24687,11 +24675,6 @@ msgid "news/weather report"
 msgstr ""
 
 #
-#, fuzzy
-msgid "next channel page"
-msgstr "ekki breyta"
-
-#
 msgid "no CAId selected"
 msgstr "ekkert CAId valið"
 
@@ -24818,9 +24801,6 @@ msgid "popular culture/traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
-msgstr ""
-
-msgid "previous channel page"
 msgstr ""
 
 msgid "provid:"
@@ -25252,6 +25232,43 @@ msgstr "já (halda fæðirásum)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "2"
+
+#
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "2"
+
+#
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Upptaka er nú í gangi.\n"
+#~ "Hvað viltu núna gera?"
+
+#
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "[breyta fléttu]"
+
+#
+#, fuzzy
+#~ msgid "Instant recording..."
+#~ msgstr "Skyndi upptaka..."
+
+#
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Upptökur"
+
+#
+#~ msgid "Start recording?"
+#~ msgstr "Byrja upptöku?"
 
 #
 #~ msgid "none"

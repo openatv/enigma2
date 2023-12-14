@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1380,9 +1380,6 @@ msgstr "* Galima, jei tik daugiau kaip viena sąsaja yra aktyvi."
 msgid "* current animation"
 msgstr "* dabartinė animacija"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 valandos"
 
@@ -1392,9 +1389,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 valandos"
@@ -1688,13 +1682,6 @@ msgid ""
 msgstr ""
 "Prasidėjo įrašymas:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Dabar vyksta įrašymas.\n"
-"Ką norite daryti?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Dabar vyksta įrašymas. Prieš konfigūruodami pozicionierių išjunkite įrašymą."
@@ -2048,16 +2035,16 @@ msgstr "Pridėti naują žymę"
 msgid "Add provider"
 msgstr "Pridėti teikėją"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Pradėti įrašymą (įrašykite įrašo trukmę)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Pradėti įrašymą (įrašykite įrašymo pabaigą)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Pradėti įrašymą (neribotam laikui)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Pradėti įrašymą (stabdyti po šio įvykio)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -2215,6 +2202,12 @@ msgstr "Visi kanalai"
 
 msgid "All ages"
 msgstr "Visi amžiai"
+
+msgid "All events down"
+msgstr "visi įvykiai žemyn"
+
+msgid "All events up"
+msgstr "visi įvykiai iki"
 
 msgid "All files"
 msgstr "Visi failai"
@@ -3190,9 +3183,6 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
-msgid "BouquetList"
-msgstr "Paketų sąrašas"
-
 msgid "Bouvet Island"
 msgstr "Buveto sala"
 
@@ -3814,10 +3804,10 @@ msgstr "Keisti kitą laikmatį"
 msgid "Change pin code"
 msgstr "Keisti PIN kodą"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Keisti įrašymą (nurodyti trukmę)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Keisti įrašymą (nurodyti pabaigos laiką)"
 
 msgid "Change repeat and delay settings?"
@@ -8615,14 +8605,23 @@ msgstr "Eiti į :"
 msgid "Goto Date/Time"
 msgstr "Į konkrečią datą/laiką"
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr "Į žiūrimiausią laiką"
 
 msgid "Goto X"
 msgstr "Eiti į X"
 
+msgid "Goto current channel and now"
+msgstr "eiti į dabartinį kanalą ir dabar"
+
 msgid "Goto deep standby"
 msgstr "į gilų budėjimą"
+
+msgid "Goto first channel"
+msgstr "eiti į kitą kanalą"
+
+msgid "Goto last channel"
+msgstr "eiti į paskutinį kanalą"
 
 msgid "Goto next bouquet"
 msgstr "Į kitą paketą"
@@ -8632,6 +8631,9 @@ msgstr "Į kitą kanalą"
 
 msgid "Goto next event"
 msgstr "Į kitą įvykį"
+
+msgid "Goto now"
+msgstr "eiti dabar"
 
 msgid "Goto position"
 msgstr "Eiti į poziciją"
@@ -9687,14 +9689,14 @@ msgstr "Priedų diegimas iš IPK ..."
 msgid "Installing plugins from feed ..."
 msgstr "Priedų diegimas iš šaltinių ..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Momentinis įrašymas"
 
 msgid "Instant recording location"
 msgstr "Momentinio įrašymo vieta"
-
-msgid "Instant recording..."
-msgstr "Momentinis įrašymas..."
 
 msgid "Interface"
 msgstr "Sąsaja"
@@ -10938,9 +10940,6 @@ msgstr ""
 "Netinkamai sukonfigūruota kelių kabelių jungtis nuo imtuvo %s į %s!\n"
 "Imtuvo %s parinktis \"Prijungtas prie\" dabar yra išjungta"
 
-msgid "Missing "
-msgstr "Trūksta "
-
 msgid "Mobile connection"
 msgstr "Mobilusis ryšys"
 
@@ -11695,14 +11694,17 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Kitas"
 
-msgid "Next bouquet"
+msgid "Next Bouquet"
 msgstr "Sekantis paketas"
+
+msgid "Next Page"
+msgstr "Sekantis puslapis"
+
+msgid "Next channel page"
+msgstr "kito kanalo puslapis"
 
 msgid "Next higher resolution"
 msgstr "kita didesnė rezoliucija"
-
-msgid "Next page"
-msgstr "Sekantis puslapis"
 
 msgid "Next quad PiP channel"
 msgstr "Kitas, keturių PiP kanalų, kanalas"
@@ -11795,7 +11797,7 @@ msgstr "Lcn db įrašo nėra. Atlikite kanalų paiešką."
 msgid "No error"
 msgstr "Jokios klaidos"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Informacija apie įvykius nerasta, tęsiamas įrašymas."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -12682,6 +12684,10 @@ msgstr "Slaptažodžio parametrai"
 msgid "Password changed."
 msgstr "Slaptažodis pakeistas."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Nėra kelio išsaugojimui: '/tmp/'"
 
@@ -13516,11 +13522,14 @@ msgstr "Peržiūros meniu"
 msgid "Previous"
 msgstr "Ankstesnis"
 
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr "Ankstesnis paketas"
 
-msgid "Previous page"
+msgid "Previous Page"
 msgstr "Ankstesnis puslapis"
+
+msgid "Previous channel page"
+msgstr "ankstesnis kanalo puslapis"
 
 msgid "Previous/Next bouquet"
 msgstr "ankstesnis/kitas paketas"
@@ -14041,9 +14050,6 @@ msgstr "Įrašomų medija priemonių rinkinys"
 
 msgid "Recording"
 msgstr "Įrašymas"
-
-msgid "Recording Actions"
-msgstr "Įrašymo veiksmai"
 
 msgid "Recording Settings"
 msgstr "Įrašymo nustatymai"
@@ -16399,7 +16405,7 @@ msgstr "Kanalai gali būti sugrupuoti į paketus. Kai čia įjungta, tas pats ka
 msgid "Set As Startup Service"
 msgstr "nustatyti, kaip pradinį kanalą"
 
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "Nustatykite bazinį laiką"
 
 msgid "Set CI Boot delay."
@@ -17043,6 +17049,9 @@ msgid "Show SD as"
 msgstr "Rodyti SD kaip"
 
 msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Service Information"
 msgstr ""
 
 msgid "Show Setting packages"
@@ -17820,8 +17829,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Lizdų %s: %s kaip USB atkūrimas"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Lizdas '%s'"
+msgid "Slot '%s' %s"
+msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -17984,11 +17993,11 @@ msgstr "Atsiprašome MiniDLNA konfigūracijos nėra"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Atsiprašome šaltiniai neveikia dėl priežiūros darbų, prašome pabandyti vėliau."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Atsiprašome, vienu metu galima įrašyti tik 2 kanalus"
+
 msgid "Sorry no backups found!"
 msgstr "Atsiprašome, bet atsarginių kopijų nerasta!"
-
-msgid "Sorry only possible to record 2 channels at once"
-msgstr "Atsiprašome, vienu metu galima įrašyti tik 2 kanalus"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Atsiprašome uShare konfigūracijos nėra"
@@ -18180,6 +18189,9 @@ msgstr "Paleisti interaktyvų RDS"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18195,6 +18207,9 @@ msgstr "Pradėti iš pradžių"
 msgid "Start instant recording"
 msgstr "Pradėti tiesioginį įrašymą"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "Paleidimo režimas"
 
@@ -18203,9 +18218,6 @@ msgstr "Pradėti dekodavimą neprisijungus"
 
 msgid "Start recording current event"
 msgstr "Pradėti įrašyti dabartinį įvykį"
-
-msgid "Start recording?"
-msgstr "Pradėti įrašymą?"
 
 msgid "Start teletext"
 msgstr "Įjungti teletekstą"
@@ -19880,13 +19892,13 @@ msgstr "Išsaugoti laiko poslinkio nepavyko!"
 msgid "Time shift save recording (Select event)"
 msgstr "Išsaugoti laiko poslinkio įrašą (pasirinkite įvykį)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Laiko poslinkis bus išsaugotas įvykio pabaigoje!"
 
 msgid "Time style"
@@ -20441,6 +20453,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "USB laikmena"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB jungimo KLAIDA! - jau USB"
@@ -22446,12 +22462,6 @@ msgstr "nuotykių/vesternas/karinis"
 msgid "advertisement/shopping"
 msgstr "reklama/prekyba"
 
-msgid "all events down"
-msgstr "visi įvykiai žemyn"
-
-msgid "all events up"
-msgstr "visi įvykiai iki"
-
 msgid "all up/down"
 msgstr "visi aukštyn/žemyn"
 
@@ -22794,18 +22804,6 @@ msgstr "sodininkystė"
 msgid "get the cards' server"
 msgstr "prijungti kortelių serverį"
 
-msgid "goto current channel and now"
-msgstr "eiti į dabartinį kanalą ir dabar"
-
-msgid "goto first channel"
-msgstr "eiti į kitą kanalą"
-
-msgid "goto last channel"
-msgstr "eiti į paskutinį kanalą"
-
-msgid "goto now"
-msgstr "eiti dabar"
-
 msgid "grab this frame as bitmap"
 msgstr "užgriebti vaizdą bmp formatu"
 
@@ -23022,9 +23020,6 @@ msgstr "naujienos/aktualijos (bendra)"
 msgid "news/weather report"
 msgstr "naujienos/orai"
 
-msgid "next channel page"
-msgstr "kito kanalo puslapis"
-
 msgid "no CAId selected"
 msgstr "joks CAId neišsirinktas"
 
@@ -23135,9 +23130,6 @@ msgstr "populiarioji kultūra/tradiciniai menai"
 
 msgid "pre-school children's program"
 msgstr "ikimokyklinė vaikų programa"
-
-msgid "previous channel page"
-msgstr "ankstesnis kanalo puslapis"
 
 msgid "provid:"
 msgstr "tiekėjas:"
@@ -23530,6 +23522,38 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Dabar vyksta įrašymas.\n"
+#~ "Ką norite daryti?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Paketų sąrašas"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Momentinis įrašymas..."
+
+#~ msgid "Missing "
+#~ msgstr "Trūksta "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Įrašymo veiksmai"
+
+#~ msgid "Start recording?"
+#~ msgstr "Pradėti įrašymą?"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Lizdas '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Į konkrečią datą/laikmatį"

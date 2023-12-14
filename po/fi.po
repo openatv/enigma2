@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
-"PO-Revision-Date: 2023-12-08 07:43+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"PO-Revision-Date: 2023-12-14 20:54+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.3\n"
 
 msgid ""
 "\n"
@@ -1341,9 +1341,6 @@ msgstr "* Käytettävissä vain kun useampi kuin yksi sovitin on aktiivinen."
 msgid "* current animation"
 msgstr "* nykyinen animaatio"
 
-msgid "+24"
-msgstr "Seuraavat 24h"
-
 msgid "+24 Hours"
 msgstr "+24 tuntia"
 
@@ -1353,9 +1350,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "Edelliset 24h"
 
 msgid "-24 Hours"
 msgstr "-24 tuntia"
@@ -1647,13 +1641,6 @@ msgid ""
 msgstr ""
 "Tallennus on alkanut:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Tallennus on parhaillaan käynnissä.\n"
-"Mitä haluat tehdä?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Tallennus on parhaillaan käynnissä. Pysäytä tallennus ennen kuin yrität muokata kääntömoottorin asetuksia."
@@ -2009,16 +1996,16 @@ msgstr "Lisää uusi tunniste"
 msgid "Add provider"
 msgstr "Lisää p.tarjoaja"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Tallenna (Syötä tallennuksen kesto)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Tallenna (Syötä tallennuksen päättymisaika)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Tallenna (Jatkuva tallennus)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Tallenna (Lopeta nykyisen ohjelman jälkeen)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -2180,6 +2167,12 @@ msgstr "Kaikki Palvelut"
 
 msgid "All ages"
 msgstr "Kaikenikäisille"
+
+msgid "All events down"
+msgstr "Kaikki tapahtumat alas"
+
+msgid "All events up"
+msgstr "Kaikki tapahtumat ylös"
 
 msgid "All files"
 msgstr "Kaikki tiedostot"
@@ -3153,9 +3146,6 @@ msgstr "Suosikki Valinta Toiminnot"
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Suosikki valinnan navigointi toiminnot"
 
-msgid "BouquetList"
-msgstr "Suosikkilista"
-
 msgid "Bouvet Island"
 msgstr "Bouvet saaret"
 
@@ -3778,10 +3768,10 @@ msgstr "Muuta seuraavaa ajastusta"
 msgid "Change pin code"
 msgstr "Vaihda tunnusluku"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Muuta tallennusta (kesto)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Muuta tallennusta (päättymisaika)"
 
 msgid "Change repeat and delay settings?"
@@ -8574,14 +8564,23 @@ msgstr "Minne :"
 msgid "Goto Date/Time"
 msgstr "Siirry päivämäärä / aika"
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr "Siirry parhaaseen katseluaikaan"
 
 msgid "Goto X"
 msgstr "Mene X"
 
+msgid "Goto current channel and now"
+msgstr "Siirry nykyiselle kanavalle"
+
 msgid "Goto deep standby"
 msgstr "siirry virransäästötilaan"
+
+msgid "Goto first channel"
+msgstr "vaihda ensimmäiselle kanavalle"
+
+msgid "Goto last channel"
+msgstr "vaihda viime kanavalle"
 
 msgid "Goto next bouquet"
 msgstr "Mene seuraavalle suosikkilistalle"
@@ -8591,6 +8590,9 @@ msgstr "Vaihda seuraavalle kanavalle"
 
 msgid "Goto next event"
 msgstr "Siirry seuraavaan ohjelmaan"
+
+msgid "Goto now"
+msgstr "Siirry nyt"
 
 msgid "Goto position"
 msgstr "Mene sijaintiin"
@@ -9651,14 +9653,14 @@ msgstr "Asenna lisäosa IPK: sta …"
 msgid "Installing plugins from feed ..."
 msgstr "Asenna lisäosia syötteestä ..."
 
+msgid "Instant Recording Actions"
+msgstr "Pikatallennuksen hakemisto"
+
 msgid "Instant record"
 msgstr "Pikatallennus"
 
 msgid "Instant recording location"
 msgstr "Pikatallennuksen hakemisto"
-
-msgid "Instant recording..."
-msgstr "Pikatallennus"
 
 msgid "Interface"
 msgstr "Liitäntä"
@@ -10900,9 +10902,6 @@ msgstr ""
 "Väärin määritetty unicable yhteys virittimestä %s virittimeen %s!\n"
 "Viritin %s asetukset `yhdistetty` ovat nyt poissa käytöstä"
 
-msgid "Missing "
-msgstr "Puuttuu "
-
 msgid "Mobile connection"
 msgstr "Mobiiliyhteys"
 
@@ -11662,14 +11661,17 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Seuraava"
 
-msgid "Next bouquet"
+msgid "Next Bouquet"
 msgstr "Seuraavalle suosikkilistalle"
+
+msgid "Next Page"
+msgstr "Seuraava sivu"
+
+msgid "Next channel page"
+msgstr "Seuraava kanava sivu"
 
 msgid "Next higher resolution"
 msgstr "seuraava suurempi Resolution"
-
-msgid "Next page"
-msgstr "Seuraava sivu"
 
 msgid "Next quad PiP channel"
 msgstr "Seuraava 4 PiP kanava"
@@ -11762,7 +11764,7 @@ msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
 msgid "No error"
 msgstr "Ei virhettä"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr ""
 "Lähetyksessä ei ole tietoa ohjelman loppumisajasta.\n"
 "Ohjelma tallennetaan jatkuvana tallennuksena."
@@ -12655,6 +12657,10 @@ msgstr "Salasana asetukset"
 msgid "Password changed."
 msgstr "Salasana vaihdettu."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr "Polku '%s' puuttuu!"
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Polkua ei ole olemassa /tmp/"
 
@@ -13487,11 +13493,14 @@ msgstr "Esikatsele valikkoa"
 msgid "Previous"
 msgstr "Edellinen"
 
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr "Edellinen suosikkilista"
 
-msgid "Previous page"
+msgid "Previous Page"
 msgstr "Edellinen sivu"
+
+msgid "Previous channel page"
+msgstr "Siirry edelliselle kanavalle"
 
 msgid "Previous/Next bouquet"
 msgstr "edellinen/seuraava Suosikkilista"
@@ -14012,9 +14021,6 @@ msgstr "Tallennettavan median työkalupakki"
 
 msgid "Recording"
 msgstr "Tallentaa"
-
-msgid "Recording Actions"
-msgstr "Tallennus toiminnot"
 
 msgid "Recording Settings"
 msgstr "Tallennus Asetukset"
@@ -16388,7 +16394,7 @@ msgstr "Kanavat voidaan järjestää suosikkilistoiksi. Kun päällä, voit käy
 msgid "Set As Startup Service"
 msgstr "Valitse käynnistyskanavaksi"
 
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "Aikaväli johon kellonajat pyöristetään"
 
 msgid "Set CI Boot delay."
@@ -17039,6 +17045,9 @@ msgstr "Näytä SD näin"
 
 msgid "Show Security packages"
 msgstr "Näytä turvallisuuspaketit"
+
+msgid "Show Service Information"
+msgstr "Näytä Kanavan tiedot"
 
 msgid "Show Setting packages"
 msgstr "Näytä Asetus paketit"
@@ -17813,8 +17822,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Paikka %s: %s USB palautuksena"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Paikka %s"
+msgid "Slot '%s' %s"
+msgstr "Paikka '%s' %s"
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -17977,11 +17986,11 @@ msgstr "MiniDLNA määritystiedosto puuttuu"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Syötteet eivät ole käytössä huollon takia, yritä myöhemmin uudelleen."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Vain 2 kanavaa voidaan tallentaa kerralla"
+
 msgid "Sorry no backups found!"
 msgstr "Varmuuskopioita ei löydy!"
-
-msgid "Sorry only possible to record 2 channels at once"
-msgstr "Vain 2 kanavaa voidaan tallentaa kerralla"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "UShare määritystiedosto puuttuu"
@@ -18173,6 +18182,9 @@ msgstr "Avaa interaktiivinen tv (HbbTV)"
 msgid "Start Wizard"
 msgstr "Käynnistä Avustaja"
 
+msgid "Start an instant recording"
+msgstr "Aloita tallennus heti"
+
 msgid "Start date"
 msgstr "Aloituspäivä"
 
@@ -18188,6 +18200,9 @@ msgstr "Aloita alusta"
 msgid "Start instant recording"
 msgstr "Aloita tallennus heti"
 
+msgid "Start instant recording?"
+msgstr "Aloita tallennus heti?"
+
 msgid "Start mode"
 msgstr "Käynnistys tila"
 
@@ -18196,9 +18211,6 @@ msgstr "Aloita offline purkaminen"
 
 msgid "Start recording current event"
 msgstr "Aloita nykyisen ohjelman tallennus"
-
-msgid "Start recording?"
-msgstr "Aloita tallennus?"
 
 msgid "Start teletext"
 msgstr "Teksti-TV"
@@ -19902,13 +19914,13 @@ msgstr "Ajansiirron tallennus epäonnistui!"
 msgid "Time shift save recording (Select event)"
 msgstr "Ajansiirron muunto tallenteeksi (valitse ohjelma)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Ajansiirron muunto tallenteeksi (pysäytä nykyisen ohjelman jälkeen)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Ajansiirto tallennettu kiintolevylle!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Ajansiirto tallennetaan ohjelman lopussa!"
 
 msgid "Time style"
@@ -20468,6 +20480,10 @@ msgstr "USB 3.0 (takana)"
 
 msgid "USB Stick"
 msgstr "USB muistitikku"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr "Usb paikka %s%s"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB vaihdon VIRHE! - jo USB:lla"
@@ -22495,12 +22511,6 @@ msgstr "seikkailu/länkkäri/sota"
 msgid "advertisement/shopping"
 msgstr "mainos/ostos"
 
-msgid "all events down"
-msgstr "Kaikki tapahtumat alas"
-
-msgid "all events up"
-msgstr "Kaikki tapahtumat ylös"
-
 msgid "all up/down"
 msgstr "kaikki ylös/alas"
 
@@ -22843,18 +22853,6 @@ msgstr "puutarhanhoito"
 msgid "get the cards' server"
 msgstr "hae korttipalvelin"
 
-msgid "goto current channel and now"
-msgstr "Siirry nykyiselle kanavalle"
-
-msgid "goto first channel"
-msgstr "vaihda ensimmäiselle kanavalle"
-
-msgid "goto last channel"
-msgstr "vaihda viime kanavalle"
-
-msgid "goto now"
-msgstr "Siirry nyt"
-
 msgid "grab this frame as bitmap"
 msgstr "Tallenna tämä ruutu kuvatiedostoksi"
 
@@ -23071,9 +23069,6 @@ msgstr "uutiset/ajankohtaisohjelmat (yleinen)"
 msgid "news/weather report"
 msgstr "uutiset/säätiedotus"
 
-msgid "next channel page"
-msgstr "Seuraava kanava sivu"
-
 msgid "no CAId selected"
 msgstr "ei CAId valittu"
 
@@ -23184,9 +23179,6 @@ msgstr "populäärikulttuuri/perinteinen taide"
 
 msgid "pre-school children's program"
 msgstr "esikouluikäisten lastenohjelma"
-
-msgid "previous channel page"
-msgstr "Siirry edelliselle kanavalle"
 
 msgid "provid:"
 msgstr "p.tarj:"
@@ -23576,6 +23568,38 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "Seuraavat 24h"
+
+#~ msgid "-24"
+#~ msgstr "Edelliset 24h"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Tallennus on parhaillaan käynnissä.\n"
+#~ "Mitä haluat tehdä?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Suosikkilista"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Pikatallennus"
+
+#~ msgid "Missing "
+#~ msgstr "Puuttuu "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Tallennus toiminnot"
+
+#~ msgid "Start recording?"
+#~ msgstr "Aloita tallennus?"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Paikka %s"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Siirry päivämäärä / ajastin"

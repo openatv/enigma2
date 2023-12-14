@@ -33,7 +33,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Screens.DVD import DVDPlayer
 from Screens.HelpMenu import HelpableScreen
-from Screens.InfoBar import InfoBar, MoviePlayer
+from Screens.InfoBar import InfoBar
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.MovieSelection import defaultMoviePath
@@ -1359,9 +1359,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 							choiceList.append((_("Install the package"), "INSTALL"))
 						self.session.openWithCallback(archiveCallback, MessageBox, text="%s\n\n%s" % (promptMsg, path), list=choiceList, windowTitle=self.baseTitle)
 					elif fileType == ".ts":
-						self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, path))
+						if InfoBar and InfoBar.instance:
+							InfoBar.instance.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+							InfoBar.instance.movieSelected(eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, path), fromMovieSelection=False)
 					elif fileType in MOVIE_EXTENSIONS:
-						self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, path))
+						if InfoBar and InfoBar.instance:
+							InfoBar.instance.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+							InfoBar.instance.movieSelected(eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, path), fromMovieSelection=False)
 					elif fileType in DVD_EXTENSIONS:
 						self.session.open(DVDPlayer, dvd_filelist=[path])
 					elif fileType in AUDIO_EXTENSIONS:
@@ -2541,37 +2545,6 @@ class FileCommanderMediaInfo(FileCommanderData):
 			self.processArguments(None, ["/usr/bin/mediainfo", "/usr/bin/mediainfo", "--Output=JSON", self.path], None, displayJson)
 		else:
 			self.processArguments(None, ["/usr/bin/ffprobe", "/usr/bin/ffprobe", "-hide_banner", self.path], None, displayFFprobe)
-
-
-class FileCommanderMoviePlayer(MoviePlayer):
-	def __init__(self, session, service):
-		self.WithoutStopClose = False
-		MoviePlayer.__init__(self, session, service)
-
-	def leavePlayer(self):
-		self.is_closing = True
-		self.close()
-
-	def leavePlayerConfirmed(self, answer):  # Overwrite InfoBar method!
-		pass
-
-	def doEofInternal(self, playing):
-		if not self.execing:
-			return
-		if not playing:
-			return
-		self.leavePlayer()
-
-	def showMovies(self):
-		self.WithoutStopClose = True
-		self.close()
-
-	def movieSelected(self, service):
-		self.leavePlayer()
-
-	def __onClose(self):
-		if not (self.WithoutStopClose):
-			self.session.nav.playService(self.lastservice)
 
 
 class FileCommanderTextEditor(Screen, HelpableScreen):

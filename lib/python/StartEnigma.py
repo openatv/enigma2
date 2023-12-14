@@ -123,7 +123,7 @@ class Session:
 	def instantiateSummaryDialog(self, screen, **kwargs):
 		if self.summaryDesktop is not None:
 			self.pushSummary()
-			summary = screen.createSummary() or SimpleSummary
+			summary = screen.createSummary() or ScreenSummary
 			arguments = (screen,)
 			self.summary = self.doInstantiateDialog(summary, arguments, kwargs, self.summaryDesktop)
 			self.summary.show()
@@ -383,13 +383,13 @@ def runScreenTest():
 	enigma.pauseInit()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 	enigma.resumeInit()
-	profile("Init:Session")
+	profile("Session")
 	nav = Navigation(config.misc.nextWakeup.value)
 	session = Session(desktop=enigma.getDesktop(0), summaryDesktop=enigma.getDesktop(1), navigation=nav)
 	CiHandler.setSession(session)
 	from Screens.SwapManager import SwapAutostart
 	SwapAutostart()
-	profile("InitWizards")
+	profile("Wizards")
 	screensToRun = []
 	RestoreSettings = None
 	if exists("/media/hdd/images/config/settings") and config.misc.firstrun.value:
@@ -415,14 +415,14 @@ def runScreenTest():
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 	if not RestoreSettings:
 		runNextScreen(session, screensToRun)
-	profile("InitVolumeControl")
+	profile("VolumeControl")
 	vol = VolumeControl(session)
-	profile("InitProcessing")
+	profile("Processing")
 	processing = Processing(session)
-	profile("InitPowerKey")
+	profile("PowerKey")
 	power = PowerKey(session)
 	if BoxInfo.getItem("VFDSymbols"):
-		profile("VFDSYMBOLS")
+		profile("VFDSymbolsCheck")
 		from Components.VfdSymbols import SymbolsCheck
 		SymbolsCheck(session)
 	# We need session.scart to access it from within menu.xml.
@@ -430,10 +430,10 @@ def runScreenTest():
 	profile("InitTrashcan")
 	from Tools.Trashcan import initTrashcan
 	initTrashcan(session)
-	profile("Init:AutoVideoMode")
+	profile("VideoModeAutoStart")
 	from Screens.VideoMode import autostart
 	autostart(session)
-	profile("Init:VolumeAdjust")
+	profile("VolumeAdjustAutoStart")
 	from Screens.VolumeAdjust import autostart
 	autostart(session)
 	profile("RunReactor")
@@ -560,11 +560,11 @@ def runScreenTest():
 		print("[StartEnigma] No next wakeup time set.")
 	config.misc.nextWakeup.save()
 	print("=" * 100)
-	profile("stopService")
+	profile("StopService")
 	session.nav.stopService()
-	profile("nav shutdown")
+	profile("NavigationShutdown")
 	session.nav.shutdown()
-	profile("configfile.save")
+	profile("SaveConfig")
 	configfile.save()
 	from Screens.InfoBarGenerics import saveResumePoints
 	saveResumePoints()
@@ -677,7 +677,7 @@ except ImportError:
 profile("International")
 from Components.International import international
 
-profile("SystemInfo")
+profile("BoxInfo")
 from enigma import getE2Rev
 from Components.SystemInfo import BoxInfo
 
@@ -755,28 +755,31 @@ from Components.InputDevice import keyboard
 config.misc.autocamEnabled = ConfigYesNo(default=False)
 config.misc.autocamDefault = ConfigText(default="")
 
-profile("SimpleSummary")
+profile("InfoBar")
 from Screens import InfoBar
-from Screens.SimpleSummary import SimpleSummary
 
-profile("Bouquets")
+profile("ScreenSummary")
+# from Screens.SimpleSummary import SimpleSummary
+from Screens.Screen import ScreenSummary
+
+profile("LoadBouquets")
 config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
 config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 enigma.eDVBDB.getInstance().reloadBouquets()
 
-profile("LOAD:Navigation")
+profile("Navigation")
 from Navigation import Navigation
 
-profile("LOAD:skin")
+profile("ReadSkin")
 from skin import readSkin
 
-profile("LOAD:Tools")
+profile("InitDefaultPaths")
 from Components.config import ConfigSubsection, NoSave, configfile
 from Tools.Directories import InitDefaultPaths, SCOPE_CONFIG, SCOPE_GUISKIN, SCOPE_PLUGINS, fileUpdateLine, resolveFilename
 import Components.RecordingConfig
 InitDefaultPaths()
 
-profile("config.misc")
+profile("ConfigMisc")
 config.misc.boxtype = ConfigText(default=BOX_TYPE)
 config.misc.blackradiopic = ConfigText(default=resolveFilename(SCOPE_GUISKIN, "black.mvi"))
 radiopic = resolveFilename(SCOPE_GUISKIN, "radio.mvi")
@@ -796,88 +799,88 @@ config.misc.startCounter = ConfigInteger(default=0)  # Number of e2 starts.
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0))  # Number of standby.
 config.misc.DeepStandby = NoSave(ConfigYesNo(default=False))  # Detect deep standby.
 
-profile("LOAD:Plugin")
+profile("AutoRunPlugins")
 # Initialize autorun plugins and plugin menu entries.
 from Components.PluginComponent import plugins
 
-profile("LOAD:Wizard")
+profile("StartWizard")
 config.misc.rcused = ConfigInteger(default=1)
 from Screens.StartWizard import *
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 
 # Display.
-profile("LOAD:ScreenGlobals")
+profile("ScreenGlobals")
 from Screens.Globals import Globals
 from Screens.SessionGlobals import SessionGlobals
 from Screens.Screen import Screen
-
-profile("Screen")
 Screen.globalScreen = Globals()
 
-profile("Standby,PowerKey")
+profile("Standby")
 import Screens.Standby
 from Screens.Menu import Menu, findMenu
+
+profile("GlobalActionMap")
 from GlobalActions import globalActionMap
 
 profile("Scart")
 from Screens.Scart import Scart
 
-profile("Load:CI")
+profile("CIHandler")
 from Screens.Ci import CiHandler
 
-profile("Load:VolumeControl")
+profile("VolumeControl")
 from Components.VolumeControl import VolumeControl
 
-profile("Load:Processing")
+profile("Processing")
 from Screens.Processing import Processing
 
-profile("Load:StackTracePrinter")
+profile("StackTracePrinter")
 from Components.StackTrace import StackTracePrinter
 StackTracePrinterInst = StackTracePrinter()
 
 from time import localtime, strftime
 from Tools.StbHardware import setFPWakeuptime, setRTCtime
 
-profile("Init:skin")
+profile("InitSkins")
 from skin import InitSkins
 InitSkins()
 
-profile("InputDevice")
+profile("InitInputDevices")
 from Components.InputDevice import InitInputDevices
 InitInputDevices()
 import Components.InputHotplug
 
-profile("AVSwitch")
+profile("InitAVSwitch")
 from Components.AVSwitch import InitAVSwitch, InitiVideomodeHotplug
 InitAVSwitch()
 InitiVideomodeHotplug()
 
-profile("HdmiRecord")
+profile("InitHDMIRecord")
 from Components.HdmiRecord import InitHdmiRecord
 InitHdmiRecord()
 
-profile("RecordingConfig")
+profile("InitRecordingConfig")
 from Components.RecordingConfig import InitRecordingConfig
 InitRecordingConfig()
 
-profile("UsageConfig")
+profile("InitUsageConfig")
 from Components.UsageConfig import InitUsageConfig, DEFAULTKEYMAP
 InitUsageConfig()
 
-profile("TimeZones")
+profile("InitTimeZones")
 from Components.Timezones import InitTimeZones
 InitTimeZones()
 
-profile("Init:DebugLogCheck")
+profile("AutoLogManager")
 from Screens.LogManager import AutoLogManager
 AutoLogManager()
 
-profile("Init:NTPSync")
+profile("NTPSyncPoller")
 from Components.NetworkTime import ntpSyncPoller
 ntpSyncPoller.startTimer()
 
-profile("keymapparser")
+profile("KeymapParser")
 from Components.ActionMap import loadKeymap
 loadKeymap(DEFAULTKEYMAP)
 if config.usage.keymap.value != DEFAULTKEYMAP:
@@ -887,11 +890,11 @@ loadKeymap(config.usage.keytrans.value)
 if exists(config.usage.keymap_usermod.value):
 	loadKeymap(config.usage.keymap_usermod.value)
 
-profile("Network")
+profile("InitNetwork")
 from Components.Network import InitNetwork
 InitNetwork()
 
-profile("LCD")
+profile("InitLCD")
 from Components.Lcd import IconCheck, InitLcd
 InitLcd()
 IconCheck()
@@ -901,20 +904,20 @@ if BOX_TYPE in ("uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", 
 
 enigma.eAVControl.getInstance().disableHDMIIn()
 
-profile("UserInterface")
+profile("InitOSD")
 from Screens.UserInterfacePositioner import InitOsd
 InitOsd()
 
-profile("EpgCacheSched")
+profile("EPGCacheCheck")
 from Components.EpgLoadSave import EpgCacheLoadCheck, EpgCacheSaveCheck
 EpgCacheSaveCheck()
 EpgCacheLoadCheck()
 
-profile("RFMod")
+profile("InitRFmod")
 from Components.RFmod import InitRFmod
 InitRFmod()
 
-profile("Init:CI")
+profile("InitCiConfig")
 from Screens.Ci import InitCiConfig
 InitCiConfig()
 

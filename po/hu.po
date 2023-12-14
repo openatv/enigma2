@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1376,9 +1376,6 @@ msgstr "* Csak akkor érvényes, ha egynél több interfész aktív."
 msgid "* current animation"
 msgstr "* Aktuális konfiguráció aktiválása"
 
-msgid "+24"
-msgstr "+1 nap"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1390,9 +1387,6 @@ msgstr " "
 #, fuzzy
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-1 nap"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1687,13 +1681,6 @@ msgid ""
 msgstr ""
 "A felvétel elindul:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Egy felvétel folyamatban van. \n"
-"Mit szeretne tenni?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Egy felvétel folyamatban van. Kérjük, állítsa le a felvételt, mielőtt beállítaná a pozícionálót."
@@ -2046,16 +2033,16 @@ msgstr "Új címke hozzáadása "
 msgid "Add provider"
 msgstr "Szolgáltató hozzáadása"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Felvétel készítése (adja meg a felvétel hosszának idejét)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Felvétel készítése (adja meg a felvétel befejezésének idejét)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Felvétel készítése (ameddig le nem állítják)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Felvétel készítése (csak az adott műsor felvétele)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -2214,6 +2201,12 @@ msgstr "Összes csatorna"
 
 msgid "All ages"
 msgstr "Minden korosztály"
+
+msgid "All events down"
+msgstr "minden esemény lefelé"
+
+msgid "All events up"
+msgstr "minden esemény fel"
 
 msgid "All files"
 msgstr ""
@@ -3196,9 +3189,6 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
-msgid "BouquetList"
-msgstr "Csatornacsomag lista"
-
 msgid "Bouvet Island"
 msgstr "Bouvet-sziget"
 
@@ -3811,10 +3801,10 @@ msgstr "A következő időzítő módosítása"
 msgid "Change pin code"
 msgstr "PIN-kód cseréje"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Felvétel módosítása (hossz)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Felvétel módosítása (befejezés időpontja)"
 
 msgid "Change repeat and delay settings?"
@@ -8623,14 +8613,23 @@ msgstr "Ide:"
 msgid "Goto Date/Time"
 msgstr "Ugrás dátumra"
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr "Ugrás a Főműsoridőre"
 
 msgid "Goto X"
 msgstr "Goto X"
 
+msgid "Goto current channel and now"
+msgstr "ugrás az aktuális csatornára és most"
+
 msgid "Goto deep standby"
 msgstr "kikapcsolás"
+
+msgid "Goto first channel"
+msgstr "ugrás az első csatornára"
+
+msgid "Goto last channel"
+msgstr "ugrás az utolsó csatornára"
 
 msgid "Goto next bouquet"
 msgstr "Következő csatornacsomagra"
@@ -8640,6 +8639,9 @@ msgstr "Kövvetkező csatornára"
 
 msgid "Goto next event"
 msgstr "Következő eseményre"
+
+msgid "Goto now"
+msgstr "ugrás most"
 
 msgid "Goto position"
 msgstr "Pozícióra ugrás"
@@ -9706,14 +9708,14 @@ msgstr "Bővítmény telepítése IPK-ból..."
 msgid "Installing plugins from feed ..."
 msgstr "Bővítmény telepítése Feed-ből..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Azonnali felvétel"
 
 msgid "Instant recording location"
 msgstr "Azonnali felvételek helye"
-
-msgid "Instant recording..."
-msgstr "Felvétel azonnali indítása..."
 
 msgid "Interface"
 msgstr "Interfész"
@@ -10983,9 +10985,6 @@ msgstr ""
 "Konfiguráltalan unicable csatlakozás a %s tunerből %s tunerbe!\n"
 "A \"csatlakoztatott\" %s tuner opció le lett tiltva"
 
-msgid "Missing "
-msgstr "Hiányzó "
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -11763,14 +11762,17 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Következő"
 
-msgid "Next bouquet"
+msgid "Next Bouquet"
 msgstr "Következő lista"
+
+msgid "Next Page"
+msgstr "Következő oldal"
+
+msgid "Next channel page"
+msgstr "következő csatornaoldal"
 
 msgid "Next higher resolution"
 msgstr "következő magasabb felbontás"
-
-msgid "Next page"
-msgstr "Következő oldal"
 
 msgid "Next quad PiP channel"
 msgstr "Következő quad Kép-a-Képben csatorna"
@@ -11864,7 +11866,7 @@ msgstr "Nincs bejegyzés lcn db-ben. Kérjük, végezzen egy csatorna keresést.
 msgid "No error"
 msgstr "Nincs hiba"
 
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Nincs esemény infó, felvétel korlátlanul."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -12764,6 +12766,10 @@ msgstr "Jelszó beállítása"
 msgid "Password changed."
 msgstr "Jelszó módosítva."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "A mentéshez nem létező elérési út: '/tmp/'"
 
@@ -13597,11 +13603,14 @@ msgstr "Előnézeti menü"
 msgid "Previous"
 msgstr "Előző"
 
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr "Előző lista"
 
-msgid "Previous page"
+msgid "Previous Page"
 msgstr "Előző oldal"
+
+msgid "Previous channel page"
+msgstr "előző csatornaoldal"
 
 msgid "Previous/Next bouquet"
 msgstr "előző/következő lista"
@@ -14124,10 +14133,6 @@ msgstr "Rögzíthető média eszköztár"
 
 msgid "Recording"
 msgstr "Felvétel"
-
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Felvétel beállítása"
 
 msgid "Recording Settings"
 msgstr "Felvétel beállítása"
@@ -16497,7 +16502,7 @@ msgstr "A csatornák csoportosíthatók csatornacsomagokba. Mikor engedélyezve 
 msgid "Set As Startup Service"
 msgstr "beállítás indítási csatornának"
 
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "Alapidő beállítása"
 
 msgid "Set CI Boot delay."
@@ -17145,6 +17150,9 @@ msgid "Show SD as"
 msgstr "Megjelenítés SD-ként"
 
 msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Service Information"
 msgstr ""
 
 msgid "Show Setting packages"
@@ -17932,7 +17940,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18097,11 +18105,11 @@ msgstr "Sajnálom, de a MiniDLNA Config hiányzik"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt. Kérem, próbálja meg később."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Sajnos, csak két csatorna rögzítésére van lehetőség egyszerre"
+
 msgid "Sorry no backups found!"
 msgstr "Sajnáljuk, mentések nem találhatók!"
-
-msgid "Sorry only possible to record 2 channels at once"
-msgstr "Sajnos, csak két csatorna rögzítésére van lehetőség egyszerre"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Sajnálom, de az uShare Config hiányzik"
@@ -18296,6 +18304,9 @@ msgstr "Ugyanaz, mint az aktív"
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18311,6 +18322,9 @@ msgstr "Indítsa az elejétől"
 msgid "Start instant recording"
 msgstr "Azonalli felvétel indítása"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "Indulás módja"
 
@@ -18319,9 +18333,6 @@ msgstr "Offline dekódolás indítása"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "Indítsam a felvételt?"
 
 msgid "Start teletext"
 msgstr "Teletext indítása"
@@ -20004,13 +20015,13 @@ msgstr "Timeshift felvétel mentése sikertelen!"
 msgid "Time shift save recording (Select event)"
 msgstr "Timeshift folyamatban. Válasszon egy opciót."
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift felvétel (leállítás az aktuális műsor után)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift felvétel mentése a háttértárra!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Az esemény végén lesz a Timeshift mentve!"
 
 msgid "Time style"
@@ -20576,6 +20587,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "USB-stick"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB kapcsoló HIBA! - már az USB-n"
@@ -22565,12 +22580,6 @@ msgstr "kaland/western/háború"
 msgid "advertisement/shopping"
 msgstr "reklám/televíziós vásárlás"
 
-msgid "all events down"
-msgstr "minden esemény lefelé"
-
-msgid "all events up"
-msgstr "minden esemény fel"
-
 msgid "all up/down"
 msgstr "minden fel/le"
 
@@ -22913,18 +22922,6 @@ msgstr "kertészet"
 msgid "get the cards' server"
 msgstr "kártyaszerver"
 
-msgid "goto current channel and now"
-msgstr "ugrás az aktuális csatornára és most"
-
-msgid "goto first channel"
-msgstr "ugrás az első csatornára"
-
-msgid "goto last channel"
-msgstr "ugrás az utolsó csatornára"
-
-msgid "goto now"
-msgstr "ugrás most"
-
 msgid "grab this frame as bitmap"
 msgstr "pillanatkép mentése"
 
@@ -23143,9 +23140,6 @@ msgstr "hírek/gazdaság (általános)"
 msgid "news/weather report"
 msgstr "hírek/időjárás"
 
-msgid "next channel page"
-msgstr "következő csatornaoldal"
-
 msgid "no CAId selected"
 msgstr "nincs kijelölt CAId"
 
@@ -23256,9 +23250,6 @@ msgstr "néprajz"
 
 msgid "pre-school children's program"
 msgstr "óvodásoknak"
-
-msgid "previous channel page"
-msgstr "előző csatornaoldal"
 
 msgid "provid:"
 msgstr "szolgáltató Id:"
@@ -23649,6 +23640,35 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+24"
+#~ msgstr "+1 nap"
+
+#~ msgid "-24"
+#~ msgstr "-1 nap"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Egy felvétel folyamatban van. \n"
+#~ "Mit szeretne tenni?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Csatornacsomag lista"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Felvétel azonnali indítása..."
+
+#~ msgid "Missing "
+#~ msgstr "Hiányzó "
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Felvétel beállítása"
+
+#~ msgid "Start recording?"
+#~ msgstr "Indítsam a felvételt?"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Ugrás megadott dátumhoz/időzítőhez"

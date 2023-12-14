@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1342,10 +1342,6 @@ msgstr "* Yalnızca birden fazla arayüz olduğunda kullanılabilir."
 msgid "* current animation"
 msgstr "* geçerli animasyon"
 
-#
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "24+ Saatler"
 
@@ -1355,9 +1351,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "24+ Saatler"
@@ -1671,14 +1664,6 @@ msgid ""
 msgstr ""
 "Bir kayıt başladı:\n"
 "%s"
-
-#
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Kayıt devam ediyor.\n"
-"Ne yapmak istiyorsunuz?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2064,16 +2049,16 @@ msgstr "Yeni etiket ekle"
 msgid "Add provider"
 msgstr "Sağlayıcı ekle"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Kayıt ekle (kayıt süresini gir)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Kayıt ekle (kayıt bitiş zamanını gir)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Kayıt ekle (süresiz)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Kayıt ekle (şimdiki programdan sonra dursun)"
 
 msgid "Add selected service to bouquet or alternative"
@@ -2244,6 +2229,12 @@ msgstr "Tüm Servisler"
 
 msgid "All ages"
 msgstr "Her yaş"
+
+msgid "All events down"
+msgstr "tüm olaylar bitti"
+
+msgid "All events up"
+msgstr "tüm etkinlikler"
 
 msgid "All files"
 msgstr "Tüm dosyalar"
@@ -3272,9 +3263,6 @@ msgstr "Buket Seçici Eylemler"
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Buket Seçici Navigasyon Eylemleri"
 
-msgid "BouquetList"
-msgstr "Buket Listesi"
-
 msgid "Bouvet Island"
 msgstr "Bouvet Adası"
 
@@ -3913,10 +3901,10 @@ msgstr "Bir sonraki zamanlayıcıyı değiştir"
 msgid "Change pin code"
 msgstr "PIN değiştir"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Kayıt değiştir (süre)"
 
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Kayıt değiştir (bitiş zamanı)"
 
 msgid "Change repeat and delay settings?"
@@ -8952,15 +8940,24 @@ msgstr "Git :"
 msgid "Goto Date/Time"
 msgstr "Tarih / Saate Git"
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr "Primetime git"
 
 #
 msgid "Goto X"
 msgstr "Goto X"
 
+msgid "Goto current channel and now"
+msgstr "şu anki kanala geç ve şimdi"
+
 msgid "Goto deep standby"
 msgstr "Derin bekleme moduna geç"
+
+msgid "Goto first channel"
+msgstr "ilk kanala geç"
+
+msgid "Goto last channel"
+msgstr "son kanala git"
 
 msgid "Goto next bouquet"
 msgstr "Sonraki bukete git"
@@ -8970,6 +8967,9 @@ msgstr "Sonraki kanala git"
 
 msgid "Goto next event"
 msgstr "Sonraki etkinliğe git"
+
+msgid "Goto now"
+msgstr "şimdi git"
 
 #
 msgid "Goto position"
@@ -10075,15 +10075,14 @@ msgstr "IPK'dan eklentiler yükleniyor ..."
 msgid "Installing plugins from feed ..."
 msgstr "Eklentileri feed'den yükleniyor ..."
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Anlık kayıt"
 
 msgid "Instant recording location"
 msgstr "Anlık kayıtlar konumu"
-
-#
-msgid "Instant recording..."
-msgstr "Anlık Kayıt..."
 
 msgid "Interface"
 msgstr "Arayüz"
@@ -11396,9 +11395,6 @@ msgstr ""
 "Tunerden %s tunere %s için yanlış yapılandırılmış bağlantı!\n"
 "tuner %s \"bağlı\"seçeneği şimdi devre dışı bırakıldı"
 
-msgid "Missing "
-msgstr "Eksik "
-
 msgid "Mobile connection"
 msgstr "Mobil bağlantı"
 
@@ -12206,15 +12202,18 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Sonraki"
 
-msgid "Next bouquet"
+msgid "Next Bouquet"
 msgstr "Sonraki bukete geç"
+
+msgid "Next Page"
+msgstr "Sonraki Sayfa"
+
+msgid "Next channel page"
+msgstr "sonraki kanal sayfası"
 
 #
 msgid "Next higher resolution"
 msgstr "Sonraki daha yüksek çözünürlük"
-
-msgid "Next page"
-msgstr "Sonraki Sayfa"
 
 msgid "Next quad PiP channel"
 msgstr "Sonraki quad PiP kanalı"
@@ -12319,7 +12318,7 @@ msgid "No error"
 msgstr "Hata yok"
 
 #
-msgid "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
 msgstr "Etkinlik bilgisi bulunamadı, süresiz kaydediliyor."
 
 #
@@ -13257,6 +13256,10 @@ msgstr "Şifre Kurulumu"
 msgid "Password changed."
 msgstr "Sifre değişti."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Kaydedilecek yol mevcut değil: '/tmp/'"
 
@@ -14163,11 +14166,14 @@ msgstr "Önizleme menüsü"
 msgid "Previous"
 msgstr "Önceki"
 
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr "Önceki bukete geç"
 
-msgid "Previous page"
+msgid "Previous Page"
 msgstr "Önceki Sayfa"
+
+msgid "Previous channel page"
+msgstr "önceki kanal sayfası"
 
 msgid "Previous/Next bouquet"
 msgstr "Önceki/Sonraki buket"
@@ -14715,9 +14721,6 @@ msgstr "Kaydedilebilir medya araç kutusu"
 #
 msgid "Recording"
 msgstr "Kaydediliyor"
-
-msgid "Recording Actions"
-msgstr "Eylemleri Kaydetme"
 
 msgid "Recording Settings"
 msgstr "Kayıt ayarları"
@@ -17200,7 +17203,7 @@ msgstr "Hizmetler buketleri gruplandırılmış olabilir. Etkinleştirildiğinde
 msgid "Set As Startup Service"
 msgstr "Başlangıç hizmeti olarak ayarla"
 
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "Basetime ayarla"
 
 msgid "Set CI Boot delay."
@@ -17865,6 +17868,9 @@ msgstr "SD yi göster"
 
 msgid "Show Security packages"
 msgstr "Güvenlik paketlerini göster"
+
+msgid "Show Service Information"
+msgstr ""
 
 msgid "Show Setting packages"
 msgstr "Ayar paketlerini göster"
@@ -18677,8 +18683,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Yuvas%s - %s USB Kurtarma"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Yuva '%s'"
+msgid "Slot '%s' %s"
+msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
@@ -18850,11 +18856,11 @@ msgstr "Üzgünüm, MiniDLNA Yapılandırması eksik"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Maalesef beslemeler bakım nedeniyle kapalı, lütfen daha sonra tekrar deneyin."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Aynı anda 2 kanalı kaydetmek için üzgünüm"
+
 msgid "Sorry no backups found!"
 msgstr "Ne yazık ki yedekleme bulunamadı!"
-
-msgid "Sorry only possible to record 2 channels at once"
-msgstr "Aynı anda 2 kanalı kaydetmek için üzgünüm"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Üzgünüm, uShare Yapılandırması eksik"
@@ -19055,6 +19061,9 @@ msgstr "RDS etkileşimini başlat"
 msgid "Start Wizard"
 msgstr "Başlatma sihirbazı"
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr "Başlangıç tarihi"
 
@@ -19071,6 +19080,9 @@ msgstr "Baştan başla"
 msgid "Start instant recording"
 msgstr "Anında kayıt başlat"
 
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start mode"
 msgstr "Başlangıç modu"
 
@@ -19079,9 +19091,6 @@ msgstr "Çevrimdışı çözüme başla"
 
 msgid "Start recording current event"
 msgstr "Mevcut olayı kaydetmeye başla"
-
-msgid "Start recording?"
-msgstr "Kayda başla?"
 
 msgid "Start teletext"
 msgstr "Teleteks başlat"
@@ -20849,13 +20858,13 @@ msgstr "Zaman-kaydırma saklanamadı!"
 msgid "Time shift save recording (Select event)"
 msgstr "Zaman kayması kaydetme kaydı (Etkinlik seç)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Zaman kayması kaydetme kaydı (geçerli olaydan sonra dur"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "Zaman-kaydırma diskinize saklandı!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "Zaman-kaydırma, etkinlik sonunda saklanacak!"
 
 msgid "Time style"
@@ -21456,6 +21465,10 @@ msgstr "USB 3.0 (Arka, dış)"
 
 msgid "USB Stick"
 msgstr "USB Bellek"
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB anahtarı HATA! - zaten USB'de"
@@ -23565,12 +23578,6 @@ msgstr "macera/kovboy/savaş filmi"
 msgid "advertisement/shopping"
 msgstr "reklam/alışveriş"
 
-msgid "all events down"
-msgstr "tüm olaylar bitti"
-
-msgid "all events up"
-msgstr "tüm etkinlikler"
-
 msgid "all up/down"
 msgstr "hepsi yukarı / aşağı"
 
@@ -23938,18 +23945,6 @@ msgstr "bahçecilik"
 msgid "get the cards' server"
 msgstr "kart sunucu al"
 
-msgid "goto current channel and now"
-msgstr "şu anki kanala geç ve şimdi"
-
-msgid "goto first channel"
-msgstr "ilk kanala geç"
-
-msgid "goto last channel"
-msgstr "son kanala git"
-
-msgid "goto now"
-msgstr "şimdi git"
-
 #
 msgid "grab this frame as bitmap"
 msgstr "bu kareyi bitmap olarak yakala"
@@ -24187,9 +24182,6 @@ msgstr "haberler/günlük olaylar (genel)"
 msgid "news/weather report"
 msgstr "haberler/hava durumu"
 
-msgid "next channel page"
-msgstr "sonraki kanal sayfası"
-
 #
 msgid "no CAId selected"
 msgstr "cAId seçilmedi"
@@ -24315,9 +24307,6 @@ msgstr "popüler kültür/geleneksel sanatlar"
 
 msgid "pre-school children's program"
 msgstr "okulöncesi çocuk programı"
-
-msgid "previous channel page"
-msgstr "önceki kanal sayfası"
 
 msgid "provid:"
 msgstr "provid:"
@@ -24743,6 +24732,41 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "Kayıt devam ediyor.\n"
+#~ "Ne yapmak istiyorsunuz?"
+
+#~ msgid "BouquetList"
+#~ msgstr "Buket Listesi"
+
+#
+#~ msgid "Instant recording..."
+#~ msgstr "Anlık Kayıt..."
+
+#~ msgid "Missing "
+#~ msgstr "Eksik "
+
+#~ msgid "Recording Actions"
+#~ msgstr "Eylemleri Kaydetme"
+
+#~ msgid "Start recording?"
+#~ msgstr "Kayda başla?"
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Yuva '%s'"
 
 #~ msgid "Goto Date/Timer"
 #~ msgstr "Tarih / Zamanlayıcı Git"

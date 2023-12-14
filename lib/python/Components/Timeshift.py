@@ -8,7 +8,7 @@ from enigma import eBackgroundFileEraser, eEPGCache, eServiceCenter, eServiceRef
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
 from timer import TimerEntry
-from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import BoxInfo
@@ -66,16 +66,16 @@ class InfoBarTimeshift:
 			"seekdef:7": (boundFunction(self.seekdef, 7), _("Seek")),
 			"seekdef:9": (boundFunction(self.seekdef, 9), _("Seek"))
 		}, prio=1)
-		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"], {
+		self["TimeshiftActivateActions"] = HelpableActionMap(self, ["InfobarTimeshiftActivateActions"], {
 			"timeshiftActivateEnd": self.activateTimeshiftEnd,  # Something like "rewind key".
 			"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # Something like "pause key".
 		}, prio=-1)  # Priority over record.
-		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"], {
+		self["TimeshiftSeekPointerActions"] = HelpableActionMap(self, ["InfobarTimeshiftSeekPointerActions"], {
 			"SeekPointerOK": self.ptsSeekPointerOK,
 			"SeekPointerLeft": self.ptsSeekPointerLeft,
 			"SeekPointerRight": self.ptsSeekPointerRight
 		}, prio=-1)
-		self["TimeshiftFileActions"] = ActionMap(["InfobarTimeshiftActions"], {
+		self["TimeshiftFileActions"] = HelpableActionMap(self, ["InfobarTimeshiftActions"], {
 			"jumpPreviousFile": self.__evSOFjump,
 			"jumpNextFile": self.__evEOF
 		}, prio=-1)  # Priority over history.

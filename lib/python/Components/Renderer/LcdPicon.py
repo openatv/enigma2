@@ -31,8 +31,13 @@ def onMountpointAdded(mountpoint):
 	try:
 		if BW or isdir(mountpoint + "piconlcd"):
 			path = join(mountpoint, "piconlcd", "")
-		else:
-			path = join(mountpoint, "picon", "")
+			if isdir(path) and path not in searchPaths:
+				for fn in listdir(path):
+					if fn.endswith(".png"):
+						print(f"[LcdPicon] adding path: {path}")
+						searchPaths.append(path)
+						return
+		path = join(mountpoint, "picon", "")
 		if isdir(path) and path not in searchPaths:
 			for fn in listdir(path):
 				if fn.endswith(".png"):
@@ -45,13 +50,11 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	if BW or isdir(mountpoint + "piconlcd"):
-		path = join(mountpoint, "piconlcd", "")
-	else:
-		path = join(mountpoint, "picon", "")
 	try:
-		searchPaths.remove(path)
-		print(f"[LcdPicon] removed path: {path}")
+		for path in [join(mountpoint, directory, "") for directory in ("piconlcd", "picon")]:
+			if path in searchPaths:
+				searchPaths.remove(path)
+				print(f"[LcdPicon] removed path: {path}")
 	except Exception:
 		pass
 

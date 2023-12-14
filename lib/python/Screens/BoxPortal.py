@@ -1,10 +1,10 @@
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.Sources.List import List
+from Components.ActionMap import HelpableActionMap
 from Components.config import config
-from Screens.InfoBar import InfoBar
 from Components.PluginComponent import plugins
+from Components.Sources.List import List
 from Plugins.Plugin import PluginDescriptor
+from Screens.InfoBar import InfoBar
+from Screens.Screen import Screen
 
 
 def isExtension_installed(pname):
@@ -12,7 +12,6 @@ def isExtension_installed(pname):
 		for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU]):
 			if plugin.name == pname:
 				return True
-				break
 	except:
 		return False
 
@@ -28,10 +27,9 @@ class BoxPortal(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
+		self["shortcuts"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"],
 		{
 			"ok": self.okbuttonClick,
-			"back": self.exit,
 			"cancel": self.exit,
 			"red": self.exit,
 			"green": self.exit,

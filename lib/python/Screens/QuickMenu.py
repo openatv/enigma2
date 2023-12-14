@@ -5,7 +5,7 @@ from enigma import BT_SCALE, eEnv, eListboxPythonMultiContent, gFont, pNavigatio
 
 import NavigationInstance
 from skin import getSkinFactor
-from Components.ActionMap import ActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -91,7 +91,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self["sublist"].onSelectionChanged.append(self.selectionSubChanged)
-		self["NavigationActions"] = ActionMap(["OkCancelActions", "NavigationActions"], {
+		self["NavigationActions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions"], {
 			"ok": self.ok,
 			"cancel": self.keyred,
 			"left": self.goLeft,
@@ -644,12 +644,12 @@ class QuickMenuDevices(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Devices"))
+		self.setTitle(_("Devices"))
 		self["lab1"] = Label()
 		self.devicelist = []
 		self["devicelist"] = List(self.devicelist)
-		self["actions"] = ActionMap(["WizardActions"], {
-			"back": self.close,
+		self["actions"] = HelpableActionMap(self, ["CancelActions"], {
+			"cancel": self.close,
 		}, prio=0)
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.updateList2)

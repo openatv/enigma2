@@ -1,8 +1,8 @@
-import os
+from os.path import exists
 from time import time
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference, eStreamServer, quitMainloop, iRecordableService, eDBoxLCD
 
-from Components.ActionMap import ActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.AVSwitch import AVSwitch
 from Components.config import config
 from Components.Console import Console
@@ -107,7 +107,7 @@ class Standby2(Screen):
 		print("[Standby] leave standby")
 		BoxInfo.setItem("StandbyState", False)
 
-		if os.path.exists("/usr/script/StandbyLeave.sh"):
+		if exists("/usr/script/StandbyLeave.sh"):
 			Console().ePopen("/usr/script/StandbyLeave.sh &")
 
 		if BoxInfo.getItem("hdmistandbymode") == 1:
@@ -171,10 +171,10 @@ class Standby2(Screen):
 		print("[Standby] enter standby")
 		BoxInfo.setItem("StandbyState", True)
 
-		if os.path.exists("/usr/script/StandbyEnter.sh"):
+		if exists("/usr/script/StandbyEnter.sh"):
 			Console().ePopen("/usr/script/StandbyEnter.sh &")
 
-		self["actions"] = ActionMap(["StandbyActions"],
+		self["actions"] = HelpableActionMap(self, ["StandbyActions"],
 		{
 			"power": self.Power_make,
 			"power_break": self.Power_break,

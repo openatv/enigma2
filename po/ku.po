@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 21:44+0000\n"
+"POT-Creation-Date: 2023-12-10 10:52+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -1455,10 +1455,6 @@ msgstr "* Only available if more than one interface is active."
 msgid "* current animation"
 msgstr ""
 
-#, fuzzy
-msgid "+24"
-msgstr "2"
-
 msgid "+24 Hours"
 msgstr ""
 
@@ -1468,10 +1464,6 @@ msgstr ""
 
 msgid "-"
 msgstr ""
-
-#, fuzzy
-msgid "-24"
-msgstr "2"
 
 msgid "-24 Hours"
 msgstr ""
@@ -1777,13 +1769,6 @@ msgid ""
 msgstr ""
 "A record has been started:\n"
 "%s"
-
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"A recording is currently running.\n"
-"What do you want to do?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -2149,17 +2134,17 @@ msgstr ""
 msgid "Add provider"
 msgstr "Add provider"
 
-msgid "Add recording (enter recording duration)"
-msgstr "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
+msgstr "Add recording (Enter recording duration)"
 
-msgid "Add recording (enter recording end time)"
-msgstr "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
+msgstr "Add recording (Enter recording end time)"
 
-msgid "Add recording (indefinitely)"
-msgstr "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
+msgstr "Add recording (Indefinitely - 24 hours)"
 
-msgid "Add recording (stop after current event)"
-msgstr "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
+msgstr "Add recording (Stop after current event)"
 
 msgid "Add selected service to bouquet or alternative"
 msgstr ""
@@ -2327,6 +2312,14 @@ msgstr "Services"
 
 msgid "All ages"
 msgstr "Hemu Kes"
+
+#, fuzzy
+msgid "All events down"
+msgstr "special events"
+
+#, fuzzy
+msgid "All events up"
+msgstr "special events"
 
 msgid "All files"
 msgstr ""
@@ -3362,10 +3355,6 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
-#, fuzzy
-msgid "BouquetList"
-msgstr "Bouquet Edit"
-
 msgid "Bouvet Island"
 msgstr ""
 
@@ -3992,11 +3981,11 @@ msgstr "Current device: "
 msgid "Change pin code"
 msgstr "Kodé pin bedilni"
 
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Qeydi bedilni"
 
-msgid "Change recording (end time)"
-msgstr "Change recording (end time)"
+msgid "Change recording (End time)"
+msgstr "Change recording (End time)"
 
 msgid "Change repeat and delay settings?"
 msgstr "Change repeat and delay settings?"
@@ -8935,14 +8924,26 @@ msgid "Goto Date/Time"
 msgstr ""
 
 #, fuzzy
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr "Jump to previous marked position"
 
 msgid "Goto X"
 msgstr "Goto X"
 
+#, fuzzy
+msgid "Goto current channel and now"
+msgstr "Switch next channel"
+
 msgid "Goto deep standby"
 msgstr ""
+
+#, fuzzy
+msgid "Goto first channel"
+msgstr "Switch next channel"
+
+#, fuzzy
+msgid "Goto last channel"
+msgstr "Switch next channel"
 
 #, fuzzy
 msgid "Goto next bouquet"
@@ -8955,6 +8956,9 @@ msgstr "Switch next channel"
 #, fuzzy
 msgid "Goto next event"
 msgstr "Go to next event"
+
+msgid "Goto now"
+msgstr ""
 
 msgid "Goto position"
 msgstr "Goto position"
@@ -10058,14 +10062,14 @@ msgstr "Install picons on"
 msgid "Installing plugins from feed ..."
 msgstr "Install picons on"
 
+msgid "Instant Recording Actions"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
 msgid "Instant recording location"
 msgstr "Instant recording location"
-
-msgid "Instant recording..."
-msgstr "Instant recording..."
 
 #, fuzzy
 msgid "Interface"
@@ -11364,9 +11368,6 @@ msgid ""
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
-msgid "Missing "
-msgstr "Missing "
-
 msgid "Mobile connection"
 msgstr ""
 
@@ -12165,16 +12166,20 @@ msgid "Next"
 msgstr "Next"
 
 #, fuzzy
-msgid "Next bouquet"
+msgid "Next Bouquet"
 msgstr "Go to next event"
+
+#, fuzzy
+msgid "Next Page"
+msgstr "Switch next channel"
+
+#, fuzzy
+msgid "Next channel page"
+msgstr "Switch next channel"
 
 #, fuzzy
 msgid "Next higher resolution"
 msgstr "Resolution"
-
-#, fuzzy
-msgid "Next page"
-msgstr "Switch next channel"
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -12270,8 +12275,8 @@ msgstr ""
 msgid "No error"
 msgstr "Unknown Service"
 
-msgid "No event info found, recording default is infinite."
-msgstr "No event info found, recording default is infinite."
+msgid "No event information found, recording default is 24 hours."
+msgstr "No event information found, recording default is 24 hours."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
@@ -13188,6 +13193,10 @@ msgstr "Password"
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -14050,11 +14059,15 @@ msgid "Previous"
 msgstr ""
 
 #, fuzzy
-msgid "Previous bouquet"
+msgid "Previous Bouquet"
 msgstr "Go to previous event"
 
 #, fuzzy
-msgid "Previous page"
+msgid "Previous Page"
+msgstr "Switch to previous channel"
+
+#, fuzzy
+msgid "Previous channel page"
 msgstr "Switch to previous channel"
 
 #, fuzzy
@@ -14604,10 +14617,6 @@ msgstr ""
 
 msgid "Recording"
 msgstr "Recording"
-
-#, fuzzy
-msgid "Recording Actions"
-msgstr "Reception settings"
 
 #, fuzzy
 msgid "Recording Settings"
@@ -17039,7 +17048,7 @@ msgid "Set As Startup Service"
 msgstr "Set As Startup Service"
 
 #, fuzzy
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "zeman dest pédike"
 
 msgid "Set CI Boot delay."
@@ -17710,6 +17719,9 @@ msgid "Show SD as"
 msgstr "Show WLAN status"
 
 msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Service Information"
 msgstr ""
 
 msgid "Show Setting packages"
@@ -18539,7 +18551,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -18708,10 +18720,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "No updates available. Please try again later."
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry only possible to record 2 channels at once"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -18911,6 +18923,9 @@ msgstr "View Rass interactive..."
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -18926,6 +18941,9 @@ msgstr "Start from the beginning"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording?"
+msgstr ""
+
 #, fuzzy
 msgid "Start mode"
 msgstr "Start time"
@@ -18935,9 +18953,6 @@ msgstr "Start offline decode"
 
 msgid "Start recording current event"
 msgstr ""
-
-msgid "Start recording?"
-msgstr "Start recording?"
 
 msgid "Start teletext"
 msgstr ""
@@ -19182,7 +19197,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Streaming recording ended"
-msgstr "Change recording (end time)"
+msgstr "Change recording (End time)"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -20641,13 +20656,13 @@ msgid "Time shift save recording (Select event)"
 msgstr "Timer recording location"
 
 #, fuzzy
-msgid "Time shift save recording (stop after current event)"
-msgstr "Add recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
+msgstr "Add recording (Stop after current event)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr ""
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr ""
 
 #, fuzzy
@@ -21234,6 +21249,10 @@ msgid "USB 3.0 (Back, outer)"
 msgstr ""
 
 msgid "USB Stick"
+msgstr ""
+
+#, python-format
+msgid "USB slot %s%s"
 msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
@@ -23249,14 +23268,6 @@ msgstr "adventure/western/war"
 msgid "advertisement/shopping"
 msgstr "advertisement/shopping"
 
-#, fuzzy
-msgid "all events down"
-msgstr "special events"
-
-#, fuzzy
-msgid "all events up"
-msgstr "special events"
-
 msgid "all up/down"
 msgstr ""
 
@@ -23612,21 +23623,6 @@ msgstr "gardening"
 msgid "get the cards' server"
 msgstr ""
 
-#, fuzzy
-msgid "goto current channel and now"
-msgstr "Switch next channel"
-
-#, fuzzy
-msgid "goto first channel"
-msgstr "Switch next channel"
-
-#, fuzzy
-msgid "goto last channel"
-msgstr "Switch next channel"
-
-msgid "goto now"
-msgstr ""
-
 msgid "grab this frame as bitmap"
 msgstr "grab this frame as bitmap"
 
@@ -23853,10 +23849,6 @@ msgstr "news/current affairs (general)"
 msgid "news/weather report"
 msgstr "news/weather report"
 
-#, fuzzy
-msgid "next channel page"
-msgstr "Switch next channel"
-
 msgid "no CAId selected"
 msgstr "no CAId selected"
 
@@ -23970,10 +23962,6 @@ msgstr "popular culture/traditional arts"
 
 msgid "pre-school children's program"
 msgstr "pre-school children's program"
-
-#, fuzzy
-msgid "previous channel page"
-msgstr "Switch to previous channel"
 
 #, fuzzy
 msgid "provid:"
@@ -24380,6 +24368,38 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "+24"
+#~ msgstr "2"
+
+#, fuzzy
+#~ msgid "-24"
+#~ msgstr "2"
+
+#~ msgid ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "A recording is currently running.\n"
+#~ "What do you want to do?"
+
+#, fuzzy
+#~ msgid "BouquetList"
+#~ msgstr "Bouquet Edit"
+
+#~ msgid "Instant recording..."
+#~ msgstr "Instant recording..."
+
+#~ msgid "Missing "
+#~ msgstr "Missing "
+
+#, fuzzy
+#~ msgid "Recording Actions"
+#~ msgstr "Reception settings"
+
+#~ msgid "Start recording?"
+#~ msgstr "Start recording?"
 
 #~ msgid "none"
 #~ msgstr "none"

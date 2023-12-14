@@ -915,8 +915,9 @@ class HarddiskManager:
 			# see if this is a harddrive
 			l = len(device)
 			if l and (not device[l - 1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
-				self.hdd.append(Harddisk(device, removable))
-				self.hdd.sort()
+				if device not in [hdd.device for hdd in self.hdd]:
+					self.hdd.append(Harddisk(device, removable))
+					self.hdd.sort()
 				BoxInfo.setItem("Harddisk", True)
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 

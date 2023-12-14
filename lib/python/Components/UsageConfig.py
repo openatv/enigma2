@@ -1404,13 +1404,6 @@ def InitUsageConfig():
 			choiceList.append((pathjoin(partition.mountpoint, "logs", ""), normpath(partition.mountpoint)))
 	config.crash.debug_path = ConfigSelection(default="/home/root/logs/", choices=choiceList)
 	config.crash.debug_path.addNotifier(updateDebugPath, immediate_feedback=False)
-
-	crashlogheader = _("We are really sorry. Your receiver encountered "
-		"a software problem, and needs to be restarted.\n"
-		"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-		"Your receiver restarts in 10 seconds!\n"
-		"Component: enigma2") % config.crash.debug_path.value
-	config.crash.debug_text = ConfigText(default=crashlogheader, fixed_size=False)
 	config.crash.skin_error_crash = ConfigYesNo(default=True)
 
 	def updateStackTracePrinter(configElement):
@@ -1819,11 +1812,11 @@ def InitUsageConfig():
 
 	choiceList = [
 		("24minus", _("-24 Hours")),
-		("prevpage", _("Previous page")),
-		("prevbouquet", _("Previous bouquet")),
+		("prevpage", _("Previous Page")),
+		("prevbouquet", _("Previous Bouquet")),
 		("24plus", _("+24 Hours")),
-		("nextpage", _("Next page")),
-		("nextbouquet", _("Next bouquet")),
+		("nextpage", _("Next Page")),
+		("nextbouquet", _("Next Bouquet")),
 		("autotimer", _("AutoTimer")),
 		("timer", _("Add/Remove Timer")),
 		("imdb", _("IMDb Search")),
@@ -1873,8 +1866,8 @@ def InitUsageConfig():
 		("showmovies", _("Show Movies List")),
 		("record", _("Record - same as record button")),
 		("gotodatetime", _("Goto Date/Time")),
-		("gotoprimetime", _("Goto Prime time")),
-		("setbasetime", _("Set Base time")),
+		("gotoprimetime", _("Goto Prime Time")),
+		("setbasetime", _("Set Base Time")),
 		("epgsearch", _("EPG Search"))
 	]
 	config.epgselection.vertical_red = ConfigSelection(default="imdb", choices=choiceList)
