@@ -57,7 +57,7 @@ class InstallWizard(Screen, ConfigListScreen):
 					self.createMenu()
 			case self.STATE_CHANNELLIST:
 				self.enabled = ConfigYesNo(default=True)
-				self.channellist_type = ConfigSelection(default="default", choices={
+				self.channellist_type = ConfigSelection(default="none", choices={
 					"default": _("Default Astra (13e-19e)"),
 					"none": _("None")
 				})
