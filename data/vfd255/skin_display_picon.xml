@@ -483,11 +483,6 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
 		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
-	<!-- Infopanel -->
-	<screen name="InfopanelSummary" position="0,0" size="256,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
-		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
-	</screen>
 	<!-- AudioSelection -->
 	<screen name="AudioSelectionSummary" position="0,0" size="256,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />

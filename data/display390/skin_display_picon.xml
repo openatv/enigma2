@@ -243,12 +243,6 @@
 		<widget source="parent.titleText" render="Label" position="0,0" size="390,178" font="FdLcD;35" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-<!-- Infopanel -->
-	<screen name="InfopanelSummary" position="0,0" size="390,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="390,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<eLabel position="0,87" size="390,1" backgroundColor="white" />
-		<widget source="parent.summary_description" render="Label" position="0,88" size="390,152" zPosition="1" font="FdLcD;35" halign="center" valign="center" />
-	</screen>
 <!-- setup-->
 	<screen name="SetupSummary" position="fill">
 		<widget source="Title" render="Label" position="top" size="*,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="left"  valign="center" />
@@ -397,18 +391,6 @@
 		<widget source="duration" render="Label" position="0,214" size="390,28" font="FdLcD;24" halign="left" transparent="1" />
 		<widget source="state" render="Label" position="0,214" size="390,28" font="FdLcD;24" halign="right" transparent="1" />
 	</screen>	
-<!-- PowerTimerEditListSummary -->
-	<screen name="PowerTimerEditListSummary" position="0,0" size="390,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="390,26" font="FdLcD;24" halign="center" noWrap="1" />
-		<eLabel position="0,30" size="390,1" backgroundColor="white" />
-		<widget source="name" render="Label" position="0,35" size="390,30" font="FdLcD;28" foregroundColor="#87CEFA" halign="center" noWrap="1" />
-		<eLabel position="0,68" size="390,1" backgroundColor="white" />
-		<widget source="after" render="Label" position="0,70" size="390,115" font="FdLcD;29" halign="center" valign="center" />
-		<eLabel position="0,186" size="390,1" backgroundColor="white" />
-		<widget source="time" render="Label" position="0,188" size="390,28" font="FdLcD;24" halign="left" transparent="1" />
-		<widget source="duration" render="Label" position="0,214" size="390,28" font="FdLcD;24" halign="left" transparent="1" />
-		<widget source="state" render="Label" position="0,214" size="390,28" font="FdLcD;24" halign="right" transparent="1" />
-	</screen>		
 <!-- TimerLog_summary -->
 	<screen name="TimerLogSummary" position="0,0" size="390,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="390,30" font="FdLcD;28" foregroundColor="#87CEFA" halign="center" noWrap="1" />
