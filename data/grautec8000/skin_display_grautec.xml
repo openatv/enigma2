@@ -905,8 +905,8 @@
 	</widget>
 </screen>
 
-<!--TimerEditList_summary-->
-<screen name="TimerEditListSummary" position="0,0" size="400,240">
+<!--TimerOverviewSummary-->
+<screen name="TimerOverviewSummary" position="0,0" size="400,240">
     <eLabel text="Timerlist" position="0,32" size="400,50" font="LCD1;52" halign="center" valign="top" foregroundColor="oled1" />
 	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,100" size="396,3" />
 <!-- 	<widget source="session.CurrentService" render="RunningText" position="0,115" size="400,55" font="LCD1;52" halign="center" zPosition="1" options="movetype=running,startpoint=2,direction=left,repeat=0,steptime=30,startdelay=2000,noWrap">

@@ -1323,8 +1323,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showTimerList(self):
-		from Screens.TimerEdit import TimerEditList
-		self.session.open(TimerEditList)
+		from Screens.Timers import RecordTimerOverview
+		self.session.open(RecordTimerOverview)
 
 	def showMovieSelection(self):
 		from Screens.InfoBar import InfoBar

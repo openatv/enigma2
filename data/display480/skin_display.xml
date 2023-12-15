@@ -548,8 +548,8 @@
 	<screen name="ChoiceBoxSummary" position="0,0" size="480,320">
 		<widget source="parent.summary_list" render="Label" position="0,0" size="480,320" font="FdLcD;38" noWrap="1" halign="center" />
 	</screen>
-	<!-- TimerEditList -->
-	<screen name="TimerEditListSummary" position="0,0" size="480,320" flags="wfNoBorder">
+	<!-- TimerOverview -->
+	<screen name="TimerOverviewSummary" position="0,0" size="480,320" flags="wfNoBorder">
 		<widget source="parent.Title" render="Label" position="0,0" size="480,46" font="FdLcD; 40" foregroundColor="#FFFF00" halign="center" noWrap="1" />
 		<widget source="service" render="Label" position="5,280" size="470,40" font="FdLcD; 32" foregroundColor="#FFFF00" halign="right" noWrap="1" transparent="1" />
 		<widget source="name" render="Label" position="5,60" size="470,150" font="FdLcD; 42" halign="center" valign="center" />

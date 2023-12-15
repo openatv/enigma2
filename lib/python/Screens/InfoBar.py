@@ -281,8 +281,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(SleepTimerButton)
 
 	def openTimerList(self):
-		from Screens.TimerEdit import TimerEditList
-		self.session.open(TimerEditList)
+		from Screens.Timers import RecordTimerOverview
+		self.session.open(RecordTimerOverview)
 
 	def openPowerTimerList(self):
 		from Screens.Timers import PowerTimerOverview

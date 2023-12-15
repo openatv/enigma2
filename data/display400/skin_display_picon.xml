@@ -380,7 +380,7 @@
 		<widget source="parent.summary_description" render="Label" position="0,88" size="400,152" zPosition="1" font="FdLcD;35" halign="center" valign="center" />
 	</screen>
 <!--  normale Timer -->
-	<screen name="TimerEditListSummary" position="0,0" size="400,240">
+	<screen name="TimerOverviewSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,26" font="FdLcD;24" halign="center" noWrap="1" />
 		<eLabel position="0,30" size="400,1" backgroundColor="white" />
 		<widget source="service" render="Label" position="0,35" size="400,30" font="FdLcD;28" foregroundColor="#87CEFA" halign="center" noWrap="1" />
