@@ -22,7 +22,7 @@
 
 ## Current OS
 
-> Ubuntu 22.04.1 LTS (Kernel 5.15.0) 64-bit
+> Ubuntu 23.10 (Kernel 6.5.0) 64-bit
 
 ## Hardware requirements
 
