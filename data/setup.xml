@@ -148,7 +148,7 @@
 		</if>
 		<if requires="LCDMiniTV">
 			<item level="1" text="Show MiniTV in the Front Display" description="You can Display MiniTV with or without OSD Menu.">config.lcd.modeminitv</item>
-			<item level="1" text="Show PiP in the Front Display" description="You can Display PiP with or without OSD Menu.">config.lcd.modepip</item>
+			<item level="1" text="Show PiP in the Front Display" description="You can Display PiP with or without OSD Menu." requires="PIPAvailable">config.lcd.modepip</item>
 			<item level="1" text="Set Framerate for MiniTV" description="Lower Framerate saves CPU Time.">config.lcd.fpsminitv</item>
 		</if>
 		<if requires="LCDSKINSetup">
