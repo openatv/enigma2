@@ -67,8 +67,8 @@
 1. Set your shell to `/bin/bash`
 
     ```sh
-    sudo dpkg-reconfigure dash
-    ↳ Select "NO" when asked "Install dash as /bin/sh?"
+    sudo ln -sf /bin/bash /bin/sh
+ 
     ```
 
 1. Modify `max_user_watches`
