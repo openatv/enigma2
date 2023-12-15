@@ -275,7 +275,7 @@ class BackupSelection(Screen):
 
 	def selectionChanged(self):
 		current = self["checkList"].getCurrent()[0]
-		self["summary_description"].text = self["checkList"].getCurrentDirectory() + ".." if current[3] == "<Parent directory>" else current[3]
+		self["summary_description"].text = self["checkList"].getName()
 		if self.readOnly:
 			return
 		self["key_yellow"].setText(_("Deselect") if current[2] else _("Select"))
