@@ -25,7 +25,7 @@ from Tools.XMLTools import stringToXML
 
 class CIselectMainMenu(Screen):
 	skin = """
-		<screen name="CIselectMainMenu" position="center,center" size="500,250" title="CI assignment" >
+		<screen name="CIselectMainMenu" position="center,center" size="500,250" title="CI assignment" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -94,7 +94,7 @@ class CIselectMainMenu(Screen):
 
 class CIconfigMenu(Screen):
 	skin = """
-		<screen name="CIconfigMenu" position="center,center" size="560,440" title="CI assignment" >
+		<screen name="CIconfigMenu" position="center,center" size="560,440" title="CI assignment" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -355,7 +355,7 @@ class CIconfigMenu(Screen):
 
 class easyCIconfigMenu(CIconfigMenu):
 	skin = """
-		<screen name="easyCIconfigMenu" position="center,center" size="560,440" title="CI assignment" >
+		<screen name="easyCIconfigMenu" position="center,center" size="560,440" title="CI assignment" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -381,7 +381,7 @@ class easyCIconfigMenu(CIconfigMenu):
 
 class CAidSelect(Screen):
 	skin = """
-		<screen name="CAidSelect" position="center,center" size="450,440" title="select CAId's" >
+		<screen name="CAidSelect" position="center,center" size="450,440" title="select CAId's" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -430,7 +430,7 @@ class CAidSelect(Screen):
 
 class myProviderSelection(ChannelSelectionBase):
 	skin = """
-		<screen name="myProviderSelection" position="center,center" size="560,440" title="Select provider to add...">
+		<screen name="myProviderSelection" position="center,center" size="560,440" title="Select provider to add..." resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -570,7 +570,7 @@ class myProviderSelection(ChannelSelectionBase):
 
 class myChannelSelection(ChannelSelectionBase):
 	skin = """
-		<screen name="myChannelSelection" position="center,center" size="560,440" title="Select service to add...">
+		<screen name="myChannelSelection" position="center,center" size="560,440" title="Select service to add..." resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />

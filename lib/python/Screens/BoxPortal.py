@@ -18,7 +18,7 @@ def isExtension_installed(pname):
 
 class BoxPortal(Screen):
 	skin = """
-		<screen name="Extension" position="center,center" size="250,200" title="Extension">
+		<screen name="Extension" position="center,center" size="250,200" title="Extension" resolution="1280,720">
 		<widget source="menu" render="Listbox" zPosition="1" transparent="1" position="0,0" size="250,200" scrollbarMode="showOnDemand" >
 			<convert type="StringList" />
 		</widget>

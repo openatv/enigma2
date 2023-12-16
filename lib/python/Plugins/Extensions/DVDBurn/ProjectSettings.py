@@ -85,7 +85,7 @@ class FileBrowser(Screen, HelpableScreen):
 
 class ProjectSettings(Screen, ConfigListScreen):
 	skin = """
-		<screen name="ProjectSettings" position="center,center" size="560,440" title="Collection settings" >
+		<screen name="ProjectSettings" position="center,center" size="560,440" title="Collection settings" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />

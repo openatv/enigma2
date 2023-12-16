@@ -153,7 +153,7 @@ class VolumeAdjust(Setup):
 
 class SmallChannelSelection(ChannelSelectionBase, HelpableScreen):
 	skin = """
-	<screen name="SmallChannelSelection" title="Volume Adjust Service Selection" position="center,center" size="560,430">
+	<screen name="SmallChannelSelection" title="Volume Adjust Service Selection" position="center,center" size="560,430" resolution="1280,720">
 		<widget name="list" position="0,0" size="e,e-50" scrollbarMode="showOnDemand" />
 		<widget name="key_red" position="0,e-40" size="140,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center" />
 		<widget name="key_green" position="140,e-40" size="140,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center" />

@@ -10,7 +10,7 @@ from . import Title
 
 class TitleProperties(Screen, ConfigListScreen):
 	skin = """
-		<screen name="TitleProperties" position="center,center" size="560,445" title="Properties of current title" >
+		<screen name="TitleProperties" position="center,center" size="560,445" title="Properties of current title" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />

@@ -314,7 +314,7 @@ class StandbySummary(Screen):
 
 class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=QUIT_SHUTDOWN):
-		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
+		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder" resolution="1280,720">
 			<ePixmap pixmap="icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
 			<widget name="text" position="center,c+5" size="720,100" font="Regular;22" halign="center" />
 		</screen>"""

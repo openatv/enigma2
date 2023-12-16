@@ -54,7 +54,7 @@ def isFileSystemSupported(filesystem):
 
 class QuickMenu(Screen, ProtectedScreen):
 	skin = """
-	<screen name="QuickMenu" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder">
+	<screen name="QuickMenu" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder" resolution="1280,720">
 		<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
 		<widget name="sublist" position="410,32" size="300,400" backgroundColor="black" itemHeight="50" />
 		<eLabel position="400,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
@@ -625,7 +625,7 @@ class QuickMenuSubList(QuickMenuList):
 
 class QuickMenuDevices(Screen):
 	skin = """
-	<screen name="QuickMenuDevices" position="center,center" size="840,525" title="Devices" flags="wfBorder">
+	<screen name="QuickMenuDevices" position="center,center" size="840,525" title="Devices" flags="wfBorder" resolution="1280,720">
 		<widget source="devicelist" render="Listbox" position="30,46" size="780,450" font="Regular;16" scrollbarMode="showOnDemand" transparent="1" backgroundColorSelected="grey" foregroundColorSelected="black">
 			<convert type="TemplatedMultiContent">
 				{"template":

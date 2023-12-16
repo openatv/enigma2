@@ -1070,7 +1070,7 @@ class NimSelection(Screen):
 
 class SelectSatsEntryScreen(Screen):
 	skin = """
-		<screen name="SelectSatsEntryScreen" position="center,center" size="560,410" title="Select Sats Entry" >
+		<screen name="SelectSatsEntryScreen" position="center,center" size="560,410" title="Select Sats Entry" resolution="1280,720">
 			<ePixmap name="red" position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 			<ePixmap name="green" position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 			<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />

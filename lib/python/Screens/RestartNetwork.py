@@ -8,7 +8,7 @@ class RestartNetwork(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		skin = """
-			<screen name="RestartNetwork" position="center,center" size="600,100" title="Restart Network Adapter">
+			<screen name="RestartNetwork" position="center,center" size="600,100" title="Restart Network Adapter" resolution="1280,720">
 			<widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
 			</screen> """
 		self.skin = skin
