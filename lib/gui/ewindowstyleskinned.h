@@ -81,6 +81,11 @@ public:
 		colMax
 	};
 
+	enum {
+		valueEntryLeftOffset,
+		valueHeaderLeftOffset,
+		valueMax
+	};
 	void setColor(int what, const gRGB &back);
 	gRGB getColor(int what);
 
@@ -90,8 +95,10 @@ public:
 	void setListboxFont(gFont *fnt);
 	void setEntryFont(gFont *fnt);
 	void setValueFont(gFont *fnt);
-	
 	void setHeaderFont(gFont *fnt);
+	void setValue(int what, int value);
+	int getValue(int what);
+
 private:
 	struct borderSet
 	{
@@ -106,6 +113,8 @@ private:
 
 	eSize m_title_offset;
 	ePtr<gFont> m_fnt, m_labelfnt, m_listboxfnt, m_entryfnt, m_valuefnt, m_headerfnt;
+
+	int m_values[valueMax];
 
 	void drawBorder(gPainter &painter, const eRect &size, struct borderSet &border, int where, int flags);
 };

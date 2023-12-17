@@ -321,6 +321,19 @@ gRGB eWindowStyleSkinned::getColor(int what)
 	return nullptr;
 }
 
+void eWindowStyleSkinned::setValue(int what, int value)
+{
+	if ((what < valueMax) && (what >= 0))
+		m_values[what] = value;
+}
+
+int eWindowStyleSkinned::getValue(int what)
+{
+	if ((what < valueMax) && (what >= 0))
+		return m_values[what];
+	return 0;
+}
+
 void eWindowStyleSkinned::setTitleOffset(const eSize &offset)
 {
 	m_title_offset = offset;
