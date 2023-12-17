@@ -118,7 +118,7 @@ struct eListboxStyle
 		alignBlock
 	};
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
-	ePtr<gFont> m_font, m_font_zoomed, m_valuefont;
+	ePtr<gFont> m_font, m_font_zoomed, m_valuefont, m_headerfont;
 	eRect m_text_padding;
 
 	int m_itemCornerRadius[4];
@@ -310,8 +310,15 @@ public:
 	void setScrollbarLength(int size) { m_scrollbar_length = size; }
 
 	void setFont(gFont *font);
-	void setEntryFont(gFont *font) { m_style.m_font = font; }
+	void setEntryFont(gFont *font)
+	{ 
+		m_style.m_font = font;
+		// use entry font as header font
+		if(!m_style.m_headerfont)
+			m_style.m_headerfont = font; 
+	}
 	void setValueFont(gFont *font) { m_style.m_valuefont = font; }
+	void setHeaderFont(gFont *font) { m_style.m_headerfont = font; }
 	void setVAlign(int align) { m_style.m_valign = align; }
 	void setHAlign(int align) { m_style.m_halign = align; }
 	void setTextPadding(const eRect &padding) { m_style.m_text_padding = padding; }
@@ -417,6 +424,7 @@ public:
 	gFont *getFont() { return m_style.m_font; }
 	gFont *getEntryFont() { return m_style.m_font; }
 	gFont *getValueFont() { return m_style.m_valuefont; }
+	gFont *getHeaderFont() { return m_style.m_headerfont; }
 
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);

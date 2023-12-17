@@ -1213,7 +1213,7 @@ void eListbox::setItemSpacing(const ePoint &spacing, bool innerOnly)
 
 void eListbox::setFont(gFont *font)
 {
-	m_style.m_font = font;
+	setEntryFont(font);
 	if (m_style.m_selection_zoom > 1.0)
 		m_style.m_font_zoomed = new gFont(m_style.m_font->family, m_style.m_font->pointSize * m_style.m_selection_zoom);
 }
