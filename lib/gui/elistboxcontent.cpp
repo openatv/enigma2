@@ -851,9 +851,12 @@ eSize eListboxPythonConfigContent::calculateEntryTextSize(const std::string &str
 
 	if (!fnt) {
 		ePtr<eWindowStyle> style;
-		m_listbox->getStyle(style);
+		if (m_listbox)
+			m_listbox->getStyle(style);
 		if(style)
 			style->getFont((headerFont) ? eWindowStyle::fontHeader : eWindowStyle::fontEntry, fnt);
+		else
+			return eSize(0, 0);
 	}
 
 	eTextPara para(eRect(0, 0, m_itemsize.width(), m_itemsize.height()));
