@@ -916,6 +916,9 @@ class AttributeParser:
 		self.horizontalAlignment(value)
 		# attribDeprecationWarning("halign", "horizontalAlignment")
 
+	def headerFont(self, value):
+		self.guiObject.setHeaderFont(parseFont(value, self.scaleTuple))
+
 	def horizontalAlignment(self, value):
 		self.guiObject.setHAlign(parseHorizontalAlignment(value))
 
@@ -1372,8 +1375,14 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				except Exception as err:
 					skinError(f"Unknown style color name '{name}' ({err})")
 		for configList in tag.findall("configList"):
-			style.setEntryFont(parseFont(configList.attrib.get("entryFont", "Regular;20"), ((1, 1), (1, 1))))
-			style.setValueFont(parseFont(configList.attrib.get("valueFont", "Regular;20"), ((1, 1), (1, 1))))
+			if "entryFont" in configList.attrib:
+				style.setEntryFont(parseFont(configList.attrib.get("entryFont", "Regular;20"), ((1, 1), (1, 1))))
+			if "valueFont" in configList.attrib:
+				style.setValueFont(parseFont(configList.attrib.get("valueFont", "Regular;18"), ((1, 1), (1, 1))))
+			if "headerFont" in configList.attrib:
+				style.setHeaderFont(parseFont(configList.attrib.get("headerFont", "Regular;20"), ((1, 1), (1, 1))))
+			style.setValue(eWindowStyleSkinned.valueEntryLeftOffset, parseInteger(configList.attrib.get("entryLeftOffset", "15")))
+			style.setValue(eWindowStyleSkinned.valueHeaderLeftOffset, parseInteger(configList.attrib.get("headerLeftOffset", "15")))
 		for label in tag.findall("label"):
 			style.setLabelFont(parseFont(label.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 		for listBox in tag.findall("listbox"):
