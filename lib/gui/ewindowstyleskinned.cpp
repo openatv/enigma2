@@ -245,6 +245,9 @@ RESULT eWindowStyleSkinned::getFont(int what, ePtr<gFont> &fnt)
 	case fontValue:
 		fnt = m_valuefnt;
 		break;
+	case fontHeader:
+		fnt = m_headerfnt ? m_headerfnt : m_entryfnt;
+		break;
 	case fontButton:
 		fnt = new gFont("Regular", 20);
 		break;
@@ -346,4 +349,9 @@ void eWindowStyleSkinned::setEntryFont(gFont *fnt)
 void eWindowStyleSkinned::setValueFont(gFont *fnt)
 {
 	m_valuefnt = fnt;
+}
+
+void eWindowStyleSkinned::setHeaderFont(gFont *fnt)
+{
+	m_headerfnt = fnt;
 }

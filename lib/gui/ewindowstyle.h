@@ -37,7 +37,8 @@ public:
 		fontTitlebar,
 		fontListbox,
 		fontEntry,
-		fontValue
+		fontValue,
+		fontHeader
 	};
 };
 

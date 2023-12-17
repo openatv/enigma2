@@ -91,6 +91,7 @@ public:
 	void setEntryFont(gFont *fnt);
 	void setValueFont(gFont *fnt);
 	
+	void setHeaderFont(gFont *fnt);
 private:
 	struct borderSet
 	{
@@ -104,7 +105,7 @@ private:
 	gRGB m_color[colMax];
 
 	eSize m_title_offset;
-	ePtr<gFont> m_fnt, m_labelfnt, m_listboxfnt, m_entryfnt, m_valuefnt;
+	ePtr<gFont> m_fnt, m_labelfnt, m_listboxfnt, m_entryfnt, m_valuefnt, m_headerfnt;
 
 	void drawBorder(gPainter &painter, const eRect &size, struct borderSet &border, int where, int flags);
 };
