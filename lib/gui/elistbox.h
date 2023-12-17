@@ -310,13 +310,7 @@ public:
 	void setScrollbarLength(int size) { m_scrollbar_length = size; }
 
 	void setFont(gFont *font);
-	void setEntryFont(gFont *font)
-	{ 
-		m_style.m_font = font;
-		// use entry font as header font
-		if(!m_style.m_headerfont)
-			m_style.m_headerfont = font; 
-	}
+	void setEntryFont(gFont *font) {m_style.m_font = font;}
 	void setValueFont(gFont *font) { m_style.m_valuefont = font; }
 	void setHeaderFont(gFont *font) { m_style.m_headerfont = font; }
 	void setVAlign(int align) { m_style.m_valign = align; }
