@@ -114,7 +114,7 @@ private:
 	eSize m_title_offset;
 	ePtr<gFont> m_fnt, m_labelfnt, m_listboxfnt, m_entryfnt, m_valuefnt, m_headerfnt;
 
-	int m_values[valueMax];
+	int m_values[valueMax] = {15, 15};
 
 	void drawBorder(gPainter &painter, const eRect &size, struct borderSet &border, int where, int flags);
 };
