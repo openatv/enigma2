@@ -182,8 +182,8 @@ class EPGSelection(Screen, HelpableScreen):
 				epgActions["prevService"] = (self.prevPage, _("Jump to previous page or all down (setup in menu)"))
 		self["epgactions"] = HelpableActionMap(self, ["EPGSelectActions"], epgActions, prio=-1, description=_("EPG Navigation Actions"))
 		self["epgactions"].csel = self
-		self["dialogactions"] = HelpableActionMap(self, ["CancelAction"], {
-			"cancel": (self.closeChoiceBoxDialog, _("Close pop up window")),
+		self["dialogactions"] = HelpableActionMap(self, ["WizardActions"], {
+			"back": (self.closeChoiceBoxDialog, _("Close dialog")),
 		}, prio=-1)
 		self["dialogactions"].csel = self
 		self["dialogactions"].setEnabled(False)
@@ -2036,7 +2036,7 @@ class EPGSelection(Screen, HelpableScreen):
 			"autotimer": _("Add AutoTimer"),
 			"bouquetlist": _("Bouquet List"),
 			"epgsearch": _("EPG Search"),
-			"showmovies": _("Show Recordings"),
+			"showmovies": _("Recordings"),
 			"record": _("Record"),
 			"gotodatetime": _("Goto Date/Time"),
 			"nextpage": _("Next Page"),
