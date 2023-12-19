@@ -76,9 +76,7 @@ class InstantRecordingEndTime(DateTime):
 		self.bigStep = 3600  # 1 Hour.
 		DateTime.__init__(self, session, "InstantRecordingEndTime", default=endTime, smallStep=self.smallStep)
 		self.setTitle(_("Instant Recording End Time"))
-		self.setImage("test")
 		self["key_green"].setText(_("Set Time"))
-		self.setImage("default")
 
 	def createSetup(self):  # This overrides the same class in Setup.py.
 		configList = [
