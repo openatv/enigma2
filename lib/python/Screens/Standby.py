@@ -455,3 +455,6 @@ class TryQuitMainloop(MessageBox):
 	def __onHide(self):
 		global inTryQuitMainloop
 		inTryQuitMainloop = False
+
+	def createSummary(self):  # Suppress the normal MessageBox ScreenSummary screen.
+		return None
