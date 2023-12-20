@@ -21,8 +21,8 @@
 	</fonts>
 	<!-- Tuner Panel -->
 	<screen name="MeinTunerInfoPanel">
-		<eLabel text="TUNER:" position="0,200" size="130,40" halign="right" valign="center" font="FdLcD; 30" />
-		<widget source="session.FrontendInfo" render="FixedLabel" position="132,200" size="40,40" text="A" foregroundColor="#04B404" font="FdLcD; 30" halign="center" valign="center">
+		<eLabel text="TUNER:" position="0,200" size="130,40" halign="right" valign="center" font="FdLcD;30" />
+		<widget source="session.FrontendInfo" render="FixedLabel" position="132,200" size="40,40" text="A" foregroundColor="#04B404" font="FdLcD;30" halign="center" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
@@ -32,7 +32,7 @@
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="132,200" size="40,40" text="C" foregroundColor="#04B404" font="FdLcD; 30" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="132,200" size="40,40" text="C" foregroundColor="#04B404" font="FdLcD;30" halign="center" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
@@ -48,12 +48,12 @@
 			<convert type="ValueRange">4,4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="132,200" size="40,40" text="F" foregroundColor="#04B404" font="FdLcD; 30" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="132,200" size="40,40" text="F" foregroundColor="#04B404" font="FdLcD;30" halign="center" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">5,5</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="132,200" size="40,40" text="G" foregroundColor="#04B404" font="FdLcD; 30" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="132,200" size="40,40" text="G" foregroundColor="#04B404" font="FdLcD;30" halign="center" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">6,6</convert>
 			<convert type="ConditionalShowHide" />
@@ -76,29 +76,29 @@
 	</screen>
 	<!-- InfoBar -->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="400,60" font="FdLcD;50" valign="center" halign="center" foregroundColor="#87cefa">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="400,60" font="FdLcD;50" valign="center" halign="center" foregroundColor="#87CEFA">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,60" size="400,61" font="FdLcD; 27" valign="center" halign="center">
+		<widget source="session.Event_Now" render="Label" position="0,60" size="400,61" font="FdLcD;27" valign="center" halign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="5,158" size="115,38" font="FdLcD;38" foregroundColor="#87cefa" valign="center" halign="center">
+		<widget source="session.Event_Now" render="Label" position="5,158" size="115,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="130,158" size="140,38" font="FdLcD;38" foregroundColor="#87cefa" valign="center" halign="left">
+		<widget source="session.Event_Now" render="Label" position="130,158" size="140,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="left">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<eLabel position="0,122" size="400,2" backgroundColor="white" zPosition="3" />
+		<eLabel position="0,122" size="400,2" backgroundColor="#FFFFFF" zPosition="3" />
 		<widget source="session.Event_Now" render="Progress" position="0,127" size="400,20" transparent="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<eLabel position="0,150" size="400,2" backgroundColor="white" zPosition="3" />
-		<widget source="global.CurrentTime" render="Label" position="295,200" size="105,40" font="FdLcD; 30" halign="center" noWrap="1" transparent="1">
+		<eLabel position="0,150" size="400,2" backgroundColor="#FFFFFF" zPosition="3" />
+		<widget source="global.CurrentTime" render="Label" position="295,200" size="105,40" font="FdLcD;30" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="275,158" size="115,38" font="FdLcD; 38" foregroundColor="#04B404" halign="right">
+		<widget source="session.Event_Now" render="Label" position="275,158" size="115,38" font="FdLcD;38" foregroundColor="#04B404" halign="right">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
 		</widget>
@@ -109,29 +109,29 @@
 	</screen>
 	<!-- channelselection -->
 	<screen name="ChannelSelectionSummary" position="0,0" size="400,240">
-		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="400,60" font="FdLcD;50" valign="center" halign="center" foregroundColor="#87cefa">
+		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="400,60" font="FdLcD;50" valign="center" halign="center" foregroundColor="#87CEFA">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,60" size="400,61" font="FdLcD; 27" valign="center" halign="center">
+		<widget source="parent.ServiceEvent" render="Label" position="0,60" size="400,61" font="FdLcD;27" valign="center" halign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="5,158" size="115,38" font="FdLcD;38" foregroundColor="#87cefa" valign="center" halign="center">
+		<widget source="parent.ServiceEvent" render="Label" position="5,158" size="115,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="130,158" size="140,38" font="FdLcD;38" foregroundColor="#87cefa" valign="center" halign="left">
+		<widget source="parent.ServiceEvent" render="Label" position="130,158" size="140,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="left">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<eLabel position="0,122" size="400,2" backgroundColor="white" zPosition="3" />
+		<eLabel position="0,122" size="400,2" backgroundColor="#FFFFFF" zPosition="3" />
 		<widget source="parent.ServiceEvent" render="Progress" position="0,127" size="400,20" transparent="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<eLabel position="0,150" size="400,2" backgroundColor="white" zPosition="3" />
-		<widget source="global.CurrentTime" render="Label" position="295,200" size="105,40" font="FdLcD; 30" halign="center" noWrap="1" transparent="1">
+		<eLabel position="0,150" size="400,2" backgroundColor="#FFFFFF" zPosition="3" />
+		<widget source="global.CurrentTime" render="Label" position="295,200" size="105,40" font="FdLcD;30" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="275,158" size="115,38" font="FdLcD; 38" foregroundColor="#04B404" halign="right">
+		<widget source="parent.ServiceEvent" render="Label" position="275,158" size="115,38" font="FdLcD;38" foregroundColor="#04B404" halign="right">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
 		</widget>
@@ -142,29 +142,29 @@
 	</screen>
 	<!-- EPG Panel -->
 	<screen name="MyEPGPanel" position="0,0" size="400,240">
-		<widget source="parent.Service" render="Label" position="0,0" size="400,60" font="FdLcD;50" valign="center" halign="center" foregroundColor="#87cefa">
+		<widget source="parent.Service" render="Label" position="0,0" size="400,60" font="FdLcD;50" valign="center" halign="center" foregroundColor="#87CEFA">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="0,60" size="400,61" font="FdLcD; 27" valign="center" halign="center">
+		<widget source="parent.Event" render="Label" position="0,60" size="400,61" font="FdLcD;27" valign="center" halign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="5,158" size="115,38" font="FdLcD;38" foregroundColor="#87cefa" valign="center" halign="center">
+		<widget source="parent.Event" render="Label" position="5,158" size="115,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="130,158" size="140,38" font="FdLcD;38" foregroundColor="#87cefa" valign="center" halign="left">
+		<widget source="parent.Event" render="Label" position="130,158" size="140,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="left">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<eLabel position="0,122" size="400,2" backgroundColor="white" zPosition="3" />
+		<eLabel position="0,122" size="400,2" backgroundColor="#FFFFFF" zPosition="3" />
 		<widget source="parent.Event" render="Progress" position="0,127" size="400,20" transparent="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<eLabel position="0,150" size="400,2" backgroundColor="white" zPosition="3" />
-		<widget source="global.CurrentTime" render="Label" position="295,200" size="105,40" font="FdLcD; 30" halign="center" noWrap="1" transparent="1">
+		<eLabel position="0,150" size="400,2" backgroundColor="#FFFFFF" zPosition="3" />
+		<widget source="global.CurrentTime" render="Label" position="295,200" size="105,40" font="FdLcD;30" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="parent.Event" render="Label" position="275,158" size="115,38" font="FdLcD; 38" foregroundColor="#04B404" valign="center" halign="right">
+		<widget source="parent.Event" render="Label" position="275,158" size="115,38" font="FdLcD;38" foregroundColor="#04B404" valign="center" halign="right">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
 		</widget>

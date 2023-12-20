@@ -67,25 +67,25 @@
 		<widget source="session.CurrentService" render="LcdPicon" position="115,10" zPosition="2" size="170,102" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,45" size="115,38" font="FdLcD;38" foregroundColor="#87cefa" valign="center" halign="center">
+		<widget source="session.Event_Now" render="Label" position="0,45" size="115,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="285,45" size="115,38" font="FdLcD;38" foregroundColor="#87cefa" valign="center" halign="center">
+		<widget source="session.Event_Now" render="Label" position="285,45" size="115,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<eLabel position="0,121" size="400,2" backgroundColor="white" zPosition="3" />
+		<eLabel position="0,121" size="400,2" backgroundColor="#FFFFFF" zPosition="3" />
 		<widget source="session.Event_Now" render="Progress" position="0,127" size="400,20" transparent="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<eLabel position="0,150" size="400,2" backgroundColor="white" zPosition="3" />
-		<widget source="session.Event_Now" render="Label" position="275,179" size="120,38" font="FdLcD; 38" zPosition="0" foregroundColor="#a9e2f3" halign="right" transparent="1">
+		<eLabel position="0,150" size="400,2" backgroundColor="#FFFFFF" zPosition="3" />
+		<widget source="session.Event_Now" render="Label" position="275,179" size="120,38" font="FdLcD;38" zPosition="0" foregroundColor="#a9e2f3" halign="right" transparent="1">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">OnlyMinute</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" />
-		<widget source="global.CurrentTime" render="Label" position="center,165" size="205,75" font="FdLcD; 62" halign="center" noWrap="1" transparent="1">
+		<widget source="global.CurrentTime" render="Label" position="center,165" size="205,75" font="FdLcD;62" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText" />
 		</widget>
 		<panel name="MeinTunerInfoPanel" />
@@ -95,20 +95,20 @@
 		<widget source="parent.Service" render="LcdPicon" position="center,0" size="150,90" zPosition="2" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<eLabel position="0,92" size="400,2" backgroundColor="white" />
+		<eLabel position="0,92" size="400,2" backgroundColor="#FFFFFF" />
 		<widget source="parent.ServiceEvent" render="Progress" position="0,95" size="400,15">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<eLabel position="0,112" size="400,2" backgroundColor="white" />
-		<widget source="parent.ServiceEvent" render="Label" position="5,50" size="390,38" font="FdLcD;38" foregroundColor="#87cefa" transparent="1" valign="center" halign="left">
+		<eLabel position="0,112" size="400,2" backgroundColor="#FFFFFF" />
+		<widget source="parent.ServiceEvent" render="Label" position="5,50" size="390,38" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="left">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="5,50" size="390,38" font="FdLcD;38" foregroundColor="#87cefa" transparent="1" valign="center" halign="right">
+		<widget source="parent.ServiceEvent" render="Label" position="5,50" size="390,38" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="right">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,115" size="400,125" font="FdLcD; 38" halign="center" valign="center">
+		<widget source="parent.ServiceEvent" render="Label" position="0,115" size="400,125" font="FdLcD;38" halign="center" valign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" />
@@ -118,20 +118,20 @@
 		<widget source="parent.Service" render="LcdPicon" position="center,0" size="150,90" zPosition="2" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<eLabel position="0,92" size="400,2" backgroundColor="white" />
+		<eLabel position="0,92" size="400,2" backgroundColor="#FFFFFF" />
 		<widget source="parent.Event" render="Progress" position="0,95" size="400,15">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<eLabel position="0,112" size="400,2" backgroundColor="white" />
-		<widget source="parent.Event" render="Label" position="5,50" size="390,38" font="FdLcD;38" foregroundColor="#87cefa" transparent="1" valign="center" halign="left">
+		<eLabel position="0,112" size="400,2" backgroundColor="#FFFFFF" />
+		<widget source="parent.Event" render="Label" position="5,50" size="390,38" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="left">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="parent.Event" render="Label" position="5,50" size="390,38" font="FdLcD;38" foregroundColor="#87cefa" transparent="1" valign="center" halign="right">
+		<widget source="parent.Event" render="Label" position="5,50" size="390,38" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="right">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="parent.Event" render="Label" position="0,115" size="400,125" font="FdLcD; 38" halign="center" valign="center">
+		<widget source="parent.Event" render="Label" position="0,115" size="400,125" font="FdLcD;38" halign="center" valign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" />
