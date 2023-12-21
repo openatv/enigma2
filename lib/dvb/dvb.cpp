@@ -1348,17 +1348,19 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		if (i->m_channel_id == channelid)
 		{
 			ePtr<iDVBFrontend> fe;
-			i->m_channel->getFrontend(fe);
-			int slotid = fe->readFrontendData(iFrontendInformation_ENUMS::frontendNumber);
-			if (frontendPreferenceAllowsChannelUse(channelid,i->m_channel,simulate))
+			if (!i->m_channel->getFrontend(fe))
 			{
-				eDebugNoSimulate("[eDVBResourceManager] found shared channel.. i=%ld, frontend=%d (preferred=%d)",std::distance(active_channels.begin(), i),slotid,eDVBFrontend::getPreferredFrontend());
-				channel = i->m_channel;
-				return 0;
-			}
-			else
-			{
-				eDebugNoSimulate("[eDVBResourceManager] strict frontend preference policy, don't use shared channel.. i=%ld, frontend=%d (preferred=%d)",std::distance(active_channels.begin(), i),slotid,eDVBFrontend::getPreferredFrontend());
+				int slotid = fe->readFrontendData(iFrontendInformation_ENUMS::frontendNumber);
+				if (frontendPreferenceAllowsChannelUse(channelid,i->m_channel,simulate))
+				{
+					eDebugNoSimulate("[eDVBResourceManager] found shared channel.. i=%ld, frontend=%d (preferred=%d)",std::distance(active_channels.begin(), i),slotid,eDVBFrontend::getPreferredFrontend());
+					channel = i->m_channel;
+					return 0;
+				}
+				else
+				{
+					eDebugNoSimulate("[eDVBResourceManager] strict frontend preference policy, don't use shared channel.. i=%ld, frontend=%d (preferred=%d)",std::distance(active_channels.begin(), i),slotid,eDVBFrontend::getPreferredFrontend());
+				}
 			}
 		}
 	}
