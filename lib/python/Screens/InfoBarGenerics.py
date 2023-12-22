@@ -4031,7 +4031,6 @@ class InfoBarInstantRecord:
 					entry.autoincrease = False
 				print(f"[InfoBarGenerics] Instant recording due to stop after {value} minutes.")
 				entry.end = int(time()) + 60 * value
-				entry.eventBegin = entry.begin
 				entry.eventEnd = entry.end
 				entry.marginAfter = 0
 				self.session.nav.RecordTimer.timeChanged(entry)
@@ -4074,7 +4073,7 @@ class InfoBarInstantRecord:
 			commonRecord = []
 			commonTimeshift = []
 		if self.isInstantRecordRunning():
-			title = f"{_('A recording is currently running.')} {_('What do you want to do?')}"
+			title = f"{_('A recording is currently running.')}\n\n{_('What do you want to do?')}"
 			choiceList = [
 				(_("Stop recording"), "stop")
 			] + commonRecord + [
