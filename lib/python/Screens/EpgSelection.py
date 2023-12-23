@@ -4,7 +4,6 @@ from enigma import ePoint, eServiceCenter, eServiceReference, eTimer
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
-from skin import getSkinFactor
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import ConfigClock, config, configfile
 from Components.EpgList import EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_MULTI, EPG_TYPE_SIMILAR, EPG_TYPE_SINGLE, EPG_TYPE_VERTICAL, EPGBouquetList, EPGList, MAX_TIMELINES, TimelineText
@@ -16,13 +15,13 @@ from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import preferredTimerPath
 from Screens.ChoiceBox import ChoiceBox
+from Screens.DateTimeInput import EPGJumpTime
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 
@@ -347,16 +346,16 @@ class EPGSelection(Screen, HelpableScreen):
 			self["bouquetokactions"].csel = self
 			self["bouquetokactions"].setEnabled(False)
 			self["input_actions"] = HelpableNumberActionMap(self, ["NumberActions"], {
-					"1": (self.keyNumberGlobal, _("Goto first channel")),
-					"2": (self.keyNumberGlobal, _("All events up")),
-					"3": (self.keyNumberGlobal, _("Goto last channel")),
-					"4": (self.keyNumberGlobal, _("Previous channel page")),
-					"0": (self.keyNumberGlobal, _("Goto current channel and now")),
-					"6": (self.keyNumberGlobal, _("Next channel page")),
-					"7": (self.keyNumberGlobal, _("Goto now")),
-					"8": (self.keyNumberGlobal, _("All events down")),
-					"9": (self.keyNumberGlobal, _("Goto Prime Time")),
-					"5": (self.keyNumberGlobal, _("Set Base Time"))
+				"1": (self.keyNumberGlobal, _("Goto first channel")),
+				"2": (self.keyNumberGlobal, _("All events up")),
+				"3": (self.keyNumberGlobal, _("Goto last channel")),
+				"4": (self.keyNumberGlobal, _("Previous channel page")),
+				"0": (self.keyNumberGlobal, _("Goto current channel and now")),
+				"6": (self.keyNumberGlobal, _("Next channel page")),
+				"7": (self.keyNumberGlobal, _("Goto now")),
+				"8": (self.keyNumberGlobal, _("All events down")),
+				"9": (self.keyNumberGlobal, _("Goto Prime Time")),
+				"5": (self.keyNumberGlobal, _("Set Base Time"))
 			}, prio=-1, description=_("EPG Other Actions"))
 		if self.type == EPG_TYPE_GRAPH:
 			time_epoch = int(config.epgselection.graph_prevtimeperiod.value)
@@ -864,41 +863,41 @@ class EPGSelection(Screen, HelpableScreen):
 			self.serviceChangeCB(-1, self)
 
 	def enterDateTime(self):
-		global mepg_config_initialized
-		if self.type == EPG_TYPE_MULTI:
+		def enterDateTimeCallback(result):
+			if len(result) > 1 and result[0]:
+				jumpTime = result[1]
+				if self.type == EPG_TYPE_MULTI:
+					self["list"].fillMultiEPG(self.services, jumpTime)
+				elif self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
+					if self.type == EPG_TYPE_GRAPH:
+						jumpTime -= jumpTime % (int(config.epgselection.graph_roundto.value) * 60)
+					else:
+						jumpTime -= jumpTime % (int(config.epgselection.infobar_roundto.value) * 60)
+					epgList = self["list"]
+					epgList.resetOffset()
+					epgList.fillGraphEPG(None, jumpTime)
+					self.moveTimeLines(True)
+				elif self.type == EPG_TYPE_VERTICAL:
+					if jumpTime > time():
+						self.updateVerticalEPG()
+					else:
+						jumpTime = -1
+				self.ask_time = jumpTime
+			if self.eventviewDialog and self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH):
+				self.infoKeyPressed(True)
+
+		if self.type == EPG_TYPE_GRAPH:
+			self.session.openWithCallback(enterDateTimeCallback, EPGJumpTime, config.epgselection.graph_prevtime, config.epg.histminutes.value)
+		elif self.type == EPG_TYPE_INFOBARGRAPH:
+			self.session.openWithCallback(enterDateTimeCallback, EPGJumpTime, config.epgselection.infobar_prevtime, config.epg.histminutes.value)
+		elif self.type == EPG_TYPE_MULTI:
+			global mepg_config_initialized
 			if not mepg_config_initialized:
 				config.misc.prev_mepg_time = ConfigClock(default=time())
 				mepg_config_initialized = True
-			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.prev_mepg_time)
-		elif self.type == EPG_TYPE_GRAPH:
-			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.graph_prevtime)
-		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.infobar_prevtime)
+			self.session.openWithCallback(enterDateTimeCallback, EPGJumpTime, config.misc.prev_mepg_time, 0)
 		elif self.type == EPG_TYPE_VERTICAL:
-			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.vertical_prevtime)
-
-	def onDateTimeInputClosed(self, ret):
-		if len(ret) > 1:
-			if ret[0]:
-				self.ask_time = ret[1]
-				if self.type == EPG_TYPE_MULTI:
-					self["list"].fillMultiEPG(self.services, self.ask_time)
-				elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-					if self.type == EPG_TYPE_GRAPH:
-						self.ask_time -= self.ask_time % (int(config.epgselection.graph_roundto.value) * 60)
-					elif self.type == EPG_TYPE_INFOBARGRAPH:
-						self.ask_time -= self.ask_time % (int(config.epgselection.infobar_roundto.value) * 60)
-					l = self["list"]
-					l.resetOffset()
-					l.fillGraphEPG(None, self.ask_time)
-					self.moveTimeLines(True)
-				elif EPG_TYPE_VERTICAL:
-					if self.ask_time > time():
-						self.updateVerticalEPG()
-					else:
-						self.ask_time = -1
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
-			self.infoKeyPressed(True)
+			self.session.openWithCallback(enterDateTimeCallback, EPGJumpTime, config.epgselection.vertical_prevtime, config.epg.histminutes.value)
 
 	def infoKeyPressed(self, eventviewopen=False):
 		cur = self["list" + str(self.activeList)].getCurrent()
@@ -1444,16 +1443,15 @@ class EPGSelection(Screen, HelpableScreen):
 				self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 		if title:
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=["red", "green", "yellow", "blue"], skin_name="RecordTimerQuestion")
-			serviceref = eServiceReference(str(self["list" + str(self.activeList)].getCurrent()[1]))
-			pos = self["list" + str(self.activeList)].getSelectionPosition(serviceref, self.activeList)
-			sf = getSkinFactor()
-			posx = max(self.instance.position().x() + pos[0] - self.ChoiceBoxDialog.instance.size().width() - 20 * sf, 0)
-			posy = self.instance.position().y() + pos[1]
-			posy += self["list" + str(self.activeList)].itemHeight - 2 * sf
-			if posy + self.ChoiceBoxDialog.instance.size().height() > 720 * sf:
-				posy -= self["list" + str(self.activeList)].itemHeight - 4 * sf + self.ChoiceBoxDialog.instance.size().height()
-			self.ChoiceBoxDialog.instance.move(ePoint(int(posx), int(posy)))
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, text=title, choiceList=menu, buttonList=["red", "green", "yellow", "blue"], skinName="RecordTimerQuestion")
+			serviceRef = eServiceReference(str(self[f"list{self.activeList}"].getCurrent()[1]))
+			pos = self[f"list{self.activeList}"].getSelectionPosition(serviceRef, self.activeList)
+			posX = max(self.instance.position().x() + pos[0] - self.ChoiceBoxDialog.instance.size().width(), 0)
+			posY = self.instance.position().y() + pos[1]
+			posY += self[f"list{self.activeList}"].itemHeight - 2
+			if posY + self.ChoiceBoxDialog.instance.size().height() > 720:
+				posY -= self[f"list{self.activeList}"].itemHeight - 4 + self.ChoiceBoxDialog.instance.size().height()
+			self.ChoiceBoxDialog.instance.move(ePoint(int(posX), int(posY)))
 			self.showChoiceBoxDialog()
 
 	def recButtonPressed(self):
@@ -1493,6 +1491,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["epgactions"].setEnabled(False)
 		self["dialogactions"].setEnabled(True)
 		self.ChoiceBoxDialog["actions"].execBegin()
+		self.ChoiceBoxDialog["navigationActions"].execBegin()
 		self.ChoiceBoxDialog.show()
 		if "input_actions" in self:
 			self["input_actions"].setEnabled(False)
@@ -1501,6 +1500,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["dialogactions"].setEnabled(False)
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog["actions"].execEnd()
+			self.ChoiceBoxDialog["navigationActions"].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
 		self["okactions"].setEnabled(True)
 		if "epgcursoractions" in self:
