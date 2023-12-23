@@ -2,6 +2,7 @@ from Components.config import config
 from Components.Element import cached
 from Components.NimManager import nimmanager
 from Components.Converter.Converter import Converter
+import NavigationInstance
 
 
 class FrontendInfo(Converter):
@@ -13,6 +14,7 @@ class FrontendInfo(Converter):
 	SLOT_NUMBER = 5
 	TUNER_TYPE = 6
 	STRING = 7
+	REC_TUNER = 8
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -22,6 +24,9 @@ class FrontendInfo(Converter):
 			type = type.split(",")
 			self.space_for_tuners = len(type) > 1 and int(type[1]) or 10
 			self.space_for_tuners_with_spaces = len(type) > 2 and int(type[2]) or 6
+		elif type.split("_")[0] == "REC":
+			self.type = self.REC_TUNER
+			self.tunernum = int(type.split("_")[1])
 		else:
 			self.type = {
 				"BER": self.BER,
@@ -73,9 +78,20 @@ class FrontendInfo(Converter):
 
 	@cached
 	def getBool(self):
-		assert self.type in (self.LOCK, self.BER), "the boolean output of FrontendInfo can only be used for lock or BER info"
+		assert self.type in (self.LOCK, self.BER, self.REC_TUNER), "the boolean output of FrontendInfo can only be used for lock or BER info or Tuner-Rec"
 		if self.type == self.LOCK:
 			return self.source.lock or False
+		elif self.type == self.REC_TUNER:
+			for timer in NavigationInstance.instance.RecordTimer.timer_list:
+				if timer.isRunning() and not timer.justplay:
+					service = timer.record_service
+					feinfo = service and service.frontendInfo()
+					data = feinfo and feinfo.getFrontendData()
+					if data:
+						tuner = data.get('tuner_number', -1)
+						if tuner is not None and tuner > -1 and tuner == self.tunernum:
+							return True
+			return False
 		else:
 			return (self.source.ber or 0) > 0
 
