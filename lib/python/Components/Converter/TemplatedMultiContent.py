@@ -21,11 +21,11 @@ class TemplatedMultiContent(StringList):
 		if "template" in self.template or "templates" in self.template:
 			if "template" in self.template or "default" in self.template["templates"]:
 				if "template" not in self.template:  # Default template can be ["template"] or ["templates"]["default"].
-					self.template["itemHeight"] = self.template["templates"]["default"][0]
+					self.template["itemSize"] = self.template["templates"]["default"][0]
 					self.template["template"] = self.template["templates"]["default"][1]
 				if "fonts" not in self.template:
 					print("[TemplatedMultiContent] Error: All templates must include a 'fonts' entry!")
-				if "itemHeight" not in self.template or "itemSize" not in self.template:
+				if "itemHeight" not in self.template and "itemSize" not in self.template:
 					print("[TemplatedMultiContent] Error: All 'template' entries must include an 'itemHeight' or 'itemSize' entry!")
 			else:
 				print("[TemplatedMultiContent] Error: All 'templates' must include a 'default' template!")
@@ -50,7 +50,7 @@ class TemplatedMultiContent(StringList):
 					elements[3] = int(elements[3] * scaleFactorVertical)
 					elements[4] = int(elements[4] * scaleFactorHorizontal)
 					scaledTemplate.append(tuple(elements))
-				return scaledTemplate, itemHeight, itemWidth, fonts
+				return scaledTemplate, itemWidth, itemHeight, fonts
 
 			if self.source:
 				style = self.source.style
