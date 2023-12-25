@@ -125,8 +125,7 @@ class OScamGlobals():
 class OScamOverview(Screen, OScamGlobals):
 	skin = """
 		<screen name="OScamInfoOverview" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OScamInfo Overview" flags="wfNoBorder" resolution="1920,1080">
-			<ePixmap pixmap="/tmp/oscam.svg" position="10,10" size="80,80"/>
-			<widget source="title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
+			<ePixmap pixmap="/tmp/oscam.svg" position="15,15" size="80,80" scale="1" alphatest="blend" />
 			<widget source="title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
 				<convert type="ClockToText">Format:%H:%M:%S</convert>
@@ -247,11 +246,15 @@ class OScamOverview(Screen, OScamGlobals):
 				readeruser = {"s": "root", "h": "root", "p": client.get("rname_enc", ""), "r": client.get("rname_enc", ""), "c": client.get("name_enc", "")}.get(currtype, _("n/a"))
 				au = {"-1": "ON", "0": "OFF", "1": "ACTIVE"}.get(client.get("au", _("n/a")), _("n/a"))
 				ip = connection.get("ip", _("n/a"))
+				if config.softcam.hideServerName.value:
+					ip = "\u2022"
 				port = connection.get("port", _("n/a"))
 				protocol = client.get("protocol", "")
 				srinfo = "%s:%s@%s" % (request.get("srvid", _("n/a")), request.get("caid", _("n/a")), request.get("provid", _("n/a")))
 				chinfo = "%s %s" % (request.get("chname", _("n/a")), request.get("chprovider", _("n/a")))
 				answered = request.get("answered", _("n/a"))
+				if config.softcam.hideServerName.value:
+					answered = "\u2022"
 				ecmtime = request.get("ecmtime", _("n/a"))
 				lbvaluereader = "%s (%s ms)" % (answered, ecmtime) if answered and ecmtime else request.get("lbvalue", _("n/a"))
 				login_iso = times.get("login")
