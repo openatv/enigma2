@@ -55,14 +55,14 @@ file.close()
 
 
 def findMenu(key):
-	menuList = mdom.getroot().findall(".//menu[@key='%s']" % key)
+	menuList = mdom.getroot().findall(f".//menu[@key='{key}']")
 	count = len(menuList)
 	if menuList:
 		for index, menu in enumerate(menuList):
-			print("[Menu] Found menu entry '%s' (%d of %d)." % (menu.get("text", "* Unknown *"), index + 1, count))
+			print(f"[Menu] Found menu entry '{menu.get('text', '* Unknown *')}' ({index + 1} of {count}).")
 		menu = menuList[0]
 	else:
-		print("[Menu] Error: Menu '%s' not found!" % key)
+		print(f"[Menu] Error: Menu '{key}' not found!")
 		menu = None
 	return menu
 
@@ -204,8 +204,8 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 			elif config.usage.menuType.value == "horzicon" and findSkinScreen("Iconmain"):
 				self.skinName.append("Iconmain")
 			else:
-				self.skinName.append("Menu%s" % self.menuID)
-				self.skinName.append("menu_%s" % self.menuID)
+				self.skinName.append(f"Menu{self.menuID}")
+				self.skinName.append(f"menu_{self.menuID}")
 		self.skinName.append("Menu")
 		if config.usage.menuType.value == "horzanim" and findSkinScreen("Animmain"):
 			self.onShown.append(self.openTestA)
@@ -277,7 +277,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 						self.menuList.append(data)
 		if self.menuID:
 			for plugin in plugins.getPluginsForMenu(self.menuID):  # Plugins.
-				# print("[Menu] DEBUG 1: Plugin data=%s." % str(plugin))
+				# print(f"[Menu] DEBUG 1: Plugin data={str(plugin)}.")
 				pluginKey = plugin[PLUGIN_KEY]  # Check if a plugin overrides an existing menu.
 				for entry in self.menuList:
 					if entry[PLUGIN_KEY] == pluginKey:
@@ -294,7 +294,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		if config.usage.menuSortOrder.value == "user" and self.menuID == "mainmenu":
 			idList = []
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				# print("[Menu] DEBUG 2: Plugin data=%s." % str(plugin))
+				# print(f"[Menu] DEBUG 2: Plugin data={str(plugin)}.")
 				plugin.id = (plugin.name.lower()).replace(" ", "_")
 				if plugin.id not in idList:
 					idList.append(plugin.id)
@@ -339,8 +339,8 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 				screen = menuItem.get("screen")
 				if screen is None:
 					screen = module
-				module = "Screens.%s" % module if module else ""
-				screen = "%s, %s" % (screen, menuItem.text or "")  # Check for arguments, they will be appended to the openDialog call.
+				module = f"Screens.{module}" if module else ""
+				screen = f"{screen}, {menuItem.text or ''}"  # Check for arguments, they will be appended to the openDialog call.
 				return (text, boundFunction(self.runScreen, (module, screen)), key, weight, description, image)
 			elif menuItem.tag == "plugin":
 				extensions = menuItem.get("extensions")
@@ -353,12 +353,12 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 				if screen is None:
 					screen = module
 				if extensions:
-					module = "Plugins.Extensions.%s.plugin" % extensions
+					module = f"Plugins.Extensions.{extensions}.plugin"
 				elif system:
-					module = "Plugins.SystemPlugins.%s.plugin" % system
+					module = f"Plugins.SystemPlugins.{system}.plugin"
 				else:
 					module = ""
-				screen = "%s, %s" % (screen, menuItem.text or "")  # Check for arguments, they will be appended to the openDialog call.
+				screen = f"{screen}, {menuItem.text or ''}"  # Check for arguments, they will be appended to the openDialog call.
 				return (text, boundFunction(self.runScreen, (module, screen)), key, weight, description, image)
 			elif menuItem.tag == "code":
 				return (text, boundFunction(self.execText, menuItem.text), key, weight, description, image)
@@ -397,14 +397,14 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		global imageCache
 		image = imageCache.get(key)
 		if image is None:
-			imageFile = resolveFilename(SCOPE_GUISKIN, "mainmenu/%s.png" % key if self.menuImageLibrary else menus.get(key, ""))
+			imageFile = resolveFilename(SCOPE_GUISKIN, f"mainmenu/{key}.png" if self.menuImageLibrary else menus.get(key, ""))
 			if imageFile and isfile(imageFile):
 				image = LoadPixmap(imageFile, cached=True)
 				if image:
-					print("[Menu] Menu image for menu ID '%s' is '%s'." % (key, imageFile))
+					print(f"[Menu] Menu image for menu ID '{key}' is '{imageFile}'.")
 					imageCache[key] = image
 				else:
-					print("[Menu] Error: Unable to load image '%s'!" % imageFile)
+					print(f"[Menu] Error: Unable to load image '{imageFile}'!")
 					if lastKey:
 						image = imageCache.get(lastKey)
 		if image is None:
@@ -414,13 +414,13 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 				if imageFile and isfile(imageFile):
 					image = LoadPixmap(imageFile, cached=True)
 					if image:
-						print("[Menu] Default menu image is '%s'." % imageFile)
+						print(f"[Menu] Default menu image is '{imageFile}'.")
 						imageCache["default"] = image
 					else:
-						print("[Menu] Error: Unable to load default image '%s'!" % imageFile)
+						print(f"[Menu] Error: Unable to load default image '{imageFile}'!")
 						imageCache["default"] = "N/A"
 				else:
-					print("[Menu] Error: Default image '%s' is not a file!" % imageFile)
+					print(f"[Menu] Error: Default image '{imageFile}' is not a file!")
 					imageCache["default"] = "N/A"
 			elif image == "N/A":
 				image = None
@@ -430,7 +430,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		menu = []
 		for number, entry in enumerate(menuList):
 			number += 1
-			numberText = "%d  %s" % (number, entry[MENU_TEXT]) if config.usage.menuEntryStyle.value in ("number", "both") else entry[MENU_TEXT]  # This is for compatibility with older skins.
+			numberText = f"{number}  {entry[MENU_TEXT]}" if config.usage.menuEntryStyle.value in ("number", "both") else entry[MENU_TEXT]  # This is for compatibility with older skins.
 			menu.append((numberText, entry[MENU_IMAGE], str(number), entry[MENU_TEXT], entry[MENU_DESCRIPTION], entry[MENU_KEY], entry[MENU_WEIGHT], entry[MENU_MODULE]))
 		self["menu"].setList(menu)
 
@@ -476,7 +476,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		#	string (as we want to reference
 		#	stuff which is just imported)
 		if arg[0] != "":
-			exec("from %s import %s" % (arg[0], arg[1].split(",")[0]))
+			exec(f"from {arg[0]} import {arg[1].split(',')[0]}")
 			self.openDialog(*eval(arg[1]))
 
 	def nothing(self):  # Dummy.
@@ -920,17 +920,17 @@ class IconMain(Screen):
 		while j < 6:
 			j = j + 1
 			if i > self.picnum - 1:
-				icon = "%s/blank.png" % dskin[0]
+				icon = f"{dskin[0]}/blank.png"
 				name = ""
 			else:
 				name = self.tlist[i][0]
 			name = menuEntryName(name)
 			if j == self.index + 1:
-				self["label%d" % j].setText(" ")
-				self["label%ds" % j].setText(name)
+				self[f"label{j}"].setText(" ")
+				self[f"label{j}s"].setText(name)
 			else:
-				self["label%d" % j].setText(name)
-				self["label%ds" % j].setText(" ")
+				self[f"label{j}"].setText(name)
+				self[f"label{j}s"].setText(" ")
 			i = i + 1
 		j = 0
 		i = ii
@@ -938,22 +938,22 @@ class IconMain(Screen):
 			j = j + 1
 			itot = (self.ipage - 1) * 6 + j
 			if itot > self.picnum:
-				icon = "/usr/share/enigma2/%s/blank.png" % dskin[0]
+				icon = f"/usr/share/enigma2/{dskin[0]}/blank.png"
 			else:
-				icon = "/usr/share/enigma2/%s/buttons/icon1.png" % dskin[0]
+				icon = f"/usr/share/enigma2/{dskin[0]}/buttons/icon1.png"
 			pic = icon
-			self["pixmap%d" % j].instance.setPixmapFromFile(pic)
+			self[f"pixmap{j}"].instance.setPixmapFromFile(pic)
 			i = i + 1
 		if self.picnum > 6:
 			try:
-				dpointer = "/usr/share/enigma2/%s/pointer.png" % dskin[0]
+				dpointer = f"/usr/share/enigma2/{dskin[0]}/pointer.png"
 				self["pointer"].instance.setPixmapFromFile(dpointer)
 			except:
 				dpointer = "/usr/share/enigma2/skin_default/pointer.png"
 				self["pointer"].instance.setPixmapFromFile(dpointer)
 		else:
 			try:
-				dpointer = "/usr/share/enigma2/%s/blank.png" % dskin[0]
+				dpointer = f"/usr/share/enigma2/{dskin[0]}/blank.png"
 				self["pointer"].instance.setPixmapFromFile(dpointer)
 			except:
 				dpointer = "/usr/share/enigma2/skin_default/blank.png"
