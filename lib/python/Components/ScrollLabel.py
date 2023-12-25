@@ -72,9 +72,9 @@ class ScrollLabel(GUIComponent):
 						widgetAttributes.append((attribute, value))
 						continue
 					if attribute in ("leftColumnAlignment", "leftColAlign"):
-						leftAlign = parseHorizontalAlignment(value)  # The parser is used to check if the value is valid, an exception is raised if it isn't!
+						leftAlign = value
 					elif attribute in ("rightColumnAlignment", "rightColAlign"):
-						rightAlign = parseHorizontalAlignment(value)  # The parser is used to check if the value is valid, an exception is raised if it isn't!
+						rightAlign = value
 						self.split = True
 					elif attribute == "split":
 						self.split = parseBoolean("split", value)
