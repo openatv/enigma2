@@ -250,9 +250,6 @@ class OscamInfo:
 					port = cl.find("connection").attrib["port"]
 					connstatus = cl.find("connection").text
 					if name != "" and name != "anonymous" and proto != "":
-						if config.softcam.hideServerName.value:
-							srvname_short = "XXX"
-							name = "XXX"
 						try:
 							tmp[cl.attrib["type"]].append((name, proto, "%s:%s" % (caid, srvid), srvname_short, ecmtime, ip, connstatus))
 						except KeyError:
@@ -369,8 +366,7 @@ class OscamInfo:
 				elif "reader" in i:
 					result.append((_("Reader"), i.split(":")[1].strip()))
 				elif "from" in i:
-					server = "" if config.softcam.hideServerName.value else i.split(":")[1].strip()
-					result.append((_("Address"), server))
+					result.append((_("Address"), i.split(":")[1].strip()))
 				elif "protocol" in i:
 					result.append((_("Protocol"), i.split(":")[1].strip()))
 				elif "hops" in i:

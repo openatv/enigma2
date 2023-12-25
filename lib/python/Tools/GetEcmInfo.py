@@ -60,7 +60,7 @@ class GetEcmInfo:
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
 			if info and info.get("from") and config.softcam.hideServerName.value:
-				info["from"] = "XXX"
+				info["from"] = "\u2022"
 			data = self.getText()
 			return True
 		else:
