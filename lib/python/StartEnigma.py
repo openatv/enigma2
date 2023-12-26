@@ -886,7 +886,6 @@ loadKeymap(DEFAULTKEYMAP)
 if config.usage.keymap.value != DEFAULTKEYMAP:
 	if exists(config.usage.keymap.value):
 		loadKeymap(config.usage.keymap.value, replace=True)
-#loadKeymap(config.usage.keytrans.value)
 if exists(config.usage.keymap_usermod.value):
 	loadKeymap(config.usage.keymap_usermod.value)
 
