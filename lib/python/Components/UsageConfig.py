@@ -1877,6 +1877,7 @@ def InitUsageConfig():
 
 	config.softcam = ConfigSubsection()
 	config.softcam.showInExtensions = ConfigYesNo(default=False)
+	config.softcam.hideServerName = ConfigYesNo(default=False)
 
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.userDataFromConf = ConfigYesNo(default=True)

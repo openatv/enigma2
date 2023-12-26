@@ -143,6 +143,8 @@ class VtiInfo(Poll, Converter):
                                 if y != -1:
                                     info['caid'] = line[x + 5:y]
 
+                if info and info.get("from") and config.softcam.hideServerName.value:
+                    info["from"] = "\u2022"
         return info
 
     def tempfile(self):
