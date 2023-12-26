@@ -744,7 +744,6 @@
 	<setup key="Softcam" title="Softcam Settings" showOpenWebif="1">
 		<item level="0" text="Select Softcam" description="Select a Softcam from the available list.">config.misc.softcams</item>
 		<item level="2" text="Show OScam/CCcam in Extension Menu" description="Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button).">config.softcam.showInExtensions</item>
-		<item level="2" text="Hide Server" description="Select 'Yes' to hide the server name and IP address of the server.">config.softcam.hideServerName</item>
 	</setup>
 	<setup key="SoftwareManager" title="Software Manager Settings" showOpenWebif="1">
 		<if conditional="BoxInfo.getItem('model').startswith('et')">
@@ -917,6 +916,7 @@
 		<item level="2" text="Hide zap errors" description="Hide any zap error messages.">config.usage.hide_zap_errors</item>
 		<item level="2" text="Hide CI messages" description="Hide error messages from the Common Interface module.">config.usage.hide_ci_messages</item>
 		<item level="2" text="Show crypto info in InfoBar" description="Show encryption information in the InfoBar (when supported by the skin).">config.usage.show_cryptoinfo</item>
+		<item level="2" text="Hide softcam servername" description="Select 'Yes' to hide the server name and IP address of the server.">config.softcam.hideServerName</item>
 		<item level="2" text="InfoBar front end data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>
 		<item level="1" text="Behavior of 0 key in PiP-mode" description="Choose what you want the button '0' to do when PiP is active.">config.usage.pip_zero_button</item>
