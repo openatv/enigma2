@@ -120,6 +120,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gdi/picload.h>
 #include <lib/dvb/fcc.h>
 #include <lib/gdi/accel.h>
+#include <include/hardwaredb.h>
 %}
 
 %feature("ref")   iObject "$this->AddRef(); /* eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); */ "
@@ -481,6 +482,19 @@ void setACCELDebug(int enable)
 	gAccel::getInstance()->setAccelDebug(enable);
 }
 %}
+
+PyObject *getDeviceDB();
+%{
+PyObject *getDeviceDB()
+{
+	ePyObject result = PyDict_New();
+	for (const auto & [ key, value ] : HardwareDB) {
+		PutToDict(result, key.c_str(), value.c_str());
+	}
+    return result;
+}
+%}
+
 
 /************** temp *****************/
 
