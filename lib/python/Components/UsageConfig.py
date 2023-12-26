@@ -1298,7 +1298,6 @@ def InitUsageConfig():
 			open(BoxInfo.getItem("WakeOnLAN"), "w").write(BoxInfo.getItem("WakeOnLANType")[configElement.value])
 		config.network.wol = ConfigYesNo(default=False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
-	config.network.AFP_autostart = ConfigYesNo(default=False)
 	config.network.NFS_autostart = ConfigYesNo(default=True)
 	config.network.OpenVPN_autostart = ConfigYesNo(default=False)
 	config.network.Samba_autostart = ConfigYesNo(default=True)

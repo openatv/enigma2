@@ -209,7 +209,6 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="netsabnzbd_setup" level="2" text="SABnzbd Settings" weight="45"><screen module="NetworkSetup" screen="NetworkSABnzbd" /></item>
 					<item key="nettelnet_setup" level="2" text="Telnet Settings" weight="50"><screen module="NetworkSetup" screen="NetworkTelnet" /></item>
 					<item key="netushare_setup" level="2" text="uShare Settings" weight="55"><screen module="NetworkSetup" screen="NetworkuShare" /></item>
-					<item key="netafp_setup" level="2" text="AFP Settings" weight="60"><screen module="NetworkSetup" screen="NetworkAfp" /></item>
 				</menu>
 				<item key="hdmicec" level="0" text="HDMI-CEC Settings" weight="55" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup" /></item>
 				<item key="script_manager" level="1" text="Script Manager" weight="56"><screen module="ScriptRunner" screen="ScriptRunner" /></item>
