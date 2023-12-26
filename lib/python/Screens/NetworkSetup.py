@@ -2,8 +2,8 @@ from errno import ETIMEDOUT
 from glob import glob
 from os import rename, strerror, system, unlink
 from os.path import exists
+from process import ProcessList
 from random import Random
-import sys
 import time
 
 from enigma import eConsoleAppContainer, eTimer
@@ -22,6 +22,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.PluginComponent import plugins
 from Components.FileList import MultiFileSelectList
+from Components.Opkg import OpkgComponent
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -29,6 +30,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.HelpMenu import HelpableScreen
 from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
+from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import TryQuitMainloop
@@ -1777,257 +1779,198 @@ class NetworkBaseScreen(Screen, HelpableScreen):
 		return NetworkServicesSummary
 
 
-class NetworkSABnzbd(NetworkBaseScreen):
+class NetworkBaseSetup(Setup):
+	def __init__(self, session, setup):
+		def startStopHelpText():
+			return _("Stop service") if self.isRunning else _("Start service")
+
+		def installRemoveHelpText():
+			return _("Remove service") if self.isInstalled else _("Install service")
+		self.Console = Console()
+		if self.autoStartCheckFile:
+			self.autoStartConfig = ConfigYesNo(self.isAutoStart)
+		else:
+			self.autoStartConfig = None
+		self.setupTitle = ""
+		self.initParams = "defaults"
+		Setup.__init__(self, session, setup=setup)
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
+		self["startStopActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.toggleStartStop, startStopHelpText)
+		}, prio=0, description=_("Network Setup Actions"))
+		self["intallRemoveActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.toggleInstallRemove, installRemoveHelpText)
+		}, prio=0, description=_("Network Setup Actions"))
+		self.opkgComponent = OpkgComponent()
+		self.opkgComponent.addCallback(self.opkgCallback)
+
+	def layoutFinished(self):
+		Setup.layoutFinished(self)
+		self.createSetup()
+
+	def createSetup(self):  # NOSONAR silence S2638
+		if "startStopActions" in self:
+			coreitems = []
+			if self.autoStartConfig and self.isInstalled:
+				coreitems.append((_("Autostart"), self.autoStartConfig, _("Select 'Yes' to enable autostart of '%s'.") % self.serviceDisplayName))
+			Setup.createSetup(self, prependItems=coreitems)
+			if self.isInstalled:
+				self["startStopActions"].setEnabled(True)
+				self["key_blue"].setText(_("Stop") if self.isRunning else _("Start"))
+				self["key_yellow"].setText(_("Remove") if self.packageNames else "")
+			else:
+				self["startStopActions"].setEnabled(False)
+				self["key_blue"].setText("")
+				self["key_yellow"].setText(_("Install") if self.packageNames else "")
+			self["intallRemoveActions"].setEnabled(self.packageNames)
+			installed = _("Installed") if self.isInstalled else _("Not Installed")
+			running = _("Running") if self.isRunning else _("Not running")
+			footnote = f"{_('Current Status:')} {installed} / {running}"
+			self.setFootnote(footnote)
+			if self.setupTitle:
+				self.setTitle(self.setupTitle)
+
+	def showProgress(self):
+		Processing.instance.setDescription(_("Please wait..."))
+		Processing.instance.showProgress(endless=True)
+
+	def toggleStartStop(self):
+		def toggleStartStopCallback(result=None, retval=None, extra_args=None):
+			time.sleep(1)
+			self.createSetup()
+			Processing.instance.hideProgress()
+		cmd = "stop" if self.isRunning else "start"
+		self.showProgress()
+		self.Console.ePopen(f"/etc/init.d/{self.service} {cmd}", toggleStartStopCallback)
+
+	def toggleAutoStart(self):
+		def toggleAutoStartCallback(result=None, retval=None, extra_args=None):
+			Setup.keySave(self)
+		cmd = "remove" if self.isAutoStart else self.initParams
+		self.Console.ePopen(f"update-rc.d -f {self.service} {cmd}", toggleAutoStartCallback)
+
+	def keySave(self):
+		if self.autoStartConfig and self.autoStartConfig.isChanged():
+			self.toggleAutoStart()
+		else:
+			Setup.keySave(self)
+
+	def toggleInstallRemove(self):
+		self.showProgress()
+		if self.isInstalled:
+			self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, {"arguments": self.packageNames})
+		else:
+			self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALL, {"arguments": self.packageNames})
+
+	def opkgCallback(self, event, parameter):
+		if event == self.opkgComponent.EVENT_DONE:
+			self.createSetup()
+			Processing.instance.hideProgress()
+
+	def getInstalled(self):
+		return exists(f"/etc/init.d/{self.service}")
+
+	isInstalled = property(getInstalled)
+
+	def getAutoStart(self):
+		return exists(self.autoStartCheckFile)
+
+	isAutoStart = property(getAutoStart)
+
+
+class NetworkSABnzbd(NetworkBaseSetup):
 	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
-		self.setTitle(_("SABnzbd Settings"))
-		self.skinName = "NetworkSABnzbd"
-		self.onChangedEntry = []
-		self["lab1"] = Label(_("Autostart:"))
-		self["labactive"] = Label(_(_("Disabled")))
-		self["lab2"] = Label(_("Current Status:"))
-		self["labstop"] = Label(_("Stopped"))
-		self["labrun"] = Label(_("Running"))
-		self["status_summary"] = StaticText()
-		self["autostartstatus_summary"] = StaticText()
-		self.my_sabnzbd_active = False
-		self.my_sabnzbd_run = False
-		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
-			"ok": self.close,
-			"back": self.close,
-			"red": self.UninstallCheck,
-			"green": self.SABnzbStartStop,
-			"yellow": self.activateSABnzbd
-		}, prio=0, description=_("SABnzbd Actions"))
-		self.service_name = ("sabnzbd3" if sys.version_info[0] >= 3 else "sabnzbd")
-		self.onLayoutFinish.append(self.InstallCheck)
+		self.autoStartCheckFile = "/etc/rc2.d/S20sabnzbd"
+		self.service = "sabnzbd"
+		self.serviceDisplayName = "SABnzbd"
+		self.packageNames = ["sabnzbd3"]
+		self.checkRunning()
+		NetworkBaseSetup.__init__(self, session, "NetworkSABnzbdSetup")
+		self.setupTitle = _("SABnzbd Settings")
 
-	def checkNetworkStateFinished(self, result, retval, extra_args=None):
-		if result.find("mips32el/Packages.gz, wget returned 1") != -1:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		elif result.find("bad address") != -1:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		else:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Ready to install '%s'?") % self.service_name, MessageBox.TYPE_YESNO)
-
-	def SABnzbStartStop(self):
-		if not self.my_sabnzbd_run:
-			self.Console.ePopen("/etc/init.d/sabnzbd start")
-			time.sleep(3)
-			self.updateService()
-		elif self.my_sabnzbd_run:
-			self.Console.ePopen("/etc/init.d/sabnzbd stop")
-			time.sleep(3)
-			self.updateService()
-
-	def activateSABnzbd(self):
-		if fileExists("/etc/rc2.d/S20sabnzbd"):
-			self.Console.ePopen("update-rc.d -f sabnzbd remove")
-		else:
-			self.Console.ePopen("update-rc.d -f sabnzbd defaults")
-		time.sleep(3)
-		self.updateService()
-
-	def updateService(self, result=None, retval=None, extra_args=None):
-		import process
-		p = process.ProcessList()
-		sabnzbd_processpy = str(p.named("SABnzbd.py")).strip("[]")
-		sabnzbd_processpyc = str(p.named("SABnzbd.pyc")).strip("[]")
-		self["labrun"].hide()
-		self["labstop"].hide()
-		self["labactive"].setText(_("Disabled"))
-		self.my_sabnzbd_active = False
-		self.my_sabnzbd_run = False
-		if fileExists("/etc/rc2.d/S20sabnzbd"):
-			self["labactive"].setText(_("Enabled"))
-			self["labactive"].show()
-			self.my_sabnzbd_active = True
-		if sabnzbd_processpy or sabnzbd_processpyc:
-			self.my_sabnzbd_run = True
-		if self.my_sabnzbd_run:
-			self["labstop"].hide()
-			self["labactive"].show()
-			self["labrun"].show()
-			self["key_green"].setText(_("Stop"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labrun"].text)
-		else:
-			self["labrun"].hide()
-			self["labstop"].show()
-			self["labactive"].show()
-			self["key_green"].setText(_("Start"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labstop"].text)
-		title = _("SABnzbd Settings")
-		autostartstatus_summary = "%s %s" % (self["lab1"].text, self["labactive"].text)
-		for cb in self.onChangedEntry:
-			cb(title, status_summary, autostartstatus_summary)
+	def checkRunning(self):
+		p = ProcessList()
+		self.isRunning = str(p.named("SABnzbd.py")).strip("[]") or str(p.named("SABnzbd.pyc")).strip("[]")
 
 
-class NetworkFtp(NetworkBaseScreen):
+class NetworkFtp(NetworkBaseSetup):
 	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
-		self.setTitle(_("FTP Settings"))
-		self.skinName = "NetworkSamba"
-		self.onChangedEntry = []
-		self["lab1"] = Label(_("Autostart:"))
-		self["labactive"] = Label(_(_("Disabled")))
-		self["lab2"] = Label(_("Current Status:"))
-		self["labstop"] = Label(_("Stopped"))
-		self["labrun"] = Label(_("Running"))
-		self["key_red"].setText("")
-		self.my_ftp_active = False
-		self.my_ftp_run = False
-		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
-			"ok": self.close,
-			"back": self.close,
-			"green": self.FtpStartStop,
-			"yellow": self.activateFtp
-		}, prio=0, description=_("FTP Actions"))
-		self.onLayoutFinish.append(self.updateService)
+		self.autoStartCheckFile = "*"
+		self.service = "vsftpd"
+		self.serviceDisplayName = "FTP"
+		self.packageNames = []
+		self.checkRunning()
+		NetworkBaseSetup.__init__(self, session, "NetworkFtpSetup")
+		self.setupTitle = _("FTP Settings")
 
-	def createSummary(self):
-		return NetworkServicesSummary
+	def checkRunning(self):
+		p = ProcessList()
+		self.isRunning = str(p.named("vsftpd")).strip("[]")
 
-	def FtpStartStop(self):
-		commands = []
-		if not self.my_ftp_run:
-			commands.append("/etc/init.d/vsftpd start")
-		elif self.my_ftp_run:
-			commands.append("/etc/init.d/vsftpd stop")
-		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
-
-	def StartStopCallback(self, result=None, retval=None, extra_args=None):
-		time.sleep(3)
-		self.updateService()
-
-	def activateFtp(self):
-		commands = []
-		if len(glob("/etc/rc2.d/S*0vsftpd")):
-		# if fileExists("/etc/rc2.d/S20vsftpd"):
-			commands.append("update-rc.d -f vsftpd remove")
-		else:
-			commands.append("update-rc.d -f vsftpd defaults")
-		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
-
-	def updateService(self):
-		import process
-		p = process.ProcessList()
-		ftp_process = str(p.named("vsftpd")).strip("[]")
-		self["labrun"].hide()
-		self["labstop"].hide()
-		self["labactive"].setText(_("Disabled"))
-		self.my_ftp_active = False
-		if len(glob("/etc/rc2.d/S*0vsftpd")):
-		# if fileExists("/etc/rc2.d/S20vsftpd"):
-			self["labactive"].setText(_("Enabled"))
-			self["labactive"].show()
-			self.my_ftp_active = True
-
-		self.my_ftp_run = False
-		if ftp_process:
-			self.my_ftp_run = True
-		if self.my_ftp_run:
-			self["labstop"].hide()
-			self["labactive"].show()
-			self["labrun"].show()
-			self["key_green"].setText(_("Stop"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labrun"].text)
-		else:
-			self["labrun"].hide()
-			self["labstop"].show()
-			self["labactive"].show()
-			self["key_green"].setText(_("Start"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labstop"].text)
-		title = _("FTP Settings")
-		autostartstatus_summary = "%s %s" % (self["lab1"].text, self["labactive"].text)
-
-		for cb in self.onChangedEntry:
-			cb(title, status_summary, autostartstatus_summary)
+	def getAutoStart(self):
+		return len(glob("/etc/rc2.d/S*0vsftpd"))
 
 
-class NetworkNfs(NetworkBaseScreen):
+class NetworkNfs(NetworkBaseSetup):
 	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
-		self.setTitle(_("NFS Settings"))
-		self.skinName = "NetworkNfs"
-		self.onChangedEntry = []
-		self["lab1"] = Label(_("Autostart:"))
-		self["labactive"] = Label(_(_("Disabled")))
-		self["lab2"] = Label(_("Current Status:"))
-		self["labstop"] = Label(_("Stopped"))
-		self["labrun"] = Label(_("Running"))
-		self.my_nfs_active = False
-		self.my_nfs_run = False
-		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
-			"ok": self.close,
-			"back": self.close,
-			"red": self.UninstallCheck,
-			"green": self.NfsStartStop,
-			"yellow": self.Nfsset
-		}, prio=0, description=_("NFS Actions"))
-		self.service_name = "%s-nfs" % BASE_GROUP
-		self.onLayoutFinish.append(self.InstallCheck)
+		self.autoStartCheckFile = "*"
+		self.service = "nfsserver"
+		self.serviceDisplayName = "NFS"
+		self.packageNames = [f"{BASE_GROUP}-nfs"]
+		self.checkRunning()
+		NetworkBaseSetup.__init__(self, session, "NetworkNfsSetup")
+		self.setupTitle = _("NFS Settings")
+		self.initParams = "defaults 13"
 
-	def installComplete(self, result=None, retval=None, extra_args=None):
-		self.session.open(TryQuitMainloop, 2)
+	def checkRunning(self):
+		p = ProcessList()
+		self.isRunning = str(p.named("nfsd")).strip("[]")
 
-	def RemovedataAvail(self, str, retval, extra_args):
-		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO, windowTitle=_("Ready to remove '%s'?") % self.service_name)
-		else:
-			self.updateService()
-
-	def removeComplete(self, result=None, retval=None, extra_args=None):
-		self.session.open(TryQuitMainloop, 2)
-
-	def NfsStartStop(self):
-		if not self.my_nfs_run:
-			self.Console.ePopen("/etc/init.d/nfsserver start", self.StartStopCallback)
-		elif self.my_nfs_run:
-			self.Console.ePopen("/etc/init.d/nfsserver stop", self.StartStopCallback)
-
-	def StartStopCallback(self, result=None, retval=None, extra_args=None):
-		time.sleep(3)
-		self.updateService()
-
-	def Nfsset(self):
-		if fileExists("/etc/rc2.d/S11nfsserver") or fileExists("/etc/rc2.d/S13nfsserver") or fileExists("/etc/rc2.d/S20nfsserver"):
-			self.Console.ePopen("update-rc.d -f nfsserver remove", self.StartStopCallback)
-		else:
-			self.Console.ePopen("update-rc.d -f nfsserver defaults 13", self.StartStopCallback)
-
-	def updateService(self):
-		import process
-		p = process.ProcessList()
-		nfs_process = str(p.named("nfsd")).strip("[]")
-		self["labrun"].hide()
-		self["labstop"].hide()
-		self["labactive"].setText(_("Disabled"))
-		self.my_nfs_active = False
-		self.my_nfs_run = False
-		if fileExists("/etc/rc2.d/S13nfsserver"):
-			self["labactive"].setText(_("Enabled"))
-			self["labactive"].show()
-			self.my_nfs_active = True
-		if nfs_process:
-			self.my_nfs_run = True
-		if self.my_nfs_run:
-			self["labstop"].hide()
-			self["labrun"].show()
-			self["key_green"].setText(_("Stop"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labrun"].text)
-		else:
-			self["labstop"].show()
-			self["labrun"].hide()
-			self["key_green"].setText(_("Start"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labstop"].text)
-		title = _("NFS Settings")
-		autostartstatus_summary = "%s %s" % (self["lab1"].text, self["labactive"].text)
-
-		for cb in self.onChangedEntry:
-			cb(title, status_summary, autostartstatus_summary)
+	def getAutoStart(self):
+		return len(glob("/etc/rc2.d/S*nfsserver"))
 
 
-class NetworkOpenvpn(NetworkBaseScreen):
+class NetworkSATPI(NetworkBaseSetup):
+	def __init__(self, session):
+		self.autoStartCheckFile = "/etc/rc2.d/S80satpi"
+		self.service = "satpi"
+		self.serviceDisplayName = "SATPI"
+		self.packageNames = ["satpi"]
+		self.checkRunning()
+		NetworkBaseSetup.__init__(self, session, "NetworkSATPISetup")
+		self.setupTitle = _("SATPI Settings")
+		self.initParams = "defaults 80"
+
+	def checkRunning(self):
+		p = ProcessList()
+		self.isRunning = str(p.named("satpi")).strip("[]")
+
+
+class NetworkOpenvpn(NetworkBaseSetup):
+	def __init__(self, session):
+		self.autoStartCheckFile = "*"
+		self.service = "openvpn"
+		self.serviceDisplayName = "NFS"
+		self.packageNames = [f"{BASE_GROUP}-nfs"]
+		self.checkRunning()
+		NetworkBaseSetup.__init__(self, session, "NetworkOpenvpnSetup")
+		self.setupTitle = _("OpenVPN Settings")
+		self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
+			"info": (self.keyInfo, _("Show logfile"))
+		}, prio=0, description=_("Network Setup Actions"))
+
+	def keyInfo(self):
+		self.session.open(NetworkLogScreen, title=_("OpenVpn Log"), logPath="/etc/openvpn/openvpn.log")
+
+	def checkRunning(self):
+		p = ProcessList()
+		self.isRunning = str(p.named("openvpn")).strip("[]")
+
+	# TODO call start with custom config file
+
+
+class _NetworkOpenvpn(NetworkBaseScreen):
 	def __init__(self, session):
 		NetworkBaseScreen.__init__(self, session, showLog=True)
 		self.setTitle(_("OpenVPN Settings"))
@@ -3428,97 +3371,6 @@ class NetworkPassword(Setup):
 		del self.container.dataAvail[:]
 		del self.container.appClosed[:]
 		del self.container
-
-
-class NetworkSATPI(NetworkBaseScreen):
-	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
-		self.setTitle(_("SATPI Settings"))
-		self.skinName = "NetworkSATPI"
-		self.onChangedEntry = []
-		self["lab1"] = Label(_("Autostart:"))
-		self["labactive"] = Label(_(_("Disabled")))
-		self["lab2"] = Label(_("Current Status:"))
-		self["labstop"] = Label(_("Stopped"))
-		self["labrun"] = Label(_("Running"))
-		self["status_summary"] = StaticText()
-		self["autostartstatus_summary"] = StaticText()
-		self.my_satpi_active = False
-		self.my_satpi_run = False
-		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
-			"ok": self.close,
-			"back": self.close,
-			"red": self.UninstallCheck,
-			"green": self.SATPIStartStop,
-			"yellow": self.activateSATPI
-		}, prio=0, description=_("SATPI Setting Actions"))
-		self.service_name = "satpi"
-		self.onLayoutFinish.append(self.InstallCheck)
-
-	def checkNetworkStateFinished(self, result, retval, extra_args=None):
-		if result.find("mips32el/Packages.gz, wget returned 1") != -1:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		elif result.find("bad address") != -1:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		else:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Ready to install '%s'?") % self.service_name, MessageBox.TYPE_YESNO)
-
-	def removeComplete(self, result=None, retval=None, extra_args=None):
-		self.message.close()
-		self.updateService()
-
-	def createSummary(self):
-		return NetworkServicesSummary
-
-	def SATPIStartStop(self):
-		if not self.my_satpi_run:
-			self.Console.ePopen("/etc/init.d/satpi start")
-			time.sleep(3)
-			self.updateService()
-		elif self.my_satpi_run:
-			self.Console.ePopen("/etc/init.d/satpi stop")
-			time.sleep(3)
-			self.updateService()
-
-	def activateSATPI(self):
-		if fileExists("/etc/rc2.d/S80satpi"):
-			self.Console.ePopen("update-rc.d -f satpi remove")
-		else:
-			self.Console.ePopen("update-rc.d -f satpi defaults 80")
-		time.sleep(3)
-		self.updateService()
-
-	def updateService(self, result=None, retval=None, extra_args=None):
-		import process
-		p = process.ProcessList()
-		satpi_process = str(p.named("satpi")).strip("[]")
-		self["labrun"].hide()
-		self["labstop"].hide()
-		self["labactive"].setText(_("Disabled"))
-		self.my_satpi_active = False
-		self.my_satpi_run = False
-		if fileExists("/etc/rc2.d/S80satpi"):
-			self["labactive"].setText(_("Enabled"))
-			self["labactive"].show()
-			self.my_satpi_active = True
-		if satpi_process:
-			self.my_satpi_run = True
-		if self.my_satpi_run:
-			self["labstop"].hide()
-			self["labactive"].show()
-			self["labrun"].show()
-			self["key_green"].setText(_("Stop"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labrun"].text)
-		else:
-			self["labrun"].hide()
-			self["labstop"].show()
-			self["labactive"].show()
-			self["key_green"].setText(_("Start"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labstop"].text)
-		title = _("SATPI Settings")
-		autostartstatus_summary = "%s %s" % (self["lab1"].text, self["labactive"].text)
-		for cb in self.onChangedEntry:
-			cb(title, status_summary, autostartstatus_summary)
 
 
 # TODO "NetworkInadynLog" skin?
