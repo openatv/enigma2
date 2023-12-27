@@ -976,7 +976,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			with open(path, "wb") as fd:
 				dump(self.settings, fd)
 		except OSError as err:
-			print("[MovieSelection] Error %d: Failed to save settings to '%s'!  (%s)" % (err.errno, path, strerror))
+			print("[MovieSelection] Error %d: Failed to save settings to '%s'!  (%s)" % (err.errno, path, err.strerror))
 		# Also set config items, in case the user has a read-only disk.
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.description.value = self.settings["description"]
