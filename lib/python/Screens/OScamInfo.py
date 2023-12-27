@@ -125,7 +125,7 @@ class OScamGlobals():
 class OScamOverview(Screen, OScamGlobals):
 	skin = """
 		<screen name="OScamInfoOverview" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OScamInfo Overview" flags="wfNoBorder" resolution="1920,1080">
-			<ePixmap pixmap="/tmp/oscam.svg" position="15,15" size="80,80" scale="1" alphatest="blend" />
+			<ePixmap pixmap="OscamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
 			<widget source="title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
 				<convert type="ClockToText">Format:%H:%M:%S</convert>
@@ -208,8 +208,6 @@ class OScamOverview(Screen, OScamGlobals):
 		}, prio=1, description=_("OScamOverview Actions"))
 		self.loop = eTimer()
 		self.loop.callback.append(self.updateOScamData)
-		with open("/tmp/oscam.svg", "w") as l:
-			l.write('<svg height="80" viewBox="0 0 80 80" width="80" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" transform="scale(2)"><path d="m11.277 6.81c-1.871 0-2.987.945-3.518 2.474-.223.695-.335 1.641-.335 4.336 0 2.667.112 3.641.335 4.336.53 1.528 1.647 2.474 3.518 2.474 1.897 0 3.014-.945 3.544-2.474.223-.695.334-1.668.334-4.336 0-2.697-.112-3.642-.334-4.336-.531-1.528-1.647-2.474-3.544-2.474z"/><path d="m38 2h-36v23.548h36v-2.462c-2.072-2.542-3.314-5.782-3.314-9.312 0-3.529 1.24-6.77 3.314-9.312zm-19.997 16.818c-.977 3-3.433 4.558-6.726 4.558-3.267-.001-5.722-1.558-6.699-4.559-.391-1.168-.502-2.224-.502-5.197 0-2.975.111-4.03.502-5.198.977-3.001 3.433-4.558 6.699-4.558 3.293 0 5.749 1.557 6.726 4.558.391 1.167.503 2.224.503 5.198s-.112 4.03-.503 5.198zm8.433 4.556c-2.795.001-5.502-1.11-6.98-2.499-.112-.111-.168-.277-.056-.417l1.731-2.001c.112-.139.279-.139.392-.028 1.229.973 3.041 2.001 5.162 2.001 2.262 0 3.573-1.14 3.573-2.724 0-1.362-.837-2.251-3.46-2.613l-1.004-.139c-3.656-.5-5.722-2.251-5.722-5.393 0-3.418 2.512-5.698 6.42-5.698 2.372 0 4.632.75 6.14 1.89.141.111.168.222.057.389l-1.34 2.057c-.111.139-.252.167-.391.083-1.535-1-2.959-1.474-4.549-1.474-1.926 0-2.987 1.057-2.987 2.529 0 1.306.921 2.196 3.488 2.558l1.006.139c3.655.5 5.666 2.224 5.666 5.476-.001 3.363-2.43 5.864-7.146 5.864z"/><path d="m2.323 35.053c-.216-.623-.323-1.397-.323-2.494s.107-1.871.323-2.494c.626-1.935 2.311-2.945 4.513-2.945 1.792 0 3.196.816 3.951 1.957.064.107.064.216-.043.302l-1.878 1.226c-.129.086-.238.064-.324-.043-.454-.623-.907-.902-1.663-.902-.799 0-1.382.365-1.619 1.117-.151.432-.195.925-.195 1.785 0 .858.043 1.354.195 1.783.237.754.82 1.118 1.619 1.118.756 0 1.208-.278 1.663-.901.086-.109.194-.129.324-.043l1.878 1.225c.108.087.108.193.043.301-.755 1.139-2.159 1.955-3.951 1.955-2.202-.001-3.886-1.012-4.513-2.947z"/><path d="m18.018 37.764c-.13 0-.216-.089-.216-.218v-.688h-.022c-.54.688-1.446 1.141-2.872 1.141-1.856 0-3.477-.968-3.477-3.184 0-2.299 1.749-3.354 4.34-3.354h1.856c.087 0 .13-.042.13-.128v-.388c0-.967-.476-1.418-2.138-1.418-1.058 0-1.834.301-2.332.666-.108.087-.216.065-.281-.043l-.972-1.698c-.064-.128-.043-.236.065-.302.885-.623 2.159-1.032 3.886-1.032 3.412 0 4.642 1.162 4.642 3.763v6.665c0 .129-.086.218-.216.218zm-.259-3.464v-.709c0-.087-.044-.13-.13-.13h-1.468c-1.273 0-1.856.365-1.856 1.184 0 .729.518 1.097 1.511 1.097 1.295-.001 1.943-.474 1.943-1.442z"/><path d="m34.927 37.764c-.13 0-.215-.089-.215-.218v-5.976c0-1.141-.562-1.893-1.644-1.893-1.035 0-1.617.752-1.617 1.893v5.977c0 .129-.088.217-.217.217h-2.59c-.131 0-.217-.088-.217-.217v-5.977c0-1.141-.539-1.893-1.619-1.893-1.037 0-1.641.752-1.641 1.893v5.977c0 .129-.087.217-.216.217h-2.591c-.131 0-.217-.088-.217-.217v-9.977c0-.127.086-.215.217-.215h2.591c.129 0 .216.088.216.215v.73h.021c.475-.645 1.36-1.183 2.699-1.183 1.273 0 2.203.452 2.807 1.312h.021c.778-.816 1.813-1.312 3.282-1.312 2.462 0 3.734 1.569 3.734 3.87v6.558c0 .129-.086.218-.217.218h-2.587z"/></g></svg>')
 		self.onLayoutFinish.append(self.onLayoutFinished)
 
 	def onLayoutFinished(self):
@@ -245,16 +243,18 @@ class OScamOverview(Screen, OScamGlobals):
 				currtype = client.get("type", "")
 				readeruser = {"s": "root", "h": "root", "p": client.get("rname_enc", ""), "r": client.get("rname_enc", ""), "c": client.get("name_enc", "")}.get(currtype, _("n/a"))
 				au = {"-1": "ON", "0": "OFF", "1": "ACTIVE"}.get(client.get("au", _("n/a")), _("n/a"))
-				ip = connection.get("ip", _("n/a"))
-				if config.softcam.hideServerName.value:
-					ip = "\u2022"
+				ip = connection.get("ip", "")
+				if ip and config.softcam.hideServerName.value:
+					ip = "".join(["\u2022"] * len(ip))
+				ip = ip or _("n/a")
 				port = connection.get("port", _("n/a"))
 				protocol = client.get("protocol", "")
 				srinfo = "%s:%s@%s" % (request.get("srvid", _("n/a")), request.get("caid", _("n/a")), request.get("provid", _("n/a")))
 				chinfo = "%s %s" % (request.get("chname", _("n/a")), request.get("chprovider", _("n/a")))
-				answered = request.get("answered", _("n/a"))
-				if config.softcam.hideServerName.value:
-					answered = "\u2022"
+				answered = request.get("answered", "")
+				if answered and config.softcam.hideServerName.value:
+					answered = "".join(["\u2022"] * len(answered))
+				answered = answered or _("n/a")
 				ecmtime = request.get("ecmtime", _("n/a"))
 				lbvaluereader = "%s (%s ms)" % (answered, ecmtime) if answered and ecmtime else request.get("lbvalue", _("n/a"))
 				login_iso = times.get("login")
@@ -312,7 +312,7 @@ class OScamOverview(Screen, OScamGlobals):
 
 class OScamShowLog(Screen, OScamGlobals):
 	skin = """
-		<screen name="OScamShowLog" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OScamInfo ShowLog" flags="wfNoBorder">
+		<screen name="OScamShowLog" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OScamInfo ShowLog" flags="wfNoBorder" resolution="1920,1080">
 			<widget source="title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
 				<convert type="ClockToText">Format:%H:%M:%S</convert>
