@@ -19,7 +19,7 @@ from Screens.CCcamInfo import CCcamInfoMain
 from Screens.HarddiskSetup import HarddiskConvertExt4Selection, HarddiskFsckSelection, HarddiskSelection
 from Screens.MountManager import HddMount
 from Screens.NetworkSetup import *
-from Screens.OScamInfo import OscamInfoMenu
+from Screens.OScamInfo import OScamOverview
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.PluginBrowser import PackageAction, PluginBrowser
 from Screens.RestartNetwork import RestartNetwork
@@ -424,7 +424,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Softcam Settings"):
 			self.session.open(SoftcamSetup)
 		elif item == _("OScam Information"):
-			self.session.open(OscamInfoMenu)
+			self.session.open(OScamOverview)
 		elif item == _("CCcam Information"):
 			self.session.open(CCcamInfoMain)
 		elif item == _("Download Softcams"):
