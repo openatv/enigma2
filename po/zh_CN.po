@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -5344,6 +5344,9 @@ msgstr "日期"
 msgid "Date / Time"
 msgstr ""
 
+msgid "Date Time Input Actions"
+msgstr ""
+
 msgid "Date ascending"
 msgstr ""
 
@@ -6577,6 +6580,9 @@ msgstr "EPG频道/频道选择"
 
 msgid "EPG Display Actions"
 msgstr "EPG显示动作"
+
+msgid "EPG Jump"
+msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "EPG导航动作"
@@ -8203,6 +8209,9 @@ msgstr "美食/美酒"
 msgid "Football"
 msgstr "足球"
 
+msgid "For how many minutes do you want to record?"
+msgstr "您想录制多少分钟？"
+
 msgid "Force AC3plus"
 msgstr "强制AC3"
 
@@ -9029,9 +9038,6 @@ msgstr "小时 分钟"
 msgid "Hours Minutes Seconds"
 msgstr "小时 分钟 秒"
 
-msgid "For how many minutes do you want to record?"
-msgstr "您想录制多少分钟？"
-
 msgid "Http(s) stream start delay"
 msgstr "Http(s)流开始延迟"
 
@@ -9636,6 +9642,9 @@ msgstr "正在从数据源中安装插件..."
 msgid "Instant Recording Actions"
 msgstr ""
 
+msgid "Instant Recording End Time"
+msgstr ""
+
 msgid "Instant record"
 msgstr "即时录像"
 
@@ -9789,14 +9798,32 @@ msgstr "工作概述"
 msgid "Jordan"
 msgstr "约旦"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "向后跳24小时"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "在频道选择中快速跳转"
 
 msgid "Jump forward 24 hours"
 msgstr "向前跳24小时"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "跳转到列表开头"
@@ -12861,9 +12888,6 @@ msgstr "请在编译时添加标题."
 
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "请耐心等待,备份即将创建.\n"
-
-msgid "Please change recording endtime"
-msgstr "请更改录像结束时间"
 
 msgid "Please check the manual of the receiver"
 msgstr "请检查接收器的手册"
@@ -15975,6 +15999,12 @@ msgstr "选择按键开始重复之前的时间延迟."
 msgid "Select the time delay between each repeat of the button."
 msgstr "选择每次重复按键之间的时间延迟."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
+
 msgid "Select the time when this timer should end."
 msgstr ""
 
@@ -16368,6 +16398,9 @@ msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr ""
 
 msgid "Set Scaling governor"
+msgstr ""
+
+msgid "Set Time"
 msgstr ""
 
 msgid "Set action for 'Info' key"
@@ -21425,18 +21458,6 @@ msgstr "观看影片..."
 msgid "Watch recordings"
 msgstr "观看录像"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"我们真的很抱歉.您的接收器遇到了一个软件问题,需要重新启动.\n"
-"请将日志文件 %senigma2_crash_xxxxxx.log发送到www.openatv.\n"
-"您的接收机将在10秒内重新启动!\n"
-"组件: enigma2"
-
 msgid "Weather"
 msgstr "天气"
 
@@ -23410,6 +23431,21 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "请更改录像结束时间"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "我们真的很抱歉.您的接收器遇到了一个软件问题,需要重新启动.\n"
+#~ "请将日志文件 %senigma2_crash_xxxxxx.log发送到www.openatv.\n"
+#~ "您的接收机将在10秒内重新启动!\n"
+#~ "组件: enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

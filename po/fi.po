@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
-"PO-Revision-Date: 2023-12-15 17:17+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"PO-Revision-Date: 2023-12-26 16:12+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 msgid ""
 "\n"
@@ -5355,6 +5355,9 @@ msgstr "Päivämäärä"
 msgid "Date / Time"
 msgstr "Päivämäärä / Kellonaika"
 
+msgid "Date Time Input Actions"
+msgstr "Päivämäärä Asetukset"
+
 msgid "Date ascending"
 msgstr "Päivämäärä nouseva"
 
@@ -6590,6 +6593,9 @@ msgstr "EPG Kanavan/Palvelun valinta"
 
 msgid "EPG Display Actions"
 msgstr "EPG Näyttö toiminnot"
+
+msgid "EPG Jump"
+msgstr "EPG Hyppy"
 
 msgid "EPG Navigation Actions"
 msgstr "EPG Navigointi Toiminnot"
@@ -8218,6 +8224,9 @@ msgstr "Ruoka/Viini"
 msgid "Football"
 msgstr "Jalkapallo"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Kuinka monta minuuttia haluat tallentaa?"
+
 msgid "Force AC3plus"
 msgstr "pakota AC3plus"
 
@@ -9044,9 +9053,6 @@ msgstr "Tunnit Minuutit"
 msgid "Hours Minutes Seconds"
 msgstr "Tunnit Minuutit Sekunnit"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Kuinka monta minuuttia haluat tallentaa?"
-
 msgid "Http(s) stream start delay"
 msgstr "Http/https streamin käynnistysviive"
 
@@ -9656,6 +9662,9 @@ msgstr "Asenna lisäosia syötteestä ..."
 msgid "Instant Recording Actions"
 msgstr "Pikatallennuksen hakemisto"
 
+msgid "Instant Recording End Time"
+msgstr "Pikatallennuksen loppu aika"
+
 msgid "Instant record"
 msgstr "Pikatallennus"
 
@@ -9809,14 +9818,32 @@ msgstr "Työn yleiskatsaus"
 msgid "Jordan"
 msgstr "Jordan"
 
+msgid "Jump"
+msgstr "Hyppy"
+
 msgid "Jump back 24 hours"
 msgstr "Hyppää takaisin 24 tuntia"
+
+msgid "Jump back one day"
+msgstr "Hyppää takaisin yksi päivä"
+
+msgid "Jump back one hour"
+msgstr "Hyppää takaisin tunti"
 
 msgid "Jump first press in channel selection"
 msgstr "Numeropainalluksen hyppy kanavanvalinnassa"
 
 msgid "Jump forward 24 hours"
 msgstr "Hyppää eteen 24 tuntia"
+
+msgid "Jump forward one day"
+msgstr "Hyppää eteenpäin yksi päivä"
+
+msgid "Jump forward one hour"
+msgstr "Hyppää tunti eteenpäin"
+
+msgid "Jump time"
+msgstr "Hyppyaika"
 
 msgid "Jump to beginning of list"
 msgstr "Hyppää listan alkuun"
@@ -12892,9 +12919,6 @@ msgstr "Lisää tallenteita kokoelmaan."
 
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Odota hetki, varmuuskopiota tehdään nyt,\n"
-
-msgid "Please change recording endtime"
-msgstr "Aseta tallennuksen päättymisaika"
 
 msgid "Please check the manual of the receiver"
 msgstr "Tarkista vastaanottimen ohjekirjasta"
@@ -16024,6 +16048,12 @@ msgstr "Valitse aikaviive ennen kuin painike alkaa toistua."
 msgid "Select the time delay between each repeat of the button."
 msgstr "Valitse aikaviive kunkin painikkeen toistamisen välillä."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr "Valitse aika, johon EPG:n tulisi asettaa. Paina Vasen/Oikea painiketta vähentääksesi tai lisätäksesi aikaa tunnilla. Paina Takaisin/Seuraava painiketta lyhentääksesi/kasvataksesi aikaa päivissä."
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr "Valitse aika, jolloin pikatallennus päättyy. Paina Vasen/Oikea vähentääksesi tai lisätäksesi aikaa minuutilla. Paina Takaisin/seuraava painiketta vähentääksesi tai lisätäksesi aikaa tunnilla."
+
 msgid "Select the time when this timer should end."
 msgstr "Valitse aika, jolloin ajastuksen pitäisi päättyä."
 
@@ -16426,6 +16456,9 @@ msgstr "Aseta suorittimen minimi taajuus ytimille 2, 3, 4 ja 5"
 
 msgid "Set Scaling governor"
 msgstr "Aseta skaalaus säädin"
+
+msgid "Set Time"
+msgstr "Aseta aika"
 
 msgid "Set action for 'Info' key"
 msgstr "Valitse toiminto ajastimelle"
@@ -18806,7 +18839,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 06.12.2023\n"
+"Suomenkielinen käännös: 25.12.2023\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -21565,18 +21598,6 @@ msgstr "Toista tallenteet..."
 msgid "Watch recordings"
 msgstr "Katso tallenteita"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Olemme todella pahoillamme. Vastaanotin kohtasi ohjelmisto ongelman, ja se on käynnistettävä uudelleen.\n"
-"Lähetä lokitiedosto %senigma2_crash_xxxxxx.log www.opena.tv.\n"
-"Vastaanotin käynnistyy uudelleen 10 sekunnin kuluttua!\n"
-"Komponentti: enigma2"
-
 msgid "Weather"
 msgstr "Sää"
 
@@ -23568,6 +23589,21 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Aseta tallennuksen päättymisaika"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Olemme todella pahoillamme. Vastaanotin kohtasi ohjelmisto ongelman, ja se on käynnistettävä uudelleen.\n"
+#~ "Lähetä lokitiedosto %senigma2_crash_xxxxxx.log www.opena.tv.\n"
+#~ "Vastaanotin käynnistyy uudelleen 10 sekunnin kuluttua!\n"
+#~ "Komponentti: enigma2"
 
 #~ msgid "+24"
 #~ msgstr "Seuraavat 24h"

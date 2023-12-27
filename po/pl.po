@@ -12,16 +12,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
-"PO-Revision-Date: 2023-12-13 02:35+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"PO-Revision-Date: 2023-12-24 14:55+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -5016,11 +5016,11 @@ msgstr "Nie można otworzyć pliku %s!"
 
 #, python-format
 msgid "Could not record due to conflicting timer:%s"
-msgstr "Nie można nagrać z powodu konfliktu timera: %s"
+msgstr "Nie można nagrać z powodu konfliktu timera:%s"
 
 #, python-format
 msgid "Could not record due to invalid service:%s"
-msgstr "Nie można nagrać z powodu nieprawidłowego %s kanału"
+msgstr "Nie można nagrać z powodu nieprawidłowej usługi:%s"
 
 #, python-format
 msgid "Could not save configuration file %s!"
@@ -5388,6 +5388,9 @@ msgstr "Data"
 
 msgid "Date / Time"
 msgstr "Data / Czas"
+
+msgid "Date Time Input Actions"
+msgstr "Działania związane z wprowadzaniem daty i godziny"
 
 msgid "Date ascending"
 msgstr "Data rosnąco"
@@ -6625,6 +6628,9 @@ msgstr "Wybór Kanału/Serwisu EPG"
 
 msgid "EPG Display Actions"
 msgstr "Akcje wyświetlania EPG"
+
+msgid "EPG Jump"
+msgstr "Skok EPG"
 
 msgid "EPG Navigation Actions"
 msgstr "Akcje nawigacji EPG"
@@ -8255,6 +8261,9 @@ msgstr "Jedzenie/Wino"
 msgid "Football"
 msgstr "Piłka nożna"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Przez ile minut chcesz nagrywać?"
+
 msgid "Force AC3plus"
 msgstr "wymuś AC3plus"
 
@@ -9081,9 +9090,6 @@ msgstr "Godziny Minuty"
 msgid "Hours Minutes Seconds"
 msgstr "Godziny Minuty Sekundy"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Ile minut chcesz nagrywać?"
-
 msgid "Http(s) stream start delay"
 msgstr "Opóźnienie startu strumieniowania Http(s)"
 
@@ -9688,6 +9694,9 @@ msgstr "Instalowanie wtyczek z kanału oprogramowania..."
 msgid "Instant Recording Actions"
 msgstr "Akcje natychmiastowego nagrywania"
 
+msgid "Instant Recording End Time"
+msgstr "Natychmiastowy czas zakończenia nagrywania"
+
 msgid "Instant record"
 msgstr "Natychmiastowe nagranie"
 
@@ -9841,14 +9850,32 @@ msgstr "Skocz do końca listy"
 msgid "Jordan"
 msgstr "Jordania"
 
+msgid "Jump"
+msgstr "Skok"
+
 msgid "Jump back 24 hours"
 msgstr "Cofnij się o 24 godziny"
+
+msgid "Jump back one day"
+msgstr "Skocz w tył o jeden dzień"
+
+msgid "Jump back one hour"
+msgstr "Skocz w tył o godzinę"
 
 msgid "Jump first press in channel selection"
 msgstr "Ustawienie 'Skocz do...' na liście kanałów"
 
 msgid "Jump forward 24 hours"
 msgstr "Skocz do przodu 24 godzin"
+
+msgid "Jump forward one day"
+msgstr "Skocz w przód o jeden dzień"
+
+msgid "Jump forward one hour"
+msgstr "Skocz w przód o godzinę"
+
+msgid "Jump time"
+msgstr "Czas skoku"
 
 msgid "Jump to beginning of list"
 msgstr "Skocz do początku listy"
@@ -12920,9 +12947,6 @@ msgstr "Dodaj tytuły do kompilacji."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Prosimy o cierpliwość, teraz zostanie utworzona kopia zapasowa,\n"
 
-msgid "Please change recording endtime"
-msgstr "Zmień czas zakończenia nagrywania"
-
 msgid "Please check the manual of the receiver"
 msgstr "Sprawdź instrukcję obsługi odbiornika"
 
@@ -14025,7 +14049,7 @@ msgstr "Nagrywanie rozpoczęte! Zatrzymywanie timeshift'u..."
 
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
-msgstr "Czas nagrywania ograniczony z powodu konfliktu timera: %s"
+msgstr "Czas nagrywania ograniczony z powodu konfliktu timera:%s"
 
 msgid "Record write error (no space on disk?)"
 msgstr "Błąd zapisu nagrywania (brak miejsca na dysku?)"
@@ -16043,6 +16067,12 @@ msgstr "Wybierz opóźnienie zanim przycisk rozpocznie powtarzanie."
 msgid "Select the time delay between each repeat of the button."
 msgstr "Wybierz opóźnienie pomiędzy każdym powtórzeniem przycisku."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr "Wybierz godzinę, na którą ma być ustawiony EPG. Naciśnij LEWO/PRAWO, aby zmniejszyć/zwiększyć czas o godzinę. Naciśnij POPRZEDNI/DALEJ, aby zmniejszyć/zwiększyć czas o jeden dzień."
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr "Wybierz godzinę, o której ma się zakończyć licznik natychmiastowego nagrywania. Naciśnij LEWO/PRAWO, aby zmniejszyć/zwiększyć czas o minutę. Naciśnij POPRZEDNI/DALEJ, aby zmniejszyć/zwiększyć czas o godzinę."
+
 msgid "Select the time when this timer should end."
 msgstr "Wybierz czas, w którym ten timer ma się zakończyć."
 
@@ -16443,6 +16473,9 @@ msgstr "Ustaw Minimalną częstotliwość CPU dla rdzeni 2, 3, 4 oraz 5"
 
 msgid "Set Scaling governor"
 msgstr "Ustaw regulator skalowania"
+
+msgid "Set Time"
+msgstr "Ustaw czas"
 
 msgid "Set action for 'Info' key"
 msgstr "Wybierz akcję dla klawisza 'INFO'"
@@ -21576,18 +21609,6 @@ msgstr "Oglądaj filmy..."
 msgid "Watch recordings"
 msgstr "Oglądaj nagrania"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Przepraszamy. odbiornik ma problem z oprogramowaniem i musi zostać ponownie uruchomiony.\n"
-"Wyślij dziennik pliku %s enigma2_crash_xxxxxx.log do www.opena.tv.\n"
-"Odbiornik uruchomi się ponownie za 10 sekund!\n"
-"Komponent: enigma2"
-
 msgid "Weather"
 msgstr "Pogoda"
 
@@ -23574,6 +23595,21 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Zmień czas zakończenia nagrywania"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Przepraszamy. odbiornik ma problem z oprogramowaniem i musi zostać ponownie uruchomiony.\n"
+#~ "Wyślij dziennik pliku %s enigma2_crash_xxxxxx.log do www.opena.tv.\n"
+#~ "Odbiornik uruchomi się ponownie za 10 sekund!\n"
+#~ "Komponent: enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

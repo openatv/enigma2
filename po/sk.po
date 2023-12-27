@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
-"PO-Revision-Date: 2023-12-16 02:20+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"PO-Revision-Date: 2023-12-27 11:03+0000\n"
 "Last-Translator: Atec <dr.atec@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.3\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 msgid ""
 "\n"
@@ -5379,6 +5379,9 @@ msgstr "Dátum"
 msgid "Date / Time"
 msgstr "Dátum/čas"
 
+msgid "Date Time Input Actions"
+msgstr "Akcie pre zadanie času / dátumu"
+
 msgid "Date ascending"
 msgstr "Dátum vzostupne"
 
@@ -6615,6 +6618,9 @@ msgstr "Výber EPG kanálu/služby"
 
 msgid "EPG Display Actions"
 msgstr "Akcie zobrazenia EPG"
+
+msgid "EPG Jump"
+msgstr "EPG skok"
 
 msgid "EPG Navigation Actions"
 msgstr "Akcie navigácie v EPG"
@@ -8245,6 +8251,9 @@ msgstr "Jedlo/víno"
 msgid "Football"
 msgstr "Futbal"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Koľko minút chcete nahrávať?"
+
 msgid "Force AC3plus"
 msgstr "vynútiť AC3plus"
 
@@ -9071,9 +9080,6 @@ msgstr "Hodiny Minúty"
 msgid "Hours Minutes Seconds"
 msgstr "Hodiny Minúty Sekundy"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Koľko minút chcete nahrávať?"
-
 msgid "Http(s) stream start delay"
 msgstr "Oneskorenie spustenia http(s) streamu"
 
@@ -9676,7 +9682,10 @@ msgid "Installing plugins from feed ..."
 msgstr "Inštalácia pluginov zo zdroja softvéru…"
 
 msgid "Instant Recording Actions"
-msgstr ""
+msgstr "Akcie pre okamžité nahrávanie"
+
+msgid "Instant Recording End Time"
+msgstr "Čas ukončenia okamžitého nahrávania"
 
 msgid "Instant record"
 msgstr "Okamžité nahrávanie"
@@ -9831,14 +9840,32 @@ msgstr "Prehľad úlohy"
 msgid "Jordan"
 msgstr "Jordánsko"
 
+msgid "Jump"
+msgstr "Skočiť"
+
 msgid "Jump back 24 hours"
 msgstr "Preskočiť o 24 hodín dozadu"
+
+msgid "Jump back one day"
+msgstr "Skok o jeden deň dozadu"
+
+msgid "Jump back one hour"
+msgstr "Skok o jednu hodinu dozadu"
 
 msgid "Jump first press in channel selection"
 msgstr "Pri prvom stlačení preskočiť do výberu kanálov"
 
 msgid "Jump forward 24 hours"
 msgstr "Preskočiť o 24 hodín dopredu"
+
+msgid "Jump forward one day"
+msgstr "Skok o jeden deň dopredu"
+
+msgid "Jump forward one hour"
+msgstr "Skok o jednu hodinu dopredu"
+
+msgid "Jump time"
+msgstr "Čas skoku"
 
 msgid "Jump to beginning of list"
 msgstr "Preskočiť na začiatok zoznamu"
@@ -12675,7 +12702,7 @@ msgstr "Heslo zmenené."
 
 #, python-format
 msgid "Path '%s' missing!"
-msgstr ""
+msgstr "Cesta '%s' nie je dostupná!"
 
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Neexistuje cesta na uloženie: '/tmp/'"
@@ -12908,9 +12935,6 @@ msgstr "Prosím, pridajte tituly do kompilácie."
 
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Prosím, buďte trpezliví, vytvára sa záloha image,\n"
-
-msgid "Please change recording endtime"
-msgstr "Prosím, zmeňte čas ukončenia nahrávania"
 
 msgid "Please check the manual of the receiver"
 msgstr "Prosím, pozrite si návod na obsluhu prijímača"
@@ -16032,6 +16056,12 @@ msgstr "Vyberte oneskorenie pred spustením opakovania tlačidla."
 msgid "Select the time delay between each repeat of the button."
 msgstr "Vyberte oneskorenie medzi jednotlivými opakovaniami tlačidla."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr "Zvoľte čas, na ktorý sa má EPG nastaviť. Tlačidlami VĽAVO/VPRAVO znížite/zvýšite čas o hodinu. Tlačidlami PREV/NEXT znížite/zvýšite čas o deň."
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr "Zvoľte čas, kedy sa má tento časovač okamžitého nahrávania ukončiť. Tlačidlom VĽAVO/VPRAVO znížite/zvýšite čas o minútu. Tlačidlom PREV/NEXT znížite/zvýšite čas o hodinu."
+
 msgid "Select the time when this timer should end."
 msgstr "Vyberte čas, kedy sa má tento časovač ukončiť."
 
@@ -16432,6 +16462,9 @@ msgstr "Nastaviť MIN frekvenciu CPU pre jadrá 2, 3, 4 a 5"
 
 msgid "Set Scaling governor"
 msgstr "Nastaviť regulátor škálovania"
+
+msgid "Set Time"
+msgstr "Nastavte čas"
 
 msgid "Set action for 'Info' key"
 msgstr "Nastavte akciu pre tlačidlo 'Info'"
@@ -17053,7 +17086,7 @@ msgid "Show Security packages"
 msgstr "Zobraziť bezpečnostné balíčky"
 
 msgid "Show Service Information"
-msgstr ""
+msgstr "Zobraziť informácie o stanici"
 
 msgid "Show Setting packages"
 msgstr "Zobraziť balíčky s nastavením"
@@ -17831,11 +17864,11 @@ msgstr "Slot %s: %s ako obnova z USB"
 
 #, python-format
 msgid "Slot '%s' %s"
-msgstr ""
+msgstr "Slot '%s' %s"
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
-msgstr ""
+msgstr "Slot '%s' %s: %s%s"
 
 msgid "Slot Manager"
 msgstr "Správca slotov"
@@ -17995,7 +18028,7 @@ msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Žiaľ, zdroje softvéru nie sú kvôli údržbe dostupné. Skúste to neskôr, prosím."
 
 msgid "Sorry it is only possible to record 2 channels at once!"
-msgstr "Prepáčte, naraz je možné nahrávať iba 2 kanály"
+msgstr "Prepáčte, súčasne je možné nahrávať iba 2 kanály!"
 
 msgid "Sorry no backups found!"
 msgstr "Žiaľ, nenašli sa žiadne zálohy!"
@@ -18191,7 +18224,7 @@ msgid "Start Wizard"
 msgstr "Spustiť sprievodcu"
 
 msgid "Start an instant recording"
-msgstr ""
+msgstr "Spustiť okamžité nahrávanie"
 
 msgid "Start date"
 msgstr "Počiatočný dátum"
@@ -18209,7 +18242,7 @@ msgid "Start instant recording"
 msgstr "Spustiť okamžité nahrávanie"
 
 msgid "Start instant recording?"
-msgstr ""
+msgstr "Má sa spustiť okamžité nahrávanie?"
 
 msgid "Start mode"
 msgstr "Režim spustenia"
@@ -19923,7 +19956,7 @@ msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift bol uložený na pevný disk!"
 
 msgid "Time shift will get saved at end of event."
-msgstr "Timeshift sa uloží na konci udalosti!"
+msgstr "Timeshift sa uloží na konci udalosti."
 
 msgid "Time style"
 msgstr "Štýl času"
@@ -20482,7 +20515,7 @@ msgstr "USB kľúč"
 
 #, python-format
 msgid "USB slot %s%s"
-msgstr ""
+msgstr "USB slot %s%s"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "CHYBA pri prepnutí na USB! Už je na USB"
@@ -21439,7 +21472,7 @@ msgid "Volume up"
 msgstr "Zvýšiť hlasitosť"
 
 msgid "Vu+ MultiBoot"
-msgstr ""
+msgstr "Vu+ MultiBoot"
 
 msgid "W"
 msgstr "Z"
@@ -21563,18 +21596,6 @@ msgstr "Sledovať filmy…"
 
 msgid "Watch recordings"
 msgstr "Sledovať nahrávky"
-
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Je nám ľúto. Prijímač narazil na softvérový problém a musí sa reštartovať.\n"
-"Prosím, pošlite súbor denníka %senigma2_crash_xxxxxx.log na www.opena.tv.\n"
-"Prijímač sa reštartuje o 10 sekúnd!\n"
-"Komponent: Enigma2"
 
 msgid "Weather"
 msgstr "Počasie"
@@ -23562,6 +23583,21 @@ msgstr "áno (zachovať zdroje softvéru)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Prosím, zmeňte čas ukončenia nahrávania"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Je nám ľúto. Prijímač narazil na softvérový problém a musí sa reštartovať.\n"
+#~ "Prosím, pošlite súbor denníka %senigma2_crash_xxxxxx.log na www.opena.tv.\n"
+#~ "Prijímač sa reštartuje o 10 sekúnd!\n"
+#~ "Komponent: Enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

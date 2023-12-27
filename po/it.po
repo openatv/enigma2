@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
-"PO-Revision-Date: 2023-12-24 10:29+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"PO-Revision-Date: 2023-12-25 07:07+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -5345,6 +5345,9 @@ msgstr "Data"
 msgid "Date / Time"
 msgstr "Data / Ora"
 
+msgid "Date Time Input Actions"
+msgstr "Azioni immissione data e ora"
+
 msgid "Date ascending"
 msgstr "Data crescente"
 
@@ -6580,6 +6583,9 @@ msgstr "Canale EPG/Selezione servizio"
 
 msgid "EPG Display Actions"
 msgstr "Azioni di visualizzazione EPG"
+
+msgid "EPG Jump"
+msgstr "Salto EPG"
 
 msgid "EPG Navigation Actions"
 msgstr "Azioni di navigazione EPG"
@@ -8208,6 +8214,9 @@ msgstr "Cibo/Vino"
 msgid "Football"
 msgstr "Calcio"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Quanti minuti vuoi registrare?"
+
 msgid "Force AC3plus"
 msgstr "Forza AC3plus"
 
@@ -9034,9 +9043,6 @@ msgstr "Ore Minuti"
 msgid "Hours Minutes Seconds"
 msgstr "Ore Minuti Secondi"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Quanti minuti vuoi registrare?"
-
 msgid "Http(s) stream start delay"
 msgstr "Ritardo di avvio del flusso HTTP(s)"
 
@@ -9641,6 +9647,9 @@ msgstr "Installazione plugin dal feed..."
 msgid "Instant Recording Actions"
 msgstr "Azioni registrazione istantanea"
 
+msgid "Instant Recording End Time"
+msgstr "Ora di fine registrazione istantanea"
+
 msgid "Instant record"
 msgstr "Registrazione istantanea"
 
@@ -9794,14 +9803,32 @@ msgstr "Vista attività"
 msgid "Jordan"
 msgstr "Giordania"
 
+msgid "Jump"
+msgstr "Salta"
+
 msgid "Jump back 24 hours"
 msgstr "Vai indietro di 24 ore"
+
+msgid "Jump back one day"
+msgstr "Vai indietro di un giorno"
+
+msgid "Jump back one hour"
+msgstr "Vai indietro di un'ora"
 
 msgid "Jump first press in channel selection"
 msgstr "Salta la prima pressione nella selezione del canale"
 
 msgid "Jump forward 24 hours"
 msgstr "Vai avanti di 24 ore"
+
+msgid "Jump forward one day"
+msgstr "Vai avanti di un giorno"
+
+msgid "Jump forward one hour"
+msgstr "Vai avanti di un'ora"
+
+msgid "Jump time"
+msgstr "Tempo da saltare"
 
 msgid "Jump to beginning of list"
 msgstr "Vai all'inizio dell'elenco"
@@ -12869,9 +12896,6 @@ msgstr "Aggiungi titoli alla raccolta."
 
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Per favore sii paziente, ora verrà eseguito un backup,\n"
-
-msgid "Please change recording endtime"
-msgstr "Cambia orario di fine registrazione"
 
 msgid "Please check the manual of the receiver"
 msgstr "Verifica sul manuale del ricevitore"
@@ -15989,6 +16013,12 @@ msgstr "Seleziona ritardo prima che il tasto inizi a ripetere."
 msgid "Select the time delay between each repeat of the button."
 msgstr "Seleziona ritardo tra ogni ripetizione del tasto."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr "Seleziona l'ora in cui posizionare l'EPG. Premi LEFT/RIGHT per diminuire/aumentare il tempo di un'ora. Premi PREV/NEXT per diminuire/aumentare il tempo di un giorno."
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr "Seleziona l'ora in cui dovrebbe terminare il timer di registrazione istantanea. Premi LEFT/RIGHT per diminuire/aumentare il tempo di un minuto. Premi PREV/NEXT per diminuire/aumentare il tempo di un'ora."
+
 msgid "Select the time when this timer should end."
 msgstr "Seleziona ora in cui questo timer dovrebbe finire."
 
@@ -16389,6 +16419,9 @@ msgstr "Imposta frequenza MIN CPU per i core 2, 3, 4 e 5"
 
 msgid "Set Scaling governor"
 msgstr "Imposta regolatore di scalabilità"
+
+msgid "Set Time"
+msgstr "Imposta tempo"
 
 msgid "Set action for 'Info' key"
 msgstr "Imposta azione per il tasto 'INFO'"
@@ -21519,18 +21552,6 @@ msgstr "Guarda registrazioni..."
 msgid "Watch recordings"
 msgstr "Guarda le registrazioni"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Il ricevitore ha avuto un problema software e deve essere riavviato.\n"
-"Per favore invia il file di registro %senigma2_crash_xxxxxx.log a www.opena.tv.\n"
-"Il ricevitore si riavvierà automaticamente tra 10 secondi!\n"
-"Componente: enigma2"
-
 msgid "Weather"
 msgstr "Meteo"
 
@@ -23516,6 +23537,21 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Cambia orario di fine registrazione"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Il ricevitore ha avuto un problema software e deve essere riavviato.\n"
+#~ "Per favore invia il file di registro %senigma2_crash_xxxxxx.log a www.opena.tv.\n"
+#~ "Il ricevitore si riavvierà automaticamente tra 10 secondi!\n"
+#~ "Componente: enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

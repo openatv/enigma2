@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -5390,6 +5390,9 @@ msgstr "Dátum"
 msgid "Date / Time"
 msgstr ""
 
+msgid "Date Time Input Actions"
+msgstr ""
+
 msgid "Date ascending"
 msgstr ""
 
@@ -6629,6 +6632,9 @@ msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Jump"
 msgstr ""
 
 msgid "EPG Navigation Actions"
@@ -8262,6 +8268,9 @@ msgstr "Élelmiszer/Bor"
 msgid "Football"
 msgstr "Labdarúgás"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Hány percet szeretne felvenni?"
+
 msgid "Force AC3plus"
 msgstr "a AC3plus kikényszerítése"
 
@@ -9097,9 +9106,6 @@ msgstr "Óra Perc"
 msgid "Hours Minutes Seconds"
 msgstr "Óra Perc Másodperc"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Hány percet szeretne felvenni?"
-
 msgid "Http(s) stream start delay"
 msgstr "Http(s) stream indítás késleltetése"
 
@@ -9711,6 +9717,9 @@ msgstr "Bővítmény telepítése Feed-ből..."
 msgid "Instant Recording Actions"
 msgstr ""
 
+msgid "Instant Recording End Time"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Azonnali felvétel"
 
@@ -9867,14 +9876,32 @@ msgstr "Folyamat nézet"
 msgid "Jordan"
 msgstr "Jordánia"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "Ugorj vissza 24 órát"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Ugráshoz először nyomja meg a csatorna kiválasztását"
 
 msgid "Jump forward 24 hours"
 msgstr "Ugorj előre 24 órát"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Ugrás a lista elejére"
@@ -13004,9 +13031,6 @@ msgstr "Kérem, adjon a válogatáshoz hozzá tételeket."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Kérem, legyen türelemmel, most készen áll egy mentés,\n"
 
-msgid "Please change recording endtime"
-msgstr "Befejezés ideje"
-
 msgid "Please check the manual of the receiver"
 msgstr "Kérjük, ellenőrizze a vevőkészülék kézikönyvét"
 
@@ -16135,6 +16159,12 @@ msgstr ""
 msgid "Select the time delay between each repeat of the button."
 msgstr ""
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
+
 msgid "Select the time when this timer should end."
 msgstr ""
 
@@ -16533,6 +16563,9 @@ msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr ""
 
 msgid "Set Scaling governor"
+msgstr ""
+
+msgid "Set Time"
 msgstr ""
 
 msgid "Set action for 'Info' key"
@@ -21647,18 +21680,6 @@ msgstr "Felvett filmek lejátszása..."
 msgid "Watch recordings"
 msgstr "Felvételek megtekintése..."
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Nagyon sajnáljuk. A vevőegység egy szoftveres problémát észlelt, és újra kell indítani.\n"
-"Kérjük, küldje el a %s enigma2_crash_xxxxxx.log naplófájlt a www.opena.tv weboldalra.\n"
-"A vevőegység 10 másodpercen belül újraindul!\n"
-"Komponens: enigma2"
-
 msgid "Weather"
 msgstr "Időjárás"
 
@@ -23640,6 +23661,21 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Befejezés ideje"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Nagyon sajnáljuk. A vevőegység egy szoftveres problémát észlelt, és újra kell indítani.\n"
+#~ "Kérjük, küldje el a %s enigma2_crash_xxxxxx.log naplófájlt a www.opena.tv weboldalra.\n"
+#~ "A vevőegység 10 másodpercen belül újraindul!\n"
+#~ "Komponens: enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+1 nap"

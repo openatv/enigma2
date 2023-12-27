@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -5347,6 +5347,9 @@ msgstr "Data"
 msgid "Date / Time"
 msgstr ""
 
+msgid "Date Time Input Actions"
+msgstr ""
+
 msgid "Date ascending"
 msgstr ""
 
@@ -6580,6 +6583,9 @@ msgstr "Zgjedhja e kanalit/shërbimit EPG"
 
 msgid "EPG Display Actions"
 msgstr "Veprimet e shfaqjes së EPG"
+
+msgid "EPG Jump"
+msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "Veprimet e navigimit EPG"
@@ -8208,6 +8214,9 @@ msgstr "Ushqim/Verë"
 msgid "Football"
 msgstr "Futboll"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Sa minuta dëshironi të regjistroni?"
+
 msgid "Force AC3plus"
 msgstr ""
 
@@ -9034,9 +9043,6 @@ msgstr "Orë Min"
 msgid "Hours Minutes Seconds"
 msgstr "Orë Min. Sec"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Sa minuta dëshironi të regjistroni?"
-
 msgid "Http(s) stream start delay"
 msgstr "Http(s) vonesa e nisjes së rrjedhës"
 
@@ -9641,6 +9647,9 @@ msgstr ""
 msgid "Instant Recording Actions"
 msgstr ""
 
+msgid "Instant Recording End Time"
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
@@ -9794,13 +9803,31 @@ msgstr ""
 msgid "Jordan"
 msgstr ""
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
+msgstr ""
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
 msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr ""
 
 msgid "Jump forward 24 hours"
+msgstr ""
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
 msgstr ""
 
 msgid "Jump to beginning of list"
@@ -12839,9 +12866,6 @@ msgid "Please add titles to the compilation."
 msgstr ""
 
 msgid "Please be patient, a backup will now be made,\n"
-msgstr ""
-
-msgid "Please change recording endtime"
 msgstr ""
 
 msgid "Please check the manual of the receiver"
@@ -15941,6 +15965,12 @@ msgstr ""
 msgid "Select the time delay between each repeat of the button."
 msgstr ""
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
+
 msgid "Select the time when this timer should end."
 msgstr ""
 
@@ -16316,6 +16346,9 @@ msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr ""
 
 msgid "Set Scaling governor"
+msgstr ""
+
+msgid "Set Time"
 msgstr ""
 
 msgid "Set action for 'Info' key"
@@ -21341,18 +21374,6 @@ msgstr "Shikoni filma..."
 msgid "Watch recordings"
 msgstr "Shikoni regjistrimet"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Na vjen vërtet keq. Marrësi juaj ka hasur në një problem me softuerin dhe duhet të riniset.\n"
-"Ju lutemi dërgoni skedarin log %senigma2_crash_xxxxxx.log në www.opena.tv.\n"
-"Marrësi juaj rifillon për 10 sekonda!\n"
-"Komponenti: enigma2"
-
 msgid "Weather"
 msgstr "Moti"
 
@@ -23324,6 +23345,18 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Na vjen vërtet keq. Marrësi juaj ka hasur në një problem me softuerin dhe duhet të riniset.\n"
+#~ "Ju lutemi dërgoni skedarin log %senigma2_crash_xxxxxx.log në www.opena.tv.\n"
+#~ "Marrësi juaj rifillon për 10 sekonda!\n"
+#~ "Komponenti: enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

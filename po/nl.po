@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
-"PO-Revision-Date: 2023-12-23 13:07+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"PO-Revision-Date: 2023-12-27 11:03+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -5459,6 +5459,9 @@ msgstr "Datum"
 msgid "Date / Time"
 msgstr "Datum / Tijd"
 
+msgid "Date Time Input Actions"
+msgstr "Datum / tijd invoer Acties"
+
 msgid "Date ascending"
 msgstr "Datum oplopend"
 
@@ -6704,6 +6707,9 @@ msgstr "EPG Zenderselectie"
 
 msgid "EPG Display Actions"
 msgstr "EPG overzicht acties"
+
+msgid "EPG Jump"
+msgstr "EPG sprong"
 
 msgid "EPG Navigation Actions"
 msgstr "EPG navigatie acties"
@@ -8345,6 +8351,9 @@ msgstr "Eten/Wijn"
 msgid "Football"
 msgstr "Voetbal"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Hoeveel minuten wilt u opnemen?"
+
 msgid "Force AC3plus"
 msgstr "Forceer AC3plus"
 
@@ -9174,9 +9183,6 @@ msgstr "Uren minuten"
 msgid "Hours Minutes Seconds"
 msgstr "Uren minuten seconden"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Hoeveel minuten wilt u opnemen?"
-
 msgid "Http(s) stream start delay"
 msgstr "Http(s) stream start vertraging"
 
@@ -9731,7 +9737,7 @@ msgid "Install Plugin"
 msgstr "Plug-in installeren"
 
 msgid "Install Plugins"
-msgstr "Installeer plug-ins"
+msgstr "Plug-ins installeren"
 
 msgid "Install a new image with a USB stick"
 msgstr "Installeer een nieuwe image d.m.v. een USB-stick"
@@ -9784,6 +9790,9 @@ msgstr "Installeer plug-ins uit de feed ..."
 
 msgid "Instant Recording Actions"
 msgstr "Directe opname Acties"
+
+msgid "Instant Recording End Time"
+msgstr "Directe opname eindtijd"
 
 msgid "Instant record"
 msgstr "Onmiddellijk opnemen"
@@ -9938,14 +9947,32 @@ msgstr "Taak overzicht"
 msgid "Jordan"
 msgstr "Jordanië"
 
+msgid "Jump"
+msgstr "Springen"
+
 msgid "Jump back 24 hours"
 msgstr "Spring 24 uur terug"
+
+msgid "Jump back one day"
+msgstr "Een dag terug springen"
+
+msgid "Jump back one hour"
+msgstr "Een uur terug springen"
 
 msgid "Jump first press in channel selection"
 msgstr "Spring naar eerste zender"
 
 msgid "Jump forward 24 hours"
 msgstr "Spring 24 uur vooruit"
+
+msgid "Jump forward one day"
+msgstr "Een dag vooruit springen"
+
+msgid "Jump forward one hour"
+msgstr "Een uur vooruit springen"
+
+msgid "Jump time"
+msgstr "Tijdsprong"
 
 msgid "Jump to beginning of list"
 msgstr "Spring naar begin van de lijst"
@@ -13017,9 +13044,6 @@ msgstr "Gelieve titels aan de compilatie toe te voegen."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Even geduld, de back-up wordt nu gemaakt,\n"
 
-msgid "Please change recording endtime"
-msgstr "Wijzig de opname eindtijd"
-
 msgid "Please check the manual of the receiver"
 msgstr "Raadpleeg de handleiding van uw ontvanger, voor een"
 
@@ -13630,7 +13654,7 @@ msgid "Previous channel page"
 msgstr "Vorige zender pagina"
 
 msgid "Previous/Next bouquet"
-msgstr "vorige/volgende favorietenlijst"
+msgstr "Vorige/volgende favorietenlijst"
 
 msgid "Previous/Next page"
 msgstr "Vorige/volgende pagina"
@@ -16155,6 +16179,12 @@ msgstr "Stel een tijdvertraging in voor de knop repeat-functie."
 msgid "Select the time delay between each repeat of the button."
 msgstr "Stel een tijdvertraging in tussen elke repeat-functie van de knop."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr "De tijd kiezen, waar de EPG op ingesteld moet worden. Druk op LINKS/RECHTS om de tijd een UUR eerder/later in te stellen. Druk op OMHOOG/OMLAAG om de tijd een DAG eerder/later in te stellen."
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr "De tijd kiezen, wanneer deze Directe opname moet eindigen. Druk LINKS/RECHTS om de tijd een minuut eerder/later in te stellen. Druk OMHOOG/OMLAAG om de tijd een UUR eerder/later in te stellen."
+
 msgid "Select the time when this timer should end."
 msgstr "Kies de tijd waarna deze Timer moet eindigen."
 
@@ -16557,6 +16587,9 @@ msgstr "MIN CPU-frequentie instellen voor de cores 2, 3, 4 en 5"
 
 msgid "Set Scaling governor"
 msgstr "Scaling governor instellen"
+
+msgid "Set Time"
+msgstr "Tijd instellen"
 
 msgid "Set action for 'Info' key"
 msgstr "Selecteer actie voor INFO-knop"
@@ -21752,18 +21785,6 @@ msgstr "Films bekijken..."
 msgid "Watch recordings"
 msgstr "Opnames afspelen"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Uw ontvanger heeft een software probleem, en moet daarom worden herstart.\n"
-"Stuur a.u.b. het log-bestand %senigma2_crash_xxxxxx.log naar www.opena.tv.\n"
-"Uw ontvanger herstart over 10 seconden!\n"
-"Component: Enigma2"
-
 msgid "Weather"
 msgstr "Weer"
 
@@ -23771,6 +23792,21 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Wijzig de opname eindtijd"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Uw ontvanger heeft een software probleem, en moet daarom worden herstart.\n"
+#~ "Stuur a.u.b. het log-bestand %senigma2_crash_xxxxxx.log naar www.opena.tv.\n"
+#~ "Uw ontvanger herstart over 10 seconden!\n"
+#~ "Component: Enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

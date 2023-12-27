@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
 "PO-Revision-Date: 2023-08-12 03:37+0000\n"
 "Last-Translator: JPierre <jpcoquelle@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -5350,6 +5350,9 @@ msgstr "Date"
 msgid "Date / Time"
 msgstr ""
 
+msgid "Date Time Input Actions"
+msgstr ""
+
 msgid "Date ascending"
 msgstr ""
 
@@ -6586,6 +6589,9 @@ msgstr "Sélection des chaînes/services EPG"
 
 msgid "EPG Display Actions"
 msgstr "Actions d'affichage EPG"
+
+msgid "EPG Jump"
+msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "Actions de navigation EPG"
@@ -8213,6 +8219,9 @@ msgstr "Alimentation/Vin"
 msgid "Football"
 msgstr "football"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Combien de minutes voulez-vous enregistrer ?"
+
 msgid "Force AC3plus"
 msgstr "forcer AC3plus"
 
@@ -9040,9 +9049,6 @@ msgstr "Heures Mins"
 msgid "Hours Minutes Seconds"
 msgstr "Heures Mins Secs"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Combien de minutes voulez-vous enregistrer ?"
-
 msgid "Http(s) stream start delay"
 msgstr "Délai de démarrage du flux Http(s)"
 
@@ -9647,6 +9653,9 @@ msgstr "Installation des plugins à partir du flux ..."
 msgid "Instant Recording Actions"
 msgstr ""
 
+msgid "Instant Recording End Time"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Enregistrement immédiat"
 
@@ -9800,14 +9809,32 @@ msgstr "Vue travail"
 msgid "Jordan"
 msgstr "Jordanie"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "Revenir de 24 heures"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Comportement à la 1ère pression dans la sélection des chaînes"
 
 msgid "Jump forward 24 hours"
 msgstr "Avancer de 24 heures"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Aller au début de la liste"
@@ -12878,9 +12905,6 @@ msgstr "Veuillez ajouter les titres à la compilation."
 
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Soyez patient, une sauvegarde sera faite maintenant,\n"
-
-msgid "Please change recording endtime"
-msgstr "Veuillez changer l'heure de fin de l'enregistrement"
 
 msgid "Please check the manual of the receiver"
 msgstr "Veuillez consulter le manuel du récepteur"
@@ -15995,6 +16019,12 @@ msgstr "Sélectionnez le délai avant que le bouton ne commence à se répéter.
 msgid "Select the time delay between each repeat of the button."
 msgstr "Sélectionnez le délai entre chaque répétition du bouton."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
+
 msgid "Select the time when this timer should end."
 msgstr ""
 
@@ -16388,6 +16418,9 @@ msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr ""
 
 msgid "Set Scaling governor"
+msgstr ""
+
+msgid "Set Time"
 msgstr ""
 
 msgid "Set action for 'Info' key"
@@ -21471,18 +21504,6 @@ msgstr "Lire les films..."
 msgid "Watch recordings"
 msgstr "Regarder des enregistrements"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Nous sommes vraiment désolés. Votre récepteur a rencontré un problème logiciel et doit être redémarré.\n"
-"Merci d'envoyer le fichier log %senigma2_crash_xxxxxx.log sur www.opena.tv.\n"
-"Votre récepteur redémarre dans 10 secondes !\n"
-"Composant : enigma2"
-
 msgid "Weather"
 msgstr "Météo"
 
@@ -23461,6 +23482,21 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Veuillez changer l'heure de fin de l'enregistrement"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Nous sommes vraiment désolés. Votre récepteur a rencontré un problème logiciel et doit être redémarré.\n"
+#~ "Merci d'envoyer le fichier log %senigma2_crash_xxxxxx.log sur www.opena.tv.\n"
+#~ "Votre récepteur redémarre dans 10 secondes !\n"
+#~ "Composant : enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

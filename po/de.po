@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
-"PO-Revision-Date: 2023-12-13 02:35+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"PO-Revision-Date: 2023-12-26 16:12+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -5662,6 +5662,9 @@ msgstr "Datum"
 msgid "Date / Time"
 msgstr "Datum / Uhrzeit"
 
+msgid "Date Time Input Actions"
+msgstr "Datum/Zeit Eingabe Aktionen"
+
 msgid "Date ascending"
 msgstr "Datum aufsteigend"
 
@@ -6962,6 +6965,9 @@ msgstr "EPG Senderauswahl"
 
 msgid "EPG Display Actions"
 msgstr "EPG Anzeigeaktionen"
+
+msgid "EPG Jump"
+msgstr "EPG Sprung"
 
 msgid "EPG Navigation Actions"
 msgstr "EPG Navigationsaktionen"
@@ -8680,6 +8686,9 @@ msgstr "Essen/Wein"
 msgid "Football"
 msgstr "Football"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Wie viele Minuten sollen aufgenommen werden?"
+
 msgid "Force AC3plus"
 msgstr "Erzwinge AC3+"
 
@@ -9545,9 +9554,6 @@ msgstr "Stunden Minuten"
 msgid "Hours Minutes Seconds"
 msgstr "Stunden Minuten Sekunden"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Wie viele Minuten möchten Sie aufnehmen?"
-
 msgid "Http(s) stream start delay"
 msgstr "Startverzögerung für http(s)-Streams"
 
@@ -10186,6 +10192,9 @@ msgstr "Installiere Plugins vom Feed..."
 msgid "Instant Recording Actions"
 msgstr "Sofortaufnahme-Aktionen"
 
+msgid "Instant Recording End Time"
+msgstr "Sofortaufnahme Endzeit"
+
 msgid "Instant record"
 msgstr "Sofortaufnahme"
 
@@ -10348,14 +10357,32 @@ msgstr "Jobübersicht"
 msgid "Jordan"
 msgstr "Jordanien"
 
+msgid "Jump"
+msgstr "Springen"
+
 msgid "Jump back 24 hours"
 msgstr "Springe 24 Stunden rückwärts"
+
+msgid "Jump back one day"
+msgstr "Springe einen Tag zurück"
+
+msgid "Jump back one hour"
+msgstr "Springe eine Stunde zurück"
 
 msgid "Jump first press in channel selection"
 msgstr "Springe zuerst in Programmauswahl"
 
 msgid "Jump forward 24 hours"
 msgstr "Springe 24 Stunden vorwärts"
+
+msgid "Jump forward one day"
+msgstr "Springe einen Tag vor"
+
+msgid "Jump forward one hour"
+msgstr "Springe eine Stunde vor"
+
+msgid "Jump time"
+msgstr "Sprung-Zeit"
 
 msgid "Jump to beginning of list"
 msgstr "Zum Anfang der Liste springen"
@@ -13679,10 +13706,6 @@ msgstr "Titel zur Zusammenstellung hinzufügen."
 #
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Bitte etwas Geduld, die Sicherung wird erstellt.\n"
-
-#
-msgid "Please change recording endtime"
-msgstr "Aufnahmeendzeit ändern"
 
 # ImageBackup.py
 msgid "Please check the manual of the receiver"
@@ -17043,6 +17066,12 @@ msgstr "Zeitverzögerung wählen, bevor sich die Taste zu wiederholen beginnt."
 msgid "Select the time delay between each repeat of the button."
 msgstr "Zeitverzögerung zwischen den Tastenwiederholungen wählen."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr "Die Zeit wählen, auf die der EPG gesetzt werden soll. Links/Rechts verringert/erhöht diese Zeit um eine Stunde. Hoch/Runter verringert/erhöht diese Zeit um einen Tag."
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr "Die Zeit wählen, wann diese Sofortaufnahme enden soll. Links/Rechts verringert/erhöht diese Zeit um eine Minute. Hoch/Runter verringert/erhöht diese Zeit um eine Stunde."
+
 msgid "Select the time when this timer should end."
 msgstr "Wählen Sie die Uhrzeit, zu der dieser Timer enden soll."
 
@@ -17471,6 +17500,9 @@ msgstr "Minimale CPU-Frequenz für die Kerne 2, 3, 4 und 5"
 
 msgid "Set Scaling governor"
 msgstr "Scaling Governor wählen"
+
+msgid "Set Time"
+msgstr "Setze Zeit"
 
 msgid "Set action for 'Info' key"
 msgstr "Aktion der Taste INFO einstellen"
@@ -22931,18 +22963,6 @@ msgstr "Filme ansehen"
 msgid "Watch recordings"
 msgstr "Aufnahmen ansehen"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Bei dem Receiver ist ein Softwareproblem aufgetreten, das einen Neustart erfordert!\n"
-"Bitte senden Sie die Logdatei '%senigma2_crash_xxxxxx.log' an 'https://www.opena.tv'.\n"
-"Der Receiver startet in 10 Sekunden neu!\n"
-"Komponente: Enigma2"
-
 #
 msgid "Weather"
 msgstr "Wetter"
@@ -25104,6 +25124,22 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "Please change recording endtime"
+#~ msgstr "Aufnahmeendzeit ändern"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Bei dem Receiver ist ein Softwareproblem aufgetreten, das einen Neustart erfordert!\n"
+#~ "Bitte senden Sie die Logdatei '%senigma2_crash_xxxxxx.log' an 'https://www.opena.tv'.\n"
+#~ "Der Receiver startet in 10 Sekunden neu!\n"
+#~ "Komponente: Enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -5567,6 +5567,9 @@ msgstr "Tarih"
 msgid "Date / Time"
 msgstr "Tarih / Saat"
 
+msgid "Date Time Input Actions"
+msgstr ""
+
 msgid "Date ascending"
 msgstr "Artan tarih"
 
@@ -6860,6 +6863,9 @@ msgstr "EPG Kanal/Servis Seçimi"
 
 msgid "EPG Display Actions"
 msgstr "EPG Ekran Eylemleri"
+
+msgid "EPG Jump"
+msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "EPG Navigasyon Eylemleri"
@@ -8568,6 +8574,10 @@ msgstr "Yiyecek/Şarap"
 msgid "Football"
 msgstr "Futbol"
 
+#
+msgid "For how many minutes do you want to record?"
+msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
+
 msgid "Force AC3plus"
 msgstr "Force AC3plus"
 
@@ -9440,10 +9450,6 @@ msgstr "Saat Dakika"
 msgid "Hours Minutes Seconds"
 msgstr "Saat Dakika Saniye"
 
-#
-msgid "For how many minutes do you want to record?"
-msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
-
 msgid "Http(s) stream start delay"
 msgstr "Http(s) akışı başlatma gecikmesi"
 
@@ -10078,6 +10084,9 @@ msgstr "Eklentileri feed'den yükleniyor ..."
 msgid "Instant Recording Actions"
 msgstr ""
 
+msgid "Instant Recording End Time"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Anlık kayıt"
 
@@ -10244,14 +10253,32 @@ msgstr "İş özeti"
 msgid "Jordan"
 msgstr "Ürdün"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "24 saat geriye atla"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Kanal seçiminde ilk basamağa atla"
 
 msgid "Jump forward 24 hours"
 msgstr "24 saat ileriye atla"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Listenin başına atla"
@@ -13506,10 +13533,6 @@ msgstr "Lütfen derlemeye başlık ekleyin."
 
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Lütfen sabırlı olun, şimdi bir yedekleme yapılacaktır,\n"
-
-#
-msgid "Please change recording endtime"
-msgstr "Lütfen kayıt bitiş zamanını değiştirin"
 
 #
 msgid "Please check the manual of the receiver"
@@ -16814,6 +16837,12 @@ msgstr "Düğmenin tekrar etmeye başlamasından önceki zaman gecikmesini seçi
 msgid "Select the time delay between each repeat of the button."
 msgstr "Düğmenin her tekrarı arasındaki zaman gecikmesini seçin."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
+
 msgid "Select the time when this timer should end."
 msgstr "Bu zamanlayıcının sona ereceği zamanı seçin."
 
@@ -17235,6 +17264,9 @@ msgstr "Çekirdek 2, 3, 4 ve 5 için MIN CPU frekansını ayarlayın"
 
 msgid "Set Scaling governor"
 msgstr "Ölçekleme yöneticisini ayarla"
+
+msgid "Set Time"
+msgstr ""
 
 msgid "Set action for 'Info' key"
 msgstr "'Bilgi' tuşu için eylemi ayarla"
@@ -22600,18 +22632,6 @@ msgstr "Film izle..."
 msgid "Watch recordings"
 msgstr "Kayıtları izle"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Gerçekten çok üzgünüz. Alıcınız bir yazılım sorunuyla karşılaştı ve yeniden başlatılması gerekiyor.\n"
-"Lütfen %senigma2_crash_xxxxxx.log dosyasını www.opena.tv adresine gönderin.\n"
-"Alıcınız 10 saniye içinde yeniden başlar!\n"
-"Bileşen: enigma2"
-
 msgid "Weather"
 msgstr "Hava"
 
@@ -24732,6 +24752,22 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "Please change recording endtime"
+#~ msgstr "Lütfen kayıt bitiş zamanını değiştirin"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Gerçekten çok üzgünüz. Alıcınız bir yazılım sorunuyla karşılaştı ve yeniden başlatılması gerekiyor.\n"
+#~ "Lütfen %senigma2_crash_xxxxxx.log dosyasını www.opena.tv adresine gönderin.\n"
+#~ "Alıcınız 10 saniye içinde yeniden başlar!\n"
+#~ "Bileşen: enigma2"
 
 #
 #~ msgid "+24"

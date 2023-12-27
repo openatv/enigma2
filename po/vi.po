@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -5389,6 +5389,9 @@ msgstr "Ngày"
 msgid "Date / Time"
 msgstr ""
 
+msgid "Date Time Input Actions"
+msgstr ""
+
 msgid "Date ascending"
 msgstr ""
 
@@ -6634,6 +6637,9 @@ msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Jump"
 msgstr ""
 
 msgid "EPG Navigation Actions"
@@ -8283,6 +8289,9 @@ msgstr ""
 msgid "Football"
 msgstr "bóng đá"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Bạn muốn ghi lại bao nhiêu phút?"
+
 msgid "Force AC3plus"
 msgstr "tác dụng AC3plus"
 
@@ -9128,9 +9137,6 @@ msgstr "Giờ tối thiểu"
 msgid "Hours Minutes Seconds"
 msgstr "Giờ phút giây"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Bạn muốn ghi lại bao nhiêu phút?"
-
 msgid "Http(s) stream start delay"
 msgstr ""
 
@@ -9742,6 +9748,9 @@ msgstr "Cài đặt plugin từ nguồn cấp dữ liệu ..."
 msgid "Instant Recording Actions"
 msgstr ""
 
+msgid "Instant Recording End Time"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Ghi lại ngay lập tức"
 
@@ -9898,14 +9907,32 @@ msgstr "Tổng quan về công việc"
 msgid "Jordan"
 msgstr "Jordan"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "Quay trở lại 24 giờ"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Nhảy báo chí đầu tiên trong lựa chọn kênh"
 
 msgid "Jump forward 24 hours"
 msgstr "Nhảy về phía trước 24 giờ"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Chuyển đến đầu danh sách"
@@ -13059,9 +13086,6 @@ msgstr "Vui lòng thêm tiêu đề để biên dịch."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Hãy kiên nhẫn, một bản sao lưu sẽ được thực hiện,\n"
 
-msgid "Please change recording endtime"
-msgstr "Vui lòng thay đổi thời gian ghi âm"
-
 msgid "Please check the manual of the receiver"
 msgstr "Vui lòng kiểm tra hướng dẫn của đầu thu"
 
@@ -16206,6 +16230,12 @@ msgstr ""
 msgid "Select the time delay between each repeat of the button."
 msgstr ""
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
+
 msgid "Select the time when this timer should end."
 msgstr ""
 
@@ -16607,6 +16637,9 @@ msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr ""
 
 msgid "Set Scaling governor"
+msgstr ""
+
+msgid "Set Time"
 msgstr ""
 
 msgid "Set action for 'Info' key"
@@ -21742,18 +21775,6 @@ msgstr "Xem phim..."
 msgid "Watch recordings"
 msgstr "Xem bản ghi ..."
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Chúng tôi thực sự xin lỗi. Đầu thu của bạn gặp sự cố phần mềm và cần được khởi động lại.\n"
-"Vui lòng gửi logfile% senigma2_crash_xxxxxx.log đến www.opena.tv.\n"
-"Máy thu của bạn khởi động lại sau 10 giây!\n"
-"Chào thân ái: enigma2"
-
 #, fuzzy
 msgid "Weather"
 msgstr "Khác"
@@ -23754,6 +23775,21 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Vui lòng thay đổi thời gian ghi âm"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Chúng tôi thực sự xin lỗi. Đầu thu của bạn gặp sự cố phần mềm và cần được khởi động lại.\n"
+#~ "Vui lòng gửi logfile% senigma2_crash_xxxxxx.log đến www.opena.tv.\n"
+#~ "Máy thu của bạn khởi động lại sau 10 giây!\n"
+#~ "Chào thân ái: enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

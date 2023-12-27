@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -5393,6 +5393,9 @@ msgstr "Data"
 msgid "Date / Time"
 msgstr "Data / laikas"
 
+msgid "Date Time Input Actions"
+msgstr ""
+
 msgid "Date ascending"
 msgstr "Data didėjimo tvarka"
 
@@ -6627,6 +6630,9 @@ msgstr "EPG kanalo / paslaugos pasirinkimas"
 
 msgid "EPG Display Actions"
 msgstr "EPG rodymo veiksmai"
+
+msgid "EPG Jump"
+msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "EPG naršymo veiksmai"
@@ -8259,6 +8265,9 @@ msgstr "Maistas/vynas"
 msgid "Football"
 msgstr "Futbolas"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Kiek minučių norite įrašinėti?"
+
 msgid "Force AC3plus"
 msgstr "priverstinai AC3plus"
 
@@ -9085,9 +9094,6 @@ msgstr "Valandos minutės"
 msgid "Hours Minutes Seconds"
 msgstr "Val min sek"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Kiek minučių norite įrašinėti?"
-
 msgid "Http(s) stream start delay"
 msgstr "Http(-ų) srauto pradžios delsa"
 
@@ -9692,6 +9698,9 @@ msgstr "Priedų diegimas iš šaltinių ..."
 msgid "Instant Recording Actions"
 msgstr ""
 
+msgid "Instant Recording End Time"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Momentinis įrašymas"
 
@@ -9845,14 +9854,32 @@ msgstr "Užduoties apžvalga"
 msgid "Jordan"
 msgstr "Jordanija"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "Peršokti 24 val. atgal"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Peršokti, pirma spauskite kanalo pasirinkimą"
 
 msgid "Jump forward 24 hours"
 msgstr "Peršokti 24 val. pirmyn"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Peršokti į pradžios sąrašą"
@@ -12919,9 +12946,6 @@ msgstr "Įtraukite į kompiliaciją pavadinimus."
 
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Būkite kantrūs, atsarginė kopija tuojau bus padaryta,\n"
-
-msgid "Please change recording endtime"
-msgstr "Pakeiskite įrašymo pabaigos laiką"
 
 msgid "Please check the manual of the receiver"
 msgstr "Prašome patikrinti imtuvo vadovą"
@@ -16040,6 +16064,12 @@ msgstr "Pasirinkite laiko delsą prieš mygtuko kartojimą."
 msgid "Select the time delay between each repeat of the button."
 msgstr "Pasirinkite laiko delsą tarp kiekvieno mygtuko kartojimo."
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
+
 msgid "Select the time when this timer should end."
 msgstr ""
 
@@ -16436,6 +16466,9 @@ msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr ""
 
 msgid "Set Scaling governor"
+msgstr ""
+
+msgid "Set Time"
 msgstr ""
 
 msgid "Set action for 'Info' key"
@@ -21530,18 +21563,6 @@ msgstr "Žiūrėti filmus..."
 msgid "Watch recordings"
 msgstr "Įrašų žiūrėjimas"
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Mes labai atsiprašome. Jūsų imtuve kilo programinės įrangos problema, ir reikia paleisti pakartotinai.\n"
-"Prašome siųsti logfile %senigma2_crash_xxxxxx.log www.opena.tv.\n"
-"Imtuvas pasileis iš naujo per 10 sekundžių!\n"
-"Komponentas: enigma2"
-
 msgid "Weather"
 msgstr "Orų prognozė"
 
@@ -23522,6 +23543,21 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Pakeiskite įrašymo pabaigos laiką"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Mes labai atsiprašome. Jūsų imtuve kilo programinės įrangos problema, ir reikia paleisti pakartotinai.\n"
+#~ "Prašome siųsti logfile %senigma2_crash_xxxxxx.log www.opena.tv.\n"
+#~ "Imtuvas pasileis iš naujo per 10 sekundžių!\n"
+#~ "Komponentas: enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"

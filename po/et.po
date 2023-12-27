@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2023-12-24 10:37+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -5428,6 +5428,9 @@ msgstr "Kuupäev"
 msgid "Date / Time"
 msgstr ""
 
+msgid "Date Time Input Actions"
+msgstr ""
+
 msgid "Date ascending"
 msgstr ""
 
@@ -6686,6 +6689,9 @@ msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Jump"
 msgstr ""
 
 msgid "EPG Navigation Actions"
@@ -8350,6 +8356,9 @@ msgstr ""
 msgid "Football"
 msgstr "jalgpall"
 
+msgid "For how many minutes do you want to record?"
+msgstr "Mitu minutit soovid salvestada?"
+
 msgid "Force AC3plus"
 msgstr "Sunnitud AC3+"
 
@@ -9204,9 +9213,6 @@ msgstr "Tundi minutit"
 msgid "Hours Minutes Seconds"
 msgstr "Tundi minutit sekundit"
 
-msgid "For how many minutes do you want to record?"
-msgstr "Mitu minutit soovid salvestada?"
-
 msgid "Http(s) stream start delay"
 msgstr ""
 
@@ -9832,6 +9838,9 @@ msgstr "Pluginate paigaldamine."
 msgid "Instant Recording Actions"
 msgstr ""
 
+msgid "Instant Recording End Time"
+msgstr ""
+
 msgid "Instant record"
 msgstr "Kohese salvestuse valikud"
 
@@ -9989,14 +9998,32 @@ msgstr "Töövaade"
 msgid "Jordan"
 msgstr "Jordaania"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "Hüpe 24 tundi tagasi"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Valik esimesel nupuvajutusel"
 
 msgid "Jump forward 24 hours"
 msgstr "Hüpe 24 tundi edasi"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Hüpe nimekirja algusesse"
@@ -13225,9 +13252,6 @@ msgstr "Lisa failid kogumikku."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Varu kannatust, algab varundamine.\n"
 
-msgid "Please change recording endtime"
-msgstr "Muuda salvestuse lõpuaega"
-
 msgid "Please check the manual of the receiver"
 msgstr "Uuri vastuvõtja käsiraamatut"
 
@@ -16423,6 +16447,12 @@ msgstr ""
 msgid "Select the time delay between each repeat of the button."
 msgstr ""
 
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
+
 msgid "Select the time when this timer should end."
 msgstr ""
 
@@ -16826,6 +16856,9 @@ msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr ""
 
 msgid "Set Scaling governor"
+msgstr ""
+
+msgid "Set Time"
 msgstr ""
 
 msgid "Set action for 'Info' key"
@@ -22056,18 +22089,6 @@ msgstr "Vaata salvestisi."
 msgid "Watch recordings"
 msgstr "Vaata salvestisi."
 
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Vastuvõtjal tekkis tarkvaraline probleem ja vajalik on taaskäivitus.\n"
-"Saada logifail %senigma2_crash_xxxxxx.log aadressile www.opena.tv.\n"
-"Vastuvõtja taaskäivitub  10 sekundi pärast!\n"
-"Komponent: enigma2"
-
 #, fuzzy
 msgid "Weather"
 msgstr "---Ilm---"
@@ -24095,6 +24116,21 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Muuda salvestuse lõpuaega"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Vastuvõtjal tekkis tarkvaraline probleem ja vajalik on taaskäivitus.\n"
+#~ "Saada logifail %senigma2_crash_xxxxxx.log aadressile www.opena.tv.\n"
+#~ "Vastuvõtja taaskäivitub  10 sekundi pärast!\n"
+#~ "Komponent: enigma2"
 
 #~ msgid "+24"
 #~ msgstr "+24"
