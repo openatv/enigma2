@@ -14,9 +14,11 @@ config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
 
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", windowTitle=None, allow_cancel=True, titlebartext=_("Choice Box")):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", windowTitle=None, allow_cancel=True, titlebartext=_("Choice Box"), choiceList=None):
 		if not windowTitle:  # for compatibility
 			windowTitle = titlebartext
+		if choiceList and not list:
+			list = choiceList
 		if not list:
 			list = []
 		if not skin_name:
