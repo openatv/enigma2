@@ -76,9 +76,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 
 	def processValue(self, value):
 		valueTest = value.upper() if value else ""
-		if value is None:
-			pass
-		elif (value.startswith("\"") or value.startswith("'")) and value.endswith(value[0]):
+		if (value.startswith("\"") or value.startswith("'")) and value.endswith(value[0]):
 			value = value[1:-1]
 		elif value.startswith("(") and value.endswith(")"):
 			data = []
