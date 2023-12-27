@@ -192,6 +192,8 @@ class SoftcamSetup(CamSetupCommon):
 		if config.misc.softcams.value != self.camctrl.current():
 			self.showProcess(True)
 			self.camctrl.switch(config.misc.softcams.value, self.saveDone)
+		else:
+			self.saveDone()
 
 	def keyRestart(self):
 		self.showProcess(True)
