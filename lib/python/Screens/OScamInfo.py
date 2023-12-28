@@ -1,7 +1,6 @@
 # PYTHON IMPORTS
 from datetime import datetime, timezone, timedelta
 from json import loads
-from dateutil.parser import isoparse
 from os.path import exists
 from re import search, S
 from twisted.internet.reactor import callInThread
@@ -226,11 +225,11 @@ class OScamOverview(Screen, OScamGlobals):
 			oscam = loads(jsonfull).get("oscam", {})
 			sysinfo = oscam.get("sysinfo", {})
 			totals = oscam.get("totals", {})
-			ctime = isoparse(datetime.now(timezone.utc).astimezone().isoformat())
+			ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
 			currtime = "Current Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
 			# GENERAL INFOS (timing, memory usage)
 			stime_iso = oscam.get("starttime", None)
-			starttime = "Start Time: %s - %s" % (isoparse(stime_iso).strftime("%x"), isoparse(stime_iso).strftime("%X")) if stime_iso else (_("n/a"), _("n/a"))
+			starttime = "Start Time: %s - %s" % (datetime.fromisoformat(stime_iso).strftime("%x"), datetime.fromisoformat(stime_iso).strftime("%X")) if stime_iso else (_("n/a"), _("n/a"))
 			runtime = "OScam Run Time: %s" % oscam.get("runtime", _("n/a"))
 			version = "OScam: %s" % (oscam.get("version", _("n/a")))
 			srvidfile = "srvidfile: %s" % oscam.get("srvidfile", _("n/a"))
@@ -245,20 +244,18 @@ class OScamOverview(Screen, OScamGlobals):
 				au = {"-1": "ON", "0": "OFF", "1": "ACTIVE"}.get(client.get("au", _("n/a")), _("n/a"))
 				ip = connection.get("ip", "")
 				if ip and config.softcam.hideServerName.value:
-					ip = "".join(["\u2022"] * len(ip))
-				ip = ip or _("n/a")
+					ip = "\u2022" * len(ip)
 				port = connection.get("port", _("n/a"))
 				protocol = client.get("protocol", "")
 				srinfo = "%s:%s@%s" % (request.get("srvid", _("n/a")), request.get("caid", _("n/a")), request.get("provid", _("n/a")))
 				chinfo = "%s %s" % (request.get("chname", _("n/a")), request.get("chprovider", _("n/a")))
 				answered = request.get("answered", "")
 				if answered and config.softcam.hideServerName.value:
-					answered = "".join(["\u2022"] * len(answered))
-				answered = answered or _("n/a")
+					answered = "\u2022" * len(answered)
 				ecmtime = request.get("ecmtime", _("n/a"))
 				lbvaluereader = "%s (%s ms)" % (answered, ecmtime) if answered and ecmtime else request.get("lbvalue", _("n/a"))
 				login_iso = times.get("login")
-				loginfmt = isoparse(login_iso).strftime("%X").replace(" days", "d").replace(" day", "d") if login_iso else _("n/a")
+				loginfmt = datetime.fromisoformat(login_iso).strftime("%X").replace(" days", "d").replace(" day", "d") if login_iso else _("n/a")
 				idle_iso = times.get("idle")
 				loginfmt += "\n%s" % (timedelta(seconds=float(idle_iso)) if idle_iso else _("n/a"))
 				status = connection.get("status", _("n/a"))
@@ -292,40 +289,39 @@ class OScamOverview(Screen, OScamGlobals):
 		self["outlist"].pageUp()
 
 	def keyMenu(self):
-		def keyMenuCallback():
+		def keyMenuCallback(closeParameters=None):
 			self.loop.stop()
 			if config.oscaminfo.autoUpdate.value:
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
-		self.session.openWithCallback(keyMenuCallback, OScamInfoSetup)
+		self.session.openWithCallback(keyMenuCallback, OScamOverviewSetup)
 
 	def keyBlue(self):
 		def keyBlueCallback():
 			if config.oscaminfo.autoUpdate.value:
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 		self.loop.stop()
-		self.session.openWithCallback(keyBlueCallback, OScamShowLog)
+		self.session.openWithCallback(keyBlueCallback, OScamOverviewLog)
 
 	def exit(self):
 		self.loop.stop()
 		self.close()
 
 
-class OScamShowLog(Screen, OScamGlobals):
+class OScamOverviewLog(Screen, OScamGlobals):
 	skin = """
-		<screen name="OScamShowLog" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OScamInfo ShowLog" flags="wfNoBorder" resolution="1920,1080">
-			<widget source="title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
+		<screen name="OScamOverviewLog" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OScamOverview Log" flags="wfNoBorder" resolution="1920,1080">
+			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
 				<convert type="ClockToText">Format:%H:%M:%S</convert>
 			</widget>
-			<widget name="logtext" position="15,70" size="1880,995" font="Regular;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#ECEAF6" noWrap="0" scrollbarMode="showOnDemand" />
+			<widget name="logtext" position="15,70" size="1890,995" font="Regular;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#ECEAF6" noWrap="0" scrollbarMode="showOnDemand" scrollbarForegroundColor="black" />
 		</screen>
 		"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = "OScamInfoShowLog"
-		self.setTitle(_("OScamInfo ShowLog"))
-		self["title"] = StaticText(_("OScamInfo ShowLog"))
+		self.skinName = "OScamOverviewLog"
+		self.setTitle(_("OScamOverview Log"))
 		self["logtext"] = ScrollLabel(_("<no log found"))
 		self["actions"] = HelpableActionMap(self, ["NavigationActions", "OkCancelActions"], {
 			"ok": (self.exit, _("Close the screen")),
@@ -334,7 +330,7 @@ class OScamShowLog(Screen, OScamGlobals):
 			"up": (self.keyPageUp, _("Move up a page")),
 			"down": (self.keyPageDown, _("Move down a page")),
 			"pageDown": (self.keyPageDown, _("Move down a page"))
-		}, prio=1, description=_("OScamLog Actions"))
+		}, prio=1, description=_("OScamOverviewLog Actions"))
 		self.loop = eTimer()
 		self.loop.callback.append(self.displayLog)
 		self.onLayoutFinish.append(self.onLayoutFinished)
@@ -361,21 +357,12 @@ class OScamShowLog(Screen, OScamGlobals):
 		self.close()
 
 
-class OScamInfoSetup(Setup):
-	def __init__(self, session, msg=None):   # TODO Was ist das msg?
-		Setup.__init__(self, session, setup="OScamOverview")
-		self.setTitle(_("OScamInfo Settings"))
-		self.msg = msg
-		if self.msg:
-			self.msg = "Error:\n%s" % self.msg
-
-	def layoutFinished(self):
-		Setup.layoutFinished(self)
-		if self.msg:
-			self.setFootnote(self.msg)
-			self.msg = None
-
-
-class OscamInfoMenu(OScamOverview):  # ToDo: startup-classname for the moment, replace later by 'class OScamOverview'
+class OScamOverviewSetup(Setup):
 	def __init__(self, session):
+		Setup.__init__(self, session, setup="OScamOverview")
+
+
+class OscamInfoMenu(OScamOverview):
+	def __init__(self, session):
+		print("[OscamInfoMenu] Warning: OscamInfoMenu has been deprecated, use OScamOverview instead!")
 		OScamOverview.__init__(self, session)
