@@ -1576,12 +1576,12 @@ class ChannelContextMenu(Screen, HelpableScreen):
 							appendWhenValid(current, menu, (_("Unmark As Dedicated 3D Service"), self.removeDedicated3DFlag))
 						else:
 							appendWhenValid(current, menu, (_("Mark As Dedicated 3D Service"), self.addDedicated3DFlag))
-					if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
-						appendWhenValid(current, menu, (_("Play service without Stream Relay"), self.toggleStreamrelay))
-					else:
-						appendWhenValid(current, menu, (_("Play service with Stream Relay"), self.toggleStreamrelay))
 
 					if BoxInfo.getItem("HAVEINITCAM") and config.misc.autocamEnabled.value and Screens.InfoBar.InfoBar.instance.checkCrypt(current):
+						if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
+							appendWhenValid(current, menu, (_("Play service without Stream Relay"), self.toggleStreamrelay))
+						else:
+							appendWhenValid(current, menu, (_("Play service with Stream Relay"), self.toggleStreamrelay))
 						appendWhenValid(current, menu, (_("Define Softcam For This Service"), self.selectCam))
 
 					if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
