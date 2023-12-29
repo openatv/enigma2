@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"POT-Creation-Date: 2023-12-27 11:06+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1168,10 +1168,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s pult (algupärane)"
 
 #, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s ( %s kaarti )"
-
-#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1300,9 +1296,6 @@ msgstr "'Dekodeeri ja salvesta ecm' annab võimaluse salvestuse hilisemaks dekod
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' ei ole paigaldatud!"
 
-msgid "( All readers)"
-msgstr "( Kõik kaardipesad)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
@@ -1316,9 +1309,6 @@ msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr " (Raadio)"
-
-msgid "(Show only reader:"
-msgstr "(Näita ainult kaardipesa:"
 
 msgid "(TV)"
 msgstr "(TV)"
@@ -1582,6 +1572,9 @@ msgstr "<Viimase taimeri asukoht>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -1739,15 +1732,6 @@ msgstr "AC3+ transkodeerimine"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr ""
-
-msgid "AFP Settings"
-msgstr "AFP seaded"
 
 msgid "ARM"
 msgstr ""
@@ -2070,9 +2054,6 @@ msgstr "Ajami lisavalikud lubavad sisestada andmeid mootori spetsifikatsioonileh
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Ajami lisavalikud lubavad sisestada andmeid mootori spetsifikatsioonilehelt, et enigma saaks arvutada ühelt satelliidilt teisele liigutamise aja."
-
-msgid "Address"
-msgstr "Aadress"
 
 msgid "Adjust 3D settings"
 msgstr "Kohanda 3D seadeid"
@@ -2759,6 +2740,9 @@ msgstr "Väliste subtiitrite automaatne käivitamine"
 msgid "Automatically update Client/Server View"
 msgstr "Uuenda kliendi/serveri vaade automaatselt"
 
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
+
 msgid "Autostart"
 msgstr "Autostart"
 
@@ -3327,12 +3311,6 @@ msgstr "CH"
 msgid "C-Band"
 msgstr "C-sagedusala"
 
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
-
 msgid "CCD-Width"
 msgstr ""
 
@@ -3725,12 +3703,6 @@ msgstr ""
 #, fuzzy
 msgid "Cape Verde"
 msgstr "Roheneemesaared"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Kaardi info (CCcam)"
-
-msgid "Cards:"
-msgstr "Kaardid:"
 
 msgid "Cards: "
 msgstr "Kaardid: "
@@ -4202,10 +4174,6 @@ msgstr[1] ""
 
 msgid "Click the button on your remote you want to change."
 msgstr "Vajuta puldi nupule, mille toimet soovid muuta"
-
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Kliendi info (Oscam: %s )"
 
 msgid "Client is streaming from this box!"
 msgstr ""
@@ -6645,15 +6613,6 @@ msgstr " "
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr "ECM statistika"
-
-msgid "ECM Time"
-msgstr "ECM aeg"
-
-msgid "ECM avg"
-msgstr "ECM keskmine"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM andmed kaasatakse voogudesse. Nii saab klientvastuvõtja selle dekodeerida."
 
@@ -6663,12 +6622,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr "ECM viimane"
-
-msgid "ECM-Time"
-msgstr "ECM aeg"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
@@ -7953,9 +7906,6 @@ msgstr "Vabakanal"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr ""
-
 msgid "FTP Settings"
 msgstr "FTP seaded"
 
@@ -9073,6 +9023,9 @@ msgstr "Peida lapselukuga kanalid"
 msgid "Hide player"
 msgstr "Peida mängija"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "Luba inforiba hajumine"
@@ -9162,9 +9115,6 @@ msgstr "Honduras"
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
-
-msgid "Hops"
-msgstr ""
 
 msgid "Hops:"
 msgstr "Hops:"
@@ -9793,6 +9743,9 @@ msgstr "Paigalda laiendusi"
 msgid "Install extensions."
 msgstr "Paigalda laiendusi."
 
+msgid "Install service"
+msgstr ""
+
 msgid "Install the package"
 msgstr ""
 
@@ -9801,6 +9754,9 @@ msgstr ""
 
 msgid "Installation finished."
 msgstr "Paigaldamine lõppenud."
+
+msgid "Installed"
+msgstr ""
 
 msgid "Installing"
 msgstr "Paigaldamine"
@@ -10301,9 +10257,6 @@ msgstr "Laos"
 
 msgid "Large"
 msgstr ""
-
-msgid "Last Request"
-msgstr "Viimane päring"
 
 msgid "Last config"
 msgstr "Viimane seadistus"
@@ -11669,9 +11622,6 @@ msgstr "JÄRGMINE"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr ""
-
 msgid "NFS Settings"
 msgstr "NFS seaded"
 
@@ -11831,6 +11781,9 @@ msgstr "Võrguteenused"
 
 msgid "Network Settings"
 msgstr "Võrgu häälestamine"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "Võrguühenduse test"
@@ -12471,6 +12424,21 @@ msgstr "Oscam info"
 msgid "OScam webif disabled"
 msgstr "oscam veebiliides keelatud"
 
+msgid "OScamInfo Overview"
+msgstr ""
+
+msgid "OScamInfo Settings"
+msgstr ""
+
+msgid "OScamInfo ShowLog"
+msgstr ""
+
+msgid "OScamLog Actions"
+msgstr ""
+
+msgid "OScamOverview Actions"
+msgstr ""
+
 msgid "OTT Model"
 msgstr ""
 
@@ -12572,7 +12540,13 @@ msgstr "EPG otsing."
 msgid "Open IMDb"
 msgstr "IMDB."
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -12724,18 +12698,11 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info - Main Menu"
-msgstr "Oscam info - peamenüü"
+msgid "Oscam Information"
+msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr "Oscam info - seadistus"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam logi (Oscam: %s )"
-
-msgid "OscamInfo Mainmenu"
-msgstr "Oscam info peamenüü"
+msgid "Oscam Information Settings"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr ""
@@ -12848,9 +12815,6 @@ msgstr "PC"
 #, fuzzy
 msgid "PGS file"
 msgstr "EPG faili nimi"
-
-msgid "PID"
-msgstr "PID"
 
 msgid "PIN code needed"
 msgstr "Vajalik on PIN-kood"
@@ -13255,14 +13219,8 @@ msgstr "Varu kannatust, algab varundamine.\n"
 msgid "Please check the manual of the receiver"
 msgstr "Uuri vastuvõtja käsiraamatut"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Vali CCcam-lugeja"
-
 msgid "Please choose an extension..."
 msgstr "Vali laiendus"
-
-msgid "Please choose reader"
-msgstr "Vali kaardipesa"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Ära muuda ühtegi väärtust, kui sa pole kindel selles, mida teed!"
@@ -14044,9 +14002,6 @@ msgstr "Levitajad"
 msgid "Providers:"
 msgstr "Levitajad:"
 
-msgid "Providers: "
-msgstr "Levitajad: "
-
 msgid "Proxy detected"
 msgstr ""
 
@@ -14243,15 +14198,8 @@ msgstr "Loe kasutaja andmeid oscam.conf failist"
 msgid "Reader"
 msgstr "Kaardipesa"
 
-msgid "Reader Statistics"
-msgstr "Kaardipesa statistika"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
-msgstr "Kas paigaldada \"%s\"?"
-
-#, python-format
-msgid "Ready to install '%s'?"
 msgstr "Kas paigaldada \"%s\"?"
 
 #, python-format
@@ -14732,6 +14680,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service"
+msgstr ""
+
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -14902,9 +14853,6 @@ msgstr "Kas taastada pildiparanduste vaikeväärtused?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Kas taastada pildiparanduste viimati kasutatud seaded?"
-
-msgid "Reshare"
-msgstr "Jaga edasi"
 
 msgid "Reshare:"
 msgstr "Jaga edasi:"
@@ -15202,9 +15150,6 @@ msgstr "Réunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd seaded"
 
@@ -15215,9 +15160,6 @@ msgid "SATA"
 msgstr "SATA"
 
 msgid "SATPI"
-msgstr ""
-
-msgid "SATPI Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -15753,6 +15695,10 @@ msgstr "Kui lubatud, kuvatakse inforibal kanali number."
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
+#, python-format
+msgid "Select 'Yes' to enable autostart of '%s'."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -15774,6 +15720,9 @@ msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
+
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
@@ -16658,18 +16607,8 @@ msgstr "Serbia"
 msgid "Serial No"
 msgstr "Seerianumber"
 
-msgid "Serv.Name"
-msgstr "Kanali nimi"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Serveri info (Oscam: %s )"
-
 msgid "Server down"
 msgstr "Server on maas"
-
-msgid "Server:"
-msgstr "Server:"
 
 msgid "Servers"
 msgstr "Serverid"
@@ -17044,9 +16983,6 @@ msgstr "Seadistamine"
 msgid "Setup - %s"
 msgstr "%s seadistamine"
 
-msgid "Setup AFP"
-msgstr "AFP seaded"
-
 msgid "Setup Audio Sync"
 msgstr "Muuda heli viiteaega"
 
@@ -17276,9 +17212,6 @@ msgstr "Kas lähtestada krahhiloendur taaskäivituse vältimiseks?"
 msgid "Show"
 msgstr "Kuva EPG"
 
-msgid "Show /tmp/ecm.info"
-msgstr "Kuva /tmp/ecm.info"
-
 msgid "Show 1080p 24fps as"
 msgstr "1080p 24fps kuvamine"
 
@@ -17339,9 +17272,6 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "Kuva CI teated"
-
-msgid "Show Clients"
-msgstr "Kuva kliendid"
 
 msgid "Show Default Backup Files"
 msgstr "Vaikimisi varundatavad failid"
@@ -17480,9 +17410,6 @@ msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "RFmod seadistused"
-
-msgid "Show Readers/Proxies"
-msgstr "Kuva kaardilugejad/puhverserverid"
 
 msgid "Show Record Movies"
 msgstr "Kuva salvestised"
@@ -17701,6 +17628,9 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Filmi lõppedes tagasi telekanalile"
+
+msgid "Show logfile"
+msgstr ""
 
 msgid "Show marked events"
 msgstr "Kuva märgitud saated"
@@ -18699,6 +18629,9 @@ msgstr "Käivita võrguta dekodeerimine"
 msgid "Start recording current event"
 msgstr ""
 
+msgid "Start service"
+msgstr ""
+
 msgid "Start teletext"
 msgstr "Käivita teletekst"
 
@@ -18827,6 +18760,9 @@ msgstr "Peata salvestamine ja kustuta"
 
 msgid "Stop recording now"
 msgstr "Peata salvestamine kohe"
+
+msgid "Stop service"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Lõpeta kanali edastus filmilisti naasmisel"
@@ -20662,9 +20598,6 @@ msgstr "üles"
 msgid "Top and Bottom"
 msgstr "Üleval ja all"
 
-msgid "Total"
-msgstr "Kokku"
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -21215,9 +21148,6 @@ msgstr "Uuendamine nurjus!"
 
 msgid "Update finished!"
 msgstr "Uuendamine tehtud!"
-
-msgid "Update interval (in seconds)"
-msgstr "Uuendamise vahemik (sekundites)"
 
 msgid ""
 "Update succeeded!\n"
@@ -22793,12 +22723,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
@@ -24116,6 +24040,122 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s ( %s kaarti )"
+
+#~ msgid "( All readers)"
+#~ msgstr "( Kõik kaardipesad)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Näita ainult kaardipesa:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "AFP seaded"
+
+#~ msgid "Address"
+#~ msgstr "Aadress"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Kaardi info (CCcam)"
+
+#~ msgid "Cards:"
+#~ msgstr "Kaardid:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Kliendi info (Oscam: %s )"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM statistika"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM aeg"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM keskmine"
+
+#~ msgid "ECM last"
+#~ msgstr "ECM viimane"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM aeg"
+
+#~ msgid "Last Request"
+#~ msgstr "Viimane päring"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Oscam info - peamenüü"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Oscam info - seadistus"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Oscam logi (Oscam: %s )"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "Oscam info peamenüü"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Vali CCcam-lugeja"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Vali kaardipesa"
+
+#~ msgid "Providers: "
+#~ msgstr "Levitajad: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Kaardipesa statistika"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Kas paigaldada \"%s\"?"
+
+#~ msgid "Reshare"
+#~ msgstr "Jaga edasi"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Kanali nimi"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Serveri info (Oscam: %s )"
+
+#~ msgid "Server:"
+#~ msgstr "Server:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "AFP seaded"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "Kuva /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "Kuva kliendid"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Kuva kaardilugejad/puhverserverid"
+
+#~ msgid "Total"
+#~ msgstr "Kokku"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Uuendamise vahemik (sekundites)"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "Muuda salvestuse lõpuaega"

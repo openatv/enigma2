@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"POT-Creation-Date: 2023-12-27 11:06+0000\n"
 "PO-Revision-Date: 2023-12-14 20:54+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1205,10 +1205,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s пульт ДУ (оригинальный)"
 
 #, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s ( %s Карты )"
-
-#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1337,9 +1333,6 @@ msgstr "'Раскодировать и записать ECM' - позволяе�
 msgid "'WeatherPlugin' is not installed!"
 msgstr "Плагин погоды не установлен!"
 
-msgid "( All readers)"
-msgstr "(Все ридеры)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "(Для доступа к журналу записей %s требуется подключение к Интернету.)"
@@ -1353,9 +1346,6 @@ msgstr "(Картинка в картинке)"
 
 msgid "(Radio)"
 msgstr "(Радио)"
-
-msgid "(Show only reader:"
-msgstr "(Показать только ридер:"
 
 msgid "(TV)"
 msgstr "(ТВ)"
@@ -1607,6 +1597,9 @@ msgstr "<Расположение последнего таймера>"
 msgid "<Select a device>"
 msgstr "<Выберите устройство>"
 
+msgid "<no log found"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -1757,15 +1750,6 @@ msgstr "Транскодирование AC3plus"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr "Действия AFP"
-
-msgid "AFP Settings"
-msgstr "Настройки AFP"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2084,9 +2068,6 @@ msgstr "Дополнительные опции мотора позволяют 
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Дополнительные опции мотора позволяют ввести данные из спецификации мотора, чтобы enigma могла рассчитать, сколько времени потребуется для перехода на другой спутник."
-
-msgid "Address"
-msgstr "Адрес"
 
 msgid "Adjust 3D settings"
 msgstr "Настройте параметры 3D"
@@ -2755,6 +2736,9 @@ msgstr "Автоматически переключать на внешние с
 msgid "Automatically update Client/Server View"
 msgstr "Автообновление просмотра клиент/сервер"
 
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
+
 msgid "Autostart"
 msgstr "Автозапуск"
 
@@ -3309,12 +3293,6 @@ msgstr "C"
 msgid "C-Band"
 msgstr "C-диапазон"
 
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID: SrvID"
-
 msgid "CCD-Width"
 msgstr "CCD-ширина"
 
@@ -3707,12 +3685,6 @@ msgstr "Ёмкость"
 
 msgid "Cape Verde"
 msgstr "Кабо-Верде"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Сведения о карте (CCcam-ридер)"
-
-msgid "Cards:"
-msgstr "Карты"
 
 msgid "Cards: "
 msgstr "Карты "
@@ -4178,10 +4150,6 @@ msgstr[2] "Очистить предупреждения"
 
 msgid "Click the button on your remote you want to change."
 msgstr "Нажмите на пульте кнопку, действие для которой хотите изменить."
-
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Клиент ( Версия Oscam : %s )"
 
 msgid "Client is streaming from this box!"
 msgstr "Клиент ведет потоковую передачу из этого ресивера!"
@@ -6574,15 +6542,6 @@ msgstr "E "
 msgid "ECM"
 msgstr "ECM"
 
-msgid "ECM Statistics"
-msgstr "Статистика ECM"
-
-msgid "ECM Time"
-msgstr "ECM время ответа"
-
-msgid "ECM avg"
-msgstr "ECM-средний"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM данные будут включены в поток. Ресивер клиента будет декодировать поток."
 
@@ -6592,12 +6551,6 @@ msgstr "Информация ЕСМ"
 #, python-format
 msgid "ECM information for '%s'"
 msgstr "Информация ECM для '%s'"
-
-msgid "ECM last"
-msgstr "Последний ECM"
-
-msgid "ECM-Time"
-msgstr "ECM время ответа"
 
 msgid "EJECTCD"
 msgstr "ИЗВЛЕЧЬ CD"
@@ -7860,9 +7813,6 @@ msgstr "FTP"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr "FTP действия"
-
 msgid "FTP Settings"
 msgstr "Настройки FTP"
 
@@ -8949,6 +8899,9 @@ msgstr "Скрыть защищенные каналы"
 msgid "Hide player"
 msgstr "Скрыть плеер"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 msgid "Hide the InfoBar"
 msgstr "Затухание инфобара при исчезании"
 
@@ -9035,9 +8988,6 @@ msgstr "Гондурас"
 
 msgid "Hong Kong"
 msgstr "Гонконг"
-
-msgid "Hops"
-msgstr "Hops "
 
 msgid "Hops:"
 msgstr "Hops: "
@@ -9645,6 +9595,9 @@ msgstr "Установить дополнения"
 msgid "Install extensions."
 msgstr "Установить дополнения."
 
+msgid "Install service"
+msgstr ""
+
 msgid "Install the package"
 msgstr "Установить пакет"
 
@@ -9653,6 +9606,9 @@ msgstr "Установить выбранный плагин/список пла
 
 msgid "Installation finished."
 msgstr "Установка завершена."
+
+msgid "Installed"
+msgstr ""
 
 msgid "Installing"
 msgstr "Установка"
@@ -10136,9 +10092,6 @@ msgstr "Лаос"
 
 msgid "Large"
 msgstr "Большой"
-
-msgid "Last Request"
-msgstr "Последний запрос"
 
 msgid "Last config"
 msgstr "Последний конфиг"
@@ -11430,9 +11383,6 @@ msgstr "Далее"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr "Действия NFS"
-
 msgid "NFS Settings"
 msgstr "Настройки NFS"
 
@@ -11582,6 +11532,9 @@ msgstr "Сетевые службы"
 
 msgid "Network Settings"
 msgstr "Настройки сети"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "Тестирование сети"
@@ -12198,6 +12151,21 @@ msgstr "Информация OScam"
 msgid "OScam webif disabled"
 msgstr "Вэбинтерфейс OSCAM отключен"
 
+msgid "OScamInfo Overview"
+msgstr ""
+
+msgid "OScamInfo Settings"
+msgstr ""
+
+msgid "OScamInfo ShowLog"
+msgstr ""
+
+msgid "OScamLog Actions"
+msgstr ""
+
+msgid "OScamOverview Actions"
+msgstr ""
+
 msgid "OTT Model"
 msgstr "ОТТ-модель"
 
@@ -12294,8 +12262,14 @@ msgstr "Запустить поиск по ТВ-гиду"
 msgid "Open IMDb"
 msgstr "Запустить IMDb"
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
 msgstr "Открыть медиапоток"
+
+msgid "Open Settings"
+msgstr ""
 
 msgid "Open Similar List Channel List"
 msgstr "Открыть похожий список Список каналов"
@@ -12438,18 +12412,11 @@ msgstr "Ория"
 msgid "Oromo"
 msgstr "Оромо"
 
-msgid "Oscam Info - Main Menu"
-msgstr "Главное меню"
+msgid "Oscam Information"
+msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr "Настройки"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Лог Oscam ( Версия Oscam : %s )"
-
-msgid "OscamInfo Mainmenu"
-msgstr "Меню OScam"
+msgid "Oscam Information Settings"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr "Осетинский / осетинский"
@@ -12547,9 +12514,6 @@ msgstr "PDC"
 
 msgid "PGS file"
 msgstr "Файл PGS"
-
-msgid "PID"
-msgstr "Пид"
 
 msgid "PIN code needed"
 msgstr "Нужно ввести пин-код"
@@ -12940,14 +12904,8 @@ msgstr "Пожалуйста, ждите, идёт резервное копир
 msgid "Please check the manual of the receiver"
 msgstr "Пожалуйста, проверьте руководство по эксплуатации ресивера"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Пожалуйста, выберите CCcam-ридер"
-
 msgid "Please choose an extension..."
 msgstr "Выберите дополнение..."
-
-msgid "Please choose reader"
-msgstr "Пожалуйста, выберите ридер"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Пожалуйста, не меняйте параметры, если не разбираетесь в этом!"
@@ -13714,9 +13672,6 @@ msgstr "Провайдеры"
 msgid "Providers:"
 msgstr "Провайдеры"
 
-msgid "Providers: "
-msgstr "Провайдеры "
-
 msgid "Proxy detected"
 msgstr "Прокси-сервер обнаружен"
 
@@ -13907,16 +13862,9 @@ msgstr "Данные пользователя из oscam.conf"
 msgid "Reader"
 msgstr "Ридер"
 
-msgid "Reader Statistics"
-msgstr "Статистика ридера"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Готовы к установке \"%s\"?"
-
-#, python-format
-msgid "Ready to install '%s'?"
-msgstr "Готовы к установке %s?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
@@ -14377,6 +14325,9 @@ msgstr "Удалить плагины..."
 msgid "Remove selected service"
 msgstr "Удалить выбранный канал"
 
+msgid "Remove service"
+msgstr ""
+
 msgid "Remove service from AutoCam"
 msgstr "Удалить канал из AutoCam"
 
@@ -14547,9 +14498,6 @@ msgstr "Сбросить тонкие настройки видео на зна�
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Сбросить тонкие настройки видео на Вашу последную конфигурацию?"
-
-msgid "Reshare"
-msgstr "Общий доступ"
 
 msgid "Reshare:"
 msgstr "Общий доступ"
@@ -14836,9 +14784,6 @@ msgstr "Реюньон"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr "Действия SABnzbd"
-
 msgid "SABnzbd Settings"
 msgstr "Настройки SABnzbd"
 
@@ -14850,9 +14795,6 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
-
-msgid "SATPI Setting Actions"
-msgstr "Действия по настройке SATPI"
 
 msgid "SATPI Settings"
 msgstr "Настройки SATPI"
@@ -15372,6 +15314,10 @@ msgstr "Если выберите 'Да', номер канал будет по�
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr "Выберите 'Да', чтобы отображать неизвестные файлы в средстве просмотра файлов File Commander, выберите 'Нет', чтобы не обрабатывать неизвестные файлы."
 
+#, python-format
+msgid "Select 'Yes' to enable autostart of '%s'."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Выберите 'Да', чтобы разрешить редактирование настроек этого устройства. Выбор 'Нет' сбрасывает настройки устройств до значений по умолчанию."
 
@@ -15392,6 +15338,9 @@ msgstr "Выберите 'Да', чтобы разрешить использо�
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Если установлено значение 'да', каналы без EPG не будут отображаться."
+
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
@@ -16270,18 +16219,8 @@ msgstr "Сербский"
 msgid "Serial No"
 msgstr "Сериал номер"
 
-msgid "Serv.Name"
-msgstr "Имя канала"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Сервер ( Версия Oscam : %s )"
-
 msgid "Server down"
 msgstr "Сервер не отвечает"
-
-msgid "Server:"
-msgstr "Сервер"
 
 msgid "Servers"
 msgstr "Серверы"
@@ -16653,9 +16592,6 @@ msgstr "Установки"
 msgid "Setup - %s"
 msgstr "Настройки - %s"
 
-msgid "Setup AFP"
-msgstr "Настройки AFP"
-
 msgid "Setup Audio Sync"
 msgstr "Настройки Audio Sync"
 
@@ -16873,9 +16809,6 @@ msgstr "Следует ли сбросить счётчик сбоев, чтоб
 msgid "Show"
 msgstr "Показать"
 
-msgid "Show /tmp/ecm.info"
-msgstr "Показать /tmp/ecm.info"
-
 msgid "Show 1080p 24fps as"
 msgstr "Показать 1080p 24fps как"
 
@@ -16935,9 +16868,6 @@ msgstr "Показать инфо о CCcam"
 
 msgid "Show CI messages"
 msgstr "Показать сообщения CI"
-
-msgid "Show Clients"
-msgstr "Показать Clients"
 
 msgid "Show Default Backup Files"
 msgstr "Файлы для копирования"
@@ -17070,9 +17000,6 @@ msgstr "Показать пакеты скинов плагинов"
 
 msgid "Show RFmod setup..."
 msgstr "Показать настройки RFmod..."
-
-msgid "Show Readers/Proxies"
-msgstr "Показать Ридеры/Прокси"
 
 msgid "Show Record Movies"
 msgstr "Показать записанные файлы"
@@ -17284,6 +17211,9 @@ msgstr "Показать последний имидж"
 
 msgid "Show live TV when movie stopped"
 msgstr "Просмотра ТВ при остановке воспроизведения"
+
+msgid "Show logfile"
+msgstr ""
 
 msgid "Show marked events"
 msgstr "Показать отмеченные события"
@@ -18254,6 +18184,9 @@ msgstr "Запуск оффлайн декодирования"
 msgid "Start recording current event"
 msgstr "Начать запись текущего события"
 
+msgid "Start service"
+msgstr ""
+
 msgid "Start teletext"
 msgstr "Запуск телетекста"
 
@@ -18380,6 +18313,9 @@ msgstr "Остановить и удалить запись"
 
 msgid "Stop recording now"
 msgstr "Остановить запись сейчас"
+
+msgid "Stop service"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "При возврате к записям не запускать текущий канал"
@@ -20185,9 +20121,6 @@ msgstr "Вверх"
 msgid "Top and Bottom"
 msgstr "Вертикально"
 
-msgid "Total"
-msgstr "Всего"
-
 msgid "Total CPU benchmark"
 msgstr "Общий бенчмарк ЦП"
 
@@ -20718,9 +20651,6 @@ msgstr "Обновление не удалось!"
 
 msgid "Update finished!"
 msgstr "Обновление завершено!"
-
-msgid "Update interval (in seconds)"
-msgstr "Интервал обновления (в секундах)"
 
 msgid ""
 "Update succeeded!\n"
@@ -22290,14 +22220,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"Ваш %s %s будет перезапущен после удаления сервиса\n"
-"Вы хотите удалить сейчас?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
@@ -23584,6 +23506,148 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s ( %s Карты )"
+
+#~ msgid "( All readers)"
+#~ msgstr "(Все ридеры)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Показать только ридер:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Actions"
+#~ msgstr "Действия AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "Настройки AFP"
+
+#~ msgid "Address"
+#~ msgstr "Адрес"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID: SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Сведения о карте (CCcam-ридер)"
+
+#~ msgid "Cards:"
+#~ msgstr "Карты"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Клиент ( Версия Oscam : %s )"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "Статистика ECM"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM время ответа"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM-средний"
+
+#~ msgid "ECM last"
+#~ msgstr "Последний ECM"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM время ответа"
+
+#~ msgid "FTP Actions"
+#~ msgstr "FTP действия"
+
+#~ msgid "Hops"
+#~ msgstr "Hops "
+
+#~ msgid "Last Request"
+#~ msgstr "Последний запрос"
+
+#~ msgid "NFS Actions"
+#~ msgstr "Действия NFS"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Главное меню"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Настройки"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Лог Oscam ( Версия Oscam : %s )"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "Меню OScam"
+
+#~ msgid "PID"
+#~ msgstr "Пид"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Пожалуйста, выберите CCcam-ридер"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Пожалуйста, выберите ридер"
+
+#~ msgid "Providers: "
+#~ msgstr "Провайдеры "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Статистика ридера"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Готовы к установке %s?"
+
+#~ msgid "Reshare"
+#~ msgstr "Общий доступ"
+
+#~ msgid "SABnzbd Actions"
+#~ msgstr "Действия SABnzbd"
+
+#~ msgid "SATPI Setting Actions"
+#~ msgstr "Действия по настройке SATPI"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Имя канала"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Сервер ( Версия Oscam : %s )"
+
+#~ msgid "Server:"
+#~ msgstr "Сервер"
+
+#~ msgid "Setup AFP"
+#~ msgstr "Настройки AFP"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "Показать /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "Показать Clients"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Показать Ридеры/Прокси"
+
+#~ msgid "Total"
+#~ msgstr "Всего"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Интервал обновления (в секундах)"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Ваш %s %s будет перезапущен после удаления сервиса\n"
+#~ "Вы хотите удалить сейчас?"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "Пожалуйста, измените время окончания записи"

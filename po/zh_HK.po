@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"POT-Creation-Date: 2023-12-27 11:06+0000\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1182,10 +1182,6 @@ msgid "%s %s remote control (native)"
 msgstr "按OK鍵確認."
 
 #, fuzzy, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s (%s)\n"
-
-#, fuzzy, python-format
 msgid "%s (%04o)"
 msgstr "%s (%s)\n"
 
@@ -1315,9 +1311,6 @@ msgstr ""
 msgid "'WeatherPlugin' is not installed!"
 msgstr "這個插件未安裝."
 
-msgid "( All readers)"
-msgstr ""
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
@@ -1330,9 +1323,6 @@ msgid "(PiP)"
 msgstr ""
 
 msgid "(Radio)"
-msgstr ""
-
-msgid "(Show only reader:"
 msgstr ""
 
 msgid "(TV)"
@@ -1604,6 +1594,9 @@ msgstr "<最近一次定時錄影位置>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -1766,16 +1759,6 @@ msgstr ""
 #, fuzzy
 msgid "AFL"
 msgstr "PAL"
-
-msgid "AFP"
-msgstr ""
-
-msgid "AFP Actions"
-msgstr ""
-
-#, fuzzy
-msgid "AFP Settings"
-msgstr "EPG設定"
 
 msgid "ARM"
 msgstr ""
@@ -2116,10 +2099,6 @@ msgstr ""
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr ""
-
-#, fuzzy
-msgid "Address"
-msgstr "IP地址"
 
 msgid "Adjust 3D settings"
 msgstr ""
@@ -2839,6 +2818,9 @@ msgstr ""
 msgid "Automatically update Client/Server View"
 msgstr ""
 
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
+
 #, fuzzy
 msgid "Autostart"
 msgstr "開始"
@@ -3428,12 +3410,6 @@ msgstr "C"
 msgid "C-Band"
 msgstr "C-波段"
 
-msgid "CAID"
-msgstr ""
-
-msgid "CAID:SrvID"
-msgstr ""
-
 msgid "CCD-Width"
 msgstr ""
 
@@ -3832,13 +3808,6 @@ msgstr ""
 
 msgid "Cape Verde"
 msgstr ""
-
-msgid "Card infos (CCcam-Reader)"
-msgstr ""
-
-#, fuzzy
-msgid "Cards:"
-msgstr "Card"
 
 #, fuzzy
 msgid "Cards: "
@@ -4335,10 +4304,6 @@ msgid_plural "Clear warnings"
 msgstr[0] ""
 
 msgid "Click the button on your remote you want to change."
-msgstr ""
-
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
 
 msgid "Client is streaming from this box!"
@@ -6814,16 +6779,6 @@ msgstr "E"
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr ""
-
-#, fuzzy
-msgid "ECM Time"
-msgstr "時間"
-
-msgid "ECM avg"
-msgstr ""
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr ""
 
@@ -6833,13 +6788,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr ""
-
-#, fuzzy
-msgid "ECM-Time"
-msgstr "時間"
 
 msgid "EJECTCD"
 msgstr ""
@@ -8132,9 +8080,6 @@ msgstr ""
 msgid "FTP"
 msgstr ""
 
-msgid "FTP Actions"
-msgstr ""
-
 #, fuzzy
 msgid "FTP Settings"
 msgstr "EPG設定"
@@ -9297,6 +9242,9 @@ msgstr ""
 msgid "Hide player"
 msgstr ""
 
+msgid "Hide softcam servername"
+msgstr ""
+
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "資訊條"
@@ -9390,9 +9338,6 @@ msgstr ""
 
 msgid "Hong Kong"
 msgstr "香港"
-
-msgid "Hops"
-msgstr ""
 
 msgid "Hops:"
 msgstr ""
@@ -10036,6 +9981,9 @@ msgstr "安裝附件."
 msgid "Install extensions."
 msgstr "安裝附件."
 
+msgid "Install service"
+msgstr ""
+
 msgid "Install the package"
 msgstr ""
 
@@ -10044,6 +9992,9 @@ msgstr ""
 
 msgid "Installation finished."
 msgstr "安裝完成."
+
+msgid "Installed"
+msgstr ""
 
 msgid "Installing"
 msgstr "正在安裝"
@@ -10561,10 +10512,6 @@ msgstr ""
 
 msgid "Large"
 msgstr ""
-
-#, fuzzy
-msgid "Last Request"
-msgstr "最快速度"
 
 msgid "Last config"
 msgstr "最後一次正確配置"
@@ -11949,9 +11896,6 @@ msgstr "下一個"
 msgid "NFS"
 msgstr ""
 
-msgid "NFS Actions"
-msgstr ""
-
 #, fuzzy
 msgid "NFS Settings"
 msgstr "設定"
@@ -12113,6 +12057,9 @@ msgstr "網路測驗"
 
 msgid "Network Settings"
 msgstr "網路設定"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Network Test"
@@ -12768,6 +12715,21 @@ msgstr "CCcam資訊"
 msgid "OScam webif disabled"
 msgstr ""
 
+msgid "OScamInfo Overview"
+msgstr ""
+
+msgid "OScamInfo Settings"
+msgstr ""
+
+msgid "OScamInfo ShowLog"
+msgstr ""
+
+msgid "OScamLog Actions"
+msgstr ""
+
+msgid "OScamOverview Actions"
+msgstr ""
+
 msgid "OTT Model"
 msgstr ""
 
@@ -12872,7 +12834,13 @@ msgstr "EPG 搜索"
 msgid "Open IMDb"
 msgstr ""
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -13024,21 +12992,11 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-#, fuzzy
-msgid "Oscam Info - Main Menu"
-msgstr "CCcam 資訊"
-
-#, fuzzy
-msgid "Oscam Info Settings"
-msgstr "Gemini 配置"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
+msgid "Oscam Information"
 msgstr ""
 
-#, fuzzy
-msgid "OscamInfo Mainmenu"
-msgstr "CCcam 資訊"
+msgid "Oscam Information Settings"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr ""
@@ -13145,10 +13103,6 @@ msgstr "C"
 #, fuzzy
 msgid "PGS file"
 msgstr "檔案名"
-
-#, fuzzy
-msgid "PID"
-msgstr "PIDs"
 
 msgid "PIN code needed"
 msgstr ""
@@ -13565,16 +13519,8 @@ msgstr ""
 msgid "Please check the manual of the receiver"
 msgstr "為新的目錄重命名"
 
-#, fuzzy
-msgid "Please choose CCcam-Reader"
-msgstr "請選擇套裝軟體..."
-
 msgid "Please choose an extension..."
 msgstr "請選擇增加部分..."
-
-#, fuzzy
-msgid "Please choose reader"
-msgstr "請選擇套裝軟體..."
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "不要做任何改變,除非您知道您在幹什麼!"
@@ -14403,10 +14349,6 @@ msgstr "供應商"
 msgid "Providers:"
 msgstr "供應商"
 
-#, fuzzy
-msgid "Providers: "
-msgstr "供應商"
-
 msgid "Proxy detected"
 msgstr ""
 
@@ -14609,16 +14551,9 @@ msgstr ""
 msgid "Reader"
 msgstr "讀取"
 
-msgid "Reader Statistics"
-msgstr ""
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Ready to install '%s'?"
-msgstr "撤銷安裝"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
@@ -15120,6 +15055,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service"
+msgstr ""
+
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -15296,10 +15234,6 @@ msgstr "重置視頻增強設定為預設設定?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "重置視頻增強設定為最近一次配置?"
-
-#, fuzzy
-msgid "Reshare"
-msgstr "共用"
 
 #, fuzzy
 msgid "Reshare:"
@@ -15609,9 +15543,6 @@ msgstr ""
 msgid "SABnzbd"
 msgstr ""
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr ""
 
@@ -15622,9 +15553,6 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
-msgstr ""
-
-msgid "SATPI Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -16176,6 +16104,10 @@ msgstr ""
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
+#, python-format
+msgid "Select 'Yes' to enable autostart of '%s'."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -16195,6 +16127,9 @@ msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageD
 msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
+msgstr ""
+
+msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
 
 #, python-format
@@ -17084,20 +17019,8 @@ msgid "Serial No"
 msgstr ""
 
 #, fuzzy
-msgid "Serv.Name"
-msgstr "服務名稱:"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr ""
-
-#, fuzzy
 msgid "Server down"
 msgstr "伺服器"
-
-#, fuzzy
-msgid "Server:"
-msgstr "伺服器:"
 
 #, fuzzy
 msgid "Servers"
@@ -17493,10 +17416,6 @@ msgid "Setup - %s"
 msgstr "設定"
 
 #, fuzzy
-msgid "Setup AFP"
-msgstr "設定"
-
-#, fuzzy
 msgid "Setup Audio Sync"
 msgstr "音頻同步"
 
@@ -17753,10 +17672,6 @@ msgstr "Should this AutoTimer be restricted to a timespan?"
 msgid "Show"
 msgstr "顯示EPG列表"
 
-#, fuzzy
-msgid "Show /tmp/ecm.info"
-msgstr "顯示ECM資訊"
-
 msgid "Show 1080p 24fps as"
 msgstr ""
 
@@ -17820,10 +17735,6 @@ msgstr ""
 #, fuzzy
 msgid "Show CI messages"
 msgstr "顯示Softcam名稱"
-
-#, fuzzy
-msgid "Show Clients"
-msgstr "顯示Gemini專案"
 
 #, fuzzy
 msgid "Show Default Backup Files"
@@ -17972,9 +17883,6 @@ msgid "Show Plugin Skin packages"
 msgstr ""
 
 msgid "Show RFmod setup..."
-msgstr ""
-
-msgid "Show Readers/Proxies"
 msgstr ""
 
 #, fuzzy
@@ -18206,6 +18114,9 @@ msgstr ""
 #, fuzzy
 msgid "Show live TV when movie stopped"
 msgstr "當電影結束時"
+
+msgid "Show logfile"
+msgstr ""
 
 #, fuzzy
 msgid "Show marked events"
@@ -19252,6 +19163,9 @@ msgstr ""
 msgid "Start recording current event"
 msgstr ""
 
+msgid "Start service"
+msgstr ""
+
 #, fuzzy
 msgid "Start teletext"
 msgstr "開始測驗"
@@ -19385,6 +19299,9 @@ msgstr ""
 #, fuzzy
 msgid "Stop recording now"
 msgstr "停止錄影"
+
+msgid "Stop service"
+msgstr ""
 
 #, fuzzy
 msgid "Stop service on return to movie list"
@@ -21212,9 +21129,6 @@ msgstr ""
 msgid "Top and Bottom"
 msgstr ""
 
-msgid "Total"
-msgstr ""
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -21779,10 +21693,6 @@ msgstr "寫入失敗！"
 #, fuzzy
 msgid "Update finished!"
 msgstr "升級完成."
-
-#, fuzzy
-msgid "Update interval (in seconds)"
-msgstr "超時(秒)"
 
 msgid ""
 "Update succeeded!\n"
@@ -23363,12 +23273,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
@@ -24693,6 +24597,94 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s (%s)\n"
+
+#, fuzzy
+#~ msgid "AFP Settings"
+#~ msgstr "EPG設定"
+
+#, fuzzy
+#~ msgid "Address"
+#~ msgstr "IP地址"
+
+#, fuzzy
+#~ msgid "Cards:"
+#~ msgstr "Card"
+
+#, fuzzy
+#~ msgid "ECM Time"
+#~ msgstr "時間"
+
+#, fuzzy
+#~ msgid "ECM-Time"
+#~ msgstr "時間"
+
+#, fuzzy
+#~ msgid "Last Request"
+#~ msgstr "最快速度"
+
+#, fuzzy
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "CCcam 資訊"
+
+#, fuzzy
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Gemini 配置"
+
+#, fuzzy
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "CCcam 資訊"
+
+#, fuzzy
+#~ msgid "PID"
+#~ msgstr "PIDs"
+
+#, fuzzy
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "請選擇套裝軟體..."
+
+#, fuzzy
+#~ msgid "Please choose reader"
+#~ msgstr "請選擇套裝軟體..."
+
+#, fuzzy
+#~ msgid "Providers: "
+#~ msgstr "供應商"
+
+#, fuzzy, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "撤銷安裝"
+
+#, fuzzy
+#~ msgid "Reshare"
+#~ msgstr "共用"
+
+#, fuzzy
+#~ msgid "Serv.Name"
+#~ msgstr "服務名稱:"
+
+#, fuzzy
+#~ msgid "Server:"
+#~ msgstr "伺服器:"
+
+#, fuzzy
+#~ msgid "Setup AFP"
+#~ msgstr "設定"
+
+#, fuzzy
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "顯示ECM資訊"
+
+#, fuzzy
+#~ msgid "Show Clients"
+#~ msgstr "顯示Gemini專案"
+
+#, fuzzy
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "超時(秒)"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "請更改錄製結束時間"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"POT-Creation-Date: 2023-12-27 11:06+0000\n"
 "PO-Revision-Date: 2023-12-27 11:03+0000\n"
 "Last-Translator: Atec <dr.atec@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1204,10 +1204,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s diaľkové ovládanie (originálne)"
 
 #, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s (karty: %s)"
-
-#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1336,9 +1332,6 @@ msgstr "'Dekódovať a nahrať ECM' umožňuje dekódovať nahrávky aj dodatoč
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'WeatherPlugin' nie je nainštalovaný!"
 
-msgid "( All readers)"
-msgstr "(Všetky čítačky)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "(Prístup k denníku '%s' si vyžaduje pripojenie na internet.)"
@@ -1352,9 +1345,6 @@ msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr "(Rádio)"
-
-msgid "(Show only reader:"
-msgstr "(Zobraziť len čítačku:"
 
 msgid "(TV)"
 msgstr "(TV)"
@@ -1606,6 +1596,9 @@ msgstr "<umiestnenie posledného časovača>"
 msgid "<Select a device>"
 msgstr "<Vyberte zariadenie>"
 
+msgid "<no log found"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -1756,15 +1749,6 @@ msgstr "Transkódovanie AC3 plus"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr "Akcie AFP"
-
-msgid "AFP Settings"
-msgstr "Nastavenia AFP"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2083,9 +2067,6 @@ msgstr "Doplnkové parametre motora umožňujú zadať podrobnosti zo zoznamu š
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Doplnkové parametre motora umožňujú zadať podrobnosti zo zoznamu špecifikácií vášho motora, takže Enigma dokáže zistiť, koľko času zaberie presun paraboly na inú družicu."
-
-msgid "Address"
-msgstr "Adresa"
 
 msgid "Adjust 3D settings"
 msgstr "Upraviť 3D nastavenia"
@@ -2754,6 +2735,9 @@ msgstr "Automaticky zapnúť externé titulky"
 msgid "Automatically update Client/Server View"
 msgstr "Automatická aktualizácia zobrazenia klient/server"
 
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
+
 msgid "Autostart"
 msgstr "Autoštart"
 
@@ -3308,12 +3292,6 @@ msgstr "C"
 msgid "C-Band"
 msgstr "Pásmo C"
 
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
-
 msgid "CCD-Width"
 msgstr "Šírka CCD"
 
@@ -3706,12 +3684,6 @@ msgstr "Kapacita"
 
 msgid "Cape Verde"
 msgstr "Kapverdy"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Informácie o karte (čítačka CCcam)"
-
-msgid "Cards:"
-msgstr "Karty:"
 
 msgid "Cards: "
 msgstr "Karty: "
@@ -4177,10 +4149,6 @@ msgstr[2] "Vymazať upozornenia"
 
 msgid "Click the button on your remote you want to change."
 msgstr "Stlačte na diaľkovom ovládači tlačidlo, ktoré chcete zmeniť."
-
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Informácie o klientovi (verzia Oscam: %s)"
 
 msgid "Client is streaming from this box!"
 msgstr "Z tohto zariadenia práve streamuje klient!"
@@ -6573,15 +6541,6 @@ msgstr "E "
 msgid "ECM"
 msgstr "ECM"
 
-msgid "ECM Statistics"
-msgstr "Štatistika ECM"
-
-msgid "ECM Time"
-msgstr "Čas ECM"
-
-msgid "ECM avg"
-msgstr "ECM priemer"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM údaje budú zahrnuté v streame. To umožňuje, aby ho prijímač klienta dekódoval."
 
@@ -6591,12 +6550,6 @@ msgstr "Informácia ECM"
 #, python-format
 msgid "ECM information for '%s'"
 msgstr "Informácia ECM pre '%s'"
-
-msgid "ECM last"
-msgstr "Posledné ECM"
-
-msgid "ECM-Time"
-msgstr "Čas-ECM"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
@@ -7859,9 +7812,6 @@ msgstr "FTA"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr "Akcie FTP"
-
 msgid "FTP Settings"
 msgstr "Nastavenie FTP"
 
@@ -8948,6 +8898,9 @@ msgstr "Skryť stanice uzamknuté rodičovskou kontrolou"
 msgid "Hide player"
 msgstr "Nezobrazovať prehrávač"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 msgid "Hide the InfoBar"
 msgstr "Nezobrazovať infolištu"
 
@@ -9034,9 +8987,6 @@ msgstr "Honduras"
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
-
-msgid "Hops"
-msgstr "Hopy"
 
 msgid "Hops:"
 msgstr "Hopy:"
@@ -9644,6 +9594,9 @@ msgstr "Inštalovať rozšírenia"
 msgid "Install extensions."
 msgstr "Inštalovať rozšírenia."
 
+msgid "Install service"
+msgstr ""
+
 msgid "Install the package"
 msgstr "Nainštalovať balíček"
 
@@ -9652,6 +9605,9 @@ msgstr "Inštalovať vybraný plugin alebo zoznam pluginov"
 
 msgid "Installation finished."
 msgstr "Inštalácia dokončená."
+
+msgid "Installed"
+msgstr ""
 
 msgid "Installing"
 msgstr "Inštalácia"
@@ -10135,9 +10091,6 @@ msgstr "Laoská ľudovodemokratická republika"
 
 msgid "Large"
 msgstr "Veľký"
-
-msgid "Last Request"
-msgstr "Posledná požiadavka"
 
 msgid "Last config"
 msgstr "Posledná konfigurácia"
@@ -11429,9 +11382,6 @@ msgstr "ĎALEJ"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr "Akcie NFS"
-
 msgid "NFS Settings"
 msgstr "Nastavenie NFS"
 
@@ -11581,6 +11531,9 @@ msgstr "Sieťové služby"
 
 msgid "Network Settings"
 msgstr "Nastavenia siete"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "Test siete"
@@ -12197,6 +12150,21 @@ msgstr "Informácie o OScame"
 msgid "OScam webif disabled"
 msgstr "Oscam webif vypnutý"
 
+msgid "OScamInfo Overview"
+msgstr ""
+
+msgid "OScamInfo Settings"
+msgstr ""
+
+msgid "OScamInfo ShowLog"
+msgstr ""
+
+msgid "OScamLog Actions"
+msgstr ""
+
+msgid "OScamOverview Actions"
+msgstr ""
+
 msgid "OTT Model"
 msgstr "OTT model"
 
@@ -12293,8 +12261,14 @@ msgstr "Otvoriť vyhľadávanie v EPG"
 msgid "Open IMDb"
 msgstr "Otvoriť IMDB"
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
 msgstr "Otvoriť stream médií"
+
+msgid "Open Settings"
+msgstr ""
 
 msgid "Open Similar List Channel List"
 msgstr "Otvoriť podobný zoznam kanálov"
@@ -12437,18 +12411,11 @@ msgstr "urijčina"
 msgid "Oromo"
 msgstr "oromčina"
 
-msgid "Oscam Info - Main Menu"
-msgstr "Oscam Info – Hlavné menu"
+msgid "Oscam Information"
+msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr "Oscam Info – Nastavenia"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Denník Oscam (verzia Oscam: %s)"
-
-msgid "OscamInfo Mainmenu"
-msgstr "Hlavné menu OscamInfo"
+msgid "Oscam Information Settings"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr "osetčina"
@@ -12546,9 +12513,6 @@ msgstr "PDC"
 
 msgid "PGS file"
 msgstr "PGS súbor"
-
-msgid "PID"
-msgstr "PID"
 
 msgid "PIN code needed"
 msgstr "Je potrebný PIN"
@@ -12939,14 +12903,8 @@ msgstr "Prosím, buďte trpezliví, vytvára sa záloha image,\n"
 msgid "Please check the manual of the receiver"
 msgstr "Prosím, pozrite si návod na obsluhu prijímača"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Prosím, vyberte čítačku CCcam"
-
 msgid "Please choose an extension..."
 msgstr "Prosím, vyberte si rozšírenie..."
-
-msgid "Please choose reader"
-msgstr "Prosím, vyberte čítačku"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Prosím, nemeňte žiadne hodnoty, ak neviete, čo robíte!"
@@ -13713,9 +13671,6 @@ msgstr "Poskytovatelia"
 msgid "Providers:"
 msgstr "Poskytovatelia:"
 
-msgid "Providers: "
-msgstr "Poskytovatelia: "
-
 msgid "Proxy detected"
 msgstr "Zistené proxy"
 
@@ -13906,16 +13861,9 @@ msgstr "Načítať používateľské dáta z oscam.conf"
 msgid "Reader"
 msgstr "Čítačka"
 
-msgid "Reader Statistics"
-msgstr "Štatistika čítačky"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Spustiť inštaláciu \"%s\"?"
-
-#, python-format
-msgid "Ready to install '%s'?"
-msgstr "Spustiť inštaláciu %s ?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
@@ -14376,6 +14324,9 @@ msgstr "Odstrániť pluginy…"
 msgid "Remove selected service"
 msgstr "Odstrániť vybranú stanicu/službu"
 
+msgid "Remove service"
+msgstr ""
+
 msgid "Remove service from AutoCam"
 msgstr "Odstrániť stanicu z AutoCamu"
 
@@ -14546,9 +14497,6 @@ msgstr "Vrátiť rozšírené nastavenia obrazu na systémové predvolené hodno
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Vrátiť rozšírené nastavenia obrazu na poslednú konfiguráciu?"
-
-msgid "Reshare"
-msgstr "Opätovné zdieľanie"
 
 msgid "Reshare:"
 msgstr "Opätovné zdieľanie:"
@@ -14835,9 +14783,6 @@ msgstr "Réunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr "Akcie SABnzbd"
-
 msgid "SABnzbd Settings"
 msgstr "Nastavenie SABnzbd"
 
@@ -14849,9 +14794,6 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
-
-msgid "SATPI Setting Actions"
-msgstr "Akcie pre nastavenie SATPI"
 
 msgid "SATPI Settings"
 msgstr "Nastavenie SATPI"
@@ -15371,6 +15313,10 @@ msgstr "Ak je nastavené na 'áno', v infolište sa bude zobrazovať číslo kan
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr "Ak sa majú v prehliadači Správcu súborov zobrazovať aj neznáme súbory, vyberte možnosť 'Áno'. Ak sa neznáme súbory nemajú spracúvať, vyberte možnosť 'Nie'."
 
+#, python-format
+msgid "Select 'Yes' to enable autostart of '%s'."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Ak chcete povoliť úpravu nastavení tohto zariadenia, vyberte možnosť 'Áno'. Výberom možnosti 'Nie' sa nastavenia zariadenie resetujú na predvolené hodnoty."
 
@@ -15391,6 +15337,9 @@ msgstr "Vyberte 'áno', ak sa majú tlačidlá DOĽAVA/DOPRAVA používať na pr
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ak je nastavené na 'áno', kanály bez dostupného EPH sa nezobrazia."
+
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
@@ -16269,18 +16218,8 @@ msgstr "srbčina"
 msgid "Serial No"
 msgstr "S/N"
 
-msgid "Serv.Name"
-msgstr "Server"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Informácie o serveri (verzia Oscam: %s)"
-
 msgid "Server down"
 msgstr "Server mimo prevádzky"
-
-msgid "Server:"
-msgstr "Server:"
 
 msgid "Servers"
 msgstr "Servery"
@@ -16652,9 +16591,6 @@ msgstr "Nastavenia"
 msgid "Setup - %s"
 msgstr "Nastavenie – %s"
 
-msgid "Setup AFP"
-msgstr "Nastavenie AFP"
-
 msgid "Setup Audio Sync"
 msgstr "Nastavenie synchronizácie zvuku"
 
@@ -16872,9 +16808,6 @@ msgstr "Malo sa vynulovať počítadlo pádov, aby sa zabránilo reštartu?"
 msgid "Show"
 msgstr "Zobraziť"
 
-msgid "Show /tmp/ecm.info"
-msgstr "Zobraziť /tmp/ecm.info"
-
 msgid "Show 1080p 24fps as"
 msgstr "Zobraziť 1080p 24 fps ako"
 
@@ -16934,9 +16867,6 @@ msgstr "Zobraziť informácie o CCcam"
 
 msgid "Show CI messages"
 msgstr "Zobraziť správy CI"
-
-msgid "Show Clients"
-msgstr "Zobraziť klientov"
 
 msgid "Show Default Backup Files"
 msgstr "Zobraziť predvolené záložné súbory"
@@ -17069,9 +16999,6 @@ msgstr "Zobraziť balíčky pre vzhľad pluginu"
 
 msgid "Show RFmod setup..."
 msgstr "Zobraziť nastavenie RFmod..."
-
-msgid "Show Readers/Proxies"
-msgstr "Zobraziť čítačky/proxy"
 
 msgid "Show Record Movies"
 msgstr "Zobraziť nahraté filmy"
@@ -17283,6 +17210,9 @@ msgstr "Zobraziť posledný obrázok/image"
 
 msgid "Show live TV when movie stopped"
 msgstr "Zobraziť živé TV vysielanie pri zastavení filmu"
+
+msgid "Show logfile"
+msgstr ""
 
 msgid "Show marked events"
 msgstr "Zobraziť označené udalosti"
@@ -18253,6 +18183,9 @@ msgstr "Spustiť offline dekódovanie"
 msgid "Start recording current event"
 msgstr "Spustiť nahrávanie aktuálnej udalosti"
 
+msgid "Start service"
+msgstr ""
+
 msgid "Start teletext"
 msgstr "Spustiť teletext"
 
@@ -18379,6 +18312,9 @@ msgstr "Ukončiť nahrávanie a vymazať"
 
 msgid "Stop recording now"
 msgstr "Ihneď zastaviť nahrávanie"
+
+msgid "Stop service"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Zastaviť stanicu po návrate do zoznamu filmov"
@@ -20184,9 +20120,6 @@ msgstr "nahor"
 msgid "Top and Bottom"
 msgstr "Hore a dolu"
 
-msgid "Total"
-msgstr "Celkom"
-
 msgid "Total CPU benchmark"
 msgstr "Celkový benchmark CPU"
 
@@ -20717,9 +20650,6 @@ msgstr "Aktualizácia neúspešná!"
 
 msgid "Update finished!"
 msgstr "Aktualizácia je dokončená!"
-
-msgid "Update interval (in seconds)"
-msgstr "Interval aktualizácie (s)"
 
 msgid ""
 "Update succeeded!\n"
@@ -22289,14 +22219,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"%s %s sa po odobratí služby reštartuje.\n"
-"Má sa odstránenie ihneď spustiť?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
@@ -23583,6 +23505,148 @@ msgstr "áno (zachovať zdroje softvéru)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s (karty: %s)"
+
+#~ msgid "( All readers)"
+#~ msgstr "(Všetky čítačky)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Zobraziť len čítačku:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Actions"
+#~ msgstr "Akcie AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "Nastavenia AFP"
+
+#~ msgid "Address"
+#~ msgstr "Adresa"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Informácie o karte (čítačka CCcam)"
+
+#~ msgid "Cards:"
+#~ msgstr "Karty:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Informácie o klientovi (verzia Oscam: %s)"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "Štatistika ECM"
+
+#~ msgid "ECM Time"
+#~ msgstr "Čas ECM"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM priemer"
+
+#~ msgid "ECM last"
+#~ msgstr "Posledné ECM"
+
+#~ msgid "ECM-Time"
+#~ msgstr "Čas-ECM"
+
+#~ msgid "FTP Actions"
+#~ msgstr "Akcie FTP"
+
+#~ msgid "Hops"
+#~ msgstr "Hopy"
+
+#~ msgid "Last Request"
+#~ msgstr "Posledná požiadavka"
+
+#~ msgid "NFS Actions"
+#~ msgstr "Akcie NFS"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Oscam Info – Hlavné menu"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Oscam Info – Nastavenia"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Denník Oscam (verzia Oscam: %s)"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "Hlavné menu OscamInfo"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Prosím, vyberte čítačku CCcam"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Prosím, vyberte čítačku"
+
+#~ msgid "Providers: "
+#~ msgstr "Poskytovatelia: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Štatistika čítačky"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Spustiť inštaláciu %s ?"
+
+#~ msgid "Reshare"
+#~ msgstr "Opätovné zdieľanie"
+
+#~ msgid "SABnzbd Actions"
+#~ msgstr "Akcie SABnzbd"
+
+#~ msgid "SATPI Setting Actions"
+#~ msgstr "Akcie pre nastavenie SATPI"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Server"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Informácie o serveri (verzia Oscam: %s)"
+
+#~ msgid "Server:"
+#~ msgstr "Server:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "Nastavenie AFP"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "Zobraziť /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "Zobraziť klientov"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Zobraziť čítačky/proxy"
+
+#~ msgid "Total"
+#~ msgstr "Celkom"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Interval aktualizácie (s)"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "%s %s sa po odobratí služby reštartuje.\n"
+#~ "Má sa odstránenie ihneď spustiť?"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "Prosím, zmeňte čas ukončenia nahrávania"

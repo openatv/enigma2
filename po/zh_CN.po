@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"POT-Creation-Date: 2023-12-27 11:06+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1171,10 +1171,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s 远程控制(本机)"
 
 #, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s ( %s 张卡)"
-
-#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1303,9 +1299,6 @@ msgstr "如果录制时解扰失败,'解扰和录制ECM'提供之后的解扰选
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'天气插件'未安装!"
 
-msgid "( All readers)"
-msgstr "(所有读卡器)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "访问 %s 提交日志需要互联网连接."
@@ -1319,9 +1312,6 @@ msgstr " (画中画)"
 
 msgid "(Radio)"
 msgstr " (广播)"
-
-msgid "(Show only reader:"
-msgstr "(仅显示读卡器:"
 
 msgid "(TV)"
 msgstr " (电视)"
@@ -1573,6 +1563,9 @@ msgstr "<最后一个定时器位置>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -1728,15 +1721,6 @@ msgstr "AC3+转码"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr ""
-
-msgid "AFP Settings"
-msgstr "AFP设置"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2055,9 +2039,6 @@ msgstr "额外的电机选项允许您输入电机规格表中的详细信息,�
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "额外的电机选项允许您输入电机规格表中的详细信息,这样就可以计算出从一颗卫星移动到另一颗卫星需要多长时间."
-
-msgid "Address"
-msgstr "地址"
 
 msgid "Adjust 3D settings"
 msgstr "调整3D设置"
@@ -2726,6 +2707,9 @@ msgstr "自动打开外挂字幕"
 msgid "Automatically update Client/Server View"
 msgstr "自动更新客户端/服务器视图?"
 
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
+
 msgid "Autostart"
 msgstr "自启动"
 
@@ -3280,12 +3264,6 @@ msgstr "C"
 msgid "C-Band"
 msgstr "C-波段"
 
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
-
 msgid "CCD-Width"
 msgstr ""
 
@@ -3678,12 +3656,6 @@ msgstr "容量"
 
 msgid "Cape Verde"
 msgstr "佛得角"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "CA卡信息 (CCcam-读卡器)"
-
-msgid "Cards:"
-msgstr "卡片:"
 
 msgid "Cards: "
 msgstr "卡片: "
@@ -4148,10 +4120,6 @@ msgstr[1] ""
 
 msgid "Click the button on your remote you want to change."
 msgstr "请单击你想要修改的遥控键"
-
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "客户端信息(Oscam-版本: %s)"
 
 msgid "Client is streaming from this box!"
 msgstr "客户端正在从这个机顶盒中进行流式传输!"
@@ -6535,15 +6503,6 @@ msgstr "E "
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr "ECM统计数据"
-
-msgid "ECM Time"
-msgstr "ECM时间"
-
-msgid "ECM avg"
-msgstr "ECM平均值"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM数据将包括在流中. 这使得客户端接收机能够对其进行解码."
 
@@ -6553,12 +6512,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr "ECM最后"
-
-msgid "ECM-Time"
-msgstr "ECM-时间"
 
 msgid "EJECTCD"
 msgstr "EJECTCD键"
@@ -7817,9 +7770,6 @@ msgstr "免费频道"
 msgid "FTP"
 msgstr "FTP协议"
 
-msgid "FTP Actions"
-msgstr ""
-
 msgid "FTP Settings"
 msgstr "FTP设置"
 
@@ -8906,6 +8856,9 @@ msgstr "隐藏家长锁定的频道"
 msgid "Hide player"
 msgstr "隐藏播放器"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 msgid "Hide the InfoBar"
 msgstr "隐藏信息栏"
 
@@ -8992,9 +8945,6 @@ msgstr "洪都拉斯"
 
 msgid "Hong Kong"
 msgstr "中国香港"
-
-msgid "Hops"
-msgstr "链路数"
 
 msgid "Hops:"
 msgstr "链路数:"
@@ -9602,6 +9552,9 @@ msgstr "安装扩展"
 msgid "Install extensions."
 msgstr "安装扩展."
 
+msgid "Install service"
+msgstr ""
+
 msgid "Install the package"
 msgstr ""
 
@@ -9610,6 +9563,9 @@ msgstr ""
 
 msgid "Installation finished."
 msgstr "安装完成."
+
+msgid "Installed"
+msgstr ""
 
 msgid "Installing"
 msgstr "安装"
@@ -10092,9 +10048,6 @@ msgstr "老挝"
 
 msgid "Large"
 msgstr "长路径"
-
-msgid "Last Request"
-msgstr "最后的请求."
 
 msgid "Last config"
 msgstr "最后一次正确配置"
@@ -11385,9 +11338,6 @@ msgstr "接下来"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr ""
-
 msgid "NFS Settings"
 msgstr "NFS设置"
 
@@ -11537,6 +11487,9 @@ msgstr "网络服务"
 
 msgid "Network Settings"
 msgstr "网络选项"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "网络测试"
@@ -12150,6 +12103,21 @@ msgstr "OScam信息"
 msgid "OScam webif disabled"
 msgstr "OScam webif已禁用"
 
+msgid "OScamInfo Overview"
+msgstr ""
+
+msgid "OScamInfo Settings"
+msgstr ""
+
+msgid "OScamInfo ShowLog"
+msgstr ""
+
+msgid "OScamLog Actions"
+msgstr ""
+
+msgid "OScamOverview Actions"
+msgstr ""
+
 msgid "OTT Model"
 msgstr "OTT型号"
 
@@ -12246,7 +12214,13 @@ msgstr "开源EPG搜索"
 msgid "Open IMDb"
 msgstr "打开IMDb"
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -12390,18 +12364,11 @@ msgstr "奥里亚"
 msgid "Oromo"
 msgstr "奥罗莫"
 
-msgid "Oscam Info - Main Menu"
-msgstr "oscam信息-主菜单"
+msgid "Oscam Information"
+msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr "oscam信息-配置"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "OScam日志( OScam-版本: %s )"
-
-msgid "OscamInfo Mainmenu"
-msgstr "oscam信息主菜单"
+msgid "Oscam Information Settings"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr "奥塞梯"
@@ -12499,9 +12466,6 @@ msgstr "PDC"
 
 msgid "PGS file"
 msgstr "PGS文件"
-
-msgid "PID"
-msgstr "PID信息显示"
 
 msgid "PIN code needed"
 msgstr "需要PIN码"
@@ -12892,14 +12856,8 @@ msgstr "请耐心等待,备份即将创建.\n"
 msgid "Please check the manual of the receiver"
 msgstr "请检查接收器的手册"
 
-msgid "Please choose CCcam-Reader"
-msgstr "请选择CCcam阅读器"
-
 msgid "Please choose an extension..."
 msgstr "请选择一个扩展..."
-
-msgid "Please choose reader"
-msgstr "请选择读卡器"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "请不要更改任何值,除非你知道你正在做什么!"
@@ -13661,9 +13619,6 @@ msgstr "供应商"
 msgid "Providers:"
 msgstr "提供商:"
 
-msgid "Providers: "
-msgstr "供应商: "
-
 msgid "Proxy detected"
 msgstr "检测到代理"
 
@@ -13854,16 +13809,9 @@ msgstr "从oscam.conf读取用户数据"
 msgid "Reader"
 msgstr "编辑"
 
-msgid "Reader Statistics"
-msgstr "读卡器统计"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "准备安装 \"%s\" ?"
-
-#, python-format
-msgid "Ready to install '%s'?"
-msgstr "是否准备安装\"%s\" ?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
@@ -14324,6 +14272,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service"
+msgstr ""
+
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -14494,9 +14445,6 @@ msgstr "是否将视频增强设置重置为系统默认值?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "是否重置视频增强设置到你的最后一个配置?"
-
-msgid "Reshare"
-msgstr "转贴"
 
 msgid "Reshare:"
 msgstr "转帖:"
@@ -14783,9 +14731,6 @@ msgstr "团圆"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd 设置"
 
@@ -14797,9 +14742,6 @@ msgstr "SATA硬盘"
 
 msgid "SATPI"
 msgstr "SATPI"
-
-msgid "SATPI Setting Actions"
-msgstr ""
 
 msgid "SATPI Settings"
 msgstr "SATPI 设置"
@@ -15317,6 +15259,10 @@ msgstr "如果设置为'是'的频道数将显示在看到信息栏."
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
+#, python-format
+msgid "Select 'Yes' to enable autostart of '%s'."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "选择'是'可编辑此设备的设置.选择'否'会将设备设置重置为默认值."
 
@@ -15337,6 +15283,9 @@ msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "如果设为'是',没有EPG的频道将不显示."
+
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
@@ -16206,18 +16155,8 @@ msgstr "塞尔维亚语"
 msgid "Serial No"
 msgstr "序列号"
 
-msgid "Serv.Name"
-msgstr "频道名称"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "服务器信息( Oscam版本: %s )"
-
 msgid "Server down"
 msgstr "服务器关闭"
-
-msgid "Server:"
-msgstr "服务器:"
 
 msgid "Servers"
 msgstr "服务器"
@@ -16583,9 +16522,6 @@ msgstr "设置"
 msgid "Setup - %s"
 msgstr "设置- %s"
 
-msgid "Setup AFP"
-msgstr "设置AFP"
-
 msgid "Setup Audio Sync"
 msgstr "设置音频同步"
 
@@ -16803,9 +16739,6 @@ msgstr "是否应该重置崩溃计数器以防止重新启动？"
 msgid "Show"
 msgstr "显示"
 
-msgid "Show /tmp/ecm.info"
-msgstr "显示 /tmp/ecm.info"
-
 msgid "Show 1080p 24fps as"
 msgstr "将1080p 24fps显示为"
 
@@ -16865,9 +16798,6 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "显示CI消息"
-
-msgid "Show Clients"
-msgstr "显示客户端"
 
 msgid "Show Default Backup Files"
 msgstr "显示默认备份文件"
@@ -17000,9 +16930,6 @@ msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "显示射频模块设置…"
-
-msgid "Show Readers/Proxies"
-msgstr "显示 服务/代理"
 
 msgid "Show Record Movies"
 msgstr "显示录制电影"
@@ -17214,6 +17141,9 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "电影停止时显示电视直播"
+
+msgid "Show logfile"
+msgstr ""
 
 msgid "Show marked events"
 msgstr "显示标记的事件"
@@ -18183,6 +18113,9 @@ msgstr "开始离线解码"
 msgid "Start recording current event"
 msgstr ""
 
+msgid "Start service"
+msgstr ""
+
 msgid "Start teletext"
 msgstr "启动图文电视"
 
@@ -18309,6 +18242,9 @@ msgstr "停止录制并删除"
 
 msgid "Stop recording now"
 msgstr "马上停止录制"
+
+msgid "Stop service"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "返回电影列表时停止频道"
@@ -20079,9 +20015,6 @@ msgstr "顶部"
 msgid "Top and Bottom"
 msgstr "顶部和底部"
 
-msgid "Total"
-msgstr "总数"
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -20612,9 +20545,6 @@ msgstr "更新失败！"
 
 msgid "Update finished!"
 msgstr "更新完成!"
-
-msgid "Update interval (in seconds)"
-msgstr "更新间隔(秒)"
 
 msgid ""
 "Update succeeded!\n"
@@ -22142,12 +22072,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
@@ -23431,6 +23355,125 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s ( %s 张卡)"
+
+#~ msgid "( All readers)"
+#~ msgstr "(所有读卡器)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(仅显示读卡器:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "AFP设置"
+
+#~ msgid "Address"
+#~ msgstr "地址"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "CA卡信息 (CCcam-读卡器)"
+
+#~ msgid "Cards:"
+#~ msgstr "卡片:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "客户端信息(Oscam-版本: %s)"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM统计数据"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM时间"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM平均值"
+
+#~ msgid "ECM last"
+#~ msgstr "ECM最后"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM-时间"
+
+#~ msgid "Hops"
+#~ msgstr "链路数"
+
+#~ msgid "Last Request"
+#~ msgstr "最后的请求."
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "oscam信息-主菜单"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "oscam信息-配置"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "OScam日志( OScam-版本: %s )"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "oscam信息主菜单"
+
+#~ msgid "PID"
+#~ msgstr "PID信息显示"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "请选择CCcam阅读器"
+
+#~ msgid "Please choose reader"
+#~ msgstr "请选择读卡器"
+
+#~ msgid "Providers: "
+#~ msgstr "供应商: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "读卡器统计"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "是否准备安装\"%s\" ?"
+
+#~ msgid "Reshare"
+#~ msgstr "转贴"
+
+#~ msgid "Serv.Name"
+#~ msgstr "频道名称"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "服务器信息( Oscam版本: %s )"
+
+#~ msgid "Server:"
+#~ msgstr "服务器:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "设置AFP"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "显示 /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "显示客户端"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "显示 服务/代理"
+
+#~ msgid "Total"
+#~ msgstr "总数"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "更新间隔(秒)"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "请更改录像结束时间"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"POT-Creation-Date: 2023-12-27 11:06+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1205,10 +1205,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s%s nuotolinio valdymo pultas (gimtasis)"
 
 #, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s (%s kortelės)"
-
-#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1339,9 +1335,6 @@ msgstr "'Iškoduoti ir įrašyti ECM' leidžia iškoduoti vėliau, jeigu įraša
 msgid "'WeatherPlugin' is not installed!"
 msgstr "Orų prognozės programa nėra įdiegta!"
 
-msgid "( All readers)"
-msgstr "(Visi skaitytojai)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "Prieiga prie %s naujinimo žurnalų reikalauja interneto ryšio."
@@ -1355,9 +1348,6 @@ msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr " (Radijas)"
-
-msgid "(Show only reader:"
-msgstr "(rodyti tik skaitytoją:"
 
 msgid "(TV)"
 msgstr " (Televizija)"
@@ -1609,6 +1599,9 @@ msgstr "<Paskutinio laikmačio vieta>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -1767,15 +1760,6 @@ msgstr "AC3plus perkodavimas"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr "AFP veiksmai"
-
-msgid "AFP Settings"
-msgstr "AFP parametrai"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2094,9 +2078,6 @@ msgstr "Papildomos variklio galimybės leidžia įvesti duomenis iš jūsų vari
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Papildomos variklio galimybės leidžia įvesti duomenis iš jūsų variklio specifikacijų lapo, taigi \"enigma\" gali išsiaiškinti, kiek laiko reikės perkelti į kitą palydovą."
-
-msgid "Address"
-msgstr "Adresas"
 
 msgid "Adjust 3D settings"
 msgstr "Koreguoti 3D nustatymus"
@@ -2767,6 +2748,9 @@ msgstr "Automatiškai įjungti išorinius subtitrus"
 msgid "Automatically update Client/Server View"
 msgstr "Automatiškai naujinti kliento / serverio rodinį"
 
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
+
 msgid "Autostart"
 msgstr "Auto paleidimas"
 
@@ -3321,12 +3305,6 @@ msgstr "C"
 msgid "C-Band"
 msgstr "C-juosta"
 
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
-
 msgid "CCD-Width"
 msgstr "CCD plotis"
 
@@ -3719,12 +3697,6 @@ msgstr "Talpa"
 
 msgid "Cape Verde"
 msgstr "Žaliasis kišulys"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Kortelių informacija (iš CCcam skaitytuvo)"
-
-msgid "Cards:"
-msgstr "Kortelės:"
 
 msgid "Cards: "
 msgstr "Kortelės: "
@@ -4190,10 +4162,6 @@ msgstr[2] ""
 
 msgid "Click the button on your remote you want to change."
 msgstr "Spauskite nuotolinio valdymo pulto mygtuką, kurį norite pakeisti"
-
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Kliento Info (Oscam versija: %s)"
 
 msgid "Client is streaming from this box!"
 msgstr "Klientas transliuoja iš šio imtuvo!"
@@ -6585,15 +6553,6 @@ msgstr "Е "
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr "ECM statistika"
-
-msgid "ECM Time"
-msgstr "ECM laikas"
-
-msgid "ECM avg"
-msgstr "ECM vid"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM duomenys bus įtraukti į transliuojamą srautą. Tai leis kliento imtuvui jį iškoduoti."
 
@@ -6603,12 +6562,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr "ECM paskutinis"
-
-msgid "ECM-Time"
-msgstr "ECM laikas"
 
 msgid "EJECTCD"
 msgstr "IŠSTUMTI CD"
@@ -7873,9 +7826,6 @@ msgstr "NEKODUOTA"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr "FTP veiksmai"
-
 msgid "FTP Settings"
 msgstr "FTP parametrai"
 
@@ -8962,6 +8912,9 @@ msgstr "Paslėpti tėvų kontrolei priskirtus kanalus"
 msgid "Hide player"
 msgstr "Paslėpti grotuvą"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 msgid "Hide the InfoBar"
 msgstr "Nustatykite laiką, kad paslėpti info juostą."
 
@@ -9048,9 +9001,6 @@ msgstr "Hondūras"
 
 msgid "Hong Kong"
 msgstr "Honkongas"
-
-msgid "Hops"
-msgstr "Žingsniai"
 
 msgid "Hops:"
 msgstr "Žingsniai:"
@@ -9658,6 +9608,9 @@ msgstr "Įdiekite plėtinius"
 msgid "Install extensions."
 msgstr "Įdiekite plėtinius."
 
+msgid "Install service"
+msgstr ""
+
 msgid "Install the package"
 msgstr "Įdiekite paketą"
 
@@ -9666,6 +9619,9 @@ msgstr ""
 
 msgid "Installation finished."
 msgstr "Įdiegimas baigtas."
+
+msgid "Installed"
+msgstr ""
 
 msgid "Installing"
 msgstr "Įdiegiama"
@@ -10149,9 +10105,6 @@ msgstr "Laoso Liaudies Demokratinė Respublika"
 
 msgid "Large"
 msgstr "Didelis"
-
-msgid "Last Request"
-msgstr "Paskutinė užklausa."
 
 msgid "Last config"
 msgstr "Paskutinė konfigūracija"
@@ -11443,9 +11396,6 @@ msgstr "KITAS"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr "NFS veiksmai"
-
 msgid "NFS Settings"
 msgstr "NFS parametrai"
 
@@ -11595,6 +11545,9 @@ msgstr "Tinklo paslaugos"
 
 msgid "Network Settings"
 msgstr "Tinklo parametrai"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "Tinklo testavimas"
@@ -12208,6 +12161,21 @@ msgstr "OScam informacija"
 msgid "OScam webif disabled"
 msgstr "OScam webif išjungtas"
 
+msgid "OScamInfo Overview"
+msgstr ""
+
+msgid "OScamInfo Settings"
+msgstr ""
+
+msgid "OScamInfo ShowLog"
+msgstr ""
+
+msgid "OScamLog Actions"
+msgstr ""
+
+msgid "OScamOverview Actions"
+msgstr ""
+
 msgid "OTT Model"
 msgstr "OTT modelis"
 
@@ -12304,7 +12272,13 @@ msgstr "Atverti EPG paiešką"
 msgid "Open IMDb"
 msgstr "Atverti IMDb"
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -12448,18 +12422,11 @@ msgstr "Orijų"
 msgid "Oromo"
 msgstr "Oromo"
 
-msgid "Oscam Info - Main Menu"
-msgstr "Oscam Info - pagrindinis meniu"
+msgid "Oscam Information"
+msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr "Oscam informacijos parametrai"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam žurnalas (Oscam-versija: %s)"
-
-msgid "OscamInfo Mainmenu"
-msgstr "Oscam Informacijos pagrindinis meniu"
+msgid "Oscam Information Settings"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr "Osetijos / Ossetic"
@@ -12557,9 +12524,6 @@ msgstr "PDC"
 
 msgid "PGS file"
 msgstr "PGS failas"
-
-msgid "PID"
-msgstr "PID"
 
 msgid "PIN code needed"
 msgstr "Reikia pin kodo"
@@ -12950,14 +12914,8 @@ msgstr "Būkite kantrūs, atsarginė kopija tuojau bus padaryta,\n"
 msgid "Please check the manual of the receiver"
 msgstr "Prašome patikrinti imtuvo vadovą"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Pasirinkite Cccam skaitytuvą"
-
 msgid "Please choose an extension..."
 msgstr "Pasirinkite plėtinį..."
-
-msgid "Please choose reader"
-msgstr "Pasirinkite skaitytuvą"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Nekeiskite jokių reikšmių, jeigu tiksliai nežinote, kam jos skirtos ir koks bus rezultatas!"
@@ -13724,9 +13682,6 @@ msgstr "Teikėjai"
 msgid "Providers:"
 msgstr "Teikėjai:"
 
-msgid "Providers: "
-msgstr "Teikėjai: "
-
 msgid "Proxy detected"
 msgstr "Aptiktas tarpinis serveris"
 
@@ -13917,16 +13872,9 @@ msgstr "Vartotojo duomenis imti iš oscam.conf"
 msgid "Reader"
 msgstr "Skaitytuvas"
 
-msgid "Reader Statistics"
-msgstr "Skaitytuvo statistika"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Pasirengę įdiegti \"%s\" ?"
-
-#, python-format
-msgid "Ready to install '%s'?"
-msgstr "Pasiruošę įdiegti '%s'?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
@@ -14387,6 +14335,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service"
+msgstr ""
+
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -14557,9 +14508,6 @@ msgstr "Iš naujo nustatyti vaizdo stiprinimo nustatymus į sistemos numatytus?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Iš naujo nustatyti vaizdo stiprinimo nustatymus į jūsų paskutinę vaizdo konfigūraciją?"
-
-msgid "Reshare"
-msgstr "Bendrinti iš naujo"
 
 msgid "Reshare:"
 msgstr "Bendrinti iš naujo:"
@@ -14846,9 +14794,6 @@ msgstr "Reunionas"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr "SABnzbd veiksmai"
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd parametrai"
 
@@ -14860,9 +14805,6 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
-
-msgid "SATPI Setting Actions"
-msgstr "SATPI nustatymo veiksmai"
 
 msgid "SATPI Settings"
 msgstr "SATPI parametrai"
@@ -15382,6 +15324,10 @@ msgstr "Jei nustatyta 'taip', info juostoje bus rodomas kanalo numeris."
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr "Pasirinkite \"Taip\", kad nežinomi failai būtų rodomi \"File Commander\" failų peržiūros priemonėje, pasirinkite \"Ne\", kad neapdorotumėte nežinomų failų."
 
+#, python-format
+msgid "Select 'Yes' to enable autostart of '%s'."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Pasirinkite 'Taip', kad įgalintumėte šio įrenginio nustatymų redagavimą. Pasirinkus 'Ne', įrenginių nustatymai iš naujo nustato numatytąsias reikšmes."
 
@@ -15402,6 +15348,9 @@ msgstr "Pasirinkite \"Taip\", kad įgalintumėte mygtukų KAIRĖ/DEŠINĖ naudoj
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Jei nustatyta 'taip', kanalai be EPG duomenų nebus rodomi."
+
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
@@ -16274,18 +16223,8 @@ msgstr "Serbų"
 msgid "Serial No"
 msgstr "Serijinis Nr"
 
-msgid "Serv.Name"
-msgstr "Serverio pavadinimas"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Serverio Informacija (Oscam-versija: %s)"
-
 msgid "Server down"
 msgstr "Serveris žemyn"
-
-msgid "Server:"
-msgstr "Serveris:"
 
 msgid "Servers"
 msgstr "Serveriai"
@@ -16651,9 +16590,6 @@ msgstr "Nustatymai"
 msgid "Setup - %s"
 msgstr "Nustatymas - %s"
 
-msgid "Setup AFP"
-msgstr "AFP nustatymas"
-
 msgid "Setup Audio Sync"
 msgstr "Nustatyti garso sinchronizavimą"
 
@@ -16871,9 +16807,6 @@ msgstr "Ar reikia iš naujo nustatyti gedimų skaitiklio būseną, kad būtų i�
 msgid "Show"
 msgstr "﻿Rodyti"
 
-msgid "Show /tmp/ecm.info"
-msgstr "Rodyti /tmp/ecm.info"
-
 msgid "Show 1080p 24fps as"
 msgstr "Rodyti 1080p 24 fps kaip"
 
@@ -16933,9 +16866,6 @@ msgstr "Rodyti CCcam informaciją"
 
 msgid "Show CI messages"
 msgstr "Rodyti CI pranešimus"
-
-msgid "Show Clients"
-msgstr "Klientai"
 
 msgid "Show Default Backup Files"
 msgstr "Rodyti numatytuosius atsarginių kopijų failus"
@@ -17068,9 +16998,6 @@ msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "Rodyti RF modulio sąranką..."
-
-msgid "Show Readers/Proxies"
-msgstr "Skaitytuvai / tarpiniai serveriai"
 
 msgid "Show Record Movies"
 msgstr "Rodyti įrašytus filmus"
@@ -17282,6 +17209,9 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Kai filmas sustabdytas, rodyti TV transliaciją"
+
+msgid "Show logfile"
+msgstr ""
 
 msgid "Show marked events"
 msgstr "Rodyti pažymėtus įvykius"
@@ -18252,6 +18182,9 @@ msgstr "Pradėti dekodavimą neprisijungus"
 msgid "Start recording current event"
 msgstr "Pradėti įrašyti dabartinį įvykį"
 
+msgid "Start service"
+msgstr ""
+
 msgid "Start teletext"
 msgstr "Įjungti teletekstą"
 
@@ -18378,6 +18311,9 @@ msgstr "Stabdyti įrašymą ir trinti"
 
 msgid "Stop recording now"
 msgstr "Stabdyti įrašymą dabar"
+
+msgid "Stop service"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Stabdyti kanalą ir grįžti į filmų sąrašą"
@@ -20158,9 +20094,6 @@ msgstr "viršus"
 msgid "Top and Bottom"
 msgstr "Viršuje ir apačioje"
 
-msgid "Total"
-msgstr "Iš viso"
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -20691,9 +20624,6 @@ msgstr "Atnaujinti nepavyko!"
 
 msgid "Update finished!"
 msgstr "Atnaujinimas baigtas!"
-
-msgid "Update interval (in seconds)"
-msgstr "Atnaujinimo intervalas (sekundėmis)"
 
 msgid ""
 "Update succeeded!\n"
@@ -22247,14 +22177,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"Pašalinus paslaugą, jūsų %s %s bus paleistas iš naujo\n"
-"Ar norite pašalinti dabar?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
@@ -23543,6 +23465,148 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s (%s kortelės)"
+
+#~ msgid "( All readers)"
+#~ msgstr "(Visi skaitytojai)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(rodyti tik skaitytoją:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Actions"
+#~ msgstr "AFP veiksmai"
+
+#~ msgid "AFP Settings"
+#~ msgstr "AFP parametrai"
+
+#~ msgid "Address"
+#~ msgstr "Adresas"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Kortelių informacija (iš CCcam skaitytuvo)"
+
+#~ msgid "Cards:"
+#~ msgstr "Kortelės:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Kliento Info (Oscam versija: %s)"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM statistika"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM laikas"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM vid"
+
+#~ msgid "ECM last"
+#~ msgstr "ECM paskutinis"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM laikas"
+
+#~ msgid "FTP Actions"
+#~ msgstr "FTP veiksmai"
+
+#~ msgid "Hops"
+#~ msgstr "Žingsniai"
+
+#~ msgid "Last Request"
+#~ msgstr "Paskutinė užklausa."
+
+#~ msgid "NFS Actions"
+#~ msgstr "NFS veiksmai"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Oscam Info - pagrindinis meniu"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Oscam informacijos parametrai"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Oscam žurnalas (Oscam-versija: %s)"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "Oscam Informacijos pagrindinis meniu"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Pasirinkite Cccam skaitytuvą"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Pasirinkite skaitytuvą"
+
+#~ msgid "Providers: "
+#~ msgstr "Teikėjai: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Skaitytuvo statistika"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Pasiruošę įdiegti '%s'?"
+
+#~ msgid "Reshare"
+#~ msgstr "Bendrinti iš naujo"
+
+#~ msgid "SABnzbd Actions"
+#~ msgstr "SABnzbd veiksmai"
+
+#~ msgid "SATPI Setting Actions"
+#~ msgstr "SATPI nustatymo veiksmai"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Serverio pavadinimas"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Serverio Informacija (Oscam-versija: %s)"
+
+#~ msgid "Server:"
+#~ msgstr "Serveris:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "AFP nustatymas"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "Rodyti /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "Klientai"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Skaitytuvai / tarpiniai serveriai"
+
+#~ msgid "Total"
+#~ msgstr "Iš viso"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Atnaujinimo intervalas (sekundėmis)"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Pašalinus paslaugą, jūsų %s %s bus paleistas iš naujo\n"
+#~ "Ar norite pašalinti dabar?"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "Pakeiskite įrašymo pabaigos laiką"

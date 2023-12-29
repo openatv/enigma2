@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"POT-Creation-Date: 2023-12-27 11:06+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1203,10 +1203,6 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s távirányító (natív)"
 
 #, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s (%s kártyák)"
-
-#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1335,9 +1331,6 @@ msgstr "A felvétel típusát lehet itt beállítani. 'Hagyományos' a felvétel
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' nincs telepítve!"
 
-msgid "( All readers)"
-msgstr "(Az összes olvasó)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "A %s véglegesítési naplóihoz internetkapcsolat szükséges."
@@ -1351,9 +1344,6 @@ msgstr " (Kép-a-Képben)"
 
 msgid "(Radio)"
 msgstr " (Rádió)"
-
-msgid "(Show only reader:"
-msgstr "(Csak olvasó megjelenítése:"
 
 msgid "(TV)"
 msgstr "(TV)"
@@ -1608,6 +1598,9 @@ msgstr "<Időzítés utolsó helye>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found"
+msgstr ""
+
 msgid "A"
 msgstr "A"
 
@@ -1763,15 +1756,6 @@ msgstr "AC3 plusz transzkódolás"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr ""
-
-msgid "AFP Settings"
-msgstr "AFP beállítása"
 
 #, fuzzy
 msgid "ARM"
@@ -2092,9 +2076,6 @@ msgstr "A kiegészítő motoropciók lehetővé teszik, hogy adatokat írjon be 
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "A motor kiegészítő opciói lehetővé teszik az adatok megadását a motor műszaki adatlapjáról, így a rendszer tudhatja, mennyi ideig tart a egy másik műholdra váltás."
-
-msgid "Address"
-msgstr "Cím"
 
 msgid "Adjust 3D settings"
 msgstr "3D beállítások"
@@ -2768,6 +2749,9 @@ msgstr "Külső feliratok automatikus megjelenítése"
 msgid "Automatically update Client/Server View"
 msgstr "A kliens/szerver nézet automatikus frissítése?"
 
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
+
 msgid "Autostart"
 msgstr "Automatikus indítás"
 
@@ -3328,12 +3312,6 @@ msgstr "CH"
 msgid "C-Band"
 msgstr "C-sáv"
 
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
-
 msgid "CCD-Width"
 msgstr ""
 
@@ -3715,12 +3693,6 @@ msgstr ""
 #, fuzzy
 msgid "Cape Verde"
 msgstr "Zöld-foki Köztársaság"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Kártya infók (CCcam-Olvasó)"
-
-msgid "Cards:"
-msgstr "Kártyák:"
 
 msgid "Cards: "
 msgstr "Kártyák: "
@@ -4188,10 +4160,6 @@ msgstr[1] ""
 
 msgid "Click the button on your remote you want to change."
 msgstr "Kattintson a távirányító gombjára, ha érvényesíteni szeretné a változásokat"
-
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Kliens információ ( Oscam verzió: %s )"
 
 msgid "Client is streaming from this box!"
 msgstr ""
@@ -6588,15 +6556,6 @@ msgstr " "
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr "ECM Statisztika"
-
-msgid "ECM Time"
-msgstr "ECM idő"
-
-msgid "ECM avg"
-msgstr "ECM átlag"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "Az ECM adatok bekerüljenek az adatfolyamba? Ha engedélyezi, akkor a vevőkészülék dekódolja azokat."
 
@@ -6606,12 +6565,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr "ECM utolsó"
-
-msgid "ECM-Time"
-msgstr "ECM idő"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
@@ -7870,9 +7823,6 @@ msgstr "FTA"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr ""
-
 msgid "FTP Settings"
 msgstr "FTP beállítása"
 
@@ -8973,6 +8923,9 @@ msgstr "Gyermekzárral védett csatornák elrejtése"
 msgid "Hide player"
 msgstr "Lejátszó elrejtése"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "Az információs sáv elhalványodása az eltünésekor engedélyezett-e vagy nem"
@@ -9060,9 +9013,6 @@ msgstr "Honduras"
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
-
-msgid "Hops"
-msgstr "Hops"
 
 msgid "Hops:"
 msgstr "Hops:"
@@ -9677,6 +9627,9 @@ msgstr "Bővítmények telepítése"
 msgid "Install extensions."
 msgstr "Bővítmények telepítése."
 
+msgid "Install service"
+msgstr ""
+
 msgid "Install the package"
 msgstr ""
 
@@ -9685,6 +9638,9 @@ msgstr ""
 
 msgid "Installation finished."
 msgstr "Telepítés kész."
+
+msgid "Installed"
+msgstr ""
 
 msgid "Installing"
 msgstr "Telepítés"
@@ -10176,9 +10132,6 @@ msgstr "Laosz"
 
 msgid "Large"
 msgstr ""
-
-msgid "Last Request"
-msgstr "Last Request"
 
 msgid "Last config"
 msgstr "Utolsó konfiguráció"
@@ -11508,9 +11461,6 @@ msgstr "KÖVETKEZŐ"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr ""
-
 msgid "NFS Settings"
 msgstr "NFS beállítása"
 
@@ -11662,6 +11612,9 @@ msgstr "Hálózati szolgáltatások"
 
 msgid "Network Settings"
 msgstr "Hálózati beállítások"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "Hálózat ellenőrzése"
@@ -12280,6 +12233,21 @@ msgstr "OScamInfo"
 msgid "OScam webif disabled"
 msgstr "oscam webif letiltva"
 
+msgid "OScamInfo Overview"
+msgstr ""
+
+msgid "OScamInfo Settings"
+msgstr ""
+
+msgid "OScamInfo ShowLog"
+msgstr ""
+
+msgid "OScamLog Actions"
+msgstr ""
+
+msgid "OScamOverview Actions"
+msgstr ""
+
 msgid "OTT Model"
 msgstr ""
 
@@ -12379,7 +12347,13 @@ msgstr "EPGSearch megnyitása..."
 msgid "Open IMDb"
 msgstr "IMDB megnyitása..."
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -12526,18 +12500,11 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info - Main Menu"
-msgstr "Oscam Info - Főmenü"
+msgid "Oscam Information"
+msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr "OScam Info - Konfiguráció"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam napló (Oscam verzió: %s)"
-
-msgid "OscamInfo Mainmenu"
-msgstr "OscamInfo Főmenü"
+msgid "Oscam Information Settings"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr ""
@@ -12638,9 +12605,6 @@ msgstr "PDC"
 #, fuzzy
 msgid "PGS file"
 msgstr "EPG fájlnév"
-
-msgid "PID"
-msgstr "PID"
 
 msgid "PIN code needed"
 msgstr "PIN-kód szükséges"
@@ -13034,14 +12998,8 @@ msgstr "Kérem, legyen türelemmel, most készen áll egy mentés,\n"
 msgid "Please check the manual of the receiver"
 msgstr "Kérjük, ellenőrizze a vevőkészülék kézikönyvét"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Kérem, válasszon egy CCcam-Reader-t"
-
 msgid "Please choose an extension..."
 msgstr "Kérem, válasszon egy kiterjesztést..."
-
-msgid "Please choose reader"
-msgstr "Kérem, válasszon olvasót"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Ha nem tudja mi mit jelent, akkor kérem, ne változtassa meg az adatokat!"
@@ -13805,9 +13763,6 @@ msgstr "Szolgáltatók"
 msgid "Providers:"
 msgstr "Szolgáltatók:"
 
-msgid "Providers: "
-msgstr "Szolgáltatók: "
-
 msgid "Proxy detected"
 msgstr ""
 
@@ -14000,16 +13955,9 @@ msgstr "Az Oscam.conf felhasználói adatainak olvasása"
 msgid "Reader"
 msgstr "Olvasó"
 
-msgid "Reader Statistics"
-msgstr "Olvasó statisztikái"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Készen áll a telepítésre \"%s\" ?"
-
-#, python-format
-msgid "Ready to install '%s'?"
-msgstr "Készen áll a telepítésre %s ?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
@@ -14470,6 +14418,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service"
+msgstr ""
+
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -14638,9 +14589,6 @@ msgstr "Videó beállítások visszaállítása a gyári értékekre?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Videó beállítások visszaállítása az előbbi értékekre?"
-
-msgid "Reshare"
-msgstr "Újra megosztás"
 
 msgid "Reshare:"
 msgstr "Újra megosztás:"
@@ -14930,9 +14878,6 @@ msgstr "Újraegyesítés"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd Beállítás"
 
@@ -14943,9 +14888,6 @@ msgid "SATA"
 msgstr "Serial ATA"
 
 msgid "SATPI"
-msgstr ""
-
-msgid "SATPI Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -15473,6 +15415,10 @@ msgstr "Ha az 'igen'-t választja, a csatorna száma megjelenik az Információs
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
+#, python-format
+msgid "Select 'Yes' to enable autostart of '%s'."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -15493,6 +15439,9 @@ msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ha az 'igen'-t választja, akkor a műsor nélküli csatornák nem jelennek meg."
+
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
@@ -16367,18 +16316,8 @@ msgstr "Szerb"
 msgid "Serial No"
 msgstr "Sorozatszám"
 
-msgid "Serv.Name"
-msgstr "Csatornanév"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Szerver Információ (Oscam verzió: %s)"
-
 msgid "Server down"
 msgstr "Kiszolgáló le"
-
-msgid "Server:"
-msgstr "Kiszolgáló gép:"
 
 msgid "Servers"
 msgstr "Kiszolgálók"
@@ -16748,9 +16687,6 @@ msgstr "Beállítások"
 msgid "Setup - %s"
 msgstr "Beállítás -%s"
 
-msgid "Setup AFP"
-msgstr "Beállítások"
-
 msgid "Setup Audio Sync"
 msgstr "Audió Sync beállítás"
 
@@ -16969,9 +16905,6 @@ msgstr "Az újraindítás megakadályozása érdekében alaphelyzetbe kell áll�
 msgid "Show"
 msgstr "Mutat"
 
-msgid "Show /tmp/ecm.info"
-msgstr "/tmp/ecm.info megjelenítése"
-
 msgid "Show 1080p 24fps as"
 msgstr "1080p mutatása 24fps-ként"
 
@@ -17032,9 +16965,6 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "CI üzenetek mutatása"
-
-msgid "Show Clients"
-msgstr "A kliensek mutatása"
 
 msgid "Show Default Backup Files"
 msgstr "Alapértelmezett mentési fájlok"
@@ -17169,9 +17099,6 @@ msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "RFmode beállítás megjelenítése..."
-
-msgid "Show Readers/Proxies"
-msgstr "Readers/Proxies megjelenítése"
 
 msgid "Show Record Movies"
 msgstr "Felvételek megjelenítése"
@@ -17385,6 +17312,9 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Az élő TV adás megjelenítése, amikor egy lejátszás meg van állítva"
+
+msgid "Show logfile"
+msgstr ""
 
 msgid "Show marked events"
 msgstr "Megjelölt események megjelenítése"
@@ -18367,6 +18297,9 @@ msgstr "Offline dekódolás indítása"
 msgid "Start recording current event"
 msgstr ""
 
+msgid "Start service"
+msgstr ""
+
 msgid "Start teletext"
 msgstr "Teletext indítása"
 
@@ -18493,6 +18426,9 @@ msgstr "Felvétel leállítás és törlés"
 
 msgid "Stop recording now"
 msgstr "Felvétel leállítása most"
+
+msgid "Stop service"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Csatorna megállítása a filmlistára váltáskor"
@@ -20287,9 +20223,6 @@ msgstr "teteje"
 msgid "Top and Bottom"
 msgstr "Felső és alsó"
 
-msgid "Total"
-msgstr "Összesen"
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -20825,9 +20758,6 @@ msgstr "A frissítés sikertelen!"
 
 msgid "Update finished!"
 msgstr "Frissítés befejezve!"
-
-msgid "Update interval (in seconds)"
-msgstr "Frissítési intervallum (másodpercben)"
 
 msgid ""
 "Update succeeded!\n"
@@ -22366,12 +22296,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
@@ -23661,6 +23585,125 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s (%s kártyák)"
+
+#~ msgid "( All readers)"
+#~ msgstr "(Az összes olvasó)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Csak olvasó megjelenítése:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "AFP beállítása"
+
+#~ msgid "Address"
+#~ msgstr "Cím"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Kártya infók (CCcam-Olvasó)"
+
+#~ msgid "Cards:"
+#~ msgstr "Kártyák:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Kliens információ ( Oscam verzió: %s )"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM Statisztika"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM idő"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM átlag"
+
+#~ msgid "ECM last"
+#~ msgstr "ECM utolsó"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM idő"
+
+#~ msgid "Hops"
+#~ msgstr "Hops"
+
+#~ msgid "Last Request"
+#~ msgstr "Last Request"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Oscam Info - Főmenü"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "OScam Info - Konfiguráció"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Oscam napló (Oscam verzió: %s)"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "OscamInfo Főmenü"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Kérem, válasszon egy CCcam-Reader-t"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Kérem, válasszon olvasót"
+
+#~ msgid "Providers: "
+#~ msgstr "Szolgáltatók: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Olvasó statisztikái"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Készen áll a telepítésre %s ?"
+
+#~ msgid "Reshare"
+#~ msgstr "Újra megosztás"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Csatornanév"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Szerver Információ (Oscam verzió: %s)"
+
+#~ msgid "Server:"
+#~ msgstr "Kiszolgáló gép:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "Beállítások"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "/tmp/ecm.info megjelenítése"
+
+#~ msgid "Show Clients"
+#~ msgstr "A kliensek mutatása"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Readers/Proxies megjelenítése"
+
+#~ msgid "Total"
+#~ msgstr "Összesen"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Frissítési intervallum (másodpercben)"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "Befejezés ideje"

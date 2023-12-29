@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 10:37+0000\n"
+"POT-Creation-Date: 2023-12-27 11:06+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -1315,11 +1315,6 @@ msgstr "Uporabite daljinski upravljalnik"
 
 #
 #, fuzzy, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s (%s)\n"
-
-#
-#, fuzzy, python-format
 msgid "%s (%04o)"
 msgstr "%s (%s)\n"
 
@@ -1460,9 +1455,6 @@ msgstr ""
 msgid "'WeatherPlugin' is not installed!"
 msgstr "Ta vtičnik ni nameščen."
 
-msgid "( All readers)"
-msgstr ""
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
@@ -1476,9 +1468,6 @@ msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr "(Radio)"
-
-msgid "(Show only reader:"
-msgstr ""
 
 msgid "(TV)"
 msgstr "(TV)"
@@ -1767,6 +1756,9 @@ msgstr "<Prejšnja \"timer\" lokacija>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found"
+msgstr ""
+
 #
 msgid "A"
 msgstr "A"
@@ -1920,16 +1912,6 @@ msgstr ""
 #, fuzzy
 msgid "AFL"
 msgstr "PAL"
-
-msgid "AFP"
-msgstr ""
-
-msgid "AFP Actions"
-msgstr ""
-
-#
-msgid "AFP Settings"
-msgstr "AFP nastavitve"
 
 msgid "ARM"
 msgstr ""
@@ -2304,9 +2286,6 @@ msgid "Additional motor options allow you to enter details from your motor's spe
 msgstr ""
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
-msgstr ""
-
-msgid "Address"
 msgstr ""
 
 msgid "Adjust 3D settings"
@@ -3060,6 +3039,9 @@ msgstr "Rewrap teletekst podnapise"
 msgid "Automatically update Client/Server View"
 msgstr ""
 
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
+
 #
 msgid "Autostart"
 msgstr "Sam. zagon"
@@ -3662,12 +3644,6 @@ msgstr ""
 msgid "C-Band"
 msgstr "C-Band"
 
-msgid "CAID"
-msgstr ""
-
-msgid "CAID:SrvID"
-msgstr ""
-
 msgid "CCD-Width"
 msgstr ""
 
@@ -4074,12 +4050,6 @@ msgid "Capacity"
 msgstr ""
 
 msgid "Cape Verde"
-msgstr ""
-
-msgid "Card infos (CCcam-Reader)"
-msgstr ""
-
-msgid "Cards:"
 msgstr ""
 
 msgid "Cards: "
@@ -4598,10 +4568,6 @@ msgstr[1] ""
 msgstr[2] ""
 
 msgid "Click the button on your remote you want to change."
-msgstr ""
-
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
 
 msgid "Client is streaming from this box!"
@@ -7197,15 +7163,6 @@ msgstr "E"
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr ""
-
-msgid "ECM Time"
-msgstr ""
-
-msgid "ECM avg"
-msgstr ""
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr ""
 
@@ -7214,12 +7171,6 @@ msgstr ""
 
 #, python-format
 msgid "ECM information for '%s'"
-msgstr ""
-
-msgid "ECM last"
-msgstr ""
-
-msgid "ECM-Time"
 msgstr ""
 
 msgid "EJECTCD"
@@ -8584,9 +8535,6 @@ msgstr ""
 msgid "FTP"
 msgstr ""
 
-msgid "FTP Actions"
-msgstr ""
-
 #
 msgid "FTP Settings"
 msgstr "FTP nastavitve"
@@ -9782,6 +9730,9 @@ msgstr ""
 msgid "Hide player"
 msgstr "skrij predvajalnik"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 msgid "Hide the InfoBar"
 msgstr ""
 
@@ -9878,9 +9829,6 @@ msgid "Honduras"
 msgstr ""
 
 msgid "Hong Kong"
-msgstr ""
-
-msgid "Hops"
 msgstr ""
 
 msgid "Hops:"
@@ -10550,6 +10498,9 @@ msgstr ""
 msgid "Install extensions."
 msgstr "Namestite razširitve."
 
+msgid "Install service"
+msgstr ""
+
 msgid "Install the package"
 msgstr ""
 
@@ -10559,6 +10510,9 @@ msgstr ""
 #
 msgid "Installation finished."
 msgstr "Namestitev končana."
+
+msgid "Installed"
+msgstr ""
 
 #
 msgid "Installing"
@@ -11098,9 +11052,6 @@ msgid "Lao People's Democratic Republic"
 msgstr ""
 
 msgid "Large"
-msgstr ""
-
-msgid "Last Request"
 msgstr ""
 
 #
@@ -12568,9 +12519,6 @@ msgstr ""
 msgid "NFS"
 msgstr ""
 
-msgid "NFS Actions"
-msgstr ""
-
 #
 msgid "NFS Settings"
 msgstr "NFS nastavitve"
@@ -12732,6 +12680,9 @@ msgstr ""
 #
 msgid "Network Settings"
 msgstr "Omrežne nastavitve "
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr ""
@@ -13438,6 +13389,21 @@ msgstr "Informacije o delovanju OScam"
 msgid "OScam webif disabled"
 msgstr ""
 
+msgid "OScamInfo Overview"
+msgstr ""
+
+msgid "OScamInfo Settings"
+msgstr ""
+
+msgid "OScamInfo ShowLog"
+msgstr ""
+
+msgid "OScamLog Actions"
+msgstr ""
+
+msgid "OScamOverview Actions"
+msgstr ""
+
 msgid "OTT Model"
 msgstr ""
 
@@ -13544,7 +13510,13 @@ msgstr "EPG iskanje"
 msgid "Open IMDb"
 msgstr ""
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -13694,17 +13666,10 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info - Main Menu"
+msgid "Oscam Information"
 msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr ""
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr ""
-
-msgid "OscamInfo Mainmenu"
+msgid "Oscam Information Settings"
 msgstr ""
 
 msgid "Ossetian / Ossetic"
@@ -13814,11 +13779,6 @@ msgstr "PIDs"
 #, fuzzy
 msgid "PGS file"
 msgstr "Ime EPG datoteke"
-
-#
-#, fuzzy
-msgid "PID"
-msgstr "PIDs"
 
 msgid "PIN code needed"
 msgstr ""
@@ -14262,15 +14222,9 @@ msgstr ""
 msgid "Please check the manual of the receiver"
 msgstr "Vnesite ime nove mape:"
 
-msgid "Please choose CCcam-Reader"
-msgstr ""
-
 #
 msgid "Please choose an extension..."
 msgstr "Izberite razširitev:"
-
-msgid "Please choose reader"
-msgstr ""
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -15150,9 +15104,6 @@ msgstr "Ponudniki"
 msgid "Providers:"
 msgstr ""
 
-msgid "Providers: "
-msgstr ""
-
 msgid "Proxy detected"
 msgstr ""
 
@@ -15362,15 +15313,8 @@ msgstr ""
 msgid "Reader"
 msgstr ""
 
-msgid "Reader Statistics"
-msgstr ""
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
-msgstr ""
-
-#, python-format
-msgid "Ready to install '%s'?"
 msgstr ""
 
 #, python-format
@@ -15894,6 +15838,9 @@ msgstr ""
 msgid "Remove selected service"
 msgstr ""
 
+msgid "Remove service"
+msgstr ""
+
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -16086,9 +16033,6 @@ msgstr "Želite ponastaviti napredne video nastavitve?"
 #
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Želite uporabiti video nastavitve, ki ste jih uporabljali nazadnje?"
-
-msgid "Reshare"
-msgstr ""
 
 msgid "Reshare:"
 msgstr ""
@@ -16408,9 +16352,6 @@ msgstr ""
 msgid "SABnzbd"
 msgstr ""
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr ""
 
@@ -16421,9 +16362,6 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
-msgstr ""
-
-msgid "SATPI Setting Actions"
 msgstr ""
 
 #
@@ -17007,6 +16945,10 @@ msgstr ""
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
+#, python-format
+msgid "Select 'Yes' to enable autostart of '%s'."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -17026,6 +16968,9 @@ msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageD
 msgstr ""
 
 msgid "Select 'Yes' to hide channels without EPG data."
+msgstr ""
+
+msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
 
 #, python-format
@@ -17935,20 +17880,10 @@ msgstr "Srbsko"
 msgid "Serial No"
 msgstr ""
 
-msgid "Serv.Name"
-msgstr ""
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Server down"
 msgstr "Iskanje kanalov"
-
-msgid "Server:"
-msgstr ""
 
 msgid "Servers"
 msgstr ""
@@ -18352,9 +18287,6 @@ msgstr "Nastavitve"
 msgid "Setup - %s"
 msgstr "Nastavitve"
 
-msgid "Setup AFP"
-msgstr ""
-
 msgid "Setup Audio Sync"
 msgstr ""
 
@@ -18585,9 +18517,6 @@ msgstr ""
 msgid "Show"
 msgstr "Pokaži dnevnik"
 
-msgid "Show /tmp/ecm.info"
-msgstr ""
-
 msgid "Show 1080p 24fps as"
 msgstr ""
 
@@ -18647,9 +18576,6 @@ msgid "Show CCcam Info"
 msgstr ""
 
 msgid "Show CI messages"
-msgstr ""
-
-msgid "Show Clients"
 msgstr ""
 
 msgid "Show Default Backup Files"
@@ -18797,9 +18723,6 @@ msgid "Show Plugin Skin packages"
 msgstr ""
 
 msgid "Show RFmod setup..."
-msgstr ""
-
-msgid "Show Readers/Proxies"
 msgstr ""
 
 msgid "Show Record Movies"
@@ -19045,6 +18968,9 @@ msgid "Show last image"
 msgstr ""
 
 msgid "Show live TV when movie stopped"
+msgstr ""
+
+msgid "Show logfile"
 msgstr ""
 
 #, fuzzy
@@ -20122,6 +20048,9 @@ msgstr ""
 msgid "Start recording current event"
 msgstr ""
 
+msgid "Start service"
+msgstr ""
+
 msgid "Start teletext"
 msgstr ""
 
@@ -20270,6 +20199,9 @@ msgstr ""
 #, fuzzy
 msgid "Stop recording now"
 msgstr "to snemanje"
+
+msgid "Stop service"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr ""
@@ -22168,9 +22100,6 @@ msgstr "na vrh"
 msgid "Top and Bottom"
 msgstr ""
 
-msgid "Total"
-msgstr ""
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -22769,9 +22698,6 @@ msgstr "Zapisovanje neuspešno!"
 #, fuzzy
 msgid "Update finished!"
 msgstr "Nadgradnja končana."
-
-msgid "Update interval (in seconds)"
-msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -24398,12 +24324,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
@@ -25825,6 +25745,20 @@ msgstr "Da (obdrži feed-e)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s (%s)\n"
+
+#
+#~ msgid "AFP Settings"
+#~ msgstr "AFP nastavitve"
+
+#
+#, fuzzy
+#~ msgid "PID"
+#~ msgstr "PIDs"
 
 #
 #~ msgid "Please change recording endtime"
