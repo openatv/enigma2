@@ -17,12 +17,13 @@ from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
+from skin import parameters
 
 # GLOBALS
 MODULE_NAME = __name__.split(".")[-2]
 
 
-class OScamGlobals():
+class OSCamGlobals():
 	def __init__(self):
 		pass
 
@@ -92,7 +93,7 @@ class OScamGlobals():
 		blocked = False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
 		ipconfigured = ipcompiled
 		user = pwd = None
-		ret = _("OScam webif disabled")
+		ret = _("OSCam webif disabled")
 		if webif and port is not None:  # oscam reports it got webif support and webif is running (Port != 0)
 			if conf is not None and exists(conf):  # If we have a config file, we need to investigate it further
 				with open(conf) as data:
@@ -121,11 +122,11 @@ class OScamGlobals():
 			return log.group(1).strip() if log else "<no log found>"
 
 
-class OScamOverview(Screen, OScamGlobals):
+class OSCamInfo(Screen, OSCamGlobals):
 	skin = """
-		<screen name="OScamInfoOverview" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OScamInfo Overview" flags="wfNoBorder" resolution="1920,1080">
-			<ePixmap pixmap="OscamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
-			<widget source="title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
+		<screen name="OSCamInfo" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OSCam Information" flags="wfNoBorder" resolution="1920,1080">
+			<ePixmap pixmap="icons/OscamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
+			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
 				<convert type="ClockToText">Format:%H:%M:%S</convert>
 			</widget>
@@ -167,7 +168,7 @@ class OScamOverview(Screen, OScamGlobals):
 			<widget source="used" render="Label" position="395,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
 			<widget source="free" render="Label" position="625,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
 			<widget source="buffer" render="Label" position="855,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
-			<eLabel text="OScam" position="1085,964" size="148,42" font="Regular;27" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#1B3C85" />
+			<eLabel text="OSCam" position="1085,964" size="148,42" font="Regular;27" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#1B3C85" />
 			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
 			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
 			<eLabel name="blue" position="1260,1010" size="10,65" backgroundColor="blue" zPosition="1" />
@@ -179,9 +180,8 @@ class OScamOverview(Screen, OScamGlobals):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = "OScamInfoOverview"
-		self.setTitle(_("OScamInfo Overview"))
-		self["title"] = StaticText(_("OScamInfo Overview"))
+		self.skinName = "OSCamInfo"
+		self.setTitle(_("OSCam Information"))
 		self["timerinfos"] = StaticText()
 		self["buildinfos"] = StaticText()
 		self["outlist"] = List([])
@@ -204,10 +204,11 @@ class OScamOverview(Screen, OScamGlobals):
 			"pageDown": (self.keyPageDown, _("Move down a page")),
 			"menu": (self.keyMenu, _("Open Settings")),
 			"blue": (self.keyBlue, _("Open Log"))
-		}, prio=1, description=_("OScamOverview Actions"))
+		}, prio=1, description=_("OSCamInfo Actions"))
 		self.loop = eTimer()
 		self.loop.callback.append(self.updateOScamData)
 		self.onLayoutFinish.append(self.onLayoutFinished)
+		self.bgColors = parameters.get("OSCamInfoColors", (0x20e1e0ee, 0x20e1e0ee, 0x20fef2e6, 0x20fff3e7, 0x20f0f4e5, 0x20cbcbc))
 
 	def onLayoutFinished(self):
 		if config.oscaminfo.userDataFromConf.value and self.confPath()[0] is None:
@@ -230,8 +231,8 @@ class OScamOverview(Screen, OScamGlobals):
 			# GENERAL INFOS (timing, memory usage)
 			stime_iso = oscam.get("starttime", None)
 			starttime = "Start Time: %s - %s" % (datetime.fromisoformat(stime_iso).strftime("%x"), datetime.fromisoformat(stime_iso).strftime("%X")) if stime_iso else (_("n/a"), _("n/a"))
-			runtime = "OScam Run Time: %s" % oscam.get("runtime", _("n/a"))
-			version = "OScam: %s" % (oscam.get("version", _("n/a")))
+			runtime = "OSCam Run Time: %s" % oscam.get("runtime", _("n/a"))
+			version = "OSCam: %s" % (oscam.get("version", _("n/a")))
 			srvidfile = "srvidfile: %s" % oscam.get("srvidfile", _("n/a"))
 			# MAIN INFOS {'s': 'server', 'h': 'http', 'p': 'proxy', 'r': 'reader', 'c': 'cccam_ext', 'x': 'cache exchange', 'm': 'monitor')
 			outlist = []
@@ -262,7 +263,7 @@ class OScamOverview(Screen, OScamGlobals):
 				totentitlements = connection.get("totentitlements", _("n/a"))
 				if currtype in ["p", "r"]:
 					status += "\n(%s entitlements)" % totentitlements if totentitlements else "\n(%s of %s card)" % (totals.get("total_active_readers", "?"), totals.get("total_readers", "?"))
-				bgcolor = {"s": 0xe1e0ee, "h": 0xe1e0ee, "p": 0xfef2e6, "r": 0xfff3e7, "c": 0xf0f4e5}.get(currtype, 0xcbcbc)
+				bgcolor = self.bgColors[{"s": 0, "h": 1, "p": 2, "r": 3, "c": 4}.get(currtype, 5)]
 				outlist.append((currtype, readeruser, au, ip, port, protocol, srinfo, chinfo, lbvaluereader, loginfmt, status, bgcolor))
 			outlist.sort(key=lambda val: {"s": 0, "h": 1, "p": 2, "r": 3, "c": 4, "a": 5}[val[0]])  # sort according column 'client type' by customized sort order
 			self["timerinfos"].setText("%s | %s | %s" % (currtime, starttime, runtime))
@@ -293,23 +294,23 @@ class OScamOverview(Screen, OScamGlobals):
 			self.loop.stop()
 			if config.oscaminfo.autoUpdate.value:
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
-		self.session.openWithCallback(keyMenuCallback, OScamOverviewSetup)
+		self.session.openWithCallback(keyMenuCallback, OSCamInfoSetup)
 
 	def keyBlue(self):
 		def keyBlueCallback():
 			if config.oscaminfo.autoUpdate.value:
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 		self.loop.stop()
-		self.session.openWithCallback(keyBlueCallback, OScamOverviewLog)
+		self.session.openWithCallback(keyBlueCallback, OSCamInfoLog)
 
 	def exit(self):
 		self.loop.stop()
 		self.close()
 
 
-class OScamOverviewLog(Screen, OScamGlobals):
+class OSCamInfoLog(Screen, OSCamGlobals):
 	skin = """
-		<screen name="OScamOverviewLog" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OScamOverview Log" flags="wfNoBorder" resolution="1920,1080">
+		<screen name="OSCamInfoLog" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OSCamInfo Log" flags="wfNoBorder" resolution="1920,1080">
 			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
 				<convert type="ClockToText">Format:%H:%M:%S</convert>
@@ -320,8 +321,8 @@ class OScamOverviewLog(Screen, OScamGlobals):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = "OScamOverviewLog"
-		self.setTitle(_("OScamOverview Log"))
+		self.skinName = "OSCamInfoLog"
+		self.setTitle(_("OSCamInfo Log"))
 		self["logtext"] = ScrollLabel(_("<no log found"))
 		self["actions"] = HelpableActionMap(self, ["NavigationActions", "OkCancelActions"], {
 			"ok": (self.exit, _("Close the screen")),
@@ -330,7 +331,7 @@ class OScamOverviewLog(Screen, OScamGlobals):
 			"up": (self.keyPageUp, _("Move up a page")),
 			"down": (self.keyPageDown, _("Move down a page")),
 			"pageDown": (self.keyPageDown, _("Move down a page"))
-		}, prio=1, description=_("OScamOverviewLog Actions"))
+		}, prio=1, description=_("OSCamInfo Log Actions"))
 		self.loop = eTimer()
 		self.loop.callback.append(self.displayLog)
 		self.onLayoutFinish.append(self.onLayoutFinished)
@@ -357,12 +358,12 @@ class OScamOverviewLog(Screen, OScamGlobals):
 		self.close()
 
 
-class OScamOverviewSetup(Setup):
+class OSCamInfoSetup(Setup):
 	def __init__(self, session):
-		Setup.__init__(self, session, setup="OScamOverview")
+		Setup.__init__(self, session, setup="OSCamInfoSetup")
 
 
-class OscamInfoMenu(OScamOverview):
+class OscamInfoMenu(OSCamInfo):
 	def __init__(self, session):
-		print("[OscamInfoMenu] Warning: OscamInfoMenu has been deprecated, use OScamOverview instead!")
-		OScamOverview.__init__(self, session)
+		print("[OscamInfoMenu] Warning: OscamInfoMenu has been deprecated, use OSCamInfo instead!")
+		OSCamInfo.__init__(self, session)

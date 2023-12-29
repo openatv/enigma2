@@ -19,7 +19,7 @@ from Screens.CCcamInfo import CCcamInfoMain
 from Screens.HarddiskSetup import HarddiskConvertExt4Selection, HarddiskFsckSelection, HarddiskSelection
 from Screens.MountManager import HddMount
 from Screens.NetworkSetup import *
-from Screens.OScamInfo import OScamOverview
+from Screens.OScamInfo import OSCamInfo
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.PluginBrowser import PackageAction, PluginBrowser
 from Screens.RestartNetwork import RestartNetwork
@@ -242,7 +242,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if BoxInfo.getItem("SoftCam"):  # show only when there is a softcam installed
 			self.sublist.append(QuickSubMenuEntryComponent("Softcam Settings", _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
 			if BoxInfo.getItem("ShowOscamInfo"):  # show only when oscam or ncam is active
-				self.sublist.append(QuickSubMenuEntryComponent("OScam Information", _("Show OScam Info"), _("Show the OScamInfo Screen")))
+				self.sublist.append(QuickSubMenuEntryComponent("OSCam Information", _("Show OSCam Information"), _("Show the OSCam information screen")))
 			if BoxInfo.getItem("ShowCCCamInfo"):  # show only when CCcam is active
 				self.sublist.append(QuickSubMenuEntryComponent("CCcam Information", _("Show CCcam Info"), _("Show the CCcam Info Screen")))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams", _("Download and install cam"), _("Shows available softcams. Here you can download and install them")))
@@ -423,8 +423,8 @@ class QuickMenu(Screen, ProtectedScreen):
 # ####### Select Softcam Menu ##############################
 		elif item == _("Softcam Settings"):
 			self.session.open(SoftcamSetup)
-		elif item == _("OScam Information"):
-			self.session.open(OScamOverview)
+		elif item == _("OSCam Information"):
+			self.session.open(OSCamInfo)
 		elif item == _("CCcam Information"):
 			self.session.open(CCcamInfoMain)
 		elif item == _("Download Softcams"):

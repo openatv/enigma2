@@ -1,7 +1,7 @@
 from glob import glob
 from hashlib import md5
 from os import listdir, readlink
-from os.path import exists, isfile, join as pathjoin, islink
+from os.path import basename, exists, isfile, join as pathjoin, islink
 from subprocess import PIPE, Popen
 
 from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl, eDBoxLCD, eDVBCIInterfaces
@@ -266,7 +266,7 @@ def getSysSoftcam():
 		try:
 			syscam = readlink(SOFTCAM).replace("softcam.", "")
 			for cam in ("oscam", "ncam", "cccam"):
-				if syscam.lower().startswith(cam):
+				if basename(syscam).lower().startswith(cam):
 					return cam
 		except OSError:
 			pass

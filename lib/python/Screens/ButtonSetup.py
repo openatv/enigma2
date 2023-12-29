@@ -291,7 +291,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/Subtitle", textSetup))
 	ButtonSetupFunctions.append((_("Language"), "Module/Screens.LocaleSelection/LocaleSelection", textSetup))
 	if BoxInfo.getItem("SoftCam"):
-		ButtonSetupFunctions.append((_("Oscam Information"), "Module/Screens.OScamInfo/OScamOverview", textPlugins))
+		ButtonSetupFunctions.append((_("Oscam Information"), "Module/Screens.OScamInfo/OSCamInfo", textPlugins))
 		ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", textPlugins))
 	ButtonSetupFunctions.append((_("Movieplayer"), "Infobar/showMoviePlayer", textPlugins))
 	if isdir("/etc/ppanels"):
