@@ -10,7 +10,7 @@ from enigma import eConsoleAppContainer, eTimer
 
 from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
-from Components.config import ConfigIP, ConfigLocations, ConfigMacText, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, getConfigListEntry
+from Components.config import ConfigIP, ConfigLocations, ConfigMacText, ConfigNothing, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Input import Input
@@ -34,7 +34,7 @@ from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import TryQuitMainloop
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, fileExists, fileReadLines, resolveFilename
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileExists, fileReadLines, resolveFilename, fileReadXML
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -1779,286 +1779,194 @@ class NetworkBaseScreen(Screen, HelpableScreen):
 		return NetworkServicesSummary
 
 
-class NetworkBaseSetup(Setup):
-	def __init__(self, session, setup):
-		def startStopHelpText():
-			return _("Stop service") if self.isRunning else _("Start service")
+class NetworkDaemons():
+	def __init__(self):
+		fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "networkdaemons.xml"), source=MODULE_NAME)
+		self.__daemons = []
+		for daemon in fileDom.findall("daemon"):
+			daemondict = {}
+			for key in ("key", "title", "installcheck", "package", "autostart", "autostartservice", "autostartprio", "running", "startservice", "logpath"):
+				daemondict[key] = daemon.get(key, "")
+			if daemondict["key"] and daemondict["title"]:
+				daemondict["isinstalled"] = daemondict["installcheck"] and exists(daemondict["installcheck"])
+				daemondict["canremoved"] = daemondict["installcheck"] != ""
+				daemondict["isservice"] = daemondict["startservice"] != ""
+				self.__daemons.append(daemondict)
 
-		def installRemoveHelpText():
-			return _("Remove service") if self.isInstalled else _("Install service")
-		self.Console = Console()
-		if self.autoStartCheckFile:
-			self.autoStartConfig = ConfigYesNo(self.isAutoStart)
-		else:
-			self.autoStartConfig = None
-		self.setupTitle = ""
-		self.initParams = "defaults"
-		Setup.__init__(self, session, setup=setup)
+	def getDaemons(self):
+		return self.__daemons
+
+
+class NetworkServicesSetup(Setup, NetworkDaemons):
+	def __init__(self, session):
+		NetworkDaemons.__init__(self)
+		self.serviceItems = []
+		self.serviceIsRunning = {}
+		Setup.__init__(self, session, "NetworkServicesSetup")
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["startStopActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"blue": (self.toggleStartStop, startStopHelpText)
+			"yellow": (self.toggleStartStop, _("Start or Stop service"))
 		}, prio=0, description=_("Network Setup Actions"))
-		self["intallRemoveActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.toggleInstallRemove, installRemoveHelpText)
+		self["showLogActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.showLog, _("Show Log"))
 		}, prio=0, description=_("Network Setup Actions"))
+		self.console = Console()
 		self.opkgComponent = OpkgComponent()
 		self.opkgComponent.addCallback(self.opkgCallback)
 
-	def layoutFinished(self):
-		Setup.layoutFinished(self)
-		self.createSetup()
+	def getRunningStatus(self):
+		self.serviceIsRunning = {}
+		processlist = ProcessList()
+		for daemon in self.getDaemons():
+			if daemon["isservice"]:
+				self.serviceIsRunning[daemon["key"]] = False
+				for runningService in daemon["running"].split(","):
+					if str(processlist.named(runningService)).strip("[]"):
+						self.serviceIsRunning[daemon["key"]] = True
+						break
+
+	def getService(self, daemon):
+		choices = []
+		checkFile = daemon["installcheck"]
+		autoStartCheck = daemon["autostart"]
+		title = daemon["title"]
+		if checkFile:
+			choices.append((2, _("Removed")))
+			if exists(checkFile):
+				if autoStartCheck:
+					default = 0 if glob(autoStartCheck) else 1
+					choices.append((0, _("Enabled")))
+					choices.append((1, _("Disabled")))
+				else:
+					choices.append((3, _("Installed")))
+					default = 3
+			else:
+				default = 2
+		elif autoStartCheck:
+			default = 0 if glob(autoStartCheck) else 1
+			choices.append((0, _("Enabled")))
+			choices.append((1, _("Disabled")))
+
+		cfg = ConfigSelection(default=default, choices=choices)
+		return (title, cfg, _("Select the action for '%s'" % title), daemon)
 
 	def createSetup(self):  # NOSONAR silence S2638
-		if "startStopActions" in self:
-			coreitems = []
-			if self.autoStartConfig and self.isInstalled:
-				coreitems.append((_("Autostart"), self.autoStartConfig, _("Select 'Yes' to enable autostart of '%s'.") % self.serviceDisplayName))
-			Setup.createSetup(self, prependItems=coreitems)
-			if self.isInstalled:
-				self["startStopActions"].setEnabled(True)
-				self["key_blue"].setText(_("Stop") if self.isRunning else _("Start"))
-				self["key_yellow"].setText(_("Remove") if self.packageNames else "")
-			else:
-				self["startStopActions"].setEnabled(False)
-				self["key_blue"].setText("")
-				self["key_yellow"].setText(_("Install") if self.packageNames else "")
-			self["intallRemoveActions"].setEnabled(self.packageNames)
-			installed = _("Installed") if self.isInstalled else _("Not Installed")
-			running = _("Running") if self.isRunning else _("Not running")
-			footnote = f"{_('Current Status:')} {installed} / {running}"
-			self.setFootnote(footnote)
-			if self.setupTitle:
-				self.setTitle(self.setupTitle)
+		if not self.serviceItems:
+			print("createSetup")
+			for daemon in self.getDaemons():
+				self.serviceItems.append(self.getService(daemon))
+			self.getRunningStatus()
+		Setup.createSetup(self, appendItems=self.serviceItems)
 
-	def showProgress(self):
-		Processing.instance.setDescription(_("Please wait..."))
-		Processing.instance.showProgress(endless=True)
+	def selectionChanged(self):
+#		return (title, cfg, _("Select the action for '%s'" % title), daemon, isRunning)
+		current = self["config"].getCurrent()
+		print("selectionChanged")
+		print(current)
+		if current:
+			daemon = current[3]
+			isInstalled = daemon["isinstalled"]
+			isRunning = self.serviceIsRunning.get(daemon["key"], None)
+			if isInstalled and isRunning is not None:
+				cmd = _("Stop") if isRunning else _("Start")
+				self["key_yellow"].setText(cmd)
+				self["startStopActions"].setEnabled(True)
+			else:
+				self["key_yellow"].setText("")
+				self["startStopActions"].setEnabled(False)
+			logPath = daemon["logpath"]
+			self["key_blue"].setText(_("Show Log") if logPath else "")
+			self["showLogActions"].setEnabled(logPath != "")
+
+			Setup.selectionChanged(self)
+			installed = _("Installed") if isInstalled else _("Not Installed")
+			if isRunning is not None:
+				running = _("Running") if isRunning else _("Not running")
+				footnote = f"{_('Current Status:')} {installed} / {running}"
+			else:
+				footnote = f"{_('Current Status:')} {installed}"
+			self.setFootnote(footnote)
 
 	def toggleStartStop(self):
+#		return (title, cfg, _("Select the action for '%s'" % title), daemon, isRunning)
 		def toggleStartStopCallback(result=None, retval=None, extra_args=None):
 			time.sleep(1)
 			self.createSetup()
+			self.getRunningStatus()
 			Processing.instance.hideProgress()
-		cmd = "stop" if self.isRunning else "start"
-		self.showProgress()
-		self.Console.ePopen(f"/etc/init.d/{self.service} {cmd}", toggleStartStopCallback)
+		current = self["config"].getCurrent()
+		if current:
+			daemon = current[3]
+			if daemon["isservice"]:
+				isRunning = self.serviceIsRunning.get(daemon["key"], None)
+				service = daemon["startservice"]
+				cmd = "stop" if isRunning else "start"
+				self.showProgress()
+				commands = [f"/etc/init.d/{service} {cmd}"]
+				if isRunning and daemon["key"] == "samabas":
+					commands.append("killall nmbd")
+					commands.append("killall smbd")
+				self.showProgress()
+				self.console.eBatch(commands, toggleStartStopCallback, debug=True)
 
-	def toggleAutoStart(self):
-		def toggleAutoStartCallback(result=None, retval=None, extra_args=None):
-			Setup.keySave(self)
-		cmd = "remove" if self.isAutoStart else self.initParams
-		self.Console.ePopen(f"update-rc.d -f {self.service} {cmd}", toggleAutoStartCallback)
+	def showLog(self):
+		current = self["config"].getCurrent()
+		if current:
+			self.session.open(NetworkLogScreen, title=_("Log"), logPath=current[3]["logpath"])
 
-	def keySave(self):
-		if self.autoStartConfig and self.autoStartConfig.isChanged():
-			self.toggleAutoStart()
-		else:
-			Setup.keySave(self)
-
-	def toggleInstallRemove(self):
-		self.showProgress()
-		if self.isInstalled:
-			self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, {"arguments": self.packageNames})
-		else:
-			self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALL, {"arguments": self.packageNames})
+	def showProgress(self, text=""):
+		Processing.instance.setDescription(text or _("Please wait..."))
+		Processing.instance.showProgress(endless=True)
 
 	def opkgCallback(self, event, parameter):
-		if event == self.opkgComponent.EVENT_DONE:
-			self.createSetup()
+		def configureCallback(result=None, retval=None, extra_args=None):
 			Processing.instance.hideProgress()
+			Setup.keySave(self)
+		if event == self.opkgComponent.EVENT_REMOVE_DONE and self.installPackages:
+			self.showProgress(_("Installing Service"))
+			self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALL, {"arguments": self.installPackages})
+		elif event == self.opkgComponent.EVENT_INSTALL_DONE and self.cmdList:
+			self.showProgress(_("Configuring Service"))
+			self.console.eBatch(self.cmdList, configureCallback, debug=True)
 
-	def getInstalled(self):
-		return exists(f"/etc/init.d/{self.service}")
+	def keySave(self):
+		self.installPackages = []
+		self.removePackages = []
+		self.cmdList = []
+		for item in self["config"].list:
+			if len(item) > 1 and item[1].isChanged():
+				daemon = item[3]
+				if item[1].value == 2:  # remove
+					self.removePackages.append(daemon["package"])
+				elif item[1].value == 3:  # install
+					self.installPackages.append(daemon["package"])
+				elif item[1].value == 0:  # autostart on
+					autostartprio = daemon["autostartprio"]
+					cmd = f"defaults {autostartprio}" if autostartprio else "defaults"
+					autostartservice = daemon["autostartservice"]
+					self.cmdList.append(f"update-rc.d -f {autostartservice} {cmd}")
+				elif item[1].value == 1:  # autostart off
+					autostartservice = daemon["autostartservice"]
+					self.cmdList.append(f"update-rc.d -f {autostartservice} remove")
+			item[1].cancel()
 
-	isInstalled = property(getInstalled)
-
-	def getAutoStart(self):
-		return exists(self.autoStartCheckFile)
-
-	isAutoStart = property(getAutoStart)
-
-
-class NetworkSABnzbd(NetworkBaseSetup):
-	def __init__(self, session):
-		self.autoStartCheckFile = "/etc/rc2.d/S20sabnzbd"
-		self.service = "sabnzbd"
-		self.serviceDisplayName = "SABnzbd"
-		self.packageNames = ["sabnzbd3"]
-		self.checkRunning()
-		NetworkBaseSetup.__init__(self, session, "NetworkSABnzbdSetup")
-		self.setupTitle = _("SABnzbd Settings")
-
-	def checkRunning(self):
-		p = ProcessList()
-		self.isRunning = str(p.named("SABnzbd.py")).strip("[]") or str(p.named("SABnzbd.pyc")).strip("[]")
-
-
-class NetworkFtp(NetworkBaseSetup):
-	def __init__(self, session):
-		self.autoStartCheckFile = "*"
-		self.service = "vsftpd"
-		self.serviceDisplayName = "FTP"
-		self.packageNames = []
-		self.checkRunning()
-		NetworkBaseSetup.__init__(self, session, "NetworkFtpSetup")
-		self.setupTitle = _("FTP Settings")
-
-	def checkRunning(self):
-		p = ProcessList()
-		self.isRunning = str(p.named("vsftpd")).strip("[]")
-
-	def getAutoStart(self):
-		return len(glob("/etc/rc2.d/S*0vsftpd"))
-
-
-class NetworkNfs(NetworkBaseSetup):
-	def __init__(self, session):
-		self.autoStartCheckFile = "*"
-		self.service = "nfsserver"
-		self.serviceDisplayName = "NFS"
-		self.packageNames = [f"{BASE_GROUP}-nfs"]
-		self.checkRunning()
-		NetworkBaseSetup.__init__(self, session, "NetworkNfsSetup")
-		self.setupTitle = _("NFS Settings")
-		self.initParams = "defaults 13"
-
-	def checkRunning(self):
-		p = ProcessList()
-		self.isRunning = str(p.named("nfsd")).strip("[]")
-
-	def getAutoStart(self):
-		return len(glob("/etc/rc2.d/S*nfsserver"))
-
-
-class NetworkSATPI(NetworkBaseSetup):
-	def __init__(self, session):
-		self.autoStartCheckFile = "/etc/rc2.d/S80satpi"
-		self.service = "satpi"
-		self.serviceDisplayName = "SATPI"
-		self.packageNames = ["satpi"]
-		self.checkRunning()
-		NetworkBaseSetup.__init__(self, session, "NetworkSATPISetup")
-		self.setupTitle = _("SATPI Settings")
-		self.initParams = "defaults 80"
-
-	def checkRunning(self):
-		p = ProcessList()
-		self.isRunning = str(p.named("satpi")).strip("[]")
-
-
-class NetworkOpenvpn(NetworkBaseSetup):
-	def __init__(self, session):
-		self.autoStartCheckFile = "*"
-		self.service = "openvpn"
-		self.serviceDisplayName = "NFS"
-		self.packageNames = [f"{BASE_GROUP}-nfs"]
-		self.checkRunning()
-		NetworkBaseSetup.__init__(self, session, "NetworkOpenvpnSetup")
-		self.setupTitle = _("OpenVPN Settings")
-		self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
-			"info": (self.keyInfo, _("Show logfile"))
-		}, prio=0, description=_("Network Setup Actions"))
-
-	def keyInfo(self):
-		self.session.open(NetworkLogScreen, title=_("OpenVpn Log"), logPath="/etc/openvpn/openvpn.log")
-
-	def checkRunning(self):
-		p = ProcessList()
-		self.isRunning = str(p.named("openvpn")).strip("[]")
-
-	# TODO call start with custom config file
-
-
-class _NetworkOpenvpn(NetworkBaseScreen):
-	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session, showLog=True)
-		self.setTitle(_("OpenVPN Settings"))
-		self.skinName = "NetworkOpenvpn"
-		self.onChangedEntry = []
-		self["lab1"] = Label(_("Autostart:"))
-		self["labactive"] = Label(_(_("Disabled")))
-		self["lab2"] = Label(_("Current Status:"))
-		self["labstop"] = Label(_("Stopped"))
-		self["labrun"] = Label(_("Running"))
-		self["labconfig"] = Label(_("Config file name (ok to change):"))
-		self["labconfigfilename"] = Label(_("default"))
-		self.config_file = ""
-		self.my_vpn_active = False
-		self.my_vpn_run = False
-		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
-			"ok": self.inputconfig,
-			"back": self.close,
-			"red": self.UninstallCheck,
-			"green": self.VpnStartStop,
-			"yellow": self.activateVpn,
-			"blue": self.Vpnshowlog
-		}, prio=0, description=_("OpenVPN Actions"))
-		self.service_name = "openvpn"
-		self.onLayoutFinish.append(self.InstallCheck)
-
-	def Vpnshowlog(self):
-		self.session.open(NetworkLogScreen, title=_("OpenVpn Log"), logPath="/etc/openvpn/openvpn.log")
-
-	def VpnStartStop(self):
-		if not self.my_vpn_run:
-			self.Console.ePopen("/etc/init.d/openvpn start %s" % self.config_file, self.StartStopCallback)
-		elif self.my_vpn_run:
-			self.Console.ePopen("/etc/init.d/openvpn stop", self.StartStopCallback)
-
-	def StartStopCallback(self, result=None, retval=None, extra_args=None):
-		time.sleep(3)
-		self.updateService()
-
-	def activateVpn(self):
-		if fileExists("/etc/rc2.d/S20openvpn"):
-			self.Console.ePopen("update-rc.d -f openvpn remove", self.StartStopCallback)
+		if self.removePackages:
+			self.showProgress(_("Removing Service"))
+			args = {
+				"arguments": self.removePackages,
+				"options": {"remove": ["--force-remove", "--autoremove"]}
+			}
+			self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, args)
+		elif self.installPackages:
+			self.opkgCallback(self.opkgComponent.EVENT_REMOVE_DONE, "")
+		elif self.cmdList:
+			self.opkgCallback(self.opkgComponent.EVENT_INSTALL_DONE, "")
 		else:
-			self.Console.ePopen("update-rc.d -f openvpn defaults", self.StartStopCallback)
-
-	def updateService(self):
-		import process
-		p = process.ProcessList()
-		openvpn_process = str(p.named("openvpn")).strip("[]")
-		self["labrun"].hide()
-		self["labstop"].hide()
-		self["labactive"].setText(_("Disabled"))
-		self.my_Vpn_active = False
-		self.my_vpn_run = False
-		if fileExists("/etc/rc2.d/S20openvpn"):
-			self["labactive"].setText(_("Enabled"))
-			self["labactive"].show()
-			self.my_Vpn_active = True
-		if openvpn_process:
-			self.my_vpn_run = True
-		if self.my_vpn_run:
-			self["labstop"].hide()
-			self["labrun"].show()
-			self["key_green"].setText(_("Stop"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labrun"].text)
-		else:
-			self["labstop"].show()
-			self["labrun"].hide()
-			self["key_green"].setText(_("Start"))
-			status_summary = "%s %s" % (self["lab2"].text, self["labstop"].text)
-		title = _("OpenVPN Settings")
-		autostartstatus_summary = "%s %s" % (self["lab1"].text, self["labactive"].text)
-		self["labconfig"].show()
-		for cb in self.onChangedEntry:
-			cb(title, status_summary, autostartstatus_summary)
-
-	def inputconfig(self):
-		self.session.openWithCallback(self.askForWord, InputBox, title=_("Input config file name:"), text=" " * 20, maxSize=20, type=Input.TEXT)
-
-	def askForWord(self, word):
-		if word is None:
-			pass
-		else:
-			self.config_file = _(word)
-			self["labconfigfilename"].setText(self.config_file)
+			Setup.keySave(self)
 
 
-class NetworkSamba(NetworkBaseScreen):
+class _NetworkSamba(NetworkBaseScreen):
 	def __init__(self, session):
 		NetworkBaseScreen.__init__(self, session, showLog=True)
 		self.setTitle(_("Samba Setup"))
@@ -2167,84 +2075,92 @@ class NetworkSamba(NetworkBaseScreen):
 			cb(title, status_summary, autostartstatus_summary)
 
 
-class NetworkTelnet(NetworkBaseScreen):
+class _NetworkOpenvpn(NetworkBaseScreen):
 	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
-		self.setTitle(_("Telnet Settings"))
-		self.skinName = "NetworkSamba"
+		NetworkBaseScreen.__init__(self, session, showLog=True)
+		self.setTitle(_("OpenVPN Settings"))
+		self.skinName = "NetworkOpenvpn"
 		self.onChangedEntry = []
 		self["lab1"] = Label(_("Autostart:"))
 		self["labactive"] = Label(_(_("Disabled")))
 		self["lab2"] = Label(_("Current Status:"))
 		self["labstop"] = Label(_("Stopped"))
 		self["labrun"] = Label(_("Running"))
-		self.my_telnet_active = False
-		self.my_telnet_run = False
+		self["labconfig"] = Label(_("Config file name (ok to change):"))
+		self["labconfigfilename"] = Label(_("default"))
+		self.config_file = ""
+		self.my_vpn_active = False
+		self.my_vpn_run = False
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
-			"ok": self.close,
+			"ok": self.inputconfig,
 			"back": self.close,
-			"green": self.TelnetStartStop,
-			"yellow": self.activateTelnet
-		}, prio=0, description=_("Telnet Actions"))
+			"red": self.UninstallCheck,
+			"green": self.VpnStartStop,
+			"yellow": self.activateVpn,
+			"blue": self.Vpnshowlog
+		}, prio=0, description=_("OpenVPN Actions"))
+		self.service_name = "openvpn"
+		self.onLayoutFinish.append(self.InstallCheck)
 
-	def createSummary(self):
-		return NetworkServicesSummary
+	def Vpnshowlog(self):
+		self.session.open(NetworkLogScreen, title=_("OpenVpn Log"), logPath="/etc/openvpn/openvpn.log")
 
-	def TelnetStartStop(self):
-		commands = []
-		if fileExists("/etc/init.d/telnetd.busybox"):
-			if self.my_telnet_run:
-				commands.append("/etc/init.d/telnetd.busybox stop")
-			else:
-				commands.append("/bin/su -l -c \"/etc/init.d/telnetd.busybox start\"")
-			self.Console.eBatch(commands, self.StartStopCallback, debug=True)
+	def VpnStartStop(self):
+		if not self.my_vpn_run:
+			self.Console.ePopen("/etc/init.d/openvpn start %s" % self.config_file, self.StartStopCallback)
+		elif self.my_vpn_run:
+			self.Console.ePopen("/etc/init.d/openvpn stop", self.StartStopCallback)
 
 	def StartStopCallback(self, result=None, retval=None, extra_args=None):
 		time.sleep(3)
 		self.updateService()
 
-	def activateTelnet(self):
-		commands = []
-		if fileExists("/etc/init.d/telnetd.busybox"):
-			if fileExists("/etc/rc2.d/S20telnetd.busybox"):
-				commands.append("update-rc.d -f telnetd.busybox remove")
-			else:
-				commands.append("update-rc.d -f telnetd.busybox defaults")
-		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
+	def activateVpn(self):
+		if fileExists("/etc/rc2.d/S20openvpn"):
+			self.Console.ePopen("update-rc.d -f openvpn remove", self.StartStopCallback)
+		else:
+			self.Console.ePopen("update-rc.d -f openvpn defaults", self.StartStopCallback)
 
 	def updateService(self):
 		import process
 		p = process.ProcessList()
-		telnet_process = str(p.named("telnetd")).strip("[]")
+		openvpn_process = str(p.named("openvpn")).strip("[]")
 		self["labrun"].hide()
 		self["labstop"].hide()
 		self["labactive"].setText(_("Disabled"))
-		self.my_telnet_active = False
-		self.my_telnet_run = False
-		if fileExists("/etc/rc2.d/S20telnetd.busybox"):
+		self.my_Vpn_active = False
+		self.my_vpn_run = False
+		if fileExists("/etc/rc2.d/S20openvpn"):
 			self["labactive"].setText(_("Enabled"))
 			self["labactive"].show()
-			self.my_telnet_active = True
-
-		if telnet_process:
-			self.my_telnet_run = True
-		if self.my_telnet_run:
+			self.my_Vpn_active = True
+		if openvpn_process:
+			self.my_vpn_run = True
+		if self.my_vpn_run:
 			self["labstop"].hide()
-			self["labactive"].show()
 			self["labrun"].show()
 			self["key_green"].setText(_("Stop"))
 			status_summary = "%s %s" % (self["lab2"].text, self["labrun"].text)
 		else:
-			self["labrun"].hide()
 			self["labstop"].show()
-			self["labactive"].show()
+			self["labrun"].hide()
 			self["key_green"].setText(_("Start"))
 			status_summary = "%s %s" % (self["lab2"].text, self["labstop"].text)
-		title = _("Telnet Settings")
+		title = _("OpenVPN Settings")
 		autostartstatus_summary = "%s %s" % (self["lab1"].text, self["labactive"].text)
-
+		self["labconfig"].show()
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
+	def inputconfig(self):
+		self.session.openWithCallback(self.askForWord, InputBox, title=_("Input config file name:"), text=" " * 20, maxSize=20, type=Input.TEXT)
+
+	def askForWord(self, word):
+		if word is None:
+			pass
+		else:
+			self.config_file = _(word)
+			self["labconfigfilename"].setText(self.config_file)
 
 
 class NetworkInadyn(NetworkBaseScreen):
