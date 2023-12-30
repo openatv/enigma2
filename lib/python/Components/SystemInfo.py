@@ -491,8 +491,8 @@ for cislot in range(0, SystemInfo["CommonInterface"]):
 	SystemInfo["CI%dRelevantPidsRoutingSupport" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot)
 
 # network services
-SystemInfo["inadyn"] = exists("/etc/init.d/S20inadyn-mt")
-SystemInfo["minidlna"] = exists("/etc/init.d/S20minidlna")
-SystemInfo["ushare"] = exists("/etc/init.d/S20ushare")
+SystemInfo["inadyn"] = exists("/etc/init.d/inadyn-mt")
+SystemInfo["minidlna"] = exists("/etc/init.d/minidlna")
+SystemInfo["ushare"] = exists("/etc/init.d/ushare")
 
 updateSysSoftCam()
