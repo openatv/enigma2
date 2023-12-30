@@ -1,0 +1,32 @@
+<!--
+	<daemon 
+		key="<primary key>"  mandatory
+		title="<display name>" mandatory
+		installcheck="file to check if installed" optional : no install/remove if not exists
+		package="ipk name" optional : no install/remove if not exists
+		autostart="autostart file" optional : no service if not exists
+		autostartservice="autostart service name" optional : no service if not exists
+		autostartprio="" optional if not 20
+		running="running service name" optional : no service if not exists
+		startservice="start/stop service name"> optional : no service if not exists
+		logpath="full path of the log" optional
+-->
+
+<daemonsxml>
+	<daemon key="autofs" title="AutoFS" autostart="/etc/rc2.d/S17autofs" autostartservice="autofs" autostartprio="17" running="automount" startservice="autofs"/>
+	<daemon key="chrony" title="Chrony" autostart="/etc/rc2.d/S12chronyd" autostartservice="chronyd" autostartprio="12" running="chronyd" startservice="chronyd"/>
+	<daemon key="cron" title="Cron" autostart="/etc/rc2.d/S90crond" autostartservice="crond" autostartprio="90" running="crond" startservice="crond"/>
+	<daemon key="ftp" title="FTP" autostart="/etc/rc2.d/S*0vsftpd" autostartservice="vsftpd" running="vsftpd" startservice="vsftpd"/>
+	<daemon key="inadyn" title="Inadyn" installcheck="/etc/init.d/inadyn-mt" package="inadyn-mt" autostart="/etc/rc2.d/S20inadyn-mt" autostartservice="inadyn-mt" running="inadyn-mt" startservice="inadyn-mt" logpath="/var/log/inadyn.log"/>
+	<daemon key="minidlna" title="MiniDLNA" installcheck="/etc/init.d/minidlna" package="minidlna" autostart="/etc/rc2.d/S20minidlna" autostartservice="minidlna" running="minidlna" startservice="minidlna" logpath="/var/volatile/log/minidlna.log"/>
+	<daemon key="nfs" title="NFS" installcheck="/etc/init.d/nfsserver" package="packagegroup-base-nfs" autostart="/etc/rc2.d/S*nfsserver" autostartservice="nfsserver" autostartprio="13" running="nfsd" startservice="nfsserver"/>
+	<daemon key="openvpn" title="OpenVPN" installcheck="/etc/init.d/openvpn" package="openvpn" autostart="/etc/rc2.d/S20openvpn" autostartservice="openvpn" running="openvpn" startservice="openvpn" logpath="/etc/openvpn/openvpn.log"/>
+	<daemon key="sabnzbd" title="SABnzbd" installcheck="/etc/init.d/sabnzbd" package="sabnzbd3" autostart="/etc/rc2.d/S20sabnzbd" autostartservice="sabnzbd" running="SABnzbd.py,SABnzbd.pyc" startservice="sabnzbd"/>
+	<daemon key="sambac" title="Samba Client" installcheck="/usr/bin/smbclient" package="packagegroup-base-smbfs-client"/>
+	<daemon key="sambas" title="Samba Server" installcheck="/etc/init.d/samba" package="packagegroup-base-smbfs-server" autostart="/etc/rc2.d/S20samba" autostartservice="samba" running="smdb" startservice="samba" logpath="/var/log/samba/log.smbd"/>
+	<daemon key="satpi" title="SATPI" installcheck="/etc/init.d/satpi" package="satpi" autostart="/etc/rc2.d/S80satpi" autostartservice="satpi" autostartprio="80" running="satpi" startservice="satpi"/>
+	<daemon key="shellinabox" title="ShellInABox" installcheck="/etc/init.d/shellinabox" package="shellinabox" autostart="/etc/rc2.d/S20shellinabox" autostartservice="shellinabox" running="shellinaboxd" startservice="shellinabox"/>
+	<daemon key="ssh" title="SSH" autostart="/etc/rc2.d/S10dropbear" autostartservice="dropbear" autostartprio="10" running="dropbear" startservice="dropbear"/>
+	<daemon key="telnet" title="Telnet" autostart="/etc/rc2.d/S20telnetd.busybox" autostartservice="telnetd.busybox" running="telnetd" startservice="telnetd"/>
+	<daemon key="ushare" title="uShare" installcheck="/etc/init.d/ushare" package="ushare" autostart="/etc/rc2.d/S20ushare" autostartservice="ushare" running="ushare" startservice="ushare"/>
+</daemonsxml>

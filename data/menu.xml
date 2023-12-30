@@ -199,16 +199,10 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
 					<item key="netmounts_setup" level="1" text="Mounts Settings" weight="5"><screen module="NetworkSetup" screen="NetworkMountsMenu" /></item>
 					<item key="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
-					<item key="netsatpi_setup" level="2" text="SATPI Settings" weight="10"><screen module="NetworkSetup" screen="NetworkSATPI" /></item>
-					<item key="netsmba_setup" level="2" text="CIFS/Samba Settings" weight="15"><screen module="NetworkSetup" screen="NetworkSamba" /></item>
-					<item key="netftp_setup" level="2" text="FTP Settings" weight="20"><screen module="NetworkSetup" screen="NetworkFtp" /></item>
-					<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25"><screen module="NetworkSetup" screen="NetworkInadyn" /></item>
-					<item key="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30"><screen module="NetworkSetup" screen="NetworkMiniDLNA" /></item>
-					<item key="netnfs_setup" level="2" text="NFS Settings" weight="35"><screen module="NetworkSetup" screen="NetworkNfs" /></item>
-					<item key="netvpn_setup" level="2" text="OpenVPN Settings" weight="40"><screen module="NetworkSetup" screen="NetworkOpenvpn" /></item>
-					<item key="netsabnzbd_setup" level="2" text="SABnzbd Settings" weight="45"><screen module="NetworkSetup" screen="NetworkSABnzbd" /></item>
-					<item key="nettelnet_setup" level="2" text="Telnet Settings" weight="50"><screen module="NetworkSetup" screen="NetworkTelnet" /></item>
-					<item key="netushare_setup" level="2" text="uShare Settings" weight="55"><screen module="NetworkSetup" screen="NetworkuShare" /></item>
+					<item key="networkservices_setup" level="2" text="Network Services" weight="9"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
+					<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
+					<item key="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30" requires="minidlna"><screen module="NetworkSetup" screen="NetworkMiniDLNASetup" /></item>
+					<item key="netushare_setup" level="2" text="uShare Settings" weight="55" requires="ushare"><screen module="NetworkSetup" screen="NetworkuShareSetup" /></item>
 				</menu>
 				<item key="hdmicec" level="0" text="HDMI-CEC Settings" weight="55" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup" /></item>
 				<item key="script_manager" level="1" text="Script Manager" weight="56"><screen module="ScriptRunner" screen="ScriptRunner" /></item>

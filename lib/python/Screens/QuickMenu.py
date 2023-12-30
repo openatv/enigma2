@@ -210,21 +210,9 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.sublist.append(QuickSubMenuEntryComponent("Network Interface", _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network Restart", _("Restart network to with current setup"), _("Restart network and remount connections")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network Services", _("Setup Network Services"), _("Setup Network Services (Samba, Ftp, NFS, ...)")))
-		self["sublist"].setList(self.sublist)
-
-# ### Network Services Menu ##############################
-	def Qnetworkservices(self):
-		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Samba", _("Setup Samba"), _("Setup Samba")))
-		self.sublist.append(QuickSubMenuEntryComponent("NFS", _("Setup NFS"), _("Setup NFS")))
-		self.sublist.append(QuickSubMenuEntryComponent("FTP", _("Setup FTP"), _("Setup FTP")))
-		self.sublist.append(QuickSubMenuEntryComponent("SATPI", _("Setup SATPI"), _("Setup SATPI")))
-		self.sublist.append(QuickSubMenuEntryComponent("OpenVPN", _("Setup OpenVPN"), _("Setup OpenVPN")))
 		self.sublist.append(QuickSubMenuEntryComponent("MiniDLNA", _("Setup MiniDLNA"), _("Setup MiniDLNA")))
 		self.sublist.append(QuickSubMenuEntryComponent("Inadyn", _("Setup Inadyn"), _("Setup Inadyn")))
-		self.sublist.append(QuickSubMenuEntryComponent("SABnzbd", _("Setup SABnzbd"), _("Setup SABnzbd")))
 		self.sublist.append(QuickSubMenuEntryComponent("uShare", _("Setup uShare"), _("Setup uShare")))
-		self.sublist.append(QuickSubMenuEntryComponent("Telnet", _("Setup Telnet"), _("Setup Telnet")))
 		self["sublist"].setList(self.sublist)
 
 # ####### Mount Settings Menu ##############################
@@ -319,6 +307,7 @@ class QuickMenu(Screen, ProtectedScreen):
 # ####### Make Selection MAIN MENU LIST ##############################
 # ####################################################################
 
+
 	def okList(self):
 		item = self["list"].getCurrent()[0]
 # ####### Select Network Menu ##############################
@@ -368,28 +357,13 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Network Restart"):
 			self.session.open(RestartNetwork)
 		elif item == _("Network Services"):
-			self.Qnetworkservices()
-			self["sublist"].moveToIndex(0)
-		elif item == _("Samba"):
-			self.session.open(NetworkSamba)
-		elif item == _("NFS"):
-			self.session.open(NetworkNfs)
-		elif item == _("FTP"):
-			self.session.open(NetworkFtp)
-		elif item == _("OpenVPN"):
-			self.session.open(NetworkOpenvpn)
+			self.session.open(NetworkServicesSetup)
 		elif item == _("MiniDLNA"):
-			self.session.open(NetworkMiniDLNA)
+			self.session.open(NetworkMiniDLNASetup)
 		elif item == _("Inadyn"):
-			self.session.open(NetworkInadyn)
-		elif item == _("SABnzbd"):
-			self.session.open(NetworkSABnzbd)
-		elif item == _("SATPI"):
-			self.session.open(NetworkSATPI)
+			self.session.open(NetworkInadynSetup)
 		elif item == _("uShare"):
-			self.session.open(NetworkuShare)
-		elif item == _("Telnet"):
-			self.session.open(NetworkTelnet)
+			self.session.open(NetworkuShareSetup)
 # ####### Select System Setup Menu ##############################
 		elif item == _("Customize"):
 			self.openSetup("Usage")
