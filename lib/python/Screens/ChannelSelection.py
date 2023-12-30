@@ -1577,12 +1577,13 @@ class ChannelContextMenu(Screen, HelpableScreen):
 						else:
 							appendWhenValid(current, menu, (_("Mark As Dedicated 3D Service"), self.addDedicated3DFlag))
 
-					if BoxInfo.getItem("HAVEINITCAM") and config.misc.autocamEnabled.value and Screens.InfoBar.InfoBar.instance.checkCrypt(current):
+					if BoxInfo.getItem("HAVEINITCAM"):
 						if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
 							appendWhenValid(current, menu, (_("Play service without Stream Relay"), self.toggleStreamrelay))
 						else:
 							appendWhenValid(current, menu, (_("Play service with Stream Relay"), self.toggleStreamrelay))
-						appendWhenValid(current, menu, (_("Define Softcam For This Service"), self.selectCam))
+						if config.misc.autocamEnabled.value and Screens.InfoBar.InfoBar.instance.checkCrypt(current):
+							appendWhenValid(current, menu, (_("Define Softcam For This Service"), self.selectCam))
 
 					if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
 						appendWhenValid(current, menu, (_("Show VBI Line For This Service"), self.removeHideVBIFlag))
@@ -1635,9 +1636,10 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					if haveBouquets:
 						if not self.inBouquet and "PROVIDERS" not in current_sel_path:
 							appendWhenValid(current, menu, (_("Copy To Bouquets"), self.copyCurrentToBouquetList))
-							appendWhenValid(current, menu, (_("Copy To Stream Relay"), self.copyCurrentToStreamRelay))
-							if BoxInfo.getItem("HAVEINITCAM") and config.misc.autocamEnabled.value:
-								appendWhenValid(current, menu, (_("Define Softcam For This Provider"), self.selectCamProvider))
+							if BoxInfo.getItem("HAVEINITCAM"):
+								appendWhenValid(current, menu, (_("Copy To Stream Relay"), self.copyCurrentToStreamRelay))
+								if config.misc.autocamEnabled.value:
+									appendWhenValid(current, menu, (_("Define Softcam For This Provider"), self.selectCamProvider))
 					if ("flags == %d" % (FLAG_SERVICE_NEW_FOUND)) in current_sel_path:
 						appendWhenValid(current, menu, (_("Remove All New Found Flags"), self.removeAllNewFoundFlags))
 				if self.inBouquet:
