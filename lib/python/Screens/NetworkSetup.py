@@ -1842,6 +1842,7 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 					choices.append((3, _("Installed")))
 					default = 3
 			else:
+				choices.append((3, _("Installed")))
 				default = 2
 		elif autoStartCheck:
 			default = 0 if glob(autoStartCheck) else 1
@@ -1905,8 +1906,11 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 				self.showProgress()
 				commands = [f"/etc/init.d/{service} {cmd}"]
 				if isRunning and daemon["key"] == "samabas":
+					commands.append(f"/etc/init.d/wsdd stop")
 					commands.append("killall nmbd")
 					commands.append("killall smbd")
+				if not isRunning and daemon["key"] == "samabas":
+					commands.append(f"/etc/init.d/wsdd start")
 				self.showProgress()
 				self.console.eBatch(commands, toggleStartStopCallback, debug=True)
 
