@@ -1854,17 +1854,13 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 
 	def createSetup(self):  # NOSONAR silence S2638
 		if not self.serviceItems:
-			print("createSetup")
 			for daemon in self.getDaemons():
 				self.serviceItems.append(self.getService(daemon))
 			self.getRunningStatus()
 		Setup.createSetup(self, appendItems=self.serviceItems)
 
 	def selectionChanged(self):
-#		return (title, cfg, _("Select the action for '%s'" % title), daemon, isRunning)
 		current = self["config"].getCurrent()
-		print("selectionChanged")
-		print(current)
 		if current:
 			daemon = current[3]
 			isInstalled = daemon["isinstalled"]
@@ -1890,7 +1886,6 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 			self.setFootnote(footnote)
 
 	def toggleStartStop(self):
-#		return (title, cfg, _("Select the action for '%s'" % title), daemon, isRunning)
 		def toggleStartStopCallback(result=None, retval=None, extra_args=None):
 			time.sleep(1)
 			self.createSetup()
@@ -1905,12 +1900,11 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 				cmd = "stop" if isRunning else "start"
 				self.showProgress()
 				commands = [f"/etc/init.d/{service} {cmd}"]
-				if isRunning and daemon["key"] == "samabas":
-					commands.append(f"/etc/init.d/wsdd stop")
-					commands.append("killall nmbd")
-					commands.append("killall smbd")
-				if not isRunning and daemon["key"] == "samabas":
-					commands.append(f"/etc/init.d/wsdd start")
+				if daemon["key"] == "sambas":
+					commands = [f"/etc/init.d/wsdd {cmd}"]
+					if isRunning:
+						commands.append("killall nmbd")
+						commands.append("killall smbd")
 				self.showProgress()
 				self.console.eBatch(commands, toggleStartStopCallback, debug=True)
 
@@ -1930,9 +1924,12 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 		if event == self.opkgComponent.EVENT_REMOVE_DONE and self.installPackages:
 			self.showProgress(_("Installing Service"))
 			self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALL, {"arguments": self.installPackages})
-		elif event == self.opkgComponent.EVENT_INSTALL_DONE and self.cmdList:
-			self.showProgress(_("Configuring Service"))
-			self.console.eBatch(self.cmdList, configureCallback, debug=True)
+		elif event in (self.opkgComponent.EVENT_REMOVE_DONE, self.opkgComponent.EVENT_INSTALL_DONE):
+			if self.cmdList:
+				self.showProgress(_("Configuring Service"))
+				self.console.eBatch(self.cmdList, configureCallback, debug=True)
+			else:
+				configureCallback()
 
 	def keySave(self):
 		self.installPackages = []
