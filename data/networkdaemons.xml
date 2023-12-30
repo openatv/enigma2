@@ -23,7 +23,7 @@
 	<daemon key="openvpn" title="OpenVPN" installcheck="/etc/init.d/openvpn" package="openvpn" autostart="/etc/rc2.d/S20openvpn" autostartservice="openvpn" running="openvpn" startservice="openvpn" logpath="/etc/openvpn/openvpn.log"/>
 	<daemon key="sabnzbd" title="SABnzbd" installcheck="/etc/init.d/sabnzbd" package="sabnzbd3" autostart="/etc/rc2.d/S20sabnzbd" autostartservice="sabnzbd" running="SABnzbd.py,SABnzbd.pyc" startservice="sabnzbd"/>
 	<daemon key="sambac" title="Samba Client" installcheck="/usr/bin/smbclient" package="packagegroup-base-smbfs-client"/>
-	<daemon key="sambas" title="Samba Server" installcheck="/etc/init.d/samba" package="packagegroup-base-smbfs-server" autostart="/etc/rc2.d/S20samba" autostartservice="samba" running="smdb" startservice="samba" logpath="/var/log/samba/log.smbd"/>
+	<daemon key="sambas" title="Samba Server" installcheck="/etc/init.d/samba" package="packagegroup-base-smbfs-server" autostart="/etc/rc2.d/S20samba" autostartservice="samba" running="smbd" startservice="samba" logpath="/var/log/samba/log.smbd"/>
 	<daemon key="satpi" title="SATPI" installcheck="/etc/init.d/satpi" package="satpi" autostart="/etc/rc2.d/S80satpi" autostartservice="satpi" autostartprio="80" running="satpi" startservice="satpi"/>
 	<daemon key="shellinabox" title="ShellInABox" installcheck="/etc/init.d/shellinabox" package="shellinabox" autostart="/etc/rc2.d/S20shellinabox" autostartservice="shellinabox" running="shellinaboxd" startservice="shellinabox"/>
 	<daemon key="ssh" title="SSH" autostart="/etc/rc2.d/S10dropbear" autostartservice="dropbear" autostartprio="10" running="dropbear" startservice="dropbear"/>
