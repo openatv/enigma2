@@ -1,3 +1,4 @@
+from ast import literal_eval
 from glob import glob
 from hashlib import md5
 from os import listdir, readlink
@@ -39,7 +40,12 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 					if item:
 						self.immutableList.append(item)
 						self.enigmaInfoList.append(item)
-						self.boxInfo[item] = self.processValue(value)
+						try:
+							self.boxInfo[item] = literal_eval(value)
+						except:
+							self.boxInfo[item] = value
+						# except Exception as err:
+						# 	print(f"[SystemInfo] Error: Information variable '{item}' with a value of '{value}' can not be loaded into BoxInfo!  ({err})")
 			self.enigmaInfoList = sorted(self.enigmaInfoList)
 			print("[SystemInfo] Enigma information file data loaded into BoxInfo.")
 		else:
@@ -57,7 +63,12 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 						self.enigmaConfList.append(item)
 						if item in self.boxInfo:
 							print("[SystemInfo] Note: Enigma information value '%s' with value '%s' being overridden to '%s'." % (item, self.boxInfo[item], value))
-						self.boxInfo[item] = self.processValue(value)
+						try:
+							self.boxInfo[item] = literal_eval(value)
+						except Exception:
+							self.boxInfo[item] = value
+						# except Exception as err:
+						# 	print(f"[SystemInfo] Error: Information override variable '{item}' with a value of '{value}' can not be loaded into BoxInfo!  ({err})")
 			self.enigmaConfList = sorted(self.enigmaConfList)
 		else:
 			self.boxInfo["overrideactive"] = False
@@ -73,50 +84,6 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		data.append("")
 		result = md5(bytearray("\n".join(data), "UTF-8", errors="ignore")).hexdigest()  # NOSONAR
 		return value != result
-
-	def processValue(self, value):
-		valueTest = value.upper() if value else ""
-		if (value.startswith("\"") or value.startswith("'")) and value.endswith(value[0]):
-			value = value[1:-1]
-		elif value.startswith("(") and value.endswith(")"):
-			data = []
-			for item in [x.strip() for x in value[1:-1].split(",")]:
-				data.append(self.processValue(item))
-			value = tuple(data)
-		elif value.startswith("[") and value.endswith("]"):
-			data = []
-			for item in [x.strip() for x in value[1:-1].split(",")]:
-				data.append(self.processValue(item))
-			value = list(data)
-		elif valueTest == "NONE":
-			value = None
-		elif valueTest in ("FALSE", "NO", "OFF", "DISABLED"):
-			value = False
-		elif valueTest in ("TRUE", "YES", "ON", "ENABLED"):
-			value = True
-		elif value.isdigit() or ((value[0:1] == "-" or value[0:1] == "+") and value[1:].isdigit()):
-			value = int(value)
-		elif valueTest.startswith("0X"):
-			try:
-				value = int(value, 16)
-			except ValueError:
-				pass
-		elif valueTest.startswith("0O"):
-			try:
-				value = int(value, 8)
-			except ValueError:
-				pass
-		elif valueTest.startswith("0B"):
-			try:
-				value = int(value, 2)
-			except ValueError:
-				pass
-		else:
-			try:
-				value = float(value)
-			except ValueError:
-				pass
-		return value
 
 	def getEnigmaInfoList(self):
 		return self.enigmaInfoList
@@ -213,7 +180,7 @@ def getChipsetString():
 		return "7252S"
 	elif MODEL in ("hd51", "vs1500", "h7"):
 		return "7251S"
-	elif MODEL in ('dreamone', 'dreamonetwo', 'dreamseven'):
+	elif MODEL in ("dreamone", "dreamonetwo", "dreamseven"):
 		return "S922X"
 	chipset = fileReadLine("/proc/stb/info/chipset", default=_("Undefined"), source=MODULE_NAME)
 	return str(chipset.lower().replace("\n", "").replace("bcm", "").replace("brcm", "").replace("sti", ""))
@@ -255,7 +222,7 @@ def hasSoftcamEmu():
 def hasSoftcam():
 	if not isfile(NOEMU):
 		for cam in listdir("/etc/init.d"):
-			if (cam.startswith('softcam.') or cam.startswith('cardserver.')) and not cam.endswith('None'):
+			if cam.startswith(("softcam.", "cardserver.")) and not cam.endswith("None"):
 				return True
 	return False
 
@@ -302,7 +269,7 @@ def updateSysSoftCam():
 def getBoxName():
 	box = MACHINEBUILD
 	machinename = DISPLAYMODEL.lower()
-	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
+	if box in ("uniboxhd1", "uniboxhd2", "uniboxhd3"):
 		box = "ventonhdx"
 	elif box == "odinm6":
 		box = machinename
@@ -314,17 +281,17 @@ def getBoxName():
 		box = "miraclebox-twin"
 	elif box == "xp1000" and machinename == "sf8 hd":
 		box = "sf8"
-	elif box.startswith('et') and box not in ('et8000', 'et8500', 'et8500s', 'et10000'):
-		box = box[0:3] + 'x00'
+	elif box.startswith("et") and box not in ("et8000", "et8500", "et8500s", "et10000"):
+		box = f"{box[0:3]}x00"
 	elif box == "odinm9":
 		box = "maram9"
-	elif box.startswith('sf8008m'):
+	elif box.startswith("sf8008m"):
 		box = "sf8008m"
-	elif box.startswith('sf8008'):
+	elif box.startswith("sf8008"):
 		box = "sf8008"
-	elif box.startswith('ustym4kpro'):
+	elif box.startswith("ustym4kpro"):
 		box = "ustym4kpro"
-	elif box.startswith('twinboxlcdci'):
+	elif box.startswith("twinboxlcdci"):
 		box = "twinboxlcd"
 	elif box == "sfx6018":
 		box = "sfx6008"
@@ -348,7 +315,7 @@ BoxInfo.setItem("ModuleLayout", getModuleLayout(), immutable=True)
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
 BoxInfo.setItem("RemoteEnable", MACHINEBUILD in ("dm800",))
-if MACHINEBUILD in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
+if MACHINEBUILD in ("maram9", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo", "galaxym6"):
 	repeat = 400
 else:
 	repeat = 100
@@ -397,7 +364,7 @@ BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("
 BoxInfo.setItem("CanUse3DModeChoices", fileExists("/proc/stb/fb/3dmode_choices") and True or False)
 BoxInfo.setItem("ChipsetString", getChipsetString(), immutable=True)
 BoxInfo.setItem("CIPlusHelper", exists("/usr/bin/ciplushelper"))
-BoxInfo.setItem("DeepstandbySupport", MODEL != 'dm800')
+BoxInfo.setItem("DeepstandbySupport", MODEL != "dm800")
 BoxInfo.setItem("DefaultDisplayBrightness", MACHINEBUILD in ("dm900", "dm920") and 8 or 5)
 BoxInfo.setItem("FBLCDDisplay", fileCheck("/proc/stb/fb/sd_detach"))
 BoxInfo.setItem("Fan", fileCheck("/proc/stb/fp/fan"))
@@ -467,12 +434,12 @@ BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
 
-BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'ustym4ks2ottx', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'gbmv200', 'sfx6008', 'sx88v2', 'sx888'))
+BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ("osninopro", "osnino", "osninoplus", "tmtwin4k", "mbmicrov2", "revo4k", "force3uhd", "mbmicro", "e4hd", "e4hdhybrid", "dm7020hd", "dm7020hdv2", "9910lx", "9911lx", "9920lx", "dual") or MODEL in ("dags7362", "dags73625", "dags5", "ustym4kpro", "ustym4ks2ottx", "beyonwizv2", "viper4k", "sf8008", "sf8008m", "gbmv200", "sfx6008", "sx88v2", "sx888"))
 BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
 
 BoxInfo.setItem("DisplaySetup", MODEL not in ("dreamone",))
 
-# dont't sort
+# Dont't sort.
 BoxInfo.setItem("ConfigDisplay", BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment",))
 BoxInfo.setItem("dFlash", exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"))
 BoxInfo.setItem("dBackup", not BoxInfo.getItem("dFlash") and exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"))
@@ -490,7 +457,7 @@ for cislot in range(0, SystemInfo["CommonInterface"]):
 	SystemInfo["CI%dSupportsHighBitrates" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot)
 	SystemInfo["CI%dRelevantPidsRoutingSupport" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot)
 
-# network services
+# Network services.
 SystemInfo["inadyn"] = exists("/etc/init.d/inadyn-mt")
 SystemInfo["minidlna"] = exists("/etc/init.d/minidlna")
 SystemInfo["ushare"] = exists("/etc/init.d/ushare")
