@@ -119,7 +119,9 @@ class OSCamGlobals():
 		webifok, result = self.openWebIF(log=True)
 		if webifok:
 			log = search(r'<log>(.*?)</log>', result.decode().replace("<![CDATA[", "").replace("]]>", ""), S)
-			return log.group(1).strip() if log else "<no log found>"
+			return True, log.group(1).strip() if log else _("<no log found>")
+		else:
+			return False, result.decode()
 
 
 class OSCamInfo(Screen, OSCamGlobals):
@@ -185,7 +187,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self["timerinfos"] = StaticText()
 		self["buildinfos"] = StaticText()
 		self["outlist"] = List([])
-		self["logtext"] = ScrollLabel(_("<no log found"))
+		self["logtext"] = ScrollLabel(_("<no log found>"))
 		self["total"] = StaticText()
 		self["used"] = StaticText()
 		self["free"] = StaticText()
@@ -214,27 +216,27 @@ class OSCamInfo(Screen, OSCamGlobals):
 		if config.oscaminfo.userDataFromConf.value and self.confPath()[0] is None:
 			config.oscaminfo.userDataFromConf.value = False
 			config.oscaminfo.userDataFromConf.save()
-			self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
+			self["buildinfos"].setText(_("File oscam.conf not found.\nPlease enter username/password manually."))
 		else:
 			callInThread(self.updateOScamData)
 			if config.oscaminfo.autoUpdate.value:
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 
 	def updateOScamData(self):
-		webifok, jsonfull = self.openWebIF()
-		if webifok and jsonfull:
-			oscam = loads(jsonfull).get("oscam", {})
+		webifok, result = self.openWebIF()
+		ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
+		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
+		if webifok and result:
+			oscam = loads(result).get("oscam", {})
 			sysinfo = oscam.get("sysinfo", {})
 			totals = oscam.get("totals", {})
-			ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
-			currtime = "Current Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
 			# GENERAL INFOS (timing, memory usage)
 			stime_iso = oscam.get("starttime", None)
 			starttime = "Start Time: %s - %s" % (datetime.fromisoformat(stime_iso).strftime("%x"), datetime.fromisoformat(stime_iso).strftime("%X")) if stime_iso else (_("n/a"), _("n/a"))
 			runtime = "OSCam Run Time: %s" % oscam.get("runtime", _("n/a"))
 			version = "OSCam: %s" % (oscam.get("version", _("n/a")))
 			srvidfile = "srvidfile: %s" % oscam.get("srvidfile", _("n/a"))
-			# MAIN INFOS {'s': 'server', 'h': 'http', 'p': 'proxy', 'r': 'reader', 'c': 'cccam_ext', 'x': 'cache exchange', 'm': 'monitor')
+			# MAIN INFOS {'s': 'server', 'h': 'http', 'p': 'proxy', 'r': 'reader', 'c': 'cccam_ext', 'x': 'cache exchange', 'm': 'monitor'}
 			outlist = []
 			for client in oscam.get("status", {}).get("client", []):
 				connection = client.get("connection", {})
@@ -276,12 +278,19 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["resident"].setText("Resident Set: %s" % sysinfo.get("oscam_rsssize", _("n/a")))
 			self["outlist"].updateList(outlist)
 			self.displayLog()
+		else:
+			self["timerinfos"].setText(currtime)  # set at least one element just for having the attribute 'activeComponents'
+			self.loop.stop()
+			self["buildinfos"].setText(_("Unexpected error accessing WebIF: %s") % result.decode())
 
 	def displayLog(self):
-		logtext = self.updateLog()
-		if logtext:
-			self["logtext"].setText(logtext)
+		logok, result = self.updateLog()
+		if logok:
+			self["logtext"].setText(result)
 			self["logtext"].moveBottom()
+		else:
+			self.loop.stop()
+			self["buildinfos"].setText(_("Unexpected error accessing WebIF: %s") % result)
 
 	def keyPageDown(self):
 		self["outlist"].pageDown()
@@ -323,7 +332,7 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 		Screen.__init__(self, session)
 		self.skinName = "OSCamInfoLog"
 		self.setTitle(_("OSCamInfo Log"))
-		self["logtext"] = ScrollLabel(_("<no log found"))
+		self["logtext"] = ScrollLabel(_("<no log found>"))
 		self["actions"] = HelpableActionMap(self, ["NavigationActions", "OkCancelActions"], {
 			"ok": (self.exit, _("Close the screen")),
 			"cancel": (self.exit, _("Close the screen")),
@@ -342,10 +351,13 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 		callInThread(self.displayLog)
 
 	def displayLog(self):
-		logtext = self.updateLog()
-		if logtext:
-			self["logtext"].setText(logtext)
+		logok, result = self.updateLog()
+		if logok:
+			self["logtext"].setText(result)
 			self["logtext"].moveBottom()
+		else:
+			self.loop.stop()
+			self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s" % result), MessageBox.TYPE_ERROR, timeout=10, close_on_any_key=True)
 
 	def keyPageDown(self):
 		self["logtext"].pageDown()
