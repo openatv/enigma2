@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-27 11:06+0000\n"
-"PO-Revision-Date: 2023-12-27 11:03+0000\n"
+"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"PO-Revision-Date: 2023-12-30 10:35+0000\n"
 "Last-Translator: Atec <dr.atec@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -1597,7 +1597,7 @@ msgid "<Select a device>"
 msgstr "<Vyberte zariadenie>"
 
 msgid "<no log found"
-msgstr ""
+msgstr "<záznam denníka sa nenašiel"
 
 msgid "A"
 msgstr "A"
@@ -2736,7 +2736,7 @@ msgid "Automatically update Client/Server View"
 msgstr "Automatická aktualizácia zobrazenia klient/server"
 
 msgid "Automatically update Log-Fullscreen View"
-msgstr ""
+msgstr "Automatická aktualizácia denníka na celú obrazovku"
 
 msgid "Autostart"
 msgstr "Autoštart"
@@ -8899,7 +8899,7 @@ msgid "Hide player"
 msgstr "Nezobrazovať prehrávač"
 
 msgid "Hide softcam servername"
-msgstr ""
+msgstr "Skryť názov servera softcamu"
 
 msgid "Hide the InfoBar"
 msgstr "Nezobrazovať infolištu"
@@ -9595,7 +9595,7 @@ msgid "Install extensions."
 msgstr "Inštalovať rozšírenia."
 
 msgid "Install service"
-msgstr ""
+msgstr "Inštalovať službu"
 
 msgid "Install the package"
 msgstr "Nainštalovať balíček"
@@ -9607,7 +9607,7 @@ msgid "Installation finished."
 msgstr "Inštalácia dokončená."
 
 msgid "Installed"
-msgstr ""
+msgstr "Nainštalované"
 
 msgid "Installing"
 msgstr "Inštalácia"
@@ -11533,7 +11533,7 @@ msgid "Network Settings"
 msgstr "Nastavenia siete"
 
 msgid "Network Setup Actions"
-msgstr ""
+msgstr "Nastavenia siete"
 
 msgid "Network Test"
 msgstr "Test siete"
@@ -12120,6 +12120,27 @@ msgstr "Režim tlačidla OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, preveď ma procesom aktualizácie"
 
+msgid "OSCam Info"
+msgstr "Info o OScame"
+
+msgid "OSCam Information"
+msgstr "Informácie o OScame"
+
+msgid "OSCam Information Settings"
+msgstr "Nastavenia informácií o OSCame"
+
+msgid "OSCam webif disabled"
+msgstr "Oscam webif vypnutý"
+
+msgid "OSCamInfo Actions"
+msgstr "Akcie pre OSCamInfo"
+
+msgid "OSCamInfo Log"
+msgstr "Denník OSCamInfo"
+
+msgid "OSCamInfo Log Actions"
+msgstr "Akcie pre denník OSCamInfo"
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12140,30 +12161,6 @@ msgstr "Nastavenie OSD"
 
 msgid "OSD name request"
 msgstr "Požadovaný názov OSD"
-
-msgid "OSCam Info"
-msgstr "Info o OScame"
-
-msgid "OSCam Information"
-msgstr "Informácie o OScame"
-
-msgid "OSCam webif disabled"
-msgstr "Oscam webif vypnutý"
-
-msgid "OScamInfo Overview"
-msgstr ""
-
-msgid "OScamInfo Settings"
-msgstr ""
-
-msgid "OScamInfo ShowLog"
-msgstr ""
-
-msgid "OScamLog Actions"
-msgstr ""
-
-msgid "OScamOverview Actions"
-msgstr ""
 
 msgid "OTT Model"
 msgstr "OTT model"
@@ -12262,13 +12259,13 @@ msgid "Open IMDb"
 msgstr "Otvoriť IMDB"
 
 msgid "Open Log"
-msgstr ""
+msgstr "Otvoriť denník"
 
 msgid "Open MediaStream"
 msgstr "Otvoriť stream médií"
 
 msgid "Open Settings"
-msgstr ""
+msgstr "Otvoriť nastavenia"
 
 msgid "Open Similar List Channel List"
 msgstr "Otvoriť podobný zoznam kanálov"
@@ -12412,10 +12409,7 @@ msgid "Oromo"
 msgstr "oromčina"
 
 msgid "Oscam Information"
-msgstr ""
-
-msgid "Oscam Information Settings"
-msgstr ""
+msgstr "Informácie OSCamu"
 
 msgid "Ossetian / Ossetic"
 msgstr "osetčina"
@@ -14325,7 +14319,7 @@ msgid "Remove selected service"
 msgstr "Odstrániť vybranú stanicu/službu"
 
 msgid "Remove service"
-msgstr ""
+msgstr "Odstrániť službu"
 
 msgid "Remove service from AutoCam"
 msgstr "Odstrániť stanicu z AutoCamu"
@@ -15315,7 +15309,7 @@ msgstr "Ak sa majú v prehliadači Správcu súborov zobrazovať aj neznáme sú
 
 #, python-format
 msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
+msgstr "Voľba 'Áno' povolí automatický štart '%s'."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Ak chcete povoliť úpravu nastavení tohto zariadenia, vyberte možnosť 'Áno'. Výberom možnosti 'Nie' sa nastavenia zariadenie resetujú na predvolené hodnoty."
@@ -15339,7 +15333,7 @@ msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ak je nastavené na 'áno', kanály bez dostupného EPH sa nezobrazia."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
-msgstr ""
+msgstr "Voľba 'Áno' skryje názov a IP adresu servera."
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
@@ -16967,8 +16961,8 @@ msgstr "Zobraziť zoznam filmov"
 msgid "Show Multi EPG"
 msgstr "Zobraziť Multi-EPG"
 
-msgid "Show OScam Info"
-msgstr "Zobraziť informácie o OScame"
+msgid "Show OSCam Information"
+msgstr "Zobraziť informácie OSCamu"
 
 msgid "Show OScam/CCcam in Extension Menu"
 msgstr "Zobraziť OScam/CCcam v menu roszšírení"
@@ -17212,7 +17206,7 @@ msgid "Show live TV when movie stopped"
 msgstr "Zobraziť živé TV vysielanie pri zastavení filmu"
 
 msgid "Show logfile"
-msgstr ""
+msgstr "Zobraziť súbor denníka"
 
 msgid "Show marked events"
 msgstr "Zobraziť označené udalosti"
@@ -17418,8 +17412,8 @@ msgstr "Zobraziť EIT údaje teraz/nasleduje v infolište."
 msgid "Show the Logs Settings screen"
 msgstr "Zobraziť obrazovku s nastaveniami záznamov"
 
-msgid "Show the OScamInfo Screen"
-msgstr "Zobrazenie informačnej obrazovky OSCamu"
+msgid "Show the OSCam information screen"
+msgstr "Zobraziť obrazovku informácií OScamu"
 
 msgid "Show the PowerTimer"
 msgstr "Zobraziť časovač napájania"
@@ -18184,7 +18178,7 @@ msgid "Start recording current event"
 msgstr "Spustiť nahrávanie aktuálnej udalosti"
 
 msgid "Start service"
-msgstr ""
+msgstr "Spustiť službu"
 
 msgid "Start teletext"
 msgstr "Spustiť teletext"
@@ -18314,7 +18308,7 @@ msgid "Stop recording now"
 msgstr "Ihneď zastaviť nahrávanie"
 
 msgid "Stop service"
-msgstr ""
+msgstr "Zastaviť službu"
 
 msgid "Stop service on return to movie list"
 msgstr "Zastaviť stanicu po návrate do zoznamu filmov"
@@ -23505,6 +23499,12 @@ msgstr "áno (zachovať zdroje softvéru)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Show OScam Info"
+#~ msgstr "Zobraziť informácie o OScame"
+
+#~ msgid "Show the OScamInfo Screen"
+#~ msgstr "Zobrazenie informačnej obrazovky OSCamu"
 
 #, python-format
 #~ msgid "%s ( %s Cards )"

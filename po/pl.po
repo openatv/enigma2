@@ -5,16 +5,16 @@
 # Grzegorz <grzegorz914@icloud.com>, 2021, 2022.
 # drakulis <drakulis@interia.pl>, 2022, 2023.
 # lareq <lareq@o2.pl>, 2022, 2023.
-# Karol Sz <kaolsz@interia.pl>, 2022, 2023.
+# Karol Sz <kaolsz@interia.pl>, 2022, 2023, 2024.
 # Tomasz X <wladyslaw.lam@gmail.com>, 2022.
 # sq9 <sq9hhc1@o2.pl>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-27 11:06+0000\n"
-"PO-Revision-Date: 2023-12-24 14:55+0000\n"
-"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
+"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"PO-Revision-Date: 2024-01-02 11:43+0000\n"
+"Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1606,7 +1606,7 @@ msgid "<Select a device>"
 msgstr "<Wybierz urządzenie>"
 
 msgid "<no log found"
-msgstr ""
+msgstr "<nie znaleziono logów"
 
 msgid "A"
 msgstr "A"
@@ -2745,7 +2745,7 @@ msgid "Automatically update Client/Server View"
 msgstr "Automatycznie aktualizuj widok klienta/serwera"
 
 msgid "Automatically update Log-Fullscreen View"
-msgstr ""
+msgstr "Automatycznie aktualizuj widok logów na pełnym ekranie"
 
 msgid "Autostart"
 msgstr "Autostart"
@@ -8909,7 +8909,7 @@ msgid "Hide player"
 msgstr "Ukryj odtwarzacz"
 
 msgid "Hide softcam servername"
-msgstr ""
+msgstr "Ukryj nazwę serwera Softcam"
 
 msgid "Hide the InfoBar"
 msgstr "Ukryj pasek informacyjny"
@@ -9605,7 +9605,7 @@ msgid "Install extensions."
 msgstr "Instaluj rozszerzenia."
 
 msgid "Install service"
-msgstr ""
+msgstr "Zainstaluj usługę"
 
 msgid "Install the package"
 msgstr "Zainstaluj pakiet"
@@ -9617,7 +9617,7 @@ msgid "Installation finished."
 msgstr "Instalacja zakończona."
 
 msgid "Installed"
-msgstr ""
+msgstr "Zainstalowany"
 
 msgid "Installing"
 msgstr "Instalowanie"
@@ -11544,7 +11544,7 @@ msgid "Network Settings"
 msgstr "Ustawienia sieci"
 
 msgid "Network Setup Actions"
-msgstr ""
+msgstr "Działania związane z konfiguracją sieci"
 
 msgid "Network Test"
 msgstr "Test Sieci"
@@ -12131,6 +12131,27 @@ msgstr "Akcja dla przycisku 'OK'"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, przeprowadź mnie poprzez proces aktualizacji"
 
+msgid "OSCam Info"
+msgstr "Info o OSCam"
+
+msgid "OSCam Information"
+msgstr "OSCam Info"
+
+msgid "OSCam Information Settings"
+msgstr "Ustawienia informacji OSCam"
+
+msgid "OSCam webif disabled"
+msgstr "OSCam webif wyłączony"
+
+msgid "OSCamInfo Actions"
+msgstr "Działania OSCamInfo"
+
+msgid "OSCamInfo Log"
+msgstr "Dziennik OSCamInfo"
+
+msgid "OSCamInfo Log Actions"
+msgstr "Akcje dziennika OSCamInfo"
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12151,30 +12172,6 @@ msgstr "Ustawienia OSD"
 
 msgid "OSD name request"
 msgstr "Żądanie nazwy OSD"
-
-msgid "OSCam Info"
-msgstr "Info o Oscam"
-
-msgid "OSCam Information"
-msgstr "OSCam Info"
-
-msgid "OSCam webif disabled"
-msgstr "oscam webif wyłączony"
-
-msgid "OScamInfo Overview"
-msgstr ""
-
-msgid "OScamInfo Settings"
-msgstr ""
-
-msgid "OScamInfo ShowLog"
-msgstr ""
-
-msgid "OScamLog Actions"
-msgstr ""
-
-msgid "OScamOverview Actions"
-msgstr ""
 
 msgid "OTT Model"
 msgstr "Model OTT"
@@ -12273,13 +12270,13 @@ msgid "Open IMDb"
 msgstr "Otwórz IMDb"
 
 msgid "Open Log"
-msgstr ""
+msgstr "Otwórz dziennik"
 
 msgid "Open MediaStream"
 msgstr "Otwórz MediaStream"
 
 msgid "Open Settings"
-msgstr ""
+msgstr "Otwórz ustawienia"
 
 msgid "Open Similar List Channel List"
 msgstr "Otwórz podobną listę Lista kanałów"
@@ -12423,10 +12420,7 @@ msgid "Oromo"
 msgstr "Oromo"
 
 msgid "Oscam Information"
-msgstr ""
-
-msgid "Oscam Information Settings"
-msgstr ""
+msgstr "Informacje o OSCam"
 
 msgid "Ossetian / Ossetic"
 msgstr "Osetyński / Osetycki"
@@ -14336,7 +14330,7 @@ msgid "Remove selected service"
 msgstr "Usuń wybraną usługę"
 
 msgid "Remove service"
-msgstr ""
+msgstr "Usuń usługę"
 
 msgid "Remove service from AutoCam"
 msgstr "Usuń usługę z AutoCam"
@@ -15326,7 +15320,7 @@ msgstr "Wybierz \"Tak\", aby wyświetlić nieznane pliki w podglądzie plików F
 
 #, python-format
 msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
+msgstr "Wybierz opcję „Tak”, aby włączyć automatyczne uruchamianie '%s'."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Wybierz \"Tak\", aby włączyć edycję ustawień urządzenia. Wybierz \"Nie\" aby przywrócić domyślne ustawienia urządzenia."
@@ -15350,7 +15344,7 @@ msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Jeśli jest ustawione na 'tak', kanały bez EPG nie będą wyświetlane."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
-msgstr ""
+msgstr "Wybierz opcję „Tak”, aby ukryć nazwę i adres IP serwera."
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
@@ -16017,10 +16011,10 @@ msgid "Select the time delay between each repeat of the button."
 msgstr "Wybierz opóźnienie pomiędzy każdym powtórzeniem przycisku."
 
 msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
-msgstr "Wybierz godzinę, na którą ma być ustawiony EPG. Naciśnij LEWO/PRAWO, aby zmniejszyć/zwiększyć czas o godzinę. Naciśnij POPRZEDNI/DALEJ, aby zmniejszyć/zwiększyć czas o jeden dzień."
+msgstr "Wybierz godzinę, na którą ma być ustawiony EPG. Naciśnij LEWO/PRAWO, aby zmniejszyć/zwiększyć czas o godzinę. Naciśnij WSTECZ/DALEJ, aby zmniejszyć/zwiększyć czas o jeden dzień."
 
 msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
-msgstr "Wybierz godzinę, o której ma się zakończyć licznik natychmiastowego nagrywania. Naciśnij LEWO/PRAWO, aby zmniejszyć/zwiększyć czas o minutę. Naciśnij POPRZEDNI/DALEJ, aby zmniejszyć/zwiększyć czas o godzinę."
+msgstr "Wybierz godzinę, o której ma się zakończyć licznik natychmiastowego nagrywania. Naciśnij LEWO/PRAWO, aby zmniejszyć/zwiększyć czas o minutę. Naciśnij WSTECZ/DALEJ, aby zmniejszyć/zwiększyć czas o godzinę."
 
 msgid "Select the time when this timer should end."
 msgstr "Wybierz czas, w którym ten timer ma się zakończyć."
@@ -16978,8 +16972,8 @@ msgstr "Pokaż Listę Filmów"
 msgid "Show Multi EPG"
 msgstr "Pokaż EPG wielu kanałów"
 
-msgid "Show OScam Info"
-msgstr "Pokaż informacje OScam"
+msgid "Show OSCam Information"
+msgstr "Pokaż informacje o OSCam"
 
 msgid "Show OScam/CCcam in Extension Menu"
 msgstr "Pokaż OScam/CCcam w Menu rozszerzenia"
@@ -17223,7 +17217,7 @@ msgid "Show live TV when movie stopped"
 msgstr "Pokaż wcześniej oglądany kanał gdy film jest zatrzymany"
 
 msgid "Show logfile"
-msgstr ""
+msgstr "Pokaż plik dziennika"
 
 msgid "Show marked events"
 msgstr "Pokaż zaznaczone wydarzenia"
@@ -17429,8 +17423,8 @@ msgstr "Pokaż EIT Teraz/Następny na pasku informacyjnym."
 msgid "Show the Logs Settings screen"
 msgstr "Pokaż ekran Ustawienia Log"
 
-msgid "Show the OScamInfo Screen"
-msgstr "Pokaż ekran OScamInfo"
+msgid "Show the OSCam information screen"
+msgstr "Pokaż ekran informacyjny OSCam"
 
 msgid "Show the PowerTimer"
 msgstr "Pokaż timer zasilania"
@@ -18196,7 +18190,7 @@ msgid "Start recording current event"
 msgstr "Rozpocznij nagrywanie aktualnego wydarzenia"
 
 msgid "Start service"
-msgstr ""
+msgstr "Uruchom usługę"
 
 msgid "Start teletext"
 msgstr "Uruchom telegazete"
@@ -18326,7 +18320,7 @@ msgid "Stop recording now"
 msgstr "Zatrzymaj nagrywanie teraz"
 
 msgid "Stop service"
-msgstr ""
+msgstr "Zatrzymaj usługę"
 
 msgid "Stop service on return to movie list"
 msgstr "Zatrzymaj kanał i powróć do listy filmów"
@@ -23517,6 +23511,12 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Show OScam Info"
+#~ msgstr "Pokaż informacje OScam"
+
+#~ msgid "Show the OScamInfo Screen"
+#~ msgstr "Pokaż ekran OScamInfo"
 
 #, python-format
 #~ msgid "%s ( %s Cards )"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-27 11:06+0000\n"
-"PO-Revision-Date: 2023-12-27 13:34+0000\n"
+"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"PO-Revision-Date: 2023-12-29 20:35+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -1575,7 +1575,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Op de achtergrond wordt een controle uitgevoerd. Wacht een paar minuten en probeer het opnieuw."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
-msgstr "Een door komma's gescheiden lijst van plugins, die voor de instelling van \"Mijn plugins\" in \"plugins filteren\" gebruikt gaan worden. Geef de naam van de plugin op zonder leidende punt (.)."
+msgstr "Een door komma's gescheiden lijst van extensies, die voor de instelling van \"Mijn extensies\" in \"Extensies filteren\" gebruikt gaan worden. Geef de naam van de extensie op zonder leidende punt (.)."
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
@@ -1869,13 +1869,13 @@ msgid "Add Current"
 msgstr "Huidige toevoegen"
 
 msgid "Add File Commander to Extensions Menu"
-msgstr "Voeg File Commander toe aan het Applicatiemenu"
+msgstr "Voeg File Commander toe aan het Extensies-menu (BLAUW-Lang)"
 
 msgid "Add File Commander to Main Menu"
 msgstr "Voeg File Commander toe aan het hoofdmenu"
 
 msgid "Add File Commander to the Extensions Menu list of options."
-msgstr "Voeg File Commander toe aan de lijst met opties voor het Applicatiemenu."
+msgstr "Voeg File Commander toe aan de lijst met opties voor het Extensies-menu."
 
 msgid "Add File Commander to the Main Menu list of options."
 msgstr "Voeg File Commander toe aan de lijst met opties voor het hoofdmenu."
@@ -2235,10 +2235,10 @@ msgid "Allows you to set the maximum size of the Debug log size (MB). When that 
 msgstr "Hier geeft u aan hoeveel ruimte de debug logs mogen gebruiken. Als die ruimte bereikt wordt, worden de oudste logs het eerste verwijderd."
 
 msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
-msgstr "Wilt u de Logmanager in het Applicatiemenu tonen of verbergen (Blauw-lang)."
+msgstr "De Logmanager in het Extensies-menu (BLAUW-lang) tonen of verbergen."
 
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
-msgstr "OSCam/CCcam Info in het Applicatiemenu weergeven (Blauw-lang)."
+msgstr "OSCam/CCcam Info in het Extensies-menu (BLAUW-lang) weergeven."
 
 msgid "Almost there... "
 msgstr "Bijna klaar... "
@@ -2773,7 +2773,7 @@ msgid "BLUE long"
 msgstr "Blauw lang"
 
 msgid "BLUE switch: BLUE/BLUE long"
-msgstr "Blauw-kort / Blauw-lang functie wisselen"
+msgstr "BLAUW-kort / BLAUW-lang functie wisselen"
 
 msgid "Back"
 msgstr "Terug"
@@ -6220,7 +6220,7 @@ msgid "Display more information about this file"
 msgstr "Meer informatie over dit bestand weergeven"
 
 msgid "Display oscam information."
-msgstr "Toon Oscam informatie."
+msgstr "OSCam informatie tonen."
 
 msgid "Display selection list as a selection menu"
 msgstr "Wijzig de selectielijst in een selectiemenu"
@@ -7081,7 +7081,7 @@ msgid "Enable to display setup entries alphabetically."
 msgstr "Bij \"Ja\" worden alle menu onderdelen op alfabetische volgorde gesorteerd."
 
 msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr "Bij \"Ja\" worden alle Applicatiemenu onderdelen op alfabetische volgorde gesorteerd."
+msgstr "Bij \"Ja\" worden alle items in het Extensies-menu op alfabetische volgorde gesorteerd."
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr ""
@@ -7089,7 +7089,7 @@ msgstr ""
 "Bijvoorbeeld naast de schuifregelaar voor helderheid van het display."
 
 msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
-msgstr "Bij \"Ja\" wordt \"Herstart netwerk\" in het Applicatiemenu getoond (Blauw-lang)."
+msgstr "Bij \"Ja\" wordt \"Herstart netwerk\" in het Extensies-menu (BLAUW-lang) getoond."
 
 msgid "Enabled"
 msgstr "Ingeschakeld"
@@ -7429,14 +7429,14 @@ msgid ""
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
 "Fout bij het maken van de Skin.\n"
-"Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite plugin, en bevestig deze via de groene knop."
+"Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite plugin, en bevestig deze via de GROENE knop."
 
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Fout bij het downloaden van het image '%s'!"
 
 msgid "Error executing plugin"
-msgstr "Fout bij uitvoeren applicatie"
+msgstr "Fout bij het uitvoeren van een plugin"
 
 #, python-format
 msgid ""
@@ -7807,13 +7807,13 @@ msgid "Extension Actions"
 msgstr "Extensie Acties"
 
 msgid "Extension Packages"
-msgstr "Applicaties"
+msgstr "Plugins"
 
 msgid "Extensions"
-msgstr "Applicaties"
+msgstr "Plugins"
 
 msgid "Extensions/QuickMenu"
-msgstr "Applicatiemenu / Snelstartmenu"
+msgstr "Extensies/Snelstartmenu"
 
 msgid "External"
 msgstr "Extern"
@@ -8116,8 +8116,8 @@ msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
 msgstr ""
-"Bestand oscam.conf niet gevonden.\n"
-"Geef gebruikersnaam en wachtwoord handmatig op."
+"Het oscam.conf bestand is niet gevonden.\n"
+"Geef een gebruikersnaam en het wachtwoord handmatig op."
 
 msgid "File transfer was canceled by user!"
 msgstr "Bestandsoverdracht is geannuleerd door gebruiker!"
@@ -8145,7 +8145,7 @@ msgid "Film-Noir"
 msgstr "Misdaadfilm"
 
 msgid "Filter extensions"
-msgstr "Applicaties filteren"
+msgstr "Extensies filteren"
 
 msgid "Filter files to be listed by the defined extension. Note that the symbol '(*)' will appear in the title if filtering is in effect."
 msgstr "Filter bestanden op de gekozen extensie. Merk op dat het symbool \"(*)\" in de titel verschijnt als er wordt gefilterd."
@@ -8480,10 +8480,10 @@ msgid "GCC version"
 msgstr "GCC versie"
 
 msgid "GREEN button"
-msgstr "Groene-knop"
+msgstr "GROENE knop"
 
 msgid "GREEN long"
-msgstr "Groen lang"
+msgstr "GROEN-lang"
 
 msgid "GStreamer debug log category *"
 msgstr "GStreamer debug log categorie *"
@@ -9696,10 +9696,10 @@ msgid "Install a new image with your web browser"
 msgstr "Installeer een nieuwe image via uw browser"
 
 msgid "Install extensions"
-msgstr "Installeer Applicaties"
+msgstr "Installeer plugins"
 
 msgid "Install extensions."
-msgstr "Installeer Applicaties."
+msgstr "Installeer plugins."
 
 msgid "Install service"
 msgstr "Zender installeren"
@@ -11470,7 +11470,7 @@ msgid "Mute"
 msgstr "Geluid uit"
 
 msgid "My extensions"
-msgstr "Mijn Applicaties"
+msgstr "Mijn extensies"
 
 msgid "Myanmar"
 msgstr "Myanmar"
@@ -12228,6 +12228,27 @@ msgstr "OK-knop functie"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, mij tijdens de software update begeleiden"
 
+msgid "OSCam Info"
+msgstr "OSCam Info"
+
+msgid "OSCam Information"
+msgstr "OSCam Informatie"
+
+msgid "OSCam Information Settings"
+msgstr "OSCam Informatie instellingen"
+
+msgid "OSCam webif disabled"
+msgstr "OSCam webif uitgeschakeld"
+
+msgid "OSCamInfo Actions"
+msgstr "OSCamInfo Acties"
+
+msgid "OSCamInfo Log"
+msgstr "OSCamInfo Log"
+
+msgid "OSCamInfo Log Actions"
+msgstr "OSCamInfo Log Acties"
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12248,30 +12269,6 @@ msgstr "Wijzig OSD instellingen"
 
 msgid "OSD name request"
 msgstr "OSD naam aanvragen"
-
-msgid "OSCam Info"
-msgstr "OSCam Info"
-
-msgid "OSCam Information"
-msgstr "OScamInfo"
-
-msgid "OSCam webif disabled"
-msgstr "oscam webif uitgeschakeld"
-
-msgid "OScamInfo Overview"
-msgstr "OScamInfo Overzicht"
-
-msgid "OScamInfo Settings"
-msgstr "OScamInfo instellingen"
-
-msgid "OScamInfo ShowLog"
-msgstr "OScamInfo ShowLog"
-
-msgid "OScamLog Actions"
-msgstr "OScamLog Acties"
-
-msgid "OScamOverview Actions"
-msgstr "OScamOverview Acties"
 
 msgid "OTT Model"
 msgstr "OTT Model"
@@ -12520,10 +12517,7 @@ msgid "Oromo"
 msgstr "Afaan Oromo"
 
 msgid "Oscam Information"
-msgstr "Oscam Informatie"
-
-msgid "Oscam Information Settings"
-msgstr "Oscam Informatie instellingen"
+msgstr "OSCam Informatie"
 
 msgid "Ossetian / Ossetic"
 msgstr "Ossetisch"
@@ -13159,14 +13153,14 @@ msgid ""
 "When you are ready press OK to continue."
 msgstr ""
 "Stel uw gebruikersinterface in door de waarden aan te passen tot de randen van de rode box, de randen van uw TV raken.\n"
-"Wanneer u klaar bent drukt u op de groene knop."
+"Wanneer u klaar bent drukt u op de GROENE knop."
 
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press green to continue."
 msgstr ""
 "Stel uw gebruikersinterface in door de waarden aan te passen tot de randen van het rode vak de randen van uw TV aanraken.\n"
-"Wanneer u klaar bent drukt u op de groene knop."
+"Wanneer u klaar bent drukt u op de GROENE knop."
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -13320,7 +13314,7 @@ msgid "Plugin Skin Packages"
 msgstr "Skinpacks"
 
 msgid "Plugins"
-msgstr "Applicaties"
+msgstr "Plugins"
 
 msgid "Poland"
 msgstr "Polen"
@@ -13578,7 +13572,7 @@ msgstr "Druk op OK om deze locale te gebruiken.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr ""
-"Druk op UP/DOWN knoppen om een slot te selecteren en druk OK of GROEN om opnieuw te starten naar dat image. Wanneer beschikbaar, kan met GEEL het image worden \"verwijderd\" of \"gewist\".\n"
+"Druk op OMHOOG/OMLAAG knoppen om een slot te selecteren en druk OK of GROEN om opnieuw te starten naar dat image. Wanneer beschikbaar, kan met GEEL het image worden \"verwijderd\" of \"gewist\".\n"
 "Een \"verwijderde\" image kan hersteld worden met de BLAUWE knop. Een \"gewiste\" image is compleet verwijderd en kan NIET hersteld worden!"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -13880,7 +13874,7 @@ msgid "QuickMenu Actions"
 msgstr "Snelstartmenu Acties"
 
 msgid "QuickMenu/Extensions"
-msgstr "Snelstartmenu / Applicatiemenu"
+msgstr "Snelstartmenu/Extensies"
 
 msgid "QuickSelect Actions"
 msgstr "QuickSelect Acties"
@@ -13937,7 +13931,7 @@ msgid "RED button"
 msgstr "Rode-knop"
 
 msgid "RED long"
-msgstr "Rood lang"
+msgstr "ROOD-lang"
 
 msgid "RF Output Settings"
 msgstr "RF modulator"
@@ -15181,7 +15175,7 @@ msgstr ""
 "Plugins installeren vanaf: HDD of USB"
 
 msgid "Scan for local extensions and install them."
-msgstr "Naar lokale applicaties zoeken en die installeren."
+msgstr "Naar lokale plugins zoeken en die installeren."
 
 msgid "Scan wireless networks"
 msgstr "Zoek naar WiFi netwerken"
@@ -15527,7 +15521,7 @@ msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Drivers in het plugin download-scherm weer te geven."
 
 msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
-msgstr "Kies 'Ja' om Applicaties in het plugin download-scherm weer te geven."
+msgstr "Kies 'Ja' om Extensies in het plugin download-scherm weer te geven."
 
 msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Kernel pakketten in het plugin download-scherm weer te geven."
@@ -17030,7 +17024,7 @@ msgid "Show EventView"
 msgstr "Toon programma overzicht"
 
 msgid "Show Extension packages"
-msgstr "Applicatie-pakketten tonen"
+msgstr "Extensie-pakketten tonen"
 
 msgid "Show Format Setup"
 msgstr "Toon de format instellingen"
@@ -17081,7 +17075,7 @@ msgid "Show Log"
 msgstr "Plugin installatie Log"
 
 msgid "Show Log Manager in Extension Menu"
-msgstr "Toon de Log-manager in het Applicatiemenu (Blauw-lang)"
+msgstr "Toon de Log-manager in het Extensies-menu (BLAUW-lang)"
 
 msgid "Show M2k packages"
 msgstr "M2K"
@@ -17104,11 +17098,11 @@ msgstr "Toon Opname lijst"
 msgid "Show Multi EPG"
 msgstr "Toon Multi-EPG"
 
-msgid "Show OScam Info"
-msgstr "Toon OScam Info"
+msgid "Show OSCam Information"
+msgstr "OSCam informatie tonen"
 
 msgid "Show OScam/CCcam in Extension Menu"
-msgstr "OScam/CCcam in het Applicatiemenu tonen"
+msgstr "OSCam/CCcam in het Extensie-menu tonen"
 
 msgid "Show OpenPLi packages"
 msgstr "OpenPLi"
@@ -17141,7 +17135,7 @@ msgid "Show Record Movies"
 msgstr "Toon opnames opnemen"
 
 msgid "Show Restart Network in Extensions *"
-msgstr "Toon herstart netwerk in het Applicatiemenu *"
+msgstr "Toon herstart netwerk in het Extensies-menu (BLAUW-lang) *"
 
 msgid "Show SD as"
 msgstr "Toon SD als"
@@ -17298,7 +17292,7 @@ msgid "Show extension selection"
 msgstr "Toon het extensie menu"
 
 msgid "Show extensions..."
-msgstr "Toon het Applicatiemenu..."
+msgstr "Toon het Extensies-menu..."
 
 msgid "Show extra spacing in Information"
 msgstr "Extra ruimte in informatie gebruiken"
@@ -17332,7 +17326,7 @@ msgid "Show image and save as '%s'"
 msgstr "Afbeelding weergeven en opslaan als '%s'"
 
 msgid "Show in Extension Menu"
-msgstr "Weergeven in het Applicatiemenu? (Blauw-lang)"
+msgstr "Weergeven in het Extensies-menu? (BLAUW-lang)"
 
 msgid "Show in Standby"
 msgstr "Toon in stand-by"
@@ -17344,7 +17338,7 @@ msgid "Show info line"
 msgstr "Toon de infolijn"
 
 msgid "Show job tasks in Extension Menu"
-msgstr "Toon systeemtaken (Job Tasks) in het Applicatiemenu"
+msgstr "Toon systeemtaken (Job Tasks) in het Extensies-menu (BLAUW-lang)"
 
 msgid "Show last image"
 msgstr "Laatste afbeelding weergeven"
@@ -17561,8 +17555,8 @@ msgstr "Toon EIT nu / straks in informatiebalk."
 msgid "Show the Logs Settings screen"
 msgstr "Toon de Log-instellingen"
 
-msgid "Show the OScamInfo Screen"
-msgstr "Toon het OScamInfo scherm"
+msgid "Show the OSCam information screen"
+msgstr "Het OSCam informatiescherm tonen"
 
 msgid "Show the PowerTimer"
 msgstr "Toon de PowerTimer"
@@ -17658,7 +17652,7 @@ msgid "Showiframe"
 msgstr "Showiframe"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
-msgstr "Toont de geïnstalleerde applicaties. Ook kunt u hier applicaties/plugins instellen."
+msgstr "Toont de Plugin Browser. Daar kunt u de geïnstalleerde plugins configureren."
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr ""
@@ -18147,7 +18141,7 @@ msgid "Sort EPG List"
 msgstr "Sorteer EPG-lijst"
 
 msgid "Sort Extension Menu"
-msgstr "Sorteer het Applicatiemenu alfabetisch"
+msgstr "Sorteer het Extensies-menu alfabetisch"
 
 msgid "Sort Plugin Browser"
 msgstr "Sorteer de volgorde van plugins in de Plugin Browser"
@@ -18600,7 +18594,7 @@ msgid "Subservice list..."
 msgstr "Sub-zenderlijst..."
 
 msgid "Subservice mode (GREEN button)"
-msgstr "Groene-knop (Sub-zender modus)"
+msgstr "GROENE knop (Sub-zender modus)"
 
 msgid "Subservices"
 msgstr "Sub-zenders"
@@ -18738,7 +18732,7 @@ msgid "Swimming"
 msgstr "Zwemmen"
 
 msgid "Switch BLUE short (QuickMenu) with BLUE long (Extension Menu)."
-msgstr "Verwissel Blauw-Kort (Snelstartmenu) met Blauw-lang (Applicatiemenu)"
+msgstr "Verwissel BLAUW-kort (Snelstartmenu) met BLAUW-lang (Extensies-menu)"
 
 msgid "Switch EPG Page Down"
 msgstr "Ga een EPG pagina naar beneden"
@@ -19806,7 +19800,7 @@ msgid "This option lets you choose the 3D mode."
 msgstr "Hier kunt u de gewenste 3D-modus kiezen"
 
 msgid "This option lets you show the option in the Extension Menu screen."
-msgstr "Hiermee stelt u in of de optie in het Applicatiemenu wordt getoond."
+msgstr "Hiermee stelt u in of de optie in het Extensies-menu (BLAUW-lang) wordt getoond."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr ""
@@ -20716,7 +20710,7 @@ msgid ""
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
 "Onbekende fout bij het maken van de Skin.\n"
-"Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite plugin, en bevestig deze via de groene knop."
+"Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite plugin, en bevestig deze via de GROENE knop."
 
 msgid "Unknown Packages"
 msgstr "Onbekende pakketten"
@@ -21109,7 +21103,7 @@ msgid "Use the current selection and exit"
 msgstr "De huidige selectie gebruiken en afsluiten"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Selecteer een geïnstalleerd image en druk op de Start knop (groen)."
+msgstr "Selecteer een geïnstalleerd image en druk op de Start knop (GROEN)."
 
 msgid "Use the extended List"
 msgstr "Gebruik de uitgebreide lijst"
@@ -22101,7 +22095,7 @@ msgid "With pop up"
 msgstr "Met popup"
 
 msgid "With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press)."
-msgstr "Kies 'Ja' wanneer u systeemtaken wilt tonen in het Applicatiemenu. Dit zijn bijvoorbeeld grote bestanden die via File Commander worden verplaatst. Het Applicatiemenu is bereikbaar door de Blauwe knop lang (default) te drukken."
+msgstr "Kies 'Ja' wanneer u systeemtaken wilt tonen in het Extensies-menu. Dit zijn bijvoorbeeld grote bestanden die via File Commander worden verplaatst. Het Extensies-menu is bereikbaar door de BLAUWE knop lang (default) te drukken."
 
 msgid "With this option you can switch off the display during operation."
 msgstr "Met deze optie u het scherm uitzetten wanneer ingeschakeld."
@@ -22182,7 +22176,7 @@ msgid "YELLOW button"
 msgstr "Gele-knop"
 
 msgid "YELLOW long"
-msgstr "Geel lang"
+msgstr "GEEL-lang"
 
 msgid "Year"
 msgstr "Jaar"
@@ -23657,7 +23651,7 @@ msgid "variety show"
 msgstr "diverse shows"
 
 msgid "view extensions..."
-msgstr "Open het Applicatiemenu..."
+msgstr "Open het Extensies-menu..."
 
 msgid "violet"
 msgstr "paars"
@@ -23714,6 +23708,30 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "OScamInfo Overview"
+#~ msgstr "OScamInfo Overzicht"
+
+#~ msgid "OScamInfo Settings"
+#~ msgstr "OScamInfo instellingen"
+
+#~ msgid "OScamInfo ShowLog"
+#~ msgstr "OScamInfo ShowLog"
+
+#~ msgid "OScamLog Actions"
+#~ msgstr "OScamLog Acties"
+
+#~ msgid "OScamOverview Actions"
+#~ msgstr "OScamOverview Acties"
+
+#~ msgid "Oscam Information Settings"
+#~ msgstr "Oscam Informatie instellingen"
+
+#~ msgid "Show OScam Info"
+#~ msgstr "Toon OScam Info"
+
+#~ msgid "Show the OScamInfo Screen"
+#~ msgstr "Toon het OScamInfo scherm"
 
 #, python-format
 #~ msgid "%s ( %s Cards )"

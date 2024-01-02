@@ -1,5 +1,5 @@
 # openATV <openatv@gmail.com>, 2021.
-# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023.
+# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023, 2024.
 # Artem <Localizer_in_Russian@protonmail.com>, 2021.
 # Вячеслав Диконов <sdiconov@mail.ru>, 2022.
 # jbleyel <jbleyel@gmx.net>, 2023.
@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-27 11:06+0000\n"
-"PO-Revision-Date: 2023-12-14 20:54+0000\n"
+"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"PO-Revision-Date: 2024-01-02 11:43+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1598,7 +1598,7 @@ msgid "<Select a device>"
 msgstr "<Выберите устройство>"
 
 msgid "<no log found"
-msgstr ""
+msgstr "<лог не найден"
 
 msgid "A"
 msgstr "A"
@@ -2737,7 +2737,7 @@ msgid "Automatically update Client/Server View"
 msgstr "Автообновление просмотра клиент/сервер"
 
 msgid "Automatically update Log-Fullscreen View"
-msgstr ""
+msgstr "Автоматически обновлять лог в полноэкранном режиме"
 
 msgid "Autostart"
 msgstr "Автозапуск"
@@ -5349,7 +5349,7 @@ msgid "Date / Time"
 msgstr "Дата/время"
 
 msgid "Date Time Input Actions"
-msgstr ""
+msgstr "Действия по вводу даты и времени"
 
 msgid "Date ascending"
 msgstr "Дата по возрастанию"
@@ -6574,7 +6574,7 @@ msgid "EPG Display Actions"
 msgstr "Действия отображения EPG"
 
 msgid "EPG Jump"
-msgstr ""
+msgstr "EPG перейти"
 
 msgid "EPG Navigation Actions"
 msgstr "Действия навигации по EPG"
@@ -8900,7 +8900,7 @@ msgid "Hide player"
 msgstr "Скрыть плеер"
 
 msgid "Hide softcam servername"
-msgstr ""
+msgstr "Скрыть имя сервера softcam"
 
 msgid "Hide the InfoBar"
 msgstr "Затухание инфобара при исчезании"
@@ -9596,7 +9596,7 @@ msgid "Install extensions."
 msgstr "Установить дополнения."
 
 msgid "Install service"
-msgstr ""
+msgstr "Установить сервис"
 
 msgid "Install the package"
 msgstr "Установить пакет"
@@ -9608,7 +9608,7 @@ msgid "Installation finished."
 msgstr "Установка завершена."
 
 msgid "Installed"
-msgstr ""
+msgstr "Установлен"
 
 msgid "Installing"
 msgstr "Установка"
@@ -9642,7 +9642,7 @@ msgid "Instant Recording Actions"
 msgstr "Действия мгновенной записи"
 
 msgid "Instant Recording End Time"
-msgstr ""
+msgstr "Время окончания мгновенной записи"
 
 msgid "Instant record"
 msgstr "Немедленная запись"
@@ -9798,16 +9798,16 @@ msgid "Jordan"
 msgstr "Иордания"
 
 msgid "Jump"
-msgstr ""
+msgstr "Перейти"
 
 msgid "Jump back 24 hours"
 msgstr "Перейти назад 24 часа"
 
 msgid "Jump back one day"
-msgstr ""
+msgstr "Перейти на день назад"
 
 msgid "Jump back one hour"
-msgstr ""
+msgstr "Перейти на час назад"
 
 msgid "Jump first press in channel selection"
 msgstr "Перейти на первое нажатие в списке каналов"
@@ -9816,13 +9816,13 @@ msgid "Jump forward 24 hours"
 msgstr "Перейти вперёд 24 часа"
 
 msgid "Jump forward one day"
-msgstr ""
+msgstr "Перейти вперёд на один день"
 
 msgid "Jump forward one hour"
-msgstr ""
+msgstr "Перейти вперёд на один час"
 
 msgid "Jump time"
-msgstr ""
+msgstr "Jump time"
 
 msgid "Jump to beginning of list"
 msgstr "Перейти в начало списка"
@@ -11534,7 +11534,7 @@ msgid "Network Settings"
 msgstr "Настройки сети"
 
 msgid "Network Setup Actions"
-msgstr ""
+msgstr "Действия по настройке сети"
 
 msgid "Network Test"
 msgstr "Тестирование сети"
@@ -12121,6 +12121,27 @@ msgstr "Кнопка OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, подсказывать мне в процессе обновления"
 
+msgid "OSCam Info"
+msgstr "Информация OScam"
+
+msgid "OSCam Information"
+msgstr "Информация OScam"
+
+msgid "OSCam Information Settings"
+msgstr "Настройки информации OSCam"
+
+msgid "OSCam webif disabled"
+msgstr "Вэбинтерфейс OSCAM отключен"
+
+msgid "OSCamInfo Actions"
+msgstr "Действия OSCamInfo"
+
+msgid "OSCamInfo Log"
+msgstr "OSCamInfo лог"
+
+msgid "OSCamInfo Log Actions"
+msgstr "Действия лога OSCamInfo"
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12141,30 +12162,6 @@ msgstr "Настройка интерфейса"
 
 msgid "OSD name request"
 msgstr "Запрос OSD имени"
-
-msgid "OSCam Info"
-msgstr "Информация OScam"
-
-msgid "OSCam Information"
-msgstr "Информация OScam"
-
-msgid "OSCam webif disabled"
-msgstr "Вэбинтерфейс OSCAM отключен"
-
-msgid "OScamInfo Overview"
-msgstr ""
-
-msgid "OScamInfo Settings"
-msgstr ""
-
-msgid "OScamInfo ShowLog"
-msgstr ""
-
-msgid "OScamLog Actions"
-msgstr ""
-
-msgid "OScamOverview Actions"
-msgstr ""
 
 msgid "OTT Model"
 msgstr "ОТТ-модель"
@@ -12263,13 +12260,13 @@ msgid "Open IMDb"
 msgstr "Запустить IMDb"
 
 msgid "Open Log"
-msgstr ""
+msgstr "Открыть лог"
 
 msgid "Open MediaStream"
 msgstr "Открыть медиапоток"
 
 msgid "Open Settings"
-msgstr ""
+msgstr "Открыть настройки"
 
 msgid "Open Similar List Channel List"
 msgstr "Открыть похожий список Список каналов"
@@ -12413,10 +12410,7 @@ msgid "Oromo"
 msgstr "Оромо"
 
 msgid "Oscam Information"
-msgstr ""
-
-msgid "Oscam Information Settings"
-msgstr ""
+msgstr "Информация об Oscam"
 
 msgid "Ossetian / Ossetic"
 msgstr "Осетинский / осетинский"
@@ -14326,7 +14320,7 @@ msgid "Remove selected service"
 msgstr "Удалить выбранный канал"
 
 msgid "Remove service"
-msgstr ""
+msgstr "Удалить канал"
 
 msgid "Remove service from AutoCam"
 msgstr "Удалить канал из AutoCam"
@@ -15316,7 +15310,7 @@ msgstr "Выберите 'Да', чтобы отображать неизвес�
 
 #, python-format
 msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
+msgstr "Выберите 'Да', чтобы включить автозапуск '%s'."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Выберите 'Да', чтобы разрешить редактирование настроек этого устройства. Выбор 'Нет' сбрасывает настройки устройств до значений по умолчанию."
@@ -15340,7 +15334,7 @@ msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Если установлено значение 'да', каналы без EPG не будут отображаться."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
-msgstr ""
+msgstr "Выберите 'Да', чтобы скрыть имя и IP-адрес сервера."
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
@@ -16007,10 +16001,10 @@ msgid "Select the time delay between each repeat of the button."
 msgstr "Выберите время задержки между каждым повторением кнопки."
 
 msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
-msgstr ""
+msgstr "Выберите время, к которому должен быть привязан EPG. Нажмите ВЛЕВО/ВПРАВО, чтобы уменьшить/увеличить время на час. Нажмите PREV/NEXT, чтобы уменьшить/увеличить время на день."
 
 msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
-msgstr ""
+msgstr "Выберите время, когда этот таймер мгновенной записи должен закончиться. Нажмите ВЛЕВО/ВПРАВО, чтобы уменьшить/увеличить время на минуту. Нажмите PREV/NEXT, чтобы уменьшить/увеличить время на час."
 
 msgid "Select the time when this timer should end."
 msgstr "Выберите время, когда этот таймер должен закончиться."
@@ -16404,7 +16398,7 @@ msgid "Set Scaling governor"
 msgstr "Установите регулятор масштабирования"
 
 msgid "Set Time"
-msgstr ""
+msgstr "Установить время"
 
 msgid "Set action for 'Info' key"
 msgstr "Установить действие для кнопки 'ИНФО'"
@@ -16968,8 +16962,8 @@ msgstr "Показать список фильмов"
 msgid "Show Multi EPG"
 msgstr "Показать мульти ТВ-гид"
 
-msgid "Show OScam Info"
-msgstr "Показать информацию OScam"
+msgid "Show OSCam Information"
+msgstr "Показать информацию OSCam"
 
 msgid "Show OScam/CCcam in Extension Menu"
 msgstr "Показать OScam/CCcam в меню расширений"
@@ -17213,7 +17207,7 @@ msgid "Show live TV when movie stopped"
 msgstr "Просмотра ТВ при остановке воспроизведения"
 
 msgid "Show logfile"
-msgstr ""
+msgstr "Показать файл лога"
 
 msgid "Show marked events"
 msgstr "Показать отмеченные события"
@@ -17419,8 +17413,8 @@ msgstr "Показать EIT сейчас/след в инфобаре."
 msgid "Show the Logs Settings screen"
 msgstr "Показать экран настроек логов"
 
-msgid "Show the OScamInfo Screen"
-msgstr "Показать экран OScamInfo"
+msgid "Show the OSCam information screen"
+msgstr "Показать экран информации OSCam"
 
 msgid "Show the PowerTimer"
 msgstr "Показать Таймер питания"
@@ -18185,7 +18179,7 @@ msgid "Start recording current event"
 msgstr "Начать запись текущего события"
 
 msgid "Start service"
-msgstr ""
+msgstr "Запустить службу"
 
 msgid "Start teletext"
 msgstr "Запуск телетекста"
@@ -18315,7 +18309,7 @@ msgid "Stop recording now"
 msgstr "Остановить запись сейчас"
 
 msgid "Stop service"
-msgstr ""
+msgstr "Остановить службу"
 
 msgid "Stop service on return to movie list"
 msgstr "При возврате к записям не запускать текущий канал"
@@ -18783,7 +18777,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 14.12.2023"
+msgstr "Коррекция перевода Monja 02.01.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -23506,6 +23500,12 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Show OScam Info"
+#~ msgstr "Показать информацию OScam"
+
+#~ msgid "Show the OScamInfo Screen"
+#~ msgstr "Показать экран OScamInfo"
 
 #, python-format
 #~ msgid "%s ( %s Cards )"
