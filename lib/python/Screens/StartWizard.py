@@ -182,7 +182,8 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 		self.setTitle(_("Start Wizard"))
 		self.resolutionTimer = eTimer()
 		self.resolutionTimer.callback.append(self.resolutionTimeout)
-		preferred = self.avSwitch.readPreferredModes(saveMode=True)
+		# preferred = self.avSwitch.readPreferredModes(saveMode=True)
+		preferred = ["720p"]  # Use only 720p because some TV sends wrong edid info
 		available = self.avSwitch.readAvailableModes()
 		preferred = list(set(preferred) & set(available))
 
