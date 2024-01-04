@@ -54,7 +54,8 @@ class VideoWizard(Wizard, ShowRemoteControl):
 			"smpte": 20
 		}
 
-		preferred = self.avSwitch.readPreferredModes(saveMode=True)
+		# preferred = self.avSwitch.readPreferredModes(saveMode=True)
+		preferred = []  # Don't resort because some TV sends wrong edid info
 		if preferred:
 			if "2160p" in preferred:
 				sortKeys["2160p"] = 1
