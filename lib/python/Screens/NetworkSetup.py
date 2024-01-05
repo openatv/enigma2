@@ -234,17 +234,24 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 class DNSSettings(Setup):
 	def __init__(self, session):
 		self.dnsInitial = iNetwork.getNameserverList()
-		print("[NetworkSetup] DNSSettings: Initial DNS list: %s." % str(self.dnsInitial))
+		print(f"[NetworkSetup] DNSSettings: Initial DNS list: {str(self.dnsInitial)}.")
 		self.dnsOptions = {
 			"custom": [[0, 0, 0, 0]],
 			"dhcp-router": [list(x[1]) for x in self.getNetworkRoutes()],
-			"google": [[8, 8, 8, 8], [8, 8, 4, 4]],
-			"cloudflare": [[1, 1, 1, 1], [1, 0, 0, 1]],
-			"quad9": [[9, 9, 9, 9], [149, 112, 112, 10]],
-			"nordvpn": [[103, 86, 96, 100], [103, 86, 99, 100]],
-			"opendns-familyshield": [[208, 67, 222, 123], [208, 67, 220, 123]],
-			"opendns-home": [[208, 67, 222, 222], [208, 67, 220, 220]]
 		}
+		fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
+		for dns in fileDom.findall("dnsserver"):
+			if dns.get("key", ""):
+				adresses = []
+				ipv4s = dns.get("ipv4", "").split(",")
+				for ipv4 in ipv4s:
+					adresses.append([int(x) for x in ipv4.split(".")])
+				# TODO : IPv6
+#				ipv6s = dns.get("ipv6", "")
+#				if ipv6s:
+#					adresses.append(ipv6s.split(","))
+				self.dnsOptions[dns.get("key")] = adresses
+
 		option = self.dnsCheck(self.dnsInitial, refresh=False)
 		self.dnsServers = self.dnsOptions[option][:]
 		self.entryAdded = False
@@ -295,6 +302,7 @@ class DNSSettings(Setup):
 		self.dnsStart = len(dnsList)
 		for item, entry in enumerate([NoSave(ConfigIP(default=x)) for x in self.dnsServers], start=1):
 			dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
+		# TODO : IPv6
 		self.dnsLength = item
 		if self.entryAdded:
 			entry.default = [256, 256, 256, 256]  # This triggers a cancel confirmation for unedited new entries.

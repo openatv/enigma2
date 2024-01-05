@@ -14,10 +14,11 @@ from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_HDD, SCOPE_TIMESHIFT, defaultRecordingLocation, resolveFilename
+from Tools.Directories import SCOPE_HDD, SCOPE_SKINS, SCOPE_TIMESHIFT, defaultRecordingLocation, fileReadXML, resolveFilename
 from Components.AVSwitch import iAVSwitch
 
 DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
+MODULE_NAME = __name__.split(".")[-1]
 
 
 def InitUsageConfig():
@@ -137,17 +138,22 @@ def InitUsageConfig():
 	config.usage.use_pig = ConfigYesNo(default=False)
 	config.usage.update_available = NoSave(ConfigYesNo(default=False))
 	config.misc.ecm_info = ConfigYesNo(default=False)
-	config.usage.dns = ConfigSelection(default="dhcp-router", choices=[
+	choices = [
 		("dhcp-router", _("Router / Gateway")),
-		("custom", _("Static IP / Custom")),
-		("google", _("Google DNS")),
-		("cloudflare", _("Cloudflare DNS")),
-		("quad9", _("Quad9 DNS")),
-		("nordvpn", _("NordVPN DNS")),
-		("opendns-familyshield", _("OpenDNS FamilyShield")),
-		("opendns-home", _("OpenDNS Home"))
-	])
+		("custom", _("Static IP / Custom"))
+	]
+	fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
+	for dns in fileDom.findall("dnsserver"):
+		if dns.get("key", ""):
+			choices.append((dns.get("key"), _(dns.get("title"))))
 
+	config.usage.dns = ConfigSelection(default="dhcp-router", choices=choices)
+	config.usage.dnsMode = ConfigSelection(default=0, choices=[
+		(0, _("Prefer IPv4")),
+		(1, _("Prefer IPv6")),
+		(2, _("IPv4 only")),
+		(3, _("IPv6 only"))
+	])
 	config.usage.subnetwork = ConfigYesNo(default=True)
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
