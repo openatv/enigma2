@@ -1057,7 +1057,6 @@ class UnmountTask(Components.Task.LoggingTask):
 	def prepare(self):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
-			dev = six.ensure_binary(dev)
 			open('/dev/nomount.%s' % dev, "wb").close()
 		except Exception as e:
 			print("[Harddisk] ERROR: Failed to create /dev/nomount file:", e)
