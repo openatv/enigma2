@@ -1443,7 +1443,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 		if title:
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, text=title, choiceList=menu, buttonList=["red", "green", "yellow", "blue"], skinName="RecordTimerQuestion")
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, text=title, choiceList=menu, keys=["red", "green", "yellow", "blue"], skinName="RecordTimerQuestion")
 			serviceRef = eServiceReference(str(self[f"list{self.activeList}"].getCurrent()[1]))
 			pos = self[f"list{self.activeList}"].getSelectionPosition(serviceRef, self.activeList)
 			posX = max(self.instance.position().x() + pos[0] - self.ChoiceBoxDialog.instance.size().width(), 0)
@@ -1491,7 +1491,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["epgactions"].setEnabled(False)
 		self["dialogactions"].setEnabled(True)
 		self.ChoiceBoxDialog["actions"].execBegin()
-		self.ChoiceBoxDialog["navigationActions"].execBegin()
+		# self.ChoiceBoxDialog["navigationActions"].execBegin()
 		self.ChoiceBoxDialog.show()
 		if "input_actions" in self:
 			self["input_actions"].setEnabled(False)
@@ -1500,7 +1500,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["dialogactions"].setEnabled(False)
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog["actions"].execEnd()
-			self.ChoiceBoxDialog["navigationActions"].execEnd()
+			# self.ChoiceBoxDialog["navigationActions"].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
 		self["okactions"].setEnabled(True)
 		if "epgcursoractions" in self:
