@@ -24,12 +24,13 @@ if self.isFlashExpanderActive() and self.getFreeMemory() &lt; 128:
 		<condition>
 self.condition = not self.smallFlashSize and self.getFreeMemory() &lt; 128 and not self.swapExists
 		</condition>
-		<buttons enable="OK,UP,DOWN" />
+		<buttons enable="OK,UP,DOWN,YELLOW" />
 		<text value="The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."/>
 		<displaytext value="Limited memory size, swap file required" />
 		<list type="dynamic" source="swapDeviceList" evaluation="swapDeviceSelectionMade" onselect="swapDeviceSelectionMoved"/>
 		<code async="yes">
 self.readSwapDevices(self.afterAsyncCode)
+self["key_yellow"].setText(_("Format"))
 		</code>
 		<code pos="after" async="yes">
 if self.swapDevice and self.swapDevice != ".":
