@@ -231,10 +231,9 @@ class DNSSettings(Setup):
 				ipv4s = dns.get("ipv4", "").split(",")
 				for ipv4 in ipv4s:
 					adresses.append([int(x) for x in ipv4.split(".")])
-				# TODO : IPv6
-#				ipv6s = dns.get("ipv6", "")
-#				if ipv6s:
-#					adresses.append(ipv6s.split(","))
+				ipv6s = dns.get("ipv6", "")
+				if ipv6s:
+					adresses.extend(ipv6s.split(","))
 				self.dnsOptions[dns.get("key")] = adresses
 
 		option = self.dnsCheck(self.dnsInitial, refresh=False)
@@ -285,9 +284,9 @@ class DNSSettings(Setup):
 		Setup.createSetup(self)
 		dnsList = self["config"].getList()
 		self.dnsStart = len(dnsList)
-		for item, entry in enumerate([NoSave(ConfigIP(default=x)) for x in self.dnsServers], start=1):
+		items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
+		for item, entry in enumerate(items, start=1):
 			dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
-		# TODO : IPv6
 		self.dnsLength = item
 		if self.entryAdded:
 			entry.default = [256, 256, 256, 256]  # This triggers a cancel confirmation for unedited new entries.
@@ -299,7 +298,7 @@ class DNSSettings(Setup):
 		index = self["config"].getCurrentIndex()
 		if current == config.usage.dns:
 			self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
-		elif self.dnsStart <= index < self.dnsStart + self.dnsLength:
+		elif current not in (config.usage.dnsMode, config.usage.dnsSuffix) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
 			self.dnsServers[index - self.dnsStart] = current.value[:]
 			option = self.dnsCheck(self.dnsServers, refresh=True)
 		Setup.changedEntry(self)

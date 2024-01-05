@@ -231,8 +231,20 @@ class Network:
 	def writeNameserverConfig(self):
 		try:
 			Console().ePopen("/bin/rm -f '%s'" % self.resolvFile)
-			lines = ["nameserver %d.%d.%d.%d" % tuple(nameserver) for nameserver in self.nameservers]
-			fileWriteLines(self.resolvFile, lines, source=MODULE_NAME)
+			linesv4 = ["nameserver %d.%d.%d.%d" % tuple(nameserver) for nameserver in self.nameservers if isinstance(nameserver, list)]
+			linesv6 = ["nameserver %s" % nameserver for nameserver in self.nameservers if isinstance(nameserver, str)]
+			match config.usage.dnsMode.value:
+				case 0:
+					lines = linesv4 + linesv6
+				case 1:
+					lines = linesv6 + linesv4
+				case 2:
+					lines = linesv4
+				case 3:
+					lines = linesv6
+
+			suffix = [f"domain {config.usage.dnsSuffix.value}"] if config.usage.dnsSuffix.value else []
+			fileWriteLines(self.resolvFile, suffix + lines, source=MODULE_NAME)
 			if config.usage.dns.value.lower() not in ("dhcp-router"):
 				Console().ePopen("rm -f /etc/enigma2/nameserversdns.conf")
 				fileWriteLines("/etc/enigma2/nameserversdns.conf", lines, source=MODULE_NAME)
@@ -241,17 +253,22 @@ class Network:
 			print("[Network] resolv.conf or nameserversdns.conf - writing failed")
 
 	def loadNameserverConfig(self):
-		ipRegexp = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
-		nameserverPattern = compile("nameserver +%s" % ipRegexp)
-		ipPattern = compile(ipRegexp)
+		ipRegexpv4 = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+		ipRegexpv6 = r"(^|(?<=[^\w:.]))(([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4})(?=$|(?![\w:.]))"
+		nameserverPattern = compile("nameserver +%s" % ipRegexpv4)
+		nameserverPatternv6 = compile("nameserver +%s" % ipRegexpv6)
+		ipPatternv4 = compile(ipRegexpv4)
 		fileName = self.resolvFile if config.usage.dns.value.lower() in ("dhcp-router") else "/etc/enigma2/nameserversdns.conf"
 		resolv = fileReadLines(fileName, default=[], source=MODULE_NAME)
 		self.nameservers = []
 		for line in resolv:
 			if self.regExpMatch(nameserverPattern, line) is not None:
-				ip = self.regExpMatch(ipPattern, line)
+				ip = self.regExpMatch(ipPatternv4, line)
 				if ip:
 					self.nameservers.append(self.convertIP(ip))
+			elif self.regExpMatch(nameserverPatternv6, line) is not None:
+				self.nameservers.append(line.replace("nameserver ", ""))
+
 		# print "nameservers:", self.nameservers
 
 	def getConfiguredAdapters(self):
