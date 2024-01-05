@@ -841,25 +841,18 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.reboottext = _("Your STB will restart after pressing OK on your remote control.")
 		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")
 		self.missingwlanplugintxt = _("The wireless LAN plugin is not installed!\nPlease install it.")
-		self["WizardActions"] = HelpableActionMap(self, "WizardActions", {
-			"up": (self.up, _("move up to previous entry")),
-			"down": (self.down, _("move down to next entry")),
-			"left": (self.left, _("move up to first entry")),
-			"right": (self.right, _("move down to last entry")),
-		}, prio=0, description=_("Network Adapter Setting Actions"))
-		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"], {
+		self["actions"] = HelpableActionMap(self, ["NavigationActions", "ColorActions", "OkCancelActions"], {
 			"cancel": (self.close, _("Exit network adapter setup menu")),
 			"ok": (self.ok, _("Select menu entry")),
-			"red": (self.close, _("Exit network adapter setup menu"))
-		}, prio=0, description=_("Network Adapter Setting Actions"))
-		self["actions"] = HelpableNumberActionMap(self, ["WizardActions", "ShortcutActions"], {
-			"ok": self.ok,
-			"back": self.close,
-			"up": self.up,
-			"down": self.down,
-			"red": self.close,
-			"left": self.left,
-			"right": self.right,
+			"red": (self.close, _("Exit network adapter setup menu")),
+			"top": (self["menulist"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["menulist"].goPageUp, _("Move up a screen")),
+			"up": (self["menulist"].goLineUp, _("Move up a line")),
+			# "left": (self.left, _("Move up to first entry")),
+			# "right": (self.right, _("Move down to last entry")),
+			"down": (self["menulist"].goLineDown, _("Move down a line")),
+			"pageDown": (self["menulist"].goPageDown, _("Move down a screen")),
+			"bottom": (self["menulist"].goBottom, _("Move to last line / screen"))
 		}, prio=-2, description=_("Network Adapter Setting Actions"))
 		self.updateStatusbar()
 		self.onClose.append(self.cleanup)
@@ -940,18 +933,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1][0] == "extendedSetup":
 			self.extended = self["menulist"].getCurrent()[1][2]
 			self.extended(self.session, self.iface)
-
-	def up(self):
-		self["menulist"].up()
-
-	def down(self):
-		self["menulist"].down()
-
-	def left(self):
-		self["menulist"].pageUp()
-
-	def right(self):
-		self["menulist"].pageDown()
 
 	def createSummary(self):
 		from Screens.PluginBrowser import PluginBrowserSummary
@@ -1558,36 +1539,19 @@ class NetworkMountsMenu(Screen, HelpableScreen):
 		self["menulist"] = MenuList(self.mainmenu)
 		self["key_red"] = StaticText(_("Close"))
 		self["introduction"] = StaticText()
-
-		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
-			{
-			"up": (self.up, _("move up to previous entry")),
-			"down": (self.down, _("move down to next entry")),
-			"left": (self.left, _("move up to first entry")),
-			"right": (self.right, _("move down to last entry")),
-			})
-
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
-			{
-			"cancel": (self.close, _("exit mounts setup menu")),
-			"ok": (self.ok, _("select menu entry")),
-			})
-
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
-			{
-			"red": (self.close, _("exit networkadapter setup menu")),
-			})
-
-		self["actions"] = HelpableNumberActionMap(self, ["WizardActions", "ShortcutActions"], {
-			"ok": self.ok,
-			"back": self.close,
-			"up": self.up,
-			"down": self.down,
-			"red": self.close,
-			"left": self.left,
-			"right": self.right
-		}, prio=-2, description=_("Mount Actions"))
-
+		self["actions"] = HelpableActionMap(self, ["NavigationActions", "ColorActions", "OkCancelActions"], {
+			"ok": (self.keyOk, _("Select menu entry")),
+			"close": (self.close, _("Exit network adapter setup menu")),
+			"red": (self.close, _("Exit network adapter setup menu")),
+			"top": (self["menulist"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["menulist"].goPageUp, _("Move up a screen")),
+			"up": (self["menulist"].goLineUp, _("Move up a line")),
+			# "left": (self.left, _("Move up to first entry")),
+			# "right": (self.right, _("Move down to last entry")),
+			"down": (self["menulist"].goLineDown, _("Move down a line")),
+			"pageDown": (self["menulist"].goPageDown, _("Move down a screen")),
+			"bottom": (self["menulist"].goBottom, _("Move to last line / screen"))
+		}, prio=0, description=_("Mount Menu Actions"))
 		if self.selectionChanged not in self["menulist"].onSelectionChanged:
 			self["menulist"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
@@ -1609,39 +1573,21 @@ class NetworkMountsMenu(Screen, HelpableScreen):
 		for cb in self.onChangedEntry:
 			cb(name, desc)
 
-	def ok(self):
+	def keyOk(self):
 		if self["menulist"].getCurrent()[1][0] == "extendedSetup":
 			self.extended = self["menulist"].getCurrent()[1][2]
 			self.extended(self.session)
-
-	def up(self):
-		self["menulist"].up()
-
-	def down(self):
-		self["menulist"].down()
-
-	def left(self):
-		self["menulist"].pageUp()
-
-	def right(self):
-		self["menulist"].pageDown()
 
 	def genMainMenu(self):
 		menu = []
 		self.extended = None
 		self.extendedSetup = None
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKMOUNTS):
-			callFnc = p.__call__["ifaceSupported"](self)
+		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKMOUNTS):
+			callFnc = plugin.__call__["ifaceSupported"](self)
 			if callFnc is not None:
 				self.extended = callFnc
-				if "menuEntryName" in p.__call__:
-					menuEntryName = p.__call__["menuEntryName"](self)
-				else:
-					menuEntryName = _("Extended Setup...")
-				if "menuEntryDescription" in p.__call__:
-					menuEntryDescription = p.__call__["menuEntryDescription"](self)
-				else:
-					menuEntryDescription = _("Extended Networksetup Plugin...")
+				menuEntryName = plugin.__call__["menuEntryName"](self) if "menuEntryName" in plugin.__call__ else _("Extended Setup...")
+				menuEntryDescription = plugin.__call__["menuEntryDescription"](self) if "menuEntryDescription" in plugin.__call__ else _("Extended Networksetup Plugin...")
 				self.extendedSetup = ("extendedSetup", menuEntryDescription, self.extended)
 				menu.append((menuEntryName, self.extendedSetup))
 		return menu
@@ -2039,16 +1985,20 @@ class uShareSelection(Screen):
 		defaultDir = "/media/"
 		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, showFiles=False)
 		self["checkList"] = self.filelist
-		self["actions"] = HelpableActionMap(self, ["DirectionActions", "OkCancelActions", "ShortcutActions"], {
+		self["actions"] = HelpableActionMap(self, ["NavigationActions", "OkCancelActions", "ColorActions"], {
+			"ok": self.keyOk,
 			"cancel": self.exit,
 			"red": self.exit,
-			"yellow": self.changeSelectionState,
-			"green": self.saveSelection,
-			"ok": self.okClicked,
-			"left": self.left,
-			"right": self.right,
-			"down": self.down,
-			"up": self.up
+			"green": self.keyGreen,
+			"yellow": self.keyYellow,
+			"top": (self["checkList"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["checkList"].goPageUp, _("Move up a screen")),
+			"up": (self["checkList"].goLineUp, _("Move up a line")),
+			# "left": (self.left, _("Move up to first entry")),
+			# "right": (self.right, _("Move down to last entry")),
+			"down": (self["checkList"].goLineDown, _("Move down a line")),
+			"pageDown": (self["checkList"].goPageDown, _("Move down a screen")),
+			"bottom": (self["checkList"].goBottom, _("Move to last line / screen"))
 		}, prio=-1, description=_("uShare Selection Actions"))
 		if self.selectionChanged not in self["checkList"].onSelectionChanged:
 			self["checkList"].onSelectionChanged.append(self.selectionChanged)
@@ -2063,30 +2013,18 @@ class uShareSelection(Screen):
 		current = self["checkList"].getCurrent()[0]
 		self["key_yellow"].setText(_("Deselect") if current[2] is True else _("Select"))
 
-	def up(self):
-		self["checkList"].up()
-
-	def left(self):
-		self["checkList"].pageUp()
-
-	def right(self):
-		self["checkList"].pageDown()
-
-	def down(self):
-		self["checkList"].down()
-
-	def changeSelectionState(self):
+	def keyYellow(self):
 		self["checkList"].changeSelectionState()
 		self.selectedFiles = self["checkList"].getSelectedList()
 
-	def saveSelection(self):
+	def keyGreen(self):
 		self.selectedFiles = self["checkList"].getSelectedList()
 		self.close(self.selectedFiles)
 
 	def exit(self):
 		self.close(None)
 
-	def okClicked(self):
+	def keyOk(self):
 		if self.filelist.canDescent():
 			self.filelist.descent()
 
@@ -2264,39 +2202,30 @@ class NetworkPassword(Setup):
 # TODO "NetworkInadynLog" skin?
 #
 class NetworkLogScreen(Screen):
-	def __init__(self, session, title="", skinName="NetworkInadynLog", logPath="", tailLog=True):
+	def __init__(self, session, title=None, skinName="NetworkInadynLog", logPath="", tailLog=True):
 		Screen.__init__(self, session)
-		self.setTitle(title)
+		self.setTitle(title if title else _("Network Log"))
 		self.skinName = [skinName, "NetworkLogScreen"]
+		self.logPath = logPath
 		self.tailLog = tailLog
-		self.console = Console()
-		self["infotext"] = ScrollLabel("")
-		self["actions"] = HelpableActionMap(self, ["CancelSaveActions", "OkActions", "NavigationActions"], {
+		# self["log"] = ScrollLabel()  # This would make a better widget name.
+		self["infotext"] = ScrollLabel()
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Close the screen")),
 			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
 			"ok": (self.keyCancel, _("Close the screen")),
-			"top": (self["infotext"].moveTop, _("Move to first line / screen")),
-			"pageUp": (self["infotext"].pageUp, _("Move up a screen")),
-			"up": (self["infotext"].moveUp, _("Move up a line")),
-			"down": (self["infotext"].moveDown, _("Move down a line")),
-			"pageDown": (self["infotext"].pageDown, _("Move down a screen")),
-			"bottom": (self["infotext"].moveBottom, _("Move to last line / screen"))
+			"top": (self["infotext"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["infotext"].goPageUp, _("Move up a screen")),
+			"up": (self["infotext"].goLineUp, _("Move up a line")),
+			"down": (self["infotext"].goLineDown, _("Move down a line")),
+			"pageDown": (self["infotext"].goPageDown, _("Move down a screen")),
+			"bottom": (self["infotext"].goBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Network Log Actions"))
-		self.logfile = logPath
+		self.console = Console()
 		if self.tailLog:
-			self.console.ePopen(["/usr/bin/tail", "/usr/bin/tail", logPath], self.showLog)
+			self.console.ePopen(["/usr/bin/tail", "/usr/bin/tail", logPath], self.showLog)  # Should the number of lines be specified?  10 lines is probably less than one screen worth!
 		else:
 			self.showLog()
-
-	def showLog(self, data=None, retVal=None, extraArgs=None):
-		strview = ""
-		if self.tailLog:
-			strview = data
-		elif self.logfile and exists(self.logfile):
-			with open(self.logfile) as fd:
-				for line in fd.readlines():
-					strview += line
-		self["infotext"].setText(strview)
 
 	def keyCancel(self):
 		self.console.killAll()
@@ -2305,3 +2234,11 @@ class NetworkLogScreen(Screen):
 	def closeRecursive(self):
 		self.console.killAll()
 		self.close(True)
+
+	def showLog(self, data=None, retVal=None, extraArgs=None):
+		lines = []
+		if self.tailLog:
+			lines = [x.rstrip() for x in data.split("\n")]
+		elif self.logPath and exists(self.logPath):
+			lines = fileReadLines(self.logPath, [], source=MODULE_NAME)
+		self["infotext"].setText("\n".join(lines))
