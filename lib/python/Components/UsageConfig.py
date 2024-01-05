@@ -307,9 +307,9 @@ def InitUsageConfig():
 
 	def showsecondinfobarChanged(configElement):
 		if config.usage.show_second_infobar.value != "INFOBAREPG":
-			BoxInfo.setItem("InfoBarEpg", True)
+			BoxInfo.setMutableItem("InfoBarEpg", True)
 		else:
-			BoxInfo.setItem("InfoBarEpg", False)
+			BoxInfo.setMutableItem("InfoBarEpg", False)
 	config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback=True)
 	config.usage.infobar_frontend_source = ConfigSelection(default="tuner", choices=[
 		("settings", _("Settings")),
