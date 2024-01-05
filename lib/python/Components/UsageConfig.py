@@ -154,6 +154,7 @@ def InitUsageConfig():
 		(2, _("IPv4 only")),
 		(3, _("IPv6 only"))
 	])
+	config.usage.dnsSuffix = ConfigText(default="")
 	config.usage.subnetwork = ConfigYesNo(default=True)
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
