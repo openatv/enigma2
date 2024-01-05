@@ -244,7 +244,8 @@ class Network:
 					lines = linesv6
 
 			suffix = [f"domain {config.usage.dnsSuffix.value}"] if config.usage.dnsSuffix.value else []
-			fileWriteLines(self.resolvFile, suffix + lines, source=MODULE_NAME)
+			rotate = ["options rotate"] if config.usage.dnsRotate.value else []
+			fileWriteLines(self.resolvFile, rotate + suffix + lines, source=MODULE_NAME)
 			if config.usage.dns.value.lower() not in ("dhcp-router"):
 				Console().ePopen("rm -f /etc/enigma2/nameserversdns.conf")
 				fileWriteLines("/etc/enigma2/nameserversdns.conf", lines, source=MODULE_NAME)
@@ -262,7 +263,11 @@ class Network:
 		resolv = fileReadLines(fileName, default=[], source=MODULE_NAME)
 		self.nameservers = []
 		for line in resolv:
-			if self.regExpMatch(nameserverPattern, line) is not None:
+			if line == "options rotate":
+				config.usage.dnsRotate.value = True
+			elif line.startswith("domain "):
+				config.usage.dnsSuffix.value = line.replace("domain ", "")
+			elif self.regExpMatch(nameserverPattern, line) is not None:
 				ip = self.regExpMatch(ipPatternv4, line)
 				if ip:
 					self.nameservers.append(self.convertIP(ip))
