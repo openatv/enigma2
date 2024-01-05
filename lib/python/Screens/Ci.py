@@ -6,7 +6,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.config import config, ConfigEnableDisable, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
 from Components.ConfigList import ConfigList, ConfigListScreen
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -26,20 +26,20 @@ def setCIEnabled(configElement):
 
 
 def setdvbCiDelay(configElement):
-	open(SystemInfo["CommonInterfaceCIDelay"], "w").write(configElement.value)
+	open(BoxInfo.getItem("CommonInterfaceCIDelay"), "w").write(configElement.value)
 	configElement.save()
 
 
 def setRelevantPidsRouting(configElement):
-	open(SystemInfo["CI%dRelevantPidsRoutingSupport" % configElement.slotid], "w").write("yes" if configElement.value else "no")
+	open(BoxInfo.getItem(f"CI{configElement.slotid}RelevantPidsRoutingSupport"), "w").write("yes" if configElement.value else "no")
 
 
 def InitCiConfig():
 	config.ci = ConfigSubList()
 	config.cimisc = ConfigSubsection()
 	config.cimisc.cihelperenabled = ConfigEnableDisable(default=True)
-	if SystemInfo["CommonInterface"]:
-		for slot in range(SystemInfo["CommonInterface"]):
+	if BoxInfo.getItem("CommonInterface"):
+		for slot in range(BoxInfo.getItem("CommonInterface")):
 			config.ci.append(ConfigSubsection())
 			config.ci[slot].enabled = ConfigYesNo(default=True)
 			config.ci[slot].enabled.slotid = slot
@@ -48,13 +48,13 @@ def InitCiConfig():
 			config.ci[slot].use_static_pin = ConfigYesNo(default=True)
 			config.ci[slot].static_pin = ConfigPIN(default=0)
 			config.ci[slot].show_ci_messages = ConfigYesNo(default=True)
-			if SystemInfo["CI%dSupportsHighBitrates" % slot]:
+			if BoxInfo.getItem(f"CI{slot}SupportsHighBitrates"):
 				highBitrateChoices = [
 					("normal", _("Normal")),
 					("high", _("High")),
 				]
 				try:
-					with open("/proc/stb/tsmux/ci%d_tsclk_choices" % slot) as fd:
+					with open(f"/proc/stb/tsmux/ci{slot}_tsclk_choices") as fd:
 						choices = fd.read()
 						if "extra_high" in choices:
 							highBitrateChoices.append(("extra_high", _("Extra High")))
@@ -63,11 +63,11 @@ def InitCiConfig():
 				config.ci[slot].highBitrate = ConfigSelection(default="high", choices=highBitrateChoices)
 				config.ci[slot].highBitrate.slotid = slot
 				config.ci[slot].highBitrate.addNotifier(setCIBitrate)
-			if SystemInfo["CI%dRelevantPidsRoutingSupport" % slot]:
+			if BoxInfo.getItem(f"CI{slot}RelevantPidsRoutingSupport"):
 				config.ci[slot].relevantPidsRouting = ConfigYesNo(default=False)
 				config.ci[slot].relevantPidsRouting.slotid = slot
 				config.ci[slot].relevantPidsRouting.addNotifier(setRelevantPidsRouting)
-		if SystemInfo["CommonInterfaceCIDelay"]:
+		if BoxInfo.getItem("CommonInterfaceCIDelay"):
 			config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16", "16"), ("32", "32"), ("64", "64"), ("128", "128"), ("256", "256")])
 			config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
 		config.cimisc.bootDelay = ConfigSelection(default=5, choices=[(x, _("%d Seconds") % x) for x in range(16)])
@@ -77,7 +77,7 @@ class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler=eDVBCI_UI.getInstance(), wait_text="", screen_data=None):
 		Screen.__init__(self, session)
 
-		print("[CI] MMIDialog with action %s" % str(action))
+		print(f"[CI] MMIDialog with action {str(action)}")
 
 		self.mmiclosed = False
 		self.tag = None
@@ -167,7 +167,7 @@ class MMIDialog(Screen):
 			answer = str(cur[1].value)
 			length = len(answer)
 			while length < cur[1].getLength():
-				answer = "0%s" % answer
+				answer = f"0{answer}"
 				length += 1
 			self.answer = answer
 			if config.ci[self.slotid].use_static_pin.value:
@@ -282,7 +282,7 @@ class MMIDialog(Screen):
 						answer = str(config.ci[self.slotid].static_pin.value)
 						length = len(answer)
 						while length < config.ci[self.slotid].static_pin.getLength():
-							answer = "0%s" % answer
+							answer = f"0{answer}"
 							length += 1
 						self.handler.answerEnq(self.slotid, answer)
 						self.showWait()
@@ -357,7 +357,7 @@ class CiMessageHandler:
 								answer = str(config.ci[slot].static_pin.value)
 								length = len(answer)
 								while length < config.ci[slot].static_pin.getLength():
-									answer = "0%s" % answer
+									answer = f"0{answer}"
 									length += 1
 								handler.answerEnq(slot, answer)
 								show_ui = False
@@ -391,7 +391,7 @@ class CiSelection(Setup):
 	def __init__(self, session):
 		self.dlg = None
 		self.state = {}
-		self.ciplushelper = config.cimisc.cihelperenabled.value and SystemInfo["CIPlusHelper"] and SystemInfo["CommonInterface"]
+		self.ciplushelper = config.cimisc.cihelperenabled.value and BoxInfo.getItem("CIPlusHelper") and BoxInfo.getItem("CommonInterface")
 		Setup.__init__(self, session=session, setup="CiSelection")
 		self.skinName = ["Setup"]
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -403,7 +403,7 @@ class CiSelection(Setup):
 	def createSetup(self):  # NOSONAR silence S2638
 		self.slot = 0
 		items = []
-		for slot in range(SystemInfo["CommonInterface"]):
+		for slot in range(BoxInfo.getItem("CommonInterface")):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				self.slot += 1
@@ -451,9 +451,9 @@ class CiSelection(Setup):
 		items.append((_("Reset persistent PIN code"), ConfigNothing(), _("Press OK to reset PIN code"), 6, slot))
 		items.append(getConfigListEntry(_("Show CI messages"), config.ci[slot].show_ci_messages))
 		items.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
-		if SystemInfo["CI%dSupportsHighBitrates" % slot]:
+		if BoxInfo.getItem(f"CI{slot}SupportsHighBitrates"):
 			items.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].highBitrate))
-		if SystemInfo["CI%dRelevantPidsRoutingSupport" % slot]:
+		if BoxInfo.getItem(f"CI{slot}RelevantPidsRoutingSupport"):
 			items.append(getConfigListEntry(_("Relevant PIDs Routing"), config.ci[slot].relevantPidsRouting))
 		return items
 
@@ -467,7 +467,7 @@ class CiSelection(Setup):
 			action = current[3]
 			if action == 0:  # reset
 				eDVBCI_UI.getInstance().setReset(slot)
-				authFile = "/etc/ciplus/ci_auth_slot_%d.bin" % slot
+				authFile = f"/etc/ciplus/ci_auth_slot_{slot}.bin"
 				if exists(authFile):
 					remove(authFile)
 			elif action == 1:  # init
@@ -488,7 +488,7 @@ class CiSelection(Setup):
 		pass
 
 	def unregisterHandler(self):
-		for slot in range(SystemInfo["CommonInterface"]):
+		for slot in range(BoxInfo.getItem("CommonInterface")):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				CiHandler.unregisterCIMessageHandler(slot)

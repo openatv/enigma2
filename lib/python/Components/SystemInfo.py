@@ -486,7 +486,7 @@ BoxInfo.setMutableItem("FCCactive", False)
 
 BoxInfo.setItem("CommonInterface", eDVBCIInterfaces.getInstance().getNumOfSlots())
 BoxInfo.setItem("CommonInterfaceCIDelay", fileCheck("/proc/stb/tsmux/rmx_delay"))
-for cislot in range(0, SystemInfo["CommonInterface"]):
+for cislot in range(0, BoxInfo.getItem("CommonInterface")):
 	BoxInfo.setItem(f"CI{cislot}SupportsHighBitrates", fileCheck(f"/proc/stb/tsmux/ci{cislot}_tsclk"))
 	BoxInfo.setItem(f"CI{cislot}RelevantPidsRoutingSupport", fileCheck(f"/proc/stb/tsmux/ci{cislot}_relevant_pids_routing"))
 
