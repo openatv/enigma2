@@ -105,7 +105,7 @@ def setLCDModeMinitTV(value):
 class Standby2(Screen):
 	def Power(self):
 		print("[Standby] leave standby")
-		BoxInfo.setItem("StandbyState", False)
+		BoxInfo.setMutableItem("StandbyState", False)
 
 		if exists("/usr/script/StandbyLeave.sh"):
 			Console().ePopen("/usr/script/StandbyLeave.sh &")
@@ -169,7 +169,7 @@ class Standby2(Screen):
 		self.avswitch = AVSwitch()
 
 		print("[Standby] enter standby")
-		BoxInfo.setItem("StandbyState", True)
+		BoxInfo.setMutableItem("StandbyState", True)
 
 		if exists("/usr/script/StandbyEnter.sh"):
 			Console().ePopen("/usr/script/StandbyEnter.sh &")
