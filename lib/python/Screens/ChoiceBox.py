@@ -197,7 +197,7 @@ class ChoiceBoxNew(Screen, HelpableScreen):
 		self.close(None)
 
 	def autoResize(self):
-		pass
+		pass  # This method is very skin dependent.  Please use the "applet" tag in the skin screen to achieve the appropriate changes to the skin.
 
 	def createSummary(self):
 		return ChoiceBoxSummary
