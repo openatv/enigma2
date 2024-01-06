@@ -184,9 +184,9 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		selections = getattr(config.misc.ButtonSetup, key).value.split(",")
 		selected = []
 		for selection in selections:
-			function = [function for function in getButtonSetupFunctions() if function[1] == selection and function[2] == "EPG"]
-			if function:
-				selected.append(function[0])
+			buttonFunction = [x for x in getButtonSetupFunctions() if x[1] == selection and x[2] == "EPG"]
+			if buttonFunction:
+				selected.append(buttonFunction[0])
 		return selected
 
 	def RecordTimerQuestion(self):
