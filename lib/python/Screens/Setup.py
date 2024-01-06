@@ -52,13 +52,14 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		<widget source="key_help" render="Label" position="e-100,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" conditional="key_help" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget name="setupimage" position="0,0" size="0,0" alphatest="blend" conditional="setupimage" transparent="1" />
+		<widget name="Image" position="0,0" size="0,0" alphatest="blend" conditional="Image" transparent="1" />
 		<widget name="HelpWindow" position="0,0" size="0,0" alphatest="blend" conditional="HelpWindow" transparent="1" zPosition="+1" />
 	</screen>"""
 
 	def __init__(self, session, setup, plugin=None, PluginLanguageDomain=None):
 		Screen.__init__(self, session, mandatoryWidgets=["config", "footnote", "description"])
 		HelpableScreen.__init__(self)
+		self.setImage(setup, "setup")
 		self.setup = setup
 		self.plugin = plugin
 		self.pluginLanguageDomain = PluginLanguageDomain
@@ -74,23 +75,6 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		self["footnote"].hide()
 		self["description"] = Label()
 		self.createSetup()
-		defaultSetupImage = setups.get("default", "")
-		setupImage = setups.get(setup, defaultSetupImage)
-		if setupImage:
-			type = "Default" if setupImage is defaultSetupImage else "Setup"
-			setupImage = resolveFilename(SCOPE_GUISKIN, setupImage)
-			print("[Setup] %s image '%s'." % (type, setupImage))
-			if isfile(setupImage):
-				self.setupImage = LoadPixmap(setupImage)
-				if self.setupImage:
-					self["setupimage"] = Pixmap()
-				else:
-					print("[Setup] Error: Unable to load image '%s'!" % setupImage)
-			else:
-				print("[Setup] Error: Setup image '%s' is not a file!" % setupImage)
-				self.setupImage = None
-		else:
-			self.setupImage = None
 		self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -221,8 +205,6 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 			self["description"].setText(_("There are no items currently available for this screen."))
 
 	def layoutFinished(self):
-		if self.setupImage:
-			self["setupimage"].instance.setPixmap(self.setupImage)
 		if not self["config"]:
 			print("[Setup] No setup items available!")
 
