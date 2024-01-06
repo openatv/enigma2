@@ -1,11 +1,11 @@
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.config import config, ConfigSubsection, ConfigText
+from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
+from Components.config import ConfigSubsection, ConfigText, config
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
-import enigma
+from Screens.HelpMenu import HelpableScreen
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen, ScreenSummary
 
 config.misc.pluginlist = ConfigSubsection()
 config.misc.pluginlist.eventinfo_order = ConfigText(default="")
@@ -13,234 +13,106 @@ config.misc.pluginlist.extension_order = ConfigText(default="")
 config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
 
 
-class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", windowTitle=None, allow_cancel=True, titlebartext=_("Choice Box"), choiceList=None):
-		if not windowTitle:  # for compatibility
-			windowTitle = titlebartext
-		if choiceList and not list:
-			list = choiceList
-		if not list:
-			list = []
-		if not skin_name:
-			skin_name = []
+class ChoiceBoxNew(Screen, HelpableScreen):
+	def __init__(self, session, text="", choiceList=None, selection=0, buttonList=None, reorderConfig=None, allowCancel=True, skinName=None, windowTitle=None):
 		Screen.__init__(self, session)
-
-		self.allow_cancel = allow_cancel
-
-		if isinstance(skin_name, str):
-			skin_name = [skin_name]
-		self.skinName = skin_name + ["ChoiceBox"]
-
-		self.reorderConfig = reorderConfig
-		self["text"] = Label()
-
-		title_max = 55
-		if 'MetrixHD/' in config.skin.primary_skin.value:
-			title_max += 10
-		if title:
-			title = _(title)
-			if len(title) < title_max and title.find('\n') == -1:
-				Screen.setTitle(self, title)
-				if text != "":
-					self["text"] = Label(_(text))
-			elif title.find('\n') != -1:
-				temptext = title.split('\n')
-				if len(temptext[0]) < title_max:
-					Screen.setTitle(self, temptext[0])
-					count = 2
-					labeltext = ""
-					while len(temptext) >= count:
-						if labeltext:
-							labeltext += '\n'
-						labeltext = labeltext + temptext[count - 1]
-						count += 1
-						print('[Choicebox] count', count)
-					self["text"].setText(labeltext)
-				else:
-					self["text"] = Label(title)
+		HelpableScreen.__init__(self)
+		self.setTitle(windowTitle if windowTitle else _("Choice Box"))
+		self.skinName = ["ChoiceBox"]
+		if skinName:
+			if isinstance(skinName, str):
+				self.skinName.insert(0, skinName)
 			else:
-				self["text"] = Label(title)
-		elif text:
-			self["text"] = Label(_(text))
-		self.list = []
-		self.summarylist = []
-		if keys is None:
-			self.__keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue", "text"] + (len(list) - 14) * [""]
+				self.skinName = skinName + self.skinName
+		choiceList = choiceList if choiceList else []
+		if buttonList is None:
+			buttonList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue", "text"] + (len(choiceList) - 14) * [""]
 		else:
-			self.__keys = keys + (len(list) - len(keys)) * [""]
-
-		self.keymap = {}
-		pos = 0
-		if self.reorderConfig:
-			self.config_type = eval("config.misc.pluginlist." + self.reorderConfig)
-			if self.config_type.value:
-				prev_list = [i for i in zip(list, self.__keys)]
-				new_list = []
-				for x in self.config_type.value.split(","):
-					for entry in prev_list:
-						if entry[0][0] == x:
-							new_list.append(entry)
-							prev_list.remove(entry)
-				list = [i for i in zip(*(new_list + prev_list))]
-				list, self.__keys = list[0], list[1]
+			buttonList = buttonList + (len(choiceList) - len(buttonList)) * [""]
+		if reorderConfig:
+			self.configOrder = getattr(config.misc.pluginlist, reorderConfig)
+			if self.configOrder.value:
+				prevList = [x for x in zip(choiceList, buttonList)]
+				newList = []
+				for button in self.configOrder.value.split(","):
+					for entry in prevList:
+						if entry[0][0] == button:
+							prevList.remove(entry)
+							newList.append(entry)
+				choiceList = [x for x in zip(*(newList + prevList))]
+				choiceList, buttonList = choiceList[0], choiceList[1]
 				number = 1
-				new_keys = []
-				for x in self.__keys:
-					if (not x or x.isdigit()) and number <= 10:
-						new_keys.append(str(number % 10))
+				newButtons = []
+				for button in buttonList:
+					if (not button or button.isdigit()) and number <= 10:
+						newButtons.append(str(number % 10))
 						number += 1
 					else:
-						new_keys.append(not x.isdigit() and x or "")
-				self.__keys = new_keys
-
-		for x in list:
-			strpos = str(self.__keys[pos])
-			self.list.append(ChoiceEntryComponent(key=strpos, text=x))
-			if self.__keys[pos] != "":
-				self.keymap[self.__keys[pos]] = list[pos]
-			self.summarylist.append((self.__keys[pos], x[0]))
-			pos += 1
-		self["windowtitle"] = Label(_(windowTitle))
-		self["list"] = ChoiceList(list=self.list, selection=selection)
-		self["summary_list"] = StaticText()
-		self["summary_selection"] = StaticText()
-		self.updateSummary(selection)
-
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "NavigationActions", "MenuActions"],
-		{
-			"ok": self.go,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal,
+						newButtons.append(not button.isdigit() and button or "")
+				buttonList = newButtons
+		else:
+			self.configOrder = None
+		self.choiceList = []
+		self.buttonMap = {}
+		actionMethods = {
 			"red": self.keyRed,
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
 			"blue": self.keyBlue,
-			"text": self.keyText,
-			"up": self.up,
-			"down": self.down,
-			"left": self.left,
-			"right": self.right,
-			"first": self.additionalMoveUp,
-			"last": self.additionalMoveDown,
-			"menu": self.setDefaultChoiceList,
-			"back": lambda: 0,  # drop through to self["cancelaction"]
-		}, prio=-2)
+			"text": self.keyText
+		}
+		actions = {
+			"ok": (self.keySelect, _("Select the current entry"))
+		}
+		for index, choice in enumerate(choiceList):
+			button = str(buttonList[index])
+			self.choiceList.append(ChoiceEntryComponent(key=button, text=choice))
+			if button:
+				self.buttonMap[button] = choiceList[index]
+				actions[button] = (actionMethods.get(button, self.keyNumberGlobal), _("Select the %s entry") % button.upper())
+		self["text"] = Label(text)
+		self["list"] = ChoiceList(list=self.choiceList, selection=selection)
+		self["actions"] = HelpableNumberActionMap(self, ["OkActions", "ColorActions", "TextActions", "NumberActions"], actions, prio=-1, description=_("Choice List Selection Actions"))  # Priority needs to be higher for instantiated versions of this screen.
+		self["cancelAction"] = HelpableActionMap(self, ["OkCancelActions"], {
+			"cancel": (self.keyCancel, _("Cancel the selection and exit"))
+		}, prio=0, description=_("Choice List Actions"))
+		self["cancelAction"].setEnabled(allowCancel)
+		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+			"top": (self.keyTop, _("Move to the first line / screen")),
+			"pageUp": (self.keyPageUp, _("Move up a screen")),
+			"up": (self.keyLineUp, _("Move up a line")),
+			"down": (self.keyLineDown, _("Move down a line")),
+			"pageDown": (self.keyPageDown, _("Move down a screen")),
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
+		}, prio=-1, description=_("Choice List Navigation Actions"))  # Priority needs to be higher for instantiated versions of this screen.
+		self["navigationActions"].setEnabled(len(choiceList) > 1)
+		self["moveActions"] = HelpableActionMap(self, ["PreviousNextActions", "MenuActions"], {
+			"menu": (self.keyResetList, _("Reset the order of the entries")),
+			"previous": (self.keyMoveItemUp, _("Move the current entry up")),
+			"next": (self.keyMoveItemDown, _("Move the current entry down")),
+		}, prio=0, description=_("Choice List Order Actions"))
+		self["moveActions"].setEnabled(len(choiceList) > 1 and self.configOrder)
+		self["summary_list"] = StaticText()  # Temporary hack to support old display skins.
+		self["summary_selection"] = StaticText()  # Temporary hack to support old display skins.
+		self.onLayoutFinish.append(self.layoutFinished)
 
-		self["cancelaction"] = ActionMap(["WizardActions"],
-		{
-			"back": self.cancel,
-		}, prio=-1)
+	def layoutFinished(self):
+		self["list"].enableAutoNavigation(False)  # Override list box navigation.
 
-	def autoResize(self):
-		desktop_w = enigma.getDesktop(0).size().width()
-		desktop_h = enigma.getDesktop(0).size().height()
-		itemheight = self["list"].getItemHeight()
-		count = len(self.list)
-		if count > 15:
-			count = 15
-		width = self["list"].instance.size().width()
-		if width < 0 or width > desktop_w:
-			width = 520
-		if not self["text"].text:
-			# move list
-			textsize = (width, 0)
-			listsize = (width, itemheight * count)
-			self["list"].instance.move(enigma.ePoint(0, 0))
-			self["list"].instance.resize(enigma.eSize(*listsize))
+	def instantiateActionMap(self, active):
+		if active:
+			self["actions"].execBegin()
+			self["navigationActions"].execBegin()
 		else:
-			textsize = self["text"].getSize()
-			if textsize[0] < textsize[1]:
-				textsize = (textsize[1], textsize[0] + 10)
-			if textsize[0] > width:
-				textsize = (textsize[0], textsize[1] + itemheight)
-			else:
-				textsize = (width, textsize[1] + itemheight)
-			listsize = (textsize[0], itemheight * count)
-			# resize label
-			self["text"].instance.resize(enigma.eSize(*textsize))
-			self["text"].instance.move(enigma.ePoint(10, 10))
-			# move list
-			self["list"].instance.move(enigma.ePoint(0, textsize[1]))
-			self["list"].instance.resize(enigma.eSize(*listsize))
+			self["actions"].execEnd()
+			self["navigationActions"].execEnd()
 
-		wsizex = textsize[0]
-		wsizey = textsize[1] + listsize[1]
-		wsize = (wsizex, wsizey)
-		self.instance.resize(enigma.eSize(*wsize))
+	def keySelect(self):  # Run the currently selected entry.
+		current = self["list"].getCurrent()
+		if current:
+			self.goEntry(current[0])
 
-		# center window
-		self.instance.move(enigma.ePoint((desktop_w - wsizex) // 2, (desktop_h - wsizey) // 2))
-
-	def left(self):
-		if len(self["list"].list) > 0:
-			while True:
-				self["list"].instance.moveSelection(self["list"].instance.pageUp)
-				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
-				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
-					break
-
-	def right(self):
-		if len(self["list"].list) > 0:
-			while True:
-				self["list"].instance.moveSelection(self["list"].instance.pageDown)
-				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
-				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
-					break
-
-	def up(self):
-		if len(self["list"].list) > 0:
-			while True:
-				self["list"].instance.moveSelection(self["list"].instance.moveUp)
-				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
-				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
-					break
-
-	def down(self):
-		if len(self["list"].list) > 0:
-			while True:
-				self["list"].instance.moveSelection(self["list"].instance.moveDown)
-				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
-				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
-					break
-
-	# runs a number shortcut
-	def keyNumberGlobal(self, number):
-		self.goKey(str(number))
-
-	# runs the current selected entry
-	def go(self):
-		cursel = self["list"].l.getCurrentSelection()
-		if cursel:
-			self.goEntry(cursel[0])
-		else:
-			self.cancel()
-
-	# runs a specific entry
-	def goEntry(self, entry):
-		if entry and len(entry) > 3 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-			arg = entry[3]
-			entry[2](arg)
-		elif entry and len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-			entry[2](None)
-		else:
-			self.close(entry)
-
-	# lookups a key in the keymap, then runs it
-	def goKey(self, key):
-		if key in self.keymap:
-			entry = self.keymap[key]
-			self.goEntry(entry)
-
-	# runs a color shortcut
-	def keyRed(self):
+	def keyRed(self):  # Run a colored or labeled shortcut.
 		self.goKey("red")
 
 	def keyGreen(self):
@@ -255,59 +127,153 @@ class ChoiceBox(Screen):
 	def keyText(self):
 		self.goKey("text")
 
-	def updateSummary(self, curpos=0):
-		pos = 0
-		summarytext = ""
-		for entry in self.summarylist:
-			if curpos - 2 < pos < curpos + 5:
-				if pos == curpos:
-					summarytext += ">"
-					self["summary_selection"].setText(entry[1])
-				else:
-					summarytext += entry[0]
-				summarytext += ' ' + entry[1] + '\n'
-			pos += 1
-		self["summary_list"].setText(summarytext)
+	def keyNumberGlobal(self, number):  # Run a numbered shortcut.
+		self.goKey(str(number))
 
-	def cancel(self):
-		if self.allow_cancel:
-			self.close(None)
+	def goKey(self, key):  # Lookup a key in the buttonMap, then run it.
+		if key in self.buttonMap:
+			entry = self.buttonMap[key]
+			self.goEntry(entry)
 
-	def setDefaultChoiceList(self):
-		if self.reorderConfig:
-			if len(self.list) > 0 and self.config_type.value != "":
-				self.session.openWithCallback(self.setDefaultChoiceListCallback, MessageBox, _("Sort list to default and exit?"), MessageBox.TYPE_YESNO)
+	def goEntry(self, entry):  # Run a specific entry.
+		if entry and len(entry) > 3 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+			arg = entry[3]
+			entry[2](arg)
+		elif entry and len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+			entry[2](None)  # Should this be 'entry[2]()'?
 		else:
-			self.cancel()
+			self.close(entry)
 
-	def setDefaultChoiceListCallback(self, answer):
-		if answer:
-			self.config_type.value = ""
-			self.config_type.save()
-			self.cancel()
+	def keyTop(self):
+		self["list"].instance.goTop()
 
-	def additionalMoveUp(self):
-		if self.reorderConfig:
-			self.additionalMove(-1)
+	def keyPageUp(self):
+		self["list"].instance.goPageUp()
 
-	def additionalMoveDown(self):
-		if self.reorderConfig:
-			self.additionalMove(1)
+	def keyLineUp(self):
+		self["list"].instance.goLineUp()
 
-	def additionalMove(self, direction):
-		if len(self.list) > 1:
-			currentIndex = self["list"].getSelectionIndex()
-			swapIndex = (currentIndex + direction) % len(self.list)
-			if currentIndex == 0 and swapIndex != 1:
-				self.list = self.list[1:] + [self.list[0]]
-			elif swapIndex == 0 and currentIndex != 1:
-				self.list = [self.list[-1]] + self.list[:-1]
+	def keyLineDown(self):
+		self["list"].instance.goLineDown()
+
+	def keyPageDown(self):
+		self["list"].instance.goPageDown()
+
+	def keyBottom(self):
+		self["list"].instance.goBottom()
+
+	def keyMoveItemUp(self):
+		self.moveItem(-1)
+
+	def keyMoveItemDown(self):
+		self.moveItem(1)
+
+	def moveItem(self, direction):
+		currentIndex = self["list"].getSelectionIndex()
+		swapIndex = (currentIndex + direction) % len(self.choiceList)
+		if currentIndex == 0 and swapIndex != 1:
+			self.choiceList = self.choiceList[1:] + [self.choiceList[0]]
+		elif swapIndex == 0 and currentIndex != 1:
+			self.choiceList = [self.choiceList[-1]] + self.choiceList[:-1]
+		else:
+			self.choiceList[currentIndex], self.choiceList[swapIndex] = self.choiceList[swapIndex], self.choiceList[currentIndex]
+		self["list"].setList(self.choiceList)
+		if direction == 1:
+			self["list"].instance.goLineDown()
+		else:
+			self["list"].instance.goLineUp()
+		self.configOrder.value = ",".join(x[0][0] for x in self.choiceList)
+		self.configOrder.save()
+
+	def keyResetList(self):
+		def keyResetListCallback(answer):
+			if answer:
+				self.configOrder.value = ""
+				self.configOrder.save()
+
+		self.session.openWithCallback(keyResetListCallback, MessageBox, _("Reset list order to the default list order?"), MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
+
+	def keyCancel(self):
+		self.close(None)
+
+	def autoResize(self):
+		pass  # This method is very skin dependent.  Please use the "applet" tag in the skin screen to achieve the appropriate changes to the skin.
+
+	def createSummary(self):
+		return ChoiceBoxSummary
+
+
+class ChoiceBoxSummary(ScreenSummary):
+	def __init__(self, session, parent):
+		ScreenSummary.__init__(self, session, parent=parent)
+		self["text"] = StaticText(parent["text"].getText())
+		self["entry"] = StaticText("")
+		self["value"] = StaticText("")
+		self.choiceList = []
+		for index, item in enumerate(self.parent["list"].getList()):
+			self.choiceList.append((index, item[0][0]))
+		if self.addWatcher not in self.onShow:
+			self.onShow.append(self.addWatcher)
+		if self.removeWatcher not in self.onHide:
+			self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		if self.selectionChanged not in self.parent["list"].onSelectionChanged:
+			self.parent["list"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def removeWatcher(self):
+		if self.selectionChanged in self.parent["list"].onSelectionChanged:
+			self.parent["list"].onSelectionChanged.remove(self.selectionChanged)
+
+	def selectionChanged(self):
+		currentIndex = self.parent["list"].getCurrentIndex()
+		choiceList = []
+		for index, item in self.choiceList:
+			if index == currentIndex:
+				choiceList.append(f"> {self.choiceList[index][1]}")
+				self["value"].setText(self.choiceList[index][1])
+				self.parent["summary_selection"].setText(self.choiceList[index][1])  # Temporary hack to support old display skins.
 			else:
-				self.list[currentIndex], self.list[swapIndex] = self.list[swapIndex], self.list[currentIndex]
-			self["list"].l.setList(self.list)
-			if direction == 1:
-				self["list"].down()
+				choiceList.append(f"{self.choiceList[index][0] + 1} {self.choiceList[index][1]}")
+		index = 0 if currentIndex < 2 else currentIndex - 1
+		self["entry"].setText("\n".join(choiceList[index:]))
+		self.parent["summary_list"].setText("\n".join(choiceList[index:]))  # Temporary hack to support old display skins.
+
+
+class ChoiceBox(ChoiceBoxNew):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", windowTitle=None, allow_cancel=None, titlebartext=None, choiceList=None, buttonList=None, allowCancel=None, skinName=None):
+		if title:
+			# print(f"[ChoiceBox] Warning: Deprecated argument 'title' found with a value of '{title}', use 'text' and/or 'windowTitle' instead!")
+			pos = title.find("\n")
+			if pos == -1:
+				windowTitle = title
 			else:
-				self["list"].up()
-			self.config_type.value = ",".join(x[0][0] for x in self.list)
-			self.config_type.save()
+				windowTitle = title[:pos]
+				text = title[pos + 1:]
+		self["windowtitle"] = StaticText(windowTitle)  # This is a hack to keep broken skins that do not use the "Title" widget working.
+		if list:
+			# print(f"[ChoiceBox] Warning: Deprecated argument 'list' found , use 'choiceList' instead!")
+			if not choiceList:
+				choiceList = list
+		if keys:
+			# print(f"[ChoiceBox] Warning: Deprecated argument 'keys' found , use 'buttonList' instead!")
+			if not buttonList:
+				buttonList = keys
+		if skin_name:
+			# Used in InfoBarGenerics.py, MovieSelection.py, ChannelSelection.py, EventView.py.
+			# /media/autofs/DATA/Enigma2/Plugins-Enigma2/werbezapper/src/WerbeZapper.py: ChoiceBox.__init__(self, session, title, list, keys, selection, skin_name)
+			# print(f"[ChoiceBox] Warning: Deprecated argument 'skin_name' found with a value of '{skin_name}', use 'skinName' instead!")
+			if not skinName:
+				skinName = skin_name
+		if titlebartext:
+			# print(f"[ChoiceBox] Warning: Deprecated argument 'titlebartext' found with a value of '{titlebartext}', use 'windowTitle' instead!")
+			if not windowTitle:
+				windowTitle = titlebartext
+		if allow_cancel:
+			# print(f"[ChoiceBox] Warning: Deprecated argument 'allow_cancel' found with a value of '{allow_cancel}', use 'allowCancel' instead!")
+			if not allowCancel:
+				allowCancel = allow_cancel
+		if not allowCancel:
+			allowCancel=True
+		ChoiceBoxNew.__init__(self, session, text=text, choiceList=choiceList, selection=selection, buttonList=buttonList, reorderConfig=reorderConfig, allowCancel=allowCancel, skinName=skinName, windowTitle=windowTitle)
