@@ -93,11 +93,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		return sorted(list(self.boxInfo.keys()))
 
 	def getItem(self, item, default=None):
-		if item in self.boxInfo:
-			value = self.boxInfo[item]
-		else:
-			value = default
-		return value
+		return self.boxInfo.get(item, default)
 
 	def setItem(self, item, value, immutable=False):
 		if item in self.immutableList:
