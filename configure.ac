@@ -817,6 +817,11 @@ if test "$BOXTYPE" == "sf4008" -o "$BOXTYPE" == "beyonwizu4"; then
 	AC_DEFINE(LCD_SCROLL_HEX, 1,[define LCD scroll values in hex])
 fi
 
+AS_IF([test "$MACHINEBUILD" == "classm" -or "$MACHINEBUILD" == "axodin" -or "$MACHINEBUILD" == "axodinc" -or "$MACHINEBUILD" == "starsatlx" -or "$MACHINEBUILD" == "evo" -or "$MACHINEBUILD" == "genius" -or "$MACHINEBUILD" == "galaxym6"],[AC_DEFINE(PROFILE1, 1,[profile1])])
+AS_IF([test "$MACHINEBUILD" == "gb800solo" -or "$MACHINEBUILD" == "gb800se" -or "$MACHINEBUILD" == "gb800seplus" -or "$MACHINEBUILD" == "gbultrase"],[AC_DEFINE(PROFILE2, 1,[profile2])])
+AS_IF([test "$MACHINEBUILD" == "osmini" -or "$MACHINEBUILD" == "spycatmini" -or "$MACHINEBUILD" == "osminiplus" -or "$MACHINEBUILD" == "spycatminiplus"],[AC_DEFINE(PROFILE3, 1,[profile3])])
+AS_IF([test "$MACHINEBUILD" == "xpeedlx3" -or "$MACHINEBUILD" == "sezammarvel" -or "$MACHINEBUILD" == "atemionemesis"],[AC_DEFINE(PROFILE4, 1,[profile4])])
+
 AC_ARG_WITH(libsdl,
 	AS_HELP_STRING([--with-libsdl],[use libsdl, yes or no]),
 	[with_libsdl=$withval],[with_libsdl=no])
