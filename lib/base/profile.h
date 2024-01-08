@@ -57,7 +57,7 @@ public:
 			while (f.good())
 			{
 				std::getline(f, line);
-				if (std::sscanf(line.c_str(), "%f\t%[^\n]", &value, &checkPoint) == 2)
+				if (std::sscanf(line.c_str(), "%f\t%[^\n]", &value, checkPoint) == 2)
 				{
 					m_profileData[std::string(checkPoint)] = value;
 					m_totalTime = value;
