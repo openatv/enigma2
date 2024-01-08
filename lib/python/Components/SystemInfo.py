@@ -121,6 +121,9 @@ BoxInfo = BoxInformation()
 
 class SystemInformation(dict):
 
+	def get(self, item, default=None):
+		return BoxInfo.boxInfo[item] if item in BoxInfo.boxInfo else default
+
 	def __getitem__(self, item):
 		return BoxInfo.boxInfo[item]
 
@@ -128,7 +131,7 @@ class SystemInformation(dict):
 		if item in BoxInfo.immutableList:
 			print(f"[SystemInfo] Error: Item '{item}' is immutable and can not be {'changed' if item in BoxInfo.boxInfo else 'added'}!")
 		else:
-			BoxInfo.boxInfo["item"] = value
+			BoxInfo.boxInfo[item] = value
 
 	def __delitem__(self, item):
 		if item in BoxInfo.immutableList:
