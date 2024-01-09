@@ -2,7 +2,7 @@ from ast import literal_eval
 from glob import glob
 from hashlib import md5
 from os import listdir, readlink
-from os.path import basename, exists, isfile, join as join, islink
+from os.path import basename, exists, isfile, join, islink
 from subprocess import PIPE, Popen
 
 from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl, eDBoxLCD, eDVBCIInterfaces, getE2Rev
