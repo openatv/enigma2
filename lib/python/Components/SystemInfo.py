@@ -2,7 +2,7 @@ from ast import literal_eval
 from glob import glob
 from hashlib import md5
 from os import listdir, readlink
-from os.path import basename, exists, isfile, join as pathjoin, islink
+from os.path import basename, exists, isfile, join as join, islink
 from subprocess import PIPE, Popen
 
 from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl, eDBoxLCD, eDVBCIInterfaces, getE2Rev
@@ -21,7 +21,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		self.boxInfo = {}
 		self.enigmaInfoList = []
 		self.enigmaConfList = []
-		lines = fileReadLines(pathjoin(resolveFilename(SCOPE_LIBDIR), "enigma.info"), source=MODULE_NAME)
+		lines = fileReadLines(join(resolveFilename(SCOPE_LIBDIR), "enigma.info"), source=MODULE_NAME)
 		if lines:
 			modified = self.checkChecksum(lines)
 			if modified:
@@ -48,7 +48,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 			print("[SystemInfo] Enigma information file data loaded into BoxInfo.")
 		else:
 			print("[SystemInfo] ERROR: Enigma information file is not available!  The system is unlikely to boot or operate correctly.")
-		lines = fileReadLines(pathjoin(resolveFilename(SCOPE_LIBDIR), "enigma.conf"), source=MODULE_NAME)
+		lines = fileReadLines(join(resolveFilename(SCOPE_LIBDIR), "enigma.conf"), source=MODULE_NAME)
 		if lines:
 			print("[SystemInfo] Enigma config override file available and data loaded into BoxInfo.")
 			self.boxInfo["overrideactive"] = True
@@ -120,10 +120,6 @@ BoxInfo = BoxInformation()
 
 
 class SystemInformation(dict):
-
-	def get(self, item, default=None):
-		return BoxInfo.boxInfo[item] if item in BoxInfo.boxInfo else default
-
 	def __getitem__(self, item):
 		return BoxInfo.boxInfo[item]
 
@@ -138,6 +134,9 @@ class SystemInformation(dict):
 			print(f"[SystemInfo] Error: Item '{item}' is immutable and can not be deleted!")
 		else:
 			del BoxInfo.boxInfo[item]
+
+	def get(self, item, default=None):
+		return BoxInfo.boxInfo[item] if item in BoxInfo.boxInfo else default
 
 
 SystemInfo = SystemInformation()
@@ -183,9 +182,9 @@ def countFrontpanelLEDs():
 
 
 def getRCFile(ext):
-	filename = resolveFilename(SCOPE_SKINS, pathjoin("hardware", f"{BoxInfo.getItem('rcname')}.{ext}"))
+	filename = resolveFilename(SCOPE_SKINS, join("hardware", f"{BoxInfo.getItem('rcname')}.{ext}"))
 	if not isfile(filename):
-		filename = resolveFilename(SCOPE_SKINS, pathjoin("hardware", f"dmm1.{ext}"))
+		filename = resolveFilename(SCOPE_SKINS, join("hardware", f"dmm1.{ext}"))
 	return filename
 
 
