@@ -275,5 +275,7 @@ class ChoiceBox(ChoiceBoxNew):
 			if not allowCancel:
 				allowCancel = allow_cancel
 		if not allowCancel:
-			allowCancel=True
+			allowCancel = True
+
 		ChoiceBoxNew.__init__(self, session, text=text, choiceList=choiceList, selection=selection, buttonList=buttonList, reorderConfig=reorderConfig, allowCancel=allowCancel, skinName=skinName, windowTitle=windowTitle)
+		self.list = self.choiceList  # Support for old skins an plugins
