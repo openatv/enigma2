@@ -1,9 +1,9 @@
 #read the comment to this file in lib/service/iservice.h !!
+from os import remove, rename
 import sys
-import os
 
 filename = sys.argv[1]
-os.rename(filename, filename + ".org")
+rename(filename, filename + ".org")
 
 source = open(filename + ".org")
 dest = open(filename, "w")
@@ -28,4 +28,4 @@ for line, str in enumerate(source):
 
 del source
 del dest
-os.remove(filename + ".org")
+remove(filename + ".org")
