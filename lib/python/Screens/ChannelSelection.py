@@ -3311,10 +3311,10 @@ class HistoryZapSelector(Screen, HelpableScreen):
 						localBegin = localtime(begin)
 						localEnd = localtime(end)
 						eventDuration = _("%s  -  %s    (%s%d Min)") % (strftime(config.usage.time.short.value, localBegin), strftime(config.usage.time.short.value, localEnd), prefix, remaining)
-			servicePicon = getPiconName(str(ServiceReference(historyItem)))
-			servicePicon = loadPNG(servicePicon) if servicePicon else ""
-			# List entries: ("", ServiceMarked, ServiceName, EventName, EventDescription, EventDuration, ServicePicon, ServiceReference)
-			historyList.append(("", index == markedItem and "\u00BB" or "", serviceName, eventName, eventDescription, eventDuration, servicePicon, historyItem))
+				servicePicon = getPiconName(str(ServiceReference(historyItem)))
+				servicePicon = loadPNG(servicePicon) if servicePicon else ""
+				# List entries: ("", ServiceMarked, ServiceName, EventName, EventDescription, EventDuration, ServicePicon, ServiceReference)
+				historyList.append(("", index == markedItem and "\u00BB" or "", serviceName, eventName, eventDescription, eventDuration, servicePicon, historyItem))
 		if True:  # Newest first.
 			historyList.reverse()
 			self.selectedItem = len(historyList) - selectedItem - 1
