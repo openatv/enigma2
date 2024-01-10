@@ -1041,7 +1041,7 @@ class ChannelSelectionBase(Screen):
 			EDIT_MOVE: _("Move Mode"),
 			EDIT_PIP: _("PiP")
 		}.get(self.function)
-		functionType = " [{functionType}]" if functionType else ""
+		functionType = f" [{functionType}]" if functionType else ""
 		self.setTitle(f"{mode} - {title}{functionType}")
 		# self.setTitle("{title} ({mode}){functionType}")
 		print(f"[ChannelSelection] buildTitle DEBUG: Setting title='{self.getTitle()}'.")
