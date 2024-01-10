@@ -1075,9 +1075,11 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			self.shiftRestore()
 
 	def cancel(self):
+		self.sms.nextFunction = None
 		self.close(None)
 
 	def save(self):
+		self.sms.nextFunction = None
 		self.close(self["text"].getText())
 
 	def localeMenu(self):
