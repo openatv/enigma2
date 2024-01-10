@@ -1079,6 +1079,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.close(None)
 
 	def save(self):
+		self.smsGotChar()
 		self.sms.nextFunction = None
 		self.close(self["text"].getText())
 
