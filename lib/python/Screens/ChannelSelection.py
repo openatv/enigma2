@@ -2588,20 +2588,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def historyZap(self, direction):
 		count = len(self.history)
 		if count > 0:
-			# markedItem = self.history_pos
 			selectedItem = self.history_pos + direction
 			if selectedItem < 0:
 				selectedItem = 0
 			elif selectedItem > count - 1:
 				selectedItem = count - 1
-			# serviceHandler = eServiceCenter.getInstance()
-			# historyInfoList = []
-			# for item in self.history:
-			# 	# info = serviceHandler.info(item[-1])
-			# 	# if info:
-			# 	# 	historyInfoList.append((info.getName(item[-1]), item[-1]))
-			# 	historyList.append(item[-1])
-			# self.session.openWithCallback(self.historyMenuClosed, HistoryZapSelector, historyList, selectedItem, mark, invert_items=True, redirect_buttons=True, wrap_around=True)
 			self.session.openWithCallback(self.historyMenuClosed, HistoryZapSelector, [x[-1] for x in self.history], markedItem=self.history_pos, selectedItem=selectedItem)
 
 	def historyMenuClosed(self, retval):
@@ -3279,9 +3270,11 @@ class HistoryZapSelector(Screen, HelpableScreen):
 			"cancel": (self.keyCancel, _("Cancel the service zap")),
 			"select": (self.keySelect, _("Select the currently highlighted service"))
 		}, prio=0, description=_("History Zap Actions"))
-		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions", "PreviousNextActions"], {
 			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
+			"previous": (self.keyUp, _("Move up a line")),
+			"next": (self.keyDown, _("Move down a line")),
 			"up": (self.keyUp, _("Move up a line")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
@@ -3315,11 +3308,8 @@ class HistoryZapSelector(Screen, HelpableScreen):
 				servicePicon = loadPNG(servicePicon) if servicePicon else ""
 				# List entries: ("", ServiceMarked, ServiceName, EventName, EventDescription, EventDuration, ServicePicon, ServiceReference)
 				historyList.append(("", index == markedItem and "\u00BB" or "", serviceName, eventName, eventDescription, eventDuration, servicePicon, historyItem))
-		if True:  # Newest first.
-			historyList.reverse()
-			self.selectedItem = len(historyList) - selectedItem - 1
-		else:
-			self.selectedItem = selectedItem
+		historyList.reverse()
+		self.selectedItem = len(historyList) - selectedItem - 1
 		self["menu"] = List(historyList)
 		self.onLayoutFinish.append(self.layoutFinished)
 
