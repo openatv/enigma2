@@ -3270,11 +3270,12 @@ class HistoryZapSelector(Screen, HelpableScreen):
 			"cancel": (self.keyCancel, _("Cancel the service zap")),
 			"select": (self.keySelect, _("Select the currently highlighted service"))
 		}, prio=0, description=_("History Zap Actions"))
+		previousNext = ("previous", "next") if config.usage.zaphistorysort.value else ("next", "previous")
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions", "PreviousNextActions"], {
 			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
-			"previous": (self.keyUp, _("Move up a line")),
-			"next": (self.keyDown, _("Move down a line")),
+			previousNext[0]: (self.keyUp, _("Move up a line")),
+			previousNext[1]: (self.keyDown, _("Move down a line")),
 			"up": (self.keyUp, _("Move up a line")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
@@ -3308,7 +3309,8 @@ class HistoryZapSelector(Screen, HelpableScreen):
 				servicePicon = loadPNG(servicePicon) if servicePicon else ""
 				# List entries: ("", ServiceMarked, ServiceName, EventName, EventDescription, EventDuration, ServicePicon, ServiceReference)
 				historyList.append(("", index == markedItem and "\u00BB" or "", serviceName, eventName, eventDescription, eventDuration, servicePicon, historyItem))
-		historyList.reverse()
+		if config.usage.zaphistorysort.value == 0:
+			historyList.reverse()
 		self.selectedItem = len(historyList) - selectedItem - 1
 		self["menu"] = List(historyList)
 		self.onLayoutFinish.append(self.layoutFinished)
