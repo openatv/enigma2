@@ -34,3 +34,43 @@ translate = ngettext("%d Digit", "%d Digits", 1) % 1
 translate = ngettext("%d Event", "%d Events", 1) % 1
 translate = ngettext("%d Pixel", "%d Pixels", 1) % 1
 translate = ngettext("%d Pixel wide", "%d Pixels wide", 1) % 1
+
+# f-string harvester workaround
+# version 0.23 of xgetext should fix this issue
+translate = _("Do you want to replace:")
+translate = _("Please wait while the feeds are reset (cleared and reloaded)...")
+translate = _("Current Status:")
+translate = _("PPanel")
+translate = _("Shellscript")
+translate = _("Hotkey Settings")
+translate = _("Panic to")
+translate = _("Zap to")
+translate = _("ButtonSetup")
+translate = _("Hotkey")
+translate = _("Are you sure to remove this entry?")
+translate = _("N/A")
+translate = _("Unknown")
+translate = _("Network storage on")
+translate = _("Client")
+translate = _("Reception Settings")
+
+translate = _("Do you want to remove:")
+translate = _("Do you want to install:")
+translate = _("Do you want to update:")
+translate = _("Do you want to replace:")
+translate = _("Reception Settings")
+
+translate = _("Configuring")
+translate = _("Downloading")
+translate = _("Installing")
+translate = _("User defined")
+translate = _("ClientIP")
+translate = _("Transcode")
+translate = _("Channel")
+translate = _("(TV)")
+translate = _("(Radio)")
+translate = _("(PiP)")
+translate = _("Tuner")
+translate = _("Current")
+
+translate = _("No log files found so debug logs are unavailable!")
