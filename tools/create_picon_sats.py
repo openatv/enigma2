@@ -7,7 +7,7 @@
 #
 # by pieterg, 2008
 
-import os
+from os import makedirs, rename, symlink
 import sys
 
 f = open(sys.argv[1]).readlines()
@@ -42,8 +42,8 @@ while len(f) > 2:
 	refstr = f"1:0:{ref[4]:X}:{ref[0]:X}:{ref[2]:X}:{ref[3]:X}:{ref[1]:X}:0:0:0"
 	refstr = refstr.replace(':', '_')
 
-	filename = name + ".png"
-	linkname = refstr + ".png"
+	filename = f"{name}.png"
+	linkname = f"{refstr}.png"
 
 	filename = filename.replace('/', '_').replace('\\', '_').replace('&', '_').replace('\'', '').replace('"', '').replace('`', '').replace('*', '_').replace('?', '_').replace(' ', '_').replace('(', '_').replace(')', '_').replace('|', '_')
 	provider = provider.replace('/', '_').replace('\\', '_').replace('&', '_').replace('\'', '').replace('"', '').replace('`', '').replace('*', '_').replace('?', '_').replace(' ', '_').replace('(', '_').replace(')', '_').replace('|', '_')
@@ -52,33 +52,33 @@ while len(f) > 2:
 
 	for i in list(range(len(filename))):
 		if ord(filename[i]) > 127:
-			filename = filename[0:i] + '_' + filename[i + 1:]
+			filename = f"{filename[0:i]}_{filename[i + 1:]}"
 
 	for i in list(range(len(provider))):
 		if ord(provider[i]) > 127:
-			provider = provider[0:i] + '_' + provider[i + 1:]
+			provider = f"{provider[0:i]}_{provider[i + 1:]}"
 
 	if sat == "65535":
 		sat = "cable"
-		filename = sat + "_" + provider + "_" + servicetype + "_" + filename
+		filename = f"{sat}_{provider}_{servicetype}_{filename}"
 	else:
-		filename = sat + "_" + provider + "_" + servicetype + "_" + filename
+		filename = f"{sat}_{provider}_{servicetype}_{filename}"
 
 		sat = sat[0:2] + '.' + sat[-1:] + 'e'
 		#TODO: west
 
 	try:
-		os.makedirs(sat + '/' + servicetype)
+		makedirs(f"{sat}/{servicetype}")
 	except:
 		pass
 
 	try:
-		os.rename(linkname, sat + '/' + servicetype + '/' + filename)
+		rename(linkname, f"{sat}/{servicetype}/{filename}")
 	except:
 		pass
 
 	try:
-		os.symlink(filename, sat + '/' + servicetype + '/' + linkname)
+		symlink(filename, f"{sat}/{servicetype}/{linkname}")
 	except:
 		pass
 
