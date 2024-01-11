@@ -74,3 +74,6 @@ translate = _("Tuner")
 translate = _("Current")
 
 translate = _("No log files found so debug logs are unavailable!")
+
+translate = _("Locale")
+translate = _("Language")

@@ -36,7 +36,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.BoundFunction import boundFunction
 from Tools.CopyFiles import copyFiles, deleteFiles, moveFiles
 from Tools.Directories import SCOPE_HDD, isPluginInstalled, resolveFilename
-from Tools.NumericalTextInput import MAP_SEARCH_UPCASE, NumericalTextInput
+from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Trashcan import TRASHCAN, TrashInfo, cleanAll, createTrashcan, getTrashcan
 
 config.movielist = ConfigSubsection()
@@ -259,7 +259,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.bouquet_mark_edit = False
 		self.feedbackTimer = None
 		self.pathselectEnabled = False
-		self.numericalTextInput = NumericalTextInput(mapping=MAP_SEARCH_UPCASE)
+		self.numericalTextInput = NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
 		self["chosenletter"] = Label("")
 		self["chosenletter"].visible = False
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
