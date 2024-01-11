@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1599,14 +1599,11 @@ msgstr "<Paskutinio laikmačio vieta>"
 msgid "<Select a device>"
 msgstr ""
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr ""
 
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Fone vyksta atnaujinimų paieška, palaukite ir po kelių minučių bandykite dar kartą."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Kableliais atskirtų plėtinių, kurie turi būti naudojami nustatant 'Mano plėtinys' 'Filtro plėtinys', sąrašas. Įveskite plėtinių pavadinimus be pagrindinio taško (.)."
@@ -2709,6 +2706,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "Automatinių pajungimų valdymas"
 
@@ -3408,9 +3408,6 @@ msgstr "CI lizdas: "
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIFS/Samba Settings"
-msgstr "CIFS/Samba parametrai"
-
 msgid "CPU"
 msgstr "Procesorius"
 
@@ -4094,6 +4091,9 @@ msgstr "Pasirinkite imtuvą konfigūravimui."
 msgid "Christmas Island"
 msgstr "Kalėdų sala"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr "Bažnyčia slavų"
 
@@ -4350,9 +4350,6 @@ msgstr "Konfigūravimas"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Konfigūracijos failas %s išsaugotas."
-
-msgid "Config file name (ok to change):"
-msgstr "Konfigūruoti failo pavadinimą (ok, kad keisti):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -4750,6 +4747,9 @@ msgstr "Konfigūruoja kuri vaizdo išvesties jungtis bus naudojama."
 msgid "Configuring"
 msgstr "Konfigūruojama"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr "Laikmačio nesuderinamumas"
 
@@ -5092,6 +5092,9 @@ msgstr "Kroatija"
 
 msgid "Croatian"
 msgstr "Kroatų"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Kron valdymas"
@@ -6304,13 +6307,6 @@ msgstr "Ar norite pakeisti \"%s\" prieigos režimą?"
 
 msgid "Do you want the upgrade guide?"
 msgstr ""
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Ar norite įdiegti ir samba klientą?\n"
-"Tai leis pajungti bendrus windows resursus šiame įrenginyje."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -7825,9 +7821,6 @@ msgstr "NEKODUOTA"
 
 msgid "FTP"
 msgstr "FTP"
-
-msgid "FTP Settings"
-msgstr "FTP parametrai"
 
 msgid "Factory Reset"
 msgstr "Gamyklinis nustatymas iš naujo"
@@ -9375,15 +9368,6 @@ msgstr "Neaktyvus"
 msgid "Inadyn"
 msgstr "InaDyn klientas"
 
-msgid "Inadyn Actions"
-msgstr "Inadyn veiksmai"
-
-msgid "Inadyn Log"
-msgstr "Inadyn žurnalas"
-
-msgid "Inadyn Setting Actions"
-msgstr "Inadyn nustatymo veiksmai"
-
 msgid "Inadyn Settings"
 msgstr "Inadyn parametrai"
 
@@ -9561,9 +9545,6 @@ msgstr "Srauto įvesties ID"
 msgid "Input channel name."
 msgstr "Įveskite kanalo pavadinimą."
 
-msgid "Input config file name:"
-msgstr "Įrašykite konfigūracijos failo pavadinimą:"
-
 msgid "Input scroll position"
 msgstr "Įvesties slinkties padėtis"
 
@@ -9607,9 +9588,6 @@ msgstr "Įdiekite plėtinius"
 
 msgid "Install extensions."
 msgstr "Įdiekite plėtinius."
-
-msgid "Install service"
-msgstr ""
 
 msgid "Install the package"
 msgstr "Įdiekite paketą"
@@ -10860,20 +10838,11 @@ msgstr "vidutinis"
 msgid "Middle - Lite image"
 msgstr "Vidutinis - Mažasis atvaizdas"
 
-msgid "Mini DLNA Actions"
-msgstr "Mini DLNA veiksmai"
-
-msgid "Mini DLNA Setting Actions"
-msgstr "Mini DLNA nustatymo veiksmai"
-
 msgid "Mini Series"
 msgstr "Mini serijos"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA žurnalas"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA parametrai"
@@ -11395,9 +11364,6 @@ msgstr "KITAS"
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFS Settings"
-msgstr "NFS parametrai"
 
 msgid "NIM"
 msgstr ""
@@ -12359,17 +12325,8 @@ msgstr "OpenSSL versija"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr "OpenVPN veiksmai"
-
-msgid "OpenVPN Settings"
-msgstr "OpenVPN parametrai"
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "OpenVpn loginis žurnalas"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "LED būsenos veikimas gilaus laukimo režimu"
@@ -13874,10 +13831,6 @@ msgstr "Pasirengę įdiegti \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Pasirengę pašalinti \"%s\" ?"
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Pasiruošę pašalinti '%s'?"
-
 msgid "Real Life"
 msgstr "Tikras gyvenimas"
 
@@ -14327,9 +14280,6 @@ msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove selected service"
-msgstr ""
-
-msgid "Remove service"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -14800,9 +14750,6 @@ msgstr "SATA"
 msgid "SATPI"
 msgstr "SATPI"
 
-msgid "SATPI Settings"
-msgstr "SATPI parametrai"
-
 msgid "SCPC optimized search range"
 msgstr "SCPC optimizuotas paieškos diapazonas"
 
@@ -14846,6 +14793,9 @@ msgstr "SRT failas"
 msgid "SSA file"
 msgstr "SSA failas"
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr "SSID"
 
@@ -14876,17 +14826,11 @@ msgstr "Šv. Pjero ir Mikelono Salos"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Šv. Vincento ir Grenadinų salos"
 
-msgid "Samba"
-msgstr "Samba"
+msgid "Samba Client"
+msgstr ""
 
-msgid "Samba Actions"
-msgstr "Sambos veiksmai"
-
-msgid "Samba Log"
-msgstr "Samba žurnalas"
-
-msgid "Samba Setup"
-msgstr "Samba valdymas"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "Kaip ir aktyvus"
@@ -15318,10 +15262,6 @@ msgstr "Jei nustatyta 'taip', info juostoje bus rodomas kanalo numeris."
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr "Pasirinkite \"Taip\", kad nežinomi failai būtų rodomi \"File Commander\" failų peržiūros priemonėje, pasirinkite \"Ne\", kad neapdorotumėte nežinomų failų."
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Pasirinkite 'Taip', kad įgalintumėte šio įrenginio nustatymų redagavimą. Pasirinkus 'Ne', įrenginių nustatymai iš naujo nustato numatytąsias reikšmes."
 
@@ -15528,6 +15468,9 @@ msgstr "Pasirinkite 4 PIP kanalus"
 
 msgid "Select Satellites"
 msgstr "Pasirinkite palydovus"
+
+msgid "Select Shares"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr "Pasirinkite emuliatorių"
@@ -15792,6 +15735,10 @@ msgstr "Pasirinkite naudotojo juostos dažnį, kuris bus priskirtas šiam imtuvu
 
 msgid "Select the Yes / True response"
 msgstr "Pasirinkite taip / Teisingą atsakymą"
+
+#, python-format
+msgid "Select the action for '%s'"
+msgstr ""
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Pasirinkite veiksmą, kurį atliksite pasibaigus laikmačiui."
@@ -16596,9 +16543,6 @@ msgstr "Nustatyti garso režimą"
 msgid "Setup Enigma2"
 msgstr "Nustatyti Enigma2"
 
-msgid "Setup FTP"
-msgstr "FTP nustatymas"
-
 msgid "Setup Harddisk"
 msgstr "Nustatyti kietą diską"
 
@@ -16614,17 +16558,11 @@ msgstr "MiniDLNA nustatymas"
 msgid "Setup Mounts"
 msgstr "Pajungimo valdymas"
 
-msgid "Setup NFS"
-msgstr "Sukonfigūruoti NFS"
-
 msgid "Setup Network Services"
 msgstr "Sukonfigūruoti tinklo paslaugas"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Sukonfigūruoti tinklo paslaugas (Samba, Ftp, NFS,...)"
-
-msgid "Setup OpenVPN"
-msgstr "Sukonfigūruoti OpenVPN"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -16634,18 +16572,6 @@ msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Sukonfigūruoti priedus"
-
-msgid "Setup SABnzbd"
-msgstr "Sukonfigūruoti SABnzbd"
-
-msgid "Setup SATPI"
-msgstr "Nustatyti SATPI"
-
-msgid "Setup Samba"
-msgstr "Sukonfigūruoti Samba"
-
-msgid "Setup Telnet"
-msgstr "Sukonfigūruoti Telnet"
 
 msgid "Setup Tuner"
 msgstr "Sukonfigūruoti imtuvą"
@@ -16761,9 +16687,6 @@ msgstr "Sukonfigūruoti palydovinę įrangą"
 msgid "Seychelles"
 msgstr "Seišeliai"
 
-msgid "Share Folders"
-msgstr "Bendrai naudoti aplankus"
-
 msgid "Share View"
 msgstr "Bendrų resursų peržiūra"
 
@@ -16772,6 +16695,9 @@ msgstr "Bendrinimai"
 
 msgid "Sharpness"
 msgstr "Aštrumas"
+
+msgid "ShellInABox"
+msgstr ""
 
 msgid "Shift"
 msgstr "Pakeisti"
@@ -17203,9 +17129,6 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Kai filmas sustabdytas, rodyti TV transliaciją"
-
-msgid "Show logfile"
-msgstr ""
 
 msgid "Show marked events"
 msgstr "Rodyti pažymėtus įvykius"
@@ -18173,11 +18096,11 @@ msgstr "Paleidimo režimas"
 msgid "Start offline decode"
 msgstr "Pradėti dekodavimą neprisijungus"
 
+msgid "Start or Stop service"
+msgstr ""
+
 msgid "Start recording current event"
 msgstr "Pradėti įrašyti dabartinį įvykį"
-
-msgid "Start service"
-msgstr ""
 
 msgid "Start teletext"
 msgstr "Įjungti teletekstą"
@@ -18305,9 +18228,6 @@ msgstr "Stabdyti įrašymą ir trinti"
 
 msgid "Stop recording now"
 msgstr "Stabdyti įrašymą dabar"
-
-msgid "Stop service"
-msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Stabdyti kanalą ir grįžti į filmų sąrašą"
@@ -18918,17 +18838,11 @@ msgstr "Teleteksto subtitrų spalva"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr "Telnet veiksmai"
-
 msgid "Telnet Interface"
 msgstr "Telnet sąsaja"
 
 msgid "Telnet Port"
 msgstr "Telnet jungtis"
-
-msgid "Telnet Settings"
-msgstr "Telneto parametrai"
 
 msgid "Telugu"
 msgstr "Telugų"
@@ -19782,9 +19696,6 @@ msgstr "Laiko nustatymo veiksmai"
 msgid "Time Shift Settings"
 msgstr "Laiko poslinkio nustatymai"
 
-msgid "Time Update in Minutes:"
-msgstr "Laiko atnaujinimas minutėmis:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20454,6 +20365,10 @@ msgstr "Nenustatyta"
 msgid "Unencrypted"
 msgstr "Nekoduotas"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "Nepalaikomas mygtukas"
 
@@ -20471,6 +20386,9 @@ msgstr "Kelių kabelių LNB"
 
 msgid "Unicable Matrix"
 msgstr "Kelių kabelių Matrix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "United Arab Emirates"
 msgstr "Jungtiniai Arabų Emiratai"
@@ -21011,9 +20929,6 @@ msgstr "VOB failas"
 
 msgid "VOD"
 msgstr "VOD parametrai"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS nuostatos"
@@ -22144,14 +22059,6 @@ msgstr "Jūsų %s %s pasileis iš naujo..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"Įdiegus paslaugą jūsų %s %s bus paleistas iš naujo\n"
-"Pasiruošę įdiegti \"%s\"?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22167,14 +22074,6 @@ msgid ""
 msgstr ""
 "Po kanalų pašalinimo, jūsų %s %s bus paleistas iš naujo.\n"
 "\n"
-"Ar norite pašalinti dabar?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
-"Pašalinus paslaugą, jūsų %s %s bus paleistas iš naujo.\n"
 "Ar norite pašalinti dabar?"
 
 msgid ""
@@ -23349,12 +23248,6 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr "uShare veiksmai"
-
-msgid "uShare Log"
-msgstr "uShare žurnalas"
-
 msgid "uShare Name"
 msgstr "uShare pavadinimas"
 
@@ -23363,9 +23256,6 @@ msgstr "uShare jugtis"
 
 msgid "uShare Selection Actions"
 msgstr "uShare pasirinkimo veiksmai"
-
-msgid "uShare Setting Actions"
-msgstr "uShare nustatymo veiksmai"
 
 msgid "uShare Settings"
 msgstr "uShare parametrai"
@@ -23459,6 +23349,138 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Fone vyksta atnaujinimų paieška, palaukite ir po kelių minučių bandykite dar kartą."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "CIFS/Samba parametrai"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Konfigūruoti failo pavadinimą (ok, kad keisti):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Ar norite įdiegti ir samba klientą?\n"
+#~ "Tai leis pajungti bendrus windows resursus šiame įrenginyje."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP parametrai"
+
+#~ msgid "Inadyn Actions"
+#~ msgstr "Inadyn veiksmai"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn žurnalas"
+
+#~ msgid "Inadyn Setting Actions"
+#~ msgstr "Inadyn nustatymo veiksmai"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Įrašykite konfigūracijos failo pavadinimą:"
+
+#~ msgid "Mini DLNA Actions"
+#~ msgstr "Mini DLNA veiksmai"
+
+#~ msgid "Mini DLNA Setting Actions"
+#~ msgstr "Mini DLNA nustatymo veiksmai"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA žurnalas"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS parametrai"
+
+#~ msgid "OpenVPN Actions"
+#~ msgstr "OpenVPN veiksmai"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "OpenVPN parametrai"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn loginis žurnalas"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Pasiruošę pašalinti '%s'?"
+
+#~ msgid "SATPI Settings"
+#~ msgstr "SATPI parametrai"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Actions"
+#~ msgstr "Sambos veiksmai"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba žurnalas"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba valdymas"
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP nustatymas"
+
+#~ msgid "Setup NFS"
+#~ msgstr "Sukonfigūruoti NFS"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "Sukonfigūruoti OpenVPN"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "Sukonfigūruoti SABnzbd"
+
+#~ msgid "Setup SATPI"
+#~ msgstr "Nustatyti SATPI"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Sukonfigūruoti Samba"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Sukonfigūruoti Telnet"
+
+#~ msgid "Share Folders"
+#~ msgstr "Bendrai naudoti aplankus"
+
+#~ msgid "Telnet Actions"
+#~ msgstr "Telnet veiksmai"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telneto parametrai"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Laiko atnaujinimas minutėmis:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "Įdiegus paslaugą jūsų %s %s bus paleistas iš naujo\n"
+#~ "Pasiruošę įdiegti \"%s\"?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service.\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Pašalinus paslaugą, jūsų %s %s bus paleistas iš naujo.\n"
+#~ "Ar norite pašalinti dabar?"
+
+#~ msgid "uShare Actions"
+#~ msgstr "uShare veiksmai"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare žurnalas"
+
+#~ msgid "uShare Setting Actions"
+#~ msgstr "uShare nustatymo veiksmai"
 
 #~ msgid "Show OScam Info"
 #~ msgstr "Rodyti 'OScam' informaciją"
@@ -23629,12 +23651,12 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Dabar vyksta įrašymas.\n"
-#~ "Ką norite daryti?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Dabar vyksta įrašymas.\n"
+"Ką norite daryti?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Paketų sąrašas"

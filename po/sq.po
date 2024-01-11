@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -1565,14 +1565,11 @@ msgstr "<Vendndodhja e kohëmatësit të fundit>"
 msgid "<Select a device>"
 msgstr ""
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr ""
 
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Një kontroll i azhornuar i sfondit është në proces, ju lutem prisni disa minuta dhe provoni përsëri."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -2673,6 +2670,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "AutoMountManager"
 
@@ -3372,9 +3372,6 @@ msgstr "Slot CI: "
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIFS/Samba Settings"
-msgstr "Cilësimet CIFS/Samba"
-
 msgid "CPU"
 msgstr "CPU"
 
@@ -4058,6 +4055,9 @@ msgstr "Zgjidhni cilin sintonizues të konfiguroni."
 msgid "Christmas Island"
 msgstr "Ishulli i Krishtlindjeve"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr "Kisha sllave"
 
@@ -4313,9 +4313,6 @@ msgstr "Konfigurimi"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Konfiguro %s të ruajtur."
-
-msgid "Config file name (ok to change):"
-msgstr "Emri i skedarit të konfigurimit (në rregull për të ndryshuar):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -4706,6 +4703,9 @@ msgstr "Konfiguron se cili lidhës i daljes video do të përdoret."
 msgid "Configuring"
 msgstr "Konfigurimi"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5048,6 +5048,9 @@ msgstr "Kroacia"
 
 msgid "Croatian"
 msgstr "kroate"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Menaxheri i Cron"
@@ -6258,13 +6261,6 @@ msgstr ""
 
 msgid "Do you want the upgrade guide?"
 msgstr ""
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Dëshironi të instaloni edhe samba klient?\n"
-"Kjo ju lejon të montoni aksionet tuaja të dritareve në këtë pajisje."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -7774,9 +7770,6 @@ msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
-
-msgid "FTP Settings"
-msgstr "Rregullimet FTP"
 
 msgid "Factory Reset"
 msgstr "Rikthim ne gjendjen e fabrikes"
@@ -9324,15 +9317,6 @@ msgstr "Joaktiv"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr "Veprimet Inadyn"
-
-msgid "Inadyn Log"
-msgstr "Inadyn Log"
-
-msgid "Inadyn Setting Actions"
-msgstr "Veprimet e vendosjes së inadyn"
-
 msgid "Inadyn Settings"
 msgstr "Inadyn Cilësimet"
 
@@ -9510,9 +9494,6 @@ msgstr ""
 msgid "Input channel name."
 msgstr ""
 
-msgid "Input config file name:"
-msgstr ""
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -9555,9 +9536,6 @@ msgid "Install extensions"
 msgstr ""
 
 msgid "Install extensions."
-msgstr ""
-
-msgid "Install service"
 msgstr ""
 
 msgid "Install the package"
@@ -10807,19 +10785,10 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 msgid "Mini Series"
 msgstr ""
 
 msgid "MiniDLNA"
-msgstr ""
-
-msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Settings"
@@ -11339,9 +11308,6 @@ msgid "NEXT"
 msgstr ""
 
 msgid "NFS"
-msgstr ""
-
-msgid "NFS Settings"
 msgstr ""
 
 msgid "NIM"
@@ -12280,16 +12246,7 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr ""
-
 msgid "OpenViX Packages"
-msgstr ""
-
-msgid "OpenVpn Log"
 msgstr ""
 
 msgid "Operating LED status in deep standby mode"
@@ -13781,10 +13738,6 @@ msgstr "Gati për të instaluar \"%s\"?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Gati për të hequr \"%s\" ?"
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Gati për të hequr '%s'?"
-
 msgid "Real Life"
 msgstr "Jeta reale"
 
@@ -14234,9 +14187,6 @@ msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove selected service"
-msgstr ""
-
-msgid "Remove service"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -14705,9 +14655,6 @@ msgstr "SATA"
 msgid "SATPI"
 msgstr "SATPi"
 
-msgid "SATPI Settings"
-msgstr ""
-
 msgid "SCPC optimized search range"
 msgstr ""
 
@@ -14751,6 +14698,9 @@ msgstr ""
 msgid "SSA file"
 msgstr ""
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -14781,16 +14731,10 @@ msgstr ""
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-msgid "Samba"
-msgstr "Samba"
-
-msgid "Samba Actions"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Log"
-msgstr ""
-
-msgid "Samba Setup"
+msgid "Samba Server"
 msgstr ""
 
 msgid "Same as in active"
@@ -15219,10 +15163,6 @@ msgstr "Nëse vendoset në 'po', numri i kanalit do të shfaqet në shiritin e i
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -15428,6 +15368,9 @@ msgid "Select Quad Channels"
 msgstr ""
 
 msgid "Select Satellites"
+msgstr ""
+
+msgid "Select Shares"
 msgstr ""
 
 msgid "Select Softcam"
@@ -15692,6 +15635,10 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr ""
 
 msgid "Select the Yes / True response"
+msgstr ""
+
+#, python-format
+msgid "Select the action for '%s'"
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -16476,9 +16423,6 @@ msgstr ""
 msgid "Setup Enigma2"
 msgstr ""
 
-msgid "Setup FTP"
-msgstr ""
-
 msgid "Setup Harddisk"
 msgstr ""
 
@@ -16494,16 +16438,10 @@ msgstr ""
 msgid "Setup Mounts"
 msgstr ""
 
-msgid "Setup NFS"
-msgstr ""
-
 msgid "Setup Network Services"
 msgstr ""
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
-msgstr ""
-
-msgid "Setup OpenVPN"
 msgstr ""
 
 msgid "Setup Plugin Browser"
@@ -16513,18 +16451,6 @@ msgid "Setup PluginBrowser. Here you can select which Plugins are showed in the 
 msgstr ""
 
 msgid "Setup Plugins"
-msgstr ""
-
-msgid "Setup SABnzbd"
-msgstr ""
-
-msgid "Setup SATPI"
-msgstr ""
-
-msgid "Setup Samba"
-msgstr ""
-
-msgid "Setup Telnet"
 msgstr ""
 
 msgid "Setup Tuner"
@@ -16641,9 +16567,6 @@ msgstr ""
 msgid "Seychelles"
 msgstr ""
 
-msgid "Share Folders"
-msgstr ""
-
 msgid "Share View"
 msgstr ""
 
@@ -16651,6 +16574,9 @@ msgid "Shares"
 msgstr ""
 
 msgid "Sharpness"
+msgstr ""
+
+msgid "ShellInABox"
 msgstr ""
 
 msgid "Shift"
@@ -17082,9 +17008,6 @@ msgid "Show last image"
 msgstr ""
 
 msgid "Show live TV when movie stopped"
-msgstr ""
-
-msgid "Show logfile"
 msgstr ""
 
 msgid "Show marked events"
@@ -18044,10 +17967,10 @@ msgstr ""
 msgid "Start offline decode"
 msgstr ""
 
-msgid "Start recording current event"
+msgid "Start or Stop service"
 msgstr ""
 
-msgid "Start service"
+msgid "Start recording current event"
 msgstr ""
 
 msgid "Start teletext"
@@ -18175,9 +18098,6 @@ msgid "Stop recording and delete"
 msgstr ""
 
 msgid "Stop recording now"
-msgstr ""
-
-msgid "Stop service"
 msgstr ""
 
 msgid "Stop service on return to movie list"
@@ -18789,17 +18709,11 @@ msgstr "Ngjyra e titrave të teleteksit"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr "Veprimet Telnet"
-
 msgid "Telnet Interface"
 msgstr "Ndërfaqja Telnet"
 
 msgid "Telnet Port"
 msgstr "Porti Telnet"
-
-msgid "Telnet Settings"
-msgstr "Cilësimet e Telnetit"
 
 msgid "Telugu"
 msgstr "telugu"
@@ -19629,9 +19543,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr ""
 
-msgid "Time Update in Minutes:"
-msgstr ""
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20298,6 +20209,10 @@ msgstr ""
 msgid "Unencrypted"
 msgstr ""
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr ""
 
@@ -20314,6 +20229,9 @@ msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Matrix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -20847,9 +20765,6 @@ msgid "VOB file"
 msgstr ""
 
 msgid "VOD"
-msgstr ""
-
-msgid "VPN"
 msgstr ""
 
 msgid "VPS Settings"
@@ -21956,14 +21871,6 @@ msgstr "%s %s juaj do të riniset..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"%s %s juaj do të riniset pas instalimit të shërbimit\n"
-"Gati për të instaluar '%s'?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -21979,14 +21886,6 @@ msgid ""
 msgstr ""
 "%s juaj %s do të riniset pas heqjes së shërbimit\n"
 "Do ta heqësh tani?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
-"%s %s juaj do të riniset pas heqjes së shërbimit.\n"
-"Dëshiron ta heqësh tani?"
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -23154,12 +23053,6 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr "uShare Veprimet"
-
-msgid "uShare Log"
-msgstr "Log uShare"
-
 msgid "uShare Name"
 msgstr "Emri uShare"
 
@@ -23168,9 +23061,6 @@ msgstr "uShare Port"
 
 msgid "uShare Selection Actions"
 msgstr "Veprimet e përzgjedhjes së uShare"
-
-msgid "uShare Setting Actions"
-msgstr "uShare duke vendosur veprime"
 
 msgid "uShare Settings"
 msgstr "Cilësimet e uShare"
@@ -23261,6 +23151,72 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Një kontroll i azhornuar i sfondit është në proces, ju lutem prisni disa minuta dhe provoni përsëri."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "Cilësimet CIFS/Samba"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Emri i skedarit të konfigurimit (në rregull për të ndryshuar):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Dëshironi të instaloni edhe samba klient?\n"
+#~ "Kjo ju lejon të montoni aksionet tuaja të dritareve në këtë pajisje."
+
+#~ msgid "FTP Settings"
+#~ msgstr "Rregullimet FTP"
+
+#~ msgid "Inadyn Actions"
+#~ msgstr "Veprimet Inadyn"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Log"
+
+#~ msgid "Inadyn Setting Actions"
+#~ msgstr "Veprimet e vendosjes së inadyn"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Gati për të hequr '%s'?"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Telnet Actions"
+#~ msgstr "Veprimet Telnet"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Cilësimet e Telnetit"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "%s %s juaj do të riniset pas instalimit të shërbimit\n"
+#~ "Gati për të instaluar '%s'?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service.\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "%s %s juaj do të riniset pas heqjes së shërbimit.\n"
+#~ "Dëshiron ta heqësh tani?"
+
+#~ msgid "uShare Actions"
+#~ msgstr "uShare Veprimet"
+
+#~ msgid "uShare Log"
+#~ msgstr "Log uShare"
+
+#~ msgid "uShare Setting Actions"
+#~ msgstr "uShare duke vendosur veprime"
 
 #, python-format
 #~ msgid "%s ( %s Cards )"
@@ -23357,12 +23313,12 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Një regjistrim është duke u ekzekutuar.\n"
-#~ "Çfarë doni të bëni?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Një regjistrim është duke u ekzekutuar.\n"
+"Çfarë doni të bëni?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Lista e buqetave"

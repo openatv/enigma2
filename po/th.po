@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -1608,14 +1608,11 @@ msgstr ""
 msgid "<Select a device>"
 msgstr ""
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr ""
 
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -2740,6 +2737,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr ""
 
@@ -3450,9 +3450,6 @@ msgstr ""
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIFS/Samba Settings"
-msgstr ""
-
 msgid "CPU"
 msgstr ""
 
@@ -4144,6 +4141,9 @@ msgstr ""
 msgid "Christmas Island"
 msgstr ""
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr ""
 
@@ -4409,9 +4409,6 @@ msgstr "กำลังตั้งค่า"
 
 #, python-format
 msgid "Config file %s saved."
-msgstr ""
-
-msgid "Config file name (ok to change):"
 msgstr ""
 
 #, fuzzy
@@ -4809,6 +4806,9 @@ msgstr ""
 msgid "Configuring"
 msgstr "กำลังตั้งค่า"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5161,6 +5161,9 @@ msgstr "ภาษาโคเอเชีย"
 
 msgid "Croatian"
 msgstr "ภาษาโคเอเชีย"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr ""
@@ -6396,11 +6399,6 @@ msgid "Do you want change '%s' access mode?"
 msgstr ""
 
 msgid "Do you want the upgrade guide?"
-msgstr ""
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
 msgstr ""
 
 msgid ""
@@ -7905,9 +7903,6 @@ msgid "FTA"
 msgstr ""
 
 msgid "FTP"
-msgstr ""
-
-msgid "FTP Settings"
 msgstr ""
 
 msgid "Factory Reset"
@@ -9495,15 +9490,6 @@ msgstr ""
 msgid "Inadyn"
 msgstr ""
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr ""
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr ""
 
@@ -9689,9 +9675,6 @@ msgstr ""
 msgid "Input channel name."
 msgstr ""
 
-msgid "Input config file name:"
-msgstr ""
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -9736,9 +9719,6 @@ msgstr ""
 
 msgid "Install extensions."
 msgstr "ติดตั้งส่วนเพิ่มเติม"
-
-msgid "Install service"
-msgstr ""
 
 msgid "Install the package"
 msgstr ""
@@ -11043,20 +11023,11 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Mini Series"
 msgstr "บริการต่างๆ"
 
 msgid "MiniDLNA"
-msgstr ""
-
-msgid "MiniDLNA Log"
 msgstr ""
 
 msgid "MiniDLNA Settings"
@@ -11608,9 +11579,6 @@ msgid "NEXT"
 msgstr "ต่อไป"
 
 msgid "NFS"
-msgstr ""
-
-msgid "NFS Settings"
 msgstr ""
 
 msgid "NIM"
@@ -12599,16 +12567,7 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr ""
-
 msgid "OpenViX Packages"
-msgstr ""
-
-msgid "OpenVpn Log"
 msgstr ""
 
 msgid "Operating LED status in deep standby mode"
@@ -14156,10 +14115,6 @@ msgstr ""
 msgid "Ready to remove \"%s\" ?"
 msgstr ""
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr ""
-
 msgid "Real Life"
 msgstr ""
 
@@ -14624,9 +14579,6 @@ msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove selected service"
-msgstr ""
-
-msgid "Remove service"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -15108,10 +15060,6 @@ msgstr ""
 msgid "SATPI"
 msgstr ""
 
-#, fuzzy
-msgid "SATPI Settings"
-msgstr "ตั้งค่า"
-
 msgid "SCPC optimized search range"
 msgstr ""
 
@@ -15156,6 +15104,9 @@ msgstr "ไฟล์ต้นฉบับ"
 msgid "SSA file"
 msgstr ""
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -15187,16 +15138,10 @@ msgstr ""
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-msgid "Samba"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Actions"
-msgstr ""
-
-msgid "Samba Log"
-msgstr ""
-
-msgid "Samba Setup"
+msgid "Samba Server"
 msgstr ""
 
 msgid "Same as in active"
@@ -15642,10 +15587,6 @@ msgstr ""
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -15854,6 +15795,9 @@ msgid "Select Quad Channels"
 msgstr ""
 
 msgid "Select Satellites"
+msgstr ""
+
+msgid "Select Shares"
 msgstr ""
 
 msgid "Select Softcam"
@@ -16124,6 +16068,10 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr ""
 
 msgid "Select the Yes / True response"
+msgstr ""
+
+#, python-format
+msgid "Select the action for '%s'"
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -16931,9 +16879,6 @@ msgstr ""
 msgid "Setup Enigma2"
 msgstr ""
 
-msgid "Setup FTP"
-msgstr ""
-
 msgid "Setup Harddisk"
 msgstr ""
 
@@ -16949,16 +16894,10 @@ msgstr ""
 msgid "Setup Mounts"
 msgstr ""
 
-msgid "Setup NFS"
-msgstr ""
-
 msgid "Setup Network Services"
 msgstr ""
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
-msgstr ""
-
-msgid "Setup OpenVPN"
 msgstr ""
 
 msgid "Setup Plugin Browser"
@@ -16970,19 +16909,6 @@ msgstr ""
 #, fuzzy
 msgid "Setup Plugins"
 msgstr "ปลั๊กอิน"
-
-msgid "Setup SABnzbd"
-msgstr ""
-
-#, fuzzy
-msgid "Setup SATPI"
-msgstr "ตั้งค่า"
-
-msgid "Setup Samba"
-msgstr ""
-
-msgid "Setup Telnet"
-msgstr ""
 
 msgid "Setup Tuner"
 msgstr ""
@@ -17100,9 +17026,6 @@ msgstr "ตั้งค่าอุปกรณ์ดาวเทียม"
 msgid "Seychelles"
 msgstr ""
 
-msgid "Share Folders"
-msgstr ""
-
 msgid "Share View"
 msgstr ""
 
@@ -17111,6 +17034,9 @@ msgstr ""
 
 msgid "Sharpness"
 msgstr "ความคม"
+
+msgid "ShellInABox"
+msgstr ""
 
 msgid "Shift"
 msgstr ""
@@ -17562,9 +17488,6 @@ msgid "Show last image"
 msgstr ""
 
 msgid "Show live TV when movie stopped"
-msgstr ""
-
-msgid "Show logfile"
 msgstr ""
 
 #, fuzzy
@@ -18567,10 +18490,10 @@ msgstr "เวลาเริ่ม"
 msgid "Start offline decode"
 msgstr ""
 
-msgid "Start recording current event"
+msgid "Start or Stop service"
 msgstr ""
 
-msgid "Start service"
+msgid "Start recording current event"
 msgstr ""
 
 msgid "Start teletext"
@@ -18706,9 +18629,6 @@ msgstr ""
 #, fuzzy
 msgid "Stop recording now"
 msgstr "กำลังถูกบันทึก"
-
-msgid "Stop service"
-msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr ""
@@ -19341,16 +19261,10 @@ msgstr ""
 msgid "Telnet"
 msgstr ""
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr ""
 
 msgid "Telnet Port"
-msgstr ""
-
-msgid "Telnet Settings"
 msgstr ""
 
 msgid "Telugu"
@@ -20164,9 +20078,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr ""
 
-msgid "Time Update in Minutes:"
-msgstr ""
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20864,6 +20775,10 @@ msgstr ""
 msgid "Unencrypted"
 msgstr ""
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr ""
 
@@ -20881,6 +20796,9 @@ msgid "Unicable LNB"
 msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -21422,9 +21340,6 @@ msgid "VOB file"
 msgstr ""
 
 msgid "VOD"
-msgstr ""
-
-msgid "VPN"
 msgstr ""
 
 msgid "VPS Settings"
@@ -22544,12 +22459,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22559,12 +22468,6 @@ msgstr ""
 msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
 msgstr ""
 
 msgid ""
@@ -23742,12 +23645,6 @@ msgstr ""
 msgid "uShare"
 msgstr ""
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr ""
-
 msgid "uShare Name"
 msgstr ""
 
@@ -23755,9 +23652,6 @@ msgid "uShare Port"
 msgstr ""
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -23855,6 +23749,14 @@ msgstr "ใช่ (เก็บฟีดนี้ไว้)"
 msgid "®"
 msgstr ""
 
+#, fuzzy
+#~ msgid "SATPI Settings"
+#~ msgstr "ตั้งค่า"
+
+#, fuzzy
+#~ msgid "Setup SATPI"
+#~ msgstr "ตั้งค่า"
+
 #, fuzzy, python-format
 #~ msgid "%s ( %s Cards )"
 #~ msgstr "%s (%s)\n"
@@ -23874,12 +23776,12 @@ msgstr ""
 #~ msgid "-24"
 #~ msgstr "2"
 
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "กำลังบันทึกรายการอยู่\n"
-#~ "ท่านต้องการที่จะทำอะไร?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"กำลังบันทึกรายการอยู่\n"
+"ท่านต้องการที่จะทำอะไร?"
 
 #, fuzzy
 #~ msgid "BouquetList"

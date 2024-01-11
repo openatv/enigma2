@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1572,14 +1572,11 @@ msgstr "<Viimase taimeri asukoht>"
 msgid "<Select a device>"
 msgstr ""
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr ""
 
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -2700,6 +2697,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 #
 msgid "AutoMountManager"
 msgstr "Automaatne haakimine"
@@ -3411,9 +3411,6 @@ msgstr "CI pesa: "
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIFS/Samba Settings"
-msgstr "CIFS/Samba seaded"
-
 msgid "CPU"
 msgstr "CPU"
 
@@ -4107,6 +4104,9 @@ msgstr "Vali seadistatav tuuner."
 msgid "Christmas Island"
 msgstr "Jõulusaar"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr ""
 
@@ -4368,9 +4368,6 @@ msgstr "Seadistamine"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Seadistusfail %s talletati."
-
-msgid "Config file name (ok to change):"
-msgstr "Seadistusfaili nimi (muutmiseks vajuta OK):"
 
 #, fuzzy
 msgctxt "Abbreviation of 'Configurable'"
@@ -4769,6 +4766,9 @@ msgstr "See valik määrab, millist ühenduspesa videoväljund kasutab."
 msgid "Configuring"
 msgstr "Seadistamine"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5121,6 +5121,9 @@ msgstr "Horvaatia"
 
 msgid "Croatian"
 msgstr "Horvaadi"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Cron haldur"
@@ -6357,13 +6360,6 @@ msgstr ""
 
 msgid "Do you want the upgrade guide?"
 msgstr ""
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Kas paigaldada ka samba klient?\n"
-"Siis saab haakida ka windowsi jaod."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -7905,9 +7901,6 @@ msgstr "Vabakanal"
 
 msgid "FTP"
 msgstr "FTP"
-
-msgid "FTP Settings"
-msgstr "FTP seaded"
 
 msgid "Factory Reset"
 msgstr ""
@@ -9500,15 +9493,6 @@ msgstr "Väljas"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr "Inadyn logi"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr "Inadyn seaded"
 
@@ -9696,9 +9680,6 @@ msgstr "Sisendvoo ID"
 msgid "Input channel name."
 msgstr "Sisesta  kanali nimi."
 
-msgid "Input config file name:"
-msgstr "Sisesta seadistusfaili nimi:"
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -9742,9 +9723,6 @@ msgstr "Paigalda laiendusi"
 
 msgid "Install extensions."
 msgstr "Paigalda laiendusi."
-
-msgid "Install service"
-msgstr ""
 
 msgid "Install the package"
 msgstr ""
@@ -11054,21 +11032,12 @@ msgstr "Keskel"
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Mini Series"
 msgstr "Kõik kanalid"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA logi"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA seaded"
@@ -11621,9 +11590,6 @@ msgstr "JÄRGMINE"
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFS Settings"
-msgstr "NFS seaded"
 
 msgid "NIM"
 msgstr ""
@@ -12631,17 +12597,8 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr "OpenVPN seaded"
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "OpenVpn logi"
 
 #, fuzzy
 msgid "Operating LED status in deep standby mode"
@@ -14200,10 +14157,6 @@ msgstr "Kas paigaldada \"%s\"?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Kas eemaldada \"%s\"?"
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Kas eemaldada \"%s\"?"
-
 msgid "Real Life"
 msgstr ""
 
@@ -14672,9 +14625,6 @@ msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove selected service"
-msgstr ""
-
-msgid "Remove service"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -15156,10 +15106,6 @@ msgstr "SATA"
 msgid "SATPI"
 msgstr ""
 
-#, fuzzy
-msgid "SATPI Settings"
-msgstr "AFP seaded"
-
 msgid "SCPC optimized search range"
 msgstr "SCPC optimeeritud otsingu vahemik"
 
@@ -15205,6 +15151,9 @@ msgstr "Tavaline fail"
 msgid "SSA file"
 msgstr ""
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -15237,17 +15186,11 @@ msgstr "Saint Pierre ja Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent ja Grenadiinid"
 
-msgid "Samba"
-msgstr "Samba"
-
-msgid "Samba Actions"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Log"
-msgstr "Samba logi"
-
-msgid "Samba Setup"
-msgstr "Samba seaded"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "Võrdne seiskamisajaga"
@@ -15689,10 +15632,6 @@ msgstr "Kui lubatud, kuvatakse inforibal kanali number."
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -15902,6 +15841,9 @@ msgstr "Vali Quad PiP kanalid"
 
 msgid "Select Satellites"
 msgstr "Vali satelliidid"
+
+msgid "Select Shares"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr ""
@@ -16170,6 +16112,10 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr ""
 
 msgid "Select the Yes / True response"
+msgstr ""
+
+#, python-format
+msgid "Select the action for '%s'"
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -16990,9 +16936,6 @@ msgstr "Seadista helirežiim"
 msgid "Setup Enigma2"
 msgstr "Enigma2 seadistamine"
 
-msgid "Setup FTP"
-msgstr "FTP seaded"
-
 msgid "Setup Harddisk"
 msgstr "Seadista kõvaketas"
 
@@ -17008,17 +16951,11 @@ msgstr "MiniDLNA seaded"
 msgid "Setup Mounts"
 msgstr "Seadista haakepunktid"
 
-msgid "Setup NFS"
-msgstr "NFS seaded"
-
 msgid "Setup Network Services"
 msgstr "Seadista võrguteenused"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Seadista võrguteenused (Samba, Ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "OpenVPN seaded"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -17028,19 +16965,6 @@ msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Halda pluginaid"
-
-msgid "Setup SABnzbd"
-msgstr "SABnzbd seaded"
-
-#, fuzzy
-msgid "Setup SATPI"
-msgstr "AFP seaded"
-
-msgid "Setup Samba"
-msgstr "Samba seaded"
-
-msgid "Setup Telnet"
-msgstr "Telneti seaded"
 
 msgid "Setup Tuner"
 msgstr "Seadista tuuner"
@@ -17163,9 +17087,6 @@ msgstr "Seadista satelliidivarustus"
 msgid "Seychelles"
 msgstr "Seišellid"
 
-msgid "Share Folders"
-msgstr "Jagatud kataloogid"
-
 msgid "Share View"
 msgstr "Jao vaade"
 
@@ -17174,6 +17095,9 @@ msgstr "Jaod"
 
 msgid "Sharpness"
 msgstr "Teravus"
+
+msgid "ShellInABox"
+msgstr ""
 
 msgid "Shift"
 msgstr ""
@@ -17622,9 +17546,6 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Filmi lõppedes tagasi telekanalile"
-
-msgid "Show logfile"
-msgstr ""
 
 msgid "Show marked events"
 msgstr "Kuva märgitud saated"
@@ -18620,10 +18541,10 @@ msgstr "Käivitumine"
 msgid "Start offline decode"
 msgstr "Käivita võrguta dekodeerimine"
 
-msgid "Start recording current event"
+msgid "Start or Stop service"
 msgstr ""
 
-msgid "Start service"
+msgid "Start recording current event"
 msgstr ""
 
 msgid "Start teletext"
@@ -18754,9 +18675,6 @@ msgstr "Peata salvestamine ja kustuta"
 
 msgid "Stop recording now"
 msgstr "Peata salvestamine kohe"
-
-msgid "Stop service"
-msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Lõpeta kanali edastus filmilisti naasmisel"
@@ -19394,17 +19312,11 @@ msgstr "Teletekst: subtiitrite värv"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr "Telneti kasutajaliides"
 
 msgid "Telnet Port"
 msgstr "Telneti port"
-
-msgid "Telnet Settings"
-msgstr "Telneti seaded"
 
 msgid "Telugu"
 msgstr ""
@@ -20270,9 +20182,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr "Ajanihke seaded"
 
-msgid "Time Update in Minutes:"
-msgstr "Kellaaja uuendamine (min):"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20973,6 +20882,10 @@ msgstr "Määratlemata"
 msgid "Unencrypted"
 msgstr "Koodivaba"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr "Käsitlematu võti"
@@ -20991,6 +20904,9 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "United Arab Emirates"
 msgstr "Araabia Ühendemiraadid"
@@ -21545,9 +21461,6 @@ msgstr ""
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -22691,14 +22604,6 @@ msgstr "%s %s taaskäivitub"
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"Pärast teenuse paigaldamist %s %s taaskäivitub\n"
-"Kas paigaldada \"%s\"?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22714,12 +22619,6 @@ msgid ""
 msgstr ""
 "%s %s taaskäivitub pärast teenuse eemaldamist\n"
 "Kas eemaldada kohe?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -23927,12 +23826,6 @@ msgstr "Turbo"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr "uShare logi"
-
 msgid "uShare Name"
 msgstr "uShare nimi"
 
@@ -23940,9 +23833,6 @@ msgid "uShare Port"
 msgstr "uShare port"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -24034,6 +23924,105 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "CIFS/Samba seaded"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Seadistusfaili nimi (muutmiseks vajuta OK):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Kas paigaldada ka samba klient?\n"
+#~ "Siis saab haakida ka windowsi jaod."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP seaded"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn logi"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Sisesta seadistusfaili nimi:"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA logi"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS seaded"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "OpenVPN seaded"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn logi"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Kas eemaldada \"%s\"?"
+
+#, fuzzy
+#~ msgid "SATPI Settings"
+#~ msgstr "AFP seaded"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba logi"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba seaded"
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP seaded"
+
+#~ msgid "Setup NFS"
+#~ msgstr "NFS seaded"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "OpenVPN seaded"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "SABnzbd seaded"
+
+#, fuzzy
+#~ msgid "Setup SATPI"
+#~ msgstr "AFP seaded"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Samba seaded"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Telneti seaded"
+
+#~ msgid "Share Folders"
+#~ msgstr "Jagatud kataloogid"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telneti seaded"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Kellaaja uuendamine (min):"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "Pärast teenuse paigaldamist %s %s taaskäivitub\n"
+#~ "Kas paigaldada \"%s\"?"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare logi"
 
 #, python-format
 #~ msgid "%s ( %s Cards )"
@@ -24172,12 +24161,12 @@ msgstr ""
 #~ msgid "-24"
 #~ msgstr "-24"
 
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Toimub salvestamine.\n"
-#~ "Mida tuleks teha?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Toimub salvestamine.\n"
+"Mida tuleks teha?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Lemmiknimekirjad"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1569,14 +1569,11 @@ msgstr "<Vị trí hẹn giờ cuối>"
 msgid "<Select a device>"
 msgstr ""
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr ""
 
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Việc kiểm tra cập nhật nền đang được tiến hành, vui lòng đợi vài phút và thử lại."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -2688,6 +2685,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "Trình quản lý tự động"
 
@@ -3391,9 +3391,6 @@ msgstr "Khe CI: "
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIFS/Samba Settings"
-msgstr "Cài đặt CIFS / Samba"
-
 msgid "CPU"
 msgstr "CPU"
 
@@ -4082,6 +4079,9 @@ msgstr "Chọn bộ chỉnh nào để cấu hình."
 msgid "Christmas Island"
 msgstr "Đảo giáng sinh"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr ""
 
@@ -4339,9 +4339,6 @@ msgstr "Cấu hình"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Cấu hình%s được lưu."
-
-msgid "Config file name (ok to change):"
-msgstr "Tên tệp cấu hình (ok để thay đổi):"
 
 #, fuzzy
 msgctxt "Abbreviation of 'Configurable'"
@@ -4735,6 +4732,9 @@ msgstr "Định cấu hình trình kết nối đầu ra video nào sẽ đượ
 msgid "Configuring"
 msgstr "Cấu hình"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5085,6 +5085,9 @@ msgstr "Croatia"
 
 msgid "Croatian"
 msgstr "Tiếng Croatia"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Quản lý cron"
@@ -6310,13 +6313,6 @@ msgstr ""
 
 msgid "Do you want the upgrade guide?"
 msgstr ""
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Bạn có muốn cài đặt samba client không?\n"
-"Điều này cho phép bạn gắn kết chia sẻ cửa sổ của mình trên thiết bị này."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -7840,9 +7836,6 @@ msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
-
-msgid "FTP Settings"
-msgstr "Thiết lập FTP"
 
 msgid "Factory Reset"
 msgstr ""
@@ -9419,15 +9412,6 @@ msgstr "Không hoạt động"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr "Nhật ký đăng nhập"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr "Cài đặt"
 
@@ -9611,9 +9595,6 @@ msgstr "ID luồng đầu vào"
 msgid "Input channel name."
 msgstr "Tên kênh đầu vào."
 
-msgid "Input config file name:"
-msgstr "Tên tập tin cấu hình đầu vào:"
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -9657,9 +9638,6 @@ msgstr "Cài đặt tiện ích mở rộng"
 
 msgid "Install extensions."
 msgstr "Cài đặt tiện ích mở rộng."
-
-msgid "Install service"
-msgstr ""
 
 msgid "Install the package"
 msgstr ""
@@ -10938,21 +10916,12 @@ msgstr "ở giữa"
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Mini Series"
 msgstr "Tất cả các nhà cung cấp dịch vụ"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "Nhật ký MiniDLNA"
 
 msgid "MiniDLNA Settings"
 msgstr "Thiết lập MiniDLNA"
@@ -11500,9 +11469,6 @@ msgstr "KẾ TIẾP"
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFS Settings"
-msgstr "Thiết lập NFS"
 
 msgid "NIM"
 msgstr ""
@@ -12488,17 +12454,8 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr "Cài đặt OpenVPN"
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "Nhật ký OpenVpn"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Trạng thái đèn LED hoạt động ở chế độ chờ sâu"
@@ -14016,10 +13973,6 @@ msgstr "Sẵn sàng để cài đặt \"% s\"?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Sẵn sàng xóa \"% s\"?"
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Sẵn sàng để loại bỏ% s?"
-
 msgid "Real Life"
 msgstr ""
 
@@ -14480,9 +14433,6 @@ msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove selected service"
-msgstr ""
-
-msgid "Remove service"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -14956,10 +14906,6 @@ msgstr "SATA"
 msgid "SATPI"
 msgstr ""
 
-#, fuzzy
-msgid "SATPI Settings"
-msgstr "Cài đặt AFP"
-
 msgid "SCPC optimized search range"
 msgstr "Phạm vi tìm kiếm được tối ưu hóa SCPC"
 
@@ -15004,6 +14950,9 @@ msgstr "Tập tin thường xuyên"
 msgid "SSA file"
 msgstr ""
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -15035,17 +14984,11 @@ msgstr "Tthánh pierre và miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Thánh vincent và Grenadines"
 
-msgid "Samba"
-msgstr "Samba"
-
-msgid "Samba Actions"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Log"
-msgstr "Nhật ký Samba"
-
-msgid "Samba Setup"
-msgstr "Cài đặt Samba"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "Tương tự như trong hoạt động"
@@ -15480,10 +15423,6 @@ msgstr "Nếu được đặt thành 'có', số kênh sẽ được hiển th�
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -15690,6 +15629,9 @@ msgstr "Chọn kênh Quad"
 
 msgid "Select Satellites"
 msgstr "Chọn vệ tinh"
+
+msgid "Select Shares"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr ""
@@ -15953,6 +15895,10 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr "Chọn tần số  người dùng sẽ được chỉ định cho bộ chỉnh này. Đây là tần số mà công tắc SCR sử dụng để truyền bộ phát đáp được yêu cầu đến bộ chỉnh tần số."
 
 msgid "Select the Yes / True response"
+msgstr ""
+
+#, python-format
+msgid "Select the action for '%s'"
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -16767,9 +16713,6 @@ msgstr "Thiết lập Audiomode"
 msgid "Setup Enigma2"
 msgstr "Cài đặt Enigma2"
 
-msgid "Setup FTP"
-msgstr "Thiết lập FTP"
-
 msgid "Setup Harddisk"
 msgstr "Cài đặt đĩa cứng"
 
@@ -16785,17 +16728,11 @@ msgstr "Cài đặt MiniDLNA"
 msgid "Setup Mounts"
 msgstr "Cài đặt gắn kết"
 
-msgid "Setup NFS"
-msgstr "Thiết lập NFS"
-
 msgid "Setup Network Services"
 msgstr "Cài đặt dịch vụ mạng"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Thiết lập dịch vụ mạng (Samba, Ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "Thiết lập OpenVPN"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -16805,19 +16742,6 @@ msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Cài đặt plugin"
-
-msgid "Setup SABnzbd"
-msgstr "Thiết lập SABnzbd"
-
-#, fuzzy
-msgid "Setup SATPI"
-msgstr "Thiết lập AFP"
-
-msgid "Setup Samba"
-msgstr "Cài đặt Samba"
-
-msgid "Setup Telnet"
-msgstr "Cài đặt Telnet"
 
 msgid "Setup Tuner"
 msgstr "Cài đặt bộ chỉnh"
@@ -16933,9 +16857,6 @@ msgstr "Cài đặt thiết bị vệ tinh của bạn"
 msgid "Seychelles"
 msgstr "Đảo Seychelles"
 
-msgid "Share Folders"
-msgstr "Chia sẻ thư mục"
-
 msgid "Share View"
 msgstr "Chia sẻ xem"
 
@@ -16944,6 +16865,9 @@ msgstr "Chia sẻ"
 
 msgid "Sharpness"
 msgstr "Độ sắc nét"
+
+msgid "ShellInABox"
+msgstr ""
 
 msgid "Shift"
 msgstr "Ca"
@@ -17384,9 +17308,6 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Hiển thị truyền hình trực tiếp khi phim dừng"
-
-msgid "Show logfile"
-msgstr ""
 
 msgid "Show marked events"
 msgstr "Hiển thị các sự kiện được đánh dấu"
@@ -18368,10 +18289,10 @@ msgstr "Chế độ bắt đầu"
 msgid "Start offline decode"
 msgstr "Bắt đầu giải mã ngoại tuyến"
 
-msgid "Start recording current event"
+msgid "Start or Stop service"
 msgstr ""
 
-msgid "Start service"
+msgid "Start recording current event"
 msgstr ""
 
 msgid "Start teletext"
@@ -18501,9 +18422,6 @@ msgstr "Dừng ghi và xóa"
 
 msgid "Stop recording now"
 msgstr "Dừng ghi âm ngay"
-
-msgid "Stop service"
-msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Dừng dịch vụ khi quay lại danh sách phim"
@@ -19131,17 +19049,11 @@ msgstr "Màu phụ đề Teletext"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr "Giao diện Telnet"
 
 msgid "Telnet Port"
 msgstr "Cổng Telnet"
-
-msgid "Telnet Settings"
-msgstr "Thiết lập Telnet"
 
 msgid "Telugu"
 msgstr ""
@@ -19989,9 +19901,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr "Cài đặt thời gian"
 
-msgid "Time Update in Minutes:"
-msgstr "Cập nhật thời gian trong vài phút:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20677,6 +20586,10 @@ msgstr "Không xác định"
 msgid "Unencrypted"
 msgstr "Không được mã hóa"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "Không khóa"
 
@@ -20694,6 +20607,9 @@ msgstr "Uni cápLNB"
 
 msgid "Unicable Matrix"
 msgstr "Uni cáp Matrix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "United Arab Emirates"
 msgstr "Các Tiểu Vương Quốc Ả Rập Thống Nhất"
@@ -21239,9 +21155,6 @@ msgstr ""
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -22362,14 +22275,6 @@ msgstr "Của bạn % s% s sẽ khởi động lại ..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"Của bạn % s% s sẽ được khởi động lại sau khi cài đặt dịch vụ\n"
-"Sẵn sàng để cài đặt % s?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22383,12 +22288,6 @@ msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr "Của % s% s bạn sẽ được khởi động lại sau khi xóa dịch vụ?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -23587,12 +23486,6 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr "nhật ký uShare"
-
 msgid "uShare Name"
 msgstr "tên uShare"
 
@@ -23600,9 +23493,6 @@ msgid "uShare Port"
 msgstr "cổng uShare"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -23693,6 +23583,105 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Việc kiểm tra cập nhật nền đang được tiến hành, vui lòng đợi vài phút và thử lại."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "Cài đặt CIFS / Samba"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Tên tệp cấu hình (ok để thay đổi):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Bạn có muốn cài đặt samba client không?\n"
+#~ "Điều này cho phép bạn gắn kết chia sẻ cửa sổ của mình trên thiết bị này."
+
+#~ msgid "FTP Settings"
+#~ msgstr "Thiết lập FTP"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Nhật ký đăng nhập"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Tên tập tin cấu hình đầu vào:"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "Nhật ký MiniDLNA"
+
+#~ msgid "NFS Settings"
+#~ msgstr "Thiết lập NFS"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "Cài đặt OpenVPN"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "Nhật ký OpenVpn"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Sẵn sàng để loại bỏ% s?"
+
+#, fuzzy
+#~ msgid "SATPI Settings"
+#~ msgstr "Cài đặt AFP"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Log"
+#~ msgstr "Nhật ký Samba"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Cài đặt Samba"
+
+#~ msgid "Setup FTP"
+#~ msgstr "Thiết lập FTP"
+
+#~ msgid "Setup NFS"
+#~ msgstr "Thiết lập NFS"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "Thiết lập OpenVPN"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "Thiết lập SABnzbd"
+
+#, fuzzy
+#~ msgid "Setup SATPI"
+#~ msgstr "Thiết lập AFP"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Cài đặt Samba"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Cài đặt Telnet"
+
+#~ msgid "Share Folders"
+#~ msgstr "Chia sẻ thư mục"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Thiết lập Telnet"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Cập nhật thời gian trong vài phút:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "Của bạn % s% s sẽ được khởi động lại sau khi cài đặt dịch vụ\n"
+#~ "Sẵn sàng để cài đặt % s?"
+
+#~ msgid "uShare Log"
+#~ msgstr "nhật ký uShare"
 
 #, python-format
 #~ msgid "%s ( %s Cards )"
@@ -23834,12 +23823,12 @@ msgstr ""
 #~ msgid "-24"
 #~ msgstr "-24"
 
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Một bản ghi hiện đang chạy.\n"
-#~ "Bạn muốn làm gì?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Một bản ghi hiện đang chạy.\n"
+"Bạn muốn làm gì?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Danh sách kênh"

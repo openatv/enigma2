@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1581,15 +1581,12 @@ msgstr "<Son zamanlayıcı konumu>"
 msgid "<Select a device>"
 msgstr "Giriş aygıtı seç"
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr ""
 
 #
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "'Uzantıyı filtrele'nin 'Uzantım' ayarı için kullanılacak uzantıların virgülle ayrılmış bir listesi. Uzantı adlarını başlarında nokta (.) olmadan girin."
@@ -2761,6 +2758,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "Otomatik Montaj Yöneticisi"
 
@@ -3492,9 +3492,6 @@ msgstr "CI yuvası: "
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIFS/Samba Settings"
-msgstr "Samba Kurulumu"
-
 msgid "CPU"
 msgstr "CPU"
 
@@ -4205,6 +4202,9 @@ msgstr "Yapılandırılacak tuneri seçin."
 msgid "Christmas Island"
 msgstr "Noel Adası"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr "Kilise Slavcası"
 
@@ -4480,9 +4480,6 @@ msgstr "Yapılandırma"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Kurulum dosyası %s saklandı."
-
-msgid "Config file name (ok to change):"
-msgstr "Yapılandırma dosya adı (değiştirmek için tamam):"
 
 #
 msgctxt "Abbreviation of 'Configurable'"
@@ -4887,6 +4884,9 @@ msgstr "Hangi video çıkış konektörü kullanılacağını belirleyin."
 msgid "Configuring"
 msgstr "Yapılandırılıyor"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr "ConflictTimer Eylemleri"
 
@@ -5245,6 +5245,9 @@ msgstr "Hırvatistan"
 #
 msgid "Croatian"
 msgstr "Hırvatça"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Cron Yöneticisi"
@@ -6522,13 +6525,6 @@ msgstr "'%s' erişim modunu değiştirmek istiyor musunuz?"
 
 msgid "Do you want the upgrade guide?"
 msgstr "Yükseltme kılavuzunu ister misiniz?"
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Ayrıca samba istemci yüklemek istiyor musunuz?\n"
-"Yani bu cihazda windows paylaşımlarını bağlamak için izin verir."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -8118,9 +8114,6 @@ msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
-
-msgid "FTP Settings"
-msgstr "FTP Kurulum"
 
 msgid "Factory Reset"
 msgstr "Fabrika ayarları"
@@ -9742,15 +9735,6 @@ msgstr "Etkisiz"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr "Inadyn Eylemleri"
-
-msgid "Inadyn Log"
-msgstr "Inadyn Günlüğü"
-
-msgid "Inadyn Setting Actions"
-msgstr "Inadyn Ayar Eylemleri"
-
 msgid "Inadyn Settings"
 msgstr "Inadyn Kurulumu"
 
@@ -9938,9 +9922,6 @@ msgstr "Giriş Akışı Kimliği"
 msgid "Input channel name."
 msgstr "Giriş kanalı adı."
 
-msgid "Input config file name:"
-msgstr "Giriş yapılandırma dosyası adı:"
-
 msgid "Input scroll position"
 msgstr "Giriş kaydırma konumu"
 
@@ -9990,9 +9971,6 @@ msgstr "Uzantıları yükle"
 #
 msgid "Install extensions."
 msgstr "Eklentileri yükle."
-
-msgid "Install service"
-msgstr ""
 
 msgid "Install the package"
 msgstr "Paketi yükleyin"
@@ -11311,21 +11289,12 @@ msgstr "Orta"
 msgid "Middle - Lite image"
 msgstr "Orta - Basit resim"
 
-msgid "Mini DLNA Actions"
-msgstr "Mini DLNA Eylemleri"
-
-msgid "Mini DLNA Setting Actions"
-msgstr "Mini DLNA Ayar İşlemleri"
-
 #
 msgid "Mini Series"
 msgstr "Mini dizi"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Günlüğü"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA Kurulumu"
@@ -11885,9 +11854,6 @@ msgstr "SONRA"
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFS Settings"
-msgstr "NFS Yapılandırma"
 
 msgid "NIM"
 msgstr "NIM"
@@ -12918,17 +12884,8 @@ msgstr "OpenSSL sürümü"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr "OpenVPN Eylemleri"
-
-msgid "OpenVPN Settings"
-msgstr "VPN Kurulumu Aç"
-
 msgid "OpenViX Packages"
 msgstr "OpenViX Paketleri"
-
-msgid "OpenVpn Log"
-msgstr "OpenVPN Günlüğü"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Derin bekleme modunda çalışma LED durumu"
@@ -14529,10 +14486,6 @@ msgstr "Kurmaya hazır mısınız \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Kaldırmaya hazır mısınız \"%s\" ?"
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Kaldırmaya hazır mısınız \"%s\" ?"
-
 msgid "Real Life"
 msgstr "Gerçek hayat"
 
@@ -15014,9 +14967,6 @@ msgstr "Eklentileri kaldır ..."
 
 msgid "Remove selected service"
 msgstr "Seçili hizmeti kaldırın"
-
-msgid "Remove service"
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15522,9 +15472,6 @@ msgstr "SATA"
 msgid "SATPI"
 msgstr "SATPI"
 
-msgid "SATPI Settings"
-msgstr "SATPI Ayarları"
-
 msgid "SCPC optimized search range"
 msgstr "SCPC optimize edilmiş arama aralığı"
 
@@ -15569,6 +15516,9 @@ msgstr "SRT dosyası"
 msgid "SSA file"
 msgstr "SSA dosyası"
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr "SSID"
 
@@ -15601,17 +15551,11 @@ msgstr "Saint Pierre ve Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent ve Grenadinler"
 
-msgid "Samba"
-msgstr "Samba"
+msgid "Samba Client"
+msgstr ""
 
-msgid "Samba Actions"
-msgstr "Samba Eylemleri"
-
-msgid "Samba Log"
-msgstr "Samba Günlüğü"
-
-msgid "Samba Setup"
-msgstr "Samba Kurulumu"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "Aktif ile aynı"
@@ -16072,10 +16016,6 @@ msgstr "Eğer 'evet' seçilirse bilgi çubuğunda kanal numarası görülür."
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr "Bilinmeyen dosyaları File Commander dosya görüntüleyicisinde görüntülemek için 'Evet'i seçin, bilinmeyen dosyaları işlememek için 'Hayır'ı seçin."
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Bu cihazın ayarlarının düzenlenmesini etkinleştirmek için 'Evet'i seçin. 'Hayır'ın seçilmesi, cihaz ayarlarını varsayılan değerlerine sıfırlar."
 
@@ -16284,6 +16224,9 @@ msgstr "Dört Kanal Seç"
 
 msgid "Select Satellites"
 msgstr "Uyduları seç"
+
+msgid "Select Shares"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr "Softcam'i seçin"
@@ -16559,6 +16502,10 @@ msgstr "Bu alıcıya atanacak Kullanıcı Bandı frekansını seçin. Bu, SCR an
 
 msgid "Select the Yes / True response"
 msgstr "Evet / Doğru yanıtını seçin"
+
+#, python-format
+msgid "Select the action for '%s'"
+msgstr ""
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Zamanlayıcı sona erdiğinde gerçekleştirilecek eylemi seçin."
@@ -17402,9 +17349,6 @@ msgstr "Audiomode'u Kur"
 msgid "Setup Enigma2"
 msgstr "Kurulum Enigma2"
 
-msgid "Setup FTP"
-msgstr "FTP Kur"
-
 msgid "Setup Harddisk"
 msgstr "Kurulum Sabit Diski"
 
@@ -17420,17 +17364,11 @@ msgstr "Kurulum MiniDLNA"
 msgid "Setup Mounts"
 msgstr "Kurulum Bağlantıları"
 
-msgid "Setup NFS"
-msgstr "Kurulum NFS"
-
 msgid "Setup Network Services"
 msgstr "Ağ Hizmetlerini Kur"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Ağ Hizmetlerini Ayarlama (Samba, Ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "OpenVPN Kurulumu"
 
 msgid "Setup Plugin Browser"
 msgstr "Eklenti Tarayıcısını Kurun"
@@ -17440,18 +17378,6 @@ msgstr "Eklenti Tarayıcısını Ayarla. Burada PluginBrowser'da hangi Eklentile
 
 msgid "Setup Plugins"
 msgstr "Kurulum Eklentileri"
-
-msgid "Setup SABnzbd"
-msgstr "Kurulum SABnzbd"
-
-msgid "Setup SATPI"
-msgstr "SATPI Kurulumu"
-
-msgid "Setup Samba"
-msgstr "Samba Kurulumu"
-
-msgid "Setup Telnet"
-msgstr "Telnet Kurulumu"
 
 msgid "Setup Tuner"
 msgstr "Tuner Kurulumu"
@@ -17567,9 +17493,6 @@ msgstr "Uydu ekipmanınızı kurun"
 msgid "Seychelles"
 msgstr "Seyşeller"
 
-msgid "Share Folders"
-msgstr "Paylaşım Klasörleri"
-
 msgid "Share View"
 msgstr "Paylaşım İzle"
 
@@ -17579,6 +17502,9 @@ msgstr "Paylaşımlar"
 #
 msgid "Sharpness"
 msgstr "Keskinlik"
+
+msgid "ShellInABox"
+msgstr ""
 
 msgid "Shift"
 msgstr "Değiştirme"
@@ -18026,9 +17952,6 @@ msgstr "Son resmi göster"
 
 msgid "Show live TV when movie stopped"
 msgstr "Film durdurulunca canlı TV yi göster"
-
-msgid "Show logfile"
-msgstr ""
 
 msgid "Show marked events"
 msgstr "İşaretli etkinlikleri göster"
@@ -19043,11 +18966,11 @@ msgstr "Başlangıç modu"
 msgid "Start offline decode"
 msgstr "Çevrimdışı çözüme başla"
 
+msgid "Start or Stop service"
+msgstr ""
+
 msgid "Start recording current event"
 msgstr "Mevcut olayı kaydetmeye başla"
-
-msgid "Start service"
-msgstr ""
 
 msgid "Start teletext"
 msgstr "Teleteks başlat"
@@ -19189,9 +19112,6 @@ msgstr "Kayıdı durdur ve sil"
 
 msgid "Stop recording now"
 msgstr "Kaydı şimdi durdur"
-
-msgid "Stop service"
-msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Film listesine geri dönme servisi durdur"
@@ -19834,17 +19754,11 @@ msgstr "Teletext altyazı rengi"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr "Telnet Eylemleri"
-
 msgid "Telnet Interface"
 msgstr "Telnet Arayüzü"
 
 msgid "Telnet Port"
 msgstr "Telnet Kapısı"
-
-msgid "Telnet Settings"
-msgstr "Telnet Kurulumu"
 
 msgid "Telugu"
 msgstr "Telugu"
@@ -20745,9 +20659,6 @@ msgstr "Zaman Ayarı Eylemleri"
 msgid "Time Shift Settings"
 msgstr "Kayıt zamanlama ayarları"
 
-msgid "Time Update in Minutes:"
-msgstr "Zaman güncelle Dakika:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr "Resim görüntüleyici slayt gösterisinde slaytlar arasındaki süre."
 
@@ -21464,6 +21375,10 @@ msgstr "Belirsiz"
 msgid "Unencrypted"
 msgstr "Şifrelenmemiş"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "İşlenmemiş Key"
 
@@ -21483,6 +21398,9 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "United Arab Emirates"
 msgstr "Birleşik Arap Emirlikleri"
@@ -22050,9 +21968,6 @@ msgstr "VOB dosyası"
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS Ayarları"
@@ -23247,14 +23162,6 @@ msgstr "Yeniden başlatılacak %s%s ..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"Hizmetin %s %s kurulumundan sonra yeniden başlatılacaksınız\n"
-"Yüklemeye hazır %s ?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -23270,14 +23177,6 @@ msgid ""
 msgstr ""
 "Servisin kaldırılmasından sonra %s %s nız tekrar başlatılacaktır\n"
 "Şimdi kaldırmak istiyor musunuz ?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
-"Hizmetin %s %s kaldırılmasından sonra yeniden başlatılacaksınız\n"
-"Şimdi kaldırmak istiyor musunuz?"
 
 #
 msgid ""
@@ -24548,12 +24447,6 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr "uShare Eylemleri"
-
-msgid "uShare Log"
-msgstr "uShare Günlüğü"
-
 msgid "uShare Name"
 msgstr "uShare Adı"
 
@@ -24562,9 +24455,6 @@ msgstr "uShare Kapısı"
 
 msgid "uShare Selection Actions"
 msgstr "uShare Seçim Eylemleri"
-
-msgid "uShare Setting Actions"
-msgstr "uShare Ayar Eylemleri"
 
 msgid "uShare Settings"
 msgstr "uShare Kurulumu"
@@ -24666,6 +24556,138 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "Samba Kurulumu"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Yapılandırma dosya adı (değiştirmek için tamam):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Ayrıca samba istemci yüklemek istiyor musunuz?\n"
+#~ "Yani bu cihazda windows paylaşımlarını bağlamak için izin verir."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP Kurulum"
+
+#~ msgid "Inadyn Actions"
+#~ msgstr "Inadyn Eylemleri"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Günlüğü"
+
+#~ msgid "Inadyn Setting Actions"
+#~ msgstr "Inadyn Ayar Eylemleri"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Giriş yapılandırma dosyası adı:"
+
+#~ msgid "Mini DLNA Actions"
+#~ msgstr "Mini DLNA Eylemleri"
+
+#~ msgid "Mini DLNA Setting Actions"
+#~ msgstr "Mini DLNA Ayar İşlemleri"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Günlüğü"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS Yapılandırma"
+
+#~ msgid "OpenVPN Actions"
+#~ msgstr "OpenVPN Eylemleri"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "VPN Kurulumu Aç"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVPN Günlüğü"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Kaldırmaya hazır mısınız \"%s\" ?"
+
+#~ msgid "SATPI Settings"
+#~ msgstr "SATPI Ayarları"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Actions"
+#~ msgstr "Samba Eylemleri"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba Günlüğü"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba Kurulumu"
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP Kur"
+
+#~ msgid "Setup NFS"
+#~ msgstr "Kurulum NFS"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "OpenVPN Kurulumu"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "Kurulum SABnzbd"
+
+#~ msgid "Setup SATPI"
+#~ msgstr "SATPI Kurulumu"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Samba Kurulumu"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Telnet Kurulumu"
+
+#~ msgid "Share Folders"
+#~ msgstr "Paylaşım Klasörleri"
+
+#~ msgid "Telnet Actions"
+#~ msgstr "Telnet Eylemleri"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telnet Kurulumu"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Zaman güncelle Dakika:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "Hizmetin %s %s kurulumundan sonra yeniden başlatılacaksınız\n"
+#~ "Yüklemeye hazır %s ?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service.\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Hizmetin %s %s kaldırılmasından sonra yeniden başlatılacaksınız\n"
+#~ "Şimdi kaldırmak istiyor musunuz?"
+
+#~ msgid "uShare Actions"
+#~ msgstr "uShare Eylemleri"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare Günlüğü"
+
+#~ msgid "uShare Setting Actions"
+#~ msgstr "uShare Ayar Eylemleri"
 
 #~ msgid "Show OScam Info"
 #~ msgstr "OScam Bilgilerini Göster"
@@ -24841,12 +24863,12 @@ msgstr "®"
 #~ msgstr "-24"
 
 #
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Kayıt devam ediyor.\n"
-#~ "Ne yapmak istiyorsunuz?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Kayıt devam ediyor.\n"
+"Ne yapmak istiyorsunuz?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Buket Listesi"

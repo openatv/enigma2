@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1598,14 +1598,11 @@ msgstr "<Időzítés utolsó helye>"
 msgid "<Select a device>"
 msgstr ""
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr ""
 
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, és próbálkozzon újra."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -2710,6 +2707,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "Csatlakozás kezelő"
 
@@ -3411,9 +3411,6 @@ msgstr "CI foglalat: "
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIFS/Samba Settings"
-msgstr "CIFS/Samba beállítása"
-
 msgid "CPU"
 msgstr "Processzor"
 
@@ -4093,6 +4090,9 @@ msgstr "Válassza ki a beállítandó tunert."
 msgid "Christmas Island"
 msgstr "Karácsony-sziget"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr ""
 
@@ -4349,9 +4349,6 @@ msgstr "Konfigurálás"
 #, python-format
 msgid "Config file %s saved."
 msgstr "%s konfigurációs fájl mentve."
-
-msgid "Config file name (ok to change):"
-msgstr "Konfig fájl neve (OK változtatás):"
 
 #, fuzzy
 msgctxt "Abbreviation of 'Configurable'"
@@ -4743,6 +4740,9 @@ msgstr "Állítsa be, hogy melyik videó kimeneti csatlakozó van bekötve, hasz
 msgid "Configuring"
 msgstr "Konfigurálás"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5088,6 +5088,9 @@ msgstr "Horvátország"
 
 msgid "Croatian"
 msgstr "Horvát"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Cron időzítés kezelő"
@@ -6307,13 +6310,6 @@ msgstr ""
 
 msgid "Do you want the upgrade guide?"
 msgstr ""
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Szeretné telepíteni a samba klienst is?\n"
-"Ez lehetővé teszi a Windows megosztások csatolását az eszközön."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -7822,9 +7818,6 @@ msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
-
-msgid "FTP Settings"
-msgstr "FTP beállítása"
 
 msgid "Factory Reset"
 msgstr ""
@@ -9389,15 +9382,6 @@ msgstr "Nem aktív"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr "Inadyn Napló"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr "Inadyn beállítása"
 
@@ -9580,9 +9564,6 @@ msgstr "Stream ID bevitel"
 msgid "Input channel name."
 msgstr "Bemeneti csatorna neve."
 
-msgid "Input config file name:"
-msgstr "Input config fájl neve:"
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -9626,9 +9607,6 @@ msgstr "Bővítmények telepítése"
 
 msgid "Install extensions."
 msgstr "Bővítmények telepítése."
-
-msgid "Install service"
-msgstr ""
 
 msgid "Install the package"
 msgstr ""
@@ -10904,20 +10882,11 @@ msgstr "középre"
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 msgid "Mini Series"
 msgstr "Mini sorozat"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Napló"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA beállítása"
@@ -11460,9 +11429,6 @@ msgstr "KÖVETKEZŐ"
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFS Settings"
-msgstr "NFS beállítása"
 
 msgid "NIM"
 msgstr ""
@@ -12437,17 +12403,8 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr "OpenVPN beállítása"
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "OpenVpn Napló"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "A Power LED állapota a készülék Kikapcsolt állapotában"
@@ -13957,10 +13914,6 @@ msgstr "Készen áll a telepítésre \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Készen áll a törlésre \"%s\" ?"
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Készen áll a törlésre %s ?"
-
 msgid "Real Life"
 msgstr "Való élet"
 
@@ -14410,9 +14363,6 @@ msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove selected service"
-msgstr ""
-
-msgid "Remove service"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -14884,10 +14834,6 @@ msgstr "Serial ATA"
 msgid "SATPI"
 msgstr ""
 
-#, fuzzy
-msgid "SATPI Settings"
-msgstr "AFP beállítása"
-
 msgid "SCPC optimized search range"
 msgstr "SCPC optimalizált keresési tartomány"
 
@@ -14932,6 +14878,9 @@ msgstr "Rendszeres fájl"
 msgid "SSA file"
 msgstr ""
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -14962,17 +14911,11 @@ msgstr "Saint-Pierre és Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent és a Grenadine-szigetek"
 
-msgid "Samba"
-msgstr "Samba"
-
-msgid "Samba Actions"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Log"
-msgstr "Samba Napló"
-
-msgid "Samba Setup"
-msgstr "Samba beállítás"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "Ugyanaz, mint az aktív"
@@ -15409,10 +15352,6 @@ msgstr "Ha az 'igen'-t választja, a csatorna száma megjelenik az Információs
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -15619,6 +15558,9 @@ msgstr "Quad Csatorna választása"
 
 msgid "Select Satellites"
 msgstr "Válasszon műholdat"
+
+msgid "Select Shares"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr ""
@@ -15882,6 +15824,10 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr "Válassza ki a tunerhez hozzárendelni kívánt felhasználói sáv frekvenciáját. Ez az a frekvencia, amelyet az SCR kapcsoló a kért transzponder tunernek való továbbadására használ."
 
 msgid "Select the Yes / True response"
+msgstr ""
+
+#, python-format
+msgid "Select the action for '%s'"
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -16693,9 +16639,6 @@ msgstr "Audiomode beállítás"
 msgid "Setup Enigma2"
 msgstr "Enigma2 beállítás"
 
-msgid "Setup FTP"
-msgstr "FTP beállítás"
-
 msgid "Setup Harddisk"
 msgstr "Háttértár beállítása"
 
@@ -16711,17 +16654,11 @@ msgstr "MiniDLNA Beállítások"
 msgid "Setup Mounts"
 msgstr "Csatolás Beállítások"
 
-msgid "Setup NFS"
-msgstr "NFS Beállítás"
-
 msgid "Setup Network Services"
 msgstr "Hálózati szolgáltatás"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Hálózati szolgáltatások (Samba, ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "OpenVPN beállítás"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -16731,19 +16668,6 @@ msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Bővítmények beállítás"
-
-msgid "Setup SABnzbd"
-msgstr "SABnzbd Beállítás"
-
-#, fuzzy
-msgid "Setup SATPI"
-msgstr "Beállítások"
-
-msgid "Setup Samba"
-msgstr "Samba beállítás"
-
-msgid "Setup Telnet"
-msgstr "Telnet beállítás"
 
 msgid "Setup Tuner"
 msgstr "Tuner beállítás"
@@ -16859,9 +16783,6 @@ msgstr "Műholvevő-berendezés"
 msgid "Seychelles"
 msgstr "Seychelle-szigetek"
 
-msgid "Share Folders"
-msgstr "Mappa megosztása"
-
 msgid "Share View"
 msgstr "Megosztás nézet"
 
@@ -16870,6 +16791,9 @@ msgstr "Megosztások"
 
 msgid "Sharpness"
 msgstr "Élesség"
+
+msgid "ShellInABox"
+msgstr ""
 
 msgid "Shift"
 msgstr "Shift"
@@ -17306,9 +17230,6 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Az élő TV adás megjelenítése, amikor egy lejátszás meg van állítva"
-
-msgid "Show logfile"
-msgstr ""
 
 msgid "Show marked events"
 msgstr "Megjelölt események megjelenítése"
@@ -18288,10 +18209,10 @@ msgstr "Indulás módja"
 msgid "Start offline decode"
 msgstr "Offline dekódolás indítása"
 
-msgid "Start recording current event"
+msgid "Start or Stop service"
 msgstr ""
 
-msgid "Start service"
+msgid "Start recording current event"
 msgstr ""
 
 msgid "Start teletext"
@@ -18420,9 +18341,6 @@ msgstr "Felvétel leállítás és törlés"
 
 msgid "Stop recording now"
 msgstr "Felvétel leállítása most"
-
-msgid "Stop service"
-msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Csatorna megállítása a filmlistára váltáskor"
@@ -19051,17 +18969,11 @@ msgstr "Teletext felirat színe"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr "Telnet interfész"
 
 msgid "Telnet Port"
 msgstr "Telnet port"
-
-msgid "Telnet Settings"
-msgstr "Telnet beállítás"
 
 msgid "Telugu"
 msgstr ""
@@ -19905,9 +19817,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr "Timeshift beállítása"
 
-msgid "Time Update in Minutes:"
-msgstr "Az idő frissítése percekben:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20588,6 +20497,10 @@ msgstr "Meghatározatlan"
 msgid "Unencrypted"
 msgstr "Kódolatlan"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "UnhandledKey"
 
@@ -20605,6 +20518,9 @@ msgstr "Unicable fej"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Mátrix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "United Arab Emirates"
 msgstr "Egyesült Arab Emírségek"
@@ -21147,9 +21063,6 @@ msgstr ""
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -22264,14 +22177,6 @@ msgstr "A(z) %s %s újra fog indulni..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"A(z) %s %s készülék újraindításra kerül a szolgáltatás telepítése után.\n"
-"Készen áll a(z) %s telepítésére?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22287,12 +22192,6 @@ msgid ""
 msgstr ""
 "A(z) %s %s készülék újraindítása kerül a szolgáltatás törlése után.\n"
 "Szeretné törölni most?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -23472,12 +23371,6 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr "uShare napló"
-
 msgid "uShare Name"
 msgstr "uShare név"
 
@@ -23485,9 +23378,6 @@ msgid "uShare Port"
 msgstr "uShare port"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -23579,6 +23469,105 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, és próbálkozzon újra."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "CIFS/Samba beállítása"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Konfig fájl neve (OK változtatás):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Szeretné telepíteni a samba klienst is?\n"
+#~ "Ez lehetővé teszi a Windows megosztások csatolását az eszközön."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP beállítása"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Napló"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Input config fájl neve:"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Napló"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS beállítása"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "OpenVPN beállítása"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn Napló"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Készen áll a törlésre %s ?"
+
+#, fuzzy
+#~ msgid "SATPI Settings"
+#~ msgstr "AFP beállítása"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba Napló"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba beállítás"
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP beállítás"
+
+#~ msgid "Setup NFS"
+#~ msgstr "NFS Beállítás"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "OpenVPN beállítás"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "SABnzbd Beállítás"
+
+#, fuzzy
+#~ msgid "Setup SATPI"
+#~ msgstr "Beállítások"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Samba beállítás"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Telnet beállítás"
+
+#~ msgid "Share Folders"
+#~ msgstr "Mappa megosztása"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telnet beállítás"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Az idő frissítése percekben:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "A(z) %s %s készülék újraindításra kerül a szolgáltatás telepítése után.\n"
+#~ "Készen áll a(z) %s telepítésére?"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare napló"
 
 #, python-format
 #~ msgid "%s ( %s Cards )"
@@ -23720,12 +23709,12 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-1 nap"
 
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Egy felvétel folyamatban van. \n"
-#~ "Mit szeretne tenni?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Egy felvétel folyamatban van. \n"
+"Mit szeretne tenni?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Csatornacsomag lista"

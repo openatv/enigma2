@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1746,15 +1746,12 @@ msgstr "<Siste timer plassering>"
 msgid "<Select a device>"
 msgstr ""
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr ""
 
 #
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "En bakgrunnsoppdatering pågår, vennligst vent et par minutter og prøv igjen."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -2971,6 +2968,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr ""
 
@@ -3719,9 +3719,6 @@ msgstr ""
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIFS/Samba Settings"
-msgstr "Samba Oppsett"
-
 #, fuzzy
 msgid "CPU"
 msgstr "CPU:\t%s"
@@ -4451,6 +4448,9 @@ msgstr "Velg hvilken tuner du vil konfigurere."
 msgid "Christmas Island"
 msgstr ""
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr ""
 
@@ -4737,9 +4737,6 @@ msgstr "Konfigurerer"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Oppsett %s lagret."
-
-msgid "Config file name (ok to change):"
-msgstr ""
 
 #
 #, fuzzy
@@ -5154,6 +5151,9 @@ msgstr "Konfigurer hvilken videoutgang som vil bli brukt."
 msgid "Configuring"
 msgstr "Konfigurerer"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5522,6 +5522,9 @@ msgstr "Kroatisk"
 #
 msgid "Croatian"
 msgstr "Kroatisk"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Cron behandling"
@@ -6825,13 +6828,6 @@ msgstr ""
 
 msgid "Do you want the upgrade guide?"
 msgstr ""
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Ønsker du å også installere samba klient?\n"
-"Dette gjør det mulig å tilkoble dine Windows delinger på denne enheten."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -8440,9 +8436,6 @@ msgstr ""
 
 msgid "FTP"
 msgstr ""
-
-msgid "FTP Settings"
-msgstr "FTP Oppsett"
 
 msgid "Factory Reset"
 msgstr ""
@@ -10133,15 +10126,6 @@ msgstr ""
 msgid "Inadyn"
 msgstr ""
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr "Inadyn Logg"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr "Inadyn Oppsett"
 
@@ -10340,10 +10324,6 @@ msgstr ""
 msgid "Input channel name."
 msgstr "Bruk rask søk kanalnavn"
 
-#, fuzzy
-msgid "Input config file name:"
-msgstr "Langt filnavn"
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -10394,9 +10374,6 @@ msgstr ""
 #
 msgid "Install extensions."
 msgstr "Installere utvidelser."
-
-msgid "Install service"
-msgstr ""
 
 msgid "Install the package"
 msgstr ""
@@ -11771,12 +11748,6 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Mini Series"
@@ -11784,9 +11755,6 @@ msgstr "Kanaler"
 
 msgid "MiniDLNA"
 msgstr ""
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Logg"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA Oppsett"
@@ -12364,9 +12332,6 @@ msgstr ""
 
 msgid "NFS"
 msgstr ""
-
-msgid "NFS Settings"
-msgstr "NFS Oppsett"
 
 msgid "NIM"
 msgstr ""
@@ -13425,17 +13390,8 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr ""
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "Åpne Vpn logg"
 
 #, fuzzy
 msgid "Operating LED status in deep standby mode"
@@ -15099,10 +15055,6 @@ msgstr "Klar til å installere \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Klar til å fjerne \"%s\" ?"
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr ""
-
 msgid "Real Life"
 msgstr ""
 
@@ -15603,9 +15555,6 @@ msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove selected service"
-msgstr ""
-
-msgid "Remove service"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -16123,10 +16072,6 @@ msgstr ""
 msgid "SATPI"
 msgstr ""
 
-#, fuzzy
-msgid "SATPI Settings"
-msgstr "AFP Oppsett"
-
 msgid "SCPC optimized search range"
 msgstr ""
 
@@ -16173,6 +16118,9 @@ msgstr "mal fil"
 msgid "SSA file"
 msgstr ""
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -16206,16 +16154,10 @@ msgstr ""
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-msgid "Samba"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Actions"
-msgstr ""
-
-msgid "Samba Log"
-msgstr "Samba Logg"
-
-msgid "Samba Setup"
+msgid "Samba Server"
 msgstr ""
 
 msgid "Same as in active"
@@ -16688,10 +16630,6 @@ msgstr "Hvis satt til 'ja' vil kanalnummeret vises på infolinjen."
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -16901,6 +16839,9 @@ msgid "Select Quad Channels"
 msgstr ""
 
 msgid "Select Satellites"
+msgstr ""
+
+msgid "Select Shares"
 msgstr ""
 
 msgid "Select Softcam"
@@ -17181,6 +17122,10 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr ""
 
 msgid "Select the Yes / True response"
+msgstr ""
+
+#, python-format
+msgid "Select the action for '%s'"
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -18026,9 +17971,6 @@ msgstr ""
 msgid "Setup Enigma2"
 msgstr ""
 
-msgid "Setup FTP"
-msgstr ""
-
 msgid "Setup Harddisk"
 msgstr ""
 
@@ -18044,16 +17986,10 @@ msgstr ""
 msgid "Setup Mounts"
 msgstr ""
 
-msgid "Setup NFS"
-msgstr ""
-
 msgid "Setup Network Services"
 msgstr ""
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
-msgstr ""
-
-msgid "Setup OpenVPN"
 msgstr ""
 
 msgid "Setup Plugin Browser"
@@ -18066,19 +18002,6 @@ msgstr ""
 #, fuzzy
 msgid "Setup Plugins"
 msgstr "Plugins"
-
-msgid "Setup SABnzbd"
-msgstr ""
-
-#, fuzzy
-msgid "Setup SATPI"
-msgstr "oppsetts  PIN"
-
-msgid "Setup Samba"
-msgstr ""
-
-msgid "Setup Telnet"
-msgstr ""
 
 msgid "Setup Tuner"
 msgstr ""
@@ -18196,9 +18119,6 @@ msgstr "Konfigurer ditt satellitt utstyr."
 msgid "Seychelles"
 msgstr ""
 
-msgid "Share Folders"
-msgstr "Delt mappe"
-
 msgid "Share View"
 msgstr "Delt visning"
 
@@ -18208,6 +18128,9 @@ msgstr "Delining"
 #
 msgid "Sharpness"
 msgstr "Skarphet"
+
+msgid "ShellInABox"
+msgstr ""
 
 msgid "Shift"
 msgstr ""
@@ -18683,9 +18606,6 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Vis tv når filmen stoppet"
-
-msgid "Show logfile"
-msgstr ""
 
 #, fuzzy
 msgid "Show marked events"
@@ -19740,10 +19660,10 @@ msgstr "Start tid"
 msgid "Start offline decode"
 msgstr "Begynn offline dekoding"
 
-msgid "Start recording current event"
+msgid "Start or Stop service"
 msgstr ""
 
-msgid "Start service"
+msgid "Start recording current event"
 msgstr ""
 
 msgid "Start teletext"
@@ -19889,9 +19809,6 @@ msgstr "Stopp opptak og slett"
 #
 msgid "Stop recording now"
 msgstr "Stoppe opptaket nå"
-
-msgid "Stop service"
-msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr ""
@@ -20564,17 +20481,11 @@ msgstr "Teletekst undertekst farge"
 msgid "Telnet"
 msgstr ""
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr "Telnet grensesnitt"
 
 msgid "Telnet Port"
 msgstr "Telnet Port"
-
-msgid "Telnet Settings"
-msgstr "Telnet Oppsett"
 
 msgid "Telugu"
 msgstr ""
@@ -21444,9 +21355,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr "Timeshift innstillinger"
 
-msgid "Time Update in Minutes:"
-msgstr "Tids oppdatering i Min:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -22195,6 +22103,10 @@ msgstr "Ubestemt"
 msgid "Unencrypted"
 msgstr "Ukryptert"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr ""
 
@@ -22215,6 +22127,9 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "United Arab Emirates"
 msgstr ""
@@ -22784,9 +22699,6 @@ msgid "VOB file"
 msgstr ""
 
 msgid "VOD"
-msgstr ""
-
-msgid "VPN"
 msgstr ""
 
 msgid "VPS Settings"
@@ -23975,12 +23887,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -23996,12 +23902,6 @@ msgid ""
 msgstr ""
 "Din %s %s vil bli startet på nytt etter fjerning av kanaler\n"
 "Ønsker du å fjerne de nå?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
 
 #
 msgid ""
@@ -25309,12 +25209,6 @@ msgstr ""
 msgid "uShare"
 msgstr ""
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr "uShare Logg"
-
 msgid "uShare Name"
 msgstr "uShare Navn"
 
@@ -25322,9 +25216,6 @@ msgid "uShare Port"
 msgstr "uShare Port"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -25434,6 +25325,61 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "En bakgrunnsoppdatering pågår, vennligst vent et par minutter og prøv igjen."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "Samba Oppsett"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Ønsker du å også installere samba klient?\n"
+#~ "Dette gjør det mulig å tilkoble dine Windows delinger på denne enheten."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP Oppsett"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Logg"
+
+#, fuzzy
+#~ msgid "Input config file name:"
+#~ msgstr "Langt filnavn"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Logg"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS Oppsett"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "Åpne Vpn logg"
+
+#, fuzzy
+#~ msgid "SATPI Settings"
+#~ msgstr "AFP Oppsett"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba Logg"
+
+#, fuzzy
+#~ msgid "Setup SATPI"
+#~ msgstr "oppsetts  PIN"
+
+#~ msgid "Share Folders"
+#~ msgstr "Delt mappe"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telnet Oppsett"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Tids oppdatering i Min:"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare Logg"
 
 #
 #, fuzzy, python-format
@@ -25546,12 +25492,12 @@ msgstr ""
 #~ msgstr "24"
 
 #
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "En innspilning kjører fortsatt.\n"
-#~ "Hva vil du gjøre?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"En innspilning kjører fortsatt.\n"
+"Hva vil du gjøre?"
 
 #, fuzzy
 #~ msgid "BouquetList"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1563,14 +1563,11 @@ msgstr "<最后一个定时器位置>"
 msgid "<Select a device>"
 msgstr ""
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr ""
 
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "正在进行后台更新检查,请等待几分钟,然后重试."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -2668,6 +2665,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "自动挂载管理器"
 
@@ -3367,9 +3367,6 @@ msgstr "CI插槽: "
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIFS/Samba Settings"
-msgstr "CIFS/Samba设置"
-
 msgid "CPU"
 msgstr "处理器"
 
@@ -4053,6 +4050,9 @@ msgstr "选择要配置的调谐器."
 msgid "Christmas Island"
 msgstr "圣诞岛"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr "教堂用斯拉夫语"
 
@@ -4308,9 +4308,6 @@ msgstr "配置"
 #, python-format
 msgid "Config file %s saved."
 msgstr "配置文件 %s 已保存."
-
-msgid "Config file name (ok to change):"
-msgstr "配置文件名(按ok键更改):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -4703,6 +4700,9 @@ msgstr "配置将使用哪个视频输出连接器."
 msgid "Configuring"
 msgstr "配置"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5045,6 +5045,9 @@ msgstr "克罗地亚"
 
 msgid "Croatian"
 msgstr "克罗地亚语"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "任务管理"
@@ -6255,13 +6258,6 @@ msgstr ""
 
 msgid "Do you want the upgrade guide?"
 msgstr ""
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"是否同时安装Samba客户端?\n"
-"这允许您可以挂载Windows共享在此设备上."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -7769,9 +7765,6 @@ msgstr "免费频道"
 
 msgid "FTP"
 msgstr "FTP协议"
-
-msgid "FTP Settings"
-msgstr "FTP设置"
 
 msgid "Factory Reset"
 msgstr ""
@@ -9319,15 +9312,6 @@ msgstr "未激活"
 msgid "Inadyn"
 msgstr "Inadyn客户端"
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr "inadyn日志"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr "inadyn设置"
 
@@ -9505,9 +9489,6 @@ msgstr "输入流ID"
 msgid "Input channel name."
 msgstr "输入频道名称."
 
-msgid "Input config file name:"
-msgstr "输入配置文件名:"
-
 msgid "Input scroll position"
 msgstr "输入滚动位置"
 
@@ -9551,9 +9532,6 @@ msgstr "安装扩展"
 
 msgid "Install extensions."
 msgstr "安装扩展."
-
-msgid "Install service"
-msgstr ""
 
 msgid "Install the package"
 msgstr ""
@@ -10802,20 +10780,11 @@ msgstr "中等"
 msgid "Middle - Lite image"
 msgstr "中亮度图像"
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 msgid "Mini Series"
 msgstr "迷你系列"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA日志"
 
 msgid "MiniDLNA Settings"
 msgstr "小型DLNA设置"
@@ -11337,9 +11306,6 @@ msgstr "接下来"
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFS Settings"
-msgstr "NFS设置"
 
 msgid "NIM"
 msgstr ""
@@ -12301,17 +12267,8 @@ msgstr "OpenSSL版本"
 msgid "OpenVPN"
 msgstr "打开VPN"
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr "OpenVPN设置"
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "OpenVPN日志"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "深度待机模式下LED状态设置"
@@ -13811,10 +13768,6 @@ msgstr "准备安装 \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "准备删除 \"%s\" ?"
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "是否准备好删除\"%s\" ?"
-
 msgid "Real Life"
 msgstr "现实生活"
 
@@ -14264,9 +14217,6 @@ msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove selected service"
-msgstr ""
-
-msgid "Remove service"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -14737,9 +14687,6 @@ msgstr "SATA硬盘"
 msgid "SATPI"
 msgstr "SATPI"
 
-msgid "SATPI Settings"
-msgstr "SATPI 设置"
-
 msgid "SCPC optimized search range"
 msgstr "SCPC优化搜索范围"
 
@@ -14783,6 +14730,9 @@ msgstr "SRT文件"
 msgid "SSA file"
 msgstr "SSA文件"
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr "SSID"
 
@@ -14813,17 +14763,11 @@ msgstr "圣皮埃尔和密克隆"
 msgid "Saint Vincent and the Grenadines"
 msgstr "圣文森特和格林纳丁斯"
 
-msgid "Samba"
-msgstr "SMB协议"
-
-msgid "Samba Actions"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Log"
-msgstr "Samba日志"
-
-msgid "Samba Setup"
-msgstr "Samba设置"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "与活动中的相同"
@@ -15253,10 +15197,6 @@ msgstr "如果设置为'是'的频道数将显示在看到信息栏."
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr ""
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr ""
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "选择'是'可编辑此设备的设置.选择'否'会将设备设置重置为默认值."
 
@@ -15463,6 +15403,9 @@ msgstr "选择四画面频道"
 
 msgid "Select Satellites"
 msgstr "选择卫星"
+
+msgid "Select Shares"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr "选择softcam"
@@ -15727,6 +15670,10 @@ msgstr "选择要分配给此调谐器的用户波段频率.这是SCR开关用�
 
 msgid "Select the Yes / True response"
 msgstr "选择是/正确答案"
+
+#, python-format
+msgid "Select the action for '%s'"
+msgstr ""
 
 msgid "Select the action to perform when the timer ends."
 msgstr ""
@@ -16528,9 +16475,6 @@ msgstr "设置音频模式"
 msgid "Setup Enigma2"
 msgstr "设置Enigma2"
 
-msgid "Setup FTP"
-msgstr "FTP设置"
-
 msgid "Setup Harddisk"
 msgstr "设置硬盘"
 
@@ -16546,17 +16490,11 @@ msgstr "设置MiniDLNA"
 msgid "Setup Mounts"
 msgstr "设置挂载"
 
-msgid "Setup NFS"
-msgstr "设置NFS"
-
 msgid "Setup Network Services"
 msgstr "设置网络服务"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "设置网络服务(Samba, Ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "设置OpenVPN"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -16566,18 +16504,6 @@ msgstr ""
 
 msgid "Setup Plugins"
 msgstr "设置插件"
-
-msgid "Setup SABnzbd"
-msgstr "设置SABnzbd"
-
-msgid "Setup SATPI"
-msgstr "设置SATPI"
-
-msgid "Setup Samba"
-msgstr "设置Samba"
-
-msgid "Setup Telnet"
-msgstr "设置Telnet"
 
 msgid "Setup Tuner"
 msgstr "设置调谐器"
@@ -16693,9 +16619,6 @@ msgstr "卫星设备设置"
 msgid "Seychelles"
 msgstr "塞舌尔"
 
-msgid "Share Folders"
-msgstr "共享文件夹"
-
 msgid "Share View"
 msgstr "共享视图"
 
@@ -16704,6 +16627,9 @@ msgstr "共享"
 
 msgid "Sharpness"
 msgstr "清晰度"
+
+msgid "ShellInABox"
+msgstr ""
 
 msgid "Shift"
 msgstr "移动"
@@ -17135,9 +17061,6 @@ msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "电影停止时显示电视直播"
-
-msgid "Show logfile"
-msgstr ""
 
 msgid "Show marked events"
 msgstr "显示标记的事件"
@@ -18104,10 +18027,10 @@ msgstr "启动模式"
 msgid "Start offline decode"
 msgstr "开始离线解码"
 
-msgid "Start recording current event"
+msgid "Start or Stop service"
 msgstr ""
 
-msgid "Start service"
+msgid "Start recording current event"
 msgstr ""
 
 msgid "Start teletext"
@@ -18236,9 +18159,6 @@ msgstr "停止录制并删除"
 
 msgid "Stop recording now"
 msgstr "马上停止录制"
-
-msgid "Stop service"
-msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "返回电影列表时停止频道"
@@ -18849,17 +18769,11 @@ msgstr "图文字幕颜色"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr "Telnet 界面"
 
 msgid "Telnet Port"
 msgstr "Telnet 端口"
-
-msgid "Telnet Settings"
-msgstr "Telnet设置"
 
 msgid "Telugu"
 msgstr "泰卢固语"
@@ -19703,9 +19617,6 @@ msgstr "时间设置操作"
 msgid "Time Shift Settings"
 msgstr "时移设置"
 
-msgid "Time Update in Minutes:"
-msgstr "以分钟为单位更新:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20375,6 +20286,10 @@ msgstr "待定"
 msgid "Unencrypted"
 msgstr "未加密"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "未处理的密钥"
 
@@ -20392,6 +20307,9 @@ msgstr "单一同轴电缆高频头"
 
 msgid "Unicable Matrix"
 msgstr "单一同轴电缆多输出"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "United Arab Emirates"
 msgstr "阿拉伯联合酋长国"
@@ -20932,9 +20850,6 @@ msgstr "VOB文件"
 
 msgid "VOD"
 msgstr "视频点播(VOD)"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -22040,14 +21955,6 @@ msgstr "您的%s %s 将重新启动..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"安装服务后,将重新启动%s %s\n"
-"是否要安装%s?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22063,12 +21970,6 @@ msgid ""
 msgstr ""
 "删除服务后 %s %s 将重新启动\n"
 "是否现在删除?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -23242,12 +23143,6 @@ msgstr "turbo码"
 msgid "uShare"
 msgstr "uShare共享"
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr "ushare日志"
-
 msgid "uShare Name"
 msgstr "ushare名称"
 
@@ -23255,9 +23150,6 @@ msgid "uShare Port"
 msgstr "ushare端口"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -23349,6 +23241,103 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "正在进行后台更新检查,请等待几分钟,然后重试."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "CIFS/Samba设置"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "配置文件名(按ok键更改):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "是否同时安装Samba客户端?\n"
+#~ "这允许您可以挂载Windows共享在此设备上."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP设置"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "inadyn日志"
+
+#~ msgid "Input config file name:"
+#~ msgstr "输入配置文件名:"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA日志"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS设置"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "OpenVPN设置"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVPN日志"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "是否准备好删除\"%s\" ?"
+
+#~ msgid "SATPI Settings"
+#~ msgstr "SATPI 设置"
+
+#~ msgid "Samba"
+#~ msgstr "SMB协议"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba日志"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba设置"
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP设置"
+
+#~ msgid "Setup NFS"
+#~ msgstr "设置NFS"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "设置OpenVPN"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "设置SABnzbd"
+
+#~ msgid "Setup SATPI"
+#~ msgstr "设置SATPI"
+
+#~ msgid "Setup Samba"
+#~ msgstr "设置Samba"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "设置Telnet"
+
+#~ msgid "Share Folders"
+#~ msgstr "共享文件夹"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telnet设置"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "以分钟为单位更新:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "安装服务后,将重新启动%s %s\n"
+#~ "是否要安装%s?"
+
+#~ msgid "uShare Log"
+#~ msgstr "ushare日志"
 
 #~ msgid "Show OScam Info"
 #~ msgstr "显示OScam信息"
@@ -23496,12 +23485,12 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "当前正在运行录制.\n"
-#~ "你需要做什么?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"当前正在运行录制.\n"
+"你需要做什么?"
 
 #~ msgid "BouquetList"
 #~ msgstr "自定义列表"

@@ -4073,7 +4073,7 @@ class InfoBarInstantRecord:
 			commonRecord = []
 			commonTimeshift = []
 		if self.isInstantRecordRunning():
-			title = f"{_('A recording is currently running.')}\n\n{_('What do you want to do?')}"
+			title = _("A recording is currently running.\nWhat do you want to do?")
 			choiceList = [
 				(_("Stop recording"), "stop")
 			] + commonRecord + [

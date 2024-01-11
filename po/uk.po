@@ -1,7 +1,7 @@
 # Ukrainian translations for Enigma2.
 #
 # openATV <openatv@gmail.com>, 2021.
-# kvinto <badsystem@ukr.net>, 2021, 2022, 2023.
+# kvinto <badsystem@ukr.net>, 2021, 2022, 2023, 2024.
 # igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023.
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
 # Artem <artem@molotov.work>, 2022.
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 10:21+0000\n"
-"PO-Revision-Date: 2023-12-27 13:34+0000\n"
+"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"PO-Revision-Date: 2024-01-03 01:05+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1599,14 +1599,11 @@ msgstr "<Розташування останнього таймера>"
 msgid "<Select a device>"
 msgstr "<Виберіть пристрій>"
 
-msgid "<no log found"
+msgid "<no log found>"
 msgstr "<лог не знайдено"
 
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Виконується перевірка оновленнь у фоні, будь ласка, зачекайте кілька хвилин і повторіть спробу."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Відокремлений комами список розширень, які будуть використовуватися для параметра 'Мої розширення' параметра 'Розширення Фільтр розширень'. Введіть назви розширень без крапки на початку (.)."
@@ -2699,6 +2696,9 @@ msgstr "Налаштування AutoCam"
 msgid "AutoCam Setup Actions"
 msgstr "Налаштування дій AutoCam"
 
+msgid "AutoFS"
+msgstr "АвтоFS"
+
 msgid "AutoMountManager"
 msgstr "Конфігурація Автомонтування"
 
@@ -3398,9 +3398,6 @@ msgstr "CI слот: "
 msgid "CI+ Helper*"
 msgstr "CI+ Helper*"
 
-msgid "CIFS/Samba Settings"
-msgstr "Налаштування CIFS/Samba"
-
 msgid "CPU"
 msgstr "Процесор"
 
@@ -4084,6 +4081,9 @@ msgstr "Виберіть тюнер для налаштування."
 msgid "Christmas Island"
 msgstr "Острів Різдва"
 
+msgid "Chrony"
+msgstr "Chrony"
+
 msgid "Church Slavic"
 msgstr "Церковнослов’янська"
 
@@ -4340,9 +4340,6 @@ msgstr "Налаштування"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Конфігураційний файл %s збережено."
-
-msgid "Config file name (ok to change):"
-msgstr "Ім'я файлу конфігурації (ОК щоб змінити):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -4739,6 +4736,9 @@ msgstr "Вкажіть, який роз'єм відеовиходу буде в�
 msgid "Configuring"
 msgstr "Налаштування"
 
+msgid "Configuring Service"
+msgstr "Налаштування каналу"
+
 msgid "ConflictTimer Actions"
 msgstr "Дії ConflictTimer"
 
@@ -5081,6 +5081,9 @@ msgstr "Хорватія"
 
 msgid "Croatian"
 msgstr "Хорватська"
+
+msgid "Cron"
+msgstr "Cron"
 
 msgid "Cron Manager"
 msgstr "Менеджер Cron"
@@ -6295,13 +6298,6 @@ msgstr "Бажаєте змінити режим доступу '%s'?"
 
 msgid "Do you want the upgrade guide?"
 msgstr "Хочете отримати посібник з оновлення?"
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Також потрібно встановити клієнт samba?\n"
-"Це дає змогу монтувати спільні ресурси Ваших вікон на цьому пристрої."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -7814,9 +7810,6 @@ msgstr "Не кодований"
 
 msgid "FTP"
 msgstr "FTP"
-
-msgid "FTP Settings"
-msgstr "Налаштування FTP"
 
 msgid "Factory Reset"
 msgstr "Скидання на Заводські налаштування"
@@ -9364,15 +9357,6 @@ msgstr "Неактивний"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr "Inadyn дії"
-
-msgid "Inadyn Log"
-msgstr "Лог Inadyn"
-
-msgid "Inadyn Setting Actions"
-msgstr "Інадин налаштування дії"
-
 msgid "Inadyn Settings"
 msgstr "Налаштування Inadyn"
 
@@ -9550,9 +9534,6 @@ msgstr "Вхідний ID потоку"
 msgid "Input channel name."
 msgstr "Введення назви каналу."
 
-msgid "Input config file name:"
-msgstr "Введіть ім'я файла конфігурації:"
-
 msgid "Input scroll position"
 msgstr "Введіть положення прокручування"
 
@@ -9596,9 +9577,6 @@ msgstr "Встановити розширення"
 
 msgid "Install extensions."
 msgstr "Встановити розширення."
-
-msgid "Install service"
-msgstr "Встановлення каналу"
 
 msgid "Install the package"
 msgstr "Встановити пакет"
@@ -10849,20 +10827,11 @@ msgstr "по середині"
 msgid "Middle - Lite image"
 msgstr "Середньо–полегшений імідж"
 
-msgid "Mini DLNA Actions"
-msgstr "Дії Mini DLNA"
-
-msgid "Mini DLNA Setting Actions"
-msgstr "Дії налаштування Mini DLNA"
-
 msgid "Mini Series"
 msgstr "Міні серіали"
 
 msgid "MiniDLNA"
 msgstr "Міні-DLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Лог"
 
 msgid "MiniDLNA Settings"
 msgstr "Налаштування MiniDLNA"
@@ -11384,9 +11353,6 @@ msgstr "НАСТУПНА"
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFS Settings"
-msgstr "Налаштування NFS"
 
 msgid "NIM"
 msgstr "NIM"
@@ -12130,19 +12096,19 @@ msgid "OSCam Information"
 msgstr "Oscam-Інфо"
 
 msgid "OSCam Information Settings"
-msgstr ""
+msgstr "Налаштування інформації OSCam"
 
 msgid "OSCam webif disabled"
 msgstr "oscam webif відключено"
 
 msgid "OSCamInfo Actions"
-msgstr ""
+msgstr "Дії OSCamInfo"
 
 msgid "OSCamInfo Log"
-msgstr ""
+msgstr "Лог OSCamInfo"
 
 msgid "OSCamInfo Log Actions"
-msgstr ""
+msgstr "Дії для логу OSCamInfo"
 
 msgid "OSD"
 msgstr "OSD"
@@ -12351,17 +12317,8 @@ msgstr "Версія OpenSSL"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr "Дії OpenVPN"
-
-msgid "OpenVPN Settings"
-msgstr "Налаштування OpenVPN"
-
 msgid "OpenViX Packages"
 msgstr "Пакети OpenViX"
-
-msgid "OpenVpn Log"
-msgstr "OpenVpn Лог"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Яскравість LED у режимі глибокого очікування"
@@ -13866,10 +13823,6 @@ msgstr "Готові встановити \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Готові до видалення \"%s\" ?"
 
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Готові до видалення %s?"
-
 msgid "Real Life"
 msgstr "З реального життя"
 
@@ -14320,9 +14273,6 @@ msgstr "Видалити плагіни..."
 
 msgid "Remove selected service"
 msgstr "Видалити вибраний канал"
-
-msgid "Remove service"
-msgstr "Видалити канал"
 
 msgid "Remove service from AutoCam"
 msgstr "Видалити канал з AutoCam"
@@ -14792,9 +14742,6 @@ msgstr "SATA"
 msgid "SATPI"
 msgstr "SATPI"
 
-msgid "SATPI Settings"
-msgstr "Налаштування SATPI"
-
 msgid "SCPC optimized search range"
 msgstr "SCPC оптимізував діапазон пошуку"
 
@@ -14838,6 +14785,9 @@ msgstr "SRT файл"
 msgid "SSA file"
 msgstr "SSA файл"
 
+msgid "SSH"
+msgstr "SSH"
+
 msgid "SSID"
 msgstr "SSID"
 
@@ -14868,17 +14818,11 @@ msgstr "Сен-П'єр і Мікелон"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Сент-Вінсент і Гренадини"
 
-msgid "Samba"
-msgstr "Samba"
+msgid "Samba Client"
+msgstr "Клієнт Samba"
 
-msgid "Samba Actions"
-msgstr "Дії Samba"
-
-msgid "Samba Log"
-msgstr "Samba Лог"
-
-msgid "Samba Setup"
-msgstr "Налаштування Samba"
+msgid "Samba Server"
+msgstr "Samba Сервер"
 
 msgid "Same as in active"
 msgstr "Те ж, що при активності"
@@ -15310,10 +15254,6 @@ msgstr "Якщо вибрано 'так', номер канал буде пок�
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr "Виберіть 'Так', щоб відображати невідомі файли у програмі перегляду файлів File Commander, виберіть 'Ні', щоб не обробляти невідомі файли."
 
-#, python-format
-msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr "Виберіть 'Так', щоб увімкнути автоматичний запуск '%s'."
-
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Виберіть 'Так', щоб увімкнути редагування налаштувань цього пристрою. Вибір 'Ні' скидає налаштування пристроїв до значень за замовчуванням."
 
@@ -15520,6 +15460,9 @@ msgstr "Вибір чотирьохекранних каналів"
 
 msgid "Select Satellites"
 msgstr "Виберіть супутники"
+
+msgid "Select Shares"
+msgstr "Вибрати доступ"
 
 msgid "Select Softcam"
 msgstr "Виберіть softcam"
@@ -15784,6 +15727,10 @@ msgstr "Виберіть частоту Користувацької Смуги,
 
 msgid "Select the Yes / True response"
 msgstr "Виберіть відповідь Так/Правда"
+
+#, python-format
+msgid "Select the action for '%s'"
+msgstr "Вибрати дію для '%s'"
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Виберіть дію, яку потрібно виконати після завершення таймера."
@@ -16600,9 +16547,6 @@ msgstr "Налаштування аудіо режиму"
 msgid "Setup Enigma2"
 msgstr "Налаштування Enigma2"
 
-msgid "Setup FTP"
-msgstr "Налаштування FTP"
-
 msgid "Setup Harddisk"
 msgstr "Налаштування жорсткого диска"
 
@@ -16618,17 +16562,11 @@ msgstr "Налаштування MiniDLNA"
 msgid "Setup Mounts"
 msgstr "Налаштування монтування"
 
-msgid "Setup NFS"
-msgstr "Налаштування NFS"
-
 msgid "Setup Network Services"
 msgstr "Налаштування мережевих служб"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Налаштування мережевих служб (Samba, FTP, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "Налаштування OpenVPN"
 
 msgid "Setup Plugin Browser"
 msgstr "Налаштування браузера плагінів"
@@ -16638,18 +16576,6 @@ msgstr "Налаштувати PluginBrowser. Тут ви можете вибр�
 
 msgid "Setup Plugins"
 msgstr "Налаштування Плагінів"
-
-msgid "Setup SABnzbd"
-msgstr "Налаштування SABnzbd"
-
-msgid "Setup SATPI"
-msgstr "Налаштування SATPI"
-
-msgid "Setup Samba"
-msgstr "Налаштування Samba"
-
-msgid "Setup Telnet"
-msgstr "Налаштування Telnet"
 
 msgid "Setup Tuner"
 msgstr "Налаштування Тюнера"
@@ -16765,9 +16691,6 @@ msgstr "Налаштування Вашого супутникового обл�
 msgid "Seychelles"
 msgstr "Сейшели"
 
-msgid "Share Folders"
-msgstr "Доступні теки"
-
 msgid "Share View"
 msgstr "Перегляд мережевого диска"
 
@@ -16776,6 +16699,9 @@ msgstr "Мережеві диски"
 
 msgid "Sharpness"
 msgstr "Чіткість"
+
+msgid "ShellInABox"
+msgstr "ShellInABox"
 
 msgid "Shift"
 msgstr "Шифт"
@@ -16965,7 +16891,7 @@ msgid "Show Multi EPG"
 msgstr "Показати Мульти телегід"
 
 msgid "Show OSCam Information"
-msgstr ""
+msgstr "Показати Інформацію OSCam"
 
 msgid "Show OScam/CCcam in Extension Menu"
 msgstr "Показати OScam/CCcam у Розширеному Меню"
@@ -17208,9 +17134,6 @@ msgstr "Показати останній імідж"
 msgid "Show live TV when movie stopped"
 msgstr "Переключити в режим перегляду ТБ при зупинці відтворення"
 
-msgid "Show logfile"
-msgstr "Показати файл логу"
-
 msgid "Show marked events"
 msgstr "Показати позначені передачі"
 
@@ -17416,7 +17339,7 @@ msgid "Show the Logs Settings screen"
 msgstr "Показати екран налаштувань журналів"
 
 msgid "Show the OSCam information screen"
-msgstr ""
+msgstr "Показати Екран Інформації OSCam"
 
 msgid "Show the PowerTimer"
 msgstr "Показати Таймер вимкнення"
@@ -18177,11 +18100,11 @@ msgstr "Режим запуску"
 msgid "Start offline decode"
 msgstr "Запуск декодування оффлайн"
 
+msgid "Start or Stop service"
+msgstr "Запуск або зупинка каналу"
+
 msgid "Start recording current event"
 msgstr "Почати запис поточної події"
-
-msgid "Start service"
-msgstr "Включити канал"
 
 msgid "Start teletext"
 msgstr "Запуск телетексту"
@@ -18309,9 +18232,6 @@ msgstr "Зупинити запис і видалити"
 
 msgid "Stop recording now"
 msgstr "Зупинити запис зараз"
-
-msgid "Stop service"
-msgstr "Зупинити канал"
 
 msgid "Stop service on return to movie list"
 msgstr "При поверненні до записів не відтворювати поточний канал"
@@ -18779,7 +18699,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 27.12.2023"
+msgstr "Переклад: kvinto - 02.01.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18922,17 +18842,11 @@ msgstr "Колір субтитрів телетексту"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr "Дії Telnet"
-
 msgid "Telnet Interface"
 msgstr "Telnet Інтерфейс"
 
 msgid "Telnet Port"
 msgstr "Telnet Порт"
-
-msgid "Telnet Settings"
-msgstr "Налаштування Telnet"
 
 msgid "Telugu"
 msgstr "Телугу"
@@ -19809,9 +19723,6 @@ msgstr "Дія для Налаштування часу"
 msgid "Time Shift Settings"
 msgstr "Налаштування таймшифта"
 
-msgid "Time Update in Minutes:"
-msgstr "Час Оновлення в хвилинах:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr "Час між слайдами в слайд-шоу програми перегляду зображень."
 
@@ -20483,6 +20394,10 @@ msgstr "Не визначено"
 msgid "Unencrypted"
 msgstr "Декодований"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr "Неочікувана помилка доступу до WebIF: %s"
+
 msgid "UnhandledKey"
 msgstr "Неопрацьований Ключ"
 
@@ -20500,6 +20415,9 @@ msgstr "Unicable конвертор"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
+
+msgid "Uninstall"
+msgstr "Видалити"
 
 msgid "United Arab Emirates"
 msgstr "Об'єднані Арабські Емірати"
@@ -21043,9 +20961,6 @@ msgstr "VOB файл"
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "Налаштування VPS"
@@ -22190,14 +22105,6 @@ msgstr "Ваш %s %s перезавантажиться..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"Ваш %s %s буде перезавантажено після установки каналів\n"
-"Готові до установки %s?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22213,14 +22120,6 @@ msgid ""
 msgstr ""
 "Ваш %s %s буде перезавантажений після видалення каналу.\n"
 "Хочете видалити зараз?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
-"Ваш %s %s буде перезапущено після видалення каналу.\n"
-"Ви хочете видалити зараз?"
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -23394,12 +23293,6 @@ msgstr "турбо"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr "uShare дії"
-
-msgid "uShare Log"
-msgstr "uShare Лог"
-
 msgid "uShare Name"
 msgstr "uShare Ім'я"
 
@@ -23408,9 +23301,6 @@ msgstr "uShare Порт"
 
 msgid "uShare Selection Actions"
 msgstr "Дії вибору uShare"
-
-msgid "uShare Setting Actions"
-msgstr "Дії налаштування uShare"
 
 msgid "uShare Settings"
 msgstr "uShare Налаштування"
@@ -23502,6 +23392,157 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Виконується перевірка оновленнь у фоні, будь ласка, зачекайте кілька хвилин і повторіть спробу."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "Налаштування CIFS/Samba"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Ім'я файлу конфігурації (ОК щоб змінити):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Також потрібно встановити клієнт samba?\n"
+#~ "Це дає змогу монтувати спільні ресурси Ваших вікон на цьому пристрої."
+
+#~ msgid "FTP Settings"
+#~ msgstr "Налаштування FTP"
+
+#~ msgid "Inadyn Actions"
+#~ msgstr "Inadyn дії"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Лог Inadyn"
+
+#~ msgid "Inadyn Setting Actions"
+#~ msgstr "Інадин налаштування дії"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Введіть ім'я файла конфігурації:"
+
+#~ msgid "Install service"
+#~ msgstr "Встановлення каналу"
+
+#~ msgid "Mini DLNA Actions"
+#~ msgstr "Дії Mini DLNA"
+
+#~ msgid "Mini DLNA Setting Actions"
+#~ msgstr "Дії налаштування Mini DLNA"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Лог"
+
+#~ msgid "NFS Settings"
+#~ msgstr "Налаштування NFS"
+
+#~ msgid "OpenVPN Actions"
+#~ msgstr "Дії OpenVPN"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "Налаштування OpenVPN"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn Лог"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Готові до видалення %s?"
+
+#~ msgid "Remove service"
+#~ msgstr "Видалити канал"
+
+#~ msgid "SATPI Settings"
+#~ msgstr "Налаштування SATPI"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Actions"
+#~ msgstr "Дії Samba"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba Лог"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Налаштування Samba"
+
+#, python-format
+#~ msgid "Select 'Yes' to enable autostart of '%s'."
+#~ msgstr "Виберіть 'Так', щоб увімкнути автоматичний запуск '%s'."
+
+#~ msgid "Setup FTP"
+#~ msgstr "Налаштування FTP"
+
+#~ msgid "Setup NFS"
+#~ msgstr "Налаштування NFS"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "Налаштування OpenVPN"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "Налаштування SABnzbd"
+
+#~ msgid "Setup SATPI"
+#~ msgstr "Налаштування SATPI"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Налаштування Samba"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Налаштування Telnet"
+
+#~ msgid "Share Folders"
+#~ msgstr "Доступні теки"
+
+#~ msgid "Show logfile"
+#~ msgstr "Показати файл логу"
+
+#~ msgid "Start service"
+#~ msgstr "Включити канал"
+
+#~ msgid "Stop service"
+#~ msgstr "Зупинити канал"
+
+#~ msgid "Telnet Actions"
+#~ msgstr "Дії Telnet"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Налаштування Telnet"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Час Оновлення в хвилинах:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "Ваш %s %s буде перезавантажено після установки каналів\n"
+#~ "Готові до установки %s?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service.\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Ваш %s %s буде перезапущено після видалення каналу.\n"
+#~ "Ви хочете видалити зараз?"
+
+#~ msgid "uShare Actions"
+#~ msgstr "uShare дії"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare Лог"
+
+#~ msgid "uShare Setting Actions"
+#~ msgstr "Дії налаштування uShare"
 
 #~ msgid "OScamInfo Overview"
 #~ msgstr "Огляд OScamInfo"
@@ -23690,12 +23731,12 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Триває запис.\n"
-#~ "Що хочете зробити?"
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Триває запис.\n"
+"Що хочете зробити?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Список фаворитів"
