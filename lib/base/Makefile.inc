@@ -67,4 +67,5 @@ baseinclude_HEADERS = \
 	base/httpsstream.h \
 	base/httpstream.h \
 	base/wrappers.h \
-	base/esimpleconfig.h
+	base/esimpleconfig.h \
+	base/profile.h

@@ -1,7 +1,7 @@
 from glob import glob
 from os.path import splitext
 
-from Tools.Profile import profile
+from enigma import eProfileWrite
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
@@ -15,12 +15,12 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Tools.Directories import fileExists
 from Screens.ButtonSetup import InfoBarButtonSetup
 
-profile("LOAD:enigma")
 import enigma
+eProfileWrite("LOAD:enigma")
 
 boxtype = BoxInfo.getItem("machinebuild")
 
-profile("LOAD:InfoBarGenerics")
+eProfileWrite("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRdsDecoder, InfoBarRedButton, InfoBarTimerButton, InfoBarVmodeButton, \
 	InfoBarEPG, InfoBarSeek, InfoBarInstantRecord, InfoBarResolutionSelection, InfoBarAspectSelection, \
@@ -31,13 +31,13 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarSleepTimer, InfoBarOpenOnTopHelper, InfoBarHandleBsod, \
 	InfoBarHdmi, setResumePoint, delResumePoint
 
-profile("LOAD:InitBar_Components")
+eProfileWrite("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
 from Components.Timeshift import InfoBarTimeshift
 from Components.config import config
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 
-profile("LOAD:HelpableScreen")
+eProfileWrite("LOAD:HelpableScreen")
 from Screens.HelpMenu import HelpableScreen
 
 

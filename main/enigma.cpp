@@ -35,6 +35,7 @@
 #include <lib/python/python.h>
 #include <lib/python/pythonconfig.h>
 #include <lib/service/servicepeer.h>
+#include <lib/base/profile.h>
 
 #include "bsod.h"
 #include "version_info.h"
@@ -407,6 +408,8 @@ int main(int argc, char **argv)
 	eRCInput::getInstance()->keyEvent.connect(sigc::ptr_fun(&keyEvent));
 
 	eDebug("[Enigma] Executing StartEnigma.py");
+
+	eProfile::getInstance().write("StartPython");
 
 	bsodCatchSignals();
 	catchTermSignal();
