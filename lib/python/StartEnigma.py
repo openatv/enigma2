@@ -413,9 +413,9 @@ def runScreenTest():
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 	if not RestoreSettings:
 		runNextScreen(session, screensToRun)
-	enigma.eProfileWrite("VolumeControl")
+	enigma.eProfileWrite("VolumeControl Screen")
 	vol = VolumeControl(session)
-	enigma.eProfileWrite("Processing")
+	enigma.eProfileWrite("Processing Screen")
 	processing = Processing(session)
 	enigma.eProfileWrite("PowerKey")
 	power = PowerKey(session)
