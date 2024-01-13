@@ -210,8 +210,13 @@ class ChoiceBoxSummary(ScreenSummary):
 		self["entry"] = StaticText("")
 		self["value"] = StaticText("")
 		self.choiceList = []
-		for index, item in enumerate(self.parent["list"].getList()):
-			self.choiceList.append((index, item[0][0]))
+		index = 0
+		for item in self.parent["list"].getList():
+			if item[0]:
+				index += 1
+				self.choiceList.append((index, item[0][0]))
+			else:
+				self.choiceList.append((0, None))
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:
@@ -229,13 +234,14 @@ class ChoiceBoxSummary(ScreenSummary):
 	def selectionChanged(self):
 		currentIndex = self.parent["list"].getCurrentIndex()
 		choiceList = []
-		for index, item in self.choiceList:
-			if index == currentIndex:
-				choiceList.append(f"> {self.choiceList[index][1]}")
-				self["value"].setText(self.choiceList[index][1])
-				self.parent["summary_selection"].setText(self.choiceList[index][1])  # Temporary hack to support old display skins.
-			else:
-				choiceList.append(f"{self.choiceList[index][0] + 1} {self.choiceList[index][1]}")
+		for index, item in enumerate(self.choiceList):
+			if item[0]:
+				if index == currentIndex:
+					choiceList.append(f"> {item[1]}")
+					self["value"].setText(item[1])
+					self.parent["summary_selection"].setText(item[1])  # Temporary hack to support old display skins.
+				else:
+					choiceList.append(f"{item[0]} {item[1]}")
 		index = 0 if currentIndex < 2 else currentIndex - 1
 		self["entry"].setText("\n".join(choiceList[index:]))
 		self.parent["summary_list"].setText("\n".join(choiceList[index:]))  # Temporary hack to support old display skins.
@@ -252,30 +258,29 @@ class ChoiceBox(ChoiceBoxNew):
 				windowTitle = title[:pos]
 				text = title[pos + 1:]
 		self["windowtitle"] = StaticText(windowTitle)  # This is a hack to keep broken skins that do not use the "Title" widget working.
-		if list:
+		if list is not None:
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'list' found , use 'choiceList' instead!")
-			if not choiceList:
+			if choiceList is None:
 				choiceList = list
-		if keys:
+		if keys is not None:
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'keys' found , use 'buttonList' instead!")
-			if not buttonList:
+			if buttonList is None:
 				buttonList = keys
-		if skin_name:
+		if skin_name is not None:
 			# Used in InfoBarGenerics.py, MovieSelection.py, ChannelSelection.py, EventView.py.
 			# /media/autofs/DATA/Enigma2/Plugins-Enigma2/werbezapper/src/WerbeZapper.py: ChoiceBox.__init__(self, session, title, list, keys, selection, skin_name)
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'skin_name' found with a value of '{skin_name}', use 'skinName' instead!")
-			if not skinName:
+			if skinName is None:
 				skinName = skin_name
-		if titlebartext:
+		if titlebartext is not None:
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'titlebartext' found with a value of '{titlebartext}', use 'windowTitle' instead!")
-			if not windowTitle:
+			if windowTitle is None:
 				windowTitle = titlebartext
-		if allow_cancel:
+		if allow_cancel is not None:
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'allow_cancel' found with a value of '{allow_cancel}', use 'allowCancel' instead!")
-			if not allowCancel:
+			if allowCancel is None:
 				allowCancel = allow_cancel
-		if not allowCancel:
+		if allowCancel is None:
 			allowCancel = True
-
 		ChoiceBoxNew.__init__(self, session, text=text, choiceList=choiceList, selection=selection, buttonList=buttonList, reorderConfig=reorderConfig, allowCancel=allowCancel, skinName=skinName, windowTitle=windowTitle)
 		self.list = self.choiceList  # Support for old skins an plugins
