@@ -62,14 +62,11 @@ public:
 					m_profileData[std::string(checkPoint)] = value;
 					m_totalTime = value;
 				}
-
 			}
 			f.close();
-
 		}
 
 		m_handle = fopen(fileName.c_str(), "w");
-
 	}
 
 	static eProfile &getInstance()
@@ -78,20 +75,22 @@ public:
 		return m_instance;
 	}
 
-	void write(const char* checkPoint)
+	void write(const char *checkPoint)
 	{
-		if(m_handle)
+		if (m_handle)
 		{
 			double nowDiff = std::chrono::duration<double, std::milli>(clock_::now() - m_profileStart).count();
 			std::map<std::string, float>::iterator it = m_profileData.find(std::string(checkPoint));
-			float nowDiffFloat = (float) nowDiff / 1000;
+			float nowDiffFloat = (float)nowDiff / 1000;
 			fprintf(m_handle, "%f\t%s\n", nowDiffFloat, checkPoint);
+			if (m_noproc)
+				return;
 			if (it != m_profileData.end())
 			{
 
 				int percentage = 50;
 				float timeStamp = it->second;
-				if(m_totalTime>0)
+				if (m_totalTime > 0)
 				{
 					percentage = (timeStamp * 50 / m_totalTime) + 50;
 				}
@@ -99,32 +98,47 @@ public:
 
 #ifdef PROFILE1 // "classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6"
 				f = fopen("/dev/dbox/oled0", "w");
-				fprintf(f, "%d", percentage);
-#elif PROFILE2  // 'gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'
+#elif PROFILE2 // 'gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'
 				f = fopen("/dev/mcu", "w");
-				fprintf(f, "%d  \n", percentage);
 #elif PROFILE3 // "osmini", "spycatmini", "osminiplus", "spycatminiplus"
 				f = fopen("/proc/progress", "w");
-				fprintf(f, "%d", percentage);
 #elif PROFILE4 // "xpeedlx3", "sezammarvel", "atemionemesis"
 				f = fopen("/proc/vfd", "w");
-				fprintf(f, "Loading %d%% ", percentage);
 #else
 				f = fopen("/proc/progress", "w");
-				fprintf(f, "%d \n", percentage);
 #endif
+
 				if (f)
+				{
+
+#ifdef PROFILE1 // "classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6"
+					fprintf(f, "%d", percentage);
+#elif PROFILE2 // 'gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'
+					fprintf(f, "%d  \n", percentage);
+#elif PROFILE3 // "osmini", "spycatmini", "osminiplus", "spycatminiplus"
+					fprintf(f, "%d", percentage);
+#elif PROFILE4 // "xpeedlx3", "sezammarvel", "atemionemesis"
+					fprintf(f, "Loading %d%% ", percentage);
+#else
+					fprintf(f, "%d \n", percentage);
+#endif
 					fclose(f);
+				}
+				else
+				{
+					m_noproc = true;
+				}
 			}
-
 		}
-
 	}
 
 	void close()
 	{
 		if (m_handle)
+		{
 			fclose(m_handle);
+			m_handle = 0;
+		}
 	}
 
 private:
@@ -132,6 +146,7 @@ private:
 	std::chrono::time_point<clock_> m_profileStart;
 	std::map<std::string, float> m_profileData;
 	float m_totalTime = 1;
+	bool m_noproc = false;
 	FILE *m_handle;
 };
 

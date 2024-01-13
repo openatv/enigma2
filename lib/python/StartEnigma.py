@@ -457,7 +457,6 @@ def runScreenTest():
 	config.misc.startCounter.save()
 	config.usage.shutdownOK.setValue(True)
 	config.usage.shutdownOK.save()
-	enigma.eProfileWrite("Wakeup")
 	nowTime = time()  # Get currentTime.
 	# if config.misc.SyncTimeUsing.value != "0" or BRAND == "gigablue":
 	if config.misc.SyncTimeUsing.value != "0" or BOX_TYPE.startswith("gb") or BRAND.startswith("ini"):
@@ -558,11 +557,8 @@ def runScreenTest():
 		print("[StartEnigma] No next wakeup time set.")
 	config.misc.nextWakeup.save()
 	print("=" * 100)
-	enigma.eProfileWrite("StopService")
 	session.nav.stopService()
-	enigma.eProfileWrite("NavigationShutdown")
 	session.nav.shutdown()
-	enigma.eProfileWrite("SaveConfig")
 	configfile.save()
 	from Screens.InfoBarGenerics import saveResumePoints
 	saveResumePoints()
