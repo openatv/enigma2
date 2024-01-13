@@ -210,10 +210,13 @@ class ChoiceBoxSummary(ScreenSummary):
 		self["entry"] = StaticText("")
 		self["value"] = StaticText("")
 		self.choiceList = []
-		for index, item in enumerate(self.parent["list"].getList()):
-			print(f"[ChoiceBox] DEBUG: Summary item {index}: '{item}'.")
-			if item:
+		index = 0
+		for item in self.parent["list"].getList():
+			if item[0]:
+				index += 1
 				self.choiceList.append((index, item[0][0]))
+			else:
+				self.choiceList.append((0, None))
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:
@@ -231,13 +234,14 @@ class ChoiceBoxSummary(ScreenSummary):
 	def selectionChanged(self):
 		currentIndex = self.parent["list"].getCurrentIndex()
 		choiceList = []
-		for index, item in self.choiceList:
-			if index == currentIndex:
-				choiceList.append(f"> {self.choiceList[index][1]}")
-				self["value"].setText(self.choiceList[index][1])
-				self.parent["summary_selection"].setText(self.choiceList[index][1])  # Temporary hack to support old display skins.
-			else:
-				choiceList.append(f"{self.choiceList[index][0] + 1} {self.choiceList[index][1]}")
+		for index, item in enumerate(self.choiceList):
+			if item[0]:
+				if index == currentIndex:
+					choiceList.append(f"> {item[1]}")
+					self["value"].setText(item[1])
+					self.parent["summary_selection"].setText(item[1])  # Temporary hack to support old display skins.
+				else:
+					choiceList.append(f"{item[0]} {item[1]}")
 		index = 0 if currentIndex < 2 else currentIndex - 1
 		self["entry"].setText("\n".join(choiceList[index:]))
 		self.parent["summary_list"].setText("\n".join(choiceList[index:]))  # Temporary hack to support old display skins.
