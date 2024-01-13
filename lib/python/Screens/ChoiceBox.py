@@ -211,7 +211,9 @@ class ChoiceBoxSummary(ScreenSummary):
 		self["value"] = StaticText("")
 		self.choiceList = []
 		for index, item in enumerate(self.parent["list"].getList()):
-			self.choiceList.append((index, item[0][0]))
+			print(f"[ChoiceBox] DEBUG: Summary item {index}: '{item}'.")
+			if item:
+				self.choiceList.append((index, item[0][0]))
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:
@@ -252,30 +254,29 @@ class ChoiceBox(ChoiceBoxNew):
 				windowTitle = title[:pos]
 				text = title[pos + 1:]
 		self["windowtitle"] = StaticText(windowTitle)  # This is a hack to keep broken skins that do not use the "Title" widget working.
-		if list:
+		if list is not None:
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'list' found , use 'choiceList' instead!")
-			if not choiceList:
+			if choiceList is None:
 				choiceList = list
-		if keys:
+		if keys is not None:
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'keys' found , use 'buttonList' instead!")
-			if not buttonList:
+			if buttonList is None:
 				buttonList = keys
-		if skin_name:
+		if skin_name is not None:
 			# Used in InfoBarGenerics.py, MovieSelection.py, ChannelSelection.py, EventView.py.
 			# /media/autofs/DATA/Enigma2/Plugins-Enigma2/werbezapper/src/WerbeZapper.py: ChoiceBox.__init__(self, session, title, list, keys, selection, skin_name)
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'skin_name' found with a value of '{skin_name}', use 'skinName' instead!")
-			if not skinName:
+			if skinName is None:
 				skinName = skin_name
-		if titlebartext:
+		if titlebartext is not None:
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'titlebartext' found with a value of '{titlebartext}', use 'windowTitle' instead!")
-			if not windowTitle:
+			if windowTitle is None:
 				windowTitle = titlebartext
-		if allow_cancel:
+		if allow_cancel is not None:
 			# print(f"[ChoiceBox] Warning: Deprecated argument 'allow_cancel' found with a value of '{allow_cancel}', use 'allowCancel' instead!")
-			if not allowCancel:
+			if allowCancel is None:
 				allowCancel = allow_cancel
-		if not allowCancel:
+		if allowCancel is None:
 			allowCancel = True
-
 		ChoiceBoxNew.__init__(self, session, text=text, choiceList=choiceList, selection=selection, buttonList=buttonList, reorderConfig=reorderConfig, allowCancel=allowCancel, skinName=skinName, windowTitle=windowTitle)
 		self.list = self.choiceList  # Support for old skins an plugins
