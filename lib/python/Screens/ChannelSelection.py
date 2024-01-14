@@ -3259,41 +3259,31 @@ class EpgBouquetSelector(EPGBouquetSelector):
 
 
 class HistoryZapSelector(Screen, HelpableScreen):
-	def __init__(self, session, historyItems, markedItem=0, selectedItem=0):
+	# HISTORY_SPACER = 0
+	# HISTORY_MARKER = 1
+	# HISTORY_SERVICE_NAME = 2
+	# HISTORY_EVENT_NAME = 3
+	# HISTORY_EVENT_DESCRIPTION = 4
+	# HISTORY_EVENT_DURATION = 5
+	# HISTORY_SERVICE_PICON = 6
+	HISTORY_SERVICE_REFERENCE = 7
+
+	def __init__(self, session, serviceReferences, markedItem=0, selectedItem=0):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.setTitle(_("History Zap"))
-		print(f"[ChannelSelection] HistoryZapSelector DEBUG: Setting title='{self.getTitle()}'.")
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Select"))
-		self["actions"] = HelpableActionMap(self, ["SelectCancelActions"], {
-			"cancel": (self.keyCancel, _("Cancel the service zap")),
-			"select": (self.keySelect, _("Select the currently highlighted service"))
-		}, prio=0, description=_("History Zap Actions"))
-		previousNext = ("previous", "next") if config.usage.zaphistorysort.value else ("next", "previous")
-		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions", "PreviousNextActions"], {
-			"top": (self.keyTop, _("Move to the first line / screen")),
-			"pageUp": (self.keyPageUp, _("Move up a screen")),
-			previousNext[0]: (self.keyUp, _("Move up a line")),
-			previousNext[1]: (self.keyDown, _("Move down a line")),
-			"up": (self.keyUp, _("Move up a line")),
-			"down": (self.keyDown, _("Move down a line")),
-			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to the last line / screen"))
-		}, prio=0, description=_("History Zap Navigation Actions"))
 		serviceHandler = eServiceCenter.getInstance()
 		historyList = []
-		for index, historyItem in enumerate(historyItems):
-			info = serviceHandler.info(historyItem)
+		for index, serviceReference in enumerate(serviceReferences):
+			info = serviceHandler.info(serviceReference)
 			if info:
-				serviceName = info.getName(historyItem) or ""
+				serviceName = info.getName(serviceReference) or ""
 				eventName = ""
 				eventDescription = ""
 				eventDuration = ""
-				event = info.getEvent(historyItem)
+				event = info.getEvent(serviceReference)
 				if event:
 					eventName = event.getEventName() or ""
-					# eventName = eventName.replace("(18+)", "").replace("18+", "").replace("(16+)", "").replace("16+", "").replace("(12+)", "").replace("12+", "").replace("(7+)", "").replace("7+", "").replace("(6+)", "").replace("6+", "").replace("(0+)", "").replace("0+", "")  # TODO: What are all these string replacements doing?
 					eventDescription = event.getShortDescription()
 					if not eventDescription:
 						eventDescription = event.getExtendedDescription() or ""
@@ -3304,15 +3294,33 @@ class HistoryZapSelector(Screen, HelpableScreen):
 						prefix = "+" if remaining > 0 else ""
 						localBegin = localtime(begin)
 						localEnd = localtime(end)
-						eventDuration = _("%s  -  %s    (%s%d Min)") % (strftime(config.usage.time.short.value, localBegin), strftime(config.usage.time.short.value, localEnd), prefix, remaining)
-				servicePicon = getPiconName(str(ServiceReference(historyItem)))
+						eventDuration = f"{strftime(config.usage.time.short.value, localBegin)}  -  {strftime(config.usage.time.short.value, localEnd)}    ({prefix}{ngettext('%d Min', '%d Mins', remaining) % remaining})"
+				servicePicon = getPiconName(str(ServiceReference(serviceReference)))
 				servicePicon = loadPNG(servicePicon) if servicePicon else ""
-				# List entries: ("", ServiceMarked, ServiceName, EventName, EventDescription, EventDuration, ServicePicon, ServiceReference)
-				historyList.append(("", index == markedItem and "\u00BB" or "", serviceName, eventName, eventDescription, eventDuration, servicePicon, historyItem))
-		if config.usage.zaphistorysort.value == 0:
+				historyList.append(("", index == markedItem and "\u00BB" or "", serviceName, eventName, eventDescription, eventDuration, servicePicon, serviceReference))
+		if config.usage.zapHistorySort.value == 0:
 			historyList.reverse()
-		self.selectedItem = len(historyList) - selectedItem - 1
+			self.selectedItem = len(historyList) - selectedItem - 1
+		else:
+			self.selectedItem = selectedItem
 		self["menu"] = List(historyList)
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Select"))
+		self["actions"] = HelpableActionMap(self, ["SelectCancelActions"], {
+			"select": (self.keySelect, _("Select the currently highlighted service")),
+			"cancel": (self.keyCancel, _("Cancel the service history zap"))
+		}, prio=0, description=_("History Zap Actions"))
+		previousNext = ("previous", "next") if config.usage.zapHistorySort.value else ("next", "previous")
+		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions", "PreviousNextActions"], {
+			"top": (self["menu"].goTop, _("Move to the first line / screen")),
+			"pageUp": (self["menu"].goPageUp, _("Move up a screen")),
+			"up": (self["menu"].goLineUp, _("Move up a line")),
+			previousNext[0]: (self["menu"].goLineUp, _("Move up a line")),
+			previousNext[1]: (self["menu"].goLineDown, _("Move down a line")),
+			"down": (self["menu"].goLineDown, _("Move down a line")),
+			"pageDown": (self["menu"].goPageDown, _("Move down a screen")),
+			"bottom": (self["menu"].goBottom, _("Move to the last line / screen"))
+		}, prio=0, description=_("History Zap Navigation Actions"))
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -3324,22 +3332,4 @@ class HistoryZapSelector(Screen, HelpableScreen):
 
 	def keySelect(self):
 		current = self["menu"].getCurrent()
-		self.close(current and current[7])  # Send the selected ServiceReference to the calling code.
-
-	def keyTop(self):
-		self["menu"].goTop()
-
-	def keyPageUp(self):
-		self["menu"].goPageUp()
-
-	def keyUp(self):
-		self["menu"].goLineUp()
-
-	def keyDown(self):
-		self["menu"].goLineDown()
-
-	def keyPageDown(self):
-		self["menu"].goPageDown()
-
-	def keyBottom(self):
-		self["menu"].goBottom()
+		self.close(current and current[self.HISTORY_SERVICE_REFERENCE])  # Send the selected ServiceReference to the calling code.

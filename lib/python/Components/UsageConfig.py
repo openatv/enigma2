@@ -1480,9 +1480,9 @@ def InitUsageConfig():
 		("1", _("Show menu"))
 	])
 
-	config.usage.zaphistorysort = ConfigSelection(default=0, choices=[
-		(0, _("Top")),
-		(1, _("Bottom"))
+	config.usage.zapHistorySort = ConfigSelection(default=0, choices=[
+		(0, _("Most recent first")),
+		(1, _("Most recent last"))
 	])
 
 	config.subtitles = ConfigSubsection()
