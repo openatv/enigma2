@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
 "PO-Revision-Date: 2024-01-09 22:27+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1632,6 +1632,13 @@ msgstr ""
 "Tallennus on alkanut:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Tallennus on parhaillaan käynnissä.\n"
+"Mitä haluat tehdä?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Tallennus on parhaillaan käynnissä. Pysäytä tallennus ennen kuin yrität muokata kääntömoottorin asetuksia."
 
@@ -3244,6 +3251,9 @@ msgstr "Näppäinmääritykset"
 msgid "Button error timeout"
 msgstr "Virheen aikakatkaisu"
 
+msgid "ButtonSetup"
+msgstr "Näppäinmääritykset"
+
 msgid "By disk UUID"
 msgstr "Levyllä UUID"
 
@@ -3615,6 +3625,9 @@ msgstr "Peruuta image valinta ja poistu"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Peruuta image valinta ja poistu kaikista valikoista"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr "Peruuta kanava valinta"
 
@@ -3946,6 +3959,18 @@ msgstr "Piirisarja: BCM%s"
 msgid "Choice Box"
 msgstr "Kortin Tiedot"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Valitse mihin laittaa \"%s\""
@@ -3967,6 +3992,12 @@ msgstr "Valitse, kuinka paljon Ohjelmaopas historiaa EPG välimuistissa säilyte
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Valitse, kuinka usein yhteys muodostetaan IceTV palvelimeen päivitysten tarkistamiseksi."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr "Valitse lisä paikkojen määrä."
@@ -4126,8 +4157,14 @@ msgstr[1] "Tyhjennä varoitukset"
 msgid "Click the button on your remote you want to change."
 msgstr "Määrittää näppäimelle haluamasi toiminnon."
 
+msgid "Client"
+msgstr "Asiakas"
+
 msgid "Client is streaming from this box!"
 msgstr "Etäasiakas suora toistaa boxin kautta!"
+
+msgid "ClientIP"
+msgstr "Asikas IP"
 
 msgid "Clients"
 msgstr "Asiakkaat"
@@ -4285,6 +4322,9 @@ msgstr "Yleiset Asetukset"
 
 msgid "Common Setup Actions"
 msgstr "Yleiset asetukset"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Comoros"
@@ -5241,6 +5281,12 @@ msgstr "DNS Asetukset"
 msgid "DNS data source"
 msgstr "DNS data lähde"
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5608,6 +5654,9 @@ msgstr "Softcam tälle kanavalle"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Määritä vaihtoehtoinen viive millisekunneissa ennen http(s) suora toiston alkamista."
+
+msgid "Define the DNS suffix."
+msgstr ""
 
 msgid "Defined / Active"
 msgstr "Määritetty / Aktiivinen"
@@ -6345,6 +6394,9 @@ msgstr "Haluatko käynnistää %s %s:n uudestaan?"
 
 msgid "Do you want to remove:"
 msgstr "Haluatko poistaa:"
+
+msgid "Do you want to replace:"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Haluatko palauttaa asetukset?"
@@ -8984,6 +9036,9 @@ msgstr "Isäntänimi: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Pikanäppäin"
+
 msgid "Hotkey Settings"
 msgstr "Pikanäppäimet"
 
@@ -9071,8 +9126,14 @@ msgstr "Striimin välitys -palvelimen IP-osoite, jota käytetään sellaisten pa
 msgid "IPK Installer"
 msgstr "IPK Asennus"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
 msgstr "IPv6 osoite"
+
+msgid "IPv6 only"
+msgstr ""
 
 msgid "ISO file is too large for this file system!"
 msgstr "ISO-tiedosto on liian suuri tälle tiedostojärjestelmälle!"
@@ -10935,11 +10996,11 @@ msgstr "Moottorin aikaylitys"
 msgid "Mount"
 msgstr "Liitä"
 
-msgid "Mount Actions"
-msgstr "Liitokset toiminnot"
-
 msgid "Mount Manager"
 msgstr "Liitosten hallinta"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr "Liitokset Asetukset"
@@ -11059,6 +11120,12 @@ msgstr "Siirrä nykyinen kirjanmerkki alaspäin"
 
 msgid "Move the current bookmark up"
 msgstr "Siirrä nykyinen kirjanmerkki alaspäin"
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
+msgstr ""
 
 msgid "Move the current line down"
 msgstr "Siirrä nykyinen rivi alaspäin"
@@ -11455,6 +11522,9 @@ msgstr "Verkkotiedot Toiminnot"
 msgid "Network Interface"
 msgstr "Verkkosovitin"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr "Verkko loki toiminnot"
 
@@ -11515,6 +11585,9 @@ msgstr "Verkkonimi (SSID)"
 
 msgid "Network scan"
 msgstr "Verkkohaku"
+
+msgid "Network storage on"
+msgstr "Verkkotallennus päällä"
 
 msgid "Network test"
 msgstr "Lähiverkon testi"
@@ -11727,6 +11800,9 @@ msgstr "Kaikki virittimet ovat jo käytössä!"
 msgid "No hard disks detected."
 msgstr "Kiintolevyjä ei havaittu."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käytettävissä!"
+
 msgid "No matching place names found"
 msgstr "Ei vastaavuutta löytynyt nimistä"
 
@@ -11906,8 +11982,11 @@ msgstr "Epälineaarinen"
 msgid "None"
 msgstr "Ei mitään"
 
-msgid "NordVPN DNS"
-msgstr "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr "Norfolkinsaari"
@@ -12468,6 +12547,9 @@ msgstr "PLS Tila"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "Tieto Paneeli"
+
 msgid "PRIMETIME"
 msgstr "Paras katseluaika"
 
@@ -12541,6 +12623,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Paniikki kanava"
+
+msgid "Panic to"
+msgstr "Paniikkinäppäimestä"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Punjabi"
@@ -13030,6 +13115,9 @@ msgstr "Odota, haku on käynnissä..."
 msgid "Please wait while the data is extracted..."
 msgstr "Odota, kunnes tiedot on purettu..."
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Odota, kunnes luettelo ladataan..."
 
@@ -13270,6 +13358,12 @@ msgstr "Ensisijaisena AC3 ääniraita"
 
 msgid "Prefer AC3+ track"
 msgstr "Ensisijaisena AC3+ ääniraita"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Ensisijaisena kanavalle tallennettu äänivalinta"
@@ -13669,6 +13763,12 @@ msgstr "Neljä PIP ei saatavilla."
 
 msgid "Quad9 DNS"
 msgstr "Quad9 DNS"
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
+msgstr ""
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -14406,6 +14506,9 @@ msgstr "Nollaa ja uudelleenjärjestä otsikot"
 msgid "Reset executable mode (644)"
 msgstr "Palauta suoritettava tila (644)"
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr "Palauta verkkoasetukset"
 
@@ -14417,6 +14520,9 @@ msgstr "Nollaa toistokohta"
 
 msgid "Reset sort order"
 msgstr "Palauta lajittelujärjestys"
+
+msgid "Reset the order of the entries"
+msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Palauta kuvasäädöt oletusarvoihin?"
@@ -15410,6 +15516,9 @@ msgstr "Valitse CAId"
 msgid "Select Device"
 msgstr "Valitse Laite"
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Valitse järjestelmän Teema"
 
@@ -15450,6 +15559,9 @@ msgstr "Valitse satelliitit"
 
 msgid "Select Shares"
 msgstr "Valitse Jaot"
+
+msgid "Select Skin"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr "Valitse softcam"
@@ -15683,6 +15795,10 @@ msgstr "Valitse väliaikaisen hakemiston lajittelujärjestys nykyiselle sarakkee
 msgid "Select temporary file sort order for the current column"
 msgstr "Valitse väliaikaisen hakemiston lajittelujärjestys nykyiselle sarakkeelle"
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr "Valitse Ei / Väärä vastaus"
 
@@ -15741,6 +15857,9 @@ msgstr "Valitse kursorin alla oleva merkki tai toiminta"
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Valitse nykyinen kirjanmerkki ja poistu"
+
+msgid "Select the current entry"
+msgstr ""
 
 msgid "Select the current menu item"
 msgstr "Valitse nykyinen valikko kohta"
@@ -15841,6 +15960,9 @@ msgstr "Valitse SCR-laitteesi valmistaja. Jos valmistajaa ei löydy listalta, as
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Valitse tapa, jolla näytön tarkkuus ja kehyspuskuri palautetaan, kun poistut teksti-tv:stä."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Valitse SCR:n mallinumero. Jos mallinumeroa ei löydy listalta, aseta 'SCR' 'käyttäjän määrittelemä' ja syötä laitteen parametrit käsin teknisistä tiedoista."
@@ -16693,6 +16815,9 @@ msgstr "Terävyys"
 
 msgid "ShellInABox"
 msgstr "Terminaali"
+
+msgid "Shellscript"
+msgstr "Shellscripti"
 
 msgid "Shift"
 msgstr "Vaihto"
@@ -17930,9 +18055,6 @@ msgstr "Oletusjärjestys"
 
 msgid "Sort list by"
 msgstr "Listan järjestystapa"
-
-msgid "Sort list to default and exit?"
-msgstr "Järjestä lista oletusasetuksiin ja poistu?"
 
 msgid "Sort list:"
 msgstr "Listan järjestystapa:"
@@ -20056,6 +20178,9 @@ msgstr "Raita"
 
 msgid "Traditional Chinese"
 msgstr "Kiina"
+
+msgid "Transcode"
+msgstr "Transkoodaus"
 
 msgid "Transcoding"
 msgstr "Transkoodaus"
@@ -22266,6 +22391,9 @@ msgstr "Kanavanvaihdon toiminta"
 msgid "Zap next"
 msgstr "Vaihda seuraavalle kanavalle"
 
+msgid "Zap to"
+msgstr "Vaihda kanavalle"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Vaihda kanavalle (määritettävissä asetuksissa)"
 
@@ -22611,12 +22739,6 @@ msgstr "Suorittaa leikkauksia (tarvitsee MovieCut lisäosan)"
 msgid "exit DVD player or return to file browser"
 msgstr "poistu DVD-soittimesta tai palaa tiedostonhallintaan"
 
-msgid "exit mounts setup menu"
-msgstr "poistu liitosten asetusvalikosta"
-
-msgid "exit networkadapter setup menu"
-msgstr "poistu verkkosovittimen asetusvalikosta"
-
 msgid "experimental film/video"
 msgstr "kokeellinen elokuva/video"
 
@@ -22847,18 +22969,6 @@ msgstr "autoilu"
 
 msgid "move"
 msgstr "siirrä"
-
-msgid "move down to last entry"
-msgstr "siirry viimeiseen kohtaan"
-
-msgid "move down to next entry"
-msgstr "siirry seuraavaan kohtaan"
-
-msgid "move up to first entry"
-msgstr "siirry ensimmäiseen kohtaan"
-
-msgid "move up to previous entry"
-msgstr "siirry edelliseen kohtaan"
 
 msgid "movie (general)"
 msgstr "elokuva (yleinen)"
@@ -23092,9 +23202,6 @@ msgstr "hae EPG:stä."
 
 msgid "select CAId's"
 msgstr "valitse CAId:t"
-
-msgid "select menu entry"
-msgstr "valitse valikon kohta"
 
 msgid "serious music/classic music"
 msgstr "vakava musiikki/klassinen musiikki"
@@ -23395,6 +23502,36 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mount Actions"
+#~ msgstr "Liitokset toiminnot"
+
+#~ msgid "NordVPN DNS"
+#~ msgstr "NordVPN DNS"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Järjestä lista oletusasetuksiin ja poistu?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "poistu liitosten asetusvalikosta"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "poistu verkkosovittimen asetusvalikosta"
+
+#~ msgid "move down to last entry"
+#~ msgstr "siirry viimeiseen kohtaan"
+
+#~ msgid "move down to next entry"
+#~ msgstr "siirry seuraavaan kohtaan"
+
+#~ msgid "move up to first entry"
+#~ msgstr "siirry ensimmäiseen kohtaan"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "siirry edelliseen kohtaan"
+
+#~ msgid "select menu entry"
+#~ msgstr "valitse valikon kohta"
 
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "Taustapäivityksen tarkistus on käynnissä, odota muutama minuutti ja yritä uudelleen."
@@ -23734,13 +23871,6 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "Edelliset 24h"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Tallennus on parhaillaan käynnissä.\n"
-"Mitä haluat tehdä?"
-
 #~ msgid "BouquetList"
 #~ msgstr "Suosikkilista"
 
@@ -23996,14 +24126,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI Avustaja Asetukset"
 
-#~ msgid "ClientIP"
-#~ msgstr "Asikas IP"
-
 #~ msgid "Minute"
 #~ msgstr "minuutti"
-
-#~ msgid "Transcode"
-#~ msgstr "Transkoodaus"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -24026,12 +24150,6 @@ msgstr ""
 #~ msgid "Basic PID info"
 #~ msgstr "Perus PID tiedot"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Näppäinmääritykset"
-
-#~ msgid "Client"
-#~ msgstr "Asiakas"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "Code R. LP-HP & Guard Int."
 
@@ -24050,9 +24168,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Taajuus & polarisaatio"
 
-#~ msgid "Hotkey"
-#~ msgstr "Pikanäppäin"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Inversio & kaistanleveys"
 
@@ -24062,26 +24177,14 @@ msgstr ""
 #~ msgid "NIM & Type"
 #~ msgstr "NIM & Tyyppi"
 
-#~ msgid "Network storage on"
-#~ msgstr "Verkkotallennus päällä"
-
 #~ msgid "Next Log"
 #~ msgstr "Seuraava loki"
 
 #~ msgid "Next Picture"
 #~ msgstr "Seuraava kuva"
 
-#~ msgid "No log files found so debug logs are unavailable!"
-#~ msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käytettävissä!"
-
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "Tieto Paneeli"
-
-#~ msgid "Panic to"
-#~ msgstr "Paniikkinäppäimestä"
 
 #~ msgid "Previous Log"
 #~ msgstr "Edellinen loki"
@@ -24110,9 +24213,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Palvelun tiedot - virittimen asetusarvot"
 
-#~ msgid "Shellscript"
-#~ msgstr "Shellscripti"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Symbolinopeus & FEC"
 
@@ -24127,9 +24227,6 @@ msgstr ""
 
 #~ msgid "Tuner setting values"
 #~ msgstr "Virittimen asetusarvot"
-
-#~ msgid "Zap to"
-#~ msgstr "Vaihda kanavalle"
 
 #~ msgid "active"
 #~ msgstr "aktivoi"

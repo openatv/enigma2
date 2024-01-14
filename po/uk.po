@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
-"PO-Revision-Date: 2024-01-03 01:05+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
+"PO-Revision-Date: 2024-01-12 09:38+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1665,6 +1665,13 @@ msgstr ""
 "Запис розпочався:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Триває запис.\n"
+"Що хочете зробити?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "В даний час триває запис. Зупиніть запис перед налаштуванням позиціонера."
 
@@ -3271,6 +3278,9 @@ msgstr "Налаштування кнопок"
 msgid "Button error timeout"
 msgstr "Час очікування помилки кнопки"
 
+msgid "ButtonSetup"
+msgstr "Налаштування кнопок"
+
 msgid "By disk UUID"
 msgstr "За UUID диску"
 
@@ -3641,6 +3651,9 @@ msgstr "Скасувати вибір іміджу і вийти"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Скасувати вибір іміджу та вийдіть із усіх меню"
 
+msgid "Cancel the selection and exit"
+msgstr "Скасувати вибір і вийти"
+
 msgid "Cancel the service selection"
 msgstr "Скасуйте вибір послуги"
 
@@ -3972,6 +3985,18 @@ msgstr "Чіпсет: BCM%s"
 msgid "Choice Box"
 msgstr "Зробіть вибір"
 
+msgid "Choice List Actions"
+msgstr "Дії списку вибору"
+
+msgid "Choice List Navigation Actions"
+msgstr "Навігаційні дії за списком вибору"
+
+msgid "Choice List Order Actions"
+msgstr "Дії порядку списку вибору"
+
+msgid "Choice List Selection Actions"
+msgstr "Дії вибору зі списку вибору"
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Вибір де поставити \"%s\""
@@ -3993,6 +4018,12 @@ msgstr "Виберіть, скільки передач EPG, якщо така �
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Виберіть частоту підключення до сервера IceTV, щоб перевірити наявність оновлень."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr "Виберіть скін дисплея та натисніть ЗЕЛЕНУ кнопку, щоб активувати скін."
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr "Виберіть OSD-скін та натисніть ЗЕЛЕНУ кнопку, щоб активувати його."
 
 msgid "Choose the amount of additional slots."
 msgstr "Виберіть кількість додаткових слотів."
@@ -4153,8 +4184,14 @@ msgstr[2] "Очистити попереджень"
 msgid "Click the button on your remote you want to change."
 msgstr "Натисніть на пульті ту кнопку, дію якої хочете змінити."
 
+msgid "Client"
+msgstr "Клієнт"
+
 msgid "Client is streaming from this box!"
 msgstr "Клієнт транслюється з цього пристрою!"
+
+msgid "ClientIP"
+msgstr "АПКлієнт"
 
 msgid "Clients"
 msgstr "Клієнти"
@@ -4312,6 +4349,9 @@ msgstr "Загальні налаштування"
 
 msgid "Common Setup Actions"
 msgstr "Загальні дії з налаштування"
+
+msgid "Comodo Secure DNS"
+msgstr "Зручний захищений DNS"
 
 msgid "Comoros"
 msgstr "Коморські острови"
@@ -5268,6 +5308,12 @@ msgstr "Налаштування DNS"
 msgid "DNS data source"
 msgstr "Джерело даних DNS"
 
+msgid "DNS mode"
+msgstr "Режим DNS"
+
+msgid "DNS suffix"
+msgstr "DNS суфікс"
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5635,6 +5681,9 @@ msgstr "Визначити Softcam для даного Каналу"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Визначте додаткову затримку в мілісекундах перед початком стріму http(s)."
+
+msgid "Define the DNS suffix."
+msgstr "Визначити DNS-суфікс."
 
 msgid "Defined / Active"
 msgstr "Визначено / Активно"
@@ -6372,6 +6421,9 @@ msgstr "Ви хочете перезавантажити Ваш %s %s?"
 
 msgid "Do you want to remove:"
 msgstr "Ви хочете видалити:"
+
+msgid "Do you want to replace:"
+msgstr "Бажаєте замінити:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Ви хочете відновити свої налаштування?"
@@ -9014,6 +9066,9 @@ msgstr "Мережеве ім'я: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0E"
 
+msgid "Hotkey"
+msgstr "Гарячі кнопки"
+
 msgid "Hotkey Settings"
 msgstr "Налаштування гарячих кнопок"
 
@@ -9101,8 +9156,14 @@ msgstr "IP-адреса сервера Stream Relay, який використо
 msgid "IPK Installer"
 msgstr "IPK Інсталятор"
 
+msgid "IPv4 only"
+msgstr "Лише IPv4"
+
 msgid "IPv6 address"
 msgstr "IPv6 адреса"
+
+msgid "IPv6 only"
+msgstr "Лише IPv6"
 
 msgid "ISO file is too large for this file system!"
 msgstr "Розмір ISO файлу завеликий для цієї файлової системи!"
@@ -10962,11 +11023,11 @@ msgstr "Затримка роботи для двигуна"
 msgid "Mount"
 msgstr "Підключення"
 
-msgid "Mount Actions"
-msgstr "Дії монтування"
-
 msgid "Mount Manager"
 msgstr "Помічник монтування"
+
+msgid "Mount Menu Actions"
+msgstr "Дії Меню монтування"
 
 msgid "Mount Settings"
 msgstr "Налаштування монтування"
@@ -11084,6 +11145,12 @@ msgstr "Перемістити поточну закладку вниз"
 
 msgid "Move the current bookmark up"
 msgstr "Перемістити поточну закладку вгору"
+
+msgid "Move the current entry down"
+msgstr "Перемістити поточний запис вниз"
+
+msgid "Move the current entry up"
+msgstr "Перемістити поточний запис вверх"
 
 msgid "Move the current line down"
 msgstr "Перемістити поточний рядок вниз"
@@ -11480,6 +11547,9 @@ msgstr "Інформаційні дії мережі"
 msgid "Network Interface"
 msgstr "Мережевий Інтерфейс"
 
+msgid "Network Log"
+msgstr "Лог Мережі"
+
 msgid "Network Log Actions"
 msgstr "Дії мережевого журналу"
 
@@ -11540,6 +11610,9 @@ msgstr "Назва мережі (SSID)"
 
 msgid "Network scan"
 msgstr "Мережевий пошук"
+
+msgid "Network storage on"
+msgstr "Мережевий накопичувач увімкнено"
 
 msgid "Network test"
 msgstr "Тест мережевого з'єднання"
@@ -11750,6 +11823,9 @@ msgstr "Немає вільного тюнера!"
 msgid "No hard disks detected."
 msgstr "Жорстких дисків не виявлено."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr "Файлів журналу не знайдено, тому журнали налагодження недоступні!"
+
 msgid "No matching place names found"
 msgstr "Не знайдено відповідних назв"
 
@@ -11925,8 +12001,11 @@ msgstr "Нелінійний"
 msgid "None"
 msgstr "Нічого"
 
-msgid "NordVPN DNS"
-msgstr "Nord VPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr "Безпечний DNS NordVPN"
+
+msgid "NordVPN Smart DNS"
+msgstr "Розумний DNS NordVPN"
 
 msgid "Norfolk Island"
 msgstr "Острів Норфолк"
@@ -12487,6 +12566,9 @@ msgstr "Режим PLS"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "PPanel"
+
 msgid "PRIMETIME"
 msgstr "ПРАЙМ-ТАЙМ"
 
@@ -12560,6 +12642,9 @@ msgstr "Панама"
 
 msgid "Panic channel"
 msgstr "Канал на тривожній кнопці"
+
+msgid "Panic to"
+msgstr "Тривожна кнопка на"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Punjabi"
@@ -13049,6 +13134,9 @@ msgstr "Будь ласка, почекайте, виконується скан
 msgid "Please wait while the data is extracted..."
 msgstr "Будь ласка, зачекайте, поки дані розархівовуються..."
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr "Будь ласка, зачекайте, поки фід буде скинуто (очищено та перезавантажено)..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Будь ласка, почекайте, список завантажується..."
 
@@ -13291,6 +13379,12 @@ msgstr "Пріоритет AC3"
 
 msgid "Prefer AC3+ track"
 msgstr "Пріоритет AC3+"
+
+msgid "Prefer IPv4"
+msgstr "Надати перевагу IPv4"
+
+msgid "Prefer IPv6"
+msgstr "Надати перевагу IPv6"
 
 msgid "Prefer audio track stored by service"
 msgstr "Пріоритет доріжкам збережених на каналі"
@@ -13690,6 +13784,12 @@ msgstr "Чотирьохекранний ПіП недоступний."
 
 msgid "Quad9 DNS"
 msgstr "DNS Quad9"
+
+msgid "Quad9 ECS DNS"
+msgstr "Quad9 ECS DNS"
+
+msgid "Quad9 Unsecured DNS"
+msgstr "Quad9 незахищений DNS"
 
 msgid "Quechua"
 msgstr "Кечуа"
@@ -14427,6 +14527,9 @@ msgstr "Скинути і перенумерувати назви заголов
 msgid "Reset executable mode (644)"
 msgstr "Скинути режим виконання (644)"
 
+msgid "Reset list order to the default list order?"
+msgstr "Відновити порядок списку до стандартного?"
+
 msgid "Reset network configuration"
 msgstr "Скидання конфігурації мережі"
 
@@ -14438,6 +14541,9 @@ msgstr "Скидання позиції відтворення"
 
 msgid "Reset sort order"
 msgstr "Скинути порядок сортування"
+
+msgid "Reset the order of the entries"
+msgstr "Скинути порядок записів"
 
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Скинути налаштування покращення відео на стандартні?"
@@ -15425,6 +15531,9 @@ msgstr "Вибрати CAID"
 msgid "Select Device"
 msgstr "Виберіть Пристрій"
 
+msgid "Select Display Skin"
+msgstr "Вибрати Скін дисплея"
+
 msgid "Select Enigma2 Skin"
 msgstr "Вибір Enigma2 скіну"
 
@@ -15463,6 +15572,9 @@ msgstr "Виберіть супутники"
 
 msgid "Select Shares"
 msgstr "Вибрати доступ"
+
+msgid "Select Skin"
+msgstr "Вибрати Скін"
 
 msgid "Select Softcam"
 msgstr "Виберіть softcam"
@@ -15694,6 +15806,10 @@ msgstr "Виберіть тимчасовий порядок сортуванн�
 msgid "Select temporary file sort order for the current column"
 msgstr "Виберіть тимчасовий порядок сортування файлів для поточного стовпця"
 
+#, python-format
+msgid "Select the %s entry"
+msgstr "Вибрати запис %s"
+
 msgid "Select the No / False response"
 msgstr "Виберіть відповідь Ні/Хибна"
 
@@ -15752,6 +15868,9 @@ msgstr "Виберіть символ, або дію під курсором к�
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Виберіть поточне місце в закладках та вийдіть"
+
+msgid "Select the current entry"
+msgstr "Вибрати поточний запис"
 
 msgid "Select the current menu item"
 msgstr "Вибрати поточний пункт меню"
@@ -15852,6 +15971,9 @@ msgstr "Виберіть виробника свого пристрою SCR. Я�
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Виберіть метод відновлення роздільної здатності екрана та буфера обміну при виході з телетексту."
+
+msgid "Select the mode of the DNS."
+msgstr "Вибрати режим роботи DNS."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Виберіть номер моделі вашого пристрою Unicable. Якщо номер моделі не вказаний, встановіть 'SCR' на 'визначено користувачем' і введіть параметри пристрою вручну відповідно до його специфікації."
@@ -16702,6 +16824,9 @@ msgstr "Чіткість"
 
 msgid "ShellInABox"
 msgstr "ShellInABox"
+
+msgid "Shellscript"
+msgstr "Скрипт Shell"
 
 msgid "Shift"
 msgstr "Шифт"
@@ -17942,9 +18067,6 @@ msgstr "Сортувати за умовчанням"
 msgid "Sort list by"
 msgstr "Сортування списку за"
 
-msgid "Sort list to default and exit?"
-msgstr "Сортувати список за умовчанням і вийти?"
-
 msgid "Sort list:"
 msgstr "Сортування списку:"
 
@@ -18699,7 +18821,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 02.01.2024"
+msgstr "Переклад: kvinto - 11.01.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20061,6 +20183,9 @@ msgstr "Трек"
 
 msgid "Traditional Chinese"
 msgstr "Традиційна китайська"
+
+msgid "Transcode"
+msgstr "Перекодувати"
 
 msgid "Transcoding"
 msgstr "Транскодування"
@@ -22262,6 +22387,9 @@ msgstr "Режими переключення"
 msgid "Zap next"
 msgstr "Переключити на наступний"
 
+msgid "Zap to"
+msgstr "Переключити на"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Переключити на канал (налаштування в меню)"
 
@@ -22607,12 +22735,6 @@ msgstr "виконання редагувань (потрібно MovieCut пл�
 msgid "exit DVD player or return to file browser"
 msgstr "вийти з ДВД програвача до оглядача файлів"
 
-msgid "exit mounts setup menu"
-msgstr "вийти з меню налаштування під’єднання"
-
-msgid "exit networkadapter setup menu"
-msgstr "вийти з меню конфігурації мережевого адаптера"
-
 msgid "experimental film/video"
 msgstr "експериментальний фільм/відео"
 
@@ -22843,18 +22965,6 @@ msgstr "автомобільна справа"
 
 msgid "move"
 msgstr "перемістити"
-
-msgid "move down to last entry"
-msgstr "перейти до останнього запису"
-
-msgid "move down to next entry"
-msgstr "перейти до наступного запису"
-
-msgid "move up to first entry"
-msgstr "перемістити вгору до першого запису"
-
-msgid "move up to previous entry"
-msgstr "перемістити вверх до попереднього запису"
 
 msgid "movie (general)"
 msgstr "фільм (загальна)"
@@ -23088,9 +23198,6 @@ msgstr "пошук ЕПГ..."
 
 msgid "select CAId's"
 msgstr "вибрати CAId'и"
-
-msgid "select menu entry"
-msgstr "виберіть пункт меню"
 
 msgid "serious music/classic music"
 msgstr "серйозна музика/класична музика"
@@ -23392,6 +23499,36 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mount Actions"
+#~ msgstr "Дії монтування"
+
+#~ msgid "NordVPN DNS"
+#~ msgstr "Nord VPN DNS"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Сортувати список за умовчанням і вийти?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "вийти з меню налаштування під’єднання"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "вийти з меню конфігурації мережевого адаптера"
+
+#~ msgid "move down to last entry"
+#~ msgstr "перейти до останнього запису"
+
+#~ msgid "move down to next entry"
+#~ msgstr "перейти до наступного запису"
+
+#~ msgid "move up to first entry"
+#~ msgstr "перемістити вгору до першого запису"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "перемістити вверх до попереднього запису"
+
+#~ msgid "select menu entry"
+#~ msgstr "виберіть пункт меню"
 
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "Виконується перевірка оновленнь у фоні, будь ласка, зачекайте кілька хвилин і повторіть спробу."
@@ -23731,13 +23868,6 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Триває запис.\n"
-"Що хочете зробити?"
-
 #~ msgid "BouquetList"
 #~ msgstr "Список фаворитів"
 
@@ -24031,14 +24161,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "Помічник налаштування CI"
 
-#~ msgid "ClientIP"
-#~ msgstr "АПКлієнт"
-
 #~ msgid "Minute"
 #~ msgstr "хвилина"
-
-#~ msgid "Transcode"
-#~ msgstr "Перекодувати"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -24061,12 +24185,6 @@ msgstr ""
 #~ msgid "Basic PID info"
 #~ msgstr "Основна інформація про PID"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Налаштування кнопок"
-
-#~ msgid "Client"
-#~ msgstr "Клієнт"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "Код R. LP-HP & Guard Int."
 
@@ -24085,9 +24203,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Частота і поляризація"
 
-#~ msgid "Hotkey"
-#~ msgstr "Гарячі кнопки"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Інверсія і ширина смуги"
 
@@ -24097,26 +24212,14 @@ msgstr ""
 #~ msgid "NIM & Type"
 #~ msgstr "Тюнер і модель"
 
-#~ msgid "Network storage on"
-#~ msgstr "Мережевий накопичувач увімкнено"
-
 #~ msgid "Next Log"
 #~ msgstr "Наступний лог"
 
 #~ msgid "Next Picture"
 #~ msgstr "Наступне зображення"
 
-#~ msgid "No log files found so debug logs are unavailable!"
-#~ msgstr "Файлів журналу не знайдено, тому журнали налагодження недоступні!"
-
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Тривожна кнопка на"
 
 #~ msgid "Previous Log"
 #~ msgstr "Попередній Лог"
@@ -24145,9 +24248,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Інформація каналу - значення налаштування тюнера"
 
-#~ msgid "Shellscript"
-#~ msgstr "Скрипт Shell"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Швидкість потоку і FEC"
 
@@ -24162,9 +24262,6 @@ msgstr ""
 
 #~ msgid "Tuner setting values"
 #~ msgstr "Значення налаштування тюнера"
-
-#~ msgid "Zap to"
-#~ msgstr "Переключити на"
 
 #~ msgid "active"
 #~ msgstr "активний"

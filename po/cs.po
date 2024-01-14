@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
-"PO-Revision-Date: 2024-01-08 17:06+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
+"PO-Revision-Date: 2024-01-12 16:14+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -1660,6 +1660,13 @@ msgstr ""
 "Záznam spuštěn:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Nahrává se\n"
+"Co chcete udělat?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Právě se nahrává. Prosím, ukončete nahrávání před nastavením pozicionéru."
 
@@ -3266,6 +3273,9 @@ msgstr "Funkce dálkového ovládání"
 msgid "Button error timeout"
 msgstr "Vypršel časový limit pro chybu tlačítka"
 
+msgid "ButtonSetup"
+msgstr "Funkce dálkového ovládání"
+
 msgid "By disk UUID"
 msgstr "Podle UUID disku"
 
@@ -3636,6 +3646,9 @@ msgstr "Zrušit výběr image a ukončit"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Zrušit výběr image a opustit všechna menu"
 
+msgid "Cancel the selection and exit"
+msgstr "Zrušit výběr a ukončit"
+
 msgid "Cancel the service selection"
 msgstr "Zrušit výběr služby"
 
@@ -3967,6 +3980,18 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Vyberte si"
 
+msgid "Choice List Actions"
+msgstr "Akce seznamu voleb"
+
+msgid "Choice List Navigation Actions"
+msgstr "Seznam voleb Navigační akce"
+
+msgid "Choice List Order Actions"
+msgstr "Akce seznamu voleb"
+
+msgid "Choice List Selection Actions"
+msgstr "Akce pro výběr seznamu voleb"
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Vyberte, kam umístit „%s“"
@@ -3988,6 +4013,12 @@ msgstr "Vyberte, kolik historie EPG (pokud existuje) chcete uchovávat v mezipam
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Zvolte, jak často se chcete připojovat k serveru IceTV pro kontrolu aktualizací."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr "Zvolte Display Skin a stiskněte ZELENÉ tlačítko pro aktivaci vzhledu."
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr "Vyberte vzhled OSD a stiskněte ZELENÉ tlačítko pro aktivaci vzhledu."
 
 msgid "Choose the amount of additional slots."
 msgstr "Zvolte počet dalších slotů."
@@ -4148,8 +4179,14 @@ msgstr[2] "Jasných výstrah"
 msgid "Click the button on your remote you want to change."
 msgstr "Na dálkovém ovladači stiskněte tlačítko, které chcete nastavit."
 
+msgid "Client"
+msgstr "Klient"
+
 msgid "Client is streaming from this box!"
 msgstr "Klient z tohoto boxu streamuje!"
+
+msgid "ClientIP"
+msgstr "IP klienta"
 
 msgid "Clients"
 msgstr "Klienti"
@@ -4307,6 +4344,9 @@ msgstr "Společná nastavení"
 
 msgid "Common Setup Actions"
 msgstr "Běžné instalační akce"
+
+msgid "Comodo Secure DNS"
+msgstr "Zabezpečené DNS společnosti Comodo"
 
 msgid "Comoros"
 msgstr "Komory"
@@ -5263,6 +5303,12 @@ msgstr "Nastavení DNS"
 msgid "DNS data source"
 msgstr "Zdroj DNS"
 
+msgid "DNS mode"
+msgstr "Režim DNS"
+
+msgid "DNS suffix"
+msgstr "Přípona DNS"
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5630,6 +5676,9 @@ msgstr "Definovat Softcam pro tuto službu"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Definujte další zpoždění v milisekundách před zahájením streamů http(s)."
+
+msgid "Define the DNS suffix."
+msgstr "Určete příponu DNS."
 
 msgid "Defined / Active"
 msgstr "Definováno / Aktivní"
@@ -6367,6 +6416,9 @@ msgstr "Chcete restartovat Váš %s %s?"
 
 msgid "Do you want to remove:"
 msgstr "Chcete odstranit:"
+
+msgid "Do you want to replace:"
+msgstr "Chcete nahradit:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Chcete obnovit Vaše nastavení?"
@@ -9009,6 +9061,9 @@ msgstr "Název hostitele: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Tlačítka DO"
+
 msgid "Hotkey Settings"
 msgstr "Nastavení klávesových zkratek"
 
@@ -9096,8 +9151,14 @@ msgstr "IP adresa serveru Stream Relay používaného k dekódování služeb, k
 msgid "IPK Installer"
 msgstr "IPK instalátor"
 
+msgid "IPv4 only"
+msgstr "Pouze IPv4"
+
 msgid "IPv6 address"
 msgstr "Adresa IPv6"
+
+msgid "IPv6 only"
+msgstr "Pouze IPv6"
 
 msgid "ISO file is too large for this file system!"
 msgstr "Soubor ISO je pro tento souborový systém příliš velký!"
@@ -10957,11 +11018,11 @@ msgstr "Přerušit chod motoru"
 msgid "Mount"
 msgstr "Připojit"
 
-msgid "Mount Actions"
-msgstr "Akce připojení"
-
 msgid "Mount Manager"
 msgstr "Správce připojení"
+
+msgid "Mount Menu Actions"
+msgstr "Akce nabídky Mount"
 
 msgid "Mount Settings"
 msgstr "Nastavení připojení"
@@ -11079,6 +11140,12 @@ msgstr "Přesunout aktuální záložku dolů"
 
 msgid "Move the current bookmark up"
 msgstr "Přesunout aktuální záložku nahoru"
+
+msgid "Move the current entry down"
+msgstr "Posunout aktuální položku dolů"
+
+msgid "Move the current entry up"
+msgstr "Posunout aktuální položku nahoru"
 
 msgid "Move the current line down"
 msgstr "Přesunout aktuální řádek dolů"
@@ -11475,6 +11542,9 @@ msgstr "Síťové informační akce"
 msgid "Network Interface"
 msgstr "Síťové rozhraní"
 
+msgid "Network Log"
+msgstr "Síťový protokol"
+
 msgid "Network Log Actions"
 msgstr "Akce síťového protokolu"
 
@@ -11535,6 +11605,9 @@ msgstr "Název sítě (SSID)"
 
 msgid "Network scan"
 msgstr "Prohledávání sítě"
+
+msgid "Network storage on"
+msgstr "Síťové úložiště zapnuto"
 
 msgid "Network test"
 msgstr "Test sítě"
@@ -11745,6 +11818,9 @@ msgstr "Žádný volný tuner!"
 msgid "No hard disks detected."
 msgstr "Nebyly zjištěny žádné pevné disky."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr "Nebyly nalezeny žádné soubory protokolu, takže protokoly ladění nejsou k dispozici!"
+
 msgid "No matching place names found"
 msgstr "Nebyly nalezeny žádné odpovídající názvy míst"
 
@@ -11920,8 +11996,11 @@ msgstr "Nelineární"
 msgid "None"
 msgstr "Ne"
 
-msgid "NordVPN DNS"
-msgstr "DNS NordVPN"
+msgid "NordVPN Secure DNS"
+msgstr "NordVPN Zabezpečené DNS"
+
+msgid "NordVPN Smart DNS"
+msgstr "Inteligentní DNS NordVPN"
 
 msgid "Norfolk Island"
 msgstr "Ostrov Norfolk"
@@ -12482,6 +12561,9 @@ msgstr "Režim PLS"
 msgid "PMT PID"
 msgstr "PMT Pid"
 
+msgid "PPanel"
+msgstr "PPanel"
+
 msgid "PRIMETIME"
 msgstr "HLAVNÍ VYSÍLACÍ ČAS"
 
@@ -12555,6 +12637,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Kanál tlačítka Panika"
+
+msgid "Panic to"
+msgstr "Panika k"
 
 msgid "Panjabi / Punjabi"
 msgstr "Pandžábština / paňdžábština"
@@ -13044,6 +13129,9 @@ msgstr "Čekejte prosím, dokud probíhá vyhledávání..."
 msgid "Please wait while the data is extracted..."
 msgstr "Počkejte prosím, než se data extrahují..."
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr "Počkejte prosím, než budou zdroje resetovány (vymazány a znovu načteny)..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Počkejte prosím, než se seznam stáhne..."
 
@@ -13286,6 +13374,12 @@ msgstr "Upřednostňovat AC3 stopu"
 
 msgid "Prefer AC3+ track"
 msgstr "Upřednostňovat AC3+ stopu"
+
+msgid "Prefer IPv4"
+msgstr "Preferovat IPv4"
+
+msgid "Prefer IPv6"
+msgstr "Preferovat IPv6"
 
 msgid "Prefer audio track stored by service"
 msgstr "Upřednostňovat audio stopu uloženou kanálem"
@@ -13685,6 +13779,12 @@ msgstr "Quad PiP není k dispozici."
 
 msgid "Quad9 DNS"
 msgstr "Quad9 DNS"
+
+msgid "Quad9 ECS DNS"
+msgstr "Quad9 ECS DNS"
+
+msgid "Quad9 Unsecured DNS"
+msgstr "Quad9 Nezabezpečené DNS"
 
 msgid "Quechua"
 msgstr "Kečuánština"
@@ -14422,6 +14522,9 @@ msgstr "Resetovat a přepočítat titulky"
 msgid "Reset executable mode (644)"
 msgstr "Obnovit spustitelný režim (644)"
 
+msgid "Reset list order to the default list order?"
+msgstr "Resetovat pořadí seznamu na výchozí pořadí seznamu?"
+
 msgid "Reset network configuration"
 msgstr "Obnovit konfiguraci sítě"
 
@@ -14433,6 +14536,9 @@ msgstr "Resetovat pozici přehrávání"
 
 msgid "Reset sort order"
 msgstr "Obnovit pořadí řazení"
+
+msgid "Reset the order of the entries"
+msgstr "Resetovat pořadí záznamů"
 
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Reset Rozšířeného nastavení videa na výchozí hodnoty?"
@@ -15420,6 +15526,9 @@ msgstr "Vybrat CAId(y)"
 msgid "Select Device"
 msgstr "Vyberte Zařízení"
 
+msgid "Select Display Skin"
+msgstr "Vyberte možnost Zobrazit vzhled"
+
 msgid "Select Enigma2 Skin"
 msgstr "Vyberte vzhled Enigma2"
 
@@ -15458,6 +15567,9 @@ msgstr "Vybrat satelity"
 
 msgid "Select Shares"
 msgstr "Vyberte Sdílené položky"
+
+msgid "Select Skin"
+msgstr "Vyberte Vzhled"
 
 msgid "Select Softcam"
 msgstr "Vyberte softcam"
@@ -15689,6 +15801,10 @@ msgstr "Vyberte dočasné řazení adresáře pro aktuální sloupec"
 msgid "Select temporary file sort order for the current column"
 msgstr "Vyberte pořadí řazení dočasných souborů pro aktuální sloupec"
 
+#, python-format
+msgid "Select the %s entry"
+msgstr "Vyberte položku %s"
+
 msgid "Select the No / False response"
 msgstr "Vyberte odpověď Ne/Nepravda"
 
@@ -15747,6 +15863,9 @@ msgstr "Vyberte znak nebo akci pod kurzorem klávesnice"
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Vyberte aktuální záložku a ukončete"
+
+msgid "Select the current entry"
+msgstr "Vyberte aktuální položku"
 
 msgid "Select the current menu item"
 msgstr "Vyberte aktuální položku nabídky"
@@ -15847,6 +15966,9 @@ msgstr "Vyberte výrobce vašeho zařízení SCR. Pokud výrobce není uveden, n
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Vyberte metodu obnovení rozlišení obrazovky a vyrovnávací paměti snímků při opuštění teletextu."
+
+msgid "Select the mode of the DNS."
+msgstr "Vyberte režim DNS."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vyberte číslo modelu vašeho zařízení Unicable. Pokud číslo modelu není uvedeno, nastavte „SCR“ na „definováno uživatelem“ a zadejte parametry zařízení ručně podle jeho specifikace."
@@ -16697,6 +16819,9 @@ msgstr "Ostrost"
 
 msgid "ShellInABox"
 msgstr "ShellInABox"
+
+msgid "Shellscript"
+msgstr "Skript shellu"
 
 msgid "Shift"
 msgstr "Posun"
@@ -17936,9 +18061,6 @@ msgstr "Seřadit podle výchozího nastavení"
 
 msgid "Sort list by"
 msgstr "Seřadit seznam podle"
-
-msgid "Sort list to default and exit?"
-msgstr "Seřadit seznam podle výchozího nastavení a ukončit?"
 
 msgid "Sort list:"
 msgstr "Seřadit seznam:"
@@ -20056,6 +20178,9 @@ msgstr "Stopa"
 
 msgid "Traditional Chinese"
 msgstr "Tradiční čínština"
+
+msgid "Transcode"
+msgstr "Překódovat"
 
 msgid "Transcoding"
 msgstr "Překódování"
@@ -22257,6 +22382,9 @@ msgstr "Způsob přepínání programů"
 msgid "Zap next"
 msgstr "Další zap"
 
+msgid "Zap to"
+msgstr "Přepnout na"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Přepnout kanál (menu nastavení)"
 
@@ -22602,12 +22730,6 @@ msgstr "provádět střihy (vyžaduje plugin MovieCut)"
 msgid "exit DVD player or return to file browser"
 msgstr "ukončit DVD přehrávač a vrátit se na prohlížeč souborů"
 
-msgid "exit mounts setup menu"
-msgstr "ukončit nabídku nastavení připojení"
-
-msgid "exit networkadapter setup menu"
-msgstr "zavřít menu nastavení sítě"
-
 msgid "experimental film/video"
 msgstr "experimentální film/video"
 
@@ -22838,18 +22960,6 @@ msgstr "motorismus"
 
 msgid "move"
 msgstr "přesun"
-
-msgid "move down to last entry"
-msgstr "přesunout na poslední záznam"
-
-msgid "move down to next entry"
-msgstr "přesunout na další záznam"
-
-msgid "move up to first entry"
-msgstr "přesunout na první záznam"
-
-msgid "move up to previous entry"
-msgstr "přesunout na předchozí záznam"
 
 msgid "movie (general)"
 msgstr "film (obecně)"
@@ -23083,9 +23193,6 @@ msgstr "hledat v EPG..."
 
 msgid "select CAId's"
 msgstr "vybrat CAId(y)"
-
-msgid "select menu entry"
-msgstr "zvolit položku z menu"
 
 msgid "serious music/classic music"
 msgstr "vážná hudba/klasická muzika"
@@ -23388,6 +23495,36 @@ msgstr "ano (uchovat zdroje)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Mount Actions"
+#~ msgstr "Akce připojení"
+
+#~ msgid "NordVPN DNS"
+#~ msgstr "DNS NordVPN"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Seřadit seznam podle výchozího nastavení a ukončit?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "ukončit nabídku nastavení připojení"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "zavřít menu nastavení sítě"
+
+#~ msgid "move down to last entry"
+#~ msgstr "přesunout na poslední záznam"
+
+#~ msgid "move down to next entry"
+#~ msgstr "přesunout na další záznam"
+
+#~ msgid "move up to first entry"
+#~ msgstr "přesunout na první záznam"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "přesunout na předchozí záznam"
+
+#~ msgid "select menu entry"
+#~ msgstr "zvolit položku z menu"
+
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "Kontrola aktualizace na pozadí probíhá, prosím vyčkejte několik minut a zkuste to znovu."
 
@@ -23689,13 +23826,6 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Nahrává se\n"
-"Co chcete udělat?"
-
 #~ msgid "BouquetList"
 #~ msgstr "Seznam přehledů"
 
@@ -23989,14 +24119,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "Nastavení pomocníka CI"
 
-#~ msgid "ClientIP"
-#~ msgstr "IP klienta"
-
 #~ msgid "Minute"
 #~ msgstr "minuta"
-
-#~ msgid "Transcode"
-#~ msgstr "Překódovat"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -24019,12 +24143,6 @@ msgstr ""
 #~ msgid "Basic PID info"
 #~ msgstr "Základní informace o PID"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Funkce dálkového ovládání"
-
-#~ msgid "Client"
-#~ msgstr "Klient"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "Code R. LP-HP & Guard Int."
 
@@ -24043,9 +24161,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Frekvence a polarizace"
 
-#~ msgid "Hotkey"
-#~ msgstr "Tlačítka DO"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Inverze a šířka pásma"
 
@@ -24055,26 +24170,14 @@ msgstr ""
 #~ msgid "NIM & Type"
 #~ msgstr "NIM a typ"
 
-#~ msgid "Network storage on"
-#~ msgstr "Síťové úložiště zapnuto"
-
 #~ msgid "Next Log"
 #~ msgstr "Další protokol"
 
 #~ msgid "Next Picture"
 #~ msgstr "Další obrázek"
 
-#~ msgid "No log files found so debug logs are unavailable!"
-#~ msgstr "Nebyly nalezeny žádné soubory protokolu, takže protokoly ladění nejsou k dispozici!"
-
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Panika k"
 
 #~ msgid "Previous Log"
 #~ msgstr "Předchozí záznam"
@@ -24103,9 +24206,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Servisní info - hodnoty nastavení tuneru"
 
-#~ msgid "Shellscript"
-#~ msgstr "Skript shellu"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Symbolová rychlost a FEC"
 
@@ -24120,9 +24220,6 @@ msgstr ""
 
 #~ msgid "Tuner setting values"
 #~ msgstr "Nast. hodnot tuneru"
-
-#~ msgid "Zap to"
-#~ msgstr "Přepnout na"
 
 #~ msgid "active"
 #~ msgstr "aktivní"

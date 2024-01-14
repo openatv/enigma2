@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1672,6 +1672,13 @@ msgstr ""
 "A felvétel elindul:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Egy felvétel folyamatban van. \n"
+"Mit szeretne tenni?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Egy felvétel folyamatban van. Kérjük, állítsa le a felvételt, mielőtt beállítaná a pozícionálót."
 
@@ -3287,6 +3294,9 @@ msgstr "Távirányító gomb beállítása"
 msgid "Button error timeout"
 msgstr ""
 
+msgid "ButtonSetup"
+msgstr "Távirányító gomb beállítás"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3646,6 +3656,9 @@ msgstr "Kijelölés visszavonása"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kijelölés visszavonása"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -3981,6 +3994,18 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Készülék választás"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Kiválaszthatja, hova kell elhelyezni a(z) \"%s\""
@@ -4002,6 +4027,12 @@ msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Válassza ki, hogy milyen gyakran szeretne csatlakozni az IceTV kiszolgálóhoz a frissítések kereséséhez."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4161,8 +4192,14 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Kattintson a távirányító gombjára, ha érvényesíteni szeretné a változásokat"
 
+msgid "Client"
+msgstr ""
+
 msgid "Client is streaming from this box!"
 msgstr ""
+
+msgid "ClientIP"
+msgstr "Kliens IP"
 
 msgid "Clients"
 msgstr "Kliensek"
@@ -4321,6 +4358,9 @@ msgstr ""
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Indításkori művelet"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Comore-szigetek"
@@ -5275,6 +5315,12 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5649,6 +5695,9 @@ msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Egy extra késkeltetés megadása (milliszekundumban) a http(s) stream-ek indítása előtt."
+
+msgid "Define the DNS suffix."
+msgstr ""
 
 msgid "Defined / Active"
 msgstr "Definiált / Aktív"
@@ -6383,6 +6432,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Szeretné újraindítani a(z) %s %s készüléket?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -9037,6 +9089,9 @@ msgstr "Gépnév: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Hotkey"
+
 msgid "Hotkey Settings"
 msgstr "Hotkey beállítása"
 
@@ -9124,7 +9179,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPK Telepítő"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -11020,11 +11081,11 @@ msgstr "Motor mozgatás időtúllépés"
 msgid "Mount"
 msgstr "Csatlakozás"
 
-msgid "Mount Actions"
-msgstr ""
-
 msgid "Mount Manager"
 msgstr "Csatlakozás kezelő"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11145,6 +11206,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11558,6 +11625,9 @@ msgstr ""
 msgid "Network Interface"
 msgstr "Hálózati interfész"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -11618,6 +11688,9 @@ msgstr "Hálózatnév (SSID)"
 
 msgid "Network scan"
 msgstr "Hálózat keresése"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Hálózat ellenőrzése"
@@ -11827,6 +11900,9 @@ msgstr "Nincs szabad tuner!"
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Nem található megfelelő helynév"
 
@@ -12001,7 +12077,10 @@ msgstr ""
 msgid "None"
 msgstr "Nincs"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12576,6 +12655,9 @@ msgstr "PLS Mód"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "PPanel"
+
 msgid "PRIMETIME"
 msgstr "FŐMŰSORIDŐ"
 
@@ -12650,6 +12732,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Pánik csatorna"
+
+msgid "Panic to"
+msgstr "Panic to"
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -13138,6 +13223,9 @@ msgstr "Kérem várjon, ameddig a keresés folyamatban van..."
 msgid "Please wait while the data is extracted..."
 msgstr ""
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Várjon, amíg a lista letöltődik..."
 
@@ -13378,6 +13466,12 @@ msgstr "AC3 hangsáv előnyben részesítése"
 
 msgid "Prefer AC3+ track"
 msgstr "AC3+ hangsáv előnyben részesítése"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "A hangsáv választás mentése csatornánként"
@@ -13778,6 +13872,12 @@ msgid "Quad PiP is not available."
 msgstr "Négy csatornás Kép-a-Képben nem érhető el."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -14516,6 +14616,9 @@ msgstr "A tételek újraszámozása"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14526,6 +14629,9 @@ msgid "Reset playback position"
 msgstr "Lejátszási pozíció nullázása"
 
 msgid "Reset sort order"
+msgstr ""
+
+msgid "Reset the order of the entries"
 msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
@@ -15523,6 +15629,9 @@ msgstr "CAId kiválasztása"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Enigma2 kinézet kiválasztás"
 
@@ -15560,6 +15669,9 @@ msgid "Select Satellites"
 msgstr "Válasszon műholdat"
 
 msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
 msgstr ""
 
 msgid "Select Softcam"
@@ -15792,6 +15904,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -15850,6 +15966,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "A karakter vagy művelet kijelölése a virtuális billentyűzet kurzora alatt"
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -15952,6 +16071,9 @@ msgstr "Válassza ki az SCR eszköz gyártóját. Ha a gyártó nincs felsorolva
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "A teletext elhagyásakor válassza ki a képernyőfelbontás és a framebuffer helyreállításának módját."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Válassza ki az Unicable eszköz modellszámát. Ha a modellszám nem szerepel a listában, állítsa az \"SCR\" értéket \"felhasználó által definiált\" beállításra, és adja meg manuálisan az eszköz paramétereit a specifikációs lapjának megfelelően."
@@ -16794,6 +16916,9 @@ msgstr "Élesség"
 
 msgid "ShellInABox"
 msgstr ""
+
+msgid "Shellscript"
+msgstr "Shell script"
 
 msgid "Shift"
 msgstr "Shift"
@@ -18047,9 +18172,6 @@ msgstr "Rendezés alapértelmezettek szerint"
 
 msgid "Sort list by"
 msgstr "Lista rendezése"
-
-msgid "Sort list to default and exit?"
-msgstr "Rendezési lista alapértelmezett és kilépés?"
 
 msgid "Sort list:"
 msgstr "Lista rendezése:"
@@ -20159,6 +20281,9 @@ msgstr "Sáv"
 
 msgid "Traditional Chinese"
 msgstr "Tradicionális kínai"
+
+msgid "Transcode"
+msgstr "Transcode"
 
 msgid "Transcoding"
 msgstr ""
@@ -22334,6 +22459,9 @@ msgstr "Csatornaváltás mód"
 msgid "Zap next"
 msgstr "Ugrás a következőre"
 
+msgid "Zap to"
+msgstr "Ugrás ide"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Ugrás a csatornára (beállítás a menüben)"
 
@@ -22682,12 +22810,6 @@ msgstr "vágások végrehajtása (MovieCut bővítmény szükséges)"
 msgid "exit DVD player or return to file browser"
 msgstr "a DVD Player bezárása és visszatérés a keresőbe"
 
-msgid "exit mounts setup menu"
-msgstr "kilépés a Csatlakozás Beállítás menüből"
-
-msgid "exit networkadapter setup menu"
-msgstr "kliépés a hálózati adapter beállításaiból"
-
 msgid "experimental film/video"
 msgstr "kísérleti filmezés"
 
@@ -22921,18 +23043,6 @@ msgstr "motor"
 msgid "move"
 msgstr "mozgatás"
 
-msgid "move down to last entry"
-msgstr "ugrás a legutolsó tételhez"
-
-msgid "move down to next entry"
-msgstr "ugrás a következő tételhez"
-
-msgid "move up to first entry"
-msgstr "ugrás az első tételhez"
-
-msgid "move up to previous entry"
-msgstr "ugrás az előző tételhez"
-
 msgid "movie (general)"
 msgstr "film (általános)"
 
@@ -23165,9 +23275,6 @@ msgstr "keresés EPG..."
 
 msgid "select CAId's"
 msgstr "a CAId-k kijelölése"
-
-msgid "select menu entry"
-msgstr "válasszon menütételt"
 
 msgid "serious music/classic music"
 msgstr "komolyzene"
@@ -23470,6 +23577,30 @@ msgstr "igen (állapotok megtartása)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Rendezési lista alapértelmezett és kilépés?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "kilépés a Csatlakozás Beállítás menüből"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "kliépés a hálózati adapter beállításaiból"
+
+#~ msgid "move down to last entry"
+#~ msgstr "ugrás a legutolsó tételhez"
+
+#~ msgid "move down to next entry"
+#~ msgstr "ugrás a következő tételhez"
+
+#~ msgid "move up to first entry"
+#~ msgstr "ugrás az első tételhez"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "ugrás az előző tételhez"
+
+#~ msgid "select menu entry"
+#~ msgstr "válasszon menütételt"
+
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, és próbálkozzon újra."
 
@@ -23709,13 +23840,6 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-1 nap"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Egy felvétel folyamatban van. \n"
-"Mit szeretne tenni?"
-
 #~ msgid "BouquetList"
 #~ msgstr "Csatornacsomag lista"
 
@@ -23842,14 +23966,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "CIHelper beállítása"
 
-#~ msgid "ClientIP"
-#~ msgstr "Kliens IP"
-
 #~ msgid "Minute"
 #~ msgstr "perc"
-
-#~ msgid "Transcode"
-#~ msgstr "Transcode"
 
 #, fuzzy, python-format
 #~ msgid "%.3f MHz"
@@ -23870,9 +23988,6 @@ msgstr ""
 #~ msgid "Audio PID, codec & lang"
 #~ msgstr "Audió PID, kódolás és nyelv"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Távirányító gomb beállítás"
-
 #, fuzzy
 #~ msgid "Constellation & FFT mode"
 #~ msgstr "Együttállás"
@@ -23892,9 +24007,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Polarizáció"
 
-#~ msgid "Hotkey"
-#~ msgstr "Hotkey"
-
 #, fuzzy
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Info ikon szélesség"
@@ -23905,12 +24017,6 @@ msgstr ""
 
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Panic to"
 
 #, fuzzy
 #~ msgid "Service ID"
@@ -23932,9 +24038,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Csatorna információ betű mérete"
 
-#~ msgid "Shellscript"
-#~ msgstr "Shell script"
-
 #, fuzzy
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Sebesség"
@@ -23953,9 +24056,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Tuner setting values"
 #~ msgstr "Tuner beállításai"
-
-#~ msgid "Zap to"
-#~ msgstr "Ugrás ide"
 
 #, fuzzy
 #~ msgid "active"

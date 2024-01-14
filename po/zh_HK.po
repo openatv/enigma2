@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1668,6 +1668,13 @@ msgid ""
 msgstr ""
 "錄製已經開始:\n"
 "%s"
+
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"錄製正在進行中.\n"
+"您想做什麼?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "錄製正在進行中. 請在配置極軸之前停止錄製."
@@ -3386,6 +3393,10 @@ msgstr "音頻同步設定"
 msgid "Button error timeout"
 msgstr ""
 
+#, fuzzy
+msgid "ButtonSetup"
+msgstr "設定"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3760,6 +3771,9 @@ msgstr "頻道選擇"
 msgid "Cancel the image selection and exit all menus"
 msgstr "頻道選擇"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4125,6 +4139,18 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr ""
@@ -4145,6 +4171,12 @@ msgid "Choose how much EPG history, if any, to keep in the EPG cache. This histo
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
+msgstr ""
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
 msgstr ""
 
 msgid "Choose the amount of additional slots."
@@ -4306,8 +4338,15 @@ msgstr[0] ""
 msgid "Click the button on your remote you want to change."
 msgstr ""
 
+msgid "Client"
+msgstr ""
+
 msgid "Client is streaming from this box!"
 msgstr ""
+
+#, fuzzy
+msgid "ClientIP"
+msgstr "用戶端 IP:"
 
 #, fuzzy
 msgid "Clients"
@@ -4472,6 +4511,9 @@ msgstr ""
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "備份位置"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr ""
@@ -5458,6 +5500,12 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5839,6 +5887,9 @@ msgid "Define Softcam For This Service"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Defined / Active"
@@ -6597,6 +6648,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr " 是否重啟您的Dreambox?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -9367,6 +9421,9 @@ msgstr "主機:"
 msgid "Hotbird 13.0e"
 msgstr ""
 
+msgid "Hotkey"
+msgstr ""
+
 #, fuzzy
 msgid "Hotkey Settings"
 msgstr "網路設定"
@@ -9464,7 +9521,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPKG安裝..."
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -11435,12 +11498,12 @@ msgstr "正在恢復"
 msgid "Mount"
 msgstr "安裝(Mount)"
 
-msgid "Mount Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Mount Manager"
 msgstr "安裝(Mount)管理"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11571,6 +11634,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11998,6 +12067,9 @@ msgstr ""
 msgid "Network Interface"
 msgstr "啟用網卡"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -12065,6 +12137,9 @@ msgstr ""
 
 msgid "Network scan"
 msgstr "網路掃描"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "網路測驗"
@@ -12291,6 +12366,9 @@ msgstr "沒有空閒的調諧器"
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr ""
 
@@ -12469,7 +12547,10 @@ msgstr ""
 msgid "None"
 msgstr "無"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -13073,6 +13154,10 @@ msgstr "設定模式"
 msgid "PMT PID"
 msgstr ""
 
+#, fuzzy
+msgid "PPanel"
+msgstr "藍色面板"
+
 msgid "PRIMETIME"
 msgstr ""
 
@@ -13154,6 +13239,9 @@ msgstr ""
 #, fuzzy
 msgid "Panic channel"
 msgstr "下一個頻道"
+
+msgid "Panic to"
+msgstr ""
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -13667,6 +13755,9 @@ msgstr "正在掃描...請稍候..."
 msgid "Please wait while the data is extracted..."
 msgstr ""
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 #, fuzzy
 msgid "Please wait while the list downloads..."
 msgstr "請稍候,正在刪除選定的包..."
@@ -13927,6 +14018,12 @@ msgid "Prefer AC3 track"
 msgstr ""
 
 msgid "Prefer AC3+ track"
+msgstr ""
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
 msgstr ""
 
 msgid "Prefer audio track stored by service"
@@ -14364,6 +14461,12 @@ msgid "Quad PiP is not available."
 msgstr "抱歉, 視頻不可用!"
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -15159,6 +15262,9 @@ msgstr "復位並重設標題名稱"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -15169,6 +15275,9 @@ msgid "Reset playback position"
 msgstr ""
 
 msgid "Reset sort order"
+msgstr ""
+
+msgid "Reset the order of the entries"
 msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
@@ -16209,6 +16318,9 @@ msgstr ""
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 #, fuzzy
 msgid "Select Enigma2 Skin"
 msgstr "選擇皮膚"
@@ -16253,6 +16365,9 @@ msgid "Select Satellites"
 msgstr "單個衛星"
 
 msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
 msgstr ""
 
 msgid "Select Softcam"
@@ -16495,6 +16610,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -16553,6 +16672,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -16654,6 +16776,9 @@ msgid "Select the manufacturer of your SCR device. If the manufacturer is not li
 msgstr ""
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
+msgstr ""
+
+msgid "Select the mode of the DNS."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17546,6 +17671,10 @@ msgstr "銳化"
 
 msgid "ShellInABox"
 msgstr ""
+
+#, fuzzy
+msgid "Shellscript"
+msgstr "腳本"
 
 msgid "Shift"
 msgstr "移動"
@@ -18890,9 +19019,6 @@ msgstr "按日期排序"
 #, fuzzy
 msgid "Sort list by"
 msgstr "排序檔以"
-
-msgid "Sort list to default and exit?"
-msgstr ""
 
 #, fuzzy
 msgid "Sort list:"
@@ -21052,6 +21178,10 @@ msgstr "軌道"
 
 msgid "Traditional Chinese"
 msgstr "繁體中文"
+
+#, fuzzy
+msgid "Transcode"
+msgstr "轉發器"
 
 msgid "Transcoding"
 msgstr ""
@@ -23300,6 +23430,9 @@ msgstr ""
 msgid "Zap next"
 msgstr ""
 
+msgid "Zap to"
+msgstr ""
+
 msgid "Zap to channel (setup in menu)"
 msgstr ""
 
@@ -23656,13 +23789,6 @@ msgstr ""
 msgid "exit DVD player or return to file browser"
 msgstr "退出DVD播放器或返回檔流覽器"
 
-#, fuzzy
-msgid "exit mounts setup menu"
-msgstr "退出網卡設定功能表"
-
-msgid "exit networkadapter setup menu"
-msgstr "退出網卡設定功能表"
-
 msgid "experimental film/video"
 msgstr ""
 
@@ -23898,18 +24024,6 @@ msgstr ""
 
 msgid "move"
 msgstr "移動"
-
-msgid "move down to last entry"
-msgstr "向下移動到最後項目"
-
-msgid "move down to next entry"
-msgstr "向下移動到下一個項目"
-
-msgid "move up to first entry"
-msgstr "向上移動到第一個項目"
-
-msgid "move up to previous entry"
-msgstr "向上移動到上一個項目"
 
 msgid "movie (general)"
 msgstr ""
@@ -24148,9 +24262,6 @@ msgstr "顯示 EPG..."
 
 msgid "select CAId's"
 msgstr "選擇 CAId's"
-
-msgid "select menu entry"
-msgstr "選擇功能表專案"
 
 msgid "serious music/classic music"
 msgstr ""
@@ -24471,6 +24582,28 @@ msgid "®"
 msgstr ""
 
 #, fuzzy
+#~ msgid "exit mounts setup menu"
+#~ msgstr "退出網卡設定功能表"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "退出網卡設定功能表"
+
+#~ msgid "move down to last entry"
+#~ msgstr "向下移動到最後項目"
+
+#~ msgid "move down to next entry"
+#~ msgstr "向下移動到下一個項目"
+
+#~ msgid "move up to first entry"
+#~ msgstr "向上移動到第一個項目"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "向上移動到上一個項目"
+
+#~ msgid "select menu entry"
+#~ msgstr "選擇功能表專案"
+
+#, fuzzy
 #~ msgid "FTP Settings"
 #~ msgstr "EPG設定"
 
@@ -24637,13 +24770,6 @@ msgstr ""
 #~ msgid "Please change recording endtime"
 #~ msgstr "請更改錄製結束時間"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"錄製正在進行中.\n"
-"您想做什麼?"
-
 #, fuzzy
 #~ msgid "BouquetList"
 #~ msgstr "自定義組"
@@ -24745,24 +24871,12 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "DNS設定"
 
-#, fuzzy
-#~ msgid "ClientIP"
-#~ msgstr "用戶端 IP:"
-
 #~ msgid "Minute"
 #~ msgstr "分鐘"
 
 #, fuzzy
-#~ msgid "Transcode"
-#~ msgstr "轉發器"
-
-#, fuzzy
 #~ msgid "(FTA Service)"
 #~ msgstr "頻道"
-
-#, fuzzy
-#~ msgid "ButtonSetup"
-#~ msgstr "設定"
 
 #, fuzzy
 #~ msgid "Constellation & FFT mode"
@@ -24789,10 +24903,6 @@ msgstr ""
 #~ msgstr "帶寬"
 
 #, fuzzy
-#~ msgid "PPanel"
-#~ msgstr "藍色面板"
-
-#, fuzzy
 #~ msgid "Service ID"
 #~ msgstr "頻道"
 
@@ -24811,10 +24921,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "頻道未找到"
-
-#, fuzzy
-#~ msgid "Shellscript"
-#~ msgstr "腳本"
 
 #, fuzzy
 #~ msgid "Symbol rate & FEC"

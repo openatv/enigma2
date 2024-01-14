@@ -1,19 +1,21 @@
 # English translations for openATV Enigma2
+# Reza Almanda <rezaalmanda27@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
-"PO-Revision-Date: 2018-01-14 01:15+0300\n"
-"Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
-"Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
-"Language: id_ID\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
+"PO-Revision-Date: 2024-01-13 10:34+0000\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: DVBS | by budiarno\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid ""
 "\n"
@@ -56,10 +58,10 @@ msgid " "
 msgstr ""
 
 msgid "     no space left on back-up device"
-msgstr ""
+msgstr "     tidak ada ruang tersisa pada perangkat cadangan"
 
 msgid "     no writing permission on back-up device"
-msgstr ""
+msgstr "     tidak ada izin menulis pada perangkat cadangan"
 
 msgid "     wrong back-up destination "
 msgstr ""
@@ -1777,6 +1779,13 @@ msgstr ""
 "Rekaman telah dijalankan:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Rekaman sedang berlangsung.\n"
+"Apa yang ingin anda lakukan?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Rekaman sedang berlangsung. Mohon berhenti merekam sebelum mencoba untuk mengatur posisioner."
 
@@ -3422,6 +3431,9 @@ msgstr "Button Setup"
 msgid "Button error timeout"
 msgstr ""
 
+msgid "ButtonSetup"
+msgstr "ButtonSetup"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3791,6 +3803,9 @@ msgstr "Channel Selection"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Channel Selection"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4134,6 +4149,18 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Choice Box"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Choice where to put \"%s\""
@@ -4154,6 +4181,12 @@ msgid "Choose how much EPG history, if any, to keep in the EPG cache. This histo
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
+msgstr ""
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
 msgstr ""
 
 msgid "Choose the amount of additional slots."
@@ -4314,8 +4347,14 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Click the button on your remote you want to change."
 
+msgid "Client"
+msgstr ""
+
 msgid "Client is streaming from this box!"
 msgstr ""
+
+msgid "ClientIP"
+msgstr "ClientIP"
 
 msgid "Clients"
 msgstr "Clients"
@@ -4477,6 +4516,9 @@ msgstr ""
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Boot-up action"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Comoros"
@@ -5443,6 +5485,12 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5816,6 +5864,9 @@ msgid "Define Softcam For This Service"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Defined / Active"
@@ -6553,6 +6604,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Do you want to reboot your %s %s?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -9268,6 +9322,9 @@ msgstr "Hostname: "
 msgid "Hotbird 13.0e"
 msgstr ""
 
+msgid "Hotkey"
+msgstr "Hotkey"
+
 msgid "Hotkey Settings"
 msgstr "Hotkey Settings"
 
@@ -9358,7 +9415,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPK Installer"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -11277,11 +11340,11 @@ msgstr "Motor running timeout"
 msgid "Mount"
 msgstr "Mount"
 
-msgid "Mount Actions"
-msgstr ""
-
 msgid "Mount Manager"
 msgstr "Mount Manager"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11403,6 +11466,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11815,6 +11884,9 @@ msgstr ""
 msgid "Network Interface"
 msgstr "Antarmuka Jaringan"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -11875,6 +11947,9 @@ msgstr "Nama jaringan (SSID)"
 
 msgid "Network scan"
 msgstr "Pindai jaringan"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Tes jaringan"
@@ -12096,6 +12171,9 @@ msgstr "No free tuner!"
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "No matching place names found"
 
@@ -12274,7 +12352,10 @@ msgstr ""
 msgid "None"
 msgstr "None"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12859,6 +12940,9 @@ msgstr "PLS Mode"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "PPanel"
+
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
 
@@ -12933,6 +13017,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Panic channel"
+
+msgid "Panic to"
+msgstr "Panic to"
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -13430,6 +13517,9 @@ msgstr "Please wait while scanning is in progress..."
 msgid "Please wait while the data is extracted..."
 msgstr ""
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 #, fuzzy
 msgid "Please wait while the list downloads..."
 msgstr "Please wait while gathering data..."
@@ -13676,6 +13766,12 @@ msgstr "Prefer AC3 track"
 
 msgid "Prefer AC3+ track"
 msgstr "Prefer AC3+ track"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Prefer audio track stored by service"
@@ -14087,6 +14183,12 @@ msgid "Quad PiP is not available."
 msgstr "Quad PiP is not available."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -14844,6 +14946,9 @@ msgstr "Reset and renumerate title names"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14854,6 +14959,9 @@ msgid "Reset playback position"
 msgstr "Reset playback position"
 
 msgid "Reset sort order"
+msgstr ""
+
+msgid "Reset the order of the entries"
 msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
@@ -15858,6 +15966,9 @@ msgstr "Select CAId"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Select Enigma2 Skin"
 
@@ -15895,6 +16006,9 @@ msgid "Select Satellites"
 msgstr "Select Satellites"
 
 msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
 msgstr ""
 
 msgid "Select Softcam"
@@ -16127,6 +16241,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -16184,6 +16302,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -16286,6 +16407,9 @@ msgstr ""
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Select the method of restoring screen resolution and framebuffer when leaving teletext."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr ""
@@ -17138,6 +17262,9 @@ msgstr "Sharpness"
 
 msgid "ShellInABox"
 msgstr ""
+
+msgid "Shellscript"
+msgstr "Shellscript"
 
 msgid "Shift"
 msgstr ""
@@ -18416,9 +18543,6 @@ msgstr "Sort by default"
 
 msgid "Sort list by"
 msgstr "Sort list by"
-
-msgid "Sort list to default and exit?"
-msgstr ""
 
 msgid "Sort list:"
 msgstr "Sort list:"
@@ -20562,6 +20686,9 @@ msgstr "Track"
 
 msgid "Traditional Chinese"
 msgstr "Traditional Chinese"
+
+msgid "Transcode"
+msgstr "Transcode"
 
 msgid "Transcoding"
 msgstr ""
@@ -22764,6 +22891,9 @@ msgstr "Zap mode"
 msgid "Zap next"
 msgstr "Zap to"
 
+msgid "Zap to"
+msgstr "Zap to"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Zap to channel (setup in menu)"
 
@@ -23123,12 +23253,6 @@ msgstr "execute cuts (requires MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "exit DVD player or return to file browser"
 
-msgid "exit mounts setup menu"
-msgstr "exit mounts setup menu"
-
-msgid "exit networkadapter setup menu"
-msgstr "exit networkadapter setup menu"
-
 msgid "experimental film/video"
 msgstr "experimental film/video"
 
@@ -23363,18 +23487,6 @@ msgstr "motoring"
 
 msgid "move"
 msgstr "move"
-
-msgid "move down to last entry"
-msgstr "move down to last entry"
-
-msgid "move down to next entry"
-msgstr "move down to next entry"
-
-msgid "move up to first entry"
-msgstr "move up to first entry"
-
-msgid "move up to previous entry"
-msgstr "move up to previous entry"
 
 #, fuzzy
 msgid "movie (general)"
@@ -23616,9 +23728,6 @@ msgstr "search EPG..."
 
 msgid "select CAId's"
 msgstr "select CAId's"
-
-msgid "select menu entry"
-msgstr "select menu entry"
 
 msgid "serious music/classic music"
 msgstr "serious music/classic music"
@@ -23929,6 +24038,27 @@ msgstr "yes (keep feeds)"
 msgid "®"
 msgstr ""
 
+#~ msgid "exit mounts setup menu"
+#~ msgstr "exit mounts setup menu"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "exit networkadapter setup menu"
+
+#~ msgid "move down to last entry"
+#~ msgstr "move down to last entry"
+
+#~ msgid "move down to next entry"
+#~ msgstr "move down to next entry"
+
+#~ msgid "move up to first entry"
+#~ msgstr "move up to first entry"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "move up to previous entry"
+
+#~ msgid "select menu entry"
+#~ msgstr "select menu entry"
+
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "Pembaruan di latar sedang berjalan, mohon tunggu beberapa menit dan coba lagi."
 
@@ -24155,13 +24285,6 @@ msgstr ""
 #~ msgid "-24"
 #~ msgstr "-24"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Rekaman sedang berlangsung.\n"
-"Apa yang ingin anda lakukan?"
-
 #~ msgid "BouquetList"
 #~ msgstr "BouquetList"
 
@@ -24280,21 +24403,12 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI Helper Settings"
 
-#~ msgid "ClientIP"
-#~ msgstr "ClientIP"
-
 #~ msgid "Minute"
 #~ msgstr "minute"
-
-#~ msgid "Transcode"
-#~ msgstr "Transcode"
 
 #, fuzzy
 #~ msgid "(FTA Service)"
 #~ msgstr "Semua Layanan"
-
-#~ msgid "ButtonSetup"
-#~ msgstr "ButtonSetup"
 
 #, fuzzy
 #~ msgid "Constellation & FFT mode"
@@ -24316,21 +24430,12 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Polarization"
 
-#~ msgid "Hotkey"
-#~ msgstr "Hotkey"
-
 #, fuzzy
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Lebar ikon info"
 
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Panic to"
 
 #, fuzzy
 #~ msgid "Service ID"
@@ -24352,9 +24457,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Service info font size"
 
-#~ msgid "Shellscript"
-#~ msgstr "Shellscript"
-
 #, fuzzy
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Symbol rate"
@@ -24373,9 +24475,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Tuner setting values"
 #~ msgstr "Tuner Settings"
-
-#~ msgid "Zap to"
-#~ msgstr "Zap to"
 
 #, fuzzy
 #~ msgid "active"

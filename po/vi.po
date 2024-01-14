@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1643,6 +1643,13 @@ msgstr ""
 "Một bản ghi âm đã được bắt đầu:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Một bản ghi hiện đang chạy.\n"
+"Bạn muốn làm gì?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Một bản ghi hiện đang chạy. Vui lòng dừng ghi âm trước khi thử cấu hình bộ định vị."
 
@@ -3266,6 +3273,9 @@ msgstr "Cài đặt nút"
 msgid "Button error timeout"
 msgstr ""
 
+msgid "ButtonSetup"
+msgstr "Cài đặt nút"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3633,6 +3643,9 @@ msgstr "Chọn kênh"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Chọn kênh"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -3970,6 +3983,18 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Hộp lựa chọn"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Lựa chọn nơi đặt \"% s\""
@@ -3990,6 +4015,12 @@ msgid "Choose how much EPG history, if any, to keep in the EPG cache. This histo
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
+msgstr ""
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
 msgstr ""
 
 msgid "Choose the amount of additional slots."
@@ -4149,8 +4180,14 @@ msgstr[0] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Bấm vào điều khiển từ xa của bạn vào nút bạn muốn thay đổi"
 
+msgid "Client"
+msgstr ""
+
 msgid "Client is streaming from this box!"
 msgstr ""
+
+msgid "ClientIP"
+msgstr "ClientIP"
 
 msgid "Clients"
 msgstr "Khách hàng"
@@ -4310,6 +4347,9 @@ msgstr ""
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Hành động khởi động"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Comoros"
@@ -5273,6 +5313,12 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5647,6 +5693,9 @@ msgid "Define Softcam For This Service"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Defined / Active"
@@ -6386,6 +6435,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Bạn có muốn khởi động lại đầu thu % s% s của mình không?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -9068,6 +9120,9 @@ msgstr "Tên máy chủ: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Phím nóng"
+
 msgid "Hotkey Settings"
 msgstr "Cài đặt phím nóng"
 
@@ -9156,7 +9211,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "Trình cài đặt IPK"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -11056,11 +11117,11 @@ msgstr "Hết thời gian chạy động cơ"
 msgid "Mount"
 msgstr "Núi"
 
-msgid "Mount Actions"
-msgstr ""
-
 msgid "Mount Manager"
 msgstr "Quản lý"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11182,6 +11243,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11600,6 +11667,9 @@ msgstr ""
 msgid "Network Interface"
 msgstr "Giao diện mạng"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -11660,6 +11730,9 @@ msgstr "Tên Mạng (SSID)"
 
 msgid "Network scan"
 msgstr "Quét mạng"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Kiểm tra mạng"
@@ -11877,6 +11950,9 @@ msgstr "Không có bộ chỉnh miễn phí!"
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Không tìm thấy tên địa điểm phù hợp"
 
@@ -12051,7 +12127,10 @@ msgstr ""
 msgid "None"
 msgstr "Không"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12628,6 +12707,9 @@ msgstr "Chế độ PLS"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "Bảng điều khiển"
+
 msgid "PRIMETIME"
 msgstr "TIẾNG VIỆT"
 
@@ -12702,6 +12784,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Kênh Panic"
+
+msgid "Panic to"
+msgstr "Hoảng sợ"
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -13191,6 +13276,9 @@ msgstr "Vui lòng đợi trong khi quá trình quét đang diễn ra ..."
 msgid "Please wait while the data is extracted..."
 msgstr ""
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 #, fuzzy
 msgid "Please wait while the list downloads..."
 msgstr "Vui lòng đợi trong khi thu thập dữ liệu ..."
@@ -13430,6 +13518,12 @@ msgstr "Thích theo dõi AC3"
 
 msgid "Prefer AC3+ track"
 msgstr "Thích theo dõi AC3 +"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Thích theo dõi âm thanh được lưu trữ bởi dịch vụ"
@@ -13837,6 +13931,12 @@ msgid "Quad PiP is not available."
 msgstr "Quad PiP không có sẵn."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -14587,6 +14687,9 @@ msgstr "Đặt lại và gia hạn tên tiêu đề"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14597,6 +14700,9 @@ msgid "Reset playback position"
 msgstr "Đặt lại vị trí phát lại"
 
 msgid "Reset sort order"
+msgstr ""
+
+msgid "Reset the order of the entries"
 msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
@@ -15594,6 +15700,9 @@ msgstr "Chọn CAId"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Chọn da Enigma2"
 
@@ -15631,6 +15740,9 @@ msgid "Select Satellites"
 msgstr "Chọn vệ tinh"
 
 msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
 msgstr ""
 
 msgid "Select Softcam"
@@ -15863,6 +15975,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -15921,6 +16037,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Chọn nhân vật hoặc hành động dưới con trỏ bàn phím ảo"
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -16023,6 +16142,9 @@ msgstr "Chọn nhà sản xuất thiết bị SCR của bạn. Nếu nhà sản 
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Chọn phương pháp khôi phục độ phân giải màn hình và bộ đệm khung khi rời teletext."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Chọn số kiểu máy của thiết bị Unicable của bạn. Nếu số kiểu máy không được liệt kê, hãy đặt 'SCR' thành 'người dùng xác định' và nhập thủ công các thông số thiết bị theo bảng thông số kỹ thuật của nó."
@@ -16868,6 +16990,9 @@ msgstr "Độ sắc nét"
 
 msgid "ShellInABox"
 msgstr ""
+
+msgid "Shellscript"
+msgstr "Vỏ sò"
 
 msgid "Shift"
 msgstr "Ca"
@@ -18125,9 +18250,6 @@ msgstr "Sắp xếp theo mặc định"
 
 msgid "Sort list by"
 msgstr "Sắp xếp danh sách theo"
-
-msgid "Sort list to default and exit?"
-msgstr "Sắp xếp danh sách để mặc định và thoát?"
 
 msgid "Sort list:"
 msgstr "Sắp xếp danh sách:"
@@ -20246,6 +20368,9 @@ msgstr "Theo dõi"
 
 msgid "Traditional Chinese"
 msgstr "Truyền thống Trung Hoa"
+
+msgid "Transcode"
+msgstr "Chuyển mã"
 
 msgid "Transcoding"
 msgstr ""
@@ -22433,6 +22558,9 @@ msgstr "Chế độ zap"
 msgid "Zap next"
 msgstr "Tiếp theo"
 
+msgid "Zap to"
+msgstr "Chuyển sang"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Chuyển sang kênh (thiết lập trong menu)"
 
@@ -22790,12 +22918,6 @@ msgstr "thực hiện cắt giảm (yêu cầu plugin MovieCut)"
 msgid "exit DVD player or return to file browser"
 msgstr "thoát trình phát DVD hoặc quay lại trình duyệt tệp"
 
-msgid "exit mounts setup menu"
-msgstr "thoát cài đặt menu cài đặt"
-
-msgid "exit networkadapter setup menu"
-msgstr "thoát khỏi menu cài đặt bộ điều hợp mạng"
-
 msgid "experimental film/video"
 msgstr "phim / video thử nghiệm"
 
@@ -23030,18 +23152,6 @@ msgstr "chuyển động"
 
 msgid "move"
 msgstr "di chuyển"
-
-msgid "move down to last entry"
-msgstr "di chuyển xuống mục cuối cùng"
-
-msgid "move down to next entry"
-msgstr "chuyển xuống mục tiếp theo"
-
-msgid "move up to first entry"
-msgstr "di chuyển đến mục đầu tiên"
-
-msgid "move up to previous entry"
-msgstr "di chuyển đến mục trước"
 
 #, fuzzy
 msgid "movie (general)"
@@ -23278,9 +23388,6 @@ msgstr "tìm kiếm EPG ..."
 
 msgid "select CAId's"
 msgstr "chọn CAId"
-
-msgid "select menu entry"
-msgstr "chọn mục nhập"
 
 msgid "serious music/classic music"
 msgstr "nhạc nghiêm túc / nhạc cổ điển"
@@ -23584,6 +23691,30 @@ msgstr "có (giữ thức ăn)"
 msgid "®"
 msgstr ""
 
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Sắp xếp danh sách để mặc định và thoát?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "thoát cài đặt menu cài đặt"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "thoát khỏi menu cài đặt bộ điều hợp mạng"
+
+#~ msgid "move down to last entry"
+#~ msgstr "di chuyển xuống mục cuối cùng"
+
+#~ msgid "move down to next entry"
+#~ msgstr "chuyển xuống mục tiếp theo"
+
+#~ msgid "move up to first entry"
+#~ msgstr "di chuyển đến mục đầu tiên"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "di chuyển đến mục trước"
+
+#~ msgid "select menu entry"
+#~ msgstr "chọn mục nhập"
+
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "Việc kiểm tra cập nhật nền đang được tiến hành, vui lòng đợi vài phút và thử lại."
 
@@ -23823,13 +23954,6 @@ msgstr ""
 #~ msgid "-24"
 #~ msgstr "-24"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Một bản ghi hiện đang chạy.\n"
-"Bạn muốn làm gì?"
-
 #~ msgid "BouquetList"
 #~ msgstr "Danh sách kênh"
 
@@ -23953,14 +24077,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "Cài đặt CIHelper"
 
-#~ msgid "ClientIP"
-#~ msgstr "ClientIP"
-
 #~ msgid "Minute"
 #~ msgstr "phút"
-
-#~ msgid "Transcode"
-#~ msgstr "Chuyển mã"
 
 #, fuzzy, python-format
 #~ msgid "%s MHz"
@@ -23969,9 +24087,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "(FTA Service)"
 #~ msgstr "Tất cả các nhà cung cấp dịch vụ"
-
-#~ msgid "ButtonSetup"
-#~ msgstr "Cài đặt nút"
 
 #, fuzzy
 #~ msgid "Constellation & FFT mode"
@@ -23993,9 +24108,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Phân cực"
 
-#~ msgid "Hotkey"
-#~ msgstr "Phím nóng"
-
 #, fuzzy
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Chiều rộng biểu tượng thông tin"
@@ -24006,12 +24118,6 @@ msgstr ""
 
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "Bảng điều khiển"
-
-#~ msgid "Panic to"
-#~ msgstr "Hoảng sợ"
 
 #, fuzzy
 #~ msgid "Service ID"
@@ -24033,9 +24139,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Kích thước phông chữ thông tin dịch vụ"
 
-#~ msgid "Shellscript"
-#~ msgstr "Vỏ sò"
-
 #, fuzzy
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Tỷ lệ biểu tượng"
@@ -24054,9 +24157,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Tuner setting values"
 #~ msgstr "Cài đặt bộ chỉnh"
-
-#~ msgid "Zap to"
-#~ msgstr "Chuyển sang"
 
 #, fuzzy
 #~ msgid "active"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1673,6 +1673,13 @@ msgstr ""
 "Prasidėjo įrašymas:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Dabar vyksta įrašymas.\n"
+"Ką norite daryti?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Dabar vyksta įrašymas. Prieš konfigūruodami pozicionierių išjunkite įrašymą."
 
@@ -3281,6 +3288,9 @@ msgstr "Mygtukų nustatymas"
 msgid "Button error timeout"
 msgstr "Mygtuko klaidos skirtasis laikas"
 
+msgid "ButtonSetup"
+msgstr "Mygtukų sąranka"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3651,6 +3661,9 @@ msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Atšaukti atvaizdo pasirinkimą ir užverti visus meniu"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr "Atšaukite paslaugos pasirinkimą"
 
@@ -3982,6 +3995,18 @@ msgstr "Lustų rinkinys: BCM%s"
 msgid "Choice Box"
 msgstr "Pasirinkimų langas"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Pasirinkite kur dėti \"%s\""
@@ -4003,6 +4028,12 @@ msgstr "Pasirinkite, kiek EPG istorijos, jei tokia yra, norite laikyti EPG talpy
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Pasirinkite, kaip dažnai prisijungti prie IceTV serverio, kad patikrintumėte atnaujinimus."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4163,8 +4194,14 @@ msgstr[2] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Spauskite nuotolinio valdymo pulto mygtuką, kurį norite pakeisti"
 
+msgid "Client"
+msgstr "Klientas"
+
 msgid "Client is streaming from this box!"
 msgstr "Klientas transliuoja iš šio imtuvo!"
+
+msgid "ClientIP"
+msgstr "Kliento IP"
 
 msgid "Clients"
 msgstr "Klientai"
@@ -4322,6 +4359,9 @@ msgstr ""
 
 msgid "Common Setup Actions"
 msgstr "Bendrieji nustatymo veiksmai"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Komorai"
@@ -5279,6 +5319,12 @@ msgstr "DNS parametrai"
 msgid "DNS data source"
 msgstr "DNS duomenų šaltinis"
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5646,6 +5692,9 @@ msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Nustatykite papildomą milisekundžių delsą prieš pradedant http (-us) srautus."
+
+msgid "Define the DNS suffix."
+msgstr ""
 
 msgid "Defined / Active"
 msgstr "Apibrėžta / Aktyvi"
@@ -6380,6 +6429,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Ar norite savo %s %s paleisti iš naujo?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -9025,6 +9077,9 @@ msgstr "Pavadinimas tinkle: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Spartusis klavišas"
+
 msgid "Hotkey Settings"
 msgstr "Sparčiojo klavišo parametrai"
 
@@ -9112,8 +9167,14 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPK įdiegėjas"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
 msgstr "IPv6 adresas"
+
+msgid "IPv6 only"
+msgstr ""
 
 msgid "ISO file is too large for this file system!"
 msgstr "ISO failas yra per didelis šiai failų sistemai!"
@@ -10973,11 +11034,11 @@ msgstr "Laiko limitas paleisti varikliui"
 msgid "Mount"
 msgstr "Pajungti"
 
-msgid "Mount Actions"
-msgstr "Montavimo veiksmai"
-
 msgid "Mount Manager"
 msgstr "Pajungimo tvarkyklė"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr "Montavimo parametrai"
@@ -11095,6 +11156,12 @@ msgstr "Perkelti dabartinę žymelę žemyn"
 
 msgid "Move the current bookmark up"
 msgstr "Perkelti dabartinę žymelę aukštyn"
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
+msgstr ""
 
 msgid "Move the current line down"
 msgstr "Perkelti dabartinę eilutę žemyn"
@@ -11491,6 +11558,9 @@ msgstr "Tinklo informacijos veiksmai"
 msgid "Network Interface"
 msgstr "Tinklo sąsaja"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr "Tinklo žurnalo veiksmai"
 
@@ -11551,6 +11621,9 @@ msgstr "Tinklo pavadinimas (SSID)"
 
 msgid "Network scan"
 msgstr "Tinklo paieška"
+
+msgid "Network storage on"
+msgstr "Tinklo saugykla įjungta"
 
 msgid "Network test"
 msgstr "Tinklo testavimas"
@@ -11758,6 +11831,9 @@ msgstr "Nėra laisvo imtuvo!"
 msgid "No hard disks detected."
 msgstr "Kietųjų diskų neaptikta."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr "Žurnalo failų nerasta, todėl derinimo žurnalai nepasiekiami!"
+
 msgid "No matching place names found"
 msgstr "Atitinkančių vietovardžių nerasta"
 
@@ -11933,7 +12009,10 @@ msgstr ""
 msgid "None"
 msgstr "Nėra"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12495,6 +12574,9 @@ msgstr "PLS režimas"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "PSkydelis"
+
 msgid "PRIMETIME"
 msgstr "ŽIŪRIMIAUSIAS LAIKAS"
 
@@ -12568,6 +12650,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Panikos kanalas"
+
+msgid "Panic to"
+msgstr "Panikos mygtukas"
 
 msgid "Panjabi / Punjabi"
 msgstr "Pandžabi / Pandžabi"
@@ -13057,6 +13142,9 @@ msgstr "Prašome laukti kol vyksta paieška..."
 msgid "Please wait while the data is extracted..."
 msgstr "Palaukite, kol duomenys bus išgauti..."
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Palaukite, kol sąrašas atsisiunčiamas..."
 
@@ -13299,6 +13387,12 @@ msgstr "Pageidaujamas AC3 takelis"
 
 msgid "Prefer AC3+ track"
 msgstr "Pageidaujamas AC3+ takelis"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Pageidautinas garso takelis, saugomas pagal kanalus"
@@ -13698,6 +13792,12 @@ msgstr "Quad PiP nėra."
 
 msgid "Quad9 DNS"
 msgstr "Quad9 DNS"
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
+msgstr ""
 
 msgid "Quechua"
 msgstr "Kečua"
@@ -14435,6 +14535,9 @@ msgstr "Nustatyti iš naujo ir pernumeruoti antraščių pavadinimus"
 msgid "Reset executable mode (644)"
 msgstr "Iš naujo nustatykite vykdomąjį režimą (644)"
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr "Iš naujo nustatyti tinklo konfigūraciją"
 
@@ -14445,6 +14548,9 @@ msgid "Reset playback position"
 msgstr "Išvalyti peržiūros poziciją"
 
 msgid "Reset sort order"
+msgstr ""
+
+msgid "Reset the order of the entries"
 msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
@@ -15433,6 +15539,9 @@ msgstr "Pasirinkite CAId"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Pasirinkite Enigma2 temą"
 
@@ -15470,6 +15579,9 @@ msgid "Select Satellites"
 msgstr "Pasirinkite palydovus"
 
 msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
 msgstr ""
 
 msgid "Select Softcam"
@@ -15702,6 +15814,10 @@ msgstr "Pasirinkite dabartinio stulpelio laikiną katalogų rūšiavimo tvarką"
 msgid "Select temporary file sort order for the current column"
 msgstr "Pasirinkite dabartinio stulpelio laikiną failų rikiavimo tvarką"
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr "Pasirinkite atsakymą Nr. / Klaidingas"
 
@@ -15760,6 +15876,9 @@ msgstr "Pasirinkite simbolį arba veiksmą po klaviatūros žymekliu"
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Pasirinkite dabartinę pažymėtą vietą ir išeikite"
+
+msgid "Select the current entry"
+msgstr ""
 
 msgid "Select the current menu item"
 msgstr "Pasirinkti dabartinę meniu komandą"
@@ -15860,6 +15979,9 @@ msgstr "Pasirinkite SCR įrenginio gamintoją. Jei gamintojas nėra įtrauktas �
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Pasirinkite ekrano rezoliucijos atkūrimo metodą ir kadrų buferizaciją išeinant iš teleteksto."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Pasirinkite Unicable įrenginio modelio numerį. Jei modelio numeris nenurodytas, nustatykite 'SCR' į 'naudotojo nustatytas' ir rankiniu būdu įveskite jo parametrus pagal jo specifikacijų lapą."
@@ -16698,6 +16820,9 @@ msgstr "Aštrumas"
 
 msgid "ShellInABox"
 msgstr ""
+
+msgid "Shellscript"
+msgstr "Grafinės aplinkos scenarijus"
 
 msgid "Shift"
 msgstr "Pakeisti"
@@ -17937,9 +18062,6 @@ msgstr "Rūšiuoti pagal numatytus nustatymus"
 
 msgid "Sort list by"
 msgstr "Rūšiuoti sąrašą pagal"
-
-msgid "Sort list to default and exit?"
-msgstr "Rūšiuoti sąrašą numatytąja tvarka ir užverti?"
 
 msgid "Sort list:"
 msgstr "Rūšiuoti sąrašą:"
@@ -20032,6 +20154,9 @@ msgstr "Takelis"
 
 msgid "Traditional Chinese"
 msgstr "Tradicinė kinų"
+
+msgid "Transcode"
+msgstr "Perkoduoti"
 
 msgid "Transcoding"
 msgstr "Transkodavimas"
@@ -22217,6 +22342,9 @@ msgstr "Perjungimo būdas"
 msgid "Zap next"
 msgstr "Jungti toliau"
 
+msgid "Zap to"
+msgstr "Perjungti į"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Perjungti į kanalą (nustatyti meniu)"
 
@@ -22562,12 +22690,6 @@ msgstr "vykdyti iškirpimus (reikia MovieCut priedo)"
 msgid "exit DVD player or return to file browser"
 msgstr "užverti DVD grotuvą, arba sugrįžti į failų naršyklę"
 
-msgid "exit mounts setup menu"
-msgstr "užverti pajungimų nustatymų meniu"
-
-msgid "exit networkadapter setup menu"
-msgstr "užverti tinklo adapterio nuostatų meniu"
-
 msgid "experimental film/video"
 msgstr "eksperimentinis filmas/vaidzas"
 
@@ -22798,18 +22920,6 @@ msgstr "automobilizmas"
 
 msgid "move"
 msgstr "perkelti"
-
-msgid "move down to last entry"
-msgstr "žemyn į paskutinį įrašą"
-
-msgid "move down to next entry"
-msgstr "žemyn prie sekančio įrašo"
-
-msgid "move up to first entry"
-msgstr "aukštyn į pirmą įrašą"
-
-msgid "move up to previous entry"
-msgstr "aukštyn prie ankstesnio įrašo"
 
 msgid "movie (general)"
 msgstr "filmai (bendrai)"
@@ -23043,9 +23153,6 @@ msgstr "ieškoti EPG..."
 
 msgid "select CAId's"
 msgstr "išsirinkite CAId's"
-
-msgid "select menu entry"
-msgstr "pasirinkite iš meniu"
 
 msgid "serious music/classic music"
 msgstr "rimta muzika/klasikinė muzika"
@@ -23350,6 +23457,33 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Mount Actions"
+#~ msgstr "Montavimo veiksmai"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Rūšiuoti sąrašą numatytąja tvarka ir užverti?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "užverti pajungimų nustatymų meniu"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "užverti tinklo adapterio nuostatų meniu"
+
+#~ msgid "move down to last entry"
+#~ msgstr "žemyn į paskutinį įrašą"
+
+#~ msgid "move down to next entry"
+#~ msgstr "žemyn prie sekančio įrašo"
+
+#~ msgid "move up to first entry"
+#~ msgstr "aukštyn į pirmą įrašą"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "aukštyn prie ankstesnio įrašo"
+
+#~ msgid "select menu entry"
+#~ msgstr "pasirinkite iš meniu"
+
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "Fone vyksta atnaujinimų paieška, palaukite ir po kelių minučių bandykite dar kartą."
 
@@ -23651,13 +23785,6 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Dabar vyksta įrašymas.\n"
-"Ką norite daryti?"
-
 #~ msgid "BouquetList"
 #~ msgstr "Paketų sąrašas"
 
@@ -23814,14 +23941,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI žinyno parametrai"
 
-#~ msgid "ClientIP"
-#~ msgstr "Kliento IP"
-
 #~ msgid "Minute"
 #~ msgstr "minutė"
-
-#~ msgid "Transcode"
-#~ msgstr "Perkoduoti"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -23844,12 +23965,6 @@ msgstr ""
 #~ msgid "Basic PID info"
 #~ msgstr "Pagrindinė PID info"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Mygtukų sąranka"
-
-#~ msgid "Client"
-#~ msgstr "Klientas"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "Kodas R. LP-HP ir Guard Int."
 
@@ -23868,9 +23983,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Dažnis ir poliarizacija"
 
-#~ msgid "Hotkey"
-#~ msgstr "Spartusis klavišas"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Inversija ir dažnių juostos plotis"
 
@@ -23880,26 +23992,14 @@ msgstr ""
 #~ msgid "NIM & Type"
 #~ msgstr "IMTUVAS IR TIPAS"
 
-#~ msgid "Network storage on"
-#~ msgstr "Tinklo saugykla įjungta"
-
 #~ msgid "Next Log"
 #~ msgstr "Kitas žurnalas"
 
 #~ msgid "Next Picture"
 #~ msgstr "Kitas paveikslėlis"
 
-#~ msgid "No log files found so debug logs are unavailable!"
-#~ msgstr "Žurnalo failų nerasta, todėl derinimo žurnalai nepasiekiami!"
-
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PSkydelis"
-
-#~ msgid "Panic to"
-#~ msgstr "Panikos mygtukas"
 
 #~ msgid "Previous Log"
 #~ msgstr "Ankstesnis žurnalas"
@@ -23928,9 +24028,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Kanalo informacija - imtuvo nustatymų reikšmės"
 
-#~ msgid "Shellscript"
-#~ msgstr "Grafinės aplinkos scenarijus"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Simbolių sparta ir FEC"
 
@@ -23945,9 +24042,6 @@ msgstr ""
 
 #~ msgid "Tuner setting values"
 #~ msgstr "Nustatymo reikšmės"
-
-#~ msgid "Zap to"
-#~ msgstr "Perjungti į"
 
 #~ msgid "active"
 #~ msgstr "aktyvus"

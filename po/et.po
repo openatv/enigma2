@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1646,6 +1646,13 @@ msgstr ""
 "Algas salvestamine:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Toimub salvestamine.\n"
+"Mida tuleks teha?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Toimub salvestamine. Enne ajami häälestamist peata salvestamine."
 
@@ -3286,6 +3293,9 @@ msgstr "Nuppude seaded"
 msgid "Button error timeout"
 msgstr ""
 
+msgid "ButtonSetup"
+msgstr "Nuppude seadistus"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3656,6 +3666,9 @@ msgstr "Kanalivalik"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kanalivalik"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -3995,6 +4008,18 @@ msgstr "Kiibistik: BCM%s"
 msgid "Choice Box"
 msgstr "Valikukast"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Vali \"%s\" asukoht"
@@ -4015,6 +4040,12 @@ msgid "Choose how much EPG history, if any, to keep in the EPG cache. This histo
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
+msgstr ""
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
 msgstr ""
 
 msgid "Choose the amount of additional slots."
@@ -4175,8 +4206,14 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Vajuta puldi nupule, mille toimet soovid muuta"
 
+msgid "Client"
+msgstr ""
+
 msgid "Client is streaming from this box!"
 msgstr ""
+
+msgid "ClientIP"
+msgstr "Kliendi IP"
 
 msgid "Clients"
 msgstr "Kliendid"
@@ -4338,6 +4375,9 @@ msgstr ""
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Tegevus alglaadimisel"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Komoori saared"
@@ -5311,6 +5351,12 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5687,6 +5733,9 @@ msgid "Define Softcam For This Service"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Defined / Active"
@@ -6434,6 +6483,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Kas taaskäivitada %s %s?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -9143,6 +9195,9 @@ msgstr "Masinanimi: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Kiirnupud"
+
 #
 msgid "Hotkey Settings"
 msgstr "Kiirnuppude seadistus"
@@ -9232,7 +9287,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPK paigaldamine"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -11173,11 +11234,11 @@ msgstr "Ajami pööramise aegumine"
 msgid "Mount"
 msgstr "Haagi"
 
-msgid "Mount Actions"
-msgstr ""
-
 msgid "Mount Manager"
 msgstr "Haakepunktid"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11300,6 +11361,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11724,6 +11791,9 @@ msgstr ""
 msgid "Network Interface"
 msgstr "Võrguliides"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -11788,6 +11858,9 @@ msgstr "Võrgu nimi (SSID)"
 
 msgid "Network scan"
 msgstr "Võrguotsing"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Võrgu testimine"
@@ -12009,6 +12082,9 @@ msgstr "Vaba tuuner puudub!"
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Asukoha vastet ei leitud"
 
@@ -12188,7 +12264,10 @@ msgstr ""
 msgid "None"
 msgstr "Pole"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12786,6 +12865,9 @@ msgstr "PLS režiim"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "PPanel"
+
 msgid "PRIMETIME"
 msgstr "TIPPAEG"
 
@@ -12859,6 +12941,9 @@ msgid "Panama"
 msgstr "Panama"
 
 msgid "Panic channel"
+msgstr "Paanikanupu kanal"
+
+msgid "Panic to"
 msgstr "Paanikanupu kanal"
 
 msgid "Panjabi / Punjabi"
@@ -13364,6 +13449,9 @@ msgstr "Oota otsingu lõppemist."
 msgid "Please wait while the data is extracted..."
 msgstr ""
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 # EPG
 #, fuzzy
 msgid "Please wait while the list downloads..."
@@ -13607,6 +13695,12 @@ msgstr "Eelista AC3 heliriba"
 
 msgid "Prefer AC3+ track"
 msgstr "Eelista AC3+ heliriba"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Eelista käsitsi määratud heliriba"
@@ -14018,6 +14112,12 @@ msgid "Quad PiP is not available."
 msgstr "Quad PiP ei ole saadaval."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -14780,6 +14880,9 @@ msgstr "Lähtesta ja nummerda pealkirjad uuesti"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14790,6 +14893,9 @@ msgid "Reset playback position"
 msgstr "Lähtesta taasesituskoht"
 
 msgid "Reset sort order"
+msgstr ""
+
+msgid "Reset the order of the entries"
 msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
@@ -15805,6 +15911,9 @@ msgstr "Vali CAId"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Vali Enigma2 kujundus"
 
@@ -15843,6 +15952,9 @@ msgid "Select Satellites"
 msgstr "Vali satelliidid"
 
 msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
 msgstr ""
 
 msgid "Select Softcam"
@@ -16079,6 +16191,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -16138,6 +16254,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -16240,6 +16359,9 @@ msgstr "Vali SCR seadme tootja. Kui tootjat nimekirjas ei ole, määra 'SCR' vä
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Vali ekraanilahutuse ja ekraanipuhvri taastamise meetod teletekstist väljumisel."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vali unicable seadme mudeli number. Kui seda nimekirjas ei ole, määra 'SCR' väärtuseks 'kasutaja määratud' ja sisesta seadme parameetrid käsitsi vastavalt selle spetsifikatsioonile."
@@ -17098,6 +17220,9 @@ msgstr "Teravus"
 
 msgid "ShellInABox"
 msgstr ""
+
+msgid "Shellscript"
+msgstr "Skript"
 
 msgid "Shift"
 msgstr ""
@@ -18376,9 +18501,6 @@ msgstr "Vaikejärjestus"
 
 msgid "Sort list by"
 msgstr "Järjestuse aluseks"
-
-msgid "Sort list to default and exit?"
-msgstr "Kas taastada vaikejärjestus ja väljuda?"
 
 msgid "Sort list:"
 msgstr "Järjesta nimekiri:"
@@ -20534,6 +20656,9 @@ msgstr "Rada"
 
 msgid "Traditional Chinese"
 msgstr "Traditsiooniline Hiina"
+
+msgid "Transcode"
+msgstr "Transkodeeri"
 
 msgid "Transcoding"
 msgstr ""
@@ -22765,6 +22890,9 @@ msgstr "Kanalivahetus"
 msgid "Zap next"
 msgstr "Kanalivahetus 'järgmine'"
 
+msgid "Zap to"
+msgstr "Mine kanalile"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Mine kanalile (seadistamine menüüs)"
 
@@ -23127,12 +23255,6 @@ msgstr "Teosta lõikamine (vajalik MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "Välju DVD-mängijast või naase failisirvijasse"
 
-msgid "exit mounts setup menu"
-msgstr "Välju haakimise menüüst"
-
-msgid "exit networkadapter setup menu"
-msgstr "Välju võrgukaardi seadistusmenüüst"
-
 msgid "experimental film/video"
 msgstr "eksperimentaalne film/video"
 
@@ -23371,18 +23493,6 @@ msgstr "autondus"
 msgid "move"
 msgstr "Liiguta"
 
-msgid "move down to last entry"
-msgstr "Liigu viimasele reale"
-
-msgid "move down to next entry"
-msgstr "Liigu järgmisele reale"
-
-msgid "move up to first entry"
-msgstr "Liigu esimesele reale"
-
-msgid "move up to previous entry"
-msgstr "Liigu eelmisele reale"
-
 #, fuzzy
 msgid "movie (general)"
 msgstr "film/draama"
@@ -23618,9 +23728,6 @@ msgstr "EPG otsing"
 
 msgid "select CAId's"
 msgstr "Vali CAIDid"
-
-msgid "select menu entry"
-msgstr "Vali menüüpunkt"
 
 msgid "serious music/classic music"
 msgstr "süvamuusika/klassikaline muusika"
@@ -23925,6 +24032,30 @@ msgstr "Jah (säilita fiidid)"
 msgid "®"
 msgstr ""
 
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Kas taastada vaikejärjestus ja väljuda?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "Välju haakimise menüüst"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "Välju võrgukaardi seadistusmenüüst"
+
+#~ msgid "move down to last entry"
+#~ msgstr "Liigu viimasele reale"
+
+#~ msgid "move down to next entry"
+#~ msgstr "Liigu järgmisele reale"
+
+#~ msgid "move up to first entry"
+#~ msgstr "Liigu esimesele reale"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "Liigu eelmisele reale"
+
+#~ msgid "select menu entry"
+#~ msgstr "Vali menüüpunkt"
+
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
 
@@ -24161,13 +24292,6 @@ msgstr ""
 #~ msgid "-24"
 #~ msgstr "-24"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Toimub salvestamine.\n"
-"Mida tuleks teha?"
-
 #~ msgid "BouquetList"
 #~ msgstr "Lemmiknimekirjad"
 
@@ -24293,14 +24417,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "CIHelper seadistamine"
 
-#~ msgid "ClientIP"
-#~ msgstr "Kliendi IP"
-
 #~ msgid "Minute"
 #~ msgstr "minut"
-
-#~ msgid "Transcode"
-#~ msgstr "Transkodeeri"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -24319,9 +24437,6 @@ msgstr ""
 
 #~ msgid "Audio PID, codec & lang"
 #~ msgstr "Heli PID, koodek ja keel"
-
-#~ msgid "ButtonSetup"
-#~ msgstr "Nuppude seadistus"
 
 #, fuzzy
 #~ msgid "Constellation & FFT mode"
@@ -24343,9 +24458,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Polarisatsioon"
 
-#~ msgid "Hotkey"
-#~ msgstr "Kiirnupud"
-
 #, fuzzy
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Infoikooni laius"
@@ -24356,12 +24468,6 @@ msgstr ""
 
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Paanikanupu kanal"
 
 #, fuzzy
 #~ msgid "Service ID"
@@ -24383,9 +24489,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Saateinfo tähesuurus"
 
-#~ msgid "Shellscript"
-#~ msgstr "Skript"
-
 #, fuzzy
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Sümbolikiirus"
@@ -24404,9 +24507,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Tuner setting values"
 #~ msgstr "Tuuneri seaded"
-
-#~ msgid "Zap to"
-#~ msgstr "Mine kanalile"
 
 #, fuzzy
 #~ msgid "active"

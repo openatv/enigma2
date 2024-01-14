@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
 "PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: Juanjo-EA1CJ <juanjo.ea1cj@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -1692,6 +1692,14 @@ msgid ""
 msgstr ""
 "Se ha iniciado una grabación:\n"
 "%s"
+
+#
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Hay una grabación en curso.\n"
+"¿Qué quieres hacer?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -3416,6 +3424,9 @@ msgstr "Configurar teclas"
 msgid "Button error timeout"
 msgstr "Error en el tiempo de espera del botón"
 
+msgid "ButtonSetup"
+msgstr "Botón de ajuste"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3791,6 +3802,9 @@ msgstr "Cancelar la selección de imágenes y salir"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Cancelar la selección de imágenes y salir de todos los menús"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr "Cancelar la selección del servicio"
 
@@ -4143,6 +4157,18 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Elige receptor"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Elección en dónde poner \"%s\""
@@ -4164,6 +4190,12 @@ msgstr "Elija la cuanto historial de la EPG desea ver, en caso de que haya algun
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Elegir la frecuencia con la que se conectará al servidor IceTV para comprobar si hay actualizaciones."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4327,8 +4359,14 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Pulsa la tecla del mando que quieras cambiar."
 
+msgid "Client"
+msgstr "Cliente"
+
 msgid "Client is streaming from this box!"
 msgstr "¡El cliente está transmitiendo desde esta caja!"
+
+msgid "ClientIP"
+msgstr "ClienteIP"
 
 msgid "Clients"
 msgstr "Clientes"
@@ -4495,6 +4533,9 @@ msgstr ""
 # boot-up action
 msgid "Common Setup Actions"
 msgstr "Acciones comunes de ajustes"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Comoras"
@@ -5488,6 +5529,12 @@ msgstr "Ajustes DNS"
 msgid "DNS data source"
 msgstr "Fuente de datos DNS"
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5870,6 +5917,9 @@ msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Define el retardo adicional en milisegundos antes del inicio de los flujos http(s)."
+
+msgid "Define the DNS suffix."
+msgstr ""
 
 msgid "Defined / Active"
 msgstr "Definido / Activo"
@@ -6651,6 +6701,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "¿Quieres reiniciar tu %s %s?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 #
@@ -9456,6 +9509,9 @@ msgstr "Nombre del host: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0 E"
 
+msgid "Hotkey"
+msgstr "Tecla rápida"
+
 #
 msgid "Hotkey Settings"
 msgstr "Configurar teclas"
@@ -9550,8 +9606,14 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "Instalador IPK"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
 msgstr "Dirección IPv6"
+
+msgid "IPv6 only"
+msgstr ""
 
 #
 msgid "ISO file is too large for this file system!"
@@ -11539,12 +11601,12 @@ msgstr "Tiempo de espera del motor"
 msgid "Mount"
 msgstr "Montaje"
 
-msgid "Mount Actions"
-msgstr "Acciones de montaje"
-
 #
 msgid "Mount Manager"
 msgstr "Administrador de montajes"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr "Ajustes de montaje"
@@ -11669,6 +11731,12 @@ msgstr "Mover el marcador actual hacia abajo"
 
 msgid "Move the current bookmark up"
 msgstr "Mover el marcador actual hacia arriba"
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
+msgstr ""
 
 msgid "Move the current line down"
 msgstr ""
@@ -12084,6 +12152,9 @@ msgstr "Acciones de información de la red"
 msgid "Network Interface"
 msgstr "Interfaz de red"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr "Acciones del registro de la red"
 
@@ -12152,6 +12223,9 @@ msgstr "Nombre de red (SSID)"
 #
 msgid "Network scan"
 msgstr "Escanear red"
+
+msgid "Network storage on"
+msgstr "Almacenamiento en red en"
 
 #
 msgid "Network test"
@@ -12386,6 +12460,9 @@ msgstr "¡No hay ningún sintonizador libre!"
 msgid "No hard disks detected."
 msgstr "No se ha detectado ningún disco duro."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr "No se han encontrado archivos de registro, por lo que los registros de depuración no están disponibles!"
+
 msgid "No matching place names found"
 msgstr "No se han encontrado topónimos que coincidan"
 
@@ -12576,7 +12653,10 @@ msgstr ""
 msgid "None"
 msgstr "Ninguno"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -13179,6 +13259,9 @@ msgstr "Modo PLS"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "PPanel"
+
 msgid "PRIMETIME"
 msgstr "HORA ESTELAR"
 
@@ -13254,6 +13337,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Canal de pánico"
+
+msgid "Panic to"
+msgstr "Pánico"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panyabí / Punjabí"
@@ -13795,6 +13881,9 @@ msgstr "Espera mientras la búsqueda está en curso..."
 msgid "Please wait while the data is extracted..."
 msgstr ""
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Por favor, espere mientras se descarga la lista..."
 
@@ -14055,6 +14144,12 @@ msgstr "Priorizar pista AC3"
 
 msgid "Prefer AC3+ track"
 msgstr "Priorizar pista AC3+"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Priorizar la pista de audio guardada por el canal"
@@ -14483,6 +14578,12 @@ msgid "Quad PiP is not available."
 msgstr "No está disponible la función Quad PiP."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -15279,6 +15380,9 @@ msgstr "Resetea y reenumera los nombres de títulos"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr "Restablecer la configuración de la red"
 
@@ -15289,6 +15393,9 @@ msgid "Reset playback position"
 msgstr "Resetear la posición de reproducción"
 
 msgid "Reset sort order"
+msgstr ""
+
+msgid "Reset the order of the entries"
 msgstr ""
 
 #
@@ -16349,6 +16456,9 @@ msgstr "Seleccionar CAId"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 # Quick Menue
 msgid "Select Enigma2 Skin"
 msgstr "Seleccione la skin Enigma2"
@@ -16388,6 +16498,9 @@ msgid "Select Satellites"
 msgstr "Seleccionar satélites"
 
 msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
 msgstr ""
 
 msgid "Select Softcam"
@@ -16634,6 +16747,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr "Seleccione la respuesta \"No\" / \"Falso\""
 
@@ -16693,6 +16810,9 @@ msgstr "Seleccione el carácter o la acción bajo el cursor del teclado"
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Seleccionar la ubicación actual de los marcadores y salir"
+
+msgid "Select the current entry"
+msgstr ""
 
 msgid "Select the current menu item"
 msgstr "Seleccione la opción de menú actual"
@@ -16793,6 +16913,9 @@ msgstr "Seleccione el fabricante de su dispositivo SCR. Si el fabricante no apar
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Seleccione el método de restauración de la resolución de la pantalla y del framebuffer al salir del teletexto."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Seleccione el número de modelo de su dispositivo Unicable. Si el número de modelo no aparece en la lista, configure \"SCR\" como \"definido por el usuario\" e introduzca manualmente los parámetros del dispositivo según su hoja de especificaciones."
@@ -17690,6 +17813,9 @@ msgstr "Nitidez"
 
 msgid "ShellInABox"
 msgstr ""
+
+msgid "Shellscript"
+msgstr "Shellscript"
 
 msgid "Shift"
 msgstr ""
@@ -19034,9 +19160,6 @@ msgstr "Ordenar por defecto"
 
 msgid "Sort list by"
 msgstr "Ordenar lista por"
-
-msgid "Sort list to default and exit?"
-msgstr ""
 
 msgid "Sort list:"
 msgstr "Lista Ordenada:"
@@ -21299,6 +21422,11 @@ msgstr "Pista"
 
 msgid "Traditional Chinese"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Transcode"
+msgstr "Transpondedor"
 
 msgid "Transcoding"
 msgstr ""
@@ -23668,6 +23796,9 @@ msgstr "Modo zapeo"
 msgid "Zap next"
 msgstr "Zapatear"
 
+msgid "Zap to"
+msgstr "Zapatear"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Zap al canal (configuración en el menú)"
 
@@ -24050,13 +24181,6 @@ msgstr "Ejecutar cortes (requiere MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "Salir del reproductor de DVD o volver al navegador de archivos"
 
-msgid "exit mounts setup menu"
-msgstr "Menú de configuración de montajes de salida"
-
-#
-msgid "exit networkadapter setup menu"
-msgstr "Salir del menú de configuración de adaptador de red"
-
 msgid "experimental film/video"
 msgstr "cine/video experimental"
 
@@ -24313,22 +24437,6 @@ msgstr "automovilismo"
 
 msgid "move"
 msgstr "Mover"
-
-#
-msgid "move down to last entry"
-msgstr "Bajar a la última entrada"
-
-#
-msgid "move down to next entry"
-msgstr "Bajar a la entrada siguiente"
-
-#
-msgid "move up to first entry"
-msgstr "Subir a la primera entrada"
-
-#
-msgid "move up to previous entry"
-msgstr "Subir a la entrada anterior"
 
 #, fuzzy
 msgid "movie (general)"
@@ -24595,10 +24703,6 @@ msgstr "Búsqueda EPG ..."
 #
 msgid "select CAId's"
 msgstr "Seleccionar CAId's"
-
-#
-msgid "select menu entry"
-msgstr "Seleccionar la entrada de menú"
 
 msgid "serious music/classic music"
 msgstr "Música seria / música clásica"
@@ -24939,6 +25043,36 @@ msgstr "Sí (conservar fuentes)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Mount Actions"
+#~ msgstr "Acciones de montaje"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "Menú de configuración de montajes de salida"
+
+#
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "Salir del menú de configuración de adaptador de red"
+
+#
+#~ msgid "move down to last entry"
+#~ msgstr "Bajar a la última entrada"
+
+#
+#~ msgid "move down to next entry"
+#~ msgstr "Bajar a la entrada siguiente"
+
+#
+#~ msgid "move up to first entry"
+#~ msgstr "Subir a la primera entrada"
+
+#
+#~ msgid "move up to previous entry"
+#~ msgstr "Subir a la entrada anterior"
+
+#
+#~ msgid "select menu entry"
+#~ msgstr "Seleccionar la entrada de menú"
+
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "Comprobación de actualización en segundo plano en curso. Espera unos minutos y vuelve a intentarlo."
 
@@ -25209,14 +25343,6 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-#
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Hay una grabación en curso.\n"
-"¿Qué quieres hacer?"
-
 #~ msgid "BouquetList"
 #~ msgstr "Lista de Bouquet"
 
@@ -25360,17 +25486,9 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "Ajustes del asistente de CI"
 
-#~ msgid "ClientIP"
-#~ msgstr "ClienteIP"
-
 #
 #~ msgid "Minute"
 #~ msgstr "Minuto"
-
-#
-#, fuzzy
-#~ msgid "Transcode"
-#~ msgstr "Transpondedor"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -25394,12 +25512,6 @@ msgstr ""
 #~ msgid "Basic PID info"
 #~ msgstr "Información básica del PID"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Botón de ajuste"
-
-#~ msgid "Client"
-#~ msgstr "Cliente"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "Código R. LP-HP y Guard Int."
 
@@ -25421,17 +25533,11 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Frecuencia y polarización"
 
-#~ msgid "Hotkey"
-#~ msgstr "Tecla rápida"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Inversión y ancho de banda"
 
 #~ msgid "NIM & Type"
 #~ msgstr "NIM y tipo"
-
-#~ msgid "Network storage on"
-#~ msgstr "Almacenamiento en red en"
 
 #~ msgid "Next Log"
 #~ msgstr "Siguiente registro"
@@ -25439,17 +25545,8 @@ msgstr ""
 #~ msgid "Next Picture"
 #~ msgstr "Siguiente imagen"
 
-#~ msgid "No log files found so debug logs are unavailable!"
-#~ msgstr "No se han encontrado archivos de registro, por lo que los registros de depuración no están disponibles!"
-
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Pánico"
 
 #~ msgid "Previous Log"
 #~ msgstr "Registro previo"
@@ -25478,9 +25575,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Tamaño de letra de la información de canal"
 
-#~ msgid "Shellscript"
-#~ msgstr "Shellscript"
-
 #, fuzzy
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Symbol rate"
@@ -25501,9 +25595,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Tuner setting values"
 #~ msgstr "Configurar sintonizador"
-
-#~ msgid "Zap to"
-#~ msgstr "Zapatear"
 
 #, fuzzy
 #~ msgid "active"

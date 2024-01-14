@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1637,6 +1637,13 @@ msgstr ""
 "录制已开启:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"当前正在运行录制.\n"
+"你需要做什么?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "当前正在运行录制. 请在配置极轴之前停止录制."
 
@@ -3240,6 +3247,9 @@ msgstr "按键设置"
 msgid "Button error timeout"
 msgstr ""
 
+msgid "ButtonSetup"
+msgstr "按键设置"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3610,6 +3620,9 @@ msgstr "取消固件选择并退出"
 msgid "Cancel the image selection and exit all menus"
 msgstr "取消镜像选择并退出所有菜单"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -3941,6 +3954,18 @@ msgstr "芯片组: BCM%s"
 msgid "Choice Box"
 msgstr "选择机顶盒"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "选择存放\"%s\"的位置"
@@ -3962,6 +3987,12 @@ msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "选择连接到ICETV服务器以检查更新的频率."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4121,8 +4152,14 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "请单击你想要修改的遥控键"
 
+msgid "Client"
+msgstr "客户"
+
 msgid "Client is streaming from this box!"
 msgstr "客户端正在从这个机顶盒中进行流式传输!"
+
+msgid "ClientIP"
+msgstr "客户端IP"
 
 msgid "Clients"
 msgstr "客户端"
@@ -4280,6 +4317,9 @@ msgstr ""
 
 msgid "Common Setup Actions"
 msgstr "常见设置操作"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr "科摩罗"
@@ -5230,6 +5270,12 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5597,6 +5643,9 @@ msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "定义http流开始之前的额外延迟(以毫秒为单位)."
+
+msgid "Define the DNS suffix."
+msgstr ""
 
 msgid "Defined / Active"
 msgstr "定义/激活"
@@ -6331,6 +6380,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "是否要重启%s %s？"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -8969,6 +9021,9 @@ msgstr "主机名: "
 msgid "Hotbird 13.0e"
 msgstr "热鸟 13.0e"
 
+msgid "Hotkey"
+msgstr "快捷键"
+
 msgid "Hotkey Settings"
 msgstr "快捷键设置"
 
@@ -9056,7 +9111,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPK安装器"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -10915,11 +10976,11 @@ msgstr "电机运行超时"
 msgid "Mount"
 msgstr "挂载"
 
-msgid "Mount Actions"
-msgstr ""
-
 msgid "Mount Manager"
 msgstr "挂载管理器"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11036,6 +11097,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11433,6 +11500,9 @@ msgstr "网络信息操作"
 msgid "Network Interface"
 msgstr "网络接口"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -11493,6 +11563,9 @@ msgstr "网络名称(SSID)"
 
 msgid "Network scan"
 msgstr "网络扫描"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "网络测试"
@@ -11700,6 +11773,9 @@ msgstr "没有空闲的调谐器！"
 msgid "No hard disks detected."
 msgstr "未检测到硬盘."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "未找到匹配的地名"
 
@@ -11875,7 +11951,10 @@ msgstr ""
 msgid "None"
 msgstr "无"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12437,6 +12516,9 @@ msgstr "PLS模式"
 msgid "PMT PID"
 msgstr "节目映射(PMT PID)"
 
+msgid "PPanel"
+msgstr "PPanel面板"
+
 msgid "PRIMETIME"
 msgstr "黄金时段"
 
@@ -12510,6 +12592,9 @@ msgstr "巴拿马"
 
 msgid "Panic channel"
 msgstr "应急频道"
+
+msgid "Panic to"
+msgstr "应急到"
 
 msgid "Panjabi / Punjabi"
 msgstr "旁遮普语"
@@ -12996,6 +13081,9 @@ msgstr "正在进行扫描,请稍候..."
 msgid "Please wait while the data is extracted..."
 msgstr ""
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "正在收集数据,请稍候..."
 
@@ -13236,6 +13324,12 @@ msgstr "首选AC3轨道"
 
 msgid "Prefer AC3+ track"
 msgstr "首选AC3+音轨"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "优先使用频道存储的音轨"
@@ -13634,6 +13728,12 @@ msgid "Quad PiP is not available."
 msgstr "四画面PiP不可用."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -14372,6 +14472,9 @@ msgstr "重置并重新计算标题名称"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14382,6 +14485,9 @@ msgid "Reset playback position"
 msgstr "重置播放位置"
 
 msgid "Reset sort order"
+msgstr ""
+
+msgid "Reset the order of the entries"
 msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
@@ -15368,6 +15474,9 @@ msgstr "选择CAId"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "选择Enigma2皮肤"
 
@@ -15405,6 +15514,9 @@ msgid "Select Satellites"
 msgstr "选择卫星"
 
 msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
 msgstr ""
 
 msgid "Select Softcam"
@@ -15637,6 +15749,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr "选择否/错误响应"
 
@@ -15694,6 +15810,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "选择键盘光标下的字符或动作"
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -15795,6 +15914,9 @@ msgstr "选择SCR设备的制造商.如果制造商未列出,请将'SCR'设置�
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "选择屏幕分辨率和帧恢复时留下的图文的方法."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "选择Unicable设备的型号.如果未列出型号,请将'SCR'设置为'用户定义',并根据其规格表手动输入设备参数."
@@ -16630,6 +16752,9 @@ msgstr "清晰度"
 
 msgid "ShellInABox"
 msgstr ""
+
+msgid "Shellscript"
+msgstr "shell脚本语言"
 
 msgid "Shift"
 msgstr "移动"
@@ -17868,9 +17993,6 @@ msgstr "默认排序"
 
 msgid "Sort list by"
 msgstr "按列表排序"
-
-msgid "Sort list to default and exit?"
-msgstr "是否将列表排序为默认值并退出？"
 
 msgid "Sort list:"
 msgstr "排序列表:"
@@ -19953,6 +20075,9 @@ msgstr "轨道"
 
 msgid "Traditional Chinese"
 msgstr "繁体中文"
+
+msgid "Transcode"
+msgstr "转码"
 
 msgid "Transcoding"
 msgstr "转码"
@@ -22112,6 +22237,9 @@ msgstr "换台模式"
 msgid "Zap next"
 msgstr "切换到下一个"
 
+msgid "Zap to"
+msgstr "切换到"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "切换频道(设置菜单)"
 
@@ -22457,12 +22585,6 @@ msgstr "执行最终剪辑(需要MovieCut插件)"
 msgid "exit DVD player or return to file browser"
 msgstr "退出DVD播放器或返回文件浏览器"
 
-msgid "exit mounts setup menu"
-msgstr "退出菜单设置"
-
-msgid "exit networkadapter setup menu"
-msgstr "退出网卡设置菜单"
-
 msgid "experimental film/video"
 msgstr "探索实验电影/视频"
 
@@ -22693,18 +22815,6 @@ msgstr "汽车"
 
 msgid "move"
 msgstr "移动"
-
-msgid "move down to last entry"
-msgstr "向下移到最后一项"
-
-msgid "move down to next entry"
-msgstr "移动到下一项"
-
-msgid "move up to first entry"
-msgstr "向上移到第一项"
-
-msgid "move up to previous entry"
-msgstr "移到上一项"
 
 msgid "movie (general)"
 msgstr "电影(一般)"
@@ -22938,9 +23048,6 @@ msgstr "搜索EPG..."
 
 msgid "select CAId's"
 msgstr "选择CAId's"
-
-msgid "select menu entry"
-msgstr "选择菜单条目"
 
 msgid "serious music/classic music"
 msgstr "严肃音乐/古典音乐"
@@ -23242,6 +23349,30 @@ msgstr "是(保持订阅源)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "是否将列表排序为默认值并退出？"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "退出菜单设置"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "退出网卡设置菜单"
+
+#~ msgid "move down to last entry"
+#~ msgstr "向下移到最后一项"
+
+#~ msgid "move down to next entry"
+#~ msgstr "移动到下一项"
+
+#~ msgid "move up to first entry"
+#~ msgstr "向上移到第一项"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "移到上一项"
+
+#~ msgid "select menu entry"
+#~ msgstr "选择菜单条目"
+
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "正在进行后台更新检查,请等待几分钟,然后重试."
 
@@ -23485,13 +23616,6 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"当前正在运行录制.\n"
-"你需要做什么?"
-
 #~ msgid "BouquetList"
 #~ msgstr "自定义列表"
 
@@ -23640,14 +23764,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI 助手设置"
 
-#~ msgid "ClientIP"
-#~ msgstr "客户端IP"
-
 #~ msgid "Minute"
 #~ msgstr "分钟"
-
-#~ msgid "Transcode"
-#~ msgstr "转码"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -23670,12 +23788,6 @@ msgstr ""
 #~ msgid "Basic PID info"
 #~ msgstr "基本PID信息"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "按键设置"
-
-#~ msgid "Client"
-#~ msgstr "客户"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "代码R.LP-HP和Guard Int."
 
@@ -23694,9 +23806,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "频率和极化"
 
-#~ msgid "Hotkey"
-#~ msgstr "快捷键"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "反演与带宽"
 
@@ -23708,12 +23817,6 @@ msgstr ""
 
 #~ msgid "ONID"
 #~ msgstr "客户端(ONID)"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel面板"
-
-#~ msgid "Panic to"
-#~ msgstr "应急到"
 
 #~ msgid "Service ID"
 #~ msgstr "频道ID"
@@ -23736,9 +23839,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "频道信息-调谐器设置值"
 
-#~ msgid "Shellscript"
-#~ msgstr "shell脚本语言"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "符号率和前向纠错"
 
@@ -23753,9 +23853,6 @@ msgstr ""
 
 #~ msgid "Tuner setting values"
 #~ msgstr "调谐器设置值"
-
-#~ msgid "Zap to"
-#~ msgstr "切换到"
 
 #~ msgid "active"
 #~ msgstr "激活"

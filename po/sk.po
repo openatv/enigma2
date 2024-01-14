@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 17:36+0000\n"
+"POT-Creation-Date: 2024-01-11 12:06+0000\n"
 "PO-Revision-Date: 2024-01-03 01:05+0000\n"
 "Last-Translator: Atec <dr.atec@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1662,6 +1662,13 @@ msgstr ""
 "Začalo sa nahrávanie:\n"
 "%s"
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Práve sa nahráva.\n"
+"Čo chcete urobiť?"
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Práve sa nahráva. Pred nastavovaním pozicionéra nahrávanie zastavte."
 
@@ -3268,6 +3275,9 @@ msgstr "Nastavenie tlačidiel"
 msgid "Button error timeout"
 msgstr "Vypršal časový limit pre chybu tlačidla"
 
+msgid "ButtonSetup"
+msgstr "Nastavenie tlačidiel"
+
 msgid "By disk UUID"
 msgstr "Podľa UUID disku"
 
@@ -3638,6 +3648,9 @@ msgstr "Zrušiť výber image a ukončiť"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Zrušiť výber image a ukončiť všetky menu"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr "Zrušiť výber stanice/služby"
 
@@ -3969,6 +3982,18 @@ msgstr "Čipová sada: BCM%s"
 msgid "Choice Box"
 msgstr "Výber možnosti"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Výber, kam sa má umiestniť \"%s\""
@@ -3990,6 +4015,12 @@ msgstr "Zadajte, ako dlho sa majú minulé udalosti z EPG udržiavať vo vyrovn�
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Vyberte, ako často sa má vykonať pripojenie na server IceTV a kontrola aktualizácií."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr "Vyberte si množstvo dodatočných slotov."
@@ -4150,8 +4181,14 @@ msgstr[2] "Vymazať upozornenia"
 msgid "Click the button on your remote you want to change."
 msgstr "Stlačte na diaľkovom ovládači tlačidlo, ktoré chcete zmeniť."
 
+msgid "Client"
+msgstr "Klient"
+
 msgid "Client is streaming from this box!"
 msgstr "Z tohto zariadenia práve streamuje klient!"
+
+msgid "ClientIP"
+msgstr "IP klienta"
 
 msgid "Clients"
 msgstr "Klienti"
@@ -4309,6 +4346,9 @@ msgstr "Spoločné nastavenia"
 
 msgid "Common Setup Actions"
 msgstr "Akcie pre spoločné nastavenia"
+
+msgid "Comodo Secure DNS"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Komory"
@@ -5265,6 +5305,12 @@ msgstr "Nastavenia DNS"
 msgid "DNS data source"
 msgstr "Zdroj údajov DNS"
 
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -5632,6 +5678,9 @@ msgstr "Definovať softcam pre túto stanicu"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Zadajte dodatočné oneskorenie (v milisekundách) pred spustením streamov http(s)."
+
+msgid "Define the DNS suffix."
+msgstr ""
 
 msgid "Defined / Active"
 msgstr "Definované/aktívne"
@@ -6369,6 +6418,9 @@ msgstr "Chcete %s %s reštartovať?"
 
 msgid "Do you want to remove:"
 msgstr "Odstrániť:"
+
+msgid "Do you want to replace:"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Chcete obnoviť nastavenia?"
@@ -9011,6 +9063,9 @@ msgstr "Názov host.: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13,0 E"
 
+msgid "Hotkey"
+msgstr "Tlačidlo skrátenej voľby"
+
 msgid "Hotkey Settings"
 msgstr "Nastavenie tlač. skrátenej voľby"
 
@@ -9098,8 +9153,14 @@ msgstr "IP adresa servera pre prenos streamu, používaná na dekódovanie služ
 msgid "IPK Installer"
 msgstr "Inštalátor balíčkov IPK"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
 msgstr "IPv6 adresa"
+
+msgid "IPv6 only"
+msgstr ""
 
 msgid "ISO file is too large for this file system!"
 msgstr "Súbor ISO je pre tento súborový systém príliš veľký!"
@@ -10959,11 +11020,11 @@ msgstr "Časový limit chodu motora"
 msgid "Mount"
 msgstr "Pripojiť"
 
-msgid "Mount Actions"
-msgstr "Akcie pripájania"
-
 msgid "Mount Manager"
 msgstr "Správca pripojení"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr "Nastavenia pripojení"
@@ -11081,6 +11142,12 @@ msgstr "Presunúť aktuálnu záložku nadol"
 
 msgid "Move the current bookmark up"
 msgstr "Presunúť aktuálnu záložku nahor"
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
+msgstr ""
 
 msgid "Move the current line down"
 msgstr "Presunúť aktuálny riadok nadol"
@@ -11477,6 +11544,9 @@ msgstr "Akcie informácií o sieti"
 msgid "Network Interface"
 msgstr "Sieťové rozhranie"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr "Akcie denníka siete"
 
@@ -11537,6 +11607,9 @@ msgstr "Názov siete (SSID)"
 
 msgid "Network scan"
 msgstr "Vyhľadanie sietí"
+
+msgid "Network storage on"
+msgstr "Sieťové úložisko na"
 
 msgid "Network test"
 msgstr "Test siete"
@@ -11747,6 +11820,9 @@ msgstr "Žiadny voľný tuner!"
 msgid "No hard disks detected."
 msgstr "Neboli zistené žiadne pevné disky."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr "Nenašli sa žiadne súbory denníkov, takže denníky ladenia nie sú k dispozícii!"
+
 msgid "No matching place names found"
 msgstr "Nenašlo sa žiadne zodpovedajúce umiestnenie"
 
@@ -11922,8 +11998,11 @@ msgstr "nelineárne"
 msgid "None"
 msgstr "žiadny"
 
-msgid "NordVPN DNS"
-msgstr "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
+msgstr ""
 
 msgid "Norfolk Island"
 msgstr "Norfolk"
@@ -12484,6 +12563,9 @@ msgstr "Režim PLS"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "PPanel"
+
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
 
@@ -12557,6 +12639,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Kanál pre tlačidlo Panika"
+
+msgid "Panic to"
+msgstr "PANIKA = prepnutie na"
 
 msgid "Panjabi / Punjabi"
 msgstr "pandžábčina"
@@ -13046,6 +13131,9 @@ msgstr "Prebieha vyhľadávanie. Čakajte, prosím…"
 msgid "Please wait while the data is extracted..."
 msgstr "Prosím, počkajte na rozbalenie údajov…"
 
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Prosím, počkajte na stiahnutie zoznamu…"
 
@@ -13288,6 +13376,12 @@ msgstr "Uprednostňovať AC3 stopu"
 
 msgid "Prefer AC3+ track"
 msgstr "Uprednostňovať AC3+ stopu"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Uprednostňovať zvukovú stopu uloženú pri stanici"
@@ -13687,6 +13781,12 @@ msgstr "Quad PiP nie je dostupné."
 
 msgid "Quad9 DNS"
 msgstr "Quad9 DNS"
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
+msgstr ""
 
 msgid "Quechua"
 msgstr "kečuánčina"
@@ -14424,6 +14524,9 @@ msgstr "Reset a prečíslovať názvy titulov"
 msgid "Reset executable mode (644)"
 msgstr "Resetovať spustiteľný režim (644)"
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr "Reset konfigurácie siete"
 
@@ -14435,6 +14538,9 @@ msgstr "Resetovať pozíciu prehrávania"
 
 msgid "Reset sort order"
 msgstr "Reset poradia zoraďovania"
+
+msgid "Reset the order of the entries"
+msgstr ""
 
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Vrátiť rozšírené nastavenia obrazu na systémové predvolené hodnoty?"
@@ -15422,6 +15528,9 @@ msgstr "Vyberte CAID"
 msgid "Select Device"
 msgstr "Vyberte zariadenie"
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Výber vzhľadu systému Enigma2"
 
@@ -15460,6 +15569,9 @@ msgstr "Vyberte družice"
 
 msgid "Select Shares"
 msgstr "Výber zdieľaní"
+
+msgid "Select Skin"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr "Vyberte softcam"
@@ -15691,6 +15803,10 @@ msgstr "Vyberte poradie dočasného zoraďovania priečinkov pre aktuálny stĺp
 msgid "Select temporary file sort order for the current column"
 msgstr "Vyberte poradie dočasného zoraďovania súborov pre aktuálny stĺpec"
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr "Vyberte odozvu Nie/Nesprávne"
 
@@ -15749,6 +15865,9 @@ msgstr "Vyberte znak alebo akciu pod kurzorom klávesnice"
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Vybrať umiestnenie aktuálnej záložky a ukončiť"
+
+msgid "Select the current entry"
+msgstr ""
 
 msgid "Select the current menu item"
 msgstr "Vyberte aktuálnu položku menu"
@@ -15849,6 +15968,9 @@ msgstr "Vyberte výrobcu vášho zariadenia SCR. Ak nie je výrobca uvedený v z
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Vyberte metódu obnovenia rozlíšenia obrazovky a vyrovávacej pamäte pri vypnutí teletextu."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vyberte číslo modelu vášho zariadenia Unicable. Ak nie je číslo modelu uvedené v zozname, nastavte 'SCR' na voľbu 'definované používateľom' a zadajte parametre zariadenia manuálne podľa jeho špecifikácií."
@@ -16699,6 +16821,9 @@ msgstr "Ostrosť"
 
 msgid "ShellInABox"
 msgstr "ShellInABox"
+
+msgid "Shellscript"
+msgstr "Skript rozhrania shell"
 
 msgid "Shift"
 msgstr "Shift"
@@ -17938,9 +18063,6 @@ msgstr "Predvolené zoradenie"
 
 msgid "Sort list by"
 msgstr "Zoradiť zoznam podľa"
-
-msgid "Sort list to default and exit?"
-msgstr "Použiť predvolené zoradenie a ukončiť?"
 
 msgid "Sort list:"
 msgstr "Zoradiť zoznam:"
@@ -20058,6 +20180,9 @@ msgstr "Stopa"
 
 msgid "Traditional Chinese"
 msgstr "tradičná čínština"
+
+msgid "Transcode"
+msgstr "Transkódovať"
 
 msgid "Transcoding"
 msgstr "Transkódovanie"
@@ -22259,6 +22384,9 @@ msgstr "Režim prepínania"
 msgid "Zap next"
 msgstr "Prepnúť ďalej"
 
+msgid "Zap to"
+msgstr "Prepnúť na"
+
 msgid "Zap to channel (setup in menu)"
 msgstr "Prepnúť na kanál (nastavenie v menu)"
 
@@ -22604,12 +22732,6 @@ msgstr "vykonať strih (vyžaduje sa plugin MovieCut)"
 msgid "exit DVD player or return to file browser"
 msgstr "zatvoriť DVD prehrávač alebo sa vrátiť do správcu súborov"
 
-msgid "exit mounts setup menu"
-msgstr "zatvoriť menu nastavenia pripojení"
-
-msgid "exit networkadapter setup menu"
-msgstr "zatvoriť menu nastavení sieťových rozhraní"
-
 msgid "experimental film/video"
 msgstr "experimentálny film/video"
 
@@ -22840,18 +22962,6 @@ msgstr "motorizmus"
 
 msgid "move"
 msgstr "presunúť"
-
-msgid "move down to last entry"
-msgstr "presun na poslednú položku"
-
-msgid "move down to next entry"
-msgstr "presun na nasledujúcu položku"
-
-msgid "move up to first entry"
-msgstr "presun na prvú položku"
-
-msgid "move up to previous entry"
-msgstr "presun na predchádzajúcu položku"
 
 msgid "movie (general)"
 msgstr "film (všeobecne)"
@@ -23085,9 +23195,6 @@ msgstr "hľadanie v EPG…"
 
 msgid "select CAId's"
 msgstr "vyberte CAId(y)"
-
-msgid "select menu entry"
-msgstr "vyberte položku menu"
 
 msgid "serious music/classic music"
 msgstr "vážna hudba/klasická hudba"
@@ -23389,6 +23496,36 @@ msgstr "áno (zachovať zdroje softvéru)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mount Actions"
+#~ msgstr "Akcie pripájania"
+
+#~ msgid "NordVPN DNS"
+#~ msgstr "NordVPN DNS"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Použiť predvolené zoradenie a ukončiť?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "zatvoriť menu nastavenia pripojení"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "zatvoriť menu nastavení sieťových rozhraní"
+
+#~ msgid "move down to last entry"
+#~ msgstr "presun na poslednú položku"
+
+#~ msgid "move down to next entry"
+#~ msgstr "presun na nasledujúcu položku"
+
+#~ msgid "move up to first entry"
+#~ msgstr "presun na prvú položku"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "presun na predchádzajúcu položku"
+
+#~ msgid "select menu entry"
+#~ msgstr "vyberte položku menu"
 
 #~ msgid "A background update check is in progress, please wait a few minutes and try again."
 #~ msgstr "Prebieha kontrola aktualizácií na pozadí. Prosím, počkajte pár minút, alebo to skúste znova."
@@ -23710,13 +23847,6 @@ msgstr "®"
 #~ msgid "-24"
 #~ msgstr "-24"
 
-msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Práve sa nahráva.\n"
-"Čo chcete urobiť?"
-
 #~ msgid "BouquetList"
 #~ msgstr "Zoznam prehľadov"
 
@@ -24010,14 +24140,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "Nastavenie CI Helpera"
 
-#~ msgid "ClientIP"
-#~ msgstr "IP klienta"
-
 #~ msgid "Minute"
 #~ msgstr "minúta"
-
-#~ msgid "Transcode"
-#~ msgstr "Transkódovať"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -24040,12 +24164,6 @@ msgstr ""
 #~ msgid "Basic PID info"
 #~ msgstr "Základné info o PID"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Nastavenie tlačidiel"
-
-#~ msgid "Client"
-#~ msgstr "Klient"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "Code R. LP-HP & Guard Int."
 
@@ -24064,9 +24182,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Frekvencia a polarizácia"
 
-#~ msgid "Hotkey"
-#~ msgstr "Tlačidlo skrátenej voľby"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Inverzia a šírka pásma"
 
@@ -24076,26 +24191,14 @@ msgstr ""
 #~ msgid "NIM & Type"
 #~ msgstr "NIM a typ"
 
-#~ msgid "Network storage on"
-#~ msgstr "Sieťové úložisko na"
-
 #~ msgid "Next Log"
 #~ msgstr "Ďalší denník"
 
 #~ msgid "Next Picture"
 #~ msgstr "Ďalší obrázok"
 
-#~ msgid "No log files found so debug logs are unavailable!"
-#~ msgstr "Nenašli sa žiadne súbory denníkov, takže denníky ladenia nie sú k dispozícii!"
-
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "PANIKA = prepnutie na"
 
 #~ msgid "Previous Log"
 #~ msgstr "Predchádzajúci denník"
@@ -24124,9 +24227,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Informácie o stanici – hodnoty nastavenia tunera"
 
-#~ msgid "Shellscript"
-#~ msgstr "Skript rozhrania shell"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Symbolová rýchlosť & FEC"
 
@@ -24141,9 +24241,6 @@ msgstr ""
 
 #~ msgid "Tuner setting values"
 #~ msgstr "Hodnoty nastavenia tunera"
-
-#~ msgid "Zap to"
-#~ msgstr "Prepnúť na"
 
 #~ msgid "active"
 #~ msgstr "aktívne"
