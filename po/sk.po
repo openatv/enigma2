@@ -1,6 +1,6 @@
 # NickerSK <nickersk@gmail.com>, 2021, 2022.
 # Marian-SK <podnety@mojepreklady.net>, 2021.
-# Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022, 2023.
+# Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022, 2023, 2024.
 # Atec <dr.atec@gmail.com>, 2023, 2024.
 # Milan Šalka <salka.milan@googlemail.com>, 2023.
 msgid ""
@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-11 12:06+0000\n"
-"PO-Revision-Date: 2024-01-03 01:05+0000\n"
-"Last-Translator: Atec <dr.atec@gmail.com>\n"
+"PO-Revision-Date: 2024-01-16 17:19+0000\n"
+"Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -949,9 +949,9 @@ msgstr[2] "%d jadier"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] "Aktualizovaný bol %d balíček s katalógovým zdrojom softvéru."
-msgstr[1] "Aktualizované boli %d balíčky s katalógovým zdrojom softvéru."
-msgstr[2] "Aktualizovaných bolo %d balíčkov s katalógovým zdrojom softvéru."
+msgstr[0] "Aktualizovaný bol %d balík s katalógovým zdrojom."
+msgstr[1] "Aktualizované boli %d balíky s katalógovým zdrojom."
+msgstr[2] "Aktualizovaných bolo %d balíkov s katalógovým zdrojom."
 
 #, python-format
 msgid "%d kB"
@@ -3631,7 +3631,7 @@ msgid "Cancel selection and exit"
 msgstr "Zrušiť výber a ukončiť"
 
 msgid "Cancel the Reset Feeds command currently being processed"
-msgstr "Zrušiť aktuálne prebiehajúci proces obnovenia zdrojov"
+msgstr "Zrušiť aktuálne prebiehajúci príkaz na reset zdrojov"
 
 msgid "Cancel the bouquet selection"
 msgstr "Zrušiť výber prehľadu"
@@ -3649,12 +3649,12 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "Zrušiť výber image a ukončiť všetky menu"
 
 msgid "Cancel the selection and exit"
-msgstr ""
+msgstr "Zrušiť výber a ukončiť"
 
 msgid "Cancel the service selection"
 msgstr "Zrušiť výber stanice/služby"
 
-msgid "Cancel the service zap"
+msgid "Cancel the service history zap"
 msgstr "Zrušiť prepnutie stanice"
 
 msgid "Cancel the slot selection and exit"
@@ -3938,7 +3938,7 @@ msgid "Check/Install online updates (you must have a working Internet connection
 msgstr "Kontrola/inštalácia on-line aktualizácií (je potrebné pripojenie na internet)"
 
 msgid "Checking Feeds"
-msgstr "Kontrola zdrojov softvéru"
+msgstr "Kontrola zdrojov informácií"
 
 msgid "Checking Logs..."
 msgstr "Kontrola denníkov..."
@@ -3983,16 +3983,16 @@ msgid "Choice Box"
 msgstr "Výber možnosti"
 
 msgid "Choice List Actions"
-msgstr ""
+msgstr "Akcie zoznamu pre výber"
 
 msgid "Choice List Navigation Actions"
-msgstr ""
+msgstr "Akcie navigácie zoznamom pre výber"
 
 msgid "Choice List Order Actions"
-msgstr ""
+msgstr "Akcie zoraďovania zoznamu pre výber"
 
 msgid "Choice List Selection Actions"
-msgstr ""
+msgstr "Akcie výberu v zozname pre výber"
 
 #, python-format
 msgid "Choice where to put \"%s\""
@@ -4017,10 +4017,10 @@ msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Vyberte, ako často sa má vykonať pripojenie na server IceTV a kontrola aktualizácií."
 
 msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr ""
+msgstr "Vyberte si vzhľad displeja a na jeho aktivovanie stlačte ZELENÉ tlačidlo."
 
 msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr ""
+msgstr "Vyberte si vzhľad OSD a na jeho aktivovanie stlačte ZELENÉ tlačidlo."
 
 msgid "Choose the amount of additional slots."
 msgstr "Vyberte si množstvo dodatočných slotov."
@@ -4348,7 +4348,7 @@ msgid "Common Setup Actions"
 msgstr "Akcie pre spoločné nastavenia"
 
 msgid "Comodo Secure DNS"
-msgstr ""
+msgstr "Zabezpečené DNS Comodo"
 
 msgid "Comoros"
 msgstr "Komory"
@@ -5306,10 +5306,10 @@ msgid "DNS data source"
 msgstr "Zdroj údajov DNS"
 
 msgid "DNS mode"
-msgstr ""
+msgstr "Režim DNS"
 
 msgid "DNS suffix"
-msgstr ""
+msgstr "Prípona DNS"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5680,7 +5680,7 @@ msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Zadajte dodatočné oneskorenie (v milisekundách) pred spustením streamov http(s)."
 
 msgid "Define the DNS suffix."
-msgstr ""
+msgstr "Definujte príponu DNS."
 
 msgid "Defined / Active"
 msgstr "Definované/aktívne"
@@ -6420,7 +6420,7 @@ msgid "Do you want to remove:"
 msgstr "Odstrániť:"
 
 msgid "Do you want to replace:"
-msgstr ""
+msgstr "Chcete nahradiť:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Chcete obnoviť nastavenia?"
@@ -7239,7 +7239,7 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Zadajte frekvenciu dolného pásma pre lokálny oscilátor. Viac informácií nájdete v špecifikáciách LNB."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
-msgstr "Zadajte URL adresu svojho osobného zdroja, aby ste si mohli vybrať balíčky zo svojho osobného kanála."
+msgstr "Zadajte URL adresu svojho osobného informačného zdroja, aby ste mohli vyberať balíčky zo svojho osobného informačného zdroja."
 
 msgid "Entertainment"
 msgstr "Zábava"
@@ -7516,7 +7516,7 @@ msgstr "Chyba: Problém pri zápise '%s'!"
 
 #, python-format
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
-msgstr "Chyba: Pri resetovaní zdrojov sa objavil problém! Reštartujte %s %s a otestujte súborový systém, či neobsahuje chyby. Potom to skúste znova."
+msgstr "Chyba: Pri resetovaní zdrojov informácií sa objavil problém! Reštartujte %s %s a otestujte súborový systém, či neobsahuje chyby. Potom to skúste znova."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Na cieľovom médiu (USB disku, či pevnom disku) nie je možné vytvoriť požadované priečinky. Prosím, skontrolujte médium a skúste to znovu."
@@ -7943,7 +7943,7 @@ msgid "Feed URL"
 msgstr "URL adresa zdroja"
 
 msgid "Feed disabled!"
-msgstr "Zakázaný!"
+msgstr "Zdroj deaktivovaný!"
 
 msgid "Feed server DNS error!"
 msgstr "Chyba DNS servera zdroja!"
@@ -7952,10 +7952,10 @@ msgid "Feed server access error!"
 msgstr "Chyba pri prístupe k serveru zdroja!"
 
 msgid "Feed stable."
-msgstr "Stabilný."
+msgstr "Zdroj stabilný."
 
 msgid "Feed unstable!"
-msgstr "Nestabilný!"
+msgstr "Zdroj nestabilný!"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Ihneď prevziať EPG a aktualizovať časovače"
@@ -9154,13 +9154,13 @@ msgid "IPK Installer"
 msgstr "Inštalátor balíčkov IPK"
 
 msgid "IPv4 only"
-msgstr ""
+msgstr "Len IPv4"
 
 msgid "IPv6 address"
 msgstr "IPv6 adresa"
 
 msgid "IPv6 only"
-msgstr ""
+msgstr "Len IPv6"
 
 msgid "ISO file is too large for this file system!"
 msgstr "Súbor ISO je pre tento súborový systém príliš veľký!"
@@ -9662,10 +9662,10 @@ msgid "Installing Software..."
 msgstr "Inštalácia softvéru..."
 
 msgid "Installing feeds from IPK ..."
-msgstr "Inštalácia zdrojov softvéru z IPK..."
+msgstr "Inštalácia zdrojov informácií z IPK..."
 
 msgid "Installing feeds from feed ..."
-msgstr "Inštalácia zdrojov softvéru zo zdroja…"
+msgstr "Inštalácia zdrojov informácií zo zdroja…"
 
 msgid "Installing package."
 msgstr "Inštalácia balíčka."
@@ -9674,7 +9674,7 @@ msgid "Installing plugins from IPK ..."
 msgstr "Inštalácia pluginov z IPK…"
 
 msgid "Installing plugins from feed ..."
-msgstr "Inštalácia pluginov zo zdroja softvéru…"
+msgstr "Inštalácia pluginov z informačného zdroja…"
 
 msgid "Instant Recording Actions"
 msgstr "Akcie pre okamžité nahrávanie"
@@ -11024,7 +11024,7 @@ msgid "Mount Manager"
 msgstr "Správca pripojení"
 
 msgid "Mount Menu Actions"
-msgstr ""
+msgstr "Akcie pre menu pripájania (mount)"
 
 msgid "Mount Settings"
 msgstr "Nastavenia pripojení"
@@ -11144,10 +11144,10 @@ msgid "Move the current bookmark up"
 msgstr "Presunúť aktuálnu záložku nahor"
 
 msgid "Move the current entry down"
-msgstr ""
+msgstr "Presunúť aktuálny záznam nadol"
 
 msgid "Move the current entry up"
-msgstr ""
+msgstr "Presunúť aktuálny záznam nahor"
 
 msgid "Move the current line down"
 msgstr "Presunúť aktuálny riadok nadol"
@@ -11545,7 +11545,7 @@ msgid "Network Interface"
 msgstr "Sieťové rozhranie"
 
 msgid "Network Log"
-msgstr ""
+msgstr "Denník pre sieť"
 
 msgid "Network Log Actions"
 msgstr "Akcie denníka siete"
@@ -11999,10 +11999,10 @@ msgid "None"
 msgstr "žiadny"
 
 msgid "NordVPN Secure DNS"
-msgstr ""
+msgstr "Zabezpečené DNS NordVPN"
 
 msgid "NordVPN Smart DNS"
-msgstr ""
+msgstr "Smart DNS NordVPN"
 
 msgid "Norfolk Island"
 msgstr "Norfolk"
@@ -13111,7 +13111,7 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Aktivuje sa konfiguácia siete. Čakajte, prosím…"
 
 msgid "Please wait while feeds are updated..."
-msgstr "Prosím, počkajte na aktualizáciu zdrojov…"
+msgstr "Prosím, počkajte na aktualizáciu zdrojov informácií…"
 
 msgid "Please wait while gathering data..."
 msgstr "Prosím, počkajte na získanie údajov…"
@@ -13132,7 +13132,7 @@ msgid "Please wait while the data is extracted..."
 msgstr "Prosím, počkajte na rozbalenie údajov…"
 
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
-msgstr ""
+msgstr "Prosím počkajte na reset (vyčistenie a opätovné načítanie) zdrojov informácií..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Prosím, počkajte na stiahnutie zoznamu…"
@@ -13174,7 +13174,7 @@ msgid "Please wait while your skin setting is restoring..."
 msgstr "Obnovuje sa nastavenie vzhľadu. Čakajte, prosím…"
 
 msgid "Please wait whilst feeds state is checked."
-msgstr "Prebieha kontrola stavu zdrojov softvéru. Čakajte, prosím."
+msgstr "Prebieha kontrola stavu zdrojov informácií. Čakajte, prosím."
 
 msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
 msgstr "Vymazáva sa kópia flash pamäte. Môže to trvať niekoľko minút. Čakajte, prosím."
@@ -13378,10 +13378,10 @@ msgid "Prefer AC3+ track"
 msgstr "Uprednostňovať AC3+ stopu"
 
 msgid "Prefer IPv4"
-msgstr ""
+msgstr "Uprednostniť IPv4"
 
 msgid "Prefer IPv6"
-msgstr ""
+msgstr "Uprednostniť IPv6"
 
 msgid "Prefer audio track stored by service"
 msgstr "Uprednostňovať zvukovú stopu uloženú pri stanici"
@@ -13783,10 +13783,10 @@ msgid "Quad9 DNS"
 msgstr "Quad9 DNS"
 
 msgid "Quad9 ECS DNS"
-msgstr ""
+msgstr "Quad9 ECS DNS"
 
 msgid "Quad9 Unsecured DNS"
-msgstr ""
+msgstr "Nezabezpečené DNS Quad9"
 
 msgid "Quechua"
 msgstr "kečuánčina"
@@ -14507,7 +14507,7 @@ msgid "Reset"
 msgstr "Reset"
 
 msgid "Reset (clear and reload) the feeds"
-msgstr "Resetovať (vymazať a znovu načítať) zdroje"
+msgstr "Resetovať (vymazať a znovu načítať) zdroje informácií"
 
 msgid "Reset Feeds"
 msgstr "Reset zdrojov"
@@ -14525,7 +14525,7 @@ msgid "Reset executable mode (644)"
 msgstr "Resetovať spustiteľný režim (644)"
 
 msgid "Reset list order to the default list order?"
-msgstr ""
+msgstr "Resetovať zoradenie zoznamu na predvolené?"
 
 msgid "Reset network configuration"
 msgstr "Reset konfigurácie siete"
@@ -14540,7 +14540,7 @@ msgid "Reset sort order"
 msgstr "Reset poradia zoraďovania"
 
 msgid "Reset the order of the entries"
-msgstr ""
+msgstr "Resetovať zoradenie záznamov"
 
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Vrátiť rozšírené nastavenia obrazu na systémové predvolené hodnoty?"
@@ -15529,7 +15529,7 @@ msgid "Select Device"
 msgstr "Vyberte zariadenie"
 
 msgid "Select Display Skin"
-msgstr ""
+msgstr "Vybrať vzhľad displeja"
 
 msgid "Select Enigma2 Skin"
 msgstr "Výber vzhľadu systému Enigma2"
@@ -15571,7 +15571,7 @@ msgid "Select Shares"
 msgstr "Výber zdieľaní"
 
 msgid "Select Skin"
-msgstr ""
+msgstr "Vybrať vzhľad"
 
 msgid "Select Softcam"
 msgstr "Vyberte softcam"
@@ -15805,7 +15805,7 @@ msgstr "Vyberte poradie dočasného zoraďovania súborov pre aktuálny stĺpec"
 
 #, python-format
 msgid "Select the %s entry"
-msgstr ""
+msgstr "Vyberte záznam %s"
 
 msgid "Select the No / False response"
 msgstr "Vyberte odozvu Nie/Nesprávne"
@@ -15867,7 +15867,7 @@ msgid "Select the current bookmarked location and exit"
 msgstr "Vybrať umiestnenie aktuálnej záložky a ukončiť"
 
 msgid "Select the current entry"
-msgstr ""
+msgstr "Vyberte aktuálny záznam"
 
 msgid "Select the current menu item"
 msgstr "Vyberte aktuálnu položku menu"
@@ -15970,7 +15970,7 @@ msgid "Select the method of restoring screen resolution and framebuffer when lea
 msgstr "Vyberte metódu obnovenia rozlíšenia obrazovky a vyrovávacej pamäte pri vypnutí teletextu."
 
 msgid "Select the mode of the DNS."
-msgstr ""
+msgstr "Vyberte režim DNS."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vyberte číslo modelu vášho zariadenia Unicable. Ak nie je číslo modelu uvedené v zozname, nastavte 'SCR' na voľbu 'definované používateľom' a zadajte parametre zariadenia manuálne podľa jeho špecifikácií."
@@ -17997,7 +17997,7 @@ msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Prepáčte, chýba konfigurácia MiniDLNA"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr "Žiaľ, zdroje softvéru nie sú kvôli údržbe dostupné. Skúste to neskôr, prosím."
+msgstr "Žiaľ, zdroje informácií nie sú kvôli údržbe dostupné. Skúste to neskôr, prosím."
 
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Prepáčte, súčasne je možné nahrávať iba 2 kanály!"
@@ -21009,7 +21009,7 @@ msgid "User - Bouquets"
 msgstr "Používateľské prehľady"
 
 msgid "User Feed URL"
-msgstr "URL adresa používateľského zdroja softvéru"
+msgstr "URL adresa používateľského zdroja"
 
 msgid "User comments"
 msgstr "Komentáre používateľa"
@@ -21534,7 +21534,7 @@ msgstr "Upozornenie"
 
 #, python-format
 msgid "Warning: %d feeds were unable to be reloaded!"
-msgstr "Upozornenie: %d zdrojov nebolo možné načítať!"
+msgstr "Upozornenie: %d zdrojov informácií nebolo možné načítať!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Upozornenie: momentálne je aktívne prepisovanie!"
@@ -23492,7 +23492,7 @@ msgid "yellow"
 msgstr "žlté"
 
 msgid "yes (keep feeds)"
-msgstr "áno (zachovať zdroje softvéru)"
+msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
