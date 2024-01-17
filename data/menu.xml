@@ -182,6 +182,16 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="upgrade_source" level="2" text="Select Upgrade Source" description="Edit the upgrade source address." weight="16"><plugin system="SoftwareManager" screen="IPKGMenu" /></item>
 				</menu>
 			</menu>
+			<!-- Menu / Setup / Network -->
+			<menu key="network" level="0" text="Network" weight="60">
+				<item key="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
+				<item key="netmounts_setup" level="1" text="Mounts Settings" weight="5"><screen module="NetworkSetup" screen="NetworkMountsMenu" /></item>
+				<item key="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
+				<item key="networkservices_setup" level="2" text="Network Services" weight="9"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
+				<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
+				<item key="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30" requires="minidlna"><screen module="NetworkSetup" screen="NetworkMiniDLNASetup" /></item>
+				<item key="netushare_setup" level="2" text="uShare Settings" weight="55" requires="ushare"><screen module="NetworkSetup" screen="NetworkuShareSetup" /></item>
+			</menu>
 			<!-- Menu / Setup / System (Was: Menu / Setup / System / Extended System) -->
 			<menu key="extended" level="0" text="System" weight="95">
 				<!-- Menu / Setup / System / Storage devices -->
@@ -193,16 +203,6 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount" /></item>
 					<item key="swap_manager" level="2" text="Swap Manager" weight="30"><screen module="SwapManager" screen="Swap" /></item>
 					<item key="flash_expander" level="2" text="Flash Expander" weight="40"><screen module="FlashExpander" screen="FlashExpander" /></item>
-				</menu>
-				<!-- Menu / Setup / System / Network -->
-				<menu key="network" level="0" text="Network" weight="50">
-					<item key="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
-					<item key="netmounts_setup" level="1" text="Mounts Settings" weight="5"><screen module="NetworkSetup" screen="NetworkMountsMenu" /></item>
-					<item key="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
-					<item key="networkservices_setup" level="2" text="Network Services" weight="9"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
-					<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
-					<item key="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30" requires="minidlna"><screen module="NetworkSetup" screen="NetworkMiniDLNASetup" /></item>
-					<item key="netushare_setup" level="2" text="uShare Settings" weight="55" requires="ushare"><screen module="NetworkSetup" screen="NetworkuShareSetup" /></item>
 				</menu>
 				<item key="hdmicec" level="0" text="HDMI-CEC Settings" weight="55" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup" /></item>
 				<item key="script_manager" level="1" text="Script Manager" weight="56"><screen module="ScriptRunner" screen="ScriptRunner" /></item>
