@@ -484,7 +484,7 @@ class International:
 		"TD": ("TCD", "148", "Chad", _("Chad"), "تشاد‎"),
 		"TF": ("ATF", "260", "French Southern Territories", _("French Southern Territories"), "Terres australes et antarctiques françaises"),
 		"TG": ("TGO", "768", "Togo", _("Togo"), "Togolaise"),
-		"TH": ("THA", "764", "Thailand", _("Thailand"), "ราชอาณาจักรไทย"),
+		"TH": ("THA", "764", "Thailand", _("Thailand"), "ประเทศไทย"),
 		"TJ": ("TJK", "762", "Tajikistan", _("Tajikistan"), "Тоҷикистон"),
 		"TK": ("TKL", "772", "Tokelau", _("Tokelau"), "Tokelau"),
 		"TL": ("TLS", "626", "Timor-Leste / East Timor", _("Timor-Leste / East Timor"), "Timór Lorosa'e"),
