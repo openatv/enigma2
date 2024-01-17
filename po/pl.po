@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-11 12:06+0000\n"
-"PO-Revision-Date: 2024-01-11 14:45+0000\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"PO-Revision-Date: 2024-01-17 15:34+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1181,10 +1181,6 @@ msgstr "%m/%d/%Y"
 #, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
-
-#, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr "%s  -  %s    (%s%d min)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -2637,9 +2633,6 @@ msgstr "Rozmiar skoku regulacji głośności w trybie szybkim"
 msgid "Australia"
 msgstr "Australia"
 
-msgid "Australian"
-msgstr "Australijczyk"
-
 msgid "Austria"
 msgstr "Austria"
 
@@ -2941,7 +2934,7 @@ msgid "Backup your current settings. This includes E2-setup, channels, network a
 msgstr "Kopia zapasowa aktualnych ustawień. Obejmuje ustawienia, kanały, sieć i wszystkie zaznaczone pliki"
 
 msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Zapisz kopię zapasową %s %s na HDD lub USB."
+msgstr "Utwórz kopię zapasową działającego obrazu %s %s na dysku HDD lub urządzeniu USB."
 
 msgid "Bahamas"
 msgstr "Bahamy"
@@ -3014,9 +3007,6 @@ msgstr "Białoruś"
 
 msgid "Belarusian"
 msgstr "Białoruski"
-
-msgid "Belgian"
-msgstr "Belgijski"
 
 msgid "Belgium"
 msgstr "Belgia"
@@ -3660,11 +3650,11 @@ msgstr "Anuluj wybór obrazu i zamknij wszystkie menu"
 msgid "Cancel the selection and exit"
 msgstr "Anuluj wybór i wyjdź"
 
+msgid "Cancel the service history zap"
+msgstr "Anuluj historię przełącznia kanałów"
+
 msgid "Cancel the service selection"
 msgstr "Anuluj wybór usługi"
-
-msgid "Cancel the service history zap"
-msgstr "Anuluj zap serwisowy"
 
 msgid "Cancel the slot selection and exit"
 msgstr "Anuluj wybór slotu i wyjdź"
@@ -4439,7 +4429,7 @@ msgid "Configure if and how wide the service name column will be shown in the ch
 msgstr "Skonfigurować, czy i jak szeroka kolumna nazwy kanału pojawi się w liście wyboru kanału."
 
 msgid "Configure if epg.dat should be saved at all."
-msgstr "Określić, czy dane EPG mają być przechowywane."
+msgstr "Skonfiguruj, czy w ogóle ma być zapisywany plik epg.dat."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Skonfiguruj jeśli pikony mają być wyświetlane w quickzap."
@@ -5284,9 +5274,6 @@ msgstr "Czeski"
 
 msgid "Czech Republic"
 msgstr "Republika Czeska"
-
-msgid "Czechia"
-msgstr "Czechy"
 
 msgid "D"
 msgstr "D"
@@ -7018,7 +7005,7 @@ msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dodatkowe dane EPG do pliku dziennika debugowania."
 
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
-msgstr "Włącz opcję, aby dodać język oraz państwo. Zapisz informacje wykryte podczas startu systemu do pliku logu debugowania."
+msgstr "Włącz tę opcję, aby dodać informacje o obciążeniu języka międzynarodowego i kraju wykryte podczas uruchamiania systemu do pliku dziennika debugowania."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dane mapy klawiatury do pliku dziennika debugowania."
@@ -7571,10 +7558,10 @@ msgid "Even if a 'Wakeup' PowerTimer starting?"
 msgstr "Nawet jeśli zacznie działać timer 'wybudzania'?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
-msgstr "Nawet jeśli rozpocznie się nagrywanie?"
+msgstr "Nawet jeśli uruchomi się timer nagrywania „Zap and Record”?"
 
 msgid "Even if a 'Zap' recording timer starting?"
-msgstr "Nawet jeśli zaczyna się odliczanie czasu nagrywania?"
+msgstr "Nawet jeśli uruchomi się timer nagrywania „Zap”?"
 
 msgid "Event Info"
 msgstr "Info o wydarzeniu"
@@ -8996,7 +8983,7 @@ msgid "History Prev/Next"
 msgstr "Historia Poprzedni/Następny"
 
 msgid "History Zap"
-msgstr "Historia Zap"
+msgstr "Historia przełączania kanałów"
 
 msgid "History Zap Actions"
 msgstr "Akcje historii Zap"
@@ -9779,9 +9766,6 @@ msgstr "Odwraca funkcję przycisku."
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran, Islamic Republic"
-msgstr "Iran, Republika Islamska"
-
 msgid "Iran, Islamic Republic of"
 msgstr "Iran, Islamska Republika Iranu"
 
@@ -10253,7 +10237,7 @@ msgid "Limit east"
 msgstr "Limit wschodni"
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
-msgstr "Ogranicz znaki które mogą być użyte w nazwach nagranych plików do (7 bit) ascii. Zapewnia to kompatybilność z systemami operacyjnymi)."
+msgstr "Ogranicz znaki, których można używać przy zapisywaniu nazw plików, do (7-bitowego) ASCII. Zapewnia to kompatybilność z systemami operacyjnymi lub systemami plików z ograniczonymi zestawami znaków."
 
 msgid "Limit west"
 msgstr "Limit zachodni"
@@ -11018,6 +11002,12 @@ msgstr "Maroko"
 
 msgid "Mosquito noise reduction"
 msgstr "Redukcja szumów"
+
+msgid "Most recent first"
+msgstr "Najnowsze u góry"
+
+msgid "Most recent last"
+msgstr "Najnowsze na dole"
 
 msgid "Motor Sport"
 msgstr "Sporty Motorowe"
@@ -15017,7 +15007,7 @@ msgid "Save EPG Cache"
 msgstr "Zapisz pamięć podręczną EPG"
 
 msgid "Save EPG data"
-msgstr "Zapisać dane EPG"
+msgstr "Zapisz dane EPG"
 
 msgid "Save all changed settings and exit"
 msgstr "Zapisz wszystkie zmienione ustawienia i wyjdź"
@@ -15035,7 +15025,7 @@ msgid "Save directory on EXIT"
 msgstr "zapisz ostatni katalog przy wyjściu"
 
 msgid "Save every (in hours)"
-msgstr "Zapisać za każdym razem (w godzi.)"
+msgstr "Zapisz co (w godzinach)"
 
 #, python-format
 msgid "Save image as '%s'"
@@ -15077,13 +15067,13 @@ msgid "Save time shift as movie and continue recording"
 msgstr "Zapisz jako time shift i wznów nagrywania filmu"
 
 msgid "Save time shift as movie and stop recording"
-msgstr "Zapisz time shift i zatrzymaj nagrywanie"
+msgstr "Zapisz time shift jako film i zatrzymaj nagrywanie"
 
 msgid "Saved lines in script messages"
 msgstr "Zapisane linie w wiadomościach skryptu"
 
 msgid "Saving EPG Cache..."
-msgstr "Zapisywanie EPG w pamięci podręcznej..."
+msgstr "Zapisywanie pamięci podręcznej EPG..."
 
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Zapisywanie time shift jako film. To może chwilę potrwać!"
@@ -15933,6 +15923,9 @@ msgstr "Wybierz wygląd dla menu."
 
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Wybierz opcje wyświetlania dla każdego elementu menu. Jeśli numery menu są dostępne, numery mogą być używane do bezpośredniego wybierania określonych pozycji menu."
+
+msgid "Select the display sequence of previously visited services."
+msgstr "Wybierz kolejność wyświetlania wcześniej odwiedzonych kanałów."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -20559,9 +20552,6 @@ msgstr "Zjednoczone Emiraty Arabskie"
 msgid "United Kingdom"
 msgstr "Wielka Brytania"
 
-msgid "United States"
-msgstr "Stany Zjednoczone"
-
 msgid "United States Minor Outlying Islands"
 msgstr "Dalekie Wyspy Mniejsze Stanów Zjednoczonych"
 
@@ -22364,10 +22354,10 @@ msgid "Zap + Exit"
 msgstr "Przełącz + Wyjdź"
 
 msgid "Zap Up/Down"
-msgstr "Zap w górę/dół"
+msgstr "Przełącz w górę/dół"
 
 msgid "Zap and record"
-msgstr "przełącz i nagraj"
+msgstr "Przełącz i nagraj"
 
 msgid "Zap back to previously tuned service?"
 msgstr "Przełączyć z powrotem na poprzedni kanał?"
@@ -22389,6 +22379,9 @@ msgstr "Przełącz na główne okno"
 
 msgid "Zap focused channel on full screen"
 msgstr "Przełączanie na pełnym ekranie"
+
+msgid "Zap history sequence"
+msgstr "Sekwencja historii przełącznia kanałów"
 
 msgid "Zap mode"
 msgstr "Tryb przełączania"
@@ -22451,7 +22444,7 @@ msgid "[Image Info]\n"
 msgstr "[Info o systemie]\n"
 
 msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] Zapis nie powiódł się!"
+msgstr "[Timeshift] Łączenie nie powiodło się!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Uruchamianie ponowne timeshiftu!"
@@ -23508,6 +23501,25 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  -  %s    (%s%d Min)"
+#~ msgstr "%s  -  %s    (%s%d min)"
+
+#~ msgid "Australian"
+#~ msgstr "Australijczyk"
+
+#~ msgid "Belgian"
+#~ msgstr "Belgijski"
+
+#~ msgid "Czechia"
+#~ msgstr "Czechy"
+
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "Iran, Republika Islamska"
+
+#~ msgid "United States"
+#~ msgstr "Stany Zjednoczone"
 
 #~ msgid "Mount Actions"
 #~ msgstr "Akcje montowania"

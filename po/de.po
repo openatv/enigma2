@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-11 12:06+0000\n"
-"PO-Revision-Date: 2024-01-14 18:10+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"PO-Revision-Date: 2024-01-17 15:34+0000\n"
+"Last-Translator: VfBFan <VfBFan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1163,10 +1163,6 @@ msgstr "%m/%d/%Y"
 #, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
-
-#, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr "%s  -  %s    (%s%d Min)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -2750,9 +2746,6 @@ msgstr "Lautstärke Schrittweite im Schnellmodus"
 msgid "Australia"
 msgstr "Australien"
 
-msgid "Australian"
-msgstr "Australisch"
-
 msgid "Austria"
 msgstr "Österreich"
 
@@ -3156,9 +3149,6 @@ msgstr "Weißrussland"
 
 msgid "Belarusian"
 msgstr "Weißrussisch"
-
-msgid "Belgian"
-msgstr "Belgisch"
 
 msgid "Belgium"
 msgstr "Belgien"
@@ -3806,16 +3796,16 @@ msgid "Cancel selection and exit"
 msgstr "Auswahl abbrechen und beenden"
 
 msgid "Cancel the Reset Feeds command currently being processed"
-msgstr "Den aktuell laufenden Reset Feed Prozess abbrechen"
+msgstr "Das aktuell laufende Zurücksetzen der Feeds abbrechen"
 
 msgid "Cancel the bouquet selection"
 msgstr "Bouquetwahl abbrechen"
 
 msgid "Cancel the flash process"
-msgstr "Flash-Vorgang Abbrechen"
+msgstr "Flash-Vorgang abbrechen"
 
 msgid "Cancel the flash process and exit all menus"
-msgstr "Flash-Vorgang Abbrechen und alle Menüs beenden"
+msgstr "Flash-Vorgang abbrechen und alle Menüs beenden"
 
 #
 msgid "Cancel the image selection and exit"
@@ -3828,11 +3818,11 @@ msgstr "Imageauswahl abbrechen und alle Menüs verlassen"
 msgid "Cancel the selection and exit"
 msgstr "Auswahl abbrechen und beenden"
 
-msgid "Cancel the service selection"
-msgstr "Senderauswahl abbrechen"
-
 msgid "Cancel the service history zap"
 msgstr "Umschalten abbrechen"
+
+msgid "Cancel the service selection"
+msgstr "Senderauswahl abbrechen"
 
 msgid "Cancel the slot selection and exit"
 msgstr "Auswahl des Slots abbrechen und beenden"
@@ -5549,9 +5539,6 @@ msgstr "Tschechisch"
 
 msgid "Czech Republic"
 msgstr "Tschechische Republik"
-
-msgid "Czechia"
-msgstr "Tschechien"
 
 msgid "D"
 msgstr "D"
@@ -10283,9 +10270,6 @@ msgstr "Bei 'Ja' werden die Funktionen der Tasten P+/CH+ und P-/CH- umgekehrt."
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran, Islamic Republic"
-msgstr "Iran (Islamische Republik)"
-
 msgid "Iran, Islamic Republic of"
 msgstr "Iran (Islamische Republik)"
 
@@ -11603,6 +11587,12 @@ msgstr "Marokko"
 #
 msgid "Mosquito noise reduction"
 msgstr "Mosquito-Rauschen-Reduzierung"
+
+msgid "Most recent first"
+msgstr "Der neueste oben"
+
+msgid "Most recent last"
+msgstr "Der neueste unten"
 
 #
 msgid "Motor Sport"
@@ -16927,6 +16917,9 @@ msgstr ""
 "Die Anzeigeoptionen für Menüeinträge auswählen.\n"
 "Sind Nummern vorhanden, können diese zur direkten Anwahl von Menüeinträgen verwendet werden."
 
+msgid "Select the display sequence of previously visited services."
+msgstr "Die Anzeigereihenfolge der zuvor besuchten Sender auswählen."
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Sortierreihenfolge der Dateien für die %s Spalte auswählen:"
@@ -21856,9 +21849,6 @@ msgstr "Vereinigte Arabische Emirate"
 msgid "United Kingdom"
 msgstr "England"
 
-msgid "United States"
-msgstr "Vereinigte Staaten"
-
 msgid "United States Minor Outlying Islands"
 msgstr "Vereinigte Staaten, kleinere abgelegene Inseln"
 
@@ -23818,6 +23808,9 @@ msgstr "Fokus umschalten zum Hauptbildschirm"
 msgid "Zap focused channel on full screen"
 msgstr "Im Vollbildmodus auf den ausgewählten Sender umschalten"
 
+msgid "Zap history sequence"
+msgstr "Umschalt-Verlaufssequenz"
+
 msgid "Zap mode"
 msgstr "Umschaltmodus"
 
@@ -23914,7 +23907,7 @@ msgid "all up/down"
 msgstr "Alle Hoch/Runter"
 
 msgid "alpha then oldest"
-msgstr "Alphabetisch, dann Älteste"
+msgstr "Alphabetisch, dann älteste"
 
 msgid "alphabetic"
 msgstr "Alphabetisch"
@@ -23923,7 +23916,7 @@ msgid "alphabetic reverse"
 msgstr "Umgekehrt alphabetisch"
 
 msgid "alpharev then newest"
-msgstr "Umgekehrt alphabetisch, dann Neueste"
+msgstr "Umgekehrt alphabetisch, dann neueste"
 
 msgid "am"
 msgstr "am"
@@ -25041,6 +25034,25 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  -  %s    (%s%d Min)"
+#~ msgstr "%s  -  %s    (%s%d Min)"
+
+#~ msgid "Australian"
+#~ msgstr "Australisch"
+
+#~ msgid "Belgian"
+#~ msgstr "Belgisch"
+
+#~ msgid "Czechia"
+#~ msgstr "Tschechien"
+
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "Iran (Islamische Republik)"
+
+#~ msgid "United States"
+#~ msgstr "Vereinigte Staaten"
 
 #~ msgid "Mount Actions"
 #~ msgstr "Mount-Aktionen"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-11 12:06+0000\n"
-"PO-Revision-Date: 2024-01-13 10:34+0000\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"PO-Revision-Date: 2024-01-17 10:34+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -1175,10 +1175,6 @@ msgstr "%m/%d/%Y"
 #, python-format
 msgid "%s  (%s)"
 msgstr "%s (%s)"
-
-#, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr "%s - %s (%s%d мин.)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -2629,9 +2625,6 @@ msgstr "Размер шага громкости звука в быстром р
 msgid "Australia"
 msgstr "Австралия"
 
-msgid "Australian"
-msgstr "Австралия"
-
 msgid "Austria"
 msgstr "Австрия"
 
@@ -3006,9 +2999,6 @@ msgstr "Беларусь"
 
 msgid "Belarusian"
 msgstr "Беларусь"
-
-msgid "Belgian"
-msgstr "Бельгия"
 
 msgid "Belgium"
 msgstr "Бельгия"
@@ -3652,11 +3642,11 @@ msgstr "Отмена выбора имиджа и выход из всех ме�
 msgid "Cancel the selection and exit"
 msgstr "Отменить выбор и выйти"
 
-msgid "Cancel the service selection"
-msgstr "Отменить выбор канала"
-
 msgid "Cancel the service history zap"
 msgstr "Отменить сервисный zap"
+
+msgid "Cancel the service selection"
+msgstr "Отменить выбор канала"
 
 msgid "Cancel the slot selection and exit"
 msgstr "Отменить выбор слота и выйти"
@@ -5275,9 +5265,6 @@ msgstr "Чешский"
 
 msgid "Czech Republic"
 msgstr "Чешская Республика"
-
-msgid "Czechia"
-msgstr "Чехия"
 
 msgid "D"
 msgstr "D"
@@ -9770,9 +9757,6 @@ msgstr "Инвертирует функцию кнопки."
 msgid "Ipkg"
 msgstr "Ipkg "
 
-msgid "Iran, Islamic Republic"
-msgstr "Иран"
-
 msgid "Iran, Islamic Republic of"
 msgstr "Иран, Исламская Республика"
 
@@ -11008,6 +10992,12 @@ msgstr "Марокко"
 
 msgid "Mosquito noise reduction"
 msgstr "Понижение мелких шумов"
+
+msgid "Most recent first"
+msgstr "Самый недавний в начале"
+
+msgid "Most recent last"
+msgstr "Самый недавний последний"
 
 msgid "Motor Sport"
 msgstr "Автоспорт"
@@ -15924,6 +15914,9 @@ msgstr "Выберите дизайн отображения для меню."
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Выберите параметры отображения для каждого пункта меню. Если номера меню доступны, цифровые кнопки можно использовать для непосредственного выбора пронумерованных пунктов меню."
 
+msgid "Select the display sequence of previously visited services."
+msgstr "Выберите последовательность отображения ранее посещенных каналов."
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Выберите порядок сортировки файлов для столбца %s:"
@@ -18819,7 +18812,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 13.01.2024"
+msgstr "Коррекция перевода Monja 16.01.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -20547,9 +20540,6 @@ msgstr "ОАЭ"
 
 msgid "United Kingdom"
 msgstr "Великобритания"
-
-msgid "United States"
-msgstr "Соединённые Штаты Америки"
 
 msgid "United States Minor Outlying Islands"
 msgstr "Малые отдалённые острова Соединённых Штатов"
@@ -22379,6 +22369,9 @@ msgstr "Переключать каналы в главном окне"
 msgid "Zap focused channel on full screen"
 msgstr "Переключить выбрынный канал на полный экран"
 
+msgid "Zap history sequence"
+msgstr "Последовательность истории Zap"
+
 msgid "Zap mode"
 msgstr "Режимы экрана при переключении"
 
@@ -23497,6 +23490,25 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  -  %s    (%s%d Min)"
+#~ msgstr "%s - %s (%s%d мин.)"
+
+#~ msgid "Australian"
+#~ msgstr "Австралия"
+
+#~ msgid "Belgian"
+#~ msgstr "Бельгия"
+
+#~ msgid "Czechia"
+#~ msgstr "Чехия"
+
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "Иран"
+
+#~ msgid "United States"
+#~ msgstr "Соединённые Штаты Америки"
 
 #~ msgid "Mount Actions"
 #~ msgstr "Действия монтирования"
