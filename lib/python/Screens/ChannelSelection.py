@@ -2,7 +2,7 @@ from os import listdir, remove, rename
 from os.path import join
 from time import localtime, strftime, time
 
-from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
+from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG, getBestPlayableServiceReference
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
 from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
@@ -2451,16 +2451,20 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
 		wrappererror = None
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
-			(newurl, errormsg) = p(session=self.session, service=nref)
-			if errormsg:
-				wrappererror = _("Error getting link via %s\n%s") % (p.name, errormsg)
-				break
-			elif newurl:
-				nref.setAlternativeUrl(newurl)
-				break
-		if wrappererror:
-			AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
+		if nref.flags & eServiceReference.isGroup:
+			oldref = self.session.nav.currentlyPlayingServiceReference or eServiceReference()
+			nref = getBestPlayableServiceReference(nref, oldref)
+		if nref.getPath():
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
+				(newurl, errormsg) = p(session=self.session, service=nref)
+				if errormsg:
+					wrappererror = _("Error getting link via %s\n%s") % (p.name, errormsg)
+					break
+				elif newurl:
+					nref.setAlternativeUrl(newurl)
+					break
+			if wrappererror:
+				AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
