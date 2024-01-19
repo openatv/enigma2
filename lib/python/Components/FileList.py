@@ -230,7 +230,7 @@ class FileListBase(MenuList):
 				parent = dirname(directory)
 				inside = mountPoint != directory if islink(directory) else parent.startswith(mountPoint)
 				if directory != parent and inside and not (self.inhibitMounts and self.getMountPoint(directory) in self.inhibitMounts):
-					self.fileList.append(self.fileListComponent(name=f"<%s>" % _("Parent Directory"), path=pathjoin(parent, ""), isDir=True, isLink=islink(parent), selected=None, dirIcon=ICON_PARENT))
+					self.fileList.append(self.fileListComponent(name="<%s>" % _("Parent Directory"), path=pathjoin(parent, ""), isDir=True, isLink=islink(parent), selected=None, dirIcon=ICON_PARENT))
 				# print(f"[FileList] changeDir DEBUG: mountPointLink='{normpath(self.getMountPointLink(directory))}', mountPoint='{normpath(self.getMountPoint(directory))}', directory='{directory}', parent='{parent}'.")
 			for name, path, isDir, isLink in directories:
 				if not (self.inhibitMounts and self.getMountPoint(path) in self.inhibitMounts) and not self.inParentDirs(path, self.inhibitDirs):
