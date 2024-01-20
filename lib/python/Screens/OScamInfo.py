@@ -146,7 +146,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			<eLabel text="LB Value/Reader" position="1375,150" size="218,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
 			<eLabel text="Online\nIdle" position="1595,150" size="138,58" font="Regular;24" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
 			<eLabel text="Status" position="1735,150" size="170,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
-			<widget source="outlist" render="Listbox" position="15,210" size="1890,600" backgroundColor="grey" backgroundColorSelected="grey" scrollbarMode="showOnDemand" >
+			<widget source="outlist" render="Listbox" position="15,210" size="1890,600" backgroundColor="#20aaaaaa" backgroundColorSelected="#20aaaaaa" scrollbarMode="showOnDemand" >
 				<convert type="TemplatedMultiContent">
 					{"template": [ # index 11 is backcolor
 					MultiContentEntryText(pos=(0,0), size=(23,60), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, color_sel=0x000000, backcolor=MultiContentTemplateColor(11), backcolor_sel=MultiContentTemplateColor(11), text=0),  # type
