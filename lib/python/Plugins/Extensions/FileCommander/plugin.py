@@ -110,9 +110,9 @@ config.plugins.FileCommander.extension = ConfigSelection(default="^.*$", choices
 	("^.*$", _("All files")),
 	("myfilter", _("My extensions")),
 	("(?i)^.*(%s)$" % "|".join(sorted(["\\.ts"] + [x == "\\.eit" and x or f"\\.ts\\.{x}" for x in RECORDING_EXTENSIONS])), _("Recordings")),
-	("(?i)^.*(%s)$" % "|".join(sorted((f"\\{ext}" for ext, type in EXTENSIONS.items() if type == "movie"))), _("Movies")),
-	("(?i)^.*(%s)$" % "|".join(sorted((f"\\{ext}" for ext, type in EXTENSIONS.items() if type == "music"))), _("Music")),
-	("(?i)^.*(%s)$" % "|".join(sorted((f"\\{ext}" for ext, type in EXTENSIONS.items() if type == "picture"))), _("Pictures"))
+	("(?i)^.*(%s)$" % "|".join(sorted((f"\\{ext}" for ext, fileType in EXTENSIONS.items() if fileType == "movie"))), _("Movies")),
+	("(?i)^.*(%s)$" % "|".join(sorted((f"\\{ext}" for ext, fileType in EXTENSIONS.items() if fileType == "music"))), _("Music")),
+	("(?i)^.*(%s)$" % "|".join(sorted((f"\\{ext}" for ext, fileType in EXTENSIONS.items() if fileType == "picture"))), _("Pictures"))
 ])
 config.plugins.FileCommander.useViewerForUnknown = ConfigYesNo(default=False)
 config.plugins.FileCommander.editLineEnd = ConfigYesNo(default=False)
@@ -2442,7 +2442,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 		try:
 			status = lstat(self.path)
 			mode = status.st_mode
-			type = {
+			fileType = {
 				S_IFSOCK: _("Socket"),
 				S_IFLNK: _("Symbolic link"),
 				S_IFREG: _("Regular file"),
@@ -2451,7 +2451,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 				S_IFCHR: _("Character device"),
 				S_IFIFO: _("FIFO"),
 			}.get(S_IFMT(mode), _("Unknown"))
-			info.append("%s:|%s" % (_("Type"), type))
+			info.append("%s:|%s" % (_("Type"), fileType))
 			if isfile(self.path):
 				info.append("%s:|%s" % (_("Content"), _("Calculating...")))
 			if S_ISLNK(mode):
