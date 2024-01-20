@@ -405,7 +405,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			sort = column.getSortBy().split(",")
 			sortDirs, reverseDirs = (int(x) for x in sort[0].split("."))
 			sortFiles, reverseFiles = (int(x) for x in sort[1].split("."))
-			sortText = "[D]{('n', 'd', 's')[sortDirs]}{('+', '-')[reverseDirs]}[F]{('n', 'd', 's')[sortFiles]}{('+', '-')[reverseFiles]}"  # (name|date|size)(normal|reverse)
+			sortText = f"[D]{('n', 'd', 's')[sortDirs]}{('+', '-')[reverseDirs]}[F]{('n', 'd', 's')[sortFiles]}{('+', '-')[reverseFiles]}"  # (name|date|size)(normal|reverse)
 			path = column.getPath()
 			currentDirectory = column.getCurrentDirectory()
 			currentDirectory = normpath(currentDirectory) if currentDirectory else ""
