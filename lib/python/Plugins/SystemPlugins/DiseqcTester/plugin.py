@@ -122,7 +122,7 @@ class ResultParser:
 				orbpos = index[2]
 				orderedResults[orbpos] = orderedResults.get(orbpos, [])
 				orderedResults[orbpos].append(index)
-			ordered_orbpos = orderedResults.keys()
+			ordered_orbpos = list(orderedResults.keys())
 			ordered_orbpos.sort()
 			for orbpos in ordered_orbpos:
 				text += "\n*****************************************\n"
@@ -252,7 +252,10 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.results = {}
 		self.resultsstatus = {}
 
-		self.onLayoutFinish.append(self.go)
+		if self.indexlist:
+			self.onLayoutFinish.append(self.go)
+		else:
+			self["CmdText"] = StaticText(_("No suitable sat tuner found!"))
 
 	def getProgressListComponent(self, index, status):
 		return index, self.getTextualIndexRepresentation(index), status
