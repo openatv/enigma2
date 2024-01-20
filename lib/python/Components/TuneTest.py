@@ -223,7 +223,10 @@ class TuneTest:
 			self.finishedChecking()
 
 	def firstTransponder(self):
-		print("firstTransponder:%s" % str(self.tuningtransponder))
+		if hasattr(self, "tuningtransponder"):
+			print("firstTransponder:%s" % str(self.tuningtransponder))
+		else:
+			print("firstTransponder:None")
 		index = 0
 		if self.checkPIDs:
 			print("checkPIDs-loop")
