@@ -2189,3 +2189,72 @@ def patchTuxtxtConfFile(dummyConfigElement):
 	print("[UsageConfig] TuxTxt: Patched tuxtxt2.conf.")
 
 	config.usage.tuxtxt_ConfFileHasBeenPatched.setValue(True)
+
+
+def preferredTunerChoicesUpdate(update=False):
+	dvbs_nims = [(-2, _("disabled"))]
+	dvbt_nims = [(-2, _("disabled"))]
+	dvbc_nims = [(-2, _("disabled"))]
+	atsc_nims = [(-2, _("disabled"))]
+
+	nims = [(-1, _("auto"))]
+	for slot in nimmanager.nim_slots:
+		if slot.canBeCompatible("DVB-S") and slot.config.dvbs.configMode.value != "nothing":
+			dvbs_nims.append((str(slot.slot), slot.getSlotName()))
+		if slot.canBeCompatible("DVB-C") and slot.config.dvbc.configMode.value != "nothing":
+			dvbc_nims.append((str(slot.slot), slot.getSlotName()))
+		if slot.canBeCompatible("DVB-T") and slot.config.dvbt.configMode.value != "nothing":
+			dvbt_nims.append((str(slot.slot), slot.getSlotName()))
+		if slot.canBeCompatible("ATSC") and slot.config.atsc.configMode.value != "nothing":
+			atsc_nims.append((str(slot.slot), slot.getSlotName()))
+		nims.append((str(slot.slot), slot.getSlotName()))
+#	if not update:
+#		config.usage.frontend_priority = ConfigSelection(default=-1, choices=list(nims))
+#	else:
+#		config.usage.frontend_priority.setChoices(list(nims), -1)
+#	nims.insert(0, (-2, _("disabled")))
+#	if not update:
+#		config.usage.recording_frontend_priority = ConfigSelection(default=-2, choices=nims)
+#	else:
+#		config.usage.recording_frontend_priority.setChoices(nims, -2)
+	if not update:
+		config.usage.frontend_priority_dvbs = ConfigSelection(default=-2, choices=list(dvbs_nims))
+	else:
+		config.usage.frontend_priority_dvbs.setChoices(list(dvbs_nims), -2)
+	dvbs_nims.insert(1, (-1, _("auto")))
+	if not update:
+		config.usage.recording_frontend_priority_dvbs = ConfigSelection(default=-2, choices=dvbs_nims)
+	else:
+		config.usage.recording_frontend_priority_dvbs.setChoices(dvbs_nims, -2)
+	if not update:
+		config.usage.frontend_priority_dvbt = ConfigSelection(default=-2, choices=list(dvbt_nims))
+	else:
+		config.usage.frontend_priority_dvbt.setChoices(list(dvbt_nims), -2)
+	dvbt_nims.insert(1, (-1, _("auto")))
+	if not update:
+		config.usage.recording_frontend_priority_dvbt = ConfigSelection(default=-2, choices=dvbt_nims)
+	else:
+		config.usage.recording_frontend_priority_dvbt.setChoices(dvbt_nims, -2)
+	if not update:
+		config.usage.frontend_priority_dvbc = ConfigSelection(default=-2, choices=list(dvbc_nims))
+	else:
+		config.usage.frontend_priority_dvbc.setChoices(list(dvbc_nims), -2)
+	dvbc_nims.insert(1, (-1, _("auto")))
+	if not update:
+		config.usage.recording_frontend_priority_dvbc = ConfigSelection(default=-2, choices=dvbc_nims)
+	else:
+		config.usage.recording_frontend_priority_dvbc.setChoices(dvbc_nims, -2)
+	if not update:
+		config.usage.frontend_priority_atsc = ConfigSelection(default=-2, choices=list(atsc_nims))
+	else:
+		config.usage.frontend_priority_atsc.setChoices(list(atsc_nims), -2)
+	atsc_nims.insert(1, (-1, _("auto")))
+	if not update:
+		config.usage.recording_frontend_priority_atsc = ConfigSelection(default=-2, choices=atsc_nims)
+	else:
+		config.usage.recording_frontend_priority_atsc.setChoices(atsc_nims, -2)
+
+	BoxInfo.setMutableItem("DVB-S_priority_tuner_available", len(dvbs_nims) > 3 and any(len(i) > 2 for i in (dvbt_nims, dvbc_nims, atsc_nims)))
+	BoxInfo.setMutableItem("DVB-T_priority_tuner_available", len(dvbt_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, atsc_nims)))
+	BoxInfo.setMutableItem("DVB-C_priority_tuner_available", len(dvbc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbt_nims, atsc_nims)))
+	BoxInfo.setMutableItem("ATSC_priority_tuner_available", len(atsc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, dvbt_nims)))
