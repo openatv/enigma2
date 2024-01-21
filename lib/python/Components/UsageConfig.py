@@ -555,79 +555,81 @@ def InitUsageConfig():
 
 	config.usage.http_startdelay = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + [(str(x), _("%d ms") % x) for x in (10, 50, 100, 500, 1000, 2000)])
 
-	nims = [
-		("-1", _("Auto")),
-		("expert_mode", _("Expert mode")),
-		("experimental_mode", _("Experimental mode"))
-	]
-	recNims = [
-		("-2", _("Disabled")),
-		("-1", _("Auto")),
-		("expert_mode", _("Expert mode")),
-		("experimental_mode", _("Experimental mode"))
-	]
-	nimsMulti = [
-		("-1", _("Auto"))
-	]
-	recNimsMulti = [
-		("-2", _("Disabled")),
-		("-1", _("Auto"))
-	]
+	#nims = [
+	#	("-1", _("Auto")),
+	#	("expert_mode", _("Expert mode")),
+	#	("experimental_mode", _("Experimental mode"))
+	#]
+	#recNims = [
+	#	("-2", _("Disabled")),
+	#	("-1", _("Auto")),
+	#	("expert_mode", _("Expert mode")),
+	#	("experimental_mode", _("Experimental mode"))
+	#]
+	#nimsMulti = [
+	#	("-1", _("Auto"))
+	#]
+	#recNimsMulti = [
+	#	("-2", _("Disabled")),
+	#	("-1", _("Auto"))
+	#]
 
-	slots = len(nimmanager.nim_slots)
-	multi = []
-	slotsX = []
-	for index in range(0, slots):
-		slotName = nimmanager.nim_slots[index].getSlotName()
-		nims.append((str(index), slotName))
-		recNims.append((str(index), slotName))
-		slotX = 2 ** index
-		slotsX.append(slotX)
-		multi.append((str(slotX), slotName))
-		for x in range(index + 1, slots):
-			slotX += 2 ** x
-			name = nimmanager.nim_slots[x].getSlotName()
-			if len(name.split()) == 2:
-				name = name.split()[1]
-			slotName += "+%s" % name
-			slotsX.append(slotX)
-			multi.append((str(slotX), slotName))
+	#slots = len(nimmanager.nim_slots)
+	#multi = []
+	#slotsX = []
+	#for index in range(0, slots):
+	#	slotName = nimmanager.nim_slots[index].getSlotName()
+	#	nims.append((str(index), slotName))
+	#	recNims.append((str(index), slotName))
+	#	slotX = 2 ** index
+	#	slotsX.append(slotX)
+	#	multi.append((str(slotX), slotName))
+	#	for x in range(index + 1, slots):
+	#		slotX += 2 ** x
+	#		name = nimmanager.nim_slots[x].getSlotName()
+	#		if len(name.split()) == 2:
+	#			name = name.split()[1]
+	#		slotName += "+%s" % name
+	#		slotsX.append(slotX)
+	#		multi.append((str(slotX), slotName))
 
 	# Advanced tuner combination up to 10 tuners.
-	for slotX in range(1, 2 ** min(10, slots)):
-		if slotX in slotsX:
-			continue
-		slotName = ""
-		for x in range(0, min(10, slots)):
-			if (slotX & 2 ** x):
-				name = nimmanager.nim_slots[x].getSlotName()
-				if not slotName:
-					slotName = name
-				else:
-					if len(name.split()) == 2:
-						name = name.split()[1]
-					slotName += "+%s" % name
-		if slotName:
-			multi.append((str(slotX), slotName))
-	#
+	#for slotX in range(1, 2 ** min(10, slots)):
+	#	if slotX in slotsX:
+	#		continue
+	#	slotName = ""
+	#	for x in range(0, min(10, slots)):
+	#		if (slotX & 2 ** x):
+	#			name = nimmanager.nim_slots[x].getSlotName()
+	#			if not slotName:
+	#				slotName = name
+	#			else:
+	#				if len(name.split()) == 2:
+	#					name = name.split()[1]
+	#				slotName += "+%s" % name
+	#	if slotName:
+	#		multi.append((str(slotX), slotName))
 
-	multi = sorted(multi, key=lambda x: x[1])
-	nimsMulti.extend(multi)
-	recNimsMulti.extend(multi)
+	#multi = sorted(multi, key=lambda x: x[1])
+	#nimsMulti.extend(multi)
+	#recNimsMulti.extend(multi)
 
-	priorityStrictlyChoices = [
-		("no", _("No")),
-		("yes", _("Yes")),
-		("while_available", _("While available"))
-	]
-	config.usage.frontend_priority = ConfigSelection(default="-1", choices=nims)
-	config.usage.frontend_priority_multiselect = ConfigSelection(default="-1", choices=nimsMulti)
-	config.usage.frontend_priority_strictly = ConfigSelection(default="no", choices=priorityStrictlyChoices)
-	config.usage.frontend_priority_intval = NoSave(ConfigInteger(default=0, limits=(-99, maxsize)))
-	config.usage.recording_frontend_priority = ConfigSelection(default="-2", choices=recNims)
-	config.usage.recording_frontend_priority_multiselect = ConfigSelection(default="-2", choices=recNimsMulti)
-	config.usage.recording_frontend_priority_strictly = ConfigSelection(default="no", choices=priorityStrictlyChoices)
-	config.usage.recording_frontend_priority_intval = NoSave(ConfigInteger(default=0, limits=(-99, maxsize)))
+	#priorityStrictlyChoices = [
+	#	("no", _("No")),
+	#	("yes", _("Yes")),
+	#	("while_available", _("While available"))
+	#]
+	#config.usage.frontend_priority = ConfigSelection(default="-1", choices=nims)
+	#config.usage.frontend_priority_multiselect = ConfigSelection(default="-1", choices=nimsMulti)
+	#config.usage.frontend_priority_strictly = ConfigSelection(default="no", choices=priorityStrictlyChoices)
+	#config.usage.frontend_priority_intval = NoSave(ConfigInteger(default=0, limits=(-99, maxsize)))
+	#config.usage.recording_frontend_priority = ConfigSelection(default="-2", choices=recNims)
+	#config.usage.recording_frontend_priority_multiselect = ConfigSelection(default="-2", choices=recNimsMulti)
+	#config.usage.recording_frontend_priority_strictly = ConfigSelection(default="no", choices=priorityStrictlyChoices)
+	#config.usage.recording_frontend_priority_intval = NoSave(ConfigInteger(default=0, limits=(-99, maxsize)))
+
+	preferredTunerChoicesUpdate()
+
 	config.misc.disable_background_scan = ConfigYesNo(default=False)
 
 	config.usage.jobtaksextensions = ConfigYesNo(default=True)
@@ -2208,15 +2210,15 @@ def preferredTunerChoicesUpdate(update=False):
 		if slot.canBeCompatible("ATSC") and slot.config.atsc.configMode.value != "nothing":
 			atsc_nims.append((str(slot.slot), slot.getSlotName()))
 		nims.append((str(slot.slot), slot.getSlotName()))
-#	if not update:
-#		config.usage.frontend_priority = ConfigSelection(default=-1, choices=list(nims))
-#	else:
-#		config.usage.frontend_priority.setChoices(list(nims), -1)
-#	nims.insert(0, (-2, _("disabled")))
-#	if not update:
-#		config.usage.recording_frontend_priority = ConfigSelection(default=-2, choices=nims)
-#	else:
-#		config.usage.recording_frontend_priority.setChoices(nims, -2)
+	if not update:
+		config.usage.frontend_priority = ConfigSelection(default=-1, choices=list(nims))
+	else:
+		config.usage.frontend_priority.setChoices(list(nims), -1)
+	nims.insert(0, (-2, _("disabled")))
+	if not update:
+		config.usage.recording_frontend_priority = ConfigSelection(default=-2, choices=nims)
+	else:
+		config.usage.recording_frontend_priority.setChoices(nims, -2)
 	if not update:
 		config.usage.frontend_priority_dvbs = ConfigSelection(default=-2, choices=list(dvbs_nims))
 	else:

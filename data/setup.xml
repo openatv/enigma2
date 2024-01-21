@@ -621,9 +621,11 @@
 	<setup key="Recording" title="Recording Settings" showOpenWebif="1">
 		<item level="2" text="Timer recording location" description="Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.usage.timer_path</item>
 		<item level="2" text="Instant recording location" description="Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.usage.instantrec_path</item>
+		<!-- OLD
 		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner for recordings will be preferred, when more than one tuner is available.">config.usage.recording_frontend_priority</item>
 		<item level="2" text="Preferred tuners for recordings, multiple selection allowed" description="In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available." conditional="config.usage.recording_frontend_priority.value in ('experimental_mode', 'expert_mode')">config.usage.recording_frontend_priority_multiselect</item>
 		<item level="2" text="Experimental: strict limitation to preferred tuners for recordings" description="Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel." conditional="config.usage.recording_frontend_priority.value == 'experimental_mode'">config.usage.recording_frontend_priority_strictly</item>
+		-->
 		<item level="1" text="Recordings always have priority" description="When enabled, a recording is allowed to interrupt live TV, when there are no free tuners.">config.recording.asktozap</item>
 		<item level="1" text="Recordings abort PiP" description="When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners.">config.recording.ask_to_abort_pip</item>
 		<item level="1" text="Recordings abort pseudo recordings" description="When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners.">config.recording.ask_to_abort_pseudo_rec</item>
@@ -822,21 +824,23 @@
 		<item level="1" text="Force ToneBurst" description="Force LNB Tuner ToneBurst settings." requires="ForceToneBurstChanged">config.tunermisc.forceToneBurst</item>
 		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
 		<item level="2" text="Preferred tuner" description="Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
-		<!--
+		<!-- NEW
 		<item level="2" text="Preferred tuner DVB-S" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-S_priority_tuner_available">config.usage.frontend_priority_dvbs</item>
 		<item level="2" text="Preferred tuner DVB-T" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-T_priority_tuner_available">config.usage.frontend_priority_dvbt</item>
 		<item level="2" text="Preferred tuner DVB-C" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-C_priority_tuner_available">config.usage.frontend_priority_dvbc</item>
 		<item level="2" text="Preferred tuner ATSC" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="ATSC_priority_tuner_available">config.usage.frontend_priority_atsc</item>
 		-->
 		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen.">config.usage.recording_frontend_priority</item>
-		<!--
+		<!-- NEW
 		<item level="2" text="Preferred tuner DVB-S for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="DVB-S_priority_tuner_available">config.usage.recording_frontend_priority_dvbs</item>
 		<item level="2" text="Preferred tuner DVB-T for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="DVB-T_priority_tuner_available">config.usage.recording_frontend_priority_dvbt</item>
 		<item level="2" text="Preferred tuner DVB-C for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="DVB-C_priority_tuner_available">config.usage.recording_frontend_priority_dvbc</item>
 		<item level="2" text="Preferred tuner ATSC for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="ATSC_priority_tuner_available">config.usage.recording_frontend_priority_atsc</item>
 		-->
+		<!-- OLD
 		<item level="2" text="Preferred tuners for recordings, multiple selection allowed" description="In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available." conditional="config.usage.recording_frontend_priority.value in ('experimental_mode', 'expert_mode')">config.usage.recording_frontend_priority_multiselect</item>
 		<item level="2" text="Experimental: strict limitation to preferred tuners for recordings" description="Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel." conditional="config.usage.recording_frontend_priority.value == 'experimental_mode'">config.usage.recording_frontend_priority_strictly</item>
+		-->
 		<item level="2" text="Disable background scanning" description="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
 		<item level="2" text="Ignore DVB-S namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork</item>
 		<item level="2" text="Ignore DVB-C namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_cable</item>

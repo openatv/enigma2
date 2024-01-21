@@ -680,9 +680,10 @@ class RecordTimerEntry(TimerEntry):
 		else:
 			self.descramble = descramble
 			self.record_ecm = record_ecm
-		config.usage.frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.frontend_priority, config.usage.frontend_priority_multiselect, config.usage.frontend_priority_strictly))
-		config.usage.recording_frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.recording_frontend_priority, config.usage.recording_frontend_priority_multiselect, config.usage.recording_frontend_priority_strictly))
-		self.needChangePriorityFrontend = config.usage.recording_frontend_priority_intval.value != "-2" and config.usage.recording_frontend_priority_intval.value != config.usage.frontend_priority_intval.value
+		#config.usage.frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.frontend_priority, config.usage.frontend_priority_multiselect, config.usage.frontend_priority_strictly))
+		#config.usage.recording_frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.recording_frontend_priority, config.usage.recording_frontend_priority_multiselect, config.usage.recording_frontend_priority_strictly))
+		#self.needChangePriorityFrontend = config.usage.recording_frontend_priority_intval.value != "-2" and config.usage.recording_frontend_priority_intval.value != config.usage.frontend_priority_intval.value
+		self.needChangePriorityFrontend = False  # TODO
 		self.change_frontend = False
 		self.rename_repeat = rename_repeat
 		self.isAutoTimer = isAutoTimer
@@ -1270,6 +1271,7 @@ class RecordTimerEntry(TimerEntry):
 			eActionMap.getInstance().unbindAction("", self.keypress)
 
 	def setRecordingPreferredTuner(self, setdefault=False):
+		return  # TODO
 		if self.needChangePriorityFrontend:
 			tuner = None
 			if not self.change_frontend and not setdefault:
