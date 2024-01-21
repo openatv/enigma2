@@ -1007,8 +1007,9 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 	eDVBRegisteredFrontend *best, *fbc_fe, *best_fbc_fe;
 	int bestval, foundone, current_fbc_setid, c;
-	bool check_fbc_leaf_linkable, is_configured_sat;
-	long link;
+	bool check_fbc_leaf_linkable;
+	[[maybe_unused]] bool is_configured_sat;
+	[[maybe_unused]] long link;
 
 	fbc_fe  = NULL;
 	best_fbc_fe = NULL;
