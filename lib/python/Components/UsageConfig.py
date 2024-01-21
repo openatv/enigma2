@@ -2210,6 +2210,9 @@ def preferredTunerChoicesUpdate(update=False):
 		if slot.canBeCompatible("ATSC") and slot.config.atsc.configMode.value != "nothing":
 			atsc_nims.append((str(slot.slot), slot.getSlotName()))
 		nims.append((str(slot.slot), slot.getSlotName()))
+
+	# TODO: split recording and live
+
 	if not update:
 		config.usage.frontend_priority = ConfigSelection(default=-1, choices=list(nims))
 	else:
@@ -2260,3 +2263,13 @@ def preferredTunerChoicesUpdate(update=False):
 	BoxInfo.setMutableItem("DVB-T_priority_tuner_available", len(dvbt_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, atsc_nims)))
 	BoxInfo.setMutableItem("DVB-C_priority_tuner_available", len(dvbc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbt_nims, atsc_nims)))
 	BoxInfo.setMutableItem("ATSC_priority_tuner_available", len(atsc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, dvbt_nims)))
+
+	# TODO: use an integer bitmask / Bit 1:DVB-S 2:DVB-C 4:DVB-T 8:ATSC
+	dvbs = 1 if len(dvbs_nims) > 3 and any(len(i) > 2 for i in (dvbt_nims, dvbc_nims, atsc_nims)) else 0
+	dvbt = 4 if len(dvbt_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, atsc_nims)) else 0
+	dvbc = 2 if len(dvbc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbt_nims, atsc_nims)) else 0
+	atsc = 8 if len(atsc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, dvbt_nims)) else 0
+
+	# TODO: split recording and live
+	BoxInfo.setMutableItem("priority_tuner_available", dvbs + dvbc + dvbt + atsc)
+	BoxInfo.setMutableItem("priority_recording_tuner_available", dvbs + dvbc + dvbt + atsc)

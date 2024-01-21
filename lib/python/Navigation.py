@@ -1,5 +1,5 @@
 from os import path, remove
-from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
+from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, setPreferredTuner
 from Components.ParentalControl import parentalControl
 from Components.config import config
 from Components.PluginComponent import plugins
@@ -357,6 +357,35 @@ class Navigation:
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 				#self.skipServiceReferenceReset = True
+				setPriorityFrontend = False
+				# TODO NEW
+				if False:  # BoxInfo.getItem("DVB-T_priority_tuner_available") or BoxInfo.getItem("DVB-C_priority_tuner_available") or BoxInfo.getItem("DVB-S_priority_tuner_available") or BoxInfo.getItem("ATSC_priority_tuner_available"):
+					str_service = playref.toString()
+					if '%3a//' not in str_service and not str_service.rsplit(":", 1)[1].startswith("/"):
+						type_service = playref.getUnsignedData(4) >> 16
+						if type_service == 0xEEEE:
+							if BoxInfo.getItem("DVB-T_priority_tuner_available") and config.usage.frontend_priority_dvbt.value != -2:
+								if config.usage.frontend_priority_dvbt.value != config.usage.frontend_priority.value:
+									setPreferredTuner(config.usage.frontend_priority_dvbt.value)
+									setPriorityFrontend = True
+							if BoxInfo.getItem("ATSC_priority_tuner_available") and config.usage.frontend_priority_atsc.value != -2:
+								if config.usage.frontend_priority_atsc.value != config.usage.frontend_priority.value:
+									setPreferredTuner(config.usage.frontend_priority_atsc.value)
+									setPriorityFrontend = True
+						elif type_service == 0xFFFF:
+							if BoxInfo.getItem("DVB-C_priority_tuner_available") and config.usage.frontend_priority_dvbc.value != -2:
+								if config.usage.frontend_priority_dvbc.value != config.usage.frontend_priority.value:
+									setPreferredTuner(config.usage.frontend_priority_dvbc.value)
+									setPriorityFrontend = True
+							if BoxInfo.getItem("ATSC_priority_tuner_available") and config.usage.frontend_priority_atsc.value != -2:
+								if config.usage.frontend_priority_atsc.value != config.usage.frontend_priority.value:
+									setPreferredTuner(config.usage.frontend_priority_atsc.value)
+									setPriorityFrontend = True
+						else:
+							if BoxInfo.getItem("DVB-S_priority_tuner_available") and config.usage.frontend_priority_dvbs.value != -2:
+								if config.usage.frontend_priority_dvbs.value != config.usage.frontend_priority.value:
+									setPreferredTuner(config.usage.frontend_priority_dvbs.value)
+									setPriorityFrontend = True
 
 				if (config.misc.softcam_streamrelay_delay.value and self.isCurrentServiceStreamRelay) or (self.firstStart and isStreamRelay):
 					self.skipServiceReferenceReset = False
@@ -380,6 +409,8 @@ class Navigation:
 						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 						self.retryServicePlayTimer.start(500, True)
 				self.skipServiceReferenceReset = False
+				#if setPriorityFrontend:
+				#	setPreferredTuner(config.usage.frontend_priority.value)
 				if isStreamRelay and not self.isCurrentServiceStreamRelay:
 					self.isCurrentServiceStreamRelay = True
 				return 0

@@ -13,7 +13,7 @@ from Components.config import config
 from Components.Harddisk import findMountPoint
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
-from Components.SystemInfo import getBoxDisplayName
+from Components.SystemInfo import getBoxDisplayName, BoxInfo
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
 from Screens.MessageBox import MessageBox
@@ -680,9 +680,38 @@ class RecordTimerEntry(TimerEntry):
 		else:
 			self.descramble = descramble
 			self.record_ecm = record_ecm
+
+		# OLD
 		#config.usage.frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.frontend_priority, config.usage.frontend_priority_multiselect, config.usage.frontend_priority_strictly))
 		#config.usage.recording_frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.recording_frontend_priority, config.usage.recording_frontend_priority_multiselect, config.usage.recording_frontend_priority_strictly))
 		#self.needChangePriorityFrontend = config.usage.recording_frontend_priority_intval.value != "-2" and config.usage.recording_frontend_priority_intval.value != config.usage.frontend_priority_intval.value
+
+		self.setAdvancedPriorityFrontend = None
+		# TODO NEW
+		if False:  # BoxInfo.getItem("DVB-T_priority_tuner_available") or BoxInfo.getItem("DVB-C_priority_tuner_available") or BoxInfo.getItem("DVB-S_priority_tuner_available") or BoxInfo.getItem("ATSC_priority_tuner_available"):
+			rec_ref = self.service_ref and self.service_ref.ref
+			str_service = rec_ref and rec_ref.toString()
+			if str_service and "%3a//" not in str_service and not str_service.rsplit(":", 1)[1].startswith("/"):
+				type_service = rec_ref.getUnsignedData(4) >> 16
+				if type_service == 0xEEEE:
+					if BoxInfo.getItem("DVB-T_priority_tuner_available") and config.usage.recording_frontend_priority_dvbt.value != -2:
+						if config.usage.recording_frontend_priority_dvbt.value != config.usage.frontend_priority.value:
+							self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_dvbt.value
+					if BoxInfo.getItem("ATSC_priority_tuner_available") and config.usage.recording_frontend_priority_atsc.value != -2:
+						if config.usage.recording_frontend_priority_atsc.value != config.usage.frontend_priority.value:
+							self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_atsc.value
+				elif type_service == 0xFFFF:
+					if BoxInfo.getItem("DVB-C_priority_tuner_available") and config.usage.recording_frontend_priority_dvbc.value != -2:
+						if config.usage.recording_frontend_priority_dvbc.value != config.usage.frontend_priority.value:
+							self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_dvbc.value
+					if BoxInfo.getItem("ATSC_priority_tuner_available") and config.usage.recording_frontend_priority_atsc.value != -2:
+						if config.usage.recording_frontend_priority_atsc.value != config.usage.frontend_priority.value:
+							self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_atsc.value
+				else:
+					if BoxInfo.getItem("DVB-S_priority_tuner_available") and config.usage.recording_frontend_priority_dvbs.value != -2:
+						if config.usage.recording_frontend_priority_dvbs.value != config.usage.frontend_priority.value:
+							self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_dvbs.value
+		#self.needChangePriorityFrontend = self.setAdvancedPriorityFrontend is not None or config.usage.recording_frontend_priority.value != -2 and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.needChangePriorityFrontend = False  # TODO
 		self.change_frontend = False
 		self.rename_repeat = rename_repeat
