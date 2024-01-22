@@ -332,7 +332,7 @@ class KexecInit(Screen, HelpableScreen):
 		Console().eBatch(cmdList, rootInitCallback, debug=True)
 
 	def removeFiles(self):
-		def removeFilesCallback(self, answer):
+		def removeFilesCallback(answer):
 			if answer:
 				for file in files:
 					try:
