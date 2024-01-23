@@ -396,6 +396,7 @@ eEPGCache::eEPGCache()
 	onid_file.close();
 
 	m_debug = eConfigManager::getConfigBoolValue("config.crash.debugEPG");
+	m_saveepg = eConfigManager::getConfigBoolValue("config.epg.saveepg");
 	m_icetv_enabled = eConfigManager::getConfigBoolValue("config.plugins.icetv.configured") && eConfigManager::getConfigBoolValue("config.plugins.icetv.enable_epg");
 
 	instance = this;
@@ -1056,8 +1057,7 @@ void eEPGCache::save()
 	if(m_debug)
 		eDebug("[eEPGCache] save()");
 
-	bool save_epg = eConfigManager::getConfigBoolValue("config.epg.saveepg", true);
-	if (save_epg)
+	if (m_saveepg)
 	{
 		if (eventData::isCacheCorrupt)
 			return;

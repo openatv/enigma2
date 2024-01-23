@@ -155,6 +155,7 @@ private:
 	bool load_epg;
 	PSignal0<void> epgCacheStarted;
 	bool m_debug;
+	bool m_saveepg;
 	bool m_icetv_enabled;
 
 #ifdef ENABLE_PRIVATE_EPG
