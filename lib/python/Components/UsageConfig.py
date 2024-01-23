@@ -1303,7 +1303,8 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if BoxInfo.getItem("WakeOnLAN"):
 		def wakeOnLANChanged(configElement):
-			open(BoxInfo.getItem("WakeOnLAN"), "w").write(BoxInfo.getItem("WakeOnLANType")[configElement.value])
+			with open(BoxInfo.getItem("WakeOnLAN"), "w") as fd:
+				fd.write(BoxInfo.getItem("WakeOnLANType")[configElement.value])
 		config.network.wol = ConfigYesNo(default=False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.NFS_autostart = ConfigYesNo(default=True)
@@ -1466,7 +1467,8 @@ def InitUsageConfig():
 
 	if BoxInfo.getItem("ZapMode"):
 		def setZapmode(el):
-			open(BoxInfo.getItem("ZapMode"), "w").write(el.value)
+			with open(BoxInfo.getItem("ZapMode"), "w") as fd:
+				fd.write(el.value)
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
 			("mute", _("Black Screen")),
 			("hold", _("Hold screen")),
@@ -1940,14 +1942,12 @@ def InitUsageConfig():
 	config.pluginbrowser.src = ConfigYesNo(default=False)
 
 	def setForceLNBPowerChanged(configElement):
-		f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
-		f.write("on" if configElement.value else "off")
-		f.close()
+		with open("/proc/stb/frontend/fbc/force_lnbon", "w") as fd:
+			fd.write("on" if configElement.value else "off")
 
 	def setForceToneBurstChanged(configElement):
-		f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
-		f.write("enable" if configElement.value else "disable")
-		f.close()
+		with open("/proc/stb/frontend/fbc/force_toneburst", "w") as fd:
+			fd.write("enable" if configElement.value else "disable")
 
 	config.tunermisc = ConfigSubsection()
 	if BoxInfo.getItem("ForceLNBPowerChanged"):
