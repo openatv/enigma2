@@ -1275,8 +1275,7 @@ bool eDVBResourceManager::frontendPreferenceAllowsChannelUse(const eDVBChannelID
 		return true; /* sharing/caching channels is allowed for any frontend */
 	}
 
-	ePtr<eDVBFrontend> dummy_fe1;
-	if (dummy_fe1->isPreferred(preferredFrontend,slotid))
+	if (eDVBFrontend::isPreferred(preferredFrontend,slotid))
 	{
 		//eDebug("frontend %d allowed, preferred frontend", slotid);      
 		return true; /* preferred frontend */
