@@ -220,7 +220,7 @@ class Volume:
 	def loadXML(self):  # Load the volume configuration data.
 		serviceVolumeOffsets = []
 		volumeDom = fileReadXML(VOLUME_FILE, source=MODULE_NAME)
-		if volumeDom:
+		if volumeDom is not None:
 			print("[VolumeAdjust] Loading volume offset data from '%s'." % VOLUME_FILE)
 			for services in volumeDom.findall("services"):
 				for service in services.findall("service"):

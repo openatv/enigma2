@@ -173,7 +173,7 @@ class Timezones:
 	def readTimezones(self, filename=TIMEZONE_FILE):  # Read the timezones.xml file and load all time zones found.
 		fileDom = fileReadXML(filename, source=MODULE_NAME)
 		zones = []
-		if fileDom:
+		if fileDom is not None:
 			for zone in fileDom.findall("zone"):
 				name = zone.get("name", "")
 				if isinstance(name, str):

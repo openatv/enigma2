@@ -158,7 +158,7 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 	filename = resolveFilename(scope, filename)
 	print(f"[Skin] Loading skin file '{filename}'.")
 	domSkin = fileReadXML(filename, source=MODULE_NAME)
-	if domSkin:
+	if domSkin is not None:
 		# For loadSingleSkinData colors, bordersets etc. are applied one after
 		# the other in order of ascending priority.
 		loadSingleSkinData(desktop, screenID, domSkin, filename, scope=scope)
