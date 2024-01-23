@@ -238,6 +238,13 @@ if [ "$ret" -ne "1" ]; then
 	fi
 fi
 
+# workaround fix after e2 crash
+file_path="/tmp/e2ExitCode"
+if [ -e "$file_path" ] && [ "$ret" -gt 50 ]; then
+	ret=$(<"$file_path")
+	rm -f "$file_path"
+fi
+
 case $ret in
 	1)
 		check_busybox_update
