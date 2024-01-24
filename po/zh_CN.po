@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1143,10 +1143,6 @@ msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
 #, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr ""
-
-#, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
@@ -1169,10 +1165,6 @@ msgstr "%s %s 红外鼠标"
 #, python-format
 msgid "%s %s remote control (native)"
 msgstr "%s %s 远程控制(本机)"
-
-#, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s ( %s 张卡)"
 
 #, python-format
 msgid "%s (%04o)"
@@ -1303,9 +1295,6 @@ msgstr "如果录制时解扰失败,'解扰和录制ECM'提供之后的解扰选
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'天气插件'未安装!"
 
-msgid "( All readers)"
-msgstr "(所有读卡器)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "访问 %s 提交日志需要互联网连接."
@@ -1319,9 +1308,6 @@ msgstr " (画中画)"
 
 msgid "(Radio)"
 msgstr " (广播)"
-
-msgid "(Show only reader:"
-msgstr "(仅显示读卡器:"
 
 msgid "(TV)"
 msgstr " (电视)"
@@ -1573,11 +1559,11 @@ msgstr "<最后一个定时器位置>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found>"
+msgstr ""
+
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "正在进行后台更新检查,请等待几分钟,然后重试."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1646,6 +1632,13 @@ msgid ""
 msgstr ""
 "录制已开启:\n"
 "%s"
+
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"当前正在运行录制.\n"
+"你需要做什么?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "当前正在运行录制. 请在配置极轴之前停止录制."
@@ -1728,15 +1721,6 @@ msgstr "AC3+转码"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr ""
-
-msgid "AFP Settings"
-msgstr "AFP设置"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2055,9 +2039,6 @@ msgstr "额外的电机选项允许您输入电机规格表中的详细信息,�
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "额外的电机选项允许您输入电机规格表中的详细信息,这样就可以计算出从一颗卫星移动到另一颗卫星需要多长时间."
-
-msgid "Address"
-msgstr "地址"
 
 msgid "Adjust 3D settings"
 msgstr "调整3D设置"
@@ -2615,9 +2596,6 @@ msgstr "音频音量大小固定模式"
 msgid "Australia"
 msgstr "澳大利亚"
 
-msgid "Australian"
-msgstr "澳大利亚人"
-
 msgid "Austria"
 msgstr "奥地利"
 
@@ -2687,6 +2665,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "自动挂载管理器"
 
@@ -2725,6 +2706,9 @@ msgstr "自动打开外挂字幕"
 
 msgid "Automatically update Client/Server View"
 msgstr "自动更新客户端/服务器视图?"
+
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
 
 msgid "Autostart"
 msgstr "自启动"
@@ -2986,9 +2970,6 @@ msgstr "白俄罗斯"
 
 msgid "Belarusian"
 msgstr "白俄罗斯语"
-
-msgid "Belgian"
-msgstr "比利时语"
 
 msgid "Belgium"
 msgstr "比利时"
@@ -3256,6 +3237,9 @@ msgstr "按键设置"
 msgid "Button error timeout"
 msgstr ""
 
+msgid "ButtonSetup"
+msgstr "按键设置"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3279,12 +3263,6 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C-波段"
-
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
 
 msgid "CCD-Width"
 msgstr ""
@@ -3388,9 +3366,6 @@ msgstr "CI插槽: "
 
 msgid "CI+ Helper*"
 msgstr ""
-
-msgid "CIFS/Samba Settings"
-msgstr "CIFS/Samba设置"
 
 msgid "CPU"
 msgstr "处理器"
@@ -3635,10 +3610,13 @@ msgstr "取消固件选择并退出"
 msgid "Cancel the image selection and exit all menus"
 msgstr "取消镜像选择并退出所有菜单"
 
-msgid "Cancel the service selection"
+msgid "Cancel the selection and exit"
 msgstr ""
 
-msgid "Cancel the service zap"
+msgid "Cancel the service history zap"
+msgstr ""
+
+msgid "Cancel the service selection"
 msgstr ""
 
 msgid "Cancel the slot selection and exit"
@@ -3678,12 +3656,6 @@ msgstr "容量"
 
 msgid "Cape Verde"
 msgstr "佛得角"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "CA卡信息 (CCcam-读卡器)"
-
-msgid "Cards:"
-msgstr "卡片:"
 
 msgid "Cards: "
 msgstr "卡片: "
@@ -3972,6 +3944,18 @@ msgstr "芯片组: BCM%s"
 msgid "Choice Box"
 msgstr "选择机顶盒"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "选择存放\"%s\"的位置"
@@ -3993,6 +3977,12 @@ msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "选择连接到ICETV服务器以检查更新的频率."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4081,6 +4071,9 @@ msgstr "选择要配置的调谐器."
 msgid "Christmas Island"
 msgstr "圣诞岛"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr "教堂用斯拉夫语"
 
@@ -4149,12 +4142,14 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "请单击你想要修改的遥控键"
 
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "客户端信息(Oscam-版本: %s)"
+msgid "Client"
+msgstr "客户"
 
 msgid "Client is streaming from this box!"
 msgstr "客户端正在从这个机顶盒中进行流式传输!"
+
+msgid "ClientIP"
+msgstr "客户端IP"
 
 msgid "Clients"
 msgstr "客户端"
@@ -4313,6 +4308,9 @@ msgstr ""
 msgid "Common Setup Actions"
 msgstr "常见设置操作"
 
+msgid "Comodo Secure DNS"
+msgstr ""
+
 msgid "Comoros"
 msgstr "科摩罗"
 
@@ -4340,9 +4338,6 @@ msgstr "配置"
 #, python-format
 msgid "Config file %s saved."
 msgstr "配置文件 %s 已保存."
-
-msgid "Config file name (ok to change):"
-msgstr "配置文件名(按ok键更改):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -4735,6 +4730,9 @@ msgstr "配置将使用哪个视频输出连接器."
 msgid "Configuring"
 msgstr "配置"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -4972,11 +4970,11 @@ msgid "Could not open the file %s!"
 msgstr "无法打开文件 %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer: %s"
+msgid "Could not record due to conflicting timer:%s"
 msgstr "无法录制,因为和定时器 %s 冲突"
 
 #, python-format
-msgid "Could not record due to invalid service: %s"
+msgid "Could not record due to invalid service:%s"
 msgstr "由于 %s 频道无效,无法录制"
 
 #, python-format
@@ -5077,6 +5075,9 @@ msgstr "克罗地亚"
 
 msgid "Croatian"
 msgstr "克罗地亚语"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "任务管理"
@@ -5229,9 +5230,6 @@ msgstr "捷克"
 msgid "Czech Republic"
 msgstr "捷克共和国"
 
-msgid "Czechia"
-msgstr "捷克语"
-
 msgid "D"
 msgstr "D"
 
@@ -5257,6 +5255,12 @@ msgid "DNS Settings"
 msgstr ""
 
 msgid "DNS data source"
+msgstr ""
+
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
 msgstr ""
 
 msgid ""
@@ -5342,6 +5346,9 @@ msgid "Date"
 msgstr "日期"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date Time Input Actions"
 msgstr ""
 
 msgid "Date ascending"
@@ -5623,6 +5630,9 @@ msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "定义http流开始之前的额外延迟(以毫秒为单位)."
+
+msgid "Define the DNS suffix."
+msgstr ""
 
 msgid "Defined / Active"
 msgstr "定义/激活"
@@ -6286,13 +6296,6 @@ msgid "Do you want the upgrade guide?"
 msgstr ""
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"是否同时安装Samba客户端?\n"
-"这允许您可以挂载Windows共享在此设备上."
-
-msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
@@ -6364,6 +6367,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "是否要重启%s %s？"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -6532,15 +6538,6 @@ msgstr "E "
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr "ECM统计数据"
-
-msgid "ECM Time"
-msgstr "ECM时间"
-
-msgid "ECM avg"
-msgstr "ECM平均值"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM数据将包括在流中. 这使得客户端接收机能够对其进行解码."
 
@@ -6550,12 +6547,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr "ECM最后"
-
-msgid "ECM-Time"
-msgstr "ECM-时间"
 
 msgid "EJECTCD"
 msgstr "EJECTCD键"
@@ -6577,6 +6568,9 @@ msgstr "EPG频道/频道选择"
 
 msgid "EPG Display Actions"
 msgstr "EPG显示动作"
+
+msgid "EPG Jump"
+msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "EPG导航动作"
@@ -7811,12 +7805,6 @@ msgstr "免费频道"
 msgid "FTP"
 msgstr "FTP协议"
 
-msgid "FTP Actions"
-msgstr ""
-
-msgid "FTP Settings"
-msgstr "FTP设置"
-
 msgid "Factory Reset"
 msgstr ""
 
@@ -8202,6 +8190,9 @@ msgstr "美食/美酒"
 
 msgid "Football"
 msgstr "足球"
+
+msgid "For how many minutes do you want to record?"
+msgstr "您想录制多少分钟？"
 
 msgid "Force AC3plus"
 msgstr "强制AC3"
@@ -8897,6 +8888,9 @@ msgstr "隐藏家长锁定的频道"
 msgid "Hide player"
 msgstr "隐藏播放器"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 msgid "Hide the InfoBar"
 msgstr "隐藏信息栏"
 
@@ -8984,9 +8978,6 @@ msgstr "洪都拉斯"
 msgid "Hong Kong"
 msgstr "中国香港"
 
-msgid "Hops"
-msgstr "链路数"
-
 msgid "Hops:"
 msgstr "链路数:"
 
@@ -9017,6 +9008,9 @@ msgstr "主机名: "
 msgid "Hotbird 13.0e"
 msgstr "热鸟 13.0e"
 
+msgid "Hotkey"
+msgstr "快捷键"
+
 msgid "Hotkey Settings"
 msgstr "快捷键设置"
 
@@ -9028,9 +9022,6 @@ msgstr "小时 分钟"
 
 msgid "Hours Minutes Seconds"
 msgstr "小时 分钟 秒"
-
-msgid "How many minutes do you want to record?"
-msgstr "您想录制多少分钟？"
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s)流开始延迟"
@@ -9107,7 +9098,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPK安装器"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -9363,15 +9360,6 @@ msgstr "未激活"
 msgid "Inadyn"
 msgstr "Inadyn客户端"
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr "inadyn日志"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr "inadyn设置"
 
@@ -9549,9 +9537,6 @@ msgstr "输入流ID"
 msgid "Input channel name."
 msgstr "输入频道名称."
 
-msgid "Input config file name:"
-msgstr "输入配置文件名:"
-
 msgid "Input scroll position"
 msgstr "输入滚动位置"
 
@@ -9605,6 +9590,9 @@ msgstr ""
 msgid "Installation finished."
 msgstr "安装完成."
 
+msgid "Installed"
+msgstr ""
+
 msgid "Installing"
 msgstr "安装"
 
@@ -9634,6 +9622,9 @@ msgid "Installing plugins from feed ..."
 msgstr "正在从数据源中安装插件..."
 
 msgid "Instant Recording Actions"
+msgstr ""
+
+msgid "Instant Recording End Time"
 msgstr ""
 
 msgid "Instant record"
@@ -9723,9 +9714,6 @@ msgstr "倒置按键功能."
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran, Islamic Republic"
-msgstr "伊朗伊斯兰共和国"
-
 msgid "Iran, Islamic Republic of"
 msgstr "伊朗伊斯兰共和国"
 
@@ -9789,14 +9777,32 @@ msgstr "工作概述"
 msgid "Jordan"
 msgstr "约旦"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "向后跳24小时"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "在频道选择中快速跳转"
 
 msgid "Jump forward 24 hours"
 msgstr "向前跳24小时"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "跳转到列表开头"
@@ -10065,9 +10071,6 @@ msgstr "老挝"
 
 msgid "Large"
 msgstr "长路径"
-
-msgid "Last Request"
-msgstr "最后的请求."
 
 msgid "Last config"
 msgstr "最后一次正确配置"
@@ -10822,20 +10825,11 @@ msgstr "中等"
 msgid "Middle - Lite image"
 msgstr "中亮度图像"
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 msgid "Mini Series"
 msgstr "迷你系列"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA日志"
 
 msgid "MiniDLNA Settings"
 msgstr "小型DLNA设置"
@@ -10954,6 +10948,12 @@ msgstr "摩洛哥"
 msgid "Mosquito noise reduction"
 msgstr "噪声控制"
 
+msgid "Most recent first"
+msgstr ""
+
+msgid "Most recent last"
+msgstr ""
+
 msgid "Motor Sport"
 msgstr "赛车"
 
@@ -10966,11 +10966,11 @@ msgstr "电机运行超时"
 msgid "Mount"
 msgstr "挂载"
 
-msgid "Mount Actions"
-msgstr ""
-
 msgid "Mount Manager"
 msgstr "挂载管理器"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11087,6 +11087,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11358,12 +11364,6 @@ msgstr "接下来"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr ""
-
-msgid "NFS Settings"
-msgstr "NFS设置"
-
 msgid "NIM"
 msgstr ""
 
@@ -11490,6 +11490,9 @@ msgstr "网络信息操作"
 msgid "Network Interface"
 msgstr "网络接口"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -11510,6 +11513,9 @@ msgstr "网络服务"
 
 msgid "Network Settings"
 msgstr "网络选项"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "网络测试"
@@ -11547,6 +11553,9 @@ msgstr "网络名称(SSID)"
 
 msgid "Network scan"
 msgstr "网络扫描"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "网络测试"
@@ -11754,6 +11763,9 @@ msgstr "没有空闲的调谐器！"
 msgid "No hard disks detected."
 msgstr "未检测到硬盘."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "未找到匹配的地名"
 
@@ -11929,7 +11941,10 @@ msgstr ""
 msgid "None"
 msgstr "无"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12093,6 +12108,27 @@ msgstr "OK键模式"
 msgid "OK, guide me through the upgrade process"
 msgstr "确定,引导我完成升级过程"
 
+msgid "OSCam Info"
+msgstr "oscam信息"
+
+msgid "OSCam Information"
+msgstr "OScam信息"
+
+msgid "OSCam Information Settings"
+msgstr ""
+
+msgid "OSCam webif disabled"
+msgstr "OScam webif已禁用"
+
+msgid "OSCamInfo Actions"
+msgstr ""
+
+msgid "OSCamInfo Log"
+msgstr ""
+
+msgid "OSCamInfo Log Actions"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD菜单"
 
@@ -12113,15 +12149,6 @@ msgstr "OSD设置"
 
 msgid "OSD name request"
 msgstr "OSD名称请求"
-
-msgid "OScam Info"
-msgstr "oscam信息"
-
-msgid "OScam Information"
-msgstr "OScam信息"
-
-msgid "OScam webif disabled"
-msgstr "OScam webif已禁用"
 
 msgid "OTT Model"
 msgstr "OTT型号"
@@ -12219,7 +12246,13 @@ msgstr "开源EPG搜索"
 msgid "Open IMDb"
 msgstr "打开IMDb"
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -12303,17 +12336,8 @@ msgstr "OpenSSL版本"
 msgid "OpenVPN"
 msgstr "打开VPN"
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr "OpenVPN设置"
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "OpenVPN日志"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "深度待机模式下LED状态设置"
@@ -12363,18 +12387,8 @@ msgstr "奥里亚"
 msgid "Oromo"
 msgstr "奥罗莫"
 
-msgid "Oscam Info - Main Menu"
-msgstr "oscam信息-主菜单"
-
-msgid "Oscam Info Settings"
-msgstr "oscam信息-配置"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "OScam日志( OScam-版本: %s )"
-
-msgid "OscamInfo Mainmenu"
-msgstr "oscam信息主菜单"
+msgid "Oscam Information"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr "奥塞梯"
@@ -12473,9 +12487,6 @@ msgstr "PDC"
 msgid "PGS file"
 msgstr "PGS文件"
 
-msgid "PID"
-msgstr "PID信息显示"
-
 msgid "PIN code needed"
 msgstr "需要PIN码"
 
@@ -12494,6 +12505,9 @@ msgstr "PLS模式"
 
 msgid "PMT PID"
 msgstr "节目映射(PMT PID)"
+
+msgid "PPanel"
+msgstr "PPanel面板"
 
 msgid "PRIMETIME"
 msgstr "黄金时段"
@@ -12568,6 +12582,9 @@ msgstr "巴拿马"
 
 msgid "Panic channel"
 msgstr "应急频道"
+
+msgid "Panic to"
+msgstr "应急到"
 
 msgid "Panjabi / Punjabi"
 msgstr "旁遮普语"
@@ -12862,20 +12879,11 @@ msgstr "请在编译时添加标题."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "请耐心等待,备份即将创建.\n"
 
-msgid "Please change recording endtime"
-msgstr "请更改录像结束时间"
-
 msgid "Please check the manual of the receiver"
 msgstr "请检查接收器的手册"
 
-msgid "Please choose CCcam-Reader"
-msgstr "请选择CCcam阅读器"
-
 msgid "Please choose an extension..."
 msgstr "请选择一个扩展..."
-
-msgid "Please choose reader"
-msgstr "请选择读卡器"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "请不要更改任何值,除非你知道你正在做什么!"
@@ -13061,6 +13069,9 @@ msgid "Please wait while scanning is in progress..."
 msgstr "正在进行扫描,请稍候..."
 
 msgid "Please wait while the data is extracted..."
+msgstr ""
+
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
 msgid "Please wait while the list downloads..."
@@ -13303,6 +13314,12 @@ msgstr "首选AC3轨道"
 
 msgid "Prefer AC3+ track"
 msgstr "首选AC3+音轨"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "优先使用频道存储的音轨"
@@ -13637,9 +13654,6 @@ msgstr "供应商"
 msgid "Providers:"
 msgstr "提供商:"
 
-msgid "Providers: "
-msgstr "供应商: "
-
 msgid "Proxy detected"
 msgstr "检测到代理"
 
@@ -13704,6 +13718,12 @@ msgid "Quad PiP is not available."
 msgstr "四画面PiP不可用."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -13830,24 +13850,13 @@ msgstr "从oscam.conf读取用户数据"
 msgid "Reader"
 msgstr "编辑"
 
-msgid "Reader Statistics"
-msgstr "读卡器统计"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "准备安装 \"%s\" ?"
 
 #, python-format
-msgid "Ready to install '%s'?"
-msgstr "是否准备安装\"%s\" ?"
-
-#, python-format
 msgid "Ready to remove \"%s\" ?"
 msgstr "准备删除 \"%s\" ?"
-
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "是否准备好删除\"%s\" ?"
 
 msgid "Real Life"
 msgstr "现实生活"
@@ -13961,7 +13970,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "录制开始!现在停止时移 ..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer: %s"
+msgid "Record time limited due to conflicting timer:%s"
 msgstr "由于定时器 %s 冲突导致录像时间受限"
 
 msgid "Record write error (no space on disk?)"
@@ -14453,6 +14462,9 @@ msgstr "重置并重新计算标题名称"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14465,14 +14477,14 @@ msgstr "重置播放位置"
 msgid "Reset sort order"
 msgstr ""
 
+msgid "Reset the order of the entries"
+msgstr ""
+
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "是否将视频增强设置重置为系统默认值?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "是否重置视频增强设置到你的最后一个配置?"
-
-msgid "Reshare"
-msgstr "转贴"
 
 msgid "Reshare:"
 msgstr "转帖:"
@@ -14759,9 +14771,6 @@ msgstr "团圆"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd 设置"
 
@@ -14773,12 +14782,6 @@ msgstr "SATA硬盘"
 
 msgid "SATPI"
 msgstr "SATPI"
-
-msgid "SATPI Setting Actions"
-msgstr ""
-
-msgid "SATPI Settings"
-msgstr "SATPI 设置"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC优化搜索范围"
@@ -14823,6 +14826,9 @@ msgstr "SRT文件"
 msgid "SSA file"
 msgstr "SSA文件"
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr "SSID"
 
@@ -14853,17 +14859,11 @@ msgstr "圣皮埃尔和密克隆"
 msgid "Saint Vincent and the Grenadines"
 msgstr "圣文森特和格林纳丁斯"
 
-msgid "Samba"
-msgstr "SMB协议"
-
-msgid "Samba Actions"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Log"
-msgstr "Samba日志"
-
-msgid "Samba Setup"
-msgstr "Samba设置"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "与活动中的相同"
@@ -15314,6 +15314,9 @@ msgstr ""
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "如果设为'是',没有EPG的频道将不显示."
 
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
+
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
 msgstr "选择'是'可在搜索中包含 %s 多路复用."
@@ -15461,6 +15464,9 @@ msgstr "选择CAId"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "选择Enigma2皮肤"
 
@@ -15496,6 +15502,12 @@ msgstr "选择四画面频道"
 
 msgid "Select Satellites"
 msgstr "选择卫星"
+
+msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr "选择softcam"
@@ -15727,6 +15739,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr "选择否/错误响应"
 
@@ -15761,6 +15777,10 @@ msgstr "选择要分配给此调谐器的用户波段频率.这是SCR开关用�
 msgid "Select the Yes / True response"
 msgstr "选择是/正确答案"
 
+#, python-format
+msgid "Select the action for '%s'"
+msgstr ""
+
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
@@ -15780,6 +15800,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "选择键盘光标下的字符或动作"
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -15836,6 +15859,9 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the display sequence of previously visited services."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -15881,6 +15907,9 @@ msgstr "选择SCR设备的制造商.如果制造商未列出,请将'SCR'设置�
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "选择屏幕分辨率和帧恢复时留下的图文的方法."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "选择Unicable设备的型号.如果未列出型号,请将'SCR'设置为'用户定义',并根据其规格表手动输入设备参数."
@@ -15974,6 +16003,12 @@ msgstr "选择按键开始重复之前的时间延迟."
 
 msgid "Select the time delay between each repeat of the button."
 msgstr "选择每次重复按键之间的时间延迟."
+
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
 
 msgid "Select the time when this timer should end."
 msgstr ""
@@ -16176,18 +16211,8 @@ msgstr "塞尔维亚语"
 msgid "Serial No"
 msgstr "序列号"
 
-msgid "Serv.Name"
-msgstr "频道名称"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "服务器信息( Oscam版本: %s )"
-
 msgid "Server down"
 msgstr "服务器关闭"
-
-msgid "Server:"
-msgstr "服务器:"
 
 msgid "Servers"
 msgstr "服务器"
@@ -16370,6 +16395,9 @@ msgstr ""
 msgid "Set Scaling governor"
 msgstr ""
 
+msgid "Set Time"
+msgstr ""
+
 msgid "Set action for 'Info' key"
 msgstr "为'Info'键设置动作"
 
@@ -16550,9 +16578,6 @@ msgstr "设置"
 msgid "Setup - %s"
 msgstr "设置- %s"
 
-msgid "Setup AFP"
-msgstr "设置AFP"
-
 msgid "Setup Audio Sync"
 msgstr "设置音频同步"
 
@@ -16564,9 +16589,6 @@ msgstr "设置音频模式"
 
 msgid "Setup Enigma2"
 msgstr "设置Enigma2"
-
-msgid "Setup FTP"
-msgstr "FTP设置"
 
 msgid "Setup Harddisk"
 msgstr "设置硬盘"
@@ -16583,17 +16605,11 @@ msgstr "设置MiniDLNA"
 msgid "Setup Mounts"
 msgstr "设置挂载"
 
-msgid "Setup NFS"
-msgstr "设置NFS"
-
 msgid "Setup Network Services"
 msgstr "设置网络服务"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "设置网络服务(Samba, Ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "设置OpenVPN"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -16603,18 +16619,6 @@ msgstr ""
 
 msgid "Setup Plugins"
 msgstr "设置插件"
-
-msgid "Setup SABnzbd"
-msgstr "设置SABnzbd"
-
-msgid "Setup SATPI"
-msgstr "设置SATPI"
-
-msgid "Setup Samba"
-msgstr "设置Samba"
-
-msgid "Setup Telnet"
-msgstr "设置Telnet"
 
 msgid "Setup Tuner"
 msgstr "设置调谐器"
@@ -16730,9 +16734,6 @@ msgstr "卫星设备设置"
 msgid "Seychelles"
 msgstr "塞舌尔"
 
-msgid "Share Folders"
-msgstr "共享文件夹"
-
 msgid "Share View"
 msgstr "共享视图"
 
@@ -16741,6 +16742,12 @@ msgstr "共享"
 
 msgid "Sharpness"
 msgstr "清晰度"
+
+msgid "ShellInABox"
+msgstr ""
+
+msgid "Shellscript"
+msgstr "shell脚本语言"
 
 msgid "Shift"
 msgstr "移动"
@@ -16769,9 +16776,6 @@ msgstr "是否应该重置崩溃计数器以防止重新启动？"
 
 msgid "Show"
 msgstr "显示"
-
-msgid "Show /tmp/ecm.info"
-msgstr "显示 /tmp/ecm.info"
 
 msgid "Show 1080p 24fps as"
 msgstr "将1080p 24fps显示为"
@@ -16832,9 +16836,6 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "显示CI消息"
-
-msgid "Show Clients"
-msgstr "显示客户端"
 
 msgid "Show Default Backup Files"
 msgstr "显示默认备份文件"
@@ -16935,8 +16936,8 @@ msgstr "显示影片列表"
 msgid "Show Multi EPG"
 msgstr "显示多个EPG"
 
-msgid "Show OScam Info"
-msgstr "显示OScam信息"
+msgid "Show OSCam Information"
+msgstr ""
 
 msgid "Show OScam/CCcam in Extension Menu"
 msgstr ""
@@ -16967,9 +16968,6 @@ msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "显示射频模块设置…"
-
-msgid "Show Readers/Proxies"
-msgstr "显示 服务/代理"
 
 msgid "Show Record Movies"
 msgstr "显示录制电影"
@@ -17386,8 +17384,8 @@ msgstr "信息栏显示当前/下一个EIT信息"
 msgid "Show the Logs Settings screen"
 msgstr ""
 
-msgid "Show the OScamInfo Screen"
-msgstr "显示OScam信息屏幕"
+msgid "Show the OSCam information screen"
+msgstr ""
 
 msgid "Show the PowerTimer"
 msgstr "显示电源定时器"
@@ -17989,9 +17987,6 @@ msgstr "默认排序"
 msgid "Sort list by"
 msgstr "按列表排序"
 
-msgid "Sort list to default and exit?"
-msgstr "是否将列表排序为默认值并退出？"
-
 msgid "Sort list:"
 msgstr "排序列表:"
 
@@ -18146,6 +18141,9 @@ msgstr "启动模式"
 
 msgid "Start offline decode"
 msgstr "开始离线解码"
+
+msgid "Start or Stop service"
+msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
@@ -18886,17 +18884,11 @@ msgstr "图文字幕颜色"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr "Telnet 界面"
 
 msgid "Telnet Port"
 msgstr "Telnet 端口"
-
-msgid "Telnet Settings"
-msgstr "Telnet设置"
 
 msgid "Telugu"
 msgstr "泰卢固语"
@@ -19740,9 +19732,6 @@ msgstr "时间设置操作"
 msgid "Time Shift Settings"
 msgstr "时移设置"
 
-msgid "Time Update in Minutes:"
-msgstr "以分钟为单位更新:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20046,9 +20035,6 @@ msgstr "顶部"
 msgid "Top and Bottom"
 msgstr "顶部和底部"
 
-msgid "Total"
-msgstr "总数"
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -20082,6 +20068,9 @@ msgstr "轨道"
 
 msgid "Traditional Chinese"
 msgstr "繁体中文"
+
+msgid "Transcode"
+msgstr "转码"
 
 msgid "Transcoding"
 msgstr "转码"
@@ -20415,6 +20404,10 @@ msgstr "待定"
 msgid "Unencrypted"
 msgstr "未加密"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "未处理的密钥"
 
@@ -20433,14 +20426,14 @@ msgstr "单一同轴电缆高频头"
 msgid "Unicable Matrix"
 msgstr "单一同轴电缆多输出"
 
+msgid "Uninstall"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr "阿拉伯联合酋长国"
 
 msgid "United Kingdom"
 msgstr "英国"
-
-msgid "United States"
-msgstr "美国"
 
 msgid "United States Minor Outlying Islands"
 msgstr "美国本土外小岛屿"
@@ -20579,9 +20572,6 @@ msgstr "更新失败！"
 
 msgid "Update finished!"
 msgstr "更新完成!"
-
-msgid "Update interval (in seconds)"
-msgstr "更新间隔(秒)"
 
 msgid ""
 "Update succeeded!\n"
@@ -20975,9 +20965,6 @@ msgstr "VOB文件"
 
 msgid "VOD"
 msgstr "视频点播(VOD)"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -21424,18 +21411,6 @@ msgstr "观看影片..."
 
 msgid "Watch recordings"
 msgstr "观看录像"
-
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"我们真的很抱歉.您的接收器遇到了一个软件问题,需要重新启动.\n"
-"请将日志文件 %senigma2_crash_xxxxxx.log发送到www.openatv.\n"
-"您的接收机将在10秒内重新启动!\n"
-"组件: enigma2"
 
 msgid "Weather"
 msgstr "天气"
@@ -22095,14 +22070,6 @@ msgstr "您的%s %s 将重新启动..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"安装服务后,将重新启动%s %s\n"
-"是否要安装%s?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22118,18 +22085,6 @@ msgid ""
 msgstr ""
 "删除服务后 %s %s 将重新启动\n"
 "是否现在删除?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -22266,11 +22221,17 @@ msgstr "切换焦点到主屏幕"
 msgid "Zap focused channel on full screen"
 msgstr "全屏显示节目"
 
+msgid "Zap history sequence"
+msgstr ""
+
 msgid "Zap mode"
 msgstr "换台模式"
 
 msgid "Zap next"
 msgstr "切换到下一个"
+
+msgid "Zap to"
+msgstr "切换到"
 
 msgid "Zap to channel (setup in menu)"
 msgstr "切换频道(设置菜单)"
@@ -22617,12 +22578,6 @@ msgstr "执行最终剪辑(需要MovieCut插件)"
 msgid "exit DVD player or return to file browser"
 msgstr "退出DVD播放器或返回文件浏览器"
 
-msgid "exit mounts setup menu"
-msgstr "退出菜单设置"
-
-msgid "exit networkadapter setup menu"
-msgstr "退出网卡设置菜单"
-
 msgid "experimental film/video"
 msgstr "探索实验电影/视频"
 
@@ -22853,18 +22808,6 @@ msgstr "汽车"
 
 msgid "move"
 msgstr "移动"
-
-msgid "move down to last entry"
-msgstr "向下移到最后一项"
-
-msgid "move down to next entry"
-msgstr "移动到下一项"
-
-msgid "move up to first entry"
-msgstr "向上移到第一项"
-
-msgid "move up to previous entry"
-msgstr "移到上一项"
 
 msgid "movie (general)"
 msgstr "电影(一般)"
@@ -23099,9 +23042,6 @@ msgstr "搜索EPG..."
 msgid "select CAId's"
 msgstr "选择CAId's"
 
-msgid "select menu entry"
-msgstr "选择菜单条目"
-
 msgid "serious music/classic music"
 msgstr "严肃音乐/古典音乐"
 
@@ -23303,12 +23243,6 @@ msgstr "turbo码"
 msgid "uShare"
 msgstr "uShare共享"
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr "ushare日志"
-
 msgid "uShare Name"
 msgstr "ushare名称"
 
@@ -23316,9 +23250,6 @@ msgid "uShare Port"
 msgstr "ushare端口"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -23411,18 +23342,317 @@ msgstr "是(保持订阅源)"
 msgid "®"
 msgstr "®"
 
+msgid "Preferred tuner DVB-S"
+msgstr "首选DVB-S调谐器"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "录制首选调谐器DVB-S"
+
+msgid "Preferred tuner DVB-T"
+msgstr "首选DVB-T调谐器"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "录制首选调谐器DVB-T"
+
+msgid "Preferred tuner DVB-C"
+msgstr "首选DVB-C调谐器"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "录制首选调谐器DVB-C"
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "一旦启用,此设置将拥有比首选调谐器更大的适用范围."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "一旦启用,此设置将有比录制首选调谐器更大的适用范围."
+
+msgid "Preferred tuner ATSC"
+msgstr "首选调谐器ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "录制首选调谐器ATSC"
+
+#~ msgid "Australian"
+#~ msgstr "澳大利亚人"
+
+#~ msgid "Belgian"
+#~ msgstr "比利时语"
+
+#~ msgid "Czechia"
+#~ msgstr "捷克语"
+
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "伊朗伊斯兰共和国"
+
+#~ msgid "United States"
+#~ msgstr "美国"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "是否将列表排序为默认值并退出？"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "退出菜单设置"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "退出网卡设置菜单"
+
+#~ msgid "move down to last entry"
+#~ msgstr "向下移到最后一项"
+
+#~ msgid "move down to next entry"
+#~ msgstr "移动到下一项"
+
+#~ msgid "move up to first entry"
+#~ msgstr "向上移到第一项"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "移到上一项"
+
+#~ msgid "select menu entry"
+#~ msgstr "选择菜单条目"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "正在进行后台更新检查,请等待几分钟,然后重试."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "CIFS/Samba设置"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "配置文件名(按ok键更改):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "是否同时安装Samba客户端?\n"
+#~ "这允许您可以挂载Windows共享在此设备上."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP设置"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "inadyn日志"
+
+#~ msgid "Input config file name:"
+#~ msgstr "输入配置文件名:"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA日志"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS设置"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "OpenVPN设置"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVPN日志"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "是否准备好删除\"%s\" ?"
+
+#~ msgid "SATPI Settings"
+#~ msgstr "SATPI 设置"
+
+#~ msgid "Samba"
+#~ msgstr "SMB协议"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba日志"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba设置"
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP设置"
+
+#~ msgid "Setup NFS"
+#~ msgstr "设置NFS"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "设置OpenVPN"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "设置SABnzbd"
+
+#~ msgid "Setup SATPI"
+#~ msgstr "设置SATPI"
+
+#~ msgid "Setup Samba"
+#~ msgstr "设置Samba"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "设置Telnet"
+
+#~ msgid "Share Folders"
+#~ msgstr "共享文件夹"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telnet设置"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "以分钟为单位更新:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "安装服务后,将重新启动%s %s\n"
+#~ "是否要安装%s?"
+
+#~ msgid "uShare Log"
+#~ msgstr "ushare日志"
+
+#~ msgid "Show OScam Info"
+#~ msgstr "显示OScam信息"
+
+#~ msgid "Show the OScamInfo Screen"
+#~ msgstr "显示OScam信息屏幕"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s ( %s 张卡)"
+
+#~ msgid "( All readers)"
+#~ msgstr "(所有读卡器)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(仅显示读卡器:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "AFP设置"
+
+#~ msgid "Address"
+#~ msgstr "地址"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "CA卡信息 (CCcam-读卡器)"
+
+#~ msgid "Cards:"
+#~ msgstr "卡片:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "客户端信息(Oscam-版本: %s)"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM统计数据"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM时间"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM平均值"
+
+#~ msgid "ECM last"
+#~ msgstr "ECM最后"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM-时间"
+
+#~ msgid "Hops"
+#~ msgstr "链路数"
+
+#~ msgid "Last Request"
+#~ msgstr "最后的请求."
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "oscam信息-主菜单"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "oscam信息-配置"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "OScam日志( OScam-版本: %s )"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "oscam信息主菜单"
+
+#~ msgid "PID"
+#~ msgstr "PID信息显示"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "请选择CCcam阅读器"
+
+#~ msgid "Please choose reader"
+#~ msgstr "请选择读卡器"
+
+#~ msgid "Providers: "
+#~ msgstr "供应商: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "读卡器统计"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "是否准备安装\"%s\" ?"
+
+#~ msgid "Reshare"
+#~ msgstr "转贴"
+
+#~ msgid "Serv.Name"
+#~ msgstr "频道名称"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "服务器信息( Oscam版本: %s )"
+
+#~ msgid "Server:"
+#~ msgstr "服务器:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "设置AFP"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "显示 /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "显示客户端"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "显示 服务/代理"
+
+#~ msgid "Total"
+#~ msgstr "总数"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "更新间隔(秒)"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "请更改录像结束时间"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "我们真的很抱歉.您的接收器遇到了一个软件问题,需要重新启动.\n"
+#~ "请将日志文件 %senigma2_crash_xxxxxx.log发送到www.openatv.\n"
+#~ "您的接收机将在10秒内重新启动!\n"
+#~ "组件: enigma2"
+
 #~ msgid "+24"
 #~ msgstr "+24"
 
 #~ msgid "-24"
 #~ msgstr "-24"
-
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "当前正在运行录制.\n"
-#~ "你需要做什么?"
 
 #~ msgid "BouquetList"
 #~ msgstr "自定义列表"
@@ -23572,14 +23802,8 @@ msgstr "®"
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI 助手设置"
 
-#~ msgid "ClientIP"
-#~ msgstr "客户端IP"
-
 #~ msgid "Minute"
 #~ msgstr "分钟"
-
-#~ msgid "Transcode"
-#~ msgstr "转码"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -23602,12 +23826,6 @@ msgstr "®"
 #~ msgid "Basic PID info"
 #~ msgstr "基本PID信息"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "按键设置"
-
-#~ msgid "Client"
-#~ msgstr "客户"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "代码R.LP-HP和Guard Int."
 
@@ -23626,9 +23844,6 @@ msgstr "®"
 #~ msgid "Frequency & Polarization"
 #~ msgstr "频率和极化"
 
-#~ msgid "Hotkey"
-#~ msgstr "快捷键"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "反演与带宽"
 
@@ -23640,12 +23855,6 @@ msgstr "®"
 
 #~ msgid "ONID"
 #~ msgstr "客户端(ONID)"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel面板"
-
-#~ msgid "Panic to"
-#~ msgstr "应急到"
 
 #~ msgid "Service ID"
 #~ msgstr "频道ID"
@@ -23668,9 +23877,6 @@ msgstr "®"
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "频道信息-调谐器设置值"
 
-#~ msgid "Shellscript"
-#~ msgstr "shell脚本语言"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "符号率和前向纠错"
 
@@ -23685,9 +23891,6 @@ msgstr "®"
 
 #~ msgid "Tuner setting values"
 #~ msgstr "调谐器设置值"
-
-#~ msgid "Zap to"
-#~ msgstr "切换到"
 
 #~ msgid "active"
 #~ msgstr "激活"

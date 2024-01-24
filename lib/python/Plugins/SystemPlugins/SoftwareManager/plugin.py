@@ -73,7 +73,7 @@ class RestoreMenu(RestoreMenu):
 
 class IPKGMenu(Screen):
 	skin = """
-		<screen name="IPKGMenu" position="center,center" size="560,400" >
+		<screen name="IPKGMenu" position="center,center" size="560,400" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -130,7 +130,7 @@ class IPKGMenu(Screen):
 
 class IPKGSource(Screen):
 	skin = """
-		<screen name="IPKGSource" position="center,center" size="560,80" title="Edit upgrade source url." >
+		<screen name="IPKGSource" position="center,center" size="560,80" title="Edit upgrade source url." resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -221,7 +221,7 @@ class IPKGSource(Screen):
 
 class IpkgInstaller(Screen):
 	skin = """
-		<screen name="IpkgInstaller" position="center,center" size="550,450" title="Install extensions" >
+		<screen name="IpkgInstaller" position="center,center" size="550,450" title="Install extensions" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />

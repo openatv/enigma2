@@ -332,14 +332,9 @@
 		<panel name="MessageBoxSummary" />
 	</screen>
 
-	<screen name="TimerEditListSummary" position="0,0" size="128,32">
+	<screen name="TimerOverviewSummary" position="0,0" size="128,32">
 		<widget source="service" render="Label" position="0,0" size="128,16" font="FdLcD;15" halign="left" valign="bottom" transparent="1" />
 		<widget source="name" render="Label" position="0,10" size="128,18" font="FdLcD;12" halign="left" noWrap="1" transparent="1" />
-		<widget source="time" render="Label" position="0,20" size="110,12" font="FdLcD;12" halign="left" transparent="1" />
-	</screen>
-
-	<screen name="PowerTimerEditListSummary" position="0,0" size="128,32">
-		<widget source="name" render="Label" position="0,0" size="128,19" font="FdLcD;13" halign="left" noWrap="0" transparent="1" />
 		<widget source="time" render="Label" position="0,20" size="110,12" font="FdLcD;12" halign="left" transparent="1" />
 	</screen>
 
@@ -458,12 +453,6 @@
 		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
 	</screen>
 	
-	<!-- Infopanel -->
-	<screen name="InfopanelSummary" position="0,0" size="128,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
-		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
-	</screen>
-
 	<!-- AudioSelection -->
 	<screen name="AudioSelectionSummary" position="0,0" size="132,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />

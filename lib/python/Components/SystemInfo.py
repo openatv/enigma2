@@ -1,10 +1,11 @@
+from ast import literal_eval
 from glob import glob
 from hashlib import md5
 from os import listdir, readlink
-from os.path import exists, isfile, join as pathjoin, islink
+from os.path import basename, exists, isfile, join, islink
 from subprocess import PIPE, Popen
 
-from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl, eDBoxLCD, eDVBCIInterfaces
+from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl, eDBoxLCD, eDVBCIInterfaces, getE2Rev
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, pathExists
 from Tools.MultiBoot import MultiBoot
@@ -13,8 +14,6 @@ MODULE_NAME = __name__.split(".")[-1]
 SOFTCAM = "/etc/init.d/softcam"
 NOEMU = "/etc/enigma2/noemu"
 
-SystemInfo = {}
-
 
 class BoxInformation:  # To maintain data integrity class variables should not be accessed from outside of this class!
 	def __init__(self):
@@ -22,7 +21,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		self.boxInfo = {}
 		self.enigmaInfoList = []
 		self.enigmaConfList = []
-		lines = fileReadLines(pathjoin(resolveFilename(SCOPE_LIBDIR), "enigma.info"), source=MODULE_NAME)
+		lines = fileReadLines(join(resolveFilename(SCOPE_LIBDIR), "enigma.info"), source=MODULE_NAME)
 		if lines:
 			modified = self.checkChecksum(lines)
 			if modified:
@@ -39,12 +38,17 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 					if item:
 						self.immutableList.append(item)
 						self.enigmaInfoList.append(item)
-						self.boxInfo[item] = self.processValue(value)
+						try:
+							self.boxInfo[item] = literal_eval(value)
+						except:  # Remove this code when the build system is updated.
+							self.boxInfo[item] = value
+						# except Exception as err:  # Activate this replacement code when the build system is updated.
+						# 	print(f"[SystemInfo] Error: Information variable '{item}' with a value of '{value}' can not be loaded into BoxInfo!  ({err})")
 			self.enigmaInfoList = sorted(self.enigmaInfoList)
 			print("[SystemInfo] Enigma information file data loaded into BoxInfo.")
 		else:
 			print("[SystemInfo] ERROR: Enigma information file is not available!  The system is unlikely to boot or operate correctly.")
-		lines = fileReadLines(pathjoin(resolveFilename(SCOPE_LIBDIR), "enigma.conf"), source=MODULE_NAME)
+		lines = fileReadLines(join(resolveFilename(SCOPE_LIBDIR), "enigma.conf"), source=MODULE_NAME)
 		if lines:
 			print("[SystemInfo] Enigma config override file available and data loaded into BoxInfo.")
 			self.boxInfo["overrideactive"] = True
@@ -56,8 +60,13 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 					if item:
 						self.enigmaConfList.append(item)
 						if item in self.boxInfo:
-							print("[SystemInfo] Note: Enigma information value '%s' with value '%s' being overridden to '%s'." % (item, self.boxInfo[item], value))
-						self.boxInfo[item] = self.processValue(value)
+							print(f"[SystemInfo] Note: Enigma information value '{item}' with value '{self.boxInfo[item]}' being overridden to '{value}'.")
+						try:
+							self.boxInfo[item] = literal_eval(value)
+						except Exception:  # Remove this code when the build system is updated.
+							self.boxInfo[item] = value
+						# except Exception as err:  # Activate this replacement code when the build system is updated.
+						# 	print(f"[SystemInfo] Error: Information override variable '{item}' with a value of '{value}' can not be loaded into BoxInfo!  ({err})")
 			self.enigmaConfList = sorted(self.enigmaConfList)
 		else:
 			self.boxInfo["overrideactive"] = False
@@ -74,52 +83,6 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		result = md5(bytearray("\n".join(data), "UTF-8", errors="ignore")).hexdigest()  # NOSONAR
 		return value != result
 
-	def processValue(self, value):
-		valueTest = value.upper() if value else ""
-		if value is None:
-			pass
-		elif (value.startswith("\"") or value.startswith("'")) and value.endswith(value[0]):
-			value = value[1:-1]
-		elif value.startswith("(") and value.endswith(")"):
-			data = []
-			for item in [x.strip() for x in value[1:-1].split(",")]:
-				data.append(self.processValue(item))
-			value = tuple(data)
-		elif value.startswith("[") and value.endswith("]"):
-			data = []
-			for item in [x.strip() for x in value[1:-1].split(",")]:
-				data.append(self.processValue(item))
-			value = list(data)
-		elif valueTest == "NONE":
-			value = None
-		elif valueTest in ("FALSE", "NO", "OFF", "DISABLED"):
-			value = False
-		elif valueTest in ("TRUE", "YES", "ON", "ENABLED"):
-			value = True
-		elif value.isdigit() or ((value[0:1] == "-" or value[0:1] == "+") and value[1:].isdigit()):
-			value = int(value)
-		elif valueTest.startswith("0X"):
-			try:
-				value = int(value, 16)
-			except ValueError:
-				pass
-		elif valueTest.startswith("0O"):
-			try:
-				value = int(value, 8)
-			except ValueError:
-				pass
-		elif valueTest.startswith("0B"):
-			try:
-				value = int(value, 2)
-			except ValueError:
-				pass
-		else:
-			try:
-				value = float(value)
-			except ValueError:
-				pass
-		return value
-
 	def getEnigmaInfoList(self):
 		return self.enigmaInfoList
 
@@ -130,27 +93,23 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		return sorted(list(self.boxInfo.keys()))
 
 	def getItem(self, item, default=None):
-		if item in self.boxInfo:
-			value = self.boxInfo[item]
-		elif item in SystemInfo:
-			value = SystemInfo[item]
-		else:
-			value = default
-		return value
+		return self.boxInfo.get(item, default)
 
 	def setItem(self, item, value, immutable=False):
 		if item in self.immutableList:
-			print("[BoxInfo] Error: Item '%s' is immutable and can not be %s!" % (item, "changed" if item in self.boxInfo else "added"))
+			print(f"[BoxInfo] Error: Item '{item}' is immutable and can not be {'changed' if item in self.boxInfo else 'added'}!")
 			return False
 		if immutable:
 			self.immutableList.append(item)
 		self.boxInfo[item] = value
-		SystemInfo[item] = value
 		return True
+
+	def setMutableItem(self, item, value):
+		self.boxInfo[item] = value
 
 	def deleteItem(self, item):
 		if item in self.immutableList:
-			print("[BoxInfo] Error: Item '%s' is immutable and can not be deleted!" % item)
+			print(f"[BoxInfo] Error: Item '{item}' is immutable and can not be deleted!")
 		elif item in self.boxInfo:
 			del self.boxInfo[item]
 			return True
@@ -158,6 +117,29 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 
 
 BoxInfo = BoxInformation()
+
+
+class SystemInformation(dict):
+	def __getitem__(self, item):
+		return BoxInfo.boxInfo[item]
+
+	def __setitem__(self, item, value):
+		if item in BoxInfo.immutableList:
+			print(f"[SystemInfo] Error: Item '{item}' is immutable and can not be {'changed' if item in BoxInfo.boxInfo else 'added'}!")
+		else:
+			BoxInfo.boxInfo[item] = value
+
+	def __delitem__(self, item):
+		if item in BoxInfo.immutableList:
+			print(f"[SystemInfo] Error: Item '{item}' is immutable and can not be deleted!")
+		else:
+			del BoxInfo.boxInfo[item]
+
+	def get(self, item, default=None):
+		return BoxInfo.boxInfo[item] if item in BoxInfo.boxInfo else default
+
+
+SystemInfo = SystemInformation()
 
 ARCHITECTURE = BoxInfo.getItem("architecture")
 BRAND = BoxInfo.getItem("brand")
@@ -187,41 +169,44 @@ def getDemodVersion():
 
 def getNumVideoDecoders():
 	numVideoDecoders = 0
-	while fileExists("/dev/dvb/adapter0/video%d" % numVideoDecoders, "f"):
+	while fileExists(f"/dev/dvb/adapter0/video{numVideoDecoders}", "f"):
 		numVideoDecoders += 1
 	return numVideoDecoders
 
 
 def countFrontpanelLEDs():
 	numLeds = fileExists("/proc/stb/fp/led_set_pattern") and 1 or 0
-	while fileExists("/proc/stb/fp/led%d_pattern" % numLeds):
+	while fileExists(f"/proc/stb/fp/led{numLeds}_pattern"):
 		numLeds += 1
 	return numLeds
 
 
 def getRCFile(ext):
-	filename = resolveFilename(SCOPE_SKINS, pathjoin("hardware", "%s.%s" % (BoxInfo.getItem("rcname"), ext)))
+	filename = resolveFilename(SCOPE_SKINS, join("hardware", f"{BoxInfo.getItem('rcname')}.{ext}"))
 	if not isfile(filename):
-		filename = resolveFilename(SCOPE_SKINS, pathjoin("hardware", "dmm1.%s" % ext))
+		filename = resolveFilename(SCOPE_SKINS, join("hardware", f"dmm1.{ext}"))
 	return filename
 
 
 def getChipsetString():
 	if MODEL in ("dm7080", "dm820"):
-		return "7435"
+		chipset = "7435"
 	elif MODEL in ("dm520", "dm525"):
-		return "73625"
+		chipset = "73625"
 	elif MODEL in ("dm900", "dm920", "et13000"):
-		return "7252S"
+		chipset = "7252S"
 	elif MODEL in ("hd51", "vs1500", "h7"):
-		return "7251S"
-	elif MODEL in ('dreamone', 'dreamonetwo', 'dreamseven'):
-		return "S922X"
-	chipset = fileReadLine("/proc/stb/info/chipset", default=_("Undefined"), source=MODULE_NAME)
-	return str(chipset.lower().replace("\n", "").replace("bcm", "").replace("brcm", "").replace("sti", ""))
+		chipset = "7251S"
+	elif MODEL in ("dreamone", "dreamonetwo", "dreamseven"):
+		chipset = "S922X"
+	else:
+		chipset = fileReadLine("/proc/stb/info/chipset", default=_("Undefined"), source=MODULE_NAME)
+		chipset = chipset.lower().replace("\n", "").replace("bcm", "").replace("brcm", "").replace("sti", "")
+	return chipset
 
 
 def getModuleLayout():
+	module = None
 	modulePath = BoxInfo.getItem("enigmamodule")
 	if modulePath:
 		process = Popen(("/sbin/modprobe", "--dump-modversions", modulePath), stdout=PIPE, stderr=PIPE, universal_newlines=True)
@@ -229,15 +214,17 @@ def getModuleLayout():
 		if process.returncode == 0:
 			for detail in stdout.split("\n"):
 				if "module_layout" in detail:
-					return detail.split("\t")[0]
-	return None
+					module = detail.split("\t")[0]
+	return module
 
 
 def hasInitCam():
+	result = False
 	for cam in listdir("/etc/init.d"):
 		if cam.startswith("softcam.") and not cam.endswith("None"):
-			return True
-	return False
+			result = True
+			break
+	return result
 
 
 def hasInitCardServer():
@@ -248,31 +235,29 @@ def hasInitCardServer():
 
 
 def hasSoftcamEmu():
-	if isfile(NOEMU):
-		return False
-	else:
-		return len(glob("/etc/*.emu")) > 0
+	return False if isfile(NOEMU) else len(glob("/etc/*.emu")) > 0
 
 
 def hasSoftcam():
 	if not isfile(NOEMU):
 		for cam in listdir("/etc/init.d"):
-			if (cam.startswith('softcam.') or cam.startswith('cardserver.')) and not cam.endswith('None'):
+			if cam.startswith(("softcam.", "cardserver.")) and not cam.endswith("None"):
 				return True
 	return False
 
 
 def getSysSoftcam():
-	currentsyscam = ""
+	currentSysCam = ""
 	if isfile(SOFTCAM) and islink(SOFTCAM) and not readlink(SOFTCAM).lower().endswith("none"):
 		try:
-			syscam = readlink(SOFTCAM).replace("softcam.", "")
+			sysCam = readlink(SOFTCAM).replace("softcam.", "")
 			for cam in ("oscam", "ncam", "cccam"):
-				if syscam.lower().startswith(cam):
-					return cam
+				if basename(sysCam).lower().startswith(cam):
+					currentSysCam = cam
+					break
 		except OSError:
 			pass
-	return currentsyscam
+	return currentSysCam
 
 
 def getCurrentSoftcam():
@@ -294,17 +279,17 @@ def getSoftcams():
 
 
 def updateSysSoftCam():
-	BoxInfo.setItem("ShowOscamInfo", getSysSoftcam() in ("oscam", "ncam"), False)
-	BoxInfo.setItem("ShowCCCamInfo", getSysSoftcam() in ("cccam",), False)
-	BoxInfo.setItem("HasSoftcamEmu", hasSoftcamEmu(), False)
-	BoxInfo.setItem("Softcams", getSoftcams(), False)
-	BoxInfo.setItem("CurrentSoftcam", getCurrentSoftcam(), False)
+	BoxInfo.setMutableItem("ShowOscamInfo", getSysSoftcam() in ("oscam", "ncam"))
+	BoxInfo.setMutableItem("ShowCCCamInfo", getSysSoftcam() in ("cccam",))
+	BoxInfo.setMutableItem("HasSoftcamEmu", hasSoftcamEmu())
+	BoxInfo.setMutableItem("Softcams", getSoftcams())
+	BoxInfo.setMutableItem("CurrentSoftcam", getCurrentSoftcam())
 
 
 def getBoxName():
 	box = MACHINEBUILD
 	machinename = DISPLAYMODEL.lower()
-	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
+	if box in ("uniboxhd1", "uniboxhd2", "uniboxhd3"):
 		box = "ventonhdx"
 	elif box == "odinm6":
 		box = machinename
@@ -316,17 +301,17 @@ def getBoxName():
 		box = "miraclebox-twin"
 	elif box == "xp1000" and machinename == "sf8 hd":
 		box = "sf8"
-	elif box.startswith('et') and box not in ('et8000', 'et8500', 'et8500s', 'et10000'):
-		box = box[0:3] + 'x00'
+	elif box.startswith("et") and box not in ("et8000", "et8500", "et8500s", "et10000"):
+		box = f"{box[0:3]}x00"
 	elif box == "odinm9":
 		box = "maram9"
-	elif box.startswith('sf8008m'):
+	elif box.startswith("sf8008m"):
 		box = "sf8008m"
-	elif box.startswith('sf8008'):
+	elif box.startswith("sf8008"):
 		box = "sf8008"
-	elif box.startswith('ustym4kpro'):
+	elif box.startswith("ustym4kpro"):
 		box = "ustym4kpro"
-	elif box.startswith('twinboxlcdci'):
+	elif box.startswith("twinboxlcdci"):
 		box = "twinboxlcd"
 	elif box == "sfx6018":
 		box = "sfx6008"
@@ -345,15 +330,12 @@ def getWakeOnLANType(fileName):
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
-BoxInfo.setItem("ModuleLayout", getModuleLayout(), immutable=True)
+BoxInfo.setItem("ModuleLayout", getModuleLayout())
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
 BoxInfo.setItem("RemoteEnable", MACHINEBUILD in ("dm800",))
-if MACHINEBUILD in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
-	repeat = 400
-else:
-	repeat = 100
+repeat = 400 if MACHINEBUILD in ("maram9", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo", "galaxym6") else 100
 BoxInfo.setItem("RemoteRepeat", repeat)
 BoxInfo.setItem("RemoteDelay", 200 if repeat == 400 else 700)
 
@@ -363,11 +345,11 @@ try:
 	branch = getE2Rev()
 	if "+" in branch:
 		branch = branch.split("+")[1]
-	branch = "?sha=%s" % branch
-except Exception as err:
+	branch = f"?sha={branch}"
+except IndexError:
 	branch = ""
 commitLogs = [
-	("openATV Enigma2", "https://api.github.com/repos/openatv/enigma2/commits%s" % branch),
+	("openATV Enigma2", f"https://api.github.com/repos/openatv/enigma2/commits{branch}"),
 	("OE-Alliance Plugins", "https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits"),
 	("Enigma2 Plugins", "https://api.github.com/repos/oe-alliance/enigma2-plugins/commits"),
 	("OpenWebif", "https://api.github.com/repos/E2OpenPlugins/e2openplugin-OpenWebif/commits"),
@@ -399,7 +381,7 @@ BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("
 BoxInfo.setItem("CanUse3DModeChoices", fileExists("/proc/stb/fb/3dmode_choices") and True or False)
 BoxInfo.setItem("ChipsetString", getChipsetString(), immutable=True)
 BoxInfo.setItem("CIPlusHelper", exists("/usr/bin/ciplushelper"))
-BoxInfo.setItem("DeepstandbySupport", MODEL != 'dm800')
+BoxInfo.setItem("DeepstandbySupport", MODEL != "dm800")
 BoxInfo.setItem("DefaultDisplayBrightness", MACHINEBUILD in ("dm900", "dm920") and 8 or 5)
 BoxInfo.setItem("FBLCDDisplay", fileCheck("/proc/stb/fb/sd_detach"))
 BoxInfo.setItem("Fan", fileCheck("/proc/stb/fp/fan"))
@@ -469,27 +451,32 @@ BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
 
-BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ('osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'ustym4ks2ottx', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'gbmv200', 'sfx6008', 'sx88v2', 'sx888'))
+BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ("osninopro", "osnino", "osninoplus", "tmtwin4k", "mbmicrov2", "revo4k", "force3uhd", "mbmicro", "e4hd", "e4hdhybrid", "dm7020hd", "dm7020hdv2", "9910lx", "9911lx", "9920lx", "dual") or MODEL in ("dags7362", "dags73625", "dags5", "ustym4kpro", "ustym4ks2ottx", "beyonwizv2", "viper4k", "sf8008", "sf8008m", "gbmv200", "sfx6008", "sx88v2", "sx888"))
 BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
 
 BoxInfo.setItem("DisplaySetup", MODEL not in ("dreamone",))
 
-# dont't sort
+# Dont't sort.
 BoxInfo.setItem("ConfigDisplay", BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment",))
 BoxInfo.setItem("dFlash", exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"))
 BoxInfo.setItem("dBackup", not BoxInfo.getItem("dFlash") and exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"))
 BoxInfo.setItem("ImageBackup", not BoxInfo.getItem("dFlash") and not BoxInfo.getItem("dBackup"))
 
-SystemInfo["SeekStatePlay"] = False
-SystemInfo["StatePlayPause"] = False
-SystemInfo["StandbyState"] = False
-SystemInfo["FastChannelChange"] = False
-SystemInfo["FCCactive"] = False
+BoxInfo.setMutableItem("SeekStatePlay", False)
+BoxInfo.setMutableItem("StatePlayPause", False)
+BoxInfo.setMutableItem("StandbyState", False)
+BoxInfo.setMutableItem("FastChannelChange", False)
+BoxInfo.setMutableItem("FCCactive", False)
 
-SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots()
-SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
-for cislot in range(0, SystemInfo["CommonInterface"]):
-	SystemInfo["CI%dSupportsHighBitrates" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot)
-	SystemInfo["CI%dRelevantPidsRoutingSupport" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot)
+BoxInfo.setItem("CommonInterface", eDVBCIInterfaces.getInstance().getNumOfSlots())
+BoxInfo.setItem("CommonInterfaceCIDelay", fileCheck("/proc/stb/tsmux/rmx_delay"))
+for ciSlot in range(BoxInfo.getItem("CommonInterface")):
+	BoxInfo.setItem(f"CI{ciSlot}SupportsHighBitrates", fileCheck(f"/proc/stb/tsmux/ci{ciSlot}_tsclk"))
+	BoxInfo.setItem(f"CI{ciSlot}RelevantPidsRoutingSupport", fileCheck(f"/proc/stb/tsmux/ci{ciSlot}_relevant_pids_routing"))
+
+# Network services.
+BoxInfo.setItem("inadyn", exists("/etc/init.d/inadyn-mt"))
+BoxInfo.setItem("minidlna", exists("/etc/init.d/minidlna"))
+BoxInfo.setItem("ushare", exists("/etc/init.d/ushare"))
 
 updateSysSoftCam()

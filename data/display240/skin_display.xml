@@ -263,7 +263,7 @@
 		<widget source="parent.selectedChoice" render="Label" position="0,40" size="240,28" font="FdLcD;26" halign="center" noWrap="1" />
 	</screen>
 
-	<screen name="TimerEditListSummary" position="0,0" size="240,80">
+	<screen name="TimerOverviewSummary" position="0,0" size="240,80">
 		<widget source="service" render="Label" position="0,0" size="240,20" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="name" render="Label" position="0,20" size="240,15" font="FdLcD;19" halign="left" noWrap="1" />
 		<widget source="time" render="Label" position="0,35" size="240,15" font="FdLcD;19" halign="left" transparent="1" />
@@ -340,13 +340,7 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>	
-		
-<!-- Infopanel -->
-	<screen name="InfopanelSummary" position="0,0" size="240,80">
-		<widget source="parent.Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="240,40" font="FdLcD;35" halign="center" valign="top" />
-		<widget source="parent.summary_description" render="Label" position="0,40" size="240,40" font="FdLcD;30" halign="center" valign="center"  />
-	</screen>
-	
+			
 <!-- Quickmenü -->
 	<screen name="QuickMenuSummary" position="0,0" size="240,80">
 		<widget source="parent.Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="240,40" font="FdLcD;35" halign="center" valign="top" />

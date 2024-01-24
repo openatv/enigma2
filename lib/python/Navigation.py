@@ -42,6 +42,7 @@ class Navigation:
 		Screens.Standby.TVstate()
 		self.skipWakeup = False
 		self.skipTVWakeup = False
+		self.firstStart = True
 
 		self.RecordTimer = None
 		self.isRecordTimerImageStandard = False
@@ -357,7 +358,7 @@ class Navigation:
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 				#self.skipServiceReferenceReset = True
 
-				if config.misc.softcam_streamrelay_delay.value and self.isCurrentServiceStreamRelay:
+				if (config.misc.softcam_streamrelay_delay.value and self.isCurrentServiceStreamRelay) or (self.firstStart and isStreamRelay):
 					self.skipServiceReferenceReset = False
 					self.isCurrentServiceStreamRelay = False
 					self.currentlyPlayingServiceReference = None
@@ -365,7 +366,9 @@ class Navigation:
 					print("[Navigation] Streamrelay was active -> delay the zap till tuner is freed")
 					self.retryServicePlayTimer = eTimer()
 					self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
-					self.retryServicePlayTimer.start(config.misc.softcam_streamrelay_delay.value, True)
+					delay = 2000 if self.firstStart else config.misc.softcam_streamrelay_delay.value
+					self.firstStart = False
+					self.retryServicePlayTimer.start(delay, True)
 					return 0
 				elif self.pnav.playService(playref):
 					print("[Navigation] Failed to start", playref.toString())

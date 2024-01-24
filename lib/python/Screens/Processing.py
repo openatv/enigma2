@@ -7,7 +7,7 @@ from Screens.Screen import Screen
 
 class ProcessingScreen(Screen):
 	skin = """
-	<screen name="Processing" title="Processing" position="center,center" size="600,60" zPosition="+99">
+	<screen name="Processing" title="Processing" position="center,center" size="600,60" zPosition="+99" resolution="1280,720">
 		<widget name="progress" position="0,0" size="e,25" />
 		<widget name="description" position="0,35" size="e,25" font="Regular;20" halign="center" />
 	</screen>"""

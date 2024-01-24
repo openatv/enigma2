@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1140,10 +1140,6 @@ msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
 #, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr ""
-
-#, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
@@ -1166,10 +1162,6 @@ msgstr "%s %s infrapuna hiir"
 #, python-format
 msgid "%s %s remote control (native)"
 msgstr "%s %s pult (algupärane)"
-
-#, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s ( %s kaarti )"
 
 #, python-format
 msgid "%s (%04o)"
@@ -1300,9 +1292,6 @@ msgstr "'Dekodeeri ja salvesta ecm' annab võimaluse salvestuse hilisemaks dekod
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' ei ole paigaldatud!"
 
-msgid "( All readers)"
-msgstr "( Kõik kaardipesad)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
@@ -1316,9 +1305,6 @@ msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr " (Raadio)"
-
-msgid "(Show only reader:"
-msgstr "(Näita ainult kaardipesa:"
 
 msgid "(TV)"
 msgstr "(TV)"
@@ -1582,11 +1568,11 @@ msgstr "<Viimase taimeri asukoht>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found>"
+msgstr ""
+
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1655,6 +1641,13 @@ msgid ""
 msgstr ""
 "Algas salvestamine:\n"
 "%s"
+
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Toimub salvestamine.\n"
+"Mida tuleks teha?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Toimub salvestamine. Enne ajami häälestamist peata salvestamine."
@@ -1739,15 +1732,6 @@ msgstr "AC3+ transkodeerimine"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr ""
-
-msgid "AFP Settings"
-msgstr "AFP seaded"
 
 msgid "ARM"
 msgstr ""
@@ -2070,9 +2054,6 @@ msgstr "Ajami lisavalikud lubavad sisestada andmeid mootori spetsifikatsioonileh
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Ajami lisavalikud lubavad sisestada andmeid mootori spetsifikatsioonilehelt, et enigma saaks arvutada ühelt satelliidilt teisele liigutamise aja."
-
-msgid "Address"
-msgstr "Aadress"
 
 msgid "Adjust 3D settings"
 msgstr "Kohanda 3D seadeid"
@@ -2644,9 +2625,6 @@ msgstr "Helitugevuse sammu suurus kiirrežiimis"
 msgid "Australia"
 msgstr "Austraalia"
 
-msgid "Australian"
-msgstr "Austraalia"
-
 msgid "Austria"
 msgstr "Austria"
 
@@ -2719,6 +2697,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 #
 msgid "AutoMountManager"
 msgstr "Automaatne haakimine"
@@ -2758,6 +2739,9 @@ msgstr "Väliste subtiitrite automaatne käivitamine"
 
 msgid "Automatically update Client/Server View"
 msgstr "Uuenda kliendi/serveri vaade automaatselt"
+
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
 
 msgid "Autostart"
 msgstr "Autostart"
@@ -3029,9 +3013,6 @@ msgstr "Valgevene"
 msgid "Belarusian"
 msgstr "Valgevene"
 
-msgid "Belgian"
-msgstr "Belgia"
-
 msgid "Belgium"
 msgstr "Belgia"
 
@@ -3302,6 +3283,9 @@ msgstr "Nuppude seaded"
 msgid "Button error timeout"
 msgstr ""
 
+msgid "ButtonSetup"
+msgstr "Nuppude seadistus"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3326,12 +3310,6 @@ msgstr "CH"
 
 msgid "C-Band"
 msgstr "C-sagedusala"
-
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
 
 msgid "CCD-Width"
 msgstr ""
@@ -3432,9 +3410,6 @@ msgstr "CI pesa: "
 
 msgid "CI+ Helper*"
 msgstr ""
-
-msgid "CIFS/Samba Settings"
-msgstr "CIFS/Samba seaded"
 
 msgid "CPU"
 msgstr "CPU"
@@ -3681,10 +3656,13 @@ msgstr "Kanalivalik"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kanalivalik"
 
-msgid "Cancel the service selection"
+msgid "Cancel the selection and exit"
 msgstr ""
 
-msgid "Cancel the service zap"
+msgid "Cancel the service history zap"
+msgstr ""
+
+msgid "Cancel the service selection"
 msgstr ""
 
 msgid "Cancel the slot selection and exit"
@@ -3725,12 +3703,6 @@ msgstr ""
 #, fuzzy
 msgid "Cape Verde"
 msgstr "Roheneemesaared"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Kaardi info (CCcam)"
-
-msgid "Cards:"
-msgstr "Kaardid:"
 
 msgid "Cards: "
 msgstr "Kaardid: "
@@ -4026,6 +3998,18 @@ msgstr "Kiibistik: BCM%s"
 msgid "Choice Box"
 msgstr "Valikukast"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Vali \"%s\" asukoht"
@@ -4046,6 +4030,12 @@ msgid "Choose how much EPG history, if any, to keep in the EPG cache. This histo
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
+msgstr ""
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
 msgstr ""
 
 msgid "Choose the amount of additional slots."
@@ -4135,6 +4125,9 @@ msgstr "Vali seadistatav tuuner."
 msgid "Christmas Island"
 msgstr "Jõulusaar"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr ""
 
@@ -4203,12 +4196,14 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Vajuta puldi nupule, mille toimet soovid muuta"
 
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Kliendi info (Oscam: %s )"
+msgid "Client"
+msgstr ""
 
 msgid "Client is streaming from this box!"
 msgstr ""
+
+msgid "ClientIP"
+msgstr "Kliendi IP"
 
 msgid "Clients"
 msgstr "Kliendid"
@@ -4371,6 +4366,9 @@ msgstr ""
 msgid "Common Setup Actions"
 msgstr "Tegevus alglaadimisel"
 
+msgid "Comodo Secure DNS"
+msgstr ""
+
 msgid "Comoros"
 msgstr "Komoori saared"
 
@@ -4400,9 +4398,6 @@ msgstr "Seadistamine"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Seadistusfail %s talletati."
-
-msgid "Config file name (ok to change):"
-msgstr "Seadistusfaili nimi (muutmiseks vajuta OK):"
 
 #, fuzzy
 msgctxt "Abbreviation of 'Configurable'"
@@ -4801,6 +4796,9 @@ msgstr "See valik määrab, millist ühenduspesa videoväljund kasutab."
 msgid "Configuring"
 msgstr "Seadistamine"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5044,11 +5042,11 @@ msgid "Could not open the file %s!"
 msgstr "Faili %s avamine nurjus!"
 
 #, python-format
-msgid "Could not record due to conflicting timer: %s"
+msgid "Could not record due to conflicting timer:%s"
 msgstr "Salvestamine nurjus. Vastuolus taimer %s"
 
 #, python-format
-msgid "Could not record due to invalid service: %s"
+msgid "Could not record due to invalid service:%s"
 msgstr "Salvestamine nurjus. Kehtetu kanal %s"
 
 #, python-format
@@ -5153,6 +5151,9 @@ msgstr "Horvaatia"
 
 msgid "Croatian"
 msgstr "Horvaadi"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Cron haldur"
@@ -5309,9 +5310,6 @@ msgstr "Tšehhi"
 msgid "Czech Republic"
 msgstr "Kesk Aafrika Vabariik"
 
-msgid "Czechia"
-msgstr "Tšehhi"
-
 #, fuzzy
 msgid "D"
 msgstr "SD"
@@ -5338,6 +5336,12 @@ msgid "DNS Settings"
 msgstr ""
 
 msgid "DNS data source"
+msgstr ""
+
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
 msgstr ""
 
 msgid ""
@@ -5426,6 +5430,9 @@ msgid "Date"
 msgstr "Kuupäev"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date Time Input Actions"
 msgstr ""
 
 msgid "Date ascending"
@@ -5713,6 +5720,9 @@ msgid "Define Softcam For This Service"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Defined / Active"
@@ -6388,13 +6398,6 @@ msgid "Do you want the upgrade guide?"
 msgstr ""
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Kas paigaldada ka samba klient?\n"
-"Siis saab haakida ka windowsi jaod."
-
-msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
@@ -6467,6 +6470,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Kas taaskäivitada %s %s?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -6642,15 +6648,6 @@ msgstr " "
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr "ECM statistika"
-
-msgid "ECM Time"
-msgstr "ECM aeg"
-
-msgid "ECM avg"
-msgstr "ECM keskmine"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM andmed kaasatakse voogudesse. Nii saab klientvastuvõtja selle dekodeerida."
 
@@ -6660,12 +6657,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr "ECM viimane"
-
-msgid "ECM-Time"
-msgstr "ECM aeg"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
@@ -6686,6 +6677,9 @@ msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Jump"
 msgstr ""
 
 msgid "EPG Navigation Actions"
@@ -7947,12 +7941,6 @@ msgstr "Vabakanal"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr ""
-
-msgid "FTP Settings"
-msgstr "FTP seaded"
-
 msgid "Factory Reset"
 msgstr ""
 
@@ -8349,6 +8337,9 @@ msgstr ""
 #, fuzzy
 msgid "Football"
 msgstr "jalgpall"
+
+msgid "For how many minutes do you want to record?"
+msgstr "Mitu minutit soovid salvestada?"
 
 msgid "Force AC3plus"
 msgstr "Sunnitud AC3+"
@@ -9064,6 +9055,9 @@ msgstr "Peida lapselukuga kanalid"
 msgid "Hide player"
 msgstr "Peida mängija"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "Luba inforiba hajumine"
@@ -9154,9 +9148,6 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-msgid "Hops"
-msgstr ""
-
 msgid "Hops:"
 msgstr "Hops:"
 
@@ -9191,6 +9182,9 @@ msgstr "Masinanimi: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Kiirnupud"
+
 #
 msgid "Hotkey Settings"
 msgstr "Kiirnuppude seadistus"
@@ -9203,9 +9197,6 @@ msgstr "Tundi minutit"
 
 msgid "Hours Minutes Seconds"
 msgstr "Tundi minutit sekundit"
-
-msgid "How many minutes do you want to record?"
-msgstr "Mitu minutit soovid salvestada?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9283,7 +9274,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPK paigaldamine"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -9544,15 +9541,6 @@ msgstr "Väljas"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr "Inadyn logi"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr "Inadyn seaded"
 
@@ -9740,9 +9728,6 @@ msgstr "Sisendvoo ID"
 msgid "Input channel name."
 msgstr "Sisesta  kanali nimi."
 
-msgid "Input config file name:"
-msgstr "Sisesta seadistusfaili nimi:"
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -9796,6 +9781,9 @@ msgstr ""
 msgid "Installation finished."
 msgstr "Paigaldamine lõppenud."
 
+msgid "Installed"
+msgstr ""
+
 msgid "Installing"
 msgstr "Paigaldamine"
 
@@ -9830,6 +9818,9 @@ msgid "Installing plugins from feed ..."
 msgstr "Pluginate paigaldamine."
 
 msgid "Instant Recording Actions"
+msgstr ""
+
+msgid "Instant Recording End Time"
 msgstr ""
 
 msgid "Instant record"
@@ -9921,9 +9912,6 @@ msgstr "Pöörab ümber nuppude toimingud."
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran, Islamic Republic"
-msgstr "Iraan"
-
 #, fuzzy
 msgid "Iran, Islamic Republic of"
 msgstr "Iraan"
@@ -9989,14 +9977,32 @@ msgstr "Töövaade"
 msgid "Jordan"
 msgstr "Jordaania"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "Hüpe 24 tundi tagasi"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Valik esimesel nupuvajutusel"
 
 msgid "Jump forward 24 hours"
 msgstr "Hüpe 24 tundi edasi"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Hüpe nimekirja algusesse"
@@ -10274,9 +10280,6 @@ msgstr "Laos"
 
 msgid "Large"
 msgstr ""
-
-msgid "Last Request"
-msgstr "Viimane päring"
 
 msgid "Last config"
 msgstr "Viimane seadistus"
@@ -11074,21 +11077,12 @@ msgstr "Keskel"
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Mini Series"
 msgstr "Kõik kanalid"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA logi"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA seaded"
@@ -11211,6 +11205,12 @@ msgstr "Maroko"
 msgid "Mosquito noise reduction"
 msgstr "Moskiitomüra vähendamine"
 
+msgid "Most recent first"
+msgstr ""
+
+msgid "Most recent last"
+msgstr ""
+
 #, fuzzy
 msgid "Motor Sport"
 msgstr "motosport"
@@ -11224,11 +11224,11 @@ msgstr "Ajami pööramise aegumine"
 msgid "Mount"
 msgstr "Haagi"
 
-msgid "Mount Actions"
-msgstr ""
-
 msgid "Mount Manager"
 msgstr "Haakepunktid"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11351,6 +11351,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11642,12 +11648,6 @@ msgstr "JÄRGMINE"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr ""
-
-msgid "NFS Settings"
-msgstr "NFS seaded"
-
 msgid "NIM"
 msgstr ""
 
@@ -11781,6 +11781,9 @@ msgstr ""
 msgid "Network Interface"
 msgstr "Võrguliides"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -11804,6 +11807,9 @@ msgstr "Võrguteenused"
 
 msgid "Network Settings"
 msgstr "Võrgu häälestamine"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "Võrguühenduse test"
@@ -11842,6 +11848,9 @@ msgstr "Võrgu nimi (SSID)"
 
 msgid "Network scan"
 msgstr "Võrguotsing"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Võrgu testimine"
@@ -12063,6 +12072,9 @@ msgstr "Vaba tuuner puudub!"
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Asukoha vastet ei leitud"
 
@@ -12242,7 +12254,10 @@ msgstr ""
 msgid "None"
 msgstr "Pole"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12413,6 +12428,27 @@ msgstr "OK nupu vajutus"
 msgid "OK, guide me through the upgrade process"
 msgstr "Jah, õpeta uuendamisel"
 
+msgid "OSCam Info"
+msgstr "OScam info"
+
+msgid "OSCam Information"
+msgstr "Oscam info"
+
+msgid "OSCam Information Settings"
+msgstr ""
+
+msgid "OSCam webif disabled"
+msgstr "oscam veebiliides keelatud"
+
+msgid "OSCamInfo Actions"
+msgstr ""
+
+msgid "OSCamInfo Log"
+msgstr ""
+
+msgid "OSCamInfo Log Actions"
+msgstr ""
+
 msgid "OSD"
 msgstr "Ekraanigraafika"
 
@@ -12434,15 +12470,6 @@ msgstr "Ekraanigraafika seadistamine"
 
 msgid "OSD name request"
 msgstr "OSD nime päring"
-
-msgid "OScam Info"
-msgstr "OScam info"
-
-msgid "OScam Information"
-msgstr "Oscam info"
-
-msgid "OScam webif disabled"
-msgstr "oscam veebiliides keelatud"
 
 msgid "OTT Model"
 msgstr ""
@@ -12545,7 +12572,13 @@ msgstr "EPG otsing."
 msgid "Open IMDb"
 msgstr "IMDB."
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -12633,17 +12666,8 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr "OpenVPN seaded"
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "OpenVpn logi"
 
 #, fuzzy
 msgid "Operating LED status in deep standby mode"
@@ -12697,18 +12721,8 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info - Main Menu"
-msgstr "Oscam info - peamenüü"
-
-msgid "Oscam Info Settings"
-msgstr "Oscam info - seadistus"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam logi (Oscam: %s )"
-
-msgid "OscamInfo Mainmenu"
-msgstr "Oscam info peamenüü"
+msgid "Oscam Information"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr ""
@@ -12822,9 +12836,6 @@ msgstr "PC"
 msgid "PGS file"
 msgstr "EPG faili nimi"
 
-msgid "PID"
-msgstr "PID"
-
 msgid "PIN code needed"
 msgstr "Vajalik on PIN-kood"
 
@@ -12843,6 +12854,9 @@ msgstr "PLS režiim"
 
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PPanel"
+msgstr "PPanel"
 
 msgid "PRIMETIME"
 msgstr "TIPPAEG"
@@ -12917,6 +12931,9 @@ msgid "Panama"
 msgstr "Panama"
 
 msgid "Panic channel"
+msgstr "Paanikanupu kanal"
+
+msgid "Panic to"
 msgstr "Paanikanupu kanal"
 
 msgid "Panjabi / Punjabi"
@@ -13225,20 +13242,11 @@ msgstr "Lisa failid kogumikku."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Varu kannatust, algab varundamine.\n"
 
-msgid "Please change recording endtime"
-msgstr "Muuda salvestuse lõpuaega"
-
 msgid "Please check the manual of the receiver"
 msgstr "Uuri vastuvõtja käsiraamatut"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Vali CCcam-lugeja"
-
 msgid "Please choose an extension..."
 msgstr "Vali laiendus"
-
-msgid "Please choose reader"
-msgstr "Vali kaardipesa"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Ära muuda ühtegi väärtust, kui sa pole kindel selles, mida teed!"
@@ -13429,6 +13437,9 @@ msgid "Please wait while scanning is in progress..."
 msgstr "Oota otsingu lõppemist."
 
 msgid "Please wait while the data is extracted..."
+msgstr ""
+
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
 # EPG
@@ -13674,6 +13685,12 @@ msgstr "Eelista AC3 heliriba"
 
 msgid "Prefer AC3+ track"
 msgstr "Eelista AC3+ heliriba"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Eelista käsitsi määratud heliriba"
@@ -14020,9 +14037,6 @@ msgstr "Levitajad"
 msgid "Providers:"
 msgstr "Levitajad:"
 
-msgid "Providers: "
-msgstr "Levitajad: "
-
 msgid "Proxy detected"
 msgstr ""
 
@@ -14088,6 +14102,12 @@ msgid "Quad PiP is not available."
 msgstr "Quad PiP ei ole saadaval."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -14219,23 +14239,12 @@ msgstr "Loe kasutaja andmeid oscam.conf failist"
 msgid "Reader"
 msgstr "Kaardipesa"
 
-msgid "Reader Statistics"
-msgstr "Kaardipesa statistika"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Kas paigaldada \"%s\"?"
 
 #, python-format
-msgid "Ready to install '%s'?"
-msgstr "Kas paigaldada \"%s\"?"
-
-#, python-format
 msgid "Ready to remove \"%s\" ?"
-msgstr "Kas eemaldada \"%s\"?"
-
-#, python-format
-msgid "Ready to remove '%s'?"
 msgstr "Kas eemaldada \"%s\"?"
 
 msgid "Real Life"
@@ -14354,7 +14363,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Salvestamine algas! Ajanihe peatatakse..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer: %s"
+msgid "Record time limited due to conflicting timer:%s"
 msgstr "Salvestusaeg on piiratud teise taimeri %s tõttu"
 
 msgid "Record write error (no space on disk?)"
@@ -14861,6 +14870,9 @@ msgstr "Lähtesta ja nummerda pealkirjad uuesti"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14873,14 +14885,14 @@ msgstr "Lähtesta taasesituskoht"
 msgid "Reset sort order"
 msgstr ""
 
+msgid "Reset the order of the entries"
+msgstr ""
+
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Kas taastada pildiparanduste vaikeväärtused?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Kas taastada pildiparanduste viimati kasutatud seaded?"
-
-msgid "Reshare"
-msgstr "Jaga edasi"
 
 msgid "Reshare:"
 msgstr "Jaga edasi:"
@@ -15178,9 +15190,6 @@ msgstr "Réunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd seaded"
 
@@ -15192,13 +15201,6 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr ""
-
-msgid "SATPI Setting Actions"
-msgstr ""
-
-#, fuzzy
-msgid "SATPI Settings"
-msgstr "AFP seaded"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC optimeeritud otsingu vahemik"
@@ -15245,6 +15247,9 @@ msgstr "Tavaline fail"
 msgid "SSA file"
 msgstr ""
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -15277,17 +15282,11 @@ msgstr "Saint Pierre ja Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent ja Grenadiinid"
 
-msgid "Samba"
-msgstr "Samba"
-
-msgid "Samba Actions"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Log"
-msgstr "Samba logi"
-
-msgid "Samba Setup"
-msgstr "Samba seaded"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "Võrdne seiskamisajaga"
@@ -15751,6 +15750,9 @@ msgstr ""
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
 
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
+
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
 msgstr "Määra 'jah', kaasamaks otsingusse %s multipleksid."
@@ -15899,6 +15901,9 @@ msgstr "Vali CAId"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Vali Enigma2 kujundus"
 
@@ -15935,6 +15940,12 @@ msgstr "Vali Quad PiP kanalid"
 
 msgid "Select Satellites"
 msgstr "Vali satelliidid"
+
+msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr ""
@@ -16170,6 +16181,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -16205,6 +16220,10 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
+#, python-format
+msgid "Select the action for '%s'"
+msgstr ""
+
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
@@ -16225,6 +16244,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -16281,6 +16303,9 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the display sequence of previously visited services."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -16327,6 +16352,9 @@ msgstr "Vali SCR seadme tootja. Kui tootjat nimekirjas ei ole, määra 'SCR' vä
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Vali ekraanilahutuse ja ekraanipuhvri taastamise meetod teletekstist väljumisel."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vali unicable seadme mudeli number. Kui seda nimekirjas ei ole, määra 'SCR' väärtuseks 'kasutaja määratud' ja sisesta seadme parameetrid käsitsi vastavalt selle spetsifikatsioonile."
@@ -16421,6 +16449,12 @@ msgid "Select the time delay before the button starts repeating."
 msgstr ""
 
 msgid "Select the time delay between each repeat of the button."
+msgstr ""
+
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
 msgstr ""
 
 msgid "Select the time when this timer should end."
@@ -16628,18 +16662,8 @@ msgstr "Serbia"
 msgid "Serial No"
 msgstr "Seerianumber"
 
-msgid "Serv.Name"
-msgstr "Kanali nimi"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Serveri info (Oscam: %s )"
-
 msgid "Server down"
 msgstr "Server on maas"
-
-msgid "Server:"
-msgstr "Server:"
 
 msgid "Servers"
 msgstr "Serverid"
@@ -16828,6 +16852,9 @@ msgstr ""
 msgid "Set Scaling governor"
 msgstr ""
 
+msgid "Set Time"
+msgstr ""
+
 msgid "Set action for 'Info' key"
 msgstr "'Info' nupu vajutus"
 
@@ -17011,9 +17038,6 @@ msgstr "Seadistamine"
 msgid "Setup - %s"
 msgstr "%s seadistamine"
 
-msgid "Setup AFP"
-msgstr "AFP seaded"
-
 msgid "Setup Audio Sync"
 msgstr "Muuda heli viiteaega"
 
@@ -17026,9 +17050,6 @@ msgstr "Seadista helirežiim"
 # Quick Menue
 msgid "Setup Enigma2"
 msgstr "Enigma2 seadistamine"
-
-msgid "Setup FTP"
-msgstr "FTP seaded"
 
 msgid "Setup Harddisk"
 msgstr "Seadista kõvaketas"
@@ -17045,17 +17066,11 @@ msgstr "MiniDLNA seaded"
 msgid "Setup Mounts"
 msgstr "Seadista haakepunktid"
 
-msgid "Setup NFS"
-msgstr "NFS seaded"
-
 msgid "Setup Network Services"
 msgstr "Seadista võrguteenused"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Seadista võrguteenused (Samba, Ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "OpenVPN seaded"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -17065,19 +17080,6 @@ msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Halda pluginaid"
-
-msgid "Setup SABnzbd"
-msgstr "SABnzbd seaded"
-
-#, fuzzy
-msgid "Setup SATPI"
-msgstr "AFP seaded"
-
-msgid "Setup Samba"
-msgstr "Samba seaded"
-
-msgid "Setup Telnet"
-msgstr "Telneti seaded"
 
 msgid "Setup Tuner"
 msgstr "Seadista tuuner"
@@ -17200,9 +17202,6 @@ msgstr "Seadista satelliidivarustus"
 msgid "Seychelles"
 msgstr "Seišellid"
 
-msgid "Share Folders"
-msgstr "Jagatud kataloogid"
-
 msgid "Share View"
 msgstr "Jao vaade"
 
@@ -17211,6 +17210,12 @@ msgstr "Jaod"
 
 msgid "Sharpness"
 msgstr "Teravus"
+
+msgid "ShellInABox"
+msgstr ""
+
+msgid "Shellscript"
+msgstr "Skript"
 
 msgid "Shift"
 msgstr ""
@@ -17242,9 +17247,6 @@ msgstr "Kas lähtestada krahhiloendur taaskäivituse vältimiseks?"
 #, fuzzy
 msgid "Show"
 msgstr "Kuva EPG"
-
-msgid "Show /tmp/ecm.info"
-msgstr "Kuva /tmp/ecm.info"
 
 msgid "Show 1080p 24fps as"
 msgstr "1080p 24fps kuvamine"
@@ -17306,9 +17308,6 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "Kuva CI teated"
-
-msgid "Show Clients"
-msgstr "Kuva kliendid"
 
 msgid "Show Default Backup Files"
 msgstr "Vaikimisi varundatavad failid"
@@ -17415,7 +17414,7 @@ msgstr "Filmilist"
 msgid "Show Multi EPG"
 msgstr "MultiEPG"
 
-msgid "Show OScam Info"
+msgid "Show OSCam Information"
 msgstr ""
 
 msgid "Show OScam/CCcam in Extension Menu"
@@ -17447,9 +17446,6 @@ msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "RFmod seadistused"
-
-msgid "Show Readers/Proxies"
-msgstr "Kuva kaardilugejad/puhverserverid"
 
 msgid "Show Record Movies"
 msgstr "Kuva salvestised"
@@ -17877,7 +17873,7 @@ msgstr "Kuva EIT nüüd/järgmine inforibal"
 msgid "Show the Logs Settings screen"
 msgstr ""
 
-msgid "Show the OScamInfo Screen"
+msgid "Show the OSCam information screen"
 msgstr ""
 
 #, fuzzy
@@ -18499,9 +18495,6 @@ msgstr "Vaikejärjestus"
 msgid "Sort list by"
 msgstr "Järjestuse aluseks"
 
-msgid "Sort list to default and exit?"
-msgstr "Kas taastada vaikejärjestus ja väljuda?"
-
 msgid "Sort list:"
 msgstr "Järjesta nimekiri:"
 
@@ -18662,6 +18655,9 @@ msgstr "Käivitumine"
 
 msgid "Start offline decode"
 msgstr "Käivita võrguta dekodeerimine"
+
+msgid "Start or Stop service"
+msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
@@ -19431,17 +19427,11 @@ msgstr "Teletekst: subtiitrite värv"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr "Telneti kasutajaliides"
 
 msgid "Telnet Port"
 msgstr "Telneti port"
-
-msgid "Telnet Settings"
-msgstr "Telneti seaded"
 
 msgid "Telugu"
 msgstr ""
@@ -20307,9 +20297,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr "Ajanihke seaded"
 
-msgid "Time Update in Minutes:"
-msgstr "Kellaaja uuendamine (min):"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20629,9 +20616,6 @@ msgstr "üles"
 msgid "Top and Bottom"
 msgstr "Üleval ja all"
 
-msgid "Total"
-msgstr "Kokku"
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -20665,6 +20649,9 @@ msgstr "Rada"
 
 msgid "Traditional Chinese"
 msgstr "Traditsiooniline Hiina"
+
+msgid "Transcode"
+msgstr "Transkodeeri"
 
 msgid "Transcoding"
 msgstr ""
@@ -21013,6 +21000,10 @@ msgstr "Määratlemata"
 msgid "Unencrypted"
 msgstr "Koodivaba"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 #
 msgid "UnhandledKey"
 msgstr "Käsitlematu võti"
@@ -21032,14 +21023,14 @@ msgstr "Unicable LNB"
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
 
+msgid "Uninstall"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr "Araabia Ühendemiraadid"
 
 msgid "United Kingdom"
 msgstr "Ühendkuningriik"
-
-msgid "United States"
-msgstr "Ameerika Ühendriigid"
 
 msgid "United States Minor Outlying Islands"
 msgstr "Ühendriikide hajasaared"
@@ -21182,9 +21173,6 @@ msgstr "Uuendamine nurjus!"
 
 msgid "Update finished!"
 msgstr "Uuendamine tehtud!"
-
-msgid "Update interval (in seconds)"
-msgstr "Uuendamise vahemik (sekundites)"
 
 msgid ""
 "Update succeeded!\n"
@@ -21588,9 +21576,6 @@ msgstr ""
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -22055,18 +22040,6 @@ msgstr "Vaata salvestisi."
 #, fuzzy
 msgid "Watch recordings"
 msgstr "Vaata salvestisi."
-
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Vastuvõtjal tekkis tarkvaraline probleem ja vajalik on taaskäivitus.\n"
-"Saada logifail %senigma2_crash_xxxxxx.log aadressile www.opena.tv.\n"
-"Vastuvõtja taaskäivitub  10 sekundi pärast!\n"
-"Komponent: enigma2"
 
 #, fuzzy
 msgid "Weather"
@@ -22746,14 +22719,6 @@ msgstr "%s %s taaskäivitub"
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"Pärast teenuse paigaldamist %s %s taaskäivitub\n"
-"Kas paigaldada \"%s\"?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22769,18 +22734,6 @@ msgid ""
 msgstr ""
 "%s %s taaskäivitub pärast teenuse eemaldamist\n"
 "Kas eemaldada kohe?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -22921,11 +22874,17 @@ msgstr "Kanalivahetus peaekraanil"
 msgid "Zap focused channel on full screen"
 msgstr "Ava valitud kanal täisekraanil"
 
+msgid "Zap history sequence"
+msgstr ""
+
 msgid "Zap mode"
 msgstr "Kanalivahetus"
 
 msgid "Zap next"
 msgstr "Kanalivahetus 'järgmine'"
+
+msgid "Zap to"
+msgstr "Mine kanalile"
 
 msgid "Zap to channel (setup in menu)"
 msgstr "Mine kanalile (seadistamine menüüs)"
@@ -23289,12 +23248,6 @@ msgstr "Teosta lõikamine (vajalik MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "Välju DVD-mängijast või naase failisirvijasse"
 
-msgid "exit mounts setup menu"
-msgstr "Välju haakimise menüüst"
-
-msgid "exit networkadapter setup menu"
-msgstr "Välju võrgukaardi seadistusmenüüst"
-
 msgid "experimental film/video"
 msgstr "eksperimentaalne film/video"
 
@@ -23533,18 +23486,6 @@ msgstr "autondus"
 msgid "move"
 msgstr "Liiguta"
 
-msgid "move down to last entry"
-msgstr "Liigu viimasele reale"
-
-msgid "move down to next entry"
-msgstr "Liigu järgmisele reale"
-
-msgid "move up to first entry"
-msgstr "Liigu esimesele reale"
-
-msgid "move up to previous entry"
-msgstr "Liigu eelmisele reale"
-
 #, fuzzy
 msgid "movie (general)"
 msgstr "film/draama"
@@ -23781,9 +23722,6 @@ msgstr "EPG otsing"
 msgid "select CAId's"
 msgstr "Vali CAIDid"
 
-msgid "select menu entry"
-msgstr "Vali menüüpunkt"
-
 msgid "serious music/classic music"
 msgstr "süvamuusika/klassikaline muusika"
 
@@ -23988,12 +23926,6 @@ msgstr "Turbo"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr "uShare logi"
-
 msgid "uShare Name"
 msgstr "uShare nimi"
 
@@ -24001,9 +23933,6 @@ msgid "uShare Port"
 msgstr "uShare port"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -24096,18 +24025,310 @@ msgstr "Jah (säilita fiidid)"
 msgid "®"
 msgstr ""
 
+msgid "Preferred tuner DVB-S"
+msgstr "Eelistatud DVB-S tuuner"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Eelistatud DVB-S tuuner salvestusteks"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Eelistatud DVB-T tuuner"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Eelistatud DVB-T tuuner salvestusteks"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Eelistatud DVB-C tuuner"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Eelistatud DVB-C tuuner salvestusteks"
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Määrates 'jah' on see seadistus eelistatum kui 'Eelistatud tuuner'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Määrates 'jah' on see seadistus eelistatum kui 'Eelistatud tuuner salvestamiseks'."
+
+msgid "Preferred tuner ATSC"
+msgstr "Eelistatud ATSC tuuner"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Eelistatud ATSC tuuner salvestustele"
+
+#~ msgid "Australian"
+#~ msgstr "Austraalia"
+
+#~ msgid "Belgian"
+#~ msgstr "Belgia"
+
+#~ msgid "Czechia"
+#~ msgstr "Tšehhi"
+
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "Iraan"
+
+#~ msgid "United States"
+#~ msgstr "Ameerika Ühendriigid"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Kas taastada vaikejärjestus ja väljuda?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "Välju haakimise menüüst"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "Välju võrgukaardi seadistusmenüüst"
+
+#~ msgid "move down to last entry"
+#~ msgstr "Liigu viimasele reale"
+
+#~ msgid "move down to next entry"
+#~ msgstr "Liigu järgmisele reale"
+
+#~ msgid "move up to first entry"
+#~ msgstr "Liigu esimesele reale"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "Liigu eelmisele reale"
+
+#~ msgid "select menu entry"
+#~ msgstr "Vali menüüpunkt"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "CIFS/Samba seaded"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Seadistusfaili nimi (muutmiseks vajuta OK):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Kas paigaldada ka samba klient?\n"
+#~ "Siis saab haakida ka windowsi jaod."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP seaded"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn logi"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Sisesta seadistusfaili nimi:"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA logi"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS seaded"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "OpenVPN seaded"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn logi"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Kas eemaldada \"%s\"?"
+
+#, fuzzy
+#~ msgid "SATPI Settings"
+#~ msgstr "AFP seaded"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba logi"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba seaded"
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP seaded"
+
+#~ msgid "Setup NFS"
+#~ msgstr "NFS seaded"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "OpenVPN seaded"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "SABnzbd seaded"
+
+#, fuzzy
+#~ msgid "Setup SATPI"
+#~ msgstr "AFP seaded"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Samba seaded"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Telneti seaded"
+
+#~ msgid "Share Folders"
+#~ msgstr "Jagatud kataloogid"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telneti seaded"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Kellaaja uuendamine (min):"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "Pärast teenuse paigaldamist %s %s taaskäivitub\n"
+#~ "Kas paigaldada \"%s\"?"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare logi"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s ( %s kaarti )"
+
+#~ msgid "( All readers)"
+#~ msgstr "( Kõik kaardipesad)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Näita ainult kaardipesa:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "AFP seaded"
+
+#~ msgid "Address"
+#~ msgstr "Aadress"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Kaardi info (CCcam)"
+
+#~ msgid "Cards:"
+#~ msgstr "Kaardid:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Kliendi info (Oscam: %s )"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM statistika"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM aeg"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM keskmine"
+
+#~ msgid "ECM last"
+#~ msgstr "ECM viimane"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM aeg"
+
+#~ msgid "Last Request"
+#~ msgstr "Viimane päring"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Oscam info - peamenüü"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Oscam info - seadistus"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Oscam logi (Oscam: %s )"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "Oscam info peamenüü"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Vali CCcam-lugeja"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Vali kaardipesa"
+
+#~ msgid "Providers: "
+#~ msgstr "Levitajad: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Kaardipesa statistika"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Kas paigaldada \"%s\"?"
+
+#~ msgid "Reshare"
+#~ msgstr "Jaga edasi"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Kanali nimi"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Serveri info (Oscam: %s )"
+
+#~ msgid "Server:"
+#~ msgstr "Server:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "AFP seaded"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "Kuva /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "Kuva kliendid"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Kuva kaardilugejad/puhverserverid"
+
+#~ msgid "Total"
+#~ msgstr "Kokku"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Uuendamise vahemik (sekundites)"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Muuda salvestuse lõpuaega"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Vastuvõtjal tekkis tarkvaraline probleem ja vajalik on taaskäivitus.\n"
+#~ "Saada logifail %senigma2_crash_xxxxxx.log aadressile www.opena.tv.\n"
+#~ "Vastuvõtja taaskäivitub  10 sekundi pärast!\n"
+#~ "Komponent: enigma2"
+
 #~ msgid "+24"
 #~ msgstr "+24"
 
 #~ msgid "-24"
 #~ msgstr "-24"
-
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Toimub salvestamine.\n"
-#~ "Mida tuleks teha?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Lemmiknimekirjad"
@@ -24234,14 +24455,8 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "CIHelper seadistamine"
 
-#~ msgid "ClientIP"
-#~ msgstr "Kliendi IP"
-
 #~ msgid "Minute"
 #~ msgstr "minut"
-
-#~ msgid "Transcode"
-#~ msgstr "Transkodeeri"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -24260,9 +24475,6 @@ msgstr ""
 
 #~ msgid "Audio PID, codec & lang"
 #~ msgstr "Heli PID, koodek ja keel"
-
-#~ msgid "ButtonSetup"
-#~ msgstr "Nuppude seadistus"
 
 #, fuzzy
 #~ msgid "Constellation & FFT mode"
@@ -24284,9 +24496,6 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Polarisatsioon"
 
-#~ msgid "Hotkey"
-#~ msgstr "Kiirnupud"
-
 #, fuzzy
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Infoikooni laius"
@@ -24297,12 +24506,6 @@ msgstr ""
 
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Paanikanupu kanal"
 
 #, fuzzy
 #~ msgid "Service ID"
@@ -24324,9 +24527,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Saateinfo tähesuurus"
 
-#~ msgid "Shellscript"
-#~ msgstr "Skript"
-
 #, fuzzy
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Sümbolikiirus"
@@ -24345,9 +24545,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Tuner setting values"
 #~ msgstr "Tuuneri seaded"
-
-#~ msgid "Zap to"
-#~ msgstr "Mine kanalile"
 
 #, fuzzy
 #~ msgid "active"

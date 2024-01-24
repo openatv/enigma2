@@ -91,6 +91,7 @@ BoxInfo.setItem("InformationDistributionWelcome", welcome)
 class InformationBase(Screen, HelpableScreen):
 	skin = """
 	<screen name="Information" title="Information" position="center,center" size="1020,600" resolution="1280,720">
+		<widget name="Image" position="0,0" size="0,0" conditional="Image" />
 		<widget name="information" position="0,0" size="e,e-50" font="Regular;20" splitPosition="400" />
 		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
@@ -1222,6 +1223,7 @@ class NetworkInformation(InformationBase):
 class PictureInformation(Screen, HelpableScreen):
 	skin = """
 	<screen name="PictureInformation" title="Picture Information" position="center,center" size="950,560" resolution="1280,720">
+		<widget name="Image" position="0,0" size="0,0" conditional="Image" />
 		<widget name="name" position="0,0" size="e,25" font="Regular;20" halign="center" transparent="1" valign="center" />
 		<widget name="picture" position="0,35" size="e,e-85" alphatest="blend" scaleFlags="scaleCenter" transparent="1" />
 		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">

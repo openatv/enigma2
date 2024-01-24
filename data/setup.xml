@@ -148,7 +148,7 @@
 		</if>
 		<if requires="LCDMiniTV">
 			<item level="1" text="Show MiniTV in the Front Display" description="You can Display MiniTV with or without OSD Menu.">config.lcd.modeminitv</item>
-			<item level="1" text="Show PiP in the Front Display" description="You can Display PiP with or without OSD Menu.">config.lcd.modepip</item>
+			<item level="1" text="Show PiP in the Front Display" description="You can Display PiP with or without OSD Menu." requires="PIPAvailable">config.lcd.modepip</item>
 			<item level="1" text="Set Framerate for MiniTV" description="Lower Framerate saves CPU Time.">config.lcd.fpsminitv</item>
 		</if>
 		<if requires="LCDSKINSetup">
@@ -172,6 +172,8 @@
 		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 	</setup>
 	<setup key="DNS" title="DNS Settings">
+		<item level="0" text="DNS mode" description="Select the mode of the DNS.">config.usage.dnsMode</item>
+		<item level="0" text="DNS suffix" description="Define the DNS suffix.">config.usage.dnsSuffix</item>
 		<item level="0" text="DNS data source" description="Select the source of the default DNS settings.">config.usage.dns</item>
 	</setup>
 	<setup key="EPG" title="EPG Settings" level="2" showOpenWebif="1">
@@ -486,16 +488,16 @@
 		<item text="Nameserver" description="Configure the name server (DNS).">config.network.dns</item>
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
-	<setup key="OscamInfo" title="Oscam Info Settings">
-		<item level="0" text="Read Userdata from oscam.conf" description="Read Userdata from oscam.conf">config.oscaminfo.userdatafromconf</item>
-		<if conditional="not config.oscaminfo.userdatafromconf.value">
+	<setup key="OSCamInfoSetup" title="OSCam Information Settings">
+		<item level="0" text="Read Userdata from oscam.conf" description="Read Userdata from oscam.conf">config.oscaminfo.userDataFromConf</item>
+		<if conditional="not config.oscaminfo.userDataFromConf.value">
 			<item level="0" text="Username (httpuser)" description="Username (httpuser)">config.oscaminfo.username</item>
 			<item level="0" text="Password (httpwd)" description="Password (httpuser)">config.oscaminfo.password</item>
 			<item level="0" text="IP address" description="IP address">config.oscaminfo.ip</item>
 			<item level="0" text="Port" description="Port">config.oscaminfo.port</item>
 		</if>
-		<item level="0" text="Automatically update Client/Server View" description="Automatically update Client/Server View">config.oscaminfo.autoupdate</item>
-		<item level="0" text="Update interval (in seconds)" description="Update interval (in seconds)" conditional="config.oscaminfo.autoupdate.value">config.oscaminfo.intervall</item>
+		<item level="0" text="Automatically update Client/Server View" description="Automatically update Client/Server View">config.oscaminfo.autoUpdate</item>
+		<item level="0" text="Automatically update Log-Fullscreen View" description="Automatically update Log-Fullscreen View">config.oscaminfo.autoUpdateLog</item>
 	</setup>
 	<setup key="OSD3D" title="OSD 3D Settings" showOpenWebif="1">
 		<item level="0" text="3D Mode" description="This option lets you choose the 3D mode.">config.osd.threeDmode</item>
@@ -818,6 +820,16 @@
 	<setup key="Tuner" title="Tuner Settings" level="1">
 		<item level="1" text="Force LNB Power" description="Force LNB Tuner Power settings." requires="ForceLNBPowerChanged">config.tunermisc.forceLnbPower</item>
 		<item level="1" text="Force ToneBurst" description="Force LNB Tuner ToneBurst settings." requires="ForceToneBurstChanged">config.tunermisc.forceToneBurst</item>
+		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
+		<item level="2" text="Preferred tuner" description="Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
+		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen.">config.usage.recording_frontend_priority</item>
+		<item level="2" text="Preferred tuners for recordings, multiple selection allowed" description="In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available." conditional="config.usage.recording_frontend_priority.value in ('experimental_mode', 'expert_mode')">config.usage.recording_frontend_priority_multiselect</item>
+		<item level="2" text="Experimental: strict limitation to preferred tuners for recordings" description="Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel." conditional="config.usage.recording_frontend_priority.value == 'experimental_mode'">config.usage.recording_frontend_priority_strictly</item>
+		<item level="2" text="Disable background scanning" description="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
+		<item level="2" text="Ignore DVB-S namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork</item>
+		<item level="2" text="Ignore DVB-C namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_cable</item>
+		<item level="2" text="Ignore DVB-T namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_terrestrial</item>
+		<item level="1" text="Delivery system workaround" description="Workaround for old tuner driver." requires="need_dsw">config.usage.enable_delivery_system_workaround</item>
 	</setup>
 	<setup key="Usage" title="Customize System Settings" showOpenWebif="1">
 		<item level="0" text="Settings mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
@@ -838,25 +850,15 @@
 			<item level="1" text="Teletext TTFHeightFactor16 (TrueType letter height)" description="Configure the height of the TrueType font letters used for teletext.">config.usage.tuxtxt_TTFHeightFactor16</item>
 		</if>
 		<item level="1" text="Teletext CleanAlgo (resolution reset algorithm)" description="Select the method of restoring screen resolution and framebuffer when leaving teletext.">config.usage.tuxtxt_CleanAlgo</item>
-		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Configure which tuner type will be preferred, when the same service is available on different types of tuners.">config.usage.alternatives_priority</item>
 		<item level="2" text="Enable fallback remote receiver" description="Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001.">config.usage.remote_fallback_enabled</item>
 		<item level="2" text="Fallback remote receiver URL" description="URL of fallback remote receiver.">config.usage.remote_fallback</item>
-		<item level="2" text="Preferred tuner" description="Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
-		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen.">config.usage.recording_frontend_priority</item>
-		<item level="2" text="Preferred tuners for recordings, multiple selection allowed" description="In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available." conditional="config.usage.recording_frontend_priority.value in ('experimental_mode', 'expert_mode')">config.usage.recording_frontend_priority_multiselect</item>
-		<item level="2" text="Experimental: strict limitation to preferred tuners for recordings" description="Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel." conditional="config.usage.recording_frontend_priority.value == 'experimental_mode'">config.usage.recording_frontend_priority_strictly</item>
-		<item level="2" text="Disable background scanning" description="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
 		<item level="2" text="Include ECM in http streams" description="ECM data will be included in the stream. This enables a client receiver to decode it.">config.streaming.stream_ecm</item>
 		<item level="2" text="Unscramble http streams" description="Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
 		<item level="2" text="Unscramble receiving http streams" description="When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting.">config.streaming.descramble_client</item>
 		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
 		<item level="2" text="Http(s) stream start delay" description="Define additional delay in milliseconds before start of http(s) streams.">config.usage.http_startdelay</item>
 		<item level="2" text="Load unlinked user bouquets" description="Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages.">config.misc.load_unlinked_userbouquets</item>
-		<item level="2" text="Ignore DVB-S namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork</item>
-		<item level="2" text="Ignore DVB-C namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_cable</item>
-		<item level="2" text="Ignore DVB-T namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_terrestrial</item>
-		<item level="1" text="Delivery system workaround" description="Workaround for old tuner driver." requires="need_dsw">config.usage.enable_delivery_system_workaround</item>
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
 		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
 		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto standby.">config.usage.boot_action</item>
@@ -913,9 +915,11 @@
 		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_osd</item>
 		<item level="0" text="Show subservices *" description="This option allows you choose the option for subservice indicator or selection.">config.usage.show_infobar_subservices</item>
 		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
+		<item level="0" text="Zap history sequence" description="Select the display sequence of previously visited services.">config.usage.zapHistorySort</item>
 		<item level="2" text="Hide zap errors" description="Hide any zap error messages.">config.usage.hide_zap_errors</item>
 		<item level="2" text="Hide CI messages" description="Hide error messages from the Common Interface module.">config.usage.hide_ci_messages</item>
 		<item level="2" text="Show crypto info in InfoBar" description="Show encryption information in the InfoBar (when supported by the skin).">config.usage.show_cryptoinfo</item>
+		<item level="2" text="Hide softcam servername" description="Select 'Yes' to hide the server name and IP address of the server.">config.softcam.hideServerName</item>
 		<item level="2" text="InfoBar front end data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>
 		<item level="1" text="Behavior of 0 key in PiP-mode" description="Choose what you want the button '0' to do when PiP is active.">config.usage.pip_zero_button</item>

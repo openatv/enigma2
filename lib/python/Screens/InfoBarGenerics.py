@@ -36,6 +36,7 @@ from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChannelSelection import ChannelSelection, PiPZapSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector, service_types_tv
 from Screens.ChoiceBox import ChoiceBox
+from Screens.DateTimeInput import InstantRecordingEndTime
 from Screens.Dish import Dish
 from Screens.EpgSelection import EPGSelection
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -52,7 +53,6 @@ from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
 import Screens.Standby
 from Screens.Standby import Standby, TryQuitMainloop
-from Screens.TimeDateInput import TimeDateInput
 from Screens.Timers import RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
@@ -378,7 +378,7 @@ class InfoBarAutoCam:
 						return
 					self.switchCam(cam)
 					self.currentCam = cam
-					BoxInfo.setItem("CurrentSoftcam", cam, False)
+					BoxInfo.setMutableItem("CurrentSoftcam", cam)
 
 	def switchCam(self, new):
 		deamonSocket = socket(AF_UNIX, SOCK_STREAM)
@@ -456,7 +456,7 @@ class InfoBarUnhandledKey:
 	# 	3 = Long.
 	# 	4 = ASCII.
 	def processKeyA(self, key, flag):  # This function is called on every key press!
-		print("[InfoBarGenerics] Key '%s' (%s) %s." % (KEYIDNAMES.get(key, _("Unknown")), key, KEYFLAGS.get(flag, _("Unknown"))))
+		print(f"[InfoBarGenerics] Key '{KEYIDNAMES.get(key, _('Unknown'))}' ({key}) {KEYFLAGS.get(flag, _('Unknown'))}.")
 		for callback in keyPressCallback:
 			callback()
 		if self.closeSecondInfoBar(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -2609,7 +2609,7 @@ class InfoBarSeek:
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
 			pass
 		elif not self.isSeekable():
-			BoxInfo.setItem("SeekStatePlay", False)
+			BoxInfo.setMutableItem("SeekStatePlay", False)
 			if exists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
 				f.write("0")
@@ -2641,7 +2641,7 @@ class InfoBarSeek:
 			if self.activity >= 100:
 				self.activity = 0
 
-			BoxInfo.setItem("SeekStatePlay", True)
+			BoxInfo.setMutableItem("SeekStatePlay", True)
 			if exists("/proc/stb/lcd/symbol_hdd"):
 				if config.lcd.hdd.value:
 					file = open("/proc/stb/lcd/symbol_hdd", "w")
@@ -2658,7 +2658,7 @@ class InfoBarSeek:
 			hdd = 0
 			self.seekAction = 0
 
-		BoxInfo.setItem("SeekStatePlay", True)
+		BoxInfo.setMutableItem("SeekStatePlay", True)
 		if exists("/proc/stb/lcd/symbol_hdd"):
 			if config.lcd.hdd.value:
 				file = open("/proc/stb/lcd/symbol_hdd", "w")
@@ -2762,7 +2762,7 @@ class InfoBarSeek:
 				self.unPauseService()
 
 	def pauseService(self):
-		BoxInfo.setItem("StatePlayPause", True)
+		BoxInfo.setMutableItem("StatePlayPause", True)
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
 		self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -2776,7 +2776,7 @@ class InfoBarSeek:
 		#	self.playpauseService()
 
 	def unPauseService(self):
-		BoxInfo.setItem("StatePlayPause", False)
+		BoxInfo.setMutableItem("StatePlayPause", False)
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			if self.seekAction != 0:
 				self.playpauseService()
@@ -3368,7 +3368,7 @@ class InfoBarExtensions:
 			return []
 
 	def getOSname(self):
-		return _("OScam Info")
+		return _("OSCam Info")
 
 	def getOScamInfo(self):
 		if pathExists('/usr/bin/'):
@@ -3456,8 +3456,8 @@ class InfoBarExtensions:
 		self.session.open(CCcamInfoMain)
 
 	def openOScamInfo(self):
-		from Screens.OScamInfo import OscamInfoMenu
-		self.session.open(OscamInfoMenu)
+		from Screens.OScamInfo import OSCamInfo
+		self.session.open(OSCamInfo)
 
 	def showTimerList(self):
 		self.session.open(RecordTimerOverview)
@@ -3939,11 +3939,11 @@ class InfoBarInstantRecord:
 				if recording.setAutoincreaseEnd():
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
-					self.session.open(MessageBox, _("Record time limited due to conflicting timer: %s") % f"\n{name_date}", MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _("Record time limited due to conflicting timer:%s") % f"\n\t'{name_date}'", MessageBox.TYPE_INFO)
 				else:
-					self.session.open(MessageBox, _("Could not record due to conflicting timer: %s") % f"\n{name}", MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _("Could not record due to conflicting timer:%s") % f"\n\t'{name}'", MessageBox.TYPE_INFO)
 			else:
-				self.session.open(MessageBox, _("Could not record due to invalid service: %s") % f"\n{serviceref}", MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Could not record due to invalid service:%s") % f"\n\t'{serviceref}'", MessageBox.TYPE_INFO)
 			recording.autoincrease = False
 
 	def startRecordingCurrentEvent(self):
@@ -4008,40 +4008,36 @@ class InfoBarInstantRecord:
 			self.saveTimeshiftEventPopupActive = False
 
 	def changeEndtime(self, entry):
-		if entry is not None and entry >= 0:
-			self.selectedEntry = entry
-			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].end)
-			dlg = self.session.openWithCallback(self.changeEndtimeCallback, TimeDateInput, self.endtime)
-			dlg.setTitle(_("Please change recording endtime"))
+		def changeEndtimeCallback(result):
+			if len(result) > 1 and result[0]:
+				print(f"[InfoBarGenerics] Instant recording due to stop at {strftime('%F %T', localtime(result[1]))}.")
+				if recordingEntry.end != result[1]:
+					recordingEntry.autoincrease = False
+				recordingEntry.end = result[1]
+				recordingEntry.eventEnd = recordingEntry.end
+				recordingEntry.marginAfter = 0  # Why is this being done?
+				self.session.nav.RecordTimer.timeChanged(recordingEntry)
 
-	def changeEndtimeCallback(self, ret):
-		if len(ret) > 1 and ret[0]:
-			print(f"stop recording at {strftime('%F %T', localtime(ret[1]))}")
-			entry = self.recording[self.selectedEntry]
-			if entry.end != ret[1]:
-				entry.autoincrease = False
-			entry.end = ret[1]
-			entry.eventEnd = entry.end
-			entry.marginAfter = 0
-			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
+		if entry is not None and entry >= 0:
+			recordingEntry = self.recording[entry]
+			self.session.openWithCallback(changeEndtimeCallback, InstantRecordingEndTime, recordingEntry.eventEnd)
 
 	def changeDuration(self, entry):
+		def changeDurationCallback(value):
+			entry = self.recording[self.selectedEntry]
+			if value is not None:
+				value = int(value.replace(" ", "") or "0")
+				if value:
+					entry.autoincrease = False
+				print(f"[InfoBarGenerics] Instant recording due to stop after {value} minutes.")
+				entry.end = int(time()) + 60 * value
+				entry.eventEnd = entry.end
+				entry.marginAfter = 0
+				self.session.nav.RecordTimer.timeChanged(entry)
+
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.session.openWithCallback(self.changeDurationCallback, InputBox, title=_("How many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
-
-	def changeDurationCallback(self, value):
-		entry = self.recording[self.selectedEntry]
-		if value is not None:
-			value = int(value.replace(" ", "") or "0")
-			if value:
-				entry.autoincrease = False
-			print(f"stop recording after {value} minutes.")
-			entry.end = int(time()) + 60 * value
-			entry.eventBegin = entry.begin
-			entry.eventEnd = entry.end
-			entry.marginAfter = 0
-			self.session.nav.RecordTimer.timeChanged(entry)
+			self.session.openWithCallback(changeDurationCallback, InputBox, title=_("For how many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
 
 	def isTimerRecordRunning(self):
 		identical = timers = 0
@@ -4077,7 +4073,7 @@ class InfoBarInstantRecord:
 			commonRecord = []
 			commonTimeshift = []
 		if self.isInstantRecordRunning():
-			title = f'{_("A recording is currently running.")}\n{_("What do you want to do?")}'
+			title = _("A recording is currently running.\nWhat do you want to do?")
 			choiceList = [
 				(_("Stop recording"), "stop")
 			] + commonRecord + [
@@ -4097,8 +4093,6 @@ class InfoBarInstantRecord:
 			choiceList.append((_("Do not record"), "no"))
 		if choiceList:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=choiceList)
-		# else:
-		# 	return 0
 
 
 class InfoBarAudioSelection:

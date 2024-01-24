@@ -111,6 +111,35 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 #endif
 
+	if (ev->code == KEY_TV2) {
+		ev->code = KEY_TV;
+	}
+
+#if KEY_F6_TO_KEY_VIDEO
+
+	if (ev->code == KEY_F6) {
+		ev->code = KEY_VIDEO;
+	}
+
+#endif
+
+#if KEY_EDIT_TO_KEY_TIME
+
+	if (ev->code == KEY_EDIT) {
+		ev->code = KEY_TIME;
+	}
+
+#endif
+
+#if KEY_HOME_TO_KEY_UNKNOWN
+
+	if (ev->code == KEY_HOME) {
+		ev->code = KEY_UNKNOWN;
+	}
+
+#endif
+
+
 #if TIVIARRC
 	if (ev->code == KEY_EPG) {
 		ev->code = KEY_INFO;

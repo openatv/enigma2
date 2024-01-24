@@ -1,3 +1,5 @@
+# Note. Do not delete because this is used by 3rd party plugins
+
 from Screens.Screen import Screen
 from Components.config import config, ConfigClock, ConfigDateTime, getConfigListEntry
 from Components.ActionMap import NumberActionMap

@@ -1,4 +1,5 @@
-import os
+from os import listdir, system
+from os.path import abspath, dirname, exists, ismount, join
 from subprocess import Popen, PIPE
 
 opkgDestinations = ['/']
@@ -13,15 +14,15 @@ overwriteSpinnerFiles = True
 
 def findMountPoint(path):
 	"""Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd\""""
-	path = os.path.abspath(path)
-	while not os.path.ismount(path):
-		path = os.path.dirname(path)
+	path = abspath(path)
+	while not ismount(path):
+		path = dirname(path)
 	return path
 
 
 def opkgExtraDestinations():
 	global opkgDestinations
-	return ''.join([" --add-dest %s:%s" % (i, i) for i in opkgDestinations])
+	return ''.join([f" --add-dest {i}:{i}" for i in opkgDestinations])
 
 
 def opkgAddDestination(mountpoint):
@@ -31,17 +32,17 @@ def opkgAddDestination(mountpoint):
 		print("[OPKG] Added to OPKG destinations:", mountpoint)
 
 
-mounts = os.listdir('/media')
+mounts = listdir('/media')
 for mount in mounts:
-	mount = os.path.join('/media', mount)
+	mount = join('/media', mount)
 	if mount and not mount.startswith('/media/net'):
 		if opkgStatusPath == '':
 			# recent opkg versions
 			opkgStatusPath = 'var/lib/opkg/status'
-			if not os.path.exists(os.path.join('/', opkgStatusPath)):
+			if not exists(join('/', opkgStatusPath)):
 				# older opkg versions
 				opkgStatusPath = 'usr/lib/opkg/status'
-		if os.path.exists(os.path.join(mount, opkgStatusPath)):
+		if exists(join(mount, opkgStatusPath)):
 			opkgAddDestination(mount)
 
 
@@ -115,7 +116,7 @@ for package in packages:
 		upgradePackages.append(item[0])
 
 for p in upgradePackages:
-	os.system('opkg ' + opkgExtraDestinations() + ' upgrade ' + p + ' 2>&1 | tee /home/root/ipkgupgrade.log')
+	system('opkg ' + opkgExtraDestinations() + ' upgrade ' + p + ' 2>&1 | tee /home/root/ipkgupgrade.log')
 
 # Reboot box
-os.system('reboot')
+system('reboot')

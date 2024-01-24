@@ -362,33 +362,28 @@ class ConfigListScreen:
 		self.keySelect()
 
 	def keyText(self):
-		self.session.openWithCallback(self.keyTextCallback, VirtualKeyBoard, title=self.getCurrentEntry(), text=str(self.getCurrentValue()))
+		def keyTextCallback(callback=None):
+			if callback is not None:
+				prev = str(self.getCurrentValue())
+				self["config"].getCurrent()[1].setValue(callback)
+				self["config"].invalidateCurrent()
+				if callback != prev:
+					self.entryChanged()
 
-	def keyTextCallback(self, callback=None):
-		if callback is not None:
-			prev = str(self.getCurrentValue())
-			self["config"].getCurrent()[1].setValue(callback)
-			self["config"].invalidateCurrent()
-			if callback != prev:
-				self.entryChanged()
+		self.session.openWithCallback(keyTextCallback, VirtualKeyBoard, title=self.getCurrentEntry(), text=str(self.getCurrentValue()))
 
 	def keyMenu(self):
+		def keyMenuCallback(answer):
+			if answer:
+				prev = str(self.getCurrentValue())
+				self["config"].getCurrent()[1].setValue(answer[1])
+				self["config"].invalidateCurrent()
+				if answer[1] != prev:
+					self.entryChanged()
+
 		currConfig = self["config"].getCurrent()
 		if currConfig and currConfig[1].enabled and hasattr(currConfig[1], "description"):
-			self.session.openWithCallback(
-				self.keyMenuCallback, ChoiceBox, title=currConfig[0],
-				list=list(zip(currConfig[1].description, currConfig[1].choices)),
-				selection=currConfig[1].getIndex(),
-				keys=[]
-			)
-
-	def keyMenuCallback(self, answer):
-		if answer:
-			prev = str(self.getCurrentValue())
-			self["config"].getCurrent()[1].setValue(answer[1])
-			self["config"].invalidateCurrent()
-			if answer[1] != prev:
-				self.entryChanged()
+			self.session.openWithCallback(keyMenuCallback, ChoiceBox, text="", choiceList=list(zip(currConfig[1].description, currConfig[1].choices)), selection=currConfig[1].getIndex(), buttonList=[], windowTitle=currConfig[0])
 
 	def keyTop(self):
 		self["config"].goTop()

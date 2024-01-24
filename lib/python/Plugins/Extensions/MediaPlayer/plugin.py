@@ -1028,6 +1028,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 	def pauseEntry(self):
 		if self.shown:
+			if self.currList != "playlist":
+				self.switchToPlayList()
 			if self.currList == "playlist":
 				if self.seekstate == self.SEEK_STATE_PAUSE:
 					if self.playlist.getCurrentIndex() != self.playlist.getSelectionIndex():

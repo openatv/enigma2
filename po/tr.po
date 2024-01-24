@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1130,10 +1130,6 @@ msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
 #, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr "%s - %s (%s%d Min)"
-
-#, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
@@ -1157,11 +1153,6 @@ msgstr "%s %s fare"
 #, python-format
 msgid "%s %s remote control (native)"
 msgstr "%s %s uzaktan kumanda (yerel)"
-
-#
-#, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s ( %s kartları )"
 
 #
 #, python-format
@@ -1298,9 +1289,6 @@ msgstr "Karışıklığını ve kayıt ECM kayıt üzerinde çabalıyorlar başa
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'hava durumu eklentisi' kurulu değil!"
 
-msgid "( All readers)"
-msgstr "( Tüm okuyucular )"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "%s kaydetme günlüklerine erişim için internet bağlantısı gerekir"
@@ -1314,9 +1302,6 @@ msgstr "(RiR)"
 
 msgid "(Radio)"
 msgstr "(Radyo)"
-
-msgid "(Show only reader:"
-msgstr "(Sadece bu okuyucuyu göster:"
 
 msgid "(TV)"
 msgstr "(TV)"
@@ -1592,12 +1577,12 @@ msgstr "<Son zamanlayıcı konumu>"
 msgid "<Select a device>"
 msgstr "Giriş aygıtı seç"
 
+msgid "<no log found>"
+msgstr ""
+
 #
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "'Uzantıyı filtrele'nin 'Uzantım' ayarı için kullanılacak uzantıların virgülle ayrılmış bir listesi. Uzantı adlarını başlarında nokta (.) olmadan girin."
@@ -1664,6 +1649,14 @@ msgid ""
 msgstr ""
 "Bir kayıt başladı:\n"
 "%s"
+
+#
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Kayıt devam ediyor.\n"
+"Ne yapmak istiyorsunuz?"
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -1754,15 +1747,6 @@ msgstr "AC3plus transcoding"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr "AFP Eylemleri"
-
-msgid "AFP Settings"
-msgstr "AFP Kurulumu"
 
 msgid "ARM"
 msgstr "KOL"
@@ -2111,9 +2095,6 @@ msgstr "Ek motor seçenekleri, motorunuzun teknik özelliklerinden ayrıntı gir
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Ek motor seçenekleri, motorunuzun teknik özelliklerinden ayrıntı girmenize izin verir, böylece enigma başka bir uyduya geçmenin ne kadar süreceğini hesaplayabilir."
-
-msgid "Address"
-msgstr "Adres"
 
 msgid "Adjust 3D settings"
 msgstr "3B Ayarlarını düzenle"
@@ -2699,10 +2680,6 @@ msgstr "Ses seviyesi adım boyutu hızlı mod"
 msgid "Australia"
 msgstr "Avustralya"
 
-#
-msgid "Australian"
-msgstr "Avustralya"
-
 msgid "Austria"
 msgstr "Avusturya"
 
@@ -2781,6 +2758,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "Otomatik Montaj Yöneticisi"
 
@@ -2821,6 +2801,9 @@ msgstr "Altyazıyı otomatik aç"
 
 msgid "Automatically update Client/Server View"
 msgstr "İstemci/Sunucu izlemesini otomatik güncelle"
+
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
 
 msgid "Autostart"
 msgstr "Otobaşlama"
@@ -3100,10 +3083,6 @@ msgstr "Belarus"
 msgid "Belarusian"
 msgstr "Belarus Rublesi"
 
-#
-msgid "Belgian"
-msgstr "Belçikalı"
-
 msgid "Belgium"
 msgstr "Belçika"
 
@@ -3379,6 +3358,9 @@ msgstr "Tuş Kurulumu"
 msgid "Button error timeout"
 msgstr "Düğme hatası zaman aşımı"
 
+msgid "ButtonSetup"
+msgstr "Tuş Kurulumu"
+
 msgid "By disk UUID"
 msgstr "Disk UUID'sine göre"
 
@@ -3403,12 +3385,6 @@ msgstr "C"
 #
 msgid "C-Band"
 msgstr "C-Band"
-
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
 
 msgid "CCD-Width"
 msgstr "CCD-Genişlik"
@@ -3514,9 +3490,6 @@ msgstr "CI yuvası: "
 
 msgid "CI+ Helper*"
 msgstr ""
-
-msgid "CIFS/Samba Settings"
-msgstr "Samba Kurulumu"
 
 msgid "CPU"
 msgstr "CPU"
@@ -3769,11 +3742,14 @@ msgstr "Görüntü seçimini iptal edin ve çıkın"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Görüntü seçimini iptal edin ve tüm menülerden çıkın"
 
+msgid "Cancel the selection and exit"
+msgstr ""
+
+msgid "Cancel the service history zap"
+msgstr "Servis zap'ını iptal edin"
+
 msgid "Cancel the service selection"
 msgstr "Hizmet seçimini iptal et"
-
-msgid "Cancel the service zap"
-msgstr "Servis zap'ını iptal edin"
 
 msgid "Cancel the slot selection and exit"
 msgstr "Yuva seçimini iptal edin ve çıkın"
@@ -3813,12 +3789,6 @@ msgstr "Kapasite"
 
 msgid "Cape Verde"
 msgstr "Cape Verde"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Kart Bilgileri (CCcam-Okuyucu)"
-
-msgid "Cards:"
-msgstr "Kartlar:"
 
 msgid "Cards: "
 msgstr "Kartlar: "
@@ -4125,6 +4095,18 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Seçim Kutusu"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Seçim yapılacak yer \"%s\""
@@ -4146,6 +4128,12 @@ msgstr "Varsa, EPG önbelleğinde ne kadar EPG geçmişi tutulacağını seçin.
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Güncellemeleri kontrol etmek için IceTV sunucusuna ne sıklıkla bağlanacağınızı seçin."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr "Ek yuvaların miktarını seçin."
@@ -4234,6 +4222,9 @@ msgstr "Yapılandırılacak tuneri seçin."
 msgid "Christmas Island"
 msgstr "Noel Adası"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr "Kilise Slavcası"
 
@@ -4308,12 +4299,14 @@ msgstr[0] "Açık uyarı"
 msgid "Click the button on your remote you want to change."
 msgstr "Uzaktan kumandanızda değiştirmek istediğiniz düğmeye tıklayın."
 
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Müşteri Bilgisi ( Oscam-Version:%s )"
+msgid "Client"
+msgstr "Müşteri"
 
 msgid "Client is streaming from this box!"
 msgstr "Alici bu kutudan yayın yapıyor!"
+
+msgid "ClientIP"
+msgstr "ClientIP"
 
 msgid "Clients"
 msgstr "İstemciler"
@@ -4483,6 +4476,9 @@ msgstr "Genel Ayarlar"
 msgid "Common Setup Actions"
 msgstr "CI (Ortak Arayüz) Kurulumu"
 
+msgid "Comodo Secure DNS"
+msgstr ""
+
 msgid "Comoros"
 msgstr "Komorlar"
 
@@ -4513,9 +4509,6 @@ msgstr "Yapılandırma"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Kurulum dosyası %s saklandı."
-
-msgid "Config file name (ok to change):"
-msgstr "Yapılandırma dosya adı (değiştirmek için tamam):"
 
 #
 msgctxt "Abbreviation of 'Configurable'"
@@ -4920,6 +4913,9 @@ msgstr "Hangi video çıkış konektörü kullanılacağını belirleyin."
 msgid "Configuring"
 msgstr "Yapılandırılıyor"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr "ConflictTimer Eylemleri"
 
@@ -5169,11 +5165,11 @@ msgid "Could not open the file %s!"
 msgstr "%s dosyası açılamıyor!"
 
 #, python-format
-msgid "Could not record due to conflicting timer: %s"
+msgid "Could not record due to conflicting timer:%s"
 msgstr "Çakışan zamanlayıcı %s nedeniyle kayıt yapılamadı"
 
 #, python-format
-msgid "Could not record due to invalid service: %s"
+msgid "Could not record due to invalid service:%s"
 msgstr "Geçersiz kanal %s yüzünden kayıt yapılamadı"
 
 #, python-format
@@ -5278,6 +5274,9 @@ msgstr "Hırvatistan"
 #
 msgid "Croatian"
 msgstr "Hırvatça"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Cron Yöneticisi"
@@ -5442,10 +5441,6 @@ msgstr "Çekçe"
 msgid "Czech Republic"
 msgstr "Çek Cumhuriyeti"
 
-#
-msgid "Czechia"
-msgstr "Çekya"
-
 msgid "D"
 msgstr "D"
 
@@ -5473,6 +5468,12 @@ msgstr "DNS Ayarları"
 
 msgid "DNS data source"
 msgstr "DNS veri kaynağı"
+
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5566,6 +5567,9 @@ msgstr "Tarih"
 
 msgid "Date / Time"
 msgstr "Tarih / Saat"
+
+msgid "Date Time Input Actions"
+msgstr ""
 
 msgid "Date ascending"
 msgstr "Artan tarih"
@@ -5853,6 +5857,9 @@ msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Http(s) akışlarının başlamasından önce milisaniye cinsinden ek gecikme tanımlayın."
+
+msgid "Define the DNS suffix."
+msgstr ""
 
 msgid "Defined / Active"
 msgstr "Tanımlı / Aktif"
@@ -6554,13 +6561,6 @@ msgid "Do you want the upgrade guide?"
 msgstr "Yükseltme kılavuzunu ister misiniz?"
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Ayrıca samba istemci yüklemek istiyor musunuz?\n"
-"Yani bu cihazda windows paylaşımlarını bağlamak için izin verir."
-
-msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
@@ -6638,6 +6638,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "%s %s alıcınızı yeniden başlatmak istiyor musunuz?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 #
@@ -6815,15 +6818,6 @@ msgstr "E "
 msgid "ECM"
 msgstr "ECM"
 
-msgid "ECM Statistics"
-msgstr "ECM istatistiği"
-
-msgid "ECM Time"
-msgstr "ECM zamanı"
-
-msgid "ECM avg"
-msgstr "ECM ortalaması"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "Akışa ECM verileri eklenecektir. Bu, bir istemci alıcısının onu çözmesine olanak sağlar."
 
@@ -6833,12 +6827,6 @@ msgstr "ECM bilgileri"
 #, python-format
 msgid "ECM information for '%s'"
 msgstr "ECM bilgileri '%s'"
-
-msgid "ECM last"
-msgstr "ECM son"
-
-msgid "ECM-Time"
-msgstr "ECM-Zaman"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
@@ -6860,6 +6848,9 @@ msgstr "EPG Kanal/Servis Seçimi"
 
 msgid "EPG Display Actions"
 msgstr "EPG Ekran Eylemleri"
+
+msgid "EPG Jump"
+msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "EPG Navigasyon Eylemleri"
@@ -8161,12 +8152,6 @@ msgstr "FTA"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr "FTP Eylemleri"
-
-msgid "FTP Settings"
-msgstr "FTP Kurulum"
-
 msgid "Factory Reset"
 msgstr "Fabrika ayarları"
 
@@ -8567,6 +8552,10 @@ msgstr "Yiyecek/Şarap"
 
 msgid "Football"
 msgstr "Futbol"
+
+#
+msgid "For how many minutes do you want to record?"
+msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
 
 msgid "Force AC3plus"
 msgstr "Force AC3plus"
@@ -9301,6 +9290,9 @@ msgstr "Kilitli ebeveyn kanallarını gizle"
 msgid "Hide player"
 msgstr "Oynatıcıyı gizle"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 msgid "Hide the InfoBar"
 msgstr "Bilgi çubuğunu daima gizle"
 
@@ -9391,9 +9383,6 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-msgid "Hops"
-msgstr "Hops"
-
 msgid "Hops:"
 msgstr "Sekmeler:"
 
@@ -9428,6 +9417,9 @@ msgstr "Host adı: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Kısayol"
+
 msgid "Hotkey Settings"
 msgstr "Kısayol Kurulum"
 
@@ -9439,10 +9431,6 @@ msgstr "Saat Dakika"
 
 msgid "Hours Minutes Seconds"
 msgstr "Saat Dakika Saniye"
-
-#
-msgid "How many minutes do you want to record?"
-msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s) akışı başlatma gecikmesi"
@@ -9523,8 +9511,14 @@ msgstr "Yalnızca Stream Relay aracılığıyla şifresi çözülebilen hizmetle
 msgid "IPK Installer"
 msgstr "IPK Yükleyici"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
 msgstr "IPv6 adresi"
+
+msgid "IPv6 only"
+msgstr ""
 
 #
 msgid "ISO file is too large for this file system!"
@@ -9787,15 +9781,6 @@ msgstr "Etkisiz"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr "Inadyn Eylemleri"
-
-msgid "Inadyn Log"
-msgstr "Inadyn Günlüğü"
-
-msgid "Inadyn Setting Actions"
-msgstr "Inadyn Ayar Eylemleri"
-
 msgid "Inadyn Settings"
 msgstr "Inadyn Kurulumu"
 
@@ -9983,9 +9968,6 @@ msgstr "Giriş Akışı Kimliği"
 msgid "Input channel name."
 msgstr "Giriş kanalı adı."
 
-msgid "Input config file name:"
-msgstr "Giriş yapılandırma dosyası adı:"
-
 msgid "Input scroll position"
 msgstr "Giriş kaydırma konumu"
 
@@ -10046,6 +10028,9 @@ msgstr ""
 msgid "Installation finished."
 msgstr "Yükleme bitti."
 
+msgid "Installed"
+msgstr ""
+
 #
 msgid "Installing"
 msgstr "Yüklüyor"
@@ -10076,6 +10061,9 @@ msgid "Installing plugins from feed ..."
 msgstr "Eklentileri feed'den yükleniyor ..."
 
 msgid "Instant Recording Actions"
+msgstr ""
+
+msgid "Instant Recording End Time"
 msgstr ""
 
 msgid "Instant record"
@@ -10175,9 +10163,6 @@ msgstr "Düğme işlevini tersine çevirir."
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran, Islamic Republic"
-msgstr "İran, İslam Cumhuriyeti"
-
 msgid "Iran, Islamic Republic of"
 msgstr "Iran, Islamic Republic of"
 
@@ -10244,14 +10229,32 @@ msgstr "İş özeti"
 msgid "Jordan"
 msgstr "Ürdün"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "24 saat geriye atla"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Kanal seçiminde ilk basamağa atla"
 
 msgid "Jump forward 24 hours"
 msgstr "24 saat ileriye atla"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Listenin başına atla"
@@ -10528,9 +10531,6 @@ msgstr "Lao Demokratik Halk Cumhuriyeti"
 
 msgid "Large"
 msgstr "Büyük"
-
-msgid "Last Request"
-msgstr "Son istek"
 
 #
 msgid "Last config"
@@ -11332,21 +11332,12 @@ msgstr "Orta"
 msgid "Middle - Lite image"
 msgstr "Orta - Basit resim"
 
-msgid "Mini DLNA Actions"
-msgstr "Mini DLNA Eylemleri"
-
-msgid "Mini DLNA Setting Actions"
-msgstr "Mini DLNA Ayar İşlemleri"
-
 #
 msgid "Mini Series"
 msgstr "Mini dizi"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Günlüğü"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA Kurulumu"
@@ -11475,6 +11466,12 @@ msgstr "Fas"
 msgid "Mosquito noise reduction"
 msgstr "Mosquito gürültü azaltma"
 
+msgid "Most recent first"
+msgstr ""
+
+msgid "Most recent last"
+msgstr ""
+
 msgid "Motor Sport"
 msgstr "Motor sporları"
 
@@ -11487,11 +11484,11 @@ msgstr "Motor çalışırken zaman aşımı"
 msgid "Mount"
 msgstr "Mount etmek"
 
-msgid "Mount Actions"
-msgstr "Dağ Eylemleri"
-
 msgid "Mount Manager"
 msgstr "Mount Manager"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr "Montaj Ayarları"
@@ -11616,6 +11613,12 @@ msgstr "Geçerli yer işaretini aşağı taşı"
 
 msgid "Move the current bookmark up"
 msgstr "Geçerli yer işaretini yukarı taşı"
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
+msgstr ""
 
 msgid "Move the current line down"
 msgstr "Geçerli satırı aşağı taşı"
@@ -11907,12 +11910,6 @@ msgstr "SONRA"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr "NFS Eylemleri"
-
-msgid "NFS Settings"
-msgstr "NFS Yapılandırma"
-
 msgid "NIM"
 msgstr "NIM"
 
@@ -12045,6 +12042,9 @@ msgstr "Ağ Bilgi İşlemleri"
 msgid "Network Interface"
 msgstr "Ağ Arayüzü"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr "Ağ Günlüğü Eylemleri"
 
@@ -12066,6 +12066,9 @@ msgstr "Ağ Hizmetleri"
 #
 msgid "Network Settings"
 msgstr "Ağ kurulumu"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "Ağ Test"
@@ -12104,6 +12107,9 @@ msgstr "Ağ adı (SSID)"
 #
 msgid "Network scan"
 msgstr "Ağ Tarama"
+
+msgid "Network storage on"
+msgstr "Ağ depolama alanı"
 
 #
 msgid "Network test"
@@ -12336,6 +12342,9 @@ msgstr "Boş tuner yok!"
 msgid "No hard disks detected."
 msgstr "Sabit disk algılanmadı."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr "Hiçbir günlük dosyası bulunamadı, bu nedenle hata ayıklama günlükleri kullanılamıyor!"
+
 #
 msgid "No matching place names found"
 msgstr "Eşleşen yer adı bulunamadı"
@@ -12530,7 +12539,10 @@ msgstr "Doğrusal Olmayan"
 msgid "None"
 msgstr "Yok"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12705,6 +12717,27 @@ msgstr "OK tuşu fonksiyonu"
 msgid "OK, guide me through the upgrade process"
 msgstr "Tamam, güncelleme işleminde bana rehberlik yap"
 
+msgid "OSCam Info"
+msgstr "OScam Bilgisi"
+
+msgid "OSCam Information"
+msgstr "OScamInfo"
+
+msgid "OSCam Information Settings"
+msgstr ""
+
+msgid "OSCam webif disabled"
+msgstr "OScam webif'i devre dışı"
+
+msgid "OSCamInfo Actions"
+msgstr ""
+
+msgid "OSCamInfo Log"
+msgstr ""
+
+msgid "OSCamInfo Log Actions"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12725,15 +12758,6 @@ msgstr "OSD Kurulumu"
 
 msgid "OSD name request"
 msgstr "OSD ad isteği"
-
-msgid "OScam Info"
-msgstr "OScam Bilgisi"
-
-msgid "OScam Information"
-msgstr "OScamInfo"
-
-msgid "OScam webif disabled"
-msgstr "OScam webif'i devre dışı"
 
 msgid "OTT Model"
 msgstr "OTT Modeli"
@@ -12837,8 +12861,14 @@ msgstr "EPGSearch'ü açın"
 msgid "Open IMDb"
 msgstr "IMDb'yi aç"
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
 msgstr "MediaStream'i Açın"
+
+msgid "Open Settings"
+msgstr ""
 
 msgid "Open Similar List Channel List"
 msgstr "Benzer Listeyi Aç Kanal Listesi"
@@ -12921,17 +12951,8 @@ msgstr "OpenSSL sürümü"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr "OpenVPN Eylemleri"
-
-msgid "OpenVPN Settings"
-msgstr "VPN Kurulumu Aç"
-
 msgid "OpenViX Packages"
 msgstr "OpenViX Paketleri"
-
-msgid "OpenVpn Log"
-msgstr "OpenVPN Günlüğü"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Derin bekleme modunda çalışma LED durumu"
@@ -12982,18 +13003,8 @@ msgstr "Oriya Dili"
 msgid "Oromo"
 msgstr "Oromo Dili"
 
-msgid "Oscam Info - Main Menu"
-msgstr "Oscam Bilgi - Ana Menü"
-
-msgid "Oscam Info Settings"
-msgstr "Oscam Bilgi - Yapılandırma"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam Günlüğü ( Oscam Sürümü:%s )"
-
-msgid "OscamInfo Mainmenu"
-msgstr "OscamInfo Mainmenu"
+msgid "Oscam Information"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr "Osetçe"
@@ -13095,10 +13106,6 @@ msgstr "PDC"
 msgid "PGS file"
 msgstr "PGS dosyası"
 
-#
-msgid "PID"
-msgstr "PID"
-
 msgid "PIN code needed"
 msgstr "Şifre gerekli"
 
@@ -13117,6 +13124,9 @@ msgstr "PLS Modu"
 
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PPanel"
+msgstr "PPanel"
 
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
@@ -13194,6 +13204,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Panik kanalı"
+
+msgid "Panic to"
+msgstr "Panik"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Pencapça"
@@ -13508,22 +13521,12 @@ msgid "Please be patient, a backup will now be made,\n"
 msgstr "Lütfen sabırlı olun, şimdi bir yedekleme yapılacaktır,\n"
 
 #
-msgid "Please change recording endtime"
-msgstr "Lütfen kayıt bitiş zamanını değiştirin"
-
-#
 msgid "Please check the manual of the receiver"
 msgstr "Lütfen alıcının kullanım kılavuzunu kontrol edin"
-
-msgid "Please choose CCcam-Reader"
-msgstr "Lütfen CCcam-Okuyucu seçin"
 
 #
 msgid "Please choose an extension..."
 msgstr "Lütfen bir genişletme seçin..."
-
-msgid "Please choose reader"
-msgstr "Lütfen okuyucu seçin"
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -13734,6 +13737,9 @@ msgstr "Lütfen tarama yapılırken bekleyin..."
 
 msgid "Please wait while the data is extracted..."
 msgstr "Veriler ayıklanırken lütfen bekleyin..."
+
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
 
 msgid "Please wait while the list downloads..."
 msgstr "Liste indirilirken lütfen bekleyin..."
@@ -13995,6 +14001,12 @@ msgstr "AC3 tercih et"
 
 msgid "Prefer AC3+ track"
 msgstr "AC3+ tercihen"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Servis tarafından kaydedilen ses parçalarını tercih et"
@@ -14350,9 +14362,6 @@ msgstr "Sağlayıcılar"
 msgid "Providers:"
 msgstr "Sağlayıcılar:"
 
-msgid "Providers: "
-msgstr "Sağlayıcıları: "
-
 msgid "Proxy detected"
 msgstr "Proxy algılandı"
 
@@ -14420,6 +14429,12 @@ msgstr "Quad PiP mevcut değil."
 
 msgid "Quad9 DNS"
 msgstr "Quad9 DNS"
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
+msgstr ""
 
 msgid "Quechua"
 msgstr "Quechua Dili"
@@ -14551,23 +14566,12 @@ msgstr "Oscam.conf'dan kullanıcı bilgisi oku"
 msgid "Reader"
 msgstr "Okuyucu"
 
-msgid "Reader Statistics"
-msgstr "Okuyucu istatistiği"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Kurmaya hazır mısınız \"%s\" ?"
 
 #, python-format
-msgid "Ready to install '%s'?"
-msgstr "Yüklemeye hazır %s ?"
-
-#, python-format
 msgid "Ready to remove \"%s\" ?"
-msgstr "Kaldırmaya hazır mısınız \"%s\" ?"
-
-#, python-format
-msgid "Ready to remove '%s'?"
 msgstr "Kaldırmaya hazır mısınız \"%s\" ?"
 
 msgid "Real Life"
@@ -14694,7 +14698,7 @@ msgstr "Kayıt başladı! Zaman-kaydırma şimdi durduruluyor ..."
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer: %s"
+msgid "Record time limited due to conflicting timer:%s"
 msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt süresi sınırlandırılmış"
 
 msgid "Record write error (no space on disk?)"
@@ -15219,6 +15223,9 @@ msgstr "Başlık adlarını sıfırla ve yeniden numarala"
 msgid "Reset executable mode (644)"
 msgstr "Yürütülebilir modu sıfırla (644)"
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr "Ağ yapılandırmasını sıfırla"
 
@@ -15231,6 +15238,9 @@ msgstr "Çalma konumunu sıfırla"
 msgid "Reset sort order"
 msgstr "Sıralama düzenini sıfırla"
 
+msgid "Reset the order of the entries"
+msgstr ""
+
 #
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Görüntü iyileştirme ayarınız, sistem varsayılanına döndürülsün mü?"
@@ -15238,9 +15248,6 @@ msgstr "Görüntü iyileştirme ayarınız, sistem varsayılanına döndürüls�
 #
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Görüntü iyileştirme ayarlarınız, en son yapılandırmanıza döndürülsün mü?"
-
-msgid "Reshare"
-msgstr "Yeniden paylaşma"
 
 msgid "Reshare:"
 msgstr "Tekrar paylaş:"
@@ -15547,9 +15554,6 @@ msgstr "Réunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr "SABnzbd Eylemleri"
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd Kurulumu"
 
@@ -15561,12 +15565,6 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
-
-msgid "SATPI Setting Actions"
-msgstr "SATPI Ayar Eylemleri"
-
-msgid "SATPI Settings"
-msgstr "SATPI Ayarları"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC optimize edilmiş arama aralığı"
@@ -15612,6 +15610,9 @@ msgstr "SRT dosyası"
 msgid "SSA file"
 msgstr "SSA dosyası"
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr "SSID"
 
@@ -15644,17 +15645,11 @@ msgstr "Saint Pierre ve Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent ve Grenadinler"
 
-msgid "Samba"
-msgstr "Samba"
+msgid "Samba Client"
+msgstr ""
 
-msgid "Samba Actions"
-msgstr "Samba Eylemleri"
-
-msgid "Samba Log"
-msgstr "Samba Günlüğü"
-
-msgid "Samba Setup"
-msgstr "Samba Kurulumu"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "Aktif ile aynı"
@@ -16136,6 +16131,9 @@ msgstr "SOL/SAĞ düğmeleri başka türlü tanımlanmadığında SayfaYukarı/S
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "'evet' EPG bilgisi olmayan kanallar gösterilmez."
 
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
+
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
 msgstr "Aramanıza %s multipleksleri dahil etmek için 'evet'i seçin."
@@ -16285,6 +16283,9 @@ msgstr "CAId seç"
 msgid "Select Device"
 msgstr "Lütfen swapfile konumu için aygıt seçin"
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Enigma2 Skin'i seçin"
 
@@ -16320,6 +16321,12 @@ msgstr "Dört Kanal Seç"
 
 msgid "Select Satellites"
 msgstr "Uyduları seç"
+
+msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr "Softcam'i seçin"
@@ -16562,6 +16569,10 @@ msgstr "Geçerli sütun için geçici dizin sıralama düzenini seçin"
 msgid "Select temporary file sort order for the current column"
 msgstr "Geçerli sütun için geçici dosya sıralama düzenini seçin"
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr "Hayır / Yanlış yanıtını seçin"
 
@@ -16596,6 +16607,10 @@ msgstr "Bu alıcıya atanacak Kullanıcı Bandı frekansını seçin. Bu, SCR an
 msgid "Select the Yes / True response"
 msgstr "Evet / Doğru yanıtını seçin"
 
+#, python-format
+msgid "Select the action for '%s'"
+msgstr ""
+
 msgid "Select the action to perform when the timer ends."
 msgstr "Zamanlayıcı sona erdiğinde gerçekleştirilecek eylemi seçin."
 
@@ -16616,6 +16631,9 @@ msgstr "Klavye imlecinin altındaki karakteri veya eylemi seçin"
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Geçerli yer imi konumunu seçin ve çıkın"
+
+msgid "Select the current entry"
+msgstr ""
 
 msgid "Select the current menu item"
 msgstr "Geçerli menü öğesini seçin"
@@ -16671,6 +16689,9 @@ msgstr "Menüler için ekran tasarımını seçin."
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Her menü girişi öğesi için ekran seçeneklerini seçin. Menü numaraları mevcutsa, numaralandırılmış menü girişlerini doğrudan seçmek için numara düğmeleri kullanılabilir."
 
+msgid "Select the display sequence of previously visited services."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Dosya sıralama düzenini %s seçin:"
@@ -16716,6 +16737,9 @@ msgstr "SCR cihazınızın üreticisini seçin. Üretici listelenmemişse, 'SCR'
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Teletext'ten çıkarken ekran çözünürlüğünü ve çerçeveyi geri yükleme yöntemini seçin."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Unicable cihazınızın model numarasını seçin. Model numarası listelenmemişse, 'SCR' yi 'kullanıcı tanımlı' olarak ayarlayın ve cihaz parametrelerini özellik tablosuna göre manuel olarak girin."
@@ -16813,6 +16837,12 @@ msgstr "Düğmenin tekrar etmeye başlamasından önceki zaman gecikmesini seçi
 
 msgid "Select the time delay between each repeat of the button."
 msgstr "Düğmenin her tekrarı arasındaki zaman gecikmesini seçin."
+
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr ""
 
 msgid "Select the time when this timer should end."
 msgstr "Bu zamanlayıcının sona ereceği zamanı seçin."
@@ -17031,18 +17061,8 @@ msgstr "Sırpça"
 msgid "Serial No"
 msgstr "Seri No"
 
-msgid "Serv.Name"
-msgstr "Sunucu Adı"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Sunucu Bilgisi (Oscam-Version: %s )"
-
 msgid "Server down"
 msgstr "Sunucu çökmesi"
-
-msgid "Server:"
-msgstr "Sunucu:"
 
 msgid "Servers"
 msgstr "Sunucular"
@@ -17236,6 +17256,9 @@ msgstr "Çekirdek 2, 3, 4 ve 5 için MIN CPU frekansını ayarlayın"
 msgid "Set Scaling governor"
 msgstr "Ölçekleme yöneticisini ayarla"
 
+msgid "Set Time"
+msgstr ""
+
 msgid "Set action for 'Info' key"
 msgstr "'Bilgi' tuşu için eylemi ayarla"
 
@@ -17427,9 +17450,6 @@ msgstr "Kurulum"
 msgid "Setup - %s"
 msgstr "Kurulumlar - %s"
 
-msgid "Setup AFP"
-msgstr "AFP'yi kur"
-
 msgid "Setup Audio Sync"
 msgstr "Ses Senkronizasyonu Kur"
 
@@ -17441,9 +17461,6 @@ msgstr "Audiomode'u Kur"
 
 msgid "Setup Enigma2"
 msgstr "Kurulum Enigma2"
-
-msgid "Setup FTP"
-msgstr "FTP Kur"
 
 msgid "Setup Harddisk"
 msgstr "Kurulum Sabit Diski"
@@ -17460,17 +17477,11 @@ msgstr "Kurulum MiniDLNA"
 msgid "Setup Mounts"
 msgstr "Kurulum Bağlantıları"
 
-msgid "Setup NFS"
-msgstr "Kurulum NFS"
-
 msgid "Setup Network Services"
 msgstr "Ağ Hizmetlerini Kur"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Ağ Hizmetlerini Ayarlama (Samba, Ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "OpenVPN Kurulumu"
 
 msgid "Setup Plugin Browser"
 msgstr "Eklenti Tarayıcısını Kurun"
@@ -17480,18 +17491,6 @@ msgstr "Eklenti Tarayıcısını Ayarla. Burada PluginBrowser'da hangi Eklentile
 
 msgid "Setup Plugins"
 msgstr "Kurulum Eklentileri"
-
-msgid "Setup SABnzbd"
-msgstr "Kurulum SABnzbd"
-
-msgid "Setup SATPI"
-msgstr "SATPI Kurulumu"
-
-msgid "Setup Samba"
-msgstr "Samba Kurulumu"
-
-msgid "Setup Telnet"
-msgstr "Telnet Kurulumu"
 
 msgid "Setup Tuner"
 msgstr "Tuner Kurulumu"
@@ -17607,9 +17606,6 @@ msgstr "Uydu ekipmanınızı kurun"
 msgid "Seychelles"
 msgstr "Seyşeller"
 
-msgid "Share Folders"
-msgstr "Paylaşım Klasörleri"
-
 msgid "Share View"
 msgstr "Paylaşım İzle"
 
@@ -17619,6 +17615,12 @@ msgstr "Paylaşımlar"
 #
 msgid "Sharpness"
 msgstr "Keskinlik"
+
+msgid "ShellInABox"
+msgstr ""
+
+msgid "Shellscript"
+msgstr "Shell Komut"
 
 msgid "Shift"
 msgstr "Değiştirme"
@@ -17648,9 +17650,6 @@ msgstr "Yeniden başlatmayı önlemek için çarpma sayacı sıfırlanmalı mı?
 
 msgid "Show"
 msgstr "Göster"
-
-msgid "Show /tmp/ecm.info"
-msgstr "/tmp/ecm.info göster"
 
 msgid "Show 1080p 24fps as"
 msgstr "1080p 24fps göster"
@@ -17712,9 +17711,6 @@ msgstr "CCcam Bilgilerini Göster"
 
 msgid "Show CI messages"
 msgstr "CI mesajları göster"
-
-msgid "Show Clients"
-msgstr "İstemcileri göster"
 
 msgid "Show Default Backup Files"
 msgstr "Varsayılan yedekleme dosyalarını göster"
@@ -17819,8 +17815,8 @@ msgstr "Film Listesini Göster"
 msgid "Show Multi EPG"
 msgstr "Çoklu EPG'yi Göster"
 
-msgid "Show OScam Info"
-msgstr "OScam Bilgilerini Göster"
+msgid "Show OSCam Information"
+msgstr ""
 
 msgid "Show OScam/CCcam in Extension Menu"
 msgstr ""
@@ -17852,9 +17848,6 @@ msgstr "Eklenti Kaplaması paketlerini göster"
 
 msgid "Show RFmod setup..."
 msgstr "RFmod kurulumu göster ..."
-
-msgid "Show Readers/Proxies"
-msgstr "Okuyucuları/Vekil Sunucuları göster"
 
 msgid "Show Record Movies"
 msgstr "Kayıt Filmlerini Göster"
@@ -18288,8 +18281,8 @@ msgstr "InfoBar'da EIT Now/Next verilerini gösterin."
 msgid "Show the Logs Settings screen"
 msgstr "Günlük Ayarları ekranını göster"
 
-msgid "Show the OScamInfo Screen"
-msgstr "OScamInfo Ekranını Göster"
+msgid "Show the OSCam information screen"
+msgstr ""
 
 msgid "Show the PowerTimer"
 msgstr "Güç Zamanlayıcısını Göster"
@@ -18921,9 +18914,6 @@ msgstr "Varsayılan olarak sırala"
 msgid "Sort list by"
 msgstr "Listeyi buna göre sırala"
 
-msgid "Sort list to default and exit?"
-msgstr "Listeyi varsayılana göre sırala ve çık?"
-
 msgid "Sort list:"
 msgstr "Sıralama listesi:"
 
@@ -19088,6 +19078,9 @@ msgstr "Başlangıç modu"
 
 msgid "Start offline decode"
 msgstr "Çevrimdışı çözüme başla"
+
+msgid "Start or Stop service"
+msgstr ""
 
 msgid "Start recording current event"
 msgstr "Mevcut olayı kaydetmeye başla"
@@ -19874,17 +19867,11 @@ msgstr "Teletext altyazı rengi"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr "Telnet Eylemleri"
-
 msgid "Telnet Interface"
 msgstr "Telnet Arayüzü"
 
 msgid "Telnet Port"
 msgstr "Telnet Kapısı"
-
-msgid "Telnet Settings"
-msgstr "Telnet Kurulumu"
 
 msgid "Telugu"
 msgstr "Telugu"
@@ -20785,9 +20772,6 @@ msgstr "Zaman Ayarı Eylemleri"
 msgid "Time Shift Settings"
 msgstr "Kayıt zamanlama ayarları"
 
-msgid "Time Update in Minutes:"
-msgstr "Zaman güncelle Dakika:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr "Resim görüntüleyici slayt gösterisinde slaytlar arasındaki süre."
 
@@ -21107,9 +21091,6 @@ msgstr "Üst"
 msgid "Top and Bottom"
 msgstr "Üst ve Alt"
 
-msgid "Total"
-msgstr "Toplam"
-
 msgid "Total CPU benchmark"
 msgstr "Toplam CPU kıyaslaması"
 
@@ -21144,6 +21125,10 @@ msgstr "İz"
 
 msgid "Traditional Chinese"
 msgstr "Geleneksel çince"
+
+#
+msgid "Transcode"
+msgstr "Kod dönüştürme"
 
 msgid "Transcoding"
 msgstr "Transcoding"
@@ -21507,6 +21492,10 @@ msgstr "Belirsiz"
 msgid "Unencrypted"
 msgstr "Şifrelenmemiş"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "İşlenmemiş Key"
 
@@ -21527,14 +21516,14 @@ msgstr "Unicable LNB"
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
 
+msgid "Uninstall"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr "Birleşik Arap Emirlikleri"
 
 msgid "United Kingdom"
 msgstr "Birleşik Krallık"
-
-msgid "United States"
-msgstr "Amerika Birleşik Devletleri"
 
 msgid "United States Minor Outlying Islands"
 msgstr "Amerika Birleşik Devletleri Küçük Dış Adaları"
@@ -21681,9 +21670,6 @@ msgstr "Güncelleme başarısız oldu!"
 #
 msgid "Update finished!"
 msgstr "Güncelleme bitti!"
-
-msgid "Update interval (in seconds)"
-msgstr "Güncelleme periyodu (saniye)"
 
 msgid ""
 "Update succeeded!\n"
@@ -22096,9 +22082,6 @@ msgstr "VOB dosyası"
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS Ayarları"
@@ -22599,18 +22582,6 @@ msgstr "Film izle..."
 #
 msgid "Watch recordings"
 msgstr "Kayıtları izle"
-
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Gerçekten çok üzgünüz. Alıcınız bir yazılım sorunuyla karşılaştı ve yeniden başlatılması gerekiyor.\n"
-"Lütfen %senigma2_crash_xxxxxx.log dosyasını www.opena.tv adresine gönderin.\n"
-"Alıcınız 10 saniye içinde yeniden başlar!\n"
-"Bileşen: enigma2"
 
 msgid "Weather"
 msgstr "Hava"
@@ -23305,14 +23276,6 @@ msgstr "Yeniden başlatılacak %s%s ..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"Hizmetin %s %s kurulumundan sonra yeniden başlatılacaksınız\n"
-"Yüklemeye hazır %s ?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -23328,22 +23291,6 @@ msgid ""
 msgstr ""
 "Servisin kaldırılmasından sonra %s %s nız tekrar başlatılacaktır\n"
 "Şimdi kaldırmak istiyor musunuz ?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"Hizmetin %s %s kaldırılmasından sonra yeniden başlatılacaksınız\n"
-"Şimdi kaldırmak istiyor musunuz?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
-"Hizmetin %s %s kaldırılmasından sonra yeniden başlatılacaksınız\n"
-"Şimdi kaldırmak istiyor musunuz?"
 
 #
 msgid ""
@@ -23487,11 +23434,17 @@ msgstr "Zap, ana ekrana odaklan"
 msgid "Zap focused channel on full screen"
 msgstr "Tam ekranda Zap odaklı kanal"
 
+msgid "Zap history sequence"
+msgstr ""
+
 msgid "Zap mode"
 msgstr "Kanal değişim kipi"
 
 msgid "Zap next"
 msgstr "Sonraki"
+
+msgid "Zap to"
+msgstr "Zap için"
 
 msgid "Zap to channel (setup in menu)"
 msgstr "Kanala zap (menüde ayar)"
@@ -23861,13 +23814,6 @@ msgstr "kesmeleri yürüt (MovieCut eklentisi gerektirir)"
 msgid "exit DVD player or return to file browser"
 msgstr "dvd oynatıcıdan çıkın veya dosya tarayıcısına dönün"
 
-msgid "exit mounts setup menu"
-msgstr "bağlantı kurulum menüsünden çık"
-
-#
-msgid "exit networkadapter setup menu"
-msgstr "ağ donanımı kurulum menüsünden çık"
-
 msgid "experimental film/video"
 msgstr "deneysel film/video"
 
@@ -24118,22 +24064,6 @@ msgstr "otomobil"
 
 msgid "move"
 msgstr "taşı"
-
-#
-msgid "move down to last entry"
-msgstr "en sona taşı"
-
-#
-msgid "move down to next entry"
-msgstr "bir alta taşı"
-
-#
-msgid "move up to first entry"
-msgstr "en üste taşı"
-
-#
-msgid "move up to previous entry"
-msgstr "bir üste taşı"
 
 msgid "movie (general)"
 msgstr "film (genel)"
@@ -24394,10 +24324,6 @@ msgstr "epg’yi arayın ..."
 msgid "select CAId's"
 msgstr "cAId’leri seçin"
 
-#
-msgid "select menu entry"
-msgstr "menü girişini seçin"
-
 msgid "serious music/classic music"
 msgstr "önemli/klasik müzik"
 
@@ -24614,12 +24540,6 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr "uShare Eylemleri"
-
-msgid "uShare Log"
-msgstr "uShare Günlüğü"
-
 msgid "uShare Name"
 msgstr "uShare Adı"
 
@@ -24628,9 +24548,6 @@ msgstr "uShare Kapısı"
 
 msgid "uShare Selection Actions"
 msgstr "uShare Seçim Eylemleri"
-
-msgid "uShare Setting Actions"
-msgstr "uShare Ayar Eylemleri"
 
 msgid "uShare Settings"
 msgstr "uShare Kurulumu"
@@ -24733,20 +24650,395 @@ msgstr "evet (beslemeleri tut)"
 msgid "®"
 msgstr "®"
 
+msgid "Preferred tuner DVB-S"
+msgstr "Tercih edilen tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Kayıt için DVB-S tuneri tercih et."
+
+msgid "Preferred tuner DVB-T"
+msgstr "Tercih edilen tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Kayıt için DVB-T tuneri tercih et."
+
+msgid "Preferred tuner DVB-C"
+msgstr "Tercih edilen tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Kayıt için DVB-C tuneri tercih et."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Etkinleştirdiğinizde, bu ayar 'Tercih edilen tuner' den fazla ağırlığa sahiptir."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Etkinleştirildiğinde, bu ayar 'kayıtları için tercih edilen tuner' den fazla ağırlığa sahiptir."
+
+msgid "Preferred tuner ATSC"
+msgstr ""
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr ""
+
+#, python-format
+#~ msgid "%s  -  %s    (%s%d Min)"
+#~ msgstr "%s - %s (%s%d Min)"
+
+#
+#~ msgid "Australian"
+#~ msgstr "Avustralya"
+
+#
+#~ msgid "Belgian"
+#~ msgstr "Belçikalı"
+
+#
+#~ msgid "Czechia"
+#~ msgstr "Çekya"
+
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "İran, İslam Cumhuriyeti"
+
+#~ msgid "United States"
+#~ msgstr "Amerika Birleşik Devletleri"
+
+#~ msgid "Mount Actions"
+#~ msgstr "Dağ Eylemleri"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Listeyi varsayılana göre sırala ve çık?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "bağlantı kurulum menüsünden çık"
+
+#
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "ağ donanımı kurulum menüsünden çık"
+
+#
+#~ msgid "move down to last entry"
+#~ msgstr "en sona taşı"
+
+#
+#~ msgid "move down to next entry"
+#~ msgstr "bir alta taşı"
+
+#
+#~ msgid "move up to first entry"
+#~ msgstr "en üste taşı"
+
+#
+#~ msgid "move up to previous entry"
+#~ msgstr "bir üste taşı"
+
+#
+#~ msgid "select menu entry"
+#~ msgstr "menü girişini seçin"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "Samba Kurulumu"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Yapılandırma dosya adı (değiştirmek için tamam):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Ayrıca samba istemci yüklemek istiyor musunuz?\n"
+#~ "Yani bu cihazda windows paylaşımlarını bağlamak için izin verir."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP Kurulum"
+
+#~ msgid "Inadyn Actions"
+#~ msgstr "Inadyn Eylemleri"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Günlüğü"
+
+#~ msgid "Inadyn Setting Actions"
+#~ msgstr "Inadyn Ayar Eylemleri"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Giriş yapılandırma dosyası adı:"
+
+#~ msgid "Mini DLNA Actions"
+#~ msgstr "Mini DLNA Eylemleri"
+
+#~ msgid "Mini DLNA Setting Actions"
+#~ msgstr "Mini DLNA Ayar İşlemleri"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Günlüğü"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS Yapılandırma"
+
+#~ msgid "OpenVPN Actions"
+#~ msgstr "OpenVPN Eylemleri"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "VPN Kurulumu Aç"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVPN Günlüğü"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Kaldırmaya hazır mısınız \"%s\" ?"
+
+#~ msgid "SATPI Settings"
+#~ msgstr "SATPI Ayarları"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Actions"
+#~ msgstr "Samba Eylemleri"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba Günlüğü"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba Kurulumu"
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP Kur"
+
+#~ msgid "Setup NFS"
+#~ msgstr "Kurulum NFS"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "OpenVPN Kurulumu"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "Kurulum SABnzbd"
+
+#~ msgid "Setup SATPI"
+#~ msgstr "SATPI Kurulumu"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Samba Kurulumu"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Telnet Kurulumu"
+
+#~ msgid "Share Folders"
+#~ msgstr "Paylaşım Klasörleri"
+
+#~ msgid "Telnet Actions"
+#~ msgstr "Telnet Eylemleri"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telnet Kurulumu"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Zaman güncelle Dakika:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "Hizmetin %s %s kurulumundan sonra yeniden başlatılacaksınız\n"
+#~ "Yüklemeye hazır %s ?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service.\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Hizmetin %s %s kaldırılmasından sonra yeniden başlatılacaksınız\n"
+#~ "Şimdi kaldırmak istiyor musunuz?"
+
+#~ msgid "uShare Actions"
+#~ msgstr "uShare Eylemleri"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare Günlüğü"
+
+#~ msgid "uShare Setting Actions"
+#~ msgstr "uShare Ayar Eylemleri"
+
+#~ msgid "Show OScam Info"
+#~ msgstr "OScam Bilgilerini Göster"
+
+#~ msgid "Show the OScamInfo Screen"
+#~ msgstr "OScamInfo Ekranını Göster"
+
+#
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s ( %s kartları )"
+
+#~ msgid "( All readers)"
+#~ msgstr "( Tüm okuyucular )"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Sadece bu okuyucuyu göster:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Actions"
+#~ msgstr "AFP Eylemleri"
+
+#~ msgid "AFP Settings"
+#~ msgstr "AFP Kurulumu"
+
+#~ msgid "Address"
+#~ msgstr "Adres"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Kart Bilgileri (CCcam-Okuyucu)"
+
+#~ msgid "Cards:"
+#~ msgstr "Kartlar:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Müşteri Bilgisi ( Oscam-Version:%s )"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM istatistiği"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM zamanı"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM ortalaması"
+
+#~ msgid "ECM last"
+#~ msgstr "ECM son"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM-Zaman"
+
+#~ msgid "FTP Actions"
+#~ msgstr "FTP Eylemleri"
+
+#~ msgid "Hops"
+#~ msgstr "Hops"
+
+#~ msgid "Last Request"
+#~ msgstr "Son istek"
+
+#~ msgid "NFS Actions"
+#~ msgstr "NFS Eylemleri"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Oscam Bilgi - Ana Menü"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Oscam Bilgi - Yapılandırma"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Oscam Günlüğü ( Oscam Sürümü:%s )"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "OscamInfo Mainmenu"
+
+#
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Lütfen CCcam-Okuyucu seçin"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Lütfen okuyucu seçin"
+
+#~ msgid "Providers: "
+#~ msgstr "Sağlayıcıları: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Okuyucu istatistiği"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Yüklemeye hazır %s ?"
+
+#~ msgid "Reshare"
+#~ msgstr "Yeniden paylaşma"
+
+#~ msgid "SABnzbd Actions"
+#~ msgstr "SABnzbd Eylemleri"
+
+#~ msgid "SATPI Setting Actions"
+#~ msgstr "SATPI Ayar Eylemleri"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Sunucu Adı"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Sunucu Bilgisi (Oscam-Version: %s )"
+
+#~ msgid "Server:"
+#~ msgstr "Sunucu:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "AFP'yi kur"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "/tmp/ecm.info göster"
+
+#~ msgid "Show Clients"
+#~ msgstr "İstemcileri göster"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Okuyucuları/Vekil Sunucuları göster"
+
+#~ msgid "Total"
+#~ msgstr "Toplam"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Güncelleme periyodu (saniye)"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Hizmetin %s %s kaldırılmasından sonra yeniden başlatılacaksınız\n"
+#~ "Şimdi kaldırmak istiyor musunuz?"
+
+#
+#~ msgid "Please change recording endtime"
+#~ msgstr "Lütfen kayıt bitiş zamanını değiştirin"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Gerçekten çok üzgünüz. Alıcınız bir yazılım sorunuyla karşılaştı ve yeniden başlatılması gerekiyor.\n"
+#~ "Lütfen %senigma2_crash_xxxxxx.log dosyasını www.opena.tv adresine gönderin.\n"
+#~ "Alıcınız 10 saniye içinde yeniden başlar!\n"
+#~ "Bileşen: enigma2"
+
 #
 #~ msgid "+24"
 #~ msgstr "+24"
 
 #~ msgid "-24"
 #~ msgstr "-24"
-
-#
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Kayıt devam ediyor.\n"
-#~ "Ne yapmak istiyorsunuz?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Buket Listesi"
@@ -24971,16 +25263,9 @@ msgstr "®"
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI Yardımcısı Kurulumu"
 
-#~ msgid "ClientIP"
-#~ msgstr "ClientIP"
-
 #
 #~ msgid "Minute"
 #~ msgstr "Dakika"
-
-#
-#~ msgid "Transcode"
-#~ msgstr "Kod dönüştürme"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -25004,12 +25289,6 @@ msgstr "®"
 #~ msgid "Basic PID info"
 #~ msgstr "Temel PID bilgisi"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Tuş Kurulumu"
-
-#~ msgid "Client"
-#~ msgstr "Müşteri"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "Kod R. LP-HP ve Guard Int."
 
@@ -25030,9 +25309,6 @@ msgstr "®"
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Frekans & Polarizasyon"
 
-#~ msgid "Hotkey"
-#~ msgstr "Kısayol"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Inversiyon ve Bant Genişliği"
 
@@ -25042,26 +25318,14 @@ msgstr "®"
 #~ msgid "NIM & Type"
 #~ msgstr "NIM ve Türü"
 
-#~ msgid "Network storage on"
-#~ msgstr "Ağ depolama alanı"
-
 #~ msgid "Next Log"
 #~ msgstr "Sonraki Günlük"
 
 #~ msgid "Next Picture"
 #~ msgstr "Sonraki resmi göster"
 
-#~ msgid "No log files found so debug logs are unavailable!"
-#~ msgstr "Hiçbir günlük dosyası bulunamadı, bu nedenle hata ayıklama günlükleri kullanılamıyor!"
-
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Panik"
 
 #~ msgid "Previous Log"
 #~ msgstr "Önceki Günlük"
@@ -25091,9 +25355,6 @@ msgstr "®"
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Kanal bilgisi - tuner ayar değerleri"
 
-#~ msgid "Shellscript"
-#~ msgstr "Shell Komut"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Sembol oranı & FEC"
 
@@ -25110,9 +25371,6 @@ msgstr "®"
 
 #~ msgid "Tuner setting values"
 #~ msgstr "Tuner ayar değerleri"
-
-#~ msgid "Zap to"
-#~ msgstr "Zap için"
 
 #~ msgid "active"
 #~ msgstr "aktif"

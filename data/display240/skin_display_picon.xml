@@ -226,7 +226,7 @@
 		<widget source="parent.selectedChoice" render="Label" position="0,135" size="220,28" font="FdLcD;26" halign="center" noWrap="1" />
 	</screen>
 
-	<screen name="TimerEditListSummary" position="0,0" size="220,176">
+	<screen name="TimerOverviewSummary" position="0,0" size="220,176">
 		<widget source="service" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="name" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<widget source="time" render="Label" position="0,86" size="220,20" font="FdLcD;19" halign="left" transparent="1" />
@@ -314,12 +314,6 @@
 <!-- RDS info -->
 	<screen name="RdsInfoDisplaySummary" position="fill">
 		<widget source="message" render="Label" position="0,0" size="220,176" font="FdLcD;30" halign="center" valign="center" />
-	</screen>
-
-<!-- Infopanel -->
-	<screen name="InfopanelSummary" position="0,0" size="220,176">
-		<widget source="parent.Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,80" font="FdLcD;35" halign="center" valign="top" />
-		<widget source="parent.summary_description" render="Label" position="0,82" size="220,80" font="FdLcD;30" halign="center" valign="center"  />
 	</screen>
 	
 <!-- Quickmenü -->

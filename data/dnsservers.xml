@@ -1,0 +1,20 @@
+<!--
+	<dnsserver 
+		key="<primary key>"  mandatory
+		title="<display name>" mandatory
+		ipv4="" mandatory
+		ipv6="" optional
+-->
+
+<dnsserversxml>
+	<dnsserver key="google" title="Google DNS" ipv4="8.8.8.8,8.8.4.4" ipv6="2001:4860:4860:0:0:0:0:8888,2001:4860:4860:0:0:0:0:8844"/>
+	<dnsserver key="cloudflare" title="Cloudflare DNS" ipv4="1.1.1.1,1.0.0.1" ipv6="2606:4700:4700::1111,2606:4700:4700::1001"/>
+	<dnsserver key="quad9" title="Quad9 DNS" ipv4="9.9.9.9,149.112.112.112" ipv6="2620:fe::fe,2620:fe::9"/>
+	<dnsserver key="quad9ecs" title="Quad9 ECS DNS" ipv4="9.9.9.11,149.112.112.11" ipv6="2620:fe::11,2620:fe::fe:11"/>
+	<dnsserver key="quad9unsecured" title="Quad9 Unsecured DNS" ipv4="9.9.9.10,149.112.112.10" ipv6="2620:fe::10,2620:fe::fe:10"/>
+	<dnsserver key="nordvpn" title="NordVPN Secure DNS" ipv4="103.86.96.100,103.86.99.100"/>
+	<dnsserver key="nordvpnsmart" title="NordVPN Smart DNS" ipv4="103.86.96.103,103.86.99.103"/>
+	<dnsserver key="opendns-familyshield" title="OpenDNS FamilyShield" ipv4="208.67.222.123,208.67.220.123" ipv6="::ffff:d043:de7b,::ffff:d043:dc7b"/>
+	<dnsserver key="opendns-home" title="OpenDNS Home" ipv4="208.67.222.222,208.67.220.220" ipv6="::ffff:d043:dede,::ffff:d043:dcdc"/>
+	<dnsserver key="comodo" title="Comodo Secure DNS" ipv4="8.26.56.26,8.20.247.20"/>
+</dnsserversxml>

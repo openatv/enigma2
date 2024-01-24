@@ -1235,7 +1235,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 								register int b = (*s++) >> 4;
 								if (b)
 								{
-									unsigned char frame_a = (*td) >> 24 & 0xFF;
+									// unsigned char frame_a = (*td) >> 24 & 0xFF;
 									unsigned char frame_r = (*td) >> 16 & 0xFF;
 									unsigned char frame_g = (*td) >> 8 & 0xFF;
 									unsigned char frame_b = (*td) & 0xFF;

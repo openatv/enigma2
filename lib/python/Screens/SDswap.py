@@ -11,7 +11,7 @@ from Tools.BoundFunction import boundFunction
 class SDswap(Screen):
 
 	skin = """
-	<screen name="H9SDswap" position="center,center" size="750,900" flags="wfNoBorder" backgroundColor="transparent">
+	<screen name="H9SDswap" position="center,center" size="750,900" flags="wfNoBorder" backgroundColor="transparent" resolution="1280,720">
 		<eLabel name="b" position="0,0" size="750,700" backgroundColor="#00ffffff" zPosition="-2" />
 		<eLabel name="a" position="1,1" size="748,698" backgroundColor="#00000000" zPosition="-1" />
 		<widget source="Title" render="Label" position="60,10" foregroundColor="#00ffffff" size="480,50" halign="left" font="Regular; 28" backgroundColor="#00000000" />

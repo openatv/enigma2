@@ -159,7 +159,7 @@ class Keyboard:
 	def __init__(self):
 		self.keyboards = []
 		keyboards = fileReadXML(resolveFilename(SCOPE_KEYMAPS, "keyboards.xml"), source=MODULE_NAME)
-		if keyboards:
+		if keyboards is not None:
 			for keyboard in sorted(keyboards.findall("keyboard"), key=lambda keyboard: (keyboard.tag, keyboard.get("name"))):
 				keyboardKmap = keyboard.attrib.get("kmap")
 				keyboardName = keyboard.attrib.get("name")
@@ -209,7 +209,7 @@ class RemoteControl:
 		self.rcType = self.readRemoteControlType()
 		remotes = fileReadXML(resolveFilename(SCOPE_SKINS, "remotes.xml"), source=MODULE_NAME)
 		self.remotes = []
-		if remotes:
+		if remotes is not None:
 			for remote in sorted(remotes.findall("remote"), key=lambda remote: (remote.tag, remote.get("displayName"))):
 				model = remote.attrib.get("model")
 				rcType = remote.attrib.get("rcType")
@@ -237,9 +237,9 @@ class RemoteControl:
 		print(f"[InputDevice] Loading remote control '{filename}'.")
 		rcs = fileReadXML(filename, source=MODULE_NAME)
 		rcButtons = {}
-		if rcs:
+		if rcs is not None:
 			rc = rcs.find("rc")
-			if rc:
+			if rc is not None:
 				logRemaps = []
 				remapButtons = {}
 				placeHolder = 0

@@ -3,12 +3,12 @@ from os import listdir
 from os.path import exists, isdir, join
 from shutil import rmtree
 from traceback import print_exc
+from enigma import eProfileWrite
 
 from Components.ActionMap import loadKeymap
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import SCOPE_PLUGINS, resolveFilename
 from Tools.Import import my_import
-from Tools.Profile import profile
 
 
 class PluginComponent:
@@ -55,7 +55,7 @@ class PluginComponent:
 					continue
 				path = join(pluginPath, pluginName)
 				if isdir(path):
-					profile("Plugin %s" % pluginName)
+					eProfileWrite("Plugin %s" % pluginName)
 					try:
 						plugin = my_import(".".join(["Plugins", pluginDirectory, pluginName, "plugin"]))
 						plugins = plugin.Plugins(path=path)

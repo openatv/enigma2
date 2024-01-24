@@ -71,7 +71,7 @@ class StartSwap:
 
 class Swap(Screen):
 	skin = """
-	<screen name="Swap" position="center,center" size="420,250" title="Swap File Manager" flags="wfBorder" >
+	<screen name="Swap" position="center,center" size="420,250" title="Swap File Manager" flags="wfBorder" resolution="1280,720">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />

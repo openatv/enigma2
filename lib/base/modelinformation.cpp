@@ -9,6 +9,9 @@ eModelInformation::eModelInformation()
 	std::string key, value;
 	std::ifstream f(eEnv::resolve("${libdir}/enigma.info").c_str());
 
+	if (!f.good())
+		return;
+
 	while (f.good())
 	{
 		std::getline(f, key, '=');
@@ -21,6 +24,7 @@ eModelInformation::eModelInformation()
 		value.erase(std::remove(value.begin(), value.end(), '\''), value.end());
 		m_modelinformation[key] = value;
 	}
+	f.close();
 }
 
 std::string eModelInformation::getValue(const std::string &key)

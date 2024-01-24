@@ -1,7 +1,7 @@
 # Ukrainian translations for Enigma2.
 #
 # openATV <openatv@gmail.com>, 2021.
-# kvinto <badsystem@ukr.net>, 2021, 2022, 2023.
+# kvinto <badsystem@ukr.net>, 2021, 2022, 2023, 2024.
 # igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023.
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
 # Artem <artem@molotov.work>, 2022.
@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
-"PO-Revision-Date: 2023-12-11 00:50+0000\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"PO-Revision-Date: 2024-01-12 09:38+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1179,10 +1179,6 @@ msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
 #, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr "%s  -  %s    (%s%d хв)"
-
-#, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d. %02d."
 
@@ -1205,10 +1201,6 @@ msgstr "%s %s іч миша"
 #, python-format
 msgid "%s %s remote control (native)"
 msgstr "%s %s пульт ДУ (рідний)"
-
-#, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s (%s Картки)"
 
 #, python-format
 msgid "%s (%04o)"
@@ -1339,9 +1331,6 @@ msgstr "'Розкодувати і записати ECM' - дозволяє за
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' не встановлений!"
 
-msgid "( All readers)"
-msgstr "( Всі рідери)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "(Для доступу до журналу логів %s потрібне підключення до Інтернету.)"
@@ -1355,9 +1344,6 @@ msgstr "(ПіП)"
 
 msgid "(Radio)"
 msgstr "(Радіо)"
-
-msgid "(Show only reader:"
-msgstr "(Показати тільки рідер:"
 
 msgid "(TV)"
 msgstr "(ТБ)"
@@ -1609,11 +1595,11 @@ msgstr "<Розташування останнього таймера>"
 msgid "<Select a device>"
 msgstr "<Виберіть пристрій>"
 
+msgid "<no log found>"
+msgstr "<лог не знайдено"
+
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Виконується перевірка оновленнь у фоні, будь ласка, зачекайте кілька хвилин і повторіть спробу."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Відокремлений комами список розширень, які будуть використовуватися для параметра 'Мої розширення' параметра 'Розширення Фільтр розширень'. Введіть назви розширень без крапки на початку (.)."
@@ -1674,6 +1660,13 @@ msgid ""
 msgstr ""
 "Запис розпочався:\n"
 "%s"
+
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Триває запис.\n"
+"Що хочете зробити?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "В даний час триває запис. Зупиніть запис перед налаштуванням позиціонера."
@@ -1759,15 +1752,6 @@ msgstr "AC3+ транскодування"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr "Дії AFP"
-
-msgid "AFP Settings"
-msgstr "Налаштування AFP"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2086,9 +2070,6 @@ msgstr "Додаткові опції двигуна дозволяють вве
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Додаткові опції двигуна дозволяють ввести дані з специфікації Вашого двигуна, щоб система обчислила необхідний час для переміщення антени."
-
-msgid "Address"
-msgstr "Адреса"
 
 msgid "Adjust 3D settings"
 msgstr "Регулювання 3D налаштувань"
@@ -2646,9 +2627,6 @@ msgstr "Розмір величини кроку звуку швидкого р�
 msgid "Australia"
 msgstr "Австралія"
 
-msgid "Australian"
-msgstr "Австралійська"
-
 msgid "Austria"
 msgstr "Австрія"
 
@@ -2718,6 +2696,9 @@ msgstr "Налаштування AutoCam"
 msgid "AutoCam Setup Actions"
 msgstr "Налаштування дій AutoCam"
 
+msgid "AutoFS"
+msgstr "АвтоFS"
+
 msgid "AutoMountManager"
 msgstr "Конфігурація Автомонтування"
 
@@ -2756,6 +2737,9 @@ msgstr "Автоматично перемикати на зовнішні суб
 
 msgid "Automatically update Client/Server View"
 msgstr "Автоматичне оновлення перегляду Клієнт/Сервер"
+
+msgid "Automatically update Log-Fullscreen View"
+msgstr "Автоматичне оновлення логу в повноекранному режимі"
 
 msgid "Autostart"
 msgstr "Автостарт"
@@ -3017,9 +3001,6 @@ msgstr "Білорусь"
 
 msgid "Belarusian"
 msgstr "Білоруська"
-
-msgid "Belgian"
-msgstr "Бельгійська"
 
 msgid "Belgium"
 msgstr "Бельгія"
@@ -3287,6 +3268,9 @@ msgstr "Налаштування кнопок"
 msgid "Button error timeout"
 msgstr "Час очікування помилки кнопки"
 
+msgid "ButtonSetup"
+msgstr "Налаштування кнопок"
+
 msgid "By disk UUID"
 msgstr "За UUID диску"
 
@@ -3310,12 +3294,6 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "С-Діапазон"
-
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID : SrvID"
 
 msgid "CCD-Width"
 msgstr "CCD-Ширина"
@@ -3419,9 +3397,6 @@ msgstr "CI слот: "
 
 msgid "CI+ Helper*"
 msgstr "CI+ Helper*"
-
-msgid "CIFS/Samba Settings"
-msgstr "Налаштування CIFS/Samba"
 
 msgid "CPU"
 msgstr "Процесор"
@@ -3666,11 +3641,14 @@ msgstr "Скасувати вибір іміджу і вийти"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Скасувати вибір іміджу та вийдіть із усіх меню"
 
+msgid "Cancel the selection and exit"
+msgstr "Скасувати вибір і вийти"
+
+msgid "Cancel the service history zap"
+msgstr "Скасувати послугу перемикання"
+
 msgid "Cancel the service selection"
 msgstr "Скасуйте вибір послуги"
-
-msgid "Cancel the service zap"
-msgstr "Скасувати послугу перемикання"
 
 msgid "Cancel the slot selection and exit"
 msgstr "Скасувати вибір слота та вийти"
@@ -3709,12 +3687,6 @@ msgstr "Ємність"
 
 msgid "Cape Verde"
 msgstr "Кабо Верде"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Інформація про карту (CCcam-рідер)"
-
-msgid "Cards:"
-msgstr "Карти:"
 
 msgid "Cards: "
 msgstr "Карти: "
@@ -4003,6 +3975,18 @@ msgstr "Чіпсет: BCM%s"
 msgid "Choice Box"
 msgstr "Зробіть вибір"
 
+msgid "Choice List Actions"
+msgstr "Дії списку вибору"
+
+msgid "Choice List Navigation Actions"
+msgstr "Навігаційні дії за списком вибору"
+
+msgid "Choice List Order Actions"
+msgstr "Дії порядку списку вибору"
+
+msgid "Choice List Selection Actions"
+msgstr "Дії вибору зі списку вибору"
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Вибір де поставити \"%s\""
@@ -4024,6 +4008,12 @@ msgstr "Виберіть, скільки передач EPG, якщо така �
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Виберіть частоту підключення до сервера IceTV, щоб перевірити наявність оновлень."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr "Виберіть скін дисплея та натисніть ЗЕЛЕНУ кнопку, щоб активувати скін."
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr "Виберіть OSD-скін та натисніть ЗЕЛЕНУ кнопку, щоб активувати його."
 
 msgid "Choose the amount of additional slots."
 msgstr "Виберіть кількість додаткових слотів."
@@ -4112,6 +4102,9 @@ msgstr "Виберіть тюнер для налаштування."
 msgid "Christmas Island"
 msgstr "Острів Різдва"
 
+msgid "Chrony"
+msgstr "Chrony"
+
 msgid "Church Slavic"
 msgstr "Церковнослов’янська"
 
@@ -4181,12 +4174,14 @@ msgstr[2] "Очистити попереджень"
 msgid "Click the button on your remote you want to change."
 msgstr "Натисніть на пульті ту кнопку, дію якої хочете змінити."
 
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Інформація Client(Оскам-Версія: %s)"
+msgid "Client"
+msgstr "Клієнт"
 
 msgid "Client is streaming from this box!"
 msgstr "Клієнт транслюється з цього пристрою!"
+
+msgid "ClientIP"
+msgstr "АПКлієнт"
 
 msgid "Clients"
 msgstr "Клієнти"
@@ -4345,6 +4340,9 @@ msgstr "Загальні налаштування"
 msgid "Common Setup Actions"
 msgstr "Загальні дії з налаштування"
 
+msgid "Comodo Secure DNS"
+msgstr "Зручний захищений DNS"
+
 msgid "Comoros"
 msgstr "Коморські острови"
 
@@ -4372,9 +4370,6 @@ msgstr "Налаштування"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Конфігураційний файл %s збережено."
-
-msgid "Config file name (ok to change):"
-msgstr "Ім'я файлу конфігурації (ОК щоб змінити):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -4771,6 +4766,9 @@ msgstr "Вкажіть, який роз'єм відеовиходу буде в�
 msgid "Configuring"
 msgstr "Налаштування"
 
+msgid "Configuring Service"
+msgstr "Налаштування каналу"
+
 msgid "ConflictTimer Actions"
 msgstr "Дії ConflictTimer"
 
@@ -5008,11 +5006,11 @@ msgid "Could not open the file %s!"
 msgstr "Не вдалося відкрити файл %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer: %s"
+msgid "Could not record due to conflicting timer:%s"
 msgstr "Запис неможливий - конфлікт таймерів %s"
 
 #, python-format
-msgid "Could not record due to invalid service: %s"
+msgid "Could not record due to invalid service:%s"
 msgstr "Запис неможливий, канал %s невірний"
 
 #, python-format
@@ -5113,6 +5111,9 @@ msgstr "Хорватія"
 
 msgid "Croatian"
 msgstr "Хорватська"
+
+msgid "Cron"
+msgstr "Cron"
 
 msgid "Cron Manager"
 msgstr "Менеджер Cron"
@@ -5267,9 +5268,6 @@ msgstr "Чешська"
 msgid "Czech Republic"
 msgstr "Чеська Республіка"
 
-msgid "Czechia"
-msgstr "Чехія"
-
 msgid "D"
 msgstr "D"
 
@@ -5296,6 +5294,12 @@ msgstr "Налаштування DNS"
 
 msgid "DNS data source"
 msgstr "Джерело даних DNS"
+
+msgid "DNS mode"
+msgstr "Режим DNS"
+
+msgid "DNS suffix"
+msgstr "DNS суфікс"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5381,6 +5385,9 @@ msgstr "Дата"
 
 msgid "Date / Time"
 msgstr "Дата / час"
+
+msgid "Date Time Input Actions"
+msgstr "Дії по введення дати та часу"
 
 msgid "Date ascending"
 msgstr "Дата за зростанням"
@@ -5661,6 +5668,9 @@ msgstr "Визначити Softcam для даного Каналу"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Визначте додаткову затримку в мілісекундах перед початком стріму http(s)."
+
+msgid "Define the DNS suffix."
+msgstr "Визначити DNS-суфікс."
 
 msgid "Defined / Active"
 msgstr "Визначено / Активно"
@@ -6326,13 +6336,6 @@ msgid "Do you want the upgrade guide?"
 msgstr "Хочете отримати посібник з оновлення?"
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Також потрібно встановити клієнт samba?\n"
-"Це дає змогу монтувати спільні ресурси Ваших вікон на цьому пристрої."
-
-msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
@@ -6405,6 +6408,9 @@ msgstr "Ви хочете перезавантажити Ваш %s %s?"
 
 msgid "Do you want to remove:"
 msgstr "Ви хочете видалити:"
+
+msgid "Do you want to replace:"
+msgstr "Бажаєте замінити:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Ви хочете відновити свої налаштування?"
@@ -6573,15 +6579,6 @@ msgstr "E "
 msgid "ECM"
 msgstr "ЕСМ"
 
-msgid "ECM Statistics"
-msgstr "Статистика ECM"
-
-msgid "ECM Time"
-msgstr "ECM час відповіді"
-
-msgid "ECM avg"
-msgstr "ECM сер"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM дані будуть включені в потік. Приймач клієнта буде декодувати потік."
 
@@ -6591,12 +6588,6 @@ msgstr "Інформація ЕСМ"
 #, python-format
 msgid "ECM information for '%s'"
 msgstr "Інформація ЕСМ для '%s'"
-
-msgid "ECM last"
-msgstr "Останній ECM"
-
-msgid "ECM-Time"
-msgstr "ECM - час відповіді"
 
 msgid "EJECTCD"
 msgstr "ВидалитиCD"
@@ -6618,6 +6609,9 @@ msgstr "Вибір каналу/послуг EPG"
 
 msgid "EPG Display Actions"
 msgstr "Дії відображення EPG"
+
+msgid "EPG Jump"
+msgstr "Стрибок ЕПГ"
 
 msgid "EPG Navigation Actions"
 msgstr "Дії навігації по EPG"
@@ -7856,12 +7850,6 @@ msgstr "Не кодований"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr "Дії FTP"
-
-msgid "FTP Settings"
-msgstr "Налаштування FTP"
-
 msgid "Factory Reset"
 msgstr "Скидання на Заводські налаштування"
 
@@ -8247,6 +8235,9 @@ msgstr "Продукти харчування/Вино"
 
 msgid "Football"
 msgstr "Футбол"
+
+msgid "For how many minutes do you want to record?"
+msgstr "Скільки хвилин ви хочете записати?"
 
 msgid "Force AC3plus"
 msgstr "примусово AC3plus"
@@ -8942,6 +8933,9 @@ msgstr "Приховувати канали під батьківським ко
 msgid "Hide player"
 msgstr "Приховати програвач"
 
+msgid "Hide softcam servername"
+msgstr "Приховати ім'я сервера softcam"
+
 msgid "Hide the InfoBar"
 msgstr "Згасання Інфобару"
 
@@ -9029,9 +9023,6 @@ msgstr "Гондурас"
 msgid "Hong Kong"
 msgstr "Гонконг"
 
-msgid "Hops"
-msgstr "Hops"
-
 msgid "Hops:"
 msgstr "Hops:"
 
@@ -9062,6 +9053,9 @@ msgstr "Мережеве ім'я: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0E"
 
+msgid "Hotkey"
+msgstr "Гарячі кнопки"
+
 msgid "Hotkey Settings"
 msgstr "Налаштування гарячих кнопок"
 
@@ -9073,9 +9067,6 @@ msgstr "Години Хвилини"
 
 msgid "Hours Minutes Seconds"
 msgstr "Години Хвилини Секунди"
-
-msgid "How many minutes do you want to record?"
-msgstr "Скільки хвилин ви хочете записати?"
 
 msgid "Http(s) stream start delay"
 msgstr "Затримка початку Http потоку"
@@ -9152,8 +9143,14 @@ msgstr "IP-адреса сервера Stream Relay, який використо
 msgid "IPK Installer"
 msgstr "IPK Інсталятор"
 
+msgid "IPv4 only"
+msgstr "Лише IPv4"
+
 msgid "IPv6 address"
 msgstr "IPv6 адреса"
+
+msgid "IPv6 only"
+msgstr "Лише IPv6"
 
 msgid "ISO file is too large for this file system!"
 msgstr "Розмір ISO файлу завеликий для цієї файлової системи!"
@@ -9408,15 +9405,6 @@ msgstr "Неактивний"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr "Inadyn дії"
-
-msgid "Inadyn Log"
-msgstr "Лог Inadyn"
-
-msgid "Inadyn Setting Actions"
-msgstr "Інадин налаштування дії"
-
 msgid "Inadyn Settings"
 msgstr "Налаштування Inadyn"
 
@@ -9594,9 +9582,6 @@ msgstr "Вхідний ID потоку"
 msgid "Input channel name."
 msgstr "Введення назви каналу."
 
-msgid "Input config file name:"
-msgstr "Введіть ім'я файла конфігурації:"
-
 msgid "Input scroll position"
 msgstr "Введіть положення прокручування"
 
@@ -9650,6 +9635,9 @@ msgstr "Встановіть вибраний плагін/список плаг
 msgid "Installation finished."
 msgstr "Встановлення завершено."
 
+msgid "Installed"
+msgstr "Встановлено"
+
 msgid "Installing"
 msgstr "Встановлення"
 
@@ -9680,6 +9668,9 @@ msgstr "Встановлення плагінів з фіду..."
 
 msgid "Instant Recording Actions"
 msgstr "Дії для миттєвого запису"
+
+msgid "Instant Recording End Time"
+msgstr "Миттєвий час закінчення запису"
 
 msgid "Instant record"
 msgstr "Негайний запис"
@@ -9768,9 +9759,6 @@ msgstr "Інвертувати функції кнопок."
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran, Islamic Republic"
-msgstr "Іран, Ісламська Республіка"
-
 msgid "Iran, Islamic Republic of"
 msgstr "Іран, Ісламська Республіка"
 
@@ -9834,14 +9822,32 @@ msgstr "Огляд завдань"
 msgid "Jordan"
 msgstr "Йорданія"
 
+msgid "Jump"
+msgstr "Стрибок"
+
 msgid "Jump back 24 hours"
 msgstr "Перейти назад на 24 години"
+
+msgid "Jump back one day"
+msgstr "Перейти на один день назад"
+
+msgid "Jump back one hour"
+msgstr "Перейти на годину назад"
 
 msgid "Jump first press in channel selection"
 msgstr "Перейти на перше натискання в списку каналів"
 
 msgid "Jump forward 24 hours"
 msgstr "Перейти вперед на 24 години"
+
+msgid "Jump forward one day"
+msgstr "Перейти вперед на один день"
+
+msgid "Jump forward one hour"
+msgstr "Перейти на годину вперед"
+
+msgid "Jump time"
+msgstr "Час переходу"
 
 msgid "Jump to beginning of list"
 msgstr "Перейти на початок списку"
@@ -10111,9 +10117,6 @@ msgstr "Лаоська Народно-Демократична Республі�
 
 msgid "Large"
 msgstr "Великий"
-
-msgid "Last Request"
-msgstr "Останній запит"
 
 msgid "Last config"
 msgstr "Остання конфігурація"
@@ -10869,20 +10872,11 @@ msgstr "по середині"
 msgid "Middle - Lite image"
 msgstr "Середньо–полегшений імідж"
 
-msgid "Mini DLNA Actions"
-msgstr "Дії Mini DLNA"
-
-msgid "Mini DLNA Setting Actions"
-msgstr "Дії налаштування Mini DLNA"
-
 msgid "Mini Series"
 msgstr "Міні серіали"
 
 msgid "MiniDLNA"
 msgstr "Міні-DLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Лог"
 
 msgid "MiniDLNA Settings"
 msgstr "Налаштування MiniDLNA"
@@ -11001,6 +10995,12 @@ msgstr "Марокко"
 msgid "Mosquito noise reduction"
 msgstr "Пониження дрібних шумів"
 
+msgid "Most recent first"
+msgstr "Спершу останні"
+
+msgid "Most recent last"
+msgstr "Найновіший останній"
+
 msgid "Motor Sport"
 msgstr "Мотоспорт"
 
@@ -11013,11 +11013,11 @@ msgstr "Затримка роботи для двигуна"
 msgid "Mount"
 msgstr "Підключення"
 
-msgid "Mount Actions"
-msgstr "Дії монтування"
-
 msgid "Mount Manager"
 msgstr "Помічник монтування"
+
+msgid "Mount Menu Actions"
+msgstr "Дії Меню монтування"
 
 msgid "Mount Settings"
 msgstr "Налаштування монтування"
@@ -11135,6 +11135,12 @@ msgstr "Перемістити поточну закладку вниз"
 
 msgid "Move the current bookmark up"
 msgstr "Перемістити поточну закладку вгору"
+
+msgid "Move the current entry down"
+msgstr "Перемістити поточний запис вниз"
+
+msgid "Move the current entry up"
+msgstr "Перемістити поточний запис вверх"
 
 msgid "Move the current line down"
 msgstr "Перемістити поточний рядок вниз"
@@ -11405,12 +11411,6 @@ msgstr "НАСТУПНА"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr "NFS дії"
-
-msgid "NFS Settings"
-msgstr "Налаштування NFS"
-
 msgid "NIM"
 msgstr "NIM"
 
@@ -11537,6 +11537,9 @@ msgstr "Інформаційні дії мережі"
 msgid "Network Interface"
 msgstr "Мережевий Інтерфейс"
 
+msgid "Network Log"
+msgstr "Лог Мережі"
+
 msgid "Network Log Actions"
 msgstr "Дії мережевого журналу"
 
@@ -11557,6 +11560,9 @@ msgstr "Мережеві служби"
 
 msgid "Network Settings"
 msgstr "Налаштування мережі"
+
+msgid "Network Setup Actions"
+msgstr "Дії з налаштування мережі"
 
 msgid "Network Test"
 msgstr "Тест Мережі"
@@ -11594,6 +11600,9 @@ msgstr "Назва мережі (SSID)"
 
 msgid "Network scan"
 msgstr "Мережевий пошук"
+
+msgid "Network storage on"
+msgstr "Мережевий накопичувач увімкнено"
 
 msgid "Network test"
 msgstr "Тест мережевого з'єднання"
@@ -11804,6 +11813,9 @@ msgstr "Немає вільного тюнера!"
 msgid "No hard disks detected."
 msgstr "Жорстких дисків не виявлено."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr "Файлів журналу не знайдено, тому журнали налагодження недоступні!"
+
 msgid "No matching place names found"
 msgstr "Не знайдено відповідних назв"
 
@@ -11979,8 +11991,11 @@ msgstr "Нелінійний"
 msgid "None"
 msgstr "Нічого"
 
-msgid "NordVPN DNS"
-msgstr "Nord VPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr "Безпечний DNS NordVPN"
+
+msgid "NordVPN Smart DNS"
+msgstr "Розумний DNS NordVPN"
 
 msgid "Norfolk Island"
 msgstr "Острів Норфолк"
@@ -12143,6 +12158,27 @@ msgstr "Режим кнопки OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, допомогти мені в процесі оновлення"
 
+msgid "OSCam Info"
+msgstr "Oscam Інфо"
+
+msgid "OSCam Information"
+msgstr "Oscam-Інфо"
+
+msgid "OSCam Information Settings"
+msgstr "Налаштування інформації OSCam"
+
+msgid "OSCam webif disabled"
+msgstr "oscam webif відключено"
+
+msgid "OSCamInfo Actions"
+msgstr "Дії OSCamInfo"
+
+msgid "OSCamInfo Log"
+msgstr "Лог OSCamInfo"
+
+msgid "OSCamInfo Log Actions"
+msgstr "Дії для логу OSCamInfo"
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12163,15 +12199,6 @@ msgstr "Налаштування OSD"
 
 msgid "OSD name request"
 msgstr "Запит OSD імені"
-
-msgid "OScam Info"
-msgstr "Oscam Інфо"
-
-msgid "OScam Information"
-msgstr "Oscam-Інфо"
-
-msgid "OScam webif disabled"
-msgstr "oscam webif відключено"
 
 msgid "OTT Model"
 msgstr "Модель OTT"
@@ -12269,8 +12296,14 @@ msgstr "Відкрити пошук EPG"
 msgid "Open IMDb"
 msgstr "Відкрити IMDB"
 
+msgid "Open Log"
+msgstr "Відкрити Лог"
+
 msgid "Open MediaStream"
 msgstr "Відкрити MediaStream"
+
+msgid "Open Settings"
+msgstr "Відкрийте налаштування"
 
 msgid "Open Similar List Channel List"
 msgstr "Відкрийте однорідний список Списку каналів"
@@ -12353,17 +12386,8 @@ msgstr "Версія OpenSSL"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr "Дії OpenVPN"
-
-msgid "OpenVPN Settings"
-msgstr "Налаштування OpenVPN"
-
 msgid "OpenViX Packages"
 msgstr "Пакети OpenViX"
-
-msgid "OpenVpn Log"
-msgstr "OpenVpn Лог"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Яскравість LED у режимі глибокого очікування"
@@ -12413,18 +12437,8 @@ msgstr "Oriya"
 msgid "Oromo"
 msgstr "Oromo"
 
-msgid "Oscam Info - Main Menu"
-msgstr "Інформація Oscam - Головне меню"
-
-msgid "Oscam Info Settings"
-msgstr "Oscam Інфо - Конфігурація"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam Лог ( Oscam-Версія: %s )"
-
-msgid "OscamInfo Mainmenu"
-msgstr "Головне меню OscamInfo"
+msgid "Oscam Information"
+msgstr "Інформація про Oscam"
 
 msgid "Ossetian / Ossetic"
 msgstr "Осетинська / Осетія"
@@ -12523,9 +12537,6 @@ msgstr "PDC"
 msgid "PGS file"
 msgstr "PGS файл"
 
-msgid "PID"
-msgstr "PID"
-
 msgid "PIN code needed"
 msgstr "Необхідний Пін-код"
 
@@ -12544,6 +12555,9 @@ msgstr "Режим PLS"
 
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PPanel"
+msgstr "PPanel"
 
 msgid "PRIMETIME"
 msgstr "ПРАЙМ-ТАЙМ"
@@ -12618,6 +12632,9 @@ msgstr "Панама"
 
 msgid "Panic channel"
 msgstr "Канал на тривожній кнопці"
+
+msgid "Panic to"
+msgstr "Тривожна кнопка на"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Punjabi"
@@ -12912,20 +12929,11 @@ msgstr "Будь ласка, додайте назву до компіляції
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Будь ласка, будьте терпеливими, створюється резервна копія,\n"
 
-msgid "Please change recording endtime"
-msgstr "Будь ласка, змініть час закінчення запису"
-
 msgid "Please check the manual of the receiver"
 msgstr "Будь ласка, прочитайте інструкцію приймача"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Будь ласка, виберіть CCcam-Рідер"
-
 msgid "Please choose an extension..."
 msgstr "Будь ласка, виберіть розширення..."
-
-msgid "Please choose reader"
-msgstr "Будь ласка, виберіть рідер"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Будь ласка, не міняйте ніякі значення, якщо не розумієте що робите!"
@@ -13115,6 +13123,9 @@ msgstr "Будь ласка, почекайте, виконується скан
 
 msgid "Please wait while the data is extracted..."
 msgstr "Будь ласка, зачекайте, поки дані розархівовуються..."
+
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr "Будь ласка, зачекайте, поки фід буде скинуто (очищено та перезавантажено)..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Будь ласка, почекайте, список завантажується..."
@@ -13358,6 +13369,12 @@ msgstr "Пріоритет AC3"
 
 msgid "Prefer AC3+ track"
 msgstr "Пріоритет AC3+"
+
+msgid "Prefer IPv4"
+msgstr "Надати перевагу IPv4"
+
+msgid "Prefer IPv6"
+msgstr "Надати перевагу IPv6"
 
 msgid "Prefer audio track stored by service"
 msgstr "Пріоритет доріжкам збережених на каналі"
@@ -13692,9 +13709,6 @@ msgstr "Провайдери"
 msgid "Providers:"
 msgstr "Провайдери:"
 
-msgid "Providers: "
-msgstr "Провайдери: "
-
 msgid "Proxy detected"
 msgstr "Виявлено проксі-сервер"
 
@@ -13760,6 +13774,12 @@ msgstr "Чотирьохекранний ПіП недоступний."
 
 msgid "Quad9 DNS"
 msgstr "DNS Quad9"
+
+msgid "Quad9 ECS DNS"
+msgstr "Quad9 ECS DNS"
+
+msgid "Quad9 Unsecured DNS"
+msgstr "Quad9 незахищений DNS"
 
 msgid "Quechua"
 msgstr "Кечуа"
@@ -13885,24 +13905,13 @@ msgstr "Дані користувача з oscam.conf"
 msgid "Reader"
 msgstr "Рідер"
 
-msgid "Reader Statistics"
-msgstr "Статистика Рідерів"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Готові встановити \"%s\" ?"
 
 #, python-format
-msgid "Ready to install '%s'?"
-msgstr "Готові встановити %s ?"
-
-#, python-format
 msgid "Ready to remove \"%s\" ?"
 msgstr "Готові до видалення \"%s\" ?"
-
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Готові до видалення %s?"
 
 msgid "Real Life"
 msgstr "З реального життя"
@@ -14016,7 +14025,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Розпочато запис! Зупинка таймшифта ..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer: %s"
+msgid "Record time limited due to conflicting timer:%s"
 msgstr "Час запису обмежено через конфлікт таймера %s"
 
 msgid "Record write error (no space on disk?)"
@@ -14508,6 +14517,9 @@ msgstr "Скинути і перенумерувати назви заголов
 msgid "Reset executable mode (644)"
 msgstr "Скинути режим виконання (644)"
 
+msgid "Reset list order to the default list order?"
+msgstr "Відновити порядок списку до стандартного?"
+
 msgid "Reset network configuration"
 msgstr "Скидання конфігурації мережі"
 
@@ -14520,14 +14532,14 @@ msgstr "Скидання позиції відтворення"
 msgid "Reset sort order"
 msgstr "Скинути порядок сортування"
 
+msgid "Reset the order of the entries"
+msgstr "Скинути порядок записів"
+
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Скинути налаштування покращення відео на стандартні?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Скинути налаштування покращення відео до Вашої останньої конфігурації?"
-
-msgid "Reshare"
-msgstr "Розшарювання"
 
 msgid "Reshare:"
 msgstr "Розшарювання:"
@@ -14814,9 +14826,6 @@ msgstr "Реюньйон"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr "Дії SABnzbd"
-
 msgid "SABnzbd Settings"
 msgstr "Налаштування SABnzbd"
 
@@ -14828,12 +14837,6 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
-
-msgid "SATPI Setting Actions"
-msgstr "Дії налаштування SATPI"
-
-msgid "SATPI Settings"
-msgstr "Налаштування SATPI"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC оптимізував діапазон пошуку"
@@ -14878,6 +14881,9 @@ msgstr "SRT файл"
 msgid "SSA file"
 msgstr "SSA файл"
 
+msgid "SSH"
+msgstr "SSH"
+
 msgid "SSID"
 msgstr "SSID"
 
@@ -14908,17 +14914,11 @@ msgstr "Сен-П'єр і Мікелон"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Сент-Вінсент і Гренадини"
 
-msgid "Samba"
-msgstr "Samba"
+msgid "Samba Client"
+msgstr "Клієнт Samba"
 
-msgid "Samba Actions"
-msgstr "Дії Samba"
-
-msgid "Samba Log"
-msgstr "Samba Лог"
-
-msgid "Samba Setup"
-msgstr "Налаштування Samba"
+msgid "Samba Server"
+msgstr "Samba Сервер"
 
 msgid "Same as in active"
 msgstr "Те ж, що при активності"
@@ -15371,6 +15371,9 @@ msgstr "Виберіть 'Так', щоб увімкнути використа�
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Якщо вибрано 'так', канали без ЕПГ не відображатимуться."
 
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr "Виберіть 'Так', щоб приховати ім'я сервера та IP-адресу сервера."
+
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
 msgstr "Виберіть 'так', щоб включити у пошук %s мультиплекси."
@@ -15518,6 +15521,9 @@ msgstr "Вибрати CAID"
 msgid "Select Device"
 msgstr "Виберіть Пристрій"
 
+msgid "Select Display Skin"
+msgstr "Вибрати Скін дисплея"
+
 msgid "Select Enigma2 Skin"
 msgstr "Вибір Enigma2 скіну"
 
@@ -15553,6 +15559,12 @@ msgstr "Вибір чотирьохекранних каналів"
 
 msgid "Select Satellites"
 msgstr "Виберіть супутники"
+
+msgid "Select Shares"
+msgstr "Вибрати доступ"
+
+msgid "Select Skin"
+msgstr "Вибрати Скін"
 
 msgid "Select Softcam"
 msgstr "Виберіть softcam"
@@ -15784,6 +15796,10 @@ msgstr "Виберіть тимчасовий порядок сортуванн�
 msgid "Select temporary file sort order for the current column"
 msgstr "Виберіть тимчасовий порядок сортування файлів для поточного стовпця"
 
+#, python-format
+msgid "Select the %s entry"
+msgstr "Вибрати запис %s"
+
 msgid "Select the No / False response"
 msgstr "Виберіть відповідь Ні/Хибна"
 
@@ -15818,6 +15834,10 @@ msgstr "Виберіть частоту Користувацької Смуги,
 msgid "Select the Yes / True response"
 msgstr "Виберіть відповідь Так/Правда"
 
+#, python-format
+msgid "Select the action for '%s'"
+msgstr "Вибрати дію для '%s'"
+
 msgid "Select the action to perform when the timer ends."
 msgstr "Виберіть дію, яку потрібно виконати після завершення таймера."
 
@@ -15838,6 +15858,9 @@ msgstr "Виберіть символ, або дію під курсором к�
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Виберіть поточне місце в закладках та вийдіть"
+
+msgid "Select the current entry"
+msgstr "Вибрати поточний запис"
 
 msgid "Select the current menu item"
 msgstr "Вибрати поточний пункт меню"
@@ -15893,6 +15916,9 @@ msgstr "Виберіть дизайн дисплея для меню."
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Виберіть параметри відображення для кожного пункту меню. Якщо номери меню доступні, цифрові кнопки можна використовувати для безпосереднього вибору пронумерованих пунктів меню."
 
+msgid "Select the display sequence of previously visited services."
+msgstr "Виберіть послідовність відображення переглянутих раніше каналів."
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Виберіть порядок сортування файлів для стовпця %s:"
@@ -15938,6 +15964,9 @@ msgstr "Виберіть виробника свого пристрою SCR. Я�
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Виберіть метод відновлення роздільної здатності екрана та буфера обміну при виході з телетексту."
+
+msgid "Select the mode of the DNS."
+msgstr "Вибрати режим роботи DNS."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Виберіть номер моделі вашого пристрою Unicable. Якщо номер моделі не вказаний, встановіть 'SCR' на 'визначено користувачем' і введіть параметри пристрою вручну відповідно до його специфікації."
@@ -16034,6 +16063,12 @@ msgstr "Виберіть час затримки перед тим, як дії 
 
 msgid "Select the time delay between each repeat of the button."
 msgstr "Виберіть час затримки між кожним повтором натисканням кнопки."
+
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr "Виберіть час, до якого слід розмістити EPG. Натисніть ВЛІВО/ВПРАВО, щоб зменшити/збільшити час на годину. Натисніть PREV/NEXT, щоб зменшити/збільшити час на день."
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr "Виберіть час, коли цей таймер миттєвого запису має закінчитися. Натисніть ВЛІВО/ВПРАВО, щоб зменшити/збільшити час на хвилину. Натисніть PREV/NEXT, щоб зменшити/збільшити час на годину."
 
 msgid "Select the time when this timer should end."
 msgstr "Виберіть час, коли цей таймер має закінчитися."
@@ -16242,18 +16277,8 @@ msgstr "Сербська"
 msgid "Serial No"
 msgstr "Серійний №"
 
-msgid "Serv.Name"
-msgstr "Назв.Сервісу"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Server Інфо ( Oscam-Версія: %s )"
-
 msgid "Server down"
 msgstr "Сервер вимкнений"
-
-msgid "Server:"
-msgstr "Сервер:"
 
 msgid "Servers"
 msgstr "Сервери"
@@ -16435,6 +16460,9 @@ msgstr "Встановіть МІНІМАЛЬНУ частоту процесо�
 
 msgid "Set Scaling governor"
 msgstr "Встановити регулятор масштабування"
+
+msgid "Set Time"
+msgstr "Встановити час"
 
 msgid "Set action for 'Info' key"
 msgstr "Вибір дії для кнопки 'Інфо'"
@@ -16622,9 +16650,6 @@ msgstr "Налаштування"
 msgid "Setup - %s"
 msgstr "Налаштування - %s"
 
-msgid "Setup AFP"
-msgstr "Налаштування AFP"
-
 msgid "Setup Audio Sync"
 msgstr "Налаштування синхронізації аудіо"
 
@@ -16636,9 +16661,6 @@ msgstr "Налаштування аудіо режиму"
 
 msgid "Setup Enigma2"
 msgstr "Налаштування Enigma2"
-
-msgid "Setup FTP"
-msgstr "Налаштування FTP"
 
 msgid "Setup Harddisk"
 msgstr "Налаштування жорсткого диска"
@@ -16655,17 +16677,11 @@ msgstr "Налаштування MiniDLNA"
 msgid "Setup Mounts"
 msgstr "Налаштування монтування"
 
-msgid "Setup NFS"
-msgstr "Налаштування NFS"
-
 msgid "Setup Network Services"
 msgstr "Налаштування мережевих служб"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Налаштування мережевих служб (Samba, FTP, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "Налаштування OpenVPN"
 
 msgid "Setup Plugin Browser"
 msgstr "Налаштування браузера плагінів"
@@ -16675,18 +16691,6 @@ msgstr "Налаштувати PluginBrowser. Тут ви можете вибр�
 
 msgid "Setup Plugins"
 msgstr "Налаштування Плагінів"
-
-msgid "Setup SABnzbd"
-msgstr "Налаштування SABnzbd"
-
-msgid "Setup SATPI"
-msgstr "Налаштування SATPI"
-
-msgid "Setup Samba"
-msgstr "Налаштування Samba"
-
-msgid "Setup Telnet"
-msgstr "Налаштування Telnet"
 
 msgid "Setup Tuner"
 msgstr "Налаштування Тюнера"
@@ -16802,9 +16806,6 @@ msgstr "Налаштування Вашого супутникового обл�
 msgid "Seychelles"
 msgstr "Сейшели"
 
-msgid "Share Folders"
-msgstr "Доступні теки"
-
 msgid "Share View"
 msgstr "Перегляд мережевого диска"
 
@@ -16813,6 +16814,12 @@ msgstr "Мережеві диски"
 
 msgid "Sharpness"
 msgstr "Чіткість"
+
+msgid "ShellInABox"
+msgstr "ShellInABox"
+
+msgid "Shellscript"
+msgstr "Скрипт Shell"
 
 msgid "Shift"
 msgstr "Шифт"
@@ -16841,9 +16848,6 @@ msgstr "Чи потрібно скинути лічильник rhtisd, щоб �
 
 msgid "Show"
 msgstr "Шоу"
-
-msgid "Show /tmp/ecm.info"
-msgstr "Показати /tmp/ecm.info"
 
 msgid "Show 1080p 24fps as"
 msgstr "Показати 1080p 24fps як"
@@ -16904,9 +16908,6 @@ msgstr "Показати CCcam Інфо"
 
 msgid "Show CI messages"
 msgstr "Показати повідомлення СІ"
-
-msgid "Show Clients"
-msgstr "Показати клієнтів"
 
 msgid "Show Default Backup Files"
 msgstr "Файли резервної копії"
@@ -17007,8 +17008,8 @@ msgstr "Показати список записів"
 msgid "Show Multi EPG"
 msgstr "Показати Мульти телегід"
 
-msgid "Show OScam Info"
-msgstr "Показати Інформацію OScam"
+msgid "Show OSCam Information"
+msgstr "Показати Інформацію OSCam"
 
 msgid "Show OScam/CCcam in Extension Menu"
 msgstr "Показати OScam/CCcam у Розширеному Меню"
@@ -17039,9 +17040,6 @@ msgstr "Показати пакети скінів плагіна"
 
 msgid "Show RFmod setup..."
 msgstr "Показати налаштування модулятора..."
-
-msgid "Show Readers/Proxies"
-msgstr "Показати Рідери/Проксі"
 
 msgid "Show Record Movies"
 msgstr "Показати записані файли"
@@ -17458,8 +17456,8 @@ msgstr "Показати EIT зараз/наст. в Інфобарі."
 msgid "Show the Logs Settings screen"
 msgstr "Показати екран налаштувань журналів"
 
-msgid "Show the OScamInfo Screen"
-msgstr "Показати екран OScamInfo"
+msgid "Show the OSCam information screen"
+msgstr "Показати Екран Інформації OSCam"
 
 msgid "Show the PowerTimer"
 msgstr "Показати Таймер вимкнення"
@@ -18062,9 +18060,6 @@ msgstr "Сортувати за умовчанням"
 msgid "Sort list by"
 msgstr "Сортування списку за"
 
-msgid "Sort list to default and exit?"
-msgstr "Сортувати список за умовчанням і вийти?"
-
 msgid "Sort list:"
 msgstr "Сортування списку:"
 
@@ -18219,6 +18214,9 @@ msgstr "Режим запуску"
 
 msgid "Start offline decode"
 msgstr "Запуск декодування оффлайн"
+
+msgid "Start or Stop service"
+msgstr "Запуск або зупинка каналу"
 
 msgid "Start recording current event"
 msgstr "Почати запис поточної події"
@@ -18816,7 +18814,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 10.12.2023"
+msgstr "Переклад: kvinto - 17.01.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18959,17 +18957,11 @@ msgstr "Колір субтитрів телетексту"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr "Дії Telnet"
-
 msgid "Telnet Interface"
 msgstr "Telnet Інтерфейс"
 
 msgid "Telnet Port"
 msgstr "Telnet Порт"
-
-msgid "Telnet Settings"
-msgstr "Налаштування Telnet"
 
 msgid "Telugu"
 msgstr "Телугу"
@@ -19846,9 +19838,6 @@ msgstr "Дія для Налаштування часу"
 msgid "Time Shift Settings"
 msgstr "Налаштування таймшифта"
 
-msgid "Time Update in Minutes:"
-msgstr "Час Оновлення в хвилинах:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr "Час між слайдами в слайд-шоу програми перегляду зображень."
 
@@ -20154,9 +20143,6 @@ msgstr "вгору"
 msgid "Top and Bottom"
 msgstr "Зверху і Знизу"
 
-msgid "Total"
-msgstr "Всього"
-
 msgid "Total CPU benchmark"
 msgstr "Загальний тест CPU"
 
@@ -20190,6 +20176,9 @@ msgstr "Трек"
 
 msgid "Traditional Chinese"
 msgstr "Традиційна китайська"
+
+msgid "Transcode"
+msgstr "Перекодувати"
 
 msgid "Transcoding"
 msgstr "Транскодування"
@@ -20523,6 +20512,10 @@ msgstr "Не визначено"
 msgid "Unencrypted"
 msgstr "Декодований"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr "Неочікувана помилка доступу до WebIF: %s"
+
 msgid "UnhandledKey"
 msgstr "Неопрацьований Ключ"
 
@@ -20541,14 +20534,14 @@ msgstr "Unicable конвертор"
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
 
+msgid "Uninstall"
+msgstr "Видалити"
+
 msgid "United Arab Emirates"
 msgstr "Об'єднані Арабські Емірати"
 
 msgid "United Kingdom"
 msgstr "Об'єднане Королівство"
-
-msgid "United States"
-msgstr "Сполучені Штати"
 
 msgid "United States Minor Outlying Islands"
 msgstr "Віддалені острови Малі США"
@@ -20687,9 +20680,6 @@ msgstr "Помилка оновлення!"
 
 msgid "Update finished!"
 msgstr "Оновлення завершено!"
-
-msgid "Update interval (in seconds)"
-msgstr "Інтервал оновлення (в секундах)"
 
 msgid ""
 "Update succeeded!\n"
@@ -21086,9 +21076,6 @@ msgstr "VOB файл"
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "Налаштування VPS"
@@ -21566,18 +21553,6 @@ msgstr "Перегляд фільмів..."
 
 msgid "Watch recordings"
 msgstr "Перегляд записів"
-
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Приносимо наші вибачення. Ваш приймач зіткнувся з проблемою програмного забезпечення та потребує перезавантаження.\n"
-"Будь ласка, відправте файл %senigma2_crash_xxxxxx.log на www.opena.tv.\n"
-"Ваш приймач буде перезавантажений протягом 10 секунд!\n"
-"Компонент: enigma2"
 
 msgid "Weather"
 msgstr "Погода"
@@ -22245,14 +22220,6 @@ msgstr "Ваш %s %s перезавантажиться..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"Ваш %s %s буде перезавантажено після установки каналів\n"
-"Готові до установки %s?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22268,22 +22235,6 @@ msgid ""
 msgstr ""
 "Ваш %s %s буде перезавантажений після видалення каналу.\n"
 "Хочете видалити зараз?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"Ваш %s %s буде перезапущено після видалення каналу\n"
-"Ви хочете видалити зараз?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
-"Ваш %s %s буде перезапущено після видалення каналу.\n"
-"Ви хочете видалити зараз?"
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -22420,11 +22371,17 @@ msgstr "Переключити фокус на основне вікно"
 msgid "Zap focused channel on full screen"
 msgstr "Переключити фокус на весь екран"
 
+msgid "Zap history sequence"
+msgstr "Послідовність історії Переключень"
+
 msgid "Zap mode"
 msgstr "Режими переключення"
 
 msgid "Zap next"
 msgstr "Переключити на наступний"
+
+msgid "Zap to"
+msgstr "Переключити на"
 
 msgid "Zap to channel (setup in menu)"
 msgstr "Переключити на канал (налаштування в меню)"
@@ -22771,12 +22728,6 @@ msgstr "виконання редагувань (потрібно MovieCut пл�
 msgid "exit DVD player or return to file browser"
 msgstr "вийти з ДВД програвача до оглядача файлів"
 
-msgid "exit mounts setup menu"
-msgstr "вийти з меню налаштування під’єднання"
-
-msgid "exit networkadapter setup menu"
-msgstr "вийти з меню конфігурації мережевого адаптера"
-
 msgid "experimental film/video"
 msgstr "експериментальний фільм/відео"
 
@@ -23007,18 +22958,6 @@ msgstr "автомобільна справа"
 
 msgid "move"
 msgstr "перемістити"
-
-msgid "move down to last entry"
-msgstr "перейти до останнього запису"
-
-msgid "move down to next entry"
-msgstr "перейти до наступного запису"
-
-msgid "move up to first entry"
-msgstr "перемістити вгору до першого запису"
-
-msgid "move up to previous entry"
-msgstr "перемістити вверх до попереднього запису"
 
 msgid "movie (general)"
 msgstr "фільм (загальна)"
@@ -23253,9 +23192,6 @@ msgstr "пошук ЕПГ..."
 msgid "select CAId's"
 msgstr "вибрати CAId'и"
 
-msgid "select menu entry"
-msgstr "виберіть пункт меню"
-
 msgid "serious music/classic music"
 msgstr "серйозна музика/класична музика"
 
@@ -23457,12 +23393,6 @@ msgstr "турбо"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr "uShare дії"
-
-msgid "uShare Log"
-msgstr "uShare Лог"
-
 msgid "uShare Name"
 msgstr "uShare Ім'я"
 
@@ -23471,9 +23401,6 @@ msgstr "uShare Порт"
 
 msgid "uShare Selection Actions"
 msgstr "Дії вибору uShare"
-
-msgid "uShare Setting Actions"
-msgstr "Дії налаштування uShare"
 
 msgid "uShare Settings"
 msgstr "uShare Налаштування"
@@ -23566,18 +23493,422 @@ msgstr "так (зберігати фіди)"
 msgid "®"
 msgstr "®"
 
+msgid "Preferred tuner DVB-S"
+msgstr "Приорітетний тюнер DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Приорітетний тюнер DVB-S для записів"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Приорітетний тюнер DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Приорітетний тюнер DVB-T для записів"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Приоритетний тюнер DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Приорітетний тюнер DVB-C для записів"
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Якщо цей параметр увімкнено, він має більшу вагу, ніж 'Бажаний тюнер'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Якщо увімкнено, це налаштування має більшу вагу, ніж 'Бажаний тюнер для записів'."
+
+msgid "Preferred tuner ATSC"
+msgstr "Приорітетний тюнер ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Віддається перевага тюнеру ATSC для запису"
+
+#, python-format
+#~ msgid "%s  -  %s    (%s%d Min)"
+#~ msgstr "%s  -  %s    (%s%d хв)"
+
+#~ msgid "Australian"
+#~ msgstr "Австралійська"
+
+#~ msgid "Belgian"
+#~ msgstr "Бельгійська"
+
+#~ msgid "Czechia"
+#~ msgstr "Чехія"
+
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "Іран, Ісламська Республіка"
+
+#~ msgid "United States"
+#~ msgstr "Сполучені Штати"
+
+#~ msgid "Mount Actions"
+#~ msgstr "Дії монтування"
+
+#~ msgid "NordVPN DNS"
+#~ msgstr "Nord VPN DNS"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Сортувати список за умовчанням і вийти?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "вийти з меню налаштування під’єднання"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "вийти з меню конфігурації мережевого адаптера"
+
+#~ msgid "move down to last entry"
+#~ msgstr "перейти до останнього запису"
+
+#~ msgid "move down to next entry"
+#~ msgstr "перейти до наступного запису"
+
+#~ msgid "move up to first entry"
+#~ msgstr "перемістити вгору до першого запису"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "перемістити вверх до попереднього запису"
+
+#~ msgid "select menu entry"
+#~ msgstr "виберіть пункт меню"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Виконується перевірка оновленнь у фоні, будь ласка, зачекайте кілька хвилин і повторіть спробу."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "Налаштування CIFS/Samba"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Ім'я файлу конфігурації (ОК щоб змінити):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Також потрібно встановити клієнт samba?\n"
+#~ "Це дає змогу монтувати спільні ресурси Ваших вікон на цьому пристрої."
+
+#~ msgid "FTP Settings"
+#~ msgstr "Налаштування FTP"
+
+#~ msgid "Inadyn Actions"
+#~ msgstr "Inadyn дії"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Лог Inadyn"
+
+#~ msgid "Inadyn Setting Actions"
+#~ msgstr "Інадин налаштування дії"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Введіть ім'я файла конфігурації:"
+
+#~ msgid "Install service"
+#~ msgstr "Встановлення каналу"
+
+#~ msgid "Mini DLNA Actions"
+#~ msgstr "Дії Mini DLNA"
+
+#~ msgid "Mini DLNA Setting Actions"
+#~ msgstr "Дії налаштування Mini DLNA"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Лог"
+
+#~ msgid "NFS Settings"
+#~ msgstr "Налаштування NFS"
+
+#~ msgid "OpenVPN Actions"
+#~ msgstr "Дії OpenVPN"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "Налаштування OpenVPN"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn Лог"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Готові до видалення %s?"
+
+#~ msgid "Remove service"
+#~ msgstr "Видалити канал"
+
+#~ msgid "SATPI Settings"
+#~ msgstr "Налаштування SATPI"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Actions"
+#~ msgstr "Дії Samba"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba Лог"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Налаштування Samba"
+
+#, python-format
+#~ msgid "Select 'Yes' to enable autostart of '%s'."
+#~ msgstr "Виберіть 'Так', щоб увімкнути автоматичний запуск '%s'."
+
+#~ msgid "Setup FTP"
+#~ msgstr "Налаштування FTP"
+
+#~ msgid "Setup NFS"
+#~ msgstr "Налаштування NFS"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "Налаштування OpenVPN"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "Налаштування SABnzbd"
+
+#~ msgid "Setup SATPI"
+#~ msgstr "Налаштування SATPI"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Налаштування Samba"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Налаштування Telnet"
+
+#~ msgid "Share Folders"
+#~ msgstr "Доступні теки"
+
+#~ msgid "Show logfile"
+#~ msgstr "Показати файл логу"
+
+#~ msgid "Start service"
+#~ msgstr "Включити канал"
+
+#~ msgid "Stop service"
+#~ msgstr "Зупинити канал"
+
+#~ msgid "Telnet Actions"
+#~ msgstr "Дії Telnet"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Налаштування Telnet"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Час Оновлення в хвилинах:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "Ваш %s %s буде перезавантажено після установки каналів\n"
+#~ "Готові до установки %s?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service.\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Ваш %s %s буде перезапущено після видалення каналу.\n"
+#~ "Ви хочете видалити зараз?"
+
+#~ msgid "uShare Actions"
+#~ msgstr "uShare дії"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare Лог"
+
+#~ msgid "uShare Setting Actions"
+#~ msgstr "Дії налаштування uShare"
+
+#~ msgid "OScamInfo Overview"
+#~ msgstr "Огляд OScamInfo"
+
+#~ msgid "OScamInfo Settings"
+#~ msgstr "Налаштування OScamInfo"
+
+#~ msgid "OScamInfo ShowLog"
+#~ msgstr "Лог відображення OScamInfo"
+
+#~ msgid "OScamLog Actions"
+#~ msgstr "Дії OScamLog"
+
+#~ msgid "OScamOverview Actions"
+#~ msgstr "Дії OScamOverview"
+
+#~ msgid "Oscam Information Settings"
+#~ msgstr "Налаштування інформації Oscam"
+
+#~ msgid "Show OScam Info"
+#~ msgstr "Показати Інформацію OScam"
+
+#~ msgid "Show the OScamInfo Screen"
+#~ msgstr "Показати екран OScamInfo"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s (%s Картки)"
+
+#~ msgid "( All readers)"
+#~ msgstr "( Всі рідери)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Показати тільки рідер:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Actions"
+#~ msgstr "Дії AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "Налаштування AFP"
+
+#~ msgid "Address"
+#~ msgstr "Адреса"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID : SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Інформація про карту (CCcam-рідер)"
+
+#~ msgid "Cards:"
+#~ msgstr "Карти:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Інформація Client(Оскам-Версія: %s)"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "Статистика ECM"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM час відповіді"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM сер"
+
+#~ msgid "ECM last"
+#~ msgstr "Останній ECM"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM - час відповіді"
+
+#~ msgid "FTP Actions"
+#~ msgstr "Дії FTP"
+
+#~ msgid "Hops"
+#~ msgstr "Hops"
+
+#~ msgid "Last Request"
+#~ msgstr "Останній запит"
+
+#~ msgid "NFS Actions"
+#~ msgstr "NFS дії"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Інформація Oscam - Головне меню"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Oscam Інфо - Конфігурація"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Oscam Лог ( Oscam-Версія: %s )"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "Головне меню OscamInfo"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Будь ласка, виберіть CCcam-Рідер"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Будь ласка, виберіть рідер"
+
+#~ msgid "Providers: "
+#~ msgstr "Провайдери: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Статистика Рідерів"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Готові встановити %s ?"
+
+#~ msgid "Reshare"
+#~ msgstr "Розшарювання"
+
+#~ msgid "SABnzbd Actions"
+#~ msgstr "Дії SABnzbd"
+
+#~ msgid "SATPI Setting Actions"
+#~ msgstr "Дії налаштування SATPI"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Назв.Сервісу"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Server Інфо ( Oscam-Версія: %s )"
+
+#~ msgid "Server:"
+#~ msgstr "Сервер:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "Налаштування AFP"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "Показати /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "Показати клієнтів"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Показати Рідери/Проксі"
+
+#~ msgid "Total"
+#~ msgstr "Всього"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Інтервал оновлення (в секундах)"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Ваш %s %s буде перезапущено після видалення каналу\n"
+#~ "Ви хочете видалити зараз?"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Будь ласка, змініть час закінчення запису"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Приносимо наші вибачення. Ваш приймач зіткнувся з проблемою програмного забезпечення та потребує перезавантаження.\n"
+#~ "Будь ласка, відправте файл %senigma2_crash_xxxxxx.log на www.opena.tv.\n"
+#~ "Ваш приймач буде перезавантажений протягом 10 секунд!\n"
+#~ "Компонент: enigma2"
+
 #~ msgid "+24"
 #~ msgstr "+24"
 
 #~ msgid "-24"
 #~ msgstr "-24"
-
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Триває запис.\n"
-#~ "Що хочете зробити?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Список фаворитів"
@@ -23872,14 +24203,8 @@ msgstr "®"
 #~ msgid "CI Helper Settings"
 #~ msgstr "Помічник налаштування CI"
 
-#~ msgid "ClientIP"
-#~ msgstr "АПКлієнт"
-
 #~ msgid "Minute"
 #~ msgstr "хвилина"
-
-#~ msgid "Transcode"
-#~ msgstr "Перекодувати"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -23902,12 +24227,6 @@ msgstr "®"
 #~ msgid "Basic PID info"
 #~ msgstr "Основна інформація про PID"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Налаштування кнопок"
-
-#~ msgid "Client"
-#~ msgstr "Клієнт"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "Код R. LP-HP & Guard Int."
 
@@ -23926,9 +24245,6 @@ msgstr "®"
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Частота і поляризація"
 
-#~ msgid "Hotkey"
-#~ msgstr "Гарячі кнопки"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Інверсія і ширина смуги"
 
@@ -23938,26 +24254,14 @@ msgstr "®"
 #~ msgid "NIM & Type"
 #~ msgstr "Тюнер і модель"
 
-#~ msgid "Network storage on"
-#~ msgstr "Мережевий накопичувач увімкнено"
-
 #~ msgid "Next Log"
 #~ msgstr "Наступний лог"
 
 #~ msgid "Next Picture"
 #~ msgstr "Наступне зображення"
 
-#~ msgid "No log files found so debug logs are unavailable!"
-#~ msgstr "Файлів журналу не знайдено, тому журнали налагодження недоступні!"
-
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Тривожна кнопка на"
 
 #~ msgid "Previous Log"
 #~ msgstr "Попередній Лог"
@@ -23986,9 +24290,6 @@ msgstr "®"
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Інформація каналу - значення налаштування тюнера"
 
-#~ msgid "Shellscript"
-#~ msgstr "Скрипт Shell"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Швидкість потоку і FEC"
 
@@ -24003,9 +24304,6 @@ msgstr "®"
 
 #~ msgid "Tuner setting values"
 #~ msgstr "Значення налаштування тюнера"
-
-#~ msgid "Zap to"
-#~ msgstr "Переключити на"
 
 #~ msgid "active"
 #~ msgstr "активний"

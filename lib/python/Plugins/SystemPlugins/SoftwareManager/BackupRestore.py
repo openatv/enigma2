@@ -218,7 +218,7 @@ class BackupScreen(Screen, ConfigListScreen):
 
 class BackupSelection(Screen):
 	skin = """
-		<screen name="BackupSelection" position="center,center" size="560,400" title="Select files/folders to backup">
+		<screen name="BackupSelection" position="center,center" size="560,400" title="Select files/folders to backup" resolution="1280,720">
 			<ePixmap pixmap="buttons/red.png" position="0,340" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/green.png" position="140,340" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/yellow.png" position="280,340" size="140,40" alphatest="on" />
@@ -275,7 +275,7 @@ class BackupSelection(Screen):
 
 	def selectionChanged(self):
 		current = self["checkList"].getCurrent()[0]
-		self["summary_description"].text = self["checkList"].getCurrentDirectory() + ".." if current[3] == "<Parent directory>" else current[3]
+		self["summary_description"].text = self["checkList"].getName()
 		if self.readOnly:
 			return
 		self["key_yellow"].setText(_("Deselect") if current[2] else _("Select"))
@@ -321,7 +321,7 @@ class BackupSelection(Screen):
 
 class RestoreMenu(Screen):
 	skin = """
-		<screen name="RestoreMenu" position="center,center" size="560,400" title="Restore backups" >
+		<screen name="RestoreMenu" position="center,center" size="560,400" title="Restore backups" resolution="1280,720">
 			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -540,7 +540,7 @@ class RestoreMyMetrixHD(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("Restore MetrixHD Settings"))
 		skin = """
-			<screen name="RestoreMetrixHD" position="center,center" size="600,100" title="Restore MetrixHD Settings">
+			<screen name="RestoreMetrixHD" position="center,center" size="600,100" title="Restore MetrixHD Settings" resolution="1280,720">
 			<widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
 			</screen> """
 		self.skin = skin
@@ -783,7 +783,7 @@ class RestorePlugins(Screen):
 
 class SoftwareManagerInfo(Screen):
 	skin = """
-		<screen name="SoftwareManagerInfo" position="center,center" size="560,440" title="Software Manager Information">
+		<screen name="SoftwareManagerInfo" position="center,center" size="560,440" title="Software Manager Information" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />

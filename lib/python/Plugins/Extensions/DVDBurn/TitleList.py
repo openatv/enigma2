@@ -17,7 +17,7 @@ MODE_DVD, MODE_BLUDISC = list(range(2))
 
 class TitleList(Screen, HelpableScreen):
 	skin = """
-		<screen name="TitleList" position="center,center" size="560,470" title="Burn Tool" >
+		<screen name="TitleList" position="center,center" size="560,470" title="Burn Tool" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />

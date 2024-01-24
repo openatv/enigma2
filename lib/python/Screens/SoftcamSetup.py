@@ -10,6 +10,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import updateSysSoftCam, BoxInfo
 from Screens.InfoBarGenerics import autocam, streamrelay
+from Screens.OScamInfo import OSCamInfo
 from Screens.Processing import Processing
 from Screens.Setup import Setup
 from ServiceReference import ServiceReference
@@ -191,6 +192,8 @@ class SoftcamSetup(CamSetupCommon):
 		if config.misc.softcams.value != self.camctrl.current():
 			self.showProcess(True)
 			self.camctrl.switch(config.misc.softcams.value, self.saveDone)
+		else:
+			self.saveDone()
 
 	def keyRestart(self):
 		self.showProcess(True)
@@ -215,9 +218,8 @@ class SoftcamSetup(CamSetupCommon):
 
 	def softcamInfo(self):
 		ppanelFilename = "/etc/ppanels/%s.xml" % config.misc.softcams.value
-		if "oscam" in config.misc.softcams.value.lower():  # and isfile('/usr/lib/enigma2/python/Screens/OScamInfo.py'):
-			from Screens.OScamInfo import OscamInfoMenu
-			self.session.open(OscamInfoMenu)
+		if "oscam" in config.misc.softcams.value.lower():
+			self.session.open(OSCamInfo)
 		elif "cccam" in config.misc.softcams.value.lower():  # and isfile('/usr/lib/enigma2/python/Screens/CCcamInfo.py'):
 			from Screens.CCcamInfo import CCcamInfoMain
 			self.session.open(CCcamInfoMain)

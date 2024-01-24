@@ -1,11 +1,11 @@
 # tomppaa <tomzza89@gmail.com>, 2023.
-# tomppaa <tomzza@users.noreply.hosted.weblate.org>, 2023.
+# tomppaa <tomzza@users.noreply.hosted.weblate.org>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
-"PO-Revision-Date: 2023-12-14 20:54+0000\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"PO-Revision-Date: 2024-01-24 07:19+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 msgid ""
 "\n"
@@ -1140,10 +1140,6 @@ msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
 #, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr "%s - %s (%s%d Min)"
-
-#, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
@@ -1166,10 +1162,6 @@ msgstr "%s %s ir hiiri"
 #, python-format
 msgid "%s %s remote control (native)"
 msgstr "%s %s kaukosäädin (natiivi)"
-
-#, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s ( %s Kortit )"
 
 #, python-format
 msgid "%s (%04o)"
@@ -1300,9 +1292,6 @@ msgstr "Pura ja tallenna ECM' purkamisen myöhemmin jos se epäonnistui tallennu
 msgid "'WeatherPlugin' is not installed!"
 msgstr "Sää lisäosaa ei ole asennettu!"
 
-msgid "( All readers)"
-msgstr "( Kaikki lukijat)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "(Pääsy %s lokitiedostoihin edellyttää internet yhteyttä.)"
@@ -1316,9 +1305,6 @@ msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr "(Radio)"
-
-msgid "(Show only reader:"
-msgstr "(Näytä vain lukija:"
 
 msgid "(TV)"
 msgstr "(TV)"
@@ -1570,11 +1556,11 @@ msgstr "<Viimeisin ajastushakemisto>"
 msgid "<Select a device>"
 msgstr "<Valitse laite>"
 
+msgid "<no log found>"
+msgstr "Loki ei löytynyt"
+
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Taustapäivityksen tarkistus on käynnissä, odota muutama minuutti ja yritä uudelleen."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Pilkuilla erotettu lisat laajennuksista, joita käytetään Suodatinlaajennus kohdassa \"Filtteri laajennus\" asetuksessa. Kirjoita laajennuksen nimi ilman etupistettä (.)."
@@ -1641,6 +1627,13 @@ msgid ""
 msgstr ""
 "Tallennus on alkanut:\n"
 "%s"
+
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Tallennus on parhaillaan käynnissä.\n"
+"Mitä haluat tehdä?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Tallennus on parhaillaan käynnissä. Pysäytä tallennus ennen kuin yrität muokata kääntömoottorin asetuksia."
@@ -1728,15 +1721,6 @@ msgstr "AC3+ uudelleenpakkaus"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr "AFP toiminnot"
-
-msgid "AFP Settings"
-msgstr "AFP asetukset"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2055,9 +2039,6 @@ msgstr "Lisävaihtoehdot antavat sinun syöttää moottorin tekniset tiedot, eni
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Syöttämällä moottorin tekniset tiedot, vastaanotin voi selvittää, kuinka kauan kestää lautasen siirtäminen toisesta satelliitista toiseen."
-
-msgid "Address"
-msgstr "Osoite"
 
 msgid "Adjust 3D settings"
 msgstr "Muuta 3D-asetuksia"
@@ -2619,9 +2600,6 @@ msgstr "Äänenvoimakkuuden askelkokoa nopeassa tilassa"
 msgid "Australia"
 msgstr "Austraalia"
 
-msgid "Australian"
-msgstr "Australia"
-
 msgid "Austria"
 msgstr "Itävalta"
 
@@ -2691,6 +2669,9 @@ msgstr "Softcam Asetukset"
 msgid "AutoCam Setup Actions"
 msgstr "Softcam Toiminnot"
 
+msgid "AutoFS"
+msgstr "AutoFS"
+
 msgid "AutoMountManager"
 msgstr "Laitehallinta"
 
@@ -2729,6 +2710,9 @@ msgstr "Käynnistä ulkoinen tekstitys automaattisesti"
 
 msgid "Automatically update Client/Server View"
 msgstr "Päivitä automaattisesti Asiakas/Palvelin näkymä"
+
+msgid "Automatically update Log-Fullscreen View"
+msgstr "Päivitä loki näyttö automaattisesti"
 
 msgid "Autostart"
 msgstr "Aut. käynn."
@@ -2990,9 +2974,6 @@ msgstr "Valkovenäjä"
 
 msgid "Belarusian"
 msgstr "Valkovenäjä"
-
-msgid "Belgian"
-msgstr "Belgia"
 
 msgid "Belgium"
 msgstr "Belgia"
@@ -3260,6 +3241,9 @@ msgstr "Näppäinmääritykset"
 msgid "Button error timeout"
 msgstr "Virheen aikakatkaisu"
 
+msgid "ButtonSetup"
+msgstr "Näppäinmääritykset"
+
 msgid "By disk UUID"
 msgstr "Levyllä UUID"
 
@@ -3283,12 +3267,6 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C-taajuusalue"
-
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
 
 msgid "CCD-Width"
 msgstr "CCD-leveys"
@@ -3392,9 +3370,6 @@ msgstr "CI paikka: "
 
 msgid "CI+ Helper*"
 msgstr "CI+ Avustaja"
-
-msgid "CIFS/Samba Settings"
-msgstr "CIFS/Samba asetukset"
 
 msgid "CPU"
 msgstr "Prosessori"
@@ -3640,11 +3615,14 @@ msgstr "Peruuta image valinta ja poistu"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Peruuta image valinta ja poistu kaikista valikoista"
 
+msgid "Cancel the selection and exit"
+msgstr "Peruuta valinta ja poistu"
+
+msgid "Cancel the service history zap"
+msgstr "Peruuta kanavan vaihto"
+
 msgid "Cancel the service selection"
 msgstr "Peruuta kanava valinta"
-
-msgid "Cancel the service zap"
-msgstr "Peruuta kanavan vaihto"
 
 msgid "Cancel the slot selection and exit"
 msgstr "Peruuta paikka valinta ja poistu"
@@ -3683,12 +3661,6 @@ msgstr "Kapasiteetti"
 
 msgid "Cape Verde"
 msgstr "Cape Verde"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Kortin tietoja (Oscam-lukija)"
-
-msgid "Cards:"
-msgstr "Kortit:"
 
 msgid "Cards: "
 msgstr "Kortit: "
@@ -3977,6 +3949,18 @@ msgstr "Piirisarja: BCM%s"
 msgid "Choice Box"
 msgstr "Kortin Tiedot"
 
+msgid "Choice List Actions"
+msgstr "Valitse Listan toiminnot"
+
+msgid "Choice List Navigation Actions"
+msgstr "Valitse Listan Navigointi toiminnot"
+
+msgid "Choice List Order Actions"
+msgstr "Valitse lista järjestyksen toiminnot"
+
+msgid "Choice List Selection Actions"
+msgstr "Valitse valitun listan toiminnot"
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Valitse mihin laittaa \"%s\""
@@ -3998,6 +3982,12 @@ msgstr "Valitse, kuinka paljon Ohjelmaopas historiaa EPG välimuistissa säilyte
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Valitse, kuinka usein yhteys muodostetaan IceTV palvelimeen päivitysten tarkistamiseksi."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr "Valitse Etupaneelin Teema ja paina Vihreä näppäintä ottaeksi teema käyttöön."
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr "Valitse Kuvaruudun Teema ja paina Vihreä näppäintä ottaeksi teema käyttöön."
 
 msgid "Choose the amount of additional slots."
 msgstr "Valitse lisä paikkojen määrä."
@@ -4086,6 +4076,9 @@ msgstr "Valitse minkä virittimen tahdot määrittää."
 msgid "Christmas Island"
 msgstr "Joulusaari"
 
+msgid "Chrony"
+msgstr "Chrony"
+
 msgid "Church Slavic"
 msgstr "Kirkkoslaavi"
 
@@ -4154,12 +4147,14 @@ msgstr[1] "Tyhjennä varoitukset"
 msgid "Click the button on your remote you want to change."
 msgstr "Määrittää näppäimelle haluamasi toiminnon."
 
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Asiakas tiedot ( Oscam-Version: %s )"
+msgid "Client"
+msgstr "Asiakas"
 
 msgid "Client is streaming from this box!"
 msgstr "Etäasiakas suora toistaa boxin kautta!"
+
+msgid "ClientIP"
+msgstr "Asikas IP"
 
 msgid "Clients"
 msgstr "Asiakkaat"
@@ -4318,6 +4313,9 @@ msgstr "Yleiset Asetukset"
 msgid "Common Setup Actions"
 msgstr "Yleiset asetukset"
 
+msgid "Comodo Secure DNS"
+msgstr "Comodo Secure DNS"
+
 msgid "Comoros"
 msgstr "Comoros"
 
@@ -4345,9 +4343,6 @@ msgstr "Asetus"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Asetustiedosto %s tallennettu."
-
-msgid "Config file name (ok to change):"
-msgstr "Määritä tiedoston nimi (vaihda ok):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -4744,6 +4739,9 @@ msgstr "Määrittää mitä video ulostuloa käytetään."
 msgid "Configuring"
 msgstr "Muokataan"
 
+msgid "Configuring Service"
+msgstr "Määritä palvelu"
+
 msgid "ConflictTimer Actions"
 msgstr "Ristiriita-Ajastukset Toiminnot"
 
@@ -4981,11 +4979,11 @@ msgid "Could not open the file %s!"
 msgstr "Tiedostoa %s ei voitu avata!"
 
 #, python-format
-msgid "Could not record due to conflicting timer: %s"
+msgid "Could not record due to conflicting timer:%s"
 msgstr "Ei voitu tallentaa ristiriitaisen ajastuksen takia: %s"
 
 #, python-format
-msgid "Could not record due to invalid service: %s"
+msgid "Could not record due to invalid service:%s"
 msgstr "Ei voitu tallentaa virheellisen kanavan takia %s"
 
 #, python-format
@@ -5086,6 +5084,9 @@ msgstr "Kroatia"
 
 msgid "Croatian"
 msgstr "Kroatia"
+
+msgid "Cron"
+msgstr "Cron"
 
 msgid "Cron Manager"
 msgstr "Cron Hallinta"
@@ -5240,9 +5241,6 @@ msgstr "Tšekki"
 msgid "Czech Republic"
 msgstr "Tšekki"
 
-msgid "Czechia"
-msgstr "Tšekki"
-
 msgid "D"
 msgstr "D"
 
@@ -5269,6 +5267,12 @@ msgstr "DNS Asetukset"
 
 msgid "DNS data source"
 msgstr "DNS data lähde"
+
+msgid "DNS mode"
+msgstr "DNS tila"
+
+msgid "DNS suffix"
+msgstr "DNS pääte"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5354,6 +5358,9 @@ msgstr "Päivämäärä"
 
 msgid "Date / Time"
 msgstr "Päivämäärä / Kellonaika"
+
+msgid "Date Time Input Actions"
+msgstr "Päivämäärä Asetukset"
 
 msgid "Date ascending"
 msgstr "Päivämäärä nouseva"
@@ -5634,6 +5641,9 @@ msgstr "Softcam tälle kanavalle"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Määritä vaihtoehtoinen viive millisekunneissa ennen http(s) suora toiston alkamista."
+
+msgid "Define the DNS suffix."
+msgstr "Aseta DNS osoite."
 
 msgid "Defined / Active"
 msgstr "Määritetty / Aktiivinen"
@@ -6262,7 +6272,7 @@ msgid ""
 "Do you really want to format the device in the Linux file system?\n"
 "All data on the device will be lost!"
 msgstr ""
-"Haluatko varmasti alustaa laitteen Linux tiedostojärjestelmässä?\n"
+"Haluatko varmasti alustaa laitteen?\n"
 "Kaikki laitteen tiedot menetetään!"
 
 msgid "Do you really want to move to trashcan ?"
@@ -6297,13 +6307,6 @@ msgstr "Haluatko muuttaa '%s' käyttötilaa?"
 
 msgid "Do you want the upgrade guide?"
 msgstr "Haluatko päivitys oppaan?"
-
-msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Haluatko asentaa myös Samba asiakkaan?\n"
-"Se mahdollistaa Windows jakojen liittämisen tälle laitteelle."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6378,6 +6381,9 @@ msgstr "Haluatko käynnistää %s %s:n uudestaan?"
 
 msgid "Do you want to remove:"
 msgstr "Haluatko poistaa:"
+
+msgid "Do you want to replace:"
+msgstr "Haluatko korvata:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Haluatko palauttaa asetukset?"
@@ -6545,15 +6551,6 @@ msgstr "O "
 msgid "ECM"
 msgstr "ECM"
 
-msgid "ECM Statistics"
-msgstr "ECM tietoja"
-
-msgid "ECM Time"
-msgstr "ECM aika"
-
-msgid "ECM avg"
-msgstr "ECM keskim"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM data lisätään streamiin. Tämä mahdollistaa lähetyksen purkamisen etävastaanottimessa."
 
@@ -6563,12 +6560,6 @@ msgstr "ECM tiedot"
 #, python-format
 msgid "ECM information for '%s'"
 msgstr "ECM tiedot '%s'"
-
-msgid "ECM last"
-msgstr "EMC viim"
-
-msgid "ECM-Time"
-msgstr "ECM aika"
 
 msgid "EJECTCD"
 msgstr "Poista cd"
@@ -6590,6 +6581,9 @@ msgstr "EPG Kanavan/Palvelun valinta"
 
 msgid "EPG Display Actions"
 msgstr "EPG Näyttö toiminnot"
+
+msgid "EPG Jump"
+msgstr "EPG Hyppy"
 
 msgid "EPG Navigation Actions"
 msgstr "EPG Navigointi Toiminnot"
@@ -6852,7 +6846,7 @@ msgid "Enable Swap at startup"
 msgstr "Aktivoi swap käynnistettäessä"
 
 msgid "Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column)?"
-msgstr "Otetaanko Ylös / alas painikkeet käyttöön kaikki ylös / alas toiminnolle? (sarakkeen alussa / lopussa)"
+msgstr "Otetaanko Ylös / alas painikkeet käyttöön kaikille ylös / alas toiminnolle? (sarakkeen alussa / lopussa)"
 
 msgid "Enable VPS"
 msgstr "Ota VPS käyttöön"
@@ -7826,12 +7820,6 @@ msgstr "FTA"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr "FTP toiminnot"
-
-msgid "FTP Settings"
-msgstr "FTP asetukset"
-
 msgid "Factory Reset"
 msgstr "Tehdasasetusten palautus"
 
@@ -8217,6 +8205,9 @@ msgstr "Ruoka/Viini"
 
 msgid "Football"
 msgstr "Jalkapallo"
+
+msgid "For how many minutes do you want to record?"
+msgstr "Kuinka monta minuuttia haluat tallentaa?"
 
 msgid "Force AC3plus"
 msgstr "pakota AC3plus"
@@ -8912,6 +8903,9 @@ msgstr "Piilota lapsilukolla suojatut kanavat"
 msgid "Hide player"
 msgstr "Piilota soitin"
 
+msgid "Hide softcam servername"
+msgstr "Piilota softcam Palvelin nimi"
+
 msgid "Hide the InfoBar"
 msgstr "Piilota Tietopalkki"
 
@@ -8999,9 +8993,6 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-msgid "Hops"
-msgstr "Hyppyjä"
-
 msgid "Hops:"
 msgstr "Hyppyjä:"
 
@@ -9032,6 +9023,9 @@ msgstr "Isäntänimi: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Pikanäppäin"
+
 msgid "Hotkey Settings"
 msgstr "Pikanäppäimet"
 
@@ -9043,9 +9037,6 @@ msgstr "Tunnit Minuutit"
 
 msgid "Hours Minutes Seconds"
 msgstr "Tunnit Minuutit Sekunnit"
-
-msgid "How many minutes do you want to record?"
-msgstr "Kuinka monta minuuttia haluat tallentaa?"
 
 msgid "Http(s) stream start delay"
 msgstr "Http/https streamin käynnistysviive"
@@ -9122,8 +9113,14 @@ msgstr "Striimin välitys -palvelimen IP-osoite, jota käytetään sellaisten pa
 msgid "IPK Installer"
 msgstr "IPK Asennus"
 
+msgid "IPv4 only"
+msgstr "IPv4 Ainoastaan"
+
 msgid "IPv6 address"
 msgstr "IPv6 osoite"
+
+msgid "IPv6 only"
+msgstr "IPv6 ainoastaan"
 
 msgid "ISO file is too large for this file system!"
 msgstr "ISO-tiedosto on liian suuri tälle tiedostojärjestelmälle!"
@@ -9383,15 +9380,6 @@ msgstr "Ei käytössä"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr "Inadyn toiminnot"
-
-msgid "Inadyn Log"
-msgstr "Inadyn Loki"
-
-msgid "Inadyn Setting Actions"
-msgstr "Inadyn asetus toiminnot"
-
 msgid "Inadyn Settings"
 msgstr "Inadyn asetukset"
 
@@ -9569,9 +9557,6 @@ msgstr "Tulo Streami ID"
 msgid "Input channel name."
 msgstr "Kanavan nimi."
 
-msgid "Input config file name:"
-msgstr "Syötä määritystiedoston nimi:"
-
 msgid "Input scroll position"
 msgstr "Syötä vierityskohta"
 
@@ -9625,6 +9610,9 @@ msgstr "Asenna valittu Laajennus"
 msgid "Installation finished."
 msgstr "Asennus suoritettu."
 
+msgid "Installed"
+msgstr "Asennettu"
+
 msgid "Installing"
 msgstr "Asennetaan"
 
@@ -9655,6 +9643,9 @@ msgstr "Asenna lisäosia syötteestä ..."
 
 msgid "Instant Recording Actions"
 msgstr "Pikatallennuksen hakemisto"
+
+msgid "Instant Recording End Time"
+msgstr "Pikatallennuksen loppu aika"
 
 msgid "Instant record"
 msgstr "Pikatallennus"
@@ -9743,9 +9734,6 @@ msgstr "Käänteiset näppäin functiot."
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran, Islamic Republic"
-msgstr "Iran, Islamic Republic"
-
 msgid "Iran, Islamic Republic of"
 msgstr "Iran"
 
@@ -9809,14 +9797,32 @@ msgstr "Työn yleiskatsaus"
 msgid "Jordan"
 msgstr "Jordan"
 
+msgid "Jump"
+msgstr "Hyppy"
+
 msgid "Jump back 24 hours"
 msgstr "Hyppää takaisin 24 tuntia"
+
+msgid "Jump back one day"
+msgstr "Hyppää takaisin yksi päivä"
+
+msgid "Jump back one hour"
+msgstr "Hyppää takaisin tunti"
 
 msgid "Jump first press in channel selection"
 msgstr "Numeropainalluksen hyppy kanavanvalinnassa"
 
 msgid "Jump forward 24 hours"
 msgstr "Hyppää eteen 24 tuntia"
+
+msgid "Jump forward one day"
+msgstr "Hyppää eteenpäin yksi päivä"
+
+msgid "Jump forward one hour"
+msgstr "Hyppää tunti eteenpäin"
+
+msgid "Jump time"
+msgstr "Hyppyaika"
 
 msgid "Jump to beginning of list"
 msgstr "Hyppää listan alkuun"
@@ -10085,9 +10091,6 @@ msgstr "Laos"
 
 msgid "Large"
 msgstr "Suuri"
-
-msgid "Last Request"
-msgstr "Viim. pyyntö."
 
 msgid "Last config"
 msgstr "Aiemmat arvot"
@@ -10842,20 +10845,11 @@ msgstr "keskellä"
 msgid "Middle - Lite image"
 msgstr "Keskimmäinen - Ohjelmisto"
 
-msgid "Mini DLNA Actions"
-msgstr "Mini DLNA toiminnot"
-
-msgid "Mini DLNA Setting Actions"
-msgstr "Mini DLNA asetustoiminnot"
-
 msgid "Mini Series"
 msgstr "Mini Sarja"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Loki"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA asetukset"
@@ -10974,6 +10968,12 @@ msgstr "Morocco"
 msgid "Mosquito noise reduction"
 msgstr "Mosquito häiriöiden vaimennus"
 
+msgid "Most recent first"
+msgstr "Viimeisin ensin"
+
+msgid "Most recent last"
+msgstr "Uusin viimeinen"
+
 msgid "Motor Sport"
 msgstr "Moottoriurheilu"
 
@@ -10986,11 +10986,11 @@ msgstr "Moottorin aikaylitys"
 msgid "Mount"
 msgstr "Liitä"
 
-msgid "Mount Actions"
-msgstr "Liitokset toiminnot"
-
 msgid "Mount Manager"
 msgstr "Liitosten hallinta"
+
+msgid "Mount Menu Actions"
+msgstr "Liitosten Valikko asetukset"
 
 msgid "Mount Settings"
 msgstr "Liitokset Asetukset"
@@ -11110,6 +11110,12 @@ msgstr "Siirrä nykyinen kirjanmerkki alaspäin"
 
 msgid "Move the current bookmark up"
 msgstr "Siirrä nykyinen kirjanmerkki alaspäin"
+
+msgid "Move the current entry down"
+msgstr "Siirrä nykyinen merkintä alas"
+
+msgid "Move the current entry up"
+msgstr "Siirrä nykyinen merkintä ylös"
 
 msgid "Move the current line down"
 msgstr "Siirrä nykyinen rivi alaspäin"
@@ -11380,12 +11386,6 @@ msgstr "Seuraava"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr "NFS toiminnot"
-
-msgid "NFS Settings"
-msgstr "NFS asetukset"
-
 msgid "NIM"
 msgstr "NIM"
 
@@ -11512,6 +11512,9 @@ msgstr "Verkkotiedot Toiminnot"
 msgid "Network Interface"
 msgstr "Verkkosovitin"
 
+msgid "Network Log"
+msgstr "Verkko loki"
+
 msgid "Network Log Actions"
 msgstr "Verkko loki toiminnot"
 
@@ -11532,6 +11535,9 @@ msgstr "Verkkopalvelut"
 
 msgid "Network Settings"
 msgstr "Lähiverkon asetukset"
+
+msgid "Network Setup Actions"
+msgstr "Verkkoasetukset"
 
 msgid "Network Test"
 msgstr "Verkkoyhteyksien testaus"
@@ -11569,6 +11575,9 @@ msgstr "Verkkonimi (SSID)"
 
 msgid "Network scan"
 msgstr "Verkkohaku"
+
+msgid "Network storage on"
+msgstr "Verkkotallennus päällä"
 
 msgid "Network test"
 msgstr "Lähiverkon testi"
@@ -11781,6 +11790,9 @@ msgstr "Kaikki virittimet ovat jo käytössä!"
 msgid "No hard disks detected."
 msgstr "Kiintolevyjä ei havaittu."
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käytettävissä!"
+
 msgid "No matching place names found"
 msgstr "Ei vastaavuutta löytynyt nimistä"
 
@@ -11960,8 +11972,11 @@ msgstr "Epälineaarinen"
 msgid "None"
 msgstr "Ei mitään"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
 msgstr "NordVPN DNS"
+
+msgid "NordVPN Smart DNS"
+msgstr "NordVPN Smart DNS"
 
 msgid "Norfolk Island"
 msgstr "Norfolkinsaari"
@@ -12124,6 +12139,27 @@ msgstr "OK näppäimen toiminto"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, opasta minua päivityksessä"
 
+msgid "OSCam Info"
+msgstr "OScam tiedot"
+
+msgid "OSCam Information"
+msgstr "OScam tiedot"
+
+msgid "OSCam Information Settings"
+msgstr "Oscam Tiedot"
+
+msgid "OSCam webif disabled"
+msgstr "Oscam webif pois käytöstä"
+
+msgid "OSCamInfo Actions"
+msgstr "OSCam toiminnot"
+
+msgid "OSCamInfo Log"
+msgstr "OSCam Loki"
+
+msgid "OSCamInfo Log Actions"
+msgstr "OSCamInfo Loki tiedot"
+
 msgid "OSD"
 msgstr "Kuvaruutu"
 
@@ -12144,15 +12180,6 @@ msgstr "Kuvaruudun Asetukset"
 
 msgid "OSD name request"
 msgstr "Kuvaruudun nimipyyntö"
-
-msgid "OScam Info"
-msgstr "OScam tiedot"
-
-msgid "OScam Information"
-msgstr "OScam tiedot"
-
-msgid "OScam webif disabled"
-msgstr "Oscam webif pois käytöstä"
 
 msgid "OTT Model"
 msgstr "OTT malli"
@@ -12250,8 +12277,14 @@ msgstr "Avaa Ohjelmaopashaku"
 msgid "Open IMDb"
 msgstr "Avaa IMDb"
 
+msgid "Open Log"
+msgstr "Avaa loki"
+
 msgid "Open MediaStream"
 msgstr "Avaa Media Toistin"
+
+msgid "Open Settings"
+msgstr "Avaa Asetukset"
 
 msgid "Open Similar List Channel List"
 msgstr "Avaa Samankaltaiset kanavaluettelon listat"
@@ -12334,17 +12367,8 @@ msgstr "OpenSSL versio"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr "OpenVPN toiminnot"
-
-msgid "OpenVPN Settings"
-msgstr "OpenVPN asetukset"
-
 msgid "OpenViX Packages"
 msgstr "OpenViX Paketit"
-
-msgid "OpenVpn Log"
-msgstr "OpenVpn Loki"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "LED tila virransäästötilassa"
@@ -12394,18 +12418,8 @@ msgstr "Oriya"
 msgid "Oromo"
 msgstr "Oromo"
 
-msgid "Oscam Info - Main Menu"
-msgstr "Oscam - Päävalikko"
-
-msgid "Oscam Info Settings"
-msgstr "Oscam - Asetukset"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam Loki ( Oscam-Versio: %s )"
-
-msgid "OscamInfo Mainmenu"
-msgstr "Oscam Päävalikko"
+msgid "Oscam Information"
+msgstr "Oscam tiedot"
 
 msgid "Ossetian / Ossetic"
 msgstr "Ossetian / Ossetic"
@@ -12504,9 +12518,6 @@ msgstr "PDC"
 msgid "PGS file"
 msgstr "Ohjelmaoppaan tiedostonimi"
 
-msgid "PID"
-msgstr "PID"
-
 msgid "PIN code needed"
 msgstr "PIN koodi vaaditaan"
 
@@ -12526,6 +12537,9 @@ msgstr "PLS Tila"
 msgid "PMT PID"
 msgstr "PMT PID"
 
+msgid "PPanel"
+msgstr "Tieto Paneeli"
+
 msgid "PRIMETIME"
 msgstr "Paras katseluaika"
 
@@ -12536,7 +12550,7 @@ msgid "Package"
 msgstr "Paketti"
 
 msgid "Package Manager"
-msgstr "Ohjelmapakettien hallinta"
+msgstr "Ohjelmistopaketin hallinnointi"
 
 msgid "Package files:"
 msgstr "Paketit tiedostot:"
@@ -12599,6 +12613,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Paniikki kanava"
+
+msgid "Panic to"
+msgstr "Paniikkinäppäimestä"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Punjabi"
@@ -12893,20 +12910,11 @@ msgstr "Lisää tallenteita kokoelmaan."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Odota hetki, varmuuskopiota tehdään nyt,\n"
 
-msgid "Please change recording endtime"
-msgstr "Aseta tallennuksen päättymisaika"
-
 msgid "Please check the manual of the receiver"
 msgstr "Tarkista vastaanottimen ohjekirjasta"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Valitse Oscam"
-
 msgid "Please choose an extension..."
 msgstr "Valitse Lisäosa"
-
-msgid "Please choose reader"
-msgstr "Valitse lukija"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Älä muuta arvoja, ellet tiedä mitä teet!"
@@ -13096,6 +13104,9 @@ msgstr "Odota, haku on käynnissä..."
 
 msgid "Please wait while the data is extracted..."
 msgstr "Odota, kunnes tiedot on purettu..."
+
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr "Odota, Syötteet on resetoitu..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Odota, kunnes luettelo ladataan..."
@@ -13337,6 +13348,12 @@ msgstr "Ensisijaisena AC3 ääniraita"
 
 msgid "Prefer AC3+ track"
 msgstr "Ensisijaisena AC3+ ääniraita"
+
+msgid "Prefer IPv4"
+msgstr "Suosi IPv4"
+
+msgid "Prefer IPv6"
+msgstr "Suosi IPv6"
 
 msgid "Prefer audio track stored by service"
 msgstr "Ensisijaisena kanavalle tallennettu äänivalinta"
@@ -13671,9 +13688,6 @@ msgstr "Palveluntarjoajat"
 msgid "Providers:"
 msgstr "Palveluntarjoajat:"
 
-msgid "Providers: "
-msgstr "Palveluntarjoajat: "
-
 msgid "Proxy detected"
 msgstr "Välityspalvelin havaittu"
 
@@ -13739,6 +13753,12 @@ msgstr "Neljä PIP ei saatavilla."
 
 msgid "Quad9 DNS"
 msgstr "Quad9 DNS"
+
+msgid "Quad9 ECS DNS"
+msgstr "Quad9 ECS DNS"
+
+msgid "Quad9 Unsecured DNS"
+msgstr "Quad9 Unsecured DNS"
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -13864,24 +13884,13 @@ msgstr "Lue Käyttäjäntiedot oscam.conf:ista"
 msgid "Reader"
 msgstr "Lukija"
 
-msgid "Reader Statistics"
-msgstr "Lukijan tietoja"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Haluatko asentaa: \"%s\"?"
 
 #, python-format
-msgid "Ready to install '%s'?"
-msgstr "Haluatko asentaa: %s?"
-
-#, python-format
 msgid "Ready to remove \"%s\" ?"
 msgstr "Haluatko poistaa: \"%s\" ?"
-
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Haluatko poistaa: %s ?"
 
 msgid "Real Life"
 msgstr "Oikea Elämä"
@@ -13995,7 +14004,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Tallennus alkoi! Ajansiirto pysähtyy nyt..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer: %s"
+msgid "Record time limited due to conflicting timer:%s"
 msgstr "Ajastusaika rajoitettu, ristiriita ajastukseen %s"
 
 msgid "Record write error (no space on disk?)"
@@ -14487,6 +14496,9 @@ msgstr "Nollaa ja uudelleenjärjestä otsikot"
 msgid "Reset executable mode (644)"
 msgstr "Palauta suoritettava tila (644)"
 
+msgid "Reset list order to the default list order?"
+msgstr "Palautetaanko listan järjestys oletusarvoiseen järjestykseen?"
+
 msgid "Reset network configuration"
 msgstr "Palauta verkkoasetukset"
 
@@ -14499,14 +14511,14 @@ msgstr "Nollaa toistokohta"
 msgid "Reset sort order"
 msgstr "Palauta lajittelujärjestys"
 
+msgid "Reset the order of the entries"
+msgstr "Palauta merkintöjen järjestys"
+
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Palauta kuvasäädöt oletusarvoihin?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Palauta kuvasäädöt aiempiin arvoihin?"
-
-msgid "Reshare"
-msgstr "Reshare"
 
 msgid "Reshare:"
 msgstr "Reshare:"
@@ -14793,9 +14805,6 @@ msgstr "Réunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr "SABnzbd toiminnot"
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd asetukset"
 
@@ -14807,12 +14816,6 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
-
-msgid "SATPI Setting Actions"
-msgstr "SATPI asetukset"
-
-msgid "SATPI Settings"
-msgstr "SATPI asetukset"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC optimoitu hakualue"
@@ -14857,6 +14860,9 @@ msgstr "SRT tiedosto"
 msgid "SSA file"
 msgstr "SSA tiedosto"
 
+msgid "SSH"
+msgstr "SSH"
+
 msgid "SSID"
 msgstr "SSID"
 
@@ -14887,17 +14893,11 @@ msgstr "Saint Pierre and Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent and the Grenadines"
 
-msgid "Samba"
-msgstr "Samba"
+msgid "Samba Client"
+msgstr "Samba Asiakas"
 
-msgid "Samba Actions"
-msgstr "Samba toiminnot"
-
-msgid "Samba Log"
-msgstr "Samba Loki"
-
-msgid "Samba Setup"
-msgstr "Samba Asetukset"
+msgid "Samba Server"
+msgstr "Samba Serveri"
 
 msgid "Same as in active"
 msgstr "Sama kuin aktiivinen"
@@ -15356,6 +15356,9 @@ msgstr "Valitse 'Kyllä', jos haluat sallia VASEN/OIKEA painikkeiden käytön Si
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "'Kyllä' valinnalla kanavia ilman EPG:tä ei näytetä."
 
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr "Valitse ”Kyllä” palvelimen nimen ja IP osoitteen piilottamiseksi."
+
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
 msgstr "Valitse 'kyllä' sisällyttääksesi %s multiplekserit hakuusi."
@@ -15503,6 +15506,9 @@ msgstr "Valitse CAId"
 msgid "Select Device"
 msgstr "Valitse Laite"
 
+msgid "Select Display Skin"
+msgstr "Valitse Näyttöpaneelin teema"
+
 msgid "Select Enigma2 Skin"
 msgstr "Valitse järjestelmän Teema"
 
@@ -15540,6 +15546,12 @@ msgstr "Valitse Quad kanavat"
 
 msgid "Select Satellites"
 msgstr "Valitse satelliitit"
+
+msgid "Select Shares"
+msgstr "Valitse Jaot"
+
+msgid "Select Skin"
+msgstr "Valitse teema"
 
 msgid "Select Softcam"
 msgstr "Valitse softcam"
@@ -15773,6 +15785,10 @@ msgstr "Valitse väliaikaisen hakemiston lajittelujärjestys nykyiselle sarakkee
 msgid "Select temporary file sort order for the current column"
 msgstr "Valitse väliaikaisen hakemiston lajittelujärjestys nykyiselle sarakkeelle"
 
+#, python-format
+msgid "Select the %s entry"
+msgstr "Valitse %s merkintä"
+
 msgid "Select the No / False response"
 msgstr "Valitse Ei / Väärä vastaus"
 
@@ -15807,6 +15823,10 @@ msgstr "Valitse tähän virittimeen asetettu käyttäjän taajuusalueen taajuus.
 msgid "Select the Yes / True response"
 msgstr "Valitse Kyllä / Tosi vastaus"
 
+#, python-format
+msgid "Select the action for '%s'"
+msgstr "Valitse toiminto '%s'"
+
 msgid "Select the action to perform when the timer ends."
 msgstr "Valitse toiminto, joka suoritetaan ajastuksen päättyessä."
 
@@ -15827,6 +15847,9 @@ msgstr "Valitse kursorin alla oleva merkki tai toiminta"
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Valitse nykyinen kirjanmerkki ja poistu"
+
+msgid "Select the current entry"
+msgstr "Valitse nykyinen merkintä"
 
 msgid "Select the current menu item"
 msgstr "Valitse nykyinen valikko kohta"
@@ -15882,6 +15905,9 @@ msgstr "Valitse valikoiden näyttö rakenne."
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Valitse näytön vaihtoehdot jokaiselle valikon kohteelle. Jos valikkonumerot ovat käytettävissä, numeroita voidaan käyttää suoraan tiettyjen valikkojen valitsemiseen."
 
+msgid "Select the display sequence of previously visited services."
+msgstr "Valitse aiemmin katsottuijen kanavien näyttö järjestys."
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Valitse tiedostojen lajittelujärjestys sarakkeelle %s:"
@@ -15927,6 +15953,9 @@ msgstr "Valitse SCR-laitteesi valmistaja. Jos valmistajaa ei löydy listalta, as
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Valitse tapa, jolla näytön tarkkuus ja kehyspuskuri palautetaan, kun poistut teksti-tv:stä."
+
+msgid "Select the mode of the DNS."
+msgstr "Valitse DNS tila."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Valitse SCR:n mallinumero. Jos mallinumeroa ei löydy listalta, aseta 'SCR' 'käyttäjän määrittelemä' ja syötä laitteen parametrit käsin teknisistä tiedoista."
@@ -16023,6 +16052,12 @@ msgstr "Valitse aikaviive ennen kuin painike alkaa toistua."
 
 msgid "Select the time delay between each repeat of the button."
 msgstr "Valitse aikaviive kunkin painikkeen toistamisen välillä."
+
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr "Valitse aika, johon EPG:n tulisi asettaa. Paina Vasen/Oikea painiketta vähentääksesi tai lisätäksesi aikaa tunnilla. Paina Takaisin/Seuraava painiketta lyhentääksesi/kasvataksesi aikaa päivissä."
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
+msgstr "Valitse aika, jolloin pikatallennus päättyy. Paina Vasen/Oikea vähentääksesi tai lisätäksesi aikaa minuutilla. Paina Takaisin/seuraava painiketta vähentääksesi tai lisätäksesi aikaa tunnilla."
 
 msgid "Select the time when this timer should end."
 msgstr "Valitse aika, jolloin ajastuksen pitäisi päättyä."
@@ -16231,18 +16266,8 @@ msgstr "Serbia"
 msgid "Serial No"
 msgstr "Sarjanumero"
 
-msgid "Serv.Name"
-msgstr "Palv.nimi"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Palvelin tiedot( Oscam versio: %s )"
-
 msgid "Server down"
 msgstr "Palvelin kaatunut"
-
-msgid "Server:"
-msgstr "Palvelin:"
 
 msgid "Servers"
 msgstr "Palvelimet"
@@ -16426,6 +16451,9 @@ msgstr "Aseta suorittimen minimi taajuus ytimille 2, 3, 4 ja 5"
 
 msgid "Set Scaling governor"
 msgstr "Aseta skaalaus säädin"
+
+msgid "Set Time"
+msgstr "Aseta aika"
 
 msgid "Set action for 'Info' key"
 msgstr "Valitse toiminto ajastimelle"
@@ -16613,9 +16641,6 @@ msgstr "Asetukset"
 msgid "Setup - %s"
 msgstr "Asetukset %s"
 
-msgid "Setup AFP"
-msgstr "AFP asetukset"
-
 msgid "Setup Audio Sync"
 msgstr "Asetukset äänen synkronointi"
 
@@ -16627,9 +16652,6 @@ msgstr "Ääni asetusten määritys"
 
 msgid "Setup Enigma2"
 msgstr "Käyttöjärjestelmä Asetukset"
-
-msgid "Setup FTP"
-msgstr "FTP asetukset"
 
 msgid "Setup Harddisk"
 msgstr "Kiintolevyn asetukset"
@@ -16646,17 +16668,11 @@ msgstr "MiniDLNA asetukset"
 msgid "Setup Mounts"
 msgstr "Määritä liitokset"
 
-msgid "Setup NFS"
-msgstr "NFS asetukset"
-
 msgid "Setup Network Services"
 msgstr "Määritä verkkopalvelut"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Määritä verkkopalvelut (Samba, FTP, NFS...)"
-
-msgid "Setup OpenVPN"
-msgstr "OpenVPN asetukset"
 
 msgid "Setup Plugin Browser"
 msgstr "Asenna laajennusselain"
@@ -16666,18 +16682,6 @@ msgstr "Asenna lisäosa suodatin. Täällä voit valita, mitkä laajennukset nä
 
 msgid "Setup Plugins"
 msgstr "Määritä Lisäosat"
-
-msgid "Setup SABnzbd"
-msgstr "SABnzbd asetukset"
-
-msgid "Setup SATPI"
-msgstr "SATPI asetukset"
-
-msgid "Setup Samba"
-msgstr "Samba asetukset"
-
-msgid "Setup Telnet"
-msgstr "Telnet asetukset"
 
 msgid "Setup Tuner"
 msgstr "Määritä Viritin asetukset"
@@ -16793,9 +16797,6 @@ msgstr "Määritä käyttämäsi satelliittilaitteet"
 msgid "Seychelles"
 msgstr "Seychelles"
 
-msgid "Share Folders"
-msgstr "Jaa kansiot"
-
 msgid "Share View"
 msgstr "Jakonäkymä"
 
@@ -16804,6 +16805,12 @@ msgstr "Jaot"
 
 msgid "Sharpness"
 msgstr "Terävyys"
+
+msgid "ShellInABox"
+msgstr "Terminaali"
+
+msgid "Shellscript"
+msgstr "Shellscripti"
 
 msgid "Shift"
 msgstr "Vaihto"
@@ -16832,9 +16839,6 @@ msgstr "Pitäisikö kaatumislaskuri nollata uudelleenkäynnistyksen estämiseksi
 
 msgid "Show"
 msgstr "Näytä"
-
-msgid "Show /tmp/ecm.info"
-msgstr "Näytä /tmp/ecm.info"
 
 msgid "Show 1080p 24fps as"
 msgstr "Näytä 1080p 24fps näin"
@@ -16895,9 +16899,6 @@ msgstr "Näytä CCcam tiedot"
 
 msgid "Show CI messages"
 msgstr "Näytä CI-viestit"
-
-msgid "Show Clients"
-msgstr "Näytä asiakkaat"
 
 msgid "Show Default Backup Files"
 msgstr "Varmuuskopion oletussisältö"
@@ -16998,8 +16999,8 @@ msgstr "Näytä tallennelista"
 msgid "Show Multi EPG"
 msgstr "Näytä monikanava-EPG"
 
-msgid "Show OScam Info"
-msgstr "Näytä OScam tiedot"
+msgid "Show OSCam Information"
+msgstr "Näytä OSCam tiedot"
 
 msgid "Show OScam/CCcam in Extension Menu"
 msgstr "Näytä OScam lisäosa valikossa"
@@ -17030,9 +17031,6 @@ msgstr "Näytä Teemat Paketit"
 
 msgid "Show RFmod setup..."
 msgstr "Näytä RFMod asetukset"
-
-msgid "Show Readers/Proxies"
-msgstr "Näytä lukijat/proxyt"
 
 msgid "Show Record Movies"
 msgstr "Näytä tallennelista"
@@ -17449,8 +17447,8 @@ msgstr "Näytä EIT Nyt/Seuraava tietopalkissa."
 msgid "Show the Logs Settings screen"
 msgstr "Näytä Lokit asetukset näytössä"
 
-msgid "Show the OScamInfo Screen"
-msgstr "Näytä OScamTiedot Näyttö"
+msgid "Show the OSCam information screen"
+msgstr "Näytä OSCam tietonäytössä"
 
 msgid "Show the PowerTimer"
 msgstr "Näytä Virta ajastukset"
@@ -17987,7 +17985,7 @@ msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Syötteet eivät ole käytössä huollon takia, yritä myöhemmin uudelleen."
 
 msgid "Sorry it is only possible to record 2 channels at once!"
-msgstr "Vain 2 kanavaa voidaan tallentaa kerralla"
+msgstr "Vain 2 kanavaa voidaan tallentaa yhtä aikaa!"
 
 msgid "Sorry no backups found!"
 msgstr "Varmuuskopioita ei löydy!"
@@ -18050,9 +18048,6 @@ msgstr "Oletusjärjestys"
 
 msgid "Sort list by"
 msgstr "Listan järjestystapa"
-
-msgid "Sort list to default and exit?"
-msgstr "Järjestä lista oletusasetuksiin ja poistu?"
 
 msgid "Sort list:"
 msgstr "Listan järjestystapa:"
@@ -18208,6 +18203,9 @@ msgstr "Käynnistys tila"
 
 msgid "Start offline decode"
 msgstr "Aloita offline purkaminen"
+
+msgid "Start or Stop service"
+msgstr "Aloita tai lopeta palvelu"
 
 msgid "Start recording current event"
 msgstr "Aloita nykyisen ohjelman tallennus"
@@ -18806,7 +18804,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 06.12.2023\n"
+"Suomenkielinen käännös: 17.1.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -18950,17 +18948,11 @@ msgstr "Teksti-tv tekstityksen väri"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr "Telnet toiminnot"
-
 msgid "Telnet Interface"
 msgstr "Telnet liittymä"
 
 msgid "Telnet Port"
 msgstr "Telnet Portti"
-
-msgid "Telnet Settings"
-msgstr "Telnet asetukset"
 
 msgid "Telugu"
 msgstr "Telugu"
@@ -19841,9 +19833,6 @@ msgstr "Aika Asetukset"
 msgid "Time Shift Settings"
 msgstr "Ajansiirto Asetukset"
 
-msgid "Time Update in Minutes:"
-msgstr "Ajanpäivitys minuutteina:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr "Diaesityksen välinen aika kuvan katselun diaesityksessä."
 
@@ -20149,9 +20138,6 @@ msgstr "suositut"
 msgid "Top and Bottom"
 msgstr "Ylä ja ala"
 
-msgid "Total"
-msgstr "Kokonais"
-
 msgid "Total CPU benchmark"
 msgstr "CPU:n suorituskyky"
 
@@ -20185,6 +20171,9 @@ msgstr "Raita"
 
 msgid "Traditional Chinese"
 msgstr "Kiina"
+
+msgid "Transcode"
+msgstr "Transkoodaus"
 
 msgid "Transcoding"
 msgstr "Transkoodaus"
@@ -20521,6 +20510,10 @@ msgstr "Määrittämätön"
 msgid "Unencrypted"
 msgstr "Salaamaton"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr "Odottamaton virhe Internetissä WebIF: %s"
+
 msgid "UnhandledKey"
 msgstr "Käsittelemätön avain"
 
@@ -20539,14 +20532,14 @@ msgstr "Unicable LNB"
 msgid "Unicable Matrix"
 msgstr "Unicable matriisi"
 
+msgid "Uninstall"
+msgstr "Poista asennus"
+
 msgid "United Arab Emirates"
 msgstr "United Arab Emirates"
 
 msgid "United Kingdom"
 msgstr "Ison-Britannia"
-
-msgid "United States"
-msgstr "Yhdysvallat"
 
 msgid "United States Minor Outlying Islands"
 msgstr "Yhdysvallat Pienet syrjäiset saaret"
@@ -20685,9 +20678,6 @@ msgstr "Päivitys epäonnistui!"
 
 msgid "Update finished!"
 msgstr "Päivitys suoritettu!"
-
-msgid "Update interval (in seconds)"
-msgstr "Päivitysväli (sekuntia)"
 
 msgid ""
 "Update succeeded!\n"
@@ -21084,9 +21074,6 @@ msgstr "VOB tiedosto"
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS Asetukset"
@@ -21564,18 +21551,6 @@ msgstr "Toista tallenteet..."
 
 msgid "Watch recordings"
 msgstr "Katso tallenteita"
-
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Olemme todella pahoillamme. Vastaanotin kohtasi ohjelmisto ongelman, ja se on käynnistettävä uudelleen.\n"
-"Lähetä lokitiedosto %senigma2_crash_xxxxxx.log www.opena.tv.\n"
-"Vastaanotin käynnistyy uudelleen 10 sekunnin kuluttua!\n"
-"Komponentti: enigma2"
 
 msgid "Weather"
 msgstr "Sää"
@@ -22245,14 +22220,6 @@ msgstr "Laite %s %s käynnistyy uudelleen..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"Laite %s %s käynnistetään uudelleen asennuksen jälkeen.\n"
-"Haluatko asentaa %s?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22265,22 +22232,6 @@ msgstr ""
 msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
-msgstr ""
-"%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
-"Poistetaanko palvelu nyt?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
-"Poistetaanko palvelu nyt?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
 msgstr ""
 "%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
 "Poistetaanko palvelu nyt?"
@@ -22424,11 +22375,17 @@ msgstr "Aktivoi kanavanvaihto pääkuvassa"
 msgid "Zap focused channel on full screen"
 msgstr "Vaihda kanavan vaihto pääkuvassa"
 
+msgid "Zap history sequence"
+msgstr "Kanavan vaihto järjestys"
+
 msgid "Zap mode"
 msgstr "Kanavanvaihdon toiminta"
 
 msgid "Zap next"
 msgstr "Vaihda seuraavalle kanavalle"
+
+msgid "Zap to"
+msgstr "Vaihda kanavalle"
 
 msgid "Zap to channel (setup in menu)"
 msgstr "Vaihda kanavalle (määritettävissä asetuksissa)"
@@ -22775,12 +22732,6 @@ msgstr "Suorittaa leikkauksia (tarvitsee MovieCut lisäosan)"
 msgid "exit DVD player or return to file browser"
 msgstr "poistu DVD-soittimesta tai palaa tiedostonhallintaan"
 
-msgid "exit mounts setup menu"
-msgstr "poistu liitosten asetusvalikosta"
-
-msgid "exit networkadapter setup menu"
-msgstr "poistu verkkosovittimen asetusvalikosta"
-
 msgid "experimental film/video"
 msgstr "kokeellinen elokuva/video"
 
@@ -23011,18 +22962,6 @@ msgstr "autoilu"
 
 msgid "move"
 msgstr "siirrä"
-
-msgid "move down to last entry"
-msgstr "siirry viimeiseen kohtaan"
-
-msgid "move down to next entry"
-msgstr "siirry seuraavaan kohtaan"
-
-msgid "move up to first entry"
-msgstr "siirry ensimmäiseen kohtaan"
-
-msgid "move up to previous entry"
-msgstr "siirry edelliseen kohtaan"
 
 msgid "movie (general)"
 msgstr "elokuva (yleinen)"
@@ -23257,9 +23196,6 @@ msgstr "hae EPG:stä."
 msgid "select CAId's"
 msgstr "valitse CAId:t"
 
-msgid "select menu entry"
-msgstr "valitse valikon kohta"
-
 msgid "serious music/classic music"
 msgstr "vakava musiikki/klassinen musiikki"
 
@@ -23461,12 +23397,6 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare asetukset"
 
-msgid "uShare Actions"
-msgstr "uShare toiminnot"
-
-msgid "uShare Log"
-msgstr "uShare loki"
-
 msgid "uShare Name"
 msgstr "uShare Nimi"
 
@@ -23475,9 +23405,6 @@ msgstr "uShare portti"
 
 msgid "uShare Selection Actions"
 msgstr "uShare valinta toiminnot"
-
-msgid "uShare Setting Actions"
-msgstr "uShare asetus toiminnot"
 
 msgid "uShare Settings"
 msgstr "uShare asetukset"
@@ -23569,18 +23496,422 @@ msgstr "kyllä (pidä syötteet)"
 msgid "®"
 msgstr "®"
 
+msgid "Preferred tuner DVB-S"
+msgstr "Ensisijainen DVB-S viritin"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Tallennusten ensisijainen DVB-S viritin"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Ensisijainen DVB-T viritin"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Tallennusten ensisijainen DVB-T viritin"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Ensisijainen DVB-C viritin"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Tallennusten ensisijainen DVB-C viritin"
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Kun päällä, tämä ohittaa ensisijainen viritin valinnan"
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Kun päällä, tämä ohittaa tallennusten ensisijainen viritin valinnan"
+
+msgid "Preferred tuner ATSC"
+msgstr "Ensisijainen ATSC-viritin"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Tallennusten ensisijainen ATSC-viritin"
+
+#, python-format
+#~ msgid "%s  -  %s    (%s%d Min)"
+#~ msgstr "%s - %s (%s%d Min)"
+
+#~ msgid "Australian"
+#~ msgstr "Australia"
+
+#~ msgid "Belgian"
+#~ msgstr "Belgia"
+
+#~ msgid "Czechia"
+#~ msgstr "Tšekki"
+
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "Iran, Islamic Republic"
+
+#~ msgid "United States"
+#~ msgstr "Yhdysvallat"
+
+#~ msgid "Mount Actions"
+#~ msgstr "Liitokset toiminnot"
+
+#~ msgid "NordVPN DNS"
+#~ msgstr "NordVPN DNS"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Järjestä lista oletusasetuksiin ja poistu?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "poistu liitosten asetusvalikosta"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "poistu verkkosovittimen asetusvalikosta"
+
+#~ msgid "move down to last entry"
+#~ msgstr "siirry viimeiseen kohtaan"
+
+#~ msgid "move down to next entry"
+#~ msgstr "siirry seuraavaan kohtaan"
+
+#~ msgid "move up to first entry"
+#~ msgstr "siirry ensimmäiseen kohtaan"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "siirry edelliseen kohtaan"
+
+#~ msgid "select menu entry"
+#~ msgstr "valitse valikon kohta"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Taustapäivityksen tarkistus on käynnissä, odota muutama minuutti ja yritä uudelleen."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "CIFS/Samba asetukset"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Määritä tiedoston nimi (vaihda ok):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Haluatko asentaa myös Samba asiakkaan?\n"
+#~ "Se mahdollistaa Windows jakojen liittämisen tälle laitteelle."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP asetukset"
+
+#~ msgid "Inadyn Actions"
+#~ msgstr "Inadyn toiminnot"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Loki"
+
+#~ msgid "Inadyn Setting Actions"
+#~ msgstr "Inadyn asetus toiminnot"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Syötä määritystiedoston nimi:"
+
+#~ msgid "Install service"
+#~ msgstr "Asenna palvelu"
+
+#~ msgid "Mini DLNA Actions"
+#~ msgstr "Mini DLNA toiminnot"
+
+#~ msgid "Mini DLNA Setting Actions"
+#~ msgstr "Mini DLNA asetustoiminnot"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Loki"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS asetukset"
+
+#~ msgid "OpenVPN Actions"
+#~ msgstr "OpenVPN toiminnot"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "OpenVPN asetukset"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn Loki"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Haluatko poistaa: %s ?"
+
+#~ msgid "Remove service"
+#~ msgstr "Poista kanava"
+
+#~ msgid "SATPI Settings"
+#~ msgstr "SATPI asetukset"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Actions"
+#~ msgstr "Samba toiminnot"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba Loki"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba Asetukset"
+
+#, python-format
+#~ msgid "Select 'Yes' to enable autostart of '%s'."
+#~ msgstr "Valitse \"Kyllä\" Automaattinen käynnistys käyttöön '%s'."
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP asetukset"
+
+#~ msgid "Setup NFS"
+#~ msgstr "NFS asetukset"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "OpenVPN asetukset"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "SABnzbd asetukset"
+
+#~ msgid "Setup SATPI"
+#~ msgstr "SATPI asetukset"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Samba asetukset"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Telnet asetukset"
+
+#~ msgid "Share Folders"
+#~ msgstr "Jaa kansiot"
+
+#~ msgid "Show logfile"
+#~ msgstr "Näytä loki tiedosto"
+
+#~ msgid "Start service"
+#~ msgstr "Aloita palvelu"
+
+#~ msgid "Stop service"
+#~ msgstr "Lopeta palvelu"
+
+#~ msgid "Telnet Actions"
+#~ msgstr "Telnet toiminnot"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telnet asetukset"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Ajanpäivitys minuutteina:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "Laite %s %s käynnistetään uudelleen asennuksen jälkeen.\n"
+#~ "Haluatko asentaa %s?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service.\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
+#~ "Poistetaanko palvelu nyt?"
+
+#~ msgid "uShare Actions"
+#~ msgstr "uShare toiminnot"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare loki"
+
+#~ msgid "uShare Setting Actions"
+#~ msgstr "uShare asetus toiminnot"
+
+#~ msgid "OScamInfo Overview"
+#~ msgstr "Oscam tiedot"
+
+#~ msgid "OScamInfo Settings"
+#~ msgstr "Oscam Asetukset"
+
+#~ msgid "OScamInfo ShowLog"
+#~ msgstr "Oscam näytä loki"
+
+#~ msgid "OScamLog Actions"
+#~ msgstr "Oscam loki toiminnot"
+
+#~ msgid "OScamOverview Actions"
+#~ msgstr "Oscam yleiset toiminnot"
+
+#~ msgid "Oscam Information Settings"
+#~ msgstr "Oscam Tiedot Asetukset"
+
+#~ msgid "Show OScam Info"
+#~ msgstr "Näytä OScam tiedot"
+
+#~ msgid "Show the OScamInfo Screen"
+#~ msgstr "Näytä OScamTiedot Näyttö"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s ( %s Kortit )"
+
+#~ msgid "( All readers)"
+#~ msgstr "( Kaikki lukijat)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Näytä vain lukija:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Actions"
+#~ msgstr "AFP toiminnot"
+
+#~ msgid "AFP Settings"
+#~ msgstr "AFP asetukset"
+
+#~ msgid "Address"
+#~ msgstr "Osoite"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Kortin tietoja (Oscam-lukija)"
+
+#~ msgid "Cards:"
+#~ msgstr "Kortit:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Asiakas tiedot ( Oscam-Version: %s )"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM tietoja"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM aika"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM keskim"
+
+#~ msgid "ECM last"
+#~ msgstr "EMC viim"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM aika"
+
+#~ msgid "FTP Actions"
+#~ msgstr "FTP toiminnot"
+
+#~ msgid "Hops"
+#~ msgstr "Hyppyjä"
+
+#~ msgid "Last Request"
+#~ msgstr "Viim. pyyntö."
+
+#~ msgid "NFS Actions"
+#~ msgstr "NFS toiminnot"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Oscam - Päävalikko"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Oscam - Asetukset"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Oscam Loki ( Oscam-Versio: %s )"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "Oscam Päävalikko"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Valitse Oscam"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Valitse lukija"
+
+#~ msgid "Providers: "
+#~ msgstr "Palveluntarjoajat: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Lukijan tietoja"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Haluatko asentaa: %s?"
+
+#~ msgid "Reshare"
+#~ msgstr "Reshare"
+
+#~ msgid "SABnzbd Actions"
+#~ msgstr "SABnzbd toiminnot"
+
+#~ msgid "SATPI Setting Actions"
+#~ msgstr "SATPI asetukset"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Palv.nimi"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Palvelin tiedot( Oscam versio: %s )"
+
+#~ msgid "Server:"
+#~ msgstr "Palvelin:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "AFP asetukset"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "Näytä /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "Näytä asiakkaat"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Näytä lukijat/proxyt"
+
+#~ msgid "Total"
+#~ msgstr "Kokonais"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Päivitysväli (sekuntia)"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
+#~ "Poistetaanko palvelu nyt?"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Aseta tallennuksen päättymisaika"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Olemme todella pahoillamme. Vastaanotin kohtasi ohjelmisto ongelman, ja se on käynnistettävä uudelleen.\n"
+#~ "Lähetä lokitiedosto %senigma2_crash_xxxxxx.log www.opena.tv.\n"
+#~ "Vastaanotin käynnistyy uudelleen 10 sekunnin kuluttua!\n"
+#~ "Komponentti: enigma2"
+
 #~ msgid "+24"
 #~ msgstr "Seuraavat 24h"
 
 #~ msgid "-24"
 #~ msgstr "Edelliset 24h"
-
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Tallennus on parhaillaan käynnissä.\n"
-#~ "Mitä haluat tehdä?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Suosikkilista"
@@ -23837,14 +24168,8 @@ msgstr "®"
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI Avustaja Asetukset"
 
-#~ msgid "ClientIP"
-#~ msgstr "Asikas IP"
-
 #~ msgid "Minute"
 #~ msgstr "minuutti"
-
-#~ msgid "Transcode"
-#~ msgstr "Transkoodaus"
 
 #, python-format
 #~ msgid "%.3f MHz"
@@ -23867,12 +24192,6 @@ msgstr "®"
 #~ msgid "Basic PID info"
 #~ msgstr "Perus PID tiedot"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Näppäinmääritykset"
-
-#~ msgid "Client"
-#~ msgstr "Asiakas"
-
 #~ msgid "Code R. LP-HP & Guard Int."
 #~ msgstr "Code R. LP-HP & Guard Int."
 
@@ -23891,9 +24210,6 @@ msgstr "®"
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Taajuus & polarisaatio"
 
-#~ msgid "Hotkey"
-#~ msgstr "Pikanäppäin"
-
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Inversio & kaistanleveys"
 
@@ -23903,26 +24219,14 @@ msgstr "®"
 #~ msgid "NIM & Type"
 #~ msgstr "NIM & Tyyppi"
 
-#~ msgid "Network storage on"
-#~ msgstr "Verkkotallennus päällä"
-
 #~ msgid "Next Log"
 #~ msgstr "Seuraava loki"
 
 #~ msgid "Next Picture"
 #~ msgstr "Seuraava kuva"
 
-#~ msgid "No log files found so debug logs are unavailable!"
-#~ msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käytettävissä!"
-
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "Tieto Paneeli"
-
-#~ msgid "Panic to"
-#~ msgstr "Paniikkinäppäimestä"
 
 #~ msgid "Previous Log"
 #~ msgstr "Edellinen loki"
@@ -23951,9 +24255,6 @@ msgstr "®"
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Palvelun tiedot - virittimen asetusarvot"
 
-#~ msgid "Shellscript"
-#~ msgstr "Shellscripti"
-
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Symbolinopeus & FEC"
 
@@ -23968,9 +24269,6 @@ msgstr "®"
 
 #~ msgid "Tuner setting values"
 #~ msgstr "Virittimen asetusarvot"
-
-#~ msgid "Zap to"
-#~ msgstr "Vaihda kanavalle"
 
 #~ msgid "active"
 #~ msgstr "aktivoi"

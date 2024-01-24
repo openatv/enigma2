@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1154,10 +1154,6 @@ msgid "%s  (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr ""
-
-#, python-format
 msgid "%s %02d.%02d."
 msgstr ""
 
@@ -1180,10 +1176,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%s %s remote control (native)"
 msgstr "按OK鍵確認."
-
-#, fuzzy, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s (%s)\n"
 
 #, fuzzy, python-format
 msgid "%s (%04o)"
@@ -1315,9 +1307,6 @@ msgstr ""
 msgid "'WeatherPlugin' is not installed!"
 msgstr "這個插件未安裝."
 
-msgid "( All readers)"
-msgstr ""
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
@@ -1330,9 +1319,6 @@ msgid "(PiP)"
 msgstr ""
 
 msgid "(Radio)"
-msgstr ""
-
-msgid "(Show only reader:"
 msgstr ""
 
 msgid "(TV)"
@@ -1604,11 +1590,11 @@ msgstr "<最近一次定時錄影位置>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found>"
+msgstr ""
+
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1678,6 +1664,13 @@ msgid ""
 msgstr ""
 "錄製已經開始:\n"
 "%s"
+
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"錄製正在進行中.\n"
+"您想做什麼?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "錄製正在進行中. 請在配置極軸之前停止錄製."
@@ -1766,16 +1759,6 @@ msgstr ""
 #, fuzzy
 msgid "AFL"
 msgstr "PAL"
-
-msgid "AFP"
-msgstr ""
-
-msgid "AFP Actions"
-msgstr ""
-
-#, fuzzy
-msgid "AFP Settings"
-msgstr "EPG設定"
 
 msgid "ARM"
 msgstr ""
@@ -2116,10 +2099,6 @@ msgstr ""
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr ""
-
-#, fuzzy
-msgid "Address"
-msgstr "IP地址"
 
 msgid "Adjust 3D settings"
 msgstr ""
@@ -2714,10 +2693,6 @@ msgid "Australia"
 msgstr "澳大利亞"
 
 #, fuzzy
-msgid "Australian"
-msgstr "澳大利亞"
-
-#, fuzzy
 msgid "Austria"
 msgstr "澳大利亞"
 
@@ -2794,6 +2769,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 #, fuzzy
 msgid "AutoMountManager"
 msgstr "安裝(Mount)管理"
@@ -2837,6 +2815,9 @@ msgid "Automatically turn on external subtitles"
 msgstr ""
 
 msgid "Automatically update Client/Server View"
+msgstr ""
+
+msgid "Automatically update Log-Fullscreen View"
 msgstr ""
 
 #, fuzzy
@@ -3117,10 +3098,6 @@ msgstr ""
 
 msgid "Belarusian"
 msgstr ""
-
-#, fuzzy
-msgid "Belgian"
-msgstr "挪威語"
 
 msgid "Belgium"
 msgstr ""
@@ -3404,6 +3381,10 @@ msgstr "音頻同步設定"
 msgid "Button error timeout"
 msgstr ""
 
+#, fuzzy
+msgid "ButtonSetup"
+msgstr "設定"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3427,12 +3408,6 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C-波段"
-
-msgid "CAID"
-msgstr ""
-
-msgid "CAID:SrvID"
-msgstr ""
 
 msgid "CCD-Width"
 msgstr ""
@@ -3544,9 +3519,6 @@ msgid "CI slot: "
 msgstr "未找到CI插座"
 
 msgid "CI+ Helper*"
-msgstr ""
-
-msgid "CIFS/Samba Settings"
 msgstr ""
 
 msgid "CPU"
@@ -3787,10 +3759,13 @@ msgstr "頻道選擇"
 msgid "Cancel the image selection and exit all menus"
 msgstr "頻道選擇"
 
-msgid "Cancel the service selection"
+msgid "Cancel the selection and exit"
 msgstr ""
 
-msgid "Cancel the service zap"
+msgid "Cancel the service history zap"
+msgstr ""
+
+msgid "Cancel the service selection"
 msgstr ""
 
 msgid "Cancel the slot selection and exit"
@@ -3832,13 +3807,6 @@ msgstr ""
 
 msgid "Cape Verde"
 msgstr ""
-
-msgid "Card infos (CCcam-Reader)"
-msgstr ""
-
-#, fuzzy
-msgid "Cards:"
-msgstr "Card"
 
 #, fuzzy
 msgid "Cards: "
@@ -4159,6 +4127,18 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr ""
@@ -4179,6 +4159,12 @@ msgid "Choose how much EPG history, if any, to keep in the EPG cache. This histo
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
+msgstr ""
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
 msgstr ""
 
 msgid "Choose the amount of additional slots."
@@ -4268,6 +4254,9 @@ msgstr ""
 msgid "Christmas Island"
 msgstr ""
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr ""
 
@@ -4337,12 +4326,15 @@ msgstr[0] ""
 msgid "Click the button on your remote you want to change."
 msgstr ""
 
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
+msgid "Client"
 msgstr ""
 
 msgid "Client is streaming from this box!"
 msgstr ""
+
+#, fuzzy
+msgid "ClientIP"
+msgstr "用戶端 IP:"
 
 #, fuzzy
 msgid "Clients"
@@ -4508,6 +4500,9 @@ msgstr ""
 msgid "Common Setup Actions"
 msgstr "備份位置"
 
+msgid "Comodo Secure DNS"
+msgstr ""
+
 msgid "Comoros"
 msgstr ""
 
@@ -4535,9 +4530,6 @@ msgstr "配置"
 
 #, python-format
 msgid "Config file %s saved."
-msgstr ""
-
-msgid "Config file name (ok to change):"
 msgstr ""
 
 #, fuzzy
@@ -4936,6 +4928,9 @@ msgstr ""
 msgid "Configuring"
 msgstr "配置"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5183,11 +5178,11 @@ msgid "Could not open the file %s!"
 msgstr "不能打開畫中畫."
 
 #, python-format
-msgid "Could not record due to conflicting timer: %s"
+msgid "Could not record due to conflicting timer:%s"
 msgstr ""
 
 #, python-format
-msgid "Could not record due to invalid service: %s"
+msgid "Could not record due to invalid service:%s"
 msgstr ""
 
 #, python-format
@@ -5295,6 +5290,9 @@ msgstr "克羅地亞"
 
 msgid "Croatian"
 msgstr "克羅地亞"
+
+msgid "Cron"
+msgstr ""
 
 #, fuzzy
 msgid "Cron Manager"
@@ -5458,10 +5456,6 @@ msgstr "捷克"
 msgid "Czech Republic"
 msgstr "捷克共和國"
 
-#, fuzzy
-msgid "Czechia"
-msgstr "捷克"
-
 msgid "D"
 msgstr "D"
 
@@ -5488,6 +5482,12 @@ msgid "DNS Settings"
 msgstr ""
 
 msgid "DNS data source"
+msgstr ""
+
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
 msgstr ""
 
 msgid ""
@@ -5579,6 +5579,9 @@ msgid "Date"
 msgstr "日期"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date Time Input Actions"
 msgstr ""
 
 msgid "Date ascending"
@@ -5868,6 +5871,9 @@ msgid "Define Softcam For This Service"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Defined / Active"
@@ -6554,11 +6560,6 @@ msgid "Do you want the upgrade guide?"
 msgstr ""
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-
-msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
@@ -6631,6 +6632,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr " 是否重啟您的Dreambox?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -6811,16 +6815,6 @@ msgstr "E"
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr ""
-
-#, fuzzy
-msgid "ECM Time"
-msgstr "時間"
-
-msgid "ECM avg"
-msgstr ""
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr ""
 
@@ -6830,13 +6824,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr ""
-
-#, fuzzy
-msgid "ECM-Time"
-msgstr "時間"
 
 msgid "EJECTCD"
 msgstr ""
@@ -6858,6 +6845,9 @@ msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Jump"
 msgstr ""
 
 msgid "EPG Navigation Actions"
@@ -8126,13 +8116,6 @@ msgstr ""
 msgid "FTP"
 msgstr ""
 
-msgid "FTP Actions"
-msgstr ""
-
-#, fuzzy
-msgid "FTP Settings"
-msgstr "EPG設定"
-
 msgid "Factory Reset"
 msgstr ""
 
@@ -8539,6 +8522,9 @@ msgstr ""
 
 msgid "Football"
 msgstr ""
+
+msgid "For how many minutes do you want to record?"
+msgstr "您想錄製多少分鐘?"
 
 msgid "Force AC3plus"
 msgstr ""
@@ -9288,6 +9274,9 @@ msgstr ""
 msgid "Hide player"
 msgstr ""
 
+msgid "Hide softcam servername"
+msgstr ""
+
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "資訊條"
@@ -9382,9 +9371,6 @@ msgstr ""
 msgid "Hong Kong"
 msgstr "香港"
 
-msgid "Hops"
-msgstr ""
-
 msgid "Hops:"
 msgstr ""
 
@@ -9419,6 +9405,9 @@ msgstr "主機:"
 msgid "Hotbird 13.0e"
 msgstr ""
 
+msgid "Hotkey"
+msgstr ""
+
 #, fuzzy
 msgid "Hotkey Settings"
 msgstr "網路設定"
@@ -9433,9 +9422,6 @@ msgstr "小時(n) "
 
 msgid "Hours Minutes Seconds"
 msgstr ""
-
-msgid "How many minutes do you want to record?"
-msgstr "您想錄製多少分鐘?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9519,7 +9505,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPKG安裝..."
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -9776,16 +9768,6 @@ msgstr "啟動"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr ""
-
-#, fuzzy
-msgid "Inadyn Log"
-msgstr "Inadyn"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Inadyn Settings"
 msgstr "Inadyn"
@@ -9980,9 +9962,6 @@ msgstr ""
 msgid "Input channel name."
 msgstr "下一個頻道"
 
-msgid "Input config file name:"
-msgstr ""
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -10039,6 +10018,9 @@ msgstr ""
 msgid "Installation finished."
 msgstr "安裝完成."
 
+msgid "Installed"
+msgstr ""
+
 msgid "Installing"
 msgstr "正在安裝"
 
@@ -10073,6 +10055,9 @@ msgid "Installing plugins from feed ..."
 msgstr "正在安裝..."
 
 msgid "Instant Recording Actions"
+msgstr ""
+
+msgid "Instant Recording End Time"
 msgstr ""
 
 #, fuzzy
@@ -10172,10 +10157,6 @@ msgid "Ipkg"
 msgstr "IPKG"
 
 #, fuzzy
-msgid "Iran, Islamic Republic"
-msgstr "捷克共和國"
-
-#, fuzzy
 msgid "Iran, Islamic Republic of"
 msgstr "捷克共和國"
 
@@ -10241,7 +10222,16 @@ msgstr ""
 msgid "Jordan"
 msgstr ""
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
+msgstr ""
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
 msgstr ""
 
 #, fuzzy
@@ -10249,6 +10239,15 @@ msgid "Jump first press in channel selection"
 msgstr "選擇頻道時顯示事件進度"
 
 msgid "Jump forward 24 hours"
+msgstr ""
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
 msgstr ""
 
 msgid "Jump to beginning of list"
@@ -10534,10 +10533,6 @@ msgstr ""
 
 msgid "Large"
 msgstr ""
-
-#, fuzzy
-msgid "Last Request"
-msgstr "最快速度"
 
 msgid "Last config"
 msgstr "最後一次正確配置"
@@ -11340,20 +11335,11 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Mini Series"
 msgstr "頻道"
 
 msgid "MiniDLNA"
-msgstr ""
-
-msgid "MiniDLNA Log"
 msgstr ""
 
 #, fuzzy
@@ -11478,6 +11464,12 @@ msgstr ""
 msgid "Mosquito noise reduction"
 msgstr "蚊式雜訊控制"
 
+msgid "Most recent first"
+msgstr ""
+
+msgid "Most recent last"
+msgstr ""
+
 msgid "Motor Sport"
 msgstr ""
 
@@ -11492,12 +11484,12 @@ msgstr "正在恢復"
 msgid "Mount"
 msgstr "安裝(Mount)"
 
-msgid "Mount Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Mount Manager"
 msgstr "安裝(Mount)管理"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11628,6 +11620,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11922,13 +11920,6 @@ msgstr "下一個"
 msgid "NFS"
 msgstr ""
 
-msgid "NFS Actions"
-msgstr ""
-
-#, fuzzy
-msgid "NFS Settings"
-msgstr "設定"
-
 msgid "NIM"
 msgstr ""
 
@@ -12062,6 +12053,9 @@ msgstr ""
 msgid "Network Interface"
 msgstr "啟用網卡"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -12086,6 +12080,9 @@ msgstr "網路測驗"
 
 msgid "Network Settings"
 msgstr "網路設定"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Network Test"
@@ -12126,6 +12123,9 @@ msgstr ""
 
 msgid "Network scan"
 msgstr "網路掃描"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "網路測驗"
@@ -12352,6 +12352,9 @@ msgstr "沒有空閒的調諧器"
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr ""
 
@@ -12530,7 +12533,10 @@ msgstr ""
 msgid "None"
 msgstr "無"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12706,6 +12712,29 @@ msgstr "創作模式"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, 引導我的升級過程"
 
+#, fuzzy
+msgid "OSCam Info"
+msgstr "CCcam資訊"
+
+#, fuzzy
+msgid "OSCam Information"
+msgstr "CCcam資訊"
+
+msgid "OSCam Information Settings"
+msgstr ""
+
+msgid "OSCam webif disabled"
+msgstr ""
+
+msgid "OSCamInfo Actions"
+msgstr ""
+
+msgid "OSCamInfo Log"
+msgstr ""
+
+msgid "OSCamInfo Log Actions"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12728,17 +12757,6 @@ msgid "OSD Setup"
 msgstr "設定"
 
 msgid "OSD name request"
-msgstr ""
-
-#, fuzzy
-msgid "OScam Info"
-msgstr "CCcam資訊"
-
-#, fuzzy
-msgid "OScam Information"
-msgstr "CCcam資訊"
-
-msgid "OScam webif disabled"
 msgstr ""
 
 msgid "OTT Model"
@@ -12845,7 +12863,13 @@ msgstr "EPG 搜索"
 msgid "Open IMDb"
 msgstr ""
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -12935,17 +12959,7 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-#, fuzzy
-msgid "OpenVPN Settings"
-msgstr "Gemini 設定"
-
 msgid "OpenViX Packages"
-msgstr ""
-
-msgid "OpenVpn Log"
 msgstr ""
 
 msgid "Operating LED status in deep standby mode"
@@ -12997,21 +13011,8 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-#, fuzzy
-msgid "Oscam Info - Main Menu"
-msgstr "CCcam 資訊"
-
-#, fuzzy
-msgid "Oscam Info Settings"
-msgstr "Gemini 配置"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
+msgid "Oscam Information"
 msgstr ""
-
-#, fuzzy
-msgid "OscamInfo Mainmenu"
-msgstr "CCcam 資訊"
 
 msgid "Ossetian / Ossetic"
 msgstr ""
@@ -13119,10 +13120,6 @@ msgstr "C"
 msgid "PGS file"
 msgstr "檔案名"
 
-#, fuzzy
-msgid "PID"
-msgstr "PIDs"
-
 msgid "PIN code needed"
 msgstr ""
 
@@ -13142,6 +13139,10 @@ msgstr "設定模式"
 
 msgid "PMT PID"
 msgstr ""
+
+#, fuzzy
+msgid "PPanel"
+msgstr "藍色面板"
 
 msgid "PRIMETIME"
 msgstr ""
@@ -13224,6 +13225,9 @@ msgstr ""
 #, fuzzy
 msgid "Panic channel"
 msgstr "下一個頻道"
+
+msgid "Panic to"
+msgstr ""
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -13534,23 +13538,12 @@ msgstr "請添加標題."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr ""
 
-msgid "Please change recording endtime"
-msgstr "請更改錄製結束時間"
-
 #, fuzzy
 msgid "Please check the manual of the receiver"
 msgstr "為新的目錄重命名"
 
-#, fuzzy
-msgid "Please choose CCcam-Reader"
-msgstr "請選擇套裝軟體..."
-
 msgid "Please choose an extension..."
 msgstr "請選擇增加部分..."
-
-#, fuzzy
-msgid "Please choose reader"
-msgstr "請選擇套裝軟體..."
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "不要做任何改變,除非您知道您在幹什麼!"
@@ -13746,6 +13739,9 @@ msgid "Please wait while scanning is in progress..."
 msgstr "正在掃描...請稍候..."
 
 msgid "Please wait while the data is extracted..."
+msgstr ""
+
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
 #, fuzzy
@@ -14008,6 +14004,12 @@ msgid "Prefer AC3 track"
 msgstr ""
 
 msgid "Prefer AC3+ track"
+msgstr ""
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
 msgstr ""
 
 msgid "Prefer audio track stored by service"
@@ -14379,10 +14381,6 @@ msgstr "供應商"
 msgid "Providers:"
 msgstr "供應商"
 
-#, fuzzy
-msgid "Providers: "
-msgstr "供應商"
-
 msgid "Proxy detected"
 msgstr ""
 
@@ -14449,6 +14447,12 @@ msgid "Quad PiP is not available."
 msgstr "抱歉, 視頻不可用!"
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -14585,24 +14589,13 @@ msgstr ""
 msgid "Reader"
 msgstr "讀取"
 
-msgid "Reader Statistics"
-msgstr ""
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Ready to install '%s'?"
-msgstr "撤銷安裝"
-
 #, python-format
 msgid "Ready to remove \"%s\" ?"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Ready to remove '%s'?"
-msgstr "返回電影列表"
 
 msgid "Real Life"
 msgstr ""
@@ -14726,7 +14719,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr ""
 
 #, python-format
-msgid "Record time limited due to conflicting timer: %s"
+msgid "Record time limited due to conflicting timer:%s"
 msgstr "由於計時器 %s 衝突導致錄製時間受限"
 
 msgid "Record write error (no space on disk?)"
@@ -15255,6 +15248,9 @@ msgstr "復位並重設標題名稱"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -15267,15 +15263,14 @@ msgstr ""
 msgid "Reset sort order"
 msgstr ""
 
+msgid "Reset the order of the entries"
+msgstr ""
+
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "重置視頻增強設定為預設設定?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "重置視頻增強設定為最近一次配置?"
-
-#, fuzzy
-msgid "Reshare"
-msgstr "共用"
 
 #, fuzzy
 msgid "Reshare:"
@@ -15585,9 +15580,6 @@ msgstr ""
 msgid "SABnzbd"
 msgstr ""
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr ""
 
@@ -15599,13 +15591,6 @@ msgstr ""
 
 msgid "SATPI"
 msgstr ""
-
-msgid "SATPI Setting Actions"
-msgstr ""
-
-#, fuzzy
-msgid "SATPI Settings"
-msgstr "EPG設定"
 
 msgid "SCPC optimized search range"
 msgstr ""
@@ -15653,6 +15638,9 @@ msgstr "刪除檔"
 msgid "SSA file"
 msgstr "添加新的檔"
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -15684,19 +15672,11 @@ msgstr ""
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-msgid "Samba"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Actions"
+msgid "Samba Server"
 msgstr ""
-
-#, fuzzy
-msgid "Samba Log"
-msgstr "RS Log"
-
-#, fuzzy
-msgid "Samba Setup"
-msgstr "鍵盤設定"
 
 #, fuzzy
 msgid "Same as in active"
@@ -16173,6 +16153,9 @@ msgstr ""
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr ""
 
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
+
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
 msgstr ""
@@ -16321,6 +16304,9 @@ msgstr ""
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 #, fuzzy
 msgid "Select Enigma2 Skin"
 msgstr "選擇皮膚"
@@ -16363,6 +16349,12 @@ msgstr "選擇Softcam:"
 #, fuzzy
 msgid "Select Satellites"
 msgstr "單個衛星"
+
+msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr ""
@@ -16604,6 +16596,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -16639,6 +16635,10 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
+#, python-format
+msgid "Select the action for '%s'"
+msgstr ""
+
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
@@ -16658,6 +16658,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -16714,6 +16717,9 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the display sequence of previously visited services."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -16759,6 +16765,9 @@ msgid "Select the manufacturer of your SCR device. If the manufacturer is not li
 msgstr ""
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
+msgstr ""
+
+msgid "Select the mode of the DNS."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16853,6 +16862,12 @@ msgid "Select the time delay before the button starts repeating."
 msgstr ""
 
 msgid "Select the time delay between each repeat of the button."
+msgstr ""
+
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
 msgstr ""
 
 msgid "Select the time when this timer should end."
@@ -17054,20 +17069,8 @@ msgid "Serial No"
 msgstr ""
 
 #, fuzzy
-msgid "Serv.Name"
-msgstr "服務名稱:"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr ""
-
-#, fuzzy
 msgid "Server down"
 msgstr "伺服器"
-
-#, fuzzy
-msgid "Server:"
-msgstr "伺服器:"
 
 #, fuzzy
 msgid "Servers"
@@ -17269,6 +17272,9 @@ msgstr ""
 msgid "Set Scaling governor"
 msgstr ""
 
+msgid "Set Time"
+msgstr ""
+
 #, fuzzy
 msgid "Set action for 'Info' key"
 msgstr "Step in ms for arrow keys"
@@ -17460,10 +17466,6 @@ msgid "Setup - %s"
 msgstr "設定"
 
 #, fuzzy
-msgid "Setup AFP"
-msgstr "設定"
-
-#, fuzzy
 msgid "Setup Audio Sync"
 msgstr "音頻同步"
 
@@ -17478,10 +17480,6 @@ msgstr "選擇音頻模式"
 #, fuzzy
 msgid "Setup Enigma2"
 msgstr "重啟Enigma2"
-
-#, fuzzy
-msgid "Setup FTP"
-msgstr "設定"
 
 #, fuzzy
 msgid "Setup Harddisk"
@@ -17503,19 +17501,11 @@ msgid "Setup Mounts"
 msgstr "設定模式"
 
 #, fuzzy
-msgid "Setup NFS"
-msgstr "設定"
-
-#, fuzzy
 msgid "Setup Network Services"
 msgstr "自動計時器服務"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr ""
-
-#, fuzzy
-msgid "Setup OpenVPN"
-msgstr "設定密碼"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -17526,22 +17516,6 @@ msgstr ""
 #, fuzzy
 msgid "Setup Plugins"
 msgstr "插件"
-
-#, fuzzy
-msgid "Setup SABnzbd"
-msgstr "設定模式"
-
-#, fuzzy
-msgid "Setup SATPI"
-msgstr "設定"
-
-#, fuzzy
-msgid "Setup Samba"
-msgstr "設定"
-
-#, fuzzy
-msgid "Setup Telnet"
-msgstr "設定模式"
 
 #, fuzzy
 msgid "Setup Tuner"
@@ -17675,10 +17649,6 @@ msgid "Seychelles"
 msgstr ""
 
 #, fuzzy
-msgid "Share Folders"
-msgstr "共用"
-
-#, fuzzy
 msgid "Share View"
 msgstr "共用"
 
@@ -17687,6 +17657,13 @@ msgstr "共用"
 
 msgid "Sharpness"
 msgstr "銳化"
+
+msgid "ShellInABox"
+msgstr ""
+
+#, fuzzy
+msgid "Shellscript"
+msgstr "腳本"
 
 msgid "Shift"
 msgstr "移動"
@@ -17719,10 +17696,6 @@ msgstr "Should this AutoTimer be restricted to a timespan?"
 #, fuzzy
 msgid "Show"
 msgstr "顯示EPG列表"
-
-#, fuzzy
-msgid "Show /tmp/ecm.info"
-msgstr "顯示ECM資訊"
 
 msgid "Show 1080p 24fps as"
 msgstr ""
@@ -17787,10 +17760,6 @@ msgstr ""
 #, fuzzy
 msgid "Show CI messages"
 msgstr "顯示Softcam名稱"
-
-#, fuzzy
-msgid "Show Clients"
-msgstr "顯示Gemini專案"
 
 #, fuzzy
 msgid "Show Default Backup Files"
@@ -17906,7 +17875,7 @@ msgstr "短片"
 msgid "Show Multi EPG"
 msgstr "多路 EPG"
 
-msgid "Show OScam Info"
+msgid "Show OSCam Information"
 msgstr ""
 
 msgid "Show OScam/CCcam in Extension Menu"
@@ -17939,9 +17908,6 @@ msgid "Show Plugin Skin packages"
 msgstr ""
 
 msgid "Show RFmod setup..."
-msgstr ""
-
-msgid "Show Readers/Proxies"
 msgstr ""
 
 #, fuzzy
@@ -18400,7 +18366,7 @@ msgstr ""
 msgid "Show the Logs Settings screen"
 msgstr ""
 
-msgid "Show the OScamInfo Screen"
+msgid "Show the OSCam information screen"
 msgstr ""
 
 #, fuzzy
@@ -19043,9 +19009,6 @@ msgstr "按日期排序"
 msgid "Sort list by"
 msgstr "排序檔以"
 
-msgid "Sort list to default and exit?"
-msgstr ""
-
 #, fuzzy
 msgid "Sort list:"
 msgstr "短片"
@@ -19214,6 +19177,9 @@ msgid "Start mode"
 msgstr "開始時間"
 
 msgid "Start offline decode"
+msgstr ""
+
+msgid "Start or Stop service"
 msgstr ""
 
 msgid "Start recording current event"
@@ -20004,9 +19970,6 @@ msgstr ""
 msgid "Telnet"
 msgstr ""
 
-msgid "Telnet Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Telnet Interface"
 msgstr "選擇介面"
@@ -20014,10 +19977,6 @@ msgstr "選擇介面"
 #, fuzzy
 msgid "Telnet Port"
 msgstr "HTTP 埠"
-
-#, fuzzy
-msgid "Telnet Settings"
-msgstr "Gemini 設定"
 
 msgid "Telugu"
 msgstr ""
@@ -20856,10 +20815,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr "時光平移位置"
 
-#, fuzzy
-msgid "Time Update in Minutes:"
-msgstr "更新IP時間(分鐘):"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -21179,9 +21134,6 @@ msgstr ""
 msgid "Top and Bottom"
 msgstr ""
 
-msgid "Total"
-msgstr ""
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -21215,6 +21167,10 @@ msgstr "軌道"
 
 msgid "Traditional Chinese"
 msgstr "繁體中文"
+
+#, fuzzy
+msgid "Transcode"
+msgstr "轉發器"
 
 msgid "Transcoding"
 msgstr ""
@@ -21573,6 +21529,10 @@ msgstr ""
 msgid "Unencrypted"
 msgstr ""
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr ""
 
@@ -21595,16 +21555,15 @@ msgstr ""
 msgid "Unicable Matrix"
 msgstr "Unicable Martix"
 
+msgid "Uninstall"
+msgstr ""
+
 #, fuzzy
 msgid "United Arab Emirates"
 msgstr "USA"
 
 msgid "United Kingdom"
 msgstr ""
-
-#, fuzzy
-msgid "United States"
-msgstr "USA"
 
 msgid "United States Minor Outlying Islands"
 msgstr ""
@@ -21746,10 +21705,6 @@ msgstr "寫入失敗！"
 #, fuzzy
 msgid "Update finished!"
 msgstr "升級完成."
-
-#, fuzzy
-msgid "Update interval (in seconds)"
-msgstr "超時(秒)"
 
 msgid ""
 "Update succeeded!\n"
@@ -22161,9 +22116,6 @@ msgstr ""
 #, fuzzy
 msgid "VOD"
 msgstr "OSD"
-
-msgid "VPN"
-msgstr ""
 
 msgid "VPS Settings"
 msgstr ""
@@ -22646,14 +22598,6 @@ msgstr ""
 #, fuzzy
 msgid "Watch recordings"
 msgstr "標記新錄製內容"
-
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
 
 #, fuzzy
 msgid "Weather"
@@ -23319,12 +23263,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -23334,18 +23272,6 @@ msgstr ""
 msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
 msgstr ""
 
 msgid ""
@@ -23483,10 +23409,16 @@ msgstr ""
 msgid "Zap focused channel on full screen"
 msgstr ""
 
+msgid "Zap history sequence"
+msgstr ""
+
 msgid "Zap mode"
 msgstr ""
 
 msgid "Zap next"
+msgstr ""
+
+msgid "Zap to"
 msgstr ""
 
 msgid "Zap to channel (setup in menu)"
@@ -23845,13 +23777,6 @@ msgstr ""
 msgid "exit DVD player or return to file browser"
 msgstr "退出DVD播放器或返回檔流覽器"
 
-#, fuzzy
-msgid "exit mounts setup menu"
-msgstr "退出網卡設定功能表"
-
-msgid "exit networkadapter setup menu"
-msgstr "退出網卡設定功能表"
-
 msgid "experimental film/video"
 msgstr ""
 
@@ -24087,18 +24012,6 @@ msgstr ""
 
 msgid "move"
 msgstr "移動"
-
-msgid "move down to last entry"
-msgstr "向下移動到最後項目"
-
-msgid "move down to next entry"
-msgstr "向下移動到下一個項目"
-
-msgid "move up to first entry"
-msgstr "向上移動到第一個項目"
-
-msgid "move up to previous entry"
-msgstr "向上移動到上一個項目"
 
 msgid "movie (general)"
 msgstr ""
@@ -24338,9 +24251,6 @@ msgstr "顯示 EPG..."
 msgid "select CAId's"
 msgstr "選擇 CAId's"
 
-msgid "select menu entry"
-msgstr "選擇功能表專案"
-
 msgid "serious music/classic music"
 msgstr ""
 
@@ -24553,13 +24463,6 @@ msgstr ""
 msgid "uShare"
 msgstr "共用"
 
-msgid "uShare Actions"
-msgstr ""
-
-#, fuzzy
-msgid "uShare Log"
-msgstr "共用"
-
 #, fuzzy
 msgid "uShare Name"
 msgstr "共用"
@@ -24569,9 +24472,6 @@ msgid "uShare Port"
 msgstr "共用"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -24669,12 +24569,244 @@ msgstr "是 (保留)"
 msgid "®"
 msgstr ""
 
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "錄製正在進行中.\n"
-#~ "您想做什麼?"
+msgid "Preferred tuner DVB-S"
+msgstr ""
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-T"
+msgstr ""
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-C"
+msgstr ""
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr ""
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr ""
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr ""
+
+msgid "Preferred tuner ATSC"
+msgstr ""
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Australian"
+#~ msgstr "澳大利亞"
+
+#, fuzzy
+#~ msgid "Belgian"
+#~ msgstr "挪威語"
+
+#, fuzzy
+#~ msgid "Czechia"
+#~ msgstr "捷克"
+
+#, fuzzy
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "捷克共和國"
+
+#, fuzzy
+#~ msgid "United States"
+#~ msgstr "USA"
+
+#, fuzzy
+#~ msgid "exit mounts setup menu"
+#~ msgstr "退出網卡設定功能表"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "退出網卡設定功能表"
+
+#~ msgid "move down to last entry"
+#~ msgstr "向下移動到最後項目"
+
+#~ msgid "move down to next entry"
+#~ msgstr "向下移動到下一個項目"
+
+#~ msgid "move up to first entry"
+#~ msgstr "向上移動到第一個項目"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "向上移動到上一個項目"
+
+#~ msgid "select menu entry"
+#~ msgstr "選擇功能表專案"
+
+#, fuzzy
+#~ msgid "FTP Settings"
+#~ msgstr "EPG設定"
+
+#, fuzzy
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn"
+
+#, fuzzy
+#~ msgid "NFS Settings"
+#~ msgstr "設定"
+
+#, fuzzy
+#~ msgid "OpenVPN Settings"
+#~ msgstr "Gemini 設定"
+
+#, fuzzy, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "返回電影列表"
+
+#, fuzzy
+#~ msgid "SATPI Settings"
+#~ msgstr "EPG設定"
+
+#, fuzzy
+#~ msgid "Samba Log"
+#~ msgstr "RS Log"
+
+#, fuzzy
+#~ msgid "Samba Setup"
+#~ msgstr "鍵盤設定"
+
+#, fuzzy
+#~ msgid "Setup FTP"
+#~ msgstr "設定"
+
+#, fuzzy
+#~ msgid "Setup NFS"
+#~ msgstr "設定"
+
+#, fuzzy
+#~ msgid "Setup OpenVPN"
+#~ msgstr "設定密碼"
+
+#, fuzzy
+#~ msgid "Setup SABnzbd"
+#~ msgstr "設定模式"
+
+#, fuzzy
+#~ msgid "Setup SATPI"
+#~ msgstr "設定"
+
+#, fuzzy
+#~ msgid "Setup Samba"
+#~ msgstr "設定"
+
+#, fuzzy
+#~ msgid "Setup Telnet"
+#~ msgstr "設定模式"
+
+#, fuzzy
+#~ msgid "Share Folders"
+#~ msgstr "共用"
+
+#, fuzzy
+#~ msgid "Telnet Settings"
+#~ msgstr "Gemini 設定"
+
+#, fuzzy
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "更新IP時間(分鐘):"
+
+#, fuzzy
+#~ msgid "uShare Log"
+#~ msgstr "共用"
+
+#, fuzzy, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s (%s)\n"
+
+#, fuzzy
+#~ msgid "AFP Settings"
+#~ msgstr "EPG設定"
+
+#, fuzzy
+#~ msgid "Address"
+#~ msgstr "IP地址"
+
+#, fuzzy
+#~ msgid "Cards:"
+#~ msgstr "Card"
+
+#, fuzzy
+#~ msgid "ECM Time"
+#~ msgstr "時間"
+
+#, fuzzy
+#~ msgid "ECM-Time"
+#~ msgstr "時間"
+
+#, fuzzy
+#~ msgid "Last Request"
+#~ msgstr "最快速度"
+
+#, fuzzy
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "CCcam 資訊"
+
+#, fuzzy
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Gemini 配置"
+
+#, fuzzy
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "CCcam 資訊"
+
+#, fuzzy
+#~ msgid "PID"
+#~ msgstr "PIDs"
+
+#, fuzzy
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "請選擇套裝軟體..."
+
+#, fuzzy
+#~ msgid "Please choose reader"
+#~ msgstr "請選擇套裝軟體..."
+
+#, fuzzy
+#~ msgid "Providers: "
+#~ msgstr "供應商"
+
+#, fuzzy, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "撤銷安裝"
+
+#, fuzzy
+#~ msgid "Reshare"
+#~ msgstr "共用"
+
+#, fuzzy
+#~ msgid "Serv.Name"
+#~ msgstr "服務名稱:"
+
+#, fuzzy
+#~ msgid "Server:"
+#~ msgstr "伺服器:"
+
+#, fuzzy
+#~ msgid "Setup AFP"
+#~ msgstr "設定"
+
+#, fuzzy
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "顯示ECM資訊"
+
+#, fuzzy
+#~ msgid "Show Clients"
+#~ msgstr "顯示Gemini專案"
+
+#, fuzzy
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "超時(秒)"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "請更改錄製結束時間"
 
 #, fuzzy
 #~ msgid "BouquetList"
@@ -24777,24 +24909,12 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "DNS設定"
 
-#, fuzzy
-#~ msgid "ClientIP"
-#~ msgstr "用戶端 IP:"
-
 #~ msgid "Minute"
 #~ msgstr "分鐘"
 
 #, fuzzy
-#~ msgid "Transcode"
-#~ msgstr "轉發器"
-
-#, fuzzy
 #~ msgid "(FTA Service)"
 #~ msgstr "頻道"
-
-#, fuzzy
-#~ msgid "ButtonSetup"
-#~ msgstr "設定"
 
 #, fuzzy
 #~ msgid "Constellation & FFT mode"
@@ -24821,10 +24941,6 @@ msgstr ""
 #~ msgstr "帶寬"
 
 #, fuzzy
-#~ msgid "PPanel"
-#~ msgstr "藍色面板"
-
-#, fuzzy
 #~ msgid "Service ID"
 #~ msgstr "頻道"
 
@@ -24843,10 +24959,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "頻道未找到"
-
-#, fuzzy
-#~ msgid "Shellscript"
-#~ msgstr "腳本"
 
 #, fuzzy
 #~ msgid "Symbol rate & FEC"

@@ -42,7 +42,7 @@ class DVDOverlay(Screen):
 
 class ChapterZap(Screen):
 	skin = """
-	<screen name="ChapterZap" position="235,255" size="250,60" title="Chapter" >
+	<screen name="ChapterZap" position="235,255" size="250,60" title="Chapter" resolution="1280,720">
 		<widget name="chapter" position="35,15" size="110,25" font="Regular;23" />
 		<widget name="number" position="145,15" size="80,25" halign="right" font="Regular;23" />
 	</screen>"""
@@ -98,7 +98,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	ENABLE_RESUME_SUPPORT = True
 
 	skin = """
-	<screen name="DVDPlayer" flags="wfNoBorder" position="0,380" size="720,160" title="Info bar" backgroundColor="transparent" >
+	<screen name="DVDPlayer" flags="wfNoBorder" position="0,380" size="720,160" title="Info bar" backgroundColor="transparent" resolution="1280,720">
 		<!-- Background -->
 		<ePixmap position="0,0" zPosition="-2" size="720,160" pixmap="skin_default/info-bg_mp.png" alphatest="off" />
 		<ePixmap position="29,40" zPosition="0" size="665,104" pixmap="skin_default/screws_mp.png" alphatest="on" transparent="1" />
@@ -210,7 +210,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self["OkCancelActions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.keyOk,
-				"OK": self.doNothing, # disable showing / toggle infobar in menu for key break event
+				"OK": self.doNothing,  # disable showing / toggle infobar in menu for key break event
 				"cancel": self.keyCancel,
 			}, -2)
 

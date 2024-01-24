@@ -19,7 +19,7 @@ from Screens.CCcamInfo import CCcamInfoMain
 from Screens.HarddiskSetup import HarddiskConvertExt4Selection, HarddiskFsckSelection, HarddiskSelection
 from Screens.MountManager import HddMount
 from Screens.NetworkSetup import *
-from Screens.OScamInfo import OscamInfoMenu
+from Screens.OScamInfo import OSCamInfo
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.PluginBrowser import PackageAction, PluginBrowser
 from Screens.RestartNetwork import RestartNetwork
@@ -54,7 +54,7 @@ def isFileSystemSupported(filesystem):
 
 class QuickMenu(Screen, ProtectedScreen):
 	skin = """
-	<screen name="QuickMenu" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder">
+	<screen name="QuickMenu" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder" resolution="1280,720">
 		<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
 		<widget name="sublist" position="410,32" size="300,400" backgroundColor="black" itemHeight="50" />
 		<eLabel position="400,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
@@ -210,22 +210,9 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.sublist.append(QuickSubMenuEntryComponent("Network Interface", _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network Restart", _("Restart network to with current setup"), _("Restart network and remount connections")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network Services", _("Setup Network Services"), _("Setup Network Services (Samba, Ftp, NFS, ...)")))
-		self["sublist"].setList(self.sublist)
-
-# ### Network Services Menu ##############################
-	def Qnetworkservices(self):
-		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Samba", _("Setup Samba"), _("Setup Samba")))
-		self.sublist.append(QuickSubMenuEntryComponent("NFS", _("Setup NFS"), _("Setup NFS")))
-		self.sublist.append(QuickSubMenuEntryComponent("FTP", _("Setup FTP"), _("Setup FTP")))
-		self.sublist.append(QuickSubMenuEntryComponent("SATPI", _("Setup SATPI"), _("Setup SATPI")))
-		self.sublist.append(QuickSubMenuEntryComponent("OpenVPN", _("Setup OpenVPN"), _("Setup OpenVPN")))
 		self.sublist.append(QuickSubMenuEntryComponent("MiniDLNA", _("Setup MiniDLNA"), _("Setup MiniDLNA")))
 		self.sublist.append(QuickSubMenuEntryComponent("Inadyn", _("Setup Inadyn"), _("Setup Inadyn")))
-		self.sublist.append(QuickSubMenuEntryComponent("SABnzbd", _("Setup SABnzbd"), _("Setup SABnzbd")))
 		self.sublist.append(QuickSubMenuEntryComponent("uShare", _("Setup uShare"), _("Setup uShare")))
-		self.sublist.append(QuickSubMenuEntryComponent("Telnet", _("Setup Telnet"), _("Setup Telnet")))
-		self.sublist.append(QuickSubMenuEntryComponent("AFP", _("Setup AFP"), _("Setup AFP")))
 		self["sublist"].setList(self.sublist)
 
 # ####### Mount Settings Menu ##############################
@@ -243,7 +230,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if BoxInfo.getItem("SoftCam"):  # show only when there is a softcam installed
 			self.sublist.append(QuickSubMenuEntryComponent("Softcam Settings", _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
 			if BoxInfo.getItem("ShowOscamInfo"):  # show only when oscam or ncam is active
-				self.sublist.append(QuickSubMenuEntryComponent("OScam Information", _("Show OScam Info"), _("Show the OScamInfo Screen")))
+				self.sublist.append(QuickSubMenuEntryComponent("OSCam Information", _("Show OSCam Information"), _("Show the OSCam information screen")))
 			if BoxInfo.getItem("ShowCCCamInfo"):  # show only when CCcam is active
 				self.sublist.append(QuickSubMenuEntryComponent("CCcam Information", _("Show CCcam Info"), _("Show the CCcam Info Screen")))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams", _("Download and install cam"), _("Shows available softcams. Here you can download and install them")))
@@ -320,6 +307,7 @@ class QuickMenu(Screen, ProtectedScreen):
 # ####### Make Selection MAIN MENU LIST ##############################
 # ####################################################################
 
+
 	def okList(self):
 		item = self["list"].getCurrent()[0]
 # ####### Select Network Menu ##############################
@@ -369,30 +357,13 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Network Restart"):
 			self.session.open(RestartNetwork)
 		elif item == _("Network Services"):
-			self.Qnetworkservices()
-			self["sublist"].moveToIndex(0)
-		elif item == _("Samba"):
-			self.session.open(NetworkSamba)
-		elif item == _("NFS"):
-			self.session.open(NetworkNfs)
-		elif item == _("FTP"):
-			self.session.open(NetworkFtp)
-		elif item == _("AFP"):
-			self.session.open(NetworkAfp)
-		elif item == _("OpenVPN"):
-			self.session.open(NetworkOpenvpn)
+			self.session.open(NetworkServicesSetup)
 		elif item == _("MiniDLNA"):
-			self.session.open(NetworkMiniDLNA)
+			self.session.open(NetworkMiniDLNASetup)
 		elif item == _("Inadyn"):
-			self.session.open(NetworkInadyn)
-		elif item == _("SABnzbd"):
-			self.session.open(NetworkSABnzbd)
-		elif item == _("SATPI"):
-			self.session.open(NetworkSATPI)
+			self.session.open(NetworkInadynSetup)
 		elif item == _("uShare"):
-			self.session.open(NetworkuShare)
-		elif item == _("Telnet"):
-			self.session.open(NetworkTelnet)
+			self.session.open(NetworkuShareSetup)
 # ####### Select System Setup Menu ##############################
 		elif item == _("Customize"):
 			self.openSetup("Usage")
@@ -426,8 +397,8 @@ class QuickMenu(Screen, ProtectedScreen):
 # ####### Select Softcam Menu ##############################
 		elif item == _("Softcam Settings"):
 			self.session.open(SoftcamSetup)
-		elif item == _("OScam Information"):
-			self.session.open(OscamInfoMenu)
+		elif item == _("OSCam Information"):
+			self.session.open(OSCamInfo)
 		elif item == _("CCcam Information"):
 			self.session.open(CCcamInfoMain)
 		elif item == _("Download Softcams"):
@@ -625,7 +596,7 @@ class QuickMenuSubList(QuickMenuList):
 
 class QuickMenuDevices(Screen):
 	skin = """
-	<screen name="QuickMenuDevices" position="center,center" size="840,525" title="Devices" flags="wfBorder">
+	<screen name="QuickMenuDevices" position="center,center" size="840,525" title="Devices" flags="wfBorder" resolution="1280,720">
 		<widget source="devicelist" render="Listbox" position="30,46" size="780,450" font="Regular;16" scrollbarMode="showOnDemand" transparent="1" backgroundColorSelected="grey" foregroundColorSelected="black">
 			<convert type="TemplatedMultiContent">
 				{"template":

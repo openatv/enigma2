@@ -22,7 +22,7 @@
 
 ## Current OS
 
-> Ubuntu 22.04.1 LTS (Kernel 5.15.0) 64-bit
+> Ubuntu 23.10 (Kernel 6.5.0) 64-bit
 
 ## Hardware requirements
 
@@ -50,7 +50,7 @@
 1. Install required packages
 
     ```sh
-    sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cpio curl cvs debianutils default-jre default-jre-headless diffstat flex g++ gawk gcc gcc-12 gcc-multilib g++-multilib gettext git git-core gzip help2man info iputils-ping java-common libc6-dev libegl1-mesa libglib2.0-dev libncurses5-dev libperl4-corelibs-perl libproc-processtable-perl libsdl1.2-dev libserf-dev libtool libxml2-utils make ncurses-bin patch perl pkg-config psmisc python3 python3-git python3-jinja2 python3-pexpect python3-pip python-setuptools qemu quilt socat sshpass subversion tar texi2html texinfo unzip wget xsltproc xterm xz-utils zip zlib1g-dev zstd fakeroot lz4
+    sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cpio curl cvs debianutils default-jre default-jre-headless diffstat flex g++ gawk gcc gcc-12 gcc-multilib g++-multilib gettext git gzip help2man info iputils-ping java-common libc6-dev libglib2.0-dev libncurses-dev libperl4-corelibs-perl libproc-processtable-perl libsdl1.2-dev libserf-dev libtool libxml2-utils make ncurses-bin patch perl pkg-config psmisc python3 python3-git python3-jinja2 python3-pexpect python3-pip python3-setuptools quilt socat sshpass subversion tar texi2html texinfo unzip wget xsltproc xterm xz-utils zip zlib1g-dev zstd fakeroot lz4
     ```
 
 1. Set `python3` as preferred provider for `python`
@@ -67,8 +67,8 @@
 1. Set your shell to `/bin/bash`
 
     ```sh
-    sudo dpkg-reconfigure dash
-    ↳ Select "NO" when asked "Install dash as /bin/sh?"
+    sudo ln -sf /bin/bash /bin/sh
+ 
     ```
 
 1. Modify `max_user_watches`

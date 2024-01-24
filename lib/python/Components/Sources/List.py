@@ -61,6 +61,13 @@ to generate HTML."""
 		for callback in self.onSelectionChanged:
 			callback()
 
+	def selectionEnabled(self, enabled):
+		try:
+			instance = self.master.master.instance
+			instance.selectionEnabled(enabled)
+		except AttributeError:
+			return
+
 	def entryChanged(self, index):
 		if not self.disableCallbacks:
 			self.downstream_elements.entry_changed(index)

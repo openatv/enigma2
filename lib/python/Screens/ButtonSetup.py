@@ -267,7 +267,6 @@ def getButtonSetupFunctions():
 		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], textScanning))
 	ButtonSetupFunctions.append((_("Network Settings"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", textSetup))
 	ButtonSetupFunctions.append((_("Network menu"), "Infobar/showNetworkMenu", textSetup))
-	ButtonSetupFunctions.append((_("VPN"), "Module/Screens.NetworkSetup/NetworkOpenvpn", textSetup))
 	ButtonSetupFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", textSetup))
 	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.Information/ServiceInformation", textSetup))
 	ButtonSetupFunctions.append((_("SkinSelector"), "Module/Screens.SkinSelector/SkinSelector", textSetup))
@@ -288,10 +287,11 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("User interface settings"), "Setup/UserInterface", textSetup))
 	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/Recording", textSetup))
 	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/HardDisk", textSetup))
+	ButtonSetupFunctions.append((_("Mount Manager"), "Module/Screens.MountManager/HddMount", textSetup))
 	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/Subtitle", textSetup))
 	ButtonSetupFunctions.append((_("Language"), "Module/Screens.LocaleSelection/LocaleSelection", textSetup))
 	if BoxInfo.getItem("SoftCam"):
-		ButtonSetupFunctions.append((_("OscamInfo Mainmenu"), "Module/Screens.OScamInfo/OscamInfoMenu", textPlugins))
+		ButtonSetupFunctions.append((_("Oscam Information"), "Module/Screens.OScamInfo/OSCamInfo", textPlugins))
 		ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", textPlugins))
 	ButtonSetupFunctions.append((_("Movieplayer"), "Infobar/showMoviePlayer", textPlugins))
 	if isdir("/etc/ppanels"):

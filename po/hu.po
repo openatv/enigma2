@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1175,10 +1175,6 @@ msgid "%s  (%s)"
 msgstr "%s (%s)"
 
 #, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr ""
-
-#, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
@@ -1201,10 +1197,6 @@ msgstr "%s %s infravörös egér"
 #, python-format
 msgid "%s %s remote control (native)"
 msgstr "%s %s távirányító (natív)"
-
-#, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s (%s kártyák)"
 
 #, python-format
 msgid "%s (%04o)"
@@ -1335,9 +1327,6 @@ msgstr "A felvétel típusát lehet itt beállítani. 'Hagyományos' a felvétel
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' nincs telepítve!"
 
-msgid "( All readers)"
-msgstr "(Az összes olvasó)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "A %s véglegesítési naplóihoz internetkapcsolat szükséges."
@@ -1351,9 +1340,6 @@ msgstr " (Kép-a-Képben)"
 
 msgid "(Radio)"
 msgstr " (Rádió)"
-
-msgid "(Show only reader:"
-msgstr "(Csak olvasó megjelenítése:"
 
 msgid "(TV)"
 msgstr "(TV)"
@@ -1608,11 +1594,11 @@ msgstr "<Időzítés utolsó helye>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found>"
+msgstr ""
+
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, és próbálkozzon újra."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1681,6 +1667,13 @@ msgid ""
 msgstr ""
 "A felvétel elindul:\n"
 "%s"
+
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Egy felvétel folyamatban van. \n"
+"Mit szeretne tenni?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Egy felvétel folyamatban van. Kérjük, állítsa le a felvételt, mielőtt beállítaná a pozícionálót."
@@ -1763,15 +1756,6 @@ msgstr "AC3 plusz transzkódolás"
 
 msgid "AFL"
 msgstr "AFL"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr ""
-
-msgid "AFP Settings"
-msgstr "AFP beállítása"
 
 #, fuzzy
 msgid "ARM"
@@ -2092,9 +2076,6 @@ msgstr "A kiegészítő motoropciók lehetővé teszik, hogy adatokat írjon be 
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "A motor kiegészítő opciói lehetővé teszik az adatok megadását a motor műszaki adatlapjáról, így a rendszer tudhatja, mennyi ideig tart a egy másik műholdra váltás."
-
-msgid "Address"
-msgstr "Cím"
 
 msgid "Adjust 3D settings"
 msgstr "3D beállítások"
@@ -2657,9 +2638,6 @@ msgstr "Audió hangerő léptetés mértékének gyors módja"
 msgid "Australia"
 msgstr "Ausztrália"
 
-msgid "Australian"
-msgstr "Ausztrál"
-
 msgid "Austria"
 msgstr "Ausztria"
 
@@ -2729,6 +2707,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "Csatlakozás kezelő"
 
@@ -2767,6 +2748,9 @@ msgstr "Külső feliratok automatikus megjelenítése"
 
 msgid "Automatically update Client/Server View"
 msgstr "A kliens/szerver nézet automatikus frissítése?"
+
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
 
 msgid "Autostart"
 msgstr "Automatikus indítás"
@@ -3031,9 +3015,6 @@ msgstr "Fehéroroszország"
 #, fuzzy
 msgid "Belarusian"
 msgstr "Fehéroroszország"
-
-msgid "Belgian"
-msgstr "Belga"
 
 msgid "Belgium"
 msgstr "Belgium"
@@ -3303,6 +3284,9 @@ msgstr "Távirányító gomb beállítása"
 msgid "Button error timeout"
 msgstr ""
 
+msgid "ButtonSetup"
+msgstr "Távirányító gomb beállítás"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3327,12 +3311,6 @@ msgstr "CH"
 
 msgid "C-Band"
 msgstr "C-sáv"
-
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
 
 msgid "CCD-Width"
 msgstr ""
@@ -3432,9 +3410,6 @@ msgstr "CI foglalat: "
 
 msgid "CI+ Helper*"
 msgstr ""
-
-msgid "CIFS/Samba Settings"
-msgstr "CIFS/Samba beállítása"
 
 msgid "CPU"
 msgstr "Processzor"
@@ -3671,10 +3646,13 @@ msgstr "Kijelölés visszavonása"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kijelölés visszavonása"
 
-msgid "Cancel the service selection"
+msgid "Cancel the selection and exit"
 msgstr ""
 
-msgid "Cancel the service zap"
+msgid "Cancel the service history zap"
+msgstr ""
+
+msgid "Cancel the service selection"
 msgstr ""
 
 msgid "Cancel the slot selection and exit"
@@ -3715,12 +3693,6 @@ msgstr ""
 #, fuzzy
 msgid "Cape Verde"
 msgstr "Zöld-foki Köztársaság"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Kártya infók (CCcam-Olvasó)"
-
-msgid "Cards:"
-msgstr "Kártyák:"
 
 msgid "Cards: "
 msgstr "Kártyák: "
@@ -4012,6 +3984,18 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Készülék választás"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Kiválaszthatja, hova kell elhelyezni a(z) \"%s\""
@@ -4033,6 +4017,12 @@ msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Válassza ki, hogy milyen gyakran szeretne csatlakozni az IceTV kiszolgálóhoz a frissítések kereséséhez."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr ""
 
 msgid "Choose the amount of additional slots."
 msgstr ""
@@ -4121,6 +4111,9 @@ msgstr "Válassza ki a beállítandó tunert."
 msgid "Christmas Island"
 msgstr "Karácsony-sziget"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr ""
 
@@ -4189,12 +4182,14 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Kattintson a távirányító gombjára, ha érvényesíteni szeretné a változásokat"
 
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Kliens információ ( Oscam verzió: %s )"
+msgid "Client"
+msgstr ""
 
 msgid "Client is streaming from this box!"
 msgstr ""
+
+msgid "ClientIP"
+msgstr "Kliens IP"
 
 msgid "Clients"
 msgstr "Kliensek"
@@ -4354,6 +4349,9 @@ msgstr ""
 msgid "Common Setup Actions"
 msgstr "Indításkori művelet"
 
+msgid "Comodo Secure DNS"
+msgstr ""
+
 msgid "Comoros"
 msgstr "Comore-szigetek"
 
@@ -4381,9 +4379,6 @@ msgstr "Konfigurálás"
 #, python-format
 msgid "Config file %s saved."
 msgstr "%s konfigurációs fájl mentve."
-
-msgid "Config file name (ok to change):"
-msgstr "Konfig fájl neve (OK változtatás):"
 
 #, fuzzy
 msgctxt "Abbreviation of 'Configurable'"
@@ -4775,6 +4770,9 @@ msgstr "Állítsa be, hogy melyik videó kimeneti csatlakozó van bekötve, hasz
 msgid "Configuring"
 msgstr "Konfigurálás"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5015,11 +5013,11 @@ msgid "Could not open the file %s!"
 msgstr "Nem sikerült megnyitni a %s fájlt!"
 
 #, python-format
-msgid "Could not record due to conflicting timer: %s"
+msgid "Could not record due to conflicting timer:%s"
 msgstr "A felvétel nem tud elindulni időzítés ütközés miatt: %s"
 
 #, python-format
-msgid "Could not record due to invalid service: %s"
+msgid "Could not record due to invalid service:%s"
 msgstr "Az %s érvénytelen csatorna miatt a felvétel nem lehetséges"
 
 #, python-format
@@ -5120,6 +5118,9 @@ msgstr "Horvátország"
 
 msgid "Croatian"
 msgstr "Horvát"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Cron időzítés kezelő"
@@ -5273,9 +5274,6 @@ msgstr "Cseh"
 msgid "Czech Republic"
 msgstr "Közép-afrikai Köztársaság"
 
-msgid "Czechia"
-msgstr "Csehország"
-
 #, fuzzy
 msgid "D"
 msgstr "SD"
@@ -5302,6 +5300,12 @@ msgid "DNS Settings"
 msgstr ""
 
 msgid "DNS data source"
+msgstr ""
+
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
 msgstr ""
 
 msgid ""
@@ -5388,6 +5392,9 @@ msgid "Date"
 msgstr "Dátum"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date Time Input Actions"
 msgstr ""
 
 msgid "Date ascending"
@@ -5675,6 +5682,9 @@ msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Egy extra késkeltetés megadása (milliszekundumban) a http(s) stream-ek indítása előtt."
+
+msgid "Define the DNS suffix."
+msgstr ""
 
 msgid "Defined / Active"
 msgstr "Definiált / Aktív"
@@ -6338,13 +6348,6 @@ msgid "Do you want the upgrade guide?"
 msgstr ""
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Szeretné telepíteni a samba klienst is?\n"
-"Ez lehetővé teszi a Windows megosztások csatolását az eszközön."
-
-msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
@@ -6416,6 +6419,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Szeretné újraindítani a(z) %s %s készüléket?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -6585,15 +6591,6 @@ msgstr " "
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr "ECM Statisztika"
-
-msgid "ECM Time"
-msgstr "ECM idő"
-
-msgid "ECM avg"
-msgstr "ECM átlag"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "Az ECM adatok bekerüljenek az adatfolyamba? Ha engedélyezi, akkor a vevőkészülék dekódolja azokat."
 
@@ -6603,12 +6600,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr "ECM utolsó"
-
-msgid "ECM-Time"
-msgstr "ECM idő"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
@@ -6629,6 +6620,9 @@ msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Jump"
 msgstr ""
 
 msgid "EPG Navigation Actions"
@@ -7864,12 +7858,6 @@ msgstr "FTA"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr ""
-
-msgid "FTP Settings"
-msgstr "FTP beállítása"
-
 msgid "Factory Reset"
 msgstr ""
 
@@ -8261,6 +8249,9 @@ msgstr "Élelmiszer/Bor"
 
 msgid "Football"
 msgstr "Labdarúgás"
+
+msgid "For how many minutes do you want to record?"
+msgstr "Hány percet szeretne felvenni?"
 
 msgid "Force AC3plus"
 msgstr "a AC3plus kikényszerítése"
@@ -8964,6 +8955,9 @@ msgstr "Gyermekzárral védett csatornák elrejtése"
 msgid "Hide player"
 msgstr "Lejátszó elrejtése"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "Az információs sáv elhalványodása az eltünésekor engedélyezett-e vagy nem"
@@ -9052,9 +9046,6 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-msgid "Hops"
-msgstr "Hops"
-
 msgid "Hops:"
 msgstr "Hops:"
 
@@ -9085,6 +9076,9 @@ msgstr "Gépnév: "
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
+msgid "Hotkey"
+msgstr "Hotkey"
+
 msgid "Hotkey Settings"
 msgstr "Hotkey beállítása"
 
@@ -9096,9 +9090,6 @@ msgstr "Óra Perc"
 
 msgid "Hours Minutes Seconds"
 msgstr "Óra Perc Másodperc"
-
-msgid "How many minutes do you want to record?"
-msgstr "Hány percet szeretne felvenni?"
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s) stream indítás késleltetése"
@@ -9175,7 +9166,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPK Telepítő"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -9433,15 +9430,6 @@ msgstr "Nem aktív"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr "Inadyn Napló"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr "Inadyn beállítása"
 
@@ -9624,9 +9612,6 @@ msgstr "Stream ID bevitel"
 msgid "Input channel name."
 msgstr "Bemeneti csatorna neve."
 
-msgid "Input config file name:"
-msgstr "Input config fájl neve:"
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -9680,6 +9665,9 @@ msgstr ""
 msgid "Installation finished."
 msgstr "Telepítés kész."
 
+msgid "Installed"
+msgstr ""
+
 msgid "Installing"
 msgstr "Telepítés"
 
@@ -9709,6 +9697,9 @@ msgid "Installing plugins from feed ..."
 msgstr "Bővítmény telepítése Feed-ből..."
 
 msgid "Instant Recording Actions"
+msgstr ""
+
+msgid "Instant Recording End Time"
 msgstr ""
 
 msgid "Instant record"
@@ -9799,9 +9790,6 @@ msgstr "A gomb funkciók megcserélése."
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran, Islamic Republic"
-msgstr "Irán, Iszlám Köztársaság"
-
 #, fuzzy
 msgid "Iran, Islamic Republic of"
 msgstr "Iran"
@@ -9867,14 +9855,32 @@ msgstr "Folyamat nézet"
 msgid "Jordan"
 msgstr "Jordánia"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "Ugorj vissza 24 órát"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Ugráshoz először nyomja meg a csatorna kiválasztását"
 
 msgid "Jump forward 24 hours"
 msgstr "Ugorj előre 24 órát"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Ugrás a lista elejére"
@@ -10149,9 +10155,6 @@ msgstr "Laosz"
 
 msgid "Large"
 msgstr ""
-
-msgid "Last Request"
-msgstr "Last Request"
 
 msgid "Last config"
 msgstr "Utolsó konfiguráció"
@@ -10924,20 +10927,11 @@ msgstr "középre"
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 msgid "Mini Series"
 msgstr "Mini sorozat"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Napló"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA beállítása"
@@ -11059,6 +11053,12 @@ msgstr "Marokkó"
 msgid "Mosquito noise reduction"
 msgstr "Hangya-zajcsökkentés"
 
+msgid "Most recent first"
+msgstr ""
+
+msgid "Most recent last"
+msgstr ""
+
 msgid "Motor Sport"
 msgstr "Motorsport"
 
@@ -11071,11 +11071,11 @@ msgstr "Motor mozgatás időtúllépés"
 msgid "Mount"
 msgstr "Csatlakozás"
 
-msgid "Mount Actions"
-msgstr ""
-
 msgid "Mount Manager"
 msgstr "Csatlakozás kezelő"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11196,6 +11196,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11481,12 +11487,6 @@ msgstr "KÖVETKEZŐ"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr ""
-
-msgid "NFS Settings"
-msgstr "NFS beállítása"
-
 msgid "NIM"
 msgstr ""
 
@@ -11615,6 +11615,9 @@ msgstr ""
 msgid "Network Interface"
 msgstr "Hálózati interfész"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -11635,6 +11638,9 @@ msgstr "Hálózati szolgáltatások"
 
 msgid "Network Settings"
 msgstr "Hálózati beállítások"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "Hálózat ellenőrzése"
@@ -11672,6 +11678,9 @@ msgstr "Hálózatnév (SSID)"
 
 msgid "Network scan"
 msgstr "Hálózat keresése"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Hálózat ellenőrzése"
@@ -11881,6 +11890,9 @@ msgstr "Nincs szabad tuner!"
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Nem található megfelelő helynév"
 
@@ -12055,7 +12067,10 @@ msgstr ""
 msgid "None"
 msgstr "Nincs"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12223,6 +12238,27 @@ msgstr "OK gomb mód"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, vezessen végig a frissítési folyamaton"
 
+msgid "OSCam Info"
+msgstr "OSCam Info"
+
+msgid "OSCam Information"
+msgstr "OScamInfo"
+
+msgid "OSCam Information Settings"
+msgstr ""
+
+msgid "OSCam webif disabled"
+msgstr "oscam webif letiltva"
+
+msgid "OSCamInfo Actions"
+msgstr ""
+
+msgid "OSCamInfo Log"
+msgstr ""
+
+msgid "OSCamInfo Log Actions"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12243,15 +12279,6 @@ msgstr "OSD beállítás"
 
 msgid "OSD name request"
 msgstr "OSD név kérés"
-
-msgid "OScam Info"
-msgstr "OScam Info"
-
-msgid "OScam Information"
-msgstr "OScamInfo"
-
-msgid "OScam webif disabled"
-msgstr "oscam webif letiltva"
 
 msgid "OTT Model"
 msgstr ""
@@ -12352,7 +12379,13 @@ msgstr "EPGSearch megnyitása..."
 msgid "Open IMDb"
 msgstr "IMDB megnyitása..."
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -12439,17 +12472,8 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr "OpenVPN beállítása"
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "OpenVpn Napló"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "A Power LED állapota a készülék Kikapcsolt állapotában"
@@ -12499,18 +12523,8 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info - Main Menu"
-msgstr "Oscam Info - Főmenü"
-
-msgid "Oscam Info Settings"
-msgstr "OScam Info - Konfiguráció"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam napló (Oscam verzió: %s)"
-
-msgid "OscamInfo Mainmenu"
-msgstr "OscamInfo Főmenü"
+msgid "Oscam Information"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr ""
@@ -12612,9 +12626,6 @@ msgstr "PDC"
 msgid "PGS file"
 msgstr "EPG fájlnév"
 
-msgid "PID"
-msgstr "PID"
-
 msgid "PIN code needed"
 msgstr "PIN-kód szükséges"
 
@@ -12633,6 +12644,9 @@ msgstr "PLS Mód"
 
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PPanel"
+msgstr "PPanel"
 
 msgid "PRIMETIME"
 msgstr "FŐMŰSORIDŐ"
@@ -12708,6 +12722,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Pánik csatorna"
+
+msgid "Panic to"
+msgstr "Panic to"
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -13004,20 +13021,11 @@ msgstr "Kérem, adjon a válogatáshoz hozzá tételeket."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Kérem, legyen türelemmel, most készen áll egy mentés,\n"
 
-msgid "Please change recording endtime"
-msgstr "Befejezés ideje"
-
 msgid "Please check the manual of the receiver"
 msgstr "Kérjük, ellenőrizze a vevőkészülék kézikönyvét"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Kérem, válasszon egy CCcam-Reader-t"
-
 msgid "Please choose an extension..."
 msgstr "Kérem, válasszon egy kiterjesztést..."
-
-msgid "Please choose reader"
-msgstr "Kérem, válasszon olvasót"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Ha nem tudja mi mit jelent, akkor kérem, ne változtassa meg az adatokat!"
@@ -13203,6 +13211,9 @@ msgid "Please wait while scanning is in progress..."
 msgstr "Kérem várjon, ameddig a keresés folyamatban van..."
 
 msgid "Please wait while the data is extracted..."
+msgstr ""
+
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
 msgid "Please wait while the list downloads..."
@@ -13445,6 +13456,12 @@ msgstr "AC3 hangsáv előnyben részesítése"
 
 msgid "Prefer AC3+ track"
 msgstr "AC3+ hangsáv előnyben részesítése"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "A hangsáv választás mentése csatornánként"
@@ -13781,9 +13798,6 @@ msgstr "Szolgáltatók"
 msgid "Providers:"
 msgstr "Szolgáltatók:"
 
-msgid "Providers: "
-msgstr "Szolgáltatók: "
-
 msgid "Proxy detected"
 msgstr ""
 
@@ -13848,6 +13862,12 @@ msgid "Quad PiP is not available."
 msgstr "Négy csatornás Kép-a-Képben nem érhető el."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -13976,24 +13996,13 @@ msgstr "Az Oscam.conf felhasználói adatainak olvasása"
 msgid "Reader"
 msgstr "Olvasó"
 
-msgid "Reader Statistics"
-msgstr "Olvasó statisztikái"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Készen áll a telepítésre \"%s\" ?"
 
 #, python-format
-msgid "Ready to install '%s'?"
-msgstr "Készen áll a telepítésre %s ?"
-
-#, python-format
 msgid "Ready to remove \"%s\" ?"
 msgstr "Készen áll a törlésre \"%s\" ?"
-
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Készen áll a törlésre %s ?"
 
 msgid "Real Life"
 msgstr "Való élet"
@@ -14107,7 +14116,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "A felvétel elkezdődött! A Timeshift megállítása most ..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer: %s"
+msgid "Record time limited due to conflicting timer:%s"
 msgstr "A felvételi idő rövidítve lett időzítés ütközés miatt: %s"
 
 msgid "Record write error (no space on disk?)"
@@ -14597,6 +14606,9 @@ msgstr "A tételek újraszámozása"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14609,14 +14621,14 @@ msgstr "Lejátszási pozíció nullázása"
 msgid "Reset sort order"
 msgstr ""
 
+msgid "Reset the order of the entries"
+msgstr ""
+
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Videó beállítások visszaállítása a gyári értékekre?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Videó beállítások visszaállítása az előbbi értékekre?"
-
-msgid "Reshare"
-msgstr "Újra megosztás"
 
 msgid "Reshare:"
 msgstr "Újra megosztás:"
@@ -14906,9 +14918,6 @@ msgstr "Újraegyesítés"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd Beállítás"
 
@@ -14920,13 +14929,6 @@ msgstr "Serial ATA"
 
 msgid "SATPI"
 msgstr ""
-
-msgid "SATPI Setting Actions"
-msgstr ""
-
-#, fuzzy
-msgid "SATPI Settings"
-msgstr "AFP beállítása"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC optimalizált keresési tartomány"
@@ -14972,6 +14974,9 @@ msgstr "Rendszeres fájl"
 msgid "SSA file"
 msgstr ""
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -15002,17 +15007,11 @@ msgstr "Saint-Pierre és Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent és a Grenadine-szigetek"
 
-msgid "Samba"
-msgstr "Samba"
-
-msgid "Samba Actions"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Log"
-msgstr "Samba Napló"
-
-msgid "Samba Setup"
-msgstr "Samba beállítás"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "Ugyanaz, mint az aktív"
@@ -15470,6 +15469,9 @@ msgstr ""
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ha az 'igen'-t választja, akkor a műsor nélküli csatornák nem jelennek meg."
 
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
+
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
 msgstr "Válassza az 'igen' lehetőséget, ha %s multiplexeket szeretne felvenni a keresésbe."
@@ -15617,6 +15619,9 @@ msgstr "CAId kiválasztása"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Enigma2 kinézet kiválasztás"
 
@@ -15652,6 +15657,12 @@ msgstr "Quad Csatorna választása"
 
 msgid "Select Satellites"
 msgstr "Válasszon műholdat"
+
+msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr ""
@@ -15883,6 +15894,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -15917,6 +15932,10 @@ msgstr "Válassza ki a tunerhez hozzárendelni kívánt felhasználói sáv frek
 msgid "Select the Yes / True response"
 msgstr ""
 
+#, python-format
+msgid "Select the action for '%s'"
+msgstr ""
+
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
@@ -15937,6 +15956,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "A karakter vagy művelet kijelölése a virtuális billentyűzet kurzora alatt"
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -15993,6 +16015,9 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the display sequence of previously visited services."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -16039,6 +16064,9 @@ msgstr "Válassza ki az SCR eszköz gyártóját. Ha a gyártó nincs felsorolva
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "A teletext elhagyásakor válassza ki a képernyőfelbontás és a framebuffer helyreállításának módját."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Válassza ki az Unicable eszköz modellszámát. Ha a modellszám nem szerepel a listában, állítsa az \"SCR\" értéket \"felhasználó által definiált\" beállításra, és adja meg manuálisan az eszköz paramétereit a specifikációs lapjának megfelelően."
@@ -16133,6 +16161,12 @@ msgid "Select the time delay before the button starts repeating."
 msgstr ""
 
 msgid "Select the time delay between each repeat of the button."
+msgstr ""
+
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
 msgstr ""
 
 msgid "Select the time when this timer should end."
@@ -16337,18 +16371,8 @@ msgstr "Szerb"
 msgid "Serial No"
 msgstr "Sorozatszám"
 
-msgid "Serv.Name"
-msgstr "Csatornanév"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Szerver Információ (Oscam verzió: %s)"
-
 msgid "Server down"
 msgstr "Kiszolgáló le"
-
-msgid "Server:"
-msgstr "Kiszolgáló gép:"
 
 msgid "Servers"
 msgstr "Kiszolgálók"
@@ -16535,6 +16559,9 @@ msgstr ""
 msgid "Set Scaling governor"
 msgstr ""
 
+msgid "Set Time"
+msgstr ""
+
 msgid "Set action for 'Info' key"
 msgstr "Művelet beállítása ' Info ' kulcshoz"
 
@@ -16715,9 +16742,6 @@ msgstr "Beállítások"
 msgid "Setup - %s"
 msgstr "Beállítás -%s"
 
-msgid "Setup AFP"
-msgstr "Beállítások"
-
 msgid "Setup Audio Sync"
 msgstr "Audió Sync beállítás"
 
@@ -16729,9 +16753,6 @@ msgstr "Audiomode beállítás"
 
 msgid "Setup Enigma2"
 msgstr "Enigma2 beállítás"
-
-msgid "Setup FTP"
-msgstr "FTP beállítás"
 
 msgid "Setup Harddisk"
 msgstr "Háttértár beállítása"
@@ -16748,17 +16769,11 @@ msgstr "MiniDLNA Beállítások"
 msgid "Setup Mounts"
 msgstr "Csatolás Beállítások"
 
-msgid "Setup NFS"
-msgstr "NFS Beállítás"
-
 msgid "Setup Network Services"
 msgstr "Hálózati szolgáltatás"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Hálózati szolgáltatások (Samba, ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "OpenVPN beállítás"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -16768,19 +16783,6 @@ msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Bővítmények beállítás"
-
-msgid "Setup SABnzbd"
-msgstr "SABnzbd Beállítás"
-
-#, fuzzy
-msgid "Setup SATPI"
-msgstr "Beállítások"
-
-msgid "Setup Samba"
-msgstr "Samba beállítás"
-
-msgid "Setup Telnet"
-msgstr "Telnet beállítás"
 
 msgid "Setup Tuner"
 msgstr "Tuner beállítás"
@@ -16896,9 +16898,6 @@ msgstr "Műholvevő-berendezés"
 msgid "Seychelles"
 msgstr "Seychelle-szigetek"
 
-msgid "Share Folders"
-msgstr "Mappa megosztása"
-
 msgid "Share View"
 msgstr "Megosztás nézet"
 
@@ -16907,6 +16906,12 @@ msgstr "Megosztások"
 
 msgid "Sharpness"
 msgstr "Élesség"
+
+msgid "ShellInABox"
+msgstr ""
+
+msgid "Shellscript"
+msgstr "Shell script"
 
 msgid "Shift"
 msgstr "Shift"
@@ -16935,9 +16940,6 @@ msgstr "Az újraindítás megakadályozása érdekében alaphelyzetbe kell áll�
 
 msgid "Show"
 msgstr "Mutat"
-
-msgid "Show /tmp/ecm.info"
-msgstr "/tmp/ecm.info megjelenítése"
 
 msgid "Show 1080p 24fps as"
 msgstr "1080p mutatása 24fps-ként"
@@ -16999,9 +17001,6 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "CI üzenetek mutatása"
-
-msgid "Show Clients"
-msgstr "A kliensek mutatása"
 
 msgid "Show Default Backup Files"
 msgstr "Alapértelmezett mentési fájlok"
@@ -17104,7 +17103,7 @@ msgstr "Felvételek listája"
 msgid "Show Multi EPG"
 msgstr "Multi EPG mutatása"
 
-msgid "Show OScam Info"
+msgid "Show OSCam Information"
 msgstr ""
 
 msgid "Show OScam/CCcam in Extension Menu"
@@ -17136,9 +17135,6 @@ msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "RFmode beállítás megjelenítése..."
-
-msgid "Show Readers/Proxies"
-msgstr "Readers/Proxies megjelenítése"
 
 msgid "Show Record Movies"
 msgstr "Felvételek megjelenítése"
@@ -17559,7 +17555,7 @@ msgstr "Most/Következik információ EIT-ből származzon"
 msgid "Show the Logs Settings screen"
 msgstr ""
 
-msgid "Show the OScamInfo Screen"
+msgid "Show the OSCam information screen"
 msgstr ""
 
 #, fuzzy
@@ -18170,9 +18166,6 @@ msgstr "Rendezés alapértelmezettek szerint"
 msgid "Sort list by"
 msgstr "Lista rendezése"
 
-msgid "Sort list to default and exit?"
-msgstr "Rendezési lista alapértelmezett és kilépés?"
-
 msgid "Sort list:"
 msgstr "Lista rendezése:"
 
@@ -18330,6 +18323,9 @@ msgstr "Indulás módja"
 
 msgid "Start offline decode"
 msgstr "Offline dekódolás indítása"
+
+msgid "Start or Stop service"
+msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
@@ -19088,17 +19084,11 @@ msgstr "Teletext felirat színe"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr "Telnet interfész"
 
 msgid "Telnet Port"
 msgstr "Telnet port"
-
-msgid "Telnet Settings"
-msgstr "Telnet beállítás"
 
 msgid "Telugu"
 msgstr ""
@@ -19942,9 +19932,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr "Timeshift beállítása"
 
-msgid "Time Update in Minutes:"
-msgstr "Az idő frissítése percekben:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20254,9 +20241,6 @@ msgstr "teteje"
 msgid "Top and Bottom"
 msgstr "Felső és alsó"
 
-msgid "Total"
-msgstr "Összesen"
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -20290,6 +20274,9 @@ msgstr "Sáv"
 
 msgid "Traditional Chinese"
 msgstr "Tradicionális kínai"
+
+msgid "Transcode"
+msgstr "Transcode"
 
 msgid "Transcoding"
 msgstr ""
@@ -20628,6 +20615,10 @@ msgstr "Meghatározatlan"
 msgid "Unencrypted"
 msgstr "Kódolatlan"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "UnhandledKey"
 
@@ -20646,14 +20637,14 @@ msgstr "Unicable fej"
 msgid "Unicable Matrix"
 msgstr "Unicable Mátrix"
 
+msgid "Uninstall"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr "Egyesült Arab Emírségek"
 
 msgid "United Kingdom"
 msgstr "Egyesült Királyság"
-
-msgid "United States"
-msgstr "Amerikai Egyesült Államok"
 
 msgid "United States Minor Outlying Islands"
 msgstr "Az Amerikai Egyesült Államok lakatlan külbirtokai"
@@ -20792,9 +20783,6 @@ msgstr "A frissítés sikertelen!"
 
 msgid "Update finished!"
 msgstr "Frissítés befejezve!"
-
-msgid "Update interval (in seconds)"
-msgstr "Frissítési intervallum (másodpercben)"
 
 msgid ""
 "Update succeeded!\n"
@@ -21190,9 +21178,6 @@ msgstr ""
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VPN"
-msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -21646,18 +21631,6 @@ msgstr "Felvett filmek lejátszása..."
 #, fuzzy
 msgid "Watch recordings"
 msgstr "Felvételek megtekintése..."
-
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"Nagyon sajnáljuk. A vevőegység egy szoftveres problémát észlelt, és újra kell indítani.\n"
-"Kérjük, küldje el a %s enigma2_crash_xxxxxx.log naplófájlt a www.opena.tv weboldalra.\n"
-"A vevőegység 10 másodpercen belül újraindul!\n"
-"Komponens: enigma2"
 
 msgid "Weather"
 msgstr "Időjárás"
@@ -22319,14 +22292,6 @@ msgstr "A(z) %s %s újra fog indulni..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-"A(z) %s %s készülék újraindításra kerül a szolgáltatás telepítése után.\n"
-"Készen áll a(z) %s telepítésére?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22342,18 +22307,6 @@ msgid ""
 msgstr ""
 "A(z) %s %s készülék újraindítása kerül a szolgáltatás törlése után.\n"
 "Szeretné törölni most?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -22490,11 +22443,17 @@ msgstr "A Főképernyő kezelése"
 msgid "Zap focused channel on full screen"
 msgstr "A teljes képernyőn a csatornára ugráskor megjelent adás fog megjelenni"
 
+msgid "Zap history sequence"
+msgstr ""
+
 msgid "Zap mode"
 msgstr "Csatornaváltás mód"
 
 msgid "Zap next"
 msgstr "Ugrás a következőre"
+
+msgid "Zap to"
+msgstr "Ugrás ide"
 
 msgid "Zap to channel (setup in menu)"
 msgstr "Ugrás a csatornára (beállítás a menüben)"
@@ -22844,12 +22803,6 @@ msgstr "vágások végrehajtása (MovieCut bővítmény szükséges)"
 msgid "exit DVD player or return to file browser"
 msgstr "a DVD Player bezárása és visszatérés a keresőbe"
 
-msgid "exit mounts setup menu"
-msgstr "kilépés a Csatlakozás Beállítás menüből"
-
-msgid "exit networkadapter setup menu"
-msgstr "kliépés a hálózati adapter beállításaiból"
-
 msgid "experimental film/video"
 msgstr "kísérleti filmezés"
 
@@ -23082,18 +23035,6 @@ msgstr "motor"
 
 msgid "move"
 msgstr "mozgatás"
-
-msgid "move down to last entry"
-msgstr "ugrás a legutolsó tételhez"
-
-msgid "move down to next entry"
-msgstr "ugrás a következő tételhez"
-
-msgid "move up to first entry"
-msgstr "ugrás az első tételhez"
-
-msgid "move up to previous entry"
-msgstr "ugrás az előző tételhez"
 
 msgid "movie (general)"
 msgstr "film (általános)"
@@ -23328,9 +23269,6 @@ msgstr "keresés EPG..."
 msgid "select CAId's"
 msgstr "a CAId-k kijelölése"
 
-msgid "select menu entry"
-msgstr "válasszon menütételt"
-
 msgid "serious music/classic music"
 msgstr "komolyzene"
 
@@ -23533,12 +23471,6 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr "uShare napló"
-
 msgid "uShare Name"
 msgstr "uShare név"
 
@@ -23546,9 +23478,6 @@ msgid "uShare Port"
 msgstr "uShare port"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -23641,18 +23570,313 @@ msgstr "igen (állapotok megtartása)"
 msgid "®"
 msgstr "®"
 
+msgid "Preferred tuner DVB-S"
+msgstr "Előnyben részesített tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Felvételek számára előnyben részesített tuner DVB-S"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Előnyben részesített tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Felvételek számára előnyben részesített tuner DVB-T"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Előnyben részesített tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Felvételek számára előnyben részesített tuner DVB-C"
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner'-t."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner a felvételekhez'-t."
+
+msgid "Preferred tuner ATSC"
+msgstr "Előnyben részesített tuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Felvételek számára előnyben részesített tuner ATSC"
+
+#~ msgid "Australian"
+#~ msgstr "Ausztrál"
+
+#~ msgid "Belgian"
+#~ msgstr "Belga"
+
+#~ msgid "Czechia"
+#~ msgstr "Csehország"
+
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "Irán, Iszlám Köztársaság"
+
+#~ msgid "United States"
+#~ msgstr "Amerikai Egyesült Államok"
+
+#~ msgid "Sort list to default and exit?"
+#~ msgstr "Rendezési lista alapértelmezett és kilépés?"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "kilépés a Csatlakozás Beállítás menüből"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "kliépés a hálózati adapter beállításaiból"
+
+#~ msgid "move down to last entry"
+#~ msgstr "ugrás a legutolsó tételhez"
+
+#~ msgid "move down to next entry"
+#~ msgstr "ugrás a következő tételhez"
+
+#~ msgid "move up to first entry"
+#~ msgstr "ugrás az első tételhez"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "ugrás az előző tételhez"
+
+#~ msgid "select menu entry"
+#~ msgstr "válasszon menütételt"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, és próbálkozzon újra."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "CIFS/Samba beállítása"
+
+#~ msgid "Config file name (ok to change):"
+#~ msgstr "Konfig fájl neve (OK változtatás):"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Szeretné telepíteni a samba klienst is?\n"
+#~ "Ez lehetővé teszi a Windows megosztások csatolását az eszközön."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP beállítása"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Napló"
+
+#~ msgid "Input config file name:"
+#~ msgstr "Input config fájl neve:"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Napló"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS beállítása"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "OpenVPN beállítása"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn Napló"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Készen áll a törlésre %s ?"
+
+#, fuzzy
+#~ msgid "SATPI Settings"
+#~ msgstr "AFP beállítása"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba Napló"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba beállítás"
+
+#~ msgid "Setup FTP"
+#~ msgstr "FTP beállítás"
+
+#~ msgid "Setup NFS"
+#~ msgstr "NFS Beállítás"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "OpenVPN beállítás"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "SABnzbd Beállítás"
+
+#, fuzzy
+#~ msgid "Setup SATPI"
+#~ msgstr "Beállítások"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Samba beállítás"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Telnet beállítás"
+
+#~ msgid "Share Folders"
+#~ msgstr "Mappa megosztása"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telnet beállítás"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Az idő frissítése percekben:"
+
+#~ msgid "VPN"
+#~ msgstr "VPN"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install '%s'?"
+#~ msgstr ""
+#~ "A(z) %s %s készülék újraindításra kerül a szolgáltatás telepítése után.\n"
+#~ "Készen áll a(z) %s telepítésére?"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare napló"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s (%s kártyák)"
+
+#~ msgid "( All readers)"
+#~ msgstr "(Az összes olvasó)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Csak olvasó megjelenítése:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "AFP beállítása"
+
+#~ msgid "Address"
+#~ msgstr "Cím"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Kártya infók (CCcam-Olvasó)"
+
+#~ msgid "Cards:"
+#~ msgstr "Kártyák:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Kliens információ ( Oscam verzió: %s )"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM Statisztika"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM idő"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM átlag"
+
+#~ msgid "ECM last"
+#~ msgstr "ECM utolsó"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM idő"
+
+#~ msgid "Hops"
+#~ msgstr "Hops"
+
+#~ msgid "Last Request"
+#~ msgstr "Last Request"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Oscam Info - Főmenü"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "OScam Info - Konfiguráció"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Oscam napló (Oscam verzió: %s)"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "OscamInfo Főmenü"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Kérem, válasszon egy CCcam-Reader-t"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Kérem, válasszon olvasót"
+
+#~ msgid "Providers: "
+#~ msgstr "Szolgáltatók: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Olvasó statisztikái"
+
+#, python-format
+#~ msgid "Ready to install '%s'?"
+#~ msgstr "Készen áll a telepítésre %s ?"
+
+#~ msgid "Reshare"
+#~ msgstr "Újra megosztás"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Csatornanév"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Szerver Információ (Oscam verzió: %s)"
+
+#~ msgid "Server:"
+#~ msgstr "Kiszolgáló gép:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "Beállítások"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "/tmp/ecm.info megjelenítése"
+
+#~ msgid "Show Clients"
+#~ msgstr "A kliensek mutatása"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Readers/Proxies megjelenítése"
+
+#~ msgid "Total"
+#~ msgstr "Összesen"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Frissítési intervallum (másodpercben)"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Befejezés ideje"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "Nagyon sajnáljuk. A vevőegység egy szoftveres problémát észlelt, és újra kell indítani.\n"
+#~ "Kérjük, küldje el a %s enigma2_crash_xxxxxx.log naplófájlt a www.opena.tv weboldalra.\n"
+#~ "A vevőegység 10 másodpercen belül újraindul!\n"
+#~ "Komponens: enigma2"
+
 #~ msgid "+24"
 #~ msgstr "+1 nap"
 
 #~ msgid "-24"
 #~ msgstr "-1 nap"
-
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Egy felvétel folyamatban van. \n"
-#~ "Mit szeretne tenni?"
 
 #~ msgid "BouquetList"
 #~ msgstr "Csatornacsomag lista"
@@ -23780,14 +24004,8 @@ msgstr "®"
 #~ msgid "CI Helper Settings"
 #~ msgstr "CIHelper beállítása"
 
-#~ msgid "ClientIP"
-#~ msgstr "Kliens IP"
-
 #~ msgid "Minute"
 #~ msgstr "perc"
-
-#~ msgid "Transcode"
-#~ msgstr "Transcode"
 
 #, fuzzy, python-format
 #~ msgid "%.3f MHz"
@@ -23808,9 +24026,6 @@ msgstr "®"
 #~ msgid "Audio PID, codec & lang"
 #~ msgstr "Audió PID, kódolás és nyelv"
 
-#~ msgid "ButtonSetup"
-#~ msgstr "Távirányító gomb beállítás"
-
 #, fuzzy
 #~ msgid "Constellation & FFT mode"
 #~ msgstr "Együttállás"
@@ -23830,9 +24045,6 @@ msgstr "®"
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Polarizáció"
 
-#~ msgid "Hotkey"
-#~ msgstr "Hotkey"
-
 #, fuzzy
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Info ikon szélesség"
@@ -23843,12 +24055,6 @@ msgstr "®"
 
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Panic to"
 
 #, fuzzy
 #~ msgid "Service ID"
@@ -23870,9 +24076,6 @@ msgstr "®"
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Csatorna információ betű mérete"
 
-#~ msgid "Shellscript"
-#~ msgstr "Shell script"
-
 #, fuzzy
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Sebesség"
@@ -23891,9 +24094,6 @@ msgstr "®"
 #, fuzzy
 #~ msgid "Tuner setting values"
 #~ msgstr "Tuner beállításai"
-
-#~ msgid "Zap to"
-#~ msgstr "Ugrás ide"
 
 #, fuzzy
 #~ msgid "active"

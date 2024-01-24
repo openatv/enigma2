@@ -313,18 +313,8 @@
 		<panel name="MessageBoxSummary" />
 	</screen>
 
-	<screen name="TimerEditListSummary" position="0,0" size="255,64">
+	<screen name="TimerOverviewSummary" position="0,0" size="255,64">
 		<widget source="service" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="name" render="Label" position="0,21" size="255,18" font="FdLcD;17" halign="left" noWrap="1" />
-		<widget source="time" render="Label" position="0,39" size="190,35" font="FdLcD;14" halign="left" transparent="1" />
-		<widget source="duration" render="Label" position="0,52" size="190,35" font="FdLcD;13" halign="left" transparent="1" />
-		<widget source="state" render="Label" position="0,50" size="190,35" font="FdLcD;13" halign="right" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
-	</screen>
-
-	<screen name="PowerTimerEditListSummary" position="0,0" size="255,64">
-		<widget source="after" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
 		<widget source="name" render="Label" position="0,21" size="255,18" font="FdLcD;17" halign="left" noWrap="1" />
 		<widget source="time" render="Label" position="0,39" size="190,35" font="FdLcD;14" halign="left" transparent="1" />
 		<widget source="duration" render="Label" position="0,52" size="190,35" font="FdLcD;13" halign="left" transparent="1" />
@@ -482,11 +472,6 @@
 	<!-- ATV -->
 	<!-- Quickmenü -->
 	<screen name="QuickMenuSummary" position="0,0" size="256,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
-		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
-	</screen>
-	<!-- Infopanel -->
-	<screen name="InfopanelSummary" position="0,0" size="256,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
 		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>

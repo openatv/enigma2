@@ -29,7 +29,7 @@ config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
 class WlanStatus(Screen):
 	skin = """
-		<screen name="WlanStatus" position="center,center" size="560,430" title="Wireless network status" >
+		<screen name="WlanStatus" position="center,center" size="560,430" title="Wireless network status" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 
@@ -213,7 +213,7 @@ class WlanStatus(Screen):
 
 class WlanScan(Screen):
 	skin = """
-		<screen name="WlanScan" position="center,center" size="560,400" title="Select a wireless network" >
+		<screen name="WlanScan" position="center,center" size="560,400" title="Select a wireless network" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />

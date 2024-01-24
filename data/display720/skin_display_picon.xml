@@ -324,17 +324,12 @@
 	</screen>
 	
 <!-- Timer -->
-	<screen name="TimerEditListSummary" position="0,0" size="720,576">
+	<screen name="TimerOverviewSummary" position="0,0" size="720,576">
 		<widget source="name" render="Label" position="12,15" size="645,420" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	
 <!-- PowerTimer -->
-	<screen name="PowerTimerEditListSummary" position="0,0" size="720,576">
-		<widget source="parent.Title" render="Label" position="12,15" size="645,270" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />
-		<widget source="parent.summary_description" render="Label" position="12,300" size="645,120" zPosition="1" font="FdLcD;60" halign="center" valign="center" foregroundColor="#02c6ff" />
-		<panel name="SummaryClockPanel" />
-	</screen>
 	<screen name="TimerEntrySummary" position="0,0" size="720,576">
 		<widget source="parent.Title" render="Label" position="12,15" size="645,270" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />
 		<widget source="parent.summary_description" render="Label" position="12,300" size="645,120" zPosition="1" font="FdLcD;60" halign="center" valign="center" foregroundColor="#02c6ff" />
@@ -466,12 +461,6 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	
-<!-- Infopanel -->
-	<screen name="InfopanelSummary" position="0,0" size="720,576">
-		<widget source="parent.summary_description" render="Label" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />
-		<panel name="SummaryClockPanel" />
-	</screen>
-
 <!-- ExtensionsList -->
 	<screen name="ExtensionsListSummary" position="0,0" size="720,576">
 		<widget source="parent.Title" render="Label" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />

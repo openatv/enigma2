@@ -1,19 +1,21 @@
 # English translations for openATV Enigma2
+# Reza Almanda <rezaalmanda27@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 10:52+0000\n"
-"PO-Revision-Date: 2018-01-14 01:15+0300\n"
-"Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
-"Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
-"Language: id_ID\n"
+"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"PO-Revision-Date: 2024-01-13 10:34+0000\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: DVBS | by budiarno\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid ""
 "\n"
@@ -56,10 +58,10 @@ msgid " "
 msgstr ""
 
 msgid "     no space left on back-up device"
-msgstr ""
+msgstr "     tidak ada ruang tersisa pada perangkat cadangan"
 
 msgid "     no writing permission on back-up device"
-msgstr ""
+msgstr "     tidak ada izin menulis pada perangkat cadangan"
 
 msgid "     wrong back-up destination "
 msgstr ""
@@ -1279,10 +1281,6 @@ msgid "%s  (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s  -  %s    (%s%d Min)"
-msgstr ""
-
-#, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
@@ -1305,10 +1303,6 @@ msgstr "%s %s mouse ir"
 #, python-format
 msgid "%s %s remote control (native)"
 msgstr "%s %s remote kontrol (bawaan)"
-
-#, python-format
-msgid "%s ( %s Cards )"
-msgstr "%s ( %s Kartu )"
 
 #, fuzzy, python-format
 msgid "%s (%04o)"
@@ -1440,9 +1434,6 @@ msgstr "'Unscramble & record ECM' gives the option to unscramble afterwards if u
 msgid "'WeatherPlugin' is not installed!"
 msgstr "This plugin is not installed."
 
-msgid "( All readers)"
-msgstr "( Semua pembaca)"
-
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
@@ -1456,9 +1447,6 @@ msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr "(Radio)"
-
-msgid "(Show only reader:"
-msgstr "(Tampilkan pembaca saja:"
 
 msgid "(TV)"
 msgstr "(TV)"
@@ -1713,11 +1701,11 @@ msgstr "<Lokasi pewaktu terakhir>"
 msgid "<Select a device>"
 msgstr ""
 
+msgid "<no log found>"
+msgstr ""
+
 msgid "A"
 msgstr "A"
-
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr "Pembaruan di latar sedang berjalan, mohon tunggu beberapa menit dan coba lagi."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1786,6 +1774,13 @@ msgid ""
 msgstr ""
 "Rekaman telah dijalankan:\n"
 "%s"
+
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Rekaman sedang berlangsung.\n"
+"Apa yang ingin anda lakukan?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Rekaman sedang berlangsung. Mohon berhenti merekam sebelum mencoba untuk mengatur posisioner."
@@ -1870,15 +1865,6 @@ msgstr "AC3plus transcoding"
 #, fuzzy
 msgid "AFL"
 msgstr "AFP"
-
-msgid "AFP"
-msgstr "AFP"
-
-msgid "AFP Actions"
-msgstr ""
-
-msgid "AFP Settings"
-msgstr "Pengaturan AFP"
 
 msgid "ARM"
 msgstr ""
@@ -2202,9 +2188,6 @@ msgstr ""
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr ""
-
-msgid "Address"
-msgstr "Alamat"
 
 msgid "Adjust 3D settings"
 msgstr "Setel pengaturan 3D"
@@ -2781,10 +2764,6 @@ msgstr "Audio volume step size"
 msgid "Australia"
 msgstr "Australia"
 
-#, fuzzy
-msgid "Australian"
-msgstr "Australia"
-
 msgid "Austria"
 msgstr "Austria"
 
@@ -2856,6 +2835,9 @@ msgstr ""
 msgid "AutoCam Setup Actions"
 msgstr ""
 
+msgid "AutoFS"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr "AutoMountManager"
 
@@ -2894,6 +2876,9 @@ msgstr "Automatically turn on external subtitles"
 
 msgid "Automatically update Client/Server View"
 msgstr "Automatically update Client/Server View"
+
+msgid "Automatically update Log-Fullscreen View"
+msgstr ""
 
 msgid "Autostart"
 msgstr "Autostart"
@@ -3162,10 +3147,6 @@ msgstr "Belarus"
 #, fuzzy
 msgid "Belarusian"
 msgstr "Belarus"
-
-#, fuzzy
-msgid "Belgian"
-msgstr "Belgium"
 
 msgid "Belgium"
 msgstr "Belgium"
@@ -3438,6 +3419,9 @@ msgstr "Button Setup"
 msgid "Button error timeout"
 msgstr ""
 
+msgid "ButtonSetup"
+msgstr "ButtonSetup"
+
 msgid "By disk UUID"
 msgstr ""
 
@@ -3462,12 +3446,6 @@ msgstr "CH"
 
 msgid "C-Band"
 msgstr "C-Band"
-
-msgid "CAID"
-msgstr "CAID"
-
-msgid "CAID:SrvID"
-msgstr "CAID:SrvID"
 
 msgid "CCD-Width"
 msgstr ""
@@ -3568,9 +3546,6 @@ msgstr "CI slot: "
 
 msgid "CI+ Helper*"
 msgstr ""
-
-msgid "CIFS/Samba Settings"
-msgstr "CIFS/Samba Settings"
 
 #, fuzzy
 msgid "CPU"
@@ -3816,10 +3791,13 @@ msgstr "Channel Selection"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Channel Selection"
 
-msgid "Cancel the service selection"
+msgid "Cancel the selection and exit"
 msgstr ""
 
-msgid "Cancel the service zap"
+msgid "Cancel the service history zap"
+msgstr ""
+
+msgid "Cancel the service selection"
 msgstr ""
 
 msgid "Cancel the slot selection and exit"
@@ -3861,12 +3839,6 @@ msgstr ""
 #, fuzzy
 msgid "Cape Verde"
 msgstr "Cabo Verde"
-
-msgid "Card infos (CCcam-Reader)"
-msgstr "Card infos (CCcam-Reader)"
-
-msgid "Cards:"
-msgstr "Cards:"
 
 msgid "Cards: "
 msgstr "Cards: "
@@ -4165,6 +4137,18 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Choice Box"
 
+msgid "Choice List Actions"
+msgstr ""
+
+msgid "Choice List Navigation Actions"
+msgstr ""
+
+msgid "Choice List Order Actions"
+msgstr ""
+
+msgid "Choice List Selection Actions"
+msgstr ""
+
 #, python-format
 msgid "Choice where to put \"%s\""
 msgstr "Choice where to put \"%s\""
@@ -4185,6 +4169,12 @@ msgid "Choose how much EPG history, if any, to keep in the EPG cache. This histo
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
+msgstr ""
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr ""
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
 msgstr ""
 
 msgid "Choose the amount of additional slots."
@@ -4274,6 +4264,9 @@ msgstr "Choose which tuner to configure."
 msgid "Christmas Island"
 msgstr "Christmas Island"
 
+msgid "Chrony"
+msgstr ""
+
 msgid "Church Slavic"
 msgstr ""
 
@@ -4342,12 +4335,14 @@ msgstr[1] ""
 msgid "Click the button on your remote you want to change."
 msgstr "Click the button on your remote you want to change."
 
-#, python-format
-msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Client Info ( Oscam-Version: %s )"
+msgid "Client"
+msgstr ""
 
 msgid "Client is streaming from this box!"
 msgstr ""
+
+msgid "ClientIP"
+msgstr "ClientIP"
 
 msgid "Clients"
 msgstr "Clients"
@@ -4510,6 +4505,9 @@ msgstr ""
 msgid "Common Setup Actions"
 msgstr "Boot-up action"
 
+msgid "Comodo Secure DNS"
+msgstr ""
+
 msgid "Comoros"
 msgstr "Comoros"
 
@@ -4538,9 +4536,6 @@ msgstr "Configuring"
 #, python-format
 msgid "Config file %s saved."
 msgstr "Config file %s saved."
-
-msgid "Config file name (ok to change):"
-msgstr ""
 
 #, fuzzy
 msgctxt "Abbreviation of 'Configurable'"
@@ -4938,6 +4933,9 @@ msgstr "Configures which video output connector will be used."
 msgid "Configuring"
 msgstr "Configuring"
 
+msgid "Configuring Service"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5179,12 +5177,12 @@ msgid "Could not open the file %s!"
 msgstr "Could not open the file %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer: %s"
-msgstr "Could not record due to conflicting timer: %s"
+msgid "Could not record due to conflicting timer:%s"
+msgstr "Could not record due to conflicting timer:%s"
 
 #, python-format
-msgid "Could not record due to invalid service: %s"
-msgstr "Could not record due to invalid service: %s"
+msgid "Could not record due to invalid service:%s"
+msgstr "Could not record due to invalid service:%s"
 
 #, python-format
 msgid "Could not save configuration file %s!"
@@ -5287,6 +5285,9 @@ msgstr "Croatia"
 
 msgid "Croatian"
 msgstr "Croatian"
+
+msgid "Cron"
+msgstr ""
 
 msgid "Cron Manager"
 msgstr "Cron Manager"
@@ -5441,9 +5442,6 @@ msgstr "Czech"
 msgid "Czech Republic"
 msgstr "Central African Republic"
 
-msgid "Czechia"
-msgstr "Czechia"
-
 #, fuzzy
 msgid "D"
 msgstr "SD"
@@ -5470,6 +5468,12 @@ msgid "DNS Settings"
 msgstr ""
 
 msgid "DNS data source"
+msgstr ""
+
+msgid "DNS mode"
+msgstr ""
+
+msgid "DNS suffix"
 msgstr ""
 
 msgid ""
@@ -5559,6 +5563,9 @@ msgid "Date"
 msgstr "Date"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date Time Input Actions"
 msgstr ""
 
 msgid "Date ascending"
@@ -5842,6 +5849,9 @@ msgid "Define Softcam For This Service"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Defined / Active"
@@ -6508,13 +6518,6 @@ msgid "Do you want the upgrade guide?"
 msgstr ""
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-
-msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
@@ -6586,6 +6589,9 @@ msgid "Do you want to reboot your %s %s?"
 msgstr "Do you want to reboot your %s %s?"
 
 msgid "Do you want to remove:"
+msgstr ""
+
+msgid "Do you want to replace:"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -6760,15 +6766,6 @@ msgstr "E"
 msgid "ECM"
 msgstr ""
 
-msgid "ECM Statistics"
-msgstr "ECM Statistics"
-
-msgid "ECM Time"
-msgstr "ECM Time"
-
-msgid "ECM avg"
-msgstr "ECM avg"
-
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 msgstr "ECM data will be included in the stream. This enables a client receiver to decode it."
 
@@ -6778,12 +6775,6 @@ msgstr ""
 #, python-format
 msgid "ECM information for '%s'"
 msgstr ""
-
-msgid "ECM last"
-msgstr "ECM last"
-
-msgid "ECM-Time"
-msgstr "ECM-Time"
 
 msgid "EJECTCD"
 msgstr ""
@@ -6804,6 +6795,9 @@ msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Jump"
 msgstr ""
 
 msgid "EPG Navigation Actions"
@@ -8060,12 +8054,6 @@ msgstr "FTP"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Actions"
-msgstr ""
-
-msgid "FTP Settings"
-msgstr "FTP Settings"
-
 msgid "Factory Reset"
 msgstr ""
 
@@ -8466,6 +8454,9 @@ msgstr ""
 #, fuzzy
 msgid "Football"
 msgstr "football/soccer"
+
+msgid "For how many minutes do you want to record?"
+msgstr "For how many minutes do you want to record?"
 
 msgid "Force AC3plus"
 msgstr "Force AC3plus"
@@ -9190,6 +9181,9 @@ msgstr "Hide parental locked services"
 msgid "Hide player"
 msgstr "Hide player"
 
+msgid "Hide softcam servername"
+msgstr ""
+
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "Fade the InfoBar on hide."
@@ -9280,9 +9274,6 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-msgid "Hops"
-msgstr "Hops"
-
 msgid "Hops:"
 msgstr "Hops:"
 
@@ -9316,6 +9307,9 @@ msgstr "Hostname: "
 msgid "Hotbird 13.0e"
 msgstr ""
 
+msgid "Hotkey"
+msgstr "Hotkey"
+
 msgid "Hotkey Settings"
 msgstr "Hotkey Settings"
 
@@ -9327,9 +9321,6 @@ msgstr "Hours Minutes"
 
 msgid "Hours Minutes Seconds"
 msgstr "Hours Minutes Seconds"
-
-msgid "How many minutes do you want to record?"
-msgstr "How many minutes do you want to record?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9409,7 +9400,13 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "IPK Installer"
 
+msgid "IPv4 only"
+msgstr ""
+
 msgid "IPv6 address"
+msgstr ""
+
+msgid "IPv6 only"
 msgstr ""
 
 msgid "ISO file is too large for this file system!"
@@ -9667,15 +9664,6 @@ msgstr "Inactive"
 msgid "Inadyn"
 msgstr "Inadyn"
 
-msgid "Inadyn Actions"
-msgstr ""
-
-msgid "Inadyn Log"
-msgstr "Inadyn Log"
-
-msgid "Inadyn Setting Actions"
-msgstr ""
-
 msgid "Inadyn Settings"
 msgstr "Inadyn Settings"
 
@@ -9861,10 +9849,6 @@ msgstr "Input Stream ID"
 msgid "Input channel name."
 msgstr "Input channel name."
 
-#, fuzzy
-msgid "Input config file name:"
-msgstr "Input channel name."
-
 msgid "Input scroll position"
 msgstr ""
 
@@ -9919,6 +9903,9 @@ msgstr ""
 msgid "Installation finished."
 msgstr "Installation finished."
 
+msgid "Installed"
+msgstr ""
+
 msgid "Installing"
 msgstr "Installing"
 
@@ -9953,6 +9940,9 @@ msgid "Installing plugins from feed ..."
 msgstr "Installing plugins..."
 
 msgid "Instant Recording Actions"
+msgstr ""
+
+msgid "Instant Recording End Time"
 msgstr ""
 
 msgid "Instant record"
@@ -10047,10 +10037,6 @@ msgid "Ipkg"
 msgstr "Ipkg"
 
 #, fuzzy
-msgid "Iran, Islamic Republic"
-msgstr "Iran (Islamic Republic of)"
-
-#, fuzzy
 msgid "Iran, Islamic Republic of"
 msgstr "Iran (Islamic Republic of)"
 
@@ -10115,14 +10101,32 @@ msgstr "Job overview"
 msgid "Jordan"
 msgstr "Jordan"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "Jump back 24 hours"
+
+msgid "Jump back one day"
+msgstr ""
+
+msgid "Jump back one hour"
+msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Jump first press in channel selection"
 
 msgid "Jump forward 24 hours"
 msgstr "Jump forward 24 hours"
+
+msgid "Jump forward one day"
+msgstr ""
+
+msgid "Jump forward one hour"
+msgstr ""
+
+msgid "Jump time"
+msgstr ""
 
 msgid "Jump to beginning of list"
 msgstr "Jump to beginning of list"
@@ -10399,9 +10403,6 @@ msgstr "Lao People's Democratic Republic"
 
 msgid "Large"
 msgstr ""
-
-msgid "Last Request"
-msgstr "Last Request"
 
 msgid "Last config"
 msgstr "Last config"
@@ -11179,21 +11180,12 @@ msgstr "middle"
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini DLNA Actions"
-msgstr ""
-
-msgid "Mini DLNA Setting Actions"
-msgstr ""
-
 #, fuzzy
 msgid "Mini Series"
 msgstr "Semua Layanan"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Log"
 
 msgid "MiniDLNA Settings"
 msgstr "MiniDLNA Settings"
@@ -11316,6 +11308,12 @@ msgstr "Morocco"
 msgid "Mosquito noise reduction"
 msgstr "Mosquito noise reduction"
 
+msgid "Most recent first"
+msgstr ""
+
+msgid "Most recent last"
+msgstr ""
+
 #, fuzzy
 msgid "Motor Sport"
 msgstr "motor sport"
@@ -11329,11 +11327,11 @@ msgstr "Motor running timeout"
 msgid "Mount"
 msgstr "Mount"
 
-msgid "Mount Actions"
-msgstr ""
-
 msgid "Mount Manager"
 msgstr "Mount Manager"
+
+msgid "Mount Menu Actions"
+msgstr ""
 
 msgid "Mount Settings"
 msgstr ""
@@ -11455,6 +11453,12 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current entry down"
+msgstr ""
+
+msgid "Move the current entry up"
 msgstr ""
 
 msgid "Move the current line down"
@@ -11737,12 +11741,6 @@ msgstr "NEXT"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Actions"
-msgstr ""
-
-msgid "NFS Settings"
-msgstr "NFS Settings"
-
 msgid "NIM"
 msgstr ""
 
@@ -11873,6 +11871,9 @@ msgstr ""
 msgid "Network Interface"
 msgstr "Antarmuka Jaringan"
 
+msgid "Network Log"
+msgstr ""
+
 msgid "Network Log Actions"
 msgstr ""
 
@@ -11893,6 +11894,9 @@ msgstr "Layanan Jaringan"
 
 msgid "Network Settings"
 msgstr "Atur jaringan"
+
+msgid "Network Setup Actions"
+msgstr ""
 
 msgid "Network Test"
 msgstr "Tes Jaringan"
@@ -11930,6 +11934,9 @@ msgstr "Nama jaringan (SSID)"
 
 msgid "Network scan"
 msgstr "Pindai jaringan"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Tes jaringan"
@@ -12151,6 +12158,9 @@ msgstr "No free tuner!"
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "No matching place names found"
 
@@ -12329,7 +12339,10 @@ msgstr ""
 msgid "None"
 msgstr "None"
 
-msgid "NordVPN DNS"
+msgid "NordVPN Secure DNS"
+msgstr ""
+
+msgid "NordVPN Smart DNS"
 msgstr ""
 
 msgid "Norfolk Island"
@@ -12500,6 +12513,27 @@ msgstr "OK button mode"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, guide me through the upgrade process"
 
+msgid "OSCam Info"
+msgstr "OSCam Info"
+
+msgid "OSCam Information"
+msgstr "OScamInfo"
+
+msgid "OSCam Information Settings"
+msgstr ""
+
+msgid "OSCam webif disabled"
+msgstr ""
+
+msgid "OSCamInfo Actions"
+msgstr ""
+
+msgid "OSCamInfo Log"
+msgstr ""
+
+msgid "OSCamInfo Log Actions"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12520,15 +12554,6 @@ msgstr "OSD Setup"
 
 msgid "OSD name request"
 msgstr "OSD name request"
-
-msgid "OScam Info"
-msgstr "OScam Info"
-
-msgid "OScam Information"
-msgstr "OScamInfo"
-
-msgid "OScam webif disabled"
-msgstr ""
 
 msgid "OTT Model"
 msgstr ""
@@ -12630,7 +12655,13 @@ msgstr "Open EPGSearch..."
 msgid "Open IMDb"
 msgstr "Open IMDB..."
 
+msgid "Open Log"
+msgstr ""
+
 msgid "Open MediaStream"
+msgstr ""
+
+msgid "Open Settings"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -12717,17 +12748,8 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Actions"
-msgstr ""
-
-msgid "OpenVPN Settings"
-msgstr "OpenVPN Settings"
-
 msgid "OpenViX Packages"
 msgstr ""
-
-msgid "OpenVpn Log"
-msgstr "OpenVpn Log"
 
 #, fuzzy
 msgid "Operating LED status in deep standby mode"
@@ -12780,18 +12802,8 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info - Main Menu"
-msgstr "Oscam Info - Main Menu"
-
-msgid "Oscam Info Settings"
-msgstr "Oscam Info Settings"
-
-#, python-format
-msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam Log ( Oscam-Version: %s )"
-
-msgid "OscamInfo Mainmenu"
-msgstr "OscamInfo Mainmenu"
+msgid "Oscam Information"
+msgstr ""
 
 msgid "Ossetian / Ossetic"
 msgstr ""
@@ -12896,9 +12908,6 @@ msgstr "PCM"
 msgid "PGS file"
 msgstr "EPG filename"
 
-msgid "PID"
-msgstr "PID"
-
 msgid "PIN code needed"
 msgstr "PIN code needed"
 
@@ -12917,6 +12926,9 @@ msgstr "PLS Mode"
 
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PPanel"
+msgstr "PPanel"
 
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
@@ -12992,6 +13004,9 @@ msgstr "Panama"
 
 msgid "Panic channel"
 msgstr "Panic channel"
+
+msgid "Panic to"
+msgstr "Panic to"
 
 msgid "Panjabi / Punjabi"
 msgstr ""
@@ -13296,21 +13311,12 @@ msgstr "Please add titles to the compilation."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Please be patient, a backup will now be made,\n"
 
-msgid "Please change recording endtime"
-msgstr "Please change recording endtime"
-
 #, fuzzy
 msgid "Please check the manual of the receiver"
 msgstr "Please enter a name for the new directory:"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Please choose CCcam-Reader"
-
 msgid "Please choose an extension..."
 msgstr "Please choose an extension..."
-
-msgid "Please choose reader"
-msgstr "Please choose reader"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Please do not change any values unless you know what you are doing!"
@@ -13496,6 +13502,9 @@ msgid "Please wait while scanning is in progress..."
 msgstr "Please wait while scanning is in progress..."
 
 msgid "Please wait while the data is extracted..."
+msgstr ""
+
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
 #, fuzzy
@@ -13744,6 +13753,12 @@ msgstr "Prefer AC3 track"
 
 msgid "Prefer AC3+ track"
 msgstr "Prefer AC3+ track"
+
+msgid "Prefer IPv4"
+msgstr ""
+
+msgid "Prefer IPv6"
+msgstr ""
 
 msgid "Prefer audio track stored by service"
 msgstr "Prefer audio track stored by service"
@@ -14090,9 +14105,6 @@ msgstr "Providers"
 msgid "Providers:"
 msgstr "Providers:"
 
-msgid "Providers: "
-msgstr "Providers: "
-
 msgid "Proxy detected"
 msgstr ""
 
@@ -14158,6 +14170,12 @@ msgid "Quad PiP is not available."
 msgstr "Quad PiP is not available."
 
 msgid "Quad9 DNS"
+msgstr ""
+
+msgid "Quad9 ECS DNS"
+msgstr ""
+
+msgid "Quad9 Unsecured DNS"
 msgstr ""
 
 msgid "Quechua"
@@ -14288,24 +14306,13 @@ msgstr "Read Userdata from oscam.conf"
 msgid "Reader"
 msgstr "Reader"
 
-msgid "Reader Statistics"
-msgstr "Reader Statistics"
-
 #, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Ready to install \"%s\" ?"
 
 #, python-format
-msgid "Ready to install '%s'?"
-msgstr ""
-
-#, python-format
 msgid "Ready to remove \"%s\" ?"
 msgstr "Ready to remove \"%s\" ?"
-
-#, python-format
-msgid "Ready to remove '%s'?"
-msgstr "Ready to remove %s ?"
 
 msgid "Real Life"
 msgstr ""
@@ -14421,8 +14428,8 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Record started! Stopping time shift now ..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer: %s"
-msgstr "Record time limited due to conflicting timer: %s"
+msgid "Record time limited due to conflicting timer:%s"
+msgstr "Record time limited due to conflicting timer:%s"
 
 msgid "Record write error (no space on disk?)"
 msgstr ""
@@ -14926,6 +14933,9 @@ msgstr "Reset and renumerate title names"
 msgid "Reset executable mode (644)"
 msgstr ""
 
+msgid "Reset list order to the default list order?"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14938,14 +14948,14 @@ msgstr "Reset playback position"
 msgid "Reset sort order"
 msgstr ""
 
+msgid "Reset the order of the entries"
+msgstr ""
+
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Reset video enhancement settings to system defaults?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Reset video enhancement settings to your last configuration?"
-
-msgid "Reshare"
-msgstr "Reshare"
 
 msgid "Reshare:"
 msgstr "Reshare:"
@@ -15240,9 +15250,6 @@ msgstr "Reunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Actions"
-msgstr ""
-
 msgid "SABnzbd Settings"
 msgstr "SABnzbd Settings"
 
@@ -15254,13 +15261,6 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr ""
-
-msgid "SATPI Setting Actions"
-msgstr ""
-
-#, fuzzy
-msgid "SATPI Settings"
-msgstr "Pengaturan AFP"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC optimized search range"
@@ -15306,6 +15306,9 @@ msgstr "template file"
 msgid "SSA file"
 msgstr ""
 
+msgid "SSH"
+msgstr ""
+
 msgid "SSID"
 msgstr ""
 
@@ -15337,17 +15340,11 @@ msgstr "Saint Pierre and Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent and the Grenadines"
 
-msgid "Samba"
-msgstr "Samba"
-
-msgid "Samba Actions"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Log"
-msgstr "Samba Log"
-
-msgid "Samba Setup"
-msgstr "Samba Setup"
+msgid "Samba Server"
+msgstr ""
 
 msgid "Same as in active"
 msgstr "Same as in active"
@@ -15806,6 +15803,9 @@ msgstr ""
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Select 'Yes' to hide channels without EPG data."
 
+msgid "Select 'Yes' to hide the server name and IP address of the server."
+msgstr ""
+
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
 msgstr ""
@@ -15953,6 +15953,9 @@ msgstr "Select CAId"
 msgid "Select Device"
 msgstr ""
 
+msgid "Select Display Skin"
+msgstr ""
+
 msgid "Select Enigma2 Skin"
 msgstr "Select Enigma2 Skin"
 
@@ -15988,6 +15991,12 @@ msgstr "Select Quad Channels"
 
 msgid "Select Satellites"
 msgstr "Select Satellites"
+
+msgid "Select Shares"
+msgstr ""
+
+msgid "Select Skin"
+msgstr ""
 
 msgid "Select Softcam"
 msgstr ""
@@ -16219,6 +16228,10 @@ msgstr ""
 msgid "Select temporary file sort order for the current column"
 msgstr ""
 
+#, python-format
+msgid "Select the %s entry"
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -16253,6 +16266,10 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
+#, python-format
+msgid "Select the action for '%s'"
+msgstr ""
+
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
@@ -16272,6 +16289,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
 msgid "Select the current bookmarked location and exit"
+msgstr ""
+
+msgid "Select the current entry"
 msgstr ""
 
 msgid "Select the current menu item"
@@ -16328,6 +16348,9 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the display sequence of previously visited services."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -16374,6 +16397,9 @@ msgstr ""
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Select the method of restoring screen resolution and framebuffer when leaving teletext."
+
+msgid "Select the mode of the DNS."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr ""
@@ -16467,6 +16493,12 @@ msgid "Select the time delay before the button starts repeating."
 msgstr ""
 
 msgid "Select the time delay between each repeat of the button."
+msgstr ""
+
+msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT to decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase the time by a day."
+msgstr ""
+
+msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
 msgstr ""
 
 msgid "Select the time when this timer should end."
@@ -16675,18 +16707,8 @@ msgstr "Serbian"
 msgid "Serial No"
 msgstr "Serial No"
 
-msgid "Serv.Name"
-msgstr "Serv.Name"
-
-#, python-format
-msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Server Info ( Oscam-Version: %s )"
-
 msgid "Server down"
 msgstr "Server down"
-
-msgid "Server:"
-msgstr "Server:"
 
 msgid "Servers"
 msgstr "Servers"
@@ -16878,6 +16900,9 @@ msgstr ""
 msgid "Set Scaling governor"
 msgstr ""
 
+msgid "Set Time"
+msgstr ""
+
 #, fuzzy
 msgid "Set action for 'Info' key"
 msgstr "Select action for timer %s:"
@@ -17060,9 +17085,6 @@ msgstr "Pengaturan"
 msgid "Setup - %s"
 msgstr "Pengaturan - %s"
 
-msgid "Setup AFP"
-msgstr "Atur AFP"
-
 msgid "Setup Audio Sync"
 msgstr "Atur Sinkronisasi Audio"
 
@@ -17074,9 +17096,6 @@ msgstr "Atur Mode audio"
 
 msgid "Setup Enigma2"
 msgstr "Atur Enigma2"
-
-msgid "Setup FTP"
-msgstr "Atur FTP"
 
 msgid "Setup Harddisk"
 msgstr "Atur Harddisk"
@@ -17093,17 +17112,11 @@ msgstr "Atur MiniDLNA"
 msgid "Setup Mounts"
 msgstr "Atur Mounts"
 
-msgid "Setup NFS"
-msgstr "Atur NFS"
-
 msgid "Setup Network Services"
 msgstr "Atur Layanan Jaringan"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
 msgstr "Atur Layanan Jaringan (Samba, Ftp, NFS, ...)"
-
-msgid "Setup OpenVPN"
-msgstr "Atur OpenVPN"
 
 msgid "Setup Plugin Browser"
 msgstr ""
@@ -17113,19 +17126,6 @@ msgstr ""
 
 msgid "Setup Plugins"
 msgstr "Atur Plugins"
-
-msgid "Setup SABnzbd"
-msgstr "Atur SABnzbd"
-
-#, fuzzy
-msgid "Setup SATPI"
-msgstr "Atur AFP"
-
-msgid "Setup Samba"
-msgstr "Atur Samba"
-
-msgid "Setup Telnet"
-msgstr "Atur Telnet"
 
 msgid "Setup Tuner"
 msgstr "Atur Penala"
@@ -17241,9 +17241,6 @@ msgstr "Atur peralatan satelit anda"
 msgid "Seychelles"
 msgstr "Seychelles"
 
-msgid "Share Folders"
-msgstr "Share Folders"
-
 msgid "Share View"
 msgstr "Share View"
 
@@ -17252,6 +17249,12 @@ msgstr "Shares"
 
 msgid "Sharpness"
 msgstr "Sharpness"
+
+msgid "ShellInABox"
+msgstr ""
+
+msgid "Shellscript"
+msgstr "Shellscript"
 
 msgid "Shift"
 msgstr ""
@@ -17283,9 +17286,6 @@ msgstr ""
 #, fuzzy
 msgid "Show"
 msgstr "Show EPG"
-
-msgid "Show /tmp/ecm.info"
-msgstr "Show /tmp/ecm.info"
 
 msgid "Show 1080p 24fps as"
 msgstr "Show 1080p 24fps as"
@@ -17350,9 +17350,6 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "Show CI messages"
-
-msgid "Show Clients"
-msgstr "Show Clients"
 
 msgid "Show Default Backup Files"
 msgstr "Show Default Backup Files"
@@ -17456,7 +17453,7 @@ msgstr "Show Movies List"
 msgid "Show Multi EPG"
 msgstr "Show Multi EPG"
 
-msgid "Show OScam Info"
+msgid "Show OSCam Information"
 msgstr ""
 
 msgid "Show OScam/CCcam in Extension Menu"
@@ -17488,9 +17485,6 @@ msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr "Show RFmod setup..."
-
-msgid "Show Readers/Proxies"
-msgstr "Show Readers/Proxies"
 
 msgid "Show Record Movies"
 msgstr "Show Record Movies"
@@ -17921,7 +17915,7 @@ msgstr "Show the EIT Now/Next data in the InfoBar."
 msgid "Show the Logs Settings screen"
 msgstr ""
 
-msgid "Show the OScamInfo Screen"
+msgid "Show the OSCam information screen"
 msgstr ""
 
 #, fuzzy
@@ -18540,9 +18534,6 @@ msgstr "Sort by default"
 msgid "Sort list by"
 msgstr "Sort list by"
 
-msgid "Sort list to default and exit?"
-msgstr ""
-
 msgid "Sort list:"
 msgstr "Sort list:"
 
@@ -18704,6 +18695,9 @@ msgstr "Start mode"
 
 msgid "Start offline decode"
 msgstr "Start offline decode"
+
+msgid "Start or Stop service"
+msgstr ""
 
 msgid "Start recording current event"
 msgstr ""
@@ -19469,17 +19463,11 @@ msgstr "Teletext subtitle color"
 msgid "Telnet"
 msgstr "Telnet"
 
-msgid "Telnet Actions"
-msgstr ""
-
 msgid "Telnet Interface"
 msgstr "Telnet Interface"
 
 msgid "Telnet Port"
 msgstr "Telnet Port"
-
-msgid "Telnet Settings"
-msgstr "Telnet Settings"
 
 msgid "Telugu"
 msgstr ""
@@ -20340,9 +20328,6 @@ msgstr ""
 msgid "Time Shift Settings"
 msgstr "Time Shift Settings"
 
-msgid "Time Update in Minutes:"
-msgstr "Time Update in Minutes:"
-
 msgid "Time between slides in image viewer slide show."
 msgstr ""
 
@@ -20658,9 +20643,6 @@ msgstr "top"
 msgid "Top and Bottom"
 msgstr "Top and Bottom"
 
-msgid "Total"
-msgstr "Total"
-
 msgid "Total CPU benchmark"
 msgstr ""
 
@@ -20694,6 +20676,9 @@ msgstr "Track"
 
 msgid "Traditional Chinese"
 msgstr "Traditional Chinese"
+
+msgid "Transcode"
+msgstr "Transcode"
 
 msgid "Transcoding"
 msgstr ""
@@ -21032,6 +21017,10 @@ msgstr "Undetermined"
 msgid "Unencrypted"
 msgstr "Unencrypted"
 
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
 msgid "UnhandledKey"
 msgstr "UnhandledKey"
 
@@ -21050,15 +21039,14 @@ msgstr "Unicable LNB"
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
 
+msgid "Uninstall"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr "United Arab Emirates"
 
 msgid "United Kingdom"
 msgstr "United Kingdom"
-
-#, fuzzy
-msgid "United States"
-msgstr "United States of America"
 
 msgid "United States Minor Outlying Islands"
 msgstr "United States Minor Outlying Islands"
@@ -21200,9 +21188,6 @@ msgstr "Update failed!"
 
 msgid "Update finished!"
 msgstr "Update finished!"
-
-msgid "Update interval (in seconds)"
-msgstr "Update interval (in seconds)"
 
 msgid ""
 "Update succeeded!\n"
@@ -21600,10 +21585,6 @@ msgstr ""
 #, fuzzy
 msgid "VOD"
 msgstr "OSD"
-
-#, fuzzy
-msgid "VPN"
-msgstr "OpenVPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -22066,18 +22047,6 @@ msgstr "Watch movies..."
 #, fuzzy
 msgid "Watch recordings"
 msgstr "Watch recordings..."
-
-#, python-format
-msgid ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
-msgstr ""
-"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
-"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
-"Your receiver restarts in 10 seconds!\n"
-"Component: enigma2"
 
 #, fuzzy
 msgid "Weather"
@@ -22747,12 +22716,6 @@ msgstr "Your %s %s will Restart..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install '%s'?"
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -22768,18 +22731,6 @@ msgid ""
 msgstr ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
-"Do you want to remove now?"
-msgstr ""
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -22919,11 +22870,17 @@ msgstr "Zap focus to main screen"
 msgid "Zap focused channel on full screen"
 msgstr "Zap focused channel on full screen"
 
+msgid "Zap history sequence"
+msgstr ""
+
 msgid "Zap mode"
 msgstr "Zap mode"
 
 #, fuzzy
 msgid "Zap next"
+msgstr "Zap to"
+
+msgid "Zap to"
 msgstr "Zap to"
 
 msgid "Zap to channel (setup in menu)"
@@ -23285,12 +23242,6 @@ msgstr "execute cuts (requires MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "exit DVD player or return to file browser"
 
-msgid "exit mounts setup menu"
-msgstr "exit mounts setup menu"
-
-msgid "exit networkadapter setup menu"
-msgstr "exit networkadapter setup menu"
-
 msgid "experimental film/video"
 msgstr "experimental film/video"
 
@@ -23525,18 +23476,6 @@ msgstr "motoring"
 
 msgid "move"
 msgstr "move"
-
-msgid "move down to last entry"
-msgstr "move down to last entry"
-
-msgid "move down to next entry"
-msgstr "move down to next entry"
-
-msgid "move up to first entry"
-msgstr "move up to first entry"
-
-msgid "move up to previous entry"
-msgstr "move up to previous entry"
 
 #, fuzzy
 msgid "movie (general)"
@@ -23779,9 +23718,6 @@ msgstr "search EPG..."
 msgid "select CAId's"
 msgstr "select CAId's"
 
-msgid "select menu entry"
-msgstr "select menu entry"
-
 msgid "serious music/classic music"
 msgstr "serious music/classic music"
 
@@ -23987,12 +23923,6 @@ msgstr ""
 msgid "uShare"
 msgstr "uShare"
 
-msgid "uShare Actions"
-msgstr ""
-
-msgid "uShare Log"
-msgstr "uShare Log"
-
 msgid "uShare Name"
 msgstr "uShare Name"
 
@@ -24000,9 +23930,6 @@ msgid "uShare Port"
 msgstr "uShare Port"
 
 msgid "uShare Selection Actions"
-msgstr ""
-
-msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -24100,18 +24027,301 @@ msgstr "yes (keep feeds)"
 msgid "®"
 msgstr ""
 
+msgid "Preferred tuner DVB-S"
+msgstr "DVB-S penala diutamakan"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "DVB-S penala diutamakan untuk merekam"
+
+msgid "Preferred tuner DVB-T"
+msgstr "DVB-T penala diutamakan"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "DVB-T penala diutamakan untuk merekam"
+
+msgid "Preferred tuner DVB-C"
+msgstr "DVB-C penala diutamakan"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "DVB-C penala diutamakan untuk merekam"
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Ketika diaktifkan, setelan ini punya bobot lebih daripada 'Penala pilihan'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Ketika diaktifkan, setelan ini punya bobot lebih daripada 'Penala pilihan untuk merekam'."
+
+msgid "Preferred tuner ATSC"
+msgstr "ATSC penala diutamakan"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "ATSC penala diutamakan untuk merekam"
+
+#, fuzzy
+#~ msgid "Australian"
+#~ msgstr "Australia"
+
+#, fuzzy
+#~ msgid "Belgian"
+#~ msgstr "Belgium"
+
+#~ msgid "Czechia"
+#~ msgstr "Czechia"
+
+#, fuzzy
+#~ msgid "Iran, Islamic Republic"
+#~ msgstr "Iran (Islamic Republic of)"
+
+#, fuzzy
+#~ msgid "United States"
+#~ msgstr "United States of America"
+
+#~ msgid "exit mounts setup menu"
+#~ msgstr "exit mounts setup menu"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "exit networkadapter setup menu"
+
+#~ msgid "move down to last entry"
+#~ msgstr "move down to last entry"
+
+#~ msgid "move down to next entry"
+#~ msgstr "move down to next entry"
+
+#~ msgid "move up to first entry"
+#~ msgstr "move up to first entry"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "move up to previous entry"
+
+#~ msgid "select menu entry"
+#~ msgstr "select menu entry"
+
+#~ msgid "A background update check is in progress, please wait a few minutes and try again."
+#~ msgstr "Pembaruan di latar sedang berjalan, mohon tunggu beberapa menit dan coba lagi."
+
+#~ msgid "CIFS/Samba Settings"
+#~ msgstr "CIFS/Samba Settings"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+
+#~ msgid "FTP Settings"
+#~ msgstr "FTP Settings"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Log"
+
+#, fuzzy
+#~ msgid "Input config file name:"
+#~ msgstr "Input channel name."
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Log"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS Settings"
+
+#~ msgid "OpenVPN Settings"
+#~ msgstr "OpenVPN Settings"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn Log"
+
+#, python-format
+#~ msgid "Ready to remove '%s'?"
+#~ msgstr "Ready to remove %s ?"
+
+#, fuzzy
+#~ msgid "SATPI Settings"
+#~ msgstr "Pengaturan AFP"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba Log"
+
+#~ msgid "Samba Setup"
+#~ msgstr "Samba Setup"
+
+#~ msgid "Setup FTP"
+#~ msgstr "Atur FTP"
+
+#~ msgid "Setup NFS"
+#~ msgstr "Atur NFS"
+
+#~ msgid "Setup OpenVPN"
+#~ msgstr "Atur OpenVPN"
+
+#~ msgid "Setup SABnzbd"
+#~ msgstr "Atur SABnzbd"
+
+#, fuzzy
+#~ msgid "Setup SATPI"
+#~ msgstr "Atur AFP"
+
+#~ msgid "Setup Samba"
+#~ msgstr "Atur Samba"
+
+#~ msgid "Setup Telnet"
+#~ msgstr "Atur Telnet"
+
+#~ msgid "Share Folders"
+#~ msgstr "Share Folders"
+
+#~ msgid "Telnet Settings"
+#~ msgstr "Telnet Settings"
+
+#~ msgid "Time Update in Minutes:"
+#~ msgstr "Time Update in Minutes:"
+
+#, fuzzy
+#~ msgid "VPN"
+#~ msgstr "OpenVPN"
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare Log"
+
+#, python-format
+#~ msgid "%s ( %s Cards )"
+#~ msgstr "%s ( %s Kartu )"
+
+#~ msgid "( All readers)"
+#~ msgstr "( Semua pembaca)"
+
+#~ msgid "(Show only reader:"
+#~ msgstr "(Tampilkan pembaca saja:"
+
+#~ msgid "AFP"
+#~ msgstr "AFP"
+
+#~ msgid "AFP Settings"
+#~ msgstr "Pengaturan AFP"
+
+#~ msgid "Address"
+#~ msgstr "Alamat"
+
+#~ msgid "CAID"
+#~ msgstr "CAID"
+
+#~ msgid "CAID:SrvID"
+#~ msgstr "CAID:SrvID"
+
+#~ msgid "Card infos (CCcam-Reader)"
+#~ msgstr "Card infos (CCcam-Reader)"
+
+#~ msgid "Cards:"
+#~ msgstr "Cards:"
+
+#, python-format
+#~ msgid "Client Info ( Oscam-Version: %s )"
+#~ msgstr "Client Info ( Oscam-Version: %s )"
+
+#~ msgid "ECM Statistics"
+#~ msgstr "ECM Statistics"
+
+#~ msgid "ECM Time"
+#~ msgstr "ECM Time"
+
+#~ msgid "ECM avg"
+#~ msgstr "ECM avg"
+
+#~ msgid "ECM last"
+#~ msgstr "ECM last"
+
+#~ msgid "ECM-Time"
+#~ msgstr "ECM-Time"
+
+#~ msgid "Hops"
+#~ msgstr "Hops"
+
+#~ msgid "Last Request"
+#~ msgstr "Last Request"
+
+#~ msgid "Oscam Info - Main Menu"
+#~ msgstr "Oscam Info - Main Menu"
+
+#~ msgid "Oscam Info Settings"
+#~ msgstr "Oscam Info Settings"
+
+#, python-format
+#~ msgid "Oscam Log ( Oscam-Version: %s )"
+#~ msgstr "Oscam Log ( Oscam-Version: %s )"
+
+#~ msgid "OscamInfo Mainmenu"
+#~ msgstr "OscamInfo Mainmenu"
+
+#~ msgid "PID"
+#~ msgstr "PID"
+
+#~ msgid "Please choose CCcam-Reader"
+#~ msgstr "Please choose CCcam-Reader"
+
+#~ msgid "Please choose reader"
+#~ msgstr "Please choose reader"
+
+#~ msgid "Providers: "
+#~ msgstr "Providers: "
+
+#~ msgid "Reader Statistics"
+#~ msgstr "Reader Statistics"
+
+#~ msgid "Reshare"
+#~ msgstr "Reshare"
+
+#~ msgid "Serv.Name"
+#~ msgstr "Serv.Name"
+
+#, python-format
+#~ msgid "Server Info ( Oscam-Version: %s )"
+#~ msgstr "Server Info ( Oscam-Version: %s )"
+
+#~ msgid "Server:"
+#~ msgstr "Server:"
+
+#~ msgid "Setup AFP"
+#~ msgstr "Atur AFP"
+
+#~ msgid "Show /tmp/ecm.info"
+#~ msgstr "Show /tmp/ecm.info"
+
+#~ msgid "Show Clients"
+#~ msgstr "Show Clients"
+
+#~ msgid "Show Readers/Proxies"
+#~ msgstr "Show Readers/Proxies"
+
+#~ msgid "Total"
+#~ msgstr "Total"
+
+#~ msgid "Update interval (in seconds)"
+#~ msgstr "Update interval (in seconds)"
+
+#~ msgid "Please change recording endtime"
+#~ msgstr "Please change recording endtime"
+
+#, python-format
+#~ msgid ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+#~ msgstr ""
+#~ "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+#~ "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+#~ "Your receiver restarts in 10 seconds!\n"
+#~ "Component: enigma2"
+
 #~ msgid "+24"
 #~ msgstr "+24"
 
 #~ msgid "-24"
 #~ msgstr "-24"
-
-#~ msgid ""
-#~ "A recording is currently running.\n"
-#~ "What do you want to do?"
-#~ msgstr ""
-#~ "Rekaman sedang berlangsung.\n"
-#~ "Apa yang ingin anda lakukan?"
 
 #~ msgid "BouquetList"
 #~ msgstr "BouquetList"
@@ -24231,21 +24441,12 @@ msgstr ""
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI Helper Settings"
 
-#~ msgid "ClientIP"
-#~ msgstr "ClientIP"
-
 #~ msgid "Minute"
 #~ msgstr "minute"
-
-#~ msgid "Transcode"
-#~ msgstr "Transcode"
 
 #, fuzzy
 #~ msgid "(FTA Service)"
 #~ msgstr "Semua Layanan"
-
-#~ msgid "ButtonSetup"
-#~ msgstr "ButtonSetup"
 
 #, fuzzy
 #~ msgid "Constellation & FFT mode"
@@ -24267,21 +24468,12 @@ msgstr ""
 #~ msgid "Frequency & Polarization"
 #~ msgstr "Polarization"
 
-#~ msgid "Hotkey"
-#~ msgstr "Hotkey"
-
 #, fuzzy
 #~ msgid "Inversion & Bandwidth"
 #~ msgstr "Lebar ikon info"
 
 #~ msgid "ONID"
 #~ msgstr "ONID"
-
-#~ msgid "PPanel"
-#~ msgstr "PPanel"
-
-#~ msgid "Panic to"
-#~ msgstr "Panic to"
 
 #, fuzzy
 #~ msgid "Service ID"
@@ -24303,9 +24495,6 @@ msgstr ""
 #~ msgid "Service info - tuner setting values"
 #~ msgstr "Service info font size"
 
-#~ msgid "Shellscript"
-#~ msgstr "Shellscript"
-
 #, fuzzy
 #~ msgid "Symbol rate & FEC"
 #~ msgstr "Symbol rate"
@@ -24324,9 +24513,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Tuner setting values"
 #~ msgstr "Tuner Settings"
-
-#~ msgid "Zap to"
-#~ msgstr "Zap to"
 
 #, fuzzy
 #~ msgid "active"

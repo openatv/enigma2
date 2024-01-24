@@ -28,7 +28,7 @@ config.pic.textcolor = ConfigSelection(default="#0038FF48", choices=[("#00000000
 
 class picshow(Screen):
 	skin = """
-		<screen name="picshow" position="center,center" size="560,440" title="Picture player" >
+		<screen name="picshow" position="center,center" size="560,440" title="Picture player" resolution="1280,720">
 			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -147,7 +147,7 @@ class Pic_Setup(Setup):
 
 class Pic_Exif(Screen):
 	skin = """
-		<screen name="Pic_Exif" position="center,center" size="560,360" title="Info" >
+		<screen name="Pic_Exif" position="center,center" size="560,360" title="Info" resolution="1280,720">
 			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="menu" render="Listbox" position="5,50" size="550,310" scrollbarMode="showOnDemand" selectionDisabled="1" >

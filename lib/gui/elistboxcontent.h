@@ -69,12 +69,15 @@ class eListboxPythonConfigContent : public eListboxPythonStringContent
 public:
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	void setSeperation(int sep) { m_seperation = sep; }
+	int getEntryLeftOffset();
+	int getHeaderLeftOffset();
 	int currentCursorSelectable();
 	void setSlider(int height, int space)
 	{
 		m_slider_height = height;
 		m_slider_space = space;
 	}
+	eSize calculateEntryTextSize(const std::string &string, bool headerFont = true);
 
 private:
 	int m_seperation, m_slider_height, m_slider_space;

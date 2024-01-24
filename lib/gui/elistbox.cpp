@@ -690,7 +690,7 @@ void eListbox::recalcSize()
 
 	bool scrollbarVisible = false;
 	int xscrollBar = 0;
-	int yscrollBar = 0;
+	[[maybe_unused]]int yscrollBar = 0;
 	if (m_content)
 	{
 		scrollbarVisible = m_scrollbar && m_scrollbar->isVisible();
