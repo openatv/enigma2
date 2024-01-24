@@ -33,12 +33,15 @@ for line in lines:
 
 profileOld = fileReadLines(profileFile, source=MODULE_NAME)
 if profileOld:
-	for line in profileOld:
-		if "\t" in line:
-			(timeStamp, checkPoint) = line.strip().split("\t")
-			timeStamp = float(timeStamp)
-			totalTime = timeStamp
-			profileData[checkPoint] = timeStamp
+	try:
+		for line in profileOld:
+			if "\t" in line:
+				(timeStamp, checkPoint) = line.strip().split("\t")
+				timeStamp = float(timeStamp)
+				totalTime = timeStamp
+				profileData[checkPoint] = timeStamp
+	except ValueError:
+		profileData = {}
 else:
 	print("[Profile] Error: No profile data available!")
 
