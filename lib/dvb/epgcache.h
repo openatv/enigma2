@@ -186,6 +186,9 @@ private:
 public:
 	static eEPGCache *getInstance() { return instance; }
 
+	void setDebug(bool enabled) { m_debug = enabled; }
+	void setSave(bool enabled) { m_saveepg = enabled; }
+
 	void crossepgImportEPGv21(std::string dbroot);
 	void clear();
 	void save();

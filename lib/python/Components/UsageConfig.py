@@ -1136,6 +1136,12 @@ def InitUsageConfig():
 	config.epg.opentv = ConfigYesNo(default=True)
 	config.epg.saveepg = ConfigYesNo(default=True)
 
+	def showEPGChanged(configElement):
+		from enigma import eEPGCache
+		eEPGCache.getInstance().setSave(configElement.value)
+
+	config.epg.saveepg.addNotifier(showEPGChanged, immediate_feedback=False, initial_call=False)
+
 	config.misc.showradiopic = ConfigYesNo(default=True)
 	config.misc.bootvideo = ConfigYesNo(default=True)
 
@@ -1157,12 +1163,12 @@ def InitUsageConfig():
 		if not config.epg.opentv.value:
 			mask &= ~eEPGCache.OPENTV
 		eEPGCache.getInstance().setEpgSources(mask)
-	config.epg.eit.addNotifier(EpgSettingsChanged)
-	config.epg.mhw.addNotifier(EpgSettingsChanged)
-	config.epg.freesat.addNotifier(EpgSettingsChanged)
-	config.epg.viasat.addNotifier(EpgSettingsChanged)
-	config.epg.netmed.addNotifier(EpgSettingsChanged)
-	config.epg.virgin.addNotifier(EpgSettingsChanged)
+	config.epg.eit.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.mhw.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.freesat.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.viasat.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.netmed.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.virgin.addNotifier(EpgSettingsChanged, initial_call=False)
 	config.epg.opentv.addNotifier(EpgSettingsChanged)
 
 	config.epg.maxdays = ConfigSelectionNumber(min=1, max=365, stepwidth=1, default=7, wraparound=True)
@@ -1192,6 +1198,12 @@ def InitUsageConfig():
 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback=False)
 	config.epg.cacheloadtimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
 	config.epg.cachesavetimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
+
+	def debugEPGhanged(configElement):
+		from enigma import eEPGCache
+		eEPGCache.getInstance().setDebug(configElement.value)
+
+	config.crash.debugEPG.addNotifier(debugEPGhanged, immediate_feedback=False, initial_call=False)
 
 	if BoxInfo.getItem("AmlogicFamily"):
 		limits = [int(x) for x in iAVSwitch.getWindowsAxis().split()]
