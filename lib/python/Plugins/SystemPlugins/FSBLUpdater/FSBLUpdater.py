@@ -3,7 +3,7 @@ from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 
 import hashlib
-from distutils import spawn
+from shutil import which
 
 
 class FSBLCheckerBase:
@@ -41,7 +41,7 @@ class FSBLUpdater(Console):
 	CHECKER_LUT = {
 		"dm900": FSBLCheckerDM900
 	}
-	FLASH_FSBL_BINARY = spawn.find_executable("flash-fsbl")
+	FLASH_FSBL_BINARY = which("flash-fsbl")
 
 	@staticmethod
 	def isUpdateRequired(boxtype):
