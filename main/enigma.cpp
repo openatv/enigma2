@@ -215,15 +215,6 @@ int exit_code;
 
 void quitMainloop(int exitCode)
 {
-
-	// Workaround in case of crash in quit
-	FILE *ef = fopen("/tmp/e2ExitCode", "w");
-	if (ef)
-	{
-		fprintf(ef, "%d", exitCode);
-		fclose(ef);
-	}
-
 	FILE *f = fopen("/proc/stb/fp/was_timer_wakeup", "w");
 	if (f)
 	{
