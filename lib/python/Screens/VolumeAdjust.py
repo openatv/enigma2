@@ -71,7 +71,7 @@ class VolumeAdjust(Setup):
 				if serviceVolumeOffset[2] == NEW_VALUE:
 					serviceVolumeOffset[2] = config.volume.defaultOffset.value
 					entry.default = NEW_VALUE  # This triggers a cancel confirmation for unedited new entries.
-				volumeList.append(getConfigListEntry("  -  %s" % serviceVolumeOffset[0], entry, _("Set the volume offset for the '%s' service.") % serviceVolumeOffset[0]))
+				volumeList.append(getConfigListEntry(f"  -  {serviceVolumeOffset[0]}", entry, _("Set the volume offset for the '%s' service.") % serviceVolumeOffset[0]))
 		self["config"].setList(volumeList)
 
 	def selectionChanged(self):
@@ -221,7 +221,7 @@ class Volume:
 		serviceVolumeOffsets = []
 		volumeDom = fileReadXML(VOLUME_FILE, source=MODULE_NAME)
 		if volumeDom is not None:
-			print("[VolumeAdjust] Loading volume offset data from '%s'." % VOLUME_FILE)
+			print(f"[VolumeAdjust] Loading volume offset data from '{VOLUME_FILE}'.")
 			for services in volumeDom.findall("services"):
 				for service in services.findall("service"):
 					serviceName = service.get("name")
@@ -248,16 +248,16 @@ class Volume:
 		xml.append("<adjustlist>")
 		xml.append("\t<services>")
 		for serviceVolumeOffset in self.serviceVolumeOffsets:
-			xml.append("\t\t<service name=\"%s\" ref=\"%s\" volume=\"%s\" />" % (serviceVolumeOffset[0], serviceVolumeOffset[1], serviceVolumeOffset[2]))
+			xml.append(f"\t\t<service name=\"{serviceVolumeOffset[0]}\" ref=\"{serviceVolumeOffset[1]}\" volume=\"{serviceVolumeOffset[2]}\" />")
 		xml.append("\t</services>")
 		xml.append("</adjustlist>")
 		xml.append("")
 		try:
 			with open(VOLUME_FILE, "w") as fd:
 				fd.write("\n".join(xml))
-			print("[VolumeAdjust] Saving new volume offset data to '%s'." % VOLUME_FILE)
+			print(f"[VolumeAdjust] Saving new volume offset data to '{VOLUME_FILE}'.")
 		except OSError as err:
-			print("[VolumeAdjust] Error %d: Unable to save the new volume offset data to '%s'! (%s)" % (err.errno, VOLUME_FILE, err.strerror))
+			print(f"[VolumeAdjust] Error {err.errno}: Unable to save the new volume offset data to '{VOLUME_FILE}'!  ({err.strerror})")
 			if isfile(VOLUME_FILE):
 				unlink(VOLUME_FILE)  # Remove the file as it is probably invalid or incomplete.
 
@@ -275,25 +275,25 @@ class Volume:
 				serviceVolume = self.volumeControl.getVolume()
 				if self.previousOffset:
 					self.normalVolume = serviceVolume - self.previousOffset
-					print("[VolumeAdjust] Volume offset of %d is currently in effect.  Normal volume is %d." % (self.previousOffset, self.normalVolume))
+					print(f"[VolumeAdjust] Volume offset of {self.previousOffset} is currently in effect.  Normal volume is {self.normalVolume}.")
 				else:
 					self.normalVolume = serviceVolume
-					print("[VolumeAdjust] Normal volume is %d." % self.normalVolume)
+					print(f"[VolumeAdjust] Normal volume is {self.normalVolume}.")
 				if index == -1:  # Service not found, check if Dolby Digital volume needs to be offset.
 					if config.volume.dolbyEnabled.value and self.isCurrentAudioAC3DTS():
 						offset = config.volume.dolbyOffset.value
 						newVolume = self.normalVolume + offset
 						if serviceVolume != newVolume:
 							self.volumeControl.setVolume(newVolume, newVolume)
-							print("[VolumeAdjust] New volume of %d, including an offset of %d, set for Dolby Digital / Dolby AC-3 service '%s'." % (newVolume, offset, name))
+							print(f"[VolumeAdjust] New volume of {newVolume}, including an offset of {offset}, set for Dolby Digital / Dolby AC-3 service '{name}'.")
 					elif serviceVolume != self.normalVolume:
 						self.volumeControl.setVolume(self.normalVolume, self.normalVolume)
-						print("[VolumeAdjust] Normal volume of %d restored for service '%s'." % (self.normalVolume, name))
+						print(f"[VolumeAdjust] Normal volume of {self.normalVolume} restored for service '{name}'.")
 				else:  # Service found in serviceVolumeOffsets list, use volume offset to change the volume.
 					newVolume = self.normalVolume + offset
 					if serviceVolume != newVolume:
 						self.volumeControl.setVolume(newVolume, newVolume)
-						print("[VolumeAdjust] New volume of %d, including an offset of %d, set for service '%s'." % (newVolume, offset, name))
+						print(f"[VolumeAdjust] New volume of {newVolume}, including an offset of {offset}, set for service '{name}'.")
 				self.previousOffset = offset
 
 	def findCurrentService(self, serviceReference):
@@ -308,7 +308,7 @@ class Volume:
 		if audio:
 			try:  # Uhh, servicemp3 leads sometimes to OverflowError Error.
 				description = audio.getTrackInfo(audio.getCurrentTrack()).getDescription()
-				print("[VolumeAdjust] Description: '%s'." % description)
+				print(f"[VolumeAdjust] Description: '{description}'.")
 				if "AC3" in description or "DTS" in description or "Dolby Digital" == description:
 					print("[VolumeAdjust] AudioAC3Dolby = YES")
 					return True
@@ -327,10 +327,10 @@ def autostart(session):
 	if isfile(oldFile):
 		if isfile(VOLUME_FILE):
 			unlink(oldFile)
-			print("[VolumeAdjust] Update Note: Both '%s' and '%s' exist.  Old version '%s' deleted!" % (oldFile, VOLUME_FILE, oldFile))
+			print(f"[VolumeAdjust] Update Note: Both '{oldFile}' and '{VOLUME_FILE}' exist.  Old version '{oldFile}' deleted!")
 		else:
 			moveFiles(((oldFile, VOLUME_FILE),))
-			print("[VolumeAdjust] Update Note: Moving '%s' to '%s'!" % (oldFile, VOLUME_FILE))
+			print(f"[VolumeAdjust] Update Note: Moving '{oldFile}' to '{VOLUME_FILE}'!")
 	global VolumeInstance
 	if VolumeInstance is None:
 		VolumeInstance = Volume(session)
