@@ -3295,13 +3295,13 @@ class InfoBarExtensions:
 			p(self)
 
 	def bluekey_qm(self):
-		if config.workaround.blueswitch.value == "1":
+		if config.workaround.blueswitch.value:
 			self.showExtensionSelection()
 		else:
 			self.quickmenuStart()
 
 	def bluekey_ex(self):
-		if config.workaround.blueswitch.value == "1":
+		if config.workaround.blueswitch.value:
 			self.quickmenuStart()
 		else:
 			self.showExtensionSelection()
@@ -3833,7 +3833,7 @@ class InfoBarQuickMenu:
 			}, prio=0, description=_("QuickMenu Actions"))
 
 	def bluekey_qm(self):
-		if config.workaround.blueswitch.value == "1":
+		if config.workaround.blueswitch.value:
 			self.showExtensionSelection()
 		else:
 			self.quickmenuStart()
