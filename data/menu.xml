@@ -185,7 +185,6 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<!-- Menu / Setup / Network -->
 			<menu key="network" level="0" text="Network" weight="60">
 				<item key="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
-				<item key="netmounts_setup" level="1" text="Mounts Settings" weight="5"><screen module="NetworkSetup" screen="NetworkMountsMenu" /></item>
 				<item key="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
 				<item key="networkservices_setup" level="2" text="Network Services" weight="9"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
 				<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
