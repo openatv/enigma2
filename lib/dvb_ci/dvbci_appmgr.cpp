@@ -45,15 +45,15 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 			char str[dl + 1];
 			memcpy(str, ((char*)data) + 6, dl);
 			str[dl] = '\0';
-			eDebugNoNewLine("[CI%d AM]   menu string: ", slot->getSlotID());
-			for (int i = 0; i < dl; ++i)
-				eDebugNoNewLine("%c", ((unsigned char*)data)[i+6]);
-			eDebugNoNewLine("\n");
 
 			m_app_name = str;
 			if(m_app_name.size() > 0 && !isUTF8(m_app_name)) {
-				m_app_name = repairUTF8(m_app_name.c_str(), m_app_name.size());
+				eDebug("[CI%d AM]   menu string is not UTF8 hex output:%s\nstr output:%s\n",slot->getSlotID(),string_to_hex(m_app_name).c_str(),m_app_name.c_str());
+				m_app_name = convertLatin1UTF8(m_app_name);
 				eDebug("[CI%d AM]   fixed menu string: %s", slot->getSlotID(), m_app_name.c_str());
+			}
+			else {
+				eDebug("[CI%d AM]   menu string: %s", slot->getSlotID(), m_app_name.c_str());
 			}
 			/* emit */ eDVBCI_UI::getInstance()->m_messagepump.send(eDVBCIInterfaces::Message(eDVBCIInterfaces::Message::appNameChanged, slot->getSlotID(), m_app_name.c_str()));
 
