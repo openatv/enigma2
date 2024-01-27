@@ -53,6 +53,11 @@ if [ -x "@bindir@/showiframe" ]; then
 	done
 fi
 
+# hook to execute dhcp wait script
+if [ -x @bindir@/enigma2_dhcp_wait.sh ]; then
+	@bindir@/enigma2_dhcp_wait.sh
+fi
+
 # hook to execute scripts always before enigma2 start
 if [ -x @bindir@/enigma2_pre_start.sh ]; then
 	@bindir@/enigma2_pre_start.sh
