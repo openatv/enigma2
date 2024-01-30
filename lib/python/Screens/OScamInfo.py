@@ -54,7 +54,7 @@ class OSCamGlobals():
 			install_opener(opener)
 		request = Request(url)
 		try:
-			data = urlopen(request).read()
+			data = urlopen(request).read().decode(encoding="latin-1", errors="ignore")
 			return True, data
 		except URLError as error:
 			errmsg = str(error)
@@ -118,10 +118,10 @@ class OSCamGlobals():
 	def updateLog(self):
 		webifok, result = self.openWebIF(log=True)
 		if webifok:
-			log = search(r'<log>(.*?)</log>', result.decode().replace("<![CDATA[", "").replace("]]>", ""), S)
+			log = search(r'<log>(.*?)</log>', result.replace("<![CDATA[", "").replace("]]>", ""), S)
 			return True, log.group(1).strip() if log else _("<no log found>")
 		else:
-			return False, result.decode()
+			return False, result
 
 
 class OSCamInfo(Screen, OSCamGlobals):
@@ -165,16 +165,16 @@ class OSCamInfo(Screen, OSCamGlobals):
 				</convert>
 			</widget>
 			<widget name="logtext" position="15,812" size="1890,150" font="Regular;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#ECEAF6" noWrap="0" scrollbarMode="showNever" />
-			<eLabel text="System Ram" position="15,964" size="148,42" font="Regular;27" halign="center" valign="center" foregroundColor="#FFFF30" backgroundColor="#1B3C85" />
-			<widget source="total" render="Label" position="165,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
-			<widget source="used" render="Label" position="395,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
-			<widget source="free" render="Label" position="625,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
-			<widget source="buffer" render="Label" position="855,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
-			<eLabel text="OSCam" position="1085,964" size="148,42" font="Regular;27" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#1B3C85" />
+			<eLabel text="System Ram" position="15,964" size="171,42" font="Regular;27" halign="center" valign="center" foregroundColor="#FFFF30" backgroundColor="#1B3C85" />
+			<widget source="total" render="Label" position="188,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
+			<widget source="used" render="Label" position="418,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
+			<widget source="free" render="Label" position="648,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
+			<widget source="buffer" render="Label" position="878,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
+			<eLabel text="OSCam" position="1108,964" size="125,42" font="Regular;27" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#1B3C85" />
 			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
 			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#1B3C85" />
-			<eLabel name="blue" position="1260,1010" size="10,65" backgroundColor="blue" zPosition="1" />
-			<widget source="key_blue" render="Label" position="1280,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
+			<eLabel name="blue" position="920,1010" size="10,65" backgroundColor="blue" zPosition="1" />
+			<widget source="key_blue" render="Label" position="940,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
 			<widget source="key_menu" render="Label" position="1530,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
 			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
 		</screen>
@@ -281,7 +281,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 		else:
 			self["timerinfos"].setText(currtime)  # set at least one element just for having the attribute 'activeComponents'
 			self.loop.stop()
-			self["buildinfos"].setText(_("Unexpected error accessing WebIF: %s") % result.decode())
+			self["buildinfos"].setText(_("Unexpected error accessing WebIF: %s") % result)
 
 	def displayLog(self):
 		logok, result = self.updateLog()
