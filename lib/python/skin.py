@@ -1701,7 +1701,7 @@ def readSkin(screen, skin, names, desktop):
 				print("[Skin] No suitable screen found!")
 		else:
 			myScreen = fromstring(skin)
-		if myScreen:
+		if myScreen is not None:
 			screen.parsedSkin = myScreen
 	if myScreen is None:
 		print("[Skin] No skin to read or screen to display.")
