@@ -1,6 +1,7 @@
 from glob import glob
 from os.path import dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
+from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
 from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
@@ -1701,7 +1702,7 @@ def readSkin(screen, skin, names, desktop):
 				print("[Skin] No suitable screen found!")
 		else:
 			myScreen = fromstring(skin)
-		if myScreen:
+		if myScreen is not None:
 			screen.parsedSkin = myScreen
 	if myScreen is None:
 		print("[Skin] No skin to read or screen to display.")
@@ -1887,7 +1888,8 @@ def readSkin(screen, skin, names, desktop):
 			try:
 				processor(widget, context)
 			except SkinError as err:
-				print(f"[Skin] Error in screen '{myName}' widget '{widget.tag}' {str(err)}!")
+				print(f"[Skin] Error: Screen '{myName}' widget '{widget.tag}' {str(err)}!")
+				# print_exc()
 
 	def processPanel(widget, context):
 		name = widget.attrib.get("name")
@@ -1937,7 +1939,8 @@ def readSkin(screen, skin, names, desktop):
 		context.y = 0
 		processScreen(myScreen, context)
 	except Exception as err:
-		print(f"[Skin] Error in screen '{myName}' {str(err)}!")
+		print(f"[Skin] Error: Screen '{myName}' {str(err)}!")
+		print_exc()
 
 	from Components.GUIComponent import GUIComponent
 	unusedComponents = [x for x in set(screen.keys()) - usedComponents if isinstance(x, GUIComponent)]
