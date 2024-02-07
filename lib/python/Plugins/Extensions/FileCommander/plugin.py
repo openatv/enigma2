@@ -396,9 +396,33 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.updateSort()
 
 	def updateTitle(self):
-		filtered = "" if config.plugins.FileCommander.extension.value == config.plugins.FileCommander.extension.default else "  (*)"
-		selected = f"  -  {len(self.multiSelect.getSelectedItems())} Selected" if self.multiSelect else ""
-		self.setTitle(f"{PROGRAM_NAME}{filtered}{selected}")
+		if self.multiSelect:
+			def dirSize(directory):
+				totalSize = getsize(directory)
+				for item in listdir(directory):
+					path = pathjoin(directory, item)
+					if isfile(path):
+						totalSize += getsize(path)
+					elif isdir(path):
+						totalSize += dirSize(path)
+				return totalSize
+
+			selectedItemCount = 0
+			selectedItemsSize = 0
+			for selectedItems in self.multiSelect.getSelectedItems():
+				selectedItemCount += 1
+				if isfile(selectedItems):
+					selectedItemsSize += getsize(selectedItems)
+				elif isdir(selectedItems):
+					selectedItemsSize += dirSize(selectedItems)
+
+			selectedItemsSize = NumberScaler().scale(selectedItemsSize, style="Si", maxNumLen=3, decimals=3)
+			selected = f"  -  {selectedItemCount} Selected  -  {selectedItemsSize}"
+
+			self.setTitle("%s%s" % (PROGRAM_NAME, selected))
+		else:
+			filtered = "" if config.plugins.FileCommander.extension.value == config.plugins.FileCommander.extension.default else "  (*)"
+			self.setTitle("%s%s" % (PROGRAM_NAME, filtered))
 
 	def updateHeading(self, column):
 		def buildHeadingData(column):  # Numbers in trailing comments are the template text indexes.
