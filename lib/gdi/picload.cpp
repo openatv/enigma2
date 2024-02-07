@@ -1265,22 +1265,22 @@ PyObject *ePicLoad::getInfo(const char *filename)
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif->m_exifinfo->LightSource));
 			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", exif->m_exifinfo->CompressionLevel));
 			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", exif->m_exifinfo->ISOequivalent));
-			sprintf(tmp, "%.2f", exif->m_exifinfo->Xresolution);
+			snprintf(tmp, sizeof(tmp) - 1, "%.2f", exif->m_exifinfo->Xresolution);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.2f", exif->m_exifinfo->Yresolution);
+			snprintf(tmp, sizeof(tmp) - 1, "%.2f", exif->m_exifinfo->Yresolution);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif->m_exifinfo->ResolutionUnit));
-			sprintf(tmp, "%.2f", exif->m_exifinfo->Brightness);
+			snprintf(tmp, sizeof(tmp) - 1, "%.2f", exif->m_exifinfo->Brightness);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f sec.", exif->m_exifinfo->ExposureTime);
+			snprintf(tmp, sizeof(tmp) - 1, "%.5f sec.", exif->m_exifinfo->ExposureTime);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f", exif->m_exifinfo->ExposureBias);
+			snprintf(tmp, sizeof(tmp) - 1, "%.5f", exif->m_exifinfo->ExposureBias);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f", exif->m_exifinfo->Distance);
+			snprintf(tmp, sizeof(tmp) - 1, "%.5f", exif->m_exifinfo->Distance);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f", exif->m_exifinfo->CCDWidth);
+			snprintf(tmp, sizeof(tmp) - 1, "%.5f", exif->m_exifinfo->CCDWidth);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.2f", exif->m_exifinfo->ApertureFNumber);
+			snprintf(tmp, sizeof(tmp) - 1, "%.2f", exif->m_exifinfo->ApertureFNumber);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
 		}
 		else

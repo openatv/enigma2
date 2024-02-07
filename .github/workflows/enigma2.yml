@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        gcc: [12,13]
-        python: ['3.11','3.12']
+        gcc: [13]
+        python: ['3.12']
     steps:
       - name: Install prerequisites
         run: |

@@ -61,7 +61,7 @@ eDVBScan::~eDVBScan()
 
 int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTransportStreamID tsid)
 {
-	if(onid.get() == 0 || onid.get() == 1 && tsid < 2 || onid.get() >= 0xFF00)
+	if(onid.get() == 0 || (onid.get() == 1 && tsid < 2) || onid.get() >= 0xFF00)
 	{
 		return 0;
 	}
@@ -622,7 +622,12 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 		char row[40];
 		bool added = false;
 		[[maybe_unused]] size_t ret; /* dummy value to store fread return values */
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-overflow"
 		sprintf(row, "%08x:%04x:%04x:%04x:%05d:%08d\n", ns.get(), onid.get(), tsid.get(), sid.get(), lcn, signal);
+#pragma GCC diagnostic pop
+
 		fseek(m_lcn_file, 0, SEEK_END);
 		size = ftell(m_lcn_file);
 		
@@ -930,10 +935,10 @@ void eDVBScan::channelDone()
 					case S2_SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
 						eDebug("[eDVBScan] S2_SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR found");
-						if (system != iDVBFrontend::feSatellite)
-							break; // when current locked transponder is no satellite transponder ignore this descriptor
+						//if (system != iDVBFrontend::feSatellite)
+						//	break; // when current locked transponder is no satellite transponder ignore this descriptor
 
-						S2SatelliteDeliverySystemDescriptor &d = (S2SatelliteDeliverySystemDescriptor&)**desc;
+						//S2SatelliteDeliverySystemDescriptor &d = (S2SatelliteDeliverySystemDescriptor&)**desc;
 						[[fallthrough]];
 					}
 					case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:

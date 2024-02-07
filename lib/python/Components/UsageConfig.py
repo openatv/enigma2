@@ -37,7 +37,7 @@ def InitUsageConfig():
 	config.misc.SettingsVersion.value = [1, 1]
 	config.misc.SettingsVersion.save_forced = True
 	config.misc.SettingsVersion.save()
-	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", _("%d Minutes") % 30), ("60", _("%d Hour") % 1), ("1440", _("%d Hours") % 24)])
+	config.misc.useNTPminutes = ConfigSelection(default=30, choices=[(30, _("%d Minutes") % 30), (60, _("%d Hour") % 1), (1440, _("%d Hours") % 24)])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 
 	config.misc.extraopkgpackages = ConfigYesNo(default=False)
@@ -46,9 +46,9 @@ def InitUsageConfig():
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
 
 	config.workaround = ConfigSubsection()
-	config.workaround.blueswitch = ConfigSelection(default="0", choices=[
-		("0", _("QuickMenu/Extensions")),
-		("1", _("Extensions/QuickMenu"))
+	config.workaround.blueswitch = ConfigSelection(default=0, choices=[
+		(0, _("QuickMenu/Extensions")),
+		(1, _("Extensions/QuickMenu"))
 	])
 	config.workaround.deeprecord = ConfigYesNo(default=False)
 	config.workaround.wakeuptime = ConfigSelectionNumber(default=5, stepwidth=1, min=0, max=30, wraparound=True)
@@ -161,12 +161,12 @@ def InitUsageConfig():
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
 
 	def correctInvalidEPGDataChange(configElement):
-		eServiceEvent.setUTF8CorrectMode(int(configElement.value))
+		eServiceEvent.setUTF8CorrectMode(configElement.value)
 
-	config.usage.correct_invalid_epgdata = ConfigSelection(default="1", choices=[
-		("0", _("Disabled")),
-		("1", _("Enabled")),
-		("2", _("Debug"))
+	config.usage.correct_invalid_epgdata = ConfigSelection(default=1, choices=[
+		(0, _("Disabled")),
+		(1, _("Enabled")),
+		(2, _("Debug"))
 	])
 	config.usage.correct_invalid_epgdata.addNotifier(correctInvalidEPGDataChange)
 
@@ -1136,6 +1136,12 @@ def InitUsageConfig():
 	config.epg.opentv = ConfigYesNo(default=True)
 	config.epg.saveepg = ConfigYesNo(default=True)
 
+	def showEPGChanged(configElement):
+		from enigma import eEPGCache
+		eEPGCache.getInstance().setSave(configElement.value)
+
+	config.epg.saveepg.addNotifier(showEPGChanged, immediate_feedback=False, initial_call=False)
+
 	config.misc.showradiopic = ConfigYesNo(default=True)
 	config.misc.bootvideo = ConfigYesNo(default=True)
 
@@ -1157,12 +1163,12 @@ def InitUsageConfig():
 		if not config.epg.opentv.value:
 			mask &= ~eEPGCache.OPENTV
 		eEPGCache.getInstance().setEpgSources(mask)
-	config.epg.eit.addNotifier(EpgSettingsChanged)
-	config.epg.mhw.addNotifier(EpgSettingsChanged)
-	config.epg.freesat.addNotifier(EpgSettingsChanged)
-	config.epg.viasat.addNotifier(EpgSettingsChanged)
-	config.epg.netmed.addNotifier(EpgSettingsChanged)
-	config.epg.virgin.addNotifier(EpgSettingsChanged)
+	config.epg.eit.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.mhw.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.freesat.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.viasat.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.netmed.addNotifier(EpgSettingsChanged, initial_call=False)
+	config.epg.virgin.addNotifier(EpgSettingsChanged, initial_call=False)
 	config.epg.opentv.addNotifier(EpgSettingsChanged)
 
 	config.epg.maxdays = ConfigSelectionNumber(min=1, max=365, stepwidth=1, default=7, wraparound=True)
@@ -1192,6 +1198,12 @@ def InitUsageConfig():
 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback=False)
 	config.epg.cacheloadtimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
 	config.epg.cachesavetimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
+
+	def debugEPGhanged(configElement):
+		from enigma import eEPGCache
+		eEPGCache.getInstance().setDebug(configElement.value)
+
+	config.crash.debugEPG.addNotifier(debugEPGhanged, immediate_feedback=False, initial_call=False)
 
 	if BoxInfo.getItem("AmlogicFamily"):
 		limits = [int(x) for x in iAVSwitch.getWindowsAxis().split()]
@@ -1303,7 +1315,8 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if BoxInfo.getItem("WakeOnLAN"):
 		def wakeOnLANChanged(configElement):
-			open(BoxInfo.getItem("WakeOnLAN"), "w").write(BoxInfo.getItem("WakeOnLANType")[configElement.value])
+			with open(BoxInfo.getItem("WakeOnLAN"), "w") as fd:
+				fd.write(BoxInfo.getItem("WakeOnLANType")[configElement.value])
 		config.network.wol = ConfigYesNo(default=False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.NFS_autostart = ConfigYesNo(default=True)
@@ -1466,7 +1479,8 @@ def InitUsageConfig():
 
 	if BoxInfo.getItem("ZapMode"):
 		def setZapmode(el):
-			open(BoxInfo.getItem("ZapMode"), "w").write(el.value)
+			with open(BoxInfo.getItem("ZapMode"), "w") as fd:
+				fd.write(el.value)
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
 			("mute", _("Black Screen")),
 			("hold", _("Hold screen")),
@@ -1940,14 +1954,12 @@ def InitUsageConfig():
 	config.pluginbrowser.src = ConfigYesNo(default=False)
 
 	def setForceLNBPowerChanged(configElement):
-		f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
-		f.write("on" if configElement.value else "off")
-		f.close()
+		with open("/proc/stb/frontend/fbc/force_lnbon", "w") as fd:
+			fd.write("on" if configElement.value else "off")
 
 	def setForceToneBurstChanged(configElement):
-		f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
-		f.write("enable" if configElement.value else "disable")
-		f.close()
+		with open("/proc/stb/frontend/fbc/force_toneburst", "w") as fd:
+			fd.write("enable" if configElement.value else "disable")
 
 	config.tunermisc = ConfigSubsection()
 	if BoxInfo.getItem("ForceLNBPowerChanged"):

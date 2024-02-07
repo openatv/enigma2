@@ -1007,8 +1007,9 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 	eDVBRegisteredFrontend *best, *fbc_fe, *best_fbc_fe;
 	int bestval, foundone, current_fbc_setid, c;
-	bool check_fbc_leaf_linkable, is_configured_sat;
-	long link;
+	bool check_fbc_leaf_linkable;
+	[[maybe_unused]] bool is_configured_sat;
+	[[maybe_unused]] long link;
 
 	fbc_fe  = NULL;
 	best_fbc_fe = NULL;
@@ -1274,8 +1275,7 @@ bool eDVBResourceManager::frontendPreferenceAllowsChannelUse(const eDVBChannelID
 		return true; /* sharing/caching channels is allowed for any frontend */
 	}
 
-	ePtr<eDVBFrontend> dummy_fe1;
-	if (dummy_fe1->isPreferred(preferredFrontend,slotid))
+	if (eDVBFrontend::isPreferred(preferredFrontend,slotid))
 	{
 		//eDebug("frontend %d allowed, preferred frontend", slotid);      
 		return true; /* preferred frontend */

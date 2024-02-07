@@ -197,7 +197,7 @@ def getChipsetString():
 		chipset = "7252S"
 	elif MODEL in ("hd51", "vs1500", "h7"):
 		chipset = "7251S"
-	elif MODEL in ("dreamone", "dreamonetwo", "dreamseven"):
+	elif MODEL in ("dreamone", "dreamtwo"):
 		chipset = "S922X"
 	else:
 		chipset = fileReadLine("/proc/stb/info/chipset", default=_("Undefined"), source=MODULE_NAME)

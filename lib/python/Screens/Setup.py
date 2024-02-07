@@ -347,7 +347,7 @@ def setupDom(setup=None, plugin=None):
 	if setupFile in setupModTimes:
 		del setupModTimes[setupFile]
 	fileDom = fileReadXML(setupFile, source=MODULE_NAME)
-	if fileDom:
+	if fileDom is not None:
 		checkItems(fileDom, None)
 		setupFileDom = fileDom
 		domSetups[setupFile] = setupFileDom

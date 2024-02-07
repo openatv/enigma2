@@ -560,7 +560,6 @@ bool eListboxPythonServiceContent::checkServiceIsRecorded(eServiceReference ref,
 
 bool eListboxPythonServiceContent::getIsMarked(int selected)
 {
-	eServiceReference &ref = *m_service_cursor;
 	return ((m_current_marked && selected) || (cursorValid() && isMarked(*m_service_cursor)));
 }
 

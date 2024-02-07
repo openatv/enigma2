@@ -14,7 +14,7 @@ int eRectangle::event(int event, void *data, void *data2)
 		case evtPaint:
 		{
 			ePtr<eWindowStyle> style;
-			gPainter &painter = *(gPainter *)data2;
+			// gPainter &painter = *(gPainter *)data2;
 			getStyle(style);
 			eWidget::event(event, data, data2);
 			return 0;

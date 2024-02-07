@@ -1699,8 +1699,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		cleanAll(split(current.getPath())[0])
 
 	def showNetworkMounts(self):
-		from Screens.NetworkSetup import NetworkMountsMenu
-		self.session.open(NetworkMountsMenu)
+		try:
+			from Plugins.SystemPlugins.NetworkBrowser.plugin import MountManagerMain
+			MountManagerMain(self.session)
+		except ImportError:
+			pass
 
 	def showDeviceMounts(self):
 		from Screens.MountManager import HddMount

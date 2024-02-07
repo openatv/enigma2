@@ -34,7 +34,7 @@ config.ParentalControl.retries.servicepin.tries = ConfigInteger(default=3)
 config.ParentalControl.retries.servicepin.time = ConfigInteger(default=3)
 config.ParentalControl.servicepin = ConfigSubList()
 config.ParentalControl.servicepin.append(ConfigPIN(default=0))
-config.ParentalControl.age = ConfigSelection(default="18", choices=[("0", _("No age block"))] + [(str(x), "%d+" % x) for x in range(3, 19)])
+config.ParentalControl.age = ConfigSelection(default=18, choices=[(0, _("No age block"))] + [(x, "%d+" % x) for x in range(3, 19)])
 config.ParentalControl.hideBlacklist = ConfigYesNo(default=False)
 config.ParentalControl.config_sections = ConfigSubsection()
 config.ParentalControl.config_sections.main_menu = ConfigYesNo(default=False)
@@ -104,12 +104,12 @@ class ParentalControl:
 		if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
 			refstr = info and info.getInfoString(ref, iServiceInformation.sServiceref)
 			service = refstr and eServiceReference(refstr).toCompareString()
-		elif int(config.ParentalControl.age.value):
+		elif config.ParentalControl.age.value:
 			event = info and info.getEvent(ref)
 			rating = event and event.getParentalData()
 			age = rating and rating.getRating()
 			age = age and age <= 15 and age + 3 or 0
-		if (age and age >= int(config.ParentalControl.age.value)) or service and service in self.blacklist:
+		if (age and age >= config.ParentalControl.age.value) or service and service in self.blacklist:
 			if self.sessionPinCached:  # Check if the session PIN is cached.
 				return True
 			self.callback = callback

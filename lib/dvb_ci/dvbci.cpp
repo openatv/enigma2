@@ -14,6 +14,7 @@
 
 #include <lib/base/eerror.h>
 #include <lib/base/nconfig.h> // access to python config
+#include <lib/base/esimpleconfig.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb_ci/dvbci.h>
@@ -397,7 +398,7 @@ bool eDVBCIInterfaces::canDescrambleMultipleServices(eDVBCISlot* slot)
 	singleLock s(m_slot_lock);
 	char configStr[255];
 	snprintf(configStr, 255, "config.ci.%d.canDescrambleMultipleServices", slot->getSlotID());
-	std::string str = eConfigManager::getConfigValue(configStr);
+	std::string str = eSimpleConfig::getString(configStr, "auto");
 	if ( str == "auto" )
 	{
 		if (slot->getAppManager())
@@ -1350,9 +1351,9 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 	m_ciplus_routing_tunernum = -1;
 	state = stateDisabled;
 	snprintf(configStr, 255, "config.ci.%d.enabled", slotid);
-	bool enabled = eConfigManager::getConfigBoolValue(configStr, true);
-	int bootDelay = eConfigManager::getConfigIntValue("config.cimisc.bootDelay");
+	bool enabled = eSimpleConfig::getBool(configStr, true);
 	if (enabled) {
+		int bootDelay = eSimpleConfig::getInt("config.cimisc.bootDelay", 5);
 		if (bootDelay) {
 			CONNECT(startup_timeout->timeout, eDVBCISlot::openDevice);
 			startup_timeout->start(1000 * bootDelay, true);

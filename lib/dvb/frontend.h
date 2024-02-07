@@ -194,7 +194,7 @@ public:
 	void getTransponderData(ePtr<iDVBTransponderData> &dest, bool original);
 	void getFrontendData(ePtr<iDVBFrontendData> &dest);
 
-	bool isPreferred(int preferredFrontend, int slotid);
+	static bool isPreferred(int preferredFrontend, int slotid);
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, bool is_configured_sat = false);
 	int getDVBID() { return m_dvbid; }
 	int getSlotID() { return m_slotid; }

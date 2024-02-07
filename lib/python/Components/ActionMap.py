@@ -148,7 +148,7 @@ def getKeyId(id):  # FIME Remove keytranslation.xml.
 def loadKeymap(filename, replace=False):
 	actionMapInstance = eActionMap.getInstance()
 	domKeymap = fileReadXML(filename, source=MODULE_NAME)
-	if domKeymap:
+	if domKeymap is not None:
 		replace = replace or (domKeymap.get("load", "") == "replace")
 		for domMap in domKeymap.findall("map"):
 			context = domMap.attrib.get("context")

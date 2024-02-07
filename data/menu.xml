@@ -143,7 +143,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<!-- Menu / Setup / Service Searching -->
 			<menu key="scan" level="0" text="Reception" weight="25">
 				<item key="tuner_setup" level="0" text="Tuner Configuration" weight="0"><screen module="Satconfig" screen="NimSelection" /></item>
-				<item key="tuner_basic_settings" level="1" text="Tuner Settings" weight="1" requires="USETunersetup"><setup setupKey="Tuner" /></item>
+				<item key="tuner_basic_settings" level="1" text="Tuner Settings" weight="1"><setup setupKey="Tuner" /></item>
 				<item key="auto_scan" level="0" text="Automatic Scan" weight="5"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item key="manual_scan" level="0" text="Manual Scan" weight="10"><screen module="ScanSetup" /></item>
 			</menu>
@@ -185,7 +185,6 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<!-- Menu / Setup / Network -->
 			<menu key="network" level="0" text="Network" weight="60">
 				<item key="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
-				<item key="netmounts_setup" level="1" text="Mounts Settings" weight="5"><screen module="NetworkSetup" screen="NetworkMountsMenu" /></item>
 				<item key="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
 				<item key="networkservices_setup" level="2" text="Network Services" weight="9"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
 				<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
