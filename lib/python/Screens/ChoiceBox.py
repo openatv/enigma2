@@ -7,10 +7,9 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 
-config.misc.pluginlist = ConfigSubsection()
-config.misc.pluginlist.eventinfo_order = ConfigText(default="")
-config.misc.pluginlist.extension_order = ConfigText(default="")
-config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
+#config.misc.pluginlist = ConfigSubsection()
+#config.misc.pluginlist.eventinfo_order = ConfigText(default="")
+#config.misc.pluginlist.extension_order = ConfigText(default="")
 
 
 class ChoiceBoxNew(Screen, HelpableScreen):
@@ -29,29 +28,26 @@ class ChoiceBoxNew(Screen, HelpableScreen):
 			buttonList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue", "text"] + (len(choiceList) - 14) * [""]
 		else:
 			buttonList = buttonList + (len(choiceList) - len(buttonList)) * [""]
-		if reorderConfig:
-			self.configOrder = getattr(config.misc.pluginlist, reorderConfig)
-			if self.configOrder.value:
-				prevList = [x for x in zip(choiceList, buttonList)]
-				newList = []
-				for button in self.configOrder.value.split(","):
-					for entry in prevList:
-						if entry[0][0] == button:
-							prevList.remove(entry)
-							newList.append(entry)
-				choiceList = [x for x in zip(*(newList + prevList))]
-				choiceList, buttonList = choiceList[0], choiceList[1]
-				number = 1
-				newButtons = []
-				for button in buttonList:
-					if (not button or button.isdigit()) and number <= 10:
-						newButtons.append(str(number % 10))
-						number += 1
-					else:
-						newButtons.append(not button.isdigit() and button or "")
-				buttonList = newButtons
-		else:
-			self.configOrder = None
+		self.reorderConfig = reorderConfig
+		if self.reorderConfig:
+			prevList = [x for x in zip(choiceList, buttonList)]
+			newList = []
+			for button in self.reorderConfig.value:
+				for entry in prevList:
+					if entry[0][0] == button:
+						prevList.remove(entry)
+						newList.append(entry)
+			choiceList = [x for x in zip(*(newList + prevList))]
+			choiceList, buttonList = choiceList[0], choiceList[1]
+			number = 1
+			newButtons = []
+			for button in buttonList:
+				if (not button or button.isdigit()) and number <= 10:
+					newButtons.append(str(number % 10))
+					number += 1
+				else:
+					newButtons.append(not button.isdigit() and button or "")
+			buttonList = newButtons
 		self.choiceList = []
 		self.buttonMap = {}
 		actionMethods = {
@@ -91,7 +87,7 @@ class ChoiceBoxNew(Screen, HelpableScreen):
 			"previous": (self.keyMoveItemUp, _("Move the current entry up")),
 			"next": (self.keyMoveItemDown, _("Move the current entry down")),
 		}, prio=0, description=_("Choice List Order Actions"))
-		self["moveActions"].setEnabled(len(choiceList) > 1 and self.configOrder)
+		self["moveActions"].setEnabled(len(choiceList) > 1 and self.reorderConfig)
 		self["summary_list"] = StaticText()  # Temporary hack to support old display skins.
 		self["summary_selection"] = StaticText()  # Temporary hack to support old display skins.
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -182,14 +178,14 @@ class ChoiceBoxNew(Screen, HelpableScreen):
 			self["list"].instance.goLineDown()
 		else:
 			self["list"].instance.goLineUp()
-		self.configOrder.value = ",".join(x[0][0] for x in self.choiceList)
-		self.configOrder.save()
+		self.reorderConfig.value = [x[0][0] for x in self.choiceList]
+		self.reorderConfig.save()
 
 	def keyResetList(self):
 		def keyResetListCallback(answer):
 			if answer:
-				self.configOrder.value = ""
-				self.configOrder.save()
+				self.reorderConfig.value = []
+				self.reorderConfig.save()
 
 		self.session.openWithCallback(keyResetListCallback, MessageBox, _("Reset list order to the default list order?"), MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
 
@@ -282,5 +278,5 @@ class ChoiceBox(ChoiceBoxNew):
 				allowCancel = allow_cancel
 		if allowCancel is None:
 			allowCancel = True
-		ChoiceBoxNew.__init__(self, session, text=text, choiceList=choiceList, selection=selection, buttonList=buttonList, reorderConfig=reorderConfig, allowCancel=allowCancel, skinName=skinName, windowTitle=windowTitle)
+		ChoiceBoxNew.__init__(self, session, text=text, choiceList=choiceList, selection=selection, buttonList=buttonList, reorderConfig=None, allowCancel=allowCancel, skinName=skinName, windowTitle=windowTitle)
 		self.list = self.choiceList  # Support for old skins an plugins

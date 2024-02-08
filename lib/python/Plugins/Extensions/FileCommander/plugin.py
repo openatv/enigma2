@@ -16,7 +16,7 @@ from enigma import eConsoleAppContainer, ePicLoad, ePoint, eServiceReference, eS
 
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.config import config, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigLocations, ConfigSelectionNumber, ConfigSubsection
+from Components.config import config, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigLocations, ConfigSelectionNumber, ConfigSubsection, ConfigArray
 from Components.Console import Console as console
 from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, EXTENSIONS, FILE_PATH, FILE_IS_DIR, FileList, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, RECORDING_EXTENSIONS
 from Components.Harddisk import harddiskmanager
@@ -29,7 +29,7 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Task import Condition, Job, job_manager as JobManager, Task
 from Plugins.Plugin import PluginDescriptor
-from Screens.ChoiceBox import ChoiceBox
+from Screens.ChoiceBox import ChoiceBoxNew
 from Screens.Console import Console
 from Screens.DVD import DVDPlayer
 from Screens.HelpMenu import HelpableScreen
@@ -105,6 +105,7 @@ if config.plugins.FileCommander.defaultPathLeft.value and config.plugins.FileCom
 if config.plugins.FileCommander.defaultPathRight.value and config.plugins.FileCommander.defaultPathRight.value not in default:
 	default.append(config.plugins.FileCommander.defaultPathRight.value)
 config.plugins.FileCommander.bookmarks = ConfigLocations(default=default)
+config.plugins.FileCommander.bookmarks_order = ConfigArray(default=[])
 config.plugins.FileCommander.myExtensions = ConfigText(default="", visible_width=15, fixed_size=False)
 config.plugins.FileCommander.extension = ConfigSelection(default="^.*$", choices=[
 	("^.*$", _("All files")),
@@ -936,7 +937,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def keyManageBookmarks(self, current):
 		bookmarks = config.plugins.FileCommander.bookmarks.value
-		order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
+		order = config.plugins.FileCommander.bookmarks_order.value
 		directory = current and self.sourceColumn.getCurrentDirectory() or self.sourceColumn.getPath()
 		if directory in bookmarks:
 			bookmarks.remove(directory)
@@ -950,8 +951,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self.displayStatus(_("Bookmark added."))
 		config.plugins.FileCommander.bookmarks.value = bookmarks
 		config.plugins.FileCommander.bookmarks.save()
-		config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
-		config.misc.pluginlist.fc_bookmarks_order.save()
+		config.plugins.FileCommander.bookmarks_order.value = order
+		config.plugins.FileCommander.bookmarks_order.save()
 
 	def keyMediaInfo(self):
 		self.shortcutAction("mediainfo")
@@ -1479,13 +1480,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 		bookmarks = [(x, x) for x in config.plugins.FileCommander.bookmarks.value]
 		bookmarks.insert(0, (_("Storage Devices"), None))
-		order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
+		order = config.plugins.FileCommander.bookmarks_order.value
 		if order and _("Storage Devices") in order:
 			order.remove(_("Storage Devices"))
 		order.insert(0, _("Storage Devices"))
-		config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
-		config.misc.pluginlist.fc_bookmarks_order.save()
-		self.session.openWithCallback(selectBookmarkCallback, ChoiceBox, title=_("Select Bookmark"), list=bookmarks, reorderConfig="fc_bookmarks_order")
+		config.plugins.FileCommander.bookmarks_order.value = order
+		config.plugins.FileCommander.bookmarks_order.save()
+		self.session.openWithCallback(selectBookmarkCallback, ChoiceBoxNew, windowTitle=_("Select Bookmark"), choiceList=bookmarks, reorderConfig=config.plugins.FileCommander.bookmarks_order)
 
 	def keySettings(self):
 		def settingsCallback(*answer):
@@ -2989,6 +2990,15 @@ def convertSettings():
 	config.plugins.filecommander.save()
 	config.plugins.FileCommander.save()
 	conversionDone = True
+
+	config.misc.pluginlist = ConfigSubsection()
+	config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
+	config.plugins.FileCommander.bookmarks_order = ConfigArray(default=[])
+	if config.misc.pluginlist.fc_bookmarks_order.value:
+		config.plugins.Filecommander.bookmarks_order.value = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
+	config.plugins.FileCommander.save()
+	config.misc.pluginlist.fc_bookmarks_order.value = ""
+	config.misc.pluginlist.save()
 
 
 def filescanOpen(list, session, **kwargs):
