@@ -2832,6 +2832,8 @@ class FileTransferTask(Task):
 				cmdLine = None
 			self.mountPoints = [normpath(x.mountpoint) for x in harddiskmanager.getMountedPartitions()]
 			self.initialSize = self.dirSize(target) if isdir(target) else 0
+			if isfile(srcPath):
+				self.dstPath = target
 			if cmdLine:
 				self.postconditions.append(TaskPostConditions())
 				self.processStdout = taskProcessStdout
