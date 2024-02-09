@@ -125,6 +125,7 @@ config.plugins.FileCommander.scriptPriorityIONice = ConfigSelectionNumber(defaul
 config.plugins.FileCommander.showTaskCompletedMessage = ConfigYesNo(default=True)
 config.plugins.FileCommander.showScriptCompletedMessage = ConfigYesNo(default=True)
 config.plugins.FileCommander.completeMessageTimeout = ConfigSelection(default=10, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 61)])
+config.plugins.FileCommander.combineJobTasks = ConfigYesNo(default=True)
 
 running = None
 
@@ -644,7 +645,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		def processCopy(answer):
 			def processCallback(result):
 				if result:
-					JobManager.AddJob(FileCopyTask(srcPaths, directory, _("File Commander Copy")), onSuccess=successCallback, onFail=failCallback)
+					if config.plugins.FileCommander.combineJobTasks.value:
+						JobManager.AddJob(FileCopyTask(srcPaths, directory, _("File Commander Copy")), onSuccess=successCallback, onFail=failCallback)
+					else:
+						for srcPath in srcPaths:
+							jobTitle = f"{_("Copy")}: {basename(normpath(srcPath))}"
+							JobManager.AddJob(FileCopyTask([srcPath], directory, jobTitle), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Copy job queued."))
 					if answer == "MULTI":
 						self.sourceColumn.clearAllSelections()
@@ -740,7 +746,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		def processDelete(answer):
 			def processCallback(result):
 				if result:
-					JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
+					if config.plugins.FileCommander.combineJobTasks.value:
+						JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
+					else:
+						for srcPath in srcPaths:
+							jobTitle = f"{_("Delete")}: {basename(normpath(srcPath))}"
+							JobManager.AddJob(FileDeleteTask([srcPath], jobTitle), onSuccess=successCallback, onFail=failCallback)
+
 					self.displayStatus(_("Delete job queued."))
 					if answer == "MULTI":
 						self.sourceColumn.clearAllSelections()
@@ -1053,7 +1065,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		def processMove(answer):
 			def processCallback(result):
 				if result:
-					JobManager.AddJob(FileMoveTask(srcPaths, directory, _("File Commander Move")), onSuccess=successCallback, onFail=failCallback)
+					if config.plugins.FileCommander.combineJobTasks.value:
+						JobManager.AddJob(FileMoveTask(srcPaths, directory, _("File Commander Move")), onSuccess=successCallback, onFail=failCallback)
+					else:
+						for srcPath in srcPaths:
+							jobTitle = f"{_("Move")}: {basename(normpath(srcPath))}"
+							JobManager.AddJob(FileMoveTask([srcPath], directory, jobTitle), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Move job queued."))
 					if answer == "MULTI":
 						self.sourceColumn.clearAllSelections()
