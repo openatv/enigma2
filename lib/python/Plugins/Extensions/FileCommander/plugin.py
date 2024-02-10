@@ -647,7 +647,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				if result:
 					if config.plugins.FileCommander.splitJobTasks.value:
 						for srcPath in srcPaths:
-							jobTitle = f"{_("Copy")}: {basename(normpath(srcPath))}"
+							jobTitle = f"{_('Copy')}: {basename(normpath(srcPath))}"
 							JobManager.AddJob(FileCopyTask([srcPath], directory, jobTitle), onSuccess=successCallback, onFail=failCallback)
 					else:
 						JobManager.AddJob(FileCopyTask(srcPaths, directory, _("File Commander Copy")), onSuccess=successCallback, onFail=failCallback)
@@ -698,7 +698,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					newPath = pathjoin(newPath, "")
 				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), newPath))
 			else:
-				self.displayPopUp(f"{windowTitle}: {_("Copy job completed.")}", MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Copy job completed.')}", MessageBox.TYPE_INFO)
 
 		def failCallback(job, task, problems):
 			problem = "\n".join([x.getErrorMessage(task) for x in problems])
@@ -710,9 +710,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					newPath = pathjoin(newPath, "")
 				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), newPath))
 			else:
-				self.displayPopUp(f"{windowTitle}: {_("Copy job failed!")}", MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Copy job failed!')}", MessageBox.TYPE_ERROR)
 
-		windowTitle = f"{self.baseTitle} - {_("Copy")}"
+		windowTitle = f"{self.baseTitle} - {_('Copy')}"
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
 			if self.multiSelect == self.sourceColumn:
@@ -748,7 +748,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				if result:
 					if config.plugins.FileCommander.splitJobTasks.value:
 						for srcPath in srcPaths:
-							jobTitle = f"{_("Delete")}: {basename(normpath(srcPath))}"
+							jobTitle = f"{_('Delete')}: {basename(normpath(srcPath))}"
 							JobManager.AddJob(FileDeleteTask([srcPath], jobTitle), onSuccess=successCallback, onFail=failCallback)
 					else:
 						JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
@@ -783,7 +783,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				self.displayStatus(_("Delete job completed."))
 				self.sourceColumn.refresh()
 			else:
-				self.displayPopUp(f"{windowTitle}: {_("Delete job completed.")}", MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Delete job completed.')}", MessageBox.TYPE_INFO)
 
 		def failCallback(job, task, problems):
 			problem = "\n".join([x.getErrorMessage(task) for x in problems])
@@ -792,9 +792,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				self.displayStatus(_("Delete job failed!"))
 				self.sourceColumn.refresh()
 			else:
-				self.displayPopUp(f"{windowTitle}: {_("Delete job failed!")}", MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Delete job failed!')}", MessageBox.TYPE_ERROR)
 
-		windowTitle = f"{self.baseTitle} - {_("Delete")}"
+		windowTitle = f"{self.baseTitle} - {_('Delete')}"
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
 			if path in PROTECTED_DIRECTORIES:
@@ -880,7 +880,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				data["Screen"] = "FileCommanderHashes"
 				data["Title"] = _("File Commander Hashes / Checksums")
 				data["Description"] = _("File Commander Hash / Checksum Actions")
-				textList = [f"{_("File")}:|{path}"]
+				textList = [f"{_('File')}:|{path}"]
 				textList.append("")
 				with open(path, "rb") as fd:
 					hashData = {}
@@ -909,7 +909,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Test job completed."))
 			else:
-				self.displayPopUp(f"{windowTitle}: {_("Test job completed.")}", MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Test job completed.')}", MessageBox.TYPE_INFO)
 
 		def failCallback(job, task, problems):
 			task.setProgress(100)
@@ -918,9 +918,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Test job failed!"))
 			else:
-				self.displayPopUp(f"{windowTitle}: {_("Test job failed!")}", MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Test job failed!')}", MessageBox.TYPE_ERROR)
 
-		windowTitle = f"{self.baseTitle} - {_("Test")}"
+		windowTitle = f"{self.baseTitle} - {_('Test')}"
 		job = Job(_("Sleep test"))
 		task = Task(job, _("Sleep test"))
 		task.postconditions.append(TaskPostConditions())
@@ -1067,7 +1067,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				if result:
 					if config.plugins.FileCommander.splitJobTasks.value:
 						for srcPath in srcPaths:
-							jobTitle = f"{_("Move")}: {basename(normpath(srcPath))}"
+							jobTitle = f"{_('Move')}: {basename(normpath(srcPath))}"
 							JobManager.AddJob(FileMoveTask([srcPath], directory, jobTitle), onSuccess=successCallback, onFail=failCallback)
 					else:
 						JobManager.AddJob(FileMoveTask(srcPaths, directory, _("File Commander Move")), onSuccess=successCallback, onFail=failCallback)
@@ -1119,7 +1119,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				# else:
 				# 	self.sourceColumn.goBottom()
 			else:
-				self.displayPopUp(f"{windowTitle}: {_("Move job completed.")}", MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Move job completed.')}", MessageBox.TYPE_INFO)
 
 		def failCallback(job, task, problems):
 			problem = "\n".join([x.getErrorMessage(task) for x in problems])
@@ -1129,9 +1129,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				self.sourceColumn.refresh()
 				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), basename(normpath(path))))
 			else:
-				self.displayPopUp(f"{windowTitle}: {_("Move job failed!")}", MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Move job failed!')}", MessageBox.TYPE_ERROR)
 
-		windowTitle = f"{self.baseTitle} - {_("Move")}"
+		windowTitle = f"{self.baseTitle} - {_('Move')}"
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
 			# startIndex = self.sourceColumn.getCurrentIndex()
@@ -1234,7 +1234,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			def failCallback(job, task, problems):
 				task.setProgress(100)
 				from Screens.Standby import inStandby
-				message = f"{job.name}\n{_("Error")}: {problems[0].getErrorMessage(task)}"
+				message = f"{job.name}\n{_('Error')}: {problems[0].getErrorMessage(task)}"
 				if InfoBar.instance and not inStandby:
 					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_ERROR, timeout=0)
 				else:
@@ -1282,7 +1282,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 							name = f"{priority}{path} {parameter}"
 						else:
 							name = f"{priority}{path}"
-						job = Job(f"{_("Run script")} ('{name}')")
+						job = Job(f"{_('Run script')} ('{name}')")
 						task = Task(job, name)
 						task.postconditions.append(TaskPostConditions())
 						task.processStdout = taskProcessStdout
@@ -1425,7 +1425,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						if parameter:
 							choiceList.append((_("Run script with optional parameter"), "PAR"))
 							choiceList.append((_("Run script with optional parameter in background"), "PAR_BG"))
-							msg = f"\n\n{_("Optional parameter")}: {parameter}"
+							msg = f"\n\n{_('Optional parameter')}: {parameter}"
 						self.session.openWithCallback(scriptCallback, MessageBox, text="%s\n\n%s%s" % (_("What would you like to do with the script file:"), path, msg), list=choiceList, windowTitle=self.baseTitle)
 					elif fileType == ".mvi":
 						filename = f"{splitext(basename(path))[0]}.jpg"
@@ -1486,7 +1486,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					newPath = pathjoin(newPath, "")
 				self.sourceColumn.refresh(newPath)
 
-		windowTitle = f"{self.baseTitle} - {_("Rename")}"
+		windowTitle = f"{self.baseTitle} - {_('Rename')}"
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
 			if path in PROTECTED_DIRECTORIES:
@@ -1614,7 +1614,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def shortcutAction(self, program):
 		def shortcutInstallCallback(answer):
 			if answer:
-				self.session.open(Console, title=f"{self.baseTitle} - {_("Console")}", cmdlist=(("/usr/bin/opkg", "update"), ("/usr/bin/opkg", "install", self.package)), finishedCallback=shortcutInstalledCallback)
+				self.session.open(Console, title=f"{self.baseTitle} - {_('Console')}", cmdlist=(("/usr/bin/opkg", "update"), ("/usr/bin/opkg", "install", self.package)), finishedCallback=shortcutInstalledCallback)
 
 		def shortcutInstalledCallback():
 			self.shortcutAction(program)
