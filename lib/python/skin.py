@@ -427,7 +427,7 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 
 def parseGradient(value):
 	def validColor(value):
-		if value[0] == "#" and 7 < len(value) < 10:
+		if value[0] == "#" and len(value) in (9, 7):
 			isColor = True
 		elif value in colors:
 			isColor = True
