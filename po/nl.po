@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-01-21 15:52+0000\n"
+"PO-Revision-Date: 2024-02-12 07:13+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -1767,7 +1767,7 @@ msgid "Aborted a streaming service.\n"
 msgstr "Een streaming service gestopt.\n"
 
 msgid "About"
-msgstr "openATV"
+msgstr "Informatie"
 
 msgid "About openATV"
 msgstr "openATV"
@@ -4646,7 +4646,7 @@ msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to 
 msgstr "Configureer de minimale breedte voor het tonen van de 'i' icon , '0' is gelijk aan het niet tonen van het pictogram."
 
 msgid "Configure the name server (DNS)."
-msgstr "Configureer uw naamserver (DNS)."
+msgstr "Configureer uw nameserver (DNS)."
 
 msgid "Configure the netmask."
 msgstr "Configureer de netmask."
@@ -6820,7 +6820,9 @@ msgstr "De CCcam/NewCamd-serverpoort aanpassen."
 
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
-msgstr "Pas de naamserver-configuratie (DNS) van uw %s %s aan."
+msgstr ""
+"Wijzig de DNS configuratie\n"
+"van uw %s %s ."
 
 msgid "Edit the NewCamd DES Key."
 msgstr "De NewCamd DES-sleutel aanpassen."
@@ -6830,7 +6832,9 @@ msgstr "De geselecteerde timer wijzigen"
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
-msgstr "Bewerk de netwerkinstellingen van uw %s %s."
+msgstr ""
+"Wijzig de netwerkinstellingen\n"
+"van uw %s %s."
 
 msgid "Edit the password."
 msgstr "Het wachtwoord wijzigen."
@@ -7251,7 +7255,7 @@ msgstr "Enter"
 
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
-msgstr "DNS (Dynamic Name Server) %d's IP-adres invoeren."
+msgstr "%de DNS (Dynamic Name Server) IP-adres invoeren."
 
 msgid "Enter PIN"
 msgstr "Voer pincode in"
@@ -11553,13 +11557,13 @@ msgid "Name server %d"
 msgstr "Name server %d"
 
 msgid "Nameserver"
-msgstr "Naamserver (DNS)"
+msgstr "Nameserver (DNS)"
 
 msgid "Nameserver settings"
-msgstr "Naamserver-instellingen (DNS)"
+msgstr "DNS instellingen"
 
 msgid "Nameserver setup"
-msgstr "Instellingen van de naamserver (DNS)"
+msgstr "Nameserver instellingen (DNS)"
 
 msgid "Namespace & Orbital position"
 msgstr "Namespace & Orbital position"
@@ -11619,7 +11623,7 @@ msgid "Network Adapter Selection"
 msgstr "Netwerk adapter"
 
 msgid "Network Adapter Setting Actions"
-msgstr "Acties voor Netwerk Adapter instellingen "
+msgstr "Acties voor Netwerk Adapter instellingen"
 
 msgid "Network Adapter Text Actions"
 msgstr "Netwerk adapter tekst Acties"
@@ -13526,7 +13530,9 @@ msgid "Press OK for MultiBoot selection."
 msgstr "Druk op OK voor het MultiBoot keuzemenu."
 
 msgid "Press OK on your remote control to continue."
-msgstr "Druk OK op uw afstandsbediening om verder te gaan."
+msgstr ""
+"Druk OK op uw afstandsbediening\n"
+"om verder te gaan."
 
 msgid "Press OK to activate the selected skin."
 msgstr "Druk op OK om de geselecteerde skin te activeren."
@@ -14670,7 +14676,7 @@ msgid "Restart GUI after x crashes"
 msgstr "Herstart de GUI na x crashes"
 
 msgid "Restart GUI now to start using the new locale/language?"
-msgstr "De GUI nu herstarten met de nieuwe taal?"
+msgstr "De GUI nu herstarten in het Nederlands/Vlaams?"
 
 msgid "Restart GUI now?"
 msgstr "Gebruikersinterface herstarten?"
@@ -16164,7 +16170,7 @@ msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Selecteer de locatie waar u de upgradebestanden wilt ophalen."
 
 msgid "Select the source of the default DNS settings."
-msgstr "De locatie van de default DNS instellingen selecteren."
+msgstr "De gegevensbron van de default DNS instellingen selecteren."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Selecteer de start-/beginkolom die moet worden geactiveerd bij het opstarten van File Commander."
@@ -16624,7 +16630,9 @@ msgstr "Systeem instellingen"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
-msgstr "Stel het MAC-adres in van %s %s."
+msgstr ""
+"Stel het MAC-adres in\n"
+"van uw %s %s."
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Selecteer de aspect ratio van de zender picons."
@@ -19137,7 +19145,9 @@ msgstr "Test modus"
 
 #, python-format
 msgid "Test the network configuration of your %s %s."
-msgstr "Test de netwerkconfiguratie van uw %s %s."
+msgstr ""
+"Test de netwerkconfiguratie\n"
+"van uw %s %s."
 
 msgid "Test type"
 msgstr "Testtype"
@@ -19921,10 +19931,10 @@ msgid ""
 "- please check your DHCP, cabling and adapter setup\n"
 "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
-"Deze test controleert de naamservers. (DNS)\n"
+"Deze test zoekt naar geconfigureerde nameservers. (DNS)\n"
 "Indien u een bericht 'niet bevestigd' ziet:\n"
-"- controleer dan uw DHCP server, kabels en instellingen\n"
-"- Indien de naamservers (DNS) handmatig ingesteld zijn, controleer deze dan"
+"- controleer dan uw DHCP server, kabels en instellingen.\n"
+"- Indien de nameservers (DNS) handmatig ingesteld zijn, controleer deze dan."
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN adapter.\n"
