@@ -46,11 +46,11 @@ public:
 	SWIG_VOID(int) getStyle(ePtr<eWindowStyle> &SWIG_NAMED_OUTPUT(style)) { if (!m_style) return 1; style = m_style; return 0; }
 	void setStyle(eWindowStyle *style) { m_style = style; }
 
-	void setBackgroundColor(const gRGB &col);
+	virtual void setBackgroundColor(const gRGB &col);
 	void clearBackgroundColor();
 
-	void setBorderWidth(int pixel);
-	void setBorderColor(const gRGB &color);
+	virtual void setBorderWidth(int pixel);
+	virtual void setBorderColor(const gRGB &color);
 
 	void setWidgetBorderWidth(int pixel) { setBorderWidth(pixel); }
 	void setWidgetBorderColor(const gRGB &color) { setBorderColor(color); }
@@ -99,8 +99,6 @@ private:
 
 	void parentRemoved();
 
-	gRGB m_background_color;
-	bool m_have_background_color = false;
 
 	eWidget *m_current_focus, *m_focus_owner;
 
@@ -124,6 +122,10 @@ private:
 
 protected:
 	void mayKillFocus();
+
+	gRGB m_background_color;
+	bool m_have_background_color = false;
+
 public:
 
 		// all in local space!

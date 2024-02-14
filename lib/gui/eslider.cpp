@@ -4,7 +4,7 @@
 int eSlider::defaultSliderBorderWidth = eSlider::DefaultBorderWidth;
 
 eSlider::eSlider(eWidget *parent)
-	: eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_have_background_color(false), m_scrollbar(false), m_pixel_mode(false),
+	: eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_scrollbar(false), m_pixel_mode(false),
 	  m_min(0), m_max(0), m_value(0), m_start(0), m_border_width(0), m_orientation(orHorizontal), m_orientation_swapped(0)
 {
 	m_border_width = eSlider::defaultSliderBorderWidth;
@@ -68,8 +68,7 @@ void eSlider::setForegroundColor(const gRGB &color)
 
 void eSlider::setBackgroundColor(const gRGB &color)
 {
-	m_background_color = color;
-	m_have_background_color = true;
+	eWidget::setBackgroundColor(color);
 	invalidate();
 }
 

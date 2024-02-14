@@ -1046,32 +1046,32 @@ void eListbox::entryReset(bool selectionHome)
 	invalidate();
 }
 
-void eListbox::setSpacingColor(gRGB &col)
+void eListbox::setSpacingColor(const gRGB &col)
 {
 	eWidget::setBackgroundColor(col);
 	m_style.m_spacing_color = col;
 	m_style.is_set.spacing_color = 1;
 }
 
-void eListbox::setBackgroundColor(gRGB &col)
+void eListbox::setBackgroundColor(const gRGB &col)
 {
 	m_style.m_background_color = col;
 	m_style.is_set.background_color = 1;
 }
 
-void eListbox::setBackgroundColorSelected(gRGB &col)
+void eListbox::setBackgroundColorSelected(const gRGB &col)
 {
 	m_style.m_background_color_selected = col;
 	m_style.is_set.background_color_selected = 1;
 }
 
-void eListbox::setForegroundColor(gRGB &col)
+void eListbox::setForegroundColor(const gRGB &col)
 {
 	m_style.m_foreground_color = col;
 	m_style.is_set.foreground_color = 1;
 }
 
-void eListbox::setForegroundColorSelected(gRGB &col)
+void eListbox::setForegroundColorSelected(const gRGB &col)
 {
 	m_style.m_foreground_color_selected = col;
 	m_style.is_set.foreground_color_selected = 1;

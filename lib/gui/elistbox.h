@@ -280,12 +280,12 @@ public:
 	void setItemWidth(int w);
 	void setSelectionEnable(int en);
 
-	void setBackgroundColor(gRGB &col);
-	void setBackgroundColorSelected(gRGB &col);
-	void setForegroundColor(gRGB &col);
-	void setForegroundColorSelected(gRGB &col);
+	void setBackgroundColor(const gRGB &col) override;
+	void setBackgroundColorSelected(const gRGB &col);
+	void setForegroundColor(const gRGB &col);
+	void setForegroundColorSelected(const gRGB &col);
 
-	void setSpacingColor(gRGB &col);
+	void setSpacingColor(const gRGB &col);
 	void clearSpacingColor() { m_style.is_set.spacing_color = 0; }
 
 	void clearBackgroundColor() { m_style.is_set.background_color = 0; }
@@ -293,8 +293,8 @@ public:
 	void clearForegroundColor() { m_style.is_set.foreground_color = 0; }
 	void clearForegroundColorSelected() { m_style.is_set.foreground_color_selected = 0; }
 
-	void setBorderColor(const gRGB &col) { m_style.m_border_color = col; }
-	void setBorderWidth(int size);
+	void setBorderColor(const gRGB &col) override { m_style.m_border_color = col; }
+	void setBorderWidth(int size) override;
 
 	void setBackgroundPixmap(ePtr<gPixmap> &pm) { m_style.m_background = pm; }
 	void setSelectionPixmap(ePtr<gPixmap> &pm) { m_style.m_selection = pm; }

@@ -29,8 +29,8 @@ public:
 	void setForegroundColor(const gRGB &col);
 	void setShadowColor(const gRGB &col);
 	void setShadowOffset(const ePoint &offset) { m_shadow_offset = offset; }
-	void setBorderColor(const gRGB &col) { setTextBorderColor(col); } // WILL BE CHANGED !!!!
-	void setBorderWidth(int size) { setTextBorderWidth(size); }		  // WILL BE CHANGED !!!!
+	void setBorderColor(const gRGB &col) override { setTextBorderColor(col); } // WILL BE CHANGED !!!!
+	void setBorderWidth(int size) override { setTextBorderWidth(size); }		  // WILL BE CHANGED !!!!
 	void setTextBorderColor(const gRGB &col);
 	void setTextBorderWidth(int size) { m_text_border_width = size; }
 	void setWrap(int wrap);
