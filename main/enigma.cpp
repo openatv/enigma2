@@ -473,6 +473,11 @@ const char *getOARev()
 	return OAREV;
 }
 
+int getVFDSymbolsPoll()
+{
+	return VFDSymbolsPoll;
+}
+
 const char *getGStreamerVersionString()
 {
 	return gst_version_string();
