@@ -636,14 +636,14 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 	def showHideKeyOk(self):
 		if self.externalreader:
 			self["key_OK"].setText(_("OK"))
-			self["key_detailed"].setText(_("Show detailed"))
+			self["key_detailed"].setText(_("Show details"))
 		else:
 			self["key_OK"].setText("")
 			self["key_detailed"].setText("")
 
 	def keyBlue(self):
 		if self.showall:
-			self["key_exit"].setText(_("Only active"))
+			self["key_exit"].setText(_("Active only"))
 		else:
 			self["key_exit"].setText(_("Show all"))
 		self.showall = not self.showall
