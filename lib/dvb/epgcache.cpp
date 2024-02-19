@@ -1960,7 +1960,7 @@ void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<
 	{
 		event_types.push_back(event_type);
 	}
-	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_types, parental_ratings, EPG_IMPORT, event_id);
+	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_types, parental_ratings, source, event_id);
 }
 
 void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start,
