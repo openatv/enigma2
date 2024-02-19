@@ -226,7 +226,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.loop = eTimer()
 		self.loop.callback.append(self.updateOScamData)
 		self.onLayoutFinish.append(self.onLayoutFinished)
-		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
+		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x20fcfce1, 0x20f1f6e6, 0x20e2e0ef))
 
 	def onLayoutFinished(self):
 		self.showHideKeyOk()
