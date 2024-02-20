@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -1053,6 +1053,13 @@ msgid "%d ms"
 msgstr "%d min"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -2046,6 +2053,9 @@ msgid "Active"
 msgstr ""
 
 msgid "Active clients"
+msgstr ""
+
+msgid "Active only"
 msgstr ""
 
 #
@@ -7403,6 +7413,9 @@ msgstr "Omogući"
 msgid "Enable 5V for active antenna"
 msgstr "Uključi 5V za aktivnu antenu"
 
+msgid "Enable Autorecord"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Enable BT Audio"
@@ -7856,6 +7869,10 @@ msgid "Entertainment"
 msgstr "Uđi u glavni meni"
 
 msgid "Entitlements"
+msgstr ""
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
 msgstr ""
 
 msgid "Entry image and text"
@@ -10067,6 +10084,9 @@ msgstr ""
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -10753,6 +10773,9 @@ msgid "Just zap"
 msgstr "Samo razmeri"
 
 msgid "KA-SAT"
+msgstr ""
+
+msgid "KSymb/s"
 msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
@@ -12022,9 +12045,6 @@ msgid "Mounts"
 msgstr ""
 
 msgid "Mounts Devices"
-msgstr ""
-
-msgid "Mounts Settings"
 msgstr ""
 
 msgid "Move"
@@ -13314,10 +13334,21 @@ msgstr ""
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -14661,6 +14692,30 @@ msgid "Prefer subtitles stored by service"
 msgstr ""
 
 msgid "Preferred tuner"
+msgstr ""
+
+msgid "Preferred tuner ATSC"
+msgstr ""
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-C"
+msgstr ""
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-S"
+msgstr ""
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-T"
+msgstr ""
+
+msgid "Preferred tuner DVB-T for recordings"
 msgstr ""
 
 msgid "Preferred tuner for recordings"
@@ -18690,6 +18745,12 @@ msgstr ""
 msgid "Show advanced settings"
 msgstr ""
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr ""
 
@@ -18756,6 +18817,9 @@ msgid "Show detailed event info"
 msgstr ""
 
 msgid "Show detailed event info (setup in menu)"
+msgstr ""
+
+msgid "Show details"
 msgstr ""
 
 msgid "Show details of highlighted task"
@@ -23418,6 +23482,9 @@ msgstr ""
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -23692,6 +23759,12 @@ msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr ""
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
+msgstr ""
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr ""
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr ""
 
 msgid "When enabled, time shift starts automatically in background after specified time."
@@ -25518,42 +25591,6 @@ msgid "yes (keep feeds)"
 msgstr "Da ( zadrži fidove)"
 
 msgid "®"
-msgstr ""
-
-msgid "Preferred tuner DVB-S"
-msgstr ""
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr ""
-
-msgid "Preferred tuner DVB-T"
-msgstr ""
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr ""
-
-msgid "Preferred tuner DVB-C"
-msgstr ""
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr ""
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr ""
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr ""
-
-msgid "Preferred tuner ATSC"
-msgstr ""
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr ""
-
-msgid "Enable Autorecord"
-msgstr ""
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
 msgstr ""
 
 #

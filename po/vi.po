@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -967,6 +967,11 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1846,6 +1851,9 @@ msgstr "Hoạt động"
 
 msgid "Active clients"
 msgstr "Khách hàng tích cực"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Cài đặt bộ điều hợp"
@@ -6835,6 +6843,9 @@ msgstr "Kích hoạt%s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Kích hoạt 5V cho ăng ten hoạt động"
 
+msgid "Enable Autorecord"
+msgstr "Bật tự động ghi"
+
 msgid "Enable BT Audio"
 msgstr "Kích hoạt âm thanh BT"
 
@@ -7262,6 +7273,10 @@ msgstr "Vào menu chính ..."
 
 msgid "Entitlements"
 msgstr "Quyền lợi"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr ""
@@ -9343,6 +9358,9 @@ msgstr ""
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Nếu được đặt thành 'có', hãy bật autorecord để tự động chuyển nền thời gian"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -9960,6 +9978,9 @@ msgstr "Chỉ cần hạ"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr ""
@@ -11134,9 +11155,6 @@ msgstr "Núi"
 msgid "Mounts Devices"
 msgstr "Thiết bị gắn kết"
 
-msgid "Mounts Settings"
-msgstr "Thiết lập"
-
 msgid "Move"
 msgstr "Di chuyển"
 
@@ -12304,10 +12322,21 @@ msgstr "oscam webif bị vô hiệu hóa"
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13529,6 +13558,30 @@ msgstr "Thích phụ đề được lưu trữ bởi dịch vụ"
 
 msgid "Preferred tuner"
 msgstr "Bộ chỉnh ưu tiên"
+
+msgid "Preferred tuner ATSC"
+msgstr "Bộ điều chỉnh ưa thích ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Bộ điều chỉnh ưa thích ATSC để ghi âm"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Bộ điều chỉnh ưa thích DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Bộ điều chỉnh ưa thích DVB-C để ghi âm"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Bộ điều chỉnh ưa thích DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Bộ điều chỉnh ưa thích DVB-S để ghi âm"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Bộ điều chỉnh ưa thích DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Bộ điều chỉnh ưa thích DVB-T để ghi âm"
 
 msgid "Preferred tuner for recordings"
 msgstr "Bộ chỉnh ưu tiên cho bản ghi"
@@ -17282,6 +17335,12 @@ msgstr "Hiển thị giá trị thanh trượt bổ sung"
 msgid "Show advanced settings"
 msgstr "Hiển thị cài đặt nâng cao"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Hiển thị hình ảnh động trong khi bận rộn"
 
@@ -17343,6 +17402,9 @@ msgstr "Hiển thị thông tin chi tiết sự kiện"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Hiển thị thông tin sự kiện chi tiết (thiết lập trong menu)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr ""
@@ -21701,6 +21763,9 @@ msgstr "Cảnh báo"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -21971,6 +22036,12 @@ msgstr "Khi được bật, người nhận sẽ chọn một bản nhạc AC3 (
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Khi được bật, người nhận sẽ chọn bản nhạc AC3 + (khi khả dụng)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Khi được bật, cài đặt này có trọng lượng lớn hơn 'Bộ điều chỉnh ưu tiên cho bản ghi'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Khi được bật, cài đặt này có trọng lượng lớn hơn 'Bộ điều chỉnh ưu tiên'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Khi được bật, timeshift bắt đầu tự động trong nền sau thời gian được chỉ định."
@@ -23684,41 +23755,8 @@ msgstr "có (giữ thức ăn)"
 msgid "®"
 msgstr ""
 
-msgid "Preferred tuner DVB-S"
-msgstr "Bộ điều chỉnh ưa thích DVB-S"
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Bộ điều chỉnh ưa thích DVB-S để ghi âm"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Bộ điều chỉnh ưa thích DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Bộ điều chỉnh ưa thích DVB-T để ghi âm"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Bộ điều chỉnh ưa thích DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Bộ điều chỉnh ưa thích DVB-C để ghi âm"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Khi được bật, cài đặt này có trọng lượng lớn hơn 'Bộ điều chỉnh ưu tiên'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Khi được bật, cài đặt này có trọng lượng lớn hơn 'Bộ điều chỉnh ưu tiên cho bản ghi'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Bộ điều chỉnh ưa thích ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Bộ điều chỉnh ưa thích ATSC để ghi âm"
-
-msgid "Enable Autorecord"
-msgstr "Bật tự động ghi"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Nếu được đặt thành 'có', hãy bật autorecord để tự động chuyển nền thời gian"
+#~ msgid "Mounts Settings"
+#~ msgstr "Thiết lập"
 
 #~ msgid "Australian"
 #~ msgstr "Người Úc"

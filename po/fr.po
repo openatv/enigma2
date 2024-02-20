@@ -2,20 +2,21 @@
 # openATV <openatv@gmail.com>, 2021.
 # Mr.Servo <mrservo@gmx.de>, 2021, 2022.
 # JPierre <jpcoquelle@gmail.com>, 2023.
+# "Mr.Servo" <mrservo@gmx.de>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2023-08-12 03:37+0000\n"
-"Last-Translator: JPierre <jpcoquelle@gmail.com>\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"PO-Revision-Date: 2024-02-19 11:02+0000\n"
+"Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.4\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -785,16 +786,16 @@ msgstr "%d %b %Y"
 #, python-format
 msgid "%d + %d + %d Minute"
 msgid_plural "%d + %d + %d Minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d + %d + %d Minute"
+msgstr[1] "%d + %d + %d Minutes"
 
 #, python-format
 msgid "%d DMIPS per core"
-msgstr ""
+msgstr "%d DMIPS par noyau"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%d DMIPS with %d cores"
-msgstr ""
+msgstr "%d DMIPS avec noyaux %d"
 
 #, python-format
 msgid "%d Day"
@@ -805,8 +806,8 @@ msgstr[1] "%d Jours"
 #, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Digit"
+msgstr[1] "%d Digits"
 
 #, python-format
 msgid "%d Event"
@@ -871,13 +872,13 @@ msgstr[1] "%d Minutes"
 
 #, python-format
 msgid "%d Minutes"
-msgstr ""
+msgstr "%d Minutes"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Mois"
+msgstr[1] "%d Mois"
 
 #, python-format
 msgid "%d Pixel"
@@ -893,7 +894,7 @@ msgstr[1] "%d Pixels de large"
 
 #, python-format
 msgid "%d Pixels"
-msgstr ""
+msgstr "%d Pixels"
 
 #, python-format
 msgid "%d Second"
@@ -903,19 +904,19 @@ msgstr[1] "%d secondes"
 
 #, python-format
 msgid "%d Seconds"
-msgstr ""
+msgstr "%d secondes"
 
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d Semaines"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Année"
+msgstr[1] "%d Années"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -953,6 +954,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "%d paquet trouvé."
+msgstr[1] "%d paquets trouvés."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -961,32 +968,32 @@ msgstr[1] ""
 #, python-format
 msgid "%d package installable."
 msgid_plural "%d packages installable."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquet installable."
+msgstr[1] "%d paquets installables."
 
 #, python-format
 msgid "%d package installed."
 msgid_plural "%d packages installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquet installé."
+msgstr[1] "%d paquets installés."
 
 #, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquet marqué pour l'installation."
+msgstr[1] "%d paquets marqués pour l'installation."
 
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d paquets marqués pour le retrait."
 
 #, python-format
 msgid "%d package marked for update."
 msgid_plural "%d packages marked for update."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquet marqué pour la mise à jour."
+msgstr[1] "%d paquets marqués pour la mise à jour."
 
 #, python-format
 msgid "%d package upgraded."
@@ -1039,8 +1046,8 @@ msgstr[1] "%d paquets a été mis à niveau."
 #, python-format
 msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d plugin n'est pas disponible:"
+msgstr[1] "%d plugins ne sont pas disponibles:"
 
 #, python-format
 msgid "%d sec"
@@ -1088,7 +1095,7 @@ msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
 msgid "%d.%B %Y"
-msgstr ""
+msgstr "%d.%B %Y"
 
 msgid "%d.%m"
 msgstr "%d.%m"
@@ -1180,17 +1187,17 @@ msgstr "%s - Configuration"
 
 #, python-format
 msgid "%s Browser Manage Actions"
-msgstr ""
+msgstr "%s Browser Manager Actions"
 
 #, python-format
 msgid "%s GHz"
 msgstr "%s GHz"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s Information"
-msgstr "%s Information"
+msgstr "%s Informations"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s Information Actions"
 msgstr "%s Actions d'information"
 
@@ -1200,17 +1207,17 @@ msgstr "%s Configuration"
 
 #, python-format
 msgid "%s View"
-msgstr ""
+msgstr "%s View"
 
 #, python-format
 msgid "%s additional screens"
 msgstr "%s écrans supplémentaires"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s has been activated."
 msgstr "%s a été activé."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s has been disabled."
 msgstr "%s a été désactivé."
 
@@ -1221,7 +1228,7 @@ msgstr "L'élément %s n'est plus utilisé. Doit-il être supprimé?"
 
 #, python-format
 msgid "%s long"
-msgstr ""
+msgstr "%s long"
 
 #, python-format
 msgid "%s not available."
@@ -1313,7 +1320,7 @@ msgid "(TV)"
 msgstr "(TV)"
 
 msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
-msgstr ""
+msgstr "(Le fichier '/media/hdd/images/config/myrestore.sh' existe et sera exécuté après que l'image sera clignotée.)"
 
 msgid "(empty)"
 msgstr "(Vide)"
@@ -1331,7 +1338,7 @@ msgid "* current animation"
 msgstr "* animation courante"
 
 msgid "+24 Hours"
-msgstr ""
+msgstr "+24 Heures"
 
 msgctxt "Text list separator"
 msgid ", "
@@ -1341,7 +1348,7 @@ msgid "-"
 msgstr "-"
 
 msgid "-24 Hours"
-msgstr ""
+msgstr "- 24 heures"
 
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 Heures"
@@ -1410,19 +1417,19 @@ msgid "16:9 Always"
 msgstr "16:9 toujours"
 
 msgid "16:9 Combined"
-msgstr ""
+msgstr "16:9 Combiné"
 
 msgid "16:9 Ignore"
-msgstr ""
+msgstr "16:9 Ignore"
 
 msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
 
 msgid "16:9 PanScan"
-msgstr ""
+msgstr "16:9 PanScan"
 
 msgid "16:9 reset to normal"
-msgstr ""
+msgstr "16:9 réinitialisation à la normale"
 
 msgid "18 V"
 msgstr "18 V"
@@ -1497,10 +1504,10 @@ msgid "4"
 msgstr "4"
 
 msgid "4:3 Combined"
-msgstr ""
+msgstr "4:3 Combiné"
 
 msgid "4:3 Ignore"
-msgstr ""
+msgstr "4:3 Ignore"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -1551,30 +1558,30 @@ msgid "<Default movie location>"
 msgstr "<Emplacement par défaut des films>"
 
 msgid "<Flash expander inactive>"
-msgstr ""
+msgstr "<Élargeur inactif>"
 
 msgid "<Last timer location>"
 msgstr "<Emplacement dernière programmation>"
 
 msgid "<Select a device>"
-msgstr ""
+msgstr "<Choisir un dispositif>"
 
 msgid "<no log found>"
-msgstr ""
+msgstr "<­no log trouvés>"
 
 msgid "A"
 msgstr "A"
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
-msgstr ""
+msgstr "Une liste séparée des extensions à utiliser pour 'Mon extension' de 'Filter extension'. Entrez les noms de l'extension sans point principal (.)."
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
-msgstr ""
+msgstr "Une tâche terminée veut mettre votre %s %s en attente. Maintenant ?"
 
 #, python-format
 msgid "A completed task wants to shut down your %s %s. Shutdown now?"
-msgstr ""
+msgstr "Une tâche terminée veut fermer votre %s %s. Tais-toi maintenant ?"
 
 #, python-format
 msgid "A crash log was %s created in '%s'"
@@ -1786,7 +1793,7 @@ msgid "Access to geolocation information requires an Internet connection."
 msgstr "L'accès aux informations de géolocalisation nécessite une connexion internet."
 
 msgid "Accessed"
-msgstr ""
+msgstr "Accessed"
 
 msgid "Action"
 msgstr "Action"
@@ -1804,7 +1811,7 @@ msgid "Activate"
 msgstr "Activer"
 
 msgid "Activate Expander"
-msgstr ""
+msgstr "Activer Expander"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Activer HbbTV (bouton rouge)"
@@ -1828,7 +1835,7 @@ msgid "Activate the configured network settings."
 msgstr "Activer les paramètres réseau configurés."
 
 msgid "Activate the flash expander, save all changed settings and exit"
-msgstr ""
+msgstr "Activer l'extension flash, sauvegarder tous les réglages modifiés et la sortie"
 
 msgid "Activate time shift End"
 msgstr "Activer la fin de PauseDirect"
@@ -1841,6 +1848,9 @@ msgstr "Actif"
 
 msgid "Active clients"
 msgstr "Clients actifs"
+
+msgid "Active only"
+msgstr "Active seulement"
 
 msgid "Adapter Settings"
 msgstr "Paramètres adaptateur"
@@ -1867,19 +1877,19 @@ msgid "Add Current"
 msgstr "ajouter Actuel"
 
 msgid "Add File Commander to Extensions Menu"
-msgstr ""
+msgstr "Ajouter le commandant de fichier à Extensions Menu"
 
 msgid "Add File Commander to Main Menu"
-msgstr ""
+msgstr "Ajouter File Commander au menu principal"
 
 msgid "Add File Commander to the Extensions Menu list of options."
-msgstr ""
+msgstr "Ajouter File Commander à la liste des options du menu Extensions."
 
 msgid "Add File Commander to the Main Menu list of options."
-msgstr ""
+msgstr "Ajouter File Commander à la liste des options."
 
 msgid "Add HDMI IN to bouquet"
-msgstr ""
+msgstr "Ajouter HDMI IN au bouquet"
 
 msgid "Add Marker"
 msgstr "Ajouter un marqueur"
@@ -1924,19 +1934,19 @@ msgid "Add a ZapTimer for next event"
 msgstr "Ajouter un timer de zap pour l'évènement suivant"
 
 msgid "Add a bouquet"
-msgstr ""
+msgstr "Ajouter un bouquet"
 
 msgid "Add a mark"
 msgstr "Ajouter un marqueur"
 
 msgid "Add a marker"
-msgstr ""
+msgstr "Ajouter un marqueur"
 
 msgid "Add a new tag"
 msgstr "Ajouter un nouveau tag"
 
 msgid "Add a new timer"
-msgstr ""
+msgstr "Ajouter un nouveau timer"
 
 msgid "Add a new title"
 msgstr "Ajouter un nouveau titre"
@@ -1966,16 +1976,16 @@ msgid "Add highlighted directory to bookmarks"
 msgstr "Ajouter le dossier sélectionné aux signets"
 
 msgid "Add legacy LEFT/RIGHT actions"
-msgstr ""
+msgstr "Ajouter les actions LEFT/RIGHT"
 
 msgid "Add more slots"
-msgstr ""
+msgstr "Ajouter plus de machines à sous"
 
 msgid "Add new CCcam line"
-msgstr ""
+msgstr "Ajouter une nouvelle ligne CCcam"
 
 msgid "Add new NewCamd line"
-msgstr ""
+msgstr "Ajouter une nouvelle ligne NewCamd"
 
 msgid "Add new tag"
 msgstr "Ajouter un nouveau tag"
@@ -1996,19 +2006,19 @@ msgid "Add recording (Stop after current event)"
 msgstr "Ajouter un enregistrement (stopper après l'émission)"
 
 msgid "Add selected service to bouquet or alternative"
-msgstr ""
+msgstr "Ajouter un service sélectionné pour bouquet ou alternative"
 
 msgid "Add service"
 msgstr "Ajouter service"
 
 msgid "Add service to AutoCam"
-msgstr ""
+msgstr "Ajouter le service à AutoCam"
 
 msgid "Add services to this bouquet?"
-msgstr ""
+msgstr "Ajouter des services à ce bouquet?"
 
 msgid "Add the current directory as a bookmark"
-msgstr ""
+msgstr "Ajouter le répertoire courant comme signmark"
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Ajouter le service actuel à la liste des décalages de volume"
@@ -2023,13 +2033,13 @@ msgid "Add/Remove a timer for the current event"
 msgstr "Ajouter/Supprimer la programmation pour l'évènement en cours"
 
 msgid "Add/Remove highlighted plugin to/from install list"
-msgstr ""
+msgstr "Ajouter/Retirer le plugin sur/de la liste d'installation"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
-msgstr ""
+msgstr "Ajouter/Retirer le plugin sur/de supprimer la liste"
 
 msgid "Add/Remove highlighted plugin to/from update list"
-msgstr ""
+msgstr "Ajouter/Retirer le plugin sur/de la liste de mise à jour"
 
 msgid "Adding schedule..."
 msgstr "Ajout des programmations…"
@@ -2092,7 +2102,7 @@ msgid "Afrikaans"
 msgstr "Afrikaans"
 
 msgid "After Event"
-msgstr ""
+msgstr "Après l'événement"
 
 msgid "After PowerLost"
 msgstr "Après perte du secteur"
@@ -6778,6 +6788,9 @@ msgstr "Activer %s pro :"
 msgid "Enable 5V for active antenna"
 msgstr "Activer 5V pour l'antenne active"
 
+msgid "Enable Autorecord"
+msgstr "Activer l'enregistrement automatique"
+
 msgid "Enable BT Audio"
 msgstr "Activer BT Audio"
 
@@ -7202,6 +7215,10 @@ msgstr "Divertissement"
 
 msgid "Entitlements"
 msgstr "Droits"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr ""
@@ -9249,6 +9266,9 @@ msgstr "Si ce paramètre est réglé sur 'Yes' ; les mêmes commandes seront env
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Si mis à 'oui', active l'enregistrement auto (autorecord) pour la PauseDirect automatique en tâche de fond"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Si la solution de contournement de la mise en veille profonde est activée, attendez que l'heure du système soit synchronisée. Selon les besoins, le réveil du dispositif se poursuivra après un maximum de 2 minutes."
 
@@ -9862,6 +9882,9 @@ msgstr "Juste zapper"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Groenlandais"
@@ -11005,9 +11028,6 @@ msgstr "Montages"
 msgid "Mounts Devices"
 msgstr "Périphérique de montages"
 
-msgid "Mounts Settings"
-msgstr "Configuration des montages"
-
 msgid "Move"
 msgstr "Déplacer"
 
@@ -12137,10 +12157,21 @@ msgstr "oscam webif désactivé"
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13352,6 +13383,30 @@ msgstr "Préférer les sous-titres stockés pour le service"
 
 msgid "Preferred tuner"
 msgstr "Tuner préféré"
+
+msgid "Preferred tuner ATSC"
+msgstr "Tuner préféré ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Préférer le tuner ATSC pour enregistrer"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Tuner DVB-C préféré"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Tuner DVB-C préféré pour enregistrer"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Tuner DVB-S préféré"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Tuner DVB-S préféré pour enregistrer"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Tuner DVB-T préféré"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Tuner DVB-T préféré pour enregistrer"
 
 msgid "Preferred tuner for recordings"
 msgstr "Tuner préféré pour enregistrer"
@@ -17059,6 +17114,12 @@ msgstr "Afficher une valeur de curseur supplémentaire"
 msgid "Show advanced settings"
 msgstr "Afficher les paramètres avancés"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Afficher l'animation si occupé"
 
@@ -17118,6 +17179,9 @@ msgstr "Afficher les infos détaillées de l'événement"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Afficher les informations détaillées de l'événement (réglage dans le menu)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr ""
@@ -21432,6 +21496,9 @@ msgstr "Avertissement"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -21698,6 +21765,12 @@ msgstr "Lorsqu'activé, le récepteur sélectionnera la piste AC3 (quand elle es
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Lorsqu'activé, le récepteur sélectionnera la piste AC3+ (quand elle est disponible)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Lorsqu’il est activé, ce paramètre a plus de poids que ‘Tuner préféré pour enregistrer’."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Lorsqu’il est activé, ce paramètre a plus de poids que ‘Tuner préféré’."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Lorsqu'activé, la PauseDirect démarrera automatiquement en tâche de fond après le temps spécifié."
@@ -23392,41 +23465,8 @@ msgstr "Oui (garder feeds)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Tuner DVB-S préféré"
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Tuner DVB-S préféré pour enregistrer"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Tuner DVB-T préféré"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Tuner DVB-T préféré pour enregistrer"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Tuner DVB-C préféré"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Tuner DVB-C préféré pour enregistrer"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Lorsqu’il est activé, ce paramètre a plus de poids que ‘Tuner préféré’."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Lorsqu’il est activé, ce paramètre a plus de poids que ‘Tuner préféré pour enregistrer’."
-
-msgid "Preferred tuner ATSC"
-msgstr "Tuner préféré ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Préférer le tuner ATSC pour enregistrer"
-
-msgid "Enable Autorecord"
-msgstr "Activer l'enregistrement automatique"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Si mis à 'oui', active l'enregistrement auto (autorecord) pour la PauseDirect automatique en tâche de fond"
+#~ msgid "Mounts Settings"
+#~ msgstr "Configuration des montages"
 
 #~ msgid "Australian"
 #~ msgstr "Australien"

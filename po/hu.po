@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -980,6 +980,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1875,6 +1881,9 @@ msgstr "Aktiv"
 
 msgid "Active clients"
 msgstr "Aktív kliensek"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Adapter beállításai"
@@ -6823,6 +6832,9 @@ msgstr "Engedélyezve a(z) %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V kimenet az akítv antennához engedélyezve"
 
+msgid "Enable Autorecord"
+msgstr "Automatikus Timeshift felvétel engedélyezése"
+
 msgid "Enable BT Audio"
 msgstr "BT Audió engedélyezve"
 
@@ -7248,6 +7260,10 @@ msgstr "Szórakozás"
 
 msgid "Entitlements"
 msgstr "Jogosultságok"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr ""
@@ -9307,6 +9323,9 @@ msgstr ""
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve lesz a háttérben"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -9929,6 +9948,9 @@ msgstr "Csak Ugrás"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr ""
@@ -11098,9 +11120,6 @@ msgstr "Csatlakozások"
 msgid "Mounts Devices"
 msgstr "Csatlakoztatott eszközők"
 
-msgid "Mounts Settings"
-msgstr "Csatlakozások beállítása"
-
 msgid "Move"
 msgstr "Áthelyezés"
 
@@ -12253,10 +12272,21 @@ msgstr "oscam webif letiltva"
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13477,6 +13507,30 @@ msgstr "A felirat választás mentése csatornánként"
 
 msgid "Preferred tuner"
 msgstr "Előnyben részesített tuner"
+
+msgid "Preferred tuner ATSC"
+msgstr "Előnyben részesített tuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Felvételek számára előnyben részesített tuner ATSC"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Előnyben részesített tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Felvételek számára előnyben részesített tuner DVB-C"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Előnyben részesített tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Felvételek számára előnyben részesített tuner DVB-S"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Előnyben részesített tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Felvételek számára előnyben részesített tuner DVB-T"
 
 msgid "Preferred tuner for recordings"
 msgstr "Felvételek számára előnyben részesített tuner"
@@ -17205,6 +17259,12 @@ msgstr "További csúszka értékének megjelenítése"
 msgid "Show advanced settings"
 msgstr "Haladó beállítások"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Animáció megjelenítése amikor a szoftver foglalt"
 
@@ -17266,6 +17326,9 @@ msgstr "Részletes esemény információ"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Részletes esemény információk megjelenítése (beállítás a menüben)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr ""
@@ -21606,6 +21669,9 @@ msgstr "Figyelmeztetés"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -21874,6 +21940,12 @@ msgstr "A készülék egy AC3 hangsávot válasszon mindig, amikor ilyen van a c
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Ha engedélyezi, a készülék egy AC3+ hangsávot fog választani (amennyiben elérhető)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner a felvételekhez'-t."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner'-t."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "A megadott idő után a Timeshift induljon el automatikusan a háttérben."
@@ -23570,41 +23642,8 @@ msgstr "igen (állapotok megtartása)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Előnyben részesített tuner DVB-S"
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Felvételek számára előnyben részesített tuner DVB-S"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Előnyben részesített tuner DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Felvételek számára előnyben részesített tuner DVB-T"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Előnyben részesített tuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Felvételek számára előnyben részesített tuner DVB-C"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner'-t."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner a felvételekhez'-t."
-
-msgid "Preferred tuner ATSC"
-msgstr "Előnyben részesített tuner ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Felvételek számára előnyben részesített tuner ATSC"
-
-msgid "Enable Autorecord"
-msgstr "Automatikus Timeshift felvétel engedélyezése"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve lesz a háttérben"
+#~ msgid "Mounts Settings"
+#~ msgstr "Csatlakozások beállítása"
 
 #~ msgid "Australian"
 #~ msgstr "Ausztrál"

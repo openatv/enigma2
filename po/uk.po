@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-01-12 09:38+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"PO-Revision-Date: 2024-02-19 11:02+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -973,6 +973,13 @@ msgid "%d ms"
 msgstr "%d мс"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "Знайдено %d пакет."
+msgstr[1] "Знайдено %d пакета."
+msgstr[2] "Знайдено %d пакетів."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d пакет має оновлення"
@@ -1869,6 +1876,9 @@ msgstr "Активний"
 
 msgid "Active clients"
 msgstr "Активні Клієнти"
+
+msgid "Active only"
+msgstr "Лише активні"
 
 msgid "Adapter Settings"
 msgstr "Налаштування адаптера"
@@ -6810,6 +6820,9 @@ msgstr "Ввімкнути %s про:"
 msgid "Enable 5V for active antenna"
 msgstr "Подати 5В для активної антени"
 
+msgid "Enable Autorecord"
+msgstr "Активувати автозапис"
+
 msgid "Enable BT Audio"
 msgstr "Активувати BT Аудіо"
 
@@ -7236,6 +7249,10 @@ msgstr "Розваги"
 
 msgid "Entitlements"
 msgstr "Дозволи"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr "Права для 'CAID %s'"
 
 msgid "Entry image and text"
 msgstr "Вхідний імідж та текст"
@@ -9283,6 +9300,9 @@ msgstr "Якщо встановлено значення 'Так', для под
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Якщо встановлено значення 'так', ви можете використовувати зміщення часу з альтернативними аудіоплагінами."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Якщо вибрано 'так', буде включений автоматичний запис таймшифта у фоновому режимі"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Якщо обхідний шлях для глибокого очікування ввімкнено, дочекайтеся синхронізації системного часу. Залежно від вимоги пробудження пристрою триватиме максимум через 2 хвилини."
 
@@ -9896,6 +9916,9 @@ msgstr "Перемкнути"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr "KСимб/с"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Калааллісут / Гренландська"
@@ -11040,9 +11063,6 @@ msgstr "Точки монтування"
 msgid "Mounts Devices"
 msgstr "Підключення пристроїв"
 
-msgid "Mounts Settings"
-msgstr "Налаштування підключення"
-
 msgid "Move"
 msgstr "Переміщення"
 
@@ -12173,11 +12193,22 @@ msgstr "oscam webif відключено"
 msgid "OSCamInfo Actions"
 msgstr "Дії OSCamInfo"
 
-msgid "OSCamInfo Log"
-msgstr "Лог OSCamInfo"
-
 msgid "OSCamInfo Log Actions"
 msgstr "Дії для логу OSCamInfo"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr "OSCamInfo: %s права для '%s'"
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr "OSCamInfo: Права для '%s'"
+
+msgid "OSCamInfo: Information"
+msgstr "OSCamInfo: Інформація"
+
+msgid "OSCamInfo: Log"
+msgstr "OSCamInfo: Лог"
 
 msgid "OSD"
 msgstr "OSD"
@@ -13390,6 +13421,30 @@ msgstr "Пріоритет субтитрам збережених на кана
 
 msgid "Preferred tuner"
 msgstr "Пріоритетний тюнер"
+
+msgid "Preferred tuner ATSC"
+msgstr "Приорітетний тюнер ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Віддається перевага тюнеру ATSC для запису"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Приоритетний тюнер DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Приорітетний тюнер DVB-C для записів"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Приорітетний тюнер DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Приорітетний тюнер DVB-S для записів"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Приорітетний тюнер DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Приорітетний тюнер DVB-T для записів"
 
 msgid "Preferred tuner for recordings"
 msgstr "Пріоритетний тюнер для запису"
@@ -17110,6 +17165,12 @@ msgstr "Показати додаткове значення повзунка"
 msgid "Show advanced settings"
 msgstr "Показати розширені налаштування"
 
+msgid "Show all"
+msgstr "Показати все"
+
+msgid "Show all details"
+msgstr "Показати всі деталі"
+
 msgid "Show animation while busy"
 msgstr "Показувати анімацію під час зайнятості"
 
@@ -17169,6 +17230,9 @@ msgstr "Показати докладну інформацію події"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Показати докладну інформацію події (налаштування в меню)"
+
+msgid "Show details"
+msgstr "Показати деталі"
 
 msgid "Show details of highlighted task"
 msgstr "Показати деталі виділеного завдання"
@@ -18814,7 +18878,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 17.01.2024"
+msgstr "Переклад: kvinto - 18.02.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -21529,6 +21593,9 @@ msgstr "Попередження"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Попередження: %d фідів не вдалося перезавантажити!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr "Попередження: Скасування цього процесу призведе до того, що фіди залишаться в незавершеному та непридатному для використання стані!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Попередження: перевизначення наразі активні!"
 
@@ -21798,6 +21865,12 @@ msgstr "Якщо ця функція включена, то приймач бу�
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Якщо ця функція включена, то приймач буде використовувати AC3+ звук (якщо доступно)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Якщо увімкнено, це налаштування має більшу вагу, ніж 'Бажаний тюнер для записів'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Якщо цей параметр увімкнено, він має більшу вагу, ніж 'Бажаний тюнер'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "При включенні таймшифт автоматично буде запущений у фоновому режимі через обраний час."
@@ -23493,41 +23566,11 @@ msgstr "так (зберігати фіди)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Приорітетний тюнер DVB-S"
+#~ msgid "Mounts Settings"
+#~ msgstr "Налаштування підключення"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Приорітетний тюнер DVB-S для записів"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Приорітетний тюнер DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Приорітетний тюнер DVB-T для записів"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Приоритетний тюнер DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Приорітетний тюнер DVB-C для записів"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Якщо цей параметр увімкнено, він має більшу вагу, ніж 'Бажаний тюнер'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Якщо увімкнено, це налаштування має більшу вагу, ніж 'Бажаний тюнер для записів'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Приорітетний тюнер ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Віддається перевага тюнеру ATSC для запису"
-
-msgid "Enable Autorecord"
-msgstr "Активувати автозапис"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Якщо вибрано 'так', буде включений автоматичний запис таймшифта у фоновому режимі"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "Лог OSCamInfo"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -24096,13 +24139,6 @@ msgstr "Якщо вибрано 'так', буде включений автом
 
 #~ msgid "X11 Utility Packages"
 #~ msgstr "Пакети службових програм X11"
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "Знайдено %d пакет."
-#~ msgstr[1] "Знайдено %d пакета."
-#~ msgstr[2] "Знайдено %d пакетів."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Додати/Видалити виділений плагін до/із списку завантажень"

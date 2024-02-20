@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2024-02-10 07:43+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -954,6 +954,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "Βρέθηκε %d πακέτο."
+msgstr[1] "Βρέθηκαν %d πακέτα."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d πακέτο έχει ενημέρωση"
@@ -1834,6 +1840,9 @@ msgstr "Ενεργό"
 
 msgid "Active clients"
 msgstr "Ενεργοί πελάτες"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Ρυθμίσεις προσαρμογέα δικτύου"
@@ -6773,6 +6782,9 @@ msgstr "Ενεργοποίηση του %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Ενεργοποίηση των 5V για την ενεργή κεραία"
 
+msgid "Enable Autorecord"
+msgstr "Ενεργοποίηση αυτόματης εγγραφής"
+
 msgid "Enable BT Audio"
 msgstr "Ενεργοποίηση ήχου BT"
 
@@ -7197,6 +7209,10 @@ msgstr "Ψυχαγωγία"
 
 msgid "Entitlements"
 msgstr "Δικαιώματα κάρτας"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr "Εικόνα στοιχείου και κείμενο"
@@ -9244,6 +9260,9 @@ msgstr "Αν επιλεγεί το 'ναι', οι ίδιες εντολές πο
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Αν επιλεγεί το 'ναι', επιτρέπεται η χρήση της χρονομετατόπισης με εναλλακτικά πρόσθετα ήχου."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Αν επιλεγεί το 'ναι', θα ενεργοποιηθεί η αυτόματη εγγραφή της χρονομετατόπισης στο παρασκήνιο"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Αν o εναλλακτικός τρόπος βαθιάς αναμονής είναι ενεργός, γίνεται αναμονή μέχρι να συγχρονιστεί το σύστημα. Ανάλογα με τις απαιτήσεις, οι συσκευές θα συνεχίζουν να αφυπνίζονται έως το πολύ 2 λεπτά."
 
@@ -9857,6 +9876,9 @@ msgstr "Απλά μετάβαση"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Καλαλισούτ / Γροιλανδικά"
@@ -10999,9 +11021,6 @@ msgstr "Σημεία προσάρτησης"
 msgid "Mounts Devices"
 msgstr "Προσαρτημένες συσκευές"
 
-msgid "Mounts Settings"
-msgstr "Ρυθμίσεις προσαρτήσεων"
-
 msgid "Move"
 msgstr "Μετακίνηση"
 
@@ -12132,11 +12151,22 @@ msgstr "Διεπαφή OScam ανενεργή"
 msgid "OSCamInfo Actions"
 msgstr "Ενέργειες πληροφοριών OSCam"
 
-msgid "OSCamInfo Log"
-msgstr "Καταγραφή πληροφοριών OSCam"
-
 msgid "OSCamInfo Log Actions"
 msgstr "Ενέργειες καταγραφής πληροφοριών OSCam"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
+msgstr ""
 
 msgid "OSD"
 msgstr "OSD"
@@ -13347,6 +13377,30 @@ msgstr "Να προτιμώνται υπότιτλοι αποθηκευμένο�
 
 msgid "Preferred tuner"
 msgstr "Προτιμώμενο tuner"
+
+msgid "Preferred tuner ATSC"
+msgstr "Προτιμώμενο tuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Προτιμώμενο tuner ATSC για τις εγγραφές"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Προτιμώμενο tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Προτιμώμενο tuner DVB-C για τις εγγραφές"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Προτιμώμενο tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Προτιμώμενο tuner DVB-S για τις εγγραφές"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Προτιμώμενο tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Προτιμώμενο tuner DVB-T για τις εγγραφές"
 
 msgid "Preferred tuner for recordings"
 msgstr "Προτιμώμενο tuner για εγγραφές"
@@ -17065,6 +17119,12 @@ msgstr "Εμφάνιση πρόσθετης τιμής του ολισθητή"
 msgid "Show advanced settings"
 msgstr "Εμφάνιση προχωρημένων ρυθμίσεων"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Εμφάνιση κινούμενου γραφικού όταν είναι απασχολημένο"
 
@@ -17124,6 +17184,9 @@ msgstr "Εμφάνιση αναλυτικών πληροφοριών προγρ�
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Εμφάνιση αναλυτικών πληροφοριών προγράμματος (ρυθμίσεις στο μενού)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr "Εμφάνιση λεπτομερειών επισημασμένης εργασίας"
@@ -21482,6 +21545,9 @@ msgstr "Προειδοποίηση"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Προειδοποίηση: αδύνατη η επαναφόρτωση %d πηγών!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Προειδοποίηση: Οι παρακάμψεις είναι ενεργές!"
 
@@ -21751,6 +21817,12 @@ msgstr "Όταν είναι ενεργό, ο δέκτης θα επιλέγει 
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Όταν είναι ενεργό, ο δέκτης θα επιλέγει έναν ήχο AC3+ (όταν είναι διαθέσιμος)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Όταν είναι ενεργό, αυτή η ρύθμιση έχει προτεραιότητα αντί του 'Προτιμώμενο tuner για εγγραφές'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Όταν είναι ενεργό, αυτή η ρύθμιση έχει προτεραιότητα αντί του 'Προτιμώμενο tuner'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Όταν είναι ενεργό, η χρονομετατόπιση θα ξεκινά αυτόματα στο παρασκήνιο μετά από ορισμένο χρόνο."
@@ -23445,41 +23517,11 @@ msgstr "ναι (διατήρηση των feeds)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Προτιμώμενο tuner DVB-S"
+#~ msgid "Mounts Settings"
+#~ msgstr "Ρυθμίσεις προσαρτήσεων"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Προτιμώμενο tuner DVB-S για τις εγγραφές"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Προτιμώμενο tuner DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Προτιμώμενο tuner DVB-T για τις εγγραφές"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Προτιμώμενο tuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Προτιμώμενο tuner DVB-C για τις εγγραφές"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Όταν είναι ενεργό, αυτή η ρύθμιση έχει προτεραιότητα αντί του 'Προτιμώμενο tuner'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Όταν είναι ενεργό, αυτή η ρύθμιση έχει προτεραιότητα αντί του 'Προτιμώμενο tuner για εγγραφές'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Προτιμώμενο tuner ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Προτιμώμενο tuner ATSC για τις εγγραφές"
-
-msgid "Enable Autorecord"
-msgstr "Ενεργοποίηση αυτόματης εγγραφής"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Αν επιλεγεί το 'ναι', θα ενεργοποιηθεί η αυτόματη εγγραφή της χρονομετατόπισης στο παρασκήνιο"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "Καταγραφή πληροφοριών OSCam"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -23930,12 +23972,6 @@ msgstr "Αν επιλεγεί το 'ναι', θα ενεργοποιηθεί η 
 
 #~ msgid "Trying to download a new packet list. Please wait..."
 #~ msgstr "Προσπάθεια λήψης νέας λίστας πακέτων. Παρακαλώ περιμένετε..."
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "Βρέθηκε %d πακέτο."
-#~ msgstr[1] "Βρέθηκαν %d πακέτα."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Προσθήκη/αφαίρεση επιλεγμένου πρόσθετου στη/από τη λίστα λήψεων"

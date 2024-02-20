@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-02-17 17:39+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"PO-Revision-Date: 2024-02-20 18:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -955,6 +955,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "%d pakket gevonden."
+msgstr[1] "%d pakketten gevonden."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "Voor %d pakket is een update beschikbaar."
@@ -1843,6 +1849,9 @@ msgstr "Actief"
 
 msgid "Active clients"
 msgstr "Actieve gebruikers"
+
+msgid "Active only"
+msgstr "Alleen actieve"
 
 msgid "Adapter Settings"
 msgstr "Adapter instellingen"
@@ -6900,6 +6909,9 @@ msgstr "Activeer %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V voor actieve antenne inschakelen"
 
+msgid "Enable Autorecord"
+msgstr "Aktiveer automatische opname"
+
 msgid "Enable BT Audio"
 msgstr "BT audio inschakelen"
 
@@ -7334,6 +7346,10 @@ msgstr "Entertainment"
 
 msgid "Entitlements"
 msgstr "Kaarten"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr "Entitlements voor 'CAID %s'"
 
 msgid "Entry image and text"
 msgstr "Invoer afbeelding en tekst"
@@ -9387,6 +9403,9 @@ msgstr "Wanneer u kiest voor 'Ja' worden dezelfde commando's naar de TV gestuurd
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Indien ingesteld op \"ja\", kunt u Timeshift gebruiken met alternatieve audio-plugins."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Wanneer de deep standby workaround is geactiveerd, a.u.b. wachten tot de systeemtijd is gesynchroniseerd. Afhankelijk van het gebruik zal de ontvanger binnen maximaal 2 minuten opstarten."
 
@@ -10004,6 +10023,9 @@ msgstr "Alleen zappen"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Groenlands"
@@ -11146,9 +11168,6 @@ msgstr "Mounts"
 msgid "Mounts Devices"
 msgstr "Mount opslagmedia"
 
-msgid "Mounts Settings"
-msgstr "Mounts instellen"
-
 msgid "Move"
 msgstr "Verplaats"
 
@@ -12282,11 +12301,22 @@ msgstr "OSCam webif uitgeschakeld"
 msgid "OSCamInfo Actions"
 msgstr "OSCamInfo Acties"
 
-msgid "OSCamInfo Log"
-msgstr "OSCamInfo Log"
-
 msgid "OSCamInfo Log Actions"
 msgstr "OSCamInfo Log Acties"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr "OSCamInfo: %s Entitlements voor '%s'"
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr "OSCamInfo: Entitlements voor '%s'"
+
+msgid "OSCamInfo: Information"
+msgstr "OSCamInfo: Informatie"
+
+msgid "OSCamInfo: Log"
+msgstr "OSCamInfo: Log"
 
 msgid "OSD"
 msgstr "OSD"
@@ -13498,6 +13528,30 @@ msgstr "Voorkeur voor eerder opgeslagen ondertitels per zender"
 
 msgid "Preferred tuner"
 msgstr "Voorkeurstuner"
+
+msgid "Preferred tuner ATSC"
+msgstr "Voorkeurstuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Voorkeurstuner voor ATSC opnames"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Voorkeurstuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Voorkeurstuner voor DVB-C opnames"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Voorkeurstuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Voorkeurstuner voor DVB-S opnames"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Voorkeurstuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Voorkeurstuner voor DVB-T opnames"
 
 msgid "Preferred tuner for recordings"
 msgstr "Voorkeurstuner voor opnames"
@@ -17254,6 +17308,12 @@ msgstr "Toon aanvullend de schuifregelaar-waarde als getal"
 msgid "Show advanced settings"
 msgstr "Toon geavanceerde instellingen"
 
+msgid "Show all"
+msgstr "Alles tonen"
+
+msgid "Show all details"
+msgstr "Alle details tonen"
+
 msgid "Show animation while busy"
 msgstr "Toon een Spinner wanneer uw ontvanger bezig is"
 
@@ -17315,6 +17375,9 @@ msgstr "Gedetailleerde EPG info weergeven"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Toon gedetailleerde programma info"
+
+msgid "Show details"
+msgstr "Details tonen"
 
 msgid "Show details of highlighted task"
 msgstr "Details van gemarkeerde taak weergeven"
@@ -21724,6 +21787,9 @@ msgstr "Waarschuwing"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Waarschuwing: %d Feeds konden niet opnieuw worden geladen!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr "Waarschuwing: Het annuleren van dit proces zorgt voor een incomplete en niet stabiele Feed!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Waarschuwing: De overschrijvingen zijn nu actief!"
 
@@ -21998,6 +22064,12 @@ msgstr "Er wordt een AC3 audiospoor geselecteerd wanneer deze beschikbaar is."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Er wordt een AC3+ audiospoor geselecteerd wanneer deze beschikbaar is."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Indien geactiveerd, dan wordt de voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner voor opname's'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Indien geactiveerd, dan wordt er voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr ""
@@ -23709,41 +23781,11 @@ msgstr "ja (bewaar feeds)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Voorkeurstuner DVB-S"
+#~ msgid "Mounts Settings"
+#~ msgstr "Mounts instellen"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Voorkeurstuner voor DVB-S opnames"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Voorkeurstuner DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Voorkeurstuner voor DVB-T opnames"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Voorkeurstuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Voorkeurstuner voor DVB-C opnames"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Indien geactiveerd, dan wordt er voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Indien geactiveerd, dan wordt de voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner voor opname's'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Voorkeurstuner ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Voorkeurstuner voor ATSC opnames"
-
-msgid "Enable Autorecord"
-msgstr "Aktiveer automatische opname"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
+#~ msgid "OSCamInfo Log"
+#~ msgstr "OSCamInfo Log"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -24231,12 +24273,6 @@ msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
 
 #~ msgid "Trying to download a new packet list. Please wait..."
 #~ msgstr "Probeert een nieuwe pakketlijst te downloaden. Een ogenblik ..."
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "%d pakket gevonden."
-#~ msgstr[1] "%d pakketten gevonden."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Geselecteerde plug-in toevoegen/verwijderen van de downloadlijst"

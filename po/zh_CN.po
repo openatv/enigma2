@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -953,6 +953,12 @@ msgid "%d ms"
 msgstr "%d 毫秒"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "找到 %d 个软件包。"
+msgstr[1] "找到 %d 个软件包。"
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "有 %d 个软件包可更新"
@@ -1838,6 +1844,9 @@ msgstr "活跃"
 
 msgid "Active clients"
 msgstr "活动客户端"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "适配器设置"
@@ -6769,6 +6778,9 @@ msgstr "启用%s专业版:"
 msgid "Enable 5V for active antenna"
 msgstr "启用5V有源天线"
 
+msgid "Enable Autorecord"
+msgstr "启用录像"
+
 msgid "Enable BT Audio"
 msgstr "启用蓝牙音频"
 
@@ -7193,6 +7205,10 @@ msgstr "娱乐"
 
 msgid "Entitlements"
 msgstr "授权"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr ""
@@ -9238,6 +9254,9 @@ msgstr "如果设置为'是',则将向电视发送与在常规待机事件期间
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "如果设置为'是',启用自动录制为自动时移的背景."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "如果启用了深度待机解决方法,则会等待系统时间同步.根据要求,设备唤醒将在最多2分钟后继续."
 
@@ -9851,6 +9870,9 @@ msgstr "仅切换"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "卡拉利苏特 / 格陵兰语"
@@ -10993,9 +11015,6 @@ msgstr "挂载"
 msgid "Mounts Devices"
 msgstr "挂载设备"
 
-msgid "Mounts Settings"
-msgstr "挂载设置"
-
 msgid "Move"
 msgstr "移动"
 
@@ -12123,10 +12142,21 @@ msgstr "OScam webif已禁用"
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13335,6 +13365,30 @@ msgstr "首选频道中存在的字幕"
 
 msgid "Preferred tuner"
 msgstr "首选调谐器"
+
+msgid "Preferred tuner ATSC"
+msgstr "首选调谐器ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "录制首选调谐器ATSC"
+
+msgid "Preferred tuner DVB-C"
+msgstr "首选DVB-C调谐器"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "录制首选调谐器DVB-C"
+
+msgid "Preferred tuner DVB-S"
+msgstr "首选DVB-S调谐器"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "录制首选调谐器DVB-S"
+
+msgid "Preferred tuner DVB-T"
+msgstr "首选DVB-T调谐器"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "录制首选调谐器DVB-T"
 
 msgid "Preferred tuner for recordings"
 msgstr "录像首选调谐器"
@@ -17038,6 +17092,12 @@ msgstr "显示附加滑块值"
 msgid "Show advanced settings"
 msgstr "显示高级设置"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "系统繁忙时显示动画"
 
@@ -17097,6 +17157,9 @@ msgstr "显示详细的事件信息"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "显示详细的事件信息(在菜单中设置)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr ""
@@ -21387,6 +21450,9 @@ msgstr "警告"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "警告:覆盖当前处于活动状态!"
 
@@ -21653,6 +21719,12 @@ msgstr "启用后,机顶盒将选择AC3音轨(如果可用的话)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "启用后,机顶盒将选择AC3+音轨(如果可用的话)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "一旦启用,此设置将有比录制首选调谐器更大的适用范围."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "一旦启用,此设置将拥有比首选调谐器更大的适用范围."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "启用后,时移将会在指定时间后自动在后台启动."
@@ -23342,41 +23414,8 @@ msgstr "是(保持订阅源)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "首选DVB-S调谐器"
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "录制首选调谐器DVB-S"
-
-msgid "Preferred tuner DVB-T"
-msgstr "首选DVB-T调谐器"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "录制首选调谐器DVB-T"
-
-msgid "Preferred tuner DVB-C"
-msgstr "首选DVB-C调谐器"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "录制首选调谐器DVB-C"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "一旦启用,此设置将拥有比首选调谐器更大的适用范围."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "一旦启用,此设置将有比录制首选调谐器更大的适用范围."
-
-msgid "Preferred tuner ATSC"
-msgstr "首选调谐器ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "录制首选调谐器ATSC"
-
-msgid "Enable Autorecord"
-msgstr "启用录像"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "如果设置为'是',启用自动录制为自动时移的背景."
+#~ msgid "Mounts Settings"
+#~ msgstr "挂载设置"
 
 #~ msgid "Australian"
 #~ msgstr "澳大利亚人"
@@ -23745,12 +23784,6 @@ msgstr "如果设置为'是',启用自动录制为自动时移的背景."
 
 #~ msgid "Trying to download a new packet list. Please wait..."
 #~ msgstr "尝试下载新的软件包列表,请稍候..."
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "找到 %d 个软件包。"
-#~ msgstr[1] "找到 %d 个软件包。"
 
 #, python-format
 #~ msgid "Error: %s %s not %s!  Please try again later."

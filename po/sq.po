@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -955,6 +955,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1843,6 +1849,9 @@ msgstr "Aktiv"
 
 msgid "Active clients"
 msgstr "Klientë aktivë"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Rregullimet e përshtatësve"
@@ -6772,6 +6781,9 @@ msgstr "Aktivizo %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Aktivizo 5V për antenë aktive"
 
+msgid "Enable Autorecord"
+msgstr ""
+
 msgid "Enable BT Audio"
 msgstr "Aktivo BT Audio"
 
@@ -7196,6 +7208,10 @@ msgstr "Argëtim"
 
 msgid "Entitlements"
 msgstr "Të drejtat"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr "Imazhi dhe teksti i hyrjes"
@@ -9243,6 +9259,9 @@ msgstr "Nëse vendoset në \"Po\", të njëjtat komanda do të dërgohen në tel
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Nëse është aktivizuar zgjidhja e gatishmërisë së thellë, prisni derisa koha e sistemit të sinkronizohet. Në varësi të kërkesës, zgjimi i pajisjes do të vazhdojë pas një maksimumi 2 minutash."
 
@@ -9855,6 +9874,9 @@ msgid "Just zap"
 msgstr ""
 
 msgid "KA-SAT"
+msgstr ""
+
+msgid "KSymb/s"
 msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
@@ -10996,9 +11018,6 @@ msgstr ""
 msgid "Mounts Devices"
 msgstr ""
 
-msgid "Mounts Settings"
-msgstr ""
-
 msgid "Move"
 msgstr ""
 
@@ -12102,10 +12121,21 @@ msgstr ""
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13304,6 +13334,30 @@ msgid "Prefer subtitles stored by service"
 msgstr ""
 
 msgid "Preferred tuner"
+msgstr ""
+
+msgid "Preferred tuner ATSC"
+msgstr ""
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-C"
+msgstr ""
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-S"
+msgstr ""
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-T"
+msgstr ""
+
+msgid "Preferred tuner DVB-T for recordings"
 msgstr ""
 
 msgid "Preferred tuner for recordings"
@@ -16986,6 +17040,12 @@ msgstr ""
 msgid "Show advanced settings"
 msgstr ""
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr ""
 
@@ -17044,6 +17104,9 @@ msgid "Show detailed event info"
 msgstr ""
 
 msgid "Show detailed event info (setup in menu)"
+msgstr ""
+
+msgid "Show details"
 msgstr ""
 
 msgid "Show details of highlighted task"
@@ -21303,6 +21366,9 @@ msgstr "Paralajmërim"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Kujdes: Kasaperat janë aktive tani!"
 
@@ -21569,6 +21635,12 @@ msgstr "Kur aktivizohet, marrësi do të zgjedhë një pjesë AC3 (kur është e
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kur aktivizohet, marrësi do të zgjedhë një pjesë AC3+ (kur është e disponueshme)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr ""
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr ""
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kur aktivizohet, zhvendosja e kohës fillon automatikisht në sfond pas kohës së caktuar."
@@ -23251,42 +23323,6 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
-
-msgid "Preferred tuner DVB-S"
-msgstr ""
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr ""
-
-msgid "Preferred tuner DVB-T"
-msgstr ""
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr ""
-
-msgid "Preferred tuner DVB-C"
-msgstr ""
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr ""
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr ""
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr ""
-
-msgid "Preferred tuner ATSC"
-msgstr ""
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr ""
-
-msgid "Enable Autorecord"
-msgstr ""
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
 
 #~ msgid "Australian"
 #~ msgstr "Australia"

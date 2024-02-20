@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -971,6 +971,13 @@ msgid "%d ms"
 msgstr "%d msek."
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1877,6 +1884,9 @@ msgstr "Aktyvus"
 
 msgid "Active clients"
 msgstr "Aktyvūs klientai"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Adapterio parametrai"
@@ -6819,6 +6829,9 @@ msgstr "Įjungti %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Įjungti 5V aktyviai antenai"
 
+msgid "Enable Autorecord"
+msgstr "Įjungti auto įrašymą"
+
 msgid "Enable BT Audio"
 msgstr "Įjungti BT garsą"
 
@@ -7245,6 +7258,10 @@ msgstr "Pramogos"
 
 msgid "Entitlements"
 msgstr "Pavadinimai"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr "Įrašo vaizdas ir tekstas"
@@ -9294,6 +9311,9 @@ msgstr "Jei nustatyta į 'taip', į televizorių bus siunčiamos tos pačios kom
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Jei nustatyta \"taip\", leidžia naudoti laiko keitimą su alternatyviais garso papildiniais."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Jei nustatyta 'taip', įjungiamas auto įrašymas, naudojamas automatiniam fono laiko poslinkiui"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jei įjungtas gilus pristabdymo sprendimas, palaukite, kol bus sinchronizuojamas sistemos laikas. Priklausomai nuo reikalavimo, prietaisas pabus po 2 minučių."
 
@@ -9907,6 +9927,9 @@ msgstr "Tiesiog jungti"
 
 msgid "KA-SAT"
 msgstr "KA-PALYDOVAS"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Grenlandija"
@@ -11051,9 +11074,6 @@ msgstr "Pajungimai"
 msgid "Mounts Devices"
 msgstr "Pajungti įrenginiai"
 
-msgid "Mounts Settings"
-msgstr "Pajungimų parametrai"
-
 msgid "Move"
 msgstr "Perkelti"
 
@@ -12181,10 +12201,21 @@ msgstr "OScam webif išjungtas"
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13398,6 +13429,30 @@ msgstr "Pageidautini subtitrai, saugomi pagal kanalus"
 
 msgid "Preferred tuner"
 msgstr "Pageidautinas imtuvas"
+
+msgid "Preferred tuner ATSC"
+msgstr "Pageidautinas imtuvas ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Pageidautinas ATSC imtuvas įrašams"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Pageidautinas imtuvas DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Pageidautinas DVB-C imtuvas įrašams"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Pageidautinas DVB-S imtuvas"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Pageidautinas DVB-S imtuvas įrašams"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Pageidautinas DVB-T imtuvas"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Pageidautinas DVB-T imtuvas įrašams"
 
 msgid "Preferred tuner for recordings"
 msgstr "Pageidautinas imtuvas įrašams"
@@ -17106,6 +17161,12 @@ msgstr "Rodyti papildomą slankiklio reikšmę"
 msgid "Show advanced settings"
 msgstr "Rodyti išplėstinius nustatymus"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Rodyti animaciją tuo metu, kai užimta"
 
@@ -17165,6 +17226,9 @@ msgstr "Rodyti išsamią įvykio informaciją"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Rodyti išsamią informaciją apie įvykį (nustatymas meniu)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr ""
@@ -21492,6 +21556,9 @@ msgstr "Įspėjimas"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Įspėjimas: nepaisymas šiuo metu aktyvus!"
 
@@ -21758,6 +21825,12 @@ msgstr "Kai čia įjungta, esant galimybei, imtuvas pasirinks AC3 takelį."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kai čia įjungta, esant galimybei, imtuvas pasirinks AC3+ garso takelį."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Kai čia įjungta, šis pasirinkimas turi daugiau svorio, nei 'Pageidautinas imtuvas įrašams'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Kai čia įjungta, šis pasirinkimas turi daugiau svorio, nei 'Pageidautinas imtuvas'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kai čia įjungta, laiko poslinkis įsijungs po nurodyto laiko automatiškai."
@@ -23450,41 +23523,8 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Pageidautinas DVB-S imtuvas"
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Pageidautinas DVB-S imtuvas įrašams"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Pageidautinas DVB-T imtuvas"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Pageidautinas DVB-T imtuvas įrašams"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Pageidautinas imtuvas DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Pageidautinas DVB-C imtuvas įrašams"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Kai čia įjungta, šis pasirinkimas turi daugiau svorio, nei 'Pageidautinas imtuvas'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Kai čia įjungta, šis pasirinkimas turi daugiau svorio, nei 'Pageidautinas imtuvas įrašams'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Pageidautinas imtuvas ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Pageidautinas ATSC imtuvas įrašams"
-
-msgid "Enable Autorecord"
-msgstr "Įjungti auto įrašymą"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Jei nustatyta 'taip', įjungiamas auto įrašymas, naudojamas automatiniam fono laiko poslinkiui"
+#~ msgid "Mounts Settings"
+#~ msgstr "Pajungimų parametrai"
 
 #~ msgid "Australian"
 #~ msgstr "Australijos"

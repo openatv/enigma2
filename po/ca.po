@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1040,6 +1040,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1998,6 +2004,9 @@ msgid "Active"
 msgstr ""
 
 msgid "Active clients"
+msgstr ""
+
+msgid "Active only"
 msgstr ""
 
 #
@@ -7265,6 +7274,9 @@ msgstr "Activar"
 msgid "Enable 5V for active antenna"
 msgstr "Activar 5V per a antena activa"
 
+msgid "Enable Autorecord"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Enable BT Audio"
@@ -7709,6 +7721,10 @@ msgid "Entertainment"
 msgstr "Entrar al menú principal..."
 
 msgid "Entitlements"
+msgstr ""
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
 msgstr ""
 
 msgid "Entry image and text"
@@ -9882,6 +9898,9 @@ msgstr ""
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -10545,6 +10564,9 @@ msgstr ""
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr ""
@@ -11777,9 +11799,6 @@ msgid "Mounts"
 msgstr ""
 
 msgid "Mounts Devices"
-msgstr ""
-
-msgid "Mounts Settings"
 msgstr ""
 
 msgid "Move"
@@ -13031,10 +13050,21 @@ msgstr ""
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -14350,6 +14380,30 @@ msgstr "Preferiu els subtítols emmagatzemats per servei"
 
 msgid "Preferred tuner"
 msgstr "Sintonitzador preferit"
+
+msgid "Preferred tuner ATSC"
+msgstr "Sintonitzador preferit ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Sintonitzador ATSC preferit per a enregistraments"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Sintonitzador preferit DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Sintonitzador preferit DVB-C per a enregistraments"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Sintonitzador preferit DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Sintonitzador preferit DVB-S per a enregistraments"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Sintonitzador preferit DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Sintonitzador preferit DVB-T per a enregistraments"
 
 msgid "Preferred tuner for recordings"
 msgstr "Sintonitzador preferit per a enregistraments"
@@ -18306,6 +18360,12 @@ msgstr ""
 msgid "Show advanced settings"
 msgstr ""
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Mostra animació mentre està ocupat"
 
@@ -18370,6 +18430,9 @@ msgid "Show detailed event info"
 msgstr "Mostra informació detallada sobre esdeveniments"
 
 msgid "Show detailed event info (setup in menu)"
+msgstr ""
+
+msgid "Show details"
 msgstr ""
 
 msgid "Show details of highlighted task"
@@ -22927,6 +22990,9 @@ msgstr "Avís"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -23204,6 +23270,12 @@ msgstr ""
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Si està activat, aquest paràmetre té més pes que el “Sintonitzador preferit per a enregistraments”."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Si està activat, aquest paràmetre té més pes que el “sintonitzador preferit”."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Quan està activat, el canvi de temps s’inicia automàticament en segon pla després del temps especificat."
@@ -25005,42 +25077,6 @@ msgid "yes (keep feeds)"
 msgstr "si (mantenir feeds)"
 
 msgid "®"
-msgstr ""
-
-msgid "Preferred tuner DVB-S"
-msgstr "Sintonitzador preferit DVB-S"
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Sintonitzador preferit DVB-S per a enregistraments"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Sintonitzador preferit DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Sintonitzador preferit DVB-T per a enregistraments"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Sintonitzador preferit DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Sintonitzador preferit DVB-C per a enregistraments"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Si està activat, aquest paràmetre té més pes que el “sintonitzador preferit”."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Si està activat, aquest paràmetre té més pes que el “Sintonitzador preferit per a enregistraments”."
-
-msgid "Preferred tuner ATSC"
-msgstr "Sintonitzador preferit ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Sintonitzador ATSC preferit per a enregistraments"
-
-msgid "Enable Autorecord"
-msgstr ""
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
 msgstr ""
 
 #

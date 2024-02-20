@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -950,6 +950,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1851,6 +1857,9 @@ msgstr "Töös"
 
 msgid "Active clients"
 msgstr "Aktiivsed kliendid"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Võrgukaardi seaded"
@@ -6886,6 +6895,9 @@ msgstr "Luba %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Luba 5 V toide aktiivantennile"
 
+msgid "Enable Autorecord"
+msgstr "Autosalvestus lubatud"
+
 msgid "Enable BT Audio"
 msgstr "Luba BT heli"
 
@@ -7320,6 +7332,10 @@ msgstr "Peamenüü."
 
 msgid "Entitlements"
 msgstr "Õigused"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr ""
@@ -9420,6 +9436,9 @@ msgstr ""
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Määrates 'jah', töötab autosalvestus automaatselt ajanihke taustal"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -10054,6 +10073,9 @@ msgstr "Kanalivahetus"
 
 msgid "KA-SAT"
 msgstr "KA-SAT (9°E)"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr ""
@@ -11252,9 +11274,6 @@ msgstr "Haakepunktid"
 msgid "Mounts Devices"
 msgstr "Haagi andmekandjad"
 
-msgid "Mounts Settings"
-msgstr "Haakepunktid"
-
 msgid "Move"
 msgstr "Liiguta"
 
@@ -12443,10 +12462,21 @@ msgstr "oscam veebiliides keelatud"
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13706,6 +13736,30 @@ msgstr "Eelista käsitsi määratud subtiitreid"
 
 msgid "Preferred tuner"
 msgstr "Eelistatud tuuner"
+
+msgid "Preferred tuner ATSC"
+msgstr "Eelistatud ATSC tuuner"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Eelistatud ATSC tuuner salvestustele"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Eelistatud DVB-C tuuner"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Eelistatud DVB-C tuuner salvestusteks"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Eelistatud DVB-S tuuner"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Eelistatud DVB-S tuuner salvestusteks"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Eelistatud DVB-T tuuner"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Eelistatud DVB-T tuuner salvestusteks"
 
 msgid "Preferred tuner for recordings"
 msgstr "Eelistatud tuuner salvestamiseks"
@@ -17519,6 +17573,12 @@ msgstr "Kuva täiendava liuguri väärtus"
 msgid "Show advanced settings"
 msgstr "Näita lisaseadistusi"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Kuva süsteemi hõivatusel animatsiooni"
 
@@ -17580,6 +17640,9 @@ msgstr "Kuva põhjalik saatetutvustus"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Kuva põhjalik saatetutvustus (sea menüüs)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr ""
@@ -22015,6 +22078,9 @@ msgstr "Hoiatus"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -22294,6 +22360,12 @@ msgstr "Kui lubatud, kasutab vastuvõtja (võimaluse korral) AC3 heli."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kui lubatud, kasutab vastuvõtja (võimaluse korral) AC3+ heli."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Määrates 'jah' on see seadistus eelistatum kui 'Eelistatud tuuner salvestamiseks'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Määrates 'jah' on see seadistus eelistatum kui 'Eelistatud tuuner'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kui lubatud, algab ajanihe taustal automaatselt pärast määratud aega."
@@ -24025,41 +24097,8 @@ msgstr "Jah (säilita fiidid)"
 msgid "®"
 msgstr ""
 
-msgid "Preferred tuner DVB-S"
-msgstr "Eelistatud DVB-S tuuner"
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Eelistatud DVB-S tuuner salvestusteks"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Eelistatud DVB-T tuuner"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Eelistatud DVB-T tuuner salvestusteks"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Eelistatud DVB-C tuuner"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Eelistatud DVB-C tuuner salvestusteks"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Määrates 'jah' on see seadistus eelistatum kui 'Eelistatud tuuner'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Määrates 'jah' on see seadistus eelistatum kui 'Eelistatud tuuner salvestamiseks'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Eelistatud ATSC tuuner"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Eelistatud ATSC tuuner salvestustele"
-
-msgid "Enable Autorecord"
-msgstr "Autosalvestus lubatud"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Määrates 'jah', töötab autosalvestus automaatselt ajanihke taustal"
+#~ msgid "Mounts Settings"
+#~ msgstr "Haakepunktid"
 
 #~ msgid "Australian"
 #~ msgstr "Austraalia"

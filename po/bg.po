@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -950,6 +950,12 @@ msgid "%d ms"
 msgstr ""
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1835,6 +1841,9 @@ msgstr "Активен"
 
 msgid "Active clients"
 msgstr "Активни клиенти"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Настройки за адаптера"
@@ -6762,6 +6771,9 @@ msgstr "Разрешаване на %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Разрешаване на 5V за активната антена"
 
+msgid "Enable Autorecord"
+msgstr "Разрешаване на автоматичен запис"
+
 msgid "Enable BT Audio"
 msgstr "Разрешаване на BT Audio"
 
@@ -7186,6 +7198,10 @@ msgstr "Развлечения"
 
 msgid "Entitlements"
 msgstr "Разрешения"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr ""
@@ -9228,6 +9244,9 @@ msgstr "Ако е зададено на „Да“, същите команди 
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Ако е зададено 'да', активирайте автоматичното записване за автоматичен timeshift"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Ако заобиколното решение в дълбока готовност е активирано, изчакайте, докато системното време се синхронизира. В зависимост от изискването, събуждането на устройството ще продължи след максимум 2 минути."
 
@@ -9840,6 +9859,9 @@ msgid "Just zap"
 msgstr ""
 
 msgid "KA-SAT"
+msgstr ""
+
+msgid "KSymb/s"
 msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
@@ -10983,9 +11005,6 @@ msgstr "Мониране"
 msgid "Mounts Devices"
 msgstr "Монтирани устройства"
 
-msgid "Mounts Settings"
-msgstr "Настройка на монтажа"
-
 msgid "Move"
 msgstr "Премести"
 
@@ -12113,10 +12132,21 @@ msgstr "OScam webif е деактивиран"
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13325,6 +13355,30 @@ msgstr "Предпочитане на субтитри съхранявани о
 
 msgid "Preferred tuner"
 msgstr "Предпочитан тунер"
+
+msgid "Preferred tuner ATSC"
+msgstr "Приоритетен ATSC тунер"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Приоритетен ATSC тунер за записи"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Приоритетен тунер DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Приоритетен тунер DVB-C за записи"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Приоритетен тунер DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Приоритетен тунер DVB-S за записи"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Приоритетен тунер DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Приоритетен тунер DVB-T за записи"
 
 msgid "Preferred tuner for recordings"
 msgstr "Предпочитан тунер за записи"
@@ -17032,6 +17086,12 @@ msgstr "Показване на допълнителна стойност на �
 msgid "Show advanced settings"
 msgstr "Показване на разширените настройки"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Показване на анимация докато сте зает"
 
@@ -17091,6 +17151,9 @@ msgstr "Показване на подробна информация за съ�
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Показване на подробна информация за събитието (настройка в менюто)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr ""
@@ -21380,6 +21443,9 @@ msgstr "Внимание"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Предупреждение: Замяната в момента е активна!"
 
@@ -21646,6 +21712,12 @@ msgstr "Когато е разрешено, приемникът ще избер
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Когато е разрешено, приемникът ще изберете AC3+ track (ако е налице)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Ако е включен, този параметър има по-голяма тежест от 'Приоритетен тунер за записи'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Ако е включен, този параметър има по-голяма тежест от 'Приоритетен тунер'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Когато е разрешено, TimeShift започва автоматично във фонов режим след определено време."
@@ -23337,41 +23409,8 @@ msgstr "да (запази фийдове)"
 msgid "®"
 msgstr ""
 
-msgid "Preferred tuner DVB-S"
-msgstr "Приоритетен тунер DVB-S"
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Приоритетен тунер DVB-S за записи"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Приоритетен тунер DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Приоритетен тунер DVB-T за записи"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Приоритетен тунер DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Приоритетен тунер DVB-C за записи"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Ако е включен, този параметър има по-голяма тежест от 'Приоритетен тунер'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Ако е включен, този параметър има по-голяма тежест от 'Приоритетен тунер за записи'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Приоритетен ATSC тунер"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Приоритетен ATSC тунер за записи"
-
-msgid "Enable Autorecord"
-msgstr "Разрешаване на автоматичен запис"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Ако е зададено 'да', активирайте автоматичното записване за автоматичен timeshift"
+#~ msgid "Mounts Settings"
+#~ msgstr "Настройка на монтажа"
 
 #~ msgid "Sort list to default and exit?"
 #~ msgstr "Сортиране на списъка по подразбиране и излизане?"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
 "PO-Revision-Date: 2024-01-24 18:39+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -970,6 +970,13 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "Našiel sa %d balíček."
+msgstr[1] "Našli sa %d balíčky."
+msgstr[2] "Našlo sa %d balíčkov."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "Aktualizáciu má %d balíček"
@@ -1866,6 +1873,9 @@ msgstr "Aktívne"
 
 msgid "Active clients"
 msgstr "Aktívni klienti"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Nastavenia adaptéra"
@@ -6807,6 +6817,9 @@ msgstr "Zapnúť %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Zapnúť 5 V pre aktívnu anténu"
 
+msgid "Enable Autorecord"
+msgstr "Zapnúť automatické nahrávanie"
+
 msgid "Enable BT Audio"
 msgstr "Zapnúť BT audio"
 
@@ -7233,6 +7246,10 @@ msgstr "Zábava"
 
 msgid "Entitlements"
 msgstr "Zápisy"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
 
 msgid "Entry image and text"
 msgstr "Obrázok a text"
@@ -9280,6 +9297,9 @@ msgstr "Ak je vybraná možnosť 'Áno', počas vypnutia sa do televízora odosi
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Ak je táto možnosť nastavená na 'Áno', môže sa timeshift používať s alternatívnymi audio pluginmi."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Ak je nastavené na 'áno', zapne sa automatické nahrávanie pre automatický timeshift na pozadí"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Ak je aktivované náhradné riešenie pre vypnutie, čaká sa, kým sa nesynchronizuje systémový čas. V závislosti od požiadavky zariadenia sa v prebúdzaní pokračuje maximálne 2 minúty."
 
@@ -9893,6 +9913,9 @@ msgstr "Len prepnúť"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "grónčina/kalaallisut"
@@ -11037,9 +11060,6 @@ msgstr "Pripojenia"
 msgid "Mounts Devices"
 msgstr "Pripojenia zariadení"
 
-msgid "Mounts Settings"
-msgstr "Nastavenie pripojení"
-
 msgid "Move"
 msgstr "Presunúť"
 
@@ -12170,11 +12190,22 @@ msgstr "Oscam webif vypnutý"
 msgid "OSCamInfo Actions"
 msgstr "Akcie pre OSCamInfo"
 
-msgid "OSCamInfo Log"
-msgstr "Denník OSCamInfo"
-
 msgid "OSCamInfo Log Actions"
 msgstr "Akcie pre denník OSCamInfo"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
+msgstr ""
 
 msgid "OSD"
 msgstr "OSD"
@@ -13387,6 +13418,30 @@ msgstr "Uprednostňovať titulky uložené pri stanici"
 
 msgid "Preferred tuner"
 msgstr "Preferovaný tuner"
+
+msgid "Preferred tuner ATSC"
+msgstr "Preferovaný tuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Preferovaný tuner ATSC pre nahrávanie"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Preferovaný tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Preferovaný tuner DVB-C pre nahrávky"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Preferovaný tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Preferovaný tuner DVB-S pre nahrávky"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Preferovaný tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Preferovaný tuner DVB-T pre nahrávky"
 
 msgid "Preferred tuner for recordings"
 msgstr "Preferovaný tuner pre nahrávanie"
@@ -17107,6 +17162,12 @@ msgstr "Zobraziť ďalšiu hodnotu posuvníka"
 msgid "Show advanced settings"
 msgstr "Zobraziť pokročilé nastavenia"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Zobraziť animáciu pri zaneprázdnení"
 
@@ -17166,6 +17227,9 @@ msgstr "Zobraziť detailné informácie o udalosti"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Zobraziť detailné informácie o udalosti (nastavenie v menu)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr "Zobraziť podrobnosti o vybranej úlohe"
@@ -21526,6 +21590,9 @@ msgstr "Upozornenie"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Upozornenie: %d zdrojov informácií nebolo možné načítať!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Upozornenie: momentálne je aktívne prepisovanie!"
 
@@ -21795,6 +21862,12 @@ msgstr "Ak je povolené, prijímač bude vyberať AC3 stopu (ak je dostupná)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Ak je povolené, prijímač bude vyberať AC3+ stopu (ak je dostupná)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tuner pre nahrávky'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tuner'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Ak je povolené, po uplynutí stanoveného čase sa na pozadí automaticky spustí timeshift."
@@ -23490,41 +23563,11 @@ msgstr "áno (zachovať zdroje)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Preferovaný tuner DVB-S"
+#~ msgid "Mounts Settings"
+#~ msgstr "Nastavenie pripojení"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Preferovaný tuner DVB-S pre nahrávky"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Preferovaný tuner DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Preferovaný tuner DVB-T pre nahrávky"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Preferovaný tuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Preferovaný tuner DVB-C pre nahrávky"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tuner'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tuner pre nahrávky'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Preferovaný tuner ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Preferovaný tuner ATSC pre nahrávanie"
-
-msgid "Enable Autorecord"
-msgstr "Zapnúť automatické nahrávanie"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Ak je nastavené na 'áno', zapne sa automatické nahrávanie pre automatický timeshift na pozadí"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "Denník OSCamInfo"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -24075,13 +24118,6 @@ msgstr "Ak je nastavené na 'áno', zapne sa automatické nahrávanie pre automa
 
 #~ msgid "X11 Utility Packages"
 #~ msgstr "Balíčky nástrojov X11"
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "Našiel sa %d balíček."
-#~ msgstr[1] "Našli sa %d balíčky."
-#~ msgstr[2] "Našlo sa %d balíčkov."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Pridať/odstrániť zvýraznený plugin do alebo zo zoznamu na stiahnutie"

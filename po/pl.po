@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-02-06 15:02+0000\n"
+"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"PO-Revision-Date: 2024-02-20 10:34+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -977,6 +977,13 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "%d pakiet znaleziony."
+msgstr[1] "%d znalezione pakiety."
+msgstr[2] "%d znaleziono pakietów."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d pakiet ma aktualizację"
@@ -1875,6 +1882,9 @@ msgstr "Aktywny"
 
 msgid "Active clients"
 msgstr "Aktywnych klientów"
+
+msgid "Active only"
+msgstr "Tylko aktywne"
 
 msgid "Adapter Settings"
 msgstr "Ustawienia adaptera"
@@ -6817,6 +6827,9 @@ msgstr "Włącz %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Włącz 5V dla aktywnej anteny"
 
+msgid "Enable Autorecord"
+msgstr "Włącz auto.nagrywanie"
+
 msgid "Enable BT Audio"
 msgstr "Włącz BT Audio"
 
@@ -7243,6 +7256,10 @@ msgstr "Rozrywka"
 
 msgid "Entitlements"
 msgstr "Uprawnienia"
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr "Uprawnienia dla 'CAID %s'"
 
 msgid "Entry image and text"
 msgstr "Obraz i tekst wpisu"
@@ -9290,6 +9307,9 @@ msgstr "Jeśli \"Tak\", ta sama komenda zostanie wysłana do TV dla zdarzeń wy�
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Jeśli ustawiony jest na \"tak\", pozwala na używanie timeshift z alternatywnymi wtyczkami audio."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie z tła timeshiftu"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jeśli włączono obejście głębokiego czuwania, oczekuj do czasu aż system zostanie zsynchronizowany. W zależności od wymogu budzenie urządzenia będzie kontynuowane po maksymalnie 2 minutach."
 
@@ -9903,6 +9923,9 @@ msgstr "Tylko przełącz"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / grenlandzki"
@@ -11048,9 +11071,6 @@ msgstr "Montowanie"
 msgid "Mounts Devices"
 msgstr "Montowanie urządzeń"
 
-msgid "Mounts Settings"
-msgstr "Ustawienia montowania"
-
 msgid "Move"
 msgstr "Przenieś"
 
@@ -12181,11 +12201,22 @@ msgstr "OSCam webif wyłączony"
 msgid "OSCamInfo Actions"
 msgstr "Działania OSCamInfo"
 
-msgid "OSCamInfo Log"
-msgstr "Log OSCamInfo"
-
 msgid "OSCamInfo Log Actions"
 msgstr "Akcje logów OSCamInfo"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr "OSCamInfo: %s uprawnienia dla '%s'"
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr "OSCamInfo: Uprawnienia dla '%s'"
+
+msgid "OSCamInfo: Information"
+msgstr "OSCamInfo: Informacje"
+
+msgid "OSCamInfo: Log"
+msgstr "OSCamInfo: Log"
 
 msgid "OSD"
 msgstr "OSD"
@@ -13398,6 +13429,30 @@ msgstr "Preferuj napisy zapamiętane dla kanału"
 
 msgid "Preferred tuner"
 msgstr "Preferowany tuner"
+
+msgid "Preferred tuner ATSC"
+msgstr "Preferowany tuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Preferowany tuner ATSC dla nagrywania"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Preferowany tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Tuner DVB-C preferowany dla nagrywania"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Preferowany tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Tuner DVB-S preferowany dla nagrywania"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Preferowany tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Tuner DVB-T preferowany dla nagrywania"
 
 msgid "Preferred tuner for recordings"
 msgstr "Preferowany tuner nagrywania"
@@ -17118,6 +17173,12 @@ msgstr "Pokaż dodatkową wartość suwaka"
 msgid "Show advanced settings"
 msgstr "Pokaż ustawienia zaawansowane"
 
+msgid "Show all"
+msgstr "Pokaż wszystko"
+
+msgid "Show all details"
+msgstr "Pokaż wszystkie szczegóły"
+
 msgid "Show animation while busy"
 msgstr "Pokaż animację, gdy zajęty"
 
@@ -17177,6 +17238,9 @@ msgstr "Pokaż szczegółowy opis wydarzenia"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Pokaż szczegółowy opis wydarzenia (ustawienia w menu)"
+
+msgid "Show details"
+msgstr "Pokaż szczegóły"
 
 msgid "Show details of highlighted task"
 msgstr "Pokaż szczegóły podświetlonego zadania"
@@ -21538,6 +21602,9 @@ msgstr "Ostrzeżenie"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Ostrzeżenie: nie można ponownie załadować %d feeds!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr "Ostrzeżenie: Anulowanie tego procesu spowoduje, że kanały staną się niekompletne i nienadające się do użytku!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Uwaga: Nadpisywanie jest aktualnie aktywne!"
 
@@ -21807,6 +21874,12 @@ msgstr "Gdy włączone, zostanie wybrana ścieżka audio AC3 (jeśli jest dostę
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Gdy włączone, zostanie wybrana ścieżka AC3 + (jeśli jest dostępna)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Po włączeniu to ustawienie ma większą wagę niż „Preferowany tuner do nagrań”."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Po włączeniu to ustawienie ma większą wagę niż „Preferowany tuner”."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Określ czas, po którym ma zostać włączony timeshift."
@@ -23502,41 +23575,11 @@ msgstr "tak (zachować kanały)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Preferowany tuner DVB-S"
+#~ msgid "Mounts Settings"
+#~ msgstr "Ustawienia montowania"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Tuner DVB-S preferowany dla nagrywania"
-
-msgid "Preferred tuner DVB-T"
-msgstr "Preferowany tuner DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Tuner DVB-T preferowany dla nagrywania"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Preferowany tuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Tuner DVB-C preferowany dla nagrywania"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Gdy włączone, to ustawienie ma pierwszeństwo przed opcją 'Tuner preferowany'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Gdy włączone, to ustawienie ma pierwszeństwo przed opcją 'Tuner preferowany dla nagrywania'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Preferowany tuner ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Preferowany tuner ATSC dla nagrywania"
-
-msgid "Enable Autorecord"
-msgstr "Włącz auto.nagrywanie"
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie z tła timeshiftu"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "Log OSCamInfo"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -24087,13 +24130,6 @@ msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie z tła tim
 
 #~ msgid "X11 Utility Packages"
 #~ msgstr "Pakiety narzędziowe X11"
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "%d pakiet znaleziony."
-#~ msgstr[1] "%d znalezione pakiety."
-#~ msgstr[2] "%d znaleziono pakietów."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Dodaj/Usuń podświetloną wtyczkę do/z listy pobierania"
