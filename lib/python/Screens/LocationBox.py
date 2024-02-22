@@ -189,7 +189,10 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def updateState(self):
 		directory = self.getSelectedDirectory()
-		if directory:  # Write combination of directory & filename when directory is valid.
+		if self.currList == "filelist" and self["filelist"].getPath() is None:
+			self["target"].setText(_("List of Storage Devices"))
+			self["targetfreespace"].setText("")
+		elif directory:  # Write combination of directory & filename when directory is valid.
 			self["target"].setText("".join((directory, self.filename)))
 			try:
 				status = statvfs(directory)
@@ -247,6 +250,11 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self.keySelect()
 
 	def keySelect(self):
+		if self.currList == "filelist" and self["filelist"].getPath() is None:
+			self.disableTimer()
+			self.close("")
+			return
+
 		currentFolder = self.getSelectedDirectory()
 		if currentFolder is not None:  # Do nothing unless current directory is valid.
 			if self.minFree is not None:  # Check if we need to have a minimum of free space available.
