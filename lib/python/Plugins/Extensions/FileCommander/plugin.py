@@ -241,23 +241,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		if not self.baseTitle:
 			self.baseTitle = PROGRAM_NAME
 			self.setTitle(PROGRAM_NAME)
-		# For initialization pathLeft or pathRight set to "" means saved or default value, None means the device list.
-		if pathLeft == "":
-			if config.plugins.FileCommander.savePathLeft.value:
-				pathLeft = config.plugins.FileCommander.pathLeft.value
-			elif config.plugins.FileCommander.defaultPathLeft.value:
-				pathLeft = config.plugins.FileCommander.defaultPathLeft.value
-			if pathLeft == "":  # Settings file can't store None so use "" as a representation of None.
-				pathLeft = None
-		pathLeft = pathjoin(pathLeft, "") if pathLeft and isdir(pathLeft) else None
-		if pathRight == "":
-			if config.plugins.FileCommander.savePathRight.value:
-				pathRight = config.plugins.FileCommander.pathRight.value
-			elif config.plugins.FileCommander.defaultPathRight.value:
-				pathRight = config.plugins.FileCommander.defaultPathRight.value
-			if pathRight == "":  # Settings file can't store None so use "" as a representation of None.
-				pathRight = None
-		pathRight = pathjoin(pathRight, "") if pathRight and isdir(pathRight) else None
+		if pathLeft and exists(pathLeft):
+			config.plugins.FileCommander.pathLeft.value = pathLeft
+		if pathRight and exists(pathRight):
+			config.plugins.FileCommander.pathRight.value = pathRight
 		if leftActive is None:
 			leftActive = config.plugins.FileCommander.defaultSide.value == "Left" or (config.plugins.FileCommander.defaultSide.value == "Last" and config.plugins.FileCommander.leftActive.value)
 		self.leftActive = leftActive
@@ -269,11 +256,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		directoriesFirst = config.plugins.FileCommander.directoriesFirst.value
 		showCurrentDirectory = config.plugins.FileCommander.showCurrentDirectory.value
 		self["headleft"] = List()
-		self["listleft"] = FileList(pathLeft, matchingPattern=fileFilter, sortDirs=self.sortDirectoriesLeft, sortFiles=self.sortFilesLeft, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
+		self["listleft"] = FileList("", matchingPattern=fileFilter, sortDirs=self.sortDirectoriesLeft, sortFiles=self.sortFilesLeft, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
 		self["listleft"].onSelectionChanged.append(self.selectionChanged)
 		self["sortleft"] = Label()
 		self["headright"] = List()
-		self["listright"] = FileList(pathRight, matchingPattern=fileFilter, sortDirs=self.sortDirectoriesRight, sortFiles=self.sortFilesRight, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
+		self["listright"] = FileList("", matchingPattern=fileFilter, sortDirs=self.sortDirectoriesRight, sortFiles=self.sortFilesRight, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
 		self["listright"].onSelectionChanged.append(self.selectionChanged)
 		self["sortright"] = Label()
 		self["quickselect"] = Label()
@@ -385,6 +372,24 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.updateButtons()
 
 	def layoutFinished(self):
+		def getInitPath(path):
+			directory = None  # None means the device list.
+			select = None
+			if not path.startswith("/"):  # This should be a selection on device list.
+				select = f"/{path}"
+			elif path.endswith("/") and isdir(path):
+				directory = normpath(path)
+			elif isfile(path) or isdir(path):
+				select = path if isfile(path) else pathjoin(path, "")
+				directory = dirname(path)
+			else:
+				directory = dirname(normpath(path))  # Try parent, probably file is removed.
+				if not isdir(directory):
+					directory = dirname(directory)  # Try one more parent, for dir is removed.
+					if not isdir(directory):
+						directory = None
+			return (directory, select)
+
 		self["headleft"].enableAutoNavigation(False)  # Override listbox navigation.
 		self["headright"].enableAutoNavigation(False)  # Override listbox navigation.
 		self["listleft"].enableAutoNavigation(False)  # Override listbox navigation.
@@ -393,6 +398,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self.keyGoLeftColumn()
 		else:
 			self.keyGoRightColumn()
+		self["listleft"].changeDir(*getInitPath(config.plugins.FileCommander.pathLeft.value))
+		self["listright"].changeDir(*getInitPath(config.plugins.FileCommander.pathRight.value))
 		self.updateHeading(self.targetColumn)
 		self.updateSort()
 
@@ -507,30 +514,14 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self["sortright"].setText(formatSort(self["listright"].getSortBy()))
 
 	def updateButtons(self):
-		currentDirectory = self.sourceColumn.getCurrentDirectory()
-		srcPath = self.sourceColumn.getPath()
-		srcName = self.sourceColumn.getName()
-		isSpecialFolder = self.sourceColumn.getIsSpecialFolder()
-		self.enabledMenuActionMaps = []
-		self["multiSelectAction"].setEnabled(currentDirectory)
-		if currentDirectory and srcPath and isfile(srcPath) and getsize(srcPath) < MAX_EDIT_SIZE:  # Should we check that this is not a known binary file?
-			self["key_text"].setText(_("TEXT"))
-			self["textEditViewAction"].setEnabled(True)
-		else:
-			self["key_text"].setText("")
-			self["textEditViewAction"].setEnabled(False)
-		if currentDirectory and srcPath and srcName and not isSpecialFolder:
+		isFileOrFolder = self.sourceColumn.getCurrentDirectory() and self.sourceColumn.getPath() and not self.sourceColumn.getIsSpecialFolder()
+		if isFileOrFolder:
 			self["key_red"].setText(_("Delete"))
 			self["deleteAction"].setEnabled(True)
 		else:
 			self["key_red"].setText("")
 			self["deleteAction"].setEnabled(False)
-		if currentDirectory and srcPath and srcName and not isSpecialFolder:
-			self["directoryFileNumberActions"].setEnabled(True)
-			self.enabledMenuActionMaps.append("directoryFileNumberActions")
-		else:
-			self["directoryFileNumberActions"].setEnabled(False)
-		if currentDirectory and srcPath and srcName and not isSpecialFolder and self.targetColumn.getCurrentDirectory() and currentDirectory != self.targetColumn.getCurrentDirectory():
+		if isFileOrFolder and self.targetColumn.getCurrentDirectory() and self.targetColumn.getCurrentDirectory() != self.sourceColumn.getCurrentDirectory():
 			self["key_green"].setText(_("Move"))
 			self["key_yellow"].setText(_("Copy"))
 			self["copyMoveActions"].setEnabled(True)
@@ -538,16 +529,28 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self["key_green"].setText("")
 			self["key_yellow"].setText("")
 			self["copyMoveActions"].setEnabled(False)
-		if currentDirectory and srcPath and srcName and not isSpecialFolder and self.multiSelect is None:
+		if isFileOrFolder and self.sourceColumn.multiSelect is False:
 			self["key_blue"].setText(_("Rename"))
 			self["renameAction"].setEnabled(True)
 		else:
 			self["key_blue"].setText("")
 			self["renameAction"].setEnabled(False)
-		notStorageNumberAction = True if currentDirectory and srcPath else False
-		fileOnlyNumberActions = True if currentDirectory and srcPath and not self.sourceColumn.getIsDir() else False
+		if isFileOrFolder and isfile(self.sourceColumn.getPath()) and getsize(self.sourceColumn.getPath()) < MAX_EDIT_SIZE:  # Should we check that this is not a known binary file?
+			self["key_text"].setText(_("TEXT"))
+			self["textEditViewAction"].setEnabled(True)
+		else:
+			self["key_text"].setText("")
+			self["textEditViewAction"].setEnabled(False)
+		directoryFileNumberActions = isFileOrFolder
+		notStorageNumberAction = self.sourceColumn.getCurrentDirectory()
+		fileOnlyNumberActions = isFileOrFolder and not self.sourceColumn.getIsDir()
+		self["multiSelectAction"].setEnabled(self.sourceColumn.getCurrentDirectory())
+		self["directoryFileNumberActions"].setEnabled(directoryFileNumberActions)
 		self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and notStorageNumberAction)
 		self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and fileOnlyNumberActions)
+		self.enabledMenuActionMaps = []
+		if directoryFileNumberActions:
+			self.enabledMenuActionMaps.append("directoryFileNumberActions")
 		if notStorageNumberAction:
 			self.enabledMenuActionMaps.append("notStorageNumberAction")
 		if fileOnlyNumberActions:
@@ -812,12 +815,19 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				checkRelatedDelete()
 
 	def keyExit(self):
+		def getSavePath(fileList):
+			if not fileList.getCurrentDirectory():  # Device list
+				return fileList.getPath()[1:] if fileList.getPath() else ""  # We save the path for selection only without the first /.
+			elif fileList.getIsSpecialFolder():
+				return fileList.getCurrentDirectory()
+			elif fileList.getPath():
+				return normpath(fileList.getPath())
 		if config.plugins.FileCommander.savePathLeft.value:
-			config.plugins.FileCommander.pathLeft.value = self.sourceColumn.getCurrentDirectory() or "" if self.leftActive else self.targetColumn.getCurrentDirectory() or ""
+			config.plugins.FileCommander.pathLeft.value = getSavePath(self["listleft"])
 		else:
 			config.plugins.FileCommander.pathLeft.value = config.plugins.FileCommander.defaultPathLeft.value
 		if config.plugins.FileCommander.savePathRight.value:
-			config.plugins.FileCommander.pathRight.value = self.targetColumn.getCurrentDirectory() or "" if self.leftActive else self.sourceColumn.getCurrentDirectory() or ""
+			config.plugins.FileCommander.pathRight.value = getSavePath(self["listright"])
 		else:
 			config.plugins.FileCommander.pathRight.value = config.plugins.FileCommander.defaultPathRight.value
 		config.plugins.FileCommander.leftActive.value = self.leftActive
@@ -1356,7 +1366,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					fileType = splitext(path)[1].lower()
 					try:
 						magicType = fromfile(path)
-					except PureError as err:
+					except (PureError, ValueError) as err:
 						magicType = None
 						print(f"[FileCommander] Error: Unable to identify file via magic fingerprint!  ({err})")
 					except OSError as err:
@@ -1449,7 +1459,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def keyParent(self):
 		parent = self.sourceColumn.getCurrentDirectory()
 		parent = dirname(normpath(parent)) if parent else None
-		self.sourceColumn.changeDir(parent)
+		self.sourceColumn.changeDir(parent, self.sourceColumn.getCurrentDirectory())
 
 	def keyRefresh(self):
 		self.sourceColumn.refresh()
