@@ -313,7 +313,7 @@ class FileListBase(MenuList):
 					start = index
 					break
 		# We may need to reset the top of the viewport before setting the index.
-		self.moveToIndex(start)
+		self.setCurrentIndex(start)
 
 	def refresh(self, path=None):
 		if path is None:
@@ -323,7 +323,7 @@ class FileListBase(MenuList):
 	def fileListComponent(self, name, path, isDir, isLink, selected, dirIcon):
 		# print(f"[FileList] fileListComponent DEBUG: Name='{name}', Path='{path}', isDir={isDir}, isLink={isLink}, selected={selected}, dirIcon={dirIcon}.")
 		res = [(path, isDir, isLink, selected, name, dirIcon)]
-		if selected is not None and dirIcon not in (ICON_STORAGE, ICON_PARENT, ICON_CURRENT):
+		if selected is not None and not self.getIsSpecialFolder(res[0]):
 			icon = EXTENSION_ICONS[f"lock_{'on' if selected else 'off'}"]
 			if icon:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.lockX, self.lockY, self.lockW, self.lockH, icon, None, None, BT_SCALE | BT_VALIGN_CENTER))
@@ -355,7 +355,7 @@ class FileListBase(MenuList):
 		dirIcon = entry[0][FILE_DIR_ICON]
 		if (isDir is False and type == SELECT_DIRECTORIES) or (isDir is True and type == SELECT_FILES):
 			selected = entry[0][FILE_SELECTED]
-		if path and entry[0][FILE_DIR_ICON] not in (ICON_STORAGE, ICON_PARENT, ICON_CURRENT):
+		if path and not self.getIsSpecialFolder(entry[0]):
 			path = path if isDir else pathjoin(self.currentDirectory, path)
 			if selected and path not in self.selectedItems:
 				self.selectedItems.append(path)
@@ -435,8 +435,9 @@ class FileListBase(MenuList):
 		selection = self.getSelection()
 		return selection[FILE_SELECTED] if selection else None
 
-	def getIsSpecialFolder(self):
-		selection = self.getSelection()
+	def getIsSpecialFolder(self, selection=None):
+		if not selection:
+			selection = self.getSelection()
 		return selection[FILE_DIR_ICON] in (ICON_STORAGE, ICON_PARENT, ICON_CURRENT) if selection else False
 
 	def getFilename(self):  # Legacy method name for external code.
