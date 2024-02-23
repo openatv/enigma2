@@ -564,7 +564,7 @@ int eListbox::event(int event, void *data, void *data2)
 			{
 				if (m_orientation != orVertical && m_content->cursorValid())
 				{
-					int t = m_orientation == orGrid ? (m_top * m_max_columns) : m_top;
+					int t = m_orientation == orGrid ? (m_top * m_max_columns) : m_left;
 					if (i != (m_selected - t) || !m_selection_enabled)
 						m_content->paint(painter, *style, ePoint(posx + xOffset, posy + yOffset), 0);
 				}

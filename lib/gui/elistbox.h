@@ -433,7 +433,7 @@ public:
 	void entryReset(bool cursorHome = true);
 
 	int getEntryTop();
-	void invalidate(const gRegion &region = gRegion::invalidRegion());
+	void invalidate(const gRegion &region = gRegion::invalidRegion()) override;
 
 protected:
 	int event(int event, void *data = 0, void *data2 = 0);

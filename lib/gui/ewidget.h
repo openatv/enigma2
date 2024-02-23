@@ -25,7 +25,7 @@ public:
 	eSize size() const { return m_size; }
 	eSize csize() const { return m_client_size; }
 
-	void invalidate(const gRegion &region = gRegion::invalidRegion());
+	virtual void invalidate(const gRegion &region = gRegion::invalidRegion());
 
 		/* the window were to attach childs to. Normally, this
 		   is "this", but it can be overridden in case a widget
