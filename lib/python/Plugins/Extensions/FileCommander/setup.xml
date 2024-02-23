@@ -27,5 +27,6 @@
 		<item level="0" text="CPU priority for scripts" description="Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.FileCommander.scriptPriorityNice</item>
 		<item level="0" text="I/O priority for scripts" description="Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.FileCommander.scriptPriorityIONice</item>
 		<item level="0" text="Saved lines in script messages" description="Set the number of lines to be saved for 'stout' and 'sterr' output in scripts.">config.plugins.FileCommander.scriptMessageLength</item>
+		<item level="0" text="Split tasks" description="Select 'Yes' to split tasks into separate actions.">config.plugins.FileCommander.splitJobTasks</item>
 	</setup>
 </setupxml>

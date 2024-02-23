@@ -109,10 +109,10 @@ config.plugins.FileCommander.myExtensions = ConfigText(default="", visible_width
 config.plugins.FileCommander.extension = ConfigSelection(default="^.*$", choices=[
 	("^.*$", _("All files")),
 	("myfilter", _("My extensions")),
-	("(?i)^.*(%s)$" % "|".join(sorted(["\\.ts"] + [x == "\\.eit" and x or "\\.ts\\.%s" % x for x in RECORDING_EXTENSIONS])), _("Recordings")),
-	("(?i)^.*(%s)$" % "|".join(sorted(("\\%s" % ext for ext, type in EXTENSIONS.items() if type == "movie"))), _("Movies")),
-	("(?i)^.*(%s)$" % "|".join(sorted(("\\%s" % ext for ext, type in EXTENSIONS.items() if type == "music"))), _("Music")),
-	("(?i)^.*(%s)$" % "|".join(sorted(("\\%s" % ext for ext, type in EXTENSIONS.items() if type == "picture"))), _("Pictures"))
+	("(?i)^.*(%s)$" % "|".join(sorted(["\\.ts"] + [x == "\\.eit" and x or f"\\.ts\\.{x}" for x in RECORDING_EXTENSIONS])), _("Recordings")),
+	("(?i)^.*(%s)$" % "|".join(sorted((f"\\{ext}" for ext, fileType in EXTENSIONS.items() if fileType == "movie"))), _("Movies")),
+	("(?i)^.*(%s)$" % "|".join(sorted((f"\\{ext}" for ext, fileType in EXTENSIONS.items() if fileType == "music"))), _("Music")),
+	("(?i)^.*(%s)$" % "|".join(sorted((f"\\{ext}" for ext, fileType in EXTENSIONS.items() if fileType == "picture"))), _("Pictures"))
 ])
 config.plugins.FileCommander.useViewerForUnknown = ConfigYesNo(default=False)
 config.plugins.FileCommander.editLineEnd = ConfigYesNo(default=False)
@@ -125,6 +125,7 @@ config.plugins.FileCommander.scriptPriorityIONice = ConfigSelectionNumber(defaul
 config.plugins.FileCommander.showTaskCompletedMessage = ConfigYesNo(default=True)
 config.plugins.FileCommander.showScriptCompletedMessage = ConfigYesNo(default=True)
 config.plugins.FileCommander.completeMessageTimeout = ConfigSelection(default=10, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 61)])
+config.plugins.FileCommander.splitJobTasks = ConfigYesNo(default=False)
 
 running = None
 
@@ -148,7 +149,7 @@ class StatInfo:
 
 	@staticmethod
 	def formatTime(time):
-		return strftime("%s %s" % (config.usage.date.daylong.value, config.usage.time.long.value), localtime(time))
+		return strftime(f"{config.usage.date.daylong.value} {config.usage.time.long.value}", localtime(time))
 
 	@staticmethod
 	def isPackageInstalled(prog):
@@ -162,20 +163,20 @@ class StatInfo:
 
 
 class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
-	skin = ["""
+	skin = """
 	<screen name="FileCommander" title="File Commander" position="center,center" size="1200,600" resolution="1280,720">
 		<widget source="headleft" render="Listbox" position="0,0" size="590,75" foregroundColor="#00fff000" selection="0">
 			<convert type="TemplatedMultiContent">
 				{
 				"template":
 					[
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text=17),  # Index 17 is the path.
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=1),  # Index 1 is the symbolic mode.
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=11),  # Index 11 is the scaled size.
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=13),  # Index 13 is the modification time.
+					MultiContentEntryText(pos=(0, 0), size=(590, 50), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text=17),  # Index 17 is the path.
+					MultiContentEntryText(pos=(0, 50), size=(120, 25), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=1),  # Index 1 is the symbolic mode.
+					MultiContentEntryText(pos=(130, 50), size=(130, 25), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=11),  # Index 11 is the scaled size.
+					MultiContentEntryText(pos=(330, 50), size=(260, 25), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=13),  # Index 13 is the modification time.
 					],
-				"fonts": [parseFont("Regular;%d")],
-				"itemHeight": %d,
+				"fonts": [parseFont("Regular;20")],
+				"itemHeight": 75,
 				"selectionEnabled": False
 				}
 			</convert>
@@ -187,13 +188,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				{
 				"template":
 					[
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text=17),  # Index 17 is the path.
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=1),  # Index 1 is the symbolic mode.
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=11),  # Index 11 is the scaled size.
-					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=13),  # Index 13 is the modification time.
+					MultiContentEntryText(pos=(0, 0), size=(590, 50), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text=17),  # Index 17 is the path.
+					MultiContentEntryText(pos=(0, 50), size=(120, 25), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=1),  # Index 1 is the symbolic mode.
+					MultiContentEntryText(pos=(130, 50), size=(130, 25), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=11),  # Index 11 is the scaled size.
+					MultiContentEntryText(pos=(330, 50), size=(260, 25), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=13),  # Index 13 is the modification time.
 					],
-				"fonts": [parseFont("Regular;%d")],
-				"itemHeight": %d,
+				"fonts": [parseFont("Regular;20")],
+				"itemHeight": 75,
 				"selectionEnabled": False
 				}
 			</convert>
@@ -223,20 +224,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-	</screen>""",
-		0, 0, 590, 50,  # Left path.
-		0, 50, 120, 25,  # Left mode.
-		130, 50, 130, 25,  # Left size.
-		330, 50, 260, 25,  # Left modification time.
-		20,  # Left font.
-		75,  # Left item height.
-		0, 0, 590, 50,  # Left path.
-		0, 50, 120, 25,  # Right mode.
-		130, 50, 130, 25,  # Right size.
-		330, 50, 260, 25,  # Right modification time.
-		20,  # Right font.
-		75  # Right item height.
-	]
+	</screen>"""
 
 	OPTIONAL_PACKAGES = {
 		"ffmpeg": "ffmpeg",
@@ -253,23 +241,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		if not self.baseTitle:
 			self.baseTitle = PROGRAM_NAME
 			self.setTitle(PROGRAM_NAME)
-		# For initialization pathLeft or pathRight set to "" means saved or default value, None means the device list.
-		if pathLeft == "":
-			if config.plugins.FileCommander.savePathLeft.value:
-				pathLeft = config.plugins.FileCommander.pathLeft.value
-			elif config.plugins.FileCommander.defaultPathLeft.value:
-				pathLeft = config.plugins.FileCommander.defaultPathLeft.value
-			if pathLeft == "":  # Settings file can't store None so use "" as a representation of None.
-				pathLeft = None
-		pathLeft = pathjoin(pathLeft, "") if pathLeft and isdir(pathLeft) else None
-		if pathRight == "":
-			if config.plugins.FileCommander.savePathRight.value:
-				pathRight = config.plugins.FileCommander.pathRight.value
-			elif config.plugins.FileCommander.defaultPathRight.value:
-				pathRight = config.plugins.FileCommander.defaultPathRight.value
-			if pathRight == "":  # Settings file can't store None so use "" as a representation of None.
-				pathRight = None
-		pathRight = pathjoin(pathRight, "") if pathRight and isdir(pathRight) else None
+		if pathLeft and exists(pathLeft):
+			config.plugins.FileCommander.pathLeft.value = pathLeft
+		if pathRight and exists(pathRight):
+			config.plugins.FileCommander.pathRight.value = pathRight
 		if leftActive is None:
 			leftActive = config.plugins.FileCommander.defaultSide.value == "Left" or (config.plugins.FileCommander.defaultSide.value == "Last" and config.plugins.FileCommander.leftActive.value)
 		self.leftActive = leftActive
@@ -281,11 +256,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		directoriesFirst = config.plugins.FileCommander.directoriesFirst.value
 		showCurrentDirectory = config.plugins.FileCommander.showCurrentDirectory.value
 		self["headleft"] = List()
-		self["listleft"] = FileList(pathLeft, matchingPattern=fileFilter, sortDirs=self.sortDirectoriesLeft, sortFiles=self.sortFilesLeft, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
+		self["listleft"] = FileList("", matchingPattern=fileFilter, sortDirs=self.sortDirectoriesLeft, sortFiles=self.sortFilesLeft, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
 		self["listleft"].onSelectionChanged.append(self.selectionChanged)
 		self["sortleft"] = Label()
 		self["headright"] = List()
-		self["listright"] = FileList(pathRight, matchingPattern=fileFilter, sortDirs=self.sortDirectoriesRight, sortFiles=self.sortFilesRight, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
+		self["listright"] = FileList("", matchingPattern=fileFilter, sortDirs=self.sortDirectoriesRight, sortFiles=self.sortFilesRight, firstDirs=directoriesFirst, showCurrentDirectory=showCurrentDirectory)
 		self["listright"].onSelectionChanged.append(self.selectionChanged)
 		self["sortright"] = Label()
 		self["quickselect"] = Label()
@@ -397,6 +372,24 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.updateButtons()
 
 	def layoutFinished(self):
+		def getInitPath(path):
+			directory = None  # None means the device list.
+			select = None
+			if not path.startswith("/"):  # This should be a selection on device list.
+				select = f"/{path}"
+			elif path.endswith("/") and isdir(path):
+				directory = normpath(path)
+			elif isfile(path) or isdir(path):
+				select = path if isfile(path) else pathjoin(path, "")
+				directory = dirname(path)
+			else:
+				directory = dirname(normpath(path))  # Try parent, probably file is removed.
+				if not isdir(directory):
+					directory = dirname(directory)  # Try one more parent, for dir is removed.
+					if not isdir(directory):
+						directory = None
+			return (directory, select)
+
 		self["headleft"].enableAutoNavigation(False)  # Override listbox navigation.
 		self["headright"].enableAutoNavigation(False)  # Override listbox navigation.
 		self["listleft"].enableAutoNavigation(False)  # Override listbox navigation.
@@ -405,53 +398,80 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self.keyGoLeftColumn()
 		else:
 			self.keyGoRightColumn()
+		self["listleft"].changeDir(*getInitPath(config.plugins.FileCommander.pathLeft.value))
+		self["listright"].changeDir(*getInitPath(config.plugins.FileCommander.pathRight.value))
 		self.updateHeading(self.targetColumn)
 		self.updateSort()
 
 	def updateTitle(self):
-		filtered = "" if config.plugins.FileCommander.extension.value == config.plugins.FileCommander.extension.default else "  (*)"
-		selected = "  -  %d Selected" % len(self.multiSelect.getSelectedItems()) if self.multiSelect else ""
-		self.setTitle("%s%s%s" % (PROGRAM_NAME, filtered, selected))
+		if self.multiSelect:
+			def dirSize(directory):
+				totalSize = getsize(directory)
+				for item in listdir(directory):
+					path = pathjoin(directory, item)
+					if isfile(path):
+						totalSize += getsize(path)
+					elif isdir(path):
+						totalSize += dirSize(path)
+				return totalSize
+
+			selectedItemCount = 0
+			selectedItemsSize = 0
+			for selectedItems in self.multiSelect.getSelectedItems():
+				selectedItemCount += 1
+				if isfile(selectedItems):
+					selectedItemsSize += getsize(selectedItems)
+				elif isdir(selectedItems):
+					selectedItemsSize += dirSize(selectedItems)
+
+			selectedItemsSize = NumberScaler().scale(selectedItemsSize, style="Si", maxNumLen=3, decimals=3)
+			selected = f"  -  {selectedItemCount} Selected  -  {selectedItemsSize}"
+
+			self.setTitle("%s%s" % (PROGRAM_NAME, selected))
+		else:
+			filtered = "" if config.plugins.FileCommander.extension.value == config.plugins.FileCommander.extension.default else "  (*)"
+			self.setTitle("%s%s" % (PROGRAM_NAME, filtered))
 
 	def updateHeading(self, column):
 		def buildHeadingData(column):  # Numbers in trailing comments are the template text indexes.
 			sort = column.getSortBy().split(",")
 			sortDirs, reverseDirs = (int(x) for x in sort[0].split("."))
 			sortFiles, reverseFiles = (int(x) for x in sort[1].split("."))
-			sortText = "[D]%s%s[F]%s%s" % (("n", "d", "s")[sortDirs], ("+", "-")[reverseDirs], ("n", "d", "s")[sortFiles], ("+", "-")[reverseFiles])  # (name|date|size)(normal|reverse)
+			sortText = f"[D]{('n', 'd', 's')[sortDirs]}{('+', '-')[reverseDirs]}[F]{('n', 'd', 's')[sortFiles]}{('+', '-')[reverseFiles]}"  # (name|date|size)(normal|reverse)
 			path = column.getPath()
 			currentDirectory = column.getCurrentDirectory()
 			currentDirectory = normpath(currentDirectory) if currentDirectory else ""
-			splitCurrentParent = _("Current: %s\nParent: %s") % (currentDirectory, dirname(currentDirectory)) if column.getName().startswith("<") else path  # 25
+			splitCurrentParent = _("Current: %s\nParent: %s") % (currentDirectory, dirname(currentDirectory)) if column.getIsSpecialFolder() else path  # 25
 			if path:
 				path = normpath(path)
 				try:
 					pathStat = lstat(path)
 					symbolicMode = filemode(pathStat.st_mode)
-					octalMode = "%04o" % S_IMODE(pathStat.st_mode)
+					octalMode = f"{S_IMODE(pathStat.st_mode):04o}"
 					modes = (
 						octalMode,  # 0
 						symbolicMode,  # 1
-						_("%s (%s)") % (octalMode, symbolicMode)  # 2
+						f"{octalMode} ({symbolicMode})"  # 2
 					)
 					size = pathStat.st_size
 					formattedSize = "{:n}".format(size)
+					numberScaler = NumberScaler()
+					scaledSizes = [numberScaler.scale(size, style=x, maxNumLen=3, decimals=3) for x in (None, "Si", "Iec")]
 					if S_ISCHR(pathStat.st_mode) or S_ISBLK(pathStat.st_mode):
 						sizes = ("", "", "")
 					else:
-						scaledSize = NumberScaler().scale(size, maxNumLen=3, decimals=3)
 						sizes = (
 							formattedSize,  # 10
-							scaledSize,  # 11
-							"%s (%s)" % (formattedSize, scaledSize)  # 12
+							scaledSizes[0],  # 11
+							f"{formattedSize} ({scaledSizes[0]})"  # 12
 						)
 					data = modes + (
-						"%d" % pathStat.st_ino,  # 3
-						"%d, %d" % ((pathStat.st_dev >> 8) & 0xff, pathStat.st_dev & 0xff),   # 4
-						"%d" % pathStat.st_nlink,  # 5
-						"%d" % pathStat.st_uid,  # 6
+						f"{pathStat.st_ino}",  # 3
+						f"{(pathStat.st_dev >> 8) & 0xff}, {pathStat.st_dev & 0xff}",  # 4
+						f"{pathStat.st_nlink}",  # 5
+						f"{pathStat.st_uid}",  # 6
 						self.username(pathStat.st_uid),  # 7
-						"%d" % pathStat.st_gid,  # 8
+						f"{pathStat.st_gid}",  # 8
 						self.groupname(pathStat.st_gid)  # 9
 					) + sizes + (
 						self.formatTime(pathStat.st_mtime),  # 13
@@ -461,13 +481,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						path,  # 17
 						dirname(path),  # 18
 						basename(path),  # 19
-						NumberScaler().scale(size, style="Si", maxNumLen=3, decimals=3),  # 20
-						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Si", maxNumLen=3, decimals=3)),  # 21
-						NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3),  # 22
-						"%s (%s)" % (formattedSize, NumberScaler().scale(size, style="Iec", maxNumLen=3, decimals=3)),  # 23
+						scaledSizes[1],  # 20
+						f"{formattedSize} ({scaledSizes[1]})",  # 21
+						scaledSizes[2],  # 22
+						f"{formattedSize} ({scaledSizes[2]})",  # 23
 						currentDirectory,  # 24
 						splitCurrentParent,  # 25
-						currentDirectory if column.getName().startswith("<") else "%s/\u2026/%s" % (currentDirectory, basename(path))  # 26
+						currentDirectory if column.getIsSpecialFolder() else f"{currentDirectory}/\u2026/{basename(path)}"  # 26
 					)
 				except OSError:
 					data = ("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", sortText, path, dirname(path), basename(path), "", "", "", "", currentDirectory, splitCurrentParent, currentDirectory)
@@ -494,29 +514,14 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self["sortright"].setText(formatSort(self["listright"].getSortBy()))
 
 	def updateButtons(self):
-		currentDirectory = self.sourceColumn.getCurrentDirectory()
-		srcPath = self.sourceColumn.getPath()
-		srcName = self.sourceColumn.getName()
-		self.enabledMenuActionMaps = []
-		self["multiSelectAction"].setEnabled(currentDirectory)
-		if currentDirectory and srcPath and isfile(srcPath) and getsize(srcPath) < MAX_EDIT_SIZE:  # Should we check that this is not a known binary file?
-			self["key_text"].setText(_("TEXT"))
-			self["textEditViewAction"].setEnabled(True)
-		else:
-			self["key_text"].setText("")
-			self["textEditViewAction"].setEnabled(False)
-		if currentDirectory and srcPath and srcName and not srcName.startswith("<"):
+		isFileOrFolder = self.sourceColumn.getCurrentDirectory() and self.sourceColumn.getPath() and not self.sourceColumn.getIsSpecialFolder()
+		if isFileOrFolder:
 			self["key_red"].setText(_("Delete"))
 			self["deleteAction"].setEnabled(True)
 		else:
 			self["key_red"].setText("")
 			self["deleteAction"].setEnabled(False)
-		if currentDirectory and srcPath and srcName and not srcName.startswith("<"):
-			self["directoryFileNumberActions"].setEnabled(True)
-			self.enabledMenuActionMaps.append("directoryFileNumberActions")
-		else:
-			self["directoryFileNumberActions"].setEnabled(False)
-		if currentDirectory and srcPath and srcName and not srcName.startswith("<") and self.targetColumn.getCurrentDirectory() and currentDirectory != self.targetColumn.getCurrentDirectory():
+		if isFileOrFolder and self.targetColumn.getCurrentDirectory() and self.targetColumn.getCurrentDirectory() != self.sourceColumn.getCurrentDirectory():
 			self["key_green"].setText(_("Move"))
 			self["key_yellow"].setText(_("Copy"))
 			self["copyMoveActions"].setEnabled(True)
@@ -524,16 +529,28 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self["key_green"].setText("")
 			self["key_yellow"].setText("")
 			self["copyMoveActions"].setEnabled(False)
-		if currentDirectory and srcPath and srcName and not srcName.startswith("<") and self.multiSelect is None:
+		if isFileOrFolder and self.sourceColumn.multiSelect is False:
 			self["key_blue"].setText(_("Rename"))
 			self["renameAction"].setEnabled(True)
 		else:
 			self["key_blue"].setText("")
 			self["renameAction"].setEnabled(False)
-		notStorageNumberAction = True if currentDirectory and srcPath else False
-		fileOnlyNumberActions = True if currentDirectory and srcPath and not self.sourceColumn.getIsDir() else False
+		if isFileOrFolder and isfile(self.sourceColumn.getPath()) and getsize(self.sourceColumn.getPath()) < MAX_EDIT_SIZE:  # Should we check that this is not a known binary file?
+			self["key_text"].setText(_("TEXT"))
+			self["textEditViewAction"].setEnabled(True)
+		else:
+			self["key_text"].setText("")
+			self["textEditViewAction"].setEnabled(False)
+		directoryFileNumberActions = isFileOrFolder
+		notStorageNumberAction = self.sourceColumn.getCurrentDirectory()
+		fileOnlyNumberActions = isFileOrFolder and not self.sourceColumn.getIsDir()
+		self["multiSelectAction"].setEnabled(self.sourceColumn.getCurrentDirectory())
+		self["directoryFileNumberActions"].setEnabled(directoryFileNumberActions)
 		self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and notStorageNumberAction)
 		self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and fileOnlyNumberActions)
+		self.enabledMenuActionMaps = []
+		if directoryFileNumberActions:
+			self.enabledMenuActionMaps.append("directoryFileNumberActions")
 		if notStorageNumberAction:
 			self.enabledMenuActionMaps.append("notStorageNumberAction")
 		if fileOnlyNumberActions:
@@ -546,7 +563,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self.selectByStart()
 			self.quickSelectPos += 1
 		char = self.getKey(digit)  # Get char and append to text.
-		self.quickSelect = "%s%s" % (self.quickSelect[:self.quickSelectPos], str(char))
+		self.quickSelect = f"{self.quickSelect[:self.quickSelectPos]}{str(char)}"
 		self["quickselect"].setText(self.quickSelect)
 		self["quickselect"].instance.resize(eSize(self.sourceColumn.instance.size().width(), self.sourceColumn.instance.size().height()))
 		self["quickselect"].instance.move(ePoint(self.sourceColumn.instance.position().x(), self.sourceColumn.instance.position().y()))
@@ -618,7 +635,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				for file in relatedFiles[2:]:
 					if file == path:
 						continue
-					msg.append("- '%s'" % basename(file))
+					msg.append(f"- '{basename(file)}'")
 				choiceList = [
 					(_("Cancel"), ""),
 					(_("Copy all related files"), "ALL"),
@@ -631,7 +648,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		def processCopy(answer):
 			def processCallback(result):
 				if result:
-					JobManager.AddJob(FileCopyTask(srcPaths, directory, _("File Commander Copy")), onSuccess=successCallback, onFail=failCallback)
+					if config.plugins.FileCommander.splitJobTasks.value:
+						for srcPath in srcPaths:
+							jobTitle = f"{_('Copy')}: {basename(normpath(srcPath))}"
+							JobManager.AddJob(FileCopyTask([srcPath], directory, jobTitle), onSuccess=successCallback, onFail=failCallback)
+					else:
+						JobManager.AddJob(FileCopyTask(srcPaths, directory, _("File Commander Copy")), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Copy job queued."))
 					if answer == "MULTI":
 						self.sourceColumn.clearAllSelections()
@@ -653,7 +675,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				else:
 					msg = [_("Copy these %d directories/files?") % count]
 					for name in names:
-						msg.append("- '%s'" % name)
+						msg.append(f"- '{name}'")
 				directory = self.targetColumn.getCurrentDirectory()
 				targetNames = [x for x in names if exists(pathjoin(directory, x))]
 				count = len(targetNames)
@@ -667,11 +689,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					else:
 						msg.append(_("NOTE: These %d directories/files exist and will be overwritten!") % count)
 						for targetName in targetNames:
-							msg.append("- '%s'" % targetName)
+							msg.append(f"- '{targetName}'")
 				self.session.openWithCallback(processCallback, MessageBox, "\n".join(msg), windowTitle=windowTitle)
 
 		def successCallback(job):
-			print("[FileCommander] Job '%s' finished." % (job.name))
+			print(f"[FileCommander] Job '{job.name}' finished.")
 			if "status" in self:
 				self.displayStatus(_("Copy job completed."))
 				newPath = basename(normpath(path))
@@ -679,10 +701,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					newPath = pathjoin(newPath, "")
 				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), newPath))
 			else:
-				self.displayPopUp("%s: %s" % (windowTitle, _("Copy job completed.")), MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Copy job completed.')}", MessageBox.TYPE_INFO)
 
 		def failCallback(job, task, problems):
-			print("[FileCommander] Job '%s', task '%s' failed.\n%s" % (job.name, task.name, "\n".join([x.getErrorMessage(task) for x in problems])))
+			problem = "\n".join([x.getErrorMessage(task) for x in problems])
+			print(f"[FileCommander] Job '{job.name}', task '{task.name}' failed.\n{problem}")
 			if "status" in self:
 				self.displayStatus(_("Copy job failed!"))
 				newPath = basename(normpath(path))
@@ -690,9 +713,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					newPath = pathjoin(newPath, "")
 				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), newPath))
 			else:
-				self.displayPopUp("%s: %s" % (windowTitle, _("Copy job failed!")), MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Copy job failed!')}", MessageBox.TYPE_ERROR)
 
-		windowTitle = "%s - %s" % (self.baseTitle, _("Copy"))
+		windowTitle = f"{self.baseTitle} - {_('Copy')}"
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
 			if self.multiSelect == self.sourceColumn:
@@ -713,7 +736,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				for file in relatedFiles[2:]:
 					if file == path:
 						continue
-					msg.append("- '%s'" % basename(file))
+					msg.append(f"- '{basename(file)}'")
 				choiceList = [
 					(_("Cancel"), ""),
 					(_("Delete all related files"), "ALL"),
@@ -726,7 +749,13 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		def processDelete(answer):
 			def processCallback(result):
 				if result:
-					JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
+					if config.plugins.FileCommander.splitJobTasks.value:
+						for srcPath in srcPaths:
+							jobTitle = f"{_('Delete')}: {basename(normpath(srcPath))}"
+							JobManager.AddJob(FileDeleteTask([srcPath], jobTitle), onSuccess=successCallback, onFail=failCallback)
+					else:
+						JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
+
 					self.displayStatus(_("Delete job queued."))
 					if answer == "MULTI":
 						self.sourceColumn.clearAllSelections()
@@ -748,26 +777,27 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				else:
 					msg = [_("Delete these %d directories/files?") % count]
 					for name in names:
-						msg.append("- '%s'" % name)
+						msg.append(f"- '{name}'")
 				self.session.openWithCallback(processCallback, MessageBox, "\n".join(msg), windowTitle=windowTitle)
 
 		def successCallback(job):
-			print("[FileCommander] Job '%s' finished." % (job.name))
+			print(f"[FileCommander] Job '{job.name}' finished.")
 			if "status" in self:
 				self.displayStatus(_("Delete job completed."))
 				self.sourceColumn.refresh()
 			else:
-				self.displayPopUp("%s: %s" % (windowTitle, _("Delete job completed.")), MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Delete job completed.')}", MessageBox.TYPE_INFO)
 
 		def failCallback(job, task, problems):
-			print("[FileCommander] Job '%s', task '%s' failed.\n%s" % (job.name, task.name, "\n".join([x.getErrorMessage(task) for x in problems])))
+			problem = "\n".join([x.getErrorMessage(task) for x in problems])
+			print(f"[FileCommander] Job '{job.name}', task '{task.name}' failed.\n{problem}")
 			if "status" in self:
 				self.displayStatus(_("Delete job failed!"))
 				self.sourceColumn.refresh()
 			else:
-				self.displayPopUp("%s: %s" % (windowTitle, _("Delete job failed!")), MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Delete job failed!')}", MessageBox.TYPE_ERROR)
 
-		windowTitle = "%s - %s" % (self.baseTitle, _("Delete"))
+		windowTitle = f"{self.baseTitle} - {_('Delete')}"
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
 			if path in PROTECTED_DIRECTORIES:
@@ -785,12 +815,19 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				checkRelatedDelete()
 
 	def keyExit(self):
+		def getSavePath(fileList):
+			if not fileList.getCurrentDirectory():  # Device list
+				return fileList.getPath()[1:] if fileList.getPath() else ""  # We save the path for selection only without the first /.
+			elif fileList.getIsSpecialFolder():
+				return fileList.getCurrentDirectory()
+			elif fileList.getPath():
+				return normpath(fileList.getPath())
 		if config.plugins.FileCommander.savePathLeft.value:
-			config.plugins.FileCommander.pathLeft.value = self.sourceColumn.getCurrentDirectory() or "" if self.leftActive else self.targetColumn.getCurrentDirectory() or ""
+			config.plugins.FileCommander.pathLeft.value = getSavePath(self["listleft"])
 		else:
 			config.plugins.FileCommander.pathLeft.value = config.plugins.FileCommander.defaultPathLeft.value
 		if config.plugins.FileCommander.savePathRight.value:
-			config.plugins.FileCommander.pathRight.value = self.targetColumn.getCurrentDirectory() or "" if self.leftActive else self.sourceColumn.getCurrentDirectory() or ""
+			config.plugins.FileCommander.pathRight.value = getSavePath(self["listright"])
 		else:
 			config.plugins.FileCommander.pathRight.value = config.plugins.FileCommander.defaultPathRight.value
 		config.plugins.FileCommander.leftActive.value = self.leftActive
@@ -853,7 +890,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				data["Screen"] = "FileCommanderHashes"
 				data["Title"] = _("File Commander Hashes / Checksums")
 				data["Description"] = _("File Commander Hash / Checksum Actions")
-				textList = ["%s:|%s" % (_("File"), path)]
+				textList = [f"{_('File')}:|{path}"]
 				textList.append("")
 				with open(path, "rb") as fd:
 					hashData = {}
@@ -864,7 +901,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						for algorithm in hashItems:
 							hashData[algorithm].update(fileBuffer)
 					for algorithm in hashItems:
-						textList.append("%s:|%s" % (algorithm, hashData[algorithm].hexdigest()))
+						textList.append(f"{algorithm}:|{hashData[algorithm].hexdigest()}")
 				data["Data"] = textList
 				self.session.open(FileCommanderData, data)
 			else:
@@ -878,21 +915,22 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def keyJobTaskTesting(self):
 		def successCallback(job):
-			print("[FileCommander] Job '%s' finished." % (job.name))
+			print(f"[FileCommander] Job '{job.name}' finished.")
 			if "status" in self:
 				self.displayStatus(_("Test job completed."))
 			else:
-				self.displayPopUp("%s: %s" % (windowTitle, _("Test job completed.")), MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Test job completed.')}", MessageBox.TYPE_INFO)
 
 		def failCallback(job, task, problems):
 			task.setProgress(100)
-			print("[FileCommander] Job '%s', task '%s' failed.\n%s" % (job.name, task.name, "\n".join([x.getErrorMessage(task) for x in problems])))
+			problem = "\n".join([x.getErrorMessage(task) for x in problems])
+			print(f"[FileCommander] Job '{job.name}', task '{task.name}' failed.\n{problem}")
 			if "status" in self:
 				self.displayStatus(_("Test job failed!"))
 			else:
-				self.displayPopUp("%s: %s" % (windowTitle, _("Test job failed!")), MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Test job failed!')}", MessageBox.TYPE_ERROR)
 
-		windowTitle = "%s - %s" % (self.baseTitle, _("Test"))
+		windowTitle = f"{self.baseTitle} - {_('Test')}"
 		job = Job(_("Sleep test"))
 		task = Task(job, _("Sleep test"))
 		task.postconditions.append(TaskPostConditions())
@@ -1006,8 +1044,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 								haveContext.add(context)
 							actions[button] = text if isinstance(text, str) else text()
 			# Create the menu list with the buttons in the order of the "buttons" tuple.
-			menu = [("menu", _("File Commander settings")), ("info", _("Show task list"))]
-			menu += [(button, actions[button]) for button in buttons if button in actions]
+			menu = [
+				("menu", _("File Commander settings")),
+				("info", _("Show task list"))
+			] + [(button, actions[button]) for button in buttons if button in actions]
 			directory = self.sourceColumn.getCurrentDirectory()
 			if directory:
 				menu.append(("bullet", _("Remove current directory from bookmarks") if directory in config.plugins.FileCommander.bookmarks.value else _("Add current directory to bookmarks"), "bookmark+current"))
@@ -1022,7 +1062,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				for file in relatedFiles[2:]:
 					if file == path:
 						continue
-					msg.append("- '%s'" % basename(file))
+					msg.append(f"- '{basename(file)}'")
 				choiceList = [
 					(_("Cancel"), ""),
 					(_("Move all related files"), "ALL"),
@@ -1035,7 +1075,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		def processMove(answer):
 			def processCallback(result):
 				if result:
-					JobManager.AddJob(FileMoveTask(srcPaths, directory, _("File Commander Move")), onSuccess=successCallback, onFail=failCallback)
+					if config.plugins.FileCommander.splitJobTasks.value:
+						for srcPath in srcPaths:
+							jobTitle = f"{_('Move')}: {basename(normpath(srcPath))}"
+							JobManager.AddJob(FileMoveTask([srcPath], directory, jobTitle), onSuccess=successCallback, onFail=failCallback)
+					else:
+						JobManager.AddJob(FileMoveTask(srcPaths, directory, _("File Commander Move")), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Move job queued."))
 					if answer == "MULTI":
 						self.sourceColumn.clearAllSelections()
@@ -1057,7 +1102,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				else:
 					msg = [_("Move these directories/files?")]
 					for name in names:
-						msg.append("- '%s'" % name)
+						msg.append(f"- '{name}'")
 				targetNames = [x for x in names if exists(pathjoin(directory, x))]
 				count = len(targetNames)
 				if count > FILES_TO_LIST:
@@ -1070,11 +1115,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					else:
 						msg.append(_("NOTE: These %d directories/files exist and will be overwritten!") % count)
 						for targetName in targetNames:
-							msg.append("- '%s'" % targetName)
+							msg.append(f"- '{targetName}'")
 				self.session.openWithCallback(processCallback, MessageBox, "\n".join(msg), windowTitle=windowTitle)
 
 		def successCallback(job):
-			print("[FileCommander] Job '%s' finished." % (job.name))
+			print(f"[FileCommander] Job '{job.name}' finished.")
 			if "status" in self:
 				self.displayStatus(_("Move job completed."))
 				self.sourceColumn.refresh()
@@ -1084,18 +1129,19 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				# else:
 				# 	self.sourceColumn.goBottom()
 			else:
-				self.displayPopUp("%s: %s" % (windowTitle, _("Move job completed.")), MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Move job completed.')}", MessageBox.TYPE_INFO)
 
 		def failCallback(job, task, problems):
-			print("[FileCommander] Job '%s', task '%s' failed.\n%s" % (job.name, task.name, "\n".join([x.getErrorMessage(task) for x in problems])))
+			problem = "\n".join([x.getErrorMessage(task) for x in problems])
+			print(f"[FileCommander] Job '{job.name}', task '{task.name}' failed.\n{problem}")
 			if "status" in self:
 				self.displayStatus(_("Move job failed!"))
 				self.sourceColumn.refresh()
 				self.targetColumn.refresh(pathjoin(self.targetColumn.getCurrentDirectory(), basename(normpath(path))))
 			else:
-				self.displayPopUp("%s: %s" % (windowTitle, _("Move job failed!")), MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Move job failed!')}", MessageBox.TYPE_ERROR)
 
-		windowTitle = "%s - %s" % (self.baseTitle, _("Move"))
+		windowTitle = f"{self.baseTitle} - {_('Move')}"
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
 			# startIndex = self.sourceColumn.getCurrentIndex()
@@ -1168,7 +1214,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					if not filePreExists:
 						remove(imagePath)
 
-				# print("[FileCommander] processImage DEBUG: Return value is %d\n%s." % (retVal, data))
+				# print(f"[FileCommander] processImage DEBUG: Return value is {retVal}\n{data}.")
 				answer, path, imagePath, filePreExists = extraArgs
 				if retVal == 0:
 					if not filePreExists:
@@ -1181,7 +1227,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 			if answer:
 				path = self.sourceColumn.getPath()
-				imagePath = pathjoin(self.targetColumn.getCurrentDirectory() if "TARGET" in answer else gettempdir(), "%s.jpg" % splitext(basename(path))[0])
+				imagePath = pathjoin(self.targetColumn.getCurrentDirectory() if "TARGET" in answer else gettempdir(), f"{splitext(basename(path))[0]}.jpg")
 				filePreExists = exists(imagePath)
 				console().ePopen(["/usr/bin/ffmpeg", "/usr/bin/ffmpeg", "-y", "-hide_banner", "-f", "mpegvideo", "-i", path, "-frames:v", "1", "-r", "1/1", imagePath], processImage, (answer, path, imagePath, filePreExists))
 
@@ -1198,7 +1244,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			def failCallback(job, task, problems):
 				task.setProgress(100)
 				from Screens.Standby import inStandby
-				message = "%s\n%s: %s" % (job.name, _("Error"), problems[0].getErrorMessage(task))
+				message = f"{job.name}\n{_('Error')}: {problems[0].getErrorMessage(task)}"
 				if InfoBar.instance and not inStandby:
 					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_ERROR, timeout=0)
 				else:
@@ -1213,24 +1259,24 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					nice = config.plugins.FileCommander.scriptPriorityNice.value or ""
 					ionice = config.plugins.FileCommander.scriptPriorityIONice.value or ""
 					if nice:
-						nice = "nice -n %d " % nice
+						nice = f"/bin/nice -n {nice} "
 					if ionice:
-						ionice = "ionice -c %d " % ionice
-					priority = "%s%s" % (nice, ionice)
+						ionice = f"/bin/ionice -c {ionice} "
+					priority = f"{nice}{ionice}"
 					if path.endswith(".sh"):
 						if access(path, X_OK):
-							cmdline = "%s%s" % (priority, path)
+							cmdline = f"{priority}{path}"
 						else:
-							cmdline = "%s/bin/sh %s" % (priority, path)
+							cmdline = f"{priority}/bin/sh {path}"
 					else:
-						cmdline = "%s/usr/bin/python %s" % (priority, path)
+						cmdline = f"{priority}/usr/bin/python {path}"
 					if "PAR" in answer:
-						cmdline = "%s '%s'" % (cmdline, parameter)
+						cmdline = f"{cmdline} '{parameter}'"
 				elif answer == "VIEW":
 					try:
 						yfile = stat(path)
 					except OSError as err:
-						self.session.open(MessageBox, _("%s: %s") % (path, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+						self.session.open(MessageBox, f"{path}: {err.strerror}", MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
 						return
 					if path:
 						if yfile.st_size < MAX_EDIT_SIZE:
@@ -1243,10 +1289,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						taskSTDOut = []
 						taskSTDErr = []
 						if "PAR" in answer:
-							name = "%s%s %s" % (priority, path, parameter)
+							name = f"{priority}{path} {parameter}"
 						else:
-							name = "%s%s" % (priority, path)
-						job = Job("%s ('%s')" % (_("Run script"), name))
+							name = f"{priority}{path}"
+						job = Job(f"{_('Run script')} ('{name}')")
 						task = Task(job, name)
 						task.postconditions.append(TaskPostConditions())
 						task.processStdout = taskProcessStdout
@@ -1277,7 +1323,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					self.sourceColumn.setCurrentIndex(startIndex)
 				if self.sourceColumn.getCurrentIndex() < self.sourceColumn.count() - 1:
 					self.keyGoLineDown()
-				print("[FileCommander] selectedItems %s." % self.sourceColumn.getSelectedItems())
+				print(f"[FileCommander] selectedItems {self.sourceColumn.getSelectedItems()}.")
 
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
@@ -1290,7 +1336,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						for file in relatedFiles[2:]:
 							if file == path:
 								continue
-							msg.append("- '%s'" % basename(file))
+							msg.append(f"- '{basename(file)}'")
 						choiceList = [
 							(_("Cancel selection"), ""),
 							(_("Toggle all related files"), "TOGGLEALL")
@@ -1314,15 +1360,15 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				if self.sourceColumn.canDescend():
 					self.sourceColumn.descend()
 				else:
-					# print("[FileCommander] keyOk DEBUG: path='%s', dir='%s', file='%s'." % (path, self.sourceColumn.getCurrentDirectory(), basename(path)))
+					# print(f"[FileCommander] keyOk DEBUG: path='{path}', dir='{self.sourceColumn.getCurrentDirectory()}', file='{basename(path)}'.")
 					if not path:
 						return
 					fileType = splitext(path)[1].lower()
 					try:
 						magicType = fromfile(path)
-					except PureError as err:
+					except (PureError, ValueError) as err:
 						magicType = None
-						print("[FileCommander] Error: Unable to identify file via magic fingerprint!  (%s)" % err)
+						print(f"[FileCommander] Error: Unable to identify file via magic fingerprint!  ({err})")
 					except OSError as err:
 						self.session.open(MessageBox, _("Error %d: File '%s' cannot be opened!  (%s)") % (err.errno, basename(path), err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
 						return
@@ -1330,7 +1376,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						self.session.open(MessageBox, _("Error: File '%s' cannot be opened!  (%s)") % (basename(path), str(err)), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
 						return
 					if fileType and magicType and fileType != magicType:
-						# print("[FileCommander] DEBUG: File identified as extension='%s', magic='%s'." % (fileType, magicType))
+						# print(f"[FileCommander] DEBUG: File identified as extension='{fileType}', magic='{magicType}'.")
 						if fileType == ".ipk" and magicType == ".lib":
 							magicType = ".ipk"
 						if fileType == ".py" and magicType == ".wsgi":
@@ -1357,7 +1403,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						]
 						if fileType == ".ipk":
 							choiceList.append((_("Install the package"), "INSTALL"))
-						self.session.openWithCallback(archiveCallback, MessageBox, text="%s\n\n%s" % (promptMsg, path), list=choiceList, windowTitle=self.baseTitle)
+						self.session.openWithCallback(archiveCallback, MessageBox, text=f"{promptMsg}\n\n{path}", list=choiceList, windowTitle=self.baseTitle)
 					elif fileType == ".ts":
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -1389,10 +1435,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						if parameter:
 							choiceList.append((_("Run script with optional parameter"), "PAR"))
 							choiceList.append((_("Run script with optional parameter in background"), "PAR_BG"))
-							msg = "\n\n%s: %s" % (_("Optional parameter"), parameter)
+							msg = f"\n\n{_('Optional parameter')}: {parameter}"
 						self.session.openWithCallback(scriptCallback, MessageBox, text="%s\n\n%s%s" % (_("What would you like to do with the script file:"), path, msg), list=choiceList, windowTitle=self.baseTitle)
 					elif fileType == ".mvi":
-						filename = "%s.jpg" % splitext(basename(path))[0]
+						filename = f"{splitext(basename(path))[0]}.jpg"
 						choiceList = [
 							(_("Cancel"), ""),
 							(_("Show image"), "SHOW"),
@@ -1413,7 +1459,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def keyParent(self):
 		parent = self.sourceColumn.getCurrentDirectory()
 		parent = dirname(normpath(parent)) if parent else None
-		self.sourceColumn.changeDir(parent)
+		self.sourceColumn.changeDir(parent, self.sourceColumn.getCurrentDirectory())
 
 	def keyRefresh(self):
 		self.sourceColumn.refresh()
@@ -1434,10 +1480,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				baseLen = len(relatedFiles[0])
 				for file in relatedFiles[2:]:
 					try:
-						rename(file, pathjoin(directory, "%s%s" % (newName, file[baseLen:])))
+						rename(file, pathjoin(directory, f"{newName}{file[baseLen:]}"))
 					except OSError as err:
 						self.session.open(MessageBox, _("Error %d: Unable to rename related file '%s' to '%s'!  (%s)") % (err.errno, path, newName, err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
-				self.sourceColumn.refresh(pathjoin(directory, "%s%s" % (newName, relatedFiles[2][baseLen:])))
+				self.sourceColumn.refresh(pathjoin(directory, f"{newName}{relatedFiles[2][baseLen:]}"))
 
 		def renameSelectedCallback(newName):
 			if newName:
@@ -1450,7 +1496,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					newPath = pathjoin(newPath, "")
 				self.sourceColumn.refresh(newPath)
 
-		windowTitle = "%s - %s" % (self.baseTitle, _("Rename"))
+		windowTitle = f"{self.baseTitle} - {_('Rename')}"
 		path = self.sourceColumn.getPath()
 		if self.checkStillExists(path):
 			if path in PROTECTED_DIRECTORIES:
@@ -1462,7 +1508,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				for file in relatedFiles[2:]:
 					if file == path:
 						continue
-					msg.append("- '%s'" % basename(file))
+					msg.append(f"- '{basename(file)}'")
 				choiceList = [
 					(_("Cancel"), ""),
 					(_("Rename all related files"), "ALL"),
@@ -1495,8 +1541,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				self["listright"].matchingPattern = fileFilter
 				self.updateTitle()
 			del self.oldFileFilter
-			self["listleft"].setSortBy("%s,%s" % (config.plugins.FileCommander.sortDirectoriesLeft.value, config.plugins.FileCommander.sortFilesLeft.value))
-			self["listright"].setSortBy("%s,%s" % (config.plugins.FileCommander.sortDirectoriesRight.value, config.plugins.FileCommander.sortFilesRight.value))
+			self["listleft"].setSortBy(f"{config.plugins.FileCommander.sortDirectoriesLeft.value},{config.plugins.FileCommander.sortFilesLeft.value}")
+			self["listright"].setSortBy(f"{config.plugins.FileCommander.sortDirectoriesRight.value},{config.plugins.FileCommander.sortFilesRight.value}")
 			self["alwaysNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 			self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 			self["directoryFileNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
@@ -1554,7 +1600,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.taskList = []
 		for job in JobManager.getPendingJobs():
 			progress = job.getProgress()
-			self.taskList.append((job, job.name, job.getStatustext(), progress, "%d %%" % progress))
+			self.taskList.append((job, job.name, job.getStatustext(), progress, f"{progress} %%"))
 		self.session.open(TaskListScreen, self.taskList)
 
 	def keyViewEdit(self, path=None):
@@ -1578,7 +1624,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	def shortcutAction(self, program):
 		def shortcutInstallCallback(answer):
 			if answer:
-				self.session.open(Console, title="%s - %s" % (self.baseTitle, _("Console")), cmdlist=(("/usr/bin/opkg", "update"), ("/usr/bin/opkg", "install", self.package)), finishedCallback=shortcutInstalledCallback)
+				self.session.open(Console, title=f"{self.baseTitle} - {_('Console')}", cmdlist=(("/usr/bin/opkg", "update"), ("/usr/bin/opkg", "install", self.package)), finishedCallback=shortcutInstalledCallback)
 
 		def shortcutInstalledCallback():
 			self.shortcutAction(program)
@@ -1616,15 +1662,15 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		return helpMsg
 
 	def getRelatedFiles(self, path):
-		# print("[FileCommander] DEBUG: Supplied path '%s'." % path)
+		# print(f"[FileCommander] DEBUG: Supplied path '{path}'.")
 		relatedFiles = []
 		base, extension = splitext(path)
 		if extension == ".eit":  # We have a ".eit" extension so we need to identify the movie type.
-			if isfile("%s.ts" % base):  # For speed see if this is a normal recording ".ts" file.
+			if isfile(f"{base}.ts"):  # For speed see if this is a normal recording ".ts" file.
 				extension = ".ts"
 			else:  # Try all other movie extensions see if there is a related movie file match.
 				for extension in MOVIE_EXTENSIONS:
-					if isfile("%s%s" % (base, extension)):
+					if isfile(f"{base}{extension}"):
 						break
 				else:
 					extension = None
@@ -1633,19 +1679,19 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		if extension in MOVIE_EXTENSIONS:
 			base = splitext(base)[0]
 			relatedFiles.append(base)
-			relatedFiles.append("%s%s" % (base, extension))
-			relatedExtensions = (".eit", ".jpg", ".log", ".txt", extension, "%s.ap" % extension, "%s.cuts" % extension, "%s.meta" % extension, "%s.sc" % extension)
+			relatedFiles.append(f"{base}{extension}")
+			relatedExtensions = (".eit", ".jpg", ".log", ".txt", extension, f"{extension}.ap", f"{extension}.cuts", f"{extension}.meta", f"{extension}.sc")
 			for extension in relatedExtensions:
-				related = "%s%s" % (base, extension)
+				related = f"{base}{extension}"
 				if isfile(related):
 					relatedFiles.append(related)
 			if len(relatedFiles) < 4:  # The file is a movie related file but has no related files.
 				relatedFiles = ""
 			# 	print("[FileCommander] DEBUG: No related files.")
 			# else:
-			# 	print("[FileCommander] DEBUG: Base path '%s'." % base)
+			# 	print(f"[FileCommander] DEBUG: Base path '{base}'.")
 			# 	for file in relatedFiles[1:]:
-			# 		print("[FileCommander] DEBUG:     Related file: '%s'." % file)
+			# 		print(f"[FileCommander] DEBUG:     Related file: '{file}'.")
 		return relatedFiles
 
 	def checkStillExists(self, path):
@@ -1695,7 +1741,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	# 	sort += 1
 	# 	if sort > 2:
 	# 		sort = 0
-	# 	return "%d.%d" % (sort, reverse)
+	# 	return f"{sort}.{reverse}"
 
 	# def setReverse(self, column, setDirs=False):
 	# 	sortDirs, sortFiles = column.getSortBy().split(",")
@@ -1706,7 +1752,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	# 	reverse += 1
 	# 	if reverse > 1:
 	# 		reverse = 0
-	# 	return "%d.%d" % (sort, reverse)
+	# 	return f"{sort}.{reverse}"
 
 
 class FileCommanderContextMenu(Screen):
@@ -1836,7 +1882,7 @@ class FileCommanderData(Screen, HelpableScreen):
 		def dataAvail(data):
 			if isinstance(data, bytes):
 				data = data.decode()
-			self.textBuffer = "%s%s" % (self.textBuffer, data)
+			self.textBuffer = f"{self.textBuffer}{data}"
 			if callable(display):
 				display(self.textBuffer)
 
@@ -1897,7 +1943,7 @@ class FileCommanderArchiveExtract(FileCommanderArchiveBase):
 			minFree = 100  # Get the size of the archive?
 			self.session.openWithCallback(self.extractArchiveCallback, LocationBox, text=_("Select a location into which to extract '%s':") % self.path, currDir=dirname(self.path), minFree=minFree)
 		elif target:
-			self.textBuffer = "- %s:\n- \n" % self.path
+			self.textBuffer = f"- {self.path}:\n- \n"
 			if self.extension == "tar":
 				def displayData(data):
 					self["data"].setText(data)
@@ -1936,7 +1982,7 @@ class FileCommanderArchiveExtract(FileCommanderArchiveBase):
 					mkdir(target)
 				except OSError as err:
 					if err.errno != EEXIST:
-						self["data"].setText("Error %d: Unable to create package directory '%s'!  (%s)" % (err.errno, target, err.strerror))
+						self["data"].setText(_("Error %d: Unable to create package directory '%s'!  (%s)") % (err.errno, target, err.strerror))
 						print("[FileCommander] Error %d: Unable to create package directory '%s'!  (%s)" % (err.errno, target, err.strerror))
 						return
 				self.processArguments(target, ["/usr/bin/ar", "/usr/bin/ar", "x", self.path], None, processControl)
@@ -1977,7 +2023,7 @@ class FileCommanderArchiveInstall(FileCommanderArchiveBase):
 			if basename(self.path).startswith("enigma2-plugin-"):
 				plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
-		self.textBuffer = "%s:\n\n" % self.path
+		self.textBuffer = f"{self.path}:\n\n"
 		self.processArguments(None, ["/usr/bin/opkg", "/usr/bin/opkg", "update"], displayData, processInstall)
 
 
@@ -1987,7 +2033,7 @@ class FileCommanderArchiveView(FileCommanderArchiveBase):
 		self.callLater(self.viewArchive)
 
 	def viewArchive(self):
-		self.textBuffer = "%s%s:\n%s\n" % (" " * 53, self.path, " " * 53)
+		self.textBuffer = f"{' ' * 53}{self.path}:\n{' ' * 53}\n"
 		if self.extension == "tar":
 			def displayData(data):
 				self["data"].setText(data)
@@ -2104,7 +2150,7 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 
 	def keyHex(self):
 		deferToThread(self.readHex)
-		self["data"].setText("Please wait while the file is read and processed...")
+		self["data"].setText(_("Please wait while the file is read and processed..."))
 		self["key_green"].setText("")
 		self["key_yellow"].setText(_("Octal"))
 		self["key_blue"].setText(_("Text") if self.isText else "")
@@ -2118,15 +2164,15 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 			with open(self.path, "rb") as fd:
 				fileBuffer = fd.read(MAX_HEXVIEW_SIZE)
 				for position, rowData in [(x, fileBuffer[x:x + 16]) for x in range(0, len(fileBuffer), 16)]:
-					hexChars = " ".join(["%02X" % x for x in rowData])
+					hexChars = " ".join([f"{x:02X}" for x in rowData])
 					textChars = " ".join([chr(x) if 0x20 <= x < 0x7F else "?" for x in rowData])
 					count = len(rowData)
 					while count < 16:
-						hexChars = "%s   " % hexChars
+						hexChars = f"{hexChars}   "
 						count += 1
-					data.append("%06X: %s  -  %s" % (position, hexChars, textChars))
+					data.append(f"{position:06X}: {hexChars}  -  {textChars}")
 		except OSError as err:
-			data = ["Error %d: Unable to read '%s'!  (%s)" % (err.errno, self.path, err.strerror)]
+			data = [_("Error %d: Unable to read '%s'!  (%s)") % (err.errno, self.path, err.strerror)]
 		self["data"].setText("\n".join(data))
 
 	def keyOct(self):
@@ -2144,15 +2190,15 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 			with open(self.path, "rb") as fd:
 				fileBuffer = fd.read(MAX_HEXVIEW_SIZE)
 				for position, rowData in [(x, fileBuffer[x:x + 8]) for x in range(0, len(fileBuffer), 8)]:
-					octChars = " ".join(["%03o" % x for x in rowData])
+					octChars = " ".join([f"{x:03o}" for x in rowData])
 					textChars = " ".join([chr(x) if 0x20 <= x < 0x7F else "?" for x in rowData])
 					count = len(rowData)
 					while count < 8:
-						octChars = "%s    " % octChars
+						octChars = f"{octChars}    "
 						count += 1
-					data.append("%08o: %s  -  %s" % (position, octChars, textChars))
+					data.append(f"{position:08o}: {octChars}  -  {textChars}")
 		except OSError as err:
-			data = ["Error %d: Unable to read '%s'!  (%s)" % (err.errno, self.path, err.strerror)]
+			data = [_("Error %d: Unable to read '%s'!  (%s)") % (err.errno, self.path, err.strerror)]
 		self["data"].setText("\n".join(data))
 
 	def keyText(self):
@@ -2161,7 +2207,7 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 			with open(self.path) as fd:
 				data = fd.read(MAX_EDIT_SIZE).splitlines()
 		except OSError as err:
-			data = ["Error %d: Unable to read '%s'!  (%s)" % (err.errno, self.path, err.strerror)]
+			data = [_("Error %d: Unable to read '%s'!  (%s)") % (err.errno, self.path, err.strerror)]
 		self["data"].setText("\n".join(data))
 		if stat(self.path).st_size < MAX_HEXVIEW_SIZE:
 			self["key_green"].setText(_("Hexadecimal"))
@@ -2236,7 +2282,8 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 		self["status"] = Pixmap()
 		self["message"] = StaticText(_("Please wait, loading image..."))
 		self["infolabels"] = Label()
-		self.infoLabelsText = "%s:" % ":\n".join(self.exifDesc)
+		text = ":\n".join(self.exifDesc)
+		self.infoLabelsText = f"{text}:"
 		self["infodata"] = Label()
 		self.currentIndex = 0
 		self.fileList = [fileList] if isinstance(fileList, str) else self.makeFileList(fileList, filename)
@@ -2295,13 +2342,14 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 		data = self.imageLoad.getData()
 		if data:
 			try:
-				text = "(%d / %d)  %s" % (self.currentIndex + 1, self.fileListLen + 1, picInfo.split("\n", 1)[0].split("/")[-1])
+				text = picInfo.split("\n", 1)[0].split("/")[-1]
+				text = f"({self.currentIndex + 1} / {self.fileListLen + 1})  {text}"
 			except Exception:
-				text = "(%d / %d)" % (self.currentIndex + 1, self.fileListLen + 1)
+				text = f"({self.currentIndex + 1} / {self.fileListLen + 1})"
 			exifList = self.imageLoad.getInfo(self.fileList[self.currentIndex])
 			information = []
 			for index in range(len(exifList)):
-				information.append("%s" % exifList[index])
+				information.append(f"{exifList[index]}")
 			self.currentImage = (text, self.currentIndex, data, "\n".join(information))
 			self.showPicture()
 
@@ -2391,7 +2439,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 				except:
 					pass
 				if treeSize:
-					info[directorySizeIndex] = "%s:|%s   (%s)   (%s)" % (_("Tree size"), "{:n}".format(treeSize), NumberScaler().scale(treeSize, style="Si", maxNumLen=3, decimals=3), NumberScaler().scale(treeSize, style="Iec", maxNumLen=3, decimals=3))
+					info[directorySizeIndex] = "%s:|%s   (%s)   (%s)" % (_("Tree size"), "{:n}".format(treeSize), numberScaler.scale(treeSize, style="Si", maxNumLen=3, decimals=3), NumberScaler().scale(treeSize, style="Iec", maxNumLen=3, decimals=3))
 				else:
 					del info[directorySizeIndex]
 				self["data"].setText("\n".join(info))
@@ -2399,7 +2447,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 		def displayFileInfo(retVal):
 			fileType = self.textBuffer.split(" ", 1)[1] if self.textBuffer else None
 			if fileType:
-				info[3] = "%s:|%s" % (("Content"), fileType.strip())
+				info[3] = "%s:|%s" % (_("Content"), fileType.strip())
 			else:
 				del info[3]
 			self["data"].setText("\n".join(info))
@@ -2411,6 +2459,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 		data["Data"] = []
 		FileCommanderData.__init__(self, session, data)
 		StatInfo.__init__(self)
+		numberScaler = NumberScaler()
 		self.path = normpath(path)
 		self.target = target
 		self["key_green"] = StaticText("")
@@ -2444,7 +2493,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 		try:
 			status = lstat(self.path)
 			mode = status.st_mode
-			info.append("%s:|%s" % (_("Type"), {
+			fileType = {
 				S_IFSOCK: _("Socket"),
 				S_IFLNK: _("Symbolic link"),
 				S_IFREG: _("Regular file"),
@@ -2452,7 +2501,8 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 				S_IFDIR: _("Directory"),
 				S_IFCHR: _("Character device"),
 				S_IFIFO: _("FIFO"),
-			}.get(S_IFMT(mode), _("Unknown"))))
+			}.get(S_IFMT(mode), _("Unknown"))
+			info.append("%s:|%s" % (_("Type"), fileType))
 			if isfile(self.path):
 				info.append("%s:|%s" % (_("Content"), _("Calculating...")))
 			if S_ISLNK(mode):
@@ -2466,7 +2516,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 			permissions = S_IMODE(mode)
 			info.append("%s:|%s" % (_("Permissions"), _("%s (%04o)") % (filemode(mode), permissions)))
 			if not (S_ISCHR(mode) or S_ISBLK(mode)):
-				info.append("%s:|%s   (%s)   (%s)" % (_("Size"), "{:n}".format(status.st_size), NumberScaler().scale(status.st_size, style="Si", maxNumLen=3, decimals=3), NumberScaler().scale(status.st_size, style="Iec", maxNumLen=3, decimals=3)))
+				info.append("%s:|%s   (%s)   (%s)" % (_("Size"), "{:n}".format(status.st_size), numberScaler.scale(status.st_size, style="Si", maxNumLen=3, decimals=3), numberScaler.scale(status.st_size, style="Iec", maxNumLen=3, decimals=3)))
 			if isdir(self.path):
 				info.append("%s:|%s" % (_("Tree size"), _("Calculating...")))
 				directorySizeIndex = len(info) - 1
@@ -2526,10 +2576,10 @@ class FileCommanderMediaInfo(FileCommanderData):
 				info.append("")
 				jsonData = loads(self.textBuffer)
 				for index, track in enumerate(jsonData["media"]["track"]):
-					info.append("Track-%d:" % (index + 1))
-					info.extend(["%s:|%s" % (x, y) for x, y in track.items()])
+					info.append(f"Track-{index + 1}:")
+					info.extend([f"{x}:|{y}" for x, y in track.items()])
 			except Exception as err:
-				print("[FileCommander] Error: Unable to parse the mediainfo json data!  (%s)" % err)
+				print(f"[FileCommander] Error: Unable to parse the mediainfo json data!  ({err})")
 			self["data"].setText("\n".join(info))
 			self["navigationActions"].setEnabled(self["data"].isNavigationNeeded())
 
@@ -2704,7 +2754,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 		def keySaveCallback(answer):
 			if answer:
 				if isfile(self.path):
-					copyFile(self.path, "%s.bak" % self.path)
+					copyFile(self.path, f"{self.path}.bak")
 				if fileWriteLines(self.path, "\n".join(self.data), source=MODULE_NAME) == 0:
 					self.session.open(MessageBox, _("Error: There was a problem writing '%s'!") % self.path, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 			self.close()
@@ -2805,15 +2855,17 @@ class FileTransferTask(Task):
 			elif jobType == self.JOB_TEST:
 				cmdLine = ("sleep", "100")
 			else:
-				print("[Directories] FileTransferTask Error: Unknown job type '%s' specified!" % jobType)
+				print(f"[Directories] FileTransferTask Error: Unknown job type '{jobType}' specified!")
 				cmdLine = None
 			self.mountPoints = [normpath(x.mountpoint) for x in harddiskmanager.getMountedPartitions()]
 			self.initialSize = self.dirSize(target) if isdir(target) else 0
+			if isfile(srcPath):
+				self.dstPath = target
 			if cmdLine:
 				self.postconditions.append(TaskPostConditions())
 				self.processStdout = taskProcessStdout
 				self.processStderr = taskProcessStderr
-				# print("[Directories] FileTransferTask DEBUG: Command line '/bin/busybox %s'." % " ".join(cmdLine))
+				# print(f"[Directories] FileTransferTask DEBUG: Command line '/bin/busybox {' '.join(cmdLine)}'.")
 				self.setCommandline("/bin/busybox", cmdLine)
 				# self.nice = 0
 				self.ionice = 8
@@ -2897,7 +2949,7 @@ class TaskPostConditions(Condition):
 				message.extend(taskSTDErr[lines:])
 			if message:
 				self.errorMessage = "\n".join(message)
-				print("[FileCommander] Task output:\n%s" % message)
+				print(f"[FileCommander] Task output:\n{message}")
 				# self.showMessage("\n".join(message), messageType)
 		taskSTDOut = []
 		taskSTDErr = []
@@ -3028,7 +3080,7 @@ def exit(session, result):
 
 def Plugins(path, **kwargs):
 	plugin = [
-		PluginDescriptor(name=PROGRAM_NAME, description="%s (%s)" % (PROGRAM_DESCRIPTION, PROGRAM_VERSION), where=PluginDescriptor.WHERE_PLUGINMENU, icon="FileCommander.png", fnc=startFromPluginMenu),
+		PluginDescriptor(name=PROGRAM_NAME, description=f"{PROGRAM_DESCRIPTION} ({PROGRAM_VERSION})", where=PluginDescriptor.WHERE_PLUGINMENU, icon="FileCommander.png", fnc=startFromPluginMenu),
 		# PluginDescriptor(name=PROGRAM_NAME, where=PluginDescriptor.WHERE_FILESCAN, fnc=startFromFilescan)  # Buggy!!!
 	]
 	if config.plugins.FileCommander.addToExtensionMenu.value:

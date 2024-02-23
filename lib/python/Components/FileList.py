@@ -135,7 +135,7 @@ EXTENSION_ICONS["current"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensio
 EXTENSION_ICONS["directory"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 EXTENSION_ICONS["file"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/file.png"))
 for icon in set(EXTENSIONS.values()):
-	EXTENSION_ICONS[icon] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/%s.png" % icon))
+	EXTENSION_ICONS[icon] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, f"extensions/{icon}.png"))
 if EXTENSION_ICONS["storage"] is None:
 	EXTENSION_ICONS["storage"] = EXTENSION_ICONS["directory"]
 if EXTENSION_ICONS["parent"] is None:
@@ -222,15 +222,16 @@ class FileListBase(MenuList):
 	def changeDir(self, directory, select=None):
 		def buildDirectoryList():
 			if directory and not self.isTop:
-				mountPoint = normpath(self.getMountPointLink(directory))
+				mountPoint = normpath(self.getMountPoint(directory)) if islink(directory) else normpath(self.getMountPointLink(directory))
 				if self.showMountPoints and directory == mountPoint:
 					self.fileList.append(self.fileListComponent(name="<%s>" % _("List of Storage Devices"), path=None, isDir=True, isLink=False, selected=None, dirIcon=ICON_STORAGE))
 				if self.showCurrentDirectory:
 					self.fileList.append(self.fileListComponent(name="<%s>" % _("Current Directory"), path=pathjoin(directory, ""), isDir=True, isLink=islink(directory), selected=None, dirIcon=ICON_CURRENT))
 				parent = dirname(directory)
-				if directory != parent and parent.startswith(mountPoint) and not (self.inhibitMounts and self.getMountPoint(directory) in self.inhibitMounts):
+				inside = mountPoint != directory if islink(directory) else parent.startswith(mountPoint)
+				if directory != parent and inside and not (self.inhibitMounts and self.getMountPoint(directory) in self.inhibitMounts):
 					self.fileList.append(self.fileListComponent(name="<%s>" % _("Parent Directory"), path=pathjoin(parent, ""), isDir=True, isLink=islink(parent), selected=None, dirIcon=ICON_PARENT))
-				# print("[FileList] changeDir DEBUG: mountPoint='%s', mountPointLink='%s', directory='%s', parent='%s'." % (normpath(self.getMountPointLink(directory)), mountPoint, directory, parent))
+				# print(f"[FileList] changeDir DEBUG: mountPointLink='{normpath(self.getMountPointLink(directory))}', mountPoint='{normpath(self.getMountPoint(directory))}', directory='{directory}', parent='{parent}'.")
 			for name, path, isDir, isLink in directories:
 				if not (self.inhibitMounts and self.getMountPoint(path) in self.inhibitMounts) and not self.inParentDirs(path, self.inhibitDirs):
 					selected = (path in self.selectedItems or normpath(path) in self.selectedItems) if self.multiSelect else None
@@ -284,7 +285,7 @@ class FileListBase(MenuList):
 					directories = self.sortList(directories, self.sortDirectories)
 					files = self.sortList(files, self.sortFiles)
 				except OSError as err:
-					print("FileList] Error %d: Unable to list directory contents of '%s'!  (%s)" % (err.errno, directory, err.strerror))
+					print(f"FileList] Error {err.errno}: Unable to list directory contents of '{directory}'!  ({err.strerror})")
 		if self.showDirectories and self.directoriesFirst:
 			buildDirectoryList()
 		if self.showFiles:
@@ -312,7 +313,7 @@ class FileListBase(MenuList):
 					start = index
 					break
 		# We may need to reset the top of the viewport before setting the index.
-		self.moveToIndex(start)
+		self.setCurrentIndex(start)
 
 	def refresh(self, path=None):
 		if path is None:
@@ -320,10 +321,10 @@ class FileListBase(MenuList):
 		self.changeDir(self.currentDirectory, path)
 
 	def fileListComponent(self, name, path, isDir, isLink, selected, dirIcon):
-		# print("[FileList] fileListComponent DEBUG: Name='%s', Path='%s', isDir=%s, isLink=%s, selected=%s, dirIcon=%s." % (name, path, isDir, isLink, selected, dirIcon))
+		# print(f"[FileList] fileListComponent DEBUG: Name='{name}', Path='{path}', isDir={isDir}, isLink={isLink}, selected={selected}, dirIcon={dirIcon}.")
 		res = [(path, isDir, isLink, selected, name, dirIcon)]
-		if selected is not None and not name.startswith("<"):
-			icon = EXTENSION_ICONS["lock_%s" % ("on" if selected else "off")]
+		if selected is not None and not self.getIsSpecialFolder(res[0]):
+			icon = EXTENSION_ICONS[f"lock_{'on' if selected else 'off'}"]
 			if icon:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.lockX, self.lockY, self.lockW, self.lockH, icon, None, None, BT_SCALE | BT_VALIGN_CENTER))
 		linkIcon = EXTENSION_ICONS["link-arrow"] if isLink else None
@@ -354,7 +355,7 @@ class FileListBase(MenuList):
 		dirIcon = entry[0][FILE_DIR_ICON]
 		if (isDir is False and type == SELECT_DIRECTORIES) or (isDir is True and type == SELECT_FILES):
 			selected = entry[0][FILE_SELECTED]
-		if path and not entry[0][FILE_NAME].startswith("<"):
+		if path and not self.getIsSpecialFolder(entry[0]):
 			path = path if isDir else pathjoin(self.currentDirectory, path)
 			if selected and path not in self.selectedItems:
 				self.selectedItems.append(path)
@@ -367,7 +368,7 @@ class FileListBase(MenuList):
 
 	def setSelection(self):
 		if self.fileList:
-			index = self.getSelectionIndex()
+			index = self.getCurrentIndex()
 			self.fileList[index] = self.assignSelection(self.fileList[index], SELECT_ALL, True)
 			self.setList(self.fileList)
 
@@ -380,7 +381,7 @@ class FileListBase(MenuList):
 
 	def clearSelection(self):
 		if self.fileList:
-			index = self.getSelectionIndex()
+			index = self.getCurrentIndex()
 			self.fileList[index] = self.assignSelection(self.fileList[index], SELECT_ALL, False)
 			self.setList(self.fileList)
 
@@ -393,7 +394,7 @@ class FileListBase(MenuList):
 
 	def toggleSelection(self):
 		if self.fileList:
-			index = self.getSelectionIndex()
+			index = self.getCurrentIndex()
 			entry = self.fileList[index]
 			selected = not entry[0][FILE_SELECTED]
 			self.fileList[index] = self.assignSelection(entry, SELECT_ALL, selected)
@@ -433,6 +434,11 @@ class FileListBase(MenuList):
 	def getIsSelected(self):
 		selection = self.getSelection()
 		return selection[FILE_SELECTED] if selection else None
+
+	def getIsSpecialFolder(self, selection=None):
+		if not selection:
+			selection = self.getSelection()
+		return selection[FILE_DIR_ICON] in (ICON_STORAGE, ICON_PARENT, ICON_CURRENT) if selection else False
 
 	def getFilename(self):  # Legacy method name for external code.
 		return self.getPath()
@@ -484,7 +490,7 @@ class FileListBase(MenuList):
 		self.sortDirectories, self.sortFiles = sortBy.split(",")
 
 	def getSortBy(self):
-		return "%s,%s" % (self.sortDirectories, self.sortFiles)
+		return f"{self.sortDirectories},{self.sortFiles}"
 
 	def sortList(self, items, sortBy):
 		sort, reverse = (int(x) for x in sortBy.split("."))
