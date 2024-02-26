@@ -555,6 +555,8 @@ def InitUsageConfig():
 
 	config.usage.http_startdelay = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + [(str(x), _("%d ms") % x) for x in (10, 50, 100, 500, 1000, 2000)])
 
+	config.usage.alternateGitHubDNS = ConfigYesNo(default=False)
+
 	nims = [
 		("-1", _("Auto")),
 		("expert_mode", _("Expert mode")),
