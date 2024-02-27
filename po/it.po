@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
-"PO-Revision-Date: 2024-02-18 06:53+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"PO-Revision-Date: 2024-02-26 22:23+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -1177,10 +1177,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Setup"
 
@@ -1244,10 +1240,6 @@ msgstr "%s%s (predefinito: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7269,12 +7261,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Errore %d: impossibile creare la cartella '%s'! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Errore %d: impossibile creare la cartella del pacchetto '%s'!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Errore %d: impossibile eliminare l'immagine scaricata '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Errore %d: impossibile collegare '%s' come '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Errore %d: impossibile leggere '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -13115,6 +13115,9 @@ msgstr "Attendi estrazione dei dati..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Attendi mentre i feed vengono reimpostati (cancellati e ricaricati)..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Attendi mentre il file viene letto ed elaborato..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Attendi scaricamento dell'elenco..."
 
@@ -15501,6 +15504,9 @@ msgstr "Seleziona 'Sì' per mostrare la cartella attuale nell'elenco delle carte
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Seleziona 'Sì' per mostrare i pacchetti di collegamenti web nella schermata Scarica plugin."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Seleziona 'Sì' per dividere le attività in azioni separate."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Seleziona 'Sì' per usare i valori del segnale (SNR, ecc.) calcolati dalla precedente API V3. Questa versione dell'API è stata ora sostituita."
@@ -18157,6 +18163,9 @@ msgstr "Velocità"
 
 msgid "Split preview mode"
 msgstr "Modalità anteprima separata"
+
+msgid "Split tasks"
+msgstr "Dividi attività"
 
 msgid "Splitscreen"
 msgstr "Schermo diviso"
@@ -23515,6 +23524,14 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Impostazioni montaggio"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -1167,10 +1167,6 @@ msgid "%s (%04o)"
 msgstr ""
 
 #, python-format
-msgid "%s (%s)"
-msgstr ""
-
-#, python-format
 msgid "%s - Setup"
 msgstr ""
 
@@ -1234,10 +1230,6 @@ msgstr ""
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr ""
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7189,11 +7181,19 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -12976,6 +12976,9 @@ msgstr ""
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
+msgid "Please wait while the file is read and processed..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr ""
 
@@ -15352,6 +15355,9 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -17977,6 +17983,9 @@ msgstr ""
 
 msgid "Split preview mode"
 msgstr "Del forhåndsvisning"
+
+msgid "Split tasks"
+msgstr ""
 
 msgid "Splitscreen"
 msgstr "Deltvisning"

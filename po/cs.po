@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
 "PO-Revision-Date: 2024-01-19 21:00+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -1209,10 +1209,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s – Nastavení"
 
@@ -1276,10 +1272,6 @@ msgstr "%s%s(Výchozí: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7305,12 +7297,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Chyba %d: Nelze vytvořit adresář '%s'! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Chyba %d: Nelze smazat stažený obrázek '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Chyba %d: Nelze propojit '%s' jako '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -13153,6 +13153,9 @@ msgstr "Počkejte prosím, než se data extrahují..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Počkejte prosím, než budou zdroje resetovány (vymazány a znovu načteny)..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Počkejte prosím, než se seznam stáhne..."
 
@@ -15543,6 +15546,9 @@ msgstr "Vyberte 'Ano' pro zobrazení aktuálního adresáře v seznamu adresář
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano', chcete-li zobrazit balíčky webových odkazů na obrazovce Stáhnout pluginy."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Chcete-li použít hodnoty signálu (SNR atd.) vypočítané ze starší verze API V3, vyberte možnost „Ano“. Tato verze API byla nyní nahrazena."
@@ -18201,6 +18207,9 @@ msgstr "Rychlost"
 
 msgid "Split preview mode"
 msgstr "Režim rozděleného náhledu"
+
+msgid "Split tasks"
+msgstr ""
 
 msgid "Splitscreen"
 msgstr "Rozdělený obraz"
@@ -23560,6 +23569,14 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Nastavení připojení"

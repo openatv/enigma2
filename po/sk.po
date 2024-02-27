@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
 "PO-Revision-Date: 2024-01-24 18:39+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1211,10 +1211,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s – Nastavenie"
 
@@ -1278,10 +1274,6 @@ msgstr "%s%s(Predvolené: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7307,12 +7299,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Chyba %d: nie je možné vytvoriť priečinok '%s'! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Chyba %d: nie je možné vymazať stiahnutý image '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Chyba %d: nie je možné odkazovať na '%s' ako '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -13155,6 +13155,9 @@ msgstr "Prosím, počkajte na rozbalenie údajov…"
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Prosím počkajte na reset (vyčistenie a opätovné načítanie) zdrojov informácií..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Prosím, počkajte na stiahnutie zoznamu…"
 
@@ -15545,6 +15548,9 @@ msgstr "Ak chcete v zozname priečinkov zobraziť aktuálny priečinok, vyberte 
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky webových odkazov, vyberte možnosť 'Áno'."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Ak je nastavené na 'áno', hodnoty signálu (SNR atď.) sa budú vypočítavať z API V3. Je to staršia verzia API, ktorá je v súčasnosti už nahradená."
@@ -18203,6 +18209,9 @@ msgstr "Rýchlosť"
 
 msgid "Split preview mode"
 msgstr "Režim rozdelenia náhľadu"
+
+msgid "Split tasks"
+msgstr ""
 
 msgid "Splitscreen"
 msgstr "Rozdelená obrazovka"
@@ -23562,6 +23571,14 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Nastavenie pripojení"

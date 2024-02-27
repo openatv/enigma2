@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
 "PO-Revision-Date: 2024-02-19 11:02+0000\n"
 "Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1178,10 +1178,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Configuration"
 
@@ -1245,10 +1241,6 @@ msgstr "%s%s(Par défaut : %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s : %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s : %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7277,11 +7269,19 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -13122,6 +13122,9 @@ msgstr ""
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
+msgid "Please wait while the file is read and processed..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Veuillez patienter pendant que la liste se télécharge..."
 
@@ -15510,6 +15513,9 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -18156,6 +18162,9 @@ msgstr ""
 
 msgid "Split preview mode"
 msgstr "Mode aperçu séparé"
+
+msgid "Split tasks"
+msgstr ""
 
 msgid "Splitscreen"
 msgstr "Diviser l'écran"
@@ -23464,6 +23473,14 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s : %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Configuration des montages"

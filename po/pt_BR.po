@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -1284,10 +1284,6 @@ msgid "%s (%04o)"
 msgstr "%s (%s)\n"
 
 #, fuzzy, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)\n"
-
-#, fuzzy, python-format
 msgid "%s - Setup"
 msgstr "Definições"
 
@@ -1350,10 +1346,6 @@ msgstr ""
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr "%s/%s: %s"
-
-#, fuzzy, python-format
-msgid "%s: %s"
 msgstr "%s/%s: %s"
 
 #, python-format
@@ -7590,11 +7582,19 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -13654,6 +13654,9 @@ msgstr ""
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
+msgid "Please wait while the file is read and processed..."
+msgstr ""
+
 #, fuzzy
 msgid "Please wait while the list downloads..."
 msgstr "Por favor aguarde enquanto a rede é testada..."
@@ -16143,6 +16146,9 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -18888,6 +18894,9 @@ msgstr ""
 
 msgid "Split preview mode"
 msgstr "Modo de pré-visualização dividido"
+
+msgid "Split tasks"
+msgstr ""
 
 msgid "Splitscreen"
 msgstr ""
@@ -24336,6 +24345,14 @@ msgstr "Sim (manter os feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)\n"
+
+#, fuzzy, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s/%s: %s"
 
 #, fuzzy
 #~ msgid "Australian"

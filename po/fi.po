@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
-"PO-Revision-Date: 2024-02-18 02:51+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"PO-Revision-Date: 2024-02-25 08:02+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid ""
 "\n"
@@ -1174,10 +1174,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Asetukset"
 
@@ -1241,10 +1237,6 @@ msgstr "%s%s(Oletus: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7279,12 +7271,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Virhe %d: Hakemistoa '%s' ei voi luoda!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Virhe %d: Ei voi luoda hakemistoa '%s'!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Virhe %d: Ladattua ohjelmistoa ei voida poistaa '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Virhe %d: Ei voida yhdistää '%s' muotoon '%s'!  (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Virhe %d: Ei voida lukea'%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -13138,6 +13138,9 @@ msgstr "Odota, kunnes tiedot on purettu..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Odota, Syötteet on resetoitu..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Odota hetki, kun tiedosto on luettu ja käsitelty..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Odota, kunnes luettelo ladataan..."
 
@@ -15532,6 +15535,9 @@ msgstr "Valitse 'Kyllä', jos haluat näyttää nykyisen hakemiston hakemistolue
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Valitse 'Kyllä' näyttääksesi Netti sivut listassa."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Valitse ”Kyllä” jakaaksesi tehtävät eri toimintoihin."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jos asetus on kyllä, signaaliarvot (SNR jne.) Lasketaan API V3: sta. Tämä on vanha API-versio, joka on nyt korvattu."
@@ -18195,6 +18201,9 @@ msgstr "Nopeus"
 msgid "Split preview mode"
 msgstr "Jaettu esikatseluruutu"
 
+msgid "Split tasks"
+msgstr "Jaetut tehtävät"
+
 msgid "Splitscreen"
 msgstr "Jaettu ruutu"
 
@@ -18867,7 +18876,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 18.2.2024\n"
+"Suomenkielinen käännös: 24.2.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -23567,6 +23576,14 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Verkkoliitosten asetukset"

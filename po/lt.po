@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1212,10 +1212,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Sąranka"
 
@@ -1279,10 +1275,6 @@ msgstr "%s%s(Default: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7319,12 +7311,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "%d klaida: nepavyko sukurti katalogo \"%s\"!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Klaida %d: neįmanoma ištrinti atsisiųsto atvaizdo \"%s\"!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "%d klaida: nepavyko susieti \"%s\" kaip \"%s\"!  (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -13166,6 +13166,9 @@ msgstr "Palaukite, kol duomenys bus išgauti..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
+msgid "Please wait while the file is read and processed..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Palaukite, kol sąrašas atsisiunčiamas..."
 
@@ -15555,6 +15558,9 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Pasirinkite \"Taip\", kad katalogų sąraše būtų rodomas dabartinis katalogas. Atminkite, kad failų vadas turi būti paleistas iš naujo, kad šis pakeitimas įsigaliotų."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -18202,6 +18208,9 @@ msgstr "Greitis"
 
 msgid "Split preview mode"
 msgstr "Padalinto ekrano peržiūros būdas"
+
+msgid "Split tasks"
+msgstr ""
 
 msgid "Splitscreen"
 msgstr "Padalintas ekranas"
@@ -23522,6 +23531,14 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Pajungimų parametrai"

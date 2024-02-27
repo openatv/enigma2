@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
-"PO-Revision-Date: 2024-02-18 02:51+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"PO-Revision-Date: 2024-02-25 08:01+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1199,10 +1199,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s-Einrichtung"
 
@@ -1266,10 +1262,6 @@ msgstr "%s%s(Standard: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7688,12 +7680,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Fehler %d: Verzeichnis '%s' kann nicht erstellt werden! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Fehler %d: Paketverzeichnis '%s' kann nicht erstellt werden!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Fehler %d: Heruntergeladenes Image '%s' kann nicht gelöscht werden! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Fehler %d: '%s' kann nicht in '%s' geändert werden! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Fehler %d: '%s' kann nicht gelesen werden!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -13954,6 +13954,9 @@ msgstr "Daten werden entpackt. Bitte warten..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Die Feeds werden gelöscht und dann neu geladen. Bitte warten..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Bitte warten während die Datei gelesen und verarbeitet wird..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Die Liste wird heruntergeladen. Bitte warten..."
 
@@ -16527,6 +16530,9 @@ msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Weblink-Pakete in der Downloadliste angezeigt."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Bei 'Ja' werden die Aufgaben in separate Aktionen aufgeteilt."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Bei 'Ja' werden die Signalwerte (SNR usw.) aus API V3 berechnet. Dies ist eine alte API-Version, die jetzt ersetzt wurde."
@@ -19351,6 +19357,9 @@ msgstr "Geschwindigkeit"
 #
 msgid "Split preview mode"
 msgstr "Splitscreen für Vorschaumodus"
+
+msgid "Split tasks"
+msgstr "Aufgaben teilen"
 
 msgid "Splitscreen"
 msgstr "Splitscreen"
@@ -25106,6 +25115,14 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Externe Freigaben einbinden"

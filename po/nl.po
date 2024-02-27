@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
-"PO-Revision-Date: 2024-02-20 18:42+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"PO-Revision-Date: 2024-02-25 15:04+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -1179,10 +1179,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Instellingen"
 
@@ -1246,10 +1242,6 @@ msgstr "%s%s(Default: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7407,12 +7399,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Fout %d: Kan map '%s' niet maken! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Fout %d: Er kan geen map '%s' voor pakketten worden gemaakt!   (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Fout %d: Het gedownloade image kan niet gewist worden '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Fout %d: Kan '%s' niet wijzigen in '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Fout %d: '%s' is niet leesbaar!   (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -13267,6 +13267,9 @@ msgstr "De gegevens worden uitgepakt, even geduld..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "De Feeds worden gewist en opnieuw geladen. Even geduld..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "A.u.b. wachten terwijl het bestand wordt gelezen en verwerkt..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Een ogenblik geduld terwijl de lijst wordt geladen..."
 
@@ -15667,6 +15670,9 @@ msgstr "Selecteer 'Ja' om de huidige map in de lijst met mappen weer te geven. M
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Weblinks in het plugin download-scherm weer te geven."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Kies 'Ja' om opdrachten in meerdere acties op te delen."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Indien 'ja' wordt gekozen, worden de signaalwaardes (SNR etc.) berekend op basis van de API V3. Dit is een oude API die nu vervangen is."
@@ -18352,6 +18358,9 @@ msgstr "Snelheid"
 
 msgid "Split preview mode"
 msgstr "Split screen voor de preview"
+
+msgid "Split tasks"
+msgstr "Opdrachten delen"
 
 msgid "Splitscreen"
 msgstr "Gesplitst scherm"
@@ -22501,11 +22510,11 @@ msgstr ""
 
 #, python-format
 msgid "Your %s %s will Reboot..."
-msgstr "Uw %s %s zal opnieuw opstarten..."
+msgstr "Uw %s %s zal opnieuw starten..."
 
 #, python-format
 msgid "Your %s %s will Restart..."
-msgstr "Uw %s %s zal opnieuw opstarten..."
+msgstr "Uw %s %s zal opnieuw starten..."
 
 #, python-format
 msgid ""
@@ -22541,7 +22550,7 @@ msgid "Your Receiver has a Software problem detected. Since the last reboot it h
 msgstr "Uw ontvanger heeft een software probleem. Sinds de laatste herstart is dit %d keer voorgekomen.\n"
 
 msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Als u op OK drukt zal uw %s %s opnieuw opstarten."
+msgstr "Als u op OK drukt zal uw %s %s opnieuw starten."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Uw verzameling is groter dan wat erop een single layer medium past, u heeft een lege dual layer DVD nodig!"
@@ -23780,6 +23789,14 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Mounts instellen"

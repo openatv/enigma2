@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
-"PO-Revision-Date: 2024-02-19 11:02+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"PO-Revision-Date: 2024-02-25 15:04+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1214,10 +1214,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Налаштування"
 
@@ -1281,10 +1277,6 @@ msgstr "%s%s(За замовчуванням: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7310,12 +7302,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Помилка %d: Не вдалося створити каталог '%s'!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Помилка %d: Не вдалося створити каталог пакетів '%s'!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Помилка %d: неможливо видалити завантажений імідж '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Помилка %d: Неможливо пов’язати '%s' як '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Помилка %d: неможливо прочитати '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -13158,6 +13158,9 @@ msgstr "Будь ласка, зачекайте, поки дані розарх�
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Будь ласка, зачекайте, поки фід буде скинуто (очищено та перезавантажено)..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Зачекайте, поки файл буде прочитано та оброблено..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Будь ласка, почекайте, список завантажується..."
 
@@ -15548,6 +15551,9 @@ msgstr "Виберіть 'Так', щоб показати поточний ка
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети веб-посилань на екрані завантаження плагінів."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Виберіть 'Так', щоб розділити завдання на окремі дії."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Якщо вибрано 'так', значення сигналу (SNR і т.д.) обчислюватимуться з API V3. Це стара версія API, яка тепер замінена."
@@ -18207,6 +18213,9 @@ msgstr "Швидкість"
 msgid "Split preview mode"
 msgstr "Розділений режим попереднього перегляду"
 
+msgid "Split tasks"
+msgstr "Розділити завдання"
+
 msgid "Splitscreen"
 msgstr "Розділені зображення"
 
@@ -18878,7 +18887,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 18.02.2024"
+msgstr "Переклад: kvinto - 25.02.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -23565,6 +23574,14 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Налаштування підключення"

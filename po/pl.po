@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 16:50+0000\n"
-"PO-Revision-Date: 2024-02-20 10:34+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"PO-Revision-Date: 2024-02-25 08:02+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1218,10 +1218,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Ustawienia"
 
@@ -1286,10 +1282,6 @@ msgstr "%s%s(Domyślnie: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7317,12 +7309,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Błąd %d: Nie udało się utworzyć katalogu '%s'!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Błąd %d: Nie można utworzyć katalogu pakietu '%s'!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Błąd %d: Nie udało się usunąć pobranego obrazu '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Błąd %d: Nie udało się zlinkować '%s' jako '%s'!  (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Błąd %d: Nie można odczytać '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -13166,6 +13166,9 @@ msgstr "Proszę poczekać, aż dane zostaną wyodrębnione..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Poczekaj, aż feedy zostaną zresetowane (wyczyszczone i ponownie załadowane)..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Proszę czekać, aż plik zostanie odczytany i przetworzony..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Poczekaj, aż lista się pobierze..."
 
@@ -15556,6 +15559,9 @@ msgstr "Wybierz \"Tak\", aby wyświetlić bieżący katalog na liście katalogó
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Wybierz \"Tak\", aby wyświetlić pakiety linków internetowych na ekranie pobierania wtyczek."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Wybierz 'Tak', aby podzielić zadania na osobne działania."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jeśli ustawione na \"tak\", wartości sygnału (SNR itp.) będą obliczane na podstawie API V3. Jest to stara wersja API, która została już zastąpiona."
@@ -18215,6 +18221,9 @@ msgstr "Prędkość"
 
 msgid "Split preview mode"
 msgstr "Tryb podzielonego podglądu"
+
+msgid "Split tasks"
+msgstr "Podziel zadania"
 
 msgid "Splitscreen"
 msgstr "Podzielony ekran"
@@ -23574,6 +23583,14 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
 #~ msgid "Mounts Settings"
 #~ msgstr "Ustawienia montowania"
