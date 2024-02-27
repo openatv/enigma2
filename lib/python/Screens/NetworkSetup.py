@@ -2096,7 +2096,7 @@ class NetworkMiniDLNASetup(Setup):
 	def keySave(self):
 		def getYesNo(configItem):
 			return "yes" if configItem.value else "no"
-		oldLines = fileReadLines("/etc/ushare.conf", [], source=MODULE_NAME)
+		oldLines = fileReadLines("/etc/minidlna.conf", [], source=MODULE_NAME)
 		if oldLines:
 			newLines = []
 			for line in oldLines:
