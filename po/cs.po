@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
-"PO-Revision-Date: 2024-01-19 21:00+0000\n"
+"POT-Creation-Date: 2024-02-27 11:07+0000\n"
+"PO-Revision-Date: 2024-02-27 16:13+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid ""
 "\n"
@@ -1865,7 +1865,7 @@ msgid "Active clients"
 msgstr "Aktivní klienti"
 
 msgid "Active only"
-msgstr ""
+msgstr "Pouze aktivní"
 
 msgid "Adapter Settings"
 msgstr "Nastavení adaptéru"
@@ -7239,7 +7239,7 @@ msgstr "Zápisy"
 
 #, python-format
 msgid "Entitlements for 'CAID %s'"
-msgstr ""
+msgstr "Nároky na „CAID %s“"
 
 msgid "Entry image and text"
 msgstr "Zadat obrázek a text"
@@ -7298,7 +7298,7 @@ msgstr "Chyba %d: Nelze vytvořit adresář '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to create package directory '%s'!  (%s)"
-msgstr ""
+msgstr "Chyba %d: Nelze vytvořit adresář balíčku '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -7310,7 +7310,7 @@ msgstr "Chyba %d: Nelze propojit '%s' jako '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to read '%s'!  (%s)"
-msgstr ""
+msgstr "Chyba %d: Nelze přečíst '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -9913,7 +9913,7 @@ msgid "KA-SAT"
 msgstr "KA-SAT"
 
 msgid "KSymb/s"
-msgstr ""
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Grónsko"
@@ -12193,17 +12193,17 @@ msgstr "Akce protokolu OSCamInfo"
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
-msgstr ""
+msgstr "OSCamInfo: %s oprávnění pro '%s'"
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
-msgstr ""
+msgstr "OSCamInfo: Nároky pro '%s'"
 
 msgid "OSCamInfo: Information"
-msgstr ""
+msgstr "OSCamInfo: Informace"
 
 msgid "OSCamInfo: Log"
-msgstr ""
+msgstr "OSCamInfo: Log"
 
 msgid "OSD"
 msgstr "OSD"
@@ -13154,7 +13154,7 @@ msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Počkejte prosím, než budou zdroje resetovány (vymazány a znovu načteny)..."
 
 msgid "Please wait while the file is read and processed..."
-msgstr ""
+msgstr "Počkejte prosím, než se soubor přečte a zpracuje..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Počkejte prosím, než se seznam stáhne..."
@@ -15548,7 +15548,10 @@ msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano', chcete-li zobrazit balíčky webových odkazů na obrazovce Stáhnout pluginy."
 
 msgid "Select 'Yes' to split tasks into separate actions."
-msgstr ""
+msgstr "Chcete-li úkoly rozdělit do samostatných akcí, vyberte možnost „Ano“."
+
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr "Chcete-li použít alternativní adresy IP zdroje GitHub, vyberte možnost „Ano“. To může být užitečné, pokud používáte VPN a k normálním zdrojům nelze přistupovat prostřednictvím zveřejněných názvů DNS."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Chcete-li použít hodnoty signálu (SNR atd.) vypočítané ze starší verze API V3, vyberte možnost „Ano“. Tato verze API byla nyní nahrazena."
@@ -17167,10 +17170,10 @@ msgid "Show advanced settings"
 msgstr "Zobrazit pokročilé nastavení"
 
 msgid "Show all"
-msgstr ""
+msgstr "Ukázat vše"
 
 msgid "Show all details"
-msgstr ""
+msgstr "Zobrazit všechny detaily"
 
 msgid "Show animation while busy"
 msgstr "Zobrazit animaci při zaneprázdnění"
@@ -17233,7 +17236,7 @@ msgid "Show detailed event info (setup in menu)"
 msgstr "Zobrazit podrobné informace o události (nastavení v nabídce)"
 
 msgid "Show details"
-msgstr ""
+msgstr "Zobrazit detaily"
 
 msgid "Show details of highlighted task"
 msgstr "Zobrazit detaily zvýrazněného úkolu"
@@ -18209,7 +18212,7 @@ msgid "Split preview mode"
 msgstr "Režim rozděleného náhledu"
 
 msgid "Split tasks"
-msgstr ""
+msgstr "Rozdělit úkoly"
 
 msgid "Splitscreen"
 msgstr "Rozdělený obraz"
@@ -20901,6 +20904,9 @@ msgstr "Použít časy ukončení časovače Zap"
 msgid "Use a gateway"
 msgstr "Použít bránu (gateway)"
 
+msgid "Use alternate GitHub DNS"
+msgstr "Použijte alternativní GitHub DNS"
+
 msgid "Use an alternative smaller screen."
 msgstr "Použít alternativní menší obrazovku."
 
@@ -21598,7 +21604,7 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Upozornění: %d zdrojů nebylo možné znovu načíst!"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
-msgstr ""
+msgstr "Upozornění: Zrušením tohoto procesu zůstanou zdroje nekompletní a nepoužitelné!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Varování: Přepsání je v současné době aktivní!"
