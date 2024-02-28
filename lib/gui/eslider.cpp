@@ -136,9 +136,9 @@ int eSlider::event(int event, void *data, void *data2)
 				painter.drawRectangle(eRect(m_border_width, m_border_width, size().width() - m_border_width * 2, size().height() - m_border_width * 2));
 				drawborder = false;
 			}
-			else
+			else if(m_have_background_color)
 			{
-				painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
+				painter.setBackgroundColor(m_background_color);
 				painter.drawRectangle(eRect(ePoint(0, 0), size()));
 			}
 		}
