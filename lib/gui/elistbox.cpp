@@ -822,13 +822,13 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 
 		if (xfullSpace > m_x_itemSpace)
 		{
+			xOffset = scrollbarLeftSpace;
 			if (m_item_alignment & itemHorizontalAlignCenter)
 				xOffset = ((xfullSpace - m_x_itemSpace) / 2) + scrollbarLeftSpace;
 			if (m_item_alignment & itemHorizontalAlignRight)
 				xOffset = (xfullSpace - m_x_itemSpace) + scrollbarLeftSpace;
 			if (m_item_alignment & itemHorizontalAlignJustify)
 			{
-				xOffset = scrollbarLeftSpace;
 				m_x_itemSpace = m_style.m_selection_width + ((m_max_columns - 1) * m_itemwidth);
 				int xspace = (xfullSpace - m_x_itemSpace) / (m_max_columns - 1);
 				m_spacing.setX(xspace);
@@ -836,13 +836,13 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 		}
 		if (yfullSpace > m_y_itemSpace)
 		{
+			yOffset = scrollbarTopSpace;
 			if (m_item_alignment & itemVertialAlignMiddle)
 				yOffset = ((yfullSpace - m_y_itemSpace) / 2) + scrollbarTopSpace;
 			if (m_item_alignment & itemVertialAlignBottom)
 				yOffset = (yfullSpace - m_y_itemSpace) + scrollbarTopSpace;
 			if (m_item_alignment & itemVertialAlignJustify)
 			{
-				yOffset = scrollbarTopSpace;
 				m_y_itemSpace = m_style.m_selection_height + ((m_max_rows - 1) * m_itemheight);
 				int yspace = (yfullSpace - m_y_itemSpace) / (m_max_rows - 1);
 				m_spacing.setY(yspace);
@@ -850,16 +850,20 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 		}
 	}
 
-	if (m_scrollbar && m_orientation == orVertical)
+	if (m_scrollbar)
 	{
-		if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
+		if(m_orientation != orVertical)
 		{
-			xOffset = m_scrollbar->size().width() + m_scrollbar_offset;
+			if (m_scrollbar_mode == showTopOnDemand || m_scrollbar_mode == showTopAlways)
+			{
+				yOffset = m_scrollbar->size().height() + m_scrollbar_offset;
+			}
 		}
-
-		if (m_scrollbar_mode == showTopOnDemand || m_scrollbar_mode == showTopAlways)
-		{
-			yOffset = m_scrollbar->size().height() + m_scrollbar_offset;
+		else {
+			if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
+			{
+				xOffset = m_scrollbar->size().width() + m_scrollbar_offset;
+			}
 		}
 	}
 }
