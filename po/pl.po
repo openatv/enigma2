@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
-"PO-Revision-Date: 2024-02-25 08:02+0000\n"
-"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
+"POT-Creation-Date: 2024-02-27 11:07+0000\n"
+"PO-Revision-Date: 2024-02-28 12:39+0000\n"
+"Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -979,16 +979,16 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package found."
 msgid_plural "%d packages found."
-msgstr[0] "%d pakiet znaleziony."
-msgstr[1] "%d znalezione pakiety."
-msgstr[2] "%d znaleziono pakietów."
+msgstr[0] "Znaleziono %d pakiet."
+msgstr[1] "Znaleziono %d pakiety."
+msgstr[2] "Znaleziono %d pakietów."
 
 #, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d pakiet ma aktualizację"
 msgstr[1] "%d pakiety mają aktualizacje."
-msgstr[2] "%d pakiety mają aktualizacje."
+msgstr[2] "%d pakietów ma aktualizacje."
 
 #, python-format
 msgid "%d package installable."
@@ -1030,7 +1030,7 @@ msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d pakiet uaktualniony."
 msgstr[1] "%d pakietów uaktualniono."
-msgstr[2] "%d pakiet uaktualniony."
+msgstr[2] "%d pakietów uaktualnionych."
 
 #, python-format
 msgid "%d package was configured."
@@ -6820,7 +6820,7 @@ msgid "Enable 5V for active antenna"
 msgstr "Włącz 5V dla aktywnej anteny"
 
 msgid "Enable Autorecord"
-msgstr "Włącz auto.nagrywanie"
+msgstr "Włącz nagrywanie automatyczne"
 
 msgid "Enable BT Audio"
 msgstr "Włącz BT Audio"
@@ -9308,7 +9308,7 @@ msgid "If set to 'yes', allows you to use timeshift with alternative audio plugi
 msgstr "Jeśli ustawiony jest na \"tak\", pozwala na używanie timeshift z alternatywnymi wtyczkami audio."
 
 msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie z tła timeshiftu"
+msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie w tle z timeshiftem"
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jeśli włączono obejście głębokiego czuwania, oczekuj do czasu aż system zostanie zsynchronizowany. W zależności od wymogu budzenie urządzenia będzie kontynuowane po maksymalnie 2 minutach."
@@ -15563,6 +15563,9 @@ msgstr "Wybierz \"Tak\", aby wyświetlić pakiety linków internetowych na ekran
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Wybierz 'Tak', aby podzielić zadania na osobne działania."
 
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr "Wybierz \"Tak\", aby użyć alternatywnego adresu IP źródła GitHub. Może to być pomocne, gdy używasz VPN, a nie można uzyskać dostępu do normalnych źródeł za pomocą opublikowanych nazw DNS."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jeśli ustawione na \"tak\", wartości sygnału (SNR itp.) będą obliczane na podstawie API V3. Jest to stara wersja API, która została już zastąpiona."
 
@@ -20914,6 +20917,9 @@ msgstr "Użyj czasów zakończenia timera Zap"
 
 msgid "Use a gateway"
 msgstr "Użyj bramy"
+
+msgid "Use alternate GitHub DNS"
+msgstr "Użyj alternatywnego DNS GitHub"
 
 msgid "Use an alternative smaller screen."
 msgstr "Użyj alternatywnego mniejszego ekranu."
