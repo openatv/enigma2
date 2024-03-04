@@ -253,20 +253,19 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		if self.currList == "filelist" and self["filelist"].getPath() is None:
 			self.disableTimer()
 			self.close("")
-			return
-
-		currentFolder = self.getSelectedDirectory()
-		if currentFolder is not None:  # Do nothing unless current directory is valid.
-			if self.minFree is not None:  # Check if we need to have a minimum of free space available.
-				try:
-					status = statvfs(currentFolder)  # Try to read file system status.
-					if (status.f_bavail * status.f_bsize) / 1000000 > self.minFree:
-						return self.keySelectCallback(True)  # Automatically confirm if we have enough free disk space available.
-				except OSError as err:
-					print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, currentFolder, err.strerror))
-				self.session.openWithCallback(self.keySelectCallback, MessageBox, _("There might not be enough space on the selected partition. Do you really want to continue?"), type=MessageBox.TYPE_YESNO)
-			else:  # No minimum free space means we can safely close.
-				self.keySelectCallback(True)
+		else:
+			currentFolder = self.getSelectedDirectory()
+			if currentFolder is not None:  # Do nothing unless current directory is valid.
+				if self.minFree is not None:  # Check if we need to have a minimum of free space available.
+					try:
+						status = statvfs(currentFolder)  # Try to read file system status.
+						if (status.f_bavail * status.f_bsize) / 1000000 > self.minFree:
+							return self.keySelectCallback(True)  # Automatically confirm if we have enough free disk space available.
+					except OSError as err:
+						print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, currentFolder, err.strerror))
+					self.session.openWithCallback(self.keySelectCallback, MessageBox, _("There might not be enough space on the selected partition. Do you really want to continue?"), type=MessageBox.TYPE_YESNO)
+				else:  # No minimum free space means we can safely close.
+					self.keySelectCallback(True)
 
 	def keySelectCallback(self, answer):
 		if answer:
