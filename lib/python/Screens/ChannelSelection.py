@@ -1511,7 +1511,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			"cancel": (self.keyCancel, _("Cancel and exit the context menu")),
 			"select": (self.keySelect, _("Select the currently highlighted action")),
 			"menu": (self.keySetup, _("Open the Channel Selection Settings screen")),
-			"0": (self.reloadServices, _("Reload all services from disk")),
+			# "0": Available for use.
 			"1": (self.showBouquetInputBox, _("Add a bouquet")),
 			"2": (self.renameEntry, _("Rename selected service")),
 			"3": (self.findCurrentlyPlayed, _("Find the service currently playing")),
@@ -1519,8 +1519,8 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			"5": (self.addServiceToBouquetOrAlternative, _("Add selected service to bouquet or alternative")),
 			"6": (self.toggleMoveModeSelect, _("Toggle move mode selection")),
 			"7": (self.showMarkerInputBox, _("Add a marker")),
-			"8": (self.removeEntry, _("Remove selected service"))
-			# "9": Available for use.
+			"8": (self.removeEntry, _("Remove selected service")),
+			"9": (self.reloadServices, _("Reload all services from disk"))
 		}, prio=0, description=_("Channel List Context Menu Actions"))
 		self["mainAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.playMain, _("Play selected service on the main screen"))
