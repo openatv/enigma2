@@ -1423,7 +1423,10 @@ class ChannelSelectionBase(Screen):
 		self.setCurrentSelection(ref)
 
 	def getBouquetList(self):
-		bouquets = []
+		if self.isSubservices():
+			bouquets = [(_("Subservices"), self.subservicesBouquet)]
+		else:
+			bouquets = []
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
 			list = serviceHandler.list(self.bouquet_root)
@@ -1503,7 +1506,7 @@ class ChannelSelectionBase(Screen):
 		return []
 
 	def fillVirtualSubservices(self, service=None, subservices=[]):
-		self.servicelist.setMode(ServiceList.MODE_NORMAL) # No numbers
+		self.servicelist.setMode(ServiceList.MODE_NORMAL)  # No numbers
 		for subservice in subservices or self.getSubservices(service):
 			self.servicelist.addService(eServiceReference(subservice))
 		# self.servicelist.l.sort()
@@ -1513,13 +1516,14 @@ class ChannelSelectionBase(Screen):
 		if not path:  # Current
 			path = self.getRoot()
 		if path:
-			return self.subservicesBouquet.getPath() ==  path.getPath()
+			return self.subservicesBouquet.getPath() == path.getPath()
 
 	def getMutableList(self, root=eServiceReference()):  # Override for subservices
 		#ChannelContextMenu.inBouquet = True --> Wrong menu
 		if self.isSubservices():
 			return None
 		return ChannelSelectionEdit.getMutableList(self, root)
+
 
 class ChannelContextMenu(Screen, HelpableScreen):
 	def __init__(self, session, csel):

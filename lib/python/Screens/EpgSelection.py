@@ -399,7 +399,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def getBouquetServices(self, bouquet):
 		services = []
-		if InfoBar.instance.servicelist.isSubservices():
+		if InfoBar.instance.servicelist.isSubservices(bouquet):
 			return [ServiceReference(ref) for ref in InfoBar.instance.servicelist.getSubservices()]
 		servicelist = eServiceCenter.getInstance().list(bouquet)
 		if servicelist is not None:
