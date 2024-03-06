@@ -912,7 +912,7 @@ class ChannelSelectionEdit:
 		l = self["list"]
 		l.setFontsize()
 		l.setItemsPerPage()
-		l.setMode("MODE_TV")
+		# l.setMode("MODE_TV") # disabled because there is something wrong
 		# l.setMode("MODE_TV") automatically sets "hide number marker" to
 		# the config.usage.hide_number_markers.value so when we are in "move mode"
 		# we need to force display of the markers here after l.setMode("MODE_TV")
