@@ -70,6 +70,9 @@ EDIT_FAVORITE = 3
 EDIT_MOVE = 4
 EDIT_PIP = 5
 
+subservices_tv_ref = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory)
+subservices_tv_ref.setPath("FROM BOUQUET \"groupedservices.virtualsubservices.tv\"")
+
 service_types_tv = service_types_tv_ref.toString()
 service_types_radio = service_types_radio_ref.toString()
 
@@ -977,6 +980,7 @@ class ChannelSelectionBase(Screen):
 		self.function = EDIT_OFF
 		self.getBouquetMode()
 		self.onShown.append(self.applyKeyMap)
+		self.subservicesBouquet = subservices_tv_ref
 
 	def applyKeyMap(self):
 		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
@@ -1007,33 +1011,15 @@ class ChannelSelectionBase(Screen):
 		self.bouquet_rootstr = self.bouquet_root.toString()
 
 	def buildTitle(self):
-		def getServiceName(serviceReference):
-			serviceNameTmp = ServiceReference(serviceReference).getServiceName()
-			serviceName = serviceNameTmp.replace(_("(TV)") if self.mode == MODE_TV else _("(Radio)"), "").replace("  ", " ").strip()
-			print(f"[ChannelSelection] buildTitle DEBUG: Service Name Before='{serviceNameTmp}', After='{serviceName}'.")
-			if "User - bouquets" in serviceName:
-				return _("User - Bouquets")
-			if not serviceName:
-				servicePath = serviceReference.getPath()
-				if "FROM PROVIDERS" in servicePath:
-					return _("Providers")
-				if "FROM SATELLITES" in servicePath:
-					return _("Reception Lists")
-				if "ORDER BY name" in servicePath:
-					return _("All Services")
-			elif serviceName == "favourites" and not config.usage.multibouquet.value:  # Translate single bouquet favorites.
-				return _("Favorites")
-			return serviceName
-
 		mode = _("TV") if self.mode == MODE_TV else _("Radio")
 		title = self.baseTitle
 		length = len(self.servicePath)
 		if length > 0:
-			title = getServiceName(self.servicePath[0])
+			title = self.getServiceName(self.servicePath[0])
 			if length > 1:
 				reference = self.servicePath[length - 1]
 				if reference:
-					title = getServiceName(reference)
+					title = self.getServiceName(reference)
 		functionType = {
 			EDIT_ALTERNATIVES: _("Alternative Edit"),
 			EDIT_BOUQUET: _("Bouquet Edit"),
@@ -1060,6 +1046,10 @@ class ChannelSelectionBase(Screen):
 				return _("Reception Lists")
 			if "ORDER BY name" in servicePath:
 				return _("All Services")
+			if self.isSubservices(serviceReference):
+				return _("Subservices")
+		elif serviceName == "favourites" and not config.usage.multibouquet.value:  # Translate single bouquet favourites
+			return _("Favorites")
 		return serviceName
 
 	def setRoot(self, root, justSet=False):
@@ -1240,6 +1230,10 @@ class ChannelSelectionBase(Screen):
 							ref.setPath(path)
 							ref.setName(_("Current transponder"))
 							self.servicelist.addService(ref, beforeCurrent=True)
+							if self.getSubservices():
+								ref = eServiceReference(self.subservicesBouquet)
+								ref.setName(self.getServiceName(ref))
+								self.servicelist.addService(ref, beforeCurrent=True)
 						for (service_name, service_ref) in addCableAndTerrestrialLater:
 							ref = eServiceReference(service_ref)
 							ref.setName(service_name)
@@ -1429,6 +1423,10 @@ class ChannelSelectionBase(Screen):
 		self.setCurrentSelection(ref)
 
 	def getBouquetList(self):
+		if self.isSubservices():
+			bouquets = [(_("Subservices"), self.subservicesBouquet)]
+		else:
+			bouquets = []
 		bouquets = []
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
@@ -1488,6 +1486,44 @@ class ChannelSelectionBase(Screen):
 			if playingref:
 				self.setCurrentSelectionAlternative(playingref)
 
+	def enterSubservices(self, service=None, subservices=[]):
+		subservices = subservices or self.getSubservices(service)
+		if subservices:
+			self.clearPath()
+			self.enterPath(self.subservicesBouquet)
+			self.fillVirtualSubservices(service, subservices)
+
+	def getSubservices(self, service=None):
+		if not service:
+			service = self.session.nav.getCurrentlyPlayingServiceReference()
+		from Screens.InfoBarGenerics import subservice_groupslist
+		if subservice_groupslist and service:
+			refstr = service.toCompareString()
+			if "%3a" in refstr:
+				refstr = service.toString()
+			ref_in_subservices_group = [x for x in subservice_groupslist if refstr in x]
+			if ref_in_subservices_group:
+				return ref_in_subservices_group[0]
+		return []
+
+	def fillVirtualSubservices(self, service=None, subservices=[]):
+		self.servicelist.setMode(ServiceList.MODE_NORMAL) # No numbers
+		for subservice in subservices or self.getSubservices(service):
+			self.servicelist.addService(eServiceReference(subservice))
+		# self.servicelist.l.sort()
+		self.setCurrentSelection(service or self.session.nav.getCurrentlyPlayingServiceReference())
+
+	def isSubservices(self, path=None):
+		if not path:  # Current
+			path = self.getRoot()
+		if path:
+			return self.subservicesBouquet.getPath() ==  path.getPath()
+
+	def getMutableList(self, root=eServiceReference()):  # Override for subservices
+		#ChannelContextMenu.inBouquet = True --> Wrong menu
+		if self.isSubservices():
+			return None
+		return ChannelSelectionEdit.getMutableList(self, root)
 
 class ChannelContextMenu(Screen, HelpableScreen):
 	def __init__(self, session, csel):
@@ -1515,7 +1551,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			"1": (self.showBouquetInputBox, _("Add a bouquet")),
 			"2": (self.renameEntry, _("Rename selected service")),
 			"3": (self.findCurrentlyPlayed, _("Find the service currently playing")),
-			# "4": Available for use.
+			"4": (self.showSubservices, _("Subservices")),
 			"5": (self.addServiceToBouquetOrAlternative, _("Add selected service to bouquet or alternative")),
 			"6": (self.toggleMoveModeSelect, _("Toggle move mode selection")),
 			"7": (self.showMarkerInputBox, _("Add a marker")),
@@ -1549,6 +1585,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		inAlternativeList = current_root and "FROM BOUQUET \"alternatives" in current_root.getPath()
 		self.inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
+		self.subservices = csel.getSubservices(current)
 		self.parentalControlEnabled = config.ParentalControl.servicepinactive.value
 		menu = []
 		menu.append(ChoiceEntryComponent(key="menu", text=(_("Settings..."), boundFunction(self.keySetup))))
@@ -1557,6 +1594,8 @@ class ChannelContextMenu(Screen, HelpableScreen):
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
 			else:
 				appendWhenValid(current, menu, (_("Show Transponder Information"), boundFunction(self.showServiceInformations, current)), level=2)
+		if self.subservices:
+			appendWhenValid(current, menu, (_("Subservices"), self.showSubservices), key="4")
 		if csel.bouquet_mark_edit == EDIT_OFF and not csel.entry_marked:
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
@@ -1949,6 +1988,10 @@ class ChannelContextMenu(Screen, HelpableScreen):
 	def showServiceInformations(self, current):
 		from Screens.Information import ServiceInformation  # The import needs to be here to prevent a cyclic import.
 		self.session.open(ServiceInformation, current)
+
+	def showSubservices(self):
+		self.csel.enterSubservices(self.csel.getCurrentSelection(), self.subservices)
+		self.close()
 
 	def setStartupService(self):
 		self.session.openWithCallback(self.setStartupServiceCallback, MessageBox, _("Set startup service"), list=[(_("Only on startup"), "startup"), (_("Also on standby"), "standby")])
@@ -2360,7 +2403,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setModeTv()
 		lastservice = eServiceReference(self.lastservice.value)
 		if lastservice.valid():
-			self.zap()
+			if self.isSubservices():
+				self.zap(ref=lastservice)
+				self.fillVirtualSubservices()
+			else:
+				self.zap()
 
 	def channelSelected(self):
 		ref = self.getCurrentSelection()
@@ -2374,7 +2421,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.movemode and (self.isBasePathEqual(self.bouquet_root) or "userbouquet." in ref.toString()):
 			self.toggleMoveMarked()
 		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
-			if parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
+			if self.isSubservices(ref):
+				self.enterSubservices()
+			elif parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
 				self.enterPath(ref)
 				self.gotoCurrentServiceOrProvider(ref)
 		elif self.bouquet_mark_edit != EDIT_OFF:
@@ -2641,6 +2690,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if cnt:
 				path = self.servicePath.pop()
 				self.enterPath(path)
+				if self.isSubservices(path):
+					self.fillVirtualSubservices()
 			else:
 				self.showFavourites()
 				self.saveRoot()
