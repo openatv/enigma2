@@ -49,11 +49,18 @@ public:
 	virtual void setBackgroundColor(const gRGB &col);
 	void clearBackgroundColor();
 
-	virtual void setBorderWidth(int pixel);
-	virtual void setBorderColor(const gRGB &color);
+	virtual void setBorderWidth(int pixel) { setWidgetBorderWidth(pixel); }
+	virtual void setBorderColor(const gRGB &color) { setWidgetBorderColor(color); }
 
-	void setWidgetBorderWidth(int pixel) { setBorderWidth(pixel); }
-	void setWidgetBorderColor(const gRGB &color) { setBorderColor(color); }
+	void setWidgetBorderWidth(int pixel) { 
+			m_border_width = pixel; 
+			invalidate(); 
+		}
+	void setWidgetBorderColor(const gRGB &color) { 
+			m_border_color = color;
+			m_have_border_color = true;
+			invalidate(); 
+		}
 
 	void setPadding(const eRect &padding) { m_padding = padding; }
 	eRect getPadding() { return m_padding; }
