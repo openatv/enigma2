@@ -1143,16 +1143,18 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		mode += (marked) ? 2 : 0;
 		int radius = local_style->cornerRadius(mode);
 		uint8_t edges = local_style->cornerRadiusEdges(mode);
-		if (radius)
+		if (radius || local_style->m_gradient_set[mode])
 		{
-			if (!marked)
-			{
-				if (selected && local_style->is_set.background_color_selected)
-					defaultBackColor = local_style->m_background_color_selected;
-				if (!selected && local_style->is_set.background_color)
-					defaultBackColor = local_style->m_background_color;
+			if (radius) {
+				if (!marked)
+				{
+					if (selected && local_style->is_set.background_color_selected)
+						defaultBackColor = local_style->m_background_color_selected;
+					if (!selected && local_style->is_set.background_color)
+						defaultBackColor = local_style->m_background_color;
+				}
+				painter.setRadius(radius, edges);
 			}
-			painter.setRadius(radius, edges);
 			if (local_style->m_gradient_set[mode])
 				painter.setGradient(local_style->m_gradient_colors[mode], local_style->m_gradient_direction[mode], local_style->m_gradient_alphablend[mode]);
 			else
@@ -1504,7 +1506,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						}
 						else
 							painter.setBackgroundColor(defaultBackColor);
-						painter.drawRectangle(itemRect);
+						painter.drawRectangle(rect);
 
 						if (selected)
 						{
