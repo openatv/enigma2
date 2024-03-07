@@ -1505,6 +1505,36 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						else
 							painter.setBackgroundColor(defaultBackColor);
 						painter.drawRectangle(itemRect);
+
+						if (selected)
+						{
+							if (pforeColorSelected)
+							{
+								uint32_t color = PyLong_AsUnsignedLongMask(pforeColorSelected);
+								painter.setForegroundColor(gRGB(color));
+							}
+							/* if we have a local foreground color set, use that. */
+							else if (local_style && local_style->is_set.foreground_color_selected)
+								painter.setForegroundColor(local_style->m_foreground_color_selected);
+							else {
+								painter.setForegroundColor(defaultForeColor);
+							}
+						}
+						else
+						{
+							if (pforeColor)
+							{
+								uint32_t color = PyLong_AsUnsignedLongMask(pforeColor);
+								painter.setForegroundColor(gRGB(color));
+							}
+							/* if we have a local foreground color set, use that. */
+							else if (local_style && local_style->is_set.foreground_color)
+								painter.setForegroundColor(local_style->m_foreground_color);
+							else {
+								painter.setForegroundColor(defaultForeColor);
+							}
+						}
+
 					}
 					else
 					{
