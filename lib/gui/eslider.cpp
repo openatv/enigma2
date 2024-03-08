@@ -4,10 +4,10 @@
 int eSlider::defaultSliderBorderWidth = eSlider::DefaultBorderWidth;
 
 eSlider::eSlider(eWidget *parent)
-	: eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_scrollbar(false), m_pixel_mode(false),
-	  m_min(0), m_max(0), m_value(0), m_start(0), m_border_width(0), m_orientation(orHorizontal), m_orientation_swapped(0)
+	: eWidget(parent), m_have_slider_border_color(false), m_have_foreground_color(false), m_scrollbar(false), m_pixel_mode(false),
+	  m_min(0), m_max(0), m_value(0), m_start(0), m_slider_border_width(0), m_orientation(orHorizontal), m_orientation_swapped(0)
 {
-	m_border_width = eSlider::defaultSliderBorderWidth;
+	m_slider_border_width = eSlider::defaultSliderBorderWidth;
 }
 
 void eSlider::setIsScrollbar()
@@ -44,19 +44,6 @@ void eSlider::setPixmapScale(int flags)
 		m_scale = flags;
 		invalidate();
 	}
-}
-
-void eSlider::setBorderWidth(int width)
-{
-	m_border_width = width;
-	invalidate();
-}
-
-void eSlider::setBorderColor(const gRGB &color)
-{
-	m_border_color = color;
-	m_have_border_color = true;
-	invalidate();
 }
 
 void eSlider::setForegroundColor(const gRGB &color)
@@ -96,7 +83,7 @@ int eSlider::event(int event, void *data, void *data2)
 
 		gPainter &painter = *(gPainter *)data2;
 
-		bool drawborder = (m_border_width > 0);
+		bool drawborder = (m_slider_border_width > 0);
 
 		if (m_backgroundpixmap)
 		{
@@ -116,8 +103,8 @@ int eSlider::event(int event, void *data, void *data2)
 
 			if (drawborder)
 			{
-				if (m_have_border_color)
-					painter.setBackgroundColor(m_border_color);
+				if (m_have_slider_border_color)
+					painter.setBackgroundColor(m_slider_border_color);
 				else
 				{
 					const gRGB color = style->getColor(m_scrollbar ? eWindowStyleSkinned::colScrollbarBorder : eWindowStyleSkinned::colSliderBorder);
@@ -133,7 +120,7 @@ int eSlider::event(int event, void *data, void *data2)
 				else
 					painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
 				painter.setRadius(cornerRadius, getCornerRadiusEdges());
-				painter.drawRectangle(eRect(m_border_width, m_border_width, size().width() - m_border_width * 2, size().height() - m_border_width * 2));
+				painter.drawRectangle(eRect(m_slider_border_width, m_slider_border_width, size().width() - m_slider_border_width * 2, size().height() - m_slider_border_width * 2));
 				drawborder = false;
 			}
 			else if(m_have_background_color)
@@ -171,9 +158,9 @@ int eSlider::event(int event, void *data, void *data2)
 				painter.setRadius(cornerRadius, getCornerRadiusEdges());
 				eRect rect = eRect(m_currently_filled.extends);
 				if (m_orientation == orHorizontal)
-					rect.setHeight(size().height() - m_border_width * 2);
+					rect.setHeight(size().height() - m_slider_border_width * 2);
 				else
-					rect.setWidth(size().width() - m_border_width * 2);
+					rect.setWidth(size().width() - m_slider_border_width * 2);
 				painter.drawRectangle(rect);
 			}
 			else
@@ -200,15 +187,15 @@ int eSlider::event(int event, void *data, void *data2)
 		{
 
 			if (m_have_border_color)
-				painter.setForegroundColor(m_border_color);
+				painter.setForegroundColor(m_slider_border_color);
 			else
 			{
 				style->setStyle(painter, m_scrollbar ? eWindowStyle::styleScollbarBorder : eWindowStyle::styleSliderBorder);
 			}
-			painter.fill(eRect(0, 0, s.width(), m_border_width));
-			painter.fill(eRect(0, m_border_width, m_border_width, s.height() - m_border_width));
-			painter.fill(eRect(m_border_width, s.height() - m_border_width, s.width() - m_border_width, m_border_width));
-			painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
+			painter.fill(eRect(0, 0, s.width(), m_slider_border_width));
+			painter.fill(eRect(0, m_slider_border_width, m_slider_border_width, s.height() - m_slider_border_width));
+			painter.fill(eRect(m_slider_border_width, s.height() - m_slider_border_width, s.width() - m_slider_border_width, m_slider_border_width));
+			painter.fill(eRect(s.width() - m_slider_border_width, m_slider_border_width, m_slider_border_width, s.height() - m_slider_border_width));
 		}
 
 		return 0;
@@ -219,7 +206,7 @@ int eSlider::event(int event, void *data, void *data2)
 		const gRegion old_currently_filled = m_currently_filled;
 
 		// calculate the pixel size of the thumb
-		const int offset = m_border_width * 2;
+		const int offset = m_slider_border_width * 2;
 		const int pixsize = (m_orientation == orHorizontal) ? size().width() - offset : size().height() - offset;
 
 		if (m_min < m_max)
@@ -228,14 +215,14 @@ int eSlider::event(int event, void *data, void *data2)
 			if (m_pixel_mode)
 			{
 				// don't round
-				start_pix = m_start + m_border_width;
-				num_pix = m_value - m_start + m_border_width;
+				start_pix = m_start + m_slider_border_width;
+				num_pix = m_value - m_start + m_slider_border_width;
 			}
 			else
 			{
 				// calculate the start_pix and num_pix with correct scaling and repective borderwidth
-				start_pix = (m_start * pixsize / val_range) + m_border_width;
-				num_pix = (m_value * pixsize / val_range) + m_border_width - start_pix;
+				start_pix = (m_start * pixsize / val_range) + m_slider_border_width;
+				num_pix = (m_value * pixsize / val_range) + m_slider_border_width - start_pix;
 			}
 
 			if (m_orientation_swapped)
@@ -252,9 +239,9 @@ int eSlider::event(int event, void *data, void *data2)
 			num_pix = 0;
 
 		if (m_orientation == orHorizontal)
-			m_currently_filled = eRect(start_pix, m_border_width, num_pix, pixsize);
+			m_currently_filled = eRect(start_pix, m_slider_border_width, num_pix, pixsize);
 		else
-			m_currently_filled = eRect(m_border_width, start_pix, pixsize, num_pix);
+			m_currently_filled = eRect(m_slider_border_width, start_pix, pixsize, num_pix);
 
 		const int cornerRadius = getCornerRadius();
 

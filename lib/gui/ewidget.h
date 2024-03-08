@@ -49,14 +49,14 @@ public:
 	virtual void setBackgroundColor(const gRGB &col);
 	void clearBackgroundColor();
 
-	virtual void setBorderWidth(int pixel) { setWidgetBorderWidth(pixel); }
+	virtual void setBorderWidth(int width) { setWidgetBorderWidth(width); }
 	virtual void setBorderColor(const gRGB &color) { setWidgetBorderColor(color); }
 
-	void setWidgetBorderWidth(int pixel) { 
-			m_border_width = pixel; 
+	virtual void setWidgetBorderWidth(int width) { 
+			m_border_width = width; 
 			invalidate(); 
 		}
-	void setWidgetBorderColor(const gRGB &color) { 
+	virtual void setWidgetBorderColor(const gRGB &color) { 
 			m_border_color = color;
 			m_have_border_color = true;
 			invalidate(); 
@@ -118,10 +118,6 @@ private:
 	uint8_t m_gradient_direction;
 	std::vector<gRGB> m_gradient_colors;
 
-	bool m_have_border_color;
-	int m_border_width;
-	gRGB m_border_color;
-
 	int m_cornerRadius;
 	uint8_t m_cornerRadiusEdges;
 
@@ -132,6 +128,10 @@ protected:
 
 	gRGB m_background_color;
 	bool m_have_background_color = false;
+
+	bool m_have_border_color;
+	int m_border_width;
+	gRGB m_border_color;
 
 public:
 

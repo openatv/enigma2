@@ -294,7 +294,10 @@ public:
 	void clearForegroundColorSelected() { m_style.is_set.foreground_color_selected = 0; }
 
 	void setBorderColor(const gRGB &col) override { m_style.m_border_color = col; }
-	void setBorderWidth(int size) override;
+	void setBorderWidth(int width) override;
+
+	void setWidgetBorderColor(const gRGB &col) override { setBorderColor(col); }
+	void setWidgetBorderWidth(int width) override { setBorderWidth(width); }
 
 	void setBackgroundPixmap(ePtr<gPixmap> &pm) { m_style.m_background = pm; }
 	void setSelectionPixmap(ePtr<gPixmap> &pm) { m_style.m_selection = pm; }
