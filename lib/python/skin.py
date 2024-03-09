@@ -1616,6 +1616,10 @@ class SkinContextVertical(SkinContext):
 
 
 class SkinContextHorizontal(SkinContext):
+	def __init__(self, parent=None, pos=None, size=None, font=None):
+		super().__init__(parent, pos, size, font)
+		self.rx = self.w
+		self.rw = self.w
 	def parse(self, pos, size, font):
 		if size in variables:
 			size = variables[size]
@@ -1639,7 +1643,10 @@ class SkinContextHorizontal(SkinContext):
 				self.x += (width + self.spacing)
 				self.w -= (width + self.spacing)
 			elif pos == "right":
-				pos = (self.x + self.w - width, top)
+				if self.rw != self.rx:
+					self.rx -= self.spacing
+				self.rx = self.rx - width
+				pos = (self.rx, top)
 				size = (width, height)
 				self.w -= (width + self.spacing)
 			else:
