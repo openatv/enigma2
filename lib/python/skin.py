@@ -1620,6 +1620,7 @@ class SkinContextHorizontal(SkinContext):
 		super().__init__(parent, pos, size, font)
 		self.rx = self.w
 		self.rw = self.w
+
 	def parse(self, pos, size, font):
 		if size in variables:
 			size = variables[size]
