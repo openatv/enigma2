@@ -186,7 +186,7 @@ int eSlider::event(int event, void *data, void *data2)
 		if (drawborder)
 		{
 
-			if (m_have_border_color)
+			if (m_have_slider_border_color)
 				painter.setForegroundColor(m_slider_border_color);
 			else
 			{
