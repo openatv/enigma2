@@ -1292,6 +1292,11 @@ void eListbox::moveSelection(int dir)
 	if (!maxItems || !m_content->size())
 		return;
 
+	if (dir == refresh)
+	{
+		invalidate();
+		return;
+	}
 	// patch pageUp / pageDown for virtual listbox if native keys enabled
 	if (m_orientation == orVertical && m_native_keys_bound)
 	{
@@ -1441,9 +1446,6 @@ void eListbox::moveSelection(int dir)
 			}
 			prevSel = newSel;
 		} while (newSel != oldSel && !m_content->currentCursorSelectable());
-		break;
-	case refresh:
-		oldSel = ~m_selected;
 		break;
 	case moveTop:
 		m_content->cursorHome();
