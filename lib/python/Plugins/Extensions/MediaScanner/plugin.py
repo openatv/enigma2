@@ -52,7 +52,7 @@ def scan(session, parent=None):
 	parentScreen = parent
 	from Screens.ChoiceBox import ChoiceBox
 	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
-	parts.append((_("Memory") + "\t/tmp", "/tmp", session))
+	parts.append((_("Temporary Directory") + "\t/tmp", "/tmp", session))
 	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
 
 
