@@ -1620,6 +1620,7 @@ class SkinContextHorizontal(SkinContext):
 		super().__init__(parent, pos, size, font)
 		self.rx = self.w
 		self.rw = self.w
+
 	def parse(self, pos, size, font):
 		if size in variables:
 			size = variables[size]
@@ -1934,7 +1935,6 @@ def readSkin(screen, skin, names, desktop):
 		"eRectangle": processRectangle,
 		"panel": processPanel
 	}
-
 	try:
 		msg = f", from list '{', '.join(names)}'," if len(names) > 1 else ""
 		posX = "?" if context.x is None else str(context.x)
@@ -1948,7 +1948,6 @@ def readSkin(screen, skin, names, desktop):
 	except Exception as err:
 		print(f"[Skin] Error: Screen '{myName}' {str(err)}!")
 		print_exc()
-
 	from Components.GUIComponent import GUIComponent
 	unusedComponents = [x for x in set(screen.keys()) - usedComponents if isinstance(x, GUIComponent)]
 	assert not unusedComponents, f"[Skin] The following components in '{myName}' don't have a skin entry: {', '.join(unusedComponents)}"
