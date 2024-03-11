@@ -1,17 +1,16 @@
-import skin
-
 from enigma import ePoint, eSize
-from Components.config import config
+
+from skin import applyAllAttributes
 
 
 class GUIComponent:
-	""" GUI component """
+	"""GUI Component."""
 
 	def __init__(self):
-		self.instance = None
 		self.onVisibilityChange = []
-		self.__visible = 0
-		self.visible = 1
+		self.instance = None
+		self.visiblity = False
+		self.visible = True
 		self.skinAttributes = None
 		self.deprecationInfo = None
 
@@ -30,63 +29,61 @@ class GUIComponent:
 	def destroy(self):
 		self.__dict__.clear()
 
-	# this works only with normal widgets - if you don't have self.instance, override this.
-	def applySkin(self, desktop, parent):
+	def applySkin(self, desktop, parent):  # This only works with normal widgets, if you don't have a self.instance override this method.
 		if not self.visible:
 			self.instance.hide()
-
 		if self.skinAttributes is None:
-			return False
-
-		#//workaround for values from attributes the not be set
-		#
-		#The order of some attributes is crucial if they are applied. Also, an attribute may be responsible that another does not take effect and occurs at different skins.
-		#It was noticed at 'scrollbarSliderBorderWidth' and 'scrollbarSliderForegroundColor'.
-		#
-		if config.skin.primary_skin.value.split('/')[0] not in ('DMConcinnity-HD'):
-			self.skinAttributes.sort()
-		#//
-		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes, parent.scale)
-		return True
-
-	def move(self, x, y=None):
-		# we assume, that x is already an ePoint
-		if y is None:
-			self.instance.move(x)
+			result = False
 		else:
-			self.instance.move(ePoint(int(x), int(y)))
+			# // Workaround for values from attributes the not be set.
+			#
+			# The order of some attributes is crucial if they are applied. Also, an attribute may be responsible that another does not take effect and occurs at different skins.
+			# It was noticed at "scrollbarSliderBorderWidth" and "scrollbarSliderForegroundColor".
+			#
+			# if config.skin.primary_skin.value.split("/")[0] not in ("DMConcinnity-HD"):
+			# 	self.skinAttributes.sort()
+			#
+			# NOTE: The code above is invalid. It always returns False! It is being removed until it's need is confirmed.
+			# To be correct the code could/should be one of, depending on the original intention:
+			# 	if config.skin.primary_skin.value.split("/")[0] != "DMConcinnity-HD":
+			# 	if config.skin.primary_skin.value.split("/")[0] == "DMConcinnity-HD":
+			#
+			# //
+			applyAllAttributes(self.instance, desktop, self.skinAttributes, parent.scale)
+			result = True
+		return result
 
-	def resize(self, x, y=None):
-		self.width = x
-		self.height = y
-		if y is None:
-			self.instance.resize(x)
-		else:
-			self.instance.resize(eSize(int(x), int(y)))
+	def move(self, xPos, yPos=None):  # Assuming that xPos is already an ePoint.
+		self.instance.move(xPos if yPos is None else ePoint(int(xPos), int(yPos)))
 
-	def setZPosition(self, z):
-		self.instance.setZPosition(z)
+	def resize(self, width, height=None):
+		self.width = width
+		self.height = height
+		self.instance.resize(width if height is None else eSize(int(width), int(height)))
+
+	def setZPosition(self, zPosition):
+		self.instance.setZPosition(zPosition)
 
 	def show(self):
-		old = self.__visible
-		self.__visible = 1
+		current = self.visiblity
+		self.visiblity = True
 		if self.instance is not None:
 			self.instance.show()
-		if old != self.__visible:
-			for fnc in self.onVisibilityChange:
-				fnc(True)
+		if current != self.visiblity:
+			for callback in self.onVisibilityChange:
+				callback(True)
 
 	def hide(self):
-		old = self.__visible
-		self.__visible = 0
+		current = self.visiblity
+		self.visiblity = False
 		if self.instance is not None:
 			self.instance.hide()
-		if old != self.__visible:
-			for fnc in self.onVisibilityChange:
-				fnc(False)
+		if current != self.visiblity:
+			for callback in self.onVisibilityChange:
+				callback(False)
 
 	def getVisible(self):
-		return self.__visible
+		return self.visiblity
 
 	def setVisible(self, visible):
 		if visible:
@@ -96,12 +93,12 @@ class GUIComponent:
 
 	visible = property(getVisible, setVisible)
 
-	def setPosition(self, x, y):
-		self.instance.move(ePoint(int(x), int(y)))
+	def setPosition(self, xPos, yPos):
+		self.instance.move(ePoint(int(xPos), int(yPos)))
 
 	def getPosition(self):
-		p = self.instance.position()
-		return p.x(), p.y()
+		position = self.instance.position()
+		return position.x(), position.y()
 
 	def getWidth(self):
 		return self.width
@@ -111,9 +108,7 @@ class GUIComponent:
 
 	position = property(getPosition)
 
-	# default implementation for only one widget per component
-	# feel free to override!
-	def GUIcreate(self, parent):
+	def GUIcreate(self, parent):  # Default implementation for only one widget per component.  Feel free to override!
 		self.instance = self.createWidget(parent)
 		self.postWidgetCreate(self.instance)
 
@@ -121,8 +116,7 @@ class GUIComponent:
 		self.preWidgetRemove(self.instance)
 		self.instance = None
 
-	# default for argumentless widget constructor
-	def createWidget(self, parent):
+	def createWidget(self, parent):  # Default for argument less widget constructor.
 		return self.GUI_WIDGET(parent)
 
 	def postWidgetCreate(self, instance):
