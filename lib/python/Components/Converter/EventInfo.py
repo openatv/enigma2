@@ -347,7 +347,7 @@ class EventInfo(Converter, Poll):
 					pcdPil = event.getPdcPil()
 					if pcdPil:
 						begin = localtime(event.getBeginTime())
-						start = localtime(mktime([begin.tm_year, (pcdPil & 0x7800) >> 11, (pcdPil & 0xF8000) >> 15, (pcdPil & 0x7C0) >> 6, (pcdPil & 0x3F), 0, begin.tm_wday, begin.tm_yday, begin.tm_isdst]))
+						start = localtime(mktime((begin.tm_year, (pcdPil & 0x7800) >> 11, (pcdPil & 0xF8000) >> 15, (pcdPil & 0x7C0) >> 6, (pcdPil & 0x3F), 0, begin.tm_wday, begin.tm_yday, begin.tm_isdst)))
 						if self.token == self.PDC_TIME_SHORT:
 							result = strftime(config.usage.time.short.value, start)
 						else:
