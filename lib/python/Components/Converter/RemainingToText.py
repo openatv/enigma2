@@ -39,7 +39,7 @@ class RemainingToText(Converter, Poll):
 		}.get(token, (None, 0))
 		if token and self.token is None:
 			print(f"[RemainingToText] Error: Converter argument '{token}' is invalid!")
-		elif self.token is None:
+		if self.token is None:
 			self.token = self.DEFAULT
 		if config.usage.swap_time_display_on_osd.value in ("1", "3", "5") or config.usage.swap_time_display_on_vfd.value in ("1", "3", "5"):
 			self.poll_interval = 60000
