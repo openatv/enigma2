@@ -62,9 +62,9 @@ class RemainingToText(Converter, Poll):
 				if self.token in (self.DEFAULT, self.WITH_SECONDS, self.NO_SECONDS, self.IN_SECONDS, self.PERCENTAGE, self.ONLY_MINUTE, self.ONLY_MINUTE2):
 					match config.usage.swap_time_remaining_on_osd.value:
 						case "0":
-							duration, remaining, dummy = sourceTime
+							duration, remaining = sourceTime
 						case "1":
-							duration, elapsed, dummy = sourceTime
+							duration, elapsed = sourceTime
 						case "2":
 							duration, elapsed, remaining = sourceTime
 						case "3":
@@ -72,9 +72,9 @@ class RemainingToText(Converter, Poll):
 				else:
 					match config.usage.swap_time_remaining_on_vfd.value:
 						case "0":
-							duration, remaining, dummy = sourceTime
+							duration, remaining = sourceTime
 						case "1":
-							duration, elapsed, dummy = sourceTime
+							duration, elapsed = sourceTime
 						case "2":
 							duration, elapsed, remaining = sourceTime
 						case "3":
