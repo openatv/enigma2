@@ -33,7 +33,7 @@
 	<screen name="LCDInfoBarRemainingTime">
 		<widget source="session.Event_Now" render="Label" position="40,390" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
 	<!-- 
@@ -122,7 +122,7 @@
 	<screen name="LCDChannelSelectionRemainingTime">
 		<widget source="parent.ServiceEvent" render="Label" position="40,390" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDChannelSelectionStartEndTime">
@@ -150,7 +150,7 @@
 	<screen name="LCDEPGRemainingTime">
 		<widget source="parent.Event" render="Label" position="40,390" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDEPGStartEndTime">
@@ -194,19 +194,19 @@
 	<screen name="LCDPiconInfoBarRemainingTime">
 		<widget source="session.Event_Now" render="Label" position="40,390" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDPiconChannelSelectionRemainingTime">
 		<widget source="parent.ServiceEvent" render="Label" position="40,390" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDPiconEPGRemainingTime">
 		<widget source="parent.Event" render="Label" position="40,390" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
 	<!-- 

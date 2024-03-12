@@ -296,7 +296,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		</widget>
 		<widget font="Enigma;22" foregroundColor="foreground" halign="right" position="573,40" render="Label" size="85,28" source="session.Event_Now" transparent="1" zPosition="3">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<widget font="Enigma;22" foregroundColor="foreground" position="55,64" render="Label" size="55,28" source="session.Event_Next" transparent="1" zPosition="3">
 			<convert type="EventTime">StartTime</convert>
