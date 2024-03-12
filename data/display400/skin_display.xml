@@ -100,7 +100,7 @@
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="275,158" size="115,38" font="FdLcD;38" foregroundColor="#04B404" halign="right">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">FOLLOW</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="center,205" size="30,30" zPosition="3" alphatest="blend">
 			<convert type="ConditionalShowHide">Blink</convert>
@@ -133,7 +133,7 @@
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="275,158" size="115,38" font="FdLcD;38" foregroundColor="#04B404" halign="right">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">FOLLOW</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="center,205" size="30,30" zPosition="3" alphatest="blend">
 			<convert type="ConditionalShowHide">Blink</convert>
@@ -166,7 +166,7 @@
 		</widget>
 		<widget source="parent.Event" render="Label" position="275,158" size="115,38" font="FdLcD;38" foregroundColor="#04B404" valign="center" halign="right">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">FOLLOW</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="center,205" size="30,30" zPosition="3" alphatest="blend">
 			<convert type="ConditionalShowHide">Blink</convert>
