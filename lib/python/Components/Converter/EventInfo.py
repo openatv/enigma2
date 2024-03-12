@@ -35,7 +35,7 @@ class ETSIClassifications(dict):
 				age += 3
 				return "ratings/ETSI-%d.png" % age
 
-		self.update([(index, (shortRating(classification), longRating(classification), imageRating(classification))) for index, classification in enumerate(range(15))])
+		self.update([(index, (shortRating(classification), longRating(classification), imageRating(classification))) for index, classification in enumerate(range(16))])
 
 
 class AusClassifications(dict):
