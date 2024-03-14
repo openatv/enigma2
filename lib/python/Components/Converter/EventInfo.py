@@ -321,9 +321,13 @@ class EventInfo(Converter, Poll):
 					epgData = getEPGData()
 					try:
 						if epgData and epgData[1][1]:
-							result = f"{pgettext("now/next: 'next' event label", "Next")}: {trimText(epgData[1][1])}"
+							# result = f"{pgettext("now/next: 'next' event label", "Next")}: {trimText(epgData[1][1])}"
+							label = pgettext("now/next: 'next' event label", "Next")
+							result = f"{label}: {trimText(epgData[1][1])}"
 					except IndexError:  # Failed to return any EPG data.
-						result = f"{pgettext("now/next: 'next' event label", "Next")}: {trimText(event.getEventName())}"
+						# result = f"{pgettext("now/next: 'next' event label", "Next")}: {trimText(event.getEventName())}"
+						label = pgettext("now/next: 'next' event label", "Next")
+						result = f"{label}: {trimText(event.getEventName())}"
 				case self.NAME_NEXT2:
 					epgData = getEPGData()
 					try:
@@ -332,7 +336,9 @@ class EventInfo(Converter, Poll):
 					except IndexError:  # Failed to return any EPG data.
 						pass
 				case self.NAME_NOW:
-					result = f"{pgettext("now/next: 'now' event label", "Now")}: {trimText(event.getEventName())}"
+					# result = f"{pgettext("now/next: 'now' event label", "Now")}: {trimText(event.getEventName())}"
+					label = pgettext("now/next: 'now' event label", "Now")
+					result = f"{label}: {trimText(event.getEventName())}"
 				case self.NEXT_DESCRIPTION:
 					epgData = getEPGData()
 					try:
@@ -409,7 +415,9 @@ class EventInfo(Converter, Poll):
 					epgData = getEPGData()
 					try:
 						if epgData and epgData[2][1]:
-							result = f"{pgettext("third event: 'third' event label", "Later")}: {trimText(epgData[2][1])}"
+							# result = f"{pgettext("third event: 'third' event label", "Later")}: {trimText(epgData[2][1])}"
+							label = pgettext("third event: 'third' event label", "Later")
+							result = f"{label}: {trimText(epgData[2][1])}"
 					except IndexError:  # Failed to return any EPG data.
 						pass
 				case self.THIRD_NAME2:
