@@ -223,7 +223,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			/* use alternative background color */
 			if(local_style->is_set.background_color_rows)
 			{
-				if((cursorGet() % 2) == 0)
+				if(cursorValid && (cursorGet() % 2) == 0)
 					painter.setBackgroundColor(local_style->m_background_color_rows);
 			}
 
@@ -518,7 +518,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			/* use alternative background color */
 			if(local_style->is_set.background_color_rows)
 			{
-				if((cursorGet() % 2) == 0)
+				if(cursorValid && (cursorGet() % 2) == 0)
 					painter.setBackgroundColor(local_style->m_background_color_rows);
 			}
 
@@ -1126,7 +1126,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	eRect itemRect = eRect(offset, m_itemsize);
 	gRegion itemregion(itemRect);
 
-	bool even = (cursorGet() % 2) == 0;
+	bool even = cursorValid && (cursorGet() % 2) == 0;
 
 	if (selected && itemZoomed)
 	{
