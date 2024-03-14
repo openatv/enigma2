@@ -100,7 +100,7 @@ class RemainingToText(Converter, Poll):
 								# "2": f"{signElapsed}{elapsed // 60}  {signRemaining}{ngettext("%d Min", "%d Mins", (remaining // 60)) % (remaining // 60)}",  # Elapsed & Remaining
 								"2": f"{signElapsed}{elapsed // 60}  {signRemaining}{ngettext('%d Min', '%d Mins', (remaining // 60)) % (remaining // 60)}",  # Elapsed & Remaining
 								# "3": f"{signRemaining}{remaining // 60}  {signElapsed}{ngettext("%d Min", "%d Mins", (elapsed // 60)) % (elapsed // 60)}"  # Remaining & Elapsed
-								"3": f"{signRemaining}{remaining // 60}  {signElapsed}{ngettext('%d Min', '%d Mins'", (elapsed // 60)) % (elapsed // 60)}"  # Remaining & Elapsed
+								"3": f"{signRemaining}{remaining // 60}  {signElapsed}{ngettext('%d Min', '%d Mins', (elapsed // 60)) % (elapsed // 60)}"  # Remaining & Elapsed
 							}.get(config.usage.swap_time_remaining_on_osd.value, f"{signRemaining}{ngettext('%d Min', '%d Mins', (remaining // 60)) % (remaining // 60)}")
 							# }.get(config.usage.swap_time_remaining_on_osd.value, f"{signRemaining}{ngettext("%d Min", "%d Mins", (remaining // 60)) % (remaining // 60)}")
 					case "2":
