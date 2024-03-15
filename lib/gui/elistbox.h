@@ -424,6 +424,14 @@ public:
 	gFont *getEntryFont() { return m_style.m_font; }
 	gFont *getValueFont() { return m_style.m_valuefont; }
 	gFont *getHeaderFont() { return m_style.m_headerfont; }
+	int getItemsPerPage() { 
+		if (m_orientation == orHorizontal)
+			return m_max_columns;
+		else if (m_orientation == orGrid)
+			return m_max_columns * m_max_rows;
+		else	
+			return m_max_rows;
+		}
 
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
