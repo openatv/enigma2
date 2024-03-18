@@ -3,6 +3,7 @@ from time import gmtime, localtime, mktime, time
 from enigma import eServiceCenter, eServiceReference, getBestPlayableServiceReference, iServiceInformation
 
 import NavigationInstance
+from Components.NimManager import nimmanager
 from timer import TimerEntry
 from Components.config import config
 from Tools.CIHelper import cihelper
@@ -187,7 +188,13 @@ class TimerSanityCheck:
 					# 	tunerType.append(feinfo.getFrontendData().get("tuner_type"))
 					if hasattr(fakeRecService, "frontendInfo") and hasattr(fakeRecService.frontendInfo(), "getFrontendData"):
 						feinfo = fakeRecService.frontendInfo().getFrontendData()
-						tunerType.append(feinfo.get("tuner_type"))
+						nim = nimmanager.nim_slots[int(feinfo.get("tuner_number"))]
+						if nim.isCompatible("DVB-T"):
+							tunerType.append("DVB-T")
+						elif nim.isCompatible("DVB-C"):
+							tunerType.append("DVB-C")
+						else:
+							tunerType.append(feinfo.get("tuner_type"))
 				else:  # Tune failed. We must go another way to get service type (DVB-S, DVB-T, DVB-C).
 					def getServiceType(ref):  # Helper function to get a service type of a service reference.
 						serviceInfo = serviceHandler.info(ref)
