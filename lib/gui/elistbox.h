@@ -83,12 +83,13 @@ struct eListboxStyleSetted
 	bool zoom_move_content : 1;
 	bool scrollbarforegroundgradient : 1;
 	bool scrollbarbackgroundgradient : 1;
+	bool background_color_rows : 1;
 };
 
 struct eListboxStyle
 {
 	ePtr<gPixmap> m_background, m_selection, m_overlay;
-	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacing_color;
+	gRGB m_background_color, m_background_color_selected, m_background_color_rows, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacing_color;
 	int m_max_columns;
 	int m_max_rows;
 	float m_selection_zoom;
@@ -284,6 +285,7 @@ public:
 	void setBackgroundColorSelected(const gRGB &col);
 	void setForegroundColor(const gRGB &col);
 	void setForegroundColorSelected(const gRGB &col);
+	void setBackgroundColorRows(const gRGB &col);
 
 	void setSpacingColor(const gRGB &col);
 	void clearSpacingColor() { m_style.is_set.spacing_color = 0; }
@@ -422,6 +424,14 @@ public:
 	gFont *getEntryFont() { return m_style.m_font; }
 	gFont *getValueFont() { return m_style.m_valuefont; }
 	gFont *getHeaderFont() { return m_style.m_headerfont; }
+	int getItemsPerPage() { 
+		if (m_orientation == orHorizontal)
+			return m_max_columns;
+		else if (m_orientation == orGrid)
+			return m_max_columns * m_max_rows;
+		else	
+			return m_max_rows;
+		}
 
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
