@@ -1707,6 +1707,10 @@ class InfoBarChannelSelection:
 		self.servicelist.showFavourites()
 		self.session.execDialog(self.servicelist)
 
+	def openSubservices(self):
+		self.servicelist.enterSubservices()
+		self.session.execDialog(self.servicelist)
+
 	def zapUp(self):
 		if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():

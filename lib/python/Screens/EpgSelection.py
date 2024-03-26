@@ -18,6 +18,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import EPGJumpTime
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.HelpMenu import HelpableScreen
+from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Screen import Screen
@@ -398,6 +399,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def getBouquetServices(self, bouquet):
 		services = []
+		if InfoBar.instance.servicelist.isSubservices(bouquet):
+			return [ServiceReference(ref) for ref in InfoBar.instance.servicelist.getSubservices()]
 		servicelist = eServiceCenter.getInstance().list(bouquet)
 		if servicelist is not None:
 			while True:
