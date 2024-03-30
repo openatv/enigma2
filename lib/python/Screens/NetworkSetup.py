@@ -539,6 +539,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.secondaryDNSEntry = None
 		self.onlyWakeOnWiFi = False
 		self.WakeOnWiFiEntry = False
+		self.ipTypeEntry = None
 		if iNetwork.isWirelessInterface(self.iface):
 			driver = iNetwork.detectWlanModule(self.iface)
 			if driver in ("brcm-wl", ):
@@ -588,6 +589,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		nameserver = (iNetwork.getNameserverList() + [[0, 0, 0, 0]] * 2)[0:2]
 		self.primaryDNS = NoSave(ConfigIP(default=nameserver[0]))
 		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
+		self.ipTypeConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "ipv6") or False))
 
 	def createSetup(self):
 		if BoxInfo.getItem("WakeOnLAN"):
@@ -599,6 +601,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.WakeOnWiFiEntry = getConfigListEntry(_("Use only for Wake on WLan (WoW)"), self.onlyWakeOnWiFi)
 			self.list.append(self.WakeOnWiFiEntry)
 		if self.activateInterfaceEntry.value or (self.onlyWakeOnWiFi and self.onlyWakeOnWiFi.value):
+			self.ipTypeEntry = getConfigListEntry(_("Enable IPv6"), self.ipTypeConfigEntry)
+			self.list.append(self.ipTypeEntry)
 			self.dhcpEntry = getConfigListEntry(_("Use DHCP"), self.dhcpConfigEntry)
 			self.list.append(self.dhcpEntry)
 			if not self.dhcpConfigEntry.value:
@@ -643,17 +647,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["config"].list = self.list
 
 	def newConfig(self):
-		if self["config"].getCurrent() == self.InterfaceEntry:
-			self.createSetup()
-		if self["config"].getCurrent() == self.dhcpEntry:
-			self.createSetup()
-		if self["config"].getCurrent() == self.gatewayEntry:
-			self.createSetup()
-		if self["config"].getCurrent() == self.DNSConfigEntry:
-			self.createSetup()
-		if self["config"].getCurrent() == self.primaryDNSEntry:
-			self.createSetup()
-		if self["config"].getCurrent() == self.secondaryDNSEntry:
+		if self["config"].getCurrent() in (self.InterfaceEntry, self.dhcpEntry, self.gatewayEntry, self.DNSConfigEntry, self.primaryDNSEntry, self.secondaryDNSEntry, self.ipTypeEntry):
 			self.createSetup()
 		if self["config"].getCurrent() == self.WakeOnWiFiEntry:
 			iNetwork.onlyWoWifaces[self.iface] = self.onlyWakeOnWiFi.value
@@ -713,6 +707,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def applyConfig(self, ret=False):
 		if ret is True:
 			self.applyConfigRef = None
+			iNetwork.setAdapterAttribute(self.iface, "ipv6", self.ipTypeConfigEntry.value)
 			iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.value)
 			iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.value)
 			iNetwork.setAdapterAttribute(self.iface, "ip", self.ipConfigEntry.value)
