@@ -216,10 +216,16 @@ class Network:
 				lines.append("  hostname $(hostname)")
 				if "ip" in iface:
 					# print tuple(iface["ip"])
-					lines.append(f"	address {".".join(iface["ip"])}")
-					lines.append(f"	netmask {".".join(iface["netmask"])}")
+					dummy = ".".join(iface["ip"])
+					lines.append(f"	address {dummy}")
+					dummy = ".".join(iface["netmask"])
+					lines.append(f"	netmask {dummy}")
+					# lines.append(f"	address {".".join(iface["ip"])}")
+					# lines.append(f"	netmask {".".join(iface["netmask"])}")
 					if "gateway" in iface:
-						lines.append(f"	gateway {".".join(iface["gateway"])}")
+						dummy = ".".join(iface["gateway"])
+						lines.append(f"	gateway {dummy}")
+						# lines.append(f"	gateway {".".join(iface["gateway"])}")
 			if "configStrings" in iface:
 				lines.append(iface["configStrings"])
 			if iface["preup"] is not False and "configStrings" not in iface:
@@ -234,7 +240,8 @@ class Network:
 	def writeNameserverConfig(self):
 		# try:
 		# Console().ePopen("/bin/rm -f '%s'" % self.resolvFile)
-		linesV4 = [f"nameserver {".".join([str(x) for x in nameserver])}" for nameserver in self.nameservers if isinstance(nameserver, list)]
+		linesV4 = ["nameserver %d.%d.%d.%d" % tuple(nameserver) for nameserver in self.nameservers if isinstance(nameserver, list)]
+		# linesV4 = [f"nameserver {".".join([str(x) for x in nameserver])}" for nameserver in self.nameservers if isinstance(nameserver, list)]
 		linesV6 = [f"nameserver {nameserver}" for nameserver in self.nameservers if isinstance(nameserver, str)]
 		match config.usage.dnsMode.value:
 			case 0:
