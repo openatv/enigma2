@@ -832,6 +832,12 @@ class AttributeParser:
 	def backgroundColor(self, value):
 		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
 
+	def backgroundColorEven(self, value):
+		self.guiObject.setBackgroundColorRows(parseColor(value, 0x00000000))
+
+	def backgroundColorOdd(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
+
 	def backgroundColorRows(self, value):
 		self.guiObject.setBackgroundColorRows(parseColor(value, 0x00000000))
 
