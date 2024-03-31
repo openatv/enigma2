@@ -188,12 +188,13 @@ class TimerSanityCheck:
 					# 	tunerType.append(feinfo.getFrontendData().get("tuner_type"))
 					if hasattr(fakeRecService, "frontendInfo") and hasattr(fakeRecService.frontendInfo(), "getFrontendData"):
 						feinfo = fakeRecService.frontendInfo().getFrontendData()
-						nim = nimmanager.nim_slots[int(feinfo.get("tuner_number"))]
-						if nim.isCompatible("DVB-T"):
-							tunerType.append("DVB-T")
-						elif nim.isCompatible("DVB-C"):
-							tunerType.append("DVB-C")
-						else:
+						if "tuner_number" in feinfo:
+							nim = nimmanager.nim_slots[int(feinfo.get("tuner_number"))]
+							if nim.isCompatible("DVB-T"):
+								tunerType.append("DVB-T")
+							elif nim.isCompatible("DVB-C"):
+								tunerType.append("DVB-C")
+						if not tunerType:
 							tunerType.append(feinfo.get("tuner_type"))
 				else:  # Tune failed. We must go another way to get service type (DVB-S, DVB-T, DVB-C).
 					def getServiceType(ref):  # Helper function to get a service type of a service reference.
