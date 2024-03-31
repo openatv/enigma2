@@ -1577,12 +1577,11 @@ class RecordTimerEdit(Setup):
 			# self.timer.end = self.getTimeStamp(startDate, self.timerEndTime.value)
 		marginBefore = self.timerMarginBefore.value * 60
 		eventBegin = self.getTimeStamp(startDate, self.timerStartTime.value)
+		startDate += 86400 if self.timerEndTime.value < self.timerStartTime.value else 0  # If endTime is less than startTime then add 1 day to the startDate.
 		eventEnd = self.getTimeStamp(startDate, self.timerEndTime.value)
 		if self.timerType.value == "zap" and not self.timerHasEndTime.value:
 			eventEnd = eventBegin + 1
 		marginAfter = self.timerMarginAfter.value * 60
-		if eventEnd < eventBegin:  # If eventEnd is less than eventBegin then add 1 day to the eventEnd time.
-			eventEnd += 86400
 		self.timer.begin = eventBegin - marginBefore
 		self.timer.end = eventEnd + marginAfter
 		self.timer.marginBefore = marginBefore
