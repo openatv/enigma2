@@ -14,7 +14,7 @@ default_fcc = (max_fcc) > 5 and 5 or max_fcc
 
 config.plugins.fccsetup = ConfigSubsection()
 config.plugins.fccsetup.activate = ConfigYesNo(default=False)
-config.plugins.fccsetup.maxfcc = ConfigSelection(default=str(default_fcc), choices=list((str(n), str(n)) for n in range(2, max_fcc + 1)))
+config.plugins.fccsetup.maxfcc = ConfigSelection(default=default_fcc, choices=[(n, str(n)) for n in range(2, max_fcc + 1)])
 config.plugins.fccsetup.zapupdown = ConfigYesNo(default=True)
 config.plugins.fccsetup.history = ConfigYesNo(default=False)
 config.plugins.fccsetup.priority = ConfigSelection(default="zapupdown", choices={"zapupdown": _("Zap Up/Down"), "historynextback": _("History Prev/Next")})
@@ -47,7 +47,7 @@ class FCCSupport:
 		self.activating = False
 		self.hasfcc = max_fcc > 0
 		self.fccSetupActivate = self.hasfcc and config.plugins.fccsetup.activate.value
-		self.maxFCC = int(config.plugins.fccsetup.maxfcc.value)
+		self.maxFCC = config.plugins.fccsetup.maxfcc.value
 		self.zapdownEnable = config.plugins.fccsetup.zapupdown.value
 		self.historyEnable = config.plugins.fccsetup.history.value
 		self.priority = config.plugins.fccsetup.priority.value
@@ -132,8 +132,8 @@ class FCCSupport:
 			self.setProcFCC(self.fccSetupActivate)
 			fcc_changed = True
 
-		if int(config.plugins.fccsetup.maxfcc.value) != self.maxFCC:
-			self.maxFCC = int(config.plugins.fccsetup.maxfcc.value)
+		if config.plugins.fccsetup.maxfcc.value != self.maxFCC:
+			self.maxFCC = config.plugins.fccsetup.maxfcc.value
 			fcc_changed = True
 
 		if self.zapdownEnable != config.plugins.fccsetup.zapupdown.value:
@@ -442,15 +442,15 @@ class FCCSetup(Setup):
 		Setup.__init__(self, session, "fcc", plugin="SystemPlugins/FastChannelChange")
 
 	def changedEntry(self):
-		if self.getCurrentItem() in (config.plugins.fccsetup.zapupdown, config.plugins.fccsetup.history.value):
+		if self.getCurrentItem() in (config.plugins.fccsetup.zapupdown, config.plugins.fccsetup.history):
 			if not (config.plugins.fccsetup.zapupdown.value or config.plugins.fccsetup.history.value):
 				if self.getCurrentItem() == config.plugins.fccsetup.history:
 					config.plugins.fccsetup.zapupdown.value = True
 				else:
 					config.plugins.fccsetup.history.value = True
 			elif (config.plugins.fccsetup.zapupdown.value and config.plugins.fccsetup.history.value):
-				if int(config.plugins.fccsetup.maxfcc.value) < 5:
-					config.plugins.fccsetup.maxfcc.value = str(max_fcc if max_fcc < 5 else 5)
+				if config.plugins.fccsetup.maxfcc.value < 5:
+					config.plugins.fccsetup.maxfcc.value = max_fcc if max_fcc < 5 else 5
 		Setup.changedEntry(self)
 
 	def keySave(self):
