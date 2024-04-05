@@ -20,6 +20,11 @@ if [ -e /usr/bin/ciplushelper ]; then
     sleep 3
 fi
 
+#Workaround for aspect ratio issue
+if [ -e /proc/stb/video/avshutdown ]; then
+	echo "down" > /proc/stb/video/avshutdown && echo "up" > /proc/stb/video/avshutdown
+fi
+
 if [ -e /proc/stb/info/boxtype ]; then
 	stbcheck=`cat /proc/stb/info/boxtype`
 	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "ustym4ks2ottx" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "og2s4k" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
