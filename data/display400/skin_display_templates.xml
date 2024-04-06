@@ -154,7 +154,7 @@
 		</widget>
 		<widget source="parent.Event" render="Label" position="255,210" size="135,30" font="FdLcD;30" foregroundColor="#87CEFA" transparent="1" halign="right" valign="center">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">inMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
 	<!-- 	EventView -->
@@ -175,7 +175,7 @@
 		</widget>
 		<widget source="parent.Event" render="Label" position="255,210" size="135,30" font="FdLcD;30" foregroundColor="#87CEFA" transparent="1" halign="right" valign="center">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">inMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
 	<!-- EventViewSimple -->

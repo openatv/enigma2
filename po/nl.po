@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-01-21 15:52+0000\n"
+"POT-Creation-Date: 2024-03-10 17:07+0000\n"
+"PO-Revision-Date: 2024-03-12 13:01+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -955,6 +955,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "%d pakket gevonden."
+msgstr[1] "%d pakketten gevonden."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "Voor %d pakket is een update beschikbaar."
@@ -1173,10 +1179,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Instellingen"
 
@@ -1240,10 +1242,6 @@ msgstr "%s%s(Default: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1767,7 +1765,7 @@ msgid "Aborted a streaming service.\n"
 msgstr "Een streaming service gestopt.\n"
 
 msgid "About"
-msgstr "openATV"
+msgstr "Informatie"
 
 msgid "About openATV"
 msgstr "openATV"
@@ -1843,6 +1841,9 @@ msgstr "Actief"
 
 msgid "Active clients"
 msgstr "Actieve gebruikers"
+
+msgid "Active only"
+msgstr "Alleen actieve"
 
 msgid "Adapter Settings"
 msgstr "Adapter instellingen"
@@ -4646,7 +4647,7 @@ msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to 
 msgstr "Configureer de minimale breedte voor het tonen van de 'i' icon , '0' is gelijk aan het niet tonen van het pictogram."
 
 msgid "Configure the name server (DNS)."
-msgstr "Configureer uw naamserver (DNS)."
+msgstr "Configureer uw nameserver (DNS)."
 
 msgid "Configure the netmask."
 msgstr "Configureer de netmask."
@@ -6820,7 +6821,9 @@ msgstr "De CCcam/NewCamd-serverpoort aanpassen."
 
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
-msgstr "Pas de naamserver-configuratie (DNS) van uw %s %s aan."
+msgstr ""
+"Wijzig de DNS configuratie\n"
+"van uw %s %s ."
 
 msgid "Edit the NewCamd DES Key."
 msgstr "De NewCamd DES-sleutel aanpassen."
@@ -6830,7 +6833,9 @@ msgstr "De geselecteerde timer wijzigen"
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
-msgstr "Bewerk de netwerkinstellingen van uw %s %s."
+msgstr ""
+"Wijzig de netwerkinstellingen\n"
+"van uw %s %s."
 
 msgid "Edit the password."
 msgstr "Het wachtwoord wijzigen."
@@ -6895,6 +6900,9 @@ msgstr "Activeer %s pro:"
 
 msgid "Enable 5V for active antenna"
 msgstr "5V voor actieve antenne inschakelen"
+
+msgid "Enable Autorecord"
+msgstr "Aktiveer automatische opname"
 
 msgid "Enable BT Audio"
 msgstr "BT audio inschakelen"
@@ -7251,7 +7259,7 @@ msgstr "Enter"
 
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
-msgstr "DNS (Dynamic Name Server) %d's IP-adres invoeren."
+msgstr "%de DNS (Dynamic Name Server) IP-adres invoeren."
 
 msgid "Enter PIN"
 msgstr "Voer pincode in"
@@ -7331,6 +7339,10 @@ msgstr "Entertainment"
 msgid "Entitlements"
 msgstr "Kaarten"
 
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr "Entitlements voor 'CAID %s'"
+
 msgid "Entry image and text"
 msgstr "Invoer afbeelding en tekst"
 
@@ -7387,12 +7399,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Fout %d: Kan map '%s' niet maken! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Fout %d: Er kan geen map '%s' voor pakketten worden gemaakt!   (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Fout %d: Het gedownloade image kan niet gewist worden '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Fout %d: Kan '%s' niet wijzigen in '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Fout %d: '%s' is niet leesbaar!   (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -9383,6 +9403,9 @@ msgstr "Wanneer u kiest voor 'Ja' worden dezelfde commando's naar de TV gestuurd
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Indien ingesteld op \"ja\", kunt u Timeshift gebruiken met alternatieve audio-plugins."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Wanneer de deep standby workaround is geactiveerd, a.u.b. wachten tot de systeemtijd is gesynchroniseerd. Afhankelijk van het gebruik zal de ontvanger binnen maximaal 2 minuten opstarten."
 
@@ -10000,6 +10023,9 @@ msgstr "Alleen zappen"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Groenlands"
@@ -11142,9 +11168,6 @@ msgstr "Mounts"
 msgid "Mounts Devices"
 msgstr "Mount opslagmedia"
 
-msgid "Mounts Settings"
-msgstr "Mounts instellen"
-
 msgid "Move"
 msgstr "Verplaats"
 
@@ -11553,13 +11576,13 @@ msgid "Name server %d"
 msgstr "Name server %d"
 
 msgid "Nameserver"
-msgstr "Naamserver (DNS)"
+msgstr "Nameserver (DNS)"
 
 msgid "Nameserver settings"
-msgstr "Naamserver-instellingen (DNS)"
+msgstr "DNS instellingen"
 
 msgid "Nameserver setup"
-msgstr "Instellingen van de naamserver (DNS)"
+msgstr "Nameserver instellingen (DNS)"
 
 msgid "Namespace & Orbital position"
 msgstr "Namespace & Orbital position"
@@ -11619,7 +11642,7 @@ msgid "Network Adapter Selection"
 msgstr "Netwerk adapter"
 
 msgid "Network Adapter Setting Actions"
-msgstr "Acties voor Netwerk Adapter instellingen "
+msgstr "Acties voor Netwerk Adapter instellingen"
 
 msgid "Network Adapter Text Actions"
 msgstr "Netwerk adapter tekst Acties"
@@ -12278,11 +12301,22 @@ msgstr "OSCam webif uitgeschakeld"
 msgid "OSCamInfo Actions"
 msgstr "OSCamInfo Acties"
 
-msgid "OSCamInfo Log"
-msgstr "OSCamInfo Log"
-
 msgid "OSCamInfo Log Actions"
 msgstr "OSCamInfo Log Acties"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr "OSCamInfo: %s Entitlements voor '%s'"
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr "OSCamInfo: Entitlements voor '%s'"
+
+msgid "OSCamInfo: Information"
+msgstr "OSCamInfo: Informatie"
+
+msgid "OSCamInfo: Log"
+msgstr "OSCamInfo: Log"
 
 msgid "OSD"
 msgstr "OSD"
@@ -13233,6 +13267,9 @@ msgstr "De gegevens worden uitgepakt, even geduld..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "De Feeds worden gewist en opnieuw geladen. Even geduld..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "A.u.b. wachten terwijl het bestand wordt gelezen en verwerkt..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Een ogenblik geduld terwijl de lijst wordt geladen..."
 
@@ -13495,6 +13532,30 @@ msgstr "Voorkeur voor eerder opgeslagen ondertitels per zender"
 msgid "Preferred tuner"
 msgstr "Voorkeurstuner"
 
+msgid "Preferred tuner ATSC"
+msgstr "Voorkeurstuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Voorkeurstuner voor ATSC opnames"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Voorkeurstuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Voorkeurstuner voor DVB-C opnames"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Voorkeurstuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Voorkeurstuner voor DVB-S opnames"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Voorkeurstuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Voorkeurstuner voor DVB-T opnames"
+
 msgid "Preferred tuner for recordings"
 msgstr "Voorkeurstuner voor opnames"
 
@@ -13526,7 +13587,9 @@ msgid "Press OK for MultiBoot selection."
 msgstr "Druk op OK voor het MultiBoot keuzemenu."
 
 msgid "Press OK on your remote control to continue."
-msgstr "Druk OK op uw afstandsbediening om verder te gaan."
+msgstr ""
+"Druk OK op uw afstandsbediening\n"
+"om verder te gaan."
 
 msgid "Press OK to activate the selected skin."
 msgstr "Druk op OK om de geselecteerde skin te activeren."
@@ -14670,7 +14733,7 @@ msgid "Restart GUI after x crashes"
 msgstr "Herstart de GUI na x crashes"
 
 msgid "Restart GUI now to start using the new locale/language?"
-msgstr "De GUI nu herstarten met de nieuwe taal?"
+msgstr "De GUI nu herstarten in het Nederlands/Vlaams?"
 
 msgid "Restart GUI now?"
 msgstr "Gebruikersinterface herstarten?"
@@ -15608,6 +15671,12 @@ msgstr "Selecteer 'Ja' om de huidige map in de lijst met mappen weer te geven. M
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Weblinks in het plugin download-scherm weer te geven."
 
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Kies 'Ja' om opdrachten in meerdere acties op te delen."
+
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr "Kies 'Ja' om alternatief GitHub-DNS feed IP-adres in te stellen. Dit kan handig zijn wanneer u een VPN gebruikt en de normale feeds niet bereikbaar zijn via de gebruikelijke DNS namen."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Indien 'ja' wordt gekozen, worden de signaalwaardes (SNR etc.) berekend op basis van de API V3. Dit is een oude API die nu vervangen is."
 
@@ -16164,7 +16233,7 @@ msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Selecteer de locatie waar u de upgradebestanden wilt ophalen."
 
 msgid "Select the source of the default DNS settings."
-msgstr "De locatie van de default DNS instellingen selecteren."
+msgstr "De gegevensbron van de default DNS instellingen selecteren."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Selecteer de start-/beginkolom die moet worden geactiveerd bij het opstarten van File Commander."
@@ -16624,7 +16693,9 @@ msgstr "Systeem instellingen"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
-msgstr "Stel het MAC-adres in van %s %s."
+msgstr ""
+"Stel het MAC-adres in\n"
+"van uw %s %s."
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Selecteer de aspect ratio van de zender picons."
@@ -17246,6 +17317,12 @@ msgstr "Toon aanvullend de schuifregelaar-waarde als getal"
 msgid "Show advanced settings"
 msgstr "Toon geavanceerde instellingen"
 
+msgid "Show all"
+msgstr "Alles tonen"
+
+msgid "Show all details"
+msgstr "Alle details tonen"
+
 msgid "Show animation while busy"
 msgstr "Toon een Spinner wanneer uw ontvanger bezig is"
 
@@ -17307,6 +17384,9 @@ msgstr "Gedetailleerde EPG info weergeven"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Toon gedetailleerde programma info"
+
+msgid "Show details"
+msgstr "Details tonen"
 
 msgid "Show details of highlighted task"
 msgstr "Details van gemarkeerde taak weergeven"
@@ -18282,6 +18362,9 @@ msgstr "Snelheid"
 msgid "Split preview mode"
 msgstr "Split screen voor de preview"
 
+msgid "Split tasks"
+msgstr "Opdrachten delen"
+
 msgid "Splitscreen"
 msgstr "Gesplitst scherm"
 
@@ -19111,6 +19194,9 @@ msgstr "Telugu"
 msgid "Temp directory (%s)"
 msgstr "Temp directory (%s)"
 
+msgid "Temporary directory"
+msgstr "Tijdelijke map"
+
 msgid "Tennis"
 msgstr "Tennis"
 
@@ -19137,7 +19223,9 @@ msgstr "Test modus"
 
 #, python-format
 msgid "Test the network configuration of your %s %s."
-msgstr "Test de netwerkconfiguratie van uw %s %s."
+msgstr ""
+"Test de netwerkconfiguratie\n"
+"van uw %s %s."
 
 msgid "Test type"
 msgstr "Testtype"
@@ -19921,10 +20009,10 @@ msgid ""
 "- please check your DHCP, cabling and adapter setup\n"
 "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
-"Deze test controleert de naamservers. (DNS)\n"
+"Deze test zoekt naar geconfigureerde nameservers. (DNS)\n"
 "Indien u een bericht 'niet bevestigd' ziet:\n"
-"- controleer dan uw DHCP server, kabels en instellingen\n"
-"- Indien de naamservers (DNS) handmatig ingesteld zijn, controleer deze dan"
+"- controleer dan uw DHCP server, kabels en instellingen.\n"
+"- Indien de nameservers (DNS) handmatig ingesteld zijn, controleer deze dan."
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN adapter.\n"
@@ -21016,6 +21104,9 @@ msgstr "Eindtijden van de Zap-timer gebruiken"
 msgid "Use a gateway"
 msgstr "Gateway gebruiken"
 
+msgid "Use alternate GitHub DNS"
+msgstr "Een alternatief GitHub-DNS instellen"
+
 msgid "Use an alternative smaller screen."
 msgstr "Gebruik een ander scherm."
 
@@ -21714,6 +21805,9 @@ msgstr "Waarschuwing"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Waarschuwing: %d Feeds konden niet opnieuw worden geladen!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr "Waarschuwing: Het annuleren van dit proces zorgt voor een incomplete en niet stabiele Feed!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Waarschuwing: De overschrijvingen zijn nu actief!"
 
@@ -21988,6 +22082,12 @@ msgstr "Er wordt een AC3 audiospoor geselecteerd wanneer deze beschikbaar is."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Er wordt een AC3+ audiospoor geselecteerd wanneer deze beschikbaar is."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Indien geactiveerd, dan wordt de voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner voor opname's'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Indien geactiveerd, dan wordt er voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr ""
@@ -22419,11 +22519,11 @@ msgstr ""
 
 #, python-format
 msgid "Your %s %s will Reboot..."
-msgstr "Uw %s %s zal opnieuw opstarten..."
+msgstr "Uw %s %s zal opnieuw starten..."
 
 #, python-format
 msgid "Your %s %s will Restart..."
-msgstr "Uw %s %s zal opnieuw opstarten..."
+msgstr "Uw %s %s zal opnieuw starten..."
 
 #, python-format
 msgid ""
@@ -22459,7 +22559,7 @@ msgid "Your Receiver has a Software problem detected. Since the last reboot it h
 msgstr "Uw ontvanger heeft een software probleem. Sinds de laatste herstart is dit %d keer voorgekomen.\n"
 
 msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Als u op OK drukt zal uw %s %s opnieuw opstarten."
+msgstr "Als u op OK drukt zal uw %s %s opnieuw starten."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Uw verzameling is groter dan wat erop een single layer medium past, u heeft een lege dual layer DVD nodig!"
@@ -23699,35 +23799,19 @@ msgstr "ja (bewaar feeds)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Voorkeurstuner DVB-S"
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Voorkeurstuner voor DVB-S opnames"
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
-msgid "Preferred tuner DVB-T"
-msgstr "Voorkeurstuner DVB-T"
+#~ msgid "Mounts Settings"
+#~ msgstr "Mounts instellen"
 
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Voorkeurstuner voor DVB-T opnames"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Voorkeurstuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Voorkeurstuner voor DVB-C opnames"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Indien geactiveerd, dan wordt er voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Indien geactiveerd, dan wordt de voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner voor opname's'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Voorkeurstuner ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Voorkeurstuner voor ATSC opnames"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "OSCamInfo Log"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -24215,12 +24299,6 @@ msgstr "Voorkeurstuner voor ATSC opnames"
 
 #~ msgid "Trying to download a new packet list. Please wait..."
 #~ msgstr "Probeert een nieuwe pakketlijst te downloaden. Een ogenblik ..."
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "%d pakket gevonden."
-#~ msgstr[1] "%d pakketten gevonden."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Geselecteerde plug-in toevoegen/verwijderen van de downloadlijst"

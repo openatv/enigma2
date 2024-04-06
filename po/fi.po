@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-01-24 07:19+0000\n"
+"POT-Creation-Date: 2024-03-10 17:07+0000\n"
+"PO-Revision-Date: 2024-03-13 18:01+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid ""
 "\n"
@@ -950,6 +950,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "%d paketti löytyi."
+msgstr[1] "%d pakettia löytyi."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d paketti on päivitetty"
@@ -1168,10 +1174,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Asetukset"
 
@@ -1235,10 +1237,6 @@ msgstr "%s%s(Oletus: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1839,6 +1837,9 @@ msgstr "Aktiivinen"
 msgid "Active clients"
 msgstr "Aktiiviset asiakkaat"
 
+msgid "Active only"
+msgstr "Vain aktiivinen"
+
 msgid "Adapter Settings"
 msgstr "Sovittimen asetukset"
 
@@ -2416,7 +2417,7 @@ msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Haluatko varmasti poistaa EPG-tiedot täältä:\n"
 
 msgid "Are you sure you want to delete this image?"
-msgstr "Oletko varma, että haluat poistaa tämän imagen?"
+msgstr "Oletko varma, että haluat poistaa tämän ohjelmiston?"
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Haluatko varmasti poistaa tämän lokin:\n"
@@ -2892,7 +2893,7 @@ msgid "Backup your current image"
 msgstr "Luo täydellinen varmuuskopio ohjelmistosta"
 
 msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your box"
-msgstr "Varmuuskopioi nykyinen image kiintolevylle tai USB-muistitikulle. Tämä luo 1:1 kopion laitteen nykyisestä ohjelmistosta"
+msgstr "Varmuuskopioi ohjelmisto kiintolevylle tai USB-muistitikulle. Tämä luo 1:1 kopion laitteen nykyisestä ohjelmistosta"
 
 msgid "Backup your current settings"
 msgstr "Varmuuskopioi nykyiset asetukset"
@@ -3200,7 +3201,7 @@ msgstr "Versio tiedot kohteelle %s %s"
 
 #, python-format
 msgid "Build: %s"
-msgstr "Image versio: %s"
+msgstr "Ohjelmisto versio: %s"
 
 msgid "Bulgaria"
 msgstr "Bulgaria"
@@ -3251,7 +3252,7 @@ msgid "By disk label"
 msgstr "Levymerkintä"
 
 msgid "By openATV Image Team"
-msgstr "By openATV Image Team"
+msgstr "openATV ohjelmisto Team"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Ohita HDMI EDID tarkistus"
@@ -5753,7 +5754,7 @@ msgid "Delete Expander"
 msgstr "Poista laajennus"
 
 msgid "Delete Image"
-msgstr "Poista image"
+msgstr "Poista"
 
 msgid "Delete Line"
 msgstr "Poista rivi"
@@ -5825,7 +5826,7 @@ msgid "Delete only highlighted file"
 msgstr "Poista vain korostettu tiedosto"
 
 msgid "Delete or Wipe the highlighted slot"
-msgstr "Poista tai pyyhi nykyinen image paikka"
+msgstr "Poista tai pyyhi nykyinen ohjelmisto paikka"
 
 msgid "Delete play list entry"
 msgstr "Poista soittolistan valittu kohde"
@@ -6171,7 +6172,7 @@ msgid "Distance"
 msgstr "Etäisyys"
 
 msgid "Distribution"
-msgstr "Jakelija"
+msgstr "Jakelijat"
 
 #, python-format
 msgid "Distribution '%s' information for %s %s"
@@ -6782,6 +6783,9 @@ msgstr "Aktivoi %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Syötä 5 voltin käyttöjännite aktiiviantennille"
 
+msgid "Enable Autorecord"
+msgstr "Ota käyttöön automaattinen tallennus"
+
 msgid "Enable BT Audio"
 msgstr "Aktivoi Bluetooth Ääni"
 
@@ -7207,6 +7211,10 @@ msgstr "Viihde"
 msgid "Entitlements"
 msgstr "Valtuutukset"
 
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr "Valtuutukset CAID %s"
+
 msgid "Entry image and text"
 msgstr "Kuva ja teksti"
 
@@ -7263,12 +7271,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Virhe %d: Hakemistoa '%s' ei voi luoda!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Virhe %d: Ei voi luoda hakemistoa '%s'!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Virhe %d: Ladattua ohjelmistoa ei voida poistaa '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Virhe %d: Ei voida yhdistää '%s' muotoon '%s'!  (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Virhe %d: Ei voida lukea'%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -8358,7 +8374,7 @@ msgstr "Kokoruutu"
 
 #, python-format
 msgid "Full back-up on %s"
-msgstr "Täysi backup %s"
+msgstr "Täysi varmuuskopio %s"
 
 msgid "Full factory reset"
 msgstr "Täydellinen tehdasasetusten palautus"
@@ -9255,6 +9271,9 @@ msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransää
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Jos asetuksena on 'yes', voit käyttää ajansiirtoa vaihtoehtoisten ääniliitännäisten kanssa."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Jos asetuksena on 'kyllä` valinnalla tallennus käynnistyy automaattisesti, kun vaihdat jollekin kanavalle. Näitä tallennuksia ei tarvitse erikseen muuntaa tallenteiksi vaan niistä tulee pysyviä tallenteita suoraan"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jos virransäästötilaa on käytössä , järjestelmä odottaa, kunnes järjestelmän aika on synkronoitu. Vaatimuksista riippuen laitteiden herätystä jatketaan korkeintaan 2 minuutissa."
 
@@ -9871,6 +9890,9 @@ msgstr "Vain kanavanvaihto"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Greenlandic"
@@ -11013,9 +11035,6 @@ msgstr "Liitokset"
 msgid "Mounts Devices"
 msgstr "Liitä laitteita"
 
-msgid "Mounts Settings"
-msgstr "Verkkoliitosten asetukset"
-
 msgid "Move"
 msgstr "Siirrä"
 
@@ -12154,11 +12173,22 @@ msgstr "Oscam webif pois käytöstä"
 msgid "OSCamInfo Actions"
 msgstr "OSCam toiminnot"
 
-msgid "OSCamInfo Log"
-msgstr "OSCam Loki"
-
 msgid "OSCamInfo Log Actions"
 msgstr "OSCamInfo Loki tiedot"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr "OSCam tiedot: %s Valtuutukset '%s'"
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr "OSCam tiedot: Valtuutukset '%s'"
+
+msgid "OSCamInfo: Information"
+msgstr "OSCam: tiedot"
+
+msgid "OSCamInfo: Log"
+msgstr "OSCam: Loki"
 
 msgid "OSD"
 msgstr "Kuvaruutu"
@@ -12866,7 +12896,7 @@ msgid "Play next"
 msgstr "Toista seuraava"
 
 msgid "Play next (return to movie list)"
-msgstr "Toista seuraava (palaa tallenneluetteloon)"
+msgstr "Toista seuraava (palaa tallennukset)"
 
 msgid "Play next (return to previous service)"
 msgstr "Toista seuraava (palaa aiemmalle kanavalle)"
@@ -13107,6 +13137,9 @@ msgstr "Odota, kunnes tiedot on purettu..."
 
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Odota, Syötteet on resetoitu..."
+
+msgid "Please wait while the file is read and processed..."
+msgstr "Odota hetki, kun tiedosto on luettu ja käsitelty..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Odota, kunnes luettelo ladataan..."
@@ -13369,6 +13402,30 @@ msgstr "Ensisijaisena kanavalle tallennettu tekstiasetus"
 
 msgid "Preferred tuner"
 msgstr "Ensisijainen viritin"
+
+msgid "Preferred tuner ATSC"
+msgstr "Ensisijainen ATSC-viritin"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Tallennusten ensisijainen ATSC-viritin"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Ensisijainen DVB-C viritin"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Tallennusten ensisijainen DVB-C viritin"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Ensisijainen DVB-S viritin"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Tallennusten ensisijainen DVB-S viritin"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Ensisijainen DVB-T viritin"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Tallennusten ensisijainen DVB-T viritin"
 
 msgid "Preferred tuner for recordings"
 msgstr "Tallennusten ensisijainen viritin"
@@ -15479,6 +15536,12 @@ msgstr "Valitse 'Kyllä', jos haluat näyttää nykyisen hakemiston hakemistolue
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Valitse 'Kyllä' näyttääksesi Netti sivut listassa."
 
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Valitse ”Kyllä” jakaaksesi tehtävät eri toimintoihin."
+
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr "Valitse \"Kyllä\" käyttääksesi vaihtoehtoisia GitHubin IP osoitteita. Tämä voi olla hyödyllistä, jos käytät VPN:ää, eikä normaalia ip voi käyttää DNS nimien kautta."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jos asetus on kyllä, signaaliarvot (SNR jne.) Lasketaan API V3: sta. Tämä on vanha API-versio, joka on nyt korvattu."
 
@@ -17036,7 +17099,7 @@ msgid "Show Record Movies"
 msgstr "Näytä tallennelista"
 
 msgid "Show Restart Network in Extensions *"
-msgstr "Näytä Verkkoyhteyksien uudelleen käynnistys laajennusvalikossa"
+msgstr "Näytä Verkkon uudelleen käynnistys Lisäosissa *"
 
 msgid "Show SD as"
 msgstr "Näytä SD näin"
@@ -17101,6 +17164,12 @@ msgstr "Näytä animaatio (rattaat) kun varattu"
 msgid "Show advanced settings"
 msgstr "Näytä lisäasetukset"
 
+msgid "Show all"
+msgstr "Näytä kaikki"
+
+msgid "Show all details"
+msgstr "Näytä yksityiskohdat"
+
 msgid "Show animation while busy"
 msgstr "Näytä animaatio (rattaat) kun varattu"
 
@@ -17160,6 +17229,9 @@ msgstr "Näytä tarkempi ohjelmatieto"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Näytä tarkempi ohjelmatieto"
+
+msgid "Show details"
+msgstr "Näytä tiedot"
 
 msgid "Show details of highlighted task"
 msgstr "Näytä yksityiskohdat korostuneesta tehtävästä"
@@ -18132,6 +18204,9 @@ msgstr "Nopeus"
 msgid "Split preview mode"
 msgstr "Jaettu esikatseluruutu"
 
+msgid "Split tasks"
+msgstr "Jaetut tehtävät"
+
 msgid "Splitscreen"
 msgstr "Jaettu ruutu"
 
@@ -18804,7 +18879,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 17.1.2024\n"
+"Suomenkielinen käännös: 24.2.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -18960,6 +19035,9 @@ msgstr "Telugu"
 #, python-format
 msgid "Temp directory (%s)"
 msgstr "Tilapäishakemisto (%s)"
+
+msgid "Temporary directory"
+msgstr "Väliaikainen hakemisto"
 
 msgid "Tennis"
 msgstr "Tennis"
@@ -20831,6 +20909,9 @@ msgstr "Käytä kanavan vaihto ajastimen lopetusaikoja"
 msgid "Use a gateway"
 msgstr "Käytä yhdyskäytävää"
 
+msgid "Use alternate GitHub DNS"
+msgstr "Käytä vaihtoehtoista GitHub DNS"
+
 msgid "Use an alternative smaller screen."
 msgstr "Käytä vaihtoehtoista näyttöä."
 
@@ -20949,7 +21030,7 @@ msgid "Use the current selection and exit"
 msgstr "Käytä nykyistä valintaa ja poistu"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Käytä nuolinäppäimiä valitsevaksi asennettu image ja sitten Käynnistä näppäintä."
+msgstr "Käytä nuolinäppäimiä valitaksesi asennettu ohjelmisto ja sitten Käynnistä näppäintä."
 
 msgid "Use the extended List"
 msgstr "Käytä laajennettua listaa"
@@ -21527,6 +21608,9 @@ msgstr "Varoitus"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "VAROITUS: %d ei voi ladata!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr "Varoitus: Tämän prosessin peruuttaminen jättää syötteet käyttökelvottomaan tilaan!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Varoitus: Ohitukset ovat tällä hetkellä aktiivisia!"
 
@@ -21796,6 +21880,12 @@ msgstr "Kun päällä, vastaanotin valitsee AC3-ääniraidan (kun saatavilla)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kun päällä, vastaanotin valitsee AC3+ ääniraidan (kun saatavilla)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Kun päällä, tämä ohittaa tallennusten ensisijainen viritin valinnan"
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Kun päällä, tämä ohittaa ensisijainen viritin valinnan"
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kun päällä, ajansiirto alkaa automaattisesti määritetyn ajan kuluttua valittuna olevalla kanavalla."
@@ -22539,7 +22629,7 @@ msgid "bc%d"
 msgstr "bc%d"
 
 msgid "because of the used file system the back-up\n"
-msgstr "käytetyn tiedostojärjestelmän vuoksi varmuuskopiointi\n"
+msgstr "Järjestelmästä riippuen varmuuskopiointi vie aikaa\n"
 
 msgid "better"
 msgstr "parempi"
@@ -23464,7 +23554,7 @@ msgid "width"
 msgstr "leveys"
 
 msgid "will take about 1-15 minutes for this system\n"
-msgstr "kestää noin 1-15 minuuttia.\n"
+msgstr "noin 5-10 minuuttia.\n"
 
 msgid "winter sport"
 msgstr "talviurheilu"
@@ -23496,35 +23586,19 @@ msgstr "kyllä (pidä syötteet)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Ensisijainen DVB-S viritin"
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Tallennusten ensisijainen DVB-S viritin"
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
-msgid "Preferred tuner DVB-T"
-msgstr "Ensisijainen DVB-T viritin"
+#~ msgid "Mounts Settings"
+#~ msgstr "Verkkoliitosten asetukset"
 
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Tallennusten ensisijainen DVB-T viritin"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Ensisijainen DVB-C viritin"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Tallennusten ensisijainen DVB-C viritin"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Kun päällä, tämä ohittaa ensisijainen viritin valinnan"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Kun päällä, tämä ohittaa tallennusten ensisijainen viritin valinnan"
-
-msgid "Preferred tuner ATSC"
-msgstr "Ensisijainen ATSC-viritin"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Tallennusten ensisijainen ATSC-viritin"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "OSCam Loki"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -24054,12 +24128,6 @@ msgstr "Tallennusten ensisijainen ATSC-viritin"
 
 #~ msgid "Trying to download a new packet list. Please wait..."
 #~ msgstr "Ladataan uusinta IPKG-ohjelmapakettiluetteloa. Odota..."
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "%d paketti löytyi."
-#~ msgstr[1] "%d pakettia löytyi."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Lisää / Poista korostettu lisäosa lataus listalle"

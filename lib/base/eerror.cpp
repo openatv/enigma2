@@ -139,26 +139,30 @@ extern void bsodFatal(const char *component);
 int formatTime(char *buf, int bufferSize, int flags)
 {
 	int pos = 0;
-	struct timespec tp;
-	struct tm loctime;
-	struct timeval tim;
-
-	if (!(flags & _DBGFLG_NOTIME)) {
-		if (debugTime & 6) {
+	if (!(flags & _DBGFLG_NOTIME))
+	{
+		if (debugTime & 6)
+		{
+			struct tm loctime;
+			struct timeval tim;
 			gettimeofday(&tim, NULL);
 			localtime_r(&tim.tv_sec, &loctime);
-			if (debugTime & 4) {
-				pos += snprintf(buf + pos, bufferSize - pos, "%04d-%02d-%02d ", 
-					loctime.tm_year + 1900, loctime.tm_mon + 1, loctime.tm_mday);
+			if (debugTime & 4)
+			{
+				pos += snprintf(buf + pos, bufferSize - pos, "%04d-%02d-%02d ", loctime.tm_year + 1900, loctime.tm_mon + 1, loctime.tm_mday);
 			}
-			if (debugTime & 2) {
-				pos += snprintf(buf + pos, bufferSize - pos, "%02d:%02d:%02d.%04lu ", 
-					loctime.tm_hour, loctime.tm_min, loctime.tm_sec, tim.tv_usec / 100L);
+			if (debugTime & 2)
+			{
+				// Cast to (long long) is to cater for older 32-bit time fields
+				pos += snprintf(buf + pos, bufferSize - pos, "%02d:%02d:%02d.%04lld ", loctime.tm_hour, loctime.tm_min, loctime.tm_sec, (long long)tim.tv_usec / 100L);
 			}
 		}
-		if (debugTime & 1) {
+		if (debugTime & 1)
+		{
+			struct timespec tp;
 			clock_gettime(CLOCK_MONOTONIC, &tp);
-			pos += snprintf(buf + pos, bufferSize - pos, "<%6lu.%04lu> ", tp.tv_sec, tp.tv_nsec/100000);
+			// Cast to (long long) is to cater for older 32-bit time fields
+			pos += snprintf(buf + pos, bufferSize - pos, "<%6lld.%06lld> ", (long long)tp.tv_sec, (long long)tp.tv_nsec / 1000);
 		}
 	}
 	return pos;

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/he/>\n"
@@ -992,6 +992,12 @@ msgid "%d ms"
 msgstr "דקות %d"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -1218,10 +1224,6 @@ msgstr " על השלט על מנת להמשיך OK לחץ  "
 msgid "%s (%04o)"
 msgstr "%s (%s)\n"
 
-#, fuzzy, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)\n"
-
 #
 #, fuzzy, python-format
 msgid "%s - Setup"
@@ -1290,10 +1292,6 @@ msgstr ""
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%s: %s"
 msgstr ""
 
 #, python-format
@@ -1925,6 +1923,9 @@ msgid "Active"
 msgstr "פעיל"
 
 msgid "Active clients"
+msgstr ""
+
+msgid "Active only"
 msgstr ""
 
 #
@@ -7074,6 +7075,9 @@ msgstr "אפשר"
 msgid "Enable 5V for active antenna"
 msgstr "Enable 5V for active antenna"
 
+msgid "Enable Autorecord"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Enable BT Audio"
@@ -7517,6 +7521,10 @@ msgstr "...כנס לתפריט ראשי"
 msgid "Entitlements"
 msgstr ""
 
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
+
 msgid "Entry image and text"
 msgstr ""
 
@@ -7573,11 +7581,19 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -9646,6 +9662,9 @@ msgstr ""
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -10302,6 +10321,9 @@ msgid "Just zap"
 msgstr ""
 
 msgid "KA-SAT"
+msgstr ""
+
+msgid "KSymb/s"
 msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
@@ -11536,9 +11558,6 @@ msgstr ""
 msgid "Mounts Devices"
 msgstr ""
 
-msgid "Mounts Settings"
-msgstr ""
-
 msgid "Move"
 msgstr ""
 
@@ -12756,10 +12775,21 @@ msgstr ""
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13764,6 +13794,9 @@ msgstr ""
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
+msgid "Please wait while the file is read and processed..."
+msgstr ""
+
 #, fuzzy
 msgid "Please wait while the list downloads..."
 msgstr "...נא המתן בעת בדיקת הרשת"
@@ -14045,6 +14078,30 @@ msgid "Prefer subtitles stored by service"
 msgstr ""
 
 msgid "Preferred tuner"
+msgstr ""
+
+msgid "Preferred tuner ATSC"
+msgstr ""
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-C"
+msgstr ""
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-S"
+msgstr ""
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-T"
+msgstr ""
+
+msgid "Preferred tuner DVB-T for recordings"
 msgstr ""
 
 msgid "Preferred tuner for recordings"
@@ -16269,6 +16326,9 @@ msgstr ""
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr ""
 
@@ -17924,6 +17984,12 @@ msgstr ""
 msgid "Show advanced settings"
 msgstr ""
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr ""
 
@@ -17987,6 +18053,9 @@ msgid "Show detailed event info"
 msgstr ""
 
 msgid "Show detailed event info (setup in menu)"
+msgstr ""
+
+msgid "Show details"
 msgstr ""
 
 msgid "Show details of highlighted task"
@@ -19042,6 +19111,9 @@ msgstr ""
 #
 msgid "Split preview mode"
 msgstr "Split preview mode"
+
+msgid "Split tasks"
+msgstr ""
 
 msgid "Splitscreen"
 msgstr ""
@@ -22543,6 +22615,9 @@ msgstr ""
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -22818,6 +22893,12 @@ msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr ""
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
+msgstr ""
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr ""
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr ""
 
 msgid "When enabled, time shift starts automatically in background after specified time."
@@ -24555,35 +24636,9 @@ msgstr "כן (שמור פידים)"
 msgid "®"
 msgstr ""
 
-msgid "Preferred tuner DVB-S"
-msgstr ""
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr ""
-
-msgid "Preferred tuner DVB-T"
-msgstr ""
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr ""
-
-msgid "Preferred tuner DVB-C"
-msgstr ""
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr ""
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr ""
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr ""
-
-msgid "Preferred tuner ATSC"
-msgstr ""
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr ""
+#, fuzzy, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)\n"
 
 #, fuzzy
 #~ msgid "Australian"

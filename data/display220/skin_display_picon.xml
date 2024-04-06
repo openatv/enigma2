@@ -28,7 +28,7 @@
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="120,151" size="100,25" font="Regular; 20" foregroundColor="#02c6ff">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">FOLLOW</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="5,137" size="210,10" borderWidth="2">
 			<convert type="EventTime">Progress</convert>

@@ -37,7 +37,7 @@ def InitUsageConfig():
 	config.misc.SettingsVersion.value = [1, 1]
 	config.misc.SettingsVersion.save_forced = True
 	config.misc.SettingsVersion.save()
-	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", _("%d Minutes") % 30), ("60", _("%d Hour") % 1), ("1440", _("%d Hours") % 24)])
+	config.misc.useNTPminutes = ConfigSelection(default=30, choices=[(30, _("%d Minutes") % 30), (60, _("%d Hour") % 1), (1440, _("%d Hours") % 24)])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 
 	config.misc.extraopkgpackages = ConfigYesNo(default=False)
@@ -46,9 +46,9 @@ def InitUsageConfig():
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
 
 	config.workaround = ConfigSubsection()
-	config.workaround.blueswitch = ConfigSelection(default="0", choices=[
-		("0", _("QuickMenu/Extensions")),
-		("1", _("Extensions/QuickMenu"))
+	config.workaround.blueswitch = ConfigSelection(default=0, choices=[
+		(0, _("QuickMenu/Extensions")),
+		(1, _("Extensions/QuickMenu"))
 	])
 	config.workaround.deeprecord = ConfigYesNo(default=False)
 	config.workaround.wakeuptime = ConfigSelectionNumber(default=5, stepwidth=1, min=0, max=30, wraparound=True)
@@ -161,12 +161,12 @@ def InitUsageConfig():
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
 
 	def correctInvalidEPGDataChange(configElement):
-		eServiceEvent.setUTF8CorrectMode(int(configElement.value))
+		eServiceEvent.setUTF8CorrectMode(configElement.value)
 
-	config.usage.correct_invalid_epgdata = ConfigSelection(default="1", choices=[
-		("0", _("Disabled")),
-		("1", _("Enabled")),
-		("2", _("Debug"))
+	config.usage.correct_invalid_epgdata = ConfigSelection(default=1, choices=[
+		(0, _("Disabled")),
+		(1, _("Enabled")),
+		(2, _("Debug"))
 	])
 	config.usage.correct_invalid_epgdata.addNotifier(correctInvalidEPGDataChange)
 
@@ -554,6 +554,8 @@ def InitUsageConfig():
 	config.usage.remote_fallback = ConfigText(default="http://IP-ADRESS:8001", visible_width=50, fixed_size=False)
 
 	config.usage.http_startdelay = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + [(str(x), _("%d ms") % x) for x in (10, 50, 100, 500, 1000, 2000)])
+
+	config.usage.alternateGitHubDNS = ConfigYesNo(default=False)
 
 	nims = [
 		("-1", _("Auto")),
@@ -1999,6 +2001,7 @@ def InitUsageConfig():
 	# Time shift settings.
 	#
 	config.timeshift = ConfigSubsection()
+	config.timeshift.autorecord = ConfigYesNo(default=False)
 	config.timeshift.check = ConfigYesNo(default=True)
 	config.timeshift.checkEvents = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + [(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in (15, 30, 60, 120, 240, 480)])
 	config.timeshift.checkFreeSpace = ConfigSelection(default=0, choices=[(0, _("No"))] + [(x * 1024, _("%d GB") % x) for x in (1, 2, 4, 8)])

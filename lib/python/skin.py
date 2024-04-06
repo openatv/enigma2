@@ -1,6 +1,7 @@
 from glob import glob
 from os.path import dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
+from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
 from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
@@ -426,7 +427,7 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 
 def parseGradient(value):
 	def validColor(value):
-		if value[0] == "#" and 7 < len(value) < 10:
+		if value[0] == "#" and len(value) in (9, 7):
 			isColor = True
 		elif value in colors:
 			isColor = True
@@ -830,6 +831,15 @@ class AttributeParser:
 
 	def backgroundColor(self, value):
 		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
+
+	def backgroundColorEven(self, value):
+		self.guiObject.setBackgroundColorRows(parseColor(value, 0x00000000))
+
+	def backgroundColorOdd(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
+
+	def backgroundColorRows(self, value):
+		self.guiObject.setBackgroundColorRows(parseColor(value, 0x00000000))
 
 	def backgroundColorSelected(self, value):
 		self.guiObject.setBackgroundColorSelected(parseColor(value, 0x00000000))
@@ -1615,6 +1625,11 @@ class SkinContextVertical(SkinContext):
 
 
 class SkinContextHorizontal(SkinContext):
+	def __init__(self, parent=None, pos=None, size=None, font=None):
+		super().__init__(parent, pos, size, font)
+		self.rx = self.w
+		self.rw = self.w
+
 	def parse(self, pos, size, font):
 		if size in variables:
 			size = variables[size]
@@ -1638,7 +1653,10 @@ class SkinContextHorizontal(SkinContext):
 				self.x += (width + self.spacing)
 				self.w -= (width + self.spacing)
 			elif pos == "right":
-				pos = (self.x + self.w - width, top)
+				if self.rw != self.rx:
+					self.rx -= self.spacing
+				self.rx = self.rx - width
+				pos = (self.rx, top)
 				size = (width, height)
 				self.w -= (width + self.spacing)
 			else:
@@ -1701,7 +1719,7 @@ def readSkin(screen, skin, names, desktop):
 				print("[Skin] No suitable screen found!")
 		else:
 			myScreen = fromstring(skin)
-		if myScreen:
+		if myScreen is not None:
 			screen.parsedSkin = myScreen
 	if myScreen is None:
 		print("[Skin] No skin to read or screen to display.")
@@ -1887,7 +1905,8 @@ def readSkin(screen, skin, names, desktop):
 			try:
 				processor(widget, context)
 			except SkinError as err:
-				print(f"[Skin] Error in screen '{myName}' widget '{widget.tag}' {str(err)}!")
+				print(f"[Skin] Error: Screen '{myName}' widget '{widget.tag}' {str(err)}!")
+				print_exc()
 
 	def processPanel(widget, context):
 		name = widget.attrib.get("name")
@@ -1937,7 +1956,8 @@ def readSkin(screen, skin, names, desktop):
 		context.y = 0
 		processScreen(myScreen, context)
 	except Exception as err:
-		print(f"[Skin] Error in screen '{myName}' {str(err)}!")
+		print(f"[Skin] Error: Screen '{myName}' {str(err)}!")
+		print_exc()
 
 	from Components.GUIComponent import GUIComponent
 	unusedComponents = [x for x in set(screen.keys()) - usedComponents if isinstance(x, GUIComponent)]

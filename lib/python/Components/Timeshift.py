@@ -1085,6 +1085,18 @@ class InfoBarTimeshift:
 				# Create EIT File
 				self.ptsCreateEITFile("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_eventcount))
 
+				# Autorecord
+				if config.timeshift.autorecord.value:
+					try:
+						fullname = getRecordingFilename("%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name), config.usage.default_path.value)
+						link("%s%s" % (config.timeshift.path.value, filename), "%s.ts" % fullname)
+						# Create a Meta File
+						metafile = open("%s.ts.meta" % fullname, "w")
+						metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
+						metafile.close()
+					except Exception as errormsg:
+						print(f"[Timeshift] autorecord Error: '{errormsg}'")
+
 	def ptsRecordCurrentEvent(self):
 		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=config.usage.default_path.value)
 		recording.dontSave = True

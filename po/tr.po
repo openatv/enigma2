@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
+"POT-Creation-Date: 2024-02-23 18:23+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -951,6 +951,11 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "%d paket bulundu."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d paketinde bir güncelleme var"
@@ -1159,11 +1164,6 @@ msgstr "%s %s uzaktan kumanda (yerel)"
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
-#
-#, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
 #, python-format
 msgid "%s - Setup"
 msgstr "%s - kurmak"
@@ -1231,10 +1231,6 @@ msgstr "%s%s(Default: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1876,6 +1872,9 @@ msgstr "Etkin"
 
 msgid "Active clients"
 msgstr "Etkin istemciler"
+
+msgid "Active only"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Ağ donanım ayarları"
@@ -7061,6 +7060,9 @@ msgstr "%s pro'yu etkinleştir:"
 msgid "Enable 5V for active antenna"
 msgstr "Aktif anten için 5V'yi etkinleştir"
 
+msgid "Enable Autorecord"
+msgstr "Autorecord'u etkinleştir"
+
 #
 msgid "Enable BT Audio"
 msgstr "BT Sesini Etkinleştir"
@@ -7505,6 +7507,10 @@ msgstr "Eğlence"
 msgid "Entitlements"
 msgstr "Yetkiler"
 
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr ""
+
 msgid "Entry image and text"
 msgstr "Giriş resmi ve metni"
 
@@ -7562,12 +7568,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Hata %d: '%s' dizini oluşturulamıyor! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Hata %d: İndirilen görüntü '%s' silinemiyor! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Hata %d: '%s', '%s' olarak bağlanamıyor! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -9655,6 +9669,9 @@ msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönder
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "'Evet' olarak ayarlanırsa, timeshift'i alternatif ses eklentileriyle kullanmanıza olanak tanır."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "'Evet' olarak ayarlanırsa, otomatik arka plan zaman kaymasını otomatik olarak etkinleştirin"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "'Derin bekleme geçici çözümü' etkinse, sistem saati eşitlenene kadar bekler. Gereksinime bağlı olarak, uyandırma aygıtları en fazla 2 dakika sonra devam eder."
 
@@ -10304,6 +10321,9 @@ msgstr "Kanal değiştir"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Grönlandca"
@@ -11510,9 +11530,6 @@ msgstr "Mounts"
 
 msgid "Mounts Devices"
 msgstr "Mounts Devices"
-
-msgid "Mounts Settings"
-msgstr "Bağlantı Kurulumu"
 
 msgid "Move"
 msgstr "Taşı"
@@ -12732,10 +12749,21 @@ msgstr "OScam webif'i devre dışı"
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -13741,6 +13769,9 @@ msgstr "Veriler ayıklanırken lütfen bekleyin..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
+msgid "Please wait while the file is read and processed..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Liste indirilirken lütfen bekleyin..."
 
@@ -14022,6 +14053,30 @@ msgstr "Kanalın depoladığı altyazıyı yeğleyin"
 
 msgid "Preferred tuner"
 msgstr "Tercih edilen tuner"
+
+msgid "Preferred tuner ATSC"
+msgstr ""
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr ""
+
+msgid "Preferred tuner DVB-C"
+msgstr "Tercih edilen tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Kayıt için DVB-C tuneri tercih et."
+
+msgid "Preferred tuner DVB-S"
+msgstr "Tercih edilen tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Kayıt için DVB-S tuneri tercih et."
+
+msgid "Preferred tuner DVB-T"
+msgstr "Tercih edilen tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Kayıt için DVB-T tuneri tercih et."
 
 msgid "Preferred tuner for recordings"
 msgstr "Kayıtlar için tercih edilen radyo"
@@ -16254,6 +16309,9 @@ msgstr "Dizinler listesinde geçerli dizini göstermek için 'Evet'i seçin. Bu 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında web bağlantı paketlerini göstermek için 'Evet'i seçin."
 
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "'Evet' olarak ayarlanmışsa sinyal değerleri (SNR, vb.) API V3'ten hesaplanacaktır. Bu, şimdi değiştirilen eski bir API sürümüdür."
 
@@ -17921,6 +17979,12 @@ msgstr "Ek kaydırıcı değerini göster"
 msgid "Show advanced settings"
 msgstr "Gelişmiş ayarları göster"
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr "Meşgulken animasyon göster"
 
@@ -17982,6 +18046,9 @@ msgstr "Detaylı etkinlik bilgisi göster"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Ayrıntılı etkinlik bilgilerini göster (menüde ayarlar)"
+
+msgid "Show details"
+msgstr ""
 
 msgid "Show details of highlighted task"
 msgstr "Vurgulanan görevin ayrıntılarını göster"
@@ -19003,6 +19070,9 @@ msgstr "Hiz"
 #
 msgid "Split preview mode"
 msgstr "Bölünmüş önizleme kipi"
+
+msgid "Split tasks"
+msgstr ""
 
 msgid "Splitscreen"
 msgstr "Bölünmüş ekran"
@@ -22556,6 +22626,9 @@ msgstr "Uyarı"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Uyarı: Geçersiz kılmalar şu anda etkin!"
 
@@ -22833,6 +22906,12 @@ msgstr "Etkinleştirilince, alıcı bir AC3 izi seçecek (varsa)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Etkinleştirildiğinde, alıcı bir AC3 + pisti (mevcut olduğunda) seçecektir."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Etkinleştirildiğinde, bu ayar 'kayıtları için tercih edilen tuner' den fazla ağırlığa sahiptir."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Etkinleştirdiğinizde, bu ayar 'Tercih edilen tuner' den fazla ağırlığa sahiptir."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Etkinleştirildiğinde, zaman kayması belirlenen süre sonunda arka planda otomatik olarak başlar."
@@ -24650,35 +24729,17 @@ msgstr "evet (beslemeleri tut)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Tercih edilen tuner DVB-S"
+#
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Kayıt için DVB-S tuneri tercih et."
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
-msgid "Preferred tuner DVB-T"
-msgstr "Tercih edilen tuner DVB-T"
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Kayıt için DVB-T tuneri tercih et."
-
-msgid "Preferred tuner DVB-C"
-msgstr "Tercih edilen tuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Kayıt için DVB-C tuneri tercih et."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Etkinleştirdiğinizde, bu ayar 'Tercih edilen tuner' den fazla ağırlığa sahiptir."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Etkinleştirildiğinde, bu ayar 'kayıtları için tercih edilen tuner' den fazla ağırlığa sahiptir."
-
-msgid "Preferred tuner ATSC"
-msgstr ""
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr ""
+#~ msgid "Mounts Settings"
+#~ msgstr "Bağlantı Kurulumu"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -25148,11 +25209,6 @@ msgstr ""
 #
 #~ msgid "Trying to download a new packet list. Please wait..."
 #~ msgstr "Yeni paket listesi indiriliyor. Lütfen bekleyin..."
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "%d paket bulundu."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Vurgulanan eklentiyi indirme listesine ekle/listeden kaldır"

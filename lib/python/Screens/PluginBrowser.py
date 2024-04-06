@@ -24,7 +24,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Processing import Processing
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, fileAccess, fileWriteLine, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, fileAccess, fileReadLines, fileWriteLine, fileWriteLines, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -693,7 +693,7 @@ class PluginBrowserSetup(Setup):
 			else:
 				config.usage.piconInstallLocation.cancel()
 			Setup.keySave(self)
-
+		self.swapGitHubDNS()
 		location = config.usage.piconInstallLocation.value
 		if location != "/" and location != config.usage.piconInstallLocation.savedValue:
 			srcExists = False
@@ -718,6 +718,14 @@ class PluginBrowserSetup(Setup):
 			Setup.keySave(self)
 		else:
 			Setup.keySave(self)
+
+	def swapGitHubDNS(self):
+		if config.usage.alternateGitHubDNS.isChanged():
+			lines = fileReadLines("/etc/hosts", source=MODULE_NAME)
+			lines = [line for line in lines if "raw.githubusercontent.com" not in line]
+			if config.usage.alternateGitHubDNS.value:
+				lines += ["%s raw.githubusercontent.com" % ip for ip in ("185.199.108.133", "185.199.109.133", "185.199.110.133", "185.199.111.133", "2606:50c0:8000::154", "2606:50c0:8001::154", "2606:50c0:8002::154", "2606:50c0:8003::154")]
+			fileWriteLines("/etc/hosts", lines, source=MODULE_NAME)
 
 
 class PluginBrowserSummary(ScreenSummary):

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-01-21 11:23+0000\n"
+"POT-Creation-Date: 2024-02-27 11:07+0000\n"
+"PO-Revision-Date: 2024-02-29 15:02+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -953,6 +953,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "È stato trovato %d pacchetto."
+msgstr[1] "Sono stati trovati %d pacchetti."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "C'è %d pacchetto con un aggiornamento."
@@ -1171,10 +1177,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Setup"
 
@@ -1238,10 +1240,6 @@ msgstr "%s%s (predefinito: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1833,6 +1831,9 @@ msgstr "Attivo"
 
 msgid "Active clients"
 msgstr "Clienti attivi"
+
+msgid "Active only"
+msgstr "Solo attivo"
 
 msgid "Adapter Settings"
 msgstr "Impostazioni adattatore"
@@ -6772,6 +6773,9 @@ msgstr "Abilita %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Abilita 5V per antenna attiva"
 
+msgid "Enable Autorecord"
+msgstr "Abilitare registrazione automatica"
+
 msgid "Enable BT Audio"
 msgstr "Abilita audio BT"
 
@@ -7197,6 +7201,10 @@ msgstr "Divertimento"
 msgid "Entitlements"
 msgstr "Diritti"
 
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr "Diritti per \"CAID %s\""
+
 msgid "Entry image and text"
 msgstr "Inserimento immagine e testo"
 
@@ -7253,12 +7261,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Errore %d: impossibile creare la cartella '%s'! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Errore %d: impossibile creare la cartella del pacchetto '%s'!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Errore %d: impossibile eliminare l'immagine scaricata '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Errore %d: impossibile collegare '%s' come '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Errore %d: impossibile leggere '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -9243,6 +9259,9 @@ msgstr "Se impostato su 'Sì', gli stessi comandi verranno inviati alla TV per g
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Se impostato su 'sì', consente di usare il timeshift con plugin audio alternativi."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Se impostato su 'SÌ', il timehift sarà automaticamente salvato nella cartella"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Se è abilitata la soluzione di spegnimento attendi fino a quando l'ora di sistema non viene sincronizzata. A seconda delle esigenze, la riattivazione del dispositivo continuerà dopo un massimo di 2 minuti."
 
@@ -9856,6 +9875,9 @@ msgstr "Solo zap"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Groenlandese"
@@ -10998,9 +11020,6 @@ msgstr "Montaggi"
 msgid "Mounts Devices"
 msgstr "Dispositivi di montaggio"
 
-msgid "Mounts Settings"
-msgstr "Impostazioni montaggio"
-
 msgid "Move"
 msgstr "Sposta"
 
@@ -12131,11 +12150,22 @@ msgstr "OScam webif disabilitato"
 msgid "OSCamInfo Actions"
 msgstr "Azioni OSCamInfo"
 
-msgid "OSCamInfo Log"
-msgstr "Registro OSCamInfo"
-
 msgid "OSCamInfo Log Actions"
 msgstr "Azioni registro di OSCamInfo"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr "OSCamInfo: %s diritti per \"%s\""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr "OSCamInfo: diritti per \"%s\""
+
+msgid "OSCamInfo: Information"
+msgstr "OSCamInfo: informazioni"
+
+msgid "OSCamInfo: Log"
+msgstr "OSCamInfo: registro"
 
 msgid "OSD"
 msgstr "OSD"
@@ -13085,6 +13115,9 @@ msgstr "Attendi estrazione dei dati..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Attendi mentre i feed vengono reimpostati (cancellati e ricaricati)..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Attendi mentre il file viene letto ed elaborato..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Attendi scaricamento dell'elenco..."
 
@@ -13346,6 +13379,30 @@ msgstr "Preferisci sottotitoli memorizzati dal servizio"
 
 msgid "Preferred tuner"
 msgstr "Tuner preferito"
+
+msgid "Preferred tuner ATSC"
+msgstr "Sintonizzatore ATSC preferenziale"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Sintonizzatore ATSC preferenziale per le registrazioni"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Sintonizzatore DVB-C preferenziale"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Sintonizzatore DVB-C preferenziale per le registrazioni"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Sintonizzatore DVB-S preferenziale"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Sintonizzatore DVB-S preferenziale per le registrazioni"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Sintonizzatore DVB-T preferenziale"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Sintonizzatore DVB-T preferenziale per le registrazioni"
 
 msgid "Preferred tuner for recordings"
 msgstr "Tuner preferito per registrazioni"
@@ -15448,6 +15505,12 @@ msgstr "Seleziona 'Sì' per mostrare la cartella attuale nell'elenco delle carte
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Seleziona 'Sì' per mostrare i pacchetti di collegamenti web nella schermata Scarica plugin."
 
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Seleziona 'Sì' per dividere le attività in azioni separate."
+
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr "Seleziona 'Sì' per utilizzare indirizzi IP alternativi del feed GitHub. Può essere utile se usi una VPN e non è possibile accedere ai feed normali tramite i nomi DNS pubblicati."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Seleziona 'Sì' per usare i valori del segnale (SNR, ecc.) calcolati dalla precedente API V3. Questa versione dell'API è stata ora sostituita."
 
@@ -17064,6 +17127,12 @@ msgstr "Mostra valore scorrimento aggiuntivo"
 msgid "Show advanced settings"
 msgstr "Mostra impostazioni avanzate"
 
+msgid "Show all"
+msgstr "Mostra tutto"
+
+msgid "Show all details"
+msgstr "Mostra tutti i dettagli"
+
 msgid "Show animation while busy"
 msgstr "Mostra animazione quando occupato"
 
@@ -17123,6 +17192,9 @@ msgstr "Mostra informazioni dettagliate evento"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Mostra informazioni dettagliate sull'evento"
+
+msgid "Show details"
+msgstr "Mostra dettagli"
 
 msgid "Show details of highlighted task"
 msgstr "Mostra dettagli dell'attività evidenziata"
@@ -18094,6 +18166,9 @@ msgstr "Velocità"
 
 msgid "Split preview mode"
 msgstr "Modalità anteprima separata"
+
+msgid "Split tasks"
+msgstr "Dividi attività"
 
 msgid "Splitscreen"
 msgstr "Schermo diviso"
@@ -20785,6 +20860,9 @@ msgstr "Usa gli orari di fine del timer Zap"
 msgid "Use a gateway"
 msgstr "Usa un gateway"
 
+msgid "Use alternate GitHub DNS"
+msgstr "Usa DNS GitHub alternativi"
+
 msgid "Use an alternative smaller screen."
 msgstr "Usa uno schermo alternativo più piccolo."
 
@@ -21481,6 +21559,9 @@ msgstr "Attenzione"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Avviso: impossibile ricaricare %d feed!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr "Attenzione: l'annullamento di questo processo lascerà i feed in uno stato incompleto e inutilizzabile!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Attenzione: le sostituzioni sono attualmente attive!"
 
@@ -21750,6 +21831,12 @@ msgstr "Se abilitato, il ricevitore selezionerà una traccia AC3 (se disponibile
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Se abilitato, il ricevitore selezionerà una traccia AC3+ (se disponibile)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Impostare il sintonizzatore preferenziale per le registrazioni da usare tra quelli dello stesso tipo. Questa impostazione è prevalente rispetto all'impostazione 'Sintonizzatore preferenziale per le registrazioni'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Impostare il sintonizzatore preferenziale da usare tra quelli dello stesso tipo. Questa impostazione è prevalente rispetto all'impostazione 'Sintonizzatore preferenziale'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Se abilitato, il timeshift si avvierà automaticamente in background dopo l'ora specificata."
@@ -23444,35 +23531,19 @@ msgstr "sì (mantieni feed)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Sintonizzatore DVB-S preferenziale"
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Sintonizzatore DVB-S preferenziale per le registrazioni"
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
-msgid "Preferred tuner DVB-T"
-msgstr "Sintonizzatore DVB-T preferenziale"
+#~ msgid "Mounts Settings"
+#~ msgstr "Impostazioni montaggio"
 
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Sintonizzatore DVB-T preferenziale per le registrazioni"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Sintonizzatore DVB-C preferenziale"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Sintonizzatore DVB-C preferenziale per le registrazioni"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Impostare il sintonizzatore preferenziale da usare tra quelli dello stesso tipo. Questa impostazione è prevalente rispetto all'impostazione 'Sintonizzatore preferenziale'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Impostare il sintonizzatore preferenziale per le registrazioni da usare tra quelli dello stesso tipo. Questa impostazione è prevalente rispetto all'impostazione 'Sintonizzatore preferenziale per le registrazioni'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Sintonizzatore ATSC preferenziale"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Sintonizzatore ATSC preferenziale per le registrazioni"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "Registro OSCamInfo"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -24041,12 +24112,6 @@ msgstr "Sintonizzatore ATSC preferenziale per le registrazioni"
 
 #~ msgid "X11 Utility Packages"
 #~ msgstr "Pacchetti utilità X11"
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "È stato trovato %d pacchetto."
-#~ msgstr[1] "Sono stati trovati %d pacchetti."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Aggiungi o rimuovi il plugin evidenziato dall'elenco dei plugin da scaricare"

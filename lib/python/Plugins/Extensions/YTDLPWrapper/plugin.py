@@ -17,7 +17,7 @@ def zap(session, service, **kwargs):
 				url = url.replace("YT-DLP%3a//", "")
 				url = url.replace("%3a", ":")
 				try:
-					ydl = YoutubeDL({"format": "b", "no_color": True})
+					ydl = YoutubeDL({"format": "b", "no_color": True, "usenetrc": True})
 					result = ydl.extract_info(url, download=False)
 					result = ydl.sanitize_info(result)
 					if result and result.get("url"):

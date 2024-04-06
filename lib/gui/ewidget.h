@@ -25,7 +25,7 @@ public:
 	eSize size() const { return m_size; }
 	eSize csize() const { return m_client_size; }
 
-	void invalidate(const gRegion &region = gRegion::invalidRegion());
+	virtual void invalidate(const gRegion &region = gRegion::invalidRegion());
 
 		/* the window were to attach childs to. Normally, this
 		   is "this", but it can be overridden in case a widget
@@ -46,14 +46,21 @@ public:
 	SWIG_VOID(int) getStyle(ePtr<eWindowStyle> &SWIG_NAMED_OUTPUT(style)) { if (!m_style) return 1; style = m_style; return 0; }
 	void setStyle(eWindowStyle *style) { m_style = style; }
 
-	void setBackgroundColor(const gRGB &col);
+	virtual void setBackgroundColor(const gRGB &col);
 	void clearBackgroundColor();
 
-	void setBorderWidth(int pixel);
-	void setBorderColor(const gRGB &color);
+	virtual void setBorderWidth(int width) { setWidgetBorderWidth(width); }
+	virtual void setBorderColor(const gRGB &color) { setWidgetBorderColor(color); }
 
-	void setWidgetBorderWidth(int pixel) { setBorderWidth(pixel); }
-	void setWidgetBorderColor(const gRGB &color) { setBorderColor(color); }
+	virtual void setWidgetBorderWidth(int width) { 
+			m_border_width = width; 
+			invalidate(); 
+		}
+	virtual void setWidgetBorderColor(const gRGB &color) { 
+			m_border_color = color;
+			m_have_border_color = true;
+			invalidate(); 
+		}
 
 	void setPadding(const eRect &padding) { m_padding = padding; }
 	eRect getPadding() { return m_padding; }
@@ -99,8 +106,6 @@ private:
 
 	void parentRemoved();
 
-	gRGB m_background_color;
-	bool m_have_background_color = false;
 
 	eWidget *m_current_focus, *m_focus_owner;
 
@@ -113,10 +118,6 @@ private:
 	uint8_t m_gradient_direction;
 	std::vector<gRGB> m_gradient_colors;
 
-	bool m_have_border_color;
-	int m_border_width;
-	gRGB m_border_color;
-
 	int m_cornerRadius;
 	uint8_t m_cornerRadiusEdges;
 
@@ -124,6 +125,14 @@ private:
 
 protected:
 	void mayKillFocus();
+
+	gRGB m_background_color;
+	bool m_have_background_color = false;
+
+	bool m_have_border_color;
+	int m_border_width;
+	gRGB m_border_color;
+
 public:
 
 		// all in local space!

@@ -40,7 +40,7 @@ class NTPSyncPoller:
 			setRTCtime(nowTime)
 			eDVBLocalTimeHandler.getInstance().setUseDVBTime(timeSource == "0")
 			eEPGCache.getInstance().timeUpdated()
-			self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
+			self.timer.startLongTimer(config.misc.useNTPminutes.value * 60)
 		else:
 			print("[NetworkTime] System time not yet available.")
 			self.timer.startLongTimer(10)

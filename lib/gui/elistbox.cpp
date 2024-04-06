@@ -564,7 +564,7 @@ int eListbox::event(int event, void *data, void *data2)
 			{
 				if (m_orientation != orVertical && m_content->cursorValid())
 				{
-					int t = m_orientation == orGrid ? (m_top * m_max_columns) : m_top;
+					int t = m_orientation == orGrid ? (m_top * m_max_columns) : m_left;
 					if (i != (m_selected - t) || !m_selection_enabled)
 						m_content->paint(painter, *style, ePoint(posx + xOffset, posy + yOffset), 0);
 				}
@@ -822,13 +822,13 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 
 		if (xfullSpace > m_x_itemSpace)
 		{
+			xOffset = scrollbarLeftSpace;
 			if (m_item_alignment & itemHorizontalAlignCenter)
 				xOffset = ((xfullSpace - m_x_itemSpace) / 2) + scrollbarLeftSpace;
 			if (m_item_alignment & itemHorizontalAlignRight)
 				xOffset = (xfullSpace - m_x_itemSpace) + scrollbarLeftSpace;
 			if (m_item_alignment & itemHorizontalAlignJustify)
 			{
-				xOffset = scrollbarLeftSpace;
 				m_x_itemSpace = m_style.m_selection_width + ((m_max_columns - 1) * m_itemwidth);
 				int xspace = (xfullSpace - m_x_itemSpace) / (m_max_columns - 1);
 				m_spacing.setX(xspace);
@@ -836,13 +836,13 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 		}
 		if (yfullSpace > m_y_itemSpace)
 		{
+			yOffset = scrollbarTopSpace;
 			if (m_item_alignment & itemVertialAlignMiddle)
 				yOffset = ((yfullSpace - m_y_itemSpace) / 2) + scrollbarTopSpace;
 			if (m_item_alignment & itemVertialAlignBottom)
 				yOffset = (yfullSpace - m_y_itemSpace) + scrollbarTopSpace;
 			if (m_item_alignment & itemVertialAlignJustify)
 			{
-				yOffset = scrollbarTopSpace;
 				m_y_itemSpace = m_style.m_selection_height + ((m_max_rows - 1) * m_itemheight);
 				int yspace = (yfullSpace - m_y_itemSpace) / (m_max_rows - 1);
 				m_spacing.setY(yspace);
@@ -850,16 +850,20 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 		}
 	}
 
-	if (m_scrollbar && m_orientation == orVertical)
+	if (m_scrollbar)
 	{
-		if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
+		if(m_orientation != orVertical)
 		{
-			xOffset = m_scrollbar->size().width() + m_scrollbar_offset;
+			if (m_scrollbar_mode == showTopOnDemand || m_scrollbar_mode == showTopAlways)
+			{
+				yOffset = m_scrollbar->size().height() + m_scrollbar_offset;
+			}
 		}
-
-		if (m_scrollbar_mode == showTopOnDemand || m_scrollbar_mode == showTopAlways)
-		{
-			yOffset = m_scrollbar->size().height() + m_scrollbar_offset;
+		else {
+			if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
+			{
+				xOffset = m_scrollbar->size().width() + m_scrollbar_offset;
+			}
 		}
 	}
 }
@@ -1046,42 +1050,48 @@ void eListbox::entryReset(bool selectionHome)
 	invalidate();
 }
 
-void eListbox::setSpacingColor(gRGB &col)
+void eListbox::setSpacingColor(const gRGB &col)
 {
 	eWidget::setBackgroundColor(col);
 	m_style.m_spacing_color = col;
 	m_style.is_set.spacing_color = 1;
 }
 
-void eListbox::setBackgroundColor(gRGB &col)
+void eListbox::setBackgroundColor(const gRGB &col)
 {
 	m_style.m_background_color = col;
 	m_style.is_set.background_color = 1;
 }
 
-void eListbox::setBackgroundColorSelected(gRGB &col)
+void eListbox::setBackgroundColorSelected(const gRGB &col)
 {
 	m_style.m_background_color_selected = col;
 	m_style.is_set.background_color_selected = 1;
 }
 
-void eListbox::setForegroundColor(gRGB &col)
+void eListbox::setBackgroundColorRows(const gRGB &col)
+{
+	m_style.m_background_color_rows = col;
+	m_style.is_set.background_color_rows = 1;
+}
+
+void eListbox::setForegroundColor(const gRGB &col)
 {
 	m_style.m_foreground_color = col;
 	m_style.is_set.foreground_color = 1;
 }
 
-void eListbox::setForegroundColorSelected(gRGB &col)
+void eListbox::setForegroundColorSelected(const gRGB &col)
 {
 	m_style.m_foreground_color_selected = col;
 	m_style.is_set.foreground_color_selected = 1;
 }
 
-void eListbox::setBorderWidth(int size)
+void eListbox::setBorderWidth(int width)
 {
-	m_style.m_border_size = size;
+	m_style.m_border_size = width;
 	if (m_scrollbar)
-		m_scrollbar->setBorderWidth(size);
+		m_scrollbar->setBorderWidth(width);
 }
 
 void eListbox::setScrollbarBorderWidth(int width)
@@ -1288,6 +1298,11 @@ void eListbox::moveSelection(int dir)
 	if (!maxItems || !m_content->size())
 		return;
 
+	if (dir == refresh)
+	{
+		invalidate();
+		return;
+	}
 	// patch pageUp / pageDown for virtual listbox if native keys enabled
 	if (m_orientation == orVertical && m_native_keys_bound)
 	{
@@ -1437,9 +1452,6 @@ void eListbox::moveSelection(int dir)
 			}
 			prevSel = newSel;
 		} while (newSel != oldSel && !m_content->currentCursorSelectable());
-		break;
-	case refresh:
-		oldSel = ~m_selected;
 		break;
 	case moveTop:
 		m_content->cursorHome();

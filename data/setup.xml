@@ -563,6 +563,7 @@
 		<item level="2" text="Show Source packages" description="Select 'Yes' to show source 'src' packages in the Download Plugins screen.">config.pluginfilter.src</item>
 		<item level="2" text="Show Development packages" description="Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen.">config.pluginfilter.extraopkgpackages</item>
 		<item level="0" text="User Feed URL" description="Enter your personal feed URL to allow you to select packages from your personal feed.">config.pluginfilter.userfeed</item>
+		<item level="0" text="Use alternate GitHub DNS" description="Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names.">config.usage.alternateGitHubDNS</item>
 	</setup>
 	<setup key="PowerTimer" title="PowerTimer Settings">
 		<item level="0" text="Timer type" description="Select the type of this timer.">self.timerType</item>
@@ -804,6 +805,7 @@
 	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="1">
 		<item level="2" text="Time shift buffer location" description="Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.timeshift.path</item>
 		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time.">config.timeshift.startDelay</item>
+		<item level="2" text="Enable Autorecord" description="If set to 'yes', enable autorecord for automatically background timeshift">config.timeshift.autorecord</item>
 		<item level="1" text="Show warning when time shift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift.">config.timeshift.check</item>
 		<item level="2" text="Show status messages on switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showLiveTVMsg</item>
 		<item level="2" text="Time shift save action on zap" description="Select if time shift must continue when set to record.">config.timeshift.favoriteSaveAction</item>

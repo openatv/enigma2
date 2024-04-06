@@ -4,7 +4,7 @@
 #include <lib/gui/ewidgetdesktop.h>
 
 ePixmap::ePixmap(eWidget *parent)
-	: eWidget(parent), m_alphatest(0), m_scale(0), m_have_border_color(false), m_border_width(0)
+	: eWidget(parent), m_alphatest(0), m_scale(0)
 {
 }
 
@@ -60,19 +60,6 @@ void ePixmap::setPixmapFromFile(const char *filename)
 	// TODO: This only works for desktop 0
 	getDesktop(0)->makeCompatiblePixmap(*m_pixmap);
 	event(evtChangedPixmap);
-}
-
-void ePixmap::setBorderWidth(int pixel)
-{
-	m_border_width = pixel;
-	invalidate();
-}
-
-void ePixmap::setBorderColor(const gRGB &color)
-{
-	m_border_color = color;
-	m_have_border_color = true;
-	invalidate();
 }
 
 void ePixmap::checkSize()

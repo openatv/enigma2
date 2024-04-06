@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-01-17 15:34+0000\n"
+"POT-Creation-Date: 2024-03-10 17:07+0000\n"
+"PO-Revision-Date: 2024-03-12 13:02+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -977,11 +977,18 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "Znaleziono %d pakiet."
+msgstr[1] "Znaleziono %d pakiety."
+msgstr[2] "Znaleziono %d pakietów."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d pakiet ma aktualizację"
 msgstr[1] "%d pakiety mają aktualizacje."
-msgstr[2] "%d pakiety mają aktualizacje."
+msgstr[2] "%d pakietów ma aktualizacje."
 
 #, python-format
 msgid "%d package installable."
@@ -1023,7 +1030,7 @@ msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] "%d pakiet uaktualniony."
 msgstr[1] "%d pakietów uaktualniono."
-msgstr[2] "%d pakiet uaktualniony."
+msgstr[2] "%d pakietów uaktualnionych."
 
 #, python-format
 msgid "%d package was configured."
@@ -1211,10 +1218,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Ustawienia"
 
@@ -1279,10 +1282,6 @@ msgstr "%s%s(Domyślnie: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1875,6 +1874,9 @@ msgstr "Aktywny"
 
 msgid "Active clients"
 msgstr "Aktywnych klientów"
+
+msgid "Active only"
+msgstr "Tylko aktywne"
 
 msgid "Adapter Settings"
 msgstr "Ustawienia adaptera"
@@ -6817,6 +6819,9 @@ msgstr "Włącz %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Włącz 5V dla aktywnej anteny"
 
+msgid "Enable Autorecord"
+msgstr "Włącz nagrywanie automatyczne"
+
 msgid "Enable BT Audio"
 msgstr "Włącz BT Audio"
 
@@ -7244,6 +7249,10 @@ msgstr "Rozrywka"
 msgid "Entitlements"
 msgstr "Uprawnienia"
 
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr "Uprawnienia dla 'CAID %s'"
+
 msgid "Entry image and text"
 msgstr "Obraz i tekst wpisu"
 
@@ -7300,12 +7309,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Błąd %d: Nie udało się utworzyć katalogu '%s'!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Błąd %d: Nie można utworzyć katalogu pakietu '%s'!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Błąd %d: Nie udało się usunąć pobranego obrazu '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Błąd %d: Nie udało się zlinkować '%s' jako '%s'!  (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Błąd %d: Nie można odczytać '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -9290,6 +9307,9 @@ msgstr "Jeśli \"Tak\", ta sama komenda zostanie wysłana do TV dla zdarzeń wy�
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Jeśli ustawiony jest na \"tak\", pozwala na używanie timeshift z alternatywnymi wtyczkami audio."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie w tle z timeshiftem"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jeśli włączono obejście głębokiego czuwania, oczekuj do czasu aż system zostanie zsynchronizowany. W zależności od wymogu budzenie urządzenia będzie kontynuowane po maksymalnie 2 minutach."
 
@@ -9903,6 +9923,9 @@ msgstr "Tylko przełącz"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / grenlandzki"
@@ -11048,9 +11071,6 @@ msgstr "Montowanie"
 msgid "Mounts Devices"
 msgstr "Montowanie urządzeń"
 
-msgid "Mounts Settings"
-msgstr "Ustawienia montowania"
-
 msgid "Move"
 msgstr "Przenieś"
 
@@ -12181,11 +12201,22 @@ msgstr "OSCam webif wyłączony"
 msgid "OSCamInfo Actions"
 msgstr "Działania OSCamInfo"
 
-msgid "OSCamInfo Log"
-msgstr "Log OSCamInfo"
-
 msgid "OSCamInfo Log Actions"
 msgstr "Akcje logów OSCamInfo"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr "OSCamInfo: %s uprawnienia dla '%s'"
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr "OSCamInfo: Uprawnienia dla '%s'"
+
+msgid "OSCamInfo: Information"
+msgstr "OSCamInfo: Informacje"
+
+msgid "OSCamInfo: Log"
+msgstr "OSCamInfo: Log"
 
 msgid "OSD"
 msgstr "OSD"
@@ -12742,10 +12773,10 @@ msgid "Percentage/Progress bar right"
 msgstr "Procent/Pasek postępu w prawo"
 
 msgid "Perform an on-line flash instead"
-msgstr "Wykonaj aktualizację z internetu"
+msgstr "Zamiast tego wykonaj flashowanie online"
 
 msgid "Perform the upgrade?"
-msgstr "Przeprowadzić ulepszanie?"
+msgstr "Wykonać aktualizację?"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Czy usunąć z kosza wszystkie nagrania?"
@@ -13135,6 +13166,9 @@ msgstr "Proszę poczekać, aż dane zostaną wyodrębnione..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Poczekaj, aż feedy zostaną zresetowane (wyczyszczone i ponownie załadowane)..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Proszę czekać, aż plik zostanie odczytany i przetworzony..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Poczekaj, aż lista się pobierze..."
 
@@ -13399,6 +13433,30 @@ msgstr "Preferuj napisy zapamiętane dla kanału"
 msgid "Preferred tuner"
 msgstr "Preferowany tuner"
 
+msgid "Preferred tuner ATSC"
+msgstr "Preferowany tuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Preferowany tuner ATSC dla nagrywania"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Preferowany tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Tuner DVB-C preferowany dla nagrywania"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Preferowany tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Tuner DVB-S preferowany dla nagrywania"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Preferowany tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Tuner DVB-T preferowany dla nagrywania"
+
 msgid "Preferred tuner for recordings"
 msgstr "Preferowany tuner nagrywania"
 
@@ -13430,26 +13488,26 @@ msgid "Press OK for MultiBoot selection."
 msgstr "Naciśnij OK, aby wybrać opcję MultiBoot."
 
 msgid "Press OK on your remote control to continue."
-msgstr "Wciśnij 'OK', aby kontynuować."
+msgstr "Naciśnij OK na pilocie, aby kontynuować."
 
 msgid "Press OK to activate the selected skin."
-msgstr "Wciśnij 'OK', aby aktywować wybraną skórkę."
+msgstr "Naciśnij OK, aby aktywować wybraną skórkę."
 
 msgid "Press OK to activate the settings."
-msgstr "Wciśnij 'OK', aby aktywować ustawienia."
+msgstr "Naciśnij OK, aby aktywować ustawienia."
 
 msgid "Press OK to continue."
 msgstr "Naciśnij OK aby kontynuować."
 
 msgid "Press OK to edit the settings."
-msgstr "Wciśnij OK, aby edytować ustawienia."
+msgstr "Naciśnij OK, aby edytować ustawienia."
 
 msgid "Press OK to enter PIN code"
 msgstr "Naciśnij OK, aby wprowadzić kod PIN"
 
 #, python-format
 msgid "Press OK to get further details for %s"
-msgstr "Wciśnij 'OK', aby uzyskać więcej informacji o %s"
+msgstr "Naciśnij OK, aby uzyskać więcej szczegółów dla %s"
 
 msgid "Press OK to init module"
 msgstr "Naciśnij OK, aby zainicjować moduł"
@@ -13472,13 +13530,13 @@ msgid "Press OK to reset module"
 msgstr "Naciśnij OK, aby zresetować moduł"
 
 msgid "Press OK to scan"
-msgstr "Wciśnij 'OK', aby skanować"
+msgstr "Naciśnij OK, aby zeskanować"
 
 msgid "Press OK to select a group of satellites to configure in one block."
 msgstr "Naciśnij OK, aby wybrać grupę satelitów do skonfigurowania w jednym bloku."
 
 msgid "Press OK to select a provider."
-msgstr "Wciśnij 'OK', aby wybrać dostawcę."
+msgstr "Naciśnij OK, aby wybrać dostawcę."
 
 msgid "Press OK to select a service."
 msgstr "Naciśnij 'OK', aby wybrać kanał."
@@ -13487,7 +13545,7 @@ msgid "Press OK to select satellites"
 msgstr "Naciśnij 'OK', aby wybrać satelity"
 
 msgid "Press OK to select/deselect a CAId."
-msgstr "Wciśnij OK, aby wybrać/odznaczyć CAId."
+msgstr "Naciśnij OK, aby zaznaczyć/odznaczyć CAId."
 
 msgid "Press OK to set the MAC address."
 msgstr "Naciśnij przycisk 'OK', aby ustawić MAC adres."
@@ -13496,7 +13554,7 @@ msgid "Press OK to start the backup now"
 msgstr "Naciśnij OK, aby rozpocząć tworzenie kopii teraz"
 
 msgid "Press OK to start the scan"
-msgstr "Wciśnij 'OK', aby rozpocząć skanowanie"
+msgstr "Naciśnij OK, aby rozpocząć skanowanie"
 
 msgid "Press OK to start using %s %s"
 msgstr "Naciśnij OK, aby rozpocząć używanie %s %s"
@@ -13505,7 +13563,7 @@ msgid "Press OK to toggle the selection"
 msgstr "Naciśnij 'OK', aby przełączyć wybór"
 
 msgid "Press OK to toggle the selection."
-msgstr "Wciśnij 'OK', aby przełączyć wybór."
+msgstr "Naciśnij OK, aby przełączyć wybór."
 
 #, python-format
 msgid "Press OK to use this language.  [%s]"
@@ -15311,7 +15369,7 @@ msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your 
 msgstr "Wybierz opcję \"polaryzacja\", jeśli używasz \"uniwersalnego\" konwertera LNB, w przeciwnym razie zapoznaj się z arkuszem danych technicznych konwertera LNB."
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Wybierz „dostawcę”, aby skanować z predefiniowanej listy multipleksów kablowych. Wybierz „pasma”, aby skanować tylko niektóre części widma. Wybierz „kroki”, aby skanować w krokach określonej szerokości pasma."
+msgstr "Wybierz opcję „Dostawca”, aby skanować z predefiniowanej listy multipleksów kablowych. Wybierz „Pasma”, aby skanować tylko określone części widma. Wybierz „Kroki”, aby skanować krokowo dla określonego pasma częstotliwości."
 
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Wybierz \"Tak\", jeśli czas zakończenia jest wymagany dla tego timera."
@@ -15501,6 +15559,12 @@ msgstr "Wybierz \"Tak\", aby wyświetlić bieżący katalog na liście katalogó
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Wybierz \"Tak\", aby wyświetlić pakiety linków internetowych na ekranie pobierania wtyczek."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Wybierz 'Tak', aby podzielić zadania na osobne działania."
+
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr "Wybierz \"Tak\", aby użyć alternatywnego adresu IP źródła GitHub. Może to być pomocne, gdy używasz VPN, a nie można uzyskać dostępu do normalnych źródeł za pomocą opublikowanych nazw DNS."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jeśli ustawione na \"tak\", wartości sygnału (SNR itp.) będą obliczane na podstawie API V3. Jest to stara wersja API, która została już zastąpiona."
@@ -16193,7 +16257,7 @@ msgid "Select your provider and region. If not present in this list you will nee
 msgstr "Wybierz dostawcę i region. Jeśli nie ma go na tej liście, musisz wybrać jeden z pozostałych „typów skanowania usługi”."
 
 msgid "Select your provider, and press OK to start the scan"
-msgstr "Wybierz dostawcę i wciśnij 'OK' aby rozpocząć skanowanie"
+msgstr "Wybierz swojego dostawcę i naciśnij OK, aby rozpocząć skanowanie"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Wybierz swój region. Jeśli nie jest dostępny, zmień „Kraj” na „wszystkie” i wybierz jedną z domyślnych opcji."
@@ -17118,6 +17182,12 @@ msgstr "Pokaż dodatkową wartość suwaka"
 msgid "Show advanced settings"
 msgstr "Pokaż ustawienia zaawansowane"
 
+msgid "Show all"
+msgstr "Pokaż wszystko"
+
+msgid "Show all details"
+msgstr "Pokaż wszystkie szczegóły"
+
 msgid "Show animation while busy"
 msgstr "Pokaż animację, gdy zajęty"
 
@@ -17177,6 +17247,9 @@ msgstr "Pokaż szczegółowy opis wydarzenia"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Pokaż szczegółowy opis wydarzenia (ustawienia w menu)"
+
+msgid "Show details"
+msgstr "Pokaż szczegóły"
 
 msgid "Show details of highlighted task"
 msgstr "Pokaż szczegóły podświetlonego zadania"
@@ -18152,6 +18225,9 @@ msgstr "Prędkość"
 msgid "Split preview mode"
 msgstr "Tryb podzielonego podglądu"
 
+msgid "Split tasks"
+msgstr "Podziel zadania"
+
 msgid "Splitscreen"
 msgstr "Podzielony ekran"
 
@@ -18978,6 +19054,9 @@ msgstr "Telugu"
 #, python-format
 msgid "Temp directory (%s)"
 msgstr "Katalog tymczasowy (%s)"
+
+msgid "Temporary directory"
+msgstr "Katalog tymczasowy"
 
 msgid "Tennis"
 msgstr "Tenis"
@@ -20842,6 +20921,9 @@ msgstr "Użyj czasów zakończenia timera Zap"
 msgid "Use a gateway"
 msgstr "Użyj bramy"
 
+msgid "Use alternate GitHub DNS"
+msgstr "Użyj alternatywnego DNS GitHub"
+
 msgid "Use an alternative smaller screen."
 msgstr "Użyj alternatywnego mniejszego ekranu."
 
@@ -21538,6 +21620,9 @@ msgstr "Ostrzeżenie"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Ostrzeżenie: nie można ponownie załadować %d feeds!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr "Ostrzeżenie: Anulowanie tego procesu spowoduje, że kanały staną się niekompletne i nienadające się do użytku!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Uwaga: Nadpisywanie jest aktualnie aktywne!"
 
@@ -21807,6 +21892,12 @@ msgstr "Gdy włączone, zostanie wybrana ścieżka audio AC3 (jeśli jest dostę
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Gdy włączone, zostanie wybrana ścieżka AC3 + (jeśli jest dostępna)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Po włączeniu to ustawienie ma większą wagę niż „Preferowany tuner do nagrań”."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Po włączeniu to ustawienie ma większą wagę niż „Preferowany tuner”."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Określ czas, po którym ma zostać włączony timeshift."
@@ -23502,35 +23593,19 @@ msgstr "tak (zachować kanały)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Preferowany tuner DVB-S"
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Tuner DVB-S preferowany dla nagrywania"
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
-msgid "Preferred tuner DVB-T"
-msgstr "Preferowany tuner DVB-T"
+#~ msgid "Mounts Settings"
+#~ msgstr "Ustawienia montowania"
 
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Tuner DVB-T preferowany dla nagrywania"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Preferowany tuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Tuner DVB-C preferowany dla nagrywania"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Gdy włączone, to ustawienie ma pierwszeństwo przed opcją 'Tuner preferowany'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Gdy włączone, to ustawienie ma pierwszeństwo przed opcją 'Tuner preferowany dla nagrywania'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Preferowany tuner ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Preferowany tuner ATSC dla nagrywania"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "Log OSCamInfo"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -24081,13 +24156,6 @@ msgstr "Preferowany tuner ATSC dla nagrywania"
 
 #~ msgid "X11 Utility Packages"
 #~ msgstr "Pakiety narzędziowe X11"
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "%d pakiet znaleziony."
-#~ msgstr[1] "%d znalezione pakiety."
-#~ msgstr[2] "%d znaleziono pakietów."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Dodaj/Usuń podświetloną wtyczkę do/z listy pobierania"

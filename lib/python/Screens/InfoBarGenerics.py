@@ -3295,13 +3295,13 @@ class InfoBarExtensions:
 			p(self)
 
 	def bluekey_qm(self):
-		if config.workaround.blueswitch.value == "1":
+		if config.workaround.blueswitch.value:
 			self.showExtensionSelection()
 		else:
 			self.quickmenuStart()
 
 	def bluekey_ex(self):
-		if config.workaround.blueswitch.value == "1":
+		if config.workaround.blueswitch.value:
 			self.quickmenuStart()
 		else:
 			self.showExtensionSelection()
@@ -3833,7 +3833,7 @@ class InfoBarQuickMenu:
 			}, prio=0, description=_("QuickMenu Actions"))
 
 	def bluekey_qm(self):
-		if config.workaround.blueswitch.value == "1":
+		if config.workaround.blueswitch.value:
 			self.showExtensionSelection()
 		else:
 			self.quickmenuStart()
@@ -4206,6 +4206,18 @@ class InfoBarSubserviceSelection:
 	def playSubservice(self, ref):
 		if ref.getUnsignedData(6) == 0 and "%3a" not in ref.toString():
 			ref.setName("")
+		if ref.getPath():
+			wrappererror = None
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
+				(newurl, errormsg) = p(session=self.session, service=ref)
+				if errormsg:
+					wrappererror = _("Error getting link via %s\n%s") % (p.name, errormsg)
+					break
+				elif newurl:
+					ref.setAlternativeUrl(newurl)
+					break
+			if wrappererror:
+				Notifications.AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
 		self.session.nav.playService(ref, checkParentalControl=False, adjust=False)
 
 	def changeSubservice(self, direction):

@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-01-17 15:34+0000\n"
-"Last-Translator: VfBFan <VfBFan@users.noreply.hosted.weblate.org>\n"
+"POT-Creation-Date: 2024-02-27 11:07+0000\n"
+"PO-Revision-Date: 2024-02-27 18:42+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -971,6 +971,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "%d Paket gefunden."
+msgstr[1] "%d Pakete gefunden."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d Paket kann aktualisiert werden."
@@ -1193,10 +1199,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s-Einrichtung"
 
@@ -1260,10 +1262,6 @@ msgstr "%s%s(Standard: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1937,6 +1935,9 @@ msgstr "Aktiv"
 
 msgid "Active clients"
 msgstr "Aktive Clients"
+
+msgid "Active only"
+msgstr "Nur aktive"
 
 #
 msgid "Adapter Settings"
@@ -4378,7 +4379,7 @@ msgstr[0] "Warnung löschen"
 msgstr[1] "Warnungen löschen"
 
 msgid "Click the button on your remote you want to change."
-msgstr "Die Taste der Fernbedienung drücken, die neu belegt werden soll."
+msgstr "Die Taste der Fernbedienung drücken, die mit einer neuen Funktion belegt werden soll."
 
 msgid "Client"
 msgstr "Client"
@@ -7169,6 +7170,9 @@ msgstr "Aktiviere %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V für aktive Antenne aktivieren"
 
+msgid "Enable Autorecord"
+msgstr "Automatische Aufnahme aktivieren"
+
 msgid "Enable BT Audio"
 msgstr "Bluetooth-Audio aktivieren"
 
@@ -7614,6 +7618,10 @@ msgstr "Unterhaltung"
 msgid "Entitlements"
 msgstr "Berechtigungen"
 
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr "Berechtigungen für 'CAID %s'"
+
 msgid "Entry image and text"
 msgstr "Bild und Text"
 
@@ -7672,12 +7680,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Fehler %d: Verzeichnis '%s' kann nicht erstellt werden! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Fehler %d: Paketverzeichnis '%s' kann nicht erstellt werden!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Fehler %d: Heruntergeladenes Image '%s' kann nicht gelöscht werden! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Fehler %d: '%s' kann nicht in '%s' geändert werden! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Fehler %d: '%s' kann nicht gelesen werden!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -8587,13 +8603,13 @@ msgstr "Image flashen"
 #. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
-msgstr "Flash Manager - %s Images"
+msgstr "Flash-Manager - %s Images"
 
 msgid "Flash Manager - Distributions"
-msgstr "Flash Manager - Distributionen"
+msgstr "Flash-Manager - Distributionen"
 
 msgid "Flash Manager Actions"
-msgstr "Flash Manager - Aktionen"
+msgstr "Flash-Manager - Aktionen"
 
 msgid "Flash Online"
 msgstr "Flashen online/lokal"
@@ -9760,6 +9776,9 @@ msgstr "Bei 'Ja' werden bei Deep-Standby-Ereignissen dieselben Befehle an das Fe
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Bei 'Ja' kann Timeshift mit alternativen Audio-Plugins verwendet werden."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "'Ja' aktiviert die automatische Aufnahme für Timeshift im Hintergrund."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Wenn der Deep-Standby-Workaround aktiviert ist, wird gewartet, bis die Systemzeit synchronisiert wurde. Je nach Erfordernis wird das Aufwecken der Geräte in maximal 2 Minuten fortgesetzt."
 
@@ -10414,6 +10433,9 @@ msgstr "Umschalthistorie"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Grönländisch"
@@ -11635,9 +11657,6 @@ msgstr "Mounts"
 
 msgid "Mounts Devices"
 msgstr "Gerätemounts"
-
-msgid "Mounts Settings"
-msgstr "Externe Freigaben einbinden"
 
 msgid "Move"
 msgstr "Verschieben"
@@ -12881,11 +12900,22 @@ msgstr "OSCam-Weboberfläche deaktiviert"
 msgid "OSCamInfo Actions"
 msgstr "OSCamInfo Aktionen"
 
-msgid "OSCamInfo Log"
-msgstr "OSCamInfo-Log"
-
 msgid "OSCamInfo Log Actions"
 msgstr "OSCamInfo-Log Aktionen"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr "OSCamInfo: %s Berechtigungen für '%s'"
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr "OSCamInfo: Berechtigungen für '%s'"
+
+msgid "OSCamInfo: Information"
+msgstr "OSCamInfo: Information"
+
+msgid "OSCamInfo: Log"
+msgstr "OSCamInfo: Log"
 
 msgid "OSD"
 msgstr "OSD"
@@ -13010,10 +13040,10 @@ msgid "Open AutoTimerlist"
 msgstr "AutoTimer-Liste anzeigen"
 
 msgid "Open EPGSearch"
-msgstr "Öffne EPG-Suche"
+msgstr "EPG-Suche öffnen"
 
 msgid "Open IMDb"
-msgstr "Öffne IMDb"
+msgstr "IMDb öffnen"
 
 msgid "Open Log"
 msgstr "Log öffnen"
@@ -13033,7 +13063,7 @@ msgstr "Timer anzeigen"
 
 #
 msgid "Open bouquetlist"
-msgstr "Öffne Favoritenliste"
+msgstr "Favoritenliste öffnen"
 
 msgid "Open context menu"
 msgstr "Kontextmenü öffnen"
@@ -13045,33 +13075,33 @@ msgid "Open external subtitle management screen"
 msgstr "Externe Untertitel-Verwaltung öffnen"
 
 msgid "Open favorites list"
-msgstr "Öffne Favoritenliste"
+msgstr "Favoritenliste öffnen"
 
 msgid "Open file sort menu"
 msgstr "Sortierungsmenü öffnen"
 
 msgid "Open satellites list"
-msgstr "Öffne Satellitenliste"
+msgstr "Satellitenliste öffnen"
 
 msgid "Open service list"
-msgstr "Öffne Senderliste"
+msgstr "Senderliste öffnen"
 
 #
 msgid "Open service list and select next channel"
-msgstr "Öffne Senderliste und wähle nächsten Sender"
+msgstr "Senderliste öffnen und nächsten Sender auswählen"
 
 msgid "Open service list and select next channel for PiP"
 msgstr "Senderliste öffnen und nächsten Sender für Bild-im-Bild auswählen"
 
 #
 msgid "Open service list and select previous channel"
-msgstr "Öffne Senderliste und wähle vorherigen Sender"
+msgstr "Senderliste öffnen und vorherigen Sender auswählen"
 
 msgid "Open service list and select previous channel for PiP"
 msgstr "Senderliste öffnen und vorherigen Sender für Bild-im-Bild auswählen"
 
 msgid "Open the Channel Selection Settings screen"
-msgstr "Öffne Einstellungen der Senderliste"
+msgstr "Einstellungen der Senderliste öffnen"
 
 msgid "Open the Plugin Browser"
 msgstr "Plugin-Manager öffnen"
@@ -13393,7 +13423,7 @@ msgid "Parental Control"
 msgstr "Jugendschutz"
 
 msgid "Parental Control Settings"
-msgstr "Jugendschutz Einstellungen"
+msgstr "Jugendschutz-Einstellungen"
 
 msgid "Parental Guidance Recommended"
 msgstr "Elterliche Anleitung empfohlen"
@@ -13924,6 +13954,9 @@ msgstr "Daten werden entpackt. Bitte warten..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Die Feeds werden gelöscht und dann neu geladen. Bitte warten..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Bitte warten während die Datei gelesen und verarbeitet wird..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Die Liste wird heruntergeladen. Bitte warten..."
 
@@ -14206,6 +14239,30 @@ msgstr "Eingestellte Untertitel des Programms speichern"
 msgid "Preferred tuner"
 msgstr "Bevorzugter Tuner"
 
+msgid "Preferred tuner ATSC"
+msgstr "Bevorzugter Tuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Bevorzugter Tuner ATSC für Aufnahmen"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Bevorzugter Tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Bevorzugter Tuner DVB-C für Aufnahmen"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Bevorzugter Tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Bevorzugter Tuner DVB-S für Aufnahmen"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Bevorzugter Tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Bevorzugter Tuner DVB-T für Aufnahmen"
+
 msgid "Preferred tuner for recordings"
 msgstr "Bevorzugter Tuner bei Aufnahmen"
 
@@ -14213,7 +14270,7 @@ msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Bevorzugte Tuner bei Aufnahmen"
 
 msgid "Preparation time for recording"
-msgstr "Vorbereitungszeit für die Aufnahme (in Sekunden)"
+msgstr "Vorbereitungszeit für die Aufnahme"
 
 #
 msgid "Preparing... Please wait"
@@ -16057,7 +16114,7 @@ msgstr "Scanne %s Band"
 
 #
 msgid "Scan additional SR"
-msgstr "Durchsuche weitere SR"
+msgstr "Weitere SR durchsuchen"
 
 #
 msgid "Scan files..."
@@ -16474,6 +16531,12 @@ msgstr ""
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Weblink-Pakete in der Downloadliste angezeigt."
 
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Bei 'Ja' werden die Aufgaben in separate Aktionen aufgeteilt."
+
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr "'Ja' auswählen, um eine alternative GitHub-DNS Feed IP-Adresse zu verwenden. Das kann helfen, wenn ein VPN benutzt wird, aber die normalen Feeds nicht mittels dem angegebenen DNS-Namen angesprochen werden können."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Bei 'Ja' werden die Signalwerte (SNR usw.) aus API V3 berechnet. Dies ist eine alte API-Version, die jetzt ersetzt wurde."
 
@@ -16678,7 +16741,7 @@ msgid "Select how long to display the task and script message pop up."
 msgstr "Auswählen, wie lange Aufgaben- und Skriptmeldungen angezeigt werden sollen."
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Auswählen, wie lange (in Sekunden) das Lautstärkesymbol angezeigt werden soll, bevor es ausgeblendet wird."
+msgstr "Auswählen, wie viele Sekunden das Lautstärkesymbol angezeigt werden soll, bevor es ausgeblendet wird."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Auswählen, wie dieser Timer wiederholt werden soll."
@@ -18196,6 +18259,12 @@ msgstr "Zusätzlichen Schiebereglerwert anzeigen"
 msgid "Show advanced settings"
 msgstr "Erweiterte Einstellungen anzeigen"
 
+msgid "Show all"
+msgstr "Alles anzeigen"
+
+msgid "Show all details"
+msgstr "Alle Details anzeigen"
+
 msgid "Show animation while busy"
 msgstr "Zeige Animation, solange ausgelastet"
 
@@ -18256,6 +18325,9 @@ msgstr "Detaillierte Sendungsinformationen anzeigen"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Detaillierte Sendungsinformationen anzeigen (Einstellung im Menü)"
+
+msgid "Show details"
+msgstr "Details anzeigen"
 
 msgid "Show details of highlighted task"
 msgstr "Details der markierten Aufgabe anzeigen"
@@ -18873,7 +18945,7 @@ msgid "SleepTimer Actions"
 msgstr "SleepTimer-Aktionen"
 
 msgid "SleepTimer Overview"
-msgstr "SleepTimer Übersicht"
+msgstr "SleepTimer-Übersicht"
 
 msgid "SleepTimer Settings"
 msgstr "Ausschalttimer-Einstellungen"
@@ -19289,6 +19361,9 @@ msgstr "Geschwindigkeit"
 msgid "Split preview mode"
 msgstr "Splitscreen für Vorschaumodus"
 
+msgid "Split tasks"
+msgstr "Aufgaben teilen"
+
 msgid "Splitscreen"
 msgstr "Splitscreen"
 
@@ -19345,7 +19420,7 @@ msgid "Start edit at line end"
 msgstr "Ab Zeilenende bearbeiten"
 
 msgid "Start edit mode"
-msgstr "Starte Bearbeitungsmodus"
+msgstr "Bearbeitungsmodus starten"
 
 #
 msgid "Start from the beginning"
@@ -19362,7 +19437,7 @@ msgstr "Startmodus"
 
 # MovieSelection.py
 msgid "Start offline decode"
-msgstr "Starte offline decodieren"
+msgstr "Offline decodieren starten"
 
 msgid "Start or Stop service"
 msgstr "Dienst starten oder stoppen"
@@ -19381,7 +19456,7 @@ msgid "Start the Kexec initialization"
 msgstr "Kexec-Initialisierung starten"
 
 msgid "Start the highlighted plugin"
-msgstr "Starte das markierte Plugin"
+msgstr "Das markierte Plugin starten"
 
 msgid "Start time"
 msgstr "Startzeit"
@@ -20033,10 +20108,10 @@ msgid "Table of content for collection"
 msgstr "Inhalt der Zusammenstellung"
 
 msgid "Tag Editor"
-msgstr "Tag Editor"
+msgstr "Tag-Editor"
 
 msgid "Tag Editor Actions"
-msgstr "Tag Editor Aktionen"
+msgstr "Tag-Editor Aktionen"
 
 msgid "Tagalog"
 msgstr "Tagalog"
@@ -21178,7 +21253,7 @@ msgid "Time update in minutes"
 msgstr "Updatezeit in Minuten"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
-msgstr "Zeitfenster für die Erkennung des Aufwachens durch einen Timer (Min)"
+msgstr "Zeitfenster zur Erkennung des Aufwachens durch einen Timer (Min)"
 
 msgid "Time zone"
 msgstr "Zeitzone"
@@ -22160,6 +22235,9 @@ msgstr "Endzeiten der Umschalttimer verwenden"
 msgid "Use a gateway"
 msgstr "Ein Gateway verwenden"
 
+msgid "Use alternate GitHub DNS"
+msgstr "Alternativen GitHub-DNS verwenden"
+
 msgid "Use an alternative smaller screen."
 msgstr "Legt fest, ob eine alternative Anzeige verwendet werden soll."
 
@@ -22898,6 +22976,9 @@ msgstr "Warnung"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Warnung: %d Feeds konnten nicht nachgeladen werden!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr "Warnung: Abbrechen dieses Prozesses lässt die Feeds in inkomplettem und unbenutzbarem Zustand!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Warnung: Überschreibungen sind zurzeit aktiv!"
 
@@ -23188,6 +23269,12 @@ msgstr "Bei 'Ja' wird der Receiver einen AC3-Ton verwenden (wenn verfügbar)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Bei 'Ja' wird der Receiver eine AC3+-Tonspur verwenden (wenn verfügbar)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Wenn diese Einstellung aktiviert ist, hat sie mehr Gewicht als “Bevorzugter Tuner für Aufnahmen”."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Wenn diese Einstellung aktiviert ist, hat sie mehr Gewicht als “Bevorzugter Tuner”."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Wenn aktiviert, startet Timeshift automatisch nach der vorgegebenen Zeit."
@@ -24701,7 +24788,7 @@ msgid "science fiction/fantasy/horror"
 msgstr "Science Fiction/Fantasie/Horror"
 
 msgid "search EPG..."
-msgstr "Durchsuche EPG..."
+msgstr "EPG durchsuchen..."
 
 #
 msgid "select CAId's"
@@ -25035,35 +25122,19 @@ msgstr "Ja (Feeds beibehalten)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Bevorzugter Tuner DVB-S"
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Bevorzugter Tuner DVB-S für Aufnahmen"
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
-msgid "Preferred tuner DVB-T"
-msgstr "Bevorzugter Tuner DVB-T"
+#~ msgid "Mounts Settings"
+#~ msgstr "Externe Freigaben einbinden"
 
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Bevorzugter Tuner DVB-T für Aufnahmen"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Bevorzugter Tuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Bevorzugter Tuner DVB-C für Aufnahmen"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Wenn diese Einstellung aktiviert ist, hat sie mehr Gewicht als “Bevorzugter Tuner”."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Wenn diese Einstellung aktiviert ist, hat sie mehr Gewicht als “Bevorzugter Tuner für Aufnahmen”."
-
-msgid "Preferred tuner ATSC"
-msgstr "Bevorzugter Tuner ATSC"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Bevorzugter Tuner ATSC für Aufnahmen"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "OSCamInfo-Log"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -25640,12 +25711,6 @@ msgstr "Bevorzugter Tuner ATSC für Aufnahmen"
 
 #~ msgid "X11 Font Packages"
 #~ msgstr "X11 Schriftart Pakete"
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "%d Paket gefunden."
-#~ msgstr[1] "%d Pakete gefunden."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Markiertes Plugin zur Downloadliste hinzufügen oder entfernen"

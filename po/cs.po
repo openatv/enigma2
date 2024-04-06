@@ -1,20 +1,20 @@
 # Petr Turek <turekdesign99@gmail.com>, 2022, 2023, 2024.
 # jbleyel <jbleyel@gmx.net>, 2023.
-# Jiří Engelthaler <engycz@gmail.com>, 2023.
+# Jiří Engelthaler <engycz@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 18:15+0000\n"
-"PO-Revision-Date: 2024-01-19 21:00+0000\n"
-"Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
+"POT-Creation-Date: 2024-03-10 17:07+0000\n"
+"PO-Revision-Date: 2024-03-16 22:01+0000\n"
+"Last-Translator: Jiří Engelthaler <engycz@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid ""
 "\n"
@@ -968,6 +968,13 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "Nalezen %d balíček."
+msgstr[1] "Počet nalezených balíčků: %d."
+msgstr[2] "Počet nalezených balíčků: %d."
+
+#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d balíček má aktualizaci"
@@ -1202,10 +1209,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s – Nastavení"
 
@@ -1269,10 +1272,6 @@ msgstr "%s%s(Výchozí: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1864,6 +1863,9 @@ msgstr "Aktivní"
 
 msgid "Active clients"
 msgstr "Aktivní klienti"
+
+msgid "Active only"
+msgstr "Pouze aktivní"
 
 msgid "Adapter Settings"
 msgstr "Nastavení adaptéru"
@@ -5343,10 +5345,10 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVB-T"
-msgstr "DvB-T"
+msgstr "DVB-T"
 
 msgid "DVB-T2"
-msgstr "DvB-T2"
+msgstr "DVB-T2"
 
 msgid "DVD Burn"
 msgstr "Vypalování DVD"
@@ -5887,7 +5889,7 @@ msgid "Delete the flash expander in the selected device"
 msgstr "Odstranit flash expandér ve zvoleném zařízení"
 
 msgid "Delete the selected locally stored image"
-msgstr "Odstraní vybraný lokálně uložený obrázek"
+msgstr "Odstraní vybraný lokálně uložený obraz"
 
 #, python-format
 msgid "Delete these %d directories/files?"
@@ -6376,7 +6378,7 @@ msgstr "Chcete provést další ruční prohledávání?"
 
 #, python-format
 msgid "Do you want to flash the image '%s'?"
-msgstr "Chcete flashovat obrázek '%s'?"
+msgstr "Chcete flashovat obraz '%s'?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Chcete nainstalovat seznam programů?"
@@ -6482,7 +6484,7 @@ msgid "Down / Inactive"
 msgstr "Dolů / Neaktivní"
 
 msgid "Download Image"
-msgstr "Stáhnout obrázek"
+msgstr "Stáhnout obraz"
 
 msgid "Download Plugins"
 msgstr "Nahrát pluginy"
@@ -6491,7 +6493,7 @@ msgid "Download Softcams"
 msgstr "Stáhnout Softcamy"
 
 msgid "Download and flash images on your %s %s."
-msgstr "Stáhnout a flashovat obrázky na %s %s."
+msgstr "Stáhnout a flashovat obrazy na %s %s."
 
 msgid "Download and install Plugins"
 msgstr "Stáhnout a instalovat pluginy"
@@ -6503,13 +6505,13 @@ msgid "Download error"
 msgstr "Chyba stahování"
 
 msgid "Download the selected image"
-msgstr "Stáhnout vybraný obrázek"
+msgstr "Stáhnout vybraný obraz"
 
 msgid "Downloadable plugins"
 msgstr "Nahrát pluginy"
 
 msgid "Downloaded images"
-msgstr "Stažené obrázky"
+msgstr "Stažené obrazy"
 
 msgid "Downloading"
 msgstr "Stahuji"
@@ -6804,6 +6806,9 @@ msgstr "Povolit %s pro:"
 
 msgid "Enable 5V for active antenna"
 msgstr "Povolit 5V pro aktivní anténu"
+
+msgid "Enable Autorecord"
+msgstr "Povolit Auto-nahrávání"
 
 msgid "Enable BT Audio"
 msgstr "Povolit BT Audio"
@@ -7232,6 +7237,10 @@ msgstr "Zábava"
 msgid "Entitlements"
 msgstr "Zápisy"
 
+#, python-format
+msgid "Entitlements for 'CAID %s'"
+msgstr "Zápisy pro „CAID %s“"
+
 msgid "Entry image and text"
 msgstr "Zadat obrázek a text"
 
@@ -7288,12 +7297,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Chyba %d: Nelze vytvořit adresář '%s'! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Chyba %d: Nelze vytvořit adresář balíčku '%s'! (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
-msgstr "Chyba %d: Nelze smazat stažený obrázek '%s'! (%s)"
+msgstr "Chyba %d: Nelze smazat stažený obraz '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Chyba %d: Nelze propojit '%s' jako '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Chyba %d: Nelze přečíst '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -7369,7 +7386,7 @@ msgstr ""
 
 #, python-format
 msgid "Error downloading image '%s'!"
-msgstr "Chyba při stahování obrázku '%s'!"
+msgstr "Chyba při stahování obrazu '%s'!"
 
 msgid "Error executing plugin"
 msgstr "Chyba při provádění pluginu"
@@ -7399,7 +7416,7 @@ msgstr "Text chyby:"
 
 #, python-format
 msgid "Error unzipping image '%s'!"
-msgstr "Chyba při rozbalování obrázku '%s'!"
+msgstr "Chyba při rozbalování obrazu '%s'!"
 
 msgid "Error, unknown Result!"
 msgstr "Chyba, neznámý výsledek!"
@@ -7416,13 +7433,13 @@ msgid "Error: An empty filename is illegal!"
 msgstr "Chyba: Prázdný název souboru není povolen!"
 
 msgid "Error: Cannot find any images!"
-msgstr "Chyba: Nelze najít žádné obrázky!"
+msgstr "Chyba: Nelze najít žádné obrazy!"
 
 msgid "Error: Checksum is invalid!"
 msgstr "Chyba: Kontrolní součet je neplatný!"
 
 msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Chyba: Nelze najít vhodné zařízení! Odstraňte některé stažené obrázky nebo připojte jiné zařízení (např. USB flash disk) s dostatkem volného místa a zkuste to znovu."
+msgstr "Chyba: Nelze najít vhodné zařízení! Odstraňte některé stažené obrazy nebo připojte jiné zařízení (např. USB flash disk) s dostatkem volného místa a zkuste to znovu."
 
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
@@ -7445,7 +7462,7 @@ msgstr "Chyba: Obrazovka FileCommanderData vyžaduje slovník pro formátování
 
 #, python-format
 msgid "Error: Image '%s' to install is invalid!"
-msgstr "Chyba: Obrázek '%s' k instalaci je neplatný!"
+msgstr "Chyba: Obraz'%s' k instalaci je neplatný!"
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Chyba: Selhání interakce, nelze změnit heslo!"
@@ -8202,7 +8219,7 @@ msgstr "Flashování image"
 
 #, python-format
 msgid "Flashing image '%s' was not successful!"
-msgstr "Flash obrázku '%s' se nezdařil!"
+msgstr "Flash obrazu '%s' se nezdařil!"
 
 msgid "Flashing image successful"
 msgstr "Flash image byl úspěšně dokončen"
@@ -9278,6 +9295,9 @@ msgstr "Je-li nastaveno na „Ano“, budou do televizoru odesílány stejné p�
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Pokud je nastaveno na „ano“, umožňuje vám používat časový posun s alternativními audio pluginy."
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Pokud nastavíte na 'ano' bude umožněno Auto-nahrávání na pozadí funkce časového posunu"
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Pokud je povoleno řešení hlubokého spánku, počkejte, dokud nebude synchronizován systémový čas. V závislosti na požadavku bude buzení zařízení pokračovat maximálně po 2 minutách."
 
@@ -9339,11 +9359,11 @@ msgid "Image Backup"
 msgstr "Zálohování Image"
 
 msgid "Image Flash Actions"
-msgstr "Akce flashování obrázku"
+msgstr "Akce flashování obrazu"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
-msgstr "Obrázek byl vytvořen do: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr "Obraz byl vytvořen do: %s/%s-%s-%s-backup-%s_%s.zip"
 
 msgid "Image creation failed - "
 msgstr "Vytvoření obrazu (image) selhalo - "
@@ -9891,6 +9911,9 @@ msgstr "Jen přepnout"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
+
+msgid "KSymb/s"
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "Kalaallisut / Grónsko"
@@ -10865,7 +10888,7 @@ msgid "Middle"
 msgstr "prostřední"
 
 msgid "Middle - Lite image"
-msgstr "Střední - Lite obrázek"
+msgstr "Střední - Lite obraz"
 
 msgid "Mini Series"
 msgstr "Mini série"
@@ -11034,9 +11057,6 @@ msgstr "Připojit"
 
 msgid "Mounts Devices"
 msgstr "Připojená zařízení"
-
-msgid "Mounts Settings"
-msgstr "Nastavení připojení"
 
 msgid "Move"
 msgstr "Přesunout"
@@ -11827,7 +11847,7 @@ msgid "No of items switch (increase or reduced)"
 msgstr "Není co přepnout (zvýšit nebo snížit)"
 
 msgid "No pictures available"
-msgstr "Nejsou k dispozici žádné obrázky"
+msgstr "Nejsou k dispozici žádné obrazy"
 
 msgid "No positioner capable frontend found."
 msgstr "Nebyl nalezen žádný vhodný pozicionér."
@@ -11845,7 +11865,7 @@ msgid "No services/providers selected"
 msgstr "Žádný program/poskytovatel není vybrán"
 
 msgid "No slot images found"
-msgstr "Nebyly nalezeny žádné obrázky slotů"
+msgstr "Nebyly nalezeny žádné obrazy slotů"
 
 msgid "No standby"
 msgstr "Neuspávat"
@@ -11954,7 +11974,7 @@ msgid "No, do nothing."
 msgstr "Ne, nic nedělej."
 
 msgid "No, don't flash this image"
-msgstr "Ne, tento obrázek neflashovat"
+msgstr "Ne, tento obraz neflashovat"
 
 msgid "No, just start my %s %s"
 msgstr "Ne, jen spustit můj %s %s"
@@ -11999,7 +12019,7 @@ msgid "Normal"
 msgstr "Normální"
 
 msgid "Normal - Standard image"
-msgstr "Normální – Standardní obrázek"
+msgstr "Normální – Standardní obraz"
 
 msgid "Normal No ScaleUp"
 msgstr "Normální Žádná změna měřítka"
@@ -12168,11 +12188,22 @@ msgstr "OScam webif zakázán"
 msgid "OSCamInfo Actions"
 msgstr "Akce OSCamInfo"
 
-msgid "OSCamInfo Log"
-msgstr "Protokol OSCamInfo"
-
 msgid "OSCamInfo Log Actions"
 msgstr "Akce protokolu OSCamInfo"
+
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr "OSCamInfo: %s Oprávnění pro '%s'"
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr "OSCamInfo: Zápisy pro '%s'"
+
+msgid "OSCamInfo: Information"
+msgstr "OSCamInfo: Informace"
+
+msgid "OSCamInfo: Log"
+msgstr "OSCamInfo: Log"
 
 msgid "OSD"
 msgstr "OSD"
@@ -12253,7 +12284,7 @@ msgid "Online update of your %s %s software."
 msgstr "Online aktualizace software %s %s."
 
 msgid "Only Flash Backup Image"
-msgstr "Pouze flashnout záložní obrázek"
+msgstr "Pouze flashnout záložní obraz"
 
 msgid "Only HD"
 msgstr "pouze HD"
@@ -13007,7 +13038,7 @@ msgid "Please select a default EPG type..."
 msgstr "Zvolte preferovaný typ EPG..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
-msgstr "Vyberte distribuci, ze které chcete flashnout obrázek:"
+msgstr "Vyberte distribuci, ze které chcete flashnout obraz:"
 
 msgid "Please select a line to edit or select add to create new line."
 msgstr "Vyberte řádek, který chcete upravit, nebo vyberte možnost přidat pro vytvoření nového řádku."
@@ -13067,7 +13098,7 @@ msgid "Please select the sub-service to record:"
 msgstr "Prosím vyberte podprogram pro nahrávání:"
 
 msgid "Please select what to do after flash of the following image:"
-msgstr "Vyberte, co se má udělat po flashnutí následujícího obrázku:"
+msgstr "Vyberte, co se má udělat po flashnutí následujícího obrazu:"
 
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
@@ -13122,6 +13153,9 @@ msgstr "Počkejte prosím, než se data extrahují..."
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Počkejte prosím, než budou zdroje resetovány (vymazány a znovu načteny)..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Počkejte prosím, než se soubor přečte a zpracuje..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Počkejte prosím, než se seznam stáhne..."
 
@@ -13171,7 +13205,7 @@ msgid "Please wait, flash memory is being copied to this flash expander. This co
 msgstr "Čekejte prosím, paměť flash se kopíruje do tohoto expandéru flash. Dokončení může trvat několik minut."
 
 msgid "Please wait, loading image..."
-msgstr "Čekejte prosím, načítá se obrázek..."
+msgstr "Čekejte prosím, načítá se obraz..."
 
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "Čekejte prosím, právě se vytváří swap. Dokončení může trvat několik minut."
@@ -13386,6 +13420,30 @@ msgstr "Upřednostňovat titulky uložené kanálem"
 msgid "Preferred tuner"
 msgstr "Upřednostnit tuner"
 
+msgid "Preferred tuner ATSC"
+msgstr "Preferovaný ATSC tuner"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Preferovaný ATSC tuner po nahrávání"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Preferovaný tuner DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Preferovaný tuner DVB-C pro nahrávání"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Preferovaný tuner DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Preferovaný tuner DVB-S pro nahrávání"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Preferovaný tuner DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Preferovaný tuner DVB-T pro nahrávání"
+
 msgid "Preferred tuner for recordings"
 msgstr "Upřednostnit tuner pro nahrávání"
 
@@ -13503,7 +13561,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Stiskněte tlačítko OK, abyste použili toto místní nastavení.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
-msgstr "Stisknutím tlačítek NAHORU/DOLŮ vyberte slot a stisknutím tlačítka OK nebo ZELENÝ restartujte do tohoto obrázku. Pokud je k dispozici, ŽLUTÁ obrázek odstraníte nebo vymažete. Smazaný obrázek lze obnovit pomocí MODRÉHO tlačítka. Vymazaný obrázek je zcela odstraněn a nelze jej obnovit!"
+msgstr "Stisknutím tlačítek NAHORU/DOLŮ vyberte slot a stisknutím tlačítka OK nebo ZELENÝ restartujte do tohoto obrázku. Pokud je k dispozici, ŽLUTÁ obrázek odstraníte nebo vymažete. Smazaný obraz lze obnovit pomocí MODRÉHO tlačítka. Vymazaný obraz je zcela odstraněn a nelze jej obnovit!"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Stisknutím tohoto tlačítka emulujete dlouhé stisknutí tlačítka, které bylo stisknuto poté (tímto také přepíšete všechny ostatní akce přiřazené k tlačítku emulace)."
@@ -14674,7 +14732,7 @@ msgid "Retrieving boot slot information..."
 msgstr "Načítání informací o boot slotu..."
 
 msgid "Retrieving image list, please wait..."
-msgstr "Načítání seznamu obrázků, prosím čekejte..."
+msgstr "Načítání seznamu obrazů, prosím čekejte..."
 
 msgid "Retrieving image slots - Please wait..."
 msgstr "Načítání slotů image – čekejte prosím..."
@@ -15489,6 +15547,12 @@ msgstr "Vyberte 'Ano' pro zobrazení aktuálního adresáře v seznamu adresář
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano', chcete-li zobrazit balíčky webových odkazů na obrazovce Stáhnout pluginy."
 
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Chcete-li úkoly rozdělit do samostatných akcí, vyberte možnost „Ano“."
+
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr "Chcete-li použít alternativní adresy IP zdroje GitHub, vyberte možnost „Ano“. To může být užitečné, pokud používáte VPN a k normálním zdrojům nelze přistupovat prostřednictvím zveřejněných názvů DNS."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Chcete-li použít hodnoty signálu (SNR atd.) vypočítané ze starší verze API V3, vyberte možnost „Ano“. Tato verze API byla nyní nahrazena."
 
@@ -15604,7 +15668,7 @@ msgid "Select a directory from the bookmarks"
 msgstr "Vyberte adresář ze záložek"
 
 msgid "Select a distribution from where images are to be obtained"
-msgstr "Vyberte distribuci, ze které chcete získat obrázky"
+msgstr "Vyberte distribuci, ze které chcete získat obrazy"
 
 #, python-format
 msgid "Select a location into which to extract '%s':"
@@ -15928,7 +15992,7 @@ msgid "Select the function to be assigned to this button."
 msgstr "Vyberte funkci, která má být přiřazena tomuto tlačítku."
 
 msgid "Select the highlighted image and proceed to the slot selection"
-msgstr "Vyberte zvýrazněný obrázek a pokračujte k výběru slotu"
+msgstr "Vyberte zvýrazněný obraz a pokračujte k výběru slotu"
 
 msgid "Select the highlighted slot and reboot"
 msgstr "Vyberte zvýrazněný slot a restartujte"
@@ -17105,6 +17169,12 @@ msgstr "Zobrazit hodnotu dalšího posuvníku"
 msgid "Show advanced settings"
 msgstr "Zobrazit pokročilé nastavení"
 
+msgid "Show all"
+msgstr "Ukázat vše"
+
+msgid "Show all details"
+msgstr "Zobrazit všechny detaily"
+
 msgid "Show animation while busy"
 msgstr "Zobrazit animaci při zaneprázdnění"
 
@@ -17164,6 +17234,9 @@ msgstr "Zobrazit detailní informace o pořadu"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Zobrazit podrobné informace o události (nastavení v nabídce)"
+
+msgid "Show details"
+msgstr "Zobrazit detaily"
 
 msgid "Show details of highlighted task"
 msgstr "Zobrazit detaily zvýrazněného úkolu"
@@ -17819,7 +17892,7 @@ msgstr "Slot %s: %s"
 
 #, python-format
 msgid "Slot %s: %s (Current image)"
-msgstr "Slot %s: %s (aktuální obrázek)"
+msgstr "Slot %s: %s (aktuální obraz)"
 
 #, python-format
 msgid "Slot %s: %s as USB Recovery"
@@ -17840,7 +17913,7 @@ msgid "Slot Manager Actions"
 msgstr "Akce správce slotů"
 
 msgid "Slot R: Root Slot Full Backup (Current image)"
-msgstr "Slot R: Úplná záloha kořenového slotu (aktuální obrázek)"
+msgstr "Slot R: Úplná záloha kořenového slotu (aktuální obraz)"
 
 msgid "Slot count"
 msgstr "Počet slotů"
@@ -17870,7 +17943,7 @@ msgid "Small"
 msgstr "Malý"
 
 msgid "Small - Tiny image"
-msgstr "Malý - Malý obrázek"
+msgstr "Malý - Tiny obraz"
 
 msgid "Small Box Preparation"
 msgstr "Příprava malého boxu"
@@ -18137,6 +18210,9 @@ msgstr "Rychlost"
 
 msgid "Split preview mode"
 msgstr "Režim rozděleného náhledu"
+
+msgid "Split tasks"
+msgstr "Rozdělit úkoly"
 
 msgid "Splitscreen"
 msgstr "Rozdělený obraz"
@@ -18964,6 +19040,9 @@ msgstr "Telugština"
 #, python-format
 msgid "Temp directory (%s)"
 msgstr "Dočasný adresář (%s)"
+
+msgid "Temporary directory"
+msgstr "Dočasný adresář"
 
 msgid "Tennis"
 msgstr "Tenis"
@@ -20828,6 +20907,9 @@ msgstr "Použít časy ukončení časovače Zap"
 msgid "Use a gateway"
 msgstr "Použít bránu (gateway)"
 
+msgid "Use alternate GitHub DNS"
+msgstr "Použijte alternativní GitHub DNS"
+
 msgid "Use an alternative smaller screen."
 msgstr "Použít alternativní menší obrazovku."
 
@@ -21524,6 +21606,9 @@ msgstr "Výstraha"
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Upozornění: %d zdrojů nebylo možné znovu načíst!"
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr "Upozornění: Zrušením tohoto procesu zůstanou zdroje nekompletní a nepoužitelné!"
+
 msgid "Warning: Overrides are currently active!"
 msgstr "Varování: Přepsání je v současné době aktivní!"
 
@@ -21609,7 +21694,7 @@ msgstr ""
 "Potom najděte konec, stiskněte OK a zvolte 'konec střihu'. To je vše."
 
 msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Vítejte v průvodci aktualizací obrázku. Průvodce vám pomůže s aktualizací firmwaru %s %s poskytnutím možnosti zálohování aktuálního nastavení a krátkým vysvětlením, jak upgradovat firmware."
+msgstr "Vítejte v průvodci aktualizací obrazu. Průvodce vám pomůže s aktualizací firmwaru %s %s poskytnutím možnosti zálohování aktuálního nastavení a krátkým vysvětlením, jak upgradovat firmware."
 
 msgid "Welcome..."
 msgstr "Vítám Vás..."
@@ -21793,6 +21878,12 @@ msgstr "Jestliže je povoleno, přijímač bude vybírat AC3 stopu (je-li dostup
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Jestliže je povoleno, přijímač bude vybírat AC3+ stopu (je-li dostupná)."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Jestliže je povoleno, toto nastavení má větší váhu než 'Preferovaný tuner pro nahrávání'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Jestliže je povoleno, toto nastavení má větší váhu než 'Preferovaný tuner'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Jestliže je povoleno, timeshift se na pozadí automaticky spustí po nastavené době."
@@ -22154,7 +22245,7 @@ msgid "You seem to be in time shift, the service will briefly stop as time shift
 msgstr "Zdá se, že jste v časovém posunu, služba se nakrátko zastaví, když se časový posun zastaví."
 
 msgid "You should flash a new image!"
-msgstr "Měli byste flashnout nový obrázek!"
+msgstr "Měli byste flashnout nový obraz!"
 
 msgid "YouTube"
 msgstr "YouTube"
@@ -23488,35 +23579,19 @@ msgstr "ano (uchovat zdroje)"
 msgid "®"
 msgstr "®"
 
-msgid "Preferred tuner DVB-S"
-msgstr "Preferovaný tuner DVB-S"
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
 
-msgid "Preferred tuner DVB-S for recordings"
-msgstr "Preferovaný tuner DVB-S pro nahrávání"
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
 
-msgid "Preferred tuner DVB-T"
-msgstr "Preferovaný tuner DVB-T"
+#~ msgid "Mounts Settings"
+#~ msgstr "Nastavení připojení"
 
-msgid "Preferred tuner DVB-T for recordings"
-msgstr "Preferovaný tuner DVB-T pro nahrávání"
-
-msgid "Preferred tuner DVB-C"
-msgstr "Preferovaný tuner DVB-C"
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr "Preferovaný tuner DVB-C pro nahrávání"
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Jestliže je povoleno, toto nastavení má větší váhu než 'Preferovaný tuner'."
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Jestliže je povoleno, toto nastavení má větší váhu než 'Preferovaný tuner pro nahrávání'."
-
-msgid "Preferred tuner ATSC"
-msgstr "Preferovaný ATSC tuner"
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr "Preferovaný ATSC tuner po nahrávání"
+#~ msgid "OSCamInfo Log"
+#~ msgstr "Protokol OSCamInfo"
 
 #, python-format
 #~ msgid "%s  -  %s    (%s%d Min)"
@@ -24048,13 +24123,6 @@ msgstr "Preferovaný ATSC tuner po nahrávání"
 
 #~ msgid "X11 Utility Packages"
 #~ msgstr "Obslužné balíčky X11"
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "Nalezen %d balíček."
-#~ msgstr[1] "Počet nalezených balíčků: %d."
-#~ msgstr[2] "Počet nalezených balíčků: %d."
 
 #~ msgid "Add/Remove highlighted plugin to/from download list"
 #~ msgstr "Přidat/odebrat zvýrazněný plugin do/ze seznamu stahování"

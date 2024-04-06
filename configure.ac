@@ -582,7 +582,7 @@ if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm800s
 	AC_DEFINE(DREAMBOX_DUAL_TUNER, 1,[define BOXTYPE DM7080])
 fi
 
-if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820"  -o "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920" -o "$BOXTYPE" == "dm520"; then
+if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920" -o "$BOXTYPE" == "dm520"; then
 	AC_DEFINE(CONFIG_ION, 1,[define BOX use ION Allocator])
 fi
 
@@ -617,7 +617,7 @@ if test "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "sx98
 	AC_DEFINE(FORCE_ALPHABLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
 fi
 
-if test "$BOXTYPE" == "et4x00" -o "$BOXTYPE" == "et5x00" -o "$BOXTYPE" == "et6x00"  -o "$BOXTYPE" == "et7x00" -o "$BOXTYPE" == "et9x00" -o "$BOXTYPE" == "et8000" -o "$BOXTYPE" == "et8500" -o "$BOXTYPE" == "et8500s" -o "$BOXTYPE" == "et10000"; then
+if test "$BOXTYPE" == "et4x00" -o "$BOXTYPE" == "et5x00" -o "$BOXTYPE" == "et6x00" -o "$BOXTYPE" == "et7x00" -o "$BOXTYPE" == "et9x00" -o "$BOXTYPE" == "et8000" -o "$BOXTYPE" == "et8500" -o "$BOXTYPE" == "et8500s" -o "$BOXTYPE" == "et10000"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(KEY_F3_TO_KEY_LIST, 1,[define when rc sends a KEY_F3 event for its KEY_LIST key])
 fi
@@ -821,6 +821,17 @@ AS_IF([test "$MACHINEBUILD" == "classm" -o "$MACHINEBUILD" == "axodin" -o "$MACH
 AS_IF([test "$MACHINEBUILD" == "gb800solo" -o "$MACHINEBUILD" == "gb800se" -o "$MACHINEBUILD" == "gb800seplus" -o "$MACHINEBUILD" == "gbultrase"],[AC_DEFINE(PROFILE2, 1,[profile2])])
 AS_IF([test "$MACHINEBUILD" == "osmini" -o "$MACHINEBUILD" == "spycatmini" -o "$MACHINEBUILD" == "osminiplus" -o "$MACHINEBUILD" == "spycatminiplus"],[AC_DEFINE(PROFILE3, 1,[profile3])])
 AS_IF([test "$MACHINEBUILD" == "xpeedlx3" -o "$MACHINEBUILD" == "sezammarvel" -o "$MACHINEBUILD" == "atemionemesis"],[AC_DEFINE(PROFILE4, 1,[profile4])])
+
+# VFD Symbols Poll Time
+if test "$MACHINEBUILD" == "9910lx" -o "$MACHINEBUILD" == "9911lx" -o "$MACHINEBUILD" == "9920lx" -o "$MACHINEBUILD" == "dm7020hd" -o "$MACHINEBUILD" == "dm7020hdv2" -o "$MACHINEBUILD" == "dual" -o "$MACHINEBUILD" == "e4hd" -o "$MACHINEBUILD" == "e4hdhybrid" -o "$MACHINEBUILD" == "force3uhd" -o "$MACHINEBUILD" == "mbmicro" -o "$MACHINEBUILD" == "mbmicrov2" -o "$MACHINEBUILD" == "osnino" -o "$MACHINEBUILD" == "osninoplus" -o "$MACHINEBUILD" == "osninopro" -o "$MACHINEBUILD" == "revo4k" -o "$MACHINEBUILD" == "tmtwin4k" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "dags7362" -o "$BOXTYPE" == "dags73625" -o "$BOXTYPE" == "gbmv200" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "sfx6008" -o "$BOXTYPE" == "sx888" -o "$BOXTYPE" == "sx88v2" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "ustym4ks2ottx" -o "$BOXTYPE" == "viper4k"; then
+	AC_DEFINE(VFDSymbolsPoll, 1,[define VFD Symbols Poll])
+else
+	if test "$BOXTYPE" == "u41" -o "$MACHINEBUILD" == "alphatriple" -o "$MACHINEBUILD" == "atemio5x00" -o "$MACHINEBUILD" == "beyonwizt3" -o "$MACHINEBUILD" == "et7500" -o "$MACHINEBUILD" == "maram9" -o "$MACHINEBUILD" == "mbmini" -o "$MACHINEBUILD" == "mbtwin" -o "$MACHINEBUILD" == "osmega" -o "$MACHINEBUILD" == "osminiplus" -o "$MACHINEBUILD" == "sezam1000hd" -o "$MACHINEBUILD" == "sezam5000hd" -o "$MACHINEBUILD" == "sf3038" -o "$MACHINEBUILD" == "spycat" -o "$MACHINEBUILD" == "spycat4kmini" -o "$MACHINEBUILD" == "uniboxhd1" -o "$MACHINEBUILD" == "uniboxhd2" -o "$MACHINEBUILD" == "uniboxhd3"; then
+		AC_DEFINE(VFDSymbolsPoll, 5,[define VFD Symbols Poll])
+	else
+		AC_DEFINE(VFDSymbolsPoll, 0,[define VFD Symbols Poll])
+	fi
+fi
 
 AC_ARG_WITH(libsdl,
 	AS_HELP_STRING([--with-libsdl],[use libsdl, yes or no]),
