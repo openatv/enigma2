@@ -212,7 +212,7 @@ class Network:
 			if iface["dhcp"]:
 				lines.append(f"iface {ifacename} inet dhcp")
 			if not iface["dhcp"]:
-				lines.append("iface {ifacename} inet static")
+				lines.append(f"iface {ifacename} inet static")
 				lines.append("  hostname $(hostname)")
 				if "ip" in iface:
 					dummy = ".".join([str(x) for x in iface["ip"]])
