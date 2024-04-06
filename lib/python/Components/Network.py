@@ -215,17 +215,16 @@ class Network:
 				lines.append("iface {ifacename} inet static")
 				lines.append("  hostname $(hostname)")
 				if "ip" in iface:
-					# print tuple(iface["ip"])
-					dummy = ".".join(iface["ip"])
+					dummy = ".".join([str(x) for x in iface["ip"]])
 					lines.append(f"	address {dummy}")
-					dummy = ".".join(iface["netmask"])
+					dummy = ".".join([str(x) for x in iface["netmask"]])
 					lines.append(f"	netmask {dummy}")
-					# lines.append(f"	address {".".join(iface["ip"])}")
-					# lines.append(f"	netmask {".".join(iface["netmask"])}")
+					# lines.append(f"	address {".".join([str(x) for x in iface["ip"]])}")
+					# lines.append(f"	netmask {".".join([str(x) for x in iface["netmask"]])}")
 					if "gateway" in iface:
-						dummy = ".".join(iface["gateway"])
+						dummy = ".".join([str(x) for x in iface["gateway"]])
 						lines.append(f"	gateway {dummy}")
-						# lines.append(f"	gateway {".".join(iface["gateway"])}")
+						# lines.append(f"	gateway {".".join([str(x) for x in iface["gateway"]])}")
 			if "configStrings" in iface:
 				lines.append(iface["configStrings"])
 			if iface["preup"] is not False and "configStrings" not in iface:
