@@ -188,7 +188,7 @@
 		</widget>
 		<widget source="parent.Event" render="Label" position="265,269" size="210,51" font="FdLcD;42" transparent="1" halign="right" valign="center">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">inMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
 	<screen name="EventViewSimpleSummary" position="0,0" size="480,320">

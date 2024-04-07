@@ -18,8 +18,18 @@ public:
 		orVertical
 	};
 	void setOrientation(uint8_t orientation, uint8_t swapped = 0);
-	void setBorderWidth(int width) override;
-	void setBorderColor(const gRGB &color) override;
+	// Border functions needs to be override because we using local variables for slider and the paint of the widget should not use the local variables
+	void setBorderWidth(int width) override { setWidgetBorderWidth(width); }
+	void setBorderColor(const gRGB &color) override { setWidgetBorderColor(color); }
+	void setWidgetBorderWidth(int width) override { 
+			m_slider_border_width = width; 
+			invalidate(); 
+		}
+	void setWidgetBorderColor(const gRGB &color) override { 
+			m_slider_border_color = color;
+			m_have_slider_border_color = true;
+			invalidate(); 
+		}
 	void setForegroundColor(const gRGB &color);
 	void setBackgroundColor(const gRGB &color) override;
 	void setPixmap(gPixmap *pixmap);
@@ -39,7 +49,7 @@ public:
 		DefaultBorderWidth = 0
 	};
 
-	int getBorderWidth() { return m_border_width; }
+	int getBorderWidth() { return m_slider_border_width; }
 
 	// Mapping functions to have the same attributes for eListBox and Scrollabel
 	void setScrollbarBorderWidth(int width);
@@ -67,14 +77,14 @@ private:
 	{
 		evtChangedSlider = evtUserWidget
 	};
-	bool m_have_border_color, m_have_foreground_color, m_scrollbar, m_pixel_mode;
-	int m_min, m_max, m_value, m_start, m_border_width, m_scale = 0;
+	bool m_have_slider_border_color, m_have_foreground_color, m_scrollbar, m_pixel_mode;
+	int m_min, m_max, m_value, m_start, m_slider_border_width, m_scale = 0;
 	uint8_t m_orientation, m_orientation_swapped;
 	ePtr<gPixmap> m_pixmap, m_backgroundpixmap;
 	ePtr<gPixmap> m_scrollbarslidepixmap, m_scrollbarslidebackgroundpixmap;
 
 	gRegion m_currently_filled;
-	gRGB m_border_color, m_foreground_color;
+	gRGB m_slider_border_color, m_foreground_color;
 
 	static int defaultSliderBorderWidth;
 

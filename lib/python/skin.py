@@ -832,6 +832,15 @@ class AttributeParser:
 	def backgroundColor(self, value):
 		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
 
+	def backgroundColorEven(self, value):
+		self.guiObject.setBackgroundColorRows(parseColor(value, 0x00000000))
+
+	def backgroundColorOdd(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
+
+	def backgroundColorRows(self, value):
+		self.guiObject.setBackgroundColorRows(parseColor(value, 0x00000000))
+
 	def backgroundColorSelected(self, value):
 		self.guiObject.setBackgroundColorSelected(parseColor(value, 0x00000000))
 
@@ -1616,6 +1625,11 @@ class SkinContextVertical(SkinContext):
 
 
 class SkinContextHorizontal(SkinContext):
+	def __init__(self, parent=None, pos=None, size=None, font=None):
+		super().__init__(parent, pos, size, font)
+		self.rx = self.w
+		self.rw = self.w
+
 	def parse(self, pos, size, font):
 		if size in variables:
 			size = variables[size]
@@ -1639,7 +1653,10 @@ class SkinContextHorizontal(SkinContext):
 				self.x += (width + self.spacing)
 				self.w -= (width + self.spacing)
 			elif pos == "right":
-				pos = (self.x + self.w - width, top)
+				if self.rw != self.rx:
+					self.rx -= self.spacing
+				self.rx = self.rx - width
+				pos = (self.rx, top)
 				size = (width, height)
 				self.w -= (width + self.spacing)
 			else:
@@ -1889,7 +1906,7 @@ def readSkin(screen, skin, names, desktop):
 				processor(widget, context)
 			except SkinError as err:
 				print(f"[Skin] Error: Screen '{myName}' widget '{widget.tag}' {str(err)}!")
-				# print_exc()
+				print_exc()
 
 	def processPanel(widget, context):
 		name = widget.attrib.get("name")

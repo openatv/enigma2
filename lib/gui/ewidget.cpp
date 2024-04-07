@@ -486,19 +486,6 @@ void eWidget::setCornerRadius(int radius, uint8_t edges)
 	invalidate();
 }
 
-void eWidget::setBorderWidth(int pixel)
-{
-	m_border_width = pixel;
-	invalidate();
-}
-
-void eWidget::setBorderColor(const gRGB &color)
-{
-	m_border_color = color;
-	m_have_border_color = true;
-	invalidate();
-}
-
 int eWidget::getCornerRadius()
 {
 	int r = m_cornerRadius;

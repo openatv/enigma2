@@ -1491,11 +1491,7 @@ RESULT ePicLoad::setPara(PyObject *val)
 
 		ePyObject pas = PySequence_Fast_GET_ITEM(fast, 2);
 
-		#if PY_VERSION_HEX >= 0x030a0000
-			double aspectRatio 	= PyFloat_Check(pas) ? PyFloat_AsDouble(pas) : PyLong_AsDouble(pas); 
-		#else
-			double aspectRatio 	= PyLong_AsLong(pas);
-		#endif
+		double aspectRatio 	= PyFloat_Check(pas) ? PyFloat_AsDouble(pas) : PyLong_AsDouble(pas); 
 		
 		int as			= PyLong_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
 		bool useCache		= PyLong_AsLong(PySequence_Fast_GET_ITEM(fast, 4));

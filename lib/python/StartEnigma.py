@@ -840,6 +840,9 @@ enigma.eProfileWrite("InitSkins")
 from skin import InitSkins
 InitSkins()
 
+from Components.ServiceList import InitServiceListSettings
+InitServiceListSettings()
+
 enigma.eProfileWrite("InitInputDevices")
 from Components.InputDevice import InitInputDevices
 InitInputDevices()

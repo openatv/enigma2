@@ -50,7 +50,7 @@
 		<panel position="bottom" size="*,24" name="SummaryClockPanel">
 			<widget source="session.Event_Now" render="Label" position="4,0" size="50,12" font="FdLcD;12" noWrap="1">
 				<convert type="EventTime">Remaining</convert>
-				<convert type="RemainingToText">Follow</convert>
+				<convert type="RemainingToText"></convert>
 			</widget>
 		</panel>
 	</screen>

@@ -18,8 +18,6 @@ public:
 	void setScale(int scale);		  // DEPRECATED
 	void setPixmapScale(int flags);
 	void setPixmapScaleFlags(int flags) { setPixmapScale(flags); } // DEPRECATED
-	void setBorderWidth(int pixel) override;
-	void setBorderColor(const gRGB &color) override;
 
 protected:
 	ePtr<gPixmap> m_pixmap;
@@ -31,9 +29,6 @@ private:
 	{
 		evtChangedPixmap = evtUserWidget,
 	};
-	bool m_have_border_color;
-	int m_border_width;
-	gRGB m_border_color;
 };
 
 #endif

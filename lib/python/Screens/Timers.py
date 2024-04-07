@@ -1410,7 +1410,7 @@ class RecordTimerEdit(Setup):
 			weekday = DAY_LIST[int(strftime("%u", localtime(self.timer.begin))) - 1]
 			days[weekday] = True
 		self.timerName = ConfigText(default=self.timer.name.replace("\x86", "").replace("\x87", ""), visible_width=50, fixed_size=False)
-		self.timerDescription = ConfigText(default=self.timer.description.replace("\x8a", " "), visible_width=50, fixed_size=False)
+		self.timerDescription = ConfigText(default=self.timer.description.replace("\x8a", " ").replace("\n", " "), visible_width=50, fixed_size=False)
 		self.timerType = ConfigSelection(default=RECORDTIMER_TYPES.get(self.timer.justplay + 2 * self.timer.always_zap, "record"), choices=[
 			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.RECORD), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.RECORD)),
 			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.ZAP), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.ZAP)),
@@ -1577,12 +1577,11 @@ class RecordTimerEdit(Setup):
 			# self.timer.end = self.getTimeStamp(startDate, self.timerEndTime.value)
 		marginBefore = self.timerMarginBefore.value * 60
 		eventBegin = self.getTimeStamp(startDate, self.timerStartTime.value)
+		startDate += 86400 if self.timerEndTime.value < self.timerStartTime.value else 0  # If endTime is less than startTime then add 1 day to the startDate.
 		eventEnd = self.getTimeStamp(startDate, self.timerEndTime.value)
 		if self.timerType.value == "zap" and not self.timerHasEndTime.value:
 			eventEnd = eventBegin + 1
 		marginAfter = self.timerMarginAfter.value * 60
-		if eventEnd < eventBegin:  # If eventEnd is less than eventBegin then add 1 day to the eventEnd time.
-			eventEnd += 86400
 		self.timer.begin = eventBegin - marginBefore
 		self.timer.end = eventEnd + marginAfter
 		self.timer.marginBefore = marginBefore

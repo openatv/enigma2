@@ -105,7 +105,7 @@
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="421,145" size="266,46" font="FdLcD;50" halign="right" foregroundColor="#02c6ff" >
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<widget source="session.CurrentService" render="LcdPicon" zPosition="13" position="160,355" size="320,210" transparent="1" alphatest="blend">	
 			<convert type="ServiceName">Reference</convert>
@@ -162,7 +162,7 @@
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="421,145" size="266,46" font="FdLcD;50" halign="right" foregroundColor="#02c6ff" >
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<widget source="parent.Service" render="LcdPicon" zPosition="13" position="160,355" size="320,210" transparent="1" alphatest="blend">	
 			<convert type="ServiceName">Reference</convert>
