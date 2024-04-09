@@ -305,9 +305,12 @@ class InfoBarAutoCam:
 	FILENAME = "/etc/enigma2/autocam"
 
 	def __init__(self):
-		self.autoCam = {}
 		self.currentCam = BoxInfo.getItem("CurrentSoftcam")
 		self.defaultCam = config.misc.autocamDefault.value or self.currentCam
+		self.reload()
+
+	def reload(self):
+		self.autoCam = {}
 		items = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
 		items = [item for item in items if item and "=" in item]
 		for item in items:
