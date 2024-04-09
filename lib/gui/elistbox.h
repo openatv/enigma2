@@ -437,10 +437,14 @@ public:
 	{
 		if (m_content)
 		{
-			int pages = getPageCount();
-			if (pages > 0)
+			int max = 0;
+			if (m_orientation == orGrid)
+				max = m_max_columns * m_max_rows;
+			else
+				max = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
+			if (max > 0)
 			{
-				return m_content->cursorGet() / pages;
+				return (m_content->cursorGet() / max) + 1;
 			}
 		}
 		return 0;
@@ -457,7 +461,7 @@ public:
 				max = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
 			if (max > 0)
 			{
-				m_content->size() / max;
+				return (int)std::ceil((float)m_content->size() / (float)max);
 			}
 		}
 		return 0;
