@@ -433,6 +433,36 @@ public:
 			return m_max_rows;
 		}
 
+	int getCurrentPage()
+	{
+		if (m_content)
+		{
+			int pages = getPageCount();
+			if (pages > 0)
+			{
+				return m_content->cursorGet() / pages;
+			}
+		}
+		return 0;
+	}
+
+	int getPageCount()
+	{ 
+		if (m_content)
+		{
+			int max = 0;
+			if (m_orientation == orGrid)
+				max = m_max_columns * m_max_rows;
+			else
+				max = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
+			if (max > 0)
+			{
+				m_content->size() / max;
+			}
+		}
+		return 0;
+	}
+
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
 
