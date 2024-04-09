@@ -58,7 +58,7 @@
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="421,140" size="266,46" font="FdLcD;50" halign="right">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
 		<widget source="session.CurrentService" render="ChannelNumber" position="14,481" size="169,61" zPosition="8" font="FdLcD;60" halign="center" valign="top" transparent="1" />
@@ -106,7 +106,7 @@
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="421,140" size="266,46" font="FdLcD;50" halign="right">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">InMinutes</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
 		<widget source="parent.Service" render="ChannelNumber" position="14,481" size="169,61" zPosition="8" font="FdLcD;60" halign="center" valign="top" transparent="1" />

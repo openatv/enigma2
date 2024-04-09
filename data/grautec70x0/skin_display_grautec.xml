@@ -34,7 +34,7 @@
 	</widget>
 	<widget source="session.Event_Now" render="Label" position="200,178" zPosition="1" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		  <convert type="EventTime">Remaining</convert>
-		  <convert type="RemainingToText">inMinutes</convert>
+		  <convert type="RemainingToText"></convert>
 	</widget>
     <widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -80,7 +80,7 @@
 	</widget>
 	<widget source="parent.ServiceEvent" render="Label" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		<convert type="EventTime">Remaining</convert>
-		<convert type="RemainingToText">inMinutes</convert>
+		<convert type="RemainingToText"></convert>
 	</widget>
 	<widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -108,7 +108,7 @@
 	</widget>
 	<widget source="parent.ServiceEvent" render="Label" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		<convert type="EventTime">Remaining</convert>
-		<convert type="RemainingToText">inMinutes</convert>
+		<convert type="RemainingToText"></convert>
 	</widget>
 	<widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -137,7 +137,7 @@
 	</widget>
 	<widget source="session.Event_Now" render="Label" position="200,178" zPosition="1" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		  <convert type="EventTime">Remaining</convert>
-		  <convert type="RemainingToText">inMinutes</convert>
+		  <convert type="RemainingToText"></convert>
 	</widget>
     <widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -553,7 +553,7 @@
 	</widget>
 	<widget source="session.Event_Now" render="Label" position="200,178" zPosition="1" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		  <convert type="EventTime">Remaining</convert>
-		  <convert type="RemainingToText">inMinutes</convert>
+		  <convert type="RemainingToText"></convert>
 	</widget>
     <widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -577,7 +577,7 @@
 	</widget>
 	<widget source="session.Event_Now" render="Label" position="200,178" zPosition="1" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		  <convert type="EventTime">Remaining</convert>
-		  <convert type="RemainingToText">inMinutes</convert>
+		  <convert type="RemainingToText"></convert>
 	</widget>
     <widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -776,7 +776,7 @@
 	</widget>
 	<widget source="parent.Service" render="Label" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		<convert type="EventTime">Remaining</convert>
-		<convert type="RemainingToText">inMinutes</convert>
+		<convert type="RemainingToText"></convert>
 	</widget>
 	<widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -806,7 +806,7 @@
 	</widget>
 	<widget source="parent.Service" render="Label" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		<convert type="EventTime">Remaining</convert>
-		<convert type="RemainingToText">inMinutes</convert>
+		<convert type="RemainingToText"></convert>
 	</widget>
 	<widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -832,7 +832,7 @@
 	</widget>
 	<widget source="parent.Service" render="Label" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		<convert type="EventTime">Remaining</convert>
-		<convert type="RemainingToText">inMinutes</convert>
+		<convert type="RemainingToText"></convert>
 	</widget>
 	<widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>

@@ -266,6 +266,10 @@
 		<key id="\x1b" mapto="cancel" flags="m" />
 	</map>
 
+	<map context="ShowVirtualKeyboardActions">
+		<key id="KEY_TEXT" mapto="showVirtualKeyboard" flags="m" />
+	</map>
+
 	<map context="TextEditActions">
 		<key id="KEY_BACK" mapto="backspace" flags="mr" />
 		<key id="KEY_LAST" mapto="backspace" flags="mr" />

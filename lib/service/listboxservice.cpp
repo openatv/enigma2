@@ -705,6 +705,14 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			/* if we have a local background color set, use that. */
 			if (local_style->is_set.background_color)
 				painter.setBackgroundColor(local_style->m_background_color);
+
+			/* use alternative background color */
+			if(local_style->is_set.background_color_rows)
+			{
+				if(cursorValid() && (cursorGet() % 2) == 0)
+					painter.setBackgroundColor(local_style->m_background_color_rows);
+			}
+
 			/* same for foreground */
 			if (local_style->is_set.foreground_color)
 				painter.setForegroundColor(local_style->m_foreground_color);

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
-"PO-Revision-Date: 2024-01-24 18:39+0000\n"
+"POT-Creation-Date: 2024-03-10 17:07+0000\n"
+"PO-Revision-Date: 2024-03-13 18:01+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid ""
 "\n"
@@ -1867,7 +1867,7 @@ msgid "Active clients"
 msgstr "Aktívni klienti"
 
 msgid "Active only"
-msgstr ""
+msgstr "Len aktívne"
 
 msgid "Adapter Settings"
 msgstr "Nastavenia adaptéra"
@@ -1906,7 +1906,7 @@ msgid "Add File Commander to the Main Menu list of options."
 msgstr "Pridať Správcu súborov do zoznamu možností hlavného menu."
 
 msgid "Add HDMI IN to bouquet"
-msgstr "Pridať HDMI in do prehľadu"
+msgstr "Pridať HDMI vstup do prehľadu"
 
 msgid "Add Marker"
 msgstr "Pridať značku"
@@ -7241,7 +7241,7 @@ msgstr "Zápisy"
 
 #, python-format
 msgid "Entitlements for 'CAID %s'"
-msgstr ""
+msgstr "Oprávnenia pre 'CAID %s'"
 
 msgid "Entry image and text"
 msgstr "Obrázok a text"
@@ -7300,7 +7300,7 @@ msgstr "Chyba %d: nie je možné vytvoriť priečinok '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to create package directory '%s'!  (%s)"
-msgstr ""
+msgstr "Chyba %d: nie je možné vytvoriť priečinok balíka '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -7312,7 +7312,7 @@ msgstr "Chyba %d: nie je možné odkazovať na '%s' ako '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to read '%s'!  (%s)"
-msgstr ""
+msgstr "Chyba %d: nie je možné prečítať '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -9915,7 +9915,7 @@ msgid "KA-SAT"
 msgstr "KA-SAT"
 
 msgid "KSymb/s"
-msgstr ""
+msgstr "KSymb/s"
 
 msgid "Kalaallisut / Greenlandic"
 msgstr "grónčina/kalaallisut"
@@ -12195,17 +12195,17 @@ msgstr "Akcie pre denník OSCamInfo"
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
-msgstr ""
+msgstr "OSCamInfo: %s oprávnenia pre '%s'"
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
-msgstr ""
+msgstr "OSCamInfo: oprávnenia pre '%s'"
 
 msgid "OSCamInfo: Information"
-msgstr ""
+msgstr "OSCamInfo: informácia"
 
 msgid "OSCamInfo: Log"
-msgstr ""
+msgstr "OSCamInfo: záznam (log)"
 
 msgid "OSD"
 msgstr "OSD"
@@ -13156,7 +13156,7 @@ msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr "Prosím počkajte na reset (vyčistenie a opätovné načítanie) zdrojov informácií..."
 
 msgid "Please wait while the file is read and processed..."
-msgstr ""
+msgstr "Prosím počkajte na prečítanie a spracovanie súboru..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Prosím, počkajte na stiahnutie zoznamu…"
@@ -15550,7 +15550,10 @@ msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky webových odkazov, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to split tasks into separate actions."
-msgstr ""
+msgstr "Pre rozdelenie úloh na osobitné akcie, vyberte možnosť 'Áno'."
+
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr "Ak chcete použiť alternatívne IP adresy feedu na portáli GitHub, vyberte možnosť 'Áno'. Môže to pomôcť vtedy, keď používate VPN a nie je možný prístup k bežným zdrojom informácií pomocou zverejnených DNS mien."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Ak je nastavené na 'áno', hodnoty signálu (SNR atď.) sa budú vypočítavať z API V3. Je to staršia verzia API, ktorá je v súčasnosti už nahradená."
@@ -17169,10 +17172,10 @@ msgid "Show advanced settings"
 msgstr "Zobraziť pokročilé nastavenia"
 
 msgid "Show all"
-msgstr ""
+msgstr "Zobraziť všetko"
 
 msgid "Show all details"
-msgstr ""
+msgstr "Zobraziť všetky podrobnosti"
 
 msgid "Show animation while busy"
 msgstr "Zobraziť animáciu pri zaneprázdnení"
@@ -17235,7 +17238,7 @@ msgid "Show detailed event info (setup in menu)"
 msgstr "Zobraziť detailné informácie o udalosti (nastavenie v menu)"
 
 msgid "Show details"
-msgstr ""
+msgstr "Zobraziť podrobnosti"
 
 msgid "Show details of highlighted task"
 msgstr "Zobraziť podrobnosti o vybranej úlohe"
@@ -18211,7 +18214,7 @@ msgid "Split preview mode"
 msgstr "Režim rozdelenia náhľadu"
 
 msgid "Split tasks"
-msgstr ""
+msgstr "Rozdeliť úlohy"
 
 msgid "Splitscreen"
 msgstr "Rozdelená obrazovka"
@@ -19039,6 +19042,9 @@ msgstr "telugčina"
 #, python-format
 msgid "Temp directory (%s)"
 msgstr "Dočasný priečinok (%s)"
+
+msgid "Temporary directory"
+msgstr "Dočasný priečinok"
 
 msgid "Tennis"
 msgstr "Tenis"
@@ -20903,6 +20909,9 @@ msgstr "Používať čas ukončenia časovača prepnutia"
 msgid "Use a gateway"
 msgstr "Použiť bránu"
 
+msgid "Use alternate GitHub DNS"
+msgstr "Použiť alternatívne DNS GitHub"
+
 msgid "Use an alternative smaller screen."
 msgstr "Použiť alternatívne, menšie zobrazenie."
 
@@ -21600,7 +21609,7 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "Upozornenie: %d zdrojov informácií nebolo možné načítať!"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
-msgstr ""
+msgstr "Upozornenie: zrušenie tohto procesu zanechá zdroje informácií v nekompletnom a nepoužiteľnom stave!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Upozornenie: momentálne je aktívne prepisovanie!"

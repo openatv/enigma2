@@ -54,9 +54,9 @@ class pServiceEvent:
 			length = seek.getLength()
 			pos = seek.getPlayPosition()
 			if pos[0] == 0:
-				self.m_Begin = time() - pos[1] / 90000
+				self.m_Begin = int(time()) - pos[1] // 90000
 			if length[0] == 0:
-				self.m_Duration = length[1] / 90000
+				self.m_Duration = length[1] // 90000
 
 	def getEventName(self):
 		return self.m_EventNameNow if self.nowOrNext == self.NOW else self.m_EventNameNext

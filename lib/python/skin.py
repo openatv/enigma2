@@ -832,6 +832,15 @@ class AttributeParser:
 	def backgroundColor(self, value):
 		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
 
+	def backgroundColorEven(self, value):
+		self.guiObject.setBackgroundColorRows(parseColor(value, 0x00000000))
+
+	def backgroundColorOdd(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
+
+	def backgroundColorRows(self, value):
+		self.guiObject.setBackgroundColorRows(parseColor(value, 0x00000000))
+
 	def backgroundColorSelected(self, value):
 		self.guiObject.setBackgroundColorSelected(parseColor(value, 0x00000000))
 
@@ -1897,7 +1906,7 @@ def readSkin(screen, skin, names, desktop):
 				processor(widget, context)
 			except SkinError as err:
 				print(f"[Skin] Error: Screen '{myName}' widget '{widget.tag}' {str(err)}!")
-				# print_exc()
+				print_exc()
 
 	def processPanel(widget, context):
 		name = widget.attrib.get("name")

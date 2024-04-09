@@ -2330,11 +2330,10 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 		self.showPicture()
 
 	def startDecode(self):
-		if len(self.fileList) == 0:
-			self.currentIndex = 0
-		self.imageLoad.startDecode(self.fileList[self.currentIndex])
-		if self.displayOverlay:
-			self["status"].show()
+		if self.fileList:
+			self.imageLoad.startDecode(self.fileList[self.currentIndex])
+			if self.displayOverlay:
+				self["status"].show()
 
 	def finishDecode(self, picInfo=""):
 		if self.displayOverlay:

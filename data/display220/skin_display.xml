@@ -31,7 +31,7 @@
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="110,150" size="110,25" font="FdLcD;20" halign="right" foregroundColor="#02c6ff">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">FOLLOW</convert>
+			<convert type="RemainingToText"></convert>
 		</widget>
 		<eLabel text="TUNER:" position="0,250" size="80,25" halign="left" font="FdLcD;20" />
 		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="A" foregroundColor="#04B404" font="FdLcD;20" halign="center">
