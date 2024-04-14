@@ -82,7 +82,7 @@ class TagManager():
 		for index, tag in enumerate(tags):
 			if tag not in self.tags:
 				self.tags = self.mergeTags(tags[index:])
-				self.saveTagsFile(self.tags)
+				self.saveTags()
 				print("[TagEditor] Tag verification resulted in a tag update.")
 				return False
 		print("[TagEditor] Tag verification completed.")
