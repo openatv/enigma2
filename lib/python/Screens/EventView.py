@@ -41,6 +41,8 @@ class EventViewBase:
 		self["Event"] = Event()
 		self["epg_description"] = ScrollLabel()
 		self["FullDescription"] = ScrollLabel()
+		self["key_menu"] = StaticText(_("MENU"))
+		self["key_info"] = StaticText(_("INFO"))
 		self["key_red"] = StaticText("")
 		self["summary_description"] = StaticText()
 		self["datetime"] = Label()
