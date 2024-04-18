@@ -18,7 +18,6 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import EPGJumpTime
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.HelpMenu import HelpableScreen
-from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Screen import Screen
@@ -95,6 +94,10 @@ class EPGSelection(Screen, HelpableScreen):
 		self["Event"] = Event()
 		self["lab1"] = Label(_("Please wait while gathering data..."))
 		self.key_green_choice = self.EMPTY
+		self["key_menu"] = StaticText(_("MENU"))
+		self["key_info"] = StaticText(_("INFO"))
+		self["key_text"] = StaticText(_("TEXT"))
+		self["key_epg"] = StaticText(_("EPG"))
 		if self.type == EPG_TYPE_VERTICAL:
 			self.StartBouquet = StartBouquet
 			self.StartRef = StartRef
@@ -399,6 +402,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def getBouquetServices(self, bouquet):
 		services = []
+		from Screens.InfoBar import InfoBar
 		if InfoBar.instance.servicelist.isSubservices(bouquet):
 			return [ServiceReference(ref) for ref in InfoBar.instance.servicelist.getSubservices()]
 		servicelist = eServiceCenter.getInstance().list(bouquet)
