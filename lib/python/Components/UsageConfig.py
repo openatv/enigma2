@@ -306,10 +306,10 @@ def InitUsageConfig():
 		(2, _("Always"))
 	])
 	config.usage.subservice = ConfigSelection(default=3, choices=[
-		(0, _("No, show always the timer list")),
-		(1, _("No, show always the plugin browser")),
-		(2, _("Yes, but if not available show the timer list")),
-		(3, _("Yes, but if not available show the plugin browser"))
+		(0, _("No, show the RecordTimer Overview")),
+		(1, _("No, show the Plugin Browser")),
+		(2, _("Yes, show RecordTimer if unavailable")),
+		(3, _("Yes, show Plugin Browser if unavailable"))
 	])
 
 	def showsecondinfobarChanged(configElement):

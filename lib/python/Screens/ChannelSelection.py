@@ -138,7 +138,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		self["key_red"] = StaticText(_("All Services"))
 		self["key_green"] = StaticText(_("Reception Lists"))
 		self["key_yellow"] = StaticText(_("Providers"))
-		self["key_blue"] = StaticText(_("Favorites"))
+		self["key_blue"] = StaticText(_("Bouquets"))
 		# self["list"] = ServiceListLegacy(self) if config.channelSelection.style.value == "" else ServiceList(self)  # New code for refactored ServiceList.
 		self["list"] = ServiceList(self)
 		self.servicelist = self["list"]
@@ -310,7 +310,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 			if self.isSubservices(serviceReference):
 				return _("Subservices")
 		elif serviceName == "favourites" and not config.usage.multibouquet.value:  # Translate single bouquet favourites
-			return _("Favorites")
+			return _("Bouquets")
 		return serviceName
 
 	def setRoot(self, root, justSet=False):
@@ -734,7 +734,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 			return self.subservicesBouquet.getPath() == path.getPath()
 
 	def getMutableList(self, root=eServiceReference()):  # Override for subservices
-		#ChannelContextMenu.inBouquet = True --> Wrong menu
+		# ChannelContextMenu.inBouquet = True --> Wrong menu
 		if self.isSubservices():
 			return None
 		return ChannelSelectionEdit.getMutableList(self, root)
@@ -1225,7 +1225,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		self.setTitle(_("Channel List Context Menu"))
+		self.setTitle(_("Channel Selection Context Menu"))
 		# raise Exception("[ChannelSelection] We need a better summary screen here!")
 		self.csel = csel
 		self.bsel = None
@@ -1241,23 +1241,23 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			"select": (self.keySelect, _("Select the currently highlighted action")),
 			"menu": (self.keySetup, _("Open the Channel Selection Settings screen")),
 			"0": (self.reloadServices, _("Reload all services from disk")),
-			"1": (self.showBouquetInputBox, _("Add a bouquet")),
-			"2": (self.renameEntry, _("Rename selected service")),
+			"1": (self.showBouquetInputBox, _("Add a new bouquet")),
+			"2": (self.renameEntry, _("Rename the selected service")),
 			"3": (self.findCurrentlyPlayed, _("Find the service currently playing")),
-			"4": (self.showSubservices, _("Show subservices of the service currently playing")),
-			"5": (self.addServiceToBouquetOrAlternative, _("Add selected service to bouquet or alternative")),
-			"6": (self.toggleMoveModeSelect, _("Toggle move mode selection")),
-			"7": (self.showMarkerInputBox, _("Add a marker")),
-			"8": (self.removeEntry, _("Remove selected service"))
+			"4": (self.showSubservices, _("Show Subservices Of Active Service")),
+			"5": (self.addServiceToBouquetOrAlternative, _("Add the selected service to a bouquet or alternative")),
+			"6": (self.toggleMoveModeSelect, _("Toggle move mode")),
+			"7": (self.showMarkerInputBox, _("Add a new marker")),
+			"8": (self.removeEntry, _("Remove the selected service"))
 			# "9": Available for use.
-		}, prio=0, description=_("Channel List Context Menu Actions"))
+		}, prio=0, description=_("Channel Selection Context Menu Actions"))
 		self["mainAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.playMain, _("Play selected service on the main screen"))
-		}, prio=0, description=_("Channel List Context Menu Actions"))
+		}, prio=0, description=_("Channel Selection Context Menu Actions"))
 		self["mainAction"].setEnabled(False)
 		self["pipAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"blue": (self.showServiceInPiP, _("Play selected service in a PiP window"))
-		}, prio=0, description=_("Channel List Context Menu Actions"))
+		}, prio=0, description=_("Channel Selection Context Menu Actions"))
 		self["pipAction"].setEnabled(False)
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
 			"top": (self.keyTop, _("Move to the first line / screen")),
@@ -1266,7 +1266,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
 			"bottom": (self.keyBottom, _("Move to the last line / screen"))
-		}, prio=0, description=_("Channel List Context Menu Navigation Actions"))
+		}, prio=0, description=_("Channel Selection Context Menu Navigation Actions"))
 		self.removeFunction = False
 		self.addFunction = False
 		self.pipAvailable = False
@@ -1281,14 +1281,14 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		self.subservices = csel.getSubservices(current)
 		self.parentalControlEnabled = config.ParentalControl.servicepinactive.value
 		menu = []
-		menu.append(ChoiceEntryComponent(key="menu", text=(_("Settings..."), boundFunction(self.keySetup))))
+		menu.append(ChoiceEntryComponent(key="menu", text=(_("Channel Selection Settings"), boundFunction(self.keySetup))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
 			if self.session.nav.currentlyPlayingServiceReference == current:
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
 			else:
 				appendWhenValid(current, menu, (_("Show Transponder Information"), boundFunction(self.showServiceInformations, current)), level=2)
 		if self.subservices:
-			appendWhenValid(current, menu, (_("Show subservices of the service currently playing"), self.showSubservices), key="4")
+			appendWhenValid(current, menu, (_("Show Subservices Of Active Service"), self.showSubservices), key="4")
 		if csel.bouquet_mark_edit == EDIT_OFF and not csel.entry_marked:
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
@@ -1314,9 +1314,9 @@ class ChannelContextMenu(Screen, HelpableScreen):
 
 					if BoxInfo.getItem("HAVEINITCAM"):
 						if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
-							appendWhenValid(current, menu, (_("Play service without Stream Relay"), self.toggleStreamrelay))
+							appendWhenValid(current, menu, (_("Play Service Without Stream Relay"), self.toggleStreamrelay))
 						else:
-							appendWhenValid(current, menu, (_("Play service with Stream Relay"), self.toggleStreamrelay))
+							appendWhenValid(current, menu, (_("Play Service With Stream Relay"), self.toggleStreamrelay))
 						if config.misc.autocamEnabled.value and Screens.InfoBar.InfoBar.instance.checkCrypt(current):
 							appendWhenValid(current, menu, (_("Define Softcam For This Service"), self.selectCam))
 
@@ -1347,13 +1347,13 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					if BoxInfo.getItem("PIPAvailable"):
 						if not self.parentalControlEnabled or parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							if self.csel.dopipzap:
-								appendWhenValid(current, menu, (_("Play In Main window"), self.playMain), key="yellow")
+								appendWhenValid(current, menu, (_("Play In Main Window"), self.playMain), key="yellow")
 								self["key_yellow"].setText(_("Play in Main"))
 								self["key_blue"].setText("")
 								self["mainAction"].setEnabled(True)
 								self["pipAction"].setEnabled(False)
 							else:
-								appendWhenValid(current, menu, (_("Play As Picture in Picture window"), self.showServiceInPiP), key="blue")
+								appendWhenValid(current, menu, (_("Play In PiP Window"), self.showServiceInPiP), key="blue")
 								self["key_yellow"].setText("")
 								self["key_blue"].setText(_("Play in PiP"))
 								self["mainAction"].setEnabled(False)
@@ -1370,7 +1370,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 							appendWhenValid(current, menu, (_("Remove Satellite Services"), self.removeSatelliteServices))
 					if haveBouquets:
 						if not self.inBouquet and "PROVIDERS" not in current_sel_path:
-							appendWhenValid(current, menu, (_("Copy To Bouquets"), self.copyCurrentToBouquetList))
+							appendWhenValid(current, menu, (_("Copy To Bouquet"), self.copyCurrentToBouquetList))
 							if BoxInfo.getItem("HAVEINITCAM"):
 								appendWhenValid(current, menu, (_("Copy To Stream Relay"), self.copyCurrentToStreamRelay))
 								if config.misc.autocamEnabled.value:
@@ -1407,9 +1407,9 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					appendWhenValid(current, menu, (_("Enable Move Mode"), self.toggleMoveMode), level=1, key="6")
 				if not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 					if current.type != -1:
-						menu.append(ChoiceEntryComponent(key="7", text=(_("Add Marker"), self.showMarkerInputBox)))
+						menu.append(ChoiceEntryComponent(key="7", text=(_("Add Marker To Bouquet"), self.showMarkerInputBox)))
 					if BoxInfo.getItem("HDMIin"):
-						appendWhenValid(current, menu, (_("Add HDMI IN to bouquet"), self.showHDMIInInputBox))
+						appendWhenValid(current, menu, (_("Add HDMI IN To Bouquet"), self.showHDMIInInputBox))
 					if not csel.movemode:
 						if haveBouquets:
 							appendWhenValid(current, menu, (_("Enable Bouquet Edit"), self.bouquetMarkStart))
@@ -2275,7 +2275,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.skinName = ["ChannelSelection"]
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "TvRadioActions"], {
 			"cancel": (self.cancel, _("Cancel service selection and exit")),
-			"ok": (self.channelSelected, _("Play the highlighted service")),
+			"ok": (self.channelSelected, _("Play the selected service")),
 			"keyRadio": (self.toogleTvRadio, _("Change to Radio services mode")),
 			"keyTV": (self.toogleTvRadio, _("Change to TV services mode"))
 		}, prio=0, description=_("Channel Selection Actions"))
@@ -3063,7 +3063,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.info = session.instantiateDialog(RadioInfoBar)  # Our simple InfoBar.
 		self.info.setAnimationMode(0)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "TvRadioActions"], {
-			"ok": (self.channelSelected, _("Play the highlighted service")),
+			"ok": (self.channelSelected, _("Play the selected service")),
 			"cancel": (self.cancel, _("Cancel service selection and exit")),
 			"keyTV": (self.cancel, _("Cancel service selection and exit")),
 			"keyRadio": (self.cancel, _("Cancel service selection and exit"))
@@ -3201,7 +3201,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title, currentBouquet=False):
 		ChannelSelectionBase.__init__(self, session)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "TvRadioActions"], {
-			"ok": (self.channelSelected, _("Play the highlighted service")),
+			"ok": (self.channelSelected, _("Play the selected service")),
 			"cancel": (self.cancel, _("Cancel the selection and exit")),
 			"keyTV": (self.setModeTv, _("Switch to TV mode")),
 			"keyRadio": (self.setModeRadio, _("Switch to radio mode"))
@@ -3369,7 +3369,7 @@ class HistoryZapSelector(Screen, HelpableScreen):
 		self.close(current and current[self.HISTORY_SERVICE_REFERENCE])  # Send the selected ServiceReference to the calling code.
 
 # JB there is a setting in pli
-#		<item level="1" text="Multi-EPG bouquet selection" description="Enable bouquet selection in multi-EPG">config.usage.multiepg_ask_bouquet</item>
+# <item level="1" text="Multi-EPG bouquet selection" description="Enable bouquet selection in multi-EPG">config.usage.multiepg_ask_bouquet</item>
 # we do not have that and we may should think about to get this
 
 
