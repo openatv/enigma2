@@ -645,11 +645,18 @@ class PositionerSetup(Screen):
 		self.symbolrate = tp[1]
 		self.polarisation = tp[2]
 		self.MAX_LOW_RATE_ADAPTER_COUNT = setLowRateAdapterCount(self.symbolrate)
-		transponderdata = ConvertToHumanReadable(self.tuner.getTransponderData(), "DVB-S")
-		self["frequency_value"].setText(str(transponderdata.get("frequency")))
-		self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate")))
-		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
-		self["polarisation"].setText(str(transponderdata.get("polarization")))
+		transponderdata = self.tuner.getTransponderData()
+		if transponderdata:
+			transponderdata = ConvertToHumanReadable(transponderdata, "DVB-S")
+			self["frequency_value"].setText(str(transponderdata.get("frequency")))
+			self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate")))
+			self["fec_value"].setText(str(transponderdata.get("fec_inner")))
+			self["polarisation"].setText(str(transponderdata.get("polarization")))
+		else:
+			self["frequency_value"].setText("")
+			self["symbolrate_value"].setText("")
+			self["fec_value"].setText("")
+			self["polarisation"].setText("")
 
 	@staticmethod
 	def rotorCmd2Step(rotorCmd, stepsize):
