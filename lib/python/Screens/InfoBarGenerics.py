@@ -3389,7 +3389,7 @@ class InfoBarExtensions:
 			info = s.info()
 			event = info.getEvent(0)  # 0 = Now, 1 = Next.
 			if event:
-				name = event and event.getEventName() or ""
+				name = event.getEventName() or ""
 			else:
 				name = self.session.nav.getCurrentlyPlayingServiceOrGroup().toString()
 				name = name.split("/")
@@ -4141,9 +4141,10 @@ class InfoBarRedButton:
 		if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
 			for x in self.onHBBTVActivation:
 				x()
-		elif False:  # TODO: Other red button services.
-			for x in self.onRedButtonActivation:
-				x()
+		# TODO: Other red button services.
+		# elif False:
+		# for x in self.onRedButtonActivation:
+		# x()
 
 
 class InfoBarTimerButton:
@@ -5101,6 +5102,7 @@ class InfoBarOpenOnTopHelper:
 				self.session.open(session, option)
 		except Exception as e:
 			print("[InfoBarGenerics] [openInfoBarSession] Exception:", e)
+
 
 # ################################################################
 # Handle bsod (python crashes) and show information after crash. #
