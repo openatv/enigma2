@@ -42,8 +42,9 @@ def InitCiConfig():
 		for slot in range(BoxInfo.getItem("CommonInterface")):
 			config.ci.append(ConfigSubsection())
 			config.ci[slot].enabled = ConfigYesNo(default=True)
+			config.ci[slot].enabled.value = True  # FIXME: Disable slot cause crash.
 			config.ci[slot].enabled.slotid = slot
-			config.ci[slot].enabled.addNotifier(setCIEnabled, initial_call=False)
+			# config.ci[slot].enabled.addNotifier(setCIEnabled, initial_call=False) # FIXME: Disable slot cause crash.
 			config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices=[("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default="auto")
 			config.ci[slot].use_static_pin = ConfigYesNo(default=True)
 			config.ci[slot].static_pin = ConfigPIN(default=0)
@@ -86,7 +87,7 @@ class MMIDialog(Screen):
 		self.timer = eTimer()
 		self.timer.callback.append(self.keyCancel)
 
-		#else the skins fails
+		# else the skins fails
 		self["title"] = Label("")
 		self["subtitle"] = Label("")
 		self["bottom"] = Label("")
@@ -98,7 +99,7 @@ class MMIDialog(Screen):
 				"ok": self.okbuttonClick,
 				"cancel": self.keyCancel,
 				"menu": self.forceExit,
-				#for PIN
+				# for PIN
 				"left": self.keyLeft,
 				"right": self.keyRight,
 				"1": self.keyNumberGlobal,
@@ -308,11 +309,11 @@ class MMIDialog(Screen):
 		if self.action == 1:			#init
 			do_close = True
 
-		#module still there ?
+		# module still there ?
 		if self.handler.getState(self.slotid) != 2:
 			do_close = True
 
-		#mmi session still active ?
+		# mmi session still active ?
 		if self.handler.getMMIState(self.slotid) != 1:
 			do_close = True
 
@@ -321,7 +322,7 @@ class MMIDialog(Screen):
 		elif self.action > 1 and self.handler.availableMMI(self.slotid) == 1:
 			self.showScreen()
 
-		#FIXME: check for mmi-session closed
+		# FIXME: check for mmi-session closed
 
 
 class CiMessageHandler:
@@ -433,7 +434,7 @@ class CiSelection(Setup):
 			text = "%s - %s" % (text, state == 0 and _("no module found") or _("module disabled"))
 		items.append((text,))
 
-		items.append((_("CI enabled"), config.ci[slot].enabled))
+		# items.append((_("CI enabled"), config.ci[slot].enabled)) # FIXME: Disable slot cause crash.
 		if self.state[slot] in (0, 3):
 			return items
 		if not self.ciplushelper:
