@@ -234,6 +234,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Start time shift"), "Infobar/startTimeshift", textInfoBar))
 	ButtonSetupFunctions.append((_("Stop time shift"), "Infobar/stopTimeshift", textInfoBar))
 	ButtonSetupFunctions.append((_("Start teletext"), "Infobar/startTeletext", textInfoBar))
+	ButtonSetupFunctions.append((_("Show subservices"), "Infobar/openSubservices", textInfoBar))
 	ButtonSetupFunctions.append((_("Show subservice selection"), "Infobar/subserviceSelection", textInfoBar))
 	ButtonSetupFunctions.append((_("Show subtitle selection"), "Infobar/subtitleSelection", textInfoBar))
 	ButtonSetupFunctions.append((_("Show subtitle quick menu"), "Infobar/subtitleQuickMenu", textInfoBar))
