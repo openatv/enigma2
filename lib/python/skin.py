@@ -761,6 +761,8 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 	size = None
 	pos = None
 	font = None
+	selectionZoom = None
+	selectionZoomSize = None
 	for attrib, value in node.items():  # Walk all attributes.
 		if attrib not in ignore:
 			newValue = value
@@ -777,19 +779,29 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 			# fail to clear the title area.  Similar situation for a scrollbar in a
 			# listbox; when the scrollbar setting is applied after the size, a scrollbar
 			# will not be shown until the selection moves for the first time.
-			if attrib == "size":
-				size = newValue
-			elif attrib == "position":
-				pos = newValue
-			elif attrib == "font":
-				font = newValue
-				skinAttributes.append((attrib, newValue))
-			else:
-				skinAttributes.append((attrib, newValue))
-	if pos is not None:
+			match attrib:
+				case "size":
+					size = newValue
+				case "position":
+					pos = newValue
+				case "font":
+					font = newValue
+					skinAttributes.append((attrib, newValue))
+				case "selectionZoom":
+					selectionZoom = newValue
+				case "selectionZoomSize":
+					selectionZoomSize = newValue
+				case _:
+					skinAttributes.append((attrib, newValue))
+
+	if selectionZoom is not None:  # The "selectionZoom" attribute must be after the item size attributes.
+		skinAttributes.append(("selectionZoom", selectionZoom))
+	if selectionZoomSize is not None:  # The "selectionZoomSize" attribute must be after the item size attributes.
+		skinAttributes.append(("selectionZoomSize", selectionZoomSize))
+	if pos is not None:  # The "position" attribute must be after the all other attributes.
 		pos, size = context.parse(pos, size, font)
 		skinAttributes.append(("position", pos))
-	if size is not None:
+	if size is not None:  # The "size" attribute must be after the "position" attribute.
 		skinAttributes.append(("size", size))
 
 
