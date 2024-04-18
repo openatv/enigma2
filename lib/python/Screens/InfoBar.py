@@ -134,10 +134,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if config.plisettings.ColouredButtons.value:
 			self["key_yellow"].setText(_("Search"))
 			self["key_red"].setText(_("Single EPG"))
-
-			if config.plisettings.Subservice.value == "0":
+			if config.usage.subservice.value == 0:
 				self["key_green"].setText(_("Timers"))
-			elif config.plisettings.Subservice.value == "1":
+			elif config.usage.subservice.value == 1:
 				self["key_green"].setText(_("Plugins"))
 			else:
 				self["key_green"].setText(_("Subservices"))
