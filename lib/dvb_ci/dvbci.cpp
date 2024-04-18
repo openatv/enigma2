@@ -1351,7 +1351,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 	m_ciplus_routing_tunernum = -1;
 	state = stateDisabled;
 	snprintf(configStr, 255, "config.ci.%d.enabled", slotid);
-	bool enabled = true; //eSimpleConfig::getBool(configStr, true); // FIXME: Disable slot cause crash.
+	bool enabled = eSimpleConfig::getBool(configStr, true);
 	if (enabled) {
 		int bootDelay = eSimpleConfig::getInt("config.cimisc.bootDelay", 5);
 		if (bootDelay) {
