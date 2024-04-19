@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"POT-Creation-Date: 2024-04-18 19:03+0000\n"
 "PO-Revision-Date: 2024-02-19 11:02+0000\n"
 "Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1174,6 +1174,10 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s télécommande (natif)"
 
 #, python-format
+msgid "%s %sB"
+msgstr ""
+
+#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1880,7 +1884,7 @@ msgstr "Ajouter File Commander à la liste des options du menu Extensions."
 msgid "Add File Commander to the Main Menu list of options."
 msgstr "Ajouter File Commander à la liste des options."
 
-msgid "Add HDMI IN To Bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr "Ajouter HDMI IN au bouquet"
 
 msgid "Add Marker To Bouquet"
@@ -1925,13 +1929,13 @@ msgstr "Ajouter un timer de zap pour l'évènement courant"
 msgid "Add a ZapTimer for next event"
 msgstr "Ajouter un timer de zap pour l'évènement suivant"
 
-msgid "Add a new bouquet"
-msgstr "Ajouter un bouquet"
-
 msgid "Add a mark"
 msgstr "Ajouter un marqueur"
 
-msgid "Add a new marker"
+msgid "Add a new bouquet"
+msgstr "Ajouter un bouquet"
+
+msgid "Add a new marker before the current service"
 msgstr "Ajouter un marqueur"
 
 msgid "Add a new tag"
@@ -1997,9 +2001,6 @@ msgstr "Ajouter un enregistrement (indéfiniment)"
 msgid "Add recording (Stop after current event)"
 msgstr "Ajouter un enregistrement (stopper après l'émission)"
 
-msgid "Add the selected service to a bouquet or alternative"
-msgstr "Ajouter un service sélectionné pour bouquet ou alternative"
-
 msgid "Add service"
 msgstr "Ajouter service"
 
@@ -2014,6 +2015,9 @@ msgstr "Ajouter le répertoire courant comme signmark"
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Ajouter le service actuel à la liste des décalages de volume"
+
+msgid "Add the selected service to a bouquet or alternative"
+msgstr "Ajouter un service sélectionné pour bouquet ou alternative"
 
 msgid "Add title"
 msgstr "Ajouter titre"
@@ -3128,6 +3132,9 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
+msgid "Bouquets"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "Île Bouvet"
 
@@ -3597,6 +3604,9 @@ msgstr "Annuler la sélection"
 msgid "Cancel selection and exit"
 msgstr ""
 
+msgid "Cancel service selection and exit"
+msgstr ""
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
@@ -3755,6 +3765,12 @@ msgstr "Changer skin"
 msgid "Change step size"
 msgstr "Changer taille du pas"
 
+msgid "Change to Radio services mode"
+msgstr ""
+
+msgid "Change to TV services mode"
+msgstr ""
+
 msgid "Change to bouquet"
 msgstr "Changer vers bouquet"
 
@@ -3790,6 +3806,15 @@ msgstr "Info chaîne"
 msgid "Channel List"
 msgstr "Liste des chaînes"
 
+msgid "Channel List Menu"
+msgstr "Liste des chaînes"
+
+msgid "Channel Selection"
+msgstr "Sélection de la chaîne"
+
+msgid "Channel Selection Actions"
+msgstr ""
+
 msgid "Channel Selection Context Menu"
 msgstr "Menu contextuel de la liste des chaînes"
 
@@ -3799,11 +3824,8 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
-msgid "Channel List Menu"
-msgstr "Liste des chaînes"
-
-msgid "Channel Selection"
-msgstr "Sélection de la chaîne"
+msgid "Channel Selection Navigation Actions"
+msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Paramètres sélection des chaînes"
@@ -4196,6 +4218,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the choice box"
 msgstr ""
 
 msgid "Close the current screen"
@@ -6808,6 +6833,9 @@ msgid "Enable GStreamer debug log *"
 msgstr ""
 
 msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
+msgid "Enable IPv6"
 msgstr ""
 
 msgid "Enable IceTV"
@@ -10026,6 +10054,9 @@ msgstr "Plugin LCN pour les services DVB-T/T2"
 msgid "LCN rules:"
 msgstr "Règles LCN :"
 
+msgid "LCN style QuickSelect entry selection"
+msgstr ""
+
 msgid "LED Brightness"
 msgstr ""
 
@@ -10882,9 +10913,6 @@ msgstr "Age minimum %d ans"
 msgid "Minimum send interval"
 msgstr "Intervalle minimum d'envoi"
 
-msgid "Mins"
-msgstr "Mins"
-
 msgid "Minutes"
 msgstr "Minutes"
 
@@ -11183,6 +11211,18 @@ msgid "Move to last line / screen"
 msgstr "Accéder à la dernière ligne/écran"
 
 msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to next bouquet"
+msgstr ""
+
+msgid "Move to next marker"
+msgstr ""
+
+msgid "Move to previous bouquet"
+msgstr ""
+
+msgid "Move to previous marker"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -12356,6 +12396,9 @@ msgstr ""
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
+msgid "Open the context menu"
+msgstr ""
+
 msgid "Open the movie list"
 msgstr "Ouvrir la liste de films"
 
@@ -12837,9 +12880,6 @@ msgstr ""
 msgid "Play"
 msgstr "Lire"
 
-msgid "Play In PiP Window"
-msgstr "Lire en incrustation d'image"
-
 msgid "Play DVD"
 msgstr "Lire DVD"
 
@@ -12848,6 +12888,21 @@ msgstr "Lire DVDs"
 
 msgid "Play In Main Window"
 msgstr "lire dans la fenêtre principale"
+
+msgid "Play In PiP Window"
+msgstr "Lire en incrustation d'image"
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
+msgstr ""
+
+msgid "Play Service With Stream Relay"
+msgstr ""
+
+msgid "Play Service Without Stream Relay"
+msgstr ""
 
 msgid "Play all audio files in the directory"
 msgstr ""
@@ -12900,13 +12955,10 @@ msgstr ""
 msgid "Play selected service on the main screen"
 msgstr ""
 
-msgid "Play Service With Stream Relay"
-msgstr ""
-
-msgid "Play Service Without Stream Relay"
-msgstr ""
-
 msgid "Play the audio file"
+msgstr ""
+
+msgid "Play the selected service"
 msgstr ""
 
 msgid "Playback Settings"
@@ -13023,9 +13075,6 @@ msgstr "Veuillez choisir une liste de lecture..."
 
 msgid "Please select a resolution..."
 msgstr "Veuillez choisir une résolution…"
-
-msgid "Please select a sub service..."
-msgstr "Veuillez choisir un sous-service..."
 
 msgid "Please select an aspect ratio..."
 msgstr "Veuillez choisir un ratio d'aspect…"
@@ -13822,9 +13871,6 @@ msgstr "Menu de lancement rapide"
 msgid "Quick Menu..."
 msgstr "Menu rapide…"
 
-msgid "Quick zap"
-msgstr "Zapping rapide"
-
 msgid "QuickEPG mode"
 msgstr "Mode QuickEPG"
 
@@ -13903,6 +13949,9 @@ msgstr ""
 msgid "Radio Channel Selection"
 msgstr "Sélection Canal Radio"
 
+msgid "Radio Channel Selection Actions"
+msgstr ""
+
 msgid "Random"
 msgstr "Aléatoire"
 
@@ -13953,9 +14002,6 @@ msgstr "Fermer vraiment sans sauvegarder les paramètres ?"
 
 msgid "Really delete this entry?"
 msgstr "Vraiment supprimer cette entrée ?"
-
-msgid "Really exit the subservices quickzap?"
-msgstr "Vraiment quitter les sous-services rapidement ?"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Redémarrer vraiment en Mode Récupération (Recovery Mode) ?"
@@ -14383,9 +14429,6 @@ msgstr "Supprimer le dossier sélectionné des favoris"
 msgid "Remove plugins ..."
 msgstr ""
 
-msgid "Remove the selected service"
-msgstr ""
-
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -14402,6 +14445,9 @@ msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove the selected plugin / list of plugins"
+msgstr ""
+
+msgid "Remove the selected service"
 msgstr ""
 
 msgid "Remove timer"
@@ -14443,10 +14489,10 @@ msgstr "Renommer le nom et la description pour les nouveaux événements"
 msgid "Rename only highlighted file"
 msgstr ""
 
-msgid "Rename the selected service"
+msgid "Rename the proposed file to be created"
 msgstr ""
 
-msgid "Rename the proposed file to be created"
+msgid "Rename the selected service"
 msgstr ""
 
 msgid "Rename this tag"
@@ -15518,6 +15564,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Si défini à ‘oui’ les valeurs du signal (SNR,etc) seront calculés depuis l’API v3. Ceci est une ancienne version de l’API qui a maintenant été remplacée."
 
@@ -15810,6 +15859,9 @@ msgstr "Sélectionner le service à ajouter..."
 
 msgid "Select sort method:"
 msgstr "Sélectionnez la méthode de tri :"
+
+msgid "Select subservices"
+msgstr ""
 
 msgid "Select system information to view:"
 msgstr ""
@@ -16356,17 +16408,8 @@ msgstr ""
 msgid "Service and PID information for '%s'"
 msgstr ""
 
-msgid "Service cant been added to the favorites."
-msgstr "Le sevice ne peut pas être ajouté aux favoris."
-
 msgid "Service font size"
 msgstr "Taille de la police pour les services"
-
-msgid "Service has been added to the favorites."
-msgstr "Le service a été ajouté aux favoris."
-
-msgid "Service has been added to the selected bouquet."
-msgstr "Le service a été ajouté au bouquet sélectionné."
 
 msgid "Service info"
 msgstr "Info service"
@@ -17084,6 +17127,12 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show subservices of the active service"
+msgstr ""
+
 msgid "Show System Plugin packages"
 msgstr ""
 
@@ -17121,6 +17170,9 @@ msgid "Show advanced settings"
 msgstr "Afficher les paramètres avancés"
 
 msgid "Show all"
+msgstr ""
+
+msgid "Show all available services"
 msgstr ""
 
 msgid "Show all details"
@@ -17267,6 +17319,15 @@ msgid "Show job tasks in Extension Menu"
 msgstr "Afficher les tâches (job) dans les extensions"
 
 msgid "Show last image"
+msgstr ""
+
+msgid "Show list of bouquets"
+msgstr ""
+
+msgid "Show list of providers"
+msgstr ""
+
+msgid "Show list of transponders"
 msgstr ""
 
 msgid "Show live TV when movie stopped"
@@ -17443,6 +17504,9 @@ msgstr "Afficher les messages de statut lorsqu'on bascule sur la TV en direct"
 
 msgid "Show subservice selection"
 msgstr "Afficher sélection sous-service"
+
+msgid "Show subservices"
+msgstr ""
 
 msgid "Show subservices *"
 msgstr ""
@@ -18510,11 +18574,8 @@ msgstr "Bandes Verticales"
 msgid "Style:"
 msgstr "Le style :"
 
-msgid "Sub Service Actions"
-msgstr "Actions de sous-service"
-
-msgid "Subservice list..."
-msgstr "Liste des sous-services..."
+msgid "Subservice Actions"
+msgstr ""
 
 msgid "Subservice mode (GREEN button)"
 msgstr "Mode sous-service (bouton vert)"
@@ -18723,9 +18784,6 @@ msgstr "Passer à l’événement EPG suivant"
 msgid "Switch to next channel in history"
 msgstr "Basculer vers la chaîne suivante dans l'historique"
 
-msgid "Switch to next sub service"
-msgstr "Basculer vers sous-service suivant"
-
 msgid "Switch to play list"
 msgstr "Basculer vers la liste de lecture"
 
@@ -18738,10 +18796,7 @@ msgstr "Basculer vers la chaîne précédente"
 msgid "Switch to previous channel in history"
 msgstr "Basculer vers la chaîne précédente dans l'historique"
 
-msgid "Switch to previous sub service"
-msgstr "Basculer vers sous-service précédent"
-
-msgid "Switch to radio mode"
+msgid "Switch to Radio mode"
 msgstr "Basculer en mode radio"
 
 msgid "Switch to the available RADIO services"
@@ -18999,6 +19054,9 @@ msgstr "Telugu"
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+msgid "Temporary directory"
 msgstr ""
 
 msgid "Tennis"
@@ -20840,6 +20898,9 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "Utiliser la passerelle"
 
+msgid "Use alternate GitHub DNS"
+msgstr ""
+
 msgid "Use an alternative smaller screen."
 msgstr "Utiliser l'écran alternatif"
 
@@ -21298,7 +21359,7 @@ msgstr "Vue"
 msgid "View File"
 msgstr ""
 
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Afficher Rass interactif..."
 
 msgid "View as grid"
@@ -21350,17 +21411,14 @@ msgstr "Îles Vierges (britanniques)"
 msgid "Virgin Islands (US)"
 msgstr "Îles Vierges (US)"
 
-msgid "Virtual KeyBoard"
-msgstr ""
+msgid "Virtual Keyboard"
+msgstr "Clavier virtuel"
 
 msgid "Virtual Keyboard Actions"
 msgstr ""
 
 msgid "Virtual Keyboard Text:"
 msgstr "Texte du clavier virtuel :"
-
-msgid "Virtual Keyboard"
-msgstr "Clavier virtuel"
 
 msgid "Visual impaired commentary"
 msgstr "Commentaire pour les malvoyants"
@@ -22016,12 +22074,6 @@ msgstr "Oui, sauvegarder mes paramètres !"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Oui, mais ne pas sauvegarder le PauseDirect comme film"
 
-msgid "Yes, show Plugin Browser if unavailable"
-msgstr "Oui, mais s'il n'est pas disponible, affichez le navigateur du plugin"
-
-msgid "Yes, show RecordTimer if unavailable"
-msgstr "Oui, mais s'il n'est pas disponible, afficher la liste des programmations"
-
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Oui, mais sauvegarder PauseDirect comme film et continuer l'enregistrement"
 
@@ -22048,6 +22100,12 @@ msgstr "Oui, restaurer les paramètres maintenant"
 
 msgid "Yes, returning to movie list"
 msgstr "Oui, retour vers liste de films"
+
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr "Oui, mais s'il n'est pas disponible, affichez le navigateur du plugin"
+
+msgid "Yes, show RecordTimer if unavailable"
+msgstr "Oui, mais s'il n'est pas disponible, afficher la liste des programmations"
 
 msgid "Yes, shut down now."
 msgstr "Oui, éteindre maintenant."
@@ -22552,12 +22610,6 @@ msgstr "lecteur de cartes"
 
 msgid "cartoon/puppets"
 msgstr "Dessin animé/Marionnettes"
-
-msgid "change Volume down"
-msgstr "diminuer le volume"
-
-msgid "change Volume up"
-msgstr "augmenter le volume"
 
 msgid "chapters"
 msgstr "Chapitres"
@@ -23470,6 +23522,45 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mins"
+#~ msgstr "Mins"
+
+#~ msgid "Please select a sub service..."
+#~ msgstr "Veuillez choisir un sous-service..."
+
+#~ msgid "Quick zap"
+#~ msgstr "Zapping rapide"
+
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Vraiment quitter les sous-services rapidement ?"
+
+#~ msgid "Service cant been added to the favorites."
+#~ msgstr "Le sevice ne peut pas être ajouté aux favoris."
+
+#~ msgid "Service has been added to the favorites."
+#~ msgstr "Le service a été ajouté aux favoris."
+
+#~ msgid "Service has been added to the selected bouquet."
+#~ msgstr "Le service a été ajouté au bouquet sélectionné."
+
+#~ msgid "Sub Service Actions"
+#~ msgstr "Actions de sous-service"
+
+#~ msgid "Subservice list..."
+#~ msgstr "Liste des sous-services..."
+
+#~ msgid "Switch to next sub service"
+#~ msgstr "Basculer vers sous-service suivant"
+
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Basculer vers sous-service précédent"
+
+#~ msgid "change Volume down"
+#~ msgstr "diminuer le volume"
+
+#~ msgid "change Volume up"
+#~ msgstr "augmenter le volume"
 
 #, python-format
 #~ msgid "%s (%s)"

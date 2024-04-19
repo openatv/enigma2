@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"POT-Creation-Date: 2024-04-18 19:03+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1159,6 +1159,10 @@ msgstr "%s %s fare"
 msgid "%s %s remote control (native)"
 msgstr "%s %s uzaktan kumanda (yerel)"
 
+#, python-format
+msgid "%s %sB"
+msgstr ""
+
 #
 #, python-format
 msgid "%s (%04o)"
@@ -1916,7 +1920,7 @@ msgstr "Uzantılar Menüsü seçenek listesine File Commander'ı ekleyin."
 msgid "Add File Commander to the Main Menu list of options."
 msgstr "File Commander'ı Ana Menü seçenek listesine ekleyin."
 
-msgid "Add HDMI IN To Bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr "Bukete HDMI IN ekleyin"
 
 #
@@ -1965,14 +1969,14 @@ msgstr "Geçerli etkinliğe zap zamanlayıcı ekle"
 msgid "Add a ZapTimer for next event"
 msgstr "Sonraki etkinliğe zap zamanlayıcı ekle"
 
-msgid "Add a new bouquet"
-msgstr "Bukete ekle"
-
 #
 msgid "Add a mark"
 msgstr "İşaret ekle"
 
-msgid "Add a new marker"
+msgid "Add a new bouquet"
+msgstr "Bukete ekle"
+
+msgid "Add a new marker before the current service"
 msgstr "Bir işaretleyici ekleyin"
 
 msgid "Add a new tag"
@@ -2044,9 +2048,6 @@ msgstr "Kayıt ekle (süresiz)"
 msgid "Add recording (Stop after current event)"
 msgstr "Kayıt ekle (şimdiki programdan sonra dursun)"
 
-msgid "Add the selected service to a bouquet or alternative"
-msgstr "Seçilen hizmeti bukete veya alternatife ekleyin"
-
 #
 msgid "Add service"
 msgstr "Kanal ekle"
@@ -2062,6 +2063,9 @@ msgstr "Geçerli dizini yer imi olarak ekleme"
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Geçerli hizmeti Hacim Ofsetleri listesine ekleyin"
+
+msgid "Add the selected service to a bouquet or alternative"
+msgstr "Seçilen hizmeti bukete veya alternatife ekleyin"
 
 #
 msgid "Add title"
@@ -3241,6 +3245,9 @@ msgstr "Buket Seçici Eylemler"
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Buket Seçici Navigasyon Eylemleri"
 
+msgid "Bouquets"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "Bouvet Adası"
 
@@ -3721,6 +3728,9 @@ msgstr "Seçimi iptal et"
 msgid "Cancel selection and exit"
 msgstr "Seçimi iptal et ve çık"
 
+msgid "Cancel service selection and exit"
+msgstr ""
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
@@ -3886,6 +3896,12 @@ msgstr "Skin değiştir"
 msgid "Change step size"
 msgstr "Ayar yapılırken atlama boyutu"
 
+msgid "Change to Radio services mode"
+msgstr ""
+
+msgid "Change to TV services mode"
+msgstr ""
+
 #
 msgid "Change to bouquet"
 msgstr "Buket değiştir"
@@ -3924,6 +3940,16 @@ msgstr "Kanal Bilgisi"
 msgid "Channel List"
 msgstr "Kanal Listesi"
 
+msgid "Channel List Menu"
+msgstr "Kanal listesi menüsü"
+
+#
+msgid "Channel Selection"
+msgstr "Kanal Seçimi"
+
+msgid "Channel Selection Actions"
+msgstr ""
+
 msgid "Channel Selection Context Menu"
 msgstr "Kanal listesi içerik menüsü"
 
@@ -3933,12 +3959,8 @@ msgstr "Kanal Listesi Bağlam Menüsü Eylemleri"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Kanal Listesi Bağlam Menüsü Gezinme Eylemleri"
 
-msgid "Channel List Menu"
-msgstr "Kanal listesi menüsü"
-
-#
-msgid "Channel Selection"
-msgstr "Kanal Seçimi"
+msgid "Channel Selection Navigation Actions"
+msgstr ""
 
 #
 msgid "Channel Selection Settings"
@@ -4347,6 +4369,9 @@ msgstr "Kexec MultiBoot Yöneticisini kapatın"
 
 msgid "Close the Plugin Browser screen"
 msgstr "Eklenti Tarayıcı ekranını kapatın"
+
+msgid "Close the choice box"
+msgstr ""
 
 msgid "Close the current screen"
 msgstr "Geçerli ekranı kapat"
@@ -7092,6 +7117,9 @@ msgstr "GStreamer hata ayıklama günlüğünü etkinleştir *"
 
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "GStreamer ardışık düzen grafiklerini etkinleştir *"
+
+msgid "Enable IPv6"
+msgstr ""
 
 msgid "Enable IceTV"
 msgstr "IceTV'yi etkinleştir"
@@ -10469,6 +10497,9 @@ msgstr "DVB-T / T2 servisleri için LCN eklentisi"
 msgid "LCN rules:"
 msgstr "LCN kuralları:"
 
+msgid "LCN style QuickSelect entry selection"
+msgstr ""
+
 msgid "LED Brightness"
 msgstr "LED Parlaklığı"
 
@@ -11375,9 +11406,6 @@ msgstr "Alt yaş sınırı %d"
 msgid "Minimum send interval"
 msgstr "Asgari gönderme aralığı"
 
-msgid "Mins"
-msgstr "Dk"
-
 #
 msgid "Minutes"
 msgstr "Dakikalar"
@@ -11694,6 +11722,18 @@ msgstr "Son satıra / ekrana git"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Paneldeki son satıra/ekrana gitme"
+
+msgid "Move to next bouquet"
+msgstr ""
+
+msgid "Move to next marker"
+msgstr ""
+
+msgid "Move to previous bouquet"
+msgstr ""
+
+msgid "Move to previous marker"
+msgstr ""
 
 msgid "Move to the first item on the current line"
 msgstr "Geçerli satırdaki ilk öğeye git"
@@ -12952,6 +12992,9 @@ msgstr "Eklenti Tarayıcı ayarları ekranını açın"
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Metin girişi için VirtualKeyBoard'u açın"
 
+msgid "Open the context menu"
+msgstr ""
+
 msgid "Open the movie list"
 msgstr "Film listesini aç"
 
@@ -13449,9 +13492,6 @@ msgstr "Platformu"
 msgid "Play"
 msgstr "Oynat"
 
-msgid "Play In PiP Window"
-msgstr "Resim penceresinde Resim Olarak Oynat"
-
 #
 msgid "Play DVD"
 msgstr "DVD Oynat"
@@ -13462,6 +13502,21 @@ msgstr "DVD Oynat"
 
 msgid "Play In Main Window"
 msgstr "Ana pencerede oynat"
+
+msgid "Play In PiP Window"
+msgstr "Resim penceresinde Resim Olarak Oynat"
+
+msgid "Play service with Stream Relay"
+msgstr "Stream Relay ile oynatma hizmeti"
+
+msgid "Play service without Stream Relay"
+msgstr "Stream Relay olmadan oynatma hizmeti"
+
+msgid "Play Service With Stream Relay"
+msgstr ""
+
+msgid "Play Service Without Stream Relay"
+msgstr ""
 
 msgid "Play all audio files in the directory"
 msgstr "Dizindeki tüm ses dosyalarını çalma"
@@ -13520,14 +13575,11 @@ msgstr "Seçilen hizmeti bir PiP penceresinde oynatma"
 msgid "Play selected service on the main screen"
 msgstr "Seçilen hizmeti ana ekranda oynatma"
 
-msgid "Play Service With Stream Relay"
-msgstr "Stream Relay ile oynatma hizmeti"
-
-msgid "Play Service Without Stream Relay"
-msgstr "Stream Relay olmadan oynatma hizmeti"
-
 msgid "Play the audio file"
 msgstr "Ses dosyasını çalma"
+
+msgid "Play the selected service"
+msgstr ""
 
 msgid "Playback Settings"
 msgstr "Oynatma Ayarları"
@@ -13658,10 +13710,6 @@ msgstr "Lütfen bir oynatma listesi seçin..."
 
 msgid "Please select a resolution..."
 msgstr "Lütfen bir çözünürlük seçin..."
-
-#
-msgid "Please select a sub service..."
-msgstr "Lütfen bir alt servis seçin..."
 
 msgid "Please select an aspect ratio..."
 msgstr "Lütfen bir en boy oranı seçin ..."
@@ -14513,10 +14561,6 @@ msgstr "Hızlı Başlat Menüsü"
 msgid "Quick Menu..."
 msgstr "Hızlı Menü..."
 
-#
-msgid "Quick zap"
-msgstr "Hızlızap"
-
 msgid "QuickEPG mode"
 msgstr "QuickEPG modu"
 
@@ -14598,6 +14642,9 @@ msgstr "Radyo"
 msgid "Radio Channel Selection"
 msgstr "Radyo Kanalı Seçimi"
 
+msgid "Radio Channel Selection Actions"
+msgstr ""
+
 #
 msgid "Random"
 msgstr "Rastgele"
@@ -14651,10 +14698,6 @@ msgstr "Ayarlarınızı saklamadan çıkmak istediğinizden emin misiniz?"
 #
 msgid "Really delete this entry?"
 msgstr "Bu girişi gerçekten sil?"
-
-#
-msgid "Really exit the subservices quickzap?"
-msgstr "Alt servis hızlı geçişinden çıkmak istiyor musunuz?"
 
 #
 msgid "Really reboot into Recovery Mode?"
@@ -15108,9 +15151,6 @@ msgstr "Seçilen klasörü yer işaretlerinden kaldır"
 msgid "Remove plugins ..."
 msgstr "Eklentileri kaldır ..."
 
-msgid "Remove the selected service"
-msgstr "Seçili hizmeti kaldırın"
-
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -15128,6 +15168,9 @@ msgstr "Geçerli yer işaretini kaldır"
 
 msgid "Remove the selected plugin / list of plugins"
 msgstr "Seçili eklentiyi / eklenti listesini kaldırma"
+
+msgid "Remove the selected service"
+msgstr "Seçili hizmeti kaldırın"
 
 #
 msgid "Remove timer"
@@ -15173,11 +15216,11 @@ msgstr "Yeni etkinlikler için adı ve açıklamayı yeniden adlandırın"
 msgid "Rename only highlighted file"
 msgstr "Yalnızca vurgulanan dosyayı yeniden adlandırın"
 
-msgid "Rename the selected service"
-msgstr "Seçili hizmeti yeniden adlandırın"
-
 msgid "Rename the proposed file to be created"
 msgstr "Oluşturulması önerilen dosyayı yeniden adlandırın"
+
+msgid "Rename the selected service"
+msgstr "Seçili hizmeti yeniden adlandırın"
 
 msgid "Rename this tag"
 msgstr "Bu etiketi yeniden adlandır"
@@ -16312,6 +16355,9 @@ msgstr "Eklentileri İndir ekranında web bağlantı paketlerini göstermek içi
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "'Evet' olarak ayarlanmışsa sinyal değerleri (SNR, vb.) API V3'ten hesaplanacaktır. Bu, şimdi değiştirilen eski bir API sürümüdür."
 
@@ -16617,6 +16663,9 @@ msgstr "Eklenecek kanalı seçin..."
 
 msgid "Select sort method:"
 msgstr "Sıralama yöntemini seç:"
+
+msgid "Select subservices"
+msgstr ""
 
 msgid "Select system information to view:"
 msgstr "Görüntülemek için sistem bilgilerini seçin:"
@@ -17186,20 +17235,8 @@ msgstr "Servis ve PID bilgileri"
 msgid "Service and PID information for '%s'"
 msgstr "Servis ve PID bilgileri '%s'"
 
-#
-msgid "Service cant been added to the favorites."
-msgstr "Hizmet sık kullanılanlara eklenemedi."
-
 msgid "Service font size"
 msgstr "Kanal ismi yazı tipi boyutu"
-
-#
-msgid "Service has been added to the favorites."
-msgstr "Kanal favorilere eklendi."
-
-#
-msgid "Service has been added to the selected bouquet."
-msgstr "Kanal seçilen bukete eklendi."
 
 msgid "Service info"
 msgstr "Kanal bilgisi"
@@ -17941,6 +17978,12 @@ msgstr "Softcam paketlerini göster"
 msgid "Show Source packages"
 msgstr "Kaynak paketleri göster"
 
+msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show subservices of the active service"
+msgstr ""
+
 msgid "Show System Plugin packages"
 msgstr "Sistem Eklenti paketlerini göster"
 
@@ -17980,6 +18023,9 @@ msgid "Show advanced settings"
 msgstr "Gelişmiş ayarları göster"
 
 msgid "Show all"
+msgstr ""
+
+msgid "Show all available services"
 msgstr ""
 
 msgid "Show all details"
@@ -18132,6 +18178,15 @@ msgstr "İş görevlerini uzantılarda göster"
 
 msgid "Show last image"
 msgstr "Son resmi göster"
+
+msgid "Show list of bouquets"
+msgstr ""
+
+msgid "Show list of providers"
+msgstr ""
+
+msgid "Show list of transponders"
+msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Film durdurulunca canlı TV yi göster"
@@ -18313,6 +18368,9 @@ msgstr "Canlı TV'ye geçerken durum mesajlarını göster"
 
 msgid "Show subservice selection"
 msgstr "Alt hizmet seçimini göster"
+
+msgid "Show subservices"
+msgstr ""
 
 msgid "Show subservices *"
 msgstr "Alt hizmetleri göster *"
@@ -19439,12 +19497,8 @@ msgstr "Çizgili"
 msgid "Style:"
 msgstr "Stil:"
 
-msgid "Sub Service Actions"
-msgstr "Alt Hizmet Eylemleri"
-
-#
-msgid "Subservice list..."
-msgstr "Alt hizmet listesi ..."
+msgid "Subservice Actions"
+msgstr ""
 
 msgid "Subservice mode (GREEN button)"
 msgstr "Servis modu (yeşil Düğme)"
@@ -19665,10 +19719,6 @@ msgid "Switch to next channel in history"
 msgstr "Geçmişteki sonraki kanala geçiş"
 
 #
-msgid "Switch to next sub service"
-msgstr "Sonraki alt servise geç"
-
-#
 msgid "Switch to play list"
 msgstr "Oynatma listesine geç"
 
@@ -19682,11 +19732,7 @@ msgstr "Önceki kanala geçiş"
 msgid "Switch to previous channel in history"
 msgstr "Geçmişteki önceki kanala geçiş"
 
-#
-msgid "Switch to previous sub service"
-msgstr "Önceki alt servise geç"
-
-msgid "Switch to radio mode"
+msgid "Switch to Radio mode"
 msgstr "Radyo kipine geç"
 
 msgid "Switch to the available RADIO services"
@@ -19949,6 +19995,9 @@ msgstr "Telugu"
 #, python-format
 msgid "Temp directory (%s)"
 msgstr "Geçici dizin (%s)"
+
+msgid "Temporary directory"
+msgstr ""
 
 #
 msgid "Tennis"
@@ -21895,6 +21944,9 @@ msgstr "Zap zamanlayıcı bitiş zamanlarını kullanın"
 msgid "Use a gateway"
 msgstr "Ağ geçidi kullan"
 
+msgid "Use alternate GitHub DNS"
+msgstr ""
+
 msgid "Use an alternative smaller screen."
 msgstr "Alternatif daha küçük bir ekran kullanın."
 
@@ -22407,7 +22459,7 @@ msgid "View File"
 msgstr "Dosyayı görüntüle"
 
 #
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Etkileşimli Rass'ı (Radio acoustic sounding system) izle..."
 
 msgid "View as grid"
@@ -22463,7 +22515,7 @@ msgstr "Virgin Adaları (İngiliz)"
 msgid "Virgin Islands (US)"
 msgstr "Virgin Adaları (ABD)"
 
-msgid "Virtual KeyBoard"
+msgid "Virtual Keyboard"
 msgstr "Sanal klavye"
 
 msgid "Virtual Keyboard Actions"
@@ -22471,9 +22523,6 @@ msgstr "Sanal Klavye Eylemleri"
 
 msgid "Virtual Keyboard Text:"
 msgstr "Sanal Klavye Metni:"
-
-msgid "Virtual Keyboard"
-msgstr "Sanal klavye"
 
 msgid "Visual impaired commentary"
 msgstr "Görme engelli yorumu"
@@ -23163,12 +23212,6 @@ msgstr "Evet, ayarlarımın yedeğini al!"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Zaman-kaydırmayı film olarak saklama"
 
-msgid "Yes, show Plugin Browser if unavailable"
-msgstr "Evet, ancak mevcut değilse eklenti tarayıcısını göster"
-
-msgid "Yes, show RecordTimer if unavailable"
-msgstr "Evet, ancak uygun değilse zamanlayıcı listesini göster"
-
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıda devam et"
 
@@ -23200,6 +23243,12 @@ msgstr "Evet, ayarlarımı geri yükle"
 #
 msgid "Yes, returning to movie list"
 msgstr "Evet, film listesine dön"
+
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr "Evet, ancak mevcut değilse eklenti tarayıcısını göster"
+
+msgid "Yes, show RecordTimer if unavailable"
+msgstr "Evet, ancak uygun değilse zamanlayıcı listesini göster"
 
 #
 msgid "Yes, shut down now."
@@ -23722,12 +23771,6 @@ msgstr "kart okuyucu"
 
 msgid "cartoon/puppets"
 msgstr "çizgifilm/kukla"
-
-msgid "change Volume down"
-msgstr "sesi kısmak"
-
-msgid "change Volume up"
-msgstr "ses seviyesini değiştir"
 
 #
 msgid "chapters"
@@ -24725,6 +24768,57 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mins"
+#~ msgstr "Dk"
+
+#
+#~ msgid "Please select a sub service..."
+#~ msgstr "Lütfen bir alt servis seçin..."
+
+#
+#~ msgid "Quick zap"
+#~ msgstr "Hızlızap"
+
+#
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Alt servis hızlı geçişinden çıkmak istiyor musunuz?"
+
+#
+#~ msgid "Service cant been added to the favorites."
+#~ msgstr "Hizmet sık kullanılanlara eklenemedi."
+
+#
+#~ msgid "Service has been added to the favorites."
+#~ msgstr "Kanal favorilere eklendi."
+
+#
+#~ msgid "Service has been added to the selected bouquet."
+#~ msgstr "Kanal seçilen bukete eklendi."
+
+#~ msgid "Sub Service Actions"
+#~ msgstr "Alt Hizmet Eylemleri"
+
+#
+#~ msgid "Subservice list..."
+#~ msgstr "Alt hizmet listesi ..."
+
+#
+#~ msgid "Switch to next sub service"
+#~ msgstr "Sonraki alt servise geç"
+
+#
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Önceki alt servise geç"
+
+#~ msgid "Virtual KeyBoard"
+#~ msgstr "Sanal klavye"
+
+#~ msgid "change Volume down"
+#~ msgstr "sesi kısmak"
+
+#~ msgid "change Volume up"
+#~ msgstr "ses seviyesini değiştir"
 
 #
 #, python-format

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"POT-Creation-Date: 2024-04-18 19:03+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -1175,6 +1175,10 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s telekomandë (native)"
 
 #, python-format
+msgid "%s %sB"
+msgstr ""
+
+#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1881,7 +1885,7 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
-msgid "Add HDMI IN To Bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr ""
 
 msgid "Add Marker To Bouquet"
@@ -1926,13 +1930,13 @@ msgstr "Shto një kronometr zap për ngjarjen aktuale"
 msgid "Add a ZapTimer for next event"
 msgstr "Shto një kronometr zap për ngjarjen tjetër"
 
-msgid "Add a new bouquet"
-msgstr ""
-
 msgid "Add a mark"
 msgstr "Shtoni një shenjë"
 
-msgid "Add a new marker"
+msgid "Add a new bouquet"
+msgstr ""
+
+msgid "Add a new marker before the current service"
 msgstr ""
 
 msgid "Add a new tag"
@@ -1998,9 +2002,6 @@ msgstr "Shto regjistrimin (për një kohë të pacaktuar)"
 msgid "Add recording (Stop after current event)"
 msgstr "Shto regjistrimin (ndalo pas ngjarjes aktuale)"
 
-msgid "Add the selected service to a bouquet or alternative"
-msgstr ""
-
 msgid "Add service"
 msgstr "Shto shërbim"
 
@@ -2015,6 +2016,9 @@ msgstr ""
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Shto shërbimin aktual në listën Volume Offsets"
+
+msgid "Add the selected service to a bouquet or alternative"
+msgstr ""
 
 msgid "Add title"
 msgstr "Shto titulli"
@@ -3129,6 +3133,9 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
+msgid "Bouquets"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "Ishulli Bouvet"
 
@@ -3598,6 +3605,9 @@ msgstr "Anulo përzgjedhjen"
 msgid "Cancel selection and exit"
 msgstr ""
 
+msgid "Cancel service selection and exit"
+msgstr ""
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
@@ -3756,6 +3766,12 @@ msgstr "Ndryshoni lëkurën"
 msgid "Change step size"
 msgstr "Ndrysho madhësinë e hapit"
 
+msgid "Change to Radio services mode"
+msgstr ""
+
+msgid "Change to TV services mode"
+msgstr ""
+
 msgid "Change to bouquet"
 msgstr "Ndrysho në buqetë"
 
@@ -3791,6 +3807,15 @@ msgstr "Informacioni i kanalit"
 msgid "Channel List"
 msgstr "Lista e kanaleve"
 
+msgid "Channel List Menu"
+msgstr "Menuja e listës së kanaleve"
+
+msgid "Channel Selection"
+msgstr "Zgjedhja e kanalit"
+
+msgid "Channel Selection Actions"
+msgstr ""
+
 msgid "Channel Selection Context Menu"
 msgstr "Menyja e kontekstit të listës së kanaleve"
 
@@ -3800,11 +3825,8 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
-msgid "Channel List Menu"
-msgstr "Menuja e listës së kanaleve"
-
-msgid "Channel Selection"
-msgstr "Zgjedhja e kanalit"
+msgid "Channel Selection Navigation Actions"
+msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Konfigurimi i përzgjedhjes së kanaleve"
@@ -4194,6 +4216,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the choice box"
 msgstr ""
 
 msgid "Close the current screen"
@@ -6802,6 +6827,9 @@ msgstr "Aktivizo regjistrin e korrigjimit të GStreamer *"
 
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "Aktivizo grafikët e tubacionit të GStreamer *"
+
+msgid "Enable IPv6"
+msgstr ""
 
 msgid "Enable IceTV"
 msgstr "Aktivizo IceTV"
@@ -10019,6 +10047,9 @@ msgstr ""
 msgid "LCN rules:"
 msgstr ""
 
+msgid "LCN style QuickSelect entry selection"
+msgstr ""
+
 msgid "LED Brightness"
 msgstr ""
 
@@ -10874,9 +10905,6 @@ msgstr ""
 msgid "Minimum send interval"
 msgstr ""
 
-msgid "Mins"
-msgstr "Minuta"
-
 msgid "Minutes"
 msgstr ""
 
@@ -11173,6 +11201,18 @@ msgid "Move to last line / screen"
 msgstr ""
 
 msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to next bouquet"
+msgstr ""
+
+msgid "Move to next marker"
+msgstr ""
+
+msgid "Move to previous bouquet"
+msgstr ""
+
+msgid "Move to previous marker"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -12318,6 +12358,9 @@ msgstr ""
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
+msgid "Open the context menu"
+msgstr ""
+
 msgid "Open the movie list"
 msgstr ""
 
@@ -12798,9 +12841,6 @@ msgstr ""
 msgid "Play"
 msgstr "Luaj"
 
-msgid "Play In PiP Window"
-msgstr ""
-
 msgid "Play DVD"
 msgstr ""
 
@@ -12808,6 +12848,21 @@ msgid "Play DVDs"
 msgstr ""
 
 msgid "Play In Main Window"
+msgstr ""
+
+msgid "Play In PiP Window"
+msgstr ""
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
+msgstr ""
+
+msgid "Play Service With Stream Relay"
+msgstr ""
+
+msgid "Play Service Without Stream Relay"
 msgstr ""
 
 msgid "Play all audio files in the directory"
@@ -12861,13 +12916,10 @@ msgstr ""
 msgid "Play selected service on the main screen"
 msgstr ""
 
-msgid "Play Service With Stream Relay"
-msgstr ""
-
-msgid "Play Service Without Stream Relay"
-msgstr ""
-
 msgid "Play the audio file"
+msgstr ""
+
+msgid "Play the selected service"
 msgstr ""
 
 msgid "Playback Settings"
@@ -12981,9 +13033,6 @@ msgid "Please select a play list..."
 msgstr ""
 
 msgid "Please select a resolution..."
-msgstr ""
-
-msgid "Please select a sub service..."
 msgstr ""
 
 msgid "Please select an aspect ratio..."
@@ -13774,9 +13823,6 @@ msgstr ""
 msgid "Quick Menu..."
 msgstr ""
 
-msgid "Quick zap"
-msgstr ""
-
 msgid "QuickEPG mode"
 msgstr ""
 
@@ -13855,6 +13901,9 @@ msgstr ""
 msgid "Radio Channel Selection"
 msgstr "Përzgjedhja e kanaleve radiofonik"
 
+msgid "Radio Channel Selection Actions"
+msgstr ""
+
 msgid "Random"
 msgstr "E rastësishme"
 
@@ -13905,9 +13954,6 @@ msgstr "Vërtetë mbyllet pa ruajtur cilësimet?"
 
 msgid "Really delete this entry?"
 msgstr "Të fshihet vërtet kjo hyrje?"
-
-msgid "Really exit the subservices quickzap?"
-msgstr "Dilni vërtet nga Quickzap i nënshërbimeve?"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Rinisni vërtet në modalitetin e rikuperimit?"
@@ -14333,9 +14379,6 @@ msgstr ""
 msgid "Remove plugins ..."
 msgstr ""
 
-msgid "Remove the selected service"
-msgstr ""
-
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -14352,6 +14395,9 @@ msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove the selected plugin / list of plugins"
+msgstr ""
+
+msgid "Remove the selected service"
 msgstr ""
 
 msgid "Remove timer"
@@ -14393,10 +14439,10 @@ msgstr ""
 msgid "Rename only highlighted file"
 msgstr ""
 
-msgid "Rename the selected service"
+msgid "Rename the proposed file to be created"
 msgstr ""
 
-msgid "Rename the proposed file to be created"
+msgid "Rename the selected service"
 msgstr ""
 
 msgid "Rename this tag"
@@ -15463,6 +15509,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Nëse vendoset në 'po', vlerat e sinjalit (SNR, etj) do të llogariten nga API V3. Ky është një version i vjetër API që tani është zëvendësuar."
 
@@ -15754,6 +15803,9 @@ msgid "Select service to add..."
 msgstr ""
 
 msgid "Select sort method:"
+msgstr ""
+
+msgid "Select subservices"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -16289,16 +16341,7 @@ msgstr ""
 msgid "Service and PID information for '%s'"
 msgstr ""
 
-msgid "Service cant been added to the favorites."
-msgstr ""
-
 msgid "Service font size"
-msgstr ""
-
-msgid "Service has been added to the favorites."
-msgstr ""
-
-msgid "Service has been added to the selected bouquet."
 msgstr ""
 
 msgid "Service info"
@@ -17010,6 +17053,12 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show subservices of the active service"
+msgstr ""
+
 msgid "Show System Plugin packages"
 msgstr ""
 
@@ -17047,6 +17096,9 @@ msgid "Show advanced settings"
 msgstr ""
 
 msgid "Show all"
+msgstr ""
+
+msgid "Show all available services"
 msgstr ""
 
 msgid "Show all details"
@@ -17192,6 +17244,15 @@ msgid "Show job tasks in Extension Menu"
 msgstr ""
 
 msgid "Show last image"
+msgstr ""
+
+msgid "Show list of bouquets"
+msgstr ""
+
+msgid "Show list of providers"
+msgstr ""
+
+msgid "Show list of transponders"
 msgstr ""
 
 msgid "Show live TV when movie stopped"
@@ -17366,6 +17427,9 @@ msgid "Show status messages on switch to live TV"
 msgstr ""
 
 msgid "Show subservice selection"
+msgstr ""
+
+msgid "Show subservices"
 msgstr ""
 
 msgid "Show subservices *"
@@ -18422,10 +18486,7 @@ msgstr ""
 msgid "Style:"
 msgstr ""
 
-msgid "Sub Service Actions"
-msgstr ""
-
-msgid "Subservice list..."
+msgid "Subservice Actions"
 msgstr ""
 
 msgid "Subservice mode (GREEN button)"
@@ -18632,9 +18693,6 @@ msgstr ""
 msgid "Switch to next channel in history"
 msgstr ""
 
-msgid "Switch to next sub service"
-msgstr ""
-
 msgid "Switch to play list"
 msgstr ""
 
@@ -18647,10 +18705,7 @@ msgstr "Kalo në kanalin e mëparshëm"
 msgid "Switch to previous channel in history"
 msgstr "Kalo në kanalin e mëparshëm në histori"
 
-msgid "Switch to previous sub service"
-msgstr "Kalo në nën-shërbimin e mëparshëm"
-
-msgid "Switch to radio mode"
+msgid "Switch to Radio mode"
 msgstr "Kalo në modalitetin e radios"
 
 msgid "Switch to the available RADIO services"
@@ -18907,6 +18962,9 @@ msgstr "telugu"
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+msgid "Temporary directory"
 msgstr ""
 
 msgid "Tennis"
@@ -20710,6 +20768,9 @@ msgstr ""
 msgid "Use a gateway"
 msgstr ""
 
+msgid "Use alternate GitHub DNS"
+msgstr ""
+
 msgid "Use an alternative smaller screen."
 msgstr ""
 
@@ -21168,7 +21229,7 @@ msgstr "Pamje"
 msgid "View File"
 msgstr ""
 
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Shiko Rassin interaktiv..."
 
 msgid "View as grid"
@@ -21220,17 +21281,14 @@ msgstr "Ishujt e Virgjër (Britani)"
 msgid "Virgin Islands (US)"
 msgstr "Ishujt e Virgjër (SHBA)"
 
-msgid "Virtual KeyBoard"
-msgstr ""
+msgid "Virtual Keyboard"
+msgstr "Tastierë virtuale"
 
 msgid "Virtual Keyboard Actions"
 msgstr ""
 
 msgid "Virtual Keyboard Text:"
 msgstr "Teksti i tastierës virtuale:"
-
-msgid "Virtual Keyboard"
-msgstr "Tastierë virtuale"
 
 msgid "Visual impaired commentary"
 msgstr "Komenti me dëmtim të shikimit"
@@ -21886,12 +21944,6 @@ msgstr "Po, rezervoni cilësimet e mia!"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Po, por mos e ruani ndryshimin e kohës si film"
 
-msgid "Yes, show Plugin Browser if unavailable"
-msgstr "Po, por nëse nuk është në dispozicion shfaq shfletuesin e plugin"
-
-msgid "Yes, show RecordTimer if unavailable"
-msgstr "Po, por nëse nuk disponohet, trego listën e kohëmatësve"
-
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Po, por ruajeni timeshift si film dhe vazhdoni regjistrimin"
 
@@ -21918,6 +21970,12 @@ msgstr "Po, rivendosni cilësimet tani"
 
 msgid "Yes, returning to movie list"
 msgstr "Po, duke u kthyer në listën e filmave"
+
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr "Po, por nëse nuk është në dispozicion shfaq shfletuesin e plugin"
+
+msgid "Yes, show RecordTimer if unavailable"
+msgstr "Po, por nëse nuk disponohet, trego listën e kohëmatësve"
 
 msgid "Yes, shut down now."
 msgstr "Po, mbylleni tani."
@@ -22414,12 +22472,6 @@ msgid "card reader"
 msgstr ""
 
 msgid "cartoon/puppets"
-msgstr ""
-
-msgid "change Volume down"
-msgstr ""
-
-msgid "change Volume up"
 msgstr ""
 
 msgid "chapters"
@@ -23329,6 +23381,15 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mins"
+#~ msgstr "Minuta"
+
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Dilni vërtet nga Quickzap i nënshërbimeve?"
+
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Kalo në nën-shërbimin e mëparshëm"
 
 #, python-format
 #~ msgid "%s (%s)"

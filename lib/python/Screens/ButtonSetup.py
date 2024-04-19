@@ -222,7 +222,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", textInfoBar))
 	ButtonSetupFunctions.append((_("Enable digital downmix"), "Infobar/audioDownmixOn", textInfoBar))
 	ButtonSetupFunctions.append((_("Disable digital downmix"), "Infobar/audioDownmixOff", textInfoBar))
-	ButtonSetupFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", textInfoBar))
+	ButtonSetupFunctions.append((_("Switch to Radio mode"), "Infobar/showRadio", textInfoBar))
 	ButtonSetupFunctions.append((_("Switch to TV mode"), "Infobar/showTv", textInfoBar))
 	ButtonSetupFunctions.append((_("Show servicelist or movies"), "Infobar/showServiceListOrMovies", textInfoBar))
 	ButtonSetupFunctions.append((_("Show movies"), "Infobar/showMovies", textInfoBar))

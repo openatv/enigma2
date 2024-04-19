@@ -1244,10 +1244,10 @@ class ChannelContextMenu(Screen, HelpableScreen):
 			"1": (self.showBouquetInputBox, _("Add a new bouquet")),
 			"2": (self.renameEntry, _("Rename the selected service")),
 			"3": (self.findCurrentlyPlayed, _("Find the service currently playing")),
-			"4": (self.showSubservices, _("Show Subservices Of Active Service")),
+			"4": (self.showSubservices, _("Show subservices of the active service")),
 			"5": (self.addServiceToBouquetOrAlternative, _("Add the selected service to a bouquet or alternative")),
 			"6": (self.toggleMoveModeSelect, _("Toggle move mode")),
-			"7": (self.showMarkerInputBox, _("Add a new marker")),
+			"7": (self.showMarkerInputBox, _("Add a new marker before the current service")),
 			"8": (self.removeEntry, _("Remove the selected service"))
 			# "9": Available for use.
 		}, prio=0, description=_("Channel Selection Context Menu Actions"))
@@ -1409,7 +1409,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					if current.type != -1:
 						menu.append(ChoiceEntryComponent(key="7", text=(_("Add Marker To Bouquet"), self.showMarkerInputBox)))
 					if BoxInfo.getItem("HDMIin"):
-						appendWhenValid(current, menu, (_("Add HDMI IN To Bouquet"), self.showHDMIInInputBox))
+						appendWhenValid(current, menu, (_("Add HDMI-IN To Bouquet"), self.showHDMIInInputBox))
 					if not csel.movemode:
 						if haveBouquets:
 							appendWhenValid(current, menu, (_("Enable Bouquet Edit"), self.bouquetMarkStart))
@@ -3078,7 +3078,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.infobar = infobar  # Reference to real InfoBar (the one and only).
 		self["RdsDecoder"] = self.info["RdsDecoder"]
 		self["RdsActions"] = HelpableActionMap(self, ["InfobarRdsActions"], {
-			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive..."))
+			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive"))
 		}, prio=-1, description=_("Radio Channel Selection Actions"))
 		self["rdsActions"].setEnabled(False)
 		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
@@ -3204,7 +3204,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 			"ok": (self.channelSelected, _("Play the selected service")),
 			"cancel": (self.close, _("Cancel the selection and exit")),
 			"keyTV": (self.setModeTv, _("Switch to TV mode")),
-			"keyRadio": (self.setModeRadio, _("Switch to radio mode"))
+			"keyRadio": (self.setModeRadio, _("Switch to Radio mode"))
 		}, prio=0, description=_("Channel Selection Actions"))
 		self.bouquet_mark_edit = EDIT_OFF
 		self.title = title

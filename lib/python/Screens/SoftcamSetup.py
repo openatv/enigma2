@@ -371,10 +371,10 @@ class StreamRelaySetup(Setup, CamSetupHelper):
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["addActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.keyAddService, _("Play Service With Stream Relay"))
+			"yellow": (self.keyAddService, _("Play service with Stream Relay"))
 		}, prio=0, description=_("Stream Relay Setup Actions"))
 		self["removeActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"blue": (self.keyRemoveService, _("Play Service Without Stream Relay"))
+			"blue": (self.keyRemoveService, _("Play service without Stream Relay"))
 		}, prio=0, description=_("Stream Relay Setup Actions"))
 		self["removeActions"].setEnabled(False)
 
