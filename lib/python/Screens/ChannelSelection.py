@@ -192,11 +192,11 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		self.getBouquetMode()
 		self.subservicesBouquet = subservices_tv_ref
 		self.instanceInfoBarSubserviceSelection = None
-		# self.onLayoutFinish.append(self.layoutFinished)
+		self.onLayoutFinish.append(self.layoutFinished)
 		self.onShown.append(self.applyKeyMap)
 
-	# def layoutFinished(self):
-	# 	self.servicelist.instance.enableAutoNavigation(False)  # Override list box navigation.
+	def layoutFinished(self):
+		self.servicelist.instance.enableAutoNavigation(False)  # Override list box navigation.
 
 	def applyKeyMap(self):  # IanSav: Should this be a NumericalTextInput mode?
 		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
@@ -1281,7 +1281,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		self.subservices = csel.getSubservices(current)
 		self.parentalControlEnabled = config.ParentalControl.servicepinactive.value
 		menu = []
-		menu.append(ChoiceEntryComponent(key="menu", text=(_("Channel Selection Settings"), boundFunction(self.keySetup))))
+		menu.append(ChoiceEntryComponent(key="menu", text=(_("Settings"), boundFunction(self.keySetup))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
 			if self.session.nav.currentlyPlayingServiceReference == current:
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
@@ -1722,7 +1722,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		self.close()
 
 	def showBouquetInputBox(self):
-		self.session.openWithCallback(self.bouquetInputCallback, VirtualKeyBoard, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width=56, type=Input.TEXT)
+		self.session.openWithCallback(self.bouquetInputCallback, VirtualKeyboard, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visibleWidth=56, type=Input.TEXT)
 
 	def bouquetInputCallback(self, bouquet):
 		if bouquet is not None:
@@ -1840,7 +1840,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		self.close()
 
 	def showHDMIInInputBox(self):
-		self.session.openWithCallback(self.hdmiInputCallback, VirtualKeyBoard, title=_("Please enter a name for the HDMI-IN"), text="HDMI-IN", maxSize=False, visible_width=56, type=Input.TEXT)
+		self.session.openWithCallback(self.hdmiInputCallback, VirtualKeyboard, title=_("Please enter a name for the HDMI-IN"), text="HDMI-IN", visibleWidth=56)
 
 	def hdmiInputCallback(self, marker):
 		if marker is not None:
@@ -1848,7 +1848,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 		self.close()
 
 	def showMarkerInputBox(self):
-		self.session.openWithCallback(self.markerInputCallback, VirtualKeyBoard, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width=56, type=Input.TEXT)
+		self.session.openWithCallback(self.markerInputCallback, VirtualKeyboard, title=_("Please enter a name for the new marker"), text="markername", visibleWidth=56)
 
 	def markerInputCallback(self, marker):
 		if marker is not None:
@@ -3202,7 +3202,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 		ChannelSelectionBase.__init__(self, session)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "TvRadioActions"], {
 			"ok": (self.channelSelected, _("Play the selected service")),
-			"cancel": (self.cancel, _("Cancel the selection and exit")),
+			"cancel": (self.close, _("Cancel the selection and exit")),
 			"keyTV": (self.setModeTv, _("Switch to TV mode")),
 			"keyRadio": (self.setModeRadio, _("Switch to radio mode"))
 		}, prio=0, description=_("Channel Selection Actions"))
