@@ -1,4 +1,4 @@
-from enigma import eTimer, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, iDVBFrontend
+from enigma import eTimer, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, iDVBFrontend, pNavigation
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -1351,7 +1351,7 @@ def PositionerMain(session, **kwargs):
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
 	else:
-		if session.nav.RecordTimer.isRecording():
+		if len(session.nav.getRecordings(False, pNavigation.isAnyRecording)) > 0:
 			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
 		else:
 			usableNims = []

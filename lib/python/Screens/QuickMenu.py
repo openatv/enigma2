@@ -421,7 +421,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Tuner Configuration"):
 			self.session.open(NimSelection)
 		elif item == _("Positioner Setup"):
-			self.PositionerMain()
+			from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerMain
+			PositionerMain(self.session)
 		elif item == _("Automatic Scan"):
 			self.session.open(ScanSimple)
 		elif item == _("Manual Scan"):
@@ -505,28 +506,6 @@ class QuickMenu(Screen, ProtectedScreen):
 				return
 
 # ####### TUNER TOOLS #######################
-	def PositionerMain(self):
-		nimList = nimmanager.getNimListOfType("DVB-S")
-		if len(nimList) == 0:
-			self.session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
-		else:
-			if len(NavigationInstance.instance.getRecordings(False, pNavigation.isAnyRecording)) > 0:
-				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
-			else:
-				usableNims = []
-				for x in nimList:
-					configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
-					if len(configured_rotor_sats) != 0:
-						usableNims.append(x)
-				if len(usableNims) == 1:
-					from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup
-					self.session.open(PositionerSetup, usableNims[0])
-				elif len(usableNims) > 1:
-					from Plugins.SystemPlugins.PositionerSetup.plugin import RotorNimSelection
-					self.session.open(RotorNimSelection)
-				else:
-					self.session.open(MessageBox, _("No tuner is configured for use with a DiSEqC positioner!"), MessageBox.TYPE_ERROR)
-
 	def SatfinderMain(self):
 		if len(NavigationInstance.instance.getRecordings(False, pNavigation.isAnyRecording)) > 0:
 			self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satellite finder."), MessageBox.TYPE_ERROR)
