@@ -121,7 +121,6 @@ private:
 	int m_cornerRadius;
 	uint8_t m_cornerRadiusEdges;
 
-	eRect m_padding;
 
 protected:
 	void mayKillFocus();
@@ -132,6 +131,7 @@ protected:
 	bool m_have_border_color;
 	int m_border_width;
 	gRGB m_border_color;
+	eRect m_padding;
 
 public:
 

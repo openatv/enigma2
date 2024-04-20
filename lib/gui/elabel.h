@@ -38,7 +38,6 @@ public:
 	void clearForegroundColor();
 	int getWrap() const { return m_wrap; }
 	int getNoWrap() const { return (m_wrap == 0) ? 1 : 0; } // DEPRECATED
-	void setTextPadding(const eRect &padding) { m_padding = padding; }
 	void setAlphatest(int alphatest);
 
 	eSize calculateSize();
@@ -57,7 +56,6 @@ private:
 	int m_have_shadow_color = 0;
 	gRGB m_foreground_color, m_shadow_color, m_text_border_color;
 	ePoint m_shadow_offset;
-	eRect m_padding = eRect(0, 0, 0, 0);
 	int m_text_border_width = 0;
 	int m_wrap = 1;
 	bool m_blend = false;
