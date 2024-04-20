@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"POT-Creation-Date: 2024-04-18 19:03+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1205,6 +1205,10 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s távirányító (natív)"
 
 #, python-format
+msgid "%s %sB"
+msgstr ""
+
+#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1913,10 +1917,10 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
-msgid "Add HDMI IN to bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr ""
 
-msgid "Add Marker"
+msgid "Add Marker To Bouquet"
 msgstr "jelölő hozzáadása"
 
 msgid "Add New Quad Channel Entry"
@@ -1958,13 +1962,13 @@ msgstr "Elkapcsolás időzítő hozzáadása az aktuális eseményhez"
 msgid "Add a ZapTimer for next event"
 msgstr "Elkapcsolás időzítő hozzáadása a következő eseményhez"
 
-msgid "Add a bouquet"
-msgstr ""
-
 msgid "Add a mark"
 msgstr "Jelző hozzáadása"
 
-msgid "Add a marker"
+msgid "Add a new bouquet"
+msgstr ""
+
+msgid "Add a new marker before the current service"
 msgstr ""
 
 msgid "Add a new tag"
@@ -2030,9 +2034,6 @@ msgstr "Felvétel készítése (ameddig le nem állítják)"
 msgid "Add recording (Stop after current event)"
 msgstr "Felvétel készítése (csak az adott műsor felvétele)"
 
-msgid "Add selected service to bouquet or alternative"
-msgstr ""
-
 msgid "Add service"
 msgstr "Csatorna hozzáadása"
 
@@ -2046,6 +2047,9 @@ msgid "Add the current directory as a bookmark"
 msgstr ""
 
 msgid "Add the current service to the Volume Offsets list"
+msgstr ""
+
+msgid "Add the selected service to a bouquet or alternative"
 msgstr ""
 
 msgid "Add title"
@@ -3171,6 +3175,9 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
+msgid "Bouquets"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "Bouvet-sziget"
 
@@ -3627,6 +3634,9 @@ msgstr "Csatorna választás"
 msgid "Cancel selection and exit"
 msgstr ""
 
+msgid "Cancel service selection and exit"
+msgstr ""
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
@@ -3789,6 +3799,12 @@ msgstr "Kinézet (Skin) váltása"
 msgid "Change step size"
 msgstr "Lépésmérték módosítása"
 
+msgid "Change to Radio services mode"
+msgstr ""
+
+msgid "Change to TV services mode"
+msgstr ""
+
 msgid "Change to bouquet"
 msgstr "Csatornacsomagra váltás"
 
@@ -3824,20 +3840,26 @@ msgstr "Csatorna információ"
 msgid "Channel List"
 msgstr "Csatornalista"
 
-msgid "Channel List Context Menu"
-msgstr "Csatornalista kontextus menü"
-
-msgid "Channel List Context Menu Actions"
-msgstr ""
-
-msgid "Channel List Context Menu Navigation Actions"
-msgstr ""
-
 msgid "Channel List Menu"
 msgstr "Csatornalista menü"
 
 msgid "Channel Selection"
 msgstr "Csatorna választás"
+
+msgid "Channel Selection Actions"
+msgstr ""
+
+msgid "Channel Selection Context Menu"
+msgstr "Csatornalista kontextus menü"
+
+msgid "Channel Selection Context Menu Actions"
+msgstr ""
+
+msgid "Channel Selection Context Menu Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Navigation Actions"
+msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Csatorna kiválasztás beállítása"
@@ -4229,6 +4251,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the choice box"
 msgstr ""
 
 msgid "Close the current screen"
@@ -4945,7 +4970,7 @@ msgstr "Főzés"
 msgid "Copy"
 msgstr "Másolás"
 
-msgid "Copy To Bouquets"
+msgid "Copy To Bouquet"
 msgstr "másolás csatornacsomagokba"
 
 msgid "Copy To Stream Relay"
@@ -6852,6 +6877,9 @@ msgid "Enable GStreamer debug log *"
 msgstr ""
 
 msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
+msgid "Enable IPv6"
 msgstr ""
 
 msgid "Enable IceTV"
@@ -10097,6 +10125,9 @@ msgstr "LCN bővítmény a DVB-T/T2 csatornákhoz"
 msgid "LCN rules:"
 msgstr "LCN szabályok:"
 
+msgid "LCN style QuickSelect entry selection"
+msgstr ""
+
 msgid "LED Brightness"
 msgstr ""
 
@@ -10971,9 +11002,6 @@ msgstr "Minimális korhatár %d év"
 msgid "Minimum send interval"
 msgstr "Minimális ismétlési időköz"
 
-msgid "Mins"
-msgstr "Perc"
-
 msgid "Minutes"
 msgstr "perc"
 
@@ -11287,6 +11315,18 @@ msgid "Move to last line / screen"
 msgstr ""
 
 msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to next bouquet"
+msgstr ""
+
+msgid "Move to next marker"
+msgstr ""
+
+msgid "Move to previous bouquet"
+msgstr ""
+
+msgid "Move to previous marker"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -12065,10 +12105,10 @@ msgstr "Nem, soha"
 msgid "No, scan later manually"
 msgstr "Nem, később keresés manuálisan"
 
-msgid "No, show always the plugin browser"
+msgid "No, show the Plugin Browser"
 msgstr "Nem, mindig a bővítmény böngészőt mutatja"
 
-msgid "No, show always the timer list"
+msgid "No, show the RecordTimer Overview"
 msgstr "Nem, mindig mutasd meg az időzítőlistát"
 
 msgid "NodeID"
@@ -12472,6 +12512,9 @@ msgid "Open the Plugin Browser settings screen"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
+msgid "Open the context menu"
 msgstr ""
 
 msgid "Open the movie list"
@@ -12960,17 +13003,29 @@ msgstr ""
 msgid "Play"
 msgstr "Lejátszás"
 
-msgid "Play As Picture in Picture window"
-msgstr "megjelenítés Kép-a-Képben"
-
 msgid "Play DVD"
 msgstr "DVD lejátszás"
 
 msgid "Play DVDs"
 msgstr "DVD-k lejátszása"
 
-msgid "Play In Main window"
+msgid "Play In Main Window"
 msgstr "lejátszás a főképernyőn"
+
+msgid "Play In PiP Window"
+msgstr "megjelenítés Kép-a-Képben"
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
+msgstr ""
+
+msgid "Play Service With Stream Relay"
+msgstr ""
+
+msgid "Play Service Without Stream Relay"
+msgstr ""
 
 msgid "Play all audio files in the directory"
 msgstr ""
@@ -13024,13 +13079,10 @@ msgstr ""
 msgid "Play selected service on the main screen"
 msgstr ""
 
-msgid "Play service with Stream Relay"
-msgstr ""
-
-msgid "Play service without Stream Relay"
-msgstr ""
-
 msgid "Play the audio file"
+msgstr ""
+
+msgid "Play the selected service"
 msgstr ""
 
 msgid "Playback Settings"
@@ -13147,9 +13199,6 @@ msgstr "Válasszon egy lejátszási listát..."
 
 msgid "Please select a resolution..."
 msgstr "Válasszon egy felbontást..."
-
-msgid "Please select a sub service..."
-msgstr "Válasszon egy alcsatornát..."
 
 msgid "Please select an aspect ratio..."
 msgstr "Válasszon egy képarányt..."
@@ -13949,9 +13998,6 @@ msgstr "Gyorsindító Menü"
 msgid "Quick Menu..."
 msgstr "Gyors menü..."
 
-msgid "Quick zap"
-msgstr "Gyors ugrás"
-
 msgid "QuickEPG mode"
 msgstr "Gyors EPG mód"
 
@@ -14031,6 +14077,9 @@ msgstr ""
 msgid "Radio Channel Selection"
 msgstr "Rádió csatorna választás"
 
+msgid "Radio Channel Selection Actions"
+msgstr ""
+
 msgid "Random"
 msgstr "Véletlenszerű"
 
@@ -14081,9 +14130,6 @@ msgstr "Bezárjam mentés nélkül?"
 
 msgid "Really delete this entry?"
 msgstr "Tényleg törli ezt a bejegyzést?"
-
-msgid "Really exit the subservices quickzap?"
-msgstr "Biztos ki szeretne lépni az alcsatorna gyorsUGRÁS módból?"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Biztos újra indítsam Recovery módban?"
@@ -14509,9 +14555,6 @@ msgstr "Kijelölt mappa eltávolítása könyvjelzőkből"
 msgid "Remove plugins ..."
 msgstr ""
 
-msgid "Remove selected service"
-msgstr ""
-
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -14528,6 +14571,9 @@ msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove the selected plugin / list of plugins"
+msgstr ""
+
+msgid "Remove the selected service"
 msgstr ""
 
 msgid "Remove timer"
@@ -14569,10 +14615,10 @@ msgstr "Új események nevének és leírásának szerkesztése"
 msgid "Rename only highlighted file"
 msgstr ""
 
-msgid "Rename selected service"
+msgid "Rename the proposed file to be created"
 msgstr ""
 
-msgid "Rename the proposed file to be created"
+msgid "Rename the selected service"
 msgstr ""
 
 msgid "Rename this tag"
@@ -15652,6 +15698,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Ha 'igen' értékre van állítva, akkor a rendszer az API V3-ból számítja ki a jelértékeket (SNR stb...). Ez egy régi API verzió, amely most fel van függesztve."
 
@@ -15944,6 +15993,9 @@ msgstr "Válasszon hozzáadandó csatornát..."
 
 msgid "Select sort method:"
 msgstr "Rendezési módszer választása:"
+
+msgid "Select subservices"
+msgstr ""
 
 msgid "Select system information to view:"
 msgstr ""
@@ -16499,17 +16551,8 @@ msgstr ""
 msgid "Service and PID information for '%s'"
 msgstr ""
 
-msgid "Service cant been added to the favorites."
-msgstr "A csatornát nem lehet hozzáadni a kedvencekhez."
-
 msgid "Service font size"
 msgstr "Csatorna betű méreté"
-
-msgid "Service has been added to the favorites."
-msgstr "A csatornát hozzáadtam a kedvencekhez."
-
-msgid "Service has been added to the selected bouquet."
-msgstr "A csatornát hozzáadtam a kiválasztott csatornacsomaghoz."
 
 msgid "Service info"
 msgstr "Csatorna"
@@ -17229,6 +17272,12 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show subservices of the active service"
+msgstr ""
+
 msgid "Show System Plugin packages"
 msgstr ""
 
@@ -17266,6 +17315,9 @@ msgid "Show advanced settings"
 msgstr "Haladó beállítások"
 
 msgid "Show all"
+msgstr ""
+
+msgid "Show all available services"
 msgstr ""
 
 msgid "Show all details"
@@ -17413,6 +17465,15 @@ msgid "Show job tasks in Extension Menu"
 msgstr "Munkafolyamatok megjelenítése a bővítmények között"
 
 msgid "Show last image"
+msgstr ""
+
+msgid "Show list of bouquets"
+msgstr ""
+
+msgid "Show list of providers"
+msgstr ""
+
+msgid "Show list of transponders"
 msgstr ""
 
 msgid "Show live TV when movie stopped"
@@ -17590,6 +17651,9 @@ msgstr "Állapotüzenetek mutatása az élő TV műsorra történő váltáskor"
 
 msgid "Show subservice selection"
 msgstr "Show subservice selection"
+
+msgid "Show subservices"
+msgstr ""
 
 msgid "Show subservices *"
 msgstr ""
@@ -18664,12 +18728,8 @@ msgstr "Sávok"
 msgid "Style:"
 msgstr "Stílus:"
 
-#, fuzzy
-msgid "Sub Service Actions"
-msgstr "Gyors műveletek"
-
-msgid "Subservice list..."
-msgstr "Alcsatornák listája..."
+msgid "Subservice Actions"
+msgstr ""
 
 msgid "Subservice mode (GREEN button)"
 msgstr "Alszolgáltatási mód (zöld gomb)"
@@ -18879,9 +18939,6 @@ msgstr "Ugrás a következő alcsatornára"
 msgid "Switch to next channel in history"
 msgstr "Következő csatorna az előzményekben"
 
-msgid "Switch to next sub service"
-msgstr "Ugrás a következő alcsatornára"
-
 msgid "Switch to play list"
 msgstr "Kapcsolás a lejátszási listára"
 
@@ -18895,10 +18952,7 @@ msgstr "Ugrás az előző csatornára"
 msgid "Switch to previous channel in history"
 msgstr "Előző csatorna az előzményekben"
 
-msgid "Switch to previous sub service"
-msgstr "Ugrás az előző alcsatornára"
-
-msgid "Switch to radio mode"
+msgid "Switch to Radio mode"
 msgstr "Váltás rádió módba"
 
 msgid "Switch to the available RADIO services"
@@ -19167,6 +19221,9 @@ msgstr ""
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+msgid "Temporary directory"
 msgstr ""
 
 msgid "Tennis"
@@ -19718,7 +19775,7 @@ msgstr "Ezzel az opcióval kiválaszthatja, hogy miként jelenjen meg az Idő va
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Ez az opció lehetővé teszi az átlátszó pikonok háttérszínének megválasztását."
 
-msgid "This option allows you choose the option for subservice indicator or selection."
+msgid "This option allows you choose the option for Subservice indicator or selection."
 msgstr ""
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
@@ -20261,9 +20318,6 @@ msgid "Toggle item move mode on/off"
 msgstr ""
 
 msgid "Toggle move mode"
-msgstr ""
-
-msgid "Toggle move mode selection"
 msgstr ""
 
 msgid "Toggle multi-selection mode"
@@ -21008,6 +21062,9 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "Átjáró használata"
 
+msgid "Use alternate GitHub DNS"
+msgstr ""
+
 msgid "Use an alternative smaller screen."
 msgstr "Használja az alternatív képernyőt"
 
@@ -21473,7 +21530,7 @@ msgstr "Nézet"
 msgid "View File"
 msgstr ""
 
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Rass interaktív szolgáltatás használata..."
 
 msgid "View as grid"
@@ -21526,17 +21583,14 @@ msgstr "Virgin-szigetek (Angol)"
 msgid "Virgin Islands (US)"
 msgstr "Virgin-szigetek (Amerikai)"
 
-msgid "Virtual KeyBoard"
-msgstr ""
+msgid "Virtual Keyboard"
+msgstr "Virtuális Billentyűzet"
 
 msgid "Virtual Keyboard Actions"
 msgstr ""
 
 msgid "Virtual Keyboard Text:"
 msgstr "Virtuális Billentyűzet szöveg:"
-
-msgid "Virtual Keyboard"
-msgstr "Virtuális Billentyűzet"
 
 msgid "Visual impaired commentary"
 msgstr ""
@@ -22194,12 +22248,6 @@ msgstr "Igen, mentse el a beállításaim!"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Igen, de ne mentsen el semmit"
 
-msgid "Yes, but if not available show the plugin browser"
-msgstr "Igen, de ha nem áll rendelkezésre, akkor a bővítmény böngésző mutatja"
-
-msgid "Yes, but if not available show the timer list"
-msgstr "Igen, de ha nem érhető el, mutassa meg az időzítőlistát"
-
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Igen, de mentse a Timeshift-et felvételként és folytassa a Timeshift-t további működését"
 
@@ -22226,6 +22274,12 @@ msgstr "Igen, állítsuk vissza most a beállításokat"
 
 msgid "Yes, returning to movie list"
 msgstr "Igen, térjen vissza a felvételek listájához"
+
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr "Igen, de ha nem áll rendelkezésre, akkor a bővítmény böngésző mutatja"
+
+msgid "Yes, show RecordTimer if unavailable"
+msgstr "Igen, de ha nem érhető el, mutassa meg az időzítőlistát"
 
 msgid "Yes, shut down now."
 msgstr "Igen, leállítás most."
@@ -22729,12 +22783,6 @@ msgstr "kártyaolvasó"
 
 msgid "cartoon/puppets"
 msgstr "rajzfilm/báb"
-
-msgid "change Volume down"
-msgstr "hangerő le"
-
-msgid "change Volume up"
-msgstr "hangerő fel"
 
 msgid "chapters"
 msgstr "jelenetek"
@@ -23650,6 +23698,46 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mins"
+#~ msgstr "Perc"
+
+#~ msgid "Please select a sub service..."
+#~ msgstr "Válasszon egy alcsatornát..."
+
+#~ msgid "Quick zap"
+#~ msgstr "Gyors ugrás"
+
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Biztos ki szeretne lépni az alcsatorna gyorsUGRÁS módból?"
+
+#~ msgid "Service cant been added to the favorites."
+#~ msgstr "A csatornát nem lehet hozzáadni a kedvencekhez."
+
+#~ msgid "Service has been added to the favorites."
+#~ msgstr "A csatornát hozzáadtam a kedvencekhez."
+
+#~ msgid "Service has been added to the selected bouquet."
+#~ msgstr "A csatornát hozzáadtam a kiválasztott csatornacsomaghoz."
+
+#, fuzzy
+#~ msgid "Sub Service Actions"
+#~ msgstr "Gyors műveletek"
+
+#~ msgid "Subservice list..."
+#~ msgstr "Alcsatornák listája..."
+
+#~ msgid "Switch to next sub service"
+#~ msgstr "Ugrás a következő alcsatornára"
+
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Ugrás az előző alcsatornára"
+
+#~ msgid "change Volume down"
+#~ msgstr "hangerő le"
+
+#~ msgid "change Volume up"
+#~ msgstr "hangerő fel"
 
 #, python-format
 #~ msgid "%s (%s)"

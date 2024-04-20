@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-10 17:07+0000\n"
+"POT-Creation-Date: 2024-04-18 19:03+0000\n"
 "PO-Revision-Date: 2024-03-20 04:18+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1208,6 +1208,10 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s пульт ДУ (оригинальный)"
 
 #, python-format
+msgid "%s %sB"
+msgstr ""
+
+#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1906,10 +1910,10 @@ msgstr "Добавьте File Commander в список опций меню ра
 msgid "Add File Commander to the Main Menu list of options."
 msgstr "Добавьте File Commander в список опций главного меню."
 
-msgid "Add HDMI IN to bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr "Добавьте HDMI IN в букет"
 
-msgid "Add Marker"
+msgid "Add Marker To Bouquet"
 msgstr "Добавить маркер"
 
 msgid "Add New Quad Channel Entry"
@@ -1951,13 +1955,13 @@ msgstr "Добавить таймер переключения для данно
 msgid "Add a ZapTimer for next event"
 msgstr "Добавить таймер переключения на следующую передачу"
 
-msgid "Add a bouquet"
-msgstr "Добавить букет"
-
 msgid "Add a mark"
 msgstr "Добавить метку"
 
-msgid "Add a marker"
+msgid "Add a new bouquet"
+msgstr "Добавить букет"
+
+msgid "Add a new marker before the current service"
 msgstr "Добавить маркер"
 
 msgid "Add a new tag"
@@ -2023,9 +2027,6 @@ msgstr "Начать запись (Конец не определён)"
 msgid "Add recording (Stop after current event)"
 msgstr "Начать запись (Стоп после текущего события)"
 
-msgid "Add selected service to bouquet or alternative"
-msgstr "Добавить выбранную услугу в букет или альтернативу"
-
 msgid "Add service"
 msgstr "Добавить канал"
 
@@ -2040,6 +2041,9 @@ msgstr "Добавить текущий каталог в качестве за�
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Добавить текущий канал в список отключения громкости"
+
+msgid "Add the selected service to a bouquet or alternative"
+msgstr "Добавить выбранную услугу в букет или альтернативу"
 
 msgid "Add title"
 msgstr "Добавить название"
@@ -3154,6 +3158,9 @@ msgstr "Действия при выборе букета"
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Действия навигации по выбору букетов"
 
+msgid "Bouquets"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "Остров Буве"
 
@@ -3623,6 +3630,9 @@ msgstr "Отменить выбор"
 msgid "Cancel selection and exit"
 msgstr "Отменить выбор и выйти"
 
+msgid "Cancel service selection and exit"
+msgstr ""
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr "Отменить команду 'Сбросить каналы', которая в данный момент обрабатывается"
 
@@ -3781,6 +3791,12 @@ msgstr "Сменить скин"
 msgid "Change step size"
 msgstr "Изменение размера шага"
 
+msgid "Change to Radio services mode"
+msgstr ""
+
+msgid "Change to TV services mode"
+msgstr ""
+
 msgid "Change to bouquet"
 msgstr "Переключиться на фаворит"
 
@@ -3816,20 +3832,26 @@ msgstr "Информация канала"
 msgid "Channel List"
 msgstr "Список каналов"
 
-msgid "Channel List Context Menu"
-msgstr "Меню списка каналов"
-
-msgid "Channel List Context Menu Actions"
-msgstr "Действия контекстного меню списка каналов"
-
-msgid "Channel List Context Menu Navigation Actions"
-msgstr "Действия при навигации по контекстному меню списка каналов"
-
 msgid "Channel List Menu"
 msgstr "Меню списка каналов"
 
 msgid "Channel Selection"
 msgstr "Выбор канала"
+
+msgid "Channel Selection Actions"
+msgstr ""
+
+msgid "Channel Selection Context Menu"
+msgstr "Меню списка каналов"
+
+msgid "Channel Selection Context Menu Actions"
+msgstr "Действия контекстного меню списка каналов"
+
+msgid "Channel Selection Context Menu Navigation Actions"
+msgstr "Действия при навигации по контекстному меню списка каналов"
+
+msgid "Channel Selection Navigation Actions"
+msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Список каналов"
@@ -4221,6 +4243,9 @@ msgstr "Закройте диспетчер Kexec MultiBoot"
 
 msgid "Close the Plugin Browser screen"
 msgstr "Закройте экран браузера плагинов"
+
+msgid "Close the choice box"
+msgstr ""
 
 msgid "Close the current screen"
 msgstr "Закройте текущий экран"
@@ -4939,7 +4964,7 @@ msgstr "Кулинария"
 msgid "Copy"
 msgstr "Копирование"
 
-msgid "Copy To Bouquets"
+msgid "Copy To Bouquet"
 msgstr "Копировать в букет"
 
 msgid "Copy To Stream Relay"
@@ -6839,6 +6864,9 @@ msgstr "Включить лог отладки GStreamer *"
 
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "Включить графы конвейера GStreamer *"
+
+msgid "Enable IPv6"
+msgstr ""
 
 msgid "Enable IceTV"
 msgstr "Включить IceTV"
@@ -10059,6 +10087,9 @@ msgstr "LCN-плагин для каналов DVB-T/T2"
 msgid "LCN rules:"
 msgstr "Правила LCN"
 
+msgid "LCN style QuickSelect entry selection"
+msgstr ""
+
 msgid "LED Brightness"
 msgstr "Яркость LED"
 
@@ -10915,9 +10946,6 @@ msgstr "Минимальный возраст %d лет"
 msgid "Minimum send interval"
 msgstr "Минимальный интервал отправки"
 
-msgid "Mins"
-msgstr "Минуты"
-
 msgid "Minutes"
 msgstr "Минут"
 
@@ -11217,6 +11245,18 @@ msgstr "Переход к последней строке/экрану"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Перейти к последней строке/экрану на панели"
+
+msgid "Move to next bouquet"
+msgstr ""
+
+msgid "Move to next marker"
+msgstr ""
+
+msgid "Move to previous bouquet"
+msgstr ""
+
+msgid "Move to previous marker"
+msgstr ""
 
 msgid "Move to the first item on the current line"
 msgstr "Перейти к первому элементу в текущей строке"
@@ -11988,10 +12028,10 @@ msgstr "Нет, никогда"
 msgid "No, scan later manually"
 msgstr "Нет, позже сканировать вручную"
 
-msgid "No, show always the plugin browser"
+msgid "No, show the Plugin Browser"
 msgstr "Нет, всегда показывать браузер плагина"
 
-msgid "No, show always the timer list"
+msgid "No, show the RecordTimer Overview"
 msgstr "Нет, всегда показывать список таймеров"
 
 msgid "NodeID"
@@ -12387,6 +12427,9 @@ msgstr "Откройте экран настроек браузера плаги
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Откройте виртуальную клавиатуру для ввода текста"
+
+msgid "Open the context menu"
+msgstr ""
 
 msgid "Open the movie list"
 msgstr "Открыть список фильмов"
@@ -12868,17 +12911,29 @@ msgstr "Платформа"
 msgid "Play"
 msgstr "Воспроизведение"
 
-msgid "Play As Picture in Picture window"
-msgstr "Показать как картинку в картинке"
-
 msgid "Play DVD"
 msgstr "Воспроизведение DVD"
 
 msgid "Play DVDs"
 msgstr "Воспроизведение DVD-дисков"
 
-msgid "Play In Main window"
+msgid "Play In Main Window"
 msgstr "В главном экране"
+
+msgid "Play In PiP Window"
+msgstr "Показать как картинку в картинке"
+
+msgid "Play service with Stream Relay"
+msgstr "Сервис воспроизведения с Stream Relay"
+
+msgid "Play service without Stream Relay"
+msgstr "Сервис Play без Stream Relay"
+
+msgid "Play Service With Stream Relay"
+msgstr ""
+
+msgid "Play Service Without Stream Relay"
+msgstr ""
 
 msgid "Play all audio files in the directory"
 msgstr "Воспроизведение всех аудиофайлов в каталоге"
@@ -12931,14 +12986,11 @@ msgstr "Воспроизвести выбранный канал в окне PiP
 msgid "Play selected service on the main screen"
 msgstr "Воспроизвести выбранный канал на главном экране"
 
-msgid "Play service with Stream Relay"
-msgstr "Сервис воспроизведения с Stream Relay"
-
-msgid "Play service without Stream Relay"
-msgstr "Сервис Play без Stream Relay"
-
 msgid "Play the audio file"
 msgstr "Воспроизвести аудиофайл"
+
+msgid "Play the selected service"
+msgstr ""
 
 msgid "Playback Settings"
 msgstr "Настройки воспроизведения"
@@ -13054,9 +13106,6 @@ msgstr "Пожалуйста, выберите плейлист..."
 
 msgid "Please select a resolution..."
 msgstr "Пожалуйста, выберите разрешение изображения..."
-
-msgid "Please select a sub service..."
-msgstr "Пожалуйста, выберите подсервис..."
 
 msgid "Please select an aspect ratio..."
 msgstr "Пожалуйста, выберите соотношение сторон..."
@@ -13858,9 +13907,6 @@ msgstr "Быстрое меню"
 msgid "Quick Menu..."
 msgstr "Быстрое меню..."
 
-msgid "Quick zap"
-msgstr "Быстрое переключение"
-
 msgid "QuickEPG mode"
 msgstr "Режим быстрый ТВ-гид"
 
@@ -13939,6 +13985,9 @@ msgstr "Радио"
 msgid "Radio Channel Selection"
 msgstr "Список радиоканалов"
 
+msgid "Radio Channel Selection Actions"
+msgstr ""
+
 msgid "Random"
 msgstr "Случайно"
 
@@ -13989,9 +14038,6 @@ msgstr "Действительно закрыть без сохранения н
 
 msgid "Really delete this entry?"
 msgstr "Действительно удалить эту запись?"
-
-msgid "Really exit the subservices quickzap?"
-msgstr "Действительно выйти из быстрого перехода?"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Действительно перезагрузиться в режим восстановления?"
@@ -14417,9 +14463,6 @@ msgstr "Удалить выбранную папку из закладок"
 msgid "Remove plugins ..."
 msgstr "Удалить плагины..."
 
-msgid "Remove selected service"
-msgstr "Удалить выбранный канал"
-
 msgid "Remove service from AutoCam"
 msgstr "Удалить канал из AutoCam"
 
@@ -14437,6 +14480,9 @@ msgstr "Remove the current bookmark"
 
 msgid "Remove the selected plugin / list of plugins"
 msgstr "Удалить выбранный плагин/список плагинов"
+
+msgid "Remove the selected service"
+msgstr "Удалить выбранный канал"
 
 msgid "Remove timer"
 msgstr "Удалить таймер"
@@ -14477,11 +14523,11 @@ msgstr "Переименовать имя и описание для новых 
 msgid "Rename only highlighted file"
 msgstr "Переименовать только выделенный файл"
 
-msgid "Rename selected service"
-msgstr "Переименовать выбранный канал"
-
 msgid "Rename the proposed file to be created"
 msgstr "Переименуйте предлагаемый файл для создания"
+
+msgid "Rename the selected service"
+msgstr "Переименовать выбранный канал"
 
 msgid "Rename this tag"
 msgstr "Переименовать этот тег"
@@ -15849,6 +15895,9 @@ msgstr "Выберите канал для добавления..."
 msgid "Select sort method:"
 msgstr "Выбор метода сортировки"
 
+msgid "Select subservices"
+msgstr ""
+
 msgid "Select system information to view:"
 msgstr "Выберите системную информацию для просмотра:"
 
@@ -16403,17 +16452,8 @@ msgstr "Информация о канале и PID"
 msgid "Service and PID information for '%s'"
 msgstr "Информация о канале и PID для '%s'"
 
-msgid "Service cant been added to the favorites."
-msgstr "Канал не может быть добавлен в избранное."
-
 msgid "Service font size"
 msgstr "Размер шрифта для канала"
-
-msgid "Service has been added to the favorites."
-msgstr "Канал был добавлен в избранное."
-
-msgid "Service has been added to the selected bouquet."
-msgstr "Канал был добавлен в выбранный пакет."
 
 msgid "Service info"
 msgstr "Информация канала"
@@ -17136,6 +17176,12 @@ msgstr "Показать пакеты softcam"
 msgid "Show Source packages"
 msgstr "Показать исходные пакеты"
 
+msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show subservices of the active service"
+msgstr ""
+
 msgid "Show System Plugin packages"
 msgstr "Показать пакеты системных плагинов"
 
@@ -17174,6 +17220,9 @@ msgstr "Показать расширенные настройки"
 
 msgid "Show all"
 msgstr "Показать всё"
+
+msgid "Show all available services"
+msgstr ""
 
 msgid "Show all details"
 msgstr "Показать все детали"
@@ -17319,6 +17368,15 @@ msgstr "Показать задачи в меню дополнений"
 
 msgid "Show last image"
 msgstr "Показать последний имидж"
+
+msgid "Show list of bouquets"
+msgstr ""
+
+msgid "Show list of providers"
+msgstr ""
+
+msgid "Show list of transponders"
+msgstr ""
 
 msgid "Show live TV when movie stopped"
 msgstr "Просмотра ТВ при остановке воспроизведения"
@@ -17493,6 +17551,9 @@ msgstr "Показать сообщение при переходе на пря�
 
 msgid "Show subservice selection"
 msgstr "Показать выбор подсервисов"
+
+msgid "Show subservices"
+msgstr ""
 
 msgid "Show subservices *"
 msgstr "Показать дополнительные услуги *"
@@ -18557,11 +18618,8 @@ msgstr "Полосы"
 msgid "Style:"
 msgstr "Стиль:"
 
-msgid "Sub Service Actions"
-msgstr "Действия быстрого меню"
-
-msgid "Subservice list..."
-msgstr "Подсервисы..."
+msgid "Subservice Actions"
+msgstr ""
 
 msgid "Subservice mode (GREEN button)"
 msgstr "Режим субсервиса (ЗЕЛЁНАЯ кнопка)"
@@ -18767,9 +18825,6 @@ msgstr "Переход к следующему событию EPG"
 msgid "Switch to next channel in history"
 msgstr "Переключить на следующий канал в истории"
 
-msgid "Switch to next sub service"
-msgstr "Переключить на следующий подсервис"
-
 msgid "Switch to play list"
 msgstr "Переключить на плейлист"
 
@@ -18782,10 +18837,7 @@ msgstr "Переключить на предыдущий канал"
 msgid "Switch to previous channel in history"
 msgstr "Переключить на предыдущий канал в истории"
 
-msgid "Switch to previous sub service"
-msgstr "Переключить на предыдущий подсервис"
-
-msgid "Switch to radio mode"
+msgid "Switch to Radio mode"
 msgstr "Переключить на режим Радио"
 
 msgid "Switch to the available RADIO services"
@@ -19629,7 +19681,7 @@ msgstr "Этот параметр позволяет выбрать, как от
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Эта опция позволяет выбрать цвет фона для прозрачных пиконов."
 
-msgid "This option allows you choose the option for subservice indicator or selection."
+msgid "This option allows you choose the option for Subservice indicator or selection."
 msgstr "Эта опция позволяет вам выбрать опцию для индикатора или выбора подуслуги."
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
@@ -20171,9 +20223,6 @@ msgstr "Включить/выключить режим перемещения э
 
 msgid "Toggle move mode"
 msgstr "Переключить режим перемещения"
-
-msgid "Toggle move mode selection"
-msgstr "Переключить выбор режима перемещения"
 
 msgid "Toggle multi-selection mode"
 msgstr "Переключить режим множественного выбора"
@@ -21405,7 +21454,7 @@ msgstr "Просмотр"
 msgid "View File"
 msgstr "Посмотреть файл"
 
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Интерактивный просмотр RASS..."
 
 msgid "View as grid"
@@ -21457,7 +21506,7 @@ msgstr "Виргинские острова (англ.)"
 msgid "Virgin Islands (US)"
 msgstr "Виргинские острова (США)"
 
-msgid "Virtual KeyBoard"
+msgid "Virtual Keyboard"
 msgstr "Виртуальная клавиатура"
 
 msgid "Virtual Keyboard Actions"
@@ -21465,9 +21514,6 @@ msgstr "Действия виртуальной клавиатуры"
 
 msgid "Virtual Keyboard Text:"
 msgstr "Текст виртуальной клавиатуры:"
-
-msgid "Virtual Keyboard"
-msgstr "Виртуальная клавиатура"
 
 msgid "Visual impaired commentary"
 msgstr "Комментарий для слабовидящих"
@@ -22129,12 +22175,6 @@ msgstr "Да, сохранить мои установки настроек!"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Да, но не сохранять таймшифт как фильм"
 
-msgid "Yes, but if not available show the plugin browser"
-msgstr "Да, но если он недоступен, покажите браузер плагина"
-
-msgid "Yes, but if not available show the timer list"
-msgstr "Да, но если недоступно, отобразить список таймеров"
-
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Да, но сохранить таймшифт как фильм и продолжить запись"
 
@@ -22161,6 +22201,12 @@ msgstr "Да, восстановить настройки сейчас"
 
 msgid "Yes, returning to movie list"
 msgstr "Да, вернуться к списку записей"
+
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr "Да, но если он недоступен, покажите браузер плагина"
+
+msgid "Yes, show RecordTimer if unavailable"
+msgstr "Да, но если недоступно, отобразить список таймеров"
 
 msgid "Yes, shut down now."
 msgstr "Да, выключить сейчас."
@@ -22662,12 +22708,6 @@ msgstr "Кард-ридер"
 
 msgid "cartoon/puppets"
 msgstr "Мультфильм/Марионетки"
-
-msgid "change Volume down"
-msgstr "Повысить звук"
-
-msgid "change Volume up"
-msgstr "Понизить звук"
 
 msgid "chapters"
 msgstr "Разделы"
@@ -23581,6 +23621,48 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mins"
+#~ msgstr "Минуты"
+
+#~ msgid "Please select a sub service..."
+#~ msgstr "Пожалуйста, выберите подсервис..."
+
+#~ msgid "Quick zap"
+#~ msgstr "Быстрое переключение"
+
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Действительно выйти из быстрого перехода?"
+
+#~ msgid "Service cant been added to the favorites."
+#~ msgstr "Канал не может быть добавлен в избранное."
+
+#~ msgid "Service has been added to the favorites."
+#~ msgstr "Канал был добавлен в избранное."
+
+#~ msgid "Service has been added to the selected bouquet."
+#~ msgstr "Канал был добавлен в выбранный пакет."
+
+#~ msgid "Sub Service Actions"
+#~ msgstr "Действия быстрого меню"
+
+#~ msgid "Subservice list..."
+#~ msgstr "Подсервисы..."
+
+#~ msgid "Switch to next sub service"
+#~ msgstr "Переключить на следующий подсервис"
+
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Переключить на предыдущий подсервис"
+
+#~ msgid "Virtual KeyBoard"
+#~ msgstr "Виртуальная клавиатура"
+
+#~ msgid "change Volume down"
+#~ msgstr "Повысить звук"
+
+#~ msgid "change Volume up"
+#~ msgstr "Понизить звук"
 
 #, python-format
 #~ msgid "%s (%s)"

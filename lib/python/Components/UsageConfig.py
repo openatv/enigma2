@@ -14,11 +14,11 @@ from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_HDD, SCOPE_SKINS, SCOPE_TIMESHIFT, defaultRecordingLocation, fileReadXML, resolveFilename
+from Tools.Directories import SCOPE_HDD, SCOPE_SKINS, SCOPE_TIMESHIFT, defaultRecordingLocation, fileReadXML, fileWriteLine, resolveFilename
 from Components.AVSwitch import iAVSwitch
 
-DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 MODULE_NAME = __name__.split(".")[-1]
+DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 
 
 def InitUsageConfig():
@@ -300,10 +300,16 @@ def InitUsageConfig():
 		("3", _("2nd InfoBar ECM"))
 	])
 	config.usage.second_infobar_timeout = ConfigSelection(default="5", choices=choiceList)
-	config.usage.show_infobar_subservices = ConfigSelection(default=1, choices=[
+	config.usage.showInfoBarSubservices = ConfigSelection(default=1, choices=[
 		(0, _("Off")),
 		(1, _("If EPG available")),
 		(2, _("Always"))
+	])
+	config.usage.subservice = ConfigSelection(default=3, choices=[
+		(0, _("No, show the RecordTimer Overview")),
+		(1, _("No, show the Plugin Browser")),
+		(2, _("Yes, show RecordTimer if unavailable")),
+		(3, _("Yes, show Plugin Browser if unavailable"))
 	])
 
 	def showsecondinfobarChanged(configElement):
@@ -1317,8 +1323,8 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if BoxInfo.getItem("WakeOnLAN"):
 		def wakeOnLANChanged(configElement):
-			with open(BoxInfo.getItem("WakeOnLAN"), "w") as fd:
-				fd.write(BoxInfo.getItem("WakeOnLANType")[configElement.value])
+			fileWriteLine(BoxInfo.getItem("WakeOnLAN"), BoxInfo.getItem("WakeOnLANType")[configElement.value], source=MODULE_NAME)
+
 		config.network.wol = ConfigYesNo(default=False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.NFS_autostart = ConfigYesNo(default=True)
@@ -1481,8 +1487,8 @@ def InitUsageConfig():
 
 	if BoxInfo.getItem("ZapMode"):
 		def setZapmode(el):
-			with open(BoxInfo.getItem("ZapMode"), "w") as fd:
-				fd.write(el.value)
+			fileWriteLine(BoxInfo.getItem("ZapMode"), el.value, source=MODULE_NAME)
+
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
 			("mute", _("Black Screen")),
 			("hold", _("Hold screen")),
@@ -1685,13 +1691,6 @@ def InitUsageConfig():
 	config.logmanager.sentfiles = ConfigLocations(default=[])
 
 	config.plisettings = ConfigSubsection()
-	#config.plisettings.Subservice = ConfigYesNo(default = True)
-	config.plisettings.Subservice = ConfigSelection(default="3", choices=[
-		("0", _("No, show always the timer list")),
-		("1", _("No, show always the plugin browser")),
-		("2", _("Yes, but if not available show the timer list")),
-		("3", _("Yes, but if not available show the plugin browser"))
-	])
 	config.plisettings.ColouredButtons = ConfigYesNo(default=False)
 	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="0", choices=[
 		("0", _("As plugin in extended bar")),
@@ -1956,12 +1955,10 @@ def InitUsageConfig():
 	config.pluginbrowser.src = ConfigYesNo(default=False)
 
 	def setForceLNBPowerChanged(configElement):
-		with open("/proc/stb/frontend/fbc/force_lnbon", "w") as fd:
-			fd.write("on" if configElement.value else "off")
+		fileWriteLine("/proc/stb/frontend/fbc/force_lnbon", "on" if configElement.value else "off", source=MODULE_NAME)
 
 	def setForceToneBurstChanged(configElement):
-		with open("/proc/stb/frontend/fbc/force_toneburst", "w") as fd:
-			fd.write("enable" if configElement.value else "disable")
+		fileWriteLine("/proc/stb/frontend/fbc/force_toneburst", "enable" if configElement.value else "disable", source=MODULE_NAME)
 
 	config.tunermisc = ConfigSubsection()
 	if BoxInfo.getItem("ForceLNBPowerChanged"):

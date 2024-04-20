@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-10 17:07+0000\n"
-"PO-Revision-Date: 2024-03-13 18:01+0000\n"
+"POT-Creation-Date: 2024-04-18 19:03+0000\n"
+"PO-Revision-Date: 2024-04-18 23:13+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1170,6 +1170,10 @@ msgid "%s %s remote control (native)"
 msgstr "%s %s kaukosäädin (natiivi)"
 
 #, python-format
+msgid "%s %sB"
+msgstr "%s %sB"
+
+#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1876,10 +1880,10 @@ msgstr "Lisää Tiedoston hallinta Laajennukset valikon vaihtoehto listaan."
 msgid "Add File Commander to the Main Menu list of options."
 msgstr "Lisää Tiedoston hallinta Laajennukset valikon vaihtoehto listaan."
 
-msgid "Add HDMI IN to bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr "Lisää HDMI IN Kanavalistalle"
 
-msgid "Add Marker"
+msgid "Add Marker To Bouquet"
 msgstr "Lisää väliotsikko"
 
 msgid "Add New Quad Channel Entry"
@@ -1921,13 +1925,13 @@ msgstr "Lisää kanavanvaihtoajastus tähän ohjelmaan"
 msgid "Add a ZapTimer for next event"
 msgstr "Lisää kanavanvaihtoajastus seuraavaan ohjelmaan"
 
-msgid "Add a bouquet"
-msgstr "Lisää uusi suosikkilista"
-
 msgid "Add a mark"
 msgstr "Lisää merkki"
 
-msgid "Add a marker"
+msgid "Add a new bouquet"
+msgstr "Lisää uusi suosikkilista"
+
+msgid "Add a new marker before the current service"
 msgstr "Lisää merkki"
 
 msgid "Add a new tag"
@@ -1993,9 +1997,6 @@ msgstr "Tallenna (Jatkuva tallennus)"
 msgid "Add recording (Stop after current event)"
 msgstr "Tallenna (Lopeta nykyisen ohjelman jälkeen)"
 
-msgid "Add selected service to bouquet or alternative"
-msgstr "Lisää valittu kanava suosikkilistalle"
-
 msgid "Add service"
 msgstr "Lisää kanava"
 
@@ -2010,6 +2011,9 @@ msgstr "Lisää nykyinen hakemisto kirjanmerkiksi"
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Lisää nykyinen kanava Äänen voimakkuuden Offsetti listalle"
+
+msgid "Add the selected service to a bouquet or alternative"
+msgstr "Lisää valittu kanava suosikkilistalle"
 
 msgid "Add title"
 msgstr "Lisää"
@@ -3128,6 +3132,9 @@ msgstr "Suosikki Valinta Toiminnot"
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Suosikki valinnan navigointi toiminnot"
 
+msgid "Bouquets"
+msgstr "Suosikkilistat"
+
 msgid "Bouvet Island"
 msgstr "Bouvet saaret"
 
@@ -3598,6 +3605,9 @@ msgstr "Peruuta valinta"
 msgid "Cancel selection and exit"
 msgstr "Peruuta valinta ja poistu"
 
+msgid "Cancel service selection and exit"
+msgstr "Kanavan valinta ja poistuminen"
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr "Syötteet komennon peruuttaminen tällä hetkellä"
 
@@ -3756,6 +3766,12 @@ msgstr "Vaihda teema"
 msgid "Change step size"
 msgstr "Muuta askelkokoa"
 
+msgid "Change to Radio services mode"
+msgstr "Vaihda Radio kanava tilaan"
+
+msgid "Change to TV services mode"
+msgstr "Vaihda Tv kanava tilaan"
+
 msgid "Change to bouquet"
 msgstr "Vaihda suosikkilistalle"
 
@@ -3791,20 +3807,26 @@ msgstr "Kanavatiedot"
 msgid "Channel List"
 msgstr "Kanavalista"
 
-msgid "Channel List Context Menu"
-msgstr "Kanavalistan valikko"
-
-msgid "Channel List Context Menu Actions"
-msgstr "Kanavalistan konteksti valikon Toiminnot"
-
-msgid "Channel List Context Menu Navigation Actions"
-msgstr "Kanavalistan konteksti valikon Navigointi Toiminnot"
-
 msgid "Channel List Menu"
 msgstr "Kanavalistan tyyppi"
 
 msgid "Channel Selection"
 msgstr "Kanavan valinta"
+
+msgid "Channel Selection Actions"
+msgstr "Kanavan valinta"
+
+msgid "Channel Selection Context Menu"
+msgstr "Kanavalistan valikko"
+
+msgid "Channel Selection Context Menu Actions"
+msgstr "Kanavalistan konteksti valikon Toiminnot"
+
+msgid "Channel Selection Context Menu Navigation Actions"
+msgstr "Kanavalistan konteksti valikon Navigointi Toiminnot"
+
+msgid "Channel Selection Navigation Actions"
+msgstr "Kanavan valinta toiminnot"
 
 msgid "Channel Selection Settings"
 msgstr "Kanavalistan asetukset"
@@ -4195,6 +4217,9 @@ msgstr "Sulje Kexec MultiBoot Manageri"
 
 msgid "Close the Plugin Browser screen"
 msgstr "Sulje lisäosa selain näyttö"
+
+msgid "Close the choice box"
+msgstr "Sulje valinta ruutu"
 
 msgid "Close the current screen"
 msgstr "Sulje nykyinen näyttö"
@@ -4913,7 +4938,7 @@ msgstr "Kokkaus"
 msgid "Copy"
 msgstr "Kopioi"
 
-msgid "Copy To Bouquets"
+msgid "Copy To Bouquet"
 msgstr "kopioi suosikkilistalle"
 
 msgid "Copy To Stream Relay"
@@ -6812,6 +6837,9 @@ msgstr "Ota GStreamer debug loki käyttöön *"
 
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "Ota käyttöön GStreamerin kaavio graafinen *"
+
+msgid "Enable IPv6"
+msgstr "Ota käyttöön IPv6"
 
 msgid "Enable IceTV"
 msgstr "Aktivoi IceTV"
@@ -10034,6 +10062,9 @@ msgstr "LCN plugin DVB-T/T2 palvelua varten"
 msgid "LCN rules:"
 msgstr "LCN säännöt:"
 
+msgid "LCN style QuickSelect entry selection"
+msgstr "LCN tyyli Pikavalinta merkintä"
+
 msgid "LED Brightness"
 msgstr "LED Kirkkaus"
 
@@ -10889,9 +10920,6 @@ msgstr "Minimi-ikä %d vuotta"
 msgid "Minimum send interval"
 msgstr "Minimi lähestysjakso"
 
-msgid "Mins"
-msgstr "Minuutit"
-
 msgid "Minutes"
 msgstr "minuuttia"
 
@@ -11193,6 +11221,18 @@ msgstr "Siirry viimeiselle riville/näytölle"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Siirry paneelin ensimmäiselle riville / näytölle"
+
+msgid "Move to next bouquet"
+msgstr "Siirry seuraavaan suosikkilistaan"
+
+msgid "Move to next marker"
+msgstr "Siirry seuraavaan merkkiin"
+
+msgid "Move to previous bouquet"
+msgstr "Siirry edelliseen suosikkilistaan"
+
+msgid "Move to previous marker"
+msgstr "Siirry edelliseen merkkiin"
 
 msgid "Move to the first item on the current line"
 msgstr "Siirrä nykyisen rivin ensimmäiselle riville"
@@ -11970,10 +12010,10 @@ msgstr "Ei koskaan"
 msgid "No, scan later manually"
 msgstr "Ei, kanavat haetaan myöhemmin manuaalisesti"
 
-msgid "No, show always the plugin browser"
+msgid "No, show the Plugin Browser"
 msgstr "Näytä lisäosien selain"
 
-msgid "No, show always the timer list"
+msgid "No, show the RecordTimer Overview"
 msgstr "Ei, näytä aina ajastuslista"
 
 msgid "NodeID"
@@ -12369,6 +12409,9 @@ msgstr "Avaa lisäsosat asetukset näytölle"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Avaa Virtuaalinen näppäimistö tekstin syöttämistä varten"
+
+msgid "Open the context menu"
+msgstr "Avaa kontekstivalikko"
 
 msgid "Open the movie list"
 msgstr "Avaa tallenneluettelo"
@@ -12850,17 +12893,29 @@ msgstr "Alusta"
 msgid "Play"
 msgstr "Jatka toistoa"
 
-msgid "Play As Picture in Picture window"
-msgstr "Näytä kanava PiP-kuvassa"
-
 msgid "Play DVD"
 msgstr "Toista DVD"
 
 msgid "Play DVDs"
 msgstr "Toista DVD:eet"
 
-msgid "Play In Main window"
+msgid "Play In Main Window"
 msgstr "toista pääikkunassa"
+
+msgid "Play In PiP Window"
+msgstr "Näytä kanava PiP-kuvassa"
+
+msgid "Play service with Stream Relay"
+msgstr "Toista kanava striimin välityksellä"
+
+msgid "Play service without Stream Relay"
+msgstr "Toista kanava ilman striimin välitystä"
+
+msgid "Play Service With Stream Relay"
+msgstr "Toista kanava striimin välityksellä"
+
+msgid "Play Service Without Stream Relay"
+msgstr "Toista kanava ilman striimin välitystä"
 
 msgid "Play all audio files in the directory"
 msgstr "Toista kaikki hakemiston äänitiedostot"
@@ -12913,14 +12968,11 @@ msgstr "Toista valittu kanava PiP ikkunassa"
 msgid "Play selected service on the main screen"
 msgstr "Toista valittu kanava päänäytöllä"
 
-msgid "Play service with Stream Relay"
-msgstr "Toista kanava striimin välityksellä"
-
-msgid "Play service without Stream Relay"
-msgstr "Toista kanava ilman striimin välitystä"
-
 msgid "Play the audio file"
 msgstr "Toista äänitiedosto"
+
+msgid "Play the selected service"
+msgstr "Toista valittu kanava"
 
 msgid "Playback Settings"
 msgstr "Toisto Asetukset"
@@ -13036,9 +13088,6 @@ msgstr "Valitse toistolista."
 
 msgid "Please select a resolution..."
 msgstr "Valitse kuvaruudun tarkkuus"
-
-msgid "Please select a sub service..."
-msgstr "Valitse alipalvelu."
 
 msgid "Please select an aspect ratio..."
 msgstr "Valitse kuvasuhde."
@@ -13838,9 +13887,6 @@ msgstr "Pikavalikko"
 msgid "Quick Menu..."
 msgstr "Pikavalikko..."
 
-msgid "Quick zap"
-msgstr "Pikainen kanavanvaihto"
-
 msgid "QuickEPG mode"
 msgstr "QuickEPG:n aktivointitapa"
 
@@ -13919,6 +13965,9 @@ msgstr "Radio"
 msgid "Radio Channel Selection"
 msgstr "Radiokanavan valinta"
 
+msgid "Radio Channel Selection Actions"
+msgstr "Radiokanavan valinta"
+
 msgid "Random"
 msgstr "Satunnainen"
 
@@ -13969,9 +14018,6 @@ msgstr "Haluatko poistua tallentamatta asetuksia?"
 
 msgid "Really delete this entry?"
 msgstr "Haluatko varmasti poistaa merkinnän?"
-
-msgid "Really exit the subservices quickzap?"
-msgstr "Poistu alipalveluiden pikavaihdosta?"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Käynnistetäänkö todella palautustilaan?"
@@ -14397,9 +14443,6 @@ msgstr "Poista valittu kansio kirjanmerkeistä"
 msgid "Remove plugins ..."
 msgstr "Poista lisäosia"
 
-msgid "Remove selected service"
-msgstr "Poista valittu kanava"
-
 msgid "Remove service from AutoCam"
 msgstr "Poista kanava CI+"
 
@@ -14417,6 +14460,9 @@ msgstr "Poista nykyinen kirjanmerkki"
 
 msgid "Remove the selected plugin / list of plugins"
 msgstr "Poista valittu lisäosa/ lista lisäosista"
+
+msgid "Remove the selected service"
+msgstr "Poista valittu kanava"
 
 msgid "Remove timer"
 msgstr "Poista ajastus"
@@ -14457,11 +14503,11 @@ msgstr "Muokkaa nimi ja kuvaus uusille tallenteille"
 msgid "Rename only highlighted file"
 msgstr "Nimeä vain korostettu tiedosto uudelleen"
 
-msgid "Rename selected service"
-msgstr "Nimeä uudelleen valittu kanava"
-
 msgid "Rename the proposed file to be created"
 msgstr "Nimeä ehdotettu tiedosto uudelleen"
+
+msgid "Rename the selected service"
+msgstr "Nimeä uudelleen valittu kanava"
 
 msgid "Rename this tag"
 msgstr "Nimeä tämä tunniste uudelleen"
@@ -15839,6 +15885,9 @@ msgstr "Valitse lisättävä kanava..."
 msgid "Select sort method:"
 msgstr "Valitse lajittelutapa:"
 
+msgid "Select subservices"
+msgstr "Valitse alipalvelu"
+
 msgid "Select system information to view:"
 msgstr "Valitse tarkasteltavat järjestelmätiedot:"
 
@@ -16393,17 +16442,8 @@ msgstr "Kanava ja PID tiedot"
 msgid "Service and PID information for '%s'"
 msgstr "Kanavan ja PID tiedot '%s'"
 
-msgid "Service cant been added to the favorites."
-msgstr "Kanavaa ei voi lisätä suosikkeihin."
-
 msgid "Service font size"
 msgstr "Kanavan tekstikoko"
-
-msgid "Service has been added to the favorites."
-msgstr "Kanava on lisätty suosikkeihin."
-
-msgid "Service has been added to the selected bouquet."
-msgstr "Kanava on lisätty valitulle suosikkilistalle."
 
 msgid "Service info"
 msgstr "Kanavan tiedot"
@@ -17128,6 +17168,12 @@ msgstr "Näytä Softcamit"
 msgid "Show Source packages"
 msgstr "Näytä lähde paketit"
 
+msgid "Show Subservices Of Active Service"
+msgstr "Näytä aktiivinen kanava"
+
+msgid "Show subservices of the active service"
+msgstr "Näytä aktiivinen kanava"
+
 msgid "Show System Plugin packages"
 msgstr "Näytä järjestelmän paketit"
 
@@ -17166,6 +17212,9 @@ msgstr "Näytä lisäasetukset"
 
 msgid "Show all"
 msgstr "Näytä kaikki"
+
+msgid "Show all available services"
+msgstr "Näytä kaikki saatavilla olevat kanavat"
 
 msgid "Show all details"
 msgstr "Näytä yksityiskohdat"
@@ -17311,6 +17360,15 @@ msgstr "Näytä tehtävät (job tasks) laajennusvalikossa"
 
 msgid "Show last image"
 msgstr "Näytä edellinen kuva"
+
+msgid "Show list of bouquets"
+msgstr "Näytä kanava lista"
+
+msgid "Show list of providers"
+msgstr "Näytä lista palveluntarjoajista"
+
+msgid "Show list of transponders"
+msgstr "Näytä lista transponderista"
 
 msgid "Show live TV when movie stopped"
 msgstr "Näytä tv-kuva tallenteen loputtua"
@@ -17485,6 +17543,9 @@ msgstr "Näytä viesti kun siirrytään suoraan katseluun"
 
 msgid "Show subservice selection"
 msgstr "Näytä kanavatyypin kuvakkeet"
+
+msgid "Show subservices"
+msgstr "Näytä alipalvelu"
 
 msgid "Show subservices *"
 msgstr "Näytä tekstitys palvelu *"
@@ -18547,11 +18608,8 @@ msgstr "Nauhat"
 msgid "Style:"
 msgstr "Tyyli:"
 
-msgid "Sub Service Actions"
-msgstr "Alipalvelu toiminnot"
-
-msgid "Subservice list..."
-msgstr "Alipalveluiden lista..."
+msgid "Subservice Actions"
+msgstr "Alipalvelut asetukset"
 
 msgid "Subservice mode (GREEN button)"
 msgstr "Alipalveluiden tila(vihreä näppäin)"
@@ -18757,9 +18815,6 @@ msgstr "Siirry seuraavaan EPG tapahtumaan"
 msgid "Switch to next channel in history"
 msgstr "Vaihda seuraavalle kanavalle historiassa"
 
-msgid "Switch to next sub service"
-msgstr "Vaihda seuraavaan tv kanavaan"
-
 msgid "Switch to play list"
 msgstr "Vaihda soittolistaan"
 
@@ -18772,10 +18827,7 @@ msgstr "Vaihda edelliselle kanavalle"
 msgid "Switch to previous channel in history"
 msgstr "Vaihda edelliselle kanavalle historiassa"
 
-msgid "Switch to previous sub service"
-msgstr "Vaihda edelliseen tv kanavaan"
-
-msgid "Switch to radio mode"
+msgid "Switch to Radio mode"
 msgstr "Vaihda radio tilaan"
 
 msgid "Switch to the available RADIO services"
@@ -18879,7 +18931,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 24.2.2024\n"
+"Suomenkielinen käännös: 19.4.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19623,7 +19675,7 @@ msgstr "Tämä asetus määrittää kuinka aika näytetään valmiustilassa, tai
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Määrittää, minkävärinen taustaväri läpinäkyville kanavalogoille asetetaan."
 
-msgid "This option allows you choose the option for subservice indicator or selection."
+msgid "This option allows you choose the option for Subservice indicator or selection."
 msgstr "Tämän vaihtoehdon avulla voit valita miten kanavatyyppi näytettään."
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
@@ -20167,9 +20219,6 @@ msgstr "Kohteen siirtotilan kytkeminen päälle/pois"
 
 msgid "Toggle move mode"
 msgstr "Vaihda siirtotilaan"
-
-msgid "Toggle move mode selection"
-msgstr "Vaihda liiketilan valinta"
 
 msgid "Toggle multi-selection mode"
 msgstr "Monivalintatilan vaihtaminen"
@@ -21404,7 +21453,7 @@ msgstr "Näytä"
 msgid "View File"
 msgstr "Näytä tiedosto"
 
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Näytä Rass interactive..."
 
 msgid "View as grid"
@@ -21456,7 +21505,7 @@ msgstr "Virgin Islands (British)"
 msgid "Virgin Islands (US)"
 msgstr "Neitsytsaaret (Yhdysvallat)"
 
-msgid "Virtual KeyBoard"
+msgid "Virtual Keyboard"
 msgstr "Virtuaalinäppäimistö"
 
 msgid "Virtual Keyboard Actions"
@@ -21464,9 +21513,6 @@ msgstr "Virtuaali Näppäimistön toiminnot"
 
 msgid "Virtual Keyboard Text:"
 msgstr "Virtuaali näppäimistön teksti:"
-
-msgid "Virtual Keyboard"
-msgstr "Virtuaalinäppäimistö"
 
 msgid "Visual impaired commentary"
 msgstr "Näkövammaisten kommentti"
@@ -22128,12 +22174,6 @@ msgstr "Kyllä, varmuuskopioi asetukset!"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Kyllä, mutta älä muunna ajansiirtoa tallenteeksi"
 
-msgid "Yes, but if not available show the plugin browser"
-msgstr "Kyllä, jos ei saatavilla näytä lisäosa lista"
-
-msgid "Yes, but if not available show the timer list"
-msgstr "Kyllä, jos ei käytettävissä, näytä ajastinluettelo"
-
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Kyllä, mutta muunna ajansiirto tallenteeksi ja jatka tallentamista"
 
@@ -22160,6 +22200,12 @@ msgstr "Kyllä, palauta asetukset nyt"
 
 msgid "Yes, returning to movie list"
 msgstr "Kyllä, palataan tallennelistaan"
+
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr "Kyllä, jos ei saatavilla näytä lisäosa lista"
+
+msgid "Yes, show RecordTimer if unavailable"
+msgstr "Kyllä, jos ei käytettävissä, näytä ajastinluettelo"
 
 msgid "Yes, shut down now."
 msgstr "Kyllä, sammuta nyt."
@@ -22667,12 +22713,6 @@ msgstr "kortinlukija"
 
 msgid "cartoon/puppets"
 msgstr "piirretty/nukke"
-
-msgid "change Volume down"
-msgstr "Pienennä äänenvoimakkuutta"
-
-msgid "change Volume up"
-msgstr "Lisää äänenvoimakkuutta"
 
 msgid "chapters"
 msgstr "kappaleet"
@@ -23585,6 +23625,48 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mins"
+#~ msgstr "Minuutit"
+
+#~ msgid "Please select a sub service..."
+#~ msgstr "Valitse alipalvelu."
+
+#~ msgid "Quick zap"
+#~ msgstr "Pikainen kanavanvaihto"
+
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Poistu alipalveluiden pikavaihdosta?"
+
+#~ msgid "Service cant been added to the favorites."
+#~ msgstr "Kanavaa ei voi lisätä suosikkeihin."
+
+#~ msgid "Service has been added to the favorites."
+#~ msgstr "Kanava on lisätty suosikkeihin."
+
+#~ msgid "Service has been added to the selected bouquet."
+#~ msgstr "Kanava on lisätty valitulle suosikkilistalle."
+
+#~ msgid "Sub Service Actions"
+#~ msgstr "Alipalvelu toiminnot"
+
+#~ msgid "Subservice list..."
+#~ msgstr "Alipalveluiden lista..."
+
+#~ msgid "Switch to next sub service"
+#~ msgstr "Vaihda seuraavaan tv kanavaan"
+
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Vaihda edelliseen tv kanavaan"
+
+#~ msgid "Virtual KeyBoard"
+#~ msgstr "Virtuaalinäppäimistö"
+
+#~ msgid "change Volume down"
+#~ msgstr "Pienennä äänenvoimakkuutta"
+
+#~ msgid "change Volume up"
+#~ msgstr "Lisää äänenvoimakkuutta"
 
 #, python-format
 #~ msgid "%s (%s)"

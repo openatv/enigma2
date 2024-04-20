@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"POT-Creation-Date: 2024-04-18 19:03+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ro/>\n"
@@ -1163,6 +1163,10 @@ msgid "%s %s remote control (native)"
 msgstr "Va rugam apasati OK de pe telecomanda pentru a continua"
 
 #, python-format
+msgid "%s %sB"
+msgstr ""
+
+#, python-format
 msgid "%s (%04o)"
 msgstr ""
 
@@ -1861,10 +1865,10 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
-msgid "Add HDMI IN to bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr ""
 
-msgid "Add Marker"
+msgid "Add Marker To Bouquet"
 msgstr "adauga marker"
 
 msgid "Add New Quad Channel Entry"
@@ -1911,13 +1915,13 @@ msgstr ""
 msgid "Add a ZapTimer for next event"
 msgstr "muta jos la urmatoarea intrare"
 
-msgid "Add a bouquet"
-msgstr ""
-
 msgid "Add a mark"
 msgstr "Adauga un mark"
 
-msgid "Add a marker"
+msgid "Add a new bouquet"
+msgstr ""
+
+msgid "Add a new marker before the current service"
 msgstr ""
 
 msgid "Add a new tag"
@@ -1987,9 +1991,6 @@ msgstr ""
 msgid "Add recording (Stop after current event)"
 msgstr ""
 
-msgid "Add selected service to bouquet or alternative"
-msgstr ""
-
 #, fuzzy
 msgid "Add service"
 msgstr "adauga Serviciu"
@@ -2004,6 +2005,9 @@ msgid "Add the current directory as a bookmark"
 msgstr ""
 
 msgid "Add the current service to the Volume Offsets list"
+msgstr ""
+
+msgid "Add the selected service to a bouquet or alternative"
 msgstr ""
 
 msgid "Add title"
@@ -3144,6 +3148,9 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
+msgid "Bouquets"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr ""
 
@@ -3605,6 +3612,9 @@ msgstr "Selectie canal"
 msgid "Cancel selection and exit"
 msgstr ""
 
+msgid "Cancel service selection and exit"
+msgstr ""
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
@@ -3770,6 +3780,12 @@ msgstr "Schimba codul pin"
 msgid "Change step size"
 msgstr ""
 
+msgid "Change to Radio services mode"
+msgstr ""
+
+msgid "Change to TV services mode"
+msgstr ""
+
 #, fuzzy
 msgid "Change to bouquet"
 msgstr "Adauga la buchet"
@@ -3805,21 +3821,27 @@ msgstr ""
 msgid "Channel List"
 msgstr ""
 
-msgid "Channel List Context Menu"
-msgstr ""
-
-msgid "Channel List Context Menu Actions"
-msgstr ""
-
-msgid "Channel List Context Menu Navigation Actions"
-msgstr ""
-
 msgid "Channel List Menu"
 msgstr "Meniul lista de canale"
 
 #, fuzzy
 msgid "Channel Selection"
 msgstr "Selectie canal"
+
+msgid "Channel Selection Actions"
+msgstr ""
+
+msgid "Channel Selection Context Menu"
+msgstr ""
+
+msgid "Channel Selection Context Menu Actions"
+msgstr ""
+
+msgid "Channel Selection Context Menu Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Navigation Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Channel Selection Settings"
@@ -4221,6 +4243,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the choice box"
 msgstr ""
 
 msgid "Close the current screen"
@@ -4945,7 +4970,7 @@ msgstr "lucreaza"
 msgid "Copy"
 msgstr ""
 
-msgid "Copy To Bouquets"
+msgid "Copy To Bouquet"
 msgstr "copiaza in bouquete"
 
 msgid "Copy To Stream Relay"
@@ -6870,6 +6895,9 @@ msgid "Enable GStreamer debug log *"
 msgstr ""
 
 msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
+msgid "Enable IPv6"
 msgstr ""
 
 #, fuzzy
@@ -10148,6 +10176,9 @@ msgstr ""
 msgid "LCN rules:"
 msgstr ""
 
+msgid "LCN style QuickSelect entry selection"
+msgstr ""
+
 msgid "LED Brightness"
 msgstr ""
 
@@ -11036,9 +11067,6 @@ msgstr ""
 msgid "Minimum send interval"
 msgstr ""
 
-msgid "Mins"
-msgstr ""
-
 msgid "Minutes"
 msgstr "minute"
 
@@ -11347,6 +11375,18 @@ msgid "Move to last line / screen"
 msgstr ""
 
 msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to next bouquet"
+msgstr ""
+
+msgid "Move to next marker"
+msgstr ""
+
+msgid "Move to previous bouquet"
+msgstr ""
+
+msgid "Move to previous marker"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -12151,10 +12191,10 @@ msgstr ""
 msgid "No, scan later manually"
 msgstr "Nu, scaneaza manual mai tarziu"
 
-msgid "No, show always the plugin browser"
+msgid "No, show the Plugin Browser"
 msgstr ""
 
-msgid "No, show always the timer list"
+msgid "No, show the RecordTimer Overview"
 msgstr ""
 
 msgid "NodeID"
@@ -12557,6 +12597,9 @@ msgid "Open the Plugin Browser settings screen"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
+msgid "Open the context menu"
 msgstr ""
 
 msgid "Open the movie list"
@@ -13055,9 +13098,6 @@ msgstr ""
 msgid "Play"
 msgstr "Redare"
 
-msgid "Play As Picture in Picture window"
-msgstr ""
-
 msgid "Play DVD"
 msgstr "Redare DVD"
 
@@ -13065,7 +13105,22 @@ msgstr "Redare DVD"
 msgid "Play DVDs"
 msgstr "Redare DVD"
 
-msgid "Play In Main window"
+msgid "Play In Main Window"
+msgstr ""
+
+msgid "Play In PiP Window"
+msgstr ""
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
+msgstr ""
+
+msgid "Play Service With Stream Relay"
+msgstr ""
+
+msgid "Play Service Without Stream Relay"
 msgstr ""
 
 msgid "Play all audio files in the directory"
@@ -13125,13 +13180,10 @@ msgstr ""
 msgid "Play selected service on the main screen"
 msgstr ""
 
-msgid "Play service with Stream Relay"
-msgstr ""
-
-msgid "Play service without Stream Relay"
-msgstr ""
-
 msgid "Play the audio file"
+msgstr ""
+
+msgid "Play the selected service"
 msgstr ""
 
 msgid "Playback Settings"
@@ -13249,10 +13301,6 @@ msgstr "Va rugam selectati o lista de redare..."
 
 msgid "Please select a resolution..."
 msgstr ""
-
-#, fuzzy
-msgid "Please select a sub service..."
-msgstr "Va rugam selectati un subserviciu..."
 
 msgid "Please select an aspect ratio..."
 msgstr ""
@@ -14067,10 +14115,6 @@ msgstr ""
 msgid "Quick Menu..."
 msgstr ""
 
-#, fuzzy
-msgid "Quick zap"
-msgstr "Zap rapid"
-
 msgid "QuickEPG mode"
 msgstr ""
 
@@ -14151,6 +14195,9 @@ msgstr ""
 msgid "Radio Channel Selection"
 msgstr "Selectie canal"
 
+msgid "Radio Channel Selection Actions"
+msgstr ""
+
 msgid "Random"
 msgstr "Aleator"
 
@@ -14202,9 +14249,6 @@ msgstr "Inchideti fara sa salvati setarile?"
 #, fuzzy
 msgid "Really delete this entry?"
 msgstr "Stergeti timpii de terminare?"
-
-msgid "Really exit the subservices quickzap?"
-msgstr "Iesiti din subserviciul zap rapid?"
 
 #, fuzzy
 msgid "Really reboot into Recovery Mode?"
@@ -14643,9 +14687,6 @@ msgstr ""
 msgid "Remove plugins ..."
 msgstr ""
 
-msgid "Remove selected service"
-msgstr ""
-
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -14662,6 +14703,9 @@ msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove the selected plugin / list of plugins"
+msgstr ""
+
+msgid "Remove the selected service"
 msgstr ""
 
 msgid "Remove timer"
@@ -14705,10 +14749,10 @@ msgstr ""
 msgid "Rename only highlighted file"
 msgstr ""
 
-msgid "Rename selected service"
+msgid "Rename the proposed file to be created"
 msgstr ""
 
-msgid "Rename the proposed file to be created"
+msgid "Rename the selected service"
 msgstr ""
 
 msgid "Rename this tag"
@@ -15805,6 +15849,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr ""
 
@@ -16105,6 +16152,9 @@ msgid "Select service to add..."
 msgstr "Selectati serviciul care sa fie adaugat..."
 
 msgid "Select sort method:"
+msgstr ""
+
+msgid "Select subservices"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -16650,18 +16700,8 @@ msgid "Service and PID information for '%s'"
 msgstr ""
 
 #, fuzzy
-msgid "Service cant been added to the favorites."
-msgstr "Serviciul a fost adaugat la favorite"
-
-#, fuzzy
 msgid "Service font size"
 msgstr "Info serviciu"
-
-msgid "Service has been added to the favorites."
-msgstr "Serviciul a fost adaugat la favorite"
-
-msgid "Service has been added to the selected bouquet."
-msgstr "Serviciul a fost adaugat in pachetul selectat"
 
 msgid "Service info"
 msgstr ""
@@ -17394,6 +17434,12 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show subservices of the active service"
+msgstr ""
+
 msgid "Show System Plugin packages"
 msgstr ""
 
@@ -17434,6 +17480,9 @@ msgid "Show advanced settings"
 msgstr ""
 
 msgid "Show all"
+msgstr ""
+
+msgid "Show all available services"
 msgstr ""
 
 msgid "Show all details"
@@ -17589,6 +17638,15 @@ msgid "Show job tasks in Extension Menu"
 msgstr ""
 
 msgid "Show last image"
+msgstr ""
+
+msgid "Show list of bouquets"
+msgstr ""
+
+msgid "Show list of providers"
+msgstr ""
+
+msgid "Show list of transponders"
 msgstr ""
 
 msgid "Show live TV when movie stopped"
@@ -17773,6 +17831,9 @@ msgid "Show status messages on switch to live TV"
 msgstr ""
 
 msgid "Show subservice selection"
+msgstr ""
+
+msgid "Show subservices"
 msgstr ""
 
 msgid "Show subservices *"
@@ -18869,13 +18930,8 @@ msgstr ""
 msgid "Style:"
 msgstr ""
 
-#, fuzzy
-msgid "Sub Service Actions"
-msgstr "Arata serviciile incepand cu"
-
-#, fuzzy
-msgid "Subservice list..."
-msgstr "Subservicii"
+msgid "Subservice Actions"
+msgstr ""
 
 msgid "Subservice mode (GREEN button)"
 msgstr ""
@@ -19091,10 +19147,6 @@ msgid "Switch to next channel in history"
 msgstr ""
 
 #, fuzzy
-msgid "Switch to next sub service"
-msgstr "Schimba la urmatorul subserviciu"
-
-#, fuzzy
 msgid "Switch to play list"
 msgstr "mergi la filelist"
 
@@ -19108,11 +19160,7 @@ msgstr ""
 msgid "Switch to previous channel in history"
 msgstr ""
 
-#, fuzzy
-msgid "Switch to previous sub service"
-msgstr "Schimba la subserviciul anterior"
-
-msgid "Switch to radio mode"
+msgid "Switch to Radio mode"
 msgstr ""
 
 msgid "Switch to the available RADIO services"
@@ -19371,6 +19419,9 @@ msgstr ""
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+msgid "Temporary directory"
 msgstr ""
 
 #, fuzzy
@@ -19901,7 +19952,7 @@ msgstr ""
 msgid "This option allows you choose the background color of transparent picons."
 msgstr ""
 
-msgid "This option allows you choose the option for subservice indicator or selection."
+msgid "This option allows you choose the option for Subservice indicator or selection."
 msgstr ""
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
@@ -20448,9 +20499,6 @@ msgid "Toggle item move mode on/off"
 msgstr ""
 
 msgid "Toggle move mode"
-msgstr ""
-
-msgid "Toggle move mode selection"
 msgstr ""
 
 msgid "Toggle multi-selection mode"
@@ -21203,6 +21251,9 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "Foloseste un gateway"
 
+msgid "Use alternate GitHub DNS"
+msgstr ""
+
 msgid "Use an alternative smaller screen."
 msgstr ""
 
@@ -21674,7 +21725,7 @@ msgstr "Vezi"
 msgid "View File"
 msgstr ""
 
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Vezi Rass interactive..."
 
 msgid "View as grid"
@@ -21728,16 +21779,13 @@ msgstr ""
 msgid "Virgin Islands (US)"
 msgstr ""
 
-msgid "Virtual KeyBoard"
+msgid "Virtual Keyboard"
 msgstr ""
 
 msgid "Virtual Keyboard Actions"
 msgstr ""
 
 msgid "Virtual Keyboard Text:"
-msgstr ""
-
-msgid "Virtual Keyboard"
 msgstr ""
 
 msgid "Visual impaired commentary"
@@ -22401,12 +22449,6 @@ msgstr "Da, salveaza-mi setarile"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Da si sterge acest film"
 
-msgid "Yes, but if not available show the plugin browser"
-msgstr ""
-
-msgid "Yes, but if not available show the timer list"
-msgstr ""
-
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr ""
 
@@ -22433,6 +22475,12 @@ msgstr "Da, restaureaza setari acum"
 
 msgid "Yes, returning to movie list"
 msgstr "Da, rintoarcere la lista filme"
+
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr ""
+
+msgid "Yes, show RecordTimer if unavailable"
+msgstr ""
 
 msgid "Yes, shut down now."
 msgstr "Da, inchide acum"
@@ -22910,12 +22958,6 @@ msgid "card reader"
 msgstr ""
 
 msgid "cartoon/puppets"
-msgstr ""
-
-msgid "change Volume down"
-msgstr ""
-
-msgid "change Volume up"
 msgstr ""
 
 msgid "chapters"
@@ -23842,6 +23884,43 @@ msgstr "da (pastreaza feed-uri)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Please select a sub service..."
+#~ msgstr "Va rugam selectati un subserviciu..."
+
+#, fuzzy
+#~ msgid "Quick zap"
+#~ msgstr "Zap rapid"
+
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Iesiti din subserviciul zap rapid?"
+
+#, fuzzy
+#~ msgid "Service cant been added to the favorites."
+#~ msgstr "Serviciul a fost adaugat la favorite"
+
+#~ msgid "Service has been added to the favorites."
+#~ msgstr "Serviciul a fost adaugat la favorite"
+
+#~ msgid "Service has been added to the selected bouquet."
+#~ msgstr "Serviciul a fost adaugat in pachetul selectat"
+
+#, fuzzy
+#~ msgid "Sub Service Actions"
+#~ msgstr "Arata serviciile incepand cu"
+
+#, fuzzy
+#~ msgid "Subservice list..."
+#~ msgstr "Subservicii"
+
+#, fuzzy
+#~ msgid "Switch to next sub service"
+#~ msgstr "Schimba la urmatorul subserviciu"
+
+#, fuzzy
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Schimba la subserviciul anterior"
 
 #, fuzzy
 #~ msgid "Australian"

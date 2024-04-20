@@ -363,6 +363,10 @@
 		<key id="KEY_SPACE" mapto="showMenu" flags="m" />
 	</map>
 
+	<map context="InfobarSubserviceSelectionActions">
+		<key id="KEY_GREEN" mapto="selectSubservices" flags="b" />
+	</map>
+
 	<map context="LocaleSelectionActions">
 		<key id="KEY_RED" mapto="cancel" flags="m" />
 		<key id="KEY_GREEN" mapto="save" flags="m" />
@@ -972,20 +976,6 @@
 		<key id="KEY_ENTER" mapto="toggleShow" flags="m" />
 		<key id="KEY_EXIT" mapto="hide" flags="m" />
 		<key id="KEY_ESC" mapto="hide" flags="m" />
-	</map>
-
-	<map context="InfobarSubserviceQuickzapActions">
-		<key id="KEY_PREVIOUS" mapto="prevSubservice" flags="m" />
-		<key id="KEY_NEXT" mapto="nextSubservice" flags="m" />
-		<key id="KEY_BACK" mapto="prevSubservice" flags="m" />
-		<key id="KEY_FORWARD" mapto="nextSubservice" flags="m" />
-		<key id="KEY_EXIT" mapto="exit" flags="m" />
-		<key id="KEY_ESC" mapto="exit" flags="m" />
-		<key id="KEY_TV" mapto="exit" flags="m" />
-	</map>
-
-	<map context="InfobarSubserviceSelectionActions">
-		<key id="KEY_GREEN" mapto="GreenPressed" flags="b" />
 	</map>
 
 	<map context="InfobarSubtitleSelectionActions">

@@ -88,3 +88,9 @@ translate = _("When enabled, this setting has more weight than 'Preferred tuner'
 translate = _("When enabled, this setting has more weight than 'Preferred tuner for recordings'.")
 translate = _("Preferred tuner ATSC")
 translate = _("Preferred tuner ATSC for recordings")
+
+# temporary text
+translate = _("Choose the Display Skin and press GREEN to activate the skin.")
+translate = _("Choose the OSD Skin and press GREEN to activate the skin.")
+translate = _("Select Display Skin")
+translate = _("Select Skin")

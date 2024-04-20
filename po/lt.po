@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"POT-Creation-Date: 2024-04-18 19:03+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1208,6 +1208,10 @@ msgid "%s %s remote control (native)"
 msgstr "%s%s nuotolinio valdymo pultas (gimtasis)"
 
 #, python-format
+msgid "%s %sB"
+msgstr ""
+
+#, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
@@ -1916,10 +1920,10 @@ msgstr "Pridėkite failų valdytoją prie plėtinių meniu parinkčių sąrašo.
 msgid "Add File Commander to the Main Menu list of options."
 msgstr "Pridėkite failų valdytoją prie pagrindinio meniu parinkčių sąrašo."
 
-msgid "Add HDMI IN to bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr ""
 
-msgid "Add Marker"
+msgid "Add Marker To Bouquet"
 msgstr "pridėti žymeklį"
 
 msgid "Add New Quad Channel Entry"
@@ -1961,13 +1965,13 @@ msgstr "Pridėti perjungimo laikmatį šiam įvykiui"
 msgid "Add a ZapTimer for next event"
 msgstr "Pridėti perjungimo laikmatį sekančiam įvykiui"
 
-msgid "Add a bouquet"
-msgstr "Pridėti į paketą"
-
 msgid "Add a mark"
 msgstr "Pridėti žymą"
 
-msgid "Add a marker"
+msgid "Add a new bouquet"
+msgstr "Pridėti į paketą"
+
+msgid "Add a new marker before the current service"
 msgstr "Pridėti žymeklį"
 
 msgid "Add a new tag"
@@ -2033,9 +2037,6 @@ msgstr "Pradėti įrašymą (neribotam laikui)"
 msgid "Add recording (Stop after current event)"
 msgstr "Pradėti įrašymą (stabdyti po šio įvykio)"
 
-msgid "Add selected service to bouquet or alternative"
-msgstr "pridėti kanalą į paketą"
-
 msgid "Add service"
 msgstr "Pridėti kanalą"
 
@@ -2050,6 +2051,9 @@ msgstr "Pridėkite dabartinį katalogą kaip žymelę"
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Įtraukti dabartinę paslaugą į garsumo poslinkių sąrašą"
+
+msgid "Add the selected service to a bouquet or alternative"
+msgstr "pridėti kanalą į paketą"
 
 msgid "Add title"
 msgstr "Pridėti pavadinimą"
@@ -3166,6 +3170,9 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
+msgid "Bouquets"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "Buveto sala"
 
@@ -3635,6 +3642,9 @@ msgstr "Atšaukti pasirinkimą"
 msgid "Cancel selection and exit"
 msgstr "Atšaukti pasirinkimą ir išeiti"
 
+msgid "Cancel service selection and exit"
+msgstr ""
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
@@ -3793,6 +3803,12 @@ msgstr "Pakeisti temą"
 msgid "Change step size"
 msgstr "Keisti žingsnio dydį"
 
+msgid "Change to Radio services mode"
+msgstr ""
+
+msgid "Change to TV services mode"
+msgstr ""
+
 msgid "Change to bouquet"
 msgstr "Keisti į paketą"
 
@@ -3828,20 +3844,26 @@ msgstr "Kanalo informacija"
 msgid "Channel List"
 msgstr "Kanalų sąrašas"
 
-msgid "Channel List Context Menu"
-msgstr "Kanalų sąrašo kontekstinis meniu"
-
-msgid "Channel List Context Menu Actions"
-msgstr ""
-
-msgid "Channel List Context Menu Navigation Actions"
-msgstr ""
-
 msgid "Channel List Menu"
 msgstr "Kanalų sąrašo meniu"
 
 msgid "Channel Selection"
 msgstr "Kanalo pasirinkimas"
+
+msgid "Channel Selection Actions"
+msgstr ""
+
+msgid "Channel Selection Context Menu"
+msgstr "Kanalų sąrašo kontekstinis meniu"
+
+msgid "Channel Selection Context Menu Actions"
+msgstr ""
+
+msgid "Channel Selection Context Menu Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Navigation Actions"
+msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Kanalo pasirinkimo parametrai"
@@ -4232,6 +4254,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the choice box"
 msgstr ""
 
 msgid "Close the current screen"
@@ -4952,7 +4977,7 @@ msgstr "Maisto gamyba"
 msgid "Copy"
 msgstr "Kopijuoti"
 
-msgid "Copy To Bouquets"
+msgid "Copy To Bouquet"
 msgstr "kopijuoti į paketus"
 
 msgid "Copy To Stream Relay"
@@ -6850,6 +6875,9 @@ msgstr "Įgalinti GStreamer derinimo žurnalą *"
 
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "Įgalinti GStreamer vamzdynų grafikus *"
+
+msgid "Enable IPv6"
+msgstr ""
 
 msgid "Enable IceTV"
 msgstr "Įjungti IceTV"
@@ -10072,6 +10100,9 @@ msgstr "LCN priedas DVB-T/T2 kanalams"
 msgid "LCN rules:"
 msgstr "LCN taisyklės:"
 
+msgid "LCN style QuickSelect entry selection"
+msgstr ""
+
 msgid "LED Brightness"
 msgstr ""
 
@@ -10928,9 +10959,6 @@ msgstr "Minimalus amžius %d metai"
 msgid "Minimum send interval"
 msgstr "Minimalus siuntimo intervalas"
 
-msgid "Mins"
-msgstr "Min."
-
 msgid "Minutes"
 msgstr "minučių"
 
@@ -11230,6 +11258,18 @@ msgstr "Pereiti į paskutinę eilutę / ekraną"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Pereiti į paskutinę eilutę / ekraną skydelyje"
+
+msgid "Move to next bouquet"
+msgstr ""
+
+msgid "Move to next marker"
+msgstr ""
+
+msgid "Move to previous bouquet"
+msgstr ""
+
+msgid "Move to previous marker"
+msgstr ""
 
 msgid "Move to the first item on the current line"
 msgstr ""
@@ -11998,10 +12038,10 @@ msgstr "Ne, niekada"
 msgid "No, scan later manually"
 msgstr "Ne, ieškoti vėliau rankiniu būdu"
 
-msgid "No, show always the plugin browser"
+msgid "No, show the Plugin Browser"
 msgstr "Ne, visada parodyti priedų naršyklę"
 
-msgid "No, show always the timer list"
+msgid "No, show the RecordTimer Overview"
 msgstr "Ne, visada parodykite laikmačio sąrašą"
 
 msgid "NodeID"
@@ -12396,6 +12436,9 @@ msgid "Open the Plugin Browser settings screen"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
+msgid "Open the context menu"
 msgstr ""
 
 msgid "Open the movie list"
@@ -12878,17 +12921,29 @@ msgstr "Platforma"
 msgid "Play"
 msgstr "Pradėti"
 
-msgid "Play As Picture in Picture window"
-msgstr "rodyti, kaip vaizdą vaizde"
-
 msgid "Play DVD"
 msgstr "Žiūrėti DVD"
 
 msgid "Play DVDs"
 msgstr "Leisti DVD"
 
-msgid "Play In Main window"
+msgid "Play In Main Window"
 msgstr "atkurti pagrindiniame lange"
+
+msgid "Play In PiP Window"
+msgstr "rodyti, kaip vaizdą vaizde"
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
+msgstr ""
+
+msgid "Play Service With Stream Relay"
+msgstr ""
+
+msgid "Play Service Without Stream Relay"
+msgstr ""
 
 msgid "Play all audio files in the directory"
 msgstr "Leiskite visus garso failus kataloge"
@@ -12941,14 +12996,11 @@ msgstr ""
 msgid "Play selected service on the main screen"
 msgstr ""
 
-msgid "Play service with Stream Relay"
-msgstr ""
-
-msgid "Play service without Stream Relay"
-msgstr ""
-
 msgid "Play the audio file"
 msgstr "Garso failo leidimas"
+
+msgid "Play the selected service"
+msgstr ""
 
 msgid "Playback Settings"
 msgstr "Atkūrimo nustatymai"
@@ -13064,9 +13116,6 @@ msgstr "Pasirinkite grojaraštį..."
 
 msgid "Please select a resolution..."
 msgstr "Pasirinkite rezoliuciją..."
-
-msgid "Please select a sub service..."
-msgstr "Pasirinkite subkanalą..."
 
 msgid "Please select an aspect ratio..."
 msgstr "Pasirinkite vaizdo formato santykį..."
@@ -13868,9 +13917,6 @@ msgstr "Greitosios paleisties meniu"
 msgid "Quick Menu..."
 msgstr "Greitasis meniu..."
 
-msgid "Quick zap"
-msgstr "Greitasis perjungimas"
-
 msgid "QuickEPG mode"
 msgstr "Greitas EPG režimas"
 
@@ -13949,6 +13995,9 @@ msgstr ""
 msgid "Radio Channel Selection"
 msgstr "Radijo kanalo pasirinkimas"
 
+msgid "Radio Channel Selection Actions"
+msgstr ""
+
 msgid "Random"
 msgstr "Atsitiktinis"
 
@@ -13999,9 +14048,6 @@ msgstr "Tikrai užverti be nustatymų išsaugojimo ?"
 
 msgid "Really delete this entry?"
 msgstr "Ar tikrai ištrinti šį įrašą?"
-
-msgid "Really exit the subservices quickzap?"
-msgstr "Tikrai užverti greitą subkanalų perjungimą?"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Tikrai iš naujo paleisti į atkūrimo režimą?"
@@ -14427,9 +14473,6 @@ msgstr "Pašalinkite pasirinktą aplanką iš žymių"
 msgid "Remove plugins ..."
 msgstr ""
 
-msgid "Remove selected service"
-msgstr ""
-
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -14446,6 +14489,9 @@ msgid "Remove the current bookmark"
 msgstr "Dabartinės žymelės pašalinimas"
 
 msgid "Remove the selected plugin / list of plugins"
+msgstr ""
+
+msgid "Remove the selected service"
 msgstr ""
 
 msgid "Remove timer"
@@ -14487,11 +14533,11 @@ msgstr "Naujų įvykių pervardijimo pavadinimas ir apibūdinimas"
 msgid "Rename only highlighted file"
 msgstr "Pervardyti tik paryškintą failą"
 
-msgid "Rename selected service"
-msgstr ""
-
 msgid "Rename the proposed file to be created"
 msgstr "Pervardykite siūlomą sukurti failą"
+
+msgid "Rename the selected service"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr "Pervadinti šią žymę"
@@ -15563,6 +15609,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jei nustatyta \"taip\", signalo reikšmės (SNR ir t.t.) bus apskaičiuotos pagal API V3. Tai senoji API versija, kuri dabar buvo pakeista."
 
@@ -15855,6 +15904,9 @@ msgstr "Pasirinkite kanalą, kurį norite pridėti..."
 
 msgid "Select sort method:"
 msgstr "Pasirinkite rūšiavimo būdą:"
+
+msgid "Select subservices"
+msgstr ""
 
 msgid "Select system information to view:"
 msgstr "Pasirinkite sistemos informaciją, kurią norite peržiūrėti:"
@@ -16404,17 +16456,8 @@ msgstr ""
 msgid "Service and PID information for '%s'"
 msgstr ""
 
-msgid "Service cant been added to the favorites."
-msgstr "Kanalas negali būti įtrauktas į mėgstamiausius."
-
 msgid "Service font size"
 msgstr "Kanalo šrifto dydis"
-
-msgid "Service has been added to the favorites."
-msgstr "Kanalas įtrauktas į mėgstamiausius."
-
-msgid "Service has been added to the selected bouquet."
-msgstr "Kanalas įtrauktas į pasirinktą paketą."
 
 msgid "Service info"
 msgstr "Informacija apie kanalą"
@@ -17131,6 +17174,12 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show subservices of the active service"
+msgstr ""
+
 msgid "Show System Plugin packages"
 msgstr ""
 
@@ -17168,6 +17217,9 @@ msgid "Show advanced settings"
 msgstr "Rodyti išplėstinius nustatymus"
 
 msgid "Show all"
+msgstr ""
+
+msgid "Show all available services"
 msgstr ""
 
 msgid "Show all details"
@@ -17313,6 +17365,15 @@ msgid "Show job tasks in Extension Menu"
 msgstr "Plėtinių lange rodyti darbines užduotis"
 
 msgid "Show last image"
+msgstr ""
+
+msgid "Show list of bouquets"
+msgstr ""
+
+msgid "Show list of providers"
+msgstr ""
+
+msgid "Show list of transponders"
 msgstr ""
 
 msgid "Show live TV when movie stopped"
@@ -17488,6 +17549,9 @@ msgstr "Perjungiant į tiesioginę TV transliaciją, rodyti žinutę"
 
 msgid "Show subservice selection"
 msgstr "Rodyti subkanalų pasirinkimą"
+
+msgid "Show subservices"
+msgstr ""
 
 msgid "Show subservices *"
 msgstr ""
@@ -18552,11 +18616,8 @@ msgstr "Juostos"
 msgid "Style:"
 msgstr "Stilius:"
 
-msgid "Sub Service Actions"
-msgstr "Subkanalo veiksmai"
-
-msgid "Subservice list..."
-msgstr "Subkanalų sąrašas..."
+msgid "Subservice Actions"
+msgstr ""
 
 msgid "Subservice mode (GREEN button)"
 msgstr "Subkanalo režimas (ŽALIAS mygtukas)"
@@ -18762,9 +18823,6 @@ msgstr "Perjungti į kitą EPG renginį"
 msgid "Switch to next channel in history"
 msgstr "Perjungti į kitą kanalą istorijoje"
 
-msgid "Switch to next sub service"
-msgstr "Perjungti į kitą subkanalą"
-
 msgid "Switch to play list"
 msgstr "Perjungti į grojaraštį"
 
@@ -18777,10 +18835,7 @@ msgstr "Perjungti į ankstesnį kanalą"
 msgid "Switch to previous channel in history"
 msgstr "Perjungti į ankstesnį kanalą istorijoje"
 
-msgid "Switch to previous sub service"
-msgstr "Įjungti ankstesnį subkanalą"
-
-msgid "Switch to radio mode"
+msgid "Switch to Radio mode"
 msgstr "Perjungti į radijo režimą"
 
 msgid "Switch to the available RADIO services"
@@ -19037,6 +19092,9 @@ msgstr "Telugų"
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+msgid "Temporary directory"
 msgstr ""
 
 msgid "Tennis"
@@ -19598,7 +19656,7 @@ msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti laiką arba nieko, budėj
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Ši parinktis leidžia pasirinkti skaidrių logotipų fono spalvą."
 
-msgid "This option allows you choose the option for subservice indicator or selection."
+msgid "This option allows you choose the option for Subservice indicator or selection."
 msgstr ""
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
@@ -20137,9 +20195,6 @@ msgid "Toggle item move mode on/off"
 msgstr "Perjungti elemento perkėlimo režimą įjungimas / išjungimas"
 
 msgid "Toggle move mode"
-msgstr ""
-
-msgid "Toggle move mode selection"
 msgstr ""
 
 msgid "Toggle multi-selection mode"
@@ -20877,6 +20932,9 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "Naudoti šliuzą"
 
+msgid "Use alternate GitHub DNS"
+msgstr ""
+
 msgid "Use an alternative smaller screen."
 msgstr "Naudokite alternatyvų mažesnį ekraną."
 
@@ -21361,7 +21419,7 @@ msgstr "Peržiūra"
 msgid "View File"
 msgstr ""
 
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Žiūrėti Rass interaktyviai..."
 
 msgid "View as grid"
@@ -21413,17 +21471,14 @@ msgstr "Mergelių salos (J.K.)"
 msgid "Virgin Islands (US)"
 msgstr "Mergelių salos, JAV"
 
-msgid "Virtual KeyBoard"
-msgstr ""
+msgid "Virtual Keyboard"
+msgstr "Virtuali klaviatūra"
 
 msgid "Virtual Keyboard Actions"
 msgstr ""
 
 msgid "Virtual Keyboard Text:"
 msgstr "Virtualus klaviatūros tekstas:"
-
-msgid "Virtual Keyboard"
-msgstr "Virtuali klaviatūra"
 
 msgid "Visual impaired commentary"
 msgstr "Nesinchronizuoti su vaizdu komentarais"
@@ -22079,12 +22134,6 @@ msgstr "Taip, padarykite atsarginę kopiją mano nustatymų!"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Taip, bet neišsaugoti laiko poslinkio, kaip įrašo"
 
-msgid "Yes, but if not available show the plugin browser"
-msgstr "Taip, bet jei nėra, parodyti priedų naršyklę"
-
-msgid "Yes, but if not available show the timer list"
-msgstr "Taip, bet jei nėra, parodyti laikmačio sąrašą"
-
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Taip, bet išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą toliau"
 
@@ -22111,6 +22160,12 @@ msgstr "Taip, atkurti nustatymus dabar"
 
 msgid "Yes, returning to movie list"
 msgstr "Taip, grįžti į filmų sąrašą"
+
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr "Taip, bet jei nėra, parodyti priedų naršyklę"
+
+msgid "Yes, show RecordTimer if unavailable"
+msgstr "Taip, bet jei nėra, parodyti laikmačio sąrašą"
 
 msgid "Yes, shut down now."
 msgstr "Taip, išjungti dabar."
@@ -22610,12 +22665,6 @@ msgstr "kortelių skaitytuvas"
 
 msgid "cartoon/puppets"
 msgstr "animacija/lėlės"
-
-msgid "change Volume down"
-msgstr "sumažinti garsumą"
-
-msgid "change Volume up"
-msgstr "padidinti garsumą"
 
 msgid "chapters"
 msgstr "skyriai"
@@ -23531,6 +23580,45 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mins"
+#~ msgstr "Min."
+
+#~ msgid "Please select a sub service..."
+#~ msgstr "Pasirinkite subkanalą..."
+
+#~ msgid "Quick zap"
+#~ msgstr "Greitasis perjungimas"
+
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Tikrai užverti greitą subkanalų perjungimą?"
+
+#~ msgid "Service cant been added to the favorites."
+#~ msgstr "Kanalas negali būti įtrauktas į mėgstamiausius."
+
+#~ msgid "Service has been added to the favorites."
+#~ msgstr "Kanalas įtrauktas į mėgstamiausius."
+
+#~ msgid "Service has been added to the selected bouquet."
+#~ msgstr "Kanalas įtrauktas į pasirinktą paketą."
+
+#~ msgid "Sub Service Actions"
+#~ msgstr "Subkanalo veiksmai"
+
+#~ msgid "Subservice list..."
+#~ msgstr "Subkanalų sąrašas..."
+
+#~ msgid "Switch to next sub service"
+#~ msgstr "Perjungti į kitą subkanalą"
+
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Įjungti ankstesnį subkanalą"
+
+#~ msgid "change Volume down"
+#~ msgstr "sumažinti garsumą"
+
+#~ msgid "change Volume up"
+#~ msgstr "padidinti garsumą"
 
 #, python-format
 #~ msgid "%s (%s)"
