@@ -96,6 +96,10 @@ int eSlider::event(int event, void *data, void *data2)
 			painter.setBackgroundColor(m_background_color);
 			painter.clear();
 		}
+		else if (!cornerRadius && !m_background_gradient_set)
+		{
+			style->setStyle(painter, m_scrollbar ? eWindowStyle::styleScollbar : eWindowStyle::styleSlider);
+		}
 
 		if (cornerRadius || m_background_gradient_set)
 		{
@@ -128,9 +132,12 @@ int eSlider::event(int event, void *data, void *data2)
 				painter.setBackgroundColor(m_background_color);
 				painter.drawRectangle(eRect(ePoint(0, 0), size()));
 			}
+			else
+			{
+				style->setStyle(painter, m_scrollbar ? eWindowStyle::styleScollbar : eWindowStyle::styleSlider);
+			}
 		}
 
-		style->setStyle(painter, m_scrollbar ? eWindowStyle::styleScollbar : eWindowStyle::styleSlider);
 
 		if (!m_pixmap)
 		{
