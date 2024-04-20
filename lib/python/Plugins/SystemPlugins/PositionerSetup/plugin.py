@@ -1,4 +1,10 @@
-from enigma import eTimer, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, iDVBFrontend, pNavigation
+from time import sleep
+from operator import mul
+from random import SystemRandom
+from threading import Thread
+from threading import Event
+
+from enigma import eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer, iDVBFrontend, pNavigation
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -9,19 +15,14 @@ from Components.Button import Button
 from Components.ConfigList import ConfigList
 from Components.ConfigList import ConfigListScreen
 from Components.TunerInfo import TunerInfo
-from Components.ActionMap import NumberActionMap, ActionMap
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
 from Components.ScrollLabel import ScrollLabel
-from Components.config import config, ConfigSatlist, ConfigNothing, ConfigSelection, ConfigSubsection, ConfigInteger, ConfigFloat, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
+from Components.config import config, ConfigFloat, ConfigInteger, ConfigNothing, ConfigSatlist, ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
 from Components.TuneTest import Tuner
 from Tools.Transponder import ConvertToHumanReadable
 
-from time import sleep
-from operator import mul as mul
-from random import SystemRandom as SystemRandom
-from threading import Thread as Thread
-from threading import Event as Event
 
 from . import log
 from . import rotor_calc
@@ -48,17 +49,11 @@ class PositionerSetup(Screen):
 
 	@staticmethod
 	def longitude2orbital(position):
-		if position >= 180:
-			return 360 - position, "west"
-		else:
-			return position, "east"
+		return 360 - position, "west" if position >= 180 else position, "east"
 
 	@staticmethod
 	def latitude2orbital(position):
-		if position >= 0:
-			return position, "north"
-		else:
-			return -position, "south"
+		return position, "north" if position >= 0 else -position, "south"
 
 	UPDATE_INTERVAL = 50					# milliseconds
 	STATUS_MSG_TIMEOUT = 2					# seconds
@@ -519,7 +514,7 @@ class PositionerSetup(Screen):
 			if self.advanced:
 				self.printMsg("Allocate unused memory index")
 				while True:
-					if not len(self.allocatedIndices):
+					if self.allocatedIndices:
 						for sat in self.availablesats:
 							current_index = int(self.advancedsats[sat].rotorposition.value)
 							if current_index not in self.allocatedIndices:
@@ -528,7 +523,7 @@ class PositionerSetup(Screen):
 							self.statusMsg(_("No free index available"), timeout=self.STATUS_MSG_TIMEOUT)
 							break
 					index = 1
-					if len(self.allocatedIndices):
+					if self.allocatedIndices:
 						for i in sorted(self.allocatedIndices):
 							if i != index:
 								break
@@ -773,22 +768,22 @@ class PositionerSetup(Screen):
 		turningspeed = self.getTurningspeed()
 
 		x = 0.0								# relative position w.r.t. satlon
-		dir = 1
+		direction = 1
 		if self.randomBool():
-			dir = -dir
+			direction = -direction
 		while abs(x) < self.MAX_SEARCH_ANGLE:
 			if self.sync():
 				break
-			x += (1.0 * dir)						# one degree east/west
-			self.statusMsg((_("Searching") + " " + toGeoposEx(dir) + " %2d" + chr(176)) % abs(x), blinking=True)
+			x += (1.0 * direction)						# one degree east/west
+			self.statusMsg((_("Searching") + " " + toGeoposEx(direction) + " %2d" + chr(176)) % abs(x), blinking=True)
 			move(x)
 			prev_pos = x
 		else:
 			x = 0.0
-			dir = -dir
+			direction = -direction
 			while abs(x) < self.MAX_SEARCH_ANGLE:
-				x += (1.0 * dir)					# one degree east/west
-				self.statusMsg((_("Searching") + " " + toGeoposEx(dir) + " %2d" + chr(176)) % abs(x), blinking=True)
+				x += (1.0 * direction)					# one degree east/west
+				self.statusMsg((_("Searching") + " " + toGeoposEx(direction) + " %2d" + chr(176)) % abs(x), blinking=True)
 				move(x)
 				prev_pos = x
 				if self.sync():
@@ -810,12 +805,12 @@ class PositionerSetup(Screen):
 
 		start_pos = x
 		x = 0.0
-		dir = 1
+		direction = 1
 		if self.randomBool():
-			dir = -dir
+			direction = -direction
 		while x < self.MAX_FOCUS_ANGLE:
-			x += self.tuningstepsize * dir					# one step east/west
-			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %5.1f" + chr(176)) % abs(x + start_pos), blinking=True)
+			x += self.tuningstepsize * direction					# one step east/west
+			self.statusMsg((_("Moving") + " " + toGeoposEx(direction) + " %5.1f" + chr(176)) % abs(x + start_pos), blinking=True)
 			move(x + start_pos)
 			prev_pos = x + start_pos
 			self.measure()
@@ -825,14 +820,14 @@ class PositionerSetup(Screen):
 				break
 		else:
 			# TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
-			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(direction)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
 		x = 0.0
-		dir = -dir
-		self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %5.1f" + chr(176)) % abs(start_pos), blinking=True)
+		direction = -direction
+		self.statusMsg((_("Moving") + " " + toGeoposEx(direction) + " %5.1f" + chr(176)) % abs(start_pos), blinking=True)
 		move(start_pos)
 		prev_pos = start_pos
 		if not self.sync():
@@ -842,8 +837,8 @@ class PositionerSetup(Screen):
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
 		while abs(x) < self.MAX_FOCUS_ANGLE:
-			x += self.tuningstepsize * dir					# one step west/east
-			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %5.1f" + chr(176)) % abs(x + start_pos), blinking=True)
+			x += self.tuningstepsize * direction					# one step west/east
+			self.statusMsg((_("Moving") + " " + toGeoposEx(direction) + " %5.1f" + chr(176)) % abs(x + start_pos), blinking=True)
 			move(x + start_pos)
 			prev_pos = x + start_pos
 			self.measure()
@@ -852,7 +847,7 @@ class PositionerSetup(Screen):
 			if self.lock_count < self.LOCK_LIMIT:
 				break
 		else:
-			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(direction)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -910,15 +905,15 @@ class PositionerSetup(Screen):
 			return
 		print("Signal OK, proceeding", file=log)
 		x = 0
-		dir = 1
+		direction = 1
 		if self.randomBool():
-			dir = -dir
+			direction = -direction
 		measurements[x] = (self.snr_percentage, self.lock_count)
 		nsteps = 0
 		while nsteps < maxsteps:
-			x += dir
-			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %2d") % abs(x), blinking=True)
-			move(dir) 		# one step
+			x += direction
+			self.statusMsg((_("Moving") + " " + toGeoposEx(direction) + " %2d") % abs(x), blinking=True)
+			move(direction) 		# one step
 			self.measure()
 			measurements[x] = (self.snr_percentage, self.lock_count)
 			reportlevels(x, self.snr_percentage, self.lock_count)
@@ -926,13 +921,13 @@ class PositionerSetup(Screen):
 				break
 			nsteps += 1
 		else:
-			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(direction)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
-		dir = -dir
-		self.statusMsg(_("Moving") + " " + toGeoposEx(dir) + "  0", blinking=True)
+		direction = -direction
+		self.statusMsg(_("Moving") + " " + toGeoposEx(direction) + "  0", blinking=True)
 		move(-x)
 		if not self.sync():
 			msg = _("Sync failure moving back to origin !")
@@ -943,9 +938,9 @@ class PositionerSetup(Screen):
 		x = 0
 		nsteps = 0
 		while nsteps < maxsteps:
-			x += dir
-			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %2d") % abs(x), blinking=True)
-			move(dir) 		# one step
+			x += direction
+			self.statusMsg((_("Moving") + " " + toGeoposEx(direction) + " %2d") % abs(x), blinking=True)
+			move(direction) 		# one step
 			self.measure()
 			measurements[x] = (self.snr_percentage, self.lock_count)
 			reportlevels(x, self.snr_percentage, self.lock_count)
@@ -953,7 +948,7 @@ class PositionerSetup(Screen):
 				break
 			nsteps += 1
 		else:
-			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(direction)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -1347,24 +1342,30 @@ class RotorNimSelection(Screen):
 
 
 def PositionerMain(session, **kwargs):
-	nimList = nimmanager.getNimListOfType("DVB-S")
-	if len(nimList) == 0:
-		session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
+	messageText = ""
+	if session.nav.isCurrentServiceStreamRelay:
+		messageText = _("Stream Relay is active, please switch to a none Stream Relay channel.")
 	else:
-		if len(session.nav.getRecordings(False, pNavigation.isAnyRecording)) > 0:
-			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
+		nimList = nimmanager.getNimListOfType("DVB-S")
+		if len(nimList) == 0:
+			messageText = _("No positioner capable frontend found.")
 		else:
-			usableNims = []
-			for x in nimList:
-				configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
-				if len(configured_rotor_sats) != 0:
-					usableNims.append(x)
-			if len(usableNims) == 1:
-				session.open(PositionerSetup, usableNims[0])
-			elif len(usableNims) > 1:
-				session.open(RotorNimSelection)
+			if len(session.nav.getRecordings(False, pNavigation.isAnyRecording)) > 0:
+				messageText = _("A recording is currently running. Please stop the recording before trying to configure the positioner.")
 			else:
-				session.open(MessageBox, _("No tuner is configured for use with a DiSEqC positioner!"), MessageBox.TYPE_ERROR)
+				usableNims = []
+				for x in nimList:
+					configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
+					if len(configured_rotor_sats) != 0:
+						usableNims.append(x)
+				if len(usableNims) == 1:
+					session.open(PositionerSetup, usableNims[0])
+				elif len(usableNims) > 1:
+					session.open(RotorNimSelection)
+				else:
+					messageText = _("No tuner is configured for use with a DiSEqC positioner!")
+	if messageText:
+		session.open(MessageBox, messageText, MessageBox.TYPE_ERROR, timeout=5)
 
 
 def PositionerSetupStart(menuid, **kwargs):
