@@ -109,6 +109,7 @@ struct gOpcode
 			int markedpos;
 			int scrollpos;
 			int *offset;
+			int tabwidth;
 		} *renderText;
 
 		struct prenderPara
@@ -317,7 +318,7 @@ public:
 		RT_ELLIPSIS = 128,
 		RT_BLEND = 256
 	};
-	void renderText(const eRect &position, const std::string &string, int flags = 0, gRGB bordercolor = gRGB(), int border = 0, int markedpos = -1, int *offset = 0);
+	void renderText(const eRect &position, const std::string &string, int flags = 0, gRGB bordercolor = gRGB(), int border = 0, int markedpos = -1, int *offset = 0, int tabwidth = -1);
 
 	void renderPara(eTextPara *para, ePoint offset = ePoint(0, 0));
 

@@ -162,7 +162,7 @@ public:
 
 	static void setFallbackFont(std::string font) { fallback_facename = font; }
 
-	void setFont(const gFont *font);
+	void setFont(const gFont *font, int tabwidth = -1);
 	int renderString(const char *string, int flags = 0, int border = 0, int markedpos = -1);
 
 	void clear();

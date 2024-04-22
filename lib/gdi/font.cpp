@@ -582,14 +582,14 @@ eTextPara::~eTextPara()
 	clear();
 }
 
-void eTextPara::setFont(const gFont *font)
+void eTextPara::setFont(const gFont *font, int tabwidth)
 {
 	ePtr<Font> fnt, replacement, fallback;
-	fontRenderClass::getInstance()->getFont(fnt, font->family.c_str(), font->pointSize);
+	fontRenderClass::getInstance()->getFont(fnt, font->family.c_str(), font->pointSize, tabwidth);
 	if (!fnt)
 		eWarning("[eTextPara] Font '%s' is missing!", font->family.c_str());
-	fontRenderClass::getInstance()->getFont(replacement, replacement_facename.c_str(), font->pointSize);
-	fontRenderClass::getInstance()->getFont(fallback, fallback_facename.c_str(), font->pointSize);
+	fontRenderClass::getInstance()->getFont(replacement, replacement_facename.c_str(), font->pointSize, tabwidth);
+	fontRenderClass::getInstance()->getFont(fallback, fallback_facename.c_str(), font->pointSize, tabwidth);
 	setFont(fnt, replacement, fallback);
 }
 

@@ -1189,6 +1189,9 @@ class AttributeParser:
 	def spacingColor(self, value):
 		self.guiObject.setSpacingColor(parseColor(value, 0x00000000))
 
+	def tabWidth(self, value):
+		self.guiObject.setTabWidth(value if value.isdigit() else -1)
+
 	def text(self, value):
 		if value:
 			value = _(value)
