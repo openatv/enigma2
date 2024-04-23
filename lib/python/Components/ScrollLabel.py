@@ -15,7 +15,7 @@ class ScrollLabel(GUIComponent):
 		self.split = False
 		self.splitCharacter = "|"
 		self.splitTrim = False
-		self.font = None
+		self.lineWrap = True
 		self.lineHeight = 0
 		self.pageWidth = 0
 		self.pageHeight = 0
@@ -48,7 +48,7 @@ class ScrollLabel(GUIComponent):
 		sliderWidth = scrollLabelStyle.get("scrollbarWidth", eListbox.DefaultScrollBarWidth)
 		scrollbarRadius = scrollLabelStyle.get("scrollbarRadius", None)
 		scrollbarGradient = None
-		noWrap = False
+		lineWrap = True
 		if self.skinAttributes:
 			sliderProperties = (
 				"scrollbarBorderColor",
@@ -114,9 +114,9 @@ class ScrollLabel(GUIComponent):
 						leftLabelAttributes.append((attribute, value))
 						rightLabelAttributes.append((attribute, value))
 						if attribute == "noWrap" and value in ("1", "enable", "enabled", "on", "true", "yes"):
-							noWrap = True
+							lineWrap = False
 						if attribute == "wrap" and value not in ("1", "enable", "enabled", "on", "true", "yes"):
-							noWrap = True
+							lineWrap = False
 			if self.split:
 				if not splitSeparated:
 					leftAlign = "left"  # If columns are used and not separated then left column needs to be "left" aligned to avoid overlapping text.
@@ -129,7 +129,7 @@ class ScrollLabel(GUIComponent):
 			retVal = True
 		else:
 			retVal = False
-		self.font = None if noWrap else self.leftText.getFont()
+		self.lineWrap = lineWrap
 		self.lineHeight = eLabel.calculateTextSize(self.leftText.getFont(), "Abcdefgh", eSize(10000, 10000), True).height()
 		self.pageWidth = self.leftText.size().width()
 		self.pageHeight = (self.leftText.size().height() // self.lineHeight) * self.lineHeight
@@ -171,15 +171,16 @@ class ScrollLabel(GUIComponent):
 			if self.split:  # Two column mode.
 				leftText = []
 				rightText = []
+				font = self.leftText.getFont()
 				for line in text.split("\n"):
 					line = line.split(self.splitCharacter, 1)
 					if len(line) > 1:
 						line[1] = line[1].lstrip() if self.splitTrim else line[1]
 					else:
 						line.append("")
-					if self.font:  # We are going to be wrapping long lines so we need to synchronize the columns.
-						leftHeight = eLabel.calculateTextSize(self.font, line[0], eSize(leftWidth, 10000), False).height() if line[0] else self.lineHeight
-						rightHeight = eLabel.calculateTextSize(self.font, line[1], eSize(rightWidth, 10000), False).height() if len(line) > 1 and line[1] else self.lineHeight
+					if self.lineWrap:  # We are going to be wrapping long lines so we need to synchronize the columns.
+						leftHeight = eLabel.calculateTextSize(font, line[0], eSize(leftWidth, 10000), False).height() if line[0] else self.lineHeight
+						rightHeight = eLabel.calculateTextSize(font, line[1], eSize(rightWidth, 10000), False).height() if line[1] else self.lineHeight
 						blankLines = "\n" * (max(leftHeight // self.lineHeight, rightHeight // self.lineHeight) - 1)
 						if blankLines and leftHeight > rightHeight:
 							leftText.append(line[0])
@@ -206,12 +207,13 @@ class ScrollLabel(GUIComponent):
 			leftWidth = self.leftWidth
 			rightWidth = self.rightWidth
 			leftText, rightText = buildText(text, leftWidth, rightWidth)
-			self.totalTextHeight = eLabel.calculateTextSize(self.font, leftText, eSize(leftWidth, 10000), False).height()
+			font = self.leftText.getFont()
+			self.totalTextHeight = eLabel.calculateTextSize(font, leftText, eSize(leftWidth, 10000), not self.lineWrap).height()
 			if self.isSliderVisible():
 				leftWidth -= self.sliderWidth
 				rightWidth -= self.sliderWidth
 				leftText, rightText = buildText(text, leftWidth, rightWidth)
-				self.totalTextHeight = eLabel.calculateTextSize(self.font, leftText, eSize(leftWidth, 10000), False).height()
+				self.totalTextHeight = eLabel.calculateTextSize(font, leftText, eSize(leftWidth, 10000), not self.lineWrap).height()
 				if self.sliderMode in (eListbox.showLeftAlways, eListbox.showLeftOnDemand):
 					self.leftColX = self.sliderWidth
 				else:
