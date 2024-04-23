@@ -320,8 +320,10 @@ public:
 	void setHeaderFont(gFont *font) { m_style.m_headerfont = font; }
 	void setVAlign(int align) { m_style.m_valign = align; }
 	void setHAlign(int align) { m_style.m_halign = align; }
-	void setTextPadding(const eRect &padding) { m_style.m_text_padding = padding; }
 	void setUseVTIWorkaround(void) { m_style.is_set.use_vti_workaround = 1; }
+
+	void setPadding(const eRect &padding) override { m_style.m_text_padding = padding; }
+	eRect getPadding() override { return m_style.m_text_padding; }
 
 	void setScrollbarBorderColor(const gRGB &col);
 	void setScrollbarForegroundColor(gRGB &col);

@@ -62,8 +62,8 @@ public:
 			invalidate(); 
 		}
 
-	void setPadding(const eRect &padding) { m_padding = padding; }
-	eRect getPadding() { return m_padding; }
+	virtual void setPadding(const eRect &padding) { m_padding = padding; }
+	virtual eRect getPadding() { return m_padding; }
 
 	void setZPosition(int z);
 	void setTransparent(int transp);
