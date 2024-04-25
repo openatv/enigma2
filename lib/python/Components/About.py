@@ -5,10 +5,10 @@ from glob import glob
 from locale import format_string
 from os import stat
 from os.path import isfile
+from platform import libc_ver
 from re import search
 from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
 from struct import pack, unpack
-from subprocess import PIPE, Popen
 from sys import maxsize, modules, version as pyversion
 from time import localtime, strftime
 
@@ -162,7 +162,7 @@ def getCPUInfoString():
 				try:
 					cpuSpeedMhz = int(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 100000000) * 100
 				except:
-					cpuSpeedMhz = "1500"
+					cpuSpeedMhz = 1500
 
 		temperature = None
 		if isfile("/proc/stb/fp/temp_sensor_avs"):
@@ -288,13 +288,6 @@ def getDriverInstalledDate():
 	return _("Unknown")
 
 
-def getPythonVersionString():
-	try:
-		return pyversion.split(' ')[0]
-	except:
-		return _("Unknown")
-
-
 def GetIPsFromNetworkInterfaces():
 	structSize = 40 if maxsize > 2 ** 32 else 32
 	sock = socket(AF_INET, SOCK_DGRAM)
@@ -335,31 +328,26 @@ def getBoxUptime():
 
 
 def getGlibcVersion():
-	process = Popen(("/lib/libc.so.6"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
-	stdout, stderr = process.communicate()
-	if process.returncode == 0:
-		for line in stdout.split("\n"):
-			if line.startswith("GNU C Library"):
-				data = line.split()[-1]
-				if data.endswith("."):
-					data = data[0:-1]
-				return data
-	print("[About] Get glibc version failed.")
+	try:
+		return libc_ver()[1]
+	except:
+		print("[About] Get glibc version failed.")
 	return _("Unknown")
 
 
 def getGccVersion():
-	process = Popen(("/lib/libc.so.6"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
-	stdout, stderr = process.communicate()
-	if process.returncode == 0:
-		for line in stdout.split("\n"):
-			if line.startswith("Compiled by GNU CC version"):
-				data = line.split()[-1]
-				if data.endswith("."):
-					data = data[0:-1]
-				return data
-	print("[About] Get gcc version failed.")
+	try:
+		return pyversion.split("[GCC ")[1].replace("]", "")
+	except:
+		print("[About] Get gcc version failed.")
 	return _("Unknown")
+
+
+def getPythonVersionString():
+	try:
+		return pyversion.split(' ')[0]
+	except:
+		return _("Unknown")
 
 
 def getopensslVersionString():
