@@ -13,6 +13,11 @@ fi
 if [ "$(grep -i config.misc.firstrun=true /etc/enigma2/settings)" != "" ]; then
 	rm -rf /etc/enigma2/cert.pem &
 	rm -rf /etc/enigma2/key.pem &
+	ENIGMA_DEBUG=1
+fi
+
+if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
+	ENIGMA_DEBUG=1
 fi
 
 #ciplushelper start delay
@@ -197,7 +202,7 @@ if [ "$(grep -i config.crash.coredump=true /etc/enigma2/settings)" != "" ]; then
 fi
 
 # Start enigma2 with or without debug
-if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
+if [ -n "$ENIGMA_DEBUG" ]; then
 	DEBUG_LVL='4'
 	(LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 &> ${LOGFOLDER}$(date +%Y%m%d-%H%M%S)-enigma2-debug.log) &
 else
