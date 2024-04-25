@@ -3573,16 +3573,7 @@ class InfoBarPiP:
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print("[InfoBarGenerics] [LCDMiniTV] enable PiP")
-						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
-						f = open("/proc/stb/vmpeg/1/dst_width", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_height", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-						f.write("1")
-						f.close()
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
 				else:
 					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 					if self.session.pip.playService(newservice):
@@ -3590,16 +3581,7 @@ class InfoBarPiP:
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 						if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 							print("[InfoBarGenerics] [LCDMiniTV] enable PiP")
-							eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
-							f = open("/proc/stb/vmpeg/1/dst_width", "w")
-							f.write("0")
-							f.close()
-							f = open("/proc/stb/vmpeg/1/dst_height", "w")
-							f.write("0")
-							f.close()
-							f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-							f.write("1")
-							f.close()
+							eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
 					else:
 						self.lastPiPService = None
 						self.session.pipshown = False

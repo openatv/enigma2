@@ -1790,16 +1790,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 					self.session.pip.servicePath[1] = currentBouquet
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print("[ChannelSelection] LCDMiniTV enable PiP.")
-						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
-						f = open("/proc/stb/vmpeg/1/dst_width", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_height", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-						f.write("1")
-						f.close()
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
 					self.close(True)
 				else:
 					self.session.pipshown = False
@@ -3010,16 +3001,7 @@ class PiPZapSelection(ChannelSelection):
 					self.setCurrentSelection(ref)
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print("[ChannelSelection] LCDMiniTV enable PiP.")
-						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
-						f = open("/proc/stb/vmpeg/1/dst_width", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_height", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-						f.write("1")
-						f.close()
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
 					self.close(True)
 				else:
 					self.pipzapfailed = True

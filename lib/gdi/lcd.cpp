@@ -138,9 +138,15 @@ void eLCD::set_VFD_scroll_repeats(int delay) const
 	CFile::writeInt(VFD_scroll_repeats_proc, delay);
 }
 
-void eLCD::setLCDMode(int mode) const
+void eLCD::setLCDMode(int mode, bool apply) const
 {
 	CFile::writeInt("/proc/stb/lcd/mode", mode);
+	if (apply)
+	{
+		CFile::writeInt("/proc/stb/vmpeg/1/dst_width", 0);
+		CFile::writeInt("/proc/stb/vmpeg/1/dst_height", 0);
+		CFile::writeInt("/proc/stb/vmpeg/1/dst_apply", 1);
+	}
 }
 
 #if defined(HAVE_TEXTLCD) || defined(HAVE_7SEGMENT)
