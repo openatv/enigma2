@@ -16,10 +16,6 @@ if [ "$(grep -i config.misc.firstrun=true /etc/enigma2/settings)" != "" ]; then
 	ENIGMA_DEBUG=1
 fi
 
-if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
-	ENIGMA_DEBUG=1
-fi
-
 #ciplushelper start delay
 if [ -e /usr/bin/ciplushelper ]; then
     sleep 3
@@ -121,6 +117,11 @@ fi
 
 if [ ! -e /etc/enigma2/settings ]; then
 	touch /etc/enigma2/settings
+	ENIGMA_DEBUG=1
+fi
+
+if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
+	ENIGMA_DEBUG=1
 fi
 
 #check for default sat settings
