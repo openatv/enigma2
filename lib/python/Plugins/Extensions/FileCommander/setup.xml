@@ -28,5 +28,7 @@
 		<item level="0" text="I/O priority for scripts" description="Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.FileCommander.scriptPriorityIONice</item>
 		<item level="0" text="Saved lines in script messages" description="Set the number of lines to be saved for 'stout' and 'sterr' output in scripts.">config.plugins.FileCommander.scriptMessageLength</item>
 		<item level="0" text="Split tasks" description="Select 'Yes' to split tasks into separate actions.">config.plugins.FileCommander.splitJobTasks</item>
+		<item level="0" text="Use legacy navigation" description="Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list.">config.plugins.FileCommander.legacyNavigation</item>
+		<item level="0" text="Auto multi-selection" description="Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged.">config.plugins.FileCommander.autoMultiSelection</item>
 	</setup>
 </setupxml>
