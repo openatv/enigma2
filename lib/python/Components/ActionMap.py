@@ -127,7 +127,7 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 				unmapDict.update({(context, keyName, unmap): filename})
 
 
-def getKeyId(id):  # FIME Remove keytranslation.xml.
+def getKeyId(id):
 	if len(id) == 1:
 		keyid = ord(id) | 0x8000
 	elif id[0] == "\\":
@@ -145,6 +145,25 @@ def getKeyId(id):  # FIME Remove keytranslation.xml.
 	return keyid
 
 
+def parseTrans(filename, actionmap, device, keys):
+ 	for toggle in keys.findall("toggle"):
+ 		get_attr = toggle.attrib.get
+ 		toggle_key = get_attr("from")
+ 		toggle_key = getKeyId(toggle_key)
+ 		actionmap.bindToggle(filename, device, toggle_key)
+ 	for key in keys.findall("key"):
+ 		get_attr = key.attrib.get
+ 		keyin = get_attr("from")
+ 		keyout = get_attr("to")
+ 		toggle = get_attr("toggle") or "0"
+ 		assert keyin, f"[ActionMap] {filename}: must specify key to translate from '{keyin}'"
+ 		assert keyout, f"[ActionMap] {filename}: must specify key to translate to '{keyout}'"
+ 		keyin = getKeyId(keyin)
+ 		keyout = getKeyId(keyout)
+ 		toggle = int(toggle)
+ 		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)
+
+
 def loadKeymap(filename, replace=False):
 	actionMapInstance = eActionMap.getInstance()
 	domKeymap = fileReadXML(filename, source=MODULE_NAME)
@@ -160,6 +179,9 @@ def loadKeymap(filename, replace=False):
 				parseKeymap(filename, context, actionMapInstance, "generic", domMap)
 				for domDevice in domMap.findall("device"):
 					parseKeymap(filename, context, actionMapInstance, domDevice.attrib.get("name"), domDevice)
+		for domMap in domKeymap.findall("translate"):
+			for domDevice in domMap.findall("device"):
+				parseTrans(filename, actionMapInstance, domDevice.attrib.get("name"), domDevice)
 
 
 def removeKeymap(filename):
