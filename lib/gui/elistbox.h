@@ -290,7 +290,7 @@ public:
 	void setSpacingColor(const gRGB &col);
 	void clearSpacingColor() { m_style.is_set.spacing_color = 0; }
 
-	void clearBackgroundColor() { m_style.is_set.background_color = 0; }
+	void clearBackgroundColor() override { m_style.is_set.background_color = 0; }
 	void clearBackgroundColorSelected() { m_style.is_set.background_color_selected = 0; }
 	void clearForegroundColor() { m_style.is_set.foreground_color = 0; }
 	void clearForegroundColorSelected() { m_style.is_set.foreground_color_selected = 0; }

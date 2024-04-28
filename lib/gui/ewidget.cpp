@@ -235,11 +235,6 @@ void eWidget::setBackgroundColor(const gRGB &col)
 	m_have_background_color = true;
 }
 
-void eWidget::clearBackgroundColor()
-{
-	m_have_background_color = false;
-}
-
 void eWidget::setZPosition(int z)
 {
 	m_z_position = z;

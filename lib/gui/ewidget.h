@@ -47,7 +47,7 @@ public:
 	void setStyle(eWindowStyle *style) { m_style = style; }
 
 	virtual void setBackgroundColor(const gRGB &col);
-	void clearBackgroundColor();
+	virtual void clearBackgroundColor() { m_have_background_color = false; }
 
 	virtual void setBorderWidth(int width) { setWidgetBorderWidth(width); }
 	virtual void setBorderColor(const gRGB &color) { setWidgetBorderColor(color); }
