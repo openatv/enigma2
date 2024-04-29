@@ -1,6 +1,7 @@
 #-*- coding: UTF-8 -*-
 
 # source: https://code.google.com/p/python-weather-api/
+# TODO: redundant file? - https://stackoverflow.com/questions/54046823/yql-query-service-replacement-now-that-yahoo-shut-it-down
 
 from json import loads
 from re import search

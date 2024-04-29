@@ -54,7 +54,7 @@ class Wizard(Screen, HelpableScreen):
 		self.showStepSlider = showStepSlider
 		self.showList = showList
 		self.showConfig = showConfig
-		self.setTitle(_("Welcome Wizard"))
+		self.setTitle(_("Setup Wizard"))
 		self.wizard = {}
 		parser = make_parser()
 		wizardHandler = self.parseWizard(self.wizard)
@@ -119,31 +119,31 @@ class Wizard(Screen, HelpableScreen):
 		# 	"9": (self.keyNumberGlobal, _("DIGIT button")),
 		# 	"0": (self.keyNumberGlobal, _("DIGIT button")),
 		# 	"gotAsciiCode": (self.keyGotAscii, _("ASCII button"))
-		# }, prio=-1, description=_("Wizard Actions"))
+		# }, prio=-1, description=_("Setup Wizard Actions"))
 		self["wizardActions"] = HelpableActionMap(self, ["WizardActions", "InputAsciiActions"], {
-			"ok": (self.keySelect, _("Proceed to the next step")),
+			"ok": (self.keySelect, _("Move to the next step")),
 			"back": (self.keyStepBack, _("Go back to the previous step")),
-			"gotAsciiCode": (self.keyGotAscii, _("Enter text via an attached keyboard"))
-		}, prio=0, description=_("Wizard Actions"))
+			"gotAsciiCode": (self.keyGotAscii, _("Enter text using a physical keyboard"))
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["debugActions"] = HelpableActionMap(self, ["WizardActions"], {
 			# "info": (self.dumpDictionary, _("Dump the current wizard dictionary into the logs (Debug mode only)")),
-			"info": (self.exit, _("Immediately exit the wizard (Debug mode only)")),
-		}, prio=0, description=_("Wizard Actions"))
+			"info": (self.exit, _("Quit the setup wizard instantly (Debug Mode only)")),
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["debugActions"].setEnabled(self.debugMode)
 		self["leftRightActions"] = HelpableActionMap(self, ["NavigationActions"], {
-			"left": (self.keyLeft, _("View the previous item in a list")),
-			"right": (self.keyRight, _("View the next item in a list"))
-		}, prio=0, description=_("Wizard Actions"))
+			"left": (self.keyLeft, _("Go to the previous item in a list")),
+			"right": (self.keyRight, _("Go to the next item in a list"))
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["leftRightActions"].setEnabled(False)
 		self["upDownActions"] = HelpableActionMap(self, ["NavigationActions"], {
 			"up": (self.keyUp, _("Move up a line")),
 			"down": (self.keyDown, _("Move down a line"))
-		}, prio=0, description=_("Wizard Actions"))
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["upDownActions"].setEnabled(False)
 		self["deleteActions"] = HelpableActionMap(self, ["SetupActions"], {
 			"deleteBackward": (self.keyBackspace, _("Delete the character to the left of the cursor")),
 			"deleteForward": (self.keyDelete, _("Delete the character under the cursor"))
-		}, prio=0, description=_("Wizard Actions"))
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["deleteActions"].setEnabled(False)
 		self["numberActions"] = HelpableNumberActionMap(self, ["NumberActions"], {
 			"1": (self.keyNumberGlobal, _("Select a menu item")),
@@ -156,27 +156,27 @@ class Wizard(Screen, HelpableScreen):
 			"8": (self.keyNumberGlobal, _("Select a menu item")),
 			"9": (self.keyNumberGlobal, _("Select a menu item")),
 			"0": (self.keyNumberGlobal, _("Select a menu item"))
-		}, prio=0, description=_("Wizard Actions"))
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["numberActions"].setEnabled(False)
 		self["redAction"] = HelpableActionMap(self, ["ColorActions"], {
-			"red": (self.keyRed, _("Process RED button action")),
-		}, prio=0, description=_("Wizard Actions"))
+			"red": (self.keyRed, _("Process RED button action")), # TODO: l10n
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["redAction"].setEnabled(False)
 		self["greenAction"] = HelpableActionMap(self, ["ColorActions"], {
-			"green": (self.keyGreen, _("Process GREEN button action")),
-		}, prio=0, description=_("Wizard Actions"))
+			"green": (self.keyGreen, _("Process GREEN button action")), # TODO: l10n
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["greenAction"].setEnabled(False)
 		self["yellowAction"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.keyYellow, _("Process YELLOW button action")),
-		}, prio=0, description=_("Wizard Actions"))
+			"yellow": (self.keyYellow, _("Process YELLOW button action")), # TODO: l10n
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["yellowAction"].setEnabled(False)
 		self["blueAction"] = HelpableActionMap(self, ["ColorActions"], {
-			"blue": (self.keyBlue, _("Process BLUE button action")),
-		}, prio=0, description=_("Wizard Actions"))
+			"blue": (self.keyBlue, _("Process BLUE button action")), # TODO: l10n
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["blueAction"].setEnabled(False)
 		self["VirtualKB"] = HelpableActionMap(self, ["VirtualKeyboardActions"], {
-			"showVirtualKeyboard": (self.keyText, _("Open the VirtualKeyBoard for text entry"))
-		}, prio=0, description=_("Wizard Actions"))
+			"showVirtualKeyboard": (self.keyText, _("Show an on-screen keyboard to enter text with"))
+		}, prio=0, description=_("Setup Wizard Actions"))
 		self["VirtualKB"].setEnabled(False)
 		self.screenInstance = None
 		self.disableKeys = False
@@ -391,7 +391,7 @@ class Wizard(Screen, HelpableScreen):
 			self.currStep = self.stepHistory[-2]
 			self.stepHistory = self.stepHistory[:-2]
 		else:
-			self.session.openWithCallback(self.exitWizardQuestion, MessageBox, (_("Are you sure you want to exit this wizard?")), windowTitle=self.getTitle())
+			self.session.openWithCallback(self.exitWizardQuestion, MessageBox, (_("Are you sure you want to quit the setup wizard?")), windowTitle=self.getTitle())
 		if self.currStep < 1:
 			self.currStep = 1
 		print("[Wizard] The current step is %d and the current step history is %s." % (self.currStep, self.stepHistory))

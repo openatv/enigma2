@@ -14,7 +14,7 @@ class UserInterfacePositionerWizard(Wizard, ShowRemoteControl):
 		ShowRemoteControl.__init__(self)
 		self.skinName = "StartWizard"
 		self.session = session
-		Screen.setTitle(self, _("Welcome..."))
+		Screen.setTitle(self, _("Welcome...")) # TODO: l10n (is this shown anywhere?)
 		self.Console = Console()
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
