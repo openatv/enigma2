@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-18 19:03+0000\n"
-"PO-Revision-Date: 2024-03-13 18:01+0000\n"
+"POT-Creation-Date: 2024-04-19 17:47+0000\n"
+"PO-Revision-Date: 2024-04-22 09:31+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -1208,7 +1208,7 @@ msgstr "%s %s diaľkové ovládanie (originálne)"
 
 #, python-format
 msgid "%s %sB"
-msgstr ""
+msgstr "%s %sB"
 
 #, python-format
 msgid "%s (%04o)"
@@ -3158,7 +3158,7 @@ msgid "Bouquet Selector Navigation Actions"
 msgstr "Akcie pre navigovanie nástroja na výber prehľadu"
 
 msgid "Bouquets"
-msgstr ""
+msgstr "Prehľady"
 
 msgid "Bouvet Island"
 msgstr "Bouvetov ostrov"
@@ -3630,7 +3630,7 @@ msgid "Cancel selection and exit"
 msgstr "Zrušiť výber a ukončiť"
 
 msgid "Cancel service selection and exit"
-msgstr ""
+msgstr "Zrušiť výber stanice a ukončiť"
 
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr "Zrušiť aktuálne prebiehajúci príkaz na reset zdrojov"
@@ -3791,10 +3791,10 @@ msgid "Change step size"
 msgstr "Zmeniť veľkosť kroku"
 
 msgid "Change to Radio services mode"
-msgstr ""
+msgstr "Zmeniť na režim pre rádiové služby"
 
 msgid "Change to TV services mode"
-msgstr ""
+msgstr "Zmeniť na režim pre TV služby"
 
 msgid "Change to bouquet"
 msgstr "Zmeniť na prehľad"
@@ -3838,7 +3838,7 @@ msgid "Channel Selection"
 msgstr "Výber prehľadu"
 
 msgid "Channel Selection Actions"
-msgstr ""
+msgstr "Akcie pre výber kanála"
 
 msgid "Channel Selection Context Menu"
 msgstr "Kontextové menu pre zoznam kanálov"
@@ -3850,7 +3850,7 @@ msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Navigačné akcie pre kontextové menu zoznamu kanálov"
 
 msgid "Channel Selection Navigation Actions"
-msgstr ""
+msgstr "Akcie navigácie pre výber kanála"
 
 msgid "Channel Selection Settings"
 msgstr "Nastavenia výberu staníc"
@@ -4244,7 +4244,7 @@ msgid "Close the Plugin Browser screen"
 msgstr "Zatvoriť obrazovku prehliadača pluginov"
 
 msgid "Close the choice box"
-msgstr ""
+msgstr "Zatvoriť box s výberom"
 
 msgid "Close the current screen"
 msgstr "Zatvoriť aktuálnu obrazovku"
@@ -6865,7 +6865,7 @@ msgid "Enable GStreamer pipeline graphs *"
 msgstr "Zapnúť zreťazené grafy pre GStreamer *"
 
 msgid "Enable IPv6"
-msgstr ""
+msgstr "Zapnúť IPv6"
 
 msgid "Enable IceTV"
 msgstr "Zapnúť IceTV"
@@ -10087,7 +10087,7 @@ msgid "LCN rules:"
 msgstr "Pravidlá LCN:"
 
 msgid "LCN style QuickSelect entry selection"
-msgstr ""
+msgstr "Štýl LCN – výber záznamu QuickSelect"
 
 msgid "LED Brightness"
 msgstr "Jas LED"
@@ -11246,16 +11246,16 @@ msgid "Move to last line / screen in the panel"
 msgstr "Presunúť na posledný riadok/obrazovku v paneli"
 
 msgid "Move to next bouquet"
-msgstr ""
+msgstr "Presunúť na ďalší prehľad"
 
 msgid "Move to next marker"
-msgstr ""
+msgstr "Presunúť na ďalšiu značku"
 
 msgid "Move to previous bouquet"
-msgstr ""
+msgstr "Presunúť na predchádzajúci prehľad"
 
 msgid "Move to previous marker"
-msgstr ""
+msgstr "Presunúť na predchádzajúcu značku"
 
 msgid "Move to the first item on the current line"
 msgstr "Presunúť na prvú položku na aktuálnom riadku"
@@ -12428,7 +12428,7 @@ msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Otvoriť virtuálnu klávesnicu pre zadanie textu"
 
 msgid "Open the context menu"
-msgstr ""
+msgstr "Otvoriť kontextové menu"
 
 msgid "Open the movie list"
 msgstr "Otvoriť zoznam filmov"
@@ -12922,17 +12922,11 @@ msgstr "Prehrať v hlavnom okne"
 msgid "Play In PiP Window"
 msgstr "Prehrať ako v okne PiP"
 
-msgid "Play service with Stream Relay"
-msgstr "Prehrať službu s prenosom streamu"
-
-msgid "Play service without Stream Relay"
-msgstr "Prehrať službu bez prenosu streamu"
-
 msgid "Play Service With Stream Relay"
-msgstr ""
+msgstr "Prehrať službu/stanicu s prenosom streamu"
 
 msgid "Play Service Without Stream Relay"
-msgstr ""
+msgstr "Prehrať službu/stanicu bez prenosu streamu"
 
 msgid "Play all audio files in the directory"
 msgstr "Prehrať všetky zvukové súbory v priečinku"
@@ -12985,11 +12979,17 @@ msgstr "Prehrať vybranú službu v okne PiP"
 msgid "Play selected service on the main screen"
 msgstr "Prehrať vybranú službu na hlavnej obrazovke"
 
+msgid "Play service with Stream Relay"
+msgstr "Prehrať službu s prenosom streamu"
+
+msgid "Play service without Stream Relay"
+msgstr "Prehrať službu bez prenosu streamu"
+
 msgid "Play the audio file"
 msgstr "Prehrať zvukový súbor"
 
 msgid "Play the selected service"
-msgstr ""
+msgstr "Prehrať vybranú službu"
 
 msgid "Playback Settings"
 msgstr "Nastavenia prehrávania"
@@ -13985,7 +13985,7 @@ msgid "Radio Channel Selection"
 msgstr "Výber rádiového kanála"
 
 msgid "Radio Channel Selection Actions"
-msgstr ""
+msgstr "Akcie pre výber rádiového kanála"
 
 msgid "Random"
 msgstr "Náhodne"
@@ -15895,7 +15895,7 @@ msgid "Select sort method:"
 msgstr "Vyberte spôsob zoraďovania:"
 
 msgid "Select subservices"
-msgstr ""
+msgstr "Vybrať podradené služby"
 
 msgid "Select system information to view:"
 msgstr "Vyberte systémovú informáciu, ktorá sa má zobraziť:"
@@ -16741,9 +16741,6 @@ msgstr "Nastavenia"
 msgid "Settings mode"
 msgstr "Režim nastavovania"
 
-msgid "Settings..."
-msgstr "Nastavenia…"
-
 msgid "Setup"
 msgstr "Nastavenia"
 
@@ -17176,10 +17173,7 @@ msgid "Show Source packages"
 msgstr "Zobraziť zdrojové balíčky"
 
 msgid "Show Subservices Of Active Service"
-msgstr ""
-
-msgid "Show subservices of the active service"
-msgstr ""
+msgstr "Zobraziť podradené služby aktívnej služby/stanice"
 
 msgid "Show System Plugin packages"
 msgstr "Zobraziť balíčky systémových pluginov"
@@ -17221,7 +17215,7 @@ msgid "Show all"
 msgstr "Zobraziť všetko"
 
 msgid "Show all available services"
-msgstr ""
+msgstr "Zobraziť všetky dostupné služby/stanice"
 
 msgid "Show all details"
 msgstr "Zobraziť všetky podrobnosti"
@@ -17369,13 +17363,13 @@ msgid "Show last image"
 msgstr "Zobraziť posledný obrázok/image"
 
 msgid "Show list of bouquets"
-msgstr ""
+msgstr "Zobraziť zoznam prehľadov"
 
 msgid "Show list of providers"
-msgstr ""
+msgstr "Zobraziť zoznam poskytovateľov"
 
 msgid "Show list of transponders"
-msgstr ""
+msgstr "Zobraziť zoznam transpondérov"
 
 msgid "Show live TV when movie stopped"
 msgstr "Zobraziť živé TV vysielanie pri zastavení filmu"
@@ -17552,10 +17546,13 @@ msgid "Show subservice selection"
 msgstr "Zobraziť výber podradenej stanice/služby"
 
 msgid "Show subservices"
-msgstr ""
+msgstr "Zobraziť podradené služby/stanice"
 
 msgid "Show subservices *"
 msgstr "Ukázať podradené stanice *"
+
+msgid "Show subservices of the active service"
+msgstr "Zobraziť podradené služby aktívnej služby/stanice"
 
 msgid "Show subtitle quick menu"
 msgstr "Zobraziť rýchle menu titulkov"
@@ -18618,7 +18615,7 @@ msgid "Style:"
 msgstr "Štýl:"
 
 msgid "Subservice Actions"
-msgstr ""
+msgstr "Akcie pre podradenú službu/stanicu"
 
 msgid "Subservice mode (GREEN button)"
 msgstr "Režim podradenej stanice/služby (zelené tlačidlo)"
@@ -18803,6 +18800,9 @@ msgstr "Prepnúť na režim HDMI In"
 msgid "Switch to Radio"
 msgstr "Prepnúť na rádio"
 
+msgid "Switch to Radio mode"
+msgstr "Prepnúť na režim Rádio"
+
 msgid "Switch to TV"
 msgstr "Prepnúť na TV"
 
@@ -18835,9 +18835,6 @@ msgstr "Prepnúť na predchádzajúci kanál"
 
 msgid "Switch to previous channel in history"
 msgstr "Prepnúť na predchádzajúci kanál v histórii"
-
-msgid "Switch to Radio mode"
-msgstr "Prepnúť na režim Rádio"
 
 msgid "Switch to the available RADIO services"
 msgstr "Prepnúť na dostupné RÁDIO stanice"
@@ -21454,7 +21451,7 @@ msgid "View File"
 msgstr "Zobraziť súbor"
 
 msgid "View Rass interactive"
-msgstr "Zobraziť Rass interaktívne..."
+msgstr "Zobraziť Rass interaktívne"
 
 msgid "View as grid"
 msgstr "Zobraziť ako mriežku"
@@ -23620,6 +23617,9 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Settings..."
+#~ msgstr "Nastavenia…"
 
 #~ msgid "Mins"
 #~ msgstr "Minúty"

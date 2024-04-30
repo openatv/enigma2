@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-18 19:03+0000\n"
-"PO-Revision-Date: 2024-03-12 13:01+0000\n"
+"POT-Creation-Date: 2024-04-19 17:47+0000\n"
+"PO-Revision-Date: 2024-04-20 20:07+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"[Gebruiker - favorietenlijst (TV)]\n"
+"[Gebruiker - favorietenlijsten (TV)]\n"
 
 msgid ""
 "\n"
@@ -55,7 +55,7 @@ msgid ""
 "[User - bouquets (RADIO)]\n"
 msgstr ""
 "\n"
-"[User - favorietenlijst (RADIO)]\n"
+"[Gebruiker - favorietenlijsten (RADIO)]\n"
 
 msgid " "
 msgstr " "
@@ -1176,7 +1176,7 @@ msgstr "%s %s Afstandsbediening"
 
 #, python-format
 msgid "%s %sB"
-msgstr ""
+msgstr "%s %sB"
 
 #, python-format
 msgid "%s (%04o)"
@@ -3133,7 +3133,7 @@ msgid "Bouquet Selector Navigation Actions"
 msgstr "Favorietenlijst navigatie Acties"
 
 msgid "Bouquets"
-msgstr ""
+msgstr "Favorietenlijsten"
 
 msgid "Bouvet Island"
 msgstr "Bouvet Eilanden"
@@ -3605,7 +3605,7 @@ msgid "Cancel selection and exit"
 msgstr "Annuleer selectie en exit"
 
 msgid "Cancel service selection and exit"
-msgstr ""
+msgstr "Zenderkeuze annuleren en exit"
 
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr "Het nu lopende Reset Feeds commando annuleren"
@@ -3766,10 +3766,10 @@ msgid "Change step size"
 msgstr "Wijzig stapgrootte"
 
 msgid "Change to Radio services mode"
-msgstr ""
+msgstr "Naar Radio omschakelen"
 
 msgid "Change to TV services mode"
-msgstr ""
+msgstr "Naar TV omschakelen"
 
 msgid "Change to bouquet"
 msgstr "Ga naar favorietenlijst"
@@ -3813,7 +3813,7 @@ msgid "Channel Selection"
 msgstr "Zenderlijst"
 
 msgid "Channel Selection Actions"
-msgstr ""
+msgstr "Zenderlijst Acties"
 
 msgid "Channel Selection Context Menu"
 msgstr "Zenderlijstmenu"
@@ -3825,7 +3825,7 @@ msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Zenderlijstmenu navigatie Acties"
 
 msgid "Channel Selection Navigation Actions"
-msgstr ""
+msgstr "Zenderlijst navigatie Acties"
 
 msgid "Channel Selection Settings"
 msgstr "Zenderlijst"
@@ -4223,7 +4223,7 @@ msgid "Close the Plugin Browser screen"
 msgstr "De Plugin Browser afsluiten"
 
 msgid "Close the choice box"
-msgstr ""
+msgstr "Keuzemenu sluiten"
 
 msgid "Close the current screen"
 msgstr "Sluit het huidige scherm"
@@ -6957,7 +6957,7 @@ msgid "Enable GStreamer pipeline graphs *"
 msgstr "Activeer GStreamer pijplijn grafieken *"
 
 msgid "Enable IPv6"
-msgstr ""
+msgstr "IPv6 activeren"
 
 msgid "Enable IceTV"
 msgstr "IceTV inschakelen"
@@ -7017,7 +7017,7 @@ msgid "Enable Virgin EPG"
 msgstr "Virgin EPG inschakelen"
 
 msgid "Enable Wake On LAN"
-msgstr "Activeer Wake On LAN"
+msgstr "Wake On LAN activeren"
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Activeer en stel de tijd in waarna de tweede informatiebalk verdwijnt (druk OK 2x). Geeft meer info over de huidige zender. Deze functie is niet in alle skins beschikbaar."
@@ -10196,7 +10196,7 @@ msgid "LCN rules:"
 msgstr "LCN regels:"
 
 msgid "LCN style QuickSelect entry selection"
-msgstr ""
+msgstr "Quickselect via zendernummer"
 
 msgid "LED Brightness"
 msgstr "LED-helderheid"
@@ -11354,16 +11354,16 @@ msgid "Move to last line / screen in the panel"
 msgstr "Naar de laatste regel / beeldscherm gaan"
 
 msgid "Move to next bouquet"
-msgstr ""
+msgstr "Naar de volgende favorietenlijst"
 
 msgid "Move to next marker"
-msgstr ""
+msgstr "Naar de volgende marker"
 
 msgid "Move to previous bouquet"
-msgstr ""
+msgstr "Naar de vorige favorietenlijst"
 
 msgid "Move to previous marker"
-msgstr ""
+msgstr "Naar de vorige marker"
 
 msgid "Move to the first item on the current line"
 msgstr "Ga naar het eerste item op de huidige regel"
@@ -12539,7 +12539,7 @@ msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Open het Virtuele toetsenbord voor tekstinvoer"
 
 msgid "Open the context menu"
-msgstr ""
+msgstr "Open het contextmenu"
 
 msgid "Open the movie list"
 msgstr "Open de opnamelijst"
@@ -13033,17 +13033,11 @@ msgstr "afspelen in hoofdscherm"
 msgid "Play In PiP Window"
 msgstr "Bekijken als Picture in Picture"
 
-msgid "Play service with Stream Relay"
+msgid "Play Service With Stream Relay"
 msgstr "Zender met Stream Relay afspelen"
 
-msgid "Play service without Stream Relay"
-msgstr "Zender zonder Stream Relay afspelen"
-
-msgid "Play Service With Stream Relay"
-msgstr ""
-
 msgid "Play Service Without Stream Relay"
-msgstr ""
+msgstr "Zender zonder Stream Relay afspelen"
 
 msgid "Play all audio files in the directory"
 msgstr "Alle audiobestanden in de map afspelen"
@@ -13096,11 +13090,17 @@ msgstr "De geselecteerde zender afspelen in een PiP-scherm"
 msgid "Play selected service on the main screen"
 msgstr "De geselecteerde zender afspelen op het hoofdscherm"
 
+msgid "Play service with Stream Relay"
+msgstr "Zender met Stream Relay afspelen"
+
+msgid "Play service without Stream Relay"
+msgstr "Zender zonder Stream Relay afspelen"
+
 msgid "Play the audio file"
 msgstr "Het audiobestand afspelen"
 
 msgid "Play the selected service"
-msgstr ""
+msgstr "De geselecteerde zender kiezen"
 
 msgid "Playback Settings"
 msgstr "Weergave instellingen"
@@ -14099,7 +14099,7 @@ msgid "Radio Channel Selection"
 msgstr "Radio zender kiezen"
 
 msgid "Radio Channel Selection Actions"
-msgstr ""
+msgstr "Radio zenderlijst Acties"
 
 msgid "Random"
 msgstr "Willekeurig"
@@ -15079,7 +15079,7 @@ msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
 msgid "SMS style QuickSelect entry selection"
-msgstr "Snelselectie in SMS-stijl"
+msgstr "QuickSelect in SMS-stijl"
 
 msgid "SMS style QuickSelect location selection"
 msgstr "SMS stijl QuickSelect locatie selectie"
@@ -16017,7 +16017,7 @@ msgid "Select sort method:"
 msgstr "Selecteer sorteermethode:"
 
 msgid "Select subservices"
-msgstr ""
+msgstr "Sub-zenders kiezen"
 
 msgid "Select system information to view:"
 msgstr "Welke systeeminformatie wilt u zien:"
@@ -16876,9 +16876,6 @@ msgstr "Instellingen"
 msgid "Settings mode"
 msgstr "Toegangsniveau instellen"
 
-msgid "Settings..."
-msgstr "Instellingen"
-
 msgid "Setup"
 msgstr "Instellingen"
 
@@ -17320,10 +17317,7 @@ msgid "Show Source packages"
 msgstr "Broncode"
 
 msgid "Show Subservices Of Active Service"
-msgstr ""
-
-msgid "Show subservices of the active service"
-msgstr ""
+msgstr "Sub-zenders van de actuele zender tonen"
 
 msgid "Show System Plugin packages"
 msgstr "Systeem plugins"
@@ -17367,7 +17361,7 @@ msgid "Show all"
 msgstr "Alles tonen"
 
 msgid "Show all available services"
-msgstr ""
+msgstr "Alle beschikbare zenders tonen"
 
 msgid "Show all details"
 msgstr "Alle details tonen"
@@ -17517,13 +17511,13 @@ msgid "Show last image"
 msgstr "Laatste afbeelding weergeven"
 
 msgid "Show list of bouquets"
-msgstr ""
+msgstr "Favorietenlijsten tonen"
 
 msgid "Show list of providers"
-msgstr ""
+msgstr "Een lijst van Providers tonen"
 
 msgid "Show list of transponders"
-msgstr ""
+msgstr "Een transponder-overzicht tonen"
 
 msgid "Show live TV when movie stopped"
 msgstr "Toon live-TV als de opname gestopt is"
@@ -17702,10 +17696,13 @@ msgid "Show subservice selection"
 msgstr "Toon de sub-zenders"
 
 msgid "Show subservices"
-msgstr ""
+msgstr "Sub-zenders tonen"
 
 msgid "Show subservices *"
 msgstr "Sub-zenders tonen *"
+
+msgid "Show subservices of the active service"
+msgstr "Sub-zenders van de actuele zender tonen"
 
 msgid "Show subtitle quick menu"
 msgstr "Toon snel ondertitelingsmenu"
@@ -18767,7 +18764,7 @@ msgid "Style:"
 msgstr "Stijl:"
 
 msgid "Subservice Actions"
-msgstr ""
+msgstr "Sub-zender Acties"
 
 msgid "Subservice mode (GREEN button)"
 msgstr "GROENE-knop (Sub-zender modus)"
@@ -18952,6 +18949,9 @@ msgstr "Schakel naar HDMI in modus"
 msgid "Switch to Radio"
 msgstr "Schakel over naar Radio"
 
+msgid "Switch to Radio mode"
+msgstr "Schakel naar de radio modus"
+
 msgid "Switch to TV"
 msgstr "Schakel over naar TV"
 
@@ -18984,9 +18984,6 @@ msgstr "Schakel naar de vorige zender"
 
 msgid "Switch to previous channel in history"
 msgstr "Schakel naar de vorige zender in de History"
-
-msgid "Switch to Radio mode"
-msgstr "Schakel naar de radio modus"
 
 msgid "Switch to the available RADIO services"
 msgstr "Ga naar de beschikbare RADIO-zenders"
@@ -21651,7 +21648,7 @@ msgid "View File"
 msgstr "Bestand bekijken"
 
 msgid "View Rass interactive"
-msgstr "Rass Interactive weergeven..."
+msgstr "Rass Interactive weergeven"
 
 msgid "View as grid"
 msgstr "Weergeven als raster"
@@ -23838,6 +23835,9 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Settings..."
+#~ msgstr "Instellingen"
 
 #~ msgid "Mins"
 #~ msgstr "Min"
