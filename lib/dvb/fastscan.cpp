@@ -489,9 +489,9 @@ void eFastScan::parseResult()
 		{
 			eDVBChannelID chid;
 			int orbitalposbcd = (*it)->getOrbitalPosition();
-			int orbitalpos = (orbitalposbcd & 0x0f) + ((orbitalposbcd >> 4) & 0x0f) * 10 + ((orbitalposbcd >> 8) & 0x0f) * 100;
+			int orbitalpos = (orbitalposbcd & 0x0f) + ((orbitalposbcd >> 4) & 0x0f) * 10 + ((orbitalposbcd >> 8) & 0x0f) * 100 + ((orbitalposbcd >> 12) & 0x0f) * 1000;
 			int westeastflag = (*it)->getWestEastFlag();
-			if (!westeastflag)
+			if (orbitalpos && !westeastflag)
 				orbitalpos = 3600 - orbitalpos;
 
 			if (transponderParameters.orbital_position != orbitalpos &&
