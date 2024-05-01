@@ -449,128 +449,132 @@ class RecordTimer(Timer):
 				return True
 		return False
 
+	def getTimers(self, service):
+		return [timer for timer in self.timer_list if timer.serviceRefString == service]
+
+	def hasTimers(self, service):
+		return self.getTimers(service) != []
+
 	def isInTimer(self, eventid, begin, duration, service, getTimer=False):
 		returnValue = None
-		type = 0
+		timerType = 0
 		timeMatch = 0
 		isAutoTimer = 0
 		beginTime = None
 		checkOffsetTimeRecord = not config.recording.margin_before.value and not config.recording.margin_after.value
 		checkOffsetTimeZap = not config.recording.zap_margin_before.value and not config.recording.zap_margin_after.value
 		end = begin + duration
-		reference = ":".join(service.split(":")[:11])
-		for timer in self.timer_list:
+		for timer in self.getTimers(service):
 			checkOffsetTime = checkOffsetTimeZap if timer.justplay else checkOffsetTimeRecord
 			isAutoTimer = 0
 			if timer.isAutoTimer == 1:
 				isAutoTimer |= 1
 			if timer.ice_timer_id:
 				isAutoTimer |= 2
-			if ":".join(timer.service_ref.ref.toString().split(":")[:11]) == reference:
-				timerEnd = timer.end
-				timerBegin = timer.begin
-				typeOffset = 0
-				if not timer.repeated and checkOffsetTime:
-					if 0 < end - timerEnd <= 59:
-						timerEnd = end
-					elif 0 < timerBegin - begin <= 59:
-						timerBegin = begin
-				if timer.justplay:
-					typeOffset = 5
-					if not timer.hasEndTime or (timerEnd - timer.begin) <= 1:
-						if timerBegin < end and timerBegin >= begin:
-							timerEnd = timerBegin + duration  # Special case for zap timer without endtime
-				if timer.always_zap:
-					typeOffset = 10
-				if timer.repeated != 0:
-					if beginTime is None:
-						beginTime = localtime(begin)
-						beginDay = beginTime.tm_wday
-						begin2 = 1440 + beginTime.tm_hour * 60 + beginTime.tm_min
-						end2 = begin2 + duration // 60
-					xBeginTime = localtime(timer.begin)
-					xEndTime = localtime(timerEnd)
-					offsetDay = False
-					checking_time = timer.begin < begin or begin <= timer.begin <= end
-					if xBeginTime.tm_yday != xEndTime.tm_yday:
-						oday = beginDay - 1
-						if oday == -1:
-							oday = 6
-						offsetDay = timer.repeated & (1 << oday)
-					xBegin = 1440 + xBeginTime.tm_hour * 60 + xBeginTime.tm_min
-					xEnd = xBegin + ((timerEnd - timer.begin) // 60)
-					if xEnd < xBegin:
-						xEnd += 1440
-					if timer.repeated & (1 << beginDay) and checking_time:
-						if begin2 < xBegin <= end2:
-							if xEnd < end2:  # Recording within event.
-								timeMatch = (xEnd - xBegin) * 60
-								type = typeOffset + 3
-							else:  # Recording last part of event.
-								timeMatch = (end2 - xBegin) * 60
-								type = typeOffset + 1
-						elif xBegin <= begin2 <= xEnd:
-							if xEnd < end2:  # Recording first part of event.
-								timeMatch = (xEnd - begin2) * 60
-								type = typeOffset + 4
-							else:  # Recording whole event.
-								timeMatch = (end2 - begin2) * 60
-								type = typeOffset + 2
-						elif offsetDay:
-							xBegin -= 1440
-							xEnd -= 1440
-							if begin2 < xBegin <= end2:
-								if xEnd < end2:  # Recording within event.
-									timeMatch = (xEnd - xBegin) * 60
-									type = typeOffset + 3
-								else:  # Recording last part of event.
-									timeMatch = (end2 - xBegin) * 60
-									type = typeOffset + 1
-							elif xBegin <= begin2 <= xEnd:
-								if xEnd < end2:  # Recording first part of event.
-									timeMatch = (xEnd - begin2) * 60
-									type = typeOffset + 4
-								else:  # Recording whole event.
-									timeMatch = (end2 - begin2) * 60
-									type = typeOffset + 2
-					elif offsetDay and checking_time:
+			timerEnd = timer.end
+			timerBegin = timer.begin
+			typeOffset = 0
+			if not timer.repeated and checkOffsetTime:
+				if 0 < end - timerEnd <= 59:
+					timerEnd = end
+				elif 0 < timerBegin - begin <= 59:
+					timerBegin = begin
+			if timer.justplay:
+				typeOffset = 5
+				if not timer.hasEndTime or (timerEnd - timer.begin) <= 1:
+					if timerBegin < end and timerBegin >= begin:
+						timerEnd = timerBegin + duration  # Special case for zap timer without endtime
+			if timer.always_zap:
+				typeOffset = 10
+			if timer.repeated:
+				if beginTime is None:
+					beginTime = localtime(begin)
+					beginDay = beginTime.tm_wday
+					begin2 = 1440 + beginTime.tm_hour * 60 + beginTime.tm_min
+					end2 = begin2 + duration // 60
+				xBeginTime = localtime(timer.begin)
+				xEndTime = localtime(timerEnd)
+				offsetDay = False
+				checkingTime = timer.begin < begin or begin <= timer.begin <= end
+				if xBeginTime.tm_yday != xEndTime.tm_yday:
+					oday = beginDay - 1
+					if oday == -1:
+						oday = 6
+					offsetDay = timer.repeated & (1 << oday)
+				xBegin = 1440 + xBeginTime.tm_hour * 60 + xBeginTime.tm_min
+				xEnd = xBegin + ((timerEnd - timer.begin) // 60)
+				if xEnd < xBegin:
+					xEnd += 1440
+				if timer.repeated & (1 << beginDay) and checkingTime:
+					if begin2 < xBegin <= end2:
+						if xEnd < end2:  # Recording within event.
+							timeMatch = (xEnd - xBegin) * 60
+							timerType = typeOffset + 3
+						else:  # Recording last part of event.
+							timeMatch = (end2 - xBegin) * 60
+							timerType = typeOffset + 1
+					elif xBegin <= begin2 <= xEnd:
+						if xEnd < end2:  # Recording first part of event.
+							timeMatch = (xEnd - begin2) * 60
+							timerType = typeOffset + 4
+						else:  # Recording whole event.
+							timeMatch = (end2 - begin2) * 60
+							timerType = typeOffset + 2
+					elif offsetDay:
 						xBegin -= 1440
 						xEnd -= 1440
 						if begin2 < xBegin <= end2:
 							if xEnd < end2:  # Recording within event.
 								timeMatch = (xEnd - xBegin) * 60
-								type = typeOffset + 3
+								timerType = typeOffset + 3
 							else:  # Recording last part of event.
 								timeMatch = (end2 - xBegin) * 60
-								type = typeOffset + 1
+								timerType = typeOffset + 1
 						elif xBegin <= begin2 <= xEnd:
 							if xEnd < end2:  # Recording first part of event.
 								timeMatch = (xEnd - begin2) * 60
-								type = typeOffset + 4
+								timerType = typeOffset + 4
 							else:  # Recording whole event.
 								timeMatch = (end2 - begin2) * 60
-								type = typeOffset + 2
-				else:
-					if begin < timerBegin <= end:
-						if timerEnd < end:  # Recording within event.
-							timeMatch = timerEnd - timerBegin
-							type = typeOffset + 3
+								timerType = typeOffset + 2
+				elif offsetDay and checkingTime:
+					xBegin -= 1440
+					xEnd -= 1440
+					if begin2 < xBegin <= end2:
+						if xEnd < end2:  # Recording within event.
+							timeMatch = (xEnd - xBegin) * 60
+							timerType = typeOffset + 3
 						else:  # Recording last part of event.
-							timeMatch = end - timerBegin
-							type = typeOffset + 1
-					elif timerBegin <= begin <= timerEnd:
-						if timerEnd < end:  # Recording first part of event.
-							timeMatch = timerEnd - begin
-							type = typeOffset + 4
-							if timer.justplay and (not timer.hasEndTime or (timerEnd - timer.begin) <= 1):
-								type = typeOffset + 2  # Special case for zap timer without end time
+							timeMatch = (end2 - xBegin) * 60
+							timerType = typeOffset + 1
+					elif xBegin <= begin2 <= xEnd:
+						if xEnd < end2:  # Recording first part of event.
+							timeMatch = (xEnd - begin2) * 60
+							timerType = typeOffset + 4
 						else:  # Recording whole event.
-							timeMatch = end - begin
-							type = typeOffset + 2
-				if timeMatch:
-					returnValue = (timeMatch, type, isAutoTimer, timer) if getTimer else (timeMatch, type, isAutoTimer)
-					if type in (2, 7, 12):  # When full recording do not look further.
-						break
+							timeMatch = (end2 - begin2) * 60
+							timerType = typeOffset + 2
+			else:
+				if begin < timerBegin <= end:
+					if timerEnd < end:  # Recording within event.
+						timeMatch = timerEnd - timerBegin
+						timerType = typeOffset + 3
+					else:  # Recording last part of event.
+						timeMatch = end - timerBegin
+						timerType = typeOffset + 1
+				elif timerBegin <= begin <= timerEnd:
+					if timerEnd < end:  # Recording first part of event.
+						timeMatch = timerEnd - begin
+						timerType = typeOffset + 4
+						if timer.justplay and (not timer.hasEndTime or (timerEnd - timer.begin) <= 1):
+							timerType = typeOffset + 2  # Special case for zap timer without end time
+					else:  # Recording whole event.
+						timeMatch = end - begin
+						timerType = typeOffset + 2
+			if timeMatch:
+				returnValue = (timeMatch, timerType, isAutoTimer, timer) if getTimer else (timeMatch, timerType, isAutoTimer)
+				if timerType in (2, 7, 12):  # When full recording do not look further.
+					break
 		return returnValue
 
 
@@ -699,6 +703,15 @@ class RecordTimerEntry(TimerEntry):
 		self.log_entries = []
 		self.check_justplay()
 		self.resetState()
+
+	def setServiceRef(self, sref):
+		self.serviceRef = sref
+		self.serviceRefString = sref.ref.toCompareString()
+
+	def getServiceRef(self):
+		return self.serviceRef
+
+	service_ref = property(getServiceRef, setServiceRef)
 
 	def __repr__(self):
 		iceTV = ", ice_timer_id=%s" % self.ice_timer_id if self.ice_timer_id else ""
