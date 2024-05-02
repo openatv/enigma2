@@ -4,7 +4,7 @@ from shlex import split
 
 from enigma import eTimer
 
-from Components.AVSwitch import iAVSwitch
+from Components.AVSwitch import avSwitch
 from Components.config import ConfigBoolean, config, configfile
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
@@ -183,18 +183,17 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 		ShowRemoteControl.__init__(self)
 		self.skinName = ["WizardLanguage", "StartWizard"]
 		self.oldLanguage = config.osd.language.value
-		self.avSwitch = iAVSwitch
 		self.mode = "720p"
-		self.modeList = [(mode[0], mode[0]) for mode in self.avSwitch.getModeList("HDMI")]
+		self.modeList = [(mode[0], mode[0]) for mode in avSwitch.getModeList("HDMI")]
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.setTitle(_("Start Wizard"))
 		self.resolutionTimer = eTimer()
 		self.resolutionTimer.callback.append(self.resolutionTimeout)
-		# preferred = self.avSwitch.readPreferredModes(saveMode=True)
+		# preferred = avSwitch.readPreferredModes(saveMode=True)
 		preferred = ["720p"]  # Use only 720p because some TV sends wrong edid info
-		available = self.avSwitch.readAvailableModes()
+		available = avSwitch.readAvailableModes()
 		preferred = list(set(preferred) & set(available))
 
 		if preferred:
@@ -208,7 +207,7 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 		self.setMode()
 
 		if not preferred:
-			ports = [port for port in self.avSwitch.getPortList() if self.avSwitch.isPortUsed(port)]
+			ports = [port for port in avSwitch.getPortList() if avSwitch.isPortUsed(port)]
 			if len(ports) > 1:
 				self.resolutionTimer.start(20000)
 				print("[WizardLanguage] DEBUG start resolutionTimer")
@@ -219,7 +218,7 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 			rate = "multi"
 		else:
 			rate = self.getVideoRate()
-		self.avSwitch.setMode(port="HDMI", mode=self.mode, rate=rate)
+		avSwitch.setMode(port="HDMI", mode=self.mode, rate=rate)
 
 	def getVideoRate(self):
 		def sortKey(name):
@@ -229,7 +228,7 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 			}.get(name[0], 3)
 
 		rates = []
-		for modes in self.avSwitch.getModeList("HDMI"):
+		for modes in avSwitch.getModeList("HDMI"):
 			if modes[0] == self.mode:
 				for rate in modes[1]:
 					if rate == "auto" and not BoxInfo.getItem("have24hz"):
