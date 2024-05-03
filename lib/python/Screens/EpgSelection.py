@@ -1665,7 +1665,7 @@ class EPGSelection(Screen, HelpableScreen):
 				break
 		else:
 			if self.session.nav.isRecordTimerImageStandard:
-				isInTimer = self.session.nav.RecordTimer.isInTimer(eventID, event.getBeginTime(), event.getDuration(), serviceRefStr)
+				isInTimer = self.session.nav.RecordTimer.isInTimer(eventID, event.getBeginTime(), event.getDuration(), serviceRefStr, True)
 				if isInTimer and isInTimer[1] in (2, 7, 12):
 					recordEvent = isInTimer[3]
 		return recordEvent
