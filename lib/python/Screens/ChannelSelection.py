@@ -16,8 +16,7 @@ from Components.NimManager import nimmanager
 from Components.ParentalControl import parentalControl
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-# from Components.ServiceList import ServiceList, ServiceListLegacy, refreshServiceList  # New code for refactored ServiceList.
-from Components.ServiceList import ServiceList, refreshServiceList
+from Components.ServiceList import ServiceList, ServiceListLegacy, refreshServiceList
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.UsageConfig import preferredTimerPath
 from Components.Renderer.Picon import getPiconName
@@ -139,8 +138,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		self["key_green"] = StaticText(_("Reception Lists"))
 		self["key_yellow"] = StaticText(_("Providers"))
 		self["key_blue"] = StaticText(_("Bouquets"))
-		# self["list"] = ServiceListLegacy(self) if config.channelSelection.style.value == "" else ServiceList(self)  # New code for refactored ServiceList.
-		self["list"] = ServiceList(self)
+		self["list"] = ServiceListLegacy(self) if config.channelSelection.style.value == "" else ServiceList(self)
 		self.servicelist = self["list"]
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
 		self.servicePath = []
@@ -321,8 +319,8 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		inBouquetRootList = "FROM BOUQUET \"bouquets." in path  # FIXME: Hack.
 		if not inBouquetRootList and isBouquet:
 			self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
-		# elif path == serviceRefAppendPath(self.service_types_ref, "ORDER BY name").getPath():  # New code for refactored ServiceList.
-		# 	self.servicelist.setMode(ServiceList.MODE_ALL)
+		elif path == serviceRefAppendPath(self.service_types_ref, "ORDER BY name").getPath():
+			self.servicelist.setMode(ServiceList.MODE_ALL)
 		else:
 			self.servicelist.setMode(ServiceList.MODE_NORMAL)
 		self.servicelist.setRoot(root, justSet)
