@@ -634,8 +634,6 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 
 	def getBouquetList(self):
 		bouquets = []
-		if self.isSubservices():
- 			bouquets.append((self.getServiceName(self.subservicesBouquet), self.subservicesBouquet))
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
 			list = serviceHandler.list(self.bouquet_root)
@@ -648,13 +646,18 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 						info = serviceHandler.info(s)
 						if info:
 							bouquets.append((info.getName(s), s))
-				return bouquets
 		else:
 			info = serviceHandler.info(self.bouquet_root)
 			if info:
 				bouquets.append((info.getName(self.bouquet_root), self.bouquet_root))
-			return bouquets
-		return None
+		current = self.servicePath and self.servicePath[-1]
+		for bouquet in bouquets:
+			if current == bouquet[1]:
+				current = None
+				break
+		if current:
+			bouquets.insert(0, (self.getServiceName(current), current))
+		return bouquets or None
 
 	def keyGoUp(self):
 		if len(self.servicePath) > 1:
