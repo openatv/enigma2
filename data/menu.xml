@@ -49,8 +49,8 @@
 			<!-- Menu / Setup / Video Menu -->
 			<menu key="video_menu" level="0" text="Video" weight="0">
 				<item key="video_setup" level="0" text="Video Settings" weight="0"><screen module="VideoMode" screen="VideoSetup" /></item>
-				<item key="osdsetup" level="1" text="OSD Position Settings" weight="50" requires="OsdMenu"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2" /></item>
-				<item key="setup_osd3d" level="2" text="OSD 3D Settings" weight="60" requires="CanChange3DOsd"><setup setupKey="OSD3D" /></item>
+				<item key="osdsetup" level="1" text="OSD Position Settings" weight="50" requires="OSDCalibration"><screen module="OSDCalibration" screen="OSDCalibration" /></item>
+				<item key="setup_osd3d" level="2" text="OSD 3D Settings" weight="60" requires="OSDCalibration"><screen module="OSDCalibration" screen="OSD3DCalibration" /></item>
 			</menu>
 			<!-- Menu / Setup / Audio Menu -->
 			<menu key="audio_menu" level="1" text="Audio" weight="5">
