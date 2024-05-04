@@ -301,7 +301,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("File Commander Navigation Actions"))
 		self["navigationActions"].setEnabled(not config.plugins.FileCommander.legacyNavigation.value)
-		self["legacyNavigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+		self["legacyNavigationActions"] = HelpableActionMap(self, ["NavigationActions", "FileCommanderActions"], {
 			"top": (self.keyGoTop, _("Move to first line / screen")),
 			"pageUp": (self.keyGoLeftColumn, _("Switch to the left column")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
@@ -309,7 +309,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"right": (self.keyGoPageDown, _("Move down a screen")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoRightColumn, _("Switch to the right column")),
-			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
+			"bottom": (self.keyGoBottom, _("Move to last line / screen")),
+			"panelLeft": (self.keyGoLeftColumn, _("Switch to the left column")),
+			"panelRight": (self.keyGoRightColumn, _("Switch to the right column"))
 		}, prio=0, description=_("File Commander Navigation Actions"))
 		self["legacyNavigationActions"].setEnabled(config.plugins.FileCommander.legacyNavigation.value)
 		self["multiSelectAction"] = HelpableActionMap(self, ["FileCommanderActions"], {
