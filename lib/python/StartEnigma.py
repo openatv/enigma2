@@ -840,6 +840,7 @@ enigma.eProfileWrite("InitSkins")
 from skin import InitSkins
 InitSkins()
 
+enigma.eProfileWrite("InitServiceList")
 from Components.ServiceList import InitServiceListSettings
 InitServiceListSettings()
 
@@ -900,9 +901,9 @@ if BOX_TYPE in ("uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", 
 
 enigma.eAVControl.getInstance().disableHDMIIn()
 
-enigma.eProfileWrite("InitOSD")
-from Screens.UserInterfacePositioner import InitOsd
-InitOsd()
+enigma.eProfileWrite("InitOSDCalibration")
+from Screens.OSDCalibration import InitOSDCalibration
+InitOSDCalibration()
 
 enigma.eProfileWrite("EPGCacheCheck")
 from Components.EpgLoadSave import EpgCacheLoadCheck, EpgCacheSaveCheck

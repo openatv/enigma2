@@ -7,9 +7,9 @@ from Tools.Directories import resolveFilename, SCOPE_SKINS
 from Components.Console import Console
 
 
-class UserInterfacePositionerWizard(Wizard, ShowRemoteControl):
+class WizardOSDCalibration(Wizard, ShowRemoteControl):
 	def __init__(self, session, interface=None):
-		self.xmlfile = resolveFilename(SCOPE_SKINS, "userinterfacepositionerwizard.xml")
+		self.xmlfile = resolveFilename(SCOPE_SKINS, "wizardosdcalibration.xml")
 		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
 		self.skinName = "StartWizard"
@@ -20,15 +20,8 @@ class UserInterfacePositionerWizard(Wizard, ShowRemoteControl):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-
 		self.NextStep = None
 		self.Text = None
-
-		self.onLayoutFinish.append(self.layoutFinished)
-		self.onClose.append(self.__onClose)
-
-	def layoutFinished(self):
-		self.Console.ePopen('/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi')
 
 	def exitWizardQuestion(self, ret=False):
 		if ret:
@@ -40,6 +33,3 @@ class UserInterfacePositionerWizard(Wizard, ShowRemoteControl):
 
 	def back(self):
 		Wizard.back(self)
-
-	def __onClose(self):
-		self.Console.ePopen('/usr/bin/showiframe /usr/share/backdrop.mvi')
