@@ -3,7 +3,7 @@ from os.path import exists
 from enigma import eAVControl, iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
 
 from Components.ActionMap import HelpableActionMap
-from Components.AVSwitch import iAVSwitch
+from Components.AVSwitch import avSwitch
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry, ConfigNothing
 from Components.Label import Label
@@ -69,7 +69,6 @@ class VideoSetup(Screen, ConfigListScreen):
 		self["VKeyIcon"] = Boolean(False)
 		self["footnote"] = Label()
 
-		self.avSwitch = iAVSwitch
 		self.onChangedEntry = []
 
 		# handle hotplug by re-creating setup
@@ -96,10 +95,10 @@ class VideoSetup(Screen, ConfigListScreen):
 		self["config"].onSelectionChanged.append(self.selectionChanged)
 
 	def startHotplug(self):
-		self.avSwitch.on_hotplug.append(self._createSetup)
+		avSwitch.on_hotplug.append(self._createSetup)
 
 	def stopHotplug(self):
-		self.avSwitch.on_hotplug.remove(self._createSetup)
+		avSwitch.on_hotplug.remove(self._createSetup)
 
 	# FIXME
 	def _createSetup(self, what):
@@ -125,7 +124,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Show 1080p 24fps as"), config.av.autores_1080p24, _("This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 25fps as"), config.av.autores_1080p25, _("This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 30fps as"), config.av.autores_1080p30, _("This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)")))
-				if "2160p24" in iAVSwitch.readAvailableModes():
+				if "2160p24" in avSwitch.readAvailableModes():
 					self.list.append(getConfigListEntry(_("Show 2160p 24fps as"), config.av.autores_2160p24, _("This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)")))
 					self.list.append(getConfigListEntry(_("Show 2160p 25fps as"), config.av.autores_2160p25, _("This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)")))
 					self.list.append(getConfigListEntry(_("Show 2160p 30fps as"), config.av.autores_2160p30, _("This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)")))
@@ -154,20 +153,20 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.getVerify_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 				self.list.append(getConfigListEntry(pgettext(_("Video output mode for SD"), _("%sMode for SD (up to 576p)") % self.prev_sd), config.av.autores_mode_sd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check_sd"))
 				self.list.append(getConfigListEntry(_("%sRefresh rate for SD") % self.prev_sd, config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check_sd"))
-				modelist = iAVSwitch.getModeList(config.av.videoport.value)
-				if "720p" in iAVSwitch.readAvailableModes():
+				modelist = avSwitch.getModeList(config.av.videoport.value)
+				if "720p" in avSwitch.readAvailableModes():
 					self.getVerify_videomode(config.av.autores_mode_hd, config.av.autores_rate_hd)
 					self.list.append(getConfigListEntry(pgettext(_("Video output mode for HD"), _("%sMode for HD (up to 720p)") % self.prev_hd), config.av.autores_mode_hd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check_hd"))
 					self.list.append(getConfigListEntry(_("%sRefresh rate for HD") % self.prev_hd, config.av.autores_rate_hd[config.av.autores_mode_hd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check_hd"))
-				if "1080i" in iAVSwitch.readAvailableModes() or "1080p" in iAVSwitch.readAvailableModes():
+				if "1080i" in avSwitch.readAvailableModes() or "1080p" in avSwitch.readAvailableModes():
 					self.getVerify_videomode(config.av.autores_mode_fhd, config.av.autores_rate_fhd)
 					self.list.append(getConfigListEntry(pgettext(_("Video output mode for FHD"), _("%sMode for FHD (up to 1080p)") % self.prev_fhd), config.av.autores_mode_fhd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check_fhd"))
 					self.list.append(getConfigListEntry(_("%sRefresh rate for FHD") % self.prev_fhd, config.av.autores_rate_fhd[config.av.autores_mode_fhd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check_fhd"))
-					if config.av.autores_mode_fhd[config.av.videoport.value].value == '1080p' and ('1080p' in iAVSwitch.readAvailableModes() or "1080p50" in iAVSwitch.readAvailableModes()):
+					if config.av.autores_mode_fhd[config.av.videoport.value].value == '1080p' and ('1080p' in avSwitch.readAvailableModes() or "1080p50" in avSwitch.readAvailableModes()):
 						self.list.append(getConfigListEntry(_("%sShow 1080i as 1080p") % self.prev_fhd, config.av.autores_1080i_deinterlace, _("Use Deinterlacing for 1080i Videosignal?"), "check_fhd"))
-					elif "1080p" not in iAVSwitch.readAvailableModes() and "1080p50" not in iAVSwitch.readAvailableModes():
+					elif "1080p" not in avSwitch.readAvailableModes() and "1080p50" not in avSwitch.readAvailableModes():
 						config.av.autores_1080i_deinterlace.value = False
-				if "2160p" in iAVSwitch.readAvailableModes() or "2160p30" in iAVSwitch.readAvailableModes():
+				if "2160p" in avSwitch.readAvailableModes() or "2160p30" in avSwitch.readAvailableModes():
 					self.getVerify_videomode(config.av.autores_mode_uhd, config.av.autores_rate_uhd)
 					self.list.append(getConfigListEntry(pgettext(_("Video output mode for UHD"), _("%sMode for UHD (up to 2160p)") % self.prev_uhd), config.av.autores_mode_uhd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check_uhd"))
 					self.list.append(getConfigListEntry(_("%sRefresh rate for UHD") % self.prev_uhd, config.av.autores_rate_uhd[config.av.autores_mode_uhd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check_uhd"))
@@ -198,7 +197,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		mode = config.av.videomode[port].value if port in config.av.videomode else None
 
 		# some modes (720p, 1080i) are always widescreen. Don't let the user select something here, "auto" is not what he wants.
-		force_wide = self.avSwitch.isWidescreenMode(port, mode)
+		force_wide = avSwitch.isWidescreenMode(port, mode)
 
 		if not force_wide:
 			self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
@@ -216,7 +215,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Aspect switch"), config.av.aspectswitch.enabled, _("This option allows you to set offset values for different Letterbox resolutions.")))
 				if config.av.aspectswitch.enabled.value:
 					for aspect in range(5):
-						self.list.append(getConfigListEntry(f" -> {iAVSwitch.ASPECT_SWITCH_MSG[aspect]}", config.av.aspectswitch.offsets[str(aspect)]))
+						self.list.append(getConfigListEntry(f" -> {avSwitch.ASPECT_SWITCH_MSG[aspect]}", config.av.aspectswitch.offsets[str(aspect)]))
 
 			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override, _("This option allows you to use all HDMI Modes")))
 
@@ -294,7 +293,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				config.av.videorate[self.last_good[1]].value = self.last_good[2]
 				config.av.autores_sd.value = self.last_good_extra[0]
 				config.av.smart1080p.value = self.last_good_extra[1]
-				self.avSwitch.setMode(*self.last_good)
+				avSwitch.setMode(*self.last_good)
 			elif self.reset_mode == 2:
 				config.av.autores_mode_sd[self.last_good_autores_sd[0]].value = self.last_good_autores_sd[1]
 				config.av.autores_rate_sd[self.last_good_autores_sd[1]].value = self.last_good_autores_sd[2]
@@ -307,10 +306,10 @@ class VideoSetup(Screen, ConfigListScreen):
 				config.av.autores_24p.value = self.last_good_autores_extra[0]
 				config.av.autores_1080i_deinterlace.value = self.last_good_autores_extra[1]
 				config.av.autores_unknownres.value = self.last_good_autores_unknownres
-				if self.current_mode in iAVSwitch.readAvailableModes():
-					self.avSwitch.setVideoModeDirect(self.current_mode)
+				if self.current_mode in avSwitch.readAvailableModes():
+					avSwitch.setVideoModeDirect(self.current_mode)
 				else:
-					self.avSwitch.setMode(*self.last_good)
+					avSwitch.setMode(*self.last_good)
 			self.createSetup()
 		else:
 			self.keySave()
@@ -371,20 +370,20 @@ class VideoSetup(Screen, ConfigListScreen):
 		if config.av.autores.value in ("all", "hd") and ((port, mode, rate) != self.last_good or (autores_sd, smart1080p) != self.last_good_extra):
 			self.reset_mode = 1
 			if autores_sd.find("1080") >= 0:
-				self.avSwitch.setMode(port, "1080p", "50Hz")
+				avSwitch.setMode(port, "1080p", "50Hz")
 			elif (smart1080p == "1080p50") or (smart1080p == "true"):  # for compatibility with old ConfigEnableDisable
-				self.avSwitch.setMode(port, "1080p", "50Hz")
+				avSwitch.setMode(port, "1080p", "50Hz")
 			elif smart1080p == "2160p50":
-				self.avSwitch.setMode(port, "2160p", "50Hz")
+				avSwitch.setMode(port, "2160p", "50Hz")
 			elif smart1080p == "1080i50":
-				self.avSwitch.setMode(port, "1080i", "50Hz")
+				avSwitch.setMode(port, "1080i", "50Hz")
 			elif smart1080p == "720p50":
-				self.avSwitch.setMode(port, "720p", "50Hz")
+				avSwitch.setMode(port, "720p", "50Hz")
 			else:
-				self.avSwitch.setMode(port, mode, rate)
+				avSwitch.setMode(port, mode, rate)
 		elif (port, mode, rate) != self.last_good or (config.av.autores.value == "disabled" and self.last_good_autores != "disabled"):
 			self.reset_mode = 1
-			self.avSwitch.setMode(port, mode, rate)
+			avSwitch.setMode(port, mode, rate)
 		elif config.av.autores.value in ("native", "simple") and ((port, mode_sd, rate_sd) != self.last_good_autores_sd or (port, mode_hd, rate_hd) != self.last_good_autores_hd or (port, mode_fhd, rate_fhd) != self.last_good_autores_fhd
 			or (port, mode_uhd, rate_uhd) != self.last_good_autores_uhd or (autores_24p, autores_1080i) != self.last_good_autores_extra or self.last_good_autores != config.av.autores.value or self.reset_mode == 1
 			or (self.last_good_autores_unknownres != config.av.autores_unknownres.value and config.av.autores.value == "native")):
@@ -684,14 +683,14 @@ class AutoVideoMode(Screen):
 				if new_mode[-1:] == "p":
 					new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == "i") + 1), new_rate, new_mode[:-1], config_res, config_rate)
 
-				if new_mode + new_rate in iAVSwitch.readAvailableModes():
+				if new_mode + new_rate in avSwitch.readAvailableModes():
 					write_mode = new_mode + new_rate
-				elif new_mode in iAVSwitch.readAvailableModes():
+				elif new_mode in avSwitch.readAvailableModes():
 					write_mode = new_mode
 				else:
 					if config_rate not in ("auto", "multi") and int(new_rate) > int(config_rate):
 						new_rate = config_rate
-					if config_mode + new_rate in iAVSwitch.readAvailableModes():
+					if config_mode + new_rate in avSwitch.readAvailableModes():
 						write_mode = config_mode + new_rate
 					else:
 						write_mode = config_mode
@@ -723,13 +722,13 @@ class AutoVideoMode(Screen):
 				if new_pol == "p":
 					new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == "i") + 1), new_rate, new_res, config_res, config_rate)
 
-				if new_res + new_pol + new_rate in iAVSwitch.readAvailableModes():
+				if new_res + new_pol + new_rate in avSwitch.readAvailableModes():
 					write_mode = new_res + new_pol + new_rate
-				elif new_res + new_pol in iAVSwitch.readAvailableModes():
+				elif new_res + new_pol in avSwitch.readAvailableModes():
 					write_mode = new_res + new_pol
-				elif new_res + min_pol + new_rate in iAVSwitch.readAvailableModes():
+				elif new_res + min_pol + new_rate in avSwitch.readAvailableModes():
 					write_mode = new_res + min_pol + new_rate
-				elif new_res + min_pol in iAVSwitch.readAvailableModes():
+				elif new_res + min_pol in avSwitch.readAvailableModes():
 					write_mode = new_res + min_pol
 				else:
 					if config.av.autores_unknownres.value == "next":
@@ -745,18 +744,18 @@ class AutoVideoMode(Screen):
 						new_res = config_res
 					if new_pol == "p":
 						new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == "i") + 1), new_rate, new_res, config_res, config_rate)
-					if new_res + new_pol + new_rate in iAVSwitch.readAvailableModes():
+					if new_res + new_pol + new_rate in avSwitch.readAvailableModes():
 						write_mode = new_res + new_pol + new_rate
-					elif new_res + new_pol in iAVSwitch.readAvailableModes():
+					elif new_res + new_pol in avSwitch.readAvailableModes():
 						write_mode = new_res + new_pol
-					elif new_res + min_pol + new_rate in iAVSwitch.readAvailableModes():
+					elif new_res + min_pol + new_rate in avSwitch.readAvailableModes():
 						write_mode = new_res + min_pol + new_rate
-					elif new_res + min_pol in iAVSwitch.readAvailableModes():
+					elif new_res + min_pol in avSwitch.readAvailableModes():
 						write_mode = new_res + min_pol
 					else:
 						if config_rate not in ("auto", "multi") and int(new_rate) > int(config_rate):
 							new_rate = config_rate
-						if config_mode + new_rate in iAVSwitch.readAvailableModes():
+						if config_mode + new_rate in avSwitch.readAvailableModes():
 							write_mode = config_mode + new_rate
 						else:
 							write_mode = config_mode
@@ -765,7 +764,7 @@ class AutoVideoMode(Screen):
 				autorestyp = "all or hd"
 				if config.av.autores_deinterlace.value:
 					new_pol = new_pol.replace("i", "p")
-				if new_res + new_pol + new_rate in iAVSwitch.readAvailableModes():
+				if new_res + new_pol + new_rate in avSwitch.readAvailableModes():
 					new_mode = new_res + new_pol + new_rate
 					if new_mode == "480p24" or new_mode == "576p24":
 						new_mode = config.av.autores_480p24.value
@@ -783,7 +782,7 @@ class AutoVideoMode(Screen):
 						new_mode = config.av.autores_2160p25.value
 					if new_mode == "2160p30" or new_mode == "2160p60" or new_mode == "2160p":
 						new_mode = config.av.autores_2160p30.value
-				elif new_res + new_pol in iAVSwitch.readAvailableModes():
+				elif new_res + new_pol in avSwitch.readAvailableModes():
 					new_mode = new_res + new_pol
 					if new_mode == "2160p30" or new_mode == "2160p60" or new_mode == "2160p":
 						new_mode = config.av.autores_2160p30.value
@@ -799,7 +798,7 @@ class AutoVideoMode(Screen):
 					new_mode = config.av.autores_sd.value + new_rate
 					if config.av.autores_deinterlace.value:
 						test_new_mode = config.av.autores_sd.value.replace("i", "p") + new_rate
-						if test_new_mode in iAVSwitch.readAvailableModes():
+						if test_new_mode in avSwitch.readAvailableModes():
 							new_mode = test_new_mode
 
 				if new_mode == "720p24":
@@ -886,7 +885,7 @@ class AutoVideoMode(Screen):
 				#print("[VideoMode] smart1080p mode, selecting %s" % write_mode)
 
 			if write_mode and current_mode != write_mode and self.bufferfull or self.firstrun:
-				values = iAVSwitch.readAvailableModes()
+				values = avSwitch.readAvailableModes()
 				if write_mode not in values:
 					if write_mode in ("1080p24", "1080p30", "1080p60"):
 						write_mode = "1080p"
@@ -898,7 +897,7 @@ class AutoVideoMode(Screen):
 					else:
 						write_mode += "hz"
 				if write_mode in values:
-					iAVSwitch.setVideoModeDirect(write_mode)
+					avSwitch.setVideoModeDirect(write_mode)
 					print(f"[VideoMode] setMode - port: {config_port}, mode: {write_mode} (autoresTyp: '{autorestyp}')")
 					resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 				else:
@@ -913,10 +912,10 @@ class AutoVideoMode(Screen):
 				print(f"[VideoMode] not changing from {current_mode} to {write_mode} as self.bufferfull is {self.bufferfull}")
 
 		if write_mode and write_mode != current_mode or self.firstrun:
-			iAVSwitch.setAspect(config.av.aspect)
-			iAVSwitch.setWss(config.av.wss)
-			iAVSwitch.setPolicy43(config.av.policy_43)
-			iAVSwitch.setPolicy169(config.av.policy_169)
+			avSwitch.setAspect(config.av.aspect)
+			avSwitch.setWss(config.av.wss)
+			avSwitch.setPolicy43(config.av.policy_43)
+			avSwitch.setPolicy169(config.av.policy_169)
 
 		self.firstrun = False
 		self.delay = False

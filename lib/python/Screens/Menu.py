@@ -5,7 +5,7 @@ from enigma import eTimer
 
 from skin import findSkinScreen, menus
 from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
-from Components.AVSwitch import iAVSwitch
+from Components.AVSwitch import avSwitch
 from Components.config import ConfigDictionarySet, NoSave, config, configfile
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
@@ -628,7 +628,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 			self.moveAction()
 
 	def keyText(self):
-		iAVSwitch.setMode("HDMI", "720p", "50Hz")
+		avSwitch.setMode("HDMI", "720p", "50Hz")
 
 	def moveAction(self):
 		menuListCopy = list(self.menuList)

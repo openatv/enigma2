@@ -730,7 +730,7 @@ class EPGList(GUIComponent):
 	def getPixmapForEntry(self, service, eventId, beginTime, duration):
 		if not beginTime:
 			return None
-		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
+		rec = self.timer.isInTimer(eventId, beginTime, duration, ":".join(service.split(":")[:11]))
 		if rec is not None:
 			self.wasEntryAutoTimer = bool(rec[2] & 1)
 			self.wasEntryIceTV = bool(rec[2] & 2)
