@@ -70,7 +70,13 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 			self.skinName.append("Setup%s" % setup)
 		self.skinName.append("Setup")
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry, fullUI=True)
+		xmlData = setupDom(self.setup, self.plugin)
+		allowDefault = False
+		for setup in xmlData.findall("setup"):
+			if setup.get("key") == self.setup:
+				allowDefault = setup.get("allowDefault", "") in ("1", "allowDefault", "enabled", "on", "true", "yes")
+				break
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry, fullUI=True, allowDefault=allowDefault)
 		self["footnote"] = Label()
 		self["footnote"].hide()
 		self["description"] = Label()
