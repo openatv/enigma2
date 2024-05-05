@@ -1088,9 +1088,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if path and path != directory and isdir(path):
 				menu.append(("bullet", _("Remove highlighted directory from bookmarks") if path in config.plugins.FileCommander.bookmarks.value else _("Add highlighted directory to bookmarks"), "bookmark+selected"))
 			if self.sourceColumn.multiSelect:
-				menu.append(("bullet", _("Select all") , "selectAll"))
-				menu.append(("bullet", _("Deselect all") , "deselectAll"))
-				menu.append(("bullet", _("Toggle selection") , "toggleAll"))
+				menu.append(("bullet", _("Select all"), "selectAll"))
+				menu.append(("bullet", _("Deselect all"), "deselectAll"))
+				menu.append(("bullet", _("Toggle selections"), "toggleAll"))
 			self.session.openWithCallback(keyMenuCallback, FileCommanderContextMenu, contexts, menu, directory, path)
 
 	def keyMove(self):
