@@ -400,20 +400,3 @@ class OSDCalibration(Screen, ConfigListScreen):
 		config.osd.dst_height.save()
 		configfile.save()
 		self.close()
-
-
-class OSD3DCalibration(Setup):
-	def __init__(self, session):
-		Setup.__init__(self, session, "OSD3DCalibration")
-		self["key_yellow"] = StaticText(_("Defaults"))
-		self["actions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.keyDefault, _("Reset all settings to the default values"))
-		}, prio=0, description=_("OSD 3D Calibration Setup Actions"))
-
-	def keyDefault(self):
-		config.osd.threeDmode.setValue(config.osd.threeDmode.default)
-		config.osd.threeDznorm.setValue(config.osd.threeDznorm.default)
-		config.osd.show3dextensions.setValue(config.osd.show3dextensions.default)
-		print("[OSDCalibration] OSD 3D settings restored to defaults.")
-		for entry in self["config"].getList():
-			self["config"].invalidate(entry)

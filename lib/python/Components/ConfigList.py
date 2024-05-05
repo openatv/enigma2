@@ -169,7 +169,7 @@ class ConfigList(GUIComponent):
 
 
 class ConfigListScreen:
-	def __init__(self, list, session=None, on_change=None, fullUI=False):
+	def __init__(self, list, session=None, on_change=None, fullUI=False, allowDefault=False):
 		self.entryChanged = on_change if on_change is not None else lambda: None
 		if fullUI:
 			if "key_red" not in self:
@@ -182,6 +182,14 @@ class ConfigListScreen:
 				"save": (self.keySave, _("Save all changed settings and exit"))
 			}, prio=1, description=_("Common Setup Actions"))
 			self.actionMaps = ["fullUIActions"]
+			if allowDefault:
+				if "key_yellow" not in self:
+					self["key_yellow"] = StaticText(_("Default"))
+				self["defaultAction"] = HelpableActionMap(self, ["ConfigListActions", "ColorActions"], {
+					"default": (self.keyDefault, _("Reset entries to their default values")),
+					"yellow": (self.keyDefault, _("Reset entries to their default values"))
+				}, prio=1, description=_("Common Setup Actions"))
+				self.actionMaps.append("defaultAction")
 		else:
 			self.actionMaps = []
 		if "key_menu" not in self:
@@ -360,6 +368,11 @@ class ConfigListScreen:
 
 	def keyOK(self):  # This is the deprecated version of keySelect!
 		self.keySelect()
+
+	def keyDefault(self):  # This method should be replaced in sub-classes that need help to reset the defaults.
+		for item in self["config"].getList():
+			item[1].setValue(item[1].default)
+			self["config"].invalidate(item)
 
 	def keyText(self):
 		def keyTextCallback(callback=None):
