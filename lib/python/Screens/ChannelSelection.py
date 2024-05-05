@@ -2754,6 +2754,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.correctChannelNumber()
 		self.editMode = False
 		self.protectContextMenu = True
+		self["key_green"].setText(_("Reception Lists"))
 		self.close(None)
 
 	def zapBack(self):
