@@ -1285,7 +1285,7 @@ class ChannelContextMenu(Screen, HelpableScreen):
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
 			else:
 				appendWhenValid(current, menu, (_("Show Transponder Information"), boundFunction(self.showServiceInformations, current)), level=2)
-		if self.subservices:
+		if self.subservices and current_root != subservices_tv_ref:
 			appendWhenValid(current, menu, (_("Show Subservices Of Active Service"), self.showSubservices), key="4")
 		if csel.bouquet_mark_edit == EDIT_OFF and not csel.entry_marked:
 			if not inBouquetRootList:
@@ -1326,22 +1326,23 @@ class ChannelContextMenu(Screen, HelpableScreen):
 						appendWhenValid(current, menu, (_("Don't Center DVB Subs On This Service"), self.removeCenterDVBSubsFlag))
 					else:
 						appendWhenValid(current, menu, (_("Center DVB Subs On This Service"), self.addCenterDVBSubsFlag))
-					if haveBouquets:
-						bouquets = self.csel.getBouquetList()
-						if bouquets is None:
-							bouquetCnt = 0
+					if current_root != subservices_tv_ref:
+						if haveBouquets:
+							bouquets = self.csel.getBouquetList()
+							if bouquets is None:
+								bouquetCnt = 0
+							else:
+								bouquetCnt = len(bouquets)
+							if not self.inBouquet or bouquetCnt > 1:
+								appendWhenValid(current, menu, (_("Add Service To Bouquet"), self.addServiceToBouquetSelected), key="5")
+								self.addFunction = self.addServiceToBouquetSelected
+							if not self.inBouquet:
+								appendWhenValid(current, menu, (_("Remove Entry"), self.removeEntry), key="8")
+								self.removeFunction = self.removeSatelliteService
 						else:
-							bouquetCnt = len(bouquets)
-						if not self.inBouquet or bouquetCnt > 1:
-							appendWhenValid(current, menu, (_("Add Service To Bouquet"), self.addServiceToBouquetSelected), key="5")
-							self.addFunction = self.addServiceToBouquetSelected
-						if not self.inBouquet:
-							appendWhenValid(current, menu, (_("Remove Entry"), self.removeEntry), key="8")
-							self.removeFunction = self.removeSatelliteService
-					else:
-						if not self.inBouquet:
-							appendWhenValid(current, menu, (_("Add Service To Favorites"), self.addServiceToBouquetSelected), key="5")
-							self.addFunction = self.addServiceToBouquetSelected
+							if not self.inBouquet:
+								appendWhenValid(current, menu, (_("Add Service To Favorites"), self.addServiceToBouquetSelected), key="5")
+								self.addFunction = self.addServiceToBouquetSelected
 					if BoxInfo.getItem("PIPAvailable"):
 						if not self.parentalControlEnabled or parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							if self.csel.dopipzap:
@@ -2754,6 +2755,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.correctChannelNumber()
 		self.editMode = False
 		self.protectContextMenu = True
+		self["key_green"].setText(_("Reception Lists"))
 		self.close(None)
 
 	def zapBack(self):
