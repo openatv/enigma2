@@ -946,12 +946,12 @@ class ConfigSatlist(ConfigSatellite):
 		ConfigSatellite.__init__(self, choices=list, default=default)
 
 
-# Let the user select from [min, min + stepwidth, min + (stepwidth * 2), ..., maxVal]
-# with maxVal <= max depending on the stepwidth. The min, max, stepwidth, and default
-# are int values.
+# Let the user select from [first, first + step, first + (step * 2), ..., maxVal]
+# with maxVal <= last depending on the step. The default, first, last and step
+# are integer values.
 #
-# wraparound: Pressing RIGHT key at max value brings you to min value and vice versa
-# if set to True.
+# wrap: If set to True, pressing RIGHT key at last value brings you to first
+# value and vice versa.
 #
 # units: This is a list or tuple with two strings that contain a "%d" formatting
 # element that will be used, via ngettext(), to display the numbers in a more
@@ -963,20 +963,41 @@ class ConfigSatlist(ConfigSatellite):
 # 	available for translation. If the strings are not used elsewhere in the
 # 	code then the translations can be added to the TranslationHelper.py file.
 #
-class ConfigSelectionNumber(ConfigSelection):
-	def __init__(self, min, max, stepwidth, default=None, wraparound=False, units=None):
+class ConfigSelectionInteger(ConfigSelection):
+	def __init__(self, default=None, first=0, last=100, step=1, wrap=False, units=None):
 		if default is None:
-			default = min
-		ConfigSelection.__init__(self, choices=[(x, (ngettext(units[0], units[1], x) % x if units and isinstance(units, (list, tuple)) else str(x))) for x in range(min, max + 1, stepwidth)], default=default)
-		self.wrapAround = wraparound
+			default = first
+		self.first = first
+		self.last = last
+		self.step = step
+		self.wrap = wrap
+		self.units = units
+		ConfigSelection.__init__(self, choices=[(x, (ngettext(units[0], units[1], x) % x if units and isinstance(units, (list, tuple)) else str(x))) for x in range(first, last + 1, step)], default=default)
 
 	def handleKey(self, key, callback=None):
-		if not self.wrapAround:
+		if not self.wrap:
 			if key == ACTIONKEY_RIGHT and self.choices.index(self.value) == len(self.choices) - 1:
 				return
 			if key == ACTIONKEY_LEFT and self.choices.index(self.value) == 0:
 				return
 		ConfigSelection.handleKey(self, key, callback)
+
+	def setChoices(self, default=None, first=None, last=None, step=None, wrap=None, units=None):
+		self.first = self.first if first is None else first
+		self.last = self.last if last is None else last
+		self.step = self.step if step is None else step
+		self.wrap = self.wrap if wrap is None else wrap
+		self.units = self.units if units is None else units
+		if default is None:
+			default = self.default if first < self.default <= last else first
+		if self.value < self.first or self.value > self.last:
+			self.value = default
+		return self.setSelectionList([(x, (ngettext(self.units[0], self.units[1], x) % x if self.units and isinstance(self.units, (list, tuple)) else str(x))) for x in range(self.first, self.last + 1, self.step)], default=default)
+
+
+class ConfigSelectionNumber(ConfigSelectionInteger):
+	def __init__(self, min, max, stepwidth, default=None, wraparound=False, units=None):
+		ConfigSelectionInteger.__init__(self, default, min, max, stepwidth, wraparound, units)
 
 
 # This is the control, and base class, for formatted sequence settings.
