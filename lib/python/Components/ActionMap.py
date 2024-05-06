@@ -4,7 +4,6 @@ from enigma import eActionMap
 
 from keyids import KEYIDS
 from Components.config import config
-from Screens.Screen import Screen
 from Tools.Directories import fileReadXML
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -199,7 +198,7 @@ class ActionMap:
 		self.execActive = False
 		self.enabled = True
 		self.legacyBound = False
-		self.parentScreen = parentScreen.__class__.__name__ if parentScreen and isinstance(parentScreen, Screen) else "N/A"
+		self.parentScreen = parentScreen.__class__.__name__ if parentScreen and [x for x in parentScreen.__class__.__mro__ if x.__name__ == "Screen"] else "N/A"
 		undefinedAction = list(self.actions.keys())
 		leftActionDefined = "left" in undefinedAction
 		rightActionDefined = "right" in undefinedAction
