@@ -1348,7 +1348,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for screen in tag.findall("screen"):
 			key = screen.attrib.get("key")
 			image = screen.attrib.get("image")
-			if key and image:
+			if key and image is not None:
 				screens[key] = image
 				# print(f"[Skin] DEBUG: Screen key='{key}', image='{image}'.")
 			else:
@@ -1357,7 +1357,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for menu in tag.findall("menu"):
 			key = menu.attrib.get("key")
 			image = menu.attrib.get("image")
-			if key and image:
+			if key and image is not None:
 				menus[key] = image
 				# print(f"[Skin] DEBUG: Menu key='{key}', image='{image}'.")
 			else:
@@ -1366,7 +1366,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for setup in tag.findall("setup"):
 			key = setup.attrib.get("key")
 			image = setup.attrib.get("image")
-			if key and image:
+			if key and image is not None:
 				setups[key] = image
 				# print(f"[Skin] DEBUG: Setup key='{key}', image='{image}'.")
 			else:
