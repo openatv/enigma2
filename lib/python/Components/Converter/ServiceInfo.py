@@ -208,18 +208,7 @@ class ServiceInfo(Poll, Converter):
 		video_aspect = None
 		video_height = self._getVideoHeight(info)
 		video_width = self._getVideoWidth(info)
-
-		f = None
-		if path.exists("/proc/stb/vmpeg/0/aspect"):
-			f = open("/proc/stb/vmpeg/0/aspect")
-		elif path.exists("/sys/class/video/screen_mode"):
-			f = open("/sys/class/video/screen_mode")
-		if f:
-			try:
-				video_aspect = int(f.read())
-			except Exception:
-				pass
-			f.close()
+		video_aspect = eAVControl.getInstance().getAspect(0)
 
 		if not video_height:
 			video_height = int(info.getInfo(iServiceInformation.sVideoHeight))
