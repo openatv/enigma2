@@ -17,7 +17,7 @@ from Components.Pixmap import Pixmap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.SkinSelector import SkinSelector
+from Screens.SkinSelection import SkinSelection
 from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -448,11 +448,11 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self.keyGreen()
 
 	def openSkinSelector(self):
-		self.session.openWithCallback(self.skinChanged, SkinSelector)
+		self.session.openWithCallback(self.skinChanged, SkinSelection)
 
 	def openSkinSelectorDelayed(self):
 		self.delaytimer = eTimer()
-		self.delaytimer.callback.append(self.openSkinSelector)
+		self.delaytimer.callback.append(self.openSkinSelection)
 		self.delaytimer.start(200, True)
 
 	def search_weather_id_callback(self, res):
