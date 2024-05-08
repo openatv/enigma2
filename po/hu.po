@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-19 17:47+0000\n"
+"POT-Creation-Date: 2024-05-05 12:54+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2689,6 +2689,9 @@ msgid "Auto focus commencing ..."
 msgstr "Autofókusz kezdődik..."
 
 msgid "Auto install log"
+msgstr ""
+
+msgid "Auto multi-selection"
 msgstr ""
 
 msgid "Auto shut down"
@@ -5988,6 +5991,12 @@ msgstr "Leírás"
 msgid "Deselect"
 msgstr "Kijelölés törlése"
 
+msgid "Deselect all"
+msgstr ""
+
+msgid "Deselect all lines"
+msgstr ""
+
 msgid "Deselect all related files"
 msgstr ""
 
@@ -8081,6 +8090,12 @@ msgstr ""
 msgid "File Commander Move"
 msgstr ""
 
+msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Selection Actions"
+msgstr ""
+
 msgid "File Commander Settings"
 msgstr ""
 
@@ -9351,9 +9366,6 @@ msgstr ""
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
-msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
-msgstr "Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve lesz a háttérben"
-
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -10270,6 +10282,9 @@ msgstr "A csatornanév bal oldalán"
 
 msgid "Left, wrapped"
 msgstr "bal oldalon sortöréssel"
+
+msgid "Legacy mode"
+msgstr ""
 
 msgid "Leisure hobbies"
 msgstr "Pihenés/Hobby"
@@ -14706,6 +14721,9 @@ msgstr ""
 msgid "Reset and renumerate title names"
 msgstr "A tételek újraszámozása"
 
+msgid "Reset entries to their default values"
+msgstr ""
+
 msgid "Reset executable mode (644)"
 msgstr ""
 
@@ -15536,6 +15554,9 @@ msgstr ""
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
 msgstr ""
 
+msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Ha az 'igen'-t választja, akkor a műsor előnézeti képét jeleníti meg az EPG műsorújságban."
 
@@ -15701,6 +15722,9 @@ msgstr ""
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr ""
 
+msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Ha 'igen' értékre van állítva, akkor a rendszer az API V3-ból számítja ki a jelértékeket (SNR stb...). Ez egy régi API verzió, amely most fel van függesztve."
 
@@ -15852,6 +15876,12 @@ msgstr "Művelet kiválasztása a(z) %s időzítőhöz:"
 
 msgid "Select additional files to backup"
 msgstr "Biztonsági mentésbe helyezendő fájlok"
+
+msgid "Select all"
+msgstr ""
+
+msgid "Select all lines"
+msgstr ""
 
 msgid "Select all related files"
 msgstr ""
@@ -16744,6 +16774,9 @@ msgstr "Állítsa be a szöveg görgetési sebességét az elülső kijelzőn, e
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Állítsa be a szöveg görgetési sebességét a előlapi kijelzőn."
 
+msgid "Set the style of the channel list."
+msgstr ""
+
 msgid "Set the time before checking video source for resolution information."
 msgstr "Állítsa be azt az időtartamot, ami időközönként ellenőrzi a felbontási információt a videó jelből."
 
@@ -16792,6 +16825,9 @@ msgstr ""
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
+
+msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
+msgstr "Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve lesz a háttérben"
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Adja meg, hogy a fő műsoridő melyik órában kezdődjön."
@@ -18675,6 +18711,9 @@ msgstr ""
 msgid "Stream Relay URL"
 msgstr ""
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr ""
+
 msgid "Stream Relay port"
 msgstr ""
 
@@ -18721,6 +18760,9 @@ msgstr "Szigorú DLNA"
 
 msgid "Stripes"
 msgstr "Sávok"
+
+msgid "Style"
+msgstr ""
 
 msgid "Style:"
 msgstr "Stílus:"
@@ -20326,6 +20368,9 @@ msgstr "Váltás az új szöveg beszúrásra a meglévő szöveg felülírása e
 msgid "Toggle selection of the current tag"
 msgstr ""
 
+msgid "Toggle selections"
+msgstr ""
+
 #, fuzzy
 msgid "Toggle service name display"
 msgstr "Csatorna nevek elrendezése"
@@ -21115,6 +21160,9 @@ msgstr "Interfész használata"
 
 msgid "Use key map *"
 msgstr "Melyik Keymapot választja *"
+
+msgid "Use legacy navigation"
+msgstr ""
 
 msgid "Use logarithmic steps"
 msgstr ""

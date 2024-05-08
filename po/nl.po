@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-19 17:47+0000\n"
+"POT-Creation-Date: 2024-05-05 12:54+0000\n"
 "PO-Revision-Date: 2024-04-20 20:07+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2652,6 +2652,9 @@ msgstr "Auto focus begint..."
 
 msgid "Auto install log"
 msgstr "Auto install log"
+
+msgid "Auto multi-selection"
+msgstr ""
 
 msgid "Auto shut down"
 msgstr "Automatisch afsluiten"
@@ -6056,6 +6059,12 @@ msgstr "Beschrijving"
 msgid "Deselect"
 msgstr "Deselecteer"
 
+msgid "Deselect all"
+msgstr ""
+
+msgid "Deselect all lines"
+msgstr ""
+
 msgid "Deselect all related files"
 msgstr "Selectie van alle bijbehorende bestanden ongedaan maken"
 
@@ -8171,6 +8180,12 @@ msgstr "File Commander Media Informatie Acties"
 msgid "File Commander Move"
 msgstr "File Commander Verplaatsen"
 
+msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Selection Actions"
+msgstr ""
+
 msgid "File Commander Settings"
 msgstr "File Commander Instellingen"
 
@@ -9431,9 +9446,6 @@ msgstr "Wanneer u kiest voor 'Ja' worden dezelfde commando's naar de TV gestuurd
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Indien ingesteld op \"ja\", kunt u Timeshift gebruiken met alternatieve audio-plugins."
 
-msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
-msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
-
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Wanneer de deep standby workaround is geactiveerd, a.u.b. wachten tot de systeemtijd is gesynchroniseerd. Afhankelijk van het gebruik zal de ontvanger binnen maximaal 2 minuten opstarten."
 
@@ -10338,6 +10350,9 @@ msgstr "Links van de zendernaam"
 
 msgid "Left, wrapped"
 msgstr "Links, er omheen"
+
+msgid "Legacy mode"
+msgstr ""
 
 msgid "Leisure hobbies"
 msgstr "Vrijetijd hobbies"
@@ -14729,6 +14744,9 @@ msgstr "Reset volgorde"
 msgid "Reset and renumerate title names"
 msgstr "Reset en hernummertitels"
 
+msgid "Reset entries to their default values"
+msgstr ""
+
 msgid "Reset executable mode (644)"
 msgstr "Uitvoerbare modus resetten (644)"
 
@@ -15554,6 +15572,9 @@ msgstr "Kies 'Ja' om te controleren of bij het activeren van de timer de netwerk
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
 msgstr "Selecteer 'Ja' om alle afbeeldingen continu in een lus weer te geven, of selecteer 'Nee' om alle afbeeldingen één keer weer te geven en dan te stoppen."
 
+msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Bij 'Ja' ziet u een Mini-TV in de EPG."
 
@@ -15723,6 +15744,9 @@ msgstr "Kies 'Ja' om opdrachten in meerdere acties op te delen."
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Kies 'Ja' om alternatief GitHub-DNS feed IP-adres in te stellen. Dit kan handig zijn wanneer u een VPN gebruikt en de normale feeds niet bereikbaar zijn via de gebruikelijke DNS namen."
 
+msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Indien 'ja' wordt gekozen, worden de signaalwaardes (SNR etc.) berekend op basis van de API V3. Dit is een oude API die nu vervangen is."
 
@@ -15874,6 +15898,12 @@ msgstr "Selecteer actie voor de timer%s:"
 
 msgid "Select additional files to backup"
 msgstr "Selecteer extra back-up bestanden"
+
+msgid "Select all"
+msgstr ""
+
+msgid "Select all lines"
+msgstr ""
 
 msgid "Select all related files"
 msgstr "Alle bijbehorende bestanden selecteren"
@@ -16776,6 +16806,9 @@ msgstr "Stel de snelheid in van een scrollende tekst in het display, deze functi
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Stel de scroll-snelheid van tekst op het display van uw %s %s in."
 
+msgid "Set the style of the channel list."
+msgstr ""
+
 msgid "Set the time before checking video source for resolution information."
 msgstr "Stel de tijd in voordat de videobron gecontroleerd wordt op resolutie info."
 
@@ -16830,6 +16863,9 @@ msgstr "Tijdopties instellen"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Wanneer uitgeschakeld, worden underscore tekens in bestands- en map namen niet weergegeven en vervangen door spaties."
+
+msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
+msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Stel de gewenste primetime in (uur)."
@@ -18713,6 +18749,9 @@ msgstr "Stream Relay Setup Acties"
 msgid "Stream Relay URL"
 msgstr "Stream Relay URL"
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr ""
+
 msgid "Stream Relay port"
 msgstr "Stream Relay poort"
 
@@ -18759,6 +18798,9 @@ msgstr "Strict DLNA"
 
 msgid "Stripes"
 msgstr "Strepen"
+
+msgid "Style"
+msgstr ""
 
 msgid "Style:"
 msgstr "Stijl:"
@@ -20424,6 +20466,9 @@ msgstr "Schakel nieuwe tekst invoegingen in of overschrijf de bestaande tekst"
 msgid "Toggle selection of the current tag"
 msgstr "Wissel de selectie van de huidige tag"
 
+msgid "Toggle selections"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "Weergave van de zendernaam in- of uitschakelen"
 
@@ -21209,6 +21254,9 @@ msgstr "Netwerk interface inschakelen"
 
 msgid "Use key map *"
 msgstr "Gebruik keymap *"
+
+msgid "Use legacy navigation"
+msgstr ""
 
 msgid "Use logarithmic steps"
 msgstr "Gebruik logaritmische stappen"

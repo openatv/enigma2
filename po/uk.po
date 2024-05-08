@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-19 17:47+0000\n"
-"PO-Revision-Date: 2024-04-19 13:19+0000\n"
+"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"PO-Revision-Date: 2024-05-06 08:28+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2680,6 +2680,9 @@ msgstr "Застосувати автофокус..."
 
 msgid "Auto install log"
 msgstr "Журнал автоматичного встановлення"
+
+msgid "Auto multi-selection"
+msgstr "Автоматичний багаторазовий вибір"
 
 msgid "Auto shut down"
 msgstr "Автоматичне відключення"
@@ -5972,6 +5975,12 @@ msgstr "Опис"
 msgid "Deselect"
 msgstr "Зняти виділення"
 
+msgid "Deselect all"
+msgstr "Скасувати вибір"
+
+msgid "Deselect all lines"
+msgstr "Зняти вибір усіх рядків"
+
 msgid "Deselect all related files"
 msgstr "Скасувати вибір усіх пов’язаних файлів"
 
@@ -8071,6 +8080,12 @@ msgstr "File Commander Дії з Медіа-інформацією"
 msgid "File Commander Move"
 msgstr "File Commander Переміщення"
 
+msgid "File Commander Navigation Actions"
+msgstr "Дії навігації File Commander"
+
+msgid "File Commander Selection Actions"
+msgstr "File Commander Дії вибору"
+
 msgid "File Commander Settings"
 msgstr "File Commander Налаштування"
 
@@ -9328,9 +9343,6 @@ msgstr "Якщо встановлено значення 'Так', для под
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Якщо встановлено значення 'так', ви можете використовувати зміщення часу з альтернативними аудіоплагінами."
 
-msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
-msgstr "Якщо вибрано 'так', буде включений автоматичний запис таймшифта у фоновому режимі"
-
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Якщо обхідний шлях для глибокого очікування ввімкнено, дочекайтеся синхронізації системного часу. Залежно від вимоги пробудження пристрою триватиме максимум через 2 хвилини."
 
@@ -10232,6 +10244,9 @@ msgstr "Ліворуч назви каналу"
 
 msgid "Left, wrapped"
 msgstr "зліва, прихований"
+
+msgid "Legacy mode"
+msgstr "Застарілий режим"
 
 msgid "Leisure hobbies"
 msgstr "Відпочинок хобі"
@@ -14618,6 +14633,9 @@ msgstr "Скинути порядок"
 msgid "Reset and renumerate title names"
 msgstr "Скинути і перенумерувати назви заголовків"
 
+msgid "Reset entries to their default values"
+msgstr "Скинути записи до значень за замовчуванням"
+
 msgid "Reset executable mode (644)"
 msgstr "Скинути режим виконання (644)"
 
@@ -15439,6 +15457,9 @@ msgstr "Виберіть 'Так', щоб перевірити, чи надхо�
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
 msgstr "Виберіть 'Так', щоб безперервно відображати всі зображення в циклі, або виберіть 'Ні', щоб відобразити всі зображення один раз, а потім зупинити."
 
+msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr "Виберіть 'Так', щоб вимкнути режим багаторазового вибору після кожної операції. Виберіть 'Ні', щоб залишити режим багаторазового вибору активним і вибір незмінним."
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Якщо вибрано 'так', в телегіді буде показуватися маленьке ТБ-вікно."
 
@@ -15604,6 +15625,9 @@ msgstr "Виберіть 'Так', щоб розділити завдання н
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Виберіть 'Так', щоб використовувати альтернативні IP-адреси GitHub фіду. Це може бути корисним, якщо ви використовуєте VPN і до звичайних фідів не можна отримати доступ через опубліковані імена DNS."
 
+msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
+msgstr "Виберіть 'Так', щоб використовувати застарілу навігацію, де CH+/- змінює активний стовпець. Виберіть 'Ні', щоб використовувати нову уніфіковану опцію навігації для узгодженої навігації з іншими екранами, де ВЛІВО/ВПРАВО міняє активний стовпець і сторінки CH+/- вгору та вниз у списку."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Якщо вибрано 'так', значення сигналу (SNR і т.д.) обчислюватимуться з API V3. Це стара версія API, яка тепер замінена."
 
@@ -15755,6 +15779,12 @@ msgstr "Вибір дії для таймеру %s:"
 
 msgid "Select additional files to backup"
 msgstr "Виберіть додаткові файли для резервного копіювання"
+
+msgid "Select all"
+msgstr "Вибрати все"
+
+msgid "Select all lines"
+msgstr "Виділити усі рядки"
 
 msgid "Select all related files"
 msgstr "Виберіть усі пов’язані файли"
@@ -16647,6 +16677,9 @@ msgstr "Вкажіть швидкість прокрутки тексту на �
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Вкажіть швидкість прокрутки тексту на дисплеї."
 
+msgid "Set the style of the channel list."
+msgstr "Встановити стиль списку каналів."
+
 msgid "Set the time before checking video source for resolution information."
 msgstr "Вкажіть затримку до перевірки роздільності екрану з джерел відео."
 
@@ -16698,6 +16731,9 @@ msgstr "Встановити параметри часу"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Якщо вимкнено, символи підкреслення в назвах файлів і каталогів не відображаються і замінюються пробілами."
+
+msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
+msgstr "Якщо вибрано 'Так', буде включено автоматичний запис таймшифта у фоновому режимі."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Виберіть бажаний прайм-тайм (у годинах)."
@@ -18567,6 +18603,9 @@ msgstr "Дії налаштувань Stream Relay"
 msgid "Stream Relay URL"
 msgstr "URL-адреса трансляції потоку"
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr "Ретрансляція потоку активна, будь ласка, перейдіть на канал без ретрансляції потоку."
+
 msgid "Stream Relay port"
 msgstr "Порт ретрансляції потоків"
 
@@ -18613,6 +18652,9 @@ msgstr "Суворий режим DLNA"
 
 msgid "Stripes"
 msgstr "Смуги"
+
+msgid "Style"
+msgstr "Стиль"
 
 msgid "Style:"
 msgstr "Стиль:"
@@ -18939,7 +18981,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 11.03.2024"
+msgstr "Переклад: kvinto - 06.05.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20232,6 +20274,9 @@ msgstr "Перемикання до нових текстових вставок
 msgid "Toggle selection of the current tag"
 msgstr "Переключити вибір поточного тегу"
 
+msgid "Toggle selections"
+msgstr "Переключити вибір"
+
 msgid "Toggle service name display"
 msgstr "Увімкнути відображення назви каналу"
 
@@ -21017,6 +21062,9 @@ msgstr "Використовувати інтерфейс"
 
 msgid "Use key map *"
 msgstr "Використовувати Keymap *"
+
+msgid "Use legacy navigation"
+msgstr "Використовувати застарілу навігацію"
 
 msgid "Use logarithmic steps"
 msgstr "Використовуйте логарифмічні кроки"

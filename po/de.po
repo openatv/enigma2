@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-19 17:47+0000\n"
-"PO-Revision-Date: 2024-04-19 17:26+0000\n"
+"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"PO-Revision-Date: 2024-05-08 12:26+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.4-rc\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2803,6 +2803,9 @@ msgstr "Autofokus startet..."
 
 msgid "Auto install log"
 msgstr "Autoinstall-Log"
+
+msgid "Auto multi-selection"
+msgstr "Auto-Multiauswahl"
 
 msgid "Auto shut down"
 msgstr "Automatisches Herunterfahren"
@@ -6263,6 +6266,12 @@ msgstr "Beschreibung"
 msgid "Deselect"
 msgstr "Abwählen"
 
+msgid "Deselect all"
+msgstr "Alle abwählen"
+
+msgid "Deselect all lines"
+msgstr "Alle abwählen"
+
 msgid "Deselect all related files"
 msgstr "Auswahl aller zugehörigen Dateien aufheben"
 
@@ -8486,6 +8495,12 @@ msgstr "File Commander Medien-Informationen-Optionen"
 msgid "File Commander Move"
 msgstr "File Commander Bewegen"
 
+msgid "File Commander Navigation Actions"
+msgstr "File Commander Navigations-Aktionen"
+
+msgid "File Commander Selection Actions"
+msgstr "File Commander Auswahl-Aktionen"
+
 msgid "File Commander Settings"
 msgstr "File Commander Einstellungen"
 
@@ -9804,9 +9819,6 @@ msgstr "Bei 'Ja' werden bei Deep-Standby-Ereignissen dieselben Befehle an das Fe
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Bei 'Ja' kann Timeshift mit alternativen Audio-Plugins verwendet werden."
 
-msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
-msgstr "'Ja' aktiviert die automatische Aufnahme für Timeshift im Hintergrund."
-
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Wenn der Deep-Standby-Workaround aktiviert ist, wird gewartet, bis die Systemzeit synchronisiert wurde. Je nach Erfordernis wird das Aufwecken der Geräte in maximal 2 Minuten fortgesetzt."
 
@@ -10760,6 +10772,9 @@ msgstr "Links vom Sendernamen"
 
 msgid "Left, wrapped"
 msgstr "Links, umgebrochen"
+
+msgid "Legacy mode"
+msgstr "Alter Modus"
 
 msgid "Leisure hobbies"
 msgstr "Freizeit Hobbys"
@@ -15524,6 +15539,9 @@ msgstr "Standardsortierung"
 msgid "Reset and renumerate title names"
 msgstr "Titelnamen zurücksetzen und neu nummerieren"
 
+msgid "Reset entries to their default values"
+msgstr "Alle Einträge auf Standardwerte zurücksetzen"
+
 msgid "Reset executable mode (644)"
 msgstr "Ausführbaren Modus zurücksetzen (644)"
 
@@ -16414,6 +16432,9 @@ msgstr "'Ja' auswählen, um zu prüfen, ob zum Zeitpunkt der Aktivierung des Tim
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
 msgstr "'Ja' auswählen, um alle Bilder in einer sich wiederholenden Schleife anzuzeigen. 'Nein' zeigt alle Bilder nur ein Mal und beendet dann die Anzeige."
 
+msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr "'Ja', um den Multi-Selektion-Modus nach jeder Operation zu beenden. 'Nein', um ihn aktiv zu belassen."
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Bei 'Ja' wird ein kleines TV-Bild (PiG) im EPG angezeigt."
 
@@ -16582,6 +16603,9 @@ msgstr "Bei 'Ja' werden die Aufgaben in separate Aktionen aufgeteilt."
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "'Ja' auswählen, um eine alternative GitHub-DNS Feed IP-Adresse zu verwenden. Das kann helfen, wenn ein VPN benutzt wird, aber die normalen Feeds nicht mittels dem angegebenen DNS-Namen angesprochen werden können."
 
+msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
+msgstr "'Ja', um die alte Navigation zu verwenden, bei der CH+/- die aktive Spalte tauscht. 'Nein', um die neue, mit anderen Screens einheitliche Navigation zu verwenden, bei der LINKS/RECHTS die aktive Spalte und CH+/- seitenweise tauschen."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Bei 'Ja' werden die Signalwerte (SNR usw.) aus API V3 berechnet. Dies ist eine alte API-Version, die jetzt ersetzt wurde."
 
@@ -16740,6 +16764,12 @@ msgstr "Aktion für Timer %s auswählen:"
 
 msgid "Select additional files to backup"
 msgstr "Dateien auswählen, die zusätzlich gesichert werden"
+
+msgid "Select all"
+msgstr "Alle auswählen"
+
+msgid "Select all lines"
+msgstr "Alle auswählen"
 
 msgid "Select all related files"
 msgstr "Alle zugehörigen Dateien auswählen"
@@ -17694,6 +17724,9 @@ msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen (wird vom Soft
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen."
 
+msgid "Set the style of the channel list."
+msgstr "Stil der Senderliste auswählen."
+
 msgid "Set the time before checking video source for resolution information."
 msgstr "Die Verzögerungszeit einstellen, bevor die automatische Auflösung die Videoquelle prüft."
 
@@ -17745,6 +17778,9 @@ msgstr "Zeitoptionen einstellen"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Bei 'Nein' werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
+
+msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
+msgstr "'Ja' aktiviert die automatische Aufnahme für Timeshift im Hintergrund."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Die Stunde der Primetime einstellen."
@@ -19723,6 +19759,9 @@ msgstr "Stream Relay Einstellungsaktionen"
 msgid "Stream Relay URL"
 msgstr "Stream Relay URL"
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr "Stream Relay ist aktiv. Bitte zu einem Sender ohne Stream Relay wechseln."
+
 msgid "Stream Relay port"
 msgstr "Stream Relay Port"
 
@@ -19769,6 +19808,9 @@ msgstr "Striktes DLNA"
 
 msgid "Stripes"
 msgstr "Streifen"
+
+msgid "Style"
+msgstr "Stil"
 
 msgid "Style:"
 msgstr "Farbe:"
@@ -21495,6 +21537,9 @@ msgstr "Zwischen Einfüge- und Überschreibungsmodus umschalten"
 msgid "Toggle selection of the current tag"
 msgstr "Aktuelle Tagauswahl umschalten"
 
+msgid "Toggle selections"
+msgstr "Auswahl umschalten"
+
 msgid "Toggle service name display"
 msgstr "Anzeige des Sendernamens ein- und ausschalten"
 
@@ -22339,6 +22384,9 @@ msgstr "Netzwerkadapter aktivieren"
 #
 msgid "Use key map *"
 msgstr "Tastaturbelegung *"
+
+msgid "Use legacy navigation"
+msgstr "Alte Navigation verwenden"
 
 msgid "Use logarithmic steps"
 msgstr "Logarithmische Schritte verwenden"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-19 17:47+0000\n"
-"PO-Revision-Date: 2024-04-20 20:07+0000\n"
+"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"PO-Revision-Date: 2024-05-07 23:07+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.4-rc\n"
 
 msgid ""
 "\n"
@@ -2652,6 +2652,9 @@ msgstr "Automaattinen hienosäätö käynnistyy..."
 
 msgid "Auto install log"
 msgstr "Automaattinen asennusloki"
+
+msgid "Auto multi-selection"
+msgstr "Automaattinen valinta"
 
 msgid "Auto shut down"
 msgstr "Automaattinen sammutus"
@@ -5944,6 +5947,12 @@ msgstr "Kuvaus"
 msgid "Deselect"
 msgstr "Poista valinta"
 
+msgid "Deselect all"
+msgstr "Poista kaikki valinnat"
+
+msgid "Deselect all lines"
+msgstr "Poista kaikkien rivien valinta"
+
 msgid "Deselect all related files"
 msgstr "Poista kaikkien asiaan liittyvien tiedostojen valinta"
 
@@ -8040,6 +8049,12 @@ msgstr "Tiedostonhallinta Median toiminnot"
 msgid "File Commander Move"
 msgstr "Tiedostonhallinta siirrä"
 
+msgid "File Commander Navigation Actions"
+msgstr "Tiedoston hallinta toiminnot"
+
+msgid "File Commander Selection Actions"
+msgstr "Tiedoston hallinta toiminnot"
+
 msgid "File Commander Settings"
 msgstr "Tiedostonhallinnan asetukset"
 
@@ -9299,9 +9314,6 @@ msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransää
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Jos asetuksena on 'yes', voit käyttää ajansiirtoa vaihtoehtoisten ääniliitännäisten kanssa."
 
-msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
-msgstr "Jos asetuksena on 'kyllä` valinnalla tallennus käynnistyy automaattisesti, kun vaihdat jollekin kanavalle. Näitä tallennuksia ei tarvitse erikseen muuntaa tallenteiksi vaan niistä tulee pysyviä tallenteita suoraan"
-
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jos virransäästötilaa on käytössä , järjestelmä odottaa, kunnes järjestelmän aika on synkronoitu. Vaatimuksista riippuen laitteiden herätystä jatketaan korkeintaan 2 minuutissa."
 
@@ -10205,6 +10217,9 @@ msgstr "Kanavanimestä vasemmalle"
 
 msgid "Left, wrapped"
 msgstr "vasemmalla, rivitä teksti"
+
+msgid "Legacy mode"
+msgstr "Legacy tila"
 
 msgid "Leisure hobbies"
 msgstr "Vapaa-ajan harrastukset"
@@ -14596,6 +14611,9 @@ msgstr "Nollaa tilaus"
 msgid "Reset and renumerate title names"
 msgstr "Nollaa ja uudelleenjärjestä otsikot"
 
+msgid "Reset entries to their default values"
+msgstr "Palauta merkinnät oletus arvoihinsa"
+
 msgid "Reset executable mode (644)"
 msgstr "Palauta suoritettava tila (644)"
 
@@ -15423,6 +15441,9 @@ msgstr "Valitse \"Kyllä\", jos haluat tarkistaa, tulevatko verkkoyhteydet nimet
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
 msgstr "Valitse Kyllä, jos haluat näyttää kaikki kuvat jatkuvasti silmukassa, tai valitse Ei, jos haluat näyttää kaikki kuvat kerran ja lopettaa."
 
+msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr "Valitse Kyllä, jos haluat poistaa moni valinta tilan käytöstä jokaisen toiminnon jälkeen. Valitse Ei, jos haluat jättää valinta tilan aktiiviseksi ja valinnat ennalleen."
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "'Kyllä' valinnalla näytetään pieni TV-kuva EPG:ssä."
 
@@ -15588,6 +15609,9 @@ msgstr "Valitse ”Kyllä” jakaaksesi tehtävät eri toimintoihin."
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Valitse \"Kyllä\" käyttääksesi vaihtoehtoisia GitHubin IP osoitteita. Tämä voi olla hyödyllistä, jos käytät VPN:ää, eikä normaalia ip voi käyttää DNS nimien kautta."
 
+msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
+msgstr "Valitse \"Kyllä\" käyttääksesi perinteistä navigointia, jossa CH+/- vaihtaa aktiivisen sarakkeeseen. Valitse \"Ei\" käyttääksesi uudempaa yhtenäistä navigointi vaihtoehtoa johdonmukaiseen navigointiin muiden ruutujen kanssa, joissa VASEN/OIKEA vaihtaa aktiivisen sarakkeen ja CH+/- sivut ylös ja alas."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jos asetus on kyllä, signaaliarvot (SNR jne.) Lasketaan API V3: sta. Tämä on vanha API-versio, joka on nyt korvattu."
 
@@ -15741,6 +15765,12 @@ msgstr "Valitse toiminto ajastimelle %s:"
 
 msgid "Select additional files to backup"
 msgstr "Valitse varmuuskopioitavat lisätiedostot"
+
+msgid "Select all"
+msgstr "Valitse kaikki"
+
+msgid "Select all lines"
+msgstr "Valitse kaikki rivit"
 
 msgid "Select all related files"
 msgstr "Valitse kaikki liittyvät tiedostot"
@@ -16637,6 +16667,9 @@ msgstr "Määritä tekstin vieritysnopeus etupaneelissa, ohjelmistopohjainen ren
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Määrittää tekstin vieritysnopeuden etupaneelissa."
 
+msgid "Set the style of the channel list."
+msgstr "Aseta kanavalistan tyyli."
+
 msgid "Set the time before checking video source for resolution information."
 msgstr "Määritä aika ennen kuin lähteen resoluutio tarkistetaan."
 
@@ -16688,6 +16721,9 @@ msgstr "Aika asetusten määrittäminen"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Jos asetus ei ole käytössä, tiedosto- ja kansionimien alaviivoja ei näytetä, ja ne korvataan välilyönneillä."
+
+msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
+msgstr "Jos asetuksena on 'kyllä` valinnalla tallennus käynnistyy automaattisesti, kun vaihdat jollekin kanavalle. Näitä tallennuksia ei tarvitse erikseen muuntaa tallenteiksi vaan niistä tulee pysyviä tallenteita suoraan."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Aseta paras katseluaika (tunti)."
@@ -18555,6 +18591,9 @@ msgstr "Striimin välitysasetustoiminnot"
 msgid "Stream Relay URL"
 msgstr "Striimin välitys URL"
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr "Striimin välitys on aktiivinen, vaihda Striimin välitys tyhjään kanavaan."
+
 msgid "Stream Relay port"
 msgstr "Striimin välitys portti"
 
@@ -18601,6 +18640,9 @@ msgstr "Strict DLNA"
 
 msgid "Stripes"
 msgstr "Nauhat"
+
+msgid "Style"
+msgstr "Tyyli"
 
 msgid "Style:"
 msgstr "Tyyli:"
@@ -18928,7 +18970,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 19.4.2024\n"
+"Suomenkielinen käännös: 7.5.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -20226,6 +20268,9 @@ msgstr "Vaihda uuden tekstin asennusosat ensiksi tai ylikirjoita nykyinen teksti
 msgid "Toggle selection of the current tag"
 msgstr "Nykyisen tagin valinnan vaihtaminen"
 
+msgid "Toggle selections"
+msgstr "Vaihda valinnat"
+
 msgid "Toggle service name display"
 msgstr "Näytä palvelu nimi näytöllä"
 
@@ -21014,6 +21059,9 @@ msgstr "Käytä sovitinta"
 
 msgid "Use key map *"
 msgstr "Käytä näppäimistökarttaa *"
+
+msgid "Use legacy navigation"
+msgstr "Käytä vanhaa navigointia"
 
 msgid "Use logarithmic steps"
 msgstr "Käytä logaritmisia askeleita"

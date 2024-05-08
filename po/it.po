@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-19 17:47+0000\n"
-"PO-Revision-Date: 2024-04-19 11:14+0000\n"
+"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"PO-Revision-Date: 2024-05-06 08:28+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.3\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -1963,7 +1963,7 @@ msgid "Add highlighted directory to bookmarks"
 msgstr "Aggiungi cartella selezionata ai segnalibri"
 
 msgid "Add legacy LEFT/RIGHT actions"
-msgstr "Aggiungi azioni SIN/DES legacy"
+msgstr "Aggiungi azioni SIN/DES compatibili"
 
 msgid "Add more slots"
 msgstr "Aggiungi più slot"
@@ -2643,6 +2643,9 @@ msgstr "Avvio messa a fuoco automatica..."
 
 msgid "Auto install log"
 msgstr "Registro di installazione automatica"
+
+msgid "Auto multi-selection"
+msgstr "Selezione multipla automatica"
 
 msgid "Auto shut down"
 msgstr "Spegnimento automatico"
@@ -5934,6 +5937,12 @@ msgstr "Descrizione"
 msgid "Deselect"
 msgstr "Deseleziona"
 
+msgid "Deselect all"
+msgstr "Deseleziona tutto"
+
+msgid "Deselect all lines"
+msgstr "Deseleziona tutte le righe"
+
 msgid "Deselect all related files"
 msgstr "Deseleziona tutti i file correlati"
 
@@ -7971,7 +7980,7 @@ msgid "File Commander"
 msgstr "File Commander"
 
 msgid "File Commander - All tasks are complete."
-msgstr "File Commander - Tutte le attività sono state completate."
+msgstr "File Commander: tutte le attività sono state completate."
 
 msgid "File Commander Actions"
 msgstr "File Commander Azioni"
@@ -8004,10 +8013,10 @@ msgid "File Commander File Viewer"
 msgstr "File Commander Visualizzatore di file"
 
 msgid "File Commander File Viewer Actions"
-msgstr "File Commander Azioni del visualizzatore di file"
+msgstr "File Commander Azioni del Visualizzatore di file"
 
 msgid "File Commander Hash / Checksum Actions"
-msgstr "File Commander Azioni hash/checksum"
+msgstr "File Commander Azioni Hash/checksum"
 
 msgid "File Commander Hashes / Checksums"
 msgstr "File Commander Hash/checksum"
@@ -8016,7 +8025,7 @@ msgid "File Commander Image Viewer"
 msgstr "File Commander Visualizzatore di immagini"
 
 msgid "File Commander Image Viewer Actions"
-msgstr "File Commander Azioni del visualizzatore di immagini"
+msgstr "File Commander Azioni del Visualizzatore di immagini"
 
 msgid "File Commander Information Actions"
 msgstr "File Commander Informazioni azioni"
@@ -8025,22 +8034,28 @@ msgid "File Commander Media Information"
 msgstr "File Commander Informazioni media"
 
 msgid "File Commander Media Information Actions"
-msgstr "File Commander Azioni di informazione media"
+msgstr "File Commander Azioni di Informazione media"
 
 msgid "File Commander Move"
-msgstr "File Comandante Sposta"
+msgstr "File Commander Sposta"
+
+msgid "File Commander Navigation Actions"
+msgstr "File Commander Azioni di Navigazione"
+
+msgid "File Commander Selection Actions"
+msgstr "File Commander Azioni di Selezione"
 
 msgid "File Commander Settings"
-msgstr "Impostazioni File Commander"
+msgstr "File Commander Impostazioni"
 
 msgid "File Commander Text Editor"
 msgstr "File Commander Editor di testo"
 
 msgid "File Commander Text Editor Actions"
-msgstr "File Commander Azioni dell'editor di testo"
+msgstr "File Commander Azioni dell'Editor di testo"
 
 msgid "File Commander settings"
-msgstr "Impostazioni File Commander"
+msgstr "File Commander Impostazioni"
 
 msgid "File System Check"
 msgstr "Controllo file system"
@@ -9287,9 +9302,6 @@ msgstr "Se impostato su 'Sì', gli stessi comandi verranno inviati alla TV per g
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Se impostato su 'sì', consente di usare il timeshift con plugin audio alternativi."
 
-msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
-msgstr "Se impostato su 'SÌ', il timehift sarà automaticamente salvato nella cartella"
-
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Se è abilitata la soluzione di spegnimento attendi fino a quando l'ora di sistema non viene sincronizzata. A seconda delle esigenze, la riattivazione del dispositivo continuerà dopo un massimo di 2 minuti."
 
@@ -10190,6 +10202,9 @@ msgstr "A sinistra del nome del servizio"
 
 msgid "Left, wrapped"
 msgstr "Sinistra, avvolto"
+
+msgid "Legacy mode"
+msgstr "Modalità compatibile"
 
 msgid "Leisure hobbies"
 msgstr "Interessi per il tempo libero"
@@ -14573,6 +14588,9 @@ msgstr "Reimposta ordine"
 msgid "Reset and renumerate title names"
 msgstr "Reimposta e nuova numerazione titoli"
 
+msgid "Reset entries to their default values"
+msgstr "Reimposta voci ai loro valori predefiniti"
+
 msgid "Reset executable mode (644)"
 msgstr "Reimposta modalità eseguibile (644)"
 
@@ -15392,6 +15410,9 @@ msgstr "Seleziona 'Sì' per verificare se le connessioni di rete provengono da i
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
 msgstr "Seleziona 'Sì' per visualizzare continuamente tutte le immagini in un ciclo o selezionare 'No' per visualizzare tutte le immagini una volta e poi interrompere."
 
+msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr "Seleziona 'Sì' per disabilitare la modalità di selezione multipla dopo ogni operazione. Seleziona 'No' per lasciare la modalità di selezione multipla attiva e le selezioni invariate."
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Seleziona 'Sì' per visualizzare una piccola immagine TV (PiG - Picture in Graphic) all'interno dello schermo EPG."
 
@@ -15423,7 +15444,7 @@ msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, us
 msgstr "Seleziona 'Sì' per abilitare il caricamento di bouquet utenti non collegati. Verranno cioè caricati i bouquet utente che non sono inclusi nei file bouquets.tv o bouquets.radio. Questo consente, ad esempio, di creare bouquet che non sono in conflitto o che non vengono sostituiti da bouquet provenienti da Vhannibal, Morpheus883, GioppyGio®."
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
-msgstr "Seleziona 'Sì' per abilitare l'uso dei tasti SINISTRA/DESTRA per spostarsi PaginaSu/PaginaGiù quando i tasti SINISTRA/DESTRA non sono altrimenti definiti. Fornisce la navigazione legacy per gli utenti che la preferiscono."
+msgstr "Seleziona 'Sì' per abilitare l'uso dei tasti SINISTRA/DESTRA per spostarsi PaginaSu/PaginaGiù quando i tasti SINISTRA/DESTRA non sono altrimenti definiti. Fornisce la navigazione compatibile per gli utenti che la preferiscono."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Seleziona 'Sì' per nascondere i canali senza dati EPG."
@@ -15556,6 +15577,9 @@ msgstr "Seleziona 'Sì' per dividere le attività in azioni separate."
 
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Seleziona 'Sì' per utilizzare indirizzi IP alternativi del feed GitHub. Può essere utile se usi una VPN e non è possibile accedere ai feed normali tramite i nomi DNS pubblicati."
+
+msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
+msgstr "Seleziona 'Sì' per utilizzare la navigazione compatibile in cui CH+/- scambia la colonna attiva. Seleziona 'No' per utilizzare la nuova opzione di navigazione unificata per una navigazione coerente con altre schermate in cui SINISTRA/DESTRA scambia la colonna attiva e le pagine CH+/- su e giù nell'elenco."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Seleziona 'Sì' per usare i valori del segnale (SNR, ecc.) calcolati dalla precedente API V3. Questa versione dell'API è stata ora sostituita."
@@ -15708,6 +15732,12 @@ msgstr "Seleziona azione per il timer %s:"
 
 msgid "Select additional files to backup"
 msgstr "Seleziona file aggiuntivi di cui eseguire il backup"
+
+msgid "Select all"
+msgstr "Seleziona tutto"
+
+msgid "Select all lines"
+msgstr "Seleziona tutte le linee"
 
 msgid "Select all related files"
 msgstr "Seleziona tutti i file correlati"
@@ -16600,6 +16630,9 @@ msgstr "Imposta la velocità di scorrimento del testo sul display frontale, usat
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Imposta la velocità di scorrimento del testo sul display anteriore."
 
+msgid "Set the style of the channel list."
+msgstr "Imposta lo stile dell'elenco dei canali."
+
 msgid "Set the time before checking video source for resolution information."
 msgstr "Imposta il tempo prima che avvenga il controllo della risoluzione della sorgente video."
 
@@ -16651,6 +16684,9 @@ msgstr "Imposta opzioni temporali"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Imposta su 'Disabilitato' per sostituire i caratteri di sottolineatura, '_', nei nomi di file e cartella con spazi."
+
+msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
+msgstr "Imposta su 'Sì' per abilitare la registrazione automatica del buffer timeshift in background."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Imposta sulla prima serata desiderata (ora)."
@@ -18518,6 +18554,9 @@ msgstr "Azioni configurazione Stream Relay"
 msgid "Stream Relay URL"
 msgstr "URL Stream Relay"
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr "Stream Relay è attivo, passa a nessun canale Stream Relay."
+
 msgid "Stream Relay port"
 msgstr "Porta Stream Relay"
 
@@ -18564,6 +18603,9 @@ msgstr "DLNA accurato"
 
 msgid "Stripes"
 msgstr "Strisce"
+
+msgid "Style"
+msgstr "Stile"
 
 msgid "Style:"
 msgstr "Stile:"
@@ -20115,10 +20157,10 @@ msgid "Toggle Digital downmix..."
 msgstr "Attiva o disattiva il downmix digitale..."
 
 msgid "Toggle HDMI-In PiP"
-msgstr "Commuta PiP / HDMI-IN"
+msgstr "Commuta HDMI-In PiP"
 
 msgid "Toggle HDMI-In full screen"
-msgstr "Commuta HDMI-IN / Schermo intero"
+msgstr "Commuta HDMI-In schermo intero"
 
 msgid "Toggle LCD LiveTV"
 msgstr "Commuta LCD LiveTV"
@@ -20127,7 +20169,7 @@ msgid "Toggle Log and Status"
 msgstr "Attiva/disattiva registro e stato"
 
 msgid "Toggle PiPzap"
-msgstr "Commuta PipZap"
+msgstr "Attiva/disattiva PiPzap"
 
 msgid "Toggle Picture in Graphics"
 msgstr "Commuta immagine in grafica"
@@ -20145,7 +20187,7 @@ msgid "Toggle auto refresh On/Off"
 msgstr "Attiva/disattiva aggiornamento automatico"
 
 msgid "Toggle between bouquet/EPG lists"
-msgstr "Alternare elenchi bouquet/EPG"
+msgstr "Alterna elenchi bouquet/EPG"
 
 msgid "Toggle display of image information"
 msgstr "Attiva/disattiva visualizzazione informazioni sull'immagine"
@@ -20182,6 +20224,9 @@ msgstr "Commuta fra inserimento e sovrascrittura del testo"
 
 msgid "Toggle selection of the current tag"
 msgstr "Attiva/disattiva la selezione del tag attuale"
+
+msgid "Toggle selections"
+msgstr "Attiva/disattiva selezioni"
 
 msgid "Toggle service name display"
 msgstr "Attiva/disattiva la visualizzazione del nome del servizio"
@@ -20968,6 +21013,9 @@ msgstr "Usa l'Interfaccia"
 
 msgid "Use key map *"
 msgstr "Usa mappa dei tasti *"
+
+msgid "Use legacy navigation"
+msgstr "Usa navigazione compatibile"
 
 msgid "Use logarithmic steps"
 msgstr "Usa passi logaritmici"
