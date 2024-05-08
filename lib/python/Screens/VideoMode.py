@@ -399,16 +399,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.session.openWithCallback(self.confirm, MessageBox, _("Is this video mode ok?"), MessageBox.TYPE_YESNO, timeout=20, default=False)
 
 	def getCurrent_mode(self):
-		try:
-			if BoxInfo.getItem("AmlogicFamily"):
-				f = open("/sys/class/display/mode")
-			else:
-				f = open("/proc/stb/video/videomode")
-			mode = f.read()[:-1].replace("\n", "")
-			f.close()
-		except Exception:
-			return None
-		return mode
+		mode = eAVControl.getInstance().getVideoMode("")
+		return mode or None
 
 	# for summary:
 	def changedEntry(self):
