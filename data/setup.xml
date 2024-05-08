@@ -737,6 +737,10 @@
 		<item text="Latitude" description="Configure the latitude of your location.">config.sat.diseqcb</item>
 		<item text="Use power measurement" description="When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner).">config.sat.diseqcc</item>
 	</setup>
+	<setup key="Skin" title="Skin Settings">
+		<item text="GUI Skin *" description="Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin.">config.skin.guiSkin</item>
+		<item text="LCD/Front panel *" description="Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin." requires="LCDSKINSetup">config.skin.lcdSkin</item>
+	</setup>
 	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
 		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the SleepTimer activates.">config.usage.sleepTimer</item>
 		<item text="SleepTimer action" description="Select the type of shutdown desired when the SleepTimer activates.">config.usage.sleepTimerAction</item>
