@@ -28,7 +28,6 @@ from Components.ServiceEventTracker import ServiceEventTracker
 # from Components.Storage import Harddisk, storageManager
 from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen, ScreenSummary
@@ -88,7 +87,7 @@ BoxInfo.setItem("InformationDistributionWelcome", welcome)
 # End of marked code.
 
 
-class InformationBase(Screen, HelpableScreen):
+class InformationBase(Screen):
 	skin = """
 	<screen name="Information" title="Information" position="center,center" size="1020,600" resolution="1280,720">
 		<widget name="Image" position="0,0" size="0,0" conditional="Image" />
@@ -117,8 +116,7 @@ class InformationBase(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["Information"]
 		self["information"] = ScrollLabel()
 		self["key_red"] = StaticText(_("Close"))
@@ -1220,7 +1218,7 @@ class NetworkInformation(InformationBase):
 		self["information"].setText("\n".join(info))
 
 
-class PictureInformation(Screen, HelpableScreen):
+class PictureInformation(Screen):
 	skin = """
 	<screen name="PictureInformation" title="Picture Information" position="center,center" size="950,560" resolution="1280,720">
 		<widget name="Image" position="0,0" size="0,0" conditional="Image" />
@@ -1241,8 +1239,7 @@ class PictureInformation(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Picture Information"))
 		self["name"] = Label()
 		self["picture"] = Pixmap()

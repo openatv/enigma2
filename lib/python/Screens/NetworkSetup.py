@@ -25,7 +25,6 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing
 from Screens.Screen import Screen
@@ -37,10 +36,9 @@ MODULE_NAME = __name__.split(".")[-1]
 BASE_GROUP = "packagegroup-base"
 
 
-class NetworkAdapterSelection(Screen, HelpableScreen):
+class NetworkAdapterSelection(Screen):
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Network Settings"))
 		self.wlan_errortext = _("No working wireless network adapter found.\nPlease verify that you have attached a compatible WLAN device and your network is configured correctly.")
 		self.lan_errortext = _("No working local network adapter found.\nPlease verify that you have attached a network cable and your network is configured correctly.")
@@ -384,10 +382,9 @@ class NameserverSetup(DNSSettings):
 		DNSSettings.__init__(self, session=session)
 
 
-class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
+class NetworkMacSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("MAC Address Settings"))
 		self.curMac = self.getmac("eth0")
 		self.getConfigMac = NoSave(ConfigMacText(default=self.curMac))
@@ -443,10 +440,9 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.session.openWithCallback(self.close, MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
 
 
-class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
+class AdapterSetup(Screen, ConfigListScreen):
 	def __init__(self, session, networkinfo, essid=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Adapter Settings"))
 		if isinstance(networkinfo, (list, tuple)):
 			self.iface = networkinfo[0]
@@ -813,10 +809,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		return line
 
 
-class AdapterSetupConfiguration(Screen, HelpableScreen):
+class AdapterSetupConfiguration(Screen):
 	def __init__(self, session, iface):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Network Settings"))
 		self.iface = iface
 		self.restartLanRef = None
@@ -1523,10 +1518,9 @@ class NetworkAdapterTest(Screen):
 			iStatus.stopWlanConsole()
 
 
-class NetworkMountsMenu(Screen, HelpableScreen):
+class NetworkMountsMenu(Screen):
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Mount Settings"))
 		self.onChangedEntry = []
 		self.mainmenu = self.genMainMenu()

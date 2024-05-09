@@ -35,7 +35,6 @@ from Screens.ButtonSetup import ButtonSetupActionMap, InfoBarButtonSetup, getBut
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EpgSelection import EPGSelection
 from Screens.EventView import EventViewEPGSelect
-from Screens.HelpMenu import HelpableScreen
 import Screens.InfoBar
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
@@ -127,13 +126,12 @@ def parseNextEvent(list, isZapTimer=False):  # IanSav: This is only used in once
 # JB: These 2 functions can probably go later and be a child function inside of doInstantTimer.
 
 
-class ChannelSelectionBase(Screen, HelpableScreen):
+class ChannelSelectionBase(Screen):
 	def __init__(self, session):
 		def digitHelp():
 			return _("LCN style QuickSelect entry selection") if config.usage.show_channel_jump_in_servicelist.value == "quick" else _("SMS style QuickSelect entry selection")
 
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self["key_red"] = StaticText(_("All Services"))
 		self["key_green"] = StaticText(_("Reception Lists"))
 		self["key_yellow"] = StaticText(_("Providers"))
@@ -1215,14 +1213,13 @@ class ChannelSelectionEdit:
 			self.cancel()
 
 
-class ChannelContextMenu(Screen, HelpableScreen):
+class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
 		def appendWhenValid(current, menu, args, level=0, key="bullet"):
 			if current and current.valid() and level <= config.usage.setup_level.index:
 				menu.append(ChoiceEntryComponent(key, args))
 
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Channel Selection Context Menu"))
 		# raise Exception("[ChannelSelection] We need a better summary screen here!")
 		self.csel = csel
@@ -3224,10 +3221,9 @@ class SimpleChannelSelection(ChannelSelectionBase):
 		self.showFavourites()
 
 
-class BouquetSelector(Screen, HelpableScreen):
+class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Bouquet Selector"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Select"))
@@ -3273,7 +3269,7 @@ class EpgBouquetSelector(EPGBouquetSelector):
 	pass
 
 
-class HistoryZapSelector(Screen, HelpableScreen):
+class HistoryZapSelector(Screen):
 	# HISTORY_SPACER = 0
 	# HISTORY_MARKER = 1
 	# HISTORY_SERVICE_NAME = 2
@@ -3284,8 +3280,7 @@ class HistoryZapSelector(Screen, HelpableScreen):
 	HISTORY_SERVICE_REFERENCE = 7
 
 	def __init__(self, session, serviceReferences, markedItem=0, selectedItem=0):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("History Zap"))
 		serviceHandler = eServiceCenter.getInstance()
 		historyList = []

@@ -17,7 +17,6 @@ from Components.UsageConfig import preferredTimerPath
 from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import EPGJumpTime
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Screen import Screen
@@ -46,15 +45,14 @@ epgTypes = {
 }
 
 
-class EPGSelection(Screen, HelpableScreen):
+class EPGSelection(Screen):
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
 	ZAP = 1
 
 	def __init__(self, session, service=None, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None, StartBouquet=None, StartRef=None, bouquets=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("EPG Selection"))
 		self.zapFunc = zapFunc
 		self.serviceChangeCB = serviceChangeCB

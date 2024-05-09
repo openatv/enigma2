@@ -19,7 +19,6 @@ from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen
 #from Screens.InfoBar import InfoBar
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
@@ -931,10 +930,9 @@ class CCcamInfoInfoScreen(Screen):
 #############################################################
 
 
-class CCcamShareViewMenu(Screen, HelpableScreen):
+class CCcamShareViewMenu(Screen):
 	def __init__(self, session, url):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("CCcam Share Info"))
 		self.url = url
 		self.list = []

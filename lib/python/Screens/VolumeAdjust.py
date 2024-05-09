@@ -10,7 +10,6 @@ from Components.config import ConfigSelectionNumber, ConfigSubsection, ConfigYes
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
 from Screens.ChannelSelection import ChannelSelectionBase, OFF
-from Screens.HelpMenu import HelpableScreen
 from Screens.Setup import Setup
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, moveFiles, resolveFilename
 
@@ -151,7 +150,7 @@ class VolumeAdjust(Setup):
 		return -1
 
 
-class SmallChannelSelection(ChannelSelectionBase, HelpableScreen):
+class SmallChannelSelection(ChannelSelectionBase):
 	skin = """
 	<screen name="SmallChannelSelection" title="Volume Adjust Service Selection" position="center,center" size="560,430" resolution="1280,720">
 		<widget name="list" position="0,0" size="e,e-50" scrollbarMode="showOnDemand" />
@@ -163,7 +162,6 @@ class SmallChannelSelection(ChannelSelectionBase, HelpableScreen):
 
 	def __init__(self, session, title):
 		ChannelSelectionBase.__init__(self, session)
-		HelpableScreen.__init__(self)
 		self.skinName = ["SmallChannelSelection", "mySmallChannelSelection"]  # The screen "mySmallChannelSelection" is for legacy support only.
 		self.setTitle(_("Volume Adjust Service Selection"))
 		self.onShown.append(self.__onExecCallback)

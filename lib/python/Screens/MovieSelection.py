@@ -24,7 +24,6 @@ from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
-from Screens.HelpMenu import HelpableScreen
 import Screens.InfoBar
 from Screens.LocationBox import MovieLocationBox
 from Screens.MessageBox import MessageBox
@@ -230,16 +229,15 @@ class SelectionEventInfo:
 		self["Service"].newService(serviceref)
 
 
-class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
+class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 	# SUSPEND_PAUSES actually means "please call my pauseService()".
 
 	def __init__(self, session, selectedmovie=None, timeshiftEnabled=False):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, enableHelp=True)
 		if config.movielist.useslim.value:
 			self.skinName = ["MovieSelectionSlim", "MovieSelection"]
 		else:
 			self.skinName = "MovieSelection"
-		HelpableScreen.__init__(self)
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		if not timeshiftEnabled:

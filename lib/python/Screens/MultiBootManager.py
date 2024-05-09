@@ -11,7 +11,6 @@ from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.Console import Console as ConsoleScreen
-from Screens.HelpMenu import HelpableScreen
 from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -34,7 +33,7 @@ MOUNT_FSCK_ORDER = 5
 MAX_MOUNT = 6
 
 
-class MultiBootManager(Screen, HelpableScreen):
+class MultiBootManager(Screen):
 	# NOTE: This embedded skin will be affected by the Choicelist parameters and ChoiceList font in the current skin!  This screen should be skinned.
 	# 	See Components/ChoiceList.py to see the hard coded defaults for which this embedded screen has been designed.
 	skin = """
@@ -59,8 +58,7 @@ class MultiBootManager(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, *args):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("MultiBoot Manager"))
 		self["slotlist"] = ChoiceList([ChoiceEntryComponent("", (_("Loading slot information, please wait..."), "Loading"))])
 		self["description"] = Label(_("Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"))
@@ -268,7 +266,7 @@ class MultiBootManager(Screen, HelpableScreen):
 		self.selectionChanged()
 
 
-class KexecInit(Screen, HelpableScreen):
+class KexecInit(Screen):
 	skin = """
 	<screen name="KexecInit" title="Kexec MultiBoot Manager" position="center,center" size="900,600" resolution="1280,720">
 		<widget name="description" position="0,0" size="e,e-50" font="Regular;20" />
@@ -284,8 +282,7 @@ class KexecInit(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, *args):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Kexec MultiBoot Manager"))
 		self["key_red"] = StaticText()
 		self["key_green"] = StaticText()

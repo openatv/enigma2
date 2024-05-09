@@ -18,7 +18,6 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Processing import Processing
@@ -133,7 +132,7 @@ config.pluginfilter.weblinks = ConfigYesNo(default=True)
 config.pluginfilter.userfeed = ConfigText(default="http://", fixed_size=False)
 
 
-class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen):
+class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 	skin = """
 	<screen name="PluginBrowser" title="Plugin Browser" position="center,center" size="1000,535" resolution="1280,720">
 		<widget source="pluginList" render="Listbox" position="0,0" size="e,450" conditional="pluginList" listOrientation="vertical" scrollbarMode="showOnDemand">
@@ -192,8 +191,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 
 	def __init__(self, session):
 		self.layout = "pluginList" if config.usage.pluginListLayout.value == PLUGIN_LIST else "pluginGrid"
-		Screen.__init__(self, session, mandatoryWidgets=[self.layout])
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, mandatoryWidgets=[self.layout], enableHelp=True)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
 		self.skinName = ["PluginBrowserList" if config.usage.pluginListLayout.value == PLUGIN_LIST else "PluginBrowserGrid", "PluginBrowser"]
 		self.setTitle(_("Plugin Browser"))
@@ -749,7 +747,7 @@ class PluginBrowserSummary(ScreenSummary):
 		self["value"].setText(description)
 
 
-class PackageAction(Screen, HelpableScreen, NumericalTextInput):
+class PackageAction(Screen, NumericalTextInput):
 	skin = """
 	<screen name="PackageAction" title="Plugin Browser Action" position="center,center" size="900,585" resolution="1280,720">
 		<widget source="plugins" render="Listbox" position="0,0" size="e,500" scrollbarMode="showOnDemand">
@@ -836,8 +834,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 	INFO_UPGRADE = 6
 
 	def __init__(self, session, mode=MODE_REMOVE):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
 		self.skinName = ["PackageAction", "PluginAction"]
 		self.modeData = self.MANAGE_OPTIONS.get(mode, self.MANAGE_OPTIONS[self.MODE_MANAGE])
@@ -1484,7 +1481,7 @@ class PackageActionSummary(ScreenSummary):
 			self["description"].setText("")
 
 
-class PackageActionLog(Screen, HelpableScreen):
+class PackageActionLog(Screen):
 	skin = """
 	<screen name="PackageActionLog" title="Plugin Action Log" position="center,center" size="950,590" resolution="1280,720">
 		<widget name="log" position="0,0" size="e,e-50" font="Regular;20" />
@@ -1497,8 +1494,7 @@ class PackageActionLog(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, logData):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["PackageActionLog", "PluginActionLog"]
 		self.setTitle(_("Plugin Action Log"))
 		self["log"] = ScrollLabel()

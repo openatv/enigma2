@@ -6,7 +6,7 @@ from Components.Opkg import OpkgComponent
 from Components.Pixmap import MultiPixmap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen, ShowRemoteControl
+from Screens.HelpMenu import ShowRemoteControl
 from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing
 from Screens.Screen import Screen, ScreenSummary
@@ -30,7 +30,7 @@ config.locales.localesSortBy = ConfigSelection(default="2", choices=[
 ])
 
 
-class LocaleSelection(Screen, HelpableScreen):
+class LocaleSelection(Screen):
 	LIST_FLAGICON = 0
 	LIST_NATIVE = 1
 	LIST_NAME = 2
@@ -87,8 +87,7 @@ class LocaleSelection(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self["key_menu"] = StaticText()
 		self["key_info"] = StaticText()
 		self["key_red"] = StaticText()

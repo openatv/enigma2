@@ -12,7 +12,6 @@ from Components.SystemInfo import BoxInfo
 
 from Screens.ChannelSelection import ChannelSelectionBase
 from Screens.ChoiceBox import ChoiceBox
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.QuadPiP import QuadPiP
 from Screens.Screen import Screen
@@ -392,7 +391,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 		self.close(self.getNewChannel())
 
 
-class QuadPiPChannelSelection(Screen, HelpableScreen):
+class QuadPiPChannelSelection(Screen):
 	skin = """
 		<screen position="%s,%s" size="%d,%d">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="%d,%d" size="140,40" alphatest="on" />
@@ -422,8 +421,7 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 		"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Quad PiP Channel Selection"))
 
 		dw = self.session.desktop.size().width()
@@ -624,7 +622,7 @@ class FocusShowHide:
 			self.showFocus()
 
 
-class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
+class QuadPipScreen(Screen, FocusShowHide):
 	skin = """
 		<screen position="0,0" size="%d,%d" backgroundColor="transparent" flags="wfNoBorder">
 			<widget name="ch1" position="240,240" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" borderWidth="2"/>
@@ -640,9 +638,8 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 	def __init__(self, session):
 		self.session = session
 		self.session.qPips = None
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, enableHelp=True)
 		FocusShowHide.__init__(self)
-		HelpableScreen.__init__(self)
 		self.setTitle(_("Quad PiP Screen"))
 
 		self["actions"] = HelpableActionMap(self, "QuadPipSetupActions",

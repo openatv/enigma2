@@ -4,7 +4,6 @@ from Components.InputDevice import inputDevices, keyboard, iRcTypeControl
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
@@ -12,10 +11,9 @@ from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 
 
-class InputDeviceSelection(Screen, HelpableScreen):
+class InputDeviceSelection(Screen):
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Select input device"))
 		self.edittext = _("Press OK to edit the settings.")
 		self["key_red"] = StaticText(_("Close"))
@@ -107,7 +105,7 @@ class KeyboardSelection(Setup):
 				return Setup.keySave(self)
 			config.inputDevices.keyboardsIndex.value = self.initialKeyboardsIndex
 			print("[InputDeviceSetup] Keyboard selection rejected by user, returning to initial selection.")
-			keyboard.loadKeyboard(self.initialKeyboardsIndex) 
+			keyboard.loadKeyboard(self.initialKeyboardsIndex)
 			for item in self["config"].getList():
 				self["config"].invalidate(item)
 
@@ -115,7 +113,7 @@ class KeyboardSelection(Setup):
 		if index == self.initialKeyboardsIndex:
 			self.close()  # Use 'Setup.keySave(self)' if there are other settings to be saved.
 		else:
-			keyboard.loadKeyboard(index) 
+			keyboard.loadKeyboard(index)
 			self.session.openWithCallback(keySaveCallback, MessageBox, _("Is the keyboard working?"), MessageBox.TYPE_YESNO, timeout=30, default=True, timeout_default=False, windowTitle=self.getTitle())
 
 

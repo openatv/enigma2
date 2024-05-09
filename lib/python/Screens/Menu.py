@@ -13,7 +13,6 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.HelpMenu import HelpableScreen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
@@ -109,7 +108,7 @@ def menuEntryName(name):
 	return name if len(nameSplit) < 2 else "\n".join(nameSplit)
 
 
-class Menu(Screen, HelpableScreen, ProtectedScreen):
+class Menu(Screen, ProtectedScreen):
 
 	skin = """
 	<screen name="Menu" title="Menu"  position="center,center" size="980,600" resolution="1280,720">
@@ -175,8 +174,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 	def __init__(self, session, parentMenu):
 		self.session = session
 		self.parentMenu = parentMenu
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.menuList = []
 		self["menu"] = List(self.menuList)
 		self["menu"].onSelectionChanged.append(self.selectionChanged)

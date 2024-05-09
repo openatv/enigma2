@@ -7,7 +7,6 @@ from Components.config import config
 from Components.SelectionList import SelectionList
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -100,7 +99,7 @@ class TagManager():
 		return selfTags
 
 
-class TagEditor(Screen, HelpableScreen, TagManager):
+class TagEditor(Screen, TagManager):
 	skin = """
 	<screen name="TagEditor" title="Tag Editor" position="center,center" size="810,395" resolution="1280,720">
 		<widget name="taglist" position="10,10" size="790,315" scrollbarMode="showOnDemand" transparent="1" />
@@ -113,8 +112,7 @@ class TagEditor(Screen, HelpableScreen, TagManager):
 	</screen>"""
 
 	def __init__(self, session, tags=None, service=None, parent=None):
-		Screen.__init__(self, session, parent=parent)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, parent=parent, enableHelp=True)
 		TagManager.__init__(self)
 		self.setTitle(_("Tag Editor"))
 		if isinstance(service, eServiceReference):
