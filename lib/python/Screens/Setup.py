@@ -17,7 +17,7 @@ setupModTimes = {}
 
 
 class Setup(ConfigListScreen, Screen):
-	ALLOW_SUSPEND = False  # Not allow users to shutdown from Setup based screens.
+	ALLOW_SUSPEND = False  # Do not allow shutdown from Setup based screens.
 
 	skin = """
 	<screen name="Setup" position="center,center" size="980,570" resolution="1280,720">

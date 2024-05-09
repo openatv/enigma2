@@ -3030,7 +3030,6 @@ class RadioInfoBar(Screen):
 
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase, SelectionEventInfo):
-
 	def __init__(self, session, infobar):
 		ChannelSelectionBase.__init__(self, session)
 		InfoBarBase.__init__(self)
