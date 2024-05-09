@@ -1,17 +1,15 @@
 from gettext import dgettext
-from os.path import getmtime, isfile, join as pathjoin
+from os.path import getmtime, join as pathjoin
 from xml.etree.ElementTree import fromstring
 
 from Components.config import ConfigBoolean, ConfigNothing, ConfigSelection, config
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-from Components.Pixmap import Pixmap
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename
-from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -20,7 +18,7 @@ setupModTimes = {}
 
 
 class Setup(ConfigListScreen, Screen, HelpableScreen):
-	# ALLOW_SUSPEND = True  # Enable to allow users to go to Standby from Setup based screens.
+	ALLOW_SUSPEND = False  # Not allow users to shutdown from Setup based screens.
 
 	skin = """
 	<screen name="Setup" position="center,center" size="980,570" resolution="1280,720">

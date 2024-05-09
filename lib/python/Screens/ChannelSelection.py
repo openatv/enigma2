@@ -3033,7 +3033,6 @@ class RadioInfoBar(Screen):
 
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase, SelectionEventInfo):
-	ALLOW_SUSPEND = True
 
 	def __init__(self, session, infobar):
 		ChannelSelectionBase.__init__(self, session)

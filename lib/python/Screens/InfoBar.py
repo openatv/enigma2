@@ -50,7 +50,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarSleepTimer, InfoBarOpenOnTopHelper, InfoBarHandleBsod,
 	InfoBarHdmi, InfoBarButtonSetup, Screen):
 
-	ALLOW_SUSPEND = True
 	instance = None
 
 	def __init__(self, session):
@@ -499,7 +498,6 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarHdmi, InfoBarButtonSetup):
 
 	ENABLE_RESUME_SUPPORT = True
-	ALLOW_SUSPEND = True
 
 	instance = None
 

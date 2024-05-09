@@ -110,7 +110,6 @@ def menuEntryName(name):
 
 
 class Menu(Screen, HelpableScreen, ProtectedScreen):
-	ALLOW_SUSPEND = True
 
 	skin = """
 	<screen name="Menu" title="Menu"  position="center,center" size="980,600" resolution="1280,720">
