@@ -14,8 +14,11 @@ from Tools.LoadPixmap import LoadPixmap
 
 
 class Screen(dict):
-	NO_SUSPEND, SUSPEND_STOPS, SUSPEND_PAUSES = list(range(3))
-	ALLOW_SUSPEND = NO_SUSPEND
+	NO_SUSPEND = False
+	SUSPEND_STOPS = True  # This does not appear to be used!
+	SUSPEND_PAUSES = True
+
+	ALLOW_SUSPEND = False
 	globalScreen = None
 
 	def __init__(self, session, parent=None, mandatoryWidgets=None):
