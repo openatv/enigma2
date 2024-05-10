@@ -1133,6 +1133,18 @@ std::vector<std::string> split(std::string s, const std::string& separator)
 	return tokens;
 }
 
+void join_str(const std::vector<std::string>& v, char c, std::string& s) {
+
+   s.clear();
+
+   for (std::vector<std::string>::const_iterator p = v.begin();
+        p != v.end(); ++p) {
+      s += *p;
+      if (p != v.end() - 1)
+        s += c;
+   }
+}
+
 int strcasecmp(const std::string& s1, const std::string& s2)
 {
 	return ::strcasecmp(s1.c_str(), s2.c_str());
