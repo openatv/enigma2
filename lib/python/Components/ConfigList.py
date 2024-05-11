@@ -396,7 +396,7 @@ class ConfigListScreen:
 
 		currConfig = self["config"].getCurrent()
 		if currConfig and currConfig[1].enabled and hasattr(currConfig[1], "description"):
-			self.session.openWithCallback(keyMenuCallback, ChoiceBox, text="", choiceList=list(zip(currConfig[1].description, currConfig[1].choices)), selection=currConfig[1].getIndex(), buttonList=[], windowTitle=currConfig[0])
+			self.session.openWithCallback(keyMenuCallback, ChoiceBox, text=self.getCurrentDescription(), choiceList=list(zip(currConfig[1].description, currConfig[1].choices)), selection=currConfig[1].getIndex(), buttonList=[], windowTitle=currConfig[0])
 
 	def keyTop(self):
 		self["config"].goTop()
