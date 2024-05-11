@@ -15,10 +15,9 @@ from Tools.LoadPixmap import LoadPixmap
 
 
 class Screen(dict):
-	NO_SUSPEND = False  # Deprecated feature needed for plugins
-	SUSPEND_STOPS = True  # Deprecated feature needed for plugins
-	SUSPEND_PAUSES = True  # Deprecated feature needed for plugins
-
+	NO_SUSPEND = False  # Deprecated feature that may be needed for some plugins.
+	SUSPEND_STOPS = True  # Deprecated feature that may be needed for some plugins.
+	SUSPEND_PAUSES = True  # Deprecated feature that may be needed for some plugins.
 	ALLOW_SUSPEND = True
 	globalScreen = None
 

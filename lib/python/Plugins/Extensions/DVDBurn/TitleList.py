@@ -2,7 +2,6 @@ from . import Project, TitleCutter, TitleProperties, ProjectSettings, MediumTool
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.HelpMenu import HelpableScreen
 from Screens.TaskView import JobView
 from Components.Task import job_manager
 from Components.ActionMap import HelpableActionMap, ActionMap
@@ -15,7 +14,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 MODE_DVD, MODE_BLUDISC = list(range(2))
 
 
-class TitleList(Screen, HelpableScreen):
+class TitleList(Screen):
 	skin = """
 		<screen name="TitleList" position="center,center" size="560,470" title="Burn Tool" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -57,8 +56,7 @@ class TitleList(Screen, HelpableScreen):
 		</screen>"""
 
 	def __init__(self, session, project=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 
 		self["titleactions"] = HelpableActionMap(self, "TitleList",
 			{

@@ -7,7 +7,6 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename
 
@@ -17,8 +16,8 @@ domSetups = {}
 setupModTimes = {}
 
 
-class Setup(ConfigListScreen, Screen, HelpableScreen):
-	ALLOW_SUSPEND = False  # Not allow users to shutdown from Setup based screens.
+class Setup(ConfigListScreen, Screen):
+	ALLOW_SUSPEND = False  # Do not allow shutdown from Setup based screens.
 
 	skin = """
 	<screen name="Setup" position="center,center" size="980,570" resolution="1280,720">
@@ -54,8 +53,7 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, setup, plugin=None, PluginLanguageDomain=None):
-		Screen.__init__(self, session, mandatoryWidgets=["config", "footnote", "description"])
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, mandatoryWidgets=["config", "footnote", "description"], enableHelp=True)
 		self.setImage(setup, "setup")
 		self.setup = setup
 		self.plugin = plugin

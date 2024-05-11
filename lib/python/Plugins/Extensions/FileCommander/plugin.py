@@ -32,7 +32,6 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Screens.DVD import DVDPlayer
-from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBar import InfoBar
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
@@ -163,7 +162,7 @@ class StatInfo:
 		return False
 
 
-class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
+class FileCommander(Screen, NumericalTextInput, StatInfo):
 	skin = """
 	<screen name="FileCommander" title="File Commander" position="center,center" size="1200,600" resolution="1280,720">
 		<widget source="headleft" render="Listbox" position="0,0" size="590,75" foregroundColor="#00fff000" selection="0">
@@ -234,8 +233,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	}
 
 	def __init__(self, session, pathLeft="", pathRight="", leftActive=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
 		StatInfo.__init__(self)
 		self.multiSelect = None
@@ -1869,7 +1867,7 @@ class FileCommanderSetup(Setup):
 			configItem.value = path
 
 
-class FileCommanderData(Screen, HelpableScreen):
+class FileCommanderData(Screen):
 	skin = """
 	<screen name="FileCommanderData" title="File Commander Data" position="center,center" size="1000,500" resolution="1280,720">
 		<widget name="data" position="0,0" size="1000,450" conditional="data" font="Regular;20" splitPosition="300" />
@@ -1897,8 +1895,7 @@ class FileCommanderData(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, data):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["FileCommanderData"]
 		if not isinstance(data, dict):
 			print("[FileCommander] Error: FileCommanderData screen requires a formatting dictionary!")
@@ -2140,7 +2137,7 @@ class FileCommanderArchiveView(FileCommanderArchiveBase):
 		self["navigationActions"].setEnabled(self["data"].isNavigationNeeded())
 
 
-class FileCommanderFileViewer(Screen, HelpableScreen):
+class FileCommanderFileViewer(Screen):
 	skin = """
 	<screen name="FileCommanderFileViewer" title="File Commander File Viewer" position="40,80" size="1200,610" resolution="1280,720">
 		<widget name="path" position="0,0" size="1030,50" font="Regular;20" foregroundColor="#00fff000" valign="center" />
@@ -2160,8 +2157,7 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, path, isText=False, initialView="H"):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["FileCommanderFileViewer"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander File Viewer"))
@@ -2270,7 +2266,7 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 			self["textAction"].setEnabled(False)
 
 
-class FileCommanderImageViewer(Screen, HelpableScreen):
+class FileCommanderImageViewer(Screen):
 	skin = """
 	<screen name="FileCommanderImageViewer" title="File Commander Image Viewer" position="fill" flags="wfNoBorder" resolution="1280,720">
 		<eLabel position="fill" backgroundColor="#00000000" />
@@ -2308,8 +2304,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 	]
 
 	def __init__(self, session, fileList, index, path, filename):  # DEBUG: path is not needed!
-		Screen.__init__(self, session, mandatoryWidgets=["infolabels"])
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, mandatoryWidgets=["infolabels"], enableHelp=True)
 		self.skinName = ["FileCommanderImageViewer"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Image Viewer"))
@@ -2648,7 +2643,7 @@ class FileCommanderMediaInfo(FileCommanderData):
 			self.processArguments(None, ["/usr/bin/ffprobe", "/usr/bin/ffprobe", "-hide_banner", self.path], None, displayFFprobe)
 
 
-class FileCommanderTextEditor(Screen, HelpableScreen):
+class FileCommanderTextEditor(Screen):
 	skin = """
 	<screen name="FileCommanderTextEditor" title="File Commander Text Editor" position="40,80" size="1200,610" resolution="1280,720">
 		<widget name="path" position="0,0" size="1030,50" font="Regular;20" foregroundColor="#00fff000" valign="center" />
@@ -2669,8 +2664,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, path):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["FileCommanderTextEditor"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Text Editor"))

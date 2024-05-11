@@ -17,7 +17,6 @@ from Components.ProgressBar import ProgressBar
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.MultiBootManager import MultiBootManager
 from Screens.Screen import Screen
@@ -37,7 +36,7 @@ def checkImageFiles(files):
 	return len([x for x in files if "kernel" in x and ".bin" in x or x in ("zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.tar.bz2", "rootfs.ubi", "rootfs.bin", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2")]) >= 2
 
 
-class FlashManager(Screen, HelpableScreen):
+class FlashManager(Screen):
 	skin = """
 	<screen name="FlashManager" title="Flash Manager" position="center,center" size="900,485" resolution="1280,720">
 		<widget name="list" position="0,0" size="e,400" scrollbarMode="showOnDemand" />
@@ -60,8 +59,7 @@ class FlashManager(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["FlashManager", "FlashOnline"]
 		self.imageFeed = "openATV"
 		self.setTitle(_("Flash Manager - %s Images") % self.imageFeed)
@@ -314,7 +312,7 @@ class FlashManager(Screen, HelpableScreen):
 		self["deleteActions"].setEnabled(canDelete)
 
 
-class FlashImage(Screen, HelpableScreen):
+class FlashImage(Screen):
 	skin = """
 	<screen name="FlashImage" title="Flash Image" position="center,center" size="720,225" resolution="1280,720">
 		<widget name="header" position="0,0" size="e,50" font="Regular;35" valign="center" />
@@ -323,8 +321,7 @@ class FlashImage(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, imageName, source, downloadOnly=False):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.imageName = imageName
 		self.source = source
 		self.setTitle(_("Flash Image"))

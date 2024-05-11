@@ -6,7 +6,6 @@ from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation
 
 from ServiceReference import ServiceReference
 from Screens.Screen import Screen
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.ChoiceBox import ChoiceBox
@@ -100,12 +99,12 @@ class MediaPlayerInfoBar(Screen):
 		self.skinName = "MoviePlayer"
 
 
-class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarAudioSelection, InfoBarAspectSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen, InfoBarResolutionSelection):
+class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarAudioSelection, InfoBarAspectSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, InfoBarResolutionSelection):
 	ENABLE_RESUME_SUPPORT = True
 	FLAG_CENTER_DVB_SUBS = 2048
 
 	def __init__(self, session, args=None):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, enableHelp=True)
 		InfoBarAudioSelection.__init__(self)
 		InfoBarAspectSelection.__init__(self)
 		InfoBarCueSheetSupport.__init__(self, actionmap="MediaPlayerCueSheetActions")
@@ -113,7 +112,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		InfoBarBase.__init__(self)
 		InfoBarScreenSaver.__init__(self)
 		InfoBarSubtitleSupport.__init__(self)
-		HelpableScreen.__init__(self)
 		InfoBarResolutionSelection.__init__(self)
 		self.summary = None
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()

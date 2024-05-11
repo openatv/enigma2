@@ -318,7 +318,7 @@ class NumberActionMap(ActionMap):
 # functions.  The classic ActionMap is then passed to the
 # ActionMapconstructor,	the collected help strings (with correct
 # context, action) is added to the screen's "helpList", which will
-# be picked up by the "HelpableScreen".
+# be picked up by the "Screen".
 #
 class HelpableActionMap(ActionMap):
 	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
