@@ -17,7 +17,7 @@ from Screens.Screen import Screen
 from Tools.LoadPixmap import LoadPixmap
 
 
-class HelpableScreen:  # Deprecated stub class for old screens and plugins
+class HelpableScreen:  # Stub for deprecated manual help definitions used by old screens and plugins.
 	def __init__(self):
 		if "helpActions" not in self:
 			self["helpActions"] = ActionMap(["HelpActions"], {
