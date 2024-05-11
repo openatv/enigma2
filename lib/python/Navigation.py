@@ -36,10 +36,8 @@ class Navigation:
 	def __init__(self, wakeupData=None):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
-		NavigationInstance.instance = self
+		NavigationInstance.instance = self  # This is needed to prevent circular imports
 		self.ServiceHandler = eServiceCenter.getInstance()
-		import Navigation as Nav  # Do we really need this?
-		Nav.navcore = self
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.dispatchEvent)
 		self.pnav.m_record_event.get().append(self.dispatchRecordEvent)
