@@ -2346,6 +2346,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.restoreRoot()
 		lastservice = eServiceReference(self.lastservice.value)
 		if lastservice.valid():
+			if self.isSubservices():
+				self.enterSubservices(lastservice)
 			self.setCurrentSelection(lastservice)
 
 	def toogleTvRadio(self):
@@ -2389,7 +2391,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if lastservice.valid():
 			if self.isSubservices():
 				self.zap(ref=lastservice)
-				self.fillVirtualSubservices()
+				self.enterSubservices()
 			else:
 				self.zap()
 
@@ -2555,27 +2557,28 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		return ret
 
 	def addToHistory(self, ref):
-		if self.delhistpoint is not None:
-			x = self.delhistpoint
-			while x <= len(self.history) - 1:
-				del self.history[x]
-		self.delhistpoint = None
-		if self.servicePath is not None:
-			tmp = self.servicePath[:]
-			tmp.append(ref)
-			self.history.append(tmp)
-			hlen = len(self.history)
-			x = 0
-			while x < hlen - 1:
-				if self.history[x][-1] == ref:
+		if not self.isSubservices():
+			if self.delhistpoint is not None:
+				x = self.delhistpoint
+				while x <= len(self.history) - 1:
 					del self.history[x]
+			self.delhistpoint = None
+			if self.servicePath is not None:
+				tmp = self.servicePath[:]
+				tmp.append(ref)
+				self.history.append(tmp)
+				hlen = len(self.history)
+				x = 0
+				while x < hlen - 1:
+					if self.history[x][-1] == ref:
+						del self.history[x]
+						hlen -= 1
+					else:
+						x += 1
+				if hlen > HISTORY_SIZE:
+					del self.history[0]
 					hlen -= 1
-				else:
-					x += 1
-			if hlen > HISTORY_SIZE:
-				del self.history[0]
-				hlen -= 1
-			self.history_pos = hlen - 1
+				self.history_pos = hlen - 1
 
 	def historyBack(self):
 		hlen = len(self.history)
