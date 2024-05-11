@@ -21,6 +21,7 @@ public:
 	void invalidateEntry(int index);
 	void invalidate();
 	eSize getItemSize() { return m_itemsize; }
+	int getMaxItemTextWidth();
 #ifndef SWIG
 protected:
 	void cursorHome();
@@ -60,6 +61,7 @@ protected:
 	eSize m_itemsize;
 	int m_itemheight;
 	int m_itemwidth;
+	int m_max_text_width;
 	uint8_t m_orientation;
 #endif
 };
@@ -118,7 +120,7 @@ public:
 	void resetClip();
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
-
+	int getMaxItemTextWidth();
 protected:
 	virtual void setBuildArgs(int selected) {}
 	virtual bool getIsMarked(int selected) { return false; }

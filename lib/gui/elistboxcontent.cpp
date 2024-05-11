@@ -59,7 +59,7 @@ int iListboxContent::currentCursorSelectable()
 DEFINE_REF(eListboxPythonStringContent);
 
 eListboxPythonStringContent::eListboxPythonStringContent()
-	: m_saved_cursor_line(0), m_cursor(0), m_saved_cursor(0), m_itemheight(25), m_itemwidth(25), m_orientation(1)
+	: m_saved_cursor_line(0), m_cursor(0), m_saved_cursor(0), m_itemheight(25), m_itemwidth(25), m_max_text_width(0), m_orientation(1)
 {
 }
 
@@ -153,6 +153,43 @@ int eListboxPythonStringContent::size()
 void eListboxPythonStringContent::setSize(const eSize &size)
 {
 	m_itemsize = size;
+}
+
+int eListboxPythonStringContent::getMaxItemTextWidth()
+{
+	ePtr<gFont> fnt;
+	eListboxStyle *local_style = 0;
+	int m_text_offset = 1;
+	if (m_listbox)
+		local_style = m_listbox->getLocalStyle();
+	if (local_style) {
+		fnt = local_style->m_font;
+		m_text_offset = local_style->m_text_padding.x();
+	}
+	if (!fnt) fnt = new gFont("Regular", 20);
+
+	for (int i = 0; i < size(); i++)
+	{
+		ePyObject item = PyList_GET_ITEM(m_list, i);
+		if (PyTuple_Check(item))
+		{
+			item = PyTuple_GET_ITEM(item, 0);
+		}
+		if (item != Py_None) {
+			const char *string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
+			eRect textRect = eRect(0,0, 8000, 100);
+
+			ePtr<eTextPara> para = new eTextPara(textRect);
+			para->setFont(fnt);
+			para->renderString(string);
+			int textWidth = para->getBoundBox().width();
+			if (textWidth > m_max_text_width) {
+				m_max_text_width = textWidth;
+			}
+		}
+	}
+
+	return m_max_text_width + (m_text_offset*2);
 }
 
 void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
@@ -1091,6 +1128,118 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 
 	return color;
 }
+
+int eListboxPythonMultiContent::getMaxItemTextWidth()
+{
+	ePtr<gFont> fnt;
+	eListboxStyle *local_style = 0;
+	int m_text_offset = 1;
+	if (m_listbox)
+		local_style = m_listbox->getLocalStyle();
+	if (local_style) {
+		fnt = local_style->m_font;
+		m_text_offset = local_style->m_text_padding.x();
+	}
+	if (!fnt) fnt = new gFont("Regular", 20);
+
+	ePyObject items, buildfunc_ret;
+	if (m_list) {
+		for (int k = 0; k < size(); k++)
+		{
+			items = PyList_GET_ITEM(m_list, k); // borrowed reference!
+
+			if (m_buildFunc)
+			{
+				if (PyCallable_Check(m_buildFunc))  // when we have a buildFunc then call it
+				{
+					if (PyTuple_Check(items))
+						buildfunc_ret = items = PyObject_CallObject(m_buildFunc, items);
+					else
+						eDebug("[eListboxPythonMultiContent] items is not a tuple");
+				}
+				else
+					eDebug("[eListboxPythonMultiContent] buildfunc is not callable");
+			}
+
+			ePyObject data;
+
+				/* if we have a template, use the template for the actual formatting.
+					we will later detect that "data" is present, and refer to that, instead
+					of the immediate value. */
+			int start = 1;
+			if (m_template)
+			{
+				data = items;
+				items = m_template;
+				start = 0;
+			}
+
+			int items_size = PyList_Size(items);
+			for (int i = start; i < items_size; ++i) {
+				ePyObject item = PyList_GET_ITEM(items, i); // borrowed reference!
+
+				if (!item)
+				{
+					eDebug("[eListboxPythonMultiContent] no items[%d] ?", i);
+					continue;
+				}
+
+				if (!PyTuple_Check(item))
+				{
+					eDebug("[eListboxPythonMultiContent] items[%d] is not a tuple.", i);
+					continue;
+				}
+
+				int size = PyTuple_Size(item);
+
+				if (!size)
+				{
+					eDebug("[eListboxPythonMultiContent] items[%d] is an empty tuple.", i);
+					continue;
+				}
+
+				int type = PyLong_AsLong(PyTuple_GET_ITEM(item, 0));
+
+				switch (type)
+				{
+					case TYPE_TEXT: // text
+					{
+						ePyObject px = PyTuple_GET_ITEM(item, 1), pfnt = PyTuple_GET_ITEM(item, 5), pstring = PyTuple_GET_ITEM(item, 7);
+
+						if (PyLong_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
+							pstring = PyTuple_GetItem(data, PyLong_AsLong(pstring));
+
+						if (pfnt) {
+							int fnt_i = PyLong_AsLong(pfnt);
+							if (m_fonts.find(fnt_i) != m_fonts.end()) fnt = m_fonts[fnt_i];
+						}
+
+						/* don't do anything if we have 'None' as string */
+						if (pstring == Py_None)
+							continue;
+
+						const char *string = (PyUnicode_Check(pstring)) ? PyUnicode_AsUTF8(pstring) : "<not-a-string>";
+						eRect textRect = eRect(0,0, 9999, 100);
+
+						ePtr<eTextPara> para = new eTextPara(textRect);
+						para->setFont(fnt);
+						para->renderString(string);
+						int textWidth = para->getBoundBox().width() + PyLong_AsLong(px);
+						if (textWidth > m_max_text_width) {
+							m_max_text_width = textWidth;
+						}
+						break;
+					}
+				}
+
+			}
+		}
+
+	}
+
+	return m_max_text_width + (m_text_offset*2);
+}
+
 
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
