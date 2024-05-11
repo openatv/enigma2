@@ -109,7 +109,6 @@ def menuEntryName(name):
 
 
 class Menu(Screen, ProtectedScreen):
-
 	skin = """
 	<screen name="Menu" title="Menu"  position="center,center" size="980,600" resolution="1280,720">
 		<widget source="menu" render="Listbox" position="0,0" size="730,490">
